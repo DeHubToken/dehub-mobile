@@ -3450,11 +3450,6 @@
     "noResultsFor": "\"{{query}}\" uchun natijalar yo'q",
     "guideSubtitle": "Har bir xususiyatning bosqichma-bosqich ko'rsatmasi",
     "searchGuide": "Yo'riqnomani qidiring...",
-    "guideFractionsTip": "Har bir mint qilingan postning barcha ulushlari dastlab ijodkorda bo‘ladi (100% egalik).",
-    "guideInfoStep": "Mint tranzaksiyasini blok eksplorerida ochish va zanjirdagi yozuvni tekshirish uchun mint qilingan postdagi ma’lumot belgisiga bosing.",
-    "guideMintIntro": "Postni blokcheynda NFT sifatida mint qilish ixtiyoriy. Nashr qilayotganda mint qiling yoki hozir nashr qilib, keyinroq post menyusidan mint qiling.",
-    "guideMintPublishStep": "Mint qilish-qilmaslikni tanlang, so‘ng nashr qilish uchun 'Post' tugmasini bosing. Mintni o‘tkazib yuborsangiz, postni keyinroq uning menyusidan mint qilishingiz mumkin.",
-    "guideMintFractionsStep": "Yangi mint qilingan postingizning barcha 1,000 ta fraksiyasini (100% egalik) olasiz.",
     "glossaryMintTxDesc": "Mint tranzaksiyasini blok eksplorerida ochish va zanjirdagi yozuvni tekshirish uchun mint qilingan postdagi ma’lumot belgisiga bosing. Post haqida to‘liq ma’lumot sahifasi — statistika, egalari, bozor — dehub.io veb-ilovasida joylashgan.",
     "glossaryTokenIdDesc": "Post NFT sifatida mint qilinganda unga beriladigan zanjirdagi noyob identifikator.",
     "repostsTab": "Qayta joylashtirishlar",
@@ -3471,24 +3466,7 @@
     "glossaryStakingDesc": "Vaqt o'tishi bilan mukofotlarni olish uchun DeHub tokenlaringizni qulflang. Stavka qilingan tokenlar sizga boshqaruvda ko'proq ovoz berish huquqini beradi.",
     "glossaryGovernanceDesc": "Platformani shakllantiradigan takliflarni yuboring va ovoz bering. Sizning ovoz berish huquqingiz qancha DeHub tokeniga ega ekanligingizga qarab belgilanadi.",
     "glossaryStakingBadgesDesc": "Sizning umumiy DeHub tokenlaringiz (hamyon + stavka qilingan) asosida foydalanuvchi nomingiz yonida ko'rsatiladigan nishonlar. 13 ta daraja mavjud — qancha ko'p token ushlasangiz, nishoningiz shunchalik yuqori bo'ladi. Yuqori darajalar ko'proq boshqaruv ovoz berish huquqini va pastroq platforma to'lovlarini beradi.",
-    "glossaryLeaderboardDesc": "Foydalanuvchilar umumiy DeHub token balansi (hamma zanjirlarda hamyon + stavka qilingan) bo'yicha reytingga ega. Reytinglar davriy ravishda yangilanadi va 1 kunlik va 1 haftalik o'zgarishlarni kuzatadi. Shuningdek, yuborilgan maslahatlar, olingan maslahatlar, obunachilar, layklar yoki obunachilar bo'yicha saralashingiz mumkin.",
-    "guideTipStep": "Post yaratuvchisiga DeHub tokenlarida maslahat yuborish uchun gem/maslahat belgisini bosing.",
-    "guideTipWalletTip": "Maslahatlar to'g'ridan-to'g'ri yaratuvchining hamyoniga DeHub tokenlari sifatida boradi.",
-    "guideTipNotificationsTip": "Bildirishnomalar siz qancha DeHub token olganingizni ko'rsatadi.",
-    "guideWalletIntro": "Bir nechta zanjirlardagi DeHub token balanslaringizni ko'ring, steykingizni tekshiring va aktivlaringizni boshqaring.",
-    "guideWalletTotalStep": "Barcha qo'llab-quvvatlanadigan zanjirlar bo'ylab jamlangan umumiy DeHub token balansingizni ko'ring.",
-    "guideStakingIntro": "Mukofotlarni olish va boshqaruv ovoz berish kuchingizni oshirish uchun DeHub tokenlaringizni stavka qiling.",
-    "guideStakingAmountStep": "Qancha DeHub token stavka qilishni xohlaysiz, shuni kiriting.",
-    "guideLeaderboardBalanceStep": "Balans yorlig'i foydalanuvchilarni umumiy DeHub token egaliklari bo'yicha reytingini tuzadi.",
-    "guideGovernanceVoteStep": "Takliflarga \"yoqdi\"/\"yoqmadi\" tugmalari yordamida ovoz bering — sizning ovoz berish kuchingiz qancha DeHub token stavka qilganingizga bog'liq.",
-    "guideGovernancePowerTip": "Sizning ovoz berish kuchingiz qancha DeHub token stavka qilganingizga bog'liq.",
-    "guideBuyIntro": "DPay orqali to'g'ridan-to'g'ri kartadan yoki qo'llab-quvvatlanadigan kriptovalyuta orqali DeHub tokenlarini sotib oling.",
-    "guideBuyAmountStep": "Sarflamoqchi bo'lgan miqdorni yoki olmoqchi bo'lgan DeHub tokenlar sonini kiriting.",
-    "guideBuyDeliveredStep": "Sizning DeHub tokenlaringiz tranzaksiya tugagandan so'ng hamyoningizda paydo bo'ladi.",
-    "guideBridgeIntro": "Qo'llab-quvvatlanadigan blokcheynlar orasida DeHub tokenlaringizni zanjirlararo ko'prik yordamida harakatlantiring.",
-    "guideBridgeSourceStep": "Manba zanjirini tanlang (DeHub tokenlaringiz hozir qayerda).",
-    "guideBridgeDestStep": "Maqsad zanjirini tanlang (DeHub tokenlaringizni qayerga yubormoqchisiz).",
-    "guideBridgeAmountStep": "Qancha DeHub tokenni ko'prikdan o'tkazishni xohlaysiz, shuni kiriting."
+    "glossaryLeaderboardDesc": "Foydalanuvchilar umumiy DeHub token balansi (hamma zanjirlarda hamyon + stavka qilingan) bo'yicha reytingga ega. Reytinglar davriy ravishda yangilanadi va 1 kunlik va 1 haftalik o'zgarishlarni kuzatadi. Shuningdek, yuborilgan maslahatlar, olingan maslahatlar, obunachilar, layklar yoki obunachilar bo'yicha saralashingiz mumkin."
   },
   "arcade": {
     "submitAccessibility": "Arkadaga o'yin yuboring",
@@ -6847,6 +6825,504 @@
       "packEmpty": "Bu manzilda emoji topilmadi",
       "shortcodeTaken": "{{name}} allaqachon band",
       "shortcodeStandard": "{{name}} allaqachon standart emoji"
+    }
+  },
+  "guide": {
+    "sections": {
+      "getting-started": {
+        "title": "Boshlash",
+        "intro": "DeHubga kirishning beshta usuli mavjud va ularning hech biri sizdan allaqachon hamyon egaligini talab qilmaydi: Google, Apple, elektron pochtangizga yuborilgan kod, SMS orqali yuborilgan kod yoki ulangan mavjud hamyon. Hamyon yo'nalishidan tashqari hamma narsa fon rejimida siz uchun nostodial hamyonni yaratadi — kalitlar sizda, va DeHub gazni homiylik qiladi, shuning uchun siz mahalliy token sotib olmasdan post yaratishingiz, maslahat berishingiz va to'plashingiz mumkin.",
+        "steps": {
+          "1": "dehub.io saytiga tashrif buyuring — uy lentasi asosiy sahifa, shuning uchun siz ro'yxatdan o'tmasdan oldin ko'rib chiqishingiz mumkin.",
+          "2": "'Kirish' tugmasini bosing. Siz Google va Apple, elektron pochta manzili yoki telefon raqami uchun maydonlarni va mavjud hamyon uchun 'Hamyonni ulash'ni ko'rasiz.",
+          "3": "Google yoki Apple bilan provayderning oqimini tugating. Elektron pochta yoki SMS orqali kelgan kodni kiriting.",
+          "4": "Birinchi marta kirishda siz uchun hamyon yaratiladi va himoyalanadi. Buning o'rniga o'z hamyoningizni ulash manzilingizni tasdiqlash uchun bitta imzo talab qiladi.",
+          "5": "Foydalanuvchi nomini tanlang. Bu odamlar ko'radigan narsa va bu sizning dehub.io/<username> profil havolangiz sifatida ham ishlaydi.",
+          "6": "Siz kirdingiz. Lentani o'rganing, profilingizni sozlang va post yaratishni boshlang."
+        },
+        "tips": {
+          "1": "Ijtimoiy, elektron pochta va SMS kirishlari hech qachon gaz to'lamaydi — DeHub uni homiylik qiladi. Ulangan hamyonlar o'zlarining ETH yoki BNBlarini to'laydilar.",
+          "2": "Eski DeHub hisobiga qaytyapsizmi? U ishlatgan elektron pochta yoki telefon raqami bilan kiriting va migratsiya uni siz uchun topadi.",
+          "3": "Siz bitta qurilmada bir nechta hisobni saqlashingiz va ularni Sozlamalar → Profil bo'limida almashtirishingiz mumkin."
+        }
+      },
+      "home-feed": {
+        "title": "Asosiy lenta",
+        "intro": "Asosiy lenta bu siz kuzatgan odamlarning postlarini va mashhur kontentni ko'radigan joy. U ko'p kontent turlari uchun tablar va saralash variantlarini qo'llab-quvvatlaydi.",
+        "steps": {
+          "1": "/app manziliga o'ting — bu sizning asosiy lentangiz.",
+          "2": "Kontent turiga qarab filtrlash uchun yuqori yorliqlardan foydalaning: Uy (barchasi), Videolar, Rasmlar, Shorts, Musiqa yoki Jonli efirlar.",
+          "3": "Mobil qurilmalarda ko'proq variantlarni ko'rish uchun yorliqlarni chapga/o'ngga suring.",
+          "4": "Saralashni o'zgartirish uchun filtrlash/saralash tugmasidan (kanalning yuqori o'ng tomonida) foydalaning: Qaynoq, Yangi, yoki Eng yaxshi.",
+          "5": "Mobil qurilmalarda kanalni yangilash uchun pastga torting.",
+          "6": "Postlarni avtomatik yuklash uchun pastga aylantiring (cheksiz aylantirish).",
+          "7": "Tartibni almashtirish tugmasi yordamida Raster va Kanal ko'rinishlari o'rtasida o'tish."
+        },
+        "tips": {
+          "1": "Rasmlarni tez ko'rib chiqish uchun Raster ko'rinishi ajoyib.",
+          "2": "\"Uy\" yorlig'i barcha kontent turlarini aralashtirilgan holda ko'rsatadi.",
+          "3": "Jonli yorlig'i hozirda faol bo'lgan jonli efirlarni ko'rsatadi."
+        }
+      },
+      "creating-posts": {
+        "title": "Postlar yaratish",
+        "intro": "Matnli postlar yarating, rasmlar, videolar, ovozli xabarlar, GIFlar va boshqalarni baham ko'ring. Ko'rinishni oshirish uchun hashtaglar, cashtaglar va mentionlardan foydalaning.",
+        "steps": {
+          "1": "Yon panelda (kompyuter) \"Post\" tugmasini yoki mobil qurilmalarda + tugmasini bosing.",
+          "2": "Matnni yozish maydoniga yozing.",
+          "3": "Rasm yoki videoni qo'shish uchun media belgisini bosing va faylni tanlang.",
+          "4": "Ovozli xabar yozish uchun mikrofon belgisini bosing.",
+          "5": "GIF qo'shish uchun GIF belgisini bosing va uni qidiring.",
+          "6": "Postingizni toifalash uchun #hashtaglaridan foydalaning (masalan, #kripto, #defi).",
+          "7": "Tokenlarga murojaat qilish uchun $cashtaglaridan foydalaning (masalan, $DHB, $ETH).",
+          "8": "Boshqa foydalanuvchilarni belgilash uchun @mentionlardan foydalaning (masalan, @username).",
+          "9": "Joylashtirish uchun \"Post\" tugmasini bosing. Postingiz darhol kanalda paydo bo'ladi."
+        },
+        "tips": {
+          "1": "Postlar markdown uslubidagi formatlashni qo'llab-quvvatlaydi.",
+          "2": "Har qanday postdagi qayta joylashtirish belgisini bosib, \"Iqtibos\"ni tanlab, iqtibosli post yaratishingiz mumkin.",
+          "3": "Kategoriyalar (hashtaglar) \"Kun mavzusi\" reytingida paydo bo'ladi."
+        }
+      },
+      "interacting-with-posts": {
+        "title": "Postlar bilan o'zaro aloqada bo'lish",
+        "intro": "Ovoz berish, sharhlash, maslahat berish, belgilash, baham ko'rish va tarjima qilish orqali kontent bilan o'zaro aloqada bo'ling.",
+        "steps": {
+          "1": "Har qanday postning chap tomonidagi strelka belgilari yordamida postni yuqoriga yoki pastga ovoz bering.",
+          "2": "Sharhlar bo'limini ochish va javob qoldirish uchun sharh belgisini bosing.",
+          "3": "Post muallifiga DeHub tokenlarida maslahat yuborish uchun olmos/maslahat belgisini bosing.",
+          "4": "Postni keyinroq saqlash uchun belgi belgisini bosing.",
+          "5": "Post havolasini nusxalash yoki tashqi tomondan baham ko'rish uchun baham ko'rish belgisini bosing.",
+          "6": "Har qanday postdagi tarjima tugmasini (globus belgisi) bosing va matnni o'z tilingizga tarjima qiling.",
+          "7": "Rasm postlari uchun, rasm ichidagi matnning sun'iy intellekt tomonidan tarjima qilingan versiyasini olish uchun 'Rasm tarjimasi' tugmasidan foydalaning.",
+          "8": "Postni to'liq ekranli bitta post ko'rinishida ochish uchun har qanday postni bosing."
+        },
+        "tips": {
+          "1": "Sovğalar to'g'ridan-to'g'ri yaratuvchining DeHub tokenlaridagi hamyoniga tushadi.",
+          "2": "Tez tanlov tugmalari orqali yoki maxsus miqdorni kiritish orqali sovg'a miqdorini belgilashingiz mumkin.",
+          "3": "Belgilangan postlarga yon panelidagi Belgilangan sahifadan kirishingiz mumkin."
+        }
+      },
+      "explore-search": {
+        "title": "Kashf etish va qidirish",
+        "intro": "Kashf etish sahifasi va kuchli qidiruv funksiyalari orqali yangi kontent va foydalanuvchilarni kashf eting.",
+        "steps": {
+          "1": "Yon panelidan /app/explore manziliga o'ting.",
+          "2": "Foydalanuvchilar, postlar yoki kontentni qidirish uchun yuqoridagi qidiruv panelidan foydalaning.",
+          "3": "Natijalarni tab bo'yicha filtrlash: Hammasi, Odamlar, Postlar, Rasmlar, Videolar, Musiqa, Jonli.",
+          "4": "Kashf etish sahifasida mashhur mavzular va kategoriyalarni ko'rib chiqing.",
+          "5": "Barcha tegishli postlarni ko'rish uchun mashhur mavzuni bosing.",
+          "6": "Foydalanuvchi profiliga tashrif buyurish uchun qidiruv natijalaridagi foydalanuvchini bosing."
+        },
+        "tips": {
+          "1": "Qidiruv foydalanuvchi nomlari, hamyon manzillari va kontent kalit so'zlarini qo'llab-quvvatlaydi.",
+          "2": "Mashhur mavzular so'nggi post faolligiga qarab yangilanadi."
+        }
+      },
+      "profile": {
+        "title": "Profil",
+        "intro": "Sizning profilingiz sizning postlaringiz, obunachilaringiz, kuzatuvchilaringiz va hamyon ma'lumotlaringizni namoyish etadi.",
+        "steps": {
+          "1": "Profilingizni ko'rish uchun yon panelidagi avatar yoki 'Profil' tugmasini bosing.",
+          "2": "Ko'rsatiladigan nom, bio va avataringizni yangilash uchun 'Profilni tahrirlash' tugmasini bosing.",
+          "3": "Tahrirlash rejimida avatar tugmasini bosib profil rasmini yuklang.",
+          "4": "Profil sahifangizda obunachilaringiz va kuzatuvchilaringiz sonini ko'ring.",
+          "5": "Profil tablari orqali o'zingizning postlaringiz, mediyangiz va yoqtirgan kontentingizni ko'rib chiqing.",
+          "6": "Hamyon manzilingizni uning yonidagi nusxalash belgisini bosib nusxalash.",
+          "7": "Platformadagi har qanday joyda foydalanuvchi nomini yoki avatarni bosib, boshqa foydalanuvchilarning profillariga tashrif buyuring."
+        },
+        "tips": {
+          "1": "Sizning foydalanuvchi nomingiz noyob va profil URL manzilingizda ko'rsatiladi (dehub.io/@username).",
+          "2": "Maxfiylik sozlamalari obunachilaringiz sonini kim ko'rishini nazorat qilish imkonini beradi."
+        }
+      },
+      "messages": {
+        "title": "Xabarlar",
+        "intro": "Platformadagi boshqa foydalanuvchilarga to'g'ridan-to'g'ri xabar yuboring.",
+        "steps": {
+          "1": "Xabarlar sahifasini ochish uchun yon panelidagi 'Xabarlar' tugmasini bosing.",
+          "2": "Yangi suhbatni boshlash uchun \"Yaratish\" tugmasini bosing.",
+          "3": "Ular bilan xabar almashish uchun foydalanuvchini foydalanuvchi nomi bo'yicha qidiring.",
+          "4": "Xabaringizni yozing va yuborish tugmasini bosing.",
+          "5": "Suhbatlar ro'yxatida suhbat tarixini ko'ring.",
+          "6": "Suhbatni davom ettirish uchun suhbatni bosing."
+        },
+        "tips": {
+          "1": "Kimdir sizga xabar yuborganda bildirishnoma olasiz.",
+          "2": "Yaratuvchilar maslahat talabi bilan xabarlarni qulflay oladi."
+        }
+      },
+      "ai-assistant": {
+        "title": "AI yordamchisi",
+        "intro": "Yordam, ma'lumot va ijodiy vazifalar uchun DeHubning o'rnatilgan AI yordamchisi bilan suhbatlashing.",
+        "steps": {
+          "1": "AI chatini ochish uchun yon panelidagi \"Yordamchi\" tugmasini bosing.",
+          "2": "Chat kiritish qismiga savolingizni yoki so'rovingizni yozing.",
+          "3": "AI kripto ma'lumotlari, platforma savollari va umumiy bilimlar bilan yordam bera oladi.",
+          "4": "Yangi chat tugmasini bosib yangi suhbatni boshlang.",
+          "5": "Yordamchi sahifasining yon panelida suhbat tarixini ko'ring.",
+          "6": "AI tahlil qilishi uchun rasmlarni biriktirishingiz mumkin."
+        },
+        "tips": {
+          "1": "AI suhbat davomida kontekstni eslab qoladi.",
+          "2": "Siz AI dan DeHub xususiyatlari, kripto atamalari yoki umumiy savollar haqida so'rashingiz mumkin.",
+          "3": "Oldingi suhbatlar saqlanadi va istalgan vaqtda kirish mumkin."
+        }
+      },
+      "notifications": {
+        "title": "Bildirishnomalar",
+        "intro": "Kontentingizdagi layklar, sharhlar, maslahatlar, kuzatuvlar va boshqa faoliyatlar haqida ma'lumot oling.",
+        "steps": {
+          "1": "Yon panelidagi qo'ng'iroq belgisi yoki \"Bildirishnomalar\" tugmasini bosing.",
+          "2": "Barcha bildirishnomalarni xronologik ro'yxatda ko'ring.",
+          "3": "Tegishli kontentga o'tish uchun bildirishnomani bosing.",
+          "4": "Bildirishnomalar quyidagilarni o'z ichiga oladi: yangi kuzatuvchilar, post ovozlari, sharhlar, maslahatlar va eslatmalar.",
+          "5": "O'qilmagan bildirishnomalar ta'kidlangan — ular ko'rilganda o'qilgan deb belgilanadi."
+        },
+        "tips": {
+          "1": "Bildirishnoma belgisi o'qilmagan bildirishnomalar sonini ko'rsatadi.",
+          "2": "Maslahat bildirishnomalari siz olgan tokenlar sonini ko'rsatadi."
+        }
+      },
+      "wallet": {
+        "title": "Hamyon",
+        "intro": "Bir nechta zanjirlardagi DeHub token balanslaringizni ko'ring, stavka depozitlarini tekshiring va aktivlaringizni boshqaring.",
+        "steps": {
+          "1": "Hamyon sahifasini ochish uchun yon panelidagi \"Hamyon\" tugmasini bosing.",
+          "2": "Barcha qo'llab-quvvatlanadigan zanjirlar bo'ylab umumlashtirilgan umumiy token balansingizni ko'ring.",
+          "3": "Zanjir bo'yicha tafsilotlarni ko'ring: Ethereum, Base, BNB Chain va boshqalar.",
+          "4": "Staking depozitlari va mukofotlaringizni tekshiring.",
+          "5": "Zanjirdagi ma'lumotlardan balansingizni yangilash uchun 'Scan'ni yangilash tugmasini bosing.",
+          "6": "Boshqalardan tokenlarni qabul qilish uchun hamyon manzilingizni nusxalash."
+        },
+        "tips": {
+          "1": "Balanslar avtomatik yangilanadi, lekin siz istalgan vaqtda majburiy yangilashni amalga oshirishingiz mumkin.",
+          "2": "Hamyon ham likvid (mavjud), ham staking qilingan balanslarni ko'rsatadi."
+        }
+      },
+      "staking": {
+        "title": "Staking",
+        "intro": "Mukofotlarni olish va boshqaruv ovoz berish kuchingizni oshirish uchun DeHub tokenlaringizni staking qiling.",
+        "steps": {
+          "1": "Yon panelidan 'Staking' sahifasiga o'ting.",
+          "2": "Staking qilishni istagan tokenlar sonini kiriting.",
+          "3": "Staking qilishni istagan zanjirni tanlang.",
+          "4": "Hamyoningizda tranzaksiyani tasdiqlang (tashqi hamyonlar) yoki u avtomatik bajariladi (ijtimoiy kirish).",
+          "5": "Staking qilingan miqdoringizni va kutilayotgan mukofotlarni ko'ring.",
+          "6": "Stakingdan chiqarish uchun miqdorni kiriting va stakingdan chiqarish tranzaksiyasini tasdiqlang."
+        },
+        "tips": {
+          "1": "Staking boshqaruv takliflarida ovoz berish og'irligini oshiradi.",
+          "2": "Ijtimoiy kirish foydalanuvchilari staking uchun gazga muhtoj emas — bu gazsiz.",
+          "3": "Siz bir vaqtning o'zida bir nechta zanjirlarda staking qila olasiz."
+        }
+      },
+      "leaderboard": {
+        "title": "Liderlar jadvali",
+        "intro": "Kim yuqorida ekanligini ko'ring! Liderlar jadvali foydalanuvchilarni balans, kunlik xarajatlar va trenddagi mavzular bo'yicha reytingga kiritadi.",
+        "steps": {
+          "1": "Yon panelidan 'Liderlar jadvali' sahifasiga o'ting.",
+          "2": "Tablar orasida o'ting: Balans, Kunlik sarflangan, va Shahar gap-so'zlari.",
+          "3": "Balans tabida foydalanuvchilar umumiy token egaliklari bo'yicha reytingga kiritiladi.",
+          "4": "Kunlik sarflangan tab oxirgi 24 soat ichida eng faol maslahat berganlarni ko'rsatadi.",
+          "5": "Shahar gap-so'zlari eng ko'p muhokama qilingan mavzular/toifalarni ko'rsatadi.",
+          "6": "Profiliga kirish uchun har qanday foydalanuvchini bosing.",
+          "7": "Liderlar jadvali kun davomida davriy ravishda yangilanadi."
+        },
+        "tips": {
+          "1": "Kunlik reytinglar har 24 soatda yangilanadi.",
+          "2": "Shahar gap-so'zlari hashtaglardan olingan yagona so'zli toifalarni kuzatadi."
+        }
+      },
+      "command-centre": {
+        "title": "Boshqaruv markazi",
+        "intro": "Boshqaruv paneli sizning asosiy metrikalaringiz va platforma faoliyatingizni bir qarashda ko'rsatadi.",
+        "steps": {
+          "1": "Yon panelda 'Boshqaruv markazi' tugmasini bosing.",
+          "2": "Postlar soni, obunachilar va o'zaro ta'sirni o'z ichiga olgan profil qisqacha mazmunini ko'ring.",
+          "3": "So'nggi faoliyatingiz va mashhur mavzularni ko'ring.",
+          "4": "Ko'p ishlatiladigan funksiyalarga tezkor havolalarga kirish."
+        },
+        "tips": {
+          "1": "Boshqaruv markazi sizga DeHubdagi mavjudligingizni yuqoridan ko'rish imkonini beradi."
+        }
+      },
+      "governance": {
+        "title": "Boshqaruv",
+        "intro": "Takliflar yaratish va jamoat qarorlari bo'yicha ovoz berish orqali platforma boshqaruvida ishtirok eting.",
+        "steps": {
+          "1": "Yon panelda 'Boshqaruv' bo'limiga o'ting.",
+          "2": "Jamoat tomonidan kiritilgan faol takliflarni ko'rib chiqing.",
+          "3": "Taklifning to'liq tavsifi va muhokamasini o'qish uchun taklifni bosing.",
+          "4": "Takliflarga \"yoqdi\"/\"yoqmadi\" tugmalari yordamida ovoz bering — sizning ovoz berish kuchingiz qancha DeHub tokenini stavka qilganingizga bog'liq.",
+          "5": "Jamoat bilan muhokama qilish uchun takliflarga sharhlar qoldiring.",
+          "6": "'Taklif yaratish' tugmasini bosib, o'z taklifingizni yuboring."
+        },
+        "tips": {
+          "1": "Sizning ovoz berish kuchingiz stavka qilingan tokenlar soni bilan belgilanadi.",
+          "2": "Belgilar egalari qo'shimcha ovoz kuchiga ega bo'lishi mumkin.",
+          "3": "Takliflar bosqichlardan o'tadi: Faol → O'tdi/Rad etildi."
+        }
+      },
+      "bookmarks": {
+        "title": "Xatcho'plar",
+        "intro": "Postlarni keyinroq oson kirish uchun xatcho'plaringizga saqlang.",
+        "steps": {
+          "1": "Uni saqlash uchun istalgan postdagi xatcho'p belgisini bosing.",
+          "2": "Barcha saqlangan postlarni ko'rish uchun yon panelda 'Xatcho'plar' bo'limiga o'ting.",
+          "3": "Xatcho'p qilingan postni to'liq ko'rish uchun bosing.",
+          "4": "Xatcho'pni yana xatcho'p belgisini bosib olib tashlang."
+        },
+        "tips": {
+          "1": "Xatcho'plar maxfiy — faqat siz saqlangan postlaringizni ko'rishingiz mumkin.",
+          "2": "Xatcho'p qilinadigan postlar sonida cheklov yo'q."
+        }
+      },
+      "settings": {
+        "title": "Sozlamalar",
+        "intro": "Til, maxfiylik va displey sozlamalari yordamida DeHub tajribangizni sozlang.",
+        "steps": {
+          "1": "Yon panelda 'Sozlamalar' tugmasini bosing.",
+          "2": "Til tanlashdan displey tilini o'zgartiring.",
+          "3": "Maxfiylik sozlamalarini sozlang: obunachilar soni va kuzatuv ro'yxatini kim ko'rishini nazorat qiling.",
+          "4": "Postlar uchun standart ko'rinish imtiyozlarini belgilang.",
+          "5": "Xabarnomalar imtiyozlarini boshqaring."
+        },
+        "tips": {
+          "1": "DeHub ko'p tillarni qo'llab-quvvatlaydi — butun interfeys tarjima qilinadi.",
+          "2": "Maxfiylik sozlamalari darhol kuchga kiradi."
+        }
+      },
+      "posting-allowance": {
+        "title": "Sizning kundalik post yaratish kvotangiz",
+        "intro": "Post yaratish har kuni staking belgisi bilan o'zgarib turadigan kvotagacha bepul. Har bir kishi kuniga o'n tagina matnli post va bir gigabayt video, rasmlar va audio bilan boshlaydi. Ulardan birortasidan oshib ketsangiz, o'sha kunning qolgan qismi DeHub tokenlarida to'lanadi — faqat oshib ketgan qismi uchun.",
+        "steps": {
+          "1": "Oddiydek post yarating. Kvota ichida hech narsa o'chirilmaydi va sizdan hech narsa talab qilinmaydi.",
+          "2": "Matnli postlar va media alohida havuzlardir, shuning uchun video yuklash bilan o'tgan kun ham o'nta matnli postni bepul qoldiradi.",
+          "3": "Post kvotadan oshib ketadigan bo'lsa, ilova uni narxlaydi va yuklanishdan oldin hamyoningiz uni qoplashi mumkinligini tekshiradi.",
+          "4": "Post kvota ichidagidek chop etiladi — chop etish hech qachon to'lovni kutmaydi.",
+          "5": "Keyin siz faqat o'sha post uchun bir marta o'tkazmani tasdiqlaysiz, bu Base yoki BNB Chaindan qaysi birida yetarli DeHub tokenlari borligiga qarab hal qilinadi.",
+          "6": "Ikkala havuz ham UTC yarim tungi vaqtida yangilanadi."
+        },
+        "tips": {
+          "1": "Oshib ketish pro-rata hisoblanadi: kvotangizdan 200 MB oshib ketish 200 MBni tashkil qiladi, butun gigabaytni emas.",
+          "2": "Qayta postlar, sharhlar, reaksiyalar, maslahatlar va xabarlar bepul va hech qachon kvotaga tegmaydi.",
+          "3": "To'lovni rad etsangiz, post qoladi — miqdor faqat keyingi to'langan postingizni hal qilinmaguncha bloklaydi. Ertangi bepul kvota har doim sizniki.",
+          "4": "Staking belgisi bepul kvotani oshiradi va undan oshib ketgan har qanday narsaning narxini pasaytiradi."
+        }
+      },
+      "reactions-and-safety": {
+        "title": "Reaksiyalar, o'chirish va kattalar uchun kontent",
+        "intro": "Layk tugmasi ortida to'qqizta reaksiya mavjud va siz nimani ko'rishni va kim sizga murojaat qila olishini aniqlash uchun boshqaruvlar to'plami mavjud.",
+        "steps": {
+          "1": "Reaksiya tepsisini ochish uchun har qanday postdagi \"bosh barmoq yuqoriga\" tugmasini bosing: layk, sevgi, hurmat, issiq, kulgili, qayg'uli, yig'lash, yoqimsiz va axlat.",
+          "2": "Yettita ijobiy reaksiya postning layklar soniga hissa qo'shadi; yoqimsiz va axlat esa unga qarshi hisoblanadi.",
+          "3": "Sizning reaksiyangiz staking belgisi bilan og'irlanadi, shuning uchun belgi egasi reaksiyasi oddiy ovozdan ko'ra ko'proq hisoblanadi.",
+          "4": "Postning sarlavhasidagi X tugmasini bosing va muallifni o'chirib qo'ying — ular darhol sizning lentangizdan chiqib ketadi.",
+          "5": "Yaratuvchilar o'zlarining postlarini yaratish paytida kattalar uchun deb belgilaydilar; bunday postlar umumiy bosh sahifadan chiqarib tashlanadi.",
+          "6": "Kattalar uchun mo'ljallangan postlarni hamma joyda ko'rish uchun Sozlamalarda \"Kattalar uchun kontentni ko'rsatish\"ni yoqing."
+        },
+        "tips": {
+          "1": "Kattalar uchun mo'ljallangan post o'z yaratuvchisining profilida va ularga obuna bo'lganlar uchun to'liq ko'rinadi.",
+          "2": "Profil orqali bloklash o'chirishdan ko'ra ko'proq ishlaydi va xabar almashishni ham to'xtatadi.",
+          "3": "Reaksiya tepsisi kim va nimaga reaksiya bildirganini ko'rsatadi, shuning uchun siz faqat raqamni emas, balki xonani ko'rishingiz mumkin."
+        }
+      },
+      "stages": {
+        "title": "Bosqichlar (jonli audio xonalar)",
+        "intro": "Bosqichlar DeHubga o'rnatilgan jonli audio xonalardir. Xost xonani ochadi, spikerlarni taklif qiladi va har kim Bosqichlar sahifasidan yoki ulashilgan havola orqali tinglash uchun kirishi mumkin.",
+        "steps": {
+          "1": "Hozirda jonli efirda nimalar borligini va nimalar rejalashtirilganligini ko'rish uchun yon panelda \"Bosqichlar\"ni oching.",
+          "2": "Jonli sahnaga tinglovchi sifatida qo&#39;shilish uchun bosing yoki rejalashtirilgan sahnaga eslatma o&#39;rnating va u qachon boshlanishini bilib oling.",
+          "3": "O&#39;zingizning sahifangizni xuddi shu sahifadan boshlang — siz to&#39;g&#39;ridan-to&#39;g&#39;ri brauzerdan, OBS yoki strim kalitisiz jonli efirga chiqishingiz mumkin.",
+          "4": "Mezbon sifatida spikerlarni sahnaga olib chiqing, ularni jim qiling yoki olib tashlang, ekraningizni ulashing va ovoz paneli bilan ishlating.",
+          "5": "Tinglovchilar sahnaga chiqmasdan jonli efirda reaksiya bildirishadi va xonada suhbatlashishadi.",
+          "6": "Har bir sahna yozib olinadi va yozuv keyinroq u ko&#39;rsatilgan kartadan ijro etiladi."
+        },
+        "tips": {
+          "1": "Jonli subtitrlar har bir ma&#39;ruzachiga sarlavha qo&#39;ying va o&#39;qiyotgan tilingizga tarjima qiling.",
+          "2": "Jonli dublyaj xonada boshlovchining o&#39;zining klonlangan ovozida, DeHub tokenlarida daqiqalar bo&#39;yicha hisoblab chiqiladigan ovozda ovoz chiqarib gapirishi mumkin.",
+          "3": "Boshlovchilar suhbatlar oralig&#39;ida radiostansiyani efirga uzatishlari yoki o&#39;zlarining musiqiy kliplarini ijro etishlari mumkin.",
+          "4": "Ilovaning qolgan qismini ko&#39;rib chiqayotganingizda mini-pleyer xonani burchakda ushlab turadi."
+        }
+      },
+      "communities": {
+        "title": "Jamiyatlar va tadbirlar",
+        "intro": "Hamjamiyatlar - bu o&#39;z tasmasi, a&#39;zolari va faoliyatiga ega a&#39;zolar tomonidan boshqariladigan makonlar. Tadbirlar ularga vaqt bilan chegaralangan dasturlarni qo&#39;shadi.",
+        "steps": {
+          "1": "Yon panelda &quot;Hamjamiyatlar&quot; ni oching va ommaviylarini ko&#39;rib chiqing.",
+          "2": "Bir marta bosish bilan qo&#39;shiling. Yangi faollik navigatsiyada o&#39;qilmagan nishon sifatida ko&#39;rsatiladi.",
+          "3": "Jamiyatning o&#39;z tasmasida joylashtiring, muhokama qiling, so&#39;rovnomalar o&#39;tkazing va maslahatlar bering.",
+          "4": "Jamiyat egalari o&#39;z maydonlarini moderatsiya qilishadi va boshqalarga administrator huquqlarini berishlari mumkin.",
+          "5": "Rejalashtirilgan dasturlar uchun &quot;Tadbirlar&quot; ni oching, har bir tadbir uchun to&#39;liq sahifani jonli efirda kuzatib borishingiz mumkin."
+        },
+        "tips": {
+          "1": "Hamjamiyat chati @mentions va @here’ni qo‘llab-quvvatlaydi, shuning uchun post xonaga yetib borishi mumkin.",
+          "2": "Taklifnoma havolasi sizga odamlarni to&#39;g&#39;ridan-to&#39;g&#39;ri hamjamiyatga jalb qilish imkonini beradi."
+        }
+      },
+      "arcade": {
+        "title": "Arkada",
+        "intro": "Beshta oʻyin DeHub ichida brauzer yorligʻida ishlaydi — oʻrnatish uchun hech narsa yoʻq, sotib olish uchun hech narsa yoʻq.",
+        "steps": {
+          "1": "Yon panelda &quot;Arcade&quot; ni oching.",
+          "2": "Oʻyin tanlang: King&#39;s Gambit (onlayn Elo narvonli 3D shaxmat), Claude of Duty (yuklanayotganda oʻz sanʼatini yaratadigan otishma), Jungle Trail (yomgʻir oʻrmonida sayr qilish), Street Slayer (DeHub uchun yaratilgan beat-up) yoki Chartopia (piyoda yurish mumkin boʻlgan savdo maydonchasi).",
+          "3": "Yorliqda o&#39;ynang. King&#39;s Gambit va Street Slayer peshqadamlar jadvalida o&#39;z o&#39;rnini saqlab qoladi.",
+          "4": "Chartopia shuningdek, WebXR orqali VR garniturasida ishlaydi."
+        },
+        "tips": {
+          "1": "Ulardan ikkitasi tashqi ko&#39;rinish mavzulari ichida yashiringan — ilovani Claude of Duty uchun War yoki Jungle Trail uchun Jungle ga sozlang.",
+          "2": "Har bir o&#39;yinning o&#39;z ulashish kartasi bor, shuning uchun uni qayerga joylashtirsangiz ham, unga havola to&#39;g&#39;ri ochiladi."
+        }
+      },
+      "bounties-stores": {
+        "title": "Sovg'alar va do'konlar",
+        "intro": "Platformani daromadga aylantirishning ikki yo&#39;li: mukofotni joylashtirish yoki talab qilish yoki do&#39;kon ochish va auditoriyangizga sotish.",
+        "steps": {
+          "1": "Kategoriya yoki valyuta bo&#39;yicha filtrlangan ochiq ishlarni ko&#39;rib chiqish uchun &quot;Bonties&quot; ni oching.",
+          "2": "Bittasini oling, ishni bajaring va mukofotni olish uchun topshiring — istalgan kishi ovchi bo&#39;lishi mumkin, ariza berish shart emas.",
+          "3": "O'z \"bounty\"ni qisqa tavsif va DeHub tokenlari yoki USDC mukofoti bilan joylashtiring. U joylashtirilgan zahoti escrowga tushadi.",
+          "4": "O'z sahifasi, brending va ro'yxatlari bilan do'konni sozlash uchun \"Do'konlar\"ni oching.",
+          "5": "Mahsulotlar tashqi to'lov tizimisiz, o'rnatilgan hamyon orqali DeHub tokenlarida narxlanadi va hisob-kitob qilinadi."
+        },
+        "tips": {
+          "1": "\"Bounty\"lar Ijtimoiy media, Kesish va Kontraktlarga bo'lingan.",
+          "2": "Nizo oqimi yetkazib berish bo'yicha kelishmovchiliklarni hal qiladi, shuning uchun escrow har doim adolatli hal qilinadi.",
+          "3": "Ijodkorlar hamjamiyatni rivojlantirish uchun \"bounty\"lardan foydalanadilar - baham ko'rish, kesish va munosabatlar barcha haqiqiy vazifalardir."
+        }
+      },
+      "creator-studio": {
+        "title": "Ijodkor studiyasi va muharriri",
+        "intro": "Ijodkor studiyasi buyurtma asosida tasvirlar, videolar, musiqalar, ovozlar va 3D modellarini yaratadi va ularni muharrirga topshiradi - shu jumladan brauzerda ishlaydigan to'liq ko'p yo'lli video muharriri.",
+        "steps": {
+          "1": "Ijodkor studiyasini oching va nima yaratishni xohlayotganingizni tasvirlab bering.",
+          "2": "Server ishni bajarishdan oldin narxni ko'rsatadi, shuning uchun siz sarflashingizdan oldin uning narxini ko'rasiz.",
+          "3": "Renderlar umumiy navbatda davom etadi, siz esa ilovada ko'rib chiqishni davom ettirasiz.",
+          "4": "Natijalarni Canva uslubidagi muharrirda joylashtiring yoki kesish, qatlamlash va eksport qilish uchun haqiqiy vaqt jadvali uchun video muharririni oching.",
+          "5": "Tayyorlangan qismni to'g'ridan-to'g'ri postga, qisqa videoga yoki do'kon ro'yxatiga joylashtiring."
+        },
+        "tips": {
+          "1": "Bepul fond aktivlari kutubxonasi Studio yonida joylashgan bo'lib, siz yaratishni istamaydigan har qanday narsa uchun.",
+          "2": "Yaratish sizning hamyoningizdagi DeHub tokenlarida to'lanadi - siz har bir ish uchun bitta transferni imzolaysiz va narx to'lashdan oldin ko'rsatiladi.",
+          "3": "Ko'proq foydalanuvchilar Ultra, Jamoa yoki Skala rejalarini tanlashlari mumkin, bu esa ularning hamyoniga har oy token ajratmasini yuboradi."
+        }
+      },
+      "buying-dhb": {
+        "title": "Token sotib olish",
+        "intro": "Ilovaning o'zida o'rnatilgan almashish interfeysidan foydalanib, DeHub tokenlarini to'g'ridan-to'g'ri sotib oling.",
+        "steps": {
+          "1": "Yon panelidan \"Sotib olish\" sahifasiga o'ting.",
+          "2": "Qaysi tokenni almashtirishni xohlayotganingizni tanlang (masalan, ETH, USDC).",
+          "3": "Siz sarflamoqchi bo'lgan miqdorni yoki olishni xohlagan tokenlar sonini kiriting.",
+          "4": "Valyuta kursi va taxminiy natijani ko'rib chiqing.",
+          "5": "Kaytish toleransini sozlash uchun sozlamalar tishli ikonkasini bosing (standart 1%).",
+          "6": "Almashuv operatsiyasini tasdiqlang.",
+          "7": "Operatsiya tugagandan so'ng DeHub tokenlari sizning hamyoningizda paydo bo'ladi."
+        },
+        "tips": {
+          "1": "Yuqoriroq kaytish toleransi = bajarilish ehtimoli yuqori, lekin yomon narxlanish imkoniyati mavjud.",
+          "2": "Tasdiqlashdan oldin har doim valyuta kursini tekshiring.",
+          "3": "Sozlamalar panelida maxsus kaytishni o'rnatishingiz mumkin."
+        }
+      },
+      "bridge": {
+        "title": "Ko'prik",
+        "intro": "Ko'p zanjirli ko'prikdan foydalanib, DeHub tokenlaringizni qo'llab-quvvatlanadigan blokcheynlar orasida harakatlantiring.",
+        "steps": {
+          "1": "'Ko'prik' sahifasiga yon panel orqali o'ting.",
+          "2": "Manba zanjirini tanlang (tokenlaringiz hozirda qayerda bo'lsa).",
+          "3": "Maqsadli zanjirni tanlang (ularni qayerga yubormoqchi bo'lsangiz).",
+          "4": "Ko'prik qilinadigan tokenlar sonini kiriting.",
+          "5": "Ko'prik to'lovini va kutilayotgan kelish vaqtini ko'rib chiqing.",
+          "6": "Ko'prik operatsiyasini tasdiqlang.",
+          "7": "Operatsiya tugaguniga qadar kuting — ko'prik qilish bir necha daqiqa vaqt olishi mumkin."
+        },
+        "tips": {
+          "1": "Ko'prik to'lovlari zanjir juftligiga qarab farq qiladi.",
+          "2": "Ko'prik qilish odatda ishtirok etayotgan zanjirlarga qarab 1-5 daqiqa davom etadi.",
+          "3": "Tasdiqlashdan oldin har doim maqsadli zanjirni ikki marta tekshiring."
+        }
+      },
+      "music-tv": {
+        "title": "Musiqa va TV",
+        "intro": "DeHub ichida media kontentdan to'g'ridan-to'g'ri bahramand bo'ling — musiqa tinglang va jonli TV kanallarini tomosha qiling.",
+        "steps": {
+          "1": "Musiqa postlarini ko'rib chiqish va ijro etish uchun yon panelda 'Musiqa' bo'limiga o'ting.",
+          "2": "Jonli TV kanallariga kirish uchun 'TV' bo'limiga o'ting.",
+          "3": "Kanallarni toifa yoki mamlakat bo'yicha ko'rib chiqing.",
+          "4": "Tomosha qilishni boshlash uchun kanalni bosing.",
+          "5": "Volyumni va ijro etishni sozlash uchun ijro etish tugmalaridan foydalaning.",
+          "6": "Noto'g'ri ishlayotgan kanallarni xabar berish tugmasi yordamida bildiring."
+        },
+        "tips": {
+          "1": "TV kanallari ishonchlilik uchun hamjamiyat tomonidan tasdiqlangan.",
+          "2": "Musiqa postlarini boshqa kontentni ko'rib chiqishda ijro etish mumkin."
+        }
+      },
+      "post-info": {
+        "title": "Post haqida ma'lumot va fraktsiyalar",
+        "intro": "Minta qilingan post 1000 fraktsiyaga bo'lingan NFT hisoblanadi. Post haqida ma'lumot sahifasi zanjirdagi ma'lumotlarni, faollik statistikasini, egalikni taqsimlashni ko'rsatadi va har qanday postning fraktsiyalarini savdo qilish imkonini beradi — minta qilinmagan postda esa minta qilishni taklif qiladi.",
+        "steps": {
+          "1": "Har qanday postdagi 'ⓘ' belgisini post haqida ma'lumot sahifasini ochish uchun bosing.",
+          "2": "Yuqorida siz Token ID (zanjirdagi noyob identifikator) va operatsiya hashesini ko'rasiz — uni blok tadqiqotchisida ko'rish uchun hashni bosing.",
+          "3": "Undan pastda, faollik statistikasi umumiy layklar, dislayklar, ko'rishlar, sharhlar va olingan maslahatlar sonini ko'rsatadi.",
+          "4": "Egashtiruvchilar bo'limi yaratuvchi hali ham egalik qilayotgan 1000 fraktsiyaning qancha qismini ko'rsatuvchi progress barini, shuningdek, ularning balanslari va foizlari bilan barcha fraktsiya egalarining ro'yxatini ko'rsatadi.",
+          "5": "Agar post to'lovli (PPV) bo'lsa, narxini, valyutasini va nechta foydalanuvchi kirishni sotib olganini ko'rasiz.",
+          "6": "Post egalari ko'rinishni (Ommaviy, Ro'yxatlanmagan yoki Maxfiy) o'zgartirishlari va sarlavha/tavsifni to'g'ridan-to'g'ri ushbu sahifadan tahrirlashlari mumkin."
+        },
+        "tips": {
+          "1": "Yangi minta qilingan post yaratuvchi barcha 1000 fraktsiyaga (100% egalik) ega bo'lgan holda boshlanadi.",
+          "2": "Operatsiya hashining havola BaseScan yoki BscScan ga zanjirga qarab bog'liq.",
+          "3": "Ro'yxatda bo'lmagan postlar lentada ko'rinmaydi, lekin to'g'ridan-to'g'ri havola orqali kirish mumkin."
+        }
+      },
+      "trading-fractions": {
+        "title": "Savdo kasrlari",
+        "intro": "Fraksiyalar savdosi — roʻyxatlarni koʻrib chiqish, takliflar berish, oʻzingiznikini roʻyxatga olish — dehub.io veb-ilovasida, har bir postning Post haqida maʼlumot sahifasida joylashgan.",
+        "steps": {
+          "1": "Brauzerda dehub.io faylini oching va xuddi shu hisob qaydnomasi bilan tizimga kiring.",
+          "2": "Postning Post haqida ma&#39;lumot sahifasini oching va uning Marketplace yorlig&#39;iga o&#39;ting.",
+          "3": "E&#39;lonlarni ko&#39;rib chiqing, o&#39;z narxingizda taklif bering yoki ushlab turgan kasrlaringizni ro&#39;yxatlang.",
+          "4": "Savdo tugagandan so&#39;ng, o&#39;zgarish mobil qurilmangizdagi Kasrlar yorlig&#39;ida ko&#39;rsatiladi."
+        },
+        "tips": {
+          "1": "Postning kasrlariga egalik qilish, siz ushbu zanjirdagi NFT ulushiga egalik qilishingizni anglatadi.",
+          "2": "Sotib olishdan oldin egalik taqsimotini ko&#39;rish uchun veb-bozorda post egalarini tekshiring.",
+          "3": "Ijodkor sifatida, kasrlarni sotish muxlislarga sizning kontentingizga birgalikda egalik qilish imkonini beradi."
+        }
+      },
+      "minting-posts": {
+        "title": "Postlarni chiqarish (NFT yaratish)",
+        "intro": "Chiqarish ixtiyoriy. Siz yuborgan zahoti post zanjirdan tashqarida joylashtiriladi — hamyon, imzo, gaz yo'q — va uni istalgan vaqtda, uni yozayotganingizda yoki keyinroq postning o'zidan NFT sifatida chiqarishingiz mumkin.",
+        "steps": {
+          "1": "Yon panelda 'Post' (Post) tugmasini (ish stoli) yoki + tugmasini (mobil) bosing.",
+          "2": "Matningizni yozing, media (rasmlar, videolar, audio) qo'shing va kategoriyalarni kiriting.",
+          "3": "Zanjirdan tashqarida joylashtirish uchun 'Postni chiqarish' (Mint post) opsiyasini o'chirilgan holda qoldiring yoki joylashtirish vaqtida chiqarish uchun uni yoqing.",
+          "4": "Nashr hech qachon zanjirda kutib turmaydi: post har qanday holatda ham lentada paydo bo&#39;ladi.",
+          "5": "Keyinroq ishga tushirish uchun postning &quot;ⓘ&quot; ma&#39;lumot sahifasini oching va u yerda &quot;Mint&quot; amalidan foydalaning.",
+          "6": "Bir marta nashr etilgandan so&#39;ng, postga Token identifikatori va zanjirda tekshirishingiz mumkin bo&#39;lgan tranzaksiya xeshi beriladi va siz uning barcha 1000 ta kasrini saqlaysiz."
+        },
+        "tips": {
+          "1": "Ijtimoiy tarmoqlar, elektron pochta va SMS orqali kirish uchun benzin to&#39;lovi nolga teng — DeHub to&#39;lovlarni homiylik qiladi.",
+          "2": "Tashqi hamyon foydalanuvchilari gaz uchun bazaviy ETH yoki BNB Chaindagi BNB ga muhtoj.",
+          "3": "Zarbxona postlarni savdoga qodir va royalti keltiradigan narsadir. Zarbxonaga qo&#39;yilmagan postlar baribir ko&#39;proq pul va ko&#39;rishlarga ega bo&#39;ladi.",
+          "4": "Zanjir ichidagi yozuv, hatto post keyinchalik lentadan o&#39;chirilgan bo&#39;lsa ham, yaratilgandan so&#39;ng doimiy bo&#39;ladi."
+        }
+      },
+      "glossary": {
+        "title": "Glossariy",
+        "intro": "Web3 da harakatlanishingizga yordam beradigan kripto va platforma terminologiyasining keng qamrovli lug&#39;ati.",
+        "steps": {
+          "1": "Yon paneldan &quot;Lug&#39;at&quot; ga o&#39;ting.",
+          "2": "Alifbo tartibida atamalarni ko&#39;rib chiqing yoki ma&#39;lum atamalarni topish uchun qidiruvdan foydalaning.",
+          "3": "To&#39;liq ta&#39;rifi va tushuntirishini ko&#39;rish uchun atama ustiga bosing.",
+          "4": "Atamalar kripto tushunchalarini, DeFi terminologiyasini va DeHubga xos xususiyatlarni qamrab oladi."
+        },
+        "tips": {
+          "1": "Kripto va Web3 ga yangi kelganlar uchun ajoyib resurs.",
+          "2": "Lug&#39;at muntazam ravishda yangi atamalar bilan yangilanadi."
+        }
+      }
     }
   }
 }

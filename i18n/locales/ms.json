@@ -3693,11 +3693,6 @@
     "noResultsFor": "Tiada hasil untuk \"{{query}}\"",
     "guideSubtitle": "Panduan langkah demi langkah untuk setiap ciri",
     "searchGuide": "Cari panduan...",
-    "guideFractionsTip": "Setiap siaran yang di-mint bermula dengan pencipta memegang semua pecahannya (pemilikan 100%).",
-    "guideInfoStep": "Ketik ikon maklumat pada siaran yang di-mint untuk membuka transaksi mint-nya dalam penjelajah blok dan mengesahkan rekod on-chain.",
-    "guideMintIntro": "Mint siaran sebagai NFT pada blockchain adalah pilihan. Mint semasa anda menerbitkan, atau terbitkan sekarang dan mint kemudian daripada menu siaran.",
-    "guideMintPublishStep": "Pilih sama ada hendak mint, kemudian klik 'Siar' untuk menerbitkan. Jika anda langkau mint, anda boleh mint siaran itu kemudian daripada menunya.",
-    "guideMintFractionsStep": "Anda menerima kesemua 1,000 pecahan (pemilikan 100%) siaran yang baru dicetak.",
     "glossaryMintTxDesc": "Ketik ikon maklumat pada siaran yang di-mint untuk membuka transaksi mint-nya dalam penjelajah blok dan mengesahkan rekod on-chain. Halaman Maklumat Siaran penuh — statistik, pemegang, pasaran — ada dalam aplikasi web di dehub.io.",
     "glossaryTokenIdDesc": "Pengecam on-chain unik yang diberikan kepada siaran apabila ia di-mint sebagai NFT.",
     "repostsTab": "Siaran semula",
@@ -3714,24 +3709,7 @@
     "glossaryStakingDesc": "Kunci token DeHub anda untuk memperoleh ganjaran dari semasa ke semasa. Token yang dipertaruhkan juga memberi anda kuasa undian yang meningkat dalam tadbir urus.",
     "glossaryGovernanceDesc": "Serahkan dan undi cadangan yang membentuk platform. Kuasa undian anda ditimbang berdasarkan bilangan token DeHub yang anda pegang.",
     "glossaryStakingBadgesDesc": "Lencana yang dipaparkan di sebelah nama pengguna anda berdasarkan jumlah pegangan token DeHub anda (dompet + dipertaruhkan). Terdapat 13 peringkat — semakin banyak token yang anda pegang, semakin tinggi pangkat lencana anda. Peringkat yang lebih tinggi memberikan kuasa undian tadbir urus yang lebih banyak dan yuran platform yang lebih rendah.",
-    "glossaryLeaderboardDesc": "Pengguna diperingkat mengikut jumlah baki token DeHub (dompet + dipertaruhkan merentasi semua rantaian). Peringkat dikemas kini secara berkala dan menjejaki perubahan 1 hari dan 1 minggu. Anda juga boleh mengisih mengikut petua yang dihantar, petua yang diterima, pengikut, suka atau pelanggan.",
-    "guideTipStep": "Klik ikon permata/petua untuk menghantar petua dalam token DeHub kepada pencipta siaran.",
-    "guideTipWalletTip": "Petua pergi terus ke dompet pencipta sebagai token DeHub.",
-    "guideTipNotificationsTip": "Pemberitahuan tip menunjukkan jumlah token DeHub yang Anda terima.",
-    "guideWalletIntro": "Lihat saldo token DeHub Anda di berbagai rantai, periksa deposit staking, dan kelola aset Anda.",
-    "guideWalletTotalStep": "Lihat total saldo token DeHub Anda yang diagregasi di semua rantai yang didukung.",
-    "guideStakingIntro": "Pertaruhkan token DeHub Anda untuk mendapatkan hadiah dan tingkatkan kekuatan suara tata kelola Anda.",
-    "guideStakingAmountStep": "Masukkan jumlah token DeHub yang ingin Anda pertaruhkan.",
-    "guideLeaderboardBalanceStep": "Tab Saldo memberi peringkat pengguna berdasarkan total kepemilikan token DeHub mereka.",
-    "guideGovernanceVoteStep": "Pilih proposal menggunakan tombol suka/tidak suka — bobot suara Anda bergantung pada berapa banyak token DeHub yang Anda pertaruhkan.",
-    "guideGovernancePowerTip": "Kekuatan suara Anda ditentukan oleh berapa banyak token DeHub yang Anda pertaruhkan.",
-    "guideBuyIntro": "Beli token DeHub langsung di DPay menggunakan kartu atau kripto yang didukung.",
-    "guideBuyAmountStep": "Masukkan jumlah yang ingin Anda belanjakan atau berapa banyak token DeHub yang ingin Anda terima.",
-    "guideBuyDeliveredStep": "Token DeHub Anda akan muncul di dompet Anda setelah transaksi selesai.",
-    "guideBridgeIntro": "Pindahkan token DeHub Anda antar blockchain yang didukung menggunakan jembatan lintas rantai.",
-    "guideBridgeSourceStep": "Pilih rantai sumber (tempat token DeHub Anda saat ini berada).",
-    "guideBridgeDestStep": "Pilih rantai tujuan (tempat Anda ingin mengirim token DeHub Anda).",
-    "guideBridgeAmountStep": "Masukkan berapa banyak token DeHub yang akan dijembatani."
+    "glossaryLeaderboardDesc": "Pengguna diperingkat mengikut jumlah baki token DeHub (dompet + dipertaruhkan merentasi semua rantaian). Peringkat dikemas kini secara berkala dan menjejaki perubahan 1 hari dan 1 minggu. Anda juga boleh mengisih mengikut petua yang dihantar, petua yang diterima, pengikut, suka atau pelanggan."
   },
   "arcade": {
     "submitAccessibility": "Hantar permainan ke arked",
@@ -7053,6 +7031,504 @@
       "packEmpty": "Tiada emoji ditemui di alamat itu",
       "shortcodeTaken": "{{name}} sudah diambil",
       "shortcodeStandard": "{{name}} sudah menjadi emoji standard"
+    }
+  },
+  "guide": {
+    "sections": {
+      "getting-started": {
+        "title": "Bermula",
+        "intro": "Terdapat lima cara untuk masuk ke DeHub dan tiada satu pun yang memerlukan anda untuk sudah memiliki dompet: Google, Apple, kod yang dihantar ke e-mel anda, kod yang dihantar melalui SMS, atau dompet sedia ada yang anda sambungkan. Semua kecuali laluan dompet mencipta dompet bukan jagaan di latar belakang — anda memegang kunci, dan DeHub menaja gas supaya anda boleh menyiarkan, memberi tip dan mengumpul tanpa pernah membeli token asli.",
+        "steps": {
+          "1": "Lawati dehub.io — suapan utama ialah halaman hadapan, jadi anda boleh melihat-lihat sebelum log masuk.",
+          "2": "Klik 'Log Masuk'. Anda akan melihat Google dan Apple, medan untuk alamat e-mel atau nombor telefon, dan 'Sambungkan Dompet' untuk yang sedia ada.",
+          "3": "Dengan Google atau Apple, selesaikan aliran penyedia. Dengan e-mel atau SMS, masukkan kod yang tiba.",
+          "4": "Dompet dicipta dan selamat untuk anda semasa log masuk pertama. Menyambungkan dompet anda sendiri sebaliknya bermakna satu tandatangan untuk membuktikan alamat.",
+          "5": "Pilih nama pengguna. Ia adalah apa yang orang lihat dan ia berfungsi sebagai pautan profil dehub.io/<username> anda.",
+          "6": "Anda telah masuk. Terokai suapan, sediakan profil anda dan mula menyiarkan."
+        },
+        "tips": {
+          "1": "Log masuk sosial, e-mel dan SMS tidak pernah membayar gas — DeHub menajanya. Dompet yang disambungkan membayar ETH atau BNB mereka sendiri.",
+          "2": "Kembali ke akaun DeHub lama? Log masuk dengan e-mel atau nombor telefon yang digunakannya dan migrasi akan menemuinya untuk anda.",
+          "3": "Anda boleh menyimpan beberapa akaun pada satu peranti dan bertukar-tukar di antara mereka dalam Tetapan → Profil."
+        }
+      },
+      "home-feed": {
+        "title": "Suapan Utama",
+        "intro": "Suapan utama ialah tempat anda melihat siaran daripada orang yang anda ikuti dan kandungan trending. Ia menyokong berbilang tab jenis kandungan dan pilihan pengisihan.",
+        "steps": {
+          "1": "Navigasi ke /app — ini ialah suapan utama anda.",
+          "2": "Gunakan tab atas untuk menapis mengikut jenis kandungan: Laman Utama (semua), Video, Imej, Pendek, Muzik, atau Strim Langsung.",
+          "3": "Leret ke kiri/kanan pada tab untuk melihat lebih banyak pilihan pada mudah alih.",
+          "4": "Gunakan butang penapis/susun (kanan atas suapan) untuk menukar susunan: Terkini, Baharu, atau Teratas.",
+          "5": "Tarik ke bawah untuk segar suapan pada mudah alih.",
+          "6": "Tatal ke bawah untuk memuatkan lebih banyak siaran secara automatik (tatalan tak terhingga).",
+          "7": "Togol antara paparan Grid dan Suapan menggunakan penukar susun atur."
+        },
+        "tips": {
+          "1": "Paparan grid bagus untuk menyemak imbas imej dengan pantas.",
+          "2": "Tab 'Laman Utama' memaparkan semua jenis kandungan bercampur.",
+          "3": "Tab Langsung memaparkan strim langsung yang aktif pada masa ini."
+        }
+      },
+      "creating-posts": {
+        "title": "Mencipta Siaran",
+        "intro": "Cipta siaran teks, kongsi imej, video, nota suara, GIF, dan banyak lagi. Gunakan hashtag, cashtag dan sebutan untuk meningkatkan capaian.",
+        "steps": {
+          "1": "Klik butang 'Siaran' dalam bar sisi (desktop) atau butang + (mudah alih).",
+          "2": "Taip teks anda di kawasan komposisi.",
+          "3": "Untuk menambah imej atau video, klik ikon media dan pilih fail.",
+          "4": "Untuk merakam nota suara, klik ikon mikrofon.",
+          "5": "Untuk menambah GIF, klik ikon GIF dan cari satu.",
+          "6": "Gunakan #hashtag untuk mengkategorikan siaran anda (cth., #kripto, #defi).",
+          "7": "Gunakan $cashtag untuk merujuk token (cth., $DHB, $ETH).",
+          "8": "Gunakan @sebutan untuk menandai pengguna lain (cth., @nama pengguna).",
+          "9": "Klik 'Siaran' untuk menerbitkan. Siaran anda muncul dalam suapan dengan segera."
+        },
+        "tips": {
+          "1": "Siaran menyokong pemformatan gaya markdown.",
+          "2": "Anda boleh menyiarkan semula dengan mengklik ikon siaran semula pada mana-mana siaran dan memilih 'Petik'.",
+          "3": "Kategori (hashtag) muncul dalam papan pendahulu 'Perbualan Terhangat'."
+        }
+      },
+      "interacting-with-posts": {
+        "title": "Berinteraksi dengan Siaran",
+        "intro": "Libatkan diri dengan kandungan dengan mengundi, mengulas, memberi tip, menanda buku, berkongsi dan menterjemah.",
+        "steps": {
+          "1": "Undi naik atau undi turun siaran menggunakan ikon anak panah di sebelah kiri mana-mana siaran.",
+          "2": "Klik ikon ulasan untuk membuka bahagian ulasan dan tinggalkan balasan.",
+          "3": "Klik ikon permata/tip untuk menghantar tip dalam token DeHub kepada pencipta siaran.",
+          "4": "Klik ikon penanda buku untuk menyimpan siaran untuk kegunaan kemudian.",
+          "5": "Klik ikon kongsi untuk menyalin pautan siaran atau berkongsi di luar.",
+          "6": "Klik butang terjemah (ikon glob) pada mana-mana siaran untuk menterjemah teks ke bahasa anda.",
+          "7": "Untuk siaran imej, gunakan butang 'Terjemah Imej' untuk mendapatkan versi teks dalam imej yang diterjemahkan oleh AI.",
+          "8": "Klik pada mana-mana siaran untuk membukanya dalam paparan siaran tunggal skrin penuh."
+        },
+        "tips": {
+          "1": "Petua terus masuk ke dompet pencipta dalam token DeHub.",
+          "2": "Anda boleh menetapkan jumlah petua melalui butang pilihan pantas atau masukkan jumlah tersuai.",
+          "3": "Siaran yang ditanda buku boleh diakses dari halaman Tandai Buku di bar sisi."
+        }
+      },
+      "explore-search": {
+        "title": "Teroka & Cari",
+        "intro": "Temui kandungan dan pengguna baharu melalui halaman teroka dan fungsi carian yang berkuasa.",
+        "steps": {
+          "1": "Navigasi ke /app/explore dari bar sisi.",
+          "2": "Gunakan bar carian di bahagian atas untuk mencari pengguna, siaran atau kandungan.",
+          "3": "Tapis hasil mengikut tab: Semua, Orang, Siaran, Imej, Video, Muzik, Langsung.",
+          "4": "Semak imbas topik dan kategori trending di halaman teroka.",
+          "5": "Klik pada topik trending untuk melihat semua siaran berkaitan.",
+          "6": "Klik pada pengguna dalam hasil carian untuk melawati profil mereka."
+        },
+        "tips": {
+          "1": "Carian menyokong nama pengguna, alamat dompet dan kata kunci kandungan.",
+          "2": "Topik trending dikemas kini berdasarkan aktiviti siaran baru-baru ini."
+        }
+      },
+      "profile": {
+        "title": "Profil",
+        "intro": "Profil anda mempamerkan siaran, pengikut, mengikuti dan maklumat dompet anda.",
+        "steps": {
+          "1": "Klik avatar anda atau 'Profil' di bar sisi untuk melihat profil anda.",
+          "2": "Klik 'Edit Profil' untuk mengemas kini nama paparan, bio dan avatar anda.",
+          "3": "Muat naik gambar profil dengan mengklik avatar anda dalam mod edit.",
+          "4": "Lihat kiraan pengikut dan mengikuti anda di halaman profil anda.",
+          "5": "Semak imbas siaran anda sendiri, media dan kandungan yang disukai melalui tab profil.",
+          "6": "Salin alamat dompet anda dengan mengklik ikon salin di sebelahnya.",
+          "7": "Lawati profil pengguna lain dengan mengklik nama pengguna atau avatar mereka di mana-mana sahaja pada platform."
+        },
+        "tips": {
+          "1": "Nama pengguna anda adalah unik dan muncul dalam URL profil anda (dehub.io/@username).",
+          "2": "Tetapan privasi membolehkan anda mengawal siapa yang boleh melihat kiraan pengikut anda."
+        }
+      },
+      "messages": {
+        "title": "Mesej",
+        "intro": "Hantar mesej terus kepada pengguna lain di platform.",
+        "steps": {
+          "1": "Klik 'Mesej' di bar sisi untuk membuka halaman pemesejan.",
+          "2": "Klik butang kompos untuk memulakan perbualan baharu.",
+          "3": "Cari pengguna mengikut nama pengguna untuk menghantar mesej kepada mereka.",
+          "4": "Taip mesej anda dan tekan hantar.",
+          "5": "Lihat sejarah perbualan anda dalam senarai mesej.",
+          "6": "Klik pada perbualan untuk terus berbual."
+        },
+        "tips": {
+          "1": "Anda akan menerima pemberitahuan apabila seseorang menghantar mesej kepada anda.",
+          "2": "Pencipta boleh mengunci mesej di sebalik keperluan tip."
+        }
+      },
+      "ai-assistant": {
+        "title": "Pembantu AI",
+        "intro": "Berbual dengan pembantu AI terbina dalam DeHub untuk mendapatkan bantuan, maklumat dan tugasan kreatif.",
+        "steps": {
+          "1": "Klik 'Pembantu' dalam bar sisi untuk membuka sembang AI.",
+          "2": "Taip soalan atau permintaan anda dalam input sembang.",
+          "3": "AI boleh membantu dengan maklumat kripto, soalan platform dan pengetahuan am.",
+          "4": "Mulakan perbualan baharu dengan mengklik butang sembang baharu.",
+          "5": "Lihat sejarah perbualan anda dalam bar sisi halaman pembantu.",
+          "6": "Anda boleh lampirkan imej untuk AI analisis."
+        },
+        "tips": {
+          "1": "AI mengingati konteks dalam perbualan.",
+          "2": "Anda boleh bertanya AI tentang ciri DeHub, istilah kripto atau soalan umum.",
+          "3": "Perbualan sebelumnya disimpan dan boleh diakses pada bila-bila masa."
+        }
+      },
+      "notifications": {
+        "title": "Pemberitahuan",
+        "intro": "Kekal kemas kini dengan suka, komen, tip, ikut dan aktiviti lain pada kandungan anda.",
+        "steps": {
+          "1": "Klik ikon loceng atau 'Pemberitahuan' dalam bar sisi.",
+          "2": "Lihat semua pemberitahuan dalam senarai kronologi.",
+          "3": "Klik pada pemberitahuan untuk menavigasi ke kandungan yang berkaitan.",
+          "4": "Pemberitahuan termasuk: pengikut baharu, undian siaran, komen, tip dan sebutan.",
+          "5": "Pemberitahuan yang belum dibaca diserlahkan — ia ditandakan sebagai dibaca apabila dilihat."
+        },
+        "tips": {
+          "1": "Lencana pemberitahuan menunjukkan bilangan pemberitahuan yang belum dibaca.",
+          "2": "Pemberitahuan tip menunjukkan bilangan token yang anda terima."
+        }
+      },
+      "wallet": {
+        "title": "Dompet",
+        "intro": "Lihat baki token DeHub anda merentasi berbilang rantaian, semak deposit staking dan urus aset anda.",
+        "steps": {
+          "1": "Klik 'Dompet' dalam bar sisi untuk membuka halaman dompet.",
+          "2": "Lihat jumlah baki token anda yang diagregatkan merentasi semua rantaian yang disokong.",
+          "3": "Lihat pecahan mengikut rantaian: Ethereum, Base, BNB Chain, dan banyak lagi.",
+          "4": "Semak deposit dan ganjaran staking anda.",
+          "5": "Klik 'Refresh Scan' untuk mengemas kini baki anda daripada data on-chain.",
+          "6": "Salin alamat dompet anda untuk menerima token daripada orang lain."
+        },
+        "tips": {
+          "1": "Baki dikemas kini secara automatik tetapi anda boleh memaksa segar semula pada bila-bila masa.",
+          "2": "Dompet menunjukkan kedua-dua baki cair (tersedia) dan yang di-stake."
+        }
+      },
+      "staking": {
+        "title": "Staking",
+        "intro": "Stake token DeHub anda untuk mendapatkan ganjaran dan meningkatkan kuasa undi tadbir urus anda.",
+        "steps": {
+          "1": "Navigasi ke halaman 'Staking' daripada bar sisi.",
+          "2": "Masukkan bilangan token yang ingin anda stake.",
+          "3": "Pilih rantaian yang anda ingin stake.",
+          "4": "Sahkan transaksi dalam dompet anda (dompet luaran) atau ia dilaksanakan secara automatik (log masuk sosial).",
+          "5": "Lihat jumlah yang di-stake dan sebarang ganjaran yang tertunda.",
+          "6": "Untuk unstake, masukkan jumlah dan sahkan transaksi unstaking."
+        },
+        "tips": {
+          "1": "Staking meningkatkan berat undi anda dalam cadangan tadbir urus.",
+          "2": "Pengguna log masuk sosial tidak memerlukan gas untuk stake — ia tanpa gas.",
+          "3": "Anda boleh stake pada berbilang rantaian secara serentak."
+        }
+      },
+      "leaderboard": {
+        "title": "Papan Pendahulu",
+        "intro": "Lihat siapa yang teratas! Papan pendahulu meranking pengguna mengikut baki, perbelanjaan harian, dan topik trending.",
+        "steps": {
+          "1": "Navigasi ke halaman 'Leaderboard' daripada bar sisi.",
+          "2": "Tukar antara tab: Baki, Perbelanjaan Harian, dan Perbualan Terkini.",
+          "3": "Tab Baki meranking pengguna mengikut jumlah pegangan token mereka.",
+          "4": "Tab Perbelanjaan Harian menunjukkan siapa yang paling aktif memberi tip dalam tempoh 24 jam yang lalu.",
+          "5": "Perbualan Terkini menunjukkan topik/kategori yang paling banyak dibincangkan.",
+          "6": "Klik pada mana-mana pengguna untuk melawati profil mereka.",
+          "7": "Papan pendahulu dikemas kini secara berkala sepanjang hari."
+        },
+        "tips": {
+          "1": "Peringkat harian ditetapkan semula setiap 24 jam.",
+          "2": "Perbualan Terkini menjejaki kategori satu perkataan daripada hashtags."
+        }
+      },
+      "command-centre": {
+        "title": "Pusat Perintah",
+        "intro": "Papan pemuka gambaran keseluruhan yang memaparkan metrik utama dan aktiviti platform anda sepintas lalu.",
+        "steps": {
+          "1": "Klik 'Command Centre' di bar sisi.",
+          "2": "Lihat ringkasan profil anda, termasuk bilangan siaran, pengikut dan penglibatan.",
+          "3": "Lihat aktiviti terkini dan topik sohor kini anda.",
+          "4": "Akses pautan pantas ke ciri yang biasa digunakan."
+        },
+        "tips": {
+          "1": "Command Centre memberi anda gambaran keseluruhan kehadiran DeHub anda."
+        }
+      },
+      "governance": {
+        "title": "Tadbir Urus",
+        "intro": "Sertai tadbir urus platform dengan mencipta cadangan dan mengundi keputusan komuniti.",
+        "steps": {
+          "1": "Navigasi ke 'Governance' dari bar sisi.",
+          "2": "Semak imbas cadangan aktif yang dihantar oleh komuniti.",
+          "3": "Klik pada cadangan untuk membaca penerangan dan perbincangan penuhnya.",
+          "4": "Undi pada cadangan menggunakan butang suka/tidak suka — berat undi anda bergantung pada bilangan token DeHub yang anda pertaruhkan.",
+          "5": "Tinggalkan komen pada cadangan untuk berbincang dengan komuniti.",
+          "6": "Hantar cadangan anda sendiri dengan mengklik butang 'Create Proposal'."
+        },
+        "tips": {
+          "1": "Kekuatan mengundi anda ditentukan oleh bilangan token yang anda pertaruhkan.",
+          "2": "Pemegang lencana mungkin mendapat berat undi tambahan.",
+          "3": "Cadangan melalui peringkat: Aktif → Lulus/Ditolak."
+        }
+      },
+      "bookmarks": {
+        "title": "Penanda Halaman",
+        "intro": "Simpan siaran ke penanda halaman anda untuk akses mudah kemudian.",
+        "steps": {
+          "1": "Klik ikon penanda halaman pada mana-mana siaran untuk menyimpannya.",
+          "2": "Navigasi ke 'Bookmarks' di bar sisi untuk melihat semua siaran yang disimpan.",
+          "3": "Klik pada siaran yang ditanda halaman untuk melihatnya sepenuhnya.",
+          "4": "Alih keluar penanda halaman dengan mengklik ikon penanda halaman sekali lagi."
+        },
+        "tips": {
+          "1": "Penanda halaman adalah peribadi — hanya anda yang boleh melihat siaran yang disimpan.",
+          "2": "Tiada had untuk bilangan siaran yang boleh anda tandai halaman."
+        }
+      },
+      "settings": {
+        "title": "Tetapan",
+        "intro": "Sesuaikan pengalaman DeHub anda dengan pilihan bahasa, privasi dan paparan.",
+        "steps": {
+          "1": "Klik 'Settings' di bar sisi.",
+          "2": "Tukar bahasa paparan anda daripada pemilih bahasa.",
+          "3": "Laraskan tetapan privasi: kawal siapa yang melihat bilangan pengikut dan senarai mengikuti anda.",
+          "4": "Tetapkan pilihan keterlihatan siaran lalai anda.",
+          "5": "Urus pilihan pemberitahuan."
+        },
+        "tips": {
+          "1": "DeHub menyokong pelbagai bahasa — keseluruhan antara muka diterjemahkan.",
+          "2": "Tetapan privasi dikuatkuasakan serta-merta."
+        }
+      },
+      "posting-allowance": {
+        "title": "Had Siaran Harian Anda",
+        "intro": "Penyiarannya percuma setiap hari sehingga had yang berskala dengan lencana pegangan anda. Semua orang bermula dengan sepuluh siaran teks dan satu gigabait video, imej dan audio setiap hari. Melebihi salah satu daripadanya dan sepanjang hari itu akan dibayar dalam token DeHub — hanya pada bahagian yang melebihi.",
+        "steps": {
+          "1": "Siarkan seperti biasa. Dalam had tiada apa yang dikenakan dan tiada apa yang diminta daripada anda.",
+          "2": "Siaran teks dan media adalah kolam yang berasingan, jadi hari yang dihabiskan untuk memuat naik video masih meninggalkan sepuluh siaran teks percuma.",
+          "3": "Apabila siaran melebihi had, apl akan menetapkan harganya terlebih dahulu dan menyemak sama ada dompet anda boleh menampungnya sebelum apa-apa dimuat naik.",
+          "4": "Siaran diterbitkan sama seperti di dalam had — penerbitan tidak pernah menunggu pembayaran.",
+          "5": "Kemudian anda meluluskan satu pemindahan untuk siaran itu sahaja, diselesaikan pada sama ada Base atau BNB Chain yang memegang token DeHub yang mencukupi.",
+          "6": "Kedua-dua kolam ditetapkan semula pada tengah malam UTC."
+        },
+        "tips": {
+          "1": "Lebihan adalah pro-rata: 200 MB melebihi had anda berharga 200 MB, bukan satu gigabait penuh.",
+          "2": "Siaran semula, ulasan, reaksi, petua dan mesej tidak dikenakan bayaran dan tidak pernah menyentuh had.",
+          "3": "Tolak pembayaran dan siaran itu kekal — jumlah itu hanya menyekat siaran berbayar anda yang seterusnya sehingga ia diselesaikan. Had percuma esok sentiasa milik anda.",
+          "4": "Lencana pegangan meningkatkan had percuma dan menurunkan harga apa-apa yang melebihi had itu."
+        }
+      },
+      "reactions-and-safety": {
+        "title": "Reaksi, Senyap & Kandungan Dewasa",
+        "intro": "Terdapat sembilan reaksi di sebalik butang suka, dan satu set kawalan untuk memutuskan apa yang anda lihat dan siapa yang boleh menghubungi anda.",
+        "steps": {
+          "1": "Tahan ibu jari ke atas pada mana-mana siaran untuk membuka dulang reaksi: suka, sayang, hormat, panas, kelakar, sedih, menangis, tidak suka dan najis.",
+          "2": "Tujuh yang positif dikira ke arah jumlah suka siaran; tidak suka dan najis dikira menentangnya.",
+          "3": "Reaksi anda ditimbang oleh lencana pegangan anda, jadi reaksi pemegang lencana menggerakkan kiraan lebih jauh daripada satu undian.",
+          "4": "Ketik X dalam pengepala siaran untuk membisukan penciptanya — mereka akan hilang daripada suapan anda serta-merta.",
+          "5": "Pencipta menandakan siaran mereka sendiri sebagai dewasa semasa menciptanya; siaran tersebut kekal di luar suapan utama awam.",
+          "6": "Untuk melihat siaran dewasa di mana-mana, hidupkan 'Tunjukkan kandungan dewasa' dalam Tetapan."
+        },
+        "tips": {
+          "1": "Siaran dewasa masih boleh dilihat sepenuhnya pada profil pencipta dan kepada orang yang mengikutinya.",
+          "2": "Menyekat daripada profil melangkaui membisukan dan juga memotong pemesejan.",
+          "3": "Dulang reaksi menunjukkan siapa yang memberi reaksi dan dengan apa, jadi anda boleh melihat bilik itu dan bukannya hanya nombor."
+        }
+      },
+      "stages": {
+        "title": "Pentas (Bilik Audio Langsung)",
+        "intro": "Pentas ialah bilik audio langsung yang dibina ke dalam DeHub. Hos membuka bilik, membawa penceramah naik, dan sesiapa sahaja boleh masuk untuk mendengar daripada halaman Pentas atau pautan yang dikongsi.",
+        "steps": {
+          "1": "Buka 'Pentas' dalam bar sisi untuk melihat apa yang sedang disiarkan sekarang dan apa yang dijadualkan.",
+          "2": "Ketik pentas langsung untuk menyertai sebagai pendengar, atau tetapkan peringatan pada pentas yang dijadualkan dan diberitahu apabila ia bermula.",
+          "3": "Mulakan pentas anda sendiri dari halaman yang sama — anda boleh siaran langsung terus dari penyemak imbas, tanpa OBS atau kunci strim.",
+          "4": "Sebagai hos, bawa penceramah ke pentas, senyapkan atau singkirkan mereka, kongsi skrin anda dan kendalikan papan bunyi.",
+          "5": "Pendengar menghantar reaksi langsung dan berbual dalam sembang bilik tanpa naik ke pentas.",
+          "6": "Setiap pentas direkodkan, dan rakaman dimainkan semula selepas itu dari kad yang ia muncul."
+        },
+        "tips": {
+          "1": "Sarikata langsung mengecap setiap penceramah dan menterjemah ke dalam mana-mana bahasa yang anda baca.",
+          "2": "Dubbing langsung boleh membacakan bilik dengan kuat menggunakan suara klon hos sendiri, dicas seminit dalam token DeHub.",
+          "3": "Hos boleh meletakkan stesen radio bersiaran atau memainkan klip muzik mereka sendiri di antara perbualan.",
+          "4": "Pemain mini memastikan bilik terus berjalan di sudut semasa anda melayari bahagian lain apl."
+        }
+      },
+      "communities": {
+        "title": "Komuniti & Acara",
+        "intro": "Komuniti ialah ruang yang dikendalikan ahli dengan suapan, ahli dan aktiviti mereka sendiri. Acara menambah pengaturcaraan terikat masa di atasnya.",
+        "steps": {
+          "1": "Buka 'Komuniti' dalam bar sisi dan semak imbas yang awam.",
+          "2": "Sertai dalam satu ketikan. Aktiviti baharu dipaparkan sebagai lencana belum dibaca dalam navigasi.",
+          "3": "Siarkan, bincang, jalankan tinjauan pendapat dan beri tip dalam suapan komuniti sendiri.",
+          "4": "Pemilik komuniti menguruskan ruang mereka sendiri dan boleh memberikan hak pentadbir kepada orang lain.",
+          "5": "Buka 'Acara' untuk pengaturcaraan yang dijadualkan, dengan halaman penuh setiap acara yang boleh anda ikuti secara langsung."
+        },
+        "tips": {
+          "1": "Sembang komuniti menyokong @sebutan dan @sini, jadi siaran boleh sampai ke bilik.",
+          "2": "Pautan jemputan membolehkan anda membawa orang terus ke dalam komuniti."
+        }
+      },
+      "arcade": {
+        "title": "Arkada",
+        "intro": "Lima permainan berjalan di dalam DeHub dalam tab penyemak imbas — tiada apa yang perlu dipasang, tiada apa yang perlu dibeli.",
+        "steps": {
+          "1": "Buka 'Arkada' dalam bar sisi.",
+          "2": "Pilih permainan: King's Gambit (catur 3D dengan tangga Elo dalam talian), Claude of Duty (penembak yang menjana seninya sendiri semasa ia dimuatkan), Jungle Trail (jalan hutan hujan prosedural), Street Slayer (beat 'em up yang dibuat untuk DeHub) atau Chartopia (lantai dagangan yang boleh dilalui).",
+          "3": "Main dalam tab. King's Gambit dan Street Slayer menyimpan papan pendahulu.",
+          "4": "Chartopia juga berjalan dalam set kepala VR melalui WebXR."
+        },
+        "tips": {
+          "1": "Dua daripadanya tersembunyi di dalam tema penampilan — tetapkan apl kepada War untuk Claude of Duty, atau Jungle untuk Jungle Trail.",
+          "2": "Setiap permainan mempunyai kad kongsi sendiri, jadi pautan ke satu akan mengembang dengan betul di mana sahaja anda menyiarkannya."
+        }
+      },
+      "bounties-stores": {
+        "title": "Ganjaran & Kedai",
+        "intro": "Dua cara untuk menukar platform menjadi pendapatan: siarkan atau tuntut ganjaran, atau buka kedai dan jual kepada audiens anda.",
+        "steps": {
+          "1": "Buka 'Ganjaran' untuk menyemak kerja terbuka, ditapis mengikut kategori atau mata wang.",
+          "2": "Tuntut satu, lakukan kerja, dan serahkannya untuk mengumpul ganjaran — sesiapa sahaja boleh menjadi pemburu, tiada permohonan diperlukan.",
+          "3": "Siarkan buruan anda sendiri dengan ringkasan dan ganjaran dalam token DeHub atau USDC. Ia akan dimasukkan ke dalam escrow sebaik sahaja anda menyiarkannya.",
+          "4": "Buka 'Kedai' untuk menyediakan kedai dengan halaman, penjenamaan dan senarai sendiri.",
+          "5": "Produk dinilai dan diselesaikan dalam token DeHub melalui dompet terbina dalam, tanpa pembayaran luar."
+        },
+        "tips": {
+          "1": "Buruan disusun ke dalam Media Sosial, Klip dan Kontrak.",
+          "2": "Aliran pertikaian menyelesaikan perselisihan mengenai penghantaran, jadi escrow sentiasa diselesaikan dengan adil.",
+          "3": "Pencipta menggunakan buruan untuk mengembangkan komuniti — perkongsian, klip dan reaksi semuanya adalah tugasan yang sah."
+        }
+      },
+      "creator-studio": {
+        "title": "Studio Pencipta & Editor",
+        "intro": "Studio Pencipta menjana imej, video, muzik, suara dan model 3D daripada gesaan, dan menyerahkannya kepada editor — termasuk editor video berbilang trek penuh yang berjalan dalam penyemak imbas.",
+        "steps": {
+          "1": "Buka Studio Pencipta dan terangkan apa yang anda mahu dibuat.",
+          "2": "Pelayan mengutip kos sebelum tugasan dijalankan, jadi anda melihat kosnya sebelum anda membelanjakannya.",
+          "3": "Render diteruskan dalam barisan kongsi sementara anda meneruskan penyemakan imbas aplikasi.",
+          "4": "Susun hasil dalam editor gaya Canva, atau buka editor video untuk garis masa sebenar dengan pemotongan, lapisan dan eksport.",
+          "5": "Seret bahagian yang siap terus ke dalam siaran, pendek atau senarai kedai."
+        },
+        "tips": {
+          "1": "Pustaka aset stok percuma terletak bersebelahan dengan Studio untuk apa sahaja yang anda lebih suka tidak menjana.",
+          "2": "Penjanaan dibayar dalam token DeHub daripada dompet anda — anda menandatangani satu pemindahan setiap tugasan, dan harga dikutip sebelum anda membayar.",
+          "3": "Pengguna yang lebih berat boleh mengambil pelan Ultra, Pasukan atau Skala, yang menghantar elaun token bulanan terus ke dompet mereka."
+        }
+      },
+      "buying-dhb": {
+        "title": "Membeli Token",
+        "intro": "Beli token DeHub terus dalam apl menggunakan antara muka tukaran terbina dalam.",
+        "steps": {
+          "1": "Navigasi ke halaman 'Beli' daripada bar sisi.",
+          "2": "Pilih token yang anda mahu tukar daripada (cth., ETH, USDC).",
+          "3": "Masukkan jumlah yang anda mahu belanjakan atau bilangan token yang anda mahu terima.",
+          "4": "Semak kadar pertukaran dan output anggaran.",
+          "5": "Klik ikon gear tetapan untuk melaraskan toleransi tergelincir (lalai ialah 1%).",
+          "6": "Sahkan urus niaga tukaran.",
+          "7": "Token DeHub akan muncul dalam dompet anda selepas urus niaga selesai."
+        },
+        "tips": {
+          "1": "Toleransi tergelincir yang lebih tinggi = lebih berkemungkinan untuk dilaksanakan, tetapi potensi untuk harga yang lebih buruk.",
+          "2": "Sentiasa semak kadar pertukaran sebelum mengesahkan.",
+          "3": "Anda boleh menetapkan tergelincir tersuai dalam panel tetapan."
+        }
+      },
+      "bridge": {
+        "title": "Jambatan",
+        "intro": "Alihkan token DeHub anda antara blok rantai yang disokong menggunakan jambatan rentas rantai.",
+        "steps": {
+          "1": "Navigasi ke halaman 'Bridge' dari bar sisi.",
+          "2": "Pilih rantai sumber (tempat token anda berada sekarang).",
+          "3": "Pilih rantai tujuan (tempat anda ingin mengirimnya).",
+          "4": "Masukkan jumlah token untuk dijambatan.",
+          "5": "Semak yuran jambatan dan anggaran masa ketibaan.",
+          "6": "Sahkan transaksi jambatan.",
+          "7": "Tunggu sehingga transaksi selesai — jambatan mungkin mengambil masa beberapa minit."
+        },
+        "tips": {
+          "1": "Yuran jambatan berbeza mengikut pasangan rantai.",
+          "2": "Jambatan biasanya mengambil masa 1-5 minit bergantung pada rantai yang terlibat.",
+          "3": "Sentiasa periksa semula rantai tujuan sebelum mengesahkan."
+        }
+      },
+      "music-tv": {
+        "title": "Muzik & TV",
+        "intro": "Nikmati kandungan media terus dalam DeHub — strim muzik dan tonton saluran TV langsung.",
+        "steps": {
+          "1": "Navigasi ke 'Muzik' dari bar sisi untuk melayari dan memainkan siaran muzik.",
+          "2": "Navigasi ke 'TV' untuk mengakses saluran TV langsung.",
+          "3": "Layar saluran mengikut kategori atau negara.",
+          "4": "Klik pada saluran untuk mula menonton.",
+          "5": "Gunakan kawalan pemain untuk melaraskan kelantangan dan main balik.",
+          "6": "Laporkan saluran yang rosak menggunakan butang laporan."
+        },
+        "tips": {
+          "1": "Saluran TV disahkan oleh komuniti untuk kebolehpercayaan.",
+          "2": "Siaran muzik boleh dimainkan semasa melayari kandungan lain."
+        }
+      },
+      "post-info": {
+        "title": "Maklumat Siaran & Pecahan",
+        "intro": "Siaran yang dicetak ialah NFT yang dibahagikan kepada 1,000 pecahan. Halaman Maklumat Siaran menunjukkan data on-chain, statistik penglibatan, pecahan pemilikan, dan membolehkan anda berdagang pecahan mana-mana siaran — pada siaran yang belum dicetak, ia menawarkan untuk mencetak sebaliknya.",
+        "steps": {
+          "1": "Ketik ikon 'ⓘ' pada mana-mana siaran untuk membuka halaman Maklumat Siaran.",
+          "2": "Di bahagian atas anda akan melihat ID Token (pengenal on-chain unik) dan hash transaksi — klik hash untuk melihatnya pada penjelajah blok.",
+          "3": "Di bawah itu, statistik penglibatan menunjukkan jumlah suka, tidak suka, tontonan, komen, dan petua yang diterima.",
+          "4": "Bahagian Pemegang menunjukkan bar kemajuan tentang berapa banyak daripada 1,000 pecahan yang masih dimiliki oleh pencipta, ditambah senarai semua pemegang pecahan dengan baki dan peratusan mereka.",
+          "5": "Jika siaran itu bayar-per-tontonan (PPV), anda akan melihat harga, mata wang, dan bilangan pengguna yang telah membeli akses.",
+          "6": "Pemilik siaran boleh menukar keterlihatan (Awam, Tidak Tersenarai, atau Peribadi) dan mengedit tajuk/perihalan terus dari halaman ini."
+        },
+        "tips": {
+          "1": "Siaran yang baru dicetak bermula dengan pencipta memegang kesemua 1,000 pecahan (pemilikan 100%).",
+          "2": "Hash transaksi dipautkan ke BaseScan atau BscScan bergantung pada rantai.",
+          "3": "Catatan yang tidak disenaraikan tidak muncul dalam suapan tetapi masih boleh diakses melalui pautan terus."
+        }
+      },
+      "trading-fractions": {
+        "title": "Pecahan Perdagangan",
+        "intro": "Perdagangan pecahan — menyemak imbas penyenaraian, membuat tawaran, menyenaraikan penyenaraian anda sendiri — berada di aplikasi web di dehub.io, pada setiap halaman Maklumat Siaran hantaran.",
+        "steps": {
+          "1": "Buka dehub.io dalam penyemak imbas dan log masuk dengan akaun yang sama.",
+          "2": "Buka halaman Maklumat Siaran siaran dan beralih ke tab Pasarannya.",
+          "3": "Semak imbas penyenaraian, buat tawaran pada harga anda, atau senaraikan pecahan yang anda pegang.",
+          "4": "Setelah perdagangan selesai, perubahan akan muncul dalam tab Pecahan anda di sini pada telefon mudah alih."
+        },
+        "tips": {
+          "1": "Memiliki pecahan siaran bermakna anda memegang bahagian NFT pada rantaian tersebut.",
+          "2": "Semak pemegang jawatan di pasaran web untuk melihat pengedaran pemilikan sebelum membeli.",
+          "3": "Sebagai pengkarya, menjual pecahan membolehkan peminat memiliki bersama kandungan anda."
+        }
+      },
+      "minting-posts": {
+        "title": "Mencetak Catatan (Mencipta NFT)",
+        "intro": "Mencetak adalah pilihan. Catatan diterbitkan di luar rantaian pada saat anda menghantarnya — tiada dompet, tiada tandatangan, tiada gas — dan anda boleh mencetaknya sebagai NFT pada bila-bila masa anda mahu, sama ada semasa anda menyusunnya atau kemudian daripada catatan itu sendiri.",
+        "steps": {
+          "1": "Klik butang 'Catatan' dalam bar sisi (desktop) atau butang + (mudah alih).",
+          "2": "Tulis teks anda, lampirkan media (imej, video, audio), dan tambahkan kategori.",
+          "3": "Biarkan 'Cetak catatan' dimatikan untuk menerbitkan di luar rantaian, atau hidupkannya untuk mencetak semasa anda menerbitkan.",
+          "4": "Penerbitan tidak pernah menunggu rantaian: siaran muncul dalam suapan sama ada cara.",
+          "5": "Untuk mint kemudian, buka halaman maklumat '≦' hantaran dan gunakan tindakan Mint di sana.",
+          "6": "Setelah dicetak, siaran mendapat ID Token dan cincangan transaksi yang anda boleh sahkan pada rantaian, dan anda memegang semua 1,000 pecahannya."
+        },
+        "tips": {
+          "1": "Daftar masuk sosial, e-mel dan SMS membayar sifar gas — DeHub menaja yuran pencetakan.",
+          "2": "Pengguna dompet luaran memerlukan ETH di Base atau BNB di Rantaian BNB untuk gas.",
+          "3": "Percetakan adalah apa yang menjadikan pos boleh diniagakan dan menanggung royalti. Hantaran yang tidak dicetak masih mendapat tip dan tinjauan.",
+          "4": "Rekod on-chain kekal setelah dicetak, walaupun siaran kemudian dihapuskan daripada suapan."
+        }
+      },
+      "glossary": {
+        "title": "Glosari",
+        "intro": "Glosari komprehensif istilah kripto dan platform untuk membantu anda mengemudi Web3.",
+        "steps": {
+          "1": "Navigasi ke 'Glosari' dari bar sisi.",
+          "2": "Semak imbas istilah mengikut abjad atau gunakan carian untuk mencari istilah tertentu.",
+          "3": "Klik pada istilah untuk melihat definisi dan penjelasan penuhnya.",
+          "4": "Istilah merangkumi konsep kripto, terminologi DeFi, dan ciri-ciri khusus DeHub."
+        },
+        "tips": {
+          "1": "Sumber yang bagus untuk pendatang baru dalam kripto dan Web3.",
+          "2": "Glosari sentiasa dikemas kini dengan terma baharu."
+        }
+      }
     }
   }
 }

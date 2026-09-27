@@ -3432,11 +3432,6 @@
     "noResultsFor": "Tulemusi \"{{query}}\" ei leitud",
     "guideSubtitle": "Samm-sammult juhend iga funktsiooni kohta",
     "searchGuide": "Otsi juhendist...",
-    "guideFractionsTip": "Iga vermitud postituse kõik fraktsioonid kuuluvad alguses loojale (100% omandiõigus).",
-    "guideInfoStep": "Puuduta vermitud postituse infoikooni, et avada selle vermimistehing plokiuurijas ja kontrollida ahelas olevat kirjet.",
-    "guideMintIntro": "Postituse vermimine NFT-na plokiahelas on valikuline. Vermi see avaldamisel või avalda kohe ja vermi hiljem postituse menüüst.",
-    "guideMintPublishStep": "Vali, kas vermida, ja klõpsa siis avaldamiseks 'Postita'. Kui jätad vermimise vahele, saad postituse hiljem selle menüüst vermida.",
-    "guideMintFractionsStep": "Saad kõik 1000 fraktsiooni (100% omandiõigus) oma äsja vermitud postitusest.",
     "glossaryMintTxDesc": "Puuduta vermitud postituse infoikooni, et avada selle vermimistehing plokiuurijas ja kontrollida ahelas olevat kirjet. Täielik postituse teabe leht — statistika, omanikud, turg — asub veebirakenduses aadressil dehub.io.",
     "glossaryTokenIdDesc": "Unikaalne ahelas olev tunnus, mis antakse postitusele, kui see vermitakse NFT-na.",
     "repostsTab": "Repostid",
@@ -3453,24 +3448,7 @@
     "glossaryStakingDesc": "Lukustage oma DeHubi märgid, et teenida aja jooksul preemiaid. Panustatud märgid annavad teile ka suurema hääleõiguse juhtimises.",
     "glossaryGovernanceDesc": "Esitage ja hääletage ettepanekute üle, mis kujundavad platvormi. Teie hääleõigus kaalutakse selle järgi, kui palju DeHubi märke te hoiate.",
     "glossaryStakingBadgesDesc": "Kasutajanime kõrval kuvatavad märgid, mis põhinevad teie DeHubi märkide koguhoidmisel (rahakott + panustatud). On 13 taset – mida rohkem märke hoiate, seda kõrgem on teie märgi auaste. Kõrgemad tasemed annavad rohkem juhtimis hääleõigust ja madalamaid platvormitasusid.",
-    "glossaryLeaderboardDesc": "Kasutajad on järjestatud DeHubi märkide kogubilansi (rahakott + panustatud kõigis ahelates) järgi. Edetabelid värskendatakse perioodiliselt ja jälgivad 1-päevaseid ja 1-nädalasi muutusi. Saate sortida ka saadetud näpunäidete, saadud näpunäidete, jälgijate, meeldimiste või tellijate järgi.",
-    "guideTipStep": "Klõpsake kalliskivi/näpunäite ikooni, et saata postituse loojale näpunäide DeHubi märkidena.",
-    "guideTipWalletTip": "Näpunäited lähevad otse looja rahakotti DeHubi märkidena.",
-    "guideTipNotificationsTip": "Teatiseeritud märguanded näitavad, kui palju DeHubi märke te saite.",
-    "guideWalletIntro": "Vaadake oma DeHubi märkide saldosid mitmes ahelas, kontrollige panustatud hoiuseid ja hallake oma varasid.",
-    "guideWalletTotalStep": "Vaadake oma DeHubi märkide kogusaldo, mis on koondatud kõigist toetatud ahelatest.",
-    "guideStakingIntro": "Panustage oma DeHubi märke, et teenida preemiaid ja suurendada oma hääleõigust.",
-    "guideStakingAmountStep": "Sisestage, kui palju DeHubi märke soovite panustada.",
-    "guideLeaderboardBalanceStep": "Vahekaardil \"Saldo\" järjestatakse kasutajad nende DeHubi märkide koguhoidjate järgi.",
-    "guideGovernanceVoteStep": "Hääletage ettepanekute üle pöidla üles/alla nuppudega – teie hääle kaal sõltub sellest, kui palju DeHubi märke olete panustanud.",
-    "guideGovernancePowerTip": "Teie hääleõigus määratakse selle järgi, kui palju DeHubi märke olete panustanud.",
-    "guideBuyIntro": "Ostke DeHubi märke otse DPayst kaardi või toetatud krüptovaluuta abil.",
-    "guideBuyAmountStep": "Sisestage summa, mida soovite kulutada, või kui palju DeHubi märke soovite saada.",
-    "guideBuyDeliveredStep": "Teie DeHubi märgid ilmuvad teie rahakotti pärast tehingu lõpetamist.",
-    "guideBridgeIntro": "Liigutage oma DeHubi märke toetatud plokiahelate vahel, kasutades ahelatevahelist silda.",
-    "guideBridgeSourceStep": "Valige lähteahel (kus teie DeHubi märgid praegu asuvad).",
-    "guideBridgeDestStep": "Valige sihtahel (kuhu soovite oma DeHubi märgid saata).",
-    "guideBridgeAmountStep": "Sisestage, kui palju DeHubi märke soovite üle kanda."
+    "glossaryLeaderboardDesc": "Kasutajad on järjestatud DeHubi märkide kogubilansi (rahakott + panustatud kõigis ahelates) järgi. Edetabelid värskendatakse perioodiliselt ja jälgivad 1-päevaseid ja 1-nädalasi muutusi. Saate sortida ka saadetud näpunäidete, saadud näpunäidete, jälgijate, meeldimiste või tellijate järgi."
   },
   "arcade": {
     "submitAccessibility": "Esita mäng arkaadile",
@@ -6792,6 +6770,499 @@
       "packEmpty": "Sellel aadressil emotikone ei leitud",
       "shortcodeTaken": "{{name}} on juba võetud",
       "shortcodeStandard": "{{name}} on juba standardne emotikon"
+    }
+  },
+  "guide": {
+    "sections": {
+      "getting-started": {
+        "title": "Alustamine",
+        "intro": "DeHubi saab kasutada viiel viisil ja ükski neist ei nõua, et teil oleks juba rahakott: Google, Apple, e-posti teel saadetud kood, SMS-iga saadetud kood või olemasolev rahakott, mille ühendate. Kõik peale rahakoti marsruudi loovad teie jaoks taustal mitte-hoidmisraha (non-custodial) rahakoti – teie hoiate võtmeid ja DeHub sponsoreerib gaasi, et saaksite postitada, tippi anda ja koguda, ilma et peaksite kunagi emakeelset tokenit ostma.",
+        "steps": {
+          "1": "Külastage dehub.io – koduleht on esileht, nii et saate enne sisselogimist ringi vaadata.",
+          "2": "Klõpsake 'Logi sisse'. Näete Google'i ja Apple'it, väljad e-posti aadressi või telefoninumbri jaoks ning 'Ühenda rahakott' olemasoleva jaoks.",
+          "3": "Google'i või Apple'i puhul täitke teenusepakkuja protsess. E-posti või SMS-i puhul sisestage saabunud kood.",
+          "4": "Esimesel sisselogimisel luuakse ja turvatakse teile rahakott. Oma rahakoti ühendamine tähendab aadressi tõestamiseks ühte allkirja.",
+          "5": "Valige kasutajanimi. See on see, mida inimesed näevad, ja see toimib ka teie dehub.io/<username> profiililingina.",
+          "6": "Olete sees. Tutvuge vooga, seadistage oma profiil ja alustage postitamist."
+        },
+        "tips": {
+          "1": "Sotsiaalmeedia, e-posti ja SMS-i sisselogimised ei maksa kunagi gaasi – DeHub sponsoreerib seda. Ühendatud rahakotid maksavad oma ETH või BNB.",
+          "2": "Kas tulete tagasi vanema DeHubi kontoga? Logige sisse selle kasutatud e-posti või telefoninumbriga ja migratsioon leiab selle teie jaoks.",
+          "3": "Saate ühes seadmes hoida mitut kontot ja nende vahel vahetada jaotises Seaded → Profiil."
+        }
+      },
+      "home-feed": {
+        "title": "Koduleht",
+        "intro": "Koduleht on koht, kus näete oma jälgitavate inimeste postitusi ja trendikat sisu. See toetab mitut tüüpi sisu vahekaarti ja sortimisvalikuid.",
+        "steps": {
+          "1": "Navigeerige /app – see on teie koduleht.",
+          "2": "Kasutage ülemisi vahekaarte sisu tüübi järgi filtreerimiseks: Kodu (kõik), Videod, Pildid, Lühivideod, Muusika või Otseülekanded.",
+          "3": "Mobiilis rohkem valikuid nägemiseks pühkige vahekaartidel vasakule/paremale.",
+          "4": "Sorteerimise muutmiseks kasutage filtreerimis-/sortimisnuppu (voo paremas ülaosas): Kuulujutud, Uus, või Tipp.",
+          "5": "Mobiilis voo värskendamiseks tõmmake alla.",
+          "6": "Postituste automaatseks laadimiseks kerige alla (lõputu kerimine).",
+          "7": "Lülitage paigutuse vahetajaga ruudustiku- ja voo vaate vahel."
+        },
+        "tips": {
+          "1": "Ruudustiku vaade sobib suurepäraselt piltide kiireks sirvimiseks.",
+          "2": "Vahekaart \"Kodu\" näitab kõiki segatud sisu tüüpe.",
+          "3": "Vahekaart \"Otse\" näitab praegu aktiivseid otseülekandeid."
+        }
+      },
+      "creating-posts": {
+        "title": "Postituste loomine",
+        "intro": "Looge tekstipostitusi, jagage pilte, videoid, helimärkmeid, GIF-e ja muud. Kasutage leviku suurendamiseks hashtage, cashtage ja mainimisi.",
+        "steps": {
+          "1": "Klõpsake külgriba nuppu \"Postita\" (töölaual) või nuppu + (mobiilis).",
+          "2": "Tüüpige oma tekst koostamisalasse.",
+          "3": "Pildi või video lisamiseks klõpsake meediaikooni ja valige fail.",
+          "4": "Helimärkmiku salvestamiseks klõpsake mikrofoniikooni.",
+          "5": "GIF-i lisamiseks klõpsake GIF-i ikooni ja otsige seda.",
+          "6": "Kasutage oma postituse kategoriseerimiseks #hashtage (nt #crypto, #defi).",
+          "7": "Tokenite viitamiseks kasutage $cashtage (nt $DHB, $ETH).",
+          "8": "Teiste kasutajate märkimiseks kasutage @mainimisi (nt @kasutajanimi).",
+          "9": "Klõpsake avaldamiseks nuppu \"Postita\". Teie postitus ilmub kohe voogu."
+        },
+        "tips": {
+          "1": "Postitused toetavad markdown-stiilis vormingut.",
+          "2": "Saate postitust tsiteerida, klõpsates mis tahes postitusel ümberpostituse ikooni ja valides \"Tsiteeri\".",
+          "3": "Kategooriad (hashtags) ilmuvad edetabelis \"Talk of the Town\"."
+        }
+      },
+      "interacting-with-posts": {
+        "title": "Postitustega suhtlemine",
+        "intro": "Suhelge sisuga, hääletades, kommenteerides, tippi andes, järjehoidjatesse lisades, jagades ja tõlkides.",
+        "steps": {
+          "1": "Hääletage postituse poolt või vastu, kasutades mis tahes postituse vasakul küljel olevaid noolenuppe.",
+          "2": "Klõpsake kommentaaride jaotise avamiseks ja vastuse jätmiseks kommentaaride ikooni.",
+          "3": "Postituse loojale DeHubi tokenitega tippi saatmiseks klõpsake juveel/tipi ikooni.",
+          "4": "Postituse hilisemaks salvestamiseks klõpsake järjehoidjaikooni.",
+          "5": "Postituse linki kopeerimiseks või väliselt jagamiseks klõpsake jagamisikooni.",
+          "6": "Klõpsake mis tahes postituse tõlkimise nuppu (maakera ikoon), et tõlkida tekst oma keelde.",
+          "7": "Piltpostituste puhul kasutage funktsiooni „Tõlgi pilt“, et saada tehisintellektiga tõlgitud versioon pildil olevast tekstist.",
+          "8": "Klõpsake mis tahes postitusel, et avada see täisekraanil üksikpostituse vaates."
+        },
+        "tips": {
+          "1": "Näpunäited lähevad otse looja rahakotti DeHubi žetoonides.",
+          "2": "Saate määrata näpunäite summa kiirvalikunuppude kaudu või sisestada kohandatud summa.",
+          "3": "Järjehoidjaga postitused on saadaval külgriba vahekaardilt Järjehoidjad."
+        }
+      },
+      "explore-search": {
+        "title": "Avasta ja otsi",
+        "intro": "Avastage uut sisu ja kasutajaid avastamisvahekaardi ja võimsa otsingufunktsiooni kaudu.",
+        "steps": {
+          "1": "Navigeerige külgribalt aadressile /app/explore.",
+          "2": "Kasutage kasutajate, postituste või sisu otsimiseks ülaosas olevat otsinguriba.",
+          "3": "Filtreerige tulemusi vahekaardi järgi: Kõik, Inimesed, Postitused, Pildid, Videod, Muusika, Otse.",
+          "4": "Sirvige avastamisvahekaardil populaarseid teemasid ja kategooriaid.",
+          "5": "Klõpsake populaarsel teemal, et näha kõiki seotud postitusi.",
+          "6": "Klõpsake otsingutulemustes kasutajal, et külastada tema profiili."
+        },
+        "tips": {
+          "1": "Otsing toetab kasutajanimesid, rahakoti aadresse ja sisu märksõnu.",
+          "2": "Populaarsed teemad värskendatakse hiljutise postitustegevuse põhjal."
+        }
+      },
+      "profile": {
+        "title": "Profiil",
+        "intro": "Teie profiil kuvab teie postitusi, jälgijaid, jälgitavaid ja rahakoti teavet.",
+        "steps": {
+          "1": "Oma profiili vaatamiseks klõpsake oma avatari või külgriba valikut „Profiil”.",
+          "2": "Klõpsake „Muuda profiili”, et värskendada oma kuvatavat nime, biograafiat ja avatari.",
+          "3": "Laadige üles profiilipilt, klõpsates redigeerimisrežiimis oma avatari.",
+          "4": "Vaadake oma jälgijate ja jälgitavate arvu oma profiililehel.",
+          "5": "Sirvige oma postitusi, meediat ja meeldivat sisu profiili vahekaartide kaudu.",
+          "6": "Kopeerige oma rahakoti aadress, klõpsates selle kõrval olevat kopeerimisikooni.",
+          "7": "Külastage teiste kasutajate profiile, klõpsates nende kasutajanime või avatari kus iganes platvormil."
+        },
+        "tips": {
+          "1": "Teie kasutajanimi on unikaalne ja kuvatakse teie profiili URL-is (dehub.io/@username).",
+          "2": "Privaatsussätted võimaldavad teil kontrollida, kes saab teie jälgijate arvu näha."
+        }
+      },
+      "messages": {
+        "title": "Sõnumid",
+        "intro": "Saatke platvormil teistele kasutajatele otsesõnumeid.",
+        "steps": {
+          "1": "Sõnumilehe avamiseks klõpsake külgriba valikut „Sõnumid”.",
+          "2": "Klõpsake uue vestluse alustamiseks nuppu Koosta.",
+          "3": "Otsige kasutajat kasutajanime järgi, et talle sõnum saata.",
+          "4": "Sisestage oma sõnum ja vajutage nuppu Saada.",
+          "5": "Vaadake oma vestluste ajalugu sõnumite loendis.",
+          "6": "Klõpsake vestlusel, et jätkata vestlemist."
+        },
+        "tips": {
+          "1": "Saate teate, kui keegi teile sõnumi saadab.",
+          "2": "Loojad saavad sõnumid lukustada, nõudes selleks annetust."
+        }
+      },
+      "ai-assistant": {
+        "title": "AI assistent",
+        "intro": "Vestelge DeHubi sisseehitatud tehisintellekti assistendiga, et saada abi, teavet ja täita loomingulisi ülesandeid.",
+        "steps": {
+          "1": "AI-vestluse avamiseks klõpsake külgribal nuppu „Assistent”.",
+          "2": "Sisestage oma küsimus või päring vestluse sisestusväljale.",
+          "3": "AI saab aidata krüptoteabe, platvormi küsimuste ja üldiste teadmiste osas.",
+          "4": "Alustage uut vestlust, klõpsates nuppu Uus vestlus.",
+          "5": "Vaadake oma vestluste ajalugu assistendi lehe külgribal.",
+          "6": "Saate lisada pilte, mida AI analüüsib."
+        },
+        "tips": {
+          "1": "AI mäletab vestluse konteksti.",
+          "2": "Võite küsida AI-lt DeHubi funktsioonide, krüptoterminite või üldiste küsimuste kohta.",
+          "3": "Eelmised vestlused salvestatakse ja on igal ajal kättesaadavad."
+        }
+      },
+      "notifications": {
+        "title": "Teavitused",
+        "intro": "Olge kursis oma sisu meeldimiste, kommentaaride, annetuste, jälgimiste ja muu tegevusega.",
+        "steps": {
+          "1": "Klõpsake külgribal kellanupul või „Teavitused”.",
+          "2": "Vaadake kõiki teateid kronoloogilises loendis.",
+          "3": "Klõpsake teatel, et minna seotud sisule.",
+          "4": "Teavitused sisaldavad: uusi jälgijaid, postituse hääli, kommentaare, annetusi ja mainimisi.",
+          "5": "Lugemata teated on esile tõstetud – need märgitakse loetuks vaatamisel."
+        },
+        "tips": {
+          "1": "Teavituste märge näitab lugemata teadete arvu.",
+          "2": "Annetuste teated näitavad, kui palju tokeneid te saite."
+        }
+      },
+      "wallet": {
+        "title": "Rahakott",
+        "intro": "Vaadake oma DeHubi tokeni saldosid mitmes ahelas, kontrollige panustatud hoiuseid ja hallake oma varasid.",
+        "steps": {
+          "1": "Rahakoti lehe avamiseks klõpsake külgribal nuppu „Rahakott”.",
+          "2": "Vaadake oma kogu žetoonide saldot, mis on koondatud kõigilt toetatud ahelatelt.",
+          "3": "Vaadake jaotust ahelate kaupa: Ethereum, Base, BNB Chain ja palju muud.",
+          "4": "Kontrollige oma panustatud hoiuseid ja preemiaid.",
+          "5": "Klõpsake 'Värskenda skannimist', et värskendada oma saldosid ahelasisestest andmetest.",
+          "6": "Kopeerige oma rahakoti aadress, et saada teistelt žetoone."
+        },
+        "tips": {
+          "1": "Saldod värskendatakse automaatselt, kuid saate värskendamist igal ajal sundida.",
+          "2": "Rahakott näitab nii likviidseid (saadaolevaid) kui ka panustatud saldosid."
+        }
+      },
+      "staking": {
+        "title": "Panustamine",
+        "intro": "Panustage oma DeHubi žetoone, et teenida preemiaid ja suurendada oma hääleõigust valitsemisettepanekutes.",
+        "steps": {
+          "1": "Liikuge külgribalt lehele 'Panustamine'.",
+          "2": "Sisestage panustatavate žetoonide arv.",
+          "3": "Valige ahel, millel soovite panustada.",
+          "4": "Kinnitage tehing oma rahakotis (välised rahakotid) või see täidetakse automaatselt (sotsiaalne sisselogimine).",
+          "5": "Vaadake oma panustatud summasid ja kõiki ootel olevaid preemiaid.",
+          "6": "Panuse tühistamiseks sisestage summa ja kinnitage panuse tühistamise tehing."
+        },
+        "tips": {
+          "1": "Panustamine suurendab teie häälekaalu valitsemisettepanekutes.",
+          "2": "Sotsiaalse sisselogimise kasutajad ei vaja panustamiseks gaasi – see on gaasita.",
+          "3": "Saate panustada mitmel ahelal samaaegselt."
+        }
+      },
+      "leaderboard": {
+        "title": "Edetabel",
+        "intro": "Vaadake, kes on tipus! Edetabel järjestab kasutajad salde, igapäevase kulutamise ja populaarsete teemade järgi.",
+        "steps": {
+          "1": "Liikuge külgribalt lehele 'Edetabel'.",
+          "2": "Lülitage vahekaartide vahel: Saldo, Igapäevane kulutamine ja Linnakõlakad.",
+          "3": "Saldo vahekaart järjestab kasutajad nende kogu žetoonide koguste järgi.",
+          "4": "Igapäevase kulutamise vahekaart näitab, kes on viimase 24 tunni jooksul kõige aktiivsemalt tippe andnud.",
+          "5": "Linnakõlakad näitab enim arutatud teemasid/kategooriaid.",
+          "6": "Klõpsake mis tahes kasutajal, et külastada tema profiili.",
+          "7": "Edetabel värskendub perioodiliselt kogu päeva jooksul."
+        },
+        "tips": {
+          "1": "Päevased edetabelid lähtestatakse iga 24 tunni järel.",
+          "2": "Linnakõlakad jälgib ühesõnalisi kategooriaid hashtagidest."
+        }
+      },
+      "command-centre": {
+        "title": "Juhtimiskeskus",
+        "intro": "Armatuurlaud, mis annab ülevaate teie peamistest mõõdikutest ja platvormi aktiivsusest.",
+        "steps": {
+          "1": "Klõpsake külgribal nuppu „Command Centre“.",
+          "2": "Vaadake oma profiili kokkuvõtet, sealhulgas postituste arvu, jälgijaid ja kaasatust.",
+          "3": "Vaadake oma hiljutist aktiivsust ja populaarseid teemasid.",
+          "4": "Juurdepääs kiiretele linkidele sageli kasutatavatele funktsioonidele."
+        },
+        "tips": {
+          "1": "Command Centre annab teile DeHubi kohalolekust linnulennulise vaate."
+        }
+      },
+      "governance": {
+        "title": "Juhtimine",
+        "intro": "Osalege platvormi juhtimises, luues ettepanekuid ja hääletades kogukonna otsuste üle.",
+        "steps": {
+          "1": "Liikuge külgribalt jaotisse „Governance“.",
+          "2": "Sirvige kogukonna esitatud aktiivseid ettepanekuid.",
+          "3": "Klõpsake ettepanekul, et lugeda selle täielikku kirjeldust ja arutelu.",
+          "4": "Hääletage ettepanekute poolt pöidla üles/alla nuppudega – teie hääle kaal sõltub sellest, kui palju DeHubi märke olete panustanud.",
+          "5": "Jätke ettepanekutele kommentaare, et kogukonnaga arutada.",
+          "6": "Esitage oma ettepanek, klõpsates nupul „Create Proposal“."
+        },
+        "tips": {
+          "1": "Teie hääleõigus määratakse teie panustatud märkide arvu järgi.",
+          "2": "Märgiomanikud võivad saada täiendavat häälekaalu.",
+          "3": "Ettepanekud läbivad etappe: Aktiivne → Vastuvõetud/Tagasi lükatud."
+        }
+      },
+      "bookmarks": {
+        "title": "Järjehoidjad",
+        "intro": "Salvestage postitused oma järjehoidjatesse, et neid hiljem hõlpsalt kasutada.",
+        "steps": {
+          "1": "Salvestamiseks klõpsake mis tahes postitusel järjehoidja ikooni.",
+          "2": "Liikuge külgribal jaotisse „Bookmarks“, et vaadata kõiki salvestatud postitusi.",
+          "3": "Klõpsake järjehoidjaga postitusel, et seda täielikult vaadata.",
+          "4": "Eemaldage järjehoidja, klõpsates uuesti järjehoidja ikooni."
+        },
+        "tips": {
+          "1": "Järjehoidjad on privaatsed – ainult teie näete oma salvestatud postitusi.",
+          "2": "Järjehoidjate arvule pole piiranguid."
+        }
+      },
+      "settings": {
+        "title": "Seaded",
+        "intro": "Kohandage oma DeHubi kogemust keele, privaatsuse ja kuva eelistustega.",
+        "steps": {
+          "1": "Klõpsake külgribal nuppu „Settings“.",
+          "2": "Muutke oma kuva keelt keelevalija abil.",
+          "3": "Reguleerige privaatsussätteid: kontrollige, kes näeb teie jälgijate arvu ja jälgitavate loendit.",
+          "4": "Määra oma vaikepostituse nähtavuse eelistused.",
+          "5": "Halda teatise eelistusi."
+        },
+        "tips": {
+          "1": "DeHub toetab mitut keelt – kogu liides on tõlgitud.",
+          "2": "Privaatsusseaded rakenduvad kohe."
+        }
+      },
+      "posting-allowance": {
+        "title": "Sinu igapäevane postituse limiit",
+        "intro": "Postitamine on iga päev tasuta kuni limiidini, mis suureneb koos sinu panustamisastmega. Igaüks alustab kümne tekstipostituse ja ühe gigabaidi video, piltide ja heli mahuga päevas. Kui ületad kumbagi, siis ülejäänud osa sellest päevast tasutakse DeHubi žetoonidega – ainult ületatud osa eest.",
+        "steps": {
+          "1": "Postita nagu tavaliselt. Limiidi sees ei võeta midagi tasu ja sinult ei küsita midagi.",
+          "2": "Tekstipostitused ja meedia on eraldi kogumid, nii et video üleslaadimisele kulutatud päev jätab ikkagi kõik kümme tekstipostitust tasuta.",
+          "3": "Kui postitus ületaks limiidi, rakendus hindab selle esmalt ja kontrollib, kas sinu rahakott seda katab, enne kui midagi üles laaditakse.",
+          "4": "Postitus avaldatakse täpselt nii, nagu see oleks limiidi sees – avaldamine ei oota kunagi makset.",
+          "5": "Seejärel kinnitad ühe ülekande ainult selle postituse jaoks, mis arveldatakse kas Base või BNB Chainis, kus on piisavalt DeHubi žetoone.",
+          "6": "Mõlemad kogumid lähtestatakse keskööl UTC järgi."
+        },
+        "tips": {
+          "1": "Ületamine on proportsionaalne: 200 MB sinu limiidist ületamine maksab 200 MB, mitte terve gigabaidi.",
+          "2": "Uuesti postitamised, kommentaarid, reaktsioonid, näpunäited ja sõnumid ei maksa midagi ja ei puuduta kunagi limiiti.",
+          "3": "Keeldu maksmisest ja postitus jääb alles – summa blokeerib lihtsalt sinu järgmise tasulise postituse, kuni see on arveldatud. Homne tasuta limiit on alati sinu oma.",
+          "4": "Panustamisaste tõstab tasuta limiiti ja alandab selle ületava sisu hinda."
+        }
+      },
+      "reactions-and-safety": {
+        "title": "Reaktsioonid, vaigistamine ja küpsesisu",
+        "intro": "Nupu \"meeldib\" taga on üheksa reaktsiooni ja kontrollide komplekt, et otsustada, mida sa näed ja kes saab sinuni jõuda.",
+        "steps": {
+          "1": "Hoia mõnel postitusel pöialt üleval, et avada reaktsioonide salv: meeldib, armastan, austan, kuum, naljakas, kurb, nutan, ei meeldi ja kaka.",
+          "2": "Seitse positiivset reaktsiooni loendatakse postituse meeldimiste koguarvu hulka; \"ei meeldi\" ja \"kaka\" arvestatakse selle vastu.",
+          "3": "Sinu reaktsiooni kaalub sinu panustamisaste, nii et panustamisastme omaniku reaktsioon liigutab loendurit rohkem kui üks hääl.",
+          "4": "Puuduta postituse päises olevat X-i, et vaigistada selle autor – nad kaovad sinu voost kohe.",
+          "5": "Loojad märgistavad oma postitused küpseks nende koostamise ajal; need postitused jäävad avalikust kodulehest välja.",
+          "6": "Küpsesisu nägemiseks kõikjal, lülita seadetes sisse \"Näita küpsesisu\"."
+        },
+        "tips": {
+          "1": "Küps postitus on ikka täielikult nähtav looja profiilil ja nende jälgijatele.",
+          "2": "Blokeerimine profiililt läheb kaugemale kui vaigistamine ja lõikab ka sõnumivahetuse läbi.",
+          "3": "Reaktsioonide salv näitab, kes reageeris ja millega, nii et sa näed ruumi, mitte ainult numbrit."
+        }
+      },
+      "stages": {
+        "title": "Etapid (otseheli toad)",
+        "intro": "Etapid on DeHubi sisse ehitatud otseheli toad. Peremees avab toa, toob esinejad üles ja igaüks saab Etappide lehelt või jagatud lingilt sisse hüpata, et kuulata.",
+        "steps": {
+          "1": "Ava külgribal \"Etapid\", et näha, mis on praegu otse-eetris ja mis on plaanis.",
+          "2": "Puuduta otseülekannet, et kuulata, või sea meeldetuletus kavandatud ülekannetele ja saa teada, millal see algab.",
+          "3": "Alusta oma ülekannet samalt lehelt – saad otse brauserist otseülekannet teha, ilma OBS-i või voogedastussertifikaadita.",
+          "4": "Kõnelejana saad kutsuda esinejaid lavale, vaigistada või eemaldada neid, jagada oma ekraani ja juhtida helilauda.",
+          "5": "Kuulajad saavad saata otse reaktsioone ja vestelda ruumi vestluses, ilma lavale tulemata.",
+          "6": "Iga otseülekanne salvestatakse ja salvestus mängitakse hiljem taasesitamiseks kaardilt, millel see ilmub."
+        },
+        "tips": {
+          "1": "Otse subtitled kuvavad iga esineja kõne ja tõlgivad selle mis tahes keelde, mida sa loed.",
+          "2": "Otse dubleerimine võib ruumi valjusti esitada võõrustaja enda kloonitud häälega, arveldatakse minutite eest DeHubi žetoonides.",
+          "3": "Võõrustajad saavad raadiojaama eetrisse panna või vestluste vahele oma muusikaklippe mängida.",
+          "4": "Minipleier hoiab ruumi rakenduse ülejäänud osa sirvimise ajal nurgas töös."
+        }
+      },
+      "communities": {
+        "title": "Kogukonnad ja üritused",
+        "intro": "Kogukonnad on liikmete juhitavad ruumid oma voo, liikmete ja tegevusega. Üritused lisavad nende peale ajaliselt piiratud programmeerimist.",
+        "steps": {
+          "1": "Ava külgribal \"Kogukonnad\" ja sirvi avalikke kogukondi.",
+          "2": "Liitu ühe puudutusega. Uus tegevus kuvatakse navigeerimisel lugemata märguandena.",
+          "3": "Postita, arutle, korralda küsitlusi ja anna tippi kogukonna enda voos.",
+          "4": "Kogukonna omanikud modereerivad oma ruumi ja saavad teistele administraatori õigusi anda.",
+          "5": "Ava \"Üritused\" kavandatud programmeerimise jaoks, kus iga ürituse jaoks on täisleht, mida saad otse jälgida."
+        },
+        "tips": {
+          "1": "Kogukonna vestlus toetab @mainimisi ja @siin, nii et postitus võib jõuda ruumi.",
+          "2": "Kutselink võimaldab tuua inimesi otse kogukonda."
+        }
+      },
+      "arcade": {
+        "title": "Arkade",
+        "intro": "Viis mängu töötavad DeHubis brauseri vahekaardil – pole vaja installida ega osta.",
+        "steps": {
+          "1": "Ava külgribal \"Arkade\".",
+          "2": "Vali mäng: King's Gambit (3D malemäng koos online Elo edetabeliga), Claude of Duty (laskemäng, mis loob laadimisel oma graafika), Jungle Trail (protseduuriline vihmametsa jalutuskäik), Street Slayer (DeHubi jaoks loodud beat 'em up) või Chartopia (käideldav kauplemispõrand).",
+          "3": "Mängi vahekaardil. King's Gambit ja Street Slayer hoiavad edetabeleid.",
+          "4": "Chartopia töötab ka VR-peakomplektis WebXR kaudu."
+        },
+        "tips": {
+          "1": "Kaks neist on peidetud välimuse teemade sisse – seadista rakendus War Claude of Duty jaoks või Jungle Jungle Traili jaoks.",
+          "2": "Igal mängul on oma jagamiskaart, nii et link ühele avaneb korralikult kõikjal, kus sa seda postitad."
+        }
+      },
+      "bounties-stores": {
+        "title": "Bounty'd ja poed",
+        "intro": "Kaks võimalust platvormi sissetulekuks muuta: postita või taotle bounty't, või ava pood ja müü oma publikule.",
+        "steps": {
+          "1": "Ava \"Bounty'd\", et sirvida avatud töid, filtreeritud kategooria või valuuta järgi.",
+          "2": "Taotle ühte, tee töö ära ja esita see tasu kogumiseks – igaüks võib olla jahimees, pole vaja taotlust.",
+          "3": "Postita oma tasu koos lühikirjelduse ja tasuga DeHubi žetoonides või USDC-s. See läheb eskorti hetkel, kui sa selle postitad.",
+          "4": "Ava 'Poed', et seadistada oma pood koos oma lehe, brändingu ja toodetega.",
+          "5": "Tooted on hinnastatud ja tasutud DeHubi žetoonides sisseehitatud rahakoti kaudu, ilma välise kassata."
+        },
+        "tips": {
+          "1": "Tasusid korraldatakse sotsiaalmeedia, lõikude ja lepingute järgi.",
+          "2": "Vaidluste lahendamise protsess lahendab erimeelsused tarnimise üle, nii et eskort lahendab alati õiglaselt.",
+          "3": "Loojad kasutavad tasusid kogukonna kasvatamiseks – jagamised, lõiked ja reaktsioonid on kõik kehtivad ülesanded."
+        }
+      },
+      "creator-studio": {
+        "title": "Loojastuudio ja redaktor",
+        "intro": "Loojastuudio genereerib pilti, videot, muusikat, häält ja 3D-mudeleid prompti põhjal ja annab need redaktorile – sealhulgas täielik mitme rajaga videoredaktor, mis töötab brauseris.",
+        "steps": {
+          "1": "Ava Loojastuudio ja kirjelda, mida sa soovid, et see teeks.",
+          "2": "Server pakub töö käivitamise eel hinda, nii et sa näed, kui palju see maksab, enne kui kulutad.",
+          "3": "Renderdamised jätkuvad jagatud järjekorras, samal ajal kui sina jätkad rakenduses sirvimist.",
+          "4": "Paiguta tulemused Canva-stiilis redaktorisse või ava videoredaktor reaalse ajajoone jaoks koos lõikamise, kihistamise ja eksportimisega.",
+          "5": "Pane valmis töö otse postitusse, lühivideosse või poe kirjelduse juurde."
+        },
+        "tips": {
+          "1": "Tasuta varude varude raamatukogu asub stuudio kõrval kõigi jaoks, mida sa ei soovi genereerida.",
+          "2": "Genereerimine tasutakse sinu rahakoti DeHubi žetoonidega – sa allkirjastad ühe ülekande töö kohta ja hind on enne maksmist esitatud.",
+          "3": "Tugevamad kasutajad saavad valida Ultra, Team või Scale plaani, mis saadab igakuise žetoonilimiidi otse nende rahakotti."
+        }
+      },
+      "buying-dhb": {
+        "title": "Žetoonide ostmine",
+        "intro": "Osta DeHubi žetoone otse rakenduses, kasutades sisseehitatud vahetusliidest.",
+        "steps": {
+          "1": "Liigu külgriba kaudu lehele 'Osta'.",
+          "2": "Vali žetoon, mida soovid vahetada (nt ETH, USDC).",
+          "3": "Sisesta summa, mida soovid kulutada, või žetoonide arv, mida soovid saada.",
+          "4": "Vaata üle vahetuskurss ja hinnanguline väljund.",
+          "5": "Klõpsa seadete hammasratta ikoonil, et reguleerida libisemise tolerantsi (vaikimisi on 1%).",
+          "6": "Kinnita vahetustehing.",
+          "7": "DeHubi žetoonid ilmuvad sinu rahakotti pärast tehingu lõpetamist."
+        },
+        "tips": {
+          "1": "Kõrgem libisemise tolerants = suurem tõenäosus teostada, kuid potentsiaal halvemaks hinnaks.",
+          "2": "Kontrolli alati vahetuskurssi enne kinnitamist.",
+          "3": "Sa saad seadistada kohandatud libisemise seadete paneelil."
+        }
+      },
+      "bridge": {
+        "title": "Sild",
+        "intro": "Liiguta oma DeHubi žetoone toetatud plokiahelate vahel, kasutades ristsild.",
+        "steps": {
+          "1": "Liigu külgribalt lehele 'Bridge'.",
+          "2": "Vali allikakett (kus teie märgid praegu asuvad).",
+          "3": "Vali sihtkett (kuhu soovite need saata).",
+          "4": "Sisesta ülekantavate märkide arv.",
+          "5": "Vaata üle silla tasu ja eeldatav saabumisaeg.",
+          "6": "Kinnita silla tehing.",
+          "7": "Oota tehingu lõpulejõudmist – ülekandmine võib võtta paar minutit."
+        },
+        "tips": {
+          "1": "Silla tasud erinevad kettide paaride lõikes.",
+          "2": "Ülekandmine võtab tavaliselt 1–5 minutit, sõltuvalt kaasatud kettidest.",
+          "3": "Kontrolli alati sihtketti enne kinnitamist."
+        }
+      },
+      "music-tv": {
+        "title": "Muusika ja TV",
+        "intro": "Naudi meediasisu otse DeHubis – kuula muusikat ja vaata otse-TV kanaleid.",
+        "steps": {
+          "1": "Liigu külgribalt lehele 'Music', et sirvida ja esitada muusikapostitusi.",
+          "2": "Liigu lehele 'TV', et pääseda ligi otse-TV kanalitele.",
+          "3": "Sirvi kanaleid kategooria või riigi järgi.",
+          "4": "Klõpsa kanalil, et alustada vaatamist.",
+          "5": "Kasuta mängija juhtnuppe helitugevuse ja esituse reguleerimiseks.",
+          "6": "Teata katkistest kanalitest, kasutades aruandenuppu."
+        },
+        "tips": {
+          "1": "TV kanalid on usaldusväärsuse tagamiseks kogukonna poolt kontrollitud.",
+          "2": "Muusikapostitusi saab esitada teiste sisude sirvimise ajal."
+        }
+      },
+      "post-info": {
+        "title": "Postituse info ja fraktsioonid",
+        "intro": "Loodud postitus on NFT, mis on jagatud 1000 fraktsiooniks. Postituse info leht näitab plokiahela andmeid, kaasamisstatistikat, omandi jaotust ja võimaldab teil kaubelda mis tahes postituse fraktsioonidega – loomata postituse puhul pakub see loomist.",
+        "steps": {
+          "1": "Puuduta mis tahes postituse ikooni 'ⓘ', et avada selle postituse info leht.",
+          "2": "Ülal näed Token ID (unikaalne plokiahela identifikaator) ja tehingu räsi – klõpsa räsil, et seda plokiahela uurijas vaadata.",
+          "3": "Allpool näitab kaasamisstatistika kogutud meeldimisi, mittemeeldimisi, vaatamisi, kommentaare ja näpunäiteid.",
+          "4": "Jaotises 'Hoidjad' näed edenemisriba sellest, kui palju 1000 fraktsioonist kuulub endiselt loojale, lisaks loend kõigist fraktsiooni hoidjatest koos nende saldode ja protsentidega.",
+          "5": "Kui postitus on tasuline (PPV), näed hinda, valuutat ja seda, kui paljud kasutajad on juurdepääsu ostnud.",
+          "6": "Postituse omanikud saavad muuta nähtavust (avalik, loendamata või privaatne) ja redigeerida pealkirja/kirjeldust otse sellelt lehelt."
+        },
+        "tips": {
+          "1": "Värskelt loodud postitus algab sellest, et looja omab kõiki 1000 fraktsiooni (100% omand).",
+          "2": "Tehingu räsi viitab BaseScanile või BscScanile, sõltuvalt kettist."
+        }
+      },
+      "trading-fractions": {
+        "title": "Kauplemisfraktsioonid",
+        "intro": "Osamaksega kauplemine — kuulutuste sirvimine, pakkumiste tegemine, enda kuulutuse avaldamine — elab veebirakenduses aadressil dehub.io, iga postituse postituse teabe lehel.",
+        "steps": {
+          "1": "Ava dehub.io brauseris ja logi sisse sama kontoga.",
+          "2": "Ava postituse postituse teabe leht ja mine vahekaardile Turuplats.",
+          "3": "Sirvi kuulutusi, tee pakkumine oma hinnaga või loetle enda käes olevad osad.",
+          "4": "Kui kauplemine on lõppenud, kuvatakse muudatus mobiilis vahekaardil Murdosad."
+        },
+        "tips": {
+          "1": "Postituse osade omamine tähendab, et teil on osa sellest ahelas olevast NFT-st.",
+          "2": "Enne ostmist kontrollige veebiturul postituse omanikke, et näha omandilise kuuluvuse jaotust.",
+          "3": "Loojana võimaldab fraktsioonide müük fännidel teie sisu ühiselt omada."
+        }
+      },
+      "minting-posts": {
+        "title": "Minting Posts (Creating NFTs)",
+        "steps": {
+          "4": "Avaldamine ei oota kunagi ahelas: postitus ilmub voos mõlemal viisil.",
+          "5": "Mündi hilisemaks vermimiseks ava postituse infoleht „Ř“ ja kasuta seal rahapaja toimingut.",
+          "6": "Kui postitus on vermitud, saab see žetooni ID ja tehinguräsi, mida saate ahelas kontrollida, ning teil on sellest kõik 1000 murdosa."
+        },
+        "tips": {
+          "1": "Sotsiaalmeedia, e-posti ja SMS-iga sisselogimise eest ei maksta bensiini — DeHubi sponsorid maksavad vermimistasusid.",
+          "2": "Välise rahakoti kasutajad vajavad ETH-d baasil VÕI BNB-d BNB ketil gaasi jaoks.",
+          "3": "Rahapaja on see, mis muudab postkauba kaubeldavaks ja autoritasusid kandvaks. Mündita postitus teenib endiselt nõuandeid ja vaatamisi.",
+          "4": "Ahelasisene kirje on pärast vermimist püsiv, isegi kui postitus hiljem kanalist kustutatakse."
+        }
+      },
+      "glossary": {
+        "title": "Sõnastik",
+        "intro": "Krüpto ja platvormi terminoloogia põhjalik sõnastik, mis aitab teil Web3-s navigeerida.",
+        "steps": {
+          "1": "Külgribalt navigeerige jaotisse „Sõnastik“.",
+          "2": "Sirvi termineid tähestikuliselt või kasuta otsingut konkreetsete terminite leidmiseks.",
+          "3": "Klõpsake terminil, et näha selle täielikku määratlust ja selgitust.",
+          "4": "Mõisted hõlmavad krüptokontseptsioone, DeFi terminoloogiat ja DeHubi spetsiifilisi funktsioone."
+        },
+        "tips": {
+          "1": "Suurepärane ressurss krüpto ja veebi3 uustulnukatele.",
+          "2": "Sõnastikku uuendatakse regulaarselt uute terminitega."
+        }
+      }
     }
   }
 }

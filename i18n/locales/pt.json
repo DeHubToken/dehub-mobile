@@ -3436,11 +3436,6 @@
     "noResultsFor": "Nenhum resultado para \"{{query}}\"",
     "guideSubtitle": "Tutorial passo a passo de cada recurso",
     "searchGuide": "Pesquisar o guia...",
-    "guideFractionsTip": "Toda publicação cunhada começa com o criador detendo todas as suas frações (100% de propriedade).",
-    "guideInfoStep": "Toque no ícone de informações de uma publicação cunhada para abrir a transação de cunhagem no explorador de blocos e verificar o registro on-chain.",
-    "guideMintIntro": "Cunhar uma publicação como NFT na blockchain é opcional. Cunhe ao publicar, ou publique agora e cunhe depois pelo menu da publicação.",
-    "guideMintPublishStep": "Escolha se quer cunhar e clique em 'Publicar'. Se pular a cunhagem, você pode cunhar a publicação depois pelo menu dela.",
-    "guideMintFractionsStep": "Você recebe todas as 1.000 frações (100% de propriedade) do seu post recém-cunhado.",
     "glossaryMintTxDesc": "Toque no ícone de informações de uma publicação cunhada para abrir a transação de cunhagem no explorador de blocos e verificar o registro on-chain. A página completa de Informações da publicação — estatísticas, detentores, mercado — fica no app web em dehub.io.",
     "glossaryTokenIdDesc": "Um identificador único on-chain atribuído a uma publicação quando ela é cunhada como NFT.",
     "repostsTab": "Repostagens",
@@ -3457,24 +3452,7 @@
     "glossaryStakingDesc": "Bloqueie seus tokens DeHub para ganhar recompensas ao longo do tempo. Tokens em staking também lhe dão maior poder de voto na governança.",
     "glossaryGovernanceDesc": "Envie e vote em propostas que moldam a plataforma. Seu poder de voto é ponderado pela quantidade de tokens DeHub que você possui.",
     "glossaryStakingBadgesDesc": "Distintivos exibidos ao lado do seu nome de usuário com base em suas participações totais de tokens DeHub (carteira + em staking). Existem 13 níveis — quanto mais tokens você possui, maior o seu ranking de distintivo. Níveis mais altos concedem mais poder de voto na governança e taxas de plataforma mais baixas.",
-    "glossaryLeaderboardDesc": "Usuários são classificados pelo saldo total de tokens DeHub (carteira + em staking em todas as cadeias). Rankings são atualizados periodicamente e rastreiam mudanças de 1 dia e 1 semana. Você também pode classificar por gorjetas enviadas, gorjetas recebidas, seguidores, curtidas ou assinantes.",
-    "guideTipStep": "Clique no ícone de joia/gorjeta para enviar uma gorjeta ao criador da postagem em tokens DeHub.",
-    "guideTipWalletTip": "Gorjetas vão diretamente para a carteira do criador como tokens DeHub.",
-    "guideTipNotificationsTip": "As notificações de gorjetas mostram quantos tokens DeHub você recebeu.",
-    "guideWalletIntro": "Visualize seus saldos de tokens DeHub em várias cadeias, verifique depósitos de staking e gerencie seus ativos.",
-    "guideWalletTotalStep": "Visualize seu saldo total de tokens DeHub agregado em todas as cadeias suportadas.",
-    "guideStakingIntro": "Faça staking dos seus tokens DeHub para ganhar recompensas e aumentar seu poder de voto de governança.",
-    "guideStakingAmountStep": "Insira quantos tokens DeHub você deseja fazer staking.",
-    "guideLeaderboardBalanceStep": "A aba Saldo classifica os usuários por suas participações totais de tokens DeHub.",
-    "guideGovernanceVoteStep": "Vote em propostas usando os botões de polegar para cima/para baixo — o peso do seu voto depende de quantos tokens DeHub você tem em staking.",
-    "guideGovernancePowerTip": "Seu poder de voto é determinado por quantos tokens DeHub você tem em staking.",
-    "guideBuyIntro": "Compre tokens DeHub diretamente no DPay usando um cartão ou criptomoeda suportada.",
-    "guideBuyAmountStep": "Insira o valor que você deseja gastar ou quantos tokens DeHub você deseja receber.",
-    "guideBuyDeliveredStep": "Seus tokens DeHub aparecerão em sua carteira assim que a transação for concluída.",
-    "guideBridgeIntro": "Mova seus tokens DeHub entre blockchains suportadas usando a ponte cross-chain.",
-    "guideBridgeSourceStep": "Selecione a cadeia de origem (onde seus tokens DeHub estão atualmente).",
-    "guideBridgeDestStep": "Selecione a cadeia de destino (para onde você deseja enviar seus tokens DeHub).",
-    "guideBridgeAmountStep": "Insira quantos tokens DeHub para fazer a ponte."
+    "glossaryLeaderboardDesc": "Usuários são classificados pelo saldo total de tokens DeHub (carteira + em staking em todas as cadeias). Rankings são atualizados periodicamente e rastreiam mudanças de 1 dia e 1 semana. Você também pode classificar por gorjetas enviadas, gorjetas recebidas, seguidores, curtidas ou assinantes."
   },
   "arcade": {
     "submitAccessibility": "Enviar um jogo para o fliperama",
@@ -6796,6 +6774,504 @@
       "packEmpty": "Nenhum emoji encontrado nesse endereço",
       "shortcodeTaken": "{{name}} já está em uso",
       "shortcodeStandard": "{{name}} já é um emoji padrão"
+    }
+  },
+  "guide": {
+    "sections": {
+      "getting-started": {
+        "title": "Primeiros Passos",
+        "intro": "Existem cinco maneiras de entrar no DeHub e nenhuma delas exige que você já possua uma carteira: Google, Apple, um código enviado para seu e-mail, um código enviado por SMS ou uma carteira existente que você conecte. Tudo, exceto a rota da carteira, cria uma carteira não custodial para você em segundo plano — você detém as chaves, e o DeHub patrocina o gás para que você possa postar, dar gorjetas e coletar sem nunca comprar um token nativo.",
+        "steps": {
+          "1": "Visite dehub.io — o feed principal é a página inicial, então você pode dar uma olhada antes de fazer login.",
+          "2": "Clique em 'Entrar'. Você verá Google e Apple, campos para um endereço de e-mail ou número de telefone, e 'Conectar Carteira' para uma existente.",
+          "3": "Com Google ou Apple, complete o fluxo do provedor. Com e-mail ou SMS, insira o código que chegar.",
+          "4": "Uma carteira é criada e protegida para você no primeiro login. Conectar sua própria carteira em vez disso significa uma assinatura para provar o endereço.",
+          "5": "Escolha um nome de usuário. É o que as pessoas veem e serve como seu link de perfil dehub.io/<username>.",
+          "6": "Você entrou. Explore o feed, configure seu perfil e comece a postar."
+        },
+        "tips": {
+          "1": "Logins sociais, por e-mail e SMS nunca pagam gás — o DeHub patrocina isso. Carteiras conectadas pagam seu próprio ETH ou BNB.",
+          "2": "Voltando para uma conta DeHub legada? Faça login com o e-mail ou número de telefone que ela usava e a migração a encontrará para você.",
+          "3": "Você pode manter várias contas em um único dispositivo e alternar entre elas em Configurações → Perfil."
+        }
+      },
+      "home-feed": {
+        "title": "Feed Principal",
+        "intro": "O feed principal é onde você vê posts de pessoas que você segue e conteúdo em alta. Ele suporta várias abas de tipos de conteúdo e opções de ordenação.",
+        "steps": {
+          "1": "Navegue para /app — este é o seu feed principal.",
+          "2": "Use as abas superiores para filtrar por tipo de conteúdo: Início (tudo), Vídeos, Imagens, Shorts, Música ou Transmissões ao vivo.",
+          "3": "Deslize para a esquerda/direita nas abas para ver mais opções no celular.",
+          "4": "Use o botão de filtro/ordenação (canto superior direito do feed) para alterar a ordenação: Quente, Novo ou Principal.",
+          "5": "Puxe para baixo para atualizar o feed no celular.",
+          "6": "Role para baixo para carregar mais posts automaticamente (scroll infinito).",
+          "7": "Alterne entre a visualização em Grade e Feed usando o seletor de layout."
+        },
+        "tips": {
+          "1": "A visualização em grade é ótima para navegar rapidamente por imagens.",
+          "2": "A aba 'Início' mostra todos os tipos de conteúdo misturados.",
+          "3": "A aba Ao vivo mostra transmissões ao vivo ativas no momento."
+        }
+      },
+      "creating-posts": {
+        "title": "Criando Posts",
+        "intro": "Crie posts de texto, compartilhe imagens, vídeos, notas de voz, GIFs e muito mais. Use hashtags, cashtags e menções para aumentar o alcance.",
+        "steps": {
+          "1": "Clique no botão 'Postar' na barra lateral (desktop) ou no botão + (celular).",
+          "2": "Digite seu texto na área de composição.",
+          "3": "Para adicionar uma imagem ou vídeo, clique no ícone de mídia e selecione um arquivo.",
+          "4": "Para gravar uma nota de voz, clique no ícone do microfone.",
+          "5": "Para adicionar um GIF, clique no ícone de GIF e procure por um.",
+          "6": "Use #hashtags para categorizar seu post (ex: #crypto, #defi).",
+          "7": "Use $cashtags para referenciar tokens (ex: $DHB, $ETH).",
+          "8": "Use @menções para marcar outros usuários (ex: @nomedeusuario).",
+          "9": "Clique em 'Postar' para publicar. Seu post aparece no feed imediatamente."
+        },
+        "tips": {
+          "1": "Posts suportam formatação estilo markdown.",
+          "2": "Você pode fazer um quote-post clicando no ícone de repost em qualquer post e selecionando 'Quote'.",
+          "3": "Categorias (hashtags) aparecem no ranking 'Talk of the Town'."
+        }
+      },
+      "interacting-with-posts": {
+        "title": "Interagindo com Posts",
+        "intro": "Engaje com o conteúdo votando, comentando, dando gorjetas, marcando, compartilhando e traduzindo.",
+        "steps": {
+          "1": "Vote para cima ou para baixo em um post usando os ícones de seta no lado esquerdo de qualquer post.",
+          "2": "Clique no ícone de comentário para abrir a seção de comentários e deixar uma resposta.",
+          "3": "Clique no ícone de gema/gorjeta para enviar uma gorjeta em tokens DeHub para o criador do post.",
+          "4": "Clique no ícone de marcador para salvar um post para mais tarde.",
+          "5": "Clique no ícone de compartilhamento para copiar o link do post ou compartilhar externamente.",
+          "6": "Clique no botão de tradução (ícone de globo) em qualquer postagem para traduzir o texto para o seu idioma.",
+          "7": "Para postagens de imagem, use o botão 'Traduzir Imagem' para obter uma versão traduzida por IA do texto dentro da imagem.",
+          "8": "Clique em qualquer postagem para abri-la em tela cheia de postagem única."
+        },
+        "tips": {
+          "1": "Gorjetas vão diretamente para a carteira do criador em tokens DeHub.",
+          "2": "Você pode definir um valor de gorjeta por meio de botões de seleção rápida ou inserir um valor personalizado.",
+          "3": "Postagens marcadas são acessíveis na página Marcadores na barra lateral."
+        }
+      },
+      "explore-search": {
+        "title": "Explorar e Pesquisar",
+        "intro": "Descubra novo conteúdo e usuários através da página de exploração e poderosa funcionalidade de pesquisa.",
+        "steps": {
+          "1": "Navegue para /app/explore na barra lateral.",
+          "2": "Use a barra de pesquisa na parte superior para pesquisar usuários, postagens ou conteúdo.",
+          "3": "Filtre os resultados por aba: Todos, Pessoas, Postagens, Imagens, Vídeos, Música, Ao Vivo.",
+          "4": "Navegue por tópicos e categorias em alta na página de exploração.",
+          "5": "Clique em um tópico em alta para ver todas as postagens relacionadas.",
+          "6": "Clique em um usuário nos resultados da pesquisa para visitar o perfil dele."
+        },
+        "tips": {
+          "1": "A pesquisa suporta nomes de usuário, endereços de carteira e palavras-chave de conteúdo.",
+          "2": "Tópicos em alta são atualizados com base na atividade recente de postagem."
+        }
+      },
+      "profile": {
+        "title": "Perfil",
+        "intro": "Seu perfil exibe suas postagens, seguidores, seguindo e informações da carteira.",
+        "steps": {
+          "1": "Clique no seu avatar ou em 'Perfil' na barra lateral para ver seu perfil.",
+          "2": "Clique em 'Editar Perfil' para atualizar seu nome de exibição, biografia e avatar.",
+          "3": "Faça upload de uma foto de perfil clicando no seu avatar no modo de edição.",
+          "4": "Veja suas contagens de seguidores e seguindo na sua página de perfil.",
+          "5": "Navegue por suas próprias postagens, mídia e conteúdo curtido através das abas do perfil.",
+          "6": "Copie o endereço da sua carteira clicando no ícone de cópia ao lado dele.",
+          "7": "Visite os perfis de outros usuários clicando no nome de usuário ou avatar deles em qualquer lugar da plataforma."
+        },
+        "tips": {
+          "1": "Seu nome de usuário é único e aparece no URL do seu perfil (dehub.io/@username).",
+          "2": "As configurações de privacidade permitem que você controle quem pode ver suas contagens de seguidores."
+        }
+      },
+      "messages": {
+        "title": "Mensagens",
+        "intro": "Envie mensagens diretas para outros usuários na plataforma.",
+        "steps": {
+          "1": "Clique em 'Mensagens' na barra lateral para abrir a página de mensagens.",
+          "2": "Clique no botão de compor para iniciar uma nova conversa.",
+          "3": "Procure um usuário pelo nome de usuário para enviar uma mensagem.",
+          "4": "Digite sua mensagem e pressione enviar.",
+          "5": "Veja seu histórico de conversas na lista de mensagens.",
+          "6": "Clique em uma conversa para continuar conversando."
+        },
+        "tips": {
+          "1": "Você receberá uma notificação quando alguém lhe enviar uma mensagem.",
+          "2": "Criadores podem bloquear mensagens exigindo uma gorjeta."
+        }
+      },
+      "ai-assistant": {
+        "title": "Assistente de IA",
+        "intro": "Converse com o assistente de IA integrado do DeHub para obter ajuda, informações e tarefas criativas.",
+        "steps": {
+          "1": "Clique em 'Assistente' na barra lateral para abrir o chat de IA.",
+          "2": "Digite sua pergunta ou solicitação na entrada de chat.",
+          "3": "A IA pode ajudar com informações sobre criptomoedas, perguntas sobre a plataforma e conhecimento geral.",
+          "4": "Inicie uma nova conversa clicando no botão de novo chat.",
+          "5": "Veja seu histórico de conversas na barra lateral da página do assistente.",
+          "6": "Você pode anexar imagens para a IA analisar."
+        },
+        "tips": {
+          "1": "A IA lembra o contexto dentro de uma conversa.",
+          "2": "Você pode perguntar à IA sobre recursos do DeHub, termos de criptomoedas ou perguntas gerais.",
+          "3": "Conversas anteriores são salvas e acessíveis a qualquer momento."
+        }
+      },
+      "notifications": {
+        "title": "Notificações",
+        "intro": "Mantenha-se atualizado com curtidas, comentários, gorjetas, seguidores e outras atividades em seu conteúdo.",
+        "steps": {
+          "1": "Clique no ícone de sino ou em 'Notificações' na barra lateral.",
+          "2": "Veja todas as notificações em uma lista cronológica.",
+          "3": "Clique em uma notificação para navegar até o conteúdo relacionado.",
+          "4": "As notificações incluem: novos seguidores, votos em posts, comentários, gorjetas e menções.",
+          "5": "Notificações não lidas são destacadas — elas são marcadas como lidas quando visualizadas."
+        },
+        "tips": {
+          "1": "O selo de notificação mostra a contagem de notificações não lidas.",
+          "2": "Notificações de gorjetas mostram quantos tokens você recebeu."
+        }
+      },
+      "wallet": {
+        "title": "Carteira",
+        "intro": "Veja seus saldos de tokens DeHub em várias cadeias, verifique depósitos de staking e gerencie seus ativos.",
+        "steps": {
+          "1": "Clique em 'Carteira' na barra lateral para abrir a página da carteira.",
+          "2": "Veja seu saldo total de tokens agregado em todas as cadeias suportadas.",
+          "3": "Veja detalhamentos por cadeia: Ethereum, Base, BNB Chain e mais.",
+          "4": "Verifique seus depósitos e recompensas de staking.",
+          "5": "Clique em 'Atualizar Scan' para atualizar seus saldos com dados on-chain.",
+          "6": "Copie o endereço da sua carteira para receber tokens de outras pessoas."
+        },
+        "tips": {
+          "1": "Os saldos são atualizados automaticamente, mas você pode forçar uma atualização a qualquer momento.",
+          "2": "A carteira mostra saldos líquidos (disponíveis) e em staking."
+        }
+      },
+      "staking": {
+        "title": "Staking",
+        "intro": "Faça o staking dos seus tokens DeHub para ganhar recompensas e aumentar seu poder de voto na governança.",
+        "steps": {
+          "1": "Navegue até a página 'Staking' na barra lateral.",
+          "2": "Digite o número de tokens que você deseja fazer o staking.",
+          "3": "Selecione a cadeia na qual você deseja fazer o staking.",
+          "4": "Confirme a transação na sua carteira (carteiras externas) ou ela é executada automaticamente (login social).",
+          "5": "Veja seus valores em staking e quaisquer recompensas pendentes.",
+          "6": "Para remover o staking, digite o valor e confirme a transação de remoção de staking."
+        },
+        "tips": {
+          "1": "O staking aumenta o peso do seu voto em propostas de governança.",
+          "2": "Usuários com login social não precisam de gas para fazer o staking — é sem gas.",
+          "3": "Você pode fazer o staking em várias cadeias simultaneamente."
+        }
+      },
+      "leaderboard": {
+        "title": "Leaderboard",
+        "intro": "Veja quem está no topo! O leaderboard classifica os usuários por saldo, gastos diários e tópicos em alta.",
+        "steps": {
+          "1": "Navegue até a página 'Leaderboard' na barra lateral.",
+          "2": "Alterne entre as abas: Saldo, Gasto Diário e Assunto do Momento.",
+          "3": "A aba Saldo classifica os usuários por suas participações totais de tokens.",
+          "4": "A aba Gasto Diário mostra quem esteve mais ativo dando gorjetas nas últimas 24 horas.",
+          "5": "Assunto do Momento mostra os tópicos/categorias mais discutidos.",
+          "6": "Clique em qualquer usuário para visitar o perfil dele.",
+          "7": "O leaderboard é atualizado periodicamente ao longo do dia."
+        },
+        "tips": {
+          "1": "Os rankings diários são redefinidos a cada 24 horas.",
+          "2": "Assunto do Momento rastreia categorias de uma única palavra de hashtags."
+        }
+      },
+      "command-centre": {
+        "title": "Central de Comando",
+        "intro": "Um resumo do painel mostrando suas métricas principais e atividade da plataforma em um relance.",
+        "steps": {
+          "1": "Clique em 'Central de Comando' na barra lateral.",
+          "2": "Veja o resumo do seu perfil, incluindo contagem de postagens, seguidores e engajamento.",
+          "3": "Veja sua atividade recente e tópicos em alta.",
+          "4": "Acesse links rápidos para recursos usados ​​com frequência."
+        },
+        "tips": {
+          "1": "A Central de Comando oferece uma visão geral da sua presença no DeHub."
+        }
+      },
+      "governance": {
+        "title": "Governança",
+        "intro": "Participe da governança da plataforma criando propostas e votando em decisões da comunidade.",
+        "steps": {
+          "1": "Navegue até 'Governança' na barra lateral.",
+          "2": "Navegue pelas propostas ativas enviadas pela comunidade.",
+          "3": "Clique em uma proposta para ler sua descrição completa e discussão.",
+          "4": "Vote em propostas usando os botões de polegar para cima/para baixo — o peso do seu voto depende de quantos tokens DeHub você tem em stake.",
+          "5": "Deixe comentários nas propostas para discutir com a comunidade.",
+          "6": "Envie sua própria proposta clicando no botão 'Criar Proposta'."
+        },
+        "tips": {
+          "1": "Seu poder de voto é determinado pelo número de tokens que você tem em stake.",
+          "2": "Detentores de distintivos podem obter peso de voto adicional.",
+          "3": "As propostas passam por estágios: Ativa → Aprovada/Rejeitada."
+        }
+      },
+      "bookmarks": {
+        "title": "Favoritos",
+        "intro": "Salve postagens em seus favoritos para acesso fácil mais tarde.",
+        "steps": {
+          "1": "Clique no ícone de favorito em qualquer postagem para salvá-la.",
+          "2": "Navegue até 'Favoritos' na barra lateral para ver todas as postagens salvas.",
+          "3": "Clique em uma postagem favoritada para visualizá-la por completo.",
+          "4": "Remova um favorito clicando no ícone de favorito novamente."
+        },
+        "tips": {
+          "1": "Os favoritos são privados — apenas você pode ver suas postagens salvas.",
+          "2": "Não há limite para quantas postagens você pode favoritar."
+        }
+      },
+      "settings": {
+        "title": "Configurações",
+        "intro": "Personalize sua experiência no DeHub com preferências de idioma, privacidade e exibição.",
+        "steps": {
+          "1": "Clique em 'Configurações' na barra lateral.",
+          "2": "Altere seu idioma de exibição no seletor de idioma.",
+          "3": "Ajuste as configurações de privacidade: controle quem vê suas contagens de seguidores e lista de seguidores.",
+          "4": "Defina suas preferências de visibilidade de postagem padrão.",
+          "5": "Gerencie as preferências de notificação."
+        },
+        "tips": {
+          "1": "O DeHub suporta vários idiomas — toda a interface é traduzida.",
+          "2": "As configurações de privacidade são aplicadas imediatamente."
+        }
+      },
+      "posting-allowance": {
+        "title": "Sua Permissão Diária de Postagem",
+        "intro": "Postar é gratuito todos os dias até um limite que aumenta com seu selo de staking. Todos começam com dez postagens de texto e um gigabyte de vídeo, imagens e áudio por dia. Ultrapasse qualquer um deles e o resto do dia é pago em tokens DeHub — apenas na parte que excede.",
+        "steps": {
+          "1": "Poste normalmente. Dentro do limite, nada é cobrado e nada é solicitado a você.",
+          "2": "Postagens de texto e mídia são pools separados, então um dia gasto enviando vídeo ainda deixa todas as dez postagens de texto gratuitas.",
+          "3": "Quando uma postagem exceder o limite, o aplicativo a precificará primeiro e verificará se sua carteira pode cobri-la antes que qualquer coisa seja enviada.",
+          "4": "A postagem é publicada exatamente como seria dentro do limite — a publicação nunca espera por um pagamento.",
+          "5": "Em seguida, você aprova uma transferência apenas para essa postagem, liquidada em qualquer uma das Base ou BNB Chain que possua tokens DeHub suficientes.",
+          "6": "Ambos os pools são redefinidos à meia-noite UTC."
+        },
+        "tips": {
+          "1": "O excesso é pro-rata: 200 MB além do seu limite custam 200 MB, não um gigabyte inteiro.",
+          "2": "Repostagens, comentários, reações, gorjetas e mensagens não custam nada e nunca tocam no limite.",
+          "3": "Recuse o pagamento e a postagem permanece — o valor apenas bloqueia sua próxima postagem paga até que seja liquidado. O limite gratuito de amanhã é sempre seu.",
+          "4": "Um selo de staking aumenta o limite gratuito e diminui o preço de qualquer coisa além dele."
+        }
+      },
+      "reactions-and-safety": {
+        "title": "Reações, Silenciamento e Conteúdo Adulto",
+        "intro": "Existem nove reações por trás do botão de curtir, e um conjunto de controles para decidir o que você vê e quem pode te alcançar.",
+        "steps": {
+          "1": "Segure o joinha em qualquer postagem para abrir a bandeja de reações: curtir, amar, respeitar, quente, lol, triste, chorar, desgostar e cocô.",
+          "2": "As sete positivas contam para o total de curtidas da postagem; desgostar e cocô contam contra ela.",
+          "3": "Sua reação é ponderada pelo seu selo de staking, então a reação de um detentor de selo move a contagem mais do que um voto.",
+          "4": "Toque no X no cabeçalho de uma postagem para silenciar seu autor — eles desaparecem do seu feed imediatamente.",
+          "5": "Criadores marcam suas próprias postagens como adultas enquanto as compõem; essas postagens ficam fora do feed principal público.",
+          "6": "Para ver postagens adultas em todos os lugares, ative 'Mostrar conteúdo adulto' nas Configurações."
+        },
+        "tips": {
+          "1": "Uma postagem adulta ainda é totalmente visível no perfil do criador e para as pessoas que o seguem.",
+          "2": "Bloquear de um perfil vai além de silenciar e corta a comunicação também.",
+          "3": "A bandeja de reações mostra quem reagiu e com o quê, para que você possa ver a sala em vez de apenas um número."
+        }
+      },
+      "stages": {
+        "title": "Palcos (Salas de Áudio Ao Vivo)",
+        "intro": "Palcos são salas de áudio ao vivo integradas ao DeHub. Um host abre uma sala, traz palestrantes, e qualquer pessoa pode entrar para ouvir na página Palcos ou em um link compartilhado.",
+        "steps": {
+          "1": "Abra 'Palcos' na barra lateral para ver o que está ao vivo agora e o que está agendado.",
+          "2": "Toque em um palco ao vivo para entrar como ouvinte, ou defina um lembrete em um palco agendado e seja avisado quando ele começar.",
+          "3": "Comece o seu próprio na mesma página — você pode entrar ao vivo diretamente do navegador, sem OBS ou chave de transmissão.",
+          "4": "Como anfitrião, traga palestrantes para o palco, silencie ou remova-os, compartilhe sua tela e controle a mesa de som.",
+          "5": "Ouvintes enviam reações ao vivo e conversam no chat da sala sem subir ao palco.",
+          "6": "Cada palco grava, e a gravação é reproduzida depois a partir do card em que aparece."
+        },
+        "tips": {
+          "1": "Legendas ao vivo legendam cada palestrante e traduzem para qualquer idioma que você esteja lendo.",
+          "2": "Dublagem ao vivo pode falar a sala em voz alta com a própria voz clonada do anfitrião, cobrada por minuto em tokens DeHub.",
+          "3": "Anfitriões podem colocar uma estação de rádio no ar ou tocar seus próprios clipes de música entre as conversas.",
+          "4": "Um mini-player mantém a sala funcionando no canto enquanto você navega pelo resto do aplicativo."
+        }
+      },
+      "communities": {
+        "title": "Comunidades e Eventos",
+        "intro": "Comunidades são espaços administrados por membros com seu próprio feed, membros e atividade. Eventos adicionam programação com limite de tempo em cima deles.",
+        "steps": {
+          "1": "Abra 'Comunidades' na barra lateral e navegue pelas públicas.",
+          "2": "Junte-se em um toque. Novas atividades aparecem como um distintivo não lido na navegação.",
+          "3": "Poste, discuta, crie enquetes e dê gorjetas dentro do feed de uma comunidade.",
+          "4": "Proprietários de comunidades moderam seu próprio espaço e podem conceder direitos de administrador a outros.",
+          "5": "Abra 'Eventos' para programação agendada, com uma página completa por evento que você pode acompanhar ao vivo."
+        },
+        "tips": {
+          "1": "O chat da comunidade suporta @menções e @here, para que um post possa alcançar a sala.",
+          "2": "Um link de convite permite que você traga pessoas diretamente para uma comunidade."
+        }
+      },
+      "arcade": {
+        "title": "Arcade",
+        "intro": "Cinco jogos rodam dentro do DeHub em uma aba do navegador — nada para instalar, nada para comprar.",
+        "steps": {
+          "1": "Abra 'Arcade' na barra lateral.",
+          "2": "Escolha um jogo: King's Gambit (xadrez 3D com uma escada Elo online), Claude of Duty (um jogo de tiro que gera sua própria arte enquanto carrega), Jungle Trail (uma caminhada procedural pela floresta tropical), Street Slayer (um beat 'em up feito para DeHub) ou Chartopia (um pregão navegável).",
+          "3": "Jogue na aba. King's Gambit e Street Slayer mantêm placares.",
+          "4": "Chartopia também roda em um headset VR através de WebXR."
+        },
+        "tips": {
+          "1": "Dois deles se escondem nos temas de aparência — defina o aplicativo para War para Claude of Duty, ou Jungle para Jungle Trail.",
+          "2": "Cada jogo tem seu próprio card de compartilhamento, para que um link para um se desdobre corretamente onde quer que você o poste."
+        }
+      },
+      "bounties-stores": {
+        "title": "Recompensas e Lojas",
+        "intro": "Duas maneiras de transformar a plataforma em renda: postar ou reivindicar uma recompensa, ou abrir uma loja e vender para seu público.",
+        "steps": {
+          "1": "Abra 'Recompensas' para navegar pelo trabalho aberto, filtrado por categoria ou moeda.",
+          "2": "Reivindique uma, faça o trabalho e envie-o para coletar a recompensa — qualquer um pode ser um caçador, sem necessidade de inscrição.",
+          "3": "Crie sua própria recompensa com uma descrição e uma recompensa em tokens DeHub ou USDC. Ela vai para o depósito no momento em que você a publica.",
+          "4": "Abra 'Lojas' para configurar uma vitrine com sua própria página, marca e listagens.",
+          "5": "Os produtos são precificados e liquidados em tokens DeHub através da carteira integrada, sem checkout externo."
+        },
+        "tips": {
+          "1": "As recompensas são organizadas em Mídias Sociais, Clipping e Contratos.",
+          "2": "Um fluxo de disputa resolve desacordos sobre a entrega, para que o depósito sempre resolva de forma justa.",
+          "3": "Criadores usam recompensas para crescer uma comunidade — compartilhamentos, clipes e reações são tarefas válidas."
+        }
+      },
+      "creator-studio": {
+        "title": "Creator Studio & Editor",
+        "intro": "O Creator Studio gera imagens, vídeo, música, voz e modelos 3D a partir de um prompt, e os entrega a um editor — incluindo um editor de vídeo multifaixa completo que roda no navegador.",
+        "steps": {
+          "1": "Abra o Creator Studio e descreva o que você quer que seja feito.",
+          "2": "O servidor orça o custo antes que o trabalho seja executado, para que você veja o custo antes de gastá-lo.",
+          "3": "Os renders continuam em uma fila compartilhada enquanto você continua navegando no aplicativo.",
+          "4": "Organize os resultados no editor estilo Canva, ou abra o editor de vídeo para uma linha do tempo real com corte, sobreposição e exportação.",
+          "5": "Envie a peça finalizada diretamente para uma postagem, um short ou uma listagem de loja."
+        },
+        "tips": {
+          "1": "Uma biblioteca gratuita de ativos de estoque fica ao lado do Studio para qualquer coisa que você prefira não gerar.",
+          "2": "A geração é paga em tokens DeHub da sua carteira — você assina uma transferência por trabalho, e o preço é orçado antes de você pagar.",
+          "3": "Usuários mais frequentes podem adquirir um plano Ultra, Team ou Scale, que envia uma alocação mensal de tokens diretamente para sua carteira."
+        }
+      },
+      "buying-dhb": {
+        "title": "Comprando Tokens",
+        "intro": "Compre tokens DeHub diretamente dentro do aplicativo usando a interface de troca integrada.",
+        "steps": {
+          "1": "Navegue até a página 'Comprar' na barra lateral.",
+          "2": "Selecione o token que você deseja trocar (por exemplo, ETH, USDC).",
+          "3": "Insira o valor que você deseja gastar ou o número de tokens que você deseja receber.",
+          "4": "Revise a taxa de câmbio e o resultado estimado.",
+          "5": "Clique no ícone de engrenagem de configurações para ajustar a tolerância de slippage (o padrão é 1%).",
+          "6": "Confirme a transação de troca.",
+          "7": "Os tokens DeHub aparecerão em sua carteira assim que a transação for concluída."
+        },
+        "tips": {
+          "1": "Maior tolerância de slippage = maior probabilidade de execução, mas potencial para pior preço.",
+          "2": "Sempre verifique a taxa de câmbio antes de confirmar.",
+          "3": "Você pode definir slippage personalizado no painel de configurações."
+        }
+      },
+      "bridge": {
+        "title": "Bridge",
+        "intro": "Mova seus tokens DeHub entre blockchains suportadas usando a ponte cross-chain.",
+        "steps": {
+          "1": "Navegue até a página 'Bridge' na barra lateral.",
+          "2": "Selecione a cadeia de origem (onde seus tokens estão atualmente).",
+          "3": "Selecione a cadeia de destino (para onde você deseja enviá-los).",
+          "4": "Digite o número de tokens para transferir.",
+          "5": "Revise a taxa de transferência e o tempo estimado de chegada.",
+          "6": "Confirme a transação de transferência.",
+          "7": "Aguarde a conclusão da transação — a transferência pode levar alguns minutos."
+        },
+        "tips": {
+          "1": "As taxas de transferência variam por par de cadeias.",
+          "2": "A transferência geralmente leva de 1 a 5 minutos, dependendo das cadeias envolvidas.",
+          "3": "Sempre verifique a cadeia de destino antes de confirmar."
+        }
+      },
+      "music-tv": {
+        "title": "Música e TV",
+        "intro": "Desfrute de conteúdo de mídia diretamente no DeHub — ouça música e assista a canais de TV ao vivo.",
+        "steps": {
+          "1": "Navegue até 'Música' na barra lateral para navegar e reproduzir postagens de música.",
+          "2": "Navegue até 'TV' para acessar canais de TV ao vivo.",
+          "3": "Navegue pelos canais por categoria ou país.",
+          "4": "Clique em um canal para começar a assistir.",
+          "5": "Use os controles do player para ajustar o volume e a reprodução.",
+          "6": "Denuncie canais com problemas usando o botão de denúncia."
+        },
+        "tips": {
+          "1": "Os canais de TV são verificados pela comunidade para confiabilidade.",
+          "2": "As postagens de música podem ser reproduzidas enquanto você navega por outros conteúdos."
+        }
+      },
+      "post-info": {
+        "title": "Informações da Postagem e Frações",
+        "intro": "Uma postagem \"mintada\" é um NFT dividido em 1.000 frações. A página de Informações da Postagem exibe dados on-chain, estatísticas de engajamento, divisão de propriedade e permite que você negocie frações de qualquer postagem — em uma postagem não \"mintada\", ela oferece a opção de \"mintar\" em vez disso.",
+        "steps": {
+          "1": "Toque no ícone 'ⓘ' em qualquer postagem para abrir sua página de Informações da Postagem.",
+          "2": "No topo, você verá o ID do Token (identificador único on-chain) e o hash da transação — clique no hash para visualizá-lo no explorador de blocos.",
+          "3": "Abaixo disso, as estatísticas de engajamento mostram o total de curtidas, descurtidas, visualizações, comentários e gorjetas recebidas.",
+          "4": "A seção Detentores mostra uma barra de progresso de quantas das 1.000 frações o criador ainda possui, além de uma lista de todos os detentores de frações com seus saldos e porcentagens.",
+          "5": "Se a postagem for pay-per-view (PPV), você verá o preço, a moeda e quantos usuários compraram acesso.",
+          "6": "Os proprietários de postagens podem alterar a visibilidade (Pública, Não listada ou Privada) e editar o título/descrição diretamente desta página."
+        },
+        "tips": {
+          "1": "Uma postagem recém-\"mintada\" começa com o criador detendo todas as 1.000 frações (100% de propriedade).",
+          "2": "O hash da transação vincula ao BaseScan ou BscScan, dependendo da cadeia.",
+          "3": "Posts não listados não aparecem nos feeds, mas ainda podem ser acessados por link direto."
+        }
+      },
+      "trading-fractions": {
+        "title": "Frações de Negociação",
+        "intro": "Negociação de frações — navegar em listagens, fazer ofertas, listar o seu próprio — vive no aplicativo web em dehub.io, na página de Informações do Post de cada post.",
+        "steps": {
+          "1": "Abra o dehub.io num navegador e inicie sessão com a mesma conta.",
+          "2": "Abra a página Informações do post e mude para a guia Mercado.",
+          "3": "Navegue pelos anúncios, faça uma oferta ao seu preço ou liste as frações que detém.",
+          "4": "Assim que uma negociação é concluída, a alteração aparece na guia Frações aqui no celular."
+        },
+        "tips": {
+          "1": "Possuir frações de um post significa que você detém uma parte desse NFT on-chain.",
+          "2": "Verifique os titulares de uma postagem no mercado da web para ver a distribuição da propriedade antes de comprar.",
+          "3": "Como criador, vender frações permite que os fãs sejam coproprietários do seu conteúdo."
+        }
+      },
+      "minting-posts": {
+        "title": "Mintar Posts (Criar NFTs)",
+        "intro": "Mintar é opcional. Um post é publicado off-chain no momento em que você o envia — sem carteira, sem assinatura, sem gas — e você pode mintá-lo como um NFT quando quiser, seja ao compô-lo ou depois, a partir do próprio post.",
+        "steps": {
+          "1": "Clique no botão 'Postar' na barra lateral (desktop) ou no botão + (mobile).",
+          "2": "Escreva seu texto, anexe mídia (imagens, vídeos, áudio) e adicione categorias.",
+          "3": "Deixe 'Mintar post' desativado para publicar off-chain, ou ative-o para mintar ao publicar.",
+          "4": "A publicação nunca espera na cadeia: a postagem aparece no feed de qualquer maneira.",
+          "5": "Para cunhar cunhagem mais tarde, abra a página de informações do post e use a ação de cunhagem de cunhagem.",
+          "6": "Uma vez cunhado, o post recebe um Token ID e um hash de transação que você pode verificar na cadeia e mantém todas as 1.000 frações dele."
+        },
+        "tips": {
+          "1": "Logins sociais, por e-mail e SMS não pagam nada — a DeHub patrocina as taxas de cunhagem.",
+          "2": "Os usuários de carteira externa precisam de ETH na Base ou BNB na Cadeia BNB para gás.",
+          "3": "A cunhagem é o que torna um post negociável e com royalties. Um post não cunhado ainda ganha dicas e visualizações.",
+          "4": "O registro on-chain é permanente uma vez cunhado, mesmo que a postagem seja posteriormente excluída do feed."
+        }
+      },
+      "glossary": {
+        "title": "Glossário",
+        "intro": "Um glossário abrangente de terminologia de criptomoedas e plataformas para ajudá-lo a navegar na Web3.",
+        "steps": {
+          "1": "Navegue até \"Glossário\" na barra lateral.",
+          "2": "Navegue pelos termos em ordem alfabética ou use a pesquisa para encontrar termos específicos.",
+          "3": "Clique num termo para ver a sua definição e explicação completas.",
+          "4": "Os termos abrangem conceitos de criptomoedas, terminologia DeFi e recursos específicos do DeHub."
+        },
+        "tips": {
+          "1": "Ótimo recurso para recém-chegados às criptomoedas e à Web3.",
+          "2": "O glossário é atualizado regularmente com novos termos."
+        }
+      }
     }
   }
 }

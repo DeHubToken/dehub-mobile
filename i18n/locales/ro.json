@@ -3432,11 +3432,6 @@
     "noResultsFor": "Niciun rezultat pentru „{{query}}”",
     "guideSubtitle": "Ghid pas cu pas pentru fiecare funcție",
     "searchGuide": "Caută în ghid...",
-    "guideFractionsTip": "Fiecare postare mintată începe cu creatorul deținând toate fracțiunile ei (100% proprietate).",
-    "guideInfoStep": "Atinge pictograma de informații a unei postări mintate pentru a deschide tranzacția de mintare în exploratorul de blocuri și a verifica înregistrarea on-chain.",
-    "guideMintIntro": "Mintarea unei postări ca NFT pe blockchain este opțională. Mintează-o când publici sau publică acum și mintează mai târziu din meniul postării.",
-    "guideMintPublishStep": "Alege dacă mintezi, apoi apasă „Postează” pentru a publica. Dacă sari peste mintare, poți minta postarea mai târziu din meniul ei.",
-    "guideMintFractionsStep": "Primești toate cele 1.000 de fracțiuni (100% proprietate) ale postării tale proaspăt mintate.",
     "glossaryMintTxDesc": "Atinge pictograma de informații a unei postări mintate pentru a deschide tranzacția de mintare în exploratorul de blocuri și a verifica înregistrarea on-chain. Pagina completă Informații postare — statistici, deținători, piață — se află în aplicația web de pe dehub.io.",
     "glossaryTokenIdDesc": "Un identificator unic on-chain atribuit unei postări atunci când este mintată ca NFT.",
     "repostsTab": "Repostează",
@@ -3453,24 +3448,7 @@
     "glossaryStakingDesc": "Blochează-ți tokenii DeHub pentru a câștiga recompense în timp. Tokenii mizați îți oferă, de asemenea, o putere de vot sporită în guvernanță.",
     "glossaryGovernanceDesc": "Trimite și votează propuneri care modelează platforma. Puterea ta de vot este ponderată în funcție de câți tokeni DeHub deții.",
     "glossaryStakingBadgesDesc": "Insigne afișate lângă numele tău de utilizator în funcție de deținerile tale totale de tokeni DeHub (portofel + mizați). Există 13 niveluri — cu cât deții mai mulți tokeni, cu atât rangul insignei tale este mai mare. Nivelurile superioare acordă mai multă putere de vot în guvernanță și taxe de platformă mai mici.",
-    "glossaryLeaderboardDesc": "Utilizatorii sunt clasați după soldul total de tokeni DeHub (portofel + mizați pe toate lanțurile). Clasamentele se actualizează periodic și urmăresc modificările pe 1 zi și pe 1 săptămână. Poți, de asemenea, să sortezi după bacșișuri trimise, bacșișuri primite, urmăritori, aprecieri sau abonați.",
-    "guideTipStep": "Fă clic pe pictograma cu diamant/bacșiș pentru a trimite creatorului postării un bacșiș în tokeni DeHub.",
-    "guideTipWalletTip": "Bacșișurile ajung direct în portofelul creatorului sub formă de tokeni DeHub.",
-    "guideTipNotificationsTip": "Notificările de tip arată câte tokenuri DeHub ai primit.",
-    "guideWalletIntro": "Vizualizează soldurile tale de tokenuri DeHub pe mai multe lanți, verifică depozitele de staking și gestionează-ți activele.",
-    "guideWalletTotalStep": "Vizualizează soldul total de tokenuri DeHub agregat pe toți lanțurile suportate.",
-    "guideStakingIntro": "Stakuieste-ți tokenurile DeHub pentru a câștiga recompense și a-ți crește puterea de vot în guvernanță.",
-    "guideStakingAmountStep": "Introdu câte tokenuri DeHub dorești să stakuiesti.",
-    "guideLeaderboardBalanceStep": "Tabul Balance clasează utilizatorii în funcție de deținerile lor totale de tokenuri DeHub.",
-    "guideGovernanceVoteStep": "Votează pe propuneri folosind butoanele de deget în sus/jos — greutatea votului tău depinde de câte tokenuri DeHub ai stakuit.",
-    "guideGovernancePowerTip": "Puterea ta de vot este determinată de câte tokenuri DeHub ai stakuit.",
-    "guideBuyIntro": "Cumpără tokenuri DeHub direct în DPay folosind un card sau criptomonede suportate.",
-    "guideBuyAmountStep": "Introdu suma pe care dorești să o cheltui sau câte tokenuri DeHub dorești să primești.",
-    "guideBuyDeliveredStep": "Tokenurile tale DeHub vor apărea în portofelul tău odată ce tranzacția se finalizează.",
-    "guideBridgeIntro": "Mută-ți tokenurile DeHub între blockchain-uri suportate folosind bridge-ul cross-chain.",
-    "guideBridgeSourceStep": "Selectează lanțul sursă (unde se află în prezent tokenurile tale DeHub).",
-    "guideBridgeDestStep": "Selectează lanțul destinație (unde dorești să trimiți tokenurile tale DeHub).",
-    "guideBridgeAmountStep": "Introdu câte tokenuri DeHub să transferi prin bridge."
+    "glossaryLeaderboardDesc": "Utilizatorii sunt clasați după soldul total de tokeni DeHub (portofel + mizați pe toate lanțurile). Clasamentele se actualizează periodic și urmăresc modificările pe 1 zi și pe 1 săptămână. Poți, de asemenea, să sortezi după bacșișuri trimise, bacșișuri primite, urmăritori, aprecieri sau abonați."
   },
   "arcade": {
     "submitAccessibility": "Trimiteți un joc la arcadă",
@@ -6805,6 +6783,504 @@
       "packEmpty": "Nu s-a găsit niciun emoji la această adresă",
       "shortcodeTaken": "{{name}} este deja luat",
       "shortcodeStandard": "{{name}} este deja un emoji standard"
+    }
+  },
+  "guide": {
+    "sections": {
+      "getting-started": {
+        "title": "Început",
+        "intro": "Există cinci modalități de a accesa DeHub și niciuna dintre ele nu necesită să deții deja un portofel: Google, Apple, un cod trimis pe e-mail, un cod trimis prin SMS sau un portofel existent pe care îl conectezi. Totul, cu excepția rutei portofelului, creează un portofel non-custodial pentru tine în fundal — tu deții cheile, iar DeHub sponsorizează gazul, astfel încât să poți posta, recompensa și colecta fără a cumpăra vreodată un token nativ.",
+        "steps": {
+          "1": "Vizitează dehub.io — fluxul principal este pagina de pornire, așa că poți să te uiți în jur înainte de a te conecta.",
+          "2": "Apasă pe „Sign In”. Vei vedea Google și Apple, câmpuri pentru o adresă de e-mail sau un număr de telefon și „Connect Wallet” pentru unul existent.",
+          "3": "Cu Google sau Apple, finalizează fluxul furnizorului. Cu e-mail sau SMS, introdu codul care sosește.",
+          "4": "Un portofel este creat și securizat pentru tine la prima conectare. Conectarea propriului portofel în schimb înseamnă o singură semnătură pentru a dovedi adresa.",
+          "5": "Alege un nume de utilizator. Acesta este ceea ce văd oamenii și servește și ca link de profil dehub.io/<username>.",
+          "6": "Ai intrat. Explorează fluxul, configurează-ți profilul și începe să postezi."
+        },
+        "tips": {
+          "1": "Conectările prin social media, e-mail și SMS nu plătesc niciodată gaz — DeHub îl sponsorizează. Portofelele conectate își plătesc propriul ETH sau BNB.",
+          "2": "Te întorci la un cont DeHub existent? Conectează-te cu e-mailul sau numărul de telefon pe care l-a folosit, iar migrarea îl va găsi pentru tine.",
+          "3": "Poți păstra mai multe conturi pe un singur dispozitiv și le poți comuta în Setări → Profil."
+        }
+      },
+      "home-feed": {
+        "title": "Flux principal",
+        "intro": "Fluxul principal este locul unde vezi postări de la persoanele pe care le urmărești și conținut popular. Suportă mai multe file de tip conținut și opțiuni de sortare.",
+        "steps": {
+          "1": "Navighează la /app — acesta este fluxul tău principal.",
+          "2": "Folosește filele de sus pentru a filtra după tipul de conținut: Acasă (tot), Videoclipuri, Imagini, Scurte, Muzică sau Transmisiuni live.",
+          "3": "Glisează spre stânga/dreapta pe file pentru a vedea mai multe opțiuni pe mobil.",
+          "4": "Folosește butonul de filtrare/sortare (dreapta sus a fluxului) pentru a schimba sortarea: Fierbinte, Nou, sau Top.",
+          "5": "Trage în jos pentru a reîmprospăta fluxul pe mobil.",
+          "6": "Derulează în jos pentru a încărca mai multe postări automat (derulare infinită).",
+          "7": "Comută între vizualizarea Grilă și Flux folosind comutatorul de aspect."
+        },
+        "tips": {
+          "1": "Vizualizarea Grilă este excelentă pentru a răsfoi rapid imaginile.",
+          "2": "Fila 'Acasă' afișează toate tipurile de conținut amestecate.",
+          "3": "Fila Live afișează transmisiunile live active în prezent."
+        }
+      },
+      "creating-posts": {
+        "title": "Crearea Postărilor",
+        "intro": "Creează postări text, partajează imagini, videoclipuri, note vocale, GIF-uri și multe altele. Folosește hashtag-uri, cashtag-uri și mențiuni pentru a crește acoperirea.",
+        "steps": {
+          "1": "Apăsați butonul 'Postare' din bara laterală (desktop) sau butonul + (mobil).",
+          "2": "Tastează textul în zona de compunere.",
+          "3": "Pentru a adăuga o imagine sau un videoclip, apăsați pictograma media și selectați un fișier.",
+          "4": "Pentru a înregistra o notă vocală, apăsați pictograma microfon.",
+          "5": "Pentru a adăuga un GIF, apăsați pictograma GIF și căutați unul.",
+          "6": "Folosește #hashtag-uri pentru a clasifica postarea (de ex., #crypto, #defi).",
+          "7": "Folosește $cashtag-uri pentru a face referire la token-uri (de ex., $DHB, $ETH).",
+          "8": "Folosește @mențiuni pentru a eticheta alți utilizatori (de ex., @username).",
+          "9": "Apăsați 'Postare' pentru a publica. Postarea ta apare imediat în flux."
+        },
+        "tips": {
+          "1": "Postările acceptă formatare în stil markdown.",
+          "2": "Poți posta-citat apăsând pictograma de repostare pe orice postare și selectând 'Citat'.",
+          "3": "Categoriile (hashtag-urile) apar în clasamentul 'Talk of the Town'."
+        }
+      },
+      "interacting-with-posts": {
+        "title": "Interacțiunea cu Postările",
+        "intro": "Interacționează cu conținutul votând, comentând, oferind bacșișuri, marcând, partajând și traducând.",
+        "steps": {
+          "1": "Votează în sus sau în jos o postare folosind pictogramele săgeată din partea stângă a oricărei postări.",
+          "2": "Apăsați pictograma de comentariu pentru a deschide secțiunea de comentarii și a lăsa un răspuns.",
+          "3": "Apăsați pictograma de bijuterie/bacșiș pentru a trimite un bacșiș în token-uri DeHub creatorului postării.",
+          "4": "Apăsați pictograma de marcaj pentru a salva o postare pentru mai târziu.",
+          "5": "Apăsați pictograma de partajare pentru a copia linkul postării sau a o partaja extern.",
+          "6": "Apăsați butonul de traducere (pictograma globului) de pe orice postare pentru a traduce textul în limba dvs.",
+          "7": "Pentru postările cu imagini, folosiți butonul „Translate Image” pentru a obține o versiune tradusă de AI a textului din imagine.",
+          "8": "Apăsați pe orice postare pentru a o deschide în vizualizarea ecran complet, postare unică."
+        },
+        "tips": {
+          "1": "Sfaturile merg direct în portofelul creatorului în tokenuri DeHub.",
+          "2": "Puteți seta o sumă de sfat prin butoanele de selecție rapidă sau puteți introduce o sumă personalizată.",
+          "3": "Postările marcate sunt accesibile din pagina Bookmarks din bara laterală."
+        }
+      },
+      "explore-search": {
+        "title": "Explorare și Căutare",
+        "intro": "Descoperiți conținut și utilizatori noi prin pagina de explorare și funcționalitatea puternică de căutare.",
+        "steps": {
+          "1": "Navigați la /app/explore din bara laterală.",
+          "2": "Folosiți bara de căutare din partea de sus pentru a căuta utilizatori, postări sau conținut.",
+          "3": "Filtrați rezultatele după filă: Toate, Persoane, Postări, Imagini, Videoclipuri, Muzică, Live.",
+          "4": "Răsfoiți subiecte și categorii populare pe pagina de explorare.",
+          "5": "Apăsați pe un subiect popular pentru a vedea toate postările aferente.",
+          "6": "Apăsați pe un utilizator din rezultatele căutării pentru a vizita profilul acestuia."
+        },
+        "tips": {
+          "1": "Căutarea acceptă nume de utilizator, adrese de portofel și cuvinte cheie de conținut.",
+          "2": "Subiectele populare se actualizează în funcție de activitatea recentă de postare."
+        }
+      },
+      "profile": {
+        "title": "Profil",
+        "intro": "Profilul dvs. prezintă postările, urmăritorii, persoanele urmărite și informațiile despre portofel.",
+        "steps": {
+          "1": "Apăsați pe avatarul dvs. sau pe „Profile” din bara laterală pentru a vizualiza profilul dvs.",
+          "2": "Apăsați pe „Edit Profile” pentru a vă actualiza numele de afișare, biografia și avatarul.",
+          "3": "Încărcați o poză de profil apăsând pe avatarul dvs. în modul de editare.",
+          "4": "Vizualizați numărul de urmăritori și de persoane urmărite pe pagina profilului dvs.",
+          "5": "Răsfoiți propriile postări, media și conținutul apreciat prin filele profilului.",
+          "6": "Copiați adresa portofelului dvs. apăsând pe pictograma de copiere de lângă aceasta.",
+          "7": "Vizitați profilurile altor utilizatori apăsând pe numele lor de utilizator sau pe avatarul lor oriunde pe platformă."
+        },
+        "tips": {
+          "1": "Numele dvs. de utilizator este unic și apare în URL-ul profilului dvs. (dehub.io/@username).",
+          "2": "Setările de confidențialitate vă permit să controlați cine poate vedea numărul dvs. de urmăritori."
+        }
+      },
+      "messages": {
+        "title": "Mesaje",
+        "intro": "Trimiteți mesaje directe altor utilizatori de pe platformă.",
+        "steps": {
+          "1": "Apăsați pe „Messages” din bara laterală pentru a deschide pagina de mesaje.",
+          "2": "Atinge butonul de compunere pentru a începe o nouă conversație.",
+          "3": "Caută un utilizator după nume de utilizator pentru a-i trimite un mesaj.",
+          "4": "Tastează mesajul tău și apasă trimite.",
+          "5": "Vizualizează istoricul conversațiilor tale în lista de mesaje.",
+          "6": "Atinge o conversație pentru a continua discuția."
+        },
+        "tips": {
+          "1": "Vei primi o notificare când cineva îți trimite un mesaj.",
+          "2": "Creatorii pot bloca mesajele în spatele unei cerințe de bacșiș."
+        }
+      },
+      "ai-assistant": {
+        "title": "Asistent AI",
+        "intro": "Discută cu asistentul AI integrat al DeHub pentru ajutor, informații și sarcini creative.",
+        "steps": {
+          "1": "Atinge 'Asistent' în bara laterală pentru a deschide chatul AI.",
+          "2": "Tastează întrebarea sau solicitarea ta în câmpul de introducere a chatului.",
+          "3": "AI-ul poate ajuta cu informații despre criptomonede, întrebări despre platformă și cunoștințe generale.",
+          "4": "Începe o nouă conversație atingând butonul de chat nou.",
+          "5": "Vizualizează istoricul conversațiilor tale în bara laterală a paginii de asistent.",
+          "6": "Poți atașa imagini pentru ca AI-ul să le analizeze."
+        },
+        "tips": {
+          "1": "AI-ul își amintește contextul în cadrul unei conversații.",
+          "2": "Poți întreba AI-ul despre funcțiile DeHub, termeni cripto sau întrebări generale.",
+          "3": "Conversațiile anterioare sunt salvate și accesibile oricând."
+        }
+      },
+      "notifications": {
+        "title": "Notificări",
+        "intro": "Fii la curent cu aprecieri, comentarii, bacșișuri, urmăriri și alte activități pe conținutul tău.",
+        "steps": {
+          "1": "Atinge pictograma clopoțel sau 'Notificări' în bara laterală.",
+          "2": "Vizualizează toate notificările într-o listă cronologică.",
+          "3": "Atinge o notificare pentru a naviga la conținutul aferent.",
+          "4": "Notificările includ: noi urmăritori, voturi la postări, comentarii, bacșișuri și mențiuni.",
+          "5": "Notificările necitite sunt evidențiate — acestea sunt marcate ca citite la vizualizare."
+        },
+        "tips": {
+          "1": "Indicatorul de notificări arată numărul de notificări necitite.",
+          "2": "Notificările de bacșiș arată câte token-uri ai primit."
+        }
+      },
+      "wallet": {
+        "title": "Portofel",
+        "intro": "Vizualizează soldurile tale de token-uri DeHub pe mai multe lanțuri, verifică depozitele de staking și gestionează-ți activele.",
+        "steps": {
+          "1": "Atinge 'Portofel' în bara laterală pentru a deschide pagina portofelului.",
+          "2": "Vizualizează-ți soldul total de tokenuri, agregat pe toate lanțurile suportate.",
+          "3": "Vezi defalcări pe lanțuri: Ethereum, Base, BNB Chain și altele.",
+          "4": "Verifică depozitele și recompensele tale de staking.",
+          "5": "Apasă pe 'Refresh Scan' pentru a-ți actualiza soldurile din datele on-chain.",
+          "6": "Copiază adresa portofelului tău pentru a primi tokenuri de la alții."
+        },
+        "tips": {
+          "1": "Soldurile se actualizează automat, dar poți forța o reîmprospătare oricând.",
+          "2": "Portofelul afișează atât soldurile lichide (disponibile), cât și cele blocate în staking."
+        }
+      },
+      "staking": {
+        "title": "Staking",
+        "intro": "Blochează-ți tokenurile DeHub pentru a câștiga recompense și a-ți crește puterea de vot în guvernare.",
+        "steps": {
+          "1": "Navighează la pagina 'Staking' din bara laterală.",
+          "2": "Introdu numărul de tokenuri pe care dorești să le blochezi.",
+          "3": "Selectează lanțul pe care dorești să blochezi.",
+          "4": "Confirmă tranzacția în portofelul tău (portofele externe) sau se execută automat (login social).",
+          "5": "Vizualizează sumele blocate și orice recompense în așteptare.",
+          "6": "Pentru a debloca, introdu suma și confirmă tranzacția de deblocare."
+        },
+        "tips": {
+          "1": "Staking-ul îți crește greutatea votului în propunerile de guvernare.",
+          "2": "Utilizatorii cu login social nu au nevoie de gaz pentru staking — este fără gaz.",
+          "3": "Poți bloca tokenuri pe mai multe lanțuri simultan."
+        }
+      },
+      "leaderboard": {
+        "title": "Clasament",
+        "intro": "Vezi cine este în top! Clasamentul ordonează utilizatorii după sold, cheltuieli zilnice și subiecte populare.",
+        "steps": {
+          "1": "Navighează la pagina 'Leaderboard' din bara laterală.",
+          "2": "Comută între file: Sold, Cheltuit Zilnic și Subiectul Discuției.",
+          "3": "Fila Sold ordonează utilizatorii după deținerile lor totale de tokenuri.",
+          "4": "Fila Cheltuit Zilnic arată cine a fost cel mai activ în acordarea de bacșișuri în ultimele 24 de ore.",
+          "5": "Subiectul Discuției arată cele mai discutate subiecte/categorii.",
+          "6": "Apasă pe orice utilizator pentru a-i vizita profilul.",
+          "7": "Clasamentul se actualizează periodic pe parcursul zilei."
+        },
+        "tips": {
+          "1": "Clasamentele zilnice se resetează la fiecare 24 de ore.",
+          "2": "Subiectul Discuției urmărește categorii de un singur cuvânt din hashtag-uri."
+        }
+      },
+      "command-centre": {
+        "title": "Centru de Comandă",
+        "intro": "Un rezumat al tabloului de bord care prezintă indicatorii cheie și activitatea platformei dintr-o privire.",
+        "steps": {
+          "1": "Apăsați pe „Centrul de comandă” din bara laterală.",
+          "2": "Vizualizați rezumatul profilului dvs., inclusiv numărul de postări, urmăritori și implicare.",
+          "3": "Vedeți activitatea recentă și subiectele în tendințe.",
+          "4": "Accesați linkuri rapide către funcțiile utilizate frecvent."
+        },
+        "tips": {
+          "1": "Centrul de comandă vă oferă o vedere de ansamblu a prezenței dvs. pe DeHub."
+        }
+      },
+      "governance": {
+        "title": "Guvernanță",
+        "intro": "Participați la guvernanța platformei prin crearea de propuneri și votarea deciziilor comunității.",
+        "steps": {
+          "1": "Navigați la „Guvernanță” din bara laterală.",
+          "2": "Răsfoiți propunerile active trimise de comunitate.",
+          "3": "Apăsați pe o propunere pentru a citi descrierea completă și discuția aferentă.",
+          "4": "Votați propunerile folosind butoanele de degetul mare în sus/în jos — greutatea votului dvs. depinde de câte tokenuri DeHub ați mizat.",
+          "5": "Lăsați comentarii la propuneri pentru a discuta cu comunitatea.",
+          "6": "Trimiteți propria propunere apăsând pe butonul „Creare propunere”."
+        },
+        "tips": {
+          "1": "Puterea dvs. de vot este determinată de numărul de tokenuri pe care le-ați mizat.",
+          "2": "Deținătorii de insigne pot primi greutate suplimentară la vot.",
+          "3": "Propunerile trec prin etape: Active → Aprobate/Respinse."
+        }
+      },
+      "bookmarks": {
+        "title": "Marcaje",
+        "intro": "Salvați postările în marcajele dvs. pentru acces ușor ulterior.",
+        "steps": {
+          "1": "Apăsați pe pictograma marcajului de pe orice postare pentru a o salva.",
+          "2": "Navigați la „Marcaje” din bara laterală pentru a vizualiza toate postările salvate.",
+          "3": "Apăsați pe o postare marcată pentru a o vizualiza complet.",
+          "4": "Eliminați un marcaj apăsând din nou pe pictograma marcajului."
+        },
+        "tips": {
+          "1": "Marcajele sunt private — doar dvs. puteți vedea postările salvate.",
+          "2": "Nu există o limită pentru câte postări puteți marca."
+        }
+      },
+      "settings": {
+        "title": "Setări",
+        "intro": "Personalizați-vă experiența DeHub cu preferințe de limbă, confidențialitate și afișare.",
+        "steps": {
+          "1": "Apăsați pe „Setări” din bara laterală.",
+          "2": "Schimbați limba de afișare din selectorul de limbă.",
+          "3": "Ajustați setările de confidențialitate: controlați cine vede numărul dvs. de urmăritori și lista de urmărire.",
+          "4": "Setează-ți preferințele implicite de vizibilitate a postărilor.",
+          "5": "Gestionează preferințele de notificare."
+        },
+        "tips": {
+          "1": "DeHub suportă mai multe limbi — întreaga interfață se traduce.",
+          "2": "Setările de confidențialitate se aplică imediat."
+        }
+      },
+      "posting-allowance": {
+        "title": "Alocația ta zilnică de postări",
+        "intro": "Postarea este gratuită în fiecare zi până la o alocație care crește odată cu insigna ta de staking. Toată lumea începe cu zece postări text și un gigabyte de video, imagini și audio pe zi. Depășește oricare dintre acestea și restul zilei va fi plătit în tokenuri DeHub — doar pentru partea care depășește.",
+        "steps": {
+          "1": "Postează normal. În cadrul alocației, nimic nu este taxat și nimic nu ți se cere.",
+          "2": "Postările text și media sunt grupuri separate, deci o zi petrecută încărcând video lasă încă libere toate cele zece postări text.",
+          "3": "Când o postare ar depăși limita, aplicația îi calculează prețul și verifică dacă portofelul tău îl poate acoperi înainte de a încărca ceva.",
+          "4": "Postarea se publică exact așa cum ar fi în cadrul alocației — publicarea nu așteaptă niciodată o plată.",
+          "5": "Apoi aprobi un transfer pentru acea postare, soluționat pe oricare dintre Base sau BNB Chain deține suficiente tokenuri DeHub.",
+          "6": "Ambele grupuri se resetează la miezul nopții UTC."
+        },
+        "tips": {
+          "1": "Depășirea este proporțională: 200 MB peste alocația ta costă 200 MB, nu un gigabyte întreg.",
+          "2": "Repostările, comentariile, reacțiile, bacșișurile și mesajele nu costă nimic și nu ating niciodată alocația.",
+          "3": "Refuzi plata și postarea rămâne activă — suma îți blochează doar următoarea postare plătită până când este soluționată. Alocația gratuită de mâine îți aparține întotdeauna.",
+          "4": "O insignă de staking mărește alocația gratuită și scade prețul oricărui lucru dincolo de ea."
+        }
+      },
+      "reactions-and-safety": {
+        "title": "Reacții, Muting & Conținut pentru adulți",
+        "intro": "Există nouă reacții în spatele butonului de like, și un set de controale pentru a decide ce vezi și cine te poate contacta.",
+        "steps": {
+          "1": "Ține apăsat butonul de degetul mare în sus pe orice postare pentru a deschide tava de reacții: like, dragoste, respect, fierbinte, lol, trist, plâns, dislike și caca.",
+          "2": "Cele șapte pozitive contează în totalul de like-uri al postării; dislike și caca scad din el.",
+          "3": "Reacția ta este ponderată de insigna ta de staking, deci reacția unui deținător de insignă mișcă numărul mai mult decât un vot.",
+          "4": "Atinge X-ul din antetul unei postări pentru a-i dezactiva autorul — aceștia dispar imediat din feed-ul tău.",
+          "5": "Creatorii își marchează propriile postări ca fiind pentru adulți în timp ce le compun; acele postări rămân în afara feed-ului principal public.",
+          "6": "Pentru a vedea postări pentru adulți peste tot, activează 'Afișează conținut pentru adulți' în Setări."
+        },
+        "tips": {
+          "1": "O postare pentru adulți este încă complet vizibilă pe profilul creatorului și pentru persoanele care îi urmăresc.",
+          "2": "Blocarea de pe un profil merge mai departe decât dezactivarea și taie și mesajele.",
+          "3": "Tava de reacții arată cine a reacționat și cu ce, astfel încât poți vedea mulțimea, nu doar un număr."
+        }
+      },
+      "stages": {
+        "title": "Stage-uri (Camere Audio Live)",
+        "intro": "Stage-urile sunt camere audio live integrate în DeHub. Un gazdă deschide o cameră, aduce vorbitori, și oricine se poate alătura pentru a asculta din pagina Stage-uri sau dintr-un link partajat.",
+        "steps": {
+          "1": "Deschide 'Stage-uri' în bara laterală pentru a vedea ce este live acum și ce este programat.",
+          "2": "Atinge o scenă live pentru a te alătura ca ascultător sau setează un memento pe una programată și fii anunțat când începe.",
+          "3": "Începe-ți propria scenă din aceeași pagină — poți intra live direct din browser, fără OBS sau cheie de streaming.",
+          "4": "Ca gazdă, adu vorbitori pe scenă, mutează-i sau elimină-i, partajează-ți ecranul și controlează consola audio.",
+          "5": "Ascultătorii trimit reacții live și vorbesc în chat-ul camerei fără a urca pe scenă.",
+          "6": "Fiecare scenă se înregistrează, iar înregistrarea redă ulterior de pe cardul pe care apare."
+        },
+        "tips": {
+          "1": "Subtitrările live pun legendă fiecărui vorbitor și traduc în orice limbă citești.",
+          "2": "Dublajul live poate vorbi camera cu vocea clonată a gazdei, facturat pe minut în tokenuri DeHub.",
+          "3": "Gazdele pot pune o stație de radio în aer sau pot reda propriile clipuri muzicale între conversații.",
+          "4": "Un mini-player menține camera activă în colț în timp ce navighezi restul aplicației."
+        }
+      },
+      "communities": {
+        "title": "Comunități și Evenimente",
+        "intro": "Comunitățile sunt spații administrate de membri cu propriul feed, membri și activitate. Evenimentele adaugă programare limitată în timp deasupra lor.",
+        "steps": {
+          "1": "Deschide 'Comunități' în bara laterală și navighează prin cele publice.",
+          "2": "Alătură-te printr-o singură atingere. Activitatea nouă apare ca un indicator de necitit în navigare.",
+          "3": "Postează, discută, rulează sondaje și oferă bacșișuri în feed-ul propriu al unei comunități.",
+          "4": "Proprietarii comunităților își moderează propriul spațiu și pot acorda drepturi de administrator altora.",
+          "5": "Deschide 'Evenimente' pentru programare, cu o pagină completă pentru fiecare eveniment pe care îl poți urmări live."
+        },
+        "tips": {
+          "1": "Chat-ul comunității suportă @mențiuni și @aici, astfel încât o postare poate ajunge în cameră.",
+          "2": "Un link de invitație îți permite să aduci oameni direct într-o comunitate."
+        }
+      },
+      "arcade": {
+        "title": "Arcade",
+        "intro": "Cinci jocuri rulează în DeHub într-o filă de browser — nimic de instalat, nimic de cumpărat.",
+        "steps": {
+          "1": "Deschide 'Arcade' în bara laterală.",
+          "2": "Alege un joc: King's Gambit (șah 3D cu o scară Elo online), Claude of Duty (un shooter care își generează propria artă pe măsură ce se încarcă), Jungle Trail (o plimbare procedurală prin junglă), Street Slayer (un beat 'em up creat pentru DeHub) sau Chartopia (un etaj de tranzacționare parcurs).",
+          "3": "Joacă în filă. King's Gambit și Street Slayer păstrează clasamente.",
+          "4": "Chartopia rulează și într-un set VR prin WebXR."
+        },
+        "tips": {
+          "1": "Două dintre ele se ascund în temele de aspect — setează aplicația la War pentru Claude of Duty sau Jungle pentru Jungle Trail.",
+          "2": "Fiecare joc are propriul card de partajare, astfel încât un link către unul se desfășoară corect oriunde îl postezi."
+        }
+      },
+      "bounties-stores": {
+        "title": "Recompense și Magazine",
+        "intro": "Două moduri de a transforma platforma în venit: postează sau revendică o recompensă, sau deschide un magazin și vinde publicului tău.",
+        "steps": {
+          "1": "Deschide 'Recompense' pentru a naviga prin lucrări deschise, filtrate după categorie sau monedă.",
+          "2": "Revendică una, fă munca și trimite-o pentru a colecta recompensa — oricine poate fi un vânător, nu este necesară nicio aplicație.",
+          "3": "Postează-ți propria recompensă cu o descriere scurtă și o recompensă în tokenuri DeHub sau USDC. Aceasta intră în escrow în momentul în care o postezi.",
+          "4": "Deschide 'Magazine' pentru a configura un magazin cu propria pagină, branding și listări.",
+          "5": "Produsele sunt prețuite și decontate în tokenuri DeHub prin portofelul încorporat, fără checkout extern."
+        },
+        "tips": {
+          "1": "Recompensele sunt organizate în Social Media, Clipuri și Contracte.",
+          "2": "Un flux de dispută rezolvă dezacordurile privind livrarea, astfel încât escrow-ul se rezolvă întotdeauna corect.",
+          "3": "Creatorii folosesc recompense pentru a crește o comunitate — distribuiri, clipuri și reacții sunt sarcini valide."
+        }
+      },
+      "creator-studio": {
+        "title": "Creator Studio & Editor",
+        "intro": "Creator Studio generează imagini, video, muzică, voce și modele 3D dintr-un prompt și le predă unui editor — inclusiv un editor video complet multi-track care rulează în browser.",
+        "steps": {
+          "1": "Deschide Creator Studio și descrie ce vrei să fie creat.",
+          "2": "Serverul citează costul înainte ca sarcina să ruleze, astfel încât vezi cât costă înainte de a cheltui.",
+          "3": "Randările continuă într-o coadă partajată în timp ce tu continui să navighezi prin aplicație.",
+          "4": "Aranjează rezultatele în editorul stil Canva, sau deschide editorul video pentru o cronologie reală cu tăiere, stratificare și export.",
+          "5": "Aruncă piesa finită direct într-o postare, un scurtmetraj sau o listare de magazin."
+        },
+        "tips": {
+          "1": "O bibliotecă gratuită de resurse stoc se află alături de Studio pentru orice nu ai dori să generezi.",
+          "2": "Generarea este plătită în tokenuri DeHub din portofelul tău — semnezi un transfer per sarcină, iar prețul este citat înainte de a plăti.",
+          "3": "Utilizatorii mai frecvenți pot opta pentru un plan Ultra, Team sau Scale, care trimite o alocație lunară de tokenuri direct în portofelul lor."
+        }
+      },
+      "buying-dhb": {
+        "title": "Cumpărarea de Tokenuri",
+        "intro": "Cumpără tokenuri DeHub direct în aplicație folosind interfața de swap încorporată.",
+        "steps": {
+          "1": "Navighează la pagina 'Cumpără' din bara laterală.",
+          "2": "Selectează tokenul din care vrei să faci swap (de ex., ETH, USDC).",
+          "3": "Introdu suma pe care vrei să o cheltui sau numărul de tokenuri pe care vrei să le primești.",
+          "4": "Revizuiește cursul de schimb și ieșirea estimată.",
+          "5": "Apasă pe pictograma cu rotița setărilor pentru a ajusta toleranța la slippage (implicit este 1%).",
+          "6": "Confirmă tranzacția de swap.",
+          "7": "Tokenurile DeHub vor apărea în portofelul tău odată ce tranzacția se finalizează."
+        },
+        "tips": {
+          "1": "O toleranță mai mare la slippage = mai probabilă executarea, dar potențial pentru un preț mai prost.",
+          "2": "Verifică întotdeauna cursul de schimb înainte de a confirma.",
+          "3": "Poți seta slippage personalizat în panoul de setări."
+        }
+      },
+      "bridge": {
+        "title": "Bridge",
+        "intro": "Mută tokenurile tale DeHub între blockchain-uri suportate folosind bridge-ul cross-chain.",
+        "steps": {
+          "1": "Navigați la pagina 'Bridge' din bara laterală.",
+          "2": "Selectați lanțul sursă (unde se află în prezent token-urile dvs.).",
+          "3": "Selectați lanțul destinație (unde doriți să le trimiteți).",
+          "4": "Introduceți numărul de token-uri de transferat.",
+          "5": "Revizuiți taxa de transfer și timpul estimat de sosire.",
+          "6": "Confirmați tranzacția de transfer.",
+          "7": "Așteptați finalizarea tranzacției — transferul poate dura câteva minute."
+        },
+        "tips": {
+          "1": "Taxele de transfer variază în funcție de perechea de lanțuri.",
+          "2": "Transferul durează de obicei 1-5 minute, în funcție de lanțurile implicate.",
+          "3": "Verificați întotdeauna lanțul destinație înainte de a confirma."
+        }
+      },
+      "music-tv": {
+        "title": "Muzică și TV",
+        "intro": "Bucurați-vă de conținut media direct în DeHub — ascultați muzică și vizionați canale TV live.",
+        "steps": {
+          "1": "Navigați la 'Muzică' din bara laterală pentru a răsfoi și reda postări muzicale.",
+          "2": "Navigați la 'TV' pentru a accesa canale TV live.",
+          "3": "Răsfoiți canalele după categorie sau țară.",
+          "4": "Faceți clic pe un canal pentru a începe vizionarea.",
+          "5": "Utilizați controalele playerului pentru a ajusta volumul și redarea.",
+          "6": "Raportați canale defecte folosind butonul de raportare."
+        },
+        "tips": {
+          "1": "Canalele TV sunt verificate de comunitate pentru fiabilitate.",
+          "2": "Postările muzicale pot fi redate în timp ce răsfoiți alt conținut."
+        }
+      },
+      "post-info": {
+        "title": "Informații postare și fracțiuni",
+        "intro": "O postare \"minted\" (emisă) este un NFT împărțit în 1.000 de fracțiuni. Pagina \"Post Info\" afișează date on-chain, statistici de engagement, distribuția proprietății și vă permite să tranzacționați fracțiuni ale oricărei postări — pe o postare neemisă, oferă opțiunea de a o emite.",
+        "steps": {
+          "1": "Atingeți pictograma 'ⓘ' de pe orice postare pentru a deschide pagina sa \"Post Info\".",
+          "2": "În partea de sus veți vedea ID-ul token-ului (identificator unic on-chain) și hash-ul tranzacției — faceți clic pe hash pentru a-l vizualiza în exploratorul de blocuri.",
+          "3": "Mai jos, statisticile de engagement arată numărul total de aprecieri, dezaprecieri, vizualizări, comentarii și sfaturi primite.",
+          "4": "Secțiunea \"Holders\" (Deținători) arată o bară de progres a numărului de fracțiuni din cele 1.000 pe care creatorul încă le deține, plus o listă a tuturor deținătorilor de fracțiuni cu soldurile și procentele lor.",
+          "5": "Dacă postarea este pay-per-view (PPV), veți vedea prețul, moneda și câți utilizatori au achiziționat accesul.",
+          "6": "Proprietarii postărilor pot schimba vizibilitatea (Public, Ne-listat sau Privat) și pot edita titlul/descrierea direct din această pagină."
+        },
+        "tips": {
+          "1": "O postare proaspăt emisă începe cu creatorul deținând toate cele 1.000 de fracțiuni (proprietate 100%).",
+          "2": "Hash-ul tranzacției face legătura cu BaseScan sau BscScan, în funcție de lanț.",
+          "3": "Postările neînregistrate nu apar în fluxuri, dar pot fi accesate prin link direct."
+        }
+      },
+      "trading-fractions": {
+        "title": "Fracții de tranzacționare",
+        "intro": "Tranzacționarea fracțiunilor — răsfoirea anunțurilor, crearea de oferte, listarea propriilor dvs. anunțuri — se află în aplicația web de pe dehub.io, pe pagina Post Info a fiecărei postări.",
+        "steps": {
+          "1": "Deschideți dehub.io într-un browser și conectați-vă cu același cont.",
+          "2": "Deschide pagina Post Info a postării și treci la fila Marketplace a acesteia.",
+          "3": "Răsfoiește anunțurile, fă o ofertă la prețul tău sau enumeră fracțiunile pe care le deții.",
+          "4": "După finalizarea unei tranzacții, modificarea apare în fila Fracții aici pe mobil."
+        },
+        "tips": {
+          "1": "Deținerea fracțiunilor unui post înseamnă că dețineți o parte din acel NFT pe lanț.",
+          "2": "Verifică titularii unei postări pe piața web pentru a vedea distribuția proprietății înainte de a cumpăra.",
+          "3": "În calitate de creator, vânzarea de fracțiuni permite fanilor să dețină în coproprietate conținutul tău."
+        }
+      },
+      "minting-posts": {
+        "title": "Minting-ul postărilor (Crearea de NFT-uri)",
+        "intro": "Minting-ul este opțional. O postare este publicată off-chain în momentul în care o trimiți — fără portofel, fără semnătură, fără gaz — și o poți mintui ca NFT oricând dorești, fie în timp ce o compui, fie mai târziu din postarea în sine.",
+        "steps": {
+          "1": "Apasă pe butonul 'Post' din bara laterală (desktop) sau pe butonul + (mobil).",
+          "2": "Scrie textul, atașează media (imagini, videoclipuri, audio) și adaugă categorii.",
+          "3": "Lasă 'Mint post' dezactivat pentru a publica off-chain, sau activează-l pentru a mintui în timp ce publici.",
+          "4": "Publicarea nu așteaptă niciodată pe lanț: postarea apare în feed oricum.",
+          "5": "Pentru a bate mai târziu, deschide pagina de informații a postării și folosește acolo acțiunea Mint.",
+          "6": "Odată bătută, postarea primește un ID Token și un hash de tranzacție pe care îl puteți verifica în lanț și dețineți toate cele 1.000 de fracțiuni ale acestuia."
+        },
+        "tips": {
+          "1": "Înscrierile prin rețele sociale, e-mail și SMS nu plătesc nicio taxă — DeHub sponsorizează taxele de înscriere.",
+          "2": "Utilizatorii de portofele externe au nevoie de ETH pe bază sau BNB pe lanț BNB pentru gaz.",
+          "3": "Mentolarea este ceea ce face un post comercializabil și purtător de redevențe. O postare nemodificată câștigă în continuare recompense și vizualizări.",
+          "4": "Înregistrarea în lanț este permanentă odată bătută, chiar dacă postarea este ștearsă ulterior din feed."
+        }
+      },
+      "glossary": {
+        "title": "Cuprins",
+        "intro": "Un glosar cuprinzător de terminologie criptografică și de platformă pentru a vă ajuta să navigați pe Web3.",
+        "steps": {
+          "1": "Accesează „Glosar” din bara laterală.",
+          "2": "Răsfoiți termenii în ordine alfabetică sau utilizați căutarea pentru a găsi termeni specifici.",
+          "3": "Faceți clic pe un termen pentru a vedea definiția și explicația completă a acestuia.",
+          "4": "Termenii acoperă conceptele criptografice, terminologia DeFi și caracteristicile specifice DeHub."
+        },
+        "tips": {
+          "1": "O resursă excelentă pentru nou-veniți în domeniul cripto și Web3.",
+          "2": "Glosarul este actualizat în mod regulat cu termeni noi."
+        }
+      }
     }
   }
 }

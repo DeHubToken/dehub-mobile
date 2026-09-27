@@ -3436,11 +3436,6 @@
     "noResultsFor": "Žádné výsledky pro „{{query}}“",
     "guideSubtitle": "Podrobný návod ke každé funkci",
     "searchGuide": "Hledat v průvodci...",
-    "guideFractionsTip": "Každý ražený příspěvek začíná tím, že tvůrce drží všechny jeho frakce (100% vlastnictví).",
-    "guideInfoStep": "Klepněte na ikonu informací u raženého příspěvku, otevřete jeho transakci ražby v průzkumníku bloků a ověřte záznam v řetězci.",
-    "guideMintIntro": "Ražba příspěvku jako NFT na blockchainu je volitelná. Vyražte ho při zveřejnění, nebo ho zveřejněte hned a vyražte později z nabídky příspěvku.",
-    "guideMintPublishStep": "Zvolte, zda razit, a poté klikněte na „Přidat“. Pokud ražbu vynecháte, můžete příspěvek vyrazit později z jeho nabídky.",
-    "guideMintFractionsStep": "Získáte všech 1 000 frakcí (100% vlastnictví) svého nově vyraženého příspěvku.",
     "glossaryMintTxDesc": "Klepněte na ikonu informací u raženého příspěvku, otevřete jeho transakci ražby v průzkumníku bloků a ověřte záznam v řetězci. Celá stránka Informace o příspěvku — statistiky, držitelé, tržiště — je ve webové aplikaci na dehub.io.",
     "glossaryTokenIdDesc": "Jedinečný identifikátor v řetězci přidělený příspěvku, když je vyražen jako NFT.",
     "repostsTab": "Reposty",
@@ -3457,24 +3452,7 @@
     "glossaryStakingDesc": "Uzamkněte své tokeny DeHub a vydělávejte odměny v průběhu času. Vsazené tokeny vám také poskytují zvýšenou hlasovací sílu v rámci správy.",
     "glossaryGovernanceDesc": "Odesílejte a hlasujte o návrzích, které formují platformu. Vaše hlasovací síla je vážena počtem tokenů DeHub, které držíte.",
     "glossaryStakingBadgesDesc": "Odznaky zobrazené vedle vašeho uživatelského jména na základě vašich celkových držeb tokenů DeHub (peněženka + vsazené). Existuje 13 úrovní – čím více tokenů držíte, tím vyšší je hodnost vašeho odznaku. Vyšší úrovně poskytují větší hlasovací sílu v rámci správy a nižší poplatky platformy.",
-    "glossaryLeaderboardDesc": "Uživatelé jsou hodnoceni podle celkového zůstatku tokenů DeHub (peněženka + vsazené napříč všemi řetězci). Hodnocení se pravidelně aktualizují a sledují změny za 1 den a 1 týden. Můžete také řadit podle odeslaných spropitných, přijatých spropitných, sledujících, lajků nebo odběratelů.",
-    "guideTipStep": "Klikněte na ikonu drahokamu/spropitného a odešlete tvůrci příspěvku spropitné v tokenech DeHub.",
-    "guideTipWalletTip": "Spropitné jde přímo na peněženku tvůrce jako tokeny DeHub.",
-    "guideTipNotificationsTip": "Upozornění na tipy zobrazují, kolik tokenů DeHub jste obdrželi.",
-    "guideWalletIntro": "Zobrazte si zůstatky tokenů DeHub na více řetězcích, zkontrolujte vklady do stakingu a spravujte svá aktiva.",
-    "guideWalletTotalStep": "Zobrazte si celkový zůstatek tokenů DeHub agregovaný napříč všemi podporovanými řetězci.",
-    "guideStakingIntro": "Vsaďte své tokeny DeHub a získejte odměny a zvyšte svou hlasovací sílu v řízení.",
-    "guideStakingAmountStep": "Zadejte, kolik tokenů DeHub chcete vsadit.",
-    "guideLeaderboardBalanceStep": "Záložka Zůstatek řadí uživatele podle jejich celkových držených tokenů DeHub.",
-    "guideGovernanceVoteStep": "Hlasujte o návrzích pomocí tlačítek palec nahoru/dolů — váha vašeho hlasu závisí na tom, kolik tokenů DeHub máte vsazených.",
-    "guideGovernancePowerTip": "Vaše hlasovací síla je určena počtem vsazených tokenů DeHub.",
-    "guideBuyIntro": "Kupte si tokeny DeHub přímo v DPay pomocí karty nebo podporované kryptoměny.",
-    "guideBuyAmountStep": "Zadejte částku, kterou chcete utratit, nebo kolik tokenů DeHub chcete obdržet.",
-    "guideBuyDeliveredStep": "Vaše tokeny DeHub se objeví ve vaší peněžence po dokončení transakce.",
-    "guideBridgeIntro": "Přesouvejte své tokeny DeHub mezi podporovanými blockchainy pomocí cross-chain mostu.",
-    "guideBridgeSourceStep": "Vyberte zdrojový řetězec (kde se vaše tokeny DeHub aktuálně nacházejí).",
-    "guideBridgeDestStep": "Vyberte cílový řetězec (kam chcete poslat své tokeny DeHub).",
-    "guideBridgeAmountStep": "Zadejte, kolik tokenů DeHub chcete přemostit."
+    "glossaryLeaderboardDesc": "Uživatelé jsou hodnoceni podle celkového zůstatku tokenů DeHub (peněženka + vsazené napříč všemi řetězci). Hodnocení se pravidelně aktualizují a sledují změny za 1 den a 1 týden. Můžete také řadit podle odeslaných spropitných, přijatých spropitných, sledujících, lajků nebo odběratelů."
   },
   "arcade": {
     "submitAccessibility": "Odeslat hru do herny",
@@ -6796,6 +6774,504 @@
       "packEmpty": "Na této adrese nebylo nalezeno žádné emoji",
       "shortcodeTaken": "{{name}} je již obsazeno",
       "shortcodeStandard": "{{name}} je již standardní emoji"
+    }
+  },
+  "guide": {
+    "sections": {
+      "getting-started": {
+        "title": "Začínáme",
+        "intro": "Do DeHub se dostanete pěti způsoby a žádný z nich nevyžaduje, abyste již vlastnili peněženku: Google, Apple, kód zaslaný na váš e-mail, kód zaslaný SMS nebo existující peněženku, kterou připojíte. Vše kromě cesty přes peněženku vytvoří na pozadí neúschovnou peněženku — klíče držíte vy a DeHub sponzoruje poplatky za plyn, takže můžete publikovat, tipovat a sbírat, aniž byste kdy koupili nativní token.",
+        "steps": {
+          "1": "Navštivte dehub.io — domovská stránka je úvodní stránka, takže se můžete rozhlédnout, než se přihlásíte.",
+          "2": "Klikněte na 'Přihlásit se'. Uvidíte Google a Apple, pole pro e-mailovou adresu nebo telefonní číslo a 'Připojit peněženku' pro existující.",
+          "3": "S Googlem nebo Applem dokončete proces poskytovatele. S e-mailem nebo SMS zadejte přijatý kód.",
+          "4": "Při prvním přihlášení se vám vytvoří a zabezpečí peněženka. Připojení vlastní peněženky místo toho vyžaduje jeden podpis k ověření adresy.",
+          "5": "Vyberte si uživatelské jméno. To je to, co lidé vidí, a slouží také jako váš profilový odkaz dehub.io/<username>.",
+          "6": "Jste uvnitř. Prozkoumejte feed, nastavte si profil a začněte publikovat."
+        },
+        "tips": {
+          "1": "Přihlášení přes sociální sítě, e-mail a SMS nikdy neplatí za plyn — DeHub to sponzoruje. Připojené peněženky platí svůj vlastní ETH nebo BNB.",
+          "2": "Vracíte se ke starému účtu DeHub? Přihlaste se pomocí e-mailu nebo telefonního čísla, které používal, a migrace jej najde.",
+          "3": "Na jednom zařízení můžete mít několik účtů a přepínat mezi nimi v Nastavení → Profil."
+        }
+      },
+      "home-feed": {
+        "title": "Domovská stránka",
+        "intro": "Domovská stránka je místo, kde vidíte příspěvky od lidí, které sledujete, a populární obsah. Podporuje více záložek s typy obsahu a možnostmi řazení.",
+        "steps": {
+          "1": "Přejděte na /app — toto je vaše domovská stránka.",
+          "2": "Pomocí horních záložek filtrujte podle typu obsahu: Domů (vše), Videa, Obrázky, Krátká videa, Hudba nebo Živé přenosy.",
+          "3": "Na mobilu přejeďte prstem doleva/doprava po záložkách a zobrazte další možnosti.",
+          "4": "Pomocí tlačítka filtru/řazení (vpravo nahoře ve feedu) změňte řazení: Horké, Nové nebo Nejlepší.",
+          "5": "Na mobilu stáhněte dolů pro obnovení feedu.",
+          "6": "Přejeďte dolů pro automatické načítání dalších příspěvků (nekonečné procházení).",
+          "7": "Přepínejte mezi zobrazením mřížky a feedu pomocí přepínače rozložení."
+        },
+        "tips": {
+          "1": "Zobrazení mřížky je skvělé pro rychlé prohlížení obrázků.",
+          "2": "Záložka 'Domů' zobrazuje všechny typy obsahu smíchané dohromady.",
+          "3": "Záložka Živé zobrazuje aktuálně aktivní živé přenosy."
+        }
+      },
+      "creating-posts": {
+        "title": "Vytváření příspěvků",
+        "intro": "Vytvářejte textové příspěvky, sdílejte obrázky, videa, hlasové poznámky, GIFy a další. Používejte hashtagy, cashtagy a zmínky pro zvýšení dosahu.",
+        "steps": {
+          "1": "Klikněte na tlačítko 'Příspěvek' v postranním panelu (desktop) nebo na tlačítko + (mobil).",
+          "2": "Do pole pro psaní zadejte svůj text.",
+          "3": "Chcete-li přidat obrázek nebo video, klikněte na ikonu médií a vyberte soubor.",
+          "4": "Chcete-li nahrát hlasovou poznámku, klikněte na ikonu mikrofonu.",
+          "5": "Chcete-li přidat GIF, klikněte na ikonu GIF a vyhledejte jej.",
+          "6": "Použijte #hashtagy k zařazení svého příspěvku (např. #crypto, #defi).",
+          "7": "Použijte $cashtagy k odkazu na tokeny (např. $DHB, $ETH).",
+          "8": "Použijte @zmínky k označení ostatních uživatelů (např. @uživatelské_jméno).",
+          "9": "Klikněte na 'Příspěvek' pro publikování. Váš příspěvek se okamžitě zobrazí ve feedu."
+        },
+        "tips": {
+          "1": "Příspěvky podporují formátování ve stylu markdown.",
+          "2": "Můžete citovat příspěvek kliknutím na ikonu přepostování u libovolného příspěvku a výběrem možnosti 'Citovat'.",
+          "3": "Kategorie (hashtagy) se zobrazují v žebříčku 'Talk of the Town'."
+        }
+      },
+      "interacting-with-posts": {
+        "title": "Interakce s příspěvky",
+        "intro": "Zapojte se do obsahu hlasováním, komentováním, posíláním spropitného, ukládáním do záložek, sdílením a překladem.",
+        "steps": {
+          "1": "Zvyšte nebo snižte hodnocení příspěvku pomocí ikon šipek na levé straně libovolného příspěvku.",
+          "2": "Klikněte na ikonu komentáře pro otevření sekce komentářů a zanechání odpovědi.",
+          "3": "Klikněte na ikonu drahokamu/spropitného pro odeslání spropitného v tokenech DeHub tvůrci příspěvku.",
+          "4": "Klikněte na ikonu záložky pro uložení příspěvku na později.",
+          "5": "Klikněte na ikonu sdílení pro zkopírování odkazu na příspěvek nebo pro externí sdílení.",
+          "6": "Klikněte na tlačítko Přeložit (ikona zeměkoule) u jakéhokoli příspěvku a přeložte text do svého jazyka.",
+          "7": "U příspěvků s obrázky použijte tlačítko „Přeložit obrázek“ a získejte verzi textu v obrázku přeloženou umělou inteligencí.",
+          "8": "Kliknutím na jakýkoli příspěvek jej otevřete v zobrazení jednoho příspěvku na celou obrazovku."
+        },
+        "tips": {
+          "1": "Tipy jdou přímo do peněženky tvůrce v tokenech DeHub.",
+          "2": "Výši tipu můžete nastavit pomocí tlačítek rychlého výběru nebo zadat vlastní částku.",
+          "3": "Záložkované příspěvky jsou přístupné ze stránky Záložky v postranním panelu."
+        }
+      },
+      "explore-search": {
+        "title": "Prozkoumat a hledat",
+        "intro": "Objevujte nový obsah a uživatele prostřednictvím stránky Prozkoumat a výkonné funkce vyhledávání.",
+        "steps": {
+          "1": "Přejděte na /app/explore z postranního panelu.",
+          "2": "Pomocí vyhledávacího pole v horní části vyhledávejte uživatele, příspěvky nebo obsah.",
+          "3": "Filtrujte výsledky podle karty: Vše, Lidé, Příspěvky, Obrázky, Videa, Hudba, Živě.",
+          "4": "Prohlížejte si trendy témata a kategorie na stránce Prozkoumat.",
+          "5": "Kliknutím na trendy téma zobrazíte všechny související příspěvky.",
+          "6": "Kliknutím na uživatele ve výsledcích vyhledávání navštívíte jeho profil."
+        },
+        "tips": {
+          "1": "Vyhledávání podporuje uživatelská jména, adresy peněženek a klíčová slova obsahu.",
+          "2": "Trendy témata se aktualizují na základě nedávné aktivity při publikování."
+        }
+      },
+      "profile": {
+        "title": "Profil",
+        "intro": "Váš profil zobrazuje vaše příspěvky, sledující, sledované a informace o peněžence.",
+        "steps": {
+          "1": "Kliknutím na svůj avatar nebo „Profil“ v postranním panelu zobrazíte svůj profil.",
+          "2": "Kliknutím na „Upravit profil“ aktualizujte své zobrazované jméno, bio a avatar.",
+          "3": "Nahrajte profilový obrázek kliknutím na svůj avatar v režimu úprav.",
+          "4": "Zobrazte počty svých sledujících a sledovaných na stránce svého profilu.",
+          "5": "Procházejte své vlastní příspěvky, média a oblíbený obsah prostřednictvím karet profilu.",
+          "6": "Zkopírujte adresu své peněženky kliknutím na ikonu kopírování vedle ní.",
+          "7": "Navštivte profily jiných uživatelů kliknutím na jejich uživatelské jméno nebo avatar kdekoli na platformě."
+        },
+        "tips": {
+          "1": "Vaše uživatelské jméno je jedinečné a zobrazuje se v URL vašeho profilu (dehub.io/@username).",
+          "2": "Nastavení soukromí vám umožňuje ovládat, kdo může vidět počty vašich sledujících."
+        }
+      },
+      "messages": {
+        "title": "Zprávy",
+        "intro": "Odesílejte přímé zprávy jiným uživatelům na platformě.",
+        "steps": {
+          "1": "Kliknutím na „Zprávy“ v postranním panelu otevřete stránku se zprávami.",
+          "2": "Kliknutím na tlačítko \"Vytvořit\" zahájíte novou konverzaci.",
+          "3": "Vyhledejte uživatele podle uživatelského jména a pošlete mu zprávu.",
+          "4": "Napište svou zprávu a stiskněte Odeslat.",
+          "5": "Zobrazte historii konverzací v seznamu zpráv.",
+          "6": "Kliknutím na konverzaci pokračujte v chatování."
+        },
+        "tips": {
+          "1": "Dostanete upozornění, když vám někdo napíše zprávu.",
+          "2": "Tvůrci mohou zablokovat zprávy za poplatek."
+        }
+      },
+      "ai-assistant": {
+        "title": "AI asistent",
+        "intro": "Chatujte s vestavěným AI asistentem DeHub pro pomoc, informace a kreativní úkoly.",
+        "steps": {
+          "1": "Kliknutím na \"Asistent\" v postranním panelu otevřete chat s AI.",
+          "2": "Zadejte svou otázku nebo požadavek do vstupního pole chatu.",
+          "3": "AI vám může pomoci s informacemi o kryptoměnách, otázkami týkajícími se platformy a obecnými znalostmi.",
+          "4": "Zahajte novou konverzaci kliknutím na tlačítko \"Nový chat\".",
+          "5": "Zobrazte historii konverzací v postranním panelu stránky asistenta.",
+          "6": "Můžete přiložit obrázky, které AI analyzuje."
+        },
+        "tips": {
+          "1": "AI si pamatuje kontext v rámci konverzace.",
+          "2": "Můžete se AI zeptat na funkce DeHub, kryptoměnové termíny nebo obecné otázky.",
+          "3": "Předchozí konverzace jsou uloženy a přístupné kdykoli."
+        }
+      },
+      "notifications": {
+        "title": "Upozornění",
+        "intro": "Zůstaňte informováni o lajcích, komentářích, tipech, sledujících a dalších aktivitách na vašem obsahu.",
+        "steps": {
+          "1": "Klikněte na ikonu zvonečku nebo na \"Upozornění\" v postranním panelu.",
+          "2": "Zobrazte všechna upozornění v chronologickém seznamu.",
+          "3": "Klikněte na upozornění pro navigaci k souvisejícímu obsahu.",
+          "4": "Upozornění zahrnují: nové sledující, hlasy pro příspěvky, komentáře, tipy a zmínky.",
+          "5": "Neoznačená upozornění jsou zvýrazněna – po zobrazení se označí jako přečtená."
+        },
+        "tips": {
+          "1": "Odznak upozornění zobrazuje počet nepřečtených upozornění.",
+          "2": "Upozornění na tipy zobrazují počet obdržených tokenů."
+        }
+      },
+      "wallet": {
+        "title": "Peněženka",
+        "intro": "Zobrazte zůstatky svých tokenů DeHub na více řetězcích, zkontrolujte vklady do stakingu a spravujte svá aktiva.",
+        "steps": {
+          "1": "Klikněte na \"Peněženka\" v postranním panelu pro otevření stránky peněženky.",
+          "2": "Zobrazte si celkovou zůstatkovou hodnotu tokenů napříč všemi podporovanými řetězci.",
+          "3": "Zobrazte si rozpis podle řetězců: Ethereum, Base, BNB Chain a další.",
+          "4": "Zkontrolujte své vklady a odměny za staking.",
+          "5": "Klikněte na 'Obnovit sken' pro aktualizaci zůstatků z dat na řetězci.",
+          "6": "Zkopírujte svou adresu peněženky pro příjem tokenů od ostatních."
+        },
+        "tips": {
+          "1": "Zůstatky se aktualizují automaticky, ale můžete je kdykoli vynutit obnovení.",
+          "2": "Peněženka zobrazuje jak zůstatky v oběhu (dostupné), tak i zůstatky uzamčené ve stakingu."
+        }
+      },
+      "staking": {
+        "title": "Staking",
+        "intro": "Uzamkněte své DeHub tokeny pro získání odměn a zvýšení své hlasovací síly v řízení.",
+        "steps": {
+          "1": "Přejděte na stránku 'Staking' z postranního panelu.",
+          "2": "Zadejte počet tokenů, které chcete uzamknout.",
+          "3": "Vyberte řetězec, na kterém chcete uzamknout.",
+          "4": "Potvrďte transakci ve své peněžence (externí peněženky) nebo se provede automaticky (sociální přihlášení).",
+          "5": "Zobrazte si své uzamčené částky a případné čekající odměny.",
+          "6": "Pro zrušení stakingu zadejte částku a potvrďte transakci zrušení stakingu."
+        },
+        "tips": {
+          "1": "Staking zvyšuje vaši váhu hlasu v návrzích řízení.",
+          "2": "Uživatelé se sociálním přihlášením nepotřebují plyn pro staking – je to bezplatné.",
+          "3": "Můžete uzamknout tokeny na více řetězcích současně."
+        }
+      },
+      "leaderboard": {
+        "title": "Žebříček",
+        "intro": "Podívejte se, kdo je na vrcholu! Žebříček řadí uživatele podle zůstatku, denních výdajů a trendových témat.",
+        "steps": {
+          "1": "Přejděte na stránku 'Žebříček' z postranního panelu.",
+          "2": "Přepínejte mezi kartami: Zůstatek, Denní útrata a Hovor města.",
+          "3": "Karta Zůstatek řadí uživatele podle jejich celkových držených tokenů.",
+          "4": "Karta Denní útrata ukazuje, kdo byl nejaktivnější v dávání spropitného za posledních 24 hodin.",
+          "5": "Hovor města ukazuje nejdiskutovanější témata/kategorie.",
+          "6": "Klikněte na libovolného uživatele pro návštěvu jeho profilu.",
+          "7": "Žebříček se pravidelně aktualizuje během dne."
+        },
+        "tips": {
+          "1": "Denní hodnocení se resetuje každých 24 hodin.",
+          "2": "Hovor města sleduje jednoslovné kategorie z hashtagů."
+        }
+      },
+      "command-centre": {
+        "title": "Ovládací centrum",
+        "intro": "Přehled řídicího panelu zobrazující vaše klíčové metriky a aktivitu na platformě na první pohled.",
+        "steps": {
+          "1": "Klikněte na 'Command Centre' v postranním panelu.",
+          "2": "Zobrazte souhrn svého profilu, včetně počtu příspěvků, sledujících a zapojení.",
+          "3": "Podívejte se na svou nedávnou aktivitu a trendy témata.",
+          "4": "Získejte přístup k rychlým odkazům na často používané funkce."
+        },
+        "tips": {
+          "1": "Command Centre vám poskytne pohled na vaši přítomnost na DeHubu z ptačí perspektivy."
+        }
+      },
+      "governance": {
+        "title": "Správa",
+        "intro": "Zapojte se do správy platformy vytvářením návrhů a hlasováním o rozhodnutích komunity.",
+        "steps": {
+          "1": "Přejděte do sekce 'Governance' z postranního panelu.",
+          "2": "Procházejte aktivní návrhy předložené komunitou.",
+          "3": "Klikněte na návrh, abyste si přečetli jeho úplný popis a diskusi.",
+          "4": "Hlasujte o návrzích pomocí tlačítek palec nahoru/dolů – váha vašeho hlasu závisí na počtu tokenů DeHub, které máte vsazené.",
+          "5": "Zanechávejte komentáře k návrhům a diskutujte s komunitou.",
+          "6": "Odešlete svůj vlastní návrh kliknutím na tlačítko 'Create Proposal'."
+        },
+        "tips": {
+          "1": "Vaše hlasovací síla je určena počtem tokenů, které máte vsazené.",
+          "2": "Držitelé odznaků mohou získat dodatečnou váhu hlasu.",
+          "3": "Návrhy procházejí fázemi: Aktivní → Schváleno/Zamítnuto."
+        }
+      },
+      "bookmarks": {
+        "title": "Záložky",
+        "intro": "Ukládejte příspěvky do svých záložek pro snadný přístup později.",
+        "steps": {
+          "1": "Kliknutím na ikonu záložky u libovolného příspěvku jej uložte.",
+          "2": "Přejděte do sekce 'Bookmarks' v postranním panelu, abyste zobrazili všechny uložené příspěvky.",
+          "3": "Kliknutím na záložkovaný příspěvek jej zobrazíte v plném znění.",
+          "4": "Odstraňte záložku kliknutím na ikonu záložky znovu."
+        },
+        "tips": {
+          "1": "Záložky jsou soukromé – pouze vy můžete vidět své uložené příspěvky.",
+          "2": "Neexistuje žádný limit pro počet příspěvků, které můžete záložkovat."
+        }
+      },
+      "settings": {
+        "title": "Nastavení",
+        "intro": "Přizpůsobte si svůj zážitek na DeHubu pomocí preferencí jazyka, soukromí a zobrazení.",
+        "steps": {
+          "1": "Klikněte na 'Settings' v postranním panelu.",
+          "2": "Změňte jazyk zobrazení pomocí výběru jazyka.",
+          "3": "Upravte nastavení soukromí: ovládejte, kdo vidí vaše počty sledujících a seznam sledovaných.",
+          "4": "Nastavte si předvolby viditelnosti příspěvků.",
+          "5": "Spravujte nastavení oznámení."
+        },
+        "tips": {
+          "1": "DeHub podporuje více jazyků — celý rozhraní se překládá.",
+          "2": "Nastavení soukromí se použije okamžitě."
+        }
+      },
+      "posting-allowance": {
+        "title": "Vaše denní povolenka pro příspěvky",
+        "intro": "Publikování je každý den zdarma až do povolenky, která se škáluje s vaší odměnou za stakování. Každý začíná s deseti textovými příspěvky a jedním gigabajtem videa, obrázků a zvuku denně. Pokud překročíte jedno z nich, zbytek dne se platí v tokenech DeHub — pouze za část, která přesahuje.",
+        "steps": {
+          "1": "Publikujte jako obvykle. V rámci povolenky se nic neúčtuje a nic se po vás nechce.",
+          "2": "Textové příspěvky a média jsou oddělené fondy, takže den strávený nahráváním videa stále ponechává všech deset textových příspěvků zdarma.",
+          "3": "Když příspěvek překročí povolenku, aplikace jej nejprve ocení a zkontroluje, zda váš peněženka může pokrýt, než se cokoli nahraje.",
+          "4": "Příspěvek se publikuje přesně tak, jak by se publikoval v rámci povolenky — publikování nikdy nečeká na platbu.",
+          "5": "Poté schválíte jeden převod pouze pro tento příspěvek, vypořádaný na kterémkoli z řetězců Base nebo BNB Chain, který drží dostatek tokenů DeHub.",
+          "6": "Oba fondy se resetují o půlnoci UTC."
+        },
+        "tips": {
+          "1": "Překročení je poměrné: 200 MB nad vaši povolenku stojí 200 MB, ne celý gigabajt.",
+          "2": "Opětovné publikování, komentáře, reakce, tipy a zprávy nic nestojí a nikdy se nedotýkají povolenky.",
+          "3": "Odmítněte platbu a příspěvek zůstane — částka jednoduše zablokuje váš další placený příspěvek, dokud nebude vypořádána. Zítřejší bezplatná povolenka je vždy vaše.",
+          "4": "Odznak za stakování zvyšuje bezplatnou povolenku a snižuje cenu čehokoli nad ní."
+        }
+      },
+      "reactions-and-safety": {
+        "title": "Reakce, ztlumení a obsah pro dospělé",
+        "intro": "Za tlačítkem \"Líbí se mi\" se skrývá devět reakcí a sada ovládacích prvků pro rozhodování o tom, co vidíte a kdo vás může kontaktovat.",
+        "steps": {
+          "1": "Podržte palec nahoru na jakémkoli příspěvku a otevřete zásobník reakcí: líbí se mi, láska, respekt, horké, lol, smutné, pláč, nelíbí se mi a hovno.",
+          "2": "Sedm pozitivních počítá k celkovému počtu lajků příspěvku; nelíbí se mi a hovno se proti němu počítají.",
+          "3": "Vaše reakce je vážena vaším odznakem za stakování, takže reakce držitele odznaku posouvá počet dále než jeden hlas.",
+          "4": "Klepnutím na X v záhlaví příspěvku ztlumíte jeho autora — okamžitě zmizí z vašeho feedu.",
+          "5": "Tvůrci označují své příspěvky jako pro dospělé při jejich vytváření; tyto příspěvky zůstávají mimo veřejný hlavní feed.",
+          "6": "Chcete-li vidět příspěvky pro dospělé všude, zapněte v Nastavení možnost \"Zobrazit obsah pro dospělé\"."
+        },
+        "tips": {
+          "1": "Příspěvek pro dospělé je stále plně viditelný na profilu tvůrce a pro lidi, kteří je sledují.",
+          "2": "Blokování z profilu jde dále než ztlumení a omezuje i zasílání zpráv.",
+          "3": "Zásobník reakcí ukazuje, kdo reagoval a čím, takže můžete vidět místnost, nikoli jen číslo."
+        }
+      },
+      "stages": {
+        "title": "Stages (Živé zvukové místnosti)",
+        "intro": "Stages jsou živé zvukové místnosti integrované do DeHub. Hostitel otevře místnost, přivede řečníky a kdokoli se může připojit a poslouchat ze stránky Stages nebo ze sdíleného odkazu.",
+        "steps": {
+          "1": "Otevřete \"Stages\" v postranním panelu a uvidíte, co je právě živě a co je naplánováno.",
+          "2": "Klepněte na živé pódium a připojte se jako posluchač, nebo si nastavte připomenutí u naplánovaného a nechte si dát vědět, až začne.",
+          "3": "Spusťte si vlastní ze stejné stránky — můžete jít živě přímo z prohlížeče, bez OBS nebo streamovacího klíče.",
+          "4": "Jako hostitel přivádějte řečníky na pódium, ztlumte je nebo je odeberte, sdílejte svou obrazovku a ovládejte zvukovou desku.",
+          "5": "Posluchači posílají živé reakce a chatují v místnosti, aniž by přišli na pódium.",
+          "6": "Každé pódium se nahrává a nahrávka se po skončení přehraje z karty, na které se objeví."
+        },
+        "tips": {
+          "1": "Živé titulky zachycují každého mluvčího a překládají do jakéhokoli jazyka, ve kterém čtete.",
+          "2": "Živé dabování dokáže mluvit místnost nahlas vlastním klonovaným hlasem hostitele, účtované po minutách v tokenech DeHub.",
+          "3": "Hostitelé mohou pustit rádio nebo přehrávat své vlastní hudební klipy mezi konverzacemi.",
+          "4": "Mini-přehrávač udržuje místnost v chodu v rohu, zatímco procházíte zbytek aplikace."
+        }
+      },
+      "communities": {
+        "title": "Komunity a Události",
+        "intro": "Komunity jsou prostory spravované členy s vlastním feedem, členy a aktivitou. Události přidávají nad ně časově omezené programování.",
+        "steps": {
+          "1": "Otevřete 'Komunity' v postranním panelu a procházejte veřejné.",
+          "2": "Připojte se jedním klepnutím. Nová aktivita se zobrazí jako nečtená odznak v navigaci.",
+          "3": "Publikujte, diskutujte, spouštějte ankety a dávejte spropitné ve vlastním feedu komunity.",
+          "4": "Vlastníci komunit moderují svůj vlastní prostor a mohou udělit administrátorská práva ostatním.",
+          "5": "Otevřete 'Události' pro naplánované programování, s plnou stránkou pro každou událost, kterou můžete živě sledovat."
+        },
+        "tips": {
+          "1": "Komunitní chat podporuje @zmínky a @here, takže příspěvek může dosáhnout místnosti.",
+          "2": "Odkaz na pozvánku vám umožní přivést lidi přímo do komunity."
+        }
+      },
+      "arcade": {
+        "title": "Arkáda",
+        "intro": "Pět her běží uvnitř DeHub v záložce prohlížeče — nic k instalaci, nic k nákupu.",
+        "steps": {
+          "1": "Otevřete 'Arkádu' v postranním panelu.",
+          "2": "Vyberte si hru: King's Gambit (3D šachy s online Elo žebříčkem), Claude of Duty (střílečka, která generuje vlastní grafiku při načítání), Jungle Trail (procedurální procházka deštným pralesem), Street Slayer (beat 'em up vytvořený pro DeHub) nebo Chartopia (obchodní podlaha, po které lze chodit).",
+          "3": "Hrajte v záložce. King's Gambit a Street Slayer udržují žebříčky.",
+          "4": "Chartopia také běží ve VR headsetu přes WebXR."
+        },
+        "tips": {
+          "1": "Dvě z nich se skrývají v tématech vzhledu — nastavte aplikaci na War pro Claude of Duty, nebo Jungle pro Jungle Trail.",
+          "2": "Každá hra má svou vlastní sdílenou kartu, takže odkaz na jednu se správně rozbalí kdekoli ji zveřejníte."
+        }
+      },
+      "bounties-stores": {
+        "title": "Odměny a Obchody",
+        "intro": "Dva způsoby, jak proměnit platformu na příjem: publikujte nebo si nárokujte odměnu, nebo otevřete výlohu a prodávejte svému publiku.",
+        "steps": {
+          "1": "Otevřete 'Odměny' a procházejte otevřenou práci, filtrovanou podle kategorie nebo měny.",
+          "2": "Nárokujte si jednu, udělejte práci a odešlete ji k získání odměny — každý může být lovec, není potřeba žádná žádost.",
+          "3": "Vytvořte si vlastní odměnu s krátkým popisem a odměnou v tokenech DeHub nebo USDC. Okamžitě po vytvoření se vloží do úschovy.",
+          "4": "Otevřete 'Obchody' a nastavte si výklad s vlastní stránkou, značkou a nabídkami.",
+          "5": "Produkty jsou naceněny a vypořádány v tokenech DeHub prostřednictvím vestavěné peněženky, bez externího placení."
+        },
+        "tips": {
+          "1": "Odměny jsou organizovány do sociálních médií, klipů a smluv.",
+          "2": "Proces řešení sporů vyřeší neshody ohledně dodání, takže úschova je vždy spravedlivě vypořádána.",
+          "3": "Tvůrci používají odměny k budování komunity — sdílení, klipy a reakce jsou platné úkoly."
+        }
+      },
+      "creator-studio": {
+        "title": "Creator Studio & Editor",
+        "intro": "Creator Studio generuje obrázky, video, hudbu, hlas a 3D modely z výzvy a předává je editoru — včetně plnohodnotného vícekanálového video editoru, který běží v prohlížeči.",
+        "steps": {
+          "1": "Otevřete Creator Studio a popište, co chcete vytvořit.",
+          "2": "Server před spuštěním úlohy uvede cenu, takže vidíte, kolik to stojí, než to zaplatíte.",
+          "3": "Renderování pokračuje ve sdílené frontě, zatímco vy pokračujete v prohlížení aplikace.",
+          "4": "Uspořádejte výsledky v editoru ve stylu Canvy nebo otevřete video editor pro skutečnou časovou osu s řezáním, vrstvením a exportem.",
+          "5": "Hotový kus vložte přímo do příspěvku, krátkého videa nebo nabídky v obchodě."
+        },
+        "tips": {
+          "1": "Bezplatná knihovna předpřipravených aktiv je k dispozici vedle Studia pro cokoli, co byste raději negenerovali.",
+          "2": "Generování je placeno v tokenech DeHub z vaší peněženky — podepíšete jeden převod za úlohu a cena je uvedena před zaplacením.",
+          "3": "Intenzivnější uživatelé si mohou vzít plán Ultra, Team nebo Scale, který posílá měsíční příděl tokenů přímo do jejich peněženky."
+        }
+      },
+      "buying-dhb": {
+        "title": "Nákup tokenů",
+        "intro": "Kupte si tokeny DeHub přímo v aplikaci pomocí vestavěného rozhraní pro výměnu.",
+        "steps": {
+          "1": "Přejděte na stránku 'Koupit' z postranního panelu.",
+          "2": "Vyberte token, ze kterého chcete vyměnit (např. ETH, USDC).",
+          "3": "Zadejte částku, kterou chcete utratit, nebo počet tokenů, které chcete obdržet.",
+          "4": "Zkontrolujte směnný kurz a odhadovaný výstup.",
+          "5": "Kliknutím na ikonu ozubeného kola nastavení upravte toleranci skluzu (výchozí je 1 %).",
+          "6": "Potvrďte transakci výměny.",
+          "7": "Tokeny DeHub se objeví ve vaší peněžence po dokončení transakce."
+        },
+        "tips": {
+          "1": "Vyšší tolerance skluzu = větší pravděpodobnost provedení, ale potenciál horšího ocenění.",
+          "2": "Před potvrzením vždy zkontrolujte směnný kurz.",
+          "3": "V panelu nastavení můžete nastavit vlastní skluz."
+        }
+      },
+      "bridge": {
+        "title": "Bridge",
+        "intro": "Přesuňte své tokeny DeHub mezi podporovanými blockchainy pomocí cross-chain bridge.",
+        "steps": {
+          "1": "Přejděte na stránku 'Bridge' z postranního panelu.",
+          "2": "Vyberte zdrojový řetězec (kde se vaše tokeny aktuálně nacházejí).",
+          "3": "Vyberte cílový řetězec (kam je chcete poslat).",
+          "4": "Zadejte počet tokenů k přesunu.",
+          "5": "Zkontrolujte poplatek za přesun a odhadovaný čas doručení.",
+          "6": "Potvrďte transakci přesunu.",
+          "7": "Počkejte na dokončení transakce — přesun může trvat několik minut."
+        },
+        "tips": {
+          "1": "Poplatky za přesun se liší podle páru řetězců.",
+          "2": "Přesun obvykle trvá 1–5 minut v závislosti na zúčastněných řetězcích.",
+          "3": "Před potvrzením si vždy dvakrát zkontrolujte cílový řetězec."
+        }
+      },
+      "music-tv": {
+        "title": "Hudba a TV",
+        "intro": "Užijte si mediální obsah přímo v DeHubu — streamujte hudbu a sledujte živé televizní kanály.",
+        "steps": {
+          "1": "Přejděte na 'Hudba' z postranního panelu a procházejte a přehrávejte hudební příspěvky.",
+          "2": "Přejděte na 'TV' a získejte přístup k živým televizním kanálům.",
+          "3": "Procházejte kanály podle kategorie nebo země.",
+          "4": "Klikněte na kanál a začněte sledovat.",
+          "5": "Pomocí ovládacích prvků přehrávače upravte hlasitost a přehrávání.",
+          "6": "Nahlaste nefunkční kanály pomocí tlačítka pro nahlášení."
+        },
+        "tips": {
+          "1": "Televizní kanály jsou ověřeny komunitou pro spolehlivost.",
+          "2": "Hudební příspěvky lze přehrávat při procházení jiného obsahu."
+        }
+      },
+      "post-info": {
+        "title": "Informace o příspěvku a zlomky",
+        "intro": "Ražený příspěvek je NFT rozdělený na 1 000 zlomků. Stránka Informace o příspěvku zobrazuje data na řetězci, statistiky zapojení, rozdělení vlastnictví a umožňuje obchodovat se zlomky jakéhokoli příspěvku — u nenaraženého příspěvku nabízí místo toho ražení.",
+        "steps": {
+          "1": "Klepněte na ikonu 'ⓘ' u jakéhokoli příspěvku a otevřete jeho stránku Informace o příspěvku.",
+          "2": "Nahoře uvidíte Token ID (jedinečný identifikátor na řetězci) a hash transakce — kliknutím na hash jej zobrazíte v prohlížeči bloků.",
+          "3": "Níže statistiky zapojení zobrazují celkový počet lajků, nelajků, zobrazení, komentářů a přijatých tipů.",
+          "4": "Sekce Držitelé zobrazuje ukazatel průběhu toho, kolik z 1 000 zlomků stále vlastní tvůrce, a seznam všech držitelů zlomků s jejich zůstatky a procenty.",
+          "5": "Pokud je příspěvek placený za zhlédnutí (PPV), uvidíte cenu, měnu a kolik uživatelů si zakoupilo přístup.",
+          "6": "Vlastníci příspěvků mohou měnit viditelnost (Veřejné, Neveřejné nebo Soukromé) a upravovat název/popis přímo z této stránky."
+        },
+        "tips": {
+          "1": "Čerstvě naražený příspěvek začíná s tvůrcem, který drží všech 1 000 zlomků (100% vlastnictví).",
+          "2": "Hash transakce odkazuje na BaseScan nebo BscScan v závislosti na řetězci.",
+          "3": "Nezveřejněné příspěvky se nezobrazují ve feedech, ale lze k nim přistupovat prostřednictvím přímého odkazu."
+        }
+      },
+      "trading-fractions": {
+        "title": "Obchodní zlomky",
+        "intro": "Obchodování se zlomky — prohlížení nabídek, vytváření nabídek, zveřejňování vlastních nabídek — žije na webové aplikaci dehub.io na stránce Informace o příspěvku každého příspěvku.",
+        "steps": {
+          "1": "Otevřete dehub.io v prohlížeči a přihlaste se pomocí stejného účtu.",
+          "2": "Otevřete stránku Informace o příspěvku a přepněte na kartu Marketplace.",
+          "3": "Prohlédni si nabídky, udělej nabídku za svou cenu nebo uveď zlomky, které máš v držení.",
+          "4": "Jakmile je obchod dokončen, změna se zobrazí na kartě Zlomky zde na mobilu."
+        },
+        "tips": {
+          "1": "Vlastnit zlomek příspěvku znamená, že vlastníte podíl na tomto řetězci NFT.",
+          "2": "Před nákupem zkontrolujte držitele příspěvku na webovém tržišti a podívejte se na rozdělení vlastnictví.",
+          "3": "Jako tvůrce umožňuje prodej zlomků fanouškům spoluvlastnit váš obsah."
+        }
+      },
+      "minting-posts": {
+        "title": "Ražba příspěvků (vytváření NFT)",
+        "intro": "Ražba je volitelná. Příspěvek se publikuje mimo řetězec v okamžiku, kdy jej odešlete — bez peněženky, bez podpisu, bez poplatku za plyn — a můžete jej jako NFT razit kdykoli chcete, buď při jeho psaní, nebo později z něj samotného.",
+        "steps": {
+          "1": "Klikněte na tlačítko 'Post' (Příspěvek) v postranním panelu (desktop) nebo na tlačítko + (mobil).",
+          "2": "Napište svůj text, připojte média (obrázky, videa, zvuk) a přidejte kategorie.",
+          "3": "Nechte 'Mint post' (Razit příspěvek) vypnuté, abyste publikovali mimo řetězec, nebo jej zapněte, abyste razili při publikování.",
+          "4": "Publikování nikdy nečeká na řetěz: příspěvek se objeví ve zdroji v obou směrech.",
+          "5": "Chcete-li minout později, otevřete stránku s informacemi o příspěvku a použijte akci Mincovna.",
+          "6": "Po ražbě získá příspěvek ID tokenu a hash transakce, který můžete ověřit na řetězci, a držíte všech 1 000 zlomků."
+        },
+        "tips": {
+          "1": "Sociální, e-mailové a SMS přihlášení neplatí žádný plyn — DeHub sponzoruje poplatky za ražbu.",
+          "2": "Uživatelé externích peněženek potřebují ETH na bázi nebo BNB na řetězci BNB pro plyn.",
+          "3": "Minting je to, co dělá poštu obchodovatelnou a s licenčními poplatky. Nezveřejněný příspěvek stále získává tipy a zobrazení.",
+          "4": "Záznam v řetězci je po ražbě trvalý, i když je příspěvek později odstraněn z kanálu."
+        }
+      },
+      "glossary": {
+        "title": "Obsah",
+        "intro": "Komplexní slovníček pojmů z oblasti kryptoměn a platforem, který vám pomůže se zorientovat ve Web3.",
+        "steps": {
+          "1": "Na postranním panelu přejděte na „Glosář“.",
+          "2": "Procházejte termíny abecedně nebo pomocí vyhledávání vyhledejte konkrétní termíny.",
+          "3": "Kliknutím na výraz zobrazíte jeho úplnou definici a vysvětlení.",
+          "4": "Pojmy zahrnují krypto koncepty, terminologii DeFi a funkce specifické pro DeHub."
+        },
+        "tips": {
+          "1": "Skvělý zdroj pro nováčky v oblasti kryptoměn a Web3.",
+          "2": "Slovníček je pravidelně aktualizován o nové termíny."
+        }
+      }
     }
   }
 }

@@ -3432,11 +3432,6 @@
     "noResultsFor": "\"{{query}}\" üçün nəticə yoxdur",
     "guideSubtitle": "Hər bir xüsusiyyətin addım-addım izahı",
     "searchGuide": "Bələdçini axtarın...",
-    "guideFractionsTip": "Hər zərb olunmuş paylaşım yaradıcının bütün fraksiyalarına sahib olması ilə başlayır (100% sahiblik).",
-    "guideInfoStep": "Zərb əməliyyatını blok kəşfiyyatçısında açmaq və zəncirdəki qeydi yoxlamaq üçün zərb olunmuş paylaşımda məlumat ikonuna toxunun.",
-    "guideMintIntro": "Paylaşımı blokçeyndə NFT kimi zərb etmək isteğe bağlıdır. Dərc edərkən zərb edin və ya indi dərc edib sonra paylaşım menyusundan zərb edin.",
-    "guideMintPublishStep": "Zərb edib-etməyəcəyinizi seçin, sonra dərc etmək üçün 'Paylaş' düyməsinə basın. Zərbi keçsəniz, paylaşımı sonra paylaşım menyusundan zərb edə bilərsiniz.",
-    "guideMintFractionsStep": "Yeni zərb edilmiş postunuzun bütün 1 000 fraksiyasını (100% sahiblik) alırsınız.",
     "glossaryMintTxDesc": "Zərb əməliyyatını blok kəşfiyyatçısında açmaq və zəncirdəki qeydi yoxlamaq üçün zərb olunmuş paylaşımda məlumat ikonuna toxunun. Tam Paylaşım Məlumatı səhifəsi — statistika, sahiblər, bazar — dehub.io-dakı veb tətbiqdədir.",
     "glossaryTokenIdDesc": "Paylaşım NFT kimi zərb olunanda ona verilən zəncirdə unikal identifikator.",
     "repostsTab": "Yenidən göndərmələr",
@@ -3453,24 +3448,7 @@
     "glossaryStakingDesc": "Mükafat qazanmaq üçün DeHub tokenlərinizi kilidləyin. Stake edilmiş tokenlər sizə idarəetmədə daha çox səsvermə gücü verir.",
     "glossaryGovernanceDesc": "Platformanı formalaşdıran təklifləri təqdim edin və səs verin. Səsvermə gücünüz nə qədər DeHub tokeni saxladığınıza görə çəkilir.",
     "glossaryStakingBadgesDesc": "Ümumi DeHub token sahibliyinizə (cüzdan + stake edilmiş) əsaslanan istifadəçi adınızın yanında göstərilən nişanlar. 13 səviyyə var — nə qədər çox token saxlasanız, nişanınızın sırası bir o qədər yüksək olar. Yüksək səviyyələr daha çox idarəetmə səsvermə gücü və daha aşağı platform haqqları verir.",
-    "glossaryLeaderboardDesc": "İstifadəçilər ümumi DeHub token balansı (cüzdan + bütün zəncirlərdə stake edilmiş) ilə sıralanır. Sıralamalar dövri olaraq yenilənir və 1 günlük və 1 həftəlik dəyişiklikləri izləyir. Siz həmçinin göndərilən ucluqlar, alınan ucluqlar, izləyicilər, bəyənmələr və ya abunəçilər üzrə də sıralaya bilərsiniz.",
-    "guideTipStep": "Məzmun yaradıcısına DeHub tokenləri ilə ucluq göndərmək üçün gem/tip ikonuna klikləyin.",
-    "guideTipWalletTip": "Ucluqlar birbaşa yaradıcının cüzdanına DeHub tokenləri kimi gedir.",
-    "guideTipNotificationsTip": "Bildirişlər sizə nə qədər DeHub token aldığınızı göstərir.",
-    "guideWalletIntro": "Birdən çox blokcheyn üzrə DeHub token balanslarınızı görüntüleyin, steykinq əmanətlərini yoxlayın və aktivlərinizi idarə edin.",
-    "guideWalletTotalStep": "Bütün dəstəklənən blokcheynlər üzrə ümumi DeHub token balansınızı görüntüleyin.",
-    "guideStakingIntro": "Mükafat qazanmaq və idarəetmə səsvermə gücünüzü artırmaq üçün DeHub tokenlərinizi steykinq edin.",
-    "guideStakingAmountStep": "Nə qədər DeHub tokeni steykinq etmək istədiyinizi daxil edin.",
-    "guideLeaderboardBalanceStep": "Balans tabı istifadəçiləri ümumi DeHub token sahibliyinə görə sıralayır.",
-    "guideGovernanceVoteStep": "Təkliflərə bəyənmə/bəyənməmə düymələri ilə səs verin — sizin səs çəkiniz steykinq etdiyiniz DeHub tokenlərinin sayından asılıdır.",
-    "guideGovernancePowerTip": "Sizin səsvermə gücünüz steykinq etdiyiniz DeHub tokenlərinin sayından müəyyən edilir.",
-    "guideBuyIntro": "DPay-də birbaşa kart və ya dəstəklənən kriptovalyuta ilə DeHub tokenləri alın.",
-    "guideBuyAmountStep": "Xərcləmək istədiyiniz məbləği və ya almaq istədiyiniz DeHub tokenlərinin sayını daxil edin.",
-    "guideBuyDeliveredStep": "Əməliyyat tamamlandıqdan sonra DeHub tokenləriniz cüzdanınızda görünəcək.",
-    "guideBridgeIntro": "Blokcheynlər arası körpü vasitəsilə dəstəklənən blokcheynlər arasında DeHub tokenlərinizi köçürün.",
-    "guideBridgeSourceStep": "Mənşə zəncirini seçin (DeHub tokenlərinizin hazırda olduğu yer).",
-    "guideBridgeDestStep": "Təyinat zəncirini seçin (DeHub tokenlərinizi göndərmək istədiyiniz yer).",
-    "guideBridgeAmountStep": "Körpü üçün nə qədər DeHub tokeni istifadə etmək istədiyinizi daxil edin."
+    "glossaryLeaderboardDesc": "İstifadəçilər ümumi DeHub token balansı (cüzdan + bütün zəncirlərdə stake edilmiş) ilə sıralanır. Sıralamalar dövri olaraq yenilənir və 1 günlük və 1 həftəlik dəyişiklikləri izləyir. Siz həmçinin göndərilən ucluqlar, alınan ucluqlar, izləyicilər, bəyənmələr və ya abunəçilər üzrə də sıralaya bilərsiniz."
   },
   "arcade": {
     "submitAccessibility": "Arkadaya oyun təqdim edin",
@@ -6792,6 +6770,504 @@
       "packEmpty": "Həmin ünvanda emoji tapılmadı",
       "shortcodeTaken": "{{name}} artıq istifadə olunur",
       "shortcodeStandard": "{{name}} standart emoji-dir"
+    }
+  },
+  "guide": {
+    "sections": {
+      "getting-started": {
+        "title": "Başlanğıc",
+        "intro": "DeHub-a daxil olmağın beş yolu var və heç biri üçün artıq cüzdana sahib olmağınız lazım deyil: Google, Apple, e-poçtunuza göndərilən kod, SMS ilə göndərilən kod və ya qoşduğunuz mövcud cüzdan. Cüzdan yolu istisna olmaqla hər şey, arxa planda sizin üçün qeyri-qəyyum cüzdan yaradır — açarlar sizdədir və DeHub qazı sponsor edir ki, yerli tokeni heç vaxt almadan yazı yaza, bəxşiş verə və toplaya biləsiniz.",
+        "steps": {
+          "1": "dehub.io saytına daxil olun — ana lent giriş səhifəsidir, buna görə də daxil olmadan ətrafına baxa bilərsiniz.",
+          "2": "'Daxil ol' düyməsini basın. Google və Apple, e-poçt ünvanı və ya telefon nömrəsi üçün sahələr və mövcud cüzdan üçün 'Cüzdanı Qoş' düyməsini görəcəksiniz.",
+          "3": "Google və ya Apple ilə, provayderin axınını tamamlayın. E-poçt və ya SMS ilə, gələn kodu daxil edin.",
+          "4": "İlk daxil olarkən sizin üçün bir cüzdan yaradılır və təhlükəsiz edilir. Əvəzində öz cüzdanınızı qoşmaq, ünvanı təsdiqləmək üçün bir imza deməkdir.",
+          "5": "Bir istifadəçi adı seçin. Bu, insanların gördüyü şeydir və sizin dehub.io/<username> profil linkiniz kimi də xidmət edir.",
+          "6": "Siz içəridəsiniz. Lenti kəşf edin, profilinizi qurun və yazmağa başlayın."
+        },
+        "tips": {
+          "1": "Sosial, e-poçt və SMS daxilolmaları heç vaxt qaz ödəmir — DeHub onu sponsor edir. Qoşulmuş cüzdanlar öz ETH və ya BNB-lərini ödəyirlər.",
+          "2": "Köhnə DeHub hesabına qayıdırsınız? İstifadə etdiyi e-poçt və ya telefon nömrəsi ilə daxil olun və miqrasiya onu sizin üçün tapacaq.",
+          "3": "Bir cihazda bir neçə hesabı saxlaya və Ayarlar → Profil bölməsində aralarında keçid edə bilərsiniz."
+        }
+      },
+      "home-feed": {
+        "title": "Ana Lent",
+        "intro": "Ana lent, izlədiyiniz şəxslərin yazılarını və trend məzmunu gördüyünüz yerdir. O, çoxsaylı məzmun növü nişanlarını və çeşidləmə seçimlərini dəstəkləyir.",
+        "steps": {
+          "1": "/app ünvanına gedin — bu sizin ana lentinizdir.",
+          "2": "Məzmun növünə görə filtrləmək üçün yuxarıdakı sekmələrdən istifadə edin: Ana səhifə (hamısı), Videolar, Şəkillər, Shorts, Musiqi və ya Canlı yayımlar.",
+          "3": "Mobil cihazlarda daha çox seçimi görmək üçün sekmələrdə sola/sağa sürüşdürün.",
+          "4": "Sıralamanı dəyişmək üçün filtrləmə/sıralama düyməsindən (yeməyin yuxarı sağ küncü) istifadə edin: Qaynar, Yeni, və ya Ən yaxşı.",
+          "5": "Mobil cihazlarda yeməyi yeniləmək üçün aşağı çəkin.",
+          "6": "Daha çox postu avtomatik yükləmək üçün aşağı sürüşdürün (sonsuz sürüşdürmə).",
+          "7": "Tərtibat dəyişdiricisindən istifadə edərək Qəfəs və Yemək görünüşü arasında keçid edin."
+        },
+        "tips": {
+          "1": "Qəfəs görünüşü şəkillərə tez baxmaq üçün əladır.",
+          "2": "'Ana səhifə' sekmesi bütün məzmun növlərini qarışıq göstərir.",
+          "3": "Canlı sekmesi hazırda aktiv olan canlı yayımları göstərir."
+        }
+      },
+      "creating-posts": {
+        "title": "Postlar yaratmaq",
+        "intro": "Mətn postları yaradın, şəkillər, videolar, səsli qeydlər, GIF-lər və s. paylaşın. Əhatə dairəsini artırmaq üçün hashtaglardan, cashtaglardan və mentionlardan istifadə edin.",
+        "steps": {
+          "1": "Sidebar-dakı (desktop) 'Post' düyməsini və ya mobil cihazlardakı + düyməsini klikləyin.",
+          "2": "Yazı sahəsində mətninizi yazın.",
+          "3": "Şəkil və ya video əlavə etmək üçün media ikonunu klikləyin və faylı seçin.",
+          "4": "Səsli qeyd yazmaq üçün mikrofon ikonunu klikləyin.",
+          "5": "GIF əlavə etmək üçün GIF ikonunu klikləyin və birini axtarın.",
+          "6": "Postunuzu kateqoriyalara ayırmaq üçün #hashtaglarından istifadə edin (məsələn, #crypto, #defi).",
+          "7": "Tokenlara istinad etmək üçün $cashtaglarından istifadə edin (məsələn, $DHB, $ETH).",
+          "8": "Digər istifadəçiləri etiketləmək üçün @mentionlarından istifadə edin (məsələn, @username).",
+          "9": "Yayınlamaq üçün 'Post' düyməsini klikləyin. Postunuz dərhal yeməkdə görünür."
+        },
+        "tips": {
+          "1": "Postlar markdown üslubunda formatlanmanı dəstəkləyir.",
+          "2": "Hər hansı bir postdakı yenidən paylaşma ikonunu klikləməklə və 'Sitat gətir' seçməklə sitat-post edə bilərsiniz.",
+          "3": "Kateqoriyalar (hashtaglar) 'Günün söhbəti' lider lövhəsində görünür."
+        }
+      },
+      "interacting-with-posts": {
+        "title": "Postlarla qarşılıqlı əlaqə",
+        "intro": "Səsvermə, şərh yazma, bahşiş vermə, yer işarəsi qoyma, paylaşma və tərcümə etməklə məzmunla əlaqə qurun.",
+        "steps": {
+          "1": "Hər hansı bir postun sol tərəfindəki ox ikonlarından istifadə edərək bir postu bəyənin və ya bəyənməyin.",
+          "2": "Şərh bölməsini açmaq və cavab buraxmaq üçün şərh ikonunu klikləyin.",
+          "3": "Post yaradıcısına DeHub tokenlarında bahşiş göndərmək üçün gem/bahşiş ikonunu klikləyin.",
+          "4": "Sonra üçün bir postu saxlamaq üçün yer işarəsi ikonunu klikləyin.",
+          "5": "Post linkini kopyalamaq və ya xarici olaraq paylaşmaq üçün paylaşma ikonunu klikləyin.",
+          "6": "Mətninizi dilinizə tərcümə etmək üçün istənilən postdakı tərcümə düyməsini (qlobus ikonu) klikləyin.",
+          "7": "Şəkil postları üçün, şəkildəki mətni AI tərəfindən tərcümə edilmiş versiyasını əldə etmək üçün 'Şəkli tərcümə et' düyməsindən istifadə edin.",
+          "8": "Tam ekran tək post görünüşündə açmaq üçün istənilən posta klikləyin."
+        },
+        "tips": {
+          "1": "İpucları birbaşa yaradıcının DeHub tokenlərindəki cüzdanına gedir.",
+          "2": "Sürətli seçim düymələri vasitəsilə bir məbləğ təyin edə bilərsiniz və ya xüsusi bir məbləğ daxil edə bilərsiniz.",
+          "3": "Yer işarəsi qoyulmuş postlara yan panelin Yer İşarələri səhifəsindən daxil olmaq olar."
+        }
+      },
+      "explore-search": {
+        "title": "Kəşf et və Axtar",
+        "intro": "Kəşf et səhifəsi və güclü axtarış funksionallığı vasitəsilə yeni məzmun və istifadəçiləri kəşf edin.",
+        "steps": {
+          "1": "Yan panelindən /app/explore ünvanına keçin.",
+          "2": "İstifadəçiləri, postları və ya məzmunu axtarmaq üçün yuxarıdakı axtarış çubuğundan istifadə edin.",
+          "3": "Nəticələri nişana görə filtrləyin: Hamısı, İnsanlar, Postlar, Şəkillər, Videolar, Musiqi, Live.",
+          "4": "Kəşf et səhifəsində trend mövzuları və kateqoriyalara baxın.",
+          "5": "Bütün əlaqəli postları görmək üçün trend mövzuya klikləyin.",
+          "6": "Axtarış nəticələrində bir istifadəçiyə klikləyərək onun profili ziyarət edin."
+        },
+        "tips": {
+          "1": "Axtarış istifadəçi adlarını, cüzdan ünvanlarını və məzmun açar sözlərini dəstəkləyir.",
+          "2": "Trend mövzular son posting fəaliyyətinə əsasən yenilənir."
+        }
+      },
+      "profile": {
+        "title": "Profil",
+        "intro": "Profiliniz postlarınızı, izləyicilərinizi, izlədiyiniz şəxsləri və cüzdan məlumatlarınızı nümayiş etdirir.",
+        "steps": {
+          "1": "Profilinizi görmək üçün yan panelindəki avatarınıza və ya 'Profil'ə klikləyin.",
+          "2": "Görünən adınızı, bio və avatarınızı yeniləmək üçün 'Profili redaktə et' düyməsini klikləyin.",
+          "3": "Redaktə rejimində avatarınıza klikləyərək profil şəkli yükləyin.",
+          "4": "Profil səhifənizdə izləyici və izlədiyiniz sayğaclarınıza baxın.",
+          "5": "Profil nişanları vasitəsilə öz postlarınıza, media və bəyəndiyiniz məzmunlara baxın.",
+          "6": "Cüzdan ünvanınızın yanındakı kopyalama ikonunu klikləyərək onu kopyalayın.",
+          "7": "Platformda istənilən yerdə istifadəçi adlarına və ya avatarlarına klikləyərək digər istifadəçilərin profillərini ziyarət edin."
+        },
+        "tips": {
+          "1": "İstifadəçi adınız unikaldir və profil URL-nizdə görünür (dehub.io/@username).",
+          "2": "Gizlilik parametrləri izləyici sayğaclarınızı kimin görə biləcəyini idarə etməyə imkan verir."
+        }
+      },
+      "messages": {
+        "title": "Mesajlar",
+        "intro": "Platformdakı digər istifadəçilərə birbaşa mesaj göndərin.",
+        "steps": {
+          "1": "Mesajlaşma səhifəsini açmaq üçün yan panelindəki 'Mesajlar' düyməsini klikləyin.",
+          "2": "Yeni söhbətə başlamaq üçün \"Yaz\" düyməsini klikləyin.",
+          "3": "Onlara mesaj göndərmək üçün istifadəçini istifadəçi adı ilə axtarın.",
+          "4": "Mesajınızı yazın və göndərin.",
+          "5": "Mesaj siyahısında söhbət tarixçənizi görün.",
+          "6": "Söhbətə davam etmək üçün söhbətə klikləyin."
+        },
+        "tips": {
+          "1": "Kimsə sizə mesaj göndərəndə bildiriş alacaqsınız.",
+          "2": "Yaradıcılar mesajları ödəniş tələbi ilə kilidləyə bilərlər."
+        }
+      },
+      "ai-assistant": {
+        "title": "AI Assistant",
+        "intro": "Yardım, məlumat və yaradıcı tapşırıqlar üçün DeHub-un daxili AI assistenti ilə söhbət edin.",
+        "steps": {
+          "1": "AI söhbətini açmaq üçün yan panelə \"Assistant\" klikləyin.",
+          "2": "Söhbətə sualınızı və ya tələbinizi yazın.",
+          "3": "AI kripto məlumatları, platforma sualları və ümumi biliklərlə kömək edə bilər.",
+          "4": "Yeni söhbət düyməsini klikləməklə yeni söhbətə başlayın.",
+          "5": "Assistant səhifəsinin yan panelində söhbət tarixçənizi görün.",
+          "6": "AI-nin təhlil etməsi üçün şəkillər əlavə edə bilərsiniz."
+        },
+        "tips": {
+          "1": "AI söhbət daxilində konteksti xatırlayır.",
+          "2": "AI-dən DeHub xüsusiyyətləri, kripto terminləri və ya ümumi suallar haqqında soruşa bilərsiniz.",
+          "3": "Əvvəlki söhbətlər saxlanılır və istənilən vaxt əlçatandır."
+        }
+      },
+      "notifications": {
+        "title": "Bildirişlər",
+        "intro": "Məzmununuzdakı bəyənmələr, şərhlər, ödənişlər, izləmələr və digər fəaliyyətlərlə yenilənin.",
+        "steps": {
+          "1": "Zəng ikonunu və ya yan panelə \"Notifications\" klikləyin.",
+          "2": "Bütün bildirişləri xronoloji siyahıda görün.",
+          "3": "Əlaqəli məzmuna keçmək üçün bildirişə klikləyin.",
+          "4": "Bildirişlər bunlara daxildir: yeni izləyicilər, post səsvermələri, şərhlər, ödənişlər və qeydlər.",
+          "5": "Oxunmamış bildirişlər vurğulanır — baxıldıqda oxunmuş kimi işarələnir."
+        },
+        "tips": {
+          "1": "Bildiriş nişanı oxunmamış bildirişlərin sayını göstərir.",
+          "2": "Ödəniş bildirişləri nə qədər token aldığınızı göstərir."
+        }
+      },
+      "wallet": {
+        "title": "Cüzdan",
+        "intro": "Çoxsaylı zəncirlərdəki DeHub token balanslarınızı görün, stak qoyuluşlarını yoxlayın və aktivlərinizi idarə edin.",
+        "steps": {
+          "1": "Cüzdan səhifəsini açmaq üçün yan panelə \"Wallet\" klikləyin.",
+          "2": "Bütün dəstəklənən zəncirlər üzrə ümumi token balansınızı nəzərdən keçirin.",
+          "3": "Zəncir üzrə təfərrüatlara baxın: Ethereum, Base, BNB Chain və s.",
+          "4": "Staking əmanətlərinizi və mükafatlarınızı yoxlayın.",
+          "5": "On-chain məlumatlardan balanslarınızı yeniləmək üçün 'Yenilə' düyməsini klikləyin.",
+          "6": "Başqalarından token almaq üçün cüzdan ünvanınızı kopyalayın."
+        },
+        "tips": {
+          "1": "Balanslar avtomatik olaraq yenilənir, lakin istənilən vaxt yeniləməni məcburi edə bilərsiniz.",
+          "2": "Cüzdan həm likvid (əlçatan), həm də staked balansları göstərir."
+        }
+      },
+      "staking": {
+        "title": "Staking",
+        "intro": "Mükafat qazanmaq və idarəetmə səsvermə gücünüzü artırmaq üçün DeHub tokenlərinizi stake edin.",
+        "steps": {
+          "1": "Yan paneldən 'Staking' səhifəsinə keçin.",
+          "2": "Stake etmək istədiyiniz tokenlərin sayını daxil edin.",
+          "3": "Stake etmək istədiyiniz zənciri seçin.",
+          "4": "Cüzdanınızda (xarici cüzdanlar) əməliyyatı təsdiqləyin və ya avtomatik icra olunur (sosial giriş).",
+          "5": "Staked məbləğlərinizi və gözləyən mükafatları nəzərdən keçirin.",
+          "6": "Stake-dən çıxarmaq üçün məbləği daxil edin və stake-dən çıxarma əməliyyatını təsdiqləyin."
+        },
+        "tips": {
+          "1": "Staking idarəetmə təkliflərində səs çəkinizi artırır.",
+          "2": "Sosial-giriş istifadəçiləri üçün stake etmək üçün qaz lazım deyil — bu qazsızdır.",
+          "3": "Eyni anda bir neçə zəncirdə stake edə bilərsiniz."
+        }
+      },
+      "leaderboard": {
+        "title": "Liderlər cədvəli",
+        "intro": "Kim zirvədədir, görün! Liderlər cədvəli istifadəçiləri balans, gündəlik xərclər və trend mövzulara görə sıralayır.",
+        "steps": {
+          "1": "Yan paneldən 'Liderlər cədvəli' səhifəsinə keçin.",
+          "2": "Tablar arasında keçid edin: Balans, Gündəlik Xərclənən və Şəhərin Söhbəti.",
+          "3": "Balans tabı istifadəçiləri ümumi token sahibliklərinə görə sıralayır.",
+          "4": "Gündəlik Xərclənən tabı son 24 saatda kimin ən çox aktiv olduğu göstərir.",
+          "5": "Şəhərin Söhbəti ən çox müzakirə olunan mövzuları/kateqoriyaları göstərir.",
+          "6": "Onların profillərini ziyarət etmək üçün hər hansı bir istifadəçiyə klikləyin.",
+          "7": "Liderlər cədvəli gün ərzində dövri olaraq yenilənir."
+        },
+        "tips": {
+          "1": "Gündəlik reytinqlər hər 24 saatda bir sıfırlanır.",
+          "2": "Şəhərin Söhbəti hashtaglardan tək söz kateqoriyalarını izləyir."
+        }
+      },
+      "command-centre": {
+        "title": "Command Centre",
+        "intro": "Açar metrik və platform fəaliyyətinizə bir baxışda baxmaq üçün bir dashboard icmalı.",
+        "steps": {
+          "1": "Yan menyuda 'Command Centre' düyməsini klikləyin.",
+          "2": "Post sayı, izləyicilər və qarşılıqlı əlaqə daxil olmaqla profil xülasənizi görün.",
+          "3": "Son fəaliyyətinizi və trend mövzuları görün.",
+          "4": "Tez-tez istifadə olunan xüsusiyyətlərə sürətli keçidləri əldə edin."
+        },
+        "tips": {
+          "1": "Command Centre sizə DeHub varlığınızın ümumi mənzərəsini təqdim edir."
+        }
+      },
+      "governance": {
+        "title": "İdarəetmə",
+        "intro": "Təkliflər yaratmaq və icma qərarlarına səs verməklə platforma idarəetməsində iştirak edin.",
+        "steps": {
+          "1": "Yan menyudan 'Governance' bölməsinə keçin.",
+          "2": "İcma tərəfindən təqdim edilmiş aktiv təklifləri nəzərdən keçirin.",
+          "3": "Tam təsvirini və müzakirəsini oxumaq üçün bir təklifə klikləyin.",
+          "4": "Təkliflərə baş yuxarı/aşağı düymələrindən istifadə edərək səs verin — sizin səs çəkiniz nə qədər DeHub tokeni stak etdiyinizə bağlıdır.",
+          "5": "İcmayla müzakirə etmək üçün təkliflərə şərh buraxın.",
+          "6": "'Create Proposal' düyməsini klikləməklə öz təklifinizi təqdim edin."
+        },
+        "tips": {
+          "1": "Sizin səsvermə gücünüz stak etdiyiniz tokenlərin sayına görə müəyyən edilir.",
+          "2": "Badge sahibləri əlavə səs çəkisi ala bilər.",
+          "3": "Təkliflər mərhələlərdən keçir: Aktiv → Keçdi/Rədd edildi."
+        }
+      },
+      "bookmarks": {
+        "title": "Yer imləri",
+        "intro": "Sonradan asan əldə etmək üçün postları yer imlərinizə qeyd edin.",
+        "steps": {
+          "1": "Qeyd etmək üçün istənilən postdakı yer imi ikonuna klikləyin.",
+          "2": "Bütün qeyd edilmiş postları görmək üçün yan menyuda 'Bookmarks' bölməsinə keçin.",
+          "3": "Yer imlərinə əlavə edilmiş bir postu tam görmək üçün ona klikləyin.",
+          "4": "Yer imini yenidən yer imi ikonuna klikləməklə silin."
+        },
+        "tips": {
+          "1": "Yer imləri şəxsidir — yalnız siz qeyd edilmiş postlarınızı görə bilərsiniz.",
+          "2": "Yer imlərinə əlavə edə biləcəyiniz postların sayında heç bir məhdudiyyət yoxdur."
+        }
+      },
+      "settings": {
+        "title": "Parametrlər",
+        "intro": "Dil, məxfilik və ekran seçimləri ilə DeHub təcrübənizi fərdiləşdirin.",
+        "steps": {
+          "1": "Yan menyuda 'Settings' düyməsini klikləyin.",
+          "2": "Dil seçicisindən ekran dilinizi dəyişin.",
+          "3": "Məxfilik parametrlərini tənzimləyin: izləyici sayınızın və izlədiyiniz siyahının kim tərəfindən görüldüyünü idarə edin.",
+          "4": "Post görünürlük parametrlərinizi təyin edin.",
+          "5": "Bildiriş parametrlərini idarə edin."
+        },
+        "tips": {
+          "1": "DeHub bir çox dili dəstəkləyir — bütün interfeys tərcümə olunur.",
+          "2": "Məxfilik parametrləri dərhal tətbiq olunur."
+        }
+      },
+      "posting-allowance": {
+        "title": "Günlük Paylaşım Limitiniz",
+        "intro": "Paylaşım, steykinq nişanınızla artan limitə qədər hər gün pulsuzdur. Hər kəs gündə on mətn paylaşımı və bir giqabayt video, şəkil və audio ilə başlayır. Bunlardan birini keçsəniz, həmin günün qalan hissəsi DeHub tokenləri ilə ödənilir — yalnız həddən artıq olan hissə üçün.",
+        "steps": {
+          "1": "Normal qaydada paylaşın. Limit daxilində heç bir ödəniş tutulmur və sizdən heç nə tələb olunmur.",
+          "2": "Mətn paylaşımları və media ayrı hovuzlardır, buna görə də video yükləməklə keçən bir gün də on mətn paylaşımı pulsuz qalır.",
+          "3": "Bir paylaşım limiti aşdıqda, tətbiq əvvəlcə onun qiymətini hesablayır və hər hansı bir şey yüklənməzdən əvvəl pul kisənizin onu qarşılaya biləcəyini yoxlayır.",
+          "4": "Paylaşım, limit daxilində olduğu kimi dərc olunur — dərc heç vaxt ödəniş üçün gözləmir.",
+          "5": "Sonra yalnız həmin paylaşım üçün bir köçürməni təsdiqləyirsiniz, bu da Base və ya BNB Chain-dən hansısa birində kifayət qədər DeHub tokeni olan yerdə həll olunur.",
+          "6": "Hər iki hovuz UTC saat 00:00-da sıfırlanır."
+        },
+        "tips": {
+          "1": "Həddən artıq limit nisbidir: limitinizi 200 MB keçmək, bir giqabayt deyil, 200 MB ödənişə başa gəlir.",
+          "2": "Yenidən paylaşmalar, şərhlər, reaksiyalar, təkliflər və mesajlar pulsuzdur və heç vaxt limitə təsir etmir.",
+          "3": "Ödənişdən imtina etsəniz, paylaşım qalır — məbləğ yalnız həll olunana qədər növbəti ödənişli paylaşımınızı bloklayır. Sabahın pulsuz limiti həmişə sizindir.",
+          "4": "Steykinq nişanı pulsuz limiti artırır və ondan kənar hər şeyin qiymətini azaldır."
+        }
+      },
+      "reactions-and-safety": {
+        "title": "Reaksiyalar, Səssəlmə və Yetkinlik Müəyyən Etmiş Məzmun",
+        "intro": "Bəyənmə düyməsinin arxasında doqquz reaksiya var və nə gördüyünüzü və kimin sizə çata biləcəyini təyin etmək üçün bir sıra nəzarət düymələri var.",
+        "steps": {
+          "1": "Reaksiya tepsisini açmaq üçün hər hansı bir paylaşımda baş barmağı basıb saxlayın: bəyənmə, sevgi, hörmət, isti, lol, kədərli, ağlamaq, bəyənməmək və nəcis.",
+          "2": "Yeddi müsbət reaksiyalar paylaşımın bəyənmə sayına daxil olur; bəyənməmək və nəcis əleyhinə sayılır.",
+          "3": "Sizin reaksiyanız steykinq nişanınızla çəkilir, buna görə də nişan sahibi olanın reaksiyası bir səsdən daha çox sayılır.",
+          "4": "Müəllifini səssəlmək üçün paylaşımın başlığındakı X düyməsini vurun — onlar dərhal axınınızdan çıxarılır.",
+          "5": "Yaradıcılar öz paylaşımlarını hazırlayarkən yetkinlik müəyyən edirlər; bu paylaşımlar ictimai ana səhifədən kənarda qalır.",
+          "6": "Yetkinlik müəyyən edilmiş paylaşımları hər yerdə görmək üçün Ayarlar bölməsində 'Yetkinlik Müəyyən Etmiş Məzmunu Göstər' seçənəyini aktivləşdirin."
+        },
+        "tips": {
+          "1": "Yetkinlik müəyyən edilmiş paylaşım yaradıcının profilində və onları izləyənlər üçün tam görünür qalır.",
+          "2": "Profilə bloklama, səssəlmədən daha irəli gedir və mesajlaşmanı da kəsir.",
+          "3": "Reaksiya tepsisi kimin və nə ilə reaksiya verdiyini göstərir, beləliklə siz yalnız bir rəqəmi deyil, otağı görə bilərsiniz."
+        }
+      },
+      "stages": {
+        "title": "Səhnələr (Canlı Audio Otaqları)",
+        "intro": "Səhnələr DeHub-a daxil edilmiş canlı audio otaqlardır. Bir host otaq açır, natiqləri yuxarı çəkir və hər kəs Səhnələr səhifəsindən və ya paylaşılmış linkdən dinləmək üçün daxil ola bilər.",
+        "steps": {
+          "1": "Nəyin canlı olduğunu və nəyin planlaşdırıldığını görmək üçün yan menyuda 'Səhnələr' bölməsini açın.",
+          "2": "Dinləyici kimi qoşulmaq üçün canlı səhnəyə toxunun və ya planlaşdırılmış səhnəyə xatırlatma qurun və başladığı vaxt sizə məlumat verilsin.",
+          "3": "Eyni səhifədən özünüzü başlayın — brauzerdən birbaşa canlı yayıma keçə bilərsiniz, OBS və ya axın açarı olmadan.",
+          "4": "Ev sahibi kimi, natiqləri səhnəyə gətirin, onları səssizləşdirin və ya çıxarın, ekranınızı paylaşın və səsgücləndiriciyə nəzarət edin.",
+          "5": "Dinləyicilər səhnəyə çıxmadan canlı reaksiyalar göndərir və otaq söhbətində danışırlar.",
+          "6": "Hər bir səhnə qeyd olunur və qeyd sonradan göründüyü kartdan yenidən oxunur."
+        },
+        "tips": {
+          "1": "Canlı subtitrlər hər bir natiqi təsvir edir və oxuduğunuz istənilən dildə tərcümə edir.",
+          "2": "Canlı dublyaj otağı ev sahibinin öz klonlanmış səsi ilə ucadan danışa bilər, DeHub tokenləri ilə dəqiqəlik hesablanır.",
+          "3": "Ev sahibləri radio yayımını işə sala və ya söhbətlər arasında öz musiqi kliplərini ifa edə bilərlər.",
+          "4": "Mini-pleyer tətbiqin qalan hissəsinə baxarkən otağı küncdə davam etdirir."
+        }
+      },
+      "communities": {
+        "title": "İcmalar və Tədbirlər",
+        "intro": "İcmalar öz lentləri, üzvləri və fəaliyyətləri olan üzvlər tərəfindən idarə olunan yerlərdir. Tədbirlər onlara vaxtla məhdudlaşdırılmış proqramlaşdırma əlavə edir.",
+        "steps": {
+          "1": "Yan menyuda 'İcmalar'ı açın və ictimai olanları nəzərdən keçirin.",
+          "2": "Bir toxunuşla qoşulun. Yeni fəaliyyət naviqasiyada oxunmamış nişan kimi görünür.",
+          "3": "İcmaların öz lentində yazın, müzakirə edin, sorğular aparın və ucuz qiymətə verin.",
+          "4": "İcma sahibləri öz yerlərini moderasiya edir və başqalarına admin hüquqları verə bilərlər.",
+          "5": "Planlaşdırılmış proqramlaşdırma üçün 'Tədbirlər'i açın, hər bir tədbir üçün canlı izləyə biləcəyiniz tam səhifə var."
+        },
+        "tips": {
+          "1": "İcma söhbəti @adı və @burada dəstəkləyir, buna görə də bir yazı otağa çata bilər.",
+          "2": "Dəvət linki sizi birbaşa icmaya insanları gətirməyə imkan verir."
+        }
+      },
+      "arcade": {
+        "title": "Arkada",
+        "intro": "Beş oyun DeHub-da brauzer nişanında işləyir — heç nə quraşdırmaq lazım deyil, heç nə almaq lazım deyil.",
+        "steps": {
+          "1": "Yan menyuda 'Arkada'ı açın.",
+          "2": "Bir oyun seçin: Kralın Qambiti (onlayn Elo pilləkəni olan 3D şahmat), Duty Klodu (yüklənərkən öz incəsənətini yaradan atıcı), Jungle Trail (prosedur yağmur meşəsi gəzintisi), Street Slayer (DeHub üçün hazırlanmış döyüş oyunu) və ya Chartopia (gəzilə bilən ticarət mərtəbəsi).",
+          "3": "Nişanda oynayın. Kralın Qambiti və Street Slayer liderlər cədvəllərini saxlayır.",
+          "4": "Chartopia həmçinin WebXR vasitəsilə VR qulaqlıqlarında işləyir."
+        },
+        "tips": {
+          "1": "Onlardan ikisi görünüş mövzularının içində gizlənir — Duty Klodu üçün tətbiqi Müharibəyə, ya da Jungle Trail üçün Jungle-a təyin edin.",
+          "2": "Hər oyunun öz paylaşma kartı var, buna görə də birinə link harada paylaşsanız da düzgün açılır."
+        }
+      },
+      "bounties-stores": {
+        "title": "Mükafatlar və Mağazalar",
+        "intro": "Platformanı gəlirə çevirməyin iki yolu: mükafat yerləşdirin və ya tələb edin, ya da bir mağaza açın və auditoriyanıza satış edin.",
+        "steps": {
+          "1": "Açıq işləri nəzərdən keçirmək üçün 'Mükafatlar'ı açın, kateqoriya və ya valyuta ilə süzülmüşdür.",
+          "2": "Birini tələb edin, işi görün və mükafatı toplamaq üçün təqdim edin — hər kəs ovçu ola bilər, ərizə lazım deyil.",
+          "3": "Bounty'nizi qısa təsvir və DeHub tokenləri və ya USDC ilə mükafatla yerləşdirin. O, yerləşdirdiyiniz andan etibarən girovda saxlanılır.",
+          "4": "Səhifəsi, brendi və siyahıları olan bir mağaza qurmaq üçün 'Mağazalar' bölməsini açın.",
+          "5": "Məhsullar daxili cüzdan vasitəsilə DeHub tokenləri ilə qiymətləndirilir və hesablaşılır, xarici ödəniş yoxdur."
+        },
+        "tips": {
+          "1": "Bounties Sosial Media, Kliplər və Müqavilələr olaraq təşkil olunur.",
+          "2": "Mübahisə axını çatdırılma ilə bağlı fikir ayrılıqlarını həll edir, buna görə də girov həmişə ədalətlə həll olunur.",
+          "3": "Yaradıcılar icmalarını böyütmək üçün bounties istifadə edirlər — paylaşımlar, kliplər və reaksiyalar hamısı etibarlı tapşırıqlardır."
+        }
+      },
+      "creator-studio": {
+        "title": "Yaradıcı Studiyası və Redaktoru",
+        "intro": "Yaradıcı Studiyası, bir təklifdən şəkillər, videolar, musiqi, səslər və 3D modellər yaradır və onları redaktora təhvil verir — brauzerdə işləyən tam çox trekli video redaktoru daxil olmaqla.",
+        "steps": {
+          "1": "Yaradıcı Studiyasını açın və nə edilməsini istədiyinizi təsvir edin.",
+          "2": "Server işi yerinə yetirmədən əvvəl dəyəri təklif edir, buna görə də xərcləmədən əvvəl nə qədər başa gəldiyini görürsünüz.",
+          "3": "Renderlər siz tətbiqdə gəzərkən paylaşılan növbədə davam edir.",
+          "4": "Nəticələri Canva üslublu redaktorda təşkil edin və ya kəsmə, təbəqələşdirmə və ixrac ilə real zaman xətti üçün video redaktorunu açın.",
+          "5": "Bitmiş parçanı birbaşa bir post, qısa və ya mağaza siyahısına buraxın."
+        },
+        "tips": {
+          "1": "Yaradılmasını istəmədiyiniz hər şey üçün pulsuz bir stok aktiv kitabxanası Studio-nun yanında yerləşir.",
+          "2": "Yaradılma, cüzdanınızdakı DeHub tokenləri ilə ödənilir — hər iş üçün bir köçürmə imzalayırsınız və qiymət ödəmədən əvvəl təklif olunur.",
+          "3": "Daha çox istifadə edənlər Ultra, Komanda və ya Ölçek planlarını götürə bilərlər, bu da aylıq token limitini birbaşa cüzdanlarına göndərir."
+        }
+      },
+      "buying-dhb": {
+        "title": "Tokenləri Almaq",
+        "intro": "Daxili mübadilə interfeysindən istifadə edərək tətbiqdə birbaşa DeHub tokenləri alın.",
+        "steps": {
+          "1": "Yan menyudan 'Al' səhifəsinə keçin.",
+          "2": "Almaq istədiyiniz tokeni seçin (məsələn, ETH, USDC).",
+          "3": "Xərcləmək istədiyiniz məbləği və ya almaq istədiyiniz tokenlərin sayını daxil edin.",
+          "4": "Mübadilə dərəcəsini və təxmin edilən nəticəni nəzərdən keçirin.",
+          "5": "Slippage həssaslığını tənzimləmək üçün parametrlər dişli ikonuna klikləyin (defolt 1%-dir).",
+          "6": "Mübadilə əməliyyatını təsdiqləyin.",
+          "7": "Əməliyyat tamamlandıqdan sonra DeHub tokenləri cüzdanınızda görünəcək."
+        },
+        "tips": {
+          "1": "Daha yüksək slippage həssaslığı = icra olunma ehtimalı daha yüksəkdir, lakin daha pis qiymətləndirmə potensialı var.",
+          "2": "Təsdiqləmədən əvvəl həmişə mübadilə dərəcəsini yoxlayın.",
+          "3": "Parametrlər panelində xüsusi slippage təyin edə bilərsiniz."
+        }
+      },
+      "bridge": {
+        "title": "Körpü",
+        "intro": "Çapraz zəncir körpüsündən istifadə edərək DeHub tokenlərinizi dəstəklənən blok zəncirləri arasında köçürün.",
+        "steps": {
+          "1": "'Körpü' səhifəsinə yan menyudan keçin.",
+          "2": "Mənbə zəncirini seçin (tokenlərinizin hazırda olduğu yer).",
+          "3": "Təyinat zəncirini seçin (onları göndərmək istədiyiniz yer).",
+          "4": "Körpü üçün tokenlərin sayını daxil edin.",
+          "5": "Körpü haqqını və təxmin edilən gəliş vaxtını nəzərdən keçirin.",
+          "6": "Körpü əməliyyatını təsdiqləyin.",
+          "7": "Əməliyyatın tamamlanmasını gözləyin — körpü bir neçə dəqiqə çəkə bilər."
+        },
+        "tips": {
+          "1": "Körpü haqqı zəncir cütlüyünə görə dəyişir.",
+          "2": "Körpü, iştirak edən zəncirlərdən asılı olaraq, adətən 1-5 dəqiqə çəkir.",
+          "3": "Təsdiqləmədən əvvəl həmişə təyinat zəncirini iki dəfə yoxlayın."
+        }
+      },
+      "music-tv": {
+        "title": "Musiqi və TV",
+        "intro": "DeHub-da birbaşa media məzmunundan həzz alın — musiqi axın edin və canlı TV kanallarını izləyin.",
+        "steps": {
+          "1": "Musiqi yazıları arasında axtarış etmək və oxumaq üçün yan menyudan 'Musiqi'yə keçin.",
+          "2": "Canlı TV kanallarına daxil olmaq üçün 'TV'yə keçin.",
+          "3": "Kanalları kateqoriya və ya ölkəyə görə axtarın.",
+          "4": "İzləməyə başlamaq üçün bir kanala klikləyin.",
+          "5": "Səs səviyyəsini və oxutmanı tənzimləmək üçün oxutma nəzarətindən istifadə edin.",
+          "6": "Sındırılmış kanalları bildiriş düyməsindən istifadə edərək bildirin."
+        },
+        "tips": {
+          "1": "TV kanalları etibarlılıq üçün icma tərəfindən təsdiqlənmişdir.",
+          "2": "Musiqi yazıları digər məzmunları axtararkən oxutdurula bilər."
+        }
+      },
+      "post-info": {
+        "title": "Yazı Məlumatı və Fraksiyalar",
+        "intro": "Zərb edilmiş yazı 1000 fraksiyaya bölünmüş bir NFT-dir. Yazı Məlumatı səhifəsi zəncirdəki məlumatları, əlaqə statistik məlumatlarını, sahiblik bölgüsünü göstərir və istənilən yazının fraksiyalarını alıb satmağa imkan verir — zərb edilməmiş yazıda isə əvəzində zərb etməyi təklif edir.",
+        "steps": {
+          "1": "Yazı Məlumatı səhifəsini açmaq üçün istənilən yazının üzərindəki 'ⓘ' ikonuna toxunun.",
+          "2": "Yuxarıda Token ID-ni (zəncirdə unikal identifikator) və əməliyyat xəttini görəcəksiniz — onu blok tədqiqatçısında görmək üçün xəttə klikləyin.",
+          "3": "Onun altında, əlaqə statistik məlumatları ümumi bəyənmələri, bəyənməmələri, baxışları, şərhləri və alınan ucları göstərir.",
+          "4": "Sahiblər bölməsində yaradıcının hələ də sahib olduğu 1000 fraksiyanın nə qədərinin olduğunu göstərən bir irəliləmə çubuğu, eləcə də balansları və faizləri ilə birlikdə bütün fraksiya sahiblərinin siyahısı göstərilir.",
+          "5": "Yazı ödənişli izləmə (PPV)dirsə, qiyməti, valyutanı və neçə istifadəçinin giriş əldə etdiyini görəcəksiniz.",
+          "6": "Yazı sahibləri bu səhifədən birbaşa görünürlüyü (İctimai, Siyahıda olmayan və ya Şəxsi) dəyişə və başlıq/təsviri redaktə edə bilərlər."
+        },
+        "tips": {
+          "1": "Yeni zərb edilmiş yazı, yaradıcının bütün 1000 fraksiyaya (100% sahiblik) sahib olması ilə başlayır.",
+          "2": "Əməliyyat xətti zəncirdən asılı olaraq BaseScan və ya BscScan-a keçid verir.",
+          "3": "Qeyri-siyahılı postlar lentlərdə görünmür, lakin birbaşa link vasitəsilə əldə edilə bilər."
+        }
+      },
+      "trading-fractions": {
+        "title": "Ticarət Fraksiyaları",
+        "intro": "Fraksiya ticarəti — elanlara baxmaq, təkliflər vermək, öz elanınızı yerləşdirmək — veb tətbiqdə dehub.io ünvanında, hər paylaşımın Məlumat səhifəsində yaşayır.",
+        "steps": {
+          "1": "Brauzerdə dehub.io-nu açın və eyni hesabla daxil olun.",
+          "2": "Postun Poçt Məlumatı səhifəsini açın və Marketplace tabına keçin.",
+          "3": "Elanlara baxın, qiymətinizə uyğun təklif verin və ya saxladığınız fraksiyaları yerləşdirin.",
+          "4": "Ticarət başa çatdıqdan sonra dəyişiklik mobil telefonda Fraksiyalar tabınızda göstərilir."
+        },
+        "tips": {
+          "1": "Yazının fraqmentlərinə sahib olmaq o deməkdir ki, şəbəkədaxili NFT-dən pay tutursunuz.",
+          "2": "Satın almazdan əvvəl sahibliyin bölüşdürülməsinə baxmaq üçün veb-bazarda postun sahiblərini yoxlayın.",
+          "3": "Bir yaradıcı kimi, fraksiyaların satılması azarkeşlərə məzmununuzun ortaq sahibi olmağa imkan verir."
+        }
+      },
+      "minting-posts": {
+        "title": "Postların Mint Edilməsi (NFT Yaradılması)",
+        "intro": "Mint edilməsi isteğe bağlıdır. Postu göndərdiyiniz anda off-chain (zəncirdən kənar) dərc olunur — cüzdan, imza, qaz yoxdur — və onu istədiyiniz zaman NFT kimi mint edə bilərsiniz, ya onu tərtib edərkən, ya da sonradan postun özündən.",
+        "steps": {
+          "1": "Yan panel (desktop) üçün 'Post' düyməsini və ya mobil üçün + düyməsini klikləyin.",
+          "2": "Mətninizi yazın, media (şəkillər, videolar, audio) əlavə edin və kateqoriyalar seçin.",
+          "3": "Off-chain dərc etmək üçün 'Postu mint et' seçeneğini söndürün və ya dərc edərkən mint etmək üçün yandırın.",
+          "4": "Dərcetmə heç vaxt zəncirdə gözləmir: yazı lentdə hər iki şəkildə görünür.",
+          "5": "Daha sonra işarələmək üçün yazının '' məlumat '' səhifəsini açın və orada Nanə hərəkətindən istifadə edin.",
+          "6": "Büzüldükdən sonra yazı Token sənədi və on-zəncirlə doğrulaya biləcəyiniz əməliyyat haşiyəsi alır və onun bütün 1000 fraksiyasını saxlayırsınız."
+        },
+        "tips": {
+          "1": "Sosial, e-poçt və SMS-lər sıfır qaz ödəyir — DeHub mintinq haqlarına sponsorluq edir.",
+          "2": "Xarici pul kisəsi istifadəçilərinə qaz üçün BNB Zəncirindəki Baza və ya BNB-də ETH lazımdır.",
+          "3": "Minting post ticarət və royalti daşıyan edir. Gözlənilməyən yazı hələ də ipucları və baxışlar qazanır.",
+          "4": "Yazı sonradan lentdən silinsə belə, şəbəkə qeydi zərbəyə məruz qaldıqdan sonra qalıcı olur."
+        }
+      },
+      "glossary": {
+        "title": "TERMİNLƏR LÜĞƏTİ",
+        "intro": "Web3-ə keçməyinizə kömək edəcək hərtərəfli kriptovalyuta və platforma terminologiyası.",
+        "steps": {
+          "1": "Yan paneldən \"Sözlük\" bölməsinə keçin.",
+          "2": "Şərtləri əlifba sırası ilə axtarın və ya xüsusi şərtləri tapmaq üçün axtarışdan istifadə edin.",
+          "3": "Onun tam tərifini və izahını görmək üçün terminə klikləyin.",
+          "4": "Şərtlər kriptovalyuta anlayışlarını, DeFi terminologiyasını və DeHub-a məxsus xüsusiyyətləri əhatə edir."
+        },
+        "tips": {
+          "1": "Yeni gələnlər üçün kriptovalyuta və Web3 üçün əla resurs.",
+          "2": "Parıltı mütəmadi olaraq yeni şərtlərlə yenilənir."
+        }
+      }
     }
   }
 }

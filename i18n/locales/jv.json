@@ -3432,11 +3432,6 @@
     "noResultsFor": "Ora ana asil kanggo \"{{query}}\"",
     "guideSubtitle": "Pandhuan langkah demi langkah kanggo saben fitur",
     "searchGuide": "Goleki pandhuan...",
-    "guideFractionsTip": "Saben kiriman sing di-mint diwiwiti karo panitahe nyekel kabeh bageane (kepemilikan 100%).",
-    "guideInfoStep": "Tutul lambang info ing kiriman sing wis di-mint kanggo mbukak transaksi mint-e ing block explorer lan mriksa cathetan on-chain.",
-    "guideMintIntro": "Mint kiriman minangka NFT ing blockchain iku pilihan. Mint nalika sampeyan nerbitake, utawa terbitake saiki lan mint mengko saka menu kiriman.",
-    "guideMintPublishStep": "Pilih arep mint apa ora, banjur klik 'Kirim' kanggo nerbitake. Yen sampeyan ngliwati mint, kiriman bisa di-mint mengko saka menune.",
-    "guideMintFractionsStep": "Sampéyan nampa kabèh 1,000 bagean (kepemilikan 100%) saka postingan sing lagi wae di-mint.",
     "glossaryMintTxDesc": "Tutul lambang info ing kiriman sing wis di-mint kanggo mbukak transaksi mint-e ing block explorer lan mriksa cathetan on-chain. Kaca Info Kiriman lengkap — statistik, sing nyekel, pasar — ana ing aplikasi web ing dehub.io.",
     "glossaryTokenIdDesc": "Pengenal on-chain unik sing diwenehake marang kiriman nalika di-mint minangka NFT.",
     "repostsTab": "Repost",
@@ -3453,24 +3448,7 @@
     "glossaryStakingDesc": "Kunci token DeHubmu kanggo entuk hadiah saka wektu. Token sing ditumpuk uga menehi sampeyan kekuwatan voting sing luwih gedhe ing tata kelola.",
     "glossaryGovernanceDesc": "Kirimi lan voting proposal sing mbentuk platform. Kekuwatan votingmu bobote gumantung saka jumlah token DeHub sing dicekel.",
     "glossaryStakingBadgesDesc": "Lencana sing ditampilake ing jejere jeneng panganggo adhedhasar total kepemilikan token DeHubmu (dompet + ditumpuk). Ana 13 tingkat — luwih akeh token sing dicekel, luwih dhuwur peringkat lencana. Tingkat sing luwih dhuwur menehi kekuwatan voting tata kelola luwih akeh lan biaya platform luwih murah.",
-    "glossaryLeaderboardDesc": "Panganggo diranking adhedhasar total saldo token DeHub (dompet + ditumpuk ing kabeh rantai). Peringkat dianyari kanthi berkala lan nglacak owah-owahan 1-dina lan 1-minggu. Sampeyan uga bisa nyortir miturut tip sing dikirim, tip sing ditampa, pengikut, suka, utawa pelanggan.",
-    "guideTipStep": "Klik ikon permata/tip kanggo ngirim tip menyang pembuat postingan ing token DeHub.",
-    "guideTipWalletTip": "Tip langsung menyang dompet kreator minangka token DeHub.",
-    "guideTipNotificationsTip": "Wara-wara tip nuduhake pira token DeHub sing ditampa.",
-    "guideWalletIntro": "Deleng imbangan token DeHub ing pirang-pirang rantai, priksa simpenan staking, lan atur aset sampeyan.",
-    "guideWalletTotalStep": "Deleng imbangan token DeHub total sampeyan sing diklumpukake ing kabeh rantai sing didhukung.",
-    "guideStakingIntro": "Stake token DeHub sampeyan kanggo entuk ganjaran lan nambah kekuwatan voting pamaréntahan sampeyan.",
-    "guideStakingAmountStep": "Lebokake pira token DeHub sing pengin sampeyan stake.",
-    "guideLeaderboardBalanceStep": "Tab imbangan ngetrapake pangguna miturut total kepemilikan token DeHub.",
-    "guideGovernanceVoteStep": "Voting ing proposal nggunakake tombol jempol munggah/mudhun — bobot voting sampeyan gumantung saka pira token DeHub sing sampeyan stake.",
-    "guideGovernancePowerTip": "Kekuwatan voting sampeyan ditemtokake dening pira token DeHub sing sampeyan stake.",
-    "guideBuyIntro": "Tuku token DeHub langsung ing DPay nggunakake kertu utawa crypto sing didhukung.",
-    "guideBuyAmountStep": "Lebokake jumlah sing pengin sampeyan blanjakake utawa pira token DeHub sing pengin sampeyan tampa.",
-    "guideBuyDeliveredStep": "Token DeHub sampeyan bakal katon ing dompet sampeyan sawise transaksi rampung.",
-    "guideBridgeIntro": "Pindhah token DeHub sampeyan ing antarane blockchain sing didhukung nggunakake jembatan lintas rantai.",
-    "guideBridgeSourceStep": "Pilih rantai sumber (ing ngendi token DeHub sampeyan saiki).",
-    "guideBridgeDestStep": "Pilih rantai tujuan (ing ngendi sampeyan pengin ngirim token DeHub sampeyan).",
-    "guideBridgeAmountStep": "Lebokake pira token DeHub sing bakal dijembatani."
+    "glossaryLeaderboardDesc": "Panganggo diranking adhedhasar total saldo token DeHub (dompet + ditumpuk ing kabeh rantai). Peringkat dianyari kanthi berkala lan nglacak owah-owahan 1-dina lan 1-minggu. Sampeyan uga bisa nyortir miturut tip sing dikirim, tip sing ditampa, pengikut, suka, utawa pelanggan."
   },
   "arcade": {
     "submitAccessibility": "Kirimake game menyang arkade",
@@ -6792,6 +6770,504 @@
       "packEmpty": "Ora ana emoji sing ditemokake ing alamat kasebut",
       "shortcodeTaken": "{{name}} wis dijupuk",
       "shortcodeStandard": "{{name}} wis dadi emoji standar"
+    }
+  },
+  "guide": {
+    "sections": {
+      "getting-started": {
+        "title": "Miwiti",
+        "intro": "Ana limang cara mlebu DeHub lan ora ana sing mbutuhake sampeyan wis duwe dompet: Google, Apple, kode sing dikirim menyang email sampeyan, kode sing dikirim liwat SMS, utawa dompet sing wis ana sing disambungake. Kabeh kajaba rute dompet nggawe dompet non-custodial kanggo sampeyan ing latar mburi — sampeyan nyekel kunci, lan DeHub nyeponsori gas supaya sampeyan bisa ngirim, menehi tip, lan ngumpulake tanpa tuku token asli.",
+        "steps": {
+          "1": "Kunjungi dehub.io — umpan utama minangka kaca ngarep, mula sampeyan bisa ndeleng-ndeleng sadurunge mlebu.",
+          "2": "Klik 'Mlebu'. Sampeyan bakal weruh Google lan Apple, kolom kanggo alamat email utawa nomer telpon, lan 'Sambungake Dompet' kanggo sing wis ana.",
+          "3": "Kanthi Google utawa Apple, ngrampungake alur panyedhiya. Kanthi email utawa SMS, ketik kode sing teka.",
+          "4": "Dompet digawe lan diamanke kanggo sampeyan nalika mlebu pisanan. Nyambungake dompet sampeyan dhewe tinimbang mbutuhake siji tandha tangan kanggo mbuktekake alamat kasebut.",
+          "5": "Pilih jeneng pangguna. Iki sing dideleng wong lan uga dadi link profil dehub.io/<username> sampeyan.",
+          "6": "Sampeyan wis mlebu. Jelajahi umpan, atur profil sampeyan, lan miwiti ngirim."
+        },
+        "tips": {
+          "1": "Tanda tangan sosial, email, lan SMS ora nate mbayar gas — DeHub nyeponsori. Dompet sing disambungake mbayar ETH utawa BNB dhewe.",
+          "2": "Bali menyang akun DeHub lawas? Mlebu nganggo email utawa nomer telpon sing digunakake lan migrasi bakal nemokake.",
+          "3": "Sampeyan bisa nyimpen sawetara akun ing siji piranti lan ngalih ing antarane ing Setelan → Profil."
+        }
+      },
+      "home-feed": {
+        "title": "Umpan Utama",
+        "intro": "Umpan utama minangka papan sampeyan ndeleng kiriman saka wong sing sampeyan tindakake lan konten sing trending. Iki ndhukung tab jinis konten lan pilihan urutan.",
+        "steps": {
+          "1": "Navigasi menyang /app — iki umpan utama sampeyan.",
+          "2": "Gunakake tab ndhuwur kanggo nyaring miturut jinis konten: Ngarep (kabeh), Video, Gambar, Shorts, Musik, utawa Siaran Langsung.",
+          "3": "Geser kiwa/tengen ing tab kanggo ndeleng pilihan liyane ing seluler.",
+          "4": "Gunakake tombol filter/urutake (pojok tengen ndhuwur feed) kanggo ngganti urutan: Hot, Anyar, utawa Paling Dhuwur.",
+          "5": "Tarik mudhun kanggo nyegerake feed ing seluler.",
+          "6": "Gulir mudhun kanggo mbukak kiriman liyane kanthi otomatis (gulir tanpa wates).",
+          "7": "Ganti antarane tampilan Grid lan Feed nggunakake pengalih tata letak."
+        },
+        "tips": {
+          "1": "Tampilan Grid apik kanggo browsing gambar kanthi cepet.",
+          "2": "Tab 'Ngarep' nuduhake kabeh jinis konten sing dicampur.",
+          "3": "Tab Langsung nuduhake siaran langsung sing aktif saiki."
+        }
+      },
+      "creating-posts": {
+        "title": "Nggawe Kiriman",
+        "intro": "Gawe kiriman teks, nuduhake gambar, video, cathetan swara, GIF, lan liya-liyane. Gunakake hashtag, cashtag, lan sebutan kanggo nambah jangkauan.",
+        "steps": {
+          "1": "Klik tombol 'Kirim' ing sidebar (desktop) utawa tombol + (seluler).",
+          "2": "Ketik teks ing area nulis.",
+          "3": "Kanggo nambah gambar utawa video, klik ikon media lan pilih file.",
+          "4": "Kanggo ngrekam cathetan swara, klik ikon mikropon.",
+          "5": "Kanggo nambah GIF, klik ikon GIF lan goleki.",
+          "6": "Gunakake #hashtag kanggo ngategorikake kiriman sampeyan (contone, #crypto, #defi).",
+          "7": "Gunakake $cashtag kanggo nyebutake token (contone, $DHB, $ETH).",
+          "8": "Gunakake @sebutan kanggo menehi tag pangguna liyane (contone, @username).",
+          "9": "Klik 'Kirim' kanggo nerbitake. Kiriman sampeyan katon ing feed langsung."
+        },
+        "tips": {
+          "1": "Kiriman ndhukung format gaya markdown.",
+          "2": "Sampeyan bisa ngutip kiriman kanthi ngeklik ikon repost ing kiriman apa wae lan milih 'Quote'.",
+          "3": "Kategori (hashtag) katon ing papan peringkat 'Talk of the Town'."
+        }
+      },
+      "interacting-with-posts": {
+        "title": "Interaksi karo Kiriman",
+        "intro": "Melu konten kanthi milih, menehi komentar, menehi tip, nggawe bookmark, nuduhake, lan nerjemahake.",
+        "steps": {
+          "1": "Upvote utawa downvote kiriman nggunakake ikon panah ing sisih kiwa kiriman apa wae.",
+          "2": "Klik ikon komentar kanggo mbukak bagean komentar lan ninggalake balesan.",
+          "3": "Klik ikon permata/tip kanggo ngirim tip ing token DeHub menyang pembuat kiriman.",
+          "4": "Klik ikon bookmark kanggo nyimpen kiriman mengko.",
+          "5": "Klik ikon nuduhake kanggo nyalin link kiriman utawa nuduhake ing njaba.",
+          "6": "Klik tombol terjemahan (ikon globe) ing kiriman apa wae kanggo nerjemahake teks menyang basamu.",
+          "7": "Kanggo kiriman gambar, gunakake tombol 'Terjemahake Gambar' kanggo entuk versi terjemahan AI saka teks ing njero gambar.",
+          "8": "Klik kiriman apa wae kanggo mbukak ing tampilan kiriman tunggal layar penuh."
+        },
+        "tips": {
+          "1": "Tip langsung mlebu ing dompet kreator ing token DeHub.",
+          "2": "Sampeyan bisa nyetel jumlah tip liwat tombol pilihan cepet utawa ngetik jumlah khusus.",
+          "3": "Kiriman sing ditandhani bisa diakses saka kaca Tandha ing sidebar."
+        }
+      },
+      "explore-search": {
+        "title": "Jelajahi & Goleki",
+        "intro": "Temokake konten lan pangguna anyar liwat kaca jelajahi lan fungsi telusuran sing kuat.",
+        "steps": {
+          "1": "Navigasi menyang /app/explore saka sidebar.",
+          "2": "Gunakan bilah telusuran ing ndhuwur kanggo nggoleki pangguna, kiriman, utawa konten.",
+          "3": "Filter asil miturut tab: Kabeh, Wong, Kiriman, Gambar, Video, Musik, Langsung.",
+          "4": "Jelajahi topik lan kategori sing lagi tren ing kaca jelajahi.",
+          "5": "Klik topik sing lagi tren kanggo ndeleng kabeh kiriman sing gegandhengan.",
+          "6": "Klik pangguna ing asil telusuran kanggo ngunjungi profil."
+        },
+        "tips": {
+          "1": "Telusuran ndhukung jeneng pangguna, alamat dompet, lan tembung kunci konten.",
+          "2": "Topik sing lagi tren dianyari adhedhasar aktivitas postingan anyar."
+        }
+      },
+      "profile": {
+        "title": "Profil",
+        "intro": "Profil sampeyan nampilake kiriman, pengikut, sing ditindakake, lan informasi dompet.",
+        "steps": {
+          "1": "Klik avatar utawa 'Profil' ing sidebar kanggo ndeleng profil.",
+          "2": "Klik 'Edit Profil' kanggo nganyari jeneng tampilan, bio, lan avatar.",
+          "3": "Unggah gambar profil kanthi ngeklik avatar ing mode edit.",
+          "4": "Deleng jumlah pengikut lan sing ditindakake ing kaca profil.",
+          "5": "Jelajahi kiriman, media, lan konten sing disenengi liwat tab profil.",
+          "6": "Salin alamat dompet kanthi ngeklik ikon salinan ing jejere.",
+          "7": "Kunjungi profil pangguna liyane kanthi ngeklik jeneng pangguna utawa avatar ing ngendi wae ing platform."
+        },
+        "tips": {
+          "1": "Jeneng pangguna unik lan katon ing URL profil sampeyan (dehub.io/@username).",
+          "2": "Setelan privasi ngidini sampeyan ngontrol sapa sing bisa ndeleng jumlah pengikut."
+        }
+      },
+      "messages": {
+        "title": "Pesen",
+        "intro": "Kirim pesen langsung menyang pangguna liyane ing platform.",
+        "steps": {
+          "1": "Klik 'Pesen' ing sidebar kanggo mbukak kaca pesen.",
+          "2": "Klik tombol \"compose\" kanggo miwiti obrolan anyar.",
+          "3": "Goleki panganggo miturut jeneng panganggo kanggo ngirim pesen.",
+          "4": "Ketik pesen sampeyan banjur pencet \"send\".",
+          "5": "Deleng riwayat obrolan ing dhaptar pesen.",
+          "6": "Klik obrolan kanggo nerusake ngobrol."
+        },
+        "tips": {
+          "1": "Sampeyan bakal nampa kabar nalika ana sing ngirim pesen.",
+          "2": "Kreator bisa ngunci pesen kanthi syarat tip."
+        }
+      },
+      "ai-assistant": {
+        "title": "AI Assistant",
+        "intro": "Ngobrol karo asisten AI bawaan DeHub kanggo pitulungan, informasi, lan tugas kreatif.",
+        "steps": {
+          "1": "Klik 'Assistant' ing sidebar kanggo mbukak obrolan AI.",
+          "2": "Ketik pitakonan utawa panjaluk ing input obrolan.",
+          "3": "AI bisa mbantu informasi kripto, pitakonan platform, lan kawruh umum.",
+          "4": "Miwiti obrolan anyar kanthi ngeklik tombol obrolan anyar.",
+          "5": "Deleng riwayat obrolan ing sidebar kaca asisten.",
+          "6": "Sampeyan bisa ngirim gambar supaya AI nganalisis."
+        },
+        "tips": {
+          "1": "AI ngelingi konteks ing obrolan.",
+          "2": "Sampeyan bisa takon AI babagan fitur DeHub, istilah kripto, utawa pitakonan umum.",
+          "3": "Obrolan sadurunge disimpen lan bisa diakses kapan wae."
+        }
+      },
+      "notifications": {
+        "title": "Notifikasi",
+        "intro": "Tetep nganyari karo likes, komentar, tips, tindakake, lan aktivitas liyane ing konten sampeyan.",
+        "steps": {
+          "1": "Klik ikon lonceng utawa 'Notifications' ing sidebar.",
+          "2": "Deleng kabeh notifikasi ing dhaptar kronologis.",
+          "3": "Klik notifikasi kanggo pindhah menyang konten sing gegandhengan.",
+          "4": "Notifikasi kalebu: pengikut anyar, voting postingan, komentar, tips, lan sebutan.",
+          "5": "Notifikasi sing durung diwaca disorot — ditandhani wis diwaca nalika dideleng."
+        },
+        "tips": {
+          "1": "Lencana notifikasi nuduhake jumlah notifikasi sing durung diwaca.",
+          "2": "Notifikasi tip nuduhake jumlah token sing ditampa."
+        }
+      },
+      "wallet": {
+        "title": "Dompet",
+        "intro": "Deleng saldo token DeHub ing macem-macem rantai, priksa simpenan staking, lan atur aset sampeyan.",
+        "steps": {
+          "1": "Klik 'Wallet' ing sidebar kanggo mbukak kaca dompet.",
+          "2": "Tingali total saldo token sampeyan sing diklumpukake ing kabeh rantai sing didhukung.",
+          "3": "Deleng rincian per-rantai: Ethereum, Base, BNB Chain, lan liya-liyane.",
+          "4": "Priksa simpenan lan hadiah staking sampeyan.",
+          "5": "Klik 'Refresh Scan' kanggo nganyari saldo sampeyan saka data on-chain.",
+          "6": "Salin alamat dompet sampeyan kanggo nampa token saka wong liya."
+        },
+        "tips": {
+          "1": "Saldo nganyari kanthi otomatis nanging sampeyan bisa meksa refresh kapan wae.",
+          "2": "Dompet nuduhake saldo cair (kasedhiya) lan staked."
+        }
+      },
+      "staking": {
+        "title": "Staking",
+        "intro": "Stake token DeHub sampeyan kanggo entuk hadiah lan nambah kekuwatan voting tata kelola sampeyan.",
+        "steps": {
+          "1": "Navigasi menyang kaca 'Staking' saka sidebar.",
+          "2": "Lebokake jumlah token sing pengin sampeyan stake.",
+          "3": "Pilih rantai sing pengin sampeyan stake.",
+          "4": "Konfirmasi transaksi ing dompet sampeyan (dompet eksternal) utawa otomatis dieksekusi (login sosial).",
+          "5": "Deleng jumlah sing wis disimpen lan hadiah sing ditundha.",
+          "6": "Kanggo unstake, lebokake jumlah lan konfirmasi transaksi unstaking."
+        },
+        "tips": {
+          "1": "Staking nambah bobot voting sampeyan ing proposal tata kelola.",
+          "2": "Pangguna login sosial ora butuh gas kanggo stake — iku gasless.",
+          "3": "Sampeyan bisa stake ing pirang-pirang rantai bebarengan."
+        }
+      },
+      "leaderboard": {
+        "title": "Papan Pimpinan",
+        "intro": "Delengen sapa sing ana ing ndhuwur! Papan pimpinan ngetrapake pangguna miturut saldo, belanja saben dina, lan topik tren.",
+        "steps": {
+          "1": "Navigasi menyang kaca 'Leaderboard' saka sidebar.",
+          "2": "Ganti antarane tab: Saldo, Dibelanjakake Saben Dina, lan Obrolan Kutha.",
+          "3": "Tab Saldo ngetrapake pangguna miturut total kepemilikan token.",
+          "4": "Tab Dibelanjakake Saben Dina nuduhake sapa sing paling aktif menehi tip ing 24 jam pungkasan.",
+          "5": "Obrolan Kutha nuduhake topik/kategori sing paling akeh dibahas.",
+          "6": "Klik ing pangguna apa wae kanggo ngunjungi profil.",
+          "7": "Papan pimpinan nganyari kanthi periodik sedina muput."
+        },
+        "tips": {
+          "1": "Peringkat saben dina direset saben 24 jam.",
+          "2": "Obrolan Kutha nglacak kategori siji-tembung saka hashtag."
+        }
+      },
+      "command-centre": {
+        "title": "Pusat Komando",
+        "intro": "Ringkesan dasbor sing nuduhake metrik utama lan aktivitas platform kanthi sekilas.",
+        "steps": {
+          "1": "Klik 'Command Centre' ing sidebar.",
+          "2": "Deleng ringkesan profil sampeyan, kalebu jumlah kiriman, pengikut, lan keterlibatan.",
+          "3": "Deleng aktivitas paling anyar lan topik sing lagi tren.",
+          "4": "Akses tautan cepet menyang fitur sing umum digunakake."
+        },
+        "tips": {
+          "1": "Command Centre menehi sampeyan pandangan saka ndhuwur babagan kehadiran DeHub sampeyan."
+        }
+      },
+      "governance": {
+        "title": "Tata Kelola",
+        "intro": "Melu tata kelola platform kanthi nggawe proposal lan milih keputusan komunitas.",
+        "steps": {
+          "1": "Navigasi menyang 'Governance' saka sidebar.",
+          "2": "Telusuri proposal aktif sing diajukake dening komunitas.",
+          "3": "Klik proposal kanggo maca deskripsi lengkap lan diskusi.",
+          "4": "Milih proposal nggunakake tombol jempol munggah/mudhun — bobot pilihan sampeyan gumantung saka jumlah token DeHub sing wis sampeyan stake.",
+          "5": "Ninggalake komentar babagan proposal kanggo diskusi karo komunitas.",
+          "6": "Ajokake proposal dhewe kanthi ngeklik tombol 'Create Proposal'."
+        },
+        "tips": {
+          "1": "Kekuwatan pilihan sampeyan ditemtokake dening jumlah token sing wis sampeyan stake.",
+          "2": "Panyekel lencana bisa uga entuk bobot pilihan tambahan.",
+          "3": "Proposal ngliwati tahapan: Aktif → Lulus/Ditolak."
+        }
+      },
+      "bookmarks": {
+        "title": "Bookmark",
+        "intro": "Simpen kiriman menyang bookmark sampeyan kanggo akses gampang mengko.",
+        "steps": {
+          "1": "Klik ikon bookmark ing kiriman apa wae kanggo nyimpen.",
+          "2": "Navigasi menyang 'Bookmarks' ing sidebar kanggo ndeleng kabeh kiriman sing disimpen.",
+          "3": "Klik kiriman sing dibookmark kanggo ndeleng kanthi lengkap.",
+          "4": "Copot bookmark kanthi ngeklik ikon bookmark maneh."
+        },
+        "tips": {
+          "1": "Bookmark pribadi — mung sampeyan sing bisa ndeleng kiriman sing disimpen.",
+          "2": "Ora ana watesan kanggo jumlah kiriman sing bisa dibookmark."
+        }
+      },
+      "settings": {
+        "title": "Setelan",
+        "intro": "Kustomisasi pengalaman DeHub sampeyan kanthi pilihan basa, privasi, lan tampilan.",
+        "steps": {
+          "1": "Klik 'Settings' ing sidebar.",
+          "2": "Ganti basa tampilan saka pemilih basa.",
+          "3": "Atur setelan privasi: ngontrol sapa sing ndeleng jumlah pengikut lan dhaptar sing ditindakake.",
+          "4": "Setel preferensi visibilitas kiriman default sampeyan.",
+          "5": "Kelola preferensi notifikasi."
+        },
+        "tips": {
+          "1": "DeHub ndhukung macem-macem basa — kabeh antarmuka ditranslasi.",
+          "2": "Setelan privasi ditrapake sanalika."
+        }
+      },
+      "posting-allowance": {
+        "title": "Watesan Kiriman Saben Dina Sampeyan",
+        "intro": "Kiriman gratis saben dina nganti watesan sing skala karo lencana staking sampeyan. Kabeh wong diwiwiti kanthi sepuluh kiriman teks lan siji gigabyte video, gambar lan audio saben dina. Liwati salah siji lan liyane dina iku dibayar ing token DeHub — mung ing bagean sing mlaku liwat.",
+        "steps": {
+          "1": "Kirim kaya biasane. Ing njero watesan ora ana sing dikenani biaya lan ora ana sing dijaluk saka sampeyan.",
+          "2": "Kiriman teks lan media minangka kolam sing kapisah, mula dina sing dihabisake ngunggah video isih ninggalake kabeh sepuluh kiriman teks gratis.",
+          "3": "Nalika kiriman mlaku liwat, aplikasi menehi rega dhisik lan mriksa dompet sampeyan bisa nutupi sadurunge ana sing diunggah.",
+          "4": "Kiriman kasebut diterbitake persis kaya ing njero watesan — publikasi ora nate ngenteni pembayaran.",
+          "5": "Banjur sampeyan nyetujoni siji transfer kanggo kiriman kasebut, disetel ing Base utawa BNB Chain sing duwe token DeHub sing cukup.",
+          "6": "Loro-lorone kolam direset jam rolas wengi UTC."
+        },
+        "tips": {
+          "1": "Overage iku pro-rata: 200 MB liwat watesan sampeyan biaya 200 MB, ora siji gigabyte.",
+          "2": "Repost, komentar, reaksi, tips lan pesen ora biaya apa-apa lan ora nate ndemek watesan.",
+          "3": "Tolak pembayaran lan kiriman tetep munggah — jumlah kasebut mung ngalangi kiriman mbayar sabanjure nganti disetel. Watesan gratis sesuk mesthi dadi duweke sampeyan.",
+          "4": "Lencana staking nambah watesan gratis lan nyuda rega apa wae sing liwat."
+        }
+      },
+      "reactions-and-safety": {
+        "title": "Reaksi, Muting & Konten Dewasa",
+        "intro": "Ana sangang reaksi ing mburi tombol kaya, lan sakumpulan kontrol kanggo mutusake apa sing sampeyan deleng lan sapa sing bisa nggayuh sampeyan.",
+        "steps": {
+          "1": "Tahan jempol munggah ing kiriman apa wae kanggo mbukak tray reaksi: kaya, tresna, hormat, panas, lol, sedih, nangis, ora seneng lan tai.",
+          "2": "Pitu sing positif diitung menyang total kaya kiriman; ora seneng lan tai diitung nglawan.",
+          "3": "Reaksi sampeyan ditimbang dening lencana staking sampeyan, mula reaksi pemegang lencana luwih akeh tinimbang siji swara.",
+          "4": "Tutul X ing header kiriman kanggo bisu penulisé — dheweke langsung metu saka feed sampeyan.",
+          "5": "Pencipta menehi tandha kiriman dhewe minangka diwasa nalika nggawe; kiriman kasebut tetep metu saka feed utama umum.",
+          "6": "Kanggo ndeleng kiriman diwasa ing endi wae, uripake 'Tampilake konten diwasa' ing Setelan."
+        },
+        "tips": {
+          "1": "Kiriman diwasa isih katon ing profil pangripta lan kanggo wong-wong sing ngetutake dheweke.",
+          "2": "Mblokir saka profil luwih adoh tinimbang bisu lan uga ngalangi pesen.",
+          "3": "Tray reaksi nuduhake sapa sing bereaksi lan kanthi apa, mula sampeyan bisa ndeleng ruwangan tinimbang mung nomer."
+        }
+      },
+      "stages": {
+        "title": "Panggung (Ruang Audio Langsung)",
+        "intro": "Panggung minangka ruang audio langsung sing dibangun ing DeHub. Host mbukak kamar, nggawa pamicara munggah, lan sapa wae bisa mlebu kanggo ngrungokake saka kaca Panggung utawa link sing dibagike.",
+        "steps": {
+          "1": "Buka 'Panggung' ing sidebar kanggo ndeleng apa sing ditindakake saiki lan apa sing dijadwalake.",
+          "2": "Tutul panggung langsung kanggo gabung minangka pamireng, utawa atur pangeling ing panggung sing dijadwalake lan dikandhani nalika diwiwiti.",
+          "3": "Miwiti dhewe saka kaca sing padha — sampeyan bisa langsung siaran saka browser, tanpa OBS utawa kunci stream.",
+          "4": "Minangka host, nggawa speaker menyang panggung, bisu utawa copot, nuduhake layar, lan ngatur soundboard.",
+          "5": "Pamireng ngirim reaksi langsung lan ngobrol ing obrolan ruangan tanpa munggah panggung.",
+          "6": "Saben panggung direkam, lan rekaman diputer maneh sawise saka kertu sing katon."
+        },
+        "tips": {
+          "1": "Subtitle langsung nulis saben speaker lan nerjemahake menyang basa apa wae sing sampeyan waca.",
+          "2": "Dubbing langsung bisa ngomongake ruangan kanthi swara klon host dhewe, ditagih saben menit ing token DeHub.",
+          "3": "Host bisa nyetel stasiun radio utawa muter klip musik dhewe ing antarane obrolan.",
+          "4": "Mini-player njaga ruangan tetep mlaku ing pojok nalika sampeyan nelusuri liyane saka app."
+        }
+      },
+      "communities": {
+        "title": "Komunitas & Acara",
+        "intro": "Komunitas minangka papan sing dikelola anggota kanthi feed, anggota, lan aktivitas dhewe. Acara nambahake pemrograman wektu-wates ing ndhuwur.",
+        "steps": {
+          "1": "Buka 'Komunitas' ing sidebar lan nelusuri sing umum.",
+          "2": "Gabung ing siji tutul. Aktivitas anyar katon minangka lencana sing durung diwaca ing navigasi.",
+          "3": "Pos, diskusi, jalanake jajak pendapat lan tip ing feed komunitas dhewe.",
+          "4": "Pamilik komunitas ngatur papan dhewe lan bisa menehi hak admin marang wong liya.",
+          "5": "Buka 'Acara' kanggo pemrograman sing dijadwalake, kanthi kaca lengkap saben acara sing bisa sampeyan tindakake kanthi langsung."
+        },
+        "tips": {
+          "1": "Obrolan komunitas ndhukung @mentions lan @here, supaya postingan bisa tekan ruangan.",
+          "2": "Link undhangan ngidini sampeyan nggawa wong langsung menyang komunitas."
+        }
+      },
+      "arcade": {
+        "title": "Arkade",
+        "intro": "Lima game mlaku ing DeHub ing tab browser — ora ana sing kudu diinstal, ora ana sing kudu dituku.",
+        "steps": {
+          "1": "Buka 'Arkade' ing sidebar.",
+          "2": "Pilih game: King's Gambit (catur 3D kanthi tangga Elo online), Claude of Duty (shooter sing ngasilake seni dhewe nalika dimuat), Jungle Trail (mlaku-mlaku ing alas udan prosedural), Street Slayer (beat 'em up sing digawe kanggo DeHub) utawa Chartopia (lantai dagang sing bisa dilakoni).",
+          "3": "Main ing tab. King's Gambit lan Street Slayer nyimpen papan pimpinan.",
+          "4": "Chartopia uga mlaku ing headset VR liwat WebXR."
+        },
+        "tips": {
+          "1": "Rong wong ndhelik ing tema tampilan — atur app dadi War kanggo Claude of Duty, utawa Jungle kanggo Jungle Trail.",
+          "2": "Saben game duwe kertu share dhewe, supaya link menyang siji unfurls kanthi bener ing ngendi wae sampeyan posting."
+        }
+      },
+      "bounties-stores": {
+        "title": "Bounty & Toko",
+        "intro": "Rong cara kanggo ngowahi platform dadi penghasilan: pos utawa klaim bounty, utawa mbukak toko lan adol menyang pamirsa.",
+        "steps": {
+          "1": "Buka 'Bounties' kanggo nelusuri karya sing mbukak, disaring miturut kategori utawa mata uang.",
+          "2": "Klaim siji, lakoni, lan kirimake kanggo ngumpulake hadiah — sapa wae bisa dadi pemburu, ora perlu aplikasi.",
+          "3": "Pasang *bounty* dhewe kanthi ringkesan lan hadiah ing token DeHub utawa USDC. Iki mlebu ing *escrow* nalika sampeyan masang.",
+          "4": "Buka 'Toko' kanggo nyiyapake *storefront* kanthi kaca, *branding*, lan *listing* dhewe.",
+          "5": "Produk diharga lan diselesake ing token DeHub liwat *wallet* sing dibangun, tanpa *checkout* eksternal."
+        },
+        "tips": {
+          "1": "*Bounties* diatur dadi Media Sosial, Klip, lan Kontrak.",
+          "2": "Alur perselisihan ngrampungake perselisihan babagan pangiriman, mula *escrow* mesthi ngrampungake kanthi adil.",
+          "3": "Kreator nggunakake *bounties* kanggo ngembangake komunitas — *share*, klip, lan reaksi kabeh tugas sing sah."
+        }
+      },
+      "creator-studio": {
+        "title": "Studio Kreator & Editor",
+        "intro": "Studio Kreator ngasilake gambar, video, musik, swara, lan model 3D saka *prompt*, lan nyerahake menyang editor — kalebu editor video multi-trek lengkap sing mlaku ing *browser*.",
+        "steps": {
+          "1": "Buka Studio Kreator lan njlèntrèhaké apa sing pengin digawe.",
+          "2": "Server ngutip biaya sadurunge proyek mlaku, mula sampeyan ndeleng biaya sadurunge sampeyan mbuwang.",
+          "3": "Render terus ing antrean sing dibagikan nalika sampeyan terus browsing aplikasi.",
+          "4": "Atur asil ing editor gaya Canva, utawa bukak editor video kanggo garis wektu nyata kanthi motong, nglapisi, lan ngekspor.",
+          "5": "Lebokake potongan sing wis rampung langsung menyang postingan, cendhak, utawa *listing* toko."
+        },
+        "tips": {
+          "1": "Pustaka aset stok gratis ana ing jejere Studio kanggo apa wae sing luwih milih ora ngasilake.",
+          "2": "Generasi dibayar ing token DeHub saka *wallet* sampeyan — sampeyan mlebu siji transfer saben proyek, lan rega dikutip sadurunge sampeyan mbayar.",
+          "3": "Pangguna sing luwih abot bisa njupuk rencana Ultra, Tim, utawa Skala, sing ngirim tunjangan token saben wulan langsung menyang *wallet* sampeyan."
+        }
+      },
+      "buying-dhb": {
+        "title": "Nuku Token",
+        "intro": "Tuku token DeHub langsung ing njero aplikasi nggunakake antarmuka *swap* sing dibangun.",
+        "steps": {
+          "1": "Navigasi menyang kaca 'Tuku' saka bilah sisih.",
+          "2": "Pilih token sing pengin ditukar (contone, ETH, USDC).",
+          "3": "Lebokake jumlah sing pengin dibelanjakake utawa jumlah token sing pengin ditampa.",
+          "4": "Tinjau kurs ijol-ijolan lan output sing dikira.",
+          "5": "Klik ikon setelan gear kanggo nyetel toleransi *slippage* (standar yaiku 1%).",
+          "6": "Konfirmasi transaksi *swap*.",
+          "7": "Token DeHub bakal katon ing *wallet* sampeyan sawise transaksi rampung."
+        },
+        "tips": {
+          "1": "Toleransi *slippage* sing luwih dhuwur = luwih kamungkinan dieksekusi, nanging potensi rega sing luwih ala.",
+          "2": "Tansah mriksa kurs ijol-ijolan sadurunge konfirmasi.",
+          "3": "Sampeyan bisa nyetel *slippage* khusus ing panel setelan."
+        }
+      },
+      "bridge": {
+        "title": "Jembatan",
+        "intro": "Pindhah token DeHub sampeyan ing antarane *blockchain* sing didhukung nggunakake jembatan lintas-rantai.",
+        "steps": {
+          "1": "Menyang kaca 'Bridge' saka sidebar.",
+          "2": "Pilih rantai sumber (sing token sampeyan saiki ana).",
+          "3": "Pilih rantai tujuan (sing sampeyan pengin ngirim).",
+          "4": "Lebokake jumlah token kanggo di-bridge.",
+          "5": "Tinjau biaya bridge lan perkiraan wektu kedatangan.",
+          "6": "Konfirmasi transaksi bridge.",
+          "7": "Enteni nganti transaksi rampung — bridging bisa njupuk sawetara menit."
+        },
+        "tips": {
+          "1": "Biaya bridge beda-beda gumantung saka pasangan rantai.",
+          "2": "Bridging biasane njupuk 1-5 menit gumantung saka rantai sing melu.",
+          "3": "Tansah mriksa maneh rantai tujuan sadurunge konfirmasi."
+        }
+      },
+      "music-tv": {
+        "title": "Musik & TV",
+        "intro": "Nikmati konten media langsung ing DeHub — streaming musik lan nonton saluran TV langsung.",
+        "steps": {
+          "1": "Menyang 'Musik' saka sidebar kanggo nelusuri lan muter kiriman musik.",
+          "2": "Menyang 'TV' kanggo ngakses saluran TV langsung.",
+          "3": "Nelusuri saluran miturut kategori utawa negara.",
+          "4": "Klik ing saluran kanggo miwiti nonton.",
+          "5": "Gunakan kontrol pamuter kanggo nyetel volume lan puter maneh.",
+          "6": "Laporake saluran sing rusak nggunakake tombol laporan."
+        },
+        "tips": {
+          "1": "Saluran TV diverifikasi dening komunitas kanggo linuwih.",
+          "2": "Kiriman musik bisa diputer nalika nelusuri konten liyane."
+        }
+      },
+      "post-info": {
+        "title": "Info Kiriman & Fraksi",
+        "intro": "Kiriman sing dicetak minangka NFT sing dipérang dadi 1.000 fraksi. Kaca Info Kiriman nuduhake data on-chain, statistik keterlibatan, rincian kepemilikan, lan ngidini sampeyan dagang fraksi saka kiriman apa wae — ing kiriman sing durung dicetak, nawakake kanggo nyetak.",
+        "steps": {
+          "1": "Tutul ikon 'ⓘ' ing kiriman apa wae kanggo mbukak kaca Info Kiriman.",
+          "2": "Ing sisih ndhuwur sampeyan bakal weruh ID Token (identifier on-chain unik) lan hash transaksi — klik hash kanggo ndeleng ing block explorer.",
+          "3": "Ing ngisor iki, statistik keterlibatan nuduhake total seneng, ora seneng, tampilan, komentar, lan tip sing ditampa.",
+          "4": "Bagean Pemegang nuduhake bilah kemajuan saka pirang-pirang 1.000 fraksi sing isih diduweni dening pembuat, ditambah dhaptar kabeh pemegang fraksi kanthi saldo lan persentase.",
+          "5": "Yen kiriman kasebut pay-per-view (PPV), sampeyan bakal weruh rega, mata uang, lan pirang-pirang pangguna sing wis tuku akses.",
+          "6": "Pamilik kiriman bisa ngganti visibilitas (Umum, Ora Terdaftar, utawa Pribadi) lan ngowahi judhul/deskripsi langsung saka kaca iki."
+        },
+        "tips": {
+          "1": "Kiriman sing mentas dicetak diwiwiti kanthi pembuat sing nyekel kabeh 1.000 fraksi (kepemilikan 100%).",
+          "2": "Hash transaksi nyambung menyang BaseScan utawa BscScan gumantung saka rantai.",
+          "3": "Kiriman sing ora kadhaptar ora katon ing feed nanging isih bisa diakses liwat link langsung."
+        }
+      },
+      "trading-fractions": {
+        "title": "Trading Pecahan",
+        "intro": "Perdagangan pecahan — nelusuri daftar, nawar, mendaftarkan milikmu — ana ing aplikasi web ing dehub.io, ing kaca Info Kiriman saben kiriman.",
+        "steps": {
+          "1": "Buka dehub.io ing browser lan mlebu nganggo akun sing padha.",
+          "2": "Buka kaca Info Kiriman lan pindhah menyang tab Marketplace.",
+          "3": "Telusuri daftar, nawar kanthi rega sing dikarepake, utawa daftarke pecahan sing dicekel.",
+          "4": "Sawise dagang rampung, owah-owahan katon ing tab Pecahan ing kene ing seluler."
+        },
+        "tips": {
+          "1": "Duwe pecahan saka kiriman tegese sampeyan nyekel bagean saka NFT on-chain kasebut.",
+          "2": "Priksa pemegang kiriman ing pasar web kanggo ndeleng distribusi kepemilikan sadurunge tuku.",
+          "3": "Minangka kreator, adol pecahan ngidini penggemar duwe konten sampeyan."
+        }
+      },
+      "minting-posts": {
+        "title": "Nggawe Kiriman (Nggawe NFT)",
+        "intro": "Nggawe iku opsional. Kiriman diterbitake off-chain nalika sampeyan ngirim — ora ana dompet, ora ana tandatangan, ora ana gas — lan sampeyan bisa nggawe minangka NFT kapan wae sampeyan pengin, nalika nulis utawa mengko saka kiriman kasebut.",
+        "steps": {
+          "1": "Klik tombol 'Kirim' ing sidebar (desktop) utawa tombol + (mobile).",
+          "2": "Tulis teks sampeyan, lampirake media (gambar, video, audio), lan tambahake kategori.",
+          "3": "Tinggalake 'Nggawe kiriman' mati kanggo nerbitake off-chain, utawa uripake kanggo nggawe nalika nerbitake.",
+          "4": "Penerbitan ora tau ngenteni ing rantai: kiriman katon ing feed ing salah siji cara.",
+          "5": "Kanggo nggawe mengko, bukak kaca info 'ⓘ' kiriman lan gunakake tumindak Nggawe ing kono.",
+          "6": "Sawise digawe, kiriman bakal entuk ID Token lan hash transaksi sing bisa diverifikasi ing rantai, lan sampeyan bakal duwe kabeh 1.000 pecahan."
+        },
+        "tips": {
+          "1": "Login sosial, email, lan SMS mbayar nol gas — DeHub nyeponsori biaya nggawe.",
+          "2": "Pangguna dompet eksternal butuh ETH ing Base utawa BNB ing BNB Chain kanggo gas.",
+          "3": "Nggawe minangka sing ndadekake kiriman bisa didagang lan duwe royalti. Kiriman sing durung digawe isih entuk tips lan tampilan.",
+          "4": "Cathetan ing rantai permanen yen wis digawe, sanajan kiriman mengko dibusak saka feed."
+        }
+      },
+      "glossary": {
+        "title": "Glosarium",
+        "intro": "Glosarium lengkap terminologi kripto lan platform kanggo mbantu sampeyan navigasi Web3.",
+        "steps": {
+          "1": "Navigasi menyang 'Glosarium' saka sidebar.",
+          "2": "Telusuri istilah kanthi urutan abjad utawa gunakake telusuran kanggo nemokake istilah tartamtu.",
+          "3": "Klik ing istilah kanggo ndeleng definisi lan katrangan lengkap.",
+          "4": "Istilah nyakup konsep kripto, terminologi DeFi, lan fitur khusus DeHub."
+        },
+        "tips": {
+          "1": "Sumber daya sing apik kanggo wong anyar ing kripto lan Web3.",
+          "2": "Glosarium rutin dianyari kanthi istilah anyar."
+        }
+      }
     }
   }
 }

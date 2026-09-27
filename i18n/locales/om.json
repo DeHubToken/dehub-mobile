@@ -3445,11 +3445,6 @@
     "noResultsFor": "\"{{query}}\" jechuun bu'aa hin qabu.",
     "guideSubtitle": "Tarkaanfii tarkaanfiin deemsa amala hunda",
     "searchGuide": "Qajeelfama kana barbaadi...",
-    "guideFractionsTip": "Barreeffamni mint ta'e hundi uumaan isaa qooda isaa hunda qabatee jalqaba (abbummaa 100%).",
-    "guideInfoStep": "Daldala mint isaa block explorer irratti banuuf fi galmee chain irraa mirkaneessuuf mallattoo odeeffannoo barreeffama mint ta'e irratti tuqi.",
-    "guideMintIntro": "Barreeffama akka NFT tti blockchain irratti mint gochuun filannoo dha. Yeroo maxxansitu mint godhi, yookaan amma maxxansiitii booda menu barreeffamaa irraa mint godhi.",
-    "guideMintPublishStep": "Mint gochuu fi dhiisuu filadhu, achiis maxxansuuf 'Maxxansi' tuqi. Mint yoo darbite, booda menu isaa irraa barreeffama mint gochuu dandeessa.",
-    "guideMintFractionsStep": "Qooda 1,000 hunda (abbummaa 100%) maxxansa kee haaraa mint godhamee argatta.",
     "glossaryMintTxDesc": "Daldala mint isaa block explorer irratti banuuf fi galmee chain irraa mirkaneessuuf mallattoo odeeffannoo barreeffama mint ta'e irratti tuqi. Fuulli Odeeffannoo Barreeffamaa guutuun — lakkoofsa, abbootii, gabaa — appii weebii dehub.io irra jira.",
     "glossaryTokenIdDesc": "Eenyummeessaa addaa chain irratti barreeffamaaf kennamu yeroo akka NFT tti mint ta'u.",
     "repostsTab": "Irra deebiin maxxansa",
@@ -3466,24 +3461,7 @@
     "glossaryStakingDesc": "Yeroo booda badhaasa argachuuf mallattoolee DeHub kee cufi. Tookiin staked ta’es bulchiinsa keessatti aangoo sagalee kennuu dabaluu siif kenna.",
     "glossaryGovernanceDesc": "Yaadota waltajjii bocan dhiyeessuun sagalee kennuu. Aangoon sagalee kennuu kee kan madaalamu mallattoo DeHub meeqa akka qabduun.",
     "glossaryStakingBadgesDesc": "Baajiiwwan maqaa fayyadamaa kee cinatti agarsiifaman waliigala qabannaa mallattoo DeHub kee irratti hundaa'uun (wallet + staked). Sadarkaa 13tu jira — hamma tookiin baay’ee qabatte sadarkaan baajii kee ol’aanaa ta’a. Sadarkaan ol’aanaan aangoo sagalee kennuu bulchiinsa dabalataa fi kaffaltii waltajjii gadi aanaa ni kennu.",
-    "glossaryLeaderboardDesc": "Fayyadamtoonni madaallii waliigalaa DeHub token balance (wallet + staked across all chains) tiin sadarkaa qabamu. Sadarkaan yeroo yeroon kan fooyya’u yoo ta’u jijjiirama guyyaa 1 fi torban 1 hordofa. Akkasumas gorsa ergame, gorsa fudhatame, hordoftoota, like, ykn subscribers tiin saaguu dandeessa.",
-    "guideTipStep": "Uumaa maxxansaaf gorsa mallattoo DeHub keessatti erguuf mallattoo gem/tip cuqaasi.",
-    "guideTipWalletTip": "Gorsi kallattiin gara boorsaa uumaa akka mallattoo DeHub tti deema.",
-    "guideTipNotificationsTip": "Beeksisni gorsaa mallattoo DeHub meeqa akka argatte agarsiisa.",
-    "guideWalletIntro": "Hafnaan mallattoo DeHub kee sansalata hedduu irratti ilaali, kuufama staking ilaali, fi qabeenya kee bulchi.",
-    "guideWalletTotalStep": "Madaallii mallattoo DeHub waliigalaa kee sansalata deeggaraman hunda irratti walitti qabame ilaali.",
-    "guideStakingIntro": "Badhaasa argachuu fi humna sagalee bulchiinsaa guddisuuf mallattoolee DeHub keessan irratti kaa'aa.",
-    "guideStakingAmountStep": "Token DeHub meeqa akka stake gochuu barbaaddu galchi.",
-    "guideLeaderboardBalanceStep": "Caancalli madaallii fayyadamtoota waliigala qabannaa mallattoo DeHub isaaniitiin sadarkaa kenna.",
-    "guideGovernanceVoteStep": "Yaadota irratti sagalee kennuudhaaf buttooni qubbee harkaa ol/gadi fayyadamuun — ulfaatinni sagalee keetii mallattoo DeHub meeqa akka kaa’atte irratti hundaa’a.",
-    "guideGovernancePowerTip": "Aangoon sagalee kennuu kee kan murtaa’u mallattoo DeHub meeqa akka kaa’atte irratti.",
-    "guideBuyIntro": "Tokens DeHub kallattiin DPay keessatti kaardii ykn kirpitoo deeggarame fayyadamuun bitadhaa.",
-    "guideBuyAmountStep": "Hanga baasuu barbaaddu ykn mallattoo DeHub meeqa argachuu akka barbaaddu galchi.",
-    "guideBuyDeliveredStep": "Tokens DeHub kee erga daldalli xumuramee booda boorsaa kee keessatti ni mul'ata.",
-    "guideBridgeIntro": "Riqicha sansalata qaxxaamuraa fayyadamuun mallattoolee DeHub kee bilookicheenii deeggaraman gidduutti sochoosi.",
-    "guideBridgeSourceStep": "Sansalata madda (bakka mallattoolee DeHub kee yeroo ammaa jiran) fili.",
-    "guideBridgeDestStep": "Sansalata galma (bakka mallattoolee DeHub kee erguu barbaaddu) fili.",
-    "guideBridgeAmountStep": "Tookiin DeHub meeqa akka riqicha godhu galchi."
+    "glossaryLeaderboardDesc": "Fayyadamtoonni madaallii waliigalaa DeHub token balance (wallet + staked across all chains) tiin sadarkaa qabamu. Sadarkaan yeroo yeroon kan fooyya’u yoo ta’u jijjiirama guyyaa 1 fi torban 1 hordofa. Akkasumas gorsa ergame, gorsa fudhatame, hordoftoota, like, ykn subscribers tiin saaguu dandeessa."
   },
   "arcade": {
     "submitAccessibility": "Tapha tokko gara arcade tti galchaa",
@@ -6842,6 +6820,504 @@
       "packEmpty": "Teessoo sana irratti emojiin hin argamne",
       "shortcodeTaken": "{{name}} duruu fudhatamee jira",
       "shortcodeStandard": "{{name}} duraanuu emoji sadarkaa isaa eeggatedha"
+    }
+  },
+  "guide": {
+    "sections": {
+      "getting-started": {
+        "title": "Jalqabuu",
+        "intro": "DeHub gara galuuf karaawwan shaniitu jira, isaanis mana kuufama (wallet) qabaachuun isin hin barbaachisu: Google, Apple, imeilidhan ergame, SMSdhan ergame, ykn mana kuufama jiru walquunnamuun. Mana kuufama malee, karaawwan hafan hundi gara fuula boodaaf mana kuufama kan hin qabamne (non-custodial) siif uumu - siif bilchina, DeHub immoo ergaa barreessuuf, kennuu fi walitti qabuuuf baasii (gas) siif kaffala, akkasittiis meeshaawwan isaa hin bitatin.",
+        "steps": {
+          "1": "dehub.io daawwadhu — nyaanni manaa fuula duraati, kanaaf osoo hin seenin dura naannoo kee ilaaluu dandeessa.",
+          "2": "&#39;Sign In&#39; jedhu cuqaasaa. Google fi Apple, dirree teessoo imeelii ykn lakkoofsa bilbilaa, fi kan jiruuf &#39;Connect Wallet&#39; ni argitu.",
+          "3": "Google ykn Apple waliin, dhangala&#39;aa dhiyeessaa sanaa xumuri. Imeelii ykn ergaa gabaabaatiin koodii dhufu galchaa.",
+          "4": "Boorsaan yeroo jalqabaaf seentu uumamee siif eegama. Inumaayyuu boorsaa ofii walitti hidhuu jechuun mallattoo tokko teessoo mirkaneessuu jechuudha.",
+          "5": "Maqaa fayyadamaa filadhu. Innis waan namoonni argan yoo ta&#39;u akka dehub.io/<username> profile link keessaniitti dachaa lama ta&#39;a.",
+          "6": "Seentani. Feeddii ilaalaa, profayila keessan qopheeffadhaa, fi barreessuu jalqabaa."
+        },
+        "tips": {
+          "1": "Mallattoon hawaasummaa, iimeelii fi ergaa gabaabaa gonkumaa gaazii hin kaffalu — DeHub ispoonsara godha. Wallet walitti hidhame ETH ykn BNB mataa isaanii kaffalu.",
+          "2": "Gara akkaawuntii DeHub hambaatti deebi&#39;aa jirtuu? Lakkoofsa email ykn bilbilaa inni itti fayyadameen galmaa&#39;ee godaansi siif argata.",
+          "3": "Meeshaa tokko irratti akkaawuntii hedduu qabachuu fi Sajoo → Profaayilii keessatti gidduu isaanii jijjiiruu dandeessa."
+        }
+      },
+      "home-feed": {
+        "title": "Nyaata Manaa",
+        "intro": "Nyaanni manaa bakka itti maxxansa namoota hordoftan irraa fi qabiyyee trending ta&#39;e argitanidha. Caancaloota gosa qabiyyee hedduu fi filannoowwan saaguu ni deeggara.",
+        "steps": {
+          "1": "Gara /app tti qajeeli — kun nyaata mana keetii ti.",
+          "2": "Aduuwwan ol’aanoo fayyadamiitii maayiiwwan wantootaa irratti filadhu: Mana (hundaa), Vidiyoo, Fuudoota, Dheertuu, Muziqaa, ykn Afuuffii.",
+          "3": "Aduuwwan irratti mirga/bitaa kaasuun filannoo dabaloo mobaayila irratti argachuuf.",
+          "4": "Balaqqamuu/filannoo (ol-mirga gubbaa) fayyadamiitii maayiiwwan filannoo jijjiiruuf: Guddaa, Haaraa, ykn Ol’aanaa.",
+          "5": "Gadi lakkisuun maayiiwwan haaromsuuf mobaayila irratti.",
+          "6": "Gadi lakkisuun ergoota dabaloo argachuuf (wal-xaxaa hin qabne).",
+          "7": "Wal-jijjiiruun walitti qabuu fi maayiiwwan gidduu fayyadamiitii wal-jijjiiruu."
+        },
+        "tips": {
+          "1": "Walitti qabuu fuudoota saffisaan ilaaluuf gaarii dha.",
+          "2": "Aduuwwan 'Mana' maayiiwwan hundaa walitti makamee agarsiisa.",
+          "3": "Aduuwwan Afuuffii afuuffii yeroo ammaa irratti argaman agarsiisa."
+        }
+      },
+      "creating-posts": {
+        "title": "Ergoota uumuun",
+        "intro": "Ergoota barreessaa, fuudoota, vidiyoo, sagalee, GIF, fi kkf qoodi. Hashtag, cashtag, fi eeramoota fayyadamiitii ol guddisi.",
+        "steps": {
+          "1": "Balaqqamuu 'Ergoota' (bitaa irratti kompyuutara) ykn balaqqamuu + (mobaayila) irratti cuqaasi.",
+          "2": "Barreessaa kee iddoo barreessaa irratti barreessi.",
+          "3": "Fuuduu ykn vidiyoo dabaluuf, balaqqamuu malaqa’aa irratti cuqaasiitii filii.",
+          "4": "Sagalee barreessuuf, balaqqamuu bilbila sagalee irratti cuqaasi.",
+          "5": "GIF dabaluuf, balaqqamuu GIF irratti cuqaasiitii barbaadi.",
+          "6": "#Hashtagota fayyadamiitii ergoota kee qooduuf (fkn #crypto, #defi).",
+          "7": "$Cashtagota fayyadamiitii meeshaalee barreessuuf (fkn $DHB, $ETH).",
+          "8": "@Eeramoota fayyadamiitii namoota biroo barreessuuf (fkn @username).",
+          "9": "Balaqqamuu 'Ergoota' irratti cuqaasiitii maxxanfamuuf. Ergoon kee maayiiwwan irratti yeroo sanatti muldhata."
+        },
+        "tips": {
+          "1": "Ergoonni barreessuu qabachuu danda’u.",
+          "2": "Ergoota irra deebi’uun ergoota kamiyyuu irratti balaqqamuu ergoota irra deebi’uu irratti cuqaasiitii 'Quote' filadhu.",
+          "3": "Qoodiin (hashtagoota) 'Talk of the Town' sadarkaa irratti muldhata."
+        }
+      },
+      "interacting-with-posts": {
+        "title": "Ergoota waliin walitti fufuu",
+        "intro": "Wantoota irratti walitti fufiitii sagalee kennuu, yaada barreessuu, kennuu, qabachuuf, qooduu, fi hiikuun.",
+        "steps": {
+          "1": "Ergoota ol ykn gadi sagalee kenni balaqqamuu fallaa irratti cuqaasiitii ergoota kamiyyuu bitaa irratti.",
+          "2": "Balaqqamuu balaqqamuu sagalee irratti cuqaasiitii iddoo yaadaa banuufitii deebii kenni.",
+          "3": "Balaqqamuu malaqa’aa/kennuu irratti cuqaasiitii meeshaalee DeHub ergoota barreessuuf kenni.",
+          "4": "Balaqqamuu qabachuuf irratti cuqaasiitii ergoota booddee fayyadamuuf.",
+          "5": "Balaqqamuu qooduu irratti cuqaasiitii ergoota link ykn ala qoodi.",
+          "6": "Booddeetti (aadaa addunyaa) cuqaasi ergaa irratti jiru gara afaan keetti hiikuuf.",
+          "7": "Ergaawwan suuraa qabanf, suuraa keessatti jiru hiikuuf 'Hiikuu Suuraa' jedhu cuqaasi.",
+          "8": "Ergaa tokko guutumaan guutuutti ilaaluuf ergaa irratti cuqaasi."
+        },
+        "tips": {
+          "1": "Kaffaltiin gara galmeetti galmaa'aa DaHHub keessatti argamu.",
+          "2": "Kaffaltii baay'ina filannoo ykn baay'ina mataa kee barreessi.",
+          "3": "Ergaawwan galmeessitan galmeetti keessatti argamu."
+        }
+      },
+      "explore-search": {
+        "title": "Qorachuu & barbaadu",
+        "intro": "Aduunyaa haaraa fi namoota haaraa qorachuu fi barbaaduun.",
+        "steps": {
+          "1": "Aduunyaa keessatti /app/explore irraa dhaqii.",
+          "2": "Namoota, ergaawwan, ykn wantoota barbaaduuf achi olitti argamuun barbaadu.",
+          "3": "Mootummaa kee taboota irraa filadhu: Hundaa, Namoota, Ergaawwan, Suuraawwan, Vidiyoo, Muuziqaa, Jiraa.",
+          "4": "Aduunyaa irratti waantoota fi qabiyyee cimaa ilaali.",
+          "5": "Waa'ee cimaa cuqaasi ergaawwan walitti hidhata qaban hunda ilaaluuf.",
+          "6": "Namoota barbaadu keessatti argaman cuqaasi maayii isaanii ilaaluuf."
+        },
+        "tips": {
+          "1": "Barbaaduun maqaa, galmee, fi jechoota barbaaduu danda'a.",
+          "2": "Waa'een cimaa irra deebi'ee kan argamu ergaa dhawaatii irratti hundaa'ee."
+        }
+      },
+      "profile": {
+        "title": "Maayii",
+        "intro": "Maayii kee ergaawwan kee, hordofaa, hordofamaa, fi galmee kee agarsiisa.",
+        "steps": {
+          "1": "Maayii kee ykn 'Maayii' jedhu galmee keessatti cuqaasi maayii kee ilaaluuf.",
+          "2": "Maayii kee jijjiiruuf 'Maayii Jijjiiru' cuqaasi maqaa kee, ibsa kee, fi suuraa kee.",
+          "3": "Suuraa maayii kee suuraa maayii kee irratti cuqaasi suuraa maayii kee galmeessisuuf.",
+          "4": "Baay'ina hordofaa fi hordofamaa maayii kee irratti ilaali.",
+          "5": "Ergaawwan kee, meediyaa, fi wantoota jaallatte ergaawwan kee irraa ilaali.",
+          "6": "Galmee kee kopii gochuuf galmee kee biratti argamuun kopii cuqaasi.",
+          "7": "Maayiiwwan biro irra deebi'ee cuqaasi maqaa isaanii ykn suuraa isaanii irra platform irratti."
+        },
+        "tips": {
+          "1": "Maqaan kee tokko qofa yoo ta'u maayii kee URL (dehub.io/@username) irratti argama.",
+          "2": "Afaanawwan dhufaa siif kan ilaaluu danda'u eenyutu si hordofa."
+        }
+      },
+      "messages": {
+        "title": "Ergaawwan",
+        "intro": "Ergaawwan mataa kee namoota biro irraanfachuuf.",
+        "steps": {
+          "1": "Ergaawwan ilaaluuf galmee keessatti 'Ergaawwan' cuqaasi.",
+          "2": "Boodduu caasee irratti cuqaasiitii marii haaraa jalqabi.",
+          "3": "Namoota barreessitoota isaanii irratti barbaadiitii ergaa isaaniif ergi.",
+          "4": "Ergaa kee barreessiitii erguuf cuqaasi.",
+          "5": "Aduuwwan kee barreessota kee keessatti ilaali.",
+          "6": "Dubbachuu itti fufuuf aduu irratti cuqaasi."
+        },
+        "tips": {
+          "1": "Namni si erge yoo si erge beeksifamta.",
+          "2": "Uumtonni ergaa gumaacha barbaachisummaa irra kaa'uu danda'u."
+        }
+      },
+      "ai-assistant": {
+        "title": "Gargaaraa AI",
+        "intro": "DeHub's gargaaraa AI irratti dubbachuun gargaara, odeeffannoo, fi hojii uumamaa argachuuf.",
+        "steps": {
+          "1": "Gargaaraa banuuf bifa \"Gargaaraa\" jedhu cuqaasi.",
+          "2": "Gaaffii ykn gaafii kee barreessi.",
+          "3": "Gargaaraa kun odeeffannoo crypto, gaaffiiwwan platform, fi beekumsa guutuu irratti gargaaruu danda'a.",
+          "4": "Boodduu haaraa cuqaasuun marii haaraa jalqabi.",
+          "5": "Aduuwwan kee bifa gargaaraa irratti ilaali.",
+          "6": "Gargaaraa akka qoratuuf suuraawwan dabaluu danda'a."
+        },
+        "tips": {
+          "1": "Gargaaraa kun marii keessatti haala walitti qabamee ilaala.",
+          "2": "Gargaaraa DeHub's dandeettii, jechoota crypto, ykn gaaffiiwwan guutuu gaafachuu danda'a.",
+          "3": "Aduuwwan darban yeroo hundaaf qabamuun argachuuf danda'a."
+        }
+      },
+      "notifications": {
+        "title": "Beeksifnoota",
+        "intro": "Gammachuu, yaada, gumaacha, hordoffii, fi hojiiwwan biroo irratti odeeffannoo haaraa argadhu.",
+        "steps": {
+          "1": "Cuqaasi \"Beeksifnoota\" ykn \"Beeksifnoota\" jedhu cuqaasi.",
+          "2": "Beeksifnoota hunda walitti qabamee ilaali.",
+          "3": "Wixineen walitti qabamee ilaaluuf beeksifnoota irratti cuqaasi.",
+          "4": "Beeksifnoonni: hordoffii haaraa, sagalee barreessaa, yaada, gumaacha, fi waamicha.",
+          "5": "Beeksifnoonni hin dubbisamne ifa ba'u — yeroo ilaalaman dubbisamne jedhamu."
+        },
+        "tips": {
+          "1": "Beeksifnoota hin dubbisamne lakkoofsa agarsiisa.",
+          "2": "Beeksifnoonni gumaachaa lakkoofsa meeqaa argatte agarsiisu."
+        }
+      },
+      "wallet": {
+        "title": "Maallaqa",
+        "intro": "DeHub's meellaqa kee adda addaa ilaali, maallaqa kee eegi, fi qabeenya kee bulchi.",
+        "steps": {
+          "1": "Maallaqa banuuf \"Maallaqa\" jedhu cuqaasi.",
+          "2": "Madaallii mallattoo waliigalaa kee sansalata deeggaraman hunda irratti walitti qabame ilaali.",
+          "3": "Qabiyyee paayipiiwwan adda addaa ilaali: Ethereum, Base, BNB Chain, fi kanneen biroo.",
+          "4": "Kuufama staking fi badhaasa keessan ilaalaa.",
+          "5": "Hafnaan keessan deetaa sansalataa irraa haaromsuuf &#39;Refresh Scan&#39; cuqaasaa.",
+          "6": "Teessoo boorsaa keetii waraabii namoota biroo irraa mallattoo argachuuf."
+        },
+        "tips": {
+          "1": "Madaalliin ofumaan haaromsa garuu yeroo barbaaddetti haaromsuu dirqisiisuu dandeessa.",
+          "2": "Boorsaan hafnaan dhangala’aa (kan argamu) fi hafnaan kaa’ame agarsiisa."
+        }
+      },
+      "staking": {
+        "title": "Mootummaa",
+        "intro": "Badhaasa argachuu fi humna sagalee bulchiinsaa guddisuuf mallattoolee DeHub keessan irratti kaa&#39;aa.",
+        "steps": {
+          "1": "Barruu cinaa irraa gara fuula &#39;Staking&#39; tti qajeeli.",
+          "2": "Lakkoofsa mallattoolee ati stake gochuu barbaaddu galchi.",
+          "3": "Sansalata ati irratti stake gochuu barbaaddu filadhu.",
+          "4": "Daldala boorsaa kee keessatti mirkaneessi (boorsaa alaa) ykn ofumaan raawwata (seensa hawaasummaa).",
+          "5": "Maallaqa kee irratti kaa’amee fi badhaasa eegamaa jiru kamiyyuu ilaali.",
+          "6": "Unstake gochuuf, hanga galchiiti unstaking transaction mirkaneessi."
+        },
+        "tips": {
+          "1": "Staking yaada bulchiinsa keessatti ulfaatina sagalee keessanii ni dabala.",
+          "2": "Fayyadamtoonni social-login gaazii hin barbaachisan stake — gaazii hin qabu.",
+          "3": "Yeroo tokkotti sansalata hedduu irratti stake gochuu dandeessa."
+        }
+      },
+      "leaderboard": {
+        "title": "Gabatee Hooggansaa",
+        "intro": "Eenyu akka gubbaa jiru ilaalaa! Leedarboordii fayyadamtoota madaallii, baasii guyyaa guyyaa, fi mata dureewwan trending ta&#39;aniin sadarkaa kaa&#39;a.",
+        "steps": {
+          "1": "Fuula 'Leaderboard' irratti biraa banamuu irraa deemii.",
+          "2": "Caancaloota gidduutti jijjiiri: Madaallii, Guyyaa Guyyaa Baasii, fi Haasaa Magaalaa.",
+          "3": "Caancalli madaallii fayyadamtoota waliigala qabannaa mallattoo isaaniitiin sadarkaa kenna.",
+          "4": "Caancalli Daily Spent eenyu akka sa&#39;aatii 24 darban keessatti tipping baay&#39;ee socho&#39;e agarsiisa.",
+          "5": "Talk of the Town mata dureewwan/gosoota baay’ee irratti mari’ataman agarsiisa.",
+          "6": "Fayyadamaa kamiyyuu cuqaasuun piroofaayila isaa daawwadhaa.",
+          "7": "Leedarboordii guyyaa guutuu yeroo yeroon haaromsa."
+        },
+        "tips": {
+          "1": "Sadarkaan guyyaa guyyaa sa&#39;aatii 24tti deebi&#39;ee kaa&#39;ama.",
+          "2": "Talk of the Town gosoota jecha tokkoo hashtag irraa hordofa."
+        }
+      },
+      "command-centre": {
+        "title": "Giddugala Ajajaa",
+        "intro": "Dabala daawwitootaa wantoota murteessoo fi hojiiwwan paatifooramii kee si'a tokkootti agarsiisuuf.",
+        "steps": {
+          "1": "Fuula bitaa keessatti 'Command Centre' cuqaasi.",
+          "2": "Sammaree profayilaa kee, lakkoofsa gaaffiiwwan, hordofaa fi walitti dhiyeenyi isaa dabalatee ilaali.",
+          "3": "Hojiiwwan dhufaatii fi wantoota dursee deemani ilaali.",
+          "4": "Gargaarsa saffisaa gara wantoota hedduu itti fayyadamtan argadhu."
+        },
+        "tips": {
+          "1": "Command Centre ija haayyuu paatifooramii DeHub kee siif kenna."
+        }
+      },
+      "governance": {
+        "title": "Bulchiinsa",
+        "intro": "Bulchiinsa paatifooramii irratti gaaffiiwwan uumuun fi filannoo irratti sagalee kennuun hirmaadhu.",
+        "steps": {
+          "1": "Fuula bitaa irraa gara 'Governance' deem.",
+          "2": "Gaaffiiwwan hojii irra jiran, miseensonni dhiyeessan ilaali.",
+          "3": "Gaaffii tokko cuqaasuun ibsa guutuu fi marii isaa dubbisuuf.",
+          "4": "Gaaffiiwwan irratti sagalee kenni sagaloota ol/gadii fayyadamuun — sagalee kee ulfina qabaachuu isaa kan murteessu DeHub iskuunota meeqa qabattee qabattee.",
+          "5": "Gaaffiiwwan irratti yaada kenni miseensonni biroo waliin marii gochuuf.",
+          "6": "Gaaffii kee dhiyeessuuf 'Create Proposal' cuqaasi."
+        },
+        "tips": {
+          "1": "Mijjaa sagalee kee kan murteessu iskuunota meeqa qabattee qabattee.",
+          "2": "Warri baajii qaban sagalee dabalaa argachuu danda'u.",
+          "3": "Gaaffiiwwan sadarkaa irra darbu: Hojii irra jira → Darbe/Dhiisame."
+        }
+      },
+      "bookmarks": {
+        "title": "Kitaaba",
+        "intro": "Gaaffiiwwan siif salphaa ta'uuf kitaaba kee irratti gargaarsi.",
+        "steps": {
+          "1": "Gaaffii tokko irratti sagaloota kitaabaa cuqaasuun gargaarsi.",
+          "2": "Fuula bitaa keessatti 'Bookmarks' gara deemii gaaffiiwwan gargaarame hunda ilaali.",
+          "3": "Gaaffii kitaabaa cuqaasuun guutuu isaa ilaali.",
+          "4": "Kitaaba kaasee sagaloota kitaabaa irra deebi'ee cuqaasuun kaasi."
+        },
+        "tips": {
+          "1": "Kitaaboonni dhunfaa dha — si qofa gaaffiiwwan gargaaramee ilaaluu danda'a.",
+          "2": "Kitaaba meeqa qabachuuf daangaa hin qabu."
+        }
+      },
+      "settings": {
+        "title": "Qindaa'ina",
+        "intro": "Aduunyaa DeHub kee afaan, dhunfaa fi agarsiisa irratti qindaa'i.",
+        "steps": {
+          "1": "Fuula bitaa keessatti 'Settings' cuqaasi.",
+          "2": "Afaan agarsiisaa kee afaan filachuun jijjiiri.",
+          "3": "Qindaa'ina dhunfaa sirreessi: eenyu akka lakkoofsa hordofaa kee fi barreessaa kee ilaalu to'adhu.",
+          "4": "Filannoo mul&#39;achuu maxxansa durtii kee saagi.",
+          "5": "Dandeettii beeksisaa qajeelchuuf."
+        },
+        "tips": {
+          "1": "DeHub afaanota hedduu deeggara — guutummaan walqunnamtii ni hiika.",
+          "2": "Sajoo icciitii battalumatti hojiirra oola."
+        }
+      },
+      "posting-allowance": {
+        "title": "Mindaa Maxxansaa Guyyaa Guyyaa Keessan",
+        "intro": "Guyyaa guyyaan maxxansuun hanga allowance kan baajii staking keessanii wajjin madaalutti bilisa. Namni hundinuu barreeffama kudhan maxxansuu fi guyyaatti viidiyoo, suuraa fi sagalee giigaabaayitii tokko irraa jalqaba. Tokko tokko bira darbi guyyaa sana kan hafe mallattoo DeHub keessatti kaffalama — kutaa irra fiigu qofa irratti.",
+        "steps": {
+          "1": "Akka idileetti maxxansaa. Allowance keessaa wanti hin kaffalamu, wanti si irraa gaafatamus hin jiru.",
+          "2": "Barreeffamoonni fi miidiyaaleen poolii adda addaa waan ta&#39;aniif guyyaan viidiyoo olkaa&#39;uuf dabarsan ammallee barreeffamoota kurnan hunda bilisa taasisa.",
+          "3": "Yeroo maxxansi tokko fiigu, appichi dursee gatii itti baasee, osoo wanti tokkollee hin olkaa&#39;iin dura boorsaa keessan uwwisuu akka danda&#39;u ilaala.",
+          "4": "Maxxansi kun akkuma allowance keessaa maxxansutti maxxansa — maxxansuun kaffaltii gonkumaa hin eegu.",
+          "5": "Sana booda jijjiirraa tokko gita hojii sanaaf qofa raggaasifta, Base ykn BNB Chain keessaa isa kamtu token DeHub gahaa qabate irratti qubsiifta.",
+          "6": "Puuloonni lamaan halkan walakkaa UTC irratti deebi&#39;anii kaa&#39;amu."
+        },
+        "tips": {
+          "1": "Overage is pro-rata: 200 MB darbe allowance kee 200 MB baasisa malee gigabyte guutuu miti.",
+          "2": "Irra deebiin maxxansuu, yaada kennuu, deebii kennuu, gorsaa fi ergaa homaa hin baasu, gonkumaa allowance hin tuqne.",
+          "3": "Kaffaltii diduudhaan barreeffamni sun ol ni tura — maallaqni sun hanga qulqullaa&#39;utti maxxansa kaffaltii itti aanu qofa uggura. Allowance tolaa boruu yeroo hunda kan keessani.",
+          "4": "Baajiin staking allowance bilisaa ol kaasee gatii waan isa darbe kamiyyuu gadi buusa."
+        }
+      },
+      "reactions-and-safety": {
+        "title": "Deebiin, Muting & Qabiyyee Bilchaataa",
+        "intro": "Button like duuba deebii sagal kan jiru yoo ta&#39;u, waan argituu fi eenyu si bira gahuu akka danda&#39;u murteessuuf too&#39;annoo tuuta.",
+        "steps": {
+          "1": "Maxxansa kamiyyuu irratti qubbee harkaa ol qabadhuutii saanii deebii banaa: akka, jaalala, kabaja, ho&#39;aa, lol, gaddisiisaa, boo&#39;uu, jibbuu fi poo.",
+          "2": "Kanneen torban pozaatiivii ta&#39;an gara waliigala maxxansa sanaatti lakkaa&#39;amu; dislike fi poo irratti lakkaa&#39;amu.",
+          "3": "Deebiin kee baajii staking keetiin kan madaalamu waan ta’eef, deebii abbaa baajii tokkoo lakkoofsa sagalee tokkoo ol sochoosa.",
+          "4": "Barreessaa isaa sagalee dhaamsuuf mata duree maxxansa tokkoo keessaa X tuqi — isaanis kallattiin nyaata kee keessaa ba&#39;u.",
+          "5": "Uumtoonni maxxansa mataa isaanii yeroo qindeessan akka bilchaataatti mallatteessuu; maxxansi sun nyaata mana ummataa irraa fagaatu.",
+          "6": "Barreeffamoota bilchaataa bakka hundatti arguuf, &#39;Show mature content&#39; Settings keessatti ibsi."
+        },
+        "tips": {
+          "1": "Maxxansi bilchaataa ta&#39;e tokko ammallee guutummaatti piroofaayila uumaa irrattis ta&#39;e namoota isaan hordofaniif mul&#39;ata.",
+          "2": "Profaayila irraa ugguruun sagalee dhaamsuu caalaa waan deemuuf ergaa dabarsuus ni kuta.",
+          "3": "Saanii deebii eenyuu fi maal waliin deebii akka kenne waan agarsiisuuf lakkoofsa qofa osoo hin taane kutaa sana arguu dandeessa."
+        }
+      },
+      "stages": {
+        "title": "Waltajjiiwwan (Kutaa Sagalee Kallattiin) .",
+        "intro": "Waltajjiiwwan kutaalee sagalee kallattiin DeHub keessatti ijaaramaniidha. Keessummeessituu kutaa tokko bana, dubbattoota ol fida, namni kamiyyuu fuula Waltajjiiwwan ykn hidhaa qoodame irraa dhaggeeffachuuf seenuu danda&#39;a.",
+        "steps": {
+          "1": "Amma maaltu live akka jiruu fi maaltu akka beellamame ilaaluuf barruu cinaa keessatti &#39;Stages&#39; banaa.",
+          "2": "Akka dhaggeeffattootaatti makamuuf waltajjii kallattiin tuquun, ykn yaadachiisa sagantaa qabame irratti kaa&#39;aatii yeroo jalqabu itti himamaa.",
+          "3": "Fuula walfakkaataa irraa kan kee jalqabi — kallattiin biraawzari irraa kallattiin deemuu dandeessa, OBS ykn furtuu yaa&#39;aa tokko malee.",
+          "4": "Gargaaraa ta'uun, dubbiiwwan sagantaa irratti waamuu, isaan dhungachuun ykn ari'uu, skreenii keessan qooduu, fi sagalee dhungachuun.",
+          "5": "Dhaggeeffattoonni waltajjii irratti osoo hin dhufin deebii kallattiin erguun chat kutaa keessatti haasa&#39;u.",
+          "6": "Waltajjiin hundi ni waraaba, waraabbiinis kaardii irratti mul’atu irraa booda taphatama."
+        },
+        "tips": {
+          "1": "Mata dureewwan xiqqaa kallattiin tokkoon tokkoon dubbataa barreessuudhaan afaan dubbisaa jirtu kamiinuu hiiku.",
+          "2": "Live dubbing sagalee keessummeessituu ofii isaatii cloned ta&#39;een kutaa sana sagalee ol kaasee dubbachuu danda&#39;a, daqiiqaa daqiiqaadhan DeHub tokens tiin kaffaltii.",
+          "3": "Keessummeessitoonni buufata raadiyoo qilleensarra kaa’uu ykn haasawa gidduutti kilippii muuziqaa mataa isaanii taphachuu danda’u.",
+          "4": "Mini-player kutaa sana kornee keessa akka deemu taasisa, yeroo ati appii hafe daawwattu."
+        }
+      },
+      "communities": {
+        "title": "Hawaasa & Taateewwan",
+        "intro": "Hawaasni iddoowwan miseensotaan geggeeffaman kan nyaata, miseensotaa fi sochii mataa isaanii qabanidha. Taateewwan sagantaa yeroon itti murtaa’e isaan gubbaatti dabalu.",
+        "steps": {
+          "1": "'Garee' irraa banamee isaa keessatti argamuun isaa ilaali.",
+          "2": "Tap tokko keessatti join godhaa. Gochi haaraan akka baajii hin dubbifamneetti navigeeshinii keessatti agarsiisa.",
+          "3": "Feed hawaasa tokkoo keessaa maxxansuu, mari&#39;achuu, filannoo gaggeessuu fi tip gochuu.",
+          "4": "Abbootiin qabeenyaa hawaasaa bakka ofii isaanii giddu galeessa godhachuun namoota biroof mirga admin kennuu danda&#39;u.",
+          "5": "Sagantaa sagantaa qabameef &#39;Events&#39; banaa, taatee tokkoof fuula guutuu live waliin hordofuu dandeessu."
+        },
+        "tips": {
+          "1": "Chaatiin hawaasaa @mentions fi @here waan deeggaruuf barreeffamni tokko kutaa sana gahuu danda&#39;a.",
+          "2": "Linkiin afeerraa namoota kallattiin gara hawaasa tokkootti akka galchitu si gargaara."
+        }
+      },
+      "arcade": {
+        "title": "Akaadeemii",
+        "intro": "Taphoota shan DeHub keessaa caancala biraawzari keessatti fiigu — waan fe&#39;amu, waan bitamu hin qabu.",
+        "steps": {
+          "1": "&#39;Arcade&#39; barruu cinaa keessatti banaa.",
+          "2": "Tapha tokko filadhu: King&#39;s Gambit (cheezii 3D kan sadarkaa Elo onlaayinii qabu), Claude of Duty (dhukaasa yeroo fe&#39;u aartii mataa isaa maddisiisu), Jungle Trail (deemsa bosona roobaa hojimaataa), Street Slayer (beat &#39;em up DeHub&#39;f hojjetame) ykn Chartopia (bakka daldalaa miilaan deemuu danda&#39;u).",
+          "3": "Caancala keessatti taphadhu. King&#39;s Gambit fi Street Slayer gabatee dursaa eegu.",
+          "4": "Chartopia karaa WebXR headset VR keessattis hojjeta."
+        },
+        "tips": {
+          "1": "Isaan keessaa lama mata dureewwan mul&#39;ataa keessa dhokatu — appii kana War for Claude of Duty, ykn Jungle for Jungle Trail tti saagi.",
+          "2": "Taphni hundi kaardii qooda mataa isaa waan qabuuf bakka maxxansitu hundatti liinkii tokkoo sirriitti ni banama."
+        }
+      },
+      "bounties-stores": {
+        "title": "Baawuntii fi Suuqii",
+        "intro": "Waltajjicha gara galii jijjiiruuf karaa lama: badhaasa maxxansuu ykn gaafachuu, ykn fuula mana daldalaa banuun dhaggeeffattoota keessaniif gurguruu.",
+        "steps": {
+          "1": "Hojii banaa, gosa ykn maallaqaan calalame daawwachuuf &#39;Bounties&#39; banaa.",
+          "2": "Tokko gaafadhu, hojii sana hojjedhu, badhaasa sanas walitti qabuuf galchi — namni kamiyyuu adamsituu ta’uu danda’a, iyyanni hin barbaachisu.",
+          "3": "Badhaasa mataa keessanii gabaabaa fi badhaasa DeHub tokens ykn USDC tiin maxxansaa. Yeroo maxxansitu gara escrow seena.",
+          "4": "Fuula mana daldalaa fuula mataa isaa, maqaa fi tarreefama qabu qopheessuuf &#39;Stores&#39; banaa.",
+          "5": "Omishaaleen gatii fi qubsuma DeHub tokens karaa boorsaa keessa jiruun, kaffaltii alaa tokko malee."
+        },
+        "tips": {
+          "1": "Baawuntiiwwan Miidiyaa Hawaasaa, Kiliippii fi Kontiraata jedhamuun gurmaa&#39;u.",
+          "2": "Dhangala’aan falmii waliigaltee dhabuu kenniinsa irratti uumamu ni fura, kanaaf yeroo hunda escrow haqaan furmaata argata.",
+          "3": "Uumaan baasii (bounties) fayyadamaagina hawwasasaa guddisuuf; qooddii, fiilmii fi deebiiwwan hojii mirkanaa’oo hunda dha."
+        }
+      },
+      "creator-studio": {
+        "title": "Istuudiyoo Uumaa fi Gulaalaa",
+        "intro": "Creator Studio fakkiiwwan, viidiyoo, muuziqaa, sagalee fi moodeelota 3D gaafatama irraa maddisiisa, fi gulaalaa tokkoof dabarsee kenna — gulaalaa viidiyoo daandii hedduu guutuu kan biraawzari keessatti hojjetu dabalatee.",
+        "steps": {
+          "1": "Creator Studio banaatii waan hojjetamuu barbaaddan ibsi.",
+          "2": "Sarvarichi hojiin osoo hin hojjetiin baasii caqasa, kanaaf osoo hin baasin dura maal akka baasu argita.",
+          "3": "Renders tarree qooddame keessatti itti fufa yeroo ati appicha daawwachuu itti fuftu.",
+          "4": "Bu&#39;aawwan gulaalaa akkaataa Kanvaa keessatti qindeessii, ykn gulaalaa viidiyoo sarara yeroo dhugaa muruu, laayibarii fi erguu wajjin bani.",
+          "5": "Kutaa xumurame kallattiin gara maxxansa, gabaabaa ykn tarreeffama suuqiitti gadi dhiisi."
+        },
+        "tips": {
+          "1": "Manni kitaabaa qabeenya istookii bilisaa waan ati maddisiisuu dhiisuu filattu kamiifuu Istuudiyoo cina taa&#39;a.",
+          "2": "Dhaloonni kan kaffalamu mallattoo DeHub boorsaa keessan irraa — hojii tokkoof jijjiirraa tokko mallatteessita, gatiin isaas osoo hin kaffaliin dura ni caqasa.",
+          "3": "Fayyadamtoonni ulfaatoo ta&#39;an karoora Ultra, Team ykn Scale fudhachuu danda&#39;u, kunis ji&#39;a ji&#39;aan token allowance kallattiin gara boorsaa isaaniitti erga."
+        }
+      },
+      "buying-dhb": {
+        "title": "Token Bituu",
+        "intro": "Tookiin DeHub kallattiin appii keessaa interfeesii jijjiirraa ijaarame fayyadamuun bitadhaa.",
+        "steps": {
+          "1": "Barruu cinaa irraa gara fuula &#39;Bituu&#39; jedhutti qajeela.",
+          "2": "Mallattoo irraa jijjiiruu barbaaddu fili (fkn, ETH, USDC).",
+          "3": "Hanga baasuu barbaaddu ykn lakkoofsa mallattoo argachuu barbaaddu galchi.",
+          "4": "Sadarkaa sharafa alaa fi tilmaama oomishaa gamaaggamuu.",
+          "5": "Obsa lilmoo sirreessuuf mallattoo giiriin sajoo cuqaasi (durtii 1%).",
+          "6": "Daldala jijjiirraa mirkaneessi.",
+          "7": "Tokens DeHub erga daldalli xumuramee booda boorsaa keessan keessatti ni mul&#39;atu."
+        },
+        "tips": {
+          "1": "Tolaan ol'aanaa = raawwii argachuuf carraan ol'aanaa, garuu gatii hamaa argachuuf carraan jira.",
+          "2": "Yeroo hunda osoo hin mirkaneessiin dura safartuu jijjiirraa ilaalaa.",
+          "3": "Qaaqa qindaa&#39;inoota keessatti siqsuu amala saaguu dandeessa."
+        }
+      },
+      "bridge": {
+        "title": "Riqicha",
+        "intro": "Riqicha sansalata qaxxaamuraa fayyadamuun mallattoolee DeHub kee bilookicheenii deeggaraman gidduutti sochoosi.",
+        "steps": {
+          "1": "Barruu cinaa irraa gara fuula &#39;Bridge&#39; tti qajeeli.",
+          "2": "Sansalata madda (bakka mallattoowwan kee yeroo ammaa jiran) fili.",
+          "3": "Sansalata galma (bakka isaan erguu barbaaddu) fili.",
+          "4": "Lakkoofsa mallattoolee riqicha gochuuf galchi.",
+          "5": "Kaffaltii riqichaa fi tilmaama yeroo dhufaatii ilaali.",
+          "6": "Daldala riqicha mirkaneessuu.",
+          "7": "Daldalli akka xumuramu eegaa — riqicha gochuun daqiiqaa muraasa fudhachuu danda&#39;a."
+        },
+        "tips": {
+          "1": "Kaffaltiin riqicha sansalataa lamaatiin garaagarummaa qaba.",
+          "2": "Riqicha hojjechuun akkaataa idileetti sansalata hirmaatan irratti hundaa’uun daqiiqaa 1-5 fudhata.",
+          "3": "Yeroo hunda osoo hin mirkaneessiin dura sansalata bakka itti geessu lama ilaali."
+        }
+      },
+      "music-tv": {
+        "title": "Muuziqaa fi TV",
+        "intro": "Qabiyyee miidiyaa kallattiin DeHub keessatti gammadaa — muuziqaa tamsaasuun chaanaalii TV kallattiin ilaalaa.",
+        "steps": {
+          "1": "Barreeffamoota muuziqaa daawwachuu fi taphachiisuuf barruu cinaa irraa gara &#39;Music&#39; tti qajeela.",
+          "2": "Chaanaalii TV kallattiin ilaaluuf gara &#39;TV&#39; deemuun.",
+          "3": "Chaanaalii gosa ykn biyyaan daawwadhu.",
+          "4": "Chaanaalii tokko cuqaasuun ilaaluu jalqabuu dandeessu.",
+          "5": "Sagalee fi taphachuu sirreessuuf too&#39;annoo taphatichaa fayyadami.",
+          "6": "Qabduu gabaasaa fayyadamuun chaanaalii cabe gabaasuu."
+        },
+        "tips": {
+          "1": "Chaanaalonni TV amanamummaa isaanii hawaasaan kan mirkanaa’anidha.",
+          "2": "Maxxansi muuziqaa qabiyyee biroo yeroo daawwatan taphachuun ni danda&#39;ama."
+        }
+      },
+      "post-info": {
+        "title": "Odeeffannoo Post & Firaakshinii",
+        "intro": "Postiin minted jedhamu NFT firaakshinii 1,000tti qoodameedha. Fuulli Odeeffannoo Maxxansaa deetaa sansalataa irratti, istaatiksii hirmaannaa, cabbii abbummaa agarsiisa, fi firaakshinii maxxansa kamiyyuu akka daldaltu si dandeessisa — maxxansa hin minted irratti bakka isaa mint dhiyeessu.",
+        "steps": {
+          "1": "Maxxansa kamiyyuu irratti mallattoo &#39;M&#39; jedhu tuquun fuula Post Info isaa bana.",
+          "2": "Gubbaa irratti ID Mallattoo (adda baastuu sansalata irratti adda ta&#39;e) fi haashii daldalaa ni argita — qorataa ugguraa irratti ilaaluuf haashicha cuqaasi.",
+          "3": "Sana gadiitti, istaatiksii kaadhimummaa waliigala like, dislikes, views, comments, fi gorsa argame agarsiisa.",
+          "4": "Kutaan Abbootii Qabeenyaa barruu adeemsaa firaakshinii 1,000 keessaa meeqa uumaan ammallee akka qabu agarsiisa, dabalataan tarree abbootii firaakshinii hunda hafnaan fi dhibbeentaa isaanii waliin.",
+          "5": "Yoo barreeffamni kaffaltii-per-view (PPV) ta&#39;e, gatii, maallaqa, fi fayyadamtoonni meeqa akka qaqqabummaa bitatan ni argita.",
+          "6": "Abbootiin qabeenyaa maxxansa mul&#39;achuu (Uummataa, Hin tarreeffamne, ykn Dhuunfaa) jijjiiruu fi mata duree/ibsa kallattiin fuula kana irraa gulaaluu danda&#39;u."
+        },
+        "tips": {
+          "1": "Postiin haaraa minted ta&#39;e uumaan firaakshinii 1,000 hunda (100% abbummaa) qabachuudhaan jalqaba.",
+          "2": "Haashiin daldalaa sansalata irratti hundaa&#39;uun gara BaseScan ykn BscScan walqabsiisa.",
+          "3": "Maxxansi hin tarreeffamne feeds keessatti hin mul&#39;atu garuu ammas karaa direct link argachuun ni danda&#39;ama."
+        }
+      },
+      "trading-fractions": {
+        "title": "Firaakshinii Daldalaa",
+        "intro": "Daldalli firaakshinii — tarreewwan daawwachuu, dhiyeessii gochuu, kan kee tarreessuun — appii weeb dehub.io irratti, fuula Odeeffannoo Maxxansaa tokkoon tokkoon maxxansa irratti jiraata.",
+        "steps": {
+          "1": "browser keessatti dehub.io banaatii akkaawuntii walfakkaatuun seena.",
+          "2": "Fuula Post Info barreeffamichaa banaatii gara caancala Marketplace isaatti jijjiiraa.",
+          "3": "Tarreefama daawwadhu, gatii keetiin dhiyeessii dhiheessi, ykn firaakshiniiwwan qabdu tarreessi.",
+          "4": "Daldalli tokko erga xumuramee booda jijjiiramni sun caancala Fractions keessan keessatti as mobile irratti mul&#39;ata."
+        },
+        "tips": {
+          "1": "Firaakshinii postii tokkoo qabaachuu jechuun NFT on-chain sana keessaa qooda qabda jechuudha.",
+          "2": "Bituu kee dura raabsa abbummaa ilaaluuf abbootii maxxansa tokkoo gabaa weeb irratti ilaali.",
+          "3": "Akka uumaatti, firaakshinoota gurguruun deeggartoonni qabiyyee kee akka waliin qabaatan taasisa."
+        }
+      },
+      "minting-posts": {
+        "title": "Minting Posts (NFT Uumuu) .",
+        "intro": "Minting filannoodha. Maxxansi tokko yeroo ati ergitu off-chain maxxansa — boorsaa hin qabu, mallattoo hin qabu, gaazii hin qabu — yeroo barbaaddetti akka NFT tti mint gochuu dandeessa, akkuma qindeessiteetti ykn booda maxxansa sana irraa.",
+        "steps": {
+          "1": "Qabduu &#39;Post&#39; kan barruu cinaa (desktop) keessa jiru ykn button + (mobile) cuqaasaa.",
+          "2": "Barreeffama kee barreessi, miidiyaa (fakkii, viidiyoo, sagalee), fi gosoota itti dabali.",
+          "3": "&#39;Mint post&#39; off-chain maxxansuuf off dhiisi, ykn akkuma maxxansiteen gara mint tti ibsi.",
+          "4": "Maxxansi gonkumaa sansalata irratti hin eegu: barreeffamni karaa kamiinuu feed keessatti mul&#39;ata.",
+          "5": "Booda mint gochuuf, fuula info &#39;n&#39; maxxansichaa banaatii gocha Mint achitti fayyadamaa.",
+          "6": "Erga minted ta&#39;ee booda, postn sun Token ID fi transaction hash kan on-chain mirkaneessuu dandeessu argata, firaakshinii isaa 1,000 hunda qabatta."
+        },
+        "tips": {
+          "1": "Mallattoon hawaasummaa, iimeelii fi ergaa gabaabaa gaazii zeeroo kaffalu — DeHub kaffaltii minting ispoonsara.",
+          "2": "Fayyadamtoonni boorsaa alaa gaaziidhaaf ETH Base irratti ykn BNB BNB Chain irratti barbaadu.",
+          "3": "Minting kan post tokko daldalaa fi royalty-bearing godhudha. Maxxansi hin minted ammallee gorsaa fi ilaalcha argata.",
+          "4": "Galmeen on-chain al tokko minted ta&#39;ee dhaabbataadha, yoo postiin booda feed irraa haqamellee."
+        }
+      },
+      "glossary": {
+        "title": "Galmee jechootaa",
+        "intro": "Galmee jechootaa bal&#39;aa jechoota kirpitoo fi waltajjii Web3 keessa akka naanna&#39;uuf si gargaaru.",
+        "steps": {
+          "1": "Barruu cinaa irraa gara &#39;Glossary&#39;tti qajeela.",
+          "2": "Jechoota qubeedhaan daawwadhu ykn jechoota murtaa&#39;an argachuuf barbaacha fayyadami.",
+          "3": "Hiikaa fi ibsa isaa guutuu ilaaluuf jecha tokko cuqaasaa.",
+          "4": "Jechoonni yaad-rimeewwan kirpitoo, jechoota DeFi, fi amala addaa DeHub uwwisa."
+        },
+        "tips": {
+          "1": "Qabeenya guddaa namoota haaraa gara crypto fi Web3 dhufaniif.",
+          "2": "Galmeen jechootaa yeroo hunda jechoota haaraatiin kan fooyya’udha."
+        }
+      }
     }
   }
 }
