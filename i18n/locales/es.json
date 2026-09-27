@@ -4863,6 +4863,54 @@
         "legend": {
           "name": "Leyendas",
           "hint": "Alcanza el nivel diez."
+        },
+        "ignition": {
+          "name": "Ignición",
+          "hint": "Acumula una hora válida en directo."
+        },
+        "on-air": {
+          "name": "En antena",
+          "hint": "Completa diez emisiones válidas."
+        },
+        "storyteller": {
+          "name": "Narrador",
+          "hint": "Completa veinticinco emisiones válidas."
+        },
+        "broadcaster": {
+          "name": "Presentador",
+          "hint": "Completa cincuenta emisiones válidas."
+        },
+        "centurion": {
+          "name": "Centurión",
+          "hint": "Completa cien emisiones válidas."
+        },
+        "enduring": {
+          "name": "Resistencia",
+          "hint": "Emite durante cuatro horas válidas en una sesión."
+        },
+        "circle": {
+          "name": "Círculo cercano",
+          "hint": "Reúne a veinticinco espectadores simultáneos."
+        },
+        "arena": {
+          "name": "Arena",
+          "hint": "Reúne a cincuenta espectadores simultáneos."
+        },
+        "headliner": {
+          "name": "Cabeza de cartel",
+          "hint": "Reúne a cien espectadores simultáneos."
+        },
+        "cornerstone": {
+          "name": "Pilar",
+          "hint": "Emite durante veintiséis semanas consecutivas."
+        },
+        "veteran": {
+          "name": "Veterano",
+          "hint": "Acumula 250 horas válidas en directo."
+        },
+        "icon": {
+          "name": "Icono",
+          "hint": "Alcanza el nivel veinte."
         }
       }
     },

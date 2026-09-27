@@ -137,15 +137,7 @@ export async function getIngestUrl(streamId: string) {
 
 // ─── Streamer progress ────────────────────────────────────────────────────────
 
-export type StreamerCardId =
-  | "first-light"
-  | "marathon"
-  | "night-owl"
-  | "regular"
-  | "iron-streak"
-  | "crowd"
-  | "century"
-  | "legend";
+export type StreamerCardId = import('../libs/streamer-badge-art').StreamerBadgeId;
 
 export interface StreamerProgressCard {
   id: StreamerCardId;
@@ -184,7 +176,7 @@ export interface StreamerProgress {
 }
 
 export async function getStreamerProgress(address: string): Promise<StreamerProgress> {
-  const res = await apiClient.get<any>(`/live/creator/${encodeURIComponent(address.toLowerCase())}/progress`);
+  const res = await apiClient.get<any>(`/live/creator/${encodeURIComponent(address.toLowerCase())}/progress?collection=20`);
   const body = res && typeof res === "object" && res.result && typeof res.result === "object" && "level" in res.result ? res.result : res;
   return body as StreamerProgress;
 }
