@@ -61,6 +61,11 @@ interface DrawerItem {
   requiresAuth?: boolean;
   /** Left out of the App Store build — see config/storefront. */
   storefrontHidden?: boolean;
+  /**
+   * Only listed while the menu search has text — web's SEARCH_ONLY_ITEMS:
+   * real pages with no row of their own on the resting menu.
+   */
+  searchOnly?: boolean;
   /** Screen lives inside the bottom-tab navigator (Root), so it needs nested navigation. */
   tab?: boolean;
   /**
@@ -132,6 +137,9 @@ const NAV_ITEMS: DrawerItem[] = [
   { icon: "ArrowLeftRight", labelKey: "nav.bridge", screen: ScreenNames.Bridge, searchOnly: true, storefrontHidden: true },
   { icon: "BookOpen", labelKey: "nav.docs", url: `${WEBSITE_LINK}/docs` },
   { icon: "FileText", labelKey: "nav.blog", url: `${WEBSITE_LINK}/docs/blog` },
+  // Search-only on web too. Hidden on iOS: both pages exist to sell a plan.
+  { icon: "Crown", labelKey: "nav.premium", screen: ScreenNames.Premium, storefrontHidden: true, searchOnly: true },
+  { icon: "Tag", labelKey: "nav.pricing", screen: ScreenNames.Pricing, storefrontHidden: true, searchOnly: true },
 ];
 
 interface MenuItemProps {

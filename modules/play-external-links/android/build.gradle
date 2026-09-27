@@ -1,0 +1,21 @@
+plugins {
+  id 'com.android.library'
+  id 'expo-module-gradle-plugin'
+}
+
+group = 'io.dehub'
+version = '1.0.0'
+
+android {
+  namespace "io.dehub.playexternallinks"
+  defaultConfig {
+    versionCode 1
+    versionName '1.0.0'
+  }
+}
+
+dependencies {
+  // 8.2.0 added the US external content links program APIs (BillingProgram,
+  // launchExternalLink); 8.2.1 is the floor Google's integration guide names.
+  implementation "com.android.billingclient:billing:8.3.0"
+}
