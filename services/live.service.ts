@@ -159,6 +159,7 @@ export interface StreamerRecentStream {
  * with at least one viewer. Level k needs 30·k·(k+1) XP.
  */
 export interface StreamerProgress {
+  selectedBadgeId?: StreamerCardId | null;
   xp: number;
   level: number;
   nextLevelXp: number;
@@ -179,4 +180,8 @@ export async function getStreamerProgress(address: string): Promise<StreamerProg
   const res = await apiClient.get<any>(`/live/creator/${encodeURIComponent(address.toLowerCase())}/progress?collection=20`);
   const body = res && typeof res === "object" && res.result && typeof res.result === "object" && "level" in res.result ? res.result : res;
   return body as StreamerProgress;
+}
+
+export function selectStreamerBadge(badgeId: StreamerCardId): Promise<{ selectedBadgeId: StreamerCardId }> {
+  return apiClient.patch<{ selectedBadgeId: StreamerCardId }>('/live/creator/badge', { badgeId }, { isAuthRequired: true });
 }
