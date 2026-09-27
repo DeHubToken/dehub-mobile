@@ -14,6 +14,7 @@ import Animated, {
 import { Gesture, GestureDetector, type GestureType } from "react-native-gesture-handler";
 import { PagerGestureProvider } from "../context/PagerGestureContext";
 import InfiniteVideoFeed, { type InfiniteVideoFeedHandle } from "../components/Home/InfiniteVideoFeed";
+import LiveStagesBar from "../components/Home/LiveStagesBar";
 import HomeImageGrid, { type HomeImageGridHandle } from "../components/Home/HomeImageGrid";
 import ImageFeedDrawer, { type ImageFeedDrawerHandle } from "../components/Home/ImageFeedDrawer";
 import ShortsGrid, { type ShortsGridHandle } from "../components/Home/ShortsGrid";
@@ -82,6 +83,10 @@ const LAST_INDEX = TAB_ORDER.length - 1;
 // grid components). Each gets its own kept-mounted list so switching never
 // re-creates a FlatList.
 const FEED_LIST_TYPES = ["all", "video", "live"] as const;
+
+// Live stages sit at the top of every list feed, for everyone. One element for
+// the life of the app so InfiniteVideoFeed's memoised list header never churns.
+const LIVE_STAGES_HEADER = <LiveStagesBar />;
 type FeedListType = (typeof FEED_LIST_TYPES)[number];
 
 // Page-turn animation. Short and front-loaded: the page should be visibly
@@ -802,6 +807,7 @@ export default function HomeScreen() {
         // "live" are somebody asking for one format, and a boosted text post
         // arriving at the top of those reads as a bug rather than as a boost.
         showBoostSlot={feedType === "all"}
+        headerComponent={LIVE_STAGES_HEADER}
       />
     );
   };
