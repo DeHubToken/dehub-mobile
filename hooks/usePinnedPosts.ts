@@ -8,7 +8,7 @@
  */
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { t } from "i18next";
-import { getPinnedTokenIds, togglePin } from "../services/pin.service";
+import { getPinCount, getPinnedTokenIds, getPinners, togglePin } from "../services/pin.service";
 import { useUser } from "../context/AuthContext";
 import { toastError, toastSuccess } from "../libs/toast";
 
@@ -53,6 +53,11 @@ export function useTogglePin() {
         return data.pinned ? [...old.filter((x) => x !== id), id] : old.filter((x) => x !== id);
       });
       queryClient.invalidateQueries({ queryKey: [PINNED_KEY, address] });
+      // This post's count moves by one; its pinners list is refetched.
+      queryClient.setQueryData<number>([PINNED_KEY, "count", tokenId], (old) =>
+        old === undefined ? undefined : Math.max(0, old + (data.pinned ? 1 : -1)),
+      );
+      queryClient.invalidateQueries({ queryKey: [PINNED_KEY, "users", tokenId] });
       toastSuccess(
         data.pinned
           ? t("postOptions.postPinned", "Pinned to your profile")
@@ -60,5 +65,25 @@ export function useTogglePin() {
       );
     },
     onError: () => toastError(t("postOptions.pinFailed", "Could not pin or unpin this post")),
+  });
+}
+
+/** How many accounts have pinned this post. */
+export function usePinCount(tokenId?: number | null) {
+  return useQuery<number>({
+    queryKey: [PINNED_KEY, "count", tokenId],
+    queryFn: () => getPinCount(tokenId as number),
+    enabled: !!tokenId,
+    staleTime: 5 * 60 * 1000,
+  });
+}
+
+/** The first page of accounts that pinned this post. */
+export function usePinners(tokenId?: number | null) {
+  return useQuery({
+    queryKey: [PINNED_KEY, "users", tokenId],
+    queryFn: () => getPinners(tokenId as number),
+    enabled: !!tokenId,
+    staleTime: 2 * 60 * 1000,
   });
 }
