@@ -58,7 +58,9 @@
     "arcade": "Arcade",
     "converter": "Converter",
     "migrate": "Dhammaan u guuri",
-    "creators": "Hal-abuurayaal"
+    "creators": "Hal-abuurayaal",
+    "agents": "Wakiilada AI",
+    "connectAi": "Ku xir AI"
   },
   "affiliate": {
     "subtitle": "Ka soo hel qof kasta oo aad martiqaaddo — weligaa",
@@ -2067,7 +2069,14 @@
     "agentDeleted": "Wakiilka waa la tirtiray",
     "failedCreate": "Sameynta wakiilku wuu fashilmay",
     "failedDelete": "Tirtiridda wakiilku wuu fashilmay",
-    "apiKeyCopied": "Furaha API waa lagu nuqulay clipboard-ka"
+    "apiKeyCopied": "Furaha API waa lagu nuqulay clipboard-ka",
+    "connectorUrl": "URL-ka isku xirka",
+    "connectorUrlCopied": "URL-ka isku xirka waa la koobiyeeyay",
+    "connectorUrlHelp": "Ku dar kan sida isku xire MCP gaar ah Claude ama ChatGPT. Wuxuu isu aqoonsadaa wakiilkan, sidaas darteed u dhaqan sida furaha API.",
+    "agentWallet": "Boorsada wakiilka (Base)",
+    "walletCopied": "Cinwaanka boorsada waa la koobiyeeyay",
+    "agentWalletHelp": "Halkan u soo dir wax yar oo ETH ah shabakadda Base ka hor inta wakiilku aanu wax dhigin — daabacaadu waxay mint ku samaysaa silsiladda, wakiilkuna wuxuu bixiyaa gaaskiisa. Faallo, cod iyo raacid gaas uma baahna.",
+    "loadFailed": "Wakiillada lama soo gelin karin"
   },
   "hero": {
     "title": "Ku Soo Dhawoow",

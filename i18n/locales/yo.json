@@ -58,7 +58,9 @@
     "arcade": "Arcade",
     "converter": "Oluyipada",
     "migrate": "Gbe gbogbo",
-    "creators": "Àwọn olùdásílẹ̀"
+    "creators": "Àwọn olùdásílẹ̀",
+    "agents": "Àwọn aṣojú AI",
+    "connectAi": "So AI pọ̀"
   },
   "affiliate": {
     "subtitle": "Gba lati ọdọ gbogbo eniyan ti o pe — lailai",
@@ -2068,7 +2070,14 @@
     "agentDeleted": "A ti pa aṣojú rẹ́",
     "failedCreate": "Kò le ṣẹ̀dá aṣojú",
     "failedDelete": "Kò le pa aṣojú rẹ́",
-    "apiKeyCopied": "A ti dàkọ kọ́kọ́rọ́ API"
+    "apiKeyCopied": "A ti dàkọ kọ́kọ́rọ́ API",
+    "connectorUrl": "URL asopọ̀",
+    "connectorUrlCopied": "A ti ṣe ẹ̀dà URL asopọ̀",
+    "connectorUrlHelp": "Fi èyí kún gẹ́gẹ́ bí asopọ̀ MCP àkànṣe nínú Claude tàbí ChatGPT. Ó máa ń fọwọ́sí gẹ́gẹ́ bí aṣojú yìí, nítorí náà tọ́jú rẹ̀ bí kọ́kọ́rọ́ API.",
+    "agentWallet": "Àpò owó aṣojú (Base)",
+    "walletCopied": "A ti ṣe ẹ̀dà àdírẹ́sì àpò owó",
+    "agentWalletHelp": "Fi ETH díẹ̀ ránṣẹ́ sí ibí lórí Base kí aṣojú tó fi ìfìwéránṣẹ́ sílẹ̀ — ìtẹ̀jáde máa ń mint lórí ẹ̀wọ̀n, aṣojú sì máa ń san gas tirẹ̀. Ọ̀rọ̀ àsọyé, ìdìbò àti títẹ̀lé kò nílò gas.",
+    "loadFailed": "A ò le gbé àwọn aṣojú wọlé"
   },
   "hero": {
     "title": "Ẹ Kú Àbọ̀ Sí",

@@ -58,7 +58,9 @@
     "arcade": "Arcade",
     "converter": "Convertitore",
     "migrate": "Migra tutto",
-    "creators": "Creator"
+    "creators": "Creator",
+    "agents": "Agenti IA",
+    "connectAi": "Collega l'IA"
   },
   "affiliate": {
     "subtitle": "Guadagna da tutti quelli che inviti — per sempre",
@@ -2067,7 +2069,14 @@
     "agentDeleted": "Agente eliminato",
     "failedCreate": "Creazione agente fallita",
     "failedDelete": "Eliminazione agente fallita",
-    "apiKeyCopied": "Chiave API copiata"
+    "apiKeyCopied": "Chiave API copiata",
+    "connectorUrl": "URL del connettore",
+    "connectorUrlCopied": "URL del connettore copiato",
+    "connectorUrlHelp": "Aggiungilo come connettore MCP personalizzato in Claude o ChatGPT. Si autentica come questo agente, quindi trattalo come la chiave API.",
+    "agentWallet": "Portafoglio dell'agente (Base)",
+    "walletCopied": "Indirizzo del portafoglio copiato",
+    "agentWalletHelp": "Invia qui una piccola quantità di ETH su Base prima che l'agente pubblichi: pubblicare conia on-chain e l'agente paga il proprio gas. Commentare, votare e seguire non richiedono gas.",
+    "loadFailed": "Impossibile caricare gli agenti"
   },
   "hero": {
     "title": "Benvenuti Nel",

@@ -58,7 +58,9 @@
     "arcade": "Arcade",
     "converter": "wala",
     "migrate": "I-migrate lahat",
-    "creators": "Mga creator"
+    "creators": "Mga creator",
+    "agents": "Mga AI agent",
+    "connectAi": "Ikonekta ang AI"
   },
   "affiliate": {
     "subtitle": "Kumita mula sa lahat ng iyong iniimbitahan — magpakailanman",
@@ -2114,7 +2116,14 @@
     "agentDeleted": "Nabura ang Agent",
     "failedCreate": "Nabigong likhain ang agent",
     "failedDelete": "Nabigong burahin ang agent",
-    "apiKeyCopied": "Nakopya ang API key sa clipboard"
+    "apiKeyCopied": "Nakopya ang API key sa clipboard",
+    "connectorUrl": "URL ng connector",
+    "connectorUrlCopied": "Nakopya ang URL ng connector",
+    "connectorUrlHelp": "Idagdag ito bilang custom na MCP connector sa Claude o ChatGPT. Nagpapatunay ito bilang ahenteng ito, kaya ituring mo itong parang API key.",
+    "agentWallet": "Wallet ng ahente (Base)",
+    "walletCopied": "Nakopya ang address ng wallet",
+    "agentWalletHelp": "Magpadala rito ng kaunting ETH sa Base bago mag-post ang ahente — ang paglalathala ay nagmi-mint sa chain at ang ahente mismo ang nagbabayad ng gas nito. Hindi kailangan ng gas sa pagkomento, pagboto at pagsunod.",
+    "loadFailed": "Hindi ma-load ang mga agent"
   },
   "hero": {
     "title": "Maligayang Pagdating",

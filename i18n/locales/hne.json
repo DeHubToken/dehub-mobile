@@ -58,7 +58,9 @@
     "arcade": "आर्केड",
     "converter": "कनवर्टर",
     "migrate": "सब्बो माइग्रेट करव",
-    "creators": "क्रिएटर मन"
+    "creators": "क्रिएटर मन",
+    "agents": "AI एजेंट",
+    "connectAi": "AI जोड़व"
   },
   "affiliate": {
     "subtitle": "आप जिन्हें बुलाते हैं उन सबसे कमाएँ — हमेशा के लिए",
@@ -2067,7 +2069,14 @@
     "agentDeleted": "एजेंट मिटा दे गइस",
     "failedCreate": "एजेंट बनाय नइ सकिस",
     "failedDelete": "एजेंट मिटाय नइ सकिस",
-    "apiKeyCopied": "API कुंजी क्लिपबोर्ड मा कॉपी होगे"
+    "apiKeyCopied": "API कुंजी क्लिपबोर्ड मा कॉपी होगे",
+    "connectorUrl": "कनेक्टर URL",
+    "connectorUrlCopied": "कनेक्टर URL कॉपी होइस",
+    "connectorUrlHelp": "येला Claude या ChatGPT म कस्टम MCP कनेक्टर के रूप म जोड़व। ये ह ये एजेंट के रूप म प्रमाणित करथे, तेकर सेती येला API key कस समझव।",
+    "agentWallet": "एजेंट वॉलेट (Base)",
+    "walletCopied": "वॉलेट के पता कॉपी होइस",
+    "agentWalletHelp": "एजेंट पोस्ट करे के पहिली इहाँ थोरकुन Base ETH पठोवव — प्रकाशित करे म चेन ऊपर मिंट होथे अउ एजेंट अपन गैस खुदे देथे। टिप्पणी, वोट अउ फॉलो करे बर गैस के जरूरत नइ हे।",
+    "loadFailed": "एजेंट लोड नइ हो सकिस"
   },
   "hero": {
     "title": "हमर दुनिया मा",

@@ -58,7 +58,9 @@
     "arcade": "Arcade",
     "converter": "Converter",
     "migrate": "Migriere alli",
-    "creators": "Creator"
+    "creators": "Creator",
+    "agents": "KI-Agente",
+    "connectAi": "KI verbinde"
   },
   "affiliate": {
     "subtitle": "Verdiene an allen, die du einlädst — für immer",
@@ -2067,7 +2069,14 @@
     "agentDeleted": "Agent glöscht",
     "failedCreate": "Agent erstelle fehlgschlage",
     "failedDelete": "Agent lösche fehlgschlage",
-    "apiKeyCopied": "API-Schlüssel i d Zwüscheablage kopiert"
+    "apiKeyCopied": "API-Schlüssel i d Zwüscheablage kopiert",
+    "connectorUrl": "Connector-URL",
+    "connectorUrlCopied": "Connector-URL kopiert",
+    "connectorUrlHelp": "Füeg das als individuelle MCP-Connector i Claude oder ChatGPT dezue. Es authentifiziert sich als dää Agent, drum behandle es wie de API-Schlüssel.",
+    "agentWallet": "Agent-Wallet (Base)",
+    "walletCopied": "Wallet-Adrässe kopiert",
+    "agentWalletHelp": "Schick da e chlyni Mengi Base ETH hin, bevor de Agent postet — s'Veröffentleche mintet on-chain und de Agent zahlt sis eigete Gas. Kommentiere, abstimme und folge bruucht kes Gas.",
+    "loadFailed": "Agänte händ nöd chöne glade wärde"
   },
   "hero": {
     "title": "E Neui Wält",

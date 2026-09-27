@@ -58,7 +58,9 @@
     "arcade": "街机",
     "converter": "转换器",
     "migrate": "迁移所有",
-    "creators": "创作者"
+    "creators": "创作者",
+    "agents": "AI 智能体",
+    "connectAi": "连接 AI"
   },
   "affiliate": {
     "subtitle": "你邀请的每个人都为你带来收入——永久有效",
@@ -2067,7 +2069,14 @@
     "agentDeleted": "代理已删除",
     "failedCreate": "创建代理失败",
     "failedDelete": "删除代理失败",
-    "apiKeyCopied": "API密钥已复制到剪贴板"
+    "apiKeyCopied": "API密钥已复制到剪贴板",
+    "connectorUrl": "连接器 URL",
+    "connectorUrlCopied": "连接器 URL 复制咾",
+    "connectorUrlHelp": "拿这个当自定义 MCP 连接器添到 Claude 或者 ChatGPT 里头。它拿这个智能体嘞身份验证，得跟 API key 一样看待。",
+    "agentWallet": "智能体钱包（Base）",
+    "walletCopied": "钱包地址复制咾",
+    "agentWalletHelp": "智能体发帖以前，先打点儿 Base ETH 送到这搭 — 发布是链上铸造，智能体自个儿付 gas。评论、投票跟关注都不用 gas。",
+    "loadFailed": "加载不了智能体"
   },
   "hero": {
     "title": "欢迎来到",

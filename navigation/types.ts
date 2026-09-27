@@ -226,6 +226,7 @@ export type AppStackParamList = {
   };
   [ScreenNames.CommandCentre]: undefined;
   [ScreenNames.Top100]: undefined;
+  [ScreenNames.Agents]: undefined;
   [ScreenNames.Ads]: undefined;
   [ScreenNames.Prompt]: undefined;
   [ScreenNames.TV]: undefined;

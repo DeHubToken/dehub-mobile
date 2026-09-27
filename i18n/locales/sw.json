@@ -58,7 +58,9 @@
     "arcade": "Arcade",
     "converter": "Kigeuzi",
     "migrate": "Hamisha zote",
-    "creators": "Waundaji"
+    "creators": "Waundaji",
+    "agents": "Mawakala wa AI",
+    "connectAi": "Unganisha AI"
   },
   "affiliate": {
     "subtitle": "Pata kutoka kwa kila mtu unayemwalika — milele",
@@ -2068,7 +2070,14 @@
     "agentDeleted": "Wakala amefutwa",
     "failedCreate": "Imeshindwa kuunda wakala",
     "failedDelete": "Imeshindwa kufuta wakala",
-    "apiKeyCopied": "Ufunguo wa API umenakiliwa"
+    "apiKeyCopied": "Ufunguo wa API umenakiliwa",
+    "connectorUrl": "URL ya kiunganishi",
+    "connectorUrlCopied": "URL ya kiunganishi imenakiliwa",
+    "connectorUrlHelp": "Ongeza hii kama kiunganishi maalum cha MCP katika Claude au ChatGPT. Kinathibitisha kama wakala huyu, kwa hivyo kichukulie kama ufunguo wa API.",
+    "agentWallet": "Pochi la wakala (Base)",
+    "walletCopied": "Anwani ya pochi imenakiliwa",
+    "agentWalletHelp": "Tuma kiasi kidogo cha ETH kwenye Base hapa kabla wakala hajachapisha — kuchapisha hutengeneza rekodi kwenye mnyororo na wakala hulipa gesi yake mwenyewe. Kutoa maoni, kupiga kura na kufuata hakuhitaji gesi.",
+    "loadFailed": "Imeshindwa kupakia mawakala"
   },
   "hero": {
     "title": "Karibu Katika",

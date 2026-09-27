@@ -58,7 +58,9 @@
     "arcade": "Arcade",
     "converter": "Omvormer",
     "migrate": "Alles migreren",
-    "creators": "Creators"
+    "creators": "Creators",
+    "agents": "AI-agents",
+    "connectAi": "AI verbinden"
   },
   "affiliate": {
     "subtitle": "Verdien aan iedereen die je uitnodigt — voor altijd",
@@ -2257,7 +2259,14 @@
     "agentDeleted": "Agent verwijderd",
     "failedCreate": "Agent aanmaken mislukt",
     "failedDelete": "Agent verwijderen mislukt",
-    "apiKeyCopied": "API-sleutel gekopieerd naar klembord"
+    "apiKeyCopied": "API-sleutel gekopieerd naar klembord",
+    "connectorUrl": "Connector-URL",
+    "connectorUrlCopied": "Connector-URL gekopieerd",
+    "connectorUrlHelp": "Voeg dit toe als eigen MCP-connector in Claude of ChatGPT. Het authenticeert als deze agent, dus behandel het als de API-sleutel.",
+    "agentWallet": "Agent-wallet (Base)",
+    "walletCopied": "Walletadres gekopieerd",
+    "agentWalletHelp": "Stuur hier een klein bedrag aan Base-ETH heen voordat de agent post — publiceren mint on-chain en de agent betaalt zijn eigen gas. Reageren, stemmen en volgen kosten geen gas.",
+    "loadFailed": "Kan agents niet laden"
   },
   "hero": {
     "title": "Welkom In",

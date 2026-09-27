@@ -58,7 +58,9 @@
     "arcade": "Arcade nisqa",
     "converter": "Tikraq",
     "migrate": "Llapallanta huklawman astakuy",
-    "creators": "Ruraqkuna"
+    "creators": "Ruraqkuna",
+    "agents": "IA Agentekuna",
+    "connectAi": "IA-wan t'inkiy"
   },
   "affiliate": {
     "subtitle": "Llapa invitasqaykimanta ganay — wiñaypaq",
@@ -2068,7 +2070,14 @@
     "agentDeleted": "Wakin pichasqa",
     "failedCreate": "Mana wakinta kamarita atirqanchu",
     "failedDelete": "Mana wakinta pichata atirqanchu",
-    "apiKeyCopied": "API llave copiasqa"
+    "apiKeyCopied": "API llave copiasqa",
+    "connectorUrl": "T'inkiq URL",
+    "connectorUrlCopied": "T'inkiq URL k'askachisqa",
+    "connectorUrlHelp": "Kayta Claude icha ChatGPT ukhupi kikinchasqa MCP t'inkiq hina yapay. Kay agente hina riqsichikun, chayrayku API llavehina qhawariy.",
+    "agentWallet": "Agente qullqi wayaqa (Base)",
+    "walletCopied": "Qullqi wayaqa dirección k'askachisqa",
+    "agentWalletHelp": "Agente willakuyta ruwananpaq, kaypi pisi Base ETH-ta apachiy ñawpaqta — willakuyqa chaka patapi ruwakun, chaymi agente kikin gas-ninta pagan. Rimay, akllay, qatiytaq mana gas-ta munanchu.",
+    "loadFailed": "Mana agentekunata cargayta atikurqanchu"
   },
   "hero": {
     "title": "Hamuykichikta",

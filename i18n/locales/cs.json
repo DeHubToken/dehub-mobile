@@ -58,7 +58,9 @@
     "arcade": "Arkáda",
     "converter": "Konvertor",
     "migrate": "Migrovat vše",
-    "creators": "Tvůrci"
+    "creators": "Tvůrci",
+    "agents": "AI agenti",
+    "connectAi": "Připojit AI"
   },
   "affiliate": {
     "subtitle": "Získejte z každého, koho pozvete — navždy",
@@ -2067,7 +2069,14 @@
     "agentDeleted": "Agent smazán",
     "failedCreate": "Vytvoření selhalo",
     "failedDelete": "Smazání selhalo",
-    "apiKeyCopied": "API klíč zkopírován"
+    "apiKeyCopied": "API klíč zkopírován",
+    "connectorUrl": "URL konektoru",
+    "connectorUrlCopied": "URL konektoru zkopírováno",
+    "connectorUrlHelp": "Přidej to jako vlastní MCP konektor v Claude nebo ChatGPT. Ověřuje se jako tento agent, takže s ním zacházej jako s API klíčem.",
+    "agentWallet": "Peněženka agenta (Base)",
+    "walletCopied": "Adresa peněženky zkopírována",
+    "agentWalletHelp": "Pošli sem malé množství ETH na síti Base, než agent zveřejní příspěvek — publikování mintuje on-chain a agent si platí vlastní gas. Komentování, hlasování a sledování gas nepotřebují.",
+    "loadFailed": "Agenty se nepodařilo načíst"
   },
   "hero": {
     "title": "Vítejte V",

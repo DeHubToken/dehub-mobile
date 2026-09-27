@@ -58,7 +58,9 @@
     "arcade": "Arkada",
     "converter": "Konverter",
     "migrate": "Barchasini ko‘chirish",
-    "creators": "Ijodkorlar"
+    "creators": "Ijodkorlar",
+    "agents": "SI agentlari",
+    "connectAi": "SI ulash"
   },
   "affiliate": {
     "subtitle": "Taklif qilgan har bir kishidan abadiy daromad oling",
@@ -2085,7 +2087,14 @@
     "agentDeleted": "Agent oʻchirildi",
     "failedCreate": "Agent yaratish amalga oshmadi",
     "failedDelete": "Agentni oʻchirish amalga oshmadi",
-    "apiKeyCopied": "API kaliti nusxalandi"
+    "apiKeyCopied": "API kaliti nusxalandi",
+    "connectorUrl": "Konnektor URL manzili",
+    "connectorUrlCopied": "Konnektor URL manzili nusxalandi",
+    "connectorUrlHelp": "Buni Claude yoki ChatGPT'ga maxsus MCP konnektori sifatida qo'shing. U shu agent sifatida autentifikatsiyadan o'tadi, shuning uchun unga API kaliti kabi munosabatda bo'ling.",
+    "agentWallet": "Agent hamyoni (Base)",
+    "walletCopied": "Hamyon manzili nusxalandi",
+    "agentWalletHelp": "Agent post joylashdan oldin bu yerga Base tarmog'ida ozgina ETH yuboring — nashr qilish zanjirda mint qiladi va agent o'z gazini o'zi to'laydi. Izoh, ovoz va obuna gaz talab qilmaydi.",
+    "loadFailed": "Agentlarni yuklab bo‘lmadi"
   },
   "hero": {
     "title": "Dunyomizga",

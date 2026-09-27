@@ -190,6 +190,9 @@ export const DeepLinkPaths = {
   // /fractions too; the /app rewrite below maps it here.
   FRACTIONS: 'app/fractions',
 
+  // AI agents — dehub.io/app/agents; the bare /agents is rewritten onto it.
+  AGENTS: 'app/agents',
+
   // Events — dehub.io/app/events/:eventNumber. There is no per-event screen
   // yet, so this lands on the list; a link that opens the right part of the
   // app beats one that opens the website in a browser.
@@ -310,6 +313,8 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
 
           [ScreenNames.Fractions]: DeepLinkPaths.FRACTIONS,
 
+          [ScreenNames.Agents]: DeepLinkPaths.AGENTS,
+
           [ScreenNames.Events]: DeepLinkPaths.EVENT,
 
           [ScreenNames.ArcadeChessOnline]: DeepLinkPaths.ARCADE_CHESS_ONLINE,
@@ -371,7 +376,7 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
     // and the link opened the website instead of the app.
     const APP_PREFIXED = new Set([
       'post', 'notifications', 'leaderboard', 'messages', 'communities',
-      'stores', 'events', 'fractions',
+      'stores', 'events', 'fractions', 'agents',
     ]);
     // Builder lived at /app/builder before it took the top-level URL; web
     // redirects the old links, so do the same here.
@@ -667,6 +672,11 @@ export const parseDeepLink = (url: string): { type: string; params: Record<strin
     // /app/fractions
     if (appParts[0] === 'fractions') {
       return { type: 'fractions', params: qp };
+    }
+
+    // /app/agents
+    if (appParts[0] === 'agents') {
+      return { type: 'agents', params: qp };
     }
 
     // /app/events/:eventNumber

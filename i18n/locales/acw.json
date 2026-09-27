@@ -58,7 +58,9 @@
     "arcade": "الألعاب",
     "converter": "محول",
     "migrate": "انقل الكل",
-    "creators": "المبدعين"
+    "creators": "المبدعين",
+    "agents": "وكلاء AI",
+    "connectAi": "ربط AI"
   },
   "affiliate": {
     "subtitle": "اربح من كل من تدعوه — إلى الأبد",
@@ -2067,7 +2069,14 @@
     "agentDeleted": "الوكيل انحذف",
     "failedCreate": "فشل إنشاء الوكيل",
     "failedDelete": "فشل حذف الوكيل",
-    "apiKeyCopied": "مفتاح API انسخ للحافظة"
+    "apiKeyCopied": "مفتاح API انسخ للحافظة",
+    "connectorUrl": "رابط الموصل",
+    "connectorUrlCopied": "رابط الموصل انسخ",
+    "connectorUrlHelp": "ضيف هذا كموصل MCP مخصص في Claude أو ChatGPT. يتحقق كهالوكيل، فعامله مثل مفتاح الـAPI.",
+    "agentWallet": "محفظة الوكيل (Base)",
+    "walletCopied": "عنوان المحفظة انسخ",
+    "agentWalletHelp": "ابعث مبلغ صغير من Base ETH هنا قبل ما الوكيل ينشر — النشر يسك على السلسلة والوكيل يدفع الغاز حق نفسه. التعليق والتصويت والمتابعة ما تحتاج غاز.",
+    "loadFailed": "ما قدرنا نحمّل الوكلاء"
   },
   "hero": {
     "title": "أهلاً وسهلاً",

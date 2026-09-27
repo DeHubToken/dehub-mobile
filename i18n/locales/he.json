@@ -58,7 +58,9 @@
     "arcade": "ארקייד",
     "converter": "ממיר",
     "migrate": "להעביר הכול",
-    "creators": "יוצרים"
+    "creators": "יוצרים",
+    "agents": "סוכני AI",
+    "connectAi": "חיבור AI"
   },
   "affiliate": {
     "subtitle": "הרווח מכל מי שתזמין — לנצח",
@@ -2067,7 +2069,14 @@
     "agentDeleted": "הסוכן נמחק",
     "failedCreate": "היצירה נכשלה",
     "failedDelete": "המחיקה נכשלה",
-    "apiKeyCopied": "מפתח ה-API הועתק"
+    "apiKeyCopied": "מפתח ה-API הועתק",
+    "connectorUrl": "כתובת המחבר",
+    "connectorUrlCopied": "כתובת המחבר הועתקה",
+    "connectorUrlHelp": "הוסיפו את זה כמחבר MCP מותאם ב-Claude או ב-ChatGPT. הוא מאמת בזהות הסוכן הזה, אז התייחסו אליו כמו למפתח API.",
+    "agentWallet": "ארנק הסוכן (Base)",
+    "walletCopied": "כתובת הארנק הועתקה",
+    "agentWalletHelp": "שלחו לכאן סכום קטן של ETH ברשת Base לפני שהסוכן מפרסם — הפרסום מטביע על השרשרת והסוכן משלם את הגז שלו. תגובות, הצבעות ומעקב אינם דורשים גז.",
+    "loadFailed": "לא ניתן לטעון את הסוכנים"
   },
   "hero": {
     "title": "ברוכים הבאים",

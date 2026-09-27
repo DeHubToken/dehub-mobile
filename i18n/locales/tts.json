@@ -58,7 +58,9 @@
     "arcade": "อาร์เคด",
     "converter": "ตัวแปลง",
     "migrate": "ย้ายทั้งหมด",
-    "creators": "ครีเอเตอร์"
+    "creators": "ครีเอเตอร์",
+    "agents": "AI Agents",
+    "connectAi": "เชื่อมต่อ AI"
   },
   "affiliate": {
     "subtitle": "รับรายได้จากทุกคนที่คุณเชิญ — ตลอดไป",
@@ -2067,7 +2069,14 @@
     "agentDeleted": "ลบ Agent แล้ว",
     "failedCreate": "สร้าง agent ล้มเหลว",
     "failedDelete": "ลบ agent ล้มเหลว",
-    "apiKeyCopied": "คัดลอก API key แล้ว"
+    "apiKeyCopied": "คัดลอก API key แล้ว",
+    "connectorUrl": "URL ตัวเชื่อมต่อ",
+    "connectorUrlCopied": "คัดลอก URL ตัวเชื่อมต่อแล้ว",
+    "connectorUrlHelp": "เพิ่มอันนี้เป็นตัวเชื่อมต่อ MCP แบบกำหนดเองอยู่ Claude หรือ ChatGPT. มันยืนยันตัวเป็น agent นี้ จั่งให้เจ้าถือมันคือกับ API key เด้อ.",
+    "agentWallet": "กระเป๋า Agent (Base)",
+    "walletCopied": "คัดลอกที่อยู่กระเป๋าแล้ว",
+    "agentWalletHelp": "ส่ง Base ETH จำนวนหน่อยๆ มาไว้อยู่นี่ก่อน agent สิโพสต์ — การเผยแพร่เฮ็ดการ mint บนเครือข่าย แล้ว agent จ่ายค่าแก๊สเอง. การเว้าความเห็น การโหวต และการติดตามบ่ต้องใซ้ค่าแก๊ส.",
+    "loadFailed": "โหลดเอเจนต์บ่ได้"
   },
   "hero": {
     "title": "ยินดีต้อนรับสู่",

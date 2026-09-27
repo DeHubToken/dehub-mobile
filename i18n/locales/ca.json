@@ -58,7 +58,9 @@
     "arcade": "Arcade",
     "converter": "Convertidor",
     "migrate": "Migrar-ho tot",
-    "creators": "Creadors"
+    "creators": "Creadors",
+    "agents": "Agents d'IA",
+    "connectAi": "Connecta la IA"
   },
   "affiliate": {
     "subtitle": "Guanya de tothom que convidis, per sempre",
@@ -2067,7 +2069,14 @@
     "agentDeleted": "Agent eliminat",
     "failedCreate": "Error en crear l'agent",
     "failedDelete": "Error en eliminar l'agent",
-    "apiKeyCopied": "Clau API copiada al porta-retalls"
+    "apiKeyCopied": "Clau API copiada al porta-retalls",
+    "connectorUrl": "URL del connector",
+    "connectorUrlCopied": "URL del connector copiada",
+    "connectorUrlHelp": "Afegeix-ho com a connector MCP personalitzat a Claude o ChatGPT. S'autentica com aquest agent, així que tracta'l com la clau d'API.",
+    "agentWallet": "Cartera de l'agent (Base)",
+    "walletCopied": "Adreça de la cartera copiada",
+    "agentWalletHelp": "Envia aquí una petita quantitat d'ETH a Base abans que l'agent publiqui: publicar encunya on-chain i l'agent paga el seu propi gas. Comentar, votar i seguir no necessiten gas.",
+    "loadFailed": "No s'han pogut carregar els agents"
   },
   "hero": {
     "title": "Benvinguts Al",
