@@ -138,7 +138,7 @@ const ShortsGrid: React.FC<ShortsGridProps> = ({
     initialPageParam: { page: 1 } as ShortsPageParam,
     getNextPageParam: (lastPage, allPages, lastPageParam): ShortsPageParam | undefined => {
       const results = lastPage.result || [];
-      if (results.length < pageSize || !lastPage.pagination?.hasMore) return undefined;
+      if (!lastPage.pagination?.hasMore) return undefined;
       return {
         page: lastPageParam.page + 1,
         shuffleSeed: allPages[0]?.shuffleSeed ?? lastPageParam.shuffleSeed,

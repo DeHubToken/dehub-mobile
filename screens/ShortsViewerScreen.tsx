@@ -57,6 +57,8 @@ import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import type { NativeGesture } from "react-native-gesture-handler";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import { VideoView, useVideoPlayer } from "expo-video";
+import { shortsPhotoMedia } from "../libs/shortsPhotos";
+import { ShortsPhotoPager } from "../components/Post/ShortsPhotoPager";
 import PictureInPictureButton from "../components/common/PictureInPictureButton";
 import { configureForBackgroundPlayback, releaseBackgroundPlayback } from "../libs/audioSession";
 import { FEED_BUFFER_OPTIONS } from "../libs/videoBuffering";
@@ -337,8 +339,10 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
   const { showUserProfile } = useUserProfileSheet();
 
   const tokenId = item.tokenId ?? item.id;
-  const videoUrl = getVideoUrl(tokenId) || undefined;
-  const thumbnail = getShortsThumbnailUrl(tokenId);
+  const photoMedia = useMemo(() => shortsPhotoMedia(item), [item]);
+  const [soundtrackError, setSoundtrackError] = useState(false);
+  const videoUrl = photoMedia?.soundtrackUrl || getVideoUrl(tokenId) || undefined;
+  const thumbnail = photoMedia?.thumbnail || getShortsThumbnailUrl(tokenId);
   const minterAddress = item.minter || item.minterUser?.address || "";
 
   // `getAvatarUrl` answers the literal string "default-avatar" — not a URI —
@@ -379,7 +383,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
   })();
   // A description that only repeats the title is a second copy of the same
   // line — and a second translation request for text already going out.
-  const rawDescription = (item.description || "").trim();
+  const rawDescription = (photoMedia?.description ?? item.description ?? "").trim();
   const description = rawDescription !== title ? rawDescription : "";
 
   // Auto-translate the caption, the same way the feed card does.
@@ -561,6 +565,14 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
     } catch {}
     setIsPlaying(false);
   }, [player]);
+
+  useEffect(() => {
+    if (!photoMedia) return;
+    const subscription = player.addListener('statusChange', ({ status }) => {
+      setSoundtrackError(status === 'error');
+    });
+    return () => subscription.remove();
+  }, [player, photoMedia]);
 
   const playIfActive = useCallback(() => {
     if (!isActiveRef.current) {
@@ -1249,7 +1261,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
         )}
         {/* Only the current short owns a native view: preloaded neighbours must
             not overwrite the activity's automatic PiP configuration. */}
-        {player && isActive ? (
+        {player && isActive && !photoMedia ? (
           <VideoView
             ref={activeVideoRef}
             allowsPictureInPicture
@@ -1262,6 +1274,14 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
             onFirstFrameRender={() => setFirstFrameRendered(true)}
           />
         ) : null}
+        {photoMedia && <ShortsPhotoPager images={photoMedia.imageUrls} width={SCREEN_WIDTH} pagerGesture={pagerGesture} />}
+        {photoMedia && soundtrackError && isActive && <Pressable accessibilityRole="button"
+          accessibilityLabel="Retry music" style={{ position: 'absolute', top: 140, alignSelf: 'center', minHeight: 44, justifyContent: 'center', borderRadius: 22, paddingHorizontal: 16, backgroundColor: 'rgba(0,0,0,0.7)' }}
+          onPress={() => {
+            player.replaceAsync(photoMedia.soundtrackUrl!).then(() => {
+              if (isActiveRef.current) player.play();
+            }).catch(() => setSoundtrackError(true));
+          }}><Text style={{ color: '#fff' }}>Retry music</Text></Pressable>}
         </View>
       </GestureDetector>
 
@@ -1454,6 +1474,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
                 </View>
               </Pressable>
 
+              {photoMedia?.sound ? <Text numberOfLines={1} style={styles.captionBody}>♫ {photoMedia.sound}</Text> : null}
               {shownTitle || shownDescription ? (
                 <Pressable onPress={() => setCaptionExpanded((p) => !p)} hitSlop={8}>
                   {shownTitle ? (
@@ -1851,7 +1872,7 @@ const ShortsViewerScreen = () => {
         shuffleSeedRef.current = res.shuffleSeed;
       }
 
-      if (newItems.length === 0 || !res.pagination?.hasMore) {
+      if (!res.pagination?.hasMore) {
         endReachedRef.current = true;
         setNoMoreShorts(true);
       }
@@ -2116,7 +2137,7 @@ const ShortsViewerScreen = () => {
           </Pressable>
 
           <View style={styles.topRight}>
-            <PictureInPictureButton videoRef={activeVideoRef} />
+            {items[activeIndex]?.postType !== "feed-images" && <PictureInPictureButton videoRef={activeVideoRef} />}
             <Pressable
               onPress={handleCycleSpeed}
               hitSlop={CHROME_HIT_SLOP}

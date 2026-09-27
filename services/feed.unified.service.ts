@@ -1,3 +1,4 @@
+import { isShortsPhoto, interleaveShorts } from "../libs/shortsPhotos";
 import { apiClient } from "../libs";
 
 export type FeedPostType = "video" | "feed-images" | "feed-simple" | "feed-audio" | "live" | "short" | "all";
@@ -31,6 +32,8 @@ export interface UnifiedFeedParams {
   from?: string; // ISO 8601
   to?: string;   // ISO 8601
   
+  followingOnly?: boolean;
+
   // User filters
   minter?: string;  // Creator address
   owner?: string;   // Current owner address
@@ -233,6 +236,7 @@ export async function getUnifiedFeed(
     minter: params?.minter,
     owner: params?.owner,
     search: params?.search,
+    followingOnly: params?.followingOnly,
   });
 
   const query = objectToQueryString(queryParams);
@@ -325,7 +329,7 @@ export interface ShortsFeedResponse {
   shuffleSeed?: string;
 }
 
-export async function getShortsFeed(
+async function getShortVideos(
   params?: ShortsFeedParams,
 ): Promise<ShortsFeedResponse> {
   const queryParams = removeUndefined({
@@ -371,6 +375,24 @@ export async function getShortsFeed(
     console.error("[ShortsFeed] Error fetching shorts:", error?.message || error);
     throw error;
   }
+}
+
+export async function getShortsFeed(params?: ShortsFeedParams): Promise<ShortsFeedResponse> {
+  const [videos, photos] = await Promise.all([
+    getShortVideos(params),
+    getUnifiedFeed({ page: params?.page, limit: params?.limit, postType: "feed-images",
+      search: "soundtrack", sortBy: params?.sortBy === "random" ? "createdAt" : params?.sortBy,
+      sortOrder: params?.sortOrder, category: params?.category, minter: params?.minter,
+      followingOnly: params?.followingOnly, status: "all" }),
+  ]);
+  return { ...videos,
+    result: interleaveShorts(videos.result, photos.result.filter(isShortsPhoto)),
+    pagination: { ...videos.pagination,
+      hasMore: videos.pagination.hasMore || photos.pagination.hasMore,
+      totalCount: videos.pagination.totalCount + photos.pagination.totalCount,
+      totalPages: Math.max(videos.pagination.totalPages, photos.pagination.totalPages),
+    },
+  };
 }
 
 export default {
