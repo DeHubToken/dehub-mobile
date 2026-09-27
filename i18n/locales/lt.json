@@ -6756,7 +6756,8 @@
       "activities": "Veikla",
       "objects": "Daiktai",
       "symbols": "Simboliai",
-      "flags": "Vėliavos"
+      "flags": "Vėliavos",
+      "custom": "Pasirinktinis"
     },
     "tone": {
       "default": "Numatytasis",
@@ -6765,6 +6766,32 @@
       "medium": "Vidutinis odos atspalvis",
       "mediumDark": "Vidutiniškai tamsus odos atspalvis",
       "dark": "Tamsus odos atspalvis"
+    },
+    "addCustom": "Pridėti pasirinktinį jaustuką",
+    "customEmpty": "Dar nėra pasirinktinių jaustukų. Pridėkite jį iš failo, nuorodos, „Discord“, „Slack“, „7TV“ arba „Mastodon“ serverio.",
+    "back": "Atgal",
+    "modeSingle": "Vienas jaustukas",
+    "modePack": "Importuoti paketą",
+    "upload": "Nusiųsti vaizdą",
+    "linkPlaceholder": "...arba įklijuokite nuorodą arba Discord emoji kodą",
+    "namePlaceholder": "pavad.",
+    "singleHint": "PNG, GIF, WebP arba JPEG iki 2 MB. Taip pat veikia nuorodos iš Discord, Slack, 7TV, BetterTTV, FrankerFaceZ, emoji.gg ar bet kokio vaizdo.",
+    "add": "Pridėti jaustukų",
+    "addedName": "Pridėta {{name}}",
+    "packPlaceholder": "mastodon.social, misskey.io arba JSON nuoroda",
+    "packHint": "Importuoja kiekvieną jaustuką iš „Mastodon“, „Pleroma“, „Akkoma“ ar „Misskey“ serverio arba iš bet kurio jaustukų JSON sąrašo. Jau naudojami vardai praleidžiami.",
+    "importPack": "Importuoti",
+    "packAdded": "Pridėta {{count}} jaustukų ({{skipped}} praleista)",
+    "errors": {
+      "signIn": "Prisijunkite, kad pridėtumėte jaustuką",
+      "fileType": "Naudokite PNG, GIF, WebP arba JPEG vaizdą",
+      "fileSize": "Vaizdai turi būti 2 MB arba mažesni",
+      "invalid": "Vardai rašomi nuo 2 iki 64 raidžių, skaičių, _, + arba -",
+      "badImage": "Ta nuoroda neįkelta kaip vaizdas",
+      "addFailed": "Nepavyko pridėti šios jaustuko juostos. Bandykite dar kartą.",
+      "packEmpty": "Šiuo adresu nerasta jokių jaustukų",
+      "shortcodeTaken": "{{name}} jau užimta",
+      "shortcodeStandard": "{{name}} jau yra standartinė jaustukų piktograma"
     }
   }
 }

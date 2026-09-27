@@ -6760,7 +6760,8 @@
       "activities": "Занятия",
       "objects": "Предметы",
       "symbols": "Символы",
-      "flags": "Флаги"
+      "flags": "Флаги",
+      "custom": "Пользовательские"
     },
     "tone": {
       "default": "По умолчанию",
@@ -6769,6 +6770,32 @@
       "medium": "Средний оттенок кожи",
       "mediumDark": "Средне-тёмный оттенок кожи",
       "dark": "Тёмный оттенок кожи"
+    },
+    "addCustom": "Добавить пользовательский эмодзи",
+    "customEmpty": "Пользовательских эмодзи пока нет. Добавьте один из файла, по ссылке, из Discord, Slack, 7TV или сервера Mastodon.",
+    "back": "Назад",
+    "modeSingle": "Один эмодзи",
+    "modePack": "Импортировать набор",
+    "upload": "Загрузить изображение",
+    "linkPlaceholder": "…или вставьте ссылку или код эмодзи Discord",
+    "namePlaceholder": "имя",
+    "singleHint": "PNG, GIF, WebP или JPEG размером до 2 МБ. Ссылки с Discord, Slack, 7TV, BetterTTV, FrankerFaceZ, emoji.gg или любые изображения также работают.",
+    "add": "Добавить эмодзи",
+    "addedName": "Добавлено {{name}}",
+    "packPlaceholder": "mastodon.social, misskey.io или ссылка JSON",
+    "packHint": "Импортирует все эмодзи с сервера Mastodon, Pleroma, Akkoma или Misskey, или из любого списка эмодзи JSON. Имена, которые уже используются, пропускаются.",
+    "importPack": "Импорт",
+    "packAdded": "Добавлено {{count}} эмодзи ({{skipped}} пропущено)",
+    "errors": {
+      "signIn": "Войдите, чтобы добавить эмодзи",
+      "fileType": "Используйте изображение PNG, GIF, WebP или JPEG",
+      "fileSize": "Изображения должны быть размером 2 МБ или меньше",
+      "invalid": "Имена содержат от 2 до 64 букв, цифр, _, + или -",
+      "badImage": "Эта ссылка не загрузила изображение",
+      "addFailed": "Не удалось добавить этот эмодзи. Попробуйте еще раз.",
+      "packEmpty": "Эмодзи по этому адресу не найдены",
+      "shortcodeTaken": "{{name}} уже занято",
+      "shortcodeStandard": "{{name}} уже является стандартным смайликом"
     }
   }
 }

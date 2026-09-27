@@ -6756,7 +6756,8 @@
       "activities": "Activitats",
       "objects": "Objectes",
       "symbols": "Símbols",
-      "flags": "Banderes"
+      "flags": "Banderes",
+      "custom": "Personalitzat"
     },
     "tone": {
       "default": "Predeterminat",
@@ -6765,6 +6766,32 @@
       "medium": "To de pell mitjà",
       "mediumDark": "To de pell mitjà-fosc",
       "dark": "To de pell fosc"
+    },
+    "addCustom": "Afegeix un emoji personalitzat",
+    "customEmpty": "Encara no hi ha cap emoji personalitzat. Afegeix-ne un d'un fitxer, un enllaç, Discord, Slack, 7TV o un servidor Mastodon.",
+    "back": "Enrere",
+    "modeSingle": "Un emoji",
+    "modePack": "Importa un paquet",
+    "upload": "Pujar una imatge",
+    "linkPlaceholder": "...o enganxa un enllaç o un codi emoji de Discord",
+    "namePlaceholder": "nom",
+    "singleHint": "PNG, GIF, WebP o JPEG fins a 2 MB. Els enllaços de Discord, Slack, 7TV, BetterTTV, FrankerFaceZ, emoji.gg o qualsevol imatge també funcionen.",
+    "add": "Afegeix un emoji",
+    "addedName": "S'ha afegit {{name}}",
+    "packPlaceholder": "mastodon.social, misskey.io o un enllaç JSON",
+    "packHint": "Importa tots els emojis d'un servidor Mastodon, Pleroma, Akkoma o Misskey, o de qualsevol llista JSON d'emojis. S'ometen els noms que ja estan en ús.",
+    "importPack": "Importa",
+    "packAdded": "S'ha afegit {{count}} emoji ({{skipped}} ometut)",
+    "errors": {
+      "signIn": "Inicia sessió per afegir emoji",
+      "fileType": "Utilitza una imatge PNG, GIF, WebP o JPEG",
+      "fileSize": "Les imatges han de tenir 2 MB o menys",
+      "invalid": "Els noms utilitzen de 2 a 64 lletres, números, _, + o -",
+      "badImage": "Aquest enllaç no s'ha carregat com a imatge",
+      "addFailed": "No s'ha pogut afegir aquest emoji. Torna-ho a provar.",
+      "packEmpty": "No s'ha trobat cap emoji a aquesta adreça",
+      "shortcodeTaken": "{{name}} ja està en curs",
+      "shortcodeStandard": "{{name}} ja és un emoji estàndard"
     }
   }
 }

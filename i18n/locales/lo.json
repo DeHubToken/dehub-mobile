@@ -6689,7 +6689,8 @@
       "activities": "ກິດຈະກຳ",
       "objects": "ວັດຖຸ",
       "symbols": "ສັນຍາລັກ",
-      "flags": "ທຸງ"
+      "flags": "ທຸງ",
+      "custom": "ກຳນົດເອງ"
     },
     "tone": {
       "default": "ຄ່າເລີ່ມຕົ້ນ",
@@ -6698,6 +6699,32 @@
       "medium": "ສີຜິວປານກາງ",
       "mediumDark": "ສີຜິວເຂັ້ມປານກາງ",
       "dark": "ສີຜິວເຂັ້ມ"
+    },
+    "addCustom": "ເພີ່ມອີໂມຈິທີ່ກຳນົດເອງ",
+    "customEmpty": "ບໍ່ມີອີໂມຈິທີ່ກຳນົດເອງເທື່ອ. ເພີ່ມຫນຶ່ງຈາກໄຟລ໌, ການເຊື່ອມຕໍ່, Discord, Slack, 7TV ຫຼືເຄື່ອງແມ່ຂ່າຍ Mastodon.",
+    "back": "ກັບຄືນ",
+    "modeSingle": "Emoji ຫນຶ່ງ",
+    "modePack": "ການນໍາເຂົ້າ PACK",
+    "upload": "ອັບໂຫລດຮູບພາບ",
+    "linkPlaceholder": "... ຫຼືຕິດລິ້ງ ຫຼື ລະຫັດ emoji Discord",
+    "namePlaceholder": "ຊື່",
+    "singleHint": "PNG, GIF, WebP ຫຼື JPEG ສູງເຖິງ 2 MB. ລິ້ງຈາກ Discord, Slack, 7TV, BetterTTV, FrankerFaceZ, emoji.gg ຫຼືຮູບພາບໃດໆເຮັດວຽກເຊັ່ນກັນ.",
+    "add": "ເພີ່ມອີໂມຈິ",
+    "addedName": "ເພີ່ມ {{name}}",
+    "packPlaceholder": "mastodon.social, misskey.io ຫຼືການເຊື່ອມຕໍ່ JSON",
+    "packHint": "ນໍາເຂົ້າທຸກ emoji ຈາກເຄື່ອງແມ່ຂ່າຍ Mastodon, Pleroma, Akkoma ຫຼື Misskey, ຫຼືຈາກລາຍຊື່ emoji JSON ໃດໆ. ຊື່ທີ່ໃຊ້ແລ້ວຖືກລຶບອອກ.",
+    "importPack": "ນໍາເຂົ້າ",
+    "packAdded": "ເພີ່ມ {{count}} emoji ({{skipped}} ຂ້າມ)",
+    "errors": {
+      "signIn": "ເຂົ້າສູ່ລະບົບເພື່ອເພີ່ມ emoji",
+      "fileType": "ໃຊ້ຮູບພາບ PNG, GIF, WebP ຫຼື JPEG",
+      "fileSize": "ຮູບພາບຕ້ອງມີຂະ ຫນາດ 2 MB ຫຼືນ້ອຍກວ່າ",
+      "invalid": "ຊື່ໃຊ້ 2 ຫາ 64 ຕົວອັກສອນ, ຕົວເລກ, _, + ຫຼື -",
+      "badImage": "ການເຊື່ອມຕໍ່ນັ້ນບໍ່ໄດ້ໂຫຼດເປັນຮູບພາບ",
+      "addFailed": "ບໍ່ສາມາດເພີ່ມອີໂມຈິນັ້ນໄດ້. ລອງໃໝ່ອີກຄັ້ງ.",
+      "packEmpty": "ບໍ່ມີ emoji ພົບຢູ່ໃນທີ່ຢູ່ນັ້ນ",
+      "shortcodeTaken": "{{name}} ຖ່າຍແລ້ວ",
+      "shortcodeStandard": "{{name}} ແມ່ນ emoji ມາດຕະຖານແລ້ວ"
     }
   }
 }

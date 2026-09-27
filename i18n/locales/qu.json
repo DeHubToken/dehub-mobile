@@ -6787,7 +6787,8 @@
       "activities": "Ruraykuna",
       "objects": "Imakuna",
       "symbols": "Unanchakuna",
-      "flags": "Banderakuna"
+      "flags": "Banderakuna",
+      "custom": "Chullachasqa"
     },
     "tone": {
       "default": "Kikin",
@@ -6796,6 +6797,32 @@
       "medium": "Chawpi qara llimp'i",
       "mediumDark": "Chawpi-yana qara llimp'i",
       "dark": "Yana qara llimp'i"
+    },
+    "addCustom": "Emoji personalizado nisqatapas yapay",
+    "customEmpty": "Manaraqmi emoji personalizado kanchu. Hukta yapay huk willañiqimanta, huk t&#39;inkimanta, Discord, Slack, 7TV utaq huk Mastodon sirwiqmanta.",
+    "back": "Qipaman",
+    "modeSingle": "Huk emoji",
+    "modePack": "Huk paqueteta hawa llaqtakunamanta apamuy",
+    "upload": "Imahinata apachiy",
+    "linkPlaceholder": "...utaq huk linkta utaq huk Discord emoji código nisqatapas k&#39;askachiy",
+    "namePlaceholder": "Suti",
+    "singleHint": "PNG, GIF, WebP utaq JPEG 2 MB nisqakama. Discord, Slack, 7TV, BetterTTV, FrankerFaceZ, emoji.gg utaq ima siq&#39;imanta t&#39;inkikuna llamk&#39;ankutaq.",
+    "add": "Emoji nisqakunata yapay",
+    "addedName": "Yapachisqa {{name}}",
+    "packPlaceholder": "mastodon.social, misskey.io icha huk JSON t&#39;inki",
+    "packHint": "Sapa emoji huk Mastodon, Pleroma, Akkoma utaq Misskey sirwiqmanta, utaq mayqin emoji JSON listamantapas apamun. Ña llamk&#39;achisqa sutikunaqa saltasqam.",
+    "importPack": "Yaykuchiy...",
+    "packAdded": "Yapachisqa {{count}} emoji ({{skipped}} saltasqa)",
+    "errors": {
+      "signIn": "Emoji yapanaykipaq yaykuy",
+      "fileType": "PNG, GIF, WebP utaq JPEG siq&#39;ita llamk&#39;achiy",
+      "fileSize": "Siqikunaqa 2 MB utaq aswan huch&#39;uymi kanan",
+      "invalid": "Sutikunaqa 2manta 64kama qillqakunata, yupaykunata, _, + icha - .",
+      "badImage": "Chay t&#39;inkiqa manam siq&#39;i hinachu kargarqan",
+      "addFailed": "Mana chay emojita yapayta atirqanichu. Hukmanta kallpachakuy.",
+      "packEmpty": "Chay direccionpiqa manan ima emojipas tarikurqanchu",
+      "shortcodeTaken": "{{name}} ña hapisqañam",
+      "shortcodeStandard": "{{name}} nisqaqa huk emoji estándar nisqañam"
     }
   }
 }

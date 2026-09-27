@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import {
   View,
   Text,
@@ -33,6 +33,15 @@ import {
   type EmojiKeywords,
   type SkinTone,
 } from "../../libs/emoji";
+import {
+  customEmojisLoaded,
+  getCustomEmojis,
+  loadCustomEmojis,
+  subscribeCustomEmojis,
+  type CustomEmoji,
+} from "../../libs/emoji/custom-emoji";
+import { EmojiImage } from "../common/EmojiText";
+import AddCustomEmojiPanel from "../common/AddCustomEmojiPanel";
 
 interface EmojiSheetProps {
   visible: boolean;
@@ -42,11 +51,12 @@ interface EmojiSheetProps {
   selected?: readonly string[];
 }
 
-type SectionKey = "recent" | "dehub" | EmojiGroup;
+type SectionKey = "recent" | "dehub" | "custom" | EmojiGroup;
 
 const SECTION_ICONS: Record<SectionKey, IconName> = {
   recent: "Clock",
   dehub: "Sparkles",
+  custom: "ImagePlus",
   smileys: "Smile",
   people: "Hand",
   animals: "PawPrint",
@@ -65,13 +75,25 @@ const HEADER_H = 30;
 const ROW_H = 46;
 
 type Row =
-  | { kind: "header"; key: string; section: SectionKey }
-  | { kind: "emoji"; key: string; section: SectionKey; items: EmojiEntry[] };
+  | { kind: "header"; key: string; section: SectionKey; title?: string }
+  | { kind: "emoji"; key: string; section: SectionKey; items: EmojiEntry[] }
+  | { kind: "custom"; key: string; section: SectionKey; items: CustomEmoji[]; withAdd: boolean };
 
 function toRows(section: SectionKey, items: EmojiEntry[], withHeader: boolean): Row[] {
   const rows: Row[] = withHeader ? [{ kind: "header", key: `h-${section}`, section }] : [];
   for (let i = 0; i < items.length; i += COLS) {
     rows.push({ kind: "emoji", key: `${section}-${i}`, section, items: items.slice(i, i + COLS) });
+  }
+  return rows;
+}
+
+/** Custom emoji rows; the section's own grid leads with a "+" tile that opens the add form. */
+function toCustomRows(prefix: string, items: CustomEmoji[], withAdd: boolean): Row[] {
+  const rows: Row[] = [];
+  const first = withAdd ? COLS - 1 : COLS;
+  rows.push({ kind: "custom", key: `${prefix}-0`, section: "custom", items: items.slice(0, first), withAdd });
+  for (let i = first; i < items.length; i += COLS) {
+    rows.push({ kind: "custom", key: `${prefix}-${i}`, section: "custom", items: items.slice(i, i + COLS), withAdd: false });
   }
   return rows;
 }
@@ -93,6 +115,10 @@ export default function EmojiSheet({ visible, onClose, onSelect, selected }: Emo
   const [active, setActive] = useState<SectionKey>("dehub");
   const [local, setLocal] = useState<EmojiKeywords | null>(null);
   const [preview, setPreview] = useState<EmojiEntry | null>(null);
+  // Custom emoji (the shared :shortcode: image set) and the inline add form.
+  const custom = useSyncExternalStore(subscribeCustomEmojis, getCustomEmojis, getCustomEmojis);
+  const [adding, setAdding] = useState(false);
+  const jumpAfterAdd = useRef(false);
   const listRef = useRef<FlatList<Row>>(null);
   // A fixed height, so the list has a bounded box to virtualise inside and
   // the sheet does not jump as search narrows the rows.
@@ -102,8 +128,10 @@ export default function EmojiSheet({ visible, onClose, onSelect, selected }: Emo
   // Parse the dataset the first time the sheet opens, not at app boot.
   useEffect(() => {
     if (visible && !ready) setReady(true);
+    if (visible && !customEmojisLoaded()) void loadCustomEmojis();
     if (!visible) {
       setQuery("");
+      setAdding(false);
       setToneOpen(false);
       setPreview(null);
     }
@@ -129,6 +157,8 @@ export default function EmojiSheet({ visible, onClose, onSelect, selected }: Emo
     const recentItems = pick(recents);
     if (recentItems.length) out.push({ key: "recent", items: recentItems });
     out.push({ key: "dehub", items: pick(DEHUB_PICKS) });
+    // Rendered from `custom`, not `items` — these are images, not characters.
+    out.push({ key: "custom", items: [] });
     const byGroup = new Map<EmojiGroup, EmojiEntry[]>();
     for (const e of data.entries) {
       if (e.v > maxV) continue;
@@ -150,10 +180,30 @@ export default function EmojiSheet({ visible, onClose, onSelect, selected }: Emo
     [query, visibleEntries, local, english],
   );
 
+  const customMatches = useMemo(() => {
+    const q = query.trim().toLowerCase().replace(/^:|:$/g, "");
+    return q ? custom.filter((c) => c.shortcode.includes(q)) : [];
+  }, [custom, query]);
+
   const rows = useMemo<Row[]>(() => {
-    if (results) return toRows("smileys", results, false);
-    return sections.flatMap((s) => toRows(s.key, s.items, true));
-  }, [sections, results]);
+    if (results) {
+      const out: Row[] = [];
+      if (customMatches.length) {
+        out.push({ kind: "header", key: "h-custom-results", section: "custom" });
+        out.push(...toCustomRows("cr", customMatches, false));
+      }
+      if (results.length) {
+        out.push({ kind: "header", key: "h-results", section: "smileys", title: t("emojiPicker.searchResults") });
+        out.push(...toRows("smileys", results, false));
+      }
+      return out;
+    }
+    return sections.flatMap((s): Row[] =>
+      s.key === "custom"
+        ? [{ kind: "header", key: "h-custom", section: "custom" }, ...toCustomRows("c", custom, true)]
+        : toRows(s.key, s.items, true),
+    );
+  }, [sections, results, custom, customMatches, t]);
 
   const offsets = useMemo(() => {
     const out: number[] = [];
@@ -190,12 +240,33 @@ export default function EmojiSheet({ visible, onClose, onSelect, selected }: Emo
     [onSelect, onClose, tone, maxV],
   );
 
+  // A custom emoji is inserted as `:shortcode:`, which every text surface
+  // renders back as the image (see EmojiText).
+  const chooseCustom = useCallback(
+    (c: CustomEmoji) => {
+      onSelect(`:${c.shortcode}:`);
+      onClose();
+    },
+    [onSelect, onClose],
+  );
+
   const jumpTo = (key: SectionKey) => {
     setQuery("");
+    setAdding(false);
     setActive(key);
     const index = sections.length ? rows.findIndex((r) => r.kind === "header" && r.section === key) : -1;
     if (index >= 0) listRef.current?.scrollToOffset({ offset: offsets[index], animated: true });
   };
+
+  // Back from the add form: the list remounts, then lands on the custom section.
+  useEffect(() => {
+    if (adding || !jumpAfterAdd.current) return;
+    jumpAfterAdd.current = false;
+    const index = rows.findIndex((r) => r.kind === "header" && r.section === "custom");
+    if (index < 0) return;
+    const id = requestAnimationFrame(() => listRef.current?.scrollToOffset({ offset: offsets[index], animated: false }));
+    return () => cancelAnimationFrame(id);
+  }, [adding, rows, offsets]);
 
   const onViewable = useRef(({ viewableItems }: { viewableItems: ViewToken<Row>[] }) => {
     const first = viewableItems[0]?.item;
@@ -206,7 +277,43 @@ export default function EmojiSheet({ visible, onClose, onSelect, selected }: Emo
     if (item.kind === "header") {
       return (
         <View style={styles.header}>
-          <Text style={styles.headerText}>{t(`emojiPicker.group.${item.section}`)}</Text>
+          <Text style={styles.headerText}>{item.title ?? t(`emojiPicker.group.${item.section}`)}</Text>
+        </View>
+      );
+    }
+    if (item.kind === "custom") {
+      return (
+        <View style={styles.row}>
+          {item.withAdd && (
+            <Pressable
+              onPress={() => setAdding(true)}
+              accessibilityRole="button"
+              accessibilityLabel={t("emojiPicker.addCustom")}
+              style={({ pressed }) => [styles.cell, pressed && styles.cellPressed]}
+            >
+              <View style={styles.addTile}>
+                <Icon name="Plus" size={16} color="#a1a1aa" />
+              </View>
+            </Pressable>
+          )}
+          {item.items.map((c) => {
+            const value = `:${c.shortcode}:`;
+            return (
+              <Pressable
+                key={c.id}
+                onPress={() => chooseCustom(c)}
+                accessibilityLabel={value}
+                style={({ pressed }) => [styles.cell, selectedSet.has(value) && styles.cellOn, pressed && styles.cellPressed]}
+              >
+                <EmojiImage src={c.image_url} name={c.shortcode} size={30} />
+              </Pressable>
+            );
+          })}
+          {item.withAdd && item.items.length === 0 && (
+            <Text style={styles.customEmpty} numberOfLines={3}>
+              {t("emojiPicker.customEmpty")}
+            </Text>
+          )}
         </View>
       );
     }
@@ -306,7 +413,17 @@ export default function EmojiSheet({ visible, onClose, onSelect, selected }: Emo
           })}
         </View>
 
-        {results && !results.length ? (
+        {adding ? (
+          <View style={styles.addWrap}>
+            <AddCustomEmojiPanel
+              onDone={() => {
+                jumpAfterAdd.current = true;
+                setActive("custom");
+                setAdding(false);
+              }}
+            />
+          </View>
+        ) : results && !results.length && !customMatches.length ? (
           <View style={styles.empty}>
             <Text style={styles.emptyIcon}>🔍</Text>
             <Text style={styles.emptyText}>{t("emojiPicker.noEmoji")}</Text>
@@ -326,13 +443,6 @@ export default function EmojiSheet({ visible, onClose, onSelect, selected }: Emo
             onViewableItemsChanged={onViewable}
             viewabilityConfig={{ itemVisiblePercentThreshold: 10 }}
             contentContainerStyle={styles.listContent}
-            ListHeaderComponent={
-              results ? (
-                <View style={styles.header}>
-                  <Text style={styles.headerText}>{t("emojiPicker.searchResults")}</Text>
-                </View>
-              ) : null
-            }
           />
         )}
 
@@ -390,6 +500,18 @@ const styles = StyleSheet.create({
   cellOn: { backgroundColor: "rgba(255,255,255,0.15)" },
   cellPressed: { backgroundColor: "rgba(255,255,255,0.1)" },
   emoji: { fontSize: 27 },
+  addTile: {
+    width: 36,
+    height: 36,
+    borderRadius: 10,
+    borderWidth: 1,
+    borderStyle: "dashed",
+    borderColor: "rgba(255,255,255,0.2)",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  customEmpty: { flex: 1, alignSelf: "center", paddingHorizontal: 6, color: "#71717a", fontSize: 11, lineHeight: 14 },
+  addWrap: { flex: 1 },
   empty: { alignItems: "center", justifyContent: "center", paddingVertical: 48, gap: 6 },
   emptyIcon: { fontSize: 30, opacity: 0.5 },
   emptyText: { color: "#71717a", fontSize: 14 },

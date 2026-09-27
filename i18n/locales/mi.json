@@ -6755,7 +6755,8 @@
       "activities": "Ngā mahi",
       "objects": "Ngā taonga",
       "symbols": "Ngā tohu",
-      "flags": "Ngā haki"
+      "flags": "Ngā haki",
+      "custom": "Ritenga"
     },
     "tone": {
       "default": "Taunoa",
@@ -6764,6 +6765,32 @@
       "medium": "Tae kiri waenga",
       "mediumDark": "Tae kiri pōuri-waenga",
       "dark": "Tae kiri pōuri"
+    },
+    "addCustom": "Tāpiri emoji ritenga",
+    "customEmpty": "Kaore ano he emoji ritenga. Taapirihia tetahi mai i tetahi konae, hononga, Discord, Slack, 7TV ranei he tūmau Mastodon.",
+    "back": "Hoki",
+    "modeSingle": "Kotahi Emoji",
+    "modePack": "Kawemai he kohinga",
+    "upload": "Whakaahua Upload",
+    "linkPlaceholder": "He hononga, he waehere emoji ranei",
+    "namePlaceholder": "i te taha o toku whaea",
+    "singleHint": "PNG, GIF, WebP ranei JPEG ki runga ki 2 MB. Nga hononga mai i te Discord, Slack, 7TV, BetterTTV, FrankerFaceZ, emoji.gg ranei tetahi mahi whakaahua.",
+    "add": "Tāpiri emoji",
+    "addedName": "Tāpiri {{name}}",
+    "packPlaceholder": "mastodon.social, misskey.io ranei he hononga JSON",
+    "packHint": "Kawea nga emoji katoa mai i te tūmau Mastodon, Pleroma, Akkoma, Misskey ranei, mai ranei i tetahi raarangi emoji JSON. Ko nga ingoa kua oti te whakamahi kua whakakorehia.",
+    "importPack": "Kawemai ...",
+    "packAdded": "Tāpiri {{count}} emoji ({{skipped}} skipped)",
+    "errors": {
+      "signIn": "Hokona ki te tāpiri emoji",
+      "fileType": "Whakamahia he whakaahua PNG, GIF, WebP, JPEG ranei",
+      "fileSize": "Ko nga whakaahua me 2 MB iti iho ranei",
+      "invalid": "Ko nga ingoa e whakamahi ana i nga reta 2 ki te 64, nga tau,_, + ranei -",
+      "badImage": "Kaore tenei hononga i utaina hei whakaahua",
+      "addFailed": "Kaore e taea te taapiri i taua emoji. Whakamātauria ano.",
+      "packEmpty": "Kaore he emoji i kitea i taua wahitau",
+      "shortcodeTaken": "{{name}} kua tangohia",
+      "shortcodeStandard": "{{name}} kua oti te emoji paerewa"
     }
   }
 }

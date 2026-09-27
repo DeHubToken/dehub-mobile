@@ -6921,7 +6921,8 @@
       "activities": "Aktivity",
       "objects": "Predmety",
       "symbols": "Symboly",
-      "flags": "Vlajky"
+      "flags": "Vlajky",
+      "custom": "Vlastné"
     },
     "tone": {
       "default": "Predvolený",
@@ -6930,6 +6931,32 @@
       "medium": "Stredný odtieň pleti",
       "mediumDark": "Stredne tmavý odtieň pleti",
       "dark": "Tmavý odtieň pleti"
+    },
+    "addCustom": "Pridať vlastné emoji",
+    "customEmpty": "Zatiaľ žiadne vlastné emoji. Pridajte jeden zo súboru, odkazu, Discordu, Slacku, 7TV alebo servera Mastodon.",
+    "back": "Späť",
+    "modeSingle": "Jeden emoji",
+    "modePack": "Importovať balík",
+    "upload": "Nahrať obrázok",
+    "linkPlaceholder": "…alebo vložte odkaz alebo kód emoji na Discorde",
+    "namePlaceholder": "názov",
+    "singleHint": "PNG, GIF, WebP alebo JPEG do 2 MB. Fungujú aj odkazy na Discord, Slack, 7TV, BetterTTV, FrankerFaceZ, emoji.gg alebo akýkoľvek obrázok.",
+    "add": "Pridať emoji",
+    "addedName": "Pridané {{name}}",
+    "packPlaceholder": "mastodon.social, misskey.io alebo odkaz na JSON",
+    "packHint": "Importuje všetky emoji zo servera Mastodon, Pleroma, Akkoma alebo Misskey alebo z ľubovoľného zoznamu emoji JSON. Mená, ktoré sa už používajú, sa preskočia.",
+    "importPack": "Dovoz",
+    "packAdded": "Pridané {{count}} emoji ({{skipped}} preskočené)",
+    "errors": {
+      "signIn": "Ak chcete pridať emoji, prihláste sa",
+      "fileType": "Použite obrázok PNG, GIF, WebP alebo JPEG",
+      "fileSize": "Obrázky musia mať 2 MB alebo menej",
+      "invalid": "Mená používajú 2 až 64 písmen, číslic, _, + alebo -",
+      "badImage": "Tento odkaz sa nenačítal ako obrázok",
+      "addFailed": "Nepodarilo sa pridať tento emoji. Skúste to znova.",
+      "packEmpty": "Na tejto adrese sa nenašiel žiadny emoji",
+      "shortcodeTaken": "{{name}} je už obsadené",
+      "shortcodeStandard": "{{name}} je už štandardným emotikonom"
     }
   }
 }

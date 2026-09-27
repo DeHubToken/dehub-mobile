@@ -6781,7 +6781,8 @@
       "activities": "აქტივობები",
       "objects": "ნივთები",
       "symbols": "სიმბოლოები",
-      "flags": "დროშები"
+      "flags": "დროშები",
+      "custom": "Ინდივიდუალური"
     },
     "tone": {
       "default": "ნაგულისხმევი",
@@ -6790,6 +6791,32 @@
       "medium": "საშუალო კანის ფერი",
       "mediumDark": "საშუალოდ მუქი კანის ფერი",
       "dark": "მუქი კანის ფერი"
+    },
+    "addCustom": "Დაამატეთ ინდივიდუალური ემოჯი",
+    "customEmpty": "Ინდივიდუალური ემოჯი ჯერ არ არის. Დაამატეთ ფაილიდან, ბმულიდან, Discord, Slack, 7TV ან Mastodon სერვერიდან.",
+    "back": "Უკან",
+    "modeSingle": "Ერთი ემოჯი",
+    "modePack": "Პაკეტის შემოტანა",
+    "upload": "სურათის ატვირთვა",
+    "linkPlaceholder": "…ან ჩასვით ბმული ან Discord ემოჯის კოდი",
+    "namePlaceholder": "სახელი",
+    "singleHint": "PNG, GIF, WebP ან JPEG 2 მბ-მდე. ბმულები Discord ‑ დან, Slack ‑ დან, 7TV ‑ დან, BetterTTV ‑ დან, FrankerFaceZ ‑ დან, emoji.gg ‑ დან ან ნებისმიერი სურათიდან.",
+    "add": "ემოჯის დამატება…",
+    "addedName": "Დამატებულია {{name}}",
+    "packPlaceholder": "mastodon.social, misskey.io ან JSON ბმული",
+    "packHint": "Შემოაქვს ყველა ემოჯი Mastodon, Pleroma, Akkoma ან Misskey სერვერიდან, ან ნებისმიერი ემოჯის JSON სიიდან. უკვე გამოყენებული სახელები გამოტოვებულია.",
+    "importPack": "იმპორტი",
+    "packAdded": "Დაემატა {{count}} ემოჯი ({{skipped}} გამოტოვებულია)",
+    "errors": {
+      "signIn": "Ემოჯის დასამატებლად შედით სისტემაში",
+      "fileType": "Გამოიყენეთ PNG, GIF, WebP ან JPEG გამოსახულება",
+      "fileSize": "Გამოსახულებები უნდა იყოს 2 მბ ან უფრო მცირე",
+      "invalid": "Სახელებში გამოყენებულია 2-დან 64-მდე ასო, ციფრები, _, + ან -",
+      "badImage": "Ეს ბმული არ ჩაიტვირთა, როგორც სურათი",
+      "addFailed": "Ემოჯის დამატება ვერ მოხერხდა. სცადეთ ხელახლა.",
+      "packEmpty": "Ამ მისამართზე ემოჯი ვერ მოიძებნა",
+      "shortcodeTaken": "{{name}} უკვე აღებულია",
+      "shortcodeStandard": "{{name}} უკვე სტანდარტული ემოჯია"
     }
   }
 }

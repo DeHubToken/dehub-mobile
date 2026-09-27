@@ -6756,7 +6756,8 @@
       "activities": "Aktivitas",
       "objects": "Objek",
       "symbols": "Simbol",
-      "flags": "Bendera"
+      "flags": "Bendera",
+      "custom": "Kustom"
     },
     "tone": {
       "default": "Bawaan",
@@ -6765,6 +6766,32 @@
       "medium": "Warna kulit sedang",
       "mediumDark": "Warna kulit agak gelap",
       "dark": "Warna kulit gelap"
+    },
+    "addCustom": "Tambahkan emoji khusus",
+    "customEmpty": "Belum ada emoji khusus. Tambahkan satu dari file, tautan, Discord, Slack, 7TV, atau server Mastodon.",
+    "back": "Kembali",
+    "modeSingle": "Satu emoji",
+    "modePack": "Impor paket",
+    "upload": "Upload Photo",
+    "linkPlaceholder": "...atau tempel tautan atau kode emoji Discord",
+    "namePlaceholder": "nama",
+    "singleHint": "PNG, GIF, WebP atau JPEG hingga 2 MB. Tautan dari Discord, Slack, 7TV, BetterTTV, FrankerFaceZ, emoji.gg, atau karya gambar apa pun juga.",
+    "add": "Tambah Emoji Baru",
+    "addedName": "{{name}} ditambahkan",
+    "packPlaceholder": "mastodon.social, misskey.io atau tautan JSON",
+    "packHint": "Mengimpor setiap emoji dari server Mastodon, Pleroma, Akkoma atau Misskey, atau dari daftar JSON emoji apa pun. Nama yang sudah digunakan dilewati.",
+    "importPack": "Impor",
+    "packAdded": "Menambahkan emoji {{count}} ({{skipped}} dilewati)",
+    "errors": {
+      "signIn": "Masuk untuk menambahkan emoji",
+      "fileType": "Gunakan gambar PNG, GIF, WebP atau JPEG",
+      "fileSize": "Gambar harus berukuran 2 MB atau lebih kecil",
+      "invalid": "Nama menggunakan 2 hingga 64 huruf, angka, _, + atau -",
+      "badImage": "Tautan itu tidak dimuat sebagai gambar",
+      "addFailed": "Tidak dapat menambahkan emoji itu. Coba lagi.",
+      "packEmpty": "Tidak ada emoji yang ditemukan di alamat itu",
+      "shortcodeTaken": "{{name}} sudah digunakan",
+      "shortcodeStandard": "{{name}} sudah menjadi emoji standar"
     }
   }
 }

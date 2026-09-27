@@ -46,6 +46,8 @@ interface LiveChatAttachSheetProps {
   onPickImage: () => void;
   onPickGif: () => void;
   onPickEmoji: (emoji: string) => void;
+  /** Opens the full emoji picker (every emoji, custom ones included). */
+  onMoreEmoji?: () => void;
 }
 
 function AttachAction({
@@ -79,6 +81,7 @@ const LiveChatAttachSheet: React.FC<LiveChatAttachSheetProps> = ({
   onPickImage,
   onPickGif,
   onPickEmoji,
+  onMoreEmoji,
 }) => {
   const { t } = useTranslation();
 
@@ -126,6 +129,17 @@ const LiveChatAttachSheet: React.FC<LiveChatAttachSheetProps> = ({
               <Text style={{ fontSize: 24 }}>{emoji}</Text>
             </TouchableOpacity>
           ))}
+          {onMoreEmoji && (
+            <TouchableOpacity
+              onPress={onMoreEmoji}
+              activeOpacity={0.6}
+              className="w-[12.5%] items-center justify-center py-2.5"
+              accessibilityRole="button"
+              accessibilityLabel={t('emojiPicker.searchEmoji')}
+            >
+              <Icon name="Plus" size={22} color="#A6A9AC" />
+            </TouchableOpacity>
+          )}
         </View>
       </View>
     </GlassModal>

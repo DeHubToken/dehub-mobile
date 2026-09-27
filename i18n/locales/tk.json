@@ -6756,7 +6756,8 @@
       "activities": "Işjeňlikler",
       "objects": "Zatlar",
       "symbols": "Nyşanlar",
-      "flags": "Baýdaklar"
+      "flags": "Baýdaklar",
+      "custom": "Adat"
     },
     "tone": {
       "default": "Adaty",
@@ -6765,6 +6766,32 @@
       "medium": "Orta deri reňki",
       "mediumDark": "Orta-goýy deri reňki",
       "dark": "Goýy deri reňki"
+    },
+    "addCustom": "Özge emojileri ekle",
+    "customEmpty": "Emma entek emojiler ýok. Bir faýl, baglaýyş, Discord, Slack, 7TV ýa-da Mastodon serverinden birini goşyň.",
+    "back": "Geri",
+    "modeSingle": "Bir Emoji",
+    "modePack": "Bir paketi girdir",
+    "upload": "Resimi Gaýd Et",
+    "linkPlaceholder": "...ýa-da bir baglaýyş ýa-da Discord emoji kody goýuň",
+    "namePlaceholder": "Ady",
+    "singleHint": "PNG, GIF, WebP ýa-da JPEG 2 MB-e çenli. Discord, Slack, 7TV, BetterTTV, FrankerFaceZ, emoji.gg ýa-da başga bir surat işiniň baglaýyşlary hem.",
+    "add": "Emojileri ekle",
+    "addedName": "{{name}}",
+    "packPlaceholder": "mastodon.social, misskey.io ýa-da JSON baglanyşygy",
+    "packHint": "Her bir emojini Mastodon, Pleroma, Akkoma ýa-da Misskey serverinden ýa-da her bir emojiniň JSON listasyndan äkidýär. Häzirki atlar ýitirilýär.",
+    "importPack": "Import et...",
+    "packAdded": "{{count}}emoji ({{skipped}} skipped)",
+    "errors": {
+      "signIn": "Emoji goşmak üçin gir",
+      "fileType": "PNG, GIF, WebP ýa-da JPEG suratlaryny ulan",
+      "fileSize": "Resimler 2 MB ýa-da ondan kiçigöwünli bolmaly",
+      "invalid": "Adlar 2 - 64 harp, san,_, + ýa - da -",
+      "badImage": "Bu link bir surat ýaly ýüklenmedi",
+      "addFailed": "Men emojileri goşup bilmedim, ýene synanyň.",
+      "packEmpty": "Bu adresde hiç hili görkezme tapylmady",
+      "shortcodeTaken": "{{name}} eýýäm alnyp barylýar",
+      "shortcodeStandard": "{{name}} eýýäm standart emoji"
     }
   }
 }

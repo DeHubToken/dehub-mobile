@@ -6763,7 +6763,8 @@
       "activities": "សកម្មភាព",
       "objects": "វត្ថុ",
       "symbols": "និមិត្តសញ្ញា",
-      "flags": "ទង់ជាតិ"
+      "flags": "ទង់ជាតិ",
+      "custom": "ផ្ទាល់ខ្លួន"
     },
     "tone": {
       "default": "លំនាំដើម",
@@ -6772,6 +6773,32 @@
       "medium": "ពណ៌ស្បែកមធ្យម",
       "mediumDark": "ពណ៌ស្បែកខ្មៅល្មម",
       "dark": "ពណ៌ស្បែកខ្មៅ"
+    },
+    "addCustom": "បន្ថែមសញ្ញាអារម្មណ៍ផ្ទាល់ខ្លួន",
+    "customEmpty": "មិនទាន់មានអេម៉ូជីផ្ទាល់ខ្លួននៅឡើយទេ ។ បន្ថែមមួយពីឯកសារ, តំណភ្ជាប់, Discord, Slack, 7TV ឬម៉ាស៊ីនបម្រើ Mastodon ។",
+    "back": "ថយក្រោយ",
+    "modeSingle": "អេម៉ូជីមួយ",
+    "modePack": "នាំចូលកញ្ចប់",
+    "upload": "ផ្ទុកឡើងរូបភាព",
+    "linkPlaceholder": "… ឬបិទភ្ជាប់តំណ ឬលេខកូដ emoji Discord",
+    "namePlaceholder": "ឈ្មោះ",
+    "singleHint": "PNG, GIF, WebP ឬ JPEG រហូតដល់ 2 MB តំណភ្ជាប់ពី Discord, Slack, 7TV, BetterTTV, FrankerFaceZ, emoji.gg ឬរូបភាពណាមួយធ្វើការផងដែរ ។",
+    "add": "បន្ថែមសញ្ញាអារម្មណ៍",
+    "addedName": "បានបន្ថែម {{name}}",
+    "packPlaceholder": "mastodon.social, misskey.io ឬតំណភ្ជាប់ JSON",
+    "packHint": "នាំចូល emoji ទាំងអស់ពីម៉ាស៊ីនបម្រើ Mastodon, Pleroma, Akkoma ឬ Misskey ឬពីបញ្ជី emoji JSON ណាមួយ ។ ឈ្មោះដែលកំពុងប្រើរួចត្រូវបានរំលង ។",
+    "importPack": "បញ្ចូលឯកសារ",
+    "packAdded": "បាន បន្ថែម {{count}} emoji ({{skipped}} រំលង)",
+    "errors": {
+      "signIn": "ចុះឈ្មោះចូលដើម្បីបន្ថែមសញ្ញាអារម្មណ៍",
+      "fileType": "ប្រើ រូបភាព PNG, GIF, WebP ឬ JPEG",
+      "fileSize": "រូបភាពត្រូវតែមានទំហំ 2 MB ឬតូចជាងនេះ",
+      "invalid": "ឈ្មោះប្រើ 2 ទៅ 64 អក្សរ, លេខ, _, + ឬ -",
+      "badImage": "តំណនោះមិនបានផ្ទុកជារូបភាពទេ",
+      "addFailed": "មិនអាចបន្ថែមអេម៉ូជីនោះបានទេ ។ ព្យាយាមម្តងទៀត ។",
+      "packEmpty": "រកមិនឃើញអេម៉ូជីនៅអាសយដ្ឋាននោះទេ",
+      "shortcodeTaken": "{{name}} បានថតរួចហើយ",
+      "shortcodeStandard": "{{name}} គឺជា emoji ស្តង់ដាររួចទៅហើយ"
     }
   }
 }

@@ -6758,7 +6758,8 @@
       "activities": "アクティビティ",
       "objects": "物",
       "symbols": "記号",
-      "flags": "旗"
+      "flags": "旗",
+      "custom": "カスタム"
     },
     "tone": {
       "default": "デフォルト",
@@ -6767,6 +6768,32 @@
       "medium": "中間の肌色",
       "mediumDark": "やや濃い肌色",
       "dark": "濃い肌色"
+    },
+    "addCustom": "カスタム絵文字を追加",
+    "customEmpty": "カスタム絵文字はまだありません。 ファイル、リンク、Discord、Slack、7 TV、またはMastodonサーバーから1つ追加します。",
+    "back": "戻る",
+    "modeSingle": "絵文字1つ",
+    "modePack": "パックをインポートする",
+    "upload": "画像をアップロード",
+    "linkPlaceholder": "…またはリンクやDiscordの絵文字コードを貼り付ける",
+    "namePlaceholder": "名前",
+    "singleHint": "PNG、GIF、WebP、またはJPEG （最大2 MB ）。Discord、Slack、7 TV、BetterTTV、FrankerFaceZ、emoji.ggなどの画像からのリンクも機能します。",
+    "add": "絵文字を追加",
+    "addedName": "{{name}}を追加しました",
+    "packPlaceholder": "mastodon.social、misskey.io、またはJSONリンク",
+    "packHint": "Mastodon、Pleroma、Akkoma、Misskeyサーバー、または任意の絵文字JSONリストからすべての絵文字をインポートします。すでに使用されている名前はスキップされます。",
+    "importPack": "インポート",
+    "packAdded": "{{count}}絵文字を追加しました（{{skipped}}はスキップ）",
+    "errors": {
+      "signIn": "サインインして絵文字を追加",
+      "fileType": "PNG、GIF、WebP、またはJPEG画像を使用する",
+      "fileSize": "画像は2 MB以下である必要があります",
+      "invalid": "名前は2〜64文字、数字、_、+、または-を使用します",
+      "badImage": "そのリンクは画像として読み込まれませんでした",
+      "addFailed": "その絵文字を追加できませんでした。もう一度お試しください。",
+      "packEmpty": "その住所に絵文字は見つかりませんでした",
+      "shortcodeTaken": "{{name}}はすでに使用されています",
+      "shortcodeStandard": "{{name}}はすでに標準の絵文字です"
     }
   }
 }

@@ -32,6 +32,7 @@ import {
 } from "../../libs/replyPostDisplay";
 import { useAppTheme } from "../../context/ThemeContext";
 import { MINIMAL_INSET, minimalRow } from "../../theme/minimal";
+import { expandEmojiTokens } from "../common/EmojiText";
 
 // A reply is shown as the thread it belongs to, the way the comments section
 // draws one: the post on top, the comment being answered when there is one,
@@ -256,7 +257,7 @@ const ThreadPostRow: React.FC<{ post: UserReplyPost; tokenId: number; onUserPres
         ) : null}
         {body ? (
           <Text className="text-sm text-white/90 leading-5" style={{ marginTop: title ? 4 : 8 }} numberOfLines={6}>
-            {body}
+            {expandEmojiTokens(body, { fontSize: 14 })}
           </Text>
         ) : null}
         {thumbnail ? (
@@ -306,7 +307,7 @@ const ThreadParentCommentRow: React.FC<{ parent: UserReplyParentComment; onUserP
       <View style={{ paddingLeft: THREAD_INDENT, paddingBottom: 14 }}>
         {parent.content ? (
           <Text className="text-sm text-white/90 mt-2 leading-5" numberOfLines={6}>
-            {parent.content}
+            {expandEmojiTokens(parent.content, { fontSize: 14 })}
           </Text>
         ) : null}
         {image ? (
@@ -488,7 +489,7 @@ const UserReplyCardComponent: React.FC<UserReplyCardProps> = ({
                   key={idx}
                   className={part.isMention ? "font-bold text-white" : "font-normal"}
                 >
-                  {part.text}
+                  {part.isMention ? part.text : expandEmojiTokens(part.text, { fontSize: 14, keyPrefix: `em-${idx}` })}
                 </Text>
               ))}
             </Text>

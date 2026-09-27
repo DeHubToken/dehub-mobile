@@ -6760,7 +6760,8 @@
       "activities": "Дейности",
       "objects": "Предмети",
       "symbols": "Символи",
-      "flags": "Знамена"
+      "flags": "Знамена",
+      "custom": "Персонализирано"
     },
     "tone": {
       "default": "По подразбиране",
@@ -6769,6 +6770,32 @@
       "medium": "Среден цвят на кожата",
       "mediumDark": "Средно тъмен цвят на кожата",
       "dark": "Тъмен цвят на кожата"
+    },
+    "addCustom": "Добавяне на персонализирани емотикони",
+    "customEmpty": "Все още няма персонализирани емотикони. Добавете такъв от файл, връзка, Discord, Slack, 7TV или сървър на Mastodon.",
+    "back": "Назад",
+    "modeSingle": "Един емотикон",
+    "modePack": "Импортиране на пакет",
+    "upload": "Качване на изображение",
+    "linkPlaceholder": "…или поставете връзка или код за емотикони в Discord",
+    "namePlaceholder": "име",
+    "singleHint": "PNG, GIF, WebP или JPEG до 2 MB. Връзки от Discord, Slack, 7TV, BetterTTV, FrankerFaceZ, emoji.gg или каквато и да е работа с изображения.",
+    "add": "Добавяне на емотикони",
+    "addedName": "Добавено на {{name}}",
+    "packPlaceholder": "mastodon.social, misskey.io или JSON връзка",
+    "packHint": "Импортира всеки емотикон от сървър на Mastodon, Pleroma, Akkoma или Misskey или от който и да е списък с емотикони JSON. Имената, които вече се използват, се пропускат.",
+    "importPack": "Внос",
+    "packAdded": "Добавено {{count}} emoji (пропуснато {{skipped}})",
+    "errors": {
+      "signIn": "Влезте, за да добавите емотикони",
+      "fileType": "Използване на PNG, GIF, WebP или JPEG изображение",
+      "fileSize": "Изображенията трябва да са 2 MB или по - малки",
+      "invalid": "Имената използват от 2 до 64 букви, цифри, _, + или -",
+      "badImage": "Тази връзка не се зареди като изображение",
+      "addFailed": "Неуспешно добавяне на емотикона. Опитайте отново.",
+      "packEmpty": "Не са намерени емотикони на този адрес",
+      "shortcodeTaken": "{{name}} вече е заето",
+      "shortcodeStandard": "{{name}} вече е стандартен емотикон"
     }
   }
 }

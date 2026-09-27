@@ -6756,7 +6756,8 @@
       "activities": "Aktiviteetit",
       "objects": "Esineet",
       "symbols": "Symbolit",
-      "flags": "Liput"
+      "flags": "Liput",
+      "custom": "Mukautettu"
     },
     "tone": {
       "default": "Oletus",
@@ -6765,6 +6766,32 @@
       "medium": "Keskisävyinen ihonväri",
       "mediumDark": "Keskitumma ihonväri",
       "dark": "Tumma ihonväri"
+    },
+    "addCustom": "Lisää mukautettuja hymiöitä",
+    "customEmpty": "Ei vielä mukautettuja hymiöitä. Lisää yksi tiedostosta, linkistä, Discordista, Slackista, 7TV: stä tai Mastodonin palvelimelta.",
+    "back": "Takaisin",
+    "modeSingle": "Yksi emoji",
+    "modePack": "Tuo pakkaus",
+    "upload": "Lataa kuva",
+    "linkPlaceholder": "…tai liitä linkki tai Discord-emojikoodi",
+    "namePlaceholder": "nimi",
+    "singleHint": "PNG, GIF, WebP tai JPEG enintään 2 Mt. Linkit Discordista, Slackista, 7TV:stä, BetterTTV:stä, FrankerFaceZ:sta, emoji.gg:stä tai mistä tahansa kuvasta toimivat myös.",
+    "add": "Lisää emoji",
+    "addedName": "Lisätty {{name}}",
+    "packPlaceholder": "mastodon.social, misskey.io tai JSON-linkki",
+    "packHint": "Tuo kaikki emojit Mastodon-, Pleroma-, Akkoma- tai Misskey-palvelimelta tai mistä tahansa emoji-JSON-listasta. Jo käytössä olevat nimet ohitetaan.",
+    "importPack": "Tuo",
+    "packAdded": "Lisätty {{count}} emojia ({{skipped}} ohitettu)",
+    "errors": {
+      "signIn": "Kirjaudu sisään lisätäksesi emojin",
+      "fileType": "Käytä PNG-, GIF-, WebP- tai JPEG-kuvaa",
+      "fileSize": "Kuvien on oltava enintään 2 Mt",
+      "invalid": "Nimet käyttävät 2–64 kirjainta, numeroa, _, + tai -",
+      "badImage": "Linkki ei latautunut kuvana",
+      "addFailed": "Emojia ei voitu lisätä. Yritä uudelleen.",
+      "packEmpty": "Emojia ei löytynyt kyseisestä osoitteesta",
+      "shortcodeTaken": "{{name}} on jo varattu",
+      "shortcodeStandard": "{{name}} on jo vakioemoji"
     }
   }
 }

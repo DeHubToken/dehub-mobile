@@ -6756,7 +6756,8 @@
       "activities": "Үйл ажиллагаа",
       "objects": "Эд зүйлс",
       "symbols": "Тэмдэгт",
-      "flags": "Туг"
+      "flags": "Туг",
+      "custom": "Тохируулсан"
     },
     "tone": {
       "default": "Үндсэн",
@@ -6765,6 +6766,32 @@
       "medium": "Дунд зэргийн арьсны өнгө",
       "mediumDark": "Дунд зэргийн бараан арьсны өнгө",
       "dark": "Бараан арьсны өнгө"
+    },
+    "addCustom": "Гаалийн эможи нэмэх",
+    "customEmpty": "Одоогоор тусгайлсан emoji байхгүй. Файл, холбоос, Discord, Slack, 7TV эсвэл Mastodon серверээс нэгийг нэмнэ үү.",
+    "back": "БУЦАХ",
+    "modeSingle": "Нэг эможи",
+    "modePack": "Багцыг импортлох",
+    "upload": "Зураг хуулах",
+    "linkPlaceholder": "...эсвэл холбоос эсвэл Discord emoji кодыг оо",
+    "namePlaceholder": "нэр",
+    "singleHint": "PNG, GIF, WebP эсвэл JPEG-аас 2 MB хүртэл. Discord, Slack, 7TV, BetterTTV, FrankerFaceZ, emoji.gg эсвэл ямар ч зурагны холбоосууд koa.",
+    "add": "Эможи нэмэх",
+    "addedName": "Нэмэгдсэн {{name}}",
+    "packPlaceholder": "mastodon.social, misskey.io эсвэл JSON холбоос",
+    "packHint": "Мастодон, Плерома, Аккома эсвэл Мисси серверээс эсвэл ямар ч emoji JSON жагсаалтаас emoji бүрийг импортлох. Ашиглагдаж буй нэрсийг алгассан байна.",
+    "importPack": "Импорт",
+    "packAdded": "Нэмэгдсэн {{count}} emoji ({{skipped}} skipped)",
+    "errors": {
+      "signIn": "Эможи нэмэхийн тулд нэвтэрнэ үү",
+      "fileType": "PNG, GIF, WebP эсвэл JPEG дүрсийг ашигла",
+      "fileSize": "Зургууд 2 MB ба түүнээс бага байх ёстой",
+      "invalid": "Нэрс 2-с 64 үсэг, тоо,_, + эсвэл ашигладаг -",
+      "badImage": "Энэ холбоосыг зураг хэлбэрээр ачаалаагүй байна",
+      "addFailed": "Энэ emoji-г нэмж чадсангүй. Дахин оролдоно уу.",
+      "packEmpty": "Тухайн хаягаар emoji олдсонгүй",
+      "shortcodeTaken": "{{name}} нь аль хэдийн авсан",
+      "shortcodeStandard": "{{name}} нь эможи байна"
     }
   }
 }

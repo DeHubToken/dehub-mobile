@@ -6795,7 +6795,8 @@
       "activities": "လှုပ်ရှားမှုများ",
       "objects": "အရာဝတ္ထုများ",
       "symbols": "သင်္ကေတများ",
-      "flags": "အလံများ"
+      "flags": "အလံများ",
+      "custom": "စိတ်ကြိုက်"
     },
     "tone": {
       "default": "မူလ",
@@ -6804,6 +6805,32 @@
       "medium": "အသားအရောင် အလယ်အလတ်",
       "mediumDark": "အသားအရောင် အလယ်အလတ်-ရင့်",
       "dark": "အသားအရောင် ရင့်"
+    },
+    "addCustom": "စိတ်ကြိုက် emoji ထည့်ပါ",
+    "customEmpty": "စိတ်ကြိုက် emoji မရှိသေးပါ ။ ဖိုင်တစ်ခု ၊ လင့်ခ်တစ်ခု ၊ Discord, Slack, 7TV သို့မဟုတ် Mastodon ဆာဗာမှတစ်ခုထည့်ပါ ။",
+    "back": "နောက်သို့",
+    "modeSingle": "တဦးတည်း Emoji",
+    "modePack": "အထုပ်တစ်ခုကို တင်သွင်းပါ",
+    "upload": "\"ပုံတင်ပါ\"",
+    "linkPlaceholder": "…သို့မဟုတ် link တစ်ခုသို့မဟုတ် Discord emoji code ကို paste",
+    "namePlaceholder": "name/အမည်",
+    "singleHint": "PNG, GIF, WebP သို့မဟုတ် JPEG 2 MB အထိရှိသည် ။ Discord, Slack, 7TV, BetterTTV, FrankerFaceZ, emoji.gg သို့မဟုတ်မည်သည့်ရုပ်ပုံအလုပ်မှလင့်များ ။",
+    "add": "Emoji ထည့်ပါ",
+    "addedName": "ဖြည့်စွက် {{name}}",
+    "packPlaceholder": "mastodon.social, misskey.io သို့မဟုတ် JSON လင့်ခ်",
+    "packHint": "Mastodon, Pleroma, Akkoma သို့မဟုတ် Misskey ဆာဗာမှ emoji တိုင်းသို့မဟုတ်မည်သည့် emoji JSON စာရင်းမှမဆိုတင်သွင်းသည် ။ အသုံးပြုပြီးသား အမည်များကို စွန့်ပစ်ထားသည် ။",
+    "importPack": "သွင်းကုန်",
+    "packAdded": "အီမိုဂျီ {{count}} ခု ထည့်ပြီးပါပြီ ({{skipped}} ခု ကျော်ခဲ့သည်)",
+    "errors": {
+      "signIn": "Emoji ထည့်သွင်းရန် အကောင့်ဝင်ပါ",
+      "fileType": "PNG, GIF, WebP သို့မဟုတ် JPEG ရုပ်ပုံကိုသုံးပါ",
+      "fileSize": "ပံုမ်ားသည္ 2 MB သို႔မဟုတ္ အနည္းဆံုးျဖစ္ရပါမည္",
+      "invalid": "အမည်များသည်အက္ခရာများ ၊ ဂဏန်းများ ၊_, + သို့မဟုတ် - ၂ မှ ၆၄ အထိအသုံးပြုသည် ။",
+      "badImage": "ဒီလင့်ခ်က ရုပ်ပုံအဖြစ် မဖွင့်ဘူး",
+      "addFailed": "အဲ့ဒီအီမိုဂျီကို မထည့်နိုင်ဘူး ။ ထပ်ကြိုးစားကြည့်ပါ ။",
+      "packEmpty": "ထိုလိပ်စာတွင် emoji ကိုရှာမတွေ့ပါ",
+      "shortcodeTaken": "{{name}} ကိုယူပြီးသားဖြစ်သည်",
+      "shortcodeStandard": "{{name}} စံအီမိုဂျီဖြစ်နေပြီ"
     }
   }
 }
