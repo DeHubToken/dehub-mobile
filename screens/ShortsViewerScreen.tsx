@@ -1276,12 +1276,12 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
         ) : null}
         {photoMedia && <ShortsPhotoPager images={photoMedia.imageUrls} width={SCREEN_WIDTH} pagerGesture={pagerGesture} />}
         {photoMedia && soundtrackError && isActive && <Pressable accessibilityRole="button"
-          accessibilityLabel="Retry music" style={{ position: 'absolute', top: 140, alignSelf: 'center', minHeight: 44, justifyContent: 'center', borderRadius: 22, paddingHorizontal: 16, backgroundColor: 'rgba(0,0,0,0.7)' }}
+          accessibilityLabel={`${t('common.retry')} · ${t('feed.music')}`} style={{ position: 'absolute', top: 140, alignSelf: 'center', minHeight: 44, justifyContent: 'center', borderRadius: 22, paddingHorizontal: 16, backgroundColor: 'rgba(0,0,0,0.7)' }}
           onPress={() => {
             player.replaceAsync(photoMedia.soundtrackUrl!).then(() => {
               if (isActiveRef.current) player.play();
             }).catch(() => setSoundtrackError(true));
-          }}><Text style={{ color: '#fff' }}>Retry music</Text></Pressable>}
+          }}><Text style={{ color: '#fff' }}>{t('common.retry')} · {t('feed.music')}</Text></Pressable>}
         </View>
       </GestureDetector>
 
