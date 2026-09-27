@@ -95,6 +95,8 @@ import type { LiveUploadPayload } from "../hooks/useUploadLive";
 import type { AppStackParamList } from "../navigation/types";
 import { useStages } from "../context/StageContext";
 import { ScreenNames } from "../navigation/ScreenNames";
+import CrossPostPicker from "../components/Upload/CrossPostPicker";
+import { crossPostState } from "../libs/crosspost-store";
 import QuotedPostEmbed from "../components/common/QuotedPostEmbed";
 import { enhanceText } from "../services/ai.service";
 import type { EnhanceMode } from "../services/ai.service";
@@ -1031,6 +1033,7 @@ export default function UploadScreen() {
       forKids: isForKids ? true : undefined,
       shopLinks: shopLinks.length ? shopLinks : undefined,
       shopListingIds,
+      crossPostAccountIds: articleMode ? [] : [...crossPostState.selected],
     };
   }, [bodyText, titleText, showTitle, articleMode, articleBody, articleImageUri, socialImageUri, categories, pickedImages, pickedVideo, pickedAudio, thumbnailUri, coverUri, monetization, attachedSound, pollIsValid, pollQuestion, pollOptions, pollDurationHours, pollIsMultiple, scheduledDate, effectivePostChainId, solanaAddress, shouldMint, isMature, isForKids, shopLinks, shopListingIds]);
 
@@ -2173,6 +2176,8 @@ export default function UploadScreen() {
               </Text>
             </TouchableOpacity>
           )}
+
+          <CrossPostPicker onManage={() => nav.navigate(ScreenNames.AccountSettings, { initialTab: "multipost" })} />
 
           <View className="mt-3">
             {showTitleInput && (

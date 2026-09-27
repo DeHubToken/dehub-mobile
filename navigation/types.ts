@@ -117,7 +117,7 @@ export type AppStackParamList = {
     /** `newMembers` scrolls the idle Explore view to the New members rail. */
     section?: "newMembers";
   } | undefined;
-  [ScreenNames.AccountSettings]: undefined;
+  [ScreenNames.AccountSettings]: { initialTab?: string } | undefined;
   [ScreenNames.ActiveSessions]: undefined;
   [ScreenNames.TvRequests]: undefined;
   [ScreenNames.SignInTv]: undefined;

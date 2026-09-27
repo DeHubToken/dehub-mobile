@@ -544,6 +544,26 @@ async function processJob(job: UploadJob): Promise<void> {
     }
   }
 
+  const crossPostIds = job.payload.crossPostAccountIds ?? [];
+  if (crossPostIds.length) {
+    const p = job.payload;
+    const media = [...(p.video ? [p.video] : []), ...(p.images ?? [])].map((m) => ({
+      uri: m.uri,
+      mimeType: m.mimeType,
+      name: m.name,
+    }));
+    void import("./multipost.service").then(({ crossPost }) =>
+      crossPost({
+        wallet: job.walletAddress ?? null,
+        text: [p.bodyText, p.description].filter(Boolean).join("\n\n"),
+        media,
+        accountIds: crossPostIds,
+        scheduledAt: mintParams.scheduled ? (mintParams.scheduledAt ?? p.scheduledAt ?? null) : null,
+        tokenId: mintParams.createdTokenId,
+      }),
+    );
+  }
+
   if (mintParams.scheduled) {
     // Nothing to refresh — the post stays invisible until the cron flips it.
     const when = mintParams.scheduledAt ? new Date(mintParams.scheduledAt).toLocaleString() : null;
