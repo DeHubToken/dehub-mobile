@@ -155,6 +155,8 @@
     "trendingTopics": "ट्रेंडिंग टॉपिक्स"
   },
   "settings": {
+    "showOnline": "जब ऑनलाइन दिखावव",
+    "showOnlineDesc": "जब आप DeHub का उपयोग करत हंवय, तो आप अपन नाम के बगल म एक हरित बिंदु देख सकत हंवय",
     "smartReplies": "सुझाए गे जवाब",
     "smartRepliesDesc": "चैट म टैप करे लइक दू ठन जवाब तियार करथे। सुझाव उपर के × ला बंद कर देथे।",
     "ensHandle": "ENS नाव",
@@ -5013,6 +5015,7 @@
     "originalText": "मूल पाठ"
   },
   "dm": {
+    "online": "आनलाइन",
     "attachFailed": "ओ फाइल जोड़े नइ जा सकिस।",
     "removeAttachment": "अटैचमेंट हटाव",
     "addTip": "टिप जोड़व",

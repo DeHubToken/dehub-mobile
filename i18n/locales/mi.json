@@ -155,6 +155,8 @@
     "postCount_other": "{{count}} pou"
   },
   "settings": {
+    "showOnline": "Whakaatu i te wa e ahau i runga i te ipurangi",
+    "showOnlineDesc": "Ko nga tangata e tuku ana koe ka kite i tetahi tohu matomato i te taha o to ingoa i a koe e whakamahi ana i te DeHub",
     "smartReplies": "Ngā whakautu tūtohu",
     "smartRepliesDesc": "Ka tuhi i ētahi whakautu e rua hei pāwhiri i te kōrero. Mā te × i runga i ngā tūtohu e whakaweto.",
     "ensHandle": "Ingoa ENS",
@@ -5017,6 +5019,7 @@
     "originalText": "Kuputuhi Taketake"
   },
   "dm": {
+    "online": "Tuihono",
     "attachFailed": "Kāore i taea te āpiti i taua kōnae.",
     "removeAttachment": "Tangohia te āpitihanga",
     "addTip": "Tāpiri koha",

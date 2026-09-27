@@ -155,6 +155,8 @@
     "postCount_other": "{{count}} поста"
   },
   "settings": {
+    "showOnline": "Prikaži kada sam onlajn",
+    "showOnlineDesc": "Osobe kojima pošaljete poruku vide zelenu tačku pored vašeg imena dok koristite DeHub",
     "smartReplies": "Предложени одговори",
     "smartRepliesDesc": "Саставља два одговора које можеш да додирнеш у ћаскању. × на предлозима ово искључује.",
     "ensHandle": "ENS име",
@@ -4857,6 +4859,7 @@
     "originalText": "Оригинални текст"
   },
   "dm": {
+    "online": "Onlajn",
     "attachFailed": "Ту датотеку није било могуће приложити.",
     "removeAttachment": "Уклони прилог",
     "addTip": "Додај напојницу",

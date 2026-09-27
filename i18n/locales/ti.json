@@ -155,6 +155,8 @@
     "postCount_other": "{{count}} ጽሑፋት"
   },
   "settings": {
+    "showOnline": "ኣብ ኢንተርነት ከለኹ ኣርኢ",
+    "showOnlineDesc": "እቶም እትልእኮም ሰባት DeHub ክትጥቀም ከለኻ ኣብ ጥቓ ስምካ ዘሎ ሕጫውቲ ነጥቢ ይርእዩ",
     "smartReplies": "ዝተጠቕሱ መልስታት",
     "smartRepliesDesc": "ኣብ ዕላል ክትትንክፎም እትኽእል ክልተ መልስታት የዳሉ። ኣብቲ ምኽርታት ዘሎ × ነዚ የጥፍኦ።",
     "ensHandle": "ናይ ENS ስም",
@@ -5017,6 +5019,7 @@
     "mustHold": "{{amount}} {{symbol}} ክህልወካ ኣለዎ"
   },
   "dm": {
+    "online": "ኣብ ኢንተርነት",
     "attachFailed": "ነቲ ፋይል ክተሓሓዝ ኣይተኻእለን።",
     "removeAttachment": "መተሓሓዚ ኣልግስ",
     "addTip": "ጉርሻ ወስኽ",

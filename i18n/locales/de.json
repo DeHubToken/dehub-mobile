@@ -155,6 +155,8 @@
     "postCount_other": "{{count}} Beiträge"
   },
   "settings": {
+    "showOnline": "Anzeigen, wenn ich online bin",
+    "showOnlineDesc": "Personen, denen Sie eine Nachricht senden, sehen einen grünen Punkt neben Ihrem Namen, während Sie DeHub verwenden",
     "smartReplies": "Antwortvorschläge",
     "smartRepliesDesc": "Erstellt zwei Antworten, die du im Chat antippen kannst. Das × an den Vorschlägen schaltet sie ab.",
     "ensHandle": "ENS-Name",
@@ -5066,6 +5068,7 @@
     "originalText": "Originaltext"
   },
   "dm": {
+    "online": "Online",
     "attachFailed": "Diese Datei konnte nicht angehängt werden.",
     "removeAttachment": "Anhang entfernen",
     "addTip": "Trinkgeld hinzufügen",

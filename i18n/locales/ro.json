@@ -155,6 +155,8 @@
     "postCount_other": "{{count}} postări"
   },
   "settings": {
+    "showOnline": "Afișează când sunt online",
+    "showOnlineDesc": "Persoanele cărora le trimiți mesaje văd un punct verde lângă numele tău în timp ce folosești DeHub",
     "smartReplies": "Răspunsuri sugerate",
     "smartRepliesDesc": "Redactează două răspunsuri pe care le poți atinge într-un chat. × de pe sugestii dezactivează asta.",
     "ensHandle": "Nume ENS",
@@ -5017,6 +5019,7 @@
     "originalText": "Text original"
   },
   "dm": {
+    "online": "Online",
     "attachFailed": "Nu s-a putut atașa acel fișier.",
     "removeAttachment": "Elimină atașamentul",
     "addTip": "Adaugă bacșiș",
