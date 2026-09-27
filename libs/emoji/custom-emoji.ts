@@ -5,8 +5,8 @@
  * Read from `custom_emojis` (public), cached for the session and shared by
  * every picker and every rendered message through a tiny subscribe/notify
  * store — a message list mounts hundreds of rows, and none of them should
- * refetch. Writes carry the x-wallet-address header so RLS can see who is
- * adding or removing.
+ * refetch. The table is read-only for clients: emoji are added and removed as
+ * items of an emoji pack, through libs/creator-packs/api.ts.
  *
  * Third-party sources are normalised here, so the rest of the app only ever
  * deals with "a name and an https image":
@@ -20,10 +20,8 @@
  */
 
 import { Image } from 'react-native';
-import * as Crypto from 'expo-crypto';
 import { supabase } from '../../services/supabase';
-import { withWalletHeader } from '../supabase-wallet-client';
-import { contentTypeForExtension, fileExtension, uploadLocalFileToBucket } from '../storage-upload';
+import { contentTypeForExtension, fileExtension } from '../storage-upload';
 import { discordEmojiUrl, isValidShortcode } from './tokens';
 import { loadShortcodes } from './shortcodes';
 
@@ -198,7 +196,7 @@ export function probeImage(src: string, timeoutMs = 8000): Promise<boolean> {
 }
 
 // ---------------------------------------------------------------------------
-// Writes
+// Images and cache
 
 export const MAX_EMOJI_UPLOAD_BYTES = 2 * 1024 * 1024;
 export const EMOJI_UPLOAD_TYPES = ['image/png', 'image/gif', 'image/webp', 'image/jpeg'];
@@ -216,59 +214,15 @@ export function emojiImageType(image: PickedEmojiImage): string {
   return (image.mimeType || contentTypeForExtension(ext, '')).toLowerCase();
 }
 
-export async function uploadEmojiImage(image: PickedEmojiImage, wallet: string): Promise<string> {
-  const type = emojiImageType(image);
-  if (!EMOJI_UPLOAD_TYPES.includes(type)) throw new Error('unsupported_type');
-  if (image.fileSize != null && image.fileSize > MAX_EMOJI_UPLOAD_BYTES) throw new Error('too_large');
-  const ext = type.split('/')[1].replace('jpeg', 'jpg');
-  return uploadLocalFileToBucket({
-    bucket: 'community-media',
-    path: `custom-emojis/${wallet.toLowerCase()}/${Crypto.randomUUID()}.${ext}`,
-    uri: image.uri,
-    contentType: type,
-  });
-}
-
-export interface NewCustomEmoji {
-  shortcode: string;
-  imageUrl: string;
-  animated: boolean;
-  source: string;
-  externalId?: string;
-  category?: string;
-}
-
-export async function addCustomEmojis(items: NewCustomEmoji[], wallet: string): Promise<CustomEmoji[]> {
-  if (!items.length) return [];
-  const rows = items.map((i) => ({
-    shortcode: i.shortcode,
-    image_url: i.imageUrl,
-    animated: i.animated,
-    source: i.source,
-    external_id: i.externalId ?? null,
-    category: i.category ?? null,
-    created_by: wallet.toLowerCase(),
-  }));
-  const { data, error } = await withWalletHeader(
-    supabase
-      .from('custom_emojis' as never)
-      .insert(rows as never)
-      .select(COLUMNS),
-    wallet,
-  );
-  if (error) throw error;
-  const added = (data ?? []) as unknown as CustomEmoji[];
-  publish(emojis.concat(added));
-  return added;
-}
-
-export async function removeCustomEmoji(id: string, wallet: string): Promise<void> {
-  const { error } = await withWalletHeader(
-    supabase.from('custom_emojis' as never).delete().eq('id', id),
-    wallet,
-  );
-  if (error) throw error;
-  publish(emojis.filter((e) => e.id !== id));
+/**
+ * Folds rows the creator-packs function just added into the cache, so a new
+ * emoji renders straight away without a refetch. The table itself is read-only
+ * for clients; every write goes through libs/creator-packs/api.ts.
+ */
+export function mergeCustomEmojis(rows: CustomEmoji[]): void {
+  if (!rows.length) return;
+  const fresh = new Map(rows.map((r) => [r.id, r]));
+  publish(emojis.filter((e) => !fresh.has(e.id)).concat(rows));
 }
 
 // ---------------------------------------------------------------------------

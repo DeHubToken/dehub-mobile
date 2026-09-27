@@ -107,6 +107,16 @@
               "scheme": "https",
               "host": "dehub.io",
               "pathPrefix": "/stages/"
+            },
+            {
+              "scheme": "https",
+              "host": "dehub.io",
+              "path": "/packs"
+            },
+            {
+              "scheme": "https",
+              "host": "dehub.io",
+              "pathPrefix": "/packs/"
             }
           ],
           "category": [
