@@ -3783,7 +3783,10 @@
     "unpinConfirm": "Elimini acest mesaj fixat?",
     "pinMessage": "Fixează mesajul",
     "unpinMessage": "Dezlipește mesajul",
-    "jumpToLatest": "Accesează cele mai recente mesaje"
+    "jumpToLatest": "Accesează cele mai recente mesaje",
+    "ban": "Interzice",
+    "banConfirm": "Ești sigur că vrei să-l interzici pe {{name}}?",
+    "banFailed": "Eroare la interzicerea utilizatorului"
   },
   "promptFeed": {
     "headline": "Ce vrei să vezi?",

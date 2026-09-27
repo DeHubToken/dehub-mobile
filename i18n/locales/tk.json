@@ -3783,7 +3783,10 @@
     "unpinConfirm": "Bu habaryň ýaýramagyny isleýärmisiňiz?",
     "pinMessage": "Pin habar",
     "unpinMessage": "Unpin habar",
-    "jumpToLatest": "Soňky habarlara seret"
+    "jumpToLatest": "Soňky habarlara seret",
+    "ban": "Gadagan et",
+    "banConfirm": "{{name}} ulanyjyny gadagan etmek isleýärsiňizmi?",
+    "banFailed": "Ulanyjyny gadagan etmek başa barmady"
   },
   "promptFeed": {
     "headline": "Näme görmek isleýärsiňiz?",

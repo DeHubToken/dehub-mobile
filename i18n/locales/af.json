@@ -3816,7 +3816,10 @@
     "unpinConfirm": "Verwyder hierdie vasgepen boodskap?",
     "pinMessage": "PIN-boodskap",
     "unpinMessage": "Ontknop boodskap",
-    "jumpToLatest": "Spring na die nuutste boodskappe"
+    "jumpToLatest": "Spring na die nuutste boodskappe",
+    "ban": "Verban",
+    "banConfirm": "Is jy seker jy wil {{name}} verban?",
+    "banFailed": "Kon nie gebruiker verban nie"
   },
   "promptFeed": {
     "headline": "Wat wil jy sien?",

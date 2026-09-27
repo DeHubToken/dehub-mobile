@@ -3654,7 +3654,10 @@
     "unpinTitle": "Peyamê veke",
     "unpinConfirm": "Vê peyama pinkirî jê bibe? Gelo were rakirin?",
     "pinMessage": "Peyama Pin bike",
-    "unpinMessage": "Peyamê veke"
+    "unpinMessage": "Peyamê veke",
+    "ban": "Qedexe bike",
+    "banConfirm": "Tu piştrast î ku dixwazî {{name}} qedexe bikî?",
+    "banFailed": "Nekarî bikarhêner qedexe bike"
   },
   "promptFeed": {
     "headline": "Tu dixwazî çi bibînî?",

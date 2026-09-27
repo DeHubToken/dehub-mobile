@@ -3783,7 +3783,10 @@
     "unpinConfirm": "Wepụ ozi a pinned?",
     "pinMessage": "Ozi PIN",
     "unpinMessage": "Wepụ ozi",
-    "jumpToLatest": "Gaa n 'ozi ndị ọfụụ"
+    "jumpToLatest": "Gaa n 'ozi ndị ọfụụ",
+    "ban": "Machibido",
+    "banConfirm": "Ị jide n'aka na ịchọrọ ịmachibido {{name}}?",
+    "banFailed": "E nweghị ike ịmachibido onye ọrụ"
   },
   "promptFeed": {
     "headline": "Gịnị ka ị chọrọ ịhụ?",

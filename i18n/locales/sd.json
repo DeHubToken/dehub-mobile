@@ -3783,7 +3783,10 @@
     "unpinMessage": "اڻ کڙڪائيندڙ پيغام",
     "pinnedMessageN": "پيام خصوصي: ارسال يک پيام خصوصي به #{{n}}",
     "jumpToLatest": "تازه ترين پيغامن تي ٽپو",
-    "attachGif": "GIF"
+    "attachGif": "GIF",
+    "ban": "بين ڪريو",
+    "banConfirm": "ڇا توهان کي پڪ آهي ته توهان {{name}} کي بين ڪرڻ چاهيو ٿا؟",
+    "banFailed": "صارف کي بين ڪرڻ ۾ ناڪامي"
   },
   "promptFeed": {
     "headline": "توهان ڇا ڏسڻ چاهيو ٿا؟",

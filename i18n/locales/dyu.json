@@ -3739,7 +3739,10 @@
     "pinMessage": "Cikan nɔrɔ",
     "unpinMessage": "Cikan nɔrɔli bɔ",
     "jumpToLatest": "Taa bataki kura laban ma",
-    "unbanConfirm": "I b'a fɛ tiɲɛ na ka {{name}} ka bali bɔ?"
+    "unbanConfirm": "I b'a fɛ tiɲɛ na ka {{name}} ka bali bɔ?",
+    "ban": "Bali",
+    "banFailed": "A ma se ka baarakɛla bali",
+    "banConfirm": "I b'a fɛ tiɲɛ na ka {{name}} bali?"
   },
   "promptFeed": {
     "headline": "I b'a fɛ ka mun ye?",

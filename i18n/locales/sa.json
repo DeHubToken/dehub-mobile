@@ -3783,7 +3783,10 @@
     "pinMessage": "पिनं सन्देशः",
     "unpinMessage": "अनपिन सन्देश",
     "pinnedMessageN": "उपयोगकर्ता समीक्षा - #{{n}}",
-    "jumpToLatest": "\"फलकम्ःLatest messages\" सम्बद्धानि पृष्ठानि"
+    "jumpToLatest": "\"फलकम्ःLatest messages\" सम्बद्धानि पृष्ठानि",
+    "ban": "निषेधय",
+    "banFailed": "उपयोक्तुः निषेधः विफलः",
+    "banConfirm": "किं भवान् निश्चयेन {{name}} निषेद्धुम् इच्छति?"
   },
   "promptFeed": {
     "headline": "भवान् किं द्रष्टुम् इच्छति?",

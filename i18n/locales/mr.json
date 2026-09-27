@@ -3787,7 +3787,10 @@
     "pinMessage": "पिन संदेश",
     "unpinMessage": "संदेश अनपिन करा",
     "jumpToLatest": "नवीनतम मेसेजेसवर जा",
-    "attachGif": "GIF"
+    "attachGif": "GIF",
+    "ban": "बॅन करा",
+    "banConfirm": "तुम्हाला खात्री आहे की तुम्ही {{name}} ला बॅन करू इच्छिता?",
+    "banFailed": "वापरकर्त्याला बॅन करण्यात अयशस्वी"
   },
   "promptFeed": {
     "headline": "तुम्हाला काय पाहायचे आहे?",

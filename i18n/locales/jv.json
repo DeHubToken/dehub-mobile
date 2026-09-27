@@ -3783,7 +3783,10 @@
     "unpinConfirm": "Mbusak pesen sematan iki?",
     "pinMessage": "Semat pesen",
     "unpinMessage": "Copot semat pesen",
-    "jumpToLatest": "Luncurna pesen paling anyar"
+    "jumpToLatest": "Luncurna pesen paling anyar",
+    "ban": "Blokir",
+    "banConfirm": "Apa sampeyan yakin arep mblokir {{name}}?",
+    "banFailed": "Gagal mblokir pangguna"
   },
   "promptFeed": {
     "headline": "Sampeyan pengin ndeleng apa?",

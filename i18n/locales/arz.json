@@ -3783,7 +3783,10 @@
     "unpinConfirm": "هل تريد إزالة هذه الرسالة المثبتة ؟",
     "unpinMessage": "إلغاء تثبيت الرسالة",
     "pinMessage": "رسالة مثبتة",
-    "jumpToLatest": "الانتقال إلى آخر الرسائل"
+    "jumpToLatest": "الانتقال إلى آخر الرسائل",
+    "ban": "حظر",
+    "banConfirm": "هل أنت متأكد أنك تريد حظر {{name}}؟",
+    "banFailed": "فشل حظر المستخدم"
   },
   "promptFeed": {
     "headline": "عايز تشوف إيه؟",

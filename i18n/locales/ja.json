@@ -3834,7 +3834,10 @@
     "unpinMessage": "メッセージのピンを外す",
     "jumpToLatest": "最新のメッセージにジャンプ",
     "attachGif": "GIF",
-    "modBadge": "モデ"
+    "modBadge": "モデ",
+    "ban": "禁止する",
+    "banConfirm": "{{name}} を禁止しますか？",
+    "banFailed": "ユーザーの禁止に失敗しました"
   },
   "promptFeed": {
     "headline": "何を見たいですか？",

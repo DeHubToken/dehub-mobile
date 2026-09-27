@@ -3813,7 +3813,10 @@
     "pinMessage": "پین کردن پیام",
     "unpinMessage": "لغو پین پیام",
     "jumpToLatest": "پرش به آخرین پیام‌ها",
-    "attachGif": "گیف"
+    "attachGif": "گیف",
+    "ban": "مسدود کردن",
+    "banConfirm": "آیا مطمئن هستید که می‌خواهید {{name}} را مسدود کنید؟",
+    "banFailed": "مسدود کردن کاربر ناموفق بود"
   },
   "promptFeed": {
     "headline": "چه چیزی می‌خواهید ببینید؟",

@@ -3783,7 +3783,10 @@
     "unpinConfirm": "Cire wannan pinned sakon?",
     "pinMessage": "Pin sakon",
     "unpinMessage": "Unpin sakon",
-    "jumpToLatest": "Tsallake zuwa sabbin sakonni"
+    "jumpToLatest": "Tsallake zuwa sabbin sakonni",
+    "ban": "Haramta",
+    "banConfirm": "Kuna tabbatar da cewa kuna son haramta {{name}}?",
+    "banFailed": "An kasa haramta mai amfani"
   },
   "promptFeed": {
     "headline": "Me kake son gani?",

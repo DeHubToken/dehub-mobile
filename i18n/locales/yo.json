@@ -3784,7 +3784,10 @@
     "unpinConfirm": "Yọ àtẹ̀jísẹ́ yìí kúrò?",
     "pinMessage": "Ìfiránṣẹ́ Pin",
     "unpinMessage": "Ifiranṣẹ Unpin",
-    "jumpToLatest": "Jabọ si awọn ifiranṣẹ tuntun"
+    "jumpToLatest": "Jabọ si awọn ifiranṣẹ tuntun",
+    "ban": "Fòfin de",
+    "banConfirm": "Ṣe o da ọ loju pe o fẹ fòfin de {{name}}?",
+    "banFailed": "Ikuna lati fòfin de olumulo"
   },
   "promptFeed": {
     "headline": "Kí ni o fẹ́ rí?",

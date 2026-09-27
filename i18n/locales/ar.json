@@ -3836,7 +3836,10 @@
     "unpinMessage": "إلغاء تثبيت الرسالة",
     "pinMessage": "تثبيت الرسالة",
     "jumpToLatest": "الانتقال إلى آخر الرسائل",
-    "attachGif": "GIF"
+    "attachGif": "GIF",
+    "ban": "حظر",
+    "banConfirm": "هل أنت متأكد من أنك تريد حظر {{name}}؟",
+    "banFailed": "فشل حظر المستخدم"
   },
   "promptFeed": {
     "headline": "ماذا تريد أن تشاهد؟",

@@ -3892,7 +3892,10 @@
     "pinnedMessageN": "পিন করা মেসেজ #{{n}}",
     "pinMessage": "পিন মেসেজ",
     "jumpToLatest": "সর্বশেষ মেসেজে যান",
-    "attachGif": "জি- আই- এফName"
+    "attachGif": "জি- আই- এফName",
+    "ban": "ব্যান গরন",
+    "banConfirm": "আপনি কি নিশ্চিত {{name}}-রে ব্যান গরিবার চান?",
+    "banFailed": "ইউজাররে ব্যান গরা ন গেল"
   },
   "promptFeed": {
     "headline": "অনে কি চাইতে চান?",

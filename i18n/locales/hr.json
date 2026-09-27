@@ -3783,7 +3783,10 @@
     "unpinConfirm": "Želite li ukloniti ovu prikvačenu poruku?",
     "pinMessage": "PIN poruka",
     "unpinMessage": "Otkvači poruku",
-    "jumpToLatest": "Prijeđi na najnovije poruke"
+    "jumpToLatest": "Prijeđi na najnovije poruke",
+    "ban": "Zabrani",
+    "banConfirm": "Jeste li sigurni da želite zabraniti {{name}}?",
+    "banFailed": "Zabrana korisnika nije uspjela"
   },
   "promptFeed": {
     "headline": "Što želiš gledati?",

@@ -3783,7 +3783,10 @@
     "unpinMessage": "取消固定訊息",
     "jumpToLatest": "跳到最新嘅訊息",
     "attachGif": "GIF",
-    "modBadge": "管理員"
+    "modBadge": "管理員",
+    "ban": "封鎖",
+    "banConfirm": "確定要封鎖 {{name}} 嗎？",
+    "banFailed": "無法封鎖用戶"
   },
   "promptFeed": {
     "headline": "你想睇啲咩？",

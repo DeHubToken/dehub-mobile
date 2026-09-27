@@ -3836,7 +3836,10 @@
     "unpinConfirm": "Remover esta mensagem fixada?",
     "pinMessage": "Mensagem de PIN",
     "unpinMessage": "Desafixar mensagem",
-    "jumpToLatest": "Ir para as mensagens mais recentes"
+    "jumpToLatest": "Ir para as mensagens mais recentes",
+    "ban": "Banir",
+    "banConfirm": "Tem certeza que deseja banir {{name}}?",
+    "banFailed": "Falha ao banir usuário"
   },
   "promptFeed": {
     "headline": "O que você quer ver?",

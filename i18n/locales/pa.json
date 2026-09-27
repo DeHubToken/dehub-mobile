@@ -3729,7 +3729,10 @@
     "pinMessage": "ਪਿੰਨ ਸੁਨੇਹਾ",
     "unpinMessage": "ਸੁਨੇਹਾ ਅਨਪਿਨ ਕਰੋ",
     "jumpToLatest": "ਨਵੀਨਤਮ ਸੁਨੇਹਿਆਂ 'ਤੇ ਜਾਓ",
-    "attachGif": "GIF"
+    "attachGif": "GIF",
+    "ban": "ਬੈਨ ਕਰੋ",
+    "banConfirm": "ਕੀ ਤੁਸੀਂ ਯਕੀਨਨ {{name}} ਨੂੰ ਬੈਨ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ?",
+    "banFailed": "ਉਪਭੋਗਤਾ ਨੂੰ ਬੈਨ ਕਰਨ ਵਿੱਚ ਅਸਫਲ"
   },
   "promptFeed": {
     "headline": "ਤੁਸੀਂ ਕੀ ਵੇਖਣਾ ਚਾਹੁੰਦੇ ਹੋ?",

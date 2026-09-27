@@ -3653,7 +3653,10 @@
     "pinMessage": "ПИН порука",
     "unpinMessage": "Отквачите поруку",
     "jumpToLatest": "Иди на најновије поруке",
-    "attachGif": "GIF"
+    "attachGif": "GIF",
+    "ban": "Забрани",
+    "banConfirm": "Да ли сте сигурни да желите да забраните {{name}}?",
+    "banFailed": "Забрана корисника није успела"
   },
   "promptFeed": {
     "headline": "Шта желиш да гледаш?",

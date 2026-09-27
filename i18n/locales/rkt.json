@@ -3820,7 +3820,10 @@
     "pinMessage": "পিন মেসেজ",
     "unpinMessage": "বার্তা আনপিন করুন",
     "jumpToLatest": "সর্বশেষ মেসেজে যান",
-    "attachGif": "জি- আই- এফName"
+    "attachGif": "জি- আই- এফName",
+    "ban": "ব্যান করেন",
+    "banConfirm": "আপনি কি নিশ্চিত যে আপনি {{name}} কে ব্যান করবার চান?",
+    "banFailed": "ব্যবহারকারীক ব্যান করা গেইল না"
   },
   "promptFeed": {
     "headline": "তুমি কি দেখিবা চাও?",

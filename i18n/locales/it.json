@@ -3832,7 +3832,10 @@
     "unpinConfirm": "Rimuovere questo messaggio bloccato?",
     "pinMessage": "Messaggio pin",
     "unpinMessage": "Sblocca messaggio",
-    "jumpToLatest": "Passa agli ultimi messaggi"
+    "jumpToLatest": "Passa agli ultimi messaggi",
+    "ban": "Banna",
+    "banConfirm": "Sei sicuro di voler bannare {{name}}?",
+    "banFailed": "Impossibile bannare l'utente"
   },
   "promptFeed": {
     "headline": "Cosa vuoi vedere?",

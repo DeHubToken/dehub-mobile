@@ -3787,7 +3787,10 @@
     "unpinConfirm": "Odstranit tuto připnutou zprávu?",
     "pinMessage": "Zpráva PIN",
     "unpinMessage": "Zrušit připnutí zprávy",
-    "jumpToLatest": "Přejít na nejnovější zprávy"
+    "jumpToLatest": "Přejít na nejnovější zprávy",
+    "ban": "Zabanovat",
+    "banConfirm": "Opravdu chcete zabanovat {{name}}?",
+    "banFailed": "Nepodařilo se zabanovat uživatele"
   },
   "promptFeed": {
     "headline": "Co chcete vidět?",

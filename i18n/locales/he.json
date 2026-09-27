@@ -3787,7 +3787,10 @@
     "pinMessage": "הודעת קוד PIN",
     "unpinMessage": "בטל הצמדה של הודעה",
     "jumpToLatest": "מעבר להודעות האחרונות",
-    "modBadge": "מוד"
+    "modBadge": "מוד",
+    "ban": "חסימה",
+    "banConfirm": "האם אתה בטוח שברצונך לחסום את {{name}}?",
+    "banFailed": "חסימת המשתמש נכשלה"
   },
   "promptFeed": {
     "headline": "מה תרצה לראות?",

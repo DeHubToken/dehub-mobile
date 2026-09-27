@@ -3836,7 +3836,10 @@
     "unpinMessage": "取消固定消息",
     "jumpToLatest": "跳转到最新消息",
     "attachGif": "GIF",
-    "modBadge": "管理员"
+    "modBadge": "管理员",
+    "ban": "封禁",
+    "banConfirm": "您确定要封禁 {{name}} 吗？",
+    "banFailed": "封禁用户失败"
   },
   "promptFeed": {
     "headline": "你想看什么？",

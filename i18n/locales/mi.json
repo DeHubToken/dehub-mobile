@@ -3783,7 +3783,10 @@
     "unpinConfirm": "He aha te take o tēnei karere?",
     "pinMessage": "PIN karere",
     "unpinMessage": "Karere Unpin",
-    "jumpToLatest": "Haere ki ngā karere hou"
+    "jumpToLatest": "Haere ki ngā karere hou",
+    "ban": "Aukatia",
+    "banConfirm": "Kei te tino hiahia koe ki te aukati i a {{name}}?",
+    "banFailed": "Kua rahua te aukati i te kaiwhakamahi"
   },
   "promptFeed": {
     "headline": "He aha tāu e hiahia ana kia kite?",

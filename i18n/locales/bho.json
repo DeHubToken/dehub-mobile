@@ -3781,7 +3781,10 @@
     "pinMessage": "एगो सन्देश",
     "unpinMessage": "अनसुनी हो गइल सन्देश",
     "jumpToLatest": "अंतिम संदेस पे क्लिक करे",
-    "pinnedMessageN": "पिन कइल मैसेज #{{n}}"
+    "pinnedMessageN": "पिन कइल मैसेज #{{n}}",
+    "ban": "बैन करीं",
+    "banFailed": "उपयोगकर्ता के बैन ना हो सकल",
+    "banConfirm": "का रउआ पक्का {{name}} के बैन करे के चाहत बानी?"
   },
   "promptFeed": {
     "headline": "रउआ का देखल चाहत बानी?",

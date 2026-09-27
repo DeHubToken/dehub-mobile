@@ -3697,7 +3697,10 @@
     "unpinMessage": "Unpin message",
     "voiceUploadFailed": "We no fit upload di voice message",
     "unpinConfirm": "Remove dis pinned message?",
-    "jumpToLatest": "Go to di latest messages"
+    "jumpToLatest": "Go to di latest messages",
+    "ban": "Ban am",
+    "banConfirm": "You sure say you wan ban {{name}}?",
+    "banFailed": "We no fit ban di user"
   },
   "promptFeed": {
     "headline": "Wetin you wan see?",

@@ -3832,7 +3832,10 @@
     "unpinConfirm": "¿Quieres eliminar este mensaje anclado?",
     "pinMessage": "Mensaje PIN",
     "unpinMessage": "Desanclar mensaje",
-    "jumpToLatest": "Ir a los últimos mensajes"
+    "jumpToLatest": "Ir a los últimos mensajes",
+    "ban": "Banear",
+    "banConfirm": "¿Estás seguro de que quieres banear a {{name}}?",
+    "banFailed": "Error al banear al usuario"
   },
   "promptFeed": {
     "headline": "¿Qué quieres ver?",

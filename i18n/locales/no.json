@@ -3783,7 +3783,10 @@
     "unpinConfirm": "Fjerne denne festede meldingen?",
     "pinMessage": "Fest melding",
     "unpinMessage": "Fjern festing av melding",
-    "jumpToLatest": "Hopp til siste meldinger"
+    "jumpToLatest": "Hopp til siste meldinger",
+    "ban": "Utesteng",
+    "banConfirm": "Er du sikker på at du vil utestenge {{name}}?",
+    "banFailed": "Kunne ikke utestenge brukeren"
   },
   "promptFeed": {
     "headline": "Hva vil du se?",

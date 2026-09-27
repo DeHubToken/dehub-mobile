@@ -3787,7 +3787,10 @@
     "unpinConfirm": "Vil du fjerne denne fastgjorte besked?",
     "pinMessage": "Fastgør besked",
     "unpinMessage": "Fjern fastgørelse af besked",
-    "jumpToLatest": "Gå til de seneste beskeder"
+    "jumpToLatest": "Gå til de seneste beskeder",
+    "ban": "Udeluk",
+    "banConfirm": "Er du sikker på, at du vil udelukke {{name}}?",
+    "banFailed": "Kunne ikke udelukke brugeren"
   },
   "promptFeed": {
     "headline": "Hvad vil du se?",

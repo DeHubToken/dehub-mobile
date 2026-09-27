@@ -3783,7 +3783,10 @@
     "unpinConfirm": "Pašalinti šią prisegtą žinutę?",
     "pinMessage": "Prisegti žinutę",
     "unpinMessage": "Atsegti žinutę",
-    "jumpToLatest": "Pereiti prie naujausių žinučių"
+    "jumpToLatest": "Pereiti prie naujausių žinučių",
+    "ban": "Užblokuoti",
+    "banConfirm": "Ar tikrai norite užblokuoti {{name}}?",
+    "banFailed": "Nepavyko užblokuoti vartotojo"
   },
   "promptFeed": {
     "headline": "Ką norite matyti?",

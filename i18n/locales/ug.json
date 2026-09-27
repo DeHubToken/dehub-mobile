@@ -3783,7 +3783,10 @@
     "unpinConfirm": "بۇ چەكلەنگەن ئۇچۇرنى ئۆچۈرگىلى بولامدۇ ؟",
     "pinMessage": "PIN خېتى",
     "unpinMessage": "Unpin خېتى",
-    "jumpToLatest": "ئەڭ يېڭى ئۇچۇرلارغا ئۆتۈش"
+    "jumpToLatest": "ئەڭ يېڭى ئۇچۇرلارغا ئۆتۈش",
+    "ban": "چەكلەش",
+    "banConfirm": "{{name}} نى چەكلەشنى جەزملەشتۈرەمسىز؟",
+    "banFailed": "ئىشلەتكۈچىنى چەكلەش مەغلۇپ بولدى"
   },
   "promptFeed": {
     "headline": "نېمىنى كۆرمەكچىسىز؟",

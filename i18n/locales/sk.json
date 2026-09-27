@@ -3891,7 +3891,10 @@
     "unpinConfirm": "Odstrániť túto pripnutú správu?",
     "pinMessage": "Správa s pripináčikom",
     "unpinMessage": "Zrušiť pripnutie správy",
-    "jumpToLatest": "Prejsť na najnovšie správy"
+    "jumpToLatest": "Prejsť na najnovšie správy",
+    "ban": "Zabanovať",
+    "banConfirm": "Ste si istí, že chcete zabanovať {{name}}?",
+    "banFailed": "Nepodarilo sa zabanovať používateľa"
   },
   "promptFeed": {
     "headline": "Čo chcete vidieť?",

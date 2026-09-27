@@ -3779,7 +3779,10 @@
     "pinMessage": "میسج پن کرو",
     "unpinMessage": "میسج ان پن کرو",
     "jumpToLatest": "اڳوڻي پيغام ڏانهن وڃو",
-    "attachGif": "GIF"
+    "attachGif": "GIF",
+    "ban": "بین کرو",
+    "banConfirm": "کیہ تساں یقین نال {{name}} نوں بین کرݨا چاہندے او؟",
+    "banFailed": "صارف بین تھیݨ وچ ناکام"
   },
   "promptFeed": {
     "headline": "تساں کیا ݙیکھݨ چاہندے ہو؟",

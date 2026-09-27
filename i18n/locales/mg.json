@@ -3806,7 +3806,10 @@
     "unpinConfirm": "Hametra-panontaniana mikasika izany hafatra izany ve aho?",
     "pinMessage": "Hafatra PIN",
     "unpinMessage": "Filazana tsy misy dikany",
-    "jumpToLatest": "Handeha any amin'ny hafatra farany"
+    "jumpToLatest": "Handeha any amin'ny hafatra farany",
+    "ban": "Raraho",
+    "banConfirm": "Tena azonao antoka ve fa te handrara an'i {{name}} ianao?",
+    "banFailed": "Tsy nahomby ny fandrarana ny mpampiasa"
   },
   "promptFeed": {
     "headline": "Inona no tianao hojerena?",

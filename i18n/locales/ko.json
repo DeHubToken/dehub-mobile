@@ -3836,7 +3836,10 @@
     "unpinMessage": "메시지 고정 해제",
     "jumpToLatest": "최신 메시지로 이동",
     "attachGif": "GIF",
-    "modBadge": "운영자"
+    "modBadge": "운영자",
+    "ban": "차단",
+    "banConfirm": "{{name}} 님을 차단하시겠습니까?",
+    "banFailed": "사용자 차단 실패"
   },
   "promptFeed": {
     "headline": "무엇을 보고 싶으신가요?",

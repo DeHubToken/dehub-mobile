@@ -3783,7 +3783,10 @@
     "unpinConfirm": "Kas eemaldada see kinnitatud sõnum?",
     "pinMessage": "PIN-koodi teade",
     "unpinMessage": "Tühista sõnumi kinnitamine",
-    "jumpToLatest": "Hüppa uusimate sõnumite juurde"
+    "jumpToLatest": "Hüppa uusimate sõnumite juurde",
+    "ban": "Blokeeri",
+    "banConfirm": "Kas olete kindel, et soovite {{name}} blokeerida?",
+    "banFailed": "Kasutaja blokeerimine ebaõnnestus"
   },
   "promptFeed": {
     "headline": "Mida sa näha tahad?",
