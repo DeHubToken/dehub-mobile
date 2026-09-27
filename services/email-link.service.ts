@@ -7,9 +7,9 @@ import { apiClient } from '../libs';
  * hands the full one back, which is the right call for a screen anyone can
  * shoulder-surf, and enough to answer "is there one, and which".
  *
- * Linking an address is web-only for now (it needs the code round trip), so on
- * mobile this is read-only: it tells the notification settings screen whether
- * email notifications can be delivered at all.
+ * Read by the notification settings screen (can email be delivered at all)
+ * and by Settings → Sign-in, which also attaches and removes the address
+ * through the code round trip below.
  */
 export interface EmailLinkStatus {
   status: boolean;
@@ -75,4 +75,48 @@ export async function syncEmailLinkStatus(): Promise<EmailLinkStatus | null> {
   } catch {
     return getEmailLinkStatus();
   }
+}
+
+/**
+ * Mail a 6-digit code that, once confirmed, lets this account sign in with
+ * that email instead of a wallet signature.
+ *
+ * Throws with the server's own copy (cooldowns, rate limits, a bad address) as
+ * the message — apiClient lifts the body's `message` into the Error — so
+ * callers can toast it as-is.
+ */
+export async function requestEmailLinkCode(email: string): Promise<{ status: boolean }> {
+  return apiClient.post<{ status: boolean }>(
+    '/account/email-link/request',
+    { email },
+    { isAuthRequired: true },
+  );
+}
+
+/**
+ * Verify the code and attach the email as a login route for this account.
+ *
+ * Refusals are 409s (EMAIL_IN_USE, EMAIL_ALREADY_LINKED,
+ * ACCOUNT_HAS_LOGIN_LINKED) whose message is written for the reader.
+ */
+export async function confirmEmailLink(
+  email: string,
+  code: string,
+): Promise<{ status: boolean; linked: boolean; email: string | null }> {
+  return apiClient.post<{ status: boolean; linked: boolean; email: string | null }>(
+    '/account/email-link/confirm',
+    { email, code },
+    { isAuthRequired: true },
+  );
+}
+
+/**
+ * Detach the email login again. Only a link this flow attached can go — a
+ * social signup's identity is its only way back in, and the server refuses
+ * that with LOGIN_NOT_REMOVABLE.
+ */
+export async function unlinkEmailLogin(): Promise<{ status: boolean; linked: boolean }> {
+  return apiClient.delete<{ status: boolean; linked: boolean }>('/account/email-link', {
+    isAuthRequired: true,
+  });
 }

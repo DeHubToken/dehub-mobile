@@ -56,6 +56,7 @@ import AssetsPanel from "../components/Settings/AssetsPanel";
 import MessagesPanel from "../components/Settings/MessagesPanel";
 import ProfilesSection from "../components/Settings/ProfilesSection";
 import EnsHandleSection from "../components/Settings/EnsHandleSection";
+import EmailSignInSection from "../components/Settings/EmailSignInSection";
 import StreamKeySection from "../components/Settings/StreamKeySection";
 import GettingStartedRow from "../components/Settings/GettingStartedRow";
 import {
@@ -267,6 +268,14 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation, route }) => {
         <Divider />
         <GettingStartedRow />
       </SettingsSection>
+
+      {/* Between the profile rows and ENS, where web puts it: an email a
+          wallet account can log in with instead of a signature. */}
+      {isSignedIn ? (
+        <SettingsAnchor id="sign-in">
+          <EmailSignInSection />
+        </SettingsAnchor>
+      ) : null}
 
       {/* Under the profile rows, not the wallet ones: a .eth name is an alias
           on the profile, and every wallet it involves belongs to somebody
