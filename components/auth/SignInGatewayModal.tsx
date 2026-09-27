@@ -1,6 +1,5 @@
 import React, { useCallback, useRef, useState } from "react";
 import { View, Text, ScrollView, StyleSheet } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 import GlassModal from "../ui/GlassModal";
 import { AuthButton, AuthErrorNotice, authColors, authText } from "./AuthControls";
 import { ChainId } from "../../config/constants";
@@ -624,7 +623,7 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
       // Block closing while sign-in is in progress
       dismissible={!isBusy}
     >
-      <SafeAreaView className="max-h-[98%]">
+      <View style={{ flexShrink: 1 }}>
         {isBusy && (
           <FullScreenLoader message="Signing you in…" />
         )}
@@ -686,7 +685,7 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
               disabled={authLoading}
             />
           )}
-          <ImportWallet />
+          <ImportWallet disabled={isBusy} />
           <WalletSetupScreen
             visible={!!walletSetupRequest}
             request={walletSetupRequest}
@@ -761,7 +760,7 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
             accessibilityLabel={t("auth.closeAuthModal")}
           />
         </View>
-      </SafeAreaView>
+      </View>
     </GlassModal>
   );
 };
