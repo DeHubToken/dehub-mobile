@@ -4778,7 +4778,20 @@
     "tokensSent": "{{amount}} tokens zitere",
     "percentUsed": "{{percent}}% used",
     "spentOfTotal": "{{spent}} nke {{total}}",
-    "viewInWallet": "Gosi na obere akpa"
+    "viewInWallet": "Gosi na obere akpa",
+    "topUp": "Tinye tokens",
+    "topUpTitle": "Tinye ndenye aha tokens",
+    "topUpCustom": "Ego ndị ọzọ (USD)",
+    "topUpYouSend": "I zigara",
+    "topUpYouGet": "Agbakwunyere na nguzozi gị",
+    "topUpConfirm": "Tinye {{amount}}",
+    "topUpRange": "Tinye {{min}} {{max}}",
+    "topUpDone": "{{amount}} agbakwunyere gị na ndenye aha tokens",
+    "topUpPending": "Gị n 'elu-elu bụ enen. Ọ ga-apụta na nguzozi gị n 'oge na-adịghị anya.",
+    "topUpEmptyHint": "Top elu denye aha na creators",
+    "topUpStageWallet": "Gosi na obere akpa gị...",
+    "topUpStageConfirming": "Ihe ọzọ bụ na, you can reach all these destinations by train…",
+    "topUpStageCrediting": "Ihe ọzọ bụ na, you can reach all these destinations by train…"
   },
   "live": {
     "notSet": "Edobeghị",

@@ -4778,7 +4778,20 @@
     "tokensSent": "{{amount}} թոքեն ուղարկվեց",
     "percentUsed": "{{percent}}% օգտագործված",
     "spentOfTotal": "{{spent}}՝ {{total}}-ից",
-    "viewInWallet": "Դիտել դրամապանակում"
+    "viewInWallet": "Դիտել դրամապանակում",
+    "topUp": "Ավելացնել տոկեններ",
+    "topUpTitle": "Ավելացնել բաժանորդագրության նշաններ",
+    "topUpCustom": "Այլ գումար (ԱՄՆ դոլար)",
+    "topUpYouSend": "Դուք ուղարկում եք",
+    "topUpYouGet": "Ավելացվել է հաշվեկշռին",
+    "topUpConfirm": "Ավելացնել {{amount}}",
+    "topUpRange": "Մուտքագրեք {{min}}- ից {{max}}",
+    "topUpDone": "{{amount}} ավելացվել է ձեր բաժանորդագրության տառերին",
+    "topUpPending": "Ձեր համալրումը հաստատում է ։ Այն շուտով կհայտնվի ձեր հաշվեկշռում ։",
+    "topUpEmptyHint": "Թարմացրեք ՝ ստեղծագործողներին բաժանորդագրվելու համար",
+    "topUpStageWallet": "Հաստատեք դրամապանակում...",
+    "topUpStageConfirming": "Սպասում ենք գործարքին…",
+    "topUpStageCrediting": "Ինչպես ավելացնել հաշվեկշռին…"
   },
   "live": {
     "notSet": "Սահմանված չէ",

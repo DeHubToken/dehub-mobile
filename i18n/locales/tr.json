@@ -4827,7 +4827,20 @@
     "tokensSent": "{{amount}} jeton gönderildi",
     "percentUsed": "%{{percent}} kullanıldı",
     "spentOfTotal": "{{spent}}/{{total}}",
-    "viewInWallet": "Cüzdanda görüntüle"
+    "viewInWallet": "Cüzdanda görüntüle",
+    "topUp": "Jeton ekleyin",
+    "topUpTitle": "Abonelik tokenleri ekleyin",
+    "topUpCustom": "Diğer tutar (USD)",
+    "topUpYouSend": "Gönderdiğiniz",
+    "topUpYouGet": "Bakiyenize eklendi",
+    "topUpConfirm": "{{amount}} ekle",
+    "topUpRange": "{{min}} ila {{max}} girin",
+    "topUpDone": "Abonelik jetonlarınıza{{amount}} eklendi",
+    "topUpPending": "Eklemeniz onaylanıyor. Kısa süre içinde bakiyenizde görünecektir.",
+    "topUpEmptyHint": "Yaratıcılara abone olmak için yükleme yap",
+    "topUpStageWallet": "Cüzdanınızda onaylayın…",
+    "topUpStageConfirming": "İşlem bekleniyor…",
+    "topUpStageCrediting": "Bakiyenize ekleniyor…"
   },
   "live": {
     "notSet": "Ayarlanmadı",

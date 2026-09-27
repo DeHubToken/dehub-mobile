@@ -4778,7 +4778,20 @@
     "tokensSent": "Wysłano {{amount}} tokenów",
     "percentUsed": "Użyto {{percent}}%",
     "spentOfTotal": "{{spent}} z {{total}}",
-    "viewInWallet": "Zobacz w portfelu"
+    "viewInWallet": "Zobacz w portfelu",
+    "topUp": "Dodaj tokeny",
+    "topUpTitle": "Dodaj tokeny subskrypcji",
+    "topUpCustom": "Inna kwota (USD)",
+    "topUpYouSend": "Wysyłasz",
+    "topUpYouGet": "Dodano do Twojego salda",
+    "topUpConfirm": "Dodaj {{amount}}",
+    "topUpRange": "Wejdź na {{min}} do {{max}}",
+    "topUpDone": "{{amount}} dodano do tokenów subskrypcji",
+    "topUpPending": "Doładowanie jest potwierdzane. Wkrótce pojawi się na Twoim saldzie.",
+    "topUpEmptyHint": "Doładuj, aby subskrybować twórców",
+    "topUpStageWallet": "Potwierdź w swoim portfelu...",
+    "topUpStageConfirming": "Oczekiwanie na transakcję…",
+    "topUpStageCrediting": "Trwa dodawanie do Twojego salda…"
   },
   "live": {
     "notSet": "Nie ustawiono",

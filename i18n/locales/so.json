@@ -4778,7 +4778,20 @@
     "tokensSent": "{{amount}} calaamadaha la diray",
     "percentUsed": "{{percent}}% loo isticmaalo",
     "spentOfTotal": "{{spent}} ee {{total}}",
-    "viewInWallet": "Eeg boorsada"
+    "viewInWallet": "Eeg boorsada",
+    "topUp": "Ku dar calaamadaha",
+    "topUpTitle": "Ku dar calaamadaha isdiiwaangelinta",
+    "topUpCustom": "Qadarka kale (USD)",
+    "topUpYouSend": "Waxaad dirtaa",
+    "topUpYouGet": "Ku dar dheelitirkaaga",
+    "topUpConfirm": "Ku dar {{amount}}",
+    "topUpRange": "Gali {{min}} ilaa {{max}}",
+    "topUpDone": "{{amount}} lagu daray calaamadahaaga isdiiwaangelinta",
+    "topUpPending": "Your top-up ayaa xaqiijinaya. Waxay ka muuqan doontaa dheelitirkaaga goor dhow.",
+    "topUpEmptyHint": "Top si ay u subscribe in abuurayaasha",
+    "topUpStageWallet": "Xaqiiji boorsadaada...",
+    "topUpStageConfirming": "Sugitaanka macaamilka...",
+    "topUpStageCrediting": "Ku dar dheelitirkaaga..."
   },
   "live": {
     "notSet": "Lama dejin",

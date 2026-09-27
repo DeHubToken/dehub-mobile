@@ -4886,7 +4886,20 @@
     "tokensSent": "Žetóny {{amount}} boli odoslané",
     "percentUsed": "{{percent}}% použité",
     "spentOfTotal": "{{spent}} z {{total}}",
-    "viewInWallet": "Zobraziť v peňaženke"
+    "viewInWallet": "Zobraziť v peňaženke",
+    "topUp": "Pridať tokeny",
+    "topUpTitle": "Pridať tokeny predplatného",
+    "topUpCustom": "Iná suma (USD)",
+    "topUpYouSend": "Odosielate",
+    "topUpYouGet": "Pridané k zostatku",
+    "topUpConfirm": "Pridať {{amount}}",
+    "topUpRange": "Zadajte {{min}} až {{max}}",
+    "topUpDone": "{{amount}} pridané do vašich tokenov predplatného",
+    "topUpPending": "Vaše dobitie sa potvrdzuje. Čoskoro sa objaví na tvojom zostatku.",
+    "topUpEmptyHint": "Dobite a prihláste sa na odber pre tvorcov",
+    "topUpStageWallet": "Potvrďte v peňaženke...",
+    "topUpStageConfirming": "Čaká sa na transakciu...",
+    "topUpStageCrediting": "Pridáva sa k zostatku..."
   },
   "live": {
     "notSet": "Nenastavené",

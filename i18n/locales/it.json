@@ -4827,7 +4827,20 @@
     "tokensSent": "Token {{amount}} inviati",
     "percentUsed": "{{percent}}% utilizzato",
     "spentOfTotal": "{{spent}} del {{total}}",
-    "viewInWallet": "Visualizza nel portafoglio"
+    "viewInWallet": "Visualizza nel portafoglio",
+    "topUp": "Aggiungi token",
+    "topUpTitle": "Aggiungi token di abbonamento",
+    "topUpCustom": "Altro importo (USD)",
+    "topUpYouSend": "Tu invii",
+    "topUpYouGet": "Aggiunto al tuo saldo",
+    "topUpConfirm": "Aggiungi {{amount}}",
+    "topUpRange": "Inserisci {{min}} a {{max}}",
+    "topUpDone": "{{amount}} aggiunto ai token di abbonamento",
+    "topUpPending": "La tua ricarica sta confermando. Apparirà nel tuo saldo a breve.",
+    "topUpEmptyHint": "Ricarica per iscriverti ai creator",
+    "topUpStageWallet": "Conferma nel tuo portafoglio...",
+    "topUpStageConfirming": "In attesa della transazione...",
+    "topUpStageCrediting": "Aggiunta al tuo saldo in corso..."
   },
   "live": {
     "notSet": "Non impostato",

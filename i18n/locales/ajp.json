@@ -4778,7 +4778,20 @@
     "tokensSent": "تم إرسال {{amount}} توكن",
     "percentUsed": "مستخدم {{percent}}%",
     "spentOfTotal": "{{spent}} من {{total}}",
-    "viewInWallet": "شوف بالمحفظة"
+    "viewInWallet": "شوف بالمحفظة",
+    "topUp": "ضُف رموز",
+    "topUpTitle": "إضافة رموز اشتراك",
+    "topUpCustom": "مبلغ آخر (دولار أمريكي)",
+    "topUpYouSend": "ترسل",
+    "topUpYouGet": "تمت إضافته إلى رصيدك",
+    "topUpConfirm": "إضافة {{amount}}",
+    "topUpRange": "أدخل {{min}} إلى {{max}}",
+    "topUpDone": "تمت إضافة {{amount}} إلى رموز اشتراكك",
+    "topUpPending": "عملية الشحن قيد التأكيد. ستظهر في رصيدك قريباً.",
+    "topUpEmptyHint": "شحن رصيد للاشتراك في المبدعين",
+    "topUpStageWallet": "تأكيد في محفظتك...",
+    "topUpStageConfirming": "في انتظار المعاملة...",
+    "topUpStageCrediting": "جاري الإضافة إلى رصيدك..."
   },
   "live": {
     "notSet": "مش محدد",

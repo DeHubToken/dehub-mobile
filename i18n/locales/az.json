@@ -4778,7 +4778,20 @@
     "tokensSent": "{{amount}} tokenlər göndərildi",
     "percentUsed": "{{percent}}% istifadə olunur",
     "spentOfTotal": "{{spent}} {{total}}",
-    "viewInWallet": "Pul kisəsinə baxın"
+    "viewInWallet": "Pul kisəsinə baxın",
+    "topUp": "Tokenlər əlavə edin",
+    "topUpTitle": "Abunə ayələr əlavə et",
+    "topUpCustom": "Digər məbləğ (ABŞ dolları)",
+    "topUpYouSend": "Göndərirsiniz",
+    "topUpYouGet": "Balansınıza əlavə edildi",
+    "topUpConfirm": "{{amount}} əlavə edin",
+    "topUpRange": "{{min}} ilə {{max}} arasında daxil edin",
+    "topUpDone": "{{amount}} abunə ayələrinizə əlavə edildi",
+    "topUpPending": "Üstünlüyünüz təsdiqlənir. Qısa zamanda balansınızda görünəcək.",
+    "topUpEmptyHint": "Yaradıcılara abunə olmaq üçün yuxarı",
+    "topUpStageWallet": "Pul kisənizdə təsdiq edin...",
+    "topUpStageConfirming": "Əməliyyat gözlənilir...",
+    "topUpStageCrediting": "Balansınıza əlavə edilir..."
   },
   "live": {
     "notSet": "Təyin edilməyib",

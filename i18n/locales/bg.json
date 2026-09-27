@@ -4782,7 +4782,20 @@
     "tokensSent": "Изпратени са {{amount}} токена",
     "percentUsed": "Използвани: {{percent}}%",
     "spentOfTotal": "{{spent}} от {{total}}",
-    "viewInWallet": "Преглед в портфейла"
+    "viewInWallet": "Преглед в портфейла",
+    "topUp": "Добавяне на жетони",
+    "topUpTitle": "Добавяне на токени за абонамент",
+    "topUpCustom": "Друга сума (щатски долари)",
+    "topUpYouSend": "Изпращате",
+    "topUpYouGet": "Добавено към салдото ви",
+    "topUpConfirm": "Добавяне на {{amount}}",
+    "topUpRange": "Въведете {{min}} до {{max}}",
+    "topUpDone": "{{amount}} добави към вашите токени за абонамент",
+    "topUpPending": "Допълването ви се потвърждава. Скоро ще се появи в салдото ви.",
+    "topUpEmptyHint": "Допълнете, за да се абонирате за творци",
+    "topUpStageWallet": "Потвърдете в портфейла си...",
+    "topUpStageConfirming": "Изчакване на транзакцията...",
+    "topUpStageCrediting": "Добавяне към салдото ви..."
   },
   "live": {
     "notSet": "Не е зададено",

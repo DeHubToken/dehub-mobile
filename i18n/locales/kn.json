@@ -4778,7 +4778,20 @@
     "tokensSent": "{{amount}} ಟೋಕನ್‌ಗಳನ್ನು ಕಳುಹಿಸಲಾಗಿದೆ",
     "percentUsed": "{{percent}}% ಬಳಸಲಾಗಿದೆ",
     "spentOfTotal": "{{spent}} ರಲ್ಲಿ {{total}}",
-    "viewInWallet": "ವಾಲೆಟ್‌ನಲ್ಲಿ ವೀಕ್ಷಿಸಿ"
+    "viewInWallet": "ವಾಲೆಟ್‌ನಲ್ಲಿ ವೀಕ್ಷಿಸಿ",
+    "topUp": "ಟೋಕನ್‌ಗಳನ್ನು ಸೇರಿಸಿ",
+    "topUpTitle": "ಚಂದಾದಾರಿಕೆ ಟೋಕನ್‌ಗಳನ್ನು ಸೇರಿಸಿ",
+    "topUpCustom": "ಇತರ ಮೊತ್ತ (USD)",
+    "topUpYouSend": "ನೀವು ಕಳುಹಿಸುತ್ತೀರಿ",
+    "topUpYouGet": "ನಿಮ್ಮ ಬ್ಯಾಲೆನ್ಸ್‌ಗೆ ಸೇರಿಸಲಾಗಿದೆ",
+    "topUpConfirm": "{{amount}} ಸೇರಿಸಿ",
+    "topUpRange": "{{min}}ರಿಂದ {{max}} ಗೆ ನಮೂದಿಸಿ",
+    "topUpDone": "{{amount}} ನಿಮ್ಮ ಚಂದಾದಾರಿಕೆ ಟೋಕನ್‌ಗಳಿಗೆ ಸೇರಿಸಲಾಗಿದೆ",
+    "topUpPending": "ನಿಮ್ಮ ಟಾಪ್-ಅಪ್ ದೃಢೀಕರಿಸುತ್ತಿದೆ. ಅದು ಶೀಘ್ರದಲ್ಲೇ ನಿಮ್ಮ ಬ್ಯಾಲೆನ್ಸ್‌ನಲ್ಲಿ ಗೋಚರಿಸುತ್ತದೆ.",
+    "topUpEmptyHint": "ಸೃಷ್ಟಿಕರ್ತರಿಗೆ ಚಂದಾದಾರರಾಗಲು ಟಾಪ್ ಅಪ್",
+    "topUpStageWallet": "ನಿಮ್ಮ ವಾಲೆಟ್‌ನಲ್ಲಿ ದೃಢೀಕರಿಸಿ...",
+    "topUpStageConfirming": "ವಹಿವಾಟಿಗಾಗಿ ಕಾಯಲಾಗುತ್ತಿದೆ...",
+    "topUpStageCrediting": "ನಿಮ್ಮ ಬ್ಯಾಲೆನ್ಸ್‌ಗೆ ಸೇರಿಸಲಾಗುತ್ತಿದೆ..."
   },
   "live": {
     "notSet": "ಹೊಂದಿಸಿಲ್ಲ",

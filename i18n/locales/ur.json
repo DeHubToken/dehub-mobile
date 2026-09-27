@@ -4781,7 +4781,20 @@
     "tokensSent": "{{amount}} ٹوکن بھیجے گئے",
     "percentUsed": "{{percent}}% استعمال کیا گیا",
     "spentOfTotal": "{{spent}} از {{total}}",
-    "viewInWallet": "والٹ میں دیکھیں"
+    "viewInWallet": "والٹ میں دیکھیں",
+    "topUp": "ٹوکنز شامل کریں",
+    "topUpTitle": "سبسکرپشن ٹوکنز شامل کریں",
+    "topUpCustom": "دیگر رقم (USD)",
+    "topUpYouSend": "آپ بھیجتے ہیں",
+    "topUpYouGet": "آپ کے بیلنس میں شامل کر دیا گیا ہے",
+    "topUpConfirm": "{{amount}} شامل کریں",
+    "topUpRange": "{{min}} سے {{max}} درج کریں",
+    "topUpDone": "{{amount}} آپ کے سبسکرپشن ٹوکنز میں شامل ہو گئے",
+    "topUpPending": "آپ کا ٹاپ اپ توثیق کر رہا ہے ۔ یہ جلد ہی آپ کے بیلنس میں ظاہر ہوگا ۔",
+    "topUpEmptyHint": "تخلیق کاروں کو سبسکرائب کرنے کے لیے ٹاپ اپ",
+    "topUpStageWallet": "اپنے والٹ میں توثیق کریں…",
+    "topUpStageConfirming": "ٹرانزیکشن کا انتظار ہو رہا ہے…",
+    "topUpStageCrediting": "آپ کے بیلنس میں اضافہ ہو رہا ہے…"
   },
   "live": {
     "notSet": "مقرر نہیں",

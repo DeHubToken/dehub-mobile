@@ -4808,7 +4808,20 @@
     "tokensSent": "{{amount}} Token gschickt",
     "percentUsed": "{{percent}}% used",
     "spentOfTotal": "{{spent}} of {{total}}",
-    "viewInWallet": "View in wallet"
+    "viewInWallet": "View in wallet",
+    "topUp": "Tokens dezuefüüge",
+    "topUpTitle": "Abo-Tokens auflade",
+    "topUpCustom": "Andere Betrag (USD)",
+    "topUpYouSend": "Du sendisch",
+    "topUpYouGet": "Din Balance wird g'ufg'füllt",
+    "topUpConfirm": "{{amount}} auflade",
+    "topUpRange": "Gib {{min}} i für {{max}}",
+    "topUpDone": "{{amount}} sind zu dinne Abo-Tokens dazug'choume",
+    "topUpPending": "Dini Aufladige wird bestätiget. Si wird bald uf dim Balance erschtoume.",
+    "topUpEmptyHint": "Auflade zum Creator abonnierä",
+    "topUpStageWallet": "Im Wallet bestätige...",
+    "topUpStageConfirming": "Warte uf Transaktion...",
+    "topUpStageCrediting": "Wird zum Balance dazug'füeget..."
   },
   "live": {
     "notSet": "Nöd festgleit",

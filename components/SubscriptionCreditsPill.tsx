@@ -9,14 +9,16 @@ import { useAuthState } from "../context/AuthContext";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { DIGITAL_PURCHASES_ENABLED } from "../config/storefront";
 import { getSubscriptionCredits } from "../services/subscription.service";
+import SubscriptionCreditsTopUpSheet from "./SubscriptionCreditsTopUpSheet";
 
 const usd = (value: number) =>
   value.toLocaleString(undefined, { style: "currency", currency: "USD" });
 
 /**
  * Subscription-token balance in dollars with a bar of how much has been
- * spent. A pill beside the bell; tapping it shows the full card. Only shown
- * once someone has held subscription tokens.
+ * spent, and a way to add more. A pill beside the bell; tapping it shows the
+ * full card. Shown to every signed-in user: an empty balance is exactly when
+ * the add button matters.
  */
 const SubscriptionCreditsPill: React.FC = () => {
   const { isSignedIn } = useAuthState();
@@ -24,6 +26,7 @@ const SubscriptionCreditsPill: React.FC = () => {
   const navigation = useNavigation<any>();
   const insets = useSafeAreaInsets();
   const [open, setOpen] = useState(false);
+  const [topUpOpen, setTopUpOpen] = useState(false);
 
   const { data } = useQuery({
     queryKey: ["subscription-credits"],
@@ -33,10 +36,10 @@ const SubscriptionCreditsPill: React.FC = () => {
     retry: false,
   });
 
-  const total = data?.totalAddedUsd ?? 0;
-  if (!data || total <= 0) return null;
-  const spent = Math.min(total, data.totalSpentUsd ?? Math.max(0, total - data.usd));
-  const percentUsed = Math.round((spent / total) * 100);
+  if (!data) return null;
+  const total = Math.max(0, data.totalAddedUsd ?? 0);
+  const spent = total > 0 ? Math.min(total, data.totalSpentUsd ?? Math.max(0, total - data.usd)) : 0;
+  const percentUsed = total > 0 ? Math.round((spent / total) * 100) : 0;
 
   return (
     <>
@@ -75,26 +78,50 @@ const SubscriptionCreditsPill: React.FC = () => {
               <View className="h-full rounded-full bg-white" style={{ width: `${percentUsed}%` }} />
             </View>
             <View className="mt-1.5 flex-row items-center justify-between">
-              <Text className="text-[11px] text-zinc-500">
-                {t("subscriptions.percentUsed", { percent: percentUsed })}
-              </Text>
-              <Text className="text-[11px] text-zinc-500">
-                {t("subscriptions.spentOfTotal", { spent: usd(spent), total: usd(total) })}
-              </Text>
+              {total > 0 ? (
+                <>
+                  <Text className="text-[11px] text-zinc-500">
+                    {t("subscriptions.percentUsed", { percent: percentUsed })}
+                  </Text>
+                  <Text className="text-[11px] text-zinc-500">
+                    {t("subscriptions.spentOfTotal", { spent: usd(spent), total: usd(total) })}
+                  </Text>
+                </>
+              ) : (
+                <Text className="text-[11px] text-zinc-500">{t("subscriptions.topUpEmptyHint")}</Text>
+              )}
             </View>
+            <TouchableOpacity
+              onPress={() => {
+                setOpen(false);
+                setTopUpOpen(true);
+              }}
+              activeOpacity={0.8}
+              className="mt-3 rounded-xl bg-white py-2 items-center"
+            >
+              <Text className="text-xs font-semibold text-black">{t("subscriptions.topUp")}</Text>
+            </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
                 setOpen(false);
                 navigation.navigate(ScreenNames.CommandCentre);
               }}
               activeOpacity={0.7}
-              className="mt-3 rounded-xl bg-white/10 border border-white/10 py-2 items-center"
+              className="mt-2 rounded-xl bg-white/10 border border-white/10 py-2 items-center"
             >
               <Text className="text-xs font-semibold text-white">{t("subscriptions.viewInWallet")}</Text>
             </TouchableOpacity>
           </Pressable>
         </Pressable>
       </Modal>
+
+      {topUpOpen && (
+        <SubscriptionCreditsTopUpSheet
+          visible={topUpOpen}
+          onClose={() => setTopUpOpen(false)}
+          dhbPriceUsd={data.dhbPriceUsd}
+        />
+      )}
     </>
   );
 };

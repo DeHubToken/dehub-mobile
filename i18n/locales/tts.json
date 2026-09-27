@@ -4778,7 +4778,20 @@
     "tokensSent": "ส่งโทเคน {{amount}} แล้ว",
     "percentUsed": "{{percent}}% ใช้แล้ว",
     "spentOfTotal": "{{spent}} จาก {{total}}",
-    "viewInWallet": "เบิ่งในกระเป๋าเงิน"
+    "viewInWallet": "เบิ่งในกระเป๋าเงิน",
+    "topUp": "เพิ่มโทเค็น",
+    "topUpTitle": "เพิ่มโทเค็นสมาชิก",
+    "topUpCustom": "จำนวนอื่น (USD)",
+    "topUpYouSend": "คุณส่ง",
+    "topUpYouGet": "เพิ่มเข้าในยอดของคุณ",
+    "topUpConfirm": "เพิ่ม {{amount}}",
+    "topUpRange": "ใส่ {{min}} ไปยัง {{max}}",
+    "topUpDone": "{{amount}} เพิ่มเข้าในโทเค็นสมาชิกของคุณ",
+    "topUpPending": "การเติมเงินของคุณกำลังยืนยันอยู่ จะปรากฏในยอดของคุณในไม่ช้า",
+    "topUpEmptyHint": "เติมเงินเพื่อสมัครสมาชิกกับผู้สร้าง",
+    "topUpStageWallet": "ยืนยันในกระเป๋าเงินของคุณ…",
+    "topUpStageConfirming": "รอการทำธุรกรรม…",
+    "topUpStageCrediting": "เพิ่มเข้าในยอดของคุณ…"
   },
   "live": {
     "notSet": "ยังบ่ได้ตั้ง",

@@ -5039,7 +5039,20 @@
     "tokensSent": "Token {{amount}} dihantar",
     "percentUsed": "{{percent}}% digunakan",
     "spentOfTotal": "{{spent}} daripada {{total}}",
-    "viewInWallet": "Lihat dalam dompet"
+    "viewInWallet": "Lihat dalam dompet",
+    "topUp": "Tambah token",
+    "topUpTitle": "Tambah token langganan",
+    "topUpCustom": "Amaun lain (USD)",
+    "topUpYouSend": "Anda hantar",
+    "topUpYouGet": "Ditambah ke baki anda",
+    "topUpConfirm": "Tambah {{amount}}",
+    "topUpRange": "Masukkan {{min}} ke {{max}}",
+    "topUpDone": "{{amount}} ditambah kepada token langganan anda",
+    "topUpPending": "Tambah nilai anda disahkan. Ia akan muncul dalam baki anda tidak lama lagi.",
+    "topUpEmptyHint": "Tambah nilai untuk melanggan pengkarya",
+    "topUpStageWallet": "Sahkan dalam dompet anda...",
+    "topUpStageConfirming": "Menunggu transaksi...",
+    "topUpStageCrediting": "Menambah baki anda..."
   },
   "live": {
     "notSet": "Belum ditetapkan",

@@ -4778,7 +4778,20 @@
     "tokensSent": "{{amount}} 已經發送咗代幣",
     "percentUsed": "{{percent}}% 用過",
     "spentOfTotal": "{{spent}} 嘅 {{total}}",
-    "viewInWallet": "喺銀包入面睇"
+    "viewInWallet": "喺銀包入面睇",
+    "topUp": "加入代幣",
+    "topUpTitle": "加入訂閱憑證",
+    "topUpCustom": "其他金額（美元）",
+    "topUpYouSend": "你發送",
+    "topUpYouGet": "加咗去你嘅餘額",
+    "topUpConfirm": "加 {{amount}}",
+    "topUpRange": "輸入 {{min}} 到 {{max}}",
+    "topUpDone": "{{amount}} 加入咗你嘅訂閱憑證",
+    "topUpPending": "你嘅充值確認緊。佢好快就會出現喺你嘅餘額入面。",
+    "topUpEmptyHint": "充值訂閱創作者",
+    "topUpStageWallet": "喺你個銀包入面確認 ...",
+    "topUpStageConfirming": "等緊個交易 ...",
+    "topUpStageCrediting": "增加你嘅餘額⋯"
   },
   "live": {
     "notSet": "未設定",

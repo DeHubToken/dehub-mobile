@@ -4748,7 +4748,20 @@
     "tokensSent": "{{amount}} tokens ପଠାଯାଇଛି",
     "percentUsed": "{{percent}}% ବ୍ୟବହୃତ ହୋଇଛି",
     "spentOfTotal": "{{total}} ମଧ୍ୟରୁ {{spent}}",
-    "viewInWallet": "ୱାଲେଟରେ ଦୃଶ୍ୟ"
+    "viewInWallet": "ୱାଲେଟରେ ଦୃଶ୍ୟ",
+    "topUp": "ଟୋକନ ଯୋଗ କରନ୍ତୁ",
+    "topUpTitle": "ସବସ୍କ୍ରିପସନ ଟୋକନ ଯୋଗ କରନ୍ତୁ",
+    "topUpCustom": "ଅନ୍ୟାନ୍ୟ ରାଶି (USD)",
+    "topUpYouSend": "ତୁମେ ପଠାଅ",
+    "topUpYouGet": "ଆପଣଙ୍କ ସନ୍ତୁଳନରେ ଯୋଗ କରାଯାଇଛି",
+    "topUpConfirm": "{{amount}} ଯୋଗ କରନ୍ତୁ",
+    "topUpRange": "{{min}}{{max}} କୁ ଭରଣ କରନ୍ତୁ",
+    "topUpDone": "ଆପଣଙ୍କ ସବସ୍କ୍ରିପସନ ଟୋକେନରେ {{amount}} ଯୋଡାଗଲା",
+    "topUpPending": "ଆପଣଙ୍କର ଟପ୍-ଅପ୍ ନିଶ୍ଚିତ କରୁଛି । ଖୁବଶୀଘ୍ର ଏହା ଆପଣଙ୍କ ରାଶିରେ ଦେଖାଯିବ ।",
+    "topUpEmptyHint": "ସୃଷ୍ଟିକର୍ତ୍ତାଙ୍କୁ ସବସ୍କ୍ରାଇବ କରିବା ପାଇଁ ଶୀର୍ଷରେ",
+    "topUpStageWallet": "ଆପଣଙ୍କର ୱାଲେଟରେ ନିଶ୍ଚିତ କରନ୍ତୁ...",
+    "topUpStageConfirming": "କାରବାର ପାଇଁ ଅପେକ୍ଷା କରୁଅଛି...",
+    "topUpStageCrediting": "ଆପଣଙ୍କ ସନ୍ତୁଳନରେ ଯୋଗ କରୁଅଛି..."
   },
   "live": {
     "notSet": "ସେଟ ହୋଇନାହିଁ",

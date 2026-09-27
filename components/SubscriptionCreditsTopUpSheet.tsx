@@ -1,0 +1,214 @@
+import React, { useMemo, useState } from "react";
+import { ActivityIndicator, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { useTranslation } from "react-i18next";
+import { useQueryClient } from "@tanstack/react-query";
+import { ethers } from "ethers";
+import GlassModal from "./ui/GlassModal";
+import { DhbCoin } from "./common/DhbCoin";
+import TipPayWith, { tipStageLabel } from "./Tip/TipPayWith";
+import { fundTip, type TipFundingSource } from "../libs/tip-funding";
+import { FundingError, fundingErrorText } from "../libs/tip-funding-error";
+import { buildContract, useWeb3Provider } from "../hooks/use-web3";
+import { writeContractAA } from "../libs/aa.write";
+import { parseTxError } from "../libs/web3.util";
+import { toastError, toastInfo, toastSuccess } from "../libs/toast";
+import { useAuthActions } from "../context/AuthContext";
+import ERC20_ABI from "../config/abis/erc20.json";
+import {
+  claimSubscriptionCreditTopUp,
+  clearPendingCreditTopUp,
+  getSubscriptionCreditTopUpTarget,
+  rememberPendingCreditTopUp,
+} from "../services/subscription.service";
+
+const BASE_CHAIN_ID = 8453;
+const PRESETS = [5, 10, 25, 50];
+const MIN_USD = 1;
+const MAX_USD = 10_000;
+const CLAIM_ATTEMPTS = 6;
+const CLAIM_RETRY_MS = 3_000;
+
+const usdFormat = (value: number) => value.toLocaleString(undefined, { style: "currency", currency: "USD" });
+
+interface Props {
+  visible: boolean;
+  onClose: () => void;
+  /** Today's DHB price, from the balance the pill already fetched. */
+  dhbPriceUsd: number;
+}
+
+/**
+ * Add subscription tokens: pick a dollar amount, send that much DHB at
+ * today's price to DeHub, and the API credits it at the price when the
+ * transfer landed.
+ */
+const SubscriptionCreditsTopUpSheet: React.FC<Props> = ({ visible, onClose, dhbPriceUsd }) => {
+  const { t } = useTranslation();
+  const queryClient = useQueryClient();
+  const { account, chainId, provider } = useWeb3Provider();
+  const { switchChain } = useAuthActions();
+  const [preset, setPreset] = useState<number | null>(10);
+  const [custom, setCustom] = useState("");
+  const [payWith, setPayWith] = useState<TipFundingSource | null>(null);
+  const [stage, setStage] = useState("");
+
+  const usd = preset ?? Number(custom);
+  const validUsd = Number.isFinite(usd) && usd >= MIN_USD && usd <= MAX_USD;
+  // Whole tokens, rounded up, so the transfer always covers the dollars chosen.
+  const tokens = useMemo(
+    () => (validUsd && dhbPriceUsd > 0 ? Math.ceil(usd / dhbPriceUsd) : 0),
+    [validUsd, usd, dhbPriceUsd],
+  );
+  const busy = !!stage;
+
+  const handleTopUp = async () => {
+    if (!validUsd || !tokens || busy) return;
+    if (!provider || !account) {
+      toastError(null, t("subscriptions.connectWallet"));
+      return;
+    }
+    try {
+      setStage(t("subscriptions.topUpStageWallet"));
+      if (chainId !== BASE_CHAIN_ID) await switchChain(BASE_CHAIN_ID);
+      const target = await getSubscriptionCreditTopUpTarget(BASE_CHAIN_ID);
+
+      if (payWith) {
+        await fundTip({
+          source: payWith,
+          amountDhb: tokens,
+          walletAddress: account,
+          onStage: (s) => setStage(tipStageLabel(t as any, s, payWith)),
+        });
+      }
+
+      setStage(t("subscriptions.topUpStageWallet"));
+      const dhbContract = await buildContract(provider, ERC20_ABI, target.dhbToken, true);
+      const tx = await writeContractAA(
+        dhbContract,
+        "transfer",
+        [target.treasuryAddress, ethers.utils.parseUnits(String(tokens), 18)],
+        { context: "send" },
+      );
+      setStage(t("subscriptions.topUpStageConfirming"));
+      await tx.wait(1);
+      if (!tx?.hash) throw new Error(t("subscriptions.noTxHash"));
+
+      // The DHB has left the wallet. From here on the hash is kept until the
+      // API credits it, even if the app closes.
+      await rememberPendingCreditTopUp({ hash: tx.hash, chainId: BASE_CHAIN_ID });
+      setStage(t("subscriptions.topUpStageCrediting"));
+      let credited = false;
+      for (let attempt = 0; attempt < CLAIM_ATTEMPTS && !credited; attempt++) {
+        if (attempt) await new Promise((r) => setTimeout(r, CLAIM_RETRY_MS));
+        try {
+          const result = await claimSubscriptionCreditTopUp(tx.hash, BASE_CHAIN_ID);
+          credited = !result?.pending;
+        } catch (err: any) {
+          if (err?.status && err.status < 500) {
+            await clearPendingCreditTopUp(tx.hash);
+            throw err;
+          }
+        }
+      }
+
+      queryClient.invalidateQueries({ queryKey: ["subscription-credits"] });
+      if (credited) {
+        await clearPendingCreditTopUp(tx.hash);
+        toastSuccess(t("subscriptions.topUpDone", { amount: usdFormat(usd) }));
+      } else {
+        toastInfo(t("subscriptions.topUpPending"));
+      }
+      onClose();
+    } catch (e: any) {
+      toastError(null, e instanceof FundingError ? fundingErrorText(t as any, e) : parseTxError(e, "send"));
+    } finally {
+      setStage("");
+    }
+  };
+
+  return (
+    <GlassModal visible={visible} onClose={() => !busy && onClose()} presentation="center" blurIntensity={40}>
+      <View className="p-5">
+        <View className="flex-row items-center mb-4">
+          <DhbCoin size={20} />
+          <Text className="text-white text-lg font-semibold ml-2">{t("subscriptions.topUpTitle")}</Text>
+        </View>
+
+        <View className="flex-row mb-3">
+          {PRESETS.map((value) => (
+            <TouchableOpacity
+              key={value}
+              disabled={busy}
+              onPress={() => {
+                setPreset(value);
+                setCustom("");
+              }}
+              activeOpacity={0.7}
+              className={`flex-1 mx-1 py-2 rounded-xl border items-center ${
+                preset === value ? "bg-white border-white" : "bg-white/5 border-white/10"
+              }`}
+            >
+              <Text className={`text-sm font-semibold ${preset === value ? "text-black" : "text-white"}`}>${value}</Text>
+            </TouchableOpacity>
+          ))}
+        </View>
+
+        <TextInput
+          editable={!busy}
+          keyboardType="decimal-pad"
+          placeholder={t("subscriptions.topUpCustom")}
+          placeholderTextColor="#71717a"
+          value={custom}
+          onChangeText={(text) => {
+            setCustom(text.replace(/[^0-9.]/g, ""));
+            setPreset(null);
+          }}
+          className="mx-1 mb-3 px-3 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white"
+        />
+
+        <View className="mx-1 rounded-xl bg-white/5 border border-white/10 p-3">
+          <View className="flex-row justify-between">
+            <Text className="text-zinc-400 text-sm">{t("subscriptions.topUpYouSend")}</Text>
+            <Text className="text-white text-sm font-medium">
+              {tokens ? t("subscriptions.tokenPrice", { amount: tokens.toLocaleString() }) : "—"}
+            </Text>
+          </View>
+          <View className="flex-row justify-between mt-1.5">
+            <Text className="text-zinc-400 text-sm">{t("subscriptions.topUpYouGet")}</Text>
+            <Text className="text-white text-sm font-medium">{validUsd ? usdFormat(usd) : "—"}</Text>
+          </View>
+          <Text className="mt-2 pt-2 border-t border-white/10 text-[11px] leading-4 text-zinc-500">
+            {t("subscriptions.subscriptionTokensValueNote")}
+          </Text>
+        </View>
+
+        {account && tokens ? (
+          <View className="mx-1 mt-3">
+            <TipPayWith visible={visible} amountDhb={tokens} walletAddress={account} value={payWith} onChange={setPayWith} />
+          </View>
+        ) : null}
+
+        {busy ? <Text className="text-zinc-400 text-xs text-center mt-3">{stage}</Text> : null}
+
+        <TouchableOpacity
+          onPress={handleTopUp}
+          disabled={!validUsd || !tokens || busy}
+          activeOpacity={0.8}
+          className={`mx-1 mt-4 py-3 rounded-xl items-center ${!validUsd || !tokens || busy ? "bg-white/30" : "bg-white"}`}
+        >
+          {busy ? (
+            <ActivityIndicator color="#000" />
+          ) : (
+            <Text className="text-black font-semibold">
+              {validUsd
+                ? t("subscriptions.topUpConfirm", { amount: usdFormat(usd) })
+                : t("subscriptions.topUpRange", { min: usdFormat(MIN_USD), max: usdFormat(MAX_USD) })}
+            </Text>
+          )}
+        </TouchableOpacity>
+      </View>
+    </GlassModal>
+  );
+};
+
+export default SubscriptionCreditsTopUpSheet;

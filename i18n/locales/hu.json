@@ -4782,7 +4782,20 @@
     "tokensSent": "{{amount}} token elküldve",
     "percentUsed": "{{percent}}% felhasználva",
     "spentOfTotal": "{{total}}/{{spent}}",
-    "viewInWallet": "Megtekintés pénztárcában"
+    "viewInWallet": "Megtekintés pénztárcában",
+    "topUp": "Token hozzáadása",
+    "topUpTitle": "Előfizetési tokenek hozzáadása",
+    "topUpCustom": "Egyéb összeg (USD)",
+    "topUpYouSend": "Ön küldi",
+    "topUpYouGet": "Hozzáadva az egyenlegedhez",
+    "topUpConfirm": "{{amount}} hozzáadása",
+    "topUpRange": "{{min}} és {{max}}között",
+    "topUpDone": "{{amount}} hozzáadva az előfizetési tokenjeidhez",
+    "topUpPending": "A feltöltés megerősítése folyamatban van. Hamarosan megjelenik az egyenlegeden.",
+    "topUpEmptyHint": "Töltsd fel, hogy feliratkozhass az alkotóknak",
+    "topUpStageWallet": "Megerősítés a pénztárcádban…",
+    "topUpStageConfirming": "Várakozás a tranzakcióra...",
+    "topUpStageCrediting": "Hozzáadás az egyenlegedhez…"
   },
   "live": {
     "notSet": "Nincs beállítva",

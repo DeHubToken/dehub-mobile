@@ -4791,7 +4791,20 @@
     "tokensSent": "{{amount}} токены адпраўленыя",
     "percentUsed": "{{percent}}% выкарыстоўваецца",
     "spentOfTotal": "{{spent}} з {{total}}",
-    "viewInWallet": "Прагляд у кашальку"
+    "viewInWallet": "Прагляд у кашальку",
+    "topUp": "Дадаць маркеры",
+    "topUpTitle": "Дадаць маркеры падпіскі",
+    "topUpCustom": "Іншая сума (USD)",
+    "topUpYouSend": "Вы адпраўляеце",
+    "topUpYouGet": "Дададзена да вашага балансу",
+    "topUpConfirm": "Дадаць {{amount}}",
+    "topUpRange": "Увядзіце {{min}} да {{max}}",
+    "topUpDone": "{{amount}} дададзена да токенаў падпіскі",
+    "topUpPending": "Ваша папаўненне пацвярджаецца. Неўзабаве ён з 'явіцца ў вашым балансе.",
+    "topUpEmptyHint": "Зверху, каб падпісацца на стваральнікаў",
+    "topUpStageWallet": "Пацвердзіць у кашальку...",
+    "topUpStageConfirming": "У чаканні здзелкі...",
+    "topUpStageCrediting": "Даданне да вашага балансу..."
   },
   "live": {
     "notSet": "Не зададзена",

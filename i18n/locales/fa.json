@@ -4808,7 +4808,20 @@
     "tokensSent": "{{amount}} توکن ارسال شد",
     "percentUsed": "{{percent}}% استفاده شده",
     "spentOfTotal": "{{spent}} از {{total}}",
-    "viewInWallet": "مشاهده در کیف پول"
+    "viewInWallet": "مشاهده در کیف پول",
+    "topUp": "اضافه کردن توکن‌ها",
+    "topUpTitle": "اضافه کردن توکن‌های اشتراک",
+    "topUpCustom": "مبلغ دیگر (دلار آمریکا)",
+    "topUpYouSend": "شما ارسال می‌کنید",
+    "topUpYouGet": "به موجودی شما اضافه شد",
+    "topUpConfirm": "اضافه کنید {{amount}}",
+    "topUpRange": "تا {{max}} از {{min}} وارد کنید",
+    "topUpDone": "{{amount}} به توکن‌های اشتراک شما اضافه شد",
+    "topUpPending": "شارژ شما در حال تأیید است. به زودی در موجودی شما نمایش داده خواهد شد.",
+    "topUpEmptyHint": "برای عضویت در سازندگان، شارژ کنید",
+    "topUpStageWallet": "در کیف پول خود تأیید کنید…",
+    "topUpStageConfirming": "منتظر تراکنش هستم…",
+    "topUpStageCrediting": "به موجودی شما اضافه می‌شود…"
   },
   "live": {
     "notSet": "تنظیم نشده",

@@ -4778,7 +4778,20 @@
     "tokensSent": "{{amount}} tokens tonoa",
     "percentUsed": "{{percent}}% used",
     "spentOfTotal": "{{spent}} of {{total}}",
-    "viewInWallet": "Tiro i te pūkete"
+    "viewInWallet": "Tiro i te pūkete",
+    "topUp": "Tāpirihia nga tohu",
+    "topUpTitle": "Tāpirihia nga tohu ohaurunga",
+    "topUpCustom": "Ētahi atu moni (USD)",
+    "topUpYouSend": "Ka tonoa e koe",
+    "topUpYouGet": "Tāpiri ki to koutou toenga",
+    "topUpConfirm": "Tāpiri {{amount}}",
+    "topUpRange": "Tāurua mai i te {{min}} ki te {{max}}",
+    "topUpDone": "{{amount}} taapirihia ki to tohu ohaurunga",
+    "topUpPending": "Kei te whakapūmau tō kōtaha. Ka puta i roto i to koutou toenga tata.",
+    "topUpEmptyHint": "Tikiake ki te ohauru ki nga Kaihanga",
+    "topUpStageWallet": "Whakautu i roto i to koutou putea...",
+    "topUpStageConfirming": "Kei te tatari ahau ki te whakawhitinga...",
+    "topUpStageCrediting": "I tua atu i to koutou toenga..."
   },
   "live": {
     "notSet": "Kāore i tautuhia",
