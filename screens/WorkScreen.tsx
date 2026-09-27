@@ -33,9 +33,11 @@ import {
 } from "../theme/minimal";
 import { appLocale, parseDateOnly } from "../libs/date.util";
 import { ScreenNames } from "../navigation/ScreenNames";
+import { useUser } from "../context/AuthContext";
 import {
   useBrowseJobs,
   useRecentCompletedJobs,
+  isWorkAdmin,
   WORK_TYPE_LABEL,
   type WorkJob,
   type WorkJobType,
@@ -142,6 +144,8 @@ export default function WorkScreen() {
   const { isMinimal } = useAppTheme();
   const insets = useSafeAreaInsets();
   const navigation = useNavigation<any>();
+  const user = useUser() as any;
+  const isArbiter = isWorkAdmin(user?.walletAddress || user?.address);
 
   const [tab, setTab] = useState<WorkJobType | "all">("all");
   const [currency, setCurrency] = useState<WorkCurrency | "all">("all");
@@ -194,15 +198,37 @@ export default function WorkScreen() {
         title={t("work.title")}
         subtitle={t("work.subtitle")}
         rightContent={
-          <Pressable
-            onPress={goPost}
-            hitSlop={10}
-            style={styles.addBtn}
-            accessibilityRole="button"
-            accessibilityLabel={t("work.postBounty")}
-          >
-            <Icon name="Plus" size={20} color="#000000" />
-          </Pressable>
+          <View style={styles.headerActions}>
+            {isArbiter && (
+              <Pressable
+                onPress={() => navigation.navigate(ScreenNames.WorkDisputes)}
+                hitSlop={8}
+                style={styles.iconBtn}
+                accessibilityRole="button"
+                accessibilityLabel={t("work.disputesTitle")}
+              >
+                <Icon name="Scale" size={17} color="#FFFFFF" />
+              </Pressable>
+            )}
+            <Pressable
+              onPress={() => navigation.navigate(ScreenNames.WorkHistory)}
+              hitSlop={8}
+              style={styles.iconBtn}
+              accessibilityRole="button"
+              accessibilityLabel={t("work.myBounties")}
+            >
+              <Icon name="History" size={17} color="#FFFFFF" />
+            </Pressable>
+            <Pressable
+              onPress={goPost}
+              hitSlop={10}
+              style={styles.addBtn}
+              accessibilityRole="button"
+              accessibilityLabel={t("work.postBounty")}
+            >
+              <Icon name="Plus" size={20} color="#000000" />
+            </Pressable>
+          </View>
         }
       />
 
@@ -367,6 +393,17 @@ export default function WorkScreen() {
 
 const styles = StyleSheet.create({
   root: { flex: 1, backgroundColor: "#010305" },
+  headerActions: { flexDirection: "row", alignItems: "center", gap: 8 },
+  iconBtn: {
+    width: 34,
+    height: 34,
+    borderRadius: 12,
+    backgroundColor: "rgba(255,255,255,0.10)",
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.20)",
+    alignItems: "center",
+    justifyContent: "center",
+  },
   addBtn: {
     width: 34,
     height: 34,
