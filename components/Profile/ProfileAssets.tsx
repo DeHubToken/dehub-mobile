@@ -29,6 +29,7 @@ import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
 import {
   getSubscriptionEarnings,
   getSubscriptionCredits,
+  outstandingEarnings,
   withdrawSubscriptionEarnings,
   type SubscriptionCreditBalance,
   type SubscriptionEarnings,
@@ -184,7 +185,7 @@ const ProfileAssets = () => {
     try {
       const result = await withdrawSubscriptionEarnings();
       setSubscriptionEarnings(result.status);
-      toastSuccess(t("assets.usdtSent", { amount: result.amountUsdt.toLocaleString() }));
+      toastSuccess(t("subscriptions.tokensSent", { amount: (result.amountTokens ?? result.amountUsdt).toLocaleString(undefined, { maximumFractionDigits: 2 }) }));
     } catch (error) {
       toastError(error, t("assets.withdrawableSoon"));
     } finally {
@@ -369,7 +370,7 @@ const ProfileAssets = () => {
               <View className="flex-1">
                 <Text className="text-lg text-white">{t("subscriptions.subscriptionTokens")}</Text>
                 <Text className="text-[11px] text-white/50">
-                  {t("subscriptions.lockedValue", {
+                  {t("subscriptions.earningsWorth", {
                     amount: subscriptionCredits.usd.toLocaleString(undefined, { style: "currency", currency: "USD" }),
                   })}
                 </Text>
@@ -392,22 +393,26 @@ const ProfileAssets = () => {
           </View>
         </View>
       )}
-      {subscriptionEarnings && (subscriptionEarnings.pendingUsdt + subscriptionEarnings.processingUsdt) > 0 && (
+      {subscriptionEarnings && outstandingEarnings(subscriptionEarnings).usd > 0 && (
         <View className="mt-2 pt-3 border-t border-white/10">
           <View className="flex-row items-center justify-between">
             <View className="flex-row items-center flex-1">
-              <Image source={usdtIcon} className="w-8 h-8 rounded-full mr-3" />
+              <Image source={dhbIcon} className="w-8 h-8 rounded-full mr-3" />
               <View className="flex-1">
                 <Text className="text-sm text-white font-semibold">{t("assets.subscriptionEarnings")}</Text>
                 <Text className="text-[11px] text-white/50">
+                  {t("subscriptions.earningsWorth", {
+                    amount: outstandingEarnings(subscriptionEarnings).usd.toLocaleString(undefined, { style: "currency", currency: "USD" }),
+                  })}
+                  {" · "}
                   {subscriptionEarnings.withdrawalAvailable
-                    ? t("assets.withdrawableOnBase")
-                    : t("assets.pendingTreasury")}
+                    ? t("subscriptions.earningsPaidInTokens")
+                    : t("subscriptions.earningsPendingReserve")}
                 </Text>
               </View>
             </View>
             <Text className="text-base text-gray-300">
-              {(subscriptionEarnings.pendingUsdt + subscriptionEarnings.processingUsdt).toLocaleString()} USDT
+              {formatCompactNumber(outstandingEarnings(subscriptionEarnings).tokens)}
             </Text>
           </View>
           <TouchableOpacity
