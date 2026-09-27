@@ -18,6 +18,7 @@ import ExportPrivateKeyModal from './ExportPrivateKeyModal';
 import SwitchAccountModal from './SwitchAccountModal';
 import CopyAddressSheet from '../Wallet/CopyAddressSheet';
 import BadgeDelegationSection from './BadgeDelegationSection';
+import SolanaWalletRow from './SolanaWalletRow';
 import { SettingsScrollView } from './SettingsAnchor';
 import { SettingsSection, SettingsLinkRow, SettingsInfoRow, Divider } from './SettingsPrimitives';
 import { useUser, useProvider, useAuthActions } from '../../context/AuthContext';
@@ -133,6 +134,10 @@ const AssetsPanel: React.FC<{ navigation: any }> = ({ navigation }) => {
             <Icon name="Copy" size={18} color="#6b7280" />
           </View>
         </TouchableOpacity>
+        <Divider />
+        {/* Where Solana money arrives, as on web: a Solana tip or unlock goes
+            straight to this address. */}
+        <SolanaWalletRow />
         <Divider />
         <SettingsLinkRow
           icon="Coins"

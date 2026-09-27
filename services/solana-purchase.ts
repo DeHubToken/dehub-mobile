@@ -25,3 +25,8 @@ export async function connectPurchaseSolanaWallet(baseAddress: string): Promise<
   const signature = base58Encode(ed25519.sign(Buffer.from(buildDeHubLoginMessage(baseAddress, timestamp), 'utf8'), keypair.secretKey.slice(0, 32)));
   await apiClient.post('/solana/link', { solanaAddress: keypair.publicKey.toBase58(), signature, timestamp }, { isAuthRequired: true });
 }
+
+/** Drop the linked Solana address. No proof needed: it only ever costs the person doing it. */
+export async function unlinkSolanaWallet(): Promise<void> {
+  await apiClient.post('/solana/unlink', {}, { isAuthRequired: true });
+}
