@@ -100,6 +100,10 @@ export enum ScreenNames {
   // Creator packs (emoji, sticker and GIF) — the hub and one pack's share page.
   Packs = 'Packs',
   Pack = 'Pack',
+  // Builder — describe an app, AI writes and hosts it; the preview is public.
+  Builder = 'Builder',
+  BuilderProject = 'BuilderProject',
+  BuilderPreview = 'BuilderPreview',
   // Auth screens
   Onboarding = 'Onboarding',
   SignIn = 'SignIn',

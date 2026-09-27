@@ -122,6 +122,16 @@
               "scheme": "https",
               "host": "dehub.io",
               "path": "/creators"
+            },
+            {
+              "scheme": "https",
+              "host": "dehub.io",
+              "path": "/builder"
+            },
+            {
+              "scheme": "https",
+              "host": "dehub.io",
+              "pathPrefix": "/builder/"
             }
           ],
           "category": [

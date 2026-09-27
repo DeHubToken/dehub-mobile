@@ -216,6 +216,20 @@ function AppNavigatorContent() {
           name={ScreenNames.Pack}
           getComponent={() => require("../screens/PackScreen").default}
         />
+        {/* Builder: the home screen prompts sign-in itself; a shared app
+            preview is public, like web's /builder/preview/:id. */}
+        <Stack.Screen
+          name={ScreenNames.Builder}
+          getComponent={() => require("../screens/BuilderScreen").default}
+        />
+        <Stack.Screen
+          name={ScreenNames.BuilderProject}
+          getComponent={() => require("../screens/BuilderProjectScreen").default}
+        />
+        <Stack.Screen
+          name={ScreenNames.BuilderPreview}
+          getComponent={() => require("../screens/BuilderPreviewScreen").default}
+        />
         <Stack.Screen
           name={ScreenNames.StoreDetail}
           getComponent={() => require("../screens/StoreDetailScreen").default}
