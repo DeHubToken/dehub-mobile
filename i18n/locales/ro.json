@@ -5183,7 +5183,10 @@
     "tippedYouAmount": "Ți-am trimis {{amount}}",
     "paymentFailedAmount": "Eșuat · {{amount}}",
     "paymentSendingAmount": "Trimitere · {{amount}}",
-    "paymentSentWith": "Trimis cu {{amount}}"
+    "paymentSentWith": "Trimis cu {{amount}}",
+    "planRestricted": "Acest utilizator necesită un abonament pentru a primi mesaje.",
+    "planTypeNotAllowed": "Planul acestui creator nu permite acest tip de mesaj.",
+    "planMinTip": "Bacșișul pentru acest creator trebuie să fie de cel puțin {{amount}} DHB."
   },
   "editPost": {
     "mediaPermission": "Este necesară permisiunea pentru biblioteca media",

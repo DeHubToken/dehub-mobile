@@ -5183,7 +5183,10 @@
     "tippedYouAmount": "Dałem Ci w prezencie {{amount}}",
     "paymentFailedAmount": "Nie udało się · {{amount}}",
     "paymentSendingAmount": "Wysyłanie · {{amount}}",
-    "paymentSentWith": "Wysłano z {{amount}}"
+    "paymentSentWith": "Wysłano z {{amount}}",
+    "planRestricted": "Ten użytkownik wymaga subskrypcji, aby otrzymywać wiadomości.",
+    "planTypeNotAllowed": "Plan tego twórcy nie pozwala na ten rodzaj wiadomości.",
+    "planMinTip": "Napiwek dla tego twórcy musi wynosić co najmniej {{amount}} DHB."
   },
   "editPost": {
     "mediaPermission": "Wymagane jest uprawnienie do biblioteki multimediów",

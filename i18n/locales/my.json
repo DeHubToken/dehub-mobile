@@ -5195,7 +5195,10 @@
     "tippedYouAmount": "{{amount}} လက်ဆောင်ပေးခဲ့သည်",
     "paymentFailedAmount": "ပျက်ကွက် · {{amount}}",
     "paymentSendingAmount": "ပို့နေသည် · {{amount}}",
-    "paymentSentWith": "{{amount}} ဖြင့် ပို့သည်"
+    "paymentSentWith": "{{amount}} ဖြင့် ပို့သည်",
+    "planRestricted": "ဤအသုံးပြုသူသည် မက်ဆေ့ချ်လက်ခံရန် စာရင်းသွင်းမှု လိုအပ်သည်။",
+    "planTypeNotAllowed": "ဤဖန်တီးသူ၏ အစီအစဉ်သည် ဤမက်ဆေ့ချ်အမျိုးအစားကို ခွင့်မပြုပါ။",
+    "planMinTip": "ဤဖန်တီးသူအတွက် tip သည် အနည်းဆုံး {{amount}} DHB ဖြစ်ရမည်။"
   },
   "editPost": {
     "mediaPermission": "မီဒီယာ စာကြည့်တိုက် ခွင့်ပြုချက် လိုအပ်သည်",

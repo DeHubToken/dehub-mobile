@@ -5196,7 +5196,10 @@
     "tippedYouAmount": "Gorsa isiniif kenne {{amount}}",
     "paymentFailedAmount": "Kufe · {{amount}}",
     "paymentSendingAmount": "Ergaa · {{amount}}",
-    "paymentSentWith": "{{amount}} waliin ergame."
+    "paymentSentWith": "{{amount}} waliin ergame.",
+    "planRestricted": "Fayyadamaan kun ergaa fudhachuuf maallaqa galmee barbaada.",
+    "planTypeNotAllowed": "Karoorri uumaa kanaa gosa ergaa kanaa hin hayyamu.",
+    "planMinTip": "Tip uumaa kanaaf yoo xiqqaate {{amount}} DHB ta'uu qaba."
   },
   "editPost": {
     "mediaPermission": "Hayyamni mana kitaabaa miidiyaa barbaachisa",

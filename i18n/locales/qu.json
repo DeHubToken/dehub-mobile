@@ -5214,7 +5214,10 @@
     "tippedYouAmount": "{{amount}}-ta quyki",
     "paymentFailedAmount": "P'akisqa · {{amount}}",
     "paymentSendingAmount": "Kachkan · {{amount}}",
-    "paymentSentWith": "{{amount}}-wan kachasqa"
+    "paymentSentWith": "{{amount}}-wan kachasqa",
+    "planRestricted": "Kay runaqa suscripciónta mañan willakuykunata chaskinanpaq.",
+    "planTypeNotAllowed": "Kay ruraqpa planninqa manam kay hina willakuyta saqinchu.",
+    "planMinTip": "Kay ruraqpaq propinaqa aswan pisillaqa {{amount}} DHB kanan."
   },
   "editPost": {
     "mediaPermission": "Media ñawinchana wasiman yaykuy saqiy necesitakun",

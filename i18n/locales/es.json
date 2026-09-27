@@ -5232,7 +5232,10 @@
     "tippedYouAmount": "Te di {{amount}}",
     "paymentFailedAmount": "Fallido · {{amount}}",
     "paymentSendingAmount": "Enviando · {{amount}}",
-    "paymentSentWith": "Enviado con {{amount}}"
+    "paymentSentWith": "Enviado con {{amount}}",
+    "planRestricted": "Este usuario requiere una suscripción para recibir mensajes.",
+    "planTypeNotAllowed": "El plan de este creador no permite este tipo de mensaje.",
+    "planMinTip": "La propina debe ser de al menos {{amount}} DHB para este creador."
   },
   "editPost": {
     "mediaPermission": "Se necesita permiso para la biblioteca multimedia",

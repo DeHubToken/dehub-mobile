@@ -5153,7 +5153,10 @@
     "tippedYouAmount": "ଆପଣଙ୍କୁ {{amount}} ଟିପ୍ ଦିଆଯାଇଛି",
     "paymentFailedAmount": "ବଫଳ · {{amount}}",
     "paymentSendingAmount": "ପଠାଉଛି · {{amount}}",
-    "paymentSentWith": "{{amount}} ସହିତ ପଠାଯାଇଛି"
+    "paymentSentWith": "{{amount}} ସହିତ ପଠାଯାଇଛି",
+    "planRestricted": "ଏହି ବ୍ୟବହାରକାରୀଙ୍କୁ ସନ୍ଦେଶ ପାଇବା ପାଇଁ ସବସ୍କ୍ରିପସନ ଆବଶ୍ୟକ।",
+    "planTypeNotAllowed": "ଏହି କ୍ରିଏଟରଙ୍କ ପ୍ଲାନ ଏହି ପ୍ରକାର ସନ୍ଦେଶକୁ ଅନୁମତି ଦିଏ ନାହିଁ।",
+    "planMinTip": "ଏହି କ୍ରିଏଟରଙ୍କ ପାଇଁ ଟିପ୍ ଅତିକମରେ {{amount}} DHB ହେବା ଆବଶ୍ୟକ।"
   },
   "editPost": {
     "mediaPermission": "ମିଡିଆ ଲାଇବ୍ରେରୀ ଅନୁମତି ଆବଶ୍ୟକ",

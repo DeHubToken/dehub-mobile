@@ -5232,7 +5232,10 @@
     "tippedYouAmount": "Habe dir {{amount}} getippt",
     "paymentFailedAmount": "Fehlgeschlagen · {{amount}}",
     "paymentSendingAmount": "Senden · {{amount}}",
-    "paymentSentWith": "Gesendet mit {{amount}}"
+    "paymentSentWith": "Gesendet mit {{amount}}",
+    "planRestricted": "Dieser Nutzer setzt ein Abo voraus, um Nachrichten zu erhalten.",
+    "planTypeNotAllowed": "Der Plan dieses Creators erlaubt diese Art von Nachricht nicht.",
+    "planMinTip": "Das Trinkgeld für diesen Creator muss mindestens {{amount}} DHB betragen."
   },
   "editPost": {
     "mediaPermission": "Berechtigung für die Mediathek erforderlich",

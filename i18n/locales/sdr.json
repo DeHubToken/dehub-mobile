@@ -5167,7 +5167,10 @@
     "paymentFailedAmount": "विफल · {{amount}}",
     "paymentSendingAmount": "भेजा जा रहा है · {{amount}}",
     "paymentSentWith": "{{amount}} के साथ भेजा गया",
-    "insufficientTokenBalance": "کافی ٹوکن نہیں ہیں · {{amount}} رکھے ہوئے ہیں۔"
+    "insufficientTokenBalance": "کافی ٹوکن نہیں ہیں · {{amount}} رکھے ہوئے ہیں۔",
+    "planRestricted": "ई यूजर के मैसेज पाएक ले सब्सक्रिप्शन लागी।",
+    "planTypeNotAllowed": "ई क्रिएटर कर प्लान में अइसन मैसेज कर अनुमति नखे।",
+    "planMinTip": "ई क्रिएटर ले टिप कम से कम {{amount}} DHB होवेक चाही।"
   },
   "editPost": {
     "mediaPermission": "مۆڵەتی کتێبخانەی مێدیا پێویستە",

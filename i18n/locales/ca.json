@@ -5183,7 +5183,10 @@
     "tippedYouAmount": "T'he donat {{amount}}",
     "paymentFailedAmount": "Error · {{amount}}",
     "paymentSendingAmount": "Enviant · {{amount}}",
-    "paymentSentWith": "Enviat amb {{amount}}"
+    "paymentSentWith": "Enviat amb {{amount}}",
+    "planRestricted": "Aquest usuari requereix una subscripció per rebre missatges.",
+    "planTypeNotAllowed": "El pla d'aquest creador no permet aquest tipus de missatge.",
+    "planMinTip": "La propina ha de ser d'almenys {{amount}} DHB per a aquest creador."
   },
   "editPost": {
     "mediaPermission": "Cal permís per a la biblioteca multimèdia",

@@ -5187,7 +5187,10 @@
     "tippedYouAmount": "Ти подари {{amount}}",
     "paymentFailedAmount": "Неуспешно · {{amount}}",
     "paymentSendingAmount": "Изпращане · {{amount}}",
-    "paymentSentWith": "Изпратено с {{amount}}"
+    "paymentSentWith": "Изпратено с {{amount}}",
+    "planRestricted": "Този потребител изисква абонамент, за да получава съобщения.",
+    "planTypeNotAllowed": "Планът на този създател не позволява този вид съобщение.",
+    "planMinTip": "Бакшишът трябва да е поне {{amount}} DHB за този създател."
   },
   "editPost": {
     "mediaPermission": "Нужно е разрешение за медийната библиотека",

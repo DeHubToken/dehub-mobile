@@ -5183,7 +5183,10 @@
     "tippedYouAmount": "I hoatu ki a koe {{amount}}",
     "paymentFailedAmount": "Kore i taea · {{amount}}",
     "paymentSendingAmount": "Tuku · {{amount}}",
-    "paymentSentWith": "Tukua me {{amount}}"
+    "paymentSentWith": "Tukua me {{amount}}",
+    "planRestricted": "Me whai ohaurunga kia whiwhi karere tēnei kaiwhakamahi.",
+    "planTypeNotAllowed": "Kāore te mahere a tēnei kaihanga e whakaae ki tēnei momo karere.",
+    "planMinTip": "Me {{amount}} DHB te iti rawa o te koha mō tēnei kaihanga."
   },
   "editPost": {
     "mediaPermission": "Me whai whakaaetanga whare pukapuka pāpāho",

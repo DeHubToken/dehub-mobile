@@ -5183,7 +5183,10 @@
     "tippedYouAmount": "Nosūtīju jums {{amount}}",
     "paymentFailedAmount": "Neizdevās · {{amount}}",
     "paymentSendingAmount": "Sūta · {{amount}}",
-    "paymentSentWith": "Nosūtīts ar {{amount}}"
+    "paymentSentWith": "Nosūtīts ar {{amount}}",
+    "planRestricted": "Šim lietotājam ziņu saņemšanai nepieciešams abonements.",
+    "planTypeNotAllowed": "Šī autora plāns neatļauj šāda veida ziņu.",
+    "planMinTip": "Dzeramnaudai šim autoram jābūt vismaz {{amount}} DHB."
   },
   "editPost": {
     "mediaPermission": "Nepieciešama medijbibliotēkas atļauja",

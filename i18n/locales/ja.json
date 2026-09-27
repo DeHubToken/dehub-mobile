@@ -5234,7 +5234,10 @@
     "tippedYouAmount": "{{amount}} チップしました",
     "paymentFailedAmount": "失敗 · {{amount}}",
     "paymentSendingAmount": "送信中 · {{amount}}",
-    "paymentSentWith": "{{amount}} で送信済み"
+    "paymentSentWith": "{{amount}} で送信済み",
+    "planRestricted": "このユーザーにメッセージを送るにはサブスクリプションが必要です。",
+    "planTypeNotAllowed": "このクリエイターのプランでは、この種類のメッセージは送れません。",
+    "planMinTip": "このクリエイターへのチップは {{amount}} DHB 以上にしてください。"
   },
   "editPost": {
     "mediaPermission": "メディアライブラリへのアクセス許可が必要です",

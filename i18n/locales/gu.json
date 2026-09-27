@@ -5183,7 +5183,10 @@
     "tippedYouAmount": "તમને {{amount}} ટિપ કર્યા",
     "paymentFailedAmount": "નિષ્ફળ · {{amount}}",
     "paymentSendingAmount": "મોકલી રહ્યું છે · {{amount}}",
-    "paymentSentWith": "{{amount}} સાથે મોકલાયું"
+    "paymentSentWith": "{{amount}} સાથે મોકલાયું",
+    "planRestricted": "આ વપરાશકર્તાને સંદેશા મેળવવા માટે સબ્સ્ક્રિપ્શન જરૂરી છે.",
+    "planTypeNotAllowed": "આ ક્રિએટરનો પ્લાન આ પ્રકારના સંદેશાની મંજૂરી આપતો નથી.",
+    "planMinTip": "આ ક્રિએટર માટે ટિપ ઓછામાં ઓછી {{amount}} DHB હોવી જોઈએ."
   },
   "editPost": {
     "mediaPermission": "મીડિયા લાઇબ્રેરીની પરવાનગી જરૂરી છે",

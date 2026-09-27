@@ -5291,7 +5291,10 @@
     "tippedYouAmount": "Dal som ti {{amount}}",
     "paymentFailedAmount": "Zlyhalo · {{amount}}",
     "paymentSendingAmount": "Odosielanie · {{amount}}",
-    "paymentSentWith": "Odoslané s {{amount}}"
+    "paymentSentWith": "Odoslané s {{amount}}",
+    "planRestricted": "Tento používateľ vyžaduje predplatné na prijímanie správ.",
+    "planTypeNotAllowed": "Plán tohto tvorcu nepovoľuje tento typ správy.",
+    "planMinTip": "Prepitné pre tohto tvorcu musí byť aspoň {{amount}} DHB."
   },
   "editPost": {
     "mediaPermission": "Vyžaduje sa povolenie k mediálnej knižnici",

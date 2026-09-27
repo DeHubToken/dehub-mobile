@@ -5183,7 +5183,10 @@
     "tippedYouAmount": "توهان کي {{amount}} ٽپ ڏني",
     "paymentFailedAmount": "ناڪام · {{amount}}",
     "paymentSendingAmount": "موڪلي رهيو آهي · {{amount}}",
-    "paymentSentWith": "{{amount}} سان موڪليو ويو"
+    "paymentSentWith": "{{amount}} سان موڪليو ويو",
+    "planRestricted": "هن استعمال ڪندڙ کي پيغام وصول ڪرڻ لاءِ سبسڪرپشن گهرجي.",
+    "planTypeNotAllowed": "هن تخليقڪار جو پلان هن قسم جي پيغام جي اجازت نٿو ڏئي.",
+    "planMinTip": "هن تخليقڪار لاءِ ٽپ گهٽ ۾ گهٽ {{amount}} DHB هجڻ گهرجي."
   },
   "editPost": {
     "mediaPermission": "ميڊيا لائبريري جي اجازت گھربل آهي",

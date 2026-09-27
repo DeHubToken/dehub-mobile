@@ -5183,7 +5183,10 @@
     "tippedYouAmount": "Сизге {{amount}} tipped",
     "paymentFailedAmount": "Ишке ашкан жок · {{amount}}",
     "paymentSendingAmount": "Жөнөтүүдө · {{amount}}",
-    "paymentSentWith": "{{amount}} менен жөнөтүлдү"
+    "paymentSentWith": "{{amount}} менен жөнөтүлдү",
+    "planRestricted": "Бул колдонуучу билдирүү алуу үчүн жазылууну талап кылат.",
+    "planTypeNotAllowed": "Бул автордун планы мындай билдирүүгө уруксат бербейт.",
+    "planMinTip": "Бул автор үчүн чайпул кеминде {{amount}} DHB болушу керек."
   },
   "editPost": {
     "mediaPermission": "Медиа китепканага уруксат керек",

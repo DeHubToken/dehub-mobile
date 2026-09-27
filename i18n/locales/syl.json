@@ -5325,7 +5325,10 @@
     "tippedYouAmount": "আপোনাক {{amount}} টিপ কৰা হৈছে",
     "paymentFailedAmount": "ব্যৰ্থ · {{amount}}",
     "paymentSendingAmount": "পঠোৱা হৈছে · {{amount}}",
-    "paymentSentWith": "{{amount}} সৈতে পঠোৱা হৈছে"
+    "paymentSentWith": "{{amount}} সৈতে পঠোৱা হৈছে",
+    "planRestricted": "এই ইউজারোর মেসেজ পাওয়ার লাগি সাবস্ক্রিপশন লাগে।",
+    "planTypeNotAllowed": "এই ক্রিয়েটরর প্ল্যানে এই রকম মেসেজ চলে না।",
+    "planMinTip": "এই ক্রিয়েটরর লাগি টিপ কমপক্ষে {{amount}} DHB অওয়া লাগবো।"
   },
   "editPost": {
     "mediaPermission": "মিডিয়া লাইব্রেরির অনুমতি লাগব",

@@ -5183,7 +5183,10 @@
     "tippedYouAmount": "Annoin sinulle {{amount}}",
     "paymentFailedAmount": "Epäonnistui · {{amount}}",
     "paymentSendingAmount": "Lähetetään · {{amount}}",
-    "paymentSentWith": "Lähetetty {{amount}}"
+    "paymentSentWith": "Lähetetty {{amount}}",
+    "planRestricted": "Tämä käyttäjä vaatii tilauksen viestien vastaanottamiseen.",
+    "planTypeNotAllowed": "Tämän tekijän paketti ei salli tämäntyyppistä viestiä.",
+    "planMinTip": "Tipin tälle tekijälle on oltava vähintään {{amount}} DHB."
   },
   "editPost": {
     "mediaPermission": "Mediakirjaston käyttöoikeus vaaditaan",

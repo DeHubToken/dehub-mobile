@@ -5196,7 +5196,10 @@
     "tippedYouAmount": "Патэлефанаваў вам {{amount}}",
     "paymentFailedAmount": "Не атрымалася · {{amount}}",
     "paymentSendingAmount": "Адпраўка · {{amount}}",
-    "paymentSentWith": "Адпраўлена з {{amount}}"
+    "paymentSentWith": "Адпраўлена з {{amount}}",
+    "planRestricted": "Гэты карыстальнік патрабуе падпіску, каб атрымліваць паведамленні.",
+    "planTypeNotAllowed": "План гэтага аўтара не дазваляе такі тып паведамлення.",
+    "planMinTip": "Чаявыя для гэтага аўтара павінны быць не менш за {{amount}} DHB."
   },
   "editPost": {
     "mediaPermission": "Патрэбны дазвол на медыябібліятэку",

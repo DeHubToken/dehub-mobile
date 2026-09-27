@@ -5232,7 +5232,10 @@
     "tippedYouAmount": "Tipped you {{amount}}",
     "paymentFailedAmount": "Failed · {{amount}}",
     "paymentSendingAmount": "Sending · {{amount}}",
-    "paymentSentWith": "Sent with {{amount}}"
+    "paymentSentWith": "Sent with {{amount}}",
+    "planRestricted": "This user requires a subscription to receive messages.",
+    "planTypeNotAllowed": "This creator's plan doesn't allow this kind of message.",
+    "planMinTip": "Tip must be at least {{amount}} DHB for this creator."
   },
   "editPost": {
     "mediaPermission": "Media library permission is required",

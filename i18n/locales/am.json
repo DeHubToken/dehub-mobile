@@ -5213,7 +5213,10 @@
     "tippedYouAmount": "{{amount}} ላክልዎት",
     "paymentFailedAmount": "አልተሳካም · {{amount}}",
     "paymentSendingAmount": "በመላክ ላይ · {{amount}}",
-    "paymentSentWith": "በ {{amount}} ተልኳል"
+    "paymentSentWith": "በ {{amount}} ተልኳል",
+    "planRestricted": "ይህ ተጠቃሚ መልዕክቶችን ለመቀበል ምዝገባ ይፈልጋል።",
+    "planTypeNotAllowed": "የዚህ ፈጣሪ እቅድ ይህን አይነት መልዕክት አይፈቅድም።",
+    "planMinTip": "ለዚህ ፈጣሪ ቲፕ ቢያንስ {{amount}} DHB መሆን አለበት።"
   },
   "editPost": {
     "mediaPermission": "የሚዲያ ቤተ-መጻሕፍት ፈቃድ ያስፈልጋል",
