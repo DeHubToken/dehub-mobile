@@ -25,10 +25,13 @@ import ScreenHeader, { SCREEN_HEADER_HEIGHT } from "../components/ScreenHeader";
 import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
 import { supabase } from "../services/supabase";
 import { toastError, toastSuccess } from "../libs";
-import { openInApp } from "../libs/links.utils";
-import { WEBSITE_LINK, SUPPORT_MAIL } from "../config/links";
+import { SUPPORT_MAIL } from "../config/links";
 import { Linking } from "react-native";
 import { useTranslation } from "react-i18next";
+import { useNavigation } from "@react-navigation/native";
+import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { ScreenNames } from "../navigation/ScreenNames";
+import type { AppStackParamList } from "../navigation/types";
 
 if (Platform.OS === "android" && UIManager.setLayoutAnimationEnabledExperimental) {
   UIManager.setLayoutAnimationEnabledExperimental(true);
@@ -117,6 +120,7 @@ const Field = ({
 export default function CareersScreen() {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
+  const navigation = useNavigation<NativeStackNavigationProp<AppStackParamList>>();
   // ScreenHeader sits above the KeyboardAvoidingView, on top of the inset the
   // root SafeAreaView already spent.
   const keyboardOffset = useKeyboardOffset(SCREEN_HEADER_HEIGHT);
@@ -290,10 +294,9 @@ export default function CareersScreen() {
             <Text style={styles.paragraph}>{t("careers.ambassadorComp")}</Text>
           </SectionBlock>
 
-          <Pressable style={styles.applyBtn} onPress={() => openInApp(`${WEBSITE_LINK}/creators`)}>
+          <Pressable style={styles.applyBtn} onPress={() => navigation.navigate(ScreenNames.Creators)}>
             <Icon name="Users" size={16} color="#FFFFFF" />
             <Text style={styles.applyText}>{t("careers.applyAmbassador")}</Text>
-            <Icon name="ExternalLink" size={13} color="rgba(255,255,255,0.5)" />
           </Pressable>
         </View>
 

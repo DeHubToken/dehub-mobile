@@ -105,6 +105,9 @@ const NAV_ITEMS: DrawerItem[] = [
   { icon: "Briefcase", labelKey: "screens.work", screen: ScreenNames.Work, storefrontHidden: true },
   { icon: "Users", labelKey: "nav.affiliate", screen: ScreenNames.Affiliate, requiresAuth: true, storefrontHidden: true },
   { icon: "Briefcase", labelKey: "nav.careers", screen: ScreenNames.Careers },
+  // Search-only on the web sidebar; here it sits beside Careers, which links
+  // to it for the ambassador role.
+  { icon: "Star", labelKey: "nav.creators", screen: ScreenNames.Creators },
   { icon: "Store", labelKey: "screens.stores", screen: ScreenNames.Stores, storefrontHidden: true },
   { icon: "ChartPie", labelKey: "nav.fractions", screen: ScreenNames.Fractions, storefrontHidden: true },
   { icon: "AtSign", labelKey: "screens.usernames", screen: ScreenNames.Usernames, storefrontHidden: true },
