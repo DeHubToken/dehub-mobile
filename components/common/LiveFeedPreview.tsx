@@ -78,12 +78,14 @@ function LivePlayer({ url }: { url: string }) {
     if (!focused) {
       // Another screen is on top. If it is the live viewer it now owns this
       // player and must be left alone; if nothing else holds it, stop it
-      // rather than stream to a screen nobody can see.
+      // rather than stream to a screen nobody can see. The wait covers the
+      // viewer resolving its stream details before it claims the player;
+      // pausing under it would leave it resuming behind the live edge.
       const timer = setTimeout(() => {
         if (sharedLivePlayerHolders(url) <= 1) {
           try { player.pause(); } catch {}
         }
-      }, 600);
+      }, 5000);
       return () => clearTimeout(timer);
     }
     try {
