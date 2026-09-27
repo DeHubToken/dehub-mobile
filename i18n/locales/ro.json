@@ -3492,7 +3492,12 @@
     "original": "Sunet original",
     "dubbed": "Sunet dublat",
     "preparing": "Se pregătește sunetul dublat...",
-    "unavailable": "Sunetul dublat nu este disponibil pentru acest videoclip."
+    "unavailable": "Sunetul dublat nu este disponibil pentru acest videoclip.",
+    "menuLabel": "Dublaj",
+    "menuDesc": "Ascultă acest videoclip în limba ta",
+    "menuOn": "Activat · atinge pentru sunetul original",
+    "noTranscript": "Acest videoclip nu are încă o transcriere.",
+    "noVoice": "Dispozitivul tău nu are o voce pentru această limbă."
   },
   "stages": {
     "cancelConfirm": "Anulezi \"{{title}}\"? Linkul nu mai funcționează.",

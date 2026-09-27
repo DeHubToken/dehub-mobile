@@ -3492,7 +3492,12 @@
     "original": "Swara asli",
     "dubbed": "Audio dubbing",
     "preparing": "Nyiapake swara dubbing…",
-    "unavailable": "Audio dubbing ora kasedhiya kanggo video iki."
+    "unavailable": "Audio dubbing ora kasedhiya kanggo video iki.",
+    "menuLabel": "Sulih swara",
+    "menuDesc": "Rungokna video iki nganggo basamu",
+    "menuOn": "Urip · tutul kanggo swara asli",
+    "noTranscript": "Video iki durung duwe transkrip.",
+    "noVoice": "Piranti sampeyan ora duwe swara kanggo basa iki."
   },
   "stages": {
     "cancelConfirm": "Batalake “{{title}}”? Tautane ora bakal mlaku maneh.",

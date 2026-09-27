@@ -3523,7 +3523,12 @@
     "original": "Original uyarinapaq",
     "dubbed": "Doblado audio nisqa",
     "preparing": "Doblado audiota wakichispa...",
-    "unavailable": "Kay videopaqqa manam kanchu doblado audio."
+    "unavailable": "Kay videopaqqa manam kanchu doblado audio.",
+    "menuLabel": "Rimay tikray",
+    "menuDesc": "Kay videota simiykipi uyariy",
+    "menuOn": "Kachkan · ñawpaq kunkapaq ñit'iy",
+    "noTranscript": "Kay videoqa manaraq qillqasqayuqchu.",
+    "noVoice": "Antaykiqa manam kay simipaq kunkayuqchu."
   },
   "stages": {
     "cancelConfirm": "“{{title}}” chinkachinachu? T'inkiqa manaña llamk'anqachu.",

@@ -3492,7 +3492,12 @@
     "original": "Orijinal səs",
     "dubbed": "Dublyaj edilmiş səs",
     "preparing": "Dublyaj səsi hazırlanır...",
-    "unavailable": "Bu video üçün quraşdırılmış səs mövcud deyil."
+    "unavailable": "Bu video üçün quraşdırılmış səs mövcud deyil.",
+    "menuLabel": "Dublyaj",
+    "menuDesc": "Bu videonu öz dilinizdə dinləyin",
+    "menuOn": "Açıq · orijinal səs üçün toxunun",
+    "noTranscript": "Bu videonun hələ transkripti yoxdur.",
+    "noVoice": "Cihazınızda bu dil üçün səs yoxdur."
   },
   "stages": {
     "cancelConfirm": "“{{title}}” ləğv edilsin? Keçid işləməyi dayandıracaq.",

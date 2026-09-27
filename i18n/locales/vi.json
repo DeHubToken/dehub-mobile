@@ -3505,7 +3505,12 @@
     "original": "Âm thanh gốc",
     "dubbed": "Âm thanh được lồng tiếng",
     "preparing": "Đang chuẩn bị âm thanh lồng tiếng...",
-    "unavailable": "Âm thanh được lồng tiếng không khả dụng cho video này."
+    "unavailable": "Âm thanh được lồng tiếng không khả dụng cho video này.",
+    "menuLabel": "Lồng tiếng",
+    "menuDesc": "Nghe video này bằng ngôn ngữ của bạn",
+    "menuOn": "Bật · chạm để nghe âm thanh gốc",
+    "noTranscript": "Video này chưa có bản chép lời.",
+    "noVoice": "Thiết bị của bạn không có giọng đọc cho ngôn ngữ này."
   },
   "stages": {
     "cancelConfirm": "Hủy \"{{title}}\"? Liên kết sẽ không còn hoạt động.",

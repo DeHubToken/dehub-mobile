@@ -3539,7 +3539,12 @@
     "original": "Orihinal na audio",
     "dubbed": "Audio na may Dubbed",
     "preparing": "Inihahanda ang tinaguriang audio...",
-    "unavailable": "Hindi available ang Dubbed audio para sa video na ito."
+    "unavailable": "Hindi available ang Dubbed audio para sa video na ito.",
+    "menuLabel": "Dub",
+    "menuDesc": "Pakinggan ang video na ito sa iyong wika",
+    "menuOn": "Naka-on · i-tap para sa orihinal na audio",
+    "noTranscript": "Wala pang transcript ang video na ito.",
+    "noVoice": "Walang boses ang iyong device para sa wikang ito."
   },
   "stages": {
     "cancelConfirm": "Kanselahin ang \"{{title}}\"? Hindi na gumagana ang link.",
