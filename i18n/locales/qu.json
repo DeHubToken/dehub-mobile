@@ -7302,5 +7302,83 @@
         }
       }
     }
+  },
+  "creatorPacks": {
+    "title": "Pakikuna",
+    "subtitle": "Ruraqpa ruwasqan emoji, sticker, GIFkuna. Imaymana pakita maskayniykiwan yapakuy, chatpi, yuyaypi, reaccionpi llamk'achiy.",
+    "tabStickers": "Sticker",
+    "tab": {
+      "emoji": "Emoji",
+      "sticker": "Sticker",
+      "gif": "GIF"
+    },
+    "kind": {
+      "emoji": "Emoji paka",
+      "sticker": "Sticker paka",
+      "gif": "GIF paka"
+    },
+    "manage": "Ruray icha yapay pakikunata",
+    "browse": "Maskay pakikunata",
+    "browseCreate": "Maskay icha ruray pakikunata",
+    "emptyStickers": "Mana sticker pakikuna kanchu. Ruray huk k'anchaywan, icha yapay hukpa pakinta.",
+    "emptyGifs": "Mana GIF pakikuna kanchu.",
+    "lockedTitle": "Pakikuna k'anchayniyuqkunapaq",
+    "lockedBody": "DHB hark'ay k'anchayta tariy, kikinpa emoji, sticker, GIF pakikunata ruranaykipaq. Ukhu tierkuna astawan pakikunata, astawan tiqrayta hap'iq.",
+    "getBadge": "K'anchayta tariy",
+    "pack": "Paka",
+    "newPackOption": "+ Mushuq paka",
+    "packNamePlaceholder": "Paka suti",
+    "yourTier": "{{tier}} k'anchay: {{packs}} imaymana pakikuna, astawan {{emoji}} emoji, {{stickers}} sticker icha {{gifs}} GIF imaymana pakipi.",
+    "tierTable": "Imaymana k'anchay tierkuna hap'iq",
+    "tierTableHint": "Pakikuna imaymanamanta. Astawan columnkuna imaynata imaymana pakipi tiqray. Tierniyki urmaykaptin, pakikunaki tiyan ichaqa manam astawan yapakuyta atikuychu mushuq limitkunata.",
+    "col": {
+      "tier": "Tier",
+      "packs": "Pakikuna",
+      "emoji": "Emoji",
+      "stickers": "Sticker",
+      "gifs": "GIFkuna"
+    },
+    "signInToCreate": "Pakikunata ruwanapaq yaykuy",
+    "signInToAdd": "Qallariytawan yaykuy",
+    "yourPacks": "Kikinpak pakikuna",
+    "addedPacks": "Qallariytawan yaykuy",
+    "popular": "Astawan yaykuchisqa",
+    "noneYet": "Mana pakikuna kanchu kunan.",
+    "createPack": "Ruway",
+    "itemCount_one": "{{count}} kaq",
+    "itemCount_other": "{{count}} kaqkuna",
+    "saveCount_one": "{{count}} yapay",
+    "saveCount_other": "{{count}} yapaykuna",
+    "by": "{{owner}} niq",
+    "notFound": "Kay pakaqa manam kanchu icha wañuchisqa.",
+    "addToPicker": "Ñuqman yapay",
+    "removeFromPicker": "Ñuqmanta urquy",
+    "addedToPicker": "Paka ñuqman yapasqa",
+    "removedFromPicker": "Paka ñuqmanta urqusqa",
+    "copyLink": "Tariy",
+    "linkCopied": "Tariyta kopiay",
+    "rename": "Sutichay",
+    "save": "Waqaychay",
+    "deletePack": "Pakata urquy",
+    "deleteConfirm": "{{name}} urquyta? Tukuy imapas chaypi kaq urqusqa kanqa.",
+    "addItems": "Kay pakaman yapay",
+    "shortcodePlaceholder": "Suti emoji-paq (munasqayki)",
+    "stickerEmojiPlaceholder": "Emoji kay sticker-paq (munasqayki)",
+    "linkPlaceholder": "Rikch'ata utaq GIF-ta link-ta churay",
+    "addFromLink": "Link-manta yapay",
+    "uploadFiles": "Rikch'ata apay",
+    "uploadHint": "PNG, GIF, WebP utaq JPEG sapakama 2 MBkama. Huk kutillapim achkata akllayta atinki.",
+    "uploadHintGif": "GIF, PNG, WebP utaq JPEG sapakama 8 MB nisqakama. Huk kutillapim achkata akllayta atinki.",
+    "itemsAdded": "Yapachisqa {{count}} ({{skipped}} saltasqa)",
+    "removeItem": "Qichuy",
+    "packEmpty": "Manaraqmi imapas kay paqupiqa.",
+    "errors": {
+      "noBadge": "Packkunata ruwanaykipaqqa huk insignia de apuesta nisqatam necesitanki.",
+      "packLimit": "Llapan pack ranurakuna insignia nivelniyki kay layapaq saqisqan llamk&#39;achirqanki.",
+      "itemLimit": "Kay paqueteqa hunt’a kashan insignia nivelniykipaq.",
+      "fileType": "PNG, GIF, WebP utaq JPEG siq&#39;ita llamk&#39;achiy",
+      "fileSize": "Willañiqikunaqa {{mb}} MB icha aswan huch&#39;uymi kanan",
+      "generic": "Imapas mana allintam pasarqa. Hukmanta kallpachakuy."
+    }
   }
 }

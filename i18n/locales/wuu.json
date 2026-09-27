@@ -7274,5 +7274,83 @@
         }
       }
     }
+  },
+  "creatorPacks": {
+    "title": "包",
+    "subtitle": "徽章持有者制作的自定义表情符号、贴纸和 GIF。将任何包添加到您的选择器中，并在聊天、评论和反应中使用。",
+    "tabStickers": "贴纸",
+    "tab": {
+      "emoji": "表情符号",
+      "sticker": "贴纸",
+      "gif": "GIF"
+    },
+    "kind": {
+      "emoji": "表情符号包",
+      "sticker": "贴纸包",
+      "gif": "GIF 包"
+    },
+    "manage": "创建或添加包",
+    "browse": "浏览包",
+    "browseCreate": "查找或创建包",
+    "emptyStickers": "还没有贴纸包。使用徽章创建一个，或者添加别人的。",
+    "emptyGifs": "还没有 GIF 包。",
+    "lockedTitle": "包是为徽章持有者准备的",
+    "lockedBody": "质押 DHB 以获得徽章，即可创建您自己的表情符号、贴纸和 GIF 包。更高级别可以获得更多包，并且每个包的空间更大。",
+    "getBadge": "获取徽章",
+    "pack": "包",
+    "newPackOption": "+ 新包",
+    "packNamePlaceholder": "包名",
+    "yourTier": "{{tier}} 徽章：每种 {{packs}} 个包，每个包最多包含 {{emoji}} 个表情符号、{{stickers}} 张贴纸或 {{gifs}} 个 GIF。",
+    "tierTable": "每个徽章级别获得什么",
+    "tierTableHint": "包是按种类计算的。其他列显示一个包能容纳多少物品。如果您的级别下降，您的包会保留，但您无法添加超过新限制的物品。",
+    "col": {
+      "tier": "级别",
+      "packs": "包",
+      "emoji": "表情符号",
+      "stickers": "贴纸",
+      "gifs": "GIF"
+    },
+    "signInToCreate": "创建包的登录",
+    "signInToAdd": "添加的登录",
+    "yourPacks": "您的包",
+    "addedPacks": "您添加的包",
+    "popular": "最常添加",
+    "noneYet": "还没有包。",
+    "createPack": "创建",
+    "itemCount_one": "{{count}} 个项目",
+    "itemCount_other": "{{count}} 个项目",
+    "saveCount_one": "{{count}} 添加",
+    "saveCount_other": "{{count}} 次添加",
+    "by": "由 {{owner}}",
+    "notFound": "此包不存在或已被删除。",
+    "addToPicker": "添加到我的选择器",
+    "removeFromPicker": "从我的选择器中移除",
+    "addedToPicker": "包已添加到您的选择器",
+    "removedFromPicker": "包已从您的选择器中移除",
+    "copyLink": "复制链接",
+    "linkCopied": "链接已复制",
+    "rename": "重命名",
+    "save": "保存",
+    "deletePack": "删除包",
+    "deleteConfirm": "删除 {{name}}？其中的所有内容都将被删除。",
+    "addItems": "添加到此包",
+    "shortcodePlaceholder": "表情符号的名称（可选）",
+    "stickerEmojiPlaceholder": "此贴纸代表的表情符号（可选）",
+    "linkPlaceholder": "粘贴图片或 GIF 链接",
+    "addFromLink": "从链接添加",
+    "uploadFiles": "上传图片",
+    "uploadHint": "PNG, GIF, WebP 或者 JPEG，每张最多 2 MB。可以一次选好几张。",
+    "uploadHintGif": "GIF, PNG, WebP 或者 JPEG，每张最多 8 MB。可以一次选好几张。",
+    "itemsAdded": "加了 {{count}} (跳过了 {{skipped}})",
+    "removeItem": "移除",
+    "packEmpty": "呢个包里头还没东西。",
+    "errors": {
+      "noBadge": "要创包，需要有质押徽章。",
+      "packLimit": "你呢种徽章等级，用完了所有包槽。",
+      "itemLimit": "呢个包对你个徽章等级来讲已经满了。",
+      "fileType": "用 PNG, GIF, WebP 或者 JPEG 格式个图",
+      "fileSize": "文件要小于等于 {{mb}} MB",
+      "generic": "出咗错。试下再嚟过。"
+    }
   }
 }

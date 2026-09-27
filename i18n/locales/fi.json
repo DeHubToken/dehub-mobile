@@ -7274,5 +7274,83 @@
         }
       }
     }
+  },
+  "creatorPacks": {
+    "title": "Paketit",
+    "subtitle": "Rintamerkin haltijoiden luomat mukautetut emojit, tarrat ja GIF-tiedostot. Lisää mikä tahansa paketti valitsimeesi ja käytä sitä chateissa, kommenteissa ja reaktioissa.",
+    "tabStickers": "Tarrat",
+    "tab": {
+      "emoji": "Emoji",
+      "sticker": "Tarrat",
+      "gif": "GIF-tiedostot"
+    },
+    "kind": {
+      "emoji": "Emojipaketti",
+      "sticker": "Tarrpaketti",
+      "gif": "GIF-paketti"
+    },
+    "manage": "Luo tai lisää paketteja",
+    "browse": "Selaa paketteja",
+    "browseCreate": "Etsi tai luo paketteja",
+    "emptyStickers": "Ei vielä tarrpaketteja. Luo sellainen rintamerkillä tai lisää jonkun muun.",
+    "emptyGifs": "Ei vielä GIF-paketteja.",
+    "lockedTitle": "Paketit ovat rintamerkin haltijoille",
+    "lockedBody": "Panosta DHB:tä saadaksesi rintamerkin ja luodaksesi omat emoji-, tarra- ja GIF-pakettisi. Korkeammat tasot saavat enemmän paketteja ja enemmän tilaa kussakin.",
+    "getBadge": "Hanki rintamerkki",
+    "pack": "Paketti",
+    "newPackOption": "+ Uusi paketti",
+    "packNamePlaceholder": "Paketin nimi",
+    "yourTier": "{{tier}} rintamerkki: {{packs}} pakettia kutakin tyyppiä, enintään {{emoji}} emojia, {{stickers}} tarraa tai {{gifs}} GIF-tiedostoa kussakin.",
+    "tierTable": "Mitä kukin rintamerkin taso saa",
+    "tierTableHint": "Paketit ovat tyyppikohtaisia. Muut sarakkeet kertovat, kuinka monta kohdetta mahtuu yhteen pakettiin. Jos tasosi laskee, pakettisi pysyvät, mutta et voi lisätä yli uusien rajojen.",
+    "col": {
+      "tier": "Taso",
+      "packs": "Paketit",
+      "emoji": "Emoji",
+      "stickers": "Tarrat",
+      "gifs": "GIFit"
+    },
+    "signInToCreate": "Kirjaudu sisään luodaksesi paketteja",
+    "signInToAdd": "Kirjaudu sisään lisätäksesi",
+    "yourPacks": "Omat pakettisi",
+    "addedPacks": "Lisäämäsi paketit",
+    "popular": "Eniten lisätyt",
+    "noneYet": "Ei paketteja täällä vielä.",
+    "createPack": "Luo",
+    "itemCount_one": "{{count}} kohde",
+    "itemCount_other": "{{count}} kohdetta",
+    "saveCount_one": "{{count}} lisää",
+    "saveCount_other": "{{count}} lisäämistä",
+    "by": "tekijä {{owner}}",
+    "notFound": "Tätä pakettia ei ole olemassa tai se on poistettu.",
+    "addToPicker": "Lisää valitsimeeni",
+    "removeFromPicker": "Poista valitsimestani",
+    "addedToPicker": "Paketti lisätty valitsimeesi",
+    "removedFromPicker": "Paketti poistettu valitsimestasi",
+    "copyLink": "Kopioi linkki",
+    "linkCopied": "Linkki kopioitu",
+    "rename": "Nimeä uudelleen",
+    "save": "Tallenna",
+    "deletePack": "Poista paketti",
+    "deleteConfirm": "Poistetaanko {{name}}? Kaikki sen sisältö poistetaan.",
+    "addItems": "Lisää tähän pakettiin",
+    "shortcodePlaceholder": "nimi emojille (valinnainen)",
+    "stickerEmojiPlaceholder": "emoji, jota tämä tarra edustaa (valinnainen)",
+    "linkPlaceholder": "Liitä kuvan tai GIFin linkki",
+    "addFromLink": "Lisää linkistä",
+    "uploadFiles": "Lataa kuvia",
+    "uploadHint": "PNG, GIF, WebP tai JPEG, kukin enintään 2 Mt. Voit valita useita kerralla.",
+    "uploadHintGif": "GIF, PNG, WebP tai JPEG, kukin enintään 8 Mt. Voit valita useita kerralla.",
+    "itemsAdded": "Lisätty {{count}} ({{skipped}} ohitettu)",
+    "removeItem": "Poista",
+    "packEmpty": "Ei vielä mitään tässä paketissa.",
+    "errors": {
+      "noBadge": "Tarvitset panostusmerkin luodaksesi paketteja.",
+      "packLimit": "Olet käyttänyt kaikki pakettipaikat, jotka merkkitasosi sallii tällaiseen käyttöön.",
+      "itemLimit": "Tämä pakkaus on täynnä erikoismerkkitasoasi varten.",
+      "fileType": "Käytä PNG-, GIF-, WebP- tai JPEG-kuvaa",
+      "fileSize": "Tiedostojen on oltava {{mb}} Mt tai pienempiä",
+      "generic": "Jokin meni pieleen. Yritä uudelleen."
+    }
   }
 }

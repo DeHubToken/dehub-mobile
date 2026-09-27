@@ -7274,5 +7274,83 @@
         }
       }
     }
+  },
+  "creatorPacks": {
+    "title": "Paket",
+    "subtitle": "Emoji, stiker, dan GIF kustom yang dibuat oleh pemegang lencana. Tambahkan paket apa pun ke pemilih Anda dan gunakan dalam obrolan, komentar, dan reaksi.",
+    "tabStickers": "Stiker",
+    "tab": {
+      "emoji": "Emoji",
+      "sticker": "Stiker",
+      "gif": "GIF"
+    },
+    "kind": {
+      "emoji": "Paket emoji",
+      "sticker": "Paket stiker",
+      "gif": "Paket GIF"
+    },
+    "manage": "Buat atau tambahkan paket",
+    "browse": "Jelajahi paket",
+    "browseCreate": "Temukan atau buat paket",
+    "emptyStickers": "Belum ada paket stiker. Buat satu dengan lencana, atau tambahkan milik orang lain.",
+    "emptyGifs": "Belum ada paket GIF.",
+    "lockedTitle": "Paket khusus untuk pemegang lencana",
+    "lockedBody": "Pertaruhkan DHB untuk mendapatkan lencana agar dapat membuat paket emoji, stiker, dan GIF Anda sendiri. Tingkat yang lebih tinggi mendapatkan lebih banyak paket dan lebih banyak ruang di setiap paket.",
+    "getBadge": "Dapatkan lencana",
+    "pack": "Paket",
+    "newPackOption": "+ Paket baru",
+    "packNamePlaceholder": "Nama paket",
+    "yourTier": "Lencana {{tier}}: {{packs}} paket dari setiap jenis, hingga {{emoji}} emoji, {{stickers}} stiker, atau {{gifs}} GIF di setiap paket.",
+    "tierTable": "Apa yang didapatkan setiap tingkatan lencana",
+    "tierTableHint": "Paket adalah per jenis. Kolom lainnya menunjukkan berapa banyak item yang muat dalam satu paket. Jika tingkatan Anda turun, paket Anda tetap ada tetapi Anda tidak dapat menambahkan melebihi batas baru.",
+    "col": {
+      "tier": "Tingkat",
+      "packs": "Paket",
+      "emoji": "Emoji",
+      "stickers": "Stiker",
+      "gifs": "GIF"
+    },
+    "signInToCreate": "Masuk untuk membuat paket",
+    "signInToAdd": "Masuk untuk menambahkan",
+    "yourPacks": "Paket Anda",
+    "addedPacks": "Paket yang Anda tambahkan",
+    "popular": "Paling banyak ditambahkan",
+    "noneYet": "Belum ada paket di sini.",
+    "createPack": "Buat",
+    "itemCount_one": "{{count}} item",
+    "itemCount_other": "{{count}} item",
+    "saveCount_one": "{{count}} tambah",
+    "saveCount_other": "{{count}} tambah",
+    "by": "oleh {{owner}}",
+    "notFound": "Paket ini tidak ada atau telah dihapus.",
+    "addToPicker": "Tambahkan ke pemilih saya",
+    "removeFromPicker": "Hapus dari pemilih saya",
+    "addedToPicker": "Paket ditambahkan ke pemilih Anda",
+    "removedFromPicker": "Paket dihapus dari pemilih Anda",
+    "copyLink": "Salin tautan",
+    "linkCopied": "Tautan disalin",
+    "rename": "Ubah nama",
+    "save": "Simpan",
+    "deletePack": "Hapus paket",
+    "deleteConfirm": "Hapus {{name}}? Semua yang ada di dalamnya akan dihapus.",
+    "addItems": "Tambahkan ke paket ini",
+    "shortcodePlaceholder": "nama untuk emoji (opsional)",
+    "stickerEmojiPlaceholder": "emoji yang diwakili stiker ini (opsional)",
+    "linkPlaceholder": "Tempel tautan gambar atau GIF",
+    "addFromLink": "Tambahkan dari tautan",
+    "uploadFiles": "Unggah gambar",
+    "uploadHint": "PNG, GIF, WebP atau JPEG masing - masing hingga 2 MB. Anda dapat memilih beberapa sekaligus.",
+    "uploadHintGif": "GIF, PNG, WebP atau JPEG masing - masing hingga 8 MB. Anda dapat memilih beberapa sekaligus.",
+    "itemsAdded": "{{count}}({{skipped}} dilewati) ditambahkan",
+    "removeItem": "Hapus",
+    "packEmpty": "Belum ada dalam paket ini.",
+    "errors": {
+      "noBadge": "Anda memerlukan lencana staking untuk membuat paket.",
+      "packLimit": "Anda telah menggunakan semua slot paket yang diizinkan oleh tingkat lencana Anda untuk jenis ini.",
+      "itemLimit": "Paket ini penuh untuk tingkatan lencana Anda.",
+      "fileType": "Gunakan gambar PNG, GIF, WebP atau JPEG",
+      "fileSize": "File harus {{mb}} MB atau lebih kecil",
+      "generic": "Terjadi kesalahan. Coba lagi."
+    }
   }
 }

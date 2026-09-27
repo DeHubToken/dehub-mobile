@@ -7278,5 +7278,83 @@
         }
       }
     }
+  },
+  "creatorPacks": {
+    "title": "Paket",
+    "subtitle": "Anpassade emojis, stickers och GIF-ar skapade av badge-innehavare. Lägg till vilket paket som helst i din väljare och använd det i chattar, kommentarer och reaktioner.",
+    "tabStickers": "Stickers",
+    "tab": {
+      "emoji": "Emoji",
+      "sticker": "Stickers",
+      "gif": "GIF-ar"
+    },
+    "kind": {
+      "emoji": "Emoji-paket",
+      "sticker": "Sticker-paket",
+      "gif": "GIF-paket"
+    },
+    "manage": "Skapa eller lägg till paket",
+    "browse": "Bläddra bland paket",
+    "browseCreate": "Hitta eller skapa paket",
+    "emptyStickers": "Inga sticker-paket ännu. Skapa ett med en badge, eller lägg till någon annans.",
+    "emptyGifs": "Inga GIF-paket ännu.",
+    "lockedTitle": "Paket är för badge-innehavare",
+    "lockedBody": "Staka DHB för en badge för att skapa dina egna emoji-, sticker- och GIF-paket. Högre nivåer får fler paket och mer utrymme i varje.",
+    "getBadge": "Skaffa en badge",
+    "pack": "Paket",
+    "newPackOption": "+ Nytt paket",
+    "packNamePlaceholder": "Paketnamn",
+    "yourTier": "{{tier}} badge: {{packs}} paket av varje sort, upp till {{emoji}} emojis, {{stickers}} stickers eller {{gifs}} GIF-ar i varje.",
+    "tierTable": "Vad varje badge-nivå får",
+    "tierTableHint": "Paket är per sort. De andra kolumnerna visar hur många objekt som får plats i ett paket. Om din nivå sjunker, behåller du dina paket men kan inte lägga till mer än de nya gränserna.",
+    "col": {
+      "tier": "Nivå",
+      "packs": "Paket",
+      "emoji": "Emoji",
+      "stickers": "Stickers",
+      "gifs": "GIF-ar"
+    },
+    "signInToCreate": "Logga in för att skapa paket",
+    "signInToAdd": "Logga in för att lägga till",
+    "yourPacks": "Dina paket",
+    "addedPacks": "Paket du lagt till",
+    "popular": "Mest tillagda",
+    "noneYet": "Inga paket här än.",
+    "createPack": "Skapa",
+    "itemCount_one": "{{count}} objekt",
+    "itemCount_other": "{{count}} objekt",
+    "saveCount_one": "{{count}} lägg till",
+    "saveCount_other": "{{count}} tillägg",
+    "by": "av {{owner}}",
+    "notFound": "Det här paketet finns inte eller har tagits bort.",
+    "addToPicker": "Lägg till i min väljare",
+    "removeFromPicker": "Ta bort från min väljare",
+    "addedToPicker": "Paket tillagt i din väljare",
+    "removedFromPicker": "Paket borttaget från din väljare",
+    "copyLink": "Kopiera länk",
+    "linkCopied": "Länk kopierad",
+    "rename": "Byt namn",
+    "save": "Spara",
+    "deletePack": "Ta bort paket",
+    "deleteConfirm": "Ta bort {{name}}? Allt i det kommer att tas bort.",
+    "addItems": "Lägg till i det här paketet",
+    "shortcodePlaceholder": "namn för emoji (valfritt)",
+    "stickerEmojiPlaceholder": "emoji som denna klistermärke står för (valfritt)",
+    "linkPlaceholder": "Klistra in en bild- eller GIF-länk",
+    "addFromLink": "Lägg till från länk",
+    "uploadFiles": "Ladda upp bilder",
+    "uploadHint": "PNG, GIF, WebP eller JPEG upp till 2 MB vardera. Du kan välja flera på en gång.",
+    "uploadHintGif": "GIF, PNG, WebP eller JPEG upp till 8 MB vardera. Du kan välja flera på en gång.",
+    "itemsAdded": "Tillagd {{count}} ({{skipped}} hoppades över)",
+    "removeItem": "Ta bort",
+    "packEmpty": "Inget i den här förpackningen än.",
+    "errors": {
+      "noBadge": "Du behöver ett insatsmärke för att skapa förpackningar.",
+      "packLimit": "Du har använt alla förpackningsplatser som din märkesnivå tillåter för denna typ.",
+      "itemLimit": "Denna förpackning är full för din märkesnivå.",
+      "fileType": "Använd en PNG-, GIF-, WebP- eller JPEG-bild",
+      "fileSize": "Filer måste vara {{mb}} MB eller mindre",
+      "generic": "Något gick fel. Försök igen."
+    }
   }
 }

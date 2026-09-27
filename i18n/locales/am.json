@@ -7302,5 +7302,83 @@
         }
       }
     }
+  },
+  "creatorPacks": {
+    "title": "ጥቅሎች",
+    "subtitle": "በባጅ ያዢዎች የተሰሩ ብጁ ስሜት ገላጭ ምስሎች፣ ተለጣፊዎች እና ጂአይኤፎች። ማንኛውንም ጥቅል ወደ መራጭዎ ያክሉ እና በውይይቶች፣ አስተያየቶች እና ምላሾች ውስጥ ይጠቀሙበት።",
+    "tabStickers": "ተለጣፊዎች",
+    "tab": {
+      "emoji": "ስሜት ገላጭ ምስል",
+      "sticker": "ተለጣፊዎች",
+      "gif": "ጂአይኤፎች"
+    },
+    "kind": {
+      "emoji": "የስሜት ገላጭ ምስል ጥቅል",
+      "sticker": "የተለጣፊ ጥቅል",
+      "gif": "የጂአይኤፍ ጥቅል"
+    },
+    "manage": "ጥቅሎችን ይፍጠሩ ወይም ያክሉ",
+    "browse": "ጥቅሎችን ያስሱ",
+    "browseCreate": "ጥቅሎችን ያግኙ ወይም ይፍጠሩ",
+    "emptyStickers": "ምንም ተለጣፊ ጥቅሎች የሉም። በባጅ ይፍጠሩ ወይም የሌላ ሰው ያክሉ።",
+    "emptyGifs": "ምንም ጂአይኤፍ ጥቅሎች የሉም።",
+    "lockedTitle": "ጥቅሎች ለባጅ ያዢዎች ናቸው",
+    "lockedBody": "የራስዎን ስሜት ገላጭ ምስሎች፣ ተለጣፊዎች እና ጂአይኤፍ ጥቅሎችን ለመፍጠር ባጅ ለማግኘት DHB ይስሩ። ከፍተኛ ደረጃዎች ብዙ ጥቅሎችን እና በእያንዳንዱ ውስጥ ብዙ ቦታ ያገኛሉ።",
+    "getBadge": "ባጅ ያግኙ",
+    "pack": "ጥቅል",
+    "newPackOption": "+ አዲስ ጥቅል",
+    "packNamePlaceholder": "የጥቅል ስም",
+    "yourTier": "{{tier}} ባጅ፡ እያንዳንዳቸው {{packs}} ጥቅሎች፣ እስከ {{emoji}} ስሜት ገላጭ ምስሎች፣ {{stickers}} ተለጣፊዎች ወይም {{gifs}} ጂአይኤፎች በእያንዳንዱ ውስጥ።",
+    "tierTable": "እያንዳንዱ የባጅ ደረጃ የሚያገኘው",
+    "tierTableHint": "ጥቅሎች ለእያንዳንዱ አይነት ናቸው። ሌሎች ዓምዶች አንድ ጥቅል ውስጥ የሚገቡት የንጥረ ነገሮች ብዛት ነው። የእርስዎ ደረጃ ከወደቀ፣ ጥቅሎችዎ ይቀራሉ ነገር ግን ከአዲሶቹ ገደቦች በላይ ማከል አይችሉም።",
+    "col": {
+      "tier": "ደረጃ",
+      "packs": "ጥቅሎች",
+      "emoji": "ስሜት ገላጭ ምስል",
+      "stickers": "ተለጣፊዎች",
+      "gifs": "ጂአይኤፎች"
+    },
+    "signInToCreate": "ፓኬጆችን ለመፍጠር ይግቡ",
+    "signInToAdd": "ለመጨመር ይግቡ",
+    "yourPacks": "የእርስዎ ፓኬጆች",
+    "addedPacks": "ያከሉዋቸው ፓኬጆች",
+    "popular": "በጣም የተጨመሩ",
+    "noneYet": "እስካሁን ፓኬጆች የሉም።",
+    "createPack": "ፍጠር",
+    "itemCount_one": "{{count}} ንጥል",
+    "itemCount_other": "{{count}} ንጥሎች",
+    "saveCount_one": "{{count}} ጨምር",
+    "saveCount_other": "{{count}} ጭማሪዎች",
+    "by": "በ {{owner}}",
+    "notFound": "ይህ ፓኬጅ የለም ወይም ተሰርዟል።",
+    "addToPicker": "ወደ መራጭዎ ያክሉ",
+    "removeFromPicker": "ከመራጭዎ ያስወግዱ",
+    "addedToPicker": "ፓኬጁ ወደ መራጭዎ ታክሏል",
+    "removedFromPicker": "ፓኬጁ ከመራጭዎ ተወግዷል",
+    "copyLink": "አገናኝ ቅዳ",
+    "linkCopied": "አገናኝ ተቀድቷል",
+    "rename": "አስመልክት",
+    "save": "አስቀምጥ",
+    "deletePack": "ፓኬጅ ሰርዝ",
+    "deleteConfirm": "{{name}} ይሰረዝ? በውስጡ ያለው ሁሉ ይወገዳል።",
+    "addItems": "ወደዚህ ፓኬጅ ጨምር",
+    "shortcodePlaceholder": "ለኢሞጂው ስም (አማራጭ)",
+    "stickerEmojiPlaceholder": "ይህ ተለጣፊ የሚያመለክተው ኢሞጂ (አማራጭ)",
+    "linkPlaceholder": "የምስል ወይም የGIF አገናኝ ይለጥፉ",
+    "addFromLink": "ከአገናኝ ያክሉ",
+    "uploadFiles": "ምስሎችን ይስቀሉ",
+    "uploadHint": "PNG ፣ GIF ፣ WebP ወይም JPEG እያንዳንዳቸው እስከ 2 ሜባ ድረስ ። በአንድ ጊዜ በርካታ መምረጥ ይችላሉ.",
+    "uploadHintGif": "GIF ፣ PNG ፣ WebP ወይም JPEG እያንዳንዱ እስከ 8 ሜባ ድረስ ። በአንድ ጊዜ በርካታ መምረጥ ይችላሉ.",
+    "itemsAdded": "ታክሏል {{count}} ({{skipped}} skipped)",
+    "removeItem": "አስወግድ",
+    "packEmpty": "በዚህ ጥቅል ውስጥ እስካሁን ምንም ነገር የለም ።",
+    "errors": {
+      "noBadge": "ፓኬጆችን ለመፍጠር አስደንጋጭ ባጅ ያስፈልግዎታል ።",
+      "packLimit": "የእርስዎ ባጅ ደረጃ ይህን ዓይነት ይፈቅዳል ሁሉ ጥቅል ቦታዎች ተጠቅመዋል.",
+      "itemLimit": "ይህ ጥቅል ለባጅ ደረጃዎ ተሞልቷል ።",
+      "fileType": "PNG, GIF, WebP ወይም JPEG ምስል ይጠቀሙ",
+      "fileSize": "ፋይሎች መሆን አለባቸው {{mb}} MB ወይም ያነሰ",
+      "generic": "የሆነ ነገር ተሳስቷል እንደገና ሞክር ።"
+    }
   }
 }

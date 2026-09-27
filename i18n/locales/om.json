@@ -7324,5 +7324,83 @@
         }
       }
     }
+  },
+  "creatorPacks": {
+    "title": "Packs",
+    "subtitle": "Emoji, stickers fi GIFs adda ta'an kan badge holders godhan. Kamiyyuu walitti qabduu keetti dabbiitii fi marii, yaada fi deebii kee keessatti fayyadami.",
+    "tabStickers": "Stickers",
+    "tab": {
+      "emoji": "Emoji",
+      "sticker": "Stickers",
+      "gif": "GIFs"
+    },
+    "kind": {
+      "emoji": "Emoji pack",
+      "sticker": "Sticker pack",
+      "gif": "GIF pack"
+    },
+    "manage": "Packs uumi ykn dabbi",
+    "browse": "Packs daawwadhu",
+    "browseCreate": "Packs argadhu ykn uumi",
+    "emptyStickers": "Sticker packs hin jiran. Badge tokkoon uumi ykn kan nama biroo dabbi.",
+    "emptyGifs": "GIF packs hin jiran.",
+    "lockedTitle": "Packs badge holdersif ta'an",
+    "lockedBody": "DHB stake godhi badge argachuuf, emoji, sticker fi GIF packs kee adda ta'an uumuu dandeessa. Tier ol'aanaan packs hedduu fi bakka ol'aanaa pack keessatti argatta.",
+    "getBadge": "Badge argadhu",
+    "pack": "Pack",
+    "newPackOption": "+ Pack haaraa",
+    "packNamePlaceholder": "Maqaa pack",
+    "yourTier": "Badge {{tier}}: {{packs}} packs hunda irraa, hanga {{emoji}} emoji, {{stickers}} stickers ykn {{gifs}} GIFs pack tokko keessatti.",
+    "tierTable": "Tier kamiyyuu maal argata",
+    "tierTableHint": "Packs hunda irraa ta'an. Kolonnoonni biroon meeqa bakka pack keessatti ta'an agarsiisu. Tier kee yoo bu'e, packs kee ni hafuu garuu daangaa haaraa darbuu hin dandeessu.",
+    "col": {
+      "tier": "Tier",
+      "packs": "Packs",
+      "emoji": "Emoji",
+      "stickers": "Stickers",
+      "gifs": "GIFs"
+    },
+    "signInToCreate": "Seenaa galchi walitti qabamoo uumuu",
+    "signInToAdd": "Seenaa galchi dabaluuf",
+    "yourPacks": "Walitti qabamoonni koo",
+    "addedPacks": "Walitti qabamoonni ati dabaltu",
+    "popular": "Warreen hedduun dabalaman",
+    "noneYet": "Akkana hin jiran.",
+    "createPack": "Uumuu",
+    "itemCount_one": "Macaafa {{count}}",
+    "itemCount_other": "Macaafota {{count}}",
+    "saveCount_one": "{{count}} dabali",
+    "saveCount_other": "{{count}} dabale",
+    "by": "kan {{owner}}",
+    "notFound": "Walitti qabamoonni kun hin jiru ykn balleeffameera.",
+    "addToPicker": "Macaafa koo keessatti dabali",
+    "removeFromPicker": "Macaafa koo irraa kaasi",
+    "addedToPicker": "Macaafni gara macaafa keetti dabalamuu",
+    "removedFromPicker": "Macaafni irraa kaafame",
+    "copyLink": "Link kopii godhi",
+    "linkCopied": "Link kopii godhame",
+    "rename": "Ibsi",
+    "save": "Eegi",
+    "deletePack": "Macaafa balleesi",
+    "deleteConfirm": "Macaafa {{name}} balleessuu? Isaa keessa jiru hundi ni kaafama.",
+    "addItems": "Macaafa kana keessatti dabali",
+    "shortcodePlaceholder": "Macaafa emoji (filannoo)",
+    "stickerEmojiPlaceholder": "Emojiin kun waan emoji ta'e agarsiisa (filannoo)",
+    "linkPlaceholder": "Link sa’a ykn GIF liinkii keessatti liqimsi",
+    "addFromLink": "Liinkii irraa dabali",
+    "uploadFiles": "Sa’oota ol kaa'i",
+    "uploadHint": "PNG, GIF, WebP ykn JPEG tokkoon tokkoon isaanii hanga 2 MB. Yeroo tokkotti hedduu fudhachuu dandeessa.",
+    "uploadHintGif": "GIF, PNG, WebP ykn JPEG tokkoon tokkoon isaanii hanga 8 MB. Yeroo tokkotti hedduu fudhachuu dandeessa.",
+    "itemsAdded": "{{count}} dabalameera ({{skipped}} darbame)",
+    "removeItem": "Irraa kaasuu",
+    "packEmpty": "Hanga ammaatti paakkii kana keessa homaa hin jiru.",
+    "errors": {
+      "noBadge": "Paakkii uumuuf baajii staking si barbaachisa.",
+      "packLimit": "Badge slots hunda badge tier kee gosa kanaaf hayyamu fayyadamteetta.",
+      "itemLimit": "Paakkii kun sadarkaa baajii keessaniif guutuudha.",
+      "fileType": "Fakkii PNG, GIF, WebP ykn JPEG fayyadami",
+      "fileSize": "Faayiloonni {{mb}} MB ykn isaa gadi ta&#39;uu qabu",
+      "generic": "Waan tokkotu dogoggora ta&#39;e. Ammas yaalaa."
+    }
   }
 }

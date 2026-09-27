@@ -7278,5 +7278,83 @@
         }
       }
     }
+  },
+  "creatorPacks": {
+    "title": "Pacotes",
+    "subtitle": "Emojis, stickers e GIFs personalizados criados por detentores de selos. Adicione qualquer pacote ao seu seletor e use-o em chats, comentários e reações.",
+    "tabStickers": "Stickers",
+    "tab": {
+      "emoji": "Emoji",
+      "sticker": "Stickers",
+      "gif": "GIFs"
+    },
+    "kind": {
+      "emoji": "Pacote de emoji",
+      "sticker": "Pacote de sticker",
+      "gif": "Pacote de GIF"
+    },
+    "manage": "Criar ou adicionar pacotes",
+    "browse": "Navegar por pacotes",
+    "browseCreate": "Encontrar ou criar pacotes",
+    "emptyStickers": "Ainda não há pacotes de stickers. Crie um com um selo ou adicione o de outra pessoa.",
+    "emptyGifs": "Ainda não há pacotes de GIFs.",
+    "lockedTitle": "Pacotes são para detentores de selos",
+    "lockedBody": "Faça stake de DHB para obter um selo e criar seus próprios pacotes de emoji, sticker e GIF. Níveis mais altos obtêm mais pacotes e mais espaço em cada um.",
+    "getBadge": "Obter um selo",
+    "pack": "Pacote",
+    "newPackOption": "+ Novo pacote",
+    "packNamePlaceholder": "Nome do pacote",
+    "yourTier": "Selo {{tier}}: {{packs}} pacotes de cada tipo, até {{emoji}} emojis, {{stickers}} stickers ou {{gifs}} GIFs em cada um.",
+    "tierTable": "O que cada nível de selo obtém",
+    "tierTableHint": "Pacotes são por tipo. As outras colunas indicam quantos itens cabem em um pacote. Se seu nível diminuir, seus pacotes permanecem, mas você não poderá adicionar além dos novos limites.",
+    "col": {
+      "tier": "Nível",
+      "packs": "Pacotes",
+      "emoji": "Emoji",
+      "stickers": "Stickers",
+      "gifs": "GIFs"
+    },
+    "signInToCreate": "Entrar para criar pacotes",
+    "signInToAdd": "Entrar para adicionar",
+    "yourPacks": "Seus pacotes",
+    "addedPacks": "Pacotes que você adicionou",
+    "popular": "Mais adicionados",
+    "noneYet": "Ainda não há pacotes aqui.",
+    "createPack": "Criar",
+    "itemCount_one": "{{count}} item",
+    "itemCount_other": "{{count}} itens",
+    "saveCount_one": "{{count}} adicionar",
+    "saveCount_other": "{{count}} adições",
+    "by": "por {{owner}}",
+    "notFound": "Este pacote não existe ou foi excluído.",
+    "addToPicker": "Adicionar ao meu seletor",
+    "removeFromPicker": "Remover do meu seletor",
+    "addedToPicker": "Pacote adicionado ao seu seletor",
+    "removedFromPicker": "Pacote removido do seu seletor",
+    "copyLink": "Copiar link",
+    "linkCopied": "Link copiado",
+    "rename": "Renomear",
+    "save": "Salvar",
+    "deletePack": "Excluir pacote",
+    "deleteConfirm": "Excluir {{name}}? Tudo nele será removido.",
+    "addItems": "Adicionar a este pacote",
+    "shortcodePlaceholder": "nome para o emoji (opcional)",
+    "stickerEmojiPlaceholder": "emoji que este sticker representa (opcional)",
+    "linkPlaceholder": "Cole um link de imagem ou GIF",
+    "addFromLink": "Adicionar por link",
+    "uploadFiles": "Carregar imagens",
+    "uploadHint": "PNG, GIF, WebP ou JPEG de até 2 MB cada. Você pode escolher vários ao mesmo tempo.",
+    "uploadHintGif": "GIF, PNG, WebP ou JPEG de até 8 MB cada. Você pode escolher vários ao mesmo tempo.",
+    "itemsAdded": "Adicionado {{count}} ({{skipped}} ignorado)",
+    "removeItem": "Remover",
+    "packEmpty": "Nada neste pacote ainda.",
+    "errors": {
+      "noBadge": "Você precisa de um selo de staking para criar pacotes.",
+      "packLimit": "Você usou todos os espaços de pacote que o seu nível de crachá permite para esse tipo.",
+      "itemLimit": "Este pacote está cheio para o seu nível de emblema.",
+      "fileType": "Use uma imagem PNG, GIF, WebP ou JPEG",
+      "fileSize": "Os ficheiros devem ter {{mb}} MB ou menos",
+      "generic": "Ocorreu um erro. Tente novamente."
+    }
   }
 }

@@ -7310,5 +7310,83 @@
         }
       }
     }
+  },
+  "creatorPacks": {
+    "title": "पैक",
+    "subtitle": "बैज धारकन बनाय कस्टम इमोजी, स्टिकर अउर GIF. कवनो भी पैक ला अपन पिकर म जोड़व अउर चैट, कमेंट अउर रिएक्शन म वापरव.",
+    "tabStickers": "स्टिकर",
+    "tab": {
+      "emoji": "इमोजी",
+      "sticker": "स्टिकर",
+      "gif": "जीआईएफएस"
+    },
+    "kind": {
+      "emoji": "इमोजी पैक",
+      "sticker": "स्टिकर पैक",
+      "gif": "GIF पैक"
+    },
+    "manage": "बनाय या जोड़व पैक",
+    "browse": "पैक खोजव",
+    "browseCreate": "पैक खोजव या बनाय",
+    "emptyStickers": "कोनो स्टिकर पैक नईं हवंय. बैज से एक बनाय, या कवनो दूसर के जोड़व.",
+    "emptyGifs": "कोनो GIF पैक नईं हवंय.",
+    "lockedTitle": "पैक बैज धारकन बर हवंय",
+    "lockedBody": "बैज बर DHB स्टेक करव अपन खुद के इमोजी, स्टिकर अउर GIF पैक बनाय बर. ऊंच टियर म जादा पैक अउर हर एक म जादा जगह मिलथे.",
+    "getBadge": "बैज लेव",
+    "pack": "पैक",
+    "newPackOption": "+ नवा पैक",
+    "packNamePlaceholder": "पैक के नांव",
+    "yourTier": "{{tier}} बैज: हर किसम के {{packs}} पैक, हर एक म {{emoji}} इमोजी, {{stickers}} स्टिकर या {{gifs}} GIF तक.",
+    "tierTable": "हर बैज टियर का मिलथे",
+    "tierTableHint": "पैक हर किसम बर हवंय. दूसर कॉलम बताथे कि कतका चीज एक पैक म समाथे. अगर अपन टियर घटन जाथे, तो अपन पैक बनी रहिथे, पर नया लिमिट ले जादा नईं जोड़ सकव.",
+    "col": {
+      "tier": "टियर",
+      "packs": "पैक",
+      "emoji": "इमोजी",
+      "stickers": "स्टिकर",
+      "gifs": "जीआईएफएस"
+    },
+    "signInToCreate": "पैक बनाय बर साइन इन करव",
+    "signInToAdd": "जोड़य बर साइन इन करव",
+    "yourPacks": "तोर पैक",
+    "addedPacks": "तोर जोड़ाय पैक",
+    "popular": "सबले जादा जोड़ाय",
+    "noneYet": "एत्का कोनो पैक नइ हे।",
+    "createPack": "बना",
+    "itemCount_one": "{{count}} गोसट",
+    "itemCount_other": "{{count}} गोसट",
+    "saveCount_one": "{{count}} जोड़",
+    "saveCount_other": "{{count}} जोड़",
+    "by": "{{owner}} क",
+    "notFound": "ये पैक नइ हे या हटा देय गे हे।",
+    "addToPicker": "मोर पिकर म जोड़",
+    "removeFromPicker": "मोर पिकर ले हटा",
+    "addedToPicker": "पैक तोर पिकर म जोड़ाय गे हे",
+    "removedFromPicker": "पैक मोर पिकर ले हटा गे हे",
+    "copyLink": "लिंक कॉपी कर",
+    "linkCopied": "लिंक कॉपी होगे",
+    "rename": "नाम बदल",
+    "save": "सुरक्षित कर",
+    "deletePack": "पैक हटा",
+    "deleteConfirm": "{{name}} हटाबे का? ओमा के सब कुछ हटा देय जाही।",
+    "addItems": "ये पैक म जोड़",
+    "shortcodePlaceholder": "इमोजी बर नाँव (वैकल्पिक)",
+    "stickerEmojiPlaceholder": "इमोजी ये स्टिकर बर हे (वैकल्पिक)",
+    "linkPlaceholder": "इमेज या GIF लिंक पेस्ट करव",
+    "addFromLink": "लिंक ले जोड़",
+    "uploadFiles": "इमेज अपलोड करव",
+    "uploadHint": "PNG, GIF, WebP या JPEG हर 2 MB तक । आप एक साथ कईठन ले सकते हैं ।",
+    "uploadHintGif": "GIF, PNG, WebP या JPEG हर 8 MB तक । आप एक साथ कईठन ले सकते हैं ।",
+    "itemsAdded": "जोड़ा {{count}} {{skipped}} skipped)",
+    "removeItem": "मेटाव",
+    "packEmpty": "अभी तक ए पैकेज म कुछु नइ हे ।",
+    "errors": {
+      "noBadge": "आप ल पैकेज बनाने बर एक स्टैकिंग बैज के आवश्यकता हवय ।",
+      "packLimit": "आप अपन बैज लेवल के जम्मो स्लॉट पैक के उपयोग करे हवय जेहर ए प्रकार के अनुमति देत हवय ।",
+      "itemLimit": "ए बक्सा ह तोर बक्सा के स्तर बर भर गे हवय ।",
+      "fileType": "एक PNG, GIF, WebP या JPEG छवि का उपयोग करें",
+      "fileSize": "फाइल मन ल {{mb}} MB या छोटा होना चाही",
+      "generic": "कुछ गलत हो रहा हे. फिर से कोशिश करो."
+    }
   }
 }

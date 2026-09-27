@@ -7274,5 +7274,83 @@
         }
       }
     }
+  },
+  "creatorPacks": {
+    "title": "Toplumlar",
+    "subtitle": "Nishan eýeleri tarapyndan döredilen ýörite emoji, sticker we GIF-ler. Her bir toplumy saýlaýjyňyza goşuň we söhbetlerde, teswirlerde we reaksiýalarda ulanyň.",
+    "tabStickers": "Stickerlar",
+    "tab": {
+      "emoji": "Emoji",
+      "sticker": "Stickerlar",
+      "gif": "GIF-ler"
+    },
+    "kind": {
+      "emoji": "Emoji toplumy",
+      "sticker": "Sticker toplumy",
+      "gif": "GIF toplumy"
+    },
+    "manage": "Toplum dörediň ýa-da goşuň",
+    "browse": "Toplumlara göz aýlaň",
+    "browseCreate": "Toplum tapyň ýa-da dörediň",
+    "emptyStickers": "Häzirlikçe sticker toplumy ýok. Nishan bilen dörediň ýa-da başga biriniňkini goşuň.",
+    "emptyGifs": "Häzirlikçe GIF toplumy ýok.",
+    "lockedTitle": "Toplumlar nishan eýeleri üçin",
+    "lockedBody": "Öz emoji, sticker we GIF toplumlaryňyzy döretmek üçin nishan almak üçin DHB goýuň. Ýokary derejeler köp toplum we her birinde köp ýer alýar.",
+    "getBadge": "Nishan alyň",
+    "pack": "Toplum",
+    "newPackOption": "+ Täze toplum",
+    "packNamePlaceholder": "Toplum ady",
+    "yourTier": "{{tier}} nishan: her görnüşden {{packs}} toplum, her birinde {{emoji}} emoji, {{stickers}} sticker ýa-da {{gifs}} GIF-e çenli.",
+    "tierTable": "Her nishan derejesiniň näme alýandygy",
+    "tierTableHint": "Toplumlar görnüş boýunça. Beýleki sütunlar bir toplumda näçe elementiň ýerleşýändigini görkezýär. Derejäňiz peselse, toplumlaryňyz galýar, ýöne täze çäklerden artyk goşup bilmersiňiz.",
+    "col": {
+      "tier": "Dereje",
+      "packs": "Toplumlar",
+      "emoji": "Emoji",
+      "stickers": "Stickerlar",
+      "gifs": "GIF-ler"
+    },
+    "signInToCreate": "Toplum döretmek üçin agza boluň",
+    "signInToAdd": "Goşmak üçin agza boluň",
+    "yourPacks": "Toplumlarym",
+    "addedPacks": "Goşan toplumlaňyz",
+    "popular": "Iň köp goşulan",
+    "noneYet": "Bu ýerde heniz toplum ýok.",
+    "createPack": "Döretmek",
+    "itemCount_one": "{{count}} sany zat",
+    "itemCount_other": "{{count}} sany zat",
+    "saveCount_one": "{{count}} goşmak",
+    "saveCount_other": "{{count}} goşma",
+    "by": "{{owner}} tarapyndan",
+    "notFound": "Bu toplum ýok ýa-da öçürildi.",
+    "addToPicker": "Meniň saýlawyma goş",
+    "removeFromPicker": "Meniň saýlawymdan aýyr",
+    "addedToPicker": "Toplum saýlawyňyza goşuldy",
+    "removedFromPicker": "Toplum saýlawyňyzdan aýryldy",
+    "copyLink": "Salgyny göçüriň",
+    "linkCopied": "Salgy göçürildi",
+    "rename": "Atlandyrmak",
+    "save": "Ýatda saklamak",
+    "deletePack": "Toplumy öçürmek",
+    "deleteConfirm": "{{name}} öçürmekmi? Onda bar zat aýrylar.",
+    "addItems": "Bu topluma goşmak",
+    "shortcodePlaceholder": "Tawusyň ady (meýletin)",
+    "stickerEmojiPlaceholder": "Bu nyşanjyk nämäni alamatlandyrýar (meýletin)",
+    "linkPlaceholder": "Surat ýa-da GIF salgysyny goýuň",
+    "addFromLink": "Salgydan goşmak",
+    "uploadFiles": "Suratlary ýüklemek",
+    "uploadHint": "PNG, GIF, WebP ýa-da JPEG her biri 2 MB-e çenli. Siz birden birnäçe saýlap bilersiňiz.",
+    "uploadHintGif": "GIF, PNG, WebP ýa-da JPEG her biri 8 MB-e çenli. Siz birden birnäçe saýlap bilersiňiz.",
+    "itemsAdded": "{{count}} ({{skipped}} skipped)",
+    "removeItem": "Ewez Et",
+    "packEmpty": "Häzir bu çuwalda hiç zat ýok.",
+    "errors": {
+      "noBadge": "Paketleri ýaratmak üçin bir çüýçülik çüýçüligi gerek.",
+      "packLimit": "Siz ähli paket slotlary ulanýarsyňyz.",
+      "itemLimit": "Bu çuwal siziň çuwal haýwanlaryňyz üçin doludyr.",
+      "fileType": "PNG, GIF, WebP ýa-da JPEG suratlaryny ulan",
+      "fileSize": "Faýllar {{mb}} MB ýa-da kiçijik bolmaly",
+      "generic": "Bir zat nädogry boldy, ýene synanyň."
+    }
   }
 }

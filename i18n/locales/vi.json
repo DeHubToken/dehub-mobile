@@ -7362,5 +7362,83 @@
         }
       }
     }
+  },
+  "creatorPacks": {
+    "title": "Gói",
+    "subtitle": "Biểu tượng cảm xúc, nhãn dán và GIF tùy chỉnh do những người giữ huy hiệu tạo ra. Thêm bất kỳ gói nào vào bộ chọn của bạn và sử dụng nó trong các cuộc trò chuyện, bình luận và phản ứng.",
+    "tabStickers": "Nhãn dán",
+    "tab": {
+      "emoji": "Biểu tượng cảm xúc",
+      "sticker": "Nhãn dán",
+      "gif": "GIF"
+    },
+    "kind": {
+      "emoji": "Gói biểu tượng cảm xúc",
+      "sticker": "Gói nhãn dán",
+      "gif": "Gói GIF"
+    },
+    "manage": "Tạo hoặc thêm gói",
+    "browse": "Duyệt các gói",
+    "browseCreate": "Tìm hoặc tạo gói",
+    "emptyStickers": "Chưa có gói nhãn dán nào. Tạo một gói với huy hiệu hoặc thêm gói của người khác.",
+    "emptyGifs": "Chưa có gói GIF nào.",
+    "lockedTitle": "Gói dành cho người giữ huy hiệu",
+    "lockedBody": "Đặt cược DHB để nhận huy hiệu nhằm tạo các gói biểu tượng cảm xúc, nhãn dán và GIF của riêng bạn. Các cấp cao hơn nhận được nhiều gói hơn và nhiều dung lượng hơn trong mỗi gói.",
+    "getBadge": "Nhận huy hiệu",
+    "pack": "Gói",
+    "newPackOption": "+ Gói mới",
+    "packNamePlaceholder": "Tên gói",
+    "yourTier": "Huy hiệu {{tier}}: {{packs}} gói mỗi loại, tối đa {{emoji}} biểu tượng cảm xúc, {{stickers}} nhãn dán hoặc {{gifs}} GIF trong mỗi gói.",
+    "tierTable": "Mỗi cấp huy hiệu nhận được gì",
+    "tierTableHint": "Gói là trên mỗi loại. Các cột khác cho biết có bao nhiêu mục vừa trong một gói. Nếu cấp của bạn giảm, các gói của bạn vẫn còn nhưng bạn không thể thêm vượt quá giới hạn mới.",
+    "col": {
+      "tier": "Cấp",
+      "packs": "Gói",
+      "emoji": "Biểu tượng cảm xúc",
+      "stickers": "Nhãn dán",
+      "gifs": "GIF"
+    },
+    "signInToCreate": "Đăng nhập để tạo gói",
+    "signInToAdd": "Đăng nhập để thêm",
+    "yourPacks": "Gói của bạn",
+    "addedPacks": "Gói bạn đã thêm",
+    "popular": "Được thêm nhiều nhất",
+    "noneYet": "Chưa có gói nào ở đây.",
+    "createPack": "Tạo",
+    "itemCount_one": "{{count}} mục",
+    "itemCount_other": "{{count}} mục",
+    "saveCount_one": "{{count}} thêm",
+    "saveCount_other": "{{count}} lượt thêm",
+    "by": "bởi {{owner}}",
+    "notFound": "Gói này không tồn tại hoặc đã bị xóa.",
+    "addToPicker": "Thêm vào bộ chọn của tôi",
+    "removeFromPicker": "Xóa khỏi bộ chọn của tôi",
+    "addedToPicker": "Đã thêm gói vào bộ chọn của bạn",
+    "removedFromPicker": "Đã xóa gói khỏi bộ chọn của bạn",
+    "copyLink": "Sao chép liên kết",
+    "linkCopied": "Đã sao chép liên kết",
+    "rename": "Đổi tên",
+    "save": "Lưu",
+    "deletePack": "Xóa gói",
+    "deleteConfirm": "Xóa {{name}}? Mọi thứ trong đó sẽ bị xóa.",
+    "addItems": "Thêm vào gói này",
+    "shortcodePlaceholder": "tên cho emoji (tùy chọn)",
+    "stickerEmojiPlaceholder": "emoji mà nhãn dán này đại diện (tùy chọn)",
+    "linkPlaceholder": "Dán liên kết ảnh hoặc GIF",
+    "addFromLink": "Thêm từ liên kết",
+    "uploadFiles": "Tải ảnh lên",
+    "uploadHint": "PNG, GIF, WebP hoặc JPEG lên đến 2 MB mỗi tệp. Bạn có thể chọn một số cùng một lúc.",
+    "uploadHintGif": "GIF, PNG, WebP hoặc JPEG lên đến 8 MB mỗi ảnh. Bạn có thể chọn một số cùng một lúc.",
+    "itemsAdded": "Đã thêm {{count}} (bỏ qua {{skipped}})",
+    "removeItem": "Xóa",
+    "packEmpty": "Chưa có gì trong gói này.",
+    "errors": {
+      "noBadge": "Bạn cần có huy hiệu staking để tạo gói.",
+      "packLimit": "Bạn đã sử dụng tất cả các vị trí gói mà cấp huy hiệu của bạn cho phép đối với loại này.",
+      "itemLimit": "Gói này đã đầy cho cấp độ huy hiệu của bạn.",
+      "fileType": "Sử dụng hình ảnh PNG, GIF, WebP hoặc JPEG",
+      "fileSize": "Tệp phải từ {{mb}} MB trở xuống",
+      "generic": "Đã xảy ra lỗi. Hãy thử lại."
+    }
   }
 }

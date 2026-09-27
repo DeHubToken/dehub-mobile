@@ -7274,5 +7274,83 @@
         }
       }
     }
+  },
+  "creatorPacks": {
+    "title": "Paketi",
+    "subtitle": "Privatni emoji, naljepnice i GIF-ovi koje su izradili nositelji znački. Dodajte bilo koji paket u svoj odabir i koristite ga u razgovorima, komentarima i reakcijama.",
+    "tabStickers": "Naljepnice",
+    "tab": {
+      "emoji": "Emoji",
+      "sticker": "Naljepnice",
+      "gif": "GIF-ovi"
+    },
+    "kind": {
+      "emoji": "Paket emoji",
+      "sticker": "Paket naljepnica",
+      "gif": "GIF paket"
+    },
+    "manage": "Stvorite ili dodajte pakete",
+    "browse": "Pregledajte pakete",
+    "browseCreate": "Pronađite ili stvorite pakete",
+    "emptyStickers": "Još nema paketa naljepnica. Stvorite jedan sa značkom ili dodajte tuđu.",
+    "emptyGifs": "Još nema GIF paketa.",
+    "lockedTitle": "Paketi su za nositelje znački",
+    "lockedBody": "Uložite DHB za značku kako biste stvorili vlastite pakete emoji, naljepnica i GIF-ova. Viši razredi dobivaju više paketa i više prostora u svakom.",
+    "getBadge": "Nabavite značku",
+    "pack": "Paket",
+    "newPackOption": "+ Novi paket",
+    "packNamePlaceholder": "Naziv paketa",
+    "yourTier": "{{tier}} značka: {{packs}} paketa svake vrste, do {{emoji}} emoji, {{stickers}} naljepnica ili {{gifs}} GIF-ova u svakom.",
+    "tierTable": "Što svaki razred značke dobiva",
+    "tierTableHint": "Paketi su po vrsti. Ostali stupci pokazuju koliko stavki stane u jedan paket. Ako vaš razred padne, vaši paketi ostaju, ali ne možete dodavati iznad novih ograničenja.",
+    "col": {
+      "tier": "Razred",
+      "packs": "Paketi",
+      "emoji": "Emoji",
+      "stickers": "Naljepnice",
+      "gifs": "GIF-ovi"
+    },
+    "signInToCreate": "Prijavite se za izradu paketa",
+    "signInToAdd": "Prijavite se za dodavanje",
+    "yourPacks": "Moji paketi",
+    "addedPacks": "Paketi koje ste dodali",
+    "popular": "Najviše dodani",
+    "noneYet": "Ovdje još nema paketa.",
+    "createPack": "Stvori",
+    "itemCount_one": "{{count}} stavka",
+    "itemCount_other": "{{count}} stavke",
+    "saveCount_one": "{{count}} dodaj",
+    "saveCount_other": "{{count}} dodavanja",
+    "by": "od {{owner}}",
+    "notFound": "Ovaj paket ne postoji ili je izbrisan.",
+    "addToPicker": "Dodaj u moj odabir",
+    "removeFromPicker": "Ukloni iz mog odabira",
+    "addedToPicker": "Paket dodan u vaš odabir",
+    "removedFromPicker": "Paket uklonjen iz vašeg odabira",
+    "copyLink": "Kopiraj poveznicu",
+    "linkCopied": "Poveznica kopirana",
+    "rename": "Preimenuj",
+    "save": "Spremi",
+    "deletePack": "Izbriši paket",
+    "deleteConfirm": "Izbriši {{name}}? Sve u njemu će biti uklonjeno.",
+    "addItems": "Dodaj u ovaj paket",
+    "shortcodePlaceholder": "ime za emotikon (neobavezno)",
+    "stickerEmojiPlaceholder": "emotikon koji ovaj sticker predstavlja (neobavezno)",
+    "linkPlaceholder": "Zalijepi poveznicu na sliku ili GIF",
+    "addFromLink": "Dodaj s poveznice",
+    "uploadFiles": "Učitaj slike",
+    "uploadHint": "PNG, GIF, WebP ili JPEG do 2 MB svaki. Možete odabrati nekoliko odjednom.",
+    "uploadHintGif": "GIF, PNG, WebP ili JPEG do 8 MB svaki. Možete odabrati nekoliko odjednom.",
+    "itemsAdded": "Dodano {{count}} ({{skipped}} preskočeno)",
+    "removeItem": "Ukloni",
+    "packEmpty": "Još nema ništa u ovom pakiranju.",
+    "errors": {
+      "noBadge": "Za izradu paketa potrebna vam je značka.",
+      "packLimit": "Iskoristio/la si sve utore za pakiranje koje tvoja razina značke dopušta za ovu vrstu.",
+      "itemLimit": "Ovaj paket je pun za tvoju razinu značke.",
+      "fileType": "Upotrijebite PNG, GIF, WebP ili JPEG sliku",
+      "fileSize": "Datoteke moraju biti {{mb}} MB ili manje",
+      "generic": "Došlo je do pogreške. Pokušajte ponovno."
+    }
   }
 }

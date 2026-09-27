@@ -7329,5 +7329,83 @@
         }
       }
     }
+  },
+  "creatorPacks": {
+    "title": "Paketlar",
+    "subtitle": "Belgali egalari tomonidan yaratilgan maxsus emoji, stikerlar va GIFlar. Har qanday paketni tanlovchingizga qo'shing va uni chatlarda, sharhlarda va reaksiyalarda ishlating.",
+    "tabStickers": "Stikerlar",
+    "tab": {
+      "emoji": "Emoji",
+      "sticker": "Stikerlar",
+      "gif": "GIFlar"
+    },
+    "kind": {
+      "emoji": "Emoji paketi",
+      "sticker": "Stiker paketi",
+      "gif": "GIF paketi"
+    },
+    "manage": "Paketlar yarating yoki qo'shing",
+    "browse": "Paketlarni ko'rib chiqing",
+    "browseCreate": "Paketlarni toping yoki yarating",
+    "emptyStickers": "Hozircha stiker paketlari yo'q. Belgidan foydalanib bittasini yarating yoki boshqa birovning paketini qo'shing.",
+    "emptyGifs": "Hozircha GIF paketlari yo'q.",
+    "lockedTitle": "Paketlar belgili egalari uchun",
+    "lockedBody": "O'z emoji, stiker va GIF paketlaringizni yaratish uchun DHBni steykingizga qo'ying va belgi oling. Yuqori pog'onalar ko'proq paketlar va har birida ko'proq joy oladi.",
+    "getBadge": "Belgi oling",
+    "pack": "Paket",
+    "newPackOption": "+ Yangi paket",
+    "packNamePlaceholder": "Paket nomi",
+    "yourTier": "{{tier}} belgisi: har bir turdagi {{packs}} paket, har birida {{emoji}} tagacha emoji, {{stickers}} stiker yoki {{gifs}} GIF.",
+    "tierTable": "Har bir belgi pog'onasi nimani oladi",
+    "tierTableHint": "Paketlar har bir tur uchun. Boshqa ustunlar esa bir paketga nechta element sig'ishini bildiradi. Agar pog'onangiz pasaysa, paketlaringiz qoladi, lekin yangi chegaralardan oshib qo'sha olmaysiz.",
+    "col": {
+      "tier": "Pog'ona",
+      "packs": "Paketlar",
+      "emoji": "Emoji",
+      "stickers": "Stikerlar",
+      "gifs": "GIFlar"
+    },
+    "signInToCreate": "Paketlar yaratish uchun tizimga kiring",
+    "signInToAdd": "Qo'shish uchun tizimga kiring",
+    "yourPacks": "Sizning paketlaringiz",
+    "addedPacks": "Siz qo'shgan paketlar",
+    "popular": "Eng ko'p qo'shilganlar",
+    "noneYet": "Hali paketlar yo'q.",
+    "createPack": "Yaratish",
+    "itemCount_one": "{{count}} ta buyum",
+    "itemCount_other": "{{count}} ta buyumlar",
+    "saveCount_one": "{{count}} ta qo'shish",
+    "saveCount_other": "{{count}} ta qo'shishlar",
+    "by": "{{owner}} tomonidan",
+    "notFound": "Bu paket mavjud emas yoki o'chirilgan.",
+    "addToPicker": "Mening tanlovimga qo'shish",
+    "removeFromPicker": "Mening tanlovimdan olib tashlash",
+    "addedToPicker": "Paket tanlovingizga qo'shildi",
+    "removedFromPicker": "Paket tanlovingizdan olib tashlandi",
+    "copyLink": "Havolani nusxalash",
+    "linkCopied": "Havola nusxalandi",
+    "rename": "Nomini o'zgartirish",
+    "save": "Saqlash",
+    "deletePack": "Paketni o'chirish",
+    "deleteConfirm": "{{name}} ni o'chirish? Undagi hamma narsa olib tashlanadi.",
+    "addItems": "Bu paketga qo'shish",
+    "shortcodePlaceholder": "emoji uchun nom (ixtiyoriy)",
+    "stickerEmojiPlaceholder": "bu stiker qaysi emojiga to'g'ri keladi (ixtiyoriy)",
+    "linkPlaceholder": "Rasm yoki GIF havolasini joylashtiring",
+    "addFromLink": "Havoladan qo'shish",
+    "uploadFiles": "Rasmlarni yuklash",
+    "uploadHint": "PNG, GIF, WebP yoki JPEG formatlarining har biri 2 MB gacha. Bir vaqtning o&#39;zida bir nechtasini tanlashingiz mumkin.",
+    "uploadHintGif": "GIF, PNG, WebP yoki JPEG formatlarining har biri 8 MB gacha. Bir vaqtning o&#39;zida bir nechtasini tanlashingiz mumkin.",
+    "itemsAdded": "{{count}} qo&#39;shildi ({{skipped}} o&#39;tkazib yuborildi)",
+    "removeItem": "Olib tashlash",
+    "packEmpty": "Bu paketda hali hech narsa yo&#39;q.",
+    "errors": {
+      "noBadge": "Paketlarni yaratish uchun sizga staking nishoni kerak.",
+      "packLimit": "Siz nishon darajangiz ushbu turdagi ruxsat bergan barcha to&#39;plam uyalaridan foydalangansiz.",
+      "itemLimit": "Bu to&#39;plam sizning nishon darajangiz uchun to&#39;la.",
+      "fileType": "PNG, GIF, WebP yoki JPEG rasmidan foydalaning",
+      "fileSize": "Fayllar hajmi {{mb}} MB yoki undan kichikroq bo&#39;lishi kerak",
+      "generic": "Nimadir noto&#39;g&#39;ri ketdi. Qaytadan urinib ko&#39;ring."
+    }
   }
 }

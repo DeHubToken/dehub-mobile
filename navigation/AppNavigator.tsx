@@ -201,6 +201,16 @@ function AppNavigatorContent() {
           name={ScreenNames.Accounts}
           getComponent={() => require("../screens/AccountsScreen").default}
         />
+        {/* Creator packs: browsing and a shared pack link are open signed-out;
+            adding to your picker or creating prompts sign-in. */}
+        <Stack.Screen
+          name={ScreenNames.Packs}
+          getComponent={() => require("../screens/PacksScreen").default}
+        />
+        <Stack.Screen
+          name={ScreenNames.Pack}
+          getComponent={() => require("../screens/PackScreen").default}
+        />
         <Stack.Screen
           name={ScreenNames.StoreDetail}
           getComponent={() => require("../screens/StoreDetailScreen").default}

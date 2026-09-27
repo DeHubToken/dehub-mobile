@@ -7373,5 +7373,83 @@
         }
       }
     }
+  },
+  "creatorPacks": {
+    "title": "Packs",
+    "subtitle": "Emoji, stickers ary GIF noforon'ny mpihazona badge. Ampidiro ao amin'ny picker-nao ny pack rehetra ary ampiasao amin'ny resaka, fanehoan-kevitra ary fihetsika.",
+    "tabStickers": "Stickers",
+    "tab": {
+      "emoji": "Emoji",
+      "sticker": "Stickers",
+      "gif": "GIFs"
+    },
+    "kind": {
+      "emoji": "Pack Emoji",
+      "sticker": "Pack Sticker",
+      "gif": "Pack GIF"
+    },
+    "manage": "Mamorona na manampy pack",
+    "browse": "Mijery pack",
+    "browseCreate": "Mitady na mamorona pack",
+    "emptyStickers": "Mbola tsy misy pack sticker. Mamorona iray amin'ny badge, na manampy an'ny olon-kafa.",
+    "emptyGifs": "Mbola tsy misy pack GIF.",
+    "lockedTitle": "Ny pack dia ho an'ny mpihazona badge",
+    "lockedBody": "Mametaho ny DHB mba hahazoana badge hamoronana ny pack emoji, sticker ary GIF anao manokana. Ny ambaratonga ambony kokoa dia mahazo pack maro kokoa ary toerana bebe kokoa ao anatin'ny tsirairay.",
+    "getBadge": "Mahazoa badge",
+    "pack": "Pack",
+    "newPackOption": "+ Pack vaovao",
+    "packNamePlaceholder": "Anaran'ny pack",
+    "yourTier": "Badge {{tier}}: {{packs}} pack amin'ny karazana tsirairay, hatramin'ny emoji {{emoji}}, stickers {{stickers}} na GIFs {{gifs}} ao anatin'ny tsirairay.",
+    "tierTable": "Inona no azon'ny ambaratonga badge tsirairay",
+    "tierTableHint": "Ny Packs dia isaky ny karazana. Ny tsanganana hafa dia ny isan'ny zavatra mety ao anatin'ny pack iray. Raha mihena ny ambaratonganao, mijanona ny pack-nao fa tsy afaka manampy mihoatra ny fetra vaovao ianao.",
+    "col": {
+      "tier": "Ambaratonga",
+      "packs": "Packs",
+      "emoji": "Emoji",
+      "stickers": "Stickers",
+      "gifs": "GIFs"
+    },
+    "signInToCreate": "Midira mba hamoronana fonosana",
+    "signInToAdd": "Midira mba hanampy",
+    "yourPacks": "Ny fonosanao",
+    "addedPacks": "Fonosana nampianao",
+    "popular": "Nampiana indrindra",
+    "noneYet": "Mbola tsy misy fonosana eto.",
+    "createPack": "Mamorona",
+    "itemCount_one": "{{count}} zavatra",
+    "itemCount_other": "{{count}} zavatra",
+    "saveCount_one": "{{count}} manampy",
+    "saveCount_other": "{{count}} fanampiana",
+    "by": "nataon'i {{owner}}",
+    "notFound": "Tsy misy io fonosana io na voafafa.",
+    "addToPicker": "Ampio amin'ny mpanangona ahy",
+    "removeFromPicker": "Esory amin'ny mpanangona ahy",
+    "addedToPicker": "Nampiana tamin'ny mpanangona anao ny fonosana",
+    "removedFromPicker": "Nesorina tamin'ny mpanangona anao ny fonosana",
+    "copyLink": "Kopia ny rohy",
+    "linkCopied": "Nokopina ny rohy",
+    "rename": "Ataovy anarana vaovao",
+    "save": "Tehirizo",
+    "deletePack": "Fafao ny fonosana",
+    "deleteConfirm": "Fafao {{name}}? Hatao foana avokoa izay ao anatiny.",
+    "addItems": "Ampio amin'ity fonosana ity",
+    "shortcodePlaceholder": "anaran'ny emoji (tsy voatery)",
+    "stickerEmojiPlaceholder": "emoji maneho an'ity sticker ity (tsy voatery)",
+    "linkPlaceholder": "Apetaho ny rohy sary na GIF",
+    "addFromLink": "Ampio amin'ny rohy",
+    "uploadFiles": "Apetraho ny sary",
+    "uploadHint": "PNG, GIF, JPEG na JPEG hatramin'ny 2 MB ny tsirairay. Afaka miana-javatra betsaka amin'izy ireo ianao.",
+    "uploadHintGif": "Any an-GIF, PNG, JPEG na JPEG hatramin'ny 8 MB ny tsirairay. Afaka miana-javatra betsaka amin'izy ireo ianao.",
+    "itemsAdded": "Nanampy {{count}} {{skipped}} skipped)",
+    "removeItem": "Esory",
+    "packEmpty": "Ary tsy mbola nisy na inona na inona tao amin'ny efitrano.",
+    "errors": {
+      "noBadge": "Mila fanentanana kely angamba ny mpakafy mba hamoronana ny fonosana vaovao.",
+      "packLimit": "Efa nampiasa ny entana rehetra slots ny badge Tier mamela ho amin'izany karazana.",
+      "itemLimit": "Ity kitapo ity dia feno ho an'ny baoritrao.",
+      "fileType": "Mampiasà sary PNG, GIF, WebP na JPEG",
+      "fileSize": "Tsy maintsy {{mb}} MB na kely kokoa ny rakitra",
+      "generic": "Nisy zavatra tsy nety. Andramo indray."
+    }
   }
 }

@@ -7298,5 +7298,83 @@
         }
       }
     }
+  },
+  "creatorPacks": {
+    "title": "Packs",
+    "subtitle": "बैज वाला मन कर बनाल कस्टम इमोजी, स्टिकर आउर GIF। कोनो भी पैक आपन पिकर में जोड़ा आउर चैट, कमेंट आउर रिएक्शन में लगावा।",
+    "tabStickers": "Stickers",
+    "tab": {
+      "emoji": "Emoji",
+      "sticker": "Stickers",
+      "gif": "GIFs"
+    },
+    "kind": {
+      "emoji": "Emoji pack",
+      "sticker": "Sticker pack",
+      "gif": "GIF pack"
+    },
+    "manage": "पैक बनावा या जोड़ा",
+    "browse": "Browse packs",
+    "browseCreate": "पैक खोजा या बनावा",
+    "emptyStickers": "अभी कोनो स्टिकर पैक नखे। बैज लेइके एगो बनावा, या दोसर कर जोड़ा।",
+    "emptyGifs": "अभी कोनो GIF पैक नखे।",
+    "lockedTitle": "पैक बैज वाला मन कर लागिन हय",
+    "lockedBody": "आपन इमोजी, स्टिकर आउर GIF पैक बनाय ले DHB स्टेक करके बैज लेवा। ऊँच टियर में बेसी पैक आउर हर एक में बेसी जगह मिलेला।",
+    "getBadge": "Get a badge",
+    "pack": "Pack",
+    "newPackOption": "+ New pack",
+    "packNamePlaceholder": "Pack name",
+    "yourTier": "{{tier}} बैज: हर किसिम कर {{packs}} पैक, हर एक में {{emoji}} इमोजी, {{stickers}} स्टिकर या {{gifs}} GIF तक।",
+    "tierTable": "हर बैज टियर के का मिलेला",
+    "tierTableHint": "पैक हर किसिम कर हिसाब से हय। बाकी कॉलम बतावेला कि एगो पैक में कतना चीज आवेला। टियर गिरले पैक रहेला, मगर नावा सीमा से आगे नी जोड़ सकबा।",
+    "col": {
+      "tier": "Tier",
+      "packs": "Packs",
+      "emoji": "Emoji",
+      "stickers": "Stickers",
+      "gifs": "GIFs"
+    },
+    "signInToCreate": "دَاخِل شَان تِعْمِل حُزَم",
+    "signInToAdd": "دَاخِل شَان تِضِيف",
+    "yourPacks": "حُزَمِك",
+    "addedPacks": "حُزَم ضِفْتَهَا",
+    "popular": "الأَكْثَر إِضَافَة",
+    "noneYet": "مَا فِي حُزَم هِنَا لِسَّه.",
+    "createPack": "إِنْشَا",
+    "itemCount_one": "{{count}} عُنْصُر",
+    "itemCount_other": "{{count}} عَنَاصِر",
+    "saveCount_one": "{{count}} إِضَافَة",
+    "saveCount_other": "{{count}} إِضَافَات",
+    "by": "بِوَاسِطَة {{owner}}",
+    "notFound": "هَذِي الحُزْمَة مَش مَوْجُودَة أَوْ تِلَفَت.",
+    "addToPicker": "ضِيف لِمُنْتَقِيِّي",
+    "removeFromPicker": "شِيل مِنْ مُنْتَقِيِّي",
+    "addedToPicker": "الحُزْمَة انْضَافَت لِمُنْتَقِيِّك",
+    "removedFromPicker": "الحُزْمَة انْشَالَت مِنْ مُنْتَقِيِّك",
+    "copyLink": "نَسْخ الرَّابِط",
+    "linkCopied": "الرَّابِط انْسَخ",
+    "rename": "سَمِّي",
+    "save": "حَفْظ",
+    "deletePack": "حَذْف الحُزْمَة",
+    "deleteConfirm": "حَذْف {{name}}؟ كُل شَيء فِيهَا يَنْشَال.",
+    "addItems": "ضِيف لِهَذِي الحُزْمَة",
+    "shortcodePlaceholder": "اسْم لِلإِيمُوجِي (اخْتِيَارِي)",
+    "stickerEmojiPlaceholder": "إِيمُوجِي هَذَا المُلْصَق يُمَثِّلُه (اخْتِيَارِي)",
+    "linkPlaceholder": "الْصَق رَابِط صُورَة أَوْ GIF",
+    "addFromLink": "إِضَافَة مِنْ رَابِط",
+    "uploadFiles": "رَفْع صُوَر",
+    "uploadHint": "PNG, GIF, WebP یا JPEG تا ۲ مگابایت هر کدام. می‌توانید چندین مورد را همزمان انتخاب کنید.",
+    "uploadHintGif": "GIF، PNG، WebP یا JPEG تا ۸ مگابایت هر کدام. می‌توانید چندین مورد را همزمان انتخاب کنید.",
+    "itemsAdded": "{{count}} اضافه شد ({{skipped}} رد شد)",
+    "removeItem": "حذف",
+    "packEmpty": "هنوز هیچ موردی در این بسته وجود ندارد.",
+    "errors": {
+      "noBadge": "برای ایجاد بسته به نشان استیکینگ نیاز دارید.",
+      "packLimit": "شما از تمام اسلات‌های بسته مجاز برای این نوع توسط سطح نشان خود استفاده کرده‌اید.",
+      "itemLimit": "این بسته برای سطح نشان شما پر است.",
+      "fileType": "از یک تصویر PNG، GIF، WebP یا JPEG استفاده کنید",
+      "fileSize": "فایل‌ها باید {{mb}} مگابایت یا کمتر باشند",
+      "generic": "مشکلی پیش آمد. دوباره امتحان کنید."
+    }
   }
 }

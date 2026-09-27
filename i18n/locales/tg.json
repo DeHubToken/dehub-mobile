@@ -7270,5 +7270,83 @@
         }
       }
     }
+  },
+  "creatorPacks": {
+    "title": "Борҳо",
+    "subtitle": "Эмодзиҳои фармоишӣ, стикерҳо ва GIF-ҳое, ки аз ҷониби дорандагони нишонҳо сохта шудаанд. Ҳар гуна борҷро ба интихобкунандаи худ илова кунед ва онро дар чатҳо, шарҳҳо ва реаксияҳо истифода баред.",
+    "tabStickers": "Стикерҳо",
+    "tab": {
+      "emoji": "Эмодзиҳо",
+      "sticker": "Стикерҳо",
+      "gif": "GIF-ҳо"
+    },
+    "kind": {
+      "emoji": "Борҷ эмодзӣ",
+      "sticker": "Борҷ стикер",
+      "gif": "Борҷ GIF"
+    },
+    "manage": "Эҷод ё илова кардани борҳо",
+    "browse": "Борҳоро дидан",
+    "browseCreate": "Эҷод ё ёфтани борҳо",
+    "emptyStickers": "Ҳанӯз борҳои стикерӣ вуҷуд надоранд. Бо нишон эҷод кунед ё борҷро аз каси дигар илова кунед.",
+    "emptyGifs": "Ҳанӯз борҳои GIF вуҷуд надоранд.",
+    "lockedTitle": "Борҳо барои дорандагони нишонҳо мебошанд",
+    "lockedBody": "DHB-ро барои нишон барои эҷоди борҳои эмодзӣ, стикерҳо ва GIF-ҳои худ ҷойгир кунед. Дараҷаҳои баландтар борҳои бештар ва ҷойгоҳи бештар дар ҳар кадоми онҳо мегиранд.",
+    "getBadge": "Нишон гиред",
+    "pack": "Борҷ",
+    "newPackOption": "+ Борҷ нав",
+    "packNamePlaceholder": "Номи борҷ",
+    "yourTier": "Нишони {{tier}}: {{packs}} борҷ аз ҳар намуд, то {{emoji}} эмодзӣ, {{stickers}} стикер ё {{gifs}} GIF дар ҳар кадоми онҳо.",
+    "tierTable": "Ҳар як дараҷаи нишон чӣ мегирад",
+    "tierTableHint": "Борҳо барои ҳар намуд аст. Сутунҳои дигар нишон медиҳанд, ки чанд ашё дар як борҷ ҷой мегиранд. Агар дараҷаи шумо паст шавад, борҳои шумо мемонанд, аммо шумо наметавонед аз маҳдудиятҳои нав зиёдтар илова кунед.",
+    "col": {
+      "tier": "Дараҷа",
+      "packs": "Борҳо",
+      "emoji": "Эмодзӣ",
+      "stickers": "Стикерҳо",
+      "gifs": "GIFҳо"
+    },
+    "signInToCreate": "Барои эҷоди бастаҳо ворид шавед",
+    "signInToAdd": "Барои илова кардан ворид шавед",
+    "yourPacks": "Бастаҳои шумо",
+    "addedPacks": "Бастаҳое, ки шумо илова кардед",
+    "popular": "Бештар иловашуда",
+    "noneYet": "Ҳанӯз бастае нест.",
+    "createPack": "Эҷод кунед",
+    "itemCount_one": "{{count}} ашё",
+    "itemCount_other": "{{count}} ашёҳо",
+    "saveCount_one": "{{count}} илова кунед",
+    "saveCount_other": "{{count}} иловаҳо",
+    "by": "аз ҷониби {{owner}}",
+    "notFound": "Ин баста вуҷуд надорад ё нест карда шудааст.",
+    "addToPicker": "Ба интихобкунандаи ман илова кунед",
+    "removeFromPicker": "Аз интихобкунандаи ман хориҷ кунед",
+    "addedToPicker": "Баста ба интихобкунандаи шумо илова карда шуд",
+    "removedFromPicker": "Баста аз интихобкунандаи шумо хориҷ карда шуд",
+    "copyLink": "Истинодро нусхабардорӣ кунед",
+    "linkCopied": "Истинод нусхабардорӣ шуд",
+    "rename": "Номро иваз кунед",
+    "save": "Захира кунед",
+    "deletePack": "Бастаро нест кунед",
+    "deleteConfirm": "{{name}} -ро нест кунед? Ҳама чиз дар он хориҷ карда мешавад.",
+    "addItems": "Ба ин баста илова кунед",
+    "shortcodePlaceholder": "номи эмодзи (ихтиёрӣ)",
+    "stickerEmojiPlaceholder": "эмодзие, ки ин стикер ифода мекунад (ихтиёрӣ)",
+    "linkPlaceholder": "Истиноди тасвир ё GIF-ро гузоред",
+    "addFromLink": "Аз истинод илова кунед",
+    "uploadFiles": "Тасвирҳоро бор кунед",
+    "uploadHint": "PNG, GIF, WebP ё JPEG то 2 MB ҳар як. Maaari mong pumili ng maramihan sa isang sas",
+    "uploadHintGif": "GIF, PNG, WebP ё JPEG то 8 MB ҳар як. Maaari mong pumili ng maramihan sa isang sas",
+    "itemsAdded": "Добавить {{count}} ({{skipped}} партофташуда)",
+    "removeItem": "Нест кардан",
+    "packEmpty": "Ҳеҷ чиз дар ин маҷмӯа ҳанӯз.",
+    "errors": {
+      "noBadge": "Барои сохтани бастаҳо ба шумо лавҳаи часпанда лозим аст.",
+      "packLimit": "Ginamit mo ang lahat ng mga slots ng pack ang iyong tier ng badge na nagpapahintulutan para sa uri",
+      "itemLimit": "Ин маҷмӯа барои дараҷаи нишонаи шумо пур аст.",
+      "fileType": "Истифодаи тасвири PNG, GIF, WebP ё JPEG",
+      "fileSize": "{{mb}} MB o mas maliit ang mga file",
+      "generic": "Nagkaroon ng isang problema. Subukan muli."
+    }
   }
 }
