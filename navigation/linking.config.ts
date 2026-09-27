@@ -173,6 +173,9 @@ export const DeepLinkPaths = {
   // onto. `?handle=` on a shared listing link seeds the search box.
   ACCOUNTS: 'accounts',
 
+  // Creator application — dehub.io/creators.
+  CREATORS: 'creators',
+
   // Creator packs — dehub.io/packs is the hub, /packs/:slug one pack's share
   // link. The slug path is declared first, like the community invite.
   PACK: 'packs/:slug',
@@ -282,6 +285,8 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
           [ScreenNames.Usernames]: DeepLinkPaths.USERNAMES,
 
           [ScreenNames.Accounts]: DeepLinkPaths.ACCOUNTS,
+
+          [ScreenNames.Creators]: DeepLinkPaths.CREATORS,
 
           [ScreenNames.Pack]: {
             path: DeepLinkPaths.PACK,
@@ -568,6 +573,8 @@ export const ShareLinks = {
   },
   /** Bounty detail — dehub.io/bounty/:jobNumber */
   bounty: (jobNumber: string | number) => `${SHARE_BASE}/bounty/${encodeURIComponent(String(jobNumber))}`,
+  /** Creator application — dehub.io/creators */
+  creators: () => `${SHARE_BASE}/creators`,
   /** Arcade grid — dehub.io/arcade */
   arcade: () => `${SHARE_BASE}/arcade`,
   /** One game — dehub.io/arcade/:slug */
@@ -648,6 +655,11 @@ export const parseDeepLink = (url: string): { type: string; params: Record<strin
       return pathParts[1]
         ? { type: 'arcadeGame', params: { slug: pathParts[1], ...qp } }
         : { type: 'arcade', params: qp };
+    }
+
+    // /creators — the creator application
+    if (pathParts[0] === 'creators' && pathParts.length === 1) {
+      return { type: 'creators', params: qp };
     }
 
     // Legacy: /stream/:videoId

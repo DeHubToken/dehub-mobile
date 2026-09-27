@@ -57,7 +57,8 @@
     "tv": "ライブTV",
     "arcade": "アーケード",
     "converter": "コンバーター",
-    "migrate": "すべて移行"
+    "migrate": "すべて移行",
+    "creators": "クリエイター"
   },
   "affiliate": {
     "subtitle": "招待した人すべてから、ずっと報酬を",

@@ -87,6 +87,7 @@
         <data android:scheme="https" android:host="dehub.io" android:pathPrefix="/stages/"/>
         <data android:scheme="https" android:host="dehub.io" android:path="/packs"/>
         <data android:scheme="https" android:host="dehub.io" android:pathPrefix="/packs/"/>
+        <data android:scheme="https" android:host="dehub.io" android:path="/creators"/>
         <category android:name="android.intent.category.BROWSABLE"/>
         <category android:name="android.intent.category.DEFAULT"/>
       </intent-filter>

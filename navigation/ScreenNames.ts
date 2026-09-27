@@ -74,6 +74,8 @@ export enum ScreenNames {
   ArcadeGame = 'ArcadeGame',
   Events = 'Events',
   Careers = 'Careers',
+  // The creator application form — dehub.io/creators.
+  Creators = 'Creators',
   Affiliate = 'Affiliate',
   // Comments expand inline in the card (as on web) — there is no detail route.
   FeatureRequests = 'FeatureRequests',
