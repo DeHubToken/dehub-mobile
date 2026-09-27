@@ -4915,11 +4915,11 @@
           "hint": "Level bis pahunch."
         }
       },
-      "chooseBadge": "Apna profile mein dikhane ke liye koi bhi unlocked badge chuno.",
-      "useBadge": "Badge use karo",
+      "chooseBadge": "اختر أي شارة مفتوحة لعرضها على ملفك الشخصي.",
+      "useBadge": "استخدم الشارة",
       "selectedBadge": "المختار",
-      "savingBadge": "Badge save ho raha hai…",
-      "saveBadgeError": "Badge save nahi ho paya. Kripya dobara prayas karein."
+      "savingBadge": "جارٍ حفظ الشارة…",
+      "saveBadgeError": "تعذر حفظ شارتك. حاول مرة أخرى."
     },
     "unmuteMic": "مائیکروفون ان میوٹ کریں",
     "muteMic": "مائیکروفون میوٹ کریں",

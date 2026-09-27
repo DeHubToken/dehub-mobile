@@ -4962,11 +4962,11 @@
           "hint": "Alcanza nivel veinte."
         }
       },
-      "chooseBadge": "Elige cualquier insignia desbloqueada para mostrar en tu perfil.",
-      "useBadge": "Usar insignia",
-      "selectedBadge": "Seleccionado",
-      "savingBadge": "Guardando insignia…",
-      "saveBadgeError": "No se pudo guardar tu insignia. Por favor, inténtalo de nuevo."
+      "chooseBadge": "Mayqin kichasqa unanchatapas akllay perfilniykipi rikuchinaykipaq.",
+      "useBadge": "Unanchata llamk'achiy",
+      "selectedBadge": "Akllasqa",
+      "savingBadge": "Unanchata waqaychachkan…",
+      "saveBadgeError": "Mana unanchaykita waqaychayta atikurqanchu. Ama hina kaspa, huktawan kallpachakuy."
     },
     "unmuteMic": "Mikrupunuta kichariy",
     "muteMic": "Mikrupunuta wichqay",
