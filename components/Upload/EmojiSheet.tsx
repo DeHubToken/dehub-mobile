@@ -40,6 +40,8 @@ import {
   subscribeCustomEmojis,
   type CustomEmoji,
 } from "../../libs/emoji/custom-emoji";
+import { isKidsBlockedEmoji } from "../../libs/emoji/kids-safe";
+import { useKidsModeLock } from "../../hooks/useKidsModeLock";
 import { EmojiImage } from "../common/EmojiText";
 import AddCustomEmojiPanel from "../common/AddCustomEmojiPanel";
 
@@ -116,7 +118,10 @@ export default function EmojiSheet({ visible, onClose, onSelect, selected }: Emo
   const [local, setLocal] = useState<EmojiKeywords | null>(null);
   const [preview, setPreview] = useState<EmojiEntry | null>(null);
   // Custom emoji (the shared :shortcode: image set) and the inline add form.
-  const custom = useSyncExternalStore(subscribeCustomEmojis, getCustomEmojis, getCustomEmojis);
+  // Kids Mode: no rude emoji, and no custom ones — those are unreviewed uploads.
+  const kids = useKidsModeLock();
+  const allCustom = useSyncExternalStore(subscribeCustomEmojis, getCustomEmojis, getCustomEmojis);
+  const custom = useMemo(() => (kids ? [] : allCustom), [kids, allCustom]);
   const [adding, setAdding] = useState(false);
   const jumpAfterAdd = useRef(false);
   const listRef = useRef<FlatList<Row>>(null);
@@ -152,16 +157,18 @@ export default function EmojiSheet({ visible, onClose, onSelect, selected }: Emo
   const sections = useMemo(() => {
     if (!data) return [] as Array<{ key: SectionKey; items: EmojiEntry[] }>;
     const pick = (chars: string[]) =>
-      chars.map((c) => data.byChar.get(c)).filter((e): e is EmojiEntry => !!e && e.v <= maxV);
+      chars
+        .map((c) => data.byChar.get(c))
+        .filter((e): e is EmojiEntry => !!e && e.v <= maxV && !(kids && isKidsBlockedEmoji(e.char)));
     const out: Array<{ key: SectionKey; items: EmojiEntry[] }> = [];
     const recentItems = pick(recents);
     if (recentItems.length) out.push({ key: "recent", items: recentItems });
     out.push({ key: "dehub", items: pick(DEHUB_PICKS) });
     // Rendered from `custom`, not `items` — these are images, not characters.
-    out.push({ key: "custom", items: [] });
+    if (!kids) out.push({ key: "custom", items: [] });
     const byGroup = new Map<EmojiGroup, EmojiEntry[]>();
     for (const e of data.entries) {
-      if (e.v > maxV) continue;
+      if (e.v > maxV || (kids && isKidsBlockedEmoji(e.char))) continue;
       const list = byGroup.get(e.group) ?? [];
       list.push(e);
       byGroup.set(e.group, list);
@@ -171,9 +178,12 @@ export default function EmojiSheet({ visible, onClose, onSelect, selected }: Emo
       if (items?.length) out.push({ key: g, items });
     }
     return out;
-  }, [data, recents, maxV]);
+  }, [data, recents, maxV, kids]);
 
-  const visibleEntries = useMemo(() => (data ? data.entries.filter((e) => e.v <= maxV) : []), [data, maxV]);
+  const visibleEntries = useMemo(
+    () => (data ? data.entries.filter((e) => e.v <= maxV && !(kids && isKidsBlockedEmoji(e.char))) : []),
+    [data, maxV, kids],
+  );
 
   const results = useMemo(
     () => (query.trim() ? searchEmoji(query, visibleEntries, [local, english]) : null),
