@@ -4062,7 +4062,23 @@
     "reviewDescriptionPlaceholder": "Yisho okuthile ngale phosti (akuphoqelekile)",
     "reviewLiveWarning": "Leyo linki ingukusakaza bukhoma. Linda kuze kube yilapho kuphela bese ungenisa irekhodi.",
     "reviewCancel": "Khansela",
-    "reviewConfirm": "Ngenisa"
+    "reviewConfirm": "Ngenisa",
+    "podcast": {
+      "tab": "Iphodikhasti",
+      "feedUrlLabel": "I-URL ye-RSS feed yephodikhasti",
+      "fetchFeed": "Landa okuphakelayo",
+      "fetching": "Ilanda okuphakelayo...",
+      "showBy": "Ngu- {{author}}",
+      "episodes": "{{n}} iziqephu",
+      "selectAll": "Khetha konke",
+      "alreadyImported": "Sekufakiwe kakade",
+      "importSelected": "Ngenisa {{n}} iziqephu",
+      "importing": "Iyangenisa...",
+      "done": "Ifolishiwe",
+      "emptyFeed": "Asikwazanga ukuthola noma yiziphi iziqephu kuleyo feed.",
+      "badFeed": "Leyo linki ayifani ne-feed yephodikhasti.",
+      "tooMany": "Ngenisa iziqephu ezingaba ngu-20 ngesikhathi."
+    }
   },
   "earnings": {
     "filter24h": "24h",

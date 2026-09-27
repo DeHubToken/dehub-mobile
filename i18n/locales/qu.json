@@ -4062,7 +4062,23 @@
     "reviewDescriptionPlaceholder": "Kay qillqasqamanta imatapas niy (munasqa) .",
     "reviewLiveWarning": "Chay t'inkiqa kawsaq purichiymi. Tukunankama suyay hinaspa chaypa rantinpi grabacionta apamuy.",
     "reviewCancel": "Sayachiy...",
-    "reviewConfirm": "Yaykuchiy..."
+    "reviewConfirm": "Yaykuchiy...",
+    "podcast": {
+      "tab": "Kuyaychay",
+      "feedUrlLabel": "Podcast RSS mikhuy URL",
+      "fetchFeed": "Mikhunata apamuy",
+      "fetching": "Mikhuyta apamuspa...",
+      "showBy": "{{author}} nisqamanta.",
+      "episodes": "{{n}} nisqa t&#39;aqakuna",
+      "selectAll": "Stock label",
+      "alreadyImported": "Ya hawamanta apamusqa",
+      "importSelected": "{{n}} episodiokunata apamuy",
+      "importing": "Importacionmanta...",
+      "done": "Filapi churasqa",
+      "emptyFeed": "Chay mikhuypiqa manan ima episodiotapas tarirqaykuchu.",
+      "badFeed": "Chay t&#39;inkiqa manam podcast mikhuyman rikch&#39;akunchu.",
+      "tooMany": "Huk kutillapi 20 episodiokama hawamanta apamuy."
+    }
   },
   "earnings": {
     "filter24h": "24h",

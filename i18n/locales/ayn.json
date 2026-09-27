@@ -4031,7 +4031,23 @@
     "reviewDescriptionPlaceholder": "قول شيء عن هالمنشور (اختياري)",
     "reviewLiveWarning": "هالرابط بث مباشر. استنى لين ما ينتهي وبعدين استورد التسجيل بدل ما تستورد البث.",
     "reviewCancel": "إلغاء",
-    "reviewConfirm": "استورد"
+    "reviewConfirm": "استورد",
+    "podcast": {
+      "tab": "بودكاست",
+      "feedUrlLabel": "رابط تغذية البودكاست RSS",
+      "fetchFeed": "جلب التغذية",
+      "fetching": "جاري جلب التغذية...",
+      "showBy": "بواسطة {{author}}",
+      "episodes": "{{n}} حلقات",
+      "selectAll": "تحديد الكل",
+      "alreadyImported": "تم الاستيراد بالفعل",
+      "importSelected": "استيراد {{n}} حلقات",
+      "importing": "جاري الاستيراد...",
+      "done": "في قائمة الانتظار",
+      "emptyFeed": "لم نتمكن من العثور على أي حلقات في هذه التغذية.",
+      "badFeed": "هذا الرابط لا يبدو أنه تغذية بودكاست.",
+      "tooMany": "استيراد ما يصل إلى 20 حلقة في المرة الواحدة."
+    }
   },
   "earnings": {
     "filter24h": "24س",

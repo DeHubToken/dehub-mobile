@@ -4078,7 +4078,23 @@
     "reviewDescriptionPlaceholder": "Magsabi ng isang bagay tungkol sa post na ito (opsyonal)",
     "reviewLiveWarning": "Ang link na iyon ay isang live stream. Maghintay hanggang sa matapos ito at sa halip ay i - import ang recording.",
     "reviewCancel": "Kanselahin",
-    "reviewConfirm": "I-import"
+    "reviewConfirm": "I-import",
+    "podcast": {
+      "tab": "Podcast",
+      "feedUrlLabel": "RSS feed URL ng Podcast",
+      "fetchFeed": "Kunin ang feed",
+      "fetching": "Kinukuha ang feed...",
+      "showBy": "Ni {{author}}",
+      "episodes": "{{n}} mga episode",
+      "selectAll": "Piliin lahat",
+      "alreadyImported": "Na - import na",
+      "importSelected": "Mag - import ng {{n}} episodes",
+      "importing": "Nag - i - import...",
+      "done": "Queue",
+      "emptyFeed": "Hindi namin mahanap ang anumang mga episode sa feed na iyon.",
+      "badFeed": "Ang link na iyon ay hindi mukhang isang podcast feed.",
+      "tooMany": "Mag - import ng hanggang 20 episode sa isang pagkakataon."
+    }
   },
   "earnings": {
     "filter24h": "24o",

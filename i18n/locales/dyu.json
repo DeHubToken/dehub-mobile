@@ -3987,7 +3987,23 @@
     "reviewCancel": "Kanali",
     "reviewConfirm": "Fɛɛn minw be se ka kɛ jamana",
     "statusDownloadingPercent": "Dɔɔniŋ {{percent}}%",
-    "errorUnsupported": "Wi kɛnɔɔt impɔɔt frɔm dɛɛt liŋk. Tɛɛi wɛŋ: {{sources}}"
+    "errorUnsupported": "Wi kɛnɔɔt impɔɔt frɔm dɛɛt liŋk. Tɛɛi wɛŋ: {{sources}}",
+    "podcast": {
+      "tab": "A be se ka kɛ podcast ye",
+      "feedUrlLabel": "Podcasts ka ɲɛsin site web ma",
+      "fetchFeed": "Fetch ka dumuni",
+      "fetching": "O ye dumuni nafamanba ye.",
+      "showBy": "{{author}} ta",
+      "episodes": "episode {{n}}",
+      "selectAll": "I ka koo bɛɛ sugandi",
+      "alreadyImported": "Fɛɛn minw donna jamana wɛrɛ la",
+      "importSelected": "Episode {{n}} ladon",
+      "importing": "Fɛɛn minw be se ka don jamana wɛrɛ la...",
+      "done": "Ka to ka kuma",
+      "emptyFeed": "An tun tɛ se ka dumuni kɛ o cogo la.",
+      "badFeed": "N' ma a sɛgɛsɛgɛ k'a filɛ n'o be se ka kɛ podcast ye.",
+      "tooMany": "Aw ka se ka koo 20 kɛ ɲɔgɔn fɛ."
+    }
   },
   "earnings": {
     "filter24h": "24l",

@@ -4031,7 +4031,23 @@
     "reviewDescriptionPlaceholder": "พูดบางอย่างเกี่ยวกับโพสต์นี้ (ไม่บังคับ)",
     "reviewLiveWarning": "ลิงก์นั้นเป็นการถ่ายทำสดไลฟ์ รอจนกว่าจะสิ้นสุดและนำเข้าการบันทึกแทน",
     "reviewCancel": "ยกเลิก",
-    "reviewConfirm": "นำเข้า"
+    "reviewConfirm": "นำเข้า",
+    "podcast": {
+      "tab": "พอดแคสต์",
+      "feedUrlLabel": "URL ฟีด RSS พอดแคสต์",
+      "fetchFeed": "ดึงฟีด",
+      "fetching": "กำลังดึงฟีด…",
+      "showBy": "โดย {{author}}",
+      "episodes": "{{n}} ตอน",
+      "selectAll": "เลือกทั้งหมด",
+      "alreadyImported": "นำเข้าแล้ว",
+      "importSelected": "นำเข้า {{n}} ตอน",
+      "importing": "กำลังนำเข้า…",
+      "done": "รอคิว",
+      "emptyFeed": "เราไม่พบตอนใดๆ ในฟีดนั้น",
+      "badFeed": "ลิงก์นั้นดูไม่เหมือนฟีดพอดแคสต์",
+      "tooMany": "นำเข้าได้สูงสุด 20 ตอนต่อครั้ง"
+    }
   },
   "earnings": {
     "filter24h": "24ชม.",

@@ -4025,7 +4025,23 @@
     "reviewDescriptionPlaceholder": "اس پوسٹ بارے کجھ کہو (اختیاری)",
     "reviewLiveWarning": "اے لنک لائیو سٹریم اے۔ اس دے ختم ہوݨ تک انتظار کریں تے ریکارڈنگ درآمد کریں۔",
     "reviewCancel": "منسوخ کریں",
-    "reviewConfirm": "درآمد کریں"
+    "reviewConfirm": "درآمد کریں",
+    "podcast": {
+      "tab": "پوڈ کاسٹ",
+      "feedUrlLabel": "پوڈ کاسٹ آر ایس ایس فیڈ یو آر ایل",
+      "fetchFeed": "فیڈ حاصل کرو",
+      "fetching": "فیڈ حاصل کریندے پئے آں…",
+      "showBy": "{{author}} ولوں",
+      "episodes": "{{n}} ایپیسوڈ",
+      "selectAll": "سارے منتخب کرو",
+      "alreadyImported": "پہلے توں امپورٹ تھی گئیا",
+      "importSelected": "{{n}} ایپیسوڈ امپورٹ کرو",
+      "importing": "امپورٹ کریندے پئے آں…",
+      "done": "قطار وچ",
+      "emptyFeed": "سانوں اوہ فیڈ وچ کوئی ایپیسوڈ نئیں لبھیا.",
+      "badFeed": "اوہ لنک پوڈ کاسٹ فیڈ ورگا نئیں لگدا.",
+      "tooMany": "اک ویلھے وچ 20 ایپیسوڈ تئیں امپورٹ کرو."
+    }
   },
   "earnings": {
     "filter24h": "24گھ",

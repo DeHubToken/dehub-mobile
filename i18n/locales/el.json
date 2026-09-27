@@ -4060,7 +4060,23 @@
     "reviewDescriptionPlaceholder": "Πείτε κάτι για αυτήν την ανάρτηση (προαιρετικά)",
     "reviewLiveWarning": "Αυτός ο σύνδεσμος είναι μια ζωντανή ροή. Περιμένετε μέχρι να τελειώσει και εισαγάγετε την εγγραφή.",
     "reviewCancel": "Ακύρωση",
-    "reviewConfirm": "Εισαγωγή"
+    "reviewConfirm": "Εισαγωγή",
+    "podcast": {
+      "tab": "Podcast",
+      "feedUrlLabel": "Διεύθυνση URL ροής RSS podcast",
+      "fetchFeed": "Ανάκτηση τροφοδοσίας",
+      "fetching": "Γίνεται λήψη της τροφοδοσίας…",
+      "showBy": "Από {{author}}",
+      "episodes": "{{n}} ΕΠΕΙΣΟΔΙΑ",
+      "selectAll": "Επιλογή όλων",
+      "alreadyImported": "Έχει ήδη εισαχθεί",
+      "importSelected": "Εισαγωγή {{n}} επεισοδίων",
+      "importing": "ΕΙΣΑΓΩΓΗ…",
+      "done": "Σε ουρά",
+      "emptyFeed": "Δεν μπορέσαμε να βρούμε επεισόδια σε αυτήν τη ροή.",
+      "badFeed": "Αυτός ο σύνδεσμος δεν μοιάζει με ροή podcast.",
+      "tooMany": "Εισαγάγετε έως και 20 επεισόδια κάθε φορά."
+    }
   },
   "earnings": {
     "filter24h": "24ω",

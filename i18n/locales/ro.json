@@ -4031,7 +4031,23 @@
     "reviewDescriptionPlaceholder": "Spune ceva despre această postare (opțional)",
     "reviewLiveWarning": "Acel link este un flux live. Așteptați până se termină și importați înregistrarea în schimb.",
     "reviewCancel": "Anulează",
-    "reviewConfirm": "Import"
+    "reviewConfirm": "Import",
+    "podcast": {
+      "tab": "Podcast",
+      "feedUrlLabel": "Adresa URL a fluxului RSS pentru podcasturi",
+      "fetchFeed": "Preluare flux",
+      "fetching": "Se preia fluxul...",
+      "showBy": "Până la{{author}}",
+      "episodes": "{{n}} episoade",
+      "selectAll": "Selectează tot",
+      "alreadyImported": "Deja importat",
+      "importSelected": "Importă episoade {{n}}",
+      "importing": "Se importă...",
+      "done": "În așteptare",
+      "emptyFeed": "Nu am putut găsi episoade în acel flux.",
+      "badFeed": "Acel link nu arată ca un feed de podcast.",
+      "tooMany": "Importați până la 20 de episoade simultan."
+    }
   },
   "earnings": {
     "filter24h": "24h",

@@ -4031,7 +4031,23 @@
     "reviewDescriptionPlaceholder": "Ütle midagi selle postituse kohta (valikuline)",
     "reviewLiveWarning": "See link on otseülekanne. Oodake, kuni see lõpeb, ja importige selle asemel salvestis.",
     "reviewCancel": "Tühista",
-    "reviewConfirm": "Impordi"
+    "reviewConfirm": "Impordi",
+    "podcast": {
+      "tab": "Podcast",
+      "feedUrlLabel": "Podcasti RSS-kanali URL",
+      "fetchFeed": "Too voog",
+      "fetching": "Voo toomine…",
+      "showBy": "Autor:{{author}}",
+      "episodes": "{{n}} episoodi",
+      "selectAll": "Vali kõik",
+      "alreadyImported": "Juba imporditud",
+      "importSelected": "Impordi {{n}} episoodi",
+      "importing": "Importimine…",
+      "done": "Järjekorras",
+      "emptyFeed": "Me ei leidnud sellest voost ühtegi episoodi.",
+      "badFeed": "See link ei näe välja nagu netisaadete voog.",
+      "tooMany": "Impordi korraga kuni 20 episoodi."
+    }
   },
   "earnings": {
     "filter24h": "24h",

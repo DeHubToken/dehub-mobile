@@ -4031,7 +4031,23 @@
     "reviewDescriptionPlaceholder": "Papasakokite ką nors apie šį įrašą (nebūtina)",
     "reviewLiveWarning": "Ši nuoroda yra tiesioginė transliacija. Palaukite, kol jis baigsis, ir importuokite įrašą.",
     "reviewCancel": "Atšaukti",
-    "reviewConfirm": "Importuoti"
+    "reviewConfirm": "Importuoti",
+    "podcast": {
+      "tab": "Tinklalaidė",
+      "feedUrlLabel": "Tinklalaidės RSS sklaidos kanalo URL",
+      "fetchFeed": "Parsiųsti informacijos santrauką",
+      "fetching": "Parsiunčiamas kanalas...",
+      "showBy": "Autorius {{author}}",
+      "episodes": "{{n}} epizodai",
+      "selectAll": "Pasirinkti viską",
+      "alreadyImported": "Jau importuota",
+      "importSelected": "Importuoti {{n}} epizodus",
+      "importing": "Importuojama...",
+      "done": "Įtraukta į eilę",
+      "emptyFeed": "Tame sklaidos kanale neradome jokių epizodų.",
+      "badFeed": "Ši nuoroda neatrodo kaip tinklalaidės sklaidos kanalas.",
+      "tooMany": "Vienu metu importuokite iki 20 serijų."
+    }
   },
   "earnings": {
     "filter24h": "24val",

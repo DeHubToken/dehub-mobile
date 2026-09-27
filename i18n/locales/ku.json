@@ -3900,7 +3900,23 @@
     "errorUnsupported": "Em nikarin ji wê lînkê import bikin. Yek ji van biceribîne: {{sources}}",
     "errorNeedRights": "Ji kerema xwe piştrast bike ku mafên te yên li ser vê naverokê hene",
     "errorClipboard": "Nekarî panoya wêneyê bixwîne — li ​​şûna wê bi destan pêve bike",
-    "errorQueueFailed": "Nikaribû wê importkirinê bixe rêzê"
+    "errorQueueFailed": "Nikaribû wê importkirinê bixe rêzê",
+    "podcast": {
+      "tab": "پۆدکاست",
+      "feedUrlLabel": "URLya feeda RSS ya podcastê",
+      "fetchFeed": "Feedê bîne",
+      "fetching": "Feed tê anîn…",
+      "showBy": "Ji aliyê {{author}}",
+      "episodes": "{{n}} beş",
+      "selectAll": "Hemûyan hilbijêre",
+      "alreadyImported": "Berê hatiye îtxalkirin",
+      "importSelected": "{{n}} beşan îtxal bike",
+      "importing": "Tê îtxalkirin…",
+      "done": "Di rêzê de ye",
+      "emptyFeed": "Me di wê feedê de tu beş nedîtin.",
+      "badFeed": "Ev girêdan wek feeda podcastê xuya nake.",
+      "tooMany": "Di carekê de heta 20 beşan îtxal bike."
+    }
   },
   "earnings": {
     "filter24h": "24s",

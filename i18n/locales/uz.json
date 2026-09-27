@@ -4049,7 +4049,23 @@
     "reviewDescriptionPlaceholder": "Bu post haqida biror narsa deng (ixtiyoriy)",
     "reviewLiveWarning": "Bu havola jonli efir. Tugashini kuting va yozuvni import qiling.",
     "reviewCancel": "Bekor qilish",
-    "reviewConfirm": "Import"
+    "reviewConfirm": "Import",
+    "podcast": {
+      "tab": "Podkast",
+      "feedUrlLabel": "Podkast RSS tasmasi URL manzili",
+      "fetchFeed": "Yangiliklar tasmasini & olish",
+      "fetching": "Tasma olinmoqda…",
+      "showBy": "{{author}} tomonidan",
+      "episodes": "{{n}} epizodlar",
+      "selectAll": "Hammasini tanlang",
+      "alreadyImported": "Import qilingan",
+      "importSelected": "{{n}} epizodlarni import qilish",
+      "importing": "Import qilinmoqda",
+      "done": "Navbat",
+      "emptyFeed": "Biz o&#39;sha tasmada hech qanday epizod topa olmadik.",
+      "badFeed": "Bu havola podkast tasmasi kabi ko&#39;rinmaydi.",
+      "tooMany": "Bir vaqtning o&#39;zida 20 tagacha epizodni import qiling."
+    }
   },
   "earnings": {
     "filter24h": "24s",

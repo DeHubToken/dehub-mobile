@@ -4031,7 +4031,23 @@
     "reviewDescriptionPlaceholder": "Ngomong apa-apa babagan posting iki (opsional)",
     "reviewLiveWarning": "Pranala iku live stream. Ngenteni nganti rampung banjur impor rekamane.",
     "reviewCancel": "Batal",
-    "reviewConfirm": "Impor"
+    "reviewConfirm": "Impor",
+    "podcast": {
+      "tab": "Podcast",
+      "feedUrlLabel": "URL RSS feed podcast",
+      "fetchFeed": "Njupuk feed",
+      "fetching": "Njupuk feed…",
+      "showBy": "Kanthi {{author}}",
+      "episodes": "{{n}} episode",
+      "selectAll": "Pilih kabeh",
+      "alreadyImported": "Wis diimpor",
+      "importSelected": "Impor {{n}} episode",
+      "importing": "Ngimpor…",
+      "done": "Antrean",
+      "emptyFeed": "Kita ora nemokake episode apa wae ing feed kasebut.",
+      "badFeed": "Link kasebut ora katon kaya feed podcast.",
+      "tooMany": "Impor nganti 20 episode saben wektu."
+    }
   },
   "earnings": {
     "filter24h": "24j",

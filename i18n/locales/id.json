@@ -4080,7 +4080,23 @@
     "reviewDescriptionPlaceholder": "Katakan sesuatu tentang postingan ini (opsional)",
     "reviewLiveWarning": "Tautan itu adalah streaming langsung. Tunggu sampai rekaman berakhir dan impor rekaman sebagai gantinya.",
     "reviewCancel": "Batalkan",
-    "reviewConfirm": "Impor"
+    "reviewConfirm": "Impor",
+    "podcast": {
+      "tab": "Podcast",
+      "feedUrlLabel": "URL umpan RSS podcast",
+      "fetchFeed": "Ambil umpan",
+      "fetching": "Mengambil umpan…",
+      "showBy": "Oleh {{author}}",
+      "episodes": "{{n}} episode",
+      "selectAll": "Pilih semua",
+      "alreadyImported": "Sudah diimpor",
+      "importSelected": "Impor {{n}} episode",
+      "importing": "Mengimpor…",
+      "done": "Diantrekan",
+      "emptyFeed": "Kami tidak dapat menemukan episode apa pun di feed itu.",
+      "badFeed": "Tautan itu tidak terlihat seperti umpan podcast.",
+      "tooMany": "Impor hingga 20 episode sekaligus."
+    }
   },
   "earnings": {
     "filter24h": "24j",

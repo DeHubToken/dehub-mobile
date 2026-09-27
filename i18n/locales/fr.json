@@ -4084,7 +4084,23 @@
     "reviewDescriptionPlaceholder": "Dites quelque chose à propos de cet article (facultatif)",
     "reviewLiveWarning": "Ce lien est un flux en direct. Attendez qu'il se termine et importez l'enregistrement à la place.",
     "reviewCancel": "Annuler",
-    "reviewConfirm": "Importer"
+    "reviewConfirm": "Importer",
+    "podcast": {
+      "tab": "Podcast",
+      "feedUrlLabel": "URL du flux RSS du podcast",
+      "fetchFeed": "Récupérer le flux",
+      "fetching": "Récupération du flux…",
+      "showBy": "Par {{author}}",
+      "episodes": "{{n}} épisodes",
+      "selectAll": "Tout sélectionner",
+      "alreadyImported": "Déjà importé",
+      "importSelected": "Importer {{n}} épisodes",
+      "importing": "Importation en cours…",
+      "done": "En file d'attente",
+      "emptyFeed": "Nous n'avons trouvé aucun épisode dans ce flux.",
+      "badFeed": "Ce lien ne ressemble pas à un flux de podcast.",
+      "tooMany": "Importez jusqu'à 20 épisodes à la fois."
+    }
   },
   "earnings": {
     "filter24h": "24h",
