@@ -5,6 +5,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
 import { PackGrid, PackStrip, StickerPanel, useGifPacks } from '../packs/PackPickerParts';
+import { useKidsModeLock } from '../../hooks/useKidsModeLock';
 
 export type GifPickerProps = {
   visible: boolean;
@@ -58,6 +59,9 @@ const GifPicker: React.FC<GifPickerProps> = ({ visible, onClose, onPick }) => {
   const requestSeq = useRef(0);
   const [tab, setTab] = useState<'gif' | 'sticker'>('gif');
   const gifPacks = useGifPacks();
+  // Kids Mode: creator packs are unreviewed uploads, the same reason custom
+  // emoji are hidden there — GIPHY only, no Stickers tab, no GIF packs.
+  const kids = useKidsModeLock();
   const resetGifPack = gifPacks.setActive;
 
   const fetchGifs = useCallback(async (q?: string) => {
@@ -142,7 +146,7 @@ const GifPicker: React.FC<GifPickerProps> = ({ visible, onClose, onPick }) => {
         >
           <View className="flex-row items-center mb-2">
             <View className="flex-1 flex-row rounded-lg bg-theme-neutrals-800 p-0.5">
-              {(['gif', 'sticker'] as const).map((k) => (
+              {(kids ? (['gif'] as const) : (['gif', 'sticker'] as const)).map((k) => (
                 <TouchableOpacity
                   key={k}
                   onPress={() => setTab(k)}
@@ -165,18 +169,20 @@ const GifPicker: React.FC<GifPickerProps> = ({ visible, onClose, onPick }) => {
               <Ionicons name="close" size={18} color="#E5E7EB" />
             </TouchableOpacity>
           </View>
-          {tab === 'sticker' ? (
+          {tab === 'sticker' && !kids ? (
             <StickerPanel onSelect={onPick} beforeLeave={onClose} />
           ) : (
             <>
-              <PackStrip
-                packs={gifPacks.packs}
-                active={gifPacks.active}
-                onChange={gifPacks.setActive}
-                leading="GIPHY"
-                beforeLeave={onClose}
-              />
-              {gifPacks.items ? (
+              {!kids && (
+                <PackStrip
+                  packs={gifPacks.packs}
+                  active={gifPacks.active}
+                  onChange={gifPacks.setActive}
+                  leading="GIPHY"
+                  beforeLeave={onClose}
+                />
+              )}
+              {!kids && gifPacks.items ? (
                 <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
                   <PackGrid kind="gif" items={gifPacks.items} onSelect={onPick} />
                 </ScrollView>
