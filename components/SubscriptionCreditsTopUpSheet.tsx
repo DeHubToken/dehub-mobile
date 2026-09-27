@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useRef, useState } from "react";
 import { ActivityIndicator, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { useQueryClient } from "@tanstack/react-query";
@@ -51,6 +51,9 @@ const SubscriptionCreditsTopUpSheet: React.FC<Props> = ({ visible, onClose, dhbP
   const [custom, setCustom] = useState("");
   const [payWith, setPayWith] = useState<TipFundingSource | null>(null);
   const [stage, setStage] = useState("");
+  // State updates land after the tap that caused them, so a fast double tap
+  // would start two transfers. This flag is set synchronously.
+  const inFlight = useRef(false);
 
   const usd = preset ?? Number(custom);
   const validUsd = Number.isFinite(usd) && usd >= MIN_USD && usd <= MAX_USD;
@@ -62,11 +65,12 @@ const SubscriptionCreditsTopUpSheet: React.FC<Props> = ({ visible, onClose, dhbP
   const busy = !!stage;
 
   const handleTopUp = async () => {
-    if (!validUsd || !tokens || busy) return;
+    if (!validUsd || !tokens || inFlight.current) return;
     if (!provider || !account) {
       toastError(null, t("subscriptions.connectWallet"));
       return;
     }
+    inFlight.current = true;
     try {
       setStage(t("subscriptions.topUpStageWallet"));
       if (chainId !== BASE_CHAIN_ID) await switchChain(BASE_CHAIN_ID);
@@ -122,6 +126,7 @@ const SubscriptionCreditsTopUpSheet: React.FC<Props> = ({ visible, onClose, dhbP
     } catch (e: any) {
       toastError(null, e instanceof FundingError ? fundingErrorText(t as any, e) : parseTxError(e, "send"));
     } finally {
+      inFlight.current = false;
       setStage("");
     }
   };
