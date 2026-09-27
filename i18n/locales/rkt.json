@@ -159,6 +159,8 @@
     "postCount_other": "{{count}} টি পোস্ট"
   },
   "settings": {
+    "showOnline": "Mane kab dikhawe jab main online rahoon",
+    "showOnlineDesc": "जे लोगन तूं मैसेज करे छै, वे लोगन तूंरा नाम काँटे एक ठो ग्रीन डॉट देखै छै जब तूं DeHub काँटे काम करे छै।",
     "smartReplies": "পরামর্শ দেওয়া জবাব",
     "smartRepliesDesc": "চ্যাটোত টিপ দেওয়ার মতোন দুইটা জবাব বানায়। পরামর্শের উপরের × এইটা বন্ধ করি দেয়।",
     "ensHandle": "ENS নাম",
@@ -5018,6 +5020,7 @@
     "originalText": "মূল লেখা"
   },
   "dm": {
+    "online": "ऑनलाइन",
     "attachFailed": "ওই ফাইল যোগ করা গেল না।",
     "removeAttachment": "সংযুক্তি সরান",
     "addTip": "টিপ যোগ করেন",

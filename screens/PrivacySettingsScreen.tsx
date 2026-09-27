@@ -36,6 +36,7 @@ import { getAvatarUrl } from '../libs/misc';
 import { ScreenNames } from '../navigation/ScreenNames';
 import BlockedAccountsModal from '../components/Settings/BlockedAccountsModal';
 import { getAiScrapingPreference, type AiScrapingPreference } from '../libs/ai-scraping';
+import { getShowOnline } from '../libs/online-presence';
 import GeoBlockingSection from '../components/Settings/GeoBlockingSection';
 import DataPortabilitySection from '../components/Settings/DataPortabilitySection';
 import {
@@ -102,6 +103,7 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
   const [followerVisibility, setFollowerVisibility] = useState<FollowerVisibility>('public');
   const [defaultPostVisibility, setDefaultPostVisibility] = useState<PostVisibility>('public');
   const [aiScraping, setAiScraping] = useState<AiScrapingPreference>('allow');
+  const [showOnline, setShowOnline] = useState(false);
 
   const [showPublicModal, setShowPublicModal] = useState(false);
   const [publicModalBusy, setPublicModalBusy] = useState(false);
@@ -158,10 +160,11 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
       (user as any)?.defaultPostVisibility ??
       'public') as PostVisibility),
     aiScraping: getAiScrapingPreference(customs),
+    showOnline: getShowOnline(customs),
   }), [user, customs]);
 
   const userKey = useMemo(() => {
-    return `${(user as any)?.hideFollowers}|${(user as any)?.isPrivate}|${(user as any)?.hideBadgeAndBalance}|${customs.followVisibility}|${customs.defaultPostVisibility}|${(user as any)?.hideFollowerCounts}|${(user as any)?.showFollowersFollowing}|${(user as any)?.defaultPostVisibility}|${customs.aiScraping}`;
+    return `${(user as any)?.hideFollowers}|${(user as any)?.isPrivate}|${(user as any)?.hideBadgeAndBalance}|${customs.followVisibility}|${customs.defaultPostVisibility}|${(user as any)?.hideFollowerCounts}|${(user as any)?.showFollowersFollowing}|${(user as any)?.defaultPostVisibility}|${customs.aiScraping}|${customs.showOnline}`;
   }, [user, customs]);
 
   useEffect(() => {
@@ -172,6 +175,7 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
     setFollowerVisibility(initial.followerVisibility);
     setDefaultPostVisibility(initial.defaultPostVisibility);
     setAiScraping(initial.aiScraping);
+    setShowOnline(initial.showOnline);
     if (user) setLoading(false);
   }, [userKey, saving]);
 
@@ -223,6 +227,7 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
       setFollowerVisibility(initial.followerVisibility);
       setDefaultPostVisibility(initial.defaultPostVisibility);
       setAiScraping(initial.aiScraping);
+      setShowOnline(initial.showOnline);
     } finally {
       setSaving(false);
     }
@@ -268,6 +273,12 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
     const next: AiScrapingPreference = value ? 'allow' : 'deny';
     setAiScraping(next);
     saveSetting({}, { aiScraping: next });
+  }, [saveSetting]);
+
+  // Same customs key and values as web (lib/online-presence): 'on' | 'off'.
+  const handleToggleShowOnline = useCallback((value: boolean) => {
+    setShowOnline(value);
+    saveSetting({}, { showOnline: value ? 'on' : 'off' });
   }, [saveSetting]);
 
   const pendingCount = (user as any)?.pendingFollowRequests || 0;
@@ -421,6 +432,24 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
                 </View>
                 <CustomSwitch value={hideBadgeAndBalance} onValueChange={handleTogglePrivateBalance} disabled={saving} />
               </View>
+
+              <View className="h-px bg-theme-neutrals-700 ml-16" />
+              <SettingsAnchor id="show-online">
+                <View className="px-4 py-3.5 flex-row items-center justify-between">
+                  <View className="flex-row items-center flex-1 pr-3">
+                    <View className="mr-3 w-9 h-9 rounded-xl bg-theme-neutrals-700/50 items-center justify-center">
+                      <Icon name="Radio" size={18} color="#9ca3af" />
+                    </View>
+                    <View className="flex-1">
+                      <Text className="text-white text-sm font-medium">{t('settings.showOnline')}</Text>
+                      <Text className="text-theme-neutrals-500 text-xs mt-0.5">
+                        {t('settings.showOnlineDesc')}
+                      </Text>
+                    </View>
+                  </View>
+                  <CustomSwitch value={showOnline} onValueChange={handleToggleShowOnline} disabled={saving} />
+                </View>
+              </SettingsAnchor>
 
               {isPrivate && pendingCount > 0 && (
                 <>

@@ -155,6 +155,8 @@
     "postCount_other": "{{count}} bài đăng"
   },
   "settings": {
+    "showOnline": "Hiển thị khi tôi trực tuyến",
+    "showOnlineDesc": "Những người bạn nhắn tin thấy một dấu chấm màu xanh lá cây bên cạnh tên của bạn trong khi bạn đang sử dụng DeHub",
     "smartReplies": "Câu trả lời gợi ý",
     "smartRepliesDesc": "Soạn hai câu trả lời bạn có thể chạm trong cuộc trò chuyện. Dấu × trên các gợi ý sẽ tắt tính năng này.",
     "ensHandle": "Tên ENS",
@@ -5030,6 +5032,7 @@
     "translatedFrom": "Được dịch từ {{lang}}"
   },
   "dm": {
+    "online": "Trực tuyến",
     "attachFailed": "Không đính kèm được tệp đó.",
     "removeAttachment": "Xóa tệp đính kèm",
     "addTip": "Thêm tiền thưởng",

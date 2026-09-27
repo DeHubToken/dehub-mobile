@@ -5,6 +5,7 @@ import Animated, { FadeIn } from "react-native-reanimated";
 import Icon from "../ui/Icon";
 import Avatar from "../common/Avatar";
 import NewMemberChip from "../common/NewMemberChip";
+import OnlineDot from "../common/OnlineDot";
 import { getAvatarUrl, getBadgeUrlFor } from "../../libs/misc";
 import { formatRelativeFromNow } from "../../libs/date.util";
 import type { DmConversation, DmMessage, DmUser } from "../../services/dm/dm.types";
@@ -223,6 +224,7 @@ const ConversationItemComponent: React.FC<ConversationItemProps> = ({
               >
                 {displayName}
               </Text>
+              <OnlineDot address={other?.address} />
               {badgeImg && (
                 <SmartImage source={badgeImg} style={{ width: 15, height: 15 }} contentFit="contain" />
               )}

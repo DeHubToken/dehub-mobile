@@ -155,6 +155,8 @@
     "postCount_other": "{{count}} publicaciones"
   },
   "settings": {
+    "showOnline": "Mostrar cuando estoy conectado",
+    "showOnlineDesc": "Las personas a las que envías mensajes ven un punto verde junto a tu nombre mientras usas DeHub",
     "smartReplies": "Respuestas sugeridas",
     "smartRepliesDesc": "Redacta dos respuestas que puedes tocar en un chat. La × de las sugerencias lo desactiva.",
     "ensHandle": "Nombre ENS",
@@ -5066,6 +5068,7 @@
     "originalText": "Texto original"
   },
   "dm": {
+    "online": "En línea",
     "attachFailed": "No se pudo adjuntar ese archivo.",
     "removeAttachment": "Quitar adjunto",
     "addTip": "Añadir propina",

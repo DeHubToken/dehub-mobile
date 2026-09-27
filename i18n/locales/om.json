@@ -155,6 +155,8 @@
     "postCount_other": "{{count}} maxxansa"
   },
   "settings": {
+    "showOnline": "Yeroon toora interneetii irra jiru agarsiisi",
+    "showOnlineDesc": "Namoonni ergaa ergitu osoo DeHub fayyadamtu maqaa kee cinaatti tuqaa magariisa argu",
     "smartReplies": "Deebiiwwan yaadaman",
     "smartRepliesDesc": "Haasawa keessatti deebiiwwan lama kan tuquu dandeessu qopheessa. Mallattoon × yaadawwan irra jiru kana ni dhaamsa.",
     "ensHandle": "Maqaa ENS",
@@ -5030,6 +5032,7 @@
     "translatedFrom": "{{lang}} irraa kan hiikame"
   },
   "dm": {
+    "online": "Toora intarneetiirraan",
     "attachFailed": "Faayilii sana maxxansuun hin dandaʼamne.",
     "removeAttachment": "Maxxansaa haqi",
     "addTip": "Kennaa dabali",

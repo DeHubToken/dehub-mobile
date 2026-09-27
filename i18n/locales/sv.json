@@ -155,6 +155,8 @@
     "postCount_other": "{{count}} inlägg"
   },
   "settings": {
+    "showOnline": "Visa när jag är online",
+    "showOnlineDesc": "Personer du skickar meddelanden till ser en grön prick bredvid ditt namn när du använder DeHub",
     "smartReplies": "Föreslagna svar",
     "smartRepliesDesc": "Skriver två svar som du kan trycka på i en chatt. × på förslagen stänger av det.",
     "ensHandle": "ENS-namn",
@@ -5021,6 +5023,7 @@
     "originalText": "Ursprunglig text"
   },
   "dm": {
+    "online": "Online",
     "attachFailed": "Det gick inte att bifoga filen.",
     "removeAttachment": "Ta bort bilaga",
     "addTip": "Lägg till dricks",

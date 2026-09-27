@@ -155,6 +155,8 @@
     "postCount_other": "{{count}} ta post"
   },
   "settings": {
+    "showOnline": "Onlayn bo&#39;lganimda ko&#39;rsatilsin",
+    "showOnlineDesc": "DeHub’dan foydalanayotganingizda xabar yuborgan odamlaringiz ismingiz yonida yashil nuqta ko‘rishadi",
     "smartReplies": "Tavsiya etilgan javoblar",
     "smartRepliesDesc": "Suhbatda bosishingiz mumkin bo'lgan ikkita javob tayyorlaydi. Tavsiyalardagi × buni o'chiradi.",
     "ensHandle": "ENS nomi",
@@ -5035,6 +5037,7 @@
     "originalText": "Asl matn"
   },
   "dm": {
+    "online": "Onlayn",
     "attachFailed": "Bu faylni biriktirib bo'lmadi.",
     "removeAttachment": "Ilovani o'chirish",
     "addTip": "Choychaqa qo'shish",

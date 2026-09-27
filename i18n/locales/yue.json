@@ -155,6 +155,8 @@
     "postCount_other": "{{count}} 個帖子"
   },
   "settings": {
+    "showOnline": "當我上網嗰陣顯示",
+    "showOnlineDesc": "當你用緊 DeHub 嗰陣，你發訊息嘅人會見到你個名旁邊有個綠色點",
     "smartReplies": "建議回覆",
     "smartRepliesDesc": "喺傾偈度寫兩個你可以撳嘅回覆。建議上面嘅 × 會閂咗佢。",
     "ensHandle": "ENS 名",
@@ -5017,6 +5019,7 @@
     "originalText": "原文"
   },
   "dm": {
+    "online": "線上",
     "attachFailed": "無法附加嗰個檔案。",
     "removeAttachment": "移除附件",
     "addTip": "加入打賞",

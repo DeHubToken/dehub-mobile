@@ -155,6 +155,8 @@
     "postCount_other": "{{count}}개의 게시물"
   },
   "settings": {
+    "showOnline": "온라인 상태일 때 표시",
+    "showOnlineDesc": "DeHub를 사용하는 동안 내가 메시지를 보내는 사람들에게 내 이름 옆에 초록색 점이 표시됩니다.",
     "smartReplies": "추천 답장",
     "smartRepliesDesc": "채팅에서 탭할 수 있는 답장 두 개를 만들어 줍니다. 추천의 × 를 누르면 꺼집니다.",
     "ensHandle": "ENS 이름",
@@ -5070,6 +5072,7 @@
     "originalText": "원문"
   },
   "dm": {
+    "online": "온라인",
     "attachFailed": "해당 파일을 첨부하지 못했습니다.",
     "removeAttachment": "첨부 삭제",
     "addTip": "후원 추가",

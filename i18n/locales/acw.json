@@ -155,6 +155,8 @@
     "postCount_other": "{{count}} منشورات"
   },
   "settings": {
+    "showOnline": "ورّيني متى أكون أونلاين",
+    "showOnlineDesc": "الناس اللي تراسلهم يشوفوا نقطة خضرا جنب اسمك وانت تستخدم ديهاب",
     "smartReplies": "الردود المقترحة",
     "smartRepliesDesc": "يجهز ردين تقدر تضغط عليهم في المحادثة. علامة × على الاقتراحات تقفل هالخاصية.",
     "ensHandle": "اسم ENS",
@@ -5017,6 +5019,7 @@
     "originalText": "النص الأصلي"
   },
   "dm": {
+    "online": "متصل",
     "attachFailed": "ما كدرنا نرفق هذا الملف.",
     "removeAttachment": "شيل المرفق",
     "addTip": "ضيف إكرامية",

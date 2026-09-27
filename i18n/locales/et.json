@@ -155,6 +155,8 @@
     "postCount_other": "{{count}} postitust"
   },
   "settings": {
+    "showOnline": "Näita, kui ma olen võrgus",
+    "showOnlineDesc": "Inimesed, kellele sõnumi saadad, näevad DeHubi kasutamise ajal sinu nime kõrval rohelist täppi",
     "smartReplies": "Soovitatud vastused",
     "smartRepliesDesc": "Koostab kaks vastust, mida saad vestluses puudutada. Soovituste × lülitab selle välja.",
     "ensHandle": "ENS nimi",
@@ -5017,6 +5019,7 @@
     "originalText": "Originaaltekst"
   },
   "dm": {
+    "online": "Võrgus",
     "attachFailed": "Seda faili ei saanud manustada.",
     "removeAttachment": "Eemalda manus",
     "addTip": "Lisa jootraha",

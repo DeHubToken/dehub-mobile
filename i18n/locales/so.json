@@ -155,6 +155,8 @@
     "postCount_other": "{{count}} qoraallo"
   },
   "settings": {
+    "showOnline": "Muuji marka aan ku jiro internetka",
+    "showOnlineDesc": "Dadka aad fariin u aragto dhibic cagaaran oo ku xiga magacaaga inta aad isticmaaleyso DeHub",
     "smartReplies": "Jawaabaha la soo jeediyay",
     "smartRepliesDesc": "Wuxuu diyaariyaa laba jawaabood oo aad ku taaban karto wada sheekaysiga. Calaamadda × ee talooyinka ayaa damineysa.",
     "ensHandle": "Magaca ENS",
@@ -5017,6 +5019,7 @@
     "originalText": "Qoraalka Asalka Ah"
   },
   "dm": {
+    "online": "Online",
     "attachFailed": "Faylkaas lama lifaaqi karin.",
     "removeAttachment": "Ka saar lifaaqa",
     "addTip": "Ku dar tip",

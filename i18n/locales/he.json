@@ -155,6 +155,8 @@
     "postCount_other": "{{count}} פוסטים"
   },
   "settings": {
+    "showOnline": "הצגה כשאני במצב מחובר",
+    "showOnlineDesc": "אנשים שאתם שולחים להם הודעה רואים נקודה ירוקה ליד השם שלכם בזמן שאתם משתמשים ב - DeHub",
     "smartReplies": "תשובות מוצעות",
     "smartRepliesDesc": "מנסח שתי תשובות שאפשר להקיש עליהן בצ'אט. ה-× שעל ההצעות מכבה את זה.",
     "ensHandle": "שם ENS",
@@ -5021,6 +5023,7 @@
     "originalText": "טקסט מקורי"
   },
   "dm": {
+    "online": "אונליין",
     "attachFailed": "לא ניתן היה לצרף את הקובץ הזה.",
     "removeAttachment": "הסר קובץ מצורף",
     "addTip": "הוסף טיפ",

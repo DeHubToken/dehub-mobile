@@ -155,6 +155,8 @@
     "postCount_other": "{{count}} 条帖子"
   },
   "settings": {
+    "showOnline": "显示我在线辰光",
+    "showOnlineDesc": "搿个辰光，搿个用DeHub，搿个名字旁边会得看到一个绿点。",
     "smartReplies": "建议回复",
     "smartRepliesDesc": "勒聊天里向写两条好点个回复。建议高头个 × 会得关脱伊。",
     "ensHandle": "ENS 名字",
@@ -5017,6 +5019,7 @@
     "originalText": "原文"
   },
   "dm": {
+    "online": "在线",
     "attachFailed": "无法附加该文件。",
     "removeAttachment": "移除附件",
     "addTip": "添加打赏",

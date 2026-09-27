@@ -155,6 +155,8 @@
     "postCount_other": "{{count}} posts"
   },
   "settings": {
+    "showOnline": "Gosi mgbe m nọ n 'ịntanetị",
+    "showOnlineDesc": "Ndị mmadụ ị na-eziga ozi na-ahụ ntụpọ akwụkwọ ndụ akwụkwọ ndụ n 'akụkụ aha gị mgbe ị na-eji DeHub",
     "smartReplies": "Nzaghachi atụrụ aro",
     "smartRepliesDesc": "Ọ na-edepụta nzaghachi abụọ ị nwere ike ịpị na nkata. Akara × dị na ndụmọdụ na-agbanyụ ya.",
     "ensHandle": "Aha ENS",
@@ -5017,6 +5019,7 @@
     "originalText": "Ederede mbụ"
   },
   "dm": {
+    "online": "N'ịntanetị",
     "attachFailed": "Enweghị ike ịtụkwasị faịlụ ahụ.",
     "removeAttachment": "Wepụ ihe ejikọrọ",
     "addTip": "Tinye onyinye",

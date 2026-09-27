@@ -155,6 +155,8 @@
     "postCount_other": "{{count}} kiriman"
   },
   "settings": {
+    "showOnline": "Tampilake kapan aku lagi online",
+    "showOnlineDesc": "Wong sing kok peseni bakal weruh titik ijo ing sandinge jenengmu nalika lagi nggunakake DeHub",
     "smartReplies": "Wangsulan sing disaranake",
     "smartRepliesDesc": "Nyusun rong wangsulan sing bisa kokthuthuk ing obrolan. Tandha × ing saran bakal mateni iki.",
     "ensHandle": "Jeneng ENS",
@@ -5017,6 +5019,7 @@
     "originalText": "Tèks Asli"
   },
   "dm": {
+    "online": "Online",
     "attachFailed": "Ora bisa nglampirake berkas kuwi.",
     "removeAttachment": "Busak lampiran",
     "addTip": "Tambah tip",

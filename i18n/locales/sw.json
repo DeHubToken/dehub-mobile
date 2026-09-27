@@ -155,6 +155,8 @@
     "postCount_other": "machapisho {{count}}"
   },
   "settings": {
+    "showOnline": "Onyesha wakati niko mtandaoni",
+    "showOnlineDesc": "Watu unaotuma ujumbe wanaona nukta ya kijani karibu na jina lako unapotumia DeHub",
     "smartReplies": "Majibu yanayopendekezwa",
     "smartRepliesDesc": "Huandaa majibu mawili unayoweza kugusa kwenye gumzo. Alama ya × kwenye mapendekezo huzima hii.",
     "ensHandle": "Jina la ENS",
@@ -5018,6 +5020,7 @@
     "originalText": "Maandishi ya awali"
   },
   "dm": {
+    "online": "Mtandaoni",
     "attachFailed": "Faili hilo halikuweza kuambatishwa.",
     "removeAttachment": "Ondoa kiambatisho",
     "addTip": "Ongeza bakshishi",

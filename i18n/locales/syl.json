@@ -159,6 +159,8 @@
     "postCount_other": "{{count}} টি পোস্ট"
   },
   "settings": {
+    "showOnline": "কবে অনলাইন আছি দেখাও",
+    "showOnlineDesc": "DeHub ব্যবহার করার সময় আপনার নামের পাশে একটি সবুজ ডট দেখতে পাবেন।",
     "smartReplies": "প্রস্তাবিত উত্তর",
     "smartRepliesDesc": "চ্যাটে ট্যাপ করার মতো দুটি উত্তর তৈরি করে। পরামর্শের উপরের × এটি বন্ধ করে দেয়।",
     "ensHandle": "ENS নাম",
@@ -5159,6 +5161,7 @@
     "originalText": "মূল লেখা"
   },
   "dm": {
+    "online": "অনলাইন",
     "attachFailed": "ওই ফাইল যোগ করা গেল না।",
     "removeAttachment": "সংযুক্তি সরাও",
     "addTip": "টিপ যোগ করউ",

@@ -155,6 +155,8 @@
     "postCount_other": "{{count}} पोस्ट"
   },
   "settings": {
+    "showOnline": "कहीं भी, कभी भी ऑनलाइन पंजीकरण ।",
+    "showOnlineDesc": "DeHub के उपयोग करते समय लोग आपके नाम के बगल में एक हरी डॉट देख रहे हो",
     "smartReplies": "सुझावल जवाब",
     "smartRepliesDesc": "चैट में टैप करे लायक दू गो जवाब तइयार करेला। सुझाव पर के × एकरा के बंद कर देला।",
     "ensHandle": "ENS नाम",
@@ -5015,6 +5017,7 @@
     "originalText": "मूल पाठ"
   },
   "dm": {
+    "online": "ऑफलाइन काम कर रहे",
     "attachFailed": "ऊ फाइल जोड़ल ना जा सकल।",
     "removeAttachment": "अटैचमेंट हटाईं",
     "addTip": "टिप जोड़ीं",

@@ -155,6 +155,8 @@
     "postCount_other": "{{count}} post"
   },
   "settings": {
+    "showOnline": "Dema ku ez serhêl im nîşan bide",
+    "showOnlineDesc": "Kesên ku hûn peyamên wan dişînin dema ku hûn DeHub bikar tînin li kêleka navê we xalek kesk dibînin.",
     "smartReplies": "Bersivên pêşniyarkirî",
     "smartRepliesDesc": "Du bersivan amade dike ku tu dikarî di chatê de bitikînî. × ya li ser pêşniyaran vê digire.",
     "ensHandle": "Navê ENS",
@@ -4848,6 +4850,7 @@
     "originalText": "Nivîsa Orîjînal"
   },
   "dm": {
+    "online": "Serhêl",
     "attachFailed": "Ew pel nehat pêvekirin.",
     "removeAttachment": "Pêvekê rake",
     "addTip": "Baxşîş zêde bike",

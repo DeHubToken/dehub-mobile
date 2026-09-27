@@ -155,6 +155,8 @@
     "postCount_other": "{{count}} posts"
   },
   "settings": {
+    "showOnline": "Show when I'm online",
+    "showOnlineDesc": "People you message see a green dot next to your name while you're using DeHub",
     "smartReplies": "Suggested replies",
     "smartRepliesDesc": "Draft two replies you can tap in a chat. The × on the suggestions turns this off.",
     "ensHandle": "ENS name",
@@ -5066,6 +5068,7 @@
     "originalText": "Original Text"
   },
   "dm": {
+    "online": "Online",
     "attachFailed": "Couldn't attach that file.",
     "removeAttachment": "Remove attachment",
     "addTip": "Add tip",
