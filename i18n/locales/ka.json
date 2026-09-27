@@ -4760,7 +4760,10 @@
     "earningsWorth": "Ღირს {{amount}}",
     "earningsPaidInTokens": "Გადაიხადა ტოკენებში დღევანდელ ფასად",
     "earningsPendingReserve": "Სახაზინო რეზერვის მოლოდინში",
-    "tokensSent": "{{amount}} სიმბოლოს გაგზავნა"
+    "tokensSent": "{{amount}} სიმბოლოს გაგზავნა",
+    "percentUsed": "{{percent}}% გამოყენებულია",
+    "spentOfTotal": "{{spent}} / {{total}}",
+    "viewInWallet": "Საფულეში ნახვა"
   },
   "live": {
     "notSet": "არ არის მითითებული",

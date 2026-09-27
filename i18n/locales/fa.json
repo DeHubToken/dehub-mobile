@@ -4802,7 +4802,10 @@
     "earningsWorth": "ارزش {{amount}}",
     "earningsPaidInTokens": "پرداخت شده به صورت توکن با قیمت امروز",
     "earningsPendingReserve": "ذخیره خزانه در انتظار",
-    "tokensSent": "{{amount}} توکن ارسال شد"
+    "tokensSent": "{{amount}} توکن ارسال شد",
+    "percentUsed": "{{percent}}% استفاده شده",
+    "spentOfTotal": "{{spent}} از {{total}}",
+    "viewInWallet": "مشاهده در کیف پول"
   },
   "live": {
     "notSet": "تنظیم نشده",

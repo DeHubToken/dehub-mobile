@@ -4802,7 +4802,10 @@
     "earningsWorth": "Wert {{amount}}",
     "earningsPaidInTokens": "Bezahlt in Token zum hütige Preis",
     "earningsPendingReserve": "Ufgstellte Schatzreserve",
-    "tokensSent": "{{amount}} Token gschickt"
+    "tokensSent": "{{amount}} Token gschickt",
+    "percentUsed": "{{percent}}% used",
+    "spentOfTotal": "{{spent}} of {{total}}",
+    "viewInWallet": "View in wallet"
   },
   "live": {
     "notSet": "Nöd festgleit",

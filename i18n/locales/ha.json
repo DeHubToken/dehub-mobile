@@ -4772,7 +4772,10 @@
     "earningsWorth": "Darajarsa {{amount}}",
     "earningsPaidInTokens": "An biya a cikin alamomi a farashi na yau",
     "earningsPendingReserve": "Ana jiran ajiyar dukiya",
-    "tokensSent": "{{amount}} alamun da aka aika"
+    "tokensSent": "{{amount}} alamun da aka aika",
+    "percentUsed": "{{percent}}% amfani",
+    "spentOfTotal": "{{spent}} na {{total}}",
+    "viewInWallet": "Duba a cikin walat"
   },
   "live": {
     "notSet": "Ba a saita ba",

@@ -4784,7 +4784,10 @@
     "earningsWorth": "တန်ဘိုး {{amount}}",
     "earningsPaidInTokens": "ယနေ့ဈေးနှုန်းဖြင့် တိုကင်အဖြစ် ပေးချေသည်",
     "earningsPendingReserve": "ဆိုင်းငံ့ထားသော ဘဏ္ဍာရေးရန်ပုံငွေ",
-    "tokensSent": "{{amount}} တိုကင်များ ပေးပို့ထားသည်"
+    "tokensSent": "{{amount}} တိုကင်များ ပေးပို့ထားသည်",
+    "percentUsed": "{{percent}}% အသုံးပြုထားသည်",
+    "spentOfTotal": "{{spent}} ၏ {{total}}",
+    "viewInWallet": "ပိုက်ဆံအိတ်ထဲတွင် ကြည့်ရန်"
   },
   "live": {
     "notSet": "မသတ်မှတ်ရသေး",

@@ -4772,7 +4772,10 @@
     "earningsWorth": "Verta {{amount}}",
     "earningsPaidInTokens": "Sumokėta žetonais šiandienos kaina",
     "earningsPendingReserve": "Laukiamas iždo rezervas",
-    "tokensSent": "{{amount}} žetonai išsiųsti"
+    "tokensSent": "{{amount}} žetonai išsiųsti",
+    "percentUsed": "{{percent}}% naudota",
+    "spentOfTotal": "{{spent}} iš {{total}}",
+    "viewInWallet": "Peržiūrėti piniginėje"
   },
   "live": {
     "notSet": "Nenustatyta",

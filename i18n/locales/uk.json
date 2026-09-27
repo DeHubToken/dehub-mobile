@@ -5129,7 +5129,10 @@
     "earningsWorth": "Вартість {{amount}}",
     "earningsPaidInTokens": "Сплачено токенами за сьогоднішньою ціною",
     "earningsPendingReserve": "Резерв казначейства на розгляді",
-    "tokensSent": "Надіслано токенів: {{amount}}"
+    "tokensSent": "Надіслано токенів: {{amount}}",
+    "percentUsed": "{{percent}}% використано",
+    "spentOfTotal": "{{spent}} з {{total}}",
+    "viewInWallet": "Переглянути в гаманці"
   },
   "live": {
     "notSet": "Не задано",

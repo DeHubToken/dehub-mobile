@@ -4756,7 +4756,10 @@
     "earningsWorth": "कीमत {{amount}}",
     "earningsPaidInTokens": "आज कर दाम में टोकन में भुगतान",
     "earningsPendingReserve": "खजाना रिजर्व बाकी हे",
-    "tokensSent": "{{amount}} टोकन भेजल गेलक"
+    "tokensSent": "{{amount}} टोकन भेजल गेलक",
+    "percentUsed": "{{percent}}% used",
+    "spentOfTotal": "{{spent}} of {{total}}",
+    "viewInWallet": "वॉलेट में देख"
   },
   "live": {
     "notSet": "ঠিক করা নাই",

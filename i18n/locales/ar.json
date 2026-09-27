@@ -4825,7 +4825,10 @@
     "earningsWorth": "يستحق {{amount}}",
     "earningsPaidInTokens": "مدفوع بالعملات الرمزية بسعر اليوم",
     "earningsPendingReserve": "احتياطي الخزينة المعلق",
-    "tokensSent": "{{amount}} تم إرسال التوكينز"
+    "tokensSent": "{{amount}} تم إرسال التوكينز",
+    "percentUsed": "{{percent}}%مستخدم",
+    "spentOfTotal": "{{spent}} من {{total}}",
+    "viewInWallet": "عرض في المحفظة"
   },
   "live": {
     "notSet": "غير محدّد",

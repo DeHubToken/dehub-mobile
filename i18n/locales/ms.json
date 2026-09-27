@@ -5033,7 +5033,10 @@
     "earningsWorth": "Bernilai {{amount}}",
     "earningsPaidInTokens": "Dibayar dalam token pada harga hari ini",
     "earningsPendingReserve": "Rizab perbendaharaan belum selesai",
-    "tokensSent": "Token {{amount}} dihantar"
+    "tokensSent": "Token {{amount}} dihantar",
+    "percentUsed": "{{percent}}% digunakan",
+    "spentOfTotal": "{{spent}} daripada {{total}}",
+    "viewInWallet": "Lihat dalam dompet"
   },
   "live": {
     "notSet": "Belum ditetapkan",

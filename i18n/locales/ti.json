@@ -4772,7 +4772,10 @@
     "earningsWorth": "ዋጋ {{amount}}",
     "earningsPaidInTokens": "ኣብ ናይ ሎሚ ዋጋ ኣብ ቶከንስ ዝተኸፍለ",
     "earningsPendingReserve": "ናይ መዛግብቲ መዕቈቢ",
-    "tokensSent": "{{amount}} ቶከንስ ተላኢኹ"
+    "tokensSent": "{{amount}} ቶከንስ ተላኢኹ",
+    "percentUsed": "{{percent}}% ተጠቐመ",
+    "spentOfTotal": "{{spent}} ካብ {{total}}",
+    "viewInWallet": "ኣብ ቦርሳ ርአ"
   },
   "live": {
     "notSet": "ኣይተቐመጠን",

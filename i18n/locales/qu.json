@@ -4803,7 +4803,10 @@
     "earningsWorth": "Valor {{amount}} nisqa.",
     "earningsPaidInTokens": "Kunan punchawpa chaninpi fichas nisqapi pagasqa",
     "earningsPendingReserve": "Reserva tesoro pendiente nisqa",
-    "tokensSent": "{{amount}} tokenkuna apachisqa"
+    "tokensSent": "{{amount}} tokenkuna apachisqa",
+    "percentUsed": "{{percent}}% llamk&#39;achisqa",
+    "spentOfTotal": "{{spent}} nisqamanta {{total}} nisqamanta.",
+    "viewInWallet": "Billeterapi qhaway"
   },
   "live": {
     "notSet": "Mana churasqa",

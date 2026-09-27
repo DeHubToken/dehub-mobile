@@ -4880,7 +4880,10 @@
     "earningsWorth": "V hodnote {{amount}}",
     "earningsPaidInTokens": "Zaplatené v tokenoch za dnešnú cenu",
     "earningsPendingReserve": "Čaká sa na rezervu štátnej pokladnice",
-    "tokensSent": "Žetóny {{amount}} boli odoslané"
+    "tokensSent": "Žetóny {{amount}} boli odoslané",
+    "percentUsed": "{{percent}}% použité",
+    "spentOfTotal": "{{spent}} z {{total}}",
+    "viewInWallet": "Zobraziť v peňaženke"
   },
   "live": {
     "notSet": "Nenastavené",

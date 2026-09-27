@@ -4776,7 +4776,10 @@
     "earningsWorth": "שווה {{amount}}",
     "earningsPaidInTokens": "אסימונים ששולמו במחיר של היום",
     "earningsPendingReserve": "רזרבה בהמתנה לאוצר",
-    "tokensSent": "{{amount}} אסימונים נשלחו"
+    "tokensSent": "{{amount}} אסימונים נשלחו",
+    "percentUsed": "%{{percent}} בשימוש",
+    "spentOfTotal": "{{spent}} מתוך {{total}}",
+    "viewInWallet": "הצגה בארנק"
   },
   "live": {
     "notSet": "לא הוגדר",

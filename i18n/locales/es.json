@@ -4821,7 +4821,10 @@
     "earningsWorth": "Vale {{amount}}",
     "earningsPaidInTokens": "Pagado en tokens al precio de hoy",
     "earningsPendingReserve": "Reserva de tesorería pendiente",
-    "tokensSent": "{{amount}} tokens enviados"
+    "tokensSent": "{{amount}} tokens enviados",
+    "percentUsed": "{{percent}}% usado",
+    "spentOfTotal": "{{spent}} de {{total}}",
+    "viewInWallet": "Ver en el monedero"
   },
   "live": {
     "notSet": "Sin definir",

@@ -4801,7 +4801,10 @@
     "earningsWorth": "Αξία {{amount}}",
     "earningsPaidInTokens": "Καταβάλλεται σε μάρκες στη σημερινή τιμή",
     "earningsPendingReserve": "Αποθεματικό ταμείου σε εκκρεμότητα",
-    "tokensSent": "{{amount}}: Εστάλησαν μάρκες"
+    "tokensSent": "{{amount}}: Εστάλησαν μάρκες",
+    "percentUsed": "{{percent}}% σε χρήση",
+    "spentOfTotal": "{{spent}} από {{total}}",
+    "viewInWallet": "Προβολή στο πορτοφόλι"
   },
   "live": {
     "notSet": "Δεν έχει οριστεί",

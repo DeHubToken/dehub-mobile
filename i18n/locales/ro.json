@@ -4772,7 +4772,10 @@
     "earningsWorth": "Valoare {{amount}}",
     "earningsPaidInTokens": "Plătit în jetoane la prețul de astăzi",
     "earningsPendingReserve": "Rezerva de trezorerie în așteptare",
-    "tokensSent": "{{amount}} jetoane trimise"
+    "tokensSent": "{{amount}} jetoane trimise",
+    "percentUsed": "{{percent}}% utilizat",
+    "spentOfTotal": "{{spent}} din {{total}}",
+    "viewInWallet": "Afișează în portofel"
   },
   "live": {
     "notSet": "Nesetat",

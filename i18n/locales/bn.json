@@ -4772,7 +4772,10 @@
     "earningsWorth": "মূল্য {{amount}}",
     "earningsPaidInTokens": "আজকের মূল্যে টোকেনে পেমেন্ট করা হয়েছে",
     "earningsPendingReserve": "মুলতুবি থাকা ট্রেজারি রিজার্ভ",
-    "tokensSent": "{{amount}} টোকেন পাঠানো হয়েছে"
+    "tokensSent": "{{amount}} টোকেন পাঠানো হয়েছে",
+    "percentUsed": "{{percent}}% ব্যবহৃত হয়েছে",
+    "spentOfTotal": "{{spent}} এর {{total}}",
+    "viewInWallet": "ওয়ালেটে দেখুন"
   },
   "live": {
     "notSet": "নির্ধারিত নয়",

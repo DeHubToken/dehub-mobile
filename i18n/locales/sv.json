@@ -4776,7 +4776,10 @@
     "earningsWorth": "Värt {{amount}}",
     "earningsPaidInTokens": "Betalade i polletter till dagens pris",
     "earningsPendingReserve": "Väntande statskassareserv",
-    "tokensSent": "{{amount}} polletter skickade"
+    "tokensSent": "{{amount}} polletter skickade",
+    "percentUsed": "{{percent}}% används",
+    "spentOfTotal": "{{spent}} av {{total}}",
+    "viewInWallet": "Visa i plånboken"
   },
   "live": {
     "notSet": "Inte angivet",

@@ -4795,7 +4795,10 @@
     "earningsWorth": "Mitentina {{amount}}",
     "earningsPaidInTokens": "Aloa amin'ny famantarana amin'ny vidiny androany",
     "earningsPendingReserve": "Tahirim-bola mbola miandry",
-    "tokensSent": "{{amount}} tokens naniraka"
+    "tokensSent": "{{amount}} tokens naniraka",
+    "percentUsed": "{{percent}}% ampiasaina",
+    "spentOfTotal": "{{spent}} amin'ny {{total}}",
+    "viewInWallet": "Jereo ao amin'ny kitapom-bola"
   },
   "live": {
     "notSet": "Tsy voafaritra",

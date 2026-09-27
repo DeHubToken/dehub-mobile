@@ -4768,7 +4768,10 @@
     "earningsWorth": "कीमत {{amount}}",
     "earningsPaidInTokens": "आज के कीमत म टोकन म भुगतान",
     "earningsPendingReserve": "ट्रेजरी रिजर्व लंबित",
-    "tokensSent": "{{amount}} टोकन भेजे गे"
+    "tokensSent": "{{amount}} टोकन भेजे गे",
+    "percentUsed": "{{percent}}% खरचा होगे",
+    "spentOfTotal": "{{total}} म ले {{spent}}",
+    "viewInWallet": "पोर्टफोलियो म दृश्य"
   },
   "live": {
     "notSet": "सेट नइ हे",

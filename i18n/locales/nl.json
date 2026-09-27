@@ -4962,7 +4962,10 @@
     "earningsWorth": "Waarde {{amount}}",
     "earningsPaidInTokens": "Betaald in tokens tegen de prijs van vandaag",
     "earningsPendingReserve": "In afwachting van schatkistreserve",
-    "tokensSent": "{{amount}} tokens verzonden"
+    "tokensSent": "{{amount}} tokens verzonden",
+    "percentUsed": "{{percent}}% gebruikt",
+    "spentOfTotal": "{{spent}} van {{total}}",
+    "viewInWallet": "Bekijken in portefeuille"
   },
   "live": {
     "notSet": "Niet ingesteld",

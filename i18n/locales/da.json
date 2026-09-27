@@ -4776,7 +4776,10 @@
     "earningsWorth": "{{amount}} værd",
     "earningsPaidInTokens": "Betalt i tokens til dagens pris",
     "earningsPendingReserve": "Afventende likviditetsreserve",
-    "tokensSent": "{{amount}}-tokens sendt"
+    "tokensSent": "{{amount}}-tokens sendt",
+    "percentUsed": "{{percent}} % brugt",
+    "spentOfTotal": "{{spent}} af {{total}}",
+    "viewInWallet": "Se i tegnebog"
   },
   "live": {
     "notSet": "Ikke angivet",

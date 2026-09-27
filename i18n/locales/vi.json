@@ -4785,7 +4785,10 @@
     "earningsWorth": "Trị giá {{amount}}",
     "earningsPaidInTokens": "Đã thanh toán bằng mã thông báo theo giá hôm nay",
     "earningsPendingReserve": "Dự trữ ngân quỹ đang chờ xử lý",
-    "tokensSent": "Đã gửi mã thông báo {{amount}}"
+    "tokensSent": "Đã gửi mã thông báo {{amount}}",
+    "percentUsed": "Đã sử dụng {{percent}}%",
+    "spentOfTotal": "{{spent}}/{{total}}",
+    "viewInWallet": "Xem trong ví"
   },
   "live": {
     "notSet": "Chưa đặt",

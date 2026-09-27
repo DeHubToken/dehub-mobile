@@ -4790,7 +4790,10 @@
     "earningsWorth": "Құны {{amount}}",
     "earningsPaidInTokens": "Бүгінгі баға бойынша таңбашалармен төленді",
     "earningsPendingReserve": "Күтілетін қазына резерві",
-    "tokensSent": "{{amount}} токен жіберілді"
+    "tokensSent": "{{amount}} токен жіберілді",
+    "percentUsed": "{{percent}}% пайдаланылды",
+    "spentOfTotal": "{{total}} ішінен {{spent}}",
+    "viewInWallet": "Әмияндағы көрініс"
   },
   "live": {
     "notSet": "Орнатылмаған",

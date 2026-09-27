@@ -4772,7 +4772,10 @@
     "earningsWorth": "Арзиш {{amount}}",
     "earningsPaidInTokens": "Пардохтшуда дар нишонаҳо бо нархи имрӯза",
     "earningsPendingReserve": "Захираи хазинадорӣ дар ҳоли интизорӣ",
-    "tokensSent": "{{amount}} токен фиристода шуд"
+    "tokensSent": "{{amount}} токен фиристода шуд",
+    "percentUsed": "{{percent}}% used",
+    "spentOfTotal": "{{spent}} аз {{total}}",
+    "viewInWallet": "Намоиш дар ҳамён"
   },
   "live": {
     "notSet": "Муқаррар нашудааст",
