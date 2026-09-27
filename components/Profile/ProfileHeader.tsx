@@ -165,7 +165,7 @@ const ProfileHeader = () => {
     if (!aboutText) return;
     setIsTranslatingBio(true);
     try {
-      const { translatedText } = await translateText(aboutText, targetLang.current);
+      const { translatedText } = await translateText(aboutText, targetLang.current, 'auto', { isPublic: true });
       setTranslatedBio(translatedText);
     } catch {
       // silently ignore

@@ -241,7 +241,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
 
   const translationTexts = useMemo(() => ({ content: comment.content || '' }), [comment.content]);
   const { isTranslated, translatedTexts, isLoading: translating, handleTranslate, handleShowOriginal, shouldShow: showTranslate, sourceLang: translationSourceLang } =
-    useTranslation(translationTexts, (comment as any).detectedLanguage);
+    useTranslation(translationTexts, (comment as any).detectedLanguage, true, true);
 
   const displayContent = isTranslated ? (translatedTexts.content || comment.content) : comment.content;
 

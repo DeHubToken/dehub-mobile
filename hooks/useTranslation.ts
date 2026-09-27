@@ -47,11 +47,15 @@ function baseLang(lang: string): string {
  *   choosing to translate one message accepts that; doing it silently to every
  *   message they receive does not, and a direct message is not ours to upload
  *   on their behalf.
+ * @param isPublic - The text is already public (a post, a comment on one, a
+ *   bio). Only then may the request reach providers that train on their input;
+ *   left false, the edge function keeps it away from them.
  */
 export function useTranslation(
   texts: Record<string, string>,
   detectedLanguage?: string | null,
   auto: boolean = true,
+  isPublic: boolean = false,
 ): UseTranslationResult {
   const [isTranslated, setIsTranslated] = useState(false);
   const [translatedTexts, setTranslatedTexts] = useState<Record<string, string>>({});
@@ -126,7 +130,7 @@ export function useTranslation(
         const entries = Object.entries(texts).filter(([, v]) => v && v.trim().length > 0);
         const settled = await Promise.allSettled(
           entries.map(async ([key, text]) => {
-            const result = await translateText(text, targetLang, source);
+            const result = await translateText(text, targetLang, source, { isPublic });
             return [key, result] as const;
           }),
         );
@@ -182,7 +186,7 @@ export function useTranslation(
         if (mountedRef.current && !silent) setIsLoading(false);
       }
     },
-    [texts, reliableBackendLang, targetLang],
+    [texts, reliableBackendLang, targetLang, isPublic],
   );
 
   const handleTranslate = useCallback(() => {
