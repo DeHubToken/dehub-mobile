@@ -95,6 +95,9 @@ export enum ScreenNames {
   GovernanceProposal = 'GovernanceProposal',
   Dao = 'Dao',
   SuperPowers = 'SuperPowers',
+  // Creator packs (emoji, sticker and GIF) — the hub and one pack's share page.
+  Packs = 'Packs',
+  Pack = 'Pack',
   // Auth screens
   Onboarding = 'Onboarding',
   SignIn = 'SignIn',

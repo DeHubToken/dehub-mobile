@@ -1,13 +1,15 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { ActivityIndicator, FlatList, KeyboardAvoidingView, Modal, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, FlatList, KeyboardAvoidingView, Modal, ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import SmartImage from '../common/SmartImage';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
+import { PackGrid, PackStrip, StickerPanel, useGifPacks } from '../packs/PackPickerParts';
 
 export type GifPickerProps = {
   visible: boolean;
   onClose: () => void;
+  /** A GIPHY GIF, a GIF from a pack, or a sticker — all post the same way. */
   onPick: (url: string) => void;
 };
 
@@ -54,6 +56,9 @@ const GifPicker: React.FC<GifPickerProps> = ({ visible, onClose, onPick }) => {
   const [error, setError] = useState<string | null>(null);
   // A slow trending response must not overwrite the search that replaced it.
   const requestSeq = useRef(0);
+  const [tab, setTab] = useState<'gif' | 'sticker'>('gif');
+  const gifPacks = useGifPacks();
+  const resetGifPack = gifPacks.setActive;
 
   const fetchGifs = useCallback(async (q?: string) => {
     const seq = ++requestSeq.current;
@@ -89,8 +94,10 @@ const GifPicker: React.FC<GifPickerProps> = ({ visible, onClose, onPick }) => {
       setItems([]);
       setError(null);
       setLoading(false);
+      setTab('gif');
+      resetGifPack(null);
     }
-  }, [visible, fetchGifs]);
+  }, [visible, fetchGifs, resetGifPack]);
 
   const onChangeText = useCallback((text: string) => {
     setQuery(text);
@@ -134,14 +141,21 @@ const GifPicker: React.FC<GifPickerProps> = ({ visible, onClose, onPick }) => {
           style={{ paddingBottom: insets.bottom + 12 }}
         >
           <View className="flex-row items-center mb-2">
-            <TextInput
-              placeholder={t('dm.searchGifs')}
-              placeholderTextColor="#9CA3AF"
-              value={query}
-              onChangeText={onChangeText}
-              autoCorrect={false}
-              className="flex-1 h-11 px-3 rounded-lg bg-theme-neutrals-800 text-theme-neutrals-100"
-            />
+            <View className="flex-1 flex-row rounded-lg bg-theme-neutrals-800 p-0.5">
+              {(['gif', 'sticker'] as const).map((k) => (
+                <TouchableOpacity
+                  key={k}
+                  onPress={() => setTab(k)}
+                  accessibilityRole="tab"
+                  accessibilityState={{ selected: tab === k }}
+                  className={`flex-1 h-9 rounded-md items-center justify-center ${tab === k ? 'bg-white/15' : ''}`}
+                >
+                  <Text className={`text-[13px] ${tab === k ? 'text-white font-semibold' : 'text-theme-neutrals-400'}`}>
+                    {t(k === 'gif' ? 'creatorPacks.tab.gif' : 'creatorPacks.tabStickers')}
+                  </Text>
+                </TouchableOpacity>
+              ))}
+            </View>
             <TouchableOpacity
               onPress={onPressClose}
               accessibilityRole="button"
@@ -151,24 +165,53 @@ const GifPicker: React.FC<GifPickerProps> = ({ visible, onClose, onPick }) => {
               <Ionicons name="close" size={18} color="#E5E7EB" />
             </TouchableOpacity>
           </View>
-          {loading ? (
-            <View className="py-8 items-center justify-center">
-              <ActivityIndicator size="small" color="#F4F4F5" />
-            </View>
-          ) : error ? (
-            <Text className="text-white/80 px-2 py-4">{error}</Text>
+          {tab === 'sticker' ? (
+            <StickerPanel onSelect={onPick} beforeLeave={onClose} />
           ) : (
-            <FlatList
-              data={items}
-              keyExtractor={(it) => it.id}
-              numColumns={3}
-              renderItem={renderItem}
-              keyboardShouldPersistTaps="handled"
-              showsVerticalScrollIndicator={false}
-            />
+            <>
+              <PackStrip
+                packs={gifPacks.packs}
+                active={gifPacks.active}
+                onChange={gifPacks.setActive}
+                leading="GIPHY"
+                beforeLeave={onClose}
+              />
+              {gifPacks.items ? (
+                <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
+                  <PackGrid kind="gif" items={gifPacks.items} onSelect={onPick} />
+                </ScrollView>
+              ) : (
+                <>
+                  <TextInput
+                    placeholder={t('dm.searchGifs')}
+                    placeholderTextColor="#9CA3AF"
+                    value={query}
+                    onChangeText={onChangeText}
+                    autoCorrect={false}
+                    className="h-11 px-3 mb-2 rounded-lg bg-theme-neutrals-800 text-theme-neutrals-100"
+                  />
+                  {loading ? (
+                    <View className="py-8 items-center justify-center">
+                      <ActivityIndicator size="small" color="#F4F4F5" />
+                    </View>
+                  ) : error ? (
+                    <Text className="text-white/80 px-2 py-4">{error}</Text>
+                  ) : (
+                    <FlatList
+                      data={items}
+                      keyExtractor={(it) => it.id}
+                      numColumns={3}
+                      renderItem={renderItem}
+                      keyboardShouldPersistTaps="handled"
+                      showsVerticalScrollIndicator={false}
+                    />
+                  )}
+                  {/* GIPHY's attribution mark — a brand string, kept in English on web too. */}
+                  <Text className="text-[10px] text-theme-neutrals-500 text-center pt-2">{t("dm.poweredBy", { name: "GIPHY" })}</Text>
+                </>
+              )}
+            </>
           )}
-          {/* GIPHY's attribution mark — a brand string, kept in English on web too. */}
-          <Text className="text-[10px] text-theme-neutrals-500 text-center pt-2">{t("dm.poweredBy", { name: "GIPHY" })}</Text>
         </View>
       </KeyboardAvoidingView>
     </Modal>

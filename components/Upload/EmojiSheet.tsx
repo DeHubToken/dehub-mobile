@@ -426,6 +426,7 @@ export default function EmojiSheet({ visible, onClose, onSelect, selected }: Emo
         {adding ? (
           <View style={styles.addWrap}>
             <AddCustomEmojiPanel
+              onLeave={onClose}
               onDone={() => {
                 jumpAfterAdd.current = true;
                 setActive("custom");

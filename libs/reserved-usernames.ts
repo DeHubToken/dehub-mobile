@@ -29,7 +29,7 @@ const ROUTE_SEGMENTS = [
   "creator", "creators",
   "delete-account", "depin", "docs", "editor", "events", "explore", "features",
   "dao", "governance", "guide", "guides", "jobs", "launchpad", "leaderboard",
-  "mcp", "mobile-preview", "music", "newpost", "posts", "premium", "pricing", "prompt", "r",
+  "mcp", "mobile-preview", "music", "newpost", "packs", "posts", "premium", "pricing", "prompt", "r",
   "radio", "raffle", "shorts", "stage", "stages", "stake", "stats", "top-100", "tv",
   "usernames", "videos", "work", "yt-dlp",
 
