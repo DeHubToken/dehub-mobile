@@ -6693,7 +6693,8 @@
       "activities": "Kɛwalew",
       "objects": "Fɛnw",
       "symbols": "Taamasiyɛnw",
-      "flags": "Darapow"
+      "flags": "Darapow",
+      "custom": "Fɛɛn minw ka teli ka kɛ"
     },
     "tone": {
       "default": "A cogo kɔrɔ",
@@ -6702,6 +6703,32 @@
       "medium": "Fari ɲɛ cɛmancɛ",
       "mediumDark": "Fari ɲɛ fin dɔɔnin",
       "dark": "Fari ɲɛ fin"
+    },
+    "addCustom": "Ka fara o kan, an ka ɲi ka tɛmɛ fɛɛrɛ dɔw fɛ ka",
+    "customEmpty": "No custom emoji yet. O ye n ka miiriya ye. I be se ka dɔ fara a kan i ka sɛbɛ dɔ kɔnɔ, link dɔ, Discord, Slack, 7TV wala Mastodon ka baara kɛyɔrɔ la.",
+    "back": "Ka segi ka na",
+    "modeSingle": "O ye kumakanw ye",
+    "modePack": "Ka taga ni fɛɛn dɔ ye",
+    "upload": "Jaa lajɛ",
+    "linkPlaceholder": "I ka kan ka tɛmɛ o kan ka tɛmɛ o kan.",
+    "namePlaceholder": "tɔgɔ",
+    "singleHint": "PNG, GIF, WebP, walima JPEG ka se MB 2 ma. O ye Discord, Slack, 7TV, BetterTTV, FrankerFaceZ, emoji.gg ani fɛɛn wɛrɛw ye.",
+    "add": "Emoji ka baara",
+    "addedName": "O ye {{name}}",
+    "packPlaceholder": "mastodon.social, misskey.io wala JSON link",
+    "packHint": "I be se ka emoji o emoji di ka bɔ Mastodon, Pleroma, Akkoma wala Misskey ka baarada dɔ la, walima ka bɔ emoji JSON ka ladɛrɛsi dɔ la. Mɔgɔ tɔw fɛ, aliensw tɔgɔ tun ma bɔ.",
+    "importPack": "Fɛɛn minw be se ka kɛ jamana",
+    "packAdded": "Added {{count}} emoji ({{skipped}} skipped)",
+    "errors": {
+      "signIn": "N'i b'a fɛ ka dɔ fara a kan, i ka taga a fɔ a ye ko a",
+      "fileType": "PNG, GIF, WebP walima JPEG jaa dɔ ka baara kɛ",
+      "fileSize": "O jaa nunu ka kan ka kɛ MB 2 ye walima ka dɔgɔ",
+      "invalid": "Mɔgɔ tɔgɔw be se ka kɛ ni lɛtɛrɛ 2 ka se 64 ma, jatidenw,_, + wala -",
+      "badImage": "O ye fɛɛn min ye, o tɛ se ka kɛ fɛɛn ye.",
+      "addFailed": "Ne tɛ se ka o emoji fara a kan.",
+      "packEmpty": "O yɔrɔ la, mɔgɔ si ma deli ka kuma n'a ye.",
+      "shortcodeTaken": "{{name}} has taken already",
+      "shortcodeStandard": "{{name}} be a standard emoji"
     }
   }
 }

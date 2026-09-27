@@ -6953,7 +6953,8 @@
       "activities": "কাজকাম",
       "objects": "জিনিসপাতি",
       "symbols": "চিহ্ন",
-      "flags": "পতাকা"
+      "flags": "পতাকা",
+      "custom": "কাস্টম"
     },
     "tone": {
       "default": "ডিফল্ট",
@@ -6962,6 +6963,32 @@
       "medium": "মাঝারি চামড়ার রং",
       "mediumDark": "মাঝারি-গাঢ় চামড়ার রং",
       "dark": "গাঢ় চামড়ার রং"
+    },
+    "addCustom": "কাস্টম ইমোজি যোগ করুন",
+    "customEmpty": "এখনো কোনো কাস্টম ইমোজি নেই। একটি ফাইল, একটি লিঙ্ক, ডিসকর্ড, স্ল্যাক, 7TV বা একটি Mastodon সার্ভার থেকে যোগ করুন।",
+    "back": "পিছনে",
+    "modeSingle": "একটি ইমোজি",
+    "modePack": "একটি প্যাক আমদানি করুন",
+    "upload": "ছবি আপলোড করইন",
+    "linkPlaceholder": "…না অইলে লিংক বা Discord ইমোজি কোড পেস্ট করইন",
+    "namePlaceholder": "নাম",
+    "singleHint": "PNG, GIF, WebP বা JPEG, ২ MB পর্যন্ত। Discord, Slack, 7TV, BetterTTV, FrankerFaceZ, emoji.gg বা যেকোনো ছবির লিংকও চলে।",
+    "add": "ইমোজি যোগ করইন",
+    "addedName": "{{name}} যোগ অইছে",
+    "packPlaceholder": "mastodon.social, misskey.io বা JSON লিংক",
+    "packHint": "Mastodon, Pleroma, Akkoma বা Misskey সার্ভার, না অইলে যেকোনো ইমোজি JSON লিস্ট থাকি হকল ইমোজি আনে। আগে নেওয়া নাম বাদ যায়।",
+    "importPack": "আনইন",
+    "packAdded": "{{count}}টা ইমোজি যোগ অইছে ({{skipped}}টা বাদ)",
+    "errors": {
+      "signIn": "ইমোজি যোগ করার লাগি সাইন ইন করইন",
+      "fileType": "PNG, GIF, WebP বা JPEG ছবি দেইন",
+      "fileSize": "ছবি ২ MB বা তার কম অওয়া লাগবো",
+      "invalid": "নামে ২ থাকি ৬৪টা অক্ষর, নম্বর, _, + বা - থাকবো",
+      "badImage": "ঐ লিংক ছবি অইয়া লোড অইছে না",
+      "addFailed": "ইমোজি যোগ অইছে না। আবার চেষ্টা করইন।",
+      "packEmpty": "ঐ ঠিকানাত কোনো ইমোজি পাওয়া গেছে না",
+      "shortcodeTaken": "{{name}} আগেউ নেওয়া অই গেছে",
+      "shortcodeStandard": "{{name}} আগেউ একটা সাধারণ ইমোজি"
     }
   }
 }

@@ -6749,7 +6749,8 @@
       "activities": "ንጥፈታት",
       "objects": "ኣቑሑት",
       "symbols": "ምልክታት",
-      "flags": "ባንዴራታት"
+      "flags": "ባንዴራታት",
+      "custom": "እተለምደ"
     },
     "tone": {
       "default": "ንቡር",
@@ -6758,6 +6759,32 @@
       "medium": "ማእከላይ ሕብሪ ቆርበት",
       "mediumDark": "ማእከላይ-ጸሊም ሕብሪ ቆርበት",
       "dark": "ጸሊም ሕብሪ ቆርበት"
+    },
+    "addCustom": "ብጁ ኢሞጂ ኣክል",
+    "customEmpty": "ሕጂ እውን እንተ ዀነ ፡ ብውልቂ እተሰርሐ ኢሞጂ የለን ። ሓደ ካብ ፋይል ፡ ሊንክ ፡ Discord ፡ Slack ፡ 7TV ወይ ማስቶዶን ሰርቨር ኣክሎ ።",
+    "back": "ንድሕሪት ተመለስ",
+    "modeSingle": "ሓደ ኢሞጂ",
+    "modePack": "ፓኬጅ ኣምጽእ",
+    "upload": "ስእሊ ስቐላ",
+    "linkPlaceholder": "ናይ ዲኮርድ ኢሞጂ ኮድ ወይ ናይ ዲኮርድ ኢሞጂ ኮድ",
+    "namePlaceholder": "ሹም",
+    "singleHint": "PNG ፣ GIF ፣ WebP ወይ JPEG ክሳብ 2 MB ። ካብ Discord, Slack, 7TV, BetterTTV, FrankerFaceZ, emoji.gg ወይ ዝኾነ ናይ ምስሊ ስራሕ እውን ርክባት ።",
+    "add": "ኤሞጂ ኣክሎ",
+    "addedName": "ኣብዚኣ ኣሎ {{name}}",
+    "packPlaceholder": "mastodon.social, misskey.io ወይ JSON link",
+    "packHint": "ነፍሲ ወከፍ ኢሞጂ ካብ ማስቶዶን ፣ ፕለሮማ ፣ ኣኮማ ወይ ሚስኪ ሰርቨር ወይ ካብ ዝኾነ ኢሞጂ JSON ዝርዝር ይኣቱ ። ስማት ድሮ ይጥቀሙ ኣለዉ ።",
+    "importPack": "ኣምጽእ",
+    "packAdded": "ኣብዚኣ ኣሎ {{count}} እሞ ({{skipped}} ተሪፉ)",
+    "errors": {
+      "signIn": "ኢሞጂ ንምእታው ኣቲኻ",
+      "fileType": "ስእሊ PNG ፣ GIF ፣ WebP ወይ JPEG ተጠቐም",
+      "fileSize": "ስእሊ 2 ሜባ ወይ ካብኡ ንታሕቲ ክኸውን ኣለዎ",
+      "invalid": "ስማት ካብ 2 ክሳብ 64 ፊደላት ፣ ቁጽሪ ፣ _, + ወይ - ይጥቀሙ",
+      "badImage": "እዚ ሊንክ እዚ ከም ስእሊ ኣይሰኣነን ።",
+      "addFailed": "ነቲ ኢሞጂ ክውስኽ ኣይከኣልኩን ። ደጊምካ ፈትኖ ።",
+      "packEmpty": "ኣብ'ዚ ኣድራሻ'ዚ ዝኾነ ኢሞጂ ኣይተረኽበን ።",
+      "shortcodeTaken": "{{name}} ኣብዚኣ ኣሎ",
+      "shortcodeStandard": "{{name}} ኣብዚኣ ኣሎ"
     }
   }
 }

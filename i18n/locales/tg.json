@@ -6753,7 +6753,8 @@
       "activities": "Фаъолиятҳо",
       "objects": "Ашё",
       "symbols": "Рамзҳо",
-      "flags": "Парчамҳо"
+      "flags": "Парчамҳо",
+      "custom": "Одатӣ"
     },
     "tone": {
       "default": "Пешфарз",
@@ -6762,6 +6763,32 @@
       "medium": "Ранги миёнаи пӯст",
       "mediumDark": "Ранги нимторики пӯст",
       "dark": "Ранги торики пӯст"
+    },
+    "addCustom": "Эмодзиро илова кунед",
+    "customEmpty": "Эмодзиҳои одатӣ ҳанӯз вуҷуд надоранд. Якеро аз файл, истинод, Discord, Slack, 7TV ё сервери Mastodon илова кунед.",
+    "back": "Бозгашт",
+    "modeSingle": "Як эмодзи",
+    "modePack": "Пакетро ворид кунед",
+    "upload": "Mag-upload ng imahe",
+    "linkPlaceholder": "...ё пайванд ё рамзи emoji Discord часпонед",
+    "namePlaceholder": "< number >",
+    "singleHint": "PNG, GIF, WebP ё JPEG то 2 MB. Пайвандҳо аз Discord, Slack, 7TV, BetterTTV, FrankerFaceZ, emoji.gg ё ягон кори тасвир низ.",
+    "add": "Илова кардани emoji",
+    "addedName": "Добавить {{name}}",
+    "packPlaceholder": "mastodon.social, misskey.io ё пайванди JSON",
+    "packHint": "Pag-import ng bawat emoji mula sa isang Mastodon, Pleroma, Akkoma o Misskey server, o mula sa anumang listahan ng emoji JSON. Номҳое, ки аллакай истифода мешаванд, партофта мешаванд.",
+    "importPack": "Воридот",
+    "packAdded": "{{count}} emoji ({{skipped}} skipped)",
+    "errors": {
+      "signIn": "Mag-sign in upang magdagdag ng emoji",
+      "fileType": "Истифодаи тасвири PNG, GIF, WebP ё JPEG",
+      "fileSize": "Тасвирҳо бояд 2 Mб ё хурдтар бошанд",
+      "invalid": "Ang mga pangalan ay gumagamit ng 2 hanggang 64 tîp, mga numero,_, + o -",
+      "badImage": "Ang link na ito ay hindi mai-load bilang isang imahe",
+      "addFailed": "Hindi maidagdag ang emoji na ito. Subukan muli.",
+      "packEmpty": "Ягон emoji дар ин суроға ёфт нашуд",
+      "shortcodeTaken": "{{name}}info: whatsthis",
+      "shortcodeStandard": "{{name}}info: whatsthis"
     }
   }
 }

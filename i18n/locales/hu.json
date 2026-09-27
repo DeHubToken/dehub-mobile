@@ -6760,7 +6760,8 @@
       "activities": "Tevékenységek",
       "objects": "Tárgyak",
       "symbols": "Szimbólumok",
-      "flags": "Zászlók"
+      "flags": "Zászlók",
+      "custom": "Egyedi"
     },
     "tone": {
       "default": "Alapértelmezett",
@@ -6769,6 +6770,32 @@
       "medium": "Közepes bőrszín",
       "mediumDark": "Közepesen sötét bőrszín",
       "dark": "Sötét bőrszín"
+    },
+    "addCustom": "Egyéni emoji hozzáadása",
+    "customEmpty": "Még nincs egyéni emoji. Adjon hozzá egyet fájlból, linkből, Discordból, Slackből, 7TV-ből vagy Mastodon szerverről.",
+    "back": "Vissza",
+    "modeSingle": "Egy emoji",
+    "modePack": "Csomag importálása",
+    "upload": "Kép feltöltése",
+    "linkPlaceholder": "…vagy illessz be egy linket vagy Discord emoji kódot",
+    "namePlaceholder": "Név",
+    "singleHint": "PNG, GIF, WebP vagy jpeg legfeljebb 2 MB. A Discord, a Slack, a 7TV, a BetterTTV, a FrankerFaceZ, az emoji.gg vagy bármely más kép munkájának linkjei.",
+    "add": "Új hangulatjelek hozzáadása",
+    "addedName": "{{name}} hozzáadva",
+    "packPlaceholder": "mastodon.social, misskey.io vagy JSON link",
+    "packHint": "Importál minden emojit egy Mastodon, Pleroma, Akkoma vagy Misskey szerverről, vagy bármilyen emoji-JSON listáról. A már használatban lévő nevek átugorva.",
+    "importPack": "Importálás",
+    "packAdded": "{{count}} emoji hozzáadva ({{skipped}} kihagyva)",
+    "errors": {
+      "signIn": "Emoji hozzáadásához jelentkezz be",
+      "fileType": "PNG, GIF, WebP vagy jpeg kép használata",
+      "fileSize": "A képeknek 2 MB-osnak vagy kisebbnek kell lenniük",
+      "invalid": "A nevek 2-64 betűt, számot,_, + vagy - használnak",
+      "badImage": "Ez a link nem töltődött be képként",
+      "addFailed": "Nem sikerült hozzáadni ezt az emojit. Próbálkozz újra.",
+      "packEmpty": "Nem található emoji ezen a címen",
+      "shortcodeTaken": "{{name}} már foglalt",
+      "shortcodeStandard": "{{name}} már szabványos emoji"
     }
   }
 }

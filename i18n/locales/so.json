@@ -6756,7 +6756,8 @@
       "activities": "Hawlo",
       "objects": "Walxo",
       "symbols": "Calaamado",
-      "flags": "Calanno"
+      "flags": "Calanno",
+      "custom": "Custom"
     },
     "tone": {
       "default": "Caadi",
@@ -6765,6 +6766,32 @@
       "medium": "Midab maqaar dhexe ah",
       "mediumDark": "Midab maqaar madow-dhexe ah",
       "dark": "Midab maqaar madow ah"
+    },
+    "addCustom": "Ku dar emoji caadadii",
+    "customEmpty": "No caadadii emoji yet. Ku dar mid ka mid ah file, link, Discord, Slack, 7TV ama server Mastodon ah.",
+    "back": "Dib u noqoshada",
+    "modeSingle": "Mid emoji",
+    "modePack": "Soo dejiso baakad",
+    "upload": "Sawirka soo gali",
+    "linkPlaceholder": "…ama ku dheji xiriiriye ama koodhka emoji ee Discord",
+    "namePlaceholder": "Magac",
+    "singleHint": "PNG, GIF, WebP ama JPEG ilaa 2 MB. Xiriiriyeyaasha ka yimid Discord, Slack, 7TV, BetterTTV, FrankerFaceZ, emoji.gg ama sawir kasta sidoo kale waa shaqeeyaan.",
+    "add": "Ku dar emoji",
+    "addedName": "Waxaa lagu daray {{name}}",
+    "packPlaceholder": "mastodon.social, misskey.io ama xiriiriye JSON ah",
+    "packHint": "Waxay soo dejisaa dhammaan emoji-yada ka yimid serverka Mastodon, Pleroma, Akkoma ama Misskey, ama liis kasta oo emoji JSON ah. Magacyada mar hore jira waa la boodaa.",
+    "importPack": "Soo dejiso",
+    "packAdded": "Waxaa lagu daray {{count}} emoji ({{skipped}} waa la booday)",
+    "errors": {
+      "signIn": "Gasho si aad ugu darto emoji",
+      "fileType": "Isticmaal sawir PNG, GIF, WebP ama JPEG ah",
+      "fileSize": "Sawiradu waa inay ahaadaan 2 MB ama ka yar yihiin",
+      "invalid": "Magacyadu waxay isticmaalaan 2 ilaa 64 xaraf, nambaro, _, + ama -",
+      "badImage": "Xiriiriyahaasi ma soo qaadin sawir",
+      "addFailed": "Ma awoodin inaan ku daro emoji-gaas. Isku day mar kale.",
+      "packEmpty": "Ma helin wax emoji ah oo ku yaal cinwaankaas",
+      "shortcodeTaken": "{{name}} horay ayaa loo qaaday",
+      "shortcodeStandard": "{{name}} durba waa emoji caadi ah"
     }
   }
 }

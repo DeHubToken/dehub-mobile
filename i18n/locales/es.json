@@ -6756,7 +6756,8 @@
       "activities": "Actividades",
       "objects": "Objetos",
       "symbols": "Símbolos",
-      "flags": "Banderas"
+      "flags": "Banderas",
+      "custom": "Personalizado"
     },
     "tone": {
       "default": "Predeterminado",
@@ -6765,6 +6766,32 @@
       "medium": "Tono de piel medio",
       "mediumDark": "Tono de piel oscuro medio",
       "dark": "Tono de piel oscuro"
+    },
+    "addCustom": "Añadir emoji personalizado",
+    "customEmpty": "Todavía no hay ningún emoji personalizado. Añade uno de un archivo, un enlace, Discord, Slack, 7TV o un servidor Mastodon.",
+    "back": "Atrás",
+    "modeSingle": "Un emoji",
+    "modePack": "Importar un paquete",
+    "upload": "Cargar imagen",
+    "linkPlaceholder": "...o pegar un enlace o un código emoji de Discord",
+    "namePlaceholder": "Nombre",
+    "singleHint": "PNG, GIF, WebP o JPEG de hasta 2 MB. Los enlaces de Discord, Slack, 7TV, BetterTTV, FrankerFaceZ, emoji.gg o cualquier imagen también funcionan.",
+    "add": "Agregar emoji",
+    "addedName": "Añadido {{name}}",
+    "packPlaceholder": "mastodon.social, misskey.io o un enlace JSON",
+    "packHint": "Importa todos los emojis de un servidor Mastodon, Pleroma, Akkoma o Misskey, o de cualquier lista JSON de emojis. Los nombres que ya están en uso se omiten.",
+    "importPack": "Importar",
+    "packAdded": "Añadido {{count}} emoji ({{skipped}} omitido)",
+    "errors": {
+      "signIn": "Inicia sesión para añadir emoji",
+      "fileType": "Usar una imagen PNG, GIF, WebP o JPEG",
+      "fileSize": "Las imágenes deben tener 2 MB o menos",
+      "invalid": "Los nombres usan de 2 a 64 letras, números, _, + o -",
+      "badImage": "Ese enlace no se cargó como imagen",
+      "addFailed": "No se ha podido añadir ese emoji. Inténtalo de nuevo.",
+      "packEmpty": "No se ha encontrado ningún emoji en esa dirección",
+      "shortcodeTaken": "{{name}} ya está en uso",
+      "shortcodeStandard": "{{name}} ya es un emoji estándar"
     }
   }
 }

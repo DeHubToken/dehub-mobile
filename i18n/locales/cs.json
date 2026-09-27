@@ -6760,7 +6760,8 @@
       "activities": "Aktivity",
       "objects": "Předměty",
       "symbols": "Symboly",
-      "flags": "Vlajky"
+      "flags": "Vlajky",
+      "custom": "Vlastní"
     },
     "tone": {
       "default": "Výchozí",
@@ -6769,6 +6770,32 @@
       "medium": "Střední odstín pleti",
       "mediumDark": "Středně tmavý odstín pleti",
       "dark": "Tmavý odstín pleti"
+    },
+    "addCustom": "Přidat vlastní emoji",
+    "customEmpty": "Žádné vlastní emoji. Přidejte soubor, odkaz, Discord, Slack, 7TV nebo server Mastodon.",
+    "back": "Zpět",
+    "modeSingle": "Jedno emoji",
+    "modePack": "Importovat balíček",
+    "upload": "Nahrát obrázek",
+    "linkPlaceholder": "…nebo vložte odkaz nebo kód emoji pro Discord",
+    "namePlaceholder": "Název",
+    "singleHint": "PNG, GIF, WebP nebo JPEG do 2 MB. Odkazy z Discordu, Slacku, 7TV, BetterTTV, FrankerFaceZ, emoji.gg nebo jakýkoli obrázek fungují také.",
+    "add": "Přidat emoji",
+    "addedName": "Přidáno {{name}}",
+    "packPlaceholder": "mastodon.social, misskey.io nebo JSON odkaz",
+    "packHint": "Importuje každé emoji ze serveru Mastodon, Pleroma, Akkoma nebo Misskey, nebo z jakéhokoli seznamu emoji v JSON formátu. Názvy, které již existují, jsou přeskočeny.",
+    "importPack": "Import",
+    "packAdded": "Přidáno {{count}} emoji ({{skipped}} přeskočeno)",
+    "errors": {
+      "signIn": "Přihlaste se pro přidání emoji",
+      "fileType": "Použijte obrázek PNG, GIF, WebP nebo JPEG",
+      "fileSize": "Obrázky musí mít velikost 2 MB nebo méně",
+      "invalid": "Názvy používají 2 až 64 písmen, číslic, _, + nebo -",
+      "badImage": "Tento odkaz se nenačetl jako obrázek",
+      "addFailed": "Nepodařilo se přidat toto emoji. Zkuste to znovu.",
+      "packEmpty": "Na této adrese nebylo nalezeno žádné emoji",
+      "shortcodeTaken": "{{name}} je již obsazeno",
+      "shortcodeStandard": "{{name}} je již standardní emoji"
     }
   }
 }

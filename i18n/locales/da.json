@@ -6760,7 +6760,8 @@
       "activities": "Aktiviteter",
       "objects": "Genstande",
       "symbols": "Symboler",
-      "flags": "Flag"
+      "flags": "Flag",
+      "custom": "Tilpasset"
     },
     "tone": {
       "default": "Standard",
@@ -6769,6 +6770,32 @@
       "medium": "Mellem hudfarve",
       "mediumDark": "Mellemmørk hudfarve",
       "dark": "Mørk hudfarve"
+    },
+    "addCustom": "Tilføj brugerdefineret emoji",
+    "customEmpty": "Ingen brugerdefineret emoji endnu. Tilføj en fra en fil, et link, Discord, Slack, 7TV eller en Mastodon-server.",
+    "back": "Tilbage",
+    "modeSingle": "En emoji",
+    "modePack": "Importer en pakke",
+    "upload": "Upload billede",
+    "linkPlaceholder": "…eller indsæt et link eller en Discord emoji-kode",
+    "namePlaceholder": "Navn",
+    "singleHint": "PNG, GIF, WebP eller JPEG op til 2 MB. Links fra Discord, Slack, 7TV, BetterTTV, FrankerFaceZ, emoji.gg eller ethvert billede virker også.",
+    "add": "Tilføj emoji",
+    "addedName": "Tilføjet {{name}}",
+    "packPlaceholder": "mastodon.social, misskey.io eller et JSON-link",
+    "packHint": "Importerer hver emoji fra en Mastodon, Pleroma, Akkoma eller Misskey server, eller fra enhver emoji JSON-liste. Navne, der allerede er i brug, springes over.",
+    "importPack": "Importér",
+    "packAdded": "Tilføjet {{count}} emoji ({{skipped}} sprang over)",
+    "errors": {
+      "signIn": "Log ind for at tilføje emoji",
+      "fileType": "Brug et PNG, GIF, WebP eller JPEG billede",
+      "fileSize": "Billeder skal være 2 MB eller mindre",
+      "invalid": "Navne bruger 2 til 64 bogstaver, tal, _, + eller -",
+      "badImage": "Dette link blev ikke indlæst som et billede",
+      "addFailed": "Kunne ikke tilføje denne emoji. Prøv igen.",
+      "packEmpty": "Ingen emoji fundet på denne adresse",
+      "shortcodeTaken": "{{name}} er allerede taget",
+      "shortcodeStandard": "{{name}} er allerede en standardemoji"
     }
   }
 }

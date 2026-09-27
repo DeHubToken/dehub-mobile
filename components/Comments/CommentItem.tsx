@@ -57,6 +57,7 @@ import LinkPreviewCard from "../common/LinkPreviewCard";
 import { findDehubLinks, stripDehubLinkMatches } from "../../libs/dehub-links";
 import { AssetRefCards, MAX_ASSET_CARDS_PER_MESSAGE } from "../common/AssetRefCard";
 import { findAssetRefs, stripAssetRefs } from "../../libs/asset-refs";
+import { expandEmojiTokens } from "../common/EmojiText";
 
 const ICON_MUTED = "#6F7174";
 const ICON_ACTIVE = "#F9FBFF";
@@ -585,7 +586,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
                     {part.text}
                   </Text>
                 ) : (
-                  <Text key={idx}>{part.text}</Text>
+                  <Text key={idx}>{expandEmojiTokens(part.text, { fontSize: 16, keyPrefix: `em-${idx}` })}</Text>
                 )
               )}
             </Animated.Text>

@@ -11,6 +11,7 @@ import { hasValidTLD } from "../../libs/tlds";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import { stripSoundtrackTag } from "../../libs/parseSoundtrack";
 import { openCategoryFeed } from "../../libs/openCategoryFeed";
+import { expandEmojiTokens } from "../common/EmojiText";
 
 type Segment =
   | { type: "text"; value: string }
@@ -174,7 +175,7 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
   const descSegments = useMemo(() => parseTextToSegments(cleanDescription), [cleanDescription]);
 
   const renderSegments = useCallback(
-    (segments: Segment[], keyPrefix: string) =>
+    (segments: Segment[], keyPrefix: string, fontSize: number) =>
       segments.map((seg, idx) => {
         if (seg.type === "link") {
           return (
@@ -228,7 +229,11 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
             </Text>
           );
         }
-        return <Text key={`${keyPrefix}-${idx}`}>{seg.value}</Text>;
+        return (
+          <Text key={`${keyPrefix}-${idx}`}>
+            {expandEmojiTokens(seg.value, { fontSize, keyPrefix: `${keyPrefix}-e${idx}` })}
+          </Text>
+        );
       }),
     [handleOpenLink, handleMentionPress, handleCashtagPress, handleHashtagPress, flagged],
   );
@@ -253,7 +258,7 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
           numberOfLines={fullContent ? undefined : 2}
           ellipsizeMode="tail"
         >
-          {renderSegments(titleSegments, "t")}
+          {renderSegments(titleSegments, "t", 16.8)}
         </Text>
       )}
 
@@ -269,7 +274,7 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
             ellipsizeMode="tail"
             onTextLayout={handleTextLayout}
           >
-            {renderSegments(descSegments, "d")}
+            {renderSegments(descSegments, "d", 15.75)}
           </Text>
           {showSeeMore && !fullContent && (
             <TouchableOpacity onPress={toggleExpanded} activeOpacity={0.7}>

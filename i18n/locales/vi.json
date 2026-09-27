@@ -6844,7 +6844,8 @@
       "activities": "Hoạt động",
       "objects": "Đồ vật",
       "symbols": "Biểu tượng",
-      "flags": "Cờ"
+      "flags": "Cờ",
+      "custom": "Tùy chỉnh"
     },
     "tone": {
       "default": "Mặc định",
@@ -6853,6 +6854,32 @@
       "medium": "Tông da trung bình",
       "mediumDark": "Tông da tối vừa",
       "dark": "Tông da tối"
+    },
+    "addCustom": "Thêm biểu tượng cảm xúc tùy chỉnh",
+    "customEmpty": "Chưa có biểu tượng cảm xúc tùy chỉnh nào. Thêm một từ tệp, liên kết, Discord, Slack, 7TV hoặc máy chủ Mastodon.",
+    "back": "Quay lại",
+    "modeSingle": "Một biểu tượng cảm xúc",
+    "modePack": "Nhập gói",
+    "upload": "Tải ảnh lên",
+    "linkPlaceholder": "…hoặc dán một liên kết hoặc mã emoji Discord",
+    "namePlaceholder": "Tên",
+    "singleHint": "PNG, GIF, WebP hoặc JPEG tối đa 2 MB. Liên kết từ Discord, Slack, 7TV, BetterTTV, FrankerFaceZ, emoji.gg hoặc bất kỳ hình ảnh nào cũng hoạt động.",
+    "add": "Thêm emoji",
+    "addedName": "Đã thêm {{name}}",
+    "packPlaceholder": "mastodon.social, misskey.io hoặc liên kết JSON",
+    "packHint": "Nhập mọi emoji từ máy chủ Mastodon, Pleroma, Akkoma hoặc Misskey, hoặc từ bất kỳ danh sách JSON emoji nào. Tên đã tồn tại sẽ bị bỏ qua.",
+    "importPack": "Nhập",
+    "packAdded": "Đã thêm {{count}} emoji ({{skipped}} bị bỏ qua)",
+    "errors": {
+      "signIn": "Đăng nhập để thêm emoji",
+      "fileType": "Sử dụng hình ảnh PNG, GIF, WebP hoặc JPEG",
+      "fileSize": "Hình ảnh phải có kích thước 2 MB trở xuống",
+      "invalid": "Tên sử dụng từ 2 đến 64 chữ cái, số, _, + hoặc -",
+      "badImage": "Liên kết đó không tải được dưới dạng hình ảnh",
+      "addFailed": "Không thể thêm emoji đó. Thử lại.",
+      "packEmpty": "Không tìm thấy emoji nào tại địa chỉ đó",
+      "shortcodeTaken": "{{name}} đã được sử dụng",
+      "shortcodeStandard": "{{name}} đã là một emoji tiêu chuẩn"
     }
   }
 }

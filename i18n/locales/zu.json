@@ -6787,7 +6787,8 @@
       "activities": "Imisebenzi",
       "objects": "Izinto",
       "symbols": "Izimpawu",
-      "flags": "Amafulegi"
+      "flags": "Amafulegi",
+      "custom": "Ngokwezifiso"
     },
     "tone": {
       "default": "Okuzenzakalelayo",
@@ -6796,6 +6797,32 @@
       "medium": "Ibala lesikhumba eliphakathi",
       "mediumDark": "Ibala lesikhumba elimnyama kancane",
       "dark": "Ibala lesikhumba elimnyama"
+    },
+    "addCustom": "Engeza i-emoji yangokwezifiso",
+    "customEmpty": "Ayikho i-emoji yangokwezifiso okwamanje. Engeza eyodwa kusuka kufayela, isixhumanisi, i-Discord, i-Slack, i-7TV noma iseva ye-Mastodon.",
+    "back": "Emuva",
+    "modeSingle": "I-emoji eyodwa",
+    "modePack": "Ngenisa iphakethe",
+    "upload": "Faka isithombe",
+    "linkPlaceholder": "...noma unamathisele ilinki noma ikhodi ye-emoji ye-Discord",
+    "namePlaceholder": "Ibizo-lokusetshenziswa",
+    "singleHint": "I-PNG, i-GIF, i-WebP noma i-JPEG kuze kufike ku-2 MB. Amalinki avela ku-Discord, Slack, 7TV, BetterTTV, FrankerFaceZ, emoji.gg noma yimuphi umsebenzi wesithombe nawo.",
+    "add": "Faka i-emoji",
+    "addedName": "Kufakiwe {{name}}",
+    "packPlaceholder": "mastodon.social, misskey.io noma ilinki ye-JSON",
+    "packHint": "Ngenisa yonke i-emoji kusuka kuseva ye-Mastodon, i-Pleroma, i-Akkoma noma i-Misskey, noma kusuka kunoma yiluphi uhlu lwe-emoji JSON. Amagama asevele esetshenziswa ayeqiwa.",
+    "importPack": "Ngenisa",
+    "packAdded": "Kufakiwe {{count}} emoji ({{skipped}} kweqiwe)",
+    "errors": {
+      "signIn": "Ngena ngemvume ukuze ufake i-emoji",
+      "fileType": "Sebenzisa isithombe se-PNG, se-GIF, se-WebP noma se-JPEG",
+      "fileSize": "Izithombe kufanele zibe ngu-2 MB noma zibe zincane",
+      "invalid": "Amagama asebenzisa izinhlamvu ezingu-2 kuya kwezingu-64, izinombolo, _, + noma -",
+      "badImage": "Leyo linki ayifakwanga njengesithombe",
+      "addFailed": "Ayikwazanga ukufaka leyo emoji. Zama futhi.",
+      "packEmpty": "Ayikho i-emoji etholakele kulelo kheli",
+      "shortcodeTaken": "{{name}} isivele ithathiwe",
+      "shortcodeStandard": "{{name}} isivele iyi-emoji evamile"
     }
   }
 }

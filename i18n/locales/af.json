@@ -6881,7 +6881,8 @@
       "activities": "Aktiwiteite",
       "objects": "Voorwerpe",
       "symbols": "Simbole",
-      "flags": "Vlae"
+      "flags": "Vlae",
+      "custom": "Pasmaak"
     },
     "tone": {
       "default": "Verstek",
@@ -6890,6 +6891,32 @@
       "medium": "Medium veltoon",
       "mediumDark": "Medium-donker veltoon",
       "dark": "Donker veltoon"
+    },
+    "addCustom": "Voeg persoonlike emoji by",
+    "customEmpty": "Nog geen persoonlike emoji's nie. Voeg een van 'n lêer, 'n skakel, Discord, Slack, 7TV of 'n Mastodon-bediener by.",
+    "back": "Terug",
+    "modeSingle": "Een emoji",
+    "modePack": "Voer 'n pakkie in",
+    "upload": "Laai op/Voeg foto by",
+    "linkPlaceholder": "...of plak 'n skakel of 'n Discord emoji-kode",
+    "namePlaceholder": "naam",
+    "singleHint": "PNG, GIF, WebP of JPEG tot 2 MB. Skakels van Discord, Slack, 7TV, BetterTTV, FrankerFaceZ, emoji.gg of enige beeld werk te.",
+    "add": "Voeg emoji's toe",
+    "addedName": "{{name}} bygevoeg",
+    "packPlaceholder": "mastodon.social, misskey.io of 'n JSON skakel",
+    "packHint": "Voer elke emoji uit 'n Mastodon-, Pleroma-, Akkoma- of Misskey-bediener, of uit enige emoji JSON-lys. Name wat reeds gebruik is, is weggelaat.",
+    "importPack": "Invoer",
+    "packAdded": "Bygevoeg {{count}} emoji ({{skipped}} oorgeslaan)",
+    "errors": {
+      "signIn": "Teken in om emoji by te voeg",
+      "fileType": "Gebruik 'n PNG-, GIF-, WebP- of JPEG-beeld",
+      "fileSize": "Beelde moet 2 MB of kleiner wees",
+      "invalid": "Name gebruik 2 tot 64 letters, nommers, _, + of -",
+      "badImage": "Die skakel het nie as 'n beeld gelaai nie",
+      "addFailed": "Kon nie daardie emoji byvoeg nie. Probeer weer.",
+      "packEmpty": "Geen emoji's by daardie adres gevind nie",
+      "shortcodeTaken": "{{name}} is reeds geneem",
+      "shortcodeStandard": "{{name}} is reeds 'n standaard emoji"
     }
   }
 }

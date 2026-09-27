@@ -6756,7 +6756,8 @@
       "activities": "Etkinlikler",
       "objects": "Nesneler",
       "symbols": "Semboller",
-      "flags": "Bayraklar"
+      "flags": "Bayraklar",
+      "custom": "Özel"
     },
     "tone": {
       "default": "Varsayılan",
@@ -6765,6 +6766,32 @@
       "medium": "Orta ten rengi",
       "mediumDark": "Orta koyu ten rengi",
       "dark": "Koyu ten rengi"
+    },
+    "addCustom": "Özel emoji ekle",
+    "customEmpty": "Henüz özel emoji yok. Bir dosyadan, bağlantıdan, Discord, Slack, 7TV veya Mastodon sunucusundan bir tane ekleyin.",
+    "back": "Geri",
+    "modeSingle": "Bir emoji",
+    "modePack": "Bir paketi içe aktar",
+    "upload": "Resim Yükle",
+    "linkPlaceholder": "…veya bir bağlantı veya Discord emoji kodu yapıştırın",
+    "namePlaceholder": "adADI",
+    "singleHint": "2 MB'a kadar PNG, GIF, WebP veya JPEG. Discord, Slack, 7TV, BetterTTV, FrankerFaceZ, emoji.gg veya herhangi bir görselden bağlantılar da çalışır.",
+    "add": "Emoji ekle",
+    "addedName": "{{name}} eklendi",
+    "packPlaceholder": "mastodon.social, misskey.io veya JSON bağlantısı",
+    "packHint": "Her emojiyi bir Mastodon, Pleroma, Akkoma veya Misskey sunucusundan veya herhangi bir emoji JSON listesinden içe aktarır. Halihazırda kullanımda olan adlar atlandı.",
+    "importPack": "İthal",
+    "packAdded": "{{count}} emoji eklendi ({{skipped}} atlandı)",
+    "errors": {
+      "signIn": "Emoji eklemek için oturum açın",
+      "fileType": "PNG, GIF, WebP veya JPEG görüntüsü kullanın",
+      "fileSize": "Resimler 2 MB veya daha küçük olmalıdır",
+      "invalid": "İsimler 2 ila 64 harf, sayı, _, + veya - kullanır",
+      "badImage": "Bu bağlantı resim olarak yüklenmedi",
+      "addFailed": "Bu emoji eklenemedi. Tekrar deneyin.",
+      "packEmpty": "Bu adreste emoji bulunamadı",
+      "shortcodeTaken": "{{name}} zaten alınmış",
+      "shortcodeStandard": "{{name}} zaten standart bir emoji"
     }
   }
 }

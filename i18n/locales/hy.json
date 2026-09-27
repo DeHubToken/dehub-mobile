@@ -6756,7 +6756,8 @@
       "activities": "Գործողություններ",
       "objects": "Առարկաներ",
       "symbols": "Նշաններ",
-      "flags": "Դրոշներ"
+      "flags": "Դրոշներ",
+      "custom": "Անհատականացված"
     },
     "tone": {
       "default": "Լռելյայն",
@@ -6765,6 +6766,32 @@
       "medium": "Միջին մաշկի երանգ",
       "mediumDark": "Միջին-մուգ մաշկի երանգ",
       "dark": "Մուգ մաշկի երանգ"
+    },
+    "addCustom": "Ավելացնել անհատականացված էմոջի",
+    "customEmpty": "Անհատականացված էմոջի դեռ չկա ։ Ավելացրեք մեկը ֆայլից, հղումից, Discord, Slack, 7TV կամ Mastodon սերվերից:",
+    "back": "Հետ",
+    "modeSingle": "Մեկ էմոջի",
+    "modePack": "Ներմուծել փաթեթ",
+    "upload": "Բեռնել նկար",
+    "linkPlaceholder": "…կամ տեղադրեք հղում կամ Discord էմոջիի կոդ",
+    "namePlaceholder": "Պայմանանիշ",
+    "singleHint": "PNG, gif, WebP կամ JPEG մինչև 2 ՄԲ: Հղումներ Discord - ից, Slack - ից, 7TV - ից, BetterTTV - ից, FrankerFaceZ - ից, emoji.gg - ից կամ ցանկացած պատկերից ։",
+    "add": "Ավելացնել էմոջի",
+    "addedName": "Ավելացվել է {{name}}",
+    "packPlaceholder": "mastodon.social, misskey.io կամ JSON հղում",
+    "packHint": "Ներմուծում է յուրաքանչյուր էմոջի Mastodon, Pleroma, Akkoma կամ Misskey սերվերից կամ JSON էմոջիների ցանկացած ցանկից: Արդեն օգտագործված անունները բաց են թողնված:",
+    "importPack": "Ներմուծել",
+    "packAdded": "Ավելացվել է {{count}} էմոջի ({{skipped}} բաց թողնված)",
+    "errors": {
+      "signIn": "Մուտք գործեք էմոջի ավելացնելու համար",
+      "fileType": "Օգտագործեք PNG, gif, WebP կամ JPEG պատկեր",
+      "fileSize": "Պատկերները պետք է լինեն 2 ՄԲ կամ ավելի փոքր",
+      "invalid": "Անուններն օգտագործում են 2 - ից 64 տառ, թվեր, _, + կամ -",
+      "badImage": "Այդ հղումը չի բեռնել որպես պատկեր",
+      "addFailed": "Չհաջողվեց ավելացնել այդ էմոջին: Կրկին փորձեք:",
+      "packEmpty": "Այդ հասցեում էմոջի չի գտնվել",
+      "shortcodeTaken": "{{name}}- ն արդեն վերցված է",
+      "shortcodeStandard": "{{name}}-ն արդեն ստանդարտ էմոջի է"
     }
   }
 }

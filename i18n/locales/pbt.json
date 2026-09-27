@@ -6752,7 +6752,8 @@
       "activities": "فعالیتونه",
       "objects": "شیان",
       "symbols": "سمبولونه",
-      "flags": "بیرغونه"
+      "flags": "بیرغونه",
+      "custom": "ځانګړي"
     },
     "tone": {
       "default": "ډیفالټ",
@@ -6761,6 +6762,32 @@
       "medium": "د پوستکي منځنی رنګ",
       "mediumDark": "د پوستکي منځنی تیاره رنګ",
       "dark": "د پوستکي تیاره رنګ"
+    },
+    "addCustom": "ځانګړی اېموجي زيات کړئ",
+    "customEmpty": "تر اوسه هېڅ ځانګړی اېموجي نشته. له فايل، لينک، Discord، Slack، 7TV يا Mastodon سرور څخه يو زيات کړئ.",
+    "back": "شاته",
+    "modeSingle": "يو اېموجي",
+    "modePack": "بسته راوړئ",
+    "upload": "انځور پورته کړئ",
+    "linkPlaceholder": "…يا يو لينک يا د Discord اېموجي کوډ ولګوئ",
+    "namePlaceholder": "نوم",
+    "singleHint": "PNG، GIF، WebP يا JPEG تر 2 MB پورې. د Discord، Slack، 7TV، BetterTTV، FrankerFaceZ، emoji.gg يا هر انځور لينکونه هم کار کوي.",
+    "add": "اېموجي زيات کړئ",
+    "addedName": "{{name}} زيات شو",
+    "packPlaceholder": "mastodon.social، misskey.io يا د JSON لينک",
+    "packHint": "له Mastodon، Pleroma، Akkoma يا Misskey سرور، يا له هر اېموجي JSON لېست څخه ټول اېموجي راوړي. هغه نومونه چې دمخه نيول شوي پرېښودل کېږي.",
+    "importPack": "راوړئ",
+    "packAdded": "{{count}} اېموجي زيات شول ({{skipped}} پرېښودل شول)",
+    "errors": {
+      "signIn": "د اېموجي زياتولو لپاره ننوځئ",
+      "fileType": "PNG، GIF، WebP يا JPEG انځور وکاروئ",
+      "fileSize": "انځورونه بايد 2 MB يا لږ وي",
+      "invalid": "نومونه له 2 تر 64 تورو، عددونو، _، + يا - څخه جوړېږي",
+      "badImage": "هغه لينک د انځور په توګه پورته نه شو",
+      "addFailed": "اېموجي زيات نه شو. بيا هڅه وکړئ.",
+      "packEmpty": "په هغه پته کې هېڅ اېموجي ونه موندل شو",
+      "shortcodeTaken": "{{name}} دمخه نيول شوی",
+      "shortcodeStandard": "{{name}} دمخه يو معياري اېموجي دی"
     }
   }
 }

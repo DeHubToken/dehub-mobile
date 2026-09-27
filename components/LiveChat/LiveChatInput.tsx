@@ -12,6 +12,7 @@ import SmartImage from "../common/SmartImage";
 import { useTranslation } from "react-i18next";
 import Icon from "../ui/Icon";
 import LiveChatAttachSheet from "./LiveChatAttachSheet";
+import EmojiSheet from "../Upload/EmojiSheet";
 import MentionSuggestions from "../common/MentionSuggestions";
 import { useMentions } from "../../hooks/useMentions";
 import { sendAIChat } from "../../services/ai.service";
@@ -89,6 +90,7 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
   const { t } = useTranslation();
   const [text, setText] = useState("");
   const [attachOpen, setAttachOpen] = useState(false);
+  const [emojiSheetOpen, setEmojiSheetOpen] = useState(false);
   const mentions = useMentions(text, setText);
   const [cooldown, setCooldown] = useState(false);
   const [enhancing, setEnhancing] = useState(false);
@@ -436,6 +438,16 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
         onPickImage={handlePickImage}
         onPickGif={handlePickGif}
         onPickEmoji={handlePickEmoji}
+        onMoreEmoji={() => {
+          // One modal at a time: let the attach sheet finish closing first.
+          setAttachOpen(false);
+          setTimeout(() => setEmojiSheetOpen(true), 250);
+        }}
+      />
+      <EmojiSheet
+        visible={emojiSheetOpen}
+        onClose={() => setEmojiSheetOpen(false)}
+        onSelect={handlePickEmoji}
       />
     </View>
   );
