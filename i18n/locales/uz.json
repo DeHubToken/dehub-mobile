@@ -6793,5 +6793,33 @@
     "transferredConfirming": "Tokenlaringiz o'tkazildi. To'lovni tez orada tasdiqlaymiz.",
     "sentUnconfirmed": "Tokenlaringiz yuborildi, ammo to'lovni tasdiqlay olmadik. Qayta to'lamang.",
     "transferIncomplete": "Token oʻtkazmasi yakunlanmadi. Keyingi pullik postingizdan oldin sizdan yana soʻraladi."
+  },
+  "emojiPicker": {
+    "searchEmoji": "Emoji qidirish",
+    "noEmoji": "Emoji topilmadi",
+    "searchResults": "Qidiruv natijalari",
+    "skinTone": "Teri rangi",
+    "moreReactions": "Koʻproq reaksiyalar",
+    "group": {
+      "recent": "Yaqinda ishlatilgan",
+      "dehub": "DeHub tanlovi",
+      "smileys": "Smayllar va hissiyotlar",
+      "people": "Odamlar va tana",
+      "animals": "Hayvonlar va tabiat",
+      "food": "Taom va ichimlik",
+      "travel": "Sayohat va joylar",
+      "activities": "Faoliyatlar",
+      "objects": "Buyumlar",
+      "symbols": "Belgilar",
+      "flags": "Bayroqlar"
+    },
+    "tone": {
+      "default": "Standart",
+      "light": "Och teri rangi",
+      "mediumLight": "Oʻrtacha och teri rangi",
+      "medium": "Oʻrtacha teri rangi",
+      "mediumDark": "Oʻrtacha toʻq teri rangi",
+      "dark": "Toʻq teri rangi"
+    }
   }
 }

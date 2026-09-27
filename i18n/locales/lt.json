@@ -6738,5 +6738,33 @@
     "transferredConfirming": "Jūsų atpažinimo ženklai perkelti. Netrukus baigsime patvirtinti mokėjimą.",
     "sentUnconfirmed": "Jūsų atpažinimo ženklai išsiųsti, bet negalėjome patvirtinti mokėjimo. Daugiau nemokėti.",
     "transferIncomplete": "Atpažinimo ženklo perdavimas nebaigtas. Jūsų bus paprašyta dar kartą prieš kitą mokamą įrašą."
+  },
+  "emojiPicker": {
+    "searchEmoji": "Ieškoti jaustukų",
+    "noEmoji": "Jaustukų nerasta",
+    "searchResults": "Paieškos rezultatai",
+    "skinTone": "Odos atspalvis",
+    "moreReactions": "Daugiau reakcijų",
+    "group": {
+      "recent": "Neseniai naudoti",
+      "dehub": "DeHub pasirinkimai",
+      "smileys": "Šypsenėlės ir emocijos",
+      "people": "Žmonės ir kūnas",
+      "animals": "Gyvūnai ir gamta",
+      "food": "Maistas ir gėrimai",
+      "travel": "Kelionės ir vietos",
+      "activities": "Veikla",
+      "objects": "Daiktai",
+      "symbols": "Simboliai",
+      "flags": "Vėliavos"
+    },
+    "tone": {
+      "default": "Numatytasis",
+      "light": "Šviesus odos atspalvis",
+      "mediumLight": "Vidutiniškai šviesus odos atspalvis",
+      "medium": "Vidutinis odos atspalvis",
+      "mediumDark": "Vidutiniškai tamsus odos atspalvis",
+      "dark": "Tamsus odos atspalvis"
+    }
   }
 }

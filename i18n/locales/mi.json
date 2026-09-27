@@ -6737,5 +6737,33 @@
     "transferredConfirming": "Kua whakawhitihia o tohu. Ka mutu te whakamana i te utu i te wa poto.",
     "sentUnconfirmed": "I tukuna o tohu, engari kaore i taea e matou te whakamana i te utu. Kaua e utu ano.",
     "transferIncomplete": "Kaore i oti te whakawhiti tohu. Ka ui koe ano i mua i to koutou pou utu e whai ake nei."
+  },
+  "emojiPicker": {
+    "searchEmoji": "Rapua he emoji",
+    "noEmoji": "Kāore he emoji i kitea",
+    "searchResults": "Ngā hua rapu",
+    "skinTone": "Tae kiri",
+    "moreReactions": "Ētahi atu urupare",
+    "group": {
+      "recent": "Nō nā tata nei",
+      "dehub": "Ngā kōwhiringa a DeHub",
+      "smileys": "Ngā kata me ngā kare ā-roto",
+      "people": "Tāngata me te tinana",
+      "animals": "Kararehe me te taiao",
+      "food": "Kai me te inu",
+      "travel": "Haerenga me ngā wāhi",
+      "activities": "Ngā mahi",
+      "objects": "Ngā taonga",
+      "symbols": "Ngā tohu",
+      "flags": "Ngā haki"
+    },
+    "tone": {
+      "default": "Taunoa",
+      "light": "Tae kiri māmā",
+      "mediumLight": "Tae kiri māmā-waenga",
+      "medium": "Tae kiri waenga",
+      "mediumDark": "Tae kiri pōuri-waenga",
+      "dark": "Tae kiri pōuri"
+    }
   }
 }

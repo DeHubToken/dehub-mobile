@@ -6742,5 +6742,33 @@
     "transferredConfirming": "Dine tokens er blevet overført. Vi er snart færdige med at bekræfte betalingen.",
     "sentUnconfirmed": "Dine poletter blev sendt, men vi kunne ikke bekræfte betalingen. Betal ikke igen.",
     "transferIncomplete": "Tokenoverførslen blev ikke gennemført. Du vil blive spurgt igen før dit næste betalte opslag."
+  },
+  "emojiPicker": {
+    "searchEmoji": "Søg efter emoji",
+    "noEmoji": "Ingen emoji fundet",
+    "searchResults": "Søgeresultater",
+    "skinTone": "Hudfarve",
+    "moreReactions": "Flere reaktioner",
+    "group": {
+      "recent": "Senest brugt",
+      "dehub": "DeHub-favoritter",
+      "smileys": "Smileys og følelser",
+      "people": "Mennesker og krop",
+      "animals": "Dyr og natur",
+      "food": "Mad og drikke",
+      "travel": "Rejser og steder",
+      "activities": "Aktiviteter",
+      "objects": "Genstande",
+      "symbols": "Symboler",
+      "flags": "Flag"
+    },
+    "tone": {
+      "default": "Standard",
+      "light": "Lys hudfarve",
+      "mediumLight": "Mellemlys hudfarve",
+      "medium": "Mellem hudfarve",
+      "mediumDark": "Mellemmørk hudfarve",
+      "dark": "Mørk hudfarve"
+    }
   }
 }

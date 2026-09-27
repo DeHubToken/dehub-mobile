@@ -6769,5 +6769,33 @@
     "transferredConfirming": "Amathokheni akho adlulisiwe. Sizoqedela ukuqinisekisa ukukhokha maduzane.",
     "sentUnconfirmed": "Amathokheni akho athunyelwe kodwa asikwazanga ukuqinisekisa ukukhokha. Ungakhokhi futhi.",
     "transferIncomplete": "Ukudluliselwa kwethokheni akuzange kuqedwe. Uzocelwa futhi ngaphambi kwephosti yakho elandelayo ekhokhelwayo."
+  },
+  "emojiPicker": {
+    "searchEmoji": "Sesha ama-emoji",
+    "noEmoji": "Awekho ama-emoji atholakele",
+    "searchResults": "Imiphumela yosesho",
+    "skinTone": "Ibala lesikhumba",
+    "moreReactions": "Okunye ukusabela",
+    "group": {
+      "recent": "Okusetshenziswe muva",
+      "dehub": "Okukhethwe yi-DeHub",
+      "smileys": "Ukumamatheka nemizwa",
+      "people": "Abantu nomzimba",
+      "animals": "Izilwane nemvelo",
+      "food": "Ukudla neziphuzo",
+      "travel": "Ukuhamba nezindawo",
+      "activities": "Imisebenzi",
+      "objects": "Izinto",
+      "symbols": "Izimpawu",
+      "flags": "Amafulegi"
+    },
+    "tone": {
+      "default": "Okuzenzakalelayo",
+      "light": "Ibala lesikhumba elikhanyayo",
+      "mediumLight": "Ibala lesikhumba elikhanya kancane",
+      "medium": "Ibala lesikhumba eliphakathi",
+      "mediumDark": "Ibala lesikhumba elimnyama kancane",
+      "dark": "Ibala lesikhumba elimnyama"
+    }
   }
 }

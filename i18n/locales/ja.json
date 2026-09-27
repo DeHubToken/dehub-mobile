@@ -6740,5 +6740,33 @@
     "transferredConfirming": "トークンが転送されました。まもなくお支払いの確認が完了します。",
     "sentUnconfirmed": "トークンが送信されましたが、支払いを確認できませんでした。今後のお支払いはご遠慮ください。",
     "transferIncomplete": "トークンの転送が完了しませんでした。次の有料投稿の前にもう一度質問されます。"
+  },
+  "emojiPicker": {
+    "searchEmoji": "絵文字を検索",
+    "noEmoji": "絵文字が見つかりません",
+    "searchResults": "検索結果",
+    "skinTone": "肌の色",
+    "moreReactions": "その他のリアクション",
+    "group": {
+      "recent": "最近使用",
+      "dehub": "DeHubのおすすめ",
+      "smileys": "スマイリーと感情",
+      "people": "人と体",
+      "animals": "動物と自然",
+      "food": "食べ物と飲み物",
+      "travel": "旅行と場所",
+      "activities": "アクティビティ",
+      "objects": "物",
+      "symbols": "記号",
+      "flags": "旗"
+    },
+    "tone": {
+      "default": "デフォルト",
+      "light": "明るい肌色",
+      "mediumLight": "やや明るい肌色",
+      "medium": "中間の肌色",
+      "mediumDark": "やや濃い肌色",
+      "dark": "濃い肌色"
+    }
   }
 }

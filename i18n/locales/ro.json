@@ -6751,5 +6751,33 @@
     "transferredConfirming": "Jetoanele dvs. au fost transferate. Vom finaliza confirmarea plății în scurt timp.",
     "sentUnconfirmed": "Jetoanele dvs. au fost trimise, dar nu am putut confirma plata. Nu plătiți din nou.",
     "transferIncomplete": "Transferul tokenului nu s-a finalizat. Veți fi întrebat din nou înainte de următoarea postare plătită."
+  },
+  "emojiPicker": {
+    "searchEmoji": "Caută emoji",
+    "noEmoji": "Nu s-au găsit emoji",
+    "searchResults": "Rezultatele căutării",
+    "skinTone": "Nuanța pielii",
+    "moreReactions": "Mai multe reacții",
+    "group": {
+      "recent": "Folosite recent",
+      "dehub": "Alegerile DeHub",
+      "smileys": "Emoticoane și emoții",
+      "people": "Oameni și corp",
+      "animals": "Animale și natură",
+      "food": "Mâncare și băutură",
+      "travel": "Călătorii și locuri",
+      "activities": "Activități",
+      "objects": "Obiecte",
+      "symbols": "Simboluri",
+      "flags": "Steaguri"
+    },
+    "tone": {
+      "default": "Implicit",
+      "light": "Nuanță deschisă a pielii",
+      "mediumLight": "Nuanță medie-deschisă a pielii",
+      "medium": "Nuanță medie a pielii",
+      "mediumDark": "Nuanță medie-închisă a pielii",
+      "dark": "Nuanță închisă a pielii"
+    }
   }
 }

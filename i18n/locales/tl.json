@@ -6919,5 +6919,33 @@
     "transferredConfirming": "Inilipat na ang iyong mga token. Tatapusin namin ang pagkumpirma sa pagbabayad sa ilang sandali.",
     "sentUnconfirmed": "Naipadala na ang iyong mga token ngunit hindi namin makumpirma ang pagbabayad. Huwag magbayad muli.",
     "transferIncomplete": "Hindi nakumpleto ang token transfer. Hihilingin sa iyo muli bago ang iyong susunod na bayad na post."
+  },
+  "emojiPicker": {
+    "searchEmoji": "Maghanap ng emoji",
+    "noEmoji": "Walang nahanap na emoji",
+    "searchResults": "Mga resulta ng paghahanap",
+    "skinTone": "Kulay ng balat",
+    "moreReactions": "Higit pang reaksyon",
+    "group": {
+      "recent": "Kamakailang ginamit",
+      "dehub": "Mga pili ng DeHub",
+      "smileys": "Smileys at emosyon",
+      "people": "Tao at katawan",
+      "animals": "Hayop at kalikasan",
+      "food": "Pagkain at inumin",
+      "travel": "Paglalakbay at lugar",
+      "activities": "Mga aktibidad",
+      "objects": "Mga bagay",
+      "symbols": "Mga simbolo",
+      "flags": "Mga watawat"
+    },
+    "tone": {
+      "default": "Default",
+      "light": "Maputing kulay ng balat",
+      "mediumLight": "Katamtamang-maputing kulay ng balat",
+      "medium": "Katamtamang kulay ng balat",
+      "mediumDark": "Katamtamang-maitim na kulay ng balat",
+      "dark": "Maitim na kulay ng balat"
+    }
   }
 }

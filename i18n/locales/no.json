@@ -6738,5 +6738,33 @@
     "transferredConfirming": "Tokenene dine er overført. Vi bekrefter betalingen snart.",
     "sentUnconfirmed": "Tokenene dine ble sendt, men vi kunne ikke bekrefte betalingen. Ikke betal igjen.",
     "transferIncomplete": "Tokenoverføringen ble ikke fullført. Du vil bli spurt på nytt før ditt neste betalte innlegg."
+  },
+  "emojiPicker": {
+    "searchEmoji": "Søk etter emoji",
+    "noEmoji": "Fant ingen emoji",
+    "searchResults": "Søkeresultater",
+    "skinTone": "Hudfarge",
+    "moreReactions": "Flere reaksjoner",
+    "group": {
+      "recent": "Nylig brukt",
+      "dehub": "DeHub-utvalg",
+      "smileys": "Smilefjes og følelser",
+      "people": "Personer og kropp",
+      "animals": "Dyr og natur",
+      "food": "Mat og drikke",
+      "travel": "Reise og steder",
+      "activities": "Aktiviteter",
+      "objects": "Gjenstander",
+      "symbols": "Symboler",
+      "flags": "Flagg"
+    },
+    "tone": {
+      "default": "Standard",
+      "light": "Lys hudfarge",
+      "mediumLight": "Middels lys hudfarge",
+      "medium": "Middels hudfarge",
+      "mediumDark": "Middels mørk hudfarge",
+      "dark": "Mørk hudfarge"
+    }
   }
 }

@@ -6742,5 +6742,33 @@
     "transferredConfirming": "Vaše tokeny byly převedeny. Platbu brzy dokončíme.",
     "sentUnconfirmed": "Vaše tokeny byly odeslány, ale platbu jsme nemohli potvrdit. Neplaťte znovu.",
     "transferIncomplete": "Převod tokenů se neuskutečnil. Budete požádáni znovu před vaším dalším placeným příspěvkem."
+  },
+  "emojiPicker": {
+    "searchEmoji": "Hledat emoji",
+    "noEmoji": "Žádné emoji nenalezeny",
+    "searchResults": "Výsledky hledání",
+    "skinTone": "Odstín pleti",
+    "moreReactions": "Další reakce",
+    "group": {
+      "recent": "Naposledy použité",
+      "dehub": "Výběr DeHub",
+      "smileys": "Smajlíci a emoce",
+      "people": "Lidé a tělo",
+      "animals": "Zvířata a příroda",
+      "food": "Jídlo a pití",
+      "travel": "Cestování a místa",
+      "activities": "Aktivity",
+      "objects": "Předměty",
+      "symbols": "Symboly",
+      "flags": "Vlajky"
+    },
+    "tone": {
+      "default": "Výchozí",
+      "light": "Světlý odstín pleti",
+      "mediumLight": "Středně světlý odstín pleti",
+      "medium": "Střední odstín pleti",
+      "mediumDark": "Středně tmavý odstín pleti",
+      "dark": "Tmavý odstín pleti"
+    }
   }
 }

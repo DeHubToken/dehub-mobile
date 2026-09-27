@@ -60,6 +60,7 @@ import { chatBodyText } from "../../libs/chat-gif";
 import { AssetRefCards, MAX_ASSET_CARDS_PER_MESSAGE } from "../common/AssetRefCard";
 import { findAssetRefs, stripAssetRefs } from "../../libs/asset-refs";
 import MentionSuggestions from "../common/MentionSuggestions";
+import EmojiSheet from "../Upload/EmojiSheet";
 import { useMentions } from "../../hooks/useMentions";
 
 const REACTION_EMOJIS = ["🔥", "❤️", "😂", "👀", "💯", "🙌"];
@@ -307,6 +308,13 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
   const [editing, setEditing] = useState<CommunityChatMessage | null>(null);
   const [sending, setSending] = useState(false);
   const [sheetFor, setSheetFor] = useState<CommunityChatMessage | null>(null);
+  // Message whose full emoji picker is open. The action sheet closes first:
+  // iOS will not stack a second modal on one that is still presenting.
+  const [moreFor, setMoreFor] = useState<CommunityChatMessage | null>(null);
+  const moreTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  useEffect(() => () => {
+    if (moreTimer.current) clearTimeout(moreTimer.current);
+  }, []);
   const [flashId, setFlashId] = useState<string | null>(null);
   const [pendingJump, setPendingJump] = useState<string | null>(null);
   const [visibleCount, setVisibleCount] = useState(PAGE);
@@ -735,6 +743,18 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
                         <Text style={{ fontSize: 18 }}>{emoji}</Text>
                       </Pressable>
                     ))}
+                    <Pressable
+                      style={styles.emojiBtn}
+                      accessibilityLabel={t("emojiPicker.moreReactions")}
+                      onPress={() => {
+                        const msg = sheetFor;
+                        setSheetFor(null);
+                        if (moreTimer.current) clearTimeout(moreTimer.current);
+                        moreTimer.current = setTimeout(() => setMoreFor(msg), 350);
+                      }}
+                    >
+                      <Icon name="Plus" size={18} color="#A1A1AA" />
+                    </Pressable>
                   </View>
                 )}
 
@@ -826,6 +846,21 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
           </Pressable>
         </Pressable>
       </Modal>
+
+      <EmojiSheet
+        visible={!!moreFor}
+        onClose={() => setMoreFor(null)}
+        selected={
+          moreFor && myAddress
+            ? Object.entries(moreFor.reactions ?? {})
+                .filter(([, addresses]) => addresses?.some((a) => a.toLowerCase() === myAddress))
+                .map(([emoji]) => emoji)
+            : undefined
+        }
+        onSelect={(emoji) => {
+          if (moreFor) handleToggleReaction(moreFor.id, emoji);
+        }}
+      />
     </View>
   );
 }

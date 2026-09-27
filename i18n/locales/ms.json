@@ -6999,5 +6999,33 @@
     "transferredConfirming": "Token anda telah dipindahkan. Kami akan menyelesaikan pengesahan bayaran tidak lama lagi.",
     "sentUnconfirmed": "Token anda telah dihantar tetapi kami tidak dapat mengesahkan bayaran. Jangan bayar lagi.",
     "transferIncomplete": "Pemindahan token tidak selesai. Anda akan ditanya sekali lagi sebelum hantaran berbayar anda yang seterusnya."
+  },
+  "emojiPicker": {
+    "searchEmoji": "Cari emoji",
+    "noEmoji": "Tiada emoji ditemui",
+    "searchResults": "Hasil carian",
+    "skinTone": "Ton kulit",
+    "moreReactions": "Lagi reaksi",
+    "group": {
+      "recent": "Digunakan baru-baru ini",
+      "dehub": "Pilihan DeHub",
+      "smileys": "Smiley & emosi",
+      "people": "Orang & badan",
+      "animals": "Haiwan & alam semula jadi",
+      "food": "Makanan & minuman",
+      "travel": "Perjalanan & tempat",
+      "activities": "Aktiviti",
+      "objects": "Objek",
+      "symbols": "Simbol",
+      "flags": "Bendera"
+    },
+    "tone": {
+      "default": "Lalai",
+      "light": "Ton kulit cerah",
+      "mediumLight": "Ton kulit sederhana cerah",
+      "medium": "Ton kulit sederhana",
+      "mediumDark": "Ton kulit sederhana gelap",
+      "dark": "Ton kulit gelap"
+    }
   }
 }

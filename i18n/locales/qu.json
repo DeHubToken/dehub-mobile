@@ -6769,5 +6769,33 @@
     "transferredConfirming": "Tokenkunaykiqa hukmanmi apasqaña. Pisi tiempollamantan pagasqankuta takyachiyta tukusaqku.",
     "sentUnconfirmed": "Fichasniyki apachisqa karqan ichaqa manan atirqaykuchu pagayta takyachiyta. Ama yapamanta pagaychu.",
     "transferIncomplete": "Token transferenciaqa manam tukusqachu. Hukmanta tapusqa kanki manaraq qatiq qullqiyuq qillqasqayki kachkaptin."
+  },
+  "emojiPicker": {
+    "searchEmoji": "Emojita maskay",
+    "noEmoji": "Mana emoji tarikurqanchu",
+    "searchResults": "Maskasqapa ruruynin",
+    "skinTone": "Qara llimp'i",
+    "moreReactions": "Aswan kutichiykuna",
+    "group": {
+      "recent": "Qayna llamk'achisqa",
+      "dehub": "DeHubpa akllasqankuna",
+      "smileys": "Asiykuna & sunqu",
+      "people": "Runakuna & ukhu",
+      "animals": "Uywakuna & pachamama",
+      "food": "Mikhuy & ukyay",
+      "travel": "Puriy & llaqtakuna",
+      "activities": "Ruraykuna",
+      "objects": "Imakuna",
+      "symbols": "Unanchakuna",
+      "flags": "Banderakuna"
+    },
+    "tone": {
+      "default": "Kikin",
+      "light": "Ch'uya qara llimp'i",
+      "mediumLight": "Chawpi-ch'uya qara llimp'i",
+      "medium": "Chawpi qara llimp'i",
+      "mediumDark": "Chawpi-yana qara llimp'i",
+      "dark": "Yana qara llimp'i"
+    }
   }
 }

@@ -6742,5 +6742,33 @@
     "transferredConfirming": "Vos jetons ont été transférés. Nous terminerons de confirmer le paiement sous peu.",
     "sentUnconfirmed": "Vos jetons ont été envoyés, mais nous n'avons pas pu confirmer le paiement. Ne payez plus.",
     "transferIncomplete": "Le transfert de jeton ne s'est pas terminé. Il vous sera demandé à nouveau avant votre prochaine publication payante."
+  },
+  "emojiPicker": {
+    "searchEmoji": "Rechercher un emoji",
+    "noEmoji": "Aucun emoji trouvé",
+    "searchResults": "Résultats de recherche",
+    "skinTone": "Teint",
+    "moreReactions": "Plus de réactions",
+    "group": {
+      "recent": "Utilisés récemment",
+      "dehub": "Sélection DeHub",
+      "smileys": "Smileys et émotions",
+      "people": "Personnes et corps",
+      "animals": "Animaux et nature",
+      "food": "Nourriture et boissons",
+      "travel": "Voyages et lieux",
+      "activities": "Activités",
+      "objects": "Objets",
+      "symbols": "Symboles",
+      "flags": "Drapeaux"
+    },
+    "tone": {
+      "default": "Par défaut",
+      "light": "Peau claire",
+      "mediumLight": "Peau moyennement claire",
+      "medium": "Peau mate",
+      "mediumDark": "Peau moyennement foncée",
+      "dark": "Peau foncée"
+    }
   }
 }

@@ -6737,5 +6737,33 @@
     "transferredConfirming": "E bugala akara ngosi gị. Anyị ga-emecha kwado ịkwụ ụgwọ ahụ n 'oge na-adịghị anya.",
     "sentUnconfirmed": "E zigara akara ngosi gị mana anyị enweghị ike ikwenye ịkwụ ụgwọ ahụ. Akwụla ụgwọ ọzọ.",
     "transferIncomplete": "Mbugharị mgbaàmà ahụ agwụbeghị. A ga-ajụ gị ọzọ tupu ị kwụọ ụgwọ ọzọ."
+  },
+  "emojiPicker": {
+    "searchEmoji": "Chọọ emoji",
+    "noEmoji": "Ahụghị emoji ọ bụla",
+    "searchResults": "Nsonaazụ nchọcha",
+    "skinTone": "Agba akpụkpọ",
+    "moreReactions": "Mmeghachi omume ndị ọzọ",
+    "group": {
+      "recent": "Ejiri n'oge na-adịbeghị anya",
+      "dehub": "Nhọrọ DeHub",
+      "smileys": "Ihu ọchị & mmetụta",
+      "people": "Ndị mmadụ & ahụ",
+      "animals": "Anụmanụ & okike",
+      "food": "Nri & ihe ọṅụṅụ",
+      "travel": "Njem & ebe",
+      "activities": "Ihe omume",
+      "objects": "Ihe",
+      "symbols": "Akara",
+      "flags": "Ọkọlọtọ"
+    },
+    "tone": {
+      "default": "Ndabara",
+      "light": "Agba akpụkpọ na-acha ọcha",
+      "mediumLight": "Agba akpụkpọ na-acha ọcha nke ọma",
+      "medium": "Agba akpụkpọ etiti",
+      "mediumDark": "Agba akpụkpọ gbara ọchịchịrị nke ọma",
+      "dark": "Agba akpụkpọ gbara ọchịchịrị"
+    }
   }
 }

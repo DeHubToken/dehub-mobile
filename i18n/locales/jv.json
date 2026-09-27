@@ -6738,5 +6738,33 @@
     "transferredConfirming": "Token panjenengan sampun dipun transfer. Pamayaran badhe kaweruhaken sakwetara wekdal.",
     "sentUnconfirmed": "Token panjenengan sampun dipun kirim nanging pamayaran boten saged kaweruhaken. Aja mbayar malih.",
     "transferIncomplete": "Transfer token boten kasil. Panjenengan badhe dipun takeni malih sakderengipun kiriman panjenengan ingkang mbayar salajengipun."
+  },
+  "emojiPicker": {
+    "searchEmoji": "Goleki emoji",
+    "noEmoji": "Emoji ora ketemu",
+    "searchResults": "Asil telusuran",
+    "skinTone": "Warna kulit",
+    "moreReactions": "Reaksi liyane",
+    "group": {
+      "recent": "Anyar dienggo",
+      "dehub": "Pilihan DeHub",
+      "smileys": "Smiley & emosi",
+      "people": "Wong & awak",
+      "animals": "Kewan & alam",
+      "food": "Panganan & ombèn",
+      "travel": "Lelungan & panggonan",
+      "activities": "Kagiyatan",
+      "objects": "Barang",
+      "symbols": "Simbol",
+      "flags": "Gendéra"
+    },
+    "tone": {
+      "default": "Gawan",
+      "light": "Warna kulit padhang",
+      "mediumLight": "Warna kulit rada padhang",
+      "medium": "Warna kulit sedheng",
+      "mediumDark": "Warna kulit rada peteng",
+      "dark": "Warna kulit peteng"
+    }
   }
 }

@@ -6782,5 +6782,33 @@
     "transferredConfirming": "您的代币已转移。我们将很快完成付款确认。",
     "sentUnconfirmed": "您的代币已发送，但我们未能确认付款。请勿再次付款。",
     "transferIncomplete": "代币转移未完成。在您下次付费发帖前，我们会再次向您询问。"
+  },
+  "emojiPicker": {
+    "searchEmoji": "搜表情",
+    "noEmoji": "没寻着表情",
+    "searchResults": "搜索结果",
+    "skinTone": "肤色",
+    "moreReactions": "更多反应",
+    "group": {
+      "recent": "最近用过嘞",
+      "dehub": "DeHub 精选",
+      "smileys": "笑脸和情绪",
+      "people": "人和身体",
+      "animals": "动物和大自然",
+      "food": "吃嘞喝嘞",
+      "travel": "旅行和地方",
+      "activities": "活动",
+      "objects": "物件",
+      "symbols": "符号",
+      "flags": "旗子"
+    },
+    "tone": {
+      "default": "默认",
+      "light": "浅肤色",
+      "mediumLight": "中等偏浅肤色",
+      "medium": "中等肤色",
+      "mediumDark": "中等偏深肤色",
+      "dark": "深肤色"
+    }
   }
 }

@@ -6738,5 +6738,33 @@
     "transferredConfirming": "Jūsu marķieri ir pārsūtīti. Drīzumā pabeigsim maksājuma apstiprināšanu.",
     "sentUnconfirmed": "Jūsu marķieri tika nosūtīti, bet mēs nevarējām apstiprināt maksājumu. Turpmāk nemaksāt.",
     "transferIncomplete": "Pilnvaras pārsūtīšana netika pabeigta. Jums tiks jautāts vēlreiz pirms nākamā apmaksātā ieraksta."
+  },
+  "emojiPicker": {
+    "searchEmoji": "Meklēt emocijzīmes",
+    "noEmoji": "Emocijzīmes nav atrastas",
+    "searchResults": "Meklēšanas rezultāti",
+    "skinTone": "Ādas tonis",
+    "moreReactions": "Vairāk reakciju",
+    "group": {
+      "recent": "Nesen izmantotās",
+      "dehub": "DeHub izlase",
+      "smileys": "Smaidiņi un emocijas",
+      "people": "Cilvēki un ķermenis",
+      "animals": "Dzīvnieki un daba",
+      "food": "Ēdieni un dzērieni",
+      "travel": "Ceļojumi un vietas",
+      "activities": "Aktivitātes",
+      "objects": "Priekšmeti",
+      "symbols": "Simboli",
+      "flags": "Karogi"
+    },
+    "tone": {
+      "default": "Noklusējums",
+      "light": "Gaišs ādas tonis",
+      "mediumLight": "Vidēji gaišs ādas tonis",
+      "medium": "Vidējs ādas tonis",
+      "mediumDark": "Vidēji tumšs ādas tonis",
+      "dark": "Tumšs ādas tonis"
+    }
   }
 }

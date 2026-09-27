@@ -6738,5 +6738,33 @@
     "transferredConfirming": "Shenjat e tua janë transferuar. Së shpejti do të përfundojmë konfirmimin e pagesës.",
     "sentUnconfirmed": "Tokenët e tu u dërguan por nuk mundëm ta konfirmonim pagesën. Mos paguaj më.",
     "transferIncomplete": "Transferimi i shenjës nuk përfundoi. Do të pyetesh përsëri para postimit tënd të ardhshëm të paguar."
+  },
+  "emojiPicker": {
+    "searchEmoji": "Kërko emoji",
+    "noEmoji": "Nuk u gjet asnjë emoji",
+    "searchResults": "Rezultatet e kërkimit",
+    "skinTone": "Ngjyra e lëkurës",
+    "moreReactions": "Më shumë reagime",
+    "group": {
+      "recent": "Përdorur së fundi",
+      "dehub": "Zgjedhjet e DeHub",
+      "smileys": "Buzëqeshje & emocione",
+      "people": "Njerëz & trup",
+      "animals": "Kafshë & natyrë",
+      "food": "Ushqim & pije",
+      "travel": "Udhëtime & vende",
+      "activities": "Aktivitete",
+      "objects": "Objekte",
+      "symbols": "Simbole",
+      "flags": "Flamuj"
+    },
+    "tone": {
+      "default": "Parazgjedhje",
+      "light": "Ngjyrë e çelët e lëkurës",
+      "mediumLight": "Ngjyrë mesatare e çelët e lëkurës",
+      "medium": "Ngjyrë mesatare e lëkurës",
+      "mediumDark": "Ngjyrë mesatare e errët e lëkurës",
+      "dark": "Ngjyrë e errët e lëkurës"
+    }
   }
 }

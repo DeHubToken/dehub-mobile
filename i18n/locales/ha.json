@@ -6738,5 +6738,33 @@
     "transferredConfirming": "An canja wurin alamomin ku. Za mu gama tabbatar da biyan kuɗi ba da daɗewa ba.",
     "sentUnconfirmed": "An aika alamomin ku amma ba za mu iya tabbatar da biyan bashin ba. Kada ku sake biyan kuɗi.",
     "transferIncomplete": "Canja wurin token bai cika ba. Za a sake tambayar ku kafin post ɗinku na gaba da aka biya."
+  },
+  "emojiPicker": {
+    "searchEmoji": "Bincika emoji",
+    "noEmoji": "Ba a sami emoji ba",
+    "searchResults": "Sakamakon bincike",
+    "skinTone": "Launin fata",
+    "moreReactions": "Ƙarin martani",
+    "group": {
+      "recent": "Waɗanda aka yi amfani da su kwanan nan",
+      "dehub": "Zaɓin DeHub",
+      "smileys": "Murmushi & motsin rai",
+      "people": "Mutane & jiki",
+      "animals": "Dabbobi & yanayi",
+      "food": "Abinci & abin sha",
+      "travel": "Tafiya & wurare",
+      "activities": "Ayyuka",
+      "objects": "Abubuwa",
+      "symbols": "Alamomi",
+      "flags": "Tutoci"
+    },
+    "tone": {
+      "default": "Na asali",
+      "light": "Fata mai haske",
+      "mediumLight": "Fata mai ɗan haske",
+      "medium": "Fata matsakaiciya",
+      "mediumDark": "Fata mai ɗan duhu",
+      "dark": "Fata mai duhu"
+    }
   }
 }

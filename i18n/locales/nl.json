@@ -6992,5 +6992,33 @@
     "transferredConfirming": "Uw tokens zijn overgedragen. We zullen de betaling binnenkort bevestigen.",
     "sentUnconfirmed": "Je tokens zijn verzonden, maar we konden de betaling niet bevestigen. Betaal niet opnieuw.",
     "transferIncomplete": "De tokenoverdracht is niet voltooid. Je wordt opnieuw gevraagd voordat je je volgende betaalde post plaatst."
+  },
+  "emojiPicker": {
+    "searchEmoji": "Emoji zoeken",
+    "noEmoji": "Geen emoji gevonden",
+    "searchResults": "Zoekresultaten",
+    "skinTone": "Huidskleur",
+    "moreReactions": "Meer reacties",
+    "group": {
+      "recent": "Recent gebruikt",
+      "dehub": "DeHub-favorieten",
+      "smileys": "Smileys & emotie",
+      "people": "Mensen & lichaam",
+      "animals": "Dieren & natuur",
+      "food": "Eten & drinken",
+      "travel": "Reizen & plaatsen",
+      "activities": "Activiteiten",
+      "objects": "Objecten",
+      "symbols": "Symbolen",
+      "flags": "Vlaggen"
+    },
+    "tone": {
+      "default": "Standaard",
+      "light": "Lichte huidskleur",
+      "mediumLight": "Middellichte huidskleur",
+      "medium": "Medium huidskleur",
+      "mediumDark": "Middeldonkere huidskleur",
+      "dark": "Donkere huidskleur"
+    }
   }
 }

@@ -6742,5 +6742,33 @@
     "transferredConfirming": "A tokenjeit átutaltuk. Hamarosan befejezzük a fizetés megerősítését.",
     "sentUnconfirmed": "A tokeneket elküldtük, de nem tudtuk megerősíteni a fizetést. Ne fizessen újra.",
     "transferIncomplete": "A tokenátutalás nem fejeződött be. A következő fizetős bejegyzésed előtt újra meg fogjuk kérdezni."
+  },
+  "emojiPicker": {
+    "searchEmoji": "Emoji keresése",
+    "noEmoji": "Nincs találat emojira",
+    "searchResults": "Keresési találatok",
+    "skinTone": "Bőrszín",
+    "moreReactions": "További reakciók",
+    "group": {
+      "recent": "Legutóbb használt",
+      "dehub": "DeHub válogatás",
+      "smileys": "Hangulatjelek és érzelmek",
+      "people": "Emberek és test",
+      "animals": "Állatok és természet",
+      "food": "Étel és ital",
+      "travel": "Utazás és helyek",
+      "activities": "Tevékenységek",
+      "objects": "Tárgyak",
+      "symbols": "Szimbólumok",
+      "flags": "Zászlók"
+    },
+    "tone": {
+      "default": "Alapértelmezett",
+      "light": "Világos bőrszín",
+      "mediumLight": "Közepesen világos bőrszín",
+      "medium": "Közepes bőrszín",
+      "mediumDark": "Közepesen sötét bőrszín",
+      "dark": "Sötét bőrszín"
+    }
   }
 }

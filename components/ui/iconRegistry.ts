@@ -189,6 +189,7 @@ import PaintBucketIcon from "lucide-react-native/dist/esm/icons/paint-bucket";
 import PaletteIcon from "lucide-react-native/dist/esm/icons/palette";
 import PaperclipIcon from "lucide-react-native/dist/esm/icons/paperclip";
 import PauseIcon from "lucide-react-native/dist/esm/icons/pause";
+import PawPrintIcon from "lucide-react-native/dist/esm/icons/paw-print";
 import PenLineIcon from "lucide-react-native/dist/esm/icons/pen-line";
 import PencilIcon from "lucide-react-native/dist/esm/icons/pencil";
 import PhoneIcon from "lucide-react-native/dist/esm/icons/phone";
@@ -196,6 +197,7 @@ import PhoneOffIcon from "lucide-react-native/dist/esm/icons/phone-off";
 import PictureInPicture2Icon from "lucide-react-native/dist/esm/icons/picture-in-picture-2";
 import PinIcon from "lucide-react-native/dist/esm/icons/pin";
 import PinOffIcon from "lucide-react-native/dist/esm/icons/pin-off";
+import PlaneIcon from "lucide-react-native/dist/esm/icons/plane";
 import PlayIcon from "lucide-react-native/dist/esm/icons/play";
 import PlusIcon from "lucide-react-native/dist/esm/icons/plus";
 import QuoteIcon from "lucide-react-native/dist/esm/icons/quote";
@@ -479,6 +481,7 @@ export const iconRegistry = {
   Palette: PaletteIcon,
   Paperclip: PaperclipIcon,
   Pause: PauseIcon,
+  PawPrint: PawPrintIcon,
   PenLine: PenLineIcon,
   Pencil: PencilIcon,
   Phone: PhoneIcon,
@@ -486,6 +489,7 @@ export const iconRegistry = {
   PictureInPicture2: PictureInPicture2Icon,
   Pin: PinIcon,
   PinOff: PinOffIcon,
+  Plane: PlaneIcon,
   Play: PlayIcon,
   Plus: PlusIcon,
   Quote: QuoteIcon,

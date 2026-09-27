@@ -6768,5 +6768,33 @@
     "transferredConfirming": "Dini Tokens sind überwiise worde. Mir werded grad bald de Payment bestätige.",
     "sentUnconfirmed": "Dini Tokens sind gschickt worde, aber mir hend de Payment nöd chönne bestätige. Bezahle nöd nomal.",
     "transferIncomplete": "Dr Token-Transfer isch nöd fertig worde. Du wirsch nomal gfrogt, bevor din nächst bezahlte Post chunt."
+  },
+  "emojiPicker": {
+    "searchEmoji": "Emoji sueche",
+    "noEmoji": "Kei Emoji gfunde",
+    "searchResults": "Suechresultat",
+    "skinTone": "Huutfarb",
+    "moreReactions": "Meh Reaktione",
+    "group": {
+      "recent": "Zletscht bruucht",
+      "dehub": "DeHub-Uswahl",
+      "smileys": "Smileys & Gfüehl",
+      "people": "Lüüt & Körper",
+      "animals": "Tier & Natur",
+      "food": "Ässe & Trinke",
+      "travel": "Reise & Ört",
+      "activities": "Aktivitäte",
+      "objects": "Objekt",
+      "symbols": "Symbol",
+      "flags": "Fahne"
+    },
+    "tone": {
+      "default": "Standard",
+      "light": "Hälli Huutfarb",
+      "mediumLight": "Mittelhälli Huutfarb",
+      "medium": "Mittleri Huutfarb",
+      "mediumDark": "Mitteldunkli Huutfarb",
+      "dark": "Dunkli Huutfarb"
+    }
   }
 }

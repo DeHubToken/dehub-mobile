@@ -6806,5 +6806,33 @@
     "transferredConfirming": "Twoje tokeny zostały przeniesione. Wkrótce zakończymy potwierdzanie płatności.",
     "sentUnconfirmed": "Twoje tokeny zostały wysłane, ale nie mogliśmy potwierdzić płatności. Nie płać ponownie.",
     "transferIncomplete": "Transfer tokena nie został zakończony. Zostaniesz ponownie poproszony przed następnym płatnym postem."
+  },
+  "emojiPicker": {
+    "searchEmoji": "Szukaj emoji",
+    "noEmoji": "Nie znaleziono emoji",
+    "searchResults": "Wyniki wyszukiwania",
+    "skinTone": "Odcień skóry",
+    "moreReactions": "Więcej reakcji",
+    "group": {
+      "recent": "Ostatnio używane",
+      "dehub": "Wybrane przez DeHub",
+      "smileys": "Buźki i emocje",
+      "people": "Ludzie i ciało",
+      "animals": "Zwierzęta i przyroda",
+      "food": "Jedzenie i napoje",
+      "travel": "Podróże i miejsca",
+      "activities": "Aktywności",
+      "objects": "Przedmioty",
+      "symbols": "Symbole",
+      "flags": "Flagi"
+    },
+    "tone": {
+      "default": "Domyślny",
+      "light": "Jasny odcień skóry",
+      "mediumLight": "Średnio jasny odcień skóry",
+      "medium": "Średni odcień skóry",
+      "mediumDark": "Średnio ciemny odcień skóry",
+      "dark": "Ciemny odcień skóry"
+    }
   }
 }
