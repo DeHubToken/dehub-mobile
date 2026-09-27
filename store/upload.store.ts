@@ -71,6 +71,8 @@ export interface SerializedUploadPayload {
    * the job so a board survives a queue that resumes after the app was killed.
    */
   shopListingIds?: string[];
+  /** Connected external accounts to cross-post to once the post is up. */
+  crossPostAccountIds?: string[];
 }
 
 export interface MintParams {
