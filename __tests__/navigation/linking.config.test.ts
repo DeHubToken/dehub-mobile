@@ -168,6 +168,10 @@ describe('parseDeepLink', () => {
       type: 'arcadeGame',
       params: { slug: 'kings-gambit' },
     });
+    expect(parseDeepLink('https://dehub.io/arcade/kings-gambit/online')).toEqual({
+      type: 'arcadeChessOnline',
+      params: {},
+    });
     expect(parseDeepLink('https://dehub.io/mal')?.type).toBe('profile');
   });
 });

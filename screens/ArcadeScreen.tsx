@@ -23,7 +23,17 @@ import { ARCADE_GAMES, type ArcadeGame } from "../config/arcade-games";
 import { WEBSITE_LINK } from "../config/links";
 import { colors } from "../theme/colors";
 
-const GameCard = ({ game, onPress }: { game: ArcadeGame; onPress: (slug: string) => void }) => (
+const GameCard = ({
+  game,
+  onPress,
+  onPlayOnline,
+  playOnlineLabel,
+}: {
+  game: ArcadeGame;
+  onPress: (slug: string) => void;
+  onPlayOnline?: () => void;
+  playOnlineLabel?: string;
+}) => (
   <Pressable
     accessibilityRole="button"
     accessibilityLabel={game.title}
@@ -56,6 +66,16 @@ const GameCard = ({ game, onPress }: { game: ArcadeGame; onPress: (slug: string)
         {game.slug === "trenchstar" ? <TrenchstarIcon name="play" size={24} /> : <Icon name="Play" size={13} color={colors.accentForeground} />}
         <Text style={styles.playLabel}>{game.action}</Text>
       </View>
+      {onPlayOnline ? (
+        <Pressable
+          accessibilityRole="button"
+          onPress={onPlayOnline}
+          style={({ pressed }) => [styles.onlineButton, pressed && styles.cardPressed]}
+        >
+          <Icon name="Users" size={13} color="#FFFFFF" />
+          <Text style={styles.onlineLabel}>{playOnlineLabel}</Text>
+        </Pressable>
+      ) : null}
     </View>
   </Pressable>
 );
@@ -67,6 +87,10 @@ const ArcadeScreen = () => {
 
   const openGame = useCallback(
     (slug: string) => navigation.navigate(ScreenNames.ArcadeGame, { slug }),
+    [navigation],
+  );
+  const openChessOnline = useCallback(
+    () => navigation.navigate(ScreenNames.ArcadeChessOnline),
     [navigation],
   );
 
@@ -91,7 +115,15 @@ const ArcadeScreen = () => {
         </Pressable>
 
         {ARCADE_GAMES.map((game) => (
-          <GameCard key={game.slug} game={game} onPress={openGame} />
+          <GameCard
+            key={game.slug}
+            game={game}
+            onPress={openGame}
+            // King's Gambit is the one game with a lobby: a second way in for
+            // live duels against other players.
+            onPlayOnline={game.slug === "kings-gambit" ? openChessOnline : undefined}
+            playOnlineLabel={t("arcade.chessOnline.playOnline")}
+          />
         ))}
       </ScrollView>
     </View>
@@ -160,6 +192,18 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: "600",
   },
+  onlineButton: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 8,
+    borderRadius: 10,
+    paddingVertical: 10,
+    backgroundColor: "#27272A",
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.1)",
+  },
+  onlineLabel: { color: "#FFFFFF", fontSize: 12, fontWeight: "600" },
 });
 
 export default ArcadeScreen;
