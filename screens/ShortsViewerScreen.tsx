@@ -1537,6 +1537,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
                     polarity="negative"
                     current={myReaction}
                     onSelect={(reaction) => { setOpenTray(null); handleReaction(reaction); }}
+                    onClose={() => setOpenTray(null)}
                     align="right"
                   />
                   <ActionButton
@@ -1584,6 +1585,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
                     open={openTray === "positive"}
                     current={myReaction}
                     onSelect={(reaction) => { setOpenTray(null); handleReaction(reaction); }}
+                    onClose={() => setOpenTray(null)}
                     align="right"
                     onShowInfo={
                       isOwnShort && tokenId != null

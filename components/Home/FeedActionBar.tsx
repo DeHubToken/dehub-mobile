@@ -244,6 +244,7 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
           polarity="negative"
           current={myReaction}
           onSelect={handleSelect}
+          onClose={() => setOpenTray(null)}
           align={leftHanded ? "right" : "left"}
         />
         <AnimatedActionButton
@@ -295,6 +296,7 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
           open={openTray === "positive" && reactionsEnabled}
           current={myReaction}
           onSelect={handleSelect}
+          onClose={() => setOpenTray(null)}
           align={leftHanded ? "left" : "right"}
           onShowInfo={
             onShowReactionInfo
