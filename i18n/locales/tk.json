@@ -4772,7 +4772,10 @@
     "earningsWorth": "Öňki {{amount}}",
     "earningsPaidInTokens": "Şu günlerki bahalar bilen pul tölenýär",
     "earningsPendingReserve": "Garawul diňi we Garawul diňi",
-    "tokensSent": "{{amount}} token iberildi"
+    "tokensSent": "{{amount}} token iberildi",
+    "percentUsed": "{{percent}}% ulanyldy",
+    "spentOfTotal": "{{spent}} of {{total}}",
+    "viewInWallet": "Çöpçäniň içine seret"
   },
   "live": {
     "notSet": "Bellenmedi",

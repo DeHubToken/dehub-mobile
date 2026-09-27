@@ -4790,7 +4790,10 @@
     "earningsWorth": "{{amount}} ga arziydi",
     "earningsPaidInTokens": "Bugungi narxda tokenlarda to&#39;langan",
     "earningsPendingReserve": "Kutilayotgan xazina zaxirasi",
-    "tokensSent": "{{amount}} tokenlar yuborildi"
+    "tokensSent": "{{amount}} tokenlar yuborildi",
+    "percentUsed": "{{percent}}% ishlatilgan",
+    "spentOfTotal": "{{spent}} ning {{total}}",
+    "viewInWallet": "Hamyonda ko&#39;rish"
   },
   "live": {
     "notSet": "Belgilanmagan",

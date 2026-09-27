@@ -4821,7 +4821,10 @@
     "earningsWorth": "Layak {{amount}}",
     "earningsPaidInTokens": "Dibayar dalam token dengan harga hari ini",
     "earningsPendingReserve": "Cadangan treasury tertunda",
-    "tokensSent": "Token {{amount}} terkirim"
+    "tokensSent": "Token {{amount}} terkirim",
+    "percentUsed": "{{percent}}% digunakan",
+    "spentOfTotal": "{{spent}} dari {{total}}",
+    "viewInWallet": "Lihat di dompet"
   },
   "live": {
     "notSet": "Belum diatur",

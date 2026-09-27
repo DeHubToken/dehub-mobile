@@ -4776,7 +4776,10 @@
     "earningsWorth": "Стойност {{amount}}",
     "earningsPaidInTokens": "Платени в жетони на днешната цена",
     "earningsPendingReserve": "Предстоящ касов резерв",
-    "tokensSent": "Изпратени са {{amount}} токена"
+    "tokensSent": "Изпратени са {{amount}} токена",
+    "percentUsed": "Използвани: {{percent}}%",
+    "spentOfTotal": "{{spent}} от {{total}}",
+    "viewInWallet": "Преглед в портфейла"
   },
   "live": {
     "notSet": "Не е зададено",

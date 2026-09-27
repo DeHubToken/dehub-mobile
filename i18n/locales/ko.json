@@ -4825,7 +4825,10 @@
     "earningsWorth": "가치 {{amount}}",
     "earningsPaidInTokens": "오늘의 가격으로 토큰으로 지불됨",
     "earningsPendingReserve": "보류중인 국고준비금",
-    "tokensSent": "{{amount}} 개의 토큰이 전송되었습니다"
+    "tokensSent": "{{amount}} 개의 토큰이 전송되었습니다",
+    "percentUsed": "{{percent}} % 사용됨",
+    "spentOfTotal": "{{total}} 중 {{spent}}",
+    "viewInWallet": "지갑에서 보기"
   },
   "live": {
     "notSet": "설정 안 됨",

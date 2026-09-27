@@ -4819,7 +4819,10 @@
     "earningsWorth": "Sulit {{amount}}",
     "earningsPaidInTokens": "Binayaran sa mga token sa presyo ngayon",
     "earningsPendingReserve": "Nakabinbing reserba ng treasury",
-    "tokensSent": "Naipadala na ang {{amount}} token"
+    "tokensSent": "Naipadala na ang {{amount}} token",
+    "percentUsed": "{{percent}}% ang nagamit",
+    "spentOfTotal": "{{spent}} ng {{total}}",
+    "viewInWallet": "Tingnan sa wallet"
   },
   "live": {
     "notSet": "Hindi nakatakda",

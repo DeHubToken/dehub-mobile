@@ -4772,7 +4772,10 @@
     "earningsWorth": "ارزښت {{amount}}",
     "earningsPaidInTokens": "د نن ورځې نرخونو کې د ګمرکي اسعارو بدلول",
     "earningsPendingReserve": "د شتمنیو ذخیره کولو لپاره انتظار وکړئ",
-    "tokensSent": "{{amount}} ټوکنونه ولېږل شول"
+    "tokensSent": "{{amount}} ټوکنونه ولېږل شول",
+    "percentUsed": "{{percent}}% کارول شوی",
+    "spentOfTotal": "له {{total}} څخه {{spent}}",
+    "viewInWallet": "په بسته بندۍ کې لیدونه"
   },
   "live": {
     "notSet": "نه دی ټاکل شوی",

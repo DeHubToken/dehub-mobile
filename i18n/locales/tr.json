@@ -4821,7 +4821,10 @@
     "earningsWorth": "{{amount}}değerinde",
     "earningsPaidInTokens": "Bugünün fiyatından token olarak ödenir",
     "earningsPendingReserve": "Bekleyen hazine yedeği",
-    "tokensSent": "{{amount}} jeton gönderildi"
+    "tokensSent": "{{amount}} jeton gönderildi",
+    "percentUsed": "%{{percent}} kullanıldı",
+    "spentOfTotal": "{{spent}}/{{total}}",
+    "viewInWallet": "Cüzdanda görüntüle"
   },
   "live": {
     "notSet": "Ayarlanmadı",

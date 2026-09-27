@@ -4772,7 +4772,10 @@
     "earningsWorth": "Warta {{amount}}",
     "earningsPaidInTokens": "Zapłacone tokenami po dzisiejszej cenie",
     "earningsPendingReserve": "Oczekująca rezerwa skarbowa",
-    "tokensSent": "Wysłano {{amount}} tokenów"
+    "tokensSent": "Wysłano {{amount}} tokenów",
+    "percentUsed": "Użyto {{percent}}%",
+    "spentOfTotal": "{{spent}} z {{total}}",
+    "viewInWallet": "Zobacz w portfelu"
   },
   "live": {
     "notSet": "Nie ustawiono",

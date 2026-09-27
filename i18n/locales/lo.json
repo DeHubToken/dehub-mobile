@@ -4743,7 +4743,10 @@
     "earningsWorth": "ມູນຄ່າ {{amount}}",
     "earningsPaidInTokens": "ຈ່າຍເປັນໂທເຄັນຕາມລາຄາມື້ນີ້",
     "earningsPendingReserve": "ຄັງ ສໍາ ຮອງຄັງເງິນທີ່ຍັງຄ້າງ",
-    "tokensSent": "ສົ່ງ {{amount}} ໂທເຄັນແລ້ວ"
+    "tokensSent": "ສົ່ງ {{amount}} ໂທເຄັນແລ້ວ",
+    "percentUsed": "{{percent}}% ໃຊ້ແລ້ວ",
+    "spentOfTotal": "{{spent}} ຂອງ {{total}}",
+    "viewInWallet": "ເບິ່ງໃນກະເປົາເງິນ"
   },
   "live": {
     "notSet": "ຍັງບໍ່ໄດ້ຕັ້ງ",

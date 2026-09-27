@@ -4728,7 +4728,10 @@
     "earningsWorth": "A sɔngɔ ye {{amount}} ye",
     "earningsPaidInTokens": "A bɛ sara token na bi sɔngɔ la",
     "earningsPendingReserve": "Nafolomarayɔrɔ makɔnɔni",
-    "tokensSent": "Token {{amount}} cilen don"
+    "tokensSent": "Token {{amount}} cilen don",
+    "percentUsed": "{{percent}} % ka baara kɛ",
+    "spentOfTotal": "{{spent}} ka {{total}}",
+    "viewInWallet": "Fɛɛn min be sɔrɔ a kɔnɔ"
   },
   "live": {
     "notSet": "A ma sigi",

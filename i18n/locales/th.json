@@ -4796,7 +4796,10 @@
     "earningsWorth": "คุ้มค่า {{amount}}",
     "earningsPaidInTokens": "ชำระเป็นโทเค็นในราคาของวันนี้",
     "earningsPendingReserve": "เงินสำรองคลังที่รอดำเนินการ",
-    "tokensSent": "ส่งโทเค็น {{amount}} แล้ว"
+    "tokensSent": "ส่งโทเค็น {{amount}} แล้ว",
+    "percentUsed": "ใช้ไป {{percent}}%",
+    "spentOfTotal": "{{spent}} จาก {{total}}",
+    "viewInWallet": "ดูในกระเป๋าเงิน"
   },
   "live": {
     "notSet": "ยังไม่ได้ตั้ง",

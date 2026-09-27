@@ -4825,7 +4825,10 @@
     "earningsWorth": "值{{amount}}",
     "earningsPaidInTokens": "以今天的价格支付代币",
     "earningsPendingReserve": "待定库存准备金",
-    "tokensSent": "已发送{{amount}}个代币"
+    "tokensSent": "已发送{{amount}}个代币",
+    "percentUsed": "已使用{{percent}} %",
+    "spentOfTotal": "{{total}}的{{spent}}",
+    "viewInWallet": "在钱包中查看"
   },
   "live": {
     "notSet": "未设置",

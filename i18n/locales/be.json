@@ -4785,7 +4785,10 @@
     "earningsWorth": "Варта {{amount}}",
     "earningsPaidInTokens": "Аплачана ў маркерах па сённяшняй цане",
     "earningsPendingReserve": "Чаканы казначэйскі рэзерв",
-    "tokensSent": "{{amount}} токены адпраўленыя"
+    "tokensSent": "{{amount}} токены адпраўленыя",
+    "percentUsed": "{{percent}}% выкарыстоўваецца",
+    "spentOfTotal": "{{spent}} з {{total}}",
+    "viewInWallet": "Прагляд у кашальку"
   },
   "live": {
     "notSet": "Не зададзена",

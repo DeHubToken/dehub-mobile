@@ -4772,7 +4772,10 @@
     "earningsWorth": "Vrijedi {{amount}}",
     "earningsPaidInTokens": "Plaćeno u žetonima po današnjoj cijeni",
     "earningsPendingReserve": "Trezorske rezerve na čekanju",
-    "tokensSent": "{{amount}} tokena je poslano"
+    "tokensSent": "{{amount}} tokena je poslano",
+    "percentUsed": "{{percent}}% iskorišteno",
+    "spentOfTotal": "{{spent}} od {{total}}",
+    "viewInWallet": "Prikaži u novčaniku"
   },
   "live": {
     "notSet": "Nije postavljeno",

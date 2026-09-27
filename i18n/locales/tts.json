@@ -4772,7 +4772,10 @@
     "earningsWorth": "มูลค่า {{amount}}",
     "earningsPaidInTokens": "จ่ายเป็นโทเคนตามราคาวันนี้",
     "earningsPendingReserve": "สำรองคลังเงินที่ค้างอยู่",
-    "tokensSent": "ส่งโทเคน {{amount}} แล้ว"
+    "tokensSent": "ส่งโทเคน {{amount}} แล้ว",
+    "percentUsed": "{{percent}}% ใช้แล้ว",
+    "spentOfTotal": "{{spent}} จาก {{total}}",
+    "viewInWallet": "เบิ่งในกระเป๋าเงิน"
   },
   "live": {
     "notSet": "ยังบ่ได้ตั้ง",

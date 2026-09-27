@@ -4752,7 +4752,10 @@
     "earningsWorth": "តម្លៃ {{amount}}",
     "earningsPaidInTokens": "ប្រាក់រូពីស្រីលង្កា ទៅ យ័ន អត្រាប្តូរប្រាក់ថ្ងៃនេះ",
     "earningsPendingReserve": "បម្រុងទុករតនាគារដែលមិនទាន់សម្រេច",
-    "tokensSent": "{{amount}} ថូខឹនបានផ្ញើ"
+    "tokensSent": "{{amount}} ថូខឹនបានផ្ញើ",
+    "percentUsed": "{{percent}}% បានប្រើ",
+    "spentOfTotal": "{{spent}} នៃ {{total}}",
+    "viewInWallet": "មើលនៅក្នុងកាបូប"
   },
   "live": {
     "notSet": "មិនទាន់កំណត់",

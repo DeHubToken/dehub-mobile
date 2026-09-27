@@ -4772,7 +4772,10 @@
     "earningsWorth": "Nilai {{amount}}",
     "earningsPaidInTokens": "Dibayar nganggo token kanthi rega dina iki",
     "earningsPendingReserve": "Cadangan kas negara sing pending",
-    "tokensSent": "{{amount}} token dikirim"
+    "tokensSent": "{{amount}} token dikirim",
+    "percentUsed": "{{percent}}% digunakake",
+    "spentOfTotal": "{{spent}} saka {{total}}",
+    "viewInWallet": "Deleng ing dompet"
   },
   "live": {
     "notSet": "Durung disetel",

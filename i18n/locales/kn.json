@@ -4772,7 +4772,10 @@
     "earningsWorth": "ಮೌಲ್ಯ {{amount}}",
     "earningsPaidInTokens": "ಇಂದಿನ ಬೆಲೆಯಲ್ಲಿ ಟೋಕನ್‌ಗಳಲ್ಲಿ ಪಾವತಿಸಲಾಗಿದೆ",
     "earningsPendingReserve": "ಬಾಕಿ ಇರುವ ಖಜಾನೆ ಮೀಸಲು",
-    "tokensSent": "{{amount}} ಟೋಕನ್‌ಗಳನ್ನು ಕಳುಹಿಸಲಾಗಿದೆ"
+    "tokensSent": "{{amount}} ಟೋಕನ್‌ಗಳನ್ನು ಕಳುಹಿಸಲಾಗಿದೆ",
+    "percentUsed": "{{percent}}% ಬಳಸಲಾಗಿದೆ",
+    "spentOfTotal": "{{spent}} ರಲ್ಲಿ {{total}}",
+    "viewInWallet": "ವಾಲೆಟ್‌ನಲ್ಲಿ ವೀಕ್ಷಿಸಿ"
   },
   "live": {
     "notSet": "ಹೊಂದಿಸಿಲ್ಲ",
