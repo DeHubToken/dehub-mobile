@@ -1171,7 +1171,11 @@ export default function FeedDetailScreen() {
         ref={listRef}
         data={visibleComments}
         keyExtractor={(c) => String(c.id)}
-        ListHeaderComponent={renderHeader}
+        // An element, not the function: FlatList treats a function as a
+        // component type, so every new renderHeader identity (loading flips,
+        // comment count changes) remounted the whole post card — a live post
+        // restarted its stream and dropped an open reaction picker.
+        ListHeaderComponent={renderHeader()}
         ListFooterComponent={(
           <View>
             {showAllCommentsRow}
