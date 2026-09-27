@@ -6,8 +6,6 @@ import {
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { recordAnonViews } from "./anonView.service";
 
-// Video view threshold: 10% of duration OR 3 seconds, whichever comes first
-const VIDEO_MIN_WATCH_PERCENT = 0.10; // 10%
 
 // Post view threshold: 50% visible for 2 seconds
 const POST_VISIBILITY_PERCENT = 0.5; // 50% of post must be visible
@@ -129,13 +127,6 @@ function scheduleSaveCooldowns(): void {
   }, 250);
 }
 
-function isOnCooldown(tokenId: TokenId): boolean {
-  const key = keyFor(tokenId);
-  const expiry = viewCooldowns[key];
-  if (!expiry) return false;
-  return Date.now() < expiry;
-}
-
 function setCooldown(tokenId: TokenId): void {
   const key = keyFor(tokenId);
   viewCooldowns[key] = Date.now() + VIEW_COOLDOWN_MS;
@@ -144,13 +135,11 @@ function setCooldown(tokenId: TokenId): void {
 
 /**
  * Compute the minimum watch time threshold for counting a video view.
- * Matches web (view-tracker.ts): the LARGER of 10% of duration and 3 seconds.
- * Math.min here counted a 10s short as viewed after 1s while web needed 3s.
+ * Matches web (view-tracker.ts): any playback counts.
  */
-export function computeVideoViewThresholdMs(durationMs?: number | null): number {
-  if (!durationMs || durationMs <= 0) return VIDEO_MIN_WATCH_MS;
-  const tenPercent = durationMs * VIDEO_MIN_WATCH_PERCENT;
-  return Math.max(tenPercent, VIDEO_MIN_WATCH_MS);
+export function computeVideoViewThresholdMs(_durationMs?: number | null): number {
+  // Any playback is a view: no watch-time or percentage threshold.
+  return 0;
 }
 
 /** Determines if the user is authenticated enough to record a view. */
@@ -310,10 +299,9 @@ export async function queuePostView(tokenId: TokenId, isSignedIn: boolean): Prom
 
   const id = keyFor(tokenId);
 
-  // Skip if already queued or still on cooldown. Once the cooldown lapses the
-  // post counts again.
+  // Skip only if already queued.
   if (pendingBatchTokenIds.has(id) || pendingAnonBatchTokenIds.has(id)) return;
-  if (isOnCooldown(tokenId)) return;
+  // No cooldown: every impression is a view.
 
   // Add to the pending batch for whichever backend this viewer belongs to
   if (isSignedIn) {
