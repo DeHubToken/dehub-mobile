@@ -1,5 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { TouchableOpacity, View, Text, StyleSheet, Animated, Easing } from "react-native";
+import { TouchableOpacity, View, Text, StyleSheet, ActivityIndicator, AppState } from "react-native";
+import { useIsFocused } from "@react-navigation/native";
+import { useTranslation } from "react-i18next";
 import { useAudioPlayer } from "expo-audio";
 import { Ionicons } from "@expo/vector-icons";
 import { requestAudioFocus, releaseAudioFocus } from "../../libs/audioFocus";
@@ -9,194 +11,127 @@ interface Props {
   title: string;
   creator: string;
   url: string;
+  isVisible?: boolean;
 }
 
-const SoundtrackBadge: React.FC<Props> = ({ title, creator, url }) => {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  // Source is null on purpose: this badge renders on every feed row that has a
-  // soundtrack, and useAudioPlayer re-creates the native player whenever the
-  // source changes. Starting empty means no media is allocated for the many
-  // badges that are mounted but never tapped; the track is attached in
-  // togglePlay via player.replace(). The hook releases the player on unmount.
+const SoundtrackBadge: React.FC<Props> = ({ title, creator, url, isVisible = true }) => {
+  const { t } = useTranslation();
+  const focused = useIsFocused();
   const player = useAudioPlayer(null);
-  const spinAnim = useRef(new Animated.Value(0)).current;
-  const spinLoop = useRef<Animated.CompositeAnimation | null>(null);
+  const [playing, setPlaying] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const wanted = useRef(false);
+  const confirmed = useRef(false);
+  const generation = useRef(0);
+  const loadedUrl = useRef<string | null>(null);
+  const timeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const active = useRef(false);
+  active.current = isVisible && focused;
 
-  const startSpin = useCallback(() => {
-    spinAnim.setValue(0);
-    spinLoop.current = Animated.loop(
-      Animated.timing(spinAnim, {
-        toValue: 1,
-        duration: 3000,
-        easing: Easing.linear,
-        useNativeDriver: true,
-      })
-    );
-    spinLoop.current.start();
-  }, [spinAnim]);
-
-  const stopSpin = useCallback(() => {
-    spinLoop.current?.stop();
+  const clearLoadingTimeout = useCallback(() => {
+    if (timeout.current) clearTimeout(timeout.current);
+    timeout.current = null;
   }, []);
 
-  useEffect(() => {
-    if (isPlaying) startSpin();
-    else stopSpin();
-  }, [isPlaying, startSpin, stopSpin]);
+  const pause = useCallback(() => {
+    wanted.current = false;
+    confirmed.current = false;
+    generation.current++;
+    clearLoadingTimeout();
+    try { player.pause(); } catch { /* Player may already be released. */ }
+    setPlaying(false);
+    setLoading(false);
+    releaseAudioFocus(pause);
+  }, [player, clearLoadingTimeout]);
 
-  // Loop is set once. expo-audio has no per-play `isLooping` option — it is a
-  // property on the player.
+  const fail = useCallback(() => {
+    pause();
+    loadedUrl.current = null;
+    setError(true);
+  }, [pause]);
+
   useEffect(() => {
     player.loop = true;
-  }, [player]);
-
-  const stopPlayback = useCallback(async () => {
-    try {
-      // No stop() in expo-audio — pause and rewind is the equivalent.
-      player.pause();
-      await player.seekTo(0);
-    } catch {}
-    setIsPlaying(false);
-    releaseAudioFocus(stopPlayback);
-  }, [player]);
-
-  // Hoisted out of togglePlay: expo-av attached this per Sound instance, but
-  // expo-audio has one long-lived player, so the subscription belongs in an
-  // effect with a matching teardown. Declared after stopPlayback so the
-  // reference below is not in its temporal dead zone.
-  useEffect(() => {
-    const sub = player.addListener("playbackStatusUpdate", (s) => {
-      // Guarded on !loop deliberately. The old code set isLooping AND handled
-      // didJustFinish, which contradict each other: if the event fires at each
-      // loop boundary, the badge would flip to a play icon and drop audio focus
-      // while the track keeps looping — so the next player would not stop this
-      // one and two tracks would play at once.
-      if (!player.loop && s.isLoaded && s.didJustFinish) {
-        setIsPlaying(false);
-        releaseAudioFocus(stopPlayback);
-      }
+    const subscription = player.addListener("playbackStatusUpdate", (status) => {
+      if (!wanted.current) return;
+      if (status.playbackState === "error" || status.playbackState === "failed") { fail(); return; }
+      const buffering = !status.isLoaded || status.isBuffering;
+      if (confirmed.current && !status.playing && !buffering) { pause(); return; }
+      if (status.playing && !buffering) confirmed.current = true;
+      setLoading(buffering || !confirmed.current);
+      setPlaying(status.playing && !buffering);
+      if (status.playing && !buffering) clearLoadingTimeout();
+      else if (buffering && !timeout.current) timeout.current = setTimeout(fail, 15000);
     });
-    return () => sub.remove();
-  }, [player, stopPlayback]);
+    return () => { subscription.remove(); pause(); };
+  }, [player, pause, fail, clearLoadingTimeout]);
 
-  const togglePlay = useCallback(async () => {
-    if (isLoading) return;
+  useEffect(() => {
+    pause();
+    loadedUrl.current = null;
+    setError(false);
+  }, [url, pause]);
 
-    // Already playing — pause. play()/pause() are synchronous in expo-audio,
-    // so there is nothing to await or catch.
-    if (isPlaying) {
-      player.pause();
-      setIsPlaying(false);
-      releaseAudioFocus(stopPlayback);
-      return;
-    }
+  useEffect(() => { if (!isVisible || !focused) pause(); }, [isVisible, focused, pause]);
+  useEffect(() => {
+    const subscription = AppState.addEventListener("change", (state) => { if (state !== "active") pause(); });
+    return () => subscription.remove();
+  }, [pause]);
 
-    // Resume from pause. isLoaded is a plain property here, not an async
-    // getStatusAsync() call.
-    if (!isPlaying && player.isLoaded) {
-      requestAudioFocus(stopPlayback);
-      player.play();
-      setIsPlaying(true);
-      return;
-    }
-
-    // Fresh load
-    setIsLoading(true);
+  const toggle = useCallback(async () => {
+    if (wanted.current) { pause(); return; }
+    if (!active.current || AppState.currentState !== "active") return;
+    const attempt = ++generation.current;
+    wanted.current = true;
+    setLoading(true);
+    setError(false);
+    // Claim before awaiting setup, so another tap can cancel this request.
+    requestAudioFocus(pause);
+    timeout.current = setTimeout(fail, 15000);
     try {
       await configureForDuckedPlayback();
-      requestAudioFocus(stopPlayback);
-      // replace() attaches the source to the existing player; loop was set in
-      // the effect above, and play() stands in for the old shouldPlay option.
-      player.replace({ uri: url });
+      if (generation.current !== attempt || !wanted.current || !active.current) return;
+      if (loadedUrl.current !== url) {
+        player.replace({ uri: url });
+        player.loop = true;
+        loadedUrl.current = url;
+      }
       player.play();
-      setIsPlaying(true);
-    } catch (e) {
-      console.warn("[SoundtrackBadge] Playback error:", e);
-      releaseAudioFocus(stopPlayback);
-    } finally {
-      setIsLoading(false);
+    } catch {
+      if (generation.current === attempt) fail();
     }
-  }, [isLoading, isPlaying, url, stopPlayback, player]);
+  }, [url, player, pause, fail]);
 
-  // useAudioPlayer releases the native player on unmount, so only the audio
-  // focus registration needs cleaning up here.
-  useEffect(() => {
-    return () => {
-      releaseAudioFocus(stopPlayback);
-    };
-  }, [stopPlayback]);
-
-  const spin = spinAnim.interpolate({
-    inputRange: [0, 1],
-    outputRange: ["0deg", "360deg"],
-  });
-
+  const action = error ? t("common.retry") : loading ? t("common.cancel") : playing ? t("audioPost.pause") : t("audioPost.play");
+  const name = title || t("feed.music");
   return (
     <TouchableOpacity
-      onPress={togglePlay}
+      onPress={(event) => { event.stopPropagation(); void toggle(); }}
       activeOpacity={0.75}
+      accessibilityRole="button"
+      accessibilityLabel={`${action}: ${name}${creator ? ` — ${creator}` : ""}`}
       style={styles.container}
-      hitSlop={{ top: 6, bottom: 6, left: 4, right: 4 }}
     >
-      <Animated.View style={[styles.disc, { transform: [{ rotate: spin }] }]}>
-        <Ionicons name="musical-note" size={12} color="#fff" />
-      </Animated.View>
-
-      <Text style={styles.text} numberOfLines={1} ellipsizeMode="tail">
-        {title || "Untitled"}{creator ? ` — ${creator}` : ""}
-      </Text>
-
-      <View style={styles.playBtn}>
-        <Ionicons
-          name={isLoading ? "hourglass" : isPlaying ? "pause" : "play"}
-          size={11}
-          color="#fff"
-        />
+      <Ionicons name="musical-note" size={17} color="rgba(255,255,255,0.75)" />
+      <View style={styles.metadata}>
+        <Text style={styles.title} numberOfLines={1}>{name}</Text>
+        {!!creator && <Text style={styles.creator} numberOfLines={1}>{creator}</Text>}
       </View>
+      {loading ? <ActivityIndicator size="small" color="#fff" /> : (
+        <Ionicons name={error ? "refresh" : playing ? "pause" : "play"} size={17} color="#fff" />
+      )}
+      <Text style={styles.action}>{loading ? t("common.loading") : action}</Text>
     </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 6,
-    paddingLeft: 6,
-    paddingRight: 8,
-    paddingVertical: 6,
-    borderRadius: 10,
-    backgroundColor: "rgba(255,255,255,0.12)",
-    alignSelf: "flex-start",
-    maxWidth: "85%",
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.08)",
-  },
-  disc: {
-    width: 22,
-    height: 22,
-    borderRadius: 11,
-    backgroundColor: "#A1A1AA",
-    alignItems: "center",
-    justifyContent: "center",
-    flexShrink: 0,
-  },
-  text: {
-    color: "#fff",
-    fontSize: 12,
-    fontWeight: "500",
-    flex: 1,
-  },
-  playBtn: {
-    width: 18,
-    height: 18,
-    borderRadius: 6,
-    backgroundColor: "rgba(255,255,255,0.15)",
-    alignItems: "center",
-    justifyContent: "center",
-    flexShrink: 0,
-  },
+  container: { flexDirection: "row", alignItems: "center", gap: 10, paddingHorizontal: 12, paddingVertical: 8, minHeight: 44, borderRadius: 12, backgroundColor: "rgba(0,0,0,0.75)", alignSelf: "flex-start", maxWidth: "100%", borderWidth: 1, borderColor: "rgba(255,255,255,0.15)" },
+  metadata: { flexShrink: 1 },
+  title: { color: "#fff", fontSize: 12, fontWeight: "600" },
+  creator: { color: "rgba(255,255,255,0.75)", fontSize: 11, marginTop: 2 },
+  action: { color: "#fff", fontSize: 11, fontWeight: "500", flexShrink: 0 },
 });
 
 export default React.memo(SoundtrackBadge);

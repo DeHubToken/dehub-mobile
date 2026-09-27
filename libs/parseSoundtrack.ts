@@ -21,17 +21,23 @@ export function parseSoundtrack(description?: string | null): ParsedSoundtrack |
   if (!match) return null;
 
   const tokenId = match[1];
-  const title = match[2] || "Sound";
-  const creator = match[3] || "";
+  const decodeField = (value: string) => {
+    try { return decodeURIComponent(value); } catch { return value; }
+  };
+  const title = decodeField(match[2]) || "Sound";
+  const creator = decodeField(match[3]) || "";
   const audioPath = match[4]?.trim();
+  let url: URL;
+  try {
+    url = new URL(audioPath || `feed-audio/${tokenId}-audio.mp3`, CDN_BASE);
+    if (url.protocol !== "https:" && url.protocol !== "http:") return null;
+  } catch { return null; }
 
   return {
     tokenId,
     title,
     creator,
-    url: audioPath
-      ? `${CDN_BASE}${audioPath}`
-      : `${CDN_BASE}feed-audio/${tokenId}-audio.mp3`,
+    url: url.href,
   };
 }
 
@@ -49,7 +55,5 @@ export function buildSoundtrackTag(sound: {
   const relPath = sound.url?.startsWith(CDN_BASE)
     ? sound.url.slice(CDN_BASE.length)
     : sound.url;
-  return relPath
-    ? `[soundtrack:${sound.tokenId}:${sound.title}:${sound.creator}:${relPath}]`
-    : `[soundtrack:${sound.tokenId}:${sound.title}:${sound.creator}]`;
+  return `[soundtrack:${sound.tokenId}:${encodeURIComponent(sound.title)}:${encodeURIComponent(sound.creator)}${relPath ? `:${relPath.replace(/\]/g, "%5D")}` : ""}]`;
 }
