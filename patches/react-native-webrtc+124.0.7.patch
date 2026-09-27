@@ -16,3 +16,47 @@ index 925a840..4adbb38 100644
          frame.release();
      }
  }
+diff --git a/node_modules/react-native-webrtc/android/src/main/java/com/oney/WebRTCModule/WebRTCModule.java b/node_modules/react-native-webrtc/android/src/main/java/com/oney/WebRTCModule/WebRTCModule.java
+index 996648c..dcf40a1 100644
+--- a/node_modules/react-native-webrtc/android/src/main/java/com/oney/WebRTCModule/WebRTCModule.java
++++ b/node_modules/react-native-webrtc/android/src/main/java/com/oney/WebRTCModule/WebRTCModule.java
+@@ -90,7 +90,17 @@ public class WebRTCModule extends ReactContextBaseJavaModule {
+         }
+ 
+         if (adm == null) {
+-            adm = JavaAudioDeviceModule.builder(reactContext).setEnableVolumeLogger(false).createAudioDeviceModule();
++            // Playout defaults to USAGE_VOICE_COMMUNICATION, which Android routes
++            // to the earpiece: a live stream then sounds like a phone call held
++            // to the ear. Media usage plays it through the loudspeaker, or
++            // headphones when they are connected. Capture is untouched.
++            adm = JavaAudioDeviceModule.builder(reactContext)
++                          .setEnableVolumeLogger(false)
++                          .setAudioAttributes(new android.media.AudioAttributes.Builder()
++                                                      .setUsage(android.media.AudioAttributes.USAGE_MEDIA)
++                                                      .setContentType(android.media.AudioAttributes.CONTENT_TYPE_MOVIE)
++                                                      .build())
++                          .createAudioDeviceModule();
+         }
+ 
+         Log.d(TAG, "Using video encoder factory: " + encoderFactory.getClass().getCanonicalName());
+diff --git a/node_modules/react-native-webrtc/ios/RCTWebRTC/WebRTCModule.m b/node_modules/react-native-webrtc/ios/RCTWebRTC/WebRTCModule.m
+index 93ff750..94f4bd9 100644
+--- a/node_modules/react-native-webrtc/ios/RCTWebRTC/WebRTCModule.m
++++ b/node_modules/react-native-webrtc/ios/RCTWebRTC/WebRTCModule.m
+@@ -69,6 +69,16 @@
+         RCTLogInfo(@"Using video encoder factory: %@", NSStringFromClass([encoderFactory class]));
+         RCTLogInfo(@"Using video decoder factory: %@", NSStringFromClass([decoderFactory class]));
+ 
++        // WebRTC switches the session to PlayAndRecord/VoiceChat as soon as a
++        // remote audio track plays, and that pair routes to the receiver: a live
++        // stream comes out of the earpiece like a phone call. VideoChat mode with
++        // DefaultToSpeaker keeps voice processing but plays through the
++        // loudspeaker, or headphones when they are connected.
++        RTCAudioSessionConfiguration *audioConfig = [RTCAudioSessionConfiguration webRTCConfiguration];
++        audioConfig.mode = AVAudioSessionModeVideoChat;
++        audioConfig.categoryOptions |= AVAudioSessionCategoryOptionDefaultToSpeaker;
++        [RTCAudioSessionConfiguration setWebRTCConfiguration:audioConfig];
++
+         _peerConnectionFactory = [[RTCPeerConnectionFactory alloc] initWithEncoderFactory:encoderFactory
+                                                                            decoderFactory:decoderFactory
+                                                                               audioDevice:audioDevice];
