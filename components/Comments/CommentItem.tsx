@@ -652,6 +652,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
                   open={openTray === "positive"}
                   current={myReaction}
                   onSelect={handleReact}
+                  onClose={() => setOpenTray(null)}
                   align="left"
                 />
               )}
@@ -705,6 +706,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
                     polarity="negative"
                     current={myReaction}
                     onSelect={handleReact}
+                    onClose={() => setOpenTray(null)}
                     align="left"
                   />
                 )}
