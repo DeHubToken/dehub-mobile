@@ -33,6 +33,8 @@ interface Props {
   currentSound?: AttachedSound | null;
 }
 
+import { requestAudioFocus, releaseAudioFocus } from "../../libs/audioFocus";
+
 const CDN_BASE = "https://dehubcdn.ams3.cdn.digitaloceanspaces.com";
 
 const resolveAudioUrl = (audioUrl?: string | null, tokenId?: string | number): string => {
@@ -178,6 +180,8 @@ const SoundPickerSheet: React.FC<Props> = ({ visible, onClose, onSelect, current
       previewPlayer.pause();
       void previewPlayer.seekTo(0).catch(() => {});
     } catch {}
+    releaseAudioFocus(stopPreview);
+    setPlayingId(null);
   }, [previewPlayer]);
 
   // Preview playback
@@ -193,11 +197,13 @@ const SoundPickerSheet: React.FC<Props> = ({ visible, onClose, onSelect, current
       stopPreview();
       const audioUrl = resolveAudioUrl(item.audioUrl, item.tokenId);
       try {
+        requestAudioFocus(stopPreview);
         previewPlayer.replace({ uri: audioUrl });
         previewPlayer.play();
         setPlayingId(id);
       } catch (e) {
         console.error("[SoundPicker] Preview error:", e);
+        releaseAudioFocus(stopPreview);
         setPlayingId(null);
       }
     },
@@ -208,11 +214,12 @@ const SoundPickerSheet: React.FC<Props> = ({ visible, onClose, onSelect, current
   useEffect(() => {
     const sub = previewPlayer.addListener("playbackStatusUpdate", (status) => {
       if (status.isLoaded && status.didJustFinish) {
+        releaseAudioFocus(stopPreview);
         setPlayingId(null);
       }
     });
     return () => sub.remove();
-  }, [previewPlayer]);
+  }, [previewPlayer, stopPreview]);
 
   // Stop preview on close. The player is released by useAudioPlayer.
   useEffect(() => {
@@ -221,6 +228,8 @@ const SoundPickerSheet: React.FC<Props> = ({ visible, onClose, onSelect, current
       setPlayingId(null);
     }
   }, [visible, stopPreview]);
+
+  useEffect(() => () => { releaseAudioFocus(stopPreview); }, [stopPreview]);
 
   const handleSelect = useCallback(
     (item: UnifiedFeedItem) => {

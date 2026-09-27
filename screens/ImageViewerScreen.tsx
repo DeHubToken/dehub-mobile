@@ -16,6 +16,7 @@ import {
   ToastAndroid,
 } from "react-native";
 import SmartImage from "../components/common/SmartImage";
+import SoundtrackBadge from "../components/Post/SoundtrackBadge";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
@@ -282,6 +283,7 @@ const ImageViewerScreen = () => {
     initialIndex: paramInitialIndex,
     isModal,
     allowDownload,
+    soundtrack,
   } = (route?.params as any) || {};
 
   const startIndex = paramInitialIndex ?? paramIndex ?? 0;
@@ -545,6 +547,11 @@ const ImageViewerScreen = () => {
       </View>
 
       {/* ── Dot indicators ──────────────────────────────────────────── */}
+      {soundtrack?.url && (
+        <View style={{ position: "absolute", top: insets.top + 72, left: 16, right: 16 }}>
+          <SoundtrackBadge title={soundtrack.title} creator={soundtrack.creator} url={soundtrack.url} />
+        </View>
+      )}
       {showDots && (
         <View
           style={[styles.dotsRow, { bottom: insets.bottom + 20 }]}
