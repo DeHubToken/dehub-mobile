@@ -19,8 +19,8 @@ import { SvgXml } from "react-native-svg";
 import { useAppTheme } from "../../context/ThemeContext";
 import { STREAMER_BADGE_IDS, badgeMaterial, streamerBadgeSvg } from "../../libs/streamer-badge-art";
 import GlassModal from "../ui/GlassModal";
-import { useStreamerProgress } from "../../hooks/useStreamerProgress";
-import type { StreamerProgress } from "../../services/live.service";
+import { useStreamerProgress, useSelectStreamerBadge } from "../../hooks/useStreamerProgress";
+import type { StreamerCardId, StreamerProgress } from "../../services/live.service";
 
 interface Props {
   address?: string | null;
@@ -49,22 +49,29 @@ const StreamerLevelCard: React.FC<Props> = ({ address, className }) => {
   const { t, i18n } = useTranslation();
   const { data } = useStreamerProgress(address);
   const [cardsOpen, setCardsOpen] = useState(false);
+  const selection = useSelectStreamerBadge();
+  const { theme } = useAppTheme();
+  const instance = useId();
 
   if (!data || !(data.totalStreams > 0)) return null;
 
   const percent = Math.round(Math.min(1, Math.max(0, data.progressToNext)) * 100);
   const minutesToNext = Math.max(0, data.nextLevelXp - data.xp);
   const earnedCount = data.cards.filter((c) => c.earnedAt).length;
+  const equipped = data.cards.find((card) => card.id === data.selectedBadgeId && card.earnedAt);
 
   return (
     <>
       <View className={`rounded-2xl border border-white/10 bg-white/5 p-4 ${className || ""}`}>
         <View className="flex-row flex-wrap items-center justify-center gap-3">
           <View className="w-20 min-h-20 p-2 rounded-xl border border-white/15 bg-white/5 items-center justify-center">
+            {equipped ? <View accessible={false} accessibilityElementsHidden importantForAccessibility="no-hide-descendants"><SvgXml xml={streamerBadgeSvg(equipped.id, theme, true, instance)} width={64} height={64} /></View> : <>
             <Text className="w-full text-center text-white/40 text-[9px] leading-3 uppercase tracking-wider">{t("live.progress.title")}</Text>
             <Text className="text-white text-xl font-bold">{data.level}</Text>
+            </>}
           </View>
           <View className="flex-1 min-w-0 basis-32">
+            {equipped && <Text className="text-xs text-white/70 mb-1">{t(`live.progress.card.${equipped.id}.name`)}</Text>}
             <View className="flex-row items-center">
               <Icon name="Radio" size={13} color="rgba(255,255,255,0.6)" />
               <Text className="flex-1 text-white text-sm font-semibold ml-1.5">
@@ -131,14 +138,16 @@ const StreamerLevelCard: React.FC<Props> = ({ address, className }) => {
           <Text className="text-white text-base font-semibold">{t("live.progress.cardsTitle")}</Text>
           <Text className="text-theme-neutrals-400 text-xs mt-1">{t("live.progress.rule")}</Text>
         </View>
-        <CardGrid progress={data} locale={i18n.language} />
+        <Text className="px-5 pb-3 text-white/70 text-xs" accessibilityLiveRegion="polite">{selection.isPending ? t('live.progress.savingBadge') : t('live.progress.chooseBadge')}</Text>
+        {selection.isError && <Text className="px-5 pb-3 text-white text-sm" accessibilityRole="alert">{t('live.progress.saveBadgeError')}</Text>}
+        <CardGrid progress={data} locale={i18n.language} saving={selection.isPending} onSelect={(badgeId) => { if (address) selection.mutate({ address, badgeId }); }} />
         <RecentList progress={data} locale={i18n.language} />
       </GlassModal>
     </>
   );
 };
 
-const CardGrid: React.FC<{ progress: StreamerProgress; locale: string }> = ({ progress, locale }) => {
+const CardGrid: React.FC<{ progress: StreamerProgress; locale: string; saving: boolean; onSelect: (id: StreamerCardId) => void }> = ({ progress, locale, saving, onSelect }) => {
   const { t } = useTranslation();
   const { theme } = useAppTheme();
   const instance = useId();
@@ -160,6 +169,11 @@ const CardGrid: React.FC<{ progress: StreamerProgress; locale: string }> = ({ pr
                 {!earned && <Icon name="Lock" size={12} color={material.muted} />}
                 <Text style={{ flexShrink: 1, color: material.muted, fontSize: 11, lineHeight: 16, textAlign: 'center' }}>{earned ? t("live.progress.earnedOn", { date: formatDate(card!.earnedAt, locale) }) : t("live.progress.locked")}</Text>
               </View>
+              {earned && <TouchableOpacity onPress={() => onSelect(id)} disabled={saving || progress.selectedBadgeId === id}
+                accessibilityRole="button" accessibilityState={{ selected: progress.selectedBadgeId === id, disabled: saving || progress.selectedBadgeId === id }}
+                style={{ marginTop: 8, minHeight: 44, width: '100%', justifyContent: 'center', padding: 8, borderRadius: theme === 'minimal' ? 0 : 8, borderWidth: progress.selectedBadgeId === id ? 2 : 1, borderColor: material.edge, backgroundColor: material.face }}>
+                <Text style={{ color: material.text, fontSize: 12, fontWeight: '500', textAlign: 'center' }}>{progress.selectedBadgeId === id ? t('live.progress.selectedBadge') : t('live.progress.useBadge')}</Text>
+              </TouchableOpacity>}
             </View>
           </View>
         );

@@ -4916,7 +4916,12 @@
           "name": "Icône",
           "hint": "Atteignez le niveau vingt."
         }
-      }
+      },
+      "chooseBadge": "Choisissez un badge débloqué à afficher sur votre profil.",
+      "useBadge": "Utiliser ce badge",
+      "selectedBadge": "Sélectionné",
+      "savingBadge": "Enregistrement du badge…",
+      "saveBadgeError": "Impossible d’enregistrer votre badge. Réessayez."
     },
     "unmuteMic": "Activer le son du microphone",
     "muteMic": "Mise en sourdine du microphone",

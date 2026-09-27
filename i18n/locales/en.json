@@ -4912,7 +4912,12 @@
           "name": "Icon",
           "hint": "Reach level twenty."
         }
-      }
+      },
+      "chooseBadge": "Choose any unlocked badge to display on your profile.",
+      "useBadge": "Use badge",
+      "selectedBadge": "Selected",
+      "savingBadge": "Saving badge…",
+      "saveBadgeError": "Could not save your badge. Please try again."
     },
     "unmuteMic": "Unmute microphone",
     "muteMic": "Mute microphone",
