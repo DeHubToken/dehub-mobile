@@ -6731,5 +6731,33 @@
     "transferredConfirming": "Your tokens have been transferred. We will finish confirming the payment shortly.",
     "sentUnconfirmed": "Your tokens were sent but we could not confirm the payment. Do not pay again.",
     "transferIncomplete": "The token transfer did not complete. You will be asked again before your next paid post."
+  },
+  "emojiPicker": {
+    "searchEmoji": "Search emoji",
+    "noEmoji": "No emoji found",
+    "searchResults": "Search results",
+    "skinTone": "Skin tone",
+    "moreReactions": "More reactions",
+    "group": {
+      "recent": "Recently used",
+      "dehub": "DeHub picks",
+      "smileys": "Smileys & emotion",
+      "people": "People & body",
+      "animals": "Animals & nature",
+      "food": "Food & drink",
+      "travel": "Travel & places",
+      "activities": "Activities",
+      "objects": "Objects",
+      "symbols": "Symbols",
+      "flags": "Flags"
+    },
+    "tone": {
+      "default": "Default",
+      "light": "Light skin tone",
+      "mediumLight": "Medium-light skin tone",
+      "medium": "Medium skin tone",
+      "mediumDark": "Medium-dark skin tone",
+      "dark": "Dark skin tone"
+    }
   }
 }

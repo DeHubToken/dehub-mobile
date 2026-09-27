@@ -6826,5 +6826,33 @@
     "transferredConfirming": "Mã thông báo của bạn đã được chuyển. Chúng tôi sẽ sớm hoàn tất xác nhận thanh toán.",
     "sentUnconfirmed": "Mã thông báo của bạn đã được gửi nhưng chúng tôi không thể xác nhận thanh toán. Không thanh toán lại.",
     "transferIncomplete": "Việc chuyển mã thông báo chưa hoàn tất. Bạn sẽ được hỏi lại trước bài đăng trả phí tiếp theo."
+  },
+  "emojiPicker": {
+    "searchEmoji": "Tìm emoji",
+    "noEmoji": "Không tìm thấy emoji",
+    "searchResults": "Kết quả tìm kiếm",
+    "skinTone": "Tông da",
+    "moreReactions": "Thêm cảm xúc",
+    "group": {
+      "recent": "Dùng gần đây",
+      "dehub": "DeHub chọn lọc",
+      "smileys": "Mặt cười & cảm xúc",
+      "people": "Con người & cơ thể",
+      "animals": "Động vật & thiên nhiên",
+      "food": "Đồ ăn & thức uống",
+      "travel": "Du lịch & địa điểm",
+      "activities": "Hoạt động",
+      "objects": "Đồ vật",
+      "symbols": "Biểu tượng",
+      "flags": "Cờ"
+    },
+    "tone": {
+      "default": "Mặc định",
+      "light": "Tông da sáng",
+      "mediumLight": "Tông da sáng vừa",
+      "medium": "Tông da trung bình",
+      "mediumDark": "Tông da tối vừa",
+      "dark": "Tông da tối"
+    }
   }
 }

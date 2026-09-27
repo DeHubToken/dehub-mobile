@@ -6863,5 +6863,33 @@
     "transferredConfirming": "Jou tekens is oorgeplaas. Ons sal binnekort die betaling bevestig.",
     "sentUnconfirmed": "Jou kaartjies is gestuur, maar ons kon nie die betaling bevestig nie. Moenie weer betaal nie.",
     "transferIncomplete": "Die token-oordrag het nie voltooi nie. U sal weer gevra word voor u volgende betaalde pos."
+  },
+  "emojiPicker": {
+    "searchEmoji": "Soek emoji",
+    "noEmoji": "Geen emoji gevind nie",
+    "searchResults": "Soekresultate",
+    "skinTone": "Veltoon",
+    "moreReactions": "Meer reaksies",
+    "group": {
+      "recent": "Onlangs gebruik",
+      "dehub": "DeHub-keuses",
+      "smileys": "Glimlagte en emosie",
+      "people": "Mense en liggaam",
+      "animals": "Diere en natuur",
+      "food": "Kos en drank",
+      "travel": "Reis en plekke",
+      "activities": "Aktiwiteite",
+      "objects": "Voorwerpe",
+      "symbols": "Simbole",
+      "flags": "Vlae"
+    },
+    "tone": {
+      "default": "Verstek",
+      "light": "Ligte veltoon",
+      "mediumLight": "Medium-ligte veltoon",
+      "medium": "Medium veltoon",
+      "mediumDark": "Medium-donker veltoon",
+      "dark": "Donker veltoon"
+    }
   }
 }

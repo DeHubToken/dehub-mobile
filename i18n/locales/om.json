@@ -6788,5 +6788,33 @@
     "transferredConfirming": "Tookiin keessan dabarfamee jira. Kaffaltii yeroo gabaabaa keessatti mirkaneessinee xumurra.",
     "sentUnconfirmed": "Token keessan ergamee ture garuu kaffaltii mirkaneessuu hin dandeenye. Ammas hin kaffalinaa.",
     "transferIncomplete": "Jijjiirraan mallattoo hin xumuramne. Barreeffama kaffaltii itti aanu dura irra deebi'amee si gaafatama."
+  },
+  "emojiPicker": {
+    "searchEmoji": "Emoojii barbaadi",
+    "noEmoji": "Emoojiin hin argamne",
+    "searchResults": "Bu'aa barbaachaa",
+    "skinTone": "Halluu gogaa",
+    "moreReactions": "Deebii dabalataa",
+    "group": {
+      "recent": "Dhiyeenya kana kan fayyadame",
+      "dehub": "Filannoo DeHub",
+      "smileys": "Seequu fi miira",
+      "people": "Namoota fi qaama",
+      "animals": "Bineensota fi uumama",
+      "food": "Nyaata fi dhugaatii",
+      "travel": "Imala fi bakkeewwan",
+      "activities": "Sochiiwwan",
+      "objects": "Meeshaalee",
+      "symbols": "Mallattoolee",
+      "flags": "Alaabaalee"
+    },
+    "tone": {
+      "default": "Durtii",
+      "light": "Halluu gogaa ifaa",
+      "mediumLight": "Halluu gogaa giddugaleessa ifaa",
+      "medium": "Halluu gogaa giddugaleessa",
+      "mediumDark": "Halluu gogaa giddugaleessa dukkanaa'aa",
+      "dark": "Halluu gogaa dukkanaa'aa"
+    }
   }
 }

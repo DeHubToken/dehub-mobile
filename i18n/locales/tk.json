@@ -6738,5 +6738,33 @@
     "transferredConfirming": "Tokenleriňiz geçirildi. Tölegiňizi gysga wagtyň içinde tassyklaýarys.",
     "sentUnconfirmed": "Tokenleriňiz iberildi, ýöne tölegi tassyklaýyp bilmedik. Ýene tölemäň.",
     "transferIncomplete": "Token geçiriş tamamlanyp bilmedi. Tölegli ýazgyňyzdan öň ýene soralar."
+  },
+  "emojiPicker": {
+    "searchEmoji": "Emoji gözle",
+    "noEmoji": "Emoji tapylmady",
+    "searchResults": "Gözleg netijeleri",
+    "skinTone": "Deri reňki",
+    "moreReactions": "Has köp reaksiýa",
+    "group": {
+      "recent": "Soňky ulanylanlar",
+      "dehub": "DeHub saýlawy",
+      "smileys": "Ýylgyryşlar we duýgular",
+      "people": "Adamlar we beden",
+      "animals": "Haýwanlar we tebigat",
+      "food": "Iýmit we içgi",
+      "travel": "Syýahat we ýerler",
+      "activities": "Işjeňlikler",
+      "objects": "Zatlar",
+      "symbols": "Nyşanlar",
+      "flags": "Baýdaklar"
+    },
+    "tone": {
+      "default": "Adaty",
+      "light": "Açyk deri reňki",
+      "mediumLight": "Orta-açyk deri reňki",
+      "medium": "Orta deri reňki",
+      "mediumDark": "Orta-goýy deri reňki",
+      "dark": "Goýy deri reňki"
+    }
   }
 }

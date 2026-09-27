@@ -6553,5 +6553,33 @@
     "usdcPending": "Your USDC don land for Base but e never show. Send again small time.",
     "unlockWallet": "Unlock your wallet to pay with this token",
     "chainUnavailable": "You no fit pay from {{chain}} with this wallet"
+  },
+  "emojiPicker": {
+    "searchEmoji": "Find emoji",
+    "noEmoji": "No emoji dey",
+    "searchResults": "Wetin we find",
+    "skinTone": "Skin colour",
+    "moreReactions": "More reaction",
+    "group": {
+      "recent": "Wetin you use recently",
+      "dehub": "DeHub pick dem",
+      "smileys": "Smiley & feeling",
+      "people": "Pipo & body",
+      "animals": "Animal & nature",
+      "food": "Food & drink",
+      "travel": "Travel & place",
+      "activities": "Activity dem",
+      "objects": "Tin dem",
+      "symbols": "Symbol dem",
+      "flags": "Flag dem"
+    },
+    "tone": {
+      "default": "Normal",
+      "light": "Light skin colour",
+      "mediumLight": "Medium-light skin colour",
+      "medium": "Medium skin colour",
+      "mediumDark": "Medium-dark skin colour",
+      "dark": "Dark skin colour"
+    }
   }
 }

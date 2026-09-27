@@ -6739,5 +6739,33 @@
     "transferredConfirming": "Alama zako zimehamishwa. Tutamaliza kuthibitisha malipo baada ya muda mfupi.",
     "sentUnconfirmed": "Alama zako zilitumwa lakini hatukuweza kuthibitisha malipo. Usilipe tena.",
     "transferIncomplete": "Uhamisho wa tokeni haujakamilika. Utaulizwa tena kabla ya chapisho lako lijalo kulipwa."
+  },
+  "emojiPicker": {
+    "searchEmoji": "Tafuta emoji",
+    "noEmoji": "Hakuna emoji zilizopatikana",
+    "searchResults": "Matokeo ya utafutaji",
+    "skinTone": "Rangi ya ngozi",
+    "moreReactions": "Maitikio zaidi",
+    "group": {
+      "recent": "Zilizotumika hivi karibuni",
+      "dehub": "Chaguo za DeHub",
+      "smileys": "Tabasamu na hisia",
+      "people": "Watu na mwili",
+      "animals": "Wanyama na asili",
+      "food": "Chakula na vinywaji",
+      "travel": "Safari na maeneo",
+      "activities": "Shughuli",
+      "objects": "Vitu",
+      "symbols": "Alama",
+      "flags": "Bendera"
+    },
+    "tone": {
+      "default": "Chaguo-msingi",
+      "light": "Rangi ya ngozi nyeupe",
+      "mediumLight": "Rangi ya ngozi nyeupe kiasi",
+      "medium": "Rangi ya ngozi ya wastani",
+      "mediumDark": "Rangi ya ngozi nyeusi kiasi",
+      "dark": "Rangi ya ngozi nyeusi"
+    }
   }
 }
