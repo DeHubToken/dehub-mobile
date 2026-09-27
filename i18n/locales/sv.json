@@ -5187,7 +5187,10 @@
     "tippedYouAmount": "Dricks till dig {{amount}}",
     "paymentFailedAmount": "Misslyckades · {{amount}}",
     "paymentSendingAmount": "Skickar · {{amount}}",
-    "paymentSentWith": "Skickat med {{amount}}"
+    "paymentSentWith": "Skickat med {{amount}}",
+    "planRestricted": "Den här användaren kräver en prenumeration för att ta emot meddelanden.",
+    "planTypeNotAllowed": "Den här skaparens plan tillåter inte den här typen av meddelande.",
+    "planMinTip": "Dricksen måste vara minst {{amount}} DHB för den här skaparen."
   },
   "editPost": {
     "mediaPermission": "Behörighet till mediebiblioteket krävs",

@@ -5163,7 +5163,10 @@
     "tippedYouAmount": "បានជូន {{amount}} ជូនអ្នក",
     "paymentFailedAmount": "បរាជ័យ · {{amount}}",
     "paymentSendingAmount": "កំពុងផ្ញើ · {{amount}}",
-    "paymentSentWith": "បានផ្ញើជាមួយ {{amount}}"
+    "paymentSentWith": "បានផ្ញើជាមួយ {{amount}}",
+    "planRestricted": "អ្នកប្រើនេះតម្រូវឱ្យមានការជាវ ដើម្បីទទួលសារ។",
+    "planTypeNotAllowed": "គម្រោងរបស់អ្នកបង្កើតនេះ មិនអនុញ្ញាតសារប្រភេទនេះទេ។",
+    "planMinTip": "ទឹកប្រាក់ធីបសម្រាប់អ្នកបង្កើតនេះ ត្រូវតែយ៉ាងហោចណាស់ {{amount}} DHB។"
   },
   "editPost": {
     "mediaPermission": "ត្រូវការការអនុញ្ញាតបណ្ណាល័យមេឌៀ",

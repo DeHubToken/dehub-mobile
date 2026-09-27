@@ -5183,7 +5183,10 @@
     "tippedYouAmount": "Ба шумо {{amount}} туҳфа кард",
     "paymentFailedAmount": "Ноком шуд · {{amount}}",
     "paymentSendingAmount": "Фиристода мешавад · {{amount}}",
-    "paymentSentWith": "Бо {{amount}} фиристода шуд"
+    "paymentSentWith": "Бо {{amount}} фиристода шуд",
+    "planRestricted": "Ин корбар барои гирифтани паёмҳо обуна талаб мекунад.",
+    "planTypeNotAllowed": "Нақшаи ин эҷодкор ин навъи паёмро иҷозат намедиҳад.",
+    "planMinTip": "Чойпулӣ барои ин эҷодкор бояд на камтар аз {{amount}} DHB бошад."
   },
   "editPost": {
     "mediaPermission": "Иҷозати китобхонаи медиа лозим аст",

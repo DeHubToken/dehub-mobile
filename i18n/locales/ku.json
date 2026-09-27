@@ -5000,7 +5000,10 @@
     "userFallback": "bikaranîvan",
     "noConversationsFound": "Gotûbêj nehatin dîtin",
     "doNotDisturb": "Neêşîne",
-    "doNotDisturbOn": "Neêşîne: Vekirî"
+    "doNotDisturbOn": "Neêşîne: Vekirî",
+    "planRestricted": "Ev bikarhêner ji bo wergirtina peyaman abonetiyê dixwaze.",
+    "planTypeNotAllowed": "Plana vî afirîner vî cureyê peyamê qebûl nake.",
+    "planMinTip": "Ji bo vî afirîner bexşîş divê herî kêm {{amount}} DHB be."
   },
   "editPost": {
     "mediaPermission": "Destûra pirtûkxaneya medyayê pêwîst e",

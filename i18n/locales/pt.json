@@ -5236,7 +5236,10 @@
     "tippedYouAmount": "Dei gorjeta de {{amount}}",
     "paymentFailedAmount": "Falhou · {{amount}}",
     "paymentSendingAmount": "Enviando · {{amount}}",
-    "paymentSentWith": "Enviado com {{amount}}"
+    "paymentSentWith": "Enviado com {{amount}}",
+    "planRestricted": "Este usuário exige uma assinatura para receber mensagens.",
+    "planTypeNotAllowed": "O plano deste criador não permite este tipo de mensagem.",
+    "planMinTip": "A gorjeta deve ser de pelo menos {{amount}} DHB para este criador."
   },
   "editPost": {
     "mediaPermission": "É necessária permissão para a biblioteca multimédia",

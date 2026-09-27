@@ -5206,7 +5206,10 @@
     "tippedYouAmount": "Nandoa anao {{amount}}",
     "paymentFailedAmount": "Tsy nahomby · {{amount}}",
     "paymentSendingAmount": "Mandefa · {{amount}}",
-    "paymentSentWith": "Nandefa tamin'ny {{amount}}"
+    "paymentSentWith": "Nandefa tamin'ny {{amount}}",
+    "planRestricted": "Mila famandrihana ity mpampiasa ity vao mahazo hafatra.",
+    "planTypeNotAllowed": "Tsy mamela an'io karazana hafatra io ny drafitr'ity mpamorona ity.",
+    "planMinTip": "Tokony ho {{amount}} DHB farafahakeliny ny tip ho an'ity mpamorona ity."
   },
   "editPost": {
     "mediaPermission": "Ilaina ny fahazoan-dàlana amin'ny tranomboky media",

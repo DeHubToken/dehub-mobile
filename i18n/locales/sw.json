@@ -5184,7 +5184,10 @@
     "tippedYouAmount": "Nimekupa {{amount}}",
     "paymentFailedAmount": "Imeshindikana · {{amount}}",
     "paymentSendingAmount": "Inatuma · {{amount}}",
-    "paymentSentWith": "Imetumwa na {{amount}}"
+    "paymentSentWith": "Imetumwa na {{amount}}",
+    "planRestricted": "Mtumiaji huyu anahitaji usajili ili kupokea ujumbe.",
+    "planTypeNotAllowed": "Mpango wa mtayarishi huyu hauruhusu aina hii ya ujumbe.",
+    "planMinTip": "Bakshishi kwa mtayarishi huyu lazima iwe angalau {{amount}} DHB."
   },
   "editPost": {
     "mediaPermission": "Ruhusa ya maktaba ya midia inahitajika",

@@ -5184,7 +5184,10 @@
     "tippedYouAmount": "Fi {{amount}} fún ọ",
     "paymentFailedAmount": "Kò ṣàṣeyọrí · {{amount}}",
     "paymentSendingAmount": "Ìfiranṣẹ · {{amount}}",
-    "paymentSentWith": "Fi {{amount}} ránṣẹ́"
+    "paymentSentWith": "Fi {{amount}} ránṣẹ́",
+    "planRestricted": "Olùmúlò yìí nílò ìforúkọsílẹ̀ láti gba àwọn ìfiránṣẹ́.",
+    "planTypeNotAllowed": "Ètò olùdá yìí kò gba irú ìfiránṣẹ́ yìí láàyè.",
+    "planMinTip": "Owó ìmoore fún olùdá yìí gbọ́dọ̀ jẹ́ ó kéré tán {{amount}} DHB."
   },
   "editPost": {
     "mediaPermission": "A nílò àṣẹ ilé-ìkàwé àwòrán",

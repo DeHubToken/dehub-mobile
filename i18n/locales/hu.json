@@ -5187,7 +5187,10 @@
     "tippedYouAmount": "{{amount}} -t tippeltem neked",
     "paymentFailedAmount": "Hiba · {{amount}}",
     "paymentSendingAmount": "Küldés · {{amount}}",
-    "paymentSentWith": "{{amount}} -vel küldve"
+    "paymentSentWith": "{{amount}} -vel küldve",
+    "planRestricted": "Ez a felhasználó előfizetést kér az üzenetek fogadásához.",
+    "planTypeNotAllowed": "Ennek az alkotónak a csomagja nem engedi ezt az üzenettípust.",
+    "planMinTip": "A borravalónak legalább {{amount}} DHB-nek kell lennie ennél az alkotónál."
   },
   "editPost": {
     "mediaPermission": "Médiakönyvtár-engedély szükséges",

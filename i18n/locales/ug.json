@@ -5183,7 +5183,10 @@
     "tippedYouAmount": "Sizə {{amount}} bەرشدى",
     "paymentFailedAmount": "مەغلۇپ بولدى · {{amount}}",
     "paymentSendingAmount": "ئەۋەتىلىۋاتىدۇ · {{amount}}",
-    "paymentSentWith": "{{amount}} ئارقىلىق ئەۋەتىلدى"
+    "paymentSentWith": "{{amount}} ئارقىلىق ئەۋەتىلدى",
+    "planRestricted": "بۇ ئىشلەتكۈچى ئۇچۇر تاپشۇرۇۋېلىش ئۈچۈن مۇشتەرىلىك تەلەپ قىلىدۇ.",
+    "planTypeNotAllowed": "بۇ ئىجادكارنىڭ پىلانى بۇ خىل ئۇچۇرغا يول قويمايدۇ.",
+    "planMinTip": "بۇ ئىجادكارغا بېرىلىدىغان تىپ كەم دېگەندە {{amount}} DHB بولۇشى كېرەك."
   },
   "editPost": {
     "mediaPermission": "مېدىيا ئامبىرى ئىجازىتى كېرەك",

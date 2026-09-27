@@ -5236,7 +5236,10 @@
     "tippedYouAmount": "Отправил вам {{amount}}",
     "paymentFailedAmount": "Не удалось · {{amount}}",
     "paymentSendingAmount": "Отправка · {{amount}}",
-    "paymentSentWith": "Отправлено с {{amount}}"
+    "paymentSentWith": "Отправлено с {{amount}}",
+    "planRestricted": "Этот пользователь принимает сообщения только по подписке.",
+    "planTypeNotAllowed": "План этого автора не разрешает такой тип сообщений.",
+    "planMinTip": "Чаевые для этого автора должны быть не меньше {{amount}} DHB."
   },
   "editPost": {
     "mediaPermission": "Требуется доступ к медиатеке",

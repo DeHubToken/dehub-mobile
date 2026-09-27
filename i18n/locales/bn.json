@@ -5183,7 +5183,10 @@
     "tippedYouAmount": "আপনাকে {{amount}} টিপ দেওয়া হয়েছে",
     "paymentFailedAmount": "ব্যর্থ · {{amount}}",
     "paymentSendingAmount": "পাঠানো হচ্ছে · {{amount}}",
-    "paymentSentWith": "{{amount}} দিয়ে পাঠানো হয়েছে"
+    "paymentSentWith": "{{amount}} দিয়ে পাঠানো হয়েছে",
+    "planRestricted": "বার্তা পেতে এই ব্যবহারকারীর সাবস্ক্রিপশন প্রয়োজন।",
+    "planTypeNotAllowed": "এই ক্রিয়েটরের প্ল্যানে এই ধরনের বার্তা অনুমোদিত নয়।",
+    "planMinTip": "এই ক্রিয়েটরের জন্য টিপ কমপক্ষে {{amount}} DHB হতে হবে।"
   },
   "editPost": {
     "mediaPermission": "মিডিয়া লাইব্রেরির অনুমতি দরকার",

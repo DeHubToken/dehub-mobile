@@ -5183,7 +5183,10 @@
     "tippedYouAmount": "ให้ทิปเจ้า {{amount}}",
     "paymentFailedAmount": "ล้มเหลว · {{amount}}",
     "paymentSendingAmount": "กำลังส่ง · {{amount}}",
-    "paymentSentWith": "ส่งแล้วพร้อม {{amount}}"
+    "paymentSentWith": "ส่งแล้วพร้อม {{amount}}",
+    "planRestricted": "ผู้ใช้คนนี้ต้องสมัครสมาชิกก่อนจั่งสิฮับข้อความได้",
+    "planTypeNotAllowed": "แพ็กเกจของครีเอเตอร์คนนี้บ่อนุญาตข้อความแบบนี้",
+    "planMinTip": "ทิปให้ครีเอเตอร์คนนี้ต้องมีอย่างน้อย {{amount}} DHB"
   },
   "editPost": {
     "mediaPermission": "ต้องได้ฮับสิทธิ์เข้าเถิงคลังสื่อ",

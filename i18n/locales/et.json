@@ -5183,7 +5183,10 @@
     "tippedYouAmount": "Tippisin sulle {{amount}}",
     "paymentFailedAmount": "Ebaõnnestus · {{amount}}",
     "paymentSendingAmount": "Saadab · {{amount}}",
-    "paymentSentWith": "Saadetud koos {{amount}}"
+    "paymentSentWith": "Saadetud koos {{amount}}",
+    "planRestricted": "See kasutaja nõuab sõnumite saamiseks tellimust.",
+    "planTypeNotAllowed": "Selle looja pakett ei luba seda tüüpi sõnumit.",
+    "planMinTip": "Selle looja jootraha peab olema vähemalt {{amount}} DHB."
   },
   "editPost": {
     "mediaPermission": "Meediakogu luba on nõutav",

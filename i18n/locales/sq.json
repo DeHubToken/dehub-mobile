@@ -5183,7 +5183,10 @@
     "tippedYouAmount": "Të dhashë {{amount}}",
     "paymentFailedAmount": "Dështoi · {{amount}}",
     "paymentSendingAmount": "Dërgimi · {{amount}}",
-    "paymentSentWith": "Dërguar me {{amount}}"
+    "paymentSentWith": "Dërguar me {{amount}}",
+    "planRestricted": "Ky përdorues kërkon abonim për të marrë mesazhe.",
+    "planTypeNotAllowed": "Plani i këtij krijuesi nuk e lejon këtë lloj mesazhi.",
+    "planMinTip": "Bakshishi për këtë krijues duhet të jetë të paktën {{amount}} DHB."
   },
   "editPost": {
     "mediaPermission": "Kërkohet leja për bibliotekën e medias",

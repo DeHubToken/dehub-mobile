@@ -5183,7 +5183,10 @@
     "tippedYouAmount": "Uplatio/la vam je {{amount}}",
     "paymentFailedAmount": "Neuspjelo · {{amount}}",
     "paymentSendingAmount": "Slanje · {{amount}}",
-    "paymentSentWith": "Poslano s {{amount}}"
+    "paymentSentWith": "Poslano s {{amount}}",
+    "planRestricted": "Ovaj korisnik zahtijeva pretplatu za primanje poruka.",
+    "planTypeNotAllowed": "Plan ovog kreatora ne dopušta ovu vrstu poruke.",
+    "planMinTip": "Napojnica za ovog kreatora mora biti najmanje {{amount}} DHB."
   },
   "editPost": {
     "mediaPermission": "Potrebno je dopuštenje za medijsku knjižnicu",

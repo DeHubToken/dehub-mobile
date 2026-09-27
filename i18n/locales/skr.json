@@ -5168,7 +5168,10 @@
     "tippedYouAmount": "تینوں {{amount}} ٹپ دتا",
     "paymentFailedAmount": "ناکام · {{amount}}",
     "paymentSendingAmount": "بھیج رہیا اے · {{amount}}",
-    "paymentSentWith": "{{amount}} نال بھیجیا گیا"
+    "paymentSentWith": "{{amount}} نال بھیجیا گیا",
+    "planRestricted": "ایں یوزر کوں سنیہے گھنݨ کیتے سبسکرپشن دی لوڑ اے۔",
+    "planTypeNotAllowed": "ایں کریئیٹر دا پلان ایں قسم دے سنیہے دی اجازت نئیں ݙیندا۔",
+    "planMinTip": "ایں کریئیٹر کیتے ٹپ گھٹ توں گھٹ {{amount}} DHB ہووݨی چاہیدی اے۔"
   },
   "editPost": {
     "mediaPermission": "میڈیا لائبریری دی اجازت درکار ہے",

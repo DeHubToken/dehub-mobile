@@ -5183,7 +5183,10 @@
     "tippedYouAmount": "Танд {{amount}} илгээсэн",
     "paymentFailedAmount": "Амжилтгүй боллоо · {{amount}}",
     "paymentSendingAmount": "Илгээж байна · {{amount}}",
-    "paymentSentWith": "{{amount}} -аар илгээсэн"
+    "paymentSentWith": "{{amount}} -аар илгээсэн",
+    "planRestricted": "Энэ хэрэглэгч мессеж хүлээн авахын тулд захиалга шаардана.",
+    "planTypeNotAllowed": "Энэ бүтээгчийн төлөвлөгөө ийм төрлийн мессежийг зөвшөөрдөггүй.",
+    "planMinTip": "Энэ бүтээгчид өгөх цай хамгийн багадаа {{amount}} DHB байх ёстой."
   },
   "editPost": {
     "mediaPermission": "Медиа сангийн зөвшөөрөл шаардлагатай",

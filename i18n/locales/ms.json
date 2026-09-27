@@ -5444,7 +5444,10 @@
     "tippedYouAmount": "Memberi anda tip {{amount}}",
     "paymentFailedAmount": "Gagal · {{amount}}",
     "paymentSendingAmount": "Menghantar · {{amount}}",
-    "paymentSentWith": "Dihantar dengan {{amount}}"
+    "paymentSentWith": "Dihantar dengan {{amount}}",
+    "planRestricted": "Pengguna ini memerlukan langganan untuk menerima mesej.",
+    "planTypeNotAllowed": "Pelan pencipta ini tidak membenarkan jenis mesej ini.",
+    "planMinTip": "Tip untuk pencipta ini mestilah sekurang-kurangnya {{amount}} DHB."
   },
   "editPost": {
     "mediaPermission": "Kebenaran pustaka media diperlukan",

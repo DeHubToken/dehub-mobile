@@ -5196,7 +5196,10 @@
     "tippedYouAmount": "ඔබට {{amount}} ටිප් එකක් දුන්නා",
     "paymentFailedAmount": "අසාර්ථකයි · {{amount}}",
     "paymentSendingAmount": "යවමින් · {{amount}}",
-    "paymentSentWith": "{{amount}} සමඟ යවන ලදි"
+    "paymentSentWith": "{{amount}} සමඟ යවන ලදි",
+    "planRestricted": "මෙම පරිශීලකයාට පණිවිඩ ලැබීමට දායකත්වයක් අවශ්‍යයි.",
+    "planTypeNotAllowed": "මෙම නිර්මාණකරුගේ සැලැස්ම මෙවැනි පණිවිඩයකට ඉඩ නොදේ.",
+    "planMinTip": "මෙම නිර්මාණකරුට ටිප් එක අවම වශයෙන් {{amount}} DHB විය යුතුයි."
   },
   "editPost": {
     "mediaPermission": "මාධ්‍ය පුස්තකාල අවසරය අවශ්‍යයි",

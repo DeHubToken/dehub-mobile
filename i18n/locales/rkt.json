@@ -5171,7 +5171,10 @@
     "doNotDisturb": "বিঘ্নিত করা হবে না",
     "doNotDisturbOn": "বিঘ্নিত করা হবে না",
     "deleteConversationTitle": "কথোপকথন মুছবেন?",
-    "deleteConversationBody": "এই কথোপকথনটি আপনার ইনবক্স থেকে সরানো হবে ।"
+    "deleteConversationBody": "এই কথোপকথনটি আপনার ইনবক্স থেকে সরানো হবে ।",
+    "planRestricted": "এই ইউজারক মেসেজ পাবার জইন্যে সাবস্ক্রিপশন লাগে।",
+    "planTypeNotAllowed": "এই ক্রিয়েটরের প্ল্যানোত এমন মেসেজ চলে না।",
+    "planMinTip": "এই ক্রিয়েটরের জইন্যে টিপ কমপক্ষে {{amount}} DHB হওয়া লাগবে।"
   },
   "editPost": {
     "mediaPermission": "মিডিয়া লাইব্রেরির অনুমতি লাগে",

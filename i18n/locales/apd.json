@@ -5182,7 +5182,10 @@
     "tippedYouAmount": "إديتك {{amount}}",
     "paymentFailedAmount": "فشل · {{amount}}",
     "paymentSendingAmount": "إرسال · {{amount}}",
-    "paymentSentWith": "تم الإرسال بـ {{amount}}"
+    "paymentSentWith": "تم الإرسال بـ {{amount}}",
+    "planRestricted": "المستخدم ده بحتاج اشتراك عشان يستلم رسائل.",
+    "planTypeNotAllowed": "خطة المنشئ ده ما بتسمح بالنوع ده من الرسائل.",
+    "planMinTip": "الإكرامية لازم تكون على الأقل {{amount}} DHB للمنشئ ده."
   },
   "editPost": {
     "mediaPermission": "لازم إذن مكتبة الوسائط",

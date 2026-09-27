@@ -5181,7 +5181,10 @@
     "tippedYouAmount": "आपको {{amount}} टिप दिया",
     "paymentFailedAmount": "विफल · {{amount}}",
     "paymentSendingAmount": "भेजा जा रहा है · {{amount}}",
-    "paymentSentWith": "{{amount}} के साथ भेजा गया"
+    "paymentSentWith": "{{amount}} के साथ भेजा गया",
+    "planRestricted": "ई यूजर के संदेश पावे खातिर सब्सक्रिप्शन चाहीं।",
+    "planTypeNotAllowed": "एह क्रिएटर के प्लान में अइसन संदेश के अनुमति नइखे।",
+    "planMinTip": "एह क्रिएटर खातिर टिप कम से कम {{amount}} DHB होखे के चाहीं।"
   },
   "editPost": {
     "mediaPermission": "मीडिया लाइब्रेरी के अनुमति चाहीं",

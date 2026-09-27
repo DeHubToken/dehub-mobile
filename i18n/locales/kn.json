@@ -5183,7 +5183,10 @@
     "tippedYouAmount": "ನಿಮಗೆ {{amount}} ಟಿಪ್ ಮಾಡಲಾಗಿದೆ",
     "paymentFailedAmount": "ವಿಫಲ · {{amount}}",
     "paymentSendingAmount": "ಕಳುಹಿಸಲಾಗುತ್ತಿದೆ · {{amount}}",
-    "paymentSentWith": "{{amount}} ನೊಂದಿಗೆ ಕಳುಹಿಸಲಾಗಿದೆ"
+    "paymentSentWith": "{{amount}} ನೊಂದಿಗೆ ಕಳುಹಿಸಲಾಗಿದೆ",
+    "planRestricted": "ಈ ಬಳಕೆದಾರರಿಗೆ ಸಂದೇಶಗಳನ್ನು ಪಡೆಯಲು ಚಂದಾದಾರಿಕೆ ಅಗತ್ಯವಿದೆ.",
+    "planTypeNotAllowed": "ಈ ಕ್ರಿಯೇಟರ್‌ನ ಪ್ಲಾನ್ ಈ ರೀತಿಯ ಸಂದೇಶವನ್ನು ಅನುಮತಿಸುವುದಿಲ್ಲ.",
+    "planMinTip": "ಈ ಕ್ರಿಯೇಟರ್‌ಗೆ ಟಿಪ್ ಕನಿಷ್ಠ {{amount}} DHB ಇರಬೇಕು."
   },
   "editPost": {
     "mediaPermission": "ಮೀಡಿಯಾ ಲೈಬ್ರರಿ ಅನುಮತಿ ಅಗತ್ಯ",

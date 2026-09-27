@@ -5213,7 +5213,10 @@
     "tippedYouAmount": "عطيتك {{amount}}",
     "paymentFailedAmount": "فشل · {{amount}}",
     "paymentSendingAmount": "إرسال · {{amount}}",
-    "paymentSentWith": "تم الإرسال بـ {{amount}}"
+    "paymentSentWith": "تم الإرسال بـ {{amount}}",
+    "planRestricted": "هاد المستخدم خاصو اشتراك باش يتوصل بالرسائل.",
+    "planTypeNotAllowed": "الخطة ديال هاد المنشئ ما كتسمحش بهاد النوع ديال الرسائل.",
+    "planMinTip": "خاص الإكرامية تكون على الأقل {{amount}} DHB لهاد المنشئ."
   },
   "editPost": {
     "mediaPermission": "خاص إذن ديال مكتبة الوسائط",

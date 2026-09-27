@@ -5236,7 +5236,10 @@
     "tippedYouAmount": "Vous a donné {{amount}}",
     "paymentFailedAmount": "Échec · {{amount}}",
     "paymentSendingAmount": "Envoi · {{amount}}",
-    "paymentSentWith": "Envoyé avec {{amount}}"
+    "paymentSentWith": "Envoyé avec {{amount}}",
+    "planRestricted": "Cet utilisateur exige un abonnement pour recevoir des messages.",
+    "planTypeNotAllowed": "L'offre de ce créateur n'autorise pas ce type de message.",
+    "planMinTip": "Le pourboire doit être d'au moins {{amount}} DHB pour ce créateur."
   },
   "editPost": {
     "mediaPermission": "L'autorisation d'accès à la médiathèque est requise",

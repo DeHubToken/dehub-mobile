@@ -4992,7 +4992,10 @@
     "doNotDisturb": "پریشان نہ ہوں",
     "doNotDisturbOn": "پریشان نہ ہوں: آن",
     "deleteConversationTitle": "گفتگو حذف کریں ؟",
-    "deleteConversationBody": "یہ گفتگو آپ کے ان باکس سے ہٹا دی جائے گی ۔"
+    "deleteConversationBody": "یہ گفتگو آپ کے ان باکس سے ہٹا دی جائے گی ۔",
+    "planRestricted": "اس یوزر کو پیغامات لینے کے لیے سبسکرپشن چاہیے۔",
+    "planTypeNotAllowed": "اس کریئیٹر کے پلان میں اس قسم کا پیغام اجازت نہیں۔",
+    "planMinTip": "اس کریئیٹر کے لیے ٹپ کم از کم {{amount}} DHB ہونا چاہیے۔"
   },
   "editPost": {
     "mediaPermission": "میڈیا لائبریری کی اجازت درکار ہے",
