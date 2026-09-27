@@ -7099,14 +7099,10 @@
     "intro": "لە هەمان کاتدا بڵاو بکەرەوە بۆ X، یوتیوب، ئینستاگرام، تیکتۆک و زیاتر وەک dehub. جارێک هەژمارەکانت ببەستە، پاشان هەڵبژێرە کە هەر پۆستێک بۆ کوێ دەڕوات.",
     "creditsHeading": "قەرزی پۆست",
     "credits": "{{count}} قەرزی پۆست",
-    "creditExplainer": "یەک قەرز یەک پۆست دەنێرێت بۆ یەک پلاتفۆرم، بۆیە بڵاوکردنەوە بۆ 3 پلاتفۆرم 3 قەرز بەکاردەهێنێت. پۆستە کاتەبەندکراوەکان قەرز بەکاردەهێنن کاتێک کاتەبەندیان دەکەیت.",
-    "payAsYouGo": "Kredî nemane? Dema ku tu diweşînî, ji bo her platformê ${{price}} bi DHB didî.",
     "topUpTitle": "زیاتر پڕ بکەرەوە و پاشەکەوت بکە",
-    "topUpPosts": "{{count}} پۆست",
     "discount": "{{percent}}% کەمکردنەوە",
     "noDiscount": "نرخی تەواو",
     "total": "Bi tevahî ${{usd}}, bi DHB tê dayîn",
-    "perPost": "${{price}} ji bo her postê",
     "buy": "قەرز بکڕە",
     "buying": "چاوەڕوانی پارەدان...",
     "bought": "{{count}} قەرزی پۆستی زیادکرا",
@@ -7134,6 +7130,15 @@
     "partialToast": "Li {{sent}} platforman hat weşandin. {{failed}} bi ser neket û ew kredî hatin vegerandin.",
     "failedToast": "Weşana hevdem bi ser neket: {{error}}",
     "skippedToast": "{{platforms}} hat derbaskirin: di vê postê de wêne an vîdyoya ku ew dixwazin tune.",
-    "uploadFailed": "Medyaya te ji bo weşana hevdem nehat barkirin."
+    "uploadFailed": "Medyaya te ji bo weşana hevdem nehat barkirin.",
+    "creditRules": "هەر پۆستێک بۆ هەر پلاتفۆرمێک قەرزی دەوێت: {{x}} بۆ X، {{farcaster}} بۆ Farcaster و {{other}} بۆ هەر پلاتفۆرمێکی تر. پۆستە خشتەکراوەکان لە کاتی خشتەکردندا قەرز بەکاردەهێنن.",
+    "payAsYouGoCredits": "قەرزت نەما؟ قەرزی کەم لە کاتی پۆستکردندا بە DHB دەکڕدرێت، هەر یەکێک بە ${{price}}.",
+    "topUpCredits": "{{count}} قەرز",
+    "perCredit": "${{price}} بۆ هەر قەرزێک",
+    "pendingApproval": "چاوەڕێی ئەوەین dehub لە ئەپی Farcaster پەسەند بکەیت",
+    "approve": "پەسەندکردن",
+    "farcasterNote": "Farcaster داوات لێدەکات dehub لە ئەپی Farcaster پەسەند بکەیت، و هێشتا پۆستی خشتەکراو وەرناگرێت.",
+    "skippedScheduleToast": "{{platforms}} تێپەڕێنران: هێشتا پۆستی خشتەکراو لەوێ پشتگیری ناکرێت.",
+    "skippedOtherToast": "{{platforms}} تێپەڕێنران: نەیانتوانی ئەم پۆستە وەربگرن."
   }
 }

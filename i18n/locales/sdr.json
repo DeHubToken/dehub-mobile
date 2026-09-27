@@ -7393,14 +7393,10 @@
     "intro": "X, YouTube, Instagram, TikTok आओर अउर प्लेटफॉर्म पर एके साथ पोस्ट कर सकीथ dehub के मदद से. अपन अकाउंट एक बार जोड़, फेर चुन कि हर पोस्ट कहाँ जाई.",
     "creditsHeading": "Post credits",
     "credits": "{{count}} post credits",
-    "creditExplainer": "एक क्रेडिट से एक पोस्ट एक प्लेटफॉर्म पर भेजा जाथे, त 3 प्लेटफॉर्म पर पोस्ट करे बर 3 क्रेडिट लगथे। शेड्यूल्ड पोस्ट जब शेड्यूल करथो तब क्रेडिट खपत होथे.",
-    "payAsYouGo": "क्रेडिट बचल नहिये? जखन पोस्ट करब, तोहर हर प्लेटफॉर्म पर ${{price}} DHB में देवे के पड़ी.",
     "topUpTitle": "टॉप अप करा आउर बचावा",
-    "topUpPosts": "{{count}} posts",
     "discount": "{{percent}}% off",
     "noDiscount": "Full price",
     "total": "कुल ${{usd}}, DHB में देल गेल",
-    "perPost": "${{price}} per post",
     "buy": "Buy credits",
     "buying": "पेमेंट कर इंतजार होवत हे…",
     "bought": "Added {{count}} post credits",
@@ -7428,6 +7424,15 @@
     "partialToast": "{{sent}} platform par post kiya. {{failed}} fail ho gaya aur woh credits refund kiye gaye.",
     "failedToast": "Cross-post fail ho gaya: {{error}}",
     "skippedToast": "Skipped {{platforms}}: is post mein unhe zaroori photo ya video nahi hai.",
-    "uploadFailed": "Cross-posting ke liye aapka media upload nahi ho paaya."
+    "uploadFailed": "Cross-posting ke liye aapka media upload nahi ho paaya.",
+    "creditRules": "हर पोस्ट के लागत प्लेटफ़ॉर्म के हिसाब से क्रेडिट में होथे: X बर {{x}}, Farcaster बर {{farcaster}} अउ बाकी सब प्लेटफ़ॉर्म बर {{other}}. शेड्यूल्ड पोस्ट जब आप शेड्यूल करथो, तब क्रेडिट खपत होथे.",
+    "payAsYouGoCredits": "क्रेडिट खतम होगे? गुम होए क्रेडिट DHB में ${{price}} पर खरीदे जाथे जब आप पोस्ट करथो.",
+    "topUpCredits": "{{count}} credits",
+    "perCredit": "${{price}} per credit",
+    "pendingApproval": "Farcaster ऐप में dehub के मंजूरी के इंतजार में हवन",
+    "approve": "Approve",
+    "farcasterNote": "Farcaster आपसे कहिथे के Farcaster ऐप में dehub के मंजूरी देव, अउ अभी तक शेड्यूल्ड पोस्ट ले नहीं सकत.",
+    "skippedScheduleToast": "Skipped {{platforms}}: scheduled posts aren't supported there yet.",
+    "skippedOtherToast": "छोड़ दे गे {{platforms}}: ओमन ए पोस्ट ले नहीं ले सकिन."
   }
 }

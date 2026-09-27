@@ -7369,14 +7369,10 @@
     "intro": "U dir X, YouTube, Instagram, TikTok iyo kuwo kale isla markiiba sida dehub. Ku xir akoonnadaada hal mar, ka dibna dooro meesha boost kasta tagayso.",
     "creditsHeading": "Dhibcaha boostka",
     "credits": "{{count}} dhibcaha boostka",
-    "creditExplainer": "Hal dhibic ayaa boost hal boost u dirta hal madal, markaa boost u dirista 3 madal waxay isticmaashaa 3 dhibcood. Boostyada la jadwalay ayaa isticmaalaya dhibcaha marka aad jadwalayso.",
-    "payAsYouGo": "Ma jiraan dhibco haray? Waxaad bixinaysaa ${{price}} madal kasta oo ku jirta DHB marka aad boostayso.",
     "topUpTitle": "Ku soo kabo oo keydi",
-    "topUpPosts": "{{count}} boost",
     "discount": "{{percent}}% ka dhinac",
     "noDiscount": "Qiimaha buuxa",
     "total": "Wadarta ${{usd}}, oo lagu bixiyay DHB",
-    "perPost": "${{price}} boost kasta",
     "buy": "Iibso dhibcaha",
     "buying": "Sugida lacag bixinta…",
     "bought": "Waxaa lagu daray {{count}} dhibcaha boostka",
@@ -7404,6 +7400,15 @@
     "partialToast": "Posted in {{sent}} platforms. {{failed}} guuldareystay oo amaahdaas la soo celiyay.",
     "failedToast": "Cross-post ayaa ku guuldareystay: {{error}}",
     "skippedToast": "Skipped {{platforms}}: qoraalkani ma laha sawirka ama fiidiyowga ay u baahan yihiin.",
-    "uploadFailed": "Ma soo dejin karo warbaahintaada si aad u gudbiso boostada iskutallaabta."
+    "uploadFailed": "Ma soo dejin karo warbaahintaada si aad u gudbiso boostada iskutallaabta.",
+    "creditRules": "Boostada kasta waxay ku kacdaa dhibcaha boostada: {{x}} for X, {{farcaster}} for Farcaster iyo {{other}} madal kasta oo kale. Qoraallada la qorsheeyay waxay isticmaalaan amaahda marka aad jadwal u sameysid.",
+    "payAsYouGoCredits": "Run out? credits maqan waxaa laga iibsadaa DHB at ${{price}} mid kasta marka aad boostada.",
+    "topUpCredits": "{{count}} credits",
+    "perCredit": "${{price}} per credit",
+    "pendingApproval": "Waxaan sugeynaa inaad ogolaato dehub ee barnaamijka Farcaster",
+    "approve": "Ogolow",
+    "farcasterNote": "Farcaster wuxuu kaa codsanayaa inaad ku ogolaato dehub barnaamijka Farcaster, mana qaadan karto qoraallo qorsheysan weli.",
+    "skippedScheduleToast": "Skipped {{platforms}}: Qoraallada qorshaysan weli lama taageerin halkaas.",
+    "skippedOtherToast": "Skipped {{platforms}}: ma qaadan karaan qoraalkan."
   }
 }

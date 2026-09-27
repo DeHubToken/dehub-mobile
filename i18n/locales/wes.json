@@ -6816,14 +6816,10 @@
     "intro": "Post fo X, YouTube, Instagram, TikTok an oda wan dem sem taim as dehub. Konek yu akaunt dem wan taim, den choose usai ech post go go.",
     "creditsHeading": "Post credits",
     "credits": "{{count}} post credits",
-    "creditExplainer": "Wan credit di sen wan post fo wan platform, so fo post fo 3 platform go use 3 credits. Post weh yu schedule di use credits wen yu schedule dem.",
-    "payAsYouGo": "Credits don finish? Yu go pay ${{price}} fo ech platform fo DHB wen yu post.",
     "topUpTitle": "Top up an save moni",
-    "topUpPosts": "{{count}} posts",
     "discount": "{{percent}}% off",
     "noDiscount": "Full price",
     "total": "Ol tugeda na ${{usd}}, yu go pay fo DHB",
-    "perPost": "${{price}} per post",
     "buy": "Buy credits",
     "buying": "Wi di wait fo di payment…",
     "bought": "Added {{count}} post credits",
@@ -6851,6 +6847,15 @@
     "partialToast": "E don post fo {{sent}} platform dem. {{failed}} no waka, an wi don give yu back dat credits.",
     "failedToast": "Cross-post failed: {{error}}",
     "skippedToast": "Wi lef {{platforms}}: dis post no get di foto o video weh dem want.",
-    "uploadFailed": "Wi no fit upload yu media fo cross-posting."
+    "uploadFailed": "Wi no fit upload yu media fo cross-posting.",
+    "creditRules": "Ebri post di cost credits fo ebri platform: {{x}} fo X, {{farcaster}} fo Farcaster an {{other}} fo ebri oda platform. Scheduled post dem di use credits di taim weh yu schedule dem.",
+    "payAsYouGoCredits": "Credits don finish? Wi go buy di wan dem weh e remain fo DHB at ${{price}} each wen yu post.",
+    "topUpCredits": "{{count}} credits",
+    "perCredit": "${{price}} per credit",
+    "pendingApproval": "Wi di wait mek yu approve dehub fo di Farcaster app",
+    "approve": "Approve",
+    "farcasterNote": "Farcaster go ask yu fo approve dehub fo di Farcaster app, an e no fit tek scheduled post dem yet.",
+    "skippedScheduleToast": "Skipped {{platforms}}: scheduled posts aren't supported there yet.",
+    "skippedOtherToast": "Wi lef {{platforms}}: dem no fit tek dis post."
   }
 }

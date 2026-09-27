@@ -7373,14 +7373,10 @@
     "intro": "Publique no X, YouTube, Instagram, TikTok e mais ao mesmo tempo com o dehub. Conecte suas contas uma vez, depois escolha onde cada publicação vai.",
     "creditsHeading": "Créditos de publicação",
     "credits": "{{count}} créditos de publicação",
-    "creditExplainer": "Um crédito envia uma publicação para uma plataforma, então publicar em 3 plataformas usa 3 créditos. Publicações agendadas usam créditos quando você as agenda.",
-    "payAsYouGo": "Sem créditos? Você paga ${{price}} por plataforma em DHB ao publicar.",
     "topUpTitle": "Recarregue e economize",
-    "topUpPosts": "{{count}} publicações",
     "discount": "{{percent}}% de desconto",
     "noDiscount": "Preço total",
     "total": "Total ${{usd}}, pago em DHB",
-    "perPost": "${{price}} por publicação",
     "buy": "Comprar créditos",
     "buying": "Aguardando pagamento…",
     "bought": "Adicionado {{count}} créditos de publicação",
@@ -7408,6 +7404,15 @@
     "partialToast": "Publicado nas plataformas {{sent}}. {{failed}} falhou e esses créditos foram reembolsados.",
     "failedToast": "Falha na postagem cruzada: {{error}}",
     "skippedToast": "Ignorado {{platforms}}: este post não tem a foto ou o vídeo de que precisa.",
-    "uploadFailed": "Não foi possível carregar o seu suporte de dados para publicação cruzada."
+    "uploadFailed": "Não foi possível carregar o seu suporte de dados para publicação cruzada.",
+    "creditRules": "Cada post custa créditos por plataforma: {{x}} para X, {{farcaster}} para Farcaster e {{other}} para todas as outras plataformas. Os posts agendados usam créditos quando são agendados.",
+    "payAsYouGoCredits": "Acabou? Os créditos em falta são comprados em DHB a ${{price}} cada quando publica.",
+    "topUpCredits": "{{count}} créditos",
+    "perCredit": "${{price}} por crédito",
+    "pendingApproval": "À espera que aprove o dehub na aplicação Farcaster",
+    "approve": "Aprovar",
+    "farcasterNote": "O Farcaster pede que você aprove o dehub no aplicativo Farcaster, e ainda não pode aceitar postagens agendadas.",
+    "skippedScheduleToast": "Ignorado {{platforms}}: os posts agendados ainda não são suportados lá.",
+    "skippedOtherToast": "Ignorado {{platforms}}: eles não puderam aceitar este post."
   }
 }

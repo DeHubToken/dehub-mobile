@@ -7369,14 +7369,10 @@
     "intro": "Julkaise X:ään, YouTubeen, Instagramiin, TikTokiin ja muihin samanaikaisesti dehubin avulla. Yhdistä tilisi kerran ja valitse, minne kukin julkaisu menee.",
     "creditsHeading": "Julkaisupisteet",
     "credits": "{{count}} julkaisupistettä",
-    "creditExplainer": "Yksi piste lähettää yhden julkaisun yhdelle alustalle, joten julkaiseminen 3 alustalle käyttää 3 pistettä. Ajastetut julkaisut käyttävät pisteitä, kun ne ajastat.",
-    "payAsYouGo": "Ei pisteitä jäljellä? Maksat ${{price}} per alusta DHB:nä, kun julkaiset.",
     "topUpTitle": "Lisää ja säästä",
-    "topUpPosts": "{{count}} julkaisua",
     "discount": "{{percent}} % alennus",
     "noDiscount": "Koko hinta",
     "total": "Yhteensä ${{usd}}, maksettu DHB:nä",
-    "perPost": "${{price}} per julkaisu",
     "buy": "Osta pisteitä",
     "buying": "Odotetaan maksua…",
     "bought": "Lisätty {{count}} julkaisupistettä",
@@ -7404,6 +7400,15 @@
     "partialToast": "Julkaistu {{sent}} -alustoille. {{failed}} epäonnistui, ja krediitit hyvitettiin.",
     "failedToast": "Cross-post epäonnistui: {{error}}",
     "skippedToast": "Ohitettu {{platforms}}: tässä julkaisussa ei ole hänen tarvitsemaansa kuvaa tai videota.",
-    "uploadFailed": "Mediaa ei voitu ladata ristiinjulkaisua varten."
+    "uploadFailed": "Mediaa ei voitu ladata ristiinjulkaisua varten.",
+    "creditRules": "Jokainen julkaisu maksaa krediittiä alustaa kohden: {{x}} X: lle, {{farcaster}} Farcasterille ja {{other}} kaikille muille alustoille. Ajoitetut julkaisut käyttävät krediittejä, kun aikataulutat niitä.",
+    "payAsYouGoCredits": "Loppuivatko krediitit? Puuttuvat krediitit ostetaan DHB: ssä hintaan ${{price}}, kun julkaiset.",
+    "topUpCredits": "{{count}} krediittiä",
+    "perCredit": "${{price}} / krediitti",
+    "pendingApproval": "Odotetaan, että hyväksyt dehubin Farcaster-sovelluksessa",
+    "approve": "Hyväksy",
+    "farcasterNote": "Farcaster pyytää sinua hyväksymään dehubin Farcaster-sovelluksessa, eikä se voi vielä vastaanottaa ajoitettuja julkaisuja.",
+    "skippedScheduleToast": "Ohitettu {{platforms}}: ajoitettuja julkaisuja ei vielä tueta siellä.",
+    "skippedOtherToast": "{{platforms}} ohitettiin: hän ei voinut ottaa tätä julkaisua."
   }
 }

@@ -6,19 +6,19 @@ import { toastError, toastInfo, toastLoading, toastSuccess, toastWarning, dismis
 
 export const MULTIPOST_PLATFORMS = [
   "twitter", "instagram", "facebook", "youtube", "tiktok", "linkedin",
-  "threads", "pinterest", "reddit", "googlebusiness", "snapchat", "discord",
+  "threads", "pinterest", "reddit", "googlebusiness", "snapchat", "discord", "farcaster",
 ] as const;
 
 export const PLATFORM_NAMES: Record<string, string> = {
   twitter: "X", instagram: "Instagram", facebook: "Facebook", youtube: "YouTube", tiktok: "TikTok",
   linkedin: "LinkedIn", threads: "Threads", pinterest: "Pinterest", reddit: "Reddit",
-  googlebusiness: "Google Business", snapchat: "Snapchat", discord: "Discord",
+  googlebusiness: "Google Business", snapchat: "Snapchat", discord: "Discord", farcaster: "Farcaster",
 };
 
 export const MULTIPOST_REDIRECT = "dehub://multipost";
 
-export interface SocialAccount { id: string; platform: string; username: string }
-export interface MultipostStatus { credits: number; accounts: SocialAccount[]; pricePerPostUsd: number }
+export interface SocialAccount { id: string; platform: string; username: string; pending?: boolean; approvalUrl?: string }
+export interface MultipostStatus { credits: number; accounts: SocialAccount[] }
 
 export class MultipostError extends Error {
   constructor(message: string, public status?: number, public data?: Record<string, any>) { super(message); }
@@ -42,18 +42,19 @@ async function call<T>(wallet: string | null, body: Record<string, unknown>): Pr
 
 export const getMultipostStatus = (wallet: string | null) => call<MultipostStatus>(wallet, { action: "status" });
 export const disconnectAccount = (wallet: string | null, accountId: string) => call(wallet, { action: "disconnect", accountId });
+/** Where to send the user, or null when the account is already connected. */
 export const startConnect = async (wallet: string | null, platform: string) =>
-  (await call<{ authUrl: string }>(wallet, { action: "connect", platform, redirectUrl: MULTIPOST_REDIRECT })).authUrl;
+  (await call<{ authUrl?: string }>(wallet, { action: "connect", platform, redirectUrl: MULTIPOST_REDIRECT })).authUrl ?? null;
 
-/** Pay DHB for `posts` credits and have them credited. Returns the new balance. */
-export async function buyCredits(wallet: string | null, posts: number): Promise<number> {
-  const quote = await call<{ dhb: number; treasury: string }>(wallet, { action: "quote", posts });
+/** Pay DHB for `credits` and have them credited. Returns the new balance. */
+export async function buyCredits(wallet: string | null, credits: number): Promise<number> {
+  const quote = await call<{ dhb: number; treasury: string }>(wallet, { action: "quote", credits });
   const { payPostQuota } = await import("./post-quota-payment");
   const payment = await payPostQuota(quote.dhb, quote.treasury, i18n.t("multiPost.payContext"));
   let lastError: unknown;
   for (let attempt = 0; attempt < 5; attempt++) {
     try {
-      return (await call<{ credits: number }>(wallet, { action: "topup", posts, txHash: payment.txHash })).credits;
+      return (await call<{ credits: number }>(wallet, { action: "topup", credits, txHash: payment.txHash })).credits;
     } catch (err) {
       lastError = err;
       if (!(err instanceof MultipostError) || err.status !== 402) throw err;
@@ -114,7 +115,7 @@ export async function crossPost(input: {
       scheduledAt: input.scheduledAt ? new Date(input.scheduledAt).toISOString() : undefined,
       link: input.tokenId !== undefined ? `https://dehub.io/app/post/${input.tokenId}` : undefined,
     };
-    type PublishResult = { sent: number; failed: number; scheduled: boolean; skipped: { platform: string }[] };
+    type PublishResult = { sent: number; failed: number; scheduled: boolean; skipped: { platform: string; reason: string }[] };
     let result: PublishResult;
     try {
       result = await call<PublishResult>(input.wallet, body);
@@ -126,11 +127,16 @@ export async function crossPost(input: {
       result = await call<PublishResult>(input.wallet, body);
     }
     dismissToast(toastId);
-    if (result.skipped?.length) {
-      toastInfo(i18n.t("multiPost.skippedToast", {
-        platforms: result.skipped.map((s) => PLATFORM_NAMES[s.platform] ?? s.platform).join(", "),
-      }));
-    }
+    const names = (reasons: string[] | null) => (result.skipped ?? [])
+      .filter((s) => (reasons ? reasons.includes(s.reason) : !["needs_video", "needs_media", "no_schedule"].includes(s.reason)))
+      .map((s) => PLATFORM_NAMES[s.platform] ?? s.platform)
+      .join(", ");
+    const media = names(["needs_video", "needs_media"]);
+    const schedule = names(["no_schedule"]);
+    const other = names(null);
+    if (media) toastInfo(i18n.t("multiPost.skippedToast", { platforms: media }));
+    if (schedule) toastInfo(i18n.t("multiPost.skippedScheduleToast", { platforms: schedule }));
+    if (other) toastInfo(i18n.t("multiPost.skippedOtherToast", { platforms: other }));
     if (result.failed > 0) {
       toastWarning(i18n.t("multiPost.partialToast", { sent: result.sent, failed: result.failed }));
     } else {
