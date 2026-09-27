@@ -109,6 +109,21 @@ describe('hooks/useTranslation', () => {
       expect(result.current.isLoading).toBe(false);
     });
 
+    it('translates a short live chat line', async () => {
+      const LINE = { content: 'hola a todos' };
+      renderHook(() => useTranslation(LINE, undefined, 'chat', true));
+      await runQueuedWork();
+
+      expect(mockTranslate).toHaveBeenCalledWith('hola a todos', 'tr', 'auto', { isPublic: true });
+    });
+
+    it('leaves a chat line with almost no letters alone', () => {
+      const LINE = { content: 'gm 🔥' };
+      renderHook(() => useTranslation(LINE, undefined, 'chat', true));
+
+      expect(mockQueue).not.toHaveBeenCalled();
+    });
+
     it('does nothing when the reader has turned auto-translate off', async () => {
       setAutoTranslateEnabled(false);
 
