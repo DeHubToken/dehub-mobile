@@ -4757,12 +4757,65 @@
         "legend": {
           "name": "Legend",
           "hint": "Climb reach level ten."
+        },
+        "ignition": {
+          "name": "First Fire",
+          "hint": "Do one correct hour wey count for live."
+        },
+        "on-air": {
+          "name": "Don Dey Live",
+          "hint": "Finish ten stream wey count."
+        },
+        "storyteller": {
+          "name": "Story Man",
+          "hint": "Finish twenty-five stream wey count."
+        },
+        "broadcaster": {
+          "name": "Big Broadcaster",
+          "hint": "Finish fifty stream wey count."
+        },
+        "centurion": {
+          "name": "Hundred Man",
+          "hint": "Finish one hundred stream wey count."
+        },
+        "enduring": {
+          "name": "Strong Leg",
+          "hint": "Stream four hour wey count for one sitting."
+        },
+        "circle": {
+          "name": "Close Paddy Dem",
+          "hint": "Make twenty-five people dey watch you at once."
+        },
+        "arena": {
+          "name": "Big Arena",
+          "hint": "Make fifty people dey watch you at once."
+        },
+        "headliner": {
+          "name": "Main Act",
+          "hint": "Make one hundred people dey watch you at once."
+        },
+        "cornerstone": {
+          "name": "Foundation Stone",
+          "hint": "Stream every week for twenty-six weeks wey follow each other."
+        },
+        "veteran": {
+          "name": "Old Soldier",
+          "hint": "Reach 250 hours wey count for live."
+        },
+        "icon": {
+          "name": "Big Name",
+          "hint": "Reach level twenty."
         }
       },
       "toNext": "{{minutes}} more minutes wey count before you reach level {{level}}",
       "rule": "Na only streams wey run ten minutes or pass, with at least one person dey watch, go count for your level.",
       "notCounted": "E no count",
-      "noStreams": "Go live to start to earn XP."
+      "noStreams": "Go live to start to earn XP.",
+      "useBadge": "Use dis badge",
+      "selectedBadge": "Na dis one",
+      "savingBadge": "We dey save your badge…",
+      "chooseBadge": "Pick any badge wey don open make e show for your profile.",
+      "saveBadgeError": "We no fit save your badge. Abeg try again."
     },
     "unmuteMic": "On di microphone",
     "muteMic": "Off di microphone",

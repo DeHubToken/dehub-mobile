@@ -4836,9 +4836,62 @@
         "legend": {
           "name": "Legenda ka koo",
           "hint": "10. O ye kunkurunninw ye."
+        },
+        "ignition": {
+          "name": "Mana",
+          "hint": "Waati kelen sɔrɔ ka jira ɲɛnama."
+        },
+        "on-air": {
+          "name": "Ɲɛnama",
+          "hint": "Jiracogo tan dafa."
+        },
+        "storyteller": {
+          "name": "Maana fɔbaga",
+          "hint": "Jiracogo mugan ni duuru dafa."
+        },
+        "broadcaster": {
+          "name": "Jiraba",
+          "hint": "Jiracogo biduuru dafa."
+        },
+        "centurion": {
+          "name": "Kɛmɛtigi",
+          "hint": "Jiracogo kɛmɛ dafa."
+        },
+        "enduring": {
+          "name": "Muɲubaga",
+          "hint": "Waati naani jira ɲɛnama siɲɛ kelen na."
+        },
+        "circle": {
+          "name": "Kɔnɔnna jɛkulu",
+          "hint": "Mɔgɔ mugan ni duuru ka filɛli kɛ ɲɔgɔn fɛ."
+        },
+        "arena": {
+          "name": "Arɛni",
+          "hint": "Mɔgɔ biduuru ka filɛli kɛ ɲɔgɔn fɛ."
+        },
+        "headliner": {
+          "name": "Kuntigi",
+          "hint": "Mɔgɔ kɛmɛ ka filɛli kɛ ɲɔgɔn fɛ."
+        },
+        "cornerstone": {
+          "name": "Sigiyɔrɔ kabakurun",
+          "hint": "Jiracogo kɛ dɔgɔkun mugan ni wɔɔrɔ tugutugulen na."
+        },
+        "veteran": {
+          "name": "Kɔrɔbaga",
+          "hint": "Waati kɛmɛ fila ni biduuru sɔrɔ ka jira ɲɛnama."
+        },
+        "icon": {
+          "name": "Tɔgɔtigi",
+          "hint": "Seli hakɛ mugan sɔrɔ."
         }
       },
-      "toNext": "Miniti {{minutes}} wɛrɛ ka se hakɛ {{level}} ma"
+      "toNext": "Miniti {{minutes}} wɛrɛ ka se hakɛ {{level}} ma",
+      "useBadge": "Taamasiyɛn nin ta",
+      "selectedBadge": "A sugandira",
+      "savingBadge": "Taamasiyɛn bɛ mara…",
+      "chooseBadge": "Taamasiyɛn o taamasiyɛn min dayɛlɛlen don, i b'o sugandi walasa k'a jira i ka porofili kan.",
+      "saveBadgeError": "I ka taamasiyɛn ma se ka mara. Aw ye a lajɛ tugun."
     },
     "unmuteMic": "Mikɔrɔfɔni min tɛ se ka yɛlɛma",
     "muteMic": "Mikɔrɔfɔn fitinin",

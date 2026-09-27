@@ -4865,8 +4865,61 @@
         "legend": {
           "name": "لیجنڈ",
           "hint": "لیول دس تک پہنچیں ۔"
+        },
+        "ignition": {
+          "name": "الاشتعال",
+          "hint": "Ek qualifying ghanta on air pahunch."
+        },
+        "on-air": {
+          "name": "على الهواء",
+          "hint": "Das qualifying stream khatam kar."
+        },
+        "storyteller": {
+          "name": "الراوي",
+          "hint": "Pachis qualifying stream khatam kar."
+        },
+        "broadcaster": {
+          "name": "المذيع",
+          "hint": "Sau qualifying stream khatam kar."
+        },
+        "centurion": {
+          "name": "المئوي",
+          "hint": "Sau qualifying stream khatam kar."
+        },
+        "enduring": {
+          "name": "الصامد",
+          "hint": "Ek session mein char qualifying ghanta stream kar."
+        },
+        "circle": {
+          "name": "الدائرة المقربة",
+          "hint": "Ek saath pachis logan ke dekhte huye rakho."
+        },
+        "arena": {
+          "name": "الساحة",
+          "hint": "Ek saath sau logan ke dekhte huye rakho."
+        },
+        "headliner": {
+          "name": "النجم الرئيسي",
+          "hint": "Ek saath sau logan ke dekhte huye rakho."
+        },
+        "cornerstone": {
+          "name": "حجر الأساس",
+          "hint": "Chhabis hafton mein lagatar stream kar."
+        },
+        "veteran": {
+          "name": "المخضرم",
+          "hint": "250 qualifying ghanta on air pahunch."
+        },
+        "icon": {
+          "name": "الأيقونة",
+          "hint": "Level bis pahunch."
         }
-      }
+      },
+      "chooseBadge": "Apna profile mein dikhane ke liye koi bhi unlocked badge chuno.",
+      "useBadge": "Badge use karo",
+      "selectedBadge": "المختار",
+      "savingBadge": "Badge save ho raha hai…",
+      "saveBadgeError": "Badge save nahi ho paya. Kripya dobara prayas karein."
     },
     "unmuteMic": "مائیکروفون ان میوٹ کریں",
     "muteMic": "مائیکروفون میوٹ کریں",

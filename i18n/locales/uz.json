@@ -4899,8 +4899,61 @@
         "legend": {
           "name": "Afsona",
           "hint": "O'ninchi darajaga yeting."
+        },
+        "ignition": {
+          "name": "Alangalanish",
+          "hint": "Havoda bitta mos keluvchi soatga erishing."
+        },
+        "on-air": {
+          "name": "Efirda",
+          "hint": "O'nta mos keluvchi translyatsiyani yakunlang."
+        },
+        "storyteller": {
+          "name": "Hikoyachi",
+          "hint": "Yigirma besh mos keluvchi translyatsiyani yakunlang."
+        },
+        "broadcaster": {
+          "name": "Efirga uzatuvchi",
+          "hint": "Ellik mos keluvchi translyatsiyani yakunlang."
+        },
+        "centurion": {
+          "name": "Yuzboshi",
+          "hint": "Bir yuz mos keluvchi translyatsiyani yakunlang."
+        },
+        "enduring": {
+          "name": "Chidamli",
+          "hint": "Bir sessiyada to‘rt mos keluvchi soat davomida translyatsiya qiling."
+        },
+        "circle": {
+          "name": "Yaqin davra",
+          "hint": "Bir vaqtning o‘zida yigirma besh kishi tomosha qilayotgan bo‘lsin."
+        },
+        "arena": {
+          "name": "Arena",
+          "hint": "Bir vaqtning o‘zida ellik kishi tomosha qilayotgan bo‘lsin."
+        },
+        "headliner": {
+          "name": "Bosh yulduz",
+          "hint": "Bir vaqtning o‘zida bir yuz kishi tomosha qilayotgan bo‘lsin."
+        },
+        "cornerstone": {
+          "name": "Poydevor toshi",
+          "hint": "Yigirma olti ketma‑ketik hafta davomida translyatsiya qiling."
+        },
+        "veteran": {
+          "name": "Faxriy",
+          "hint": "Havoda 250 mos keluvchi soatga erishing."
+        },
+        "icon": {
+          "name": "Timsol",
+          "hint": "Yigirma darajaga erishing."
         }
-      }
+      },
+      "chooseBadge": "Profilingizda ko‘rsatish uchun har qanday ochilgan ro‘ynatni tanlang.",
+      "useBadge": "Nishondan foydalanish",
+      "selectedBadge": "Tanlangan",
+      "savingBadge": "Nishon saqlanmoqda…",
+      "saveBadgeError": "Nishoningizni saqlab bo‘lmadi. Qaytadan urinib ko‘ring."
     },
     "unmuteMic": "Mikrofonni ovozsiz qilish",
     "muteMic": "Mikrofonni ovozsiz qilish",

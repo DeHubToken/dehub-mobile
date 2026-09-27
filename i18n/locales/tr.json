@@ -4930,8 +4930,61 @@
         "legend": {
           "name": "Efsane",
           "hint": "Onuncu seviyeye ulaşın."
+        },
+        "ignition": {
+          "name": "Ateşleme",
+          "hint": "Yayında bir nitelikli saat tamamla."
+        },
+        "on-air": {
+          "name": "Yayında",
+          "hint": "On nitelikli yayın tamamla."
+        },
+        "storyteller": {
+          "name": "Hikaye Anlatıcısı",
+          "hint": "Yirmi beş nitelikli yayın tamamla."
+        },
+        "broadcaster": {
+          "name": "Yayıncı",
+          "hint": "Elli nitelikli yayın tamamla."
+        },
+        "centurion": {
+          "name": "Yüzbaşı",
+          "hint": "Yüz nitelikli yayın tamamla."
+        },
+        "enduring": {
+          "name": "Sürekli",
+          "hint": "Tek bir oturumda dört nitelikli saat yayın yap."
+        },
+        "circle": {
+          "name": "İç Çember",
+          "hint": "Aynı anda yirmi beş kişi izlesin."
+        },
+        "arena": {
+          "name": "Arena",
+          "hint": "Aynı anda elli kişi izlesin."
+        },
+        "headliner": {
+          "name": "Manşet",
+          "hint": "Aynı anda yüz kişi izlesin."
+        },
+        "cornerstone": {
+          "name": "Temel Taşı",
+          "hint": "Yirmi altı hafta üst üste yayın yap."
+        },
+        "veteran": {
+          "name": "Gazisi",
+          "hint": "Yayında 250 nitelikli saat tamamla."
+        },
+        "icon": {
+          "name": "İkon",
+          "hint": "Yirmi seviyeye ulaş."
         }
-      }
+      },
+      "chooseBadge": "Profilinde göstermek için kilidi açılmış rozetlerden herhangi birini seç.",
+      "useBadge": "Rozet kullan",
+      "selectedBadge": "Seçildi",
+      "savingBadge": "Rozet kaydediliyor…",
+      "saveBadgeError": "Rozetiniz kaydedilemedi. Lütfen tekrar deneyin."
     },
     "unmuteMic": "Mikrofonun sesini aç",
     "muteMic": "Mikrofonu sessize al",

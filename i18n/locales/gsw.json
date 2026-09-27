@@ -4911,8 +4911,61 @@
         "legend": {
           "name": "Legende",
           "hint": "Erreich Level zäh."
+        },
+        "ignition": {
+          "name": "Zündig",
+          "hint": "Erreichsch äni qualifizierendi Stund uf em Schirm."
+        },
+        "on-air": {
+          "name": "Uf em Schirm",
+          "hint": "Machsch zeh qualifizierendi Streams."
+        },
+        "storyteller": {
+          "name": "Erzähler",
+          "hint": "Machsch füüfundzwanzig qualifizierendi Streams."
+        },
+        "broadcaster": {
+          "name": "Sender",
+          "hint": "Machsch füüfzig qualifizierendi Streams."
+        },
+        "centurion": {
+          "name": "Zenturio",
+          "hint": "Machsch hundert qualifizierendi Streams."
+        },
+        "enduring": {
+          "name": "Uushaltend",
+          "hint": "Schteame vier qualifizierendi Stund i dimä Session."
+        },
+        "circle": {
+          "name": "Innere Chreis",
+          "hint": "Hesch füüfundzwanzig Lüüt, wo glichzitig zuelueged."
+        },
+        "arena": {
+          "name": "Arena",
+          "hint": "Hesch füüfzig Lüüt, wo glichzitig zuelueged."
+        },
+        "headliner": {
+          "name": "Uusverchouft",
+          "hint": "Hesch hundert Lüüt, wo glichzitig zuelueged."
+        },
+        "cornerstone": {
+          "name": "Grundstein",
+          "hint": "Schteame zwanzig-sechs Woche hingerenand."
+        },
+        "veteran": {
+          "name": "Veteran",
+          "hint": "Erreichsch 250 qualifizierendi Stund uf em Schirm."
+        },
+        "icon": {
+          "name": "Ikone",
+          "hint": "Erreichsch Level zwanzig."
         }
-      }
+      },
+      "chooseBadge": "Wählsch äs freigschaltets Abzeiche zum uf dim Profil zeige.",
+      "useBadge": "Abzeiche bruuche",
+      "selectedBadge": "Uusgwählt",
+      "savingBadge": "Abzeiche wird gspeichered…",
+      "saveBadgeError": "Hät nid chönne din Abzeiche spichere. Versuechsch es no mal."
     },
     "unmuteMic": "Mikrofon entstumme",
     "muteMic": "Mikrofon stumme",

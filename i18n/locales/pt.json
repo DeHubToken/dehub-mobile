@@ -4934,8 +4934,61 @@
         "legend": {
           "name": "Lenda",
           "hint": "Alcance o nível dez."
+        },
+        "ignition": {
+          "name": "Ignição",
+          "hint": "Alcance uma hora qualificatória no ar."
+        },
+        "on-air": {
+          "name": "No ar",
+          "hint": "Conclua dez transmissões qualificatórias."
+        },
+        "storyteller": {
+          "name": "Contador de Histórias",
+          "hint": "Conclua vinte e cinco transmissões qualificatórias."
+        },
+        "broadcaster": {
+          "name": "Transmissor",
+          "hint": "Conclua cinquenta transmissões qualificatórias."
+        },
+        "centurion": {
+          "name": "Centurião",
+          "hint": "Conclua cem transmissões qualificatórias."
+        },
+        "enduring": {
+          "name": "Resistente",
+          "hint": "Transmita por quatro horas qualificatórias em uma única sessão."
+        },
+        "circle": {
+          "name": "Círculo Íntimo",
+          "hint": "Tenha vinte e cinco pessoas assistindo ao mesmo tempo."
+        },
+        "arena": {
+          "name": "Arena",
+          "hint": "Tenha cinquenta pessoas assistindo ao mesmo tempo."
+        },
+        "headliner": {
+          "name": "Cabeça de Cartaz",
+          "hint": "Tenha cem pessoas assistindo ao mesmo tempo."
+        },
+        "cornerstone": {
+          "name": "Pedra Angular",
+          "hint": "Transmita por vinte e seis semanas consecutivas."
+        },
+        "veteran": {
+          "name": "Veterano",
+          "hint": "Alcance 250 horas qualificatórias no ar."
+        },
+        "icon": {
+          "name": "Ícone",
+          "hint": "Alcance o nível vinte."
         }
-      }
+      },
+      "chooseBadge": "Escolha qualquer emblema desbloqueado para exibir em seu perfil.",
+      "useBadge": "Usar emblema",
+      "selectedBadge": "Selecionado",
+      "savingBadge": "Salvando emblema…",
+      "saveBadgeError": "Não foi possível salvar seu emblema. Por favor, tente novamente."
     },
     "unmuteMic": "Desativar mudo do microfone",
     "muteMic": "Silenciar microfone",

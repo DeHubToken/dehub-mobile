@@ -4882,8 +4882,61 @@
         "legend": {
           "name": "Aṣaaju",
           "hint": "Kọ ẹkọ ipele mẹwa."
+        },
+        "ignition": {
+          "name": "Agbara",
+          "hint": "Ṣe wakati kan ti o yẹ lori afẹfẹ."
+        },
+        "on-air": {
+          "name": "Lori afẹfẹ",
+          "hint": "Pari mẹwa awọn ṣiṣan ti o yẹ."
+        },
+        "storyteller": {
+          "name": "Alagbọrọsọ",
+          "hint": "Pari ogun-un marun-un awọn ṣiṣan ti o yẹ."
+        },
+        "broadcaster": {
+          "name": "Oniṣowo",
+          "hint": "Pari aadọta awọn ṣiṣan ti o yẹ."
+        },
+        "centurion": {
+          "name": "Ọgọ́rùn-ún",
+          "hint": "Pari ọgọrun awọn ṣiṣan ti o yẹ."
+        },
+        "enduring": {
+          "name": "Iwa-rere",
+          "hint": "Ṣe ṣiṣan fun wakati mẹrin ti o yẹ ni ipade kan."
+        },
+        "circle": {
+          "name": "Yika inu",
+          "hint": "Ni awọn eniyan mejilelaadọta ti n wo ni ẹẹkan."
+        },
+        "arena": {
+          "name": "Arena",
+          "hint": "Ni awọn eniyan aadọta ti n wo ni ẹẹkan."
+        },
+        "headliner": {
+          "name": "Ìràwọ̀ Àkọ́kọ́",
+          "hint": "Ni awọn eniyan ọgọrun ti n wo ni ẹẹkan."
+        },
+        "cornerstone": {
+          "name": "Òkúta Igun Ilé",
+          "hint": "Ṣe ṣiṣan ni ọsẹ mẹrindilogun ti o tẹle."
+        },
+        "veteran": {
+          "name": "Ogbo",
+          "hint": "Ṣe wakati 250 ti o yẹ lori afẹfẹ."
+        },
+        "icon": {
+          "name": "Aami",
+          "hint": "Ṣe ipele ogun."
         }
-      }
+      },
+      "chooseBadge": "Yan eyikeyi aami ti o ṣii lati ṣafihan lori profaili rẹ.",
+      "useBadge": "Lo aami",
+      "selectedBadge": "Yan",
+      "savingBadge": "Fipamọ aami…",
+      "saveBadgeError": "Ko le fipamọ aami rẹ. Jọwọ gbiyanju lẹẹkansi."
     },
     "unmuteMic": "Gbohungbohun Unmute",
     "muteMic": "Gbohungbohun Mute",

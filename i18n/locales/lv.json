@@ -4881,8 +4881,61 @@
         "legend": {
           "name": "Apzīmējumi",
           "hint": "Sasniedziet desmito līmeni."
+        },
+        "ignition": {
+          "name": "Aizdedze",
+          "hint": "Sasniegt vienu kvalificējošu stundu ēterā."
+        },
+        "on-air": {
+          "name": "Ēterā",
+          "hint": "Pabeigt desmit kvalificējošas straumes."
+        },
+        "storyteller": {
+          "name": "Stāstnieks",
+          "hint": "Pabeigt divdesmit piecas kvalificējošas straumes."
+        },
+        "broadcaster": {
+          "name": "Straumētājs",
+          "hint": "Pabeigt piecdesmit kvalificējošas straumes."
+        },
+        "centurion": {
+          "name": "Centurionam",
+          "hint": "Pabeigt simts kvalificējošas straumes."
+        },
+        "enduring": {
+          "name": "Izturīgs",
+          "hint": "Straumei četras kvalificējošas stundas vienā sesijā."
+        },
+        "circle": {
+          "name": "Iekšējais loks",
+          "hint": "Vienlaicīgi skatās divdesmit pieci cilvēki."
+        },
+        "arena": {
+          "name": "Arēna",
+          "hint": "Vienlaicīgi skatās piecdesmit cilvēki."
+        },
+        "headliner": {
+          "name": "Galvenais mākslinieks",
+          "hint": "Vienlaicīgi skatās simts cilvēki."
+        },
+        "cornerstone": {
+          "name": "Pamatakmens",
+          "hint": "Straumei divdesmit sešas nedēļas pēc kārtas."
+        },
+        "veteran": {
+          "name": "Veterāns",
+          "hint": "Sasniegt 250 kvalificējošas stundas ēterā."
+        },
+        "icon": {
+          "name": "Ikona",
+          "hint": "Sasniegt divdesmito līmeni."
         }
-      }
+      },
+      "chooseBadge": "Izvēlieties jebkuru atbloķēto emblēmu, lai parādītu to savā profilā.",
+      "useBadge": "Lietot emblēmu",
+      "selectedBadge": "Izvēlēts",
+      "savingBadge": "Saglabā emblēmu…",
+      "saveBadgeError": "Neizdevās saglabāt emblēmu. Lūdzu, mēģiniet vēlreiz."
     },
     "unmuteMic": "Ieslēgt mikrofona skaņu",
     "muteMic": "Izslēgt mikrofona skaņu",

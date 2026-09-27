@@ -4881,8 +4881,61 @@
         "legend": {
           "name": "Legendă",
           "hint": "Atinge nivelul zece."
+        },
+        "ignition": {
+          "name": "Aprindere",
+          "hint": "Atinge o oră calificativă în transmisiune."
+        },
+        "on-air": {
+          "name": "În transmisiune",
+          "hint": "Finalizează zece transmisiuni calificative."
+        },
+        "storyteller": {
+          "name": "Povestitor",
+          "hint": "Finalizează douăzeci și cinci de transmisiuni calificative."
+        },
+        "broadcaster": {
+          "name": "Emisiune",
+          "hint": "Finalizează cincizeci de transmisiuni calificative."
+        },
+        "centurion": {
+          "name": "Centurion",
+          "hint": "Finalizează o sută de transmisiuni calificative."
+        },
+        "enduring": {
+          "name": "Rezistent",
+          "hint": "Transmite timp de patru ore calificative într-o singură sesiune."
+        },
+        "circle": {
+          "name": "Cerc intim",
+          "hint": "Ai douăzeci și cinci de persoane care urmăresc simultan."
+        },
+        "arena": {
+          "name": "Arenă",
+          "hint": "Ai cincizeci de persoane care urmăresc simultan."
+        },
+        "headliner": {
+          "name": "Cap de afiș",
+          "hint": "Ai o sută de persoane care urmăresc simultan."
+        },
+        "cornerstone": {
+          "name": "Piatră de temelie",
+          "hint": "Transmite timp de douăzeci și șase de săptămâni consecutive."
+        },
+        "veteran": {
+          "name": "Veteran",
+          "hint": "Atinge 250 de ore calificative în transmisiune."
+        },
+        "icon": {
+          "name": "Icon",
+          "hint": "Atinge nivelul douăzeci."
         }
-      }
+      },
+      "chooseBadge": "Alege orice insignă deblocată pentru a o afișa pe profilul tău.",
+      "useBadge": "Folosește insigna",
+      "selectedBadge": "Selectat",
+      "savingBadge": "Se salvează insigna…",
+      "saveBadgeError": "Nu s-a putut salva insigna. Te rugăm să încerci din nou."
     },
     "unmuteMic": "Dezactivează microfonul",
     "muteMic": "Activează microfonul",

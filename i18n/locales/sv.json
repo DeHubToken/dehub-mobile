@@ -4885,8 +4885,61 @@
         "legend": {
           "name": "Förklaring",
           "hint": "Nå nivå tio."
+        },
+        "ignition": {
+          "name": "Tändning",
+          "hint": "Uppnå en kvalificerad timme på luft."
+        },
+        "on-air": {
+          "name": "I sändning",
+          "hint": "Avsluta tio kvalificerade strömmar."
+        },
+        "storyteller": {
+          "name": "Berättare",
+          "hint": "Avsluta tjugo‑fem kvalificerade strömmar."
+        },
+        "broadcaster": {
+          "name": "Sändare",
+          "hint": "Avsluta femtio kvalificerade strömmar."
+        },
+        "centurion": {
+          "name": "Centurion",
+          "hint": "Avsluta hundra kvalificerade strömmar."
+        },
+        "enduring": {
+          "name": "Uthållig",
+          "hint": "Ström för fyra kvalificerade timmar i en session."
+        },
+        "circle": {
+          "name": "Inre krets",
+          "hint": "Ha tjugo‑fem personer som tittar samtidigt."
+        },
+        "arena": {
+          "name": "Arena",
+          "hint": "Ha femtio personer som tittar samtidigt."
+        },
+        "headliner": {
+          "name": "Huvudnummer",
+          "hint": "Ha hundra personer som tittar samtidigt."
+        },
+        "cornerstone": {
+          "name": "Hörnsten",
+          "hint": "Ström i tjugo‑sex på varandra följande veckor."
+        },
+        "veteran": {
+          "name": "Veteran",
+          "hint": "Uppnå 250 kvalificerade timmar på luft."
+        },
+        "icon": {
+          "name": "Ikon",
+          "hint": "Uppnå nivå tjugo."
         }
-      }
+      },
+      "chooseBadge": "Välj vilken som helst av låsta märken att visa på din profil.",
+      "useBadge": "Använd märke",
+      "selectedBadge": "Valt",
+      "savingBadge": "Sparar märke…",
+      "saveBadgeError": "Det gick inte att spara ditt märke. Försök igen."
     },
     "unmuteMic": "Stäng av mikrofonen",
     "muteMic": "Sätt på mikrofonen",

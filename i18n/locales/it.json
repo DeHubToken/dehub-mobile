@@ -4930,8 +4930,61 @@
         "legend": {
           "name": "Legenda",
           "hint": "Raggiungi il livello dieci."
+        },
+        "ignition": {
+          "name": "Accensione",
+          "hint": "Raggiungi un'ora qualificata in onda."
+        },
+        "on-air": {
+          "name": "In onda",
+          "hint": "Completa dieci stream qualificati."
+        },
+        "storyteller": {
+          "name": "Narratore",
+          "hint": "Completa venticinque stream qualificati."
+        },
+        "broadcaster": {
+          "name": "Broadcaster",
+          "hint": "Completa cinquanta stream qualificati."
+        },
+        "centurion": {
+          "name": "Centurione",
+          "hint": "Completa cento stream qualificati."
+        },
+        "enduring": {
+          "name": "Resistente",
+          "hint": "Trasmetti per quattro ore qualificate in una sessione."
+        },
+        "circle": {
+          "name": "Cerchio ristretto",
+          "hint": "Fai guardare venticinque persone contemporaneamente."
+        },
+        "arena": {
+          "name": "Arena",
+          "hint": "Fai guardare cinquanta persone contemporaneamente."
+        },
+        "headliner": {
+          "name": "Headliner",
+          "hint": "Fai guardare cento persone contemporaneamente."
+        },
+        "cornerstone": {
+          "name": "Pietra angolare",
+          "hint": "Trasmetti per ventisei settimane consecutive."
+        },
+        "veteran": {
+          "name": "Veterano",
+          "hint": "Raggiungi 250 ore qualificate in onda."
+        },
+        "icon": {
+          "name": "Icona",
+          "hint": "Raggiungi il livello venti."
         }
-      }
+      },
+      "chooseBadge": "Scegli qualsiasi badge sbloccato da visualizzare sul tuo profilo.",
+      "useBadge": "Usa badge",
+      "selectedBadge": "Selezionato",
+      "savingBadge": "Salvataggio badge…",
+      "saveBadgeError": "Impossibile salvare il badge. Riprova."
     },
     "unmuteMic": "Riattiva microfono",
     "muteMic": "Disattiva microfono",

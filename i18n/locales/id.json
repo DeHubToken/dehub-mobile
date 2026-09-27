@@ -4930,8 +4930,61 @@
         "legend": {
           "name": "Legenda",
           "hint": "Capai level sepuluh."
+        },
+        "ignition": {
+          "name": "Penyalaan",
+          "hint": "Raih satu jam siaran yang memenuhi syarat."
+        },
+        "on-air": {
+          "name": "Siaran",
+          "hint": "Selesaikan sepuluh siaran yang memenuhi syarat."
+        },
+        "storyteller": {
+          "name": "Pendongeng",
+          "hint": "Selesaikan dua puluh lima siaran yang memenuhi syarat."
+        },
+        "broadcaster": {
+          "name": "Penyiar",
+          "hint": "Selesaikan lima puluh siaran yang memenuhi syarat."
+        },
+        "centurion": {
+          "name": "Centurion",
+          "hint": "Selesaikan seratus siaran yang memenuhi syarat."
+        },
+        "enduring": {
+          "name": "Bertahan",
+          "hint": "Siaran selama empat jam yang memenuhi syarat dalam satu sesi."
+        },
+        "circle": {
+          "name": "Lingkaran dalam",
+          "hint": "Ada dua puluh lima orang menonton sekaligus."
+        },
+        "arena": {
+          "name": "Arena",
+          "hint": "Ada lima puluh orang menonton sekaligus."
+        },
+        "headliner": {
+          "name": "Bintang utama",
+          "hint": "Ada seratus orang menonton sekaligus."
+        },
+        "cornerstone": {
+          "name": "Batu penjuru",
+          "hint": "Siaran selama dua puluh enam minggu berturut-turut."
+        },
+        "veteran": {
+          "name": "Veteran",
+          "hint": "Raih 250 jam siaran yang memenuhi syarat."
+        },
+        "icon": {
+          "name": "Ikon",
+          "hint": "Raih level dua puluh."
         }
-      }
+      },
+      "chooseBadge": "Pilih lencana apa pun yang tidak terkunci untuk ditampilkan di profil Anda.",
+      "useBadge": "Gunakan lencana",
+      "selectedBadge": "Terpilih",
+      "savingBadge": "Menyimpan lencana…",
+      "saveBadgeError": "Gagal menyimpan lencana Anda. Silakan coba lagi."
     },
     "unmuteMic": "Nyalakan mikrofon",
     "muteMic": "Bisukan mikrofon",

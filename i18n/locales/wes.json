@@ -4757,12 +4757,65 @@
         "legend": {
           "name": "Legend",
           "hint": "Klem reach level ten."
+        },
+        "ignition": {
+          "name": "First Fire",
+          "hint": "Do one hour weh e count for live."
+        },
+        "on-air": {
+          "name": "Don Enter Live",
+          "hint": "Finish ten stream weh e count."
+        },
+        "storyteller": {
+          "name": "Story Pikin",
+          "hint": "Finish twenty-five stream weh e count."
+        },
+        "broadcaster": {
+          "name": "Big Broadcaster",
+          "hint": "Finish fifty stream weh e count."
+        },
+        "centurion": {
+          "name": "Hundred Man",
+          "hint": "Finish one hundred stream weh e count."
+        },
+        "enduring": {
+          "name": "Strong Foot",
+          "hint": "Stream four hour weh e count for one sitting."
+        },
+        "circle": {
+          "name": "Close Paddy dem",
+          "hint": "Make twenty-five people di watch you one time."
+        },
+        "arena": {
+          "name": "Big Arena",
+          "hint": "Make fifty people di watch you one time."
+        },
+        "headliner": {
+          "name": "Main Act",
+          "hint": "Make one hundred people di watch you one time."
+        },
+        "cornerstone": {
+          "name": "Foundation Stone",
+          "hint": "Stream for twenty-six week dem weh dem follow each other."
+        },
+        "veteran": {
+          "name": "Old Soldier",
+          "hint": "Reach 250 hour weh e count for live."
+        },
+        "icon": {
+          "name": "Big Name",
+          "hint": "Reach level twenty."
         }
       },
       "toNext": "{{minutes}} more minutes weh count before you reach level {{level}}",
       "rule": "Na only streams weh run ten minutes or pass, with at least one person di watch, go count for your level.",
       "notCounted": "E no count",
-      "noStreams": "Go live to start to earn XP."
+      "noStreams": "Go live to start to earn XP.",
+      "useBadge": "Use dis badge",
+      "selectedBadge": "Na dis one",
+      "savingBadge": "We di save your badge…",
+      "chooseBadge": "Choose any badge weh don open for show for your profile.",
+      "saveBadgeError": "We no fit save your badge. Abeg try again."
     },
     "unmuteMic": "On di mic",
     "muteMic": "Off di mic",

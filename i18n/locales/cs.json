@@ -4885,8 +4885,61 @@
         "legend": {
           "name": "Legenda",
           "hint": "Dosáhněte desáté úrovně."
+        },
+        "ignition": {
+          "name": "Zážeh",
+          "hint": "Dosáhněte jedné kvalifikované hodiny vysílání."
+        },
+        "on-air": {
+          "name": "Ve vysílání",
+          "hint": "Dokončete deset kvalifikovaných streamů."
+        },
+        "storyteller": {
+          "name": "Vypravěč",
+          "hint": "Dokončete dvacet pět kvalifikovaných streamů."
+        },
+        "broadcaster": {
+          "name": "Vysílatel",
+          "hint": "Dokončete padesát kvalifikovaných streamů."
+        },
+        "centurion": {
+          "name": "Centurion",
+          "hint": "Dokončete sto kvalifikovaných streamů."
+        },
+        "enduring": {
+          "name": "Vytrvalý",
+          "hint": "Streamujte čtyři kvalifikované hodiny v jedné relaci."
+        },
+        "circle": {
+          "name": "Vnitřní kruh",
+          "hint": "Mějte najednou dvacet pět diváků."
+        },
+        "arena": {
+          "name": "Aréna",
+          "hint": "Mějte najednou padesát diváků."
+        },
+        "headliner": {
+          "name": "Hvězda",
+          "hint": "Mějte najednou sto diváků."
+        },
+        "cornerstone": {
+          "name": "Základní kámen",
+          "hint": "Streamujte dvacet šest po sobě jdoucích týdnů."
+        },
+        "veteran": {
+          "name": "Veterán",
+          "hint": "Dosáhněte 250 kvalifikovaných hodin vysílání."
+        },
+        "icon": {
+          "name": "Ikona",
+          "hint": "Dosáhněte úrovně dvacet."
         }
-      }
+      },
+      "chooseBadge": "Vyberte si libovolný odemčený odznak k zobrazení na svém profilu.",
+      "useBadge": "Použít odznak",
+      "selectedBadge": "Vybráno",
+      "savingBadge": "Ukládání odznaku…",
+      "saveBadgeError": "Odznak se nepodařilo uložit. Zkuste to znovu."
     },
     "unmuteMic": "Zrušit ztlumení mikrofonu",
     "muteMic": "Ztlumit mikrofon",

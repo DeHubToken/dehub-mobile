@@ -4912,8 +4912,61 @@
         "legend": {
           "name": "Kawsay",
           "hint": "Chunka pataman chayay."
+        },
+        "ignition": {
+          "name": "Ignición",
+          "hint": "Unos hora de cualificación en aire."
+        },
+        "on-air": {
+          "name": "En aire",
+          "hint": "Termina diez transmisiones de cualificación."
+        },
+        "storyteller": {
+          "name": "Narrador",
+          "hint": "Termina veinticinco transmisiones de cualificación."
+        },
+        "broadcaster": {
+          "name": "Transmisor",
+          "hint": "Termina cincuenta transmisiones de cualificación."
+        },
+        "centurion": {
+          "name": "Centurión",
+          "hint": "Termina cien transmisiones de cualificación."
+        },
+        "enduring": {
+          "name": "Perdurable",
+          "hint": "Transmite cuatro horas de cualificación en una sesión."
+        },
+        "circle": {
+          "name": "Círculo interno",
+          "hint": "Ten veinticinco personas viendo al mismo tiempo."
+        },
+        "arena": {
+          "name": "Arena",
+          "hint": "Ten cincuenta personas viendo al mismo tiempo."
+        },
+        "headliner": {
+          "name": "Titular",
+          "hint": "Ten cien personas viendo al mismo tiempo."
+        },
+        "cornerstone": {
+          "name": "Piedra angular",
+          "hint": "Transmite en veintiséis semanas consecutivas."
+        },
+        "veteran": {
+          "name": "Veterano",
+          "hint": "Alcanza 250 horas de cualificación en aire."
+        },
+        "icon": {
+          "name": "Icono",
+          "hint": "Alcanza nivel veinte."
         }
-      }
+      },
+      "chooseBadge": "Elige cualquier insignia desbloqueada para mostrar en tu perfil.",
+      "useBadge": "Usar insignia",
+      "selectedBadge": "Seleccionado",
+      "savingBadge": "Guardando insignia…",
+      "saveBadgeError": "No se pudo guardar tu insignia. Por favor, inténtalo de nuevo."
     },
     "unmuteMic": "Mikrupunuta kichariy",
     "muteMic": "Mikrupunuta wichqay",

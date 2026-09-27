@@ -4881,8 +4881,61 @@
         "legend": {
           "name": "傳奇",
           "hint": "抵達十級。"
+        },
+        "ignition": {
+          "name": "點火",
+          "hint": "在直播中達到一個合格小時。"
+        },
+        "on-air": {
+          "name": "直播中",
+          "hint": "完成十個合格的直播。"
+        },
+        "storyteller": {
+          "name": "說書人",
+          "hint": "完成二十五個合格的直播。"
+        },
+        "broadcaster": {
+          "name": "廣播員",
+          "hint": "完成五十個合格的直播。"
+        },
+        "centurion": {
+          "name": "百夫長",
+          "hint": "完成一百個合格的直播。"
+        },
+        "enduring": {
+          "name": "持久",
+          "hint": "一次直播四個合格小時。"
+        },
+        "circle": {
+          "name": "核心圈",
+          "hint": "同時有二十五人觀看。"
+        },
+        "arena": {
+          "name": "競技場",
+          "hint": "同時有五十人觀看。"
+        },
+        "headliner": {
+          "name": "領銜",
+          "hint": "同時有一百人觀看。"
+        },
+        "cornerstone": {
+          "name": "基石",
+          "hint": "連續二十六週直播。"
+        },
+        "veteran": {
+          "name": "老兵",
+          "hint": "在直播中達到250個合格小時。"
+        },
+        "icon": {
+          "name": "偶像",
+          "hint": "達到20級。"
         }
-      }
+      },
+      "chooseBadge": "選擇任何已解鎖的徽章顯示在您的個人資料上。",
+      "useBadge": "使用徽章",
+      "selectedBadge": "已選擇",
+      "savingBadge": "正在保存徽章…",
+      "saveBadgeError": "無法保存您的徽章。請再試一次。"
     },
     "unmuteMic": "解除麥克風靜音",
     "muteMic": "靜音麥克風",

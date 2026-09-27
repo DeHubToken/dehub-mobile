@@ -4934,8 +4934,61 @@
         "legend": {
           "name": "传奇",
           "hint": "达到十级。"
+        },
+        "ignition": {
+          "name": "点火",
+          "hint": "在直播中累积一小时合格时长。"
+        },
+        "on-air": {
+          "name": "直播中",
+          "hint": "完成十个合格直播。"
+        },
+        "storyteller": {
+          "name": "故事讲述者",
+          "hint": "完成二十五个合格直播。"
+        },
+        "broadcaster": {
+          "name": "广播员",
+          "hint": "完成五十个合格直播。"
+        },
+        "centurion": {
+          "name": "百夫长",
+          "hint": "完成一百个合格直播。"
+        },
+        "enduring": {
+          "name": "持久",
+          "hint": "单次直播四小时合格时长。"
+        },
+        "circle": {
+          "name": "核心圈",
+          "hint": "同时观看人数达到二十五人。"
+        },
+        "arena": {
+          "name": "竞技场",
+          "hint": "同时观看人数达到五十人。"
+        },
+        "headliner": {
+          "name": "领衔",
+          "hint": "同时观看人数达到一百人。"
+        },
+        "cornerstone": {
+          "name": "基石",
+          "hint": "连续二十六周进行直播。"
+        },
+        "veteran": {
+          "name": "老兵",
+          "hint": "在直播中累积二百五十小时合格时长。"
+        },
+        "icon": {
+          "name": "偶像",
+          "hint": "达到二十级。"
         }
-      }
+      },
+      "chooseBadge": "选择任意已解锁的徽章显示在您的个人资料上。",
+      "useBadge": "使用徽章",
+      "selectedBadge": "已选择",
+      "savingBadge": "正在保存徽章…",
+      "saveBadgeError": "无法保存您的徽章。请重试。"
     },
     "unmuteMic": "取消麦克风静音",
     "muteMic": "将麦克风静音",

@@ -7,28 +7,23 @@
  * to the next one and the weekly streak, and opens a sheet with the
  * collectible milestone cards and the last few streams (the ones that did
  * not count are marked, so a creator can see why the bar did not move).
+ * On their own card a creator can equip any earned card as their badge; it
+ * then takes the level tile's place.
  *
  * Renders nothing for an address that has never ended a stream: a profile
  * that is not a streamer's must not grow a streamer panel.
  */
-import React, { useState } from "react";
+import React, { useId, useState } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
+import { SvgXml } from "react-native-svg";
 import { useTranslation } from "react-i18next";
-import Icon, { type IconName } from "../ui/Icon";
+import Icon from "../ui/Icon";
 import GlassModal from "../ui/GlassModal";
-import { useStreamerProgress } from "../../hooks/useStreamerProgress";
+import { useSelectStreamerBadge, useStreamerProgress } from "../../hooks/useStreamerProgress";
+import { useUser } from "../../context/AuthContext";
+import { useAppTheme } from "../../context/ThemeContext";
+import { STREAMER_BADGE_IDS, badgeMaterial, streamerBadgeSvg } from "../../libs/streamer-badge-art";
 import type { StreamerCardId, StreamerProgress } from "../../services/live.service";
-
-const CARD_ICONS: Record<StreamerCardId, IconName> = {
-  "first-light": "Sunrise",
-  marathon: "Timer",
-  "night-owl": "Moon",
-  regular: "CalendarCheck",
-  "iron-streak": "Flame",
-  crowd: "Users",
-  century: "Hourglass",
-  legend: "Crown",
-};
 
 interface Props {
   address?: string | null;
@@ -57,22 +52,39 @@ const StreamerLevelCard: React.FC<Props> = ({ address, className }) => {
   const { t, i18n } = useTranslation();
   const { data } = useStreamerProgress(address);
   const [cardsOpen, setCardsOpen] = useState(false);
+  const selection = useSelectStreamerBadge();
+  const { theme } = useAppTheme();
+  const instance = useId();
+  const user = useUser();
+  const me = ((user?.walletAddress || user?.address || "") as string).toLowerCase();
+  // Only the owner of this ladder can equip a badge; the call always saves the viewer's own.
+  const canSelect = !!address && !!me && address.toLowerCase() === me;
 
   if (!data || !(data.totalStreams > 0)) return null;
 
   const percent = Math.round(Math.min(1, Math.max(0, data.progressToNext)) * 100);
   const minutesToNext = Math.max(0, data.nextLevelXp - data.xp);
   const earnedCount = data.cards.filter((c) => c.earnedAt).length;
+  const equipped = data.cards.find((card) => card.id === data.selectedBadgeId && card.earnedAt);
 
   return (
     <>
       <View className={`rounded-2xl border border-white/10 bg-white/5 p-4 ${className || ""}`}>
         <View className="flex-row flex-wrap items-center justify-center gap-3">
           <View className="w-20 min-h-20 p-2 rounded-xl border border-white/15 bg-white/5 items-center justify-center">
-            <Text className="w-full text-center text-white/40 text-[9px] leading-3 uppercase tracking-wider">{t("live.progress.title")}</Text>
-            <Text className="text-white text-xl font-bold">{data.level}</Text>
+            {equipped ? (
+              <SvgXml xml={streamerBadgeSvg(equipped.id, theme, true, instance)} width={64} height={64} />
+            ) : (
+              <>
+                <Text className="w-full text-center text-white/40 text-[9px] leading-3 uppercase tracking-wider">{t("live.progress.title")}</Text>
+                <Text className="text-white text-xl font-bold">{data.level}</Text>
+              </>
+            )}
           </View>
           <View className="flex-1 min-w-0 basis-32">
+            {equipped && (
+              <Text className="text-white/70 text-xs mb-1">{t(`live.progress.card.${equipped.id}.name`)}</Text>
+            )}
             <View className="flex-row items-center">
               <Icon name="Radio" size={13} color="rgba(255,255,255,0.6)" />
               <Text className="flex-1 text-white text-sm font-semibold ml-1.5">
@@ -93,7 +105,7 @@ const StreamerLevelCard: React.FC<Props> = ({ address, className }) => {
             <Icon name="Layers" size={13} color="#ffffff" />
             <Text className="text-white text-xs ml-1.5">{t("live.progress.viewCards")}</Text>
             <Text className="text-white/50 text-xs ml-1.5">
-              {earnedCount}/{data.cards.length}
+              {earnedCount}/{STREAMER_BADGE_IDS.length}
             </Text>
           </TouchableOpacity>
         </View>
@@ -139,49 +151,90 @@ const StreamerLevelCard: React.FC<Props> = ({ address, className }) => {
           <Text className="text-white text-base font-semibold">{t("live.progress.cardsTitle")}</Text>
           <Text className="text-theme-neutrals-400 text-xs mt-1">{t("live.progress.rule")}</Text>
         </View>
-        <CardGrid progress={data} locale={i18n.language} />
+        {canSelect && (
+          <View className="px-5 pb-2">
+            <Text className="text-white/70 text-xs">
+              {selection.isPending ? t("live.progress.savingBadge") : t("live.progress.chooseBadge")}
+            </Text>
+            {selection.isError && (
+              <Text className="text-white text-sm mt-1">{t("live.progress.saveBadgeError")}</Text>
+            )}
+          </View>
+        )}
+        <CardGrid
+          progress={data}
+          locale={i18n.language}
+          saving={selection.isPending}
+          onSelect={canSelect && address ? (badgeId) => selection.mutate({ address, badgeId }) : undefined}
+        />
         <RecentList progress={data} locale={i18n.language} />
       </GlassModal>
     </>
   );
 };
 
-const CardGrid: React.FC<{ progress: StreamerProgress; locale: string }> = ({ progress, locale }) => {
+const CardGrid: React.FC<{
+  progress: StreamerProgress;
+  locale: string;
+  saving: boolean;
+  onSelect?: (id: StreamerCardId) => void;
+}> = ({ progress, locale, saving, onSelect }) => {
   const { t } = useTranslation();
+  const { theme, isMinimal } = useAppTheme();
+  const instance = useId();
+  const material = badgeMaterial(theme);
   return (
     <View className="flex-row flex-wrap px-3 pb-2">
-      {progress.cards.map((card) => {
-        const earned = !!card.earnedAt;
+      {STREAMER_BADGE_IDS.map((id) => {
+        const card = progress.cards.find((c) => c.id === id);
+        const earned = !!card?.earnedAt;
+        const selected = progress.selectedBadgeId === id;
         return (
-          <View key={card.id} className="w-1/2 p-1">
+          <View key={id} className="w-1/2 p-1">
             <View
-              className={`rounded-xl border p-3 items-center ${
-                earned ? "border-white/25 bg-white/10" : "border-white/10 bg-white/5 opacity-60"
-              }`}
-              style={{ minHeight: 132 }}
+              className="p-3 items-center"
+              style={{
+                minHeight: 196,
+                backgroundColor: material.panel,
+                borderWidth: 1,
+                borderColor: material.edge + (earned ? "aa" : "44"),
+                borderRadius: isMinimal ? 0 : 16,
+              }}
             >
-              <View
-                className={`w-9 h-9 rounded-full items-center justify-center border ${
-                  earned ? "border-white/40 bg-white/15" : "border-white/10 bg-white/5"
-                }`}
-              >
-                <Icon
-                  name={earned ? CARD_ICONS[card.id] || "Layers" : "Lock"}
-                  size={16}
-                  color={earned ? "#ffffff" : "rgba(255,255,255,0.4)"}
-                />
+              <SvgXml xml={streamerBadgeSvg(id, theme, earned, instance)} width={80} height={80} />
+              <Text className="text-xs font-semibold mt-1.5 text-center" style={{ color: material.text }}>
+                {t(`live.progress.card.${id}.name`)}
+              </Text>
+              <Text className="text-[10px] mt-1 text-center leading-3.5" style={{ color: material.muted }}>
+                {t(`live.progress.card.${id}.hint`)}
+              </Text>
+              <View className="flex-row items-center justify-center mt-auto pt-1.5">
+                {!earned && <Icon name="Lock" size={10} color={material.muted} />}
+                <Text className="text-[10px] text-center ml-1" style={{ color: material.muted }}>
+                  {earned
+                    ? t("live.progress.earnedOn", { date: formatDate(card?.earnedAt ?? null, locale) })
+                    : t("live.progress.locked")}
+                </Text>
               </View>
-              <Text className="text-white text-xs font-semibold mt-1.5 text-center">
-                {t(`live.progress.card.${card.id}.name`)}
-              </Text>
-              <Text className="text-white/50 text-[10px] mt-1 text-center leading-3.5">
-                {t(`live.progress.card.${card.id}.hint`)}
-              </Text>
-              <Text className="text-white/40 text-[10px] mt-auto pt-1.5 text-center">
-                {earned
-                  ? t("live.progress.earnedOn", { date: formatDate(card.earnedAt, locale) })
-                  : t("live.progress.locked")}
-              </Text>
+              {earned && onSelect && (
+                <TouchableOpacity
+                  activeOpacity={0.7}
+                  disabled={saving || selected}
+                  onPress={() => onSelect(id)}
+                  accessibilityRole="button"
+                  accessibilityState={{ selected, disabled: saving || selected }}
+                  className="mt-2 w-full rounded-lg px-2 py-2 items-center"
+                  style={{
+                    borderColor: material.edge,
+                    borderWidth: selected ? 2 : 1,
+                    backgroundColor: material.face,
+                  }}
+                >
+                  <Text className="text-xs font-medium" style={{ color: material.text }}>
+                    {selected ? t("live.progress.selectedBadge") : t("live.progress.useBadge")}
+                  </Text>
+                </TouchableOpacity>
+              )}
             </View>
           </View>
         );

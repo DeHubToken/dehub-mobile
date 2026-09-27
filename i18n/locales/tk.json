@@ -4881,8 +4881,61 @@
         "legend": {
           "name": "Asly",
           "hint": "10. Honto ýönekeý kesildi"
+        },
+        "ignition": {
+          "name": "Otdal",
+          "hint": "Awa çykyp, bir sagat kwalifikasiýa ýetiriň."
+        },
+        "on-air": {
+          "name": "Awa çykyp",
+          "hint": "On kwalifikasiýaly ýaýlym tamamlaň."
+        },
+        "storyteller": {
+          "name": "Gürrüňçi",
+          "hint": "Ýigrimi bäş kwalifikasiýaly ýaýlym tamamlaň."
+        },
+        "broadcaster": {
+          "name": "Ýaýlyma çykaryjy",
+          "hint": "Tähtiş ýaýlym tamamlaň."
+        },
+        "centurion": {
+          "name": "Ýüzbaşy",
+          "hint": "Ýüz kwalifikasiýaly ýaýlym tamamlaň."
+        },
+        "enduring": {
+          "name": "Durnukly",
+          "hint": "Bir sessiýada dört sagat kwalifikasiýaly ýaýlym alyp baryň."
+        },
+        "circle": {
+          "name": "Içki halka",
+          "hint": "Bir wagtyň özünde ýigrimi bäş adamy tomaşa ediň."
+        },
+        "arena": {
+          "name": "Arena",
+          "hint": "Bir wagtyň özünde tähtiş adamy tomaşa ediň."
+        },
+        "headliner": {
+          "name": "Baş sahypa",
+          "hint": "Bir wagtyň özünde ýüz adamy tomaşa ediň."
+        },
+        "cornerstone": {
+          "name": "Esasy daýanç",
+          "hint": "Ýigrimi alty hepdeläp yzygiderli ýaýlym alyp baryň."
+        },
+        "veteran": {
+          "name": "Weterinar",
+          "hint": "Awa çykyp, 250 kwalifikasiýaly sagat ýetiriň."
+        },
+        "icon": {
+          "name": "Ikon",
+          "hint": "20-njy derejä ýetiriň."
         }
-      }
+      },
+      "chooseBadge": "Profiliňizde görkezmek üçin islendik açylan nyşany saýlaň.",
+      "useBadge": "Nyşan ulanyň",
+      "selectedBadge": "Saýlanan",
+      "savingBadge": "Nyşan ýazylýar…",
+      "saveBadgeError": "Nyşany ýazyp bolmady. Gaýtadan synanyşyň."
     },
     "unmuteMic": "Mikrofon",
     "muteMic": "Mikrofon",

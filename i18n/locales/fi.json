@@ -4881,8 +4881,61 @@
         "legend": {
           "name": "Selite",
           "hint": "Saavuta taso 10."
+        },
+        "ignition": {
+          "name": "Sytytys",
+          "hint": "Saavuta yksi kelvollinen tunti ilmassa."
+        },
+        "on-air": {
+          "name": "Ilmassa",
+          "hint": "Valmista kymmenen kelvollista suoratoistoa."
+        },
+        "storyteller": {
+          "name": "Tarina",
+          "hint": "Valmista kaksikymmentäviisi kelvollista suoratoistoa."
+        },
+        "broadcaster": {
+          "name": "Lähettäjä",
+          "hint": "Valmista viisikymmentä kelvollista suoratoistoa."
+        },
+        "centurion": {
+          "name": "Centurion",
+          "hint": "Valmista sata kelvollista suoratoistoa."
+        },
+        "enduring": {
+          "name": "Kestävä",
+          "hint": "Suoratoista neljä kelvollista tuntia yhdellä istunnolla."
+        },
+        "circle": {
+          "name": "Sisäpiiri",
+          "hint": "Tee kaksikymmentäviisi ihmistä katsomassa kerrallaan."
+        },
+        "arena": {
+          "name": "Areena",
+          "hint": "Tee viisikymmentä ihmistä katsomassa kerrallaan."
+        },
+        "headliner": {
+          "name": "Pääkäsikirjoittaja",
+          "hint": "Tee sata ihmistä katsomassa kerrallaan."
+        },
+        "cornerstone": {
+          "name": "Kärki",
+          "hint": "Suoratoista kaksikymmentäkuusi peräkkäistä viikkoa."
+        },
+        "veteran": {
+          "name": "Kokene",
+          "hint": "Saavuta 250 kelvollista tuntia ilmassa."
+        },
+        "icon": {
+          "name": "Ikoni",
+          "hint": "Saavuta taso kaksikymmentä."
         }
-      }
+      },
+      "chooseBadge": "Valitse mikä tahansa avattu badge näyttämään profiilissasi.",
+      "useBadge": "Käytä badge",
+      "selectedBadge": "Valittu",
+      "savingBadge": "Tallennetaan badge…",
+      "saveBadgeError": "Badgea ei voitu tallentaa. Yritä uudelleen."
     },
     "unmuteMic": "Poista mikrofonin mykistys",
     "muteMic": "Mykistä mikrofoni",

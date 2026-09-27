@@ -4912,8 +4912,61 @@
         "legend": {
           "name": "Inganekwane",
           "hint": "Finyelela ileveli eyishumi."
+        },
+        "ignition": {
+          "name": "Ukuvala",
+          "hint": "Finyelela ihora elilodwa elifanelekayo emoyeni."
+        },
+        "on-air": {
+          "name": "Emoyeni",
+          "hint": "Qedela ukusakaza okuyishumi okufanelekayo."
+        },
+        "storyteller": {
+          "name": "Umbalisi",
+          "hint": "Qedela ukusakaza okufanelekayo okungamashumi amabili nanhlanu."
+        },
+        "broadcaster": {
+          "name": "Umsakazi",
+          "hint": "Qedela ukusakaza okungamashumi amahlanu okufanelekela."
+        },
+        "centurion": {
+          "name": "I-Centurion",
+          "hint": "Qedela ukusakaza okuyikhulu okufanelekayo."
+        },
+        "enduring": {
+          "name": "Ukukhuthazela",
+          "hint": "Sakaza amahora amane afanelekayo kuseshini eyodwa."
+        },
+        "circle": {
+          "name": "Isiyingi sangaphakathi",
+          "hint": "Yiba nabantu abangamashumi amabili nanhlanu ababukele ngesikhathi esisodwa."
+        },
+        "arena": {
+          "name": "Isihlabathi",
+          "hint": "Yenza abantu abangamashumi amahlanu babuke ngasikhathi sinye."
+        },
+        "headliner": {
+          "name": "I-headliner",
+          "hint": "Yiba nabantu abayikhulu ababuka ngesikhathi esisodwa."
+        },
+        "cornerstone": {
+          "name": "Itshe lasekhoneni",
+          "hint": "Sakaza emavikini angamashumi amabili nesithupha alandelanayo."
+        },
+        "veteran": {
+          "name": "Umakadebona",
+          "hint": "Finyelela emahoreni angu-250 afanelekayo emoyeni."
+        },
+        "icon": {
+          "name": "I-ayikhoni",
+          "hint": "Finyelela ezingeni lamashumi amabili."
         }
-      }
+      },
+      "chooseBadge": "Khetha noma yiliphi ibheji elivuliwe elizoboniswa kuphrofayili yakho.",
+      "useBadge": "Sebenzisa ibheji",
+      "selectedBadge": "Kukhethiwe",
+      "savingBadge": "Igcina ibheji...",
+      "saveBadgeError": "Ayikwazanga ukugcina ibheji lakho. Sicela uzame futhi."
     },
     "unmuteMic": "Susa imakrofoni",
     "muteMic": "Thulisa imakrofoni",

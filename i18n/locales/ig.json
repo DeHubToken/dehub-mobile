@@ -4881,8 +4881,61 @@
         "legend": {
           "name": "Akụkọ ifo",
           "hint": "Nzọụkwụ 10."
+        },
+        "ignition": {
+          "name": "Mmalite",
+          "hint": "Ruo otu awa ntozu na ikuku."
+        },
+        "on-air": {
+          "name": "Na ikuku",
+          "hint": "Mechaa iyi ntozu iri."
+        },
+        "storyteller": {
+          "name": "Onye akuko",
+          "hint": "Mechaa iyi ntozu iri abụọ na ise."
+        },
+        "broadcaster": {
+          "name": "Onye mgbasa ozi",
+          "hint": "Mechaa iyi ntozu iri ise."
+        },
+        "centurion": {
+          "name": "Otu narị",
+          "hint": "Mechaa iyi ntozu otu narị."
+        },
+        "enduring": {
+          "name": "Nduzi",
+          "hint": "Mịpụ awa ntozu anọ na otu nnọkọ."
+        },
+        "circle": {
+          "name": "Ime ime",
+          "hint": "Nweta mmadụ iri abụọ na ise ka ha na-elele n'otu oge."
+        },
+        "arena": {
+          "name": "Ebe egwuregwu",
+          "hint": "Nweta mmadụ iri ise ka ha na-elele n'otu oge."
+        },
+        "headliner": {
+          "name": "Onye isi okwu",
+          "hint": "Nweta mmadụ otu narị ka ha na-elele n'otu oge."
+        },
+        "cornerstone": {
+          "name": "Nkume ntọala",
+          "hint": "Mịpụ izu iri abụọ na isii n'usoro."
+        },
+        "veteran": {
+          "name": "Onye agha ochie",
+          "hint": "Ruo awa ntozu narị abụọ na ise na ikuku."
+        },
+        "icon": {
+          "name": "Ihe oyiyi",
+          "hint": "Ruo ọkwa iri abụọ."
         }
-      }
+      },
+      "chooseBadge": "Họrọ ihe ọ bụla akara ngosi akpọchiri ka egosipụta na profaịlụ gị.",
+      "useBadge": "Jiri akara ngosi",
+      "selectedBadge": "Ahọpụtara",
+      "savingBadge": "Na-echekwa akara ngosi…",
+      "saveBadgeError": "E nweghị ike ịchekwa akara ngosi gị. Biko nwaa ọzọ."
     },
     "unmuteMic": "Unmute igwe okwu",
     "muteMic": "Gbanyụọ igwe okwu",
