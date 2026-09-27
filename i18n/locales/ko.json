@@ -3496,7 +3496,12 @@
     "original": "원본 오디오",
     "dubbed": "더빙된 오디오",
     "preparing": "더빙된 오디오 준비 중...",
-    "unavailable": "이 동영상에는 더빙된 오디오를 사용할 수 없습니다."
+    "unavailable": "이 동영상에는 더빙된 오디오를 사용할 수 없습니다.",
+    "menuLabel": "더빙",
+    "menuDesc": "이 동영상을 내 언어로 듣기",
+    "menuOn": "켜짐 · 탭하면 원래 오디오",
+    "noTranscript": "이 동영상에는 아직 스크립트가 없습니다.",
+    "noVoice": "기기에 이 언어의 음성이 없습니다."
   },
   "support": {
     "title": "지원",

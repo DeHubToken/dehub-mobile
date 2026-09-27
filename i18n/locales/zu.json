@@ -3523,7 +3523,12 @@
     "original": "Umsindo wasekuqaleni",
     "dubbed": "Umsindo obhalwe kabili",
     "preparing": "Ilungiselela umsindo obizwa ngegama...",
-    "unavailable": "Umsindo onama-dubbed awutholakali kule vidiyo."
+    "unavailable": "Umsindo onama-dubbed awutholakali kule vidiyo.",
+    "menuLabel": "Ukuhumusha izwi",
+    "menuDesc": "Lalela le vidiyo ngolimi lwakho",
+    "menuOn": "Kuvuliwe · thepha ukuze uthole umsindo wangempela",
+    "noTranscript": "Le vidiyo ayikabi nombhalo.",
+    "noVoice": "Idivayisi yakho ayinalo izwi lalolu limi."
   },
   "stages": {
     "cancelConfirm": "Khansela u-“{{title}}”? Isixhumanisi sizoyeka ukusebenza.",

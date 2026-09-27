@@ -3492,7 +3492,12 @@
     "original": "Originaalheli",
     "dubbed": "Dubleeritud heli",
     "preparing": "Dubleeritud heli ettevalmistamine...",
-    "unavailable": "Selle video jaoks pole dubleeritud heli saadaval."
+    "unavailable": "Selle video jaoks pole dubleeritud heli saadaval.",
+    "menuLabel": "Dubleerimine",
+    "menuDesc": "Kuula seda videot oma keeles",
+    "menuOn": "Sees · puuduta originaalheli jaoks",
+    "noTranscript": "Sellel videol pole veel transkriptsiooni.",
+    "noVoice": "Sinu seadmel pole selle keele jaoks häält."
   },
   "stages": {
     "cancelConfirm": "Tühista \"{{title}}\"? Link lakkab töötamast.",

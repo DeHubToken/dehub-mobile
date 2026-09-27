@@ -3492,7 +3492,12 @@
     "original": "Audio originale",
     "dubbed": "Audio soprannominato",
     "preparing": "Preparazione dell'audio doppiato...",
-    "unavailable": "L'audio soprannominato non è disponibile per questo video."
+    "unavailable": "L'audio soprannominato non è disponibile per questo video.",
+    "menuLabel": "Doppiaggio",
+    "menuDesc": "Ascolta questo video nella tua lingua",
+    "menuOn": "Attivo · tocca per l'audio originale",
+    "noTranscript": "Questo video non ha ancora una trascrizione.",
+    "noVoice": "Il tuo dispositivo non ha una voce per questa lingua."
   },
   "support": {
     "title": "Assistenza",

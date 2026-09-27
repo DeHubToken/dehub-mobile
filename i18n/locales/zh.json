@@ -3496,7 +3496,12 @@
     "original": "原始音频",
     "dubbed": "配音音频",
     "preparing": "正在准备配音音频……",
-    "unavailable": "配音音频不适用于此视频。"
+    "unavailable": "配音音频不适用于此视频。",
+    "menuLabel": "配音",
+    "menuDesc": "用你的语言收听此视频",
+    "menuOn": "已开启 · 轻点收听原声",
+    "noTranscript": "此视频还没有文字稿。",
+    "noVoice": "你的设备没有该语言的语音。"
   },
   "support": {
     "title": "支持",
