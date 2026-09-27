@@ -683,8 +683,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     navigation.navigate(ScreenNames.ImageViewer, {
       images: galleryImages,
       initialIndex: index,
+      soundtrack: !isActuallyGated && !matureGate.isGated ? soundtrack : undefined,
     });
-  }, [navigation, galleryImages, hasImages, hideUserProfile, onBeforeNavigate]);
+  }, [navigation, galleryImages, hasImages, hideUserProfile, onBeforeNavigate, isActuallyGated, matureGate.isGated, soundtrack]);
 
   const handleTranslateImage = useCallback(() => {
     const imageUrl = galleryImages[0];
@@ -1622,12 +1623,13 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         <>
       {renderContent()}
 
-      {hasSoundtrack && (
+      {hasSoundtrack && !isActuallyGated && (
         <View className="mt-2">
           <SoundtrackBadge
             title={soundtrack.title}
             creator={soundtrack.creator}
             url={soundtrack.url}
+            isVisible={isVisible}
           />
         </View>
       )}
