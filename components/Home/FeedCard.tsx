@@ -584,7 +584,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     description: localDescription || '',
   }), [localTitle, localDescription]);
   const { isTranslated, translatedTexts, isLoading: translating, handleTranslate, handleShowOriginal, shouldShow: showTranslate, sourceLang: translationSourceLang } =
-    useTranslation(translationTexts, item.detectedLanguage);
+    useTranslation(translationTexts, item.detectedLanguage, true, true);
   // DeHub links in the caption become entity cards, and the URLs that became
   // cards come out of the text — the same contract the DM, comment and
   // community-chat surfaces already follow, and the same one web's PostCard

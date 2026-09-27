@@ -10,6 +10,21 @@ export interface TranslateRequest {
   text: string;
   targetLang: string;
   sourceLang?: string;
+  /**
+   * Set only for content anyone can already read. The edge function keeps
+   * absent-or-false text away from the free tiers that train on what they are
+   * sent, so a direct message never reaches them.
+   */
+  public?: boolean;
+}
+
+export interface TranslateOptions {
+  /**
+   * The text is public: a post, a comment on one, a bio. Leave unset for
+   * anything private — the default is private on purpose, so a call site that
+   * forgets is the safe kind of wrong.
+   */
+  isPublic?: boolean;
 }
 
 export interface TranslateResponse {
@@ -156,6 +171,7 @@ function requestTranslation(
   text: string,
   targetLang: string,
   sourceLang: string,
+  isPublic: boolean,
 ): Promise<TranslateResponse> {
   const key = cacheKey(text, targetLang);
   const existing = inFlightRequests.get(key);
@@ -163,7 +179,9 @@ function requestTranslation(
 
   const request = (async () => {
     const { data, error } = await supabase.functions.invoke('translate-text', {
-      body: { text, targetLang, sourceLang } satisfies TranslateRequest,
+      body: (isPublic
+        ? { text, targetLang, sourceLang, public: true }
+        : { text, targetLang, sourceLang }) satisfies TranslateRequest,
     });
     if (error) {
       // `FunctionsHttpError` says only "returned a non-2xx status code", which
@@ -250,6 +268,7 @@ export async function translateText(
   text: string,
   targetLang: string,
   sourceLang: string = 'auto',
+  { isPublic = false }: TranslateOptions = {},
 ): Promise<TranslateTextResult> {
   if (!text || text.trim().length < 1) {
     return { translatedText: text, sourceLang: null, sameLanguage: true };
@@ -267,7 +286,7 @@ export async function translateText(
 
   log.debug('Translating text', { targetLang, sourceLang, length: text.length });
 
-  const data = await requestTranslation(text, targetLang, sourceLang);
+  const data = await requestTranslation(text, targetLang, sourceLang, isPublic);
 
   if (!data?.translatedText) {
     throw new TranslationServiceError('Translation unavailable', 500);

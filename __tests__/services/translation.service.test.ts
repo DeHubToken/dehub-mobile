@@ -39,6 +39,29 @@ describe('services/translation.service', () => {
       const result = await translateText('Hola', 'tr', 'es');
 
       expect(result).toEqual({ translatedText: 'Merhaba', sourceLang: 'es', sameLanguage: false });
+      // Private unless the caller says otherwise: no `public` key at all.
+      expect(mockInvoke).toHaveBeenCalledWith('translate-text', {
+        body: { text: 'Hola', targetLang: 'tr', sourceLang: 'es' },
+      });
+    });
+
+    it('flags the request public only when asked', async () => {
+      mockInvoke.mockResolvedValue({ data: { translatedText: 'Merhaba' }, error: null });
+
+      const { translateText } = loadService();
+      await translateText('Hola', 'tr', 'es', { isPublic: true });
+
+      expect(mockInvoke).toHaveBeenCalledWith('translate-text', {
+        body: { text: 'Hola', targetLang: 'tr', sourceLang: 'es', public: true },
+      });
+    });
+
+    it('keeps an explicitly private request unflagged', async () => {
+      mockInvoke.mockResolvedValue({ data: { translatedText: 'Merhaba' }, error: null });
+
+      const { translateText } = loadService();
+      await translateText('Hola', 'tr', 'es', { isPublic: false });
+
       expect(mockInvoke).toHaveBeenCalledWith('translate-text', {
         body: { text: 'Hola', targetLang: 'tr', sourceLang: 'es' },
       });
