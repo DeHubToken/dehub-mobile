@@ -4867,6 +4867,54 @@
         "legend": {
           "name": "Légende",
           "hint": "Atteignez le niveau dix."
+        },
+        "ignition": {
+          "name": "Allumage",
+          "hint": "Cumulez une heure de direct admissible."
+        },
+        "on-air": {
+          "name": "À l’antenne",
+          "hint": "Terminez dix directs admissibles."
+        },
+        "storyteller": {
+          "name": "Conteur",
+          "hint": "Terminez vingt-cinq directs admissibles."
+        },
+        "broadcaster": {
+          "name": "Présentateur",
+          "hint": "Terminez cinquante directs admissibles."
+        },
+        "centurion": {
+          "name": "Centurion",
+          "hint": "Terminez cent directs admissibles."
+        },
+        "enduring": {
+          "name": "Endurance",
+          "hint": "Diffusez quatre heures admissibles en une session."
+        },
+        "circle": {
+          "name": "Cercle proche",
+          "hint": "Réunissez vingt-cinq spectateurs simultanés."
+        },
+        "arena": {
+          "name": "Arène",
+          "hint": "Réunissez cinquante spectateurs simultanés."
+        },
+        "headliner": {
+          "name": "Tête d’affiche",
+          "hint": "Réunissez cent spectateurs simultanés."
+        },
+        "cornerstone": {
+          "name": "Pilier",
+          "hint": "Diffusez pendant vingt-six semaines consécutives."
+        },
+        "veteran": {
+          "name": "Vétéran",
+          "hint": "Cumulez 250 heures de direct admissibles."
+        },
+        "icon": {
+          "name": "Icône",
+          "hint": "Atteignez le niveau vingt."
         }
       }
     },

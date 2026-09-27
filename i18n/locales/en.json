@@ -4863,6 +4863,54 @@
         "legend": {
           "name": "Legend",
           "hint": "Reach level ten."
+        },
+        "ignition": {
+          "name": "Ignition",
+          "hint": "Reach one qualifying hour on air."
+        },
+        "on-air": {
+          "name": "On air",
+          "hint": "Finish ten qualifying streams."
+        },
+        "storyteller": {
+          "name": "Storyteller",
+          "hint": "Finish twenty-five qualifying streams."
+        },
+        "broadcaster": {
+          "name": "Broadcaster",
+          "hint": "Finish fifty qualifying streams."
+        },
+        "centurion": {
+          "name": "Centurion",
+          "hint": "Finish one hundred qualifying streams."
+        },
+        "enduring": {
+          "name": "Enduring",
+          "hint": "Stream for four qualifying hours in one session."
+        },
+        "circle": {
+          "name": "Inner circle",
+          "hint": "Have twenty-five people watching at once."
+        },
+        "arena": {
+          "name": "Arena",
+          "hint": "Have fifty people watching at once."
+        },
+        "headliner": {
+          "name": "Headliner",
+          "hint": "Have one hundred people watching at once."
+        },
+        "cornerstone": {
+          "name": "Cornerstone",
+          "hint": "Stream in twenty-six consecutive weeks."
+        },
+        "veteran": {
+          "name": "Veteran",
+          "hint": "Reach 250 qualifying hours on air."
+        },
+        "icon": {
+          "name": "Icon",
+          "hint": "Reach level twenty."
         }
       }
     },
