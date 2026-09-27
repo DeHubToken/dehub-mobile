@@ -9,12 +9,14 @@ jest.mock('react-native', () => ({
 }));
 
 let mockStatus = 'loading';
-const mockPlayer = { play: jest.fn(), status: 'loading' };
+const mockPlayer = { play: jest.fn(), pause: jest.fn(), release: jest.fn(), status: 'loading' };
 jest.mock('expo', () => ({ useEvent: () => ({ status: mockStatus }) }));
 jest.mock('expo-video', () => ({
   useVideoPlayer: (_url: string, setup: (p: unknown) => void) => { setup(mockPlayer); return mockPlayer; },
+  createVideoPlayer: () => mockPlayer,
   VideoView: (props: any) => require('react').createElement(require('react-native').View, { ...props, testID: 'live-video' }),
 }));
+jest.mock('@react-navigation/native', () => ({ NavigationContext: require('react').createContext(undefined) }));
 jest.mock('../../components/DeHubLoader', () => ({
   DeHubLoader: () => require('react').createElement(require('react-native').View, { testID: 'live-loader' }),
 }));

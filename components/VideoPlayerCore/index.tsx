@@ -30,6 +30,7 @@ import {
 } from 'react-native-gesture-handler';
 import { VideoView, useVideoPlayer, VideoPlayer } from 'expo-video';
 import { FULLSCREEN_BUFFER_OPTIONS, LIVE_BUFFER_OPTIONS } from "../../libs/videoBuffering";
+import { useSharedLivePlayer } from '../../libs/sharedLivePlayer';
 import { getPlaybackRateFor, setPlaybackRate as persistPlaybackRate } from '../../libs/video-preferences';
 import { useAppPrefs } from '../../hooks/useAppPrefs';
 import { useVideoSegments, segmentAt } from '../../hooks/useVideoSegments';
@@ -225,7 +226,12 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
   }, [scheduleHide]);
 
   // Create VideoPlayer instance
-  const player: VideoPlayer = useVideoPlayer(sourceUrl ?? null, (p) => {
+  // A live stream shares its player with the feed card that was showing it
+  // (libs/sharedLivePlayer): the viewer takes over the running picture
+  // instead of reconnecting from a spinner. The own player then idles with no
+  // source, which allocates nothing worth mentioning.
+  const sharedLivePlayer = useSharedLivePlayer(liveMode ? sourceUrl : null);
+  const ownPlayer: VideoPlayer = useVideoPlayer(sharedLivePlayer ? null : sourceUrl ?? null, (p) => {
     p.loop = !liveMode && loop;
     p.muted = muted ?? getCachedMuted();
     p.timeUpdateEventInterval = PLAYER_CONSTANTS.TIME_UPDATE_INTERVAL;
@@ -242,6 +248,23 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
       p.play();
     }
   });
+  const player = sharedLivePlayer ?? ownPlayer;
+
+  // The shared player was set up as a silent feed preview; give it this
+  // screen's sound and background behaviour. A picture already on screen
+  // needs no loader over it.
+  useEffect(() => {
+    if (!sharedLivePlayer) return;
+    try {
+      sharedLivePlayer.muted = muted ?? getCachedMuted();
+      sharedLivePlayer.timeUpdateEventInterval = PLAYER_CONSTANTS.TIME_UPDATE_INTERVAL;
+      sharedLivePlayer.staysActiveInBackground = true;
+      sharedLivePlayer.showNowPlayingNotification = true;
+      if (sharedLivePlayer.playing && sourceUrl) setFirstFrameSource(sourceUrl);
+    } catch {}
+    // `muted` changes are applied by the mute handlers below.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sharedLivePlayer]);
 
   // Start live HLS after the player has been configured and attached, as the
   // feed preview does. Live timelines must not enter the file-repeat path.

@@ -33,6 +33,7 @@ import { useTipAnimations } from "../../hooks/useTipAnimations";
 import { useReactions } from "../../hooks/useReactions";
 import { useEngagementWeight } from "../../hooks/useEngagementWeight";
 import type { ReactionType } from "../LiveProducer/ReactionOverlay";
+import type { PostReaction } from "../../libs/reactions";
 import { useWebSocket } from "../../context/WebSocketContext";
 import {
   LivestreamEvents,
@@ -93,6 +94,14 @@ const buildHlsFromPlayback = (
   playbackId?: string | null,
   provider?: string | null,
 ) => hlsUrlFor({ playbackId, provider });
+
+/** Strip reactions that have a post reaction of the same meaning. */
+const STRIP_TO_POST_REACTION: Partial<Record<ReactionType, PostReaction>> = {
+  LIKE: "like",
+  HEART: "love",
+  LAUGH: "lol",
+  SUPPORT: "respect",
+};
 
 const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
   const [viewportHeight, setViewportHeight] = useState(0);
@@ -1223,6 +1232,21 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     postReactions.toggle(true);
   }, [postReactions, requireAuth, handleSendReaction, addReaction, liveReactionWeight]);
 
+  // The long-press strip. It used to go straight to the socket and nowhere
+  // else: the sender's own echo is dropped (see the reaction listener), so the
+  // tap floated nothing, and with the socket down it did nothing at all. Now
+  // it plays locally like the thumb does, reaches the room, and lands on the
+  // post where the strip has a post reaction to match.
+  const handleStripReaction = useCallback((type: ReactionType) => {
+    requireAuth(() => {
+      addReaction(type, undefined, liveReactionWeight);
+      handleSendReaction(type);
+    });
+    const post = STRIP_TO_POST_REACTION[type];
+    // react() toggles, so casting the reaction already worn would take it off.
+    if (post && postReactions.myReaction !== post) postReactions.react(post);
+  }, [postReactions, requireAuth, handleSendReaction, addReaction, liveReactionWeight]);
+
   // Share handler
   const handleShare = useCallback(async () => {
     const postId = streamEntity?.tokenId ?? tokenId ?? streamId;
@@ -1626,7 +1650,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
                   isScheduled={isScheduledEffective}
                   onSendMessage={handleSendMessage}
                   onSendGif={handleSendGif}
-                  onReact={handleSendReaction}
+                  onReact={handleStripReaction}
                   onLike={handleLiveLike}
                   onShare={handleShare}
                   onGiftPress={handleGiftPress}
