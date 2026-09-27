@@ -3455,11 +3455,6 @@
     "noResultsFor": "Tsy misy valiny ho an'ny \"{{query}}\"",
     "guideSubtitle": "Torolalana tsikelikely momba ny endri-javatra tsirairay",
     "searchGuide": "Mitady boky torolalana...",
-    "guideFractionsTip": "Ny lahatsoratra voa-mint rehetra dia manomboka amin'ny mpamorona mitazona ny ampahany rehetra (fananana 100%).",
-    "guideInfoStep": "Tsindrio ny kisary fampahalalana amin'ny lahatsoratra voa-mint mba hanokafana ny fifanakalozana mint ao amin'ny block explorer sy hanamarinana ny firaketana ao amin'ny rojo.",
-    "guideMintIntro": "Tsy voatery ny manao mint ny lahatsoratra ho NFT ao amin'ny blockchain. Mint-eo rehefa mamoaka ianao, na avoahy izao ary mint-eo any aoriana avy amin'ny menion'ny lahatsoratra.",
-    "guideMintPublishStep": "Safidio raha hanao mint ianao, avy eo tsindrio 'Alefa' hamoahana. Raha tsy manao mint ianao, azonao atao ny mint-eo any aoriana avy amin'ny meniony.",
-    "guideMintFractionsStep": "Azonao avokoa ireo ampahany 1,000 (fananana 100%) amin'ny lahatsoratrao vao voa-mint.",
     "glossaryMintTxDesc": "Tsindrio ny kisary fampahalalana amin'ny lahatsoratra voa-mint mba hanokafana ny fifanakalozana mint ao amin'ny block explorer sy hanamarinana ny firaketana ao amin'ny rojo. Ny pejy feno momba ny lahatsoratra — antontan'isa, tompony, tsena — dia ao amin'ny rindranasa web ao amin'ny dehub.io.",
     "glossaryTokenIdDesc": "Famantarana tokana ao amin'ny rojo omena ny lahatsoratra rehefa atao mint ho NFT.",
     "repostsTab": "Fametrahana indray",
@@ -3476,24 +3471,7 @@
     "glossaryStakingDesc": "Apetraho ny DeHub token-nao mba hahazoana valisoa rehefa mandeha ny fotoana. Ny token voafono koa dia manome anao hery fanampiny amin'ny fitsapan-kevitra amin'ny fitantanana.",
     "glossaryGovernanceDesc": "Mandefasa ary mifidiana amin'ny tolo-kevitra izay mamolavola ny sehatra. Ny herinao amin'ny fitsapan-kevitra dia lanja araka ny isan'ny DeHub token-nao.",
     "glossaryStakingBadgesDesc": "Mari-pankasitrahana aseho eo akaikin'ny anaranao miorina amin'ny fitambaran'ny DeHub token-nao (pokonao + voafono). Misy ambaratonga 13 — arakaraka ny habetsaky ny token-nao no avo kokoa ny laharan'ny mari-pankasitrahanao. Ny ambaratonga ambony kokoa dia manome hery fitsapan-kevitra fitantanana bebe kokoa ary fihenan'ny sarany amin'ny sehatra.",
-    "glossaryLeaderboardDesc": "Ny mpampiasa dia laharana araka ny totalin'ny DeHub token (pokonao + voafono amin'ny rojo rehetra). Ny laharana dia havaozina tsindraindray ary manaraka ny fiovana 1 andro sy 1 herinandro. Azonao atao koa ny manasongadina amin'ny toro-hevitra nalefa, toro-hevitra voaray, mpanaraka, tiana, na mpikambana.",
-    "guideTipStep": "Tsindrio ny sary famantarana vatosoa/toro-hevitra mba handefasana toro-hevitra amin'ny mpamorona ny lahatsoratra amin'ny DeHub token.",
-    "guideTipWalletTip": "Ny toro-hevitra dia mandeha mivantana any amin'ny pokon'ny mpamorona amin'ny maha-DeHub token.",
-    "guideTipNotificationsTip": "Ny fampandrenesana toro-hevitra dia mampiseho ny isan'ny DeHub token azonao.",
-    "guideWalletIntro": "Jereo ny sandan'ny DeHub token anao amin'ny rojo maro, jereo ny petra-bola staking, ary tantano ny fanananao.",
-    "guideWalletTotalStep": "Jereo ny sandan'ny DeHub token anao manontolo voangona amin'ny rojo rehetra tohanana.",
-    "guideStakingIntro": "Apetraho ny DeHub token anao mba hahazoana valisoa sy hampitomboana ny herin'ny latsa-bato ho an'ny fitantanana.",
-    "guideStakingAmountStep": "Ampidiro ny isan'ny DeHub token tianao hapetraka.",
-    "guideLeaderboardBalanceStep": "Ny tabilao Balance dia manasongadina ireo mpampiasa amin'ny alalan'ny fitambaran'ny DeHub token ananan'izy ireo.",
-    "guideGovernanceVoteStep": "Latsa-bato amin'ny tolo-kevitra amin'ny alalan'ny bokotra thumbs up/down — ny lanjan'ny latsa-batoo dia miankina amin'ny isan'ny DeHub token napetrakao.",
-    "guideGovernancePowerTip": "Ny herin'ny latsa-batoo dia voafaritry ny isan'ny DeHub token napetrakao.",
-    "guideBuyIntro": "Mividiana DeHub token mivantana ao amin'ny DPay amin'ny alalan'ny karatra na crypto tohanana.",
-    "guideBuyAmountStep": "Ampidiro ny sandany tianao lany na ny isan'ny DeHub token tianao raisina.",
-    "guideBuyDeliveredStep": "Hiseho ao amin'ny poketrao ny DeHub token anao rehefa vita ny fifanarahana.",
-    "guideBridgeIntro": "Afindrao ny DeHub token anao eo anelanelan'ny rojo tohanana amin'ny alalan'ny tetezana cross-chain.",
-    "guideBridgeSourceStep": "Fidio ny rojo loharano (izay misy ny DeHub token anao amin'izao fotoana izao).",
-    "guideBridgeDestStep": "Fidio ny rojo haleha (izay tianao handefasana ny DeHub token anao).",
-    "guideBridgeAmountStep": "Ampidiro ny isan'ny DeHub token hifindrana."
+    "glossaryLeaderboardDesc": "Ny mpampiasa dia laharana araka ny totalin'ny DeHub token (pokonao + voafono amin'ny rojo rehetra). Ny laharana dia havaozina tsindraindray ary manaraka ny fiovana 1 andro sy 1 herinandro. Azonao atao koa ny manasongadina amin'ny toro-hevitra nalefa, toro-hevitra voaray, mpanaraka, tiana, na mpikambana."
   },
   "arcade": {
     "submitAccessibility": "Alefaso ny lalao ho any amin'ny Arcade",
@@ -6891,6 +6869,504 @@
       "packEmpty": "Tsy nisy emoji tamin'io adiresy io",
       "shortcodeTaken": "{{name}} efa nalaina",
       "shortcodeStandard": "{{name}} efa emoji mahazatra sahady"
+    }
+  },
+  "guide": {
+    "sections": {
+      "getting-started": {
+        "title": "Fanombohana",
+        "intro": "Misy fomba dimy hidirana ao amin'ny DeHub ary tsy misy amin'izy ireo mitaky anao hanana poketra efa misy: Google, Apple, kaody nalefa tamin'ny mailakao, kaody nalefa tamin'ny SMS, na poketra efa misy izay ampifandraisinao. Ny zava-drehetra afa-tsy ny fomba fampiasana poketra dia mamorona poketra tsy mitazona ho anao ao ambadika — ianao no mitazona ny lakilanao, ary ny DeHub no mandany ny entana mba hahafahanao mandefa, manome toro-hevitra ary manangona tsy mila mividy famantarana teratany mihitsy.",
+        "steps": {
+          "1": "Tsidiho ny dehub.io — ny fihinam-baovao ao an-trano no pejy voalohany, ka afaka mijery manodidina ianao alohan'ny hidirana.",
+          "2": "Tsindrio ny 'Hiditra'. Ho hitanao ny Google sy Apple, toerana ho an'ny adiresy mailaka na nomeraon-telefaona, ary 'Ampifandrao ny Poketra' ho an'ny efa misy.",
+          "3": "Miaraka amin'ny Google na Apple, vitao ny fizotran'ny mpanome tolotra. Miaraka amin'ny mailaka na SMS, ampidiro ny kaody tonga.",
+          "4": "Misy poketra noforonina sy voaro ho anao amin'ny fidirana voalohany. Ny fampifandraisana ny poketrao manokana kosa dia midika sonia iray hanaporofoana ny adiresy.",
+          "5": "Mifidiana anarana mpampiasa. Izany no hitan'ny olona ary izany koa no ampiasaina ho rohy momba ny dehub.io/<username> anao.",
+          "6": "Efa tafiditra ianao. Zahao ny fihinam-baovao, amboary ny mombamomba anao, ary manomboka mandefa."
+        },
+        "tips": {
+          "1": "Ny fidirana amin'ny alalan'ny sosialy, mailaka ary SMS dia tsy mandoa entana mihitsy — ny DeHub no mandany izany. Ny poketra mifandray dia mandoa ny ETH na BNB azy manokana.",
+          "2": "Miverina amin'ny kaonty DeHub taloha ve ianao? Midira amin'ny alalan'ny mailaka na nomeraon-telefaona nampiasainy ary ny fifindrana no hahita izany ho anao.",
+          "3": "Afaka mitazona kaonty maromaro amin'ny fitaovana iray ianao ary mifamadika eo amin'izy ireo ao amin'ny Settings → Profile."
+        }
+      },
+      "home-feed": {
+        "title": "Fihinam-baovao ao an-trano",
+        "intro": "Ny fihinam-baovao ao an-trano no toerana ahitanao ny lahatsoratry ny olona arahinao sy ny votoaty malaza. Manohana tabilao karazana votoaty maro sy safidy fandrindrana izy io.",
+        "steps": {
+          "1": "Mandehana any amin'ny /app — ity no fihinam-baovao ao an-trano.",
+          "2": "Ampiasao ny tabilao ambony mba sivana araka ny karazana votoaty: Home (rehetra), Videos, Images, Shorts, Music, na Live streams.",
+          "3": "Sintona havia/haña amin'ny tabilao mba hahitana safidy bebe kokoa amin'ny finday.",
+          "4": "Ampiasao ny bokotra sivana/fandaharan-dalàna (ambony havanana amin'ny feed) mba hanovana ny fandaharan-dalàna: Hot, New, na Top.",
+          "5": "Sintona midina mba havaozina ny feed amin'ny finday.",
+          "6": "Mikorisa midina mba hampidirana betsaka kokoa ny lahatsoratra ho azy (infinite scroll).",
+          "7": "Mifindrà eo anelanelan'ny Grid sy Feed view amin'ny alalan'ny mpanova layout."
+        },
+        "tips": {
+          "1": "Tsara ny Grid view amin'ny fikarohana haingana sary.",
+          "2": "Ny tabilao 'Home' dia mampiseho karazana votoaty rehetra mifangaro.",
+          "3": "Ny tabilao Live dia mampiseho live streams mavitrika amin'izao fotoana izao."
+        }
+      },
+      "creating-posts": {
+        "title": "Famoronana Lahatsoratra",
+        "intro": "Mamorona lahatsoratra an-tsoratra, zarao sary, videos, feo, GIFs, sy maro hafa. Ampiasao ny hashtags, cashtags, ary mentions mba hampitomboana ny fahafahana mahazo mpijery.",
+        "steps": {
+          "1": "Tsindrio ny bokotra 'Post' eo amin'ny sidebar (desktop) na ny bokotra + (mobile).",
+          "2": "Soraty ny soratrao ao amin'ny faritra fanoratana.",
+          "3": "Mba hampidirana sary na video, tsindrio ny sary fampidirana media ary mifidiana rakitra.",
+          "4": "Mba handrakitra feo, tsindrio ny sary mikrô.",
+          "5": "Mba hampidirana GIF, tsindrio ny sary GIF ary tadiavo ny iray.",
+          "6": "Ampiasao ny #hashtags mba hanasokajiana ny lahatsoratrao (ohatra, #crypto, #defi).",
+          "7": "Ampiasao ny $cashtags mba hanondroana ireo token (ohatra, $DHB, $ETH).",
+          "8": "Ampiasao ny @mentions mba hanondroana mpampiasa hafa (ohatra, @username).",
+          "9": "Tsindrio ny 'Post' mba hamoahana. Ny lahatsoratrao dia hiseho eo amin'ny feed avy hatrany."
+        },
+        "tips": {
+          "1": "Ny lahatsoratra dia manohana ny fanoratana amin'ny fomba markdown.",
+          "2": "Azonao atao ny manao quote-post amin'ny alalan'ny fanindriana ny sary repost amin'ny lahatsoratra rehetra ary mifidy ny 'Quote'.",
+          "3": "Ny sokajy (hashtags) dia miseho eo amin'ny laharana voalohany 'Talk of the Town'."
+        }
+      },
+      "interacting-with-posts": {
+        "title": "Fihetsika amin'ny Lahatsoratra",
+        "intro": "Mifandraisa amin'ny votoaty amin'ny alalan'ny fandatsaham-bato, fanehoan-kevitra, fanomezana, fametahana marika, fizarana, ary fandikan-teny.",
+        "steps": {
+          "1": "Datsaho ambony na ambany ny lahatsoratra amin'ny alalan'ny sary zana-tsipìka eo amin'ny ilany havia amin'ny lahatsoratra rehetra.",
+          "2": "Tsindrio ny sary fanehoan-kevitra mba hanokafana ny fizarana fanehoan-kevitra ary mametraha valiny.",
+          "3": "Tsindrio ny sary vato/fanomezana mba handefasana fanomezana amin'ny token DeHub ho an'ny mpamorona lahatsoratra.",
+          "4": "Tsindrio ny sary marika mba hitahiry lahatsoratra ho an'ny fotoana ho avy.",
+          "5": "Tsindrio ny sary fizarana mba handika ny rohy lahatsoratra na hizara ivelany.",
+          "6": "Tsindrio ny bokotra fandikan-teny (sary globe) amin'ny lahatsoratra rehetra mba handikana ny lahatsoratra amin'ny teny tianao.",
+          "7": "Ho an'ny lahatsoratra sary, ampiasao ny bokotra 'Translate Image' mba hahazoana dika-tenin'ny AI amin'ny lahatsoratra ao anaty sary.",
+          "8": "Tsindrio ny lahatsoratra rehetra mba hanokafana azy amin'ny fomba fijery tokana amin'ny efijery feno."
+        },
+        "tips": {
+          "1": "Ny toro-hevitra dia mandeha mivantana any amin'ny pokon'ny mpamorona amin'ny dehub tokens.",
+          "2": "Azonao atao ny mametraka vola toro-hevitra amin'ny alalan'ny bokotra safidy haingana na mampiditra vola manokana.",
+          "3": "Ny lahatsoratra voatahiry dia azo jerena ao amin'ny pejy Bookmarks ao amin'ny sidebar."
+        }
+      },
+      "explore-search": {
+        "title": "Fikarohana sy Fanadihadiana",
+        "intro": "Fantaro ny votoaty sy ny mpampiasa vaovao amin'ny alalan'ny pejy fikarohana sy ny fiasan'ny fikarohana mahery vaika.",
+        "steps": {
+          "1": "Mandehana any amin'ny /app/explore avy amin'ny sidebar.",
+          "2": "Ampiasao ny bara fikarohana eo ambony mba hikarohana mpampiasa, lahatsoratra, na votoaty.",
+          "3": "Sivana ny valiny amin'ny kiheba: Rehetra, Olona, Lahatsoratra, Sary, Video, Mozika, Live.",
+          "4": "Mijere lohahevitra sy sokajy mirona ao amin'ny pejy fikarohana.",
+          "5": "Tsindrio ny lohahevitra mirona mba hahitana ny lahatsoratra rehetra mifandraika amin'izany.",
+          "6": "Tsindrio ny mpampiasa iray ao amin'ny valin'ny fikarohana mba hitsidihana ny mombamomba azy."
+        },
+        "tips": {
+          "1": "Ny fikarohana dia manohana anarana mpampiasa, adiresy pokona, ary teny fanalahidy amin'ny votoaty.",
+          "2": "Ny lohahevitra mirona dia havaozina mifototra amin'ny hetsika famoahana vao haingana."
+        }
+      },
+      "profile": {
+        "title": "Mombamomba",
+        "intro": "Ny mombamombanao dia mampiseho ny lahatsoratrao, mpanaraka, arahina, ary fampahalalana momba ny pokonao.",
+        "steps": {
+          "1": "Tsindrio ny avatar-nao na ny 'Profile' ao amin'ny sidebar mba hijery ny mombamombanao.",
+          "2": "Tsindrio ny 'Edit Profile' mba hanavaozana ny anaranao aseho, bio, ary avatar-nao.",
+          "3": "Mampidira sary mombamomba amin'ny alalan'ny tsindrio ny avatar-nao amin'ny fomba fanovana.",
+          "4": "Jereo ny isan'ny mpanaraka sy arahinao ao amin'ny pejy mombamombanao.",
+          "5": "Mijere ny lahatsoratrao manokana, media, ary votoaty tianao amin'ny alalan'ny kiheba mombamomba.",
+          "6": "Azo atao ny mandika ny adiresy pokonao amin'ny alalan'ny tsindrio ny kisary kopia eo akaikiny.",
+          "7": "Tsidiho ny mombamomba ny mpampiasa hafa amin'ny alalan'ny tsindrio ny anarany na ny avatar-ny na aiza na aiza eo amin'ny sehatra."
+        },
+        "tips": {
+          "1": "Ny anaranao mpampiasa dia tokana ary miseho ao amin'ny URL mombamombanao (dehub.io/@username).",
+          "2": "Ny toe-javatra momba ny fiainana manokana dia ahafahanao mifehy hoe iza no mahita ny isan'ny mpanaraka anao."
+        }
+      },
+      "messages": {
+        "title": "Hafatra",
+        "intro": "Alefaso hafatra mivantana amin'ny mpampiasa hafa eo amin'ny sehatra.",
+        "steps": {
+          "1": "Tsindrio ny 'Messages' ao amin'ny sidebar mba hanokafana ny pejy fandefasana hafatra.",
+          "2": "Tsindrio ny bokotra \"compose\" mba hanombohana resaka vaovao.",
+          "3": "Mitadiava mpampiasa amin'ny anarany mba handefasana hafatra azy.",
+          "4": "Soraty ny hafatrao ary tsindrio ny \"send\".",
+          "5": "Jereo ny tantaran'ny resakao ao amin'ny lisitry ny hafatra.",
+          "6": "Tsindrio ny resaka iray mba hanohizana ny fifampiresahana."
+        },
+        "tips": {
+          "1": "Hahazo fampandrenesana ianao rehefa misy mandefa hafatra anao.",
+          "2": "Mety hidy ny hafatra ataon'ny mpamorona raha tsy misy fanomezana."
+        }
+      },
+      "ai-assistant": {
+        "title": "AI Assistant",
+        "intro": "Miresaha amin'ny AI assistant namboarin'i DeHub mba hahazoana fanampiana, fampahalalana, ary asa famoronana.",
+        "steps": {
+          "1": "Tsindrio ny 'Assistant' eo amin'ny sidebar mba hanokafana ny chat AI.",
+          "2": "Soraty ny fanontanianao na ny fangatahinao ao amin'ny toerana fampidirana chat.",
+          "3": "Ny AI dia afaka manampy amin'ny fampahalalana momba ny crypto, fanontaniana momba ny sehatra, ary fahalalana ankapobeny.",
+          "4": "Manomboha resaka vaovao amin'ny alalan'ny tsindrio ny bokotra chat vaovao.",
+          "5": "Jereo ny tantaran'ny resakao ao amin'ny sidebar amin'ny pejy assistant.",
+          "6": "Afaka mametaka sary ho an'ny AI mba hianarany ianao."
+        },
+        "tips": {
+          "1": "Tadidin'ny AI ny fifandraisana ao anatin'ny resaka iray.",
+          "2": "Afaka manontany ny AI momba ny endriky ny DeHub, teny crypto, na fanontaniana ankapobeny ianao.",
+          "3": "Ny resaka teo aloha dia voatahiry ary azo jerena amin'ny fotoana rehetra."
+        }
+      },
+      "notifications": {
+        "title": "Fampandrenesana",
+        "intro": "Mijanona ho vaovao momba ny \"likes\", fanehoan-kevitra, fanomezana, fanaraha-maso, ary hetsika hafa amin'ny votoatiny.",
+        "steps": {
+          "1": "Tsindrio ny sary masina lakana na ny 'Notifications' eo amin'ny sidebar.",
+          "2": "Jereo ny fampandrenesana rehetra amin'ny lisitra ara-potoana.",
+          "3": "Tsindrio ny fampandrenesana iray mba handeha amin'ny votoatiny mifandraika amin'izany.",
+          "4": "Ny fampandrenesana dia ahitana: mpanaraka vaovao, latsa-bato amin'ny lahatsoratra, fanehoan-kevitra, fanomezana, ary fanononana anarana.",
+          "5": "Ny fampandrenesana tsy voavaky dia asongadina — marika ho voavaky rehefa hita."
+        },
+        "tips": {
+          "1": "Ny mari-tsoratra fampandrenesana dia mampiseho ny isan'ny fampandrenesana tsy voavaky.",
+          "2": "Ny fampandrenesana fanomezana dia mampiseho ny isan'ny \"tokens\" azonao."
+        }
+      },
+      "wallet": {
+        "title": "Wallet",
+        "intro": "Jereo ny sandan'ny \"token\" DeHub anao amin'ny rojo maro, jereo ny petra-bola \"staking\", ary tantano ny fanananao.",
+        "steps": {
+          "1": "Tsindrio ny 'Wallet' eo amin'ny sidebar mba hanokafana ny pejy wallet.",
+          "2": "Jereo ny totalin'ny volanao amin'ny tokeny rehetra miaraka amin'ny rojo rehetra tohanana.",
+          "3": "Jereo ny fizarana isaky ny rojo: Ethereum, Base, BNB Chain, sy ny maro hafa.",
+          "4": "Tariho ny petra-bola sy ny valisoanao amin'ny staking.",
+          "5": "Tsindrio ny 'Refresh Scan' mba havaozina ny volanao amin'ny angon-drakitra avy amin'ny rojo.",
+          "6": "Afa-bavony ny adiresin'ny poketrao mba handraisana tokeny avy amin'ny hafa."
+        },
+        "tips": {
+          "1": "Mihavaozina ho azy ny vola fa azonao atao ny manery ny fanavaozana amin'ny fotoana rehetra.",
+          "2": "Ny poketra dia mampiseho ny vola azo (azo ampiasaina) sy ny vola voapetraka."
+        }
+      },
+      "staking": {
+        "title": "Staking",
+        "intro": "Apetraho ny tokeny DeHub anao mba hahazoana valisoa sy hampitomboana ny herin'ny fifidiananao amin'ny fitantanana.",
+        "steps": {
+          "1": "Mandehana any amin'ny pejy 'Staking' avy amin'ny sisiny.",
+          "2": "Ampidiro ny isan'ny tokeny tianao hapetraka.",
+          "3": "Fidio ny rojo tianao hapetraka.",
+          "4": "Hamafiso ny fifanarahana ao amin'ny poketrao (poketra ivelany) na mandeha ho azy izany (social login).",
+          "5": "Jereo ny habetsahana voapetraka sy ny valisoa miandry.",
+          "6": "Hamafiso ny fifanarahana amin'ny fanesorana, ampidiro ny habetsahana ary hamafiso ny fifanarahana fanesorana."
+        },
+        "tips": {
+          "1": "Ny staking dia mampitombo ny lanjan'ny fifidiananao amin'ny tolo-kevitra fitantanana.",
+          "2": "Ny mpampiasa social-login dia tsy mila entona hanao staking - tsy misy entona izany.",
+          "3": "Azonao atao ny mametraka amin'ny rojo maro miaraka."
+        }
+      },
+      "leaderboard": {
+        "title": "Leaderboard",
+        "intro": "Jereo izay eo ambony! Ny leaderboard dia manasongadina ny mpampiasa amin'ny vola, ny fandaniana isan'andro, ary ny lohahevitra mipoitra.",
+        "steps": {
+          "1": "Mandehana any amin'ny pejy 'Leaderboard' avy amin'ny sisiny.",
+          "2": "Mifindrà eo anelanelan'ny kiheba: Balance, Daily Spent, ary Talk of the Town.",
+          "3": "Ny kiheba Balance dia manasongadina ny mpampiasa amin'ny totalin'ny tokeny ananany.",
+          "4": "Ny kiheba Daily Spent dia mampiseho hoe iza no be mpampiasa indrindra tamin'ny fanomezana tamin'ny 24 ora farany.",
+          "5": "Ny Talk of the Town dia mampiseho ny lohahevitra/sokajy be resaka indrindra.",
+          "6": "Tsindrio ny mpampiasa iray mba hitsidihana ny mombamomba azy.",
+          "7": "Mihavaozina tsikelikely mandritra ny andro ny leaderboard."
+        },
+        "tips": {
+          "1": "Miverina isaky ny 24 ora ny laharana isan'andro.",
+          "2": "Ny Talk of the Town dia manara-maso ny sokajy teny tokana avy amin'ny hashtags."
+        }
+      },
+      "command-centre": {
+        "title": "Command Centre",
+        "intro": "Dashboard overview mampiseho ny metrikao fototra sy ny asan'ny sehatra misy anao amin'ny fijerena iray monja.",
+        "steps": {
+          "1": "Tsindrio ny 'Command Centre' ao amin'ny sidebar.",
+          "2": "Jereo ny famintinana ny mombamomba anao, ao anatin'izany ny isan'ny lahatsoratra, ny mpanaraka, ary ny fifandraisana.",
+          "3": "Jereo ny asanao vao haingana sy ny lohahevitra mirona.",
+          "4": "Midira amin'ny rohy haingana mankany amin'ny endri-javatra ampiasaina matetika."
+        },
+        "tips": {
+          "1": "Ny Command Centre dia manome anao fijery vorona momba ny fisian'ny DeHub anao."
+        }
+      },
+      "governance": {
+        "title": "Fitantanana",
+        "intro": "Mandray anjara amin'ny fitantanana ny sehatra amin'ny alàlan'ny famoronana tolo-kevitra sy ny fitsapan-kevi-bahoaka amin'ny fanapahan-kevitry ny vondrom-piarahamonina.",
+        "steps": {
+          "1": "Mandehana any amin'ny 'Governance' avy amin'ny sidebar.",
+          "2": "Mijere tolo-kevitra mavitrika natolotry ny vondrom-piarahamonina.",
+          "3": "Tsindrio ny tolo-kevitra iray mba hamakiana ny famaritana feno sy ny adihevitra momba izany.",
+          "4": "Mifidiana tolo-kevitra amin'ny alàlan'ny bokotra thumbs up/down — ny lanjan'ny safidinao dia miankina amin'ny isan'ny DeHub token napetrakao.",
+          "5": "Avelao ny fanehoan-kevitra momba ny tolo-kevitra mba hifanakalozan-kevitra amin'ny vondrom-piarahamonina.",
+          "6": "Avereno ny tolo-kevitrao manokana amin'ny alàlan'ny tsindrio ny bokotra 'Create Proposal'."
+        },
+        "tips": {
+          "1": "Ny herin'ny safidinao dia voafaritry ny isan'ny token napetrakao.",
+          "2": "Ny tompon'ny badge dia mety hahazo lanjan'ny safidy fanampiny.",
+          "3": "Ny tolo-kevitra dia mandalo dingana: Mavitrika → Nandalo/Nodavina."
+        }
+      },
+      "bookmarks": {
+        "title": "Bookmarks",
+        "intro": "Tehirizo ny lahatsoratra ao amin'ny bokemakao mba ho mora idirana any aoriana.",
+        "steps": {
+          "1": "Tsindrio ny kisary bokemaka amin'ny lahatsoratra rehetra mba hamonjena izany.",
+          "2": "Mandehana any amin'ny 'Bookmarks' ao amin'ny sidebar mba hijerena ny lahatsoratra voavonona rehetra.",
+          "3": "Tsindrio ny lahatsoratra voabokemaka mba hijerena azy feno.",
+          "4": "Esory ny bokemaka amin'ny alàlan'ny tsindrio indray ny kisary bokemaka."
+        },
+        "tips": {
+          "1": "Ny bokemaka dia tsy miankina — ianao irery no mahita ny lahatsoratra voavononao.",
+          "2": "Tsy misy fetrany ny isan'ny lahatsoratra azonao bokemaka."
+        }
+      },
+      "settings": {
+        "title": "Settings",
+        "intro": "Amboary ny traikefanao DeHub amin'ny alàlan'ny safidinao fiteny, fiainana manokana ary fampisehoana.",
+        "steps": {
+          "1": "Tsindrio ny 'Settings' ao amin'ny sidebar.",
+          "2": "Ovay ny fiteny fampisehoana anao avy amin'ny mpan selection ny fiteny.",
+          "3": "Ahitsio ny toe-javatra momba ny fiainana manokana: fehezo hoe iza no mahita ny isan'ny mpanaraka anao sy ny lisitry ny olona arahinao.",
+          "4": "Apetraho ny safidinao momba ny fahafahana mahita ny lahatsoratrao.",
+          "5": "Mba hitantana ny safidinao momba ny fampandrenesana."
+        },
+        "tips": {
+          "1": "Ny DeHub dia manohana fiteny maro — ny interface manontolo dia voalohany amin'ny teny.",
+          "2": "Ny fanovana momba ny fiainana manokana dia mihatra avy hatrany."
+        }
+      },
+      "posting-allowance": {
+        "title": "Ny Fahaizanao Mandefa Lahatsoratra Isan'andro",
+        "intro": "Ny fandefasana dia maimaim-poana isan'andro hatramin'ny fetra iray izay miovaova amin'ny mari-pahaizana fanananao. Ny tsirairay dia manomboka amin'ny lahatsoratra an-tsoratra folo sy gigabyte iray amin'ny video, sary ary feo isan'andro. Raha mihoatra ny iray amin'ireo ianao dia ny ambiny amin'io andro io dia aloa amin'ny DeHub tokens — amin'ny ampahany izay mihoatra fotsiny.",
+        "steps": {
+          "1": "Mba mandefa toy ny mahazatra. Ao anatin'ny fetra dia tsy misy aloa ary tsy misy angatahina aminao.",
+          "2": "Ny lahatsoratra an-tsoratra sy ny fitaovana media dia toerana misaraka, ka ny andro lany amin'ny famoahana video dia mbola mamela ny lahatsoratra an-tsoratra folo maimaim-poana.",
+          "3": "Rehefa misy lahatsoratra mihoatra ny fetra, ny fampiharana dia manome vidiny azy aloha ary manamarina raha afaka manome izany ny poketanao alohan'ny hisy zavatra hovohana.",
+          "4": "Ny lahatsoratra dia navoaka araka ny tokony ho izy toy ny ao anatin'ny fetra — ny fandefasana dia tsy miandry ny fandoavam-bola mihitsy.",
+          "5": "Avy eo ianao manaiky fifindrana iray ho an'io lahatsoratra io ihany, voaloa amin'ny Base na BNB Chain izay manana ampy DeHub tokens.",
+          "6": "Ny toerana roa dia averina amin'ny misasakalina UTC."
+        },
+        "tips": {
+          "1": "Ny mihoatra dia pro-rata: 200 MB mihoatra ny fetra anao dia mitentina 200 MB, fa tsy gigabyte iray manontolo.",
+          "2": "Ny reposts, fanehoan-kevitra, fihetsika, toro-hevitra ary hafatra dia tsy mitentina na inona na inona ary tsy mandray ny fetra mihitsy.",
+          "3": "Atsipazo ny fandoavam-bola ary mijanona eo ny lahatsoratra — ny vola dia manakana fotsiny ny lahatsoratrao manaraka aloa mandra-pahavoky azy. Ny fetra maimaim-poana amin'ny rahampitso dia anao foana.",
+          "4": "Ny mari-pahaizana fananana dia mampiakatra ny fetra maimaim-poana ary mampihena ny vidin'ny zavatra mihoatra izany."
+        }
+      },
+      "reactions-and-safety": {
+        "title": "Fihetsika, Fampiatoana & Votoaty Olon-dehibe",
+        "intro": "Misy fihetsika sivy ao ambadiky ny bokotra \"tiako\", ary andian-tsarimihetsika mba hamaritana izay hitanao sy iza no afaka mifandray aminao.",
+        "steps": {
+          "1": "Tazony ny \"tiako\" amin'ny lahatsoratra rehetra mba hanokafana ny toerana misy ny fihetsika: tiako, fitiavana, fanajana, mafana, lol, malahelo, mitomany, tsy tiako ary poo.",
+          "2": "Ny fito tsara dia isaina ho an'ny totalin'ny \"tiako\" amin'ny lahatsoratra; ny tsy tiako sy ny poo dia isaina manohitra izany.",
+          "3": "Ny fihetsikao dia lanja amin'ny mari-pahaizana fanananao, ka ny fihetsiky ny mpihazona mari-pahaizana dia mandroso kokoa noho ny vato iray.",
+          "4": "Tsindrio ny X eo amin'ny lohan'ny lahatsoratra mba hampangina ny mpanoratra azy — miala avy hatrany amin'ny sakafonao izy ireo.",
+          "5": "Ny mpamorona dia manamarika ny lahatsoratr'izy ireo ho olon-dehibe rehefa mamorona azy ireo; ireo lahatsoratra ireo dia tsy hita eo amin'ny sakafom-bahoaka.",
+          "6": "Mba hijerena lahatsoratra olon-dehibe na aiza na aiza, avereno ny 'Asehoy ny votoaty olon-dehibe' ao amin'ny Settings."
+        },
+        "tips": {
+          "1": "Ny lahatsoratra olon-dehibe dia mbola hita tanteraka eo amin'ny mombamomba ny mpamorona sy ho an'ny olona manaraka azy ireo.",
+          "2": "Ny fanakanana avy amin'ny mombamomba dia mandroso kokoa noho ny fampiatoana ary manapaka ny fandefasana hafatra ihany koa.",
+          "3": "Ny toerana misy ny fihetsika dia mampiseho hoe iza no naneho fihetsika sy tamin'inona, ka afaka mahita ny efitrano ianao fa tsy ny isa fotsiny."
+        }
+      },
+      "stages": {
+        "title": "Sehatra (Efitrano Feo Mivantana)",
+        "intro": "Ny Sehatra dia efitrano feo mivantana natsangana tao amin'ny DeHub. Ny mpampiantrano dia manokatra efitrano, mitondra mpandahateny, ary ny tsirairay dia afaka miditra mba hihaino avy amin'ny pejy Sehatra na rohy zaraina.",
+        "steps": {
+          "1": "Sokafy ny 'Sehatra' eo amin'ny sidebar mba hahitana izay mivantana izao sy izay voalahatra.",
+          "2": "Tsindrio ny lampihazo mivantana mba hiditra ho mpihaino, na mametraha fampahatsiahivana amin'ny iray voalahatra ary ampandre anao rehefa manomboka izany.",
+          "3": "Manomboha ny anao manokana avy amin'ny pejy mitovy — afaka mandeha mivantana mivantana avy amin'ny navigateur ianao, tsy misy OBS na lakile fandefasana.",
+          "4": "Amin'ny maha-mpampiantrano, ento eo amin'ny lampihazo ny mpandahateny, manafoana na esory izy ireo, zarao ny efijeryo, ary tariho ny soundboard.",
+          "5": "Ny mpihaino dia mandefa fihetsika mivantana ary miresaka ao amin'ny chat efitrano tsy tonga eo amin'ny lampihazo.",
+          "6": "Ny lampihazo rehetra dia mirakitra, ary ny firaketana dia milalao indray aorian'izay avy amin'ny karatra misy azy."
+        },
+        "tips": {
+          "1": "Ny lohateny mivantana dia manome anarana ny mpandahateny tsirairay ary mandika amin'ny fiteny rehetra vakianao.",
+          "2": "Ny fandikana mivantana dia afaka miteny mafy ny efitrano amin'ny feon'ny mpampiantrano voakilala manokana, voaloa isaky ny minitra amin'ny DeHub tokens.",
+          "3": "Ny mpampiantrano dia afaka mametraka onjam-peo amin'ny rivotra na milalao ny clip mozika an'ny tena eo anelanelan'ny resaka.",
+          "4": "Ny mini-player dia mitazona ny efitrano mandeha eo amin'ny zorony rehefa mijery ny ambiny amin'ny fampiharana ianao."
+        }
+      },
+      "communities": {
+        "title": "Fihaonambe & Hetsika",
+        "intro": "Ny fihaonambe dia toerana tantanin'ny mpikambana miaraka amin'ny sakafony, mpikambana ary hetsika manokana. Ny hetsika dia manampy fandaharam-potoana voafetra fotoana eo amboniny.",
+        "steps": {
+          "1": "Sokafy ny 'Fihaonambe' eo amin'ny sidebar ary mijere ireo ampahibemaso.",
+          "2": "Midira amin'ny tsindry iray. Ny hetsika vaovao dia miseho ho marika tsy voavaky eo amin'ny fanavigana.",
+          "3": "Mamposty, miresaka, manao latsa-bato ary manome torohevitra ao anatin'ny sakafon'ny fihaonambe manokana.",
+          "4": "Ny tompon'ny fihaonambe dia mandrindra ny toerany ary afaka manome zo fitantanana amin'ny hafa.",
+          "5": "Sokafy ny 'Hetsika' ho an'ny fandaharam-potoana voalahatra, miaraka amin'ny pejy feno isaky ny hetsika azonao arahina mivantana."
+        },
+        "tips": {
+          "1": "Ny chat fihaonambe dia manohana ny @mentions sy @here, ka ny lahatsoratra iray dia afaka mahatratra ny efitrano.",
+          "2": "Ny rohy fanasana dia mamela anao hitondra olona mivantana ao anaty fihaonambe."
+        }
+      },
+      "arcade": {
+        "title": "Arcade",
+        "intro": "Lalao dimy no mandeha ao anatin'ny DeHub ao anaty tabilao navigateur — tsy misy tokony hapetraka, tsy misy tokony hovidiana.",
+        "steps": {
+          "1": "Sokafy ny 'Arcade' eo amin'ny sidebar.",
+          "2": "Mifidiana lalao: King's Gambit (chess 3D miaraka amin'ny ladder Elo an-tserasera), Claude of Duty (mpitifitra mamorona ny zavakantony manokana rehefa mavesatra), Jungle Trail (dia anaty ala tropikaly procedural), Street Slayer (beat 'em up natao ho an'ny DeHub) na Chartopia (tany ara-barotra azo aleha).",
+          "3": "Milalao ao anaty tabilao. King's Gambit sy Street Slayer dia mitazona leaderboard.",
+          "4": "Chartopia dia mandeha ihany koa amin'ny headset VR amin'ny alàlan'ny WebXR."
+        },
+        "tips": {
+          "1": "Roa amin'izy ireo no miafina ao anatin'ny lohahevitra fisehoana — apetraho amin'ny Ady ny fampiharana ho an'ny Claude of Duty, na ala ho an'ny Jungle Trail.",
+          "2": "Ny lalao tsirairay dia manana ny karatra fizarana azy manokana, ka ny rohy mankany amin'ny iray dia mipoitra tsara na aiza na aiza ametrahanao azy."
+        }
+      },
+      "bounties-stores": {
+        "title": "Bounties & Fivarotana",
+        "intro": "Fomba roa ahazoana vola amin'ny sehatra: mandefa na mitaky bounty, na manokatra fivarotana ary mivarotra amin'ny mpanatrika anao.",
+        "steps": {
+          "1": "Sokafy ny 'Bounties' mba hijerena ny asa misokatra, voasivana araka ny sokajy na vola.",
+          "2": "Maka iray, ataovy ny asa, ary alefaso izany mba hanangonana ny valisoa — na iza na iza dia afaka ho mpihaza, tsy mila fangatahana.",
+          "3": "Mametraha \"bounty\" anao manokana miaraka amin'ny famaritana fohy sy valisoa amin'ny DeHub tokens na USDC. Alefa any amin'ny \"escrow\" izany raha vao apetrakao.",
+          "4": "Sokafy ny 'Stores' mba hametrahana fivarotana miaraka amin'ny pejy, marika ary lisitry ny entana manokana.",
+          "5": "Ny vokatra dia vidina sy aloa amin'ny DeHub tokens amin'ny alalan'ny poketra tafiditra, tsy misy fandoavam-bola ivelany."
+        },
+        "tips": {
+          "1": "Ny \"Bounties\" dia voalamina ho Media Sosialy, Fampidirana ary Fifanarahana.",
+          "2": "Ny fomba fifanolanana dia mamaha ny tsy fitovian-kevitra momba ny fanaterana, ka ny \"escrow\" dia mamaha foana ny fifandirana tsara.",
+          "3": "Ny mpamorona dia mampiasa \"bounties\" mba hampitomboana ny vondrom-piarahamonina — ny fizarana, ny fampidirana ary ny fihetsika dia samy asa manan-kery."
+        }
+      },
+      "creator-studio": {
+        "title": "Creator Studio & Editor",
+        "intro": "Ny Creator Studio dia mamorona sary, horonan-tsary, mozika, feo ary modely 3D avy amin'ny \"prompt\", ary manolotra izany amin'ny \"editor\" — ao anatin'izany ny \"editor\" horonan-tsary maro an-tseloka feno izay mandeha ao amin'ny navigateur.",
+        "steps": {
+          "1": "Sokafy ny Creator Studio ary lazao izay tianao hatao.",
+          "2": "Ny mpametaka dia manome vidiny ny vidiny alohan'ny handehanan'ny asa, ka hitanao ny vidiny alohan'ny handanianao izany.",
+          "3": "Ny \"Renders\" dia mitohy ao anaty \"queue\" ifampizarana raha mbola mijery ny fampiharana ianao.",
+          "4": "Azafady amboary ny vokatra ao amin'ny \"editor\" karazana Canva, na sokafy ny \"editor\" horonan-tsary ho an'ny \"timeline\" tena izy miaraka amin'ny fanapahana, fametrahana ary fanondranana.",
+          "5": "Apetraho mivantana ny sombin-javatra vita ao anaty \"post\", \"short\" na lisitry ny fivarotana."
+        },
+        "tips": {
+          "1": "Ny tranombarotra fanampiny maimaim-poana dia eo akaikin'ny Studio ho an'ny zavatra rehetra aleonao tsy hoforonina.",
+          "2": "Ny famoronana dia aloa amin'ny DeHub tokens avy amin'ny poketrao — manasonia fifindrana iray isaky ny asa ianao, ary ny vidiny dia voalaza mialoha ny handoavanao.",
+          "3": "Ny mpampiasa mavesatra kokoa dia afaka mandray drafitra Ultra, Team na Scale, izay mandefa vola tokena isam-bolana mivantana any amin'ny poketrao."
+        }
+      },
+      "buying-dhb": {
+        "title": "Mividy DeHub Tokens",
+        "intro": "Mividiana DeHub tokens mivantana ao anatin'ny fampiharana amin'ny alalan'ny interface \"swap\" tafiditra.",
+        "steps": {
+          "1": "Mandehana any amin'ny pejy 'Buy' avy amin'ny \"sidebar\".",
+          "2": "Safidio ny token tianao hifanakalozana (ohatra, ETH, USDC).",
+          "3": "Ampidiro ny vola tianao laniana na ny isan'ny token tianao raisina.",
+          "4": "Diniho ny tahan'ny fifanakalozana sy ny vokatra tombanana.",
+          "5": "Tsindrio ny kisary fitaovana fanovana mba hanitsiana ny \"slippage tolerance\" (1% ny default).",
+          "6": "Hamafiso ny fifanakalozana \"swap\".",
+          "7": "Hiseho ao amin'ny poketrao ny DeHub tokens rehefa vita ny fifanakalozana."
+        },
+        "tips": {
+          "1": "Ny \"slippage tolerance\" avo kokoa = mety kokoa ny fanatanterahana, fa mety ho ratsy kokoa ny vidiny.",
+          "2": "Diniho foana ny tahan'ny fifanakalozana alohan'ny fanamafisana.",
+          "3": "Azonao atao ny mametraka \"slippage\" manokana ao amin'ny tontonana fanovana."
+        }
+      },
+      "bridge": {
+        "title": "Bridge",
+        "intro": "Afindrao ny DeHub tokens anao eo amin'ny blockchain tohanana amin'ny alalan'ny \"cross-chain bridge\".",
+        "steps": {
+          "1": "Mandehana any amin'ny pejy 'Bridge' avy amin'ny sidebar.",
+          "2": "Fidio ny rojo loharano (izay misy ny tokenanao amin'izao fotoana izao).",
+          "3": "Fidio ny rojo kendrena (izay tianao handefasana azy ireo).",
+          "4": "Ampidiro ny isan'ny tokenina hifindrana.",
+          "5": "Jereo ny sarany fanaovana bridge sy ny fotoana antenaina hahatongavana.",
+          "6": "Hamafiso ny fifindrana bridge.",
+          "7": "Miandry ny famitana ny fifindrana — mety haharitra minitra vitsivitsy ny fanaovana bridge."
+        },
+        "tips": {
+          "1": "Misy fiovaova ny sarany fanaovana bridge arakaraka ny mpivady rojo.",
+          "2": "Matetika maharitra 1-5 minitra ny fanaovana bridge arakaraka ny rojo voakasika.",
+          "3": "Hamafiso foana ny rojo kendrena alohan'ny hamafisetana."
+        }
+      },
+      "music-tv": {
+        "title": "Mozika & TV",
+        "intro": "Ankafizo ny votoaty haino aman-jery mivantana ao anatin'ny DeHub — mihainoa mozika ary mijere fantsona fahitalavitra mivantana.",
+        "steps": {
+          "1": "Mandehana any amin'ny 'Mozika' avy amin'ny sidebar mba hijerena sy hilalao ireo lahatsoratra mozika.",
+          "2": "Mandehana any amin'ny 'TV' mba hahazoana fantsona fahitalavitra mivantana.",
+          "3": "Mijere fantsona araka ny sokajy na firenena.",
+          "4": "Tsindrio ny fantsona iray mba hanombohana mijery.",
+          "5": "Ampiasao ny fanaraha-maso ny mpilalao mba hanitsiana ny feo sy ny fihodinan'ny playback.",
+          "6": "Ataovy tatitra ireo fantsona simba amin'ny alalan'ny bokotra tatitra."
+        },
+        "tips": {
+          "1": "Ny fantsona fahitalavitra dia voamarina vondrom-piarahamonina ho azo itokisana.",
+          "2": "Ny lahatsoratra mozika dia azo lalaovina rehefa mijery votoaty hafa."
+        }
+      },
+      "post-info": {
+        "title": "Fampahalalana momba ny lahatsoratra & ampahany",
+        "intro": "Ny lahatsoratra vita pirinty dia NFT zaraina ho ampahany 1.000. Ny pejy Fampahalalana momba ny lahatsoratra dia mampiseho data an-tserasera, antontan'isa momba ny fiaraha-miasa, fizarana ny fananana, ary mamela anao hivarotra ampahany amin'ny lahatsoratra rehetra — amin'ny lahatsoratra tsy vita pirinty dia manolotra pirinty izy fa tsy izany.",
+        "steps": {
+          "1": "Tsindrio ny kisary 'ⓘ' amin'ny lahatsoratra rehetra mba hanokafana ny pejy Fampahalalana momba ny lahatsoratra.",
+          "2": "Eo an-tampony dia ho hitanao ny Token ID (mpamaritra tokana an-tserasera) sy ny hash fifindrana — tsindrio ny hash mba hijerena izany amin'ny mpijery bloc.",
+          "3": "Eo ambany kokoa, ny antontan'isa momba ny fiaraha-miasa dia mampiseho ny totalin'ny sitraka, tsy sitraka, fijerena, fanehoan-kevitra, ary fanomezana voaray.",
+          "4": "Ny fizarana Mpihazona dia mampiseho tsanganana fandrosoana momba ny isan'ny ampahany 1.000 mbola tompon'ny mpamorona, ary lisitry ny mpihazona ampahany rehetra miaraka amin'ny salan'isa sy ny ampahatelon'izy ireo.",
+          "5": "Raha ny lahatsoratra dia karama isaky ny fijerena (PPV), ho hitanao ny vidiny, ny vola, ary ny isan'ny mpampiasa nividy fahazoan-dalana.",
+          "6": "Ny tompon'ny lahatsoratra dia afaka manova ny fahitana (Public, Unlisted, na Private) ary manova ny lohateny/famaritana mivantana avy amin'ity pejy ity."
+        },
+        "tips": {
+          "1": "Ny lahatsoratra vao vita pirinty dia manomboka amin'ny mpamorona mitazona ny ampahany 1.000 rehetra (100% fananana).",
+          "2": "Ny hash fifindrana dia mampifandray amin'ny BaseScan na BscScan arakaraka ny rojo.",
+          "3": "Tsy miseho amin'ny sakana ny lahatsoratra tsy voalaza fa azo idiran'ny rohy mivantana."
+        }
+      },
+      "trading-fractions": {
+        "title": "Zava-bita momba ny varotra",
+        "intro": "Fanaovana jery todika ara-barotra — Browsing listings, manao tolotra, mitanisa ny manokana — fiainana ao amin'ny tranonkala fampiharana amin'ny dehub.io, isaky ny lahatsoratra Info pejy.",
+        "steps": {
+          "1": "Sokafy ny dehub.io ao anaty fitety ary midira amin'ny kaonty mitovy.",
+          "2": "Sokafy ny pejy Post Info ary midira ao amin'ny tabilao Marketplace.",
+          "3": "Browse listings, manao tolotra amin'ny vidiny, na lisitra tapaka ianao mihazona.",
+          "4": "Raha vao vita ny varotra, ny fiovana dia miseho ao amin'ny tabilao fanontana anao amin'ny finday."
+        },
+        "tips": {
+          "1": "Ny fananana sombiny amin'ny lahatsoratra iray dia midika fa mizara izany ao amin'ny NFT ianao.",
+          "2": "Jereo ao amin'ny tranonkala ny tompon'ny mba hahita ny fananana fizarana alohan'ny fividianana.",
+          "3": "Amin'ny maha-mpamorona, mivarotra fractions mamela ny mpankafy miara-ny votoaty."
+        }
+      },
+      "minting-posts": {
+        "title": "Famoronana lahatsoratra (Famoronana NFT)",
+        "intro": "Tsy voatery ny famoronana. Ny lahatsoratra dia navoaka ivelan'ny tambajotra raha vao mandefa izany ianao — tsy misy poketra, tsy misy sonia, tsy misy entana — ary azonao atao ny mamorona izany ho NFT rehefa tianao, na rehefa manoratra izany ianao na any aoriana avy amin'ny lahatsoratra mihitsy.",
+        "steps": {
+          "1": "Tsindrio ny bokotra 'Lahatsoratra' eo amin'ny sisiny (desktop) na ny bokotra + (mobile).",
+          "2": "Soraty ny lahatsoratrao, ampidiro ny haino aman-jery (sary, horonan-tsary, feo), ary ampidiro ny sokajy.",
+          "3": "Avelao tsy voafantina ny 'Mamorona lahatsoratra' mba hamoahana ivelan'ny tambajotra, na safidio mba hamoronana rehefa mamoaka.",
+          "4": "Tsy misy mihitsy ny famoahan-dahatsoratra no miandry eo ambonin'ilay rojo: ilay lahatsoratra dia mipoitra ao amin'ny fahana na amin'ny fomba ahoana na amin'ny fomba ahoana.",
+          "5": "Raha hijery ny Mint aty aoriana, sokafy ny pejin'ny fampahalalana ao amin'ny lahatsoratra ary ampiasao ny hetsika ataon'ny Mint ao.",
+          "6": "Raha vao tafapetraka ny lahatsoratra, dia mahazo karapanondro Token ny lahatsoratra ary misy ny fanafarana fifanakalozana azonao hamarinina amin'ny alalan'ny finday, ary manana fizarana 1000 amin'izany ianao."
+        },
+        "tips": {
+          "1": "Ny sonia ara-tsosialy, mailaka ary SMS dia mandoa entona zero — DeHub mpanohana ny saram-pandraharahana.",
+          "2": "Ivelany-wallet mpampiasa mila ETH amin'ny Base na BNB amin'ny BNB Chain for mandatsa-dranomaso.",
+          "3": "Minting no mahatonga ny lahatsoratra tradeable sy royalty-mitondra. Mbola mahazo toro-hevitra sy fomba fijery ny lahatsoratra iray tsy noforonina.",
+          "4": "Indray mandeha ihany no nampahafantarina ilay rakitsoratra tao anaty aterineto, na dia efa nofafàna tsy ho ao amin'ilay fahana aza ilay lahatsoratra taty aoriana."
+        }
+      },
+      "glossary": {
+        "title": "Raki-teny",
+        "intro": "Ny glossary feno ny crypto sy ny sehatra voambolana mba hanampy anao hamakivaky Web3.",
+        "steps": {
+          "1": "Mandehana any amin'ny \"Glossary\" avy amin'ny Sidebar.",
+          "2": "Mijery teny alphabetically na mampiasa ny fikarohana mba hahita teny manokana.",
+          "3": "Tsindrio eo amin'ny teny iray mba hijerena ireo lisitry ny anarana sy ny sarintany feno.",
+          "4": "Terms manarona crypto hevitra, DeFi voambolana, ary ny endri-javatra manokana DeHub."
+        },
+        "tips": {
+          "1": "Loharanom-baovao lehibe ho an'ny vaovao farany amin'ny crypto sy Web3.",
+          "2": "Ny teny dia havaozina tsy tapaka amin'ny teny vaovao."
+        }
+      }
     }
   },
   "creatorPacks": {

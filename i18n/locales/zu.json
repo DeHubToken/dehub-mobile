@@ -3463,11 +3463,6 @@
     "noResultsFor": "Azikho iziphumo ze-\"{{query}}\"",
     "guideSubtitle": "Isiqondiso sesinyathelo ngesinyathelo sesici ngasinye",
     "searchGuide": "Sesha umhlahlandlela...",
-    "guideFractionsTip": "Konke okuthunyelwe okukhandiwe kuqala umdali ephethe zonke izabelo zakho (ubunikazi obungu-100%).",
-    "guideInfoStep": "Thepha isithonjana solwazi kokuthunyelwe okukhandiwe ukuze uvule ukuthengiselana kokukhanda kwakho ku-block explorer futhi uqinisekise irekhodi elisochungechungeni.",
-    "guideMintIntro": "Ukukhanda okuthunyelwe njenge-NFT ku-blockchain kungokuzikhethela. Kukhande lapho ushicilela, noma ushicilele manje bese ukukhanda kamuva kumenyu yokuthunyelwe.",
-    "guideMintPublishStep": "Khetha ukuthi uzokhanda yini, bese uchofoza 'Thumela' ukuze ushicilele. Uma weqa ukukhanda, ungakhanda okuthunyelwe kamuva kumenyu yakho.",
-    "guideMintFractionsStep": "Uthola zonke izabelo eziyi-1,000 (ubunikazi obungu-100%) bokuthunyelwe kwakho okusanda kukhandwa.",
     "glossaryMintTxDesc": "Thepha isithonjana solwazi kokuthunyelwe okukhandiwe ukuze uvule ukuthengiselana kokukhanda kwakho ku-block explorer futhi uqinisekise irekhodi elisochungechungeni. Ikhasi eliphelele Lolwazi Lokuthunyelwe — izibalo, abaniniyo, imakethe — likuhlelo lokusebenza lwewebhu ku-dehub.io.",
     "glossaryTokenIdDesc": "Isihlonzi esiyingqayizivele esisochungechungeni esinikezwa okuthunyelwe lapho kukhandwa njenge-NFT.",
     "repostsTab": "Ama-Repost",
@@ -3484,24 +3479,7 @@
     "glossaryStakingDesc": "Vala ama-tokeni akho e-DeHub ukuze uzuze imivuzo ngokuhamba kwesikhathi. Ama-tokeni abekiwe nawo akunika amandla okukhulu okuvota ezinhlelweni.",
     "glossaryGovernanceDesc": "Hambisa futhi uvote ngeziphakamiso ezibumba inkundla. Amandla akho okuvota anesisindo ngobuningi bama-tokeni e-DeHub owaphethe.",
     "glossaryStakingBadgesDesc": "Amabheji abonakala eduze kwegama lakho lomsebenzisi ngokusekelwe kumalungelo akho aphelele we-DeHub tokeni (isikhwama + esibekiwe). Kukhona amazinga angu-13 — lapho uthenga ama-tokeni amaningi, kulapho izinga lakho le-badge liphakeme khona. Amazinga aphezulu anikeza amandla amakhulu okuvota ezinhlelweni kanye nezimali ezincane zenkundla.",
-    "glossaryLeaderboardDesc": "Abasebenzisi babalwa ngamalungelo aphelele e-DeHub tokeni (isikhwama + abekiwe kuwo wonke ama-chain). Izilinganiso zibuyekezwa ngezikhathi ezithile futhi zilandelwa izinguquko zosuku olungu-1 nosuku olungu-1. Ungakwazi futhi ukuhlunga ngamathiphu athunyelwe, amathiphu atholakele, abalandeli, izintandokazi, noma ababhalisile.",
-    "guideTipStep": "Chofoza isithonjana segem/ithiphu ukuze uthumele umdali weposi ithiphu ngama-tokeni e-DeHub.",
-    "guideTipWalletTip": "Amathiphu aya ngqo esikhwameni somdali njengama-tokeni e-DeHub.",
-    "guideTipNotificationsTip": "Izaziso ze-Tip zibonisa ukuthi zingaki amathokheni e-DeHub owamukele.",
-    "guideWalletIntro": "Buka izilinganiso zakho zamathokheni e-DeHub kuwo wonke amaketanga amaningi, hlola amadiphozithi okubeka, futhi uphathe izimpahla zakho.",
-    "guideWalletTotalStep": "Buka isilinganiso sakho samathokheni e-DeHub esiphelele esihlanganiswe kuwo wonke amaketanga asekelwayo.",
-    "guideStakingIntro": "Beka amathokheni akho e-DeHub ukuze uzuze imiklomelo futhi wandise amandla akho okuvota ohulumeni.",
-    "guideStakingAmountStep": "Faka ukuthi zingaki amathokheni e-DeHub ofuna ukuwabeka.",
-    "guideLeaderboardBalanceStep": "Ithebhu ye-Balance ihlunga abasebenzisi ngokwezimpahla zabo zamathokheni e-DeHub.",
-    "guideGovernanceVoteStep": "Vota ngeziphakamiso usebenzisa izinkinobho zokudumisa/ukugxeka — isisindo sakho sokuvota sincike ekutheni zingaki amathokheni e-DeHub owabeka.",
-    "guideGovernancePowerTip": "Amandla akho okuvota anqunywa ukuthi zingaki amathokheni e-DeHub owabeka.",
-    "guideBuyIntro": "Thenga amathokheni e-DeHub ngqo ku-DPay usebenzisa ikhadi noma i-crypto esekelwayo.",
-    "guideBuyAmountStep": "Faka inani ofuna ukulichitha noma ukuthi zingaki amathokheni e-DeHub ofuna ukuwamukela.",
-    "guideBuyDeliveredStep": "Amathokheni akho e-DeHub azovela esikhwameni sakho uma ukuthengiselana sekuqediwe.",
-    "guideBridgeIntro": "Hambisa amathokheni akho e-DeHub phakathi kwamaketanga asekelwayo usebenzisa ibhuloho le-cross-chain.",
-    "guideBridgeSourceStep": "Khetha iketango lomthombo (lapho amathokheni akho e-DeHub akhona njengamanje).",
-    "guideBridgeDestStep": "Khetha iketango lapho uya khona (lapho ufuna ukuthumela khona amathokheni akho e-DeHub).",
-    "guideBridgeAmountStep": "Faka ukuthi zingaki amathokheni e-DeHub ozowadlulisa."
+    "glossaryLeaderboardDesc": "Abasebenzisi babalwa ngamalungelo aphelele e-DeHub tokeni (isikhwama + abekiwe kuwo wonke ama-chain). Izilinganiso zibuyekezwa ngezikhathi ezithile futhi zilandelwa izinguquko zosuku olungu-1 nosuku olungu-1. Ungakwazi futhi ukuhlunga ngamathiphu athunyelwe, amathiphu atholakele, abalandeli, izintandokazi, noma ababhalisile."
   },
   "arcade": {
     "submitAccessibility": "Thumela umdlalo ku-arcade",
@@ -6823,6 +6801,504 @@
       "packEmpty": "Ayikho i-emoji etholakele kulelo kheli",
       "shortcodeTaken": "{{name}} isivele ithathiwe",
       "shortcodeStandard": "{{name}} isivele iyi-emoji evamile"
+    }
+  },
+  "guide": {
+    "sections": {
+      "getting-started": {
+        "title": "Ukuqalisa",
+        "intro": "Kunezindlela ezinhlanu zokungena ku-DeHub futhi akukho neyodwa kuzo edinga ukuthi ube nesikhwama semali kakade: i-Google, i-Apple, ikhodi ethunyelwe ku-imeyili yakho, ikhodi ethunyelwe nge-SMS, noma isikhwama semali esikhona osixhuma. Konke ngaphandle komzila wesikhwama semali kudala isikhwama semali esingagadiwe ngemuva — wena ubamba okhiye, futhi i-DeHub ixhasa igesi ukuze ukwazi ukuthumela, ukunikeza, nokubutha ngaphandle kokuthenga ithokheni lendawo.",
+        "steps": {
+          "1": "Vakashela i-dehub.io — okuphakelayo kwasekhaya kuyikhasi elingaphambili, ngakho ungabheka nxazonke ngaphambi kokungena.",
+          "2": "Chofoza u-'Ngena'. Uzobona i-Google ne-Apple, izinkambu ze-imeyili noma inombolo yocingo, kanye no-'Xhuma Isikhwama Semali' esesikhwameni esikhona.",
+          "3": "Nge-Google noma i-Apple, qedela inqubo yomhlinzeki. Nge-imeyili noma i-SMS, faka ikhodi efikayo.",
+          "4": "Isikhwama semali siyadalwa futhi sivikeleke kuwe lapho ungena okokuqala. Ukuxhuma isikhwama sakho semali esikhona esikhundleni sakho kusho isignesha eyodwa ukuze uqinisekise ikheli.",
+          "5": "Khetha igama lomsebenzisi. Yilokho abantu abakubonayo futhi kuphinda kube isixhumanisi sephrofayela yakho se-dehub.io/<username>.",
+          "6": "Ungene. Hlola okuphakelayo, setha iphrofayela yakho, bese uqala ukuthumela."
+        },
+        "tips": {
+          "1": "Ukungena kwezenhlalo, kwe-imeyili, ne-SMS akukhokhi igesi — i-DeHub iyayixhasa. Izikhwama zemali ezixhunyiwe zikhokha i-ETH noma i-BNB yazo.",
+          "2": "Ubuyela ku-akhawunti yakudala ye-DeHub? Ngena nge-imeyili noma inombolo yocingo eyayisebenzisa futhi ukufuduka kuyayithola kuwe.",
+          "3": "Ungagcina ama-akhawunti amaningana kudivayisi eyodwa bese uwashintsha kuzilungiselelo → Iphrofayela."
+        }
+      },
+      "home-feed": {
+        "title": "Okuphakelayo Kwasekhaya",
+        "intro": "Okuphakelayo kwasekhaya yilapho ubona khona okuthunyelweyo okuvela kubantu obalandelayo nokuqukethwe okudumile. Kusekela amathebhu amaningi ohlobo lokuqukethwe nezinketho zokuhlunga.",
+        "steps": {
+          "1": "Zulazula uye ku-/app — lokhu okuphakelayo kwakho kwasekhaya.",
+          "2": "Sebenzisa amathebhu aphezulu ukuhlunga ngohlobo lokuqukethwe: Ikhaya (konke), Amavidiyo, Izithombe, Ama-Shorts, Umculo, noma Imisakazo Ebukhoma.",
+          "3": "Swayipha kwesokunxele/kwesokudla kumathebhu ukuze ubone ezinye izinketho kuselula.",
+          "4": "Sebenzisa inkinobho yokuhlunga/yokuhlela (phezulu kwesokudla kokuphakelayo) ukuze ushintshe ukuhlela: Okushisayo, Okusha, noma Okuphezulu.",
+          "5": "Donsela phansi ukuze uvuselele okuphakelayo kuselula.",
+          "6": "Skrola phansi ukuze ulayishe okwengeziwe okuthunyelwe ngokuzenzakalelayo (i-infinite scroll).",
+          "7": "Shintsha phakathi kokubuka kweGridi nokokuphakelayo usebenzisa isishintshi sokuhlelwa."
+        },
+        "tips": {
+          "1": "Ukubuka kweGridi kulungele ukuphequlula izithombe ngokushesha.",
+          "2": "Thebhu ethi 'Ikhaya' ibonisa zonke izinhlobo zokuqukethwe ezixubile.",
+          "3": "Thebhu Ebukhoma ibonisa imisakazo ebukhoma esebenzayo njengamanje."
+        }
+      },
+      "creating-posts": {
+        "title": "Ukwakha Okuthunyelwe",
+        "intro": "Dala okuthunyelwe kombhalo, yabelana ngezithombe, amavidiyo, amanothi ezwi, ama-GIF, nokuningi. Sebenzisa ama-hashtag, ama-cashtag, namawuphawu ukuze wandise ukufinyelela.",
+        "steps": {
+          "1": "Chofoza inkinobho ethi 'Thumela' kubha eseceleni (i-desktop) noma inkinobho + (iselula).",
+          "2": "Thayipha umbhalo wakho endaweni yokubhala.",
+          "3": "Ukuze ungeze isithombe noma ividiyo, chofoza isithonjana semidiya bese ukhetha ifayela.",
+          "4": "Ukuze urekhode inothi lezwi, chofoza isithonjana semakrofoni.",
+          "5": "Ukuze ungeze i-GIF, chofoza isithonjana se-GIF bese uyifuna.",
+          "6": "Sebenzisa ama-#hashtag ukuze ukategorise okuthunyelwe kwakho (isb., #crypto, #defi).",
+          "7": "Sebenzisa ama-$cashtag ukuze ubhekise kumathokheni (isb., $DHB, $ETH).",
+          "8": "Sebenzisa ama-@mention ukuze umake abanye abasebenzisi (isb., @username).",
+          "9": "Chofoza u-'Thumela' ukuze ushicilele. Okuthunyelwe kwakho kuvela kokuphakelayo ngokushesha."
+        },
+        "tips": {
+          "1": "Okuthunyelwe kusekela ukuhlelwa okufana ne-markdown.",
+          "2": "Ungakwazi ukucaphuna okuthunyelwe ngokuchofoza isithonjana sokuthumela kabusha kunoma yikuphi okuthunyelwe bese ukhetha u-'Caphuna'.",
+          "3": "Izigaba (ama-hashtag) zivela kubhodi yabaphambili ethi 'Inkulumo Yedolobha'."
+        }
+      },
+      "interacting-with-posts": {
+        "title": "Ukusebenzisana Okuthunyelwe",
+        "intro": "Zibandakanye nokuqukethwe ngokuvota, ukuphawula, ukunikeza amathiphu, ukubekisa, ukwabelana, nokuhumusha.",
+        "steps": {
+          "1": "Votela phezulu noma phansi okuthunyelwe usebenzisa izithonjana zomcibisholo ohlangothini lwesokunxele lwanoma yikuphi okuthunyelwe.",
+          "2": "Chofoza isithonjana sokuphawula ukuze uvule isigaba sokuphawula bese ushiya impendulo.",
+          "3": "Chofoza isithonjana segugu/sethiphu ukuze uthumele ithiphu kumathokheni e-DeHub kumdali wokuthunyelwe.",
+          "4": "Chofoza isithonjana sebhukwana ukuze ugcine okuthunyelwe kamuva.",
+          "5": "Chofoza isithonjana sokwabelana ukuze ukopishe isixhumanisi sokuthunyelwe noma wabelane ngaphandle.",
+          "6": "Cindezela inkinobho yokuhumusha (isithonjana seglobhu) kunoma yisiphi isithombe ukuze uhumushe umbhalo olimini lwakho.",
+          "7": "Kwizithombe, sebenzisa inkinobho ethi 'Translate Image' ukuze uthole inguqulo ehunyushwe yi-AI yombhalo osesithombeni.",
+          "8": "Cindezela kunoma yisiphi isithombe ukuze usivule kusikrini esigcwele esibonisa isithombe esisodwa."
+        },
+        "tips": {
+          "1": "Amathiphu aya ngqo esikhwameni somdali ngama-tokeni e-DeHub.",
+          "2": "Ungasetha inani le-tip ngezinkinobho zokukhetha ngokushesha noma ufake inani langokwezifiso.",
+          "3": "Izithombe ezifakwe kumabhukwana zifinyeleleka ekhasini le-Bookmarks kubha yohlangothi."
+        }
+      },
+      "explore-search": {
+        "title": "Hlola & Sesha",
+        "intro": "Zitholele okuqukethwe okusha nabasebenzisi ngekhasi lokuhlola kanye nomsebenzi wokusesha onamandla.",
+        "steps": {
+          "1": "Zulazulela ku-/app/explore kusuka kubha yohlangothi.",
+          "2": "Sebenzisa ibha yokusesha phezulu ukuze useshe abasebenzisi, izithombe, noma okuqukethwe.",
+          "3": "Hlunga imiphumela ngethebhu: Konke, Abantu, Izithombe, Izithombe, Amavidiyo, Umculo, Okubukhoma.",
+          "4": "Dlulisa amehlo ezindikimeni ezidumile nezigaba ekhasini lokuhlola.",
+          "5": "Cindezela esihlokweni esidumile ukuze ubone zonke izithombe ezihlobene.",
+          "6": "Cindezela umsebenzisi emiphumeleni yokusesha ukuze uvakashele iphrofayela yakhe."
+        },
+        "tips": {
+          "1": "Ukusesha kusekela amagama abasebenzisi, amakheli ezikhwama, namagama angukhiye okuqukethwe.",
+          "2": "Izindikimba ezidumile zibuyekezwa ngokusekelwe emisebenzini yokuthumela yakamuva."
+        }
+      },
+      "profile": {
+        "title": "Iphrofayela",
+        "intro": "Iphrofayela yakho ibonisa izithombe zakho, abalandeli, abalandelayo, nolwazi lwesikhwama sakho.",
+        "steps": {
+          "1": "Cindezela i-avatar yakho noma u-'Profile' kubha yohlangothi ukuze ubuke iphrofayela yakho.",
+          "2": "Cindezela u-'Edit Profile' ukuze ubuyekeze igama lakho lokubonisa, i-bio, kanye ne-avatar.",
+          "3": "Layisha isithombe sephrofayela ngokucindezela i-avatar yakho kumodi yokuhlela.",
+          "4": "Buka izibalo zabalandeli bakho nabalandelayo ekhasini lakho lephrofayela.",
+          "5": "Dlulisa amehlo ezithombeni zakho, imidiya, nokuqukethwe okuthandile ngamathebhu ephrofayela.",
+          "6": "Kopisha ikheli lesikhwama sakho ngokucindezela isithonjana sokukopisha eduze kwayo.",
+          "7": "Vakashela amanye amaphrofayela abasebenzisi ngokucindezela igama lomsebenzisi wabo noma i-avatar yabo noma kuphi endaweni yesikhulumi."
+        },
+        "tips": {
+          "1": "Igama lakho lomsebenzisi liyingqayizivele futhi livela ku-URL yephrofayela yakho (dehub.io/@username).",
+          "2": "Izilungiselelo zobumfihlo zikuvumela ukuthi ulawule ukuthi ubani ongabona izibalo zabalandeli bakho."
+        }
+      },
+      "messages": {
+        "title": "Imilayezo",
+        "intro": "Thumela imilayezo eqondile kwabanye abasebenzisi endaweni yesikhulumi.",
+        "steps": {
+          "1": "Cindezela u-'Messages' kubha yohlangothi ukuze uvule ikhasi lemilayezo.",
+          "2": "Cindezela inkinobho ethi 'Compose' ukuze uqale ingxoxo entsha.",
+          "3": "Sesha umsebenzisi ngegama lakhe ukuze umthumelele umlayezo.",
+          "4": "Bhala umlayezo wakho bese ucindezela u-'Send'.",
+          "5": "Buka umlando wengxoxo yakho ohlwini lwama-messages.",
+          "6": "Cindezela engxoxweni ukuze uqhubeke nokuxoxa."
+        },
+        "tips": {
+          "1": "Uzothola isaziso lapho othile ekuthumelela umlayezo.",
+          "2": "Abadali bangakhiya imilayezo ngesidingo sokuthola i-tip."
+        }
+      },
+      "ai-assistant": {
+        "title": "I-AI Assistant",
+        "intro": "Xoxa ne-AI assistant eyakhelwe ku-DeHub ukuze uthole usizo, ulwazi, nemisebenzi yokudala.",
+        "steps": {
+          "1": "Cindezela u-'Assistant' ohlangothini ukuze uvule ingxoxo ye-AI.",
+          "2": "Thayipha umbuzo wakho noma isicelo sakho endaweni yokuthayipha ingxoxo.",
+          "3": "I-AI ingasiza ngolwazi lwe-crypto, imibuzo ephathelene neplatifomu, nolwazi olujwayelekile.",
+          "4": "Qala ingxoxo entsha ngokucindezela inkinobho ethi 'New Chat'.",
+          "5": "Buka umlando wakho wengxoxo ohlangothini lwekhasi le-assistant.",
+          "6": "Unganamathisela izithombe ukuze i-AI izihlole."
+        },
+        "tips": {
+          "1": "I-AI iyakhumbula umongo kungxoxo.",
+          "2": "Ungabuza i-AI ngezici ze-DeHub, amagama e-crypto, noma imibuzo ejwayelekile.",
+          "3": "Izingxoxo zangaphambilini zigcinwa futhi zingafinyeleleka nganoma yisiphi isikhathi."
+        }
+      },
+      "notifications": {
+        "title": "Izaziso",
+        "intro": "Hlala unolwazi ngezinto ezifana nama-likes, ukuphawula, ama-tips, ukulandela, neminye imisebenzi kokuqukethwe kwakho.",
+        "steps": {
+          "1": "Cindezela isithonjana sewashi noma u-'Notifications' ohlangothini.",
+          "2": "Buka zonke izaziso ohlwini oluhlelwe ngokulandelana kwesikhathi.",
+          "3": "Cindezela kusaziso ukuze uye kokuqukethwe okuhlobene naso.",
+          "4": "Izaziso zihlanganisa: abalandeli abasha, ukuvota okuthunyelwe, ukuphawula, ama-tips, nokukhulunywa ngawe.",
+          "5": "Izaziso ezingafundiwe zigqanyisiwe — zibhalwa njengefundiwe lapho zibukwa."
+        },
+        "tips": {
+          "1": "I-badge yesaziso ikhombisa inani lezaziso ezingafundiwe.",
+          "2": "Izaziso ze-Tip zikhombisa ukuthi zingaki amathokheni owatholile."
+        }
+      },
+      "wallet": {
+        "title": "I-Wallet",
+        "intro": "Buka izilinganiso zakho zamathokheni e-DeHub kuwo wonke amaketanga, hlola amadiphozithi e-staking, futhi uphathe izimpahla zakho.",
+        "steps": {
+          "1": "Cindezela u-'Wallet' ohlangothini ukuze uvule ikhasi le-wallet.",
+          "2": "Buka ibhalansi yakho yonke yamathokheni ihlanganiswe kuwo wonke amaketanga asekelwayo.",
+          "3": "Bona ukuhlukana ngeketanga: Ethereum, Base, BNB Chain, nokunye.",
+          "4": "Hlola amadiphozithi akho okubeka kanye nemivuzo.",
+          "5": "Chofoza u-'Hlaziya kabusha' ukuze ubuyekeze amabhilansi akho kusuka kudatha ye-on-chain.",
+          "6": "Kopisha ikheli lakho le-wallet ukuze uthole amathokheni kubanye."
+        },
+        "tips": {
+          "1": "Amabhilansi abuyekezwa ngokuzenzakalelayo kodwa ungakwazi ukuphoqelela ukuhlaziya kabusha nganoma yisiphi isikhathi.",
+          "2": "I-wallet ikhombisa amabhilansi angamanzi (atholakalayo) nawokubeka."
+        }
+      },
+      "staking": {
+        "title": "Ukubeka",
+        "intro": "Beka amathokheni akho e-DeHub ukuze uzuze imivuzo futhi wandise amandla akho okuvota ohulumeni.",
+        "steps": {
+          "1": "Zulazulela ekhasini elithi 'Ukubeka' kusuka kubha yesigaba.",
+          "2": "Faka inani lamathokheni ongathanda ukuwabeka.",
+          "3": "Khetha iketanga ongathanda ukulibeka kulo.",
+          "4": "Qinisekisa ukuthengiselana ku-wallet yakho (amawalllet angaphandle) noma kwenzeka ngokuzenzakalelayo (ukungena ngemvume komphakathi).",
+          "5": "Buka izimali zakho ezibekiwe nanoma yimiphi imivuzo elindile.",
+          "6": "Ukukhipha, faka inani bese uqinisekisa ukuthengiselana kokukhipha."
+        },
+        "tips": {
+          "1": "Ukubeka kwandisa isisindo sakho sokuvo eziphakamisweni zikahulumeni.",
+          "2": "Abasebenzisi bokungena ngemvume komphakathi akudingi igesi ukuze babeke - akudingi igesi.",
+          "3": "Ungabeka kumaketanga amaningi ngesikhathi esisodwa."
+        }
+      },
+      "leaderboard": {
+        "title": "Ibhodi yabaphambili",
+        "intro": "Bona ukuthi ubani osengaphezulu! Ibhodi yabaphambili ihlunga abasebenzisi ngebhalansi, ukuchitha kwansuku zonke, nezingqikithi ezishisayo.",
+        "steps": {
+          "1": "Zulazulela ekhasini elithi 'Ibhodi yabaphambili' kusuka kubha yesigaba.",
+          "2": "Shintsha phakathi kwamathebhu: Ibhalansi, Okuchithwe Nsuku zonke, kanye Nengxoxo Yedolobha.",
+          "3": "Ithebhu ye-Ibhalansi ihlunga abasebenzisi ngezimali zabo zamathokheni.",
+          "4": "Ithebhu Yokuchitha Kwansuku zonke ikhombisa ukuthi ubani obelokhu esebenza kakhulu ekunikezeni amathiphu emahoreni angu-24 adlule.",
+          "5": "Ingxoxo Yedolobha ikhombisa izingqikithi/izigaba ezixoxwa kakhulu.",
+          "6": "Chofoza kunoma yimuphi umsebenzisi ukuze uvakashele iphrofayela yakhe.",
+          "7": "Ibhodi yabaphambili ibuyekezwa ngezikhathi ezithile usuku lonke."
+        },
+        "tips": {
+          "1": "Izilinganiso zansuku zonke ziqala kabusha njalo emahoreni angu-24.",
+          "2": "Ingxoxo Yedolobha ilandelela izigaba zamagama ayisihloko kusuka kuma-hashtag."
+        }
+      },
+      "command-centre": {
+        "title": "Isikhungo Semiyalezo",
+        "intro": "Isikrini esibonisa izinto ezibalulekile zakho nomsebenzi weplathifomu shazi.",
+        "steps": {
+          "1": "Chofoza ku-'Command Centre' ohlangothini.",
+          "2": "Buka isifinyezo sephrofayela yakho, okuhlanganisa inani lezikhundla, abalandeli, nokuzibandakanya.",
+          "3": "Bona umsebenzi wakho wakamuva nezihloko ezithrendayo.",
+          "4": "Finyelela izixhumanisi ezisheshayo ezisebenzini ezisetshenziswa njalo."
+        },
+        "tips": {
+          "1": "I-Command Centre ikunikeza umbono obanzi wobukhona bakho ku-DeHub."
+        }
+      },
+      "governance": {
+        "title": "Ukuphatha",
+        "intro": "Bamba iqhaza ekuphathweni kweplathifomu ngokudala iziphakamiso nokuvota ezinqumweni zomphakathi.",
+        "steps": {
+          "1": "Zulazulela ku-'Governance' ohlangothini.",
+          "2": "Dlulisa amehlo eziphakamisweni ezisebenzayo ezithunyelwe umphakathi.",
+          "3": "Chofoza esiphakamisweni ukuze ufunde incazelo yaso egcwele nengxoxo.",
+          "4": "Vota eziphakamisweni usebenzisa izinkinobho zokudumisa/ukugxeka — isisindo sakho sokuvota sincike enanini lamathokheni e-DeHub owafake isitaki.",
+          "5": "Shintsha imibono eziphakamisweni ukuze uxoxe nomphakathi.",
+          "6": "Thumela isiphakamiso sakho ngokuchofoza inkinobho ethi 'Create Proposal'."
+        },
+        "tips": {
+          "1": "Amandla akho okuvota anqunywa inani lamathokheni owafake isitaki.",
+          "2": "Abaphethe amabheji bangase bathole isisindo sokuvota esingeziwe.",
+          "3": "Iziphakamiso zidlula ezigabeni: Ezingasebenzi → Ezedlule/Ezinganqatshelwe."
+        }
+      },
+      "bookmarks": {
+        "title": "Amabhukwana",
+        "intro": "Gcina izikhundla kumabhukwana akho ukuze uzifinyelele kalula kamuva.",
+        "steps": {
+          "1": "Chofoza isithonjana sebhukwana kunoma yisiphi isikhundla ukuze usigcine.",
+          "2": "Zulazulela ku-'Bookmarks' ohlangothini ukuze ubuke zonke izikhundla ezigciniwe.",
+          "3": "Chofoza isikhundla esibekwe ebhukwana ukuze usibuke sigcwele.",
+          "4": "Susa ibhukwana ngokuchofoza isithonjana sebhukwana futhi."
+        },
+        "tips": {
+          "1": "Amabhukwana ayimfihlo — wena wedwa ongabona izikhundla zakho ezigciniwe.",
+          "2": "Akukho mkhawulo enanini lezikhundla ongazibeka ebhukwana."
+        }
+      },
+      "settings": {
+        "title": "Izilungiselelo",
+        "intro": "Enza ngendlela oyifisayo isipiliyoni sakho se-DeHub ngezintandokazi zolimi, ubumfihlo, nokuboniswa.",
+        "steps": {
+          "1": "Chofoza ku-'Settings' ohlangothini.",
+          "2": "Shintsha ulimi lwakho lokuboniswa kusuka kusikhethi solimi.",
+          "3": "Lungisa izilungiselelo zobumfihlo: lawula ukuthi ubani obona izibalo zabalandeli bakho nohlu lwabalandelayo.",
+          "4": "Setha okukhethwayo kwakho okuzenzakalelayo kokubonakala kokuthunyelwe.",
+          "5": "Phatha izintandokazi zezaziso."
+        },
+        "tips": {
+          "1": "I-DeHub isekela izilimi eziningi — yonke imenyu iyaguqulelwa.",
+          "2": "Izilungiselelo zobumfihlo zisebenza ngokushesha."
+        }
+      },
+      "posting-allowance": {
+        "title": "Umkhawulo Wakho Wansuku zonke Wokuthumela",
+        "intro": "Ukuthumela kumahhala nsuku zonke kuze kufike kumkhawulo ohambisana nebheji yakho yokubeka. Wonke umuntu uqala ngeposi eyishumi lombhalo kanye ne-gigabyte eyodwa yevidiyo, izithombe nomsindo ngosuku. Dlula kunoma iyiphi yazo bese okunye kwalolo suku kukhokhelwa ngamathokheni e-DeHub — kuphela engxenyeni edlula umkhawulo.",
+        "steps": {
+          "1": "Thumela njengenjwayelo. Ngaphakathi komkhawulo akukho lutho olukhokhiswayo futhi akukho lutho olucelwa kuwe.",
+          "2": "Amaposi ombhalo nemidiya kungamachibi ahlukene, ngakho usuku oluchithwe ukulayisha ividiyo kusasele wonke amaposi ombhalo ayishumi mahhala.",
+          "3": "Lapho iposi lingadlula umkhawulo, uhlelo lokusebenza luyibiza kuqala futhi luhlola ukuthi isikhwama sakho singayihlanganisa yini ngaphambi kokuthi kukhishwe noma yini.",
+          "4": "Iposi lishicilelwa njengoba bekuzokwenzeka ngaphakathi komkhawulo — ukushicilela akulokothi kulinde inkokhelo.",
+          "5": "Bese uvuma ukudluliswa okukodwa kwalolo poshi kuphela, okuxazululwe kunoma iyiphi i-Base noma i-BNB Chain enenani elanele lamathokheni e-DeHub.",
+          "6": "Amachibi omabili abuyela phansi phakathi kwamabili UTC."
+        },
+        "tips": {
+          "1": "Ukudlula komkhawulo kulinganiselwe: 200 MB ngaphezu komkhawulo wakho kubiza u-200 MB, hhayi i-gigabyte ephelele.",
+          "2": "Ukuphinda uthumele, ukuphawula, ukusabela, amathiphu nemilayezo akubizi lutho futhi akuthinti umkhawulo.",
+          "3": "Yenqaba inkokhelo futhi iposi lihlala likhona — inani nje livimba iposi lakho elikhokhelwayo elilandelayo kuze kube yilapho selixazululwe. Umkhawulo wamahhala wangakusasa ungowakho njalo.",
+          "4": "I-bheji yokubeka yandisa umkhawulo wamahhala futhi yehlisa intengo yanoma yini edlula kuwo."
+        }
+      },
+      "reactions-and-safety": {
+        "title": "Izimpawu zokubuyekeza, Ukuthulisa Nokuqukethwe Okudala",
+        "intro": "Kunezimpawu zokubuyekeza eziyisishiyagalolunye ngemuva kwenkinobho ethi \"like\", kanye nesethi yezilawuli zokunquma ukuthi ubona ini nokuthi ubani ongakufinyelela.",
+        "steps": {
+          "1": "Bamba isithupha esikhombisa phezulu kunoma yikuphi iposi ukuze uvule ithreyi lezimpawu zokubuyekeza: njengokuthanda, uthando, ukuhlonipha, ukushisa, lol, ukudabuka, ukukhala, ukungathandi kanye nenkunkulu.",
+          "2": "Izimpawu zokubuyekeza eziyisikhombisa ezinhle zibala esibalweni samalikesi eposi; ukungathandi nenkunkulu kubala ngokumelene nakho.",
+          "3": "Impumelelo yakho ihambisana nebheji yakho yokubeka, ngakho impendulo yomnikazi webheji ihambisa isibalo kude kunevoti elilodwa.",
+          "4": "Thepha u-X kuhlaka lweposi ukuze uthulise umbhali walo — bayanyamalala ohlwini lwakho ngokushesha.",
+          "5": "Abadali baphawula amaposi abo njengawadala lapho bewadala; lawo maposi ahlala kude nohlu oluvamile lwasekhaya.",
+          "6": "Ukubona amaposi adala yonke indawo, vula u-'Bonisa okuqukethwe okudala' kuzilungiselelo."
+        },
+        "tips": {
+          "1": "Iposi elidala lisabonakala ngokugcwele kuphrofayela yomdali kanye nabantu ababalandelayo.",
+          "2": "Ukuvimba kusuka kuphrofayela kudlula ukuthulisa futhi kuvala nemilayezo.",
+          "3": "Ithreyi lezimpawu zokubuyekeza libonisa ukuthi ubani ophendule futhi ngeyini, ngakho ungabona igumbi kunokuba ubone inombolo nje."
+        }
+      },
+      "stages": {
+        "title": "Izigaba (Amagumbi Okulalelwayo Aphilayo)",
+        "intro": "Izigaba amagumbi okulalelwayo aphilayo akhelwe ku-DeHub. Umphathi uvula igumbi, alethe izipikha, futhi noma ubani angangena ukulalela kusuka ekhasini lezigaba noma isixhumanisi esabiwe.",
+        "steps": {
+          "1": "Vula u-'Stages' kubha yohlangothi ukuze ubone ukuthi yini ephila manje nokuthi yini ehleliwe.",
+          "2": "Themba isigaba esibukhoma ukuze ujoyine njengomlaleli, noma setha isikhumbuzi esihleliwe futhi waziswe lapho siqala.",
+          "3": "Qala esakho ekhasini elifanayo — ungaya ebukhoma ngqo kusuka kusiphequluli, ngaphandle kwe-OBS noma ukhiye wokusakaza.",
+          "4": "Njengomphathi, yisa izipikha esigabeni, uzithulise noma uzisuse, yabelana ngesikrini sakho, futhi ulawule ibhodi lemisindo.",
+          "5": "Ababukeli bathumela izimpendulo ezibukhoma futhi bakhulume engxoxweni yegumbi ngaphandle kokungena esigabeni.",
+          "6": "Isigaba ngasinye siqopha, futhi irekhodi lidlala kamuva kusuka ekhadini elivelayo kulo."
+        },
+        "tips": {
+          "1": "Imibhalo engezansi ebukhoma ibhala isipikha ngasinye futhi ihumusha kunoma yiluphi ulimi olufundayo.",
+          "2": "Ukuhumusha okubukhoma kungakhuluma igumbi ngokuzwakalayo ngezwi lomphathi eliklonjiwe, elikhokhiswa ngomzuzu ngamathokheni e-DeHub.",
+          "3": "Abaphathi bangabeka isiteshi somsakazo emoyeni noma badlale iziqeshana zabo zomculo phakathi kwezingxoxo.",
+          "4": "Isidlali esincane sigcina igumbi liqhubeka ekhoneni ngenkathi upheqa okunye kuhlelo lokusebenza."
+        }
+      },
+      "communities": {
+        "title": "Imiphakathi & Imicimbi",
+        "intro": "Imiphakathi yizikhala eziqhutshwa amalungu ezinezindaba zazo, amalungu nomsebenzi. Imicimbi ingeza uhlelo oluboshelwe isikhathi phezu kwazo.",
+        "steps": {
+          "1": "Vula 'Imiphakathi' kubha eseceleni bese upheqa lezo zomphakathi.",
+          "2": "Joyina ngokuthepha okukodwa. Umsebenzi omusha ubonakala njengophawu olungafundiwe kunavigasyon.",
+          "3": "Thumela, xoxisana, phatha amavoti futhi uthumele ngaphakathi kwezindaba zomphakathi.",
+          "4": "Abanikazi bomphakathi balawula izikhala zabo futhi bangabanika abanye amalungelo okuphatha.",
+          "5": "Vula 'Imicimbi' ukuze uhlele izinhlelo ezihleliwe, ngohlelo olugcwele lomcimbi ngamunye ongalandela bukhoma."
+        },
+        "tips": {
+          "1": "Ingxoxo yomphakathi isekela @mentions kanye @here, ngakho-ke okuthunyelwe kungafinyelela egumbini.",
+          "2": "Isixhumanisi isimemo sikuvumela ukuthi ulethe abantu ngqo emphakathini."
+        }
+      },
+      "arcade": {
+        "title": "I-Arcade",
+        "intro": "Imidlalo emihlanu idlala ngaphakathi kwe-DeHub kuthebhu yesiphequluli — akukho okufanele kufakwe, akukho okufanele kuthengwe.",
+        "steps": {
+          "1": "Vula 'I-Arcade' kubha eseceleni.",
+          "2": "Khetha umdlalo: King's Gambit (i-chess ye-3D enomugqa we-Elo online), Claude of Duty (isidubuli esakha ubuciko sayo njengoba ilayisha), Jungle Trail (uhambo lwehlathi elenziwe ngendlela), Street Slayer (i-beat 'em up eyenziwe nge-DeHub) noma i-Chartopia (indawo yokuhweba engahamba).",
+          "3": "Dlala kuthebhu. I-King's Gambit ne-Street Slayer zigcina amabhodi wabaphambili.",
+          "4": "I-Chartopia iphinde idlale kusibonisi se-VR nge-WebXR."
+        },
+        "tips": {
+          "1": "Ezimbili zazo zifihle ngaphakathi kwezindikimba zokubukeka — setha uhlelo lokusebenza ku-War ye-Claude of Duty, noma i-Jungle ye-Jungle Trail.",
+          "2": "Umdlalo ngamunye unekhadi lawo lokwabelana, ngakho-ke isixhumanisi esinye siyavuleka kahle noma ngabe usithumela kuphi."
+        }
+      },
+      "bounties-stores": {
+        "title": "Ama-Bounty & Izitolo",
+        "intro": "Izindlela ezimbili zokuguqula inkundla ibe yimali engenayo: thumela noma ufune i-bounty, noma uvule isitolo futhi uthengise kubabukeli bakho.",
+        "steps": {
+          "1": "Vula 'Ama-Bounty' ukuze upheqa umsebenzi ovulekile, uhlungwe ngesigaba noma ngemali.",
+          "2": "Funa eyodwa, yenza umsebenzi, bese uyithumela ukuze uthole umklomelo — noma ngubani angaba umzingeli, akukho isicelo esidingekayo.",
+          "3": "Thumela i-bounty yakho siqu nge-brief kanye nomvuzo kuma-DeHub tokens noma i-USDC. Ingena ku-escrow ngomzuzu owuthumela.",
+          "4": "Vula 'Izitolo' ukuze usethe indawo yokuthengisa enayo ikhasi layo, i-branding, kanye nezinhlu.",
+          "5": "Imikhiqizo inamanani futhi ihlelwa kuma-DeHub tokens nge-wallet eyakhelwe ngaphakathi, ngaphandle kokukhokha kwangaphandle."
+        },
+        "tips": {
+          "1": "Ama-Bounty ahlukaniswe abe ku-Social Media, Clipping, kanye ne-Contracts.",
+          "2": "Inqubo yokuphikisana ihlela ukungavumelani ngokulethwa, ngakho-ke i-escrow ihlale ixazululwa ngokufanele.",
+          "3": "Abadali basebenzisa ama-bounty ukukhulisa umphakathi — ukwabelana, iziqeshana, kanye nokuphendula konke kuyimisebenzi evumelekile."
+        }
+      },
+      "creator-studio": {
+        "title": "I-Creator Studio & Editor",
+        "intro": "I-Creator Studio ikhiqiza izithombe, ividiyo, umculo, izwi, kanye namamodeli we-3D kusuka ku-prompt, futhi iyinikeze kumhleli — okuhlanganisa isihleli sevidiyo esigcwele esiningi esisebenza kusiphequluli.",
+        "steps": {
+          "1": "Vula i-Creator Studio bese uchaza ukuthi ufuna kwenziwe.",
+          "2": "Iseva icaphuna izindleko ngaphambi kokuthi umsebenzi uqale, ngakho-ke ubona ukuthi ubiza malini ngaphambi kokuthi usebenzise.",
+          "3": "Ama-Render aqhubeka kumugqa wokulinda ohlanganyelwe ngenkathi uqhubeka nokuphequlula uhlelo lokusebenza.",
+          "4": "Hlela imiphumela kusihleli esifana ne-Canva, noma vula isihleli sevidiyo ukuze uthole isikhathi sangempela ngokunquma, ukubeka ungqimba, nokuthekelisa.",
+          "5": "Lahla isiqeshana esiqediwe ngqo kokuthunyelwe, okufushane, noma uhlu lwesitolo."
+        },
+        "tips": {
+          "1": "Umtapo wezimpahla zamahhala ezihleliwe uhlala eduze kwe-Studio nganoma yini ongathanda ukuyikhiqiza.",
+          "2": "Ukukhiqiza kukhokhelwa ngama-DeHub tokens kusuka ku-wallet yakho — usayina ukudluliselwa okukodwa komsebenzi ngamunye, futhi intengo icashwa ngaphambi kokuthi ukhokhe.",
+          "3": "Abasebenzisi abaningi bangathatha uhlelo lwe-Ultra, Team, noma Scale, oluthumela imali yethokheni yanyanga zonke ngqo ku-wallet yabo."
+        }
+      },
+      "buying-dhb": {
+        "title": "Ukuthenga Amathokheni",
+        "intro": "Thenga ama-DeHub tokens ngqo ngaphakathi kohlelo lokusebenza usebenzisa isixhumi esibonakalayo sokushintshanisa esakhelwe ngaphakathi.",
+        "steps": {
+          "1": "Zulazulela ekhasini elithi 'Thenga' kusuka kubha yohlangothi.",
+          "2": "Khetha ithokheni ofuna ukuyishintshanisa kulo (isb., ETH, USDC).",
+          "3": "Faka inani ofuna ukulisebenzisa noma inani lamathokheni ofuna ukuwathola.",
+          "4": "Buyekeza izinga lokushintshanisa kanye nomphumela olinganiselwe.",
+          "5": "Chofoza isithonjana segiya lezilungiselelo ukuze ulungise ukubekezelelana kokushelela (okuzenzakalelayo ngu-1%).",
+          "6": "Qinisekisa ukuthengiselana kokushintshanisa.",
+          "7": "Ama-DeHub tokens azovela ku-wallet yakho lapho ukuthengiselana kuqeda."
+        },
+        "tips": {
+          "1": "Ukubekezelelana okuphezulu kokushelela = kungenzeka ukuthi kufezeke, kodwa kungenzeka kube nokubuyekezwa okubi kakhulu.",
+          "2": "Hlola njalo izinga lokushintshanisa ngaphambi kokuqinisekisa.",
+          "3": "Ungasetha ukushelela okwenziwe ngendlela oyifisayo kuphaneli yezilungiselelo."
+        }
+      },
+      "bridge": {
+        "title": "Ibuloho",
+        "intro": "Hambisa ama-DeHub tokens akho phakathi kwamabhulokhi asekelwayo usebenzisa ibuloho le-cross-chain.",
+        "steps": {
+          "1": "Zululela ekhasini elithi 'Bridge' kusuka kubha yesisombululo.",
+          "2": "Khetha uchungechunge lomthombo (lapho izimpawu zakho zikhona khona njengamanje).",
+          "3": "Khetha uchungechunge lapho uya khona (lapho ufuna ukuzithumela khona).",
+          "4": "Faka inombolo yezimpawu ongazidlulisa.",
+          "5": "Buyekeza imali yokudlulisa nesikhathi esilinganiselwe sokufika.",
+          "6": "Qinisekisa ukuthengiselana kokudlulisa.",
+          "7": "Lindela ukuthi ukuthengiselana kuqede — ukudlulisa kungathatha imizuzu embalwa."
+        },
+        "tips": {
+          "1": "Izimali zokudlulisa ziyahlukahluka ngombhangqwana weketango.",
+          "2": "Ukudlulisa kuvame ukuthatha imizuzu engu-1-5 kuye ngamaketango abandakanyekayo.",
+          "3": "Hlola njalo uchungechunge lapho uya khona ngaphambi kokuqinisekisa."
+        }
+      },
+      "music-tv": {
+        "title": "Umculo ne-TV",
+        "intro": "Jabulela okuqukethwe kwemidiya ngqo ngaphakathi kwe-DeHub — sakaza umculo futhi ubuke iziteshi ze-TV ezibukhoma.",
+        "steps": {
+          "1": "Zululela ku-'Music' kusuka kubha yesisombululo ukuze uphequlule futhi udlale okuthunyelwe komculo.",
+          "2": "Zululela ku-'TV' ukuze ufinyelele iziteshi ze-TV ezibukhoma.",
+          "3": "Phelezelisa iziteshi ngezigaba noma izwe.",
+          "4": "Chofoza kusiteshi ukuze uqale ukubuka.",
+          "5": "Sebenzisa izilawuli zesidlali ukuze ulungise ivolumu nokudlala.",
+          "6": "Bika iziteshi ezilimele usebenzisa inkinobho yokubika."
+        },
+        "tips": {
+          "1": "Iziteshi ze-TV ziqinisekiswe umphakathi ukuze ziqine.",
+          "2": "Okuthunyelwe komculo kungadlalwa ngenkathi uphequlula okunye okuqukethwe."
+        }
+      },
+      "post-info": {
+        "title": "Ulwazi Lokuthunyelwe Nezabelo",
+        "intro": "Okuthunyelwe okukhiqiziwe kuyi-NFT ehlukaniswe izabelo eziyi-1,000. Ikhasi Lolwazi Lokuthunyelwe libonisa idatha ku-chain, izibalo zokuzibandakanya, ukuhlukana kobunikazi, futhi likuvumela ukuthi uhwebe izabelo zanoma yikuphi okuthunyelwe — okuthunyelwe okungakhiqiziwe kunikeza ukukhiqiza esikhundleni salokho.",
+        "steps": {
+          "1": "Thepha isithonjana esithi 'ⓘ' kunoma yikuphi okuthunyelwe ukuze uvule ikhasi Lwazi Lokuthunyelwe.",
+          "2": "Phezulu uzobona i-Token ID (isihlonipho esiyingqayizivele ku-chain) kanye ne-transaction hash — chofoza i-hash ukuze uyibuke ku-block explorer.",
+          "3": "Ngaphansi kwalokho, izibalo zokuzibandakanya zibonisa inani eliphelele lokuthandayo, ukungathandi, ukubukwa, ukuphawula, namathiphu atholiwe.",
+          "4": "Isigaba Sabanikazi sibonisa ibha yenqubekela phambili yokuthi zingaki ezingu-1,000 izabelo umdali asaziphethe, kanye nohlu lwabo bonke abanikazi bezabelo ngezinga labo namaphesenti abo.",
+          "5": "Uma okuthunyelwe kungukukhokha-ngokubuka (PPV), uzobona intengo, uhlobo lwemali, nokuthi bangaki abasebenzisi abathenge ukufinyelela.",
+          "6": "Abanikazi bokuthunyelwe bangashintsha ukubonakala (Umphakathi, Okungafakiwe, noma Okuyimfihlo) futhi bahlele isihloko/incazelo ngqo kusuka kuleli khasi."
+        },
+        "tips": {
+          "1": "Okuthunyelwe okukhiqizwe muva nje kuqala nomdali ephethe zonke izabelo eziyi-1,000 (ubunikazi obungu-100%).",
+          "2": "I-transaction hash ixhuma ku-BaseScan noma i-BscScan kuye ngamaketango.",
+          "3": "Izikhundla ezingafakiwe zivela ezifuneni kodwa zingafinyeleleka ngesixhumanisi esiqondile."
+        }
+      },
+      "trading-fractions": {
+        "title": "Izingxenyana Zokuhweba",
+        "intro": "Ukuhweba ngezingxenyana — ukubhrawuza izindlu, ukwenza izaphulelo, ukufaka eyakho indlu — kuphila ku-app yewebhu ku-dehub.io, ekhasini ngalinye le-Post Info lephosti.",
+        "steps": {
+          "1": "Vula i-dehub.io kubhrawuza bese ungena ngemvume nge-akhawunti efanayo.",
+          "2": "Vula ikhasi lemininingwane yephosti bese ushintshela kuthebhu yayo ye-Marketplace.",
+          "3": "Bhrawuza izindlu, yenza isaphulelo ngenani lakho, noma faka izingxenyana ozibambile.",
+          "4": "Uma ukuhweba sekuqedile, ushintsho luvela kuthebhu yakho ethi Izingxenyana lapha kumakhalekhukhwini."
+        },
+        "tips": {
+          "1": "Ukuba nezingxenyana zephosti kusho ukuthi unengxenye yaleyo NFT.",
+          "2": "Hlola abanikazi bephosti emakethe yewebhu ukuze ubone ukusatshalaliswa kobunikazi ngaphambi kokuthenga.",
+          "3": "Njengomsunguli, ukuthengisa izingxenyana kuvumela abalandeli ukuba bamukele okusunguliwe kwakho."
+        }
+      },
+      "minting-posts": {
+        "title": "Ukuminta Izikhundla (Ukwakha ama-NFT)",
+        "intro": "Ukuminta ngokuzikhethela. Isikhundla sishicilelwa ngaphandle kwekhono ngesikhathi usithumela — akukho isikhwama, akukho ssign, akukho gas — futhi ungakwazi ukusiminta njenge-NFT noma nini lapho ufuna, noma ngenkathi uyibhala noma kamuva kusuka esikhundleni ngokwaso.",
+        "steps": {
+          "1": "Chofoza inkinobho ethi 'Post' kubha yezinhlangothi (idessktop) noma inkinobho ethi + (iselula).",
+          "2": "Bhala umbhalo wakho, namathisela imidiya (izithombe, amavidiyo, umsindo), bese wengeza izigaba.",
+          "3": "Shintsha 'Mint post' ukuze ushicilele ngaphandle kwekhono, noma uyivule ukuze uyiminte ngenkathi ushicilela.",
+          "4": "Ukushicilela akulindi ochungechungeni: iphosti ivela ku-feed nganoma iyiphi indlela.",
+          "5": "Ukuze uxove kamuva, vula ikhasi lemininingwane lephosti elithi '¢' bese usebenzisa isenzo se-Mint lapho.",
+          "6": "Uma usuqoshiwe, iphosti ithola i-Token ID ne-hash yemali engenayo nephumayo ongayiqinisekisa ku-chain, futhi ubamba zonke izingxenyana zayo ezingu-1,000."
+        },
+        "tips": {
+          "1": "Ukungena ngemvume kwezenhlalo, i-imeyili ne-SMS kukhokha igesi engekho — Abaxhasi be-DeHub bakhokha izimali zokusungula.",
+          "2": "Abasebenzisi besikhwama bangaphandle badinga i-ETH ku-Base NOMA ku-BNB KU-BNB Chain yegesi.",
+          "3": "Ukuphawula yilokho okwenza iphosti idayiseke futhi ibe nemithwalo yasebukhosini. Iphosti engashicilelwe isathola amacebiso nokubukwa.",
+          "4": "Irekhodi eliku-chain lihlala unomphela uma selidwetshiwe, ngisho noma iphosti isuswa kamuva ku-feed."
+        }
+      },
+      "glossary": {
+        "title": "Uhlu lwamagama",
+        "intro": "Uhlu lwezincazelo oluphelele lwe-crypto namagama enkundla ukukusiza ukuthi uhambe ngeWebhu3.",
+        "steps": {
+          "1": "Iya ku- 'Glossary' kusuka kubha eseceleni.",
+          "2": "Bhrawuza amagama alfabhethi noma usebenzise usesho ukuze uthole amagama athile.",
+          "3": "Chofoza igama ukuze ubone incazelo yalo egcwele nencazelo.",
+          "4": "Imigomo ihlanganisa imiqondo ye-crypto, amagama e-DeFi, nezici eziqondene ne-DeHub."
+        },
+        "tips": {
+          "1": "Insiza enhle yabafikayo ku-crypto naku-Web3.",
+          "2": "Uluhlu lwamagama luvuselelwa njalo ngemigomo emisha."
+        }
+      }
     }
   },
   "creatorPacks": {

@@ -3465,11 +3465,6 @@
     "noResultsFor": "Geen resultate vir \"{{query}}\" nie",
     "guideSubtitle": "Stap-vir-stap-gids van elke funksie",
     "searchGuide": "Soek die gids...",
-    "guideFractionsTip": "Elke gemunte plasing begin met die skepper wat al sy breuke hou (100% eienaarskap).",
-    "guideInfoStep": "Tik op die inligtingsikoon op 'n gemunte plasing om sy munttransaksie in die blokverkenner oop te maak en die rekord op die ketting te verifieer.",
-    "guideMintIntro": "Om 'n plasing as 'n NFT op die blokketting te munt is opsioneel. Munt dit wanneer jy publiseer, of publiseer nou en munt dit later uit die plasingkieslys.",
-    "guideMintPublishStep": "Kies of jy wil munt, en klik dan 'Plaas' om te publiseer. As jy munt oorslaan, kan jy die plasing later uit die plasingkieslys munt.",
-    "guideMintFractionsStep": "Jy ontvang al 1,000 fraksies (100% eienaarskap) van jou pas gemunte plasing.",
     "glossaryMintTxDesc": "Tik op die inligtingsikoon op 'n gemunte plasing om sy munttransaksie in die blokverkenner oop te maak en die rekord op die ketting te verifieer. Die volledige Plasinginligting-bladsy — statistieke, houers, mark — is op die webtoep by dehub.io.",
     "glossaryTokenIdDesc": "'n Unieke identifiseerder op die ketting wat aan 'n plasing toegeken word wanneer dit as 'n NFT gemunt word.",
     "repostsTab": "Herplasings",
@@ -3486,24 +3481,7 @@
     "glossaryStakingDesc": "Sluit jou DeHub tokens om belonings oor tyd te verdien. Gestakete tokens gee jou ook verhoogde stemkrag in bestuur.",
     "glossaryGovernanceDesc": "Dien voorstelle in en stem oor voorstelle wat die platform vorm. Jou stemkrag word geweeg deur hoeveel DeHub tokens jy hou.",
     "glossaryStakingBadgesDesc": "Kentekens vertoon langs jou gebruikersnaam gebaseer op jou totale DeHub token-besit (beursie + gestakete). Daar is 13 vlakke — hoe meer tokens jy hou, hoe hoër is jou kentekenrang. Hoër vlakke gee meer bestuursstemkrag en laer platformfooie.",
-    "glossaryLeaderboardDesc": "Gebruikers word gerangskik volgens totale DeHub token-balans (beursie + gestakete oor alle kettings heen). Ranglys word periodiek opgedateer en volg 1-dag en 1-week veranderinge. Jy kan ook sorteer volgens wenke gestuur, wenke ontvang, volgelinge, laaiks, of intekenare.",
-    "guideTipStep": "Klik op die juweel/wenk-ikoon om 'n wenk aan die posmaker te stuur in DeHub tokens.",
-    "guideTipWalletTip": "Wenke gaan direk na die skepper se beursie as DeHub tokens.",
-    "guideTipNotificationsTip": "Tip-kennisgewings wys hoeveel DeHub-tokens jy ontvang het.",
-    "guideWalletIntro": "Bekyk jou DeHub-token-saldi's oor verskeie kettings, kyk na staking-deposito's en bestuur jou bates.",
-    "guideWalletTotalStep": "Bekyk jou totale DeHub-token-saldo saamgevoeg oor alle ondersteunde kettings.",
-    "guideStakingIntro": "Stel jou DeHub-tokens om belonings te verdien en jou bestuursstemkrag te verhoog.",
-    "guideStakingAmountStep": "Voer in hoeveel DeHub-tokens jy wil stoot.",
-    "guideLeaderboardBalanceStep": "Balans-oortjie rangskik gebruikers volgens hul totale DeHub-token-besit.",
-    "guideGovernanceVoteStep": "Stem op voorstelle deur die duim-op/duim-af-knoppies te gebruik — jou stemgewig hang af van hoeveel DeHub-tokens jy gestoot het.",
-    "guideGovernancePowerTip": "Jou stemkrag word bepaal deur hoeveel DeHub-tokens jy gestoot het.",
-    "guideBuyIntro": "Koop DeHub-tokens direk in DPay met 'n kaart of ondersteunde kripto.",
-    "guideBuyAmountStep": "Voer die bedrag in wat jy wil spandeer of hoeveel DeHub-tokens jy wil ontvang.",
-    "guideBuyDeliveredStep": "Jou DeHub-tokens sal in jou beursie verskyn sodra die transaksie voltooi is.",
-    "guideBridgeIntro": "Beweeg jou DeHub-tokens tussen ondersteunde blokkene met die kruis-kettingbrug.",
-    "guideBridgeSourceStep": "Kies die bronketting (waar jou DeHub-tokens tans is).",
-    "guideBridgeDestStep": "Kies die bestemmingsketting (waarheen jy jou DeHub-tokens wil stuur).",
-    "guideBridgeAmountStep": "Voer in hoeveel DeHub-tokens om te oorbrug."
+    "glossaryLeaderboardDesc": "Gebruikers word gerangskik volgens totale DeHub token-balans (beursie + gestakete oor alle kettings heen). Ranglys word periodiek opgedateer en volg 1-dag en 1-week veranderinge. Jy kan ook sorteer volgens wenke gestuur, wenke ontvang, volgelinge, laaiks, of intekenare."
   },
   "arcade": {
     "submitAccessibility": "Dien 'n speletjie in by die arcade",
@@ -6917,6 +6895,504 @@
       "packEmpty": "Geen emoji's by daardie adres gevind nie",
       "shortcodeTaken": "{{name}} is reeds geneem",
       "shortcodeStandard": "{{name}} is reeds 'n standaard emoji"
+    }
+  },
+  "guide": {
+    "sections": {
+      "getting-started": {
+        "title": "Aan die begin",
+        "intro": "Daar is vyf maniere om DeHub binne te kom en geen van hulle vereis dat jy reeds 'n beursie besit nie: Google, Apple, 'n kode wat na jou e-pos gestuur is, 'n kode wat per SMS gestuur is, of 'n bestaande beursie wat jy koppel. Alles behalwe die beursie-roete skep 'n nie-bewarende beursie vir jou in die agtergrond — jy hou die sleutels, en DeHub borg die gas sodat jy kan plaas, wenk en versamel sonder om ooit 'n inheemse token te koop.",
+        "steps": {
+          "1": "Besoek dehub.io — die tuisblad is die voorblad, sodat jy kan rondkyk voordat jy inteken.",
+          "2": "Klik 'Teken In'. Jy sal Google en Apple sien, velde vir 'n e-posadres of 'n telefoonnommer, en 'Koppel Beursie' vir 'n bestaande een.",
+          "3": "Met Google of Apple, voltooi die verskaffer se proses. Met e-pos of SMS, voer die kode in wat aankom.",
+          "4": "'n Beursie word geskep en vir jou beveilig met die eerste intekening. Om jou eie beursie te koppel beteken een handtekening om die adres te bewys.",
+          "5": "Kies 'n gebruikersnaam. Dit is wat mense sien en dit dien ook as jou dehub.io/<username> profielskakel.",
+          "6": "Jy is binne. Verken die voer, stel jou profiel op, en begin plaas."
+        },
+        "tips": {
+          "1": "Sosiale, e-pos en SMS-intekeninge betaal nooit gas nie — DeHub borg dit. Gekoppelde beursies betaal hul eie ETH of BNB.",
+          "2": "Keer jy terug na 'n ou DeHub-rekening? Teken in met die e-pos of telefoonnommer wat dit gebruik het en die migrasie vind dit vir jou.",
+          "3": "Jy kan verskeie rekeninge op een toestel hou en tussen hulle wissel in Instellings → Profiel."
+        }
+      },
+      "home-feed": {
+        "title": "Tuisblad",
+        "intro": "Die tuisblad is waar jy plasings van mense sien wat jy volg en trending inhoud. Dit ondersteun verskeie inhoud-tipe oortjies en sorteeropsies.",
+        "steps": {
+          "1": "Navigeer na /app — dit is jou tuisblad.",
+          "2": "Gebruik die boonste oortjies om te filter volgens inhoudtipe: Tuis (alles), Video's, Beelde, Kortbroeke, Musiek, of Regstreekse strome.",
+          "3": "Vee links/regs op die oortjies om meer opsies op selfoon te sien.",
+          "4": "Gebruik die filter/sorteer knoppie (regs bo van die voer) om sortering te verander: Warm, Nuut, of Top.",
+          "5": "Trek af om die voer op selfoon te verfris.",
+          "6": "Rol af om outomaties meer plasings te laai (oneindige rol).",
+          "7": "Wissel tussen Rooster en Voer aansig met die uitleg skakelaar."
+        },
+        "tips": {
+          "1": "Rooster aansig is wonderlik om beelde vinnig te blaai.",
+          "2": "Die 'Tuis' oortjie wys alle inhoudtipes gemeng.",
+          "3": "Regstreekse oortjie wys tans aktiewe regstreekse strome."
+        }
+      },
+      "creating-posts": {
+        "title": "Plasings skep",
+        "intro": "Skep teksplasings, deel beelde, video's, stemnotas, GIF's, en meer. Gebruik hutsmerke, kontantmerke, en noem om bereik te vergroot.",
+        "steps": {
+          "1": "Klik die 'Plasing' knoppie in die sykassie (rekenaar) of die + knoppie (selfoon).",
+          "2": "Tik jou teks in die skryfarea.",
+          "3": "Om 'n beeld of video by te voeg, klik die media-ikoon en kies 'n lêer.",
+          "4": "Om 'n stemnota op te neem, klik die mikrofoon-ikoon.",
+          "5": "Om 'n GIF by te voeg, klik die GIF-ikoon en soek vir een.",
+          "6": "Gebruik #hutsmerke om jou plasing te kategoriseer (bv., #crypto, #defi).",
+          "7": "Gebruik $kontantmerke om tokens te verwys (bv., $DHB, $ETH).",
+          "8": "Gebruik @noem om ander gebruikers te merk (bv., @gebruikersnaam).",
+          "9": "Klik 'Plasing' om te publiseer. Jou plasing verskyn onmiddellik in die voer."
+        },
+        "tips": {
+          "1": "Plasings ondersteun markdown-styl formatering.",
+          "2": "Jy kan 'n kwotasie-plasing maak deur op die herplasing-ikoon op enige plasing te klik en 'Kwotasie' te kies.",
+          "3": "Kategorieë (hutsmerke) verskyn in die 'Praat van die Dorp' ranglys."
+        }
+      },
+      "interacting-with-posts": {
+        "title": "Met plasings interaksie",
+        "intro": "Raak betrokke by inhoud deur te stem, kommentaar te lewer, wenke te gee, boekmerke te plaas, te deel, en te vertaal.",
+        "steps": {
+          "1": "Stem op of stem af op 'n plasing deur die pyltjie-ikone aan die linkerkant van enige plasing te gebruik.",
+          "2": "Klik die kommentaar-ikoon om die kommentaar-afdeling oop te maak en 'n antwoord te gee.",
+          "3": "Klik die juweel/wenk-ikoon om 'n wenk in DeHub tokens aan die plasingmaker te stuur.",
+          "4": "Klik die boekmerk-ikoon om 'n plasing vir later te stoor.",
+          "5": "Klik die deel-ikoon om die plasing skakel te kopieer of ekstern te deel.",
+          "6": "Klik op die vertaalknoppie (wêreldbol-ikoon) op enige plasing om teks na jou taal te vertaal.",
+          "7": "Vir beeldplasings, gebruik die 'Vertaal Beeld'-knoppie om 'n KI-vertaalde weergawe van teks binne die beeld te kry.",
+          "8": "Klik op enige plasing om dit in volskerm-enkelplasing-aansig oop te maak."
+        },
+        "tips": {
+          "1": "Wenke gaan direk na die skepper se beursie in DeHub-tokens.",
+          "2": "Jy kan 'n wenkbedrag stel via vinnige keuseknoppies of 'n pasgemaakte bedrag invoer.",
+          "3": "Geboekmerkte plasings is toeganklik vanaf die Boekmerke-bladsy in die sybalk."
+        }
+      },
+      "explore-search": {
+        "title": "Verken & Soek",
+        "intro": "Ontdek nuwe inhoud en gebruikers deur die verken-bladsy en kragtige soekfunksionaliteit.",
+        "steps": {
+          "1": "Navigeer na /app/explore vanaf die sybalk.",
+          "2": "Gebruik die soekbalk boaan om te soek na gebruikers, plasings, of inhoud.",
+          "3": "Filter resultate volgens oortjie: Alles, Mense, Plasings, Beelde, Video's, Musiek, Regstreeks.",
+          "4": "Blaai deur trending onderwerpe en kategorieë op die verken-bladsy.",
+          "5": "Klik op 'n trending onderwerp om alle verwante plasings te sien.",
+          "6": "Klik op 'n gebruiker in soekresultate om hul profiel te besoek."
+        },
+        "tips": {
+          "1": "Soek ondersteun gebruikersname, beursiadresse, en inhoudsleutelwoorde.",
+          "2": "Trending onderwerpe word opgedateer gebaseer op onlangse plasingaktiwiteit."
+        }
+      },
+      "profile": {
+        "title": "Profiel",
+        "intro": "Jou profiel wys jou plasings, volgelinge, volg, en beursie-inligting.",
+        "steps": {
+          "1": "Klik op jou avatar of 'Profiel' in die sybalk om jou profiel te sien.",
+          "2": "Klik 'Wysig Profiel' om jou vertoonnaam, bio, en avatar op te dateer.",
+          "3": "Laai 'n profielfoto op deur op jou avatar in wysigingsmodus te klik.",
+          "4": "Bekyk jou volgelinge en volg-tellings op jou profielbladsy.",
+          "5": "Blaai deur jou eie plasings, media, en gelikede inhoud via die profiel-oortjies.",
+          "6": "Kopieer jou beursiadres deur op die kopie-ikoon langs dit te klik.",
+          "7": "Besoek ander gebruikers se profiele deur op hul gebruikersnaam of avatar enige plek op die platform te klik."
+        },
+        "tips": {
+          "1": "Jou gebruikersnaam is uniek en verskyn in jou profiel URL (dehub.io/@username).",
+          "2": "Privaatheidinstellings laat jou beheer wie jou volgelinge-tellings kan sien."
+        }
+      },
+      "messages": {
+        "title": "Boodskappe",
+        "intro": "Stuur direkte boodskappe aan ander gebruikers op die platform.",
+        "steps": {
+          "1": "Klik 'Boodskappe' in die sybalk om die boodskapbladsy oop te maak.",
+          "2": "Klik op die skep-knoppie om 'n nuwe gesprek te begin.",
+          "3": "Soek na 'n gebruiker volgens gebruikersnaam om hulle te SMS.",
+          "4": "Tik jou boodskap en druk stuur.",
+          "5": "Bekyk jou gesprekgeskiedenis in die boodskappe lys.",
+          "6": "Klik op 'n gesprek om voort te gaan gesels."
+        },
+        "tips": {
+          "1": "Jy sal 'n kennisgewing ontvang wanneer iemand jou SMS.",
+          "2": "Skeppers kan boodskappe agter 'n wenkvereiste sluit."
+        }
+      },
+      "ai-assistant": {
+        "title": "AI Assistent",
+        "intro": "Gesels met DeHub se ingeboude AI assistent vir hulp, inligting en kreatiewe take.",
+        "steps": {
+          "1": "Klik 'Assistent' in die sybalk om die AI-klets oop te maak.",
+          "2": "Tik jou vraag of versoek in die klets invoer.",
+          "3": "Die AI kan help met kripto-inligting, platformvrae en algemene kennis.",
+          "4": "Begin 'n nuwe gesprek deur op die nuwe klets knoppie te klik.",
+          "5": "Bekyk jou gesprekgeskiedenis in die sybalk van die assistent bladsy.",
+          "6": "Jy kan beelde aanheg vir die AI om te ontleed."
+        },
+        "tips": {
+          "1": "Die AI onthou konteks binne 'n gesprek.",
+          "2": "Jy kan die AI vra oor DeHub kenmerke, kripto terme, of algemene vrae.",
+          "3": "Vorige gesprekke word gestoor en is enige tyd toeganklik."
+        }
+      },
+      "notifications": {
+        "title": "Kennisgewings",
+        "intro": "Bly op hoogte met laaiks, kommentaar, wenke, volgelinge en ander aktiwiteit op jou inhoud.",
+        "steps": {
+          "1": "Klik op die klok ikoon of 'Kennisgewings' in die sybalk.",
+          "2": "Bekyk alle kennisgewings in 'n chronologiese lys.",
+          "3": "Klik op 'n kennisgewing om na die verwante inhoud te navigeer.",
+          "4": "Kennisgewings sluit in: nuwe volgelinge, pos stemme, kommentaar, wenke, en noemings.",
+          "5": "Ongeleesde kennisgewings word uitgelig — hulle merk as gelees wanneer dit bekyk word."
+        },
+        "tips": {
+          "1": "Die kennisgewing kenteken wys die telling van ongeleesde kennisgewings.",
+          "2": "Wenk kennisgewings wys hoeveel tokens jy ontvang het."
+        }
+      },
+      "wallet": {
+        "title": "Beursie",
+        "intro": "Bekyk jou DeHub token balanse oor verskeie kettings, kyk na staking deposito's, en bestuur jou bates.",
+        "steps": {
+          "1": "Klik 'Beursie' in die sybalk om die beursie bladsy oop te maak.",
+          "2": "Bekyk jou totale token-saldo, saamgevoeg oor alle ondersteunde kettings.",
+          "3": "Sien uiteensettings per ketting: Ethereum, Base, BNB Chain, en meer.",
+          "4": "Kontroleer jou staking-deposito's en belonings.",
+          "5": "Klik 'Refresh Scan' om jou saldo's van on-chain data op te dateer.",
+          "6": "Kopieer jou beursie-adres om tokens van ander te ontvang."
+        },
+        "tips": {
+          "1": "Saldo's word outomaties opgedateer, maar jy kan enige tyd 'n verversing afdwing.",
+          "2": "Die beursie wys beide likiede (beskikbare) en gestakete saldo's."
+        }
+      },
+      "staking": {
+        "title": "Staking",
+        "intro": "Stak jou DeHub-tokens om belonings te verdien en jou bestuursstemkrag te verhoog.",
+        "steps": {
+          "1": "Navigeer na die 'Staking'-bladsy vanaf die sybalk.",
+          "2": "Voer die aantal tokens in wat jy wil stak.",
+          "3": "Kies die ketting waarop jy wil stak.",
+          "4": "Bevestig die transaksie in jou beursie (eksterne beursies) of dit word outomaties uitgevoer (sosiale aanmelding).",
+          "5": "Bekyk jou gestakete bedrae en enige hangende belonings.",
+          "6": "Om te onstake, voer die bedrag in en bevestig die onstaking-transaksie."
+        },
+        "tips": {
+          "1": "Staking verhoog jou stemgewig in bestuursvoorstelle.",
+          "2": "Sosiale-aanmeldingsgebruikers benodig nie gas om te stak nie — dit is gasloos.",
+          "3": "Jy kan op verskeie kettings gelyktydig stak."
+        }
+      },
+      "leaderboard": {
+        "title": "Ranglys",
+        "intro": "Sien wie boaan is! Die ranglys rangskik gebruikers volgens saldo, daaglikse besteding, en trending onderwerpe.",
+        "steps": {
+          "1": "Navigeer na die 'Ranglys'-bladsy vanaf die sybalk.",
+          "2": "Wissel tussen oortjies: Saldo, Daagliks Bestee, en Praat van die Stad.",
+          "3": "Saldo-oortjie rangskik gebruikers volgens hul totale token-besit.",
+          "4": "Daagliks Bestee-oortjie wys wie die aktiefste was met wenke in die laaste 24 uur.",
+          "5": "Praat van die Stad wys die mees-besproke onderwerpe/kategorieë.",
+          "6": "Klik op enige gebruiker om hul profiel te besoek.",
+          "7": "Die ranglys word periodiek deur die dag opgedateer."
+        },
+        "tips": {
+          "1": "Daaglikse ranglys word elke 24 uur teruggestel.",
+          "2": "Praat van die Stad volg enkelwoord-kategorieë van hutsmerke."
+        }
+      },
+      "command-centre": {
+        "title": "Beheersentrum",
+        "intro": "'n Oorsig van jou belangrikste metodes en platformaktiwiteit in 'n oogopslag.",
+        "steps": {
+          "1": "Klik op 'Command Centre' in die sybalk.",
+          "2": "Bekyk jou profielopsomming, insluitend pos-telling, volgelinge en betrokkenheid.",
+          "3": "Sien jou onlangse aktiwiteit en gewilde onderwerpe.",
+          "4": "Kry toegang tot vinnige skakels na algemeen gebruikte funksies."
+        },
+        "tips": {
+          "1": "Die Command Centre gee jou 'n voël se oog-uitsig van jou DeHub-teenwoordigheid."
+        }
+      },
+      "governance": {
+        "title": "Bestuur",
+        "intro": "Neem deel aan platformbestuur deur voorstelle te skep en oor gemeenskapsbesluite te stem.",
+        "steps": {
+          "1": "Navigeer na 'Governance' vanaf die sybalk.",
+          "2": "Blaai deur aktiewe voorstelle wat deur die gemeenskap ingedien is.",
+          "3": "Klik op 'n voorstel om die volledige beskrywing en bespreking daarvan te lees.",
+          "4": "Stem op voorstelle met die duim op/af knoppies — jou stemgewig hang af van hoeveel DeHub-tokens jy gestake het.",
+          "5": "Laat kommentaar op voorstelle om met die gemeenskap te bespreek.",
+          "6": "Dien jou eie voorstel in deur op die 'Create Proposal' knoppie te klik."
+        },
+        "tips": {
+          "1": "Jou stemkrag word bepaal deur die aantal tokens wat jy gestake het.",
+          "2": "Badgehouers mag bykomende stemgewig kry.",
+          "3": "Voorstelle gaan deur stadiums: Aktief → Geslaag/Verwerp."
+        }
+      },
+      "bookmarks": {
+        "title": "Boekmerke",
+        "intro": "Stoor poste in jou boekmerke vir maklike toegang later.",
+        "steps": {
+          "1": "Klik op die boekmerk-ikoon op enige pos om dit te stoor.",
+          "2": "Navigeer na 'Bookmarks' in die sybalk om alle gestoorde poste te bekyk.",
+          "3": "Klik op 'n boekmerk-pos om dit volledig te bekyk.",
+          "4": "Verwyder 'n boekmerk deur weer op die boekmerk-ikoon te klik."
+        },
+        "tips": {
+          "1": "Boekmerke is privaat — net jy kan jou gestoorde poste sien.",
+          "2": "Daar is geen limiet op hoeveel poste jy kan boekmerk nie."
+        }
+      },
+      "settings": {
+        "title": "Instellings",
+        "intro": "Pas jou DeHub-ervaring aan met taal-, privaatheid- en vertoonvoorkeure.",
+        "steps": {
+          "1": "Klik op 'Settings' in die sybalk.",
+          "2": "Verander jou vertaaltaal vanaf die taal-kieser.",
+          "3": "Pas privaatheidinstellings aan: beheer wie jou volgeling-tellings en volg-lys sien.",
+          "4": "Stel jou standaard possigbaarheidvoorkeure in.",
+          "5": "Bestuur kennisgewingvoorkeure."
+        },
+        "tips": {
+          "1": "DeHub ondersteun veelvuldige tale — die hele koppelvlak word vertaal.",
+          "2": "Privaatheidinstellings is onmiddellik van toepassing."
+        }
+      },
+      "posting-allowance": {
+        "title": "Jou daaglikse poslimiet",
+        "intro": "Pos is elke dag gratis tot 'n limiet wat skaal met jou staking-kenteken. Almal begin met tien teksplasings en een gigagreep video, beelde en oudio per dag. Gaan verby enige van die twee en die res van daardie dag word betaal in DeHub-tokens — slegs op die deel wat oorloop.",
+        "steps": {
+          "1": "Plaas soos normaal. Binne die limiet word niks gehef nie en niks word van jou gevra nie.",
+          "2": "Teksplasings en media is aparte poele, so 'n dag wat spandeer word om video op te laai, laat steeds al tien teksplasings gratis.",
+          "3": "Wanneer 'n pos sou oorloop, pryse die toepassing dit eers en kyk of jou beursie dit kan dek voordat iets oplaai.",
+          "4": "Die pos publiseer presies soos dit binne die limiet sou wees — publikasie wag nooit op 'n betaling nie.",
+          "5": "Dan keur jy een oordrag goed vir daardie pos alleen, vereffen op watter van Base of BNB Chain genoeg DeHub-tokens hou.",
+          "6": "Beide poele word om middernag UTC teruggestel."
+        },
+        "tips": {
+          "1": "Oorloop is pro rata: 200 MB verby jou limiet kos 200 MB, nie 'n hele gigagreep nie.",
+          "2": "Herplasings, kommentaar, reaksies, wenke en boodskappe kos niks en raak nooit die limiet aan nie.",
+          "3": "Weier die betaling en die pos bly op — die bedrag blokkeer net jou volgende betaalde pos totdat dit vereffen is. Môre se gratis limiet is altyd joune.",
+          "4": "'n Staking-kenteken verhoog die gratis limiet en verlaag die prys van enigiets verby dit."
+        }
+      },
+      "reactions-and-safety": {
+        "title": "Reaksies, demping en volwasse inhoud",
+        "intro": "Daar is nege reaksies agter die like-knoppie, en 'n stel kontroles om te bepaal wat jy sien en wie jou kan bereik.",
+        "steps": {
+          "1": "Hou die duim omhoog op enige pos om die reaksie-laai oop te maak: like, liefde, respek, warm, lol, hartseer, huil, afkeur en kak.",
+          "2": "Die sewe positiewe tel mee vir die pos se like-totaal; afkeur en kak tel daarteen.",
+          "3": "Jou reaksie word geweeg deur jou staking-kenteken, so 'n kentekenhouer se reaksie skuif die telling verder as een stem.",
+          "4": "Tik die X in 'n pos se kop om die skrywer daarvan te demp — hulle val dadelik uit jou voer uit.",
+          "5": "Skeppers merk hul eie plasings as volwasse terwyl hulle dit saamstel; daardie plasings bly van die publieke tuisblad af.",
+          "6": "Om volwasse plasings oral te sien, skakel 'Wys volwasse inhoud' in Instellings aan."
+        },
+        "tips": {
+          "1": "'n Volwasse pos is steeds volledig sigbaar op die skepper se profiel en vir die mense wat hulle volg.",
+          "2": "Blokkering vanaf 'n profiel gaan verder as demping en sny ook boodskappe af.",
+          "3": "Die reaksie-laai wys wie gereageer het en waarmee, sodat jy die kamer kan sien eerder as net 'n nommer."
+        }
+      },
+      "stages": {
+        "title": "Stages (Regstreekse oudio-kamers)",
+        "intro": "Stages is regstreekse oudio-kamers wat in DeHub ingebou is. 'n Gasheer open 'n kamer, bring sprekers op, en enigiemand kan inval om te luister vanaf die Stages-bladsy of 'n gedeelde skakel.",
+        "steps": {
+          "1": "Maak 'Stages' in die sybalk oop om te sien wat nou regstreeks is en wat geskeduleer is.",
+          "2": "Tik 'n regstreekse verhoog om as luisteraar aan te sluit, of stel 'n herinnering op 'n geskeduleerde een en word in kennis gestel wanneer dit begin.",
+          "3": "Begin jou eie vanaf dieselfde bladsy — jy kan regstreeks vanaf die blaaier gaan, sonder OBS of 'n stroom sleutel.",
+          "4": "As gasheer, bring sprekers op die verhoog, demp of verwyder hulle, deel jou skerm, en bestuur die klankbord.",
+          "5": "Luisteraars stuur regstreekse reaksies en praat in die kamerklets sonder om op die verhoog te kom.",
+          "6": "Elke verhoog neem op, en die opname speel daarna terug vanaf die kaart waarop dit verskyn."
+        },
+        "tips": {
+          "1": "Regstreekse onderskrifte onderskryf elke spreker en vertaal in watter taal jy ook al lees.",
+          "2": "Regstreekse dubbing kan die kamer hardop praat in die gasheer se eie gekloonde stem, gefaktureer per minuut in DeHub tokens.",
+          "3": "Gashere kan 'n radiostasie op die lug sit of hul eie musieksnitte tussen gesprekke speel.",
+          "4": "'n Mini-speler hou die kamer aan die gang in die hoek terwyl jy die res van die toepassing blaai."
+        }
+      },
+      "communities": {
+        "title": "Gemeenskappe & Geleenthede",
+        "intro": "Gemeenskappe is lid-bestuurde ruimtes met hul eie voer, lede en aktiwiteit. Geleenthede voeg tydsbeperkte programmering bo-op hulle by.",
+        "steps": {
+          "1": "Maak 'Gemeenskappe' oop in die sybalk en blaai deur die publieke een.",
+          "2": "Sluit aan met een tik. Nuwe aktiwiteit verskyn as 'n ongeleesde kenteken in die navigasie.",
+          "3": "Plaas, bespreek, voer peilings uit en gee wenke binne 'n gemeenskap se eie voer.",
+          "4": "Gemeenskapseienaars bestuur hul eie ruimte en kan administrasie regte aan ander toestaan.",
+          "5": "Maak 'Geleenthede' oop vir geskeduleerde programmering, met 'n volledige bladsy per geleentheid wat jy regstreeks kan volg."
+        },
+        "tips": {
+          "1": "Gemeenskapsgesels ondersteun @vermeldings en @hier, sodat 'n plasing die kamer kan bereik.",
+          "2": "'n Uitnodigingskakel laat jou mense reguit in 'n gemeenskap bring."
+        }
+      },
+      "arcade": {
+        "title": "Arkade",
+        "intro": "Vyf speletjies loop binne DeHub in 'n blaaier oortjie — niks om te installeer nie, niks om te koop nie.",
+        "steps": {
+          "1": "Maak 'Arkade' oop in die sybalk.",
+          "2": "Kies 'n speletjie: King's Gambit (3D skaak met 'n aanlyn Elo leer), Claude of Duty ( 'n shooter wat sy eie kuns genereer soos dit laai), Jungle Trail ( 'n prosedurele reënwoudwandeling), Street Slayer ( 'n beat 'em up gemaak vir DeHub) of Chartopia ( 'n beloopbare handelsvloer).",
+          "3": "Speel in die oortjie. King's Gambit en Street Slayer hou ranglyste.",
+          "4": "Chartopia loop ook in 'n VR headset deur WebXR."
+        },
+        "tips": {
+          "1": "Twee van hulle is weggesteek binne die voorkoms temas — stel die toepassing op War vir Claude of Duty, of Jungle vir Jungle Trail.",
+          "2": "Elke speletjie het sy eie deel kaart, so 'n skakel na een ontvou behoorlik waar jy dit ook al plaas."
+        }
+      },
+      "bounties-stores": {
+        "title": "Belonings & Winkels",
+        "intro": "Twee maniere om die platform in inkomste te omskep: plaas of eis 'n beloning, of maak 'n winkel oop en verkoop aan jou gehoor.",
+        "steps": {
+          "1": "Maak 'Belonings' oop om oop werk te blaai, gefiltreer volgens kategorie of geldeenheid.",
+          "2": "Eis een, doen die werk, en dien dit in om die beloning in te samel — enigiemand kan 'n jagter wees, geen aansoek nodig nie.",
+          "3": "Plaas jou eie beloning met 'n kort beskrywing en 'n beloning in DeHub-tokens of USDC. Dit word in escrow geplaas sodra jy dit plaas.",
+          "4": "Maak 'Stores' oop om 'n winkel op te rig met sy eie bladsy, handelsmerk en aanbiedinge.",
+          "5": "Produkte word geprys en vereffen in DeHub-tokens deur die ingeboude beursie, sonder eksterne uitklok."
+        },
+        "tips": {
+          "1": "Belonings word georganiseer in Sosiale Media, Knipsels en Kontrakte.",
+          "2": "'n Geskilvloei besleg geskille oor aflewering, sodat escrow altyd regverdig oplos.",
+          "3": "Skeppers gebruik belonings om 'n gemeenskap te laat groei — deel, knipsels en reaksies is almal geldige take."
+        }
+      },
+      "creator-studio": {
+        "title": "Skepperateljee & Redigeerder",
+        "intro": "Skepperateljee genereer beelde, video, musiek, stem en 3D-modelle uit 'n opdrag, en gee dit aan 'n redigeerder — insluitend 'n volledige multi-snit video-redigeerder wat in die blaaier loop.",
+        "steps": {
+          "1": "Maak Skepperateljee oop en beskryf wat jy wil hê.",
+          "2": "Die bediener kwoteer die koste voordat die taak uitgevoer word, sodat jy sien wat dit kos voordat jy dit spandeer.",
+          "3": "Weergawes gaan voort in 'n gedeelde tou terwyl jy voortgaan om die toepassing te blaai.",
+          "4": "Rangskik die resultate in die Canva-styl redigeerder, of maak die video-redigeerder oop vir 'n regte tydlyn met sny, lê en uitvoer.",
+          "5": "Laai die voltooide stuk direk in 'n plasing, 'n kort of 'n winkellys."
+        },
+        "tips": {
+          "1": "'n Gratis voorraad-bate biblioteek sit langs die ateljee vir enigiets wat jy liewer nie wil genereer nie.",
+          "2": "Generering word betaal in DeHub-tokens uit jou beursie — jy teken een oordrag per taak, en die prys word gekwoteer voordat jy betaal.",
+          "3": "Swaarder gebruikers kan 'n Ultra-, Span- of Skaalplan neem, wat 'n maandelikse token-toelae direk na hul beursie stuur."
+        }
+      },
+      "buying-dhb": {
+        "title": "Tokens Koop",
+        "intro": "Koop DeHub-tokens direk binne die toepassing met die ingeboude ruil-koppelvlak.",
+        "steps": {
+          "1": "Navigeer na die 'Koop'-bladsy vanaf die sybalk.",
+          "2": "Kies die token waarvan jy wil ruil (bv. ETH, USDC).",
+          "3": "Voer die bedrag in wat jy wil spandeer of die aantal tokens wat jy wil ontvang.",
+          "4": "Hersien die wisselkoers en geskatte uitset.",
+          "5": "Klik op die instellingsrat-ikoon om gly-toleransie aan te pas (verstek is 1%).",
+          "6": "Bevestig die ruiltransaksie.",
+          "7": "DeHub-tokens sal in jou beursie verskyn sodra die transaksie voltooi is."
+        },
+        "tips": {
+          "1": "Hoër gly-toleransie = meer waarskynlik om uit te voer, maar potensiaal vir erger pryse.",
+          "2": "Kyk altyd na die wisselkoers voordat jy bevestig.",
+          "3": "Jy kan pasgemaakte gly in die instellingspaneel stel."
+        }
+      },
+      "bridge": {
+        "title": "Oorbrug",
+        "intro": "Beweeg jou DeHub-tokens tussen ondersteunde blokkettings met die kruis-ketting oorbrug.",
+        "steps": {
+          "1": "Navigeer na die 'Bridge'-bladsy vanaf die sybalk.",
+          "2": "Kies die bronketting (waar jou tokens tans is).",
+          "3": "Kies die bestemmingsketting (waarheen jy dit wil stuur).",
+          "4": "Voer die aantal tokens in om te bridge.",
+          "5": "Hersien die bridge-fooi en geskatte aankomstyd.",
+          "6": "Bevestig die bridge-transaksie.",
+          "7": "Wag vir die transaksie om te voltooi — bridging kan 'n paar minute neem."
+        },
+        "tips": {
+          "1": "Bridge-fooie wissel per kettingpaar.",
+          "2": "Bridging neem tipies 1-5 minute, afhangende van die betrokke kettings.",
+          "3": "Dubbelkeur altyd die bestemmingsketting voordat jy bevestig."
+        }
+      },
+      "music-tv": {
+        "title": "Musiek & TV",
+        "intro": "Geniet mediainhoud direk binne DeHub — stroom musiek en kyk regstreekse TV-kanale.",
+        "steps": {
+          "1": "Navigeer na 'Musiek' vanaf die sybalk om musiekplasings te blaai en te speel.",
+          "2": "Navigeer na 'TV' om toegang tot regstreekse TV-kanale te verkry.",
+          "3": "Blaai deur kanale volgens kategorie of land.",
+          "4": "Klik op 'n kanaal om te begin kyk.",
+          "5": "Gebruik die spelerkontroles om volume en afspeel aan te pas.",
+          "6": "Rapporteer gebreekte kanale met die rapporteer-knoppie."
+        },
+        "tips": {
+          "1": "TV-kanale is gemeenskaps-geverifieer vir betroubaarheid.",
+          "2": "Musiekplasings kan gespeel word terwyl ander inhoud geblaai word."
+        }
+      },
+      "post-info": {
+        "title": "Plasinginligting & Breuke",
+        "intro": "'n Geminte plasing is 'n NFT wat in 1 000 breuke verdeel is. Die Plasinginligting-bladsy wys on-chain data, betrokkenheidstatistieke, eienaarskapsafbreking, en laat jou breuke van enige plasing verhandel — op 'n ongeminte plasing bied dit aan om eerder te mint.",
+        "steps": {
+          "1": "Tik die 'ⓘ'-ikoon op enige plasing om sy Plasinginligting-bladsy oop te maak.",
+          "2": "Bo sal jy die Token ID (unieke on-chain identifiseerder) en die transaksie-hash sien — klik die hash om dit op die blokverkenner te sien.",
+          "3": "Hieronder wys betrokkenheidstatistieke totale laaiks, afkeure, kyke, kommentaar en wenke ontvang.",
+          "4": "Die Houers-afdeling wys 'n vorderingsbalk van hoeveel van die 1 000 breuke die skepper steeds besit, plus 'n lys van alle breukhouers met hul saldos en persentasies.",
+          "5": "As die plasing betaal-per-kyk (PPV) is, sal jy die prys, geldeenheid, en hoeveel gebruikers toegang gekoop het, sien.",
+          "6": "Plasingeienaars kan sigbaarheid (Publiek, Ongelys, of Privaat) verander en die titel/beskrywing direk vanaf hierdie bladsy wysig."
+        },
+        "tips": {
+          "1": "'n Vars geminte plasing begin met die skepper wat al 1 000 breuke (100% eienaarskap) hou.",
+          "2": "Die transaksie-hash skakel na BaseScan of BscScan, afhangende van die ketting.",
+          "3": "Ongeagde plasings verskyn nie in voer nie, maar kan steeds via 'n direkte skakel verkry word."
+        }
+      },
+      "trading-fractions": {
+        "title": "Handelsfraksies",
+        "intro": "Fraksie handel — blaai lyste, maak aanbiedings, notering van jou eie — leef op die web app by dehub.io, op elke pos se Post Info bladsy.",
+        "steps": {
+          "1": "Open dehub.io in 'n blaaier en teken in met dieselfde rekening.",
+          "2": "Open die pos se Post Info-bladsy en skakel oor na die Marketplace-oortjie.",
+          "3": "Blaai deur lyste, maak 'n aanbod teen jou prys, of lys breuke wat jy hou.",
+          "4": "Sodra 'n handel voltooi is, verskyn die verandering in u breuke-oortjie hier op mobiele toestelle."
+        },
+        "tips": {
+          "1": "Die besit van breuke van 'n pos beteken dat jy 'n deel van daardie on-ketting NFT hou.",
+          "2": "Kontroleer 'n pos se houers op die internetmark om eienaarskapsverspreiding te sien voordat jy koop.",
+          "3": "As skepper kan die verkoop van breuke aanhangers jou inhoud mede-eien."
+        }
+      },
+      "minting-posts": {
+        "title": "Munt (Skep van NFTs)",
+        "intro": "Munt is opsioneel. 'n Plasing word off-chain gepubliseer die oomblik wat jy dit stuur — geen beursie, geen handtekening, geen gas — en jy kan dit as 'n NFT munt wanneer jy wil, hetsy terwyl jy dit saamstel of later vanaf die plasing self.",
+        "steps": {
+          "1": "Klik die 'Plaas' knoppie in die sybalk (rekenaar) of die + knoppie (selfoon).",
+          "2": "Skryf jou teks, heg media (beelde, video's, klank) aan, en voeg kategorieë by.",
+          "3": "Laat 'Munt plasing' af om off-chain te publiseer, of skakel dit aan om te munt terwyl jy publiseer.",
+          "4": "Publisering wag nooit op die ketting nie: die pos verskyn in die voer.",
+          "5": "Om later te mint, maak die pos se '?' inligtingsblad oop en gebruik die Mint-aksie daar.",
+          "6": "Sodra dit gemunt is, kry die pos 'n verborge ID en 'n transaksie-hash wat u op die ketting kan verifieer, en u hou al 1000 breuke daarvan."
+        },
+        "tips": {
+          "1": "Sosiale, e-pos en SMS-aanmeldings betaal nul gas — DeHub borg minting fooie.",
+          "2": "Eksterne-beursie gebruikers moet ETH op basis of BNB op BNB ketting vir gas.",
+          "3": "Mynbou is wat 'n pos verhandelbaar en koninklikesdraend maak. 'N Onbeperkte pos verdien steeds wenke en sienings.",
+          "4": "Die on-ketting rekord is permanent sodra gemunt, selfs al is die post is later verwyder uit die voer."
+        }
+      },
+      "glossary": {
+        "title": "Woordelys",
+        "intro": "'N Omvattende woordelys van kripto- en platformterminologie om u te help om Web3 te navigeer.",
+        "steps": {
+          "1": "Navigeer na 'Glossary' vanaf die sybalk.",
+          "2": "Blaai deur terme alfabeties of gebruik die soektog om spesifieke terme te vind.",
+          "3": "Klik op 'n term om die volledige definisie en verduideliking te sien.",
+          "4": "Terme dek crypto konsepte, DeFi terminologie, en DeHub-spesifieke funksies."
+        },
+        "tips": {
+          "1": "Groot hulpbron vir nuwelinge om crypto en Web3.",
+          "2": "Die woordelys word gereeld opgedateer met nuwe terme."
+        }
+      }
     }
   },
   "creatorPacks": {

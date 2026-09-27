@@ -3432,11 +3432,6 @@
     "noResultsFor": "Tidak ada hasil untuk \"{{query}}\"",
     "guideSubtitle": "Panduan langkah demi langkah untuk setiap fitur",
     "searchGuide": "Cari panduan...",
-    "guideFractionsTip": "Setiap postingan yang di-mint dimulai dengan kreator memegang semua fraksinya (kepemilikan 100%).",
-    "guideInfoStep": "Ketuk ikon info pada postingan yang di-mint untuk membuka transaksi mint-nya di block explorer dan memverifikasi catatan on-chain.",
-    "guideMintIntro": "Mint postingan sebagai NFT di blockchain bersifat opsional. Mint saat Anda memublikasikan, atau publikasikan sekarang dan mint nanti dari menu postingan.",
-    "guideMintPublishStep": "Pilih apakah akan mint, lalu klik 'Posting' untuk memublikasikan. Jika Anda melewatkan mint, Anda bisa mint postingan nanti dari menu postingan.",
-    "guideMintFractionsStep": "Kamu menerima seluruh 1.000 fraksi (kepemilikan 100%) dari kiriman yang baru kamu cetak.",
     "glossaryMintTxDesc": "Ketuk ikon info pada postingan yang di-mint untuk membuka transaksi mint-nya di block explorer dan memverifikasi catatan on-chain. Halaman Info Postingan lengkap — statistik, pemegang, marketplace — ada di aplikasi web di dehub.io.",
     "glossaryTokenIdDesc": "Pengenal on-chain unik yang diberikan ke postingan saat di-mint sebagai NFT.",
     "repostsTab": "Repost",
@@ -3453,24 +3448,7 @@
     "glossaryStakingDesc": "Kunci token DeHub Anda untuk mendapatkan hadiah dari waktu ke waktu. Token yang di-stake juga memberi Anda kekuatan voting yang lebih besar dalam tata kelola.",
     "glossaryGovernanceDesc": "Kirim dan pilih proposal yang membentuk platform. Kekuatan voting Anda ditimbang berdasarkan berapa banyak token DeHub yang Anda miliki.",
     "glossaryStakingBadgesDesc": "Lencana yang ditampilkan di sebelah nama pengguna Anda berdasarkan total kepemilikan token DeHub Anda (dompet + di-stake). Ada 13 tingkatan — semakin banyak token yang Anda miliki, semakin tinggi peringkat lencana Anda. Tingkatan yang lebih tinggi memberikan kekuatan voting tata kelola yang lebih besar dan biaya platform yang lebih rendah.",
-    "glossaryLeaderboardDesc": "Pengguna diberi peringkat berdasarkan total saldo token DeHub (dompet + di-stake di semua rantai). Peringkat diperbarui secara berkala dan melacak perubahan 1 hari dan 1 minggu. Anda juga dapat mengurutkan berdasarkan tip yang dikirim, tip yang diterima, pengikut, suka, atau pelanggan.",
-    "guideTipStep": "Klik ikon permata/tip untuk mengirim tip dalam token DeHub kepada pembuat postingan.",
-    "guideTipWalletTip": "Tip langsung masuk ke dompet kreator sebagai token DeHub.",
-    "guideTipNotificationsTip": "Notifikasi tip menampilkan jumlah token DeHub yang Anda terima.",
-    "guideWalletIntro": "Lihat saldo token DeHub Anda di berbagai rantai, periksa deposit staking, dan kelola aset Anda.",
-    "guideWalletTotalStep": "Lihat total saldo token DeHub Anda yang diagregasi di semua rantai yang didukung.",
-    "guideStakingIntro": "Lakukan staking token DeHub Anda untuk mendapatkan hadiah dan tingkatkan kekuatan voting tata kelola Anda.",
-    "guideStakingAmountStep": "Masukkan jumlah token DeHub yang ingin Anda lakukan staking.",
-    "guideLeaderboardBalanceStep": "Tab Saldo memberi peringkat pengguna berdasarkan total kepemilikan token DeHub mereka.",
-    "guideGovernanceVoteStep": "Pilih proposal menggunakan tombol jempol ke atas/bawah — bobot suara Anda bergantung pada jumlah token DeHub yang Anda lakukan staking.",
-    "guideGovernancePowerTip": "Kekuatan voting Anda ditentukan oleh jumlah token DeHub yang Anda lakukan staking.",
-    "guideBuyIntro": "Beli token DeHub langsung di DPay menggunakan kartu atau kripto yang didukung.",
-    "guideBuyAmountStep": "Masukkan jumlah yang ingin Anda belanjakan atau jumlah token DeHub yang ingin Anda terima.",
-    "guideBuyDeliveredStep": "Token DeHub Anda akan muncul di dompet Anda setelah transaksi selesai.",
-    "guideBridgeIntro": "Pindahkan token DeHub Anda antar blockchain yang didukung menggunakan jembatan lintas rantai.",
-    "guideBridgeSourceStep": "Pilih rantai sumber (tempat token DeHub Anda saat ini berada).",
-    "guideBridgeDestStep": "Pilih rantai tujuan (tempat Anda ingin mengirim token DeHub Anda).",
-    "guideBridgeAmountStep": "Masukkan jumlah token DeHub yang akan dijembatani."
+    "glossaryLeaderboardDesc": "Pengguna diberi peringkat berdasarkan total saldo token DeHub (dompet + di-stake di semua rantai). Peringkat diperbarui secara berkala dan melacak perubahan 1 hari dan 1 minggu. Anda juga dapat mengurutkan berdasarkan tip yang dikirim, tip yang diterima, pengikut, suka, atau pelanggan."
   },
   "arcade": {
     "submitAccessibility": "Kirim game ke arcade",
@@ -6792,6 +6770,504 @@
       "packEmpty": "Tidak ada emoji yang ditemukan di alamat itu",
       "shortcodeTaken": "{{name}} sudah digunakan",
       "shortcodeStandard": "{{name}} sudah menjadi emoji standar"
+    }
+  },
+  "guide": {
+    "sections": {
+      "getting-started": {
+        "title": "Memulai",
+        "intro": "Ada lima cara untuk masuk ke DeHub dan tidak satu pun yang mengharuskan Anda sudah memiliki dompet: Google, Apple, kode yang dikirim ke email Anda, kode yang dikirim melalui SMS, atau dompet yang sudah ada yang Anda sambungkan. Semua kecuali rute dompet membuat dompet non-kustodian untuk Anda di latar belakang — Anda memegang kuncinya, dan DeHub mensponsori gas sehingga Anda dapat memposting, memberi tip, dan mengumpulkan tanpa pernah membeli token asli.",
+        "steps": {
+          "1": "Kunjungi dehub.io — umpan beranda adalah halaman depan, jadi Anda dapat melihat-lihat sebelum masuk.",
+          "2": "Klik 'Masuk'. Anda akan melihat Google dan Apple, kolom untuk alamat email atau nomor telepon, dan 'Sambungkan Dompet' untuk yang sudah ada.",
+          "3": "Dengan Google atau Apple, selesaikan alur penyedia. Dengan email atau SMS, masukkan kode yang diterima.",
+          "4": "Dompet dibuat dan diamankan untuk Anda saat pertama kali masuk. Menyambungkan dompet Anda sendiri sebagai gantinya berarti satu tanda tangan untuk membuktikan alamatnya.",
+          "5": "Pilih nama pengguna. Itulah yang dilihat orang dan berfungsi ganda sebagai tautan profil dehub.io/<username> Anda.",
+          "6": "Anda sudah masuk. Jelajahi umpan, atur profil Anda, dan mulailah memposting."
+        },
+        "tips": {
+          "1": "Masuk melalui sosial, email, dan SMS tidak pernah membayar gas — DeHub mensponsorinya. Dompet yang terhubung membayar ETH atau BNB mereka sendiri.",
+          "2": "Kembali ke akun DeHub lama? Masuk dengan email atau nomor telepon yang digunakannya dan migrasi akan menemukannya untuk Anda.",
+          "3": "Anda dapat menyimpan beberapa akun di satu perangkat dan beralih di antaranya di Pengaturan → Profil."
+        }
+      },
+      "home-feed": {
+        "title": "Umpan Beranda",
+        "intro": "Umpan beranda adalah tempat Anda melihat postingan dari orang yang Anda ikuti dan konten yang sedang tren. Ini mendukung beberapa tab jenis konten dan opsi pengurutan.",
+        "steps": {
+          "1": "Navigasi ke /app — ini adalah umpan beranda Anda.",
+          "2": "Gunakan tab teratas untuk memfilter berdasarkan jenis konten: Beranda (semua), Video, Gambar, Shorts, Musik, atau Siaran Langsung.",
+          "3": "Geser ke kiri/kanan pada tab untuk melihat opsi lainnya di seluler.",
+          "4": "Gunakan tombol filter/urutkan (kanan atas feed) untuk mengubah pengurutan: Populer, Terbaru, atau Teratas.",
+          "5": "Tarik ke bawah untuk menyegarkan feed di seluler.",
+          "6": "Gulir ke bawah untuk memuat lebih banyak postingan secara otomatis (gulir tak terbatas).",
+          "7": "Beralih antara tampilan Kotak dan Feed menggunakan pengalih tata letak."
+        },
+        "tips": {
+          "1": "Tampilan Kotak sangat bagus untuk menelusuri gambar dengan cepat.",
+          "2": "Tab 'Beranda' menampilkan semua jenis konten yang dicampur.",
+          "3": "Tab Langsung menampilkan siaran langsung yang sedang aktif."
+        }
+      },
+      "creating-posts": {
+        "title": "Membuat Postingan",
+        "intro": "Buat postingan teks, bagikan gambar, video, catatan suara, GIF, dan lainnya. Gunakan tagar, tagkas, dan sebutan untuk meningkatkan jangkauan.",
+        "steps": {
+          "1": "Klik tombol 'Postingan' di bilah sisi (desktop) atau tombol + (seluler).",
+          "2": "Ketik teks Anda di area penulisan.",
+          "3": "Untuk menambahkan gambar atau video, klik ikon media dan pilih file.",
+          "4": "Untuk merekam catatan suara, klik ikon mikrofon.",
+          "5": "Untuk menambahkan GIF, klik ikon GIF dan cari salah satunya.",
+          "6": "Gunakan #tagar untuk mengkategorikan postingan Anda (misalnya, #kripto, #defi).",
+          "7": "Gunakan $tagkas untuk merujuk token (misalnya, $DHB, $ETH).",
+          "8": "Gunakan @sebutan untuk menandai pengguna lain (misalnya, @nama_pengguna).",
+          "9": "Klik 'Postingan' untuk menerbitkan. Postingan Anda muncul di feed segera."
+        },
+        "tips": {
+          "1": "Postingan mendukung pemformatan gaya markdown.",
+          "2": "Anda dapat memposting ulang dengan mengklik ikon posting ulang pada postingan apa pun dan memilih 'Kutip'.",
+          "3": "Kategori (tagar) muncul di papan peringkat 'Obrolan Terhangat'."
+        }
+      },
+      "interacting-with-posts": {
+        "title": "Berinteraksi dengan Postingan",
+        "intro": "Terlibat dengan konten dengan memberikan suara, berkomentar, memberi tip, menandai, berbagi, dan menerjemahkan.",
+        "steps": {
+          "1": "Beri suara naik atau turun pada postingan menggunakan ikon panah di sisi kiri postingan apa pun.",
+          "2": "Klik ikon komentar untuk membuka bagian komentar dan tinggalkan balasan.",
+          "3": "Klik ikon permata/tip untuk mengirim tip dalam token DeHub kepada pembuat postingan.",
+          "4": "Klik ikon bookmark untuk menyimpan postingan untuk nanti.",
+          "5": "Klik ikon bagikan untuk menyalin tautan postingan atau berbagi secara eksternal.",
+          "6": "Klik tombol terjemahkan (ikon bola dunia) pada postingan apa pun untuk menerjemahkan teks ke bahasa Anda.",
+          "7": "Untuk postingan gambar, gunakan tombol 'Terjemahkan Gambar' untuk mendapatkan versi terjemahan AI dari teks di dalam gambar.",
+          "8": "Klik postingan apa pun untuk membukanya dalam tampilan postingan tunggal layar penuh."
+        },
+        "tips": {
+          "1": "Tip langsung masuk ke dompet kreator dalam token DeHub.",
+          "2": "Anda dapat mengatur jumlah tip melalui tombol pilihan cepat atau memasukkan jumlah khusus.",
+          "3": "Postingan yang disematkan dapat diakses dari halaman Bookmark di bilah sisi."
+        }
+      },
+      "explore-search": {
+        "title": "Jelajahi & Cari",
+        "intro": "Temukan konten dan pengguna baru melalui halaman jelajahi dan fungsionalitas pencarian yang canggih.",
+        "steps": {
+          "1": "Arahkan ke /app/explore dari bilah sisi.",
+          "2": "Gunakan bilah pencarian di bagian atas untuk mencari pengguna, postingan, atau konten.",
+          "3": "Filter hasil berdasarkan tab: Semua, Orang, Postingan, Gambar, Video, Musik, Langsung.",
+          "4": "Jelajahi topik dan kategori yang sedang tren di halaman jelajahi.",
+          "5": "Klik topik yang sedang tren untuk melihat semua postingan terkait.",
+          "6": "Klik pengguna dalam hasil pencarian untuk mengunjungi profil mereka."
+        },
+        "tips": {
+          "1": "Pencarian mendukung nama pengguna, alamat dompet, dan kata kunci konten.",
+          "2": "Topik yang sedang tren diperbarui berdasarkan aktivitas postingan terbaru."
+        }
+      },
+      "profile": {
+        "title": "Profil",
+        "intro": "Profil Anda menampilkan postingan, pengikut, mengikuti, dan informasi dompet Anda.",
+        "steps": {
+          "1": "Klik avatar Anda atau 'Profil' di bilah sisi untuk melihat profil Anda.",
+          "2": "Klik 'Edit Profil' untuk memperbarui nama tampilan, bio, dan avatar Anda.",
+          "3": "Unggah gambar profil dengan mengklik avatar Anda dalam mode edit.",
+          "4": "Lihat jumlah pengikut dan yang Anda ikuti di halaman profil Anda.",
+          "5": "Jelajahi postingan, media, dan konten yang Anda sukai melalui tab profil.",
+          "6": "Salin alamat dompet Anda dengan mengklik ikon salin di sebelahnya.",
+          "7": "Kunjungi profil pengguna lain dengan mengklik nama pengguna atau avatar mereka di mana saja di platform."
+        },
+        "tips": {
+          "1": "Nama pengguna Anda unik dan muncul di URL profil Anda (dehub.io/@username).",
+          "2": "Pengaturan privasi memungkinkan Anda mengontrol siapa yang dapat melihat jumlah pengikut Anda."
+        }
+      },
+      "messages": {
+        "title": "Pesan",
+        "intro": "Kirim pesan langsung ke pengguna lain di platform.",
+        "steps": {
+          "1": "Klik 'Pesan' di bilah sisi untuk membuka halaman pesan.",
+          "2": "Klik tombol buat untuk memulai percakapan baru.",
+          "3": "Cari pengguna berdasarkan nama pengguna untuk mengirim pesan kepada mereka.",
+          "4": "Ketik pesan Anda dan tekan kirim.",
+          "5": "Lihat riwayat percakapan Anda di daftar pesan.",
+          "6": "Klik percakapan untuk melanjutkan obrolan."
+        },
+        "tips": {
+          "1": "Anda akan menerima notifikasi saat seseorang mengirimi Anda pesan.",
+          "2": "Kreator dapat mengunci pesan di balik persyaratan tip."
+        }
+      },
+      "ai-assistant": {
+        "title": "Asisten AI",
+        "intro": "Mengobrol dengan asisten AI bawaan DeHub untuk bantuan, informasi, dan tugas kreatif.",
+        "steps": {
+          "1": "Klik 'Asisten' di bilah sisi untuk membuka obrolan AI.",
+          "2": "Ketik pertanyaan atau permintaan Anda di input obrolan.",
+          "3": "AI dapat membantu dengan informasi kripto, pertanyaan platform, dan pengetahuan umum.",
+          "4": "Mulai percakapan baru dengan mengklik tombol obrolan baru.",
+          "5": "Lihat riwayat percakapan Anda di bilah sisi halaman asisten.",
+          "6": "Anda dapat melampirkan gambar untuk dianalisis oleh AI."
+        },
+        "tips": {
+          "1": "AI mengingat konteks dalam percakapan.",
+          "2": "Anda dapat bertanya kepada AI tentang fitur DeHub, istilah kripto, atau pertanyaan umum.",
+          "3": "Percakapan sebelumnya disimpan dan dapat diakses kapan saja."
+        }
+      },
+      "notifications": {
+        "title": "Notifikasi",
+        "intro": "Tetap perbarui dengan suka, komentar, tip, pengikut, dan aktivitas lain di konten Anda.",
+        "steps": {
+          "1": "Klik ikon lonceng atau 'Notifikasi' di bilah sisi.",
+          "2": "Lihat semua notifikasi dalam daftar kronologis.",
+          "3": "Klik notifikasi untuk menavigasi ke konten terkait.",
+          "4": "Notifikasi meliputi: pengikut baru, suara postingan, komentar, tip, dan sebutan.",
+          "5": "Notifikasi yang belum dibaca disorot — ditandai sebagai dibaca saat dilihat."
+        },
+        "tips": {
+          "1": "Lencana notifikasi menunjukkan jumlah notifikasi yang belum dibaca.",
+          "2": "Notifikasi tip menunjukkan berapa banyak token yang Anda terima."
+        }
+      },
+      "wallet": {
+        "title": "Dompet",
+        "intro": "Lihat saldo token DeHub Anda di berbagai rantai, periksa setoran staking, dan kelola aset Anda.",
+        "steps": {
+          "1": "Klik 'Dompet' di bilah sisi untuk membuka halaman dompet.",
+          "2": "Lihat total saldo token Anda yang diagregasi di semua rantai yang didukung.",
+          "3": "Lihat rincian per rantai: Ethereum, Base, BNB Chain, dan lainnya.",
+          "4": "Periksa deposit dan hadiah staking Anda.",
+          "5": "Klik 'Refresh Scan' untuk memperbarui saldo Anda dari data on-chain.",
+          "6": "Salin alamat dompet Anda untuk menerima token dari orang lain."
+        },
+        "tips": {
+          "1": "Saldo diperbarui secara otomatis tetapi Anda dapat memaksa penyegaran kapan saja.",
+          "2": "Dompet menampilkan saldo likuid (tersedia) dan yang di-stake."
+        }
+      },
+      "staking": {
+        "title": "Staking",
+        "intro": "- Stake token DeHub Anda untuk mendapatkan hadiah dan meningkatkan kekuatan voting tata kelola Anda.",
+        "steps": {
+          "1": "- Navigasikan ke halaman 'Staking' dari bilah sisi.",
+          "2": "- Masukkan jumlah token yang ingin Anda stake.",
+          "3": "- Pilih rantai yang ingin Anda stake.",
+          "4": "- Konfirmasikan transaksi di dompet Anda (dompet eksternal) atau eksekusi otomatis (login sosial).",
+          "5": "- Lihat jumlah yang Anda stake dan hadiah yang tertunda.",
+          "6": "- Untuk menarik stake, masukkan jumlahnya dan konfirmasikan transaksi penarikan stake."
+        },
+        "tips": {
+          "1": "- Staking meningkatkan bobot suara Anda dalam proposal tata kelola.",
+          "2": "- Pengguna login sosial tidak memerlukan gas untuk stake — ini tanpa gas.",
+          "3": "- Anda dapat stake di beberapa rantai secara bersamaan."
+        }
+      },
+      "leaderboard": {
+        "title": "Papan Peringkat",
+        "intro": "Lihat siapa yang teratas! Papan peringkat mengurutkan pengguna berdasarkan saldo, pengeluaran harian, dan topik tren.",
+        "steps": {
+          "1": "- Navigasikan ke halaman 'Papan Peringkat' dari bilah sisi.",
+          "2": "- Beralih antar tab: Saldo, Pengeluaran Harian, dan Obrolan Terkini.",
+          "3": "- Tab Saldo mengurutkan pengguna berdasarkan total kepemilikan token mereka.",
+          "4": "- Tab Pengeluaran Harian menunjukkan siapa yang paling aktif memberi tip dalam 24 jam terakhir.",
+          "5": "- Obrolan Terkini menunjukkan topik/kategori yang paling banyak dibahas.",
+          "6": "- Klik pengguna mana pun untuk mengunjungi profil mereka.",
+          "7": "- Papan peringkat diperbarui secara berkala sepanjang hari."
+        },
+        "tips": {
+          "1": "- Peringkat harian diatur ulang setiap 24 jam.",
+          "2": "- Obrolan Terkini melacak kategori satu kata dari tagar."
+        }
+      },
+      "command-centre": {
+        "title": "Pusat Komando",
+        "intro": "Dasbor ringkasan yang menampilkan metrik utama dan aktivitas platform Anda secara sekilas.",
+        "steps": {
+          "1": "Klik 'Command Centre' di bilah sisi.",
+          "2": "Lihat ringkasan profil Anda, termasuk jumlah postingan, pengikut, dan keterlibatan.",
+          "3": "Lihat aktivitas terbaru dan topik yang sedang tren.",
+          "4": "Akses tautan cepat ke fitur yang sering digunakan."
+        },
+        "tips": {
+          "1": "Command Centre memberi Anda gambaran umum tentang kehadiran DeHub Anda."
+        }
+      },
+      "governance": {
+        "title": "Tata Kelola",
+        "intro": "Berpartisipasi dalam tata kelola platform dengan membuat proposal dan memilih keputusan komunitas.",
+        "steps": {
+          "1": "Arahkan ke 'Governance' dari bilah sisi.",
+          "2": "Jelajahi proposal aktif yang diajukan oleh komunitas.",
+          "3": "Klik pada proposal untuk membaca deskripsi lengkap dan diskusinya.",
+          "4": "Pilih proposal menggunakan tombol jempol ke atas/bawah — bobot suara Anda bergantung pada berapa banyak token DeHub yang Anda pertaruhkan.",
+          "5": "Tinggalkan komentar pada proposal untuk berdiskusi dengan komunitas.",
+          "6": "Kirim proposal Anda sendiri dengan mengklik tombol 'Create Proposal'."
+        },
+        "tips": {
+          "1": "Kekuatan suara Anda ditentukan oleh jumlah token yang Anda pertaruhkan.",
+          "2": "Pemegang lencana mungkin mendapatkan bobot suara tambahan.",
+          "3": "Proposal melalui tahapan: Aktif → Lulus/Ditolak."
+        }
+      },
+      "bookmarks": {
+        "title": "Markah Buku",
+        "intro": "Simpan postingan ke markah buku Anda untuk akses mudah nanti.",
+        "steps": {
+          "1": "Klik ikon markah buku pada postingan mana pun untuk menyimpannya.",
+          "2": "Arahkan ke 'Bookmarks' di bilah sisi untuk melihat semua postingan yang disimpan.",
+          "3": "Klik pada postingan yang ditandai untuk melihatnya secara penuh.",
+          "4": "Hapus markah buku dengan mengklik ikon markah buku lagi."
+        },
+        "tips": {
+          "1": "Markah buku bersifat pribadi — hanya Anda yang dapat melihat postingan yang disimpan.",
+          "2": "Tidak ada batasan berapa banyak postingan yang dapat Anda tandai."
+        }
+      },
+      "settings": {
+        "title": "Pengaturan",
+        "intro": "Sesuaikan pengalaman DeHub Anda dengan preferensi bahasa, privasi, dan tampilan.",
+        "steps": {
+          "1": "Klik 'Settings' di bilah sisi.",
+          "2": "Ubah bahasa tampilan Anda dari pemilih bahasa.",
+          "3": "Sesuaikan pengaturan privasi: kontrol siapa yang melihat jumlah pengikut dan daftar mengikuti Anda.",
+          "4": "Atur preferensi visibilitas posting default Anda.",
+          "5": "Kelola preferensi notifikasi."
+        },
+        "tips": {
+          "1": "DeHub mendukung banyak bahasa — seluruh antarmuka diterjemahkan.",
+          "2": "Pengaturan privasi berlaku segera."
+        }
+      },
+      "posting-allowance": {
+        "title": "Jatah Posting Harian Anda",
+        "intro": "Posting gratis setiap hari hingga jatah yang diskalakan dengan lencana staking Anda. Setiap orang mulai dengan sepuluh posting teks dan satu gigabyte video, gambar, dan audio per hari. Melebihi salah satunya dan sisanya hari itu dibayar dalam token DeHub — hanya pada bagian yang melebihi.",
+        "steps": {
+          "1": "Posting seperti biasa. Di dalam jatah tidak ada yang dikenakan biaya dan tidak ada yang diminta dari Anda.",
+          "2": "Posting teks dan media adalah kumpulan terpisah, jadi hari yang dihabiskan untuk mengunggah video masih menyisakan sepuluh posting teks gratis.",
+          "3": "Ketika sebuah posting melebihi, aplikasi pertama-tama menentukannya harganya dan memeriksa dompet Anda dapat menanggungnya sebelum ada yang diunggah.",
+          "4": "Posting dipublikasikan persis seperti di dalam jatah — publikasi tidak pernah menunggu pembayaran.",
+          "5": "Kemudian Anda menyetujui satu transfer untuk posting itu saja, diselesaikan pada salah satu Base atau BNB Chain yang memiliki token DeHub yang cukup.",
+          "6": "Kedua kumpulan diatur ulang pada tengah malam UTC."
+        },
+        "tips": {
+          "1": "Kelebihan bersifat pro-rata: 200 MB melebihi jatah Anda berharga 200 MB, bukan satu gigabyte penuh.",
+          "2": "Repost, komentar, reaksi, tip, dan pesan tidak dikenakan biaya dan tidak pernah menyentuh jatah.",
+          "3": "Tolak pembayaran dan posting tetap tayang — jumlahnya hanya memblokir posting berbayar Anda berikutnya hingga diselesaikan. Jatah gratis besok selalu milik Anda.",
+          "4": "Lencana staking meningkatkan jatah gratis dan menurunkan harga apa pun di luarnya."
+        }
+      },
+      "reactions-and-safety": {
+        "title": "Reaksi, Muting & Konten Dewasa",
+        "intro": "Ada sembilan reaksi di balik tombol suka, dan serangkaian kontrol untuk memutuskan apa yang Anda lihat dan siapa yang dapat menjangkau Anda.",
+        "steps": {
+          "1": "Tahan jempol ke atas pada posting apa pun untuk membuka baki reaksi: suka, cinta, hormat, panas, lol, sedih, menangis, tidak suka, dan kotoran.",
+          "2": "Tujuh yang positif dihitung terhadap total suka posting; tidak suka dan kotoran dihitung melawannya.",
+          "3": "Reaksi Anda ditimbang oleh lencana staking Anda, jadi reaksi pemegang lencana menggerakkan hitungan lebih jauh daripada satu suara.",
+          "4": "Ketuk X di header posting untuk membisukan penulisnya — mereka langsung keluar dari feed Anda.",
+          "5": "Kreator menandai posting mereka sendiri sebagai dewasa saat menyusunnya; posting tersebut tetap tidak ada di feed beranda publik.",
+          "6": "Untuk melihat posting dewasa di mana saja, aktifkan 'Tampilkan konten dewasa' di Pengaturan."
+        },
+        "tips": {
+          "1": "Posting dewasa masih sepenuhnya terlihat di profil kreator dan bagi orang-orang yang mengikutinya.",
+          "2": "Memblokir dari profil lebih jauh daripada membisukan dan juga memutus perpesanan.",
+          "3": "Baki reaksi menunjukkan siapa yang bereaksi dan dengan apa, sehingga Anda dapat melihat ruangan daripada hanya angka."
+        }
+      },
+      "stages": {
+        "title": "Stages (Ruang Audio Langsung)",
+        "intro": "Stages adalah ruang audio langsung yang terintegrasi di DeHub. Seorang host membuka ruangan, membawa pembicara, dan siapa pun dapat masuk untuk mendengarkan dari halaman Stages atau tautan bersama.",
+        "steps": {
+          "1": "Buka 'Stages' di bilah sisi untuk melihat apa yang sedang tayang sekarang dan apa yang dijadwalkan.",
+          "2": "Ketuk panggung langsung untuk bergabung sebagai pendengar, atau atur pengingat di panggung terjadwal dan beri tahu saat dimulai.",
+          "3": "Mulai panggung Anda sendiri dari halaman yang sama — Anda bisa langsung siaran dari peramban, tanpa OBS atau kunci streaming.",
+          "4": "Sebagai host, undang pembicara ke panggung, bisukan atau keluarkan mereka, bagikan layar Anda, dan kendalikan soundboard.",
+          "5": "Pendengar mengirim reaksi langsung dan berbicara di obrolan ruangan tanpa naik ke panggung.",
+          "6": "Setiap panggung merekam, dan rekaman diputar ulang setelahnya dari kartu tempatnya muncul."
+        },
+        "tips": {
+          "1": "Subtitel langsung memberi keterangan pada setiap pembicara dan menerjemahkan ke dalam bahasa apa pun yang Anda baca.",
+          "2": "Dubbing langsung dapat membacakan ruangan dengan suara kloningan host sendiri, ditagih per menit dalam token DeHub.",
+          "3": "Host dapat menyiarkan stasiun radio atau memutar klip musik mereka sendiri di antara percakapan.",
+          "4": "Pemutar mini menjaga ruangan tetap berjalan di sudut saat Anda menjelajahi sisa aplikasi."
+        }
+      },
+      "communities": {
+        "title": "Komunitas & Acara",
+        "intro": "Komunitas adalah ruang yang dijalankan anggota dengan feed, anggota, dan aktivitas mereka sendiri. Acara menambahkan pemrograman berbatas waktu di atasnya.",
+        "steps": {
+          "1": "Buka 'Komunitas' di bilah sisi dan jelajahi yang publik.",
+          "2": "Bergabunglah dalam satu ketukan. Aktivitas baru muncul sebagai lencana belum dibaca di navigasi.",
+          "3": "Posting, diskusikan, jalankan jajak pendapat, dan beri tip di feed komunitas sendiri.",
+          "4": "Pemilik komunitas memoderasi ruang mereka sendiri dan dapat memberikan hak admin kepada orang lain.",
+          "5": "Buka 'Acara' untuk pemrograman terjadwal, dengan halaman penuh per acara yang dapat Anda ikuti secara langsung."
+        },
+        "tips": {
+          "1": "Obrolan komunitas mendukung @sebutan dan @di sini, sehingga postingan dapat menjangkau ruangan.",
+          "2": "Tautan undangan memungkinkan Anda membawa orang langsung ke dalam komunitas."
+        }
+      },
+      "arcade": {
+        "title": "Arkade",
+        "intro": "Lima game berjalan di dalam DeHub di tab peramban — tidak perlu menginstal, tidak perlu membeli.",
+        "steps": {
+          "1": "Buka 'Arkade' di bilah sisi.",
+          "2": "Pilih game: King's Gambit (catur 3D dengan tangga Elo online), Claude of Duty (penembak yang menghasilkan seninya sendiri saat dimuat), Jungle Trail (jalan-jalan hutan hujan prosedural), Street Slayer (beat 'em up yang dibuat untuk DeHub) atau Chartopia (lantai perdagangan yang dapat dijelajahi).",
+          "3": "Bermain di tab. King's Gambit dan Street Slayer menyimpan papan peringkat.",
+          "4": "Chartopia juga berjalan di headset VR melalui WebXR."
+        },
+        "tips": {
+          "1": "Dua di antaranya tersembunyi di dalam tema tampilan — atur aplikasi ke War untuk Claude of Duty, atau Jungle untuk Jungle Trail.",
+          "2": "Setiap game memiliki kartu bagikan sendiri, sehingga tautan ke salah satunya akan terbuka dengan benar di mana pun Anda mempostingnya."
+        }
+      },
+      "bounties-stores": {
+        "title": "Hadiah & Toko",
+        "intro": "Dua cara untuk mengubah platform menjadi penghasilan: posting atau klaim hadiah, atau buka toko dan jual ke audiens Anda.",
+        "steps": {
+          "1": "Buka 'Hadiah' untuk menelusuri pekerjaan terbuka, difilter berdasarkan kategori atau mata uang.",
+          "2": "Klaim satu, lakukan pekerjaan, dan kirimkan untuk mengumpulkan hadiah — siapa pun bisa menjadi pemburu, tidak perlu aplikasi.",
+          "3": "Posting bounty Anda sendiri dengan ringkasan dan hadiah dalam token DeHub atau USDC. Dana akan masuk ke escrow saat Anda mempostingnya.",
+          "4": "Buka 'Toko' untuk menyiapkan etalase dengan halaman, merek, dan daftar produknya sendiri.",
+          "5": "Produk diberi harga dan diselesaikan dalam token DeHub melalui dompet bawaan, tanpa checkout eksternal."
+        },
+        "tips": {
+          "1": "Bounty diatur ke dalam Media Sosial, Klip, dan Kontrak.",
+          "2": "Alur perselisihan menyelesaikan ketidaksepakatan atas pengiriman, sehingga escrow selalu terselesaikan secara adil.",
+          "3": "Kreator menggunakan bounty untuk menumbuhkan komunitas — berbagi, klip, dan reaksi semuanya adalah tugas yang valid."
+        }
+      },
+      "creator-studio": {
+        "title": "Studio & Editor Kreator",
+        "intro": "Studio Kreator menghasilkan gambar, video, musik, suara, dan model 3D dari sebuah prompt, dan memberikannya ke editor — termasuk editor video multi-track lengkap yang berjalan di browser.",
+        "steps": {
+          "1": "Buka Studio Kreator dan jelaskan apa yang ingin Anda buat.",
+          "2": "Server mengutip biaya sebelum pekerjaan dijalankan, sehingga Anda melihat biayanya sebelum Anda membelanjakannya.",
+          "3": "Render terus berjalan dalam antrean bersama saat Anda terus menjelajahi aplikasi.",
+          "4": "Atur hasil di editor bergaya Canva, atau buka editor video untuk timeline nyata dengan pemotongan, penumpukan, dan ekspor.",
+          "5": "Masukkan hasil jadi langsung ke dalam postingan, video pendek, atau daftar toko."
+        },
+        "tips": {
+          "1": "Pustaka aset stok gratis tersedia di samping Studio untuk apa pun yang lebih Anda sukai daripada menghasilkan.",
+          "2": "Pembuatan dibayar dalam token DeHub dari dompet Anda — Anda menandatangani satu transfer per pekerjaan, dan harga dikutip sebelum Anda membayar.",
+          "3": "Pengguna yang lebih sering menggunakan dapat mengambil paket Ultra, Tim, atau Skala, yang mengirimkan alokasi token bulanan langsung ke dompet mereka."
+        }
+      },
+      "buying-dhb": {
+        "title": "Membeli Token",
+        "intro": "Beli token DeHub langsung di dalam aplikasi menggunakan antarmuka swap bawaan.",
+        "steps": {
+          "1": "Navigasi ke halaman 'Beli' dari bilah sisi.",
+          "2": "Pilih token yang ingin Anda tukar (misalnya, ETH, USDC).",
+          "3": "Masukkan jumlah yang ingin Anda belanjakan atau jumlah token yang ingin Anda terima.",
+          "4": "Tinjau nilai tukar dan perkiraan hasil.",
+          "5": "Klik ikon roda gigi pengaturan untuk menyesuaikan toleransi slippage (default adalah 1%).",
+          "6": "Konfirmasikan transaksi swap.",
+          "7": "Token DeHub akan muncul di dompet Anda setelah transaksi selesai."
+        },
+        "tips": {
+          "1": "Toleransi slippage yang lebih tinggi = kemungkinan eksekusi lebih tinggi, tetapi potensi harga yang lebih buruk.",
+          "2": "Selalu periksa nilai tukar sebelum mengonfirmasi.",
+          "3": "Anda dapat mengatur slippage kustom di panel pengaturan."
+        }
+      },
+      "bridge": {
+        "title": "Jembatan",
+        "intro": "Pindahkan token DeHub Anda antar blockchain yang didukung menggunakan jembatan lintas-rantai.",
+        "steps": {
+          "1": "Navigasi ke halaman 'Bridge' dari bilah sisi.",
+          "2": "Pilih rantai sumber (tempat token Anda saat ini berada).",
+          "3": "Pilih rantai tujuan (tempat Anda ingin mengirimnya).",
+          "4": "Masukkan jumlah token yang akan di-bridge.",
+          "5": "Tinjau biaya bridge dan perkiraan waktu kedatangan.",
+          "6": "Konfirmasikan transaksi bridge.",
+          "7": "Tunggu transaksi selesai — bridging mungkin memakan waktu beberapa menit."
+        },
+        "tips": {
+          "1": "Biaya bridge bervariasi berdasarkan pasangan rantai.",
+          "2": "Bridging biasanya memakan waktu 1-5 menit tergantung pada rantai yang terlibat.",
+          "3": "Selalu periksa kembali rantai tujuan sebelum mengonfirmasi."
+        }
+      },
+      "music-tv": {
+        "title": "Musik & TV",
+        "intro": "Nikmati konten media langsung di dalam DeHub — streaming musik dan tonton saluran TV langsung.",
+        "steps": {
+          "1": "Navigasi ke 'Musik' dari bilah sisi untuk menelusuri dan memutar postingan musik.",
+          "2": "Navigasi ke 'TV' untuk mengakses saluran TV langsung.",
+          "3": "Telusuri saluran berdasarkan kategori atau negara.",
+          "4": "Klik saluran untuk mulai menonton.",
+          "5": "Gunakan kontrol pemutar untuk menyesuaikan volume dan pemutaran.",
+          "6": "Laporkan saluran yang rusak menggunakan tombol laporkan."
+        },
+        "tips": {
+          "1": "Saluran TV diverifikasi oleh komunitas untuk keandalan.",
+          "2": "Postingan musik dapat diputar saat menelusuri konten lain."
+        }
+      },
+      "post-info": {
+        "title": "Info Postingan & Fraksi",
+        "intro": "Postingan yang dicetak adalah NFT yang dibagi menjadi 1.000 fraksi. Halaman Info Postingan menampilkan data on-chain, statistik keterlibatan, rincian kepemilikan, dan memungkinkan Anda memperdagangkan fraksi postingan apa pun — pada postingan yang belum dicetak, postingan tersebut menawarkan untuk mencetak sebagai gantinya.",
+        "steps": {
+          "1": "Ketuk ikon 'ⓘ' pada postingan apa pun untuk membuka halaman Info Postingan.",
+          "2": "Di bagian atas Anda akan melihat ID Token (pengenal unik on-chain) dan hash transaksi — klik hash untuk melihatnya di penjelajah blok.",
+          "3": "Di bawahnya, statistik keterlibatan menunjukkan total suka, tidak suka, tayangan, komentar, dan tip yang diterima.",
+          "4": "Bagian Pemegang menunjukkan bilah kemajuan berapa banyak dari 1.000 fraksi yang masih dimiliki pembuat, ditambah daftar semua pemegang fraksi dengan saldo dan persentase mereka.",
+          "5": "Jika postingan adalah bayar-per-tayang (PPV), Anda akan melihat harga, mata uang, dan berapa banyak pengguna yang telah membeli akses.",
+          "6": "Pemilik postingan dapat mengubah visibilitas (Publik, Tidak Terdaftar, atau Pribadi) dan mengedit judul/deskripsi langsung dari halaman ini."
+        },
+        "tips": {
+          "1": "Postingan yang baru dicetak dimulai dengan pembuat memegang semua 1.000 fraksi (kepemilikan 100%).",
+          "2": "Hash transaksi tertaut ke BaseScan atau BscScan tergantung pada rantai.",
+          "3": "Post yang tidak terdaftar tidak muncul di feed tetapi masih dapat diakses melalui tautan langsung."
+        }
+      },
+      "trading-fractions": {
+        "title": "Pecahan Perdagangan",
+        "intro": "Perdagangan fraksi — menelusuri tempat, membuat penawaran, mengiklankan tempat Anda sendiri — ada di aplikasi web di dehub.io, di setiap halaman Info Pos pos.",
+        "steps": {
+          "1": "Buka dehub.io di browser dan masuk dengan akun yang sama.",
+          "2": "Buka halaman Info Postingan postingan dan beralih ke tab Marketplace.",
+          "3": "Telusuri tempat, buat penawaran dengan harga Anda, atau daftarkan fraksi yang Anda miliki.",
+          "4": "Setelah perdagangan selesai, perubahan muncul di tab Pecahan Anda di sini di ponsel."
+        },
+        "tips": {
+          "1": "Memiliki fraksi postingan berarti Anda memegang bagian dari nft on - chain tersebut.",
+          "2": "Periksa pemegang pos di pasar web untuk melihat distribusi kepemilikan sebelum membeli.",
+          "3": "Sebagai kreator, menjual pecahan memungkinkan penggemar menjadi pemilik bersama konten kamu."
+        }
+      },
+      "minting-posts": {
+        "title": "Mencetak Postingan (Membuat NFT)",
+        "intro": "Mencetak bersifat opsional. Sebuah postingan dipublikasikan off-chain saat Anda mengirimkannya — tanpa dompet, tanpa tanda tangan, tanpa gas — dan Anda dapat mencetaknya sebagai NFT kapan pun Anda mau, baik saat Anda menyusunnya atau nanti dari postingan itu sendiri.",
+        "steps": {
+          "1": "Klik tombol 'Postingan' di bilah sisi (desktop) atau tombol + (seluler).",
+          "2": "Tulis teks Anda, lampirkan media (gambar, video, audio), dan tambahkan kategori.",
+          "3": "Biarkan 'Cetak postingan' nonaktif untuk mempublikasikan secara off-chain, atau aktifkan untuk mencetak saat Anda mempublikasikan.",
+          "4": "Publikasi tidak pernah menunggu di rantai: postingan muncul di feed bagaimanapun caranya.",
+          "5": "Untuk mencetak nanti, buka halaman info 'ⓘ' postingan dan gunakan tindakan Cetak di sana.",
+          "6": "Setelah dicetak, postingan akan mendapatkan ID Token dan hash transaksi yang dapat Anda verifikasi di rantai, dan Anda memegang semua 1.000 fraksinya."
+        },
+        "tips": {
+          "1": "Masuk melalui media sosial, email, dan SMS tidak dikenakan biaya gas — DeHub mensponsori biaya pencetakan.",
+          "2": "Pengguna dompet eksternal memerlukan ETH di Base atau BNB di BNB Chain untuk gas.",
+          "3": "Mencetak adalah yang membuat postingan dapat diperdagangkan dan menghasilkan royalti. Postingan yang belum dicetak masih mendapatkan tip dan tayangan.",
+          "4": "Catatan di rantai bersifat permanen setelah dicetak, bahkan jika postingan kemudian dihapus dari feed."
+        }
+      },
+      "glossary": {
+        "title": "Glosarium",
+        "intro": "Glosarium komprehensif tentang terminologi kripto dan platform untuk membantu Anda menavigasi Web3.",
+        "steps": {
+          "1": "Arahkan ke 'Glosarium' dari bilah sisi.",
+          "2": "Jelajahi istilah secara alfabetis atau gunakan pencarian untuk menemukan istilah tertentu.",
+          "3": "Klik pada istilah untuk melihat definisi dan penjelasannya secara lengkap.",
+          "4": "Istilah mencakup konsep kripto, terminologi DeFi, dan fitur khusus DeHub."
+        },
+        "tips": {
+          "1": "Sumber daya yang bagus untuk pendatang baru di dunia kripto dan Web3.",
+          "2": "Glosarium diperbarui secara berkala dengan istilah-istilah baru."
+        }
+      }
     }
   },
   "creatorPacks": {

@@ -3436,11 +3436,6 @@
     "noResultsFor": "Ingen resultater for \"{{query}}\"",
     "guideSubtitle": "Trin-for-trin gennemgang af hver funktion",
     "searchGuide": "Søg i guiden...",
-    "guideFractionsTip": "Hvert præget opslag starter med, at skaberen ejer alle dets fraktioner (100 % ejerskab).",
-    "guideInfoStep": "Tryk på infoikonet på et præget opslag for at åbne dets prægningstransaktion i blokudforskeren og bekræfte registreringen på kæden.",
-    "guideMintIntro": "Det er valgfrit at præge et opslag som en NFT på blockchainen. Præg det, når du udgiver, eller udgiv nu og præg det senere fra opslagets menu.",
-    "guideMintPublishStep": "Vælg, om du vil præge, og klik derefter på 'Opslå' for at udgive. Springer du prægningen over, kan du præge opslaget senere fra dets menu.",
-    "guideMintFractionsStep": "Du modtager alle 1.000 fraktioner (100 % ejerskab) af dit nyprægede opslag.",
     "glossaryMintTxDesc": "Tryk på infoikonet på et præget opslag for at åbne dets prægningstransaktion i blokudforskeren og bekræfte registreringen på kæden. Den fulde Opslagsinfo-side — statistik, ejere, markedsplads — findes i webappen på dehub.io.",
     "glossaryTokenIdDesc": "En unik identifikator på kæden, som et opslag får, når det præges som en NFT.",
     "repostsTab": "Genindlæg",
@@ -3457,24 +3452,7 @@
     "glossaryStakingDesc": "Lås dine DeHub tokens for at optjene belønninger over tid. Staked tokens giver dig også øget stemmekraft i governance.",
     "glossaryGovernanceDesc": "Indsend og stem på forslag, der former platformen. Din stemmekraft vægtes af, hvor mange DeHub tokens du holder.",
     "glossaryStakingBadgesDesc": "Badges vist ved siden af dit brugernavn baseret på dine samlede DeHub tokenbeholdninger (wallet + staked). Der er 13 niveauer — jo flere tokens du holder, jo højere er din badge-rangering. Højere niveauer giver mere governance stemmekraft og lavere platformgebyrer.",
-    "glossaryLeaderboardDesc": "Brugere rangeres efter samlet DeHub tokenbalance (wallet + staked på tværs af alle kæder). Rangeringer opdateres periodisk og sporer ændringer på 1 dag og 1 uge. Du kan også sortere efter sendte tips, modtagne tips, følgere, likes eller abonnenter.",
-    "guideTipStep": "Klik på ædelstens-/tip-ikonet for at sende indlægsskaber en tip i DeHub tokens.",
-    "guideTipWalletTip": "Tips går direkte til skaberens wallet som DeHub tokens.",
-    "guideTipNotificationsTip": "Notifikationer viser, hvor mange DeHub-tokens du har modtaget.",
-    "guideWalletIntro": "Se dine DeHub-tokenbalancer på tværs af flere kæder, tjek staking-indskud, og administrer dine aktiver.",
-    "guideWalletTotalStep": "Se din samlede DeHub-tokenbalance aggregeret på tværs af alle understøttede kæder.",
-    "guideStakingIntro": "Stak dine DeHub-tokens for at optjene belønninger og øge din stemmeret i governance.",
-    "guideStakingAmountStep": "Indtast, hvor mange DeHub-tokens du vil stake.",
-    "guideLeaderboardBalanceStep": "Balance-fanen rangerer brugere efter deres samlede DeHub-tokenbeholdning.",
-    "guideGovernanceVoteStep": "Stem på forslag ved hjælp af tommelfinger op/ned-knapperne — din stemmevægt afhænger af, hvor mange DeHub-tokens du har staket.",
-    "guideGovernancePowerTip": "Din stemmekraft bestemmes af, hvor mange DeHub-tokens du har staket.",
-    "guideBuyIntro": "Køb DeHub-tokens direkte i DPay ved hjælp af et kort eller understøttet krypto.",
-    "guideBuyAmountStep": "Indtast det beløb, du vil bruge, eller hvor mange DeHub-tokens du vil modtage.",
-    "guideBuyDeliveredStep": "Dine DeHub-tokens vil dukke op i din wallet, når transaktionen er gennemført.",
-    "guideBridgeIntro": "Flyt dine DeHub-tokens mellem understøttede blockchains ved hjælp af cross-chain bridge.",
-    "guideBridgeSourceStep": "Vælg kildekæden (hvor dine DeHub-tokens i øjeblikket er).",
-    "guideBridgeDestStep": "Vælg destinationskæden (hvor du vil sende dine DeHub-tokens).",
-    "guideBridgeAmountStep": "Indtast, hvor mange DeHub-tokens der skal bridges."
+    "glossaryLeaderboardDesc": "Brugere rangeres efter samlet DeHub tokenbalance (wallet + staked på tværs af alle kæder). Rangeringer opdateres periodisk og sporer ændringer på 1 dag og 1 uge. Du kan også sortere efter sendte tips, modtagne tips, følgere, likes eller abonnenter."
   },
   "arcade": {
     "submitAccessibility": "Indsend et spil til arkaden",
@@ -6796,6 +6774,504 @@
       "packEmpty": "Ingen emoji fundet på denne adresse",
       "shortcodeTaken": "{{name}} er allerede taget",
       "shortcodeStandard": "{{name}} er allerede en standardemoji"
+    }
+  },
+  "guide": {
+    "sections": {
+      "getting-started": {
+        "title": "Kom godt i gang",
+        "intro": "Der er fem måder at komme ind på DeHub på, og ingen af dem kræver, at du allerede ejer en wallet: Google, Apple, en kode sendt til din e-mail, en kode sendt via SMS eller en eksisterende wallet, du forbinder. Alt undtagen wallet-ruten opretter en non-custodial wallet for dig i baggrunden — du har nøglerne, og DeHub sponsorerer gas, så du kan poste, give drikkepenge og samle ind uden nogensinde at købe et native token.",
+        "steps": {
+          "1": "Besøg dehub.io — hjemmefeedet er forsiden, så du kan kigge dig omkring, før du logger ind.",
+          "2": "Klik på 'Log ind'. Du vil se Google og Apple, felter til en e-mailadresse eller et telefonnummer og 'Forbind Wallet' for en eksisterende.",
+          "3": "Med Google eller Apple skal du gennemføre udbyderens flow. Med e-mail eller SMS skal du indtaste den kode, der ankommer.",
+          "4": "En wallet oprettes og sikres for dig ved første login. At forbinde din egen wallet i stedet kræver én signatur for at bevise adressen.",
+          "5": "Vælg et brugernavn. Det er det, folk ser, og det fungerer også som dit dehub.io/<username> profil-link.",
+          "6": "Du er inde. Udforsk feedet, opsæt din profil, og begynd at poste."
+        },
+        "tips": {
+          "1": "Sociale, e-mail- og SMS-logins betaler aldrig gas — DeHub sponsorerer det. Forbundne wallets betaler deres egen ETH eller BNB.",
+          "2": "Kommer du tilbage til en ældre DeHub-konto? Log ind med den e-mail eller det telefonnummer, den brugte, og migreringen finder den for dig.",
+          "3": "Du kan have flere konti på én enhed og skifte mellem dem i Indstillinger → Profil."
+        }
+      },
+      "home-feed": {
+        "title": "Hjemmefeed",
+        "intro": "Hjemmefeedet er, hvor du ser opslag fra folk, du følger, og populært indhold. Det understøtter flere faner med indholdstyper og sorteringsmuligheder.",
+        "steps": {
+          "1": "Naviger til /app — dette er dit hjemmefeed.",
+          "2": "Brug fanerne øverst til at filtrere efter indholdstype: Hjem (alt), Videoer, Billeder, Shorts, Musik eller Livestreams.",
+          "3": "Sveip til venstre/høyre på fanene for å se flere alternativer på mobil.",
+          "4": "Bruk filter/sorteringsknappen (øverst til høyre i feedet) for å endre sortering: Populært, Nytt eller Topp.",
+          "5": "Dra ned for å oppdatere feedet på mobil.",
+          "6": "Rull ned for å laste inn flere innlegg automatisk (uendelig rulling).",
+          "7": "Veksle mellom rutenett- og feedvisning ved hjelp av layoutveksleren."
+        },
+        "tips": {
+          "1": "Rutenettvisning er flott for rask gjennomgang av bilder.",
+          "2": "Fanen 'Hjem' viser alle innholdstyper blandet sammen.",
+          "3": "Fanen Live viser aktive livestreams for øyeblikket."
+        }
+      },
+      "creating-posts": {
+        "title": "Opprette innlegg",
+        "intro": "Opprett tekstinnlegg, del bilder, videoer, talemeldinger, GIF-er og mer. Bruk hashtags, cashtags og omtaler for å øke rekkevidden.",
+        "steps": {
+          "1": "Klikk på 'Innlegg'-knappen i sidepanelet (desktop) eller +-knappen (mobil).",
+          "2": "Skriv teksten din i skriveområdet.",
+          "3": "For å legge til et bilde eller en video, klikk på medier-ikonet og velg en fil.",
+          "4": "For å ta opp en talemelding, klikk på mikrofonikonet.",
+          "5": "For å legge til en GIF, klikk på GIF-ikonet og søk etter en.",
+          "6": "Bruk #hashtags for å kategorisere innlegget ditt (f.eks. #crypto, #defi).",
+          "7": "Bruk $cashtags for å referere til tokens (f.eks. $DHB, $ETH).",
+          "8": "Bruk @mentions for å tagge andre brukere (f.eks. @brukernavn).",
+          "9": "Klikk 'Innlegg' for å publisere. Innlegget ditt vises i feedet umiddelbart."
+        },
+        "tips": {
+          "1": "Innlegg støtter formatering i markdown-stil.",
+          "2": "Du kan sitere et innlegg ved å klikke på repost-ikonet på et hvilket som helst innlegg og velge 'Siter'.",
+          "3": "Kategorier (hashtags) vises på 'Talk of the Town'-ledertavlen."
+        }
+      },
+      "interacting-with-posts": {
+        "title": "Interagere med innlegg",
+        "intro": "Engasjer deg med innhold ved å stemme, kommentere, gi tips, bokmerke, dele og oversette.",
+        "steps": {
+          "1": "Stem opp eller ned et innlegg ved å bruke pilikonene på venstre side av et hvilket som helst innlegg.",
+          "2": "Klikk på kommentarikonet for å åpne kommentarseksjonen og legge igjen et svar.",
+          "3": "Klikk på juvel-/tipp-ikonet for å sende et tips i DeHub-tokens til innleggets skaper.",
+          "4": "Klikk på bokmerkeikonet for å lagre et innlegg for senere.",
+          "5": "Klikk på deleikonet for å kopiere innleggets lenke eller dele eksternt.",
+          "6": "Klik på oversæt-knappen (globusikon) på ethvert opslag for at oversætte tekst til dit sprog.",
+          "7": "For billedopslag skal du bruge knappen 'Oversæt billede' for at få en AI-oversat version af tekst i billedet.",
+          "8": "Klik på ethvert opslag for at åbne det i fuldskærms visning af et enkelt opslag."
+        },
+        "tips": {
+          "1": "Tips går direkte til skaberens tegnebog i DeHub-tokens.",
+          "2": "Du kan indstille et tipbeløb via hurtigvalgsknapper eller indtaste et brugerdefineret beløb.",
+          "3": "Bogmærkede opslag er tilgængelige fra siden Bogmærker i sidebjælken."
+        }
+      },
+      "explore-search": {
+        "title": "Udforsk & Søg",
+        "intro": "Opdag nyt indhold og nye brugere via udforskningssiden og kraftfuld søgefunktionalitet.",
+        "steps": {
+          "1": "Naviger til /app/explore fra sidebjælken.",
+          "2": "Brug søgefeltet øverst til at søge efter brugere, opslag eller indhold.",
+          "3": "Filtrer resultater efter fane: Alle, Personer, Opslag, Billeder, Videoer, Musik, Live.",
+          "4": "Gennemse populære emner og kategorier på udforskningssiden.",
+          "5": "Klik på et populært emne for at se alle relaterede opslag.",
+          "6": "Klik på en bruger i søgeresultaterne for at besøge deres profil."
+        },
+        "tips": {
+          "1": "Søg understøtter brugernavne, tegnebogsadresser og indholdsnøgleord.",
+          "2": "Populære emner opdateres baseret på nylig opslagaktivitet."
+        }
+      },
+      "profile": {
+        "title": "Profil",
+        "intro": "Din profil viser dine opslag, følgere, dem du følger, og tegnebogsinformation.",
+        "steps": {
+          "1": "Klik på din avatar eller 'Profil' i sidebjælken for at se din profil.",
+          "2": "Klik på 'Rediger profil' for at opdatere dit visningsnavn, din bio og din avatar.",
+          "3": "Upload et profilbillede ved at klikke på din avatar i redigeringstilstand.",
+          "4": "Se dine følger- og following-antal på din profilside.",
+          "5": "Gennemse dine egne opslag, medier og indhold, du har liket, via profilfanerne.",
+          "6": "Kopier din tegnebogsadresse ved at klikke på kopieringsikonet ved siden af den.",
+          "7": "Besøg andre brugeres profiler ved at klikke på deres brugernavn eller avatar hvor som helst på platformen."
+        },
+        "tips": {
+          "1": "Dit brugernavn er unikt og vises i din profil-URL (dehub.io/@username).",
+          "2": "Privatlivsindstillinger giver dig mulighed for at styre, hvem der kan se dine følger-antal."
+        }
+      },
+      "messages": {
+        "title": "Beskeder",
+        "intro": "Send direkte beskeder til andre brugere på platformen.",
+        "steps": {
+          "1": "Klik på 'Beskeder' i sidebjælken for at åbne beskedsiden.",
+          "2": "Klik på komponer-knappen for at starte en ny samtale.",
+          "3": "Søg efter en bruger via brugernavn for at sende dem en besked.",
+          "4": "Skriv din besked og tryk på send.",
+          "5": "Se din samtalelogg i beskedlisten.",
+          "6": "Klik på en samtale for at fortsætte med at chatte."
+        },
+        "tips": {
+          "1": "Du vil modtage en notifikation, når nogen sender dig en besked.",
+          "2": "Skabere kan låse beskeder bag et krav om drikkepenge."
+        }
+      },
+      "ai-assistant": {
+        "title": "AI Assistent",
+        "intro": "Chat med DeHubs indbyggede AI-assistent for hjælp, information og kreative opgaver.",
+        "steps": {
+          "1": "Klik på 'Assistent' i sidebjælken for at åbne AI-chatten.",
+          "2": "Skriv dit spørgsmål eller din anmodning i chatinputtet.",
+          "3": "AI'en kan hjælpe med kryptooplysninger, platformspørgsmål og generel viden.",
+          "4": "Start en ny samtale ved at klikke på knappen for ny chat.",
+          "5": "Se din samtalelogg i sidebjælken på assistentsiden.",
+          "6": "Du kan vedhæfte billeder, som AI'en kan analysere."
+        },
+        "tips": {
+          "1": "AI'en husker kontekst inden for en samtale.",
+          "2": "Du kan spørge AI'en om DeHub-funktioner, kryptotermer eller generelle spørgsmål.",
+          "3": "Tidligere samtaler gemmes og er tilgængelige når som helst."
+        }
+      },
+      "notifications": {
+        "title": "Notifikationer",
+        "intro": "Hold dig opdateret med likes, kommentarer, drikkepenge, følgere og anden aktivitet på dit indhold.",
+        "steps": {
+          "1": "Klik på klokkeikonet eller 'Notifikationer' i sidebjælken.",
+          "2": "Se alle notifikationer i en kronologisk liste.",
+          "3": "Klik på en notifikation for at navigere til det relaterede indhold.",
+          "4": "Notifikationer inkluderer: nye følgere, stemmer på opslag, kommentarer, drikkepenge og omtaler.",
+          "5": "Ulæste notifikationer er fremhævet — de markeres som læst, når de ses."
+        },
+        "tips": {
+          "1": "Notifikationsmærket viser antallet af ulæste notifikationer.",
+          "2": "Drikkepenge-notifikationer viser, hvor mange tokens du har modtaget."
+        }
+      },
+      "wallet": {
+        "title": "Wallet",
+        "intro": "Se dine DeHub token-balancer på tværs af flere kæder, tjek staking-indskud og administrer dine aktiver.",
+        "steps": {
+          "1": "Klik på 'Wallet' i sidebjælken for at åbne wallet-siden.",
+          "2": "Se din samlede token-saldo aggregeret på tværs af alle understøttede kæder.",
+          "3": "Se opdelinger pr. kæde: Ethereum, Base, BNB Chain og mere.",
+          "4": "Tjek dine staking-indskud og belønninger.",
+          "5": "Klik på 'Opdater scanning' for at opdatere dine saldi fra on-chain data.",
+          "6": "Kopier din wallet-adresse for at modtage tokens fra andre."
+        },
+        "tips": {
+          "1": "Saldier opdateres automatisk, men du kan tvinge en opdatering når som helst.",
+          "2": "Walleten viser både likvide (tilgængelige) og stakede saldi."
+        }
+      },
+      "staking": {
+        "title": "Staking",
+        "intro": "Stak dine DeHub-tokens for at optjene belønninger og øge din stemmevægt i governance.",
+        "steps": {
+          "1": "Naviger til 'Staking'-siden fra sidebjælken.",
+          "2": "Indtast antallet af tokens, du vil stake.",
+          "3": "Vælg den kæde, du vil stake på.",
+          "4": "Bekræft transaktionen i din wallet (eksterne wallets), eller den udføres automatisk (social login).",
+          "5": "Se dine stakede beløb og eventuelle ventende belønninger.",
+          "6": "For at unstake, indtast beløbet og bekræft unstaking-transaktionen."
+        },
+        "tips": {
+          "1": "Staking øger din stemmevægt i governance-forslag.",
+          "2": "Brugere med social login behøver ikke gas for at stake – det er gasfrit.",
+          "3": "Du kan stake på flere kæder samtidigt."
+        }
+      },
+      "leaderboard": {
+        "title": "Leaderboard",
+        "intro": "Se hvem der er i toppen! Leaderboardet rangerer brugere efter saldo, dagligt forbrug og trending emner.",
+        "steps": {
+          "1": "Naviger til 'Leaderboard'-siden fra sidebjælken.",
+          "2": "Skift mellem faner: Saldo, Dagligt Forbrugt og Snak om Byen.",
+          "3": "Saldo-fanen rangerer brugere efter deres samlede token-beholdninger.",
+          "4": "Dagligt Forbrugt-fanen viser, hvem der har været mest aktiv med at tippe i de sidste 24 timer.",
+          "5": "Snak om Byen viser de mest diskuterede emner/kategorier.",
+          "6": "Klik på en hvilken som helst bruger for at besøge deres profil.",
+          "7": "Leaderboardet opdateres periodisk i løbet af dagen."
+        },
+        "tips": {
+          "1": "Daglige ranglister nulstilles hver 24. time.",
+          "2": "Snak om Byen sporer enkeltordskategorier fra hashtags."
+        }
+      },
+      "command-centre": {
+        "title": "Command Centre",
+        "intro": "Et dashboard-oversigt, der viser dine nøgletal og platformaktivitet på et øjeblik.",
+        "steps": {
+          "1": "Klik på 'Command Centre' i sidebjælken.",
+          "2": "Se din profilresume, inklusive antal opslag, følgere og engagement.",
+          "3": "Se din seneste aktivitet og populære emner.",
+          "4": "Få adgang til hurtige links til ofte brugte funktioner."
+        },
+        "tips": {
+          "1": "Command Centre giver dig et fugleperspektiv over din DeHub-tilstedeværelse."
+        }
+      },
+      "governance": {
+        "title": "Governance",
+        "intro": "Deltag i platformens governance ved at oprette forslag og stemme om fællesskabsbeslutninger.",
+        "steps": {
+          "1": "Naviger til 'Governance' fra sidebjælken.",
+          "2": "Gennemse aktive forslag indsendt af fællesskabet.",
+          "3": "Klik på et forslag for at læse dets fulde beskrivelse og diskussion.",
+          "4": "Stem på forslag ved hjælp af tommelfinger op/ned-knapperne — din stemmevægt afhænger af, hvor mange DeHub-tokens du har sat i stak.",
+          "5": "Efterlad kommentarer på forslag for at diskutere med fællesskabet.",
+          "6": "Indsend dit eget forslag ved at klikke på knappen 'Opret forslag'."
+        },
+        "tips": {
+          "1": "Din stemmekraft bestemmes af antallet af tokens, du har sat i stak.",
+          "2": "Badge-indehavere kan få yderligere stemmevægt.",
+          "3": "Forslag gennemgår faser: Aktiv → Bestået/Afvist."
+        }
+      },
+      "bookmarks": {
+        "title": "Bogmærker",
+        "intro": "Gem opslag i dine bogmærker for nem adgang senere.",
+        "steps": {
+          "1": "Klik på bogmærkeikonet på ethvert opslag for at gemme det.",
+          "2": "Naviger til 'Bogmærker' i sidebjælken for at se alle gemte opslag.",
+          "3": "Klik på et bogmærket opslag for at se det i sin helhed.",
+          "4": "Fjern et bogmærke ved at klikke på bogmærkeikonet igen."
+        },
+        "tips": {
+          "1": "Bogmærker er private — kun du kan se dine gemte opslag.",
+          "2": "Der er ingen grænse for, hvor mange opslag du kan bogmærke."
+        }
+      },
+      "settings": {
+        "title": "Indstillinger",
+        "intro": "Tilpas din DeHub-oplevelse med sprog-, privatlivs- og visningspræferencer.",
+        "steps": {
+          "1": "Klik på 'Indstillinger' i sidebjælken.",
+          "2": "Skift dit visningssprog fra sprogvælgeren.",
+          "3": "Juster privatlivsindstillinger: Kontroller, hvem der ser dine følgerantal og din liste over personer, du følger.",
+          "4": "Indstil dine standardindstillinger for opslagssynlighed.",
+          "5": "Administrer notifikationsindstillinger."
+        },
+        "tips": {
+          "1": "DeHub understøtter flere sprog — hele interfacet oversættes.",
+          "2": "Privatlivsindstillinger gælder øjeblikkeligt."
+        }
+      },
+      "posting-allowance": {
+        "title": "Din daglige opslagsgrænse",
+        "intro": "Opslag er gratis hver dag op til en grænse, der skalerer med dit staking-badge. Alle starter med ti tekstopslag og en gigabyte video, billeder og lyd pr. dag. Gå forbi en af ​​dem, og resten af ​​den dag betales i DeHub-tokens — kun for den del, der overskrides.",
+        "steps": {
+          "1": "Post som normalt. Inden for grænsen bliver intet opkrævet, og intet bliver bedt om af dig.",
+          "2": "Tekstopslag og medier er separate puljer, så en dag brugt på at uploade video efterlader stadig alle ti tekstopslag gratis.",
+          "3": "Når et opslag ville overskride grænsen, prissætter appen det først og tjekker, om din tegnebog kan dække det, før noget uploades.",
+          "4": "Opslaget udgives præcis som det ville være inden for grænsen — udgivelse venter aldrig på en betaling.",
+          "5": "Derefter godkender du én overførsel for kun det opslag, afgjort på enten Base eller BNB Chain, der har nok DeHub-tokens.",
+          "6": "Begge puljer nulstilles ved midnat UTC."
+        },
+        "tips": {
+          "1": "Overskridelse er pro rata: 200 MB ud over din grænse koster 200 MB, ikke en hel gigabyte.",
+          "2": "Reposts, kommentarer, reaktioner, tips og beskeder koster intet og rører aldrig grænsen.",
+          "3": "Afvis betalingen, og opslaget forbliver oppe — beløbet blokerer blot dit næste betalte opslag, indtil det er afgjort. Morgendagens gratis grænse er altid din.",
+          "4": "Et staking-badge øger den gratis grænse og sænker prisen på alt, der ligger ud over den."
+        }
+      },
+      "reactions-and-safety": {
+        "title": "Reaktioner, Muting & Modent Indhold",
+        "intro": "Der er ni reaktioner bag like-knappen og et sæt kontroller til at bestemme, hvad du ser, og hvem der kan nå dig.",
+        "steps": {
+          "1": "Hold tommelfingeren op på et hvilket som helst opslag for at åbne reaktionsbakken: like, love, respect, hot, lol, sad, cry, dislike og poo.",
+          "2": "De syv positive tæller med i opslagets like-total; dislike og poo tæller imod det.",
+          "3": "Din reaktion vægtes af dit staking-badge, så en badgeholders reaktion flytter antallet længere end én stemme.",
+          "4": "Tryk på X i et opslags header for at mute dets forfatter — de forsvinder straks fra dit feed.",
+          "5": "Skabere markerer deres egne opslag som modne, mens de komponerer dem; disse opslag forbliver uden for det offentlige startfeed.",
+          "6": "For at se modne opslag overalt, slå 'Vis modent indhold' til i Indstillinger."
+        },
+        "tips": {
+          "1": "Et modent opslag er stadig fuldt synligt på skaberens profil og for de personer, der følger dem.",
+          "2": "Blokering fra en profil går længere end muting og afskærer også beskeder.",
+          "3": "Reaktionsbakken viser, hvem der reagerede og med hvad, så du kan se rummet snarere end blot et tal."
+        }
+      },
+      "stages": {
+        "title": "Scener (Live Lydrum)",
+        "intro": "Scener er live lydrum indbygget i DeHub. En vært åbner et rum, bringer talere op, og alle kan falde ind for at lytte fra Scener-siden eller et delt link.",
+        "steps": {
+          "1": "Åbn 'Scener' i sidebjælken for at se, hvad der er live nu, og hvad der er planlagt.",
+          "2": "Tryk på en live scene for at deltage som lytter, eller sæt en påmindelse på en planlagt scene og få besked, når den starter.",
+          "3": "Start din egen fra samme side — du kan gå live direkte fra browseren, uden OBS eller stream key.",
+          "4": "Som vært kan du bringe talere på scenen, slå dem fra eller fjerne dem, dele din skærm og styre lydpladen.",
+          "5": "Lyttere sender live-reaktioner og taler i rummets chat uden at komme på scenen.",
+          "6": "Hver scene optager, og optagelsen afspilles bagefter fra det kort, den vises på."
+        },
+        "tips": {
+          "1": "Live-undertekster undertekster hver taler og oversætter til det sprog, du læser på.",
+          "2": "Live-dubbing kan tale rummet højt med værtens egen klonede stemme, afregnet pr. minut i DeHub-tokens.",
+          "3": "Værter kan sætte en radiostation på luften eller afspille deres egne musikklip mellem samtaler.",
+          "4": "En miniafspiller holder rummet kørende i hjørnet, mens du browser resten af appen."
+        }
+      },
+      "communities": {
+        "title": "Fællesskaber & Begivenheder",
+        "intro": "Fællesskaber er medlemsdrevne rum med deres eget feed, medlemmer og aktivitet. Begivenheder tilføjer tidsbegrænset programmering ovenpå dem.",
+        "steps": {
+          "1": "Åbn 'Fællesskaber' i sidebjælken og browse de offentlige.",
+          "2": "Deltag med et enkelt tryk. Ny aktivitet vises som et ulæst badge i navigationen.",
+          "3": "Post, diskuter, kør afstemninger og giv drikkepenge inde i et fællesskabs eget feed.",
+          "4": "Fællesskabsejere modererer deres eget rum og kan give administratorrettigheder til andre.",
+          "5": "Åbn 'Begivenheder' for planlagt programmering, med en fuld side pr. begivenhed, du kan følge live."
+        },
+        "tips": {
+          "1": "Fællesskabschat understøtter @nævnelser og @her, så et opslag kan nå rummet.",
+          "2": "Et invitationslink lader dig bringe folk direkte ind i et fællesskab."
+        }
+      },
+      "arcade": {
+        "title": "Arkade",
+        "intro": "Fem spil kører inde i DeHub i en browserfane — intet at installere, intet at købe.",
+        "steps": {
+          "1": "Åbn 'Arkade' i sidebjælken.",
+          "2": "Vælg et spil: King's Gambit (3D skak med en online Elo-stige), Claude of Duty (en shooter, der genererer sin egen grafik, mens den indlæses), Jungle Trail (en procedurel regnskovsvandring), Street Slayer (en beat 'em up lavet til DeHub) eller Chartopia (en gåbar handelsgulv).",
+          "3": "Spil i fanen. King's Gambit og Street Slayer holder ranglister.",
+          "4": "Chartopia kører også i et VR-headset via WebXR."
+        },
+        "tips": {
+          "1": "To af dem gemmer sig inde i udseendestemaerne — indstil appen til War for Claude of Duty, eller Jungle for Jungle Trail.",
+          "2": "Hvert spil har sit eget delingskort, så et link til et udfolder sig korrekt, uanset hvor du poster det."
+        }
+      },
+      "bounties-stores": {
+        "title": "Belønninger & Butikker",
+        "intro": "To måder at gøre platformen til indkomst: post eller indløs en belønning, eller åbn en butik og sælg til dit publikum.",
+        "steps": {
+          "1": "Åbn 'Belønninger' for at browse åbent arbejde, filtreret efter kategori eller valuta.",
+          "2": "Indløs en, lav arbejdet, og indsend det for at indsamle belønningen — alle kan være en jæger, ingen ansøgning nødvendig.",
+          "3": "Opret din egen dusør med en kort beskrivelse og en belønning i DeHub-tokens eller USDC. Den går i depositum i det øjeblik, du opretter den.",
+          "4": "Åbn 'Butikker' for at opsætte en butiksfacade med sin egen side, branding og annoncer.",
+          "5": "Produkter prissættes og afregnes i DeHub-tokens via den indbyggede wallet, uden ekstern checkout."
+        },
+        "tips": {
+          "1": "Dusører er organiseret i Sociale Medier, Klip og Kontrakter.",
+          "2": "En tvistløsningsproces afgør uenigheder om levering, så depositum altid afvikles retfærdigt.",
+          "3": "Skabere bruger dusører til at opbygge et fællesskab — delinger, klip og reaktioner er alle gyldige opgaver."
+        }
+      },
+      "creator-studio": {
+        "title": "Creator Studio & Editor",
+        "intro": "Creator Studio genererer billeder, video, musik, stemme og 3D-modeller ud fra en prompt og leverer dem til en editor — inklusive en fuld multi-track videoeditor, der kører i browseren.",
+        "steps": {
+          "1": "Åbn Creator Studio og beskriv, hvad du vil have lavet.",
+          "2": "Serveren angiver prisen, før jobbet kører, så du ser, hvad det koster, før du bruger det.",
+          "3": "Renderinger fortsætter i en delt kø, mens du fortsætter med at browse i appen.",
+          "4": "Arranger resultaterne i Canva-lignende editor, eller åbn videoeditoren for en rigtig tidslinje med klipning, lagdeling og eksport.",
+          "5": "Drop det færdige stykke direkte i et opslag, en kort video eller en butiksannonce."
+        },
+        "tips": {
+          "1": "Et gratis lager af stock-aktiver ligger ved siden af Studio til alt, hvad du hellere vil undgå at generere.",
+          "2": "Generering betales i DeHub-tokens fra din wallet — du underskriver én overførsel pr. job, og prisen angives, før du betaler.",
+          "3": "Tungere brugere kan tage en Ultra-, Team- eller Scale-plan, som sender en månedlig token-tilladelse direkte til deres wallet."
+        }
+      },
+      "buying-dhb": {
+        "title": "Køb Tokens",
+        "intro": "Køb DeHub-tokens direkte i appen ved hjælp af den indbyggede swap-interface.",
+        "steps": {
+          "1": "Naviger til 'Køb'-siden fra sidebjælken.",
+          "2": "Vælg den token, du vil bytte fra (f.eks. ETH, USDC).",
+          "3": "Indtast det beløb, du vil bruge, eller antallet af tokens, du vil modtage.",
+          "4": "Gennemgå vekselkursen og det estimerede output.",
+          "5": "Klik på indstillingshjulet for at justere slippage-tolerance (standard er 1%).",
+          "6": "Bekræft swap-transaktionen.",
+          "7": "DeHub-tokens vil dukke op i din wallet, når transaktionen er fuldført."
+        },
+        "tips": {
+          "1": "Højere slippage-tolerance = mere sandsynligt at udføre, men potentiale for dårligere priser.",
+          "2": "Tjek altid vekselkursen, før du bekræfter.",
+          "3": "Du kan indstille brugerdefineret slippage i indstillingspanelet."
+        }
+      },
+      "bridge": {
+        "title": "Bridge",
+        "intro": "Flyt dine DeHub-tokens mellem understøttede blockchains ved hjælp af cross-chain-broen.",
+        "steps": {
+          "1": "Naviger til 'Bridge'-siden fra sidebjælken.",
+          "2": "Vælg kildekæden (hvor dine tokens er i øjeblikket).",
+          "3": "Vælg destinationskæden (hvor du vil sende dem hen).",
+          "4": "Indtast antallet af tokens, der skal bridges.",
+          "5": "Gennemgå bridge-gebyret og den estimerede ankomsttid.",
+          "6": "Bekræft bridge-transaktionen.",
+          "7": "Vent på, at transaktionen bliver fuldført — bridging kan tage et par minutter."
+        },
+        "tips": {
+          "1": "Bridge-gebyrer varierer efter kædepar.",
+          "2": "Bridging tager typisk 1-5 minutter afhængigt af de involverede kæder.",
+          "3": "Dobbelttjek altid destinationskæden, før du bekræfter."
+        }
+      },
+      "music-tv": {
+        "title": "Musik & TV",
+        "intro": "Nyd medieindhold direkte i DeHub — stream musik og se live TV-kanaler.",
+        "steps": {
+          "1": "Naviger til 'Musik' fra sidebjælken for at browse og afspille musikindlæg.",
+          "2": "Naviger til 'TV' for at få adgang til live TV-kanaler.",
+          "3": "Gennemse kanaler efter kategori eller land.",
+          "4": "Klik på en kanal for at begynde at se.",
+          "5": "Brug afspillerkontrollerne til at justere lydstyrke og afspilning.",
+          "6": "Rapporter ødelagte kanaler ved hjælp af rapportknappen."
+        },
+        "tips": {
+          "1": "TV-kanaler er community-verificerede for pålidelighed.",
+          "2": "Musikindlæg kan afspilles, mens du browser andet indhold."
+        }
+      },
+      "post-info": {
+        "title": "Indlægsinformation & Fraktioner",
+        "intro": "Et mintet indlæg er en NFT opdelt i 1.000 fraktioner. Siden Indlægsinformation viser on-chain data, engagementstatistikker, ejerskabsfordeling og giver dig mulighed for at handle fraktioner af ethvert indlæg — på et umintet indlæg tilbyder den at mint i stedet.",
+        "steps": {
+          "1": "Tryk på 'ⓘ'-ikonet på ethvert indlæg for at åbne dets Indlægsinformationsside.",
+          "2": "Øverst ser du Token ID (unik on-chain identifikator) og transaktionshashen — klik på hashen for at se den på block explorer.",
+          "3": "Under det viser engagementstatistikker det samlede antal likes, dislikes, visninger, kommentarer og modtagne tips.",
+          "4": "Sektionen Indehavere viser en statuslinje for, hvor mange af de 1.000 fraktioner skaberen stadig ejer, plus en liste over alle fraktionsindehavere med deres saldi og procenter.",
+          "5": "Hvis indlægget er pay-per-view (PPV), vil du se prisen, valutaen og hvor mange brugere der har købt adgang.",
+          "6": "Indlægsejere kan ændre synlighed (Offentlig, Ulistet eller Privat) og redigere titlen/beskrivelsen direkte fra denne side."
+        },
+        "tips": {
+          "1": "Et ny-mintet indlæg starter med skaberen, der ejer alle 1.000 fraktioner (100% ejerskab).",
+          "2": "Transaktionshashen linker til BaseScan eller BscScan afhængigt af kæden.",
+          "3": "Ulisterede opslag vises ikke i feeds, men kan stadig tilgås via direkte link."
+        }
+      },
+      "trading-fractions": {
+        "title": "Handelsbrøker",
+        "intro": "Brøkhandel — gennemse opslag, lave tilbud, slå dit eget op — bor på web-appen på dehub.io på hvert opslags opslagsinfo-side.",
+        "steps": {
+          "1": "Åbn dehub.io i en browser, og log ind med den samme konto.",
+          "2": "Åbn opslagets opslagsinformationsside, og skift til fanen Markedsplads.",
+          "3": "Gennemse opslag, lav et tilbud til din pris, eller opstil brøker, du ejer.",
+          "4": "Når en handel er gennemført, vises ændringen på fanen Brøker her på mobilen."
+        },
+        "tips": {
+          "1": "At eje brøkdele af et opslag betyder, at du har en andel af den on-chain NFT.",
+          "2": "Tjek et opslags indehavere på webmarkedspladsen for at se ejerskabsfordelingen, før du køber.",
+          "3": "Som kreatør giver salg af fraktioner fans mulighed for at være medejer af dit indhold."
+        }
+      },
+      "minting-posts": {
+        "title": "Prægning af opslag (Oprettelse af NFT'er)",
+        "intro": "Prægning er valgfrit. Et opslag udgives off-chain i det øjeblik, du sender det — ingen wallet, ingen signatur, ingen gas — og du kan præge det som en NFT, når du vil, enten mens du skriver det eller senere fra selve opslaget.",
+        "steps": {
+          "1": "Klik på knappen 'Opslag' i sidebjælken (desktop) eller + knappen (mobil).",
+          "2": "Skriv din tekst, vedhæft medier (billeder, videoer, lyd), og tilføj kategorier.",
+          "3": "Lad 'Præge opslag' være slået fra for at udgive off-chain, eller slå det til for at præge, mens du udgiver.",
+          "4": "Offentliggørelse venter aldrig på kæden: Indlægget vises i feedet på en eller anden måde.",
+          "5": "Hvis du vil mynte senere, skal du åbne opslagets informationsside og bruge Mint-handlingen der.",
+          "6": "Når opslaget er slået op, får det et token-id og et transaktionshash, som du kan bekræfte på kæden, og du beholder alle 1.000 fraktioner af det."
+        },
+        "tips": {
+          "1": "Logon på sociale medier, e-mail og sms betaler nul gas — DeHub sponsorerer møntgebyrer.",
+          "2": "Eksterne tegnebogsbrugere har brug for ETH på Base eller BNB på BNB Chain til gas.",
+          "3": "Møntning er det, der gør et indlæg omsætteligt og royaltybærende. Et upåvirket opslag får stadig tips og synspunkter.",
+          "4": "Posten på kæden er permanent, når den er præget, selvom posten senere slettes fra feedet."
+        }
+      },
+      "glossary": {
+        "title": "Ordliste",
+        "intro": "En omfattende ordliste over krypto- og platformsterminologi, der hjælper dig med at navigere på Web3.",
+        "steps": {
+          "1": "Naviger til \"Ordliste\" fra sidepanelet.",
+          "2": "Gennemse termer alfabetisk, eller brug søgningen til at finde specifikke termer.",
+          "3": "Klik på et udtryk for at se dets fulde definition og forklaring.",
+          "4": "Vilkår dækker kryptokoncepter, DeFi-terminologi og DeHub-specifikke funktioner."
+        },
+        "tips": {
+          "1": "Fantastisk ressource for nybegyndere til krypto og Web3.",
+          "2": "Ordlisten opdateres regelmæssigt med nye termer."
+        }
+      }
     }
   },
   "creatorPacks": {

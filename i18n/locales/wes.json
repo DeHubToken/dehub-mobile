@@ -3362,14 +3362,8 @@
     "noResultsFor": "Notin show for \"{{query}}\"",
     "guideSubtitle": "Step-by-step guide for every feature",
     "searchGuide": "Search di guide...",
-    "guideFractionsTip": "Every post wey dem mint di start with the creator wey get all yi fraction (100% ownership).",
-    "guideInfoStep": "Tap the info icon for post wey dem don mint for open yi mint transaction for block explorer and check the on-chain record.",
-    "guideMintIntro": "For mint post as NFT for blockchain na your choice. Mint am when you di publish, or publish now and mint am later from the post menu.",
-    "guideMintPublishStep": "Choose whether you go mint, then click 'Post' for publish. If you skip mint, you fit mint the post later from yi menu.",
-    "guideMintFractionsStep": "You go get all 1,000 fraction (100% ownership) of the post weh you just mint.",
     "glossaryMintTxDesc": "Tap the info icon for post wey dem don mint for open yi mint transaction for block explorer and check the on-chain record. The full Post Info page — stats, holders, marketplace — dey for the web app for dehub.io.",
-    "glossaryTokenIdDesc": "One unique on-chain ID wey dem give post when dem mint am as NFT.",
-    "guideLeaderboardBalanceStep": "Balance tab ranks users by their total DeHub token holdings."
+    "glossaryTokenIdDesc": "One unique on-chain ID wey dem give post when dem mint am as NFT."
   },
   "arcade": {
     "submitAccessibility": "Sen game fo arcade",
@@ -6606,6 +6600,119 @@
       "packEmpty": "We no see no emoji for dat address",
       "shortcodeTaken": "Person don take {{name}} already",
       "shortcodeStandard": "{{name}} na normal emoji already"
+    }
+  },
+  "guide": {
+    "sections": {
+      "getting-started": {
+        "title": "Getting Started"
+      },
+      "home-feed": {
+        "title": "Home Feed",
+        "tips": {
+          "3": "Live tab shows currently active live streams."
+        }
+      },
+      "creating-posts": {
+        "title": "Creating Posts",
+        "tips": {
+          "1": "Posts support markdown-style formatting."
+        }
+      },
+      "explore-search": {
+        "title": "Explore & Search"
+      },
+      "profile": {
+        "title": "Profile"
+      },
+      "messages": {
+        "title": "Messages"
+      },
+      "ai-assistant": {
+        "title": "AI Assistant"
+      },
+      "notifications": {
+        "title": "Notifications"
+      },
+      "wallet": {
+        "title": "Wallet"
+      },
+      "staking": {
+        "title": "Staking"
+      },
+      "leaderboard": {
+        "title": "Leaderboard",
+        "steps": {
+          "3": "Balance tab ranks users by their total token holdings."
+        },
+        "tips": {
+          "1": "Daily rankings reset every 24 hours."
+        }
+      },
+      "command-centre": {
+        "title": "Command Centre"
+      },
+      "governance": {
+        "title": "Governance",
+        "tips": {
+          "2": "Badge holders may get additional vote weight.",
+          "3": "Proposals go through stages: Active → Passed/Rejected."
+        }
+      },
+      "bookmarks": {
+        "title": "Bookmarks"
+      },
+      "settings": {
+        "title": "Settings",
+        "steps": {
+          "5": "Manage notification preferences."
+        },
+        "tips": {
+          "2": "Privacy settings apply immediately."
+        }
+      },
+      "reactions-and-safety": {
+        "title": "Reactions, Muting & Mature Content"
+      },
+      "stages": {
+        "title": "Stages (Live Audio Rooms)"
+      },
+      "communities": {
+        "title": "Communities & Events"
+      },
+      "arcade": {
+        "title": "Arcade"
+      },
+      "bounties-stores": {
+        "title": "Bounties & Stores"
+      },
+      "creator-studio": {
+        "title": "Creator Studio & Editor"
+      },
+      "buying-dhb": {
+        "title": "Buying Tokens"
+      },
+      "bridge": {
+        "title": "Bridge",
+        "tips": {
+          "1": "Bridge fees vary by chain pair."
+        }
+      },
+      "music-tv": {
+        "title": "Music & TV"
+      },
+      "post-info": {
+        "title": "Post Info & Fractions"
+      },
+      "trading-fractions": {
+        "title": "Trading Fractions"
+      },
+      "minting-posts": {
+        "title": "Minting Posts (Creating NFTs)"
+      },
+      "glossary": {
+        "title": "Glossary"
+      }
     }
   },
   "creatorPacks": {

@@ -3432,11 +3432,6 @@
     "noResultsFor": "Babu sakamako ga \"{{query}}\"",
     "guideSubtitle": "Mataki-mataki ta kowane fasali",
     "searchGuide": "Nemo jagorar...",
-    "guideFractionsTip": "Kowane sakon da aka yi minting ɗinsa yana farawa ne da mahaliccinsa yana riƙe da dukkan rabonsa (mallaka 100%).",
-    "guideInfoStep": "Taɓa alamar bayani a kan sakon da aka yi minting ɗinsa don buɗe cinikin minting ɗinsa a mai binciken toshe kuma ka tabbatar da rikodin da ke kan sarkar.",
-    "guideMintIntro": "Yin minting na sako a matsayin NFT a kan blockchain zaɓi ne. Yi minting lokacin da kake wallafawa, ko ka wallafa yanzu ka yi minting daga baya daga menu na sakon.",
-    "guideMintPublishStep": "Zaɓi ko za ka yi minting, sannan danna 'Wallafa'. Idan ka tsallake minting, za ka iya yin minting na sakon daga baya daga menu ɗinsa.",
-    "guideMintFractionsStep": "Kuna karɓar dukkan rabe-rabe 1,000 (mallaka 100%) na sabon saƙon da kuka yi wa minti.",
     "glossaryMintTxDesc": "Taɓa alamar bayani a kan sakon da aka yi minting ɗinsa don buɗe cinikin minting ɗinsa a mai binciken toshe kuma ka tabbatar da rikodin da ke kan sarkar. Cikakken shafin Bayanin Sako — ƙididdiga, masu riƙewa, kasuwa — yana kan manhajar yanar gizo a dehub.io.",
     "glossaryTokenIdDesc": "Keɓaɓɓen mai ganowa a kan sarkar da ake ba sako lokacin da aka yi minting ɗinsa a matsayin NFT.",
     "repostsTab": "Sake bugawa",
@@ -3453,24 +3448,7 @@
     "glossaryStakingDesc": "Saka jimlar kuɗin DeHub ɗinku don samun lada akan lokaci. Jimlar kuɗi da aka saka kuma suna ba ku ƙarfin jefa ƙuri'a a cikin gudanarwa.",
     "glossaryGovernanceDesc": "Saka hannun jari da jefa ƙuri'a kan shawarwarin da ke tsara dandalin. Ƙarfin jefa ƙuri'a ku yana da nauyi ta yawan jimlar kuɗin DeHub da kuke riƙe.",
     "glossaryStakingBadgesDesc": "Badges da aka nuna kusa da sunan mai amfani ku dangane da jimlar kuɗin DeHub ɗinku (walat + saka). Akwai matakai 13 — mafi yawan kuɗi da kuke riƙe, mafi girman matsayin badge ɗin ku. Manyan matakai suna ba da ƙarfin jefa ƙuri'a na gudanarwa da kuma ƙananan kuɗin dandalin.",
-    "glossaryLeaderboardDesc": "Ana sanya masu amfani a cikin tsari ta jimlar kuɗin DeHub (walat + saka a duk sassa). Rankings suna sabuntawa lokaci-lokaci kuma suna lura da canje-canje na kwana 1 da makonni 1. Hakanan zaka iya tsara ta ta kyaututtuka da aka aika, kyaututtuka da aka karɓa, masu bi, abubuwan so, ko masu biyan kuɗi.",
-    "guideTipStep": "Danna gem/kyautar alama don aika mai ƙirƙirar post ɗin kyauta a cikin jimlar DeHub.",
-    "guideTipWalletTip": "Kyaututtuka suna zuwa kai tsaye zuwa walat ɗin mai ƙirƙirar a matsayin jimlar DeHub.",
-    "guideTipNotificationsTip": "Sanarwar bayar da gudummawa tana nuna adadin DeHub tokens da ka samu.",
-    "guideWalletIntro": "Duba ma'auni na DeHub tokens a kan hanyoyi da dama, duba ajiyar staking, da kuma sarrafa kadarorinka.",
-    "guideWalletTotalStep": "Duba jimillar ma'aunin DeHub tokens da aka tattara daga duk hanyoyin da aka goyan baya.",
-    "guideStakingIntro": "Saka DeHub tokens ɗinka don samun lada da kuma ƙara ƙarfin zaɓen gudanarwarka.",
-    "guideStakingAmountStep": "Shigar da adadin DeHub tokens da kake son sakawa.",
-    "guideLeaderboardBalanceStep": "Shafin ma'auni yana jera masu amfani bisa ga jimillar DeHub tokens da suke riƙe.",
-    "guideGovernanceVoteStep": "Zabi kan shawarwari ta amfani da maɓallan thumbs up/down — nauyin zaɓenka ya dogara da adadin DeHub tokens da ka saka.",
-    "guideGovernancePowerTip": "Ƙarfin zaɓenka ya dogara da adadin DeHub tokens da ka saka.",
-    "guideBuyIntro": "Sayi DeHub tokens kai tsaye a DPay ta amfani da katin ko crypto da aka goyan baya.",
-    "guideBuyAmountStep": "Shigar da adadin da kake son kashewa ko adadin DeHub tokens da kake son samu.",
-    "guideBuyDeliveredStep": "DeHub tokens ɗinka za su bayyana a cikin walat ɗinka bayan an kammala cinikin.",
-    "guideBridgeIntro": "Matsar da DeHub tokens ɗinka tsakanin blockchains da aka goyan baya ta amfani da gidan gada na tsakanin hanyoyi.",
-    "guideBridgeSourceStep": "Zabi hanyar tushe (inda DeHub tokens ɗinka suke a yanzu).",
-    "guideBridgeDestStep": "Zabi hanyar da za a nufa (inda kake son aika DeHub tokens ɗinka).",
-    "guideBridgeAmountStep": "Shigar da adadin DeHub tokens da za a yi gadan."
+    "glossaryLeaderboardDesc": "Ana sanya masu amfani a cikin tsari ta jimlar kuɗin DeHub (walat + saka a duk sassa). Rankings suna sabuntawa lokaci-lokaci kuma suna lura da canje-canje na kwana 1 da makonni 1. Hakanan zaka iya tsara ta ta kyaututtuka da aka aika, kyaututtuka da aka karɓa, masu bi, abubuwan so, ko masu biyan kuɗi."
   },
   "arcade": {
     "submitAccessibility": "Aika wasa zuwa wurin wasan kwaikwayo",
@@ -6792,6 +6770,503 @@
       "packEmpty": "Babu emoji da aka samu a wannan adireshin",
       "shortcodeTaken": "{{name}} an riga an dauka",
       "shortcodeStandard": "{{name}} ya riga ya zama misali emoji"
+    }
+  },
+  "guide": {
+    "sections": {
+      "getting-started": {
+        "title": "Fara",
+        "intro": "Akwai hanyoyi biyar don shiga DeHub kuma babu ɗayansu da ke buƙatar ka mallaki walat ɗin da: Google, Apple, lambar da aka aika zuwa imel ɗinka, lambar da aka aika ta SMS, ko walat ɗin da kake da shi da ka haɗa. Komai sai hanyar walat ɗin tana ƙirƙirar walat ɗin da ba a kula da shi ba a bayanka — kai ne ke riƙe da maɓallan, kuma DeHub yana ɗaukar nauyin gas ɗin don haka zaka iya yin rubutu, ba da kyauta da tattarawa ba tare da siyan kowane irin tsabar kuɗi ba.",
+        "steps": {
+          "1": "Ziyarci dehub.io — feed ɗin gida shine shafi na gaba, don haka zaka iya duba kewaye kafin shiga.",
+          "2": "Danna 'Sign In'. Zaka ga Google da Apple, wuraren shigar da adireshin imel ko lambar waya, da 'Connect Wallet' don wanda kake da shi.",
+          "3": "Tare da Google ko Apple, kammala tsarin mai bayarwa. Tare da imel ko SMS, shigar da lambar da ta zo.",
+          "4": "Ana ƙirƙirar walat kuma ana samar da tsaro a gare ku a farkon shiga. Haɗa walat ɗin ku maimakon haka yana nufin sa hannu ɗaya don tabbatar da adireshin.",
+          "5": "Zaɓi sunan mai amfani. Shi ne abin da mutane ke gani kuma yana zama hanyar haɗin kai zuwa dehub.io/<username>.",
+          "6": "Ka shiga. Bincika feed ɗin, saita bayanan martaba, kuma fara yin rubuce-rubuce."
+        },
+        "tips": {
+          "1": "Shiga ta hanyar Social, imel da SMS ba sa biyan gas ɗin gas — DeHub yana ɗaukar nauyin sa. Walat ɗin da aka haɗa suna biyan nasu ETH ko BNB.",
+          "2": "Kuna dawowa zuwa tsohon asusun DeHub? Shiga tare da imel ko lambar waya da ya yi amfani da shi kuma gyaran zai same shi a gare ku.",
+          "3": "Kuna iya riƙe asusun da dama akan na'ura ɗaya kuma ku canza tsakaninsu a Saiti → Bayanin martaba."
+        }
+      },
+      "home-feed": {
+        "title": "Feed na Gida",
+        "intro": "Feed ɗin gida shine inda kake ganin rubuce-rubuce daga mutanen da kake bi da kuma abubuwan da ke tasowa. Yana goyan bayan shafuka masu nau'ikan abun ciki da zaɓuɓɓukan tsari.",
+        "steps": {
+          "1": "Kewaya zuwa /app — wannan shine feed ɗin gida naka.",
+          "2": "Yi amfani da shafukan sama don tace ta nau'in abun ciki: Gida (duk), Bidiyo, Hotuna, Shorts, Kiɗa, ko Rayayyun shirye-shirye.",
+          "3": "Gungura hagu/dama akan shafukan don ganin ƙarin zaɓuɓɓuka akan wayar hannu.",
+          "4": "Yi amfani da maɓallin tace/tsara (sama-dama na abincin) don canza tsari: Zafi, Sabo, ko Sama.",
+          "5": "Ja ƙasa don sabunta abincin akan wayar hannu.",
+          "6": "Yi taɗi ƙasa don lodin ƙarin sakonni ta atomatik (infinite scroll).",
+          "7": "Canza tsakanin Yanayin Zana da Yanayin Abinci ta amfani da mai canza tsari."
+        },
+        "tips": {
+          "1": "Yanayin Zana yana da kyau don duba hotuna da sauri.",
+          "2": "Shafin 'Gida' yana nuna duk nau'ikan abun ciki da aka haɗa tare.",
+          "3": "Shafin Rayuwa yana nuna rayayyun shirye-shirye masu aiki a halin yanzu."
+        }
+      },
+      "creating-posts": {
+        "title": "Ƙirƙirar Sakonni",
+        "intro": "Ƙirƙiri sakonni na rubutu, raba hotuna, bidiyo, bayanan murya, GIFs, da ƙari. Yi amfani da hashtags, cashtags, da ambaton don ƙara isa.",
+        "steps": {
+          "1": "Danna maɓallin 'Sako' a gefen hagu (desktop) ko maɓallin + (wayar hannu).",
+          "2": "Rubuta rubutunka a wurin rubutu.",
+          "3": "Don ƙara hoto ko bidiyo, danna gunkin media kuma zaɓi fayil.",
+          "4": "Don yin rikodin bayanin murya, danna gunkin makirfo.",
+          "5": "Don ƙara GIF, danna gunkin GIF kuma bincika ɗaya.",
+          "6": "Yi amfani da #hashtags don rarraba sakonka (misali, #crypto, #defi).",
+          "7": "Yi amfani da $cashtags don nuna alamun kuɗi (misali, $DHB, $ETH).",
+          "8": "Yi amfani da @mentions don yiwa wasu masu amfani alama (misali, @username).",
+          "9": "Danna 'Sako' don bugawa. Sakonka ya bayyana a cikin abincin nan take."
+        },
+        "tips": {
+          "1": "Sakonni suna goyan bayan tsarin rubutu mai kama da markdown.",
+          "2": "Kuna iya sake buga sakonni ta danna gunkin sake bugawa akan kowane sakonni kuma zaɓin 'Quote'.",
+          "3": "Rukuni (hashtags) suna bayyana a cikin jadawalin 'Talk of the Town'."
+        }
+      },
+      "interacting-with-posts": {
+        "title": "Bayyanawa da Sakonni",
+        "intro": "Yi hulɗa da abun ciki ta hanyar jefa ƙuri'a, yin sharhi, ba da kyauta, adanawa, rabawa, da fassara.",
+        "steps": {
+          "1": "Jefa kuri'a sama ko ƙasa akan sakonni ta amfani da gunkin kibiya a gefen hagu na kowane sakonni.",
+          "2": "Danna gunkin sharhi don buɗe sashin sharhi kuma barin amsa.",
+          "3": "Danna gunkin gem/kyauta don aika kyauta a cikin DeHub tokens ga mai ƙirƙirar sakon.",
+          "4": "Danna gunkin alamar littafi don adana sakonni don daga baya.",
+          "5": "Danna gunkin raba don kwafin hanyar haɗin sakon ko raba a waje.",
+          "6": "Danna maɓallin fassara (alama ta duniya) akan kowane post don fassara rubutu zuwa harshen ku.",
+          "7": "Don posts na hoto, yi amfani da maɓallin 'Translate Image' don samun sigar da AI ta fassara ta rubutu a cikin hoto.",
+          "8": "Danna kan kowane post don buɗe shi a cikin cikakken allo guda ɗaya."
+        },
+        "tips": {
+          "1": "Bayarwa tana tafiya kai tsaye zuwa walat ɗin mai ƙirƙirar a cikin DeHub tokens.",
+          "2": "Kuna iya saita adadin bayarwa ta hanyar maɓallan zaɓi mai sauri ko shigar da adadi na musamman.",
+          "3": "Posts da aka yiwa alama ana iya samun su daga shafin Alamar a gefen gefe."
+        }
+      },
+      "explore-search": {
+        "title": "Bincike & Neman",
+        "intro": "Gano sabon abun ciki da masu amfani ta hanyar shafin bincike da ingantaccen aikin bincike.",
+        "steps": {
+          "1": "Jeka /app/explore daga gefen gefe.",
+          "2": "Yi amfani da mashaya bincike a sama don bincika masu amfani, posts, ko abun ciki.",
+          "3": "Tace sakamako ta tab: Duk, Mutane, Posts, Hotuna, Bidiyo, Kiɗa, Kai tsaye.",
+          "4": "Binciko batutuwa masu tasowa da nau'ikan akan shafin bincike.",
+          "5": "Danna kan batun da ke tasowa don ganin duk posts masu alaƙa.",
+          "6": "Danna kan mai amfani a cikin sakamakon bincike don ziyarci bayanan martabarsa."
+        },
+        "tips": {
+          "1": "Bincike yana goyan bayan sunayen masu amfani, adireshin walat, da kalmomin binciken abun ciki.",
+          "2": "Batutuwa masu tasowa suna sabuntawa dangane da ayyukan bugawa na baya-bayan nan."
+        }
+      },
+      "profile": {
+        "title": "Bayani",
+        "intro": "Bayanan martabarka tana nuna posts ɗinka, masu biyo baya, masu biyo baya, da bayanin walat.",
+        "steps": {
+          "1": "Danna avatar ɗinka ko 'Profile' a gefen gefe don duba bayanan martabarka.",
+          "2": "Danna 'Edit Profile' don sabunta sunan nuni, bio, da avatar ɗinka.",
+          "3": "Loda hoton bayanin martaba ta danna avatar ɗinka a yanayin gyara.",
+          "4": "Duba ƙididdigar masu biyo baya da masu biyo baya akan shafin bayanan martabarka.",
+          "5": "Binciko posts ɗinka, kafofin watsa labarai, da abun ciki da kuka so ta hanyar shafukan bayanan martaba.",
+          "6": "Kwafi adireshin walat ɗinka ta danna alamar kwafi kusa da shi.",
+          "7": "Ziyarci bayanan martabar wasu masu amfani ta danna sunan mai amfani ko avatar ɗinsu a ko'ina a dandalin."
+        },
+        "tips": {
+          "1": "Sunan mai amfani naka na musamman ne kuma yana bayyana a cikin URL na bayanan martabarka (dehub.io/@username).",
+          "2": "Saitunan sirri suna ba ka damar sarrafa ko wanene zai iya ganin ƙididdigar masu biyo baya."
+        }
+      },
+      "messages": {
+        "title": "Saƙonni",
+        "intro": "aika saƙonni kai tsaye ga wasu masu amfani a dandalin.",
+        "steps": {
+          "1": "Danna 'Messages' a gefen gefe don buɗe shafin saƙonni.",
+          "2": "Danna maballin rubutu don fara sabuwar tattaunawa.",
+          "3": "Nemo mai amfani ta sunan sa don aika masa saƙo.",
+          "4": "Rubuta saƙonka kuma danna aika.",
+          "5": "Duba tarihin tattaunawarka a jerin saƙonni.",
+          "6": "Danna kan tattaunawa don ci gaba da yin hira."
+        },
+        "tips": {
+          "1": "Za ku sami sanarwa lokacin da wani ya yi muku saƙo.",
+          "2": "Masu kirkira za su iya kulle saƙonni ta hanyar buƙatar kuɗi."
+        }
+      },
+      "ai-assistant": {
+        "title": "Mataimakin AI",
+        "intro": "Yi hira da mataimakin AI na DeHub don samun taimako, bayanai, da ayyukan kirkira.",
+        "steps": {
+          "1": "Danna 'Mataimaki' a gefen gefe don buɗe hira ta AI.",
+          "2": "Rubuta tambayarka ko buƙatarka a cikin shigarwar hira.",
+          "3": "AI na iya taimakawa tare da bayanan crypto, tambayoyin dandalin, da ilimin gaba ɗaya.",
+          "4": "Fara sabuwar tattaunawa ta danna maballin sabuwar hira.",
+          "5": "Duba tarihin tattaunawarka a gefen gefe na shafin mataimaki.",
+          "6": "Kuna iya haɗa hotuna don AI ta bincika."
+        },
+        "tips": {
+          "1": "AI tana tuna mahallin a cikin tattaunawa.",
+          "2": "Kuna iya tambayar AI game da fasalulluka na DeHub, sharuɗɗan crypto, ko tambayoyi na gaba ɗaya.",
+          "3": "Tsofaffin tattaunawa ana adana su kuma ana iya samun su kowane lokaci."
+        }
+      },
+      "notifications": {
+        "title": "Sanarwa",
+        "intro": "Rage sabuntawa tare da abubuwan so, sharhi, kuɗi, biyo baya, da sauran ayyuka akan abubuwan da kuka kirkira.",
+        "steps": {
+          "1": "Danna gunkin kararrawa ko 'Sanarwa' a gefen gefe.",
+          "2": "Duba duk sanarwa a cikin jerin lokaci.",
+          "3": "Danna kan sanarwa don kewaya zuwa abin da ya dace.",
+          "4": "Sanarwa sun haɗa da: sabbin masu biyo baya, zaɓen post, sharhi, kuɗi, da ambaton.",
+          "5": "Sanarwa da ba a karanta ba ana nuna su — suna alama a matsayin an karanta lokacin da aka gani."
+        },
+        "tips": {
+          "1": "Alamar sanarwa tana nuna adadin sanarwa da ba a karanta ba.",
+          "2": "Sanarwar kuɗi tana nuna adadin kuɗin da kuka samu."
+        }
+      },
+      "wallet": {
+        "title": "Wallet",
+        "intro": "Duba kuɗin ku na DeHub a kan sarƙoƙi da yawa, duba ajiyar staking, da sarrafa kadarorinku.",
+        "steps": {
+          "1": "Danna 'Wallet' a gefen gefe don buɗe shafin wallet.",
+          "2": "Duba jimillar kuɗin ku na token da aka tattara a duk sarƙoƙi da aka tallafa.",
+          "3": "Duba rarrabuwa ta kowane sarƙoƙi: Ethereum, Base, BNB Chain, da ƙari.",
+          "4": "Duba ajiyar ku na staking da ladan ku.",
+          "5": "Danna 'Refresh Scan' don sabunta kuɗin ku daga bayanan kan-sarƙoƙi.",
+          "6": "Kwafin adireshin walat ɗin ku don karɓar kuɗi daga wasu."
+        },
+        "tips": {
+          "1": "Kuɗi suna sabuntawa ta atomatik amma kuna iya tilasta sabuntawa kowane lokaci.",
+          "2": "Walat ɗin yana nuna duka kuɗi masu ruwa (a hannu) da kuma kuɗin da aka yi staking."
+        }
+      },
+      "staking": {
+        "title": "Staking",
+        "intro": "Yi staking na kuɗin ku na DeHub don samun lada da kuma ƙara ikon ku na zaɓe a mulki.",
+        "steps": {
+          "1": "Je zuwa shafin 'Staking' daga gefen hagu.",
+          "2": "Shigar da adadin kuɗin da kake son yi wa staking.",
+          "3": "Zaɓi sarƙoƙin da kake son yi wa staking a kai.",
+          "4": "Tabbatar da ciniki a cikin walat ɗin ku (walat na waje) ko kuma yana sarrafa kansa (shiga ta zamantakewa).",
+          "5": "Duba adadin ku na staking da duk wani lada da ke jiran ku.",
+          "6": "Don cire staking, shigar da adadin kuma tabbatar da cinikin cire staking."
+        },
+        "tips": {
+          "1": "Staking yana ƙara nauyin zaɓen ku a cikin shawarwarin mulki.",
+          "2": "Masu amfani da Social-login ba sa buƙatar gas don yin staking — yana da gasless.",
+          "3": "Kuna iya yin staking a kan sarƙoƙi da yawa a lokaci guda."
+        }
+      },
+      "leaderboard": {
+        "title": "Leaderboard",
+        "intro": "Gani waye ke kan gaba! Leaderboard yana jera masu amfani ta hanyar kuɗi, kashe kuɗi na yau da kullun, da kuma batutuwan da ke tasowa.",
+        "steps": {
+          "1": "Je zuwa shafin 'Leaderboard' daga gefen hagu.",
+          "2": "Canza tsakanin shafuka: Balance, Daily Spent, da Talk of the Town.",
+          "3": "Shafin Balance yana jera masu amfani ta hanyar jimillar kuɗin ku na token.",
+          "4": "Shafin Daily Spent yana nuna wanda ya fi aiki wajen ba da kuɗi a cikin awanni 24 da suka gabata.",
+          "5": "Talk of the Town yana nuna batutuwa/rukuni mafi muhawara.",
+          "6": "Danna kan kowane mai amfani don ziyarci bayanan sa.",
+          "7": "Leaderboard yana sabuntawa lokaci-lokaci a duk tsawon yini."
+        },
+        "tips": {
+          "1": "Jerin na yau da kullun suna sake saitawa kowane awanni 24.",
+          "2": "Talk of the Town yana lura da rukuni na kalma ɗaya daga hashtags."
+        }
+      },
+      "command-centre": {
+        "title": "Command Centre",
+        "intro": "Bayanin dashboard da ke nuna muhimman ma'auni da ayyukan dandalinku a kallo.",
+        "steps": {
+          "1": "Danna 'Command Centre' a gefen mashaya.",
+          "2": "Duba taƙaitaccen bayanin martabarku, gami da yawan abubuwan da kuka yi, masu biyanku, da kuma hulɗa.",
+          "3": "Duba ayyukan da kuka yi kwanan nan da kuma batutuwan da ke tasowa.",
+          "4": "Samun hanyoyin haɗi masu sauri zuwa fasalulluka da ake amfani da su akai-akai."
+        },
+        "tips": {
+          "1": "Command Centre yana baku damar ganin DeHub ɗin ku gaba ɗaya."
+        }
+      },
+      "governance": {
+        "title": "Gudanarwa",
+        "intro": "Shiga cikin gudanarwar dandalin ta hanyar ƙirƙirar tayi da kuma zaɓen shawarwarin al'umma.",
+        "steps": {
+          "1": "Je zuwa 'Governance' daga gefen mashaya.",
+          "2": "Bincika tayi masu aiki da al'umma suka gabatar.",
+          "3": "Danna tayi don karanta cikakken bayani da tattaunawarsu.",
+          "4": "Zaɓi tayi ta amfani da maɓallan thumbs up/down — nauyin zaɓinku ya dogara da adadin DeHub tokens da kuka ajiye.",
+          "5": "Bar sharhi akan tayi don tattaunawa da al'umma.",
+          "6": "Gabatar da tayinku ta hanyar danna maɓallin 'Create Proposal'."
+        },
+        "tips": {
+          "1": "Ƙarfin zaɓinku ana ƙididdige shi ta adadin tokens da kuka ajiye.",
+          "2": "Masu rike da Badge na iya samun ƙarin nauyin zaɓe.",
+          "3": "Tayi suna wuce ta matakai: Aiki → Wucewa/Karyewa."
+        }
+      },
+      "bookmarks": {
+        "title": "Alamomi",
+        "intro": "Ajiye abubuwan da kuka yi a cikin alamominku don samun sauƙin samun su daga baya.",
+        "steps": {
+          "1": "Danna alamar alamar akan kowane abin da kuka yi don adana shi.",
+          "2": "Je zuwa 'Bookmarks' a gefen mashaya don duba duk abubuwan da kuka adana.",
+          "3": "Danna abin da aka yiwa alama don duba shi gaba ɗaya.",
+          "4": "Cire alama ta hanyar danna alamar alamar sake."
+        },
+        "tips": {
+          "1": "Alamomi sirri ne — ku kaɗai za ku iya ganin abubuwan da kuka adana.",
+          "2": "Babu iyaka ga adadin abubuwan da za ku iya yiwa alama."
+        }
+      },
+      "settings": {
+        "title": "Saituna",
+        "intro": "Tsara ƙwarewar DeHub ɗinku tare da harshe, sirri, da zaɓuɓɓukan nuni.",
+        "steps": {
+          "1": "Danna 'Settings' a gefen mashaya.",
+          "2": "Canza harshen nuni daga zaɓin harshe.",
+          "3": "Gyara saitunan sirri: sarrafa wanene zai ga adadin masu biyanku da jerin abubuwan da kuke bi.",
+          "4": "Saita zaɓin bayyanar bayanan ku na tsoho.",
+          "5": "Gudanar da zaɓin sanarwa."
+        },
+        "tips": {
+          "1": "DeHub yana goyan bayan harsuna da yawa — duk abin da ke cikin shafin yana fassara.",
+          "2": "Saitunan sirri suna aiki nan take."
+        }
+      },
+      "posting-allowance": {
+        "title": "Yawan Bayanan Ku na Rana",
+        "intro": "Bayarwa kyauta ce kowace rana har zuwa iyaka wanda ke girma tare da lambar yabo ta staking ɗin ku. Kowace mutum yana farawa da bayanan rubutu goma da gigabyte ɗaya na bidiyo, hotuna da odiyo kowace rana. Wuce ɗaya daga cikin waɗannan kuma sauran wannan ranar ana biyan su da kuɗin DeHub — kawai akan ɓangaren da ya wuce iyaka.",
+        "steps": {
+          "1": "Yi bayani kamar yadda aka saba. A cikin iyaka babu abin da ake caji kuma babu abin da ake tambaya daga gare ku.",
+          "2": "Bayanan rubutu da kafofin watsa labarai rukunin raba ne, don haka yinin da aka ciyar da loda bidiyo har yanzu yana barin duk bayanan rubutu goma kyauta.",
+          "3": "Lokacin da wani bayani zai wuce iyaka, aikace-aikacen yana ƙididdige shi da farko kuma yana duba walat ɗin ku zai iya rufe shi kafin komai ya loda.",
+          "4": "Bayanan yana bugawa kamar yadda yake a cikin iyaka — bugawa ba ta jira biya ba.",
+          "5": "Sannan kuna amincewa da canja wuri ɗaya don wannan bayanin kawai, wanda aka tsai da shi akan wanne daga cikin Base ko BNB Chain ke da isassun kuɗin DeHub.",
+          "6": "Duk rukunin suna sake saitawa da tsakar dare UTC."
+        },
+        "tips": {
+          "1": "Wucewa yana daidai da yawa: 200 MB da ya wuce iyaka yana kashe 200 MB, ba duka gigabyte ɗaya ba.",
+          "2": "Sake bugawa, sharhi, martani, ba da kuɗi da saƙonni ba su da tsada kuma ba sa taɓa iyaka.",
+          "3": "Karyata biyan kuɗin kuma bayanin ya kasance — adadin yana toshe bayanin ku na gaba da za a biya har sai an tsai da shi. Iyakacin kyauta na gobe koyaushe naku ne.",
+          "4": "Alamar staking tana haɓaka iyaka kyauta kuma tana rage farashin duk abin da ya wuce shi."
+        }
+      },
+      "reactions-and-safety": {
+        "title": "Martani, Rushewa & Abubuwan da Ba su Dace ba",
+        "intro": "Akwai martani tara a bayan maɓallin kamar; da kuma saitin sarrafawa don yanke hukunci kan abin da kuke gani da kuma wanene zai iya samun ku.",
+        "steps": {
+          "1": "Riƙe yatsa sama akan kowane bayani don buɗe tire na martani: kamar, so, girmamawa, zafi, lol, baƙin ciki, kuka, rashin so da najasa.",
+          "2": "Tushen bakwai masu kyau suna ƙidaya zuwa jimlar son bayanin; rashin so da najasa suna ƙidaya a kansa.",
+          "3": "Martanin ku yana da nauyi ta lambar yabo ta staking ɗin ku, don haka martanin mai riƙe da lambar yabo yana motsa ƙididdigar fiye da kaɗa ɗaya.",
+          "4": "Danna X a cikin kan bayanin don toshe marubucinsa — suna fita daga abincin ku nan take.",
+          "5": "Masu ƙirƙirar suna yiwa bayanan su alama a matsayin manya yayin da suke tsarawa; waɗannan bayanan suna kasancewa a waje da shafin gida na jama'a.",
+          "6": "Don ganin manyan bayanan ko'ina, kunna 'Nuna abubuwan da ba su dace ba' a Saituna."
+        },
+        "tips": {
+          "1": "Babban bayani har yanzu yana da cikakken bayani akan bayanin mai ƙirƙira da kuma ga mutanen da ke bin sa.",
+          "2": "Tsayawa daga bayanin ya fi toshewa nisa kuma yana yanke saƙon ma.",
+          "3": "Tire na martani yana nuna wanda ya yi martani da abin da, don haka zaku iya ganin dakin maimakon lambobi kawai."
+        }
+      },
+      "stages": {
+        "title": "Matakai (Dakunan Odiyo Kai tsaye)",
+        "intro": "Matakai dakunan odiyo ne kai tsaye da aka gina a cikin DeHub. Mai watsa labarai yana buɗe daki, yana kawo masu magana sama, kuma kowa na iya shiga don sauraro daga shafin Matakai ko hanyar haɗin da aka raba.",
+        "steps": {
+          "1": "Bude 'Matakai' a cikin sandar gefe don ganin abin da ke gudana yanzu da abin da aka tsara.",
+          "2": "Danna wani mataki kai tsaye don shiga a matsayin mai sauraro, ko saita tuni a kan wanda aka tsara kuma a gaya maka lokacin da ya fara.",
+          "3": "Fara naku daga shafi ɗaya — za ku iya zuwa kai tsaye daga burauza, ba tare da OBS ko maɓallin watsawa ba.",
+          "4": "A matsayinka na mai masauki, kawo masu magana a kan mataki, ka kashe ko ka cire su, ka raba allonka, kuma ka sarrafa allon sauti.",
+          "5": "Masu sauraro suna aika martani kai tsaye kuma suna magana a cikin tattaunawar ɗakin ba tare da zuwa kan mataki ba.",
+          "6": "Kowane mataki yana yin rikodin, kuma rikodin yana sake kunnawa bayan haka daga katin da ya bayyana a kai."
+        },
+        "tips": {
+          "1": "Kallon kai tsaye yana ba da rubutu ga kowane mai magana kuma yana fassara zuwa kowace harshe da kake karantawa a ciki.",
+          "2": "Fassarar kai tsaye na iya magana da ɗakin da babbar murya ta mai masauki ta mallakar murya, ana biyan kuɗi ta minti a cikin kuɗin DeHub.",
+          "3": "Masu masauki za su iya sanya tashar rediyo ta watsawa ko kunna waƙoƙin nasu tsakanin tattaunawa.",
+          "4": "Ƙaramin ɗan wasa yana ci gaba da ɗakin a kusurwa yayin da kake bincika sauran aikace-aikacen."
+        }
+      },
+      "communities": {
+        "title": "Kungiyoyi & Abubuwan da suka faru",
+        "intro": "Kungiyoyi wuraren da membobi ke gudanarwa tare da nasu abinci, membobi da ayyuka. Abubuwan da suka faru suna ƙara tsarin da aka tsara lokaci a saman su.",
+        "steps": {
+          "1": "Bude 'Kungiyoyi' a gefen hagu kuma bincika na jama'a.",
+          "2": "Shiga cikin danna ɗaya. Sabon aiki yana bayyana a matsayin alamar da ba a karanta ba a cikin kewayawa.",
+          "3": "Yi post, tattauna, gudanar da zaɓe kuma ba da kyauta a cikin abincin kowace kungiya.",
+          "4": "Masu mallakar kungiya suna sarrafa sararin su kuma za su iya ba da izinin gudanarwa ga wasu.",
+          "5": "Bude 'Abubuwan da suka faru' don tsarin da aka tsara, tare da cikakken shafi ga kowane taron da za ku iya bi da shi kai tsaye."
+        },
+        "tips": {
+          "1": "Tattaunawar kungiya tana goyan bayan @mentions da @here, don haka post zai iya isa ga dakin.",
+          "2": "Hanyar gayyata tana ba ka damar kawo mutane kai tsaye cikin kungiya."
+        }
+      },
+      "arcade": {
+        "title": "Arcade",
+        "intro": "Wasanni biyar suna gudana a cikin DeHub a cikin shafin burauza — babu abin da za a shigar, babu abin da za a saya.",
+        "steps": {
+          "1": "Bude 'Arcade' a gefen hagu.",
+          "2": "Zaɓi wasa: King's Gambit (3D chess tare da kan layi Elo ladder), Claude of Duty (mai harbi wanda ke samar da nasa fasaha yayin da yake lodawa), Jungle Trail (procedural rainforest walk), Street Slayer (beat 'em up da aka yi don DeHub) ko Chartopia (wurin ciniki mai tafiya).",
+          "3": "Yi wasa a cikin shafin. King's Gambit da Street Slayer suna riƙe da jadawalin jagoranci.",
+          "4": "Chartopia kuma yana gudana a cikin VR headset ta hanyar WebXR."
+        },
+        "tips": {
+          "1": "Biyu daga cikinsu suna ɓoye a cikin jigogin bayyanar — saita aikace-aikacen zuwa War don Claude of Duty, ko Jungle don Jungle Trail.",
+          "2": "Kowane wasa yana da nasa katin raba, don haka hanyar haɗi zuwa ɗaya yana buɗewa yadda ya kamata a duk inda ka aika shi."
+        }
+      },
+      "bounties-stores": {
+        "title": "Bounties & Stores",
+        "intro": "Hanyoyi biyu don juya dandalin zuwa samun kuɗi: aika ko karɓar kyauta, ko buɗe kantin sayar da sayarwa ga masu sauraron ku.",
+        "steps": {
+          "1": "Bude 'Bounties' don bincika buɗaɗɗen aiki, ta hanyar nau'i ko kuɗi.",
+          "2": "Karɓi ɗaya, yi aikin, kuma ka aika shi don tattara lada — kowa na iya zama mai farauta, ba a buƙatar aikace-aikace.",
+          "3": "Saka kyautarka tare da taƙaitaccen bayani da kuma ladan kuɗi a cikin DeHub ko USDC. Yana shiga cikin ajiyar kuɗi a lokacin da kuka sanya shi.",
+          "4": "Bude 'Stores' don kafa shagon sayarwa tare da shafinsa, alamarsa, da kuma jeri.",
+          "5": "Ana tsara farashin samfurori kuma ana biya su a cikin kuɗin DeHub ta hanyar walat ɗin da aka gina, ba tare da wani tsarin biya na waje ba."
+        },
+        "tips": {
+          "1": "An tsara kyaututtuka zuwa Social Media, Clipping, da kuma Contracts.",
+          "2": "Hanyar jayayya tana warware rashin fahimta kan bayarwa, don haka ajiyar kuɗi koyaushe tana warwarewa cikin adalci.",
+          "3": "Masu kirkira suna amfani da kyaututtuka don haɓaka al'umma — rabawa, gajerun shirye-shirye, da kuma martani duk ayyuka ne masu inganci."
+        }
+      },
+      "creator-studio": {
+        "title": "Creator Studio & Editor",
+        "intro": "Creator Studio yana samar da hotuna, bidiyo, kiɗa, murya, da kuma samfuran 3D daga bayani, kuma yana ba su ga edita — gami da cikakken editan bidiyo mai yawa wanda ke gudana a cikin burauzar.",
+        "steps": {
+          "1": "Bude Creator Studio kuma ka bayyana abin da kake so a yi.",
+          "2": "Server ɗin yana ba da farashin kafin aikin ya gudana, don haka ka ga abin da yake kashewa kafin ka kashe shi.",
+          "3": "Renders suna ci gaba a cikin jerin abubuwa da aka raba yayin da kake ci gaba da bincika app ɗin.",
+          "4": "Tsara sakamakon a cikin editan salon Canva, ko bude editan bidiyo don layin lokaci na gaske tare da yanke, layering, da kuma fitarwa.",
+          "5": "Sanya abin da aka gama kai tsaye cikin wani post, gajeren bidiyo, ko jeri na shago."
+        },
+        "tips": {
+          "1": "Wani ɗakin ajiya na kyauta yana zaune kusa da Studio don duk abin da kake so ka guji samarwa.",
+          "2": "Ana biyan samarwa a cikin kuɗin DeHub daga walat ɗinka — kana sanya hannu kan canja wuri ɗaya ga kowane aiki, kuma ana ba da farashin kafin ka biya.",
+          "3": "Masu amfani masu nauyi za su iya ɗaukar Ultra, Team, ko Scale plan, wanda ke aika kuɗin kuɗi na wata-wata kai tsaye zuwa walat ɗinsu."
+        }
+      },
+      "buying-dhb": {
+        "title": "Siyan Kuɗi",
+        "intro": "Siyan kuɗin DeHub kai tsaye a cikin app ta amfani da tsarin musayar da aka gina.",
+        "steps": {
+          "1": "Je zuwa shafin 'Buy' daga sandar gefe.",
+          "2": "Zaɓi kuɗin da kake son musanyawa daga (misali, ETH, USDC).",
+          "3": "Shigar da adadin da kake son kashewa ko adadin kuɗin da kake son samu.",
+          "4": "Duba ƙimar musayar da kuma kimanin fitarwa.",
+          "5": "Danna gunkin gear na saituna don daidaita ƙimar haɗari (default shine 1%).",
+          "6": "Tabbatar da cinikin musayar.",
+          "7": "Kuɗin DeHub za su bayyana a cikin walat ɗinka bayan cinikin ya kammala."
+        },
+        "tips": {
+          "1": "Babban ƙimar haɗari = mafi yiwuwa a aiwatarwa, amma yuwuwar samun farashi mara kyau.",
+          "2": "Koyaushe duba ƙimar musayar kafin tabbatarwa.",
+          "3": "Kuna iya saita haɗari na musamman a cikin kwamitin saituna."
+        }
+      },
+      "bridge": {
+        "title": "Bridge",
+        "intro": "Matsar da kuɗin DeHub ɗinka tsakanin blockchains masu goyan baya ta amfani da giciye-giciye na bridge.",
+        "steps": {
+          "1": "Je ka je zuwa shafin 'Bridge' daga gefen gefe.",
+          "2": "Zaɓi tushen sarkar (inda kuɗin ku suke a yanzu).",
+          "3": "Zaɓi sarkar da za a nufa (inda kake son aika su).",
+          "4": "Shigar da adadin kuɗin da za a yi garkuwa.",
+          "5": "Duba kuɗin garkuwa da kuma lokacin da ake sa ran isowa.",
+          "6": "Tabbatar da cinikin garkuwa.",
+          "7": "Yi jiran cinikin ya kammala — garkuwa na iya ɗaukar 'yan mintuna kaɗan."
+        },
+        "tips": {
+          "1": "Kuɗin garkuwa na bambanta ta hanyar sarkar ma'aurata.",
+          "2": "Garkuwa yawanci yana ɗaukar mintuna 1-5 dangane da sarkar da ke cikin su.",
+          "3": "Koyaushe duba sarkar da za a nufa kafin tabbatarwa."
+        }
+      },
+      "music-tv": {
+        "title": "Kiɗa & TV",
+        "intro": "Ji daɗin abun ciki na kafofin watsa labarai kai tsaye a cikin DeHub — kunna kiɗa da kallon tashoshin TV kai tsaye.",
+        "steps": {
+          "1": "Je zuwa 'Music' daga gefen gefe don bincika da kunna bayanan kiɗa.",
+          "2": "Je zuwa 'TV' don samun damar tashoshin TV kai tsaye.",
+          "3": "Bincika tashoshi ta rukuni ko ƙasa.",
+          "4": "Danna kan tashar don fara kallo.",
+          "5": "Yi amfani da sarrafawar ƴan wasa don daidaita ƙarar da sake kunnawa.",
+          "6": "Bayar da rahoton tashoshin da suka lalace ta amfani da maballin rahoto."
+        },
+        "tips": {
+          "1": "Tashoshin TV ana tabbatar da su ta al'umma don amintaka.",
+          "2": "Ana iya kunna bayanan kiɗa yayin binciken wasu abubuwan ciki."
+        }
+      },
+      "post-info": {
+        "title": "Bayanan Post & Ƙididdiga",
+        "intro": "Post da aka haƙa shine NFT da aka raba zuwa 1,000 ɓangarori. Shafin Bayanan Post yana nuna bayanai akan sarkar, ƙididdigar shiga, rarraba mallaka, kuma yana ba ka damar ciniki da ɓangarori na kowane post — akan post da ba a haƙa ba yana bayar da haƙawa maimakon.",
+        "steps": {
+          "1": "Danna alamar 'ⓘ' akan kowane post don buɗe shafin Bayanan Post ɗinsa.",
+          "2": "A saman za ku ga Lambar Token (mai ganowa na musamman akan sarkar) da kuma hash na ciniki — danna hash don ganin shi akan mai binciken block.",
+          "3": "A ƙasa, ƙididdigar shiga suna nuna jimlar abubuwan so, abubuwan rashin so, kallon, sharhi, da kuma tips da aka karɓa.",
+          "4": "Sashen masu riƙe yana nuna mashaya ci gaba na yawan ɓangarori 1,000 da mai ƙirƙira har yanzu yake mallaka, ƙari ga jerin duk masu riƙe da ɓangarori tare da kuɗin su da kuma kashi.",
+          "5": "Idan post ɗin yana biya-kullum-kallo (PPV), za ku ga farashi, kuɗi, da kuma yawan masu amfani da suka saya.",
+          "6": "Masu mallakar post na iya canza ganuwa (Jama'a, Ba a jera ba, ko Sirri) da kuma gyara taken/bayani kai tsaye daga wannan shafi."
+        },
+        "tips": {
+          "1": "Sabon post da aka haƙa yana farawa da mai ƙirƙira yana riƙe da dukkan ɓangarori 1,000 (mallakar 100%).",
+          "2": "Hash na ciniki yana haɗawa zuwa BaseScan ko BscScan dangane da sarkar.",
+          "3": "Posts da ba a jera su ba suna bayyana a cikin abinci amma har yanzu ana iya samun su ta hanyar hanyar haɗi kai tsaye."
+        }
+      },
+      "trading-fractions": {
+        "title": "Ввввввввввввввввввввввввввввввввв",
+        "intro": "Kasuwancin Fraction — jerin bincike, yin tayi, lissafin naku — yana rayuwa akan aikace-aikacen yanar gizo a dehub.io, akan kowane shafin Post Info.",
+        "steps": {
+          "1": "Bude dehub.io a cikin mai bincike kuma shiga tare da asusun iri ɗaya.",
+          "2": "Bude post's Post Info page kuma canza zuwa ta Marketplace shafin.",
+          "3": "Browse listings, yi tayin a farashin ku, ko lissafa fractions ka riƙe.",
+          "4": "Da zarar cinikayya ta kammala, canjin yana nunawa a cikin shafin Fractions ɗinku anan akan wayar hannu."
+        },
+        "tips": {
+          "1": "Samun ɓangarori na post yana nufin ka riƙe rabo daga wannan a kan-chain NFT.",
+          "2": "Duba masu riƙe da post a kan kasuwar yanar gizo don ganin rarraba mallaka kafin sayen.",
+          "3": "A matsayinka na mahalicci, sayar da ɓangarori yana bawa magoya baya damar haɗa abun cikin ku."
+        }
+      },
+      "minting-posts": {
+        "title": "Saka Posts (Ƙirƙirar NFTs)",
+        "intro": "Saka yana da zaɓi. Post yana bugawa off-chain a lokacin da kuka aika shi – babu walat, babu sa hannu, babu gas – kuma zaku iya saka shi azaman NFT duk lokacin da kuke so, ko dai yayin da kuke tsarawa ko kuma daga baya daga post ɗin kansa.",
+        "steps": {
+          "1": "Danna maɓallin 'Post' a cikin mashaya gefe (desktop) ko maɓallin + (wayar hannu).",
+          "2": "Rubuta rubutun ku, haɗa kafofin watsa labarai (hotuna, bidiyo, sauti), kuma ƙara nau'ikan.",
+          "3": "Bar 'Saka post' a kashe don bugawa off-chain, ko kunna shi don saka yayin da kuke bugawa.",
+          "4": "Bugawa ba ya jira a kan sarkar: post ya bayyana a cikin ciyar ko ta yaya.",
+          "6": "Da zarar minted, da post samun Token ID da kuma ma'amala hash za ka iya tabbatar a kan-chain, kuma ka rike duk 1,000 sassa na shi."
+        },
+        "tips": {
+          "1": "Social, imel da SMS sa hannu-ins biya sifili gas — DeHub tallafawa minting kudade.",
+          "2": "Masu amfani da-wallet na waje suna buƙatar ETH akan Base ko BnB akan Sarkar BnB don iskar gas.",
+          "3": "Minting shi ne abin da ya sa post ciniki da kuma royalty-bearing. Rubutun da ba a buga ba har yanzu yana samun nasihu da ra'ayoyi.",
+          "4": "A kan-chain rikodin ne na dindindin da zarar minted, ko da idan post ne daga baya share daga ciyar."
+        }
+      },
+      "glossary": {
+        "title": "Kamus",
+        "intro": "A m glossary na crypto da kuma dandamali terminology ya taimake ka kewaya Web3.",
+        "steps": {
+          "1": "Kewaya zuwa 'Glossary' daga gefen gefe.",
+          "2": "Browse sharuddan haruffa ko amfani da bincike don nemo takamaiman sharuddan.",
+          "3": "Danna kan kalma don ganin cikakken ma'anarsa da bayani.",
+          "4": "Sharuɗɗa suna rufe ra'ayoyin crypto, DeFi terminology, da kuma siffofin DeHub na musamman."
+        },
+        "tips": {
+          "1": "Babban albarkatu ga sababbin shiga zuwa crypto da Web3.",
+          "2": "Ana sabunta glossary akai-akai tare da sababbin sharuɗɗa."
+        }
+      }
     }
   },
   "creatorPacks": {

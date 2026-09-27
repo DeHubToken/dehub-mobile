@@ -3432,11 +3432,6 @@
     "noResultsFor": "\"{{query}}\" üçin netije ýok",
     "guideSubtitle": "Her aýratynlygyň ädimme-ädim görkezilişi",
     "searchGuide": "Görkeziji gözläň...",
-    "guideFractionsTip": "Mint edilen her ýazgy ähli paýlarynyň döredijide bolmagy bilen başlaýar (100% eýeçilik).",
-    "guideInfoStep": "Mint amalyny blok gözlegçisinde açmak we zynjyrdaky ýazgyny barlamak üçin mint edilen ýazgydaky maglumat nyşanyna basyň.",
-    "guideMintIntro": "Ýazgyny blokçeýnde NFT hökmünde mint etmek hökmany däl. Neşir edeniňizde mint ediň ýa-da häzir neşir edip, soň ýazgy menýusyndan mint ediň.",
-    "guideMintPublishStep": "Mint etjekdigiňizi saýlaň, soňra neşir etmek üçin 'Paýlaş' düwmesine basyň. Minti geçseňiz, ýazgyny soň onuň menýusyndan mint edip bilersiňiz.",
-    "guideMintFractionsStep": "Täze mint edilen ýazgyňyzyň ähli 1,000 paýyny (100% eýeçilik) alýarsyňyz.",
     "glossaryMintTxDesc": "Mint amalyny blok gözlegçisinde açmak we zynjyrdaky ýazgyny barlamak üçin mint edilen ýazgydaky maglumat nyşanyna basyň. Ýazgy maglumatynyň doly sahypasy — statistika, eýeler, bazar — dehub.io web programmasynda ýerleşýär.",
     "glossaryTokenIdDesc": "Ýazgy NFT hökmünde mint edilende oňa berilýän zynjyrdaky özboluşly kesgitleýji.",
     "repostsTab": "Gaýtadan goýlanlar",
@@ -3453,23 +3448,6 @@
     "glossaryGovernanceDesc": "Platformany şekillendirýän teklipleri tabşyryň we ses beriň. Ses bermek hukugyňyz, näçe DeHub token saklaýandygyňyza baglydyr.",
     "glossaryStakingBadgesDesc": "Siziň umumy DeHub token mukdaryňyza (cybersyňyz + goýlan) esaslanýan, siziň ulanyjy adyňyzyň ýanynda görkezilýän nyşanlar. 13 dereje bar — näçe köp token saklasaňyz, nyşan derejäňiz şonça-da ýokary bolar. Ýokary derejeler has köp dolandyryş ses bermek hukugyny we pes platforma nyrhyny berýär.",
     "glossaryLeaderboardDesc": "Ulanyjylar umumy DeHub token balansi boýunça (cybersyňyz + ähli zynjyrlar boýunça goýlan) sanawda görkezilýär. Sanawlar wagtal-wagtal täzelenýär we 1-günlük we 1-hepdelik üýtgeşmeleri yzarlap barýar. Şeýle hem, iberilen sowgatlar, alnan sowgatlar, abonentler, halanlar ýa-da ýazylanlar boýunça sanawda görkezmek mümkin.",
-    "guideTipStep": "Içerik döredijisine DeHub tokenlarynda sowgat ibermek üçin gem/sowgat ikonyna basyň.",
-    "guideTipWalletTip": "Sowgatlar göni döredijiniň cybersyna DeHub tokenlary hökmünde barýar.",
-    "guideTipNotificationsTip": "Bildirişler näçe DeHub token alandygyňyzy görkezýär.",
-    "guideWalletIntro": "DeHub token balanslaryňyzy birnäçe zynjyrda görüň, paýnama goýumlaryňyzy barlaň we emläkleriňizi dolandyryň.",
-    "guideWalletTotalStep": "Täsirlere garanyňda ähli goldaw berilýän zynjyrlar boýunça jemi DeHub token balansyňyzy görüň.",
-    "guideStakingIntro": "Baýraklary almak we dolandyryş ses bermek hukugyňyzy artdyrmak üçin DeHub tokenleriňizi paýlaň.",
-    "guideStakingAmountStep": "Näçe DeHub token paýlamak isleýändigiňizi giriň.",
-    "guideLeaderboardBalanceStep": "Balans bölüminde ulanyjylar jemi DeHub token eýeçiliklerine görä sanawda görkezilýär.",
-    "guideGovernanceVoteStep": "Gollamak/ýokary goýmak düwmeleri bilen tekliplere ses beriň — ses bermek agramyňyz paýlanan DeHub tokenleriňiziň mukdaryna baglydyr.",
-    "guideGovernancePowerTip": "Ses bermek hukugyňyz paýlanan DeHub tokenleriňiziň mukdary bilen kesgitlenýär.",
-    "guideBuyIntro": "DPay-da göni kart ýa-da goldaw berlen kripto bilen DeHub tokenlerini alyň.",
-    "guideBuyAmountStep": "Sarp etmek isleýän mukdaryňyzy ýa-da almak isleýän DeHub tokenleriňiziň mukdaryny giriň.",
-    "guideBuyDeliveredStep": "DeHub tokenleriňiz amaly tamamlanandan soň hamyňyzda peýda bolar.",
-    "guideBridgeIntro": "Goldaw berilýän blokçeýnler arasynda DeHub tokenleriňizi zynjyrlarara köprüli ulanyp hereket etdiriň.",
-    "guideBridgeSourceStep": "Çeşme zynjyryny (DeHub tokenleriňiz şu wagt nirede) saýlaň.",
-    "guideBridgeDestStep": "Barmaly zynjyryny (DeHub tokenleriňizi hara iberjek) saýlaň.",
-    "guideBridgeAmountStep": "Köprülemek üçin näçe DeHub token giriziň.",
     "glossaryPpvDesc": "Öňki ýaly, DeHub-da pul tölenmegi talap edýän premium içgiler açylýar. Ýaradyjylar bahany goýup, her bir görnüşden pul gazanýarlar."
   },
   "arcade": {
@@ -6792,6 +6770,504 @@
       "packEmpty": "Bu adresde hiç hili görkezme tapylmady",
       "shortcodeTaken": "{{name}} eýýäm alnyp barylýar",
       "shortcodeStandard": "{{name}} eýýäm standart emoji"
+    }
+  },
+  "guide": {
+    "sections": {
+      "getting-started": {
+        "title": "Başlamak",
+        "intro": "DeHub-a girmek üçin bäş ýol bar we olaryň hiç biri hem siziň eýýäm hamyňyz bolmagy talap etmeýär: Google, Apple, e-poçtaňyza iberilen kod, SMS arkaly iberilen kod ýa-da baglanyşykly bolan hamyňyz. Hamyňy baglamakdan başga ähli zat, size arka planda näbelli hamy döredýär — açarlary siz saklaýarsyňyz, DeHub bolsa gaz üçin töleýär, şeýlelikde ýerli jetony satyn almazdan post edip, sowgat berip we ýygnap bilersiňiz.",
+        "steps": {
+          "1": "dehub.io salgysyna giriň — öý akymy ilkinji sahypa, şonuň üçin giriňden öň synlap bilersiňiz.",
+          "2": "'Sign In' düwmesine basyň. Google we Apple, e-poçta adresi ýa-da telefon belgi üçin meýdançalar we bar bolan üçin 'Connect Wallet' görersiňiz.",
+          "3": "Google ýa-da Apple bilen, üpjün edijiniň akymyny tamamlaň. E-poçta ýa-da SMS bilen, gelýän kody giriziň.",
+          "4": "Ilkinji gezek girilende üçňiz döredilýär we howpsuzlanýar. Öz üçiňizi baglamak bolsa adresi tassyklaýan bir golýazma bolýar.",
+          "5": "Ulanyjy adyny saýlaň. Bu adamlar görýän zadyňyz we dehub.io/<username> profiliňiz üçin baglanyşyk bolup hyzmat edýär.",
+          "6": "Siz girdňiz. Akymy gözläň, profiliňizi düzüň we post edip başlaň."
+        },
+        "tips": {
+          "1": "Sosial, e-poçta we SMS girişleri gaz üçin tölemeýär — DeHub töleýär. Baglanyşykly üçler öz ETH ýa-da BNB-lerini töleýärler.",
+          "2": "Köne DeHub hasabyna gaýdyp gelýärsiňizmi? Ol ulanylan e-poçta ýa-da telefon belgi bilen giriň we migrasiýa ony siziň üçin tapar.",
+          "3": "Bir enjamda birnäçe hasap saklap we Olary Settings → Profile bölüminde çalşyp bilersiňiz."
+        }
+      },
+      "home-feed": {
+        "title": "Öý akymy",
+        "intro": "Öý akymy, siziň yzarlap barýan adamlaryňyzyň postlaryny we meşhur kontentleri görýän ýeriňizdir. Ol köp sanly kontent görnüşleriniň düwmelerini we tertipleme wariantlaryny goldaýar.",
+        "steps": {
+          "1": "/app salgysyna giriň — bu siziň öý akymyňyz.",
+          "2": "Içeri sahypanyň görnüşini saýlamak üçin ýokarky düwmeleri ulanyň: Öý (ähli), Wideo, Suratlar, Gysgajyklar, Aýdym, ýa-da Göni ýaýlym.",
+          "3": "Mobil enjamlarda has köp mümkinçilik görmek üçin düwmeleriň üstünde çepde/saga süýräň.",
+          "4": "Tertibi üýtgetmek üçin süzgüç/tertipleýji düwmäni (içeri sahypanyň sag ýokarky burçy) ulanyň: Gyzykly, Täze, ýa-da Iň gowy.",
+          "5": "Mobil enjamlarda içeri sahypany täzelemek üçin aşak çekiň.",
+          "6": "Goşmaça ýazgylary awtomatiki ýüklemek üçin aşak süýräň (çäksiz görnüş).",
+          "7": "Görnüşiň görnüşini üýtgetmek üçin Setir we Ýazgy görnüşleriniň arasynda geçiş ediň."
+        },
+        "tips": {
+          "1": "Suratlary çalt gözden geçirmek üçin Setir görnüşi amatlydyr.",
+          "2": "\"Öý\" düwmesi ähli görnüşdäki gymmatlyklary garyşyk görkezýär.",
+          "3": "Göni ýaýlym düwmesi häzirki wagtda işleýän göni ýaýlymlary görkezýär."
+        }
+      },
+      "creating-posts": {
+        "title": "Ýazgylary döretmek",
+        "intro": "Tekst ýazgylaryny dörediň, suratlar, wideolar, ses ýazgylary, GIF-ler we başgalary paýlaşyň. Ýetip gelmegini artdyrmak üçin #ýazgylaryny, $pul ýazgylaryny we bellikleri ulanyň.",
+        "steps": {
+          "1": "\"Ýazgy\" düwmesine (kompýuterde) ýa-da + düwmesine (mobilde) basyň.",
+          "2": "Döretme meýdanynda tekstiňizi ýazyň.",
+          "3": "Surat ýa-da wideo goşmak üçin media ikonkasyna basyň we faýly saýlaň.",
+          "4": "Ses ýazgysyny ýazmak üçin mikrofon ikonkasyna basyň.",
+          "5": "GIF goşmak üçin GIF ikonkasyna basyň we ony gözläň.",
+          "6": "Ýazgyňyzy kategoriýalaşdyrmak üçin #ýazgylaryny ulanyň (mysal üçin, #kripto, #defi).",
+          "7": "Tokenlara salgylanmak üçin $pul ýazgylaryny ulanyň (mysal üçin, $DHB, $ETH).",
+          "8": "Beýleki ulanyjylary bellik etmek üçin @bellikleri ulanyň (mysal üçin, @ulanyjy).",
+          "9": "Ýazgyňyzy çap etmek üçin \"Ýazgy\" düwmesine basyň. Ýazgyňyz derrew içeri sahypada peýda bolar."
+        },
+        "tips": {
+          "1": "Ýazgylar markdown görnüşli formatlamany goldaýar.",
+          "2": "Herhangi bir ýazgynyň üstündäki gaýtadan ýazgy ikonkasyna basyp, \"Sitata getirmek\" diýen ýazgyny saýlap, sitata ýazyp bilersiňiz.",
+          "3": "Kategoriýalar (#ýazgylar) \"Günleriň gepleşigi\" reýtinginde peýda bolýar."
+        }
+      },
+      "interacting-with-posts": {
+        "title": "Ýazgylar bilen özara täsirleşmek",
+        "intro": "Baha bermek, teswir etmek, sowgat bermek, bellige almak, paýlaşmak we terjime etmek arkaly gymmatlyklar bilen özara täsirleşiň.",
+        "steps": {
+          "1": "Herhangi bir ýazgynyň çep tarapyndaky ok görnüşlerine basyp, ýazgy ýa-da aşaky baha beriň.",
+          "2": "Teswir bölümüni açmak we jogap goýmak üçin teswir ikonkasyna basyň.",
+          "3": "Ýazgy döredijisine DeHub tokenlarynda sowgat ibermek üçin gem/sowgat ikonkasyna basyň.",
+          "4": "Ýazgyny soňra üçin saklamak üçin bellik ikonkasyna basyň.",
+          "5": "Ýazgy baglanyşygyny göçürmek ýa-da daşarky paýlaşmak üçin paýlaşma ikonkasyna basyň.",
+          "6": "Her bir ýazgyny öz diliňize terjime etmek üçin \"Terjime et\" düwmesine (ýer ýüzi ikony) basyň.",
+          "7": "Suratly ýazgylar üçin, suratyň içindäki tekstiň AI tarapyndan terjime edilen wersiýasyny almak üçin \"Suraty terjime et\" düwmesine basyň.",
+          "8": "Ýazgyny doly ekranda ýeke-ýeke görmek üçin islendik ýazgynyň üstüne basyň."
+        },
+        "tips": {
+          "1": "Gözenekler göni döredijiniň DeHub tokenlerindäki hamyňyna barýar.",
+          "2": "Gözenek mukdaryny çalt saýlaýjy düwmeler arkaly ýa-da özüňiz islendik mukdary girizip bilersiňiz.",
+          "3": "Ýazgylaryň bellige alnanlarynyň sanawynyň ýanyndaky \"Bellige alnanlar\" sahypasyndan tapyp bilersiňiz."
+        }
+      },
+      "explore-search": {
+        "title": "Gözlemek we gözleg",
+        "intro": "Gözleg sahypasy we güýçli gözleg funksiýasy arkaly täze mazmuny we ulanyjylary tapyň.",
+        "steps": {
+          "1": "Ýanyndaky sanawdan /app/explore salgysyna geçiň.",
+          "2": "Ulanyjylary, ýazgylary ýa-da mazmuny gözlemek üçin ýokardaky gözleg setirini ulanyň.",
+          "3": "Netijeleri sanaw boýunça süzüň: Hemmesi, Adamlar, Ýazgylar, Suratlary, Wideo, Aýdym, Göni ýaýlym.",
+          "4": "Gözleg sahypasynda meşhur mowzuklary we ugurlary göz aýlaň.",
+          "5": "Bagly ýazgylaryň hemmisini görmek üçin meşhur mowzuga basyň.",
+          "6": "Gözleg netijelerindäki ulanyja onuň profilini görmek üçin basyň."
+        },
+        "tips": {
+          "1": "Gözleg ulanyjy atlaryny, hamyň salgylaryny we mazmun açar sözlerini goldaýar.",
+          "2": "Meşhur mowzuklar soňky ýazgylaryň işjeňligine görä täzelenýär."
+        }
+      },
+      "profile": {
+        "title": "Profil",
+        "intro": "Siziň profiliňiz ýazgylaryňyzy, yzarlaýjylaryňyzy, yzarlaýanlaryňyzy we hamyň maglumatlaryňyzy görkezýär.",
+        "steps": {
+          "1": "Profiliňizi görmek üçin ýanyndaky sanawdan öz avatarýaňyza ýa-da \"Profil\" düwmesine basyň.",
+          "2": "Görkezilýän adyňyzy, bioňyzy we avataryňyzy täzelemek üçin \"Profili redaktirlemek\" düwmesine basyň.",
+          "3": "Redaktirleme re modeiminde avataryňyza basyp, profil suratyňyzy ýüklemek.",
+          "4": "Profiliňizdäki yzarlaýjy we yzarlaýan sanawlaryňyzy görüň.",
+          "5": "Profiliňizdäki sanawlar arkaly öz ýazgylaryňyzy, mediaňyzy we halanan mazmunyňyzy göz aýlaň.",
+          "6": "Hamyň salgyňyzyň ýanyndaky göçürmek ikonasyna basyp, ony göçüriň.",
+          "7": "Platformanyň islendik ýerinde ulanyjy adyna ýa-da avataryna basyp, beýleki ulanyjylaryň profillerine baryň."
+        },
+        "tips": {
+          "1": "Siziň ulanyjy adyňyz ýeke-täkdir we profiliňiz URL-de (dehub.io/@username) görünýär.",
+          "2": "Gizlinlik sazlamalary yzarlaýjy sanawlaryňyzy kimleriň görüp biljekdigini dolandyrmaga mümkinçilik berýär."
+        }
+      },
+      "messages": {
+        "title": "Habarlar",
+        "intro": "Platformadaky beýleki ulanyjylara göni habar iberiň.",
+        "steps": {
+          "1": "Habarlaşma sahypasyny açmak üçin ýanyndaky sanawdan \"Habarlar\" düwmesine basyň.",
+          "2": "Täze söhbetdeşlige başlamak üçin \"Sözi ýaz\" düwmesine basyň.",
+          "3": "Olaryň bilen habarlaşmak üçin ulanyjy ady boýunça gözläň.",
+          "4": "Habaryňyzy ýazyň we \"Iber\" düwmesine basyň.",
+          "5": "Söhbetdeşlik taryhyňyzy habarlar sanawynda görüň.",
+          "6": "Gürrüňi dowam etmek üçin söhbetdeşlige basyň."
+        },
+        "tips": {
+          "1": "Birisi size habar iberende bildiriş alarsyňyz.",
+          "2": "Döredijiler, agzalaryň goldawynyň talaby bilen habarlary çäkläp bilerler."
+        }
+      },
+      "ai-assistant": {
+        "title": "AI kömekçisi",
+        "intro": "Kömek, maglumat we döredijilik işleri üçin DeHub-yň gurlan AI kömekçisi bilen söhbet ediň.",
+        "steps": {
+          "1": "AI söhbetini açmak üçin gapdal panelindäki \"Kömekçi\" düwmesine basyň.",
+          "2": "Söhbet girişine soragyňyzy ýa-da haýyşyňyzy ýazyň.",
+          "3": "AI kripto maglumatlary, platforma soraglary we umumy bilimler bilen kömek edip biler.",
+          "4": "Täze söhbet düwmesine basyp täze söhbetdeşlige başlaň.",
+          "5": "Kömekçi sahypasynyň gapdal panelindäki söhbetdeşlik taryhyňyzy görüň.",
+          "6": "AI-niň seljermegi üçin surat goşup bilersiňiz."
+        },
+        "tips": {
+          "1": "AI söhbetdeşlikde konteksti ýatda saklaýar.",
+          "2": "AI-den DeHub aýratynlyklary, kripto terminleri ýa-da umumy soraglar barada soraň.",
+          "3": "Öňki söhbetdeşlikler saklanýar we islendik wagt elýeterlidir."
+        }
+      },
+      "notifications": {
+        "title": "Bildirişler",
+        "intro": "Siziň içerigiňizdäki halanmalar, teswirler, sowgatlar, yzdaşlar we beýleki işjeňlikler bilen täzelenip duruň.",
+        "steps": {
+          "1": "Gapdal panelindäki çan şekilini ýa-da \"Bildirişler\" düwmesine basyň.",
+          "2": "Ähli bildirişleri tertipli sanawda görüň.",
+          "3": "Baglanşykly içeriklere geçmek üçin bildirişe basyň.",
+          "4": "Bildirişler şulary öz içine alýar: täze yzdaşlar, neşir sesleri, teswirler, sowgatlar we agzalanlar.",
+          "5": "Okalanok bildirişler bellik edilýär - olar görlende okalan hökmünde bellik edilýär."
+        },
+        "tips": {
+          "1": "Bildiriş nyşany okalanok bildirişleriň sanawyny görkezýär.",
+          "2": "Sowgat bildirişleri näçe token alandygyňyzy görkezýär."
+        }
+      },
+      "wallet": {
+        "title": "Portmone",
+        "intro": "Birnäçe zynjyrdaky DeHub token balanslaryňyzy görüň, paýlaşma goýumlaryňyzy barlaň we serişdeleriňizi dolandyryň.",
+        "steps": {
+          "1": "Portmone sahypasyny açmak üçin gapdal panelindäki \"Portmone\" düwmesine basyň.",
+          "2": "Ähli goldaw berilýän zynjyrlar boýunça jemlenen jemi token balansyňyzy görüň.",
+          "3": "Zynjyr boýunça jikme-jik görkezilişleri görüň: Ethereum, Base, BNB Chain we başgalar.",
+          "4": "Staking goýumlaryňyzy we baýraklaryňyzy barlaň.",
+          "5": "Zynjyrdaky maglumatlardan balanslaryňyzy täzelemek üçin 'Scan täzelemek' düwmesine basyň.",
+          "6": "Tokenlary başgalardan almak üçin hamyryňyzyň salgysyny göçüriň."
+        },
+        "tips": {
+          "1": "Balanslar awtomatiki täzelenýär, ýöne islendik wagt täzelemäge mejbur edip bilersiňiz.",
+          "2": "Hamyryňyzda hem suwuk (möwçli) hem-de staked balanslar görkezilýär."
+        }
+      },
+      "staking": {
+        "title": "Staking",
+        "intro": "Baýraklary almak we dolandyryş ses bermek hukugyňyzy güýçlendirmek üçin DeHub tokenlaryňyzy staking ediň.",
+        "steps": {
+          "1": "Gapdal panelinden 'Staking' sahypasyna geçiň.",
+          "2": "Staking etmek isleýän tokenlaryňyzyň mukdaryny giriziň.",
+          "3": "Staking etmek isleýän zynjyryňyzy saýlaň.",
+          "4": "Hamyryňyzda (daşky hamyrylar) söwdaňyzy tassyklaň ýa-da ol awtomatiki ýerine ýetirilýär (sosial giriş).",
+          "5": "Staked mukdarlaryňyzy we garaşýan baýraklaryňyzy görüň.",
+          "6": "Stakingden çykarmak üçin mukdary giriziň we stakingden çykarma söwdaňyzy tassyklaň."
+        },
+        "tips": {
+          "1": "Staking dolandyryş teklipnamalarynda ses agramyňyzy artdyrýar.",
+          "2": "Sosial-giriş ulanyjylary staking üçin gaz gerek däl — ol gazsyz.",
+          "3": "Bir wagtyň özünde birnäçe zynjyrlarda staking edip bilersiňiz."
+        }
+      },
+      "leaderboard": {
+        "title": "Liderlik tagtasy",
+        "intro": "Kim öňde! Liderlik tagtasy ulanyjylary balans, gündelik harçlama we meşhur mowzuklar boýunça sanawda görkezýär.",
+        "steps": {
+          "1": "Gapdal panelinden 'Liderlik tagtasy' sahypasyna geçiň.",
+          "2": "Tablaryň arasynda geçiň: Balans, Gündelik harçlanan, we Şäher söhbeti.",
+          "3": "Balans tablisasy ulanyjylary jemi token eýeçilikleri boýunça sanawda görkezýär.",
+          "4": "Gündelik harçlanan tablisasy soňky 24 sagatda kim köp sanly sowgat berendigini görkezýär.",
+          "5": "Şäher söhbeti iň köp ara alnyp maslahatlaşylan mowzuklary/kategoriýalary görkezýär.",
+          "6": "Olaryň profiline gitmek üçin islendik ulanyja basyň.",
+          "7": "Liderlik tagtasy gün boýy wagtal-wagtal täzelenýär."
+        },
+        "tips": {
+          "1": "Gündelik sanawlar her 24 sagatda täzelenýär.",
+          "2": "Şäher söhbeti #taglardan ýeke-täk söz kategoriýalaryny yzarlap barýar."
+        }
+      },
+      "command-centre": {
+        "title": "Kommandirler merkezi",
+        "intro": "Her bir görkezijiniň we platforma işjeňliginiň bir gezekde umumy synyny görkezýän dolandyryş paneli.",
+        "steps": {
+          "1": "Gollaryňdaky 'Command Centre' düwmesine basyň.",
+          "2": "Postlaryňyzyň sany, yzarlaýjylar we gatnaşyklar bilen birlikde profiliňiziň umumy synyny görüň.",
+          "3": "Soňky işjeňligiňizi we meşhur mowzuklaryňyzy görüň.",
+          "4": "Giňden ulanylýan aýratynlyklara çalt ýollar bilen giriň."
+        },
+        "tips": {
+          "1": "Command Centre size DeHub-daky hereketleriňiziň jikme-jik synyny berýär."
+        }
+      },
+      "governance": {
+        "title": "Dolandyryş",
+        "intro": "Teklipler döretmek we jemgyýetçilik kararlaryna ses bermek arkaly platforma dolandyryşyna gatnaşyň.",
+        "steps": {
+          "1": "Gollaryňdaky 'Governance' bölümine geçiň.",
+          "2": "Jemgyýet tarapyndan hödürlenen işjeň teklipleri gözden geçiriň.",
+          "3": "Teklip barada doly düşündirişi we jedeli okamak üçin teklipe basyň.",
+          "4": "Tekliplere ses bermek üçin ýokary/aşak baş barmak düwmelerini ulanyň — ses agramyňyz näçe DeHub nyşanlaryny goýandygyňyza baglydyr.",
+          "5": "Jemgyýet bilen jedelleşmek üçin tekliplere teswirleri goýuň.",
+          "6": "'Create Proposal' düwmesine basyp, öz teklipleriňizi hödürläň."
+        },
+        "tips": {
+          "1": "Sesiňiziň güýji goýlan nyşanlaryňyzyň sany bilen kesgitlenýär.",
+          "2": "Badj eýeleri goşmaça ses agramyny alyp bilerler.",
+          "3": "Teklipler tapgyrlardan geçýär: Aktiw → Geçdi/Ýatyryldy."
+        }
+      },
+      "bookmarks": {
+        "title": "Bellikler",
+        "intro": "Soňra aňsatlyk bilen görmek üçin postlary bellikleriňize saklaň.",
+        "steps": {
+          "1": "Saklamak üçin islendik postdaky bellik ikonyna basyň.",
+          "2": "Saklanan ähli postlary görmek üçin gollaryňdaky 'Bookmarks' bölümine geçiň.",
+          "3": "Bellenen posty doly görmek üçin üstüne basyň.",
+          "4": "Belligi bellik ikonyna täzeden basyp aýyryň."
+        },
+        "tips": {
+          "1": "Bellikler gizlin — diňe siz saklanan postlaryňyzy görüp bilersiňiz.",
+          "2": "Bellenip bilinýän postlaryň sanynda çäklendirme ýok."
+        }
+      },
+      "settings": {
+        "title": "Sazlamalar",
+        "intro": "Diliňizi, gizlinligiňizi we görkezme sazlaryňyzyň üýtgedip, DeHub tejribäňizi sazlaň.",
+        "steps": {
+          "1": "Gollaryňdaky 'Settings' düwmesine basyň.",
+          "2": "Diliňiziň saýlaýjysyndan görkezme diliňizi üýtgediň.",
+          "3": "Gizlinlik sazlamalaryny düzüň: yzarlaýjylaryňyzyň we yzarlaýan sanawyňyzyň kim tarapyndan görlendigini dolandyryň.",
+          "4": "Iňlis dilindäki ýagdaýyňyz üçin ýörelgeňizi sazlaň.",
+          "5": "Bildirişleriň ýagdaýyny dolandyryň."
+        },
+        "tips": {
+          "1": "DeHub köp dilleri goldaýar — interfeýsiň ählisi terjime edilýär.",
+          "2": "Gizlinlik sazlamalary dessine hereket edýär."
+        }
+      },
+      "posting-allowance": {
+        "title": "Günlük ýaýratmak mümkinçiligiňiz",
+        "intro": "Ýaýratmak, siziň paýlaşma nyşanyňyz bilen deňleşýän mümkinçilige çenli her gün mugtdyr. Her kim günde on sany ýazgyny we bir gigabaýt wideo, surat we audio bilen başlaýar. Her ikisiniňem birini aşsaňyz, şol günüň galany DeHub nyşanlary bilen tölenýär — diňe geçýän bölegi üçin.",
+        "steps": {
+          "1": "Adaty ýaly ýaýradiň. Mümkinçiligiň içinde hiç zat çykarylmaýar we sizden hiç zat soralmaýar.",
+          "2": "Ýazgylar we media aýry görnüşler, şonuň üçin wideo ýüklemek bilen geçen günem on sany ýazgy mugt galýar.",
+          "3": "Ýazgynyň mümkinçiligi aşyp geçse, programma ilki bilen bahalandyrýar we ýüklenmezden ozal hamyňyz ony tölemäge ýeterlikmi ýa-da ýokmu, barlap görýär.",
+          "4": "Ýazgy mümkinçiligiň içinde bolşy ýaly çap edilýär — çap etmek töleg üçin asla garaşmaýar.",
+          "5": "Soňra şol ýazgy üçin bir gezeklik geçirişlige rugsat berýärsiňiz, ol Base ýa-da BNB Chain-iň ýeterlik DeHub nyşanlary bar bolsa, şol ýerde çözülýär.",
+          "6": "Iki görnüşem UTC-niň ýary gijesinde täzelenýär."
+        },
+        "tips": {
+          "1": "Artuk tölegler deň paýlanýar: mümkinçiligiňizden 200 MB artyk töleg 200 MB, bir gigabaýt däl.",
+          "2": "Gaýtadan ýaýratmak, teswirler, reaksiýalar, sowgatlar we hatlar mugtdyr we mümkinçilige asla degmeýär.",
+          "3": "Tölegden ýüz öwirseňiz, ýazgy galýar — mukdar ony çözýänçä täze tölegli ýazgyňyzy bloklar. Ertiriň mugt mümkinçiligi hemişe siziňki.",
+          "4": "Paýlaşma nyşany mugt mümkinçiligi artyr we ondan aşýan zatlaryň bahasyny peselder."
+        }
+      },
+      "reactions-and-safety": {
+        "title": "Reaksiýalar, Dymdyrmak we Uly ýaşly Kontent",
+        "intro": "Gowy görmek düwmesine degseňiz, dokuz reaksiýa we näme görýändigiňizi we kim size ýetip biljekdigini kesgitlemek üçin birnäçe dolandyryş bar.",
+        "steps": {
+          "1": "Reaksiýa tablisasyny açmak üçin islendik ýazgynyň üstündäki başam barmagy saklaň: halamak, söýmek, hormatlamak, gyzgyn, gülkünç, gynandyryjy, aglamak, ýigrenmek we pis.",
+          "2": "Ilkinji ýedi oňyn reaksiýa ýazgynyň jemi görlenlere goşulýar; ýigrenmek we pis oňa garşy sanalýar.",
+          "3": "Siziň reaksiýaňyz paýlaşma nyşanyňyz bilen agramlydyr, şonuň üçin nyşan eýesiniň reaksiýasy sanawa bir sesden köp täsir edýär.",
+          "4": "Ýazgynyň başynyň aşaky sag burçundaky X-e basyp, onuň eýesini dymdyryň — olar siziň akymyňyzdan dessine çykyp giderler.",
+          "5": "Döredijiler öz ýazgylaryny döredýän wagtynda uly ýaşly diýip belleýärler; bu ýazgylar jemgyýetçilik öý sahypasyndan çykarylýar.",
+          "6": "Uly ýazgylary her ýerde görmek üçin, Sazlamalarda 'Uly ýaşly kontenti görkez' düwmesini işjeňleşdiriň."
+        },
+        "tips": {
+          "1": "Uly ýaşly ýazgy eýesiniň profilinde we ony yzarlap barýan adamlar üçin doly görünýär.",
+          "2": "Profilden bloklamak dymdyrmakdan has köp zady öz içine alýar we hat ýazmagy hem kesýär.",
+          "3": "Reaksiýa tablisasy kim we näme bilen reaksiýa bildirendigini görkezýär, şonuň üçin diňe bir sanaw däl-de, otagyň ýagdaýyny görüp bilersiňiz."
+        }
+      },
+      "stages": {
+        "title": "Sahypalar (Göni Audio Oturlyşyklary)",
+        "intro": "Sahypalar DeHub-a goşulan göni audio oturyşyklarydyr. Ev sahibi otag açýar, speakerleri çagyrýar we islendik adam Sahypalar sahypasyndan ýa-da paýlaşylan baglanyşykdan diňläp biler.",
+        "steps": {
+          "1": "Näme göni ýaýlymda we näme meýilleşdirilendigini görmek üçin gapdal panelde 'Sahypalar' bölümine giriň.",
+          "2": "Diňleýji hökmünde goşulmak üçin göni ýaýlymyň sahypasyna basyň ýa-da meýilleşdirilenine ýatlama goýuň we ol başlanda size habar berler.",
+          "3": "Şol bir sahypadan özüňizi başlaň — OBS ýa-da akym açary bolmazdan göni brauzerden göni ýaýlyma geçip bilersiňiz.",
+          "4": "Evre hökmünde, çykyş edenleri sahnada çykaryň, sesini öçüriň ýa-da aýryň, ekranyňyzy paýlaşyň we ses paneline ýolbaşçylyk ediň.",
+          "5": "Diňleýjiler sahnada çykman göni reaksiýalary iberýärler we otagdaky söhbetdeşlikde gürleşýärler.",
+          "6": "Her sahna ýazga alýar, ýazgy bolsa soňra peýda bolýan kartadan gaýtadan oýnalýar."
+        },
+        "tips": {
+          "1": "Göni ýazgylar her bir çykyş edene düşündiriş berýär we siziň okýan dilňize terjime edýär.",
+          "2": "Göni dublýaž otagyň sesini evreniň öz klonlaşdyrylan sesi bilen ýokary sesde ýaýratyp biler, bu DeHub tokenlerinde minut boýunça hasaplanýar.",
+          "3": "Evreler radioýaýlymy açyp ýa-da söhbetdeşlikleriň arasynda öz aýdym wideolaryny oýnap bilerler.",
+          "4": "Kiçi pleýer, beýleki programmalara göz aýlap ýörkäňiz, otagyň köşede dowam etmegini üpjün edýär."
+        }
+      },
+      "communities": {
+        "title": "Toplumlary we çäreler",
+        "intro": "Toplumlar öz akymy, agzalary we işjeňligi bilen agza tarapyndan dolandyrylýan ýerlerdir. Çäreler olaryň üstüne wagtyň çäklendirilen meýilnamasyny goşýar.",
+        "steps": {
+          "1": "Gabyň içindäki 'Toplumlar' düwmesine basyň we köpçülikleýinleri göz aýlaň.",
+          "2": "Bir gezek basyp goşulyň. Täze işjeňlik navigasiýada okalmaýan nyşan hökmünde görünýär.",
+          "3": "Toplumuň öz akymynda ýazgylar goýuň, pikir alyşyň, soraglar alyň we sowgat beriň.",
+          "4": "Toplum eýeleri öz ýerini dolandyrýarlar we beýlekilere administrator hukugyny berip bilerler.",
+          "5": "Meýilleşdirilen meýilnamalar üçin 'Çäreler' düwmesine basyň, her bir çäre üçin göni ýaýlymyň dowamynda yzarlap biljek doly sahypasy bilen."
+        },
+        "tips": {
+          "1": "Toplum söhbetdeşligi @atgylary we @here-i goldaýar, şonuň üçin ýazgy otaga ýetip biler.",
+          "2": "Çakylyk baglanyşygy adamlary göni topluma çagyrmaga mümkinçilik berýär."
+        }
+      },
+      "arcade": {
+        "title": "Arkada",
+        "intro": "DeHub-yň içinde brauzer penjiresinde bäş oýun işleýär — hiç zat ýüklemeli, hiç zat satyn almaly däl.",
+        "steps": {
+          "1": "Gabyň içindäki 'Arkada' düwmesine basyň.",
+          "2": "Oýun saýlaň: King's Gambit (online Elo basgançagy bilen 3D şahmat), Claude of Duty (ýüklenende öz suratyny döredýän atyjy), Jungle Trail (prosedura ýagmyr tokaýynda gezelenç), Street Slayer (DeHub üçin döredilen uruş oýny) ýa-da Chartopia (gezip bolýan söwda meýdançasy).",
+          "3": "Penjirde oýnaň. King's Gambit we Street Slayer lider tablisalaryny saklaýar.",
+          "4": "Chartopia WebXR arkaly VR başlygynda hem işleýär."
+        },
+        "tips": {
+          "1": "Olaryň ikisi görünýiş temalarynyň içinde gizlenýär — Claude of Duty üçin War ýa-da Jungle Trail üçin Jungle ýaly programmany sazlaň.",
+          "2": "Her oýnuň öz paýlaşma kartasy bar, şonuň üçin birine baglanyşyk, ony nirede ýazsaňyz hem dogry açylýar."
+        }
+      },
+      "bounties-stores": {
+        "title": "Sowgatlar we dükanlar",
+        "intro": "Programmany girdeji üçin ulanyp boljak iki ýol: sowgat ýazyň ýa-da alyň, ýa-da dükan açyň we auditoriýaňyza satyň.",
+        "steps": {
+          "1": "Açyk işleri göz aýlamak üçin 'Sowgatlar' düwmesine basyň, kategoriýa ýa-da walýuta boýunça süzüň.",
+          "2": "Birini alyň, işi ýerine ýetiriň we baýragy almak üçin tabşyryň — islendik adam awçy bolup biler, arza zerur däl.",
+          "3": "Öz bahaňyzy gysgaça düşündiriş we DeHub nyşanlarynda ýa-da USDC-de baýrak bilen ýerleşdiriň. Ol ýerleşdireniňizde göni esawa düşýär.",
+          "4": "Öz sahypasy, bradingi we sanawlary bilen dükan gurmak üçin 'Dükanlary' açyň.",
+          "5": "Harytlar DeHub nyşanlarynda bahalandyrylýar we tölenýär, daşarky töleg ýok."
+        },
+        "tips": {
+          "1": "Baýraklar Social Media, Clipping we Contracts diýip bölünýär.",
+          "2": "Ýerine ýetiriş barada jedelleri çözmek üçin jedel akymy bar, şonuň üçin esawa hemişe adalatly çözülýär.",
+          "3": "Döredijiler jemgyýeti ösdürmek üçin baýraklardan peýdalanýarlar — paýlaşmalar, klipler we reaksiýalar hemmesi kabul ederli wezipelerdir."
+        }
+      },
+      "creator-studio": {
+        "title": "Dörediji studiýasy we redaktory",
+        "intro": "Dörediji studiýasy promptdan suratlar, wideolar, aýdymlar, sesler we 3D modellerini döredýär we olary redaktora berýär — brauzerde işleýän doly köp ýolly wideo redaktoryny hem goşmak bilen.",
+        "steps": {
+          "1": "Dörediji studiýasyny açyň we näme ýasamak isleýändigiňizi düşündiriň.",
+          "2": "Serwer işlänsoň, çykdajyny bahalandyrýar, şonuň üçin sarp etmezden ozal näme çykdajydygyny görýärsiňiz.",
+          "3": "Renderler siz goýlan ýerleri gözden geçirer ýaly, umumy nobatda dowam edýär.",
+          "4": "Netijeleri Canva stilli redaktorynda ýerleşdiriň ýa-da kesmek, gatlaklamak we eksport etmek üçin hakyky wagt çyzgysy üçin wideo redaktoryny açyň.",
+          "5": "Taýýar edilen bölegi göni post, gysga ýa-da dükan sanawyna goýuň."
+        },
+        "tips": {
+          "1": "Mugt ätiýaçlyk aktiw kitaphanasy Studio bilen bir hatarda, ýasamak islemezlik üçin islendik zat üçin ýerleşýär.",
+          "2": "Döretmek üçin jüýjeňizdäki DeHub nyşanlary bilen tölenýär — her iş üçin bir geçiriş baglaýarsyňyz we tölemezden ozal bahasy bahalandyrylýar.",
+          "3": "Has köp ulanyjylar Ultra, Team ýa-da Scale planlaryny alyp bilerler, bu bolsa aýlyk nyşan aýyrgysyny göni jüýjeňize iberýär."
+        }
+      },
+      "buying-dhb": {
+        "title": "Nyşan satyn almak",
+        "intro": "Goşmaça swap interfeýsi arkaly göni goşmaçada DeHub nyşanlaryny satyn alyň.",
+        "steps": {
+          "1": "Gapdaldaky menýudan 'Satyn almak' sahypasyna geçiň.",
+          "2": "Swap etmek isleýän nyşanyňyzy saýlaň (mysal üçin, ETH, USDC).",
+          "3": "Sarp etmek isleýän mukdaryňyzy ýa-da almak isleýän nyşanlaryňyzyň sanyny giriziň.",
+          "4": "Gözden geçiriş bahasy we çaklamaly netije.",
+          "5": "Slippage çydamlylygyny sazlamak üçin sazlamalar diş görnüşli düwmesine basyň (altynda 1%).",
+          "6": "Swap amala aşyrmagyny tassyklaň.",
+          "7": "Amala aşyryş tamamlanandan soň DeHub nyşanlary jüýjeňizde peýda bolar."
+        },
+        "tips": {
+          "1": "Ýokary slippage çydamlylygy = amala aşyrmak üçin has köp mümkinçilik, ýöne has erbet bahalandyrmak mümkinçiligi.",
+          "2": "Tassyklamazdan ozal hemişe gözden geçiriş bahasyny barlaň.",
+          "3": "Sazlamalar panelinde custom slippage sazlap bilersiňiz."
+        }
+      },
+      "bridge": {
+        "title": "Köprü",
+        "intro": "Zynjyrlaýyn köprü arkaly DeHub nyşanlaryňyzy goldanýan blokcheýnler arasynda hereket etdiriň.",
+        "steps": {
+          "1": "'Köpru' sahypasyna çepdäki menýudan geçiň.",
+          "2": "Çeşme zynjyryny (tokeniňiz şu wagt nirede bolsa) saýlaň.",
+          "3": "Barmaly zynjyryny (ol ýere ibermek isleýän) saýlaň.",
+          "4": "Köprüje etjek tokenleriň mukdaryny giriziň.",
+          "5": "Köprü tölegini we garaşylýan gelme wagtyny gözden geçiriň.",
+          "6": "Köprü amala aşyryşyny tassyklaň.",
+          "7": "Amala aşyrylmagyny garaşyň — köprü birnäçe minut dowam edip biler."
+        },
+        "tips": {
+          "1": "Köprü tölegleri zynjyrlaryň jübütine görä üýtgeýär.",
+          "2": "Köprü, gatnaşýan zynjyrlara baglylykda, adatça 1-5 minut dowam edýär.",
+          "3": "Tassyklamazdan ozal hemişe barmaly zynjyryny iki gezek barlaň."
+        }
+      },
+      "music-tv": {
+        "title": "Musi a & Telewizor",
+        "intro": "DeHub-da göni media mazmunyndan lezzet alyň — aýdym aýdyň we göni teleýaýlymlary tomaşa ediň.",
+        "steps": {
+          "1": "Musi a goşgylaryny gözden geçirmek we oýnamak üçin çepdäki menýudan 'Musi a' sahypasyna geçiň.",
+          "2": "Göni teleýaýlymlara girmek üçin 'Telewizor' sahypasyna geçiň.",
+          "3": "Kategoriýa ýa-da ýurt boýunça kanallary gözden geçiriň.",
+          "4": "Tomaşa etmek üçin kanala basyň.",
+          "5": "Sesi we oýnamagy sazlamak üçin oýunçynyň dolandyryjylaryny ulanyň.",
+          "6": "Ýykylan kanallary habar bermek düwmesi arkaly habar beriň."
+        },
+        "tips": {
+          "1": "Teleýaýlym kanallary ygtybarlylygy üçin jemgyýet tarapyndan tassyklanan.",
+          "2": "Musi a goşgylary beýleki mazmuny gözden geçirýän wagtyňyzda oýnap bolýar."
+        }
+      },
+      "post-info": {
+        "title": "Goşgy maglumatlary we bölekleri",
+        "intro": "Döredilen goşgy 1000 bölege bölünýän NFT-dir. Goşgy maglumatlary sahypasy zynjyrdaky maglumatlary, gatnaşyk statistikasy, eýeçilik paýnamasy we islendik goşgynyň böleklerini söwda etmäge mümkinçilik berýär — döredilmedik goşguda bolsa, döretmegi teklip edýär.",
+        "steps": {
+          "1": "Goşgy maglumatlary sahypasyny açmak üçin islendik goşgudaky 'ⓘ' nyşanyna basyň.",
+          "2": "Üstünde Token ID (zynjyryň aýratyn tanama belgisi) we amala aşyryş hash-i görersiňiz — ony blok gözleginde görmek üçin hash-e basyň.",
+          "3": "Şondan aşakda, gatnaşyk statistikasy jemi halanmalary, halanmadyklary, görlenleri, teswirleri we alnan sowgatlary görkezýär.",
+          "4": "Eýeler bölüminde döredijiniň henizem 1000 böleginiň näçesiniň eýesidigini görkezýän progress bar, şeýle hem bölek eýeleriniň sanawy, olaryň balanslary we göterimler bilen görkezilýär.",
+          "5": "Eger goşgy tölegli bolsa (PPV), bahany, walýutany we näçe ulanyjynyň elýeterlilik satyn alandygyny görersiňiz.",
+          "6": "Goşgy eýeleri görnüşi (Açyk, Ýazgysyz ýa-da Ýapyk) üýtgedip we bu sahypadan göni ady/teswiri redaktirip bilerler."
+        },
+        "tips": {
+          "1": "Täze döredilen goşgy döredijiniň 1000 böleginiň (100% eýeçilik) eýesidigi bilen başlaýar.",
+          "2": "Amala aşyryş hash-i zynjyra baglylykda BaseScan ýa-da BscScan-a baglanýar.",
+          "3": "Sanawda bolmadyk ýazgylar habarlar akymynda görünmeýär, ýöne göni baglanyşyk arkaly elýeterli bolup biler."
+        }
+      },
+      "trading-fractions": {
+        "title": "Ticaret bölekleri",
+        "intro": "Fraksiýa söwda — seretmek, teklip etmek, özüňi ýazmak — dehub.io web-de, her bir postyň Post Info sahypasynda ýaşaýar.",
+        "steps": {
+          "1": "Dehub.io-y brauzerde açyň we şol bir hasabat bilen gir.",
+          "2": "Post Info sahypasyny açyň we Marketplace tabyna geçiň.",
+          "3": "Çykyşlary barlaň, öz bahasyňyz bilen teklip ediň ýa-da saklaýan bölekleriňizi agzap geçiň.",
+          "4": "Bir söwda tamamlanandan soň, üýtgeşik mobil telefonda fraksiýa tabynda görünýär."
+        },
+        "tips": {
+          "1": "Bir postyň böleklerine eýe bolmak üçin, siz NFT zähmetiniň bir bölegini saklaýarsyňyz.",
+          "2": "Satyn almadan öň, mülkiýet paýlamagyny görmek üçin, web-saytda bir post eýeleri barlaň.",
+          "3": "Ýaradyjy hökmünde, fraksiýalary satmak, syýasy guramalara öz içgisiniň eýesi bolmaga mümkinçilik berýär."
+        }
+      },
+      "minting-posts": {
+        "title": "Ýazgylary döretmek (NFT döretmek)",
+        "intro": "Döretmek opsiýasy hökmany däl. Ýazgy, ony iberen pursadyňyzda zynjyryň daşynda neşir edilýär — hamy ýok, gol ýok, gaz ýok — we ony islendik wagt, ony düzýän wagtyňyzda ýa-da soňra ýazgynyň özi bilen NFT hökmünde döredip bilersiňiz.",
+        "steps": {
+          "1": "Gapdal panelde (kompýuterde) \"Post\" (Ýazgy) düwmesine ýa-da mobilde + düwmesine basyň.",
+          "2": "Tekstiňizi ýazyň, media goşuň (suratlar, wideolar, audio), we kategoriýalary goşuň.",
+          "3": "\"Mint post\" (Ýazgyny döret) seçenegini açyk goýuň, zynjyryň daşynda neşir etmek üçin ýa-da ony neşir edýän wagtyňyzda döretmek üçin açyň.",
+          "4": "Neşir etme işi hemişe zynjyra garaşmaýar: ýazgy ýönekeý ýagdaýda peýda bolýar.",
+          "5": "Soňra mint etmek üçin, ýazgynyň 'ⓘ' maglumat sahypasyny açyň we şol ýerde Mint hereketini ulanyň.",
+          "6": "Mint edilenden soň, ýazgy Token ID we zynjyryňyzda barlap boljak transaksiýa hash alýar we siz onuň 1000 böleginiň hemmisine eýe bolýarsyňyz."
+        },
+        "tips": {
+          "1": "Ijtimaý, e-poçta we SMS-e girmek gaz üçin tölegsizdir — DeHub mint töleglerini hemaýat edýär.",
+          "2": "Daşarky portfel ulanyjylary gaz üçin Base-de ETH ýa-da BNB Chain-de BNB gerek.",
+          "3": "Mint etmek ýazgyny söwda edilip bilinýän we paýly edýän zady. Mint edilmedik ýazgy entek sowgat we görnüşler gazanýar.",
+          "4": "Zynjyryň ýazgysy mint edilenden soň hemişelikdir, hatda ýazgy soňra peýdalylykdan aýrylsada."
+        }
+      },
+      "glossary": {
+        "title": "Sözlük",
+        "intro": "Web3-de ýolbaşçylyk etmek üçin kripto we platforma terminologiýasynyň doly sözlügi.",
+        "steps": {
+          "1": "Görnüşler sanawundan 'Sözlük' bölümine geçiň.",
+          "2": "Terminleri harp tertibinde gözden geçiriň ýa-da aýratyn terminleri tapmak üçin gözlegi ulanyň.",
+          "3": "Dolysyny we düşündirişini görmek üçin bir terme basyň.",
+          "4": "Terminler kripto düşünjelerini, DeFi terminologiýasyny we DeHub-a mahsus aýratynlyklary öz içine alýar."
+        },
+        "tips": {
+          "1": "Kripto we Web3-e täze gelenler üçin ajaýyp çeşme.",
+          "2": "Sözlük yzygiderli täze terminler bilen täzelenýär."
+        }
+      }
     }
   },
   "creatorPacks": {

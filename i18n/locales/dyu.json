@@ -3393,11 +3393,6 @@
     "glossarySubtitle": "I be se k'a faamu fɛɛn min kama i be se k'i yɛrɛ tanga o ma.",
     "guideSubtitle": "O cogo kelen na, a ka ɲi ka kɛ ni miiriya ɲuman ye.",
     "searchGuide": "A ɲini ka ladili sɔrɔ...",
-    "guideFractionsTip": "Post minti tɔ bɛɛ bɛ daminɛ ni a dilanbaga ye a tila bɛɛ ta ye (100% tigiya).",
-    "guideInfoStep": "Post minti tɔ kunnafoni ikɔni digi walasa k'a minti jago yɛlɛ bulɔki ɲininibaga la ani ka zɛnɛ kan sɛbɛn lajɛ.",
-    "guideMintIntro": "Post mintili i n'a fɔ NFT bulɔkisɛnɛ kan tɛ wajibi ye. A minti i k'a bɔ tuma min na, walima a bɔ sisan ka a minti kɔfɛ post menu kɔnɔ.",
-    "guideMintPublishStep": "A sugandi ni i b'a fɛ ka minti, o kɔ 'Post' digi walasa k'a bɔ. Ni i ma minti, i bɛ se k'a minti kɔfɛ post menu kɔnɔ.",
-    "guideMintFractionsStep": "I bɛ i ka post kura mintilen yɔrɔ 1,000 bɛɛ sɔrɔ (tigiya 100%).",
     "glossaryMintTxDesc": "Post minti tɔ kunnafoni ikɔni digi walasa k'a minti jago yɛlɛ bulɔki ɲininibaga la ani ka zɛnɛ kan sɛbɛn lajɛ. Post kunnafoni ɲɛ dafalen — jateminɛw, tigiw, sugu — bɛ web app kɔnɔ dehub.io kan.",
     "glossaryTokenIdDesc": "Zɛnɛ kan tɔgɔ kelenpe min dɔnna post ma n'a mintira i n'a fɔ NFT.",
     "noResultsFor": "Foyi ma sɔrɔ \"{{query}}\" kama",
@@ -3409,24 +3404,7 @@
     "glossaryStakingDesc": "I ka DeHub ka tagamasiɲɛw datugu walisa ka sara sɔrɔ wagati tɛmɛnin na. O b'a to i be se ka fanga sɔrɔ ka tɛmɛ fɔlɔ kan.",
     "glossaryGovernanceDesc": "O kama, a ka ɲi ka kuma ni mɔgɔ wɛrɛw ye. I be se ka min kɛ, o b'a to i be se ka dɔ fara i ka fanga kan.",
     "glossaryStakingBadgesDesc": "I ka batɛmu minw be yira i ka tɔgɔ gɛrɛfɛ, u basiginin be i ka DeHub ka siginidenw bɛɛ kan (wallet + staked). I be se ka batɛmu ta cogo min na, o be se ka kɛ i ka batɛmu ta cogo min na, o be se ka kɛ i ta ye. O kama, a ka ɲi ka kɛ ni fanga ye ka tɛmɛ sanga ni wagati bɛɛ kan.",
-    "glossaryLeaderboardDesc": "O la, a ka ɲi ka kɛ ni DeHub ka wari ye min be se ka kɛ a ka baara ye. O la, a ka ɲi ka kɛ ni miiriya ɲuman ye. I be se ka ladiliw ci, ladiliw sɔrɔ, i ka kalandenw, i ka mɔgɔ minw koo ka di i ye, wala i ka sɛbɛw.",
-    "guideTipStep": "N'i b'a fɛ ka tagamasiɲɛ dɔ ci a danbaga ma, a to a ka tagamasiɲɛ dɔ ci a tigi ma.",
-    "guideTipWalletTip": "A ka ladiliw be taga a danbaga ka wari la i n'a fɔ DeHub ka tagamasiɲɛw.",
-    "guideTipNotificationsTip": "Akwalaba ti DeHub tokens ti o gba.",
-    "guideWalletIntro": "Wo awọn iwọntọnwọnsi DeHub rẹ lori awọn ẹwọn pupọ, ṣayẹwo awọn idogo staking, ati ṣakoso awọn ohun-ini rẹ.",
-    "guideWalletTotalStep": "Wo iwọntọnwọnsi DeHub rẹ lapapọ ti a ṣajọpọ kọja gbogbo awọn ẹwọn ti o ni atilẹyin.",
-    "guideStakingIntro": "Fi awọn DeHub tokens rẹ pamọ lati jo awọn ere ati mu agbara idibo iṣakoso rẹ pọ si.",
-    "guideStakingAmountStep": "Tẹ iye awọn DeHub tokens ti o fẹ lati fi pamọ.",
-    "guideLeaderboardBalanceStep": "Taabu iwọntọnwọnsi n ṣe ipo awọn olumulo nipasẹ awọn ohun-ini DeHub tokens lapapọ wọn.",
-    "guideGovernanceVoteStep": "Dibò fun awọn igbero nipa lilo awọn bọtini atanpako si oke/isalẹ — iwuwo idibo rẹ da lori iye awọn DeHub tokens ti o ti fi pamọ.",
-    "guideGovernancePowerTip": "Agbara idibo rẹ ni a pinnu nipasẹ iye awọn DeHub tokens ti o ti fi pamọ.",
-    "guideBuyIntro": "Ra awọn DeHub tokens taara ni DPay ni lilo kaadi tabi crypto ti o ni atilẹyin.",
-    "guideBuyAmountStep": "Tẹ iye ti o fẹ lati lo tabi iye awọn DeHub tokens ti o fẹ lati gba.",
-    "guideBuyDeliveredStep": "Awọn DeHub tokens rẹ yoo han ninu apamọwọ rẹ ni kete ti iṣowo naa ba pari.",
-    "guideBridgeIntro": "Gbe awọn DeHub tokens rẹ laarin awọn blockchain ti o ni atilẹyin nipa lilo afara-ẹwọn.",
-    "guideBridgeSourceStep": "Yan ẹwọn orisun (nibiti awọn DeHub tokens rẹ wa lọwọlọwọ).",
-    "guideBridgeDestStep": "Yan ẹwọn opin (nibiti o fẹ fi awọn DeHub tokens rẹ ranṣẹ).",
-    "guideBridgeAmountStep": "Tẹ iye awọn DeHub tokens lati kọja."
+    "glossaryLeaderboardDesc": "O la, a ka ɲi ka kɛ ni DeHub ka wari ye min be se ka kɛ a ka baara ye. O la, a ka ɲi ka kɛ ni miiriya ɲuman ye. I be se ka ladiliw ci, ladiliw sɔrɔ, i ka kalandenw, i ka mɔgɔ minw koo ka di i ye, wala i ka sɛbɛw."
   },
   "arcade": {
     "submitAccessibility": "Tulon dɔ ci arcade ma",
@@ -6729,6 +6707,377 @@
       "packEmpty": "O yɔrɔ la, mɔgɔ si ma deli ka kuma n'a ye.",
       "shortcodeTaken": "{{name}} has taken already",
       "shortcodeStandard": "{{name}} be a standard emoji"
+    }
+  },
+  "guide": {
+    "sections": {
+      "getting-started": {
+        "title": "Getting Started"
+      },
+      "home-feed": {
+        "title": "Home Feed",
+        "steps": {
+          "2": "Ka tɛmɛ tabolow kan ka filɛri kɛ ka kɛɲɛ ni kunnafoniw ye: soo (ALL), videwo, jaa, yɔrɔ, dɔnkilila, walima ɲanamanya.",
+          "3": "N'i b'a fɛ ka tɛmɛ o kan, i ka tɛmɛ o kan ka tɛmɛ o kan.",
+          "4": "N'i b'a fɛ ka dumuni yɛlɛma, i ka filɛri/farisogo tuguni (ka tɛmɛ dumuni kinibolo fɛ) kɛ k'a yɛlɛma: funteni, kura, walima sanfɛyɔrɔ.",
+          "5": "N'i be dumuni kɛ telefɔni na, i be se k'a to a be sumaya.",
+          "6": "N'i b'a fɛ ka tɛmɛ o kan, i ka tɛmɛ o kan ka tɛmɛ o kan.",
+          "7": "Ka fara o kan, a ka ɲi ka kɛ ni miiriya ye min be se k'a to a be se ka fɛɛn dɔ ye min be se k'a bali ka fɛɛn dɔ ye."
+        },
+        "tips": {
+          "1": "O ye fɛɛrɛ ɲuman ye ka ɲɛtaga kɛ ni fotow ye joona joona.",
+          "2": "O la, a be se ka kɛ ko a be fɛɛn bɛɛ ɲagami ɲɔgɔn na.",
+          "3": "O la, a ka di mɔgɔ caaman ye ka to ka to ka baro kɛ n'u ye."
+        }
+      },
+      "creating-posts": {
+        "title": "Ka baara kɛ ni barokunw ye",
+        "intro": "I be se ka sɛbɛri kɛ, ka fotow, videwow, kumakanw, GIFw ani fɛɛn wɛrɛw di. I ka tagamasiɲɛw, tagamasiɲɛw ani tagamasiɲɛw kɛ walisa ka se ka mɔgɔ caaman dɛmɛ.",
+        "steps": {
+          "1": "O kɔ, aw ye \"Post\" tuguni digi a kan (desktop) wala \"+\" tuguni kan (mobile).",
+          "2": "I ka sɛbɛri kɛ yɔrɔ min na i be sɛbɛri kɛ.",
+          "3": "Walisa ka foto wala videwo dɔ fara a kan, aw ye sɛbɛn ɲɛ Kanpaɲi kan ani aw ye sɛbɛn ɲɛ Kanpaɲi kan.",
+          "4": "N'i b'a fɛ ka kumakan dɔ sɛbɛ, i ka mikrofɔni tagamasiɲɛ kan.",
+          "5": "N'i b'a fɛ ka GIF dɔ fara a kan, i ka GIF taamasiɲɛ lajɛ ka dɔ ɲini.",
+          "6": "Jɛnɛ ka #hashtags ɲɛma i ka sigi la (ka di #crypto, #defi).",
+          "7": "I ka $ cashtags kɛ ka tagamasiɲɛw kofɔ (i.e. $DHB, $ETH).",
+          "8": "N'i ye mɔgɔ dɔ weele ka na i ka site web kan, i ka kan k'a fɔ a ye ko: \"I ye mɔgɔ dɔ weele ka na i ka site web kan\".",
+          "9": "I ka ɲi ka \"Siga\" tuguni kan ka sɛbɛri kɛ. I ka barokun be sɔrɔ gafe nin kɔnɔ joona joona."
+        },
+        "tips": {
+          "1": "O la, a ka ɲi ka kɛ ni miiriya ɲuman ye.",
+          "2": "I be se ka tɛmɛ o kan ka tɛmɛ o kan ka tɛmɛ o kan.",
+          "3": "O kama, a ka ɲi ka kɛ ni miiriya ɲuman ye."
+        }
+      },
+      "interacting-with-posts": {
+        "title": "Ka baara kɛ ni barokunw ye",
+        "intro": "I be se ka sɛbɛri kɛ, ka sɛbɛri kɛ, ka sɛbɛri kɛ, ka sɛbɛri kɛ ani ka sɛbɛri kɛ.",
+        "steps": {
+          "1": "N'i ye kunnafoni dɔ bila a kan, a to a ka kɛ i n'a fɔ a ye kunnafoni dɔ bila a kan.",
+          "2": "N'i b'a fɛ ka kuma dɔ fɔ, i ka kumaden nin lajɛ ani i ka jaabili dɔ bila a kan.",
+          "3": "N'i b'a fɛ ka tagamasiɲɛ dɔ ci a danbaga ma, i ka sɛbɛn ɲɛ GEM/TIP tagamasiɲɛ kan.",
+          "4": "I ka kan ka sɛbɛri kɛ ka sɔrɔ ka sɛbɛri kɛ.",
+          "5": "N'i b'a fɛ ka tɛmɛ o kan, i ka tɛmɛ o kan ka tɛmɛ o kan.",
+          "6": "I ka kan ka tɛmɛ o kan ka sɛbɛri kɛ i ka kaan na.",
+          "7": "Ni mɔgɔ dɔ ye foto dɔ ta, a ka ɲi ka \"Traduction image\" tuguni kɛ walisa ka kunnafoni wɛrɛ sɔrɔ min bayɛlɛmana ka kɛ AI ye.",
+          "8": "O la, i ka ɲi ka tɛmɛ fɛɛrɛ dɔw fɛ k'a yira ko i be se ka fɛɛn dɔ ye min be se ka mɔgɔ bali ka fɛɛn dɔ ye."
+        },
+        "tips": {
+          "1": "O la, a tun be se ka kɛ ko a tun ye mɔgɔ dɔ ye min tun ye mɔgɔ dɔ ye.",
+          "2": "I be se ka wari dɔ sigi ni mansinw ye joona joona wala ka wari dɔ don i yɛrɛ la.",
+          "3": "O la, a ka ɲi ka kɛ ni sɛbɛri ye min be se k'a dɛmɛ ka baara kɛ ni sɛbɛri ye."
+        }
+      },
+      "explore-search": {
+        "title": "Ka ɲinini kɛ/ka ɲinini kɛ",
+        "intro": "I be se ka kunnafoni kuraw ni mɔgɔ kuraw sɔrɔ ɲinini ɲɛɛ kan ani ka ɲinini kɛ ni fanga ye.",
+        "steps": {
+          "1": "I be se ka taga yɔrɔ min na, i ka taga yɔrɔ min na, i ka taga yɔrɔ min na.",
+          "2": "I be se ka tɛmɛ barokun nin kan ka mɔgɔ, yɔrɔ wala kunnafoni ɲini.",
+          "3": "* Fɛɛn minw bɛɛ be sɔrɔ o la: bɛɛ, mɔgɔw, barokunw, fotow, videwow, dɔnkiliw, ɲɛnɛma.",
+          "4": "A filɛ yɔrɔ minw na mɔgɔw be taga bɔ yɔrɔ dɔw la.",
+          "5": "N'i b'a fɛ ka kunnafoni wɛrɛw sɔrɔ, i ka ɲi ka tɛmɛ o kan ka tɛmɛ o kan.",
+          "6": "N'i b'a fɛ ka mɔgɔ dɔ ka kunnafoniw sɔrɔ, i ka tɛmɛ a kan ka tɛmɛ a kan."
+        },
+        "tips": {
+          "1": "Sɛgɛsɛgɛri be se ka mɔgɔ tɔgɔw, a ka wari sɔrɔyɔrɔw ani a ka kumaden jɔnjɔnw dɛmɛ.",
+          "2": "O kama, a ka ɲi ka kɛ ni miiriya ɲuman ye."
+        }
+      },
+      "profile": {
+        "title": "Mɔgɔ dɔw ka ɲɛyirali",
+        "intro": "I ka kunnafoniw be sɔrɔ i ka site web kan, i ka tuguɲɔgɔn, i ka tuguɲɔgɔn ani i ka wari sɔrɔyɔrɔ la.",
+        "steps": {
+          "1": "I ka avatar wala i ka \"Profil\" lajɛ barokun nin na walisa k'i ka kunnafoniw lajɛ.",
+          "2": "N'i b'a fɛ ka i tɔgɔ, i ka ɲɛnamaya ani i ka avatar lakunu, i ka \"Edit profile\" lajɛ.",
+          "3": "I ka sɛbɛri kɛ ka tɛmɛ i ka sɛbɛri kan ka sɛbɛri kɛ.",
+          "4": "I ka tuguɲɔgɔn filɛ ani i ka jatiminɛ kɛ i ka site web kan.",
+          "5": "I yɛrɛ ka barokunw, kunnafoniw ani i ka barokunw lajɛ i ka barokunw kɔnɔ.",
+          "6": "I ka sɛbɛri kɛ ka tɛmɛ o kan, i ka sɛbɛri kɛ ka tɛmɛ o kan.",
+          "7": "I be se ka tɛmɛ i ka site web kan ka tɛmɛ i ka site web kan."
+        },
+        "tips": {
+          "1": "I tɔgɔ ye dan na ani a be sɔrɔ i ka URL kɔnɔ (dehub.io/ @username).",
+          "2": "I ka ladɛrɛsiw be se k'i dɛmɛ k'a lɔn mɔgɔ min be se k'i ka kalandenw jati."
+        }
+      },
+      "messages": {
+        "title": "Kibaro diimanw",
+        "intro": "N'i ye mɔgɔ dɔ weele ka na i ka site web kan, i ka kan ka kuma n'a ye.",
+        "steps": {
+          "1": "N'i b'a fɛ ka tɛmɛ o kan, i ka tɛmɛ o kan ka tɛmɛ o kan.",
+          "2": "Kiliki i lalo i le faʻamau o le tusitusiga e amata ai se talanoaga fou.",
+          "3": "Saili se tagata faʻaaoga i le igoa faʻaaoga e faʻafesoʻotaʻi ai i latou.",
+          "4": "Tusi lau feʻau ma fetaomi atu i le lafoina.",
+          "5": "Vaʻai lau talaʻaga o talanoaga i le lisi o feʻau.",
+          "6": "Kiliki i luga o se talanoaga e faʻaauau ai le talanoa."
+        },
+        "tips": {
+          "1": "O le a e mauaina se faʻasilasilaga pe a feʻau mai se tasi ia te oe.",
+          "2": "E mafai e le au foafoa ona loka feʻau i tua o se manaʻoga o le pito."
+        }
+      },
+      "ai-assistant": {
+        "title": "AI Fesoasoani",
+        "intro": "Talanoa ma le AI fesoasoani a DeHub mo fesoasoani, faʻamatalaga, ma galuega faʻatino.",
+        "steps": {
+          "1": "Kiliki le 'Fesoasoani' i le itu itu e tatala ai le AI chat.",
+          "2": "Tusi lau fesili poʻo lau talosaga i le faʻamau o le chat.",
+          "3": "E mafai ona fesoasoani le AI i faʻamatalaga o le crypto, fesili i luga o le tulaga, ma le malamalama lautele.",
+          "4": "Amata se talanoaga fou e ala i le kilikiina o le faʻamau o le talanoaga fou.",
+          "5": "Vaʻai lau talaʻaga o talanoaga i le itu itu o le itulau fesoasoani.",
+          "6": "E mafai ona e faʻapipiʻi ata mo le AI e suʻesuʻe."
+        },
+        "tips": {
+          "1": "E manatua e le AI le faʻatulagaina i totonu o se talanoaga.",
+          "2": "E mafai ona e fesili i le AI e uiga i foliga o DeHub, faʻamatalaga o le crypto, poʻo fesili lautele.",
+          "3": "O talanoaga ua tuanaʻi e teuina ma avanoa i soʻo se taimi."
+        }
+      },
+      "notifications": {
+        "title": "Faʻasilasilaga",
+        "intro": "Ia faʻafouina i le fiafia, faʻamatalaga, pito, mulimuli, ma isi gaioiga i luga o lau mea na fai.",
+        "steps": {
+          "1": "Kiliki le faʻailoga o le logo poʻo le 'Faʻasilasilaga' i le itu itu.",
+          "2": "Vaʻai uma faʻasilasilaga i se lisi faʻasologa.",
+          "3": "Kiliki i luga o se faʻasilasilaga e alu i le mea na fai.",
+          "4": "O faʻasilasilaga e aofia ai: tagata fou mulimuli, palota o pou, faʻamatalaga, pito, ma taʻua.",
+          "5": "O faʻasilasilaga e leʻi faitauina e faʻamalamalamaina - latou te faʻailogaina e pei o faitau pe a vaʻaia."
+        },
+        "tips": {
+          "1": "O le faʻailoga faʻasilasilaga o loʻo faʻaalia ai le numera o faʻasilasilaga e leʻi faitauina.",
+          "2": "O faʻasilasilaga o pito e faʻaalia ai le tele o faʻailoga na e mauaina."
+        }
+      },
+      "wallet": {
+        "title": "Taga Tupe",
+        "intro": "Vaʻai lau DeHub token paleni i luga o filifili eseese, siaki tupe teu, ma pulea au meatotino.",
+        "steps": {
+          "1": "Kiliki le 'Taga Tupe' i le itu itu e tatala ai le itulau o le taga tupe.",
+          "2": "Aw ye aw ka siginidenw bɛɛ lajɛ ɲɔgɔn fɛ.",
+          "3": "A filɛ, a be se ka kɛ ni jɔrɔkɔ kelen kelen bɛɛ ye: Ethereum, BASE, BNB jɔrɔkɔ ani dɔ wɛrɛw.",
+          "4": "I ka wari ni i ka sara lajɛ.",
+          "5": "N'i b'a fɛ ka wari sɔrɔ, i ka \"Refresh Scan\" lajɛ.",
+          "6": "I ka wari di mɔgɔ wɛrɛw ma walisa u ka wari di i ma."
+        },
+        "tips": {
+          "1": "O la, a ka ɲi ka kɛ ni miiriya ɲuman ye.",
+          "2": "O b'a yira ko a be se ka kɛ ni jii ye (a be se ka kɛ) ani a be se ka kɛ ni sumanikɛnan ye."
+        }
+      },
+      "staking": {
+        "title": "Ka to ka to",
+        "intro": "I ka DeHub tagamasiɲɛw labɛn walisa ka sara sɔrɔ ani ka fanga di i ka gofɛrɛnɛman ma ka vote.",
+        "steps": {
+          "1": "I be se ka taga \"Staking\" ɲɛɛ kan barisa i be taga.",
+          "2": "I b'a fɛ ka taga yɔrɔ min na, i ka taga yen.",
+          "3": "Jula: Sɛɛlɛti sɛɛn tii wɛɛlɛ tii suta.",
+          "4": "I ka wari sɔrɔ i ka wari la (ka wari sɔrɔ i ka wari la) wala i ka baara kɛ i yɛrɛ ma (i ka sigida la).",
+          "5": "I ka wari ni i ka sara minw be yen, i ka miiri u la.",
+          "6": "Walisa k'o wari bɔ, i ka wari don ani k'a fɔ ko i ma wari min sara, i ma o wari bɔ."
+        },
+        "tips": {
+          "1": "O la, u bena fanga sɔrɔ ka tɛmɛ u ka fanga kan.",
+          "2": "Mɔgɔ minw be tɛmɛ ɛntɛrɛnɛti kan, olu mako t'a la ka gazi sɔrɔ.",
+          "3": "I be se ka juru caaman don ɲɔgɔn na."
+        }
+      },
+      "leaderboard": {
+        "title": "Ɲɛminɛbaga",
+        "intro": "A filɛ jɔn lo be sanfɛ! O la, a ka ɲi ka tɛmɛ fɛɛrɛ dɔw fɛ k'a yira ko a ka ɲi ka kɛ ni miiriya ɲuman ye.",
+        "steps": {
+          "1": "N'i b'a fɛ ka tɛmɛ o kan, i ka tɛmɛ o kan ka tɛmɛ o kan.",
+          "2": "Tabw: balansi, loon o loon, ani dugu ka kuma.",
+          "3": "O la, a ka ɲi ka kɛ ni miiriya ɲuman ye.",
+          "4": "O la, mɔgɔ minw tun be baara kɛ ka tɛmɛ mɔgɔ tɔw bɛɛ kan, olu tun be to ka to ka baara kɛ ka tɛmɛ mɔgɔ tɔw bɛɛ kan.",
+          "5": "Dugu ka kuma b'a yira ko mɔgɔ caaman be koo minw faamu, u ka ca.",
+          "6": "N'i b'a fɛ ka mɔgɔ dɔ ka kunnafoniw sɔrɔ, i ka tɛmɛ a kan ka tɛmɛ a kan.",
+          "7": "O kama, a ka ɲi ka to ka to ka kuma n'a ye."
+        },
+        "tips": {
+          "1": "Loon o loon, an ka ladɛrɛsiw be segi ka sigi sen kan lɛri 24 kɔnɔ.",
+          "2": "Talk of the City be kuma kelen kelen bɛɛ ka tagamasiɲɛw lo yira."
+        }
+      },
+      "command-centre": {
+        "title": "Kɛlɛkɛyɔrɔ"
+      },
+      "governance": {
+        "title": "Governance",
+        "tips": {
+          "2": "Badge holders may get additional vote weight.",
+          "3": "Proposals go through stages: Active → Passed/Rejected."
+        }
+      },
+      "bookmarks": {
+        "title": "Bookmarks"
+      },
+      "settings": {
+        "title": "Settings",
+        "steps": {
+          "4": "I ka laɲinitaw sigi sen kan.",
+          "5": "O kama, a ka ɲi ka tɛmɛ fɛɛrɛ dɔw fɛ k'a yira ko a ka"
+        },
+        "tips": {
+          "1": "DeHub be kaan caaman fɔ — a ka baara bɛɛ be bayɛlɛma.",
+          "2": "N'o tɛ, a ka ɲi ka to ka kuma n'a ye."
+        }
+      },
+      "posting-allowance": {
+        "title": "I ka loon o loon wari hakɛ",
+        "intro": "I ka batɛmu fɛ, i be se ka wari caaman sɔrɔ loon o loon. U bɛɛ be daminɛ ni lɛtɛrɛ 10 ye ani videwo, fotow ani kumakanw be se ka kɛ gigabyte kelen ye tile kɔnɔ. ka tɛmɛ kelen kan ani o loon tɔɔ bɛɛ sara dehub tagamasiyɛnw dɔrɔn lo kan min be tɛmɛ",
+        "steps": {
+          "1": "O kama, a tun man nɔgɔ ka wari caaman sɔrɔ.",
+          "2": "O kama, n'i ye tile kelen kɛ ka videwo bila, i be se ka sɛbɛ tan bɛɛ bila a la.",
+          "3": "Ni baara dɔ be tɛmɛ, a ka ɲi ka kɔn ka wari di a ma ani k'a sɛgɛsɛgɛ k'a filɛ i ka wari be se k'a datugu sanni fɛɛn dɔ ka se ka yɛlɛ.",
+          "4": "O la, a ka ɲi ka wari caaman sɔrɔ ka sɔrɔ ka wari caaman sɔrɔ.",
+          "5": "O kɔ, i be sɔn ka yɛlɛmani kelen kɛ o baara la dɔrɔn, i be se k'o kɛ basigilan wala BnB ka jɔrɔkɔ dɔ kan min be se ka kɛ DeHub ka tagamasiyɛnw ye.",
+          "6": "O kɔ, u ye dɔ fara u ka baara kan."
+        },
+        "tips": {
+          "1": "O kɔ, aw ka wari be se ka kɛ MB 200 ye, a tɛ se ka kɛ gigabyte kelen ye.",
+          "2": "Ka segi ka na, ka kuma, ka kuma, ka ladiliw ani ka kuma, o tɛ foyi ɲɛ ani o tɛ foyi ɲɛ ni wari ye.",
+          "3": "I ka wari be dɔgɔya ani i ka baara be to ka to — o wari be i ka baara nata bali fɔɔ a ka dafa. O la, i bena se ka baara kɛ n'i ka denbaya ye.",
+          "4": "O la, a tun be se ka kɛ ko a tun ye fɛɛn min di, a tun b'o di a ma."
+        }
+      },
+      "reactions-and-safety": {
+        "title": "Mɔgɔkɔrɔbaw ka miiriya, u ka miiriya ani u ka miiriya",
+        "intro": "O la, i be se k'a latigɛ i bena min ye ani i bena min sɔrɔ.",
+        "steps": {
+          "1": "N'i ye mɔgɔ dɔ ye, i ka to ka kuma a fɛ. I ka to ka kuma a fɛ.",
+          "2": "\"N'a ka fɔta ma se ka kɛ santimeteren tan ye, a ka se ka bɔ ne ka kiti la.",
+          "3": "I ka jaabili be nɔɔ to i ka batɛmu kan, o la, batɛmu tigi ka jaabili be tɛmɛ kura kelen kan.",
+          "4": "N'i ye X sɛbɛ ka bɔ i ka sɛbɛ kɔnɔ, i ka sɛbɛ nin sɛbɛ ka bɔ i ka sɛbɛ kɔnɔ joona joona.",
+          "5": "Danbagaw b'u yɛrɛ ka baara yira ko u kɔrɔla u ka baara la. O baaraw be to ka bɔ jama ka soo kɔnɔ.",
+          "6": "Walisa ka kunnafoni kɔrɔw ye yɔrɔ bɛɛ, aw ye \"Fɛɛn minw kɔrɔla\" lajɛ."
+        },
+        "tips": {
+          "1": "Mɔgɔ minw be baara kɛ n'u ye, u be se k'u ka baara kɛ n'u ye.",
+          "2": "Ka mɔgɔ bali ka kumaɲɔgɔnya kɛ ni mɔgɔ dɔ ye, o tɛ dan ka kumaɲɔgɔnya kɛ ni mɔgɔ dɔ ye.",
+          "3": "O yɔrɔ la, i be se k'a ye mɔgɔ min y'o kɛ ani min y'o kɛ. O la, i be se k'a ye ko i ye boon dɔ ye, i tɛ se k'a jati mɔgɔ dama ye."
+        }
+      },
+      "stages": {
+        "title": "O la, an bena a ye ko an be se ka ɲɛnamaya kɛ cogo nɔgɔman na.",
+        "intro": "O yɔrɔ la, u ye boon dɔw lɔ DeHub kɔnɔ. Mɔgɔ min be se ka mɔgɔ weele ka na a ka site web kan, ale be se ka mɔgɔ weele ka na a ka site web kan wala ka tɛmɛ a ka site web kan.",
+        "steps": {
+          "1": "I ka \"Stages\" yɛlɛ barokɛyɔrɔ la walisa k'a filɛ min be kɛra sisan ani min labɛnna."
+        }
+      },
+      "communities": {
+        "title": "Communities & Events"
+      },
+      "arcade": {
+        "title": "Arcade"
+      },
+      "bounties-stores": {
+        "title": "Bounties & Stores"
+      },
+      "creator-studio": {
+        "title": "Creator Studio & Editor"
+      },
+      "buying-dhb": {
+        "title": "Buying Tokens"
+      },
+      "bridge": {
+        "title": "Bridge",
+        "steps": {
+          "1": "Jula na 'Bridge' page ni sidebar.",
+          "2": "Ajiye chain ni source (ko ye token ni kɛnɛ kɛnɛ).",
+          "3": "Ajiye chain ni destination (ko ye a kɛnɛ kɛnɛ).",
+          "4": "Ajiye token ni kɛnɛ kɛnɛ.",
+          "5": "Ajiye bridge fee ni kɛnɛ kɛnɛ.",
+          "6": "Ajiye bridge transaction.",
+          "7": "Ajiye transaction ni kɛnɛ kɛnɛ — bridging kɛnɛ kɛnɛ."
+        },
+        "tips": {
+          "1": "Bridge fees kɛnɛ kɛnɛ.",
+          "2": "Bridging kɛnɛ kɛnɛ.",
+          "3": "Ajiye chain ni destination kɛnɛ kɛnɛ."
+        }
+      },
+      "music-tv": {
+        "title": "Music & TV",
+        "intro": "Ajiye media content kɛnɛ kɛnɛ DeHub — kɛnɛ kɛnɛ music ni kɛnɛ kɛnɛ TV channels.",
+        "steps": {
+          "1": "Jula na 'Music' ni sidebar kɛnɛ kɛnɛ music posts.",
+          "2": "Jula na 'TV' kɛnɛ kɛnɛ TV channels.",
+          "3": "Ajiye channels ni category ni country.",
+          "4": "Ajiye channel kɛnɛ kɛnɛ.",
+          "5": "Ajiye player controls kɛnɛ kɛnɛ volume ni playback.",
+          "6": "Ajiye channels ni report button."
+        },
+        "tips": {
+          "1": "TV channels kɛnɛ kɛnɛ community-verified.",
+          "2": "Music posts kɛnɛ kɛnɛ kɛnɛ kɛnɛ."
+        }
+      },
+      "post-info": {
+        "title": "Post Info & Fractions",
+        "intro": "A minted post kɛnɛ NFT kɛnɛ 1,000 fractions. Post Info page kɛnɛ on-chain data, engagement stats, ownership breakdown, ni kɛnɛ kɛnɛ fractions kɛnɛ post — on an unminted post kɛnɛ mint.",
+        "steps": {
+          "1": "Ajiye 'ⓘ' icon kɛnɛ post kɛnɛ Post Info page.",
+          "2": "Kɛnɛ kɛnɛ Token ID (unique on-chain identifier) ni transaction hash — ajiye hash kɛnɛ block explorer.",
+          "3": "Kɛnɛ kɛnɛ engagement stats kɛnɛ total likes, dislikes, views, comments, ni tips.",
+          "4": "Holders section kɛnɛ progress bar kɛnɛ 1,000 fractions kɛnɛ creator kɛnɛ, ni list kɛnɛ fraction holders kɛnɛ balances ni percentages.",
+          "5": "Kɛnɛ post kɛnɛ pay-per-view (PPV), ajiye price, currency, ni kɛnɛ users kɛnɛ access.",
+          "6": "Post owners kɛnɛ kɛnɛ visibility (Public, Unlisted, ni Private) ni edit title/description kɛnɛ page."
+        },
+        "tips": {
+          "1": "A freshly minted post kɛnɛ creator kɛnɛ 1,000 fractions (100% ownership).",
+          "2": "Transaction hash kɛnɛ BaseScan ni BscScan kɛnɛ chain.",
+          "3": "O yɔrɔ nunu tɛ sɔrɔ dumuniw kɔnɔ, nka u be se ka sɔrɔ link dɔ fɛ."
+        }
+      },
+      "trading-fractions": {
+        "title": "Fanga min be jagokow la",
+        "intro": "Fraction trading — barokunw lajɛ, ka baara kɛ, i yɛrɛ ka ɲɛnamaya kɛ web app kan dehub.io, barokun kelen kelen bɛɛ ka kunnafoni ɲɛɛ kan.",
+        "steps": {
+          "1": "I ka dehub.io yɛlɛ a kɔnɔ ani i ka sɛbɛri kɛ o la.",
+          "2": "I ka kan ka tɛmɛ o kan ka tɛmɛ i ka site web kan.",
+          "3": "U dɔw tɛna se ka kuma, wala lasɔmini ci aw ma, wala k'a filɛ u ye min sɛbɛ.",
+          "4": "Ni jago dɔ banna, o yɛlɛmani be ye i ka telefɔni na."
+        },
+        "tips": {
+          "1": "N'i ye baara dɔ kɛ, o kɔrɔ ko i ye NFT dɔ sɔrɔ o la.",
+          "2": "I ka site web kɔnɔ, i ka site web dɔw tigiw lajɛ walisa k'a filɛ u be se ka min kɛ sanni i ka sanni kɛ.",
+          "3": "I n'a fɔ danbaga, ka yɔrɔ dɔw feere, o be se k'i ka site web kɔnɔ mɔgɔw dɛmɛ u ka baara kɛ ɲɔgɔn fɛ."
+        }
+      },
+      "minting-posts": {
+        "title": "Fanga min be mɔgɔ ka baara la, o ye ka baara kɛ n'o ye.",
+        "intro": "I mana a ci tuma min na, i be se k'a sɛbɛ i n'a fɔ NFT tuma o tuma, i be se k'a sɛbɛ cogo min na, i be se k'a sɛbɛ cogo min na wala kɔfɛ.",
+        "steps": {
+          "1": "O kɔ, aw ye \"Post\" tuguni digi a kan (desktop) wala \"+\" tuguni kan (mobile).",
+          "2": "Jɛnɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́ɛ́lɛ́",
+          "3": "Aw ye \"Mint Post\" to yen ka bɔ a la, walima aw k'a bila ka bɔ a la.",
+          "4": "O kama, a ka ɲi ka to ka kuma n'a ye.",
+          "5": "Walisa ka miniti damanin sɔrɔ, i ka lɛtɛrɛ nin ka kunnafoni ɲɛɛ yɛlɛ ani ka Mint ka baara kɛ yen.",
+          "6": "O kɔ, a ye tagamasiɲɛ dɔ yira a la ani a ye tagamasiɲɛ dɔ yira a la min be se k'a yira ko a ye mɔgɔ dɔ ye min ye mɔgɔ dɔ ye."
+        },
+        "tips": {
+          "1": "Sosiyalisitiw, e-mailw ani smsw be wari dɔɔni sara - DeHub ka dɛmɛbagaw be wari dɔɔni sara.",
+          "2": "Mɔgɔ minw be tɛmɛsira wɛrɛw fɛ, olu mako be ETH la BASE wala BNB la BNB jɔrɔkɔ kan.",
+          "3": "O lo b'a to an be se ka jago kɛ ni wari ye ani ka kɛ masaw ye. Mɔgɔ min ma deli ka kuma, ale bele be ladiliw ni miiriya sɔrɔ.",
+          "4": "O la, a tun be se ka kɛ ko a tun ye min sɛbɛ, a tun be se ka kɛ ko a tun ye min sɛbɛ."
+        }
+      },
+      "glossary": {
+        "title": "Glosari",
+        "intro": "O ye gafew ye minw be se k'i dɛmɛ ka se ka baara kɛ n'i ka site web3 ye.",
+        "steps": {
+          "1": "Aw ka taga \"Glossary\" yɔrɔ la.",
+          "2": "I ka kuma kɔrɔw lajɛ wala i ka ɲinini kɛ ka kuma kɔrɔw ɲini.",
+          "3": "O kɔrɔ ko, a ka ɲi ka kuma ni mɔgɔ dɔ ye min be se k'a yɛrɛ tanga a ka bana ma.",
+          "4": "O kɔrɔ ye ko mɔgɔ be se ka baara kɛ ni fɛɛrɛ dɔw ye minw be se k'a to a be se ka baara kɛ ni fɛɛrɛ wɛrɛw ye."
+        },
+        "tips": {
+          "1": "O ye fɛɛrɛ ɲuman ye minw be se ka mɔgɔ kuraw dɛmɛ ka se ka baara kɛ ni crypto ani Web3 ye.",
+          "2": "Glosari be yɛlɛla tuma o tuma ni kumaden kuraw ye."
+        }
+      }
     }
   },
   "creatorPacks": {
