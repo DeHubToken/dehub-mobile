@@ -13,9 +13,26 @@
  * a timer of our own that has to be told about each of them.
  */
 import { useEffect, useRef } from "react";
-import * as Speech from "expo-speech";
+import type * as SpeechModule from "expo-speech";
 import type { VideoPlayer } from "expo-video";
 import type { TranscriptSegment } from "./useTranscript";
+
+/**
+ * expo-speech is a native module and its entry throws on a binary built before
+ * it was added — and this file sits on the home feed's import path, which ships
+ * over the air to every installed version. Load it only when the installed app
+ * has it; on older builds dubbing is simply unavailable until the next APK.
+ */
+let Speech: typeof SpeechModule | null = null;
+try {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  Speech = require("expo-speech");
+} catch {
+  Speech = null;
+}
+
+/** The installed app can speak. False on builds that predate expo-speech. */
+export const speechAvailable = Speech !== null;
 
 /** The original track stays audible under the dub: music and tone still carry. */
 const DUCKED_VOLUME = 0.15;
@@ -50,10 +67,12 @@ export function speechRate(text: string, seconds: number, playbackRate = 1): num
   return Math.min(MAX_RATE, Math.max(1, needed));
 }
 
-let voicesPromise: Promise<Speech.Voice[]> | null = null;
-function loadVoices(): Promise<Speech.Voice[]> {
+let voicesPromise: Promise<SpeechModule.Voice[]> | null = null;
+function loadVoices(): Promise<SpeechModule.Voice[]> {
   if (!voicesPromise) {
-    const pending = Speech.getAvailableVoicesAsync().catch(() => [] as Speech.Voice[]);
+    const pending = Speech
+      ? Speech.getAvailableVoicesAsync().catch(() => [] as SpeechModule.Voice[])
+      : Promise.resolve([] as SpeechModule.Voice[]);
     voicesPromise = pending;
     // Android answers with an empty list until its engine has bound. Caching
     // that would report "no voice" for every language for the whole session.
@@ -69,13 +88,14 @@ function loadVoices(): Promise<Speech.Voice[]> {
  * `undefined` when the engine would not list its voices — speak with just the
  * language then and let the platform choose.
  */
-export async function findVoice(lang: string): Promise<Speech.Voice | null | undefined> {
+export async function findVoice(lang: string): Promise<SpeechModule.Voice | null | undefined> {
+  if (!Speech) return null;
   const voices = await loadVoices();
   if (!voices.length) return undefined;
   const base = baseLang(lang);
   const matches = voices.filter((v) => baseLang(v.language) === base);
   if (!matches.length) return null;
-  return matches.find((v) => v.quality === Speech.VoiceQuality.Enhanced) ?? matches[0];
+  return matches.find((v) => v.quality === Speech?.VoiceQuality.Enhanced) ?? matches[0];
 }
 
 // The speech engine is one per device, but a feed mounts a player per card.
@@ -85,7 +105,7 @@ let speaker: object | null = null;
 function stopIfMine(owner: object) {
   if (speaker !== owner) return;
   speaker = null;
-  void Speech.stop();
+  void Speech?.stop();
 }
 
 interface VoiceDubOptions {
@@ -98,7 +118,7 @@ interface VoiceDubOptions {
 }
 
 export function useVoiceDub({ player, segments, lang, enabled }: VoiceDubOptions) {
-  const active = enabled && !!player && !!lang && !!segments?.length;
+  const active = speechAvailable && enabled && !!player && !!lang && !!segments?.length;
   const owner = useRef({}).current;
 
   // Duck rather than mute: `muted` belongs to the player's mute button, and a
@@ -144,6 +164,7 @@ export function useVoiceDub({ player, segments, lang, enabled }: VoiceDubOptions
       if (!text) return;
       // Never queue. An utterance still running from the last line is cut
       // here, or the dub falls behind the picture and never catches up.
+      if (!Speech) return;
       void Speech.stop();
       speaker = owner;
       Speech.speak(text, {
