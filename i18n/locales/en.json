@@ -3514,7 +3514,12 @@
     "original": "Original audio",
     "dubbed": "Dubbed audio",
     "preparing": "Preparing dubbed audio…",
-    "unavailable": "Dubbed audio is not available for this video."
+    "unavailable": "Dubbed audio is not available for this video.",
+    "menuLabel": "Dub",
+    "menuDesc": "Hear this video in your language",
+    "menuOn": "On · tap for the original audio",
+    "noTranscript": "This video has no transcript yet.",
+    "noVoice": "Your device has no voice for this language."
   },
   "support": {
     "title": "Support",

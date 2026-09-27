@@ -3514,7 +3514,12 @@
     "original": "Originalus garsas",
     "dubbed": "Dubliuotas garsas",
     "preparing": "Ruošiamas dubliuotas garsas...",
-    "unavailable": "Šiam vaizdo įrašui dubliuotas garsas negalimas."
+    "unavailable": "Šiam vaizdo įrašui dubliuotas garsas negalimas.",
+    "menuLabel": "Dubliavimas",
+    "menuDesc": "Klausykite šio vaizdo įrašo savo kalba",
+    "menuOn": "Įjungta · bakstelėkite originaliam garsui",
+    "noTranscript": "Šis vaizdo įrašas dar neturi transkripcijos.",
+    "noVoice": "Jūsų įrenginyje nėra balso šiai kalbai."
   },
   "stages": {
     "cancelConfirm": "Atšaukti „{{title}}“? Nuoroda nustos veikti.",

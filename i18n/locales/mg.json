@@ -3537,7 +3537,12 @@
     "original": "Raki-peo tany am-boalohany",
     "dubbed": "Feo misy anarana",
     "preparing": "Manomana raki-peo misy lohateny...",
-    "unavailable": "Tsy hita ato amin'ity lahatsary ity ny saripika."
+    "unavailable": "Tsy hita ato amin'ity lahatsary ity ny saripika.",
+    "menuLabel": "Fandikana feo",
+    "menuDesc": "Henoy amin'ny fiteninao ity horonantsary ity",
+    "menuOn": "Mandeha · tsindrio ho an'ny feo tany am-boalohany",
+    "noTranscript": "Mbola tsy manana soratra ity horonantsary ity.",
+    "noVoice": "Tsy manana feo ho an'ity fiteny ity ny fitaovanao."
   },
   "stages": {
     "cancelConfirm": "Hofoanana ny “{{title}}”? Tsy handeha intsony ilay rohy.",

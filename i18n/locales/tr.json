@@ -3514,7 +3514,12 @@
     "original": "Orijinal ses",
     "dubbed": "Dublajlı ses",
     "preparing": "Dublajlı ses hazırlanıyor…",
-    "unavailable": "Bu video için dublajlı ses mevcut değil."
+    "unavailable": "Bu video için dublajlı ses mevcut değil.",
+    "menuLabel": "Dublaj",
+    "menuDesc": "Bu videoyu kendi dilinde dinle",
+    "menuOn": "Açık · orijinal ses için dokun",
+    "noTranscript": "Bu videonun henüz transkripti yok.",
+    "noVoice": "Cihazında bu dil için bir ses yok."
   },
   "support": {
     "title": "Destek",

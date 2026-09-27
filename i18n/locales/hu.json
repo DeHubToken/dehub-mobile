@@ -3518,7 +3518,12 @@
     "original": "Eredeti hang",
     "dubbed": "Szinkronizált hang",
     "preparing": "Szinkronizált hang előkészítése…",
-    "unavailable": "Ehhez a videóhoz nem áll rendelkezésre szinkronizált hang."
+    "unavailable": "Ehhez a videóhoz nem áll rendelkezésre szinkronizált hang.",
+    "menuLabel": "Szinkron",
+    "menuDesc": "Hallgasd meg ezt a videót a saját nyelveden",
+    "menuOn": "Be · koppints az eredeti hangért",
+    "noTranscript": "Ennek a videónak még nincs átirata.",
+    "noVoice": "Az eszközödön nincs hang ehhez a nyelvhez."
   },
   "stages": {
     "cancelConfirm": "Lemondod: \"{{title}}\"? A link nem fog működni.",

@@ -3518,7 +3518,12 @@
     "original": "Original lyd",
     "dubbed": "Døbt lyd",
     "preparing": "Forbereder døbt lyd...",
-    "unavailable": "Døbt lyd er ikke tilgængelig for denne video."
+    "unavailable": "Døbt lyd er ikke tilgængelig for denne video.",
+    "menuLabel": "Dubbing",
+    "menuDesc": "Hør denne video på dit sprog",
+    "menuOn": "Til · tryk for den originale lyd",
+    "noTranscript": "Denne video har endnu ingen transskription.",
+    "noVoice": "Din enhed har ingen stemme til dette sprog."
   },
   "stages": {
     "cancelConfirm": "Annuller \"{{title}}\"? Linket holder op med at fungere.",

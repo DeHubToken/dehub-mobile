@@ -3514,7 +3514,12 @@
     "original": "Audio asli",
     "dubbed": "Dijuluki audio",
     "preparing": "Mempersiapkan audio yang dijuluki…",
-    "unavailable": "Audio yang dijuluki tidak tersedia untuk video ini."
+    "unavailable": "Audio yang dijuluki tidak tersedia untuk video ini.",
+    "menuLabel": "Sulih suara",
+    "menuDesc": "Dengarkan video ini dalam bahasamu",
+    "menuOn": "Aktif · ketuk untuk audio asli",
+    "noTranscript": "Video ini belum punya transkrip.",
+    "noVoice": "Perangkatmu tidak punya suara untuk bahasa ini."
   },
   "support": {
     "title": "Dukungan",

@@ -3514,7 +3514,12 @@
     "original": "Àudio original",
     "dubbed": "Àudio doblat",
     "preparing": "S'està preparant l'àudio doblat...",
-    "unavailable": "L'àudio doblat no està disponible per a aquest vídeo."
+    "unavailable": "L'àudio doblat no està disponible per a aquest vídeo.",
+    "menuLabel": "Doblatge",
+    "menuDesc": "Escolta aquest vídeo en el teu idioma",
+    "menuOn": "Activat · toca per a l'àudio original",
+    "noTranscript": "Aquest vídeo encara no té transcripció.",
+    "noVoice": "El teu dispositiu no té cap veu per a aquest idioma."
   },
   "stages": {
     "cancelConfirm": "Cancel·lar «{{title}}»? L'enllaç deixarà de funcionar.",
