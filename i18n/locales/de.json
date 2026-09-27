@@ -4797,7 +4797,15 @@
     "custodyNote": "Ihre Token bleiben im Besitz der DeHub-Schatzkammer und werden nicht verkauft. Der Ersteller erhält ein USDT-denominiertes Abonnementguthaben.",
     "legacyMigrationNote": "Beim Speichern wird dieser alte, nach Token bepreiste Plan auf eine Dollar-Bepreisung zum Vorlistungspreis umgestellt.",
     "tokenPrice": "{{amount}} Token",
-    "tokensUnit": "Token"
+    "tokensUnit": "Token",
+    "atPreListingRate": "{{amount}} zum Preis vor dem Inserat",
+    "fromSubscriptionTokensAmount": "Von deinen Abonnement-Token: {{amount}}",
+    "subscriptionTokensNote": "Abonnement-Token sind zum Preis gesperrt, wenn du sie hinzufügst, so dass eine Preisänderung nie ändert, was ein Abonnement kostet. Sie können nur für Abonnements ausgegeben werden.",
+    "subscriptionTokens": "Abonnement-Token",
+    "untradableTokens": "Dies sind nicht handelbare Abonnement-Token",
+    "lockedValue": "Gesperrt um {{amount}}",
+    "withdraw": "Zurückziehen",
+    "trade": "Handel"
   },
   "live": {
     "notSet": "Nicht festgelegt",

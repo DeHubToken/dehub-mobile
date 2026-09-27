@@ -5009,7 +5009,15 @@
     "custodyNote": "Token anda kekal dalam simpanan perbendaharaan DeHub dan tidak dijual. Pencipta menerima baki langganan yang dinyatakan dalam USDT.",
     "legacyMigrationNote": "Penjimatan memindahkan pelan berharga token warisan ini kepada penetapan harga dolar pada kadar pra-senaraian.",
     "tokenPrice": "{{amount}} token",
-    "tokensUnit": "token"
+    "tokensUnit": "token",
+    "atPreListingRate": "{{amount}} pada kadar prapenyenaraian",
+    "fromSubscriptionTokensAmount": "Daripada token langganan anda: {{amount}}",
+    "subscriptionTokensNote": "Token langganan dikunci pada harga apabila anda menambahnya, jadi pergerakan harga tidak pernah mengubah kos langganan anda. Ia hanya boleh dibelanjakan untuk langganan.",
+    "subscriptionTokens": "Token langganan",
+    "untradableTokens": "Ini adalah token langganan yang tidak boleh didagangkan",
+    "lockedValue": "Dikunci di {{amount}}",
+    "withdraw": "Tarik balik",
+    "trade": "Perdagangan"
   },
   "live": {
     "notSet": "Belum ditetapkan",

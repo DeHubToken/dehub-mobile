@@ -4752,7 +4752,15 @@
     "custodyNote": "האסימונים שלך נשארים בחזקת אוצר DeHub ואינם נמכרים. היוצר מקבל יתרת מנוי בדולר ארה\"ב.",
     "legacyMigrationNote": "חיסכון מעביר תוכנית זו המתומחרת באסימונים מדור קודם לתמחור בדולרים בשער שלפני הרישום.",
     "tokenPrice": "{{amount}} אסימונים",
-    "tokensUnit": "אסימונים"
+    "tokensUnit": "אסימונים",
+    "atPreListingRate": "{{amount}} בתעריף הרישום מראש",
+    "fromSubscriptionTokensAmount": "מאסימוני המינוי שלך: {{amount}}",
+    "subscriptionTokensNote": "אסימוני מינוי נעולים במחיר בעת הוספתם, כך שתנועת מחיר לעולם לא תשנה את העלות של מינוי עבורך. ניתן להוציא אותם רק על מנויים.",
+    "subscriptionTokens": "אסימוני מינוי",
+    "untradableTokens": "אלה אסימוני מנוי בלתי סחירים",
+    "lockedValue": "נעול בשעה {{amount}}",
+    "withdraw": "משיכה",
+    "trade": "מסחר"
   },
   "live": {
     "notSet": "לא הוגדר",

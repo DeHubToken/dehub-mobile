@@ -4752,7 +4752,15 @@
     "custodyNote": "Dina tokens stannar i DeHubs kassaskåp och säljs inte. Skaparen får ett USDT-denominerat abonnemangsbelopp.",
     "legacyMigrationNote": "Sparande migrerar denna äldre token-prisplan till dollarprissättning till kursen före notering.",
     "tokenPrice": "{{amount}} tokens",
-    "tokensUnit": "tokens"
+    "tokensUnit": "tokens",
+    "atPreListingRate": "{{amount}} till priset före annonsering",
+    "fromSubscriptionTokensAmount": "Från dina prenumerationstoken: {{amount}}",
+    "subscriptionTokensNote": "Prenumerationstoken är låsta till priset när du lägger till dem, så en prisrörelse ändrar aldrig vad en prenumeration kostar dig. De kan endast spenderas på prenumerationer.",
+    "subscriptionTokens": "Prenumerationstoken",
+    "untradableTokens": "Dessa är oomsättningsbara prenumerationstoken",
+    "lockedValue": "Låst {{amount}}",
+    "withdraw": "Ta ut",
+    "trade": "Handla"
   },
   "live": {
     "notSet": "Inte angivet",

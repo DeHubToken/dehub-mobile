@@ -4761,7 +4761,15 @@
     "custodyNote": "Maarkii kee Baase tti qabamuu, hin gurguramu. Uumaan galii USDT argata.",
     "legacyMigrationNote": "Kunis qophii maarkii duraan turan gara maarkii doolaaraatti jijjiira, duraan turan irratti.",
     "tokenPrice": "{{amount}} maarkii",
-    "tokensUnit": "maarkii"
+    "tokensUnit": "maarkii",
+    "atPreListingRate": "{{amount}} saffisa tarreessuun duraatiin",
+    "fromSubscriptionTokensAmount": "Mallattoo maallaqa galchuu keessanii irraa: {{amount}}",
+    "subscriptionTokensNote": "Mallattoolee maallaqa galchuu yeroo itti dabaltu gatii irratti cufama, kanaaf sochiin gatii maallaqa maallaqaan bitamuu maal akka si baasu gonkumaa hin jijjiiru. Isaanis maallaqa maallaqaan bitamuu qofa irratti baasii ta’uu danda’u.",
+    "subscriptionTokens": "Mallattoolee maallaqa galchuu",
+    "untradableTokens": "Kunniin mallattoo maallaqa maallaqaan bitamuu kan hin daldalamneedha",
+    "lockedValue": "{{amount}} irratti cufame.",
+    "withdraw": "Gidduutti dhaabuu",
+    "trade": "Daldala"
   },
   "live": {
     "notSet": "Hin qindoofne",

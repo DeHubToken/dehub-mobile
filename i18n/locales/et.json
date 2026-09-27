@@ -4748,7 +4748,15 @@
     "custodyNote": "Teie žetoonid jäävad DeHubi varakambri valdusesse ja neid ei müüda. Loojale laekub USDT-denominatsiooniga tellimuse saldo.",
     "legacyMigrationNote": "Salvestamine teisendab selle pärandžetooni hinnaga plaani dollaripõhiseks hinnaks enne noteerimist.",
     "tokenPrice": "{{amount}} žetooni",
-    "tokensUnit": "žetooni"
+    "tokensUnit": "žetooni",
+    "atPreListingRate": "{{amount}} eelneva kuulutuse hinnaga",
+    "fromSubscriptionTokensAmount": "Sinu tellimusmärkide hulgast: {{amount}}",
+    "subscriptionTokensNote": "Tellimuse märgid on nende lisamisel hinnaga lukustatud, nii et hinnaliikumine ei muuda kunagi tellimuse maksumust. Neid saab kulutada ainult pakettidele.",
+    "subscriptionTokens": "Tellimuse märgid",
+    "untradableTokens": "Need on kättesaamatud märkimismärgid",
+    "lockedValue": "Lukustatud {{amount}}",
+    "withdraw": "Väljamakse",
+    "trade": "Kaubandus"
   },
   "live": {
     "notSet": "Määramata",

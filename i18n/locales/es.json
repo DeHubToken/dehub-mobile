@@ -4797,7 +4797,15 @@
     "custodyNote": "Tus tokens permanecen bajo la custodia del tesoro de DeHub y no se venden. El creador recibe un saldo de suscripción denominado en USDT.",
     "legacyMigrationNote": "El ahorro migra este plan heredado con precios en tokens a precios en dólares a la tasa previa a la cotización.",
     "tokenPrice": "{{amount}} tokens",
-    "tokensUnit": "tokens"
+    "tokensUnit": "tokens",
+    "atPreListingRate": "{{amount}} a la tarifa de la lista previa",
+    "fromSubscriptionTokensAmount": "Desde sus tokens de suscripción: {{amount}}",
+    "subscriptionTokensNote": "Los tokens de suscripción se bloquean al precio cuando los añades, por lo que un movimiento de precio nunca cambia lo que te cuesta una suscripción. Solo se pueden gastar en suscripciones.",
+    "subscriptionTokens": "Tokens de suscripción",
+    "untradableTokens": "Estos son tokens de suscripción no negociables",
+    "lockedValue": "Bloqueado en {{amount}}",
+    "withdraw": "Retirar",
+    "trade": "Comercio"
   },
   "live": {
     "notSet": "Sin definir",

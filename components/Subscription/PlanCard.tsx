@@ -1,18 +1,20 @@
 import { DIGITAL_PURCHASES_ENABLED } from "../../config/storefront";
 import { Trans, useTranslation } from "react-i18next";
 import { DhbCoin } from "../common/DhbCoin";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, TouchableOpacity, ActivityIndicator, StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import Icon from "../ui/Icon";
 import GlassModal from "../ui/GlassModal";
 import AccentButtonGradient from "../ui/AccentButtonGradient";
-import type { SubscriptionPlan } from "../../services/subscription.service";
+import type { SubscriptionCreditBalance, SubscriptionPlan } from "../../services/subscription.service";
 import {
   buyPlan,
   clearPendingSubscriptionPayment,
   confirmSubscriptionPurchase,
   formatDuration,
+  getSubscriptionCredits,
+  payPlanWithCredits,
   isPlanPublished,
   normaliseDuration,
   planPrice,
@@ -61,6 +63,18 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
   const [payWith, setPayWith] = useState<TipFundingSource | null>(null);
   const { requireAuth, switchChain } = useAuthActions();
   const { account, chainId, provider } = useWeb3Provider();
+  const [credits, setCredits] = useState<SubscriptionCreditBalance | null>(null);
+
+  useEffect(() => {
+    if (!confirmVisible) return;
+    let live = true;
+    getSubscriptionCredits()
+      .then((c) => live && setCredits(c))
+      .catch(() => live && setCredits(null));
+    return () => {
+      live = false;
+    };
+  }, [confirmVisible]);
 
   const price = planPrice(plan);
   const chainEntry = primaryPlanChain(plan);
@@ -108,6 +122,50 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
       setStage(t("subscriptions.preparing"));
       const intent = await buyPlan(String(planId), targetChainId);
       if (!intent?.id) throw new Error(t("subscriptions.startFailed"));
+
+      // Subscription tokens: the plan's dollar price comes out of a balance
+      // locked at the token price when it was added. Only a shortfall is sent
+      // as DHB, and the API values it at today's price before debiting.
+      if (intent.credits) {
+        const topUp = intent.credits.topUp;
+        const topUpChain = topUp?.chainId || intent.chainId || chainId || targetChainId;
+        let hash: string | undefined;
+        if (topUp) {
+          if (payWith && topUpChain === 8453) {
+            await fundTip({
+              source: payWith,
+              amountDhb: Number(topUp.dhbAmount),
+              walletAddress: account,
+              onStage: (s) => setStage(tipStageLabel(t as any, s, payWith)),
+            });
+          }
+          setStage(t("subscriptions.confirmInWallet"));
+          const dhbContract = await buildContract(provider, ERC20_ABI, topUp.dhbToken, true);
+          const tx = await writeContractAA(
+            dhbContract,
+            "transfer",
+            [topUp.treasuryAddress, ethers.BigNumber.from(topUp.dhbAmountWei)],
+            { context: "send" },
+          );
+          setStage(t("subscriptions.waitingTx"));
+          await tx.wait(1);
+          if (!tx?.hash) throw new Error(t("subscriptions.noTxHash"));
+          hash = tx.hash;
+          await rememberPendingSubscriptionPayment({
+            subId: String(intent.id),
+            hash,
+            chainId: topUpChain,
+            mode: "credits",
+          });
+        }
+        setStage(t("subscriptions.finishing"));
+        await payPlanWithCredits(String(intent.id), hash, topUpChain);
+        await clearPendingSubscriptionPayment(String(intent.id));
+        toastSuccess(t("filters.subscribed"));
+        setConfirmVisible(false);
+        return;
+      }
+
       if (
         intent.settlementMode !== "dhb_custody" ||
         !intent.dhbToken ||
@@ -170,6 +228,15 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
     : Number(price || 0) * DHB_PRELISTING_USD;
   const totalDhbEstimate = dhbEstimate;
 
+  // The balance covers the plan's dollar price first; only the rest is
+  // bought now, at today's price. The API makes the final call at checkout.
+  const coveredUsd = Math.min(credits?.usd ?? 0, total || 0);
+  const tokensFromBalance =
+    coveredUsd > 0 && credits?.lockedPriceUsd ? coveredUsd / credits.lockedPriceUsd : 0;
+  const shortfallUsd = Math.max(0, (total || 0) - coveredUsd);
+  const topUpTokens = shortfallUsd > 0 ? dhbForUsd(shortfallUsd, credits?.dhbPriceUsd || dhbUsd) : 0;
+  const payNowTokens = topUpTokens ?? totalDhbEstimate;
+
   return (
     <>
       <View style={s.card}>
@@ -207,7 +274,7 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
               <View style={s.dhbEquivalentRow}>
                 <DhbCoin size={13} />
                 <Text style={s.dhbEquivalentText}>
-                  {formatDhbPayment(dhbEstimate)} at the pre-listing rate
+                  {t("subscriptions.atPreListingRate", { amount: formatDhbPayment(dhbEstimate) })}
                 </Text>
               </View>
             )}
@@ -296,9 +363,14 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
               <Text style={s.confirmEquivalentText}>{formatDhbPayment(dhbEstimate)}</Text>
             </View>
           )}
+          {tokensFromBalance > 0 && (
+            <Text style={s.confirmCheckoutDhb}>
+              {t("subscriptions.fromSubscriptionTokensAmount", { amount: formatDhbPayment(tokensFromBalance) })}
+            </Text>
+          )}
           <Text style={s.confirmTotal}>
             {total != null
-              ? t("subscriptions.youPay", { amount: formatDhbPayment(totalDhbEstimate) })
+              ? t("subscriptions.youPay", { amount: formatDhbPayment(payNowTokens) })
               : t("subscriptions.calculating")}
           </Text>
           {totalDhbEstimate !== null && (
@@ -308,13 +380,13 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
           )}
           {isUsdPriced && (
             <Text style={s.smartFundingText}>
-              {t("subscriptions.custodyNote")}
+              {t("subscriptions.subscriptionTokensNote")}
             </Text>
           )}
-          {targetChainId === 8453 && account && totalDhbEstimate ? (
+          {targetChainId === 8453 && account && payNowTokens ? (
             <TipPayWith
               visible={confirmVisible}
-              amountDhb={totalDhbEstimate}
+              amountDhb={payNowTokens}
               walletAddress={account}
               value={payWith}
               onChange={setPayWith}

@@ -4754,7 +4754,15 @@
     "benefits": "সুবিধা",
     "benefitPlaceholder": "একটি সুবিধা যোগ করুন...",
     "createAndPublish": "তৈরি করুন এবং প্রকাশ করুন",
-    "publishingOnChain": "প্রকাশ করা একটি অন-চেইন লেনদেন"
+    "publishingOnChain": "প্রকাশ করা একটি অন-চেইন লেনদেন",
+    "fromSubscriptionTokensAmount": "আপনার সাবস্ক্রিপশন টোকেন থেকে: {{amount}}",
+    "subscriptionTokens": "সাবস্ক্রিপশন টোকেন",
+    "untradableTokens": "এহান অ-বিক্রয়যোগ্য সাবস্ক্রিপশন টোকেন",
+    "atPreListingRate": "প্রি-লিস্টিং রেটোত {{amount}}",
+    "subscriptionTokensNote": "সাবস্ক্রিপশন টোকেন যোগ করার সময়ের দামোত লক থাকে, সেই জইন্যে দাম বদলাইলেও সাবস্ক্রিপশনের খরচ বদলায় না। এইগুলা খালি সাবস্ক্রিপশনোত খরচ করা যায়।",
+    "lockedValue": "{{amount}}-ত লক",
+    "withdraw": "তুলি নেন",
+    "trade": "ট্রেড"
   },
   "live": {
     "notSet": "ঠিক করা নাই",

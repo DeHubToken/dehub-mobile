@@ -4749,7 +4749,15 @@
     "custodyNote": "Tokeni zako hukaa kwenye hazina ya DeHub na hazizing'uzwi. Muundaji hupokea salio la usajili lililotajwa kwa USDT.",
     "legacyMigrationNote": "Hifadhi huhamisha mpango huu wa zamani wenye bei ya tokeni hadi bei ya dola kwa kiwango cha kabla ya kuorodheshwa.",
     "tokenPrice": "{{amount}} tokeni",
-    "tokensUnit": "tokeni"
+    "tokensUnit": "tokeni",
+    "atPreListingRate": "{{amount}} kwa bei ya tangazo la awali",
+    "fromSubscriptionTokensAmount": "Kutoka kwa ishara zako za usajili: {{amount}}",
+    "subscriptionTokensNote": "Alama za usajili zimefungwa kwa bei unapoziweka, kwa hivyo hatua ya bei haibadilishi kile ambacho usajili unakugharimu. Zinaweza kutumika tu kwenye usajili.",
+    "subscriptionTokens": "Alama za usajili",
+    "untradableTokens": "Hizi ni ishara za usajili zisizoweza kufikishwa",
+    "lockedValue": "Imefungwa {{amount}}",
+    "withdraw": "Ondoa",
+    "trade": "Biashara"
   },
   "live": {
     "notSet": "Haijawekwa",

@@ -4748,7 +4748,15 @@
     "custodyNote": "Siziň tokenleriňiz DeHub hazyna gözegçiliginde galýar we satylmaýar. Ýaradyjy USDT-de bahalandyrylan abuna balansyny alýar.",
     "legacyMigrationNote": "Ýygnamak bu köne token bahaly meýilnamany listingden öňki bahada dollara bahalandyrmaga geçirer.",
     "tokenPrice": "{{amount}} token",
-    "tokensUnit": "token"
+    "tokensUnit": "token",
+    "fromSubscriptionTokensAmount": "Siziň ýazylan ýazgylaryňyzdan: {{amount}}",
+    "subscriptionTokensNote": "Eger siz olary goşsaňyz, abonentlik belgeleri baha bilen ýapylýar, şonuň üçin bir abonentlik hereketiniň bahasy asla üýtgemeýär. Olar diňe ýazylanlara sarp edilýär.",
+    "subscriptionTokens": "Subskripsiýa tokenleri",
+    "untradableTokens": "Bular äsgermezlik edilmeýän ýazylan tokenler",
+    "lockedValue": "{{amount}}",
+    "withdraw": "Çykyş",
+    "trade": "Ticaret",
+    "atPreListingRate": "Sanawa girizilmezden öňki nyrhda {{amount}}"
   },
   "live": {
     "notSet": "Bellenmedi",

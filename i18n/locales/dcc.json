@@ -4576,7 +4576,15 @@
     "benefits": "فوائد",
     "benefitPlaceholder": "ایک فائدہ شامل کریں…",
     "createAndPublish": "بنائیں اور شائع کریں",
-    "publishingOnChain": "پبلشنگ ایک آن چین ٹرانزیکشن ہے"
+    "publishingOnChain": "پبلشنگ ایک آن چین ٹرانزیکشن ہے",
+    "atPreListingRate": "پری لسٹنگ ریٹ پو {{amount}}",
+    "fromSubscriptionTokensAmount": "آپ کے سبسکرپشن ٹوکنز سے: {{amount}}",
+    "subscriptionTokensNote": "سبسکرپشن ٹوکنز جوڑتے وقت کی قیمت پو لاک ہوتے، اس واسطے قیمت بدلنے سے سبسکرپشن کی لاگت نئیں بدلتی۔ یو صرف سبسکرپشن پو خرچ ہوسکتے۔",
+    "subscriptionTokens": "سبسکرپشن ٹوکنز",
+    "untradableTokens": "یو ٹریڈ نئیں ہونے والے سبسکرپشن ٹوکنز ہیں",
+    "lockedValue": "{{amount}} پو لاک",
+    "withdraw": "نکالو",
+    "trade": "ٹریڈ"
   },
   "live": {
     "notSet": "مقرر نئیں",

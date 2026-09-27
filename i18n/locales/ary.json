@@ -4778,7 +4778,15 @@
     "custodyNote": "توكنز ديالك كيبقاو فخزينة DeHub و مايتباعوش. الكرياتور كياخد رصيد اشتراك بالدولار (USDT).",
     "legacyMigrationNote": "التوفير كيغير هاد الخطة القديمة اللي بالتوكنز لمدفوعات بالدولار بالسعر قبل الإدراج.",
     "tokenPrice": "{{amount}} توكنز",
-    "tokensUnit": "توكنز"
+    "tokensUnit": "توكنز",
+    "atPreListingRate": "{{amount}} بسعر الإعلان المسبق",
+    "fromSubscriptionTokensAmount": "من رموز اشتراكك: {{amount}}",
+    "subscriptionTokensNote": "يتم قفل رموز الاشتراك بالسعر عند إضافتها، لذلك لا تغير حركة السعر أبدًا ما يكلفك الاشتراك. لا يمكن إنفاقها إلا على الاشتراكات.",
+    "subscriptionTokens": "رموز الاشتراك",
+    "untradableTokens": "هذه رموز اشتراك غير قابلة للتداول",
+    "lockedValue": "مغلق عند {{amount}}",
+    "withdraw": "سحب",
+    "trade": "تداول"
   },
   "live": {
     "notSet": "ماشي محدد",

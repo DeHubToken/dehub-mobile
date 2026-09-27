@@ -4748,7 +4748,15 @@
     "custodyNote": "您的代币将保留在 DeHub 金库托管中，不会被出售。创建者将收到以 USDT 计价的订阅余额。",
     "legacyMigrationNote": "保存会将此旧的按代币定价计划迁移到美元定价，按预上市汇率计算。",
     "tokenPrice": "{{amount}} 代币",
-    "tokensUnit": "代币"
+    "tokensUnit": "代币",
+    "atPreListingRate": "{{amount}} 预上市价",
+    "fromSubscriptionTokensAmount": "从侬个订阅代币里：{{amount}}",
+    "subscriptionTokensNote": "订阅代币会锁定在加入时的价格，价位变动永远不会改动订阅费用。只能用来购买订阅。",
+    "subscriptionTokens": "订阅代币",
+    "untradableTokens": "这些是不可交易的订阅代币",
+    "lockedValue": "锁定于 {{amount}}",
+    "withdraw": "提取",
+    "trade": "交易"
   },
   "live": {
     "notSet": "未设置",

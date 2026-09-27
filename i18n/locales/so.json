@@ -4748,7 +4748,15 @@
     "custodyNote": "Token-kaaga waxa uu ku jiraa DeHub khasnajiga oo aan la iibin. Abuuraha waxa uu helaa dheelitirnaan isdiiwaangelin oo lagu bixiyo USDT.",
     "legacyMigrationNote": "Kaydinta waxa ay u guuraysaa qorshahan hore ee qiimaha token-ka loo isticmaalo qiimaha doolarka ee heerka ka hor liiska.",
     "tokenPrice": "{{amount}} token",
-    "tokensUnit": "token"
+    "tokensUnit": "token",
+    "atPreListingRate": "{{amount}} heerka pre-listing",
+    "fromSubscriptionTokensAmount": "Laga soo bilaabo calaamadahaaga isdiiwaangelinta: {{amount}}",
+    "subscriptionTokensNote": "Calaamadaha isdiiwaangelinta ayaa lagu xiraa qiimaha markaad ku darto, sidaa darteed dhaqdhaqaaqa qiimaha waligeed ma beddelo waxa ku kacaya isdiiwaangelinta. Waxaa lagu bixin karaa oo keliya rukhsadaha.",
+    "subscriptionTokens": "Calaamadaha isdiiwaangelinta",
+    "untradableTokens": "Kuwani waa calaamadaha isdiiwaangelinta ee aan la iibsan karin",
+    "lockedValue": "Locked at {{amount}}",
+    "withdraw": "Ka noqoshada",
+    "trade": "Ganacsiga"
   },
   "live": {
     "notSet": "Lama dejin",

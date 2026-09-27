@@ -4748,7 +4748,15 @@
     "custodyNote": "Vaši tokeni ostaju u trezoru DeHub-a i ne prodaju se. Kreator dobiva pretplatnički saldo denominiran u USDT-u.",
     "legacyMigrationNote": "Spremanje migrira ovaj plan s cijenama u starim tokenima na cijene u dolarima po cijeni prije uvrštavanja.",
     "tokenPrice": "{{amount}} tokena",
-    "tokensUnit": "tokena"
+    "tokensUnit": "tokena",
+    "atPreListingRate": "{{amount}} po stopi prije oglašavanja",
+    "fromSubscriptionTokensAmount": "Iz vaših pretplatničkih tokena: {{amount}}",
+    "subscriptionTokensNote": "Pretplatnički tokeni zaključavaju se po cijeni kada ih dodate, tako da promjena cijene nikada ne mijenja koliko vas pretplata košta. Mogu se potrošiti samo na pretplate.",
+    "subscriptionTokens": "Pretplatnički tokeni",
+    "untradableTokens": "To su nemjerljivi pretplatnički tokeni",
+    "lockedValue": "Zaključano u {{amount}}",
+    "withdraw": "Povuci",
+    "trade": "Trgovina"
   },
   "live": {
     "notSet": "Nije postavljeno",
