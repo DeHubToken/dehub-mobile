@@ -7373,14 +7373,10 @@
     "intro": "Posta till X, YouTube, Instagram, TikTok och mer samtidigt som dehub. Anslut dina konton en gång, välj sedan var varje inlägg går.",
     "creditsHeading": "Postkrediter",
     "credits": "{{count}} postkrediter",
-    "creditExplainer": "En kredit skickar ett inlägg till en plattform, så att posta till 3 plattformar använder 3 krediter. Schemalagda inlägg använder krediter när du schemalägger dem.",
-    "payAsYouGo": "Inga krediter kvar? Du betalar ${{price}} per plattform i DHB när du postar.",
     "topUpTitle": "Ladda upp och spara",
-    "topUpPosts": "{{count}} inlägg",
     "discount": "{{percent}}% rabatt",
     "noDiscount": "Fullpris",
     "total": "Totalt ${{usd}}, betalat i DHB",
-    "perPost": "${{price}} per inlägg",
     "buy": "Köp krediter",
     "buying": "Väntar på betalning…",
     "bought": "Tillagda {{count}} postkrediter",
@@ -7408,6 +7404,15 @@
     "partialToast": "Publicerat på {{sent}} plattformar. {{failed}} misslyckades och dessa krediter återbetalades.",
     "failedToast": "Korsinlägg misslyckades: {{error}}",
     "skippedToast": "Hoppade över {{platforms}}: det här inlägget har inte det foto eller den video de behöver.",
-    "uploadFailed": "Det gick inte att ladda upp dina media för korspostering."
+    "uploadFailed": "Det gick inte att ladda upp dina media för korspostering.",
+    "creditRules": "Varje inlägg kostar krediter per plattform: {{x}} för X, {{farcaster}} för Farcaster och {{other}} för varannan plattform. Schemalagda inlägg använder krediter när du schemalägger dem.",
+    "payAsYouGoCredits": "Slut? Saknade krediter köps i DHB på ${{price}} vardera när du publicerar.",
+    "topUpCredits": "{{count}} krediter",
+    "perCredit": "${{price}} per kredit",
+    "pendingApproval": "Väntar på att du ska godkänna dehub i Farcaster-appen",
+    "approve": "Godkänn",
+    "farcasterNote": "Farcaster ber dig att godkänna dehub i Farcaster-appen, och den kan inte ta emot schemalagda inlägg ännu.",
+    "skippedScheduleToast": "Hoppade över {{platforms}}: schemalagda inlägg stöds inte där ännu.",
+    "skippedOtherToast": "Hoppade över {{platforms}}: de kunde inte ta det här inlägget."
   }
 }

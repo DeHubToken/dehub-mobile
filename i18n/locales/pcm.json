@@ -6816,14 +6816,10 @@
     "intro": "Post for X, YouTube, Instagram, TikTok and plenty more at the same time wey you dey post for dehub. Connect your accounts once, then choose where each post go go.",
     "creditsHeading": "Post credits",
     "credits": "{{count}} post credits",
-    "creditExplainer": "One credit dey send one post go one platform, so if you post for 3 platforms e go use 3 credits. Posts wey you schedule dey use credits the time wey you schedule dem.",
-    "payAsYouGo": "Credit don finish? You go pay ${{price}} for each platform for DHB when you post.",
     "topUpTitle": "Top up make you save money",
-    "topUpPosts": "{{count}} posts",
     "discount": "{{percent}}% off",
     "noDiscount": "Full price",
     "total": "Everything na ${{usd}}, you go pay for DHB",
-    "perPost": "${{price}} per post",
     "buy": "Buy credits",
     "buying": "We dey wait for the payment…",
     "bought": "Added {{count}} post credits",
@@ -6851,6 +6847,15 @@
     "partialToast": "E don post for {{sent}} platforms. {{failed}} no work and dem don return those credits give you.",
     "failedToast": "Cross-post failed: {{error}}",
     "skippedToast": "We skip {{platforms}}: this post no get the photo or video wey dem need.",
-    "uploadFailed": "We no fit upload your media for cross-posting."
+    "uploadFailed": "We no fit upload your media for cross-posting.",
+    "creditRules": "Each post dey cost credits for each platform: {{x}} for X, {{farcaster}} for Farcaster and {{other}} for every other platform. Scheduled posts go use credits the time wey you schedule am.",
+    "payAsYouGoCredits": "Credits don finish? We go buy the ones wey remain with DHB at ${{price}} each when you post.",
+    "topUpCredits": "{{count}} credits",
+    "perCredit": "${{price}} per credit",
+    "pendingApproval": "We dey wait make you approve dehub for the Farcaster app",
+    "approve": "Approve",
+    "farcasterNote": "Farcaster go ask you make you approve dehub for the Farcaster app, and e never fit take scheduled posts yet.",
+    "skippedScheduleToast": "Skipped {{platforms}}: scheduled posts aren't supported there yet.",
+    "skippedOtherToast": "We skip {{platforms}}: dem no fit take this post."
   }
 }

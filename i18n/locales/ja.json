@@ -7371,14 +7371,10 @@
     "intro": "dehubでX、YouTube、Instagram、TikTokなどに同時に投稿できます。アカウントを一度接続すれば、各投稿をどこに送信するかを選択できます。",
     "creditsHeading": "投稿クレジット",
     "credits": "{{count}}投稿クレジット",
-    "creditExplainer": "1クレジットは1つのプラットフォームへの1投稿に相当するため、3つのプラットフォームに投稿すると3クレジットを使用します。スケジュールされた投稿は、スケジュールされた時点でクレジットを使用します。",
-    "payAsYouGo": "クレジットが残っていませんか？投稿時にはDHBでプラットフォームあたり${{price}}を支払います。",
     "topUpTitle": "チャージして節約",
-    "topUpPosts": "{{count}}投稿",
     "discount": "{{percent}}%オフ",
     "noDiscount": "通常価格",
     "total": "合計${{usd}}、DHBで支払い",
-    "perPost": "投稿あたり${{price}}",
     "buy": "クレジットを購入",
     "buying": "支払い待ち…",
     "bought": "{{count}}投稿クレジットを追加しました",
@@ -7406,6 +7402,15 @@
     "partialToast": "{{sent}}プラットフォームに投稿されました。{{failed}}は失敗し、クレジットは返金されました。",
     "failedToast": "クロスポストに失敗しました：{{error}}",
     "skippedToast": "スキップ済み{{platforms}}：この投稿には必要な写真や動画がありません。",
-    "uploadFailed": "クロスポスト用にメディアをアップロードできませんでした。"
+    "uploadFailed": "クロスポスト用にメディアをアップロードできませんでした。",
+    "creditRules": "各投稿のクレジットはプラットフォームごとに発生します。Xの場合は{{x}}、Farcasterの場合は{{farcaster}}、その他のプラットフォームの場合は{{other}}。スケジュールされた投稿では、予約時にクレジットが使用されます。",
+    "payAsYouGoCredits": "不足しているクレジットは、投稿時にDHBで各$ {{price}}で購入されます。",
+    "topUpCredits": "{{count}}クレジット",
+    "perCredit": "1クレジットにつき$ {{price}}",
+    "pendingApproval": "Farcasterアプリでdehubの承認を待っています",
+    "approve": "承認",
+    "farcasterNote": "FarcasterはFarcasterアプリでdehubの承認を求めていますが、スケジュールされた投稿はまだ受け付けていません。",
+    "skippedScheduleToast": "{{platforms}}をスキップしました：スケジュールされた投稿はまだサポートされていません。",
+    "skippedOtherToast": "{{platforms}}をスキップしました：この投稿を投稿できませんでした。"
   }
 }

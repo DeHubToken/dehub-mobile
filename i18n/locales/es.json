@@ -7369,14 +7369,10 @@
     "intro": "Publica en X, YouTube, Instagram, TikTok y más al mismo tiempo con dehub. Conecta tus cuentas una vez y elige a dónde va cada publicación.",
     "creditsHeading": "Créditos de publicación",
     "credits": "{{count}} créditos de publicación",
-    "creditExplainer": "Un crédito envía una publicación a una plataforma, por lo que publicar en 3 plataformas usa 3 créditos. Las publicaciones programadas usan créditos cuando las programas.",
-    "payAsYouGo": "¿No quedan créditos? Pagas ${{price}} por plataforma en DHB cuando publicas.",
     "topUpTitle": "Recarga y ahorra",
-    "topUpPosts": "{{count}} publicaciones",
     "discount": "{{percent}}% de descuento",
     "noDiscount": "Precio completo",
     "total": "Total ${{usd}}, pagado en DHB",
-    "perPost": "${{price}} por publicación",
     "buy": "Comprar créditos",
     "buying": "Esperando pago…",
     "bought": "Se agregaron {{count}} créditos de publicación",
@@ -7404,6 +7400,15 @@
     "partialToast": "Publicado en {{sent}} plataformas. {{failed}} falló y se reembolsaron esos créditos.",
     "failedToast": "Error de publicación cruzada: {{error}}",
     "skippedToast": "Omitió {{platforms}}: esta publicación no tiene la foto o el video que necesitan.",
-    "uploadFailed": "No se ha podido cargar el contenido multimedia para publicación cruzada."
+    "uploadFailed": "No se ha podido cargar el contenido multimedia para publicación cruzada.",
+    "creditRules": "Cada publicación cuesta créditos por plataforma: {{x}} para X, {{farcaster}} para Farcaster y {{other}} para cualquier otra plataforma. Las publicaciones programadas usan créditos cuando las programas.",
+    "payAsYouGoCredits": "¿Se acabó? Los créditos que faltan se compran en DHB a ${{price}} cada uno cuando publicas.",
+    "topUpCredits": "{{count}} créditos",
+    "perCredit": "${{price}} por crédito",
+    "pendingApproval": "Esperando a que apruebes el deshub en la aplicación Farcaster",
+    "approve": "Aprobar",
+    "farcasterNote": "Farcaster te pide que apruebes el deshub en la aplicación Farcaster, y aún no puede aceptar publicaciones programadas.",
+    "skippedScheduleToast": "Omitido {{platforms}}: las publicaciones programadas aún no son compatibles allí.",
+    "skippedOtherToast": "Omitió {{platforms}}: no pudo aceptar esta publicación."
   }
 }

@@ -7468,14 +7468,10 @@
     "intro": "Mba afaka mandefa amin'ny X, YouTube, Instagram, TikTok sy maro hafa miaraka amin'ny dehub. Ampifandraiso indray mandeha ny kaontinao, dia safidio izay handefasana ny tsirairay.",
     "creditsHeading": "Crédits fandefasana",
     "credits": "{{count}} crédits fandefasana",
-    "creditExplainer": "Ny crédit iray dia mandefa hafatra iray amin'ny sehatra iray, ka ny fandefasana amin'ny sehatra 3 dia mampiasa 3 crédits. Ny hafatra voalahatra dia mampiasa crédits rehefa voalahatra.",
-    "payAsYouGo": "Tsy manana crédit intsony? Mandoa ${{price}} isaky ny sehatra amin'ny DHB ianao rehefa mandefa.",
     "topUpTitle": "Top up ary vonjy",
-    "topUpPosts": "{{count}} fandefasana",
     "discount": "{{percent}}% fihenam-bidy",
     "noDiscount": "Vidiny feno",
     "total": "Total ${{usd}}, aloa amin'ny DHB",
-    "perPost": "${{price}} isaky ny fandefasana",
     "buy": "Mividiana crédits",
     "buying": "Miandry ny fandoavam-bola…",
     "bought": "Nampiana {{count}} crédits fandefasana",
@@ -7503,6 +7499,15 @@
     "partialToast": "Nalefa tao amin'ny {{sent}} platforms. {{failed}} tsy nahomby ireo nahazoan-dalana ireo.",
     "failedToast": "Tsy nahomby ny Cross-post: {{error}}",
     "skippedToast": "Voaravaka {{platforms}}: tsy manana sary na lahatsary ilainy ity lahatsoratra ity.",
-    "uploadFailed": "Tsy afaka nampakatra ny haino aman-jery noho ny cross-posting."
+    "uploadFailed": "Tsy afaka nampakatra ny haino aman-jery noho ny cross-posting.",
+    "creditRules": "{{x}} for X, {{farcaster}} for Farcaster sy {{other}} isaky ny sehatra hafa rehetra ny fandefasana tsirairay. Ny lahatsoratra voalamina dia mampiasa ny carte de crédit rehefa mandamina azy ireo ianao.",
+    "payAsYouGoCredits": "Vonoy? Nividy tao amin'ny DHB amin'ny ${{price}} each when you post ny findramam-bola tsy hita.",
+    "topUpCredits": "{{count}} credits",
+    "perCredit": "${{price}} per credit",
+    "pendingApproval": "Miandry anao mba hanaiky dehub ao amin'ny Farcaster App",
+    "approve": "Nekena",
+    "farcasterNote": "Farcaster mangataka anao mba hanaiky dehub ao amin'ny Farcaster fampiharana, ary tsy afaka mandray voalahatra Lahatsoratra mbola.",
+    "skippedScheduleToast": "Voaravaka {{platforms}}: Tsy mbola ato ireo lahatsoratra nomanina.",
+    "skippedOtherToast": "Voaravaka {{platforms}}: Tsy azon'izy ireo natao ity lahatsoratra ity."
   }
 }

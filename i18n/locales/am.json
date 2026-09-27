@@ -7397,14 +7397,10 @@
     "intro": "እንደ dehub ሁሉንም በአንድ ጊዜ ወደ X, YouTube, Instagram, TikTok እና ሌሎችም ይለጥፉ። መለያዎችዎን አንድ ጊዜ ያገናኙ፣ ከዚያ እያንዳንዱ ልጥፍ የት እንደሚሄድ ይምረጡ።",
     "creditsHeading": "የልጥፍ ክሬዲቶች",
     "credits": "{{count}} የልጥፍ ክሬዲቶች",
-    "creditExplainer": "አንድ ክሬዲት አንድ ልጥፍን ወደ አንድ መድረክ ይልካል፣ ስለዚህ ወደ 3 መድረኮች መለጠፍ 3 ክሬዲቶችን ይጠቀማል። የታቀዱ ልጥፎች ሲያቅዷቸው ክሬዲቶችን ይጠቀማሉ።",
-    "payAsYouGo": "ምንም ክሬዲቶች አልቀሩም? በሚለጥፉበት ጊዜ በDHB ለአንድ መድረክ ${{price}} ይከፍላሉ።",
     "topUpTitle": "ከፍተኛ እና አስቀምጥ",
-    "topUpPosts": "{{count}} ልጥፎች",
     "discount": "{{percent}}% ቅናሽ",
     "noDiscount": "ሙሉ ዋጋ",
     "total": "ጠቅላላ ${{usd}}, በ DHB ውስጥ ተከፍሏል",
-    "perPost": "${{price}} ለአንድ ልጥፍ",
     "buy": "ክሬዲቶችን ይግዙ",
     "buying": "በመጠባበቅ ላይ ያለ ክፍያ…",
     "bought": "{{count}} የልጥፍ ክሬዲቶች ታክለዋል።",
@@ -7432,6 +7428,15 @@
     "partialToast": "ወደ {{sent}} መድረኮች የተለጠፈው {{failed}} አልተሳካም እና እነዚያ ክሬዲቶች ተመላሽ ተደርጓል ።",
     "failedToast": "መስቀል-ፖስት አልተሳካም: {{error}}",
     "skippedToast": "Skipped {{platforms}}: ይህ ልጥፍ የሚፈልጉትን ፎቶ ወይም ቪዲዮ የለውም ።",
-    "uploadFailed": "የእርስዎን ሚዲያ መስቀል-ፖስታ ለመስቀል አልተቻለም."
+    "uploadFailed": "የእርስዎን ሚዲያ መስቀል-ፖስታ ለመስቀል አልተቻለም.",
+    "creditRules": "እያንዳንዱ ልጥፍ በአንድ መድረክ ክሬዲት ያስከፍላል: {{x}} ለ X, {{farcaster}} ለፋርካስተር እና {{other}} ለእያንዳንዱ ሌላ መድረክ. የታቀዱ ልጥፎች እነሱን በሚመርጡበት ጊዜ ክሬዲቶችን ይጠቀማሉ ።",
+    "payAsYouGoCredits": "ጠፍቷል ክሬዲቶች በ DHB በ ${{price}} እያንዳንዱ በሚለጥፉበት ጊዜ ይገዛሉ ።",
+    "topUpCredits": "{{count}} ክሬዲት",
+    "perCredit": "${{price}} በአንድ ክሬዲት",
+    "pendingApproval": "Farcaster መተግበሪያ ውስጥ dehub ለማጽደቅ በመጠባበቅ ላይ",
+    "approve": "አጽድቁ",
+    "farcasterNote": "Farcaster አንተ Farcaster መተግበሪያ ውስጥ dehub ማጽደቅ ይጠይቃል, እና ገና የታቀደ ልጥፎች ሊወስድ አይችልም.",
+    "skippedScheduleToast": "Skipped {{platforms}}: የታቀዱ ልጥፎች ገና አልተደገፉም ።",
+    "skippedOtherToast": "{{platforms}} ተዘለዋል፦ ይህን ልጥፍ መቀበል አልቻሉም።"
   }
 }

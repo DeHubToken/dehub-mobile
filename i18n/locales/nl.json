@@ -7623,14 +7623,10 @@
     "intro": "Post tegelijkertijd naar X, YouTube, Instagram, TikTok en meer met dehub. Verbind je accounts één keer, kies dan waar elke post naartoe gaat.",
     "creditsHeading": "Post credits",
     "credits": "{{count}} post credits",
-    "creditExplainer": "Eén credit stuurt één post naar één platform, dus posten naar 3 platforms gebruikt 3 credits. Geplande posts gebruiken credits wanneer je ze plant.",
-    "payAsYouGo": "Geen credits meer over? Je betaalt ${{price}} per platform in DHB wanneer je post.",
     "topUpTitle": "Top-up en bespaar",
-    "topUpPosts": "{{count}} posts",
     "discount": "{{percent}}% korting",
     "noDiscount": "Volledige prijs",
     "total": "Totaal ${{usd}}, betaald in DHB",
-    "perPost": "${{price}} per post",
     "buy": "Credits kopen",
     "buying": "Wachten op betaling…",
     "bought": "{{count}} post credits toegevoegd",
@@ -7658,6 +7654,15 @@
     "partialToast": "Geplaatst op {{sent}} platforms. {{failed}} is mislukt en die tegoeden zijn terugbetaald.",
     "failedToast": "Crosspost mislukt: {{error}}",
     "skippedToast": "Overgeslagen {{platforms}}: deze post heeft niet de foto of video die ze nodig hebben.",
-    "uploadFailed": "Kan uw media niet uploaden voor cross-posting."
+    "uploadFailed": "Kan uw media niet uploaden voor cross-posting.",
+    "creditRules": "Elke post kost credits per platform: {{x}} voor X, {{farcaster}} voor Farcaster en {{other}} voor elk ander platform. Geplande berichten gebruiken credits wanneer je ze plant.",
+    "payAsYouGoCredits": "Is je tegoed op? Ontbrekende tegoeden worden gekocht in DHB voor ${{price}} per stuk wanneer je post.",
+    "topUpCredits": "{{count}} credits",
+    "perCredit": "${{price}} per tegoed",
+    "pendingApproval": "Wachten tot je dehub goedkeurt in de Farcaster-app",
+    "approve": "Keur goed",
+    "farcasterNote": "Farcaster vraagt je om dehub in de Farcaster-app goed te keuren en het kan nog geen geplande berichten aannemen.",
+    "skippedScheduleToast": "Overgeslagen {{platforms}}: geplande berichten worden daar nog niet ondersteund.",
+    "skippedOtherToast": "Overgeslagen {{platforms}}: ze konden dit bericht niet aannemen."
   }
 }

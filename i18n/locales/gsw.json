@@ -7399,14 +7399,10 @@
     "intro": "Post zu X, YouTube, Instagram, TikTok und meh glichziitig mit dehub. Verbind din Account einisch, denn wählsch, wohi jede Post gaht.",
     "creditsHeading": "Post-Credits",
     "credits": "{{count}} Post-Credits",
-    "creditExplainer": "Ein Credit schickt ein Post uf ein Plattform, also brucht es Post uf 3 Plattformen 3 Credits. Geplannti Posts bruuched Credits, wenn du sie planst.",
-    "payAsYouGo": "Keini Credits meh? Du bezahlsch ${{price}} pro Plattform in DHB, wenn du postsch.",
     "topUpTitle": "Auflade und spare",
-    "topUpPosts": "{{count}} Posts",
     "discount": "{{percent}}% Rabatt",
     "noDiscount": "Voll-Priis",
     "total": "Total ${{usd}}, bezahlt in DHB",
-    "perPost": "${{price}} pro Post",
     "buy": "Credits choufe",
     "buying": "Warte uf Zahlig…",
     "bought": "{{count}} Post-Credits dezoucho",
@@ -7434,6 +7430,15 @@
     "partialToast": "Postet a {{sent}} Plattformä. {{failed}} isch fehlgschlage und die Credits sind zruggzahlt wordä.",
     "failedToast": "Cross-Post fehlgschlage: {{error}}",
     "skippedToast": "Übersprunge {{platforms}}: das Post hät nöd s Foto oder Video, wo sie bruuched.",
-    "uploadFailed": "Mediä für Cross-Posting chont nöd hochglade wärde."
+    "uploadFailed": "Mediä für Cross-Posting chont nöd hochglade wärde.",
+    "creditRules": "Jeder Beitrag kostet Credits pro Plattform: {{x}} für X, {{farcaster}} für Farcaster und {{other}} für jede andere Plattform. Geplante Beiträge verbrauchen Credits, wenn du sie planisch.",
+    "payAsYouGoCredits": "Läuft dir das aus? Fehlendi Credits chasch i DHB für ${{price}} pro Stück chöife, wenn du poste.",
+    "topUpCredits": "{{count}} Credits",
+    "perCredit": "${{price}} pro Credit",
+    "pendingApproval": "Warte, dass du dehub i de Farcaster-App bestätigsch",
+    "approve": "Bestätige",
+    "farcasterNote": "Farcaster bittet dich, dehub i de Farcaster-App z'bestätige, und cha no kei geplante Beiträge übernäh.",
+    "skippedScheduleToast": "Übersprungen {{platforms}}: geplanti Beiträge sind dort no nöd unterstützt.",
+    "skippedOtherToast": "Übersprungen {{platforms}}: sie chönd dä Beitrag nöd übernäh."
   }
 }

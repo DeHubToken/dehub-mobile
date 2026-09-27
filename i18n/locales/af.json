@@ -7494,14 +7494,10 @@
     "intro": "Plaas gelyktydig na X, YouTube, Instagram, TikTok en meer met dehub. Koppel jou rekeninge een keer, kies dan waar elke plasing heen gaan.",
     "creditsHeading": "Plaaskrediete",
     "credits": "{{count}} plaaskrediete",
-    "creditExplainer": "Een krediet stuur een plasing na een platform, so om na 3 platforms te plaas gebruik 3 krediete. Geskeduleerde plasings gebruik krediete wanneer jy dit skeduleer.",
-    "payAsYouGo": "Geen krediete oor nie? Jy betaal ${{price}} per platform in DHB wanneer jy plaas.",
     "topUpTitle": "Vul aan en spaar",
-    "topUpPosts": "{{count}} plasings",
     "discount": "{{percent}}% af",
     "noDiscount": "Volle prys",
     "total": "Totaal ${{usd}}, betaal in DHB",
-    "perPost": "${{price}} per plasing",
     "buy": "Koop krediete",
     "buying": "Wag vir betaling…",
     "bought": "{{count}} plaaskrediete bygevoeg",
@@ -7529,6 +7525,15 @@
     "partialToast": "Gepos aan {{sent}} platforms. {{failed}} het misluk en die krediete is terugbetaal.",
     "failedToast": "Kruispos gevaal: {{error}}",
     "skippedToast": "Geslaan {{platforms}}: hierdie pos het nie die foto of video wat hulle nodig het nie.",
-    "uploadFailed": "Kon nie jou media oplaai vir kruisplasing nie."
+    "uploadFailed": "Kon nie jou media oplaai vir kruisplasing nie.",
+    "creditRules": "Elke pos kos krediete per platform: {{x}} vir X, {{farcaster}} vir Farcaster en {{other}} vir elke ander platform. Geskeduleerde poste gebruik krediete wanneer jy hulle skeduleer.",
+    "payAsYouGoCredits": "Uitloop? Ontbrekende krediete word in DHB by ${{price}} elk gekoop wanneer jy plaas.",
+    "topUpCredits": "{{count}} Krediete",
+    "perCredit": "${{price}} per krediet",
+    "pendingApproval": "Wag vir jou om dehub goed te keur in die Farcaster app",
+    "approve": "Goedkeur",
+    "farcasterNote": "Farcaster vra u om dehub in die Farcaster-app goed te keur, en dit kan nog nie geskeduleerde poste neem nie.",
+    "skippedScheduleToast": "Geslaan {{platforms}}: geskeduleerde plasings word nog nie daar ondersteun nie.",
+    "skippedOtherToast": "Slaan {{platforms}}: hulle kon nie hierdie pos neem nie."
   }
 }

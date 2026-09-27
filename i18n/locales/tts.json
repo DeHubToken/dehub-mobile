@@ -7350,14 +7350,10 @@
     "intro": "โพสต์ไปยัง X, YouTube, Instagram, TikTok และอื่น ๆ พร้อมกันกับ dehub เชื่อมบัญชีของคุณครั้งเดียว แล้วเลือกว่าต้องการโพสต์ไปที่ไหน",
     "creditsHeading": "เครดิตโพสต์",
     "credits": "{{count}} post credits",
-    "creditExplainer": "หนึ่งเครดิตส่งโพสต์หนึ่งโพสต์ไปยังแพลตฟอร์มหนึ่ง ดังนั้นการโพสต์ไปยัง 3 แพลตฟอร์มจะใช้เครดิต 3 เครดิต โพสต์ที่กำหนดเวลาใช้เครดิตเมื่อคุณกำหนดเวลา",
-    "payAsYouGo": "ไม่มีเครดิตเหลือ? คุณจ่าย ${{price}} ต่อแพลตฟอร์มใน DHB เมื่อคุณโพสต์",
     "topUpTitle": "เติมเงินและประหยัด",
-    "topUpPosts": "{{count}} posts",
     "discount": "{{percent}}% off",
     "noDiscount": "ราคาปกติ",
     "total": "รวม ${{usd}}, ชำระด้วย DHB",
-    "perPost": "${{price}} per post",
     "buy": "ซื้อเครดิต",
     "buying": "กำลังรอการชำระเงิน…",
     "bought": "Added {{count}} post credits",
@@ -7385,6 +7381,15 @@
     "partialToast": "โพสต์ไปยังแพลตฟอร์ม {{sent}}. {{failed}} ล้มเหลวและเครดิตเหล่านั้นถูกคืน",
     "failedToast": "การโพสต์ข้ามล้มเหลว: {{error}}",
     "skippedToast": "ข้าม {{platforms}}: โพสต์นี้ไม่มีรูปหรือวิดีโอที่ต้องการ",
-    "uploadFailed": "ไม่สามารถอัปโหลดสื่อของคุณสำหรับการโพสต์ข้ามได้"
+    "uploadFailed": "ไม่สามารถอัปโหลดสื่อของคุณสำหรับการโพสต์ข้ามได้",
+    "creditRules": "แต่ละโพสต์ใช้เครดิตต่อแพลตฟอร์ม: {{x}} สำหรับ X, {{farcaster}} สำหรับ Farcaster และ {{other}} สำหรับทุกแพลตฟอร์มอื่น ๆ โพสต์ที่กำหนดเวลาล่วงหน้าจะใช้เครดิตเมื่อคุณตั้งเวลาไว้",
+    "payAsYouGoCredits": "หมดแล้ว? เครดิตที่ขาดหายจะซื้อได้ใน DHB ที่ ${{price}} ต่อเครดิตเมื่อคุณโพสต์",
+    "topUpCredits": "{{count}} เครดิต",
+    "perCredit": "${{price}} ต่อเครดิต",
+    "pendingApproval": "กำลังรอคุณอนุมัติ dehub ในแอป Farcaster",
+    "approve": "อนุมัติ",
+    "farcasterNote": "Farcaster ขอให้คุณอนุมัติ dehub ในแอป Farcaster และยังไม่สามารถรับโพสต์ที่กำหนดเวลาได้",
+    "skippedScheduleToast": "ข้าม {{platforms}}: ยังไม่รองรับโพสต์ที่กำหนดเวลาในที่นั้น",
+    "skippedOtherToast": "ข้าม {{platforms}}: พวกเขาไม่สามารถรับโพสต์นี้ได้"
   }
 }

@@ -7369,14 +7369,10 @@
     "intro": "Posting ke X, YouTube, Instagram, TikTok, dan lainnya secara bersamaan dengan dehub. Hubungkan akun Anda sekali, lalu pilih ke mana setiap postingan akan dikirim.",
     "creditsHeading": "Kredit postingan",
     "credits": "{{count}} kredit postingan",
-    "creditExplainer": "Satu kredit mengirim satu postingan ke satu platform, jadi memposting ke 3 platform menggunakan 3 kredit. Postingan terjadwal menggunakan kredit saat Anda menjadwalkannya.",
-    "payAsYouGo": "Tidak ada kredit tersisa? Anda membayar ${{price}} per platform dalam DHB saat Anda memposting.",
     "topUpTitle": "Isi ulang dan hemat",
-    "topUpPosts": "{{count}} postingan",
     "discount": "{{percent}}% diskon",
     "noDiscount": "Harga penuh",
     "total": "Total ${{usd}}, dibayar dalam DHB",
-    "perPost": "${{price}} per postingan",
     "buy": "Beli kredit",
     "buying": "Menunggu pembayaran…",
     "bought": "Menambahkan {{count}} kredit postingan",
@@ -7404,6 +7400,15 @@
     "partialToast": "Diposting ke {{sent}} platform. {{failed}} gagal dan kredit tersebut dikembalikan.",
     "failedToast": "Cross - post gagal: {{error}}",
     "skippedToast": "Dilewatkan {{platforms}}: postingan ini tidak memiliki foto atau video yang mereka butuhkan.",
-    "uploadFailed": "Tidak dapat mengunggah media Anda untuk pengiriman silang."
+    "uploadFailed": "Tidak dapat mengunggah media Anda untuk pengiriman silang.",
+    "creditRules": "Setiap postingan dikenakan biaya kredit per platform: {{x}} untuk X, {{farcaster}} untuk Farcaster, dan {{other}} untuk platform lainnya. Postingan terjadwal menggunakan kredit saat Anda menjadwalkannya.",
+    "payAsYouGoCredits": "Habis? Kredit yang hilang dibeli di DHB masing - masing seharga ${{price}} saat Anda memposting.",
+    "topUpCredits": "Kredit {{count}}",
+    "perCredit": "${{price}} per kredit",
+    "pendingApproval": "Menunggu Anda menyetujui dehub di aplikasi Farcaster",
+    "approve": "Menyetujui",
+    "farcasterNote": "Farcaster meminta Anda untuk menyetujui dehub di aplikasi Farcaster, dan belum dapat menerima postingan terjadwal.",
+    "skippedScheduleToast": "Dilewatkan {{platforms}}: postingan terjadwal belum didukung di sana.",
+    "skippedOtherToast": "Dilewatkan {{platforms}}: mereka tidak bisa menerima postingan ini."
   }
 }

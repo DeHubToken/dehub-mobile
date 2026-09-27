@@ -7369,14 +7369,10 @@
     "intro": "Objavite na X, YouTube, Instagram, TikTok i više odjednom s dehubom. Povežite svoje račune jednom, a zatim odaberite kamo ide svaka objava.",
     "creditsHeading": "Krediti za objave",
     "credits": "{{count}} kredita za objave",
-    "creditExplainer": "Jedan kredit šalje jednu objavu na jednu platformu, tako da objavljivanje na 3 platforme koristi 3 kredita. Zakazane objave koriste kredite kada ih zakažete.",
-    "payAsYouGo": "Nema više kredita? Plaćaš ${{price}} po platformi u DHB-u kada objaviš.",
     "topUpTitle": "Nadopuni i uštedi",
-    "topUpPosts": "{{count}} objava",
     "discount": "{{percent}}% popusta",
     "noDiscount": "Puna cijena",
     "total": "Ukupno ${{usd}}, plaćeno u DHB-u",
-    "perPost": "${{price}} po objavi",
     "buy": "Kupi kredite",
     "buying": "Čeka se plaćanje…",
     "bought": "Dodano {{count}} kredita za objave",
@@ -7404,6 +7400,15 @@
     "partialToast": "Objavljeno na platformama {{sent}}. {{failed}} nije uspjelo i ti su krediti vraćeni.",
     "failedToast": "Unakrsna objava nije uspjela: {{error}}",
     "skippedToast": "Preskočeno {{platforms}}: ova objava nema potrebnu fotografiju ili videozapis.",
-    "uploadFailed": "Nismo mogli prenijeti vaš medij za unakrsno objavljivanje."
+    "uploadFailed": "Nismo mogli prenijeti vaš medij za unakrsno objavljivanje.",
+    "creditRules": "Svaka objava košta kredite po platformi: {{x}} za X, {{farcaster}} za Farcaster i {{other}} za svaku drugu platformu. Zakazane objave koriste kredite kada ih zakažete.",
+    "payAsYouGoCredits": "Ponestalo? Krediti koji nedostaju kupuju se u DHB-u po cijeni od ${{price}} svaki put kad objavite oglas.",
+    "topUpCredits": "Krediti: {{count}}",
+    "perCredit": "${{price}} po kreditu",
+    "pendingApproval": "Čeka se da odobriš dehub u aplikaciji Farcaster",
+    "approve": "Odobrite",
+    "farcasterNote": "Farcaster od tebe traži da odobri dehub u aplikaciji Farcaster i još ne može primati zakazane objave.",
+    "skippedScheduleToast": "Preskočeno {{platforms}}: planirane objave još nisu podržane.",
+    "skippedOtherToast": "Preskočeno {{platforms}}: korisnik nije mogao preuzeti ovu objavu."
   }
 }

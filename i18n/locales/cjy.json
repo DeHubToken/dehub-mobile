@@ -7413,14 +7413,10 @@
     "intro": "与 dehub 一同发布到 X、YouTube、Instagram、TikTok 等平台。一次性连接您的账户，然后选择每个帖子要发布到的平台。",
     "creditsHeading": "发布积分",
     "credits": "{{count}} 个发布积分",
-    "creditExplainer": "一个积分可将一个帖子发送到一个平台，因此发布到 3 个平台需要 3 个积分。已安排的帖子在安排时使用积分。",
-    "payAsYouGo": "积分用完了？发布时，您需要以 DHB 支付 {{price}} 美元/平台。",
     "topUpTitle": "充值并节省",
-    "topUpPosts": "{{count}} 个帖子",
     "discount": "{{percent}}% 折扣",
     "noDiscount": "全价",
     "total": "总计 {{usd}} 美元，以 DHB 支付",
-    "perPost": "{{price}} 美元/帖子",
     "buy": "购买积分",
     "buying": "等待付款…",
     "bought": "已添加 {{count}} 个发布积分",
@@ -7448,6 +7444,15 @@
     "partialToast": "已发布到 {{sent}} 个平台。{{failed}} 个失败，这些积分已退还。",
     "failedToast": "跨平台发布失败：{{error}}",
     "skippedToast": "已跳过 {{platforms}}：此帖没有他们需要的照片或视频。",
-    "uploadFailed": "无法上传您的媒体以进行跨平台发布。"
+    "uploadFailed": "无法上传您的媒体以进行跨平台发布。",
+    "creditRules": "每篇帖子在不同平台需要消耗积分：X平台为{{x}}，Farcaster为{{farcaster}}，其他所有平台为{{other}}。定时发布时会在安排时消耗积分。",
+    "payAsYouGoCredits": "积分用完了？缺少的积分可以在DHB以每个${{price}}的价格购买。",
+    "topUpCredits": "{{count}} 积分",
+    "perCredit": "每积分 ${{price}}",
+    "pendingApproval": "等待您在Farcaster应用中批准dehub",
+    "approve": "批准",
+    "farcasterNote": "Farcaster要求您在Farcaster应用中批准dehub，但它尚未支持定时发布。",
+    "skippedScheduleToast": "已跳过{{platforms}}：该平台尚不支持定时发布。",
+    "skippedOtherToast": "已跳过{{platforms}}：他们无法接受此帖子。"
   }
 }

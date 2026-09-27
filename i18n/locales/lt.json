@@ -7369,14 +7369,10 @@
     "intro": "Skelbkite į X, YouTube, Instagram, TikTok ir kitas platformas vienu metu su dehub. Prijunkite savo paskyras vieną kartą, tada pasirinkite, kur bus skelbiamas kiekvienas įrašas.",
     "creditsHeading": "Skelbimų kreditai",
     "credits": "{{count}} skelbimo kreditų",
-    "creditExplainer": "Vienas kreditas siunčia vieną skelbimą į vieną platformą, todėl skelbiant į 3 platformas sunaudojami 3 kreditai. Suplanuoti skelbimai naudoja kreditus, kai juos suplanuojate.",
-    "payAsYouGo": "Nebėra kreditų? Mokėsite {{price}} USD už platformą DHB valiuta, kai skelbsite.",
     "topUpTitle": "Papildykite ir sutaupykite",
-    "topUpPosts": "{{count}} skelbimų",
     "discount": "{{percent}}% nuolaida",
     "noDiscount": "Visas kainas",
     "total": "Iš viso ${{usd}}, mokama DHB valiuta",
-    "perPost": "${{price}} už skelbimą",
     "buy": "Pirkti kreditus",
     "buying": "Laukiama mokėjimo…",
     "bought": "Pridėta {{count}} skelbimo kreditų",
@@ -7404,6 +7400,15 @@
     "partialToast": "Paskelbta {{sent}} platformose. {{failed}} nepavyko ir šie kreditai buvo grąžinti.",
     "failedToast": "Kryžminis skelbimas nepavyko: {{error}}",
     "skippedToast": "Praleista {{platforms}}: šiame įraše nėra reikiamos nuotraukos ar vaizdo įrašo.",
-    "uploadFailed": "Nepavyko įkelti jūsų medijos kryžminiam paskelbimui."
+    "uploadFailed": "Nepavyko įkelti jūsų medijos kryžminiam paskelbimui.",
+    "creditRules": "Kiekvienas įrašas kainuoja kreditus vienai platformai: {{x}} X, {{farcaster}} Farcaster ir {{other}} kiekvienai kitai platformai. Suplanuotuose įrašuose naudojami kreditai, kai juos suplanuojate.",
+    "payAsYouGoCredits": "Pasibaigė? Trūkstami kreditai perkami DHB už ${{price}} kiekvieną kartą, kai skelbiate.",
+    "topUpCredits": "{{count}} kreditai",
+    "perCredit": "${{price}} už kreditą",
+    "pendingApproval": "Laukiama jūsų patvirtinimo „Farcaster“ programėlėje",
+    "approve": "Patvirtinti",
+    "farcasterNote": "„Farcaster“ prašo patvirtinti „Farcaster“ programėlėje pateiktą informaciją, tačiau ji dar negali priimti suplanuotų įrašų.",
+    "skippedScheduleToast": "Praleista {{platforms}}: suplanuoti įrašai ten dar nepalaikomi.",
+    "skippedOtherToast": "Praleido {{platforms}}: jie negalėjo priimti šio įrašo."
   }
 }

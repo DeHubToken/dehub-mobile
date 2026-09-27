@@ -7369,14 +7369,10 @@
     "intro": "Poste gleichzeitig auf X, YouTube, Instagram, TikTok und mehr mit dehub. Verbinde deine Konten einmal und wähle dann aus, wohin jeder Beitrag gesendet wird.",
     "creditsHeading": "Post-Credits",
     "credits": "{{count}} Post-Credits",
-    "creditExplainer": "Ein Credit sendet einen Beitrag an eine Plattform, sodass das Posten auf 3 Plattformen 3 Credits kostet. Geplante Beiträge verbrauchen Credits, wenn du sie planst.",
-    "payAsYouGo": "Keine Credits mehr übrig? Du zahlst ${{price}} pro Plattform in DHB, wenn du postest.",
     "topUpTitle": "Aufladen und sparen",
-    "topUpPosts": "{{count}} Beiträge",
     "discount": "{{percent}}% Rabatt",
     "noDiscount": "Voller Preis",
     "total": "Gesamt ${{usd}}, bezahlt in DHB",
-    "perPost": "${{price}} pro Beitrag",
     "buy": "Credits kaufen",
     "buying": "Warte auf Zahlung…",
     "bought": "{{count}} Post-Credits hinzugefügt",
@@ -7404,6 +7400,15 @@
     "partialToast": "Auf {{sent}} -Plattformen gepostet. {{failed}} ist fehlgeschlagen und diese Gutschriften wurden zurückerstattet.",
     "failedToast": "Cross-Post fehlgeschlagen: {{error}}",
     "skippedToast": "{{platforms}} übersprungen: Dieser Beitrag enthält nicht das Foto oder Video, das sie benötigen.",
-    "uploadFailed": "Ihre Medien konnten nicht für Cross-Posting hochgeladen werden."
+    "uploadFailed": "Ihre Medien konnten nicht für Cross-Posting hochgeladen werden.",
+    "creditRules": "Jeder Beitrag kostet Credits pro Plattform: {{x}} für X, {{farcaster}} für Farcaster und {{other}} für jede andere Plattform. Geplante Posts verwenden Credits, wenn du sie planst.",
+    "payAsYouGoCredits": "Fehlendes Guthaben wird in DHB zu jeweils ${{price}} gekauft, wenn du postest.",
+    "topUpCredits": "{{count}} Credits",
+    "perCredit": "${{price}} pro Guthaben",
+    "pendingApproval": "Warten darauf, dass Sie dehub in der Farcaster-App genehmigen",
+    "approve": "Genehmigen",
+    "farcasterNote": "Farcaster bittet dich, dehub in der Farcaster-App zu genehmigen, und es können noch keine geplanten Posts angenommen werden.",
+    "skippedScheduleToast": "{{platforms}} übersprungen: Geplante Beiträge werden dort noch nicht unterstützt.",
+    "skippedOtherToast": "{{platforms}} übersprungen: Sie konnten diesen Beitrag nicht annehmen."
   }
 }
