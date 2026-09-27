@@ -6797,7 +6797,8 @@
       "activities": "سرگرمیاں",
       "objects": "چیزیں",
       "symbols": "نشان",
-      "flags": "جھنڈے"
+      "flags": "جھنڈے",
+      "custom": "Custom"
     },
     "tone": {
       "default": "ڈیفالٹ",
@@ -6806,6 +6807,32 @@
       "medium": "درمیانہ چمڑی کا رنگ",
       "mediumDark": "درمیانہ گہرا چمڑی کا رنگ",
       "dark": "گہرا چمڑی کا رنگ"
+    },
+    "addCustom": "Add custom emoji",
+    "customEmpty": "Kono custom emoji nai. File, link, Discord, Slack, 7TV ba Mastodon server theke ekta add koro.",
+    "back": "Back",
+    "modeSingle": "One emoji",
+    "modePack": "Import a pack",
+    "upload": "Upload image",
+    "linkPlaceholder": "…ba ekta link ba Discord emoji code paste koro",
+    "namePlaceholder": "name",
+    "singleHint": "PNG, GIF, WebP ba JPEG 2 MB porjonto. Discord, Slack, 7TV, BetterTTV, FrankerFaceZ, emoji.gg ba kono image er linko kaj kore.",
+    "add": "Add emoji",
+    "addedName": "{{name}} add kora hoyeche",
+    "packPlaceholder": "mastodon.social, misskey.io ba JSON link",
+    "packHint": "Mastodon, Pleroma, Akkoma ba Misskey server theke, ba kono emoji JSON list theke sob emoji import kore. Age theke thaka name gulo skip kora hobe.",
+    "importPack": "Import",
+    "packAdded": "Added {{count}} emoji ({{skipped}} skipped)",
+    "errors": {
+      "signIn": "Emoji add korar jonno sign in koro",
+      "fileType": "PNG, GIF, WebP ba JPEG image use koro",
+      "fileSize": "Image gulo 2 MB ba tar kom hote hobe",
+      "invalid": "Name gulo 2 theke 64 letter, number, _, + ba - use kore",
+      "badImage": "Oi link ta image hishebe load holo na",
+      "addFailed": "Oi emoji ta add kora gelo na. Abar chesta koro.",
+      "packEmpty": "Oi address e kono emoji paoa gelo na",
+      "shortcodeTaken": "{{name}} agei neoa hoyeche",
+      "shortcodeStandard": "{{name}} agei ekta standard emoji"
     }
   }
 }

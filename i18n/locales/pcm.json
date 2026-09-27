@@ -6571,7 +6571,8 @@
       "activities": "Activity dem",
       "objects": "Tin dem",
       "symbols": "Symbol dem",
-      "flags": "Flag dem"
+      "flags": "Flag dem",
+      "custom": "Your own"
     },
     "tone": {
       "default": "Normal",
@@ -6580,6 +6581,32 @@
       "medium": "Medium skin colour",
       "mediumDark": "Medium-dark skin colour",
       "dark": "Dark skin colour"
+    },
+    "addCustom": "Add your own emoji",
+    "customEmpty": "No custom emoji dey yet. Add one from file, link, Discord, Slack, 7TV or Mastodon server.",
+    "back": "Go back",
+    "modeSingle": "One emoji",
+    "modePack": "Bring pack come",
+    "upload": "Upload picture",
+    "linkPlaceholder": "…or paste link or Discord emoji code",
+    "namePlaceholder": "name",
+    "singleHint": "PNG, GIF, WebP or JPEG wey no pass 2 MB. Link from Discord, Slack, 7TV, BetterTTV, FrankerFaceZ, emoji.gg or any picture go work too.",
+    "add": "Add emoji",
+    "addedName": "We don add {{name}}",
+    "packPlaceholder": "mastodon.social, misskey.io or JSON link",
+    "packHint": "E go bring all di emoji from Mastodon, Pleroma, Akkoma or Misskey server, or from any emoji JSON list. Name wey person don take before, we go skip am.",
+    "importPack": "Bring am",
+    "packAdded": "We don add {{count}} emoji ({{skipped}} skip)",
+    "errors": {
+      "signIn": "Sign in make you fit add emoji",
+      "fileType": "Use PNG, GIF, WebP or JPEG picture",
+      "fileSize": "Picture no suppose pass 2 MB",
+      "invalid": "Name suppose get 2 reach 64 letter, number, _, + or -",
+      "badImage": "Dat link no load as picture",
+      "addFailed": "Emoji no add. Try again.",
+      "packEmpty": "We no see any emoji for dat address",
+      "shortcodeTaken": "Person don take {{name}} already",
+      "shortcodeStandard": "{{name}} na normal emoji already"
     }
   }
 }

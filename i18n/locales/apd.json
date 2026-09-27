@@ -6755,7 +6755,8 @@
       "activities": "النشاطات",
       "objects": "الحاجات",
       "symbols": "الرموز",
-      "flags": "الأعلام"
+      "flags": "الأعلام",
+      "custom": "مخصص"
     },
     "tone": {
       "default": "الافتراضي",
@@ -6764,6 +6765,32 @@
       "medium": "بشرة قمحية",
       "mediumDark": "بشرة غامقة شوية",
       "dark": "بشرة غامقة"
+    },
+    "addCustom": "إضافة إيموجي مخصص",
+    "customEmpty": "لا يوجد إيموجي مخصص بعد. أضف واحداً من ملف، رابط، ديسكورد، سلاك، 7TV أو سيرفر ماستودون.",
+    "back": "رجوع",
+    "modeSingle": "إيموجي واحد",
+    "modePack": "استيراد حزمة",
+    "upload": "رفع صورة",
+    "linkPlaceholder": "... أو الصق رابط أو كود إيموجي ديسكورد",
+    "namePlaceholder": "اسم",
+    "singleHint": "PNG، GIF، WebP أو JPEG حتى 2 ميجابايت. الروابط من Discord، Slack، 7TV، BetterTTV، FrankerFaceZ، emoji.gg أو أي صورة تعمل أيضاً.",
+    "add": "إضافة إيموجي",
+    "addedName": "تم إضافة {{name}}",
+    "packPlaceholder": "mastodon.social، misskey.io أو رابط JSON",
+    "packHint": "يستورد كل إيموجي من خادم Mastodon، Pleroma، Akkoma أو Misskey، أو من أي قائمة JSON للإيموجي. الأسماء المستخدمة بالفعل يتم تخطيها.",
+    "importPack": "استيراد",
+    "packAdded": "تمت إضافة {{count}} إيموجي ({{skipped}} تم تخطيها)",
+    "errors": {
+      "signIn": "تسجيل الدخول لإضافة إيموجي",
+      "fileType": "استخدم صورة PNG، GIF، WebP أو JPEG",
+      "fileSize": "يجب أن تكون الصور بحجم 2 ميجابايت أو أصغر",
+      "invalid": "تستخدم الأسماء من 2 إلى 64 حرفاً، أرقاماً، _، + أو -",
+      "badImage": "لم يتم تحميل هذا الرابط كصورة",
+      "addFailed": "تعذر إضافة هذا الإيموجي. حاول مرة أخرى.",
+      "packEmpty": "لم يتم العثور على إيموجي في هذا العنوان",
+      "shortcodeTaken": "{{name}} محجوزة بالفعل",
+      "shortcodeStandard": "{{name}} إيموجي قياسي بالفعل"
     }
   }
 }

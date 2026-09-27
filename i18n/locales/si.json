@@ -6795,7 +6795,8 @@
       "activities": "ක්‍රියාකාරකම්",
       "objects": "වස්තූන්",
       "symbols": "සංකේත",
-      "flags": "ධජ"
+      "flags": "ධජ",
+      "custom": "අභිරුචි"
     },
     "tone": {
       "default": "පෙරනිමි",
@@ -6804,6 +6805,32 @@
       "medium": "මධ්‍යම සමේ වර්ණය",
       "mediumDark": "මධ්‍යම-තද සමේ වර්ණය",
       "dark": "තද සමේ වර්ණය"
+    },
+    "addCustom": "අභිරුචි ඉමොජි එක් කරන්න",
+    "customEmpty": "තාම custom emoji එකක් නෑ. ගොනුවක්, සබැඳියක්, Discord, Slack, 7TV හෝ Mastodon සේවාදායකයකින් එකක් එක් කරන්න.",
+    "back": "ආපසු",
+    "modeSingle": "එක් ඉමොජි",
+    "modePack": "පැකට්ටුවක් ආයාත කරන්න",
+    "upload": "රූපය උඩුගත කරන්න",
+    "linkPlaceholder": "…හෝ සබැඳියක් හෝ Discord ඉමොජි කේතයක් අලවන්න",
+    "namePlaceholder": "නම",
+    "singleHint": "PNG, GIF, WebP හෝ JPEG 2 MB දක්වා. Discord, Slack, 7TV, BetterTTV, FrankerFaceZ, emoji.gg හෝ ඕනෑම රූප වැඩ වලින් සබැඳි ද.",
+    "add": "ඉමොජි එක් කරන්න",
+    "addedName": "{{name}} එක් කළා",
+    "packPlaceholder": "mastodon.social, misskey.io හෝ JSON සබැඳියක්",
+    "packHint": "Mastodon, Pleroma, Akkoma හෝ Misskey සේවාදායකයකින් හෝ ඕනෑම Emoji JSON ලැයිස්තුවකින් සෑම emoji එකක්ම ආනයනය කරයි. දැනටමත් භාවිතයේ ඇති නම් මඟ හැරී ඇත.",
+    "importPack": "අායාත",
+    "packAdded": "එකතු කරන ලදි {{count}} ඉමොජි ({{skipped}} මඟ හැරියේ)",
+    "errors": {
+      "signIn": "ඉමොජි එක් කිරීමට පිවිසෙන්න",
+      "fileType": "PNG, GIF, WebP හෝ JPEG පිළිඹිබුවක් භාවිතා කරන්න",
+      "fileSize": "පින්තූර 2 MB හෝ ඊට අඩු විය යුතුය",
+      "invalid": "නම් අකුරු 2 සිට 64 දක්වා භාවිතා කරයි, අංක, _, + හෝ -",
+      "badImage": "එම සබැඳිය පිංතූරයක් ලෙස පූරණය නොවීය",
+      "addFailed": "එම ඉමොජි එක් කළ නොහැකි විය. නැවත උත්සාහ කරන්න.",
+      "packEmpty": "එම ලිපිනයේ කිසිදු ඉමොජි හමු නොවීය",
+      "shortcodeTaken": "{{name}} දැනටමත් ගෙන ඇත",
+      "shortcodeStandard": "{{name}} දැනටමත් සම්මත ඉමොජි එකක්"
     }
   }
 }

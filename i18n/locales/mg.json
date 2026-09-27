@@ -6855,7 +6855,8 @@
       "activities": "Hetsika",
       "objects": "Zavatra",
       "symbols": "Marika",
-      "flags": "Saina firenena"
+      "flags": "Saina firenena",
+      "custom": "Fanao"
     },
     "tone": {
       "default": "Mahazatra",
@@ -6864,6 +6865,32 @@
       "medium": "Hoditra antonony",
       "mediumDark": "Hoditra antonony maizina",
       "dark": "Hoditra maizina"
+    },
+    "addCustom": "Ampio emoji fanao",
+    "customEmpty": "Mbola tsy misy emoji fanao. Ampio iray avy amin'ny rakitra, rohy, Discord, Slack, 7TV na server Mastodon.",
+    "back": "Miverina",
+    "modeSingle": "Emoji iray",
+    "modePack": "Ampidiro fonosana",
+    "upload": "Mampakatra sary",
+    "linkPlaceholder": "…na mametaka rohy na kaody emoji Discord",
+    "namePlaceholder": "Anaran'ny mpampiasa",
+    "singleHint": "PNG, GIF, JPEG na JPEG hatramin'ny 2 MB. Rohy avy amin'ny Discord, Slack, 7TV, BetterTTV, FrankerFaceZ, emoji.gg na koa asa sary.",
+    "add": "Hanampy emoji",
+    "addedName": "Nanampy {{name}}",
+    "packPlaceholder": "mastodon.social, misskey.io na rohy JSON",
+    "packHint": "Mampidira ny emoji rehetra avy amin'ny Mastodon, Pleroma, Akkoma na server Misskey, na avy amin'ny lisitra emoji JSON. Ny anarana izay efa nampiasaina dia voatahiry.",
+    "importPack": "Hampiditra",
+    "packAdded": "Nampidirina {{count}} emoji ({{skipped}} skipped)",
+    "errors": {
+      "signIn": "Midira manampy emoji",
+      "fileType": "Mampiasà sary PNG, GIF, WebP na JPEG",
+      "fileSize": "Tsy maintsy 2 MB na latsak'izany ny sary.",
+      "invalid": "Ny anarana dia mampiasa ny 2 amin'ny litera 64, tarehimarika, _, + na -",
+      "badImage": "Tsy nalefa toy ny sary ilay rohy.",
+      "addFailed": "Tsy afaka nampiditra io emoji io. Andramo indray.",
+      "packEmpty": "Tsy nisy emoji tamin'io adiresy io",
+      "shortcodeTaken": "{{name}} efa nalaina",
+      "shortcodeStandard": "{{name}} efa emoji mahazatra sahady"
     }
   }
 }

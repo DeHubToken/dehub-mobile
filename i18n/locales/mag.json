@@ -6752,7 +6752,8 @@
       "activities": "गतिविधि",
       "objects": "चीज-बतुस",
       "symbols": "चिन्ह",
-      "flags": "झंडा"
+      "flags": "झंडा",
+      "custom": "अपन बनावल"
     },
     "tone": {
       "default": "डिफ़ॉल्ट",
@@ -6761,6 +6762,32 @@
       "medium": "मध्यम चमड़ी रंग",
       "mediumDark": "मध्यम-गाढ़ा चमड़ी रंग",
       "dark": "गाढ़ा चमड़ी रंग"
+    },
+    "addCustom": "अपन इमोजी जोड़ऽ",
+    "customEmpty": "अभी तक कोनो अपन इमोजी न हे। फाइल, लिंक, Discord, Slack, 7TV या Mastodon सर्वर से एगो जोड़ऽ।",
+    "back": "पीछे",
+    "modeSingle": "एगो इमोजी",
+    "modePack": "पैक लावऽ",
+    "upload": "फोटो अपलोड करऽ",
+    "linkPlaceholder": "…या लिंक या Discord इमोजी कोड चिपकावऽ",
+    "namePlaceholder": "नाम",
+    "singleHint": "PNG, GIF, WebP या JPEG, 2 MB तक। Discord, Slack, 7TV, BetterTTV, FrankerFaceZ, emoji.gg या कोनो फोटो के लिंक भी चलऽ हे।",
+    "add": "इमोजी जोड़ऽ",
+    "addedName": "{{name}} जुड़ गेल",
+    "packPlaceholder": "mastodon.social, misskey.io या JSON लिंक",
+    "packHint": "Mastodon, Pleroma, Akkoma या Misskey सर्वर से, या कोनो इमोजी JSON लिस्ट से सब इमोजी लावऽ हे। पहिले से लेल नाम छोड़ देल जा हे।",
+    "importPack": "लावऽ",
+    "packAdded": "{{count}} इमोजी जुड़ल ({{skipped}} छूटल)",
+    "errors": {
+      "signIn": "इमोजी जोड़े ला साइन इन करऽ",
+      "fileType": "PNG, GIF, WebP या JPEG फोटो लगावऽ",
+      "fileSize": "फोटो 2 MB या ओकरा से कम होवे के चाही",
+      "invalid": "नाम में 2 से 64 अक्षर, अंक, _, + या - होवऽ हे",
+      "badImage": "ऊ लिंक फोटो के रूप में लोड न होएल",
+      "addFailed": "इमोजी न जुड़ल। फेन कोसिस करऽ।",
+      "packEmpty": "ऊ पता पर कोनो इमोजी न मिलल",
+      "shortcodeTaken": "{{name}} पहिले से ले लेल गेल हे",
+      "shortcodeStandard": "{{name}} पहिले से एगो आम इमोजी हे"
     }
   }
 }

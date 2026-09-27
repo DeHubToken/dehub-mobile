@@ -6811,7 +6811,8 @@
       "activities": "Белсенділіктер",
       "objects": "Заттар",
       "symbols": "Таңбалар",
-      "flags": "Жалаулар"
+      "flags": "Жалаулар",
+      "custom": "Реттелетін"
     },
     "tone": {
       "default": "Әдепкі",
@@ -6820,6 +6821,32 @@
       "medium": "Орташа тері түсі",
       "mediumDark": "Орташа қоңыр тері түсі",
       "dark": "Қара тері түсі"
+    },
+    "addCustom": "Реттелетін эможи қосу",
+    "customEmpty": "Әлі реттелетін эможи жоқ. Файлдан, сілтемеден, Discord, Slack, 7TV немесе Mastodon серверінен біреуін қосыңыз.",
+    "back": "Артқа",
+    "modeSingle": "Бір эмодзи",
+    "modePack": "Пакетті импорттау",
+    "upload": "Кескінді жүктеу",
+    "linkPlaceholder": "…немесе сілтемені немесе Discord эмодзи кодын қойыңыз",
+    "namePlaceholder": "Пайдаланушы",
+    "singleHint": "PNG, GIF, WebP немесе JPEG 2 МБ дейін. Discord, Slack, 7TV, BetterTTV, FrankerFaceZ, emoji.gg немесе кез келген кескін жұмысының сілтемелері де.",
+    "add": "Эмодзи қосу",
+    "addedName": "{{name}} қосылды",
+    "packPlaceholder": "mastodon.social, misskey.io немесе JSON сілтемесі",
+    "packHint": "Әрбір эмодзиді Mastodon, Pleroma, Akkoma немесе Misskey серверінен немесе кез келген эмодзи JSON тізімінен импорттайды. Пайдаланылған атаулар өткізіп жіберілді.",
+    "importPack": "Импорт",
+    "packAdded": "Қосылды {{count}} emoji ({{skipped}} өткізіп жіберілді)",
+    "errors": {
+      "signIn": "Эмодзи қосу үшін кіріңіз",
+      "fileType": "PNG, GIF, WebP немесе JPEG кескінін пайдаланыңыз",
+      "fileSize": "Кескіндер 2 МБ немесе одан аз болуы керек",
+      "invalid": "Атауларда 2-ден 64-ке дейінгі әріптер, сандар, _, + немесе -",
+      "badImage": "Бұл сілтеме кескін ретінде жүктелмеді",
+      "addFailed": "Бұл эможиді қосу мүмкін болмады. Әрекетті қайталап көріңіз.",
+      "packEmpty": "Бұл мекенжайда эможи табылмады",
+      "shortcodeTaken": "{{name}} Алынған",
+      "shortcodeStandard": "{{name}} қазірдің өзінде стандартты эможи болып табылады"
     }
   }
 }

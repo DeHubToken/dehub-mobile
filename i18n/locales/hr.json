@@ -6756,7 +6756,8 @@
       "activities": "Aktivnosti",
       "objects": "Predmeti",
       "symbols": "Simboli",
-      "flags": "Zastave"
+      "flags": "Zastave",
+      "custom": "Prilagođeno"
     },
     "tone": {
       "default": "Zadano",
@@ -6765,6 +6766,32 @@
       "medium": "Srednja boja kože",
       "mediumDark": "Srednje tamna boja kože",
       "dark": "Tamna boja kože"
+    },
+    "addCustom": "Dodaj prilagođeni emoji",
+    "customEmpty": "Još nema prilagođenih emojija. Dodajte ga iz datoteke, poveznice, Discorda, Slacka, 7TV-a ili Mastodon poslužitelja.",
+    "back": "Natrag",
+    "modeSingle": "Jedan emoji",
+    "modePack": "Uvezite paket",
+    "upload": "Učitaj sliku",
+    "linkPlaceholder": "…ili zalijepite poveznicu ili kôd emojija Discorda",
+    "namePlaceholder": "Ime",
+    "singleHint": "PNG, GIF, WebP ili JPEG do 2 MB. Poveznice s Discordom, Slackom, 7TV-om, BetterTTV-om, FrankerFaceZ-om, emoji.gg-om ili bilo kojom slikom.",
+    "add": "Dodaj novi emoji",
+    "addedName": "Dodano {{name}}",
+    "packPlaceholder": "mastodon.social, misskey.io ili JSON link",
+    "packHint": "Uvozi svaki emoji s Mastodon, Pleroma, Akkoma ili Misskey poslužitelja ili s bilo kojeg JSON popisa emojija. Imena koja su već u upotrebi preskaču se.",
+    "importPack": "Unos",
+    "packAdded": "Dodano {{count}} emoji ({{skipped}} preskočeno)",
+    "errors": {
+      "signIn": "Prijavi se i dodaj emoji",
+      "fileType": "Upotrijebite PNG, GIF, WebP ili JPEG sliku",
+      "fileSize": "Slike moraju biti veličine 2 MB ili manje",
+      "invalid": "Imena koriste 2 do 64 slova, brojeve, _, + ili -",
+      "badImage": "Ta poveznica nije učitana kao slika",
+      "addFailed": "Dodavanje tog emojija nije uspjelo. Pokušajte ponovno.",
+      "packEmpty": "Na toj adresi nije pronađen nijedan emoji",
+      "shortcodeTaken": "{{name}} je već zauzeto",
+      "shortcodeStandard": "{{name}} već je standardni emoji"
     }
   }
 }

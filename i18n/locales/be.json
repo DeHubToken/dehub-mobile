@@ -6796,7 +6796,8 @@
       "activities": "Заняткі",
       "objects": "Прадметы",
       "symbols": "Сімвалы",
-      "flags": "Сцягі"
+      "flags": "Сцягі",
+      "custom": "Прыстасаваныя"
     },
     "tone": {
       "default": "Па змаўчанні",
@@ -6805,6 +6806,32 @@
       "medium": "Сярэдні колер скуры",
       "mediumDark": "Умерана цёмны колер скуры",
       "dark": "Цёмны колер скуры"
+    },
+    "addCustom": "Дадаць уласныя смайлікі",
+    "customEmpty": "Карыстальніцкіх смайлікаў пакуль няма. Дадаць адзін з файла, спасылкі, Discord, Slack, 7TV або сервера Mastodon.",
+    "back": "Назад",
+    "modeSingle": "Адзін смайлік",
+    "modePack": "Імпартаваць пакет",
+    "upload": "Запампаваць выяву",
+    "linkPlaceholder": "...або ўставіць спасылку або код смайлікаў Discord",
+    "namePlaceholder": "імя",
+    "singleHint": "PNG, GIF, WebP або JPEG да 2 Мб. Спасылкі ад Discord, Slack, 7TV, BetterTTV, FrankerFaceZ, emoji.gg або любых малюнкаў таксама працуюць.",
+    "add": "Дадаць смайлікі",
+    "addedName": "Дададзена {{name}}",
+    "packPlaceholder": "mastodon.social, misskey.io або спасылка на JSON",
+    "packHint": "Імпартаваць кожны смайлік з сервера Mastodon, Pleroma, Akkoma або Misskey, або з любога спісу смайлікаў JSON. Імёны, якія ўжо выкарыстоўваюцца, прапушчаны.",
+    "importPack": "імпарт",
+    "packAdded": "Дададзена {{count}} emoji ({{skipped}} прапушчана)",
+    "errors": {
+      "signIn": "Увайсці, каб дадаць смайлікі",
+      "fileType": "Выкарыстоўваць PNG, GIF, WebP або JPEG-малюнак",
+      "fileSize": "Малюнкі павінны быць 2 Мб або менш",
+      "invalid": "Імёны выкарыстоўваюць ад 2 да 64 літар, лічбаў, _, + або -",
+      "badImage": "Гэтая спасылка не загрузілася як малюнак",
+      "addFailed": "Немагчыма дадаць гэты смайлік. Паспрабуйце яшчэ раз.",
+      "packEmpty": "На гэтым адрасе не знойдзена смайлікаў",
+      "shortcodeTaken": "{{name}} ўжо ўзята",
+      "shortcodeStandard": "{{name}} ужо стандартны смайлік"
     }
   }
 }

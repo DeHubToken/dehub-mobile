@@ -6756,7 +6756,8 @@
       "activities": "Aktivitete",
       "objects": "Objekte",
       "symbols": "Simbole",
-      "flags": "Flamuj"
+      "flags": "Flamuj",
+      "custom": "Me porosi"
     },
     "tone": {
       "default": "Parazgjedhje",
@@ -6765,6 +6766,32 @@
       "medium": "Ngjyrë mesatare e lëkurës",
       "mediumDark": "Ngjyrë mesatare e errët e lëkurës",
       "dark": "Ngjyrë e errët e lëkurës"
+    },
+    "addCustom": "Shto emoji me porosi",
+    "customEmpty": "Asnjë emoji me porosi akoma. Shto një nga një skedar, një lidhje, Discord, Slack, 7TV ose një server Mastodon.",
+    "back": "Prapa",
+    "modeSingle": "Një emoji",
+    "modePack": "Importo një paketë",
+    "upload": "Ngarko imazhin",
+    "linkPlaceholder": "…ose ngjit një link ose një kod emoji Discord",
+    "namePlaceholder": "emri",
+    "singleHint": "PNG, GIF, WebP ose JPEG deri në 2 MB. Lidhje nga Discord, Slack, 7TV, BetterTTV, FrankerFaceZ, emoji.gg ose ndonjë punë imazhi gjithashtu.",
+    "add": "Shto emoji",
+    "addedName": "U shtua {{name}}",
+    "packPlaceholder": "mastodon.social, misskey.io ose një lidhje JSON",
+    "packHint": "Importon çdo emoji nga një server Mastodon, Pleroma, Akkoma ose Misskey, ose nga çdo listë emoji JSON. Emrat tashmë në përdorim janë anashkaluar.",
+    "importPack": "Importo",
+    "packAdded": "U shtua {{count}} emoji ({{skipped}} anashkaluar)",
+    "errors": {
+      "signIn": "Hyr për të shtuar emoji",
+      "fileType": "Përdorni një imazh PNG, GIF, WebP ose JPEG",
+      "fileSize": "Imazhet duhet të jenë 2 MB ose më të vogla",
+      "invalid": "Emrat përdorin 2 deri në 64 shkronja, numra, _, + ose -",
+      "badImage": "Ky link nuk u ngarkua si imazh",
+      "addFailed": "Nuk mund ta shtoja atë emoji. Provo përsëri.",
+      "packEmpty": "Nuk u gjet asnjë emoji në atë adresë",
+      "shortcodeTaken": "{{name}} është marrë tashmë",
+      "shortcodeStandard": "{{name}} është tashmë një emoji standard"
     }
   }
 }

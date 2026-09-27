@@ -6760,7 +6760,8 @@
       "activities": "활동",
       "objects": "사물",
       "symbols": "기호",
-      "flags": "깃발"
+      "flags": "깃발",
+      "custom": "사용자 지정"
     },
     "tone": {
       "default": "기본",
@@ -6769,6 +6770,32 @@
       "medium": "중간 피부색",
       "mediumDark": "약간 어두운 피부색",
       "dark": "어두운 피부색"
+    },
+    "addCustom": "맞춤 이모티콘 추가",
+    "customEmpty": "사용자 정의 이모티콘이 아직 없습니다. 파일, 링크, Discord, Slack, 7TV 또는 Mastodon 서버에서 하나를 추가합니다.",
+    "back": "뒤로",
+    "modeSingle": "하나의 이모티콘",
+    "modePack": "팩 가져오기",
+    "upload": "이미지 업로드",
+    "linkPlaceholder": "… 또는 링크나 Discord 이모티콘 코드 붙여넣기",
+    "namePlaceholder": "명칭",
+    "singleHint": "최대 2MB의 PNG, GIF, WEBP 또는 JPEG. Discord, Slack, 7TV, BetterTTV, FrankerFaceZ, emoji.gg 또는 모든 이미지의 링크도 작동합니다.",
+    "add": "새로운 이모티콘 추가",
+    "addedName": "{{name}} 추가됨",
+    "packPlaceholder": "mastodon.social, misskey.io 또는 JSON 링크",
+    "packHint": "Mastodon, Pleroma, Akkoma 또는 Misskey 서버 또는 이모티콘 JSON 목록에서 모든 이모티콘을 가져옵니다. 이미 사용 중인 이름은 건너뜁니다.",
+    "importPack": "가져오기",
+    "packAdded": "{{count}} 이모티콘 추가됨 ({{skipped}} 건너뜀)",
+    "errors": {
+      "signIn": "이모티콘을 추가하려면 로그인하세요",
+      "fileType": "PNG, GIF, WebP 또는 JPEG 이미지 사용",
+      "fileSize": "이미지는 2MB 이하여야 합니다",
+      "invalid": "이름은 2 ~ 64개의 문자, 숫자,_, + 또는 -를 사용합니다.",
+      "badImage": "해당 링크가 이미지로 로드되지 않았습니다",
+      "addFailed": "이모티콘을 추가할 수 없습니다. 다시 시도하세요.",
+      "packEmpty": "해당 주소에서 이모티콘을 찾을 수 없습니다",
+      "shortcodeTaken": "{{name}} 은 (는) 이미 사용 중입니다",
+      "shortcodeStandard": "{{name}} 은 (는) 이미 표준 이모티콘입니다"
     }
   }
 }

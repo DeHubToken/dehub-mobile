@@ -6811,7 +6811,8 @@
       "activities": "Faoliyatlar",
       "objects": "Buyumlar",
       "symbols": "Belgilar",
-      "flags": "Bayroqlar"
+      "flags": "Bayroqlar",
+      "custom": "Maxsus"
     },
     "tone": {
       "default": "Standart",
@@ -6820,6 +6821,32 @@
       "medium": "Oʻrtacha teri rangi",
       "mediumDark": "Oʻrtacha toʻq teri rangi",
       "dark": "Toʻq teri rangi"
+    },
+    "addCustom": "Maxsus emoji qo&#39;shish",
+    "customEmpty": "Hali maxsus emoji yo&#39;q. Fayl, havola, Discord, Slack, 7TV yoki Mastodon serveridan bittasini qo&#39;shing.",
+    "back": "Orqaga",
+    "modeSingle": "Bitta emoji",
+    "modePack": "Paketni import qiling",
+    "upload": "Rasm yuklash",
+    "linkPlaceholder": "…yoki havola yoki Discord emoji kodini joylashtiring",
+    "namePlaceholder": "nom",
+    "singleHint": "PNG, GIF, WebP yoki JPEG 2 MB gacha. Discord, Slack, 7TV, BetterTTV, FrankerFaceZ, emoji.gg saytlaridan yoki har qanday rasmdan havolalar ham ishlaydi.",
+    "add": "emoji qo'shish",
+    "addedName": "{{name}} qo&#39;shildi",
+    "packPlaceholder": "mastodon.social, misskey.io yoki JSON havola",
+    "packHint": "Mastodon, Pleroma, Akkoma yoki Misskey serveridan yoki har qanday emoji JSON ro'yxatidan har bir emojini import qiladi. Ishlatilayotgan nomlar o'tkazib yuboriladi.",
+    "importPack": "Import",
+    "packAdded": "{{count}} ta emoji qo'shildi ({{skipped}} ta o'tkazib yuborildi)",
+    "errors": {
+      "signIn": "Emoji qo'shish uchun tizimga kiring",
+      "fileType": "PNG, GIF, WebP yoki JPEG rasmidan foydalaning",
+      "fileSize": "Rasmlar 2 MB yoki undan kichik bo'lishi kerak",
+      "invalid": "Nomlar 2 dan 64 tagacha harf, raqam, _, + yoki - dan foydalanadi",
+      "badImage": "Bu havola rasm yuklay olmadi",
+      "addFailed": "Bu emojini qo'shib bo'lmadi. Qayta urinib ko'ring.",
+      "packEmpty": "Bu manzilda emoji topilmadi",
+      "shortcodeTaken": "{{name}} allaqachon band",
+      "shortcodeStandard": "{{name}} allaqachon standart emoji"
     }
   }
 }

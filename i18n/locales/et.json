@@ -6756,7 +6756,8 @@
       "activities": "Tegevused",
       "objects": "Objektid",
       "symbols": "Sümbolid",
-      "flags": "Lipud"
+      "flags": "Lipud",
+      "custom": "Kohandatud"
     },
     "tone": {
       "default": "Vaikimisi",
@@ -6765,6 +6766,32 @@
       "medium": "Keskmine nahatoon",
       "mediumDark": "Keskmiselt tume nahatoon",
       "dark": "Tume nahatoon"
+    },
+    "addCustom": "Lisa kohandatud emotikone",
+    "customEmpty": "Kohandatud emotikone veel pole. Lisa üks failist, lingilt, Discordist, Slackist, 7TV-st või Mastodoni serverist.",
+    "back": "Tagasi",
+    "modeSingle": "Üks emotikon",
+    "modePack": "Impordi pakk",
+    "upload": "Lae pilt üles",
+    "linkPlaceholder": "…või kleebi link või Discordi emotikonikood",
+    "namePlaceholder": "Nimi",
+    "singleHint": "PNG, GIF, WebP või JPEG kuni 2 MB. Lingid Discordist, Slackist, 7TV-st, BetterTTV-st, FrankerFaceZ-ist, emoji.gg-st või mis tahes pilditööst.",
+    "add": "Lisa emotikon",
+    "addedName": "Lisatud {{name}}",
+    "packPlaceholder": "mastodon.social, miskey.io või JSON link",
+    "packHint": "Impordib kõik emotikonid Mastodoni, Pleroma, Akkoma või Misskey serverist või mis tahes emotikonide JSON-loendist. Juba kasutusel olevad nimed jäetakse vahele.",
+    "importPack": "Impordi",
+    "packAdded": "Lisatud {{count}} emoji ({{skipped}} vahele jäetud)",
+    "errors": {
+      "signIn": "Emotikonide lisamiseks logi sisse",
+      "fileType": "Kasuta PNG-, GIF-, WebP- või JPEG-pilti",
+      "fileSize": "Pildid peavad olema 2 MB või väiksemad",
+      "invalid": "Nimed kasutavad 2 kuni 64 tähte, numbrit, _, + või -",
+      "badImage": "Seda linki ei laaditud pildina",
+      "addFailed": "Seda emotikoni ei saanud lisada. Proovi uuesti.",
+      "packEmpty": "Sellel aadressil emotikone ei leitud",
+      "shortcodeTaken": "{{name}} on juba võetud",
+      "shortcodeStandard": "{{name}} on juba standardne emotikon"
     }
   }
 }

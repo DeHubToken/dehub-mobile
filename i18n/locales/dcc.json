@@ -6494,7 +6494,8 @@
       "activities": "سرگرمیاں",
       "objects": "چیزاں",
       "symbols": "علامتاں",
-      "flags": "جھنڈے"
+      "flags": "جھنڈے",
+      "custom": "اپنے بنائے"
     },
     "tone": {
       "default": "ڈیفالٹ",
@@ -6503,6 +6504,32 @@
       "medium": "درمیانہ جلد کا رنگ",
       "mediumDark": "درمیانہ گہرا جلد کا رنگ",
       "dark": "گہرا جلد کا رنگ"
+    },
+    "addCustom": "اپنا ایموجی جوڑو",
+    "customEmpty": "ابی تک کوئی اپنا ایموجی نئیں ہے۔ فائل، لنک، Discord، Slack، 7TV یا Mastodon سرور سے ایک جوڑو۔",
+    "back": "پیچھے",
+    "modeSingle": "ایک ایموجی",
+    "modePack": "پیک لاؤ",
+    "upload": "تصویر اپلوڈ کرو",
+    "linkPlaceholder": "…یا لنک یا Discord ایموجی کوڈ پیسٹ کرو",
+    "namePlaceholder": "نام",
+    "singleHint": "PNG، GIF، WebP یا JPEG، 2 MB تک۔ Discord، Slack، 7TV، BetterTTV، FrankerFaceZ، emoji.gg یا کسی بی تصویر کے لنک بی چلتے۔",
+    "add": "ایموجی جوڑو",
+    "addedName": "{{name}} جوڑ دیے",
+    "packPlaceholder": "mastodon.social، misskey.io یا JSON لنک",
+    "packHint": "Mastodon، Pleroma، Akkoma یا Misskey سرور سے، یا کسی بی ایموجی JSON لسٹ سے سارے ایموجی لاتا۔ جو نام پہلے سے لیے ہیں وو چھوڑ دیتا۔",
+    "importPack": "لاؤ",
+    "packAdded": "{{count}} ایموجی جوڑے ({{skipped}} چھوڑے)",
+    "errors": {
+      "signIn": "ایموجی جوڑنے کو سائن اِن کرو",
+      "fileType": "PNG، GIF، WebP یا JPEG تصویر لگاؤ",
+      "fileSize": "تصویر 2 MB یا اس سے کم ہونا",
+      "invalid": "نام میں 2 سے 64 حرف، نمبر، _، + یا - ہوتے",
+      "badImage": "وو لنک تصویر کی طرح لوڈ نئیں ہوا",
+      "addFailed": "ایموجی نئیں جُڑا۔ پھر کوشش کرو۔",
+      "packEmpty": "اُس پتے پو کوئی ایموجی نئیں ملے",
+      "shortcodeTaken": "{{name}} پہلے سے لیا گیا",
+      "shortcodeStandard": "{{name}} پہلے سے ایک عام ایموجی ہے"
     }
   }
 }

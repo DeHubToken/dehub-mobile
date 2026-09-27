@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useMemo } from "react";
+import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   View,
   Text,
@@ -20,6 +20,8 @@ import { copyToClipboard } from "../../libs/clipboard.utils";
 import { theme } from "../../theme";
 import { resolveChatGif, gifCaption, gifBox } from "../../libs/chat-gif";
 import type { LiveChatMessageData, LiveChatUser } from "../../services/livechat.service";
+import EmojiSheet from "../Upload/EmojiSheet";
+import { expandEmojiTokens } from "../common/EmojiText";
 
 export interface MessageLayout {
   x: number;
@@ -144,7 +146,7 @@ const FloatingLiveChatMessage: React.FC<{ message: LiveChatMessageData }> = ({ m
       ) : (
         <>
           {!!bodyText && (
-            <Text className="text-white/70 text-[13px] leading-5">{bodyText}</Text>
+            <Text className="text-white/70 text-[13px] leading-5">{expandEmojiTokens(bodyText, { fontSize: 13 })}</Text>
           )}
 
           {/* GIF */}
@@ -213,6 +215,13 @@ const LiveChatContextMenuComponent: React.FC<LiveChatContextMenuProps> = ({
   // Live height, not a module-level snapshot: on an iPad rotated after launch
   // the card was positioned against the wrong screen height.
   const { height: SCREEN_HEIGHT } = useWindowDimensions();
+  // Message whose full emoji picker is open. The menu closes first: iOS will
+  // not stack a second modal on one that is still presenting.
+  const [moreFor, setMoreFor] = useState<LiveChatMessageData | null>(null);
+  const moreTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  useEffect(() => () => {
+    if (moreTimer.current) clearTimeout(moreTimer.current);
+  }, []);
 
   const handleReply = useCallback(() => {
     if (!message) return;
@@ -299,7 +308,25 @@ const LiveChatContextMenuComponent: React.FC<LiveChatContextMenuProps> = ({
     return { messageTop: mTop, actionsTop: aTop };
   }, [layout, insets, estimatedActionsHeight, SCREEN_HEIGHT]);
 
-  if (!visible || !message) return null;
+  const viewer = viewerAddress?.toLowerCase();
+  const moreSheet = (
+    <EmojiSheet
+      visible={!!moreFor}
+      onClose={() => setMoreFor(null)}
+      selected={
+        moreFor && viewer
+          ? Object.entries(moreFor.reactions ?? {})
+              .filter(([, addresses]) => addresses?.some((a) => a.toLowerCase() === viewer))
+              .map(([emoji]) => emoji)
+          : undefined
+      }
+      onSelect={(emoji) => {
+        if (moreFor) onReact?.(moreFor._id, emoji);
+      }}
+    />
+  );
+
+  if (!visible || !message) return moreSheet;
 
   const hasContent = !!message.content?.trim();
   // The API only rewrites a text body — a caption on a photo, GIF or voice
@@ -312,125 +339,143 @@ const LiveChatContextMenuComponent: React.FC<LiveChatContextMenuProps> = ({
   const myAddress = viewerAddress?.toLowerCase();
 
   return (
-    <Modal transparent animationType="none" statusBarTranslucent onRequestClose={onClose}>
-      {/* Blurred backdrop */}
-      <Pressable style={{ flex: 1 }} onPress={onClose}>
+    <>
+      <Modal transparent animationType="none" statusBarTranslucent onRequestClose={onClose}>
+        {/* Blurred backdrop */}
+        <Pressable style={{ flex: 1 }} onPress={onClose}>
+          <Animated.View
+            entering={FadeIn.duration(200)}
+            exiting={FadeOut.duration(150)}
+            style={{ flex: 1 }}
+          >
+            <BlurView
+              intensity={Platform.OS === "ios" ? 40 : 30}
+              tint="dark"
+              style={{ flex: 1 }}
+            />
+            <View
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                backgroundColor: "rgba(0,0,0,0.45)",
+              }}
+            />
+          </Animated.View>
+        </Pressable>
+
+        {/* Floating message */}
         <Animated.View
           entering={FadeIn.duration(200)}
-          exiting={FadeOut.duration(150)}
-          style={{ flex: 1 }}
+          exiting={FadeOut.duration(120)}
+          pointerEvents="box-none"
+          style={{
+            position: "absolute",
+            top: messageTop,
+            left: PADDING,
+            right: PADDING,
+          }}
         >
-          <BlurView
-            intensity={Platform.OS === "ios" ? 40 : 30}
-            tint="dark"
-            style={{ flex: 1 }}
-          />
-          <View
-            style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              backgroundColor: "rgba(0,0,0,0.45)",
-            }}
-          />
+          <Pressable onPress={onClose}>
+            <FloatingLiveChatMessage message={message} />
+          </Pressable>
         </Animated.View>
-      </Pressable>
 
-      {/* Floating message */}
-      <Animated.View
-        entering={FadeIn.duration(200)}
-        exiting={FadeOut.duration(120)}
-        pointerEvents="box-none"
-        style={{
-          position: "absolute",
-          top: messageTop,
-          left: PADDING,
-          right: PADDING,
-        }}
-      >
-        <Pressable onPress={onClose}>
-          <FloatingLiveChatMessage message={message} />
-        </Pressable>
-      </Animated.View>
-
-      {/* Actions card with reactions row */}
-      <Animated.View
-        entering={FadeIn.duration(180).delay(60)}
-        exiting={FadeOut.duration(120)}
-        pointerEvents="box-none"
-        style={{
-          position: "absolute",
-          top: actionsTop,
-          left: PADDING,
-          right: PADDING,
-        }}
-      >
-        <Pressable>
-          <View className="bg-theme-neutrals-800 rounded-xl overflow-hidden">
-            {/* Reaction emoji row */}
-            <View className="flex-row items-center justify-around px-3 py-2.5 border-b border-white/5">
-              {REACTION_EMOJIS.map((emoji) => {
-                const alreadyReacted =
-                  message.reactions?.[emoji]?.includes(myAddress || "") ?? false;
-                return (
-                  <TouchableOpacity
-                    key={emoji}
-                    onPress={() => handleReaction(emoji)}
-                    hitSlop={4}
-                    className={`w-10 h-10 items-center justify-center rounded-xl ${
-                      alreadyReacted ? "bg-blue-500/20" : ""
-                    }`}
-                    activeOpacity={0.6}
-                  >
-                    <Text className="text-2xl">{emoji}</Text>
-                  </TouchableOpacity>
-                );
-              })}
-            </View>
-
-            {/* Action rows */}
-            <View className="py-1">
-              {onReply && (
-                <ActionRow icon="Reply" label={t("liveChat.reply")} onPress={handleReply} />
-              )}
-
-              {hasContent && (
-                <ActionRow icon="Copy" label={t("common.copy")} onPress={handleCopy} />
-              )}
-
-              {canEdit && onEdit && (
-                <ActionRow icon="Pencil" label={t("common.edit")} onPress={handleEdit} />
-              )}
-
-              {isModerator && onPin && (
+        {/* Actions card with reactions row */}
+        <Animated.View
+          entering={FadeIn.duration(180).delay(60)}
+          exiting={FadeOut.duration(120)}
+          pointerEvents="box-none"
+          style={{
+            position: "absolute",
+            top: actionsTop,
+            left: PADDING,
+            right: PADDING,
+          }}
+        >
+          <Pressable>
+            <View className="bg-theme-neutrals-800 rounded-xl overflow-hidden">
+              {/* Reaction emoji row */}
+              <View className="flex-row items-center justify-around px-3 py-2.5 border-b border-white/5">
+                {REACTION_EMOJIS.map((emoji) => {
+                  const alreadyReacted =
+                    message.reactions?.[emoji]?.includes(myAddress || "") ?? false;
+                  return (
+                    <TouchableOpacity
+                      key={emoji}
+                      onPress={() => handleReaction(emoji)}
+                      hitSlop={4}
+                      className={`w-10 h-10 items-center justify-center rounded-xl ${
+                        alreadyReacted ? "bg-blue-500/20" : ""
+                      }`}
+                      activeOpacity={0.6}
+                    >
+                      <Text className="text-2xl">{emoji}</Text>
+                    </TouchableOpacity>
+                  );
+                })}
                 <TouchableOpacity
-                  onPress={handlePin}
+                  onPress={() => {
+                    const msg = message;
+                    onClose();
+                    if (moreTimer.current) clearTimeout(moreTimer.current);
+                    moreTimer.current = setTimeout(() => setMoreFor(msg), 350);
+                  }}
+                  hitSlop={4}
+                  className="w-10 h-10 items-center justify-center rounded-xl"
                   activeOpacity={0.6}
-                  className="flex-row items-center px-4 py-3"
+                  accessibilityRole="button"
+                  accessibilityLabel={t("emojiPicker.moreReactions")}
                 >
-                  <View className="w-8 items-center">
-                    <Icon
-                      name={message.isPinned ? "PinOff" : "Pin"}
-                      size={20}
-                      color={theme.colors.neutrals[100]}
-                    />
-                  </View>
-                  <Text className="ml-3 text-[15px] text-theme-neutrals-100">
-                    {message.isPinned ? t("liveChat.unpinMessage") : t("liveChat.pinMessage")}
-                  </Text>
+                  <Icon name="Plus" size={20} color="#A1A1AA" />
                 </TouchableOpacity>
-              )}
+              </View>
 
-              {canDelete && onDelete && (
-                <ActionRow icon="Trash2" label={t("common.delete")} onPress={handleDelete} destructive />
-              )}
+              {/* Action rows */}
+              <View className="py-1">
+                {onReply && (
+                  <ActionRow icon="Reply" label={t("liveChat.reply")} onPress={handleReply} />
+                )}
+
+                {hasContent && (
+                  <ActionRow icon="Copy" label={t("common.copy")} onPress={handleCopy} />
+                )}
+
+                {canEdit && onEdit && (
+                  <ActionRow icon="Pencil" label={t("common.edit")} onPress={handleEdit} />
+                )}
+
+                {isModerator && onPin && (
+                  <TouchableOpacity
+                    onPress={handlePin}
+                    activeOpacity={0.6}
+                    className="flex-row items-center px-4 py-3"
+                  >
+                    <View className="w-8 items-center">
+                      <Icon
+                        name={message.isPinned ? "PinOff" : "Pin"}
+                        size={20}
+                        color={theme.colors.neutrals[100]}
+                      />
+                    </View>
+                    <Text className="ml-3 text-[15px] text-theme-neutrals-100">
+                      {message.isPinned ? t("liveChat.unpinMessage") : t("liveChat.pinMessage")}
+                    </Text>
+                  </TouchableOpacity>
+                )}
+
+                {canDelete && onDelete && (
+                  <ActionRow icon="Trash2" label={t("common.delete")} onPress={handleDelete} destructive />
+                )}
+              </View>
             </View>
-          </View>
-        </Pressable>
-      </Animated.View>
-    </Modal>
+          </Pressable>
+        </Animated.View>
+      </Modal>
+      {moreSheet}
+    </>
   );
 };
 

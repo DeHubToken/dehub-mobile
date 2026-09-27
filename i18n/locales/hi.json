@@ -6762,7 +6762,8 @@
       "activities": "गतिविधियाँ",
       "objects": "वस्तुएँ",
       "symbols": "प्रतीक",
-      "flags": "झंडे"
+      "flags": "झंडे",
+      "custom": "कस्टम"
     },
     "tone": {
       "default": "डिफ़ॉल्ट",
@@ -6771,6 +6772,32 @@
       "medium": "मध्यम त्वचा रंग",
       "mediumDark": "मध्यम-गहरा त्वचा रंग",
       "dark": "गहरा त्वचा रंग"
+    },
+    "addCustom": "कस्टम इमोजी जोड़ें",
+    "customEmpty": "अभी तक कोई कस्टम इमोजी नहीं है। एक फ़ाइल, एक लिंक, Discord, Slack, 7TV या एक Mastodon सर्वर से एक जोड़ें।",
+    "back": "पीछे जाएँ",
+    "modeSingle": "एक इमोजी",
+    "modePack": "पैक इम्पोर्ट करें",
+    "upload": "छवि अपलोड करें",
+    "linkPlaceholder": "…या कोई लिंक या Discord इमोजी कोड पेस्ट करें",
+    "namePlaceholder": "नाम",
+    "singleHint": "PNG, GIF, WebP या JPEG 2 MB तक। Discord, Slack, 7TV, BetterTTV, FrankerFaceZ, emoji.gg या किसी भी इमेज वर्क के लिंक भी।",
+    "add": "इमोजी जोड़ें",
+    "addedName": "{{name}} को जोड़ा गया",
+    "packPlaceholder": "mastodon.social, misskey.io या JSON लिंक",
+    "packHint": "Mastodon, Pleroma, Akkoma या Misskey सर्वर से या किसी भी इमोजी JSON लिस्ट से हर इमोजी इंपोर्ट करता है। पहले से इस्तेमाल किए जा रहे नामों को छोड़ दिया गया है।",
+    "importPack": "इंपोर्ट",
+    "packAdded": "{{count}} इमोजी जोड़ा गया ({{skipped}} छोड़ा गया)",
+    "errors": {
+      "signIn": "इमोजी जोड़ने के लिए साइन इन करें",
+      "fileType": "PNG, GIF, WebP या JPEG इमेज का इस्तेमाल करें",
+      "fileSize": "फ़ोटो 2 MB या इससे छोटी होनी चाहिए",
+      "invalid": "नाम 2 से 64 अक्षरों, संख्याओं, _, + या - का उपयोग करते हैं",
+      "badImage": "वह लिंक फ़ोटो के रूप में लोड नहीं हुआ",
+      "addFailed": "वह इमोजी नहीं जोड़ा जा सका। फिर से कोशिश करें।",
+      "packEmpty": "उस पते पर कोई इमोजी नहीं मिला",
+      "shortcodeTaken": "{{name}} पहले ही लिया जा चुका है",
+      "shortcodeStandard": "{{name}} पहले से ही एक मानक इमोजी है"
     }
   }
 }
