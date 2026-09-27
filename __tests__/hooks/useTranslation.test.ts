@@ -75,7 +75,14 @@ describe('hooks/useTranslation', () => {
       renderHook(() => useTranslation(SPANISH_POST, 'es'));
       await runQueuedWork();
 
-      expect(mockTranslate).toHaveBeenCalledWith('Hola', 'tr', 'es');
+      expect(mockTranslate).toHaveBeenCalledWith('Hola', 'tr', 'es', { isPublic: false });
+    });
+
+    it('marks the request public only when the caller says so', async () => {
+      renderHook(() => useTranslation(SPANISH_POST, 'es', true, true));
+      await runQueuedWork();
+
+      expect(mockTranslate).toHaveBeenCalledWith('Hola', 'tr', 'es', { isPublic: true });
     });
 
     it('does not pass "und" off as a source language', async () => {
@@ -84,7 +91,7 @@ describe('hooks/useTranslation', () => {
 
       // A `und|tr` pair is answered by MyMemory with a stranger's segment out
       // of its shared memory, not an error.
-      expect(mockTranslate).toHaveBeenCalledWith('Hola', 'tr', 'auto');
+      expect(mockTranslate).toHaveBeenCalledWith('Hola', 'tr', 'auto', { isPublic: false });
     });
 
     it('stays quiet: no toasts for work the reader did not ask for', async () => {
@@ -209,7 +216,7 @@ describe('hooks/useTranslation', () => {
       expect(result.current.sourceLang).toBeNull();
       expect(mockQueue).not.toHaveBeenCalled();
       await act(async () => { result.current.handleTranslate(); });
-      expect(mockTranslate).toHaveBeenCalledWith('It is well', 'tr', 'auto');
+      expect(mockTranslate).toHaveBeenCalledWith('It is well', 'tr', 'auto', { isPublic: false });
     });
 
     it('keeps a successful title and the original body when the body fails', async () => {

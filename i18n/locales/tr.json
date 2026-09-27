@@ -3432,11 +3432,6 @@
     "noResultsFor": "\"{{query}}\" için sonuç bulunamadı",
     "guideSubtitle": "Her özelliğin adım adım açıklaması",
     "searchGuide": "Rehberde ara...",
-    "guideFractionsTip": "Mint edilen her gönderi, tüm paylarının içerik üreticisinde olmasıyla başlar (%100 sahiplik).",
-    "guideInfoStep": "Mint işlemini blok gezgininde açmak ve zincirdeki kaydı doğrulamak için mint edilmiş gönderideki bilgi simgesine dokunun.",
-    "guideMintIntro": "Bir gönderiyi blokzincirde NFT olarak mint etmek isteğe bağlıdır. Yayınlarken mint edin ya da şimdi yayınlayıp daha sonra gönderi menüsünden mint edin.",
-    "guideMintPublishStep": "Mint edip etmeyeceğinizi seçin, ardından yayınlamak için 'Gönder'e tıklayın. Mint etmeyi atlarsanız gönderiyi daha sonra menüsünden mint edebilirsiniz.",
-    "guideMintFractionsStep": "Yeni basılan gönderinin 1.000 payının tamamını (%100 sahiplik) alırsın.",
     "glossaryMintTxDesc": "Mint işlemini blok gezgininde açmak ve zincirdeki kaydı doğrulamak için mint edilmiş gönderideki bilgi simgesine dokunun. Tam Gönderi Bilgisi sayfası — istatistikler, sahipler, pazar yeri — dehub.io adresindeki web uygulamasındadır.",
     "glossaryTokenIdDesc": "Bir gönderi NFT olarak mint edildiğinde ona atanan benzersiz zincir üstü tanımlayıcı.",
     "repostsTab": "Tekrar Gönderiler",
@@ -3453,24 +3448,7 @@
     "glossaryStakingDesc": "Zamanla ödül kazanmak için DeHub jetonlarınızı kilitleyin. Stake edilmiş jetonlar ayrıca yönetişimde artırılmış oy gücü sağlar.",
     "glossaryGovernanceDesc": "Platformu şekillendiren teklifleri gönderin ve oylayın. Oy gücünüz, ne kadar DeHub jetonuna sahip olduğunuza göre ağırlıklandırılır.",
     "glossaryStakingBadgesDesc": "Toplam DeHub jeton varlıklarınıza (cüzdan + stake edilmiş) göre kullanıcı adınızın yanında görüntülenen rozetler. 13 seviye vardır — ne kadar çok jeton tutarsanız, rozet sıralamanız o kadar yüksek olur. Daha yüksek seviyeler daha fazla yönetişim oy gücü ve daha düşük platform ücretleri sağlar.",
-    "glossaryLeaderboardDesc": "Kullanıcılar, toplam DeHub jeton bakiyesine (tüm zincirlerdeki cüzdan + stake edilmiş) göre sıralanır. Sıralamalar periyodik olarak güncellenir ve 1 günlük ve 1 haftalık değişiklikleri izler. Ayrıca gönderilen bahşişler, alınan bahşişler, takipçiler, beğeniler veya aboneler tarafından da sıralayabilirsiniz.",
-    "guideTipStep": "İçerik oluşturucuya DeHub jetonları ile bir bahşiş göndermek için mücevher/bahşiş simgesine tıklayın.",
-    "guideTipWalletTip": "Bahşişler doğrudan içerik oluşturucunun cüzdanına DeHub jetonları olarak gider.",
-    "guideTipNotificationsTip": "İpuçları bildirimleri ne kadar DeHub jetonu aldığınızı gösterir.",
-    "guideWalletIntro": "Birden fazla zincirdeki DeHub jetonu bakiyelerinizi görüntüleyin, stake edilmiş mevduatları kontrol edin ve varlıklarınızı yönetin.",
-    "guideWalletTotalStep": "Tüm desteklenen zincirlerde toplanan toplam DeHub jetonu bakiyenizi görüntüleyin.",
-    "guideStakingIntro": "Ödül kazanmak ve yönetişim oylama gücünüzü artırmak için DeHub jetonlarınızı stake edin.",
-    "guideStakingAmountStep": "Stake etmek istediğiniz DeHub jetonu miktarını girin.",
-    "guideLeaderboardBalanceStep": "Bakiye sekmesi, kullanıcıları toplam DeHub jetonu varlıklarına göre sıralar.",
-    "guideGovernanceVoteStep": "Tek tuşla beğenme/beğenmeme düğmelerini kullanarak teklifler üzerinde oy kullanın — oy ağırlığınız, ne kadar DeHub jetonu stake ettiğinize bağlıdır.",
-    "guideGovernancePowerTip": "Oylama gücünüz, ne kadar DeHub jetonu stake ettiğinize göre belirlenir.",
-    "guideBuyIntro": "DPay'den doğrudan kart veya desteklenen kripto ile DeHub jetonu satın alın.",
-    "guideBuyAmountStep": "Harcamak istediğiniz tutarı veya almak istediğiniz DeHub jetonu miktarını girin.",
-    "guideBuyDeliveredStep": "İşlem tamamlandığında DeHub jetonlarınız cüzdanınızda görünecektir.",
-    "guideBridgeIntro": "Zincirler arası köprüyü kullanarak DeHub jetonlarınızı desteklenen blok zincirleri arasında taşıyın.",
-    "guideBridgeSourceStep": "Kaynak zincirini (DeHub jetonlarınızın şu anda bulunduğu yer) seçin.",
-    "guideBridgeDestStep": "Hedef zincirini (DeHub jetonlarınızı göndermek istediğiniz yer) seçin.",
-    "guideBridgeAmountStep": "Köprülemek istediğiniz DeHub jetonu miktarını girin."
+    "glossaryLeaderboardDesc": "Kullanıcılar, toplam DeHub jeton bakiyesine (tüm zincirlerdeki cüzdan + stake edilmiş) göre sıralanır. Sıralamalar periyodik olarak güncellenir ve 1 günlük ve 1 haftalık değişiklikleri izler. Ayrıca gönderilen bahşişler, alınan bahşişler, takipçiler, beğeniler veya aboneler tarafından da sıralayabilirsiniz."
   },
   "arcade": {
     "submitAccessibility": "Bir oyunu arcade'e gönderin",
@@ -6792,6 +6770,504 @@
       "packEmpty": "Bu adreste emoji bulunamadı",
       "shortcodeTaken": "{{name}} zaten alınmış",
       "shortcodeStandard": "{{name}} zaten standart bir emoji"
+    }
+  },
+  "guide": {
+    "sections": {
+      "getting-started": {
+        "title": "Başlarken",
+        "intro": "DeHub'a girmenin beş yolu vardır ve hiçbiri için önceden bir cüzdana sahip olmanız gerekmez: Google, Apple, e-postanıza gönderilen bir kod, SMS ile gönderilen bir kod veya bağladığınız mevcut bir cüzdan. Cüzdan yolu dışında her şey, arka planda sizin için saklama dışı bir cüzdan oluşturur — anahtarlar sizde kalır ve DeHub, yerel bir token satın almadan gönderi göndermeniz, bahşiş vermeniz ve toplamanız için gaz ücretini karşılar.",
+        "steps": {
+          "1": "dehub.io adresini ziyaret edin — ana akış ön sayfadır, bu yüzden giriş yapmadan önce etrafa bakabilirsiniz.",
+          "2": "'Giriş Yap'ı tıklayın. Google ve Apple'ı, bir e-posta adresi veya telefon numarası için alanları ve mevcut bir cüzdan için 'Cüzdanı Bağla'yı göreceksiniz.",
+          "3": "Google veya Apple ile, sağlayıcının akışını tamamlayın. E-posta veya SMS ile, gelen kodu girin.",
+          "4": "İlk giriş yaptığınızda sizin için bir cüzdan oluşturulur ve güvence altına alınır. Bunun yerine kendi cüzdanınızı bağlamak, adresi kanıtlamak için tek bir imza anlamına gelir.",
+          "5": "Bir kullanıcı adı seçin. İnsanların gördüğü şey budur ve dehub.io/<username> profil bağlantınız olarak da kullanılır.",
+          "6": "İşte bu kadar. Akışı keşfedin, profilinizi ayarlayın ve gönderi yapmaya başlayın."
+        },
+        "tips": {
+          "1": "Sosyal, e-posta ve SMS girişleri asla gaz ücreti ödemez — DeHub bunu karşılar. Bağlanan cüzdanlar kendi ETH veya BNB'lerini öder.",
+          "2": "Eski bir DeHub hesabına mı dönüyorsunuz? Kullandığı e-posta veya telefon numarası ile giriş yapın ve geçiş işlemi onu sizin için bulur.",
+          "3": "Tek bir cihazda birden fazla hesap tutabilir ve Ayarlar → Profil'den aralarında geçiş yapabilirsiniz."
+        }
+      },
+      "home-feed": {
+        "title": "Ana Akış",
+        "intro": "Ana akış, takip ettiğiniz kişilerin gönderilerini ve trend olan içerikleri gördüğünüz yerdir. Birden fazla içerik türü sekmesini ve sıralama seçeneklerini destekler.",
+        "steps": {
+          "1": "/app adresine gidin — bu sizin ana akışınızdır.",
+          "2": "İçerik türüne göre filtrelemek için üst sekmeleri kullanın: Ana Sayfa (tümü), Videolar, Resimler, Shorts, Müzik veya Canlı yayınlar.",
+          "3": "Mobil cihazlarda daha fazla seçeneği görmek için sekmelerde sola/sağa kaydırın.",
+          "4": "Sıralamayı değiştirmek için filtre/sıralama düğmesini (feed'in sağ üst köşesi) kullanın: Sıcak, Yeni veya En İyi.",
+          "5": "Mobil cihazlarda feed'i yenilemek için aşağı çekin.",
+          "6": "Daha fazla gönderiyi otomatik olarak yüklemek için aşağı kaydırın (sonsuz kaydırma).",
+          "7": "Düzen değiştiriciyi kullanarak Izgara ve Feed görünümü arasında geçiş yapın."
+        },
+        "tips": {
+          "1": "Izgara görünümü, resimleri hızlı bir şekilde göz atmak için harikadır.",
+          "2": "'Ana Sayfa' sekmesi, tüm içerik türlerini bir arada gösterir.",
+          "3": "Canlı sekmesi, şu anda aktif olan canlı yayınları gösterir."
+        }
+      },
+      "creating-posts": {
+        "title": "Gönderi Oluşturma",
+        "intro": "Metin gönderileri oluşturun, resimler, videolar, sesli notlar, GIF'ler ve daha fazlasını paylaşın. Erişimi artırmak için hashtag'leri, cashtag'leri ve mention'ları kullanın.",
+        "steps": {
+          "1": "Kenar çubuğundaki ('Post' düğmesi) (masaüstü) veya + düğmesine (mobil) tıklayın.",
+          "2": "Yazma alanına metninizi yazın.",
+          "3": "Resim veya video eklemek için medya simgesine tıklayın ve bir dosya seçin.",
+          "4": "Sesli not kaydetmek için mikrofon simgesine tıklayın.",
+          "5": "GIF eklemek için GIF simgesine tıklayın ve bir tane arayın.",
+          "6": "Gönderinizi kategorize etmek için #hashtag'leri kullanın (örneğin, #crypto, #defi).",
+          "7": "Tokenlara referans vermek için $cashtag'leri kullanın (örneğin, $DHB, $ETH).",
+          "8": "Diğer kullanıcıları etiketlemek için @mention'ları kullanın (örneğin, @kullanıcıadı).",
+          "9": "Yayınlamak için 'Post'a tıklayın. Gönderiniz hemen feed'de görünür."
+        },
+        "tips": {
+          "1": "Gönderiler markdown tarzı biçimlendirmeyi destekler.",
+          "2": "Herhangi bir gönderideki yeniden gönderme simgesine tıklayıp 'Alıntıla' seçeneğini seçerek alıntı gönderisi yapabilirsiniz.",
+          "3": "Kategoriler (hashtag'ler) 'Günün Konuşulanları' lider tablosunda görünür."
+        }
+      },
+      "interacting-with-posts": {
+        "title": "Gönderilerle Etkileşim",
+        "intro": "Oylama, yorum yapma, bahşiş verme, yer imlerine ekleme, paylaşma ve çeviri yaparak içerikle etkileşim kurun.",
+        "steps": {
+          "1": "Herhangi bir gönderinin sol tarafındaki ok simgelerini kullanarak bir gönderiyi yukarı veya aşağı oylayın.",
+          "2": "Yorum bölümünü açmak ve bir yanıt bırakmak için yorum simgesine tıklayın.",
+          "3": "Gönderi oluşturucusuna DeHub tokenlarında bir bahşiş göndermek için gem/bahşiş simgesine tıklayın.",
+          "4": "Bir gönderiyi daha sonra kaydetmek için yer imi simgesine tıklayın.",
+          "5": "Gönderi bağlantısını kopyalamak veya harici olarak paylaşmak için paylaş simgesine tıklayın.",
+          "6": "Gönderilerdeki metni kendi dilinize çevirmek için herhangi bir gönderideki çeviri düğmesine (küre simgesi) tıklayın.",
+          "7": "Resim gönderileri için, resimdeki metnin yapay zeka tarafından çevrilmiş bir sürümünü almak üzere 'Resmi Çevir' düğmesini kullanın.",
+          "8": "Tam ekran tek gönderi görünümünde açmak için herhangi bir gönderiye tıklayın."
+        },
+        "tips": {
+          "1": "Bahşişler doğrudan DeHub tokenlerinde yaratıcının cüzdanına gider.",
+          "2": "Hızlı seçim düğmeleri aracılığıyla bir bahşiş tutarı ayarlayabilir veya özel bir tutar girebilirsiniz.",
+          "3": "Yer imlerine eklenen gönderilere kenar çubuğundaki Yer İşaretleri sayfasından erişilebilir."
+        }
+      },
+      "explore-search": {
+        "title": "Keşfet ve Ara",
+        "intro": "Keşfet sayfası ve güçlü arama işlevi aracılığıyla yeni içerik ve kullanıcılar keşfedin.",
+        "steps": {
+          "1": "Kenar çubuğundan /app/explore'a gidin.",
+          "2": "Kullanıcıları, gönderileri veya içeriği aramak için üstteki arama çubuğunu kullanın.",
+          "3": "Sonuçları sekmeye göre filtreleyin: Hepsi, Kişiler, Gönderiler, Resimler, Videolar, Müzik, Canlı.",
+          "4": "Keşfet sayfasında trend olan konuları ve kategorileri göz atın.",
+          "5": "İlgili tüm gönderileri görmek için trend olan bir konuya tıklayın.",
+          "6": "Arama sonuçlarında bir kullanıcıya tıklayarak profillerini ziyaret edin."
+        },
+        "tips": {
+          "1": "Arama, kullanıcı adlarını, cüzdan adreslerini ve içerik anahtar kelimelerini destekler.",
+          "2": "Trend olan konular, son gönderi etkinliğine göre güncellenir."
+        }
+      },
+      "profile": {
+        "title": "Profil",
+        "intro": "Profiliniz gönderilerinizi, takipçilerinizi, takip ettiklerinizi ve cüzdan bilgilerinizi sergiler.",
+        "steps": {
+          "1": "Profilinizi görüntülemek için kenar çubuğundaki avatarınıza veya 'Profil'e tıklayın.",
+          "2": "Görünen adınızı, biyografinizi ve avatarınızı güncellemek için 'Profili Düzenle'ye tıklayın.",
+          "3": "Düzenleme modunda avatarınıza tıklayarak bir profil resmi yükleyin.",
+          "4": "Profil sayfanızda takipçi ve takip edilen sayılarınızı görüntüleyin.",
+          "5": "Profil sekmeleri aracılığıyla kendi gönderilerinize, medyalarınıza ve beğendiğiniz içeriğe göz atın.",
+          "6": "Cüzdan adresinizi yanındaki kopyalama simgesine tıklayarak kopyalayın.",
+          "7": "Platformun herhangi bir yerinde kullanıcı adlarına veya avatarlarına tıklayarak diğer kullanıcıların profillerini ziyaret edin."
+        },
+        "tips": {
+          "1": "Kullanıcı adınız benzersizdir ve profil URL'nizde görünür (dehub.io/@kullanıcıadı).",
+          "2": "Gizlilik ayarları, takipçi sayılarınızı kimlerin görebileceğini kontrol etmenizi sağlar."
+        }
+      },
+      "messages": {
+        "title": "Mesajlar",
+        "intro": "Platformdaki diğer kullanıcılara doğrudan mesaj gönderin.",
+        "steps": {
+          "1": "Mesajlaşma sayfasını açmak için kenar çubuğundaki 'Mesajlar'a tıklayın.",
+          "2": "Yeni bir konuşma başlatmak için oluştur düğmesine tıklayın.",
+          "3": "Onlara mesaj atmak için bir kullanıcıyı kullanıcı adına göre arayın.",
+          "4": "Mesajınızı yazın ve gönder'e basın.",
+          "5": "Mesajlar listesinde konuşma geçmişinizi görüntüleyin.",
+          "6": "Sohbeti devam ettirmek için bir konuşmaya tıklayın."
+        },
+        "tips": {
+          "1": "Biri size mesaj attığında bildirim alacaksınız.",
+          "2": "İçerik Üreticileri, ipucu gereksinimiyle mesajları kilitleyebilir."
+        }
+      },
+      "ai-assistant": {
+        "title": "Yapay Zeka Asistanı",
+        "intro": "Yardım, bilgi ve yaratıcı görevler için DeHub'ın yerleşik yapay zeka asistanıyla sohbet edin.",
+        "steps": {
+          "1": "Yapay zeka sohbetini açmak için kenar çubuğundaki 'Asistan'ı tıklayın.",
+          "2": "Sohbet girdisine sorunuzu veya isteğinizi yazın.",
+          "3": "Yapay zeka, kripto bilgileri, platform soruları ve genel bilgiler konusunda yardımcı olabilir.",
+          "4": "Yeni sohbet düğmesine tıklayarak yeni bir konuşma başlatın.",
+          "5": "Asistan sayfasının kenar çubuğunda konuşma geçmişinizi görüntüleyin.",
+          "6": "Yapay zekanın analiz etmesi için görseller ekleyebilirsiniz."
+        },
+        "tips": {
+          "1": "Yapay zeka, bir konuşma içindeki bağlamı hatırlar.",
+          "2": "Yapay zekaya DeHub özellikleri, kripto terimleri veya genel sorular hakkında soru sorabilirsiniz.",
+          "3": "Önceki konuşmalar kaydedilir ve herhangi bir zamanda erişilebilir."
+        }
+      },
+      "notifications": {
+        "title": "Bildirimler",
+        "intro": "İçeriğinizdeki beğeniler, yorumlar, ipuçları, takipler ve diğer etkinliklerle güncel kalın.",
+        "steps": {
+          "1": "Kenar çubuğundaki zil simgesine veya 'Bildirimler'e tıklayın.",
+          "2": "Tüm bildirimleri kronolojik bir listede görüntüleyin.",
+          "3": "İlgili içeriğe gitmek için bir bildirime tıklayın.",
+          "4": "Bildirimler şunları içerir: yeni takipçiler, gönderi oyları, yorumlar, ipuçları ve bahsetmeler.",
+          "5": "Okunmamış bildirimler vurgulanır — görüntülendiğinde okunmuş olarak işaretlenir."
+        },
+        "tips": {
+          "1": "Bildirim rozeti, okunmamış bildirimlerin sayısını gösterir.",
+          "2": "İpucu bildirimleri, kaç jeton aldığınızı gösterir."
+        }
+      },
+      "wallet": {
+        "title": "Cüzdan",
+        "intro": "Birden çok zincirdeki DeHub jeton bakiyelerinizi görüntüleyin, staking mevduatlarını kontrol edin ve varlıklarınızı yönetin.",
+        "steps": {
+          "1": "Cüzdan sayfasını açmak için kenar çubuğundaki 'Cüzdan'ı tıklayın.",
+          "2": "Tüm desteklenen zincirlerdeki toplam token bakiyenizi görüntüleyin.",
+          "3": "Zincir bazında dökümleri görün: Ethereum, Base, BNB Chain ve daha fazlası.",
+          "4": "Staking yatırımlarınızı ve ödüllerinizi kontrol edin.",
+          "5": "Zincir üzerindeki verilerden bakiyelerinizi güncellemek için 'Tarama Yenile'ye tıklayın.",
+          "6": "Başkalarından token almak için cüzdan adresinizi kopyalayın."
+        },
+        "tips": {
+          "1": "Bakiyeler otomatik olarak güncellenir ancak istediğiniz zaman yenilemeyi zorlayabilirsiniz.",
+          "2": "Cüzdan hem likit (kullanılabilir) hem de stake edilmiş bakiyeleri gösterir."
+        }
+      },
+      "staking": {
+        "title": "Staking",
+        "intro": "Ödül kazanmak ve yönetişim oylama gücünüzü artırmak için DeHub tokenlerinizi stake edin.",
+        "steps": {
+          "1": "Kenar çubuğundan 'Staking' sayfasına gidin.",
+          "2": "Stake etmek istediğiniz token sayısını girin.",
+          "3": "Stake etmek istediğiniz zinciri seçin.",
+          "4": "Cüzdanınızda işlemi onaylayın (harici cüzdanlar) veya otomatik olarak yürütülür (sosyal giriş).",
+          "5": "Stake edilmiş miktarlarınızı ve bekleyen ödüllerinizi görüntüleyin.",
+          "6": "Stake'ten çıkarmak için miktarı girin ve stake'ten çıkarma işlemini onaylayın."
+        },
+        "tips": {
+          "1": "Staking, yönetişim tekliflerindeki oy ağırlığınızı artırır.",
+          "2": "Sosyal giriş kullanıcılarının stake etmek için gaza ihtiyacı yoktur - gazsızdır.",
+          "3": "Aynı anda birden fazla zincirde stake yapabilirsiniz."
+        }
+      },
+      "leaderboard": {
+        "title": "Lider Tablosu",
+        "intro": "Kimlerin zirvede olduğunu görün! Lider tablosu, kullanıcıları bakiye, günlük harcama ve popüler konulara göre sıralar.",
+        "steps": {
+          "1": "Kenar çubuğundan 'Lider Tablosu' sayfasına gidin.",
+          "2": "Sekmeler arasında geçiş yapın: Bakiye, Günlük Harcanan ve Gündemdeki Konular.",
+          "3": "Bakiye sekmesi, kullanıcıları toplam token varlıklarına göre sıralar.",
+          "4": "Günlük Harcanan sekmesi, son 24 saat içinde en aktif bahşiş verenleri gösterir.",
+          "5": "Gündemdeki Konular, hashtag'lerden en çok tartışılan konuları/kategorileri gösterir.",
+          "6": "Profilini ziyaret etmek için herhangi bir kullanıcıya tıklayın.",
+          "7": "Lider tablosu gün boyunca periyodik olarak güncellenir."
+        },
+        "tips": {
+          "1": "Günlük sıralamalar her 24 saatte bir sıfırlanır.",
+          "2": "Gündemdeki Konular, hashtag'lerden tek kelimelik kategorileri izler."
+        }
+      },
+      "command-centre": {
+        "title": "Komuta Merkezi",
+        "intro": "Ana metriklerinizi ve platform etkinliğinizi bir bakışta gösteren bir kontrol paneli özeti.",
+        "steps": {
+          "1": "Kenar çubuğunda 'Komuta Merkezi'ne tıklayın.",
+          "2": "Gönderi sayısı, takipçiler ve etkileşim dahil olmak üzere profil özetinizi görüntüleyin.",
+          "3": "Son etkinliğinizi ve popüler konuları görün.",
+          "4": "Sık kullanılan özelliklere hızlı bağlantılara erişin."
+        },
+        "tips": {
+          "1": "Komuta Merkezi, DeHub varlığınıza kuşbakışı bir genel bakış sunar."
+        }
+      },
+      "governance": {
+        "title": "Yönetişim",
+        "intro": "Teklifler oluşturarak ve topluluk kararlarında oy kullanarak platform yönetişimine katılın.",
+        "steps": {
+          "1": "Kenar çubuğundan 'Yönetişim'e gidin.",
+          "2": "Topluluk tarafından gönderilen aktif tekliflere göz atın.",
+          "3": "Tam açıklamasını ve tartışmasını okumak için bir teklife tıklayın.",
+          "4": "Tekliflere başparmak yukarı/aşağı düğmelerini kullanarak oy verin — oy ağırlığınız, ne kadar DeHub tokeni stake ettiğinize bağlıdır.",
+          "5": "Toplulukla tartışmak için tekliflere yorum bırakın.",
+          "6": "'Teklif Oluştur' düğmesine tıklayarak kendi teklifinizi gönderin."
+        },
+        "tips": {
+          "1": "Oy gücünüz, stake ettiğiniz token sayısına göre belirlenir.",
+          "2": "Rozet sahipleri ek oy ağırlığı alabilir.",
+          "3": "Teklifler aşamalardan geçer: Aktif → Geçti/Reddedildi."
+        }
+      },
+      "bookmarks": {
+        "title": "Yer İşaretleri",
+        "intro": "Gönderileri daha sonra kolayca erişmek için yer işaretlerinize kaydedin.",
+        "steps": {
+          "1": "Kaydetmek için herhangi bir gönderideki yer işareti simgesine tıklayın.",
+          "2": "Kaydedilen tüm gönderileri görüntülemek için kenar çubuğundaki 'Yer İşaretleri'ne gidin.",
+          "3": "Yer işaretli bir gönderiyi tam olarak görüntülemek için tıklayın.",
+          "4": "Yer işaretini tekrar yer işareti simgesine tıklayarak kaldırın."
+        },
+        "tips": {
+          "1": "Yer işaretleri özeldir — yalnızca siz kaydedilen gönderilerinizi görebilirsiniz.",
+          "2": "Yer işareti koyabileceğiniz gönderi sayısında bir sınır yoktur."
+        }
+      },
+      "settings": {
+        "title": "Ayarlar",
+        "intro": "Dil, gizlilik ve ekran tercihlerinizle DeHub deneyiminizi özelleştirin.",
+        "steps": {
+          "1": "Kenar çubuğunda 'Ayarlar'a tıklayın.",
+          "2": "Dil seçiciden ekran dilinizi değiştirin.",
+          "3": "Gizlilik ayarlarını yapın: takipçi sayılarınızın ve takip ettiğiniz kişilerin listesinin kimler tarafından görüleceğini kontrol edin.",
+          "4": "Varsayılan gönderi görünürlük tercihlerinizi ayarlayın.",
+          "5": "Bildirim tercihlerinizi yönetin."
+        },
+        "tips": {
+          "1": "DeHub birden çok dili destekler — tüm arayüz çevrilir.",
+          "2": "Gizlilik ayarları hemen geçerlidir."
+        }
+      },
+      "posting-allowance": {
+        "title": "Günlük Gönderi Limitiniz",
+        "intro": "Gönderi, staking rozetinizle orantılı olarak artan bir limit dahilinde her gün ücretsizdir. Herkes günde on metin gönderisi ve bir gigabayt video, resim ve ses ile başlar. Bunlardan herhangi birini aşarsanız, o günün geri kalanı DeHub token'ları ile ödenir — yalnızca aşan kısım için.",
+        "steps": {
+          "1": "Normal şekilde gönderin. Limit dahilinde hiçbir ücret alınmaz ve sizden hiçbir şey istenmez.",
+          "2": "Metin gönderileri ve medya ayrı havuzlardır, bu nedenle video yükleyerek geçirilen bir gün bile on metin gönderisinin tamamını ücretsiz bırakır.",
+          "3": "Bir gönderi limiti aşacaksa, uygulama önce fiyatını belirler ve herhangi bir yüklemeden önce cüzdanınızın bunu karşılayıp karşılayamayacağını kontrol eder.",
+          "4": "Gönderi, limit dahilindeymiş gibi yayınlanır — yayınlama asla ödeme beklemez.",
+          "5": "Ardından, yalnızca o gönderi için bir transferi onaylarsınız, bu transfer Base veya BNB Chain'den hangisinde yeterli DeHub token'ı varsa orada gerçekleşir.",
+          "6": "Her iki havuz da UTC gece yarısı sıfırlanır."
+        },
+        "tips": {
+          "1": "Aşım orantılıdır: Limitinizin 200 MB fazlası, tam bir gigabayt değil, 200 MB olarak ücretlendirilir.",
+          "2": "Yeniden gönderiler, yorumlar, tepkiler, bahşişler ve mesajlar ücretsizdir ve hiçbir zaman limite dahil edilmez.",
+          "3": "Ödemeyi reddederseniz gönderi yayında kalır — tutar, ödenene kadar bir sonraki ücretli gönderinizi engeller. Yarının ücretsiz limiti her zaman sizindir.",
+          "4": "Bir staking rozeti, ücretsiz limiti artırır ve bunun üzerindeki her şeyin fiyatını düşürür."
+        }
+      },
+      "reactions-and-safety": {
+        "title": "Tepkiler, Engelleme ve Yetişkin İçeriği",
+        "intro": "Beğeni düğmesinin arkasında dokuz tepki bulunur ve neyi göreceğinizi ve kimin size ulaşabileceğini belirlemek için bir dizi kontrol bulunur.",
+        "steps": {
+          "1": "Tepki tepsisini açmak için herhangi bir gönderide başparmağınızı yukarıda basılı tutun: beğeni, sevgi, saygı, ateşli, komik, üzgün, ağla, beğenmeme ve kaka.",
+          "2": "Yedi olumlu olanı gönderinin beğeni toplamına sayılır; beğenmeme ve kaka ise aleyhine sayılır.",
+          "3": "Tepkiniz, staking rozetiniz tarafından ağırlıklandırılır, bu nedenle bir rozet sahibinin tepkisi, tek bir oydan daha fazla sayıyı etkiler.",
+          "4": "Yazarını engellemek için bir gönderinin başlığındaki X'e dokunun — hemen akışınızdan kaybolurlar.",
+          "5": "Oluşturucular, kendi gönderilerini oluştururken yetişkin içeriği olarak işaretler; bu gönderiler herkese açık ana akıştan çıkarılır.",
+          "6": "Yetişkin içeriğine sahip gönderileri her yerde görmek için Ayarlar'da 'Yetişkin içeriğini göster' seçeneğini açın."
+        },
+        "tips": {
+          "1": "Yetişkin içeriğine sahip bir gönderi, oluşturucunun profilinde ve onları takip edenler için hala tam olarak görünür durumdadır.",
+          "2": "Bir profilden engelleme, sessize almaktan daha ileri gider ve mesajlaşmayı da keser.",
+          "3": "Tepki tepsisi kimin ne ile tepki verdiğini gösterir, böylece sadece bir sayı yerine odanın durumunu görebilirsiniz."
+        }
+      },
+      "stages": {
+        "title": "Sahne (Canlı Ses Odaları)",
+        "intro": "Sahne, DeHub'a entegre edilmiş canlı ses odalarıdır. Bir sunucu bir oda açar, konuşmacıları davet eder ve herkes Sahne sayfasından veya paylaşılan bir bağlantıdan dinlemek için katılabilir.",
+        "steps": {
+          "1": "Şu anda canlı olanları ve planlanmış olanları görmek için kenar çubuğunda 'Sahne'yi açın.",
+          "2": "Bir dinleyici olarak katılmak için canlı bir sahneye dokunun veya planlanmış bir sahneye hatırlatıcı ayarlayın ve başladığında size haber verilsin.",
+          "3": "Aynı sayfadan kendi sahnenizi başlatın — OBS veya yayın anahtarı olmadan doğrudan tarayıcıdan canlı yayına geçebilirsiniz.",
+          "4": "Sunucu olarak konuşmacıları sahneye alın, onları sessize alın veya kaldırın, ekranınızı paylaşın ve ses panosunu yönetin.",
+          "5": "Dinleyiciler sahneye çıkmadan canlı tepkiler gönderir ve oda sohbetinde konuşurlar.",
+          "6": "Her sahne kaydedilir ve kayıt, göründüğü karttan sonradan oynatılır."
+        },
+        "tips": {
+          "1": "Canlı altyazılar her konuşmacıyı kapsar ve okuduğunuz dile çevrilir.",
+          "2": "Canlı dublaj, odanın sesini sunucunun kendi klonlanmış sesiyle duyurabilir, DeHub jetonlarıyla dakikası üzerinden ücretlendirilir.",
+          "3": "Sunucular bir radyo istasyonunu yayına alabilir veya konuşmalar arasında kendi müzik kliplerini çalabilir.",
+          "4": "Uygulamanın geri kalanını gezerken bir mini oynatıcı, köşede odayı açık tutar."
+        }
+      },
+      "communities": {
+        "title": "Topluluklar ve Etkinlikler",
+        "intro": "Topluluklar, kendi akışlarına, üyelerine ve etkinliklerine sahip, üyeler tarafından yönetilen alanlardır. Etkinlikler, bunların üzerine zamanla sınırlı programlama ekler.",
+        "steps": {
+          "1": "Kenar çubuğunda 'Topluluklar'ı açın ve herkese açık olanlara göz atın.",
+          "2": "Tek dokunuşla katılın. Yeni etkinlikler, navigasyonda okunmamış bir rozet olarak görünür.",
+          "3": "Bir topluluğun kendi akışında gönderi yapın, tartışın, anketler düzenleyin ve bahşiş verin.",
+          "4": "Topluluk sahipleri kendi alanlarını yönetir ve başkalarına yönetici hakları verebilir.",
+          "5": "Planlanmış programlama için 'Etkinlikler'i açın, canlı olarak takip edebileceğiniz her etkinlik için tam bir sayfa bulunur."
+        },
+        "tips": {
+          "1": "Topluluk sohbeti @bahsetmelerini ve @herkesi destekler, böylece bir gönderi odaya ulaşabilir.",
+          "2": "Bir davet bağlantısı, insanları doğrudan bir topluluğa getirmenizi sağlar."
+        }
+      },
+      "arcade": {
+        "title": "Arcade",
+        "intro": "DeHub içinde bir tarayıcı sekmesinde beş oyun çalışır — yükleyecek bir şey yok, satın alacak bir şey yok.",
+        "steps": {
+          "1": "Kenar çubuğunda 'Arcade'yi açın.",
+          "2": "Bir oyun seçin: King's Gambit (çevrimiçi bir Elo merdivenli 3D satranç), Claude of Duty (yüklenirken kendi sanatını üreten bir nişancı), Jungle Trail (prosedürel bir yağmur ormanı yürüyüşü), Street Slayer (DeHub için yapılmış bir dövüş oyunu) veya Chartopia (yürünebilir bir ticaret katı).",
+          "3": "Sekmede oynayın. King's Gambit ve Street Slayer liderlik tablolarını tutar.",
+          "4": "Chartopia ayrıca WebXR aracılığıyla bir VR başlıkta da çalışır."
+        },
+        "tips": {
+          "1": "İkisi görünüm temalarının içine gizlenmiştir — Claude of Duty için uygulamayı Savaş olarak ayarlayın veya Jungle Trail için Orman olarak ayarlayın.",
+          "2": "Her oyunun kendi paylaşım kartı vardır, bu nedenle birine giden bir bağlantı, nereye gönderirseniz gönderin düzgün bir şekilde açılır."
+        }
+      },
+      "bounties-stores": {
+        "title": "Ödüller ve Mağazalar",
+        "intro": "Platformu gelire dönüştürmenin iki yolu: bir ödül yayınlayın veya talep edin ya da bir mağaza açın ve kitlenize satış yapın.",
+        "steps": {
+          "1": "Açık işleri kategori veya para birimine göre filtreleyerek göz atmak için 'Ödüller'i açın.",
+          "2": "Birini talep edin, işi yapın ve ödülü toplamak için gönderin — avcı herkes olabilir, başvuru gerekmez.",
+          "3": "Kendi ödülünüzü kısa bir açıklama ve DeHub token veya USDC ile belirleyin. Belirlediğiniz anda emanete alınır.",
+          "4": "Kendi sayfası, markası ve listeleriyle bir mağaza kurmak için 'Mağazalar'ı açın.",
+          "5": "Ürünler, harici bir ödeme işlemi olmadan DeHub token ile fiyatlandırılır ve ödenir."
+        },
+        "tips": {
+          "1": "Ödüller Sosyal Medya, Klipler ve Sözleşmeler olarak organize edilir.",
+          "2": "Bir anlaşmazlık akışı, teslimatla ilgili anlaşmazlıkları çözer, böylece emanet her zaman adil bir şekilde sonuçlanır.",
+          "3": "Yaratıcılar, bir topluluk oluşturmak için ödülleri kullanır — paylaşımlar, klipler ve tepkiler geçerli görevlerdir."
+        }
+      },
+      "creator-studio": {
+        "title": "Yaratıcı Stüdyosu ve Düzenleyici",
+        "intro": "Yaratıcı Stüdyosu, bir komuttan görseller, video, müzik, ses ve 3B modeller oluşturur ve bunları bir düzenleyiciye aktarır — tarayıcıda çalışan tam bir çok kanallı video düzenleyici dahil.",
+        "steps": {
+          "1": "Yaratıcı Stüdyosu'nu açın ve ne yapılmasını istediğinizi açıklayın.",
+          "2": "Sunucu, iş çalışmadan önce maliyeti belirtir, böylece harcamadan önce ne kadara mal olacağını görürsünüz.",
+          "3": "Uygulamada gezinmeye devam ederken oluşturulanlar paylaşılan bir kuyrukta devam eder.",
+          "4": "Sonuçları Canva tarzı düzenleyicide düzenleyin veya kesme, katmanlama ve dışa aktarma ile gerçek bir zaman çizelgesi için video düzenleyiciyi açın.",
+          "5": "Bitmiş parçayı doğrudan bir gönderiye, kısa videoya veya mağaza listesine bırakın."
+        },
+        "tips": {
+          "1": "Oluşturmak istemediğiniz herhangi bir şey için Stüdyo'nun yanında ücretsiz bir stok varlık kütüphanesi bulunur.",
+          "2": "Oluşturma, cüzdanınızdaki DeHub token ile ödenir — iş başına bir transfer imzalarsınız ve ödeme yapmadan önce fiyat belirtilir.",
+          "3": "Daha yoğun kullanıcılar, cüzdanlarına aylık bir token limiti gönderen Ultra, Ekip veya Ölçek planlarını alabilirler."
+        }
+      },
+      "buying-dhb": {
+        "title": "Token Satın Alma",
+        "intro": "Uygulama içinden yerleşik takas arayüzünü kullanarak DeHub token satın alın.",
+        "steps": {
+          "1": "Kenar çubuğundan 'Satın Al' sayfasına gidin.",
+          "2": "Takas etmek istediğiniz tokenı seçin (örneğin, ETH, USDC).",
+          "3": "Harcamak istediğiniz tutarı veya almak istediğiniz token sayısını girin.",
+          "4": "Döviz kurunu ve tahmini çıktıyı gözden geçirin.",
+          "5": "Kayma toleransını ayarlamak için ayarlar dişli simgesine tıklayın (varsayılan %1'dir).",
+          "6": "Takas işlemini onaylayın.",
+          "7": "İşlem tamamlandıktan sonra DeHub tokenları cüzdanınızda görünecektir."
+        },
+        "tips": {
+          "1": "Daha yüksek kayma toleransı = yürütme olasılığı daha yüksek, ancak daha kötü fiyatlandırma potansiyeli.",
+          "2": "Onaylamadan önce her zaman döviz kurunu kontrol edin.",
+          "3": "Ayarlar panelinde özel kayma ayarlayabilirsiniz."
+        }
+      },
+      "bridge": {
+        "title": "Köprü",
+        "intro": "Çapraz zincir köprüsünü kullanarak DeHub tokenlarınızı desteklenen blok zincirleri arasında taşıyın.",
+        "steps": {
+          "1": "Kenar çubuğundan 'Köprü' sayfasına gidin.",
+          "2": "Kaynak zinciri (tokenlarınızın şu anda bulunduğu yer) seçin.",
+          "3": "Hedef zinciri (onları göndermek istediğiniz yer) seçin.",
+          "4": "Köprülemek istediğiniz token miktarını girin.",
+          "5": "Köprü ücretini ve tahmini varış süresini gözden geçirin.",
+          "6": "Köprü işlemini onaylayın.",
+          "7": "İşlemin tamamlanmasını bekleyin — köprüleme birkaç dakika sürebilir."
+        },
+        "tips": {
+          "1": "Köprü ücretleri zincir çiftine göre değişiklik gösterir.",
+          "2": "Köprüleme, ilgili zincirlere bağlı olarak genellikle 1-5 dakika sürer.",
+          "3": "Onaylamadan önce her zaman hedef zincirini iki kez kontrol edin."
+        }
+      },
+      "music-tv": {
+        "title": "Müzik ve TV",
+        "intro": "DeHub içinde doğrudan medya içeriğinin keyfini çıkarın — müzik dinleyin ve canlı TV kanallarını izleyin.",
+        "steps": {
+          "1": "Müzik gönderilerine göz atmak ve bunları çalmak için kenar çubuğundan 'Müzik' bölümüne gidin.",
+          "2": "Canlı TV kanallarına erişmek için 'TV' bölümüne gidin.",
+          "3": "Kanalları kategoriye veya ülkeye göre tarayın.",
+          "4": "İzlemeye başlamak için bir kanala tıklayın.",
+          "5": "Sesi ve oynatmayı ayarlamak için oynatıcı denetimlerini kullanın.",
+          "6": "Bozuk kanalları bildirme düğmesini kullanarak bildirin."
+        },
+        "tips": {
+          "1": "TV kanalları güvenilirlik için topluluk tarafından doğrulanmıştır.",
+          "2": "Müzik gönderileri, diğer içeriklere göz atarken çalınabilir."
+        }
+      },
+      "post-info": {
+        "title": "Gönderi Bilgileri ve Kesirler",
+        "intro": "Basılmış bir gönderi, 1.000 kesire bölünmüş bir NFT'dir. Gönderi Bilgileri sayfası, zincir üstü verileri, etkileşim istatistiklerini, sahiplik dökümünü gösterir ve herhangi bir gönderinin kesirlerini alıp satmanıza olanak tanır — basılmamış bir gönderide bunun yerine basmayı teklif eder.",
+        "steps": {
+          "1": "Gönderi Bilgileri sayfasını açmak için herhangi bir gönderideki 'ⓘ' simgesine dokunun.",
+          "2": "En üstte, Token Kimliğini (benzersiz zincir üstü tanımlayıcı) ve işlem karmasını göreceksiniz — blok gezgininde görüntülemek için karmaya tıklayın.",
+          "3": "Bunun altında, etkileşim istatistikleri toplam beğenileri, beğenmemeleri, görüntülemeleri, yorumları ve alınan bahşişleri gösterir.",
+          "4": "Sahipler bölümü, yaratıcının hala sahip olduğu 1.000 kesirin ne kadarını gösteren bir ilerleme çubuğunu ve bakiyeleri ve yüzdeleriyle birlikte tüm kesir sahiplerinin bir listesini gösterir.",
+          "5": "Gönderi ödemeli izle (PPV) ise, fiyatı, para birimini ve kaç kullanıcının erişim satın aldığını göreceksiniz.",
+          "6": "Gönderi sahipleri, görünürlüğü (Herkese Açık, Listelenmemiş veya Özel) değiştirebilir ve başlığı/açıklamayı doğrudan bu sayfadan düzenleyebilir."
+        },
+        "tips": {
+          "1": "Yeni basılmış bir gönderi, yaratıcının tüm 1.000 kesire (%100 sahiplik) sahip olmasıyla başlar.",
+          "2": "İşlem karması, zincire bağlı olarak BaseScan veya BscScan'e bağlanır.",
+          "3": "Listelenmemiş gönderiler akışlarda görünmez ancak doğrudan bağlantı aracılığıyla erişilebilir."
+        }
+      },
+      "trading-fractions": {
+        "title": "İşlem Kesirleri",
+        "intro": "Fraksiyon ticareti — listelere göz atmak, teklifler yapmak, kendi listelerinizi listelemek — dehub.io adresindeki web uygulamasında, her gönderinin Gönderi Bilgileri sayfasında bulunur.",
+        "steps": {
+          "1": "Bir tarayıcıda dehub.io'yu açın ve aynı hesapla oturum açın.",
+          "2": "Gönderinin Gönderi Bilgileri sayfasını açın ve Marketplace sekmesine geçin.",
+          "3": "Kayıtlara göz atın, fiyatınıza göre teklif verin veya tuttuğunuz kesirleri listeleyin.",
+          "4": "Bir işlem tamamlandığında, değişiklik mobil cihazlarda Kesirler sekmenizde görünür."
+        },
+        "tips": {
+          "1": "Bir gönderinin kesirlerine sahip olmak, o zincir içi NFT'den bir paya sahip olduğunuz anlamına gelir.",
+          "2": "Satın almadan önce sahiplik dağılımını görmek için bir gönderinin web pazarındaki sahiplerini kontrol edin.",
+          "3": "Bir yaratıcı olarak kesirleri satmak, hayranların içeriğine ortak sahip olmasını sağlar."
+        }
+      },
+      "minting-posts": {
+        "title": "Gönderi Basma (NFT Oluşturma)",
+        "intro": "Basma isteğe bağlıdır. Bir gönderi, gönderdiğiniz anda zincir dışında yayınlanır — cüzdan yok, imza yok, gaz yok — ve onu istediğiniz zaman, ister oluştururken ister daha sonra gönderinin kendisinden bir NFT olarak basabilirsiniz.",
+        "steps": {
+          "1": "Kenar çubuğundaki 'Gönder' düğmesine (masaüstü) veya + düğmesine (mobil) tıklayın.",
+          "2": "Metninizi yazın, medya (resimler, videolar, ses) ekleyin ve kategoriler ekleyin.",
+          "3": "Zincir dışında yayınlamak için 'Gönderiyi Bas' seçeneğini kapalı bırakın veya yayınlarken basmak için açın.",
+          "4": "Yayıncılık asla zincirde beklemez: gönderi her iki şekilde de akışta görünür.",
+          "5": "Daha sonra basmak için, gönderinin 'ⓘ' bilgi sayfasını açın ve oradaki Mint eylemini kullanın.",
+          "6": "Bir kez basıldığında, gönderi bir Token Kimliği ve zincirde doğrulayabileceğiniz bir işlem karması alır ve bunun 1.000 kesrinin tamamını elinizde tutarsınız."
+        },
+        "tips": {
+          "1": "Sosyal medya, e - posta ve SMS girişleri sıfır gaz öder — DeHub para basma ücretlerine sponsor olur.",
+          "2": "Harici cüzdan kullanıcıları, gaz için Bazda ETH'ye veya BNB Zincirinde BNB'ye ihtiyaç duyar.",
+          "3": "Minting, bir gönderiyi takas edilebilir ve telif hakkı taşıyan yapan şeydir. İzin verilmeyen bir gönderi yine de bahşişler ve görüntülemeler kazandırır.",
+          "4": "Zincir içi kayıt, gönderi daha sonra akıştan silinse bile basıldıktan sonra kalıcıdır."
+        }
+      },
+      "glossary": {
+        "title": "Sözlük",
+        "intro": "Web3 'te gezinmenize yardımcı olacak kapsamlı bir kripto ve platform terminolojisi sözlüğü.",
+        "steps": {
+          "1": "Kenar çubuğundan \"Sözlük\" e gidin.",
+          "2": "Alfabetik olarak terimlere göz atın veya belirli terimleri bulmak için aramayı kullanın.",
+          "3": "Tam tanımını ve açıklamasını görmek için bir terime tıklayın.",
+          "4": "Terimler kripto kavramlarını, DeFi terminolojisini ve DeHub'a özgü özellikleri kapsar."
+        },
+        "tips": {
+          "1": "Kriptoya ve Web3 'e yeni başlayanlar için harika bir kaynak.",
+          "2": "Sözlük yeni terimlerle düzenli olarak güncellenir."
+        }
+      }
     }
   },
   "creatorPacks": {

@@ -3432,11 +3432,6 @@
     "noResultsFor": "Ma jiraan natiijooyin la helay “{{query}}”",
     "guideSubtitle": "Tusmo tallaabo tallaabo ah oo ku saabsan muuqaal kasta",
     "searchGuide": "Raadi hagaha...",
-    "guideFractionsTip": "Qoraal kasta oo la mint gareeyay wuxuu ku bilaabmaa abuuraha oo haysta dhammaan saamiyadiisa (lahaansho 100%).",
-    "guideInfoStep": "Taabo astaanta macluumaadka ee qoraal la mint gareeyay si aad ugu furto macaamilkiisa mint-ka block explorer-ka oo aad u xaqiijiso diiwaanka silsiladda.",
-    "guideMintIntro": "Mint garaynta qoraal ahaan NFT ahaan blockchain-ka waa ikhtiyaari. Mint garee markaad daabacayso, ama hadda daabac oo mar dambe ka mint garee liiska qoraalka.",
-    "guideMintPublishStep": "Dooro inaad mint gareyso iyo in kale, kadibna guji 'Dir' si aad u daabacdo. Haddii aad ka boodo mint-ka, mar dambe ayaad qoraalka ka mint garayn kartaa liiskiisa.",
-    "guideMintFractionsStep": "Waxaad helaysaa dhammaan 1,000 qaybood (lahaansho 100%) ee qoraalkaaga cusub ee la mint-gareeyay.",
     "glossaryMintTxDesc": "Taabo astaanta macluumaadka ee qoraal la mint gareeyay si aad ugu furto macaamilkiisa mint-ka block explorer-ka oo aad u xaqiijiso diiwaanka silsiladda. Bogga buuxa ee Macluumaadka Qoraalka — tirakoob, haystayaal, suuq — wuxuu ku yaal app-ka webka ee dehub.io.",
     "glossaryTokenIdDesc": "Aqoonsi gaar ah oo silsiladda ku jira oo qoraalka la siiyo marka loo mint gareeyo NFT ahaan.",
     "repostsTab": "Dib u dhajiyay",
@@ -3453,24 +3448,7 @@
     "glossaryStakingDesc": "Xidho DeHub token-kaaga si aad u kasbato abaalmarin waqti ka dib. Token-ka la dhigay sidoo kale waxay ku siinayaan awood codbixin oo kordhay maamulka.",
     "glossaryGovernanceDesc": "U soo gudbi oo u codee soo jeedinta qaabaysa madal-ka. Awooddaada codbixinta waxaa miisaamaya inta DeHub token ee aad haysato.",
     "glossaryStakingBadgesDesc": "Calaamado lagu muujiyay magacaaga isticmaalaha oo ku salaysan wadarta DeHub token ee aad haysato (jeebka + la dhigay). Waxaa jira 13 darajo — inta badan ee token ee aad haysato, sare ayuu u kacayaa darajada calaamadaada. Darajooyinka sare waxay bixiyaan awood codbixin oo maamul oo dheeraad ah iyo khidmadaha madal-ka oo hooseeya.",
-    "glossaryLeaderboardDesc": "Isticmaalayaasha waxaa lagu darajaynayaa wadarta DeHub token ee la dheelitiray (jeebka + la dhigay dhammaan silsiladaha). Darajooyinka ayaa cusboonaysiiya si joogto ah waxayna la socdaan isbeddelada 1-maalin iyo 1-usbuuc. Waxaad sidoo kale ku kala saari kartaa talooyinka la diray, talooyinka la helay, kuwa raacaya, jecel, ama kuwa isdiiwaangeliyay.",
-    "guideTipStep": "Riix astaanta dhagaxa/talooyinka si aad ugu dirto abuuraha boostada talo DeHub token ah.",
-    "guideTipWalletTip": "Talooyinka waxay si toos ah ugu tagaan jeebka abuuraha sidii DeHub token.",
-    "guideTipNotificationsTip": "Ogeysiisyada talada waxay muujinayaan inta DeHub token ee aad heshay.",
-    "guideWalletIntro": "Eeg DeHub token-kaaga oo ku yaal dhowr silsiladood, hubi deebaajiyada staking-ka, oo maamul hantidaada.",
-    "guideWalletTotalStep": "Eeg DeHub token-kaaga oo dhan oo lagu soo ururiyay dhammaan silsiladaha la taageerayo.",
-    "guideStakingIntro": "Ku keydi DeHub token-kaaga si aad u kasbato abaal-marinno oo aad u kordhiso awooddaada codbixinta ee maamulka.",
-    "guideStakingAmountStep": "Geli inta DeHub token ee aad rabto inaad keydiso.",
-    "guideLeaderboardBalanceStep": "Tusmada Balance waxay darajaynaysaa isticmaalayaasha iyadoo lagu salaynayo DeHub token-ka ay haystaan.",
-    "guideGovernanceVoteStep": "U codee hindise iyadoo la isticmaalayo badhamada kor iyo hoos u dhigista — miisaanka codkaaga wuxuu ku xiran yahay inta DeHub token ee aad keydisay.",
-    "guideGovernancePowerTip": "Awooddaada codbixinta waxaa lagu go'aamiyaa inta DeHub token ee aad keydisay.",
-    "guideBuyIntro": "Iibso DeHub token-kaaga si toos ah DPay adigoo isticmaalaya kaarka ama crypto-ga la taageerayo.",
-    "guideBuyAmountStep": "Geli qadarka aad rabto inaad bixiso ama inta DeHub token ee aad rabto inaad hesho.",
-    "guideBuyDeliveredStep": "DeHub token-kaaga ayaa ka soo muuqan doona jeebkaaga marka uu dhameysto macaamilka.",
-    "guideBridgeIntro": "U guur DeHub token-kaaga inta u dhaxaysa silsiladaha la taageerayo adigoo isticmaalaya buundada silsiladaha isdhaafsan.",
-    "guideBridgeSourceStep": "Xulo silsilada isha (halkaas oo DeHub token-kaaga hadda yaal).",
-    "guideBridgeDestStep": "Xulo silsilada meesha loo socdo (halkaas oo aad rabto inaad u dirto DeHub token-kaaga).",
-    "guideBridgeAmountStep": "Geli inta DeHub token ee la gudbinayo."
+    "glossaryLeaderboardDesc": "Isticmaalayaasha waxaa lagu darajaynayaa wadarta DeHub token ee la dheelitiray (jeebka + la dhigay dhammaan silsiladaha). Darajooyinka ayaa cusboonaysiiya si joogto ah waxayna la socdaan isbeddelada 1-maalin iyo 1-usbuuc. Waxaad sidoo kale ku kala saari kartaa talooyinka la diray, talooyinka la helay, kuwa raacaya, jecel, ama kuwa isdiiwaangeliyay."
   },
   "arcade": {
     "submitAccessibility": "U gudbi ciyaarta arcade",
@@ -6792,6 +6770,504 @@
       "packEmpty": "Ma helin wax emoji ah oo ku yaal cinwaankaas",
       "shortcodeTaken": "{{name}} horay ayaa loo qaaday",
       "shortcodeStandard": "{{name}} durba waa emoji caadi ah"
+    }
+  },
+  "guide": {
+    "sections": {
+      "getting-started": {
+        "title": "Bilowga",
+        "intro": "Waxaa jira shan dariiqo oo lagu soo galo DeHub mana jirto mid ka mid ah oo u baahan inaad horey u lahaan jirtid jeebka: Google, Apple, kood la soo diray iimaylkaaga, kood la soo diray SMS, ama jeebka jira oo aad isku xidho. Wax walba marka laga reebo dariiqa jeebka ayaa kuu abuura jeeb aan ilaalinayn asalka dambe — adigu waxaad haysataa furayaasha, DeHub-na wuxuu kafaala qaadaa gaaska si aad u qori karto, u siin kartid, oo aad u ururin kartid adigoon waligaa iibsan calaamad asal ah.",
+        "steps": {
+          "1": "Booqo dehub.io — feed-ka gurigu waa bogga hore, si aad u eegi karto ka hor intaadan soo galin.",
+          "2": "Guji 'Soo gal'. Waxaad arki doontaa Google iyo Apple, meelaha lagu qoro ciwaanka iimaylka ama lambarka taleefanka, iyo 'Xidho Jeebka' midka jira.",
+          "3": "Google ama Apple, dhammaystir socodka bixiyaha. Iimaylka ama SMS-ka, geli koodka yimaada.",
+          "4": "Jeeb ayaa la abuuray oo la ilaalinayaa marka aad soo gasho markii ugu horeysay. Ku xidhidhiyaha jeebkaaga waxa ay la macno tahay saxeex keliya si loo xaqiijiyo ciwaanka.",
+          "5": "Dooro magac isticmaale. Waa waxa dadku arkaan waxana uu u shaqeeyaa sidii link-kaaga profile-ka dehub.io/<username>.",
+          "6": "Waa soo gashay. Baadh feed-ka, habee profile-kaaga, oo bilow qorista."
+        },
+        "tips": {
+          "1": "Soo galitaanka bulshada, iimaylka, iyo SMS-ka marnaba ma bixiyaan gaas — DeHub ayaa kafaala qaada. Jeebka la xidhay waxa ay bixiyaan ETH ama BNB-kooda.",
+          "2": "Ku soo noqonaysaa akoon DeHub hore? Soo gal iimaylka ama lambarka taleefanka ee uu isticmaalayay iyo isbeddelka ayaa heli doona.",
+          "3": "Waxaad ku haysan kartaa dhowr akoon hal qalab oo waxaad u beddeli kartaa Settings → Profile."
+        }
+      },
+      "home-feed": {
+        "title": "Feed-ka Guriga",
+        "intro": "Feed-ka gurigu waa halka aad ka aragto qoraalada dadka aad raacdo iyo waxyaabaha soo baxaya. Waxa uu taageeraa tababaro badan oo noocyo kala duwan ah iyo xulashooyin kala-soocid ah.",
+        "steps": {
+          "1": "U gudub /app — kani waa feed-ka gurigaaga.",
+          "2": "U isticmaal tab-yada sare si aad u shaandhayso nooca nuxurka: Guriga (dhammaan), Fiidiyowyo, Sawirro, Gaagaab, Muusig, ama Toos.",
+          "3": "U jiid bidix/midig tab-yada si aad u aragto xulashooyin dheeraad ah mobaylka.",
+          "4": "U isticmaal badhanka shaandhaynta/kala-saarista (geeska sare ee midig ee quudinta) si aad u beddesho kala-saarista: Kulul, Cusub, ama Sare.",
+          "5": "U jiid hoos si aad u cusboonaysiiso quudinta mobaylka.",
+          "6": "U rog hoos si aad u soo dejiso boostooyin badan si toos ah (infinite scroll).",
+          "7": "U beddel inta u dhaxaysa aragtida Shabakadda iyo Quudinta adoo isticmaalaya beddelaha qaabka."
+        },
+        "tips": {
+          "1": "Aragtida Shabakadda ayaa aad u wanaagsan baaritaanka sawirrada si degdeg ah.",
+          "2": "Tabka 'Guriga' wuxuu muujiyaa dhammaan noocyada nuxurka oo isku dhafan.",
+          "3": "Tabka Toos wuxuu muujiyaa duruufaha tooska ah ee hadda socda."
+        }
+      },
+      "creating-posts": {
+        "title": "Samaynta Boostada",
+        "intro": "Samee boostooyin qoraal ah, wadaag sawirro, fiidiyowyo, qoraallo cod ah, GIF-yo, iyo waxyaabo kale. U isticmaal hashtags, cashtags, iyo mentions si aad u kordhiso gaadhista.",
+        "steps": {
+          "1": "Guji badhanka 'Boostada' ee sidebar-ka (desktop) ama badhanka + (mobile).",
+          "2": "Qor qoraalkaaga meesha lagu qorayo.",
+          "3": "Si aad ugu darto sawir ama fiidiyow, guji astaanta warbaahinta oo dooro fayl.",
+          "4": "Si aad u duubto qoraal cod ah, guji astaanta makarafoonka.",
+          "5": "Si aad ugu darto GIF, guji astaanta GIF oo ka raadi mid.",
+          "6": "U isticmaal #hashtags si aad u kala saarto boostadaada (tusaale, #crypto, #defi).",
+          "7": "U isticmaal $cashtags si aad u tixraacdo tokens (tusaale, $DHB, $ETH).",
+          "8": "U isticmaal @mentions si aad u calaamadiso isticmaalayaal kale (tusaale, @username).",
+          "9": "Guji 'Boostada' si aad u daabacdo. Boostadaada waxay si toos ah uga soo muuqataa quudinta."
+        },
+        "tips": {
+          "1": "Boostada waxay taageertaa qaabaynta qaabka markdown.",
+          "2": "Waxaad ku boostayn kartaa adigoo gujinaya astaanta repost-ka ee boosto kasta oo dooranaya 'Quote'.",
+          "3": "Qaybaha (hashtags) waxay ka soo muuqdaan darajada 'Talk of the Town'."
+        }
+      },
+      "interacting-with-posts": {
+        "title": "La falgalka Boostada",
+        "intro": "La falgeli nuxurka adigoo u codeynaya, faalloonaya, siinaya talo, kaydinaya, wadaagaya, iyo tarjumaya.",
+        "steps": {
+          "1": "U codee kor ama hoos boostada adigoo isticmaalaya astaamaha fallaadhaha ee dhinaca bidix ee boosto kasta.",
+          "2": "Guji astaanta faallada si aad u furto qaybta faallada oo aad uga tagto jawaab.",
+          "3": "Guji astaanta gem/tip si aad u dirto tip ah oo ah DeHub tokens abuuraha boostada.",
+          "4": "Guji astaanta bookmark-ka si aad u kaydiso boostada mustaqbalka.",
+          "5": "Guji astaanta wadaagista si aad u koobiyayso xiriirka boostada ama aad dibadda ula wadaagto.",
+          "6": "Riix badhanka tarjumaadda (astaanta caalamiga ah) ee boost kasta si aad qoraalka ugu turjunto luuqadaada.",
+          "7": "Qoraalada sawirka, isticmaal badhanka 'Tarjuma Sawirka' si aad u hesho nooc AI-turjumaad ah oo qoraalka ku jira sawirka.",
+          "8": "Riix boost kasta si aad ugu furto shaashad buuxda oo hal boost ah."
+        },
+        "tips": {
+          "1": "Talooyinka si toos ah ayay ugu dhacaan jeebka abuuraha ee deHub tokens.",
+          "2": "Waxaad dejin kartaa qaddarka talada iyada oo loo marayo badhamada xulashada degdega ah ama waxaad geli kartaa qaddar gaar ah.",
+          "3": "Boostada la keydiyay waxa laga heli karaa bogga Kaydka ee dhinaca."
+        }
+      },
+      "explore-search": {
+        "title": "Baadh oo Raadi",
+        "intro": "Soo hel waxyaabo cusub iyo isticmaalayaal iyada oo loo marayo bogga baadhista iyo shaqada raadinta ee awoodda leh.",
+        "steps": {
+          "1": "U gudub /app/explore dhinaca.",
+          "2": "Isticmaal baararka raadinta ee sare si aad u raadiso isticmaalayaal, boostar, ama waxyaabo.",
+          "3": "Shaandhayso natiijooyinka iyada oo loo marayo tab: Dhammaan, Dadka, Boostar, Sawirro, Muuqaal, Muusig, Toos.",
+          "4": "Baadh mawduucyada iyo qaybaha caanka ah ee bogga baadhista.",
+          "5": "Riix mawduuc caan ah si aad u aragto dhammaan boostada la xidhiidha.",
+          "6": "Riix isticmaale natiijooyinka raadinta si aad u booqato profile-kiisa."
+        },
+        "tips": {
+          "1": "Raadinta waxa ay taageertaa magacyada isticmaalayaasha, cinwaanada jeebka, iyo ereyada muhiimka ah ee waxyaabaha.",
+          "2": "Mawduucyada caanka ah waxa cusboonaysiiya iyada oo ku salaysan dhaqdhaqaaqa boostada ee dhawaan dhacay."
+        }
+      },
+      "profile": {
+        "title": "Profile",
+        "intro": "Profile-kaaga waxa uu soo bandhigayaa boostadaada, kuwa raacsan, kuwa aad raacdo, iyo macluumaadka jeebka.",
+        "steps": {
+          "1": "Riix avatar-kaaga ama 'Profile' ee dhinaca si aad u aragto profile-kaaga.",
+          "2": "Riix 'Edit Profile' si aad u cusboonaysiiso magacaaga soo bandhigida, bio, iyo avatar.",
+          "3": "U soo rar sawirka profile-ka adiga oo riixaya avatar-kaaga qaabka tafatirka.",
+          "4": "Arag tirada kuwa raacsan iyo kuwa aad raacdo bogga profile-kaaga.",
+          "5": "Baadh boostadaada, warbaahinta, iyo waxyaabaha aad jeceshahay iyada oo loo marayo tabs-ka profile-ka.",
+          "6": "Koobi ka samee cinwaanka jeebkaaga adiga oo riixaya astaanta koobiga ee ku xigta.",
+          "7": "Booqo profiles-ka isticmaalayaasha kale adiga oo riixaya magaca isticmaalahooda ama avatar-ka meel kasta oo ka mid ah goobta."
+        },
+        "tips": {
+          "1": "Magaca isticmaalahaagu waa mid gaar ah waxana uu ka soo muuqdaa URL-ka profile-kaaga (dehub.io/@username).",
+          "2": "Dejinta asturnaanta waxay kuu ogolaanaysaa inaad xakamayso cidda arki karta tirada kuwa raacsan."
+        }
+      },
+      "messages": {
+        "title": "Fariimaha",
+        "intro": "U dir fariimo toos ah isticmaalayaasha kale ee goobta.",
+        "steps": {
+          "1": "Riix 'Messages' ee dhinaca si aad u furto bogga fariimaha.",
+          "2": "Riix badhanka 'compose' si aad u bilowdo wada-hadal cusub.",
+          "3": "Raadi isticmaale magaciisa si aad ula xidhiidho.",
+          "4": "Qor fariintaada oo riix 'send'.",
+          "5": "Eeg taariikhda wada-hadalkaaga liiska fariimaha.",
+          "6": "Riix wada-hadal si aad u sii wadato sheekaysiga."
+        },
+        "tips": {
+          "1": "Waxaad heli doontaa ogeysiis markii qof kuu soo diro fariin.",
+          "2": "Abuurayaasha waxay fariimaha ku xiri karaan dalab biil ah."
+        }
+      },
+      "ai-assistant": {
+        "title": "Kaaliye AI",
+        "intro": "La sheekee kaaliyaha AI ee DeHub ee la dhisay si aad caawimo, macluumaad, iyo hawlo hal abuur leh u hesho.",
+        "steps": {
+          "1": "Riix 'Assistant' dhinaca bogga si aad u furto AI chat.",
+          "2": "Qor su'aashaada ama codsigaaga meesha fariinta lagu qoro.",
+          "3": "AI wuxuu ka caawin karaa macluumaadka crypto, su'aalaha platform-ka, iyo aqoonta guud.",
+          "4": "Bilow wada-hadal cusub adigoo riixaya badhanka 'new chat'.",
+          "5": "Eeg taariikhda wada-hadalkaaga dhinaca bogga kaaliyaha.",
+          "6": "Waxaad ku dari kartaa sawirro si AI uu u falanqeeyo."
+        },
+        "tips": {
+          "1": "AI wuxuu xusuustaa macnaha wada-hadalka dhexdiisa.",
+          "2": "Waxaad weydiin kartaa AI-ga ku saabsan astaamaha DeHub, ereyada crypto, ama su'aalo guud.",
+          "3": "Wada-hadalladii hore waa la keydiyay oo la heli karaa wakhti kasta."
+        }
+      },
+      "notifications": {
+        "title": "Ogeysiisyada",
+        "intro": "La socodsiiya la-socodka, faallooyinka, talooyinka, raacitaanka, iyo waxqabadyada kale ee ku saabsan waxyaabahaaga.",
+        "steps": {
+          "1": "Riix astaanta gambaleelka ama 'Notifications' dhinaca bogga.",
+          "2": "Eeg dhammaan ogeysiisyada liis chronological ah.",
+          "3": "Riix ogeysiis si aad ugu gudubto waxyaabaha la xidhiidha.",
+          "4": "Ogeysiisyada waxaa ka mid ah: raacitaanno cusub, codbixinno boost, faallooyin, talooyin, iyo magacaabis.",
+          "5": "Ogeysiisyada aan la akhriyin waa la iftiimiyay — waxay u calaamadeeyaan sida loo akhriyay markii la eego."
+        },
+        "tips": {
+          "1": "Badhanka ogeysiiska wuxuu muujiyaa tirada ogeysiisyada aan la akhriyin.",
+          "2": "Ogeysiisyada talooyinka waxay muujiyaan inta token ee aad heshay."
+        }
+      },
+      "wallet": {
+        "title": "Boorsada",
+        "intro": "Eeg dheelitirkaaga token ee DeHub ee silsilado badan, hubi deebaajiyada staking, oo maamul hantidaada.",
+        "steps": {
+          "1": "Riix 'Wallet' dhinaca bogga si aad u furto bogga boorsada.",
+          "2": "Eeg guud ahaan isku-darka lacagtaada token-ka ee dhammaan silsiladaha la taageerayo.",
+          "3": "Eeg kala-jarista silsilad kasta: Ethereum, Base, BNB Chain, iyo kuwo kale.",
+          "4": "Hubi deebaajigaaga staking-ka iyo abaal-marinnadaada.",
+          "5": "Riix 'Refresh Scan' si aad u cusboonaysiiso miisaankaaga xogta silsiladda.",
+          "6": "Koobiyeeso ciwaanka jeebkaaga si aad uga hesho tokens-ka dadka kale."
+        },
+        "tips": {
+          "1": "Miisaanka si toos ah ayuu u cusboonaysiiyaa laakiin waxaad ku qasbi kartaa cusboonaysiin mar kasta.",
+          "2": "Jeebka wuxuu muujiyaa miisaanka dareeraha ah (la heli karo) iyo kan la dhigay."
+        }
+      },
+      "staking": {
+        "title": "Staking",
+        "intro": "Dhiga tokens-kaaga DeHub si aad u kasbato abaal-marinno oo aad u kordhiso awooddaada cod-bixinta ee maamulka.",
+        "steps": {
+          "1": "U gudub bogga 'Staking' ee ka socda barta dhinaceeda.",
+          "2": "Geli tirada tokens-ka aad rabto inaad dhigto.",
+          "3": "Xulo silsiladda aad rabto inaad ku dhigto.",
+          "4": "Xaqiiji macaamilka jeebkaaga (jeebabka dibadda) ama si toos ah ayay u fulaysaa (social login).",
+          "5": "Eeg qaddarkaaga la dhigay iyo abaal-marinnada sugaya.",
+          "6": "Si aad uga saarto, geli qaddarka oo xaqiiji macaamilka saarista."
+        },
+        "tips": {
+          "1": "Staking wuxuu kordhiyaa miisaankaaga cod-bixinta ee soo jeedinta maamulka.",
+          "2": "Isticmaalayaasha Social-login uma baahna gaas si ay u dhigaan — waa gaasla'aan.",
+          "3": "Waxaad ku dhigi kartaa silsilado badan isla mar."
+        }
+      },
+      "leaderboard": {
+        "title": "Daboolka sare",
+        "intro": "Eeg yaa ku jira sare! Daboolka sare wuxuu kala saaraa isticmaalayaasha miisaanka, kharashka maalintii, iyo mawduucyada soo baxaya.",
+        "steps": {
+          "1": "U gudub bogga 'Leaderboard' ee ka socda barta dhinaceeda.",
+          "2": "U beddel tabyada: Balance, Daily Spent, iyo Talk of the Town.",
+          "3": "Tabka Balance wuxuu kala saaraa isticmaalayaasha iyadoo lagu salaynayo guud ahaan haynta tokens-kooda.",
+          "4": "Tabka Daily Spent wuxuu muujiyaa yaa ugu firfircoonaa bixinta 24-kii saac ee la soo dhaafay.",
+          "5": "Talk of the Town wuxuu muujiyaa mawduucyada/qaybaha ugu badan ee laga hadlo.",
+          "6": "Guji isticmaale kasta si aad u booqato profile-kiisa.",
+          "7": "Daboolka sare si joogto ah ayuu u cusboonaysiiyaa maalintii oo dhan."
+        },
+        "tips": {
+          "1": "Kala-saaridda maalintii waxay dib ugu noqotaa 24 saacadood kasta.",
+          "2": "Talk of the Town wuxuu la socdaa qaybaha kelmadaha keliga ah ee ka yimid hashtags."
+        }
+      },
+      "command-centre": {
+        "title": "Xarunta Command",
+        "intro": "Dulmar guud oo muujinaya cabbiradaada muhiimka ah iyo hawlaha goobtaada si degdeg ah.",
+        "steps": {
+          "1": "Riix 'Xarunta Taliska' ee dhinaca.",
+          "2": "U fiirso koobanadaada, oo ay ku jiraan tirada qoraalada, taageerayaasha, iyo ka qaybqaadashada.",
+          "3": "Arag hawshaada dhawaan iyo mawduucyada caanka ah.",
+          "4": "Hel xiriiryo degdeg ah oo loogu talagalay astaamaha si joogto ah loo isticmaalo."
+        },
+        "tips": {
+          "1": "Xarunta Taliska waxay ku siinaysaa aragti guud oo ku saabsan joogitaankaaga DeHub."
+        }
+      },
+      "governance": {
+        "title": "Xukunka",
+        "intro": "Ka qayb qaado xukunka goobta adigoo samaynaya soo jeedinno oo aad u codeyso go'aamada bulshada.",
+        "steps": {
+          "1": "U gudub 'Xukunka' dhinaca.",
+          "2": "Raadi soo jeedinno firfircoon oo ay soo gudbisay bulshadu.",
+          "3": "Riix soo jeedin si aad u akhrido sharraxaad dhamaystiran iyo dooddeeda.",
+          "4": "U codee soo jeedinno adigoo isticmaalaya badhamada kor iyo hoos u socota — miisaanka codkaaga wuxuu ku xiran yahay inta DeHub token ee aad haysato.",
+          "5": "Ka tag faallooyin ku saabsan soo jeedinno si aad ugula dooddo bulshada.",
+          "6": "Gudbi soo jeedintaada adigoo riixaya badhanka 'Samee Soo Jeedin'."
+        },
+        "tips": {
+          "1": "Awooddaada codbixintu waxa lagu go'aamiyaa tirada token-ka ee aad haysato.",
+          "2": "Dadka haysta calaamadaha waxay heli karaan miisaan codbixin dheeraad ah.",
+          "3": "Soo jeedinnada waxay maraan marxalado: Firfircoon → Guulaystay/La diiday."
+        }
+      },
+      "bookmarks": {
+        "title": "Buug-gacmeedyada",
+        "intro": "Keydi qoraalada buug-gacmeedkaaga si aad u hesho si fudud.",
+        "steps": {
+          "1": "Riix astaanta buug-gacmeedka ee qoraal kasta si aad u keydiso.",
+          "2": "U gudub 'Buug-gacmeedyada' dhinaca si aad u aragto dhammaan qoraalada la keydiyay.",
+          "3": "Riix qoraal buug-gacmeed ah si aad u aragto si dhamaystiran.",
+          "4": "Ka saar buug-gacmeed adigoo mar kale riixaya astaanta buug-gacmeedka."
+        },
+        "tips": {
+          "1": "Buug-gacmeedyada waa kuwo gaar ah — adiga kaliya ayaad arki kartaa qoraaladaada la keydiyay.",
+          "2": "Ma jirto xad inta qoraal ee aad buug-gacmeed karto."
+        }
+      },
+      "settings": {
+        "title": "Dejinta",
+        "intro": "Habee khibradaada DeHub adigoo isticmaalaya luqadda, asturnaanta, iyo doorbidyada soo bandhigida.",
+        "steps": {
+          "1": "Riix 'Dejinta' dhinaca.",
+          "2": "Beddel luqaddaada soo bandhigida adigoo isticmaalaya xulashada luqadda.",
+          "3": "Hagaaji dejinta asturnaanta: xakamee cidda arkaysa tirada taageerayaashaada iyo liiska aad raacdo.",
+          "4": "U dejso doorashooyinkaaga caadiga ah ee qoraalka.",
+          "5": "Maamul doorashooyinkaaga ogeysiinta."
+        },
+        "tips": {
+          "1": "DeHub wuxuu taageeraa luuqado badan — dhammaan interface-ka waa la turjumay.",
+          "2": "Dejinta asturnaanta waxay dhaqan galaysaa isla markiiba."
+        }
+      },
+      "posting-allowance": {
+        "title": "Lacagtaada Qoraalka Maalinlaha ah",
+        "intro": "Qorista waa bilaash maalin kasta ilaa lacag la siiyo oo la jaan-qaadaysa calaamaddaada staking. Qof kasta wuxuu ku bilaabmaa toban qoraal oo qoraal ah iyo hal gigabyte oo muuqaal, sawirro iyo cod ah maalintii. Haddii aad ka gudubto mid ka mid ah labadaba, inta soo hartay maalintaas waxaa lagu bixinayaa DeHub tokens — kaliya qaybta ka baxsan.",
+        "steps": {
+          "1": "U qor sidii caadiga ahayd. Qoraalka gudaha lacagta waxba laguguma dalacdo waxna laguguma weydiinayo.",
+          "2": "Qoraallada qoraalka iyo warbaahinta waa laba kooxood oo kala duwan, markaa maalinta la qaadanayo soo rarista muuqaalka weli waxay ka tagaysaa dhammaan tobankii qoraal ee qoraalka ah oo bilaash ah.",
+          "3": "Marka qoraal uu ka baxo lacagta, abka ayaa marka hore qiimeeya oo hubiya in jeebkaagu uu dabooli karo ka hor inta aan waxba la soo rarmin.",
+          "4": "Qoraalku wuxuu soo baxaa sidii uu ku jiri lahaa lacagta — daabacaaddu marna kama sugeyso lacag bixin.",
+          "5": "Kadib waxaad ansixisaa hal wareejin oo keliya qoraalkaas, oo lagu dejiyo mid ka mid ah Base ama BNB Chain oo haysta ku filan DeHub tokens.",
+          "6": "Labada kooxoodba waxay dib u bilaabmaan saqda dhexe ee UTC."
+        },
+        "tips": {
+          "1": "Xadgudubka waa saamiga: 200 MB oo ka baxsan lacagtaada waxay ku kacaysaa 200 MB, ma aha gigabyte oo dhan.",
+          "2": "Dib-u-qorista, faallooyinka, falcelinta, talooyinka iyo fariimaha waxba kuma kacayso mana taabato lacagta.",
+          "3": "Diido lacag bixinta oo qoraalku wuu sii joogaa — qadarku wuxuu xannibayaa qoraalkaaga xiga ee la bixiyay ilaa la dejiyo. Lacagta bilaashka ah ee berri mar walba adigaa leh.",
+          "4": "Calaamadda staking waxay kordhisaa lacagta bilaashka ah waxayna hoos u dhigtaa qiimaha wax kasta oo ka baxsan."
+        }
+      },
+      "reactions-and-safety": {
+        "title": "Falcelinta, Xiritaanka & Nuxurka Qarsoon",
+        "intro": "Waxaa jira sagaal falcelin oo ka hooseeya badhanka like, iyo xulashooyin xakameyn ah oo lagu go'aaminayo waxaad aragto iyo cidda kugu soo gaari karta.",
+        "steps": {
+          "1": "Hayso thumbs-up-ka qoraal kasta si aad u furto tray-ga falcelinta: like, love, respect, hot, lol, sad, cry, dislike iyo poo.",
+          "2": "Toddobada midabka togan waxay u tirinayaan wadarta like-ka qoraalka; dislike iyo poo waxay ka soo horjeedaan.",
+          "3": "Falcelintaada waxaa miisaamaya calaamaddaada staking, markaa falcelinta qofka haysta calaamadda waxay u guurtaa tirada ka badan hal cod.",
+          "4": "Taabo X-ka madaxa qoraalka si aad u xirto qoraha — waxay isla markiiba ka baxayaan feed-kaaga.",
+          "5": "Abuurayaasha ayaa calaamadeeya qoraaladooda qarsoodi ah inta ay samaynayaan; qoraaladaas waxay ka baxsan yihiin feed-ka guriga ee dadweynaha.",
+          "6": "Si aad u aragto qoraalada qarsoodiga ah meel kasta, daar 'Muuji nuxurka qarsoodiga ah' ee Dejinta."
+        },
+        "tips": {
+          "1": "Qoraal qarsoodi ah weli wuu si buuxda u muuqdaa profile-ka abuuraha iyo dadka raacaya.",
+          "2": "Xannibaadda profile-ka waxay ka baxdaa xiritaanka waxayna sidoo kale xannibtaa fariimaha.",
+          "3": "Tray-ga falcelinta wuxuu muujinayaa cidda falcelisay iyo waxa ay falcelisay, markaa waxaad arki kartaa qolka halkii aad ka arki lahayd tiro keliya."
+        }
+      },
+      "stages": {
+        "title": "Meelaha (Qolalka Codka Tooska ah)",
+        "intro": "Meelaha waa qolal cod ah oo toos ah oo lagu dhisay DeHub. Marti wuxuu furaa qol, wuxuu soo qaadaa kuwa hadlaya, qof kasta wuxuu soo galayaa si uu uga dhegeysto bogga Stages ama xiriir la wadaago.",
+        "steps": {
+          "1": "Fur 'Stages' ee sidebar-ka si aad u aragto waxa hadda socda iyo waxa la jadwalay.",
+          "2": "Taabo masraxa tooska ah si aad ugu biirto sidii dhegeyste, ama u dhig xusuusin mid jadwale ah oo la sheego marka uu bilaabmo.",
+          "3": "Bilow adigaaga bogga isla – waxaad si toos ah uga bixi kartaa biraawsarka, adigoon u baahnayn OBS ama furaha gudbinta.",
+          "4": "Sida martigaliyaha, keen dadka hadlaya masraxa, aamus ama ka saar, wadaag shaashaddaada, oo ku dhiirigeli codka.",
+          "5": "Dhegeystayaasha waxay u diraan falcelin toos ah waxayna ku hadlaan wada hadalka qolka iyagoon ku soo bixin masraxa.",
+          "6": "Masrax kasta wuu duubaa, duubista ayaa dib loo ciyaaraa ka dib kaarka ay ka soo muuqato."
+        },
+        "tips": {
+          "1": "Qoraalada tooska ah waxay qoraan qof kasta oo hadlaya waxayna u tarjumaan luuqad kasta oo aad akhrinayso.",
+          "2": "Tarjumaada tooska ah waxay ku hadli kartaa qolka si cod ah oo leh codka martida ee la nuquliyay, oo lagu xisaabiyo daqiiqad ahaan DeHub tokens.",
+          "3": "Martida ayaa dhigi kara idaacad hawada ama ciyaari karaa muusikadooda u gaarka ah inta u dhaxaysa wada hadalada.",
+          "4": "Ciyaaryahan yar ayaa qolka ku haya geeska intaad baadhayso inta kale ee app-ka."
+        }
+      },
+      "communities": {
+        "title": "Bulshooyinka & Dhacdooyinka",
+        "intro": "Bulshooyinka waa meelo ay maamulaan xubnaha oo leh quudin, xubno iyo hawlo u gaar ah. Dhacdooyinka waxay ku kordhiyaan barnaamijyo xaddidan oo waqti ah oo korkooda ah.",
+        "steps": {
+          "1": "Fur 'Bulshooyinka' dhinaca, oo baadh kuwa dadweynaha.",
+          "2": "Ku biir hal taabasho. Hawl cusub waxay u muuqataa sidii calaamad aan la akhrin karin ee navigation-ka.",
+          "3": "Qor, ka wada hadal, samee codbixin, oo ku dhiirigeli quudinta bulshada ee u gaarka ah.",
+          "4": "Milkiilayaasha bulshada ayaa maamula meeshooda waxayna siin karaan xuquuqda maamulka kuwa kale.",
+          "5": "Fur 'Dhacdooyinka' barnaamijyada jadwaleysan, oo leh bog buuxa dhacdo kasta oo aad la socon karto toos."
+        },
+        "tips": {
+          "1": "Wada hadalka bulshada wuxuu taageeraa @mentions iyo @here, si qoraal loogu gaadho qolka.",
+          "2": "Xiriirka martiqaadka wuxuu kuu ogolaanayaa inaad dadka u keento si toos ah bulshada."
+        }
+      },
+      "arcade": {
+        "title": "Arcade",
+        "intro": "Shan ciyaarood ayaa ka socda DeHub gudahiisa tab biraawer – waxba ma jiraan wax la rakibo, waxna ma jiraan wax la iibsado.",
+        "steps": {
+          "1": "Fur 'Arcade' dhinaca.",
+          "2": "Dooro ciyaar: King's Gambit (chess 3D oo leh darajo Elo ah oo online ah), Claude of Duty (mid toogte ah oo soo saarta fankooda iyada oo la rarayo), Jungle Trail (socod roob-da' ah oo dabiici ah), Street Slayer (mid garaac ah oo loo sameeyay DeHub) ama Chartopia (meel ganacsi oo la socon karo).",
+          "3": "Kula ciyaar tab-ka. King's Gambit iyo Street Slayer waxay haystaan darajooyin.",
+          "4": "Chartopia sidoo kale wuxuu ka shaqeeyaa madaxa VR iyada oo loo marayo WebXR."
+        },
+        "tips": {
+          "1": "Laba ka mid ah waxay ku qarsan yihiin gudaha mawduucyada muuqaalka – u dhig app-ka Dagaal si aad u ciyaarto Claude of Duty, ama Jungle si aad u ciyaarto Jungle Trail.",
+          "2": "Ciyaar kasta waxay leedahay kaarka wadaagista u gaarka ah, markaa xiriirka mid ka mid ah wuxuu si habboon u furanayaa meel kasta oo aad ku qorto."
+        }
+      },
+      "bounties-stores": {
+        "title": "Abwaannada & Dukaanada",
+        "intro": "Laba dariiqo oo loo beddelo madal dakhli: qor ama dalbo abaalmarin, ama fur dukaan oo u iibi dhagaystayaashaada.",
+        "steps": {
+          "1": "Fur 'Abwaannada' si aad u baadhid shaqooyinka furan, oo loo kala saaray qayb ama lacag.",
+          "2": "Dalbo mid, qabso shaqada, oo u gudbi si aad u hesho abaalmarinta – qof kasta wuxuu noqon karaa ugaadhsadaha, codsi ma aha.",
+          "3": "Daabac abaal-maris adiga kuu gaar ah oo leh sharaxaad kooban iyo abaal-marin DeHub tokens ama USDC ah. Waxay geli doontaa ganaax isla marka aad daabacdo.",
+          "4": "Fur 'Dukaamada' si aad u dhisto dukaanka oo leh bog u gaar ah, sumcad iyo liisaska.",
+          "5": "Alaabta waxaa lagu qiimeeyaa oo lagu xalliyaa DeHub tokens iyada oo loo marayo boorsada la dhisay, iyada oo aan lahayn lacag-bixin dibadda ah."
+        },
+        "tips": {
+          "1": "Abaal-marisyada waxaa loo habeeyaa Xiriirka Bulshada, Jarista iyo Qandaraasyada.",
+          "2": "Nidaamka khilaafka ayaa xalliya khilaafaadka ku saabsan keenista, markaa ganaaxu wuxuu mar walba ku xalliyaa si cadaalad ah.",
+          "3": "Abuurayaasha waxay isticmaalaan abaal-marisyada si ay u koraan bulsho — wadaagista, jarista iyo falcelinta waa dhammaan hawlo ansax ah."
+        }
+      },
+      "creator-studio": {
+        "title": "Qolka Abuuraha & Tifaftiraha",
+        "intro": "Qolka Abuuraha wuxuu soo saaraa sawirro, muuqaal, muusig, cod iyo moodooyinka 3D-ka oo ka yimaada soo jeedin, wuxuuna u gudbiyaa tifaftiraha — oo ay ku jiraan tifaftire muuqaal oo buuxa oo leh waddooyin badan kaas oo ka shaqeeya biraawsarka.",
+        "steps": {
+          "1": "Fur Qolka Abuuraha oo sharax waxaad rabto in la sameeyo.",
+          "2": "Server-ku wuxuu soo saaraa qiimaha ka hor inta aan shaqadu socon, markaa waxaad arki doontaa waxa ay ku kacayso ka hor intaadan isticmaalin.",
+          "3": "Render-yada waxay sii wadaan saf gaar ah intaad sii wadayso baaritaanka abka.",
+          "4": "U habee natiijooyinka tifaftiraha qaabka Canva, ama fur tifaftiraha muuqaalka si aad u hesho jadwal dhab ah oo leh jarista, lakabyada iyo dhoofinta.",
+          "5": "Si toos ah ugu rid qaybta la dhammeeyay boostada, gaaban ama liiska dukaanka."
+        },
+        "tips": {
+          "1": "Maktabad hanti bilaash ah oo kayd ah ayaa la socota Qolka Abuuraha wax kasta oo aad ka doorbidi lahayd inaad soo saarto.",
+          "2": "Soosaarista waxaa lagu bixiyaa DeHub tokens kaaga boorsada — waxaad saxeexdaa hal wareejin shaqo kasta, waxaana la soo saaraa qiimaha ka hor intaadan bixin.",
+          "3": "Isticmaalayaasha culus waxay qaadan karaan qorshe Ultra, Koox ama Miisaan, kaas oo u dira ogolaansho bil ah oo tokens ah si toos ah boorsadooda."
+        }
+      },
+      "buying-dhb": {
+        "title": "Iibsashada Tokens",
+        "intro": "Iibso DeHub tokens si toos ah gudaha abka adoo isticmaalaya interface-ka is-weydaarsiga ee la dhisay.",
+        "steps": {
+          "1": "U gudub bogga 'Iibso' ee ka socda bar-ka-dhanka ah.",
+          "2": "Xulo token-ka aad rabto inaad ka beddesho (tusaale, ETH, USDC).",
+          "3": "Geli qadarka aad rabto inaad isticmaasho ama tirada tokens-ka aad rabto inaad hesho.",
+          "4": "Dib u eeg heerka sarifka iyo wax soo saarka la qiyaasay.",
+          "5": "Guuji astaanta qalabka dejinta si aad u hagaajiso dulqaadka dhicitaanka (default waa 1%).",
+          "6": "Xaqiiji macaamilka sarifka.",
+          "7": "DeHub tokens waxay ka soo muuqan doonaan boorsadaada marka macaamilka la dhammeeyo."
+        },
+        "tips": {
+          "1": "Dulqaad dhicitaan sare = u badan tahay in la fuliyo, laakiin suurtagalnimada qiimo xun.",
+          "2": "Had iyo jeer hubi heerka sarifka ka hor intaadan xaqiijin.",
+          "3": "Waxaad dejin kartaa dhicitaan gaar ah gudaha guddiga dejinta."
+        }
+      },
+      "bridge": {
+        "title": "Bridge",
+        "intro": "U guurso DeHub tokens-kaaga inta u dhaxaysa silsiladaha la taageerayo adoo isticmaalaya bridge-ka silsiladaha is-weydaarsiga.",
+        "steps": {
+          "1": "U guudagali bogga 'Bridge' ee ka yimid dhinaca.",
+          "2": "Xulo silsiladda ilaha (halkaas oo ay hadda yaalliin calaamadahaaga).",
+          "3": "Xulo silsiladda meesha aad u socoto (halkaas oo aad rabto inaad u dirto).",
+          "4": "Geli tirada calaamadaha la gudbinayo.",
+          "5": "Dib u eeg khidmadda gudbinta iyo wakhtiga la filayo ee imaatinka.",
+          "6": "Xaqiiji macaamilka gudbinta.",
+          "7": "Sug in macaamilka la dhammaystiro — gudbintu waxay qaadan kartaa dhowr daqiiqo."
+        },
+        "tips": {
+          "1": "Khidmadaha gudbinta way kala duwan yihiin iyadoo ku xiran labada silsiladood.",
+          "2": "Gudbintu waxay caadiyan qaadataa 1-5 daqiiqo iyadoo ku xiran silsiladaha ku lug leh.",
+          "3": "Had iyo jeer si fiican u hubi silsiladda meesha aad u socoto ka hor intaadan xaqiijin."
+        }
+      },
+      "music-tv": {
+        "title": "Muusig & TV",
+        "intro": "Ku raaxayso waxyaabaha warbaahinta toos uga dhex jira DeHub — daawashada muusiga iyo daawashada kanaalada TV-ga tooska ah.",
+        "steps": {
+          "1": "U guudagali 'Music' dhinaca si aad u baarto oo aad u ciyaarto qoraallada muusiga.",
+          "2": "U guudagali 'TV' si aad u hesho kanaalada TV-ga tooska ah.",
+          "3": "Baadh kanaalada iyadoo loo eegayo qayb ama waddan.",
+          "4": "Guji kanaalka si aad u bilowdo daawashada.",
+          "5": "Isticmaal kontaroolada ciyaartoyga si aad u hagaajisid mugga iyo dib-u-ciyaarista.",
+          "6": "Ka warbixi kanaalada jabay adoo isticmaalaya badhanka warbixinta."
+        },
+        "tips": {
+          "1": "Kanaalada TV-ga waxaa si wadajir ah loo xaqiijiyay waxtarka.",
+          "2": "Qoraallada muusiga waa la ciyaari karaa inta aad baareysid waxyaabo kale."
+        }
+      },
+      "post-info": {
+        "title": "Macluumaadka Qoraalka & Qaybaha",
+        "intro": "Qoraal la soo saaray waa NFT oo loo qaybiyay 1,000 qaybood. Bogga Macluumaadka Qoraalka wuxuu muujinayaa xogta silsiladda, tirakoobka hawlgelinta, qaybinta lahaanshaha, wuxuuna kuu ogolaanayaa inaad ganacsato qaybaha qoraal kasta — qoraal aan la soo saarin wuxuu bixiyaa in la soo saaro bedelkeeda.",
+        "steps": {
+          "1": "Taabo astaanta 'ⓘ' ee qoraal kasta si aad u furto boggiisa Macluumaadka Qoraalka.",
+          "2": "Dabcan waxaad arki doontaa Token ID (aqoonsi gaar ah oo silsiladda ah) iyo hasha macaamilka — guji hasha si aad ugu aragto sahamiyaha block-ka.",
+          "3": "Hoos waxaa ka xiga, tirakoobka hawlgelinta wuxuu muujinayaa wadarta jecel, necbaanta, aragtida, faallooyinka, iyo talooyinka la helay.",
+          "4": "Qaybta Haystayaasha waxay muujinaysaa bar horumar ah oo ah inta ka mid ah 1,000 qaybood ee abuuruhu weli haysto, oo ay weheliyaan liis dhammaan haystayaasha qaybaha oo leh miisaankooda iyo boqolkiiba.",
+          "5": "Haddii qoraalku yahay lacag-bixis-aragtida (PPV), waxaad arki doontaa qiimaha, lacagta, iyo inta isticmaale ee iibsaday marin.",
+          "6": "Milkiilayaasha qoraalka waxay beddeli karaan aragtida (Dadweyne, Aan Liis-gelin, ama Gaar ah) waxayna tafatir karaan cinwaanka/sharaxaadda si toos ah boggan."
+        },
+        "tips": {
+          "1": "Qoraal cusub oo la soo saaray wuxuu ku bilaabmaa abuuraha oo haysta dhammaan 1,000 qaybood (100% lahaansho).",
+          "2": "Hassha macaamilka waxay ku xirtaa BaseScan ama BscScan iyadoo ku xiran silsiladda.",
+          "3": "Qoraallada aan la soo saarin ma muuqdaan quudinta laakiin weli waxaa lagu heli karaa xiriir toos ah."
+        }
+      },
+      "trading-fractions": {
+        "title": "Qaybaha Ganacsiga",
+        "intro": "Ganacsiga jajabka — liisaska daalacashada, sameynta dalabyo, liiskaaga — waxay ku nool yihiin barnaamijka webka ee dehub.io, bog kasta Post Info.",
+        "steps": {
+          "1": "Fur dehub.io biraawsarka oo ku qor isla koontada.",
+          "2": "Fur bogga Post Info ee boostada oo u beddel tabkeeda Suuqa.",
+          "3": "Browse listings, samee dalab at your price, ama liiska jajab aad qabto.",
+          "4": "Marka ganacsigu dhammaado, isbeddelku wuxuu ka muuqdaa tabkaaga Fractions halkan mobilada."
+        },
+        "tips": {
+          "1": "Lahaanshaha qaybo ka mid ah boostada micnaheedu waa inaad haysato qayb ka mid ah taas on-chain NFT.",
+          "2": "Hubi milkiilayaasha boostada ee suuqa internetka si aad u aragto qaybinta lahaanshaha ka hor intaadan iibsan.",
+          "3": "Sida abuuraha, iibinta jajabku waxay u oggolaaneysaa taageerayaasha inay wadaagaan nuxurkaaga."
+        }
+      },
+      "minting-posts": {
+        "title": "Samaynta Qoraallada (Abuurista NFTs)",
+        "intro": "Samaynta waa ikhtiyaari. Qoraal ayaa lagu daabacaa off-chain marka aad dirto — ma jirto boorso, ma jirto saxeex, ma jirto gaas — waxaadna ku samayn kartaa NFT mar kasta oo aad rabto, ha ahaato marka aad qorayso ama ka dib qoraalka laftiisa.",
+        "steps": {
+          "1": "Guji badhanka 'Qoraal' ee dhinaca (desktop) ama badhanka + (mobile).",
+          "2": "Qor qoraalkaaga, ku lifaaq warbaahin (sawirro, muuqaallo, cod), oo ku dar qaybo.",
+          "3": "Ka tag 'Samaynta qoraalka' OFF si aad ugu daabacdo off-chain, ama u beddel ON si aad u samayso marka aad daabacayso.",
+          "4": "Daabacaadda marnaba ma sugi silsiladda: boostadu waxay u muuqataa quudinta si kasta.",
+          "5": "Si aad u mint ka dib, fur bogga macluumaadka boostada '™' oo isticmaal ficilka Mint halkaas.",
+          "6": "Marka la daabaco, boostadu waxay helaysaa ID Token iyo hash macaamil ah oo aad ku xaqiijin karto on-chain, oo aad qabto oo dhan 1,000 qaybood oo ka mid ah."
+        },
+        "tips": {
+          "1": "Social, email iyo SMS sign-ins bixiyaan eber gaaska — DeHub kafaala-qaadayaasha khidmadaha minting.",
+          "2": "Isticmaalayaasha alaabada dibedda waxay u baahan yihiin ETH on Base ama BnB on BnB Chain for gaaska.",
+          "3": "Minting waa waxa ka dhigaya post ganacsiga iyo Royalty-bearing. Qoraal aan la daabacin ayaa weli hela talooyin iyo aragtiyo.",
+          "4": "Diiwaanka on-chain waa joogto ah mar minted, xitaa haddii boostada markii dambe laga tirtiro quudinta."
+        }
+      },
+      "glossary": {
+        "title": "Liiska Erayada Cusub",
+        "intro": "A glossary dhamaystiran ee crypto iyo terminology madal si ay kaaga caawiyaan inaad ku wareegto Web3.",
+        "steps": {
+          "1": "Ku soo dhowow \"Glossary\" oo ka soo jeeda barta dhinaceeda.",
+          "2": "Browse terms alphabetically ama isticmaal raadinta si aad u hesho erayo gaar ah.",
+          "3": "Guji erey si aad u aragto qeexitaankiisa iyo sharaxaadiisa oo dhameystiran.",
+          "4": "Shuruudaha waxay daboolayaan fikradaha crypto, ereyga DeFi, iyo astaamaha gaarka ah ee DeHub."
+        },
+        "tips": {
+          "1": "Khayraad weyn oo loogu talagalay dadka cusub ee soo galaya crypto iyo Web3.",
+          "2": "Glossary waxaa si joogto ah loogu cusbooneysiiyaa shuruudo cusub."
+        }
+      }
     }
   },
   "creatorPacks": {

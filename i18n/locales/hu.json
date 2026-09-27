@@ -3436,11 +3436,6 @@
     "noResultsFor": "Nincs találat „{{query}}” -ra",
     "guideSubtitle": "Lépésről lépésre útmutató minden funkcióhoz",
     "searchGuide": "Útmutató keresése...",
-    "guideFractionsTip": "Minden vert bejegyzésnél kezdetben az alkotóé az összes frakció (100% tulajdon).",
-    "guideInfoStep": "Koppints egy vert bejegyzés információs ikonjára, hogy megnyisd a verési tranzakcióját a blokkfelfedezőben, és ellenőrizd a láncon lévő bejegyzést.",
-    "guideMintIntro": "Egy bejegyzés NFT-ként való verése a blokkláncon nem kötelező. Verd közzétételkor, vagy tedd közzé most, és verd később a bejegyzés menüjéből.",
-    "guideMintPublishStep": "Válaszd ki, hogy versz-e, majd kattints a „Közzététel” gombra. Ha kihagyod a verést, később a bejegyzés menüjéből is megverheted.",
-    "guideMintFractionsStep": "Megkapod újonnan vert bejegyzésed mind az 1000 frakcióját (100%-os tulajdonjog).",
     "glossaryMintTxDesc": "Koppints egy vert bejegyzés információs ikonjára, hogy megnyisd a verési tranzakcióját a blokkfelfedezőben, és ellenőrizd a láncon lévő bejegyzést. A teljes Bejegyzés adatai oldal — statisztikák, tulajdonosok, piactér — a dehub.io webalkalmazásában található.",
     "glossaryTokenIdDesc": "Egyedi, láncon lévő azonosító, amelyet egy bejegyzés akkor kap, amikor NFT-ként verik.",
     "repostsTab": "Újraküldések",
@@ -3457,24 +3452,7 @@
     "glossaryStakingDesc": "Kösse le DeHub tokenjeidet, hogy idővel jutalmakat keress. A lekötött tokenek növelik a kormányzási szavazati jogodat is.",
     "glossaryGovernanceDesc": "Küldj be és szavazz javaslatokra, amelyek alakítják a platformot. A szavazati jogod súlya attól függ, hogy mennyi DeHub tokent tartasz.",
     "glossaryStakingBadgesDesc": "Felhasználóneved mellett megjelenő jelvények a teljes DeHub token-tartalmad (tárca + lekötött) alapján. 13 szint van – minél több tokent tartasz, annál magasabb a jelvényed rangja. A magasabb szintek nagyobb kormányzási szavazati jogot és alacsonyabb platformdíjakat biztosítanak.",
-    "glossaryLeaderboardDesc": "A felhasználók a teljes DeHub token-egyenlegük (tárca + lekötött minden láncon) alapján vannak rangsorolva. A rangsorok időszakosan frissülnek, és követik az 1 napos és 1 hetes változásokat. Rendezhetsz elküldött borravalók, kapott borravalók, követők, kedvelések vagy előfizetők alapján is.",
-    "guideTipStep": "Kattints a drágakő/borravaló ikonra, hogy DeHub tokenekben küldj borravalót a poszt alkotójának.",
-    "guideTipWalletTip": "A borravalók közvetlenül az alkotó tárcájába kerülnek DeHub tokenek formájában.",
-    "guideTipNotificationsTip": "Értesítések jelzik, hogy mennyi DeHub tokent kaptál.",
-    "guideWalletIntro": "Tekintsd meg DeHub token egyenlegeidet több blokkláncon, ellenőrizd a staking betéteket és kezeld az eszközeidet.",
-    "guideWalletTotalStep": "Tekintsd meg a teljes DeHub token egyenlegedet az összes támogatott blokkláncon összesítve.",
-    "guideStakingIntro": "Stakeld a DeHub tokenjeidet, hogy jutalmakat szerezz és növeld a szavazati erődet.",
-    "guideStakingAmountStep": "Add meg, mennyi DeHub tokent szeretnél stakelni.",
-    "guideLeaderboardBalanceStep": "Az Egyenleg fül rangsorolja a felhasználókat a teljes DeHub token birtoklásuk alapján.",
-    "guideGovernanceVoteStep": "Szavazz a javaslatokra a fel/le gombokkal – a szavazati súlyod attól függ, mennyi DeHub tokent stakeltél.",
-    "guideGovernancePowerTip": "A szavazati erődet az határozza meg, mennyi DeHub tokent stakeltél.",
-    "guideBuyIntro": "Vásárolj DeHub tokeneket közvetlenül a DPay-ben kártyával vagy támogatott kriptoval.",
-    "guideBuyAmountStep": "Add meg a költeni kívánt összeget, vagy hogy mennyi DeHub tokent szeretnél kapni.",
-    "guideBuyDeliveredStep": "DeHub tokenjeid a pénztárcádban jelennek meg, amint a tranzakció befejeződik.",
-    "guideBridgeIntro": "Mozgasd a DeHub tokenjeidet a támogatott blokkláncok között a cross-chain hídon keresztül.",
-    "guideBridgeSourceStep": "Válaszd ki a forrás blokkláncot (ahol a DeHub tokenjeid jelenleg vannak).",
-    "guideBridgeDestStep": "Válaszd ki a cél blokkláncot (ahová a DeHub tokenjeidet küldeni szeretnéd).",
-    "guideBridgeAmountStep": "Add meg, mennyi DeHub tokent szeretnél átvinni."
+    "glossaryLeaderboardDesc": "A felhasználók a teljes DeHub token-egyenlegük (tárca + lekötött minden láncon) alapján vannak rangsorolva. A rangsorok időszakosan frissülnek, és követik az 1 napos és 1 hetes változásokat. Rendezhetsz elküldött borravalók, kapott borravalók, követők, kedvelések vagy előfizetők alapján is."
   },
   "arcade": {
     "submitAccessibility": "Játék beküldése a játékterembe",
@@ -6796,6 +6774,504 @@
       "packEmpty": "Nem található emoji ezen a címen",
       "shortcodeTaken": "{{name}} már foglalt",
       "shortcodeStandard": "{{name}} már szabványos emoji"
+    }
+  },
+  "guide": {
+    "sections": {
+      "getting-started": {
+        "title": "Elkezdeni",
+        "intro": "Ötféleképpen léphetsz be a DeHubba, és egyikhez sem kell már meglévő tárcával rendelkezned: Google, Apple, e-mailben küldött kód, SMS-ben küldött kód, vagy egy meglévő tárca, amit csatlakoztatsz. A tárca útvonal kivételével mindegyik a háttérben létrehoz egy nem őrzött tárcát neked – te tartod a kulcsokat, és a DeHub szponzorálja a gázt, így natív tokent vásárolni soha nem kell a posztoláshoz, borravalóadáshoz és gyűjtéshez.",
+        "steps": {
+          "1": "Látogass el a dehub.io oldalra – a kezdő hírfolyam az előlap, így körbenézhetsz bejelentkezés előtt.",
+          "2": "Kattints a 'Bejelentkezés' gombra. Látni fogod a Google és az Apple lehetőségeket, mezőket egy e-mail címhez vagy telefonszámhoz, és a 'Tárca csatlakoztatása' lehetőséget egy meglévőhöz.",
+          "3": "Google vagy Apple esetén végezd el a szolgáltató folyamatát. E-mail vagy SMS esetén add meg az érkező kódot.",
+          "4": "Az első bejelentkezéskor létrejön és biztonságossá válik egy tárca. Ha ehelyett a saját tárcádat csatlakoztatod, egyetlen aláírással igazolod a címet.",
+          "5": "Válassz felhasználónevet. Ez az, amit az emberek látnak, és ez a dehub.io/<username> profil linkjeként is szolgál.",
+          "6": "Kész is vagy. Fedezd fel a hírfolyamot, állítsd be a profilodat, és kezdj el posztolni."
+        },
+        "tips": {
+          "1": "A közösségi média, az e-mail és az SMS bejelentkezések soha nem fizetnek gázt – a DeHub szponzorálja. A csatlakoztatott tárcák a saját ETH-jukat vagy BNB-jüket fizetik.",
+          "2": "Visszatérsz egy korábbi DeHub fiókhoz? Jelentkezz be a használt e-mail címmel vagy telefonszámmal, és a migrálás megtalálja neked.",
+          "3": "Több fiókot is tarthatsz egy eszközön, és válthatsz közöttük a Beállítások → Profil menüpontban."
+        }
+      },
+      "home-feed": {
+        "title": "Kezdő hírfolyam",
+        "intro": "A kezdő hírfolyam az, ahol az általad követett emberek posztjait és a felkapott tartalmakat láthatod. Többféle tartalomtípusú lapot és rendezési lehetőséget támogat.",
+        "steps": {
+          "1": "Navigálj a /app oldalra – ez a kezdő hírfolyamod.",
+          "2": "Használja a felső lapokat a tartalomtípus szerinti szűréshez: Kezdőlap (minden), Videók, Képek, Rövid videók, Zene vagy Élő közvetítések.",
+          "3": "Csúsztassa balra/jobbra a lapokat a további lehetőségek megtekintéséhez mobilon.",
+          "4": "Használja a szűrő/rendezés gombot (a hírfolyam jobb felső sarkában) a rendezés módosításához: Forró, Új, Legnépszerűbb.",
+          "5": "Húzza lefelé a hírfolyam frissítéséhez mobilon.",
+          "6": "Görgessen lefelé a további bejegyzések automatikus betöltéséhez (végtelen görgetés).",
+          "7": "Váltás rács és hírfolyam nézet között az elrendezésváltó használatával."
+        },
+        "tips": {
+          "1": "A rács nézet kiváló a képek gyors böngészéséhez.",
+          "2": "A 'Kezdőlap' lapon minden tartalomtípus vegyesen jelenik meg.",
+          "3": "Az Élő lap az aktuálisan futó élő közvetítéseket mutatja."
+        }
+      },
+      "creating-posts": {
+        "title": "Bejegyzések létrehozása",
+        "intro": "Hozzon létre szöveges bejegyzéseket, osszon meg képeket, videókat, hangjegyzeteket, GIF-eket és egyebeket. Használjon hashtageket, cashtageket és említéseket a hatókör növeléséhez.",
+        "steps": {
+          "1": "Kattintson a 'Bejegyzés' gombra az oldalsávon (asztali számítógépen) vagy a + gombra (mobilon).",
+          "2": "Írja be a szöveget a szerkesztőfelületen.",
+          "3": "Kép vagy videó hozzáadásához kattintson a média ikonra, és válasszon ki egy fájlt.",
+          "4": "Hangjegyzet rögzítéséhez kattintson a mikrofon ikonra.",
+          "5": "GIF hozzáadásához kattintson a GIF ikonra, és keressen rá.",
+          "6": "Használjon #hashtageket a bejegyzés kategorizálásához (pl. #crypto, #defi).",
+          "7": "Használjon $cashtageket tokenekre való hivatkozáshoz (pl. $DHB, $ETH).",
+          "8": "Használjon @említéseket más felhasználók megjelöléséhez (pl. @felhasználónév).",
+          "9": "Kattintson a 'Bejegyzés' gombra a közzétételhez. A bejegyzés azonnal megjelenik a hírfolyamban."
+        },
+        "tips": {
+          "1": "A bejegyzések támogatják a markdown stílusú formázást.",
+          "2": "Idézetbejegyzést készíthet, ha rákattint az újraküldés ikonra bármely bejegyzésen, és kiválasztja az 'Idézés' lehetőséget.",
+          "3": "A kategóriák (hashtagek) a 'Beszédes a városban' ranglistán jelennek meg."
+        }
+      },
+      "interacting-with-posts": {
+        "title": "Bejegyzésekkel való interakció",
+        "intro": "Lépjen kapcsolatba a tartalommal szavazással, kommenteléssel, borravalózással, könyvjelzővel ellátással, megosztással és fordítással.",
+        "steps": {
+          "1": "Szavazzon fel vagy le egy bejegyzést a bejegyzés bal oldalán található nyíl ikonok használatával.",
+          "2": "Kattintson a komment ikonra a komment szekció megnyitásához és egy válasz hagyásához.",
+          "3": "Kattintson a drágakő/borravaló ikonra, hogy borravalót küldjön DeHub tokenekben a bejegyzés készítőjének.",
+          "4": "Kattintson a könyvjelző ikonra a bejegyzés későbbi mentéséhez.",
+          "5": "Kattintson a megosztás ikonra a bejegyzés linkjének másolásához vagy külső megosztásához.",
+          "6": "Kattintson a fordítás gombra (földgömb ikon) bármelyik bejegyzésen a szöveg saját nyelvére fordításához.",
+          "7": "Képes bejegyzések esetén használja a „Kép fordítása” gombot a képben lévő szöveg AI-fordított változatának lekéréséhez.",
+          "8": "Kattintson bármelyik bejegyzésre a teljes képernyős, egyedi bejegyzés nézetben való megnyitásához."
+        },
+        "tips": {
+          "1": "A tippek közvetlenül a készítő pénztárcájába kerülnek DeHub tokenek formájában.",
+          "2": "A tipp összegét gyorsválasztó gombokkal állíthatja be, vagy megadhat egyéni összeget.",
+          "3": "A könyvjelzővel ellátott bejegyzések a sidebar Könyvjelzők oldaláról érhetők el."
+        }
+      },
+      "explore-search": {
+        "title": "Fedezze fel és keresse meg",
+        "intro": "Fedezzen fel új tartalmakat és felhasználókat a felfedezés oldalon és az erőteljes keresési funkcióval.",
+        "steps": {
+          "1": "Navigáljon a /app/explore oldalra a sidebarból.",
+          "2": "Használja a fenti keresősávot felhasználók, bejegyzések vagy tartalmak kereséséhez.",
+          "3": "Szűrje az eredményeket lap szerint: Minden, Emberek, Bejegyzések, Képek, Videók, Zene, Élő.",
+          "4": "Böngésszen a felkapott témák és kategóriák között a felfedezés oldalon.",
+          "5": "Kattintson egy felkapott témára az összes kapcsolódó bejegyzés megtekintéséhez.",
+          "6": "Kattintson egy felhasználóra a keresési eredmények között a profiljának megtekintéséhez."
+        },
+        "tips": {
+          "1": "A keresés támogatja a felhasználóneveket, pénztárcacímeket és tartalomkulcsszavakat.",
+          "2": "A felkapott témák az elmúlt időszakban történt bejegyzési aktivitás alapján frissülnek."
+        }
+      },
+      "profile": {
+        "title": "Profil",
+        "intro": "A profilja megjeleníti a bejegyzéseit, követőit, követéseit és pénztárca adatait.",
+        "steps": {
+          "1": "Kattintson az avatarjára vagy a „Profil” elemre a sidebarban a profilja megtekintéséhez.",
+          "2": "Kattintson a „Profil szerkesztése” gombra a megjelenítendő név, a bio és az avatar frissítéséhez.",
+          "3": "Töltsön fel profilképet az avatarjára kattintva szerkesztési módban.",
+          "4": "Tekintse meg a követői és követett számlálót a profiloldalán.",
+          "5": "Böngésszen a saját bejegyzései, médiái és kedvelt tartalmai között a profil lapokon.",
+          "6": "Másolja a pénztárcacímét a mellette lévő másolás ikonra kattintva.",
+          "7": "Látogasson el más felhasználók profiljára a felhasználónevükre vagy avatarjukra kattintva a platformon bárhol."
+        },
+        "tips": {
+          "1": "A felhasználóneve egyedi, és a profil URL-jében jelenik meg (dehub.io/@felhasználónév).",
+          "2": "Az adatvédelmi beállítások lehetővé teszik annak szabályozását, hogy ki láthatja a követői számlálóját."
+        }
+      },
+      "messages": {
+        "title": "Üzenetek",
+        "intro": "Küldjön közvetlen üzeneteket más felhasználóknak a platformon.",
+        "steps": {
+          "1": "Kattintson az „Üzenetek” elemre a sidebarban az üzenetküldő oldal megnyitásához.",
+          "2": "Kattintson az \"Új üzenet\" gombra egy új beszélgetés indításához.",
+          "3": "Keressen felhasználót felhasználónév alapján, hogy üzenetet küldjön neki.",
+          "4": "Írja be az üzenetet, és nyomja meg az \"Elküldés\" gombot.",
+          "5": "Tekintse meg a beszélgetési előzményeket az üzenetek listájában.",
+          "6": "Kattintson egy beszélgetésre a csevegés folytatásához."
+        },
+        "tips": {
+          "1": "Értesítést kap, ha valaki üzenetet küld Önnek.",
+          "2": "Az alkotók egy tippkövetelmény mögé zárhatják az üzeneteket."
+        }
+      },
+      "ai-assistant": {
+        "title": "AI asszisztens",
+        "intro": "Csevegjen a DeHub beépített AI asszisztensével segítségért, információért és kreatív feladatokért.",
+        "steps": {
+          "1": "Kattintson az \"Asszisztens\" gombra az oldalsávban az AI csevegés megnyitásához.",
+          "2": "Írja be kérdését vagy kérését a csevegés beviteli mezőjébe.",
+          "3": "Az AI segíthet kripto információkkal, platformmal kapcsolatos kérdésekkel és általános tudással.",
+          "4": "Indítson új beszélgetést az \"Új csevegés\" gombra kattintva.",
+          "5": "Tekintse meg a beszélgetési előzményeket az asszisztens oldalának oldalsávában.",
+          "6": "Képeket csatolhat az AI számára elemzés céljából."
+        },
+        "tips": {
+          "1": "Az AI megjegyzi a kontextust egy beszélgetésen belül.",
+          "2": "Kérdezheti az AI-t a DeHub funkcióiról, kripto kifejezésekről vagy általános kérdésekről.",
+          "3": "A korábbi beszélgetések mentésre kerülnek és bármikor elérhetők."
+        }
+      },
+      "notifications": {
+        "title": "Értesítések",
+        "intro": "Legyen naprakész a tartalmaival kapcsolatos kedvelésekkel, kommentekkel, tippekkel, követésekkel és egyéb tevékenységekkel kapcsolatban.",
+        "steps": {
+          "1": "Kattintson a harang ikonra vagy az \"Értesítések\" gombra az oldalsávban.",
+          "2": "Tekintse meg az összes értesítést kronologikus listában.",
+          "3": "Kattintson egy értesítésre a kapcsolódó tartalomra való navigáláshoz.",
+          "4": "Az értesítések tartalmazzák: új követők, poszt szavazatok, kommentek, tippek és említések.",
+          "5": "Az olvasatlan értesítések ki vannak emelve – olvasottként jelölődnek meg, amikor megtekinti őket."
+        },
+        "tips": {
+          "1": "Az értesítési jelvény az olvasatlan értesítések számát mutatja.",
+          "2": "A tipp értesítések megmutatják, hány tokent kapott."
+        }
+      },
+      "wallet": {
+        "title": "Tárca",
+        "intro": "Tekintse meg DeHub token egyenlegeit több láncon keresztül, ellenőrizze a staking betéteket, és kezelje eszközeit.",
+        "steps": {
+          "1": "Kattintson a \"Tárca\" gombra az oldalsávban a tárca oldalának megnyitásához.",
+          "2": "Tekintsd meg a teljes token egyenlegedet az összes támogatott láncon összesítve.",
+          "3": "Láncspecifikus bontások megtekintése: Ethereum, Base, BNB Chain és mások.",
+          "4": "Ellenőrizd a staking betéteidet és jutalmaidat.",
+          "5": "Kattints a 'Scan frissítése' gombra az egyenlegeid on-chain adatokból való frissítéséhez.",
+          "6": "Másold a pénztárca címedet, hogy tokeneket fogadhass másoktól."
+        },
+        "tips": {
+          "1": "Az egyenlegek automatikusan frissülnek, de bármikor kényszerítheted a frissítést.",
+          "2": "A pénztárca mind a likvid (elérhető), mind a stakingelt egyenlegeket mutatja."
+        }
+      },
+      "staking": {
+        "title": "Staking",
+        "intro": "Stakeld a DeHub tokenjeidet, hogy jutalmakat keress és növeld a szavazati erődet a kormányzásban.",
+        "steps": {
+          "1": "Navigálj a 'Staking' oldalra az oldalsávból.",
+          "2": "Add meg a stakelni kívánt tokenek számát.",
+          "3": "Válaszd ki a láncot, amelyen stakelni szeretnél.",
+          "4": "Erősítsd meg a tranzakciót a pénztárcádban (külső pénztárcák), vagy automatikusan végrehajtódik (social login).",
+          "5": "Tekintsd meg a stakelt összegeket és a függőben lévő jutalmakat.",
+          "6": "A staking feloldásához add meg az összeget és erősítsd meg a staking feloldási tranzakciót."
+        },
+        "tips": {
+          "1": "A staking növeli a szavazati súlyodat a kormányzási javaslatokban.",
+          "2": "A Social-login felhasználóknak nincs szükségük gázra a stakinghez – ez gázmentes.",
+          "3": "Egyszerre több láncon is stakelhetsz."
+        }
+      },
+      "leaderboard": {
+        "title": "Ranglista",
+        "intro": "Nézd meg, ki van az élen! A ranglista a felhasználókat egyenleg, napi költés és felkapott témák alapján rangsorolja.",
+        "steps": {
+          "1": "Navigálj a 'Ranglista' oldalra az oldalsávból.",
+          "2": "Váltogass a fülek között: Egyenleg, Napi költés és A város beszéde.",
+          "3": "Az Egyenleg fül a felhasználókat a teljes token birtokuk alapján rangsorolja.",
+          "4": "A Napi költés fül azt mutatja, ki volt a legaktívabb borravaló adásban az elmúlt 24 órában.",
+          "5": "A A város beszéde a leggyakrabban tárgyalt témákat/kategóriákat mutatja.",
+          "6": "Kattints bármelyik felhasználóra a profiljuk megtekintéséhez.",
+          "7": "A ranglista naponta többször frissül."
+        },
+        "tips": {
+          "1": "A napi rangsorok 24 óránként visszaállnak.",
+          "2": "A A város beszéde a hashtagokból származó egyszavú kategóriákat követi nyomon."
+        }
+      },
+      "command-centre": {
+        "title": "Parancsnoki Központ",
+        "intro": "Egy irányítópult áttekintés, amely egy pillantással megmutatja a legfontosabb mérőszámokat és a platform tevékenységet.",
+        "steps": {
+          "1": "Kattintson a 'Parancsnoki Központ' elemre az oldalsávban.",
+          "2": "Tekintse meg profilösszegzését, beleértve a bejegyzések számát, a követőket és az elköteleződést.",
+          "3": "Nézze meg a legutóbbi tevékenységeit és a felkapott témákat.",
+          "4": "Hozzon gyorshivatkozásokat a gyakran használt funkciókhoz."
+        },
+        "tips": {
+          "1": "A Parancsnoki Központ madártávlatból mutatja a DeHub jelenlétét."
+        }
+      },
+      "governance": {
+        "title": "Kormányzás",
+        "intro": "Vegyen részt a platform kormányzásában javaslatok létrehozásával és a közösségi döntésekről való szavazással.",
+        "steps": {
+          "1": "Navigáljon a 'Kormányzás' elemre az oldalsávból.",
+          "2": "Böngésszen a közösség által benyújtott aktív javaslatok között.",
+          "3": "Kattintson egy javaslatra a teljes leírás és a megbeszélés elolvasásához.",
+          "4": "Szavazzon a javaslatokra a hüvelykujjal felfelé/lefelé gombokkal – a szavazati súlya attól függ, hogy mennyi DeHub tokent stakelt.",
+          "5": "Hagyjon megjegyzéseket a javaslatokhoz, hogy megbeszélhesse azokat a közösséggel.",
+          "6": "Küldje be saját javaslatát a 'Javaslat létrehozása' gombra kattintva."
+        },
+        "tips": {
+          "1": "A szavazati erejét a stakelt tokenek száma határozza meg.",
+          "2": "A jelvénytulajdonosok további szavazati súlyt kaphatnak.",
+          "3": "A javaslatok szakaszokon mennek keresztül: Aktív → Elfogadott/Elutasított."
+        }
+      },
+      "bookmarks": {
+        "title": "Könyvjelzők",
+        "intro": "Mentse el a bejegyzéseket a könyvjelzőibe a későbbi könnyű hozzáférés érdekében.",
+        "steps": {
+          "1": "Kattintson a könyvjelző ikonra bármelyik bejegyzésen a mentéshez.",
+          "2": "Navigáljon a 'Könyvjelzők' elemre az oldalsávban az összes mentett bejegyzés megtekintéséhez.",
+          "3": "Kattintson egy könyvjelzővel ellátott bejegyzésre a teljes megtekintéséhez.",
+          "4": "Távolítsa el a könyvjelzőt a könyvjelző ikonra ismét kattintva."
+        },
+        "tips": {
+          "1": "A könyvjelzők privátak – csak Ön láthatja a mentett bejegyzéseit.",
+          "2": "Nincs korlátozva, hány bejegyzést könyvjelzőzhet meg."
+        }
+      },
+      "settings": {
+        "title": "Beállítások",
+        "intro": "Testreszabhatja DeHub élményét a nyelv, az adatvédelem és a megjelenítési beállításokkal.",
+        "steps": {
+          "1": "Kattintson a 'Beállítások' elemre az oldalsávban.",
+          "2": "Változtassa meg a megjelenítési nyelvet a nyelvválasztóból.",
+          "3": "Állítsa be az adatvédelmi beállításokat: szabályozza, ki láthatja a követői számokat és a követett listát.",
+          "4": "Állítsa be az alapértelmezett poszt láthatósági beállításait.",
+          "5": "Értesítési beállítások kezelése."
+        },
+        "tips": {
+          "1": "A DeHub több nyelvet támogat – az egész felület lefordítható.",
+          "2": "A titoktartási beállítások azonnal érvénybe lépnek."
+        }
+      },
+      "posting-allowance": {
+        "title": "Napi posztolási kereted",
+        "intro": "A posztolás minden nap ingyenes, egy olyan keretig, amely a staking badge-eddel együtt növekszik. Mindenki tíz szöveges poszttal és napi egy gigabájt videóval, képpel és hanggal indul. Ha bármelyiket túlléped, az adott nap hátralévő részében DeHub tokenekkel fizetsz – csak a túllépett részért.",
+        "steps": {
+          "1": "Posztolj a szokásos módon. A kereten belül semmi sem kerül felszámolásra, és semmit sem kérünk tőled.",
+          "2": "A szöveges posztok és a média külön készletek, így egy videó feltöltésével töltött nap is hagyja a tíz szöveges posztot ingyenesen.",
+          "3": "Amikor egy poszt túllépné a keretet, az alkalmazás először árazza be, és ellenőrzi, hogy a pénztárcád fedezni tudja-e, mielőtt bármi feltöltődne.",
+          "4": "A poszt pontosan úgy jelenik meg, ahogy a kereten belül tenné – a közzététel soha nem vár a fizetésre.",
+          "5": "Ezután jóváhagyod az adott posztra vonatkozó egyetlen átutalást, amelyet a Base vagy a BNB Chain egyikén rendezel el, amelyik elegendő DeHub tokennel rendelkezik.",
+          "6": "Mindkét készlet éjfélkor (UTC) nullázódik."
+        },
+        "tips": {
+          "1": "A túllépés arányos: a keretedet 200 MB-tal túllépő tartalom 200 MB-ba kerül, nem egy egész gigabájtba.",
+          "2": "Az újraposztok, kommentek, reakciók, tippek és üzenetek semmibe sem kerülnek, és soha nem érintik a keretet.",
+          "3": "Tagadd meg a fizetést, és a poszt fent marad – az összeg csak blokkolja a következő fizetős posztodat, amíg rendezve nem lesz. A holnapi ingyenes keret mindig a tiéd.",
+          "4": "A staking badge növeli az ingyenes keretet és csökkenti az azon túli dolgok árát."
+        }
+      },
+      "reactions-and-safety": {
+        "title": "Reakciók, Némítás és Érett tartalom",
+        "intro": "A kedvelés gomb mögött kilenc reakció található, valamint egy vezérlőelemekből álló készlet, amely meghatározza, mit látsz, és ki érhet el téged.",
+        "steps": {
+          "1": "Tartsd lenyomva a hüvelykujjat felfelé bármelyik poszton, hogy megnyisd a reakció tálcát: kedvelés, szeretet, tisztelet, forró, lol, szomorú, sírás, nem kedvelés és kaki.",
+          "2": "A hét pozitív reakció beleszámít a poszt kedvelési összesítésébe; a nem kedvelés és a kaki ellene számít.",
+          "3": "A reakciódat a staking badge-ed súlyozza, így egy badge-tulajdonos reakciója jobban befolyásolja az összesítést, mint egy szavazat.",
+          "4": "Érintsd meg az X-et egy poszt fejlécében a szerző némításához – azonnal eltűnnek a hírfolyamodból.",
+          "5": "Az alkotók a posztjaikat összeállítás közben érett tartalmúként jelölik meg; ezek a posztok lemaradnak a nyilvános kezdőoldalról.",
+          "6": "Az érett tartalmú posztok mindenhol való megtekintéséhez kapcsold be a „Mutasd az érett tartalmat” opciót a Beállításokban."
+        },
+        "tips": {
+          "1": "Az érett tartalmú poszt továbbra is teljes mértékben látható az alkotó profilján és azok számára, akik követik őt.",
+          "2": "A profilból történő blokkolás messzebbre mutat, mint a némítás, és a üzenetküldést is megszünteti.",
+          "3": "A reakció tálca megmutatja, ki reagált és mivel, így a szobát láthatod, nem csak egy számot."
+        }
+      },
+      "stages": {
+        "title": "Stages (Élő hangszobák)",
+        "intro": "A Stages az DeHubba beépített élő hangszobák. Egy házigazda megnyit egy szobát, felhív hangszórókat, és bárki becsatlakozhat meghallgatni a Stages oldalról vagy egy megosztott linkről.",
+        "steps": {
+          "1": "Nyisd meg a „Stages” opciót az oldalsávban, hogy lásd, mi az, ami most élőben megy, és mi van ütemezve.",
+          "2": "Érintsen meg egy élő színpadot, hogy hallgatóként csatlakozzon, vagy állítson be emlékeztetőt egy ütemezett színpadra, és értesítést kapjon, amikor elindul.",
+          "3": "Indítsa el a sajátját ugyanazon az oldalon – böngészőből is élőben mehet, OBS vagy stream kulcs nélkül.",
+          "4": "Hostként vigyen fel előadókat a színpadra, némítsa el vagy távolítsa el őket, ossza meg a képernyőjét, és vezérelje a hangszórót.",
+          "5": "A hallgatók élő reakciókat küldhetnek, és a szoba csevegésében beszélhetnek anélkül, hogy színpadra lépnének.",
+          "6": "Minden színpad rögzít, és a felvétel utána lejátszódik arról a kártyáról, amelyen megjelenik."
+        },
+        "tips": {
+          "1": "Az élő feliratok minden előadót feliratoznak, és lefordítanak arra a nyelvre, amelyen éppen olvas.",
+          "2": "Az élő szinkronizálás a szobát hangosan is fel tudja olvasni a házigazda saját klónozott hangján, percenként számlázva DeHub tokenekben.",
+          "3": "A házigazdák rádióállomást tehetnek adásba, vagy saját zenei klipeket játszhatnak le a beszélgetések között.",
+          "4": "Egy mini-lejátszó sarokban tartja a szobát, miközben Ön böngészi az alkalmazás többi részét."
+        }
+      },
+      "communities": {
+        "title": "Közösségek és események",
+        "intro": "A közösségek tagok által működtetett terek, saját hírfolyammal, tagokkal és tevékenységgel. Az események időhöz kötött programozást adnak hozzájuk.",
+        "steps": {
+          "1": "Nyissa meg a \"Közösségek\" lehetőséget az oldalsávban, és böngéssze az nyilvánosakat.",
+          "2": "Csatlakozzon egy érintéssel. Az új tevékenység olvasatlan jelvényként jelenik meg a navigációban.",
+          "3": "Tegyen közzé, vitasson meg, futtasson szavazásokat, és adjon borravalót egy közösség saját hírfolyamán belül.",
+          "4": "A közösség tulajdonosai moderálják saját terüket, és rendszergazdai jogokat adhatnak másoknak.",
+          "5": "Nyissa meg az \"Események\" lehetőséget az ütemezett programozáshoz, minden eseményhez egy teljes oldallal, amelyet élőben követhet."
+        },
+        "tips": {
+          "1": "A közösségi csevegés támogatja az @említéseket és az @here lehetőséget, így egy bejegyzés elérheti a szobát.",
+          "2": "Egy meghívó link lehetővé teszi, hogy embereket vigyen be közvetlenül egy közösségbe."
+        }
+      },
+      "arcade": {
+        "title": "Játékterem",
+        "intro": "Öt játék fut a DeHubon belül egy böngésző lapon – nincs mit telepíteni, nincs mit vásárolni.",
+        "steps": {
+          "1": "Nyissa meg a \"Játékterem\" lehetőséget az oldalsávban.",
+          "2": "Válasszon egy játékot: King's Gambit (3D sakk online Elo ranglistával), Claude of Duty (egy lövöldözős játék, amely betöltés közben generálja saját grafikáját), Jungle Trail (egy procedurális esőerdei séta), Street Slayer (egy DeHubra készült beat 'em up) vagy Chartopia (egy járható kereskedési emelet).",
+          "3": "Játsszon a lapon. A King's Gambit és a Street Slayer ranglistákat vezet.",
+          "4": "A Chartopia VR headsetben is fut WebXR-en keresztül."
+        },
+        "tips": {
+          "1": "Kettő el van rejtve a megjelenési témákban – állítsa az alkalmazást War-ra a Claude of Duty-hoz, vagy Jungle-ra a Jungle Trail-hez.",
+          "2": "Minden játéknak megvan a saját megosztási kártyája, így egy link hozzá megfelelően kibontakozik, bárhol is tegye közzé."
+        }
+      },
+      "bounties-stores": {
+        "title": "Bounty-k és boltok",
+        "intro": "Kétféleképpen alakíthatja a platformot jövedelemmé: tegyen közzé vagy fogadjon el egy bounty-t, vagy nyisson egy boltot, és adjon el a közönségének.",
+        "steps": {
+          "1": "Nyissa meg a \"Bounty-k\" lehetőséget a nyitott munkák böngészéséhez, kategória vagy pénznem szerint szűrve.",
+          "2": "Fogadjon el egyet, végezze el a munkát, és küldje be a jutalom beszedéséhez – bárki lehet vadász, nincs szükség jelentkezésre.",
+          "3": "Hozzon létre saját jutalmat (bounty) egy rövid leírással és DeHub tokenben vagy USDC-ben megadott jutalommal. A jutalom azonnal zárolásra kerül, amint közzéteszi.",
+          "4": "Nyissa meg a „Storefrontok” (Stores) funkciót egy saját oldallal, márkajelzéssel és listákkal rendelkező üzlethelyiség létrehozásához.",
+          "5": "A termékek árazása és fizetése DeHub tokenben történik a beépített pénztárcán keresztül, külső fizetési folyamat nélkül."
+        },
+        "tips": {
+          "1": "A jutalmak (bounties) a Közösségi Média, Vágás (Clipping) és Szerződések (Contracts) kategóriákba vannak rendezve.",
+          "2": "Egy vitarendezési folyamat (dispute flow) rendezi a kézbesítéssel kapcsolatos nézeteltéréseket, így a zárolt összeg mindig méltányosan kerül feloldásra.",
+          "3": "Az alkotók jutalmakat (bounties) használnak közösségük növelésére – megosztások, klipek és reakciók mind érvényes feladatok lehetnek."
+        }
+      },
+      "creator-studio": {
+        "title": "Alkotói Stúdió és Szerkesztő",
+        "intro": "Az Alkotói Stúdió (Creator Studio) egy prompt alapján képeket, videókat, zenét, hangokat és 3D modelleket generál, és átadja azokat egy szerkesztőnek – beleértve egy teljes, több sávos videószerkesztőt, amely a böngészőben fut.",
+        "steps": {
+          "1": "Nyissa meg az Alkotói Stúdiót, és írja le, mit szeretne elkészíttetni.",
+          "2": "A szerver árajánlatot ad a feladat futtatása előtt, így látja a költségeket, mielőtt elköltené azokat.",
+          "3": "A renderelések egy megosztott várólistán folytatódnak, amíg Ön tovább böngészi az alkalmazást.",
+          "4": "Rendezze el az eredményeket a Canva-stílusú szerkesztőben, vagy nyissa meg a videószerkesztőt egy valódi idővonallal, vágással, rétegezéssel és exportálással.",
+          "5": "Helyezze a kész alkotást közvetlenül egy bejegyzésbe, egy rövid videóba vagy egy üzletlistába."
+        },
+        "tips": {
+          "1": "Egy ingyenes stock eszközökből álló könyvtár (asset library) áll rendelkezésre a Stúdió mellett, bármihez, amit inkább nem generálna le.",
+          "2": "A generálás DeHub tokenekkel fizetendő a pénztárcájából – feladatonként egy átutalást ír alá, és az ár a fizetés előtt megadásra kerül.",
+          "3": "A nagyobb felhasználók választhatnak egy Ultra, Team vagy Scale csomagot, amely havi token keretet küld közvetlenül a pénztárcájukba."
+        }
+      },
+      "buying-dhb": {
+        "title": "Tokenek vásárlása",
+        "intro": "Vásároljon DeHub tokeneket közvetlenül az alkalmazáson belül a beépített swap felület használatával.",
+        "steps": {
+          "1": "Navigáljon a „Vásárlás” (Buy) oldalra az oldalsávból.",
+          "2": "Válassza ki a token, amiből át szeretne váltani (pl. ETH, USDC).",
+          "3": "Adja meg a költeni kívánt összeget, vagy a kapni kívánt tokenek számát.",
+          "4": "Tekintse át az árfolyamot és a becsült kimenetet.",
+          "5": "Kattintson a fogaskerék ikonra a csúszás (slippage) tűrésének beállításához (alapértelmezett 1%).",
+          "6": "Erősítse meg a swap tranzakciót.",
+          "7": "A DeHub tokenek a pénztárcájában jelennek meg a tranzakció befejezése után."
+        },
+        "tips": {
+          "1": "Magasabb csúszási tűrés = nagyobb valószínűséggel hajtódik végre, de potenciálisan rosszabb árazás.",
+          "2": "Mindig ellenőrizze az árfolyamot az erősítés előtt.",
+          "3": "Egyéni csúszást állíthat be a beállítások panelen."
+        }
+      },
+      "bridge": {
+        "title": "Híd (Bridge)",
+        "intro": "Mozgassa DeHub tokenjeit a támogatott blokkláncok között a cross-chain híd használatával.",
+        "steps": {
+          "1": "Navigálj az 'Áthidalás' oldalra az oldalsávból.",
+          "2": "Válaszd ki a forrásláncot (ahol a tokenjeid jelenleg vannak).",
+          "3": "Válaszd ki a cél-láncot (ahová küldeni szeretnéd őket).",
+          "4": "Add meg az áthidalni kívánt tokenek számát.",
+          "5": "Tekintsd át az áthidalási díjat és a becsült érkezési időt.",
+          "6": "Erősítsd meg az áthidalási tranzakciót.",
+          "7": "Várd meg, amíg a tranzakció befejeződik – az áthidalás néhány percet vehet igénybe."
+        },
+        "tips": {
+          "1": "Az áthidalási díjak láncpáronként változnak.",
+          "2": "Az áthidalás általában 1-5 percet vesz igénybe, a részt vevő láncoktól függően.",
+          "3": "Mindig ellenőrizd duplán a cél-láncot az erősítés előtt."
+        }
+      },
+      "music-tv": {
+        "title": "Zene és TV",
+        "intro": "Élvezd a média tartalmakat közvetlenül a DeHubon belül – streamelj zenét és nézz élő TV csatornákat.",
+        "steps": {
+          "1": "Navigálj a 'Zene' menüpontra az oldalsávból a zenei posztok böngészéséhez és lejátszásához.",
+          "2": "Navigálj a 'TV' menüpontra az élő TV csatornák eléréséhez.",
+          "3": "Böngéssz csatornák között kategória vagy ország szerint.",
+          "4": "Kattints egy csatornára a megtekintéshez.",
+          "5": "Használd a lejátszó vezérlőit a hangerő és a lejátszás beállításához.",
+          "6": "Jelentsd a hibás csatornákat a jelentés gomb használatával."
+        },
+        "tips": {
+          "1": "A TV csatornák közösségileg ellenőrzöttek a megbízhatóság érdekében.",
+          "2": "A zenei posztok böngészés közben is lejátszhatók."
+        }
+      },
+      "post-info": {
+        "title": "Poszt Információ és Törtek",
+        "intro": "Egy \"mintelt\" poszt egy 1000 tört részre osztott NFT. A Poszt Információ oldal megjeleníti az on-chain adatokat, az elköteleződési statisztikákat, a tulajdonosi megoszlást, és lehetővé teszi bármely poszt törtrészeinek kereskedelmét – egy nem \"mintelt\" poszton pedig felajánlja a \"mintelést\".",
+        "steps": {
+          "1": "Érintsd meg az 'ⓘ' ikont bármely poszton a Poszt Információ oldalának megnyitásához.",
+          "2": "A tetején látni fogod a Token ID-t (egyedi on-chain azonosító) és a tranzakciós hash-t – kattints a hash-re a blokklánc explorerben való megtekintéséhez.",
+          "3": "Alatta az elköteleződési statisztikák mutatják a kedvelések, nem kedvelések, megtekintések, kommentek és kapott tippek teljes számát.",
+          "4": "A Tulajdonosok szekció egy folyamatjelző sávot mutat arról, hogy a készítő még mennyi birtokol a 1000 törtrészből, valamint egy listát az összes törtrész tulajdonosról a mérlegükkel és százalékaikkal.",
+          "5": "Ha a poszt fizetős (PPV), látni fogod az árat, a valutát, és hogy hány felhasználó vásárolta meg a hozzáférést.",
+          "6": "A poszt tulajdonosai módosíthatják a láthatóságot (Nyilvános, Nem listázott, vagy Privát) és szerkeszthetik a címet/leírást közvetlenül erről az oldalról."
+        },
+        "tips": {
+          "1": "Egy frissen \"mintelt\" poszt úgy indul, hogy a készítő birtokolja mind a 1000 törtrészt (100% tulajdonjog).",
+          "2": "A tranzakciós hash a BaseScan-re vagy a BscScan-re hivatkozik, a lánctól függően.",
+          "3": "A nem listázott bejegyzések nem jelennek meg a hírfolyamokban, de közvetlen hivatkozással továbbra is elérhetők."
+        }
+      },
+      "trading-fractions": {
+        "title": "Kereskedési frakciók",
+        "intro": "A frakcionált kereskedés — hirdetések böngészése, ajánlatok készítése, saját hirdetések közzététele — a dehub.io webalkalmazásában, az egyes bejegyzések Bejegyzések oldalán érhető el.",
+        "steps": {
+          "1": "Nyissa meg a dehub.io webhelyet egy böngészőben, és jelentkezzen be ugyanazzal a fiókkal.",
+          "2": "Nyisd meg a bejegyzés Bejegyzés adatai oldalát, és válts a Piactér lapra.",
+          "3": "Böngéssz a hirdetések között, tegyél ajánlatot a saját áradra, vagy sorold fel a birtokodban lévő frakciókat.",
+          "4": "Miután egy ügylet befejeződött, a változás megjelenik a Frakciók lapon itt a mobilon."
+        },
+        "tips": {
+          "1": "Egy bejegyzés töredékeinek birtoklása azt jelenti, hogy az adott láncon belüli NFT egy részét birtokolja.",
+          "2": "Vásárlás előtt ellenőrizze a bejegyzés tulajdonosait az internetes piactéren, hogy láthassa a tulajdonjog eloszlását.",
+          "3": "Alkotóként a frakciók értékesítése lehetővé teszi a rajongók számára, hogy közösen birtokolják a tartalmadat."
+        }
+      },
+      "minting-posts": {
+        "title": "Bejegyzések Mintézése (NFT-k Létrehozása)",
+        "intro": "A mintezés opcionális. Egy bejegyzés abban a pillanatban publikálódik off-chain, ahogy elküldöd – nincs tárca, nincs aláírás, nincs gázköltség – és bármikor mintezheted NFT-ként, akár az írás közben, akár később magából a bejegyzésből.",
+        "steps": {
+          "1": "Kattints a 'Bejegyzés' gombra az oldalsávban (asztali gépen) vagy a + gombra (mobilon).",
+          "2": "Írd meg a szöveget, csatolj médiát (képek, videók, hang), és adj hozzá kategóriákat.",
+          "3": "Hagyd kikapcsolva a 'Bejegyzés mintezése' opciót az off-chain publikáláshoz, vagy kapcsold be a mintezéshez a publikáláskor.",
+          "4": "A közzététel soha nem vár a láncra: a bejegyzés mindkét irányban megjelenik a hírcsatornában.",
+          "5": "A későbbi veréshez nyisd meg a bejegyzés „ⓘ” információs oldalát, és használd az ottani verde műveletet.",
+          "6": "Miután elkészült, a bejegyzés kap egy Token azonosítót és egy tranzakciós hash-t, amelyet ellenőrizhet a láncban, és mind az 1000 töredékét megtarthatja."
+        },
+        "tips": {
+          "1": "A közösségi, e-mailes és SMSes bejelentkezések nem fizetnek gázt — a DeHub szponzorálja a pénzverdei díjakat.",
+          "2": "A külső-pénztárca felhasználóknak ETH-ra van szükségük az alapra vagy BNB-re a BNB láncra a gázhoz.",
+          "3": "A pénzverdézés az, ami az utómunkát kereskedhetővé és jogdíjassá teszi. A veretlen bejegyzés is kereshet borravalót és megtekintést.",
+          "4": "A láncrekord a verés után állandó, még akkor is, ha a bejegyzést később törlik a feedből."
+        }
+      },
+      "glossary": {
+        "title": "Szószedet:",
+        "intro": "A kriptovaluta és a platform terminológiájának átfogó szójegyzéke, amely segít a Web3-on való navigálásban.",
+        "steps": {
+          "1": "Lépjen az oldalsáv „Szójegyzék” pontjára.",
+          "2": "Böngésszen a kifejezések között betűrendben, vagy a keresés segítségével keressen konkrét kifejezéseket.",
+          "3": "Kattintson egy kifejezésre a teljes meghatározásának és magyarázatának megtekintéséhez.",
+          "4": "A kifejezések magukban foglalják a kriptovaluta-koncepciókat, a DeFi terminológiát és a DeHub-specifikus funkciókat."
+        },
+        "tips": {
+          "1": "Nagyszerű forrás az újoncok számára a kriptovalutákhoz és a Web3-hoz.",
+          "2": "A szószedet rendszeresen frissül új kifejezésekkel."
+        }
+      }
     }
   },
   "creatorPacks": {

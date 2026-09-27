@@ -3479,11 +3479,6 @@
     "noResultsFor": "Walang resulta para sa \"{{query}}\"",
     "guideSubtitle": "Hakbang-hakbang na gabay sa bawat feature",
     "searchGuide": "Maghanap sa gabay...",
-    "guideFractionsTip": "Bawat na-mint na post ay nagsisimula sa creator na hawak ang lahat ng bahagi nito (100% pagmamay-ari).",
-    "guideInfoStep": "I-tap ang info icon sa isang na-mint na post para buksan ang mint transaction nito sa block explorer at i-verify ang on-chain na record.",
-    "guideMintIntro": "Opsyonal ang pag-mint ng post bilang NFT sa blockchain. I-mint ito kapag nagpa-publish ka, o i-publish ngayon at i-mint mamaya mula sa menu ng post.",
-    "guideMintPublishStep": "Piliin kung magmi-mint, pagkatapos ay i-click ang 'Post' para i-publish. Kung laktawan mo ang pag-mint, puwede mong i-mint ang post mamaya mula sa menu nito.",
-    "guideMintFractionsStep": "Matatanggap mo ang lahat ng 1,000 fractions (100% pagmamay-ari) ng bago mong na-mint na post.",
     "glossaryMintTxDesc": "I-tap ang info icon sa isang na-mint na post para buksan ang mint transaction nito sa block explorer at i-verify ang on-chain na record. Ang buong Post Info page — stats, holders, marketplace — ay nasa web app sa dehub.io.",
     "glossaryTokenIdDesc": "Isang natatanging on-chain identifier na ibinibigay sa isang post kapag na-mint ito bilang NFT.",
     "repostsTab": "Mga repost",
@@ -3500,24 +3495,7 @@
     "glossaryStakingDesc": "I-lock ang iyong DeHub token upang kumita ng mga gantimpala sa paglipas ng panahon. Ang mga naka-stake na token ay nagbibigay din sa iyo ng mas mataas na kapangyarihan sa pagboto sa pamamahala.",
     "glossaryGovernanceDesc": "Magsumite at bumoto sa mga panukala na humuhubog sa platform. Ang iyong kapangyarihan sa pagboto ay nakabatay sa kung gaano karaming DeHub token ang hawak mo.",
     "glossaryStakingBadgesDesc": "Mga badge na ipinapakita sa tabi ng iyong username batay sa iyong kabuuang DeHub token holdings (wallet + naka-stake). Mayroong 13 tier — mas maraming token ang hawak mo, mas mataas ang iyong ranggo ng badge. Ang mas mataas na tier ay nagbibigay ng mas malaking kapangyarihan sa pagboto sa pamamahala at mas mababang mga bayarin sa platform.",
-    "glossaryLeaderboardDesc": "Ang mga user ay niraranggo batay sa kabuuang balanse ng DeHub token (wallet + naka-stake sa lahat ng chain). Pana-panahong nag-a-update ang mga ranggo at sinusubaybayan ang mga pagbabago sa 1-araw at 1-linggo. Maaari ka ring mag-sort ayon sa mga tip na ipinadala, mga tip na natanggap, mga tagasubaybay, mga gusto, o mga subscriber.",
-    "guideTipStep": "I-click ang gem/tip icon upang magpadala ng tip sa lumikha ng post sa DeHub token.",
-    "guideTipWalletTip": "Ang mga tip ay direktang napupunta sa wallet ng creator bilang DeHub token.",
-    "guideTipNotificationsTip": "Ang mga notipikasyon sa tip ay nagpapakita kung ilang DeHub token ang iyong natanggap.",
-    "guideWalletIntro": "Tingnan ang iyong mga balanse ng DeHub token sa maraming chain, suriin ang mga deposito sa staking, at pamahalaan ang iyong mga asset.",
-    "guideWalletTotalStep": "Tingnan ang iyong kabuuang balanse ng DeHub token na pinagsama-sama sa lahat ng suportadong chain.",
-    "guideStakingIntro": "I-stake ang iyong mga DeHub token upang kumita ng mga reward at dagdagan ang iyong kapangyarihan sa pagboto sa pamamahala.",
-    "guideStakingAmountStep": "Ilagay kung ilang DeHub token ang gusto mong i-stake.",
-    "guideLeaderboardBalanceStep": "Ang tab na Balanse ay nagra-rank ng mga user batay sa kanilang kabuuang hawak na DeHub token.",
-    "guideGovernanceVoteStep": "Bumoto sa mga panukala gamit ang mga thumbs up/down button — ang bigat ng iyong boto ay nakasalalay sa kung ilang DeHub token ang iyong na-stake.",
-    "guideGovernancePowerTip": "Ang iyong kapangyarihan sa pagboto ay tinutukoy ng kung ilang DeHub token ang iyong na-stake.",
-    "guideBuyIntro": "Bumili ng DeHub token nang direkta sa DPay gamit ang card o suportadong crypto.",
-    "guideBuyAmountStep": "Ilagay ang halagang gusto mong gastusin o kung ilang DeHub token ang gusto mong matanggap.",
-    "guideBuyDeliveredStep": "Ang iyong mga DeHub token ay lalabas sa iyong wallet kapag nakumpleto na ang transaksyon.",
-    "guideBridgeIntro": "Ilipat ang iyong mga DeHub token sa pagitan ng mga suportadong blockchain gamit ang cross-chain bridge.",
-    "guideBridgeSourceStep": "Piliin ang source chain (kung nasaan ang iyong mga DeHub token sa kasalukuyan).",
-    "guideBridgeDestStep": "Piliin ang destination chain (kung saan mo gustong ipadala ang iyong mga DeHub token).",
-    "guideBridgeAmountStep": "Ilagay kung ilang DeHub token ang i-bridge."
+    "glossaryLeaderboardDesc": "Ang mga user ay niraranggo batay sa kabuuang balanse ng DeHub token (wallet + naka-stake sa lahat ng chain). Pana-panahong nag-a-update ang mga ranggo at sinusubaybayan ang mga pagbabago sa 1-araw at 1-linggo. Maaari ka ring mag-sort ayon sa mga tip na ipinadala, mga tip na natanggap, mga tagasubaybay, mga gusto, o mga subscriber."
   },
   "arcade": {
     "submitAccessibility": "Magsumite ng laro sa arcade",
@@ -6973,6 +6951,504 @@
       "packEmpty": "Walang nahanap na emoji sa address na iyon",
       "shortcodeTaken": "Nakuha na ang {{name}}",
       "shortcodeStandard": "Ang {{name}} ay isang karaniwang emoji na"
+    }
+  },
+  "guide": {
+    "sections": {
+      "getting-started": {
+        "title": "Pagsisimula",
+        "intro": "Mayroong limang paraan para makapasok sa DeHub at wala sa mga ito ang nangangailangan na mayroon ka nang wallet: Google, Apple, isang code na ipinadala sa iyong email, isang code na ipinadala sa pamamagitan ng SMS, o isang kasalukuyang wallet na iyong ikinonekta. Lahat maliban sa paraan ng wallet ay lumilikha ng non-custodial wallet para sa iyo sa background — hawak mo ang mga susi, at ang DeHub ang nag-sponsor ng gas para makapag-post, makapag-tip, at makapag-ipon ka nang hindi kinakailangang bumili ng native token.",
+        "steps": {
+          "1": "Bisitahin ang dehub.io — ang home feed ang front page, kaya maaari kang tumingin-tingin bago mag-sign in.",
+          "2": "I-click ang 'Sign In'. Makikita mo ang Google at Apple, mga field para sa email address o numero ng telepono, at 'Connect Wallet' para sa isang kasalukuyan.",
+          "3": "Gamit ang Google o Apple, kumpletuhin ang proseso ng provider. Gamit ang email o SMS, ilagay ang code na dumating.",
+          "4": "Isang wallet ang nilikha at sinigurado para sa iyo sa unang pag-sign in. Ang pagkonekta ng iyong sariling wallet sa halip ay nangangahulugan ng isang pirma upang patunayan ang address.",
+          "5": "Pumili ng username. Ito ang nakikita ng mga tao at ito rin ang iyong dehub.io/<username> profile link.",
+          "6": "Nasa loob ka na. Galugarin ang feed, i-set up ang iyong profile, at magsimulang mag-post."
+        },
+        "tips": {
+          "1": "Ang mga sign-in sa pamamagitan ng Social, email, at SMS ay hindi kailanman nagbabayad ng gas — ang DeHub ang nag-sponsor nito. Ang mga nakakonektang wallet ay nagbabayad ng kanilang sariling ETH o BNB.",
+          "2": "Babalik sa isang lumang DeHub account? Mag-sign in gamit ang email o numero ng telepono na ginamit nito at hahanapin ito ng migration para sa iyo.",
+          "3": "Maaari kang magpanatili ng ilang account sa isang device at lumipat sa pagitan ng mga ito sa Settings → Profile."
+        }
+      },
+      "home-feed": {
+        "title": "Home Feed",
+        "intro": "Ang home feed ay kung saan mo nakikita ang mga post mula sa mga taong sinusundan mo at mga trending na nilalaman. Sinusuportahan nito ang maraming tab ng uri ng nilalaman at mga opsyon sa pag-sort.",
+        "steps": {
+          "1": "Mag-navigate sa /app — ito ang iyong home feed.",
+          "2": "Gamitin ang mga pangunahing tab para salain ayon sa uri ng nilalaman: Home (lahat), Mga Video, Mga Larawan, Shorts, Musika, o Live stream.",
+          "3": "Mag-swipe pakaliwa/pakanan sa mga tab para makita ang iba pang opsyon sa mobile.",
+          "4": "Gamitin ang filter/sort button (kanang itaas ng feed) para baguhin ang pag-aayos: Hot, New, o Top.",
+          "5": "Hilahin pababa para i-refresh ang feed sa mobile.",
+          "6": "Mag-scroll pababa para awtomatikong mag-load ng mas maraming post (infinite scroll).",
+          "7": "Magpalit-palit sa pagitan ng Grid at Feed view gamit ang layout switcher."
+        },
+        "tips": {
+          "1": "Maganda ang Grid view para sa mabilis na pag-browse ng mga larawan.",
+          "2": "Ang 'Home' tab ay nagpapakita ng lahat ng uri ng nilalaman na pinaghalo.",
+          "3": "Ang Live tab ay nagpapakita ng mga kasalukuyang aktibong live stream."
+        }
+      },
+      "creating-posts": {
+        "title": "Paglikha ng mga Post",
+        "intro": "Gumawa ng mga text post, magbahagi ng mga larawan, video, voice note, GIF, at higit pa. Gumamit ng mga hashtag, cashtag, at mention para mapalaki ang abot.",
+        "steps": {
+          "1": "I-click ang 'Post' button sa sidebar (desktop) o ang + button (mobile).",
+          "2": "I-type ang iyong teksto sa compose area.",
+          "3": "Para magdagdag ng larawan o video, i-click ang media icon at pumili ng file.",
+          "4": "Para mag-record ng voice note, i-click ang microphone icon.",
+          "5": "Para magdagdag ng GIF, i-click ang GIF icon at maghanap ng isa.",
+          "6": "Gumamit ng #hashtags para ikategorya ang iyong post (hal., #crypto, #defi).",
+          "7": "Gumamit ng $cashtags para tukuyin ang mga token (hal., $DHB, $ETH).",
+          "8": "Gumamit ng @mentions para i-tag ang ibang mga user (hal., @username).",
+          "9": "I-click ang 'Post' para i-publish. Ang iyong post ay agad na lalabas sa feed."
+        },
+        "tips": {
+          "1": "Sinusuportahan ng mga post ang markdown-style formatting.",
+          "2": "Maaari kang mag-quote-post sa pamamagitan ng pag-click sa repost icon sa anumang post at pagpili ng 'Quote'.",
+          "3": "Ang mga kategorya (hashtags) ay lumalabas sa 'Talk of the Town' leaderboard."
+        }
+      },
+      "interacting-with-posts": {
+        "title": "Pakikipag-ugnayan sa mga Post",
+        "intro": "Makipag-ugnayan sa nilalaman sa pamamagitan ng pagboto, pagkomento, pagbibigay ng tip, pag-bookmark, pagbabahagi, at pagsasalin.",
+        "steps": {
+          "1": "Mag-upvote o mag-downvote ng post gamit ang mga arrow icon sa kaliwang bahagi ng anumang post.",
+          "2": "I-click ang comment icon para buksan ang comment section at mag-iwan ng reply.",
+          "3": "I-click ang gem/tip icon para magpadala ng tip sa DeHub tokens sa lumikha ng post.",
+          "4": "I-click ang bookmark icon para i-save ang isang post para sa susunod.",
+          "5": "I-click ang share icon para kopyahin ang post link o ibahagi sa labas.",
+          "6": "I-click ang translate button (globe icon) sa anumang post para isalin ang teksto sa iyong wika.",
+          "7": "Para sa mga image post, gamitin ang 'Translate Image' button para makakuha ng AI-translated na bersyon ng teksto sa loob ng imahe.",
+          "8": "I-click ang anumang post para buksan ito sa full-screen single-post view."
+        },
+        "tips": {
+          "1": "Ang mga tip ay direktang napupunta sa wallet ng creator sa DeHub tokens.",
+          "2": "Maaari kang magtakda ng halaga ng tip sa pamamagitan ng quick-select buttons o maglagay ng custom na halaga.",
+          "3": "Ang mga naka-bookmark na post ay maa-access mula sa Bookmarks page sa sidebar."
+        }
+      },
+      "explore-search": {
+        "title": "Explore & Search",
+        "intro": "Tumuklas ng bagong content at users sa pamamagitan ng explore page at malakas na search functionality.",
+        "steps": {
+          "1": "Pumunta sa /app/explore mula sa sidebar.",
+          "2": "Gamitin ang search bar sa itaas para maghanap ng users, posts, o content.",
+          "3": "I-filter ang mga resulta ayon sa tab: All, People, Posts, Images, Videos, Music, Live.",
+          "4": "Mag-browse ng mga trending na paksa at kategorya sa explore page.",
+          "5": "I-click ang isang trending na paksa para makita ang lahat ng kaugnay na post.",
+          "6": "I-click ang isang user sa search results para bisitahin ang kanilang profile."
+        },
+        "tips": {
+          "1": "Sinusuportahan ng search ang mga username, wallet address, at content keywords.",
+          "2": "Ang mga trending na paksa ay nag-a-update batay sa kamakailang aktibidad sa pag-post."
+        }
+      },
+      "profile": {
+        "title": "Profile",
+        "intro": "Ang iyong profile ay nagpapakita ng iyong mga post, followers, following, at wallet information.",
+        "steps": {
+          "1": "I-click ang iyong avatar o 'Profile' sa sidebar para tingnan ang iyong profile.",
+          "2": "I-click ang 'Edit Profile' para i-update ang iyong display name, bio, at avatar.",
+          "3": "Mag-upload ng profile picture sa pamamagitan ng pag-click sa iyong avatar sa edit mode.",
+          "4": "Tingnan ang iyong follower at following counts sa iyong profile page.",
+          "5": "Mag-browse ng sarili mong mga post, media, at nagustuhang content sa pamamagitan ng mga profile tab.",
+          "6": "Kopyahin ang iyong wallet address sa pamamagitan ng pag-click sa copy icon sa tabi nito.",
+          "7": "Bisitahin ang mga profile ng ibang users sa pamamagitan ng pag-click sa kanilang username o avatar kahit saan sa platform."
+        },
+        "tips": {
+          "1": "Ang iyong username ay unique at lumalabas sa iyong profile URL (dehub.io/@username).",
+          "2": "Pinapayagan ka ng mga privacy setting na kontrolin kung sino ang makakakita ng iyong follower counts."
+        }
+      },
+      "messages": {
+        "title": "Messages",
+        "intro": "Magpadala ng direct messages sa ibang users sa platform.",
+        "steps": {
+          "1": "I-click ang 'Messages' sa sidebar para buksan ang messaging page.",
+          "2": "I-click ang compose button para magsimula ng bagong usapan.",
+          "3": "Maghanap ng user gamit ang username para makipag-message sa kanila.",
+          "4": "I-type ang iyong mensahe at pindutin ang send.",
+          "5": "Tingnan ang iyong kasaysayan ng usapan sa listahan ng mga mensahe.",
+          "6": "I-click ang isang usapan para ipagpatuloy ang pag-uusap."
+        },
+        "tips": {
+          "1": "Makakatanggap ka ng notipikasyon kapag may nag-message sa iyo.",
+          "2": "Maaaring i-lock ng mga creator ang mga mensahe sa pamamagitan ng paghingi ng tip."
+        }
+      },
+      "ai-assistant": {
+        "title": "AI Assistant",
+        "intro": "Makipag-chat sa built-in AI assistant ng DeHub para sa tulong, impormasyon, at malikhaing gawain.",
+        "steps": {
+          "1": "I-click ang 'Assistant' sa sidebar para buksan ang AI chat.",
+          "2": "I-type ang iyong tanong o kahilingan sa chat input.",
+          "3": "Maaaring tumulong ang AI sa impormasyon tungkol sa crypto, mga tanong tungkol sa platform, at pangkalahatang kaalaman.",
+          "4": "Magsimula ng bagong usapan sa pamamagitan ng pag-click sa new chat button.",
+          "5": "Tingnan ang iyong kasaysayan ng usapan sa sidebar ng assistant page.",
+          "6": "Maaari kang mag-attach ng mga larawan para suriin ng AI."
+        },
+        "tips": {
+          "1": "Naaalala ng AI ang konteksto sa loob ng isang usapan.",
+          "2": "Maaari mong tanungin ang AI tungkol sa mga feature ng DeHub, mga termino sa crypto, o pangkalahatang mga tanong.",
+          "3": "Ang mga nakaraang usapan ay nai-save at naa-access anumang oras."
+        }
+      },
+      "notifications": {
+        "title": "Mga Notipikasyon",
+        "intro": "Manatiling updated sa mga likes, komento, tip, follow, at iba pang aktibidad sa iyong content.",
+        "steps": {
+          "1": "I-click ang bell icon o 'Notifications' sa sidebar.",
+          "2": "Tingnan ang lahat ng notipikasyon sa isang chronological list.",
+          "3": "I-click ang isang notipikasyon para pumunta sa kaugnay na content.",
+          "4": "Kasama sa mga notipikasyon ang: mga bagong follower, mga boto sa post, mga komento, mga tip, at mga mention.",
+          "5": "Ang mga hindi pa nababasang notipikasyon ay naka-highlight — minamarkahan itong nabasa kapag tiningnan."
+        },
+        "tips": {
+          "1": "Ang notification badge ay nagpapakita ng bilang ng mga hindi pa nababasang notipikasyon.",
+          "2": "Ang mga notipikasyon sa tip ay nagpapakita kung ilang token ang iyong natanggap."
+        }
+      },
+      "wallet": {
+        "title": "Wallet",
+        "intro": "Tingnan ang iyong mga DeHub token balance sa maraming chain, suriin ang mga staking deposit, at pamahalaan ang iyong mga asset.",
+        "steps": {
+          "1": "I-click ang 'Wallet' sa sidebar para buksan ang wallet page.",
+          "2": "Tingnan ang iyong kabuuang balanse ng token na pinagsama-sama sa lahat ng suportadong chain.",
+          "3": "Tingnan ang mga breakdown bawat chain: Ethereum, Base, BNB Chain, at higit pa.",
+          "4": "Suriin ang iyong mga deposito at gantimpala sa staking.",
+          "5": "I-click ang 'Refresh Scan' upang i-update ang iyong mga balanse mula sa on-chain data.",
+          "6": "Kopyahin ang iyong wallet address upang makatanggap ng mga token mula sa iba."
+        },
+        "tips": {
+          "1": "Awtomatikong nag-a-update ang mga balanse ngunit maaari mong pilitin ang pag-refresh anumang oras.",
+          "2": "Ang wallet ay nagpapakita ng parehong likido (available) at naka-stake na mga balanse."
+        }
+      },
+      "staking": {
+        "title": "Staking",
+        "intro": "I-stake ang iyong DeHub token upang kumita ng mga gantimpala at dagdagan ang iyong kapangyarihan sa pagboto sa pamamahala.",
+        "steps": {
+          "1": "Mag-navigate sa pahinang 'Staking' mula sa sidebar.",
+          "2": "Ilagay ang bilang ng mga token na nais mong i-stake.",
+          "3": "Piliin ang chain na nais mong i-stake.",
+          "4": "Kumpirmahin ang transaksyon sa iyong wallet (mga external wallet) o awtomatiko itong nagpapatupad (social login).",
+          "5": "Tingnan ang iyong mga naka-stake na halaga at anumang nakabinbing gantimpala.",
+          "6": "Upang mag-unstake, ilagay ang halaga at kumpirmahin ang unstaking transaction."
+        },
+        "tips": {
+          "1": "Pinapataas ng Staking ang iyong vote weight sa mga panukala sa pamamahala.",
+          "2": "Ang mga user ng Social-login ay hindi nangangailangan ng gas upang mag-stake — ito ay gasless.",
+          "3": "Maaari kang mag-stake sa maraming chain nang sabay-sabay."
+        }
+      },
+      "leaderboard": {
+        "title": "Leaderboard",
+        "intro": "Tingnan kung sino ang nangunguna! Niraranggo ng leaderboard ang mga user ayon sa balanse, pang-araw-araw na paggastos, at mga trending na paksa.",
+        "steps": {
+          "1": "Mag-navigate sa pahinang 'Leaderboard' mula sa sidebar.",
+          "2": "Lumipat sa pagitan ng mga tab: Balanse, Pang-araw-araw na Gasto, at Usap-usapan.",
+          "3": "Ang tab na Balanse ay nagraranggo ng mga user ayon sa kanilang kabuuang hawak na token.",
+          "4": "Ang tab na Pang-araw-araw na Gasto ay nagpapakita kung sino ang pinaka-aktibong nagbibigay ng tip sa huling 24 na oras.",
+          "5": "Ang Usap-usapan ay nagpapakita ng mga pinaka-pinag-uusapang paksa/kategorya.",
+          "6": "Mag-click sa sinumang user upang bisitahin ang kanilang profile.",
+          "7": "Ang leaderboard ay pana-panahong nag-a-update sa buong araw."
+        },
+        "tips": {
+          "1": "Ang mga pang-araw-araw na ranggo ay nagre-reset bawat 24 na oras.",
+          "2": "Sinusubaybayan ng Usap-usapan ang mga kategorya ng isang salita mula sa mga hashtag."
+        }
+      },
+      "command-centre": {
+        "title": "Command Centre",
+        "intro": "Isang pangkalahatang-ideya ng dashboard na nagpapakita ng iyong mga pangunahing sukatan at aktibidad sa platform sa isang sulyap.",
+        "steps": {
+          "1": "I-click ang 'Command Centre' sa sidebar.",
+          "2": "Tingnan ang buod ng iyong profile, kabilang ang bilang ng mga post, tagasubaybay, at pakikipag-ugnayan.",
+          "3": "Tingnan ang iyong kamakailang aktibidad at mga trending na paksa.",
+          "4": "Mag-access ng mga mabilisang link sa mga karaniwang ginagamit na feature."
+        },
+        "tips": {
+          "1": "Ang Command Centre ay nagbibigay sa iyo ng isang bird's-eye view ng iyong presensya sa DeHub."
+        }
+      },
+      "governance": {
+        "title": "Pamamahala",
+        "intro": "Makilahok sa pamamahala ng platform sa pamamagitan ng paglikha ng mga panukala at pagboto sa mga desisyon ng komunidad.",
+        "steps": {
+          "1": "Mag-navigate sa 'Governance' mula sa sidebar.",
+          "2": "Mag-browse ng mga aktibong panukala na isinumite ng komunidad.",
+          "3": "Mag-click sa isang panukala upang basahin ang buong paglalarawan at talakayan nito.",
+          "4": "Bumoto sa mga panukala gamit ang mga thumbs up/down na button — ang bigat ng iyong boto ay nakasalalay sa kung gaano karaming DeHub token ang iyong naka-stake.",
+          "5": "Mag-iwan ng mga komento sa mga panukala upang talakayin sa komunidad.",
+          "6": "Magsumite ng iyong sariling panukala sa pamamagitan ng pag-click sa 'Create Proposal' button."
+        },
+        "tips": {
+          "1": "Ang iyong kapangyarihan sa pagboto ay tinutukoy ng bilang ng mga token na iyong naka-stake.",
+          "2": "Maaaring makakuha ng karagdagang bigat ng boto ang mga may hawak ng badge.",
+          "3": "Ang mga panukala ay dumadaan sa mga yugto: Aktibo → Nakapasa/Tinanggihan."
+        }
+      },
+      "bookmarks": {
+        "title": "Mga Bookmark",
+        "intro": "I-save ang mga post sa iyong mga bookmark para sa madaling pag-access sa hinaharap.",
+        "steps": {
+          "1": "I-click ang bookmark icon sa anumang post upang i-save ito.",
+          "2": "Mag-navigate sa 'Bookmarks' sa sidebar upang tingnan ang lahat ng naka-save na post.",
+          "3": "Mag-click sa isang naka-bookmark na post upang tingnan ito nang buo.",
+          "4": "Alisin ang isang bookmark sa pamamagitan ng pag-click muli sa bookmark icon."
+        },
+        "tips": {
+          "1": "Ang mga bookmark ay pribado — ikaw lamang ang makakakita ng iyong mga naka-save na post.",
+          "2": "Walang limitasyon kung gaano karaming post ang maaari mong i-bookmark."
+        }
+      },
+      "settings": {
+        "title": "Mga Setting",
+        "intro": "I-customize ang iyong karanasan sa DeHub gamit ang mga kagustuhan sa wika, privacy, at display.",
+        "steps": {
+          "1": "I-click ang 'Settings' sa sidebar.",
+          "2": "Baguhin ang iyong display language mula sa language selector.",
+          "3": "Ayusin ang mga setting ng privacy: kontrolin kung sino ang nakakakita ng iyong mga bilang ng tagasubaybay at listahan ng sinusundan.",
+          "4": "Itakda ang iyong mga default na kagustuhan sa visibility ng post.",
+          "5": "Pamahalaan ang mga kagustuhan sa notipikasyon."
+        },
+        "tips": {
+          "1": "Sinusuportahan ng DeHub ang maraming wika — isinasalin ang buong interface.",
+          "2": "Ang mga setting ng privacy ay agad na ipinapatupad."
+        }
+      },
+      "posting-allowance": {
+        "title": "Ang iyong Pang-araw-araw na Allowans sa Pag-post",
+        "intro": "Ang pag-post ay libre araw-araw hanggang sa isang allowans na lumalaki kasama ang iyong staking badge. Lahat ay nagsisimula sa sampung text post at isang gigabyte ng video, mga larawan at audio bawat araw. Lumampas sa alinman sa dalawa at ang natitira sa araw na iyon ay babayaran sa DeHub tokens — tanging sa bahaging lumampas.",
+        "steps": {
+          "1": "Mag-post gaya ng dati. Sa loob ng allowans walang sinisingil at walang hinihingi sa iyo.",
+          "2": "Ang mga text post at media ay magkahiwalay na pool, kaya ang isang araw na ginugol sa pag-upload ng video ay nag-iiwan pa rin ng lahat ng sampung text post na libre.",
+          "3": "Kapag ang isang post ay lumampas, unang binibigyan ng presyo ng app at sinusuri kung kaya itong bayaran ng iyong wallet bago mag-upload ng anuman.",
+          "4": "Ang post ay nai-publish gaya ng sa loob ng allowans — ang pag-publish ay hindi kailanman naghihintay sa isang bayad.",
+          "5": "Pagkatapos ay aprubahan mo ang isang paglilipat para lamang sa post na iyon, na naayos sa alinman sa Base o BNB Chain na may sapat na DeHub tokens.",
+          "6": "Parehong pool ay nagre-reset sa hatinggabi UTC."
+        },
+        "tips": {
+          "1": "Ang sobrang paggamit ay pro-rata: ang 200 MB na lumampas sa iyong allowans ay nagkakahalaga ng 200 MB, hindi isang buong gigabyte.",
+          "2": "Ang mga repost, komento, reaksyon, tip at mensahe ay walang gastos at hindi kailanman dumadampi sa allowans.",
+          "3": "Tanggihan ang bayad at mananatiling nakalathala ang post — ang halaga ay humaharang lamang sa iyong susunod na bayad na post hanggang sa ito ay maayos. Ang libreng allowans bukas ay palaging sa iyo.",
+          "4": "Ang isang staking badge ay nagpapataas ng libreng allowans at nagpapababa ng presyo ng anumang lumampas dito."
+        }
+      },
+      "reactions-and-safety": {
+        "title": "Mga Reaksyon, Pag-mute & Mature na Nilalaman",
+        "intro": "Mayroong siyam na reaksyon sa likod ng like button, at isang hanay ng mga kontrol para sa pagpapasya kung ano ang iyong nakikita at kung sino ang maaaring makaabot sa iyo.",
+        "steps": {
+          "1": "Hawakan ang thumbs-up sa anumang post upang buksan ang reaksyon tray: like, love, respect, hot, lol, sad, cry, dislike at poo.",
+          "2": "Ang pitong positibong bilang ay binibilang patungo sa kabuuang like ng post; ang dislike at poo ay binibilang laban dito.",
+          "3": "Ang iyong reaksyon ay binibigyan ng bigat ng iyong staking badge, kaya ang reaksyon ng may-ari ng badge ay mas malaki ang epekto sa bilang kaysa sa isang boto.",
+          "4": "Tapikin ang X sa header ng isang post upang i-mute ang may-akda nito — agad silang mawawala sa iyong feed.",
+          "5": "Minamarkahan ng mga creator ang kanilang sariling mga post bilang mature habang ginagawa ang mga ito; ang mga post na iyon ay nananatiling wala sa pampublikong home feed.",
+          "6": "Upang makita ang mga mature na post sa lahat ng dako, i-on ang 'Show mature content' sa Settings."
+        },
+        "tips": {
+          "1": "Ang isang mature na post ay ganap pa ring nakikita sa profile ng creator at sa mga taong sumusunod sa kanila.",
+          "2": "Ang pag-block mula sa isang profile ay mas malayo kaysa sa pag-mute at pinipigilan din ang pagmemensahe.",
+          "3": "Ang reaksyon tray ay nagpapakita kung sino ang nag-react at kung ano, kaya makikita mo ang silid sa halip na isang numero lamang."
+        }
+      },
+      "stages": {
+        "title": "Mga Yugto (Mga Live Audio Room)",
+        "intro": "Ang mga yugto ay mga live audio room na nakapaloob sa DeHub. Ang isang host ay nagbubukas ng isang silid, nagdadala ng mga speaker, at sinuman ay maaaring pumasok upang makinig mula sa pahina ng Stages o isang ibinahaging link.",
+        "steps": {
+          "1": "Buksan ang 'Stages' sa sidebar upang makita kung ano ang live ngayon at kung ano ang naka-schedule.",
+          "2": "Tap a live stage para sumali bilang tagapakinig, o magtakda ng paalala sa isang naka-schedule at ipaalam sa iyo kung kailan ito magsisimula.",
+          "3": "Simulan ang sarili mo mula sa parehong pahina — maaari kang mag-live nang direkta mula sa browser, nang walang OBS o stream key.",
+          "4": "Bilang host, dalhin ang mga speaker sa entablado, i-mute o alisin sila, ibahagi ang iyong screen, at patakbuhin ang soundboard.",
+          "5": "Ang mga tagapakinig ay nagpapadala ng mga live na reaksyon at nakikipag-usap sa chat ng silid nang hindi pumapasok sa entablado.",
+          "6": "Bawat stage ay nagre-record, at ang recording ay nagpe-play pabalik pagkatapos mula sa card kung saan ito lumalabas."
+        },
+        "tips": {
+          "1": "Ang mga live na subtitle ay nag-caption sa bawat speaker at nagsasalin sa anumang wikang binabasa mo.",
+          "2": "Ang live dubbing ay maaaring magsalita ng silid nang malakas gamit ang sariling cloned voice ng host, na binabayaran kada minuto sa DeHub tokens.",
+          "3": "Maaaring maglagay ang mga host ng isang radio station sa ere o magpatugtog ng sarili nilang mga music clip sa pagitan ng mga pag-uusap.",
+          "4": "Pinapanatili ng isang mini-player ang silid na tumatakbo sa sulok habang nagba-browse ka sa iba pang bahagi ng app."
+        }
+      },
+      "communities": {
+        "title": "Mga Komunidad at Kaganapan",
+        "intro": "Ang mga komunidad ay mga espasyong pinapatakbo ng miyembro na may sariling feed, miyembro, at aktibidad. Ang mga kaganapan ay nagdaragdag ng time-bound na pagprograma sa ibabaw ng mga ito.",
+        "steps": {
+          "1": "Buksan ang 'Mga Komunidad' sa sidebar at mag-browse ng mga pampublikong komunidad.",
+          "2": "Sumali sa isang tap. Ang bagong aktibidad ay nagpapakita bilang isang unread badge sa nabigasyon.",
+          "3": "Mag-post, magtalakay, magpatakbo ng mga poll, at magbigay ng tip sa loob ng sariling feed ng isang komunidad.",
+          "4": "Ang mga may-ari ng komunidad ay nagmo-moderate ng kanilang sariling espasyo at maaaring magbigay ng admin rights sa iba.",
+          "5": "Buksan ang 'Mga Kaganapan' para sa naka-schedule na pagprograma, na may buong pahina bawat kaganapan na maaari mong sundan nang live."
+        },
+        "tips": {
+          "1": "Sinusuportahan ng community chat ang @mentions at @here, kaya ang isang post ay maaaring umabot sa silid.",
+          "2": "Ang isang invite link ay nagbibigay-daan sa iyo na dalhin ang mga tao nang direkta sa isang komunidad."
+        }
+      },
+      "arcade": {
+        "title": "Arcade",
+        "intro": "Limang laro ang tumatakbo sa loob ng DeHub sa isang browser tab — walang kailangang i-install, walang kailangang bilhin.",
+        "steps": {
+          "1": "Buksan ang 'Arcade' sa sidebar.",
+          "2": "Pumili ng laro: King's Gambit (3D chess na may online Elo ladder), Claude of Duty (isang shooter na bumubuo ng sarili nitong sining habang naglo-load), Jungle Trail (isang procedural rainforest walk), Street Slayer (isang beat 'em up na ginawa para sa DeHub) o Chartopia (isang walkable trading floor).",
+          "3": "Maglaro sa tab. Ang King's Gambit at Street Slayer ay nagpapanatili ng mga leaderboard.",
+          "4": "Ang Chartopia ay tumatakbo rin sa isang VR headset sa pamamagitan ng WebXR."
+        },
+        "tips": {
+          "1": "Dalawa sa mga ito ay nakatago sa loob ng mga appearance theme — itakda ang app sa War para sa Claude of Duty, o Jungle para sa Jungle Trail.",
+          "2": "Bawat laro ay may sariling share card, kaya ang isang link sa isa ay maayos na nagbubukas saanman mo ito i-post."
+        }
+      },
+      "bounties-stores": {
+        "title": "Mga Bounty at Tindahan",
+        "intro": "Dalawang paraan para gawing kita ang platform: mag-post o mag-claim ng bounty, o magbukas ng storefront at magbenta sa iyong audience.",
+        "steps": {
+          "1": "Buksan ang 'Bounties' para mag-browse ng mga bukas na trabaho, na naka-filter ayon sa kategorya o currency.",
+          "2": "Mag-claim ng isa, gawin ang trabaho, at isumite ito para kolektahin ang gantimpala — sinuman ay maaaring maging hunter, walang kinakailangang aplikasyon.",
+          "3": "Mag-post ng sarili mong bounty na may maikling deskripsyon at gantimpala sa DeHub tokens o USDC. Ito ay mapupunta sa escrow sa sandaling i-post mo ito.",
+          "4": "Buksan ang 'Stores' para mag-set up ng storefront na may sariling pahina, branding, at mga listing.",
+          "5": "Ang mga produkto ay may presyo at binabayaran sa DeHub tokens sa pamamagitan ng built-in wallet, nang walang panlabas na checkout."
+        },
+        "tips": {
+          "1": "Ang mga bounty ay nakaayos sa Social Media, Clipping, at Contracts.",
+          "2": "Ang isang dispute flow ay nag-aayos ng mga hindi pagkakaunawaan sa paghahatid, kaya't ang escrow ay palaging nagreresolba nang patas.",
+          "3": "Gumagamit ang mga creator ng mga bounty upang palakihin ang isang komunidad — ang mga share, clip, at reaksyon ay lahat balidong gawain."
+        }
+      },
+      "creator-studio": {
+        "title": "Creator Studio & Editor",
+        "intro": "Ang Creator Studio ay bumubuo ng mga imahe, video, musika, boses, at 3D models mula sa isang prompt, at ibinibigay ang mga ito sa isang editor — kasama ang isang kumpletong multi-track video editor na tumatakbo sa browser.",
+        "steps": {
+          "1": "Buksan ang Creator Studio at ilarawan kung ano ang gusto mong gawin.",
+          "2": "Ang server ay magbibigay ng presyo bago tumakbo ang trabaho, kaya makikita mo ang gastos bago mo ito gastusin.",
+          "3": "Ang mga render ay magpapatuloy sa isang shared queue habang ikaw ay nagba-browse sa app.",
+          "4": "Ayusin ang mga resulta sa Canva-style editor, o buksan ang video editor para sa isang tunay na timeline na may pagputol, pagpapatong, at pag-export.",
+          "5": "I-drop ang natapos na piraso nang direkta sa isang post, isang short, o isang store listing."
+        },
+        "tips": {
+          "1": "Ang isang libreng stock asset library ay kasama ng Studio para sa anumang hindi mo nais na i-generate.",
+          "2": "Ang generation ay binabayaran sa DeHub tokens mula sa iyong wallet — mag-sign ka ng isang transfer bawat trabaho, at ang presyo ay ibinibigay bago ka magbayad.",
+          "3": "Ang mga mas mabigat na user ay maaaring kumuha ng Ultra, Team, o Scale plan, na nagpapadala ng buwanang token allowance nang direkta sa kanilang wallet."
+        }
+      },
+      "buying-dhb": {
+        "title": "Pagbili ng Tokens",
+        "intro": "Bumili ng DeHub tokens nang direkta sa loob ng app gamit ang built-in swap interface.",
+        "steps": {
+          "1": "Pumunta sa pahinang 'Buy' mula sa sidebar.",
+          "2": "Piliin ang token na gusto mong i-swap mula (hal., ETH, USDC).",
+          "3": "Ilagay ang halaga na gusto mong gastusin o ang bilang ng mga token na gusto mong matanggap.",
+          "4": "Suriin ang exchange rate at ang tinatayang output.",
+          "5": "I-click ang gear icon ng settings para ayusin ang slippage tolerance (default ay 1%).",
+          "6": "Kumpirmahin ang swap transaction.",
+          "7": "Ang DeHub tokens ay lalabas sa iyong wallet kapag natapos ang transaksyon."
+        },
+        "tips": {
+          "1": "Mas mataas na slippage tolerance = mas malamang na mag-execute, ngunit potensyal para sa mas masamang presyo.",
+          "2": "Palaging suriin ang exchange rate bago kumpirmahin.",
+          "3": "Maaari kang magtakda ng custom na slippage sa settings panel."
+        }
+      },
+      "bridge": {
+        "title": "Bridge",
+        "intro": "Ilipat ang iyong DeHub tokens sa pagitan ng mga suportadong blockchain gamit ang cross-chain bridge.",
+        "steps": {
+          "1": "Pumunta sa pahinang 'Bridge' mula sa sidebar.",
+          "2": "Piliin ang source chain (kung nasaan ang iyong mga token sa kasalukuyan).",
+          "3": "Piliin ang destination chain (kung saan mo nais ipadala ang mga ito).",
+          "4": "Ilagay ang bilang ng mga token na i-bridge.",
+          "5": "Suriin ang bridge fee at ang tinatayang oras ng pagdating.",
+          "6": "Kumpirmahin ang bridge transaction.",
+          "7": "Maghintay na matapos ang transaction — maaaring tumagal ng ilang minuto ang pag-bridge."
+        },
+        "tips": {
+          "1": "Ang mga bridge fee ay nag-iiba depende sa pares ng chain.",
+          "2": "Karaniwang tumatagal ang pag-bridge ng 1-5 minuto depende sa mga chain na kasangkot.",
+          "3": "Palaging i-double-check ang destination chain bago kumpirmahin."
+        }
+      },
+      "music-tv": {
+        "title": "Musika at TV",
+        "intro": "Mag-enjoy sa media content direkta sa loob ng DeHub — mag-stream ng musika at manood ng mga live TV channel.",
+        "steps": {
+          "1": "Pumunta sa 'Music' mula sa sidebar upang mag-browse at magpatugtog ng mga music post.",
+          "2": "Pumunta sa 'TV' upang ma-access ang mga live TV channel.",
+          "3": "Mag-browse ng mga channel ayon sa kategorya o bansa.",
+          "4": "Mag-click sa isang channel upang simulan ang panonood.",
+          "5": "Gamitin ang mga kontrol ng player upang ayusin ang volume at playback.",
+          "6": "Mag-report ng mga sirang channel gamit ang report button."
+        },
+        "tips": {
+          "1": "Ang mga TV channel ay na-verify ng komunidad para sa pagiging maaasahan.",
+          "2": "Maaaring patugtugin ang mga music post habang nagba-browse ng iba pang nilalaman."
+        }
+      },
+      "post-info": {
+        "title": "Impormasyon ng Post at mga Fraction",
+        "intro": "Ang isang minted post ay isang NFT na hinati sa 1,000 fractions. Ipinapakita ng pahinang Post Info ang on-chain data, mga istatistika ng engagement, paghahati ng pagmamay-ari, at hinahayaan kang mag-trade ng mga fraction ng anumang post — sa isang unminted post, nag-aalok ito na mag-mint sa halip.",
+        "steps": {
+          "1": "I-tap ang 'ⓘ' icon sa anumang post upang buksan ang pahinang Post Info nito.",
+          "2": "Sa itaas makikita mo ang Token ID (natatanging on-chain identifier) at ang transaction hash — i-click ang hash upang makita ito sa block explorer.",
+          "3": "Sa ibaba nito, ipinapakita ng mga istatistika ng engagement ang kabuuang likes, dislikes, views, comments, at tips na natanggap.",
+          "4": "Ipinapakita ng seksyong Holders ang progress bar kung ilan sa 1,000 fractions ang pagmamay-ari pa rin ng creator, kasama ang listahan ng lahat ng fraction holders kasama ang kanilang mga balanse at porsyento.",
+          "5": "Kung ang post ay pay-per-view (PPV), makikita mo ang presyo, currency, at kung ilang user ang bumili ng access.",
+          "6": "Maaaring baguhin ng mga may-ari ng post ang visibility (Public, Unlisted, o Private) at i-edit ang pamagat/deskripsyon direkta mula sa pahinang ito."
+        },
+        "tips": {
+          "1": "Ang isang bagong minted na post ay nagsisimula sa creator na nagmamay-ari ng lahat ng 1,000 fractions (100% ownership).",
+          "2": "Ang transaction hash ay nagli-link sa BaseScan o BscScan depende sa chain.",
+          "3": "Ang mga hindi nakalistang post ay hindi lumalabas sa mga feed ngunit maaari pa ring ma-access sa pamamagitan ng direktang link."
+        }
+      },
+      "trading-fractions": {
+        "title": "Mga Bahagyang Pangangalakal",
+        "intro": "Fraction trading — pag — browse ng mga listahan, paggawa ng mga alok, listahan ng iyong sariling — nakatira sa web app sa dehub.io, sa bawat pahina Post Info ng post.",
+        "steps": {
+          "1": "Buksan ang dehub.io sa isang browser at mag - sign in gamit ang parehong account.",
+          "2": "Buksan ang pahina ng Post Info ng post at lumipat sa tab na Marketplace nito.",
+          "3": "Mag - browse ng mga listing, gumawa ng alok sa iyong presyo, o mag - list ng mga bahagimbilang na hawak mo.",
+          "4": "Sa sandaling makumpleto ang isang kalakalan, lumilitaw ang pagbabago sa iyong tab na Mga Fraction dito sa mobile."
+        },
+        "tips": {
+          "1": "Ang pagmamay - ari ng mga fraction ng isang post ay nangangahulugang hawak mo ang isang bahagi ng on - chain na NFT.",
+          "2": "Suriin ang mga may hawak ng post sa web marketplace upang makita ang pamamahagi ng pagmamay - ari bago bumili.",
+          "3": "Bilang isang tagalikha, ang pagbebenta ng mga fraction ay nagbibigay - daan sa mga tagahanga na maging co - own ang iyong nilalaman."
+        }
+      },
+      "minting-posts": {
+        "title": "Pag-mint ng mga Post (Paglikha ng mga NFT)",
+        "intro": "Opsyonal ang pag-mint. Ang isang post ay nai-publish off-chain sa sandaling ipadala mo ito — walang wallet, walang signature, walang gas — at maaari mo itong i-mint bilang NFT kahit kailan mo gusto, alinman habang binubuo mo ito o mamaya mula sa mismong post.",
+        "steps": {
+          "1": "I-click ang 'Post' button sa sidebar (desktop) o ang + button (mobile).",
+          "2": "Isulat ang iyong teksto, maglakip ng media (mga larawan, video, audio), at magdagdag ng mga kategorya.",
+          "3": "Huwag i-on ang 'Mint post' upang i-publish off-chain, o i-on ito upang i-mint habang nagpa-publish ka.",
+          "4": "Ang pag - publish ay hindi kailanman naghihintay sa chain: ang post ay lilitaw sa feed alinman sa paraan.",
+          "5": "Upang mag - mint sa ibang pagkakataon, buksan ang pahina ng impormasyon ng post na '' at gamitin ang aksyon ng Mint doon.",
+          "6": "Sa sandaling na - mint, ang post ay makakakuha ng isang Token ID at isang hash ng transaksyon na maaari mong i - verify on - chain, at hawak mo ang lahat ng mga bahagi ng 1,000 nito."
+        },
+        "tips": {
+          "1": "Social, email at SMS sign - in magbayad zero gas — DeHub sponsors minting bayarin.",
+          "2": "Ang mga gumagamit ng panlabas na wallet ay nangangailangan ng ETH sa BASE o BNB SA BNB Chain para sa gas.",
+          "3": "Minting ay kung ano ang gumagawa ng isang post tradeable at royalty - bearing. Ang isang unminted post ay kumikita pa rin ng mga tip at pagtingin.",
+          "4": "Ang on - chain record ay permanente sa sandaling na - mint, kahit na ang post ay kalaunan ay tinanggal mula sa feed."
+        }
+      },
+      "glossary": {
+        "title": "Talahuluganan",
+        "intro": "Isang komprehensibong glossary ng terminolohiya ng crypto at platform upang matulungan kang mag - navigate sa Web3.",
+        "steps": {
+          "1": "Mag - navigate sa 'Glossary' mula sa sidebar.",
+          "2": "Mag - browse ng mga tuntunin ayon sa alpabeto o gamitin ang paghahanap upang makahanap ng mga tukoy na tuntunin.",
+          "3": "Mag - click sa isang termino upang makita ang buong kahulugan at paliwanag nito.",
+          "4": "Saklaw ng mga tuntunin ang mga konsepto ng crypto, terminolohiya ng DeFi, at mga tampok na partikular sa DeHub."
+        },
+        "tips": {
+          "1": "Mahusay na mapagkukunan para sa mga bagong dating sa crypto at Web3.",
+          "2": "Ang glossary ay regular na ina - update ng mga bagong tuntunin."
+        }
+      }
     }
   },
   "creatorPacks": {

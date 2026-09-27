@@ -3432,11 +3432,6 @@
     "noResultsFor": "Kāore he hua mō te \"{{query}}\"",
     "guideSubtitle": "Aromātai ā-taahiraa o ia āhuatanga",
     "searchGuide": "Rapua te aratohu...",
-    "guideFractionsTip": "Ka tīmata ia pānui kua mintia me te kaihanga e pupuri ana i ōna wāhanga katoa (100% te mana whenua).",
-    "guideInfoStep": "Pātōtia te tohu mōhiohio i tētahi pānui kua mintia hei whakatuwhera i tōna tauwhitinga mint i te kaitūhura paraka, ā, hei manatoko i te rekoata i runga i te mekameka.",
-    "guideMintIntro": "Ehara i te mea me mintia tētahi pānui hei NFT i runga i te paraka mekameka. Mintia ina whakaputa ana koe, whakaputaina rānei ināianei ka mintia ā muri mai mai i te tahua pānui.",
-    "guideMintPublishStep": "Kōwhiria mēnā ka mintia, kātahi ka pāwhiri i te 'Tuku' kia whakaputaina. Ki te hipa koe i te mint, ka taea te mint i te pānui ā muri mai mai i tōna tahua.",
-    "guideMintFractionsStep": "Ka riro i a koe ngā wāhanga 1,000 katoa (100% te mana pupuri) o tō pou hou kua whakaputaina.",
     "glossaryMintTxDesc": "Pātōtia te tohu mōhiohio i tētahi pānui kua mintia hei whakatuwhera i tōna tauwhitinga mint i te kaitūhura paraka, ā, hei manatoko i te rekoata i runga i te mekameka. Ko te whārangi Mōhiohio Pānui katoa — tatauranga, kaipupuri, mākete — kei te taupānga tukutuku i dehub.io.",
     "glossaryTokenIdDesc": "He tautohu ahurei i runga i te mekameka ka tukuna ki tētahi pānui ina mintia hei NFT.",
     "repostsTab": "Tukunga anō",
@@ -3453,24 +3448,7 @@
     "glossaryStakingDesc": "Raka ō tohu DeHub kia whiwhi utu i te wā. Ka nui ake hoki te mana pooti o ngā tohu kua raka ki te whakahaere.",
     "glossaryGovernanceDesc": "Tukua me te pooti i ngā tono e whakatau ana i te papa. Ka whakatauhia tō mana pooti e te maha o ngā tohu DeHub kei a koe.",
     "glossaryStakingBadgesDesc": "Ngā tohu e whakaatuhia ana i te taha o tō ingoa kaiwhakamahi i runga i te tapeke o ō pupuranga tohu DeHub (pūkete + raka). E 13 ngā taumata — ka nui ake ngā tohu kei a koe, ka teitei ake tō taumata tohu. Ka nui ake te mana pooti whakahaere me te iti ake o ngā utu papa e ngā taumata teitei.",
-    "glossaryLeaderboardDesc": "Ka whakataungia ngā kaiwhakamahi mā te tapeke o te pauna tohu DeHub (pūkete + raka puta noa i ngā mekameka katoa). Ka whakahoutia ngā whakataunga i ngā wā katoa, ā, ka whai i ngā huringa 1-ra me te 1-wiki. Ka taea hoki e koe te tohu mā te tohutohu i tukua, tohutohu i riro mai, ngā kaiwhai, ngā pai, me ngā kaiohauru.",
-    "guideTipStep": "Pāwhiria te tohu kohatu/tohutuhi hei tuku tohutohu ki te kaihanga o te pou ki ngā tohu DeHub.",
-    "guideTipWalletTip": "Ka tika ngā tohutohu ki te pūkete a te kaihanga hei tohu DeHub.",
-    "guideTipNotificationsTip": "Ko ngā whakamōhiotanga o ngā pōtiki e whakaatu ana i te nui o ngā tohu DeHub i riro i a koe.",
-    "guideWalletIntro": "Tirohia ō tohu DeHub i runga i ngā mekameka maha, tirohia ngā tāpui rawa, ā, whakahaerehia ō rawa.",
-    "guideWalletTotalStep": "Tirohia tō katoa o ngā tohu DeHub i whakakotahi i ngā mekameka tautokona katoa.",
-    "guideStakingIntro": "Tāpirihia ō tohu DeHub kia whiwhi ai koe i ngā utu, ā, kia piki ai tō mana pooti whakahaere.",
-    "guideStakingAmountStep": "Whakauruhia te nui o ngā tohu DeHub e hiahia ana koe ki te tāpiri.",
-    "guideLeaderboardBalanceStep": "Ko te ripa Tauranga e whakarōrangi ana i ngā kaiwhakamahi i runga i tō rātou katoa o ngā tohu DeHub.",
-    "guideGovernanceVoteStep": "Pooti i ngā tono mā te whakamahi i ngā patene matimati runga/raro — ko tō taumaha pooti ka whakawhirinaki ki te nui o ngā tohu DeHub kua tāpirihia e koe.",
-    "guideGovernancePowerTip": "Ko tō mana pooti ka whakatauhia e te nui o ngā tohu DeHub kua tāpirihia e koe.",
-    "guideBuyIntro": "Hokona ngā tohu DeHub tika ki DPay mā te whakamahi i te kāri, i te crypto tautokona rānei.",
-    "guideBuyAmountStep": "Whakauruhia te nui e hiahia ana koe ki te whakapau, ki te nui rānei o ngā tohu DeHub e hiahia ana koe ki te whiwhi.",
-    "guideBuyDeliveredStep": "Ka puta ō tohu DeHub ki tō putea ka oti te tauwhitinga.",
-    "guideBridgeIntro": "Nekehia ō tohu DeHub i waenganui i ngā poraka tautokona mā te whakamahi i te piriti mekameka.",
-    "guideBridgeSourceStep": "Tīpakohia te mekameka pūtake (i reira kei reira ō tohu DeHub i tēnei wā).",
-    "guideBridgeDestStep": "Tīpakohia te mekameka ūnga (i reira e hiahia ana koe ki te tuku ō tohu DeHub).",
-    "guideBridgeAmountStep": "Whakauruhia te nui o ngā tohu DeHub hei piriti."
+    "glossaryLeaderboardDesc": "Ka whakataungia ngā kaiwhakamahi mā te tapeke o te pauna tohu DeHub (pūkete + raka puta noa i ngā mekameka katoa). Ka whakahoutia ngā whakataunga i ngā wā katoa, ā, ka whai i ngā huringa 1-ra me te 1-wiki. Ka taea hoki e koe te tohu mā te tohutohu i tukua, tohutohu i riro mai, ngā kaiwhai, ngā pai, me ngā kaiohauru."
   },
   "arcade": {
     "submitAccessibility": "Tukua he kēmu ki te arcade",
@@ -6791,6 +6769,504 @@
       "packEmpty": "Kaore he emoji i kitea i taua wahitau",
       "shortcodeTaken": "{{name}} kua tangohia",
       "shortcodeStandard": "{{name}} kua oti te emoji paerewa"
+    }
+  },
+  "guide": {
+    "sections": {
+      "getting-started": {
+        "title": "Te Timata",
+        "intro": "E rima ngā ara ki DeHub, ā, kāore he mea e hiahiatia ana kia whai putea koe: Google, Apple, he waehere i tukuna ki to imeera, he waehere i tukuna mā te SMS, he putea rānei kei a koe ka honoa e koe. Ko ngā mea katoa engari ko te ara putea ka hanga he putea kore-tiaki māu i muri — kei a koe ngā kī, ā, ka tautoko a DeHub i te hau kia taea ai e koe te tuku panui, te tohutohu, me te kohikohi me te kore e hoko tohu taketake.",
+        "steps": {
+          "1": "Tirohia te dehub.io — ko te whāngai kāinga te whārangi mua, kia taea ai e koe te titiro huri i mua i te hainatanga.",
+          "2": "Pāwhiritia te 'Haina'. Ka kite koe i a Google me Apple, ngā wāhi mō tētahi wahitau imeera, tau waea rānei, me te 'Hono Putea' mō tētahi kei a koe.",
+          "3": "Ki a Google, Apple rānei, whakaoti te rere o te kaiwhakarato. Ki te imeera, SMS rānei, tomo te waehere ka tae mai.",
+          "4": "Ka hangaia he putea, ka tiakina māu i te hainatanga tuatahi. Ko te hono i to ake putea ka hiahia kia kotahi te hainatanga hei whakaatu i te wāhitau.",
+          "5": "Kōwhiria he ingoa kaiwhakamahi. Ko te mea ka kitea e ngā tangata, ā, ka rua hei hononga ki to kōtaha dehub.io/<username>.",
+          "6": "Kua uru koe. Tirohia te whāngai, whakaritea to kōtaha, ka timata te tuku panui."
+        },
+        "tips": {
+          "1": "Ko ngā hainatanga pāpori, imeera, SMS rānei kāore e utu hau — ka tautoko a DeHub. Ko ngā putea honoa ka utu i ta rātou ake ETH, BNB rānei.",
+          "2": "Kei te hoki mai ki tētahi kaute DeHub tawhito? Haina mā te imeera, tau waea rānei i whakamahia e ia, ā, ka kitea e te hekenga.",
+          "3": "Ka taea e koe te pupuri i ngā kaute maha i runga i tētahi pūrere, ka huri i waenganui i a rātou i roto i ngā Tautuhinga → Kōtaha."
+        }
+      },
+      "home-feed": {
+        "title": "Whāngai Kāinga",
+        "intro": "Ko te whāngai kāinga te wāhi ka kite koe i ngā panui mai i ngā tangata e whai ana koe me ngā ihirangi rongonui. Ka tautoko i ngā ripa momo ihirangi maha me ngā kōwhiringa tātari.",
+        "steps": {
+          "1": "Neke ki te /app — koinei to whāngai kāinga.",
+          "2": "Whakamahia ngā ripa o runga hei tātari mā te momo ihirangi: Kāinga (katoa), Ataata, Ngā Whakaahua, Ngā Pāpāho Poto, Waiata, me ngā Rere Ora.",
+          "3": "Panuku mauī/matau ki ngā ripa kia kitea ai ētahi atu kōwhiringa ki te pūkoro.",
+          "4": "Whakamahia te pātene tātari/taurangi (tōpito-matau o te pātaka) hei whakarerekē i te tūnga: Wera, Hou, me te Tōpito.",
+          "5": "Tōia kia whakahōhouhia te pātaka ki te pūkoro.",
+          "6": "Panuku ki raro kia utaina atu ai ngā whakairinga mā te aunoa (panuku mutunga kore).",
+          "7": "Hurihia i waenga i te Tirohanga Matiti me te Tirohanga Pātaka mā te whakamahi i te whakawhiti āhuahanga."
+        },
+        "tips": {
+          "1": "He pai te Tirohanga Matiti mō te tirotiro tere i ngā whakaahua.",
+          "2": "Ko te ripa 'Kāinga' e whakaatu ana i ngā momo ihirangi katoa kua whakaranua.",
+          "3": "Ko te ripa Ora e whakaatu ana i ngā rerenga ora e kaha ana i tēnei wā."
+        }
+      },
+      "creating-posts": {
+        "title": "Te Waihanga Whakairinga",
+        "intro": "Waihangahia ngā whakairinga kuputuhi, tohaina ngā whakaahua, ataata, reo-rongo, GIF, me ētahi atu. Whakamahia ngā hashtags, cashtags, me ngā whakahuatanga hei whakanui i te toronga.",
+        "steps": {
+          "1": "Pāwhiritia te pātene 'Whakairinga' i te taha taha (desktop) me te pātene + (pūkoro).",
+          "2": "Pāhia tō kuputuhi ki te wāhi tuhituhi.",
+          "3": "Hei tāpiri i tētahi whakaahua, ataata rānei, pāwhiritia te ata pāpāho ka kōwhiri i tētahi konae.",
+          "4": "Hei tuhi i tētahi reo-rongo, pāwhiritia te ata hopuoro.",
+          "5": "Hei tāpiri i tētahi GIF, pāwhiritia te ata GIF ka rapu i tētahi.",
+          "6": "Whakamahia ngā #hashtags hei whakarōpū i tō whakairinga (hei tauira, #crypto, #defi).",
+          "7": "Whakamahia ngā $cashtags hei tohutoro i ngā tohu (hei tauira, $DHB, $ETH).",
+          "8": "Whakamahia ngā @mentions hei tohu i ētahi atu kaiwhakamahi (hei tauira, @username).",
+          "9": "Pāwhiritia te 'Whakairinga' hei whakaputa. Ka puta tō whakairinga ki te pātaka tonu."
+        },
+        "tips": {
+          "1": "Ka tautoko ngā whakairinga i te whakatakanga momo markdown.",
+          "2": "Ka taea e koe te whakairinga-kōrero mā te pāwhiri i te ata repost i runga i tētahi whakairinga ka kōwhiri i te 'Kōrero'.",
+          "3": "Ka puta ngā kāwai (hashtags) ki te papa whakataetae 'Kōrero o te Taone'."
+        }
+      },
+      "interacting-with-posts": {
+        "title": "Te Whakawhitiwhiti ki ngā Whakairinga",
+        "intro": "Whakawhitiwhiti ki te ihirangi mā te pōti, te kōrero, te tohutohu, te tiaki pukapuka, te tohutohu, me te whakamaori.",
+        "steps": {
+          "1": "Pōtitia whakarunga, whakararo rānei tētahi whakairinga mā te whakamahi i ngā ata pere kei te taha mauī o tētahi whakairinga.",
+          "2": "Pāwhiritia te ata kōrero hei whakatuwhera i te wāhanga kōrero ka waiho he whakautu.",
+          "3": "Pāwhiritia te ata kohatu/tohunga hei tuku i tētahi tohunga ki ngā tohu DeHub ki te kaihanga whakairinga.",
+          "4": "Pāwhiritia te ata tiaki pukapuka hei whakaora i tētahi whakairinga mō muri mai.",
+          "5": "Pāwhiritia te ata tohutohu hei kōkopi i te hono whakairinga me te tohutohu ki waho.",
+          "6": "Pāwhiritia te paatene whakamaori (tohu ao) i runga i tetahi pou hei whakamaori i te tuhingi ki to reo.",
+          "7": "Mo nga pou whakaahua, whakamahia te paatene 'Whakamaori Whakaahua' kia whiwhi ai koe i te putanga kua whakamaoritia e te AI o te tuhingi kei roto i te ahua.",
+          "8": "Pāwhiritia tetahi pou hei whakatuwhera i roto i te tirohanga pou kotahi mata-katoa."
+        },
+        "tips": {
+          "1": "Ko nga tohutohu ka haere tika ki te putea a te kaihanga i roto i nga tohu DeHub.",
+          "2": "Ka taea e koe te tautuhi i te nui o te tohutohu ma te paatene tere-kōwhiri, ka uru ranei ki tetahi nui ritenga.",
+          "3": "Ko nga pou kua tohua ka uru atu mai i te wharangi Tohu i te taha taha."
+        }
+      },
+      "explore-search": {
+        "title": "Tirotiro me te Rapu",
+        "intro": "Tirohia nga ihirangi me nga kaiwhakamahi hou na roto i te wharangi tirotiro me te kaha rapu.",
+        "steps": {
+          "1": "Haere ki te /app/explore mai i te taha taha.",
+          "2": "Whakamahia te pae rapu kei runga hei rapu kaiwhakamahi, pou, me nga ihirangi.",
+          "3": "Tātarihia nga hua ma te ripa: Katoa, Tangata, Pou, Whakaahua, Ataata, Waiata, Ora.",
+          "4": "Tirotiro nga kaupapa rongonui me nga waahanga kei te wharangi tirotiro.",
+          "5": "Pāwhiritia tetahi kaupapa rongonui kia kite i nga pou katoa e pa ana.",
+          "6": "Pāwhiritia tetahi kaiwhakamahi i roto i nga hua rapu kia toro atu ki ta raatau korero."
+        },
+        "tips": {
+          "1": "Ko te rapu e tautoko ana i nga ingoa kaiwhakamahi, nga wahitau putea, me nga kupu matua ihirangi.",
+          "2": "Ka whakahouhia nga kaupapa rongonui i runga i nga mahi whakaputa tata nei."
+        }
+      },
+      "profile": {
+        "title": "Kōtaha",
+        "intro": "Ko to korero e whakaatu ana i o pou, kaiwhai, whai, me nga korero putea.",
+        "steps": {
+          "1": "Pāwhiritia to avatar, 'Kōtaha' ranei i te taha taha kia kite i to korero.",
+          "2": "Pāwhiritia 'Whakatika Kōtaha' hei whakahou i to ingoa whakaatu, bio, me to avatar.",
+          "3": "Tukuna he pikitia korero ma te paatene i to avatar i te aratau whakatika.",
+          "4": "Tirohia o tatauranga kaiwhai me te whai i runga i to wharangi korero.",
+          "5": "Tirotiro i o ake pou, pāpāho, me nga ihirangi i pai ki a koe na roto i nga ripa korero.",
+          "6": "Kopirihia to wahitau putea ma te paatene i te tohu kape i muri i a ia.",
+          "7": "Toro atu ki nga korero a etahi atu kaiwhakamahi ma te paatene i o raatau ingoa kaiwhakamahi, avatar ranei i nga waahi katoa o te papaa."
+        },
+        "tips": {
+          "1": "He ahurei to ingoa kaiwhakamahi, ka puta ki to URL korero (dehub.io/@username).",
+          "2": "Ma nga tautuhinga tūmataiti ka taea e koe te whakahaere ko wai ka kite i o tatauranga kaiwhai."
+        }
+      },
+      "messages": {
+        "title": "Karere",
+        "intro": "Tukuna nga karere tika ki etahi atu kaiwhakamahi i runga i te papaa.",
+        "steps": {
+          "1": "Pāwhiritia 'Karere' i te taha taha hei whakatuwhera i te wharangi karere.",
+          "2": "Pāwhiritia te paatene tuhituhi kia tīmata ai he kōrero hou.",
+          "3": "Rapua he kaiwhakamahi mā te ingoa kaiwhakamahi kia īmēra atu ki a ia.",
+          "4": "Tuhia tō karere, ka pēhi i te tuku.",
+          "5": "Tirohia tō hītori kōrero i roto i te rārangi karere.",
+          "6": "Pāwhiritia tētahi kōrero kia haere tonu te korerorero."
+        },
+        "tips": {
+          "1": "Ka whiwhi koe i tētahi whakamōhiotanga ka īmēra mai tētahi ki a koe.",
+          "2": "Ka taea e ngā kaihanga te raka ngā karere ki muri i te whakaritenga tohutohu."
+        }
+      },
+      "ai-assistant": {
+        "title": "Kaiawhina AI",
+        "intro": "Kōrero ki te kaiawhina AI kua oti te hanga o DeHub mō te āwhina, mō ngā mōhiohio, me ngā mahi auaha.",
+        "steps": {
+          "1": "Pāwhiritia te 'Kaiawhina' i te taha taha kia whakatuwheratia te kōrero AI.",
+          "2": "Tuhia tō pātai, tō tono rānei i te whakaurunga kōrero.",
+          "3": "Ka taea e te AI te āwhina ki ngā mōhiohio crypto, ki ngā pātai papaa, me ngā mōhiohio whānui.",
+          "4": "Tīmata tētahi kōrero hou mā te pāwhiri i te paatene kōrero hou.",
+          "5": "Tirohia tō hītori kōrero i te taha taha o te whārangi kaiawhina.",
+          "6": "Ka taea e koe te whakapiri pikitia kia tātarihia e te AI."
+        },
+        "tips": {
+          "1": "Ka mahara te AI ki te horopaki i roto i tētahi kōrero.",
+          "2": "Ka taea e koe te pātai ki te AI mō ngā āhuatanga o DeHub, ngā kupu crypto, me ngā pātai whānui.",
+          "3": "Ka tiakina ngā kōrero o mua, ka taea te uru atu i ngā wā katoa."
+        }
+      },
+      "notifications": {
+        "title": "Ngā whakamōhiotanga",
+        "intro": "Kia whakahoutia ki ngā pai, ngā kōrero, ngā tohutohu, ngā whai, me ngā atu mahi i runga i tō ihirangi.",
+        "steps": {
+          "1": "Pāwhiritia te ata pere, te 'Ngā whakamōhiotanga' rānei i te taha taha.",
+          "2": "Tirohia ngā whakamōhiotanga katoa i roto i tētahi rārangi wā.",
+          "3": "Pāwhiritia tētahi whakamōhiotanga kia neke ki te ihirangi e pā ana.",
+          "4": "Kei roto i ngā whakamōhiotanga: ngā kaiwhai hou, ngā pōti pou, ngā kōrero, ngā tohutohu, me ngā whakahuatanga.",
+          "5": "Ka tohua ngā whakamōhiotanga kāore anō kia pānuihia — ka tohua hei pānui ka tirohia."
+        },
+        "tips": {
+          "1": "Ko te tohu whakamōhiotanga e whakaatu ana i te maha o ngā whakamōhiotanga kāore anō kia pānuihia.",
+          "2": "Ko ngā whakamōhiotanga tohutohu e whakaatu ana i te maha o ngā tohu i whiwhi koe."
+        }
+      },
+      "wallet": {
+        "title": "Pukoro",
+        "intro": "Tirohia ngā toenga tohu DeHub i runga i ngā mekameka maha, tirohia ngā tāpui whakauru, ka whakahaere i ō rawa.",
+        "steps": {
+          "1": "Pāwhiritia te 'Pukoro' i te taha taha kia whakatuwheratia te whārangi pukoro.",
+          "2": "Tirohia tō katoa o ngā tohu toenga i whakahiato ki ngā mekameka tautokona katoa.",
+          "3": "Tirohia ngā whakahaere mō ia mekameka: Ethereum, Base, BNB Chain, me ētahi atu.",
+          "4": "Tirohia āu putunga rahui me ngā utu.",
+          "5": "Pāwhiritia te 'Refresh Scan' hei whakahou i āu toenga mai i ngā raraunga mekameka.",
+          "6": "Kōpi tō wāhitau putea ki te whiwhi tohu mai i ētahi atu."
+        },
+        "tips": {
+          "1": "Ka whakahou aunoa ngā toenga engari ka taea e koe te kaha ki te whakahou i ngā wā katoa.",
+          "2": "E whakaatu ana te putea i ngā toenga wai (e wātea ana) me ngā toenga rahui."
+        }
+      },
+      "staking": {
+        "title": "Rahui",
+        "intro": "Rahuia āu tohu DeHub kia whiwhi ai koe i ngā utu, kia piki ai tō mana pooti whakahaere.",
+        "steps": {
+          "1": "Haere ki te whārangi 'Staking' mai i te taha taha.",
+          "2": "Whakauruhia te maha o ngā tohu e hiahia ana koe ki te rahui.",
+          "3": "Tīpakohia te mekameka e hiahia ana koe ki te rahui.",
+          "4": "Whakaūngia te tauwhitinga i roto i tō putea (ngā putea o waho) ka whakahaerehia aunoatia (social login).",
+          "5": "Tirohia āu moni rahui me ngā utu tatari.",
+          "6": "Hei un-stake, whakauruhia te moni ka whakaūngia te tauwhitinga un-stake."
+        },
+        "tips": {
+          "1": "Ka piki te rahui i tō taumaha pooti i roto i ngā tono whakahaere.",
+          "2": "Kāore ngā kaiwhakamahi Social-login e hiahia ana ki te hau kia rahui — he kore hau.",
+          "3": "Ka taea e koe te rahui ki ngā mekameka maha i te wā kotahi."
+        }
+      },
+      "leaderboard": {
+        "title": "Papatohu",
+        "intro": "Tirohia ko wai kei runga! Ka whakarōrangitia e te papatohu ngā kaiwhakamahi mā te toenga, te whakapau o ia rā, me ngā kaupapa rongonui.",
+        "steps": {
+          "1": "Haere ki te whārangi 'Leaderboard' mai i te taha taha.",
+          "2": "Tohua i waenga i ngā ripa: Balance, Daily Spent, me Talk of the Town.",
+          "3": "Ko te ripa Balance ka whakarōrangitia ngā kaiwhakamahi mā ā rātou pupuri tohu katoa.",
+          "4": "Ko te ripa Daily Spent e whakaatu ana ko wai te tino kaha ki te tohu i roto i ngā haora 24 kua hipa.",
+          "5": "Ko te Talk of the Town e whakaatu ana i ngā kaupapa/kātene tino matapaki.",
+          "6": "Pāwhiritia tētahi kaiwhakamahi ki te toro ki tōna kōtaha.",
+          "7": "Ka whakahouhia te papatohu i ngā wā puta noa i te rā."
+        },
+        "tips": {
+          "1": "Ka hoki anō ngā whakarōrangitanga o ia rā ia 24 haora.",
+          "2": "Ko te Talk of the Town e whai ana i ngā kātene kotahi kupu mai i ngā hashtags."
+        }
+      },
+      "command-centre": {
+        "title": "Pokapū Whakahau",
+        "intro": "He tirohanga papatohu e whakaatu ana i o inenga matua me te mahi papanga i te tirohanga kanohi.",
+        "steps": {
+          "1": "Pāwhiritia te 'Command Centre' i te taha taha.",
+          "2": "Tirohia to whakarāpopototanga tauira, tae atu ki te maha o ngā whakairinga, ngā kaiwhai, me te uru.",
+          "3": "Tirohia to mahi tata nei me ngā kaupapa rongonui.",
+          "4": "Uru atu ki ngā hononga tere ki ngā āhuatanga e whakamahia nuitia ana."
+        },
+        "tips": {
+          "1": "Ka hoatu e te Command Centre ki a koe he tirohanga mai i te rangi o to nohoanga DeHub."
+        }
+      },
+      "governance": {
+        "title": "Kāwanatanga",
+        "intro": "Whai wāhi ki te kāwanatanga o te papanga mā te hanga tūtohutanga me te pōti i ngā whakatau a te hapori.",
+        "steps": {
+          "1": "Haere ki te 'Governance' mai i te taha taha.",
+          "2": "Tirohia ngā tūtohutanga kaha i tukuna e te hapori.",
+          "3": "Pāwhiritia he tūtohutanga kia pānuihia tana whakaahuatanga katoa me te whakawhitiwhiti whakaaro.",
+          "4": "Pōtia ngā tūtohutanga mā te whakamahi i ngā patene matimati runga/raro — ka whakawhirinaki to taumaha pōti ki te maha o ngā tohu DeHub kua whakatakotoria e koe.",
+          "5": "Waiho he kōrero i runga i ngā tūtohutanga kia whakawhitiwhiti whakaaro ki te hapori.",
+          "6": "Tukuna to ake tūtohutanga mā te pāwhiri i te patene 'Create Proposal'."
+        },
+        "tips": {
+          "1": "Ka whakatauhia to mana pōti e te maha o ngā tohu kua whakatakotoria e koe.",
+          "2": "Ka whiwhi pea ngā kaipupuri tohu i te taumaha pōti anō.",
+          "3": "Ka puta ngā tūtohutanga i ngā wāhanga: Kaha → Kua Pahemo/Kua Whakakorea."
+        }
+      },
+      "bookmarks": {
+        "title": "Ngā Pukapuka",
+        "intro": "Tiakina ngā whakairinga ki o pukapuka kia ngāwari te uru atu a muri ake nei.",
+        "steps": {
+          "1": "Pāwhiritia te ata pukapuka i runga i tetahi whakairinga kia tiakina.",
+          "2": "Haere ki te 'Bookmarks' i te taha taha kia kitea katoatia ngā whakairinga kua tiakina.",
+          "3": "Pāwhiritia he whakairinga kua tohua hei pukapuka kia kitea katoatia.",
+          "4": "Tangohia he pukapuka mā te pāwhiri anō i te ata pukapuka."
+        },
+        "tips": {
+          "1": "He muna ngā pukapuka — ko koe anake ka kite i o whakairinga kua tiakina.",
+          "2": "Kāore he rohe ki te maha o ngā whakairinga ka taea e koe te tohua hei pukapuka."
+        }
+      },
+      "settings": {
+        "title": "Tautuhinga",
+        "intro": "Whakaritea to wheako DeHub mā te reo, te tūmataitinga, me ngā manakohanga whakaatu.",
+        "steps": {
+          "1": "Pāwhiritia te 'Settings' i te taha taha.",
+          "2": "Hurihia to reo whakaatu mai i te kōwhiri reo.",
+          "3": "Whakarerekē ngā tautuhinga tūmataitinga: whakahaere ko wai ka kite i o tatauranga kaiwhai me te rarangi whai.",
+          "4": "Whakaritea ō tautuhinga matapōkere o ngā whakairinga.",
+          "5": "Whakahaerehia ngā tautuhinga whakamōhiotanga."
+        },
+        "tips": {
+          "1": "Ka tautoko a DeHub i ngā reo maha — ka whakamaoritia te atanga katoa.",
+          "2": "Ka whai mana tonu ngā tautuhinga tūmataiti."
+        }
+      },
+      "posting-allowance": {
+        "title": "Tō Āhuru Whakairinga o Ia Rā",
+        "intro": "He kore utu te whakairi ia rā tae noa ki tētahi rohe ka piki ake ki tō tohu takahi. Ka tīmata te katoa ki te tekau whakairinga kuputuhi me tētahi gigabyte o te ataata, ngā whakaahua me te oro ia rā. Haere ki tua atu i tētahi o ēnei, ka utua te toenga o taua rā ki ngā tohu DeHub — ko te wāhanga anake e pā ana.",
+        "steps": {
+          "1": "Whakairihia kia rite ki te tikanga. I roto i te rohe, kāore he utu, kāore hoki he tono ki a koe.",
+          "2": "He rerekē ngā puna whakairinga kuputuhi me ngā puna pāpāho, nā reira ko te rā e whakapau ana ki te tuku ataata ka waiho tonu kia tekau ngā whakairinga kuputuhi.",
+          "3": "Ka pā ana tētahi whakairinga ki tua atu, ka whakataua te taupānga i te tuatahi, ka tirotiro mena ka taea e tō putea te utu i mua i te tuku.",
+          "4": "Ka whakaputaina te whakairinga kia rite ki te mea i roto i te rohe — kāore te whakaputanga e tatari ki te utu.",
+          "5": "Ka whakaaetia e koe tētahi whakawhiti mo taua whakairinga anake, ka whakatauhia ki te Base, ki te BNB Chain rānei kei a ia ngā tohu DeHub.",
+          "6": "Ka tautetia ngā puna e rua i te waenganui pō UTC."
+        },
+        "tips": {
+          "1": "Ko te nui ake he pro-rata: 200 MB i tua atu i tō rohe ka utu 200 MB, ehara i te gigabyte katoa.",
+          "2": "Ko ngā whakairinga anō, ngā kōrero, ngā tauhohenga, ngā tohutohu me ngā karere he kore utu, kāore hoki e pā ki te rohe.",
+          "3": "Whakaaetia te utu, ka noho tonu te whakairinga — ka aukati noa te nui i tō whakairinga utu e whai ake nei kia utua ra ano. Ko te rohe kore utu o āpōpō nau tonu.",
+          "4": "Ka piki ake te rohe kore utu o tētahi tohu takahi, ka whakaheke hoki i te utu o ngā mea i tua atu."
+        }
+      },
+      "reactions-and-safety": {
+        "title": "Ngā Tauhohenga, Te Whakamutu me ngā Ihirangi Tūmatanui",
+        "intro": "E iwa ngā tauhohenga kei muri i te paatene pai, me tētahi huinga mana mo te whakatau i ngā mea ka kite koe me te hunga ka taea te whakapā atu ki a koe.",
+        "steps": {
+          "1": "Purihia te koromatua ki runga i tētahi whakairinga hei whakatuwhera i te paepae tauhohenga: pai, aroha, whakaute, wera, lol, pouri, tangi, kino, me te paru.",
+          "2": "Ko ngā whitu pai ka tatau ki te tapeke pai o te whakairinga; ko te kino me te paru ka tatau ki te taha ki raro.",
+          "3": "Ko tō tauhohenga ka taumaha e tō tohu takahi, nā reira ko te tauhohenga a te kaipupuri tohu ka nui ake te tatau i te kotahi pooti.",
+          "4": "Pāwhiritia te X i te pane o tētahi whakairinga hei whakamutu i tōna kaituhi — ka ngaro tonu ratou i tō whāngai.",
+          "5": "Ka tohuhia e ngā kaituhi a ratou ake whakairinga hei tūmatanui i te wa e hanga ana; ka noho tonu aua whakairinga ki waho o te whāngai kāinga.",
+          "6": "Hei kite i ngā whakairinga tūmatanui ki ngā wāhi katoa, whakauruhia te 'Whakaatu ihirangi tūmatanui' i roto i ngā Tautuhinga."
+        },
+        "tips": {
+          "1": "He tino kitea tonu te whakairinga tūmatanui ki te pūkete a te kaituhi me te hunga e whai ana i a ratou.",
+          "2": "Ko te aukati mai i tētahi pūkete ka nui ake i te whakamutu, ka aukati hoki i te tuku karere.",
+          "3": "Ka whakaatu te paepae tauhohenga ko wai i tauhohe me te aha, nā reira ka kite koe i te ruma, kaua ko te nama anake."
+        }
+      },
+      "stages": {
+        "title": "Ngā Wāhanga (Ngā Rūma Oro Ora)",
+        "intro": "Ko ngā Wāhanga he ruma oro ora i hangaia ki roto i a DeHub. Ka whakatuwherahia e tētahi kaihautū tētahi ruma, ka kawea ake ngā kaikorero, ā, ka taea e te tangata te tomo ki te whakarongo mai i te whārangi Wāhanga, i tētahi hononga kua tohaina rānei.",
+        "steps": {
+          "1": "Whakatuwherahia te 'Wāhanga' i te taha taha hei kite i ngā mea e ora ana inaianei me ngā mea kua whakaritea.",
+          "2": "Patia he atamira ora hei whakauru hei kaikōrero, ka whakarite rānei i tētahi whakamaharatanga ki tētahi kua whakaritea, ā, ka whakamōhiotia koe ina tīmata.",
+          "3": "Tīmata tō ake mai i te whārangi kotahi — ka taea e koe te haere ora tika mai i te pūtirotiro, kāore he OBS, kāore he kī kōrere.",
+          "4": "Hei kaihautū, kawea ngā kaikorero ki te atamira, whakawātea, whakakore rānei i a rātou, tohaina tō mata, ā, whakahaerehia te papa oro.",
+          "5": "Ka tukuna e ngā kaikōrero ngā tauhohe ora, ā, ka kōrero i roto i te kōrerorero ruma me te kore e tae ki te atamira.",
+          "6": "Ka tuhia ia atamira, ā, ka takaro anō te rekoata i muri mai i te kaari e puta ana."
+        },
+        "tips": {
+          "1": "Ka tohua e ngā kupu hauraro ora ia kaikorero, ā, ka whakamaoritia ki ngā reo katoa e pānui ana koe.",
+          "2": "Ka taea e te reo irirangi ora te kōrero i te ruma ki te reo kōpeke o te kaihautū, ka utua ia meneti ki ngā tohu DeHub.",
+          "3": "Ka taea e ngā kaihautū te whakanoho i tētahi reo irirangi ki te rangi, te purei rānei i a rātou ake topenga waiata i waenga i ngā kōrero.",
+          "4": "Ka mau tonu te ruma ki te kaitākaro iti i te kokonga i a koe e tirotiro ana i te toenga o te taupānga."
+        }
+      },
+      "communities": {
+        "title": "Ngā Hapori me ngā Takahanga",
+        "intro": "Ko ngā hapori he wāhi e whakahaeretia ana e ngā mema, me ā rātou ake kōrero, mema, me ngā mahi. Ka tāpiri ngā huihuinga i ngā kaupapa kua herea ki te wā ki runga ake i a rātou.",
+        "steps": {
+          "1": "Whakatuwheratia te 'Ngā Hapori' i te taha taha, ā, tirotirohia ngā hapori tūmatanui.",
+          "2": "Hono atu ki tētahi pā. Ka puta ngā mahi hou hei tohu kāore anō kia pānuitia i roto i te whakatere.",
+          "3": "Tukuna, matapaki, whakahaere pōtitanga, ā, hoatu moni ki roto i te kōrero a te hapori.",
+          "4": "Ka whakahaere ngā rangatira o te hapori i ā rātou ake wāhi, ā, ka taea e rātou te tuku mana whakahaere ki ētahi atu.",
+          "5": "Whakatuwheratia te 'Ngā Takahanga' mō ngā kaupapa kua whakaritea, me tētahi whārangi katoa mō ia huihuinga ka taea e koe te whai i te ora."
+        },
+        "tips": {
+          "1": "Ka tautoko te kōrerorero a te hapori i ngā @whakapā me te @konei, nō reira ka taea e tētahi panui te tae ki te ruma.",
+          "2": "Ka taea e tētahi hononga powhiri te kawe tika i ngā tangata ki roto i tētahi hapori."
+        }
+      },
+      "arcade": {
+        "title": "Arcade",
+        "intro": "E rima ngā kēmu e rere ana i roto i te DeHub i roto i tētahi ripa pūtirotiro — kāore he mea hei whakauru, kāore he mea hei hoko.",
+        "steps": {
+          "1": "Whakatuwheratia te 'Arcade' i te taha taha.",
+          "2": "Kōwhiria tētahi kēmu: King's Gambit (chess 3D me tētahi arawhata Elo ipurangi), Claude of Duty (he kaikōkiri e whakaputa ana i āna ake toi i te wa e utaina ana), Jungle Trail (he hikoi ngāherehere ngāherehere), Street Slayer (he beat 'em up i hangaia mō DeHub) rānei Chartopia (he papa hokohoko ka taea te hikoi).",
+          "3": "Tākaro i te ripa. Ka mau a King's Gambit me Street Slayer i ngā papa kēmu.",
+          "4": "Ka rere anō a Chartopia i roto i tētahi pane VR mā WebXR."
+        },
+        "tips": {
+          "1": "E rua o ēnei ka huna ki roto i ngā kaupapa ahua — whakaritea te taupānga ki te War mō Claude of Duty, ki te Jungle rānei mō Jungle Trail.",
+          "2": "He kaari tiritiri tō ia kēmu, nō reira ka tika te whakatuwhera o tētahi hono ki a ia ki hea koe e tuku ai."
+        }
+      },
+      "bounties-stores": {
+        "title": "Ngā Pūtaonga me ngā Toa",
+        "intro": "E rua ngā huarahi hei huri i te papaa ki te moni: tukuna, kōwhiria rānei tētahi pūtaonga, whakatuwheratia rānei tētahi toa, ā, hokona atu ki tō hunga.",
+        "steps": {
+          "1": "Whakatuwheratia te 'Ngā Pūtaonga' hei tirotiro i ngā mahi tuwhera, kua tātarihia e te kātene, te moni rānei.",
+          "2": "Kōwhiria tētahi, mahia te mahi, ā, tukuna atu kia whiwhi ai i te utu — ka taea e te tangata katoa te kaikōkura, kāore he tono e hiahiatia.",
+          "3": "Tukua tō ake pōkai utu me tētahi kōrero poto me tētahi utu i roto i ngā tohu DeHub, USDC rānei. Ka noho ki te pūtea tiaki i te wā e tukua ana e koe.",
+          "4": "Whakatuwheratia te 'Toa' ki te whakarite i tētahi toa me tōna ake whārangi, tohu, me ngā rārangi.",
+          "5": "Ka whakatauhia ngā hua, ka utua ki ngā tohu DeHub mā te pēke i hangaia, kāore he pūnaha utu waho."
+        },
+        "tips": {
+          "1": "Ka whakarōpūhia ngā pōkai utu ki roto i ngā Pāpāho Pāpori, Te Tapahi, me ngā Kirimana.",
+          "2": "Ka whakatauhia e tētahi pūnaha tautohetohe ngā rerekētanga mō te tuku, kia whakatauhia ai te pūtea tiaki kia tika tonu.",
+          "3": "Ka whakamahi ngā kaihanga i ngā pōkai utu ki te whakatipu i tētahi hapori — ko ngā hea, ngā tapahi, me ngā tauhohenga he mahi katoa."
+        }
+      },
+      "creator-studio": {
+        "title": "Studio Kaihanga me te Etita",
+        "intro": "Ka whakaputa te Studio Kaihanga i ngā whakaahua, ataata, waiata, reo, me ngā tauira 3D mai i tētahi akiaki, ā, ka tukuna ki tētahi etita — tae atu ki tētahi etita ataata maha-ara e rere ana i roto i te pūtirotiro.",
+        "steps": {
+          "1": "Whakatuwheratia te Studio Kaihanga ka whakaahuatia te mea e hiahia ana koe kia hangaia.",
+          "2": "Ka whakatauhia e te tūmau te utu i mua i te whakahaerenga o te mahi, kia kite koe i te utu i mua i te whakapau.",
+          "3": "Ka haere tonu ngā whakaahua ki roto i tētahi rarangi tūruhi i a koe e haereere ana i te taupānga.",
+          "4": "Whakaritea ngā hua ki roto i te etita momo Canva, ki te whakatuwhera rānei i te etita ataata mō tētahi wā tūturu me te tapahi, te whakatō, me te kaweake.",
+          "5": "Tukua te wāhanga kua oti ki roto tonu i tētahi pou, he poto, he rārangi toa rānei."
+        },
+        "tips": {
+          "1": "He whare putunga taonga koreutu kei te taha o te Studio mō ngā mea katoa e pai ake ana koe kia kaua e whakaputa.",
+          "2": "Ka utua te whakaputanga ki ngā tohu DeHub mai i tō pēke — ka hainatia e koe tētahi whakawhiti mō ia mahi, ā, ka whakatauhia te utu i mua i te utu.",
+          "3": "Ka taea e ngā kaiwhakamahi taumaha te tango i tētahi mahere Ultra, Team, me Scale rānei, ka tukuna he taumata tohu ā-marama ki tō rātou pēke."
+        }
+      },
+      "buying-dhb": {
+        "title": "Te Hoko Tohu",
+        "intro": "Hokona ngā tohu DeHub tika i roto i te taupānga mā te whakamahi i te atanga whakawhiti i hangaia.",
+        "steps": {
+          "1": "Haere ki te whārangi 'Hokona' mai i te taha taha.",
+          "2": "Tīpakohia te tohu e hiahia ana koe ki te whakawhiti mai (hei tauira, ETH, USDC).",
+          "3": "Whakauruhia te nui e hiahia ana koe ki te whakapau, ki te maha rānei o ngā tohu e hiahia ana koe ki te whiwhi.",
+          "4": "Arotakehia te reiti whakawhiti me te hua kua tatauhia.",
+          "5": "Pāwhiritia te ata taputapu tautuhinga hei whakarereke i te manawanui o te reti (ko te taunoa ko te 1%).",
+          "6": "Whakaūngia te tauwhitinga whakawhiti.",
+          "7": "Ka puta ngā tohu DeHub ki tō pēke i te wā ka oti te tauwhitinga."
+        },
+        "tips": {
+          "1": "Ko te manawanui o te reti teitei ake = ka nui ake te tupono ki te whakahaere, engari ka taea te utu kino ake.",
+          "2": "Tirohia tonu te reiti whakawhiti i mua i te whakaū.",
+          "3": "Ka taea e koe te tautuhi i te reti ritenga i roto i te panui tautuhinga."
+        }
+      },
+      "bridge": {
+        "title": "Pūwhiti",
+        "intro": "Nekehia ngā tohu DeHub i waenga i ngā poraka tautokona mā te whakamahi i te pūwhiti poraka-a-taha.",
+        "steps": {
+          "1": "Whāia te whārangi 'Bridge' mai i te taha taha.",
+          "2": "Tīpakohia te mekameka pūtake (ko reira tō koutou tohu kei nāianei).",
+          "3": "Tīpakohia te mekameka ūnga (ko reira koutou e hiahia ana kia tukuna atu).",
+          "4": "Whakauruhia te maha o ngā tohu hei piriti.",
+          "5": "Arotakehia te utu piriti me te wā taenga tatari.",
+          "6": "Whakaūngia te tauwhitinga piriti.",
+          "7": "Tāwhai i te tauwhitinga kia oti — ka roa pea ngā meneti ki te piriti."
+        },
+        "tips": {
+          "1": "He rerekē ngā utu piriti mā te takirua mekameka.",
+          "2": "Ko te piriti ka roa te 1-5 meneti i runga i ngā mekameka e whai wāhi ana.",
+          "3": "Tirohia anō te mekameka ūnga i mua i te whakaūnga."
+        }
+      },
+      "music-tv": {
+        "title": "Mūmū & Pouaka Whakaata",
+        "intro": "Kia pai ki ngā ihirangi pāpāho tika i roto i te DeHub — rerengia te waiata me te matakitaki i ngā pouaka whakaata ora.",
+        "steps": {
+          "1": "Whāia te 'Music' mai i te taha taha ki te rapu me te purei i ngā pou waiata.",
+          "2": "Whāia te 'TV' ki te uru atu ki ngā pouaka whakaata ora.",
+          "3": "Rapua ngā pouaka whakaata mā te kātene, mā te whenua rānei.",
+          "4": "Pāwhiritia tētahi pouaka whakaata ki te tīmata te matakitaki.",
+          "5": "Whakamahia ngā mana purei ki te whakatika i te oro me te purei anō.",
+          "6": "Pūrongohia ngā pouaka whakaata pakaru mā te whakamahi i te paatene pūrongo."
+        },
+        "tips": {
+          "1": "Ko ngā pouaka whakaata ka whakamanahia e te hapori mō te pono.",
+          "2": "Ka taea te purei i ngā pou waiata i te wa e rapu ana i ētahi atu ihirangi."
+        }
+      },
+      "post-info": {
+        "title": "Ngā Mōhiohio Pou & Wehenga",
+        "intro": "Ko te pou i whakawhitia he NFT ka wehea ki te 1,000 wehenga. Ko te whārangi Mōhiohio Pou e whakaatu ana i ngā raraunga i runga mekameka, ngā tatauranga whakauru, te pakanga o te mana, me te tuku ki a koe ki te hokohoko i ngā wehenga o tētahi pou — i runga i tētahi pou kaore i whakawhitia ka tuku ki te whakawhiti hei utu.",
+        "steps": {
+          "1": "Pāwhiritia te ata 'ⓘ' i runga i tētahi pou ki te whakatuwhera i tōna whārangi Mōhiohio Pou.",
+          "2": "Kei runga ka kite koe i te ID Tohu (tohu motuhake i runga mekameka) me te hash tauwhitinga — pāwhiritia te hash ki te tiro i runga i te kaitirotiro poraka.",
+          "3": "I raro iho i tēnā, ko ngā tatauranga whakauru e whakaatu ana i te tapeke o ngā pai, ngā kino, ngā tirohanga, ngā kōrero, me ngā tohu i whiwhia.",
+          "4": "Ko te wāhanga Kai-pupuri e whakaatu ana i tētahi pae-whakaeke o te maha o ngā 1,000 wehenga e pupuri tonu ana te kaihanga, me tētahi rārangi o ngā kaipupuri wehenga katoa me ō rātou toenga me ngā ōrau.",
+          "5": "Mēnā he utu-mō-te-titiro (PPV) te pou, ka kite koe i te utu, te moni, me te maha o ngā kaiwhakamahi kua hokona te uru.",
+          "6": "Ka taea e ngā kaipupuri pou te whakarerekē i te kitenga (Tūmatanui, Kaore i Rēhitatia, rānei Motuhake) me te whakatika i te taitara/whakaahuatanga tika mai i tēnei whārangi."
+        },
+        "tips": {
+          "1": "Ka tīmata te pou hou i whakawhitia ki te kaihanga e pupuri ana i ngā 1,000 wehenga katoa (100% mana).",
+          "2": "Ko te hash tauwhitinga ka hono atu ki te BaseScan, ki te BscScan rānei i runga i te mekameka.",
+          "3": "Ngā pou kāore i te rārangi kaore e puta ki ngā pātaka engari ka taea tonu te toro atu mā te hononga tika."
+        }
+      },
+      "trading-fractions": {
+        "title": "Nga Whakataunga Hokohoko",
+        "intro": "Hokohoko wahi — rārangi tirotiro, hanga tuku, whakarārangitia koutou ake — ora i runga i te taupānga tukutuku i dehub.io, i runga i ia whārangi Post Info.",
+        "steps": {
+          "1": "Whakatūwhera dehub.io i roto i te pūtirotiro, me te takiuru ki te pūkete kotahi.",
+          "2": "Whakatuwherahia te whārangi Post Info me te huri ki tona ripa Marketplace.",
+          "3": "Rēhita pereti, hanga i te tuku i runga i to koutou utu, ranei rārangi wahi e pupuri koe.",
+          "4": "Kia oti te hokohoko, ka puta te huringa i roto i to koutou ripa Fractions i konei i runga i te pūkoro."
+        },
+        "tips": {
+          "1": "Ko te whai i te wahi o te pou e te tikanga e pupuri koe i te wahi o taua NFT i runga i te rīpene.",
+          "2": "Tirohia ngā kaipupuri pou i runga i te mākete tukutuku ki te kite i te tohatoha rangatira i mua i te hoko.",
+          "3": "Hei kaihanga, ko te hoko i nga waahanga ka taea e nga kaiwhaiwhai te whakakotahi i to ihirangi."
+        }
+      },
+      "minting-posts": {
+        "title": "Te Whakaputa Pou (Te Hanga NFT)",
+        "intro": "He kōwhiringa te whakaputa. Ka whakaputa te pou ki waho o te mekameka i te wā e tukuna ana e koe — karekau he putea, karekau he waitohu, karekau he hau — ā, ka taea e koe te whakaputa hei NFT i ngā wā katoa e hiahia ana koe, ahakoa i te wa e tuhi ana koe, i muri mai rānei mai i te pou ake.",
+        "steps": {
+          "1": "Pāwhiritia te pātene 'Pou' i te taha taha (papamahi) me te pātene + (waea pūkoro).",
+          "2": "Tuhia tō kuputuhi, āpiti ngā pāpāho (ngā whakaahua, ngā ataata, te oro), me te tāpiri kāwai.",
+          "3": "Waiho te 'Whakaputa pou' kia weto kia whakaputa ki waho o te mekameka, ki te kore rānei ka huri ki te whakaputa i te wa e whakaputa ana koe.",
+          "4": "Kāore te whakaputa i te tatari ki te mekameka: ka puta te pou ki te whangai ahakoa pēhea.",
+          "5": "Hei whakaputa i muri mai, whakatuwheratia te whārangi mōhiohio 'ⓘ' o te pou ka whakamahi i te mahi Whakaputa kei reira.",
+          "6": "Ka oti te whakaputa, ka whiwhi te pou i te ID Tohu me te hash tauwhitinga ka taea e koe te manatoko i runga i te mekameka, ā, kei a koe ngā 1,000 wāhanga katoa o taua mea."
+        },
+        "tips": {
+          "1": "Ko ngā takiuru pāpori, īmēra, me SMS kaore he utu hau – ka tautoko a DeHub i ngā utu whakaputa.",
+          "2": "Ko ngā kaiwhakamahi putea o waho me whai ETH i runga i te Base, i te BNB rānei i runga i te BNB Chain mō te hau.",
+          "3": "Ko te whakaputa te mea ka taea ai te hokohoko me te kawe paanga o te pou. Ko te pou kaore i whakaputaina ka whiwhi tonu i ngā tohu me ngā tirohanga.",
+          "4": "Ko te rekoata i runga i te mekameka ka mau tonu ka oti te whakaputa, ahakoa ka mukua te pou i te whangai i muri mai."
+        }
+      },
+      "glossary": {
+        "title": "Kupu Whakamārama",
+        "intro": "He kohinga kupu matawhānui mō te crypto me te reo o te papanga hei āwhina i a koe ki te whakatere i te Web3.",
+        "steps": {
+          "1": "Haere ki te 'Kupu Whakamārama' mai i te taha taha.",
+          "2": "Tirohia ngā kupu kia whakarōpūhia, ka whakamahi rānei i te rapunga hei kimi kupu motuhake.",
+          "3": "Pāwhiritia tētahi kupu kia kite ai i tōna whakamārama katoa me tōna whakamaarama.",
+          "4": "Ko ngā kupu ka hipoki i ngā ariā crypto, te reo DeFi, me ngā āhuatanga motuhake o DeHub."
+        },
+        "tips": {
+          "1": "He rauemi nui mō ngā tauhou ki te crypto me te Web3.",
+          "2": "Ka whakahoutia te kohinga kupu i ia wā ki ngā kupu hou."
+        }
+      }
     }
   },
   "creatorPacks": {

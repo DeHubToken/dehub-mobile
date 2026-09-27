@@ -3433,11 +3433,6 @@
     "noResultsFor": "No results for \"{{query}}\"",
     "guideSubtitle": "Step-by-step walkthrough of every feature",
     "searchGuide": "Search the guide...",
-    "guideFractionsTip": "Every minted post starts with the creator holding all of its fractions (100% ownership).",
-    "guideInfoStep": "Tap the info icon on a minted post to open its mint transaction on the block explorer and verify the on-chain record.",
-    "guideMintIntro": "Minting a post as an NFT on the blockchain is optional. Mint it when you publish, or publish now and mint it later from the post menu.",
-    "guideMintPublishStep": "Choose whether to mint, then click 'Post' to publish. If you skip minting, you can mint the post later from the post menu.",
-    "guideMintFractionsStep": "You receive all 1,000 fractions (100% ownership) of your newly minted post.",
     "glossaryMintTxDesc": "Tap the info icon on a minted post to open its mint transaction on the block explorer and verify the on-chain record. The full Post Info page — stats, holders, marketplace — lives on the web app at dehub.io.",
     "glossaryTokenIdDesc": "A unique on-chain identifier assigned to a post when it's minted as an NFT.",
     "repostsTab": "Reposts",
@@ -3453,24 +3448,7 @@
     "glossaryStakingDesc": "Lock your DeHub tokens to earn rewards over time. Staked tokens also give you increased voting power in governance.",
     "glossaryGovernanceDesc": "Submit and vote on proposals that shape the platform. Your voting power is weighted by how many DeHub tokens you hold.",
     "glossaryStakingBadgesDesc": "Badges displayed next to your username based on your total DeHub token holdings (wallet + staked). There are 13 tiers — the more tokens you hold, the higher your badge rank. Higher tiers grant more governance voting power and lower platform fees.",
-    "glossaryLeaderboardDesc": "Users are ranked by total DeHub token balance (wallet + staked across all chains). Rankings update periodically and track 1-day and 1-week changes. You can also sort by tips sent, tips received, followers, likes, or subscribers.",
-    "guideTipStep": "Click the gem/tip icon to send the post creator a tip in DeHub tokens.",
-    "guideTipWalletTip": "Tips go directly to the creator's wallet as DeHub tokens.",
-    "guideTipNotificationsTip": "Tip notifications show how many DeHub tokens you received.",
-    "guideWalletIntro": "View your DeHub token balances across multiple chains, check staking deposits, and manage your assets.",
-    "guideWalletTotalStep": "View your total DeHub token balance aggregated across all supported chains.",
-    "guideStakingIntro": "Stake your DeHub tokens to earn rewards and increase your governance voting power.",
-    "guideStakingAmountStep": "Enter how many DeHub tokens you want to stake.",
-    "guideLeaderboardBalanceStep": "Balance tab ranks users by their total DeHub token holdings.",
-    "guideGovernanceVoteStep": "Vote on proposals using the thumbs up/down buttons — your vote weight depends on how many DeHub tokens you have staked.",
-    "guideGovernancePowerTip": "Your voting power is determined by how many DeHub tokens you have staked.",
-    "guideBuyIntro": "Buy DeHub tokens directly in DPay using a card or supported crypto.",
-    "guideBuyAmountStep": "Enter the amount you want to spend or how many DeHub tokens you want to receive.",
-    "guideBuyDeliveredStep": "Your DeHub tokens will appear in your wallet once the transaction completes.",
-    "guideBridgeIntro": "Move your DeHub tokens between supported blockchains using the cross-chain bridge.",
-    "guideBridgeSourceStep": "Select the source chain (where your DeHub tokens currently are).",
-    "guideBridgeDestStep": "Select the destination chain (where you want to send your DeHub tokens).",
-    "guideBridgeAmountStep": "Enter how many DeHub tokens to bridge."
+    "glossaryLeaderboardDesc": "Users are ranked by total DeHub token balance (wallet + staked across all chains). Rankings update periodically and track 1-day and 1-week changes. You can also sort by tips sent, tips received, followers, likes, or subscribers."
   },
   "arcade": {
     "submitAccessibility": "Submit a game to the arcade",
@@ -6785,6 +6763,504 @@
       "packEmpty": "No emoji found at that address",
       "shortcodeTaken": "{{name}} is already taken",
       "shortcodeStandard": "{{name}} is already a standard emoji"
+    }
+  },
+  "guide": {
+    "sections": {
+      "getting-started": {
+        "title": "Getting Started",
+        "intro": "There are five ways into DeHub and none of them need you to already own a wallet: Google, Apple, a code sent to your email, a code sent by SMS, or an existing wallet you connect. Everything except the wallet route creates a non-custodial wallet for you in the background — you hold the keys, and DeHub sponsors the gas so you can post, tip and collect without ever buying a native token.",
+        "steps": {
+          "1": "Visit dehub.io — the home feed is the front page, so you can look around before signing in.",
+          "2": "Click 'Sign In'. You'll see Google and Apple, fields for an email address or a phone number, and 'Connect Wallet' for an existing one.",
+          "3": "With Google or Apple, complete the provider's flow. With email or SMS, enter the code that arrives.",
+          "4": "A wallet is created and secured for you on first sign-in. Connecting your own wallet instead means one signature to prove the address.",
+          "5": "Pick a username. It is what people see and it doubles as your dehub.io/<username> profile link.",
+          "6": "You're in. Explore the feed, set up your profile, and start posting."
+        },
+        "tips": {
+          "1": "Social, email and SMS sign-ins never pay gas — DeHub sponsors it. Connected wallets pay their own ETH or BNB.",
+          "2": "Coming back to a legacy DeHub account? Sign in with the email or phone number it used and the migration finds it for you.",
+          "3": "You can keep several accounts on one device and switch between them in Settings → Profile."
+        }
+      },
+      "home-feed": {
+        "title": "Home Feed",
+        "intro": "The home feed is where you see posts from people you follow and trending content. It supports multiple content-type tabs and sorting options.",
+        "steps": {
+          "1": "Navigate to /app — this is your home feed.",
+          "2": "Use the top tabs to filter by content type: Home (all), Videos, Images, Shorts, Music, or Live streams.",
+          "3": "Swipe left/right on the tabs to see more options on mobile.",
+          "4": "Use the filter/sort button (top-right of the feed) to change sorting: Hot, New, or Top.",
+          "5": "Pull down to refresh the feed on mobile.",
+          "6": "Scroll down to load more posts automatically (infinite scroll).",
+          "7": "Toggle between Grid and Feed view using the layout switcher."
+        },
+        "tips": {
+          "1": "Grid view is great for browsing images quickly.",
+          "2": "The 'Home' tab shows all content types mixed together.",
+          "3": "Live tab shows currently active live streams."
+        }
+      },
+      "creating-posts": {
+        "title": "Creating Posts",
+        "intro": "Create text posts, share images, videos, voice notes, GIFs, and more. Use hashtags, cashtags, and mentions to increase reach.",
+        "steps": {
+          "1": "Click the 'Post' button in the sidebar (desktop) or the + button (mobile).",
+          "2": "Type your text in the compose area.",
+          "3": "To add an image or video, click the media icon and select a file.",
+          "4": "To record a voice note, click the microphone icon.",
+          "5": "To add a GIF, click the GIF icon and search for one.",
+          "6": "Use #hashtags to categorize your post (e.g., #crypto, #defi).",
+          "7": "Use $cashtags to reference tokens (e.g., $DHB, $ETH).",
+          "8": "Use @mentions to tag other users (e.g., @username).",
+          "9": "Click 'Post' to publish. Your post appears in the feed immediately."
+        },
+        "tips": {
+          "1": "Posts support markdown-style formatting.",
+          "2": "You can quote-post by clicking the repost icon on any post and selecting 'Quote'.",
+          "3": "Categories (hashtags) appear in the 'Talk of the Town' leaderboard."
+        }
+      },
+      "interacting-with-posts": {
+        "title": "Interacting with Posts",
+        "intro": "Engage with content by voting, commenting, tipping, bookmarking, sharing, and translating.",
+        "steps": {
+          "1": "Upvote or downvote a post using the arrow icons on the left side of any post.",
+          "2": "Click the comment icon to open the comment section and leave a reply.",
+          "3": "Click the gem/tip icon to send a tip in DeHub tokens to the post creator.",
+          "4": "Click the bookmark icon to save a post for later.",
+          "5": "Click the share icon to copy the post link or share externally.",
+          "6": "Click the translate button (globe icon) on any post to translate text to your language.",
+          "7": "For image posts, use the 'Translate Image' button to get an AI-translated version of text within the image.",
+          "8": "Click on any post to open it in full-screen single-post view."
+        },
+        "tips": {
+          "1": "Tips go directly to the creator's wallet in DeHub tokens.",
+          "2": "You can set a tip amount via quick-select buttons or enter a custom amount.",
+          "3": "Bookmarked posts are accessible from the Bookmarks page in the sidebar."
+        }
+      },
+      "explore-search": {
+        "title": "Explore & Search",
+        "intro": "Discover new content and users through the explore page and powerful search functionality.",
+        "steps": {
+          "1": "Navigate to /app/explore from the sidebar.",
+          "2": "Use the search bar at the top to search for users, posts, or content.",
+          "3": "Filter results by tab: All, People, Posts, Images, Videos, Music, Live.",
+          "4": "Browse trending topics and categories on the explore page.",
+          "5": "Click on a trending topic to see all related posts.",
+          "6": "Click on a user in search results to visit their profile."
+        },
+        "tips": {
+          "1": "Search supports usernames, wallet addresses, and content keywords.",
+          "2": "Trending topics update based on recent posting activity."
+        }
+      },
+      "profile": {
+        "title": "Profile",
+        "intro": "Your profile showcases your posts, followers, following, and wallet information.",
+        "steps": {
+          "1": "Click your avatar or 'Profile' in the sidebar to view your profile.",
+          "2": "Click 'Edit Profile' to update your display name, bio, and avatar.",
+          "3": "Upload a profile picture by clicking on your avatar in edit mode.",
+          "4": "View your follower and following counts on your profile page.",
+          "5": "Browse your own posts, media, and liked content via the profile tabs.",
+          "6": "Copy your wallet address by clicking the copy icon next to it.",
+          "7": "Visit other users' profiles by clicking their username or avatar anywhere on the platform."
+        },
+        "tips": {
+          "1": "Your username is unique and appears in your profile URL (dehub.io/@username).",
+          "2": "Privacy settings let you control who can see your follower counts."
+        }
+      },
+      "messages": {
+        "title": "Messages",
+        "intro": "Send direct messages to other users on the platform.",
+        "steps": {
+          "1": "Click 'Messages' in the sidebar to open the messaging page.",
+          "2": "Click the compose button to start a new conversation.",
+          "3": "Search for a user by username to message them.",
+          "4": "Type your message and press send.",
+          "5": "View your conversation history in the messages list.",
+          "6": "Click on a conversation to continue chatting."
+        },
+        "tips": {
+          "1": "You'll receive a notification when someone messages you.",
+          "2": "Creators can lock messages behind a tip requirement."
+        }
+      },
+      "ai-assistant": {
+        "title": "AI Assistant",
+        "intro": "Chat with DeHub's built-in AI assistant for help, information, and creative tasks.",
+        "steps": {
+          "1": "Click 'Assistant' in the sidebar to open the AI chat.",
+          "2": "Type your question or request in the chat input.",
+          "3": "The AI can help with crypto information, platform questions, and general knowledge.",
+          "4": "Start a new conversation by clicking the new chat button.",
+          "5": "View your conversation history in the sidebar of the assistant page.",
+          "6": "You can attach images for the AI to analyze."
+        },
+        "tips": {
+          "1": "The AI remembers context within a conversation.",
+          "2": "You can ask the AI about DeHub features, crypto terms, or general questions.",
+          "3": "Previous conversations are saved and accessible anytime."
+        }
+      },
+      "notifications": {
+        "title": "Notifications",
+        "intro": "Stay updated with likes, comments, tips, follows, and other activity on your content.",
+        "steps": {
+          "1": "Click the bell icon or 'Notifications' in the sidebar.",
+          "2": "View all notifications in a chronological list.",
+          "3": "Click on a notification to navigate to the related content.",
+          "4": "Notifications include: new followers, post votes, comments, tips, and mentions.",
+          "5": "Unread notifications are highlighted — they mark as read when viewed."
+        },
+        "tips": {
+          "1": "The notification badge shows the count of unread notifications.",
+          "2": "Tip notifications show how many tokens you received."
+        }
+      },
+      "wallet": {
+        "title": "Wallet",
+        "intro": "View your DeHub token balances across multiple chains, check staking deposits, and manage your assets.",
+        "steps": {
+          "1": "Click 'Wallet' in the sidebar to open the wallet page.",
+          "2": "View your total token balance aggregated across all supported chains.",
+          "3": "See per-chain breakdowns: Ethereum, Base, BNB Chain, and more.",
+          "4": "Check your staking deposits and rewards.",
+          "5": "Click 'Refresh Scan' to update your balances from on-chain data.",
+          "6": "Copy your wallet address to receive tokens from others."
+        },
+        "tips": {
+          "1": "Balances update automatically but you can force a refresh anytime.",
+          "2": "The wallet shows both liquid (available) and staked balances."
+        }
+      },
+      "staking": {
+        "title": "Staking",
+        "intro": "Stake your DeHub tokens to earn rewards and increase your governance voting power.",
+        "steps": {
+          "1": "Navigate to the 'Staking' page from the sidebar.",
+          "2": "Enter the number of tokens you want to stake.",
+          "3": "Select the chain you want to stake on.",
+          "4": "Confirm the transaction in your wallet (external wallets) or it auto-executes (social login).",
+          "5": "View your staked amounts and any pending rewards.",
+          "6": "To unstake, enter the amount and confirm the unstaking transaction."
+        },
+        "tips": {
+          "1": "Staking increases your vote weight in governance proposals.",
+          "2": "Social-login users don't need gas to stake — it's gasless.",
+          "3": "You can stake on multiple chains simultaneously."
+        }
+      },
+      "leaderboard": {
+        "title": "Leaderboard",
+        "intro": "See who's on top! The leaderboard ranks users by balance, daily spending, and trending topics.",
+        "steps": {
+          "1": "Navigate to the 'Leaderboard' page from the sidebar.",
+          "2": "Switch between tabs: Balance, Daily Spent, and Talk of the Town.",
+          "3": "Balance tab ranks users by their total token holdings.",
+          "4": "Daily Spent tab shows who's been most active tipping in the last 24 hours.",
+          "5": "Talk of the Town shows the most-discussed topics/categories.",
+          "6": "Click on any user to visit their profile.",
+          "7": "The leaderboard updates periodically throughout the day."
+        },
+        "tips": {
+          "1": "Daily rankings reset every 24 hours.",
+          "2": "Talk of the Town tracks single-word categories from hashtags."
+        }
+      },
+      "command-centre": {
+        "title": "Command Centre",
+        "intro": "A dashboard overview showing your key metrics and platform activity at a glance.",
+        "steps": {
+          "1": "Click 'Command Centre' in the sidebar.",
+          "2": "View your profile summary, including post count, followers, and engagement.",
+          "3": "See your recent activity and trending topics.",
+          "4": "Access quick links to commonly used features."
+        },
+        "tips": {
+          "1": "The Command Centre gives you a bird's-eye view of your DeHub presence."
+        }
+      },
+      "governance": {
+        "title": "Governance",
+        "intro": "Participate in platform governance by creating proposals and voting on community decisions.",
+        "steps": {
+          "1": "Navigate to 'Governance' from the sidebar.",
+          "2": "Browse active proposals submitted by the community.",
+          "3": "Click on a proposal to read its full description and discussion.",
+          "4": "Vote on proposals using the thumbs up/down buttons — your vote weight depends on how many DeHub tokens you have staked.",
+          "5": "Leave comments on proposals to discuss with the community.",
+          "6": "Submit your own proposal by clicking the 'Create Proposal' button."
+        },
+        "tips": {
+          "1": "Your voting power is determined by the number of tokens you have staked.",
+          "2": "Badge holders may get additional vote weight.",
+          "3": "Proposals go through stages: Active → Passed/Rejected."
+        }
+      },
+      "bookmarks": {
+        "title": "Bookmarks",
+        "intro": "Save posts to your bookmarks for easy access later.",
+        "steps": {
+          "1": "Click the bookmark icon on any post to save it.",
+          "2": "Navigate to 'Bookmarks' in the sidebar to view all saved posts.",
+          "3": "Click on a bookmarked post to view it in full.",
+          "4": "Remove a bookmark by clicking the bookmark icon again."
+        },
+        "tips": {
+          "1": "Bookmarks are private — only you can see your saved posts.",
+          "2": "There's no limit to how many posts you can bookmark."
+        }
+      },
+      "settings": {
+        "title": "Settings",
+        "intro": "Customize your DeHub experience with language, privacy, and display preferences.",
+        "steps": {
+          "1": "Click 'Settings' in the sidebar.",
+          "2": "Change your display language from the language selector.",
+          "3": "Adjust privacy settings: control who sees your follower counts and following list.",
+          "4": "Set your default post visibility preferences.",
+          "5": "Manage notification preferences."
+        },
+        "tips": {
+          "1": "DeHub supports multiple languages — the entire interface translates.",
+          "2": "Privacy settings apply immediately."
+        }
+      },
+      "posting-allowance": {
+        "title": "Your Daily Posting Allowance",
+        "intro": "Posting is free every day up to an allowance that scales with your staking badge. Everybody starts with ten text posts and one gigabyte of video, images and audio per day. Go past either one and the rest of that day is paid for in DeHub tokens — only on the part that runs over.",
+        "steps": {
+          "1": "Post as normal. Inside the allowance nothing is charged and nothing is asked of you.",
+          "2": "Text posts and media are separate pools, so a day spent uploading video still leaves all ten text posts free.",
+          "3": "When a post would run over, the app prices it first and checks your wallet can cover it before anything uploads.",
+          "4": "The post publishes exactly as it would inside the allowance — publishing never waits on a payment.",
+          "5": "Then you approve one transfer for that post only, settled on whichever of Base or BNB Chain holds enough DeHub tokens.",
+          "6": "Both pools reset at midnight UTC."
+        },
+        "tips": {
+          "1": "Overage is pro-rata: 200 MB past your allowance costs 200 MB, not a whole gigabyte.",
+          "2": "Reposts, comments, reactions, tips and messages cost nothing and never touch the allowance.",
+          "3": "Decline the payment and the post stays up — the amount just blocks your next paid post until it is settled. Tomorrow's free allowance is always yours.",
+          "4": "A staking badge raises the free allowance and lowers the price of anything past it."
+        }
+      },
+      "reactions-and-safety": {
+        "title": "Reactions, Muting & Mature Content",
+        "intro": "There are nine reactions behind the like button, and a set of controls for deciding what you see and who can reach you.",
+        "steps": {
+          "1": "Hold the thumbs-up on any post to open the reaction tray: like, love, respect, hot, lol, sad, cry, dislike and poo.",
+          "2": "The seven positive ones count towards the post's like total; dislike and poo count against it.",
+          "3": "Your reaction is weighted by your staking badge, so a badge holder's reaction moves the count further than one vote.",
+          "4": "Tap the X in a post's header to mute its author — they drop out of your feed straight away.",
+          "5": "Creators mark their own posts as mature while composing them; those posts stay off the public home feed.",
+          "6": "To see mature posts everywhere, turn on 'Show mature content' in Settings."
+        },
+        "tips": {
+          "1": "A mature post is still fully visible on the creator's profile and to the people who follow them.",
+          "2": "Blocking from a profile goes further than muting and cuts off messaging too.",
+          "3": "The reaction tray shows who reacted and with what, so you can see the room rather than just a number."
+        }
+      },
+      "stages": {
+        "title": "Stages (Live Audio Rooms)",
+        "intro": "Stages are live audio rooms built into DeHub. A host opens a room, brings speakers up, and anyone can drop in to listen from the Stages page or a shared link.",
+        "steps": {
+          "1": "Open 'Stages' in the sidebar to see what is live now and what is scheduled.",
+          "2": "Tap a live stage to join as a listener, or set a reminder on a scheduled one and get told when it starts.",
+          "3": "Start your own from the same page — you can go live straight from the browser, with no OBS or stream key.",
+          "4": "As host, bring speakers on stage, mute or remove them, share your screen, and drive the soundboard.",
+          "5": "Listeners send live reactions and talk in the room chat without coming on stage.",
+          "6": "Every stage records, and the recording plays back afterwards from the card it appears on."
+        },
+        "tips": {
+          "1": "Live subtitles caption each speaker and translate into whatever language you are reading in.",
+          "2": "Live dubbing can speak the room aloud in the host's own cloned voice, billed by the minute in DeHub tokens.",
+          "3": "Hosts can put a radio station on air or play their own music clips between conversations.",
+          "4": "A mini-player keeps the room going in the corner while you browse the rest of the app."
+        }
+      },
+      "communities": {
+        "title": "Communities & Events",
+        "intro": "Communities are member-run spaces with their own feed, members and activity. Events add time-bound programming on top of them.",
+        "steps": {
+          "1": "Open 'Communities' in the sidebar and browse the public ones.",
+          "2": "Join in one tap. New activity shows as an unread badge in the navigation.",
+          "3": "Post, discuss, run polls and tip inside a community's own feed.",
+          "4": "Community owners moderate their own space and can grant admin rights to others.",
+          "5": "Open 'Events' for scheduled programming, with a full page per event you can follow along with live."
+        },
+        "tips": {
+          "1": "Community chat supports @mentions and @here, so a post can reach the room.",
+          "2": "An invite link lets you bring people straight into a community."
+        }
+      },
+      "arcade": {
+        "title": "Arcade",
+        "intro": "Five games run inside DeHub in a browser tab — nothing to install, nothing to buy.",
+        "steps": {
+          "1": "Open 'Arcade' in the sidebar.",
+          "2": "Pick a game: King's Gambit (3D chess with an online Elo ladder), Claude of Duty (a shooter that generates its own art as it loads), Jungle Trail (a procedural rainforest walk), Street Slayer (a beat 'em up made for DeHub) or Chartopia (a walkable trading floor).",
+          "3": "Play in the tab. King's Gambit and Street Slayer keep leaderboards.",
+          "4": "Chartopia also runs in a VR headset through WebXR."
+        },
+        "tips": {
+          "1": "Two of them hide inside the appearance themes — set the app to War for Claude of Duty, or Jungle for Jungle Trail.",
+          "2": "Every game has its own share card, so a link to one unfurls properly wherever you post it."
+        }
+      },
+      "bounties-stores": {
+        "title": "Bounties & Stores",
+        "intro": "Two ways to turn the platform into income: post or claim a bounty, or open a storefront and sell to your audience.",
+        "steps": {
+          "1": "Open 'Bounties' to browse open work, filtered by category or currency.",
+          "2": "Claim one, do the work, and submit it to collect the reward — anyone can be a hunter, no application needed.",
+          "3": "Post your own bounty with a brief and a reward in DeHub tokens or USDC. It goes into escrow the moment you post it.",
+          "4": "Open 'Stores' to set up a storefront with its own page, branding and listings.",
+          "5": "Products are priced and settled in DeHub tokens through the built-in wallet, with no external checkout."
+        },
+        "tips": {
+          "1": "Bounties are organised into Social Media, Clipping and Contracts.",
+          "2": "A dispute flow settles disagreements over delivery, so escrow always resolves fairly.",
+          "3": "Creators use bounties to grow a community — shares, clips and reactions are all valid tasks."
+        }
+      },
+      "creator-studio": {
+        "title": "Creator Studio & Editor",
+        "intro": "Creator Studio generates images, video, music, voice and 3D models from a prompt, and hands them to an editor — including a full multi-track video editor that runs in the browser.",
+        "steps": {
+          "1": "Open Creator Studio and describe what you want made.",
+          "2": "The server quotes the cost before the job runs, so you see what it costs before you spend it.",
+          "3": "Renders continue in a shared queue while you carry on browsing the app.",
+          "4": "Arrange the results in the Canva-style editor, or open the video editor for a real timeline with cutting, layering and export.",
+          "5": "Drop the finished piece straight into a post, a short or a store listing."
+        },
+        "tips": {
+          "1": "A free stock asset library sits alongside the Studio for anything you would rather not generate.",
+          "2": "Generation is paid for in DeHub tokens from your wallet — you sign one transfer per job, and the price is quoted before you pay.",
+          "3": "Heavier users can take an Ultra, Team or Scale plan, which sends a monthly token allowance straight to their wallet."
+        }
+      },
+      "buying-dhb": {
+        "title": "Buying Tokens",
+        "intro": "Buy DeHub tokens directly within the app using the built-in swap interface.",
+        "steps": {
+          "1": "Navigate to the 'Buy' page from the sidebar.",
+          "2": "Select the token you want to swap from (e.g., ETH, USDC).",
+          "3": "Enter the amount you want to spend or the number of tokens you want to receive.",
+          "4": "Review the exchange rate and estimated output.",
+          "5": "Click the settings gear icon to adjust slippage tolerance (default is 1%).",
+          "6": "Confirm the swap transaction.",
+          "7": "DeHub tokens will appear in your wallet once the transaction completes."
+        },
+        "tips": {
+          "1": "Higher slippage tolerance = more likely to execute, but potential for worse pricing.",
+          "2": "Always check the exchange rate before confirming.",
+          "3": "You can set custom slippage in the settings panel."
+        }
+      },
+      "bridge": {
+        "title": "Bridge",
+        "intro": "Move your DeHub tokens between supported blockchains using the cross-chain bridge.",
+        "steps": {
+          "1": "Navigate to the 'Bridge' page from the sidebar.",
+          "2": "Select the source chain (where your tokens currently are).",
+          "3": "Select the destination chain (where you want to send them).",
+          "4": "Enter the number of tokens to bridge.",
+          "5": "Review the bridge fee and estimated arrival time.",
+          "6": "Confirm the bridge transaction.",
+          "7": "Wait for the transaction to complete — bridging may take a few minutes."
+        },
+        "tips": {
+          "1": "Bridge fees vary by chain pair.",
+          "2": "Bridging typically takes 1-5 minutes depending on the chains involved.",
+          "3": "Always double-check the destination chain before confirming."
+        }
+      },
+      "music-tv": {
+        "title": "Music & TV",
+        "intro": "Enjoy media content directly within DeHub — stream music and watch live TV channels.",
+        "steps": {
+          "1": "Navigate to 'Music' from the sidebar to browse and play music posts.",
+          "2": "Navigate to 'TV' to access live TV channels.",
+          "3": "Browse channels by category or country.",
+          "4": "Click on a channel to start watching.",
+          "5": "Use the player controls to adjust volume and playback.",
+          "6": "Report broken channels using the report button."
+        },
+        "tips": {
+          "1": "TV channels are community-verified for reliability.",
+          "2": "Music posts can be played while browsing other content."
+        }
+      },
+      "post-info": {
+        "title": "Post Info & Fractions",
+        "intro": "A minted post is an NFT split into 1,000 fractions. The Post Info page shows on-chain data, engagement stats, ownership breakdown, and lets you trade fractions of any post — on an unminted post it offers to mint instead.",
+        "steps": {
+          "1": "Tap the 'ⓘ' icon on any post to open its Post Info page.",
+          "2": "At the top you'll see the Token ID (unique on-chain identifier) and the transaction hash — click the hash to view it on the block explorer.",
+          "3": "Below that, engagement stats show total likes, dislikes, views, comments, and tips received.",
+          "4": "The Holders section shows a progress bar of how many of the 1,000 fractions the creator still owns, plus a list of all fraction holders with their balances and percentages.",
+          "5": "If the post is pay-per-view (PPV), you'll see the price, currency, and how many users have purchased access.",
+          "6": "Post owners can change visibility (Public, Unlisted, or Private) and edit the title/description directly from this page."
+        },
+        "tips": {
+          "1": "A freshly minted post starts with the creator holding all 1,000 fractions (100% ownership).",
+          "2": "The transaction hash links to BaseScan or BscScan depending on the chain.",
+          "3": "Unlisted posts don't appear in feeds but can still be accessed via direct link."
+        }
+      },
+      "trading-fractions": {
+        "title": "Trading Fractions",
+        "intro": "Fraction trading — browsing listings, making offers, listing your own — lives on the web app at dehub.io, on each post's Post Info page.",
+        "steps": {
+          "1": "Open dehub.io in a browser and sign in with the same account.",
+          "2": "Open the post's Post Info page and switch to its Marketplace tab.",
+          "3": "Browse listings, make an offer at your price, or list fractions you hold.",
+          "4": "Once a trade completes, the change shows up in your Fractions tab here on mobile."
+        },
+        "tips": {
+          "1": "Owning fractions of a post means you hold a share of that on-chain NFT.",
+          "2": "Check a post's holders on the web marketplace to see ownership distribution before buying.",
+          "3": "As a creator, selling fractions lets fans co-own your content."
+        }
+      },
+      "minting-posts": {
+        "title": "Minting Posts (Creating NFTs)",
+        "intro": "Minting is optional. A post publishes off-chain the moment you send it — no wallet, no signature, no gas — and you can mint it as an NFT whenever you want, either as you compose it or later from the post itself.",
+        "steps": {
+          "1": "Click the 'Post' button in the sidebar (desktop) or the + button (mobile).",
+          "2": "Write your text, attach media (images, videos, audio), and add categories.",
+          "3": "Leave 'Mint post' off to publish off-chain, or switch it on to mint as you publish.",
+          "4": "Publishing never waits on the chain: the post appears in the feed either way.",
+          "5": "To mint later, open the post's 'ⓘ' info page and use the Mint action there.",
+          "6": "Once minted, the post gets a Token ID and a transaction hash you can verify on-chain, and you hold all 1,000 fractions of it."
+        },
+        "tips": {
+          "1": "Social, email and SMS sign-ins pay zero gas — DeHub sponsors minting fees.",
+          "2": "External-wallet users need ETH on Base or BNB on BNB Chain for gas.",
+          "3": "Minting is what makes a post tradeable and royalty-bearing. An unminted post still earns tips and views.",
+          "4": "The on-chain record is permanent once minted, even if the post is later deleted from the feed."
+        }
+      },
+      "glossary": {
+        "title": "Glossary",
+        "intro": "A comprehensive glossary of crypto and platform terminology to help you navigate Web3.",
+        "steps": {
+          "1": "Navigate to 'Glossary' from the sidebar.",
+          "2": "Browse terms alphabetically or use the search to find specific terms.",
+          "3": "Click on a term to see its full definition and explanation.",
+          "4": "Terms cover crypto concepts, DeFi terminology, and DeHub-specific features."
+        },
+        "tips": {
+          "1": "Great resource for newcomers to crypto and Web3.",
+          "2": "The glossary is regularly updated with new terms."
+        }
+      }
     }
   },
   "creatorPacks": {

@@ -3433,11 +3433,6 @@
     "noResultsFor": "Ko si awọn abajade fun \"{{query}}\"",
     "guideSubtitle": "Itọsọna igbesẹ-ni-igbesẹ ti ẹya kọọkan",
     "searchGuide": "Wa itọsọna naa...",
-    "guideFractionsTip": "Gbogbo àtẹ̀jáde tí a ti mint máa ń bẹ̀rẹ̀ pẹ̀lú ẹlẹ́dàá tó ní gbogbo ìpín rẹ̀ (níní 100%).",
-    "guideInfoStep": "Tẹ àmì ìsọfúnni lórí àtẹ̀jáde tí a ti mint láti ṣí ìdúnàádúrà mint rẹ̀ nínú block explorer kí o sì ṣàyẹ̀wò àkọsílẹ̀ tó wà lórí chain.",
-    "guideMintIntro": "Mint àtẹ̀jáde gẹ́gẹ́ bí NFT lórí blockchain jẹ́ àṣàyàn. Mint rẹ̀ nígbà tí o bá ń tẹ̀ ẹ́ jáde, tàbí tẹ̀ ẹ́ jáde báyìí kí o sì mint rẹ̀ lẹ́yìn náà láti inú àkójọ àtẹ̀jáde.",
-    "guideMintPublishStep": "Yan bóyá o fẹ́ mint, lẹ́yìn náà tẹ 'Firanṣẹ' láti tẹ̀ ẹ́ jáde. Tí o bá fo mint, o lè mint àtẹ̀jáde náà lẹ́yìn náà láti inú àkójọ rẹ̀.",
-    "guideMintFractionsStep": "O gba gbogbo ìpín 1,000 (níní 100%) ti ìfìwéránṣẹ́ rẹ tí o ṣẹ̀ṣẹ̀ mint.",
     "glossaryMintTxDesc": "Tẹ àmì ìsọfúnni lórí àtẹ̀jáde tí a ti mint láti ṣí ìdúnàádúrà mint rẹ̀ nínú block explorer kí o sì ṣàyẹ̀wò àkọsílẹ̀ tó wà lórí chain. Ojú-ìwé Ìsọfúnni Àtẹ̀jáde kíkún — ìṣirò, àwọn olùní, ọjà — wà lórí ohun èlò wẹ́ẹ̀bù ní dehub.io.",
     "glossaryTokenIdDesc": "Ìdánimọ̀ aláìlẹ́gbẹ́ lórí chain tí a fún àtẹ̀jáde nígbà tí a bá mint rẹ̀ gẹ́gẹ́ bí NFT.",
     "repostsTab": "Atunṣe",
@@ -3454,24 +3449,7 @@
     "glossaryStakingDesc": "Dá DeHub àmi-ìṣe rẹ mọ́ láti jèrè ẹ̀bùn ní ìgbà tí ó bá lọ. Àwọn àmi-ìṣe tí a fi sílẹ̀ pẹ̀lú máa fún ọ ní agbára ìdìbò tí ó pọ̀ sí i nínú ìṣàkóso.",
     "glossaryGovernanceDesc": "Fi àti dìbò fún àwọn ìgbìmọ̀ tí ó mọ̀ ọ̀nà ìlànà náà. Agbára ìdìbò rẹ ni a ti wọn gẹ́gẹ́ bí iye DeHub àmi-ìṣe tí o ní.",
     "glossaryStakingBadgesDesc": "Àwọn àmì tí a fi sí ẹ̀gbẹ́ orúkọ olumúlò rẹ gẹ́gẹ́ bí iye gbogbo DeHub àmi-ìṣe tí o ní (àpò + tí a fi sílẹ̀). Wọ́n ní ìpele 13 — bí o ṣe ní àmi-ìṣe púpọ̀ sí i, bẹ́ẹ̀ ni ìpele àmì rẹ yóò ṣe ga sí i. Àwọn ìpele tí ó ga jù lọ máa fún ní agbára ìdìbò ìṣàkóso tí ó pọ̀ sí i àti owó ìlànà tí ó kéré sí i.",
-    "glossaryLeaderboardDesc": "A ti ṣe àkójọ àwọn olumúlò gẹ́gẹ́ bí iye gbogbo DeHub àmi-ìṣe (àpò + tí a fi sílẹ̀ lórí gbogbo ẹ̀wọ̀n). Àwọn àkójọ máa ń tún ara wọn ṣe nígbà kan, wọ́n sì máa ń tọ́jú àwọn ìyípadà ọjọ́ kan àti ọ̀sán kan. O tún lè fi àwọn ẹ̀bùn tí a rán, àwọn ẹ̀bùn tí a gbà, àwọn tó tẹ̀lé, àwọn tí wọ́n fẹ́ràn, tàbí àwọn tó forúkọsílẹ̀.",
-    "guideTipStep": "Tẹ àmì gem/tip láti fi ẹ̀bùn ní DeHub àmi-ìṣe ránṣẹ́ sí ẹni tí ó dá ìwé ìròyìn náà.",
-    "guideTipWalletTip": "Àwọn ẹ̀bùn máa ń lọ taàrà sí àpò ẹni tí ó dá a gẹ́gẹ́ bí DeHub àmi-ìṣe.",
-    "guideTipNotificationsTip": "Awọn iwifunni iṣowo fihan iye awọn DeHub token ti o gba.",
-    "guideWalletIntro": "Wo awọn iwọntọnwọnsọ DeHub rẹ kọja awọn ẹwọn pupọ, ṣayẹwo awọn idogo staking, ati ṣakoso awọn ohun-ini rẹ.",
-    "guideWalletTotalStep": "Wo iwọntọnwọnsọ DeHub lapapọ rẹ ti a ṣajọpọ kọja gbogbo awọn ẹwọn ti o ni atilẹyin.",
-    "guideStakingIntro": "Ṣe idoko-owo awọn DeHub token rẹ lati jo'gun awọn ere ati mu agbara idibo iṣakoso rẹ pọ si.",
-    "guideStakingAmountStep": "Tẹ iye awọn DeHub token ti o fẹ lati ṣe idoko-owo.",
-    "guideLeaderboardBalanceStep": "Taabu iwọntọnwọnsọ n ṣe ipo awọn olumulo nipasẹ awọn ohun-ini DeHub token lapapọ wọn.",
-    "guideGovernanceVoteStep": "Dibò lori awọn igbero nipa lilo awọn bọtini atanpako si oke/isalẹ — iwuwo idibo rẹ da lori iye awọn DeHub token ti o ti ṣe idoko-owo.",
-    "guideGovernancePowerTip": "Agbara idibo rẹ ni a pinnu nipasẹ iye awọn DeHub token ti o ti ṣe idoko-owo.",
-    "guideBuyIntro": "Ra awọn DeHub token taara ni DPay ni lilo kaadi tabi crypto ti o ni atilẹyin.",
-    "guideBuyAmountStep": "Tẹ iye ti o fẹ lati lo tabi iye awọn DeHub token ti o fẹ lati gba.",
-    "guideBuyDeliveredStep": "Awọn DeHub token rẹ yoo han ninu apamọwọ rẹ ni kete ti iṣowo ba pari.",
-    "guideBridgeIntro": "Gbe awọn DeHub token rẹ laarin awọn blockchain ti o ni atilẹyin nipa lilo afara-ẹwọn.",
-    "guideBridgeSourceStep": "Yan ẹwọn orisun (nibiti awọn DeHub token rẹ wa lọwọlọwọ).",
-    "guideBridgeDestStep": "Yan ẹwọn opin (nibiti o fẹ lati fi awọn DeHub token rẹ ranṣẹ).",
-    "guideBridgeAmountStep": "Tẹ iye awọn DeHub token lati kọja."
+    "glossaryLeaderboardDesc": "A ti ṣe àkójọ àwọn olumúlò gẹ́gẹ́ bí iye gbogbo DeHub àmi-ìṣe (àpò + tí a fi sílẹ̀ lórí gbogbo ẹ̀wọ̀n). Àwọn àkójọ máa ń tún ara wọn ṣe nígbà kan, wọ́n sì máa ń tọ́jú àwọn ìyípadà ọjọ́ kan àti ọ̀sán kan. O tún lè fi àwọn ẹ̀bùn tí a rán, àwọn ẹ̀bùn tí a gbà, àwọn tó tẹ̀lé, àwọn tí wọ́n fẹ́ràn, tàbí àwọn tó forúkọsílẹ̀."
   },
   "arcade": {
     "submitAccessibility": "Fi ere kan ranṣẹ si arcade",
@@ -6793,6 +6771,504 @@
       "packEmpty": "Kò sí emoji tí a rí ní àdírẹ́sì yẹn.",
       "shortcodeTaken": "{{name}} ti gba tẹlẹ",
       "shortcodeStandard": "{{name}} jẹ emoji ti o ṣe deede tẹlẹ"
+    }
+  },
+  "guide": {
+    "sections": {
+      "getting-started": {
+        "title": "Bí a ṣe bẹ̀rẹ̀",
+        "intro": "Ilọkuro marun-un wa si DeHub ati pe ko si ọkan ninu wọn ti o nilo ki o ni apamọwọ tẹlẹ: Google, Apple, koodu ti a fi ranṣẹ si imeeli rẹ, koodu ti a fi ranṣẹ nipasẹ SMS, tabi apamọwọ ti o wa tẹlẹ ti o sopọ. Ohun gbogbo ayafi ọna apamọwọ ṣẹda apamọwọ ti kii ṣe oluduro fun ọ ni abẹlẹ — iwọ ni awọn bọtini, ati DeHub ṣe onigbọwọ gaasi lati le fiweranṣẹ, fun ni imọran, ati gba ikojọpọ laisi rira ami-ami abinibi kan.",
+        "steps": {
+          "1": "Ṣabẹwo si dehub.io — ifunni ile ni oju-iwe iwaju, nitorinaa o le wo ni ayika ṣaaju ki o to wọle.",
+          "2": "Tẹ 'Wọle'. Iwọ yoo rii Google ati Apple, awọn aaye fun adirẹsi imeeli tabi nọmba foonu, ati 'Sopọ Apamọwọ' fun eyiti o wa tẹlẹ.",
+          "3": "Pẹlu Google tabi Apple, pari ṣiṣan olupese naa. Pẹlu imeeli tabi SMS, tẹ koodu ti o de.",
+          "4": "Apamọwọ ni a ṣẹda ati ni aabo fun ọ ni akọkọ wọle. Sisopọ apamọwọ tirẹ dipo tumọ si ifọwọsi kan lati jẹrisi adirẹsi naa.",
+          "5": "Yan orukọ olumulo. O jẹ ohun ti awọn eniyan rii ati pe o tun jẹ ọna asopọ profaili dehub.io/<username> rẹ.",
+          "6": "O wa ninu. Ṣawari ifunni naa, ṣeto profaili rẹ, ki o bẹrẹ ifiweranṣẹ."
+        },
+        "tips": {
+          "1": "Awọn iforukọsilẹ awujọ, imeeli, ati SMS ko san gaasi rara — DeHub ṣe onigbọwọ rẹ. Awọn apamọwọ ti a ti sopọ san ti ara wọn ETH tabi BNB.",
+          "2": "Pada si iroyin DeHub atijọ? Wọle pẹlu imeeli tabi nọmba foonu ti o lo ati iṣilọpọ yoo rii fun ọ.",
+          "3": "O le ṣetọju awọn iroyin pupọ lori ẹrọ kan ati yipada laarin wọn ni Eto → Profaili."
+        }
+      },
+      "home-feed": {
+        "title": "Ifunni Ile",
+        "intro": "Ifunni ile ni ibi ti o ti rii awọn ifiweranṣẹ lati ọdọ awọn eniyan ti o tẹle ati akoonu ti n gbajumọ. O ṣe atilẹyin awọn taabu iru akoonu pupọ ati awọn aṣayan sisọ.",
+        "steps": {
+          "1": "Ṣe lilọ kiri si /app — eyi ni ifunni ile rẹ.",
+          "2": "Lo àwọn tábìlì òkè láti ṣe àlẹmọ ní ìbámu pẹ̀lú irú àkóónú: Ilé (gbogbo), Fídíò, Àwòrán, Shorts, Orin, tàbí Live Streams.",
+          "3": "Yí apá òsì/ọ̀tún sí orí tábìlì láti rí àwọn àṣàyàn síi lórí ẹ̀rọ alágbèéká.",
+          "4": "Lo bọ́tìnì àlẹmọ/ìyapa (apá ọ̀tún òkè àjẹsára) láti pààrọ̀ ìyapa: Gbóná, Tuntun, tàbí Òkè.",
+          "5": "Fún ìsàlẹ̀ láti tún oúnjẹ náà ṣe lórí ẹ̀rọ alágbèéká.",
+          "6": "Gbe lọ sílẹ̀ láti fi àwọn ìgbéjáde mìíràn sílẹ̀ láti fi ara wọn hàn (ìyípadà tí kò lópin).",
+          "7": "Toggle láàárín Grid àti Feed view nípa lílo àtúntò àtúntò."
+        },
+        "tips": {
+          "1": "Ìran gíríìdì dára fún wíwá àwòrán kiri ní kíákíá.",
+          "2": "Tábìlì 'Ilé' náà ṣe àfihàn gbogbo àwọn oríṣi àkóónú tí a dapọ̀ papọ̀.",
+          "3": "Tábìlì alààyè ń ṣe àfihàn àwọn ìṣàn alààyè tó ń ṣiṣẹ́ nísinsìnyí."
+        }
+      },
+      "creating-posts": {
+        "title": "Ṣiṣẹda Awọn Ifiweranṣẹ",
+        "intro": "Ṣẹ̀dá àwọn àtẹ̀jáde, pín àwòrán, fídíò, àlàyé ohùn, GIF, àti bẹ́ẹ̀ bẹ́ẹ̀ lọ. Lo hashtags, cashtags, àti mẹ́nu kan láti mú kí ìfikún sí i pọ̀ sí i.",
+        "steps": {
+          "1": "Tẹ bọ́tìnì 'Pósí' nínú àpá òdìkejì (tábìlì) tàbí bọ́tìnì + (alágbèéká).",
+          "2": "Tẹ àyọkà rẹ sí agbègbè tó wà ní agbègbè náà.",
+          "3": "Láti fi àwòrán tàbí fídíò kún un, tẹ àmì ìròyìn kí o sì yan fáìlì.",
+          "4": "Láti gba àkíyèsí ohùn sílẹ̀, tẹ àmì gbohungbohun náà.",
+          "5": "Láti fi GIF kún un, tẹ àmì GIF kí o sì wá ọ̀kan.",
+          "6": "Lo #hashtags láti ṣètò iṣẹ́ rẹ (bí àpẹẹrẹ, #crypto, #defi).",
+          "7": "Lo $cashtags sí àwọn àmì ìtọ́kasí (bí àpẹẹrẹ, $DHB, $ETH).",
+          "8": "Lo @ mẹ́nu kan láti fi àmì sí àwọn olùṣàmúlò mìíràn (bí àpẹẹrẹ, @lorúkọ oníṣe).",
+          "9": "Tẹ 'Post' láti ṣe ìtẹ̀jáde. Ifiweranṣẹ rẹ farahàn nínú oúnjẹ lẹ́sẹ̀kẹsẹ̀."
+        },
+        "tips": {
+          "1": "Àwọn ìgbéjáde tún lo ọ̀nà ìkọ̀wé tí ó jọ ọ̀nà tí wọ́n máa ń lò nínú Markdown.",
+          "2": "O lè fa ọ̀rọ̀ yọ nípa títẹ àmì àtúnse lórí iṣẹ́ èyíkéyìí àti yíyan 'Quote'.",
+          "3": "Àwọn ẹ̀ka (hashtags) farahàn nínú àkájọ aṣáájú 'Talk of the Town'."
+        }
+      },
+      "interacting-with-posts": {
+        "title": "Ibaṣepọ pẹlu Awọn ifiweranṣẹ",
+        "intro": "Darapọ̀ pẹ̀lú ohun tí ó wà nínú rẹ̀ nípa ìbò, sísọ, sísọ, sísọ ìwé, pínpín, àti túmọ̀.",
+        "steps": {
+          "1": "Ṣe atilẹyin tabi kọ atẹjade kan nipa lilo awọn aami ọfà ni apa osi ti eyikeyi atẹjade.",
+          "2": "Tẹ àmì àkíyèsí láti ṣí abala àkíyèsí kí o sì fi èsì sílẹ̀.",
+          "3": "Tẹ àmì okuta iyebíye/àtẹ̀jíṣẹ́ láti fi àtẹ̀jíṣẹ́ ránṣẹ́ nínú àwọn àmì DeHub sí olùṣẹ̀dá àtẹ̀jíṣẹ́.",
+          "4": "Tẹ àmì-ìwé náà láti fi àtẹ̀jíṣẹ́ pamọ́ fún ìgbà mìíràn.",
+          "5": "Tẹ aami pín lati da ọna asopọ ifiweranṣẹ naa tabi pin si ita.",
+          "6": "Tẹ bọtini itumọ (aami agbaye) lori eyikeyi ifiweranṣẹ lati tumọ ọrọ si ede rẹ.",
+          "7": "Fun awọn ifiweranṣẹ aworan, lo bọtini 'Translate Image' lati gba ẹya ti AI-tumọ ti ọrọ laarin aworan naa.",
+          "8": "Tẹ lori eyikeyi ifiweranṣẹ lati ṣii ni wiwo ifiweranṣẹ kan ni kikun iboju."
+        },
+        "tips": {
+          "1": "Awọn imọran lọ taara si apamọwọ ẹlẹda ni awọn ami DeHub.",
+          "2": "O le ṣeto iye imọran nipasẹ awọn bọtini yiyan iyara tabi tẹ iye ti adani.",
+          "3": "Awọn ifiweranṣẹ ti a ti bukun ni a le wọle si lati oju-iwe Awọn iwe ti a ti bukun ni apa osi."
+        }
+      },
+      "explore-search": {
+        "title": "Ṣawari & Wa",
+        "intro": "Ṣe afẹri akoonu tuntun ati awọn olumulo nipasẹ oju-iwe iṣawari ati iṣẹ ṣiṣe wiwa ti o lagbara.",
+        "steps": {
+          "1": "Lilọ kiri si /app/explore lati apa osi.",
+          "2": "Lo ọpa wiwa ni oke lati wa awọn olumulo, awọn ifiweranṣẹ, tabi akoonu.",
+          "3": "Ṣe àlẹmọ awọn abajade nipasẹ taabu: Gbogbo, Eniyan, Awọn ifiweranṣẹ, Awọn aworan, Awọn fidio, Orin, Live.",
+          "4": "Ṣawakiri awọn akọle ti o gbajumọ ati awọn ẹka lori oju-iwe iṣawari.",
+          "5": "Tẹ lori akọle ti o gbajumọ lati wo gbogbo awọn ifiweranṣẹ ti o jọmọ.",
+          "6": "Tẹ lori olumulo kan ninu awọn abajade wiwa lati ṣabẹwo si profaili wọn."
+        },
+        "tips": {
+          "1": "Wiwa ṣe atilẹyin awọn orukọ olumulo, awọn adirẹsi apamọwọ, ati awọn ọrọ-ọrọ akoonu.",
+          "2": "Awọn akọle ti o gbajumọ ni imudojuiwọn da lori iṣẹ ṣiṣe ifiweranṣẹ laipẹ."
+        }
+      },
+      "profile": {
+        "title": "Profaili",
+        "intro": "Profaili rẹ ṣe afihan awọn ifiweranṣẹ rẹ, awọn ọmọlẹhin, atẹle, ati alaye apamọwọ.",
+        "steps": {
+          "1": "Tẹ aworan rẹ tabi 'Profaili' ni apa osi lati wo profaili rẹ.",
+          "2": "Tẹ 'Ṣatunkọ Profaili' lati ṣe imudojuiwọn orukọ ifihan rẹ, bio, ati aworan.",
+          "3": "Gbe aworan profaili kan soke nipa titẹ si aworan rẹ ni ipo ṣiṣatunkọ.",
+          "4": "Wo awọn kọnka ọmọlẹhin ati atẹle rẹ lori oju-iwe profaili rẹ.",
+          "5": "Ṣawakiri awọn ifiweranṣẹ tirẹ, media, ati akoonu ti o fẹran nipasẹ awọn taabu profaili.",
+          "6": "Daakọ adirẹsi apamọwọ rẹ nipa titẹ aami daakọ lẹgbẹẹ rẹ.",
+          "7": "Ṣabẹwo si awọn profaili olumulo miiran nipa titẹ orukọ olumulo wọn tabi aworan nibikibi lori pẹpẹ."
+        },
+        "tips": {
+          "1": "Orukọ olumulo rẹ jẹ alailẹgbẹ ati pe o han ni URL profaili rẹ (dehub.io/@username).",
+          "2": "Awọn eto asiri gba ọ laaye lati ṣakoso tani o le wo awọn kọnka ọmọlẹhin rẹ."
+        }
+      },
+      "messages": {
+        "title": "Awọn ifiranṣẹ",
+        "intro": "Firanṣẹ awọn ifiranṣẹ taara si awọn olumulo miiran lori pẹpẹ.",
+        "steps": {
+          "1": "Tẹ 'Awọn ifiranṣẹ' ni apa osi lati ṣii oju-iwe ifiranṣẹ.",
+          "2": "Tẹ bọtini kikọ lati bẹrẹ iwireni tuntun.",
+          "3": "Ṣe àwáráwá fún olumulo kan nipasẹ orukọ olumulo lati fi ifiranṣẹ ranṣẹ si wọn.",
+          "4": "Kọ ifiranṣẹ rẹ ki o tẹ fi ranṣẹ.",
+          "5": "Wo àkọsílẹ̀ ìjíròrò rẹ ninu àkójọ àwọn ìránṣẹ́.",
+          "6": "Tẹ ìjíròrò kan lati tẹsiwaju sisọ."
+        },
+        "tips": {
+          "1": "Iwọ yoo gba iwifunni nigbati ẹnikan ba fi ifiranṣẹ ranṣẹ si ọ.",
+          "2": "Awọn oludasile le tii awọn ifiranṣẹ lẹhin ibeere imọran."
+        }
+      },
+      "ai-assistant": {
+        "title": "Oluranlọwọ AI",
+        "intro": "Wireni pẹlu oluranlọwọ AI ti a ṣe sinu DeHub fun iranlọwọ, alaye, ati awọn iṣẹ ṣiṣe ẹda.",
+        "steps": {
+          "1": "Tẹ 'Oluranlọwọ' ninu àgbàlagbà lati ṣii iwireni AI.",
+          "2": "Kọ ibeere rẹ tabi ibeere ni titẹ iwireni.",
+          "3": "AI le ṣe iranlọwọ pẹlu alaye crypto, awọn ibeere pẹpẹ, ati imọ gbogbogbo.",
+          "4": "Bẹrẹ iwireni tuntun nipa titẹ bọtini iwireni tuntun.",
+          "5": "Wo àkọsílẹ̀ ìjíròrò rẹ ninu àgbàlagbà ti oju-iwe oluranlọwọ.",
+          "6": "O le so awọn aworan pọ fun AI lati ṣe atupale."
+        },
+        "tips": {
+          "1": "AI ranti ọrọ-ọrọ laarin ìjíròrò kan.",
+          "2": "O le beere lọwọ AI nipa awọn ẹya DeHub, awọn ọrọ crypto, tabi awọn ibeere gbogbogbo.",
+          "3": "Awọn ìjíròrò ti tẹlẹ ni a fipamọ ati pe o le wọle nigbakugba."
+        }
+      },
+      "notifications": {
+        "title": "Awọn iwifunni",
+        "intro": "Wa ni imudojuiwọn pẹlu awọn fẹran, awọn asọye, awọn imọran, awọn atẹle, ati awọn iṣẹ miiran lori akoonu rẹ.",
+        "steps": {
+          "1": "Tẹ aami agogo tabi 'Awọn iwifunni' ninu àgbàlagbà.",
+          "2": "Wo gbogbo awọn iwifunni ni atokọ chronological.",
+          "3": "Tẹ iwifunni kan lati lọ si akoonu ti o jọmọ.",
+          "4": "Awọn iwifunni pẹlu: awọn atẹle tuntun, awọn ibo ifiweranṣẹ, awọn asọye, awọn imọran, ati awọn mẹnuba.",
+          "5": "Awọn iwifunni ti a ko ka ni a ṣe afihan — wọn samisi bi kika nigbati o ba wo."
+        },
+        "tips": {
+          "1": "Aami iwifunni fihan iye awọn iwifunni ti a ko ka.",
+          "2": "Awọn iwifunni imọran fihan iye awọn ami ti o gba."
+        }
+      },
+      "wallet": {
+        "title": "Wallet",
+        "intro": "Wo awọn iwọntunwọnsi ami DeHub rẹ kọja awọn ẹwọn pupọ, ṣayẹwo awọn idogo staking, ati ṣakoso awọn ohun-ini rẹ.",
+        "steps": {
+          "1": "Tẹ 'Wallet' ninu àgbàlagbà lati ṣii oju-iwe wallet.",
+          "2": "Wo gbogbo ìdúróṣánṣán àfihàn rẹ tí a kó jọ káàkiri gbogbo àwọn ẹ̀wọ̀n tí a ṣe àtìlẹyìn.",
+          "3": "Wo ìpínyà fún pq: Ethereum, Base, BnB Chain, àti bẹ́ẹ̀ bẹ́ẹ̀ lọ.",
+          "4": "Ṣàyẹ̀wò àwọn owó ìpamọ́ rẹ àti èrè rẹ.",
+          "5": "Tẹ 'Refresh Scan' láti ṣe ìmúdójúìwọ̀n àwọn ìdúróṣánṣán rẹ láti inú àkóónú àkóónú.",
+          "6": "Ṣàdàkọ àdírẹ́sì àpamọ́wọ́ rẹ láti gba àmì láti ọ̀dọ̀ àwọn ẹlòmíràn."
+        },
+        "tips": {
+          "1": "Awọn iwọntunwọnsì nṣe imudojuiwọn laifọwọyi ṣugbọn o le fi agbara mu imudojuiwọn nigbakugba.",
+          "2": "Apamọwọ náà ṣe àfihàn omi-omi (tí ó wà) àti àwọn ìdúróṣánṣán tí ó dúró."
+        }
+      },
+      "staking": {
+        "title": "Dìde",
+        "intro": "Gbé àmì DeHub rẹ láti gba èrè kí o sì mú kí agbára ìbò ìṣàkóso rẹ pọ̀ sí i.",
+        "steps": {
+          "1": "Rìn lọ sí ojú-ìwé 'Staking' láti ọ̀dọ̀ àpá ẹ̀gbẹ́.",
+          "2": "Wọ iye àwọn àmì tí o fẹ́ ṣe.",
+          "3": "Yan ẹ̀wọ̀n tí o fẹ́ gbá lórí.",
+          "4": "Jẹ́ kí o rí ìfowópamọ́ náà nínú àpò owó rẹ (àwọn àpò owó alátòkè) tàbí ó máa ń ṣe é fúnra rẹ̀ (ìwọ̀ sílẹ̀ pẹ̀lú àwọn àkọsílẹ̀ àwùjọ).",
+          "5": "Wo iye rẹ tí ó dúró àti èrè èyíkéyìí tí ó ń dúró dè é.",
+          "6": "Láti yọkuro, tẹ iye náà kí o sì fìdí ìṣòwò tí kò dúró múlẹ̀ múlẹ̀ múlẹ̀."
+        },
+        "tips": {
+          "1": "Ìgbekalẹ̀ pọ̀ sí iwọ̀n ìdìbò rẹ nínú àwọn ìgbìmọ̀ ìṣàkóso.",
+          "2": "Àwọn tó ń lo ìkànnì àjọlò orí ayélujára kò nílò gáàsì láti kópa — kò ní gáàsì.",
+          "3": "O lè ṣòwò lórí ọ̀pọ̀ ẹ̀wọ̀n lẹ́ẹ̀kan náà."
+        }
+      },
+      "leaderboard": {
+        "title": "Àgbékalẹ̀ aṣáájú",
+        "intro": "Wo ẹni tó wà ní orí òkè! Àwùjọ aṣáájú náà máa ń ṣe ipò àwọn olùṣàmúlò ní ìbámu pẹ̀lú ìdúróṣánṣán, ìnáwó ojoojúmọ́, àti àwọn àkòrí tí ó ń lọ lọ́wọ́.",
+        "steps": {
+          "1": "Rìn lọ sí ojú-ìwé 'Leaderboard' láti ọ̀dọ̀ àpá ẹ̀gbẹ́.",
+          "2": "Yípadà láàrin àwọn tábìlì: Ìwọ̀ntúnwọ̀nsì, Daily Spent, àti Talk of the Town.",
+          "3": "Tab iwontunwonsi nṣe ipo awọn olumulo nipasẹ iye awọn ami iyebiye ti wọn ni.",
+          "4": "Tábìlì Daily Spent ṣe àfihàn ẹni tí ó ti ń ṣiṣẹ́ jùlọ ní wákàtí 24 tí ó kọjá.",
+          "5": "Ìjíròrò nípa Ìlú náà ṣe àfihàn àwọn àkòrí/ẹ̀ka tí a ti jíròrò jùlọ.",
+          "6": "Tẹ lórí ẹnikẹ́ni tó bá ń lò ó láti ṣàbẹ̀wò sí àkójọpọ̀ wọn.",
+          "7": "Àgbékalẹ̀ aṣáájú náà máa ń ṣe àtúnṣe látìgbàdégbà ní gbogbo ọjọ́."
+        },
+        "tips": {
+          "1": "Àwọn ipò ojoojúmọ́ máa ń ṣe àtúnṣe ní gbogbo wákàtí 24.",
+          "2": "Sọ̀rọ̀ nípa àwọn ẹ̀ka ọ̀rọ̀ kan láti inú àwọn hashtags."
+        }
+      },
+      "command-centre": {
+        "title": "Ibùdó àṣẹ",
+        "intro": "Àkòjọpọ̀ ìfihàn kan tó fi àwọn ìwọ̀n ìwọ̀n rẹ àti ìgbòkègbodò pèpè tí ó wà ní ojú kan.",
+        "steps": {
+          "1": "Tẹ 'Command Centre' ní ẹ̀gbẹ́ ojú-ìwé.",
+          "2": "Wo àkòjọpọ̀ ìwòye rẹ, pẹ̀lú iye ìwé ìròyìn, àwọn tó tẹ̀lé ọ, àti ìgbéyìnkò.",
+          "3": "Wo ìgbòkègbodò rẹ tuntun àti àwọn kókó ọ̀rọ̀ tó gbajúmọ̀.",
+          "4": "Wọ̀ àwọn ìsopọ̀ yára sí àwọn ẹ̀rọ tí wọ́n máa ń lò."
+        },
+        "tips": {
+          "1": "Ilé-iṣẹ́ Aṣẹ fún ọ ní ìfihàn ojú ẹyẹ kan nípa wíwà rẹ ní DeHub."
+        }
+      },
+      "governance": {
+        "title": "Ìṣàkóso",
+        "intro": "Ṣe ìdààmú nínú ìṣàkóso pèpè nípa ṣíṣẹ̀dá àwọn ìgbìmọ̀ àti ìdìbò lórí àwọn ìpinnu àwùjọ.",
+        "steps": {
+          "1": "Lọ sí 'Governance' láti inú ẹ̀gbẹ́ ojú-ìwé.",
+          "2": "Ṣàwárí àwọn ìgbìmọ̀ tó ń ṣiṣẹ́ tí àwùjọ fi sílẹ̀.",
+          "3": "Tẹ ìgbìmọ̀ kan láti ka àlàyé rẹ̀ kíkún àti ìjíròrò.",
+          "4": "Dìbò lórí àwọn ìgbìmọ̀ nípa lílo àwọn bọ́tìnnì ìfẹ́/àìfẹ́ — ìwọ̀n ìdìbò rẹ gbára lé iye àwọn tóken DeHub tí o ti fi pamọ́.",
+          "5": "Fi àlàyé sí àwọn ìgbìmọ̀ láti bá àwùjọ jíròrò.",
+          "6": "Fi ìgbìmọ̀ tirẹ sílẹ̀ nípa títẹ bọ́tìnnì 'Create Proposal'."
+        },
+        "tips": {
+          "1": "Agbára ìdìbò rẹ ni a fínmọ̀ nípa iye àwọn tóken tí o ti fi pamọ́.",
+          "2": "Àwọn tó ní àmì-ẹ̀yẹ lè ní ìwọ̀n ìdìbò àfikún.",
+          "3": "Àwọn ìgbìmọ̀ lọ sí àwọn ìpele: Tí ó ń ṣiṣẹ́ → Ti kọjá/Ti kọ̀."
+        }
+      },
+      "bookmarks": {
+        "title": "Àwọn àmì-ìwé",
+        "intro": "Fipamọ́ àwọn ìwé ìròyìn sí àwọn àmì-ìwé rẹ fún wíwọ̀ tààrà nígbà mìíràn.",
+        "steps": {
+          "1": "Tẹ àmì-ìwé ìwé ìròyìn kan láti fipamọ́ rẹ̀.",
+          "2": "Lọ sí 'Bookmarks' ní ẹ̀gbẹ́ ojú-ìwé láti wo gbogbo àwọn ìwé ìròyìn tí a fipamọ́.",
+          "3": "Tẹ ìwé ìròyìn tí a fi àmì-ìwé sí láti wo òun kíkún.",
+          "4": "Yọ àmì-ìwé kan kúrò nípa títẹ àmì-ìwé ìwé ìròyìn náà lẹ́ẹ̀kan sí."
+        },
+        "tips": {
+          "1": "Àwọn àmì-ìwé jẹ́ àṣírí — ìwọ nìkan ni o lè rí àwọn ìwé ìròyìn rẹ tí a fipamọ́.",
+          "2": "Kò sí ààlà iye ìwé ìròyìn tí o lè fi àmì-ìwé sí."
+        }
+      },
+      "settings": {
+        "title": "Àwọn Ìṣètò",
+        "intro": "Ṣe àtúnṣe ìrírí DeHub rẹ pẹ̀lú èdè, àṣírí, àti àwọn ìfẹ́ ìfihàn.",
+        "steps": {
+          "1": "Tẹ 'Settings' ní ẹ̀gbẹ́ ojú-ìwé.",
+          "2": "Yí èdè ìfihàn rẹ padà láti inú àṣàyàn èdè.",
+          "3": "Ṣe àtúnṣe àwọn ìṣètò àṣírí: ṣakoso ẹni tí ó rí iye àwọn tó tẹ̀lé ọ àti àkójọpọ̀ àwọn tó tẹ̀lé.",
+          "4": "Ṣètò àwọn ààyò ìfihàn ìfìwéránṣẹ́ rẹ.",
+          "5": "Ṣàkóso àwọn ààyò ìkìlọ̀."
+        },
+        "tips": {
+          "1": "DeHub ń ṣe àtìlẹyìn fún ọ̀pọ̀lọpọ̀ èdè — gbogbo ojú-ayélujára ni ó túmọ̀.",
+          "2": "Àwọn ètò ìpamọ́ra máa ń ṣiṣẹ́ lẹ́sẹ̀kẹsẹ̀."
+        }
+      },
+      "posting-allowance": {
+        "title": "Ojoojumọ Ifiweranṣẹ Ifiweranṣẹ Rẹ",
+        "intro": "Ifiweranṣẹ jẹ ọfẹ ni gbogbo ọjọ titi di iyọọda ti o ṣe iwọn pẹlu badge staking rẹ. Gbogbo ènìyàn bẹ̀rẹ̀ pẹ̀lú àwọn àtẹ̀jíṣẹ́ àtẹ̀jíṣẹ́ mẹ́wàá àti gigabyte kan ti fídíò, àwòrán àti ohùn ní ojoojúmọ́. Lọ kọjá ọ̀kan àti gbogbo ọjọ́ yẹn ni wọ́n sanwó fún nínú àwọn àfihàn DeHub — ní apá tí ó kọjá nìkan.",
+        "steps": {
+          "1": "Ìfìwéránṣẹ́ gẹ́gẹ́ bí ohun tí ó ṣe déédéé. Láàrin owó ìfẹ̀yìntì náà, kò sí ohun tí a máa san àti pé kò sí ohun tí a máa béèrè lọ́wọ́ rẹ",
+          "2": "Àwọn àtẹ̀jíṣẹ́ àtẹ̀jíṣẹ́ àti àwọn ẹ̀rọ-ayélujára yàtọ̀, nítorí náà ọjọ́ kan tí wọ́n lò láti gbé fídíò jáde ṣì ń fi gbogbo àtẹ̀jíṣẹ́ àtẹ̀jíṣẹ́ mẹ́wàá sílẹ̀ lọ́fẹ̀ẹ́.",
+          "3": "Nígbà tí ìfìwéránṣẹ́ kan bá ti kọjá, ohun èlò náà á kọ́kọ́ ná a, yóò sì ṣàyẹ̀wò àpamọ́ rẹ kí ó tó lè bo ó kí n tó gbé ohunkóhun sókè.",
+          "4": "Ifiweranṣẹ naa ṣe atẹjade gangan bi yoo ṣe wa laarin ifunni — atẹjade ko duro de isanwo kan.",
+          "5": "Lẹ́yìn náà o fọwọ́ sí àtúntò kan fún iṣẹ́ yẹn nìkan, tí a gbé kalẹ̀ lórí èyí tí Base tàbí BNB Chain ní àwọn àmì DeHub tó tó.",
+          "6": "Àwọn adágún méjèèjì padà sí ààrin òru UTC."
+        },
+        "tips": {
+          "1": "Ìwọ̀n-òṣùwọ̀n jẹ́ pro-rata: 200 MB kọjá owó ìfẹ̀yìntì rẹ ná 200 MB, kì í ṣe gbogbo gigabyte.",
+          "2": "Àwọn àtúntò, àlàyé, èsì, àwọn àbá àti àwọn àtẹ̀jísẹ́ kò ná nǹkankan, wọn kò sì fọwọ́ kan owó ìfẹ̀yìntì náà.",
+          "3": "Yí owó ìsanwó náà sílẹ̀ àti pé iṣẹ́ náà dúró — iye náà kàn ń dènà iṣẹ́ ìsanwó rẹ tó kàn títí tí ó fi parí. Ẹ̀bùn ọ̀fẹ́ ọ̀la jẹ́ tìrẹ nígbà gbogbo.",
+          "4": "Àmì ọ̀pá àṣẹ ilẹ̀ ń gbé owó ìfẹ̀yìntì sókè, ó sì ń dín iye ohun tí ó ti kọjá lọ kù."
+        }
+      },
+      "reactions-and-safety": {
+        "title": "Ìdáhùn, Mituing & Mature Content",
+        "intro": "Èsì mẹ́sàn-án ló wà lẹ́yìn bọ́tìnì bíi tìẹ, àti àtòjọ ìṣàkóso láti pinnu ohun tí o rí àti ẹni tí ó lè dé ọ̀dọ̀ rẹ.",
+        "steps": {
+          "1": "Tẹ mọ́ ìfẹ́-ọwọ́ lórí ìwé kankan láti ṣí àtòkọ̀ ìdáhùn: ìfẹ́, ìfẹ́, ìbọ̀wọ̀, gbóná, àwàdà, ìbànújẹ́, sunkún, kò tọ́, àti ìgbẹ́.",
+          "2": "Àwọn tí ó dára méje náà kà sí ọ̀dọ̀ gbogbo iṣẹ́ náà; ìkórìíra àti poo kà sí lòdì sí i.",
+          "3": "Èsì rẹ wúwo nípasẹ̀ àdììtú rẹ, nítorí náà àdììtú ẹni tí ó ní àdììtú máa ń gbé àdììtú náà lọ ju ìbò kan lọ.",
+          "4": "Tẹ X sínú àkọlé àtẹ̀jíṣẹ́ láti dẹ́kun òǹkọ̀wé rẹ̀ — wọ́n jábọ́ kúrò nínú oúnjẹ rẹ lẹ́sẹ̀kẹsẹ̀.",
+          "5": "Àwọn olùṣẹ̀dá máa ń ṣe àfihàn àwọn iṣẹ́ tiwọn bí ẹni tí ó dàgbà dénú nígbà tí wọ́n bá ń kó wọn jọ; àwọn iṣẹ́ wọ̀nyẹn máa ń dúró kúrò nínú oúnjẹ ilé gbogbo ènìyàn.",
+          "6": "Láti rí àwọn iṣẹ́ tó dàgbà dénú níbikíbi, tan 'Fi àkóónú tó dàgbà dénú hàn' nínú Àtòjọ."
+        },
+        "tips": {
+          "1": "Ìròyìn àgbàlagbà ṣì wà ní ìfarahàn pátápátá lórí ojúewé olùdáǹkọ́ àti fún àwọn tó tẹ̀lé e.",
+          "2": "Dídènà láti inú àkójọpọ̀ kan kọjá dídákẹ́gbẹ́ àti pípa ìfiránṣẹ́ tì pẹ̀lú.",
+          "3": "Agbàtẹ́rù ìdáhùn náà fi àwọn tó dáhùn sílẹ̀ àti ohun tí wọ́n fi dáhùn sí, kí o lè rí yàrá náà dípò tí o kàn rí iye kan."
+        }
+      },
+      "stages": {
+        "title": "Àwọn ìpele (Live Audio Rooms)",
+        "intro": "Àwọn ìpele ni àwọn yàrá ìró gbígbé tí a kọ́ sínú DeHub. Olùgbàlejò máa ń ṣí yàrá kan, ó máa ń mú àwọn olùbánisọ̀rọ̀ wá, ẹnikẹ́ni sì lè jábọ́ láti gbọ́ láti ojú-ìwé Ìgbésẹ̀ tàbí ìjápọ tí a pín.",
+        "steps": {
+          "1": "Ṣí 'Ìgbésẹ̀' nínú àpá ẹ̀gbẹ́ láti rí ohun tí ó wà láàyè báyìí àti ohun tí ó wà ní ètò.",
+          "2": "Tẹ agba laaye lati darapọ mọ gẹgẹ bi olutẹtisi, tabi ṣeto olurannileti lori ọkan ti a ṣeto ati jẹ ki o mọ nigbati o bẹrẹ.",
+          "3": "Bẹrẹ tirẹ lati oju-iwe kanna — o le lọ laaye taara lati ẹrọ aṣawakiri, laisi OBS tabi bọtini ṣiṣan.",
+          "4": "Gẹgẹ bi agbalejo, mu awọn agbọrọsọ wa si ipele, pa wọn tabi yọ wọn kuro, pin iboju rẹ, ati wakọ ohun elo ohun.",
+          "5": "Awọn olutẹtisi nfi awọn aati laaye ranṣẹ ati sọrọ ninu iwirekire ti yara laisi wa si ipele.",
+          "6": "Gbogbo ipele n gbasilẹ, ati igbasilẹ naa n ṣere lẹhinna lati kaadi ti o farahan lori rẹ."
+        },
+        "tips": {
+          "1": "Awọn akọle laaye ṣe akọsilẹ agbọrọsọ kọọkan ati tumọ si eyikeyi ede ti o nka ni.",
+          "2": "Dubbing laaye le sọ yara naa ni ohùn ti ara ẹni ti agbalejo, ti a gba agbara nipasẹ iṣẹju ni awọn aami DeHub.",
+          "3": "Awọn agbalejo le fi redio kan si afẹfẹ tabi ṣere awọn agekuru orin ti ara wọn laarin awọn iwiregbe.",
+          "4": "Ẹrọ orin mini kan tọju yara naa ni igun nigba ti o nṣawakiri iyoku ohun elo naa."
+        }
+      },
+      "communities": {
+        "title": "Awọn Agbegbe & Awọn iṣẹlẹ",
+        "intro": "Awọn agbegbe jẹ awọn aaye ti awọn ọmọ ẹgbẹ nṣakoso pẹlu ifunni ti ara wọn, awọn ọmọ ẹgbẹ ati iṣẹ. Awọn iṣẹlẹ ṣafikun siseto ti o ni akoko lori wọn.",
+        "steps": {
+          "1": "Ṣii 'Awọn Agbegbe' ni ẹgbẹ ẹgbẹ ki o ṣawakiri awọn ti gbogbo eniyan.",
+          "2": "Darapọ mọ ni tẹ kan. Iṣẹ tuntun farahan bi aami ti ko ka ni lilọ kiri.",
+          "3": "Fiweranṣẹ, jiroro, ṣiṣe awọn ibo ati imọran laarin ifunni ti agbegbe ti ara rẹ.",
+          "4": "Awọn oniwun agbegbe nṣakoso aaye ti ara wọn ati pe o le fun awọn ẹtọ alakoso si awọn miiran.",
+          "5": "Ṣii 'Awọn iṣẹlẹ' fun siseto ti a ṣeto, pẹlu oju-iwe kikun fun iṣẹlẹ kọọkan ti o le tẹle laaye."
+        },
+        "tips": {
+          "1": "Iwirekire agbegbe ṣe atilẹyin @mentions ati @here, nitorina ifiweranṣẹ kan le de yara naa.",
+          "2": "Ọna asopọ ifiwepe gba ọ laaye lati mu awọn eniyan wa taara sinu agbegbe kan."
+        }
+      },
+      "arcade": {
+        "title": "Arcade",
+        "intro": "Awọn ere marun-un nṣiṣẹ laarin DeHub ni taabu ẹrọ aṣawakiri — ko si ohun ti o nilo lati fi sori ẹrọ, ko si ohun ti o nilo lati ra.",
+        "steps": {
+          "1": "Ṣii 'Arcade' ni ẹgbẹ ẹgbẹ.",
+          "2": "Yan ere kan: King's Gambit (3D chess pẹlu online Elo ladder), Claude ti Duty (oludari ti o ṣe agbekalẹ aworan tirẹ bi o ti n gbe), Jungle Trail (igbo iwe-ẹkọ ti o nrin), Street Slayer (a lu 'em soke ti a ṣe fun DeHub) tabi Chartopia (a floor iṣowo ti o le rin).",
+          "3": "Ṣere ni taabu naa. King's Gambit ati Street Slayer tọju awọn iwe-aṣeyọri.",
+          "4": "Chartopia tun nṣiṣẹ ni agbekọri VR nipasẹ WebXR."
+        },
+        "tips": {
+          "1": "Meji ninu wọn farapamọ laarin awọn akori irisi — ṣeto ohun elo si Ogun fun Claude ti Duty, tabi Igbo fun Jungle Trail.",
+          "2": "Gbogbo ere ni kaadi pinpin tirẹ, nitorina ọna asopọ si ọkan n ṣii daradara nibikibi ti o ba fiweranṣẹ rẹ."
+        }
+      },
+      "bounties-stores": {
+        "title": "Awọn ẹsan & Awọn ile itaja",
+        "intro": "Awọn ọna meji lati yi pẹpẹ pada si owo-wiwọle: fiweranṣẹ tabi beere ẹsan kan, tabi ṣii ile-itaja kan ki o ta si oluwo rẹ.",
+        "steps": {
+          "1": "Ṣii 'Awọn ẹsan' lati ṣawakiri iṣẹ ṣiṣi, ti a ṣe àlẹmọ nipasẹ ẹka tabi owo.",
+          "2": "Beere ọkan, ṣe iṣẹ naa, ki o si fi silẹ lati gba ere-ẹsan naa — ẹnikẹni le jẹ olumọde, ko si ohun elo ti o nilo.",
+          "3": "Fi owó ọ̀fẹ́ tìrẹ sípò pẹ̀lú ṣókí àti èrè nínú àwọn àfihàn DeHub tàbí USDC. Ó máa ń lọ sí ibi tí o bá gbé e jáde.",
+          "4": "Ṣí 'Ilé-ìtajà' láti dá ilé-ìtajà kan sílẹ̀ pẹ̀lú ojú-ìwé tirẹ̀, àmì àti àtòjọ rẹ̀.",
+          "5": "A máa ń ra àwọn ọjà tí a sì gbé wọn kalẹ̀ nínú àwọn àmì DeHub nípasẹ̀ àpò-ìfowópamọ́ tí a fi sínú rẹ̀, láìní owó ìfowópamọ́ ìta."
+        },
+        "tips": {
+          "1": "Wọ́n ṣètò àwọn owó náà sí orí ẹ̀rọ-ayélujára, ìfipamọ́ àti àwọn májèlé.",
+          "2": "Ìṣàn àríyànjiyàn máa ń yanjú àìgbọ́ra-ẹni-níjàánu lórí pípèsè, nítorí náà escrow máa ń yanjú lọ́nà tó tọ́.",
+          "3": "Àwọn olùṣẹ̀dá máa ń lo èrè láti mú àwùjọ dàgbà — ìpín, àwo àti èsì jẹ́ gbogbo iṣẹ́ tó wúlò."
+        }
+      },
+      "creator-studio": {
+        "title": "Ẹlẹ́dàá Studio & Olootu",
+        "intro": "Ẹlẹ́dàá Studio máa ń ṣe àwòrán, fídíò, orin, ohùn àti àwọn àwòṣe 3D láti inú ìtẹ̀síwájú, ó sì máa ń fi wọ́n lé atọ́ka kan lọ́wọ́ — pẹ̀lú atọ́ka fídíò tó kún fún orin tí ó ń ṣiṣẹ́ nínú aṣàwákiri.",
+        "steps": {
+          "1": "Ṣí ilé-iṣẹ́ Ẹlẹ́dàá kí o sì ṣàpèjúwe ohun tí o fẹ́ ṣe.",
+          "2": "Olùpèsè náà sọ iye owó náà kí iṣẹ́ náà tó lọ, kí o lè rí iye tí ó ná kí o tó ná a.",
+          "3": "Àwọn olùpèsè máa ń tẹ̀síwájú nínú ìlà tí wọ́n pín nígbà tí o bá ń tẹ̀síwájú nínú wíwá àwárí ohun-èlò náà.",
+          "4": "Ṣètò àwọn èsì náà nínú atọ́ka ọ̀nà Canva, tàbí ṣí atọ́ka fídíò fún àsìkò gidi pẹ̀lú gige, ìpele àti ìfiniṣẹ́.",
+          "5": "Tú ege tí ó ti parí sílẹ̀ lẹ́sẹ̀kẹsẹ̀ sí ibi ìfìwéránṣẹ́, àkójọpọ̀ ṣókí tàbí ilé-ìtajà."
+        },
+        "tips": {
+          "1": "Ilé ìkówèésí ìṣúra ọ̀fẹ́ máa ń jókòó lẹ́gbẹ̀ẹ́ Studio fún ohunkóhun tí o kò bá fẹ́ ṣe.",
+          "2": "Ẹ̀gbọ́n ni wọ́n sanwó fún nínú àwọn àmì DeHub láti inú àpamọ́ rẹ — o fọwọ́ sí ìfipamọ́ kan fún iṣẹ́ kan, a sì fa iye owó náà yọ kí o tó sanwó.",
+          "3": "Àwọn olùṣàmúlò tí ó wúwo jù lè gba ètò Ultra, Team tàbí Scale, èyí tí ó máa ń fi owó ìfipamọ́ oṣù ránṣẹ́ tààrà sí àpamọ́ wọn."
+        }
+      },
+      "buying-dhb": {
+        "title": "Ríra àwọn Àmì-ẹ̀rí",
+        "intro": "Ra àwọn àmì DeHub ní tààrà nínú ohun-èlò náà nípa lílo àkójọpọ̀ àyípadà tí ó wà nínú rẹ̀.",
+        "steps": {
+          "1": "Rìn lọ sí ojú-ìwé 'Ra' láti ọ̀dọ̀ àpá ẹ̀gbẹ́.",
+          "2": "Yan àmì tí o fẹ́ pààrọ̀ (bí àpẹẹrẹ, ETH, USDC).",
+          "3": "Tẹ iye tí o fẹ́ ná tàbí iye àmì tí o fẹ́ gbà.",
+          "4": "Ṣe àtúnyẹ̀wò iye owó ìyípadà àti ìwúlò tí a fojú bù ú.",
+          "5": "Tẹ àmì ìtòlẹ́sẹẹsẹ láti ṣe àtúnṣe ìfaradà slippage (ààyò jẹ́ 1%).",
+          "6": "Jẹ́rìí sí ìṣòwò pàṣípààrọ̀ náà.",
+          "7": "Àmì DeHub yóò fara hàn nínú àpamọ́ rẹ lẹ́yìn tí ìdúnàádúrà náà bá parí."
+        },
+        "tips": {
+          "1": "Ìfaradà slippage tó ga = ó ṣeéṣe láti ṣe, ṣùgbọ́n ó ṣeéṣe fún iye owó tí ó burú jù.",
+          "2": "Máa ṣe àyẹ̀wò iye owó pàṣípààrọ̀ kí o tó jẹ́rìí.",
+          "3": "O lè ṣe àtúntò àtúntò àtúntò nínú pánẹ́ẹ̀lì àtúntò."
+        }
+      },
+      "bridge": {
+        "title": "Afara",
+        "intro": "Gbe awọn ami DeHub rẹ laarin awọn blockchain ti o ni atilẹyin nipa lilo afara agbelebu.",
+        "steps": {
+          "1": "Lọ si 'Afara' ojú-ìṣe láti ẹgbẹ́ ìtọ́ka.",
+          "2": "Yan pq orisun (ibiti awọn ami rẹ wa lọwọlọwọ).",
+          "3": "Yan pq ibi ti o nlo (ibiti o fẹ fi wọn ranṣẹ).",
+          "4": "Tẹ nọmba awọn ami ti o fẹ fi ranṣẹ.",
+          "5": "Ṣayẹwo idiyele afara ati akoko ti a nṣe iṣiro de.",
+          "6": "Jẹrisi iṣowo afara.",
+          "7": "Duro fun iṣowo lati pari — afara le gba iṣẹju diẹ."
+        },
+        "tips": {
+          "1": "Awọn idiyele afara yatọ nipasẹ pq.",
+          "2": "Afara maa n gba iṣẹju 1-5 da lori awọn pq ti o wa ninu rẹ.",
+          "3": "Nigbagbogbo ṣayẹwo pq ibi ti o nlo ṣaaju ki o to jẹrisi."
+        }
+      },
+      "music-tv": {
+        "title": "Orin & TV",
+        "intro": "Gbadun akoonu media taara laarin DeHub — ṣafihan orin ati wo awọn ikanni TV laaye.",
+        "steps": {
+          "1": "Lọ si 'Orin' lati ẹgbẹ́ ìtọ́ka lati ṣawari ati ṣere awọn ifiweranṣẹ orin.",
+          "2": "Lọ si 'TV' lati wọle si awọn ikanni TV laaye.",
+          "3": "Ṣawari awọn ikanni nipasẹ ẹka tabi orilẹ-ede.",
+          "4": "Tẹ lori ikanni kan lati bẹrẹ wiwo.",
+          "5": "Lo awọn iṣakoso ẹrọ orin lati ṣatunṣe iwọn didun ati ṣiṣere.",
+          "6": "Ṣe ijabọ awọn ikanni ti o bajẹ ni lilo bọtini ijabọ."
+        },
+        "tips": {
+          "1": "Awọn ikanni TV jẹrisi nipasẹ agbegbe fun igbẹkẹle.",
+          "2": "Awọn ifiweranṣẹ orin le ṣere lakoko ti o nṣawari akoonu miiran."
+        }
+      },
+      "post-info": {
+        "title": "Alaye Ifiweranṣẹ & Awọn ipin",
+        "intro": "Ifiweranṣẹ ti a ti mint jẹ NFT ti a pin si awọn ipin 1,000. Ojú-ìṣe Alaye Ifiweranṣẹ fihan data lori-pq, awọn iṣiro ifaramọ, pinpin ohun-ini, ati jẹ ki o ta awọn ipin ti eyikeyi ifiweranṣẹ — lori ifiweranṣẹ ti ko ti mint o nfunni lati mint dipo.",
+        "steps": {
+          "1": "Tẹ aami 'ⓘ' lori eyikeyi ifiweranṣẹ lati ṣii ojú-ìṣe Alaye Ifiweranṣẹ rẹ.",
+          "2": "Ni oke iwọ yoo rii ID Ami (alailẹgbẹ lori-pq olutọsọna) ati hash iṣowo — tẹ hash lati wo ni oluwadi bulọọki.",
+          "3": "Ni isalẹ iyẹn, awọn iṣiro ifaramọ fihan lapapọ awọn ifẹ, awọn aiṣe-fẹ, awọn iwoye, awọn asọye, ati awọn imọran ti a gba.",
+          "4": "Apá Olùdààmú fihan àtòkọ ìlọ́wọ́ ìpín 1,000 tí olùdàkọ̀ ṣì ní, pẹ̀lú àtòkọ gbogbo àwọn tó ní ipín pẹ̀lú ìwọ̀n àti ìdáwọ́ mẹ́wàá wọn.",
+          "5": "Ti ifiweranṣẹ ba jẹ san-fun-wiwo (PPV), iwọ yoo rii idiyele, owo, ati iye awọn olumulo ti o ti ra iraye si.",
+          "6": "Awọn oniwun ifiweranṣẹ le yi hihan (Gbangba, A ko ṣe atokọ, tabi Aladani) ati ṣatunkọ akọle/apejuwe taara lati oju-iwe yii."
+        },
+        "tips": {
+          "1": "Ifiweranṣẹ ti a ti mint tuntun bẹrẹ pẹlu oludàkọ̀ ti o ni gbogbo awọn ipin 1,000 (100% ohun-ini).",
+          "2": "Hash iṣowo naa n sopọ si BaseScan tabi BscScan da lori pq.",
+          "3": "Àwọn ìwé tí a kò yàtọ̀ kò fara hàn nínú ìròyìn ṣùgbọ́n wọ́n lè wọ̀ àwọn tí wọ́n ní ìsopọ̀ tààrà."
+        }
+      },
+      "trading-fractions": {
+        "title": "Iṣowo Pipín",
+        "intro": "Iṣowo Pipín — àwọn ìwé ìtòlẹ́kọ̀, ṣíṣe àwọn ìfẹ́, àti lílò ti èrè tìẹ — wà loni lori web app ni dehub.io, lori ojú ìwòye Post Info ti àkọsílẹ̀ kọọkan.",
+        "steps": {
+          "1": "Ṣí dehub.io ní àwọn àwòrán kan, kí o sì wọlé pẹ̀lú àkọsílẹ̀ kan náà.",
+          "2": "Ṣí ojú ìwòye Post Info ti àkọsílẹ̀ náà, kí o sì yí padà sí àwọn ìwé ìtòlẹ́kọ̀ rẹ̀.",
+          "3": "Wo àwọn ìwé ìtòlẹ́kọ̀, kí o sì ṣe ìfẹ́ ní owó tìẹ, tàbí kí o sì lo àwọn pipín tí o ní.",
+          "4": "Lẹ́yìn tí ìṣòwò kan bá parí, ìyípadà náà yóò hàn nínú àwọn Pipín rẹ níbí lori foonu alagbeka."
+        },
+        "tips": {
+          "1": "Níní àwọn pipín ti àkọsílẹ̀ kan túmọ̀ sí pé o ní ìdá kan nínú NFT on-chain náà.",
+          "2": "Ṣàyẹ̀wò àwọn tí ó ní àkọsílẹ̀ kan lori ọjà ayélujára láti rí ìpín ìlọ́wọ́ ṣíṣe kí o tó ra.",
+          "3": "Gẹ́gẹ́ bí olùdà, títà àwọn pipín jẹ́ kí àwọn ololùfẹ́ jọ ní ohun tí o dá."
+        }
+      },
+      "minting-posts": {
+        "title": "Ìdásílẹ̀ Àwọn Ìwé (Ìdásílẹ̀ àwọn NFT)",
+        "intro": "Ìdásílẹ̀ jẹ́ ààyè. Ìwé kan tẹ̀ jáde kúrò ní àwọn ohun tí a yàtọ̀ ní ìgbà tí o bá ránṣẹ́ — kò sí ilé ìṣúra, kò sí àmì ìfọwọ́sí, kò sí gaasi — àti pé o lè dá a mọ́ NFT nígbàkigbà tí o bá fẹ́, yálà bí o ṣe ń kọ̀ọ́ tàbí lẹ́yìn náà láti inú ìwé fúnra rẹ̀.",
+        "steps": {
+          "1": "Tẹ bọ́tìnnì 'Ìwé' nínú àgbègbè ìhà ẹ̀gbẹ́ (desktop) tàbí bọ́tìnnì + (mobile).",
+          "2": "Kọ ọ̀rọ̀ rẹ, so àwọn ohun ìròyìn (àwọn àwòrán, àwọn fídíò, ohùn), àti fi àwọn ẹ̀ka kún.",
+          "3": "Fi 'Ìdásílẹ̀ ìwé' sílẹ̀ láti tẹ̀ jáde kúrò ní àwọn ohun tí a yàtọ̀, tàbí yí sí i láti dá a mọ́ bí o ṣe ń tẹ̀ jáde.",
+          "4": "Àtẹ̀jade kò dúró de ẹwọn: àtẹ̀jade yóò fara hàn nínú ìròyìn ní ọ̀nà kan tàbí òmíràn.",
+          "5": "Láti ṣe ìwòye lẹ́yìn, ṣí sí ojú ìwòye 'ⓘ' àtẹ̀jade náà kí o sì lo ìṣe ìwòye níbẹ̀.",
+          "6": "Lẹ́yìn tí wọ́n bá ti ṣe ìwòye, àtẹ̀jade náà yóò ní ID àmì àti hash ìṣe tí o lè ṣàgbéyẹ̀wò lórí ẹwọn, ìwọ yóò sì ní 1,000 ìpín rẹ̀ gbogbo."
+        },
+        "tips": {
+          "1": "Ìwọ̀nyí tí a fi àmì sí, ìwòye ìfọ̀rọ̀wérọ̀, ìfiranṣẹ́ àti SMS kò ní iye owó gáàsì — DeHub ni ó san owó ìwòye.",
+          "2": "Àwọn olùlo àdáwòlú tí a fi síta nílò ETH lórí Base tàbí BNB lórí BNB Chain fún gáàsì.",
+          "3": "Ìwòye ni ohun tí ó mú kí àtẹ̀jade ṣòwò tí ó sì ní ẹ̀tọ́ àwọn èrè. Àtẹ̀jade tí a kò tíì ṣe ìwòye ṣì ń rí owó ìyọ̀ọ̀rọ̀ àti ìwòye.",
+          "4": "Àkọsílẹ̀ lórí ẹwọn jẹ́ aláìlègbé lẹ́yìn tí wọ́n bá ti ṣe ìwòye, kódà bí àtẹ̀jade bá tún parẹ́ nínú ìròyìn."
+        }
+      },
+      "glossary": {
+        "title": "Ìwé-ìtọ́kasí",
+        "intro": "Ìwé-ìtọ́kasí gbogboogbò ti àwọn ọ̀rọ̀ tí a fi sí àmì sí àti ti pèlatfọ́ọ̀mù láti ràn ọ́ lọ́wọ́ láti lo Web3.",
+        "steps": {
+          "1": "Lọ sí 'Ìwé-ìtọ́kasí' láti inú àtòkọ̀.",
+          "2": "Ka àwọn ọ̀rọ̀ ní ọ̀rọ̀ àléfábétì tàbí lo ìwáwò láti wá àwọn ọ̀rọ̀ kan.",
+          "3": "Tẹ ọ̀rọ̀ kan láti rí ìtumọ̀ rẹ̀ gbogbo àti àlàyé rẹ̀.",
+          "4": "Àwọn ọ̀rọ̀ náà gbòòrò àwọn ìlànà tí a fi sí àmì sí, àwọn ọ̀rọ̀ DeFi, àti àwọn ìṣe pàtó ti DeHub."
+        },
+        "tips": {
+          "1": "Ìrànlọ́wọ́ ńlá fún àwọn tó jẹ́ tuntun sí àwọn tí a fi sí àmì sí àti Web3.",
+          "2": "A máa ń ṣàtúnṣe ìwé-ìtọ́kasí nígbà gbogbo pẹ̀lú àwọn ọ̀rọ̀ tuntun."
+        }
+      }
     }
   },
   "creatorPacks": {

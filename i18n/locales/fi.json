@@ -3432,11 +3432,6 @@
     "noResultsFor": "Ei tuloksia hakusanalle \"{{query}}\"",
     "guideSubtitle": "Vaiheittainen opas jokaiselle ominaisuudelle",
     "searchGuide": "Hae oppaasta...",
-    "guideFractionsTip": "Jokaisen mintatun julkaisun kaikki fraktiot ovat aluksi tekijällä (100 % omistus).",
-    "guideInfoStep": "Napauta mintatun julkaisun tietokuvaketta avataksesi sen minttaustapahtuman lohkoselaimessa ja tarkistaaksesi ketjussa olevan tiedon.",
-    "guideMintIntro": "Julkaisun minttaaminen NFT:ksi lohkoketjuun on vapaaehtoista. Minttaa se julkaistessa tai julkaise nyt ja minttaa myöhemmin julkaisun valikosta.",
-    "guideMintPublishStep": "Valitse, minttaatko, ja napsauta sitten 'Julkaise'. Jos ohitat minttauksen, voit mintata julkaisun myöhemmin sen valikosta.",
-    "guideMintFractionsStep": "Saat kaikki 1 000 fraktiota (100 % omistus) juuri lyödystä julkaisustasi.",
     "glossaryMintTxDesc": "Napauta mintatun julkaisun tietokuvaketta avataksesi sen minttaustapahtuman lohkoselaimessa ja tarkistaaksesi ketjussa olevan tiedon. Koko julkaisun tietosivu — tilastot, omistajat, markkinapaikka — on verkkosovelluksessa osoitteessa dehub.io.",
     "glossaryTokenIdDesc": "Yksilöllinen ketjussa oleva tunniste, joka annetaan julkaisulle, kun se mintataan NFT:ksi.",
     "repostsTab": "Uudelleenpostaukset",
@@ -3453,24 +3448,7 @@
     "glossaryStakingDesc": "Lukitse DeHub-tokenisi ansaitaksesi palkintoja ajan myötä. Panostetut tokenit antavat sinulle myös lisää äänivaltaa hallinnossa.",
     "glossaryGovernanceDesc": "Lähetä ja äänestä ehdotuksia, jotka muokkaavat alustaa. Äänivaltasi painotetaan sen mukaan, kuinka monta DeHub-tokenia omistat.",
     "glossaryStakingBadgesDesc": "Merkkejä, jotka näytetään käyttäjänimesi vieressä perustuen DeHub-tokeniesi kokonaismäärään (lompakko + panostettu). Tasoja on 13 – mitä enemmän tokeneita omistat, sitä korkeampi merkkisi arvo on. Korkeammat tasot antavat enemmän hallintoäänivaltaa ja alhaisempia alustan maksuja.",
-    "glossaryLeaderboardDesc": "Käyttäjät on järjestetty DeHub-tokenien kokonaissaldon (lompakko + panostettu kaikissa ketjuissa) mukaan. Sijoitukset päivittyvät ajoittain ja seuraavat 1 päivän ja 1 viikon muutoksia. Voit myös lajitella lähetettyjen, vastaanotettujen, seuraajien, tykkäysten tai tilaajien mukaan.",
-    "guideTipStep": "Napsauta jalokivi-/vihjeikonia lähettääksesi postauksen luojalle vihje DeHub-tokeneina.",
-    "guideTipWalletTip": "Vihjeet menevät suoraan sisällöntuottajan lompakkoon DeHub-tokeneina.",
-    "guideTipNotificationsTip": "Vinkkailuilmoitukset näyttävät, kuinka monta DeHub-tokenia olet vastaanottanut.",
-    "guideWalletIntro": "Tarkastele DeHub-token-saldojasi useissa ketjuissa, tarkista panostussijoitukset ja hallinnoi varojasi.",
-    "guideWalletTotalStep": "Tarkastele kokonais-DeHub-token-saldoasi yhdistettynä kaikista tuetuista ketjuista.",
-    "guideStakingIntro": "Panosta DeHub-tokenisi ansaitaksesi palkintoja ja lisätäksesi hallintosi äänivaltaa.",
-    "guideStakingAmountStep": "Syötä, kuinka monta DeHub-tokenia haluat panostaa.",
-    "guideLeaderboardBalanceStep": "Saldo-välilehti järjestää käyttäjät heidän kokonais-DeHub-token-omistustensa mukaan.",
-    "guideGovernanceVoteStep": "Äänestä ehdotuksista peukalo ylös/alas -painikkeilla — äänivaltasi riippuu siitä, kuinka monta DeHub-tokenia olet panostanut.",
-    "guideGovernancePowerTip": "Äänivaltasi määräytyy sen mukaan, kuinka monta DeHub-tokenia olet panostanut.",
-    "guideBuyIntro": "Osta DeHub-tokeneita suoraan DPaysta kortilla tai tuetulla kryptolla.",
-    "guideBuyAmountStep": "Syötä summa, jonka haluat käyttää, tai kuinka monta DeHub-tokenia haluat vastaanottaa.",
-    "guideBuyDeliveredStep": "DeHub-tokenisi ilmestyvät lompakkoosi, kun tapahtuma on valmis.",
-    "guideBridgeIntro": "Siirrä DeHub-tokenisi tuettujen lohkoketjujen välillä käyttämällä ketjujen välistä siltaa.",
-    "guideBridgeSourceStep": "Valitse lähdeketju (jossa DeHub-tokenisi ovat tällä hetkellä).",
-    "guideBridgeDestStep": "Valitse kohdeketju (johon haluat lähettää DeHub-tokenisi).",
-    "guideBridgeAmountStep": "Syötä, kuinka monta DeHub-tokenia siirretään."
+    "glossaryLeaderboardDesc": "Käyttäjät on järjestetty DeHub-tokenien kokonaissaldon (lompakko + panostettu kaikissa ketjuissa) mukaan. Sijoitukset päivittyvät ajoittain ja seuraavat 1 päivän ja 1 viikon muutoksia. Voit myös lajitella lähetettyjen, vastaanotettujen, seuraajien, tykkäysten tai tilaajien mukaan."
   },
   "arcade": {
     "submitAccessibility": "Lähetä peli arcadeen",
@@ -6792,6 +6770,504 @@
       "packEmpty": "Emojia ei löytynyt kyseisestä osoitteesta",
       "shortcodeTaken": "{{name}} on jo varattu",
       "shortcodeStandard": "{{name}} on jo vakioemoji"
+    }
+  },
+  "guide": {
+    "sections": {
+      "getting-started": {
+        "title": "Aloittaminen",
+        "intro": "DeHubiin pääsee viidellä eri tavalla, eikä yhdessäkään tarvitse omistaa lompakkoa etukäteen: Google, Apple, sähköpostiin lähetettävä koodi, tekstiviestillä lähetettävä koodi tai olemassa oleva lompakko, jonka yhdistät. Kaikki muut reitit paitsi lompakon yhdistäminen luovat sinulle taustalle ei-huoltajuuslompakon — sinä hallitset avaimia, ja DeHub sponsoroi kaasumaksut, jotta voit julkaista, antaa tippiä ja kerätä ilman, että sinun tarvitsee koskaan ostaa natiivia tokenia.",
+        "steps": {
+          "1": "Vieraile osoitteessa dehub.io — kotisyöte on etusivu, joten voit tutustua ympäristöön ennen kirjautumista.",
+          "2": "Napsauta 'Kirjaudu sisään'. Näet Google- ja Apple-vaihtoehdot, kentät sähköpostiosoitteelle tai puhelinnumerolle sekä 'Yhdistä lompakko' olemassa olevalle lompakolle.",
+          "3": "Googlella tai Applella suorita palveluntarjoajan prosessi. Sähköpostilla tai tekstiviestillä syötä saapunut koodi.",
+          "4": "Lompakko luodaan ja suojataan sinulle ensimmäisen kirjautumisen yhteydessä. Oman lompakon yhdistäminen sen sijaan vaatii yhden allekirjoituksen osoitteen todistamiseksi.",
+          "5": "Valitse käyttäjänimi. Se on se, mitä ihmiset näkevät, ja se toimii myös dehub.io/<username> profiililinkkinäsi.",
+          "6": "Olet sisällä. Tutustu syötteeseen, määritä profiilisi ja aloita julkaiseminen."
+        },
+        "tips": {
+          "1": "Sosiaalisen median, sähköpostin ja tekstiviestien kirjautumiset eivät koskaan maksa kaasua — DeHub sponsoroi sen. Yhdistetyt lompakot maksavat oman ETH- tai BNB-maksunsa.",
+          "2": "Palaatko vanhaan DeHub-tiliisi? Kirjaudu sisään käyttämällä sen sähköpostia tai puhelinnumeroa, ja migraatio löytää sen sinulle.",
+          "3": "Voit pitää useita tilejä yhdessä laitteessa ja vaihtaa niiden välillä kohdassa Asetukset → Profiili."
+        }
+      },
+      "home-feed": {
+        "title": "Kotisyöte",
+        "intro": "Kotisyöte on paikka, jossa näet seuraamiesi ihmisten julkaisuja ja trendaavaa sisältöä. Se tukee useita sisältötyyppejä ja lajitteluvaihtoehtoja.",
+        "steps": {
+          "1": "Siirry osoitteeseen /app — tämä on kotisyötteesi.",
+          "2": "Käytä yläpalkin välilehtiä suodattaaksesi sisällön tyypin mukaan: Koti (kaikki), Videot, Kuvat, Shorts, Musiikki tai Suorat lähetykset.",
+          "3": "Selaa välilehtiä vasemmalle/oikealle nähdäksesi lisää vaihtoehtoja mobiililaitteilla.",
+          "4": "Käytä suodatin/lajittelu-painiketta (syötteen oikeassa yläkulmassa) lajittelun muuttamiseksi: Kuuma, Uusi tai Paras.",
+          "5": "Päivitä syöte vetämällä alas mobiililaitteilla.",
+          "6": "Vieritä alas ladataksesi lisää julkaisuja automaattisesti (ääretön vieritys).",
+          "7": "Vaihda ruudukko- ja syötenäkymän välillä asettelun vaihtajalla."
+        },
+        "tips": {
+          "1": "Ruudukkonäkymä sopii erinomaisesti kuvien nopeaan selaamiseen.",
+          "2": "'Koti'-välilehti näyttää kaikki sisällön tyypit sekaisin.",
+          "3": "Live-välilehti näyttää tällä hetkellä aktiiviset suorat lähetykset."
+        }
+      },
+      "creating-posts": {
+        "title": "Julkaisujen luominen",
+        "intro": "Luo tekstijulkaisuja, jaa kuvia, videoita, äänimuistioita, GIF-tiedostoja ja muuta. Käytä hashtageja, cashtageja ja mainintoja tavoittavuuden lisäämiseksi.",
+        "steps": {
+          "1": "Napsauta 'Julkaise'-painiketta sivupalkissa (työpöytä) tai + -painiketta (mobiili).",
+          "2": "Kirjoita tekstisi kirjoitusalueelle.",
+          "3": "Lisätäksesi kuvan tai videon, napsauta media-kuvaketta ja valitse tiedosto.",
+          "4": "Tallentaaksesi äänimuistion, napsauta mikrofonikuvaketta.",
+          "5": "Lisätäksesi GIF-tiedoston, napsauta GIF-kuvaketta ja etsi sellainen.",
+          "6": "Käytä #hashtageja julkaisusi luokittelemiseen (esim. #crypto, #defi).",
+          "7": "Käytä $cashtageja viitataksesi tokeneihin (esim. $DHB, $ETH).",
+          "8": "Käytä @mainintoja merkitäksesi muita käyttäjiä (esim. @käyttäjänimi).",
+          "9": "Napsauta 'Julkaise' julkaistaksesi. Julkaisusi ilmestyy syötteeseen välittömästi."
+        },
+        "tips": {
+          "1": "Julkaisut tukevat markdown-tyylistä muotoilua.",
+          "2": "Voit lainata julkaisua napsauttamalla uudelleenjulkaisukuvaketta missä tahansa julkaisussa ja valitsemalla 'Lainaa'.",
+          "3": "Luokat (hashtagit) ilmestyvät 'Talk of the Town' -tulostaulukkoon."
+        }
+      },
+      "interacting-with-posts": {
+        "title": "Julkaisujen kanssa vuorovaikuttaminen",
+        "intro": "Osallistu sisältöön äänestämällä, kommentoimalla, antamalla tippiä, kirjanmerkitsemällä, jakamalla ja kääntämällä.",
+        "steps": {
+          "1": "Äänestä julkaisua ylös tai alas käyttämällä nuolikuvakkeita minkä tahansa julkaisun vasemmalla puolella.",
+          "2": "Napsauta kommenttikuvaketta avataksesi kommenttiosion ja jättääksesi vastauksen.",
+          "3": "Napsauta helmi/tippi-kuvaketta lähettääksesi tippiä DeHub-tokeneina julkaisun luojalle.",
+          "4": "Napsauta kirjanmerkkikuvaketta tallentaaksesi julkaisun myöhempää käyttöä varten.",
+          "5": "Napsauta jakokuvaketta kopioidaksesi julkaisulinkin tai jakaaksesi sen ulkoisesti.",
+          "6": "Klicka på översättningsknappen (jordglobsikonen) på valfritt inlägg för att översätta text till ditt språk.",
+          "7": "För bildinlägg, använd knappen 'Översätt bild' för att få en AI-översatt version av texten i bilden.",
+          "8": "Klicka på valfritt inlägg för att öppna det i helskärmsvisning för ett enskilt inlägg."
+        },
+        "tips": {
+          "1": "Dricks går direkt till skaparens plånbok i DeHub-tokens.",
+          "2": "Du kan ställa in ett dricksbelopp via snabbvalsknappar eller ange ett anpassat belopp.",
+          "3": "Bokmärkta inlägg är tillgängliga från sidan Bokmärken i sidofältet."
+        }
+      },
+      "explore-search": {
+        "title": "Utforska & Sök",
+        "intro": "Upptäck nytt innehåll och nya användare via utforskningssidan och kraftfulla sökfunktioner.",
+        "steps": {
+          "1": "Navigera till /app/explore från sidofältet.",
+          "2": "Använd sökfältet högst upp för att söka efter användare, inlägg eller innehåll.",
+          "3": "Filtrera resultat efter flik: Alla, Personer, Inlägg, Bilder, Videor, Musik, Live.",
+          "4": "Bläddra bland trendande ämnen och kategorier på utforskningssidan.",
+          "5": "Klicka på ett trendande ämne för att se alla relaterade inlägg.",
+          "6": "Klicka på en användare i sökresultaten för att besöka deras profil."
+        },
+        "tips": {
+          "1": "Sökningen stöder användarnamn, plånboksadresser och innehållsnyckelord.",
+          "2": "Trendande ämnen uppdateras baserat på nylig inläggsaktivitet."
+        }
+      },
+      "profile": {
+        "title": "Profil",
+        "intro": "Din profil visar dina inlägg, följare, följer och plånboksinformation.",
+        "steps": {
+          "1": "Klicka på din avatar eller 'Profil' i sidofältet för att visa din profil.",
+          "2": "Klicka på 'Redigera profil' för att uppdatera ditt visningsnamn, bio och avatar.",
+          "3": "Ladda upp en profilbild genom att klicka på din avatar i redigeringsläge.",
+          "4": "Visa dina följar- och följerantal på din profilsida.",
+          "5": "Bläddra bland dina egna inlägg, media och gillat innehåll via profilsidorna.",
+          "6": "Kopiera din plånboksadress genom att klicka på kopieringsikonen bredvid den.",
+          "7": "Besök andra användares profiler genom att klicka på deras användarnamn eller avatar var som helst på plattformen."
+        },
+        "tips": {
+          "1": "Ditt användarnamn är unikt och visas i din profil-URL (dehub.io/@username).",
+          "2": "Sekretessinställningar låter dig kontrollera vem som kan se dina följarantal."
+        }
+      },
+      "messages": {
+        "title": "Meddelanden",
+        "intro": "Skicka direktmeddelanden till andra användare på plattformen.",
+        "steps": {
+          "1": "Klicka på 'Meddelanden' i sidofältet för att öppna meddelandesidan.",
+          "2": "Napsauta \"Luo\" -painiketta aloittaaksesi uuden keskustelun.",
+          "3": "Etsi käyttäjä käyttäjänimellä lähettääksesi hänelle viestin.",
+          "4": "Kirjoita viestisi ja paina lähetä.",
+          "5": "Näet keskusteluhistoriasi viestiluettelossa.",
+          "6": "Napsauta keskustelua jatkaaksesi chattailua."
+        },
+        "tips": {
+          "1": "Saat ilmoituksen, kun joku lähettää sinulle viestin.",
+          "2": "Sisällöntuottajat voivat lukita viestit vaatimalla tippiä."
+        }
+      },
+      "ai-assistant": {
+        "title": "AI-avustaja",
+        "intro": "Keskustele DeHubin sisäänrakennetun tekoälyavustajan kanssa saadaksesi apua, tietoa ja luovia tehtäviä.",
+        "steps": {
+          "1": "Napsauta \"Avustaja\" sivupalkissa avataksesi tekoälykeskustelun.",
+          "2": "Kirjoita kysymyksesi tai pyyntösi syöttökenttään.",
+          "3": "Tekoäly voi auttaa kryptotiedoissa, alustakysymyksissä ja yleistiedossa.",
+          "4": "Aloita uusi keskustelu napsauttamalla uusi keskustelu -painiketta.",
+          "5": "Näet keskusteluhistoriasi avustajasivun sivupalkissa.",
+          "6": "Voit liittää kuvia tekoälyn analysoitavaksi."
+        },
+        "tips": {
+          "1": "Tekoäly muistaa keskustelun kontekstin.",
+          "2": "Voit kysyä tekoälyltä DeHubin ominaisuuksista, kryptotermeistä tai yleisistä kysymyksistä.",
+          "3": "Aiemmat keskustelut tallennetaan ja ovat käytettävissä milloin tahansa."
+        }
+      },
+      "notifications": {
+        "title": "Ilmoitukset",
+        "intro": "Pysy ajan tasalla tykkäyksistä, kommenteista, tipeistä, seurannasta ja muusta sisällöösi liittyvästä toiminnasta.",
+        "steps": {
+          "1": "Napsauta kellokuvaketta tai \"Ilmoitukset\" sivupalkissa.",
+          "2": "Näet kaikki ilmoitukset kronologisessa luettelossa.",
+          "3": "Napsauta ilmoitusta siirtyäksesi liittyvään sisältöön.",
+          "4": "Ilmoitukset sisältävät: uudet seuraajat, julkaisun äänestykset, kommentit, tipit ja maininnat.",
+          "5": "Lukemattomat ilmoitukset on korostettu – ne merkitään luetuiksi, kun ne on katsottu."
+        },
+        "tips": {
+          "1": "Lukemattomien ilmoitusten määrä näkyy ilmoitusmerkinnässä.",
+          "2": "Tippi-ilmoitukset näyttävät, kuinka monta tokenia sait."
+        }
+      },
+      "wallet": {
+        "title": "Lompakko",
+        "intro": "Näet DeHub-token-saldosi useissa ketjuissa, tarkistat panostustalletuksesi ja hallinnoit omaisuuttasi.",
+        "steps": {
+          "1": "Napsauta \"Lompakko\" sivupalkissa avataksesi lompakkosivun.",
+          "2": "Näytä kokonaistoken-saldosi kaikista tuetuista ketjuista.",
+          "3": "Katso ketjukohtaiset erittelyt: Ethereum, Base, BNB Chain ja muut.",
+          "4": "Tarkista panostetut talletuksesi ja palkkiosi.",
+          "5": "Napsauta 'Päivitä skannaus' päivittääksesi saldosi lohkoketjudatasta.",
+          "6": "Kopioi lompakkosi osoite vastaanottaaksesi tokeneita muilta."
+        },
+        "tips": {
+          "1": "Saldot päivittyvät automaattisesti, mutta voit pakottaa päivityksen milloin tahansa.",
+          "2": "Lompakko näyttää sekä likvidit (käytettävissä olevat) että panostetut saldot."
+        }
+      },
+      "staking": {
+        "title": "Panostus",
+        "intro": "Panosta DeHub-tokenisi ansaitaksesi palkkioita ja lisätäksesi äänestysvaltaasi hallinnossa.",
+        "steps": {
+          "1": "Siirry 'Panostus'-sivulle sivupalkista.",
+          "2": "Syötä panostettavien tokenien määrä.",
+          "3": "Valitse ketju, jolla haluat panostaa.",
+          "4": "Vahvista tapahtuma lompakossasi (ulkoiset lompakot) tai se suoritetaan automaattisesti (sosiaalinen kirjautuminen).",
+          "5": "Katso panostetut määrät ja mahdolliset odottavat palkkiot.",
+          "6": "Panostuksen poistamiseksi syötä määrä ja vahvista panostuksen poistotapahtuma."
+        },
+        "tips": {
+          "1": "Panostus lisää äänipainosi hallintoehdotuksissa.",
+          "2": "Sosiaalisen kirjautumisen käyttäjät eivät tarvitse kaasua panostukseen – se on kaasutonta.",
+          "3": "Voit panostaa useilla ketjuilla samanaikaisesti."
+        }
+      },
+      "leaderboard": {
+        "title": "Tulostaulu",
+        "intro": "Katso, kuka on kärjessä! Tulostaulu järjestää käyttäjät saldon, päivittäisen kulutuksen ja trendaavien aiheiden mukaan.",
+        "steps": {
+          "1": "Siirry 'Tulostaulu'-sivulle sivupalkista.",
+          "2": "Vaihda välilehtien välillä: Saldo, Päivittäin kulutettu ja Puheenaihe.",
+          "3": "Saldo-välilehti järjestää käyttäjät heidän kokonaistoken-omistustensa mukaan.",
+          "4": "Päivittäin kulutettu -välilehti näyttää, kuka on ollut aktiivisin tippaaja viimeisen 24 tunnin aikana.",
+          "5": "Puheenaihe näyttää eniten keskustellut aiheet/kategoriat.",
+          "6": "Napsauta mitä tahansa käyttäjää vieraillaksesi hänen profiilissaan.",
+          "7": "Tulostaulu päivittyy säännöllisesti päivän aikana."
+        },
+        "tips": {
+          "1": "Päivittäiset sijoitukset nollautuvat 24 tunnin välein.",
+          "2": "Puheenaihe seuraa yksisanaisia kategorioita hashtageista."
+        }
+      },
+      "command-centre": {
+        "title": "Komentokeskus",
+        "intro": "Dashboard-yleiskatsaus, joka näyttää tärkeimmät mittarisi ja alustan toiminnan yhdellä silmäyksellä.",
+        "steps": {
+          "1": "Napsauta 'Command Centre' sivupalkissa.",
+          "2": "Tarkastele profiilikoostettasi, mukaan lukien julkaisujen määrä, seuraajat ja sitoutuminen.",
+          "3": "Näe viimeaikainen toimintasi ja trendaavat aiheet.",
+          "4": "Pääset pikavalintoihin yleisesti käytettyihin ominaisuuksiin."
+        },
+        "tips": {
+          "1": "Command Centre antaa sinulle lintuperspektiivin DeHub-läsnäolostasi."
+        }
+      },
+      "governance": {
+        "title": "Hallinto",
+        "intro": "Osallistu alustan hallintoon luomalla ehdotuksia ja äänestämällä yhteisön päätöksiä.",
+        "steps": {
+          "1": "Siirry sivupalkista kohtaan 'Governance'.",
+          "2": "Selaa yhteisön jättämiä aktiivisia ehdotuksia.",
+          "3": "Napsauta ehdotusta lukeaksesi sen täyden kuvauksen ja keskustelun.",
+          "4": "Äänestä ehdotuksia peukalo ylös/alas -painikkeilla — äänipainosi riippuu siitä, kuinka monta DeHub-tokenia olet panostanut.",
+          "5": "Jätä kommentteja ehdotuksiin keskustellaksesi yhteisön kanssa.",
+          "6": "Lähetä oma ehdotuksesi napsauttamalla 'Create Proposal' -painiketta."
+        },
+        "tips": {
+          "1": "Äänivaltasi määräytyy panostamiesi tokenien määrän perusteella.",
+          "2": "Merkkien haltijat voivat saada lisä-äänivaltaa.",
+          "3": "Ehdotukset käyvät läpi vaiheita: Aktiivinen → Hyväksytty/Hylätty."
+        }
+      },
+      "bookmarks": {
+        "title": "Kirjanmerkit",
+        "intro": "Tallenna julkaisuja kirjanmerkkeihisi, jotta niihin on helppo päästä käsiksi myöhemmin.",
+        "steps": {
+          "1": "Napsauta minkä tahansa julkaisun kirjanmerkki-ikonia tallentaaksesi sen.",
+          "2": "Siirry sivupalkissa kohtaan 'Bookmarks' nähdäksesi kaikki tallennetut julkaisut.",
+          "3": "Napsauta kirjanmerkattua julkaisua nähdäksesi sen kokonaisuudessaan.",
+          "4": "Poista kirjanmerkki napsauttamalla kirjanmerkki-ikonia uudelleen."
+        },
+        "tips": {
+          "1": "Kirjanmerkit ovat yksityisiä — vain sinä voit nähdä tallennetut julkaisusi.",
+          "2": "Kirjanmerkattavien julkaisujen määrälle ei ole rajoitusta."
+        }
+      },
+      "settings": {
+        "title": "Asetukset",
+        "intro": "Mukauta DeHub-kokemustasi kieli-, yksityisyys- ja näyttöasetuksilla.",
+        "steps": {
+          "1": "Napsauta sivupalkissa 'Settings'.",
+          "2": "Vaihda näyttökielesi kielivalitsimesta.",
+          "3": "Säädä yksityisyysasetuksia: hallitse, kuka näkee seuraajamääräsi ja seuraamasi listan.",
+          "4": "Aseta oletusarvoiset julkaisun näkyvyysasetukset.",
+          "5": "Hallitse ilmoitusasetuksia."
+        },
+        "tips": {
+          "1": "DeHub tukee useita kieliä – koko käyttöliittymä käännetään.",
+          "2": "Tietosuoja-asetukset astuvat voimaan välittömästi."
+        }
+      },
+      "posting-allowance": {
+        "title": "Päivittäinen julkaisukiintiösi",
+        "intro": "Julkaiseminen on ilmaista joka päivä kiintiöön asti, joka skaalautuu panostusmerkkisi mukaan. Kaikki aloittavat kymmenellä tekstijulkaisulla ja yhdellä gigatavulla videoita, kuvia ja ääntä päivässä. Jos ylität jommankumman, loppupäivä maksetaan DeHub-tokeneilla – vain ylittyneestä osasta.",
+        "steps": {
+          "1": "Julkaise normaalisti. Kiintiön sisällä mitään ei veloiteta eikä sinulta kysytä mitään.",
+          "2": "Tekstijulkaisut ja media ovat erillisiä potteja, joten videon lataamiseen käytetty päivä jättää silti kaikki kymmenen tekstijulkaisua vapaaksi.",
+          "3": "Kun julkaisu ylittäisi kiintiön, sovellus hinnoittelee sen ensin ja tarkistaa, että lompakkosi riittää kattamaan sen, ennen kuin mitään ladataan.",
+          "4": "Julkaisu julkaistaan täsmälleen samalla tavalla kuin kiintiön sisällä – julkaiseminen ei koskaan odota maksua.",
+          "5": "Sitten hyväksyt yhden siirron vain kyseiselle julkaisulle, joka suoritetaan joko Base- tai BNB Chain -verkossa, jossa on riittävästi DeHub-tokeneita.",
+          "6": "Molemmat potit nollautuvat keskiyöllä UTC."
+        },
+        "tips": {
+          "1": "Ylitys on suhteellista: 200 Mt kiintiösi ylittävästä osasta maksaa 200 Mt, ei kokonaista gigatavua.",
+          "2": "Uudelleenjulkaisut, kommentit, reaktiot, vinkit ja viestit eivät maksa mitään eivätkä koskaan kosketa kiintiötä.",
+          "3": "Hylkää maksu ja julkaisu pysyy verkossa – summa vain estää seuraavan maksetun julkaisusi, kunnes se on maksettu. Huomisen ilmainen kiintiö on aina sinun.",
+          "4": "Panostusmerkki nostaa ilmaista kiintiötä ja laskee sen ylittävän sisällön hintaa."
+        }
+      },
+      "reactions-and-safety": {
+        "title": "Reaktiot, mykistys ja kypsä sisältö",
+        "intro": "Tykkäyspainikkeen takana on yhdeksän reaktiota ja joukko ohjaimia, joilla voit päättää, mitä näet ja kuka voi tavoittaa sinut.",
+        "steps": {
+          "1": "Pidä peukkua ylöspäin missä tahansa julkaisussa avataksesi reaktiovalikon: tykkää, rakasta, kunnioita, kuuma, lol, surullinen, itke, tykkää huonosti ja paska.",
+          "2": "Seitsemän positiivista reaktiota lasketaan julkaisun tykkäysmäärään; tykkää huonosti ja paska laskevat sitä vastaan.",
+          "3": "Reaktiosi painotetaan panostusmerkkisi mukaan, joten merkin haltijan reaktio vaikuttaa määrään enemmän kuin yksi ääni.",
+          "4": "Napauta X:ää julkaisun otsikossa mykistääksesi sen tekijän – he katoavat syötteestäsi välittömästi.",
+          "5": "Sisällöntuottajat merkitsevät omat julkaisunsa kypsiksi niiden luomisen aikana; kyseiset julkaisut pysyvät pois julkisesta etusivusta.",
+          "6": "Jos haluat nähdä kypsiä julkaisuja kaikkialla, ota käyttöön 'Näytä kypsä sisältö' Asetuksissa."
+        },
+        "tips": {
+          "1": "Kypsä julkaisu on edelleen täysin näkyvissä tekijän profiilissa ja heitä seuraaville henkilöille.",
+          "2": "Estäminen profiilista menee pidemmälle kuin mykistäminen ja katkaisee myös viestinnän.",
+          "3": "Reaktiovalikko näyttää, kuka reagoi ja millä reaktiolla, joten näet huoneen tunnelman pelkän numeron sijaan."
+        }
+      },
+      "stages": {
+        "title": "Lavat (Live-äänihuoneet)",
+        "intro": "Lavat ovat DeHubiin integroituneita live-äänihuoneita. Isäntä avaa huoneen, kutsuu puhujia, ja kuka tahansa voi liittyä kuuntelemaan Lava-sivulta tai jaetun linkin kautta.",
+        "steps": {
+          "1": "Avaa 'Lavat' sivupalkista nähdäksesi, mikä on live nyt ja mikä on aikataulutettu.",
+          "2": "Napauta live-lavaa liittyäksesi kuuntelijaksi tai aseta muistutus ajoitetulle lavalle ja saat ilmoituksen sen alkamisesta.",
+          "3": "Aloita oma lava samalta sivulta – voit mennä liveen suoraan selaimesta, ilman OBS:ää tai stream-avainta.",
+          "4": "Isäntänä tuo puhujia lavalle, mykistä tai poista heidät, jaa näyttösi ja hallitse äänilautaa.",
+          "5": "Kuuntelijat lähettävät live-reaktioita ja keskustelevat huoneen chatissa tulematta lavalle.",
+          "6": "Jokainen lava tallennetaan, ja tallenne toistetaan myöhemmin kortilta, jolla se näkyy."
+        },
+        "tips": {
+          "1": "Live-tekstitykset kuvaavat jokaisen puhujan ja kääntävät sen mille tahansa kielelle, jolla luet.",
+          "2": "Live-dubbaus voi puhua huoneen ääneen isännän omalla kloonatulla äänellä, laskutettuna minuuttihinnalla DeHub-tokeneissa.",
+          "3": "Isännät voivat laittaa radioaseman soimaan tai toistaa omia musiikkileikkeitään keskustelujen välissä.",
+          "4": "Minisoitin pitää huoneen käynnissä nurkassa, kun selaat muuta sovellusta."
+        }
+      },
+      "communities": {
+        "title": "Yhteisöt & Tapahtumat",
+        "intro": "Yhteisöt ovat jäsenvetoisia tiloja, joilla on oma syöte, jäsenet ja toiminta. Tapahtumat lisäävät niihin aikarajoitettua ohjelmaa.",
+        "steps": {
+          "1": "Avaa 'Yhteisöt' sivupalkista ja selaa julkisia yhteisöjä.",
+          "2": "Liity yhdellä napautuksella. Uusi toiminta näkyy lukemattomana merkkinä navigaatiossa.",
+          "3": "Postaa, keskustele, suorita äänestyksiä ja anna tippiä yhteisön omassa syötteessä.",
+          "4": "Yhteisön omistajat moderoivat omaa tilaansa ja voivat myöntää ylläpitäjän oikeuksia muille.",
+          "5": "Avaa 'Tapahtumat' ajoitettua ohjelmaa varten, täydellä sivulla kutakin tapahtumaa varten, jota voit seurata livenä."
+        },
+        "tips": {
+          "1": "Yhteisöchat tukee @mainintoja ja @here-komentoa, joten julkaisu voi tavoittaa huoneen.",
+          "2": "Kutsu-linkki antaa sinun tuoda ihmisiä suoraan yhteisöön."
+        }
+      },
+      "arcade": {
+        "title": "Peliareena",
+        "intro": "Viisi peliä pyörii DeHubissa selainvälilehdessä – ei asennettavaa, ei ostettavaa.",
+        "steps": {
+          "1": "Avaa 'Peliareena' sivupalkista.",
+          "2": "Valitse peli: King's Gambit (3D-shakki online-Elo-listalla), Claude of Duty (ampuja, joka luo oman taiteensa latautuessaan), Jungle Trail (proseduraalinen sademetsäkävely), Street Slayer (DeHubille tehty beat 'em up) tai Chartopia (käveltävä kauppalattia).",
+          "3": "Pelaa välilehdellä. King's Gambit ja Street Slayer pitävät yllä tulostaulukoita.",
+          "4": "Chartopia pyörii myös VR-lasien kautta WebXR:llä."
+        },
+        "tips": {
+          "1": "Kaksi niistä piiloutuu ulkoasuteemojen sisään – aseta sovellus War-teemaan Claude of Dutyä varten tai Jungle-teemaan Jungle Trailia varten.",
+          "2": "Jokaisella pelillä on oma jakokorttinsa, joten linkki yhteen niistä avautuu oikein missä tahansa julkaisetkin sen."
+        }
+      },
+      "bounties-stores": {
+        "title": "Palkkiot & Kaupat",
+        "intro": "Kaksi tapaa muuttaa alusta tulonlähteeksi: julkaise tai lunasta palkkio, tai avaa kauppapaikka ja myy yleisöllesi.",
+        "steps": {
+          "1": "Avaa 'Palkkiot' selataksesi avoimia töitä, suodatettuna kategorian tai valuutan mukaan.",
+          "2": "Lunasta yksi, tee työ ja lähetä se palkkion keräämiseksi – kuka tahansa voi olla metsästäjä, ei vaadi hakemusta.",
+          "3": "Luo oma palkkiosi lyhyellä kuvauksella ja palkinnolla DeHub-tokeneina tai USDC:nä. Se menee välittömästi escrow-tilille, kun julkaiset sen.",
+          "4": "Avaa 'Kaupat' luodaksesi kauppapaikan omalla sivulla, brändillä ja tuotteilla.",
+          "5": "Tuotteiden hinnat asetetaan ja maksut suoritetaan DeHub-tokeneina sisäänrakennetun lompakon kautta, ilman ulkoista kassaa."
+        },
+        "tips": {
+          "1": "Palkkiot on jaettu sosiaaliseen mediaan, leikkeisiin ja sopimuksiin.",
+          "2": "Riidanratkaisujärjestelmä ratkaisee toimitusta koskevat erimielisyydet, joten escrow ratkaisee aina oikeudenmukaisesti.",
+          "3": "Sisällöntuottajat käyttävät palkkioita yhteisön kasvattamiseen — jaot, leikkeet ja reaktiot ovat kaikki kelvollisia tehtäviä."
+        }
+      },
+      "creator-studio": {
+        "title": "Creator Studio & Editor",
+        "intro": "Creator Studio luo kuvia, videoita, musiikkia, ääntä ja 3D-malleja kehotteesta ja siirtää ne editoriin — mukaan lukien täyden moniraitaisen videoeditorin, joka toimii selaimessa.",
+        "steps": {
+          "1": "Avaa Creator Studio ja kuvaile, mitä haluat luotavan.",
+          "2": "Palvelin ilmoittaa kustannukset ennen työn suorittamista, joten näet sen hinnan ennen kuin kulutat sitä.",
+          "3": "Renderöinnit jatkuvat jaetussa jonossa, kun jatkat sovelluksen selaamista.",
+          "4": "Järjestele tulokset Canva-tyylisessä editorissa tai avaa videoeditori todellista aikajanaa varten leikkaamisella, kerrostamisella ja viennillä.",
+          "5": "Pudota valmis teos suoraan julkaisuun, lyhytvideoon tai kauppalistaukseen."
+        },
+        "tips": {
+          "1": "Ilmainen kuvapankkikirjasto on Studion rinnalla kaikelle, mitä et mieluummin halua generoida.",
+          "2": "Generointi maksetaan DeHub-tokeneina lompakostasi — allekirjoitat yhden siirron per työ, ja hinta ilmoitetaan ennen maksamista.",
+          "3": "Raskaammat käyttäjät voivat ottaa Ultra-, Team- tai Scale-suunnitelman, joka lähettää kuukausittaisen token-määrän suoraan heidän lompakkoonsa."
+        }
+      },
+      "buying-dhb": {
+        "title": "Tokenien ostaminen",
+        "intro": "Osta DeHub-tokeneita suoraan sovelluksen sisältä käyttämällä sisäänrakennettua swap-liittymää.",
+        "steps": {
+          "1": "Siirry 'Osta'-sivulle sivupalkista.",
+          "2": "Valitse token, josta haluat vaihtaa (esim. ETH, USDC).",
+          "3": "Syötä summa, jonka haluat käyttää, tai tokenien määrä, jonka haluat vastaanottaa.",
+          "4": "Tarkista vaihtokurssi ja arvioitu lopputulos.",
+          "5": "Napsauta asetusrataskuvaketta säätääksesi slippage-toleranssia (oletus on 1 %).",
+          "6": "Vahvista swap-tapahtuma.",
+          "7": "DeHub-tokenit ilmestyvät lompakkoosi, kun tapahtuma on valmis."
+        },
+        "tips": {
+          "1": "Korkeampi slippage-toleranssi = todennäköisemmin toteutuu, mutta potentiaalisesti huonompi hinnoittelu.",
+          "2": "Tarkista aina vaihtokurssi ennen vahvistamista.",
+          "3": "Voit asettaa mukautetun slippagen asetuspaneelissa."
+        }
+      },
+      "bridge": {
+        "title": "Bridge",
+        "intro": "Siirrä DeHub-tokenisi tuettujen lohkoketjujen välillä käyttämällä cross-chain bridgeä.",
+        "steps": {
+          "1": "Siirry sivupalkista 'Bridge'-sivulle.",
+          "2": "Valitse lähdeketju (missä tokenisi ovat tällä hetkellä).",
+          "3": "Valitse kohdeketju (mihin haluat lähettää ne).",
+          "4": "Syötä sillattavien tokenien määrä.",
+          "5": "Tarkista siltamaksu ja arvioitu saapumisaika.",
+          "6": "Vahvista siltatransaktio.",
+          "7": "Odota, että transaktio valmistuu — siltauksessa voi kestää muutaman minuutin."
+        },
+        "tips": {
+          "1": "Siltamaksut vaihtelevat ketjupareittain.",
+          "2": "Siltauksessa kestää tyypillisesti 1–5 minuuttia riippuen mukana olevista ketjuista.",
+          "3": "Tarkista aina kohdeketju ennen vahvistamista."
+        }
+      },
+      "music-tv": {
+        "title": "Musiikki & TV",
+        "intro": "Nauti mediasta suoraan DeHubissa — suoratoista musiikkia ja katso suoria TV-kanavia.",
+        "steps": {
+          "1": "Siirry sivupalkista 'Musiikki'-osioon selataksesi ja toistaaksesi musiikkipostauksia.",
+          "2": "Siirry 'TV'-osioon päästäksesi suoriin TV-kanaviin.",
+          "3": "Selaa kanavia kategorian tai maan mukaan.",
+          "4": "Napsauta kanavaa aloittaaksesi katsomisen.",
+          "5": "Käytä toistopainikkeita äänenvoimakkuuden ja toiston säätämiseen.",
+          "6": "Ilmoita vioittuneista kanavista raportointipainikkeella."
+        },
+        "tips": {
+          "1": "TV-kanavat ovat yhteisön vahvistamia luotettavuuden varmistamiseksi.",
+          "2": "Musiikkipostauksia voi toistaa selatessasi muuta sisältöä."
+        }
+      },
+      "post-info": {
+        "title": "Postaustiedot & Murto-osat",
+        "intro": "Luotu postaus on NFT, joka on jaettu 1 000 murto-osaan. Postaustietosivu näyttää ketjussa olevat tiedot, sitoutumisstatistiikat, omistajuuden jakautumisen ja antaa sinun käydä kauppaa minkä tahansa postauksen murto-osilla — luomattomassa postauksessa se tarjoaa luomista sen sijaan.",
+        "steps": {
+          "1": "Napauta 'ⓘ'-kuvaketta missä tahansa postauksessa avataksesi sen Postaustietosivun.",
+          "2": "Ylhäällä näet Token ID:n (ainutlaatuinen ketjussa oleva tunniste) ja transaktio-tiivisteen — napsauta tiivisteitä nähdäksesi sen lohkoketjututkijassa.",
+          "3": "Sen alla sitoutumisstatistiikat näyttävät saamiesi tykkäysten, tykkäämättömien, katselukertojen, kommenttien ja vinkkien kokonaismäärän.",
+          "4": "Haltijat-osio näyttää edistymispalkin siitä, kuinka monta 1 000 murto-osasta luoja edelleen omistaa, sekä luettelon kaikista murto-osan haltijoista heidän saldoineen ja prosenttiosuuksineen.",
+          "5": "Jos postaus on pay-per-view (PPV), näet hinnan, valuutan ja kuinka monta käyttäjää on ostanut pääsyn.",
+          "6": "Postauksen omistajat voivat muuttaa näkyvyyttä (Julkinen, Listaamaton tai Yksityinen) ja muokata otsikkoa/kuvausta suoraan tältä sivulta."
+        },
+        "tips": {
+          "1": "Vastaluotu postaus alkaa siten, että luoja omistaa kaikki 1 000 murto-osaa (100 % omistus).",
+          "2": "Transaktio-tiiviste linkittää BaseScaniin tai BscScaniin ketjusta riippuen.",
+          "3": "Listäämättömät julkaisut eivät näy syötteissä, mutta niihin pääsee silti suoralla linkillä."
+        }
+      },
+      "trading-fractions": {
+        "title": "Kaupankäyntimurtoluvut",
+        "intro": "Murtolukukauppa — ilmoitusten selaaminen, tarjousten tekeminen, omien ilmoitusten tekeminen — toimii verkkosovelluksessa osoitteessa dehub.io, kunkin julkaisun Julkaisun tiedot -sivulla.",
+        "steps": {
+          "1": "Avaa dehub.io selaimessa ja kirjaudu sisään samalla tilillä.",
+          "2": "Avaa julkaisun Artikkelin tiedot -sivu ja siirry sen Kauppapaikka-välilehdelle.",
+          "3": "Selaa kohteita, tee tarjous omalla hinnallasi tai ilmoita hallussasi olevat murto-osat.",
+          "4": "Kun kauppa on valmis, muutos näkyy Murtoluvut-välilehdellä täällä mobiililaitteella."
+        },
+        "tips": {
+          "1": "Julkaisun murto-osien omistaminen tarkoittaa, että sinulla on osuus ketjussa olevasta NFT: stä.",
+          "2": "Tarkista julkaisun haltijat verkkomarkkinoilta nähdäksesi omistusjakauman ennen ostamista.",
+          "3": "Tekijänä murto-osien myynti antaa faneille mahdollisuuden omistaa sisältösi."
+        }
+      },
+      "minting-posts": {
+        "title": "Julkaisujen luominen (NFT:iden luominen)",
+        "intro": "Luominen on valinnaista. Julkaisu julkaistaan lohkoketjun ulkopuolella sillä hetkellä, kun lähetät sen — ei lompakkoa, ei allekirjoitusta, ei kaasua — ja voit luoda siitä NFT:n milloin tahansa, joko sen kirjoittamisen yhteydessä tai myöhemmin itse julkaisusta.",
+        "steps": {
+          "1": "Napsauta 'Julkaise' -painiketta sivupalkissa (työpöytä) tai + -painiketta (mobiili).",
+          "2": "Kirjoita tekstisi, liitä mediaa (kuvia, videoita, ääntä) ja lisää luokkia.",
+          "3": "Jätä 'Luo NFT' pois päältä julkaistaksesi lohkoketjun ulkopuolella, tai kytke se päälle luodaksesi NFT:n julkaisun yhteydessä.",
+          "4": "Julkaiseminen ei koskaan odota ketjussa: julkaisu näkyy syötteessä kumpaankin suuntaan.",
+          "5": "Jos haluat tehdä rahapajan myöhemmin, avaa julkaisun 'Ř' infosivu ja käytä siellä rahapajan toimintoa.",
+          "6": "Kun julkaisu on lyöty, se saa tunnuksen tunnuksen ja tapahtuman hash-tunnisteen, jonka voit vahvistaa ketjussa, ja sinulla on kaikki 1 000 osaa siitä."
+        },
+        "tips": {
+          "1": "Sosiaalisen median, sähköpostin ja tekstiviestien kirjautumisista ei makseta lainkaan kaasua — DeHubin sponsorit maksavat rahansiirtomaksuja",
+          "2": "Ulkoisen lompakon käyttäjät tarvitsevat ETH: n Base- tai BNB: n BNB-ketjussa kaasua varten.",
+          "3": "Rahapaja on se, mikä tekee jälkimarkkinoista ja rojaltimaksuista kannattavia. Muotoilemattomasta julkaisusta saa edelleen vinkkejä ja katselukertoja.",
+          "4": "Ketjurekisteri on lyötynä pysyvä, vaikka postaus myöhemmin poistettaisiin syötteestä."
+        }
+      },
+      "glossary": {
+        "title": "Sanasto",
+        "intro": "Kattava salaus- ja alustaterminologian sanasto, joka auttaa sinua navigoimaan Web3: ssa.",
+        "steps": {
+          "1": "Siirry sivupalkista kohtaan Sanasto.",
+          "2": "Selaa termejä aakkosjärjestyksessä tai käytä hakua löytääksesi tiettyjä termejä.",
+          "3": "Napsauta termiä nähdäksesi sen täydellisen määritelmän ja selityksen.",
+          "4": "Termit kattavat salauskonseptit, DeFi-terminologian ja DeHub-kohtaiset ominaisuudet."
+        },
+        "tips": {
+          "1": "Hyvä resurssi salauksen ja Web3: n uusille tulokkaille.",
+          "2": "Sanastoa päivitetään säännöllisesti uusilla termeillä."
+        }
+      }
     }
   },
   "creatorPacks": {

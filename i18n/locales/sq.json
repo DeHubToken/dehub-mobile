@@ -3432,11 +3432,6 @@
     "noResultsFor": "Asnjë rezultat për \"{{query}}\"",
     "guideSubtitle": "Udhëzues hap pas hapi për çdo veçori",
     "searchGuide": "Kërko udhëzuesin...",
-    "guideFractionsTip": "Çdo postim i mintuar nis me krijuesin që zotëron të gjitha pjesët e tij (100% pronësi).",
-    "guideInfoStep": "Prek ikonën e informacionit te një postim i mintuar për të hapur transaksionin e mintimit në eksploruesin e blloqeve dhe për të verifikuar regjistrimin në zinxhir.",
-    "guideMintIntro": "Mintimi i një postimi si NFT në blockchain është opsional. Mintoje kur e publikon, ose publikoje tani dhe mintoje më vonë nga menyja e postimit.",
-    "guideMintPublishStep": "Zgjidh nëse do ta mintosh, pastaj kliko 'Posto' për ta publikuar. Nëse e kalon mintimin, mund ta mintosh postimin më vonë nga menyja e tij.",
-    "guideMintFractionsStep": "Ti merr të 1.000 pjesët (100% pronësi) të postimit tënd të sapomintuar.",
     "glossaryMintTxDesc": "Prek ikonën e informacionit te një postim i mintuar për të hapur transaksionin e mintimit në eksploruesin e blloqeve dhe për të verifikuar regjistrimin në zinxhir. Faqja e plotë e Informacionit të postimit — statistika, zotërues, treg — ndodhet në aplikacionin web në dehub.io.",
     "glossaryTokenIdDesc": "Një identifikues unik në zinxhir që i caktohet një postimi kur mintohet si NFT.",
     "repostsTab": "Ripostimet",
@@ -3453,24 +3448,7 @@
     "glossaryStakingDesc": "Bllokoni tokenat tuaj DeHub për të fituar shpërblime me kalimin e kohës. Tokenat e vendosura gjithashtu ju japin fuqi më të madhe votimi në qeverisje.",
     "glossaryGovernanceDesc": "Paraqisni dhe votoni propozime që formësojnë platformën. Fuqia juaj e votimit peshohet nga numri i tokenave DeHub që mbani.",
     "glossaryStakingBadgesDesc": "Pullat e shfaqura pranë emrit tuaj të përdoruesit bazuar në mbajtjen tuaj totale të tokenave DeHub (portofol + të vendosura). Ka 13 nivele — sa më shumë tokena të mbani, aq më i lartë është renditja e pullës suaj. Nivelet më të larta japin më shumë fuqi votimi në qeverisje dhe tarifa më të ulëta të platformës.",
-    "glossaryLeaderboardDesc": "Përdoruesit renditen sipas bilancit total të tokenave DeHub (portofol + të vendosura në të gjitha zinxhirët). Renditjet përditësohen periodikisht dhe gjurmojnë ndryshimet 1-ditore dhe 1-javore. Mund të rendisni gjithashtu sipas bakshisheve të dërguara, bakshisheve të marra, ndjekësve, pëlqimeve ose abonentëve.",
-    "guideTipStep": "Klikoni ikonën e gurit/bakshishit për t'i dërguar krijuesit të postimit një bakshish në tokena DeHub.",
-    "guideTipWalletTip": "Bakshishet shkojnë drejtpërdrejt në portofolin e krijuesit si tokena DeHub.",
-    "guideTipNotificationsTip": "Njoftimet e sugjerimeve tregojnë se sa DeHub token keni marrë.",
-    "guideWalletIntro": "Shihni balancat tuaja të DeHub token në disa zinxhirë, kontrolloni depozitat e stakingut dhe menaxhoni asetet tuaja.",
-    "guideWalletTotalStep": "Shihni balancën tuaj totale të DeHub token të agreguar në të gjithë zinxhirët e mbështetur.",
-    "guideStakingIntro": "Vendosni DeHub token tuaj në staking për të fituar shpërblime dhe për të rritur fuqinë tuaj të votimit të qeverisjes.",
-    "guideStakingAmountStep": "Vendosni se sa DeHub token dëshironi të vendosni në staking.",
-    "guideLeaderboardBalanceStep": "Tabi \"Balanca\" rendit përdoruesit sipas mbajtjeveve të tyre totale të DeHub token.",
-    "guideGovernanceVoteStep": "Votoni për propozime duke përdorur butonat me gisht lart/poshtë — pesha e votës suaj varet nga sa DeHub token keni vendosur në staking.",
-    "guideGovernancePowerTip": "Fuqia juaj e votimit përcaktohet nga sa DeHub token keni vendosur në staking.",
-    "guideBuyIntro": "Bleni DeHub token direkt në DPay duke përdorur një kartë ose kriptovalutë të mbështetur.",
-    "guideBuyAmountStep": "Vendosni shumën që dëshironi të shpenzoni ose sa DeHub token dëshironi të merrni.",
-    "guideBuyDeliveredStep": "DeHub token tuaj do të shfaqen në portofolin tuaj pasi transaksioni të përfundojë.",
-    "guideBridgeIntro": "Lëvizni DeHub token tuaj midis blockchain-eve të mbështetur duke përdorur urën ndër-zinxhirë.",
-    "guideBridgeSourceStep": "Zgjidhni zinxhirin burim (ku janë aktualisht DeHub token tuaj).",
-    "guideBridgeDestStep": "Zgjidhni zinxhirin destinacion (ku dëshironi të dërgoni DeHub token tuaj).",
-    "guideBridgeAmountStep": "Vendosni se sa DeHub token do të kaloni në urë."
+    "glossaryLeaderboardDesc": "Përdoruesit renditen sipas bilancit total të tokenave DeHub (portofol + të vendosura në të gjitha zinxhirët). Renditjet përditësohen periodikisht dhe gjurmojnë ndryshimet 1-ditore dhe 1-javore. Mund të rendisni gjithashtu sipas bakshisheve të dërguara, bakshisheve të marra, ndjekësve, pëlqimeve ose abonentëve."
   },
   "arcade": {
     "submitAccessibility": "Dërgo një lojë në arkadë",
@@ -6792,6 +6770,504 @@
       "packEmpty": "Nuk u gjet asnjë emoji në atë adresë",
       "shortcodeTaken": "{{name}} është marrë tashmë",
       "shortcodeStandard": "{{name}} është tashmë një emoji standard"
+    }
+  },
+  "guide": {
+    "sections": {
+      "getting-started": {
+        "title": "Si të filloni",
+        "intro": "Ka pesë mënyra për të hyrë në DeHub dhe asnjëra prej tyre nuk kërkon që ju të zotëroni tashmë një portofol: Google, Apple, një kod i dërguar në emailin tuaj, një kod i dërguar me SMS, ose një portofol ekzistues që lidhni. Gjithçka, përveç rrugës së portofolit, krijon një portofol jo-kujdestar për ju në prapavijë — ju mbani çelësat, dhe DeHub sponsorizon gazin në mënyrë që ju të mund të postoni, të jepni bakshish dhe të mbledhni pa blerë kurrë një token vendas.",
+        "steps": {
+          "1": "Vizitoni dehub.io — feed-i i shtëpisë është faqja kryesore, kështu që ju mund të shikoni rreth përpara se të identifikoheni.",
+          "2": "Klikoni 'Identifikohu'. Do të shihni Google dhe Apple, fusha për një adresë emaili ose një numër telefoni, dhe 'Lidh Portofolin' për një ekzistues.",
+          "3": "Me Google ose Apple, plotësoni rrjedhën e ofruesit. Me email ose SMS, futni kodin që mbërrin.",
+          "4": "Një portofol krijohet dhe sigurohet për ju në identifikimin e parë. Lidhja e portofolit tuaj në vend të kësaj do të thotë një nënshkrim për të provuar adresën.",
+          "5": "Zgjidhni një emër përdoruesi. Ai është ajo që shohin njerëzit dhe shërben si lidhja juaj e profilit dehub.io/<username>.",
+          "6": "Jeni brenda. Eksploroni feed-in, vendosni profilin tuaj dhe filloni të postoni."
+        },
+        "tips": {
+          "1": "Hyrjet me social, email dhe SMS nuk paguajnë kurrë gaz — DeHub e sponsorizon atë. Portofolët e lidhur paguajnë ETH ose BNB e tyre.",
+          "2": "Po ktheheni në një llogari të vjetër DeHub? Identifikohuni me emailin ose numrin e telefonit që përdorte dhe migrimi do ta gjejë atë për ju.",
+          "3": "Mund të mbani disa llogari në një pajisje dhe të kaloni midis tyre në Cilësimet → Profil."
+        }
+      },
+      "home-feed": {
+        "title": "Feed-i i Shtëpisë",
+        "intro": "Feed-i i shtëpisë është vendi ku shihni postime nga njerëzit që ndiqni dhe përmbajtje në trend. Ai mbështet skedat me lloje të shumta përmbajtjeje dhe opsione renditjeje.",
+        "steps": {
+          "1": "Navigoni te /app — ky është feed-i juaj i shtëpisë.",
+          "2": "Përdorni skedat e sipërme për të filtruar sipas llojit të përmbajtjes: Home (të gjitha), Videos, Images, Shorts, Music, ose Live streams.",
+          "3": "Rrëshqitni majtas/djathtas në skeda për të parë më shumë opsione në celular.",
+          "4": "Përdorni butonin e filtrit/renditjes (lart djathtas të feed-it) për të ndryshuar renditjen: Hot, New, ose Top.",
+          "5": "Tërhiqni poshtë për të rifreskuar feed-in në celular.",
+          "6": "Scolloni poshtë për të ngarkuar më shumë postime automatikisht (infinite scroll).",
+          "7": "Kaloni midis pamjes Grid dhe Feed duke përdorur ndërruesin e layout-it."
+        },
+        "tips": {
+          "1": "Pamja Grid është e shkëlqyer për shfletimin e shpejtë të imazheve.",
+          "2": "Skeda 'Home' tregon të gjitha llojet e përmbajtjes të përziera së bashku.",
+          "3": "Skeda Live tregon transmetimet live aktive aktualisht."
+        }
+      },
+      "creating-posts": {
+        "title": "Krijimi i Postimeve",
+        "intro": "Krijoni postime me tekst, ndani imazhe, video, shënime zanore, GIF, dhe më shumë. Përdorni hashtags, cashtags, dhe mentions për të rritur shtrirjen.",
+        "steps": {
+          "1": "Klikoni butonin 'Post' në sidebar (desktop) ose butonin + (mobile).",
+          "2": "Shkruani tekstin tuaj në zonën e kompozimit.",
+          "3": "Për të shtuar një imazh ose video, klikoni ikonën e mediave dhe zgjidhni një skedar.",
+          "4": "Për të regjistruar një shënim zanor, klikoni ikonën e mikrofonit.",
+          "5": "Për të shtuar një GIF, klikoni ikonën e GIF dhe kërkoni për një.",
+          "6": "Përdorni #hashtags për të kategorizuar postimin tuaj (p.sh., #crypto, #defi).",
+          "7": "Përdorni $cashtags për t'iu referuar tokeneve (p.sh., $DHB, $ETH).",
+          "8": "Përdorni @mentions për të etiketuar përdorues të tjerë (p.sh., @username).",
+          "9": "Klikoni 'Post' për të publikuar. Postimi juaj shfaqet në feed menjëherë."
+        },
+        "tips": {
+          "1": "Postimet mbështesin formatimin në stilin markdown.",
+          "2": "Mund të bëni quote-post duke klikuar ikonën e repost në çdo postim dhe duke zgjedhur 'Quote'.",
+          "3": "Kategoritë (hashtags) shfaqen në tabelën e rezultateve 'Talk of the Town'."
+        }
+      },
+      "interacting-with-posts": {
+        "title": "Ndërveprimi me Postimet",
+        "intro": "Angazhohuni me përmbajtjen duke votuar, komentuar, dhënë bakshish, ruajtur në faverite, ndarë, dhe përkthyer.",
+        "steps": {
+          "1": "Votoni lart ose poshtë një postim duke përdorur ikonat e shigjetave në anën e majtë të çdo postimi.",
+          "2": "Klikoni ikonën e komentit për të hapur seksionin e komenteve dhe për të lënë një përgjigje.",
+          "3": "Klikoni ikonën e gurit/bakshishit për të dërguar një bakshish në tokena DeHub tek krijuesi i postimit.",
+          "4": "Klikoni ikonën e ruajtjes për të ruajtur një postim për më vonë.",
+          "5": "Klikoni ikonën e ndarjes për të kopjuar linkun e postimit ose për ta ndarë jashtë.",
+          "6": "Klikoni butonin përkthej (ikona e globit) në çdo postim për të përkthyer tekstin në gjuhën tuaj.",
+          "7": "Për postimet me imazhe, përdorni butonin 'Përkthej Imazhin' për të marrë një version të përkthyer nga AI të tekstit brenda imazhit.",
+          "8": "Klikoni në çdo postim për ta hapur atë në pamjen e plotë të ekranit me një postim të vetëm."
+        },
+        "tips": {
+          "1": "Këshillat shkojnë drejtpërdrejt në kuletën e krijuesit në token DeHub.",
+          "2": "Mund të vendosni një shumë këshille përmes butonave të zgjedhjes së shpejtë ose të futni një shumë të personalizuar.",
+          "3": "Postimet e ruajtura në faqe janë të aksesueshme nga faqja e Librave të Ruajtur në shiritin anësor."
+        }
+      },
+      "explore-search": {
+        "title": "Eksploro & Kërko",
+        "intro": "Zbuloni përmbajtje dhe përdorues të rinj përmes faqes së eksplorimit dhe funksionalitetit të fuqishëm të kërkimit.",
+        "steps": {
+          "1": "Navigoni te /app/explore nga shiriti anësor.",
+          "2": "Përdorni shiritin e kërkimit në krye për të kërkuar përdorues, postime ose përmbajtje.",
+          "3": "Filtro rezultatet sipas skedës: Të gjitha, Njerëz, Postime, Imazhe, Video, Muzikë, Live.",
+          "4": "Shfletoni tema dhe kategori në trend në faqen e eksplorimit.",
+          "5": "Klikoni në një temë në trend për të parë të gjitha postimet e lidhura.",
+          "6": "Klikoni në një përdorues në rezultatet e kërkimit për të vizituar profilin e tij."
+        },
+        "tips": {
+          "1": "Kërkimi mbështet emra përdoruesish, adresa kuletash dhe fjalë kyçe të përmbajtjes.",
+          "2": "Temat në trend përditësohen bazuar në aktivitetin e fundit të postimit."
+        }
+      },
+      "profile": {
+        "title": "Profil",
+        "intro": "Profili juaj tregon postimet, ndjekësit, ata që ndiqni dhe informacionin e kuletës tuaj.",
+        "steps": {
+          "1": "Klikoni avatarin tuaj ose 'Profil' në shiritin anësor për të parë profilin tuaj.",
+          "2": "Klikoni 'Redakto Profilin' për të përditësuar emrin tuaj të ekranit, biografia dhe avatarin.",
+          "3": "Ngarkoni një fotografi profili duke klikuar në avatarin tuaj në modalitetin e redaktimit.",
+          "4": "Shihni numrat e ndjekësve dhe atyre që ndiqni në faqen tuaj të profilit.",
+          "5": "Shfletoni postimet tuaja, mediat dhe përmbajtjen e pëlqyer përmes skedave të profilit.",
+          "6": "Kopjoni adresën e kuletës tuaj duke klikuar ikonën e kopjimit pranë saj.",
+          "7": "Vizitoni profilet e përdoruesve të tjerë duke klikuar emrin e tyre të përdoruesit ose avatarin kudo në platformë."
+        },
+        "tips": {
+          "1": "Emri juaj i përdoruesit është unik dhe shfaqet në URL-në e profilit tuaj (dehub.io/@username).",
+          "2": "Cilësimet e privatësisë ju lejojnë të kontrolloni kush mund t'i shohë numrat tuaj të ndjekësve."
+        }
+      },
+      "messages": {
+        "title": "Mesazhe",
+        "intro": "Dërgoni mesazhe direkte tek përdoruesit e tjerë në platformë.",
+        "steps": {
+          "1": "Klikoni 'Mesazhe' në shiritin anësor për të hapur faqen e mesazheve.",
+          "2": "Klikoni butonin krijoni për të filluar një bisedë të re.",
+          "3": "Kërkoni një përdorues sipas emrit të përdoruesit për t'i dërguar mesazh.",
+          "4": "Shkruani mesazhin tuaj dhe shtypni dërgoni.",
+          "5": "Shihni historinë tuaj të bisedave në listën e mesazheve.",
+          "6": "Klikoni në një bisedë për të vazhduar bisedën."
+        },
+        "tips": {
+          "1": "Do të merrni një njoftim kur dikush ju dërgon mesazh.",
+          "2": "Krijuesit mund të kyçin mesazhet pas një kërkese për bakshish."
+        }
+      },
+      "ai-assistant": {
+        "title": "Asistent AI",
+        "intro": "Bisedoni me asistentin e integruar AI të DeHub për ndihmë, informacion dhe detyra krijuese.",
+        "steps": {
+          "1": "Klikoni 'Asistent' në shiritin anësor për të hapur bisedën AI.",
+          "2": "Shkruani pyetjen ose kërkesën tuaj në hyrjen e bisedës.",
+          "3": "AI mund të ndihmojë me informacionin e kriptove, pyetjet rreth platformës dhe njohuritë e përgjithshme.",
+          "4": "Filloni një bisedë të re duke klikuar butonin e bisedës së re.",
+          "5": "Shihni historinë tuaj të bisedave në shiritin anësor të faqes së asistentit.",
+          "6": "Mund të bashkëngjitni imazhe që AI t'i analizojë."
+        },
+        "tips": {
+          "1": "AI mban mend kontekstin brenda një bisede.",
+          "2": "Mund ta pyesni AI-në për veçoritë e DeHub, termat e kriptove ose pyetje të përgjithshme.",
+          "3": "Bisedat e mëparshme ruhen dhe janë të aksesueshme në çdo kohë."
+        }
+      },
+      "notifications": {
+        "title": "Njoftime",
+        "intro": "Qëndroni të përditësuar me pëlqime, komente, bakshishe, ndjekje dhe aktivitete të tjera në përmbajtjen tuaj.",
+        "steps": {
+          "1": "Klikoni ikonën e ziles ose 'Njoftime' në shiritin anësor.",
+          "2": "Shihni të gjitha njoftimet në një listë kronologjike.",
+          "3": "Klikoni në një njoftim për të naviguar në përmbajtjen e lidhur.",
+          "4": "Njoftimet përfshijnë: ndjekës të rinj, vota postimesh, komente, bakshishe dhe përmendje.",
+          "5": "Njoftimet e pashikueshme janë të theksuara — ato shënohen si të lexuara kur shihen."
+        },
+        "tips": {
+          "1": "Shenja e njoftimeve tregon numrin e njoftimeve të pashikueshme.",
+          "2": "Njoftimet e bakshishit tregojnë se sa tokene keni marrë."
+        }
+      },
+      "wallet": {
+        "title": "Portofol",
+        "intro": "Shihni bilancet tuaja të tokeneve DeHub në disa zinxhirë, kontrolloni depozitat e stakingut dhe menaxhoni asetet tuaja.",
+        "steps": {
+          "1": "Klikoni 'Portofol' në shiritin anësor për të hapur faqen e portofolit.",
+          "2": "Shikoni totalin e bilancit tuaj të tokenave të grumbulluar në të gjitha zinxhirët e mbështetur.",
+          "3": "Shihni ndarjet sipas zinxhirit: Ethereum, Base, BNB Chain, dhe më shumë.",
+          "4": "Kontrolloni depozitat dhe shpërblimet tuaja të staking.",
+          "5": "Klikoni 'Refresh Scan' për të përditësuar bilancet tuaja nga të dhënat on-chain.",
+          "6": "Kopjoni adresën e portofolit tuaj për të marrë tokena nga të tjerët."
+        },
+        "tips": {
+          "1": "Bilancet përditësohen automatikisht, por ju mund të detyroni një rifreskim në çdo kohë.",
+          "2": "Portofoli tregon si bilancet likuide (në dispozicion) ashtu edhe ato të stakuara."
+        }
+      },
+      "staking": {
+        "title": "Staking",
+        "intro": "Stakoni tokenat tuaj DeHub për të fituar shpërblime dhe për të rritur fuqinë tuaj të votimit në qeverisje.",
+        "steps": {
+          "1": "Navigoni te faqja 'Staking' nga shiritin anësor.",
+          "2": "Vendosni numrin e tokenave që dëshironi të stakoni.",
+          "3": "Zgjidhni zinxhirin ku dëshironi të stakoni.",
+          "4": "Konfirmoni transaksionin në portofolin tuaj (portofola të jashtëm) ose ai ekzekutohet automatikisht (hyrje sociale).",
+          "5": "Shihni shumën tuaj të stakuar dhe çdo shpërblim në pritje.",
+          "6": "Për të hequr stakimin, vendosni shumën dhe konfirmoni transaksionin e heqjes së stakimit."
+        },
+        "tips": {
+          "1": "Staking rrit peshën tuaj të votës në propozimet e qeverisjes.",
+          "2": "Përdoruesit me hyrje sociale nuk kanë nevojë për gaz për të stakuar — është pa gaz.",
+          "3": "Mund të stakoni në disa zinxhirë njëkohësisht."
+        }
+      },
+      "leaderboard": {
+        "title": "Tabela e Liderëve",
+        "intro": "Shihni kush është në krye! Tabela e liderëve rendit përdoruesit sipas bilancit, shpenzimeve ditore dhe temave në trend.",
+        "steps": {
+          "1": "Navigoni te faqja 'Leaderboard' nga shiritin anësor.",
+          "2": "Kaloni midis skedave: Balance, Daily Spent, dhe Talk of the Town.",
+          "3": "Skeda Balance rendit përdoruesit sipas totalit të tyre të tokenave.",
+          "4": "Skeda Daily Spent tregon se kush ka qenë më aktiv në dhënien e bakshishave në 24 orët e fundit.",
+          "5": "Talk of the Town tregon temat/kategoritë më të diskutuara.",
+          "6": "Klikoni te çdo përdorues për të vizituar profilin e tij.",
+          "7": "Tabela e liderëve përditësohet periodikisht gjatë ditës."
+        },
+        "tips": {
+          "1": "Renditjet ditore rivendosen çdo 24 orë.",
+          "2": "Talk of the Town gjurmon kategoritë me një fjalë nga hashtag-et."
+        }
+      },
+      "command-centre": {
+        "title": "Qendra e Komandës",
+        "intro": "Një pasqyrë e panelit që tregon metrikën tuaj kryesore dhe aktivitetin e platformës me një shikim.",
+        "steps": {
+          "1": "Klikoni 'Qendra Komanduese' në shiritin anësor.",
+          "2": "Shikoni përmbledhjen e profilit tuaj, duke përfshirë numrin e postimeve, ndjekësve dhe angazhimin.",
+          "3": "Shihni aktivitetin tuaj të fundit dhe temat në trend.",
+          "4": "Qasuni në lidhje të shpejta për funksione të përdorura shpesh."
+        },
+        "tips": {
+          "1": "Qendra Komanduese ju jep një pamje nga lart të pranisë suaj në DeHub."
+        }
+      },
+      "governance": {
+        "title": "Qeverisja",
+        "intro": "Merrni pjesë në qeverisjen e platformës duke krijuar propozime dhe duke votuar për vendimet e komunitetit.",
+        "steps": {
+          "1": "Navigoni te 'Qeverisja' nga shiriti anësor.",
+          "2": "Shfletoni propozimet aktive të paraqitura nga komuniteti.",
+          "3": "Klikoni në një propozim për të lexuar përshkrimin dhe diskutimin e tij të plotë.",
+          "4": "Votoni për propozimet duke përdorur butonat me gisht lart/poshtë — pesha juaj e votës varet nga sa DeHub token keni të vendosur në staking.",
+          "5": "Lini komente në propozime për të diskutuar me komunitetin.",
+          "6": "Paraqisni propozimin tuaj duke klikuar butonin 'Krijo Propozim'."
+        },
+        "tips": {
+          "1": "Fuqia juaj e votimit përcaktohet nga numri i tokeneve që keni të vendosur në staking.",
+          "2": "Mbajtësit e shenjave mund të marrin peshë shtesë votimi.",
+          "3": "Propozimet kalojnë nëpër faza: Aktive → Kaloj → Refuzoj."
+        }
+      },
+      "bookmarks": {
+        "title": "Të preferuarat",
+        "intro": "Ruani postimet në të preferuarat tuaja për qasje të lehtë më vonë.",
+        "steps": {
+          "1": "Klikoni ikonën e të preferuarës në çdo postim për ta ruajtur atë.",
+          "2": "Navigoni te 'Të preferuarat' në shiritin anësor për të parë të gjitha postimet e ruajtura.",
+          "3": "Klikoni në një postim të ruajtur për ta parë atë në të plotë.",
+          "4": "Hiqni një të preferuar duke klikuar përsëri ikonën e të preferuarës."
+        },
+        "tips": {
+          "1": "Të preferuarat janë private — vetëm ju mund t'i shihni postimet tuaja të ruajtura.",
+          "2": "Nuk ka limit për numrin e postimeve që mund të ruani si të preferuara."
+        }
+      },
+      "settings": {
+        "title": "Cilësimet",
+        "intro": "Personalizoni përvojën tuaj në DeHub me preferencat e gjuhës, privatësisë dhe shfaqjes.",
+        "steps": {
+          "1": "Klikoni 'Cilësimet' në shiritin anësor.",
+          "2": "Ndryshoni gjuhën tuaj të shfaqjes nga zgjedhësi i gjuhës.",
+          "3": "Rregulloni cilësimet e privatësisë: kontrolloni kush i sheh numrat tuaj të ndjekësve dhe listën e ndjekjeve.",
+          "4": "Caktoni preferencat tuaja të parazgjedhura të dukshmërisë së postimeve.",
+          "5": "Menaxhoni preferencat e njoftimeve."
+        },
+        "tips": {
+          "1": "DeHub mbështet gjuhë të shumta — e gjithë ndërfaqja përkthehet.",
+          "2": "Cilësimet e privatësisë zbatohen menjëherë."
+        }
+      },
+      "posting-allowance": {
+        "title": "Leja juaj Ditore për Postime",
+        "intro": "Postimi është falas çdo ditë deri në një leje që rritet me shenjën tuaj të staking. Të gjithë fillojnë me dhjetë postime tekstuale dhe një gigabajt video, imazhe dhe audio në ditë. Kaloni njërën nga këto dhe pjesa tjetër e asaj dite paguhet me DeHub tokens — vetëm për pjesën që kalon limitin.",
+        "steps": {
+          "1": "Postoni si normalisht. Brenda lejes asgjë nuk tarifohet dhe asgjë nuk ju kërkohet.",
+          "2": "Postimet tekstuale dhe mediat janë grupe të veçanta, kështu që një ditë e kaluar duke ngarkuar video ende lë të gjitha dhjetë postimet tekstuale falas.",
+          "3": "Kur një postim do të kalonte limitin, aplikacioni e çmon atë së pari dhe kontrollon nëse kuletën tuaj mund ta mbulojë atë përpara se të ngarkohet ndonjë gjë.",
+          "4": "Postimi publikohet saktësisht siç do të ishte brenda lejes — publikimi nuk pret kurrë për një pagesë.",
+          "5": "Pastaj ju miratoni një transferim vetëm për atë postim, të zgjidhur në atë zinxhir (Base ose BNB Chain) që ka mjaftueshëm DeHub tokens.",
+          "6": "Të dy grupet rivendosen në mesnatë UTC."
+        },
+        "tips": {
+          "1": "Overage është pro-rata: 200 MB mbi lejen tuaj kushton 200 MB, jo një gigabajt të plotë.",
+          "2": "Ripostimet, komentet, reagimet, këshillat dhe mesazhet nuk kushtojnë asgjë dhe kurrë nuk prekin lejen.",
+          "3": "Refuzoni pagesën dhe postimi mbetet — shuma thjesht bllokon postimin tuaj të ardhshëm të paguar derisa të zgjidhet. Leja falas e nesërme është gjithmonë tuaja.",
+          "4": "Një shenjë staking rrit lejen falas dhe ul çmimin e çdo gjëje përtej saj."
+        }
+      },
+      "reactions-and-safety": {
+        "title": "Reagimet, Mbyllja dhe Përmbajtja për të Rritur",
+        "intro": "Ka nëntë reagime pas butonit të pëlqimit, dhe një grup kontrollesh për të vendosur se çfarë shihni dhe kush mund t'ju arrijë.",
+        "steps": {
+          "1": "Mbani gishtin lart mbi çdo postim për të hapur tastierën e reagimeve: pëlqim, dashuri, respekt, nxehtë, lol, trishtim, qaj, mos pëlqim dhe jashtëqitje.",
+          "2": "Shtatë të pozitivët numërohen drejt totalit të pëlqimeve të postimit; mos pëlqimi dhe jashtëqitja numërohen kundër tij.",
+          "3": "Reagimi juaj peshohet nga shenja juaj e staking, kështu që reagimi i mbajtësit të shenjës lëviz numrin më shumë se një votë.",
+          "4": "Trokitni lehtë mbi X në kokën e një postimi për të mbyllur autorin e tij — ata zhduken nga feed-i juaj menjëherë.",
+          "5": "Krijuesit i shënojnë postimet e tyre si për të rritur gjatë kompozimit të tyre; ato postime mbeten jashtë feed-it publik kryesor.",
+          "6": "Për të parë postime për të rritur kudo, aktivizoni 'Trego përmbajtje për të rritur' në Cilësime."
+        },
+        "tips": {
+          "1": "Një postim për të rritur është ende plotësisht i dukshëm në profilin e krijuesit dhe për njerëzit që i ndjekin ata.",
+          "2": "Bllokimi nga një profil shkon më tej se mbyllja dhe pret edhe mesazhet.",
+          "3": "Tastiera e reagimeve tregon kush reagoi dhe me çfarë, kështu që ju mund të shihni dhomën dhe jo vetëm një numër."
+        }
+      },
+      "stages": {
+        "title": "Skenat (Dhomat Audio Live)",
+        "intro": "Skenat janë dhoma audio live të ndërtuara në DeHub. Një mikpritës hap një dhomë, sjell folësit lart, dhe kushdo mund të hyjë për të dëgjuar nga faqja e Skenave ose një lidhje e ndarë.",
+        "steps": {
+          "1": "Hapni 'Skenat' në shiritin anësor për të parë se çfarë është live tani dhe çfarë është planifikuar.",
+          "2": "Prekoni një skenë live për t'u bashkuar si dëgjues, ose vendosni një kujtesë për një të planifikuar dhe njoftoheni kur të fillojë.",
+          "3": "Filloni tuajin nga e njëjta faqe — mund të shkoni live drejtpërdrejt nga shfletuesi, pa OBS ose çelës transmetimi.",
+          "4": "Si mikpritës, sillni folës në skenë, mbyllni ose hiqni ata, ndani ekranin tuaj dhe drejtoni pultin e zërit.",
+          "5": "Dëgjuesit dërgojnë reagime live dhe flasin në bisedën e dhomës pa hyrë në skenë.",
+          "6": "Çdo skenë regjistron, dhe regjistrimi luhet më pas nga karta ku shfaqet."
+        },
+        "tips": {
+          "1": "Nëntitujt live kapin çdo folës dhe përkthehen në çdo gjuhë që po lexoni.",
+          "2": "Dublimi live mund të flasë dhomën me zërin e klonuar të mikpritësit, i faturuar me minutë në tokenët DeHub.",
+          "3": "Mikpritësit mund të vendosin një stacion radiofonik në transmetim ose të luajnë klipet e tyre muzikore midis bisedave.",
+          "4": "Një mini-lojë e mban dhomën duke ecur në qoshe ndërsa ju shfletoni pjesën tjetër të aplikacionit."
+        }
+      },
+      "communities": {
+        "title": "Komunitetet & Ngjarjet",
+        "intro": "Komunitetet janë hapësira të drejtuara nga anëtarët me rrjedhën, anëtarët dhe aktivitetin e tyre. Ngjarjet shtojnë programim të kufizuar në kohë mbi to.",
+        "steps": {
+          "1": "Hapni 'Komunitetet' në shiritin anësor dhe shfletoni ato publike.",
+          "2": "Bashkohuni me një prekje. Aktiviteti i ri shfaqet si një shenjë e pashikuar në navigacion.",
+          "3": "Postoni, diskutoni, drejtoni sondazhe dhe jepni bakshish brenda rrjedhës së vetë një komuniteti.",
+          "4": "Pronarët e komunitetit moderojnë hapësirën e tyre dhe mund t'u japin të drejta administrative të tjerëve.",
+          "5": "Hapni 'Ngjarjet' për programim të planifikuar, me një faqe të plotë për çdo ngjarje që mund ta ndiqni live."
+        },
+        "tips": {
+          "1": "Biseda e komunitetit mbështet @përmendje dhe @këtu, kështu që një postim mund të arrijë në dhomë.",
+          "2": "Një lidhje ftese ju lejon të sillni njerëz drejtpërdrejt në një komunitet."
+        }
+      },
+      "arcade": {
+        "title": "Argëtim",
+        "intro": "Pesë lojëra funksionojnë brenda DeHub në një skedë shfletuesi — asgjë për të instaluar, asgjë për të blerë.",
+        "steps": {
+          "1": "Hapni 'Argëtim' në shiritin anësor.",
+          "2": "Zgjidhni një lojë: King's Gambit (shahu 3D me një shkallë Elo në internet), Claude of Duty (një qitës që gjeneron artin e vet ndërsa ngarkohet), Jungle Trail (një shëtitje procedurale në xhungël), Street Slayer (një lojë rrahjeje e bërë për DeHub) ose Chartopia (një treg i kthyeshëm).",
+          "3": "Luani në skedë. King's Gambit dhe Street Slayer mbajnë tabelat e rezultateve.",
+          "4": "Chartopia gjithashtu funksionon në një kufje VR përmes WebXR."
+        },
+        "tips": {
+          "1": "Dy prej tyre fshihen brenda temave të pamjes — vendoseni aplikacionin në Luftë për Claude of Duty, ose Xhungël për Jungle Trail.",
+          "2": "Çdo lojë ka kartën e saj të ndarjes, kështu që një lidhje për njërin shpaloset siç duhet kudo që ta postoni atë."
+        }
+      },
+      "bounties-stores": {
+        "title": "Shpërblime & Dyqane",
+        "intro": "Dy mënyra për ta kthyer platformën në të ardhura: postoni ose kërkoni një shpërblim, ose hapni një dyqan dhe shisni audiencës tuaj.",
+        "steps": {
+          "1": "Hapni 'Shpërblime' për të shfletuar punën e hapur, të filtrume sipas kategorisë ose monedhës.",
+          "2": "Kërkoni një, bëni punën dhe dorëzoni atë për të mbledhur shpërblimin — kushdo mund të jetë gjuetar, nuk nevojitet aplikim.",
+          "3": "Postoni shpërblimin tuaj me një përshkrim të shkurtër dhe një shpërblim në tokena DeHub ose USDC. Ai vendoset në depozitë në momentin që e postoni.",
+          "4": "Hapni 'Dyqanet' për të krijuar një faqe dyqani me faqen, markën dhe listimet e veta.",
+          "5": "Produktet janë me çmim dhe likuidohen në tokena DeHub përmes kuletës së integruar, pa pagesë të jashtme."
+        },
+        "tips": {
+          "1": "Shpërblimet janë të organizuara në Media Sociale, Klipe dhe Kontrata.",
+          "2": "Një rrjedhë mosmarrëveshjesh zgjidh mosmarrëveshjet mbi dorëzimin, kështu që depozita gjithmonë zgjidhet drejtë.",
+          "3": "Krijuesit përdorin shpërblime për të rritur një komunitet — ndarjet, klipet dhe reagimet janë të gjitha detyra të vlefshme."
+        }
+      },
+      "creator-studio": {
+        "title": "Studio dhe Redaktori i Krijuesit",
+        "intro": "Studio e Krijuesit gjeneron imazhe, video, muzikë, zë dhe modele 3D nga një kërkesë, dhe ua dorëzon një redaktori — duke përfshirë një redaktor të plotë video me shumë pista që funksionon në shfletues.",
+        "steps": {
+          "1": "Hapni Studion e Krijuesit dhe përshkruani atë që dëshironi të bëhet.",
+          "2": "Serveri ofron çmimin përpara se të ekzekutohet puna, kështu që ju shihni se sa kushton para se ta shpenzoni.",
+          "3": "Renderimet vazhdojnë në një radhë të përbashkët ndërsa ju vazhdoni të shfletoni aplikacionin.",
+          "4": "Renditni rezultatet në redaktorin në stilin Canva, ose hapni redaktorin e videos për një linjë kohore reale me prerje, shtresa dhe eksportim.",
+          "5": "Hidheni pjesën e përfunduar drejtpërdrejt në një postim, një të shkurtër ose një listim dyqani."
+        },
+        "tips": {
+          "1": "Një bibliotekë falas e aseteve stok gjendet pranë Studio për çdo gjë që nuk dëshironi ta gjeneroni.",
+          "2": "Gjenerimi paguhet me tokena DeHub nga kuleta juaj — ju nënshkruani një transferim për çdo punë, dhe çmimi ofrohet para se të paguani.",
+          "3": "Përdoruesit më të rëndë mund të marrin një plan Ultra, Team ose Scale, i cili dërgon një leje mujore tokenash drejtpërdrejt në kuletën e tyre."
+        }
+      },
+      "buying-dhb": {
+        "title": "Blerja e Tokenave",
+        "intro": "Bleni tokena DeHub drejtpërdrejt brenda aplikacionit duke përdorur ndërfaqen e shkëmbimit të integruar.",
+        "steps": {
+          "1": "Navigoni te faqja 'Bli' nga shiriti anësor.",
+          "2": "Zgjidhni tokenin nga i cili dëshironi të shkëmbeni (p.sh., ETH, USDC).",
+          "3": "Hyni shumën që dëshironi të shpenzoni ose numrin e tokenave që dëshironi të merrni.",
+          "4": "Rishikoni normën e këmbimit dhe daljen e vlerësuar.",
+          "5": "Klikoni ikonën e ingranazhit të cilësimeve për të rregulluar tolerancën e rrëshqitjes (parazgjedhja është 1%).",
+          "6": "Konfirmoni transaksionin e shkëmbimit.",
+          "7": "Tokenat DeHub do të shfaqen në kuletën tuaj pasi të përfundojë transaksioni."
+        },
+        "tips": {
+          "1": "Tolerancë më e lartë rrëshqitjeje = më e mundshme të ekzekutohet, por potencialisht për çmime më të këqija.",
+          "2": "Gjithmonë kontrolloni normën e këmbimit para se të konfirmoni.",
+          "3": "Mund të vendosni rrëshqitje të personalizuar në panelin e cilësimeve."
+        }
+      },
+      "bridge": {
+        "title": "Ura",
+        "intro": "Lëvizni tokenat tuaja DeHub midis blockchain-eve të mbështetur duke përdorur urën ndër-zinxhirë.",
+        "steps": {
+          "1": "Navigoni te faqja 'Bridge' nga shiritin anësor.",
+          "2": "Zgjidhni zinxhirin burimor (ku janë aktualisht token-et tuaja).",
+          "3": "Zgjidhni zinxhirin destinues (ku dëshironi t'i dërgoni ato).",
+          "4": "Hyni numrin e token-eve për të kaluar.",
+          "5": "Rishikoni tarifën e kalimit dhe kohën e vlerësuar të mbërritjes.",
+          "6": "Konfirmoni transaksionin e kalimit.",
+          "7": "Prisni që transaksioni të përfundojë — kalimi mund të marrë disa minuta."
+        },
+        "tips": {
+          "1": "Tarifat e kalimit ndryshojnë sipas çiftit të zinxhirëve.",
+          "2": "Kalimi zakonisht zgjat 1-5 minuta në varësi të zinxhirëve të përfshirë.",
+          "3": "Gjithmonë kontrolloni dy herë zinxhirin destinues para se të konfirmoni."
+        }
+      },
+      "music-tv": {
+        "title": "Muzikë & TV",
+        "intro": "Shijoni përmbajtje mediatike drejtpërdrejt brenda DeHub — transmetoni muzikë dhe shikoni kanale televizive live.",
+        "steps": {
+          "1": "Navigoni te 'Muzikë' nga shiriti anësor për të shfletuar dhe luajtur postime muzikore.",
+          "2": "Navigoni te 'TV' për të hyrë në kanale televizive live.",
+          "3": "Shfletoni kanalet sipas kategorisë ose vendit.",
+          "4": "Klikoni mbi një kanal për të filluar shikimin.",
+          "5": "Përdorni kontrollet e luajtësit për të rregulluar volumin dhe riprodhimin.",
+          "6": "Raportoni kanale të prishura duke përdorur butonin e raportimit."
+        },
+        "tips": {
+          "1": "Kanalet televizive janë verifikuar nga komuniteti për besueshmëri.",
+          "2": "Postimet muzikore mund të luhen gjatë shfletimit të përmbajtjeve të tjera."
+        }
+      },
+      "post-info": {
+        "title": "Informacioni i Postimit & Fraksionet",
+        "intro": "Një postim i krijuar është një NFT i ndarë në 1,000 fraksione. Faqja e Informacionit të Postimit tregon të dhëna në zinxhir, statistika angazhimi, ndarjen e pronësisë dhe ju lejon të tregtoni fraksione të çdo postimi — në një postim të pa krijuar ofron të krijojë në vend të kësaj.",
+        "steps": {
+          "1": "Trokitni lehtë mbi ikonën 'ⓘ' në çdo postim për të hapur faqen e Informacionit të Postimit.",
+          "2": "Në krye do të shihni ID-në e Token-it (identifikues unik në zinxhir) dhe hash-in e transaksionit — klikoni hash-in për ta parë atë në eksploruesin e bllokut.",
+          "3": "Më poshtë, statistikat e angazhimit tregojnë numrin total të pëlqimeve, mos-pëlqimeve, shikimeve, komenteve dhe bakshisheve të marra.",
+          "4": "Seksioni i Mbajtësve tregon një shirit progresioni se sa nga 1,000 fraksionet ende i posedon krijuesi, plus një listë të të gjithë mbajtësve të fraksioneve me bilancet dhe përqindjet e tyre.",
+          "5": "Nëse postimi është me pagesë për shikim (PPV), do të shihni çmimin, monedhën dhe se sa përdorues kanë blerë akses.",
+          "6": "Pronarët e postimeve mund të ndryshojnë dukshmërinë (Publike, Pa listë, ose Private) dhe të modifikojnë titullin/përshkrimin drejtpërdrejt nga kjo faqe."
+        },
+        "tips": {
+          "1": "Një postim i sapokrijuar fillon me krijuesin që mban të gjitha 1,000 fraksionet (100% pronësi).",
+          "2": "Hash-i i transaksionit lidhet me BaseScan ose BscScan në varësi të zinxhirit.",
+          "3": "Postimet e pa-listuara nuk shfaqen në feed, por mund të aksesohen përmes lidhjes direkte."
+        }
+      },
+      "trading-fractions": {
+        "title": "Fraksionet tregtare",
+        "intro": "Tregtia e pjesëve — shfletimi i listimeve, bërja e ofertave, listimi i vetes — jeton në aplikacionin e uebit në dehub.io, në faqen Post Info të çdo postimi.",
+        "steps": {
+          "1": "Hapni dehub.io në një shfletues dhe hyni me të njëjtën llogari.",
+          "2": "Hapni faqen Posto Informacionin e postimit dhe kaloni në skedën Marketplace.",
+          "3": "Shfleto listimet, bëj një ofertë me çmimin tënd ose listo fraksionet që mban.",
+          "4": "Pasi të përfundojë një tregti, ndryshimi shfaqet në skedën Fractions këtu në celular."
+        },
+        "tips": {
+          "1": "Zotërimi i fraksioneve të një postimi do të thotë që ju mbani një pjesë të asaj NFT në zinxhir.",
+          "2": "Kontrolloni mbajtësit e një postimi në tregun e internetit për të parë shpërndarjen e pronësisë para se të blini.",
+          "3": "Si krijues, shitja e fraksioneve i lejon fansat të bashkëpronësojnë përmbajtjen tënde."
+        }
+      },
+      "minting-posts": {
+        "title": "Mintimi i Postimeve (Krijimi i NFT-ve)",
+        "intro": "Mintimi është opsional. Një postim publikohet jashtë zinxhirit në momentin që e dërgoni — pa portofol, pa nënshkrim, pa gaz — dhe mund ta mintoni si NFT kurdo që dëshironi, qoftë gjatë kompozimit të tij ose më vonë nga vetë postimi.",
+        "steps": {
+          "1": "Klikoni butonin 'Posto' në shiritin anësor (desktop) ose butonin + (mobile).",
+          "2": "Shkruani tekstin tuaj, bashkëngjitni media (imazhe, video, audio) dhe shtoni kategori.",
+          "3": "Lëreni 'Mint post' të fikur për të publikuar jashtë zinxhirit, ose ndizeni për të mintuar ndërsa publikoni.",
+          "4": "Publikimi nuk pret kurrë në zinxhir: postimi shfaqet në çdo mënyrë.",
+          "5": "Për të nenexhik më vonë, hapni faqen e informacionit të postimit dhe përdorni veprimin Mint atje.",
+          "6": "Pasi të printohet, postimi merr një ID të Tokenit dhe një hash transaksionesh që mund t 'i verifikosh në zinxhir dhe mban 1.000 lekë të tij."
+        },
+        "tips": {
+          "1": "Hyrjet sociale, me email dhe SMS paguajnë zero gaz — Tarifat e prerjes së sponsorizuara nga DeHub.",
+          "2": "Përdoruesit e portofolit të jashtëm kanë nevojë për ETH në BAZË ose BNB NË Zinxhirin BNB për gaz.",
+          "3": "Mintimi është ajo që e bën një postim të tregtueshëm dhe me të drejta mbretërore. Një postim i papërpunuar ende fiton sugjerime dhe pikëpamje.",
+          "4": "Regjistrimi në zinxhir është i përhershëm pasi të jetë prerë, edhe nëse shtylla fshihet më vonë nga burimi."
+        }
+      },
+      "glossary": {
+        "title": "Shkurtesat",
+        "intro": "Një fjalor gjithëpërfshirës i terminologjisë së kriptos dhe platformës për t 'ju ndihmuar të lundroni në Web3.",
+        "steps": {
+          "1": "Lundroni te 'Fjalori' nga shiriti anësor.",
+          "2": "Shfleto termat në mënyrë alfabetike ose përdor kërkimin për të gjetur terma specifikë.",
+          "3": "Kliko mbi një term për të parë përkufizimin dhe shpjegimin e tij të plotë.",
+          "4": "Kushtet mbulojnë konceptet kripto, terminologjinë DeFi dhe veçoritë specifike të DeHub."
+        },
+        "tips": {
+          "1": "Burim i shkëlqyeshëm për të sapoardhurit në kripto dhe Web3.",
+          "2": "Fjalori përditësohet rregullisht me kushte të reja."
+        }
+      }
     }
   },
   "creatorPacks": {

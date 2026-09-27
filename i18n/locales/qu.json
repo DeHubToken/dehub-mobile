@@ -3463,11 +3463,6 @@
     "noResultsFor": "Mana tarisqachu \"{{query}}\"",
     "guideSubtitle": "Imayna tukuy imaynata ruwana",
     "searchGuide": "Tukuy imaynata maskay...",
-    "guideFractionsTip": "Sapa mintisqa willakuyqa ruraqninpa llapan rakinkunata hap'ispa qallarin (100% kapuq).",
-    "guideInfoStep": "Mintisqa willakuypi willay unanchata ñit'iy, block explorer nisqapi mint ruranata kichanaykipaq, cadena patapi qillqasqata qhawanaykipaq.",
-    "guideMintIntro": "Willakuyta NFT hina blockchain patapi mintiyqa munasqallam. Rikuchispa mintiy, utaq kunan rikuchiy hinaspa qhipaman willakuy menumanta mintiy.",
-    "guideMintPublishStep": "Mintinaykita akllay, chaymanta rikuchinapaq 'Churay' ñit'iy. Mana mintispaqa, qhipaman willakuy menumanta mintiyta atinki.",
-    "guideMintFractionsStep": "Musuq mintisqa willakuyniykipa llapan 1,000 rakinkunata (100% dueño kay) chaskinki.",
     "glossaryMintTxDesc": "Mintisqa willakuypi willay unanchata ñit'iy, block explorer nisqapi mint ruranata kichanaykipaq, cadena patapi qillqasqata qhawanaykipaq. Hunt'asqa Willakuy Willay p'anqa — yupaykuna, kapuqkuna, qhatu — dehub.io web app nisqapim kachkan.",
     "glossaryTokenIdDesc": "Cadena patapi sapaq riqsichiq, willakuyman quykusqa NFT hina mintisqa kaptin.",
     "repostsTab": "Reposteokuna",
@@ -3484,24 +3479,7 @@
     "glossaryStakingDesc": "DeHub tokennikikunata watay imaymana chayta yapayta atikunapaq. Waqaychasqa tokenkunapas kamachiypi astawan atiyta qowanki.",
     "glossaryGovernanceDesc": "Kamachiykunata churay chaynataq chaykunata qhawariy chaymi chay platformta kamachin. Kamachiyta atiyqa astawanmi DeHub tokennikunata hap'isqaykimanta.",
     "glossaryStakingBadgesDesc": "Chaqninchaykuna sutiyki punkunpi kaqkuna DeHub tokenkunata hap'isqaykimanta (waqaychasqa + waqaychasqa). Kanqaku 13 nivelkuna — astawan tokenkunata hap'ispaqa, astawanmi nivelniyki. Astawan nivelkunaqa astawanmi kamachiyta atiyta chaynataq chay platformpa pagoyninta pisiyachin.",
-    "glossaryLeaderboardDesc": "Runakunaqa DeHub tokenkunata hap'isqankumanta (waqaychasqa + waqaychasqa chainkunapi). Rankinkunaqa imaymana chayta yapaykuchkan chaynataq 1-punchay chaynataq 1-siminap chayninta qhawanku. Astawanpas qhawanki imaymana apuyta, imaymana jap'isqata, qatiqkuna, munaykuna, icha qatiqkuna.",
-    "guideTipStep": "Chaqninchay/apuyta maskayta ch'eqoy chaymi chay kaqta ruwaqman DeHub tokenkunapi apuyta.",
-    "guideTipWalletTip": "Apuykunaqa directota ruwaqpaq kaqninmanmi DeHub tokenkunapi.",
-    "guideTipNotificationsTip": "Tip willakuykuna rikuchin mayta DeHub tokenkunata chaskisqayki.",
-    "guideWalletIntro": "Rikuy DeHub tokenniykikunata achka chainkunapi, qhawariy stakingniykikunata, llamk'achiy imaykanikikunata.",
-    "guideWalletTotalStep": "Rikuy tukuy DeHub tokenniykikunata huñusqa tukuy yanapasqa chainkunapi.",
-    "guideStakingIntro": "Churay DeHub tokenniykikunata tariy atiqkunata chaymanta hatarichiy balotayniykita.",
-    "guideStakingAmountStep": "Qillqay mayta DeHub tokenkunata churayta munanki.",
-    "guideLeaderboardBalanceStep": "Balance tablapi sutikuna llimp'isqa kanku hatun DeHub tokenniykikunawan.",
-    "guideGovernanceVoteStep": "Balotay llamk'achiy willakuykunapi ukhu/ch'iqta buttonkunawan — balotayniykiqa sayan mayta DeHub tokenniykikunata churamusqayki.",
-    "guideGovernancePowerTip": "Balotayniykiqa sayan mayta DeHub tokenniykikunata churamusqayki.",
-    "guideBuyIntro": "Rikuy DeHub tokenkunata DPaypi directmanta taripayta atiqniyki cardwan icha yanapasqa crypto.",
-    "guideBuyAmountStep": "Qillqay mayta gastoyta munanki icha mayta DeHub tokenkunata chaskiyta munanki.",
-    "guideBuyDeliveredStep": "DeHub tokenniykikuna rikch'ayta atiqkuna qhapaqniykiman chaymi llamk'ayta tukuchispa.",
-    "guideBridgeIntro": "Purichiy DeHub tokenniykikunata yanapasqa blockchainkunapura cross-chain bridgewan.",
-    "guideBridgeSourceStep": "Akllay qallariq chainta (maypi DeHub tokenniykikuna kachkan).",
-    "guideBridgeDestStep": "Akllay tukuy chainta (maypi DeHub tokenniykikunata kachayta munanki).",
-    "guideBridgeAmountStep": "Qillqay mayta DeHub tokenkunata bridgeyta."
+    "glossaryLeaderboardDesc": "Runakunaqa DeHub tokenkunata hap'isqankumanta (waqaychasqa + waqaychasqa chainkunapi). Rankinkunaqa imaymana chayta yapaykuchkan chaynataq 1-punchay chaynataq 1-siminap chayninta qhawanku. Astawanpas qhawanki imaymana apuyta, imaymana jap'isqata, qatiqkuna, munaykuna, icha qatiqkuna."
   },
   "arcade": {
     "submitAccessibility": "Huk pukllayta arcade nisqaman apachiy",
@@ -6823,6 +6801,501 @@
       "packEmpty": "Chay direccionpiqa manan ima emojipas tarikurqanchu",
       "shortcodeTaken": "{{name}} ña hapisqañam",
       "shortcodeStandard": "{{name}} nisqaqa huk emoji estándar nisqañam"
+    }
+  },
+  "guide": {
+    "sections": {
+      "getting-started": {
+        "title": "Qallarinapaq",
+        "intro": "Pichqa ñankuna DeHub kaqman kanku chaymanta mana mayqinpas necesitankichu huk billeterayuqña kanaykita: Google, Apple, huk código correo electrónicoykiman apachisqa, huk código SMS kaqwan apachisqa, utaq huk kachkaq billetera tinkisqayki. Tukuy imapas mana billetera ñanmanta huk mana waqaychasqa billetera qampaq ruwan qhipaman — llavekunata hap&#39;inki, chaymanta DeHub gas patrocinan chaymanta qillqayta, propina chaymanta huñuyta atikunki mana hayk&#39;aqpas huk nativo token rantispa.",
+        "steps": {
+          "1": "Watukuy dehub.io — wasi mikhuyqa ñawpaq p&#39;anqa, chayrayku manaraq yaykuchkaspa muyuriqninta qhawayta atikunki.",
+          "2": "&#39;Yaykuy&#39; nisqapi ñit&#39;iy. Google chaymanta Apple rikunki, huk correo electrónico direccionpaq utaq huk telefono yupaypaq pampakuna, chaymanta ‘Belletera tinkiy’ huk kachkaqpaq.",
+          "3": "Google utaq Apple kaqwan, quqpa puriyninta hunt&#39;achiy. Correo electrónico utaq SMS nisqawan, chayamuq código nisqa qillqay.",
+          "4": "Huk billetera ruwasqa chaymanta waqaychasqa qampaq ñawpaq yaykuypi. Kikin billeterayki tinkiyqa aswanpas huk firma niyta munan direccionta pruebananpaq.",
+          "5": "Huk username nisqa sutita akllay. Runakuna rikusqankum chaymanta doble dehub.io/<username> perfil enlaceyki hina.",
+          "6": "You&#39;re in. Mikhuyta maskay, perfilniyki churay, chaymanta churayta qallariy."
+        },
+        "tips": {
+          "1": "Social, correo electrónico chaymanta SMS yaykuykuna mana hayk&#39;aqpas gas qullqita qunkuchu — DeHub chayta patrocinan. T’inkisqa billeterakuna kikin ETH utaq BNB qullqita qunku.",
+          "2": "¿Huk herencia DeHub yupayman kutimunkichu? Yaykuy correo electrónico utaq telefono yupaywan llamk&#39;achisqanwan chaymanta migración qampaq tarin.",
+          "3": "Huk dispositivopi achka yupaykunata waqaychayta atikunki chaymanta paykunapura tikrayta atikunki Ajustes → Perfil kaqpi."
+        }
+      },
+      "home-feed": {
+        "title": "Wasi Mikhuy",
+        "intro": "Wasi mikhuyqa maypichus qatisqayki runakunamanta qillqakunata chaymanta tendenciayuq contenidota rikunki. Askha contenido-lapo tablakunata chaymanta t&#39;aqay akllanakunata yanapan.",
+        "steps": {
+          "1": "/app nisqaman riy — kayqa wasiykip mikhunanmi.",
+          "2": "Pata tablakunata llamk&#39;achiy contenido layamanhina filtranaykipaq: Wasi (llapa), Videokuna, Siqikuna, Cortometrajes, Musiku utaq Kawsaq mayukuna.",
+          "3": "Pestañakunapi lloq’e/alliqman llalliy aswan akllanakunata celularpi qhawanaykipaq.",
+          "4": "Filtro/t&#39;aqay ñit&#39;inata (mikuypa paña pata-pi) llamk&#39;achiy t&#39;aqayta tikranaykipaq: Ruphay, Musuq utaq Hawa.",
+          "5": "Urayman aysay celularpi mikhuyta musuqyachinaykipaq.",
+          "6": "Urayman puriy aswan qillqakunata kikillanmanta karganaykipaq (mana tukukuq puriy).",
+          "7": "Rejilla chaymanta Mikhuy qhawaypura tikray churay tikrayta llamk&#39;achispa."
+        },
+        "tips": {
+          "1": "Rejilla qhawayqa ancha allinmi siq&#39;ikunata utqaylla maskanapaq.",
+          "2": "‘Wasi’ ñiqiqa llapa contenido layakuna kuska chaqrusqata rikuchin.",
+          "3": "Kawsaq tabla kunan ruwaq kawsaq mayukunata rikuchin."
+        }
+      },
+      "creating-posts": {
+        "title": "Posts nisqakunata paqarichispa",
+        "intro": "Qillqa qillqakunata ruway, siq&#39;ikunata, videokunata, kunka qillqakunata, GIF nisqakunata, chaymanta aswanta qunakuy. Hashtags, cashtags, menciones nisqakunata llamk&#39;achiy chayayta yapanaykipaq.",
+        "steps": {
+          "1": "Lado barra (escritorio) nisqapi ‘Post’ nisqa botonta ñit’iy otaq + nisqa botonta (movil).",
+          "2": "Qillqasqaykita qillqay qillqanapi qillqay.",
+          "3": "Ima rikchayta utaq videota yapanaykipaqqa, medios de comunicación nisqapi ñitiy hinaspa huk archivota akllay.",
+          "4": "Nota de voz grabanaykipaqqa micrófono nisqapi ñit’iy.",
+          "5": "GIF yapanaykipaqqa GIF nisqapi ñitiy hinaspa hukninta maskay.",
+          "6": "#hashtags nisqawan qillqasqaykita categorizanaykipaq (kayhina, #crypto, #defi).",
+          "7": "$cashtags llamk&#39;achiy tokenkunata riqsichinapaq (kayhina, $DHB, $ETH).",
+          "8": "@mentions nisqawan llamk&#39;achiy huk ruraqkunata etiquetanaykipaq (ahinataq, @username).",
+          "9": "&#39;Post&#39; nisqapi ñit&#39;iy qillqanaykipaq. Qillqasqaykiqa chaylla feed nisqapi rikurin."
+        },
+        "tips": {
+          "1": "Qillqakunaqa markdown-hina formato nisqatam yanapan.",
+          "2": "Cita-post ruwayta atikunki mayqin qillqapipas wakmanta churay icono ñit&#39;ispa chaymanta &#39;Cita&#39; akllaspa.",
+          "3": "Kamachikunaqa (hashtags) 'Kamachikuna rimaynin' patapi rikhurinku."
+        }
+      },
+      "interacting-with-posts": {
+        "title": "Posts nisqawan tinkuchispa",
+        "intro": "Contenidowan llamk&#39;ay votaspa, comentarioswan, propinaswan, marcadorwan, rakispa, tikraywan ima.",
+        "steps": {
+          "1": "Ima qillqasqapa paña ladonpi flecha iconokuna llamk&#39;achispa huk qillqasqata upvote utaq downvote.",
+          "2": "Comentario nisqa icono ñit’iy comentario nisqa t’aqata kicharinaykipaq, hinaspa kutichiyta saqenaykipaq.",
+          "3": "Gema/tip icono ñit&#39;iy DeHub tokenkunapi huk yuyaychayta qillqa ruwaqman apachinaykipaq.",
+          "4": "Marcador nisqapi ñit&#39;iy huk qillqasqata qhipaman waqaychanaykipaq.",
+          "5": "Rakinakuy icono ñit&#39;iy qillqa t&#39;inkita copianaykipaq icha hawamanta rakinaykipaq.",
+          "6": "Qillqasqataqa t'ikray qillqana (llalliq rumi) mayqanpas qillqasqapi t'ikray suti simikunata simikiman.",
+          "7": "Siqi qillqakunapaq, &#39;Imahina tikray&#39; ñit&#39;inata llamk&#39;achiy huk AI-t&#39;ikrasqa qillqata siq&#39;i ukhupi tarinaykipaq.",
+          "8": "Ima qillqasqatapas ñit&#39;iy pantalla hunt&#39;a huk qillqasqa qhawaypi kicharinaykipaq."
+        },
+        "tips": {
+          "1": "Yuyaychaykunaqa DeHub tokenkunapi ruwaqpa billeteranman chiqalla rinku.",
+          "2": "Huk propina qullqita churayta atikunki utqaylla akllana botones kaqnintakama utaq huk ruwasqa qullqita churay.",
+          "3": "Marcadorniyuq qillqakunaqa lado barrapi Marcadores nisqa p&#39;anqamantam yaykuyta atikun."
+        }
+      },
+      "explore-search": {
+        "title": "Explorar & Maskay",
+        "intro": "Musuq willayta chaymanta ruwaqkunata maskay p&#39;anqawan chaymanta kallpasapa maskana ruwanakunawan tariy.",
+        "steps": {
+          "1": "Lado barramanta /app/explore nisqaman riy.",
+          "2": "Patapi maskana barrata llamk&#39;achiy, ruwaqkunata, qillqakunata utaq contenidota maskanaykipaq.",
+          "3": "Filtrar resultados por tabla: Llapa, Runakuna, Qillqakuna, Siqikuna, Videokuna, Musiku, Kawsaq.",
+          "4": "Explora p&#39;anqapi tendencia temakuna chaymanta categoríakuna maskay.",
+          "5": "Huk tendencia tema nisqapi ñit&#39;iy llapa chaywan tupaq qillqakunata qawanaykipaq.",
+          "6": "Maskana ruwaykunapi huk ruwaqta ñit&#39;iy perfilninta watukunaykipaq."
+        },
+        "tips": {
+          "1": "Maskana yanapakun usernamekuna, billetera direccionkuna chaymanta contenido llalliq simikuna.",
+          "2": "Tendencia temakuna musuqyachiy chayllaraq churay ruwayman hina."
+        }
+      },
+      "profile": {
+        "title": "perfiles nisqakuna",
+        "intro": "Perfilniyki qillqasqayki, qatiqniyki, qatiqniyki chaymanta billetera willakuyniyki rikuchin.",
+        "steps": {
+          "1": "Avatar nisqayki utaq ‘Perfil’ nisqapi ñit’iy lado barra nisqapi perfilniyki qhawanaykipaq.",
+          "2": "&#39;Perfil llamk&#39;achiyta&#39; ñit&#39;iy qhaway sutiyki, bio, chaymanta avatar musuqchaypaq.",
+          "3": "Perfil siq&#39;ita yapay avatarniykipi ñit&#39;ispa llamk&#39;apuy ruwaypi.",
+          "4": "Qatiqniyki chaymanta qatiq yupaykunata perfil p&#39;anqaykipi qhaway.",
+          "5": "Riqchariy kikin qillqasqayki, rikch'aykuna, munakusqayki ima, k'uchukuna qhawarispa.",
+          "6": "Billeteraykipa direccionninta copiay, chaypaqqa ladunpi kaq copia icono nisqapi ñitiy.",
+          "7": "Huk ruwaqkunap perfilninkuta watukuy, maypipas plataformapi username utaq avatarninkuta ñit&#39;ispa."
+        },
+        "tips": {
+          "1": "Ruwaq sutiyki sapalla kachkan chaymanta perfil URL kaqpi (dehub.io/@username) rikukun.",
+          "2": "Sapanchasqa ruwanakuna kamachiyta saqin pikunachus qatiqniyki yupaykunata qhawayta atinku."
+        }
+      },
+      "messages": {
+        "title": "Willakuykuna",
+        "intro": "Plataformapi huk usuariokunaman chiqan willakuykunata apachiy.",
+        "steps": {
+          "1": "Lado barrapi &#39;Willakuykuna&#39; ñit&#39;iy willay p&#39;anqata kichanaykipaq.",
+          "2": "Componer nisqapi ñit’iy mosoq rimayta qallarinaykipaq.",
+          "3": "Huk llamk&#39;achiqta maskay username nisqawan paykunaman willaypaq.",
+          "4": "Willakuyniyki qillqay hinaspa apachiy ñitiy.",
+          "5": "Willakuykuna lista nisqapi rimasqaykimanta willakuy.",
+          "6": "Huk rimanakuypi ñit’iy hinalla rimanaykipaq."
+        },
+        "tips": {
+          "1": "Qhawasqaykiman chayachisqa kanqa imapuni chayachisqaykiman.",
+          "2": "Ruwaqkuna willakuykunata huk yuyaychay mañakuypa qhipanpi wichq&#39;ayta atinku."
+        }
+      },
+      "ai-assistant": {
+        "title": "AI Yanapakuq",
+        "intro": "DeHub kaqpa ruwasqa AI yanapaqninwan rimanakuy yanapakuypaq, willakuypaq chaymanta kamaq ruwanakunapaq.",
+        "steps": {
+          "1": "‘Yanapakuq’ ñit’iy lado barrapi AI rimanakuy kichaypaq.",
+          "2": "Tapukuyniyki utaq mañakuyniyki qillqay rimanakuy yaykuypi.",
+          "3": "AI yanapayta atin cripto willaywan, plataforma tapuykunawan, chaymanta tukuy yachaywan.",
+          "4": "Musuq rimayta qallariy musuq rimanakuy ñit’ispa.",
+          "5": "Yanapakuq p&#39;anqap ladunpi rimasqaykimanta willakuyniyki qhaway.",
+          "6": "AI t&#39;aqwinanpaq siq&#39;ikunata k&#39;askachiyta atinki."
+        },
+        "tips": {
+          "1": "AI nisqa rimanakuy ukhupi contexto nisqamanta yuyarin.",
+          "2": "AI kaqman tapuyta atikunki DeHub ruwanakunamanta, cripto términokunamanta utaq general tapuykunamanta.",
+          "3": "Ñawpaq rimanakuykuna waqaychasqa kanku chaymanta mayk&#39;aqllapas yaykuy atikunku."
+        }
+      },
+      "notifications": {
+        "title": "Willakuykuna",
+        "intro": "Kunanchasqa kay gustasqaykiwan, rimaykunawan, yuyaychaykunawan, qatipaywan, chaymanta wak ruwaykunawan contenidoykipi.",
+        "steps": {
+          "1": "Lado barrapi campana icono otaq ‘Notificaciones’ nisqapi ñit’iy.",
+          "2": "Llapan willakuykunata huk lista cronológica nisqapi qhaway.",
+          "3": "Huk willakuypi ñit’iy chaywan tupaq contenidoman rinaykipaq.",
+          "4": "Willakuykuna kanku: musuq qatiqninkuna, qillqay votokuna, rimaykuna, yuyaychaykuna, chaymanta rimaykuna.",
+          "5": "Mana ñawirisqa willakuykunaqa resaltasqa kanku — qhawasqa kaptin ñawirisqa hina markanku."
+        },
+        "tips": {
+          "1": "Willakuy insignia mana ñawirisqa willakuykunata yupayta rikuchin.",
+          "2": "Yuyaychay willakuykunaqa hayka tokenkuna chaskisqaykitam qawachin."
+        }
+      },
+      "wallet": {
+        "title": "Chuspa",
+        "intro": "DeHub token saldoykikunata achka cadenakunapi qhaway, apuesta qullqi churaykunata qhaway chaymanta kaqniykikunata kamachiy.",
+        "steps": {
+          "1": "Lado barrapi ‘Belletera’ ñit’iy billetera p’anqata kicharinaykipaq.",
+          "2": "Llapan token saldoyki huñusqa llapa yanapasqa cadenakunapi qhaway.",
+          "3": "Sapa kadena rakinakuykunata qhaway: Ethereum, Base, BNB Cadena, hukkunapas.",
+          "4": "Apuesta depósitos nisqaykikunata hinaspa premiokunata qaway.",
+          "5": "‘Escaneo musuqyachiy’ ñit’iy saldoykikunata cadena kaqpi willaykunamanta musuqyachinaykipaq.",
+          "6": "Hukkunamanta tokenkunata chaskinaykipaq billeteraykipa direccionninta copiay."
+        },
+        "tips": {
+          "1": "Saldos kikillanmanta musuqyachinku ichaqa mayk&#39;aqllapas huk musuqyachiyta kallpachayta atikunki.",
+          "2": "Chay billetera nisqapiqa rikukunmi saldo líquido (disponible) nisqapas, apuesta nisqapas."
+        }
+      },
+      "staking": {
+        "title": "Estaca",
+        "intro": "DeHub fichasniykikunata apuestay premiokunata gananaykipaq chaymanta kamachiy voto atiyniyki yapanaykipaq.",
+        "steps": {
+          "1": "Lado barramanta ‘Apuesta’ nisqa p’anqaman riy.",
+          "2": "Añay qhawana qhantiykuna imataq churanki.",
+          "3": "Apuestay munasqayki cadenata akllay.",
+          "4": "Kutichiy imaymanata ruwasqayki kaqta qanpa kaqniyki ukhupi (hawa kaqniykunapi) ichaqa kikintam ruwakun (social login).",
+          "5": "Qhaway apuestasqayki qolqekunata, ima premiokuna pendiente kaqtapas.",
+          "6": "Unstake nisqapaq, qullqita qillqay hinaspa mana apuesta nisqa ruwayta takyachiy."
+        },
+        "tips": {
+          "1": "Estacayqa votoykipa llasaynintam yapan kamachikuymanta propuestakunapi.",
+          "2": "Social-login kaqmanta llamk&#39;aqkuna mana gasta necesitankuchu estacapaq — mana gasniyuqmi.",
+          "3": "Achka cadenakunapim huk kutillapi apuestayta atinki."
+        }
+      },
+      "leaderboard": {
+        "title": "Tabla de liderazgo",
+        "intro": "¡Qhawariy pichus patapi kashan chayta! Tabla de liderazgo llamk&#39;achiqkunata balance, sapa p&#39;unchaw gasto, chaymanta tendencia temakuna kaqwan rankikun.",
+        "steps": {
+          "1": "Lado barramanta ‘Leaderboard’ nisqa p’anqaman riy.",
+          "2": "Pestañakunapura tikray: Equilibrio, Sapa punchaw gastasqa hinaspa Llaqtamanta rimay.",
+          "3": "Saldo tabla llamk&#39;achiqkunata tukuy token hap&#39;isqankuwan rankikun.",
+          "4": "Sapa p&#39;unchaw Gastasqa tabla rikuchin pikunachus aswan activo propina karqanku kay qhipa 24 pachakunapi.",
+          "5": "Llaqtamanta rimayqa aswan rimasqa temakunata/categoriakunatam qawachin.",
+          "6": "Mayqin user nisqapipas ñit&#39;iy perfilninta watukunaykipaq.",
+          "7": "Tabla de liderazgo sapa kuti p&#39;unchawntin musuqyachin."
+        },
+        "tips": {
+          "1": "Sapa punchaw rankings sapa 24 pachamanta musuqmanta churakun.",
+          "2": "Talk of the Town nisqaqa huklla simiyuq categoría nisqakunatam hashtag nisqamanta qatipan."
+        }
+      },
+      "command-centre": {
+        "title": "Kamachiy Wasi",
+        "intro": "Dashboardta rikuy, imaymana allin kaqniykiwan llamk'ayniykiwan p'unchawpi.",
+        "steps": {
+          "1": "Sidebarpi 'Command Centre' niqta hark'ay.",
+          "2": "Kikinpa yuyayniykita rikuy, hark'aykuna, qatiqkuna, imaynata llamk'ayniykiwan.",
+          "3": "Kachkan llamk'ayniykiwan allin kaqkunata rikuy.",
+          "4": "Chiqan llamk'anapaq hark'aykuna."
+        },
+        "tips": {
+          "1": "Command Centre DeHub kaqniykiwan hatun rikuyta qusqayki."
+        }
+      },
+      "governance": {
+        "title": "Kamachiy",
+        "intro": "Kamachiypi llamk'ay kikinpa ruwasqaykiwan, huñunakuypaq akllaykunapi balotaywan.",
+        "steps": {
+          "1": "Sidebarmanta 'Governance' niqman yaykuy.",
+          "2": "Huñunakuypaq kachkaq akllaykunata rikuy.",
+          "3": "Akllayta hark'ay imaynata tukuytawan rimayta yachaq.",
+          "4": "Akllaykunapi balotay DeHub tokenniykita imaynata waqaychayniykiwan.",
+          "5": "Akllaykunapi komentoyta quway huñunakuypaq.",
+          "6": "Kikinpa akllayniykita hark'ay 'Create Proposal' niqta hark'aspa."
+        },
+        "tips": {
+          "1": "Balotayniyki tokenniykita imaynata waqaychayniykiwan.",
+          "2": "Badge niqkunataq atiqmi balotayta yapayta.",
+          "3": "Akllaykuna puriqkuna: Active → Passed/Rejected."
+        }
+      },
+      "bookmarks": {
+        "title": "Bookmarks",
+        "intro": "Hark'aykuna waqaychay kikinpa hark'ayniykiwan allin kaqta.",
+        "steps": {
+          "1": "Bookmark iconta hark'ay imaynata waqaychayta.",
+          "2": "Sidebarpi 'Bookmarks' niqman yaykuy waqaychasqa hark'aykunata rikuyta.",
+          "3": "Bookmarkniyuq hark'ayta hark'ay tukuyta rikuyta.",
+          "4": "Bookmarkta qhaway bookmark iconta yapayta hark'aspa."
+        },
+        "tips": {
+          "1": "Bookmarksqa kikinpa — kikinllam rikuyki waqaychasqa hark'ayniykita.",
+          "2": "Mana imapas limitniyuqmi imaynata bookmarkniyuqta."
+        }
+      },
+      "settings": {
+        "title": "Settings",
+        "intro": "Kikinpa DeHub kaqniykiwan allin kaqta ruway, simi, kikinpa kaqniykiwan, rikuyta.",
+        "steps": {
+          "1": "Sidebarpi 'Settings' niqta hark'ay.",
+          "2": "Simniykita hark'ay simi selectormanta.",
+          "3": "Kikinpa kaqniyki ruway: imaynata rikuyta qatiqniykita.",
+          "4": "Ñawpaqmanta churasqa post rikuy munasqaykita churay.",
+          "5": "Notificaciónkunata kamachiy"
+        },
+        "tips": {
+          "1": "DeHub achka simikunata yanapan — tukuy interfaz tikran.",
+          "2": "Sapanchasqa kananpaq churanakuna chaylla ruwakun."
+        }
+      },
+      "posting-allowance": {
+        "title": "Sapa punchaw qillqanaykipaq qullqi qusqayki",
+        "intro": "Sapa punchawmi qillqayqa mana qullqillapaqchu, huk qullqi quykama, chaymi insignia de apuesta nisqaykiwan balanzakun. Llapa runa chunka qillqa qillqakunawan qallarinku chaymanta huk gigabyte video, siq&#39;ikuna chaymanta uyariy sapa p&#39;unchaw. Riy mayqintapas pasaspa chaymanta chay p&#39;unchawpa puchuqnin DeHub tokenkunapi qullqita qun — chaylla chay partepi mayqinchus phawaykachan.",
+        "steps": {
+          "1": "Normal hina churay. Subsidio ukhupiqa manan imatapas cobrankuchu nitaqmi imatapas mañakusunkichu.",
+          "2": "Texto qillqakuna chaymanta willay mast&#39;ariqkuna sapaq piscinakuna kanku, chayrayku huk p&#39;unchaw videota churanapaq saqillanraq tukuy chunka qillqa qillqakunata mana qullqiyuq.",
+          "3": "Chaytaqa mana tukuchkaspa kaqtinqa, chay ruwayqa ñawpaqta qolqeykita hap'ispa qhawarin, chaymanta qhawarin qanpa qolqeyki chayta atikun chayta, imapas kachkaptinñataq.",
+          "4": "Chay qillqasqaqa imaynachus qullqi quy ukhupi ruwanman hinapuni lluqsichin — qillqa lluqsichiyqa mana hayk&#39;aqpas huk qullqi quyta suyanchu.",
+          "5": "Chaymanta huk transferenciata chay postllapaq aprobanki, mayqinpipas Base utaq BNB Chain suficiente DeHub tokenkuna hap&#39;in chaypi tiyasqa.",
+          "6": "Iskaynin piscinakuna chawpi tuta UTC kaqpi kutichipunku."
+        },
+        "tips": {
+          "1": "Overage pro-rata kaq: 200 MB pasasqa subsidioyki 200 MB qullqita qun, mana huk tukuy gigabytechu.",
+          "2": "Reposts, comentarios, reacciones, consejos chaymanta mensajes mana ima qullqipaqchu chanta mana jayk’aq llamiychu chay subsidiota.",
+          "3": "Pagayta mana munay chaymanta qillqa qhipakun — qullqiqa qatiq qullqi qusqa qillqaykita hark&#39;anlla allichasqa kanankama. Paqarin punchawpaq mana qullqiyuq qullqi quyqa qampaqpunim.",
+          "4": "Insignia de apuesta nisqa gratis asignacionta hoqarin, chaymanta imapas pasasqanpa precionta uraykachin."
+        }
+      },
+      "reactions-and-safety": {
+        "title": "Reacciones, Silenciamiento & Contenido Maduro",
+        "intro": "Isqun reacciones kan chay boton gustaqpa qhipanpi, chaymanta huk conjunto de controles ima rikusqaykita chaymanta pikunachus chayayta atinku chayta tanteanaykipaq.",
+        "steps": {
+          "1": "Ima postpipas hatun makiwan hapiy bandeja de reacción nisqa kichanaykipaq: hina, kuyakuy, respeto, rupay, lol, llakisqa, waqay, mana gustasqayki hinaspa poo.",
+          "2": "Qanchis allin kaqkunaqa yupakunmi postpa hina total nisqaman; dislike y poo yupanku contranpi.",
+          "3": "Reacciónniykiqa insignia estacasqaykiwanmi llasan, chaymi insigniayuqpa reaccionninqa yupayta huk votomanta aswan karuman kuyuchin.",
+          "4": "Huk qillqap umalliqninpi X ñit&#39;iy qillqaqninta upallachinaykipaq — chaylla mikhuyniykimanta lluqsinku.",
+          "5": "Kamaqkunam kikinkupa qillqasqankuta poqosqa hina marcanku, chaykunata ruwachkaspanku; chay postes nisqakunaqa mana llaqtapaq wasi mikhuymanta qhipakunku.",
+          "6": "Tukuy hinantinpi puqusqa qillqakunata qhawanaykipaq, ‘Puqusqa willayta rikuchiy’ Ajustes kaqpi llamk&#39;achiy."
+        },
+        "tips": {
+          "1": "Huk puqusqa qillqasqaqa kunankamapas hunt&#39;asqa rikukunraqmi kamaqpa perfilninpi chaymanta qatiq runakunamanpas.",
+          "2": "Perfilmanta hark&#39;ayqa aswan karuman rin silenciaymanta chaymanta willayta kuchunpas.",
+          "3": "Bandeja de reacción nisqapin rikukun pikunachus imawan ima reaccionasqankuta, chaymi cuartota rikunki, manan huk numerollatachu."
+        }
+      },
+      "stages": {
+        "title": "Escenarios (Kawsaq uyarinapaq cuartokuna) .",
+        "intro": "Escenarios nisqakunaqa DeHub nisqapi ruwasqa kawsaq uyarina wasikunam. Huk anfitrión huk cuartota kichan, parlantekunata apamun, chaymanta pipas yaykumuyta atin uyarinanpaq Etapas p&#39;anqamanta utaq huk rakisqa t&#39;inkimanta.",
+        "steps": {
+          "1": "Kichay ‘Etapas’ lado barrapi qhawanaykipaq imakuna kunan kawsaq chaymanta imakuna programasqa.",
+          "2": "Uyariyta churay atikanki chaytaqa, chaymantapas willasuyki chayta qallariptin.",
+          "3": "Chaylla chaylla ruway atikanki chaylla p'anqamanta — mana OBS icha stream key niqwanpas directo qhawariy atikanki."
+        },
+        "tips": {
+          "1": "Chaylla subtítulosqa sapa rimayta qhawachkan chaymanta qhawasqayki simiman t'ikraykun.",
+          "2": "Chaylla dubbingqa k'itichapi rimayta atin kamachiqpa siminwan, DeHub tokenspi minutuwan pagasqa.",
+          "3": "Kamachiqkunaqa radio estaciónta mast'ariy atinku icha paykuna munay qhawaykunaq k'aspinkunata rimaykunaq chawpinpi pukllachiy atinku.",
+          "4": "Chaylla mini-playerqa k'itichata llamk'achkan chaymanta qhawasqayki p'anqata llamk'achkan."
+        }
+      },
+      "communities": {
+        "title": "Comunidades y Eventos",
+        "intro": "Comunidadesqa runakunamanta kamachisqa k'itichakuna paykunawan, runakunawan chaymanta llamk'ayninwan. Eventosqa chaykunaman tiempo limitasqa programacionta yapanku.",
+        "steps": {
+          "1": "\"Comunidades\"ninpi qhawariy chaymanta publicokunata qhawariy.",
+          "2": "Chaylla hukninpi yapakuy. Musuq llamk'ayqa navigationpi musuqninniyuq señalwan rikch'akun.",
+          "3": "Publicay, rimay, encuestas ruway chaymanta comunidadpa feedninpi tipay.",
+          "4": "Comunidadpa kamachiqkuna paykuna k'itichata kamachinku chaymanta hukninman admin derechosniyta qoykuy atinku.",
+          "5": "\"Eventos\"ninpi qhawariy programacionpaq, sapa eventopaq huk p'anqawan chayta qhawariy atikanki chaylla."
+        },
+        "tips": {
+          "1": "Comunidad chatqa @mentions chaymanta @here niqta yanapan, chayraykuna huk publicacionqa k'itichata chayanman.",
+          "2": "Huk invitaciónnin linkqa runakunata directo comunidadman apamuyta atin."
+        }
+      },
+      "arcade": {
+        "title": "Arcade",
+        "intro": "Pichqa pukllaykuna DeHubpi llamk'anku browser tabpi — mana imapas instalasqa, mana imapas rantisqa.",
+        "steps": {
+          "1": "\"Arcade\"ninpi qhawariy.",
+          "2": "Huk pukllayta akllay: King's Gambit (3D ajedrez online Elo ladderwan), Claude of Duty (huk tirador paypa artinta ruwan chayta qallariptin), Jungle Trail (huk procedimiental selva puriy), Street Slayer (huk beat 'em up DeHubpaq ruwasqa) icha Chartopia (huk puriy atiq trading floor).",
+          "3": "Tabpi pukllay. King's Gambit chaymanta Street Slayerqa leaderboardsninpi llamk'anku.",
+          "4": "Chartopiaqa VR headsetpi llamk'an WebXRwanpas."
+        },
+        "tips": {
+          "1": "Iskayninqa paykuna kawsayniyuq kachkanku chaymanta apariencia themesninpi — appta Warpaq Claude of Duty, icha Junglepaq Jungle Trail niqta churay.",
+          "2": "Sapa pukllayqa paypa huk share cardninwan, chayraykuna huk linkqa chayta qhawachkan maypi publicasqayki chaypi."
+        }
+      },
+      "bounties-stores": {
+        "title": "Bounties y Tiendas",
+        "intro": "Iskay ñanmi platformta qullqiman tukuchinapaq: bounty publicay icha claim, icha huk storefrontninpi qhawariy chaymanta qhawasqayki audiençiayman rantiy.",
+        "steps": {
+          "1": "\"Bounties\"ninpi qhawariy llamk'ayninpi, categoría icha qullqimanpas filtrasqa.",
+          "2": "Hukninpi claim, llamk'ayta ruway, chaymanta recompensa chaskiyta apamuy — mayqinkunapas cazador kachkan, mana imapas solicitasqa.",
+          "3": "Kikin recompensaykita churay huk brevewan chaymanta huk premiowan DeHub tokens utaq USDC kaqpi. Chayqa fideicomisomanmi rin chay rato churasqayki ratopi.",
+          "4": "‘Tiendakuna’ kichay huk tienda qhawanata churanaykipaq kikin p’anqayuq, markayuq chaymanta listakunayuq.",
+          "5": "Rurukuna chaninniyuq chaymanta DeHub tokenkunapi allichasqa kanku chaymanta ruwasqa billetera kaqnintakama, mana hawa qullqi quywan."
+        },
+        "tips": {
+          "1": "Kamachikunaqa Social Media, Clipping, Contract nisqakunapi kamachisqa kanku.",
+          "2": "Huk ch&#39;aqway puriyqa mana rimanakuykunata allichan quymanta, chayrayku fideicomisoqa chaninpi allichanpuni.",
+          "3": "Ruwaqkuna huk ayllu wiñachinapaq recompensakunata llamk&#39;achinku — rakinakuy, clips chaymanta reaccionkuna llapanku allin ruwanakuna kanku."
+        }
+      },
+      "creator-studio": {
+        "title": "Kamaq Estudio & Editor",
+        "intro": "Creator Studio huk tapuymanta siq&#39;ikuna, video, takiy, kunka chaymanta 3D modelokuna ruwan, chaymanta huk allichaqman qun — huk hunt&#39;asqa achka pista video allichaqwan chaymanta maskaqpi purin.",
+        "steps": {
+          "1": "Creator Studio kichay hinaspa ima ruwasqa munasqaykita willay.",
+          "2": "Servidorqa qullqita cita manaraq llamk&#39;ay purichkaptin, chayrayku qhawanki ima qullqitachus manaraq gastachkaspa.",
+          "3": "Renderkuna huk rakisqa filapi qatin chaymanta app maskaypi purichkanki.",
+          "4": "Ruwasqakunata Canva-hina allichaqpi allichay, utaq video allichaqta kichay chiqa pacha chirupaq kuchuywan, qatata churaywan chaymanta hawaman apachiywan.",
+          "5": "Chayta hunt'asqa kaqtaqa churay kachariy, puka k'aspiman icha llamk'ana qillqaman."
+        },
+        "tips": {
+          "1": "Huk mana qullqiyuq stock activo biblioteca Estudiopa ladunpi tiyakun imapaqpas mana ruwayta munasqaykipaq.",
+          "2": "Mirayqa DeHub tokenkunapi qullqita qusqa billeteraykimanta — huk transferenciata sapa llamkanapaq firmanki, chaymanta chanin manaraq qullqita quchkaspa citasqa.",
+          "3": "Aswan llasa llamk&#39;aqkuna huk Ultra, Equipo utaq Escala planta hap&#39;iyta atinku, mayqinchus sapa killa token qullqita chiqamanta billeterankuman apachin."
+        }
+      },
+      "buying-dhb": {
+        "title": "Fichas rantiy",
+        "intro": "DeHub tokenkuna chiqalla app ukhupi rantiy chaymanta ruwasqa intercambio interfaz kaqwan.",
+        "steps": {
+          "1": "Lado barramanta ‘Rantiy’ nisqa p’anqaman riy.",
+          "2": "Akllay mayqin tokenmantachus t&#39;inkiyta munanki (kayhina, ETH, USDC).",
+          "3": "Mayk&#39;a qullqitachus gastayta munanki utaq hayk&#39;a tokenkuna chaskiyta munanki chayta qillqay.",
+          "4": "Tasa de cambio nisqatapas, lluqsiy yupasqatapas qawarina.",
+          "5": "Ajustes engranaje icono ñit&#39;iy tolerancia deslizamiento kaqmanta allinchaypaq (ñawpaqmanta 1%).",
+          "6": "Swap ruwayta takyachiy.",
+          "7": "DeHub tokenkuna billeteraykipi rikurinqa huk kuti ruway tukusqa kaqtin."
+        },
+        "tips": {
+          "1": "Aswan hatun tolerancia deslizamiento = aswan chaninniyuq ejecutar, ichaqa potencial aswan mana allin preciokuna.",
+          "2": "Sapa kuti qhaway tasa de cambio manaraq takyachishaspa.",
+          "3": "Sapanchasqa llimp&#39;ikunata churayta atikunki churanakuna panel kaqpi."
+        }
+      },
+      "bridge": {
+        "title": "Chaka",
+        "intro": "DeHub tokenykita maypi blockchainpi kaqta mayqan blockchainmanpas churay atikunki cross-chain bridge yanqallawan.",
+        "steps": {
+          "1": "Sidebar-manta 'Bridge' p'anqaman yaykuy.",
+          "2": "Alepata akuy (maypi tokenkikuna kachkan).",
+          "3": "Alepata akuy (mayman apayta munanki).",
+          "4": "Tokenkuna apayta munayta yaykuy.",
+          "5": "Bridge fee chaymanta p'anqaman chayamuyta yachay.",
+          "6": "Bridge transaction-ta k'anchay.",
+          "7": "Transaction tukukuyta suyay — bridgingqa huk minutokuna atikun."
+        },
+        "tips": {
+          "1": "Bridge feesqa alepakunapi kaqta.",
+          "2": "Bridgingqa 1-5 minutokuna atikun alepakunapi kaqta.",
+          "3": "Chayman apayta munayta k'anchay ñawpaqta alepata."
+        }
+      },
+      "music-tv": {
+        "title": "Music & TV",
+        "intro": "DeHubpi direct media content-ta kusikuy — music-ta uyariy chaymanta live TV channels-ta qhawariy.",
+        "steps": {
+          "1": "Sidebar-manta 'Music' p'anqaman yaykuy music posts-ta qhawariy chaymanta pukllayta.",
+          "2": "'TV' p'anqaman yaykuy live TV channels-ta tarinaykipaq.",
+          "3": "Channels-ta akuy category utaq country-manta.",
+          "4": "Channel-ta click-kuy qhawariyta qallarinaykipaq.",
+          "5": "Player controls-ta llamk'achiy volume chaymanta playback-ta allinyanaykipaq.",
+          "6": "Mana allin channels-ta report-kuy report button-ta llamk'achispa."
+        },
+        "tips": {
+          "1": "TV channelsqa community-wan k'anchasqa allin kasqanta.",
+          "2": "Music posts-ta pukllayta atikunki huk content-ta qhawarispa."
+        }
+      },
+      "post-info": {
+        "title": "Post Info & Fractions",
+        "intro": "Minted postqa NFT hinam 1,000 fractions-pi t'aqasqa. Post Info p'anqa on-chain data, engagement stats, ownership breakdown-ta rikuchin, chaymanta imaymana post-pa fractions-ta rantiyta atikunki — unminted post-piqa mint-ta akllayta atikunki.",
+        "steps": {
+          "1": "Imaymana post-pi 'ⓘ' icon-ta click-kuy Post Info p'anqata kichanaykipaq.",
+          "2": "Chaypiqa Token ID (unique on-chain identifier) chaymanta transaction hash-ta tarinki — hash-ta click-kuy block explorer-pi qhawarinaykipaq.",
+          "3": "Chay qhepata, engagement statsqa total likes, dislikes, views, comments, chaymanta tips-ta rikuchin.",
+          "4": "Holders sectionqa progress bar-ta rikuchin imaymana fractions-ta (1,000) creator-lla hap'isqanta, chaymanta tukuy fraction holders-pa list-ninta balances chaymanta percentages-wan.",
+          "5": "Pay-per-view (PPV) kaqtinqa, price, currency, chaymanta mayqan runakuna access-ta rantisqanta tarinki.",
+          "6": "Post ownersqa visibility (Public, Unlisted, utaq Private) hark'ayta chaymanta title/description-ta kay p'anqamanta allinyayta atikun."
+        },
+        "tips": {
+          "1": "Manañamanta minted postqa creator-lla 1,000 fractions-ta (100% ownership) hap'ispa qallarin.",
+          "2": "Transaction hashqa BaseScan utaq BscScan-man link-kun chain-pi kaqta.",
+          "3": "Mana listasqa qillqakuna mana mikhuykunapi rikukunkuchu ichaqa chiqa t&#39;inkiwan yaykuyta atikunraq."
+        }
+      },
+      "trading-fractions": {
+        "title": "Fracciones de Comercio nisqa",
+        "intro": "Fracción qhatuy — listadokuna maskay, quykunata ruway, kikiykipa lista ruway — web app kaqpi dehub.io kaqpi kawsan, sapa qillqap Post Info p&#39;anqanpi.",
+        "steps": {
+          "1": "dehub.io huk maskaqpi kichay chaymanta kikin yupaywan yaykuy.",
+          "2": "Qillqap Post Info p&#39;anqanta kichay chaymanta qhatu wasi ñiqiman tikray.",
+          "3": "Listakunata maskhay, precioykiman hina huk ofrecimientota ruway otaq fracciones hap’isqaykikunata listay.",
+          "4": "Huk kuti huk qhatuy tukusqa, tikrayqa Fracciones tablaykipi kaypi movil kaqpi rikukun."
+        },
+        "tips": {
+          "1": "Huk postpa fraccionesninniyuq kayqa niyta munan chay on-chain NFT kaqmanta huk qullqita hap&#39;inki.",
+          "2": "Web qhatupi huk qillqap hap&#39;iqninkunata qhaway, manaraq rantichkaspa dueño rakiyta qhawanaykipaq.",
+          "3": "Huk kamaq hina, fracciones rantiyqa fanskunaman contenidoykiwan kuska dueño kanankupaq saqin."
+        }
+      },
+      "minting-posts": {
+        "title": "Minting Posts (NFT nisqakunata paqarichiy) .",
+        "intro": "Minting nisqa ruwayqa munasqallam. Huk qillqasqa off-chain kaqpi lluqsichin chaymanta apachisqayki ratopi — mana billeterayuq, mana firmayuq, mana gasniyuq — chaymanta huk NFT hina menta ruwayta atikunki mayk&#39;aq munasqaykipi, ruwasqaykimanhina utaq qhipaman kikin qillqamanta.",
+        "steps": {
+          "1": "Lado barra (escritorio) nisqapi ‘Post’ nisqa botonta ñit’iy otaq + nisqa botonta (movil).",
+          "2": "Qillqasqaykita qillqay, medios de comunicación (imaynakuna, videokuna, uyarina) k&#39;askachiy, chaymanta categoríakuna yapay.",
+          "3": "Saqiy &#39;Mint post&#39; apagasqa off-cadenamanta lluqsichinaykipaq, utaq mentaman llamk&#39;achiy lluqsichisqaykiman hina.",
+          "4": "Publicación mana hayk&#39;aqpas cadena nisqapi suyanchu: post nisqa feed nisqapi rikurin mayqin ñanpipas.",
+          "5": "Qhipaman menta ruwanapaq, qillqap &#39;R&#39; info p&#39;anqanta kichay chaymanta chaypi Mint ruwayta llamk&#39;achiy.",
+          "6": "Huk kuti minted, post huk Token ID chaymanta huk transacción hash kaqmanta cadena kaqpi chiqaqchayta atikunki, chaymanta llapa 1.000 fracciones chaymanta hap&#39;inki."
+        },
+        "tips": {
+          "1": "Social, correo electrónico chaymanta SMS yaykuykuna cero gas qullqita qunku — DeHub qullqita qullqita patrocinan.",
+          "2": "Hawa-billetera llamk&#39;aqkuna gaspaq ETH Base kaqpi utaq BNB BNB Cadena kaqpi necesitanku.",
+          "3": "Minting nisqaqa huk postta qhatuypaq hinallataq reyal-paq hina ruwan. Huk mana minted post kunankamapas consejokunata hinaspa qhawaykunata ganan.",
+          "4": "Cadena kaqpi registroqa wiñaypaqmi huk kuti qullqichasqa, chaymanta chay post mikhuymanta qullusqa kaptinpas."
+        }
+      },
+      "glossary": {
+        "title": "Glosario nisqa",
+        "intro": "Huk tukuypaq glosario cripto chaymanta plataforma terminología kaqmanta Web3 puriyta yanapanapaq.",
+        "steps": {
+          "1": "Lado barramanta ‘Glosario’ nisqaman riy.",
+          "2": "Alfabetoman hina simikunata maskay utaq maskanawan wakin simikunata tarinaykipaq.",
+          "3": "Huk término nisqapi ñit’iy hunt’asqa sut’inchayninta sut’inchaynintapas qhawanaykipaq.",
+          "4": "Términos cripto hamut&#39;aykunata, DeFi terminología kaqmanta, chaymanta DeHub-específico ruwanakunata ima qhawan."
+        },
+        "tips": {
+          "1": "Hatun yanapakuy musuq hamuqkunapaq cripto kaqman chaymanta Web3 kaqman.",
+          "2": "Glosario nisqataqa sapa kutim musuq simikunawan musuqyachinku."
+        }
+      }
     }
   },
   "creatorPacks": {
