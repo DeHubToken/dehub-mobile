@@ -31,12 +31,14 @@ import {
   fetchSuggestions,
   getHistory,
   addToHistory,
+  logSearchAnalytics,
   topHistorySubset,
   SearchContentResult,
   SearchAccountResult,
   SearchPostType,
   SearchPagination,
   UnifiedSearchResponse,
+  type SearchLogType,
 } from "../services/search.service";
 import {
   getUnifiedFeed,
@@ -90,6 +92,17 @@ const TABS: Tab[] = [
   { key: "voice", labelKey: "search.tabVoice", icon: "Mic", postType: "feed-audio" },
   { key: "live", labelKey: "explore.live", icon: "Radio", postType: "live" },
 ];
+
+/** Maps a search tab to the analytics bucket the backend expects. */
+const SEARCH_LOG_TYPE: Record<TabKey, SearchLogType> = {
+  all: "all",
+  accounts: "accounts",
+  posts: "videos",
+  images: "videos",
+  videos: "videos",
+  voice: "videos",
+  live: "livestreams",
+};
 
 const TAB_H = 36;
 const TAB_RADIUS = 12;
@@ -430,6 +443,13 @@ const SearchScreen: React.FC = () => {
 
         // History & state (first page only)
         if (page === 1) {
+          logSearchAnalytics({
+            query: q,
+            type: SEARCH_LOG_TYPE[tab],
+            resultCount:
+              (res.accounts?.pagination?.totalCount ?? res.accounts?.items.length ?? 0) +
+              (res.content?.pagination?.totalCount ?? res.content?.items.length ?? 0),
+          });
           await addToHistory(q, userAddress);
           getHistory(userAddress).then(setSearchHistory);
           setSuggestions([]);
