@@ -3622,11 +3622,6 @@
     "noResultsFor": "Geen resultaten voor \"{{query}}\"",
     "guideSubtitle": "Stapsgewijze handleiding van elke functie",
     "searchGuide": "Zoek in de gids...",
-    "guideFractionsTip": "Bij elke geminte post heeft de maker in het begin alle fracties (100% eigendom).",
-    "guideInfoStep": "Tik op het info-icoon van een geminte post om de mint-transactie in de blockverkenner te openen en de on-chain registratie te controleren.",
-    "guideMintIntro": "Een post minten als NFT op de blockchain is optioneel. Mint hem bij het publiceren, of publiceer nu en mint later via het postmenu.",
-    "guideMintPublishStep": "Kies of je wilt minten en klik dan op 'Plaatsen' om te publiceren. Sla je het minten over, dan kun je de post later via het postmenu minten.",
-    "guideMintFractionsStep": "Je ontvangt alle 1.000 fracties (100% eigendom) van je net geminte bericht.",
     "glossaryMintTxDesc": "Tik op het info-icoon van een geminte post om de mint-transactie in de blockverkenner te openen en de on-chain registratie te controleren. De volledige Postinfo-pagina — statistieken, houders, marktplaats — staat in de webapp op dehub.io.",
     "glossaryTokenIdDesc": "Een unieke on-chain identificatie die een post krijgt wanneer hij als NFT wordt gemint.",
     "repostsTab": "Opnieuw posten",
@@ -3643,24 +3638,7 @@
     "glossaryStakingDesc": "Vergrendel je DeHub tokens om na verloop van tijd beloningen te verdienen. Gestakete tokens geven je ook meer stemkracht in governance.",
     "glossaryGovernanceDesc": "Dien voorstellen in en stem erop die het platform vormgeven. Je stemkracht wordt gewogen door het aantal DeHub tokens dat je bezit.",
     "glossaryStakingBadgesDesc": "Badges weergegeven naast je gebruikersnaam op basis van je totale DeHub tokenbezit (wallet + gestaked). Er zijn 13 niveaus — hoe meer tokens je bezit, hoe hoger je badge-rang. Hogere niveaus geven meer governance-stemkracht en lagere platformkosten.",
-    "glossaryLeaderboardDesc": "Gebruikers worden gerangschikt op totale DeHub tokenbalans (wallet + gestaked op alle chains). Ranglijsten worden periodiek bijgewerkt en volgen 1-daagse en 1-weekse veranderingen. Je kunt ook sorteren op verzonden fooien, ontvangen fooien, volgers, likes of abonnees.",
-    "guideTipStep": "Klik op het edelsteen/fooi-icoon om de post-maker een fooi te geven in DeHub tokens.",
-    "guideTipWalletTip": "Fooien gaan rechtstreeks naar de wallet van de creator als DeHub tokens.",
-    "guideTipNotificationsTip": "Tipmeldingen tonen hoeveel DeHub-tokens je hebt ontvangen.",
-    "guideWalletIntro": "Bekijk je DeHub-token saldi op meerdere ketens, controleer inzetten voor staking en beheer je activa.",
-    "guideWalletTotalStep": "Bekijk je totale DeHub-token saldo, geaggregeerd over alle ondersteunde ketens.",
-    "guideStakingIntro": "Stakes je DeHub-tokens om beloningen te verdienen en je stemkracht voor governance te vergroten.",
-    "guideStakingAmountStep": "Voer in hoeveel DeHub-tokens je wilt staken.",
-    "guideLeaderboardBalanceStep": "Het tabblad Saldo rangschikt gebruikers op basis van hun totale DeHub-token bezit.",
-    "guideGovernanceVoteStep": "Stem op voorstellen met de duim omhoog/omlaag knoppen — je stemgewicht hangt af van hoeveel DeHub-tokens je hebt gestaked.",
-    "guideGovernancePowerTip": "Je stemkracht wordt bepaald door hoeveel DeHub-tokens je hebt gestaked.",
-    "guideBuyIntro": "Koop DeHub-tokens direct in DPay met een kaart of ondersteunde crypto.",
-    "guideBuyAmountStep": "Voer het bedrag in dat je wilt uitgeven of hoeveel DeHub-tokens je wilt ontvangen.",
-    "guideBuyDeliveredStep": "Je DeHub-tokens verschijnen in je portemonnee zodra de transactie is voltooid.",
-    "guideBridgeIntro": "Verplaats je DeHub-tokens tussen ondersteunde blockchains met de cross-chain bridge.",
-    "guideBridgeSourceStep": "Selecteer de bronketen (waar je DeHub-tokens zich momenteel bevinden).",
-    "guideBridgeDestStep": "Selecteer de doelketen (waar je je DeHub-tokens naartoe wilt sturen).",
-    "guideBridgeAmountStep": "Voer in hoeveel DeHub-tokens je wilt bridgen."
+    "glossaryLeaderboardDesc": "Gebruikers worden gerangschikt op totale DeHub tokenbalans (wallet + gestaked op alle chains). Ranglijsten worden periodiek bijgewerkt en volgen 1-daagse en 1-weekse veranderingen. Je kunt ook sorteren op verzonden fooien, ontvangen fooien, volgers, likes of abonnees."
   },
   "arcade": {
     "submitAccessibility": "Dien een spel in bij de speelhal",
@@ -7046,6 +7024,504 @@
       "packEmpty": "Geen emoji gevonden op dat adres",
       "shortcodeTaken": "{{name}} is al in gebruik",
       "shortcodeStandard": "{{name}} is al een standaard emoji"
+    }
+  },
+  "guide": {
+    "sections": {
+      "getting-started": {
+        "title": "Aan de slag",
+        "intro": "Er zijn vijf manieren om DeHub te betreden en geen van deze vereist dat u al een wallet bezit: Google, Apple, een code die naar uw e-mail wordt verzonden, een code die via SMS wordt verzonden, of een bestaande wallet die u verbindt. Alles behalve de wallet-route creëert op de achtergrond een niet-bewaarde wallet voor u — u beheert de sleutels en DeHub sponsort de gas, zodat u kunt posten, tippen en verzamelen zonder ooit een native token te hoeven kopen.",
+        "steps": {
+          "1": "Bezoek dehub.io — de home feed is de voorpagina, dus u kunt rondkijken voordat u inlogt.",
+          "2": "Klik op 'Sign In'. U ziet Google en Apple, velden voor een e-mailadres of telefoonnummer, en 'Connect Wallet' voor een bestaande.",
+          "3": "Met Google of Apple voltooit u de flow van de provider. Met e-mail of SMS voert u de ontvangen code in.",
+          "4": "Bij de eerste aanmelding wordt er een wallet voor u aangemaakt en beveiligd. Als u in plaats daarvan uw eigen wallet verbindt, is één handtekening nodig om het adres te bewijzen.",
+          "5": "Kies een gebruikersnaam. Dit is wat mensen zien en het dient ook als uw dehub.io/<username> profiel link.",
+          "6": "U bent binnen. Verken de feed, stel uw profiel in en begin met posten."
+        },
+        "tips": {
+          "1": "Sociale, e-mail en SMS-aanmeldingen betalen nooit gas — DeHub sponsort dit. Verbonden wallets betalen hun eigen ETH of BNB.",
+          "2": "Komt u terug naar een bestaand DeHub-account? Log in met de e-mail of het telefoonnummer dat het gebruikte en de migratie vindt het voor u.",
+          "3": "U kunt meerdere accounts op één apparaat bewaren en ertussen schakelen in Instellingen → Profiel."
+        }
+      },
+      "home-feed": {
+        "title": "Home Feed",
+        "intro": "De home feed is waar u berichten ziet van mensen die u volgt en trending content. Het ondersteunt meerdere content-type tabbladen en sorteeropties.",
+        "steps": {
+          "1": "Navigeer naar /app — dit is uw home feed.",
+          "2": "Gebruik de bovenste tabbladen om te filteren op inhoudstype: Home (alles), Video's, Afbeeldingen, Shorts, Muziek of Livestreams.",
+          "3": "Veeg naar links/rechts op de tabbladen om meer opties op mobiel te zien.",
+          "4": "Gebruik de filter/sorteerknop (rechtsboven in de feed) om de sortering te wijzigen: Hot, New of Top.",
+          "5": "Trek naar beneden om de feed op mobiel te vernieuwen.",
+          "6": "Scroll naar beneden om automatisch meer berichten te laden (oneindig scrollen).",
+          "7": "Schakel tussen Raster- en Feedweergave met de lay-outwisselaar."
+        },
+        "tips": {
+          "1": "Rasterweergave is ideaal om snel afbeeldingen te bekijken.",
+          "2": "Het tabblad 'Home' toont alle inhoudstypes gemengd.",
+          "3": "Het tabblad Live toont momenteel actieve livestreams."
+        }
+      },
+      "creating-posts": {
+        "title": "Berichten maken",
+        "intro": "Maak tekstberichten, deel afbeeldingen, video's, spraakmemo's, GIF's en meer. Gebruik hashtags, cashtags en vermeldingen om bereik te vergroten.",
+        "steps": {
+          "1": "Klik op de knop 'Post' in de zijbalk (desktop) of de + knop (mobiel).",
+          "2": "Typ uw tekst in het opstelgebied.",
+          "3": "Om een afbeelding of video toe te voegen, klikt u op het media-icoon en selecteert u een bestand.",
+          "4": "Om een spraakmemo op te nemen, klikt u op het microfoonicoon.",
+          "5": "Om een GIF toe te voegen, klikt u op het GIF-icoon en zoekt u er een.",
+          "6": "Gebruik #hashtags om uw bericht te categoriseren (bijv. #crypto, #defi).",
+          "7": "Gebruik $cashtags om naar tokens te verwijzen (bijv. $DHB, $ETH).",
+          "8": "Gebruik @vermeldingen om andere gebruikers te taggen (bijv. @gebruikersnaam).",
+          "9": "Klik op 'Post' om te publiceren. Uw bericht verschijnt onmiddellijk in de feed."
+        },
+        "tips": {
+          "1": "Berichten ondersteunen opmaak in markdown-stijl.",
+          "2": "U kunt een bericht citeren door op het repost-icoon van een bericht te klikken en 'Citeren' te selecteren.",
+          "3": "Categorieën (hashtags) verschijnen in het 'Talk of the Town' leaderboard."
+        }
+      },
+      "interacting-with-posts": {
+        "title": "Interactie met berichten",
+        "intro": "Ga in gesprek met inhoud door te stemmen, reageren, tippen, bladwijzeren, delen en vertalen.",
+        "steps": {
+          "1": "Stem omhoog of omlaag op een bericht met de pijltjes aan de linkerkant van elk bericht.",
+          "2": "Klik op het commentaaricoon om de commentaarsectie te openen en een antwoord achter te laten.",
+          "3": "Klik op het edelsteen/tip-icoon om een tip in DeHub-tokens naar de maker van het bericht te sturen.",
+          "4": "Klik op het bladwijzericoon om een bericht op te slaan voor later.",
+          "5": "Klik op het deelicoon om de link van het bericht te kopiëren of extern te delen.",
+          "6": "Klik op de vertaalknop (globe-icoon) op elke post om tekst naar uw taal te vertalen.",
+          "7": "Gebruik voor afbeeldingsposts de knop 'Afbeelding vertalen' om een door AI vertaalde versie van de tekst in de afbeelding te krijgen.",
+          "8": "Klik op een post om deze in volledig scherm te openen in de weergave van één post."
+        },
+        "tips": {
+          "1": "Tips gaan rechtstreeks naar de portemonnee van de maker in DeHub-tokens.",
+          "2": "U kunt een tipbedrag instellen via snelle selectieknoppen of een aangepast bedrag invoeren.",
+          "3": "Gemarkeerde posts zijn toegankelijk via de pagina Bladwijzers in de zijbalk."
+        }
+      },
+      "explore-search": {
+        "title": "Verkennen & Zoeken",
+        "intro": "Ontdek nieuwe inhoud en gebruikers via de verkenningspagina en krachtige zoekfunctionaliteit.",
+        "steps": {
+          "1": "Navigeer naar /app/explore vanuit de zijbalk.",
+          "2": "Gebruik de zoekbalk bovenaan om te zoeken naar gebruikers, posts of inhoud.",
+          "3": "Filter resultaten op tabblad: Alles, Mensen, Posts, Afbeeldingen, Video's, Muziek, Live.",
+          "4": "Blader door trending onderwerpen en categorieën op de verkenningspagina.",
+          "5": "Klik op een trending onderwerp om alle gerelateerde posts te zien.",
+          "6": "Klik op een gebruiker in de zoekresultaten om hun profiel te bezoeken."
+        },
+        "tips": {
+          "1": "Zoeken ondersteunt gebruikersnamen, portemonnee-adressen en inhouds-trefwoorden.",
+          "2": "Trending onderwerpen worden bijgewerkt op basis van recente postactiviteit."
+        }
+      },
+      "profile": {
+        "title": "Profiel",
+        "intro": "Uw profiel toont uw posts, volgers, gevolgden en portemonnee-informatie.",
+        "steps": {
+          "1": "Klik op uw avatar of 'Profiel' in de zijbalk om uw profiel te bekijken.",
+          "2": "Klik op 'Profiel bewerken' om uw weergavenaam, bio en avatar bij te werken.",
+          "3": "Upload een profielfoto door op uw avatar te klikken in de bewerkingsmodus.",
+          "4": "Bekijk uw volgers- en gevolgdenaantallen op uw profielpagina.",
+          "5": "Blader door uw eigen posts, media en gelikete inhoud via de profiel-tabbladen.",
+          "6": "Kopieer uw portemonnee-adres door op het kopieer-icoon ernaast te klikken.",
+          "7": "Bezoek profielen van andere gebruikers door op hun gebruikersnaam of avatar te klikken, waar dan ook op het platform."
+        },
+        "tips": {
+          "1": "Uw gebruikersnaam is uniek en verschijnt in uw profiel-URL (dehub.io/@gebruikersnaam).",
+          "2": "Privacy-instellingen laten u bepalen wie uw volgersaantallen kan zien."
+        }
+      },
+      "messages": {
+        "title": "Berichten",
+        "intro": "Stuur directe berichten naar andere gebruikers op het platform.",
+        "steps": {
+          "1": "Klik op 'Berichten' in de zijbalk om de berichtenpagina te openen.",
+          "2": "Klik op de knop 'Opstellen' om een nieuw gesprek te starten.",
+          "3": "Zoek een gebruiker op gebruikersnaam om hen een bericht te sturen.",
+          "4": "Typ je bericht en druk op verzenden.",
+          "5": "Bekijk je gespreksgeschiedenis in de berichtenlijst.",
+          "6": "Klik op een gesprek om verder te chatten."
+        },
+        "tips": {
+          "1": "Je ontvangt een melding wanneer iemand je een bericht stuurt.",
+          "2": "Makers kunnen berichten vergrendelen achter een tipvereiste."
+        }
+      },
+      "ai-assistant": {
+        "title": "AI-assistent",
+        "intro": "Chat met de ingebouwde AI-assistent van DeHub voor hulp, informatie en creatieve taken.",
+        "steps": {
+          "1": "Klik op 'Assistent' in de zijbalk om de AI-chat te openen.",
+          "2": "Typ je vraag of verzoek in de chatinvoer.",
+          "3": "De AI kan helpen met crypto-informatie, platformvragen en algemene kennis.",
+          "4": "Start een nieuw gesprek door op de knop 'Nieuwe chat' te klikken.",
+          "5": "Bekijk je gespreksgeschiedenis in de zijbalk van de assistentpagina.",
+          "6": "Je kunt afbeeldingen bijvoegen die de AI kan analyseren."
+        },
+        "tips": {
+          "1": "De AI onthoudt context binnen een gesprek.",
+          "2": "Je kunt de AI vragen stellen over DeHub-functies, cryptotermen of algemene vragen.",
+          "3": "Eerdere gesprekken worden opgeslagen en zijn altijd toegankelijk."
+        }
+      },
+      "notifications": {
+        "title": "Meldingen",
+        "intro": "Blijf op de hoogte van likes, reacties, tips, volgers en andere activiteiten op je content.",
+        "steps": {
+          "1": "Klik op het bel-icoon of 'Meldingen' in de zijbalk.",
+          "2": "Bekijk alle meldingen in een chronologische lijst.",
+          "3": "Klik op een melding om naar de gerelateerde content te gaan.",
+          "4": "Meldingen omvatten: nieuwe volgers, poststemmen, reacties, tips en vermeldingen.",
+          "5": "Ongelezen meldingen worden gemarkeerd - ze worden als gelezen gemarkeerd wanneer ze worden bekeken."
+        },
+        "tips": {
+          "1": "De meldingsbadge toont het aantal ongelezen meldingen.",
+          "2": "Tipmeldingen tonen hoeveel tokens je hebt ontvangen."
+        }
+      },
+      "wallet": {
+        "title": "Portemonnee",
+        "intro": "Bekijk je DeHub-tokenbalansen op meerdere ketens, controleer stakingdeposito's en beheer je activa.",
+        "steps": {
+          "1": "Klik op 'Portemonnee' in de zijbalk om de portemonnee-pagina te openen.",
+          "2": "Bekijk uw totale tokenbalans, geaggregeerd over alle ondersteunde ketens.",
+          "3": "Bekijk per-keten uitsplitsingen: Ethereum, Base, BNB Chain en meer.",
+          "4": "Controleer uw stakingdeposito's en beloningen.",
+          "5": "Klik op 'Scan vernieuwen' om uw saldi bij te werken op basis van on-chain gegevens.",
+          "6": "Kopieer uw portemonneeadres om tokens van anderen te ontvangen."
+        },
+        "tips": {
+          "1": "Saldi worden automatisch bijgewerkt, maar u kunt een vernieuwing op elk moment forceren.",
+          "2": "De portemonnee toont zowel liquide (beschikbare) als gestakete saldi."
+        }
+      },
+      "staking": {
+        "title": "Staking",
+        "intro": "Stake uw DeHub-tokens om beloningen te verdienen en uw stemrecht voor governance te vergroten.",
+        "steps": {
+          "1": "Navigeer naar de pagina 'Staking' vanuit de zijbalk.",
+          "2": "Voer het aantal tokens in dat u wilt staken.",
+          "3": "Selecteer de keten waarop u wilt staken.",
+          "4": "Bevestig de transactie in uw portemonnee (externe portemonnees) of deze wordt automatisch uitgevoerd (sociale login).",
+          "5": "Bekijk uw gestakete bedragen en eventuele openstaande beloningen.",
+          "6": "Om te unstaken, voert u het bedrag in en bevestigt u de unstakingtransactie."
+        },
+        "tips": {
+          "1": "Staking vergroot uw stemgewicht in governancevoorstellen.",
+          "2": "Gebruikers met sociale login hebben geen gas nodig om te staken - het is gasloos.",
+          "3": "U kunt tegelijkertijd op meerdere ketens staken."
+        }
+      },
+      "leaderboard": {
+        "title": "Leaderboard",
+        "intro": "Kijk wie er bovenaan staat! Het leaderboard rangschikt gebruikers op basis van saldo, dagelijkse uitgaven en trending topics.",
+        "steps": {
+          "1": "Navigeer naar de pagina 'Leaderboard' vanuit de zijbalk.",
+          "2": "Schakel tussen tabbladen: Saldo, Dagelijks Uitgegeven en Populair.",
+          "3": "Het tabblad Saldo rangschikt gebruikers op basis van hun totale tokenbezit.",
+          "4": "Het tabblad Dagelijks Uitgegeven toont wie het meest actief is geweest met tippen in de afgelopen 24 uur.",
+          "5": "Populair toont de meest besproken onderwerpen/categorieën.",
+          "6": "Klik op een gebruiker om hun profiel te bezoeken.",
+          "7": "Het leaderboard wordt gedurende de dag periodiek bijgewerkt."
+        },
+        "tips": {
+          "1": "Dagelijkse ranglijsten worden elke 24 uur gereset.",
+          "2": "Populair volgt categorieën van één woord uit hashtags."
+        }
+      },
+      "command-centre": {
+        "title": "Command Centre",
+        "intro": "Een dashboardoverzicht met uw belangrijkste statistieken en platformactiviteit in één oogopslag.",
+        "steps": {
+          "1": "Klik op 'Command Centre' in de zijbalk.",
+          "2": "Bekijk uw profielsamenvatting, inclusief aantal posts, volgers en betrokkenheid.",
+          "3": "Zie uw recente activiteit en trending onderwerpen.",
+          "4": "Krijg toegang tot snelle links naar veelgebruikte functies."
+        },
+        "tips": {
+          "1": "Het Command Centre geeft u een helikopterview van uw DeHub-aanwezigheid."
+        }
+      },
+      "governance": {
+        "title": "Governance",
+        "intro": "Neem deel aan platformgovernance door voorstellen te maken en te stemmen over communitybeslissingen.",
+        "steps": {
+          "1": "Navigeer naar 'Governance' vanuit de zijbalk.",
+          "2": "Bekijk actieve voorstellen die door de community zijn ingediend.",
+          "3": "Klik op een voorstel om de volledige beschrijving en discussie te lezen.",
+          "4": "Stem op voorstellen met de duim omhoog/omlaag knoppen — uw stemgewicht hangt af van hoeveel DeHub-tokens u gestaked heeft.",
+          "5": "Laat opmerkingen achter bij voorstellen om met de community te discussiëren.",
+          "6": "Dien uw eigen voorstel in door op de knop 'Create Proposal' te klikken."
+        },
+        "tips": {
+          "1": "Uw stemkracht wordt bepaald door het aantal tokens dat u gestaked heeft.",
+          "2": "Badgehouders kunnen extra stemgewicht krijgen.",
+          "3": "Voorstellen doorlopen fasen: Actief → Goedgekeurd/Afgekeurd."
+        }
+      },
+      "bookmarks": {
+        "title": "Bladwijzers",
+        "intro": "Sla posts op in uw bladwijzers voor gemakkelijke toegang later.",
+        "steps": {
+          "1": "Klik op het bladwijzericoon op elke post om deze op te slaan.",
+          "2": "Navigeer naar 'Bookmarks' in de zijbalk om alle opgeslagen posts te bekijken.",
+          "3": "Klik op een bladwijzerpost om deze volledig te bekijken.",
+          "4": "Verwijder een bladwijzer door opnieuw op het bladwijzericoon te klikken."
+        },
+        "tips": {
+          "1": "Bladwijzers zijn privé — alleen u kunt uw opgeslagen posts zien.",
+          "2": "Er is geen limiet aan het aantal posts dat u kunt bladwijzeren."
+        }
+      },
+      "settings": {
+        "title": "Instellingen",
+        "intro": "Pas uw DeHub-ervaring aan met taal-, privacy- en weergavevoorkeuren.",
+        "steps": {
+          "1": "Klik op 'Settings' in de zijbalk.",
+          "2": "Wijzig uw weergavetaal via de taalkiezer.",
+          "3": "Pas privacy-instellingen aan: bepaal wie uw volgersaantallen en volglijst ziet.",
+          "4": "Stel uw standaardinstellingen voor de zichtbaarheid van berichten in.",
+          "5": "Beheer uw meldingenvoorkeuren."
+        },
+        "tips": {
+          "1": "DeHub ondersteunt meerdere talen — de volledige interface wordt vertaald.",
+          "2": "Privacyinstellingen worden onmiddellijk toegepast."
+        }
+      },
+      "posting-allowance": {
+        "title": "Uw dagelijkse postlimiet",
+        "intro": "Posten is elke dag gratis tot een limiet die schaalt met uw staking badge. Iedereen begint met tien tekstberichten en één gigabyte aan video, afbeeldingen en audio per dag. Ga voorbij een van beide en de rest van die dag wordt betaald in DeHub tokens — alleen voor het deel dat de limiet overschrijdt.",
+        "steps": {
+          "1": "Post zoals normaal. Binnen de limiet wordt niets in rekening gebracht en niets van u gevraagd.",
+          "2": "Tekstberichten en media zijn aparte pools, dus een dag besteed aan het uploaden van video laat nog steeds alle tien tekstberichten gratis over.",
+          "3": "Wanneer een bericht de limiet zou overschrijden, berekent de app eerst de prijs en controleert of uw portemonnee dit kan dekken voordat er iets wordt geüpload.",
+          "4": "Het bericht wordt exact gepubliceerd zoals het binnen de limiet zou zijn — publicatie wacht nooit op een betaling.",
+          "5": "Vervolgens keurt u één overboeking goed voor dat specifieke bericht, afgerekend op de Base of BNB Chain die voldoende DeHub tokens bevat.",
+          "6": "Beide pools worden om middernacht UTC gereset."
+        },
+        "tips": {
+          "1": "Overschrijding is pro rata: 200 MB boven uw limiet kost 200 MB, niet een hele gigabyte.",
+          "2": "Reposts, reacties, tips en berichten kosten niets en raken de limiet nooit aan.",
+          "3": "Weiger de betaling en het bericht blijft staan — het bedrag blokkeert alleen uw volgende betaalde bericht totdat het is afgerekend. De gratis limiet van morgen is altijd van u.",
+          "4": "Een staking badge verhoogt de gratis limiet en verlaagt de prijs van alles daarbuiten."
+        }
+      },
+      "reactions-and-safety": {
+        "title": "Reacties, Dempen & Volwassen Inhoud",
+        "intro": "Er zijn negen reacties achter de like-knop, en een reeks controles om te bepalen wat u ziet en wie u kan bereiken.",
+        "steps": {
+          "1": "Houd de duim omhoog op een bericht om de reactielade te openen: like, love, respect, hot, lol, sad, cry, dislike en poo.",
+          "2": "De zeven positieve tellen mee voor het like-totaal van het bericht; dislike en poo tellen ertegen.",
+          "3": "Uw reactie wordt gewogen door uw staking badge, dus een reactie van een badgehouder telt zwaarder dan één stem.",
+          "4": "Tik op de X in de kop van een bericht om de auteur te dempen — zij verdwijnen onmiddellijk uit uw feed.",
+          "5": "Makers markeren hun eigen berichten als volwassen tijdens het samenstellen; die berichten blijven buiten de publieke home feed.",
+          "6": "Om volwassen berichten overal te zien, schakelt u 'Volwassen inhoud tonen' in Instellingen in."
+        },
+        "tips": {
+          "1": "Een volwassen bericht is nog steeds volledig zichtbaar op het profiel van de maker en voor de mensen die hen volgen.",
+          "2": "Blokkeren vanaf een profiel gaat verder dan dempen en snijdt ook de berichten af.",
+          "3": "De reactielade toont wie met wat heeft gereageerd, zodat u de ruimte kunt zien in plaats van alleen een getal."
+        }
+      },
+      "stages": {
+        "title": "Stages (Live Audio Rooms)",
+        "intro": "Stages zijn live audio rooms ingebouwd in DeHub. Een host opent een kamer, nodigt sprekers uit, en iedereen kan binnenlopen om te luisteren vanaf de Stages-pagina of een gedeelde link.",
+        "steps": {
+          "1": "Open 'Stages' in de zijbalk om te zien wat er nu live is en wat er gepland is.",
+          "2": "Tik op een live podium om als luisteraar mee te doen, of stel een herinnering in voor een gepland podium en krijg een melding wanneer het begint.",
+          "3": "Start je eigen vanaf dezelfde pagina — je kunt direct vanuit de browser live gaan, zonder OBS of streamkey.",
+          "4": "Als host breng je sprekers naar het podium, demp of verwijder je ze, deel je je scherm en bedien je de soundboard.",
+          "5": "Luisteraars sturen live reacties en praten mee in de groepschat zonder het podium op te komen.",
+          "6": "Elk podium wordt opgenomen en de opname wordt afgespeeld vanaf de kaart waarop deze verschijnt."
+        },
+        "tips": {
+          "1": "Live ondertiteling voorziet elke spreker van captions en vertaalt naar de taal waarin jij leest.",
+          "2": "Live nasynchronisatie kan de ruimte hardop laten spreken in de gekloonde stem van de host zelf, per minuut afgerekend in DeHub-tokens.",
+          "3": "Hosts kunnen een radiostation uitzenden of hun eigen muziekclipjes afspelen tussen gesprekken door.",
+          "4": "Een minispeler houdt de ruimte gaande in de hoek terwijl je door de rest van de app bladert."
+        }
+      },
+      "communities": {
+        "title": "Communities & Evenementen",
+        "intro": "Communities zijn door leden beheerde ruimtes met een eigen feed, leden en activiteit. Evenementen voegen daar tijgebonden programmering aan toe.",
+        "steps": {
+          "1": "Open 'Communities' in de zijbalk en bekijk de openbare.",
+          "2": "Doe mee met één tik. Nieuwe activiteit verschijnt als een ongelezen badge in de navigatie.",
+          "3": "Plaats berichten, discussieer, houd peilingen en geef fooien binnen de eigen feed van een community.",
+          "4": "Community-eigenaren modereren hun eigen ruimte en kunnen beheerdersrechten verlenen aan anderen.",
+          "5": "Open 'Evenementen' voor geplande programmering, met een volledige pagina per evenement die je live kunt volgen."
+        },
+        "tips": {
+          "1": "Community-chat ondersteunt @mentions en @here, zodat een bericht de kamer kan bereiken.",
+          "2": "Met een uitnodigingslink haal je mensen rechtstreeks naar een community."
+        }
+      },
+      "arcade": {
+        "title": "Arcade",
+        "intro": "Vijf games draaien binnen DeHub in een browsertabblad — niets te installeren, niets te koop.",
+        "steps": {
+          "1": "Open 'Arcade' in de zijbalk.",
+          "2": "Kies een game: King's Gambit (3D-schaak met een online Elo-ladder), Claude of Duty (een shooter die zijn eigen kunst genereert tijdens het laden), Jungle Trail (een procedurele regenwoudwandeling), Street Slayer (een beat 'em up gemaakt voor DeHub) of Chartopia (een bewandelbare handelsvloer).",
+          "3": "Speel in het tabblad. King's Gambit en Street Slayer houden klassementen bij.",
+          "4": "Chartopia draait ook in een VR-headset via WebXR."
+        },
+        "tips": {
+          "1": "Twee ervan verscholen in de weergavethema's — zet de app op War voor Claude of Duty, of Jungle voor Jungle Trail.",
+          "2": "Elke game heeft zijn eigen deikkaart, zodat een link naar een game correct wordt uitgevouwen waar je hem ook plaatst."
+        }
+      },
+      "bounties-stores": {
+        "title": "Bounties & Winkels",
+        "intro": "Twee manieren om het platform om te zetten in inkomen: plaats of claim een bounty, of open een winkel en verkoop aan je publiek.",
+        "steps": {
+          "1": "Open 'Bounties' om openstaand werk te bekijken, gefilterd op categorie of valuta.",
+          "2": "Claim er een, doe het werk en dien het in om de beloning te innen — iedereen kan een hunter zijn, geen sollicitatie nodig.",
+          "3": "Plaats je eigen bounty met een korte beschrijving en een beloning in DeHub-tokens of USDC. Het wordt direct in escrow geplaatst zodra je het plaatst.",
+          "4": "Open 'Stores' om een winkel op te zetten met een eigen pagina, branding en aanbiedingen.",
+          "5": "Producten worden geprijsd en afgerekend in DeHub-tokens via de ingebouwde portemonnee, zonder externe checkout."
+        },
+        "tips": {
+          "1": "Bounties zijn georganiseerd in Social Media, Clipping en Contracts.",
+          "2": "Een geschillenprocedure regelt onenigheden over levering, zodat escrow altijd eerlijk wordt opgelost.",
+          "3": "Makers gebruiken bounties om een community op te bouwen — shares, clips en reacties zijn allemaal geldige taken."
+        }
+      },
+      "creator-studio": {
+        "title": "Creator Studio & Editor",
+        "intro": "Creator Studio genereert afbeeldingen, video, muziek, stem en 3D-modellen vanuit een prompt, en geeft ze door aan een editor — inclusief een volledige multi-track video-editor die in de browser draait.",
+        "steps": {
+          "1": "Open Creator Studio en beschrijf wat je wilt laten maken.",
+          "2": "De server geeft een prijsopgave voordat de taak wordt uitgevoerd, zodat je de kosten ziet voordat je ze uitgeeft.",
+          "3": "Renders gaan verder in een gedeelde wachtrij terwijl je door de app blijft bladeren.",
+          "4": "Schik de resultaten in de editor in Canva-stijl, of open de video-editor voor een echte tijdlijn met knippen, lagen en exporteren.",
+          "5": "Plaats het voltooide stuk direct in een post, een korte video of een winkelvermelding."
+        },
+        "tips": {
+          "1": "Een gratis bibliotheek met stock-assets staat naast de Studio voor alles wat je liever niet genereert.",
+          "2": "Generatie wordt betaald in DeHub-tokens vanuit je portemonnee — je ondertekent één overboeking per taak, en de prijs wordt opgegeven voordat je betaalt.",
+          "3": "Zwaardere gebruikers kunnen een Ultra-, Team- of Scale-abonnement nemen, waarbij een maandelijkse token-toelage rechtstreeks naar hun portemonnee wordt gestuurd."
+        }
+      },
+      "buying-dhb": {
+        "title": "Tokens kopen",
+        "intro": "Koop DeHub-tokens rechtstreeks binnen de app via de ingebouwde swap-interface.",
+        "steps": {
+          "1": "Navigeer naar de 'Kopen'-pagina vanuit de zijbalk.",
+          "2": "Selecteer de token waar je van wilt wisselen (bijv. ETH, USDC).",
+          "3": "Voer het bedrag in dat je wilt uitgeven of het aantal tokens dat je wilt ontvangen.",
+          "4": "Bekijk de wisselkoers en de geschatte uitvoer.",
+          "5": "Klik op het tandwielpictogram voor instellingen om de slippage-tolerantie aan te passen (standaard is 1%).",
+          "6": "Bevestig de swap-transactie.",
+          "7": "DeHub-tokens verschijnen in je portemonnee zodra de transactie is voltooid."
+        },
+        "tips": {
+          "1": "Hogere slippage-tolerantie = grotere kans op uitvoering, maar potentieel slechtere prijzen.",
+          "2": "Controleer altijd de wisselkoers voordat je bevestigt.",
+          "3": "Je kunt aangepaste slippage instellen in het instellingenpaneel."
+        }
+      },
+      "bridge": {
+        "title": "Bridge",
+        "intro": "Verplaats je DeHub-tokens tussen ondersteunde blockchains met de cross-chain bridge.",
+        "steps": {
+          "1": "Navigeer naar de 'Bridge'-pagina vanuit de zijbalk.",
+          "2": "Selecteer de bronketen (waar uw tokens zich momenteel bevinden).",
+          "3": "Selecteer de doelketen (waar u ze naartoe wilt sturen).",
+          "4": "Voer het aantal te bridgen tokens in.",
+          "5": "Bekijk de bridgekosten en de geschatte aankomsttijd.",
+          "6": "Bevestig de bridge-transactie.",
+          "7": "Wacht tot de transactie is voltooid — bridgen kan enkele minuten duren."
+        },
+        "tips": {
+          "1": "Bridgekosten variëren per ketenpaar.",
+          "2": "Bridgen duurt doorgaans 1-5 minuten, afhankelijk van de betrokken ketens.",
+          "3": "Controleer altijd de doelketen voordat u bevestigt."
+        }
+      },
+      "music-tv": {
+        "title": "Muziek & TV",
+        "intro": "Geniet van mediacontent rechtstreeks binnen DeHub — stream muziek en bekijk live tv-zenders.",
+        "steps": {
+          "1": "Navigeer naar 'Muziek' vanuit de zijbalk om muziekposts te bekijken en af te spelen.",
+          "2": "Navigeer naar 'TV' om toegang te krijgen tot live tv-zenders.",
+          "3": "Blader door zenders op categorie of land.",
+          "4": "Klik op een zender om te beginnen met kijken.",
+          "5": "Gebruik de spelerbediening om het volume en de weergave aan te passen.",
+          "6": "Meld defecte zenders met de meldknop."
+        },
+        "tips": {
+          "1": "Tv-zenders worden door de community geverifieerd op betrouwbaarheid.",
+          "2": "Muziekposts kunnen worden afgespeeld tijdens het browsen van andere content."
+        }
+      },
+      "post-info": {
+        "title": "Post Info & Fracties",
+        "intro": "Een geminte post is een NFT opgesplitst in 1.000 fracties. De Post Info-pagina toont on-chain gegevens, betrokkenheidsstatistieken, eigendomsverdeling en laat u fracties van elke post verhandelen — op een niet-geminte post wordt aangeboden om te minten.",
+        "steps": {
+          "1": "Tik op het 'ⓘ'-icoon op elke post om de Post Info-pagina te openen.",
+          "2": "Bovenaan ziet u de Token ID (unieke on-chain identificatie) en de transactiehash — klik op de hash om deze op de block explorer te bekijken.",
+          "3": "Daaronder tonen de betrokkenheidsstatistieken het totale aantal likes, dislikes, weergaven, reacties en ontvangen tips.",
+          "4": "De sectie Houders toont een voortgangsbalk van hoeveel van de 1.000 fracties de maker nog bezit, plus een lijst van alle fractiehouders met hun saldi en percentages.",
+          "5": "Als de post pay-per-view (PPV) is, ziet u de prijs, valuta en hoeveel gebruikers toegang hebben gekocht.",
+          "6": "Posteigenaren kunnen de zichtbaarheid (Publiek, Ongelicht of Privé) wijzigen en de titel/beschrijving rechtstreeks vanaf deze pagina bewerken."
+        },
+        "tips": {
+          "1": "Een vers geminte post begint met de maker die alle 1.000 fracties bezit (100% eigendom).",
+          "2": "De transactiehash linkt naar BaseScan of BscScan, afhankelijk van de keten.",
+          "3": "Niet-vermelde berichten verschijnen niet in feeds, maar zijn nog steeds toegankelijk via een directe link."
+        }
+      },
+      "trading-fractions": {
+        "title": "Handelsfracties",
+        "intro": "Fraction trading — het bekijken van advertenties, het doen van aanbiedingen, het aanbieden van je eigen aanbiedingen — leeft op de web-app op dehub.io, op de berichtinformatiepagina van elk bericht.",
+        "steps": {
+          "1": "Open dehub.io in een browser en log in met hetzelfde account.",
+          "2": "Open de pagina Berichtinformatie van het bericht en schakel over naar het tabblad Marktplaats.",
+          "3": "Blader door advertenties, doe een voorstel tegen je prijs of maak een lijst met delen die je vasthoudt.",
+          "4": "Zodra een transactie is voltooid, wordt de wijziging weergegeven op je Fractions-tabblad hier op mobiel."
+        },
+        "tips": {
+          "1": "Het bezitten van fracties van een bericht betekent dat je een deel van die on-chain NFT bezit.",
+          "2": "Controleer de houders van een bericht op de webmarktplaats om de eigendomsdistributie te zien voordat u koopt.",
+          "3": "Als maker kunnen fans mede-eigenaar worden van je content door fracties te verkopen."
+        }
+      },
+      "minting-posts": {
+        "title": "Berichten Minten (NFT's Creëren)",
+        "intro": "Minten is optioneel. Een bericht wordt off-chain gepubliceerd op het moment dat je het verzendt — geen portemonnee, geen handtekening, geen gas — en je kunt het als NFT minten wanneer je maar wilt, hetzij tijdens het schrijven, hetzij later vanuit het bericht zelf.",
+        "steps": {
+          "1": "Klik op de knop 'Bericht' in de zijbalk (desktop) of de + knop (mobiel).",
+          "2": "Schrijf je tekst, voeg media toe (afbeeldingen, video's, audio) en voeg categorieën toe.",
+          "3": "Laat 'Bericht minten' uitgeschakeld om off-chain te publiceren, of schakel het in om te minten terwijl je publiceert.",
+          "4": "Publiceren wacht nooit op de keten: het bericht verschijnt hoe dan ook in de feed.",
+          "5": "Als je later wilt minten, open je de informatiepagina van de post en gebruik je daar de actie Munt.",
+          "6": "Eenmaal geslagen, krijgt het bericht een token-ID en een transactiehash die je on-chain kunt verifiëren, en je bewaart alle 1.000 fracties ervan."
+        },
+        "tips": {
+          "1": "Sociale, e-mail- en sms-aanmeldingen betalen nul gas — DeHub sponsort mintingkosten.",
+          "2": "Gebruikers van externe wallets hebben ETH op Base of BNB op BNB Chain nodig voor gas.",
+          "3": "Minting is wat een post verhandelbaar en royalty-dragend maakt. Een ongeschonden bericht verdient nog steeds tips en weergaven.",
+          "4": "Het on-chain-record is permanent zodra het is geslagen, zelfs als het bericht later uit de feed wordt verwijderd."
+        }
+      },
+      "glossary": {
+        "title": "Inhoudsopgave",
+        "intro": "Een uitgebreide woordenlijst met crypto- en platformterminologie om u te helpen bij het navigeren door Web3.",
+        "steps": {
+          "1": "Navigeer naar 'Woordenlijst' in de zijbalk.",
+          "2": "Blader alfabetisch door termen of gebruik de zoekfunctie om specifieke termen te vinden.",
+          "3": "Klik op een term om de volledige definitie en uitleg te zien.",
+          "4": "Termen hebben betrekking op cryptoconcepten, DeFi-terminologie en DeHub-specifieke functies."
+        },
+        "tips": {
+          "1": "Geweldige bron voor nieuwkomers in crypto en Web3.",
+          "2": "De woordenlijst wordt regelmatig bijgewerkt met nieuwe termen."
+        }
+      }
     }
   }
 }

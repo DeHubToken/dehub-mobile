@@ -3445,11 +3445,6 @@
     "noResultsFor": "Không có kết quả nào cho \"{{query}}\"",
     "guideSubtitle": "Hướng dẫn từng bước về mọi tính năng",
     "searchGuide": "Tìm kiếm hướng dẫn...",
-    "guideFractionsTip": "Mỗi bài đăng đã đúc đều bắt đầu với việc người sáng tạo nắm giữ toàn bộ các phần (sở hữu 100%).",
-    "guideInfoStep": "Nhấn vào biểu tượng thông tin trên bài đăng đã đúc để mở giao dịch đúc trong trình khám phá khối và xác minh bản ghi on-chain.",
-    "guideMintIntro": "Việc đúc bài đăng thành NFT trên blockchain là tùy chọn. Đúc khi bạn đăng, hoặc đăng ngay và đúc sau từ menu bài đăng.",
-    "guideMintPublishStep": "Chọn có đúc hay không, rồi nhấn 'Đăng' để xuất bản. Nếu bỏ qua bước đúc, bạn có thể đúc bài đăng sau từ menu của nó.",
-    "guideMintFractionsStep": "Bạn nhận toàn bộ 1.000 phân số (sở hữu 100%) của bài viết vừa đúc.",
     "glossaryMintTxDesc": "Nhấn vào biểu tượng thông tin trên bài đăng đã đúc để mở giao dịch đúc trong trình khám phá khối và xác minh bản ghi on-chain. Trang Thông tin bài đăng đầy đủ — thống kê, người nắm giữ, chợ — nằm trên ứng dụng web tại dehub.io.",
     "glossaryTokenIdDesc": "Mã định danh duy nhất on-chain được gán cho bài đăng khi nó được đúc thành NFT.",
     "repostsTab": "Đăng lại",
@@ -3466,24 +3461,7 @@
     "glossaryStakingDesc": "Khóa token DeHub của bạn để kiếm phần thưởng theo thời gian. Token đã stake cũng cho bạn quyền bỏ phiếu tăng lên trong quản trị.",
     "glossaryGovernanceDesc": "Gửi và bỏ phiếu cho các đề xuất định hình nền tảng. Quyền bỏ phiếu của bạn được tính theo số lượng token DeHub bạn nắm giữ.",
     "glossaryStakingBadgesDesc": "Huy hiệu hiển thị bên cạnh tên người dùng của bạn dựa trên tổng số token DeHub bạn nắm giữ (ví + đã stake). Có 13 cấp bậc — bạn càng giữ nhiều token, thứ hạng huy hiệu của bạn càng cao. Các cấp bậc cao hơn cấp nhiều quyền bỏ phiếu quản trị hơn và phí nền tảng thấp hơn.",
-    "glossaryLeaderboardDesc": "Người dùng được xếp hạng theo tổng số dư token DeHub (ví + đã stake trên tất cả các chuỗi). Bảng xếp hạng cập nhật định kỳ và theo dõi các thay đổi trong 1 ngày và 1 tuần. Bạn cũng có thể sắp xếp theo số tiền tip đã gửi, số tiền tip đã nhận, người theo dõi, lượt thích hoặc người đăng ký.",
-    "guideTipStep": "Nhấp vào biểu tượng đá quý/tip để gửi cho người tạo bài đăng một khoản tip bằng token DeHub.",
-    "guideTipWalletTip": "Tiền tip đi trực tiếp vào ví của người sáng tạo dưới dạng token DeHub.",
-    "guideTipNotificationsTip": "Thông báo tiền thưởng cho biết bạn đã nhận được bao nhiêu token DeHub.",
-    "guideWalletIntro": "Xem số dư token DeHub của bạn trên nhiều chuỗi, kiểm tra tiền gửi đặt cọc và quản lý tài sản của bạn.",
-    "guideWalletTotalStep": "Xem tổng số dư token DeHub của bạn được tổng hợp trên tất cả các chuỗi được hỗ trợ.",
-    "guideStakingIntro": "Đặt cọc token DeHub của bạn để kiếm phần thưởng và tăng quyền biểu quyết quản trị của bạn.",
-    "guideStakingAmountStep": "Nhập số lượng token DeHub bạn muốn đặt cọc.",
-    "guideLeaderboardBalanceStep": "Tab Số dư xếp hạng người dùng theo tổng số token DeHub mà họ nắm giữ.",
-    "guideGovernanceVoteStep": "Bỏ phiếu cho các đề xuất bằng các nút giơ ngón tay cái lên/xuống — trọng lượng phiếu bầu của bạn phụ thuộc vào số lượng token DeHub bạn đã đặt cọc.",
-    "guideGovernancePowerTip": "Quyền biểu quyết của bạn được xác định bởi số lượng token DeHub bạn đã đặt cọc.",
-    "guideBuyIntro": "Mua token DeHub trực tiếp trong DPay bằng thẻ hoặc tiền điện tử được hỗ trợ.",
-    "guideBuyAmountStep": "Nhập số tiền bạn muốn chi tiêu hoặc số lượng token DeHub bạn muốn nhận.",
-    "guideBuyDeliveredStep": "Token DeHub của bạn sẽ xuất hiện trong ví của bạn sau khi giao dịch hoàn tất.",
-    "guideBridgeIntro": "Di chuyển token DeHub của bạn giữa các blockchain được hỗ trợ bằng cầu nối liên chuỗi.",
-    "guideBridgeSourceStep": "Chọn chuỗi nguồn (nơi token DeHub của bạn hiện đang ở).",
-    "guideBridgeDestStep": "Chọn chuỗi đích (nơi bạn muốn gửi token DeHub của mình).",
-    "guideBridgeAmountStep": "Nhập số lượng token DeHub để chuyển qua cầu nối."
+    "glossaryLeaderboardDesc": "Người dùng được xếp hạng theo tổng số dư token DeHub (ví + đã stake trên tất cả các chuỗi). Bảng xếp hạng cập nhật định kỳ và theo dõi các thay đổi trong 1 ngày và 1 tuần. Bạn cũng có thể sắp xếp theo số tiền tip đã gửi, số tiền tip đã nhận, người theo dõi, lượt thích hoặc người đăng ký."
   },
   "arcade": {
     "submitAccessibility": "Gửi một trò chơi đến arcade",
@@ -6880,6 +6858,504 @@
       "packEmpty": "Không tìm thấy emoji nào tại địa chỉ đó",
       "shortcodeTaken": "{{name}} đã được sử dụng",
       "shortcodeStandard": "{{name}} đã là một emoji tiêu chuẩn"
+    }
+  },
+  "guide": {
+    "sections": {
+      "getting-started": {
+        "title": "Bắt đầu",
+        "intro": "Có năm cách để vào DeHub và không có cách nào yêu cầu bạn phải sở hữu ví trước: Google, Apple, mã gửi đến email của bạn, mã gửi qua SMS hoặc ví hiện có mà bạn kết nối. Mọi thứ ngoại trừ phương thức ví đều tạo một ví không lưu ký cho bạn ở chế độ nền — bạn giữ khóa, và DeHub tài trợ phí gas để bạn có thể đăng bài, tip và thu thập mà không cần mua token gốc.",
+        "steps": {
+          "1": "Truy cập dehub.io — nguồn cấp dữ liệu chính là trang chủ, vì vậy bạn có thể xem qua trước khi đăng nhập.",
+          "2": "Nhấp vào 'Đăng nhập'. Bạn sẽ thấy Google và Apple, các trường cho địa chỉ email hoặc số điện thoại, và 'Kết nối ví' cho ví hiện có.",
+          "3": "Với Google hoặc Apple, hoàn tất quy trình của nhà cung cấp. Với email hoặc SMS, nhập mã nhận được.",
+          "4": "Một ví sẽ được tạo và bảo mật cho bạn khi đăng nhập lần đầu. Kết nối ví của riêng bạn thay vào đó yêu cầu một chữ ký để chứng minh địa chỉ.",
+          "5": "Chọn tên người dùng. Đó là những gì mọi người nhìn thấy và nó cũng là liên kết hồ sơ dehub.io/<username> của bạn.",
+          "6": "Bạn đã vào. Khám phá nguồn cấp dữ liệu, thiết lập hồ sơ của bạn và bắt đầu đăng bài."
+        },
+        "tips": {
+          "1": "Đăng nhập qua mạng xã hội, email và SMS không bao giờ trả phí gas — DeHub tài trợ cho nó. Ví đã kết nối sẽ tự trả phí ETH hoặc BNB của họ.",
+          "2": "Quay lại tài khoản DeHub cũ? Đăng nhập bằng email hoặc số điện thoại mà nó đã sử dụng và quá trình di chuyển sẽ tìm thấy nó cho bạn.",
+          "3": "Bạn có thể giữ nhiều tài khoản trên một thiết bị và chuyển đổi giữa chúng trong Cài đặt → Hồ sơ."
+        }
+      },
+      "home-feed": {
+        "title": "Nguồn cấp dữ liệu chính",
+        "intro": "Nguồn cấp dữ liệu chính là nơi bạn xem các bài đăng từ những người bạn theo dõi và nội dung thịnh hành. Nó hỗ trợ nhiều tab loại nội dung và tùy chọn sắp xếp.",
+        "steps": {
+          "1": "Điều hướng đến /app — đây là nguồn cấp dữ liệu chính của bạn.",
+          "2": "Sử dụng các tab trên cùng để lọc theo loại nội dung: Trang chủ (tất cả), Video, Hình ảnh, Shorts, Nhạc hoặc Luồng trực tiếp.",
+          "3": "Vuốt sang trái/phải trên các tab để xem thêm tùy chọn trên thiết bị di động.",
+          "4": "Sử dụng nút lọc/sắp xếp (góc trên cùng bên phải của nguồn cấp dữ liệu) để thay đổi cách sắp xếp: Nóng, Mới hoặc Hàng đầu.",
+          "5": "Kéo xuống để làm mới nguồn cấp dữ liệu trên thiết bị di động.",
+          "6": "Cuộn xuống để tải thêm bài đăng tự động (cuộn vô hạn).",
+          "7": "Chuyển đổi giữa chế độ xem Lưới và Nguồn cấp dữ liệu bằng bộ chuyển đổi bố cục."
+        },
+        "tips": {
+          "1": "Chế độ xem Lưới rất tuyệt vời để duyệt ảnh nhanh chóng.",
+          "2": "Tab 'Trang chủ' hiển thị tất cả các loại nội dung được trộn lẫn với nhau.",
+          "3": "Tab Trực tiếp hiển thị các luồng trực tiếp đang hoạt động."
+        }
+      },
+      "creating-posts": {
+        "title": "Tạo bài đăng",
+        "intro": "Tạo bài đăng văn bản, chia sẻ hình ảnh, video, ghi chú thoại, GIF và hơn thế nữa. Sử dụng hashtag, cashtag và đề cập để tăng phạm vi tiếp cận.",
+        "steps": {
+          "1": "Nhấp vào nút 'Bài đăng' trên thanh bên (máy tính để bàn) hoặc nút + (thiết bị di động).",
+          "2": "Nhập văn bản của bạn vào khu vực soạn thảo.",
+          "3": "Để thêm hình ảnh hoặc video, nhấp vào biểu tượng phương tiện và chọn một tệp.",
+          "4": "Để ghi âm ghi chú thoại, nhấp vào biểu tượng micrô.",
+          "5": "Để thêm GIF, nhấp vào biểu tượng GIF và tìm kiếm một GIF.",
+          "6": "Sử dụng #hashtag để phân loại bài đăng của bạn (ví dụ: #crypto, #defi).",
+          "7": "Sử dụng $cashtag để tham chiếu mã thông báo (ví dụ: $DHB, $ETH).",
+          "8": "Sử dụng @mention để gắn thẻ người dùng khác (ví dụ: @username).",
+          "9": "Nhấp vào 'Bài đăng' để xuất bản. Bài đăng của bạn xuất hiện ngay lập tức trong nguồn cấp dữ liệu."
+        },
+        "tips": {
+          "1": "Bài đăng hỗ trợ định dạng kiểu markdown.",
+          "2": "Bạn có thể trích dẫn bài đăng bằng cách nhấp vào biểu tượng đăng lại trên bất kỳ bài đăng nào và chọn 'Trích dẫn'.",
+          "3": "Danh mục (hashtag) xuất hiện trên bảng xếp hạng 'Talk of the Town'."
+        }
+      },
+      "interacting-with-posts": {
+        "title": "Tương tác với bài đăng",
+        "intro": "Tương tác với nội dung bằng cách bỏ phiếu, bình luận, tặng tiền, đánh dấu trang, chia sẻ và dịch.",
+        "steps": {
+          "1": "Bỏ phiếu lên hoặc xuống cho một bài đăng bằng các biểu tượng mũi tên ở phía bên trái của bất kỳ bài đăng nào.",
+          "2": "Nhấp vào biểu tượng bình luận để mở phần bình luận và để lại phản hồi.",
+          "3": "Nhấp vào biểu tượng đá quý/tặng tiền để gửi một khoản tiền tip bằng mã thông báo DeHub cho người tạo bài đăng.",
+          "4": "Nhấp vào biểu tượng đánh dấu trang để lưu bài đăng để xem sau.",
+          "5": "Nhấp vào biểu tượng chia sẻ để sao chép liên kết bài đăng hoặc chia sẻ bên ngoài.",
+          "6": "Nhấn nút dịch (biểu tượng quả địa cầu) trên bất kỳ bài đăng nào để dịch văn bản sang ngôn ngữ của bạn.",
+          "7": "Đối với các bài đăng hình ảnh, hãy sử dụng nút 'Dịch hình ảnh' để nhận phiên bản dịch bằng AI của văn bản trong hình ảnh.",
+          "8": "Nhấn vào bất kỳ bài đăng nào để mở ở chế độ xem toàn màn hình một bài đăng."
+        },
+        "tips": {
+          "1": "Tiền tip sẽ đi trực tiếp vào ví của người sáng tạo bằng token DeHub.",
+          "2": "Bạn có thể đặt số tiền tip thông qua các nút chọn nhanh hoặc nhập số tiền tùy chỉnh.",
+          "3": "Các bài đăng đã đánh dấu trang có thể truy cập từ trang Đánh dấu trang trong thanh bên."
+        }
+      },
+      "explore-search": {
+        "title": "Khám phá & Tìm kiếm",
+        "intro": "Khám phá nội dung và người dùng mới thông qua trang khám phá và chức năng tìm kiếm mạnh mẽ.",
+        "steps": {
+          "1": "Điều hướng đến /app/explore từ thanh bên.",
+          "2": "Sử dụng thanh tìm kiếm ở trên cùng để tìm kiếm người dùng, bài đăng hoặc nội dung.",
+          "3": "Lọc kết quả theo tab: Tất cả, Mọi người, Bài đăng, Hình ảnh, Video, Âm nhạc, Trực tiếp.",
+          "4": "Duyệt các chủ đề và danh mục thịnh hành trên trang khám phá.",
+          "5": "Nhấn vào một chủ đề thịnh hành để xem tất cả các bài đăng liên quan.",
+          "6": "Nhấn vào một người dùng trong kết quả tìm kiếm để truy cập hồ sơ của họ."
+        },
+        "tips": {
+          "1": "Tìm kiếm hỗ trợ tên người dùng, địa chỉ ví và từ khóa nội dung.",
+          "2": "Các chủ đề thịnh hành cập nhật dựa trên hoạt động đăng bài gần đây."
+        }
+      },
+      "profile": {
+        "title": "Hồ sơ",
+        "intro": "Hồ sơ của bạn hiển thị các bài đăng, người theo dõi, người đang theo dõi và thông tin ví của bạn.",
+        "steps": {
+          "1": "Nhấn vào ảnh đại diện của bạn hoặc 'Hồ sơ' trong thanh bên để xem hồ sơ của bạn.",
+          "2": "Nhấn 'Chỉnh sửa hồ sơ' để cập nhật tên hiển thị, tiểu sử và ảnh đại diện của bạn.",
+          "3": "Tải lên ảnh đại diện bằng cách nhấn vào ảnh đại diện của bạn ở chế độ chỉnh sửa.",
+          "4": "Xem số lượng người theo dõi và người đang theo dõi của bạn trên trang hồ sơ của bạn.",
+          "5": "Duyệt các bài đăng, phương tiện và nội dung đã thích của riêng bạn thông qua các tab hồ sơ.",
+          "6": "Sao chép địa chỉ ví của bạn bằng cách nhấn vào biểu tượng sao chép bên cạnh nó.",
+          "7": "Truy cập hồ sơ của người dùng khác bằng cách nhấn vào tên người dùng hoặc ảnh đại diện của họ ở bất kỳ đâu trên nền tảng."
+        },
+        "tips": {
+          "1": "Tên người dùng của bạn là duy nhất và xuất hiện trong URL hồ sơ của bạn (dehub.io/@username).",
+          "2": "Cài đặt quyền riêng tư cho phép bạn kiểm soát ai có thể xem số lượng người theo dõi của bạn."
+        }
+      },
+      "messages": {
+        "title": "Tin nhắn",
+        "intro": "Gửi tin nhắn trực tiếp cho người dùng khác trên nền tảng.",
+        "steps": {
+          "1": "Nhấn 'Tin nhắn' trong thanh bên để mở trang nhắn tin.",
+          "2": "Nhấn nút soạn thảo để bắt đầu cuộc trò chuyện mới.",
+          "3": "Tìm người dùng theo tên người dùng để nhắn tin cho họ.",
+          "4": "Nhập tin nhắn của bạn và nhấn gửi.",
+          "5": "Xem lịch sử trò chuyện của bạn trong danh sách tin nhắn.",
+          "6": "Nhấn vào một cuộc trò chuyện để tiếp tục trò chuyện."
+        },
+        "tips": {
+          "1": "Bạn sẽ nhận được thông báo khi có người nhắn tin cho bạn.",
+          "2": "Người sáng tạo có thể khóa tin nhắn yêu cầu tiền boa."
+        }
+      },
+      "ai-assistant": {
+        "title": "Trợ lý AI",
+        "intro": "Trò chuyện với trợ lý AI tích hợp của DeHub để được trợ giúp, thông tin và các tác vụ sáng tạo.",
+        "steps": {
+          "1": "Nhấn 'Trợ lý' ở thanh bên để mở cuộc trò chuyện AI.",
+          "2": "Nhập câu hỏi hoặc yêu cầu của bạn vào ô nhập liệu trò chuyện.",
+          "3": "AI có thể giúp về thông tin tiền điện tử, câu hỏi về nền tảng và kiến thức chung.",
+          "4": "Bắt đầu một cuộc trò chuyện mới bằng cách nhấn nút trò chuyện mới.",
+          "5": "Xem lịch sử trò chuyện của bạn ở thanh bên của trang trợ lý.",
+          "6": "Bạn có thể đính kèm hình ảnh để AI phân tích."
+        },
+        "tips": {
+          "1": "AI ghi nhớ ngữ cảnh trong một cuộc trò chuyện.",
+          "2": "Bạn có thể hỏi AI về các tính năng của DeHub, các thuật ngữ tiền điện tử hoặc các câu hỏi chung.",
+          "3": "Các cuộc trò chuyện trước đó được lưu lại và có thể truy cập bất cứ lúc nào."
+        }
+      },
+      "notifications": {
+        "title": "Thông báo",
+        "intro": "Cập nhật thông tin về lượt thích, bình luận, tiền boa, lượt theo dõi và các hoạt động khác trên nội dung của bạn.",
+        "steps": {
+          "1": "Nhấn biểu tượng chuông hoặc 'Thông báo' ở thanh bên.",
+          "2": "Xem tất cả thông báo trong danh sách theo thứ tự thời gian.",
+          "3": "Nhấn vào một thông báo để điều hướng đến nội dung liên quan.",
+          "4": "Thông báo bao gồm: người theo dõi mới, lượt bình chọn bài đăng, bình luận, tiền boa và đề cập.",
+          "5": "Thông báo chưa đọc được làm nổi bật — chúng được đánh dấu là đã đọc khi xem."
+        },
+        "tips": {
+          "1": "Dấu hiệu thông báo hiển thị số lượng thông báo chưa đọc.",
+          "2": "Thông báo tiền boa hiển thị số lượng token bạn đã nhận."
+        }
+      },
+      "wallet": {
+        "title": "Ví",
+        "intro": "Xem số dư token DeHub của bạn trên nhiều chuỗi, kiểm tra tiền gửi đặt cược và quản lý tài sản của bạn.",
+        "steps": {
+          "1": "Nhấn 'Ví' ở thanh bên để mở trang ví.",
+          "2": "Xem tổng số dư token của bạn được tổng hợp trên tất cả các chuỗi được hỗ trợ.",
+          "3": "Xem chi tiết theo từng chuỗi: Ethereum, Base, BNB Chain, và nhiều hơn nữa.",
+          "4": "Kiểm tra tiền gửi và phần thưởng staking của bạn.",
+          "5": "Nhấp vào 'Làm mới Quét' để cập nhật số dư của bạn từ dữ liệu trên chuỗi.",
+          "6": "Sao chép địa chỉ ví của bạn để nhận token từ người khác."
+        },
+        "tips": {
+          "1": "Số dư tự động cập nhật nhưng bạn có thể buộc làm mới bất kỳ lúc nào.",
+          "2": "Ví hiển thị cả số dư có thể giao dịch (sẵn có) và số dư đã stake."
+        }
+      },
+      "staking": {
+        "title": "Staking",
+        "intro": "Stake token DeHub của bạn để kiếm phần thưởng và tăng quyền biểu quyết quản trị của bạn.",
+        "steps": {
+          "1": "Điều hướng đến trang 'Staking' từ thanh bên.",
+          "2": "Nhập số lượng token bạn muốn stake.",
+          "3": "Chọn chuỗi bạn muốn stake.",
+          "4": "Xác nhận giao dịch trong ví của bạn (ví bên ngoài) hoặc nó sẽ tự động thực thi (đăng nhập xã hội).",
+          "5": "Xem số tiền đã stake và bất kỳ phần thưởng đang chờ xử lý nào.",
+          "6": "Để bỏ stake, nhập số tiền và xác nhận giao dịch bỏ stake."
+        },
+        "tips": {
+          "1": "Staking làm tăng trọng số phiếu bầu của bạn trong các đề xuất quản trị.",
+          "2": "Người dùng đăng nhập xã hội không cần gas để stake — nó miễn phí gas.",
+          "3": "Bạn có thể stake trên nhiều chuỗi cùng lúc."
+        }
+      },
+      "leaderboard": {
+        "title": "Bảng xếp hạng",
+        "intro": "Xem ai đang dẫn đầu! Bảng xếp hạng xếp hạng người dùng theo số dư, chi tiêu hàng ngày và các chủ đề thịnh hành.",
+        "steps": {
+          "1": "Điều hướng đến trang 'Bảng xếp hạng' từ thanh bên.",
+          "2": "Chuyển đổi giữa các tab: Số dư, Chi tiêu hàng ngày và Chủ đề nóng.",
+          "3": "Tab Số dư xếp hạng người dùng theo tổng số token nắm giữ của họ.",
+          "4": "Tab Chi tiêu hàng ngày hiển thị ai đã hoạt động tích cực nhất trong việc tip trong 24 giờ qua.",
+          "5": "Chủ đề nóng hiển thị các chủ đề/danh mục được thảo luận nhiều nhất.",
+          "6": "Nhấp vào bất kỳ người dùng nào để truy cập hồ sơ của họ.",
+          "7": "Bảng xếp hạng được cập nhật định kỳ trong ngày."
+        },
+        "tips": {
+          "1": "Xếp hạng hàng ngày được đặt lại sau mỗi 24 giờ.",
+          "2": "Chủ đề nóng theo dõi các danh mục một từ từ các hashtag."
+        }
+      },
+      "command-centre": {
+        "title": "Trung tâm điều khiển",
+        "intro": "Bảng điều khiển tổng quan hiển thị các chỉ số chính và hoạt động nền tảng của bạn trong nháy mắt.",
+        "steps": {
+          "1": "Nhấp vào 'Trung tâm chỉ huy' trong thanh bên.",
+          "2": "Xem tóm tắt hồ sơ của bạn, bao gồm số lượng bài đăng, người theo dõi và mức độ tương tác.",
+          "3": "Xem hoạt động gần đây và các chủ đề thịnh hành của bạn.",
+          "4": "Truy cập các liên kết nhanh đến các tính năng thường dùng."
+        },
+        "tips": {
+          "1": "Trung tâm chỉ huy mang đến cho bạn cái nhìn tổng quan về sự hiện diện DeHub của bạn."
+        }
+      },
+      "governance": {
+        "title": "Quản trị",
+        "intro": "Tham gia quản trị nền tảng bằng cách tạo đề xuất và bỏ phiếu cho các quyết định của cộng đồng.",
+        "steps": {
+          "1": "Điều hướng đến 'Quản trị' từ thanh bên.",
+          "2": "Duyệt các đề xuất đang hoạt động do cộng đồng gửi.",
+          "3": "Nhấp vào một đề xuất để đọc mô tả đầy đủ và thảo luận của nó.",
+          "4": "Bỏ phiếu cho các đề xuất bằng các nút 👍/👎 — trọng số phiếu bầu của bạn phụ thuộc vào số lượng token DeHub bạn đã stake.",
+          "5": "Để lại bình luận về các đề xuất để thảo luận với cộng đồng.",
+          "6": "Gửi đề xuất của riêng bạn bằng cách nhấp vào nút 'Tạo đề xuất'."
+        },
+        "tips": {
+          "1": "Quyền biểu quyết của bạn được xác định bởi số lượng token bạn đã stake.",
+          "2": "Người giữ huy hiệu có thể nhận thêm trọng số phiếu bầu.",
+          "3": "Các đề xuất trải qua các giai đoạn: Đang hoạt động → Đã thông qua/Bị từ chối."
+        }
+      },
+      "bookmarks": {
+        "title": "Dấu trang",
+        "intro": "Lưu bài đăng vào dấu trang của bạn để dễ dàng truy cập sau này.",
+        "steps": {
+          "1": "Nhấp vào biểu tượng dấu trang trên bất kỳ bài đăng nào để lưu nó.",
+          "2": "Điều hướng đến 'Dấu trang' trong thanh bên để xem tất cả các bài đăng đã lưu.",
+          "3": "Nhấp vào một bài đăng đã đánh dấu để xem toàn bộ.",
+          "4": "Xóa dấu trang bằng cách nhấp lại vào biểu tượng dấu trang."
+        },
+        "tips": {
+          "1": "Dấu trang là riêng tư — chỉ bạn mới có thể xem các bài đăng đã lưu của mình.",
+          "2": "Không có giới hạn về số lượng bài đăng bạn có thể đánh dấu."
+        }
+      },
+      "settings": {
+        "title": "Cài đặt",
+        "intro": "Tùy chỉnh trải nghiệm DeHub của bạn với các tùy chọn ngôn ngữ, quyền riêng tư và hiển thị.",
+        "steps": {
+          "1": "Nhấp vào 'Cài đặt' trong thanh bên.",
+          "2": "Thay đổi ngôn ngữ hiển thị của bạn từ trình chọn ngôn ngữ.",
+          "3": "Điều chỉnh cài đặt quyền riêng tư: kiểm soát ai nhìn thấy số lượng người theo dõi và danh sách những người bạn theo dõi của bạn.",
+          "4": "Đặt tùy chọn hiển thị bài đăng mặc định của bạn.",
+          "5": "Quản lý tùy chọn thông báo."
+        },
+        "tips": {
+          "1": "DeHub hỗ trợ nhiều ngôn ngữ — toàn bộ giao diện đều được dịch.",
+          "2": "Cài đặt quyền riêng tư có hiệu lực ngay lập tức."
+        }
+      },
+      "posting-allowance": {
+        "title": "Giới hạn đăng bài hàng ngày của bạn",
+        "intro": "Đăng bài miễn phí hàng ngày cho đến một giới hạn nhất định, giới hạn này sẽ tăng theo huy hiệu staking của bạn. Mọi người bắt đầu với mười bài đăng văn bản và một gigabyte video, hình ảnh và âm thanh mỗi ngày. Vượt quá một trong hai giới hạn đó và phần còn lại của ngày hôm đó sẽ được thanh toán bằng token DeHub — chỉ cho phần vượt quá.",
+        "steps": {
+          "1": "Đăng bài như bình thường. Trong giới hạn, không có gì bị tính phí và không có gì được yêu cầu từ bạn.",
+          "2": "Bài đăng văn bản và phương tiện là các nhóm riêng biệt, vì vậy một ngày dành để tải lên video vẫn để lại mười bài đăng văn bản miễn phí.",
+          "3": "Khi một bài đăng vượt quá giới hạn, ứng dụng sẽ tính giá cho nó trước và kiểm tra xem ví của bạn có đủ khả năng chi trả hay không trước khi tải lên bất kỳ nội dung nào.",
+          "4": "Bài đăng xuất bản giống như khi nó nằm trong giới hạn — việc xuất bản không bao giờ chờ thanh toán.",
+          "5": "Sau đó, bạn phê duyệt một lần chuyển khoản cho bài đăng đó, được giải quyết trên Base hoặc BNB Chain có đủ token DeHub.",
+          "6": "Cả hai nhóm đều được đặt lại vào nửa đêm UTC."
+        },
+        "tips": {
+          "1": "Phần vượt quá được tính theo tỷ lệ: 200 MB vượt quá giới hạn của bạn có giá 200 MB, không phải toàn bộ một gigabyte.",
+          "2": "Đăng lại, bình luận, phản ứng, mẹo và tin nhắn đều miễn phí và không bao giờ chạm vào giới hạn.",
+          "3": "Từ chối thanh toán và bài đăng vẫn hiển thị — số tiền đó chỉ chặn bài đăng trả phí tiếp theo của bạn cho đến khi nó được giải quyết. Giới hạn miễn phí ngày mai luôn thuộc về bạn.",
+          "4": "Huy hiệu staking tăng giới hạn miễn phí và giảm giá cho bất kỳ thứ gì vượt quá giới hạn đó."
+        }
+      },
+      "reactions-and-safety": {
+        "title": "Phản ứng, Tắt tiếng & Nội dung người lớn",
+        "intro": "Có chín loại phản ứng đằng sau nút thích, và một bộ điều khiển để quyết định những gì bạn thấy và ai có thể liên hệ với bạn.",
+        "steps": {
+          "1": "Giữ ngón tay cái lên trên bất kỳ bài đăng nào để mở khay phản ứng: thích, yêu, tôn trọng, nóng, cười, buồn, khóc, không thích và phân.",
+          "2": "Bảy loại tích cực được tính vào tổng số lượt thích của bài đăng; không thích và phân được tính vào đó.",
+          "3": "Phản ứng của bạn được tính theo huy hiệu staking của bạn, vì vậy phản ứng của người giữ huy hiệu sẽ di chuyển số đếm xa hơn một phiếu bầu.",
+          "4": "Nhấn vào X trong tiêu đề bài đăng để tắt tiếng tác giả của nó — họ sẽ biến mất khỏi nguồn cấp dữ liệu của bạn ngay lập tức.",
+          "5": "Người sáng tạo tự đánh dấu bài đăng của họ là nội dung người lớn khi soạn thảo chúng; những bài đăng đó sẽ không xuất hiện trên nguồn cấp dữ liệu chính công khai.",
+          "6": "Để xem các bài đăng người lớn ở mọi nơi, hãy bật 'Hiển thị nội dung người lớn' trong Cài đặt."
+        },
+        "tips": {
+          "1": "Một bài đăng người lớn vẫn hiển thị đầy đủ trên hồ sơ của người sáng tạo và cho những người theo dõi họ.",
+          "2": "Chặn từ hồ sơ đi xa hơn việc tắt tiếng và cũng chặn cả tin nhắn.",
+          "3": "Khay phản ứng hiển thị ai đã phản ứng và bằng cách nào, vì vậy bạn có thể thấy căn phòng thay vì chỉ một con số."
+        }
+      },
+      "stages": {
+        "title": "Stages (Phòng âm thanh trực tiếp)",
+        "intro": "Stages là các phòng âm thanh trực tiếp được tích hợp vào DeHub. Người dẫn chương trình mở một phòng, mời người nói lên và bất kỳ ai cũng có thể tham gia để nghe từ trang Stages hoặc một liên kết được chia sẻ.",
+        "steps": {
+          "1": "Mở 'Stages' trong thanh bên để xem những gì đang trực tiếp ngay bây giờ và những gì đã được lên lịch.",
+          "2": "Chạm vào một sân khấu trực tiếp để tham gia với tư cách người nghe, hoặc đặt lời nhắc cho một sân khấu đã lên lịch và nhận thông báo khi nó bắt đầu.",
+          "3": "Tạo sân khấu của riêng bạn từ cùng một trang — bạn có thể phát trực tiếp ngay từ trình duyệt, không cần OBS hay khóa luồng.",
+          "4": "Với tư cách là người dẫn, đưa người nói lên sân khấu, tắt tiếng hoặc xóa họ, chia sẻ màn hình của bạn và điều khiển bảng âm thanh.",
+          "5": "Người nghe gửi phản ứng trực tiếp và trò chuyện trong phòng chat mà không cần lên sân khấu.",
+          "6": "Mọi sân khấu đều được ghi lại và bản ghi phát lại sau đó từ thẻ mà nó xuất hiện."
+        },
+        "tips": {
+          "1": "Phụ đề trực tiếp ghi lại từng người nói và dịch sang bất kỳ ngôn ngữ nào bạn đang đọc.",
+          "2": "Lồng tiếng trực tiếp có thể đọc to phòng bằng giọng nói nhân bản của chính người dẫn, tính phí theo phút bằng token DeHub.",
+          "3": "Người dẫn có thể bật một đài phát thanh hoặc phát các đoạn nhạc của riêng họ giữa các cuộc trò chuyện.",
+          "4": "Một trình phát nhỏ giữ cho phòng tiếp tục hoạt động ở góc trong khi bạn duyệt phần còn lại của ứng dụng."
+        }
+      },
+      "communities": {
+        "title": "Cộng đồng & Sự kiện",
+        "intro": "Cộng đồng là không gian do thành viên điều hành với nguồn cấp dữ liệu, thành viên và hoạt động riêng. Sự kiện bổ sung chương trình theo thời gian cho chúng.",
+        "steps": {
+          "1": "Mở 'Cộng đồng' trong thanh bên và duyệt các cộng đồng công khai.",
+          "2": "Tham gia chỉ bằng một lần chạm. Hoạt động mới hiển thị dưới dạng huy hiệu chưa đọc trong điều hướng.",
+          "3": "Đăng bài, thảo luận, chạy các cuộc thăm dò ý kiến và tặng tiền trong nguồn cấp dữ liệu của cộng đồng.",
+          "4": "Chủ sở hữu cộng đồng kiểm duyệt không gian của riêng họ và có thể cấp quyền quản trị cho người khác.",
+          "5": "Mở 'Sự kiện' để xem các chương trình theo lịch trình, với một trang đầy đủ cho mỗi sự kiện mà bạn có thể theo dõi trực tiếp."
+        },
+        "tips": {
+          "1": "Trò chuyện cộng đồng hỗ trợ @tên người dùng và @tất cả, vì vậy một bài đăng có thể đến được với phòng.",
+          "2": "Một liên kết mời cho phép bạn đưa mọi người thẳng vào cộng đồng."
+        }
+      },
+      "arcade": {
+        "title": "Arcade",
+        "intro": "Năm trò chơi chạy bên trong DeHub trong một tab trình duyệt — không cần cài đặt, không cần mua.",
+        "steps": {
+          "1": "Mở 'Arcade' trong thanh bên.",
+          "2": "Chọn một trò chơi: King's Gambit (cờ vua 3D với thang xếp hạng Elo trực tuyến), Claude of Duty (một game bắn súng tự tạo nghệ thuật của riêng nó khi tải), Jungle Trail (một chuyến đi bộ trong rừng nhiệt đới theo quy trình), Street Slayer (một game đối kháng được tạo cho DeHub) hoặc Chartopia (một sàn giao dịch có thể đi bộ).",
+          "3": "Chơi trong tab. King's Gambit và Street Slayer giữ bảng xếp hạng.",
+          "4": "Chartopia cũng chạy trên tai nghe VR thông qua WebXR."
+        },
+        "tips": {
+          "1": "Hai trong số chúng ẩn trong các chủ đề giao diện — đặt ứng dụng thành War cho Claude of Duty, hoặc Jungle cho Jungle Trail.",
+          "2": "Mỗi trò chơi có thẻ chia sẻ riêng, vì vậy một liên kết đến một trò chơi sẽ hiển thị đúng ở bất kỳ đâu bạn đăng nó."
+        }
+      },
+      "bounties-stores": {
+        "title": "Phần thưởng & Cửa hàng",
+        "intro": "Hai cách để biến nền tảng thành thu nhập: đăng hoặc yêu cầu phần thưởng, hoặc mở cửa hàng và bán cho khán giả của bạn.",
+        "steps": {
+          "1": "Mở 'Phần thưởng' để duyệt các công việc đang mở, được lọc theo danh mục hoặc tiền tệ.",
+          "2": "Yêu cầu một phần thưởng, thực hiện công việc và gửi nó để nhận phần thưởng — bất kỳ ai cũng có thể là thợ săn, không cần đơn đăng ký.",
+          "3": "Đăng tiền thưởng của riêng bạn với mô tả ngắn gọn và phần thưởng bằng token DeHub hoặc USDC. Tiền sẽ được giữ trong ký quỹ ngay khi bạn đăng.",
+          "4": "Mở 'Cửa hàng' để thiết lập một cửa hàng với trang, thương hiệu và danh sách riêng.",
+          "5": "Sản phẩm được định giá và thanh toán bằng token DeHub thông qua ví tích hợp, không cần thanh toán bên ngoài."
+        },
+        "tips": {
+          "1": "Tiền thưởng được tổ chức thành Mạng xã hội, Cắt ghép và Hợp đồng.",
+          "2": "Luồng tranh chấp giải quyết bất đồng về việc giao hàng, vì vậy ký quỹ luôn được giải quyết công bằng.",
+          "3": "Người sáng tạo sử dụng tiền thưởng để phát triển cộng đồng — chia sẻ, cắt ghép và phản ứng đều là các nhiệm vụ hợp lệ."
+        }
+      },
+      "creator-studio": {
+        "title": "Studio & Trình chỉnh sửa Sáng tạo",
+        "intro": "Studio Sáng tạo tạo ra hình ảnh, video, nhạc, giọng nói và mô hình 3D từ một lời nhắc, và chuyển chúng cho trình chỉnh sửa — bao gồm trình chỉnh sửa video đa rãnh đầy đủ chạy trên trình duyệt.",
+        "steps": {
+          "1": "Mở Studio Sáng tạo và mô tả những gì bạn muốn tạo.",
+          "2": "Máy chủ báo giá chi phí trước khi công việc chạy, vì vậy bạn thấy chi phí trước khi chi tiêu.",
+          "3": "Các bản render tiếp tục trong hàng đợi chia sẻ trong khi bạn tiếp tục duyệt ứng dụng.",
+          "4": "Sắp xếp kết quả trong trình chỉnh sửa kiểu Canva, hoặc mở trình chỉnh sửa video để có dòng thời gian thực với cắt, xếp lớp và xuất.",
+          "5": "Thả tác phẩm hoàn chỉnh trực tiếp vào bài đăng, video ngắn hoặc danh sách cửa hàng."
+        },
+        "tips": {
+          "1": "Thư viện tài sản miễn phí có sẵn cùng với Studio cho bất cứ thứ gì bạn không muốn tạo.",
+          "2": "Việc tạo được thanh toán bằng token DeHub từ ví của bạn — bạn ký một giao dịch cho mỗi công việc, và giá được báo trước khi bạn thanh toán.",
+          "3": "Người dùng nặng có thể chọn gói Ultra, Team hoặc Scale, gói này sẽ gửi một lượng token hàng tháng trực tiếp vào ví của họ."
+        }
+      },
+      "buying-dhb": {
+        "title": "Mua Token",
+        "intro": "Mua token DeHub trực tiếp trong ứng dụng bằng giao diện hoán đổi tích hợp.",
+        "steps": {
+          "1": "Điều hướng đến trang 'Mua' từ thanh bên.",
+          "2": "Chọn token bạn muốn hoán đổi (ví dụ: ETH, USDC).",
+          "3": "Nhập số tiền bạn muốn chi tiêu hoặc số lượng token bạn muốn nhận.",
+          "4": "Xem lại tỷ giá hối đoái và số lượng ước tính.",
+          "5": "Nhấp vào biểu tượng bánh răng cài đặt để điều chỉnh dung sai trượt giá (mặc định là 1%).",
+          "6": "Xác nhận giao dịch hoán đổi.",
+          "7": "Token DeHub sẽ xuất hiện trong ví của bạn sau khi giao dịch hoàn tất."
+        },
+        "tips": {
+          "1": "Dung sai trượt giá cao hơn = có khả năng thực hiện cao hơn, nhưng có thể có giá tệ hơn.",
+          "2": "Luôn kiểm tra tỷ giá hối đoái trước khi xác nhận.",
+          "3": "Bạn có thể đặt trượt giá tùy chỉnh trong bảng cài đặt."
+        }
+      },
+      "bridge": {
+        "title": "Cầu nối",
+        "intro": "Di chuyển token DeHub của bạn giữa các blockchain được hỗ trợ bằng cầu nối chuỗi chéo.",
+        "steps": {
+          "1": "Điều hướng đến trang 'Bridge' từ thanh bên.",
+          "2": "Chọn chuỗi nguồn (nơi token của bạn hiện đang ở).",
+          "3": "Chọn chuỗi đích (nơi bạn muốn gửi chúng).",
+          "4": "Nhập số lượng token để chuyển.",
+          "5": "Xem lại phí chuyển và thời gian đến ước tính.",
+          "6": "Xác nhận giao dịch chuyển.",
+          "7": "Chờ giao dịch hoàn tất — việc chuyển có thể mất vài phút."
+        },
+        "tips": {
+          "1": "Phí chuyển khác nhau tùy thuộc vào cặp chuỗi.",
+          "2": "Việc chuyển thường mất 1-5 phút tùy thuộc vào các chuỗi liên quan.",
+          "3": "Luôn kiểm tra kỹ chuỗi đích trước khi xác nhận."
+        }
+      },
+      "music-tv": {
+        "title": "Âm nhạc & TV",
+        "intro": "Thưởng thức nội dung đa phương tiện trực tiếp trong DeHub — nghe nhạc và xem các kênh truyền hình trực tiếp.",
+        "steps": {
+          "1": "Điều hướng đến 'Music' từ thanh bên để duyệt và phát các bài đăng nhạc.",
+          "2": "Điều hướng đến 'TV' để truy cập các kênh truyền hình trực tiếp.",
+          "3": "Duyệt các kênh theo danh mục hoặc quốc gia.",
+          "4": "Nhấp vào một kênh để bắt đầu xem.",
+          "5": "Sử dụng các nút điều khiển trình phát để điều chỉnh âm lượng và phát lại.",
+          "6": "Báo cáo các kênh bị lỗi bằng nút báo cáo."
+        },
+        "tips": {
+          "1": "Các kênh TV được xác minh bởi cộng đồng về độ tin cậy.",
+          "2": "Các bài đăng nhạc có thể được phát trong khi duyệt các nội dung khác."
+        }
+      },
+      "post-info": {
+        "title": "Thông tin bài đăng & Phân mảnh",
+        "intro": "Một bài đăng đã được đúc là một NFT được chia thành 1.000 phần. Trang Thông tin bài đăng hiển thị dữ liệu trên chuỗi, số liệu tương tác, phân bổ quyền sở hữu và cho phép bạn giao dịch các phần của bất kỳ bài đăng nào — trên một bài đăng chưa được đúc, nó sẽ đề nghị đúc thay thế.",
+        "steps": {
+          "1": "Nhấn vào biểu tượng 'ⓘ' trên bất kỳ bài đăng nào để mở trang Thông tin bài đăng của nó.",
+          "2": "Ở trên cùng, bạn sẽ thấy ID Token (định danh duy nhất trên chuỗi) và mã băm giao dịch — nhấp vào mã băm để xem nó trên trình khám phá khối.",
+          "3": "Bên dưới đó, các số liệu tương tác hiển thị tổng số lượt thích, không thích, lượt xem, bình luận và tiền boa nhận được.",
+          "4": "Phần Người nắm giữ hiển thị thanh tiến trình về số lượng 1.000 phần mà người sáng tạo vẫn sở hữu, cộng với danh sách tất cả những người nắm giữ phần với số dư và tỷ lệ phần trăm của họ.",
+          "5": "Nếu bài đăng là trả phí mỗi lượt xem (PPV), bạn sẽ thấy giá, tiền tệ và số lượng người dùng đã mua quyền truy cập.",
+          "6": "Chủ sở hữu bài đăng có thể thay đổi khả năng hiển thị (Công khai, Không được liệt kê hoặc Riêng tư) và chỉnh sửa tiêu đề/mô tả trực tiếp từ trang này."
+        },
+        "tips": {
+          "1": "Một bài đăng mới được đúc bắt đầu với người sáng tạo nắm giữ tất cả 1.000 phần (sở hữu 100%).",
+          "2": "Mã băm giao dịch liên kết đến BaseScan hoặc BscScan tùy thuộc vào chuỗi.",
+          "3": "Các bài đăng không được liệt kê sẽ không xuất hiện trong nguồn cấp dữ liệu nhưng vẫn có thể truy cập được qua liên kết trực tiếp."
+        }
+      },
+      "trading-fractions": {
+        "title": "Phân số giao dịch",
+        "intro": "Giao dịch phân số — duyệt nhà/phòng cho thuê, đưa ra ưu đãi, đăng nhà/phòng cho thuê của riêng bạn — trực tiếp trên ứng dụng web tại dehub.io, trên trang Thông tin bài đăng của mỗi bài đăng.",
+        "steps": {
+          "1": "Mở dehub.io trong trình duyệt và đăng nhập bằng cùng một tài khoản.",
+          "2": "Mở trang Thông tin bài đăng của bài đăng và chuyển sang tab Thị trường.",
+          "3": "Duyệt tìm nhà/phòng cho thuê, đưa ra ưu đãi với mức giá của bạn hoặc liệt kê các phân số mà bạn nắm giữ.",
+          "4": "Sau khi giao dịch hoàn tất, thay đổi sẽ hiển thị trong tab Phân số của bạn tại đây trên thiết bị di động."
+        },
+        "tips": {
+          "1": "Sở hữu các phân số của một bài đăng có nghĩa là bạn nắm giữ một phần của NFT trên chuỗi đó.",
+          "2": "Kiểm tra chủ sở hữu của một bài đăng trên thị trường web để xem phân phối quyền sở hữu trước khi mua.",
+          "3": "Là người sáng tạo, việc bán phân số cho phép người hâm mộ đồng sở hữu nội dung của bạn."
+        }
+      },
+      "minting-posts": {
+        "title": "Đúc Bài đăng (Tạo NFT)",
+        "intro": "Việc đúc là tùy chọn. Một bài đăng được xuất bản ngoài chuỗi ngay khi bạn gửi nó — không cần ví, không cần chữ ký, không cần phí gas — và bạn có thể đúc nó dưới dạng NFT bất cứ lúc nào bạn muốn, hoặc khi bạn soạn nó hoặc sau đó từ chính bài đăng đó.",
+        "steps": {
+          "1": "Nhấp vào nút 'Bài đăng' ở thanh bên (máy tính để bàn) hoặc nút + (di động).",
+          "2": "Viết văn bản của bạn, đính kèm phương tiện (hình ảnh, video, âm thanh) và thêm danh mục.",
+          "3": "Để trống tùy chọn 'Đúc bài đăng' để xuất bản ngoài chuỗi, hoặc bật nó lên để đúc khi bạn xuất bản.",
+          "4": "Xuất bản không bao giờ chờ đợi trên chuỗi: bài đăng xuất hiện trong nguồn cấp dữ liệu theo bất kỳ cách nào.",
+          "5": "Để đúc tiền sau này, hãy mở trang thông tin '& # 8217; của bài đăng và sử dụng hành động Mint ở đó.",
+          "6": "Sau khi đúc, bài đăng sẽ nhận được ID Token và hàm băm giao dịch mà bạn có thể xác minh trên chuỗi và bạn nắm giữ tất cả 1.000 phần của nó."
+        },
+        "tips": {
+          "1": "Đăng nhập mạng xã hội, email và SMS không phải trả phí gas — DeHub tài trợ phí đúc tiền.",
+          "2": "Người dùng ví ngoài cần ETH trên Base hoặc BNB trên BNB Chain để mua gas.",
+          "3": "Đúc tiền là những gì làm cho một bài đăng có thể giao dịch và chịu phí bản quyền. Một bài đăng chưa được khai thác vẫn kiếm được các mẹo và lượt xem.",
+          "4": "Bản ghi trên chuỗi là vĩnh viễn sau khi đúc, ngay cả khi bài đăng sau đó bị xóa khỏi nguồn cấp dữ liệu."
+        }
+      },
+      "glossary": {
+        "title": "Bảng chú giải thuật ngữ",
+        "intro": "Bảng thuật ngữ toàn diện về tiền điện tử và thuật ngữ nền tảng để giúp bạn điều hướng Web3.",
+        "steps": {
+          "1": "Điều hướng đến 'Bảng thuật ngữ' từ thanh bên.",
+          "2": "Duyệt các thuật ngữ theo thứ tự bảng chữ cái hoặc sử dụng tìm kiếm để tìm các thuật ngữ cụ thể.",
+          "3": "Nhấp vào một thuật ngữ để xem định nghĩa và giải thích đầy đủ của nó.",
+          "4": "Các thuật ngữ bao gồm các khái niệm về tiền điện tử, thuật ngữ DeFi và các tính năng dành riêng cho DeHub."
+        },
+        "tips": {
+          "1": "Tài nguyên tuyệt vời cho những người mới sử dụng tiền điện tử và Web3.",
+          "2": "Bảng chú giải thuật ngữ được cập nhật thường xuyên với các điều khoản mới."
+        }
+      }
     }
   }
 }

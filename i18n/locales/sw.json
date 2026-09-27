@@ -3433,11 +3433,6 @@
     "noResultsFor": "Hakuna matokeo kwa ajili ya \"{{query}}\"",
     "guideSubtitle": "Mwongozo wa hatua kwa hatua wa kila kipengele",
     "searchGuide": "Tafuta mwongozo...",
-    "guideFractionsTip": "Kila chapisho lililofuliwa huanza na mtayarishi akiwa na hisa zake zote (umiliki 100%).",
-    "guideInfoStep": "Gusa aikoni ya maelezo kwenye chapisho lililofuliwa ili kufungua muamala wake wa kufua kwenye kichunguzi cha bloku na kuthibitisha rekodi iliyo kwenye mnyororo.",
-    "guideMintIntro": "Kufua chapisho kama NFT kwenye blockchain ni hiari. Lifue unapochapisha, au chapisha sasa na ulifue baadaye kutoka kwenye menyu ya chapisho.",
-    "guideMintPublishStep": "Chagua kama utafua, kisha bofya 'Chapisha'. Ukiruka kufua, unaweza kulifua chapisho baadaye kutoka kwenye menyu yake.",
-    "guideMintFractionsStep": "Unapokea sehemu zote 1,000 (umiliki wa 100%) za chapisho lako jipya lililofuliwa.",
     "glossaryMintTxDesc": "Gusa aikoni ya maelezo kwenye chapisho lililofuliwa ili kufungua muamala wake wa kufua kwenye kichunguzi cha bloku na kuthibitisha rekodi iliyo kwenye mnyororo. Ukurasa kamili wa Maelezo ya Chapisho — takwimu, wamiliki, soko — uko kwenye programu ya wavuti katika dehub.io.",
     "glossaryTokenIdDesc": "Kitambulisho cha kipekee kwenye mnyororo kinachopewa chapisho linapofuliwa kama NFT.",
     "repostsTab": "Machapisho upya",
@@ -3454,24 +3449,7 @@
     "glossaryStakingDesc": "Funga tokeni zako za DeHub ili upate tuzo kwa muda. Tokeni zilizowekwa rehani pia hukupa nguvu zaidi ya kupiga kura katika utawala.",
     "glossaryGovernanceDesc": "Wasilisha na upige kura kwenye mapendekezo yanayounda jukwaa. Nguvu yako ya kupiga kura inalinganishwa na idadi ya tokeni za DeHub unazomiliki.",
     "glossaryStakingBadgesDesc": "Beji zinazoonyeshwa karibu na jina lako la mtumiaji kulingana na jumla ya umiliki wako wa tokeni za DeHub (pouch + zilizowekwa rehani). Kuna ngazi 13 — unavyomiliki tokeni nyingi, ndivyo cheo chako cha beji kinavyokuwa juu. Ngazi za juu hupeana nguvu zaidi ya kupiga kura katika utawala na ada za chini za jukwaa.",
-    "glossaryLeaderboardDesc": "Watumiaji wameorodheshwa kwa jumla ya usawa wa tokeni za DeHub (pouch + zilizowekwa rehani kwenye minyororo yote). Uorodheshaji husasishwa mara kwa mara na hufuatilia mabadiliko ya siku 1 na wiki 1. Unaweza pia kupanga kwa vidokezo vilivyotumwa, vidokezo vilivyopokelewa, wafuasi, vipendwa, au wanachama.",
-    "guideTipStep": "Bofya aikoni ya gem/tip kutuma kidokezo kwa mtunzi wa chapisho kwa tokeni za DeHub.",
-    "guideTipWalletTip": "Vidokezo huenda moja kwa moja kwenye pochi ya mtunzi kama tokeni za DeHub.",
-    "guideTipNotificationsTip": "Arifa za kidokezo huonyesha ni tokeni ngapi za DeHub ulizopokea.",
-    "guideWalletIntro": "Tazama salio lako la tokeni za DeHub katika minyororo mingi, angalia amana za kuweka rehani, na udhibiti mali zako.",
-    "guideWalletTotalStep": "Tazama jumla ya salio lako la tokeni za DeHub lililojumuishwa katika minyororo yote inayotumika.",
-    "guideStakingIntro": "Weka tokeni zako za DeHub ili upate zawadi na uongeze nguvu yako ya kupiga kura ya utawala.",
-    "guideStakingAmountStep": "Ingiza ni tokeni ngapi za DeHub unazotaka kuweka.",
-    "guideLeaderboardBalanceStep": "Kichupo cha Salio huorodhesha watumiaji kulingana na umiliki wao wa jumla wa tokeni za DeHub.",
-    "guideGovernanceVoteStep": "Piga kura kwenye mapendekezo kwa kutumia vitufe vya gumba juu/chini — uzito wa kura yako unategemea ni tokeni ngapi za DeHub ambazo umeziweka.",
-    "guideGovernancePowerTip": "Nguvu yako ya kupiga kura huamuliwa na ni tokeni ngapi za DeHub ambazo umeziweka.",
-    "guideBuyIntro": "Nunua tokeni za DeHub moja kwa moja katika DPay ukitumia kadi au crypto inayotumika.",
-    "guideBuyAmountStep": "Ingiza kiasi unachotaka kutumia au ni tokeni ngapi za DeHub unazotaka kupokea.",
-    "guideBuyDeliveredStep": "Tokeni zako za DeHub zitaonekana kwenye pochi yako mara tu muamala utakapokamilika.",
-    "guideBridgeIntro": "Sogeza tokeni zako za DeHub kati ya minyororo inayotumika kwa kutumia daraja la minyororo mingi.",
-    "guideBridgeSourceStep": "Chagua mnyororo wa chanzo (ambapo tokeni zako za DeHub ziko sasa).",
-    "guideBridgeDestStep": "Chagua mnyororo wa lengwa (unakoenda kutuma tokeni zako za DeHub).",
-    "guideBridgeAmountStep": "Ingiza ni tokeni ngapi za DeHub za kuvuka."
+    "glossaryLeaderboardDesc": "Watumiaji wameorodheshwa kwa jumla ya usawa wa tokeni za DeHub (pouch + zilizowekwa rehani kwenye minyororo yote). Uorodheshaji husasishwa mara kwa mara na hufuatilia mabadiliko ya siku 1 na wiki 1. Unaweza pia kupanga kwa vidokezo vilivyotumwa, vidokezo vilivyopokelewa, wafuasi, vipendwa, au wanachama."
   },
   "arcade": {
     "submitAccessibility": "Wasilisha mchezo kwenye arcade",
@@ -6793,6 +6771,503 @@
       "packEmpty": "Hakuna emoji iliyopatikana kwenye anwani hiyo",
       "shortcodeTaken": "{{name}} tayari imechukuliwa",
       "shortcodeStandard": "{{name}} tayari ni emoji ya kawaida"
+    }
+  },
+  "guide": {
+    "sections": {
+      "getting-started": {
+        "title": "Kuanza",
+        "intro": "Kuna njia tano za kuingia DeHub na hakuna hata moja inayohitaji umiliki wa pochi tayari: Google, Apple, nambari ya siri inayotumwa kwa barua pepe yako, nambari ya siri inayotumwa na SMS, au pochi iliyopo unayoiunganisha. Kila kitu isipokuwa njia ya pochi huunda pochi isiyo ya kulea kwa ajili yako chinichini — wewe ndiye mwenye funguo, na DeHub inafadhili gesi ili uweze kuchapisha, kutoa vidokezo na kukusanya bila kununua tokeni asili.",
+        "steps": {
+          "1": "Tembelea dehub.io — kulisha nyumbani ndio ukurasa wa mbele, kwa hivyo unaweza kuangalia kabla ya kuingia.",
+          "2": "Bofya 'Ingia'. Utaona Google na Apple, sehemu za anwani ya barua pepe au nambari ya simu, na 'Unganisha Mkoba' kwa iliyopo.",
+          "3": "Ukiwa na Google au Apple, kamilisha mtiririko wa mtoa huduma. Ukiwa na barua pepe au SMS, weka nambari ya siri inayowasili.",
+          "4": "Mkoba huundwa na kulindwa kwa ajili yako wakati wa kuingia mara ya kwanza. Kuunganisha mkoba wako mwenyewe badala yake kunamaanisha sahihi moja ili kuthibitisha anwani.",
+          "5": "Chagua jina la mtumiaji. Hiki ndicho watu huona na kinatumika kama kiungo chako cha wasifu cha dehub.io/<username>.",
+          "6": "Umeingia. Chunguza kulisha, weka wasifu wako, na anza kuchapisha."
+        },
+        "tips": {
+          "1": "Kuingia kwa kijamii, barua pepe na SMS hakulipi gesi kamwe — DeHub inafadhili. Mikoba iliyounganishwa hulipa ETH au BNB yao wenyewe.",
+          "2": "Unarudi kwenye akaunti ya zamani ya DeHub? Ingia kwa kutumia barua pepe au nambari ya simu iliyotumika na uhamiaji utaipata kwa ajili yako.",
+          "3": "Unaweza kuweka akaunti kadhaa kwenye kifaa kimoja na kuzibadilisha katika Mipangilio → Wasifu."
+        }
+      },
+      "home-feed": {
+        "title": "Kulisha Nyumbani",
+        "intro": "Kulisha nyumbani ndiko unapoona machapisho kutoka kwa watu unaowafuata na maudhui yanayovuma. Inaauni tabu za aina mbalimbali za maudhui na chaguo za kupanga.",
+        "steps": {
+          "1": "Nenda kwenye /app — huu ndio kulisha kwako nyumbani.",
+          "2": "Tumia vitufe vya juu kuchuja kwa aina ya maudhui: Nyumbani (zote), Video, Picha, Shorts, Muziki, au Michezo ya moja kwa moja.",
+          "3": "Telezesha kidole kushoto/kulia kwenye vitufe vya juu ili kuona chaguo zaidi kwenye simu.",
+          "4": "Tumia kitufe cha kuchuja/kupanga (juu kulia mwa malisho) kubadilisha upangaji: Moto, Mpya, au Juu.",
+          "5": "Vuta chini ili kufanya upya malisho kwenye simu.",
+          "6": "Tembeza chini ili kupakia machapisho zaidi kiotomatiki (tembezo usio na mwisho).",
+          "7": "Badilisha kati ya mwonekano wa Grid na Malisho kwa kutumia kigeuzi cha mpangilio."
+        },
+        "tips": {
+          "1": "Mwonekano wa Grid ni mzuri kwa kuvinjari picha haraka.",
+          "2": "Kitufe cha 'Nyumbani' huonyesha aina zote za maudhui zilizochanganywa pamoja.",
+          "3": "Kitufe cha moja kwa moja huonyesha michezo ya moja kwa moja inayoendelea kwa sasa."
+        }
+      },
+      "creating-posts": {
+        "title": "Kuunda Machapisho",
+        "steps": {
+          "1": "Bofya kitufe cha 'Chapisha' kwenye upande (desktop) au kitufe cha + (simu).",
+          "2": "Andika maandishi yako katika eneo la kuandika.",
+          "3": "Ili kuongeza picha au video, bofya ikoni ya media na uchague faili.",
+          "4": "Ili kurekodi noti ya sauti, bofya ikoni ya kipaza sauti.",
+          "5": "Ili kuongeza GIF, bofya ikoni ya GIF na utafute moja.",
+          "6": "Tumia #hashtags kuainisha chapisho lako (k.w.m., #crypto, #defi).",
+          "7": "Tumia $cashtags kurejelea tokeni (k.w.m., $DHB, $ETH).",
+          "8": "Tumia @mentions kuweka alama watumiaji wengine (k.w.m., @username).",
+          "9": "Bofya 'Chapisha' ili kuchapisha. Chapisho lako linaonekana kwenye malisho mara moja."
+        },
+        "tips": {
+          "1": "Machapisho yanaunga mkono upangaji wa mtindo wa markdown.",
+          "2": "Unaweza kunukuu chapisho kwa kubofya ikoni ya kurudisha chapisho kwenye chapisho lolote na kuchagua 'Nukuu'.",
+          "3": "Kategoria (#hashtags) huonekana kwenye ubao wa wanaoongoza wa 'Maudhui Yanayojadiliwa Zaidi'."
+        }
+      },
+      "interacting-with-posts": {
+        "title": "Kuingiliana na Machapisho",
+        "intro": "Shiriki na maudhui kwa kupiga kura, kutoa maoni, kutoa vidokezo, kuhifadhi, kushiriki, na kutafsiri.",
+        "steps": {
+          "1": "Piga kura ya juu au ya chini chapisho kwa kutumia ikoni za mshale upande wa kushoto wa chapisho lolote.",
+          "2": "Bofya ikoni ya maoni ili kufungua sehemu ya maoni na kuacha jibu.",
+          "3": "Bofya ikoni ya gem/vidokezo ili kutuma kidokezo kwa tokeni za DeHub kwa muundaji wa chapisho.",
+          "4": "Bofya ikoni ya alamisho ili kuhifadhi chapisho kwa baadaye.",
+          "5": "Bofya ikoni ya kushiriki ili kunakili kiungo cha chapisho au kushiriki nje.",
+          "6": "Bofya kitufe cha kutafsiri (ikoni ya globu) kwenye chapisho lolote ili kutafsiri maandishi kwa lugha yako.",
+          "7": "Kwa machapisho ya picha, tumia kitufe cha 'Tafsiri Picha' ili kupata toleo lililotafsiriwa na AI la maandishi ndani ya picha.",
+          "8": "Bofya chapisho lolote ili kulifungua katika mwonekano kamili wa chapisho moja."
+        },
+        "tips": {
+          "1": "Vidokezo huenda moja kwa moja kwenye pochi ya muundaji kwa kutumia tokeni za DeHub.",
+          "2": "Unaweza kuweka kiasi cha kidokezo kupitia vitufe vya kuchagua haraka au kuingiza kiasi maalum.",
+          "3": "Machapisho yaliyowekwa alama yanapatikana kutoka kwa ukurasa wa Alama kwenye upau wa pembeni."
+        }
+      },
+      "explore-search": {
+        "title": "Gundua na Utafute",
+        "intro": "Gundua maudhui na watumiaji wapya kupitia ukurasa wa kuchunguza na utendakazi wa utafutaji wenye nguvu.",
+        "steps": {
+          "1": "Nenda kwenye /app/explore kutoka upande wa pembeni.",
+          "2": "Tumia upau wa utafutaji ulio juu kutafuta watumiaji, machapisho, au maudhui.",
+          "3": "Chuja matokeo kwa kichupo: Zote, Watu, Machapisho, Picha, Video, Muziki, Moja kwa Moja.",
+          "4": "Vinjari mada na kategoria zinazovuma kwenye ukurasa wa kuchunguza.",
+          "5": "Bofya mada inayovuma ili kuona machapisho yote yanayohusiana.",
+          "6": "Bofya mtumiaji katika matokeo ya utafutaji ili kutembelea wasifu wake."
+        },
+        "tips": {
+          "1": "Utafutaji unasaidia majina ya watumiaji, anwani za pochi, na maneno muhimu ya maudhui.",
+          "2": "Mada zinazovuma husasishwa kulingana na shughuli za hivi majuzi za kuchapisha."
+        }
+      },
+      "profile": {
+        "title": "Wasifu",
+        "intro": "Wasifu wako unaonyesha machapisho yako, wafuasi, unaowafuata, na taarifa za pochi.",
+        "steps": {
+          "1": "Bofya avatar yako au 'Wasifu' kwenye upau wa pembeni ili kuona wasifu wako.",
+          "2": "Bofya 'Hariri Wasifu' ili kusasisha jina lako la kuonyesha, bio, na avatar.",
+          "3": "Pakia picha ya wasifu kwa kubofya avatar yako katika hali ya kuhariri.",
+          "4": "Tazama hesabu zako za wafuasi na unaowafuata kwenye ukurasa wako wa wasifu.",
+          "5": "Vinjari machapisho yako mwenyewe, media, na maudhui uliyopenda kupitia vichupo vya wasifu.",
+          "6": "Nakili anwani yako ya pochi kwa kubofya ikoni ya kunakili karibu nayo.",
+          "7": "Tembelea wasifu wa watumiaji wengine kwa kubofya jina lao la mtumiaji au avatar mahali popote kwenye jukwaa."
+        },
+        "tips": {
+          "1": "Jina lako la mtumiaji ni la kipekee na linaonekana katika URL yako ya wasifu (dehub.io/@username).",
+          "2": "Mipangilio ya faragha hukuruhusu kudhibiti ni nani anayeweza kuona hesabu zako za wafuasi."
+        }
+      },
+      "messages": {
+        "title": "Ujumbe",
+        "intro": "Tuma ujumbe wa moja kwa moja kwa watumiaji wengine kwenye jukwaa.",
+        "steps": {
+          "1": "Bofya 'Ujumbe' kwenye upau wa pembeni ili kufungua ukurasa wa kutuma ujumbe.",
+          "2": "Bofya kitufe cha kutunga ili uanze mazungumzo mapya.",
+          "3": "Tafuta mtumiaji kwa jina la mtumiaji ili umtumie ujumbe.",
+          "4": "Andika ujumbe wako na ubonyeze tuma.",
+          "5": "Tazama historia yako ya mazungumzo kwenye orodha ya ujumbe.",
+          "6": "Bofya mazungumzo ili uendelee kupiga gumzo."
+        },
+        "tips": {
+          "1": "Utapokea arifa mtu anapokutumia ujumbe.",
+          "2": "Waundaji wanaweza kufunga ujumbe kwa kutaka kidokezo."
+        }
+      },
+      "ai-assistant": {
+        "title": "Msaidizi wa AI",
+        "intro": "Piga gumzo na msaidizi wa ndani wa AI wa DeHub kwa usaidizi, habari, na kazi za ubunifu.",
+        "steps": {
+          "1": "Bofya 'Msaidizi' kwenye upande wa kando ili ufungue gumzo la AI.",
+          "2": "Andika swali au ombi lako kwenye sehemu ya kuingiza gumzo.",
+          "3": "AI inaweza kusaidia na habari za crypto, maswali kuhusu jukwaa, na maarifa ya jumla.",
+          "4": "Anzisha mazungumzo mapya kwa kubofya kitufe cha gumzo jipya.",
+          "5": "Tazama historia yako ya mazungumzo kwenye upande wa kando wa ukurasa wa msaidizi.",
+          "6": "Unaweza kuambatisha picha kwa AI kuchambua."
+        },
+        "tips": {
+          "1": "AI inakumbuka muktadha ndani ya mazungumzo.",
+          "2": "Unaweza kumuuliza AI kuhusu vipengele vya DeHub, istilahi za crypto, au maswali ya jumla.",
+          "3": "Mazungumzo yaliyopita huhifadhiwa na yanaweza kufikiwa wakati wowote."
+        }
+      },
+      "notifications": {
+        "title": "Arifa",
+        "intro": "Pata taarifa kuhusu vipendwa, maoni, vidokezo, wafuasi, na shughuli zingine kwenye maudhui yako.",
+        "steps": {
+          "1": "Bofya ikoni ya kengele au 'Arifa' kwenye upande wa kando.",
+          "2": "Tazama arifa zote katika orodha ya mpangilio wa wakati.",
+          "3": "Bofya arifa ili uende kwenye maudhui yanayohusiana.",
+          "4": "Arifa zinajumuisha: wafuasi wapya, kura za machapisho, maoni, vidokezo, na vitajo.",
+          "5": "Arifa ambazo hazijasomwa huangaziwa — huwekwa kama zilizosomwa zinapoonekana."
+        },
+        "tips": {
+          "1": "Beji ya arifa inaonyesha idadi ya arifa ambazo hazijasomwa.",
+          "2": "Arifa za kidokezo zinaonyesha idadi ya tokeni ulizopokea."
+        }
+      },
+      "wallet": {
+        "title": "Mkoba",
+        "intro": "Tazama salio lako la tokeni za DeHub katika minyororo mingi, angalia amana za staking, na udhibiti mali zako.",
+        "steps": {
+          "1": "Bofya 'Mkoba' kwenye upande wa kando ili ufungue ukurasa wa mkoba.",
+          "2": "Tazama salio lako lote la tokeni lililojumlishwa katika minyororo yote inayotumika.",
+          "3": "Angalia maelezo kwa kila mnyororo: Ethereum, Base, BNB Chain, na zaidi.",
+          "4": "Angalia amana zako za kuweka rehani na tuzo zako.",
+          "5": "Bofya 'Refresh Scan' ili kusasisha salio lako kutoka kwa data ya kwenye mnyororo.",
+          "6": "Nakili anwani ya pochi yako ili kupokea tokeni kutoka kwa wengine."
+        },
+        "tips": {
+          "1": "Salio husasishwa kiotomatiki lakini unaweza kulazimisha kusasisha wakati wowote.",
+          "2": "Pochi huonyesha salio la kioevu (linapatikana) na lililowekwa rehani."
+        }
+      },
+      "staking": {
+        "title": "Kuweka rehani",
+        "intro": "Weka rehani tokeni zako za DeHub ili kupata tuzo na kuongeza nguvu zako za kupiga kura katika utawala.",
+        "steps": {
+          "1": "Nenda kwenye ukurasa wa 'Staking' kutoka upande wa kando.",
+          "2": "Ingiza idadi ya tokeni unazotaka kuweka rehani.",
+          "3": "Chagua mnyororo unaotaka kuweka rehani juu yake.",
+          "4": "Thibitisha muamala katika pochi yako (poche za nje) au hutekelezwa kiotomatiki (kuingia kwa kijamii).",
+          "5": "Tazama kiasi chako kilichowekwa rehani na tuzo zozote zinazosubiri.",
+          "6": "Ili kuondoa rehani, ingiza kiasi na thibitisha muamala wa kuondoa rehani."
+        },
+        "tips": {
+          "1": "Kuweka rehani huongeza uzito wa kura yako katika mapendekezo ya utawala.",
+          "2": "Watumiaji wa kuingia kwa kijamii hawahitaji gesi ili kuweka rehani — ni bila gesi.",
+          "3": "Unaweza kuweka rehani kwenye minyororo mingi kwa wakati mmoja."
+        }
+      },
+      "leaderboard": {
+        "title": "Ubao wa wanaoongoza",
+        "intro": "Angalia ni nani yuko juu! Ubao wa wanaoongoza huorodhesha watumiaji kwa salio, matumizi ya kila siku, na mada zinazovuma.",
+        "steps": {
+          "1": "Nenda kwenye ukurasa wa 'Leaderboard' kutoka upande wa kando.",
+          "2": "Badili kati ya vichupo: Salio, Matumizi ya Kila Siku, na Mazungumzo ya Mji.",
+          "3": "Kichupo cha Salio huorodhesha watumiaji kulingana na jumla ya mali zao za tokeni.",
+          "4": "Kichupo cha Matumizi ya Kila Siku kinaonyesha ni nani amekuwa akitumia sana kupeana vidokezo katika saa 24 zilizopita.",
+          "5": "Mazungumzo ya Mji huonyesha mada/kategoria zinazojadiliwa zaidi.",
+          "6": "Bofya mtumiaji yeyote ili kutembelea wasifu wake.",
+          "7": "Ubao wa wanaoongoza husasishwa mara kwa mara siku nzima."
+        },
+        "tips": {
+          "1": "Uwekaji nafasi wa kila siku hurudiwa kila saa 24.",
+          "2": "Mazungumzo ya Mji hufuatilia kategoria za neno moja kutoka kwa hashtags."
+        }
+      },
+      "command-centre": {
+        "title": "Kituo cha Amri",
+        "intro": "Muhtasari wa dashibodi unaoonyesha vipimo vyako muhimu na shughuli za jukwaa kwa haraka.",
+        "steps": {
+          "1": "Bofya 'Command Centre' kwenye upau wa kando.",
+          "2": "Tazama muhtasari wa wasifu wako, ikiwa ni pamoja na idadi ya machapisho, wafuasi, na ushiriki.",
+          "3": "Ona shughuli zako za hivi karibuni na mada zinazovuma.",
+          "4": "Fikia viungo vya haraka kwa vipengele vinavyotumiwa mara kwa mara."
+        },
+        "tips": {
+          "1": "Command Centre inakupa mwonekano wa jumla wa uwepo wako wa DeHub."
+        }
+      },
+      "governance": {
+        "title": "Utawala",
+        "intro": "Shiriki katika utawala wa jukwaa kwa kuunda mapendekezo na kupiga kura kwenye maamuzi ya jumuiya.",
+        "steps": {
+          "1": "Nenda kwenye 'Governance' kutoka upau wa kando.",
+          "2": "Vinjari mapendekezo yanayoendelea yaliyowasilishwa na jumuiya.",
+          "3": "Bofya pendekezo ili kusoma maelezo yake kamili na majadiliano.",
+          "4": "Piga kura kwenye mapendekezo kwa kutumia vitufe vya gumba juu/chini — uzito wa kura yako unategemea ni tokeni ngapi za DeHub umeweka hisa.",
+          "5": "Acha maoni kwenye mapendekezo ili kujadili na jumuiya.",
+          "6": "Wasilisha pendekezo lako kwa kubofya kitufe cha 'Create Proposal'."
+        },
+        "tips": {
+          "1": "Nguvu yako ya kupiga kura inatambuliwa na idadi ya tokeni ulizoweka hisa.",
+          "2": "Wenye beji wanaweza kupata uzito wa ziada wa kura.",
+          "3": "Mapendekezo hupitia hatua: Inayoendelea → Imepita/Imetupwa."
+        }
+      },
+      "bookmarks": {
+        "title": "Alamisho",
+        "intro": "Hifadhi machapisho kwenye alamisho zako kwa ufikiaji rahisi baadaye.",
+        "steps": {
+          "1": "Bofya ikoni ya alamisho kwenye chapisho lolote ili kulihifadhi.",
+          "2": "Nenda kwenye 'Bookmarks' kwenye upau wa kando ili kuona machapisho yote yaliyohifadhiwa.",
+          "3": "Bofya chapisho lililowekwa alamisho ili kuliona kwa ukamilifu.",
+          "4": "Ondoa alamisho kwa kubofya ikoni ya alamisho tena."
+        },
+        "tips": {
+          "1": "Alamisho ni za faragha — ni wewe tu unaweza kuona machapisho yako yaliyohifadhiwa.",
+          "2": "Hakuna kikomo kwa idadi ya machapisho unayoweza kuweka alamisho."
+        }
+      },
+      "settings": {
+        "title": "Mipangilio",
+        "intro": "Customize uzoefu wako wa DeHub na mapendeleo ya lugha, faragha, na onyesho.",
+        "steps": {
+          "1": "Bofya 'Settings' kwenye upau wa kando.",
+          "2": "Badilisha lugha yako ya onyesho kutoka kwa kichezaji cha lugha.",
+          "3": "Rekebisha mipangilio ya faragha: dhibiti ni nani anayeona idadi yako ya wafuasi na orodha ya unaofuata.",
+          "4": "Weka mapendeleo yako ya machapisho ya kawaida.",
+          "5": "Dhibiti mapendeleo ya arifa."
+        },
+        "tips": {
+          "1": "DeHub inasaidia lugha nyingi — kiolesura kizima kinatafsiriwa.",
+          "2": "Mipangilio ya faragha inatumika mara moja."
+        }
+      },
+      "posting-allowance": {
+        "title": "Kiwango chako cha Kila Siku cha Kuchapisha",
+        "intro": "Kuchapisha ni bure kila siku hadi kiwango kinachoongezeka na beji yako ya kuweka hisa. Kila mtu huanza na machapisho kumi ya maandishi na gigabyte moja ya video, picha na sauti kwa siku. Pitia mojawapo na iliyobaki ya siku hiyo italipiwa kwa tokeni za DeHub — tu kwa sehemu inayozidi.",
+        "steps": {
+          "1": "Chapisha kama kawaida. Ndani ya kiwango hakuna kinachotozwa na hakuna kinachoulizwa kwako.",
+          "2": "Machapisho ya maandishi na media ni sehemu tofauti, kwa hivyo siku inayotumiwa kupakia video bado inaacha machapisho kumi ya maandishi bila malipo.",
+          "3": "Wakati chapisho lingepita kiwango, programu huweka bei yake kwanza na huangalia mkoba wako unaweza kulipia kabla ya chochote kupakiwa.",
+          "4": "Chapisho huchapishwa kama lingekuwa ndani ya kiwango — kuchapisha hakungojei malipo.",
+          "5": "Kisha unathibitisha uhamisho mmoja kwa chapisho hilo tu, uliowekwa kwenye moja ya Base au BNB Chain inayoshikilia tokeni za kutosha za DeHub.",
+          "6": "Sehemu zote mbili hurudiwa usiku wa manane UTC."
+        },
+        "tips": {
+          "1": "Ziada ni ya uwiano: 200 MB zaidi ya kiwango chako hugharimu 200 MB, sio gigabyte nzima.",
+          "2": "Machapisho tena, maoni, miitikio, vidokezo na ujumbe havigharimu chochote na haviathiri kiwango.",
+          "3": "Kukataa malipo na chapisho linabaki juu — kiasi huzuia tu chapisho lako linalofuata lililolipwa hadi litakapolipwa. Kiwango cha bure cha kesho ni chako kila wakati.",
+          "4": "Beji ya kuweka hisa huongeza kiwango cha bure na hupunguza bei ya chochote kilicho zaidi yake."
+        }
+      },
+      "reactions-and-safety": {
+        "title": "Miitikio, Kunyamazisha & Maudhui ya Watu Wazima",
+        "intro": "Kuna miitikio tisa nyuma ya kitufe cha kupenda, na seti ya vidhibiti vya kuamua unachoona na nani anaweza kukufikia.",
+        "steps": {
+          "1": "Shikilia kidole gumba juu kwenye chapisho lolote ili kufungua trei ya miitikio: penda, furaha, heshima, moto, lol, huzuni, kulia, kutoridhika na kinyesi.",
+          "2": "Saba chanya huhesabiwa kuelekea jumla ya kupenda kwa chapisho; kutoridhika na kinyesi huhesabiwa dhidi yake.",
+          "3": "Mwitikio wako huathiriwa na beji yako ya kuweka hisa, kwa hivyo mwitikio wa mmiliki wa beji huhamisha hesabu zaidi kuliko kura moja.",
+          "4": "Gusa X kwenye kichwa cha chapisho ili kunyamazisha mwandishi wake — wanaondoka kwenye malisho yako mara moja.",
+          "5": "Waundaji huweka alama machapisho yao kama ya watu wazima wanapoyaandika; machapisho hayo hukaa nje ya malisho ya umma.",
+          "6": "Ili kuona machapisho ya watu wazima kila mahali, washa 'Onyesha maudhui ya watu wazima' katika Mipangilio."
+        },
+        "tips": {
+          "1": "Chapisho la watu wazima bado linaonekana kikamilifu kwenye wasifu wa mwandishi na kwa watu wanaowafuata.",
+          "2": "Kuzuia kutoka kwa wasifu huenda zaidi ya kunyamazisha na hukata ujumbe pia.",
+          "3": "Trei ya miitikio huonyesha ni nani aliyetenda na kwa nini, kwa hivyo unaweza kuona chumba badala ya nambari tu."
+        }
+      },
+      "stages": {
+        "title": "Stages (Vyumba vya Sauti vya Moja kwa Moja)",
+        "intro": "Stages ni vyumba vya sauti vya moja kwa moja vilivyojengwa ndani ya DeHub. Mwenyeji hufungua chumba, huleta wazungumzaji juu, na mtu yeyote anaweza kuingia kusikiliza kutoka kwa ukurasa wa Stages au kiungo kilichoshirikiwa.",
+        "steps": {
+          "1": "Fungua 'Stages' kwenye upande ili kuona kinachoendelea sasa na kinachopangwa.",
+          "2": "Gusa jukwaa la moja kwa moja ili ujiunge kama msikilizaji, au weka ukumbusho kwenye jukwaa lililoratibiwa na upate arifa linapoanza.",
+          "3": "Anzisha yako mwenyewe kutoka ukurasa huo huo — unaweza kwenda moja kwa moja kutoka kwa kivinjari, bila OBS au ufunguo wa utiririshaji.",
+          "4": "Kama mwenyeji, leta wazungumzaji kwenye jukwaa, uwanyamazishe au uwafukuze, shiriki skrini yako, na udhibiti kibodi ya sauti.",
+          "5": "Wasikilizaji hutuma miitikio ya moja kwa moja na kuzungumza kwenye gumzo la chumba bila kuingia kwenye jukwaa.",
+          "6": "Kila jukwaa hurekodi, na rekodi huchezwa tena baadaye kutoka kwa kadi inayoonekana."
+        },
+        "tips": {
+          "1": "Madaftari ya moja kwa moja huandika kila mzungumzaji na kutafsiri kwa lugha yoyote unayoisoma.",
+          "2": "Dubbing ya moja kwa moja inaweza kuzungumza chumba kwa sauti iliyofanywa kwa sauti ya mwenyeji, iliyotozwa kwa dakika kwa tokeni za DeHub.",
+          "3": "Wenyeji wanaweza kuweka kituo cha redio hewani au kucheza klipu zao za muziki kati ya mazungumzo.",
+          "4": "Kichezaji kidogo huweka chumba kiendelee kwenye kona huku ukivinjari programu zingine."
+        }
+      },
+      "communities": {
+        "title": "Jamii na Matukio",
+        "intro": "Jamii ni nafasi zinazoendeshwa na wanachama na malisho yao wenyewe, wanachama na shughuli. Matukio huongeza programu zilizowekwa muda juu yao.",
+        "steps": {
+          "1": "Fungua 'Jamii' kwenye upande wa pembeni na vinjari zile za umma.",
+          "2": "Jiunge kwa kugusa mara moja. Shughuli mpya huonyeshwa kama beji ambayo haijasomwa kwenye urambazaji.",
+          "3": "Chapisha, jadili, endesha kura na toa vidokezo ndani ya malisho ya jamii.",
+          "4": "Wamiliki wa jamii husimamia nafasi yao wenyewe na wanaweza kuwapa haki za usimamizi wengine.",
+          "5": "Fungua 'Matukio' kwa programu zilizopangwa, na ukurasa kamili kwa kila tukio unaweza kufuata moja kwa moja."
+        },
+        "tips": {
+          "1": "Gumzo la jamii linaunga mkono @mentions na @here, kwa hivyo chapisho linaweza kufikia chumba.",
+          "2": "Kiungo cha mwaliko hukuruhusu kuleta watu moja kwa moja kwenye jamii."
+        }
+      },
+      "arcade": {
+        "title": "Arcade",
+        "intro": "Michezo mitano huendeshwa ndani ya DeHub kwenye kichupo cha kivinjari — hakuna cha kusakinisha, hakuna cha kununua.",
+        "steps": {
+          "1": "Fungua 'Arcade' kwenye upande wa pembeni.",
+          "2": "Chagua mchezo: King's Gambit (chess ya 3D yenye ngazi ya Elo mtandaoni), Claude of Duty (mchezaji anayezalisha sanaa yake mwenyewe wakati wa kupakia), Jungle Trail (safari ya msitu wa procedurally), Street Slayer (mchezo wa kupigana uliofanywa kwa DeHub) au Chartopia (sakafu ya biashara inayoweza kutembea).",
+          "3": "Cheza kwenye kichupo. King's Gambit na Street Slayer huweka bao za wanaoongoza.",
+          "4": "Chartopia pia huendeshwa kwenye kifaa cha kichwa cha VR kupitia WebXR."
+        },
+        "tips": {
+          "1": "Wawili wao hufichwa ndani ya mandhari ya mwonekano — weka programu kuwa Vita kwa Claude of Duty, au Msitu kwa Jungle Trail.",
+          "2": "Kila mchezo una kadi yake ya kushiriki, kwa hivyo kiungo cha moja huenea vizuri popote unapoichapisha."
+        }
+      },
+      "bounties-stores": {
+        "title": "Bounties na Maduka",
+        "intro": "Njia mbili za kugeuza jukwaa kuwa mapato: chapisha au dai zawadi, au fungua duka na uuze kwa hadhira yako.",
+        "steps": {
+          "1": "Fungua 'Bounties' ili kuvinjari kazi zilizo wazi, zilizochujwa kwa kategoria au sarafu.",
+          "2": "Dai moja, fanya kazi, na uwasilishe ili kukusanya zawadi — mtu yeyote anaweza kuwa wawindaji, hakuna maombi yanayohitajika.",
+          "3": "Weka dau lako mwenyewe na maelezo mafupi na tuzo katika tokeni za DeHub au USDC. Inaingia kwenye escrow wakati tu unapoipa.",
+          "4": "Fungua 'Duka' ili kuanzisha duka lenye ukurasa wake, chapa na orodha.",
+          "5": "Bidhaa huwekwa bei na kulipwa kwa tokeni za DeHub kupitia pochi iliyojengewa ndani, bila malipo ya nje."
+        },
+        "tips": {
+          "1": "Dau huandaliwa katika Mitandao ya Kijamii, Kupunguza na Mikataba.",
+          "2": "Mtiririko wa mizozo hutatua kutokubaliana juu ya uwasilishaji, kwa hivyo escrow daima hutatuliwa kwa haki.",
+          "3": "Waundaji hutumia dau kukua jamii — hisa, klipu na miitikio zote ni kazi halali."
+        }
+      },
+      "creator-studio": {
+        "title": "Studio ya Muumba na Mhariri",
+        "intro": "Studio ya Muumba hutoa picha, video, muziki, sauti na miundo ya 3D kutoka kwa kidokezo, na huwapa mhariri — ikiwa ni pamoja na mhariri kamili wa video wa nyimbo nyingi unaoendeshwa kwenye kivinjari.",
+        "steps": {
+          "1": "Fungua Studio ya Muumba na ueleze unachotaka kitengenezwe.",
+          "2": "Seva inatoa gharama kabla kazi haijaanza, kwa hivyo unaona inagharimu kiasi gani kabla ya kuitumia.",
+          "3": "Renders huendelea kwenye foleni iliyoshirikiwa huku ukiendelea kuvinjari programu.",
+          "4": "Panga matokeo katika kihariri cha mtindo wa Canva, au fungua kihariri cha video kwa ratiba halisi yenye kukata, kuweka tabaka na kuuza nje.",
+          "5": "Tupa kipande kilichokamilika moja kwa moja kwenye chapisho, kifupi au orodha ya duka."
+        },
+        "tips": {
+          "1": "Maktaba ya mali hisa ya bure inakaa kando ya Studio kwa chochote ambacho ungependa kutengeneza.",
+          "2": "Uundaji hulipiwa kwa tokeni za DeHub kutoka kwa pochi yako — unasaini uhamisho mmoja kwa kila kazi, na bei inatolewa kabla ya kulipa.",
+          "3": "Watumiaji wazito wanaweza kuchukua mpango wa Ultra, Timu au Scale, ambao hutuma posho ya tokeni ya kila mwezi moja kwa moja kwenye pochi yao."
+        }
+      },
+      "buying-dhb": {
+        "title": "Kununua Tokeni",
+        "intro": "Nunua tokeni za DeHub moja kwa moja ndani ya programu kwa kutumia kiolesura cha kubadilishana kilichojengewa ndani.",
+        "steps": {
+          "1": "Nenda kwenye ukurasa wa 'Nunua' kutoka upande wa upande.",
+          "2": "Chagua tokeni unayotaka kubadilishana nayo (k.m., ETH, USDC).",
+          "3": "Ingiza kiasi unachotaka kutumia au idadi ya tokeni unazotaka kupokea.",
+          "4": "Kagua kiwango cha ubadilishaji na matokeo yanayokadiriwa.",
+          "5": "Bofya ikoni ya gia ya mipangilio ili kurekebisha uvumilivu wa kuteleza (chaguo-msingi ni 1%).",
+          "6": "Thibitisha shughuli ya kubadilishana.",
+          "7": "Tokeni za DeHub zitaonekana kwenye pochi yako mara tu shughuli itakapokamilika."
+        },
+        "tips": {
+          "1": "Uvumilivu wa juu wa kuteleza = uwezekano mkubwa wa kutekelezwa, lakini uwezekano wa bei mbaya zaidi.",
+          "2": "Daima angalia kiwango cha ubadilishaji kabla ya kuthibitisha.",
+          "3": "Unaweza kuweka kuteleza maalum katika paneli ya mipangilio."
+        }
+      },
+      "bridge": {
+        "title": "Bridge",
+        "intro": "Sogeza tokeni zako za DeHub kati ya blockchains zinazotumika kwa kutumia daraja la msalaba.",
+        "steps": {
+          "1": "Nenda kwenye ukurasa wa 'Bridge' kutoka upande wa pembeni.",
+          "2": "Chagua mnyororo chanzo (ambapo tokeni zako ziko kwa sasa).",
+          "3": "Chagua mnyororo lengwa (unapotaka kuziingiza).",
+          "4": "Ingiza idadi ya tokeni za kuhamisha.",
+          "5": "Kagua ada ya uhamishaji na muda uliokadiriwa wa kuwasili.",
+          "6": "Thibitisha muamala wa uhamishaji.",
+          "7": "Subiri muamala ukamilike — uhamishaji unaweza kuchukua dakika chache."
+        },
+        "tips": {
+          "1": "Ada za uhamishaji hutofautiana kulingana na jozi za minyororo.",
+          "2": "Uhamishaji kwa kawaida huchukua dakika 1-5 kulingana na minyororo inayohusika.",
+          "3": "Daima angalia mara mbili mnyororo lengwa kabla ya kuthibitisha."
+        }
+      },
+      "music-tv": {
+        "title": "Muziki na TV",
+        "intro": "Furahia maudhui ya vyombo vya habari moja kwa moja ndani ya DeHub — cheza muziki na utazame chaneli za moja kwa moja za TV.",
+        "steps": {
+          "1": "Nenda kwenye 'Music' kutoka upande wa pembeni ili kuvinjari na kucheza machapisho ya muziki.",
+          "2": "Nenda kwenye 'TV' ili kufikia chaneli za moja kwa moja za TV.",
+          "3": "Vinjari chaneli kulingana na kategoria au nchi.",
+          "4": "Bofya chaneli ili kuanza kutazama.",
+          "5": "Tumia vidhibiti vya kichezaji kurekebisha sauti na uchezaji.",
+          "6": "Ripoti chaneli zilizovunjika kwa kutumia kitufe cha kuripoti."
+        },
+        "tips": {
+          "1": "Chaneli za TV huangaliwa na jumuiya kwa uaminifu.",
+          "2": "Machapisho ya muziki yanaweza kuchezwa wakati wa kuvinjari maudhui mengine."
+        }
+      },
+      "post-info": {
+        "title": "Maelezo ya Chapisho na Sehemu",
+        "intro": "Chapisho lililochapishwa ni NFT iliyogawanywa katika sehemu 1,000. Ukurasa wa Maelezo ya Chapisho huonyesha data kwenye mnyororo, takwimu za ushiriki, mgawanyo wa umiliki, na hukuruhusu kuuza sehemu za chapisho lolote — kwenye chapisho ambalo halijachapishwa hutoa kuchapisha badala yake.",
+        "steps": {
+          "1": "Gusa ikoni ya 'ⓘ' kwenye chapisho lolote ili kufungua ukurasa wake wa Maelezo ya Chapisho.",
+          "2": "Juu utaona Kitambulisho cha Tokeni (kipekee kwenye mnyororo) na hhashi ya muamala — bofya hhashi ili kuiona kwenye kiangalizi cha kuzuia.",
+          "3": "Chini ya hapo, takwimu za ushiriki huonyesha jumla ya vipendwa, visivyopendezwa, maoni, maoni, na vidokezo vilivyopokelewa.",
+          "4": "Sehemu ya Wamiliki huonyesha upau wa maendeleo wa ni sehemu ngapi kati ya 1,000 ambazo mhusika bado anamiliki, pamoja na orodha ya wamiliki wote wa sehemu na salio na asilimia zao.",
+          "5": "Ikiwa chapisho ni malipo-kwa-tazama (PPV), utaona bei, sarafu, na ni watumiaji wangapi wamenunua ufikiaji.",
+          "6": "Wamiliki wa chapisho wanaweza kubadilisha mwonekano (wa Umma, Usioorodheshwa, au wa Kibinafsi) na kuhariri kichwa/maelezo moja kwa moja kutoka kwa ukurasa huu."
+        },
+        "tips": {
+          "1": "Chapisho lililochapishwa hivi karibuni huanza na mhusika akimiliki sehemu zote 1,000 (umiliki wa 100%).",
+          "2": "Hhashi ya muamala huunganisha kwenye BaseScan au BscScan kulingana na mnyororo.",
+          "3": "Machapisho yasiyoorodheshwa hayataonekana kwenye milisho lakini bado yanaweza kufikiwa kupitia kiungo cha moja kwa moja."
+        }
+      },
+      "trading-fractions": {
+        "title": "Sehemu za Biashara",
+        "intro": "Biashara ya sehemu — kuvinjari matangazo, kutoa ofa, kutangaza yako mwenyewe — huishi kwenye programu ya wavuti kwenye dehub.io, kwenye ukurasa wa Taarifa ya Chapisho la kila chapisho.",
+        "steps": {
+          "1": "Fungua dehub.io kwenye kivinjari na uingie ukitumia akaunti hiyo hiyo.",
+          "2": "Fungua ukurasa wa Taarifa ya Chapisho la chapisho na ubadilishe kwenye kichupo chake cha Soko.",
+          "3": "Vinjari matangazo, toa ofa kwa bei yako, au orodhesha sehemu unazoshikilia.",
+          "4": "Mara baada ya biashara kukamilika, mabadiliko yanaonekana kwenye kichupo chako cha Sehemu hapa kwenye simu ya mkononi."
+        },
+        "tips": {
+          "1": "Kumiliki sehemu za chapisho kunamaanisha unashikilia sehemu ya NFT hiyo kwenye mnyororo.",
+          "2": "Angalia wamiliki wa chapisho kwenye soko la wavuti ili kuona usambazaji wa umiliki kabla ya kununua.",
+          "3": "Kama mtengenezaji, kuuza sehemu huwaruhusu mashabiki kumiliki maudhui yako."
+        }
+      },
+      "minting-posts": {
+        "title": "Kuunda Machapisho (Kuunda NFTs)",
+        "intro": "Kuunda ni hiari. Chapisho huchapishwa nje ya mtandao wakati unapolituma — hakuna pochi, hakuna sahihi, hakuna gesi — na unaweza kulitengeneza kama NFT wakati wowote unapotaka, ama unapoliunda au baadaye kutoka kwenye chapisho lenyewe.",
+        "steps": {
+          "1": "Bofya kitufe cha 'Chapisha' kwenye upande wa kando (kompyuta) au kitufe cha + (simu).",
+          "2": "Andika maandishi yako, ambatisha media (picha, video, sauti), na ongeza kategoria.",
+          "3": "Acha 'Tengeneza chapisho' ikiwa imezimwa ili kuchapisha nje ya mtandao, au iwashe ili kutengeneza unapoichapisha.",
+          "4": "Kuchapisha hakusubiri kamwe kwenye mnyororo: chapisho linaonekana kwenye malisho kwa njia yoyote ile.",
+          "5": "Ili kuweka alama baadaye, fungua ukurasa wa taarifa wa '' 'wa chapisho na utumie hatua ya kuweka alama hapo.",
+          "6": "Mara baada ya kutengenezwa, chapisho linapata Kitambulisho cha Alama na hash ya muamala unaweza kuthibitisha kwenye mnyororo, na unashikilia sehemu zake zote 1,000."
+        },
+        "tips": {
+          "1": "Usajili wa kijamii, barua pepe na SMS hulipa gesi kabisa — Ada za uchoraji za DeHub.",
+          "2": "Watumiaji wa nje wa mkoba wanahitaji ETH kwenye Msingi au BNB kwenye Mnyororo wa BNB kwa gesi.",
+          "3": "Uwekaji picha ndio unaofanya chapisho liwe la biashara na la kifalme. Chapisho ambalo halijachapishwa bado linapata vidokezi na maoni.",
+          "4": "Rekodi ya mnyororo ni ya kudumu mara baada ya kuchapishwa, hata ikiwa chapisho litafutwa baadaye kutoka kwenye mpasho."
+        }
+      },
+      "glossary": {
+        "title": "Faharasa",
+        "intro": "Faharasa kamili ya istilahi za crypto na jukwaa ili kukusaidia kuvinjari Web3.",
+        "steps": {
+          "1": "Nenda kwenye 'Glossary' kutoka kwenye upau wa pembeni.",
+          "2": "Vinjari maneno kwa herufi au tumia utafutaji ili kupata maneno mahususi.",
+          "3": "Bofya kwenye istilahi ili kuona ufafanuzi wake kamili na ufafanuzi.",
+          "4": "Masharti yanashughulikia dhana za crypto, istilahi za DeFi, na vipengele maalum vya DeHub."
+        },
+        "tips": {
+          "1": "Rasilimali nzuri kwa wageni kwenye crypto na Web3.",
+          "2": "Faharasa husasishwa mara kwa mara na masharti mapya."
+        }
+      }
     }
   }
 }
