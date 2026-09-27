@@ -10,15 +10,16 @@
  * this app runs ExoPlayer out of memory.
  */
 
-import React, { memo, useEffect, useState } from "react";
+import React, { memo, useContext, useEffect, useState } from "react";
 import { View, StyleSheet, Text, Pressable } from "react-native";
 import { useEvent } from "expo";
 import { useTranslation } from "react-i18next";
-import { VideoView, useVideoPlayer } from "expo-video";
+import { VideoView } from "expo-video";
+import { NavigationContext } from "@react-navigation/native";
 import { DeHubLoader } from "../DeHubLoader";
 import SmartImage from "./SmartImage";
 import Icon from "../ui/Icon";
-import { LIVE_BUFFER_OPTIONS } from "../../libs/videoBuffering";
+import { sharedLivePlayerHolders, useSharedLivePlayer } from "../../libs/sharedLivePlayer";
 
 interface Props {
   /** HLS ladder for the stream. */
@@ -60,11 +61,10 @@ function LivePlayer({ url }: { url: string }) {
   const { t } = useTranslation();
   const [muted, setMuted] = useState(true);
   const [controlsVisible, setControlsVisible] = useState(true);
-  const player = useVideoPlayer(url, p => {
-    p.muted = true;
-    p.loop = false;
-    p.bufferOptions = LIVE_BUFFER_OPTIONS;
-  });
+  // Shared with the live viewer: opening the post takes this same player
+  // over, so the stream carries on instead of reconnecting from a spinner.
+  const player = useSharedLivePlayer(url)!;
+  const focused = useScreenFocused();
   const { status } = useEvent(player, 'statusChange', { status: player.status });
   const { isPlaying } = useEvent(player, "playingChange", { isPlaying: player.playing });
 
@@ -75,13 +75,31 @@ function LivePlayer({ url }: { url: string }) {
   }, [controlsVisible, isPlaying, muted]);
 
   useEffect(() => {
+    if (!focused) {
+      // Another screen is on top. If it is the live viewer it now owns this
+      // player and must be left alone; if nothing else holds it, stop it
+      // rather than stream to a screen nobody can see.
+      const timer = setTimeout(() => {
+        if (sharedLivePlayerHolders(url) <= 1) {
+          try { player.pause(); } catch {}
+        }
+      }, 600);
+      return () => clearTimeout(timer);
+    }
     try {
+      // Back on the feed: the viewer may have left the player unmuted,
+      // backgroundable or paused. The card is always a silent preview.
+      player.muted = muted;
+      player.staysActiveInBackground = false;
+      player.showNowPlayingNotification = false;
       player.play();
     } catch {
       // The player is released with the view; a play() on a torn-down one
       // throws rather than returning, and there is nothing to recover.
     }
-  }, [player]);
+    // `muted` is applied by the button itself; re-running on it would replay.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [player, focused, url]);
 
   return (
     <View style={StyleSheet.absoluteFill}>
@@ -89,7 +107,10 @@ function LivePlayer({ url }: { url: string }) {
         event.stopPropagation();
         setControlsVisible(value => !value);
       }}>
-      <VideoView
+      {/* Unmounted while another screen is on top: a VideoView that mounts
+          takes the player's picture, and the viewer is showing this player.
+          Remounting on return is what pulls the picture back to the card. */}
+      {focused && <VideoView
       style={StyleSheet.absoluteFill}
       player={player}
       onFirstFrameRender={() => setFirstFrame(true)}
@@ -98,7 +119,7 @@ function LivePlayer({ url }: { url: string }) {
       // A SurfaceView is composited beneath the app window, so the card's
       // rounded-corner clip never reached it on Android.
       surfaceType="textureView"
-      />
+      />}
       </Pressable>
       {status !== 'error' && (!firstFrame || status === 'loading') && (
         <View pointerEvents="none" style={[StyleSheet.absoluteFill, { alignItems: 'center', justifyContent: 'center' }]}><DeHubLoader size={40} /></View>
@@ -122,6 +143,26 @@ function LivePlayer({ url }: { url: string }) {
       </View>}
     </View>
   );
+}
+
+/**
+ * Whether the screen holding this card is the one in front. A card rendered
+ * outside any navigator counts as always in front.
+ */
+function useScreenFocused(): boolean {
+  const navigation = useContext(NavigationContext);
+  const [focused, setFocused] = useState(() => navigation?.isFocused() ?? true);
+  useEffect(() => {
+    if (!navigation) return;
+    setFocused(navigation.isFocused());
+    const offFocus = navigation.addListener("focus", () => setFocused(true));
+    const offBlur = navigation.addListener("blur", () => setFocused(false));
+    return () => {
+      offFocus();
+      offBlur();
+    };
+  }, [navigation]);
+  return focused;
 }
 
 function LiveFeedPreviewComponent({ url, thumbnail, active, label }: Props) {
