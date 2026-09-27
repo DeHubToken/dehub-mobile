@@ -155,6 +155,8 @@
     "trendingTopics": "热门话题"
   },
   "settings": {
+    "showOnline": "顯示我線上",
+    "showOnlineDesc": "DeHub 期间，你发信息的人会看到你名字旁边有个绿点",
     "smartReplies": "建议回复",
     "smartRepliesDesc": "伓聊天内底写两条会使点其回复。建议顶头其 × 会共伊关掉。",
     "ensHandle": "ENS 名",
@@ -5017,6 +5019,7 @@
     "originalText": "原始文字"
   },
   "dm": {
+    "online": "線上",
     "attachFailed": "无法附加该文件。",
     "removeAttachment": "移除附件",
     "addTip": "添加打赏",

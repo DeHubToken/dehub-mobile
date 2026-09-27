@@ -155,6 +155,8 @@
     "postCount_other": "{{count}} 条帖子"
   },
   "settings": {
+    "showOnline": "显示我在线时",
+    "showOnlineDesc": "当你使用 DeHub 时，你的联系人会在你的名字旁看到一个绿色点",
     "smartReplies": "建议回复",
     "smartRepliesDesc": "在聊天里头写下两条能点嘞回复。建议上头嘞 × 就把它关咾。",
     "ensHandle": "ENS 名儿",
@@ -5017,6 +5019,7 @@
     "originalText": "原文"
   },
   "dm": {
+    "online": "在线",
     "attachFailed": "无法附加该文件。",
     "removeAttachment": "移除附件",
     "addTip": "添加打赏",

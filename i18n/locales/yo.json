@@ -155,6 +155,8 @@
     "postCount_other": "{{count}} awọn ifiweranṣẹ"
   },
   "settings": {
+    "showOnline": "Fi hàn nígbà tí mo wà lórí ayélujára",
+    "showOnlineDesc": "Àwọn ènìyàn tí o fi àtẹ̀jíṣẹ́ ránṣẹ́ rí àmì aláwọ̀ ewé lẹ́gbẹ̀ẹ́ orúkọ rẹ nígbà tí ò ń lo DeHub",
     "smartReplies": "Àwọn èsì tí a dábàá",
     "smartRepliesDesc": "Ó ń kọ èsì méjì tí o lè tẹ̀ nínú ìjíròrò. Àmì × lórí àwọn àbá ń pa á.",
     "ensHandle": "Orúkọ ENS",
@@ -5018,6 +5020,7 @@
     "originalText": "Text Original"
   },
   "dm": {
+    "online": "Ní orí ayélujára",
     "attachFailed": "Kò ṣeé ṣe láti so fáìlì yẹn mọ́.",
     "removeAttachment": "Yọ ìsopọ̀ kúrò",
     "addTip": "Fi ẹ̀bùn kún",

@@ -159,6 +159,8 @@
     "postCount_other": "{{count}} টি পোস্ট"
   },
   "settings": {
+    "showOnline": "আমার অনলাইন থাকলে দেখাও",
+    "showOnlineDesc": "People you message see a green dot next to your name while you're using DeHub",
     "smartReplies": "পরামর্শ দেওয়া জবাব",
     "smartRepliesDesc": "চ্যাটত টিপ মারিবার লাই দুইটা জবাব বানায়। পরামর্শর উপরর × ইতা বন্ধ গরি দেয়।",
     "ensHandle": "ENS নাম",
@@ -5126,6 +5128,7 @@
     "originalText": "আসল লেখা"
   },
   "dm": {
+    "online": "অনলাইন",
     "attachFailed": "হেই ফাইল যোগ করন গেল না।",
     "removeAttachment": "সংযুক্তি সরান",
     "addTip": "টিপ যোগ করন",

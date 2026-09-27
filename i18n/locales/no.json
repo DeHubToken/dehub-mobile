@@ -155,6 +155,8 @@
     "postCount_other": "{{count}} innlegg"
   },
   "settings": {
+    "showOnline": "Vis når jeg er pålogget",
+    "showOnlineDesc": "Folk du sender meldinger til ser en grønn prikk ved siden av navnet ditt mens du bruker DeHub",
     "smartReplies": "Foreslåtte svar",
     "smartRepliesDesc": "Lager to svar du kan trykke på i en chat. × på forslagene slår dette av.",
     "ensHandle": "ENS-navn",
@@ -5017,6 +5019,7 @@
     "originalText": "Original tekst"
   },
   "dm": {
+    "online": "På nett",
     "attachFailed": "Kunne ikke legge ved den filen.",
     "removeAttachment": "Fjern vedlegg",
     "addTip": "Legg til tips",

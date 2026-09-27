@@ -155,6 +155,8 @@
     "postCount_other": "{{count}} postów"
   },
   "settings": {
+    "showOnline": "Pokaż, gdy jestem online",
+    "showOnlineDesc": "Osoby, do których piszesz, widzą zieloną kropkę obok Twojego imienia podczas korzystania z DeHub",
     "smartReplies": "Sugerowane odpowiedzi",
     "smartRepliesDesc": "Przygotowuje dwie odpowiedzi, które możesz dotknąć na czacie. × przy sugestiach je wyłącza.",
     "ensHandle": "Nazwa ENS",
@@ -5017,6 +5019,7 @@
     "originalText": "Oryginalny tekst"
   },
   "dm": {
+    "online": "Online",
     "attachFailed": "Nie udało się załączyć tego pliku.",
     "removeAttachment": "Usuń załącznik",
     "addTip": "Dodaj napiwek",

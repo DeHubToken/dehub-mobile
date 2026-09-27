@@ -155,6 +155,8 @@
     "postCount_other": "{{count}} منشورات"
   },
   "settings": {
+    "showOnline": "اعرض عندما أكون متصلاً بالإنترنت",
+    "showOnlineDesc": "يرى الأشخاص الذين تراسلهم نقطة خضراء بجوار اسمك أثناء استخدام DeHub",
     "smartReplies": "الردود المقترحة",
     "smartRepliesDesc": "كيوجد جوجّ ردود تقدر تنقر عليهم فالمحادثة. علامة × على الاقتراحات كتطفيها.",
     "ensHandle": "سمية ENS",
@@ -5047,6 +5049,7 @@
     "translatedFrom": "مترجم من {{lang}}"
   },
   "dm": {
+    "online": "متصل",
     "attachFailed": "ما قدرناش نرفقو هاد الملف.",
     "removeAttachment": "حيد المرفق",
     "addTip": "زيد بقشيش",

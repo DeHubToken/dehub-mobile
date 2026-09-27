@@ -155,6 +155,8 @@
     "postCount_other": "{{count}} پوسٹاں"
   },
   "settings": {
+    "showOnline": "Nga u shfaq kur jam online",
+    "showOnlineDesc": "Mensen die je een bericht sturen, zien een groen stipje naast je naam terwijl je DeHub gebruikt",
     "smartReplies": "تجویز کیل جواب",
     "smartRepliesDesc": "دو جواب تیار کرے لا جن پر تو چیٹ میں ٹیپ کر سکے لا۔ تجویزن پر × ایکر بند کر دے لا۔",
     "ensHandle": "ENS نام",
@@ -5001,6 +5003,7 @@
     "translatedFrom": "{{lang}} سے ترجمہ کیا گیا"
   },
   "dm": {
+    "online": "آنلاین",
     "attachFailed": "نەتوانرا ئەو فایلە هاوپێچ بکرێت.",
     "removeAttachment": "هاوپێچ لابدە",
     "addTip": "بەخشیش زیاد بکە",

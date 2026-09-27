@@ -155,6 +155,8 @@
     "postCount_other": "okuthunyelwe okungu-{{count}}"
   },
   "settings": {
+    "showOnline": "Bonisa uma ngiku-inthanethi",
+    "showOnlineDesc": "Abantu obathumelela umyalezo babona ichashazi eliluhlaza eceleni kwegama lakho ngenkathi usebenzisa i-DeHub",
     "smartReplies": "Izimpendulo eziphakanyisiwe",
     "smartRepliesDesc": "Ibhala izimpendulo ezimbili ongazithepha engxoxweni. U-× ezincomweni uyakuvala lokhu.",
     "ensHandle": "Igama le-ENS",
@@ -5048,6 +5050,7 @@
     "originalText": "Umbhalo Wasekuqaleni"
   },
   "dm": {
+    "online": "Ku-inthanethi",
     "attachFailed": "Ayikwazanga ukunamathisela lelo fayela.",
     "removeAttachment": "Susa okunamathiselwe",
     "addTip": "Engeza ithiphu",

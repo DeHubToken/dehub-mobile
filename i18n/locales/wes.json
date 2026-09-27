@@ -155,6 +155,8 @@
     "nothingTrending": "Nothing di trend for this window yet."
   },
   "settings": {
+    "showOnline": "Show when I'm online",
+    "showOnlineDesc": "Di pipo wey you dey message go see smol green dot for your name when you dey use DeHub",
     "smartReplies": "Ansa dem weh wi propose",
     "smartRepliesDesc": "E di rait tu ansa weh yu fit tosh fo chat. Da × fo di propose dem di of-am.",
     "ensHandle": "ENS nem",
@@ -4892,6 +4894,7 @@
     "translatedFrom": "We translate am from {{lang}}"
   },
   "dm": {
+    "online": "Online",
     "attachFailed": "We no fit attach dat file.",
     "removeAttachment": "Komot attachment",
     "addTip": "Ad tip",

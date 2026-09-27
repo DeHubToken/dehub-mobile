@@ -40,6 +40,7 @@ import FullScreenVideoPlayer from "../components/common/FullScreenVideoPlayer";
 import { useVoiceRecorder, VoiceNoteRecordingOverlay } from "../components/Comments/VoiceNoteRecorder";
 import type { VoiceNoteResult } from "../components/Comments/VoiceNoteRecorder";
 import Avatar from "../components/common/Avatar";
+import OnlineDot from "../components/common/OnlineDot";
 import ChatHeaderMenuButton from "../components/Chat/ChatHeaderMenuButton";
 import ChatMenu from "../components/Chat/ChatMenu";
 import ConfirmBlockModal from "../components/common/ConfirmBlockModal";
@@ -1578,6 +1579,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
         leftContent={LeftHeader}
         rightContent={RightHeader}
         subtitle={remoteTyping ? "typing…" : undefined}
+        titleAccessory={<OnlineDot address={peer.address} />}
       />
 
       <ChatMenu

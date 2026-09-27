@@ -155,6 +155,8 @@
     "postCount_other": "{{count}} ልጥፎች"
   },
   "settings": {
+    "showOnline": "በመስመር ላይ ስሆን አሳይ",
+    "showOnlineDesc": "እርስዎ የሚያስተላልፉት ሰዎች DeHub በሚጠቀሙበት ጊዜ ከስምዎ አጠገብ አረንጓዴ ነጥብ ያያሉ",
     "smartReplies": "የተጠቆሙ ምላሾች",
     "smartRepliesDesc": "በውይይት ውስጥ መንካት የሚችሏቸውን ሁለት ምላሾች ያዘጋጃል። በጥቆማዎቹ ላይ ያለው × ይህን ያጠፋዋል።",
     "ensHandle": "የENS ስም",
@@ -5047,6 +5049,7 @@
     "originalText": "ኦሪጅናል ጽሑፍ"
   },
   "dm": {
+    "online": "ኦንላይን",
     "attachFailed": "ያንን ፋይል ማያያዝ አልተቻለም።",
     "removeAttachment": "አባሪውን አስወግድ",
     "addTip": "ጉርሻ ጨምር",

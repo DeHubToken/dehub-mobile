@@ -155,6 +155,8 @@
     "postCount_other": "{{count}} بوستات"
   },
   "settings": {
+    "showOnline": "وريني لمن أكون أونلاين",
+    "showOnlineDesc": "الناس اللي بترسل ليهم رسائل شوفوا نقطة خضرا جنب اسمك وانت بتستخدم DeHub",
     "smartReplies": "الردود المقترحة",
     "smartRepliesDesc": "بيجهز ردين تقدر تضغط عليهن في المحادثة. علامة × على الاقتراحات بتقفل ده.",
     "ensHandle": "اسم ENS",
@@ -5016,6 +5018,7 @@
     "originalText": "النص الأصلي"
   },
   "dm": {
+    "online": "أونلاين",
     "attachFailed": "ما كدرنا نرفق هذا الملف.",
     "removeAttachment": "شيل المرفق",
     "addTip": "ضيف إكرامية",

@@ -155,6 +155,8 @@
     "postCount_other": "{{count}} postingan"
   },
   "settings": {
+    "showOnline": "Tampilkan saat saya online",
+    "showOnlineDesc": "Orang yang Anda kirimi pesan melihat titik hijau di samping nama Anda saat Anda menggunakan DeHub",
     "smartReplies": "Balasan yang disarankan",
     "smartRepliesDesc": "Menyusun dua balasan yang bisa kamu ketuk di obrolan. Tanda × pada saran akan mematikannya.",
     "ensHandle": "Nama ENS",
@@ -5066,6 +5068,7 @@
     "originalText": "Teks Asli"
   },
   "dm": {
+    "online": "Online",
     "attachFailed": "Tidak bisa melampirkan berkas itu.",
     "removeAttachment": "Hapus lampiran",
     "addTip": "Tambah tip",

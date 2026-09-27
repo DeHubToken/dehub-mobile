@@ -155,6 +155,8 @@
     "postCount_other": "post {{count}}"
   },
   "settings": {
+    "showOnline": "N'i be n' ka site web kan, i ka n' ka site web yira",
+    "showOnlineDesc": "Mɔgɔ minw be kuma, olu be yɔrɔ dɔ ye i tɔgɔ gɛrɛfɛ n'i be DeHub ta",
     "smartReplies": "Jaabi fɔlenw",
     "smartRepliesDesc": "A bɛ jaabi fila sɛbɛn i bɛ se ka digi min kan baro kɔnɔ. × min bɛ fɔlenw kan, o bɛ nin faga.",
     "ensHandle": "ENS tɔgɔ",
@@ -4973,6 +4975,7 @@
     "translatedFrom": "A bayɛlɛmana ka bɔ {{lang}} la"
   },
   "dm": {
+    "online": "Kalanbagaw, dɛmɛbagaw ani kanpaɲ",
     "attachFailed": "O gafe ma se ka fara a kan.",
     "removeAttachment": "Fɛn farali bɔ",
     "addTip": "Bonya fara a kan",

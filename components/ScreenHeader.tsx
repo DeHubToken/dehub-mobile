@@ -32,6 +32,8 @@ export interface ScreenHeaderProps {
   rightContent?: React.ReactNode;
   /** Extra content rendered between the back button and title (e.g. avatar). */
   leftContent?: React.ReactNode;
+  /** Small inline content right after the title text (e.g. an online dot). */
+  titleAccessory?: React.ReactNode;
   onBackPress?: () => void;
 }
 
@@ -41,6 +43,7 @@ const ScreenHeader: React.FC<ScreenHeaderProps> = ({
   canGoBack = true,
   rightContent,
   leftContent,
+  titleAccessory,
   onBackPress,
 }) => {
   const { t } = useTranslation();
@@ -129,12 +132,15 @@ const ScreenHeader: React.FC<ScreenHeaderProps> = ({
           <View className="mr-2">{leftContent}</View>
         ) : null}
         <View className="flex-shrink">
-          <Text
-            numberOfLines={1}
-            className="text-theme-neutrals-100 text-2xl font-medium tracking-wide"
-          >
-            {title}
-          </Text>
+          <View className="flex-row items-center">
+            <Text
+              numberOfLines={1}
+              className="text-theme-neutrals-100 text-2xl font-medium tracking-wide flex-shrink"
+            >
+              {title}
+            </Text>
+            {titleAccessory ? <View className="ml-2">{titleAccessory}</View> : null}
+          </View>
           {subtitle ? (
             <Text
               numberOfLines={1}

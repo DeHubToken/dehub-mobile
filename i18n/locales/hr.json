@@ -155,6 +155,8 @@
     "postCount_other": "{{count}} objave"
   },
   "settings": {
+    "showOnline": "Prikaži kad sam na mreži",
+    "showOnlineDesc": "Osobe kojima pošaljete poruku vide zelenu točku pored vašeg imena dok koristite DeHub",
     "smartReplies": "Predloženi odgovori",
     "smartRepliesDesc": "Sastavlja dva odgovora koje možeš dodirnuti u chatu. × na prijedlozima to isključuje.",
     "ensHandle": "ENS ime",
@@ -5017,6 +5019,7 @@
     "originalText": "Izvorni tekst"
   },
   "dm": {
+    "online": "Online",
     "attachFailed": "Tu datoteku nije bilo moguće priložiti.",
     "removeAttachment": "Ukloni privitak",
     "addTip": "Dodaj napojnicu",

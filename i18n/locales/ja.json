@@ -155,6 +155,8 @@
     "postCount_other": "{{count}} 件の投稿"
   },
   "settings": {
+    "showOnline": "オンライン中に表示する",
+    "showOnlineDesc": "DeHubを使用している間、メッセージを送る相手に名前の横に緑色の点が表示されます",
     "smartReplies": "返信の候補",
     "smartRepliesDesc": "チャットでタップできる返信を2つ用意します。候補の × でオフになります。",
     "ensHandle": "ENS 名",
@@ -5068,6 +5070,7 @@
     "originalText": "元のテキスト"
   },
   "dm": {
+    "online": "オンライン",
     "attachFailed": "そのファイルを添付できませんでした。",
     "removeAttachment": "添付を削除",
     "addTip": "投げ銭を追加",
