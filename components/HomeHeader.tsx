@@ -9,6 +9,7 @@ import { ScreenNames } from "../navigation/ScreenNames";
 import { useUser, useAuthState } from "../context/AuthContext";
 import { getAvatarUrl } from "../libs/misc";
 import { useAppTheme } from "../context/ThemeContext";
+import SubscriptionCreditsPill from "./SubscriptionCreditsPill";
 
 interface HomeHeaderProps {
   onLogoPress?: () => void;
@@ -83,6 +84,8 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress }) => 
       {/* Notifications — right. Signed-in only; the centred mark does not move
           when this is absent. */}
       {isSignedIn ? (
+        <View className="flex-row items-center">
+        <SubscriptionCreditsPill />
         <TouchableOpacity
           onPress={handleNotificationPress}
           hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
@@ -114,6 +117,7 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress }) => 
             </View>
           )}
         </TouchableOpacity>
+        </View>
       ) : (
         // Holds the right edge so the left control cannot drift into the
         // centre under justify-between when there is no bell.

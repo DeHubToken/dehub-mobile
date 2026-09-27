@@ -4776,7 +4776,10 @@
     "earningsWorth": "Megéri {{amount}}",
     "earningsPaidInTokens": "Tokenekben fizetve a mai áron",
     "earningsPendingReserve": "Függőben lévő kincstári tartalék",
-    "tokensSent": "{{amount}} token elküldve"
+    "tokensSent": "{{amount}} token elküldve",
+    "percentUsed": "{{percent}}% felhasználva",
+    "spentOfTotal": "{{total}}/{{spent}}",
+    "viewInWallet": "Megtekintés pénztárcában"
   },
   "live": {
     "notSet": "Nincs beállítva",

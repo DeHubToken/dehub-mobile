@@ -4772,7 +4772,10 @@
     "earningsWorth": "值 {{amount}}",
     "earningsPaidInTokens": "以今日嘅價錢以代幣付款",
     "earningsPendingReserve": "待處理嘅國庫儲備",
-    "tokensSent": "{{amount}} 已經發送咗代幣"
+    "tokensSent": "{{amount}} 已經發送咗代幣",
+    "percentUsed": "{{percent}}% 用過",
+    "spentOfTotal": "{{spent}} 嘅 {{total}}",
+    "viewInWallet": "喺銀包入面睇"
   },
   "live": {
     "notSet": "未設定",

@@ -4772,7 +4772,10 @@
     "earningsWorth": "Arvo {{amount}}",
     "earningsPaidInTokens": "Maksettu poletteina tämän päivän hintaan",
     "earningsPendingReserve": "Avoin kassavaraus",
-    "tokensSent": "{{amount}} polettia lähetetty"
+    "tokensSent": "{{amount}} polettia lähetetty",
+    "percentUsed": "{{percent}}% käytetty",
+    "spentOfTotal": "{{spent}}/{{total}}",
+    "viewInWallet": "Näytä lompakossa"
   },
   "live": {
     "notSet": "Ei asetettu",

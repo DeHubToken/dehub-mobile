@@ -4773,7 +4773,10 @@
     "earningsWorth": "Iye {{amount}}",
     "earningsPaidInTokens": "Ti sanwo ni awọn aami ni iye owo oni",
     "earningsPendingReserve": "Ti n duro de ibi ipamọ iṣura",
-    "tokensSent": "{{amount}} Awọn ami ti a firanṣẹ"
+    "tokensSent": "{{amount}} Awọn ami ti a firanṣẹ",
+    "percentUsed": "{{percent}}% lo",
+    "spentOfTotal": "{{spent}} ti {{total}}",
+    "viewInWallet": "Wò ó nínú àpamọ́"
   },
   "live": {
     "notSet": "Kò tíì ṣètò",

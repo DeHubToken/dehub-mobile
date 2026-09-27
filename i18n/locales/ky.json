@@ -4772,7 +4772,10 @@
     "earningsWorth": "Баасы {{amount}}",
     "earningsPaidInTokens": "Бүгүнкү баада белги менен төлөнгөн",
     "earningsPendingReserve": "Күтүлүп жаткан казына резерви",
-    "tokensSent": "{{amount}} токен жөнөтүлдү"
+    "tokensSent": "{{amount}} токен жөнөтүлдү",
+    "percentUsed": "{{percent}}% колдонулган",
+    "spentOfTotal": "{{spent}} of {{total}}",
+    "viewInWallet": "Капчыктагы көрүнүш"
   },
   "live": {
     "notSet": "Коюлган эмес",

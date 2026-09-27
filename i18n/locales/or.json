@@ -4742,7 +4742,10 @@
     "earningsWorth": "{{amount}}",
     "earningsPaidInTokens": "ଆଜିର ଦାମରେ ଟୋକନରେ ଦେୟ",
     "earningsPendingReserve": "ବକେୟା ଭଣ୍ଡାର ଭଣ୍ଡାର",
-    "tokensSent": "{{amount}} tokens ପଠାଯାଇଛି"
+    "tokensSent": "{{amount}} tokens ପଠାଯାଇଛି",
+    "percentUsed": "{{percent}}% ବ୍ୟବହୃତ ହୋଇଛି",
+    "spentOfTotal": "{{total}} ମଧ୍ୟରୁ {{spent}}",
+    "viewInWallet": "ୱାଲେଟରେ ଦୃଶ୍ୟ"
   },
   "live": {
     "notSet": "ସେଟ ହୋଇନାହିଁ",

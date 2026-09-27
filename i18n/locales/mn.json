@@ -4772,7 +4772,10 @@
     "earningsWorth": "Үнэ {{amount}}",
     "earningsPaidInTokens": "Өнөөдрийн үнээр жетоноор төлөгдсөн",
     "earningsPendingReserve": "Хүлээгдэж буй сангийн нөөц",
-    "tokensSent": "{{amount}} токен илгээлээ"
+    "tokensSent": "{{amount}} токен илгээлээ",
+    "percentUsed": "{{percent}}% ашигласан",
+    "spentOfTotal": "{{total}}-аас {{spent}}",
+    "viewInWallet": "Түрийвчээр харах"
   },
   "live": {
     "notSet": "Тохируулаагүй",

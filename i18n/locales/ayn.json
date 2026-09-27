@@ -4772,7 +4772,10 @@
     "earningsWorth": "القيمة {{amount}}",
     "earningsPaidInTokens": "مدفوع بالتوكنات بسعر اليوم",
     "earningsPendingReserve": "احتياطي الخزينة المعلق",
-    "tokensSent": "تم إرسال {{amount}} توكن"
+    "tokensSent": "تم إرسال {{amount}} توكن",
+    "percentUsed": "{{percent}}% مستَخدم",
+    "spentOfTotal": "{{spent}} من {{total}}",
+    "viewInWallet": "شوف في المحفظة"
   },
   "live": {
     "notSet": "مو محدد",

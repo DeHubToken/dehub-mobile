@@ -4772,7 +4772,10 @@
     "earningsWorth": "मूल्यम् {{amount}}",
     "earningsPaidInTokens": "अद्यतनमूल्ये टोकनेषु दीयते",
     "earningsPendingReserve": "प्रतीक्षारत खजाना आरक्षित",
-    "tokensSent": "{{amount}} टोकनानि प्रेषितानि"
+    "tokensSent": "{{amount}} टोकनानि प्रेषितानि",
+    "percentUsed": "{{percent}}% प्रयुक्त",
+    "spentOfTotal": "{{total}} मध्ये {{spent}}",
+    "viewInWallet": "दृश्यः बटुआ"
   },
   "live": {
     "notSet": "न निर्धारितम्",

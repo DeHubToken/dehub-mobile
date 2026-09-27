@@ -4718,7 +4718,10 @@
     "earningsWorth": "ਵਰਥ {{amount}}",
     "earningsPaidInTokens": "ਅੱਜ ਦੀ ਕੀਮਤ 'ਤੇ ਟੋਕਨ ਵਿੱਚ ਭੁਗਤਾਨ ਕੀਤਾ",
     "earningsPendingReserve": "ਬਕਾਇਆ ਖਜ਼ਾਨਾ ਰਿਜ਼ਰਵ",
-    "tokensSent": "{{amount}} ਟੋਕਨ ਭੇਜੇ ਗਏ"
+    "tokensSent": "{{amount}} ਟੋਕਨ ਭੇਜੇ ਗਏ",
+    "percentUsed": "{{percent}}% ਵਰਤੇ ਗਏ",
+    "spentOfTotal": "{{spent}} ਦਾ {{total}}",
+    "viewInWallet": "ਵਾਲਿਟ ਵਿੱਚ ਵੇਖੋ"
   },
   "live": {
     "notSet": "ਸੈੱਟ ਨਹੀਂ",

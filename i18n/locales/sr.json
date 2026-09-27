@@ -4612,7 +4612,10 @@
     "earningsWorth": "Вредност {{amount}}",
     "earningsPaidInTokens": "Исплаћује се у токенима по данашњој цени",
     "earningsPendingReserve": "Чека се резерва трезора",
-    "tokensSent": "Послато {{amount}} токена"
+    "tokensSent": "Послато {{amount}} токена",
+    "percentUsed": "Искоришћено {{percent}}%",
+    "spentOfTotal": "{{spent}} од {{total}}",
+    "viewInWallet": "Погледај у новчанику"
   },
   "live": {
     "notSet": "Није постављено",

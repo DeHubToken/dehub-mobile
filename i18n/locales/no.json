@@ -4772,7 +4772,10 @@
     "earningsWorth": "Verdt {{amount}}",
     "earningsPaidInTokens": "Betalt i tokens til dagens pris",
     "earningsPendingReserve": "Avventende reserve for statskassen",
-    "tokensSent": "{{amount}} tokener sendt"
+    "tokensSent": "{{amount}} tokener sendt",
+    "percentUsed": "{{percent}}% brukt",
+    "spentOfTotal": "{{spent}} av {{total}}",
+    "viewInWallet": "Vis i lommeboken"
   },
   "live": {
     "notSet": "Ikke angitt",

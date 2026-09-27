@@ -4821,7 +4821,10 @@
     "earningsWorth": "Vale {{amount}}",
     "earningsPaidInTokens": "Pagato in gettoni al prezzo di oggi",
     "earningsPendingReserve": "Riserva di tesoreria in sospeso",
-    "tokensSent": "Token {{amount}} inviati"
+    "tokensSent": "Token {{amount}} inviati",
+    "percentUsed": "{{percent}}% utilizzato",
+    "spentOfTotal": "{{spent}} del {{total}}",
+    "viewInWallet": "Visualizza nel portafoglio"
   },
   "live": {
     "notSet": "Non impostato",

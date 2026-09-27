@@ -4772,7 +4772,10 @@
     "earningsWorth": "Dəyər {{amount}}",
     "earningsPaidInTokens": "Bugünkü qiymətə tokenlərdə ödənilib",
     "earningsPendingReserve": "Gözləmədə olan xəzinə ehtiyatı",
-    "tokensSent": "{{amount}} tokenlər göndərildi"
+    "tokensSent": "{{amount}} tokenlər göndərildi",
+    "percentUsed": "{{percent}}% istifadə olunur",
+    "spentOfTotal": "{{spent}} {{total}}",
+    "viewInWallet": "Pul kisəsinə baxın"
   },
   "live": {
     "notSet": "Təyin edilməyib",

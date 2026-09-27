@@ -4881,7 +4881,10 @@
     "earningsWorth": "ওয়ার্থ {{amount}}",
     "earningsPaidInTokens": "পেইড ইন টোকেনস অ্যাট টুডে'স প্রাইস",
     "earningsPendingReserve": "পেন্ডিং ট্রেজারি রিজার্ভ",
-    "tokensSent": "{{amount}} টোকেনস সেন্ট"
+    "tokensSent": "{{amount}} টোকেনস সেন্ট",
+    "percentUsed": "{{percent}}% ইউজড",
+    "spentOfTotal": "{{spent}} অফ {{total}}",
+    "viewInWallet": "ভিউ ইন ওয়ালেট"
   },
   "live": {
     "notSet": "ঠিক গরা নাই",

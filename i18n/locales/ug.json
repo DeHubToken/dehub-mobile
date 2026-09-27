@@ -4772,7 +4772,10 @@
     "earningsWorth": "قىممىتى {{amount}}",
     "earningsPaidInTokens": "بۈگۈنكى باھا بويىچە بەلگىلەرنى تاپشۇرۇۋالدى",
     "earningsPendingReserve": "خەزىنە زاپىسىنى كۈتۈۋېلىش",
-    "tokensSent": "{{amount}} توكەن ئەۋەتىلدى"
+    "tokensSent": "{{amount}} توكەن ئەۋەتىلدى",
+    "percentUsed": "{{percent}}% ئىشلىتىلىدۇ",
+    "spentOfTotal": "{{spent}} of {{total}}",
+    "viewInWallet": "خەزىنە كۆرۈنۈشى"
   },
   "live": {
     "notSet": "بەلگىلەنمىگەن",

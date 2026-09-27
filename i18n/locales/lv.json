@@ -4772,7 +4772,10 @@
     "earningsWorth": "Vērts {{amount}}",
     "earningsPaidInTokens": "Apmaksāts ar žetoniem par šodienas cenu",
     "earningsPendingReserve": "Gaida valsts kases rezervi",
-    "tokensSent": "{{amount}} nosūtītie žetoni"
+    "tokensSent": "{{amount}} nosūtītie žetoni",
+    "percentUsed": "{{percent}}% izmantots",
+    "spentOfTotal": "{{spent}} no {{total}}",
+    "viewInWallet": "Skatīt makā"
   },
   "live": {
     "notSet": "Nav iestatīts",

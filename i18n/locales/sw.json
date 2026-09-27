@@ -4773,7 +4773,10 @@
     "earningsWorth": "Thamani {{amount}}",
     "earningsPaidInTokens": "Ililipwa kwa ishara kwa bei ya leo",
     "earningsPendingReserve": "Hifadhi ya hazina inayosubiri",
-    "tokensSent": "{{amount}} tokeni zimetumwa"
+    "tokensSent": "{{amount}} tokeni zimetumwa",
+    "percentUsed": "{{percent}}% imetumika",
+    "spentOfTotal": "{{spent}} ya {{total}}",
+    "viewInWallet": "Angalia kwenye pochi"
   },
   "live": {
     "notSet": "Haijawekwa",

@@ -4652,7 +4652,10 @@
     "earningsWorth": "E worth {{amount}}",
     "earningsPaidInTokens": "Dem dey pay am for tokens for today price",
     "earningsPendingReserve": "E dey wait for treasury reserve",
-    "tokensSent": "We don send {{amount}} tokens"
+    "tokensSent": "We don send {{amount}} tokens",
+    "percentUsed": "{{percent}}% used",
+    "spentOfTotal": "{{spent}} of {{total}}",
+    "viewInWallet": "View in wallet"
   },
   "live": {
     "notSet": "Dem never set am",

@@ -4772,7 +4772,10 @@
     "earningsWorth": "മൂല്യം {{amount}}",
     "earningsPaidInTokens": "ഇന്നത്തെ വിലയ്ക്ക് ടോക്കണുകളിൽ അടച്ചു",
     "earningsPendingReserve": "തീർപ്പുകൽപ്പിക്കാത്ത ട്രഷറി റിസർവ്",
-    "tokensSent": "{{amount}}ടോക്കണുകൾ അയച്ചു"
+    "tokensSent": "{{amount}}ടോക്കണുകൾ അയച്ചു",
+    "percentUsed": "{{percent}}% ഉപയോഗിച്ചു",
+    "spentOfTotal": "{{total}}-ൽ {{spent}}",
+    "viewInWallet": "വാലറ്റിൽ കാണുക"
   },
   "live": {
     "notSet": "സജ്ജമാക്കിയിട്ടില്ല",

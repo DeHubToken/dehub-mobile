@@ -4772,7 +4772,10 @@
     "earningsWorth": "વર્થ {{amount}}",
     "earningsPaidInTokens": "આજના ભાવે ટોકન્સમાં ચૂકવવામાં આવે છે",
     "earningsPendingReserve": "પેન્ડિંગ ટ્રેઝરી રિઝર્વ",
-    "tokensSent": "{{amount}} ટોકન્સ મોકલવામાં આવ્યા"
+    "tokensSent": "{{amount}} ટોકન્સ મોકલવામાં આવ્યા",
+    "percentUsed": "{{percent}}% વપરાયેલ",
+    "spentOfTotal": "{{spent}} નું {{total}}",
+    "viewInWallet": "વૉલેટમાં જુઓ"
   },
   "live": {
     "notSet": "સેટ નથી",

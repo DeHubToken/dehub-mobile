@@ -4772,7 +4772,10 @@
     "earningsWorth": "Väärtus {{amount}}",
     "earningsPaidInTokens": "Makstud žetoonides tänase hinnaga",
     "earningsPendingReserve": "Ootel sularahareserv",
-    "tokensSent": "{{amount}} märki saadetud"
+    "tokensSent": "{{amount}} märki saadetud",
+    "percentUsed": "{{percent}}% kasutatud",
+    "spentOfTotal": "{{spent}}/{{total}}",
+    "viewInWallet": "Vaata rahakotis"
   },
   "live": {
     "notSet": "Määramata",

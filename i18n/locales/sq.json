@@ -4772,7 +4772,10 @@
     "earningsWorth": "Vlen {{amount}}",
     "earningsPaidInTokens": "Paguar në kode me çmimin e sotëm",
     "earningsPendingReserve": "Rezerva e thesarit në pritje",
-    "tokensSent": "{{amount}} tokens u dërguan"
+    "tokensSent": "{{amount}} tokens u dërguan",
+    "percentUsed": "{{percent}}% i përdorur",
+    "spentOfTotal": "{{spent}} të {{total}}",
+    "viewInWallet": "Shfaq në portofol"
   },
   "live": {
     "notSet": "I pacaktuar",

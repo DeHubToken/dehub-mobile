@@ -4802,7 +4802,10 @@
     "earningsWorth": "ዋጋ {{amount}}",
     "earningsPaidInTokens": "ዛሬ በገበያ ዋጋዎች ላይ መለያዎችን ይክፈሉ",
     "earningsPendingReserve": "የግምጃ ቤት ክምችት በመጠባበቅ ላይ",
-    "tokensSent": "{{amount}} ቶከንስ ተልኳል"
+    "tokensSent": "{{amount}} ቶከንስ ተልኳል",
+    "percentUsed": "{{percent}}% ጥቅም ላይ ውሏል",
+    "spentOfTotal": "{{spent}} ከ {{total}}",
+    "viewInWallet": "በኪስ ቦርሳ ውስጥ ይመልከቱ"
   },
   "live": {
     "notSet": "አልተቀናበረም",

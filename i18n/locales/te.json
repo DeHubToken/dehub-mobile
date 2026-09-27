@@ -4776,7 +4776,10 @@
     "earningsWorth": "విలువ {{amount}}",
     "earningsPaidInTokens": "నేటి ధరకు టోకెన్ ‌ లలో చెల్లించారు",
     "earningsPendingReserve": "ట్రెజరీ రిజర్వ్ పెండింగ్ ‌ లో ఉంది",
-    "tokensSent": "{{amount}} టోకెన్ ‌ లు పంపబడ్డాయి"
+    "tokensSent": "{{amount}} టోకెన్ ‌ లు పంపబడ్డాయి",
+    "percentUsed": "{{percent}}% ఉపయోగించారు",
+    "spentOfTotal": "{{total}}లో {{spent}}",
+    "viewInWallet": "వాలెట్ ‌ లో చూడండి"
   },
   "live": {
     "notSet": "సెట్ చేయలేదు",

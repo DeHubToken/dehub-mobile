@@ -4779,7 +4779,10 @@
     "earningsWorth": "দাম {{amount}}",
     "earningsPaidInTokens": "আইজকার দামোত টোকেনোত দেওয়া হয়",
     "earningsPendingReserve": "ট্রেজারি রিজার্ভ বাকি",
-    "tokensSent": "{{amount}} টোকেন পাঠা হইল"
+    "tokensSent": "{{amount}} টোকেন পাঠা হইল",
+    "percentUsed": "{{percent}}% খরচ হইছে",
+    "spentOfTotal": "{{total}}-র মইধ্যে {{spent}}",
+    "viewInWallet": "ওয়ালেটোত দেখেন"
   },
   "live": {
     "notSet": "ঠিক করা নাই",

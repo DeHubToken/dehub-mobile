@@ -4601,7 +4601,10 @@
     "earningsWorth": "कीमत {{amount}}",
     "earningsPaidInTokens": "आज की कीमत पर टोकन में भुगतान किया गया",
     "earningsPendingReserve": "लंबित कोष रिज़र्व",
-    "tokensSent": "{{amount}} टोकन भेजे गए"
+    "tokensSent": "{{amount}} टोकन भेजे गए",
+    "percentUsed": "{{percent}}% استعمال ہوا",
+    "spentOfTotal": "{{spent}} کا {{total}}",
+    "viewInWallet": "والٹ میں دیکھیں"
   },
   "live": {
     "notSet": "مقرر نئیں",
