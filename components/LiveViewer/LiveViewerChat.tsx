@@ -123,7 +123,7 @@ const ChatBubble: React.FC<ChatBubbleProps> = memo(({ a, onUserPress }) => {
   const avatarUrl = resolveAvatarUrl(a);
   const profileId = resolveProfileId(a);
   const texts = useMemo(() => ({ content: a.status === StreamActivityType.MESSAGE && !a.meta?.gifUrl ? a.meta?.content || '' : '' }), [a.status, a.meta?.gifUrl, a.meta?.content]);
-  const translation = useTranslation(texts, undefined, false);
+  const translation = useTranslation(texts, undefined, 'chat', true);
 
   const handlePress = useCallback(() => {
     if (profileId) onUserPress(profileId);
