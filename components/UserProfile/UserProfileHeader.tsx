@@ -154,7 +154,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
     handleTranslate: handleTranslateBio,
     handleShowOriginal: handleShowOriginalBio,
     shouldShow: showBioTranslate,
-  } = useTranslation(bioTexts, bioLanguage);
+  } = useTranslation(bioTexts, bioLanguage, true, true);
   const displayBio = isBioTranslated ? translatedBioTexts.bio || bio : bio;
 
   const handleCopyUsername = useCallback(() => {

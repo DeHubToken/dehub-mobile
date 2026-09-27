@@ -398,7 +398,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
     handleTranslate,
     handleShowOriginal,
     shouldShow: showTranslate,
-  } = useTranslation(translationTexts, item.detectedLanguage);
+  } = useTranslation(translationTexts, item.detectedLanguage, true, true);
   const shownTitle = (isTranslated ? translatedTexts.title : title) || "";
   const shownDescription = (isTranslated ? translatedTexts.description : description) || "";
 
