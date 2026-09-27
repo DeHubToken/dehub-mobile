@@ -201,6 +201,38 @@ export async function fetchSuggestions(q: string): Promise<string[]> {
   }
 }
 
+export type SearchLogType = 'accounts' | 'videos' | 'livestreams' | 'all';
+
+export interface SearchLogParams {
+  query: string;
+  type?: SearchLogType;
+  resultCount?: number;
+  clicked?: boolean;
+  clickedResultId?: string;
+}
+
+/**
+ * POST /api/search/log — search analytics. Fire and forget: never throws and
+ * is never awaited, so it can not slow down or break a search.
+ */
+export function logSearchAnalytics(params: SearchLogParams): void {
+  const query = params.query?.trim();
+  if (!query) return;
+  try {
+    apiClient
+      .post('/search/log', {
+        query,
+        type: params.type,
+        resultCount: params.resultCount,
+        clicked: params.clicked,
+        clickedResultId: params.clickedResultId,
+      })
+      .catch(() => {});
+  } catch {
+    // analytics must never affect search
+  }
+}
+
 export async function getHistory(address?: string): Promise<string[]> {
   try {
     const raw = await AsyncStorage.getItem(historyKey(address));
