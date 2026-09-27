@@ -4626,7 +4626,17 @@
     "createAndPublish": "Create am and publish am",
     "publishingOnChain": "To publish na on-chain transaction",
     "tokenPrice": "{{amount}} tokens",
-    "tokensUnit": "tokens"
+    "tokensUnit": "tokens",
+    "subscriptionTokens": "Subscription tokens",
+    "lockedValue": "Locked at {{amount}}",
+    "withdraw": "Withdraw",
+    "trade": "Trade",
+    "custodyNote": "Your token dem stay for DeHub treasury custody and dem no dey sell. The creator dey get USDT-denominated subscription balance.",
+    "legacyMigrationNote": "Saving dey move dis old token-priced plan go dollar pricing at di pre-listing rate.",
+    "atPreListingRate": "{{amount}} at di pre-listing rate",
+    "fromSubscriptionTokensAmount": "From your subscription token dem: {{amount}}",
+    "subscriptionTokensNote": "Subscription token dem lock for di price wey you add dem, so price movement no go ever change wetin subscription cost you. Dem fit only spend am for subscriptions.",
+    "untradableTokens": "Dis ones na untradable subscription token dem"
   },
   "live": {
     "notSet": "Dem never set am",

@@ -4748,7 +4748,15 @@
     "custodyNote": "توهان جا ٽوڪن DeHub خزانچي جي تحويل ۾ رهن ٿا ۽ وڪرو نٿا ڪيا وڃن. ٺاهيندڙ کي USDT-denominated سبسڪرپشن بيلنس ملي ٿو.",
     "legacyMigrationNote": "بچت هن پراڻي ٽوڪن-قيمتي منصوبي کي لسٽنگ کان اڳ جي شرح تي ڊالر جي قيمت ۾ منتقل ڪري ٿي.",
     "tokenPrice": "{{amount}} ٽوڪن",
-    "tokensUnit": "ٽوڪن"
+    "tokensUnit": "ٽوڪن",
+    "atPreListingRate": "{{amount}} قبل از لسٽنگ جي شرح تي",
+    "fromSubscriptionTokensAmount": "توهان جي رڪنيت جي ٽوڪن مان: {{amount}}",
+    "subscriptionTokensNote": "سبسڪرپشن ٽوڪن قيمت تي بند ٿيل آهن جڏهن توهان انهن کي شامل ڪيو ٿا، تنهن ڪري قيمت جي حرڪت ڪڏهن به تبديل نه ٿيندي آهي ته توهان جي رڪنيت جي قيمت ڇا آهي. اهي صرف سبسڪرپشن تي خرچ ڪري سگهجن ٿا.",
+    "subscriptionTokens": "سبسڪرپشن ٽوڪن",
+    "untradableTokens": "اهي ناقابل واپسي سبسڪرپشن ٽوڪن آهن",
+    "lockedValue": "{{amount}} تي بند ٿيل",
+    "withdraw": "واپس وٺو",
+    "trade": "تجارت"
   },
   "live": {
     "notSet": "مقرر ناهي",

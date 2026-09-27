@@ -4748,7 +4748,15 @@
     "custodyNote": "ቶክንኩም ኣብ DeHub ግምጃ ቤት ይቕመጥ እምበር ኣይሽየን። እቲ ፈጣሪ ብ USDT ዝተሰየመ ናይ ምዝገባ ሂሳብ ይረክብ።",
     "legacyMigrationNote": "ምዕቃብ እዚ ናይ ብርኪ ቶክን ዝተሰየመ ፕላን ናብ ዶላር ዋጋ ብቅድሚ ቅያሪ ዋጋ ይቕይሮ።",
     "tokenPrice": "{{amount}} ቶክን",
-    "tokensUnit": "ቶክን"
+    "tokensUnit": "ቶክን",
+    "atPreListingRate": "{{amount}} ኣብ ቅድመ-ዝርዝር መጠን",
+    "fromSubscriptionTokensAmount": "ካብ ናይ ኣባልነት ምልክታትካ: {{amount}}",
+    "subscriptionTokensNote": "ናይ ምዝገባ ምልክታት ምስ እትውስኽ ኣብ ዋጋ ተዓጽዩ ስለ ዘሎ ፡ ናይ ዋጋ ምንቅስቓስ ነቲ ናይ ምዝገባ ወጻኢታትካ ፈጺሙ ኣይቅይርን እዩ ። ኣብ ምዝገባታት ጥራይ ክውፈዩ ይኽእሉ እዮም ።",
+    "subscriptionTokens": "ናይ ኣባልነት ምልክታት",
+    "untradableTokens": "እዚ ድማ ዘይንቡር ናይ ኣባልነት ምልክታት እዩ ።",
+    "lockedValue": "ኣብ {{amount}}",
+    "withdraw": "ምስሕሓብ",
+    "trade": "ንግዲ"
   },
   "live": {
     "notSet": "ኣይተቐመጠን",

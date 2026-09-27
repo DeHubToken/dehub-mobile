@@ -4748,7 +4748,15 @@
     "custodyNote": "Twoje tokeny pozostają pod opieką skarbu DeHub i nie są sprzedawane. Twórca otrzymuje saldo subskrypcji denominowane w USDT.",
     "legacyMigrationNote": "Oszczędności migrują ten plan wyceniony w starych tokenach na wycenę w dolarach po cenie przedpremierowej.",
     "tokenPrice": "{{amount}} tokenów",
-    "tokensUnit": "tokenów"
+    "tokensUnit": "tokenów",
+    "atPreListingRate": "{{amount}} w stosunku do stawki obowiązującej przed opublikowaniem oferty",
+    "fromSubscriptionTokensAmount": "Z Twoich tokenów subskrypcji: {{amount}}",
+    "subscriptionTokensNote": "Tokeny subskrypcji są zablokowane po cenie, gdy je dodasz, więc zmiana ceny nigdy nie zmienia tego, ile kosztuje subskrypcja. Można je wydać tylko na subskrypcje.",
+    "subscriptionTokens": "Tokeny subskrypcji",
+    "untradableTokens": "To są niehandlowe tokeny subskrypcji",
+    "lockedValue": "Zablokowano w {{amount}}",
+    "withdraw": "Wycofaj",
+    "trade": "Handel"
   },
   "live": {
     "notSet": "Nie ustawiono",

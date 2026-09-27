@@ -4761,7 +4761,15 @@
     "custodyNote": "Token của bạn vẫn thuộc quyền giám sát của kho bạc DeHub và không bị bán. Người sáng tạo nhận được số dư đăng ký được định giá bằng USDT.",
     "legacyMigrationNote": "Việc lưu sẽ di chuyển kế hoạch định giá token cũ này sang định giá bằng đô la theo tỷ lệ trước niêm yết.",
     "tokenPrice": "{{amount}} token",
-    "tokensUnit": "token"
+    "tokensUnit": "token",
+    "atPreListingRate": "{{amount}} theo mức giá cho thuê trước",
+    "fromSubscriptionTokensAmount": "Từ mã thông báo đăng ký của bạn: {{amount}}",
+    "subscriptionTokensNote": "Mã thông báo đăng ký bị khóa ở mức giá khi bạn thêm chúng, vì vậy việc di chuyển giá không bao giờ thay đổi chi phí đăng ký của bạn. Chúng chỉ có thể được chi tiêu cho các gói đăng ký.",
+    "subscriptionTokens": "Mã thông báo đăng ký",
+    "untradableTokens": "Đây là những token đăng ký không thể giao dịch",
+    "lockedValue": "Khóa lúc {{amount}}",
+    "withdraw": "Rút tiền",
+    "trade": "Giao dịch"
   },
   "live": {
     "notSet": "Chưa đặt",

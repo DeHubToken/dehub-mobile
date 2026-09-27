@@ -4781,7 +4781,15 @@
     "custodyNote": "Jou tokens bly in DeHub tesourie bewaring en word nie verkoop nie. Die skepper ontvang 'n USDT-gedenomineerde intekening balans.",
     "legacyMigrationNote": "Besparing migreer hierdie ou token-geprijsde plan na dollar pryse teen die voor-notering koers.",
     "tokenPrice": "{{amount}} tokens",
-    "tokensUnit": "tokens"
+    "tokensUnit": "tokens",
+    "atPreListingRate": "{{amount}} in die pre-listende Rate",
+    "fromSubscriptionTokensAmount": "Van jou inskrywing tekens: {{amount}}",
+    "subscriptionTokensNote": "Inskrywingsteken word teen die prys gesluit wanneer jy dit byvoeg, so 'n prysbeweging verander nooit wat 'n intekening jou kos nie. Hulle kan slegs op subskripsies aangewend word.",
+    "subscriptionTokens": "Intekening tekens",
+    "untradableTokens": "Dit is onuitwisbare subskripsie-tokens",
+    "lockedValue": "Gesluit by {{amount}}",
+    "withdraw": "Onttrek",
+    "trade": "Handel"
   },
   "live": {
     "notSet": "Nie gestel nie",

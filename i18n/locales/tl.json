@@ -4795,7 +4795,15 @@
     "custodyNote": "Ang iyong mga token ay mananatili sa pangangalaga ng DeHub treasury at hindi ibebenta. Ang lumikha ay makakatanggap ng subscription balance na nakadominasyon sa USDT.",
     "legacyMigrationNote": "Ang pag-save ay naglilipat ng legacy token-priced plan na ito sa dollar pricing sa pre-listing rate.",
     "tokenPrice": "{{amount}} token",
-    "tokensUnit": "token"
+    "tokensUnit": "token",
+    "atPreListingRate": "{{amount}} sa pre - listing rate",
+    "fromSubscriptionTokensAmount": "Mula sa iyong mga token ng subscription:{{amount}}",
+    "subscriptionTokensNote": "Ang mga token ng subscription ay naka - lock sa presyo kapag idinagdag mo ang mga ito, kaya ang isang paglipat ng presyo ay hindi kailanman nagbabago kung ano ang gastos sa iyo ng isang subscription. Ang mga ito ay maaari lamang gastusin sa mga subscription.",
+    "subscriptionTokens": "Mga token ng subscription",
+    "untradableTokens": "Ang mga ito ay untradable token subscription",
+    "lockedValue": "Naka - lock sa {{amount}}",
+    "withdraw": "Mag - withdraw",
+    "trade": "Kalakalan"
   },
   "live": {
     "notSet": "Hindi nakatakda",

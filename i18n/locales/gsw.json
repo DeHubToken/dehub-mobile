@@ -4778,7 +4778,15 @@
     "custodyNote": "Dini Tokens bliebed i de DeHub Treasury Verwaltig und werded nöd verkouft. De Ersteller bekunnt en USDT-denominierti Abo-Bilanz.",
     "legacyMigrationNote": "Spare migriert dases altä Token-priiseti Plan uf Dollar-Priisä zum Vor-Listing-Kurs.",
     "tokenPrice": "{{amount}} Tokens",
-    "tokensUnit": "Tokens"
+    "tokensUnit": "Tokens",
+    "atPreListingRate": "{{amount}} zum Vorab-Listing-Preis",
+    "fromSubscriptionTokensAmount": "Vo dine Abo-Token: {{amount}}",
+    "subscriptionTokensNote": "Abo-Token sind zum Preis, wo du si hinzuegsch, gschlosse, drum ändert e Preisänderig nie, was e Abo di koscht. Si chöi nur für Abo usgsetzt werde.",
+    "subscriptionTokens": "Abo-Token",
+    "untradableTokens": "Das sind nöd handelbari Abo-Token",
+    "lockedValue": "Gschlosse bi {{amount}}",
+    "withdraw": "Uuszoge",
+    "trade": "Handel"
   },
   "live": {
     "notSet": "Nöd festgleit",

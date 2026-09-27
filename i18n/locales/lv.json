@@ -4748,7 +4748,15 @@
     "custodyNote": "Jūsu žetoni paliek DeHub kases pārvaldībā un netiek pārdoti. Radītājs saņem USDT denominētu abonementu atlikumu.",
     "legacyMigrationNote": "Saglabāšana migrē šo mantoto žetonu cenas plānu uz dolāru cenu pirms saraksta likmes.",
     "tokenPrice": "{{amount}} žetoni",
-    "tokensUnit": "žetoni"
+    "tokensUnit": "žetoni",
+    "atPreListingRate": "{{amount}} pēc iepriekšēja sludinājuma cenas",
+    "fromSubscriptionTokensAmount": "No jūsu abonēšanas marķieriem: {{amount}}",
+    "subscriptionTokensNote": "Pievienojot abonēšanas žetonus, tiem tiek fiksēta cena, tāpēc cenas pārvietošana nekad nemaina abonementa izmaksas. Tos var tērēt tikai abonementiem.",
+    "subscriptionTokens": "Abonēšanas marķieri",
+    "untradableTokens": "Tie ir netirgojami abonēšanas marķieri",
+    "lockedValue": "Bloķēts {{amount}}",
+    "withdraw": "Atsaukt",
+    "trade": "Tirdzniecība"
   },
   "live": {
     "notSet": "Nav iestatīts",

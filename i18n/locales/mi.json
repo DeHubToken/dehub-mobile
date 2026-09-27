@@ -4748,7 +4748,15 @@
     "custodyNote": "Ka noho ngā tohu ki te tiaki a te DeHub, kāore e hokona. Ka whiwhi te kaihanga i tētahi pauna ohaurunga USDT-denominated.",
     "legacyMigrationNote": "Ko te penapena ka nuku i tēnei mahere utu-tohu-tawhito ki te utu-tara i te reiti i mua i te whakarārangi.",
     "tokenPrice": "{{amount}} tohu",
-    "tokensUnit": "tohu"
+    "tokensUnit": "tohu",
+    "atPreListingRate": "{{amount}} i te reiti o mua",
+    "fromSubscriptionTokensAmount": "Mai i to tohu ohaurunga: {{amount}}",
+    "subscriptionTokensNote": "Ka kati nga tohu ohaurunga i te utu ka taapirihia e koe, no reira kaore he nekehanga utu e huri i te utu o te ohaurunga ki a koe. Ka taea anake te whakapau i a raatau ki nga ohaurunga.",
+    "subscriptionTokens": "Tohu ohaurunga",
+    "untradableTokens": "He tohu ohaurunga kore e taea te whakawhiti",
+    "lockedValue": "Tikiake i runga i {{amount}}",
+    "withdraw": "Whakakorea",
+    "trade": "Tauhokohoko"
   },
   "live": {
     "notSet": "Kāore i tautuhia",

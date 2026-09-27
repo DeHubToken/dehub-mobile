@@ -4797,7 +4797,15 @@
     "custodyNote": "I tuoi token rimangono nella custodia del tesoro DeHub e non vengono venduti. Il creatore riceve un saldo di abbonamento denominato in USDT.",
     "legacyMigrationNote": "Il salvataggio migra questo piano legacy prezzato in token a prezzi in dollari al tasso pre-listing.",
     "tokenPrice": "{{amount}} token",
-    "tokensUnit": "token"
+    "tokensUnit": "token",
+    "atPreListingRate": "{{amount}} alla tariffa di pre-listing",
+    "fromSubscriptionTokensAmount": "Dai token di abbonamento: {{amount}}",
+    "subscriptionTokensNote": "I token di abbonamento sono bloccati al prezzo quando li aggiungi, quindi una variazione di prezzo non cambia mai il costo di un abbonamento. Possono essere spesi solo per gli abbonamenti.",
+    "subscriptionTokens": "Token di abbonamento",
+    "untradableTokens": "Questi sono token di abbonamento non negoziabili",
+    "lockedValue": "Bloccato a {{amount}}",
+    "withdraw": "Preleva",
+    "trade": "Commercio"
   },
   "live": {
     "notSet": "Non impostato",

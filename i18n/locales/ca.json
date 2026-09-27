@@ -4748,7 +4748,15 @@
     "custodyNote": "Els teus jetons romanen sota la custòdia del tresor de DeHub i no es venen. El creador rep un saldo de subscripció denominat en USDT.",
     "legacyMigrationNote": "L'estalvi migra aquest pla antic amb preus en jetons a preus en dòlars a la taxa prèvia a la cotització.",
     "tokenPrice": "{{amount}} jetons",
-    "tokensUnit": "jetons"
+    "tokensUnit": "jetons",
+    "atPreListingRate": "{{amount}} a la tarifa prèvia a l'anunci",
+    "fromSubscriptionTokensAmount": "Des dels vostres tokens de subscripció: {{amount}}",
+    "subscriptionTokensNote": "Els tokens de subscripció es bloquegen al preu quan els afegeixes, de manera que un moviment de preu mai canvia el que et costa una subscripció. Només es poden gastar en subscripcions.",
+    "subscriptionTokens": "Tokens de subscripció",
+    "untradableTokens": "Són fitxes de subscripció no comercialitzables",
+    "lockedValue": "Bloquejat a les {{amount}}",
+    "withdraw": "Retirar",
+    "trade": "Comerç"
   },
   "live": {
     "notSet": "Sense definir",

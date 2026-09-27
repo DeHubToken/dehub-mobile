@@ -4752,7 +4752,15 @@
     "custodyNote": "Tokenjei a DeHub kincstár kezelésében maradnak, és nem kerülnek eladásra. A létrehozó USDT-denominált előfizetési egyenleget kap.",
     "legacyMigrationNote": "A mentés ezt a régi, token-alapú árazási tervet dollár alapú árazásra migrálja a listázás előtti árfolyamon.",
     "tokenPrice": "{{amount}} token",
-    "tokensUnit": "tokenek"
+    "tokensUnit": "tokenek",
+    "atPreListingRate": "{{amount}} a hirdetés előtti áron",
+    "fromSubscriptionTokensAmount": "Az előfizetési tokenjeidből: {{amount}}",
+    "subscriptionTokensNote": "Az előfizetési tokenek hozzáadásukkor zárolva vannak az áron, így az ármozgás soha nem változtatja meg az előfizetés költségét. Csak előfizetésekre költhetők.",
+    "subscriptionTokens": "Előfizetési tokenek",
+    "untradableTokens": "Ezek nem forgalomképes előfizetési tokenek",
+    "lockedValue": "Zárolva: {{amount}}",
+    "withdraw": "Kifizetés",
+    "trade": "Kereskedelem"
   },
   "live": {
     "notSet": "Nincs beállítva",

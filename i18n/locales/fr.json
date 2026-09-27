@@ -4801,7 +4801,15 @@
     "custodyNote": "Vos jetons restent sous la garde du trésor DeHub et ne sont pas vendus. Le créateur reçoit un solde d'abonnement libellé en USDT.",
     "legacyMigrationNote": "L'épargne migre ce plan hérité au prix du jeton vers une tarification en dollars au taux de pré-cotation.",
     "tokenPrice": "{{amount}} jetons",
-    "tokensUnit": "jetons"
+    "tokensUnit": "jetons",
+    "atPreListingRate": "{{amount}} au tarif de pré-commercialisation",
+    "fromSubscriptionTokensAmount": "À partir de vos jetons d'abonnement : {{amount}}",
+    "subscriptionTokensNote": "Les jetons d'abonnement sont verrouillés au prix lorsque vous les ajoutez, de sorte qu'un changement de prix ne change jamais ce qu'un abonnement vous coûte. Ils ne peuvent être dépensés que sur des abonnements.",
+    "subscriptionTokens": "Jetons d'abonnement",
+    "untradableTokens": "Ce sont des jetons d'abonnement non échangeables",
+    "lockedValue": "Verrouillé à {{amount}}",
+    "withdraw": "Retirer",
+    "trade": "Commerce"
   },
   "live": {
     "notSet": "Non défini",

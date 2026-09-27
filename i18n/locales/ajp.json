@@ -4748,7 +4748,15 @@
     "custodyNote": "تبقى توكناتك في عهدة خزينة DeHub ولا يتم بيعها. يتلقى المنشئ رصيد اشتراك مقوم بالدولار الأمريكي.",
     "legacyMigrationNote": "الادخار ينقل هذه الخطة القديمة المسعرة بالتوكن إلى تسعير بالدولار بسعر ما قبل الإدراج.",
     "tokenPrice": "{{amount}} توكن",
-    "tokensUnit": "توكنات"
+    "tokensUnit": "توكنات",
+    "atPreListingRate": "{{amount}} بسعر ما قبل الإدراج",
+    "fromSubscriptionTokensAmount": "من توكنات الاشتراك تبعك: {{amount}}",
+    "subscriptionTokensNote": "توكنات الاشتراك بتتثبت على السعر وقت ما تضيفها، يعني أي تغير بالسعر ما بيأثر على تكلفة الاشتراك. فيك تستخدمها بس للاشتراكات.",
+    "subscriptionTokens": "توكنات الاشتراك",
+    "untradableTokens": "هيدي توكنات اشتراك ما بتنقّال",
+    "lockedValue": "مثبت على {{amount}}",
+    "withdraw": "سحب",
+    "trade": "تبادل"
   },
   "live": {
     "notSet": "مش محدد",

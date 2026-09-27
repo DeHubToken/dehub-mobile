@@ -4732,7 +4732,15 @@
     "custodyNote": "آپ کے ٹوکن DeHub ٹریژری کی تحویل میں رہتے ہیں اور فروخت نہیں ہوتے۔ تخلیق کار کو USDT کے نام سے ایک سبسکرپشن بیلنس موصول ہوتا ہے۔",
     "legacyMigrationNote": "سیونگ اس لیگیسی ٹوکن سے قیمت والے پلان کو پری-لسٹنگ ریٹ پر ڈالر کی قیمتوں میں منتقل کرتی ہے۔",
     "tokenPrice": "{{amount}} ٹوکن",
-    "tokensUnit": "ٹوکن"
+    "tokensUnit": "ٹوکن",
+    "atPreListingRate": "{{amount}} pre-listing rate pe",
+    "fromSubscriptionTokensAmount": "Apan subscription token se: {{amount}}",
+    "subscriptionTokensNote": "Subscription token log ke daam pe lock rahit hai, jab apan add karait chhi, tai daam ke badla se subscription ke lagat kabho na badalta. Ehan ke kewal subscription me kharch kar sakait chhi.",
+    "subscriptionTokens": "Subscription token",
+    "untradableTokens": "Ehan untradeable subscription token chhi",
+    "lockedValue": "Lock rahit hai {{amount}}",
+    "withdraw": "Nikal",
+    "trade": "Bikri"
   },
   "live": {
     "notSet": "ঠিক করা নাই",

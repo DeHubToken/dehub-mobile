@@ -4627,7 +4627,15 @@
     "createAndPublish": "Create am and publish am",
     "publishingOnChain": "To publish na on-chain transaction",
     "tokenPrice": "{{amount}} tokens",
-    "tokensUnit": "tokens"
+    "tokensUnit": "tokens",
+    "subscriptionTokens": "Subscription tokens",
+    "lockedValue": "Locked at {{amount}}",
+    "withdraw": "Withdraw",
+    "trade": "Trade",
+    "atPreListingRate": "{{amount}} for di pre-listing rate",
+    "fromSubscriptionTokensAmount": "From your subscription tokens: {{amount}}",
+    "subscriptionTokensNote": "Subscription tokens dey lock for di price wey dey when you add dem, so if price change e no go change wetin subscription go cost you. Na only subscription you fit spend dem for.",
+    "untradableTokens": "Dis na subscription tokens wey you no fit trade"
   },
   "live": {
     "notSet": "Dem never set am",

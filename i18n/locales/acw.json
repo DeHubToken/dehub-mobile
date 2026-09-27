@@ -4748,7 +4748,15 @@
     "custodyNote": "توكنزك بتفضل في عهدة خزينة DeHub ومش بتتباع. المبدع بيستلم رصيد اشتراك بالدولار الأمريكي.",
     "legacyMigrationNote": "التوفير بينقل الخطة القديمة دي اللي بتتسعر بالتوكن لأسعار بالدولار بسعر ما قبل الإدراج.",
     "tokenPrice": "{{amount}} توكنز",
-    "tokensUnit": "توكنز"
+    "tokensUnit": "توكنز",
+    "atPreListingRate": "{{amount}} عند سعر ما قبل القوائم",
+    "fromSubscriptionTokensAmount": "من رموز الاشتراك الخاصة بك: {{amount}}",
+    "subscriptionTokensNote": "الرموز الاشتراك مقفلة بالسعر اللي تضيفه، فالتغيّر بالسعر ما يغيّر قيمة الاشتراك. تقدر صرفها بس على الاشتراكات.",
+    "subscriptionTokens": "رموز الاشتراك",
+    "untradableTokens": "هذي رموز اشتراك ما ينفع تسوي عليها تداول",
+    "lockedValue": "مقفل بسعر {{amount}}",
+    "withdraw": "سحب",
+    "trade": "تداول"
   },
   "live": {
     "notSet": "مش محدد",
