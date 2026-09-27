@@ -144,7 +144,7 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
 
   const translationTexts = useMemo(() => ({ content: bodyText }), [bodyText]);
   const { isTranslated, translatedTexts, isLoading: translating, handleTranslate, handleShowOriginal, shouldShow: showTranslate, sourceLang: translationSourceLang } =
-    useTranslation(translationTexts, (message as any).detectedLanguage);
+    useTranslation(translationTexts, (message as any).detectedLanguage, 'chat', true);
 
   // Reactions display
   const reactionEntries = useMemo(() => {
