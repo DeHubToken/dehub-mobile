@@ -20,6 +20,14 @@ interface UseTranslationResult {
 // so an emoji-only post still counts as empty and gets no button.
 const MIN_TRANSLATABLE_LENGTH = 1;
 
+// Auto-translate leaves unlabelled Latin text under 30 letters alone, since a
+// word or two cannot be told apart from the reader's own language. Live chat is
+// the exception: nearly every line is that short ("hoş geldiniz.", "turn it
+// up"), so chat never auto-translated at all. A chat line only needs a few
+// letters; "gm", "ok" and "lol" stay as written.
+const MIN_AUTO_LETTERS = 30;
+const MIN_CHAT_AUTO_LETTERS = 4;
+
 const EMOJI_REGEX = /[\p{Emoji_Presentation}\p{Extended_Pictographic}\u200d\ufe0f]/gu;
 function stripEmojis(text: string): string {
   return text.replace(EMOJI_REGEX, '').replace(/\s+/g, ' ').trim();
@@ -50,11 +58,14 @@ function baseLang(lang: string): string {
  * @param isPublic - The text is already public (a post, a comment on one, a
  *   bio). Only then may the request reach providers that train on their input;
  *   left false, the edge function keeps it away from them.
+ *
+ * Pass auto='chat' for public live chat, where lines are too short for the
+ * post length floor.
  */
 export function useTranslation(
   texts: Record<string, string>,
   detectedLanguage?: string | null,
-  auto: boolean = true,
+  auto: boolean | 'chat' = true,
   isPublic: boolean = false,
 ): UseTranslationResult {
   const [isTranslated, setIsTranslated] = useState(false);
@@ -224,7 +235,8 @@ export function useTranslation(
     // the same effect, but not asking is cheaper than being told — and on a
     // feed whose majority language matches the reader, this is most of it.
     if (reliableBackendLang && baseLang(reliableBackendLang) === baseLang(targetLang)) return;
-    if (!reliableBackendLang && combinedProse.length < 30 && /^[\p{Script=Latin}]*$/u.test(combinedProse)) return;
+    const minLetters = auto === 'chat' ? MIN_CHAT_AUTO_LETTERS : MIN_AUTO_LETTERS;
+    if (!reliableBackendLang && combinedProse.length < minLetters && /^[\p{Script=Latin}]*$/u.test(combinedProse)) return;
 
     const key = `${combinedText}::${targetLang}`;
     if (autoDoneRef.current === key) return;
