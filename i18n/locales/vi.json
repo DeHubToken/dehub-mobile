@@ -5196,7 +5196,10 @@
     "tippedYouAmount": "Đã tip bạn {{amount}}",
     "paymentFailedAmount": "Thất bại · {{amount}}",
     "paymentSendingAmount": "Đang gửi · {{amount}}",
-    "paymentSentWith": "Đã gửi với {{amount}}"
+    "paymentSentWith": "Đã gửi với {{amount}}",
+    "planRestricted": "Người dùng này yêu cầu đăng ký để nhận tin nhắn.",
+    "planTypeNotAllowed": "Gói của nhà sáng tạo này không cho phép loại tin nhắn này.",
+    "planMinTip": "Tiền tip cho nhà sáng tạo này phải ít nhất {{amount}} DHB."
   },
   "editPost": {
     "mediaPermission": "Cần quyền truy cập thư viện phương tiện",

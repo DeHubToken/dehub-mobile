@@ -5137,7 +5137,10 @@
     "tokensUnit": "o ye koo ɲuman ye.",
     "paymentFailedAmount": "Ala ka Kuma: {{amount}}",
     "paymentSendingAmount": "Ala ka Kuma: {{amount}}",
-    "paymentSentWith": "Add {{amount}}"
+    "paymentSentWith": "Add {{amount}}",
+    "planRestricted": "Nin baarakɛla mago bɛ abɔnman na walasa ka cikanw sɔrɔ.",
+    "planTypeNotAllowed": "Nin dabɔbaga ka labɛn tɛ nin cikan suguya sɔn.",
+    "planMinTip": "Nin dabɔbaga ye, tɛpu ka kan ka kɛ {{amount}} DHB ye a dɔgɔyali la."
   },
   "editPost": {
     "mediaPermission": "Media gafemarayɔrɔ yamaruya wajibiyalen don",

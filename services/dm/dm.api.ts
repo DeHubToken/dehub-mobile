@@ -263,6 +263,41 @@ export async function getDmUserStatus(
   });
 }
 
+/** Message kinds a creator's paid-DM plan can allow, as the API names them. */
+export type DmPlanMessageType = "text" | "image" | "gif" | "audio" | "video" | "tip";
+
+export interface DmPlanSettings {
+  enabled: boolean;
+  minTipDhb?: number;
+  allowedMessageTypes?: DmPlanMessageType[];
+}
+
+/**
+ * Rules a creator attached to DMs through their subscription plan
+ * (`account.dmPlanId`). A failed lookup falls back to open DMs, same as web.
+ */
+export async function getDmPlanSettings(planId: string): Promise<DmPlanSettings> {
+  try {
+    const res: any = await apiClient.get(`/dm/plan/${encodeURIComponent(planId)}`, {
+      isAuthRequired: true,
+    });
+    const settings = res?.result ?? res?.data ?? res;
+    if (!settings || typeof settings !== "object") return { enabled: true };
+    return {
+      enabled: settings.enabled !== false,
+      minTipDhb:
+        typeof settings.minTipDhb === "number" && settings.minTipDhb > 0
+          ? settings.minTipDhb
+          : undefined,
+      allowedMessageTypes: Array.isArray(settings.allowedMessageTypes)
+        ? settings.allowedMessageTypes
+        : undefined,
+    };
+  } catch {
+    return { enabled: true };
+  }
+}
+
 export async function updateDmUserStatus(
   address: string,
   status: DmDisableStatus,

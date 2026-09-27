@@ -5183,7 +5183,10 @@
     "tippedYouAmount": "Siziň üçin {{amount}} sowgat berildi",
     "paymentFailedAmount": "Ýalňyşlyk · {{amount}}",
     "paymentSendingAmount": "Ugradylýar · {{amount}}",
-    "paymentSentWith": "{{amount}} bilen ugradyldy"
+    "paymentSentWith": "{{amount}} bilen ugradyldy",
+    "planRestricted": "Bu ulanyjy habar almak üçin abuna talap edýär.",
+    "planTypeNotAllowed": "Bu awtoryň meýilnamasy bu görnüşli habara rugsat bermeýär.",
+    "planMinTip": "Bu awtor üçin çaýpul iň azyndan {{amount}} DHB bolmaly."
   },
   "editPost": {
     "mediaPermission": "Media kitaphanasyna rugsat gerek",

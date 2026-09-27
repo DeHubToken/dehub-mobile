@@ -5183,7 +5183,10 @@
     "tippedYouAmount": "आपको {{amount}} टिप दी",
     "paymentFailedAmount": "विफल · {{amount}}",
     "paymentSendingAmount": "भेज रहा है · {{amount}}",
-    "paymentSentWith": "{{amount}} के साथ भेजा गया"
+    "paymentSentWith": "{{amount}} के साथ भेजा गया",
+    "planRestricted": "अस्य उपयोक्तुः सन्देशप्राप्त्यर्थं सदस्यता आवश्यकी।",
+    "planTypeNotAllowed": "अस्य रचयितुः योजना एतादृशं सन्देशं न अनुमन्यते।",
+    "planMinTip": "अस्मै रचयित्रे टिप् न्यूनातिन्यूनं {{amount}} DHB भवेत्।"
   },
   "editPost": {
     "mediaPermission": "माध्यमपुस्तकालयस्य अनुमतिः आवश्यकी",

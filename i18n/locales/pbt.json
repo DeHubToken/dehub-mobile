@@ -5183,7 +5183,10 @@
     "tippedYouAmount": "تاسو ته {{amount}} ټیپ درکړل شو",
     "paymentFailedAmount": "ناکام · {{amount}}",
     "paymentSendingAmount": "لیږل · {{amount}}",
-    "paymentSentWith": "د {{amount}} سره لیږل شوي"
+    "paymentSentWith": "د {{amount}} سره لیږل شوي",
+    "planRestricted": "دا کارن د پیغامونو ترلاسه کولو لپاره ګډون ته اړتیا لري.",
+    "planTypeNotAllowed": "د دې جوړونکي پلان دا ډول پیغام نه مني.",
+    "planMinTip": "د دې جوړونکي لپاره ټیپ باید لږ تر لږه {{amount}} DHB وي."
   },
   "editPost": {
     "mediaPermission": "د رسنیو کتابتون اجازه اړینه ده",

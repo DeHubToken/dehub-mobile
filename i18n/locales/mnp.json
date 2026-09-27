@@ -5175,7 +5175,10 @@
     "normallyFee": "平常每条消息 {{fee}} 粒",
     "feePerMessage": "每条消息 {{fee}} 粒",
     "eachMessagePaid": "每条消息需要粒支付",
-    "tipBelowFee": "打赏至少要 {{amount}} 粒 (消息费)"
+    "tipBelowFee": "打赏至少要 {{amount}} 粒 (消息费)",
+    "planRestricted": "這隻用戶要訂閱正收得著消息。",
+    "planTypeNotAllowed": "這隻創作者其方案無允許這種消息。",
+    "planMinTip": "打賞乞這隻創作者至少要 {{amount}} DHB。"
   },
   "editPost": {
     "mediaPermission": "需要媒体库权限",

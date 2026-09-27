@@ -5183,7 +5183,10 @@
     "tippedYouAmount": "打赏你 {{amount}} 枚",
     "paymentFailedAmount": "失败 · {{amount}} 枚",
     "paymentSendingAmount": "发送中 · {{amount}} 枚",
-    "paymentSentWith": "已发送 {{amount}} 枚"
+    "paymentSentWith": "已发送 {{amount}} 枚",
+    "planRestricted": "这个用户要订阅才能收消息。",
+    "planTypeNotAllowed": "这个创作者的方案不允许这类消息。",
+    "planMinTip": "给这个创作者的打赏至少要 {{amount}} DHB。"
   },
   "editPost": {
     "mediaPermission": "需要媒体库权限",

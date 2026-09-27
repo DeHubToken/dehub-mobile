@@ -5023,7 +5023,10 @@
     "tippedYouAmount": "Поклоњено вам {{amount}}",
     "paymentFailedAmount": "Неуспешно · {{amount}}",
     "paymentSendingAmount": "Слање · {{amount}}",
-    "paymentSentWith": "Послато са {{amount}}"
+    "paymentSentWith": "Послато са {{amount}}",
+    "planRestricted": "Овај корисник захтева претплату да би примао поруке.",
+    "planTypeNotAllowed": "План овог креатора не дозвољава ову врсту поруке.",
+    "planMinTip": "Напојница за овог креатора мора бити најмање {{amount}} DHB."
   },
   "editPost": {
     "mediaPermission": "Потребна је дозвола за медијску библиотеку",

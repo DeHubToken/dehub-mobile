@@ -5171,7 +5171,10 @@
     "tippedYouAmount": "მოგეცით {{amount}}",
     "paymentFailedAmount": "ჩაიშალა · {{amount}}",
     "paymentSendingAmount": "გაგზავნა · {{amount}}",
-    "paymentSentWith": "გაგზავნილია {{amount}}"
+    "paymentSentWith": "გაგზავნილია {{amount}}",
+    "planRestricted": "ამ მომხმარებელს შეტყობინებების მისაღებად გამოწერა სჭირდება.",
+    "planTypeNotAllowed": "ამ შემქმნელის გეგმა ამ ტიპის შეტყობინებას არ იძლევა.",
+    "planMinTip": "ამ შემქმნელისთვის თიფი მინიმუმ {{amount}} DHB უნდა იყოს."
   },
   "editPost": {
     "mediaPermission": "საჭიროა მედიაბიბლიოთეკის ნებართვა",

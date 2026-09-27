@@ -5183,7 +5183,10 @@
     "tippedYouAmount": "An ba ka kyauta {{amount}}",
     "paymentFailedAmount": "Ya kasa · {{amount}}",
     "paymentSendingAmount": "Yana aika · {{amount}}",
-    "paymentSentWith": "An aika da {{amount}}"
+    "paymentSentWith": "An aika da {{amount}}",
+    "planRestricted": "Wannan mai amfani yana buƙatar biyan kuɗin shiga don karɓar saƙonni.",
+    "planTypeNotAllowed": "Tsarin wannan mahalicci bai yarda da irin wannan saƙo ba.",
+    "planMinTip": "Tip dole ya zama aƙalla {{amount}} DHB ga wannan mahalicci."
   },
   "editPost": {
     "mediaPermission": "Ana buƙatar izinin ɗakin karatu na kafofin watsa labarai",

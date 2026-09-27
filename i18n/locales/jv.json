@@ -5183,7 +5183,10 @@
     "tippedYouAmount": "Menehi sampeyan {{amount}}",
     "paymentFailedAmount": "Gagal · {{amount}}",
     "paymentSendingAmount": "Ngirim · {{amount}}",
-    "paymentSentWith": "Dikirim nganggo {{amount}}"
+    "paymentSentWith": "Dikirim nganggo {{amount}}",
+    "planRestricted": "Pangguna iki mbutuhake langganan kanggo nampa pesen.",
+    "planTypeNotAllowed": "Paket kreator iki ora ngidini jinis pesen iki.",
+    "planMinTip": "Tip kanggo kreator iki paling sithik {{amount}} DHB."
   },
   "editPost": {
     "mediaPermission": "Butuh idin pustaka media",

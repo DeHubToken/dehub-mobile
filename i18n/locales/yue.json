@@ -5183,7 +5183,10 @@
     "tippedYouAmount": "打賞你 {{amount}} 個",
     "paymentFailedAmount": "失敗 · {{amount}} 個",
     "paymentSendingAmount": "正在發送 · {{amount}} 個",
-    "paymentSentWith": "已發送 {{amount}} 個"
+    "paymentSentWith": "已發送 {{amount}} 個",
+    "planRestricted": "呢個用戶要訂閱先可以收訊息。",
+    "planTypeNotAllowed": "呢位創作者嘅方案唔容許呢類訊息。",
+    "planMinTip": "打賞呢位創作者最少要 {{amount}} DHB。"
   },
   "editPost": {
     "mediaPermission": "需要媒體庫權限",

@@ -5214,7 +5214,10 @@
     "tippedYouAmount": "Ngikunikeze {{amount}}",
     "paymentFailedAmount": "Kuhlulekile · {{amount}}",
     "paymentSendingAmount": "Ukuthumela · {{amount}}",
-    "paymentSentWith": "Kuthunyelwe nge {{amount}}"
+    "paymentSentWith": "Kuthunyelwe nge {{amount}}",
+    "planRestricted": "Lo msebenzisi udinga ukubhalisa ukuze athole imilayezo.",
+    "planTypeNotAllowed": "Uhlelo lwalo mdali aluvumeli lolu hlobo lomlayezo.",
+    "planMinTip": "Ithiphu yalo mdali kufanele okungenani ibe ngu-{{amount}} DHB."
   },
   "editPost": {
     "mediaPermission": "Kudingeka imvume yomtapo wolwazi wemidiya",

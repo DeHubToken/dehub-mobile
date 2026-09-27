@@ -5052,7 +5052,10 @@
     "tokenAmount": "{{amount}} tokens",
     "tokensUnit": "tokens",
     "paymentFailedAmount": "Failed · {{amount}}",
-    "paymentSendingAmount": "Sending · {{amount}}"
+    "paymentSendingAmount": "Sending · {{amount}}",
+    "planRestricted": "Dis pipul need subscription before e fit get message.",
+    "planTypeNotAllowed": "Dis creator yi plan no allow dis kain message.",
+    "planMinTip": "Tip for dis creator must be at least {{amount}} DHB."
   },
   "editPost": {
     "mediaPermission": "You need media library permission",

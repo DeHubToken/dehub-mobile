@@ -5213,7 +5213,10 @@
     "tippedYouAmount": "به شما {{amount}} انعام داده شد",
     "paymentFailedAmount": "ناموفق · {{amount}}",
     "paymentSendingAmount": "ارسال · {{amount}}",
-    "paymentSentWith": "با {{amount}} ارسال شد"
+    "paymentSentWith": "با {{amount}} ارسال شد",
+    "planRestricted": "این کاربر برای دریافت پیام به اشتراک نیاز دارد.",
+    "planTypeNotAllowed": "طرح این سازنده این نوع پیام را مجاز نمی‌داند.",
+    "planMinTip": "انعام برای این سازنده باید حداقل {{amount}} DHB باشد."
   },
   "editPost": {
     "mediaPermission": "دسترسی به کتابخانه رسانه لازم است",

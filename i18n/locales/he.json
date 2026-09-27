@@ -5187,7 +5187,10 @@
     "tippedYouAmount": "טיפ לך {{amount}}",
     "paymentFailedAmount": "נכשל · {{amount}}",
     "paymentSendingAmount": "שולח · {{amount}}",
-    "paymentSentWith": "נשלח עם {{amount}}"
+    "paymentSentWith": "נשלח עם {{amount}}",
+    "planRestricted": "משתמש זה דורש מינוי כדי לקבל הודעות.",
+    "planTypeNotAllowed": "התוכנית של יוצר זה אינה מאפשרת סוג הודעה זה.",
+    "planMinTip": "הטיפ ליוצר זה חייב להיות לפחות {{amount}} DHB."
   },
   "editPost": {
     "mediaPermission": "נדרשת הרשאה לספריית המדיה",

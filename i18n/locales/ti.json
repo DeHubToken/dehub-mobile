@@ -5183,7 +5183,10 @@
     "tippedYouAmount": "ኣስተዋጽኡልካ {{amount}}",
     "paymentFailedAmount": "ኣይሰለዐን · {{amount}}",
     "paymentSendingAmount": "ይስደድ · {{amount}}",
-    "paymentSentWith": "ብ {{amount}} ተሰኣለ"
+    "paymentSentWith": "ብ {{amount}} ተሰኣለ",
+    "planRestricted": "እዚ ተጠቃሚ መልእኽትታት ንምቕባል ምዝገባ የድልዮ።",
+    "planTypeNotAllowed": "ውጥን እዚ ፈጣሪ ከምዚ ዓይነት መልእኽቲ ኣይፈቅድን።",
+    "planMinTip": "ን'ዚ ፈጣሪ ቲፕ እንተነኣሰ {{amount}} DHB ክኸውን ኣለዎ።"
   },
   "editPost": {
     "mediaPermission": "ናይ ሚድያ ቤተ-መጻሕፍቲ ፍቓድ የድሊ",

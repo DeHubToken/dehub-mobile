@@ -80,10 +80,13 @@ import type {
 import {
   getMessages,
   getDmUserStatus,
+  getDmPlanSettings,
   addFreeAccess,
   removeFreeAccess,
   bulkDeleteMessages,
   type DmUserStatus,
+  type DmPlanSettings,
+  type DmPlanMessageType,
 } from "../services/dm/dm.api";
 import {
   dmActions,
@@ -199,8 +202,52 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
   const [target, setTarget] = useState<(Partial<User> & { _id?: string }) | null>(
     (route?.params?.targetUser as any) || null,
   );
-  const [dmDisabled, setDmDisabled] = useState(false);
-  const [dmReason, setDmReason] = useState<string | null>(null);
+  const [dmDisabledRaw, setDmDisabled] = useState(false);
+  const [dmReasonRaw, setDmReason] = useState<string | null>(null);
+
+  // Rules the peer attached to DMs through their subscription plan. A plan
+  // that has DMs switched off closes the thread; otherwise it can narrow which
+  // kinds of message go through and set a floor on tips.
+  const [planRules, setPlanRules] = useState<DmPlanSettings | null>(null);
+  const peerPlanId = (target as any)?.dmPlanId as string | undefined;
+  useEffect(() => {
+    if (!peerPlanId) {
+      setPlanRules(null);
+      return;
+    }
+    let cancelled = false;
+    getDmPlanSettings(peerPlanId).then((rules) => {
+      if (!cancelled) setPlanRules(rules);
+    });
+    return () => { cancelled = true; };
+  }, [peerPlanId]);
+  const planGated = !!planRules && !planRules.enabled;
+  const dmDisabled = dmDisabledRaw || planGated;
+  const dmReason = dmDisabledRaw
+    ? dmReasonRaw
+    : planGated
+      ? t("dm.planRestricted")
+      : dmReasonRaw;
+  const planMinTip = planRules?.minTipDhb ?? 0;
+
+  /** True (and says why) when the peer's plan does not take this kind of message. */
+  const planBlocks = useCallback(
+    (kind: DmPlanMessageType, tip: number = 0): boolean => {
+      const allowed = planRules?.allowedMessageTypes;
+      if (allowed && allowed.length > 0) {
+        if (!allowed.includes(kind) || (tip > 0 && !allowed.includes("tip"))) {
+          toastWarning(t("dm.planTypeNotAllowed"));
+          return true;
+        }
+      }
+      if (tip > 0 && planMinTip > 0 && tip < planMinTip) {
+        toastWarning(t("dm.planMinTip", { amount: planMinTip.toLocaleString() }));
+        return true;
+      }
+      return false;
+    },
+    [planRules, planMinTip, t],
+  );
   const [dmFee, setDmFee] = useState<DmFee | null>(null);
   const [creating, setCreating] = useState(false);
   const createdConvIdRef = useRef<ID | null>(null);
@@ -1057,6 +1104,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
         toastWarning(dmReason || "Can't send messages right now");
         return;
       }
+      if (!editingMessage && planBlocks(content ? "text" : "tip", tipAmount)) return;
 
       // Editing is still handled inline (not queued)
       if (editingMessage) {
@@ -1130,7 +1178,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
       setReplyTo(null);
       setTipAmount(0);
     },
-    [dmDisabled, dmReason, dmFee, editingMessage, currentConvId, userId, address, peer.address, ensureConversation, ws, scrollToBottom, replyTo, tipAmount, dispatchStandaloneTip, settlePendingEdit],
+    [dmDisabled, dmReason, dmFee, editingMessage, currentConvId, userId, address, peer.address, ensureConversation, ws, scrollToBottom, replyTo, tipAmount, dispatchStandaloneTip, settlePendingEdit, planBlocks],
   );
 
   const onSendGif = useCallback(
@@ -1139,6 +1187,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
         toastWarning(dmReason || "Can't send right now");
         return;
       }
+      if (planBlocks("gif", tipAmount)) return;
 
       dmSendQueue.sendGif({
         conversationId: currentConvId || "temp",
@@ -1155,7 +1204,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
       setReplyTo(null);
       setTipAmount(0);
     },
-    [dmDisabled, dmReason, dmFee, currentConvId, userId, address, scrollToBottom, replyTo, tipAmount],
+    [dmDisabled, dmReason, dmFee, currentConvId, userId, address, scrollToBottom, replyTo, tipAmount, planBlocks],
   );
 
   const onSendMedia = useCallback(
@@ -1164,6 +1213,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
         toastWarning(dmReason || "Can't send right now");
         return;
       }
+      if (planBlocks(attachment.type === "video" ? "video" : "image", tipAmount)) return;
 
       dmSendQueue.sendMedia({
         conversationId: currentConvId || "temp",
@@ -1186,12 +1236,13 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
       setReplyTo(null);
       setTipAmount(0);
     },
-    [user, address, dmDisabled, dmReason, dmFee, currentConvId, userId, scrollToBottom, replyTo, tipAmount],
+    [user, address, dmDisabled, dmReason, dmFee, currentConvId, userId, scrollToBottom, replyTo, tipAmount, planBlocks],
   );
 
   const handleVoiceComplete = useCallback(
     (result: VoiceNoteResult) => {
       if (!user || dmDisabled || !result.uri) return;
+      if (planBlocks("audio")) return;
       dmSendQueue.sendMedia({
         conversationId: currentConvId || "temp",
         userId: userId || "me",
@@ -1207,7 +1258,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
       scrollToBottom();
       setReplyTo(null);
     },
-    [user, dmDisabled, currentConvId, userId, address, replyTo, dmFee, scrollToBottom],
+    [user, dmDisabled, currentConvId, userId, address, replyTo, dmFee, scrollToBottom, planBlocks],
   );
 
   const handleVoiceCancel = useCallback(() => {}, []);
@@ -1557,7 +1608,14 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
 
   // Tip handlers — selecting a tip amount "attaches" it to the next send.
   // The tip is dispatched alongside the message (or standalone if no content).
-  const handleTipPress = useCallback(() => setTipSheetVisible(true), []);
+  const handleTipPress = useCallback(() => {
+    const allowed = planRules?.allowedMessageTypes;
+    if (allowed && allowed.length > 0 && !allowed.includes("tip")) {
+      toastWarning(t("dm.planTypeNotAllowed"));
+      return;
+    }
+    setTipSheetVisible(true);
+  }, [planRules, t]);
   const handleClearTip = useCallback(() => setTipAmount(0), []);
 
   const handlePollCreated = useCallback(
@@ -1798,7 +1856,10 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
           onConfirm={handleTipConfirm}
           currentAmount={tipAmount}
           dhbBalance={dhbBalance}
-          minAmount={dmFee?.required && !dmFee?.hasFreeAccess ? (dmFee?.fee ?? 1) : 1}
+          minAmount={Math.max(
+            dmFee?.required && !dmFee?.hasFreeAccess ? (dmFee?.fee ?? 1) : 1,
+            planMinTip,
+          )}
         />
 
         {/* Create poll sheet */}

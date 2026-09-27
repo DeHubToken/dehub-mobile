@@ -5186,7 +5186,10 @@
     "tippedYouAmount": "آپ کو {{amount}} ٹپ دیا",
     "paymentFailedAmount": "ناکام · {{amount}}",
     "paymentSendingAmount": "بھیج رہا ہے · {{amount}}",
-    "paymentSentWith": "{{amount}} کے ساتھ بھیجا گیا"
+    "paymentSentWith": "{{amount}} کے ساتھ بھیجا گیا",
+    "planRestricted": "اس صارف کو پیغامات وصول کرنے کے لیے سبسکرپشن درکار ہے۔",
+    "planTypeNotAllowed": "اس تخلیق کار کا پلان اس قسم کے پیغام کی اجازت نہیں دیتا۔",
+    "planMinTip": "اس تخلیق کار کے لیے ٹپ کم از کم {{amount}} DHB ہونی چاہیے۔"
   },
   "editPost": {
     "mediaPermission": "میڈیا لائبریری کی اجازت درکار ہے",

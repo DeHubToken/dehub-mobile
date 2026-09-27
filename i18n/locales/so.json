@@ -5183,7 +5183,10 @@
     "tippedYouAmount": "Waxaa lagu siiyay {{amount}}",
     "paymentFailedAmount": "Guul darro · {{amount}}",
     "paymentSendingAmount": "U dirista · {{amount}}",
-    "paymentSentWith": "Waxaa lagu soo diray {{amount}}"
+    "paymentSentWith": "Waxaa lagu soo diray {{amount}}",
+    "planRestricted": "Isticmaalahan wuxuu u baahan yahay rukumid si uu fariimo u helo.",
+    "planTypeNotAllowed": "Qorshaha abuurahan ma oggola nooca fariintan.",
+    "planMinTip": "Tip-ka abuurahan waa inuu ahaadaa ugu yaraan {{amount}} DHB."
   },
   "editPost": {
     "mediaPermission": "Waxaa loo baahan yahay ogolaanshaha maktabadda warbaahinta",

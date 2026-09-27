@@ -5540,7 +5540,10 @@
     "tippedYouAmount": "Надіслав вам {{amount}}",
     "paymentFailedAmount": "Не вдалося · {{amount}}",
     "paymentSendingAmount": "Надсилання · {{amount}}",
-    "paymentSentWith": "Надіслано з {{amount}}"
+    "paymentSentWith": "Надіслано з {{amount}}",
+    "planRestricted": "Цей користувач приймає повідомлення лише за підпискою.",
+    "planTypeNotAllowed": "План цього автора не дозволяє такий тип повідомлень.",
+    "planMinTip": "Чайові для цього автора мають бути не менше {{amount}} DHB."
   },
   "editPost": {
     "mediaPermission": "Потрібен дозвіл на медіатеку",

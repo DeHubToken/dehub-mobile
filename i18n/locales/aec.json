@@ -5183,7 +5183,10 @@
     "tippedYouAmount": "إديتك {{amount}}",
     "paymentFailedAmount": "فشل · {{amount}}",
     "paymentSendingAmount": "ببعت · {{amount}}",
-    "paymentSentWith": "إتبعت بـ {{amount}}"
+    "paymentSentWith": "إتبعت بـ {{amount}}",
+    "planRestricted": "المستخدم ده محتاج اشتراك علشان يستقبل رسايل.",
+    "planTypeNotAllowed": "خطة المنشئ ده ما بتسمحش بالنوع ده من الرسايل.",
+    "planMinTip": "التيب لازم يكون على الأقل {{amount}} DHB للمنشئ ده."
   },
   "editPost": {
     "mediaPermission": "لازم إذن مكتبة الوسائط",

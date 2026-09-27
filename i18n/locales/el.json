@@ -5212,7 +5212,10 @@
     "paymentSendingAmount": "Αποστολή · {{amount}}",
     "paymentSentWith": "Στάλθηκε με {{amount}}",
     "tokenAmount": "{{amount}} μάρκες",
-    "tokensUnit": "μάρκες"
+    "tokensUnit": "μάρκες",
+    "planRestricted": "Αυτός ο χρήστης απαιτεί συνδρομή για να λαμβάνει μηνύματα.",
+    "planTypeNotAllowed": "Το πρόγραμμα αυτού του δημιουργού δεν επιτρέπει αυτό το είδος μηνύματος.",
+    "planMinTip": "Το φιλοδώρημα πρέπει να είναι τουλάχιστον {{amount}} DHB για αυτόν τον δημιουργό."
   },
   "editPost": {
     "mediaPermission": "Απαιτείται άδεια για τη βιβλιοθήκη πολυμέσων",

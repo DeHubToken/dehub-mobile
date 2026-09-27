@@ -5187,7 +5187,10 @@
     "tippedYouAmount": "உங்களுக்கு {{amount}} டிப் செய்துள்ளேன்",
     "paymentFailedAmount": "தோல்வி · {{amount}}",
     "paymentSendingAmount": "அனுப்புகிறது · {{amount}}",
-    "paymentSentWith": "{{amount}} உடன் அனுப்பப்பட்டது"
+    "paymentSentWith": "{{amount}} உடன் அனுப்பப்பட்டது",
+    "planRestricted": "இந்தப் பயனருக்கு செய்திகளைப் பெற சந்தா தேவை.",
+    "planTypeNotAllowed": "இந்த படைப்பாளரின் திட்டம் இந்த வகை செய்தியை அனுமதிக்காது.",
+    "planMinTip": "இந்த படைப்பாளருக்கான டிப் குறைந்தது {{amount}} DHB ஆக இருக்க வேண்டும்."
   },
   "editPost": {
     "mediaPermission": "மீடியா லைப்ரரி அனுமதி தேவை",

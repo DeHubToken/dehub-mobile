@@ -5187,7 +5187,10 @@
     "tippedYouAmount": "Tippet dig {{amount}}",
     "paymentFailedAmount": "Mislykkedes · {{amount}}",
     "paymentSendingAmount": "Sender · {{amount}}",
-    "paymentSentWith": "Sendt med {{amount}}"
+    "paymentSentWith": "Sendt med {{amount}}",
+    "planRestricted": "Denne bruger kræver et abonnement for at modtage beskeder.",
+    "planTypeNotAllowed": "Denne skabers plan tillader ikke denne type besked.",
+    "planMinTip": "Drikkepenge skal være mindst {{amount}} DHB for denne skaber."
   },
   "editPost": {
     "mediaPermission": "Der kræves tilladelse til mediebiblioteket",

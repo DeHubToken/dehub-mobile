@@ -5232,7 +5232,10 @@
     "tippedYouAmount": "Sana {{amount}} bahşiş verdi",
     "paymentFailedAmount": "Başarısız · {{amount}}",
     "paymentSendingAmount": "Gönderiliyor · {{amount}}",
-    "paymentSentWith": "{{amount}} ile gönderildi"
+    "paymentSentWith": "{{amount}} ile gönderildi",
+    "planRestricted": "Bu kullanıcı mesaj almak için abonelik gerektiriyor.",
+    "planTypeNotAllowed": "Bu içerik üreticisinin planı bu tür mesaja izin vermiyor.",
+    "planMinTip": "Bu içerik üreticisi için bahşiş en az {{amount}} DHB olmalı."
   },
   "editPost": {
     "mediaPermission": "Medya kitaplığı izni gerekiyor",

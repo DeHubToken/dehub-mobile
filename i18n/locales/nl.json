@@ -5373,7 +5373,10 @@
     "tippedYouAmount": "Je {{amount}} getipt",
     "paymentFailedAmount": "Mislukt · {{amount}}",
     "paymentSendingAmount": "Verzenden · {{amount}}",
-    "paymentSentWith": "Verzonden met {{amount}}"
+    "paymentSentWith": "Verzonden met {{amount}}",
+    "planRestricted": "Deze gebruiker vereist een abonnement om berichten te ontvangen.",
+    "planTypeNotAllowed": "Het abonnement van deze maker staat dit soort bericht niet toe.",
+    "planMinTip": "De fooi voor deze maker moet minstens {{amount}} DHB zijn."
   },
   "editPost": {
     "mediaPermission": "Toestemming voor de mediabibliotheek is vereist",

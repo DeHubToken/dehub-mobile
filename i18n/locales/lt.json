@@ -5183,7 +5183,10 @@
     "tippedYouAmount": "Jums pervesta {{amount}}",
     "paymentFailedAmount": "Nepavyko · {{amount}}",
     "paymentSendingAmount": "Siunčiama · {{amount}}",
-    "paymentSentWith": "Išsiųsta su {{amount}}"
+    "paymentSentWith": "Išsiųsta su {{amount}}",
+    "planRestricted": "Šiam naudotojui reikia prenumeratos, kad gautų žinutes.",
+    "planTypeNotAllowed": "Šio kūrėjo planas neleidžia tokio tipo žinučių.",
+    "planMinTip": "Arbatpinigiai šiam kūrėjui turi būti bent {{amount}} DHB."
   },
   "editPost": {
     "mediaPermission": "Reikalingas medijos bibliotekos leidimas",

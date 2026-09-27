@@ -5183,7 +5183,10 @@
     "paymentFailedAmount": "Ọ dara · {{amount}}",
     "paymentSendingAmount": "Na-eziga · {{amount}}",
     "paymentSentWith": "Ezitere na {{amount}}",
-    "insufficientTokenBalance": "Ọ bụghị zuru ezu tokens · {{amount}} ẹkenịmde"
+    "insufficientTokenBalance": "Ọ bụghị zuru ezu tokens · {{amount}} ẹkenịmde",
+    "planRestricted": "Onye ọrụ a chọrọ ndenye aha iji nata ozi.",
+    "planTypeNotAllowed": "Atụmatụ onye okike a anaghị ekwe ụdị ozi a.",
+    "planMinTip": "Tip ga-abụrịrị opekata mpe {{amount}} DHB maka onye okike a."
   },
   "editPost": {
     "mediaPermission": "Achọrọ ikike ọbá ihe ọkiri",

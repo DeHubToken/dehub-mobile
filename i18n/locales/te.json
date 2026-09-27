@@ -5187,7 +5187,10 @@
     "tippedYouAmount": "మీకు {{amount}} టిప్ చేశారు",
     "paymentFailedAmount": "విఫలమైంది · {{amount}}",
     "paymentSendingAmount": "పంపుతోంది · {{amount}}",
-    "paymentSentWith": "{{amount}} తో పంపబడింది"
+    "paymentSentWith": "{{amount}} తో పంపబడింది",
+    "planRestricted": "ఈ వినియోగదారుకు సందేశాలు అందుకోవడానికి సబ్‌స్క్రిప్షన్ అవసరం.",
+    "planTypeNotAllowed": "ఈ క్రియేటర్ ప్లాన్ ఈ రకమైన సందేశాన్ని అనుమతించదు.",
+    "planMinTip": "ఈ క్రియేటర్‌కు టిప్ కనీసం {{amount}} DHB ఉండాలి."
   },
   "editPost": {
     "mediaPermission": "మీడియా లైబ్రరీ అనుమతి అవసరం",

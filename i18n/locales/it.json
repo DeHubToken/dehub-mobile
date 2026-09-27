@@ -5232,7 +5232,10 @@
     "tippedYouAmount": "Ti ho dato una mancia di {{amount}}",
     "paymentFailedAmount": "Fallito · {{amount}}",
     "paymentSendingAmount": "Invio · {{amount}}",
-    "paymentSentWith": "Inviato con {{amount}}"
+    "paymentSentWith": "Inviato con {{amount}}",
+    "planRestricted": "Questo utente richiede un abbonamento per ricevere messaggi.",
+    "planTypeNotAllowed": "Il piano di questo creator non consente questo tipo di messaggio.",
+    "planMinTip": "La mancia deve essere di almeno {{amount}} DHB per questo creator."
   },
   "editPost": {
     "mediaPermission": "È richiesta l'autorizzazione alla libreria multimediale",

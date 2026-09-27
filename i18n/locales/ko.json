@@ -5236,7 +5236,10 @@
     "tippedYouAmount": "{{amount}}개 팁 드렸습니다",
     "paymentFailedAmount": "실패 · {{amount}}개",
     "paymentSendingAmount": "전송 중 · {{amount}}개",
-    "paymentSentWith": "{{amount}}개로 전송 완료"
+    "paymentSentWith": "{{amount}}개로 전송 완료",
+    "planRestricted": "이 사용자에게 메시지를 보내려면 구독이 필요합니다.",
+    "planTypeNotAllowed": "이 크리에이터의 플랜은 이 유형의 메시지를 허용하지 않습니다.",
+    "planMinTip": "이 크리에이터에게 보내는 팁은 최소 {{amount}} DHB여야 합니다."
   },
   "editPost": {
     "mediaPermission": "미디어 라이브러리 권한이 필요합니다",

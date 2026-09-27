@@ -5183,7 +5183,10 @@
     "tippedYouAmount": "Tippet deg {{amount}}",
     "paymentFailedAmount": "Mislyktes · {{amount}}",
     "paymentSendingAmount": "Sender · {{amount}}",
-    "paymentSentWith": "Sendt med {{amount}}"
+    "paymentSentWith": "Sendt med {{amount}}",
+    "planRestricted": "Denne brukeren krever et abonnement for å motta meldinger.",
+    "planTypeNotAllowed": "Denne skaperens plan tillater ikke denne typen melding.",
+    "planMinTip": "Tipset må være minst {{amount}} DHB for denne skaperen."
   },
   "editPost": {
     "mediaPermission": "Tillatelse til mediebiblioteket kreves",

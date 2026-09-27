@@ -5187,7 +5187,10 @@
     "tippedYouAmount": "Poslal jsem ti {{amount}}",
     "paymentFailedAmount": "Selhalo · {{amount}}",
     "paymentSendingAmount": "Odesílání · {{amount}}",
-    "paymentSentWith": "Odesláno s {{amount}}"
+    "paymentSentWith": "Odesláno s {{amount}}",
+    "planRestricted": "Tento uživatel vyžaduje předplatné pro příjem zpráv.",
+    "planTypeNotAllowed": "Plán tohoto tvůrce tento typ zprávy nepovoluje.",
+    "planMinTip": "Spropitné pro tohoto tvůrce musí být alespoň {{amount}} DHB."
   },
   "editPost": {
     "mediaPermission": "Je vyžadováno oprávnění k mediální knihovně",

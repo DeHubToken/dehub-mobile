@@ -5232,7 +5232,10 @@
     "tippedYouAmount": "Memberimu tip {{amount}}",
     "paymentFailedAmount": "Gagal · {{amount}}",
     "paymentSendingAmount": "Mengirim · {{amount}}",
-    "paymentSentWith": "Dikirim dengan {{amount}}"
+    "paymentSentWith": "Dikirim dengan {{amount}}",
+    "planRestricted": "Pengguna ini memerlukan langganan untuk menerima pesan.",
+    "planTypeNotAllowed": "Paket kreator ini tidak mengizinkan jenis pesan ini.",
+    "planMinTip": "Tip untuk kreator ini minimal {{amount}} DHB."
   },
   "editPost": {
     "mediaPermission": "Izin pustaka media diperlukan",

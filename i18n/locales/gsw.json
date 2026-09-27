@@ -5213,7 +5213,10 @@
     "tippedYouAmount": "Han der {{amount}} tippt",
     "paymentFailedAmount": "Gscheiterte · {{amount}}",
     "paymentSendingAmount": "Sende · {{amount}}",
-    "paymentSentWith": "Gsendet mit {{amount}}"
+    "paymentSentWith": "Gsendet mit {{amount}}",
+    "planRestricted": "Dä Benutzer bruucht es Abo, zum Nachrichte übercho.",
+    "planTypeNotAllowed": "Dä Plan vo dem Creator erlaubt die Art vo Nachricht nöd.",
+    "planMinTip": "S Trinkgäld für dä Creator mues mindestens {{amount}} DHB sii."
   },
   "editPost": {
     "mediaPermission": "Berächtigung für d Mediathek nötig",

@@ -5153,7 +5153,10 @@
     "tippedYouAmount": "ໃຫ້ {{amount}} ໂຕເຄັນ",
     "paymentFailedAmount": "ລົ້ມເຫຼວ · {{amount}}",
     "paymentSendingAmount": "ກຳລັງສົ່ງ · {{amount}}",
-    "paymentSentWith": "ສົ່ງດ້ວຍ {{amount}}"
+    "paymentSentWith": "ສົ່ງດ້ວຍ {{amount}}",
+    "planRestricted": "ຜູ້ໃຊ້ນີ້ຕ້ອງການການສະໝັກສະມາຊິກເພື່ອຮັບຂໍ້ຄວາມ.",
+    "planTypeNotAllowed": "ແຜນຂອງຜູ້ສ້າງນີ້ບໍ່ອະນຸຍາດຂໍ້ຄວາມປະເພດນີ້.",
+    "planMinTip": "ທິບສຳລັບຜູ້ສ້າງນີ້ຕ້ອງຢ່າງໜ້ອຍ {{amount}} DHB."
   },
   "editPost": {
     "mediaPermission": "ຕ້ອງການສິດເຂົ້າເຖິງຄັງສື່",

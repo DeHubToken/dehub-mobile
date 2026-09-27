@@ -5183,7 +5183,10 @@
     "tippedYouAmount": "നിങ്ങൾക്ക് {{amount}} ടിപ്പ് നൽകി",
     "paymentFailedAmount": "പരാജയപ്പെട്ടു · {{amount}}",
     "paymentSendingAmount": "അയക്കുന്നു · {{amount}}",
-    "paymentSentWith": "{{amount}} ഉപയോഗിച്ച് അയച്ചു"
+    "paymentSentWith": "{{amount}} ഉപയോഗിച്ച് അയച്ചു",
+    "planRestricted": "ഈ ഉപയോക്താവിന് സന്ദേശങ്ങൾ ലഭിക്കാൻ സബ്സ്ക്രിപ്ഷൻ ആവശ്യമാണ്.",
+    "planTypeNotAllowed": "ഈ ക്രിയേറ്ററുടെ പ്ലാൻ ഇത്തരം സന്ദേശം അനുവദിക്കുന്നില്ല.",
+    "planMinTip": "ഈ ക്രിയേറ്റർക്കുള്ള ടിപ്പ് കുറഞ്ഞത് {{amount}} DHB ആയിരിക്കണം."
   },
   "editPost": {
     "mediaPermission": "മീഡിയ ലൈബ്രറി അനുമതി ആവശ്യമാണ്",

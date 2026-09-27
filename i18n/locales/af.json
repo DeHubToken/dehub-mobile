@@ -5216,7 +5216,10 @@
     "tippedYouAmount": "Het jou {{amount}} gegee",
     "paymentFailedAmount": "Misluk · {{amount}}",
     "paymentSendingAmount": "Stuur · {{amount}}",
-    "paymentSentWith": "Gestuur met {{amount}}"
+    "paymentSentWith": "Gestuur met {{amount}}",
+    "planRestricted": "Hierdie gebruiker vereis 'n intekening om boodskappe te ontvang.",
+    "planTypeNotAllowed": "Hierdie skepper se plan laat nie hierdie soort boodskap toe nie.",
+    "planMinTip": "Fooitjie moet minstens {{amount}} DHB vir hierdie skepper wees."
   },
   "editPost": {
     "mediaPermission": "Toestemming vir die medialibrary word vereis",

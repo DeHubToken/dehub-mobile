@@ -5183,7 +5183,10 @@
     "tippedYouAmount": "Ձեզ {{amount}} նշան է նվիրվել",
     "paymentFailedAmount": "Ձախողվել է · {{amount}}",
     "paymentSendingAmount": "Ուղարկվում է · {{amount}}",
-    "paymentSentWith": "Ուղարկվել է {{amount}} -ով"
+    "paymentSentWith": "Ուղարկվել է {{amount}} -ով",
+    "planRestricted": "Այս օգտատերը հաղորդագրություններ ստանալու համար բաժանորդագրություն է պահանջում։",
+    "planTypeNotAllowed": "Այս ստեղծողի պլանը թույլ չի տալիս այս տեսակի հաղորդագրություն։",
+    "planMinTip": "Այս ստեղծողի համար թեյավճարը պետք է լինի առնվազն {{amount}} DHB։"
   },
   "editPost": {
     "mediaPermission": "Պահանջվում է մեդիագրադարանի թույլտվություն",

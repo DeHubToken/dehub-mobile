@@ -5236,7 +5236,10 @@
     "tippedYouAmount": "已向您打赏 {{amount}}",
     "paymentFailedAmount": "失败 · {{amount}}",
     "paymentSendingAmount": "发送中 · {{amount}}",
-    "paymentSentWith": "已发送 {{amount}}"
+    "paymentSentWith": "已发送 {{amount}}",
+    "planRestricted": "该用户需要订阅才能接收消息。",
+    "planTypeNotAllowed": "该创作者的方案不允许发送此类消息。",
+    "planMinTip": "给该创作者的打赏至少为 {{amount}} DHB。"
   },
   "editPost": {
     "mediaPermission": "需要媒体库权限",

@@ -5201,7 +5201,10 @@
     "tippedYouAmount": "Sizga {{amount}} ta token berildi",
     "paymentFailedAmount": "Muvaffaqiyatsiz · {{amount}} ta",
     "paymentSendingAmount": "Yuborilmoqda · {{amount}} ta",
-    "paymentSentWith": "{{amount}} ta token bilan yuborildi"
+    "paymentSentWith": "{{amount}} ta token bilan yuborildi",
+    "planRestricted": "Bu foydalanuvchi xabar olish uchun obuna talab qiladi.",
+    "planTypeNotAllowed": "Bu ijodkorning rejasi bunday turdagi xabarga ruxsat bermaydi.",
+    "planMinTip": "Bu ijodkor uchun choychaqa kamida {{amount}} DHB bo‘lishi kerak."
   },
   "editPost": {
     "mediaPermission": "Media kutubxonasiga ruxsat kerak",

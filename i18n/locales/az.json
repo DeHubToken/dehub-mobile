@@ -5183,7 +5183,10 @@
     "tippedYouAmount": "Sizə {{amount}} hədiyyə edildi",
     "paymentFailedAmount": "Uğursuz oldu · {{amount}}",
     "paymentSendingAmount": "Göndərilir · {{amount}}",
-    "paymentSentWith": "{{amount}} ilə göndərildi"
+    "paymentSentWith": "{{amount}} ilə göndərildi",
+    "planRestricted": "Bu istifadəçi mesaj almaq üçün abunəlik tələb edir.",
+    "planTypeNotAllowed": "Bu yaradıcının planı bu növ mesaja icazə vermir.",
+    "planMinTip": "Bu yaradıcı üçün bəxşiş ən azı {{amount}} DHB olmalıdır."
   },
   "editPost": {
     "mediaPermission": "Media kitabxanasına icazə tələb olunur",
