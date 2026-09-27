@@ -29,6 +29,8 @@ import { getAvatarUrl, getBadgeOpticalStyle, getBadgeUrl, resolveBadgeBalance } 
 import { useUser, useAuthActions } from "../../context/AuthContext";
 import { useTvChat, type TvChatMessage } from "../../hooks/useTvChat";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
+import EmojiSheet from "../Upload/EmojiSheet";
+import { InlineEmoji, expandEmojiTokens } from "../common/EmojiText";
 
 const REACTION_EMOJIS = ["🔥", "❤️", "😂", "👀", "💯", "🙌"];
 const MAX_LEN = 500;
@@ -47,8 +49,9 @@ const ChatRow: React.FC<{
   onReply: (m: TvChatMessage) => void;
   onDelete: (id: string) => void;
   onToggleReaction: (id: string, emoji: string) => void;
+  onMoreReactions: (m: TvChatMessage) => void;
   onOpenProfile: (identifier: string) => void;
-}> = ({ message, myAddress, onReply, onDelete, onToggleReaction, onOpenProfile }) => {
+}> = ({ message, myAddress, onReply, onDelete, onToggleReaction, onMoreReactions, onOpenProfile }) => {
   const { t } = useTranslation();
   const [showPicker, setShowPicker] = useState(false);
 
@@ -103,7 +106,7 @@ const ChatRow: React.FC<{
         )}
 
         {!!message.content && (
-          <Text className="text-white/70 text-[13px] leading-5">{message.content}</Text>
+          <Text className="text-white/70 text-[13px] leading-5">{expandEmojiTokens(message.content, { fontSize: 13 })}</Text>
         )}
 
         {reactionEntries.length > 0 && (
@@ -117,7 +120,7 @@ const ChatRow: React.FC<{
                   style={[styles.reactionPill, mine && styles.reactionPillMine]}
                   hitSlop={8}
                 >
-                  <Text style={{ fontSize: 11 }}>{emoji}</Text>
+                  <InlineEmoji value={emoji} size={11} />
                   <Text style={[styles.reactionCount, mine && { color: "#FFFFFF" }]}>
                     {addrs.length}
                   </Text>
@@ -142,6 +145,18 @@ const ChatRow: React.FC<{
                 <Text style={{ fontSize: 15 }}>{emoji}</Text>
               </Pressable>
             ))}
+            <Pressable
+              onPress={() => {
+                setShowPicker(false);
+                onMoreReactions(message);
+              }}
+              style={styles.pickerBtn}
+              hitSlop={4}
+              accessibilityRole="button"
+              accessibilityLabel={t("emojiPicker.moreReactions")}
+            >
+              <Icon name="Plus" size={14} color="#A1A1AA" />
+            </Pressable>
             <Pressable
               onPress={() => {
                 onReply(message);
@@ -206,6 +221,8 @@ const TVChatPanel: React.FC<TVChatPanelProps> = ({
   const [text, setText] = useState("");
   const [replyTo, setReplyTo] = useState<TvChatMessage | null>(null);
   const [sending, setSending] = useState(false);
+  // Message whose full emoji picker is open.
+  const [moreFor, setMoreFor] = useState<TvChatMessage | null>(null);
 
   const myAddress = (user?.walletAddress || user?.address || "").toLowerCase();
   const isSignedIn = !!myAddress;
@@ -268,6 +285,7 @@ const TVChatPanel: React.FC<TVChatPanelProps> = ({
         onReply={setReplyTo}
         onDelete={(id) => void deleteMessage(id)}
         onToggleReaction={handleToggleReaction}
+        onMoreReactions={setMoreFor}
         onOpenProfile={handleOpenProfile}
       />
     ),
@@ -373,6 +391,21 @@ const TVChatPanel: React.FC<TVChatPanelProps> = ({
           </Pressable>
         )}
       </View>
+
+      <EmojiSheet
+        visible={!!moreFor}
+        onClose={() => setMoreFor(null)}
+        selected={
+          moreFor && myAddress
+            ? Object.entries(moreFor.reactions ?? {})
+                .filter(([, addresses]) => addresses?.some((a) => a.toLowerCase() === myAddress))
+                .map(([emoji]) => emoji)
+            : undefined
+        }
+        onSelect={(emoji) => {
+          if (moreFor) handleToggleReaction(moreFor.id, emoji);
+        }}
+      />
     </View>
   );
 };

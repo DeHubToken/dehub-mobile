@@ -6560,7 +6560,8 @@
       "activities": "Активности",
       "objects": "Предмети",
       "symbols": "Симболи",
-      "flags": "Заставе"
+      "flags": "Заставе",
+      "custom": "Прилагођени"
     },
     "tone": {
       "default": "Подразумевано",
@@ -6569,6 +6570,32 @@
       "medium": "Средњи тон коже",
       "mediumDark": "Средње таман тон коже",
       "dark": "Таман тон коже"
+    },
+    "addCustom": "Додај прилагођени емоџи",
+    "customEmpty": "Још нема прилагођених емоџија. Додајте један из датотеке, линка, Discord-а, Slack-а, 7TV-а или Mastodon сервера.",
+    "back": "Назад",
+    "modeSingle": "Један емоџи",
+    "modePack": "Увези пакет",
+    "upload": "Отпреми слику",
+    "linkPlaceholder": "…или налепите линк или Discord код емоџија",
+    "namePlaceholder": "назив",
+    "singleHint": "PNG, GIF, WebP или JPEG до 2 MB. Раде и линкови са Discord-а, Slack-а, 7TV-а, BetterTTV-а, FrankerFaceZ-а, emoji.gg или било која слика.",
+    "add": "Додај емоџи",
+    "addedName": "Додато: {{name}}",
+    "packPlaceholder": "mastodon.social, misskey.io или JSON линк",
+    "packHint": "Увози све емоџије са Mastodon, Pleroma, Akkoma или Misskey сервера, или из било које JSON листе емоџија. Називи који су већ заузети се прескачу.",
+    "importPack": "Увези",
+    "packAdded": "Додато емоџија: {{count}} (прескочено: {{skipped}})",
+    "errors": {
+      "signIn": "Пријавите се да бисте додали емоџи",
+      "fileType": "Користите PNG, GIF, WebP или JPEG слику",
+      "fileSize": "Слике морају бити до 2 MB",
+      "invalid": "Називи имају од 2 до 64 слова, бројева, _, + или -",
+      "badImage": "Тај линк се није учитао као слика",
+      "addFailed": "Додавање емоџија није успело. Покушајте поново.",
+      "packEmpty": "На тој адреси нема емоџија",
+      "shortcodeTaken": "{{name}} је већ заузет",
+      "shortcodeStandard": "{{name}} је већ стандардни емоџи"
     }
   }
 }

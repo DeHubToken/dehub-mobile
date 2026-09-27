@@ -6786,7 +6786,8 @@
       "activities": "الأنشطة",
       "objects": "الحوايج",
       "symbols": "الرموز",
-      "flags": "الأعلام"
+      "flags": "الأعلام",
+      "custom": "مخصص"
     },
     "tone": {
       "default": "العادي",
@@ -6795,6 +6796,32 @@
       "medium": "بشرة متوسطة",
       "mediumDark": "بشرة سمرة",
       "dark": "بشرة كحلة"
+    },
+    "addCustom": "إضافة رمز تعبيري مخصص",
+    "customEmpty": "لا يوجد رمز تعبيري مخصص حتى الآن. أضف واحدًا من ملف أو رابط أو Discord أو Slack أو 7TV أو خادم Mastodon.",
+    "back": "رجوع",
+    "modeSingle": "رمز تعبيري واحد",
+    "modePack": "استيراد حزمة",
+    "upload": "تحميل الصورة",
+    "linkPlaceholder": "...أو الصق رابطًا أو رمزًا تعبيريًا لـ Discord",
+    "namePlaceholder": "الاسم",
+    "singleHint": "PNG أو GIF أو WebP أو JPEG حتى 2 ميجابايت. تعمل الروابط من Discord أو Slack أو 7TV أو BetterTTV أو FrankerFaceZ أو emoji.gg أو أي صورة أيضًا.",
+    "add": "إضافة رمز تعبيري",
+    "addedName": "تمت الإضافة {{name}}",
+    "packPlaceholder": "mastodon.social أو misskey.io أو رابط JSON",
+    "packHint": "استيراد كل رمز تعبيري من خادم Mastodon أو Pleroma أو Akkoma أو Misskey، أو من أي قائمة رموز تعبيرية JSON. يتم تخطي الأسماء المستخدمة بالفعل.",
+    "importPack": "استيراد",
+    "packAdded": "تمت إضافة {{count}} emoji (تم تخطي {{skipped}})",
+    "errors": {
+      "signIn": "تسجيل الدخول لإضافة الرموز التعبيرية",
+      "fileType": "استخدم صورة PNG أو GIF أو WebP أو JPEG",
+      "fileSize": "يجب أن تكون الصور 2 ميجابايت أو أصغر",
+      "invalid": "تستخدم الأسماء من 2 إلى 64 حرفًا أو رقمًا أو _أو + أو -",
+      "badImage": "لم يتم تحميل هذا الرابط كصورة",
+      "addFailed": "تعذرت إضافة هذا الرمز التعبيري. حاول مرة أخرى.",
+      "packEmpty": "لم يتم العثور على رموز تعبيرية في هذا العنوان",
+      "shortcodeTaken": "{{name}} مأخوذ بالفعل",
+      "shortcodeStandard": "{{name}} هو بالفعل رمز تعبيري قياسي"
     }
   }
 }

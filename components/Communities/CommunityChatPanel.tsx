@@ -61,6 +61,7 @@ import { AssetRefCards, MAX_ASSET_CARDS_PER_MESSAGE } from "../common/AssetRefCa
 import { findAssetRefs, stripAssetRefs } from "../../libs/asset-refs";
 import MentionSuggestions from "../common/MentionSuggestions";
 import EmojiSheet from "../Upload/EmojiSheet";
+import { InlineEmoji, expandEmojiTokens } from "../common/EmojiText";
 import { useMentions } from "../../hooks/useMentions";
 
 const REACTION_EMOJIS = ["🔥", "❤️", "😂", "👀", "💯", "🙌"];
@@ -209,7 +210,7 @@ const ChatRow: React.FC<{
         )}
 
         {!!displayContent && (
-          <Text className="text-white/70 text-sm leading-5">{displayContent}</Text>
+          <Text className="text-white/70 text-sm leading-5">{expandEmojiTokens(displayContent, { fontSize: 14 })}</Text>
         )}
 
         <DehubLinkCards links={dehubLinks} />
@@ -233,7 +234,7 @@ const ChatRow: React.FC<{
                   onPress={() => onToggleReaction(message.id, emoji)}
                   style={[styles.reactionPill, mine && styles.reactionPillMine]}
                 >
-                  <Text style={{ fontSize: 11 }}>{emoji}</Text>
+                  <InlineEmoji value={emoji} size={11} />
                   <Text style={[styles.reactionCount, mine && { color: "#FFFFFF" }]}>
                     {addrs.length}
                   </Text>

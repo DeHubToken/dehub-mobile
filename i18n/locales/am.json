@@ -6785,7 +6785,8 @@
       "activities": "እንቅስቃሴዎች",
       "objects": "ዕቃዎች",
       "symbols": "ምልክቶች",
-      "flags": "ባንዲራዎች"
+      "flags": "ባንዲራዎች",
+      "custom": "ብጁ"
     },
     "tone": {
       "default": "ነባሪ",
@@ -6794,6 +6795,32 @@
       "medium": "መካከለኛ የቆዳ ቀለም",
       "mediumDark": "መካከለኛ ጠቆር ያለ የቆዳ ቀለም",
       "dark": "ጠቆር ያለ የቆዳ ቀለም"
+    },
+    "addCustom": "ብጁ emoji ያክሉ",
+    "customEmpty": "ምንም ብጁ ኢሞጂ ገና. አንድ ፋይል, አገናኝ, Discord, Slack, 7TV ወይም Mastodon አገልጋይ አንድ ያክሉ.",
+    "back": "ወደ ኋላ",
+    "modeSingle": "አንድ ኢሞጂ",
+    "modePack": "ጥቅል ያስመጡ",
+    "upload": "ምስልን ይስቀሉ",
+    "linkPlaceholder": "...ወይም አገናኝ ወይም የዲስኮርድ ኢሞጂ ኮድ ይለጥፉ",
+    "namePlaceholder": "ስም",
+    "singleHint": "PNG, GIF, WebP ወይም JPEG እስከ 2 ሜባ ድረስ. ከ Discord ፣ Slack ፣ 7TV ፣ BetterTTV ፣ FrankerFaceZ ፣ emoji.gg ወይም ከማንኛውም የምስል ሥራ አገናኞች ።",
+    "add": "Emoji ያክሉ",
+    "addedName": "{{name}} ታክሏል",
+    "packPlaceholder": "mastodon.social, misskey.io ወይም JSON አገናኝ",
+    "packHint": "እያንዳንዱን ኢሞጂ ከማስቶዶን ፣ ከፕሌሮማ ፣ ከአኮማ ወይም ከሚስኪ አገልጋይ ወይም ከማንኛውም ኢሞጂ JSON ዝርዝር ያስገባሉ ። ቀደም ሲል ጥቅም ላይ የዋሉ ስሞች ተዘግተዋል ።",
+    "importPack": "ከውጭ ያስገቡ",
+    "packAdded": "ታክሏል {{count}} emoji ({{skipped}} skipped)",
+    "errors": {
+      "signIn": "Emoji ለማከል ይግቡ",
+      "fileType": "PNG, GIF, WebP ወይም JPEG ምስል ይጠቀሙ",
+      "fileSize": "ምስሎች 2 ሜባ ወይም ያነሰ መሆን አለባቸው",
+      "invalid": "ስሞች ከ 2 እስከ 64 ፊደላት ፣ ቁጥሮች ፣ _፣ + ወይም - ይጠቀማሉ",
+      "badImage": "ያ አገናኝ እንደ ምስል አልጫነም",
+      "addFailed": "ያንን ኢሞጂ ማከል አልቻልኩም. እንደገና ሞክር.",
+      "packEmpty": "በዚያ አድራሻ ምንም emoji አልተገኘም",
+      "shortcodeTaken": "{{name}} ቀድሞውኑ ተወስዷል",
+      "shortcodeStandard": "{{name}} መደበኛ ስሜት ገላጭ ምስል ነው"
     }
   }
 }

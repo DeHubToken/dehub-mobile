@@ -6785,7 +6785,8 @@
       "activities": "Δραστηριότητες",
       "objects": "Αντικείμενα",
       "symbols": "Σύμβολα",
-      "flags": "Σημαίες"
+      "flags": "Σημαίες",
+      "custom": "Προσαρμογή"
     },
     "tone": {
       "default": "Προεπιλογή",
@@ -6794,6 +6795,32 @@
       "medium": "Μεσαίος τόνος δέρματος",
       "mediumDark": "Μεσαίος-σκούρος τόνος δέρματος",
       "dark": "Σκούρος τόνος δέρματος"
+    },
+    "addCustom": "Προσθήκη προσαρμοσμένων emoji",
+    "customEmpty": "Δεν υπάρχουν προσαρμοσμένα emoji ακόμα. Προσθέστε ένα από ένα αρχείο, έναν σύνδεσμο, το Discord, το Slack, το 7TV ή έναν διακομιστή Mastodon.",
+    "back": "Πίσω",
+    "modeSingle": "Ένα emoji",
+    "modePack": "Εισαγωγή πακέτου",
+    "upload": "Ανέβασμα εικόνας",
+    "linkPlaceholder": "...ή επικολλήστε έναν σύνδεσμο ή έναν κώδικα emoji Discord",
+    "namePlaceholder": "όνομα",
+    "singleHint": "PNG, GIF, WebP ή JPEG έως 2 MB. Σύνδεσμοι από Discord, Slack, 7TV, BetterTTV, FrankerFaceZ, emoji.gg ή οποιαδήποτε εργασία εικόνας.",
+    "add": "Πρόσθεσε νέα κατηγορία",
+    "addedName": "Προστέθηκε το {{name}}",
+    "packPlaceholder": "mastodon.social, misskey.io ή ένας σύνδεσμος JSON",
+    "packHint": "Εισάγει κάθε emoji από έναν διακομιστή Mastodon, Pleroma, Akkoma ή Misskey ή από οποιαδήποτε λίστα emoji JSON. Τα ονόματα που χρησιμοποιούνται ήδη παραλείπονται.",
+    "importPack": "Εισαγωγή",
+    "packAdded": "Προστέθηκαν {{count}} emoji ({{skipped}} παραλείφθηκαν)",
+    "errors": {
+      "signIn": "Συνδεθείτε για να προσθέσετε emoji",
+      "fileType": "Χρησιμοποιήστε μια εικόνα PNG, GIF, WebP ή JPEG",
+      "fileSize": "Οι εικόνες πρέπει να είναι 2 MB ή μικρότερες",
+      "invalid": "Τα ονόματα χρησιμοποιούν 2 έως 64 γράμματα, αριθμούς, _, + ή -",
+      "badImage": "Αυτός ο σύνδεσμος δεν φορτώθηκε ως εικόνα",
+      "addFailed": "Δεν ήταν δυνατή η προσθήκη αυτού του emoji. Δοκιμάστε ξανά.",
+      "packEmpty": "Δεν βρέθηκαν emoji σε αυτήν τη διεύθυνση",
+      "shortcodeTaken": "Το {{name}} έχει ήδη χρησιμοποιηθεί",
+      "shortcodeStandard": "Το {{name}} είναι ήδη ένα τυπικό emoji"
     }
   }
 }

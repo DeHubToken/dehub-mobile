@@ -6755,7 +6755,8 @@
       "activities": "Ihe omume",
       "objects": "Ihe",
       "symbols": "Akara",
-      "flags": "Ọkọlọtọ"
+      "flags": "Ọkọlọtọ",
+      "custom": "Omenala"
     },
     "tone": {
       "default": "Ndabara",
@@ -6764,6 +6765,32 @@
       "medium": "Agba akpụkpọ etiti",
       "mediumDark": "Agba akpụkpọ gbara ọchịchịrị nke ọma",
       "dark": "Agba akpụkpọ gbara ọchịchịrị"
+    },
+    "addCustom": "Tinye omenala emoji",
+    "customEmpty": "E nweghị ndị na emoticons. Tinye otu site na faịlụ, njikọ, Discord, Slack, 7TV ma ọ bụ sava Mastodon.",
+    "back": "Azụ",
+    "modeSingle": "Otu emoji",
+    "modePack": "Bubata mkpọ",
+    "upload": "Bubata inyogo",
+    "linkPlaceholder": "...ma ọ bụ mado a njikọ ma ọ bụ a Discord emoji koodu",
+    "namePlaceholder": "aha",
+    "singleHint": "PNG, GIF, WebP ma ọ bụ JPEG ruo 2 MB. Njikọ si Discord, Slack, 7TV, BetterTTV, FrankerFaceZ, emoji.gg ma ọ bụ ihe ọ bụla image ọrụ kwa.",
+    "add": "Tinye emoji",
+    "addedName": "Agbakwunyere {{name}}",
+    "packPlaceholder": "mastodon.social, misskey.io ma ọ bụ njikọ JSON",
+    "packHint": "Mbubata ọ bụla emoji si a Mastodon, Pleroma, Akkoma ma ọ bụ Misskey nkesa, ma ọ bụ ọ bụla emoji JSON ndepụta. A kwụsịrị aha ndị e ji eme ihe.",
+    "importPack": "Bubata",
+    "packAdded": "Agbakwunyere {{count}} emoji ({{skipped}} jipped)",
+    "errors": {
+      "signIn": "Banye ka ịgbakwunye emoji",
+      "fileType": "Jiri PNG, GIF, WebP ma ọ bụ JPEG image",
+      "fileSize": "Inyogo ga-abụrịrị 2 MB ma ọ bụ obere",
+      "invalid": "Aha na-eji mkpụrụedemede 2 ruo 64, nọmba,_, + ma ọ bụ -",
+      "badImage": "Ụzọ njikọ ahụ ebudataghị dịka inyogo",
+      "addFailed": "Enweghị m ike ịgbakwunye emoji ahụ. Gbalịa ọzọ.",
+      "packEmpty": "Enweghị emoji achọtara n 'ebe ahụ",
+      "shortcodeTaken": "{{name}} ejirila ya",
+      "shortcodeStandard": "{{name}} bụrịrịrị emoji"
     }
   }
 }

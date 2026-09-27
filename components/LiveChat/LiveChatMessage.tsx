@@ -20,6 +20,7 @@ import { resolveChatGif, gifCaption, gifBox } from "../../libs/chat-gif";
 import type { LiveChatMessageData, LiveChatUser } from "../../services/livechat.service";
 import type { MessageLayout } from "./LiveChatContextMenu";
 import VoiceNotePlayer from "../Comments/VoiceNotePlayer";
+import { InlineEmoji, expandEmojiTokens } from "../common/EmojiText";
 
 const formatTime = (iso: string): string => {
   const d = new Date(iso);
@@ -66,7 +67,7 @@ const renderLinkedText = (text: string) => {
     lastIndex = re.lastIndex;
   }
   if (lastIndex < text.length) parts.push(text.slice(lastIndex));
-  return parts;
+  return expandEmojiTokens(parts, { fontSize: 13 });
 };
 
 const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
@@ -309,7 +310,7 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
                   addrs.includes(myAddress) ? "bg-blue-500/20 border border-blue-500/30" : "bg-white/5"
                 }`}
               >
-                <Text className="text-sm">{emoji}</Text>
+                <InlineEmoji value={emoji} size={14} />
                 <Text className="text-white/50 text-[10px] ml-1">{addrs.length}</Text>
               </TouchableOpacity>
             ))}

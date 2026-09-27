@@ -6756,7 +6756,8 @@
       "activities": "Aktivitātes",
       "objects": "Priekšmeti",
       "symbols": "Simboli",
-      "flags": "Karogi"
+      "flags": "Karogi",
+      "custom": "Pielāgots"
     },
     "tone": {
       "default": "Noklusējums",
@@ -6765,6 +6766,32 @@
       "medium": "Vidējs ādas tonis",
       "mediumDark": "Vidēji tumšs ādas tonis",
       "dark": "Tumšs ādas tonis"
+    },
+    "addCustom": "Pievienot pielāgotu emocijzīmi",
+    "customEmpty": "Pagaidām nav pielāgotu emocijzīmju. Pievienojiet vienu no faila, saites, Discord, Slack, 7TV vai Mastodon servera.",
+    "back": "Atpakaļ",
+    "modeSingle": "Viena emocijzīme",
+    "modePack": "Importēt pakotni",
+    "upload": "Augšupielādēt attēlu",
+    "linkPlaceholder": "...vai ielīmējiet saiti vai Discord emocijzīmes kodu",
+    "namePlaceholder": "nosaukums",
+    "singleHint": "PNG, GIF, WebP vai JPEG līdz 2 MB. Saites no Discord, Slack, 7TV, BetterTTV, FrankerFaceZ, emoji.gg vai jebkura attēla arī darbojas.",
+    "add": "Pievienot emocijzīmes",
+    "addedName": "Pievienots {{name}}",
+    "packPlaceholder": "mastodon.social, misskey.io vai JSON saite",
+    "packHint": "Importē katru emocijzīmi no Mastodon, Pleroma, Akkoma vai Misskey servera vai no jebkura emocijzīmju JSON saraksta. Jau izmantotie vārdi tiek izlaisti.",
+    "importPack": "Imports",
+    "packAdded": "Pievienots {{count}} emocijzīmes ({{skipped}} izlaists)",
+    "errors": {
+      "signIn": "Pierakstieties, lai pievienotu emocijzīmes",
+      "fileType": "Izmantojiet PNG, GIF, WebP vai JPEG attēlu",
+      "fileSize": "Attēliem jābūt 2 MB vai mazākiem",
+      "invalid": "Vārdos tiek izmantoti 2 līdz 64 burti, cipari, _, + vai -",
+      "badImage": "Šī saite netika ielādēta kā attēls",
+      "addFailed": "Nevarēja pievienot šo emocijzīmi. Mēģiniet vēlreiz.",
+      "packEmpty": "Šajā adresē netika atrasta neviena emocijzīme",
+      "shortcodeTaken": "{{name}} jau ir aizņemts",
+      "shortcodeStandard": "{{name}} jau ir standarta emocijzīmes"
     }
   }
 }

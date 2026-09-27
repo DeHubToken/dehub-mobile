@@ -6756,7 +6756,8 @@
       "activities": "Kagiyatan",
       "objects": "Barang",
       "symbols": "Simbol",
-      "flags": "Gendéra"
+      "flags": "Gendéra",
+      "custom": "Kustom"
     },
     "tone": {
       "default": "Gawan",
@@ -6765,6 +6766,32 @@
       "medium": "Warna kulit sedheng",
       "mediumDark": "Warna kulit rada peteng",
       "dark": "Warna kulit peteng"
+    },
+    "addCustom": "Tambah emoji kustom",
+    "customEmpty": "Ora ana emoji kustom saiki. Tambahake saka file, link, Discord, Slack, 7TV utawa server Mastodon.",
+    "back": "Bali",
+    "modeSingle": "Siji emoji",
+    "modePack": "Impor paket",
+    "upload": "Unggah gambar",
+    "linkPlaceholder": "…utawa tempel tautan utawa kode emoji Discord",
+    "namePlaceholder": "jeneng",
+    "singleHint": "PNG, GIF, WebP utawa JPEG nganti 2 MB. Tautan saka Discord, Slack, 7TV, BetterTTV, FrankerFaceZ, emoji.gg utawa gambar apa wae uga bisa.",
+    "add": "Tambahake emoji",
+    "addedName": "Nambahake {{name}}",
+    "packPlaceholder": "mastodon.social, misskey.io utawa tautan JSON",
+    "packHint": "Ngimpor kabeh emoji saka server Mastodon, Pleroma, Akkoma utawa Misskey, utawa saka dhaptar JSON emoji apa wae. Jeneng sing wis ana bakal dilewati.",
+    "importPack": "Impor",
+    "packAdded": "Ditambahake {{count}} emoji ({{skipped}} dilewati)",
+    "errors": {
+      "signIn": "Mlebu kanggo nambah emoji",
+      "fileType": "Gunakake gambar PNG, GIF, WebP utawa JPEG",
+      "fileSize": "Gambar kudu 2 MB utawa luwih cilik",
+      "invalid": "Jeneng nggunakake 2 nganti 64 huruf, angka, _, + utawa -",
+      "badImage": "Tautan kasebut ora bisa dimuat minangka gambar",
+      "addFailed": "Ora bisa nambah emoji kasebut. Coba maneh.",
+      "packEmpty": "Ora ana emoji sing ditemokake ing alamat kasebut",
+      "shortcodeTaken": "{{name}} wis dijupuk",
+      "shortcodeStandard": "{{name}} wis dadi emoji standar"
     }
   }
 }

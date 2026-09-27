@@ -6757,7 +6757,8 @@
       "activities": "Ìgbòkègbodò",
       "objects": "Àwọn nǹkan",
       "symbols": "Àwọn àmì",
-      "flags": "Àwọn àsíá"
+      "flags": "Àwọn àsíá",
+      "custom": "Aṣa"
     },
     "tone": {
       "default": "Àkọ́kọ́",
@@ -6766,6 +6767,32 @@
       "medium": "Àwọ̀ ara àárín",
       "mediumDark": "Àwọ̀ ara dúdú díẹ̀",
       "dark": "Àwọ̀ ara dúdú"
+    },
+    "addCustom": "Ṣafikun emoji aṣa",
+    "customEmpty": "Kò sí emoji tí ó ṣe é ṣe. Ṣàfikún ọ̀kan láti inú fáìlì kan, ìjápọ kan, Discord, Slack, 7TV tàbí sérvérà Mastodon.",
+    "back": "Pada",
+    "modeSingle": "Emoji kan",
+    "modePack": "Wọle paali kan",
+    "upload": "Gbé àwòrán sókè",
+    "linkPlaceholder": "...tàbí tẹ ìjápọ kan tàbí kóódù emoji Discord",
+    "namePlaceholder": "Orúkọ",
+    "singleHint": "PNG, GIF, WebP tàbí JPEG tó 2 MB. Àwọn ìjápọ láti Discord, Slack, 7TV, BetterTTV, FrankerFaceZ, emoji.gg tàbí àwòrán èyíkéyìí pẹ̀lú.",
+    "add": "Ṣafikun emoji",
+    "addedName": "Ṣafikun {{name}}",
+    "packPlaceholder": "mastodon.social, misskey.io tàbí ìjápọ JSON",
+    "packHint": "Ṣe gbogbo emoji láti inú Mastodon, Pleroma, Akkoma tàbí Misskey server, tàbí láti inú àtòjọ emoji JSON èyíkéyìí. Àwọn orúkọ tí wọ́n ti ń lò tẹ́lẹ̀ ti bọ́.",
+    "importPack": "Ṣàgbéwọlé",
+    "packAdded": "Ṣafikun {{count}} emoji ({{skipped}} fo)",
+    "errors": {
+      "signIn": "Wọle lati ṣafikun emoji",
+      "fileType": "Lo àwòrán PNG, GIF, WebP tàbí JPEG",
+      "fileSize": "Àwọn àwòrán gbọdọ̀ jẹ́ 2 MB tàbí kí ó kéré.",
+      "invalid": "Àwọn orúkọ máa ń lo lẹ́tà 2 sí 64, nọ́mbà, _, + tàbí -",
+      "badImage": "Ìsopọ̀ yẹn kò gbé gẹ́gẹ́ bí àwòrán.",
+      "addFailed": "Mi ò lè fi emoji yẹn kún un. Gbìyànjú lẹ́ẹ̀kan síi.",
+      "packEmpty": "Kò sí emoji tí a rí ní àdírẹ́sì yẹn.",
+      "shortcodeTaken": "{{name}} ti gba tẹlẹ",
+      "shortcodeStandard": "{{name}} jẹ emoji ti o ṣe deede tẹlẹ"
     }
   }
 }

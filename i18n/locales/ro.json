@@ -6769,7 +6769,8 @@
       "activities": "Activități",
       "objects": "Obiecte",
       "symbols": "Simboluri",
-      "flags": "Steaguri"
+      "flags": "Steaguri",
+      "custom": "Personalizat"
     },
     "tone": {
       "default": "Implicit",
@@ -6778,6 +6779,32 @@
       "medium": "Nuanță medie a pielii",
       "mediumDark": "Nuanță medie-închisă a pielii",
       "dark": "Nuanță închisă a pielii"
+    },
+    "addCustom": "Adaugă emoji personalizat",
+    "customEmpty": "Încă nu există emoji personalizat. Adăugați unul dintr-un fișier, un link, Discord, Slack, 7TV sau un server Mastodon.",
+    "back": "Înapoi",
+    "modeSingle": "Un emoji",
+    "modePack": "Importați un pachet",
+    "upload": "Încarcă imagine",
+    "linkPlaceholder": "…sau lipește un link sau un cod de emoji Discord",
+    "namePlaceholder": "Nume",
+    "singleHint": "PNG, GIF, WebP sau JPEG de până la 2 MB. Funcționează și linkuri de pe Discord, Slack, 7TV, BetterTTV, FrankerFaceZ, emoji.gg sau orice imagine.",
+    "add": "Adaugă emoji",
+    "addedName": "Adăugat {{name}}",
+    "packPlaceholder": "mastodon.social, misskey.io sau un link JSON",
+    "packHint": "Importă fiecare emoji de pe un server Mastodon, Pleroma, Akkoma sau Misskey, sau de pe orice listă JSON de emoji. Numele deja existente sunt omise.",
+    "importPack": "Importă",
+    "packAdded": "Adăugat {{count}} emoji ({{skipped}} omise)",
+    "errors": {
+      "signIn": "Autentifică-te pentru a adăuga emoji",
+      "fileType": "Folosește o imagine PNG, GIF, WebP sau JPEG",
+      "fileSize": "Imaginile trebuie să fie de 2 MB sau mai mici",
+      "invalid": "Numele folosesc 2 până la 64 de litere, cifre, _, + sau -",
+      "badImage": "Acest link nu a încărcat o imagine",
+      "addFailed": "Nu am putut adăuga acest emoji. Încearcă din nou.",
+      "packEmpty": "Nu s-a găsit niciun emoji la această adresă",
+      "shortcodeTaken": "{{name}} este deja luat",
+      "shortcodeStandard": "{{name}} este deja un emoji standard"
     }
   }
 }

@@ -7010,7 +7010,8 @@
       "activities": "Activiteiten",
       "objects": "Objecten",
       "symbols": "Symbolen",
-      "flags": "Vlaggen"
+      "flags": "Vlaggen",
+      "custom": "Aangepast"
     },
     "tone": {
       "default": "Standaard",
@@ -7019,6 +7020,32 @@
       "medium": "Medium huidskleur",
       "mediumDark": "Middeldonkere huidskleur",
       "dark": "Donkere huidskleur"
+    },
+    "addCustom": "Aangepaste emoji toevoegen",
+    "customEmpty": "Nog geen aangepaste emoji. Voeg er een toe vanuit een bestand, een link, Discord, Slack, 7TV of een Mastodon-server.",
+    "back": "Terug",
+    "modeSingle": "Eén emoji",
+    "modePack": "Importeer een pakket",
+    "upload": "Afbeelding uploaden",
+    "linkPlaceholder": "...of plak een link of een Discord-emoji-code",
+    "namePlaceholder": "naam",
+    "singleHint": "PNG, gif, WEBP of JPEG tot 2 MB. Links van Discord, Slack, 7TV, BetterTTV, FrankerFaceZ, emoji.gg of een afbeelding werken ook.",
+    "add": "Voeg nieuwe Emoji toe",
+    "addedName": "{{name}} toegevoegd",
+    "packPlaceholder": "mastodon.social, misskey.io of een JSON link",
+    "packHint": "Importeert elke emoji van een Mastodon-, Pleroma-, Akkoma- of Misskey-server, of van een emoji JSON-lijst. Namen die al in gebruik zijn, worden overgeslagen.",
+    "importPack": "Importeren",
+    "packAdded": "Toegevoegd {{count}} emoji ({{skipped}} overgeslagen)",
+    "errors": {
+      "signIn": "Log in om emoji toe te voegen",
+      "fileType": "Gebruik een PNG-, GIF-, WEBP- of JPEG-afbeelding",
+      "fileSize": "Afbeeldingen moeten 2 MB of kleiner zijn",
+      "invalid": "Namen gebruiken 2 tot 64 letters, cijfers, _, + of -",
+      "badImage": "Die link is niet geladen als afbeelding",
+      "addFailed": "Kon die emoji niet toevoegen. Probeer het opnieuw.",
+      "packEmpty": "Geen emoji gevonden op dat adres",
+      "shortcodeTaken": "{{name}} is al in gebruik",
+      "shortcodeStandard": "{{name}} is al een standaard emoji"
     }
   }
 }

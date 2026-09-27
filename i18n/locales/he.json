@@ -6760,7 +6760,8 @@
       "activities": "פעילויות",
       "objects": "חפצים",
       "symbols": "סמלים",
-      "flags": "דגלים"
+      "flags": "דגלים",
+      "custom": "התאמה אישית"
     },
     "tone": {
       "default": "ברירת מחדל",
@@ -6769,6 +6770,32 @@
       "medium": "גוון עור בינוני",
       "mediumDark": "גוון עור כהה-בינוני",
       "dark": "גוון עור כהה"
+    },
+    "addCustom": "הוספת אימוג'י בהתאמה אישית",
+    "customEmpty": "עדיין אין אימוג'י מותאם אישית. הוסיפו אחד מקובץ, קישור, Discord, Slack, 7TV או שרת Mastodon.",
+    "back": "הקודם",
+    "modeSingle": "אימוג'י אחד",
+    "modePack": "ייבא חבילה",
+    "upload": "העלאת תמונה",
+    "linkPlaceholder": "...או הדבק קישור או קוד אמוג'י של Discord",
+    "namePlaceholder": "שם",
+    "singleHint": "PNG, GIF, WebP או JPEG עד 2 MB. קישורים מ - Discord, Slack, 7TV, BetterTTV, FrankerFacez, emoji.gg או כל עבודת תמונה.",
+    "add": "הוסף אימוג'י חדש",
+    "addedName": "נוסף {{name}}",
+    "packPlaceholder": "mastodon.social, misskey.io או קישור JSON",
+    "packHint": "מייבא כל אימוג'י משרת Mastodon, Pleroma, Akkoma או Misskey, או מכל רשימת אימוג'י JSON. אנחנו מדלגים על שמות שכבר נמצאים בשימוש.",
+    "importPack": "יבוא",
+    "packAdded": "נוסף {{count}} emoji ({{skipped}} דילגנו)",
+    "errors": {
+      "signIn": "יש להתחבר כדי להוסיף אמוג'י",
+      "fileType": "השתמש בתמונת PNG, GIF, WebP או JPEG",
+      "fileSize": "התמונות חייבות להיות בגודל 2MB או פחות",
+      "invalid": "שמות משתמשים ב -2 עד 64 אותיות, מספרים, _, + או -",
+      "badImage": "הקישור הזה לא נטען כתמונה",
+      "addFailed": "לא ניתן להוסיף את האמוג'י הזה. נסו שוב.",
+      "packEmpty": "לא נמצא אמוג'י בכתובת זו",
+      "shortcodeTaken": "{{name}} כבר תפוס",
+      "shortcodeStandard": "{{name}} הוא כבר אימוג'י סטנדרטי"
     }
   }
 }

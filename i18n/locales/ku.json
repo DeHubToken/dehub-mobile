@@ -6507,7 +6507,8 @@
       "activities": "Çalakî",
       "objects": "Tişt",
       "symbols": "Sembol",
-      "flags": "Ala"
+      "flags": "Ala",
+      "custom": "Taybet"
     },
     "tone": {
       "default": "Standard",
@@ -6516,6 +6517,32 @@
       "medium": "Rengê çermê navîn",
       "mediumDark": "Rengê çermê nîvtarî",
       "dark": "Rengê çermê tarî"
+    },
+    "addCustom": "Emojiyek taybet zêde bike",
+    "customEmpty": "Hêj emojiyên taybet tune ne. Yekê ji pelek, girêdanek, Discord, Slack, 7TV an servereke Mastodon zêde bike.",
+    "back": "Paş",
+    "modeSingle": "Yek emojî",
+    "modePack": "Pakêtekê bîne",
+    "upload": "Wêneyek bar bike",
+    "linkPlaceholder": "…an girêdanek an koda emojiyê ya Discord bişopîne",
+    "namePlaceholder": "nav",
+    "singleHint": "PNG, GIF, WebP an JPEG heta 2 MB. Girêdanên ji Discord, Slack, 7TV, BetterTTV, FrankerFaceZ, emoji.gg an her wêneyekê jî dixebitin.",
+    "add": "Emojî zêde bike",
+    "addedName": "{{name}} hate zêdekirin",
+    "packPlaceholder": "mastodon.social, misskey.io an girêdanek JSON",
+    "packHint": "Hemû emojiyan ji serverek Mastodon, Pleroma, Akkoma an Misskey, an ji her lîsteyek JSON ya emojiyan tîne. Navên ku berê hatine girtin têne derbaskirin.",
+    "importPack": "Bîne",
+    "packAdded": "{{count}} emojî hatin zêdekirin ({{skipped}} hatin derbaskirin)",
+    "errors": {
+      "signIn": "Ji bo zêdekirina emojiyan têkeve",
+      "fileType": "Wêneyek PNG, GIF, WebP an JPEG bikar bîne",
+      "fileSize": "Divê wêne 2 MB an kêmtir bin",
+      "invalid": "Nav ji 2 heta 64 tîp, hejmar, _, + an - pêk tên",
+      "badImage": "Ew girêdan wek wêne nehat barkirin",
+      "addFailed": "Emojî nehat zêdekirin. Dîsa biceribîne.",
+      "packEmpty": "Li wê navnîşanê tu emojî nehat dîtin",
+      "shortcodeTaken": "{{name}} berê hatiye girtin",
+      "shortcodeStandard": "{{name}} berê emojiyek standard e"
     }
   }
 }

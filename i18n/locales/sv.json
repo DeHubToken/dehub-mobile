@@ -6760,7 +6760,8 @@
       "activities": "Aktiviteter",
       "objects": "Föremål",
       "symbols": "Symboler",
-      "flags": "Flaggor"
+      "flags": "Flaggor",
+      "custom": "Anpassad"
     },
     "tone": {
       "default": "Standard",
@@ -6769,6 +6770,32 @@
       "medium": "Mellan hudton",
       "mediumDark": "Mellanmörk hudton",
       "dark": "Mörk hudton"
+    },
+    "addCustom": "Lägg till anpassade emojis",
+    "customEmpty": "Ingen anpassad emoji ännu. Lägg till en från en fil, en länk, Discord, Slack, 7TV eller en Mastodon-server.",
+    "back": "Tillbaka",
+    "modeSingle": "En emoji",
+    "modePack": "Importera ett paket",
+    "upload": "Ladda upp bild",
+    "linkPlaceholder": "…eller klistra in en länk eller en Discord-emojikod",
+    "namePlaceholder": "Namn",
+    "singleHint": "PNG, GIF, WebP eller JPEG upp till 2 MB. Länkar från Discord, Slack, 7TV, BetterTTV, FrankerFaceZ, emoji.gg eller valfri bild fungerar också.",
+    "add": "Lägg till emoji",
+    "addedName": "Lade till {{name}}",
+    "packPlaceholder": "mastodon.social, misskey.io eller en JSON-länk",
+    "packHint": "Importerar varje emoji från en Mastodon-, Pleroma-, Akkoma- eller Misskey-server, eller från en valfri emoji JSON-lista. Namn som redan används hoppas över.",
+    "importPack": "Importera",
+    "packAdded": "Lade till {{count}} emoji ({{skipped}} hoppades över)",
+    "errors": {
+      "signIn": "Logga in för att lägga till emoji",
+      "fileType": "Använd en PNG-, GIF-, WebP- eller JPEG-bild",
+      "fileSize": "Bilder måste vara 2 MB eller mindre",
+      "invalid": "Namn använder 2 till 64 bokstäver, siffror, _, + eller -",
+      "badImage": "Den länken laddades inte som en bild",
+      "addFailed": "Kunde inte lägga till den emojin. Försök igen.",
+      "packEmpty": "Ingen emoji hittades på den adressen",
+      "shortcodeTaken": "{{name}} är redan upptaget",
+      "shortcodeStandard": "{{name}} är redan en standardemoji"
     }
   }
 }

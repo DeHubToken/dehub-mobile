@@ -6759,7 +6759,8 @@
       "activities": "سرگرمیاں",
       "objects": "اشیاء",
       "symbols": "علامات",
-      "flags": "جھنڈے"
+      "flags": "جھنڈے",
+      "custom": "حسب ضرورت"
     },
     "tone": {
       "default": "ڈیفالٹ",
@@ -6768,6 +6769,32 @@
       "medium": "درمیانی جلد کی رنگت",
       "mediumDark": "درمیانی گہری جلد کی رنگت",
       "dark": "گہری جلد کی رنگت"
+    },
+    "addCustom": "حسب ضرورت ایموجی شامل کریں",
+    "customEmpty": "ابھی تک کوئی حسب ضرورت ایموجی نہیں ہے ۔ ایک فائل، ایک لنک، Discord، Slack، 7TV یا Mastodon سرور میں سے ایک شامل کریں ۔",
+    "back": "واپس جائیں",
+    "modeSingle": "ایک ایموجی",
+    "modePack": "پیک درآمد کریں",
+    "upload": "تصویر اپ لوڈ کریں",
+    "linkPlaceholder": "…یا کوئی لنک یا ڈسکارڈ ایموجی کوڈ پیسٹ کریں",
+    "namePlaceholder": "نام",
+    "singleHint": "PNG، GIF، WebP یا JPEG 2 MB تک ۔ Discord, Slack, 7TV, BetterTTV, FrankerFaceZ, emoji.gg یا کسی بھی تصویری کام کے لنکس بھی ۔",
+    "add": "ایموجی شامل کریں",
+    "addedName": "شامل کر دیا گیا {{name}}",
+    "packPlaceholder": "mastodon.social, misskey.io یا ایک JSON لنک",
+    "packHint": "Mastodon، Pleroma، Akkoma یا Misskey سرور سے، یا کسی بھی emoji JSON فہرست سے ہر ایموجی درآمد کرتا ہے ۔ پہلے سے استعمال شدہ ناموں کو نظر انداز کر دیا گیا ہے ۔",
+    "importPack": "درآمد",
+    "packAdded": "{{count}} emoji شامل کیا گیا ({{skipped}} چھوڑ دیا گیا)",
+    "errors": {
+      "signIn": "ایموجی شامل کرنے کے لیے سائن ان کریں",
+      "fileType": "PNG، GIF، WebP یا JPEG تصویر استعمال کریں",
+      "fileSize": "تصاویر 2 MB یا اس سے چھوٹی ہونی چاہئیں",
+      "invalid": "نام 2 سے 64 حروف، اعداد،_، + یا - استعمال کرتے ہیں",
+      "badImage": "وہ لنک تصویر کے بطور لوڈ نہیں ہوا",
+      "addFailed": "وہ ایموجی شامل نہیں ہو سکی ۔ دوبارہ کوشش کریں ۔",
+      "packEmpty": "اس پتے پر کوئی ایموجی نہیں ملی",
+      "shortcodeTaken": "{{name}} پہلے ہی لے لیا گیا ہے",
+      "shortcodeStandard": "{{name}} پہلے سے ہی ایک معیاری ایموجی ہے"
     }
   }
 }

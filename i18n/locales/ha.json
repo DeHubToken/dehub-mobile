@@ -6756,7 +6756,8 @@
       "activities": "Ayyuka",
       "objects": "Abubuwa",
       "symbols": "Alamomi",
-      "flags": "Tutoci"
+      "flags": "Tutoci",
+      "custom": "Musamman"
     },
     "tone": {
       "default": "Na asali",
@@ -6765,6 +6766,32 @@
       "medium": "Fata matsakaiciya",
       "mediumDark": "Fata mai ɗan duhu",
       "dark": "Fata mai duhu"
+    },
+    "addCustom": "Add al'ada emoji",
+    "customEmpty": "Babu emoji na al'ada tukuna. Ƙara ɗaya daga fayil, mahada, Discord, Slack, 7TV ko uwar garken Mastodon.",
+    "back": "Komawa",
+    "modeSingle": "Ɗaya daga cikin emoji",
+    "modePack": "Shigo da fakiti",
+    "upload": "Dauko hoto",
+    "linkPlaceholder": "…ko kuma liƙa hanyar haɗi ko lambar emoji ta Discord",
+    "namePlaceholder": "suna",
+    "singleHint": "PNG, GIF, WebP ko JPEG har zuwa 2 MB. Hanyoyin haɗi daga Discord, Slack, 7TV, BetterTTV, FrankerFaceZ, emoji.gg ko kowane hoto suma suna aiki.",
+    "add": "Ƙara emoji",
+    "addedName": "Ƙara {{name}}",
+    "packPlaceholder": "mastodon.social, misskey.io ko hanyar haɗi ta JSON",
+    "packHint": "Yana shigo da kowane emoji daga Mastodon, Pleroma, Akkoma ko Misskey server, ko daga kowane jerin JSON na emoji. An tsallake sunayen da ake amfani da su.",
+    "importPack": "Shigo da kaya",
+    "packAdded": "An ƙara {{count}} emoji (an tsallake {{skipped}})",
+    "errors": {
+      "signIn": "Shiga don ƙara emoji",
+      "fileType": "Yi amfani da hoto na PNG, GIF, WebP ko JPEG",
+      "fileSize": "Hotuna dole ne su kasance 2 MB ko ƙasa da haka",
+      "invalid": "Sunaye suna amfani da haruffa 2 zuwa 64, lambobi, _, + ko -",
+      "badImage": "Wannan hanyar haɗi ba ta ɗauki hoto ba",
+      "addFailed": "An kasa ƙara wannan emoji. Gwada sake.",
+      "packEmpty": "Babu emoji da aka samu a wannan adireshin",
+      "shortcodeTaken": "{{name}} an riga an dauka",
+      "shortcodeStandard": "{{name}} ya riga ya zama misali emoji"
     }
   }
 }

@@ -6786,7 +6786,8 @@
       "activities": "Aktivitäte",
       "objects": "Objekt",
       "symbols": "Symbol",
-      "flags": "Fahne"
+      "flags": "Fahne",
+      "custom": "Ig's Eigeni"
     },
     "tone": {
       "default": "Standard",
@@ -6795,6 +6796,32 @@
       "medium": "Mittleri Huutfarb",
       "mediumDark": "Mitteldunkli Huutfarb",
       "dark": "Dunkli Huutfarb"
+    },
+    "addCustom": "Ig's Eigeni Emoji dezuefüüge",
+    "customEmpty": "Keis ig's Eigeni Emoji bis jetzt. Füüg es dezue vo enere Datei, eme Link, Discord, Slack, 7TV oder eme Mastodon Server.",
+    "back": "Zrugg",
+    "modeSingle": "Eis Emoji",
+    "modePack": "Pack importiere",
+    "upload": "Bild hochlade",
+    "linkPlaceholder": "…oder en Link oder en Discord-Emoji-Code iipäste",
+    "namePlaceholder": "Name",
+    "singleHint": "PNG, GIF, WebP oder JPEG bis 2 MB. Links vo Discord, Slack, 7TV, BetterTTV, FrankerFaceZ, emoji.gg oder egal öpis vo Bilder gaht au.",
+    "add": "Emoji dezuefüüge",
+    "addedName": "{{name}} igfüegt",
+    "packPlaceholder": "mastodon.social, misskey.io oder en JSON-Link",
+    "packHint": "Importiert jedes Emoji vo eme Mastodon-, Pleroma-, Akkoma- oder Misskey-Server, oder vo jedere Emoji-JSON-List. Name wo scho da sind, werded übersprunge.",
+    "importPack": "Import",
+    "packAdded": "{{count}} Emoji dezuecho ({{skipped}} übersprunge)",
+    "errors": {
+      "signIn": "Aamälde zum Emoji dezuefüüge",
+      "fileType": "Benutz en PNG, GIF, WebP oder JPEG Bild",
+      "fileSize": "Bilder müend 2 MB oder chliiner sii",
+      "invalid": "Name bruuched 2 bis 64 Buechstabe, Zahlä, _, + oder -",
+      "badImage": "Der Link isch nöd als Bild glade worde",
+      "addFailed": "Hätt das Emoji nöd chönne dezuefüüge. Probier's no mal.",
+      "packEmpty": "Kei Emoji gfunde a dere Adrässe",
+      "shortcodeTaken": "{{name}} isch scho besetzt",
+      "shortcodeStandard": "{{name}} isch scho en Standard-Emoji"
     }
   }
 }

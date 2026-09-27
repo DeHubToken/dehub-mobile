@@ -6797,7 +6797,8 @@
       "activities": "กิจกรรม",
       "objects": "สิ่งของ",
       "symbols": "สัญลักษณ์",
-      "flags": "ธง"
+      "flags": "ธง",
+      "custom": "กำหนดเอง"
     },
     "tone": {
       "default": "ค่าเริ่มต้น",
@@ -6806,6 +6807,32 @@
       "medium": "สีผิวปานกลาง",
       "mediumDark": "สีผิวเข้มปานกลาง",
       "dark": "สีผิวเข้ม"
+    },
+    "addCustom": "เพิ่มอีโมจิที่กำหนดเอง",
+    "customEmpty": "ยังไม่มีอีโมจิที่กำหนดเอง เพิ่มจากไฟล์, ลิงก์, Discord, Slack, 7TV หรือเซิร์ฟเวอร์ Mastodon",
+    "back": "ย้อนกลับ",
+    "modeSingle": "อีโมจิเดียว",
+    "modePack": "นำเข้าแพ็ค",
+    "upload": "อัปโหลดภาพ",
+    "linkPlaceholder": "… หรือวางลิงค์หรือรหัสอีโมจิ Discord",
+    "namePlaceholder": "ชื่อ",
+    "singleHint": "PNG, GIF, WebP หรือ JPEG สูงสุด 2 MB ลิงก์จาก Discord, Slack, 7TV, BetterTTV, FrankerFaceZ, emoji.gg หรือภาพใดๆก็ใช้ได้เช่นกัน",
+    "add": "เพิ่ม อีโมจิ",
+    "addedName": "เพิ่ม {{name}} แล้ว",
+    "packPlaceholder": "mastodon.social, misskey.io หรือลิงก์ JSON",
+    "packHint": "นำเข้าอีโมจิทุกตัวจากเซิร์ฟเวอร์ Mastodon, Pleroma, Akkoma หรือ Misskey หรือจากรายการ JSON ของอีโมจิใดๆข้ามชื่อที่มีการใช้งานอยู่แล้ว",
+    "importPack": "นำเข้า",
+    "packAdded": "เพิ่ม {{count}} อีโมจิแล้ว ({{skipped}} ข้ามไป)",
+    "errors": {
+      "signIn": "ลงชื่อเข้าใช้เพื่อเพิ่มอิโมจิ",
+      "fileType": "ใช้ภาพ PNG, GIF, WebP หรือ JPEG",
+      "fileSize": "รูปภาพต้องมีขนาดไม่เกิน 2 MB",
+      "invalid": "ชื่อใช้ 2 ถึง 64 ตัวอักษรตัวเลข_+ หรือ -",
+      "badImage": "ลิงก์นั้นไม่ได้โหลดเป็นรูปภาพ",
+      "addFailed": "เพิ่มอีโมจินั้นไม่ได้โปรดลองอีกครั้ง",
+      "packEmpty": "ไม่พบอีโมจิในที่อยู่นั้น",
+      "shortcodeTaken": "{{name}} ถูกใช้ไปแล้ว",
+      "shortcodeStandard": "{{name}} เป็นอีโมจิมาตรฐานอยู่แล้ว"
     }
   }
 }

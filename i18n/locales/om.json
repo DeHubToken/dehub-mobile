@@ -6806,7 +6806,8 @@
       "activities": "Sochiiwwan",
       "objects": "Meeshaalee",
       "symbols": "Mallattoolee",
-      "flags": "Alaabaalee"
+      "flags": "Alaabaalee",
+      "custom": "Aadaa"
     },
     "tone": {
       "default": "Durtii",
@@ -6815,6 +6816,32 @@
       "medium": "Halluu gogaa giddugaleessa",
       "mediumDark": "Halluu gogaa giddugaleessa dukkanaa'aa",
       "dark": "Halluu gogaa dukkanaa'aa"
+    },
+    "addCustom": "Emoji amala itti dabali",
+    "customEmpty": "Ammatti emoji aadaa hin jiru. Faayila, hidhaa, Discord, Slack, 7TV ykn sarvarii Mastodon irraa tokko itti dabali.",
+    "back": "Dugda",
+    "modeSingle": "Emoji tokko",
+    "modePack": "Paakkii tokko galchi",
+    "upload": "Fakkii olkaa&#39;i",
+    "linkPlaceholder": "...ykn link ykn koodii emoji Discord maxxansi",
+    "namePlaceholder": "maqaa",
+    "singleHint": "PNG, GIF, WebP ykn JPEG hanga 2 MB. Linkiin Discord, Slack, 7TV, BetterTTV, FrankerFaceZ, emoji.gg ykn suuraa kamiyyuu irraa dhufus ni hojjeta.",
+    "add": "Emoji itti dabali",
+    "addedName": "{{name}} jedhamee dabalameera.",
+    "packPlaceholder": "mastodon.social, misskey.io ykn hidhaa JSON",
+    "packHint": "Imoojii hunda sarvarii Mastodon, Pleroma, Akkoma ykn Misskey irraa, ykn tarree JSON imoojii kamiyyuu irraa galcha. Maqaaleen duraan fayyadama keessa jiran ni darbamu.",
+    "importPack": "Biyya alaatii galchuu",
+    "packAdded": "{{count}} emoji dabalameera ({{skipped}} darbame)",
+    "errors": {
+      "signIn": "Emoji dabaluudhaaf galmaa&#39;aa",
+      "fileType": "Fakkii PNG, GIF, WebP ykn JPEG fayyadami",
+      "fileSize": "Fakkiiwwan 2 MB fi isaa gadi ta&#39;uu qabu",
+      "invalid": "Maqaaleen qubee, lakkoofsa, _, + ykn - 2 hanga 64 fayyadamu.",
+      "badImage": "Link sun akka suuraatti hin fe&#39;amne",
+      "addFailed": "Emoji sana itti dabaluu hin dandeenye. Ammas yaalaa.",
+      "packEmpty": "Teessoo sana irratti emojiin hin argamne",
+      "shortcodeTaken": "{{name}} duruu fudhatamee jira",
+      "shortcodeStandard": "{{name}} duraanuu emoji sadarkaa isaa eeggatedha"
     }
   }
 }

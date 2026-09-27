@@ -6786,7 +6786,8 @@
       "activities": "فعالیت‌ها",
       "objects": "اشیا",
       "symbols": "نمادها",
-      "flags": "پرچم‌ها"
+      "flags": "پرچم‌ها",
+      "custom": "سفارشی"
     },
     "tone": {
       "default": "پیش‌فرض",
@@ -6795,6 +6796,32 @@
       "medium": "پوست متوسط",
       "mediumDark": "پوست نسبتاً تیره",
       "dark": "پوست تیره"
+    },
+    "addCustom": "اضافه کردن ایموجی سفارشی",
+    "customEmpty": "هنوز ایموجی سفارشی وجود ندارد. می‌توانید از یک فایل، یک لینک، Discord، Slack، 7TV یا یک سرور Mastodon یکی اضافه کنید.",
+    "back": "برگشت",
+    "modeSingle": "یک ایموجی",
+    "modePack": "وارد کردن یک بسته",
+    "upload": "آیلود تصویر",
+    "linkPlaceholder": "... یا یک لینک یا کد ایموجی Discord را جایگذاری کنید",
+    "namePlaceholder": "نام",
+    "singleHint": "فرمت‌های PNG، GIF، WebP یا JPEG تا سقف ۲ مگابایت. لینک‌های Discord، Slack، 7TV، BetterTTV، FrankerFaceZ، emoji.gg یا هر تصویر دیگری نیز قابل قبول هستند.",
+    "add": "ایموجی اضافه کنید",
+    "addedName": "اضافه شد {{name}}",
+    "packPlaceholder": "mastodon.social، misskey.io یا یک لینک JSON",
+    "packHint": "تمام ایموجی‌ها را از سرورهای Mastodon، Pleroma، Akkoma یا Misskey یا از هر لیست JSON ایموجی وارد می‌کند. نام‌هایی که از قبل استفاده شده‌اند، نادیده گرفته می‌شوند.",
+    "importPack": "وارد کردن",
+    "packAdded": "ایموجی {{count}} اضافه شد ({{skipped}} صرف نظر شد)",
+    "errors": {
+      "signIn": "برای افزودن ایموجی وارد شوید",
+      "fileType": "از تصویر PNG، GIF، WebP یا JPEG استفاده کنید",
+      "fileSize": "تصاویر باید ۲ مگابایت یا کمتر باشند",
+      "invalid": "نام‌ها از ۲ تا ۶۴ حرف، عدد، _، + یا - استفاده می‌کنند.",
+      "badImage": "آن لینک به عنوان تصویر بارگذاری نشد",
+      "addFailed": "نتونستم اون ایموجی رو اضافه کنم. دوباره امتحان کن.",
+      "packEmpty": "هیچ ایموجی در آن آدرس یافت نشد",
+      "shortcodeTaken": "{{name}} قبلاً گرفته شده است",
+      "shortcodeStandard": "{{name}} از قبل یک ایموجی استاندارد است."
     }
   }
 }

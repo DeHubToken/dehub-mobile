@@ -6754,7 +6754,8 @@
       "activities": "پائالىيەتلەر",
       "objects": "بۇيۇملار",
       "symbols": "بەلگىلەر",
-      "flags": "بايراقلار"
+      "flags": "بايراقلار",
+      "custom": "Custom"
     },
     "tone": {
       "default": "كۆڭۈلدىكى",
@@ -6763,6 +6764,32 @@
       "medium": "ئوتتۇراھال تېرە رەڭگى",
       "mediumDark": "ئوتتۇراھال قېنىق تېرە رەڭگى",
       "dark": "قېنىق تېرە رەڭگى"
+    },
+    "addCustom": "ئادەتتىكى ئېموجىينى قوشۇش",
+    "customEmpty": "ئادەتتىكى ئېموجى تېخى يوق. ھۆججەتتىن بىرنى قوشۇڭ، ئۇلىنىشنى قوشۇڭ، Discord، Slack، 7TV ياكى Mastodon مۇلازىمىتىر.",
+    "back": "Back",
+    "modeSingle": "بىر ئېموجىي",
+    "modePack": "بىر ساندۇقنى يۆتكەش",
+    "upload": "سۈرەتنى يۆتكەش پروگراممىسى",
+    "linkPlaceholder": "…ياكى ئۇلىنىشنى ياكى ئىختىلاپلىق ئېموجى كودىنى چاپلاڭ",
+    "namePlaceholder": "ئىسمى:",
+    "singleHint": "PNG، GIF، WebP ياكى JPEG 2 MB غىچە. Discord، Slack، 7TV، BetterTTV، FrankerFaceZ، emoji.gg ۋە باشقا سۈرەتلەرنىڭ ئۇلىنىشلىرىمۇ بار.",
+    "add": "Emoji قوشۇش",
+    "addedName": "{{name}} قوشۇلدى",
+    "packPlaceholder": "mastodon.social، misskey.io ياكى JSON ئۇلىنىشى",
+    "packHint": "Mastodon، Pleroma، Akkoma ياكى Misskey مۇلازىمىتىرىدىن ياكى JSON تىزىملىكىدىكى ھەرقانداق ئېموجىينى ئىمپورت قىلىدۇ. ئاللىقاچان ئىشلىتىلىۋاتقان ئىسىملار ئۆتۈپ كەتكەن.",
+    "importPack": "ئىمپورت",
+    "packAdded": "قوشۇلدى {{count}} emoji ({{skipped}} skipped)",
+    "errors": {
+      "signIn": "Emoji قوشۇش ئۈچۈن تىزىملىتىڭ",
+      "fileType": "PNG، GIF، WebP ياكى JPEG سۈرەتنى ئىشلىتىش",
+      "fileSize": "سۈرەتلەر 2 MB ياكى ئۇنىڭدىن كىچىك بولۇشى كېرەك",
+      "invalid": "ئىسىملار 2 دىن 64 غىچە ھەرپ، سان، _، + ياكى -",
+      "badImage": "ئۇ ئۇلانما سۈرەت سۈپىتىدە يۈكلەنمىدى",
+      "addFailed": "ئۇ ئېموجىينى قوشالمىدىم. قايتا سىناپ بېقىڭ.",
+      "packEmpty": "بۇ ئادرېستىن ئېموجىي تېپىلمىدى",
+      "shortcodeTaken": "{{name}} ئاللىبۇرۇن ئېلىنغان",
+      "shortcodeStandard": "{{name}} ئاللىقاچان ئۆلچەملىك ئېموجىي"
     }
   }
 }

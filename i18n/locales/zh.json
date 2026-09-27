@@ -6760,7 +6760,8 @@
       "activities": "活动",
       "objects": "物品",
       "symbols": "符号",
-      "flags": "旗帜"
+      "flags": "旗帜",
+      "custom": "自定义"
     },
     "tone": {
       "default": "默认",
@@ -6769,6 +6770,32 @@
       "medium": "中等肤色",
       "mediumDark": "中深肤色",
       "dark": "深肤色"
+    },
+    "addCustom": "添加自定义表情符号",
+    "customEmpty": "还没有自定义表情符号。 从文件、链接、Discord、Slack、7TV或Mastodon服务器中添加一个。",
+    "back": "返回",
+    "modeSingle": "一个表情符号",
+    "modePack": "导入内容包",
+    "upload": "上传图像",
+    "linkPlaceholder": "……或粘贴链接或Discord表情符号代码",
+    "namePlaceholder": "名称",
+    "singleHint": "PNG、GIF、WebP或JPEG ，最大2 MB。来自Discord、Slack、7TV、BetterTTV、FrankerFaceZ、emoji.gg或任何图片的链接也可以使用。",
+    "add": "添加表情符号",
+    "addedName": "已新增{{name}}",
+    "packPlaceholder": "mastodon.social、misskey.io或JSON链接",
+    "packHint": "从Mastodon、Pleroma、Akkoma或Misskey服务器或任何表情符号JSON列表中导入每个表情符号。已使用的名称将被跳过。",
+    "importPack": "进口",
+    "packAdded": "已添加{{count}}表情符号（已跳过{{skipped}} ）",
+    "errors": {
+      "signIn": "登录以添加表情符号",
+      "fileType": "使用PNG、GIF、WebP或JPEG图像",
+      "fileSize": "图片必须小于或等于2 MB",
+      "invalid": "名称使用2到64个字母、数字、_、+或-",
+      "badImage": "该链接未作为图片加载",
+      "addFailed": "无法添加表情符号。请重试。",
+      "packEmpty": "在该地址未找到表情符号",
+      "shortcodeTaken": "{{name}}已被占用",
+      "shortcodeStandard": "{{name}}已经是标准表情符号"
     }
   }
 }

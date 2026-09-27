@@ -7238,7 +7238,8 @@
       "activities": "Активності",
       "objects": "Об'єкти",
       "symbols": "Символи",
-      "flags": "Прапори"
+      "flags": "Прапори",
+      "custom": "Користувацький"
     },
     "tone": {
       "default": "За замовчуванням",
@@ -7247,6 +7248,32 @@
       "medium": "Середній тон шкіри",
       "mediumDark": "Помірно темний тон шкіри",
       "dark": "Темний тон шкіри"
+    },
+    "addCustom": "Додати користувацькі смайлики",
+    "customEmpty": "Користувацьких смайликів ще немає. Додайте один з файлу, посилання, Discord, Slack, 7TV або сервера Mastodon.",
+    "back": "Назад",
+    "modeSingle": "Один смайлик",
+    "modePack": "Імпортувати пакет",
+    "upload": "Завантажити зображення",
+    "linkPlaceholder": "…або вставте посилання або код смайлика Discord",
+    "namePlaceholder": "ім’я",
+    "singleHint": "PNG, GIF, WebP або JPEG до 2 МБ. Посилання з Discord, Slack, 7TV, BetterTTV, FrankerFaceZ, emoji.gg або будь-якого іншого зображення.",
+    "add": "Додати новий смайлик",
+    "addedName": "Додано {{name}}",
+    "packPlaceholder": "mastodon.social, misskey.io або JSON-посилання",
+    "packHint": "Імпортує кожну емодзі з сервера Mastodon, Pleroma, Akkoma або Misskey або з будь-якого списку емодзі JSON. Імена, які вже використовуються, пропускаються.",
+    "importPack": "Імпортувати",
+    "packAdded": "Додано {{count}} emoji ({{skipped}} пропущено)",
+    "errors": {
+      "signIn": "Увійдіть, щоб додати смайлики",
+      "fileType": "Використовуйте зображення PNG, GIF, WebP або JPEG",
+      "fileSize": "Зображення мають бути розміром 2 МБ або менше",
+      "invalid": "Імена містять від 2 до 64 букв, цифр, _, + або -",
+      "badImage": "Це посилання не завантажилося як зображення",
+      "addFailed": "Не вдалося додати емодзі. Спробуйте ще раз.",
+      "packEmpty": "За цією адресою смайликів не знайдено",
+      "shortcodeTaken": "{{name}} вже зайнято",
+      "shortcodeStandard": "{{name}} вже є стандартним смайликом"
     }
   }
 }

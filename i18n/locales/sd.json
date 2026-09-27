@@ -6756,7 +6756,8 @@
       "activities": "سرگرميون",
       "objects": "شيون",
       "symbols": "نشان",
-      "flags": "جھنڊا"
+      "flags": "جھنڊا",
+      "custom": "حسب ضرورت"
     },
     "tone": {
       "default": "ڊيفالٽ",
@@ -6765,6 +6766,32 @@
       "medium": "وچولو چمڙي جو رنگ",
       "mediumDark": "وچولو-گهرو چمڙي جو رنگ",
       "dark": "گهرو چمڙي جو رنگ"
+    },
+    "addCustom": "ڪسٽم ايموجي شامل ڪريو",
+    "customEmpty": "اڃان تائين ڪسٽم ايموجي ناهي. هڪ فائل، هڪ لنڪ، Discord، Slack، 7TV يا هڪ Mastodon سرور مان هڪ شامل ڪريو.",
+    "back": "پوئتي",
+    "modeSingle": "ون ايموجي",
+    "modePack": "هڪ پيڪ درآمد ڪريو",
+    "upload": "تصوير اپلوڊ ڪريو",
+    "linkPlaceholder": "…يا هڪ ڪڙي يا هڪ Discord emoji ڪوڊ پيسٽ ڪريو",
+    "namePlaceholder": "نالو",
+    "singleHint": "PNG، GIF، ويب پي يا JPEG 2 ايم بي تائين. Discord، Slack، 7TV، BetterTTV، FrankerFaceZ، emoji.gg يا ڪنهن به تصويري ڪم کان لنڪ پڻ.",
+    "add": "ايموجي شامل ڪريو",
+    "addedName": "شامل ڪيو ويو {{name}}",
+    "packPlaceholder": "mastodon. social، misskey. io يا JSON لنڪ",
+    "packHint": "Mastodon، Pleroma، Akkoma يا Misskey سرور مان، يا ڪنهن به Emoji JSON لسٽ مان هر ايموجي درآمد ڪريو. اهي نالا جيڪي اڳ ۾ ئي استعمال ڪيا ويا آهن انهن کي ختم ڪيو ويو آهي.",
+    "importPack": "درآمد ڪريو",
+    "packAdded": "شامل ڪيو ويو {{count}} ايموجي ({{skipped}} ڇڏي ويو)",
+    "errors": {
+      "signIn": "Emoji شامل ڪرڻ لاء سائن ان ڪريو",
+      "fileType": "PNG، GIF، WebP يا JPEG تصوير استعمال ڪريو",
+      "fileSize": "تصويرون 2 ايم بي يا نن smallerيون هجڻ گهرجن",
+      "invalid": "نالا 2 کان 64 اکر، نمبر،_، + يا - استعمال ڪندا آهن",
+      "badImage": "انهي لنڪ کي تصوير جي طور تي لوڊ نه ڪيو",
+      "addFailed": "اهو ايموجي شامل نه ڪري سگهيو. ٻيهر ڪوشش ڪريو.",
+      "packEmpty": "ان پتي تي ڪوبه ايموجي نه مليو",
+      "shortcodeTaken": "{{name}} اڳ ۾ ئي ورتو ويو آهي",
+      "shortcodeStandard": "{{name}} اڳ ۾ ئي هڪ معياري ايموجي آهي"
     }
   }
 }
