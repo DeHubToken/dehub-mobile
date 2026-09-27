@@ -7369,14 +7369,10 @@
     "intro": "Pubblica su X, YouTube, Instagram, TikTok e altro contemporaneamente con dehub. Collega i tuoi account una volta, quindi scegli dove va ogni post.",
     "creditsHeading": "Crediti di post",
     "credits": "{{count}} crediti di post",
-    "creditExplainer": "Un credito invia un post su una piattaforma, quindi pubblicare su 3 piattaforme utilizza 3 crediti. I post programmati utilizzano crediti quando vengono programmati.",
-    "payAsYouGo": "Nessun credito rimasto? Paghi ${{price}} per piattaforma in DHB quando pubblichi.",
     "topUpTitle": "Ricarica e risparmia",
-    "topUpPosts": "{{count}} post",
     "discount": "{{percent}}% di sconto",
     "noDiscount": "Prezzo intero",
     "total": "Totale ${{usd}}, pagato in DHB",
-    "perPost": "${{price}} per post",
     "buy": "Acquista crediti",
     "buying": "In attesa di pagamento…",
     "bought": "Aggiunti {{count}} crediti di post",
@@ -7404,6 +7400,15 @@
     "partialToast": "Pubblicato su piattaforme {{sent}}. {{failed}} non è riuscito e i crediti sono stati rimborsati.",
     "failedToast": "Cross-post non riuscito: {{error}}",
     "skippedToast": "Saltato {{platforms}}: questo post non contiene la foto o il video di cui hanno bisogno.",
-    "uploadFailed": "Impossibile caricare i tuoi contenuti multimediali per la pubblicazione incrociata."
+    "uploadFailed": "Impossibile caricare i tuoi contenuti multimediali per la pubblicazione incrociata.",
+    "creditRules": "Ogni post costa crediti per piattaforma: {{x}} per X, {{farcaster}} per Farcaster e {{other}} per ogni altra piattaforma. I post programmati utilizzano i crediti quando li pianifichi.",
+    "payAsYouGoCredits": "Esaurito? I crediti mancanti vengono acquistati in DHB a ${{price}} ciascuno quando pubblichi.",
+    "topUpCredits": "{{count}} crediti",
+    "perCredit": "${{price}} per credito",
+    "pendingApproval": "In attesa dell'approvazione del dehub nell'app Farcaster",
+    "approve": "Approva",
+    "farcasterNote": "Farcaster ti chiede di approvare dehub nell'app Farcaster e non può ancora accettare post programmati.",
+    "skippedScheduleToast": "Saltato {{platforms}}: i post programmati non sono ancora supportati.",
+    "skippedOtherToast": "Saltato {{platforms}}: non hanno potuto accettare questo post."
   }
 }

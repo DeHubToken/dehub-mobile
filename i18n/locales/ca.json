@@ -7369,14 +7369,10 @@
     "intro": "Publica a X, YouTube, Instagram, TikTok i més alhora amb dehub. Connecta els teus comptes un cop i tria on va cada publicació.",
     "creditsHeading": "Crèdits de publicació",
     "credits": "{{count}} crèdits de publicació",
-    "creditExplainer": "Un crèdit envia una publicació a una plataforma, així que publicar a 3 plataformes utilitza 3 crèdits. Les publicacions programades utilitzen crèdits quan les programes.",
-    "payAsYouGo": "No queden crèdits? Pagues ${{price}} per plataforma en DHB quan publiques.",
     "topUpTitle": "Recarrega i estalvia",
-    "topUpPosts": "{{count}} publicacions",
     "discount": "{{percent}}% de descompte",
     "noDiscount": "Preu complet",
     "total": "Total ${{usd}}, pagat en DHB",
-    "perPost": "${{price}} per publicació",
     "buy": "Comprar crèdits",
     "buying": "Esperant pagament…",
     "bought": "S'han afegit {{count}} crèdits de publicació",
@@ -7404,6 +7400,15 @@
     "partialToast": "Publicat a {{sent}} plataformes. {{failed}} ha fallat i els crèdits s'han reembossat.",
     "failedToast": "Ha fallat la publicació creuada: {{error}}",
     "skippedToast": "S'ha saltat {{platforms}}: aquesta publicació no té la foto ni el vídeo que necessiten.",
-    "uploadFailed": "No s'ha pogut pujar el suport per a la publicació creuada."
+    "uploadFailed": "No s'ha pogut pujar el suport per a la publicació creuada.",
+    "creditRules": "Cada publicació costa crèdits per plataforma: {{x}} per a X, {{farcaster}} per a Farcaster i {{other}} per a qualsevol altra plataforma. Les publicacions programades utilitzen crèdits quan les programes.",
+    "payAsYouGoCredits": "S'ha acabat? Els crèdits que falten es compren a DHB a ${{price}} cadascun quan publiques.",
+    "topUpCredits": "{{count}} crèdits",
+    "perCredit": "${{price}} per crèdit",
+    "pendingApproval": "S'està esperant que aprovi el deshub a l'aplicació Farcaster",
+    "approve": "Aprova",
+    "farcasterNote": "Farcaster et demana que aprovi el deshub a l'aplicació Farcaster, i encara no pot acceptar publicacions programades.",
+    "skippedScheduleToast": "Omet {{platforms}}: les publicacions programades encara no són compatibles.",
+    "skippedOtherToast": "S'ha saltat {{platforms}}: no han pogut acceptar aquesta publicació."
   }
 }

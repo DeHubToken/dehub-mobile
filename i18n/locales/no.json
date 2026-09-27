@@ -7369,14 +7369,10 @@
     "intro": "Post til X, YouTube, Instagram, TikTok og mer samtidig med dehub. Koble til kontoene dine én gang, velg deretter hvor hvert innlegg skal.",
     "creditsHeading": "Post-kreditter",
     "credits": "{{count}} post-kreditter",
-    "creditExplainer": "Én kreditt sender ett innlegg til én plattform, så å poste til 3 plattformer bruker 3 kreditter. Planlagte innlegg bruker kreditter når du planlegger dem.",
-    "payAsYouGo": "Ingen kreditter igjen? Du betaler ${{price}} per plattform i DHB når du poster.",
     "topUpTitle": "Fyll på og spar",
-    "topUpPosts": "{{count}} innlegg",
     "discount": "{{percent}} % rabatt",
     "noDiscount": "Full pris",
     "total": "Totalt ${{usd}}, betalt i DHB",
-    "perPost": "${{price}} per innlegg",
     "buy": "Kjøp kreditter",
     "buying": "Venter på betaling…",
     "bought": "Lagt til {{count}} post-kreditter",
@@ -7404,6 +7400,15 @@
     "partialToast": "Publisert på {{sent}}-plattformene. {{failed}} mislyktes, og kredittene ble refundert.",
     "failedToast": "Kryssposting mislyktes: {{error}}",
     "skippedToast": "Hoppet over {{platforms}}: dette innlegget har ikke bildet eller videoen de trenger.",
-    "uploadFailed": "Kunne ikke laste opp mediene dine for krysspublisering."
+    "uploadFailed": "Kunne ikke laste opp mediene dine for krysspublisering.",
+    "creditRules": "Hvert innlegg koster kreditter per plattform: {{x}} for X, {{farcaster}} for Farcaster og {{other}} for alle andre plattformer. Planlagte innlegg bruker kreditter når du planlegger dem.",
+    "payAsYouGoCredits": "Går du tom? Manglende kreditter kjøpes i DHB til ${{price}} per stykk når du poster.",
+    "topUpCredits": "{{count}} studiepoeng",
+    "perCredit": "${{price}} per kreditt",
+    "pendingApproval": "Venter på at du skal godkjenne dehub i Farcaster-appen",
+    "approve": "Godkjenn",
+    "farcasterNote": "Farcaster ber deg om å godkjenne dehub i Farcaster-appen, og den kan ikke ta imot planlagte innlegg ennå.",
+    "skippedScheduleToast": "Hoppet over {{platforms}}: planlagte innlegg støttes ikke der ennå.",
+    "skippedOtherToast": "Hoppet over {{platforms}}: de kunne ikke ta dette innlegget."
   }
 }

@@ -7364,14 +7364,10 @@
     "intro": "Postita korraga X-i, YouTube'i, Instagrami, TikToki ja mujale dehubiga. Ühenda oma kontod üks kord, seejärel vali, kuhu iga postitus läheb.",
     "creditsHeading": "Postituse krediidid",
     "credits": "{{count}} postituse krediiti",
-    "creditExplainer": "Üks krediit saadab ühe postituse ühele platvormile, nii et postitamine 3 platvormile kasutab 3 krediiti. Ajastatud postitused kasutavad krediite nende ajastamisel.",
-    "payAsYouGo": "Krediidid otsas? Maksad 3 platvormi eest ${{price}} DHB-s, kui postitad.",
     "topUpTitle": "Laadi juurde ja säästa",
-    "topUpPosts": "{{count}} postitust",
     "discount": "{{percent}}% allahindlust",
     "noDiscount": "Täishind",
     "total": "Kokku ${{usd}}, makstud DHB-s",
-    "perPost": "${{price}} postituse kohta",
     "buy": "Osta krediite",
     "buying": "Ootan makset…",
     "bought": "Lisatud {{count}} postituse krediiti",
@@ -7399,6 +7395,15 @@
     "partialToast": "Postitatud platvormile {{sent}}. {{failed}} ebaõnnestus ja krediit tagastati.",
     "failedToast": "Ristpostitus ebaõnnestus: {{error}}",
     "skippedToast": "Jäeti vahele {{platforms}}: sellel postitusel pole vajalikku fotot või videot.",
-    "uploadFailed": "Meediat ei saanud ristpostituseks üles laadida."
+    "uploadFailed": "Meediat ei saanud ristpostituseks üles laadida.",
+    "creditRules": "Iga postitus maksab krediiti platvormi kohta: {{x}} X jaoks, {{farcaster}} Farcasteri jaoks ja {{other}} iga muu platvormi jaoks. Ajastatud postitused kasutavad krediiti, kui neid ajastad.",
+    "payAsYouGoCredits": "Kas krediit on otsas? Puuduvad krediit ostetakse DHB-s kell ${{price}}, kui postitad.",
+    "topUpCredits": "{{count}} krediiti",
+    "perCredit": "${{price}} krediidi kohta",
+    "pendingApproval": "Ootame, et kinnitaksid dehubi Farcasteri rakenduses",
+    "approve": "Heakskiit",
+    "farcasterNote": "Farcaster palub sul dehubi Farcasteri rakenduses kinnitada ja see ei saa veel plaanitud postitusi vastu võtta.",
+    "skippedScheduleToast": "Jäeti vahele {{platforms}}: ajastatud postitusi seal veel ei toetata.",
+    "skippedOtherToast": "{{platforms}} jäi vahele: ta ei saanud seda postitust vastu võtta."
   }
 }

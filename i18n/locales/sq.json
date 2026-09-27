@@ -7369,14 +7369,10 @@
     "intro": "Postoni në X, YouTube, Instagram, TikTok dhe më shumë në të njëjtën kohë me dehub. Lidhni llogaritë tuaja një herë, pastaj zgjidhni ku shkon çdo postim.",
     "creditsHeading": "Kredite për postim",
     "credits": "{{count}} kredite për postim",
-    "creditExplainer": "Një kredit dërgon një postim në një platformë, kështu që postimi në 3 platforma përdor 3 kredite. Postimet e planifikuara përdorin kredite kur i planifikoni ato.",
-    "payAsYouGo": "Nuk keni më kredite? Ju paguani ${{price}} për platformë në DHB kur postoni.",
     "topUpTitle": "Rregulloni dhe kurseni",
-    "topUpPosts": "{{count}} postime",
     "discount": "{{percent}}% zbritje",
     "noDiscount": "Çmimi i plotë",
     "total": "Total ${{usd}}, paguar në DHB",
-    "perPost": "${{price}} për postim",
     "buy": "Bli kredite",
     "buying": "Në pritje të pagesës…",
     "bought": "Shtuar {{count}} kredite për postim",
@@ -7404,6 +7400,15 @@
     "partialToast": "Postuar në {{sent}} platformat. {{failed}} dështoi dhe ato kredi u rimbursuan.",
     "failedToast": "Postimi i kryqëzuar dështoi: {{error}}",
     "skippedToast": "U anashkalua {{platforms}}: ky postim nuk ka fotografinë ose videon që u nevojitet.",
-    "uploadFailed": "Nuk mund të ngarkoni mediat tuaja për postime të kryqëzuara."
+    "uploadFailed": "Nuk mund të ngarkoni mediat tuaja për postime të kryqëzuara.",
+    "creditRules": "Çdo postim kushton kredi për platformë: {{x}} për X, {{farcaster}} për Farcaster dhe {{other}} për çdo platformë tjetër. Postimet e programuara përdorin kredite kur i programon ato.",
+    "payAsYouGoCredits": "Mbaroi? Kreditet e humbura blihen në DHB me ${{price}} secila kur poston.",
+    "topUpCredits": "{{count}} kredite",
+    "perCredit": "${{price}} për kredit",
+    "pendingApproval": "Duke pritur që të miratosh dekontaminimin në aplikacionin Farcaster",
+    "approve": "Aprovo",
+    "farcasterNote": "Farcaster të kërkon të miratosh deponimin në aplikacionin Farcaster dhe nuk mund të marrë ende postime të programuara.",
+    "skippedScheduleToast": "U anashkalua {{platforms}}: postimet e programuara nuk mbështeten ende atje.",
+    "skippedOtherToast": "U anashkalua {{platforms}}: ata nuk mund ta merrnin këtë postim."
   }
 }

@@ -7365,14 +7365,10 @@
     "intro": "Пост кунед ба X, YouTube, Instagram, TikTok ва дигарҳо дар ҳамзамон бо dehub. Ҳисобҳои худро як маротиба пайваст кунед, пас интихоб кунед ки ҳар як пост кудайи мешавад.",
     "creditsHeading": "Кредитҳои пост",
     "credits": "{{count}} кредитҳои пост",
-    "creditExplainer": "Як кредит як постро ба як платформа фиристодад, бинобар ин, пост кардани 3 платформа 3 кредит истифода мебарад. Постҳои режими вақтӣ кредитҳоро ҳангоми режими вақтӣ истифода мебаранд.",
-    "payAsYouGo": "Кредитҳо ба охир мерасад? Шумо ${{price}} барои ҳар платформа дар DHB то пост мекунед.",
     "topUpTitle": "Тасвири баланд кунед ва захира кунед",
-    "topUpPosts": "{{count}} пост",
     "discount": "{{percent}}% камшиканӣ",
     "noDiscount": "Нарх пурра",
     "total": "Ҳамагӣ ${{usd}}, бо DHB пардохт шудааст",
-    "perPost": "${{price}} барои ҳар пост",
     "buy": "Кредитҳоро харид кунед",
     "buying": "Дар интизории пардохт…",
     "bought": "Кредитҳои пост {{count}} илова шудааст",
@@ -7400,6 +7396,15 @@
     "partialToast": "Фиристодан ба {{sent}} платформаҳо. {{failed}} 1 ноком шуд ва ин кредитҳо баргардонида шуданд.",
     "failedToast": "Интишори байниплатформавӣ ноком шуд: {{error}}",
     "skippedToast": "{{platforms}}: this post has not have the photo or video they need.",
-    "uploadFailed": "Hindi mai-upload ang iyong media para sa cross-post."
+    "uploadFailed": "Hindi mai-upload ang iyong media para sa cross-post.",
+    "creditRules": "Хароҷоти ҳар як платформа: {{x}} барои X, {{farcaster}} барои Farcaster ва {{other}} барои ҳар як платформаи дигар. Ang mga naka-iskedyul na post ay gumagamit ng mga kredit kapag naka-iskedyul mo ang mga ito.",
+    "payAsYouGoCredits": "Кредит тамом шуд? Ҳангоми нашр кредитҳои нарасида бо DHB ҳар кадом ба ${{price}} харида мешаванд.",
+    "topUpCredits": "{{count}} creditits",
+    "perCredit": "${{price}} ҳар як кредит",
+    "pendingApproval": "Интизори шумо барои тасдиқи dehub дар барномаи Farcaster",
+    "approve": "Тасдиқ кардан",
+    "farcasterNote": "Farcaster аз шумо хоҳиш мекунад, ки dehub-ро дар барномаи Farcaster тасдиқ кунед, ва он то ҳол постҳои ба нақша гирифташударо гирифта наметавонад.",
+    "skippedScheduleToast": "{{platforms}}: Замимаҳои ба нақша гирифташуда ҳанӯз дар он ҷо пуштибонӣ нашудаанд.",
+    "skippedOtherToast": "{{platforms}}: онҳо ин паёмро гирифта натавонистанд."
   }
 }

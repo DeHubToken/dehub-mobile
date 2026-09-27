@@ -7373,14 +7373,10 @@
     "intro": "Post til X, YouTube, Instagram, TikTok og mere på samme tid med dehub. Forbind dine konti én gang, og vælg derefter, hvor hvert opslag skal hen.",
     "creditsHeading": "Post-kreditter",
     "credits": "{{count}} post-kreditter",
-    "creditExplainer": "Én kredit sender ét opslag til én platform, så et opslag til 3 platforme bruger 3 kreditter. Planlagte opslag bruger kreditter, når du planlægger dem.",
-    "payAsYouGo": "Ingen kreditter tilbage? Du betaler ${{price}} per platform i DHB, når du poster.",
     "topUpTitle": "Top op og spar",
-    "topUpPosts": "{{count}} opslag",
     "discount": "{{percent}}% rabat",
     "noDiscount": "Fuld pris",
     "total": "I alt ${{usd}}, betalt i DHB",
-    "perPost": "${{price}} per opslag",
     "buy": "Køb kreditter",
     "buying": "Venter på betaling…",
     "bought": "Tilføjet {{count}} post-kreditter",
@@ -7408,6 +7404,15 @@
     "partialToast": "Slået op på {{sent}}-platforme. {{failed}} mislykkedes, og disse kreditter blev refunderet.",
     "failedToast": "Cross-post mislykkedes:{{error}}",
     "skippedToast": "Sprunget over {{platforms}}: Dette opslag har ikke det billede eller den video, de har brug for.",
-    "uploadFailed": "Kunne ikke uploade dine medier til cross-posting."
+    "uploadFailed": "Kunne ikke uploade dine medier til cross-posting.",
+    "creditRules": "Hvert opslag koster kreditter pr. platform: {{x}} for X, {{farcaster}} for Farcaster og {{other}} for alle andre platforme. Planlagte opslag bruger kreditter, når du planlægger dem.",
+    "payAsYouGoCredits": "Er du løbet tør? Manglende kreditter købes i DHB hos ${{price}} hver gang, du slår et opslag op.",
+    "topUpCredits": "{{count}} kreditter",
+    "perCredit": "${{price}} pr. kredit",
+    "pendingApproval": "Venter på, at du godkender dehub i Farcaster-appen",
+    "approve": "Godkend",
+    "farcasterNote": "Farcaster beder dig om at godkende dehub i Farcaster-appen, og den kan ikke modtage planlagte opslag endnu.",
+    "skippedScheduleToast": "Sprunget over {{platforms}}: Planlagte indlæg understøttes ikke der endnu.",
+    "skippedOtherToast": "Sprunget over {{platforms}}: De kunne ikke tage dette indlæg."
   }
 }

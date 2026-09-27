@@ -7457,14 +7457,10 @@
     "intro": "Đăng lên X, YouTube, Instagram, TikTok và nhiều nền tảng khác cùng một lúc với dehub. Kết nối tài khoản của bạn một lần, sau đó chọn nơi mỗi bài đăng sẽ được gửi.",
     "creditsHeading": "Tín dụng đăng bài",
     "credits": "{{count}} tín dụng đăng bài",
-    "creditExplainer": "Mỗi tín dụng gửi một bài đăng tới một nền tảng, vì vậy đăng lên 3 nền tảng sẽ dùng 3 tín dụng. Các bài đăng được lên lịch sẽ sử dụng tín dụng khi bạn lên lịch chúng.",
-    "payAsYouGo": "Không còn tín dụng? Bạn sẽ trả ${{price}} cho mỗi nền tảng bằng DHB khi đăng.",
     "topUpTitle": "Nạp thêm và tiết kiệm",
-    "topUpPosts": "{{count}} bài đăng",
     "discount": "{{percent}}% giảm",
     "noDiscount": "Giá đầy đủ",
     "total": "Tổng ${{usd}}, thanh toán bằng DHB",
-    "perPost": "${{price}} mỗi bài đăng",
     "buy": "Mua tín dụng",
     "buying": "Đang chờ thanh toán…",
     "bought": "Đã thêm {{count}} tín dụng đăng bài",
@@ -7492,6 +7488,15 @@
     "partialToast": "Đã đăng lên nền tảng {{sent}}. {{failed}} không thành công và những khoản tín dụng đó đã được hoàn trả.",
     "failedToast": "Bài đăng chéo không thành công: {{error}}",
     "skippedToast": "Đã bỏ qua {{platforms}}: bài đăng này không có ảnh hoặc video họ cần.",
-    "uploadFailed": "Không thể tải lên nội dung đa phương tiện của bạn để đăng chéo."
+    "uploadFailed": "Không thể tải lên nội dung đa phương tiện của bạn để đăng chéo.",
+    "creditRules": "Mỗi bài đăng tính phí tín dụng cho mỗi nền tảng: {{x}} cho X, {{farcaster}} cho Farcaster và {{other}} cho mọi nền tảng khác. Các bài đăng đã lên lịch sử dụng tín dụng khi bạn lên lịch cho chúng.",
+    "payAsYouGoCredits": "Bạn sắp hết? Bạn có thể mua điểm tín dụng còn thiếu trong DHB với giá ${{price}} mỗi điểm khi đăng bài.",
+    "topUpCredits": "{{count}} điểm tín dụng",
+    "perCredit": "${{price}} mỗi điểm tín dụng",
+    "pendingApproval": "Đang chờ bạn phê duyệt dehub trong ứng dụng Farcaster",
+    "approve": "Phê duyệt",
+    "farcasterNote": "Farcaster yêu cầu bạn phê duyệt dehub trong ứng dụng Farcaster và nó chưa thể thực hiện các bài đăng đã lên lịch.",
+    "skippedScheduleToast": "Đã bỏ qua {{platforms}}: các bài đăng đã lên lịch chưa được hỗ trợ ở đó.",
+    "skippedOtherToast": "Đã bỏ qua {{platforms}}: họ không thể nhận bài đăng này."
   }
 }

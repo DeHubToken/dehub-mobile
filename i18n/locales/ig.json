@@ -7368,14 +7368,10 @@
     "intro": "Zipụ na X, YouTube, Instagram, TikTok na ihe ndị ọzọ n'otu oge dị ka dehub. Jikọọ akaụntụ gị otu ugbo, wee họrọ ebe ọ bụla nzipu ga-aga.",
     "creditsHeading": "Ebe nzipu",
     "credits": "{{count}} ebe nzipu",
-    "creditExplainer": "Otu kredit na-eziga otu nzipu na otu ikpo okwu, yabụ izipu na ikpo okwu 3 na-eji kredit 3. Nzipu edoziri na-eji kredit mgbe ị haziri ha.",
-    "payAsYouGo": "Enweghị kredit fọdụrụ? Ị na-akwụ ${{price}} kwa ikpo okwu na DHB mgbe ị zipụrụ.",
     "topUpTitle": "Mee ka elu ma chekwaa",
-    "topUpPosts": "{{count}} nzipu",
     "discount": "{{percent}}% kwụ",
     "noDiscount": "Ọnụahịa zuru oke",
     "total": "Mkpokọta ${{usd}}, akwụgoro na DHB",
-    "perPost": "${{price}} kwa nzipu",
     "buy": "Zụta kredit",
     "buying": "Na-eche maka ịkwụ ụgwọ…",
     "bought": "Agbakwunyere {{count}} ebe nzipu",
@@ -7403,6 +7399,15 @@
     "partialToast": "Ihe na {{sent}} nyiwe. {{failed}} dara na ndị Ebe e si nweta e refunded.",
     "failedToast": "Cross-post kụrụ afọ n 'ala: {{error}}",
     "skippedToast": "Wepụ {{platforms}}: post a enweghị foto ma ọ bụ vidiyo ha chọrọ.",
-    "uploadFailed": "Enweghi ike ibugo mgbasa ozi gị maka izipu ozi."
+    "uploadFailed": "Enweghi ike ibugo mgbasa ozi gị maka izipu ozi.",
+    "creditRules": "Onye ọ bụla post efu Ebe e si nweta kwa n 'elu ikpo okwu: {{x}} maka X, {{farcaster}} maka Farcaster na {{other}} maka ọ bụla ọzọ n' elu ikpo okwu. Ihe ndị a haziri ahazi na-eji kredit eme ihe mgbe ị na-ahazi ha.",
+    "payAsYouGoCredits": "A na-azụta kredit na-efu efu na DHB na ${{price}} nke ọ bụla mgbe ị biputere.",
+    "topUpCredits": "{{count}} Ebe e si nweta",
+    "perCredit": "${{price}} kwa akwụmụgwọ",
+    "pendingApproval": "Na-echere gị ka ị kwado dehub na ngwa Farcaster",
+    "approve": "Kwado",
+    "farcasterNote": "Farcaster na-arịọ gị ka ị kwado dehub na ngwa Farcaster, ma ọ nweghị ike iwepụta ndokwa.",
+    "skippedScheduleToast": "Wepụrụ {{platforms}}: ha anaghị anabata post ahaziri ahazi ugbu a.",
+    "skippedOtherToast": "Wepụrụ {{platforms}}: ha enweghị ike ịnabata post a."
   }
 }

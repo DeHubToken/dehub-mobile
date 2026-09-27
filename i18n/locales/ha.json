@@ -7368,14 +7368,10 @@
     "intro": "Yi post zuwa X, YouTube, Instagram, TikTok da ƙari a lokaci guda tare da dehub. Haɗa asusunka sau ɗaya, sannan zaɓi inda kowane post zai tafi.",
     "creditsHeading": "Kudin posts",
     "credits": "{{count}} kudin posts",
-    "creditExplainer": "Kudi ɗaya yana aika post ɗaya zuwa dandamali ɗaya, don haka yin post zuwa dandamali 3 yana amfani da kuɗi 3. Posts da aka tsara suna amfani da kuɗi lokacin da kuka tsara su.",
-    "payAsYouGo": "Babu kuɗi da ya rage? Kuna biyan ${{price}} kowace dandamali a cikin DHB lokacin da kuka yi post.",
     "topUpTitle": "Ƙara kuɗi da adanawa",
-    "topUpPosts": "{{count}} posts",
     "discount": "{{percent}}% rangwame",
     "noDiscount": "Cikakken farashi",
     "total": "Jimilla ${{usd}}, an biya a DHB",
-    "perPost": "${{price}} kowace post",
     "buy": "Sayi kuɗi",
     "buying": "Jiran biya…",
     "bought": "An ƙara {{count}} kudin posts",
@@ -7403,6 +7399,15 @@
     "partialToast": "An sanya shi zuwa {{sent}} dandamali. {{failed}} ya kasa kuma an dawo da waɗannan takardun.",
     "failedToast": "Cross-post ya kasa: {{error}}",
     "skippedToast": "Skipped {{platforms}}: wannan post ba shi da hoto ko bidiyo da suke buƙata.",
-    "uploadFailed": "Ba za a iya upload your kafofin watsa labarai domin giciye-posting."
+    "uploadFailed": "Ba za a iya upload your kafofin watsa labarai domin giciye-posting.",
+    "creditRules": "Kowane sakon yana kashe kiredit a kowace dandali: {{x}} don X, {{farcaster}} don Farcaster da {{other}} don duk sauran dandali. Sakonnin da aka shirya suna amfani da kiredit lokacin da ka shirya su.",
+    "payAsYouGoCredits": "Kare? Ana sayen kiredit da suka bace a DHB a ${{price}} kowanne lokacin da ka aika.",
+    "topUpCredits": "{{count}} kiredit",
+    "perCredit": "${{price}} per kiredit",
+    "pendingApproval": "Ana jiran ka amince da dehub a cikin app ɗin Farcaster",
+    "approve": "Amince",
+    "farcasterNote": "Farcaster na tambayar ka ka amince da dehub a cikin app ɗin Farcaster, kuma ba zai iya karɓar sakonnin da aka shirya ba tukuna.",
+    "skippedScheduleToast": "An tsallake {{platforms}}: ba a tallafa sakonnin da aka shirya a can ba tukuna.",
+    "skippedOtherToast": "An tsallake {{platforms}}: ba su iya karɓar wannan sakon ba."
   }
 }

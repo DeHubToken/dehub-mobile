@@ -7437,14 +7437,10 @@
     "intro": "Publikuj na X, YouTube, Instagram, TikTok i innych jednocześnie za pomocą dehub. Połącz swoje konta raz, a potem wybierz, gdzie ma trafić każdy post.",
     "creditsHeading": "Kredyty na posty",
     "credits": "{{count}} kredyty na posty",
-    "creditExplainer": "Jeden kredyt wysyła jeden post na jedną platformę, więc publikowanie na 3 platformach zużywa 3 kredyty. Zaplanowane posty zużywają kredyty w momencie ich planowania.",
-    "payAsYouGo": "Brak kredytów? Płacisz ${{price}} za platformę w DHB, gdy publikujesz.",
     "topUpTitle": "Doładuj i oszczędzaj",
-    "topUpPosts": "{{count}} postów",
     "discount": "{{percent}}% zniżki",
     "noDiscount": "Pełna cena",
     "total": "Razem ${{usd}}, płatne w DHB",
-    "perPost": "${{price}} za post",
     "buy": "Kup kredyty",
     "buying": "Oczekiwanie na płatność…",
     "bought": "Dodano {{count}} kredytów na posty",
@@ -7472,6 +7468,15 @@
     "partialToast": "Opublikowano na platformach {{sent}}. {{failed}} nie powiodło się i środki zostały zwrócone.",
     "failedToast": "Cross-post nie powiódł się: {{error}}",
     "skippedToast": "Pominięto {{platforms}}: ten post nie ma zdjęcia ani filmu, którego potrzebują.",
-    "uploadFailed": "Nie można przesłać multimediów do cross-postingu."
+    "uploadFailed": "Nie można przesłać multimediów do cross-postingu.",
+    "creditRules": "Każdy post kosztuje kredyty na platformę: {{x}} za X, {{farcaster}} za Farcaster i {{other}} za każdą inną platformę. Zaplanowane posty wykorzystują kredyty, gdy je zaplanujesz.",
+    "payAsYouGoCredits": "Brakujące kredyty są kupowane w DHB za ${{price}}, gdy publikujesz post.",
+    "topUpCredits": "{{count}} kredytów",
+    "perCredit": "${{price}} za kredyt",
+    "pendingApproval": "Oczekiwanie na zatwierdzenie dehub w aplikacji Farcaster",
+    "approve": "Zatwierdził",
+    "farcasterNote": "Farcaster prosi o zatwierdzenie dehub w aplikacji Farcaster i nie może jeszcze przyjmować zaplanowanych postów.",
+    "skippedScheduleToast": "Pominięto {{platforms}}: zaplanowane posty nie są jeszcze obsługiwane.",
+    "skippedOtherToast": "Pominięto {{platforms}}: nie mogli przyjąć tego posta."
   }
 }

@@ -7550,14 +7550,10 @@
     "intro": "Mag-post sa X, YouTube, Instagram, TikTok at iba pa nang sabay-sabay gamit ang dehub. Ikonekta ang iyong mga account nang isang beses, pagkatapos piliin kung saan mapupunta ang bawat post.",
     "creditsHeading": "Kredito sa pag-post",
     "credits": "{{count}} kredito sa pag-post",
-    "creditExplainer": "Ang isang kredito ay nagpapadala ng isang post sa isang platform, kaya ang pagpo-post sa 3 platform ay gumagamit ng 3 kredito. Ang mga naka-iskedyul na post ay gumagamit ng kredito kapag ito ay naiskedyul.",
-    "payAsYouGo": "Wala nang kredito? Magbabayad ka ng ${{price}} bawat platform sa DHB kapag nagpo-post ka.",
     "topUpTitle": "Mag-top up at magtipid",
-    "topUpPosts": "{{count}} na mga post",
     "discount": "{{percent}}% diskwento",
     "noDiscount": "Buong presyo",
     "total": "Kabuuang ${{usd}}, binayaran sa DHB",
-    "perPost": "${{price}} bawat post",
     "buy": "Bumili ng kredito",
     "buying": "Naghihintay ng bayad…",
     "bought": "Nagdagdag ng {{count}} kredito sa pag-post",
@@ -7585,6 +7581,15 @@
     "partialToast": "Na - post sa {{sent}} platform. Nabigo ang {{failed}} at na - refund ang mga credit na iyon.",
     "failedToast": "Hindi nagtagumpay ang cross -post:{{error}}",
     "skippedToast": "Nilaktawan ang {{platforms}}: wala sa post na ito ang litrato o video na kailangan nila.",
-    "uploadFailed": "Hindi ma - upload ang iyong media para sa pag - cross - post."
+    "uploadFailed": "Hindi ma - upload ang iyong media para sa pag - cross - post.",
+    "creditRules": "Ang bawat post ay nagkakahalaga ng mga credit sa bawat platform: {{x}} para sa X, {{farcaster}} para sa Farcaster at {{other}} para sa bawat iba pang platform. Ang mga naka - iskedyul na post ay gumagamit ng mga kredito kapag nag - iskedyul ka ng mga ito.",
+    "payAsYouGoCredits": "Naubusan na? Binibili ang mga nawawalang credit sa DHB sa halagang $ {{price}} bawat isa kapag nag - post ka.",
+    "topUpCredits": "{{count}} credit",
+    "perCredit": "$ {{price}} kada credit",
+    "pendingApproval": "Hinihintay mong aprubahan ang dehub sa Farcaster app",
+    "approve": "Aprubahan",
+    "farcasterNote": "Hinihiling sa iyo ng Farcaster na aprubahan ang dehub sa Farcaster app, at hindi pa ito maaaring tumagal ng mga naka - iskedyul na post.",
+    "skippedScheduleToast": "Nilaktawan ang {{platforms}}: hindi pa sinusuportahan doon ang mga nakaiskedyul na post.",
+    "skippedOtherToast": "Nilaktawan ang {{platforms}}: hindi nila makuha ang post na ito."
   }
 }

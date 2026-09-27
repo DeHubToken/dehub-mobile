@@ -7369,14 +7369,10 @@
     "intro": "Chapisha kwenye X, YouTube, Instagram, TikTok na zaidi kwa wakati mmoja ukitumia dehub. Unganisha akaunti zako mara moja, kisha uchague ni wapi kila chapisho litaenda.",
     "creditsHeading": "Mikopo ya chapisho",
     "credits": "{{count}} mikopo ya chapisho",
-    "creditExplainer": "Mkopo mmoja hutuma chapisho moja kwenye jukwaa moja, kwa hivyo kuchapisha kwenye majukwaa 3 hutumia mikopo 3. Chapisho zilizopangwa hutumia mikopo unapozipanga.",
-    "payAsYouGo": "Hakuna mikopo iliyobaki? Unalipa ${{price}} kwa kila jukwaa katika DHB unapochapisha.",
     "topUpTitle": "Ongeza na uhifadhi",
-    "topUpPosts": "{{count}} machapisho",
     "discount": "{{percent}}% punguzo",
     "noDiscount": "Bei kamili",
     "total": "Jumla ya ${{usd}}, imelipwa katika DHB",
-    "perPost": "${{price}} kwa chapisho",
     "buy": "Nunua mikopo",
     "buying": "Inasubiri malipo…",
     "bought": "Imeongezwa {{count}} mikopo ya chapisho",
@@ -7404,6 +7400,15 @@
     "partialToast": "Imetumwa kwenye tovuti za {{sent}}. {{failed}} imeshindwa na vocha hizo zilirejeshwa.",
     "failedToast": "Chapisho la msalaba halijafaulu: {{error}}",
     "skippedToast": "Imeruka {{platforms}}: chapisho hili halina picha au video wanayohitaji.",
-    "uploadFailed": "Haikuweza kupakia vyombo vyako vya habari kwa ajili ya kuchapisha."
+    "uploadFailed": "Haikuweza kupakia vyombo vyako vya habari kwa ajili ya kuchapisha.",
+    "creditRules": "Kila chapisho hugharimu vocha kwa kila tovuti: {{x}} kwa X, {{farcaster}} kwa Farcaster na {{other}} kwa kila tovuti nyingine. Machapisho yaliyoratibiwa hutumia miamana unapoyapanga.",
+    "payAsYouGoCredits": "Umekwisha? Vocha zinazokosekana zinanunuliwa kwa DHB kwa ${{price}} kila moja unapochapisha.",
+    "topUpCredits": "{{count}} miamana",
+    "perCredit": "${{price}} kwa kila muamana",
+    "pendingApproval": "Inakusubiri uidhinishe dehub kwenye programu ya Farcaster",
+    "approve": "Idhinisha",
+    "farcasterNote": "Farcaster inakuomba uidhinishe dehub katika programu ya Farcaster na haiwezi kuchukua machapisho yaliyoratibiwa bado.",
+    "skippedScheduleToast": "Imerukwa {{platforms}}: machapisho yaliyoratibiwa bado hayajawezeshwa hapo.",
+    "skippedOtherToast": "Imeruka {{platforms}}: hawakuweza kuchukua chapisho hili."
   }
 }

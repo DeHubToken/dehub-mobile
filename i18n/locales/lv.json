@@ -7369,14 +7369,10 @@
     "intro": "Publicē vienlaicīgi uz X, YouTube, Instagram, TikTok un citām platformām, izmantojot dehub. Savienojiet savus kontus vienreiz, pēc tam izvēlieties, kur katrs publicējums nonāks.",
     "creditsHeading": "Publicēšanas kredīti",
     "credits": "{{count}} publicēšanas kredīti",
-    "creditExplainer": "Viens kredīts nosūta vienu publicējumu uz vienu platformu, tāpēc publicēšana uz 3 platformām izmanto 3 kredītus. Plānotie publicējumi izmanto kredītus, kad tos ieplānojat.",
-    "payAsYouGo": "Nav atlikušo kredītu? Jūs maksājat ${{price}} par platformu DHB, kad publicējat.",
     "topUpTitle": "Papildiniet un ietaupiet",
-    "topUpPosts": "{{count}} publicējumi",
     "discount": "{{percent}}% atlaide",
     "noDiscount": "Pilna cena",
     "total": "Kopā ${{usd}}, maksāts DHB",
-    "perPost": "${{price}} par publicējumu",
     "buy": "Pērciet kredītus",
     "buying": "Gaida maksājumu…",
     "bought": "Pievienoti {{count}} publicēšanas kredīti",
@@ -7404,6 +7400,15 @@
     "partialToast": "Publicēts {{sent}} platformās. {{failed}} neizdevās, un šie kredīti tika atmaksāti.",
     "failedToast": "Krusteniskā ziņa neizdevās: {{error}}",
     "skippedToast": "Izlaists {{platforms}}: šai ziņai nav nepieciešamā fotoattēla vai videoklipa.",
-    "uploadFailed": "Neizdevās augšupielādēt multividi savstarpējai publicēšanai."
+    "uploadFailed": "Neizdevās augšupielādēt multividi savstarpējai publicēšanai.",
+    "creditRules": "Katra ziņa maksā kredītus par platformu: {{x}} X, {{farcaster}} Farcaster un {{other}} katrai citai platformai. Ieplānotās ziņas izmanto bonuspunktus, kad tās ieplāno.",
+    "payAsYouGoCredits": "Vai beidzies termiņš? Trūkstošie kredīti tiek iegādāti DHB par ${{price}} katru reizi, kad publicējat ziņu.",
+    "topUpCredits": "{{count}} kredītpunkti",
+    "perCredit": "${{price}} par kredītu",
+    "pendingApproval": "Gaida, kad apstiprināsi atrunu Farcaster lietotnē",
+    "approve": "Apstiprināt",
+    "farcasterNote": "Farcaster lūdz apstiprināt atmešanu Farcaster lietotnē, un tā vēl nevar uzņemt ieplānotās ziņas.",
+    "skippedScheduleToast": "Izlaists {{platforms}}: ieplānotās ziņas tur vēl netiek atbalstītas.",
+    "skippedOtherToast": "Izlaida {{platforms}}: viņi nevarēja ieņemt šo ziņu."
   }
 }
