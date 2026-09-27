@@ -7400,14 +7400,10 @@
     "intro": "Thumela ku-X, YouTube, Instagram, TikTok nakwezinye ngesikhathi esisodwa nge-dehub. Xhuma ama-akhawunti akho kanye, bese ukhetha ukuthi i-post ngayinye iya kuphi.",
     "creditsHeading": "Amakhredithi wokuthumela",
     "credits": "{{count}} amakhredithi wokuthumela",
-    "creditExplainer": "Ikhredithi eyodwa ithumela i-post eyodwa kwinkundla eyodwa, ngakho ukuthumela ezinkundleni ezingu-3 kusetshenziswa amakhredithi angu-3. Ama-post ahlelelwe kusengaphambili asebenzisa amakhredithi uma uwahlela.",
-    "payAsYouGo": "Awusekho amakhredithi? Ukhokha ${{price}} ngenkundla ngayinye ku-DHB uma uthumela.",
     "topUpTitle": "Gcwalisa futhi wonge",
-    "topUpPosts": "{{count}} ama-post",
     "discount": "{{percent}}% isaphulelo",
     "noDiscount": "Intengo ephelele",
     "total": "Isamba ${{usd}}, sikhokhelwe ku-DHB",
-    "perPost": "${{price}} nge-post",
     "buy": "Thenga amakhredithi",
     "buying": "Ilinde inkokhelo…",
     "bought": "Kune-{{count}} amakhredithi wokuthumela engezwe",
@@ -7435,6 +7431,15 @@
     "partialToast": "Kuthunyelwe ezinkundleni ze- {{sent}}. {{failed}} kuhlulekile futhi lawo makhredithi abuyiselwe.",
     "failedToast": "I-cross-post yehlulekile: {{error}}",
     "skippedToast": "Yeqa {{platforms}}: le phosti ayinaso isithombe noma ividiyo abayidingayo.",
-    "uploadFailed": "Ayikwazanga uku-aphuloda imidiya yakho ukuze iphostwe."
+    "uploadFailed": "Ayikwazanga uku-aphuloda imidiya yakho ukuze iphostwe.",
+    "creditRules": "Iphosti ngayinye ibiza amakhredithi enkundla ngayinye: {{x}} ngo-X, {{farcaster}} ngo-Farcaster kanye no- {{other}} ngenkundla ngayinye. Amaphosti ashejuliwe asebenzisa amakhredithi uma uwahlela.",
+    "payAsYouGoCredits": "Ziyaphela? Izikweletu ezingekho zithengwa ku-DHB ngo- ${{price}} ngamunye uma uphosta.",
+    "topUpCredits": "{{count}} amakhredithi",
+    "perCredit": "${{price}} ikhredithi ngayinye",
+    "pendingApproval": "Ilinde ukuthi ugunyaze i-dehub ku-app ye-Farcaster",
+    "approve": "Gunyaza",
+    "farcasterNote": "I-Farcaster ikucela ukuthi ugunyaze i-dehub ku-app ye-Farcaster, futhi ayikwazi ukuthatha amaphosti ashejuliwe okwamanje.",
+    "skippedScheduleToast": "Yeqa {{platforms}}: amaphosti ashejuliwe awasekelwa lapho okwamanje.",
+    "skippedOtherToast": "Yeqa {{platforms}}: abakwazanga ukuthatha le phosti."
   }
 }

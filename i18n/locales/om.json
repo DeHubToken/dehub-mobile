@@ -7419,14 +7419,10 @@
     "intro": "X, YouTube, Instagram, TikTok fi kanneen biroo irratti isumaan dehub. Walqunnamtii kee yeroo tokkoon walitti qabi, achii booddee guyyaa kamittiin kamittii akka deemuu filadhu.",
     "creditsHeading": "Post credits",
     "credits": "{{count}} post credits",
-    "creditExplainer": "Tokko tokkoon platform irratti erguuf tokkoon tokkoon credit itti fayyadama, kanaaf platform 3 irratti erguuf credit 3 itti fayyadama. Scheduled posts yeroo schedule gootanitti credit itti fayyadamu.",
-    "payAsYouGo": "Credit hin qabdanu? DHB irratti platform tokkoof ${{price}} gatii itti baastu yeroo post gootan.",
     "topUpTitle": "Top up fi save",
-    "topUpPosts": "{{count}} posts",
     "discount": "{{percent}}% off",
     "noDiscount": "Gatii guutuu",
     "total": "Walii galatti ${{usd}}, DHB irratti kaffaltii",
-    "perPost": "Platform tokkoof ${{price}}",
     "buy": "Credits bitadhu",
     "buying": "Kaffaltii eegaa…",
     "bought": "{{count}} post credits dabalaman",
@@ -7454,6 +7450,15 @@
     "partialToast": "Waltajjiiwwan {{sent}} irratti maxxanfame. {{failed}} kufee liqiiwwan sun deebi&#39;aniiru.",
     "failedToast": "Maxxansi qaxxaamuraa hin milkoofne: {{error}}",
     "skippedToast": "Darbe {{platforms}}: barreeffamni kun suuraa ykn viidiyoo isaan barbaachisu hin qabu.",
-    "uploadFailed": "Miidiyaa keessan qaxxaamuraa maxxansuuf olkaa&#39;uu hin dandeenye."
+    "uploadFailed": "Miidiyaa keessan qaxxaamuraa maxxansuuf olkaa&#39;uu hin dandeenye.",
+    "creditRules": "Tokkoon tokkoon maxxansa waltajjii tokkoof liqii kaffala: {{x}} X, {{farcaster}} Farcaster fi {{other}} waltajjii biroo hundaaf. Maxxansi sagantaa qabame yeroo saganteessitu credit fayyadamu.",
+    "payAsYouGoCredits": "Fiiguun dhumuu? Liqiin dhabame DHB keessatti yeroo maxxansitu tokkoon tokkoon isaanii ${{price}} tiin bitama.",
+    "topUpCredits": "{{count}} kan jedhu",
+    "perCredit": "${{price}} liqii tokkoof",
+    "pendingApproval": "Appii Farcaster keessatti dehub akka raggaasiftan eegaa jira",
+    "approve": "Mirkaneessuu",
+    "farcasterNote": "Farcaster appii Farcaster keessatti dehub akka raggaasiftan isin gaafatee, ammatti maxxansa sagantaa qabame fudhachuu hin danda&#39;u.",
+    "skippedScheduleToast": "{{platforms}} darbeera: barreeffamoonni sagantaa qaban ammallee achitti hin deeggaraman.",
+    "skippedOtherToast": "{{platforms}} darbeera: barreeffama kana fudhachuu hin dandeenye."
   }
 }

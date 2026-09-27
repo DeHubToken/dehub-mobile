@@ -7359,14 +7359,10 @@
     "intro": "ናብ X ፣ YouTube ፣ Instagram ፣ TikTokን ካብኡ ንላዕሊን ኣብ ሓደ እዋን ከም dehub ይለኣኽ ። ሕሳብካ ሓደ ግዜ ኣገናኝ ፡ ድሕሪኡ ድማ ነፍሲ ወከፍ ፖስታ ናበይ ከም ዚኸይድ ሕረጽ ።",
     "creditsHeading": "ናይ ልኡኽ ወረቐት",
     "credits": "{{count}} ናይ ፖስት ክሬዲት",
-    "creditExplainer": "ሓደ ክሬዲት ሓደ ቦታ ናብ ሓደ መድረኽ ይልእኽ ፡ ስለዚ ናብ 3 መድረኻት ምውጻእ 3 ክሬዲት ይጥቀም ። እቲ ዝተመደበ ልኡኻት ኣብ ግዜ ኣጀንዳኦም ክሬዲት ይጥቀሙ እዮም ።",
-    "payAsYouGo": "ኣብ DHB ኣብ እትለኣኽሉ እዋን ${{price}} ኣብ ሓደ መድረኽ ትኸፍሉ ኣለኹም ።",
     "topUpTitle": "ናብ ላዕሊን ናብ ላዕሊን",
-    "topUpPosts": "{{count}} ፖስታት",
     "discount": "{{percent}}% ቅናሽ",
     "noDiscount": "ምሉእ ዋጋ",
     "total": "ሓፈሻዊ ${{usd}}, ኣብ DHB ዝተኸፍለ",
-    "perPost": "${{price}} ንሓደ ፖስት",
     "buy": "ክሬዲት ግዛ",
     "buying": "ነቲ ክፍሊት ክንጽበዮ ኢና...",
     "bought": "{{count}} ናይ ፖስት ክሬዲት ተወሲኹ",
@@ -7394,6 +7390,15 @@
     "partialToast": "ናብ {{sent}} መድረኻት ዝተለኣኸ {{failed}} ኣይተዓወተን ፡ እቲ ክሬዲት ድማ ተመሊሱ ተመሊሱ ኣሎ ።",
     "failedToast": "መስቀል-ፖስት ኣይተዓወተን ፦ {{error}}",
     "skippedToast": "ስኪፕ {{platforms}}: እዚ ጽሑፍ እዚ ነቲ ዘድልዮም ስእሊ ወይ ቪድዮ የብሎምን ።",
-    "uploadFailed": "ንመስቀል-ፖስታ ሚድያኻ ክትለኣኽ ኣይትኽእልን ኢኻ ።"
+    "uploadFailed": "ንመስቀል-ፖስታ ሚድያኻ ክትለኣኽ ኣይትኽእልን ኢኻ ።",
+    "creditRules": "ነፍሲ ወከፍ ፖስት ንነፍሲ ወከፍ መድረኽ ክሬዲት የኽፍል ፦ {{x}} X, {{farcaster}} ንፋርካስተር ከምኡ'ውን {{other}} ንነፍሲ ወከፍ ካልእ መድረኽ ። እቲ ዝተመደበ ልኡኻት ኣብ ግዜ ኣጀንዳኦም ክሬዲት ይጥቀሙ እዮም ።",
+    "payAsYouGoCredits": "ኣብ DHB ዝጠፍኡ ክሬዲት ኣብ ${{price}} ነፍሲ ወከፍ ኣብ እትለኣኽሉ እዋን ይዕድጉ ።",
+    "topUpCredits": "{{count}} ክሬዲት",
+    "perCredit": "${{price}} ብክሬዲት",
+    "pendingApproval": "ኣብ Farcaster App dehub ክትጽድቕ ትጽበዮ",
+    "approve": "ኣጽዲቕካ",
+    "farcasterNote": "Farcaster ኣብ Farcaster App dehub ክትጽድቕ ይሓትት ፡ ገና ድማ ዝተመደበ ቦታታት ክወስድ ኣይክእልን እዩ ።",
+    "skippedScheduleToast": "ስኪፕ {{platforms}}: ዝተመደቡ ልኡኻት ገና ኣይድገፉን ።",
+    "skippedOtherToast": "ስኪፕ {{platforms}}: ነዚ ጽሑፍ እዚ ክወስዱ ኣይከኣሉን ።"
   }
 }

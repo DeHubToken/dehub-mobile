@@ -7373,14 +7373,10 @@
     "intro": "Posztolj egyszerre az X-re, YouTube-ra, Instagramra, TikTokra és még sok másra a dehubbal. Csatlakoztasd a fiókjaidat egyszer, majd válaszd ki, hova kerüljön minden poszt.",
     "creditsHeading": "Posztkreditek",
     "credits": "{{count}} posztkredit",
-    "creditExplainer": "Egy kredit egy posztot küld egy platformra, így 3 platformra posztolva 3 kreditet használ. Az ütemezett posztok a posztoláskor használják fel a krediteket.",
-    "payAsYouGo": "Nincsenek kreditek? Fizess ${{price}} platformonként DHB-ban, amikor posztolsz.",
     "topUpTitle": "Feltöltés és megtakarítás",
-    "topUpPosts": "{{count}} poszt",
     "discount": "{{percent}}% kedvezmény",
     "noDiscount": "Teljes ár",
     "total": "Összesen ${{usd}}, fizetve DHB-ban",
-    "perPost": "${{price}} posztonként",
     "buy": "Kreditek vásárlása",
     "buying": "Fizetésre vár…",
     "bought": "{{count}} posztkredit hozzáadva",
@@ -7408,6 +7404,15 @@
     "partialToast": "{{sent}} platformra elküldve. {{failed}} sikertelen volt, és a krediteket visszatérítettük.",
     "failedToast": "A keresztküldés sikertelen: {{error}}",
     "skippedToast": "{{platforms}} kihagyva: ez a bejegyzés nem tartalmazza a szükséges fényképet vagy videót.",
-    "uploadFailed": "Nem sikerült feltölteni a médiát a keresztküldéshez."
+    "uploadFailed": "Nem sikerült feltölteni a médiát a keresztküldéshez.",
+    "creditRules": "Minden bejegyzés kreditbe kerül platformonként: {{x}} X esetén, {{farcaster}} Farcaster esetén és {{other}} minden más platform esetén. Az ütemezett bejegyzések krediteket használnak fel, amikor ütemezed őket.",
+    "payAsYouGoCredits": "Kifogytál? A hiányzó krediteket egyenként ${{price}} összegért vásárolod meg a DHB-ben, amikor közzéteszed a hirdetést.",
+    "topUpCredits": "{{count}} kredit",
+    "perCredit": "${{price}} kreditenként",
+    "pendingApproval": "Várakozás a dehub jóváhagyására a Farcaster alkalmazásban",
+    "approve": "Jóváhagyás",
+    "farcasterNote": "A Farcaster arra kér, hogy hagyd jóvá a dehub alkalmazást a Farcaster alkalmazásban, és még nem tud ütemezett bejegyzéseket küldeni.",
+    "skippedScheduleToast": "{{platforms}} kihagyva: az ütemezett bejegyzések még nincsenek támogatva.",
+    "skippedOtherToast": "{{platforms}} kihagyva: nem tudta felvenni ezt a bejegyzést."
   }
 }

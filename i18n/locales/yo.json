@@ -7370,14 +7370,10 @@
     "intro": "Fi ranṣẹ si X, YouTube, Instagram, TikTok àti diẹ̀ síi ní àkókò kan náà bí dehub. Sojú àwọn àkọọlẹ rẹ̀ lẹ́ẹ̀kan, lẹ́yìn náà yan ibi tí kọọkan ranṣẹ lọ.",
     "creditsHeading": "Ìyọrisi ranṣẹ",
     "credits": "{{count}} ìyọrisi ranṣẹ",
-    "creditExplainer": "Ìyọrisi kan ranṣẹ ranṣẹ kan sí pẹpẹ kan, nítorí náà fífi ranṣẹ sí pẹpẹ mẹta nlo ìyọrisi mẹta. Awọn ifiweranṣẹ tó ṣètò nlo ìyọrisi nígbà tí o bá ṣètò wọn.",
-    "payAsYouGo": "Kò sí ìyọrisi tó kù? O san ${{price}} fún pẹpẹ kọọkan ní DHB nígbà tí o bá fi ranṣẹ.",
     "topUpTitle": "Tún pọ̀ síi kí o sì fipamọ́",
-    "topUpPosts": "{{count}} ifiweranṣẹ",
     "discount": "{{percent}}% dinku",
     "noDiscount": "Ìye gangan",
     "total": "Lapapọ ${{usd}}, san ní DHB",
-    "perPost": "${{price}} fún ifiweranṣẹ",
     "buy": "Ra ìyọrisi",
     "buying": "N dúró de ìsanwo…",
     "bought": "Àfikún {{count}} ìyọrisi ranṣẹ",
@@ -7405,6 +7401,15 @@
     "partialToast": "Pipa si {{sent}} awọn iru ẹrọ. {{failed}} kuna ati awọn kirediti wọnyẹn ni a san pada.",
     "failedToast": "Ifiweranṣẹ agbelebu kuna: {{error}}",
     "skippedToast": "Skipped {{platforms}}: ìkànnì yìí kò ní àwòrán tàbí fídíò tí wọ́n nílò.",
-    "uploadFailed": "Mi ò lè gbé ẹ̀rọ-ayárabíàsá rẹ sókè fún pípèsè àgbélébùú."
+    "uploadFailed": "Mi ò lè gbé ẹ̀rọ-ayárabíàsá rẹ sókè fún pípèsè àgbélébùú.",
+    "creditRules": "Kọọkan ifiweranṣẹ owo gbese fun iru ẹrọ: {{x}} fun X, {{farcaster}} fun Farcaster ati {{other}} fun gbogbo iru ẹrọ miiran. Àwọn iṣẹ́ tí a ṣètò máa ń lo owó ìfowówópamọ́ nígbà tí o bá ṣe ètò wọn.",
+    "payAsYouGoCredits": "Máa jáde? Wọ́n máa ń ra àwọn ìwé ìfowópamọ́ tí kò sí ní DHB ní ${{price}} ẹnìkọ̀ọ̀kan nígbà tí o bá fi í ránṣẹ́.",
+    "topUpCredits": "{{count}} awọn kirediti",
+    "perCredit": "${{price}} fun kirẹditi",
+    "pendingApproval": "Nduro fun ọ lati fọwọsi dehub ninu ohun elo Farcaster.",
+    "approve": "Fọwọ́si",
+    "farcasterNote": "Farcaster ní kí o fọwọ́ sí dehub nínú ohun-èlò Farcaster, kò sì lè gba àwọn iṣẹ́ tí a ṣètò síbẹ̀.",
+    "skippedScheduleToast": "Skipped {{platforms}}: àwọn àtẹ̀jáde tí a ti ṣètò kò tí ì ṣe àtìlẹyìn níbẹ̀.",
+    "skippedOtherToast": "Skipped {{platforms}}: wọn kò lè gba iṣẹ́ yìí."
   }
 }

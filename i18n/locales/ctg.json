@@ -7302,14 +7302,10 @@
     "intro": "একই সময়ে X, YouTube, Instagram, TikTok এবং আরও অনেক জায়গায় পোস্ট করুন dehub দিয়ে। আপনার অ্যাকাউন্টগুলো একবার কানেক্ট করুন, তারপর বেছে নিন কোন পোস্ট কোথায় যাবে।",
     "creditsHeading": "পোস্ট ক্রেডিট",
     "credits": "{{count}} পোস্ট ক্রেডিট",
-    "creditExplainer": "একটা ক্রেডিট একটা প্ল্যাটফর্মে একটা পোস্ট পাঠায়, তাই ৩টা প্ল্যাটফর্মে পোস্ট করতে ৩টা ক্রেডিট লাগবে। শিডিউল করা পোস্টগুলো শিডিউল করার সময় ক্রেডিট ব্যবহার করে।",
-    "payAsYouGo": "ক্রেডিট শেষ? পোস্ট করার সময় আপনি DHB তে প্রতি প্ল্যাটফর্মে ${{price}} দেবেন।",
     "topUpTitle": "টপ আপ করুন আর সেভ করুন",
-    "topUpPosts": "{{count}} পোস্ট",
     "discount": "{{percent}}% ছাড়",
     "noDiscount": "পুরো দাম",
     "total": "মোট ${{usd}}, DHB তে পেমেন্ট করা হবে",
-    "perPost": "প্রতি পোস্টে ${{price}}",
     "buy": "ক্রেডিট কিনুন",
     "buying": "পেমেন্টের জন্য অপেক্ষা করছে…",
     "bought": "{{count}} পোস্ট ক্রেডিট যোগ করা হয়েছে",
@@ -7337,6 +7333,15 @@
     "partialToast": "{{sent}} platform এ post কররর। {{failed}} fail অইছে আর ওই credit refund কররর।",
     "failedToast": "ক্রস-পোস্ট ব্যর্থ হয়েছে: {{error}}",
     "skippedToast": "{{platforms}} skip কররর: এই post এ উয়্যার দরকারি photo বা video নাই।",
-    "uploadFailed": "Cross-posting এর লাগি media upload কররর পাররর নাই।"
+    "uploadFailed": "Cross-posting এর লাগি media upload কররর পাররর নাই।",
+    "creditRules": "হর পোস্টত প্রতি প্ল্যাটফর্মর লাই ক্রেডিট লাগে: X র লাই {{x}}, Farcaster র লাই {{farcaster}} আর বাকি হর প্ল্যাটফর্মর লাই {{other}}। শিডিউল গরা পোস্টর ক্রেডিট শিডিউল গরার সময় কাডে।",
+    "payAsYouGoCredits": "ক্রেডিট শেষ? পোস্ট গরার সময় কম পড়া ক্রেডিট DHB দি প্রতিডা ${{price}} গরি কিনা অইবো।",
+    "topUpCredits": "{{count}} ক্রেডিট",
+    "perCredit": "প্রতি ক্রেডিট ${{price}}",
+    "pendingApproval": "Farcaster অ্যাপত dehub অনুমোদন গরিবার লাই অপেক্ষা গরের",
+    "approve": "অনুমোদন গরন",
+    "farcasterNote": "Farcaster অ্যাপত dehub অনুমোদন গরিত অইবো, আর Farcaster এহনো শিডিউল গরা পোস্ট ন লয়।",
+    "skippedScheduleToast": "{{platforms}} বাদ দেওয়া অইয়ে: উডে এহনো শিডিউল পোস্ট চলে না।",
+    "skippedOtherToast": "{{platforms}} বাদ দেওয়া অইয়ে: এই পোস্ট উগুন ন লইত পারে।"
   }
 }

@@ -7369,14 +7369,10 @@
     "intro": "Kirim menyang X, YouTube, Instagram, TikTok lan liya-liyane bebarengan karo dehub. Sambungake akun sampeyan sapisan, banjur pilih ngendi saben kiriman bakal dikirim.",
     "creditsHeading": "Kredit kiriman",
     "credits": "{{count}} kredit kiriman",
-    "creditExplainer": "Siji kredit ngirim siji kiriman menyang siji platform, mula ngirim menyang 3 platform nggunakake 3 kredit. Kiriman sing dijadwalake nggunakake kredit nalika sampeyan njadwalake.",
-    "payAsYouGo": "Ora ana kredit maneh? Sampeyan mbayar ${{price}} saben platform ing DHB nalika sampeyan ngirim.",
     "topUpTitle": "Top up lan ngirit",
-    "topUpPosts": "{{count}} kiriman",
     "discount": "{{percent}}% diskon",
     "noDiscount": "Rega lengkap",
     "total": "Total ${{usd}}, dibayar ing DHB",
-    "perPost": "${{price}} saben kiriman",
     "buy": "Tuku kredit",
     "buying": "Ngenteni pembayaran…",
     "bought": "Ditambahake {{count}} kredit kiriman",
@@ -7404,6 +7400,15 @@
     "partialToast": "Dikirim menyang {{sent}} platform. {{failed}} gagal lan kredit kasebut dibalekake.",
     "failedToast": "Lintas-kirim gagal: {{error}}",
     "skippedToast": "Dilompati {{platforms}}: kiriman iki ora duwe foto utawa video sing dibutuhake.",
-    "uploadFailed": "Ora bisa ngunggah media sampeyan kanggo lintas-kirim."
+    "uploadFailed": "Ora bisa ngunggah media sampeyan kanggo lintas-kirim.",
+    "creditRules": "Saben kiriman mbutuhake kredit saben platform: {{x}} kanggo X, {{farcaster}} kanggo Farcaster lan {{other}} kanggo saben platform liyane. Kiriman sing dijadwalake nggunakake kredit nalika sampeyan njadwalake.",
+    "payAsYouGoCredits": "Kehabisan? Kredit sing kurang dituku ing DHB kanthi ${{price}} saben nalika sampeyan kirim.",
+    "topUpCredits": "{{count}} kredit",
+    "perCredit": "${{price}} saben kredit",
+    "pendingApproval": "Nunggu sampeyan nyetujui dehub ing aplikasi Farcaster",
+    "approve": "Setujui",
+    "farcasterNote": "Farcaster njaluk sampeyan nyetujui dehub ing aplikasi Farcaster, lan durung bisa njupuk kiriman sing dijadwalake.",
+    "skippedScheduleToast": "Liwat {{platforms}}: kiriman sing dijadwalake durung didhukung ing kana.",
+    "skippedOtherToast": "Liwat {{platforms}}: dheweke ora bisa njupuk kiriman iki."
   }
 }

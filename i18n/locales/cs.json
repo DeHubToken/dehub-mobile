@@ -7373,14 +7373,10 @@
     "intro": "Publikujte na X, YouTube, Instagram, TikTok a další současně s dehub. Připojte své účty jednou a poté vyberte, kam každý příspěvek půjde.",
     "creditsHeading": "Kredity za příspěvky",
     "credits": "{{count}} kreditů za příspěvky",
-    "creditExplainer": "Jeden kredit odešle jeden příspěvek na jednu platformu, takže publikování na 3 platformy využije 3 kredity. Naplánované příspěvky využívají kredity, když je naplánujete.",
-    "payAsYouGo": "Nemáte žádné kredity? Platíte ${{price}} za platformu v DHB, když publikujete.",
     "topUpTitle": "Doplňte a ušetřete",
-    "topUpPosts": "{{count}} příspěvků",
     "discount": "{{percent}}% sleva",
     "noDiscount": "Plná cena",
     "total": "Celkem ${{usd}}, zaplaceno v DHB",
-    "perPost": "${{price}} za příspěvek",
     "buy": "Koupit kredity",
     "buying": "Čekání na platbu…",
     "bought": "Přidáno {{count}} kreditů za příspěvky",
@@ -7408,6 +7404,15 @@
     "partialToast": "Publikováno na platformách {{sent}}. {{failed}} selhalo a tyto kredity byly vráceny.",
     "failedToast": "Příčný příspěvek se nezdařil: {{error}}",
     "skippedToast": "Přeskočeno {{platforms}}: tento příspěvek neobsahuje fotku nebo video, které potřebují.",
-    "uploadFailed": "Nelze nahrát vaše média pro vzájemné zveřejnění."
+    "uploadFailed": "Nelze nahrát vaše média pro vzájemné zveřejnění.",
+    "creditRules": "Každý příspěvek stojí kredity na platformu: {{x}} pro X, {{farcaster}} pro Farcaster a {{other}} pro každou jinou platformu. Naplánované příspěvky používají kredity, když je naplánujete.",
+    "payAsYouGoCredits": "Vyčerpání? Chybějící kredity jsou zakoupeny v DHB za ${{price}} při každém zveřejnění.",
+    "topUpCredits": "{{count}} kreditů",
+    "perCredit": "${{price}} za kredit",
+    "pendingApproval": "Čeká se na schválení dehubu v aplikaci Farcaster",
+    "approve": "Schválit",
+    "farcasterNote": "Farcaster vás požádá o schválení dehubu v aplikaci Farcaster a zatím nemůže přijímat naplánované příspěvky.",
+    "skippedScheduleToast": "Přeskočeno {{platforms}}: naplánované příspěvky tam zatím nejsou podporovány.",
+    "skippedOtherToast": "Přeskočeno {{platforms}}: nemohli tento příspěvek přijmout."
   }
 }

@@ -6,6 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import Icon from "../ui/Icon";
 import { crossPostState, toggleCrossPostAccount } from "../../libs/crosspost-store";
 import { PLATFORM_NAMES, getMultipostStatus } from "../../services/multipost.service";
+import { creditsFor } from "../../libs/social-pricing";
 import { multipostQueryKey, platformIcon, useMultipostWallet } from "../Settings/MultiPostPanel";
 
 const CrossPostPicker: React.FC<{ onManage: () => void }> = ({ onManage }) => {
@@ -20,8 +21,8 @@ const CrossPostPicker: React.FC<{ onManage: () => void }> = ({ onManage }) => {
   });
 
   if (!wallet || status.isError) return null;
-  const accounts = status.data?.accounts ?? [];
-  const active = accounts.filter((a) => selected.includes(a.id)).length;
+  const accounts = (status.data?.accounts ?? []).filter((a) => !a.pending);
+  const active = accounts.filter((a) => selected.includes(a.id)).reduce((sum, a) => sum + creditsFor(a.platform), 0);
 
   return (
     <View className="mt-3">

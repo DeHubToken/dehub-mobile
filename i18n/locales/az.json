@@ -7369,14 +7369,10 @@
     "intro": "X, YouTube, Instagram, TikTok və daha çox yerə eyni anda dehub kimi göndərin. Hesablarınızı bir dəfə qoşun, sonra hər göndərişin hara gedəcəyini seçin.",
     "creditsHeading": "Göndəriş kreditləri",
     "credits": "{{count}} göndəriş krediti",
-    "creditExplainer": "Bir kredit bir platformaya bir göndəriş göndərir, buna görə 3 platformaya göndərmək 3 kredit istifadə edir. Planlaşdırılmış göndərişlər planlaşdırıldıqda kreditlərdən istifadə edir.",
-    "payAsYouGo": "Kreditiniz qalmadı? Göndərdiyiniz zaman DHB-də platforma başına ${{price}} ödəyirsiniz.",
     "topUpTitle": "Yuxarı doldurun və qənaət edin",
-    "topUpPosts": "{{count}} göndəriş",
     "discount": "{{percent}}% endirim",
     "noDiscount": "Tam qiymət",
     "total": "Ümumi ${{usd}}, DHB-də ödənilib",
-    "perPost": "Göndəriş başına ${{price}}",
     "buy": "Kredit alın",
     "buying": "Ödəniş gözlənilir…",
     "bought": "{{count}} göndəriş krediti əlavə edildi",
@@ -7404,6 +7400,15 @@
     "partialToast": "{{sent}} platformsünvanına göndərildi. {{failed}} alınmadı və bu kreditlər geri qaytarıldı.",
     "failedToast": "Çarpaz qiymət alınmadı: {{error}}",
     "skippedToast": "{{platforms}} ötürülüb: bu yazıda onlara lazım olan foto və ya video yoxdur.",
-    "uploadFailed": "Çarpaz reklam üçün medianızı yükləmək mümkün olmadı."
+    "uploadFailed": "Çarpaz reklam üçün medianızı yükləmək mümkün olmadı.",
+    "creditRules": "Hər bir yazı platforması üzrə kreditlər: X üçün {{x}}, Farcaster üçün {{farcaster}} və hər digər platforma üçün {{other}}. Planlaşdırılmış postlar planlaşdırdığınız zaman kreditlərdən istifadə edin.",
+    "payAsYouGoCredits": "Kredit bitib? Çatışmayan kreditlər göndərəndə hər biri ${{price}} qiymətinə DHB ilə alınır.",
+    "topUpCredits": "{{count}} kreditlər",
+    "perCredit": "Hər kredit ${{price}}",
+    "pendingApproval": "Farcaster tətbiqində dehub-u təsdiq etməyiniz gözlənilir",
+    "approve": "Təsdiq et (+)",
+    "farcasterNote": "Farcaster Farcaster tətbiqində dehub-u təsdiqləməyinizi istəyir və hələ planlaşdırılmış postları götürə bilmir.",
+    "skippedScheduleToast": "{{platforms}} ötürülüb: planlaşdırılmış ismarıclar hələ ki, dəstəklənmir.",
+    "skippedOtherToast": "{{platforms}}ötürüldü: bu yazını qəbul edə bilmədi."
   }
 }

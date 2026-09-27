@@ -7373,14 +7373,10 @@
     "intro": "Publiez sur X, YouTube, Instagram, TikTok et plus en même temps avec dehub. Connectez vos comptes une fois, puis choisissez où chaque publication va.",
     "creditsHeading": "Crédits de publication",
     "credits": "{{count}} crédits de publication",
-    "creditExplainer": "Un crédit envoie une publication sur une plateforme, donc publier sur 3 plateformes utilise 3 crédits. Les publications programmées utilisent des crédits lorsque vous les programmez.",
-    "payAsYouGo": "Plus de crédits ? Vous payez {{price}} $ par plateforme en DHB lorsque vous publiez.",
     "topUpTitle": "Rechargez et économisez",
-    "topUpPosts": "{{count}} publications",
     "discount": "{{percent}} % de réduction",
     "noDiscount": "Prix fort",
     "total": "Total {{usd}} $, payé en DHB",
-    "perPost": "{{price}} $ par publication",
     "buy": "Acheter des crédits",
     "buying": "En attente de paiement…",
     "bought": "Ajouté {{count}} crédits de publication",
@@ -7408,6 +7404,15 @@
     "partialToast": "Publié sur les plateformes {{sent}}. {{failed}} a échoué et ces crédits ont été remboursés.",
     "failedToast": "Échec du cross-post : {{error}}",
     "skippedToast": "Ignoré {{platforms}} : cette publication n'a pas la photo ou la vidéo dont ils ont besoin.",
-    "uploadFailed": "Impossible de télécharger votre média pour la publication croisée."
+    "uploadFailed": "Impossible de télécharger votre média pour la publication croisée.",
+    "creditRules": "Chaque publication coûte des crédits par plateforme : {{x}} pour X, {{farcaster}} pour Farcaster et {{other}} pour toutes les autres plateformes. Les publications planifiées utilisent des crédits lorsque vous les planifiez.",
+    "payAsYouGoCredits": "Vous n'avez plus de crédits ? Les crédits manquants sont achetés dans DHB à ${{price}} chacun lorsque vous publiez.",
+    "topUpCredits": "{{count}} crédits",
+    "perCredit": "${{price}} par crédit",
+    "pendingApproval": "En attente de votre approbation de dehub dans l'application Farcaster",
+    "approve": "Approuve",
+    "farcasterNote": "Farcaster vous demande d'approuver dehub dans l'application Farcaster, et il ne peut pas encore accepter les publications planifiées.",
+    "skippedScheduleToast": "Ignoré {{platforms}} : les publications planifiées ne sont pas encore prises en charge.",
+    "skippedOtherToast": "{{platforms}} : ils n'ont pas pu accepter cette publication."
   }
 }

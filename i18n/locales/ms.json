@@ -7630,14 +7630,10 @@
     "intro": "Siarkan ke X, YouTube, Instagram, TikTok dan banyak lagi pada masa yang sama dengan dehub. Sambungkan akaun anda sekali, kemudian pilih ke mana setiap siaran pergi.",
     "creditsHeading": "Kredit siaran",
     "credits": "{{count}} kredit siaran",
-    "creditExplainer": "Satu kredit menghantar satu siaran ke satu platform, jadi menyiarkan ke 3 platform menggunakan 3 kredit. Siaran yang dijadualkan menggunakan kredit apabila anda menjadualkan mereka.",
-    "payAsYouGo": "Tiada kredit berbaki? Anda membayar ${{price}} setiap platform dalam DHB apabila anda menyiarkan.",
     "topUpTitle": "Tambah dan simpan",
-    "topUpPosts": "{{count}} siaran",
     "discount": "{{percent}}% diskaun",
     "noDiscount": "Harga penuh",
     "total": "Jumlah ${{usd}}, dibayar dalam DHB",
-    "perPost": "${{price}} setiap siaran",
     "buy": "Beli kredit",
     "buying": "Menunggu pembayaran…",
     "bought": "Ditambah {{count}} kredit siaran",
@@ -7665,6 +7661,15 @@
     "partialToast": "Disiarkan ke {{sent}} platform. {{failed}} gagal dan kredit tersebut telah dibayar balik.",
     "failedToast": "Hantaran silang gagal: {{error}}",
     "skippedToast": "Dilangkau {{platforms}}: hantaran ini tidak mempunyai gambar atau video yang mereka perlukan.",
-    "uploadFailed": "Tidak dapat memuat naik media anda untuk siaran silang."
+    "uploadFailed": "Tidak dapat memuat naik media anda untuk siaran silang.",
+    "creditRules": "Setiap hantaran memerlukan kredit bagi setiap platform: {{x}} untuk X, {{farcaster}} untuk Farcaster dan {{other}} untuk setiap platform lain. Hantaran berjadual menggunakan kredit apabila anda menjadualkannya.",
+    "payAsYouGoCredits": "Habis? Kredit yang hilang dibeli dalam DHB pada harga ${{price}} setiap satu apabila anda membuat hantaran.",
+    "topUpCredits": "{{count}} kredit",
+    "perCredit": "${{price}} setiap kredit",
+    "pendingApproval": "Menunggu anda meluluskan dehub dalam aplikasi Farcaster",
+    "approve": "Lulus",
+    "farcasterNote": "Farcaster meminta anda meluluskan dehub dalam aplikasi Farcaster, dan ia belum boleh menerima hantaran berjadual.",
+    "skippedScheduleToast": "Dilangkau {{platforms}}: hantaran berjadual belum disokong di sana.",
+    "skippedOtherToast": "Dilangkau {{platforms}}: mereka tidak dapat menerima hantaran ini."
   }
 }

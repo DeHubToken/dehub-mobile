@@ -7424,14 +7424,10 @@
     "intro": "X, YouTube, Instagram, TikTok va boshqa platformalarga bir vaqtning o'zida dehub orqali post qiling. Hisoblaringizni bir marta ulashing, keyin har bir post qayerga ketishini tanlang.",
     "creditsHeading": "Post kreditlari",
     "credits": "{{count}} post kreditlari",
-    "creditExplainer": "Bir kredit bir platformaga bitta post yuboradi, shuning uchun 3 platformaga post qilish 3 kredit talab qiladi. Rejalashtirilgan postlar ularni rejalashtirganingizda kreditlardan foydalanadi.",
-    "payAsYouGo": "Kreditlar qolmadi? Post qilganingizda har bir platforma uchun ${{price}} DHB to'laysiz.",
     "topUpTitle": "To'ldiring va tejang",
-    "topUpPosts": "{{count}} post",
     "discount": "{{percent}}% chegirma",
     "noDiscount": "To'liq narx",
     "total": "Jami ${{usd}}, DHBda to'langan",
-    "perPost": "${{price}} har bir post uchun",
     "buy": "Kredit sotib oling",
     "buying": "To'lov kutilmoqda…",
     "bought": "{{count}} post kreditlari qo'shildi",
@@ -7459,6 +7455,15 @@
     "partialToast": "{{sent}} platformalariga joylashtirildi. {{failed}} bajarilmadi va ushbu kreditlar qaytarildi.",
     "failedToast": "Xabar almashish amalga oshmadi: {{error}}",
     "skippedToast": "{{platforms}} o&#39;tkazib yuborildi: bu postda kerakli rasm yoki video yo&#39;q.",
-    "uploadFailed": "Media faylingizni kross-post uchun yuklab bo&#39;lmadi."
+    "uploadFailed": "Media faylingizni kross-post uchun yuklab bo&#39;lmadi.",
+    "creditRules": "Har bir post uchun platformaga qarab kreditlar olinadi: X uchun {{x}}, Farcaster uchun {{farcaster}} va boshqa har bir platforma uchun {{other}}. Rejalashtirilgan postlar uchun kreditlar ishlatiladi.",
+    "payAsYouGoCredits": "Tugab qoldingizmi? Yo&#39;qotilgan kreditlar DHBda har bir post joylashtirganingizda ${{price}} evaziga sotib olinadi.",
+    "topUpCredits": "{{count}} kreditlar",
+    "perCredit": "har bir kredit uchun ${{price}}",
+    "pendingApproval": "Farcaster ilovasida dehubni tasdiqlashingizni kutmoqdamiz",
+    "approve": "Tasdiqlash",
+    "farcasterNote": "Farcaster sizdan Farcaster ilovasida dehubni tasdiqlashingizni so&#39;raydi va u hali rejalashtirilgan postlarni qabul qila olmaydi.",
+    "skippedScheduleToast": "{{platforms}} o&#39;tkazib yuborildi: rejalashtirilgan postlar u yerda hali qo&#39;llab-quvvatlanmaydi.",
+    "skippedOtherToast": "{{platforms}} o&#39;tkazib yuborildi: ular bu postni ololmaydilar."
   }
 }

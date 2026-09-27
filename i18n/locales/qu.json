@@ -7397,14 +7397,10 @@
     "intro": "X, YouTube, Instagram, TikTok chaykunaman dehubwan huk tiempo llikan churan. Cuenta-sikunta hukmanta ruwachiy, chaymanta imata post chaykunata ruwan.",
     "creditsHeading": "Post creditokuna",
     "credits": "{{count}} post creditokuna",
-    "creditExplainer": "Huk creditoq huk postta huk plataforma-man apachkan, ichaqa 3 plataforma-man postkuna 3 creditokunata ruwan. Programado postkuna creditokunata apachkanmi chaykunata programanqa.",
-    "payAsYouGo": "Creditokuna mana kanchu? Posttaqa ${{price}} plataforma-manta DHB-ninmi chaskinki.",
     "topUpTitle": "Kuska apamuy yuyay",
-    "topUpPosts": "{{count}} postkuna",
     "discount": "{{percent}}% chinkay",
     "noDiscount": "Llapan precio",
     "total": "Total ${{usd}}, DHB-ninmi chaskasqa",
-    "perPost": "${{price}} postta",
     "buy": "Creditokunata muaq",
     "buying": "Pago-manta suyay…",
     "bought": "{{count}} post creditokuna yapasqa",
@@ -7432,6 +7428,15 @@
     "partialToast": "{{sent}} plataformakunaman churasqa. {{failed}} mana allintachu ruwarqa chaymanta chay créditos kutichisqa karqa.",
     "failedToast": "Chawpi qillqasqa mana atirqanchu: {{error}}",
     "skippedToast": "Saltasqa {{platforms}}: kay qillqasqaqa manam necesitasqanku fotota nitaq videota tarinchu.",
-    "uploadFailed": "Mana atirqanchu willay mast&#39;ariqniykikunata chimpapuray qillqanapaq churayta."
+    "uploadFailed": "Mana atirqanchu willay mast&#39;ariqniykikunata chimpapuray qillqanapaq churayta.",
+    "creditRules": "Sapa qillqa sapa plataformapaq créditos qullqita qun: {{x}} X kaqpaq, {{farcaster}} Farcaster kaqpaq chaymanta {{other}} sapa wak plataformapaq. Programasqa qillqakunaqa créditos nisqakunatam llamk&#39;achinku, chayta programaptiyki.",
+    "payAsYouGoCredits": "¿Tukusqachu? Chinkasqa créditos rantisqa kanku DHB kaqpi ${{price}} sapa juk mayk’aqchus qillqanki.",
+    "topUpCredits": "{{count}} créditos nisqa",
+    "perCredit": "${{price}} sapa qullqi quypaq",
+    "pendingApproval": "Suyachkanki dehub nisqa Farcaster app nisqapi aprobanaykita",
+    "approve": "Uyakuy",
+    "farcasterNote": "Farcaster Farcaster app kaqpi dehub kaqmanta aprobanaykipaq mañasunki, chaymanta manaraq programasqa qillqakunata hap&#39;iyta atinchu.",
+    "skippedScheduleToast": "Saltasqa {{platforms}}: programasqa qillqakuna manaraq chaypi yanapasqachu.",
+    "skippedOtherToast": "Saltasqa {{platforms}}: mana kay qillqasqata apayta atirqankuchu."
   }
 }

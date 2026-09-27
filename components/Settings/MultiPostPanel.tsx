@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
+import { View, Text, TouchableOpacity, ActivityIndicator, Linking } from "react-native";
 import { useTranslation } from "react-i18next";
 import * as WebBrowser from "expo-web-browser";
 import Slider from "@react-native-community/slider";
@@ -10,7 +10,9 @@ import { SettingsAnchor, SettingsScrollView } from "./SettingsAnchor";
 import { SettingsSection, SettingsInfoRow, Divider } from "./SettingsPrimitives";
 import { useUser } from "../../context/AuthContext";
 import { toastError, toastSuccess } from "../../libs/toast";
-import { BUNDLE_STOPS, PRICE_PER_POST_USD, bundleDiscount, bundlePriceUsd } from "../../libs/social-pricing";
+import {
+  BUNDLE_STOPS, CREDIT_PRICE_USD, DEFAULT_PLATFORM_CREDITS, bundleDiscount, bundlePriceUsd, creditsFor,
+} from "../../libs/social-pricing";
 import {
   MULTIPOST_PLATFORMS, MULTIPOST_REDIRECT, PLATFORM_NAMES,
   buyCredits, disconnectAccount, getMultipostStatus, startConnect,
@@ -40,19 +42,31 @@ const MultiPostPanel: React.FC = () => {
     queryFn: () => getMultipostStatus(wallet),
     enabled: !!wallet,
     staleTime: 30_000,
+    // Farcaster approval happens in another app, so keep checking while it is pending.
+    refetchInterval: (query) => (query.state.data?.accounts.some((a) => a.pending) ? 5000 : false),
   });
   const refresh = () => qc.invalidateQueries({ queryKey: multipostQueryKey(wallet) });
 
-  const posts = BUNDLE_STOPS[stopIndex];
-  const discount = bundleDiscount(posts);
-  const total = bundlePriceUsd(posts);
+  const credits = BUNDLE_STOPS[stopIndex];
+  const discount = bundleDiscount(credits);
+  const total = bundlePriceUsd(credits);
   const accounts = status.data?.accounts ?? [];
-  const connected = new Set(accounts.map((a) => a.platform));
+  const connected = new Set(accounts.filter((a) => !a.pending).map((a) => a.platform));
 
   const handleConnect = async (platform: string) => {
     setConnecting(platform);
     try {
       const authUrl = await startConnect(wallet, platform);
+      if (!authUrl) {
+        refresh();
+        return;
+      }
+      if (platform === "farcaster") {
+        // Approval happens in the Farcaster app; the status query picks it up.
+        await Linking.openURL(authUrl);
+        refresh();
+        return;
+      }
       const result = await WebBrowser.openAuthSessionAsync(authUrl, MULTIPOST_REDIRECT);
       if (result.type === "success") {
         const query = result.url.split("?")[1] ?? "";
@@ -80,8 +94,8 @@ const MultiPostPanel: React.FC = () => {
   const handleBuy = async () => {
     setBuying(true);
     try {
-      await buyCredits(wallet, posts);
-      toastSuccess(t("multiPost.bought", { count: posts }));
+      await buyCredits(wallet, credits);
+      toastSuccess(t("multiPost.bought", { count: credits }));
       refresh();
     } catch (e) {
       toastError(e);
@@ -106,7 +120,7 @@ const MultiPostPanel: React.FC = () => {
       <SettingsSection
         label={t("multiPost.creditsHeading")}
         icon="Coins"
-        note={`${t("multiPost.creditExplainer")} ${t("multiPost.payAsYouGo", { price: PRICE_PER_POST_USD.toFixed(2) })}`}
+        note={`${t("multiPost.creditRules", { x: creditsFor("twitter"), farcaster: creditsFor("farcaster"), other: DEFAULT_PLATFORM_CREDITS })} ${t("multiPost.payAsYouGoCredits", { price: CREDIT_PRICE_USD.toFixed(2) })}`}
       >
         <SettingsInfoRow icon="Coins" label={t("multiPost.credits", { count: status.data?.credits ?? 0 })} />
         <Divider />
@@ -130,14 +144,14 @@ const MultiPostPanel: React.FC = () => {
           />
           <View className="flex-row justify-between">
             {BUNDLE_STOPS.map((s) => (
-              <Text key={s} className="text-theme-neutrals-500" style={{ fontSize: 10 }}>{s}</Text>
+              <Text key={s} className="text-theme-neutrals-500" style={{ fontSize: 10 }}>{s >= 1000 ? `${s / 1000}k` : s}</Text>
             ))}
           </View>
           <View className="flex-row items-center justify-between mt-4">
             <View className="flex-1 mr-3">
-              <Text className="text-white font-semibold">{t("multiPost.topUpPosts", { count: posts })}</Text>
+              <Text className="text-white font-semibold">{t("multiPost.topUpCredits", { count: credits })}</Text>
               <Text className="text-theme-neutrals-400 text-xs mt-0.5">
-                {t("multiPost.total", { usd: total.toFixed(2) })} · {t("multiPost.perPost", { price: (total / posts).toFixed(3) })}
+                {t("multiPost.total", { usd: total.toFixed(2) })} · {t("multiPost.perCredit", { price: (total / credits).toFixed(3) })}
               </Text>
             </View>
             <TouchableOpacity
@@ -167,11 +181,18 @@ const MultiPostPanel: React.FC = () => {
               <SettingsInfoRow
                 icon={platformIcon(a.platform)}
                 label={PLATFORM_NAMES[a.platform] ?? a.platform}
-                description={a.username ? `@${a.username.replace(/^@/, "")}` : undefined}
+                description={a.pending ? t("multiPost.pendingApproval") : a.username ? `@${a.username.replace(/^@/, "")}` : undefined}
                 right={
-                  <TouchableOpacity onPress={() => handleDisconnect(a.id)} accessibilityRole="button" accessibilityLabel={t("multiPost.disconnect")}>
-                    <Text className="text-theme-neutrals-400 text-xs">{t("multiPost.disconnect")}</Text>
-                  </TouchableOpacity>
+                  <View className="flex-row items-center gap-3">
+                    {a.pending && a.approvalUrl ? (
+                      <TouchableOpacity onPress={() => Linking.openURL(a.approvalUrl!)} accessibilityRole="button">
+                        <Text className="text-white text-xs font-medium">{t("multiPost.approve")}</Text>
+                      </TouchableOpacity>
+                    ) : null}
+                    <TouchableOpacity onPress={() => handleDisconnect(a.id)} accessibilityRole="button" accessibilityLabel={t("multiPost.disconnect")}>
+                      <Text className="text-theme-neutrals-400 text-xs">{t("multiPost.disconnect")}</Text>
+                    </TouchableOpacity>
+                  </View>
                 }
               />
             </View>
@@ -179,7 +200,7 @@ const MultiPostPanel: React.FC = () => {
         )}
       </SettingsSection>
 
-      <SettingsSection label={t("multiPost.connectMore")} icon="Plus" note={t("multiPost.platformNotes")}>
+      <SettingsSection label={t("multiPost.connectMore")} icon="Plus" note={`${t("multiPost.platformNotes")} ${t("multiPost.farcasterNote")}`}>
         {MULTIPOST_PLATFORMS.map((platform, i) => (
           <View key={platform}>
             {i > 0 && <Divider />}

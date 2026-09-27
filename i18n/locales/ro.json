@@ -7382,14 +7382,10 @@
     "intro": "Publică pe X, YouTube, Instagram, TikTok și altele simultan ca dehub. Conectează-ți conturile o singură dată, apoi alege unde merge fiecare postare.",
     "creditsHeading": "Credite de postare",
     "credits": "{{count}} credite de postare",
-    "creditExplainer": "Un credit trimite o postare pe o platformă, așadar postarea pe 3 platforme utilizează 3 credite. Postările programate utilizează credite când le programezi.",
-    "payAsYouGo": "Nu mai ai credite? Plătești ${{price}} per platformă în DHB când postezi.",
     "topUpTitle": "Reîncarcă și economisește",
-    "topUpPosts": "{{count}} postări",
     "discount": "{{percent}}% reducere",
     "noDiscount": "Preț complet",
     "total": "Total ${{usd}}, plătit în DHB",
-    "perPost": "${{price}} per postare",
     "buy": "Cumpără credite",
     "buying": "Așteptare pentru plată…",
     "bought": "Adăugate {{count}} credite de postare",
@@ -7417,6 +7413,15 @@
     "partialToast": "Postat pe platformele {{sent}}. {{failed}} a eșuat, iar creditele respective au fost rambursate.",
     "failedToast": "Traversarea stâlpului a eșuat: {{error}}",
     "skippedToast": "Ignorat {{platforms}}: această postare nu are fotografia sau videoclipul de care are nevoie.",
-    "uploadFailed": "Nu s-a putut încărca conținutul media pentru postarea încrucișată."
+    "uploadFailed": "Nu s-a putut încărca conținutul media pentru postarea încrucișată.",
+    "creditRules": "Fiecare postare costă credite pe platformă: {{x}} pentru X, {{farcaster}} pentru Farcaster și {{other}} pentru orice altă platformă. Postările programate folosesc credite atunci când le programezi.",
+    "payAsYouGoCredits": "Rulați? Creditele lipsă sunt cumpărate în DHB la ${{price}} fiecare atunci când postați.",
+    "topUpCredits": "{{count}} credite",
+    "perCredit": "${{price}} pe credit",
+    "pendingApproval": "Se așteaptă să aprobi dehub în aplicația Farcaster",
+    "approve": "Aprobă",
+    "farcasterNote": "Farcaster îți cere să aprobi dehub în aplicația Farcaster și nu poate prelua încă postările programate.",
+    "skippedScheduleToast": "Ignorat {{platforms}}: postările programate nu sunt încă acceptate acolo.",
+    "skippedOtherToast": "A omis {{platforms}}: nu a putut accepta această postare."
   }
 }

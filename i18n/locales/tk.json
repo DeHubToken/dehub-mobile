@@ -7369,14 +7369,10 @@
     "intro": "X, YouTube, Instagram, TikTok we beýleki platformalara bir wagtda dehub arkaly poçtalaň. Hasaplaryňyzy bir gezek birikdiriň, soňra her poçta nirede görkezerini saýlaň.",
     "creditsHeading": "Poçta kreditleri",
     "credits": "{{count}} post credits",
-    "creditExplainer": "Bir kredit bir platforma bir poçta iberer, şonuň üçin 3 platforma poçta etmek 3 kredit ulanar. Çäklendirilen poçtalar olary meýilnama goýanda kredit ulanar.",
-    "payAsYouGo": "Kredit galmy? Poçta eden wagtyňyz platforma başyna ${{price}} DHB töleýärsiňiz.",
     "topUpTitle": "Kredit goşuň we tygşytlaň",
-    "topUpPosts": "{{count}} posts",
     "discount": "{{percent}}% off",
     "noDiscount": "Doly baha",
     "total": "Jemi ${{usd}}, DHB bilen tölenildi",
-    "perPost": "${{price}} per post",
     "buy": "Kredit satyn al",
     "buying": "Töleg garaşylýar…",
     "bought": "{{count}} poçta krediti goşuldy",
@@ -7404,6 +7400,15 @@
     "partialToast": "{{sent}} platformada paýlaşyldy. {{failed}} şowsuz boldy we şol kreditler yzyna gaýtaryldy.",
     "failedToast": "Çapyrma hatasy: {{error}}",
     "skippedToast": "{{platforms}}: bu postda gerekli surat ýa-da video ýok.",
-    "uploadFailed": "Siz öz habar beriş serişdesini çap edip bilmersiňiz."
+    "uploadFailed": "Siz öz habar beriş serişdesini çap edip bilmersiňiz.",
+    "creditRules": "Her bir post her bir platform üçin kredit töleýär: {{x}} X üçin, {{farcaster}} Farcaster üçin we {{other}} her bir başga platform üçin. Siz olary düzende, planlaşdyrylýan postlar kreditleri ulanýar.",
+    "payAsYouGoCredits": "Ýitiren kreditler DHB-de ${{price}} her birinde satyn alynýar.",
+    "topUpCredits": "{{count}} kreditler",
+    "perCredit": "${{price}} her bir kredit üçin",
+    "pendingApproval": "Farcaster App-da dehuby kabul etmek üçin garaşyň",
+    "approve": "Täzeleşdir",
+    "farcasterNote": "Farcaster sizden Farcaster ulagynda dehuby kabul etmegi haýyş edýär we ol henizem bellenen işleri edip bilmeýär.",
+    "skippedScheduleToast": "{{platforms}}: bellenen postlar henizem goldaw berilmeýär.",
+    "skippedOtherToast": "{{platforms}}: olar bu posty alyp bilmediler."
   }
 }
