@@ -4752,7 +4752,15 @@
     "custodyNote": "Dine tokens forbliver i DeHub treasury custody og sælges ikke. Skaberen modtager en USDT-denomineret abonnementssaldo.",
     "legacyMigrationNote": "Besparelse migrerer denne ældre token-prissatte plan til dollarpriser til den forudgående notering.",
     "tokenPrice": "{{amount}} tokens",
-    "tokensUnit": "tokens"
+    "tokensUnit": "tokens",
+    "atPreListingRate": "{{amount}}til satsen før annoncering",
+    "fromSubscriptionTokensAmount": "Fra dine abonnementstokens:{{amount}}",
+    "subscriptionTokensNote": "Abonnementstokens er låst til prisen, når du tilføjer dem, så en prisændring ændrer aldrig, hvad et abonnement koster dig. De kan kun bruges på abonnementer.",
+    "subscriptionTokens": "Abonnementstokens",
+    "untradableTokens": "Disse er abonnementstokens, der ikke kan handles",
+    "lockedValue": "Låst på{{amount}}",
+    "withdraw": "Udbetal",
+    "trade": "Handel"
   },
   "live": {
     "notSet": "Ikke angivet",

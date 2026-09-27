@@ -4771,7 +4771,15 @@
     "custodyNote": "Mijanona ao amin'ny fitantanan'ny DeHub ny famantaranao ary tsy amidy. Ny mpamorona dia mahazo fifandanjana famandrihana mitentina USDT.",
     "legacyMigrationNote": "Ny tahiry dia mamindra ity drafitra taloha nomena vidin'ny famantarana ity ho amin'ny vidin'ny dolara amin'ny tahan'ny talohan'ny lisitra.",
     "tokenPrice": "{{amount}} famantarana",
-    "tokensUnit": "famantarana"
+    "tokensUnit": "famantarana",
+    "atPreListingRate": "{{amount}} tamin'ny taha nisian'ny lisitra",
+    "fromSubscriptionTokensAmount": "Avy amin'ny famandrihana famantarana: {{amount}}",
+    "subscriptionTokensNote": "Subscription famantarana dia mihidy amin'ny vidiny rehefa manampy azy, toy izany koa ny vidiny hetsika tsy manova na oviana na oviana ny famandrihana vola lany anao. Azo atao amin'ny studio izany.",
+    "subscriptionTokens": "Famandrihana famantarana",
+    "untradableTokens": "Ireo dia mari-pamantarana tsy azo ovaina",
+    "withdraw": "Fanesorana",
+    "trade": "Barotra",
+    "lockedValue": "Voahidy amin'ny {{amount}}"
   },
   "live": {
     "notSet": "Tsy voafaritra",

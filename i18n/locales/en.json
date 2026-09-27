@@ -4797,7 +4797,15 @@
     "createAndPublish": "Create & Publish",
     "publishingOnChain": "Publishing is an on-chain transaction",
     "tokenPrice": "{{amount}} tokens",
-    "tokensUnit": "tokens"
+    "tokensUnit": "tokens",
+    "atPreListingRate": "{{amount}} at the pre-listing rate",
+    "fromSubscriptionTokensAmount": "From your subscription tokens: {{amount}}",
+    "subscriptionTokensNote": "Subscription tokens are locked at the price when you add them, so a price move never changes what a subscription costs you. They can only be spent on subscriptions.",
+    "subscriptionTokens": "Subscription tokens",
+    "untradableTokens": "These are untradable subscription tokens",
+    "lockedValue": "Locked at {{amount}}",
+    "withdraw": "Withdraw",
+    "trade": "Trade"
   },
   "live": {
     "notSet": "Not set",

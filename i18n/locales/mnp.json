@@ -4748,7 +4748,15 @@
     "custodyNote": "汝个粒留勒 DeHub 金库里，弗会卖。创作者会收到 USDT 计价个订阅余额。",
     "legacyMigrationNote": "保存会勒预上市价位，将伊个旧粒计价计划迁移到美元计价。",
     "tokenPrice": "{{amount}} 粒",
-    "tokensUnit": "粒"
+    "tokensUnit": "粒",
+    "atPreListingRate": "{{amount}} 以预上市价",
+    "fromSubscriptionTokensAmount": "来自你的订阅代币：{{amount}}",
+    "subscriptionTokensNote": "订阅代币在添加时锁定价格，因此价格波动不会改变订阅的费用。它们只能用于订阅。",
+    "subscriptionTokens": "订阅代币",
+    "untradableTokens": "这些是不可交易的订阅代币",
+    "lockedValue": "锁定于 {{amount}}",
+    "withdraw": "提取",
+    "trade": "交易"
   },
   "live": {
     "notSet": "未设置",

@@ -4748,7 +4748,15 @@
     "custodyNote": "Token sampeyan tetep ana ing kustodi kas DeHub lan ora didol. Pencipta nampa imbangan langganan sing didominasi USDT.",
     "legacyMigrationNote": "Tabungan migrasi rencana sing regane token lawas iki menyang rega dolar kanthi tarif sadurunge listing.",
     "tokenPrice": "{{amount}} token",
-    "tokensUnit": "token"
+    "tokensUnit": "token",
+    "atPreListingRate": "{{amount}} ing tarif pra-listing",
+    "fromSubscriptionTokensAmount": "Saka token langgananmu: {{amount}}",
+    "subscriptionTokensNote": "Token langganan dikunci ing rega nalika sampeyan nambah, mula pergerakan rega ora bakal ngowahi biaya langgananmu. Dheweke mung bisa digunakake kanggo langganan.",
+    "subscriptionTokens": "Token langganan",
+    "untradableTokens": "Iki token langganan sing ora bisa diperdagangkan",
+    "lockedValue": "Dikunci ing {{amount}}",
+    "withdraw": "Tarik",
+    "trade": "Dagangkan"
   },
   "live": {
     "notSet": "Durung disetel",

@@ -4747,7 +4747,15 @@
     "custodyNote": "توكناتك بتفضل في عهدة خزينة DeHub ومش بتتباع. المبدع بيستلم رصيد اشتراك بالدولار الأمريكي.",
     "legacyMigrationNote": "الحفظ بينقل الخطة دي اللي سعرها بالتوكن القديم لتسعير بالدولار بسعر ما قبل الإدراج.",
     "tokenPrice": "{{amount}} توكن",
-    "tokensUnit": "توكن"
+    "tokensUnit": "توكن",
+    "atPreListingRate": "{{amount}} بسعر ما قبل القوائم",
+    "fromSubscriptionTokensAmount": "من رموز الاشتراك الخاصة بيك: {{amount}}",
+    "subscriptionTokensNote": "رموز الاشتراك مقفلة بالسعر لما تضيفها، فالمتحرك في السعر ما بيغيّر تكلفة الاشتراك. ممكن صرفها بس للاشتراكات.",
+    "subscriptionTokens": "رموز الاشتراك",
+    "untradableTokens": "دي رموز اشتراك ما ممكن تتسوق",
+    "lockedValue": "مقفل بسعر {{amount}}",
+    "withdraw": "سحب",
+    "trade": "تداول"
   },
   "live": {
     "notSet": "ما محدد",

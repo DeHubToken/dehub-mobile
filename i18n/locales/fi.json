@@ -4748,7 +4748,15 @@
     "custodyNote": "Tokenisi pysyvät DeHubin rahaston hallussa eivätkä ole myynnissä. Luoja saa USDT-määräisen tilaus-saldon.",
     "legacyMigrationNote": "Tallennus siirtää tämän vanhan token-hinnoitellun suunnitelman dollarin hinnoitteluun ennen listautumista.",
     "tokenPrice": "{{amount}} tokenia",
-    "tokensUnit": "tokenia"
+    "tokensUnit": "tokenia",
+    "atPreListingRate": "{{amount}} ennakkoilmoituksen hinnalla",
+    "fromSubscriptionTokensAmount": "Tilaustunnuksistasi: {{amount}}",
+    "subscriptionTokensNote": "Tilaustunnukset lukitaan hintaan, kun lisäät ne, joten hinnanmuutos ei koskaan muuta tilauksen hintaa. Niitä voi käyttää vain tilauksiin.",
+    "subscriptionTokens": "Tilaustunnukset",
+    "untradableTokens": "Näitä tilaustunnuksia ei voi vaihtaa",
+    "lockedValue": "Lukittu {{amount}}",
+    "withdraw": "Nosta",
+    "trade": "Kauppa"
   },
   "live": {
     "notSet": "Ei asetettu",

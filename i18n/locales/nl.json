@@ -4938,7 +4938,15 @@
     "custodyNote": "Uw tokens blijven in de kluis van DeHub en worden niet verkocht. De maker ontvangt een op USDT gebaseerd abonnementsaldo.",
     "legacyMigrationNote": "Opslaan migreert dit legacy token-geprijsde plan naar dollar prijzen tegen de pre-listing koers.",
     "tokenPrice": "{{amount}} tokens",
-    "tokensUnit": "tokens"
+    "tokensUnit": "tokens",
+    "atPreListingRate": "{{amount}} tegen de pre-listing rate",
+    "fromSubscriptionTokensAmount": "Vanaf uw abonnementstokens: {{amount}}",
+    "subscriptionTokensNote": "Abonnementstokens zijn vergrendeld tegen de prijs wanneer je ze toevoegt, dus een prijsbeweging verandert nooit wat een abonnement je kost. Ze kunnen alleen worden besteed aan abonnementen.",
+    "subscriptionTokens": "Abonnementstokens",
+    "untradableTokens": "Dit zijn niet-verhandelbare abonnementstokens",
+    "lockedValue": "Vergrendeld op {{amount}}",
+    "withdraw": "Opnemen",
+    "trade": "Handel"
   },
   "live": {
     "notSet": "Niet ingesteld",

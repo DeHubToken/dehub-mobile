@@ -4748,7 +4748,15 @@
     "custodyNote": "Akara gị na-anọ na nchekwa DeHub ma anaghị ere ha. Onye kere ya na-enweta nguzozi ndenye aha USDT.",
     "legacyMigrationNote": "Nchekwa na-ebufe atụmatụ a nke akara akara ochie na-eji ọnụahịa dollar na ọnụahịa tupu ndepụta.",
     "tokenPrice": "{{amount}} akara",
-    "tokensUnit": "akara"
+    "tokensUnit": "akara",
+    "atPreListingRate": "{{amount}} na tupu-ndepụta ọnụego",
+    "fromSubscriptionTokensAmount": "Site na ndenye aha gị: {{amount}}",
+    "subscriptionTokensNote": "Ndenye aha tokens na-ekpochi na price mgbe ị tinye ha, otú a price aga mgbe mgbanwe ihe a ndenye aha na-eri gị. E nwere ike imefu ha naanị na ndenye aha.",
+    "subscriptionTokens": "Ndenye aha tokens",
+    "untradableTokens": "Ndị a bụ untradable ndenye aha tokens",
+    "lockedValue": "A kpọchiri ya na {{amount}}",
+    "withdraw": "Wepụ",
+    "trade": "Trade"
   },
   "live": {
     "notSet": "Edobeghị",

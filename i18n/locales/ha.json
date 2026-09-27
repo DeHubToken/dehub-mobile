@@ -4748,7 +4748,15 @@
     "custodyNote": "Token ɗinka suna zama a cikin kulawar DeHub kuma ba a sayar da su ba. Mai ƙirƙirar yana karɓar ma'auni na biyan kuɗi da aka bayyana a cikin USDT.",
     "legacyMigrationNote": "Ajiya yana canza wannan tsarin da aka sanya farashin token na baya zuwa farashin dala a ƙimar kafin jeri.",
     "tokenPrice": "{{amount}} token",
-    "tokensUnit": "token"
+    "tokensUnit": "token",
+    "atPreListingRate": "{{amount}} a pre-listing kudi",
+    "fromSubscriptionTokensAmount": "Daga alamun biyan ku: {{amount}}",
+    "subscriptionTokensNote": "Alamu na biyan kuɗi an kulle su a farashin lokacin da kuka ƙara su, don haka motsi na farashi baya canza abin da biyan kuɗi ke biya ku. Ana iya kashe su ne kawai a kan biyan kuɗi.",
+    "subscriptionTokens": "Alamomin biyan kuɗi",
+    "untradableTokens": "Waɗannan alamun biyan kuɗi ne waɗanda ba za a iya amfana ba",
+    "lockedValue": "An kulle a {{amount}}",
+    "withdraw": "Janyewa",
+    "trade": "Kasuwanci"
   },
   "live": {
     "notSet": "Ba a saita ba",

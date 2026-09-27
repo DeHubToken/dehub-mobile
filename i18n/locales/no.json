@@ -4748,7 +4748,15 @@
     "custodyNote": "Dine tokens forblir i DeHub-skattkammerets varetekt og selges ikke. Skaperen mottar en USDT-denominert abonnementsbalanse.",
     "legacyMigrationNote": "Lagring migrerer denne eldre token-prisplanen til dollarprising til kursen før notering.",
     "tokenPrice": "{{amount}} tokens",
-    "tokensUnit": "tokens"
+    "tokensUnit": "tokens",
+    "atPreListingRate": "{{amount}} til prisen før notering",
+    "fromSubscriptionTokensAmount": "Fra abonnementstokenene dine: {{amount}}",
+    "subscriptionTokensNote": "Abonnementstokener er låst til prisen du legger dem til, så en prisendring endrer aldri hva et abonnement koster deg. De kan bare brukes på abonnementer.",
+    "subscriptionTokens": "Abonnementstokener",
+    "untradableTokens": "Dette er ikke-omsettelige abonnementstokener",
+    "lockedValue": "Låst på {{amount}}",
+    "withdraw": "Uttak",
+    "trade": "Handel"
   },
   "live": {
     "notSet": "Ikke angitt",
