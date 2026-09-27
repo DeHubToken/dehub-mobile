@@ -15,6 +15,7 @@
  * this app, so those tabs are not rendered rather than rendered empty.
  */
 import React, { useCallback, useEffect, useMemo, useState } from "react";
+import MultiPostPanel from "../components/Settings/MultiPostPanel";
 import { useTranslation } from "react-i18next";
 import {
   View,
@@ -85,13 +86,14 @@ type TabKey =
   | "content"
   | "messages"
   | "assets"
+  | "multipost"
   | "support";
 
-const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
+const AccountSettingsScreen: React.FC<any> = ({ navigation, route }) => {
   const user = useUser();
   const { isSignedIn, needsUsername } = useAuthState();
   const { signOut } = useAuthActions();
-  const [activeTab, setActiveTab] = useState<TabKey>("profile");
+  const [activeTab, setActiveTab] = useState<TabKey>((route?.params?.initialTab as TabKey) ?? "profile");
   const [signingOut, setSigningOut] = useState(false);
   const [bugModalVisible, setBugModalVisible] = useState(false);
   const [reviewModalVisible, setReviewModalVisible] = useState(false);
@@ -112,6 +114,7 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
       { key: "content", icon: "Eye", label: t("settings.content") },
       { key: "messages", icon: "MessageSquare", label: t("settings.messages") },
       { key: "assets", icon: "Wallet", label: t("settings.assets") },
+      { key: "multipost", icon: "Share2", label: t("multiPost.tab") },
       { key: "support", icon: "LifeBuoy", label: t("settings.support") },
     ],
     [t]
@@ -416,6 +419,7 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
           <MessagesPanel onOpenFreeAccessList={handleOpenFreeAccessList} />
         )}
         {activeTab === "assets" && <AssetsPanel navigation={navigation} />}
+        {activeTab === "multipost" && <MultiPostPanel />}
         {activeTab === "support" && supportPanel}
       </View>
 

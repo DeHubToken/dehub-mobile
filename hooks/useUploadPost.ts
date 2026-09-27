@@ -95,6 +95,8 @@ export type UploadPayload = {
    * after the mint returns a tokenId — there is nothing to attach to before.
    */
   shopListingIds?: string[];
+  /** Connected external accounts to cross-post to once the post is up. */
+  crossPostAccountIds?: string[];
 };
 
 
@@ -309,6 +311,7 @@ export function useUploadPost() {
         forKids: p.forKids,
         shopLinks: p.shopLinks,
         shopListingIds: p.shopListingIds,
+        crossPostAccountIds: p.crossPostAccountIds,
       };
 
       const isBounty = p.monetization.bountyEnabled;
