@@ -34,6 +34,7 @@ export default function CreatorScreen() {
           { key: 'studio', label: t('creator.navStudio'), open: () => void openInApp(`${env.APP_ORIGIN}/creator`) },
           { key: 'flow', label: t('creator.flow'), open: () => void openInApp(`${env.APP_ORIGIN}/creator/flow`) },
           { key: 'editor', label: t('creator.editor'), open: () => nav.navigate(ScreenNames.MediaEditor) },
+          { key: 'builder', label: t('creator.toolBuilder'), open: () => nav.navigate(ScreenNames.Builder) },
         ]).map((b) => (
           <Pressable key={b.key} accessibilityRole="button" onPress={b.open} className="rounded-xl bg-theme-neutrals-800 px-4 py-3">
             <Text className="text-theme-neutrals-100">{b.label}</Text>

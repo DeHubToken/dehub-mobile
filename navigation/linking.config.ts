@@ -181,6 +181,11 @@ export const DeepLinkPaths = {
   PACK: 'packs/:slug',
   PACKS: 'packs',
 
+  // Builder — dehub.io/builder, and /builder/preview/:id is the public share
+  // link for one app. The preview path is declared first, like the pack slug.
+  BUILDER_PREVIEW: 'builder/preview/:id',
+  BUILDER: 'builder',
+
   // Fraction marketplace — dehub.io/app/fractions. Web answers the bare
   // /fractions too; the /app rewrite below maps it here.
   FRACTIONS: 'app/fractions',
@@ -294,6 +299,12 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
           },
           [ScreenNames.Packs]: DeepLinkPaths.PACKS,
 
+          [ScreenNames.BuilderPreview]: {
+            path: DeepLinkPaths.BUILDER_PREVIEW,
+            parse: { id: (id: string) => id },
+          },
+          [ScreenNames.Builder]: DeepLinkPaths.BUILDER,
+
           [ScreenNames.Fractions]: DeepLinkPaths.FRACTIONS,
 
           [ScreenNames.Events]: DeepLinkPaths.EVENT,
@@ -357,6 +368,13 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
       'post', 'notifications', 'leaderboard', 'messages', 'communities',
       'stores', 'events', 'fractions',
     ]);
+    // Builder lived at /app/builder before it took the top-level URL; web
+    // redirects the old links, so do the same here.
+    if (segments[0] === 'app' && segments[1] === 'builder') {
+      const newPath = `/${segments.slice(1).join('/')}${queryString ? `?${queryString}` : ''}`;
+      return getStateFromPath(newPath, options);
+    }
+
     if (segments.length > 0 && APP_PREFIXED.has(segments[0])) {
       const newPath = `/app/${segments.join('/')}${queryString ? `?${queryString}` : ''}`;
       logger.info('Bare /app section rewritten', { from: path, to: newPath });
