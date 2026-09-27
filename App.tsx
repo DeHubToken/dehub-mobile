@@ -6,6 +6,7 @@ import {
   createNavigationContainerRef,
 } from "@react-navigation/native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import { initialSafeAreaMetrics } from "./libs/initialSafeAreaMetrics";
 import { Toaster } from "sonner-native";
 import { createToastTheme } from "./theme/toastTheme";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
@@ -81,6 +82,7 @@ import BadgeLadderSync from "./components/Badge/BadgeLadderSync";
 import { AppThemeProvider, useAppTheme, useThemeRootStyle } from "./context/ThemeContext";
 
 const logger = createLogger("App");
+
 
 export const navigationRef = createNavigationContainerRef();
 
@@ -175,7 +177,7 @@ export default function App() {
           onSuccess={markRestoredCacheStale}
         >
         <ThemedRootView>
-          <SafeAreaProvider className="flex-1 select-none">
+          <SafeAreaProvider initialMetrics={initialSafeAreaMetrics} className="flex-1 select-none">
             <AuthProvider>
               <WebSocketProvider>
                 <DMProvider>
