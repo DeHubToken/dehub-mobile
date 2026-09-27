@@ -3462,11 +3462,6 @@
     "noResultsFor": "Keini Resultat für „{{query}}“",
     "guideSubtitle": "Schritt-für-Schritt-Uuführig vo jede Feature",
     "searchGuide": "Guide sueche...",
-    "guideFractionsTip": "Bi jedem gmintete Biitrag hät de Ersteller am Aafang alli Aateil (100 % Eigetum).",
-    "guideInfoStep": "Tipp bi eme gmintete Biitrag ufs Info-Symbol, zum sini Mint-Transaktion im Block-Explorer z'öffne und de Iitrag uf de Chette z'prüefe.",
-    "guideMintIntro": "En Biitrag als NFT uf de Blockchain z'minte isch freiwillig. Minte en bim Veröffentliche, oder veröffentlich en jetzt und minte en spöter übers Biitragsmenü.",
-    "guideMintPublishStep": "Wähl, öb du wotsch minte, und tipp dänn uf „Poschte“. Wänn du 's Minte überspringsch, chasch de Biitrag spöter übers Biitragsmenü minte.",
-    "guideMintFractionsStep": "Du überchunsch alli 1'000 Fraktione (100 % Eigetum) vo dim früsch prägte Biitrag.",
     "glossaryMintTxDesc": "Tipp bi eme gmintete Biitrag ufs Info-Symbol, zum sini Mint-Transaktion im Block-Explorer z'öffne und de Iitrag uf de Chette z'prüefe. Di vollständig Biitragsinfo-Siite — Statistike, Bsitzer, Marktplatz — findsch i de Web-App uf dehub.io.",
     "glossaryTokenIdDesc": "En eidütigi Kennig uf de Chette, wo en Biitrag überchunnt, wänn er als NFT gmintet wird.",
     "repostsTab": "Reposts",
@@ -3483,24 +3478,7 @@
     "glossaryStakingDesc": "Sperr din DeHub Tokens, zum über Ziit Belohnige z verdiene. Gstaketi Tokens gbeded der au meh Abstimmigskraft i de Governance.",
     "glossaryGovernanceDesc": "Schick Abstimmige i und stimm drüber ab, wo d Plattform formtied. Din Abstimmigskraft wird gewichtet, je nachdem, wie viel DeHub Tokens du hesch.",
     "glossaryStakingBadgesDesc": "Badges, wo neben dim Benutzername basierend uf dim total DeHub Token-Bestand (Wallet + Staked) azeigt werde. Es git 13 Tier – je meh Tokens du hesch, desto höcher isch din Badge-Rang. Höcheri Tier gbeded meh Governance-Abstimmigskraft und tiefere Plattform-Gebühre.",
-    "glossaryLeaderboardDesc": "Benutzer werde nach totalem DeHub Token-Bestand (Wallet + Staked über alli Chätti) rangiert. Rangliste werde periodisch aktualisiert und verfolge 1-Tages- und 1-Woche-Veränderige. Du chasch au nach gschickte Tips, empfangene Tips, Follower, Likes oder Abonnente sortiere.",
-    "guideTipStep": "Klick uf s Gem/Tip-Icon, zum em Post-Creator en Tip i DeHub Tokens z schicke.",
-    "guideTipWalletTip": "Tips gaht direkt i d Wallet vom Creator als DeHub Tokens.",
-    "guideTipNotificationsTip": "Tip-Notifications zeiged, wie viel DeHub-Tokens du erhältsch.",
-    "guideWalletIntro": "Zeig dini DeHub-Token-Balanze uf verschidnene Chättene a, lueg Staking-Iizelige a und verwalte dini Vermögewert.",
-    "guideWalletTotalStep": "Zeig dini gsamti DeHub-Token-Balanze, aggregiert über alli unterstützte Chättene.",
-    "guideStakingIntro": "Stak dini DeHub-Tokens, zum Belohnige z'verdienä und dini Governance-Stimmkraft z'erhöhe.",
-    "guideStakingAmountStep": "Gib ii, wie viel DeHub-Tokens du wetsch stakä.",
-    "guideLeaderboardBalanceStep": "D'Balance-Tabell rangiert Benutzer nach ihre gsamte DeHub-Token-Befassige.",
-    "guideGovernanceVoteStep": "Stimm über Vorschläg ab mit de Daume-uffe/Daume-ab-Chnöpfe — dini Stimmkraft hängt devo ab, wie viel DeHub-Tokens du gstacked häsch.",
-    "guideGovernancePowerTip": "Dini Stimmkraft wird devo bestimmt, wie viel DeHub-Tokens du gstacked häsch.",
-    "guideBuyIntro": "Chauf DeHub-Tokens direkt i DPay mit chard oder unterstützte Krypto.",
-    "guideBuyAmountStep": "Gib de Betrag ii, wo du wetsch usgä, oder wie viel DeHub-Tokens du wetsch erhälta.",
-    "guideBuyDeliveredStep": "Dini DeHub-Tokens erschiined i dim Wallet, sobald d'Transaktion abgschlosse isch.",
-    "guideBridgeIntro": "Beweg dini DeHub-Tokens zwüsche unterstützte Blockchaine mit de Cross-Chain-Bridge.",
-    "guideBridgeSourceStep": "Wähl d'Quell-Chaine (wo dini DeHub-Tokens grad sind).",
-    "guideBridgeDestStep": "Wähl d'Ziel-Chaine (wo du dini DeHub-Tokens wetsch schickä).",
-    "guideBridgeAmountStep": "Gib ii, wie viel DeHub-Tokens du wetsch bridge."
+    "glossaryLeaderboardDesc": "Benutzer werde nach totalem DeHub Token-Bestand (Wallet + Staked über alli Chätti) rangiert. Rangliste werde periodisch aktualisiert und verfolge 1-Tages- und 1-Woche-Veränderige. Du chasch au nach gschickte Tips, empfangene Tips, Follower, Likes oder Abonnente sortiere."
   },
   "arcade": {
     "submitAccessibility": "Spiel ihregebe zum Arcade",
@@ -6822,6 +6800,504 @@
       "packEmpty": "Kei Emoji gfunde a dere Adrässe",
       "shortcodeTaken": "{{name}} isch scho besetzt",
       "shortcodeStandard": "{{name}} isch scho en Standard-Emoji"
+    }
+  },
+  "guide": {
+    "sections": {
+      "getting-started": {
+        "title": "Aafang",
+        "intro": "Es git füüf Wäg i DeHub z'cho und kei vo dene brucht, dass du scho en Wallet hesch: Google, Apple, en Code per E-Mail, en Code per SMS oder en vorhandeni Wallet, wo du verbindisch. Alles usser em Wallet-Wäg erstellet im Hintergrund en non-custodial Wallet für dich — du hesch d'Schlüssl, und DeHub übernimm d'Gas-Gebühre, damit du poste, tipisch und sammle chasch, ohni je en native Token z'kaufe.",
+        "steps": {
+          "1": "Besuech dehub.io — de Home-Feed isch die erscht Site, damit du dich chasch umeluege, bevor dich aameldish.",
+          "2": "Klick 'Sign In'. Du gsehsch Google und Apple, Fälder für en E-Mail-Adress oder en Telefonnummere und 'Connect Wallet' für en vorhandeni.",
+          "3": "Mit Google oder Apple, schlies d'Flow vom Anbieter ab. Mit E-Mail oder SMS, gib de Code ii, wo aakommt.",
+          "4": "Bi de erschte Anmeldung wird en Wallet für dich erstellet und gichert. Wenn du din eigeti Wallet verbindisch, bruchts ei Signatur zum Zeige, dass d'Adress diini isch.",
+          "5": "Wählsch en Username. Das isch, was d'Lüüt gseh und es dient au als din dehub.io/<username> Profil-Link.",
+          "6": "Du bisch drin. Entdecke de Feed, richte din Profil ii und fang a z'poste."
+        },
+        "tips": {
+          "1": "Social-, E-Mail- und SMS-Anmeldige zahle nie Gas — DeHub übernimmts. Verbundi Wallets zahle ihr eigeti ETH oder BNB.",
+          "2": "Chunsch zu eme ältere DeHub-Account zrugg? Melde dich mit de E-Mail oder Telefonnummere a, wo du brucht hesch, und d'Migration findets für dich.",
+          "3": "Du chasch mehri Accounts uf dim Gerät ha und zwüsche ihne wächsle unter Settings → Profile."
+        }
+      },
+      "home-feed": {
+        "title": "Home Feed",
+        "intro": "De Home-Feed isch, wo du Posts vo Lüüt gsehsch, wo du folgsch, und trendendi Inhalts. Er unterstütz mehri Inhalts-Tabs und Sortierigs-Optione.",
+        "steps": {
+          "1": "Navigier zu /app — das isch din Home-Feed.",
+          "2": "Bruuch die obere Tabs zum filtere nach Inhaltsart: Home (alles), Videos, Bilder, Shorts, Musig, oder Live-Streams.",
+          "3": "Wisch links/rechts uf de Tabs, zum meh Optionä uf em Mobile gseh.",
+          "4": "Bruuch de Filter/Sortiere-Knopf (obere rechti Ecke vom Feed) zum d Sortierig ändere: Hot, New, oder Top.",
+          "5": "Zieh obe ab zum de Feed uf em Mobile aktualisiere.",
+          "6": "Scroll obe ab zum meh Posts automatisch lade (unendliche Scroll).",
+          "7": "Wächsle zwüsched Grid- und Feed-Ansicht mit em Layout-Wechsler."
+        },
+        "tips": {
+          "1": "D Grid-Ansicht isch super zum Bilder schnäll dureblättere.",
+          "2": "De 'Home'-Tab zeigt alli Inhaltsarte durcheinander a.",
+          "3": "De Live-Tab zeigt grad aktivi D Live-Streams a."
+        }
+      },
+      "creating-posts": {
+        "title": "Posts erstelle",
+        "intro": "Erstell Text-Posts, teile Bilder, Videos, Stimmnotize, GIFs und meh. Bruuch Hashtags, Cashtags und Mentions zum d Reichwiite erhöhe.",
+        "steps": {
+          "1": "Klick uf de 'Post'-Knopf i de Sidebar (Desktop) oder uf de + Knopf (Mobile).",
+          "2": "Tipp din Text i s Komponiere-Feld.",
+          "3": "Zum es Bild oder Video dezue füege, klick uf s Mediä-Symbol und wähl e Datei us.",
+          "4": "Zum e Stimmnotiz ufnäh, klick uf s Mikrofon-Symbol.",
+          "5": "Zum es GIF dezue füege, klick uf s GIF-Symbol und sueche nach öpis.",
+          "6": "Bruuch #Hashtags zum din Post kategorisiere (z.B. #crypto, #defi).",
+          "7": "Bruuch $Cashtags zum Tokens erwähne (z.B. $DHB, $ETH).",
+          "8": "Bruuch @Mentions zum anderi User markiere (z.B. @username).",
+          "9": "Klick uf 'Post' zum veröffentliche. Din Post erscheint sofort i de Feed."
+        },
+        "tips": {
+          "1": "Posts unterstützed Markdown-Style-Formatierig.",
+          "2": "Du chasch e Post zitierä, indem dass uf s Repost-Symbol uf irgendeinem Post klicksch und 'Quote' wählsch.",
+          "3": "Kategorie (Hashtags) erschiined i de 'Talk of the Town'-Ranglist."
+        }
+      },
+      "interacting-with-posts": {
+        "title": "Mit Posts interagierä",
+        "intro": "Interagiere mit Inhalts, indem dass abstimmisch, kommentiersch, tipisch, speichersch, teilsch und übersetzsch.",
+        "steps": {
+          "1": "Upvote oder Downvote en Post mit de Pfeil-Symbole uf de linke Site vo jedem Post.",
+          "2": "Klick uf s Kommentar-Symbol zum de Kommentarbereich öffne und en Antwort hinterla.",
+          "3": "Klick uf s Juwel/Tip-Symbol zum em Post-Ersteller en Tip i DeHub-Tokens schicke.",
+          "4": "Klick uf s Lesezeichen-Symbol zum en Post für spöter speichere.",
+          "5": "Klick uf s Teilä-Symbol zum de Post-Link kopiere oder extern teile.",
+          "6": "Klick uf de Übersetzig-Knopf (Globus-Icon) bi jedem Post, zum Text i dim Sprach z'übersetzä.",
+          "7": "Für Bild-Posts, bruchsch de 'Bild übersetzä'-Knopf, zum ä AI-übersetzti Version vom Text im Bild z'ha.",
+          "8": "Klick uf jedem Post, zum ihn im Vollbild-Einzelpost-View z'öffnä."
+        },
+        "tips": {
+          "1": "Tipps gaht direkt a d'Kreatore-Wallet i DeHub-Tokens.",
+          "2": "Du chasch ä Tipp-Betrag über Schnellauswahl-Knopf festlegä oder ä eiginä Betrag igä.",
+          "3": "Gspeichereti Posts sind vo de 'Gspeichereti'-Sytä i de Sytäbar erreichbar."
+        }
+      },
+      "explore-search": {
+        "title": "Entdecke & Suchä",
+        "intro": "Entdecke neui Inhalts- und Benutzer durch d'Entdecke-Sytä und mächtigi Suchfunktionalität.",
+        "steps": {
+          "1": "Navigierä zu /app/explore vo de Sytäbar.",
+          "2": "Bruuch d'Suchbar obe zum Suchä nach Benutzer, Posts oder Inhalts.",
+          "3": "Filter d'Ergebnis nach Tab: Alli, Lüt, Posts, Bilder, Video, Musig, Live.",
+          "4": "Stöbere durch trendendi Thema und Kategorie uf de Entdecke-Sytä.",
+          "5": "Klick uf ä trendends Thema, zum alli zueghörige Posts z'seh.",
+          "6": "Klick uf ä Benutzer i de Suchergebnis, zum ihri Profil z'besuchä."
+        },
+        "tips": {
+          "1": "Suche unterstützä Benutzernamä, Wallet-Adressä und Inhalts-Schlagwörter.",
+          "2": "Trendendi Thema aktualisiere sich basierend uf de jüngschte Posting-Aktivität."
+        }
+      },
+      "profile": {
+        "title": "Profil",
+        "intro": "Dini Profil zeigt dini Posts, Follower, Following und Wallet-Informationä.",
+        "steps": {
+          "1": "Klick uf din Avatar oder 'Profil' i de Sytäbar, zum din Profil z'seh.",
+          "2": "Klick uf 'Profil bearbeite', zum din Anzeigenamä, Bio und Avatar z'aktualisiere.",
+          "3": "Lade ä Profilbild hoch, indem du uf din Avatar im Bearbeite-Modus klickisch.",
+          "4": "Seh dini Follower- und Following-Zähl uf dinä Profilsytä.",
+          "5": "Stöbere durch dini eiginä Posts, Mediä und glichti Inhalts über d'Profil-Tabs.",
+          "6": "Kopier dini Wallet-Adressä, indem du uf s'Kopier-Icon danebe klickisch.",
+          "7": "Besuch anderi Benutzer-Profil, indem du uf ihri Benutzernamä oder Avatar irgendwo uf de Plattform klickisch."
+        },
+        "tips": {
+          "1": "Dini Benutzernamä isch einzigartig und erscheint i dim Profil-URL (dehub.io/@username).",
+          "2": "Privatsphäre-Eistellige erlaube dir z'kontrolliere, wer dini Follower-Zählä gseh cha."
+        }
+      },
+      "messages": {
+        "title": "Nachrichtä",
+        "intro": "Schick direkt Nachrichtä a anderi Benutzer uf de Plattform.",
+        "steps": {
+          "1": "Klick uf 'Nachrichtä' i de Sytäbar, zum d'Nachrichtä-Sytä z'öffnä.",
+          "2": "Klick uf de Komponiere-Knopf zum e neui Unterhaltig z'starte.",
+          "3": "Suche nach eme User per Username, zum ihm z'schriibe.",
+          "4": "Tipp dinne Nachricht ii und drück Sende.",
+          "5": "Lueg dinne Unterhaltigs-Verlauf i de Nachrichteliste a.",
+          "6": "Klick uf e Unterhaltig, zum wiiter z'rede."
+        },
+        "tips": {
+          "1": "Du wirsch benachrichtigt, wenn dir öpper schribt.",
+          "2": "Creator chönd Nachrichte hinter e Tip-Ussicht sperre."
+        }
+      },
+      "ai-assistant": {
+        "title": "AI-Assistent",
+        "intro": "Chatte mit em DeHub-integriertes AI-Assistent für Hilf, Informatione und kreativi Ufgabe.",
+        "steps": {
+          "1": "Klick uf 'Assistent' i de Sitelisch, zum de AI-Chat z'öffne.",
+          "2": "Tipp dinne Frog oder Ussicht i s'Chat-Feld.",
+          "3": "De AI cha mit Krypto-Informatione, Plattform-Froge und allgemeinem Wüsse helfe.",
+          "4": "Starte e neui Unterhaltig, indem du uf de Neui-Chat-Knopf klickst.",
+          "5": "Lueg dinne Unterhaltigs-Verlauf i de Sitelisch vo de Assistent-Site a.",
+          "6": "Du chasch Bilder anhänge, damit de AI sie analysiere cha."
+        },
+        "tips": {
+          "1": "De AI erinnret sich a de Kontext i de Unterhaltig.",
+          "2": "Du chasch de AI nach DeHub-Funktione, Krypto-Begriffe oder allgemeine Froge frage.",
+          "3": "Vorherigi Unterhaltige werdet gspeicheret und sind jederzeit zugänglich."
+        }
+      },
+      "notifications": {
+        "title": "Benachrichtigunge",
+        "intro": "Bleib uf em neuste Stand mit Likes, Kommentär, Tips, Follower und andere Aktivitäte uf dim Inhaalt.",
+        "steps": {
+          "1": "Klick uf s'Glöggli-Symbol oder 'Benachrichtigunge' i de Sitelisch.",
+          "2": "Lueg alli Benachrichtigunge i ere chronologische List a.",
+          "3": "Klick uf e Benachrichtigung, zum zum zugehörige Inhaalt z'go.",
+          "4": "Benachrichtigunge umfasse: neue Follower, Post-Abstimmige, Kommentär, Tips und Erwähnig.",
+          "5": "Ungläsi Benachrichtigunge sind hervorgehobe – sie werdet als gläsi markiert, wenn sie aagluegt werdet."
+        },
+        "tips": {
+          "1": "S'Benachrichtigungs-Badge zeigt d'Zahl vo de ungläse Benachrichtigunge.",
+          "2": "Tip-Benachrichtigunge zeige, wie viel Tokens du erhalte hesch."
+        }
+      },
+      "wallet": {
+        "title": "Wallet",
+        "intro": "Lueg dinne DeHub-Token-Beständ über mehre Chän, überprüfe Staking-Aalage und verwalte dinne Vermöge.",
+        "steps": {
+          "1": "Klick uf 'Wallet' i de Sitelisch, zum d'Wallet-Site z'öffne.",
+          "2": "Zeig dinä totali Token-Bilanz über alli unterstützti Chännel a.",
+          "3": "Seh pro Chännel Uufschlüssige: Ethereum, Base, BNB Chain und meh.",
+          "4": "Prüf dinä Staking-Iizahlige und Belohnige.",
+          "5": "Klick 'Scan aktualisiere', zum dinä Bilanz vo On-Chain-Date z'aktualisiere.",
+          "6": "Kopier dinä Wallet-Adress, zum Token vo andere z'empfange."
+        },
+        "tips": {
+          "1": "Bilanz aktualisiert sich automatisch, aber du chasch jederzeit en Refresh erzwinge.",
+          "2": "D'Wallet zeigt sowohl flüssigi (verfüebari) als au gestaketi Bilanz."
+        }
+      },
+      "staking": {
+        "title": "Staking",
+        "intro": "Stak dinä DeHub-Token, zum Belohnige verdiene und dinä Governance-Stimmkraft erhöhe.",
+        "steps": {
+          "1": "Gang zur 'Staking'-Sitte vom Sytewäg.",
+          "2": "Gib d'Aazahl vo de Token ii, wo du wotsch staken.",
+          "3": "Wähl d'Chännel us, wo du wotsch staken.",
+          "4": "Bestätig d'Transaktion i dinere Wallet (externe Wallets) oder sie wird automatisch usgfüert (Social Login).",
+          "5": "Zeig dinä gestakete Beträg und all wartendi Belohnige.",
+          "6": "Zum unstaken, gib de Betrag ii und bestätig d'Unstaking-Transaktion."
+        },
+        "tips": {
+          "1": "Staking erhöht din Stimmgwicht bi Governance-Vorschläg.",
+          "2": "Social-Login-Nutzer bruuched kei Gas zum staken – es isch gaslos.",
+          "3": "Du chasch gleichzeitig uf mehrere Chännel staken."
+        }
+      },
+      "leaderboard": {
+        "title": "Leaderboard",
+        "intro": "Seh, wer ganz obe isch! D'Leaderboard ordnet Nutzer nach Bilanz, tägliche Usgabe und trendige Thema.",
+        "steps": {
+          "1": "Gang zur 'Leaderboard'-Sitte vom Sytewäg.",
+          "2": "Wächsle zwüsche de Tabs: Bilanz, Täglich usgä, und Gspröch vom Tag.",
+          "3": "D'Bilanz-Tab ordnet Nutzer nach ihre totale Token-Besitz.",
+          "4": "D'Täglich usgä-Tab zeigt, wer i de letschte 24 Stund am aktivste TIPPT het.",
+          "5": "Gspröch vom Tag zeigt d'meistdiskutierte Thema/Kategorie.",
+          "6": "Klick uf jede Nutzer, zum sini Profil z'bsueche.",
+          "7": "D'Leaderboard wird periodisch über de Tag aktualisiert."
+        },
+        "tips": {
+          "1": "Tägliche Rangliste wird jede Tag zrugggsetzt.",
+          "2": "Gspröch vom Tag verfolgt Ein-Wort-Kategorie vo Hashtag."
+        }
+      },
+      "command-centre": {
+        "title": "Command Centre",
+        "intro": "E Dashboard-Übersicht, wo Ihri wichtigste Metrike und Plattformaktivitäte uf ei Blick zeigt.",
+        "steps": {
+          "1": "Klicke uf 'Command Centre' i de Sitelischt.",
+          "2": "Zeige Ihri Profilzämefassung, inklusiv Post-Zahl, Follower und Engagement.",
+          "3": "Seh Ihri jüngschti Aktivität und trendendi Themene.",
+          "4": "Zugriff uf schnelli Links zu oft bruuchte Funktione."
+        },
+        "tips": {
+          "1": "S 'Command Centre' git Ihne e Vogelperspektive uf Ihri DeHub-Präsenz."
+        }
+      },
+      "governance": {
+        "title": "Governance",
+        "intro": "Nimm a de Plattform-Governance teil, indem Sie Vorschläg erstelle und über Community-Entscheide abstimme.",
+        "steps": {
+          "1": "Navigiere zu 'Governance' us de Sitelischt.",
+          "2": "Durchsuche aktivi Vorschläg, wo vo de Community igereicht worde sind.",
+          "3": "Klicke uf e Vorschlag, um sini volli Beschribig und Diskussione z lese.",
+          "4": "Stimme über Vorschläg ab mit de Daume-uffe/Daume-ab-Knöpfe — Ihri Stimmkraft hängt devo ab, wie viel DeHub-Token Sie g'staked händ.",
+          "5": "Hinterlaue Kommentär zu Vorschläg, um mit de Community z diskutiere.",
+          "6": "Reiche Sie Ihri eigeti Vorschlag i, indem Sie uf de Knop 'Create Proposal' klicke."
+        },
+        "tips": {
+          "1": "Ihri Stimmkraft wird durch d'Zahl vo de g'stakede Token bestimmt.",
+          "2": "Badge-Halter chönd zuesätzliche Stimmkraft erhältere.",
+          "3": "Vorschläg durchlaufe Stufe: Aktiv → Bestande/Abglähnt."
+        }
+      },
+      "bookmarks": {
+        "title": "Bookmarks",
+        "intro": "Speichere Posts i Ihri Bookmarks für einfache Zugriff spöter.",
+        "steps": {
+          "1": "Klicke uf s Bookmark-Symbol uf jedem Post, um ihn z speichere.",
+          "2": "Navigiere zu 'Bookmarks' i de Sitelischt, um alli g'speicherti Posts z seh.",
+          "3": "Klicke uf e bookmarked Post, um ihn vollstendi z seh.",
+          "4": "Entferne Sie e Bookmark, indem Sie s Bookmark-Symbol no einisch klicke."
+        },
+        "tips": {
+          "1": "Bookmarks sind privat — nur Sie chönd Ihri g'speicherti Posts seh.",
+          "2": "Es git kei Limit für wie viel Posts Sie chönd bookmarke."
+        }
+      },
+      "settings": {
+        "title": "Settings",
+        "intro": "Passe Sie Ihri DeHub-Erlebni mit Sproch-, Privatsphäre- und Anzeige-Präferenze a.",
+        "steps": {
+          "1": "Klicke uf 'Settings' i de Sitelischt.",
+          "2": "Ändere Sie Ihri Anzeigesproch über de Sprochauswähler.",
+          "3": "Passen Sie d'Privatsphäre-Eistellige a: kontrolliere Sie, wer Ihri Follower-Zahle und d'Liste vo de g'folgte Personene gseht.",
+          "4": "Stell dini Standard-Sichtbarkeitseistellige für Posts ii.",
+          "5": "Benachrichtigigseistellige verwalte."
+        },
+        "tips": {
+          "1": "DeHub unterstitzt mehri Sproche – d ganzi Benutzeroberflächi wird übersetzt.",
+          "2": "Datenschutz-Eistellige trätte sofort i Kraft."
+        }
+      },
+      "posting-allowance": {
+        "title": "Dini tägliche Posting-Limite",
+        "intro": "S'Poste isch jeden Tag gratis bis zu ere Limite, wo mit dim Staking-Badge wächst. Jede fangt mit zeh Text-Posts und ein Gigabyte Video, Bilder und Audio pro Tag a. Wenn du eine vo de beide überschrittsch, wird de Rescht vom Tag in DeHub-Tokens bezahlt – nur für de Teil, wo drüberliit.",
+        "steps": {
+          "1": "Poste wie immer. Innerhalb vo de Limite wird nüt verrechnet und nigs vo dir verlangt.",
+          "2": "Text-Posts und Media sind separat, drum blibe au nachere Tag mit Video-Upload immer no die zeh Text-Posts gratis.",
+          "3": "Wenn en Post d Limite überschreite würd, wird er vo de App zuerst priist und din Wallet wird druf prüeft, bevor öppis hochglade wird.",
+          "4": "De Post wird genau glich veröffentlicht, wie er innerhalbe vo de Limite veröffentlicht würd – s'Veröffentliche wartet nie uf en Zahlige.",
+          "5": "Denn bestätigsch du nur ei Überwiisig für de jewilige Post, abgerechnet uf de Base oder BNB Chain, wo gnueg DeHub-Tokens hät.",
+          "6": "Beidi Pools werde um Mitternacht UTC zrugggsetzt."
+        },
+        "tips": {
+          "1": "Überschüssigi Menge wird proportional verrechnet: 200 MB über de Limite koschte 200 MB, nid es ganzs Gigabyte.",
+          "2": "Reposts, Kommentär, Reaktionen, Tipps und Nachrichte koschte nüt und berühre d Limite nie.",
+          "3": "Wenn du d Zahlige ablehnsch, bliibt de Post online – de Betrag blockiert eifach din nächscht bezahlte Post, bis er begliche isch. D gratis Limite vo morn ghört immer dir.",
+          "4": "En Staking-Badge erhöht d gratis Limite und senkt de Priis vo allem, wo drüberliit."
+        }
+      },
+      "reactions-and-safety": {
+        "title": "Reaktionen, Stummschalte & anstössigi Inhaltsstoffe",
+        "intro": "Hinter em Like-Button sind neui Reaktionen und en Satz vo Kontrole, zum bestimme, was du gsehsch und wer dich erreiche chan.",
+        "steps": {
+          "1": "Halt de Daume druf uf jedem Post, zum d Reaktions-Schublad öffne: Like, Love, Respect, Hot, Lol, Sad, Cry, Dislike und Poo.",
+          "2": "D sieb positive zelle für d'Like-Summe vom Post; Dislike und Poo zelle dergege.",
+          "3": "Dini Reaktion wird vo dim Staking-Badge beeinflusst, drum bewegt sich d Zähl mit de Reaktion vo eme Badge-Haltär meh als mit eme Stimm.",
+          "4": "Tipp uf s'X im Header vo eme Post, zum de Autor stummschalte – er verschwindet sofort us dim Feed.",
+          "5": "Schöpfer markiere ihre eigete Posts als anstössig, während sie sie erstelle; die Posts blibe us em öffentliche Home-Feed usenand.",
+          "6": "Zum anstössigi Posts überall gseh, schalt d'Option 'Anstössigi Inhaltsstoffe zeige' i de Eistellige i."
+        },
+        "tips": {
+          "1": "En anstössige Post isch immer no voll sichtbar uf em Profil vom Schöpfer und für d Lüt, wo ihm folge.",
+          "2": "Blockiere vo eme Profil gaht wiiter als Stummschalte und schalt au d'Nachrichte us.",
+          "3": "D Reaktions-Schublad zeight, wer mit was reageret hät, drum gsehsch d'Ruum statt nume en Zahl."
+        }
+      },
+      "stages": {
+        "title": "Bühne (Live-Audio-Ruum)",
+        "intro": "Bühne sind Live-Audio-Ruum, wo i DeHub integriert sind. En Host öffnet en Ruum, holt Speaker druf, und jeder chan inechoppe zum zuelose vo de Bühne-Siiite oder eme gteilte Link.",
+        "steps": {
+          "1": "Öffne 'Bühne' i de Siiitebar, zum gseh, was grad live isch und was gplant isch.",
+          "2": "Tapp en Live-Bühni zum zuelose, oder stell en Erinnrig i, und du wirsch gseit, wann's losgoht.",
+          "3": "Starte din eigeti vo de glich Site – du chasch grad us em Browser live go, ohni OBS oder Stream-Key.",
+          "4": "Als Host bringsch Redner uf d'Bühni, machsch sie stumm oder wirfsch sie use, zeigsch din Bildschirm und steuerisch d'Soundboard.",
+          "5": "Zueloser schicked Live-Reaktionä und reded im Room-Chat, ohni uf d'Bühni z'cho.",
+          "6": "Jedi Bühni wird ufgno, und d'Ufnahm wird nacher vo de Card abgspilt, wo sie druf isch."
+        },
+        "tips": {
+          "1": "Live-Untertitel zeichned jede Redner und übersetzed i jede Sprach, wo du grad läsisch.",
+          "2": "Live-Dubbing chasch de Room mit de eigete klonete Stimm vom Host abspiele, pro Minute abgerechnet i DeHub-Tokens.",
+          "3": "Hosts chönd en Radio-Sender ufschalte oder eigeti Musig-Clips zwüsche de Gspröch abspiele.",
+          "4": "En Mini-Player haltet de Room im Eck am Laufe, während du de Rescht vo de App durchsuechsch."
+        }
+      },
+      "communities": {
+        "title": "Communities & Events",
+        "intro": "Communities sind vo de Mitgliider gfüehrti Ruum mit eigete Feed, Mitgliider und Aktivitäte. Events füged zytlich bschränkti Programme druf.",
+        "steps": {
+          "1": "Öffne 'Communities' i de Sytelischte und durchsuche d'öffentliche.",
+          "2": "Mit aim Tapp mitmache. Neu Aktivität zeigt sich als ungleseni Badge i de Navigation.",
+          "3": "Poste, diskutiere, Umfrage mache und Trinkgeld ge im eigete Feed vo de Community.",
+          "4": "Community-Besitzer moderiered ihri eigete Ruum und chönd Admin-Rächte a anderi vergeh.",
+          "5": "Öffne 'Events' für gplanti Programme, mit aim volli Page pro Event, wo du live chasch mitverfolge."
+        },
+        "tips": {
+          "1": "Community-Chat unterstützed @mentions und @here, so dass aim Post de Room erreiche cha.",
+          "2": "Aim Invite-Link erlaubt der, Lüt grad i e Community z'bringe."
+        }
+      },
+      "arcade": {
+        "title": "Arcade",
+        "intro": "Füf Spiel laufed i de DeHub i aim Browser-Tab – nüt zum installiere, nüt zum choufe.",
+        "steps": {
+          "1": "Öffne 'Arcade' i de Sytelischte.",
+          "2": "Wähle aim Spiel: King's Gambit (3D-Schach mit aim Online-Elo-Ladder), Claude of Duty (aim Shooter, wo sich eigeti Art generiert, während er lade), Jungle Trail (aim prozedurale Regenwald-Spaziergang), Street Slayer (aim Beat 'em up für DeHub gmacht) oder Chartopia (aim begehbari Handelsplatz).",
+          "3": "Im Tab spiele. King's Gambit und Street Slayer halte Rangliste.",
+          "4": "Chartopia läuft au i aim VR-Headset über WebXR."
+        },
+        "tips": {
+          "1": "Zwei devo verstecked sich i de Appearance-Themes – stell d'App uf War für Claude of Duty, oder Jungle für Jungle Trail.",
+          "2": "Jedes Spiel het sini eigeti Share-Card, so dass aim Link zu aim richtig entfaltet, wo du ihn au postisch."
+        }
+      },
+      "bounties-stores": {
+        "title": "Bounties & Stores",
+        "intro": "Zwei Wäg, um d'Plattform i Income z'verwandle: aim Bounty poste oder claim, oder aim Store eröffne und a din Audience verkoufe.",
+        "steps": {
+          "1": "Öffne 'Bounties' zum offene Arbeit durchsuche, filtert nach Kategorie oder Währig.",
+          "2": "Claim aim, mach d'Arbeit und schick sie ii zum Lohn abhole – jeder cha aim Hunter sii, kei Bewärbig nötig.",
+          "3": "Post din eige Bounty mit en chliine Beschribig und en Belohnig i DeHub Tokens oder USDC. Si wird i de Treuhand gsetzt, grad wenn du si postisch.",
+          "4": "Öffne 'Stores', zum en Usstellig mit ere eigeni Site, Branding und Lischtinge ufbou.",
+          "5": "Produkte sind priisiert und abgerechnet i DeHub Tokens über d'igbaute Wallet, ohni externe Checkout."
+        },
+        "tips": {
+          "1": "Bounties sind i Social Media, Clipping und Contracts igteilt.",
+          "2": "E Streitfall löst Uusänandersetzigä über d'Lieferig, so dass d'Treuhand immer fair löst wird.",
+          "3": "Kreative bruuched Bounties, zum e Community ufbou – Shares, Clips und Reaktionen sind alli gültigi Ufgabe."
+        }
+      },
+      "creator-studio": {
+        "title": "Creator Studio & Editor",
+        "intro": "Creator Studio generiert Bilder, Video, Musig, Stimm und 3D-Modelle us enere Prompt und git si a en Editor – inklusiv en voll multi-track Video-Editor, wo im Browser lauft.",
+        "steps": {
+          "1": "Öffne Creator Studio und beschrib, was du wetsch gmacht ha.",
+          "2": "De Server macht en Kostenvoranschlag, bevor d'Ufgab lauft, so gseisch, was es koschtet, bevor du's usgibsch.",
+          "3": "Renders lauft i en gmeinsame Warteschlange, während du wiiter d'App durchsuechsch.",
+          "4": "Ordne d'Ergebnis im Canva-Style Editor a, oder öffne de Video-Editor für en echti Timeline mit Schniide, Schichte und Export.",
+          "5": "Legs fertigi Stück direkt i Post, en Short oder en Store-Listing."
+        },
+        "tips": {
+          "1": "E gratis Stock-Asset-Bibliothek isch neben em Studio, für alles, wo du lieber nöd generiersch.",
+          "2": "D'Generierig wird i DeHub Tokens us dinere Wallet bezahlt – du unterschriibsch eini Überwiisig pro Ufgab, und de Priis wird gnannt, bevor du bezahlsch.",
+          "3": "Stärcheri User chönd en Ultra, Team oder Scale Plan näh, wo monatlich es Token-Kontingent direkt i ihri Wallet schickt."
+        }
+      },
+      "buying-dhb": {
+        "title": "Tokens choufe",
+        "intro": "Choufe DeHub Tokens direkt i de App über d'igbaute Swap-Interface.",
+        "steps": {
+          "1": "Navigier zur 'Buy'-Site über d'Sidebar.",
+          "2": "Wählsch de Token, wo du wetsch tausche (z.B. ETH, USDC).",
+          "3": "Gib de Betrag i, wo du usgä wetsch oder d'Aazahl Tokens, wo du wetsch erhäl.",
+          "4": "Überprüef de Wechselkurs und s'geschätzti Ergebnis.",
+          "5": "Klick uf s'Zahnrad-Symbol für d'Einstellungen, zum d'Slippage-Toleranz aazupasse (Standard isch 1%).",
+          "6": "Bestätig d'Swap-Transaktion.",
+          "7": "DeHub Tokens erschiined i dinere Wallet, sobald d'Transaktion abgschlosse isch."
+        },
+        "tips": {
+          "1": "Höheri Slippage-Toleranz = wahrschinlicher uszuführen, aber Potenzial für schlechteri Priise.",
+          "2": "Überprüef immer de Wechselkurs, bevor du bestätigsch.",
+          "3": "Du chasch eigene Slippage im Einstelligs-Panel setze."
+        }
+      },
+      "bridge": {
+        "title": "Bridge",
+        "intro": "Beweg din DeHub Tokens zwüsched unterstützte Blockchains mit de Cross-Chain-Bridge.",
+        "steps": {
+          "1": "Navigier zur 'Bridge'-Sytä vo dr Sytelischte.",
+          "2": "Wähl d Quälechän (wo dinä Token grad sind).",
+          "3": "Wähl d Zielchän (wo du se hi schicke wotsch).",
+          "4": "Gib d Aazal vo de Token ii, wo du wetsch bridge.",
+          "5": "Überprüef d Bridge-Gebühr und d gschätzti Aakuunftszit.",
+          "6": "Bestätig d Bridge-Transaktion.",
+          "7": "Wart, bis d Transaktion abgschlosse isch — s Bridging chan paar Minute dauere."
+        },
+        "tips": {
+          "1": "Bridge-Gebühre variiere je nach Chänepaar.",
+          "2": "Bridging dauert normalerwiis 1-5 Minute, je nach beteiligte Chän.",
+          "3": "Überprüef immer d Zielchän, bevor du bestätigsch."
+        }
+      },
+      "music-tv": {
+        "title": "Musik & TV",
+        "intro": "Geniess Mediainhalt direkt i DeHub — streame Musik und lueg Live-TV-Chänäl.",
+        "steps": {
+          "1": "Navigier zu 'Musik' vo dr Sytelischte, zum Musik-Posts durchsuche und abspiele.",
+          "2": "Navigier zu 'TV', zum uf Live-TV-Chänäl zuegriffe.",
+          "3": "Durchsuche Chänäl nach Kategorie oder Land.",
+          "4": "Klick uf en Chänäl, zum aafange z luege.",
+          "5": "Bruuch d Player-Steuerig, zum Lautstärk und Wiedergab z passe.",
+          "6": "Melde kaputti Chänäl mit em Melde-Button."
+        },
+        "tips": {
+          "1": "TV-Chänäl sind vo dr Community uf Zuverlässigkeit überprüft.",
+          "2": "Musik-Posts chönd gspilt wärde, während du andere Inhalt durchsuchesch."
+        }
+      },
+      "post-info": {
+        "title": "Post-Info & Fraktione",
+        "intro": "En gemintete Post isch en NFT, wo in 1.000 Fraktione ufteilt isch. D Post-Info-Sytä zeigt On-Chain-Date, Engagement-Statistike, Besitzaufteilig und erlaubt dir, Fraktione vo jedem Post z handle — bi enem ungemintete Post wird stattdesse s Minting aagebote.",
+        "steps": {
+          "1": "Tipp uf s 'ⓘ'-Symbol bi jedem Post, zum sini Post-Info-Sytä öffne.",
+          "2": "Obä gseeschd du d Token-ID (eindeutigi On-Chain-Identifikazion) und de Transaktions-Hash — klick uf de Hash, zum ihn im Block-Explorer z luege.",
+          "3": "Drunter zeige Engagement-Statistike d gsamte Likes, Dislikes, Uusrufe, Kommentär und Trinkgeld, wo empfange worde sind.",
+          "4": "D Sektion 'Hälder' zeigt en Fortschrittsbalkä, wie viel vo de 1.000 Fraktione de Schöpfer no bsitzet, plus en Lischt vo allne Fraktionshälder mit ihre Saldo und Prozänt.",
+          "5": "Wenn de Post Pay-per-View (PPV) isch, gseeschd du de Priis, d Währig und wie viel Benutzer Zugriff kauft hend.",
+          "6": "Post-Besitzer chönd d Sichtbarkeit ändere (Öffentlech, Ungelistet oder Privät) und de Titel/Beschriibig direkt vo dere Sytä bearbeite."
+        },
+        "tips": {
+          "1": "En frisch gemintete Post fangt damit a, dass de Schöpfer alli 1.000 Fraktione bsitzet (100% Besitz).",
+          "2": "De Transaktions-Hash verwiist uf BaseScan oder BscScan, je nach Chän.",
+          "3": "Unlisted Posts erschiined nöd i de Feeds, chönd aber immer no über en direkte Link abgrüeft wärde."
+        }
+      },
+      "trading-fractions": {
+        "title": "Trading Fractions",
+        "intro": "Fraction trading — Lischte dureglögglä, Offerte mache, eigne Sache aalose — isch uf de Web-App bi dehub.io, uf de Post Info Site vo jedem Post.",
+        "steps": {
+          "1": "Öffnä dehub.io i dim Browser und logg dich mit dim gliiche Account ii.",
+          "2": "Öffnä die Post Info Site und wächsl zu dim Marketplace Tab.",
+          "3": "Lischte dureglögglä, mach en Offerte zu dim Priis, oder los dini Fractions a, wo du hesch.",
+          "4": "Sobald en Handel abgschlosse isch, gseht mer die Ändrùnder i dim Fractions Tab do uf em Mobile."
+        },
+        "tips": {
+          "1": "Fractions vo dim Post z'besitze bedüütet, dass du en Anteil a dem On-Chain NFT hesch.",
+          "2": "Überprüf d'Besitzer vo dim Post uf em Web-Marketplace, um d'Besitzverteilig z'seh, bevor du chaufsch.",
+          "3": "Als Creator, d'Fractions z'verchoufe, erlaubt de Fans, dini Inhalts mitzbesitze."
+        }
+      },
+      "minting-posts": {
+        "title": "Minting Posts (Creating NFTs)",
+        "intro": "S Mintä isch optional. E Post wird off-chain publiziert, grad wennsch-e verschicksch – ohni Wallet, ohni Signatur, ohni Gas – und du chasch-e als NFT mintä, wann immer du wotsch, entweder wänn-e schribsch oder spöter vom Post us.",
+        "steps": {
+          "1": "Klick uf de 'Post'-Knopf i de Sytelischte (Desktop) oder uf de + Knopf (Mobile).",
+          "2": "Schriib din Text, häng Mediä (Bilder, Video, Audio) a und füeg Kategorieä zue.",
+          "3": "Lass 'Mint post' us zum off-chain publizierä, oder schalt's a zum mintä, wänn du publiziersch.",
+          "4": "Publizierä warte nie uf d'Chain: dr Post erschiint im Feed sowieso.",
+          "5": "Zum spöter präge, öffne d'Info-Page vom Post mit em 'ⓘ' und bruchsch dort d'Präge-Aktion.",
+          "6": "Sobald prägt, überchunt dr Post e Token ID und e Transaktions-Hash, wo du uf dr Chain chasch überprüefe, und du hesch alli 1'000 Bruchteil devo."
+        },
+        "tips": {
+          "1": "Social, E-Mail und SMS-Logins zahle kei Gas – DeHub sponsort Präge-Gebühre.",
+          "2": "Nutzer mit externe Wallets bruched ETH uf Base oder BNB uf BNB Chain für Gas.",
+          "3": "Präge isch, was en Post zum handelbare und lizenzgebende macht. En unprägte Post verdient immer no Trinkgeld und Views.",
+          "4": "D'Auf-der-Chain-Aufzeichnung isch permanent, sobald prägt, au wenn dr Post spöter us em Feed glöscht wird."
+        }
+      },
+      "glossary": {
+        "title": "Glossar",
+        "intro": "E umfassends Glossar vo Krypto- und Plattform-Terminologie, wo dir hilft, dich i Web3 z'orientiere.",
+        "steps": {
+          "1": "Navigiere zum 'Glossar' us dr Sidebar.",
+          "2": "Suche Begriffe alphabetisch oder bruche d'Suche, zum spezifischi Begriffe z'finde.",
+          "3": "Klicke uf en Begriff, zum sini volli Definition und Erklärung z'seh.",
+          "4": "Begriffe decked Krypto-Konzepte, DeFi-Terminologie und DeHub-spezifischi Funktione ab."
+        },
+        "tips": {
+          "1": "Grossi Ressource für Neuling im Krypto- und Web3-Bereich.",
+          "2": "S'Glossar wird regelmässig mit neue Begriffe aktualisiert."
+        }
+      }
     }
   }
 }

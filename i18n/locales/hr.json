@@ -3432,11 +3432,6 @@
     "noResultsFor": "Nema rezultata za \"{{query}}\"",
     "guideSubtitle": "Vodič korak po korak kroz svaku značajku",
     "searchGuide": "Pretraži vodič...",
-    "guideFractionsTip": "Svaka iskovana objava počinje tako da autor drži sve njezine frakcije (100 % vlasništva).",
-    "guideInfoStep": "Dodirnite ikonu informacija na iskovanoj objavi da otvorite njezinu transakciju kovanja u pregledniku blokova i provjerite zapis na lancu.",
-    "guideMintIntro": "Kovanje objave kao NFT-a na blockchainu nije obavezno. Iskujte je pri objavi ili je objavite sada i iskujte kasnije iz izbornika objave.",
-    "guideMintPublishStep": "Odaberite želite li kovati, a zatim kliknite 'Objavi'. Ako preskočite kovanje, objavu možete iskovati kasnije iz njezina izbornika.",
-    "guideMintFractionsStep": "Dobivaš svih 1.000 frakcija (100 % vlasništva) svoje tek iskovane objave.",
     "glossaryMintTxDesc": "Dodirnite ikonu informacija na iskovanoj objavi da otvorite njezinu transakciju kovanja u pregledniku blokova i provjerite zapis na lancu. Cijela stranica s informacijama o objavi — statistika, vlasnici, tržnica — nalazi se u web-aplikaciji na dehub.io.",
     "glossaryTokenIdDesc": "Jedinstveni identifikator na lancu dodijeljen objavi kad se iskuje kao NFT.",
     "repostsTab": "Ponovno objavljeno",
@@ -3453,24 +3448,7 @@
     "glossaryStakingDesc": "Zaključajte svoje DeHub tokene kako biste s vremenom zaradili nagrade. Uloženi tokeni također vam daju povećanu moć glasanja u upravljanju.",
     "glossaryGovernanceDesc": "Podnesite i glasajte o prijedlozima koji oblikuju platformu. Vaša moć glasanja ponderirana je brojem DeHub tokena koje posjedujete.",
     "glossaryStakingBadgesDesc": "Bedževi prikazani pored vašeg korisničkog imena na temelju vašeg ukupnog posjedovanja DeHub tokena (novčanik + uloženi). Postoji 13 razina — što više tokena posjedujete, to je viši rang vašeg bedža. Više razine daju veću moć glasanja u upravljanju i niže naknade za platformu.",
-    "glossaryLeaderboardDesc": "Korisnici su rangirani prema ukupnom saldu DeHub tokena (novčanik + uloženi na svim lancima). Rangiranje se povremeno ažurira i prati promjene u 1 danu i 1 tjednu. Također možete sortirati prema poslanim napojnicama, primljenim napojnicama, pratiteljima, lajkovima ili pretplatnicima.",
-    "guideTipStep": "Kliknite ikonu dragulja/napojnice da biste kreatoru posta poslali napojnicu u DeHub tokenima.",
-    "guideTipWalletTip": "Napojnice idu izravno na kreatorov novčanik kao DeHub tokeni.",
-    "guideTipNotificationsTip": "Obavijesti o savjetima prikazuju koliko ste DeHub tokena primili.",
-    "guideWalletIntro": "Pregledajte svoje stanje DeHub tokena na više lanaca, provjerite depozite za staking i upravljajte svojom imovinom.",
-    "guideWalletTotalStep": "Pregledajte svoje ukupno stanje DeHub tokena agregirano na svim podržanim lancima.",
-    "guideStakingIntro": "Uložite svoje DeHub tokene kako biste zaradili nagrade i povećali svoju moć glasanja u upravljanju.",
-    "guideStakingAmountStep": "Unesite koliko DeHub tokena želite uložiti.",
-    "guideLeaderboardBalanceStep": "Kartica Stanje rangira korisnike prema njihovom ukupnom posjedu DeHub tokena.",
-    "guideGovernanceVoteStep": "Glasajte o prijedlozima pomoću gumba palac gore/dolje — vaša težina glasa ovisi o tome koliko ste DeHub tokena uložili.",
-    "guideGovernancePowerTip": "Vaša moć glasanja određuje se prema tome koliko ste DeHub tokena uložili.",
-    "guideBuyIntro": "Kupite DeHub tokene izravno u DPay-u koristeći karticu ili podržanu kriptovalutu.",
-    "guideBuyAmountStep": "Unesite iznos koji želite potrošiti ili koliko DeHub tokena želite primiti.",
-    "guideBuyDeliveredStep": "Vaši DeHub tokeni pojavit će se u vašem novčaniku nakon što transakcija bude dovršena.",
-    "guideBridgeIntro": "Premjestite svoje DeHub tokene između podržanih blockchaina pomoću cross-chain bridgea.",
-    "guideBridgeSourceStep": "Odaberite izvorni lanac (gdje se trenutno nalaze vaši DeHub tokeni).",
-    "guideBridgeDestStep": "Odaberite odredišni lanac (gdje želite poslati svoje DeHub tokene).",
-    "guideBridgeAmountStep": "Unesite koliko DeHub tokena želite premostiti."
+    "glossaryLeaderboardDesc": "Korisnici su rangirani prema ukupnom saldu DeHub tokena (novčanik + uloženi na svim lancima). Rangiranje se povremeno ažurira i prati promjene u 1 danu i 1 tjednu. Također možete sortirati prema poslanim napojnicama, primljenim napojnicama, pratiteljima, lajkovima ili pretplatnicima."
   },
   "arcade": {
     "submitAccessibility": "Pošaljite igru u arkadu",
@@ -6792,6 +6770,504 @@
       "packEmpty": "Na toj adresi nije pronađen nijedan emoji",
       "shortcodeTaken": "{{name}} je već zauzeto",
       "shortcodeStandard": "{{name}} već je standardni emoji"
+    }
+  },
+  "guide": {
+    "sections": {
+      "getting-started": {
+        "title": "Početak rada",
+        "intro": "Postoji pet načina za ulazak u DeHub i niti jedan od njih ne zahtijeva da već posjedujete novčanik: Google, Apple, kod poslan na vašu e-poštu, kod poslan SMS-om ili postojeći novčanik koji povežete. Sve osim rute s novčanikom stvara pozadinski novčanik koji nije skrbnički — vi držite ključeve, a DeHub sponzorira plin kako biste mogli objavljivati, nagrađivati i prikupljati bez kupnje izvornog tokena.",
+        "steps": {
+          "1": "Posjetite dehub.io — početni feed je naslovna stranica, tako da možete pogledati okolo prije prijave.",
+          "2": "Kliknite 'Prijava'. Vidjet ćete Google i Apple, polja za adresu e-pošte ili broj telefona te 'Poveži novčanik' za postojeći.",
+          "3": "S Googleom ili Appleom, dovršite postupak davatelja usluge. S e-poštom ili SMS-om, unesite kod koji stigne.",
+          "4": "Novčanik se stvara i osigurava za vas pri prvoj prijavi. Povezivanje vlastitog novčanika umjesto toga znači jedan potpis za dokazivanje adrese.",
+          "5": "Odaberite korisničko ime. To je ono što ljudi vide i udvostručuje se kao vaša poveznica na profil dehub.io/<username>.",
+          "6": "Ušli ste. Istražite feed, postavite svoj profil i počnite objavljivati."
+        },
+        "tips": {
+          "1": "Prijave putem društvenih mreža, e-pošte i SMS-a nikada ne plaćaju plin — DeHub ga sponzorira. Povezani novčanici plaćaju vlastiti ETH ili BNB.",
+          "2": "Vraćate se na stari DeHub račun? Prijavite se s e-poštom ili brojem telefona koji je koristio i migracija će ga pronaći za vas.",
+          "3": "Možete zadržati nekoliko računa na jednom uređaju i prebacivati se između njih u Postavke → Profil."
+        }
+      },
+      "home-feed": {
+        "title": "Početni feed",
+        "intro": "Početni feed je mjesto gdje vidite objave ljudi koje pratite i popularan sadržaj. Podržava kartice s više vrsta sadržaja i opcije sortiranja.",
+        "steps": {
+          "1": "Navigirajte na /app — ovo je vaš početni feed.",
+          "2": "Upotrijebite gornje kartice za filtriranje prema vrsti sadržaja: Početna (sve), Videozapisi, Slike, Kratki videozapisi, Glazba ili Prijenosi uživo.",
+          "3": "Povucite lijevo/desno po karticama da biste vidjeli više opcija na mobilnom uređaju.",
+          "4": "Upotrijebite gumb za filtriranje/sortiranje (gornji desni kut prikaza) za promjenu sortiranja: Vruće, Novo ili Vrhunsko.",
+          "5": "Povucite prema dolje da biste osvježili prikaz na mobilnom uređaju.",
+          "6": "Pomaknite se prema dolje da biste automatski učitali više objava (beskonačno pomicanje).",
+          "7": "Prebacujte se između prikaza mreže i prikaza popisa pomoću izmjenjivača izgleda."
+        },
+        "tips": {
+          "1": "Prikaz mreže izvrstan je za brzo pregledavanje slika.",
+          "2": "Kartica 'Početna' prikazuje sve vrste sadržaja pomiješane zajedno.",
+          "3": "Kartica Uživo prikazuje trenutno aktivne prijenose uživo."
+        }
+      },
+      "creating-posts": {
+        "title": "Stvaranje objava",
+        "intro": "Stvarajte tekstualne objave, dijelite slike, videozapise, glasovne bilješke, GIF-ove i još mnogo toga. Upotrijebite hashtagove, cashtagove i spominjanja za povećanje dosega.",
+        "steps": {
+          "1": "Kliknite gumb 'Objava' na bočnoj traci (desktop) ili gumb + (mobilni uređaj).",
+          "2": "Upišite svoj tekst u područje za pisanje.",
+          "3": "Da biste dodali sliku ili videozapis, kliknite ikonu medija i odaberite datoteku.",
+          "4": "Da biste snimili glasovnu bilješku, kliknite ikonu mikrofona.",
+          "5": "Da biste dodali GIF, kliknite ikonu GIF i potražite ga.",
+          "6": "Upotrijebite #hashtags za kategorizaciju svoje objave (npr. #crypto, #defi).",
+          "7": "Upotrijebite $cashtags za upućivanje na tokene (npr. $DHB, $ETH).",
+          "8": "Upotrijebite @mentions za označavanje drugih korisnika (npr. @username).",
+          "9": "Kliknite 'Objava' za objavljivanje. Vaša objava odmah se pojavljuje u prikazu."
+        },
+        "tips": {
+          "1": "Objave podržavaju oblikovanje u stilu markdona.",
+          "2": "Možete citirati objavu klikom na ikonu ponovne objave na bilo kojoj objavi i odabirom 'Citiraj'.",
+          "3": "Kategorije (hashtags) pojavljuju se na ljestvici 'Talk of the Town'."
+        }
+      },
+      "interacting-with-posts": {
+        "title": "Interakcija s objavama",
+        "intro": "Uključite se u sadržaj glasovanjem, komentiranjem, davanjem napojnica, označavanjem, dijeljenjem i prevođenjem.",
+        "steps": {
+          "1": "Glasajte za ili protiv objave pomoću ikona strelica na lijevoj strani bilo koje objave.",
+          "2": "Kliknite ikonu za komentare da biste otvorili odjeljak za komentare i ostavili odgovor.",
+          "3": "Kliknite ikonu dragulja/napojnice da biste poslali napojnicu u DeHub tokenima kreatoru objave.",
+          "4": "Kliknite ikonu oznake da biste spremili objavu za kasnije.",
+          "5": "Kliknite ikonu za dijeljenje da biste kopirali poveznicu objave ili je podijelili izvana.",
+          "6": "Kliknite gumb za prijevod (ikona globusa) na bilo kojoj objavi da biste preveli tekst na svoj jezik.",
+          "7": "Za objave s slikama, upotrijebite gumb 'Prevedi sliku' da biste dobili AI-prevedenu verziju teksta unutar slike.",
+          "8": "Kliknite na bilo koju objavu da biste je otvorili u prikazu jedne objave preko cijelog zaslona."
+        },
+        "tips": {
+          "1": "Savjeti idu izravno u novčanik kreatora u DeHub tokenima.",
+          "2": "Iznos savjeta možete postaviti putem gumba za brzi odabir ili unijeti prilagođeni iznos.",
+          "3": "Objave označene kao omiljene dostupne su na stranici Omiljene u bočnoj traci."
+        }
+      },
+      "explore-search": {
+        "title": "Istraži i pretraži",
+        "intro": "Otkrijte novi sadržaj i korisnike putem stranice za istraživanje i moćne funkcionalnosti pretraživanja.",
+        "steps": {
+          "1": "Idite na /app/explore iz bočne trake.",
+          "2": "Upotrijebite traku za pretraživanje na vrhu za pretraživanje korisnika, objava ili sadržaja.",
+          "3": "Filtrirajte rezultate po kartici: Sve, Ljudi, Objave, Slike, Videozapisi, Glazba, Uživo.",
+          "4": "Pregledajte popularne teme i kategorije na stranici za istraživanje.",
+          "5": "Kliknite na popularnu temu da biste vidjeli sve povezane objave.",
+          "6": "Kliknite na korisnika u rezultatima pretraživanja da biste posjetili njegov profil."
+        },
+        "tips": {
+          "1": "Pretraživanje podržava korisnička imena, adrese novčanika i ključne riječi sadržaja.",
+          "2": "Popularne teme ažuriraju se na temelju nedavne aktivnosti objavljivanja."
+        }
+      },
+      "profile": {
+        "title": "Profil",
+        "intro": "Vaš profil prikazuje vaše objave, pratitelje, praćenje i informacije o novčaniku.",
+        "steps": {
+          "1": "Kliknite svoj avatar ili 'Profil' u bočnoj traci da biste vidjeli svoj profil.",
+          "2": "Kliknite 'Uredi profil' da biste ažurirali svoje prikazano ime, biografiju i avatar.",
+          "3": "Učitajte profilnu sliku klikom na svoj avatar u načinu uređivanja.",
+          "4": "Pregledajte svoje brojeve pratitelja i praćenja na svojoj stranici profila.",
+          "5": "Pregledajte svoje objave, medije i lajkane sadržaje putem kartica profila.",
+          "6": "Kopirajte svoju adresu novčanika klikom na ikonu za kopiranje pored nje.",
+          "7": "Posjetite profile drugih korisnika klikom na njihovo korisničko ime ili avatar bilo gdje na platformi."
+        },
+        "tips": {
+          "1": "Vaše korisničko ime je jedinstveno i pojavljuje se u vašem URL-u profila (dehub.io/@username).",
+          "2": "Postavke privatnosti omogućuju vam kontrolu tko može vidjeti vaše brojeve pratitelja."
+        }
+      },
+      "messages": {
+        "title": "Poruke",
+        "intro": "Šaljite izravne poruke drugim korisnicima na platformi.",
+        "steps": {
+          "1": "Kliknite 'Poruke' u bočnoj traci da biste otvorili stranicu za poruke.",
+          "2": "Kliknite gumb za sastavljanje da biste započeli novi razgovor.",
+          "3": "Pretražite korisnika po korisničkom imenu kako biste mu poslali poruku.",
+          "4": "Upišite svoju poruku i pritisnite pošalji.",
+          "5": "Pregledajte povijest razgovora na popisu poruka.",
+          "6": "Kliknite na razgovor da biste nastavili s razgovorom."
+        },
+        "tips": {
+          "1": "Primiti ćete obavijest kada vam netko pošalje poruku.",
+          "2": "Kreatori mogu zaključati poruke iza zahtjeva za napojnicu."
+        }
+      },
+      "ai-assistant": {
+        "title": "AI Asistent",
+        "intro": "Razgovarajte s ugrađenim AI asistentom DeHub-a za pomoć, informacije i kreativne zadatke.",
+        "steps": {
+          "1": "Kliknite 'Asistent' u bočnoj traci da biste otvorili AI chat.",
+          "2": "Upišite svoje pitanje ili zahtjev u unos za chat.",
+          "3": "AI može pomoći s kripto informacijama, pitanjima o platformi i općim znanjem.",
+          "4": "Započnite novi razgovor klikom na gumb za novi chat.",
+          "5": "Pregledajte povijest razgovora u bočnoj traci stranice asistenta.",
+          "6": "Možete priložiti slike koje će AI analizirati."
+        },
+        "tips": {
+          "1": "AI pamti kontekst unutar razgovora.",
+          "2": "Možete pitati AI o značajkama DeHub-a, kripto pojmovima ili općim pitanjima.",
+          "3": "Prethodni razgovori se spremaju i dostupni su u bilo kojem trenutku."
+        }
+      },
+      "notifications": {
+        "title": "Obavijesti",
+        "intro": "Budite u tijeku s lajkovima, komentarima, napojnicama, pratiteljima i drugim aktivnostima na vašem sadržaju.",
+        "steps": {
+          "1": "Kliknite ikonu zvona ili 'Obavijesti' u bočnoj traci.",
+          "2": "Pregledajte sve obavijesti na kronološkom popisu.",
+          "3": "Kliknite na obavijest da biste otišli na povezani sadržaj.",
+          "4": "Obavijesti uključuju: nove pratitelje, glasove za objave, komentare, napojnice i spominjanja.",
+          "5": "Nepročitane obavijesti su istaknute — označavaju se kao pročitane kada se pregledaju."
+        },
+        "tips": {
+          "1": "Značka obavijesti prikazuje broj nepročitanih obavijesti.",
+          "2": "Obavijesti o napojnicama prikazuju koliko ste tokena primili."
+        }
+      },
+      "wallet": {
+        "title": "Novčanik",
+        "intro": "Pregledajte svoje stanje DeHub tokena na više lanaca, provjerite depozite za staking i upravljajte svojim sredstvima.",
+        "steps": {
+          "1": "Kliknite 'Novčanik' u bočnoj traci da biste otvorili stranicu novčanika.",
+          "2": "Pregledajte svoje ukupno stanje tokena agregirano na svim podržanim lancima.",
+          "3": "Pogledajte raščlambe po lancima: Ethereum, Base, BNB Chain i više.",
+          "4": "Provjerite svoje depozite i nagrade za staking.",
+          "5": "Kliknite 'Osvježi skeniranje' da biste ažurirali svoje stanje iz podataka na lancu.",
+          "6": "Kopirajte svoju adresu novčanika da biste primili tokene od drugih."
+        },
+        "tips": {
+          "1": "Stanja se automatski ažuriraju, ali možete prisilno osvježiti u bilo kojem trenutku.",
+          "2": "Novčanik prikazuje i likvidna (dostupna) i uložena stanja."
+        }
+      },
+      "staking": {
+        "title": "Staking",
+        "intro": "Uložite svoje DeHub tokene kako biste zaradili nagrade i povećali svoju moć glasanja u upravljanju.",
+        "steps": {
+          "1": "Idite na stranicu 'Staking' iz bočne trake.",
+          "2": "Unesite broj tokena koje želite uložiti.",
+          "3": "Odaberite lanac na kojem želite uložiti.",
+          "4": "Potvrdite transakciju u svom novčaniku (vanjski novčanici) ili se ona automatski izvršava (društvena prijava).",
+          "5": "Pregledajte svoje uložene iznose i sve čekajuće nagrade.",
+          "6": "Da biste poništili staking, unesite iznos i potvrdite transakciju poništavanja stakinga."
+        },
+        "tips": {
+          "1": "Staking povećava vašu težinu glasa u prijedlozima upravljanja.",
+          "2": "Korisnici društvene prijave ne trebaju plin za staking — to je bez plina.",
+          "3": "Možete uložiti na više lanaca istovremeno."
+        }
+      },
+      "leaderboard": {
+        "title": "Ljestvica",
+        "intro": "Pogledajte tko je na vrhu! Ljestvica rangira korisnike prema stanju, dnevnoj potrošnji i popularnim temama.",
+        "steps": {
+          "1": "Idite na stranicu 'Ljestvica' iz bočne trake.",
+          "2": "Prebacujte se između kartica: Stanje, Dnevno potrošeno i Pričalo se o gradu.",
+          "3": "Kartica Stanje rangira korisnike prema njihovom ukupnom posjedu tokena.",
+          "4": "Kartica Dnevno potrošeno prikazuje tko je bio najaktivniji u davanju napojnica u posljednja 24 sata.",
+          "5": "Pričalo se o gradu prikazuje najčešće raspravljane teme/kategorije.",
+          "6": "Kliknite na bilo kojeg korisnika da biste posjetili njegov profil.",
+          "7": "Ljestvica se povremeno ažurira tijekom dana."
+        },
+        "tips": {
+          "1": "Dnevni rangovi se resetiraju svakih 24 sata.",
+          "2": "Pričalo se o gradu prati kategorije od jedne riječi iz hashtagova."
+        }
+      },
+      "command-centre": {
+        "title": "Zapovjedni centar",
+        "intro": "Pregled nadzorne ploče koji vam na prvi pogled prikazuje ključne metrike i aktivnosti na platformi.",
+        "steps": {
+          "1": "Kliknite na 'Zapovjedni centar' u bočnoj traci.",
+          "2": "Pregledajte sažetak svog profila, uključujući broj postova, pratitelja i angažman.",
+          "3": "Pogledajte svoje nedavne aktivnosti i popularne teme.",
+          "4": "Pristupite brzim poveznicama do često korištenih značajki."
+        },
+        "tips": {
+          "1": "Zapovjedni centar vam daje pregled vaše prisutnosti na DeHubu iz ptičje perspektive."
+        }
+      },
+      "governance": {
+        "title": "Upravljanje",
+        "intro": "Sudjelujte u upravljanju platformom kreiranjem prijedloga i glasanjem o odlukama zajednice.",
+        "steps": {
+          "1": "Idite na 'Upravljanje' iz bočne trake.",
+          "2": "Pregledajte aktivne prijedloge koje je podnijela zajednica.",
+          "3": "Kliknite na prijedlog da biste pročitali njegov potpuni opis i raspravu.",
+          "4": "Glasajte o prijedlozima pomoću gumba palac gore/dolje — vaša težina glasa ovisi o tome koliko ste DeHub tokena uložili.",
+          "5": "Ostavite komentare na prijedloge kako biste raspravljali sa zajednicom.",
+          "6": "Podnesite vlastiti prijedlog klikom na gumb 'Kreiraj prijedlog'."
+        },
+        "tips": {
+          "1": "Vaša snaga glasanja određuje se brojem tokena koje ste uložili.",
+          "2": "Nositelji znački mogu dobiti dodatnu težinu glasa.",
+          "3": "Prijedlozi prolaze kroz faze: Aktivno → Prošlo/Odbijeno."
+        }
+      },
+      "bookmarks": {
+        "title": "Oznake",
+        "intro": "Spremite postove u svoje oznake za lakši pristup kasnije.",
+        "steps": {
+          "1": "Kliknite ikonu oznake na bilo kojem postu da biste ga spremili.",
+          "2": "Idite na 'Oznake' u bočnoj traci da biste vidjeli sve spremljene postove.",
+          "3": "Kliknite na označeni post da biste ga vidjeli u cijelosti.",
+          "4": "Uklonite oznaku ponovnim klikom na ikonu oznake."
+        },
+        "tips": {
+          "1": "Oznake su privatne — samo vi možete vidjeti svoje spremljene postove.",
+          "2": "Nema ograničenja koliko postova možete označiti."
+        }
+      },
+      "settings": {
+        "title": "Postavke",
+        "intro": "Prilagodite svoje DeHub iskustvo preferencijama jezika, privatnosti i prikaza.",
+        "steps": {
+          "1": "Kliknite 'Postavke' u bočnoj traci.",
+          "2": "Promijenite jezik prikaza iz izbornika jezika.",
+          "3": "Prilagodite postavke privatnosti: kontrolirajte tko vidi vaše brojeve pratitelja i popis praćenja.",
+          "4": "Postavite svoje zadane postavke vidljivosti objave.",
+          "5": "Upravljajte postavkama obavijesti."
+        },
+        "tips": {
+          "1": "DeHub podržava više jezika — cijelo sučelje se prevodi.",
+          "2": "Postavke privatnosti primjenjuju se odmah."
+        }
+      },
+      "posting-allowance": {
+        "title": "Vaše dnevno dopuštenje za objavljivanje",
+        "intro": "Objavljivanje je besplatno svaki dan do dopuštenja koje se skalira s vašom značkom za ulaganje. Svi počinju s deset tekstualnih objava i jednim gigabajtom videozapisa, slika i zvuka dnevno. Prijeđite bilo koji od njih i ostatak tog dana plaća se u DeHub tokenima — samo na dio koji prelazi.",
+        "steps": {
+          "1": "Objavljujte kao i obično. Unutar dopuštenja ništa se ne naplaćuje i ništa se od vas ne traži.",
+          "2": "Tekstualne objave i mediji su odvojeni bazeni, tako da dan proveden u učitavanju videozapisa i dalje ostavlja svih deset tekstualnih objava besplatno.",
+          "3": "Kada objava prijeđe dopuštenje, aplikacija je prvo cijeni i provjerava može li vaš novčanik pokriti prije nego što se bilo što učita.",
+          "4": "Objava se objavljuje točno kao da je unutar dopuštenja — objavljivanje nikada ne čeka plaćanje.",
+          "5": "Zatim odobravate jedan prijenos samo za tu objavu, riješen na bilo kojem od Base ili BNB Chaina koji drži dovoljno DeHub tokena.",
+          "6": "Oba bazena se resetiraju u ponoć UTC."
+        },
+        "tips": {
+          "1": "Prekoračenje je pro-rata: 200 MB iznad vašeg dopuštenja košta 200 MB, a ne cijeli gigabajt.",
+          "2": "Ponovno objavljivanje, komentari, reakcije, savjeti i poruke ne koštaju ništa i nikada ne diraju dopuštenje.",
+          "3": "Odbijte plaćanje i objava ostaje — iznos samo blokira vašu sljedeću plaćenu objavu dok se ne podmiri. Sutrašnje besplatno dopuštenje je uvijek vaše.",
+          "4": "Značka za ulaganje povećava besplatno dopuštenje i snižava cijenu svega iznad toga."
+        }
+      },
+      "reactions-and-safety": {
+        "title": "Reakcije, Mute & Sadržaj za odrasle",
+        "intro": "Postoji devet reakcija iza gumba za lajk, te skup kontrola za odlučivanje što vidite i tko vas može doseći.",
+        "steps": {
+          "1": "Držite palac gore na bilo kojoj objavi da biste otvorili ladicu za reakcije: lajk, ljubav, poštovanje, vruće, lol, tužno, plač, ne sviđa mi se i govno.",
+          "2": "Sedam pozitivnih broji se prema ukupnom broju lajkova objave; ne sviđa mi se i govno broje se protiv toga.",
+          "3": "Vaša reakcija je ponderirana vašom značkom za ulaganje, tako da reakcija nositelja značke pomiče brojač dalje od jednog glasa.",
+          "4": "Dodirnite X u zaglavlju objave da biste utišali njenog autora — oni odmah nestaju iz vašeg feeda.",
+          "5": "Kreatori svoje objave označavaju kao sadržaj za odrasle dok ih sastavljaju; te objave ostaju izvan javnog početnog feeda.",
+          "6": "Da biste vidjeli sadržaj za odrasle posvuda, uključite 'Prikaži sadržaj za odrasle' u Postavkama."
+        },
+        "tips": {
+          "1": "Objava za odrasle i dalje je potpuno vidljiva na profilu kreatora i osobama koje ga prate.",
+          "2": "Blokiranje s profila ide dalje od utišavanja i također prekida slanje poruka.",
+          "3": "Ladica za reakcije prikazuje tko je reagirao i s čime, tako da možete vidjeti sobu umjesto samo broj."
+        }
+      },
+      "stages": {
+        "title": "Stage (Audio sobe uživo)",
+        "intro": "Stage su audio sobe uživo ugrađene u DeHub. Domaćin otvara sobu, dovodi govornike, a svatko se može pridružiti da sluša sa stranice Stage ili putem dijeljene veze.",
+        "steps": {
+          "1": "Otvorite 'Stage' u bočnoj traci da biste vidjeli što je uživo sada i što je zakazano.",
+          "2": "Dodirnite uživo pozornicu da biste se pridružili kao slušatelj, ili postavite podsjetnik na zakazanu i obavijestite se kada započne.",
+          "3": "Pokrenite vlastitu sa iste stranice — možete ići uživo izravno iz preglednika, bez OBS-a ili ključa za prijenos.",
+          "4": "Kao domaćin, dovedite govornike na pozornicu, utišajte ih ili ih uklonite, podijelite svoj zaslon i upravljajte zvučnom pločom.",
+          "5": "Slušatelji šalju reakcije uživo i razgovaraju u chatu sobe bez dolaska na pozornicu.",
+          "6": "Svaka pozornica se snima, a snimka se naknadno reproducira s kartice na kojoj se pojavljuje."
+        },
+        "tips": {
+          "1": "Titlovi uživo titluju svakog govornika i prevode se na bilo koji jezik koji čitate.",
+          "2": "Uživo titlovanje može govoriti sobu naglas vlastitim kloniranim glasom domaćina, naplaćuje se po minuti u DeHub tokenima.",
+          "3": "Domaćini mogu staviti radio postaju u eter ili reproducirati vlastite glazbene isječke između razgovora.",
+          "4": "Mini-player održava sobu u kutu dok pregledavate ostatak aplikacije."
+        }
+      },
+      "communities": {
+        "title": "Zajednice i Događaji",
+        "intro": "Zajednice su prostori koje vode članovi sa vlastitim feedom, članovima i aktivnostima. Događaji dodaju vremenski ograničeno programiranje na njih.",
+        "steps": {
+          "1": "Otvorite 'Zajednice' u bočnoj traci i pregledajte javne.",
+          "2": "Pridružite se jednim dodirom. Nova aktivnost prikazuje se kao nepročitana značka u navigaciji.",
+          "3": "Objavljujte, raspravljajte, pokrećite ankete i dajte napojnice unutar feeda zajednice.",
+          "4": "Vlasnici zajednica moderiraju vlastiti prostor i mogu dodijeliti administratorska prava drugima.",
+          "5": "Otvorite 'Događaji' za zakazano programiranje, s punom stranicom za svaki događaj koji možete pratiti uživo."
+        },
+        "tips": {
+          "1": "Chat zajednice podržava @spominjanja i @ovdje, tako da objava može doseći sobu.",
+          "2": "Link za pozivnicu omogućuje vam da dovedete ljude izravno u zajednicu."
+        }
+      },
+      "arcade": {
+        "title": "Arkada",
+        "intro": "Pet igara se pokreće unutar DeHub-a u kartici preglednika — ništa za instalirati, ništa za kupiti.",
+        "steps": {
+          "1": "Otvorite 'Arkadu' u bočnoj traci.",
+          "2": "Odaberite igru: King's Gambit (3D šah s online Elo ljestvicom), Claude of Duty (pucačina koja generira vlastitu grafiku dok se učitava), Jungle Trail (proceduralna šetnja prašumom), Street Slayer (beat 'em up napravljen za DeHub) ili Chartopia (trgovački pod koji se može prošetati).",
+          "3": "Igrajte u kartici. King's Gambit i Street Slayer vode ljestvice.",
+          "4": "Chartopia se također pokreće u VR slušalicama putem WebXR-a."
+        },
+        "tips": {
+          "1": "Dvoje od njih skriveno je unutar tema izgleda — postavite aplikaciju na Rat za Claude of Duty, ili Džungla za Jungle Trail.",
+          "2": "Svaka igra ima vlastitu karticu za dijeljenje, tako da se link na nju pravilno otvara gdje god je objavite."
+        }
+      },
+      "bounties-stores": {
+        "title": "Nagrade i Trgovine",
+        "intro": "Dva načina da platformu pretvorite u prihod: objavite ili zatražite nagradu, ili otvorite izlog i prodajte svojoj publici.",
+        "steps": {
+          "1": "Otvorite 'Nagrade' za pregled otvorenog posla, filtriranog po kategoriji ili valuti.",
+          "2": "Zatražite jednu, obavite posao i pošaljite je za prikupljanje nagrade — svatko može biti lovac, nije potrebna prijava.",
+          "3": "Objavite vlastitu nagradu s kratkim opisom i nagradom u DeHub tokenima ili USDC-u. Ona se stavlja u escrow u trenutku objave.",
+          "4": "Otvorite 'Trgovine' kako biste postavili izlog s vlastitom stranicom, brendiranjem i popisima.",
+          "5": "Proizvodi se cijene i obračunavaju u DeHub tokenima putem ugrađenog novčanika, bez vanjske naplate."
+        },
+        "tips": {
+          "1": "Nagrade su organizirane u kategorije Društveni mediji, Isječci i Ugovori.",
+          "2": "Proces rješavanja sporova rješava nesuglasice oko isporuke, tako da se escrow uvijek pošteno rješava.",
+          "3": "Kreatori koriste nagrade za rast zajednice — dijeljenja, isječci i reakcije su svi valjani zadaci."
+        }
+      },
+      "creator-studio": {
+        "title": "Kreativni studio i uređivač",
+        "intro": "Kreativni studio generira slike, video, glazbu, glas i 3D modele iz upita, te ih predaje uređivaču — uključujući potpuni video uređivač s više zapisa koji radi u pregledniku.",
+        "steps": {
+          "1": "Otvorite Kreativni studio i opišite što želite da se napravi.",
+          "2": "Poslužitelj navodi cijenu prije pokretanja posla, tako da vidite koliko košta prije nego što potrošite.",
+          "3": "Renderi se nastavljaju u zajedničkom redu čekanja dok vi nastavite pregledavati aplikaciju.",
+          "4": "Rasporedite rezultate u uređivaču u stilu Canve, ili otvorite video uređivač za pravi vremenski slijed s rezanjem, slojevima i izvozom.",
+          "5": "Prebacite gotov komad izravno u objavu, kratki video ili popis trgovine."
+        },
+        "tips": {
+          "1": "Besplatna knjižnica osnovnih sredstava nalazi se uz Studio za sve što biste radije ne generirali.",
+          "2": "Generiranje se plaća u DeHub tokenima iz vašeg novčanika — potpisujete jedan prijenos po poslu, a cijena se navodi prije nego što platite.",
+          "3": "Intenzivniji korisnici mogu uzeti plan Ultra, Team ili Scale, koji šalje mjesečni dodatak tokena izravno u njihov novčanik."
+        }
+      },
+      "buying-dhb": {
+        "title": "Kupnja tokena",
+        "intro": "Kupite DeHub tokene izravno unutar aplikacije koristeći ugrađeno sučelje za zamjenu.",
+        "steps": {
+          "1": "Idite na stranicu 'Kupi' iz bočne trake.",
+          "2": "Odaberite token iz kojeg želite zamijeniti (npr. ETH, USDC).",
+          "3": "Unesite iznos koji želite potrošiti ili broj tokena koje želite primiti.",
+          "4": "Pregledajte tečaj i procijenjeni izlaz.",
+          "5": "Kliknite ikonu postavki zupčanika da biste prilagodili toleranciju na proklizavanje (zadana je 1%).",
+          "6": "Potvrdite transakciju zamjene.",
+          "7": "DeHub tokeni će se pojaviti u vašem novčaniku nakon što se transakcija dovrši."
+        },
+        "tips": {
+          "1": "Veća tolerancija na proklizavanje = veća vjerojatnost izvršenja, ali potencijal za lošije cijene.",
+          "2": "Uvijek provjerite tečaj prije potvrde.",
+          "3": "Možete postaviti prilagođeno proklizavanje u panelu postavki."
+        }
+      },
+      "bridge": {
+        "title": "Bridge",
+        "intro": "Premjestite svoje DeHub tokene između podržanih blockchaina koristeći cross-chain bridge.",
+        "steps": {
+          "1": "Navigirajte na stranicu 'Bridge' iz bočne trake.",
+          "2": "Odaberite izvornu mrežu (gdje se trenutno nalaze vaši tokeni).",
+          "3": "Odaberite odredišnu mrežu (gdje ih želite poslati).",
+          "4": "Unesite broj tokena za premošćivanje.",
+          "5": "Pregledajte naknadu za premošćivanje i procijenjeno vrijeme dolaska.",
+          "6": "Potvrdite transakciju premošćivanja.",
+          "7": "Pričekajte da se transakcija dovrši — premošćivanje može potrajati nekoliko minuta."
+        },
+        "tips": {
+          "1": "Naknade za premošćivanje variraju ovisno o paru mreža.",
+          "2": "Premošćivanje obično traje 1-5 minuta, ovisno o uključenim mrežama.",
+          "3": "Uvijek dvaput provjerite odredišnu mrežu prije potvrde."
+        }
+      },
+      "music-tv": {
+        "title": "Glazba i TV",
+        "intro": "Uživajte u medijskom sadržaju izravno unutar DeHub-a — slušajte glazbu i gledajte TV kanale uživo.",
+        "steps": {
+          "1": "Navigirajte na 'Glazba' iz bočne trake kako biste pregledali i reproducirali glazbene objave.",
+          "2": "Navigirajte na 'TV' kako biste pristupili TV kanalima uživo.",
+          "3": "Pregledajte kanale prema kategoriji ili zemlji.",
+          "4": "Kliknite na kanal da biste započeli gledanje.",
+          "5": "Upotrijebite kontrole playera za podešavanje glasnoće i reprodukcije.",
+          "6": "Prijavite neispravne kanale pomoću gumba za prijavu."
+        },
+        "tips": {
+          "1": "TV kanali su provjereni od strane zajednice radi pouzdanosti.",
+          "2": "Glazbene objave mogu se reproducirati tijekom pregledavanja drugog sadržaja."
+        }
+      },
+      "post-info": {
+        "title": "Informacije o objavi i frakcije",
+        "intro": "Mintana objava je NFT podijeljen na 1.000 frakcija. Stranica s informacijama o objavi prikazuje podatke na lancu, statistiku angažmana, raspodjelu vlasništva i omogućuje vam trgovanje frakcijama bilo koje objave — na nemintanoj objavi nudi se opcija mintanja umjesto toga.",
+        "steps": {
+          "1": "Dodirnite ikonu 'ⓘ' na bilo kojoj objavi da biste otvorili njezinu stranicu s informacijama o objavi.",
+          "2": "Na vrhu ćete vidjeti Token ID (jedinstveni identifikator na lancu) i hash transakcije — kliknite na hash da biste ga vidjeli u istraživaču blokova.",
+          "3": "Ispod toga, statistika angažmana prikazuje ukupan broj lajkova, dislajkova, pregleda, komentara i primljenih napojnica.",
+          "4": "Odjeljak Držatelji prikazuje traku napretka koliko od 1.000 frakcija kreator još uvijek posjeduje, plus popis svih držatelja frakcija s njihovim stanjima i postocima.",
+          "5": "Ako je objava plaćena po pregledu (PPV), vidjet ćete cijenu, valutu i koliko je korisnika kupilo pristup.",
+          "6": "Vlasnici objava mogu promijeniti vidljivost (Javno, Nenavedeno ili Privatno) i urediti naslov/opis izravno s ove stranice."
+        },
+        "tips": {
+          "1": "Svježe mintana objava počinje s kreatorom koji drži svih 1.000 frakcija (100% vlasništvo).",
+          "2": "Hash transakcije povezuje se s BaseScan-om ili BscScan-om, ovisno o mreži.",
+          "3": "Nepopularni postovi se ne pojavljuju u feedovima, ali im se i dalje može pristupiti putem izravne poveznice."
+        }
+      },
+      "trading-fractions": {
+        "title": "Razlomci trgovanja",
+        "intro": "Trgovanje razlomcima — pregledavanje oglasa, davanje ponuda, uvrštavanje vlastitih — živi na web aplikaciji na dehub.io, na stranici Post Info svake objave.",
+        "steps": {
+          "1": "Otvorite dehub.io u pregledniku i prijavite se istim računom.",
+          "2": "Otvorite stranicu Post Info i prebacite se na karticu Marketplace.",
+          "3": "Pregledajte oglase, dajte ponudu po svojoj cijeni ili navedite dijelove oglasa koje posjedujete.",
+          "4": "Nakon što trgovina završi, promjena se prikazuje na kartici Razlomci ovdje na mobilnom uređaju."
+        },
+        "tips": {
+          "1": "Posjedovanje dijelova objave znači da imate udio u tom NFT-u na lancu.",
+          "2": "Prije kupnje provjerite vlasnike objava na web-tržištu kako biste vidjeli raspodjelu vlasništva.",
+          "3": "Kao kreatoru, prodaja dijelova sadržaja omogućuje fanovima da budu suvlasnici tvog sadržaja."
+        }
+      },
+      "minting-posts": {
+        "title": "Mintanje postova (Stvaranje NFT-ova)",
+        "intro": "Mintanje je opcionalno. Post se objavljuje izvan lanca u trenutku kada ga pošaljete — bez novčanika, bez potpisa, bez plina — i možete ga mintati kao NFT kad god želite, bilo dok ga sastavljate ili kasnije iz samog posta.",
+        "steps": {
+          "1": "Kliknite gumb \"Post\" u bočnoj traci (desktop) ili gumb + (mobilni).",
+          "2": "Napišite svoj tekst, priložite medije (slike, videozapise, zvuk) i dodajte kategorije.",
+          "3": "Ostavite \"Mint post\" isključenim da biste objavili izvan lanca, ili ga uključite da biste mintali prilikom objavljivanja.",
+          "4": "Objavljivanje nikada ne čeka na lancu: objava se u svakom slučaju pojavljuje u feedu.",
+          "5": "Za kovanje kasnije, otvorite stranicu s informacijama o objavi „ⓘ” i tamo upotrijebite radnju „Kovnica”.",
+          "6": "Nakon što se iskuje, objava dobiva ID tokena i hash transakcije koji možete potvrditi na lancu, a vi držite svih 1000 dijelova."
+        },
+        "tips": {
+          "1": "Društvene prijave, prijave e-poštom i SMS-om ne plaćaju ništa — DeHub sponzorira naknade za kovanje.",
+          "2": "Vanjski korisnici novčanika trebaju ETH na bazi ili BNB na BNB lancu za plin.",
+          "3": "Kovanje je ono što čini post-trgovinu i nošenje tantijema. Neiskovana objava i dalje donosi napojnice i poglede.",
+          "4": "Zapis na lancu je trajan nakon kovanja, čak i ako se objava kasnije izbriše iz feeda."
+        }
+      },
+      "glossary": {
+        "title": "POJMOVNIK",
+        "intro": "Opsežan pojmovnik kriptovaluta i terminologije platforme koji će vam pomoći u snalaženju na webu3.",
+        "steps": {
+          "1": "Idi na „Rječnik” na bočnoj traci.",
+          "2": "Pregledajte pojmove abecednim redom ili upotrijebite pretraživanje kako biste pronašli određene pojmove.",
+          "3": "Kliknite na pojam da biste vidjeli njegovu punu definiciju i objašnjenje.",
+          "4": "Pojmovi obuhvaćaju kripto koncepte, terminologiju DeFi i značajke specifične za DeHub."
+        },
+        "tips": {
+          "1": "Odličan resurs za nove korisnike kriptovaluta i Web3.",
+          "2": "Rječnik se redovito ažurira novim uvjetima."
+        }
+      }
     }
   }
 }

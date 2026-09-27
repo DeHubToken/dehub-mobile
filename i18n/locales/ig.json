@@ -3432,11 +3432,6 @@
     "noResultsFor": "Nsonaazụ maka \"{{query}}\"",
     "guideSubtitle": "Nzọụkwụ site na nzọụkwụ nke njirimara ọ bụla",
     "searchGuide": "Chọọ nduzi...",
-    "guideFractionsTip": "Post ọ bụla e mintere na-amalite na onye kere ya ji òkè ya niile (nwe 100%).",
-    "guideInfoStep": "Pịa akara ozi dị na post e mintere iji mepee azụmahịa mint ya na block explorer ma nyochaa ndekọ dị na chain.",
-    "guideMintIntro": "Ime mint post dị ka NFT na blockchain bụ nhọrọ. Mint ya mgbe ị na-ebipụta, ma ọ bụ bipụta ya ugbu a ma mint ya ma emechaa site na menu post.",
-    "guideMintPublishStep": "Họrọ ma ị ga-eme mint, wee pịa 'Post' ibipụta. Ọ bụrụ na ị hapụ mint, ị nwere ike ime mint post ahụ ma emechaa site na menu ya.",
-    "guideMintFractionsStep": "Ị na-anata òkè 1,000 niile (nwe 100%) nke post gị a mintịrị ọhụrụ.",
     "glossaryMintTxDesc": "Pịa akara ozi dị na post e mintere iji mepee azụmahịa mint ya na block explorer ma nyochaa ndekọ dị na chain. Ibe Ozi Post zuru ezu — ọnụ ọgụgụ, ndị nwe, ahịa — dị na ngwa weebụ na dehub.io.",
     "glossaryTokenIdDesc": "Njirimara pụrụ iche dị na chain e nyere post mgbe e mintere ya dị ka NFT.",
     "repostsTab": "Ndepụta",
@@ -3453,24 +3448,7 @@
     "glossaryStakingDesc": "Tinye DeHub tokens gị ka ị nweta ụgwọ ọrụ ka oge na-aga. Tokens etinyere na-enyekwa gị ike ịtụ vootu karịa na njikwa.",
     "glossaryGovernanceDesc": "Nyefee ma tụọ vootu na aro ndị na-akpụzi ikpo okwu ahụ. Ike ịtụ vootu gị dabere na ọnụọgụ DeHub tokens ị nwere.",
     "glossaryStakingBadgesDesc": "Badges egosiri n'akụkụ aha njirimara gị dabere na mkpokọta DeHub token gị (akpa + etinyere). Enwere ogo 13 — ka ọtụtụ tokens ị nwere, ka ọkwa badge gị ga-adị elu. Ọkwa dị elu na-enye ike ịtụ vootu karịa na ụgwọ ikpo okwu dị ala.",
-    "glossaryLeaderboardDesc": "A na-ahazi ndị ọrụ site na mkpokọta DeHub token (akpa + etinyere na agbụ niile). A na-emelite ogo mgbe niile ma na-eso mgbanwe nke ụbọchị 1 na izu 1. Ị nwekwara ike ịtọ site na ndụmọdụ izipu, ndụmọdụ enwetara, ndị na-eso ụzọ, mmasị, ma ọ bụ ndị debara aha.",
-    "guideTipStep": "Pịa akara ngosi gem/tip iji zipu onye okike post ahụ ndụmọdụ na DeHub tokens.",
-    "guideTipWalletTip": "Ndụmọdụ na-aga ozugbo na akpa onye okike dị ka DeHub tokens.",
-    "guideTipNotificationsTip": "Ihe ngosi ngosi na-egosi ego ole DeHub tokens ị nwetara.",
-    "guideWalletIntro": "Lelee nguzozi DeHub token gị n'ofe ọtụtụ agbụ, lelee ntinye ego, ma jikwaa akụ gị.",
-    "guideWalletTotalStep": "Lelee nguzozi DeHub token gị zuru oke agbakọrọ n'ofe agbụ niile akwadoro.",
-    "guideStakingIntro": "Tinye DeHub tokens gị ka ị nweta ụgwọ ọrụ ma mụbaa ike ịtụ vootu gị.",
-    "guideStakingAmountStep": "Tinye ego ole DeHub tokens ị chọrọ itinye.",
-    "guideLeaderboardBalanceStep": "Tab nguzozi na-ahazi ndị ọrụ site na mkpokọta DeHub token ha.",
-    "guideGovernanceVoteStep": "Tụọ vootu na aro site na iji bọtịnụ mkpịsị aka elu/ala — ibu vootu gị dabere na ego ole DeHub tokens ị tinyegoro.",
-    "guideGovernancePowerTip": "Ike vootu gị dabere na ego ole DeHub tokens ị tinyegoro.",
-    "guideBuyIntro": "Zụta DeHub tokens ozugbo na DPay site na iji kaadị ma ọ bụ crypto akwadoro.",
-    "guideBuyAmountStep": "Tinye ego ị chọrọ imefu ma ọ bụ ego ole DeHub tokens ị chọrọ ịnata.",
-    "guideBuyDeliveredStep": "DeHub tokens gị ga-apụta na akpa gị ozugbo azụmahịa ahụ mechara.",
-    "guideBridgeIntro": "Bugharịa DeHub tokens gị n'etiti agbụ akwadoro site na iji akwa akwa akwa.",
-    "guideBridgeSourceStep": "Họrọ agbụ isi iyi (ebe DeHub tokens gị dị ugbu a).",
-    "guideBridgeDestStep": "Họrọ agbụ ebe a ga-aga (ebe ị chọrọ izipu DeHub tokens gị).",
-    "guideBridgeAmountStep": "Tinye ego ole DeHub tokens ga-agafe."
+    "glossaryLeaderboardDesc": "A na-ahazi ndị ọrụ site na mkpokọta DeHub token (akpa + etinyere na agbụ niile). A na-emelite ogo mgbe niile ma na-eso mgbanwe nke ụbọchị 1 na izu 1. Ị nwekwara ike ịtọ site na ndụmọdụ izipu, ndụmọdụ enwetara, ndị na-eso ụzọ, mmasị, ma ọ bụ ndị debara aha."
   },
   "arcade": {
     "submitAccessibility": "Nyefee egwuregwu na arcade",
@@ -6791,6 +6769,504 @@
       "packEmpty": "Enweghị emoji achọtara n 'ebe ahụ",
       "shortcodeTaken": "{{name}} ejirila ya",
       "shortcodeStandard": "{{name}} bụrịrịrị emoji"
+    }
+  },
+  "guide": {
+    "sections": {
+      "getting-started": {
+        "title": "Ịmalite",
+        "intro": "Enwere ụzọ ise iji banye na DeHub ma ọ nweghị nke ọ bụla n'ime ha chọrọ ka ị nwee akpa ego: Google, Apple, koodu iziga na email gị, koodu iziga site na SMS, ma ọ bụ akpa ego dị adị nke ị jikọrọ. Ihe niile ma e wezụga ụzọ akpa ego na-emepụta akpa ego na-enweghị onye nchekwa n'azụ ihe nkiri — ị na-ejide igodo, ma DeHub na-akwado gas ka ị nwee ike ibipụta, nye ego na ịnakọta na-enweghị ịzụta akara ngosi obodo.",
+        "steps": {
+          "1": "Gaa na dehub.io — nri ụlọ bụ ibe mbụ, yabụ ị nwere ike ile anya tupu ịbanye.",
+          "2": "Pịa 'Banye'. Ị ga-ahụ Google na Apple, oghere maka adreesị email ma ọ bụ nọmba ekwentị, na 'Jikọọ Akpa Ego' maka nke dị adị.",
+          "3": "Site na Google ma ọ bụ Apple, mezue usoro onye na-enye ya. Site na email ma ọ bụ SMS, tinye koodu ahụ bịara.",
+          "4": "A na-emepụta akpa ego ma chekwaa ya maka gị na ntinye mbụ. Ijiko akpa ego gị kama pụtara otu mbinye aka iji gosi adreesị ahụ.",
+          "5": "Họrọ aha njirimara. Ọ bụ ihe ndị mmadụ na-ahụ ma ọ na-ejekwa ozi dị ka njikọ profaịlụ dehub.io/<username> gị.",
+          "6": "Ị banyela. Chọgharịa nri, hazie profaịlụ gị, ma malite ibipụta."
+        },
+        "tips": {
+          "1": "Ntinye mmekọrịta, email na SMS anaghị akwụ gas — DeHub na-akwado ya. Akpa ego ejikọrọ na-akwụ ETH ma ọ bụ BNB nke ha.",
+          "2": "Ịlaghachi na akaụntụ DeHub ochie? Banye na email ma ọ bụ nọmba ekwentị ọ jiri ma njikọ ahụ ga-achọta ya maka gị.",
+          "3": "Ị nwere ike idobe akaụntụ ole na ole na otu ngwaọrụ ma gbanwee n'etiti ha na Ntọala → Profaịlụ."
+        }
+      },
+      "home-feed": {
+        "title": "Nri ụlọ",
+        "intro": "Nri ụlọ bụ ebe ị na-ahụ posts sitere n'aka ndị ị na-eso na ọdịnaya na-ewu ewu. Ọ na-akwado taabụ ụdị ọdịnaya dị iche iche na nhọrọ nhazi.",
+        "steps": {
+          "1": "Gaa na /app — nke a bụ nri ụlọ gị.",
+          "2": "Jiri taabụ ndị dị n'elu iji nyochaa site na ụdị ọdịnaya: Ụlọ (niile), Vidiyo, onyonyo, Nkenke, Egwu, ma ọ bụ Ndenye ndụ.",
+          "3": "Pịgharịa aka ekpe/aka nri na taabụ iji hụ nhọrọ ndị ọzọ na mkpanaka.",
+          "4": "Jiri bọtịnụ nyocha/nhazi (elu-aka nri nke nri) iji gbanwee nhazi: Ọkụ, Ọhụrụ, ma ọ bụ Elu.",
+          "5": "Dọpụta ala iji mee ka nri dị ọhụrụ na mkpanaka.",
+          "6": "Pịgharịa ala iji bugharịa ọkwa ndị ọzọ na-akpaghị aka (nke na-enweghị njedebe).",
+          "7": "Gbanwee n'etiti Grid na Feed view site na iji onye na-agbanwe nhazi."
+        },
+        "tips": {
+          "1": "Nlele Grid dị mma maka nchọgharị onyonyo ngwa ngwa.",
+          "2": "Taabụ 'Ụlọ' na-egosi ụdị ọdịnaya niile agwakọtara ọnụ.",
+          "3": "Taabụ Ndụ na-egosi ndụ ndụ na-arụ ọrụ ugbu a."
+        }
+      },
+      "creating-posts": {
+        "title": "Ịmepụta Nzipu",
+        "intro": "Mepụta nzipu ederede, kesaa onyonyo, vidiyo, ndetu olu, GIFs, na ndị ọzọ. Jiri hashtags, cashtags, na aha iji bulie iru.",
+        "steps": {
+          "1": "Pịa bọtịnụ 'Nzipu' na akụkụ akụkụ (desktop) ma ọ bụ bọtịnụ + (mkpanaka).",
+          "2": "Detuo ederede gị na mpaghara nchịkọta.",
+          "3": "Iji tinye onyonyo ma ọ bụ vidiyo, pịa akara ngosi mgbasa ozi wee họrọ faịlụ.",
+          "4": "Iji dekọọ ndetu olu, pịa akara ngosi igwe okwu.",
+          "5": "Iji tinye GIF, pịa akara ngosi GIF wee chọọ otu.",
+          "6": "Jiri #hashtags iji kewaa nzipu gị (dịka, #crypto, #defi).",
+          "7": "Jiri $cashtags iji rụtụ aka na tokens (dịka, $DHB, $ETH).",
+          "8": "Jiri @mentions iji kpado ndị ọrụ ndị ọzọ (dịka, @username).",
+          "9": "Pịa 'Nzipu' ka ibipụta. Nzipu gị pụtara na nri ozugbo."
+        },
+        "tips": {
+          "1": "Nzipu na-akwado nhazi ụdị markdown.",
+          "2": "Ị nwere ike ịdepụta nzipu site na ịpị akara ngosi nzipu ọzọ na nzipu ọ bụla wee họrọ 'Quote'.",
+          "3": "Udi (hashtags) pụtara na 'Talk of the Town' leaderboard."
+        }
+      },
+      "interacting-with-posts": {
+        "title": "Ịmekọrịta na Nzipu",
+        "intro": "Tinye aka na ọdịnaya site na ịtụ vootu, ikwu okwu, inye onyinye, nchekwa, ịkekọrịta, na ịtụgharị asụsụ.",
+        "steps": {
+          "1": "Tụọ vootu elu ma ọ bụ ala nzipu site na iji akara ngosi akụ n'akụkụ aka ekpe nke nzipu ọ bụla.",
+          "2": "Pịa akara ngosi okwu iji mepee ngalaba okwu ma hapụ nzaghachi.",
+          "3": "Pịa akara ngosi gem/tip iji zipu tip na DeHub tokens nye onye okike nzipu.",
+          "4": "Pịa akara ngosi nchekwa iji chekwaa nzipu maka mgbe e mesịrị.",
+          "5": "Pịa akara ngosi nkesa iji detuo njikọ nzipu ma ọ bụ kesaa ya n'èzí.",
+          "6": "Pịa bọtịnụ ntụgharị asụsụ (akara ụwa) na post ọ bụla iji sụgharịa ederede n'asụsụ gị.",
+          "7": "Maka post onyonyo, jiri bọtịnụ 'Translate Image' iji nweta ụdị AI sụgharịrị nke ederede dị n'ime onyonyo ahụ.",
+          "8": "Pịa na post ọ bụla iji mepee ya na ihuenyo zuru oke otu post."
+        },
+        "tips": {
+          "1": "Nkwado na-aga ozugbo na akpa onye okike na DeHub tokens.",
+          "2": "Ị nwere ike ịtọ ọnụọgụ nkwado site na bọtịnụ nhọrọ ngwa ngwa ma ọ bụ tinye ọnụọgụ omenala.",
+          "3": "Post ndị edepụtara n'akwụkwọ nwere ike ịnweta site na ibe Akwụkwọ n'akụkụ sidebar."
+        }
+      },
+      "explore-search": {
+        "title": "Nyocha & Chọọ",
+        "intro": "Chọpụta ọdịnaya na ndị ọrụ ọhụrụ site na ibe nyocha na ọrụ nchọta dị ike.",
+        "steps": {
+          "1": "Gaa na /app/explore site na sidebar.",
+          "2": "Jiri ogwe nchọta dị n'elu iji chọọ ndị ọrụ, post, ma ọ bụ ọdịnaya.",
+          "3": "Nyochaa nsonaazụ site na taabụ: All, People, Posts, Images, Videos, Music, Live.",
+          "4": "Chọgharịa isiokwu na ngalaba ndị na-ewu ewu na ibe nyocha.",
+          "5": "Pịa isiokwu na-ewu ewu iji hụ post niile metụtara ya.",
+          "6": "Pịa onye ọrụ na nsonaazụ nchọta iji gaa na profaịlụ ha."
+        },
+        "tips": {
+          "1": "Nchọta na-akwado aha njirimara, adreesị akpa, na okwu ọchụchọ ọdịnaya.",
+          "2": "Isiokwu ndị na-ewu ewu na-emelite dabere na ọrụ ntinye akwụkwọ na nso nso a."
+        }
+      },
+      "profile": {
+        "title": "Profaịlụ",
+        "intro": "Profaịlụ gị na-egosipụta post gị, ndị na-eso gị, ndị ị na-eso, na ozi akpa.",
+        "steps": {
+          "1": "Pịa avatar gị ma ọ bụ 'Profile' na sidebar iji lelee profaịlụ gị.",
+          "2": "Pịa 'Edit Profile' iji melite aha ngosi gị, bio, na avatar.",
+          "3": "Bulite foto profaịlụ site na ịpị avatar gị na ọnọdụ edezi.",
+          "4": "Lelee ọnụọgụ ndị na-eso gị na ndị ị na-eso na ibe profaịlụ gị.",
+          "5": "Chọgharịa post gị, mgbasa ozi, na ọdịnaya masịrị site na taabụ profaịlụ.",
+          "6": "Detuo adreesị akpa gị site na ịpị akara oyiri n'akụkụ ya.",
+          "7": "Gaa na profaịlụ ndị ọrụ ndị ọzọ site na ịpị aha njirimara ha ma ọ bụ avatar ha ebe ọ bụla n'elu ikpo okwu."
+        },
+        "tips": {
+          "1": "Aha njirimara gị pụrụ iche ma pụta na URL profaịlụ gị (dehub.io/@username).",
+          "2": "Ntọala nzuzo na-enye gị ohere ịchịkwa onye nwere ike ịhụ ọnụọgụ ndị na-eso gị."
+        }
+      },
+      "messages": {
+        "title": "Ozi",
+        "intro": "Zipu ozi ozugbo nye ndị ọrụ ndị ọzọ n'elu ikpo okwu.",
+        "steps": {
+          "1": "Pịa 'Messages' na sidebar iji mepee ibe ozi.",
+          "2": "Pịa bọtịnụ edezi ka ịmalite mkparịta ụka ọhụrụ.",
+          "3": "Chọọ onye ọrụ site na aha njirimara iji ziga ozi.",
+          "4": "Detuo ozi gị wee pịa izipu.",
+          "5": "Lelee akụkọ mkparịta ụka gị na ndepụta ozi.",
+          "6": "Pịa mkparịta ụka iji gaa n'ihu na-akparịta ụka."
+        },
+        "tips": {
+          "1": "Ị ga-enweta ọkwa mgbe mmadụ zitere gị ozi.",
+          "2": "Ndị Okike nwere ike igbachi ozi n'azụ ihe achọrọ."
+        }
+      },
+      "ai-assistant": {
+        "title": "Onye enyemaka AI",
+        "intro": "Kparịta ụka na onye enyemaka AI nke DeHub wuru maka enyemaka, ozi, na ọrụ okike.",
+        "steps": {
+          "1": "Pịa 'Onye enyemaka' na akụkụ akụkụ iji mepee mkparịta ụka AI.",
+          "2": "Detuo ajụjụ gị ma ọ bụ arịrịọ gị na ntinye mkparịta ụka.",
+          "3": "AI nwere ike inye aka na ozi crypto, ajụjụ gbasara ikpo okwu, na ihe ọmụma n'ozuzu.",
+          "4": "Malite mkparịta ụka ọhụrụ site na ịpị bọtịnụ mkparịta ụka ọhụrụ.",
+          "5": "Lelee akụkọ mkparịta ụka gị na akụkụ akụkụ nke ibe onye enyemaka.",
+          "6": "Ị nwere ike itinye onyonyo ka AI nyochaa."
+        },
+        "tips": {
+          "1": "AI na-echeta ihe gbasara mkparịta ụka.",
+          "2": "Ị nwere ike ịjụ AI gbasara atụmatụ DeHub, okwu crypto, ma ọ bụ ajụjụ n'ozuzu.",
+          "3": "A na-echekwa mkparịta ụka gara aga ma enweta ya oge ọ bụla."
+        }
+      },
+      "notifications": {
+        "title": "Ọkwa",
+        "intro": "Nọrọ na-emelite na mmasị, nkọwa, ndụmọdụ, nsochi, na ihe omume ndị ọzọ na ọdịnaya gị.",
+        "steps": {
+          "1": "Pịa akara ngosi mgbịrịgba ma ọ bụ 'Ọkwa' na akụkụ akụkụ.",
+          "2": "Lelee ọkwa niile na ndepụta chronological.",
+          "3": "Pịa ọkwa iji gaa na ọdịnaya metụtara ya.",
+          "4": "Ọkwa gụnyere: ndị na-eso ụzọ ọhụrụ, votu post, nkọwa, ndụmọdụ, na aha.",
+          "5": "A na-egosipụta ọkwa ndị a na-agụghị — ha na-ede ha dị ka agụrụ mgbe elechara ha anya."
+        },
+        "tips": {
+          "1": "Ihe ngosi ọkwa na-egosi ọnụ ọgụgụ ọkwa ndị a na-agụghị.",
+          "2": "Ọkwa ndụmọdụ na-egosi ego ole ị natara."
+        }
+      },
+      "wallet": {
+        "title": "Akpa ego",
+        "intro": "Lelee nguzozi token DeHub gị na ọtụtụ yinye, lelee ntinye staking, ma jikwaa akụ gị.",
+        "steps": {
+          "1": "Pịa 'Akpa ego' na akụkụ akụkụ iji mepee ibe akpa ego.",
+          "2": "Lelee ngụkọta ego token gị agbakọrọ n'ofe agbụ niile akwadoro.",
+          "3": "Hụ nkewa kwa agbụ: Ethereum, Base, BNB Chain, na ndị ọzọ.",
+          "4": "Lelee ntinye ntinye gị na ụgwọ ọrụ.",
+          "5": "Pịa 'Refresh Scan' iji melite nguzozi gị site na data on-chain.",
+          "6": "Detuo adreesị akpa gị iji nweta tokens site na ndị ọzọ."
+        },
+        "tips": {
+          "1": "Nguzozi na-emelite akpag động mana ị nwere ike ịmanye mmelite n'oge ọ bụla.",
+          "2": "Akpa ahụ na-egosi ma nguzozi mmiri (dị) na nke etinyere."
+        }
+      },
+      "staking": {
+        "title": "Ntinye",
+        "intro": "Tinye tokens DeHub gị iji nweta ụgwọ ọrụ ma bulie ike votu gị maka ọchịchị.",
+        "steps": {
+          "1": "Gaa na ibe 'Staking' site na akụkụ.",
+          "2": "Tinye ọnụọgụ tokens ịchọrọ itinye.",
+          "3": "Họrọ agbụ ịchọrọ itinye na ya.",
+          "4": "Kwado azụmahịa ahụ na akpa gị (akpa mpụga) ma ọ bụ ọ na-eme akpag động (nbanye mmekọrịta).",
+          "5": "Lelee ego etinyere gị na ụgwọ ọrụ ọ bụla na-echere.",
+          "6": "Iji wepụ, tinye ego ahụ ma kwado azụmahịa iwepụ."
+        },
+        "tips": {
+          "1": "Ntinye na-abawanye uzuzu votu gị na aro ọchịchị.",
+          "2": "Ndị ọrụ nbanye mmekọrịta anaghị achọ gas iji tinye - ọ bụ gasless.",
+          "3": "Ị nwere ike itinye na ọtụtụ agbụ n'otu oge."
+        }
+      },
+      "leaderboard": {
+        "title": "Leaderboard",
+        "intro": "Hụ onye nọ n'elu! Leaderboard na-ahazi ndị ọrụ site na nguzozi, mmefu kwa ụbọchị, na isiokwu ndị na-ewu ewu.",
+        "steps": {
+          "1": "Gaa na ibe 'Leaderboard' site na akụkụ.",
+          "2": "Gbanwee n'etiti taabụ: Nguzozi, Kwa ụbọchị Emefuru, na Okwu Obodo.",
+          "3": "Taabụ Nguzozi na-ahazi ndị ọrụ site na ngụkọta ego token ha.",
+          "4": "Taabụ Kwa ụbọchị Emefuru na-egosi onye kacha arụ ọrụ inye onyinye n'ime awa 24 gara aga.",
+          "5": "Okwu Obodo na-egosi isiokwu/ụdị ndị a kacha kparịta ụka.",
+          "6": "Pịa onye ọrụ ọ bụla iji gaa na profaịlụ ha.",
+          "7": "Leaderboard na-emelite oge ụfọdụ n'ụbọchị ahụ."
+        },
+        "tips": {
+          "1": "Ọkwa kwa ụbọchị na-eweghachi kwa awa 24 ọ bụla.",
+          "2": "Okwu Obodo na-enyocha ụdị okwu otu sitere na hashtags."
+        }
+      },
+      "command-centre": {
+        "title": "Command Centre",
+        "intro": "Nchịkọta nlele nke dashboard na-egosi ihe ndị dị mkpa gị na ọrụ ikpo okwu gị ozugbo.",
+        "steps": {
+          "1": "Pịa 'Command Centre' na akụkụ akụkụ.",
+          "2": "Lelee nchịkọta profaịlụ gị, gụnyere ọnụ ọgụgụ post, ndị na-eso ụzọ, na itinye aka.",
+          "3": "Hụ ọrụ gị na-adịbeghị anya na isiokwu ndị na-ewu ewu.",
+          "4": "Nweta njikọ ngwa ngwa na atụmatụ a na-ejikarị eme ihe."
+        },
+        "tips": {
+          "1": "Command Centre na-enye gị echiche nnụnụ nke ọnụnọ DeHub gị."
+        }
+      },
+      "governance": {
+        "title": "Ọchịchị",
+        "intro": "Soro na ọchịchị ikpo okwu site na ịmepụta atụmatụ na ịtụ vootu na mkpebi obodo.",
+        "steps": {
+          "1": "Gaa na 'Governance' site na akụkụ akụkụ.",
+          "2": "Chọgharịa atụmatụ ndị na-arụ ọrụ nke obodo nyere.",
+          "3": "Pịa na atụmatụ iji gụọ nkọwa zuru ezu na mkparịta ụka ya.",
+          "4": "Tụọ vootu na atụmatụ site na iji bọtịnụ aka elu/ala - ike vootu gị dabere na ọnụ ọgụgụ DeHub tokens ị tinyegoro.",
+          "5": "Hapụ nkọwa na atụmatụ iji soro obodo kwurịta okwu.",
+          "6": "Nyefee atụmatụ nke gị site na ịpị bọtịnụ 'Create Proposal'."
+        },
+        "tips": {
+          "1": "Ike vootu gị ka ọnụ ọgụgụ tokens ị tinyegoro na-ekpebi.",
+          "2": "Ndị nwere akara ngosi nwere ike nweta ike vootu ọzọ.",
+          "3": "Atụmatụ na-agafe n'usoro: Na-arụ ọrụ → Agabigala/Kwụsịrị."
+        }
+      },
+      "bookmarks": {
+        "title": "Ntinye akwụkwọ",
+        "intro": "Chekwaa posts na ntinye akwụkwọ gị maka ịnweta ngwa ngwa ma emechaa.",
+        "steps": {
+          "1": "Pịa akara ngosi ntinye akwụkwọ na post ọ bụla iji chekwaa ya.",
+          "2": "Gaa na 'Bookmarks' na akụkụ akụkụ iji lelee posts niile echekwara.",
+          "3": "Pịa na post edobere ka ịlele ya nke ọma.",
+          "4": "Wepu ntinye akwụkwọ site na ịpị akara ngosi ntinye akwụkwọ ọzọ."
+        },
+        "tips": {
+          "1": "Ntinye akwụkwọ bụ nzuzo — naanị gị ka ị ga-ahụ posts echekwara gị.",
+          "2": "Enweghị oke maka ole posts ị nwere ike idozi."
+        }
+      },
+      "settings": {
+        "title": "Ntọala",
+        "intro": "Hazie ahụmịhe DeHub gị na asụsụ, nzuzo, na mmasị ngosi.",
+        "steps": {
+          "1": "Pịa 'Settings' na akụkụ akụkụ.",
+          "2": "Gbanwee asụsụ ngosi gị site na ihe nhọrọ asụsụ.",
+          "3": "Dozie ntọala nzuzo: jikwaa onye na-ahụ ọnụ ọgụgụ ndị na-eso ụzọ gị na ndepụta na-eso.",
+          "4": "Tọọ mmasị nlele nke mbipụta gị ndabere.",
+          "5": "Jikwaa mmasị ọkwa."
+        },
+        "tips": {
+          "1": "DeHub na-akwado ọtụtụ asụsụ — a na-atụgharị interface niile.",
+          "2": "Ntọala nzuzo na-arụ ọrụ ozugbo."
+        }
+      },
+      "posting-allowance": {
+        "title": "Nkwado mbipụta kwa ụbọchị gị",
+        "intro": "Mbipụta bụ n'efu kwa ụbọchị ruo n'ókè nke na-agbanwe agbanwe na akara ngosi nkwado gị. Onye ọ bụla na-amalite site na iri mbipụta ederede na otu gigabyte nke vidiyo, onyonyo na ọdịyo kwa ụbọchị. Gaafe otu n'ime ha, ma ihe fọdụrụ n'ụbọchị ahụ ka a na-akwụ ya na DeHub tokens — naanị maka akụkụ ahụ na-agbapụ.",
+        "steps": {
+          "1": "Bipụta dị ka ọgbụgba ndụ. N'ime oke ahụ, ọ nweghị ihe a na-ana ma ọ nweghị ihe a rịọrọ gị.",
+          "2": "Mbipụta ederede na mgbasa ozi bụ ọdọ mmiri dị iche, yabụ ụbọchị ejiri nbudata vidiyo ka na-ahapụ mbipụta ederede iri niile n'efu.",
+          "3": "Mgbe mbipụta ga-agbapụ, ngwa ahụ na-enye ya ọnụahịa mbụ ma lelee akpa gị ma ọ nwere ike ikpuchi ya tupu ihe ọ bụla ebupụta.",
+          "4": "Mbipụta ahụ na-ebipụta dị ka ọ ga-adị n'ime oke ahụ — mbipụta anaghị echere ịkwụ ụgwọ.",
+          "5": "Mgbe ahụ, ị ​​kwadoro otu mbufe maka mbipụta ahụ naanị, nke edobere na nke ọ bụla n'ime Base ma ọ bụ BNB Chain nwere zuru ezu DeHub tokens.",
+          "6": "Ọdọ mmiri abụọ ahụ na-amaliteghachi etiti abalị UTC."
+        },
+        "tips": {
+          "1": "Overage bụ pro-rata: 200 MB gafere oke gị na-eri 200 MB, ọ bụghị otu gigabyte zuru oke.",
+          "2": "Mbipụta ọzọ, nkọwa, mmeghachi omume, ndụmọdụ na ozi anaghị akwụ ụgwọ ma ọ dịghị mgbe ha metụrụ oke ahụ aka.",
+          "3": "Jụ ịkwụ ụgwọ ahụ, mbipụta ahụ ka na-adị — ego ahụ na-egbochi naanị mbipụta akwụ ụgwọ gị sochirinụ ruo mgbe edobere ya. Oke n'efu echi mgbe niile bụ nke gị.",
+          "4": "Akara ngosi nkwado na-ebuli oke n'efu ma na-ebelata ọnụahịa nke ihe ọ bụla gafere ya."
+        }
+      },
+      "reactions-and-safety": {
+        "title": "Mmeghachi omume, Muting & Mature Content",
+        "intro": "Enwere mmeghachi omume itoolu n'azụ bọtịnụ mmasị, yana otu njikwa maka ikpebi ihe ị ga-ahụ na onye nwere ike iru gị.",
+        "steps": {
+          "1": "Jide mkpịsị aka elu na mbipụta ọ bụla iji mepee tray mmeghachi omume: mmasị, ịhụnanya, nkwanye ùgwù, ọkụ, lol, mwute, ịkwa ákwá, enweghị mmasị na ọkpọ.",
+          "2": "Nke asaa dị mma na-agụta maka ngụkọta mmasị nke mbipụta ahụ; enweghị mmasị na ọkpọ na-emegide ya.",
+          "3": "Mmeghachi omume gị bụ nke akara ngosi nkwado gị tụrụ, yabụ mmeghachi omume onye ji akara ngosi na-ebugharị ngụkọ ahụ karịa otu votu.",
+          "4": "Pịa X na isi mbipụta iji gbachi onye dere ya nkịtị — ha na-apụ na nri gị ozugbo.",
+          "5": "Ndị Okike na-akara mbipụta ha dị ka nke tozuru oke mgbe ha na-ede ha; mbipụta ndị ahụ anaghị apụ na ibe ụlọ ọha.",
+          "6": "Iji hụ mbipụta tozuru oke ebe niile, gbanye 'Gosi ọdịnaya tozuru oke' na Ntọala."
+        },
+        "tips": {
+          "1": "Mbipụta tozuru oke ka na-ahụ ya nke ọma na profaịlụ onye dere ya na ndị na-eso ya.",
+          "2": "Ịkwụchi site na profaịlụ na-agafe ịgbachi nkịtị ma na-egbochi ozi kwa.",
+          "3": "Tray mmeghachi omume na-egosi onye meghachiri omume na ihe, yabụ ị nwere ike ịhụ ọnụ ụlọ ahụ kama ịhụ naanị ọnụọgụ."
+        }
+      },
+      "stages": {
+        "title": "Stages (Live Audio Rooms)",
+        "intro": "Stages bụ ụlọ ọdịyo dị ndụ nke arụnyere na DeHub. Onye ọbịa na-emepe ọnụ ụlọ, na-ebute ndị na-ekwu okwu, onye ọ bụla nwere ike ịbanye iji gee ntị site na ibe Stages ma ọ bụ njikọ ekesara.",
+        "steps": {
+          "1": "Mepee 'Stages' na sidebar iji hụ ihe dị ndụ ugbu a na ihe a zubere.",
+          "2": "Pịa ebe egwu dị ndụ ka ịbanye dị ka onye na-ege ntị, ma ọ bụ tọọ ihe ncheta na nke akwadoro ma gwa gị mgbe ọ malitere.",
+          "3": "Malite nke gị site na otu ibe ahụ - ị nwere ike ịga ndụ ozugbo site na ihe nchọgharị, na-enweghị OBS ma ọ bụ igodo iyi.",
+          "4": "Dị ka onye ọbịa, kpọrọ ndị ọkà okwu n'elu ikpo okwu, mechie ma ọ bụ wepụ ha, kesaa ihuenyo gị, ma kwọọ igwe okwu.",
+          "5": "Ndị na-ege ntị na-eziga mmeghachi omume dị ndụ ma na-ekwu okwu na nkata ụlọ ahụ na-enweghị ịbanye n'elu ikpo okwu.",
+          "6": "Nke ọ bụla n'elu ikpo okwu na-edekọ, na ndekọ ahụ na-egwu egwu mgbe e mesịrị site na kaadị ọ pụtara na ya."
+        },
+        "tips": {
+          "1": "Akwụkwọ ndetu ndụ na-akọwa onye ọ bụla na-ekwu okwu ma na-asụgharị ya n'asụsụ ọ bụla ị na-agụ.",
+          "2": "Nkwado ndụ nwere ike ikwu okwu ụlọ ahụ n'olu onye ọbịa ahụ kpọrọ oku, na-akwụ ụgwọ kwa nkeji na DeHub tokens.",
+          "3": "Ndị ọbịa nwere ike itinye istation redio n'ikuku ma ọ bụ kpọọ egwu egwu ha n'etiti mkparịta ụka.",
+          "4": "Obere onye ọkpụkpọ na-edobe ụlọ ahụ ka ọ na-aga n'akụkụ ka ị na-enyocha akụkụ ndị ọzọ nke ngwa ahụ."
+        }
+      },
+      "communities": {
+        "title": "Obodo & Ihe Omume",
+        "intro": "Obodo bụ oghere ndị otu na-agba na ha nwere nri nke ha, ndị otu na ọrụ. Ihe omume na-agbakwunye mmemme ejedebebe oge n'elu ha.",
+        "steps": {
+          "1": "Mepee 'Obodo' na akụkụ akụkụ ma chọgharịa ndị ọha.",
+          "2": "Banye na otu pịa. Ọrụ ọhụrụ na-apụta dị ka akara ngosi na-agụghị agụ na nchọgharị.",
+          "3": "Bipute, kwurịta okwu, mee ntuli aka ma nye onyinye n'ime nri obodo nke ya.",
+          "4": "Ndị nwe obodo na-achịkwa oghere ha ma nwee ike inye ikike nchịkwa nye ndị ọzọ.",
+          "5": "Mepee 'Ihe Omume' maka mmemme akwadoro, yana ibe zuru ezu maka ihe omume ọ bụla ị nwere ike iso ndụ."
+        },
+        "tips": {
+          "1": "Nkata obodo na-akwado @mentions na @here, yabụ biputere nwere ike iru ụlọ ahụ.",
+          "2": "Njiko oku na-enye gị ohere ibute ndị mmadụ ozugbo n'ime obodo."
+        }
+      },
+      "arcade": {
+        "title": "Arcade",
+        "intro": "Egwu ise na-agba n'ime DeHub na taabụ ihe nchọgharị - enweghị ihe a ga-etinye, enweghị ihe a ga-azụta.",
+        "steps": {
+          "1": "Mepee 'Arcade' na akụkụ akụkụ.",
+          "2": "Họrọ egwuregwu: King's Gambit (3D chess na Elo ladderị n'ịntanetị), Claude of Duty (onye na-agba ụgbọ mmiri nke na-emepụta nka nke ya ka ọ na-ebufe), Jungle Trail (njem rainforest procedural), Street Slayer (onye na-eti ihe nke emere maka DeHub) ma ọ bụ Chartopia (ala ahịa nwere ike ịga).",
+          "3": "Kpọọ egwu na taabụ. King's Gambit na Street Slayer na-edobe tebụl ndu.",
+          "4": "Chartopia na-agbakwa n'ime okpu VR site na WebXR."
+        },
+        "tips": {
+          "1": "Abụọ n'ime ha zoro n'ime isiokwu ọdịdị - tọọ ngwa ahụ ka ọ bụrụ Agha maka Claude of Duty, ma ọ bụ Jungle maka Jungle Trail.",
+          "2": "Egwuregwu ọ bụla nwere kaadị òkè nke ya, yabụ njikọ na otu na-apụta nke ọma ebe ọ bụla ị biputere ya."
+        }
+      },
+      "bounties-stores": {
+        "title": "Bounties & Ụlọ Ahịa",
+        "intro": "Ụzọ abụọ iji gbanwee n'elu ikpo okwu ka ọ bụrụ ego: biputere ma ọ bụ chọọ bounty, ma ọ bụ mepee ụlọ ahịa ma ree ndị na-ege gị ntị.",
+        "steps": {
+          "1": "Mepee 'Bounties' iji chọgharịa ọrụ mepere emepe, nke edobere site na ụdị ma ọ bụ ego.",
+          "2": "Chọọ otu, mee ọrụ ahụ, ma nyefee ya iji nweta ụgwọ ọrụ - onye ọ bụla nwere ike ịbụ onye na-achụ nta, enweghị ngwa achọrọ.",
+          "3": "Depụta onyinye gị na nkenke na ụgwọ ọrụ na DeHub tokens ma ọ bụ USDC. Ọ na-abanye na nchekwa n'oge ị depụtara ya.",
+          "4": "Mepee 'Ụlọ Ahịa' iji guzobe ebe a na-ere ahịa na ibe ya, akara ngosi na ndepụta.",
+          "5": "A na-etinye ngwaahịa ọnụ ahịa ma dozie ya na DeHub tokens site na akpa ego arụnyere n'ime, na-enweghị nlele mpụga."
+        },
+        "tips": {
+          "1": "A na-ahazi onyinye n'ime Social Media, Clipping na Contracts.",
+          "2": "Ụzọ esemokwu na-edozi esemokwu gbasara nnyefe, yabụ nchekwa na-edozi nke ọma mgbe niile.",
+          "3": "Ndị okike na-eji onyinye iji zụlite obodo - òkè, clips na mmeghachi omume bụ ọrụ niile bara uru."
+        }
+      },
+      "creator-studio": {
+        "title": "Creator Studio & Editor",
+        "intro": "Creator Studio na-emepụta onyonyo, vidiyo, egwu, olu na ụdị 3D site na nkenke, ma nyefee ha onye nchịkọta akụkọ - gụnyere onye nchịkọta akụkọ vidiyo zuru oke nke na-agba ọsọ na ihe nchọgharị.",
+        "steps": {
+          "1": "Mepee Creator Studio ma kọwaa ihe ị chọrọ ka emee.",
+          "2": "Ihe nkesa na-enye ọnụ ahịa tupu ọrụ ahụ agbaa, yabụ ị hụrụ ihe ọ na-eri tupu ị na-emefu ya.",
+          "3": "Ihe ngosi na-aga n'ihu na ndepụta nkesa ebe ị na-aga n'ihu na-enyocha ngwa ahụ.",
+          "4": "Hazie nsonaazụ na onye nchịkọta akụkọ dị ka Canva, ma ọ bụ mepee onye nchịkọta akụkọ vidiyo maka akara oge nwere ịkpụ, ịkpọchi na mbupụ.",
+          "5": "Tinye ihe emechara ozugbo na post, nkenke ma ọ bụ ndepụta ụlọ ahịa."
+        },
+        "tips": {
+          "1": "Ọbá akụkọ ngwaahịa efu nọ n'akụkụ Studio maka ihe ọ bụla ị ga-achọghị imepụta.",
+          "2": "A na-akwụ ụgwọ mmepụta na DeHub tokens site na akpa ego gị - ị bịanyere aka na otu mbufe kwa ọrụ, a na-ekwukwa ọnụahịa tupu ị kwụọ.",
+          "3": "Ndị ọrụ kachasị ike nwere ike iwere atụmatụ Ultra, Team ma ọ bụ Scale, nke na-eziga ohere token kwa ọnwa ozugbo na akpa ego ha."
+        }
+      },
+      "buying-dhb": {
+        "title": "Ịzụta Tokens",
+        "intro": "Zụta DeHub tokens ozugbo n'ime ngwa ahụ site na iji interface mgbanwe arụnyere n'ime.",
+        "steps": {
+          "1": "Gaa na ibe 'Zụta' site na akụkụ sidebar.",
+          "2": "Họrọ token ị chọrọ ịgbanwe site na ya (dịka, ETH, USDC).",
+          "3": "Tinye ego ị chọrọ imefu ma ọ bụ ọnụọgụ tokens ị chọrọ ịnata.",
+          "4": "Nyochaa ọnụego mgbanwe na nsonaazụ atụmatụ.",
+          "5": "Pịa akara ngosi gia ntọala iji gbanwee slippage tolerance (ndabara bụ 1%).",
+          "6": "Kwado azụmahịa mgbanwe.",
+          "7": "DeHub tokens ga-apụta na akpa ego gị ozugbo azụmahịa ahụ mechara."
+        },
+        "tips": {
+          "1": "Nnukwu slippage tolerance = karịa ohere ịme, mana enwere ike ịnweta ọnụahịa ka njọ.",
+          "2": "Mgbe niile lelee ọnụego mgbanwe tupu ị kwado.",
+          "3": "Ị nwere ike ịtọlite ​​custom slippage na panel ntọala."
+        }
+      },
+      "bridge": {
+        "title": "Bridge",
+        "intro": "Bugharịa DeHub tokens gị n'etiti blockchains akwadoro site na iji cross-chain bridge.",
+        "steps": {
+          "1": "Gaa na ibe 'Bridge' site na akụkụ aka ekpe.",
+          "2": "Họrọ agbụrụ isi iyi (ebe ego gị dị ugbu a).",
+          "3": "Họrọ agbụrụ njedebe (ebe ịchọrọ iziga ha).",
+          "4": "Tinye ego ole ka ị ga-ebufe.",
+          "5": "Lelee ụgwọ nnyefe na oge a ga-enweta ya.",
+          "6": "Kwado azụmahịa nnyefe ahụ.",
+          "7": "Chere ka azụmahịa ahụ mechie — nnyefe nwere ike iwe nkeji ole na ole."
+        },
+        "tips": {
+          "1": "Ụgwọ nnyefe na-adịgasị iche dabere na agbụrụ abụọ ahụ.",
+          "2": "Nnyefe na-ewe nkeji 1-5 dabere na agbụrụ ndị metụtara ya.",
+          "3": "Na-enyocha agbụrụ njedebe mgbe niile tupu ị kwado ya."
+        }
+      },
+      "music-tv": {
+        "title": "Egwu & TV",
+        "intro": "Nwee obi ụtọ na ọdịnaya mgbasa ozi ozugbo na DeHub — gee egwu ma lelee ọwa TV dị ndụ.",
+        "steps": {
+          "1": "Gaa na 'Egwu' site na akụkụ aka ekpe iji chọgharịa ma kpọọ egwu egwu.",
+          "2": "Gaa na 'TV' iji nweta ọwa TV dị ndụ.",
+          "3": "Chọgharịa ọwa site na ụdị ma ọ bụ obodo.",
+          "4": "Pịa ọwa ka ịmalite ilele.",
+          "5": "Jiri njikwa ihe ọkpọ ahụ gbanwee olu na nkwụsị.",
+          "6": "Kpesa ọwa ndị mebiri emebi site na iji bọtịnụ mkpesa."
+        },
+        "tips": {
+          "1": "A na-enyocha ọwa TV site na obodo maka ntụkwasị obi.",
+          "2": "Enwere ike ịkpọ egwu egwu mgbe ị na-enyocha ọdịnaya ndị ọzọ."
+        }
+      },
+      "post-info": {
+        "title": "Ozi Post & Nkebi",
+        "intro": "Post e bipụtara bụ NFT kewara na 1,000 nkebi. Ibe Ozi Post na-egosi data dị na agbụ, ọnụ ọgụgụ itinye aka, nkewa nke onye nwe ya, ma na-enye gị ohere ịzụ ahịa nkebi nke post ọ bụla — na post a na-ebipụtaghị, ọ na-enye ka ebipụta ya kama.",
+        "steps": {
+          "1": "Metụ akara 'ⓘ' aka na post ọ bụla iji mepee ibe Ozi Post ya.",
+          "2": "N'elu ị ga-ahụ ID Token (njirimara pụrụ iche na agbụ) na hash azụmahịa — pịa hash ahụ ka ịlele ya na block explorer.",
+          "3": "N'okpuru nke ahụ, ọnụ ọgụgụ itinye aka na-egosi mkpokọta mmasị, enweghị mmasị, nlele, nkọwa, na onyinye enwetara.",
+          "4": "Nkebi Ndị ji ya na-egosi usoro ihe osise nke ole n'ime nkebi 1,000 onye okike ka na-ejide, yana ndepụta nke ndị ji nkebi niile na ego ha na pasentị ha.",
+          "5": "Ọ bụrụ na post ahụ bụ ụgwọ-per-view (PPV), ị ga-ahụ ọnụahịa, ego, na ole ndị ọrụ zụtara ohere.",
+          "6": "Ndị nwe post nwere ike ịgbanwe nghọta (Ọha, Edeghị aha, ma ọ bụ Nzuzo) ma dezie aha/nkọwa ozugbo site na ibe a."
+        },
+        "tips": {
+          "1": "Post e bipụtara ọhụrụ na-amalite na onye okike na-ejide nkebi 1,000 niile (100% nke onye nwe ya).",
+          "2": "Hash azụmahịa na-ejikọta na BaseScan ma ọ bụ BscScan dabere na agbụ.",
+          "3": "Edeghị akwụkwọ ndị edepụtara apụtaghị na nri mana enwere ike ịnweta ha site na njikọ ozugbo."
+        }
+      },
+      "trading-fractions": {
+        "title": "Trading Akụkụ",
+        "intro": "Fraction trading — na-eme nchọgharị ndepụta, na-eme na-enye, depụta gị onwe gị — bi na web ngwa na dehub.io, na onye ọ bụla post si Post Info page.",
+        "steps": {
+          "1": "Mepee dehub.io na ihe nchọgharị ma jiri otu akaụntụ banye.",
+          "2": "Mepee post si Post Info page na ịgbanwee gaa na ya Marketplace taabụ.",
+          "3": "Chọgharịa ndepụta, mee onyinye na ọnụahịa gị, ma ọ bụ depụta obere ihe ị jidere.",
+          "4": "Ozugbo azụmahịa gwụchara, mgbanwe ahụ gosipụtara na taabụ Fractions gị ebe a na mkpanaka."
+        },
+        "tips": {
+          "1": "Inwe akụkụ dị iche iche nke post pụtara na ị nwere òkè nke NFT ahụ.",
+          "2": "Lelee a post si njide na web n 'ọma ahịa ịhụ nwe nkesa tupu ịzụta.",
+          "3": "Dịka onye okike, ire akụkụ dị iche iche na-eme ka ndị Fans nwee ike ijikwa ọdịnaya gị."
+        }
+      },
+      "minting-posts": {
+        "title": "Ịkpụzi Akwụkwọ (Ịmepụta NFTs)",
+        "intro": "Ịkpụzi bụ nhọrọ. Akwụkwọ na-apụta na mpụga blockchain n'oge ị zipụ ya — enweghị akpa, enweghị mbinye aka, enweghị gas — ma ị nwere ike ịkpụzi ya dị ka NFT mgbe ọ bụla ịchọrọ, ma mgbe ị na-ede ya ma ọ bụ mgbe e mesịrị site na akwụkwọ ahụ n'onwe ya.",
+        "steps": {
+          "1": "Pịa bọtịnụ 'Post' na akụkụ aka ekpe (desktop) ma ọ bụ bọtịnụ + (mobile).",
+          "2": "Dee ederede gị, tinye mgbasa ozi (onyonyo, vidiyo, ọdịyo), ma tinye ụdị.",
+          "3": "Hapụ 'Mint post' ka ọ ghara ịkpụzi iji bipụta na mpụga blockchain, ma ọ bụ gbanye ya ka ọ kpụzi mgbe ị na-ebipụta.",
+          "4": "Mbipụta anaghị echere na yinye ahụ: post ahụ pụtara na ndepụta ahụ n 'ụzọ ọ bụla.",
+          "5": "Iji mint mgbe e mesịrị, na-emeghe post si '' Ama page na-eji Mint edinam n 'ebe ahụ.",
+          "6": "Ozugbo minted, na post ọkọkpọhi a Token ID na a azụmahịa hash ị nwere ike nyochaa na yinye, na ị jide niile 1,000 fractions nke ya."
+        },
+        "tips": {
+          "1": "Social, email na SMS ịrịba ama-ins na-akwụ efu gas — DeHub sponsors minting ụgwọ.",
+          "2": "Mpụga-wallet ọrụ mkpa ETH na Base ma ọ bụ BNB na BNB Chain maka gas.",
+          "3": "Minting bụ ihe na-eme ka a post tradeable na eze-amị. An unminted post ka na-akpata Atụmatụ na echiche.",
+          "4": "Ihe ndekọ dị n 'elu na-adịgide adịgide ozugbo a kpụrụ ya, ọbụlagodi ma ọ bụrụ na e mechara ehichapụ post ahụ na ndepụta ahụ."
+        }
+      },
+      "glossary": {
+        "title": "Ọba okwu",
+        "intro": "Nkọwa zuru ezu nke okwu crypto na ikpo okwu iji nyere gị aka ịnyagharịa Web3.",
+        "steps": {
+          "1": "Gaa na 'Glossary' site na sidebar.",
+          "2": "Chọgharịa okwu n 'usoro mkpụrụedemede ma ọ bụ jiri ọchụchọ ahụ chọta okwu a kapịrị ọnụ.",
+          "3": "Pịa na okwu iji hụ nkọwa ya na nkọwa ya zuru oke.",
+          "4": "Okwu ekpuchi kaadị echiche, DeFi okwu, na DeHub-kpọmkwem atụmatụ."
+        },
+        "tips": {
+          "1": "Ezigbo akụ maka ndị ọhụrụ na crypto na Web3.",
+          "2": "A na-emelite akwụkwọ nkọwapụta ahụ mgbe niile na usoro ọhụrụ."
+        }
+      }
     }
   }
 }
