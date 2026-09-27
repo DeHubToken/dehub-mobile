@@ -155,6 +155,8 @@
     "postCount_other": "{{count}} plasings"
   },
   "settings": {
+    "showOnline": "Toon wanneer ik online kom",
+    "showOnlineDesc": "Mense wat jy boodskap sien 'n groen kolletjie langs jou naam terwyl jy DeHub gebruik",
     "smartReplies": "Voorgestelde antwoorde",
     "smartRepliesDesc": "Stel twee antwoorde op wat jy in 'n klets kan tik. Die × op die voorstelle skakel dit af.",
     "ensHandle": "ENS-naam",
@@ -5050,6 +5052,7 @@
     "originalText": "Oorspronklike teks"
   },
   "dm": {
+    "online": "Aanlyn",
     "attachFailed": "Kon nie daardie lêer aanheg nie.",
     "removeAttachment": "Verwyder aanhegsel",
     "addTip": "Voeg fooitjie by",

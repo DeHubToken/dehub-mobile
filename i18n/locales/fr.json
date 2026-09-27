@@ -155,6 +155,8 @@
     "postCount_other": "{{count}} publications"
   },
   "settings": {
+    "showOnline": "Montrer quand je suis en ligne",
+    "showOnlineDesc": "Les personnes que vous envoyez un message voient un point vert à côté de votre nom lorsque vous utilisez DeHub",
     "smartReplies": "Réponses suggérées",
     "smartRepliesDesc": "Rédige deux réponses à toucher dans une discussion. La × sur les suggestions désactive l'option.",
     "ensHandle": "Nom ENS",
@@ -5070,6 +5072,7 @@
     "originalText": "Texte original"
   },
   "dm": {
+    "online": "En ligne",
     "attachFailed": "Impossible de joindre ce fichier.",
     "removeAttachment": "Retirer la pièce jointe",
     "addTip": "Ajouter un pourboire",

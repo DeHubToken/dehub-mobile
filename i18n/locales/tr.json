@@ -155,6 +155,8 @@
     "postCount_other": "{{count}} gönderi"
   },
   "settings": {
+    "showOnline": "Çevrimiçi olduğumda göster",
+    "showOnlineDesc": "Mesaj gönderdiğiniz kişiler, DeHub'ı kullanırken adınızın yanında yeşil bir nokta görür",
     "smartReplies": "Önerilen yanıtlar",
     "smartRepliesDesc": "Sohbette dokunabileceğin iki yanıt hazırlar. Önerilerdeki × bunu kapatır.",
     "ensHandle": "ENS adı",
@@ -5066,6 +5068,7 @@
     "originalText": "Orijinal Metin"
   },
   "dm": {
+    "online": "Çevrimiçi",
     "attachFailed": "O dosya eklenemedi.",
     "removeAttachment": "Eki kaldır",
     "addTip": "Bahşiş ekle",

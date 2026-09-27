@@ -155,6 +155,8 @@
     "postCount_other": "{{count}} postagens"
   },
   "settings": {
+    "showOnline": "Mostrar quando estou online",
+    "showOnlineDesc": "As pessoas que você envia mensagens veem um ponto verde ao lado do seu nome enquanto usa o DeHub",
     "smartReplies": "Respostas sugeridas",
     "smartRepliesDesc": "Escreve duas respostas em que podes tocar num chat. O × nas sugestões desativa isto.",
     "ensHandle": "Nome ENS",
@@ -5070,6 +5072,7 @@
     "originalText": "Texto Original"
   },
   "dm": {
+    "online": "Online",
     "attachFailed": "Não foi possível anexar esse ficheiro.",
     "removeAttachment": "Remover anexo",
     "addTip": "Adicionar gorjeta",

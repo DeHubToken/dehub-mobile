@@ -46,6 +46,7 @@ import { DMProvider } from "./context/DMContext";
 import { OnboardingChecklistProvider } from "./context/OnboardingChecklistContext";
 import { UserProfileSheetProvider } from "./context/UserProfileSheetContext";
 import NewMemberRegistrar from "./components/common/NewMemberRegistrar";
+import OnlinePresenceHost from "./components/common/OnlinePresenceHost";
 import RootNavigator from "./navigation/RootNavigator";
 import { MessagingProvider } from "./context/MessagingContext";
 import { PushNotificationsProvider } from "./services/push";
@@ -453,6 +454,7 @@ const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
                       <CallProvider>
                         <RootNavigator />
                         <NewMemberRegistrar />
+                        <OnlinePresenceHost />
                         <CallModalsHost />
                         <CallMiniPlayer />
                         <StagesModalsHost />

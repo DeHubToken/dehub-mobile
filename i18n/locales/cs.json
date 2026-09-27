@@ -155,6 +155,8 @@
     "postCount_other": "{{count}} příspěvků"
   },
   "settings": {
+    "showOnline": "Zobrazit, když jsem online",
+    "showOnlineDesc": "Lidé, kterým posíláte zprávu, uvidí zelenou tečku vedle vašeho jména, když používáte službu DeHub",
     "smartReplies": "Navrhované odpovědi",
     "smartRepliesDesc": "Připraví dvě odpovědi, na které v chatu klepneš. × u návrhů to vypne.",
     "ensHandle": "ENS jméno",
@@ -5021,6 +5023,7 @@
     "originalText": "Původní text"
   },
   "dm": {
+    "online": "Online",
     "attachFailed": "Ten soubor se nepodařilo připojit.",
     "removeAttachment": "Odebrat přílohu",
     "addTip": "Přidat spropitné",

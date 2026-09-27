@@ -155,6 +155,8 @@
     "postCount_other": "{{count}} Posts"
   },
   "settings": {
+    "showOnline": "Zeig, wenn i online bi.",
+    "showOnlineDesc": "Mensch, wo du schicksch, gseht e grün Punkt neben dinem Name, wänn du DeHub nutzt.",
     "smartReplies": "Antwortvorschläg",
     "smartRepliesDesc": "Schriibt zwoo Antworte, wo du im Chat chasch aatippe. S × bi de Vorschläg schaltet sie ab.",
     "ensHandle": "ENS-Name",
@@ -5047,6 +5049,7 @@
     "originalText": "Originaltext"
   },
   "dm": {
+    "online": "Online",
     "attachFailed": "Die Datei het nöd chöne aaghänkt werde.",
     "removeAttachment": "Aahang entfärne",
     "addTip": "Trinkgäld hinzuefüege",

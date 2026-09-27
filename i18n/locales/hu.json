@@ -155,6 +155,8 @@
     "postCount_other": "{{count}} bejegyzés"
   },
   "settings": {
+    "showOnline": "Megjelenítés, amikor online vagyok",
+    "showOnlineDesc": "Azok a személyek, akiknek üzenetet küldesz, egy zöld pontot látnak a neved mellett, miközben a DeHubot használod",
     "smartReplies": "Javasolt válaszok",
     "smartRepliesDesc": "Két választ fogalmaz meg, amelyekre a csevegésben rákoppinthatsz. A javaslatokon lévő × kikapcsolja ezt.",
     "ensHandle": "ENS név",
@@ -5021,6 +5023,7 @@
     "originalText": "Eredeti szöveg"
   },
   "dm": {
+    "online": "Online",
     "attachFailed": "Ezt a fájlt nem sikerült csatolni.",
     "removeAttachment": "Melléklet eltávolítása",
     "addTip": "Borravaló hozzáadása",

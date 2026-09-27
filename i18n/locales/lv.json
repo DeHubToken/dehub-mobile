@@ -155,6 +155,8 @@
     "postCount_other": "{{count}} ziņas"
   },
   "settings": {
+    "showOnline": "Rādīt, kad esmu tiešsaistē",
+    "showOnlineDesc": "Kamēr izmantojat DeHub, personas, kurām sūtāt ziņojumus, blakus jūsu vārdam redz zaļu punktu",
     "smartReplies": "Ieteiktās atbildes",
     "smartRepliesDesc": "Sagatavo divas atbildes, kurām vari pieskarties tērzēšanā. × pie ieteikumiem to izslēdz.",
     "ensHandle": "ENS vārds",
@@ -5017,6 +5019,7 @@
     "originalText": "Oriģinālais teksts"
   },
   "dm": {
+    "online": "Tiešsaistē",
     "attachFailed": "Neizdevās pievienot šo failu.",
     "removeAttachment": "Noņemt pielikumu",
     "addTip": "Pievienot dzeramnaudu",

@@ -155,6 +155,8 @@
     "postCount_other": "{{count}} постҳо"
   },
   "settings": {
+    "showOnline": "Ipakita kapag ako online",
+    "showOnlineDesc": "Ang mga tao na iyong mensahe ay makita ng isang green dot sa tabi ng iyong pangalan habang gumagamit",
     "smartReplies": "Ҷавобҳои пешниҳодшуда",
     "smartRepliesDesc": "Ду ҷавоб омода мекунад, ки дар чат зер карда метавонед. × дар пешниҳодҳо инро хомӯш мекунад.",
     "ensHandle": "Номи ENS",
@@ -5017,6 +5019,7 @@
     "originalText": "Матни аслӣ"
   },
   "dm": {
+    "online": "Онлайн",
     "attachFailed": "Он файлро замима кардан нашуд.",
     "removeAttachment": "Замимаро нест кунед",
     "addTip": "Чойпулӣ илова кунед",

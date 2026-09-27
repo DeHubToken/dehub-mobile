@@ -155,6 +155,8 @@
     "postCount_other": "{{count}} publicacions"
   },
   "settings": {
+    "showOnline": "Mostra quan estic en línia",
+    "showOnlineDesc": "Les persones a les quals enviïs missatges veuen un punt verd al costat del teu nom mentre utilitzes DeHub",
     "smartReplies": "Respostes suggerides",
     "smartRepliesDesc": "Redacta dues respostes que pots tocar en un xat. La × dels suggeriments ho desactiva.",
     "ensHandle": "Nom ENS",
@@ -5017,6 +5019,7 @@
     "originalText": "Text original"
   },
   "dm": {
+    "online": "En línia",
     "attachFailed": "No s'ha pogut adjuntar aquest fitxer.",
     "removeAttachment": "Elimina l'adjunt",
     "addTip": "Afegeix propina",

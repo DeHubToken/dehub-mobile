@@ -155,6 +155,8 @@
     "postCount_other": "{{count}} mga post"
   },
   "settings": {
+    "showOnline": "Ipakita kapag ako ay online",
+    "showOnlineDesc": "Nakakakita ang mga taong pinadalhan mo ng mensahe ng berdeng tuldok sa tabi ng iyong pangalan habang gumagamit ka ng DeHub",
     "smartReplies": "Mga iminungkahing sagot",
     "smartRepliesDesc": "Gumagawa ng dalawang sagot na puwede mong i-tap sa chat. Ang × sa mga mungkahi ang nagpapatay nito.",
     "ensHandle": "Pangalan ng ENS",
@@ -5064,6 +5066,7 @@
     "originalText": "Orihinal na Teksto"
   },
   "dm": {
+    "online": "Online",
     "attachFailed": "Hindi ma-attach ang file na iyon.",
     "removeAttachment": "Alisin ang attachment",
     "addTip": "Magdagdag ng tip",

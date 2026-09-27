@@ -155,6 +155,8 @@
     "postCount_other": "{{count}} पोस्ट"
   },
   "settings": {
+    "showOnline": "ऑनलाईन सूचनाः When I am online",
+    "showOnlineDesc": "हरितवर्णेन युक्तं त्वया दृष्टं यदिदं त्वया ॥",
     "smartReplies": "सूचिताः प्रत्युत्तराणि",
     "smartRepliesDesc": "संलापे स्प्रष्टुं योग्ये द्वे प्रत्युत्तरे रचयति। सूचनासु × एतत् निवारयति।",
     "ensHandle": "ENS नाम",
@@ -5017,6 +5019,7 @@
     "originalText": "मूळ मजकूर"
   },
   "dm": {
+    "online": "अन्लाइन",
     "attachFailed": "तत् सञ्चिका संयोजयितुं न शक्यते स्म।",
     "removeAttachment": "संलग्नं निष्कासयतु",
     "addTip": "पारितोषिकं योजयतु",

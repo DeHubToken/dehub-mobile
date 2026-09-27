@@ -155,6 +155,8 @@
     "nothingTrending": "Nothing dey trend for this window yet."
   },
   "settings": {
+    "showOnline": "Show when I'm online",
+    "showOnlineDesc": "People you message see a green dot next to your name while you're using DeHub",
     "smartReplies": "Reply wey we suggest",
     "smartRepliesDesc": "E dey write two reply wey you fit tap for chat. The × wey dey the suggestion dey off am.",
     "ensHandle": "ENS name",
@@ -4891,6 +4893,7 @@
     "translatedFrom": "We translate am from {{lang}}"
   },
   "dm": {
+    "online": "Online",
     "attachFailed": "We no fit attach dat file.",
     "removeAttachment": "Comot attachment",
     "addTip": "Add tip",

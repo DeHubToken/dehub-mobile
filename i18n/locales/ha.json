@@ -155,6 +155,8 @@
     "postCount_other": "Sako {{count}}"
   },
   "settings": {
+    "showOnline": "Nuna lokacin da nake kan layi",
+    "showOnlineDesc": "Mutanen da kake sako suna ganin kore dot kusa da sunanka yayin da kake amfani da DeHub",
     "smartReplies": "Amsoshin da aka ba da shawara",
     "smartRepliesDesc": "Yana rubuta amsoshi biyu da za ka iya danna a hira. Alamar × a kan shawarwarin tana kashe wannan.",
     "ensHandle": "Sunan ENS",
@@ -5017,6 +5019,7 @@
     "originalText": "Rubutun Asali"
   },
   "dm": {
+    "online": "Layi akan layi",
     "attachFailed": "An kasa haɗa wannan fayil ɗin.",
     "removeAttachment": "Cire haɗe-haɗe",
     "addTip": "Ƙara kyauta",
