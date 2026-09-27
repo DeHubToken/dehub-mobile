@@ -4615,7 +4615,20 @@
     "tokensSent": "{{amount}} تۆکن نێردرا",
     "percentUsed": "{{percent}}% بەکارهاتووە",
     "spentOfTotal": "{{spent}} لە {{total}}",
-    "viewInWallet": "لە جزدان ببینە"
+    "viewInWallet": "لە جزدان ببینە",
+    "topUp": "تۆکن زیاد بکە",
+    "topUpTitle": "تۆکنی بەشداریکردن زیاد بکە",
+    "topUpCustom": "بڕێکی تر (USD)",
+    "topUpYouSend": "دەینێریت",
+    "topUpYouGet": "بۆ باڵانسەکەت زیاد دەکرێت",
+    "topUpConfirm": "{{amount}} زیاد بکە",
+    "topUpRange": "لە {{min}} تا {{max}} بنووسە",
+    "topUpDone": "{{amount}} بۆ تۆکنەکانی بەشداریکردنت زیاد کرا",
+    "topUpPending": "پارەدانەکەت پشتڕاست دەکرێتەوە. بەم زووانە لە باڵانسەکەت دەردەکەوێت.",
+    "topUpEmptyHint": "تۆکن زیاد بکە بۆ بەشداریکردن لە دروستکەران",
+    "topUpStageWallet": "لە جزدانەکەت پشتڕاستی بکەرەوە…",
+    "topUpStageConfirming": "چاوەڕوانی مامەڵەکە…",
+    "topUpStageCrediting": "زیادکردن بۆ باڵانسەکەت…"
   },
   "live": {
     "notSet": "Nehatiye danîn",

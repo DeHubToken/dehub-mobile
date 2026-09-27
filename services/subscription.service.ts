@@ -373,8 +373,80 @@ export async function payPlanWithCredits(subId: string, hash?: string, chainId?:
 }
 
 export async function getSubscriptionCredits(): Promise<SubscriptionCreditBalance | null> {
+  await reconcilePendingCreditTopUps();
   const res = await apiClient.get<{ credits?: SubscriptionCreditBalance }>("/subscription-credits");
   return (res as any)?.credits ?? null;
+}
+
+/** Where a subscription-token top-up is sent on `chainId`. */
+export async function getSubscriptionCreditTopUpTarget(
+  chainId: number,
+): Promise<{ chainId: number; dhbToken: string; treasuryAddress: string }> {
+  const res: any = await apiClient.get(`/subscription-credits?chainId=${chainId}`);
+  if (!res?.topUp?.dhbToken || !res.topUp.treasuryAddress) {
+    throw new Error("Top-ups are not available right now. Try again shortly.");
+  }
+  return res.topUp;
+}
+
+/**
+ * Turn a mined DHB transfer into subscription tokens. The API values it at the
+ * price when it landed. `pending` means the chain has not caught up; ask again.
+ */
+export async function claimSubscriptionCreditTopUp(
+  hash: string,
+  chainId: number,
+): Promise<{ credited: boolean; pending?: boolean }> {
+  return (await apiClient.post("/subscription-credits/topup", { hash, chainId })) as any;
+}
+
+// A top-up is a transfer and then a claim. If the claim is interrupted the
+// DHB has already left the wallet, so the hash is kept until the API has
+// credited it — never dropped on a network error, only on a final answer.
+const PENDING_CREDIT_TOPUPS_KEY = "dehub.pending-credit-topups.v1";
+
+interface PendingCreditTopUp {
+  hash: string;
+  chainId: number;
+}
+
+async function pendingCreditTopUps(): Promise<PendingCreditTopUp[]> {
+  try {
+    const stored = JSON.parse((await AsyncStorage.getItem(PENDING_CREDIT_TOPUPS_KEY)) || "[]");
+    return Array.isArray(stored) ? stored : [];
+  } catch {
+    return [];
+  }
+}
+
+async function storePendingCreditTopUps(items: PendingCreditTopUp[]): Promise<void> {
+  if (items.length) await AsyncStorage.setItem(PENDING_CREDIT_TOPUPS_KEY, JSON.stringify(items));
+  else await AsyncStorage.removeItem(PENDING_CREDIT_TOPUPS_KEY);
+}
+
+export async function rememberPendingCreditTopUp(item: PendingCreditTopUp): Promise<void> {
+  const hash = item.hash.toLowerCase();
+  const rest = (await pendingCreditTopUps()).filter((p) => p.hash.toLowerCase() !== hash);
+  await storePendingCreditTopUps([...rest, item]);
+}
+
+export async function clearPendingCreditTopUp(hash: string): Promise<void> {
+  const lower = hash.toLowerCase();
+  await storePendingCreditTopUps((await pendingCreditTopUps()).filter((p) => p.hash.toLowerCase() !== lower));
+}
+
+/** Statuses that are the API's final word on a hash: retrying cannot change them. */
+const FINAL_TOPUP_STATUSES = new Set([400, 403, 404, 409, 410]);
+
+async function reconcilePendingCreditTopUps(): Promise<void> {
+  for (const item of await pendingCreditTopUps()) {
+    try {
+      const result = await claimSubscriptionCreditTopUp(item.hash, item.chainId);
+      if (!result?.pending) await clearPendingCreditTopUp(item.hash);
+    } catch (err: any) {
+      if (err?.status && FINAL_TOPUP_STATUSES.has(err.status)) await clearPendingCreditTopUp(item.hash);
+    }
+  }
 }
 
 /** Tell the API a purchase landed, so it can verify it against the chain. */

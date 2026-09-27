@@ -4778,7 +4778,20 @@
     "tokensSent": "{{amount}} tokens u dërguan",
     "percentUsed": "{{percent}}% i përdorur",
     "spentOfTotal": "{{spent}} të {{total}}",
-    "viewInWallet": "Shfaq në portofol"
+    "viewInWallet": "Shfaq në portofol",
+    "topUp": "Shto shenjat",
+    "topUpTitle": "Shto shenjat e abonimit",
+    "topUpCustom": "Shuma të tjera (USD)",
+    "topUpYouSend": "Dërgo",
+    "topUpYouGet": "U shtua në bilancin tënd",
+    "topUpConfirm": "Shto {{amount}}",
+    "topUpRange": "Shkruaj {{min}} në {{max}}",
+    "topUpDone": "{{amount}} u shtua në shenjat e abonimit",
+    "topUpPending": "Përditësimi yt po konfirmohet. Së shpejti do të shfaqet në bilancin tënd.",
+    "topUpEmptyHint": "Bëhu pjesë për t 'u abonuar te krijuesit",
+    "topUpStageWallet": "Konfirmo në portofolin tënd...",
+    "topUpStageConfirming": "Në pritje të transaksionit...",
+    "topUpStageCrediting": "Duke shtuar në bilancin tënd..."
   },
   "live": {
     "notSet": "I pacaktuar",

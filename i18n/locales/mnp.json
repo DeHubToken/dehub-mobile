@@ -4778,7 +4778,20 @@
     "tokensSent": "已发送 {{amount}} 代币",
     "percentUsed": "{{percent}}% 已使用",
     "spentOfTotal": "{{spent}} 的 {{total}}",
-    "viewInWallet": "在钱包中查看"
+    "viewInWallet": "在钱包中查看",
+    "topUp": "添加令牌",
+    "topUpTitle": "添加订阅代币",
+    "topUpCustom": "其他金额 (美元)",
+    "topUpYouSend": "您发送",
+    "topUpYouGet": "已添加到您的余额",
+    "topUpConfirm": "添加 {{amount}}",
+    "topUpRange": "输入 {{min}} 以 {{max}}",
+    "topUpDone": "{{amount}} 已添加到您的订阅代币",
+    "topUpPending": "您的充值正在确认中。稍后将显示在您的余额中。",
+    "topUpEmptyHint": "充值以订阅创作者",
+    "topUpStageWallet": "在您的钱包中确认…",
+    "topUpStageConfirming": "等待交易…",
+    "topUpStageCrediting": "正在添加到您的余额…"
   },
   "live": {
     "notSet": "未设置",

@@ -4724,7 +4724,20 @@
     "tokensSent": "{{amount}} ਟੋਕਨ ਭੇਜੇ ਗਏ",
     "percentUsed": "{{percent}}% ਵਰਤੇ ਗਏ",
     "spentOfTotal": "{{spent}} ਦਾ {{total}}",
-    "viewInWallet": "ਵਾਲਿਟ ਵਿੱਚ ਵੇਖੋ"
+    "viewInWallet": "ਵਾਲਿਟ ਵਿੱਚ ਵੇਖੋ",
+    "topUp": "ਟੋਕਨ ਸ਼ਾਮਲ",
+    "topUpTitle": "ਸਬਸਕ੍ਰਿਪਸ਼ਨ ਦੇ ਟੋਕਨ ਸ਼ਾਮਲ ਕਰੋ",
+    "topUpCustom": "ਹੋਰ ਰਕਮ (USD)",
+    "topUpYouSend": "ਤੁਸੀਂ ਭੇਜਦੇ ਹੋ",
+    "topUpYouGet": "ਤੁਹਾਡੇ ਸੰਤੁਲਨ ਵਿੱਚ ਸ਼ਾਮਲ ਕੀਤਾ ਗਿਆ",
+    "topUpConfirm": "{{amount}} ਸ਼ਾਮਲ ਕਰੋ",
+    "topUpRange": "{{min}} ਨੂੰ {{max}} ਦਰਜ ਕਰੋ",
+    "topUpDone": "{{amount}} ਤੁਹਾਡੇ ਸਬਸਕ੍ਰਿਪਸ਼ਨ ਟੋਕਨ ਵਿੱਚ ਸ਼ਾਮਲ ਕੀਤਾ ਗਿਆ",
+    "topUpPending": "ਤੁਹਾਡਾ ਟੌਪ-ਅਪ ਪੁਸ਼ਟੀ ਕਰ ਰਿਹਾ ਹੈ. ਇਹ ਜਲਦੀ ਹੀ ਤੁਹਾਡੇ ਸੰਤੁਲਨ ਵਿੱਚ ਦਿਖਾਈ ਦੇਵੇਗਾ.",
+    "topUpEmptyHint": "ਸਿਰਜਣਹਾਰਾਂ ਦੀ ਗਾਹਕੀ ਲੈਣ ਲਈ ਸਿਖਰ 'ਤੇ",
+    "topUpStageWallet": "ਆਪਣੇ ਬਟੂਏ ਵਿੱਚ ਪੁਸ਼ਟੀ ਕਰੋ...",
+    "topUpStageConfirming": "ਟਰਾਂਸੈਕਸ਼ਨ ਦੀ ਉਡੀਕ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ...",
+    "topUpStageCrediting": "ਤੁਹਾਡੇ ਸੰਤੁਲਨ ਵਿੱਚ ਸ਼ਾਮਲ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ..."
   },
   "live": {
     "notSet": "ਸੈੱਟ ਨਹੀਂ",

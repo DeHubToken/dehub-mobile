@@ -4831,7 +4831,20 @@
     "tokensSent": "Tokens {{amount}} enviados",
     "percentUsed": "{{percent}}% usado",
     "spentOfTotal": "{{spent}} de {{total}}",
-    "viewInWallet": "Ver na carteira"
+    "viewInWallet": "Ver na carteira",
+    "topUp": "Adicionar tokens",
+    "topUpTitle": "Adicionar tokens de subscrição",
+    "topUpCustom": "Outro valor (USD)",
+    "topUpYouSend": "Você envia",
+    "topUpYouGet": "Adicionado ao seu saldo",
+    "topUpConfirm": "Adicionar {{amount}}",
+    "topUpRange": "Introduza {{min}} para {{max}}",
+    "topUpDone": "{{amount}} adicionado aos seus tokens de subscrição",
+    "topUpPending": "O seu carregamento está a confirmar. Aparecerá no seu saldo em breve.",
+    "topUpEmptyHint": "Carregue para assinar os criadores",
+    "topUpStageWallet": "Confirme na sua carteira...",
+    "topUpStageConfirming": "A aguardar a transação...",
+    "topUpStageCrediting": "A adicionar ao seu saldo..."
   },
   "live": {
     "notSet": "Não definido",

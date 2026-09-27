@@ -4778,7 +4778,20 @@
     "tokensSent": "{{amount}} märki saadetud",
     "percentUsed": "{{percent}}% kasutatud",
     "spentOfTotal": "{{spent}}/{{total}}",
-    "viewInWallet": "Vaata rahakotis"
+    "viewInWallet": "Vaata rahakotis",
+    "topUp": "Lisa märgid",
+    "topUpTitle": "Lisa tellimuse märgid",
+    "topUpCustom": "Muu summa (USD)",
+    "topUpYouSend": "Saatsid",
+    "topUpYouGet": "Sinu jäägile lisatud",
+    "topUpConfirm": "Lisa {{amount}}",
+    "topUpRange": "Sisesta {{min}} kuni {{max}}",
+    "topUpDone": "{{amount}} lisati sinu tellimustõenditele",
+    "topUpPending": "Sinu lisamine on kinnitamisel. See ilmub peagi Sinu jäägile.",
+    "topUpEmptyHint": "Lisa raha, et tellida loojaid",
+    "topUpStageWallet": "Kinnita oma rahakotis…",
+    "topUpStageConfirming": "Tehingu ootel...",
+    "topUpStageCrediting": "Sinu jäägile lisamine…"
   },
   "live": {
     "notSet": "Määramata",

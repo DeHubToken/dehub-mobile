@@ -4779,7 +4779,20 @@
     "tokensSent": "{{amount}} tokeni zimetumwa",
     "percentUsed": "{{percent}}% imetumika",
     "spentOfTotal": "{{spent}} ya {{total}}",
-    "viewInWallet": "Angalia kwenye pochi"
+    "viewInWallet": "Angalia kwenye pochi",
+    "topUp": "Ongeza ishara",
+    "topUpTitle": "Weka ishara za usajili",
+    "topUpCustom": "Kiasi kingine (USD)",
+    "topUpYouSend": "Unatuma",
+    "topUpYouGet": "Imeongezwa kwenye salio lako",
+    "topUpConfirm": "Weka {{amount}}",
+    "topUpRange": "Weka {{min}} kwa {{max}}",
+    "topUpDone": "{{amount}} imeongezwa kwenye ishara zako za usajili",
+    "topUpPending": "Ziada yako inathibitisha. Itaonekana kwenye salio lako hivi karibuni.",
+    "topUpEmptyHint": "Jiongeze ili ujisajili kwa wabunifu",
+    "topUpStageWallet": "Thibitisha kwenye pochi yako...",
+    "topUpStageConfirming": "Inasubiri muamala...",
+    "topUpStageCrediting": "Inaongeza kwenye salio lako..."
   },
   "live": {
     "notSet": "Haijawekwa",

@@ -4782,7 +4782,20 @@
     "tokensSent": "{{amount}} టోకెన్ ‌ లు పంపబడ్డాయి",
     "percentUsed": "{{percent}}% ఉపయోగించారు",
     "spentOfTotal": "{{total}}లో {{spent}}",
-    "viewInWallet": "వాలెట్ ‌ లో చూడండి"
+    "viewInWallet": "వాలెట్ ‌ లో చూడండి",
+    "topUp": "టోకెన్ ‌ లను జోడించండి",
+    "topUpTitle": "సబ్ ‌ స్క్రిప్షన్ టోకెన్ ‌ లను జోడించండి",
+    "topUpCustom": "ఇతర మొత్తం (USD)",
+    "topUpYouSend": "మీరు పంపుతారు",
+    "topUpYouGet": "మీ బ్యాలెన్స్ ‌ కు జోడించబడింది",
+    "topUpConfirm": "{{amount}} ను జోడించండి",
+    "topUpRange": "{{min}} నుండి {{max}} వరకు నమోదు చేయండి",
+    "topUpDone": "{{amount}} మీ సబ్ ‌ స్క్రిప్షన్ టోకెన్ ‌ లకు జోడించబడింది",
+    "topUpPending": "మీ టాప్-అప్ నిర్ధారించబడుతోంది. ఇది త్వరలో మీ బ్యాలెన్స్ ‌ లో కనిపిస్తుంది.",
+    "topUpEmptyHint": "క్రియేటర్ ‌ లకు సబ్ ‌ స్క్రైబ్ చేయడానికి టాప్ అప్",
+    "topUpStageWallet": "మీ వాలెట్ ‌ లో నిర్ధారించండి...",
+    "topUpStageConfirming": "లావాదేవీ కోసం వేచి ఉంది...",
+    "topUpStageCrediting": "మీ బ్యాలెన్స్ ‌ కు జోడిస్తోంది..."
   },
   "live": {
     "notSet": "సెట్ చేయలేదు",

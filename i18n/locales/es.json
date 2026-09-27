@@ -4827,7 +4827,20 @@
     "tokensSent": "{{amount}} tokens enviados",
     "percentUsed": "{{percent}}% usado",
     "spentOfTotal": "{{spent}} de {{total}}",
-    "viewInWallet": "Ver en el monedero"
+    "viewInWallet": "Ver en el monedero",
+    "topUp": "Añadir tokens",
+    "topUpTitle": "Añadir tokens de suscripción",
+    "topUpCustom": "Otro importe (USD)",
+    "topUpYouSend": "Envías",
+    "topUpYouGet": "Añadido a tu saldo",
+    "topUpConfirm": "Añadir {{amount}}",
+    "topUpRange": "Escribe {{min}} a {{max}}",
+    "topUpDone": "{{amount}} añadido a sus tokens de suscripción",
+    "topUpPending": "Tu recarga se está confirmando. En breve aparecerá en tu saldo.",
+    "topUpEmptyHint": "Recarga para suscribirte a los creadores",
+    "topUpStageWallet": "Confirma en tu monedero...",
+    "topUpStageConfirming": "Esperando la transacción...",
+    "topUpStageCrediting": "Añadiendo a su saldo..."
   },
   "live": {
     "notSet": "Sin definir",

@@ -4762,7 +4762,20 @@
     "tokensSent": "{{amount}} टोकन भेजल गेलक",
     "percentUsed": "{{percent}}% used",
     "spentOfTotal": "{{spent}} of {{total}}",
-    "viewInWallet": "वॉलेट में देख"
+    "viewInWallet": "वॉलेट में देख",
+    "topUp": "टोकन जोड़ा",
+    "topUpTitle": "सदस्यता टोकन जोड़ा",
+    "topUpCustom": "दूसर रकम (USD)",
+    "topUpYouSend": "रउरा भेजब",
+    "topUpYouGet": "रउरा बैलेंस में जुड़ी",
+    "topUpConfirm": "{{amount}} जोड़ा",
+    "topUpRange": "{{min}} से {{max}} लिखा",
+    "topUpDone": "{{amount}} रउरा सदस्यता टोकन में जुड़ गेलक",
+    "topUpPending": "रउरा टॉप-अप कर पुष्टि होवत हे। जल्दिए बैलेंस में देखाई।",
+    "topUpEmptyHint": "क्रिएटर के सदस्यता ले ले टोकन जोड़ा",
+    "topUpStageWallet": "आपन वॉलेट में पुष्टि करा…",
+    "topUpStageConfirming": "लेनदेन कर इंतजार…",
+    "topUpStageCrediting": "बैलेंस में जोड़त हे…"
   },
   "live": {
     "notSet": "ঠিক করা নাই",

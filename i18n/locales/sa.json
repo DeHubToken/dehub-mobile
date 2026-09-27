@@ -4778,7 +4778,20 @@
     "tokensSent": "{{amount}} टोकनानि प्रेषितानि",
     "percentUsed": "{{percent}}% प्रयुक्त",
     "spentOfTotal": "{{total}} मध्ये {{spent}}",
-    "viewInWallet": "दृश्यः बटुआ"
+    "viewInWallet": "दृश्यः बटुआ",
+    "topUp": "सङ्केतानि योजयतु",
+    "topUpTitle": "सङ्केतानि योजयतु",
+    "topUpCustom": "अन्य राशि (USD)",
+    "topUpYouSend": "त्वं पठसि",
+    "topUpYouGet": "अपना - अपना सन्तुलन",
+    "topUpConfirm": "{{amount}} योजयतु",
+    "topUpRange": "{{min}} तः {{max}} पर्यन्तं लिखतु",
+    "topUpDone": "{{amount}} भवतः अभिदान-टोकनेषु योजितम्",
+    "topUpPending": "ऊर्ध्वं तु पुष्टिरिति । त्वदधीनं यतः सर्वमतः सर्वो भवानिति ।",
+    "topUpEmptyHint": "रचयिता के प्रति निवर्त्यताम्",
+    "topUpStageWallet": "तेरे पन्ने पे लिख दूं...",
+    "topUpStageConfirming": "प्रतीक्षारत कोई सौदा...",
+    "topUpStageCrediting": "अपना सन्तुलन बनाये रखना..."
   },
   "live": {
     "notSet": "न निर्धारितम्",

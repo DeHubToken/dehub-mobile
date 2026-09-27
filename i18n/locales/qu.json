@@ -4809,7 +4809,20 @@
     "tokensSent": "{{amount}} tokenkuna apachisqa",
     "percentUsed": "{{percent}}% llamk&#39;achisqa",
     "spentOfTotal": "{{spent}} nisqamanta {{total}} nisqamanta.",
-    "viewInWallet": "Billeterapi qhaway"
+    "viewInWallet": "Billeterapi qhaway",
+    "topUp": "Tokenkunata yapay",
+    "topUpTitle": "Suscripción tokenkunata yapay",
+    "topUpCustom": "Huk qullqi (USD) .",
+    "topUpYouSend": "Qam kachayki",
+    "topUpYouGet": "Saldoykiman yapasqa",
+    "topUpConfirm": "Yanapay {{amount}}",
+    "topUpRange": "{{min}} nisqamanta {{max}} nisqaman qillqay.",
+    "topUpDone": "{{amount}} suscripción tokensniykiman yapasqa",
+    "topUpPending": "Recargoykiqa takyachiqmi. Pisi tiempollamantan balanzaykipi rikhurimunqa.",
+    "topUpEmptyHint": "Ruwaqkunaman qillqakunaykipaq yapay",
+    "topUpStageWallet": "Billeteraykipi takyachiy...",
+    "topUpStageConfirming": "Chay rantinakuyta suyaspa...",
+    "topUpStageCrediting": "Saldoykiman yapaspa..."
   },
   "live": {
     "notSet": "Mana churasqa",

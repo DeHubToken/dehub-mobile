@@ -4782,7 +4782,20 @@
     "tokensSent": "{{amount}} polletter skickade",
     "percentUsed": "{{percent}}% används",
     "spentOfTotal": "{{spent}} av {{total}}",
-    "viewInWallet": "Visa i plånboken"
+    "viewInWallet": "Visa i plånboken",
+    "topUp": "Lägg till polletter",
+    "topUpTitle": "Lägg till prenumerationstoken",
+    "topUpCustom": "Annat belopp (USD)",
+    "topUpYouSend": "Du skickar",
+    "topUpYouGet": "Tillagt i ditt saldo",
+    "topUpConfirm": "Lägg till {{amount}}",
+    "topUpRange": "Ange {{min}} till {{max}}",
+    "topUpDone": "{{amount}} har lagts till i dina prenumerationstokens",
+    "topUpPending": "Din påfyllning bekräftas. Det kommer att visas i ditt saldo inom kort.",
+    "topUpEmptyHint": "Fyll på för att prenumerera på kreatörer",
+    "topUpStageWallet": "Bekräfta i din portfölj...",
+    "topUpStageConfirming": "Väntar på transaktionen...",
+    "topUpStageCrediting": "Lägger till ditt saldo..."
   },
   "live": {
     "notSet": "Inte angivet",

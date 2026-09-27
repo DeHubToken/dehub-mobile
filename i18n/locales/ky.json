@@ -4778,7 +4778,20 @@
     "tokensSent": "{{amount}} токен жөнөтүлдү",
     "percentUsed": "{{percent}}% колдонулган",
     "spentOfTotal": "{{spent}} of {{total}}",
-    "viewInWallet": "Капчыктагы көрүнүш"
+    "viewInWallet": "Капчыктагы көрүнүш",
+    "topUp": "Токендерди кошуу",
+    "topUpTitle": "Жазылуу токендерин кошуу",
+    "topUpCustom": "Башка сумма (USD)",
+    "topUpYouSend": "Сиз жөнөтөсүз",
+    "topUpYouGet": "Балансыңызга кошулду",
+    "topUpConfirm": "{{amount}} кошуу",
+    "topUpRange": "{{min}}{{max}} үчүн киргизүү",
+    "topUpDone": "{{amount}} жазылуу белгисине кошулду",
+    "topUpPending": "Үстүңкү бетиңиз тастыкталууда. Жакында балансыңызда пайда болот.",
+    "topUpEmptyHint": "Жаратуучуларга жазылуу үчүн жогорку",
+    "topUpStageWallet": "Капчыгыңызда ырастоо…",
+    "topUpStageConfirming": "Транзакцияны күтүүдө…",
+    "topUpStageCrediting": "Балансыңызга кошуу…"
   },
   "live": {
     "notSet": "Коюлган эмес",

@@ -4782,7 +4782,20 @@
     "tokensSent": "{{amount}}-tokens sendt",
     "percentUsed": "{{percent}} % brugt",
     "spentOfTotal": "{{spent}} af {{total}}",
-    "viewInWallet": "Se i tegnebog"
+    "viewInWallet": "Se i tegnebog",
+    "topUp": "Tilføj tokens",
+    "topUpTitle": "Tilføj abonnementstokens",
+    "topUpCustom": "Andet beløb (USD)",
+    "topUpYouSend": "Du sender",
+    "topUpYouGet": "Føjet til din saldo",
+    "topUpConfirm": "Tilføj {{amount}}",
+    "topUpRange": "Indtast{{min}} til {{max}}",
+    "topUpDone": "{{amount}} føjet til dine abonnementstokens",
+    "topUpPending": "Din påfyldning bekræftes. Det vil snart fremgå af din saldo.",
+    "topUpEmptyHint": "Fyld op for at abonnere på kreatører",
+    "topUpStageWallet": "Bekræft i din tegnebog...",
+    "topUpStageConfirming": "Venter på transaktionen...",
+    "topUpStageCrediting": "Tilføjer til din saldo..."
   },
   "live": {
     "notSet": "Ikke angivet",

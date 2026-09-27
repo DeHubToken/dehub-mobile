@@ -4778,7 +4778,20 @@
     "tokensSent": "{{amount}} jetoane trimise",
     "percentUsed": "{{percent}}% utilizat",
     "spentOfTotal": "{{spent}} din {{total}}",
-    "viewInWallet": "Afișează în portofel"
+    "viewInWallet": "Afișează în portofel",
+    "topUp": "Adaugă jetoane",
+    "topUpTitle": "Adaugă jetoane de abonament",
+    "topUpCustom": "Altă sumă (USD)",
+    "topUpYouSend": "Trimiteți",
+    "topUpYouGet": "Adăugat la soldul tău",
+    "topUpConfirm": "Adaugă {{amount}}",
+    "topUpRange": "Introduceți {{min}} până la {{max}}",
+    "topUpDone": "{{amount}} adăugat la jetoanele de abonament",
+    "topUpPending": "Reîncărcarea se confirmă. Acesta va apărea în soldul dvs. în scurt timp.",
+    "topUpEmptyHint": "Încarcă pentru a te abona la creatori",
+    "topUpStageWallet": "Confirmă în portofel...",
+    "topUpStageConfirming": "Se așteaptă tranzacția...",
+    "topUpStageCrediting": "Se adaugă la soldul tău..."
   },
   "live": {
     "notSet": "Nesetat",

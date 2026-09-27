@@ -4791,7 +4791,20 @@
     "tokensSent": "{{amount}} ටෝකන් යවන ලදි",
     "percentUsed": "{{percent}}% භාවිතා කර ඇත",
     "spentOfTotal": "{{total}} න් {{spent}}",
-    "viewInWallet": "පසුම්බියේ බලන්න"
+    "viewInWallet": "පසුම්බියේ බලන්න",
+    "topUp": "ටෝකන එක් කරන්න",
+    "topUpTitle": "ග් ‍ රාහකත්ව සංකේත එක් කරන්න",
+    "topUpCustom": "වෙනත් මුදල (ඇ .ඩො.)",
+    "topUpYouSend": "ඔබ එවයි",
+    "topUpYouGet": "ඔබේ ශේෂයට එක් කරන ලදි",
+    "topUpConfirm": "එකතු කරන්න {{amount}}",
+    "topUpRange": "{{min}} සිට {{max}} දක්වා ඇතුළත් කරන්න",
+    "topUpDone": "{{amount}} ඔබේ දායකත්ව ටෝකනයට එකතු කරන ලදි",
+    "topUpPending": "ඔබේ උඩුගත කිරීම තහවුරු කරයි. එය ඉක්මනින් ඔබේ ශේෂයේ දිස්වනු ඇත.",
+    "topUpEmptyHint": "නිර්මාණකරුවන්ට දායක වීමට ක් දක්වා",
+    "topUpStageWallet": "ඔබේ පසුම්බියේ තහවුරු කරන්න...",
+    "topUpStageConfirming": "ගනුදෙනුව සඳහා බලා සිටී...",
+    "topUpStageCrediting": "ඔබේ ශේෂයට එක් කරමින්..."
   },
   "live": {
     "notSet": "සකසා නැත",

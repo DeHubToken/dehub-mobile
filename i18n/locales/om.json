@@ -4791,7 +4791,20 @@
     "tokensSent": "{{amount}} mallattoo ergame",
     "percentUsed": "{{percent}}% fayyadameera",
     "spentOfTotal": "{{spent}} kan {{total}}",
-    "viewInWallet": "Wallet keessatti ilaali"
+    "viewInWallet": "Wallet keessatti ilaali",
+    "topUp": "Tokens itti dabali",
+    "topUpTitle": "Mallattoo maallaqa galchuu dabali",
+    "topUpCustom": "Maallaqa biroo (USD) .",
+    "topUpYouSend": "Ati ergita",
+    "topUpYouGet": "Hafnaan keessan irratti dabalameera",
+    "topUpConfirm": "{{amount}} itti dabali.",
+    "topUpRange": "{{min}} gara {{max}} tti galchaa.",
+    "topUpDone": "{{amount}} mallattoo maallaqa galchuu keessan irratti dabalameera",
+    "topUpPending": "Top-up keessan mirkaneessaa jira. Yeroo gabaabaa keessatti madaallii keessan keessatti ni mul&#39;ata.",
+    "topUpEmptyHint": "Uumtoota subscribe gochuuf top up godhaa",
+    "topUpStageWallet": "Borsaa keessan keessatti mirkaneessaa...",
+    "topUpStageConfirming": "Daldala kana eegaa...",
+    "topUpStageCrediting": "Madaallii keessanitti dabaluudhaan..."
   },
   "live": {
     "notSet": "Hin qindoofne",

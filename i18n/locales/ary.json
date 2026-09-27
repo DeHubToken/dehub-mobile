@@ -4808,7 +4808,20 @@
     "tokensSent": "{{amount}} تم إرسال التوكينز",
     "percentUsed": "{{percent}}%مستخدم",
     "spentOfTotal": "{{spent}} من {{total}}",
-    "viewInWallet": "عرض في المحفظة"
+    "viewInWallet": "عرض في المحفظة",
+    "topUp": "إضافة الرموز المميزة",
+    "topUpTitle": "إضافة رموز اشتراك",
+    "topUpCustom": "مبلغ آخر (بالدولار الأمريكي)",
+    "topUpYouSend": "أنت ترسل",
+    "topUpYouGet": "تمت الإضافة إلى رصيدك",
+    "topUpConfirm": "إضافة {{amount}}",
+    "topUpRange": "أدخل {{min}} إلى {{max}}",
+    "topUpDone": "تمت إضافة {{amount}} إلى رموز اشتراكك",
+    "topUpPending": "تم تأكيد تعبئة رصيدك. سيظهر في رصيدك قريبًا.",
+    "topUpEmptyHint": "أضف رصيدًا للاشتراك في منشئي المحتوى",
+    "topUpStageWallet": "تأكيد في محفظتك...",
+    "topUpStageConfirming": "في انتظار المعاملة...",
+    "topUpStageCrediting": "جارٍ الإضافة إلى رصيدك..."
   },
   "live": {
     "notSet": "ماشي محدد",

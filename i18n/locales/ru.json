@@ -4831,7 +4831,20 @@
     "tokensSent": "Отправлено токенов:{{amount}}",
     "percentUsed": "Использовано: {{percent}}%",
     "spentOfTotal": "{{spent}} из {{total}}",
-    "viewInWallet": "Посмотреть в кошельке"
+    "viewInWallet": "Посмотреть в кошельке",
+    "topUp": "Добавить токены",
+    "topUpTitle": "Добавить токены подписки",
+    "topUpCustom": "Другая сумма (долл. США)",
+    "topUpYouSend": "Вы отправляете",
+    "topUpYouGet": "Добавлено на ваш баланс",
+    "topUpConfirm": "Добавить {{amount}}",
+    "topUpRange": "Введите от {{min}} до {{max}}",
+    "topUpDone": "{{amount}} добавлено к вашим токенам подписки",
+    "topUpPending": "Пополнение подтверждается. В ближайшее время он появится на вашем балансе.",
+    "topUpEmptyHint": "Пополните счет, чтобы подписаться на креаторов",
+    "topUpStageWallet": "Подтвердите в кошельке...",
+    "topUpStageConfirming": "Ожидание транзакции...",
+    "topUpStageCrediting": "Пополнение баланса..."
   },
   "live": {
     "notSet": "Не задано",

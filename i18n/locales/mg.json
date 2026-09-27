@@ -4801,7 +4801,20 @@
     "tokensSent": "{{amount}} tokens naniraka",
     "percentUsed": "{{percent}}% ampiasaina",
     "spentOfTotal": "{{spent}} amin'ny {{total}}",
-    "viewInWallet": "Jereo ao amin'ny kitapom-bola"
+    "viewInWallet": "Jereo ao amin'ny kitapom-bola",
+    "topUp": "Add famantarana",
+    "topUpTitle": "Add famandrihana famantarana",
+    "topUpCustom": "Vola hafa (USD)",
+    "topUpYouSend": "Mandefa ianao",
+    "topUpYouGet": "Tafiditra ao amin'ny fifandanjanao",
+    "topUpConfirm": "Add {{amount}}",
+    "topUpRange": "Midira {{min}} to {{max}}",
+    "topUpDone": "{{amount}} nanampy ho an'ny famandrihan-toerana misy anao",
+    "topUpPending": "Ny fanamafisany ny endriny ambony indrindra dia manamarina. Hiverina hividy indray tsy ho ela aho.",
+    "topUpEmptyHint": "Ambony mba misoratra anarana amin'ny mpamorona",
+    "topUpStageWallet": "Hamarino ao anaty kitaponao...",
+    "topUpStageConfirming": "Miandry ny fifampiraharahana...",
+    "topUpStageCrediting": "Hanampy anao amin'ny fandinihi..."
   },
   "live": {
     "notSet": "Tsy voafaritra",

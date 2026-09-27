@@ -4778,7 +4778,20 @@
     "tokensSent": "{{amount}} fitxes enviades",
     "percentUsed": "S'ha utilitzat el {{percent}}%",
     "spentOfTotal": "{{spent}} de {{total}}",
-    "viewInWallet": "Veure a la cartera"
+    "viewInWallet": "Veure a la cartera",
+    "topUp": "Afegeix fitxes",
+    "topUpTitle": "Afegeix fitxes de subscripció",
+    "topUpCustom": "Altres quantitats (USD)",
+    "topUpYouSend": "Tu envies",
+    "topUpYouGet": "S'ha afegit al teu saldo",
+    "topUpConfirm": "Afegeix {{amount}}",
+    "topUpRange": "Escriu {{min}} a {{max}}",
+    "topUpDone": "S'han afegit {{amount}} als tokens de subscripció",
+    "topUpPending": "La recàrrega s'està confirmant. En breu apareixerà al teu saldo.",
+    "topUpEmptyHint": "Recarrega i subscriu-te als creadors",
+    "topUpStageWallet": "Confirma a la teva cartera...",
+    "topUpStageConfirming": "S'està esperant la transacció...",
+    "topUpStageCrediting": "S'està afegint al teu saldo..."
   },
   "live": {
     "notSet": "Sense definir",

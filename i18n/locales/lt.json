@@ -4778,7 +4778,20 @@
     "tokensSent": "{{amount}} žetonai išsiųsti",
     "percentUsed": "{{percent}}% naudota",
     "spentOfTotal": "{{spent}} iš {{total}}",
-    "viewInWallet": "Peržiūrėti piniginėje"
+    "viewInWallet": "Peržiūrėti piniginėje",
+    "topUp": "Pridėti žetonų",
+    "topUpTitle": "Pridėti prenumeratos žetonus",
+    "topUpCustom": "Kita suma (USD)",
+    "topUpYouSend": "Siunčiate",
+    "topUpYouGet": "Pridėta prie jūsų likučio",
+    "topUpConfirm": "Pridėti {{amount}}",
+    "topUpRange": "Įveskite {{min}} į {{max}}",
+    "topUpDone": "{{amount}} pridėta prie jūsų prenumeratos žetonų",
+    "topUpPending": "Papildymas bus patvirtintas. Netrukus jis bus rodomas jūsų balanse.",
+    "topUpEmptyHint": "Papildyk ir užsiprenumeruok kūrėjus",
+    "topUpStageWallet": "Patvirtinkite savo piniginėje...",
+    "topUpStageConfirming": "Laukiama operacijos...",
+    "topUpStageCrediting": "Pridedama prie jūsų likučio..."
   },
   "live": {
     "notSet": "Nenustatyta",

@@ -4778,7 +4778,20 @@
     "tokensSent": "{{amount}} ટોકન્સ મોકલવામાં આવ્યા",
     "percentUsed": "{{percent}}% વપરાયેલ",
     "spentOfTotal": "{{spent}} નું {{total}}",
-    "viewInWallet": "વૉલેટમાં જુઓ"
+    "viewInWallet": "વૉલેટમાં જુઓ",
+    "topUp": "ટોકન્સ ઉમેરો",
+    "topUpTitle": "સબ્સ્ક્રિપ્શન ટોકન્સ ઉમેરો",
+    "topUpCustom": "અન્ય રકમ (USD)",
+    "topUpYouSend": "તમે મોકલો",
+    "topUpYouGet": "તમારા બેલેન્સમાં ઉમેરવામાં આવ્યું",
+    "topUpConfirm": "{{amount}} ઉમેરો",
+    "topUpRange": "{{min}} ને {{max}} દાખલ કરો",
+    "topUpDone": "{{amount}} તમારા સબ્સ્ક્રિપ્શન ટોકન્સમાં ઉમેરાયેલ છે",
+    "topUpPending": "તમારું ટોપ-અપ પુષ્ટિ કરી રહ્યું છે. તે ટૂંક સમયમાં તમારા બેલેન્સમાં દેખાશે.",
+    "topUpEmptyHint": "સર્જકો પર સબ્સ્ક્રાઇબ કરવા માટે ટોપ અપ",
+    "topUpStageWallet": "તમારા વૉલેટમાં પુષ્ટિ કરો...",
+    "topUpStageConfirming": "ટ્રાન્ઝેક્શનની રાહ જોઈ રહ્યા છે...",
+    "topUpStageCrediting": "તમારા બેલેન્સમાં ઉમેરી રહ્યા છે..."
   },
   "live": {
     "notSet": "સેટ નથી",

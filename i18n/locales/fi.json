@@ -4778,7 +4778,20 @@
     "tokensSent": "{{amount}} polettia lähetetty",
     "percentUsed": "{{percent}}% käytetty",
     "spentOfTotal": "{{spent}}/{{total}}",
-    "viewInWallet": "Näytä lompakossa"
+    "viewInWallet": "Näytä lompakossa",
+    "topUp": "Lisää tunnuksia",
+    "topUpTitle": "Lisää tilaustunnukset",
+    "topUpCustom": "Muu summa (USD)",
+    "topUpYouSend": "Lähetät",
+    "topUpYouGet": "Lisätty saldoosi",
+    "topUpConfirm": "Lisää {{amount}}",
+    "topUpRange": "Syötä {{min}} - {{max}}",
+    "topUpDone": "{{amount}} lisättiin tilaustunnuksiisi",
+    "topUpPending": "Täytteesi on vahvistamassa. Se näkyy pian saldossasi.",
+    "topUpEmptyHint": "Lisää rahaa tilataksesi tekijöitä",
+    "topUpStageWallet": "Vahvista lompakossasi…",
+    "topUpStageConfirming": "Odotetaan tapahtumaa...",
+    "topUpStageCrediting": "Lisätään saldoosi…"
   },
   "live": {
     "notSet": "Ei asetettu",

@@ -4808,7 +4808,20 @@
     "tokensSent": "{{amount}} ቶከንስ ተልኳል",
     "percentUsed": "{{percent}}% ጥቅም ላይ ውሏል",
     "spentOfTotal": "{{spent}} ከ {{total}}",
-    "viewInWallet": "በኪስ ቦርሳ ውስጥ ይመልከቱ"
+    "viewInWallet": "በኪስ ቦርሳ ውስጥ ይመልከቱ",
+    "topUp": "ምልክቶችን ያክሉ",
+    "topUpTitle": "የደንበኝነት ምዝገባ ምልክቶችን ያክሉ",
+    "topUpCustom": "ሌላ መጠን (ዶላር)",
+    "topUpYouSend": "አንተ መላክ",
+    "topUpYouGet": "ወደ ሚዛናዊነትዎ ታክሏል",
+    "topUpConfirm": "ያክሉ {{amount}}",
+    "topUpRange": "ያስገቡ {{min}} ወደ {{max}}",
+    "topUpDone": "{{amount}} በደንበኝነት ምዝገባ ምልክቶችዎ ላይ ታክሏል",
+    "topUpPending": "የእርስዎ ከፍተኛ-ላይ ያረጋግጣል. በአጭር ጊዜ ውስጥ በእርስዎ ሚዛን ውስጥ ይታያል.",
+    "topUpEmptyHint": "ለፈጣሪዎች ለመመዝገብ ከላይ",
+    "topUpStageWallet": "በኪስ ቦርሳዎ ውስጥ ያረጋግጡ…",
+    "topUpStageConfirming": "ግብይቱን በመጠባበቅ ላይ…",
+    "topUpStageCrediting": "ወደ ሚዛናዊነትዎ ማከል..."
   },
   "live": {
     "notSet": "አልተቀናበረም",
