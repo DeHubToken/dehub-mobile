@@ -108,6 +108,10 @@ export enum ScreenNames {
   BuilderPreview = 'BuilderPreview',
   DePin = 'DePin',
   Bridge = 'Bridge',
+  // Launchpad — the coin list, one coin, and the create flow.
+  Launchpad = 'Launchpad',
+  LaunchpadCoin = 'LaunchpadCoin',
+  LaunchpadCreate = 'LaunchpadCreate',
   // Auth screens
   Onboarding = 'Onboarding',
   SignIn = 'SignIn',

@@ -179,6 +179,20 @@ function AppNavigatorContent() {
           name={ScreenNames.Bridge}
           getComponent={() => require("../screens/BridgeScreen").default}
         />
+        {/* Launchpad: browsing is public; creating and trading sign in, and are
+            left out of the App Store build (config/storefront). */}
+        <Stack.Screen
+          name={ScreenNames.Launchpad}
+          getComponent={() => require("../screens/LaunchpadScreen").default}
+        />
+        <Stack.Screen
+          name={ScreenNames.LaunchpadCoin}
+          getComponent={() => require("../screens/LaunchpadCoinScreen").default}
+        />
+        <Stack.Screen
+          name={ScreenNames.LaunchpadCreate}
+          getComponent={() => require("../screens/LaunchpadCreateScreen").default}
+        />
         <Stack.Screen
           name={ScreenNames.Governance}
           getComponent={() => require("../screens/GovernanceScreen").default}
