@@ -604,7 +604,7 @@
     "channelSpeedNone": "Change di speed when you dey watch person and e go stay like dat for dia videos.",
     "hideWatched": "Hide videos wey you don watch",
     "hideWatchedDesc": "Keep videos wey you don already play out of your feeds. E dey off by default.",
-    "skipSegments": "Skip sponsors and intros",
+    "skipSegments": "I no go understand wetin you mean.",
     "skipSegmentsDesc": "Jump pass parts wey other viewers don mark as sponsor talk, intro or outro. You fit undo every skip. E dey off by default.",
     "profiles": "Profile dem",
     "profilesDesc": "Accounts wey dey saved for dis device",
@@ -770,7 +770,19 @@
     "smsPricePerMessage": "{{dhb}} tokens (${{usd}})",
     "smsDepositAction": "Send {{dhb}} tokens",
     "smsBalance": "{{dhb}} tokens left (${{usd}})",
-    "tokenBalanceAmount": "{{amount}} tokens"
+    "tokenBalanceAmount": "{{amount}} tokens",
+    "dhbBalanceIncludesStaked": "Walet na token yu stak combine go for long",
+    "badgeDelegationNoBadge": "Slot wey you go dey for delegation, come wey come wey na staking badge. Go stake DeHub token wey you dey, go earn one for you.",
+    "badgeDelegationEarn": "Stake DeHub tokens tok earn a badj, an im kom wit a slot for every tia yu klem.",
+    "smsNotificationsLocked": "Unlock wi {{dhb}} token (${{usd}}) credit",
+    "smsDialogIntro": "Massa message wey go cost money send, so dis channel go run on credit you go top up wey you buy from DeHub token.",
+    "smsUnlockPrice": "{{dhb}} tokens (${{usd}}) **dɔ́** **wɔ́k** **mɛ́sɛ́j** **ánd** **bɛ́kɔ́** **wɔ́n** **fɛ́s** **fɛ́s** **yɔ́ʊ** **fɛ́s** **bɛ́lɛ́ns**.",
+    "smsCodeSent": "Kode send. Na cost **{{price}}** token.",
+    "exportReady": "{{count}} accounts, {{saved}} saved posts exported.",
+    "importDone": "Followed {{followed}}, blocked {{blocked}}, {{folders}} folders created.",
+    "importProgress": "Applai {{done}} of {{total}}…",
+    "channelSpeedCount": "{{count}} chanel dey dey play deir own speed.",
+    "importPartial": "{{count}} account no fit follow - run import again to try am."
   },
   "common": {
     "mute": "Off di sound",
@@ -874,7 +886,12 @@
     "minAmount": "Min {{amount}} tokens.",
     "attachAmount": "Attach {{amount}} tokens",
     "tokensUnit": "tokens",
-    "tokenAmount": "{{amount}} tokens"
+    "tokenAmount": "{{amount}} tokens",
+    "insufficientDhb": "Na dey no go fit yu token, yu must go buy more.",
+    "payViaBridge": "DeHub token na Uniswap, come wey go be like ~{{seconds}}s",
+    "payFailed": "Wetin no dey convert {{symbol}} go DeHub token?",
+    "payViaDpay": "Peyi deHub pay, token dey come a bout 30 seconds.",
+    "payViaBridgeDpay": "Move wey go Base, pay wey go DeHub Pay, token dey come afo about one minute"
   },
   "postOptions": {
     "options": "Options",
@@ -982,7 +999,9 @@
     "bounty": "Bounty",
     "locked": "Lok",
     "any": "Eni wan",
-    "resetFilters": "Stat filta dem afresh"
+    "resetFilters": "Stat filta dem afresh",
+    "updatingFeed": "Updating feed",
+    "filters": "Filters"
   },
   "drawers": {
     "ppvTitle": "Pay-Per-View Kontent",
@@ -1023,7 +1042,9 @@
     "firstComments_one": "Fes {{count}} komment",
     "firstComments_other": "Fes {{count}} komment dem",
     "rewardPerPerson": "Reward per person (tokens)",
-    "minimumDhb": "Minimum tokens required"
+    "minimumDhb": "Minimum tokens required",
+    "ppvDhbInfo": "Peyiment go dey for DeHub token on Base chain.",
+    "requiresDhb": "Waise deHub token a Base chain no dey require"
   },
   "assistant": {
     "title": "Helpa",
@@ -1183,7 +1204,8 @@
     "couldNotPreparePost": "We no fit prepare dat one for post",
     "imageFailed": "E no fit mek di picture — try am again",
     "rateLimited": "Request don too plenty — try again small time",
-    "requestFailed": "AI request no waka"
+    "requestFailed": "AI request no waka",
+    "outOfCredit": "AI credit don finish. Top up with DeHub tokens make you continue."
   },
   "commandCentre": {
     "title": "Command Center",
@@ -1301,7 +1323,7 @@
     "crossChainDesc": "BTC, SOL, ETH, USDC & oda from any chain",
     "depositFromAnyChain": "Put money from any chain",
     "sendCryptoToReceive": "Send crypto from any chain → you go get {{dest}}",
-    "tokenOnChainTo": "{{symbol}} on {{chain}} → {{dest}}",
+    "tokenOnChainTo": "{{symbol}} na {{chain}} → {{dest}}",
     "tokenAmount": "How much {{symbol}}",
     "estimatedReceived": "{{symbol}} weh you fit get",
     "getDepositAddress": "Get address fo put money",
@@ -1326,7 +1348,9 @@
     "totalDhbBalance": "Total token balance",
     "txPpvUnlock": "PPV unlock — {{amount}} tokens",
     "txPpvSale": "PPV sale — {{amount}} tokens",
-    "transferDhb": "Transfer tokens"
+    "transferDhb": "Transfer tokens",
+    "txPurchased": "E go buy {{amount}} token wey you no dey.",
+    "txSold": "E go sell {{amount}} token wey you no dey get yet?"
   },
   "wallet": {
     "connectUnavailable": "Connect Wallet no dey fo dis version — use yua recovery phrase bring am back instead.",
@@ -1566,7 +1590,8 @@
     "retry": "Try again",
     "balanceTooLow": "Balance too low ({{balance}} tokens)",
     "tokenAmount": "{{amount}} tokens",
-    "provisional": "e never sure"
+    "provisional": "e never sure",
+    "addedToLeaderboard": "Wetin you get! Balance: {{balance}} token."
   },
   "explorePage": {
     "searchPlaceholder": "Find pipul, post, or content...",
@@ -1866,7 +1891,16 @@
     "refreshFailed": "Refresh no work",
     "noRepliesYet": "No Reply Yet",
     "noRepliesYetSub": "When dis user reply post, e go show here.",
-    "noMoreReplies": "No more reply"
+    "noMoreReplies": "No more reply",
+    "offerSubmitted": "Wetin wey {{amount}} token na wey wey {{handle}} submit for wey",
+    "offerWorthNow": "Wetin go on wey {{amount}} token go dey at dis time?",
+    "offerCommitsNothing": "Go make offer no cost na no token. You only pay when owner say yes.",
+    "searchThisChannel": "Sori, no search result.",
+    "tabPosts": "Posts",
+    "tabVideos": "Videos",
+    "tabAudio": "Audio",
+    "tabLive": "Live",
+    "tabPinned": "Pinned"
   },
   "tv": {
     "title": "TV",
@@ -2082,7 +2116,10 @@
     "morePosts": "More post",
     "loadMorePosts": "Load more post",
     "playAdVideo": "Play di ad video",
-    "payDhb": "Pay {{amount}} tokens"
+    "payDhb": "Pay {{amount}} tokens",
+    "priceUnavailable": "Tokken prais unavailable — try again for moment.",
+    "insufficientBalance": "Tokken no dey enough for dis top-up.",
+    "topUpExplanation": "Yu tokens bi transfer on-chain to DeHub ads treasury, den yu balance bi credit afta independent on-chain verifikasi."
   },
   "buyCoins": {
     "title": "Buy Coin",
@@ -2115,7 +2152,8 @@
     "otherTokens": "Oda tokens",
     "otherTokensDesc": "Yus yua kad fo bai ETH o USDC fo Base",
     "shareToFeed": "Share fo ma feed",
-    "sharePostTemplate": "I just add {{amount}} $DHB to my stack for DeHub. We di build with the community. #DeHub #DHB"
+    "sharePostTemplate": "I just add {{amount}} $DHB to my stack for DeHub. We di build with the community. #DeHub #DHB",
+    "minDhbPurchase": "Minimum tokken ples wey dey buy be $0.50."
   },
   "agents": {
     "title": "AI Agent dem",
@@ -2449,7 +2487,9 @@
     "amountLabel": "Amount (tokens)",
     "sendAmount": "Send {{amount}} tokens",
     "yourContribution": "{{amount}} tokens contributed",
-    "pooledTotal": "{{amount}} tokens pooled"
+    "pooledTotal": "{{amount}} tokens pooled",
+    "contributeIntro": "Send DeHub token frim yu wallet go treasury. Ebi yu add one, yu share fi pool go rise, an yu share go be weight fi yu vote when DAO decide how spend money.",
+    "sentDesc": "{{amount}} tokens na treasury fo {{chain}}. Yuh share go update wey block na index."
   },
   "governance": {
     "title": "Govnas",
@@ -2510,7 +2550,8 @@
       "signInToComment": "Sign in to join the talk",
       "empty": "No question yet. Start the talk.",
       "joinOnProposal": "Join the talk"
-    }
+    },
+    "mustHoldTokens": "Won de you fit hold DeHub token fi vote wey people go propose governance proposal?"
   },
   "sidebar": {
     "talkOfTheTown": "Talk of Di Town",
@@ -2863,7 +2904,11 @@
     "image_too_large_untiered": "The image too big — we di keep images reach {{limit}} MB",
     "failedToUnfollowUser": "We no fit unfollow di user",
     "no_dhb_balance": "No token balance",
-    "staking_dhb": "Staking tokens..."
+    "staking_dhb": "Staking tokens...",
+    "no_dhb_tokens_either_chain": "Yu no get DeHub tokens for both chain.",
+    "dhb_found_on_both_chains": "Tokken dey dey for both chain",
+    "dhb_token_not_configured": "DeHub tokken no dey konfigured for {{chain}}.",
+    "dhb_staked_on_chain": "{{amount}} tokken dey staked on {{chain}}."
   },
   "staking": {
     "title": "Staking",
@@ -2950,7 +2995,21 @@
     "availableToStake": "Available: {{amount}} tokens",
     "unstakeSent": "Withdrew {{amount}} tokens! TX: {{hash}}…",
     "tokensUnit": "tokens",
-    "tokenAmount": "{{amount}} tokens"
+    "tokenAmount": "{{amount}} tokens",
+    "dhbOnBase": "DeHub tokken for Base",
+    "stakeOnBaseDesc": "Depozit DeHub tokken for Base to earn protokal rewods.",
+    "unstakeFromBnbDesc": "Widraw from BNB Chain kontrak. Tokken for Base pool no get widrawal kontrak yet.",
+    "withdrawableOnBnb": "Widrawable: {{amount}} tokken on BNB Chain",
+    "orSendDirectly": "Or send DeHub tokken direkt to de depozit adres on Base:",
+    "pendingConfirmed": "{{amount}} tokken konfirm. Updatin your depozit hisori. No send dem again.",
+    "pendingSubmitted": "{{amount}} tokken submit. Konfirmashun stil dey check. No send dem again.",
+    "foundNewStake": "Find {{amount}} tokken. Your depozit up to date.",
+    "stakeConfirmedOnBase": "{{amount}} tokken konfirm on Base.",
+    "insufficientOnBase": "No enuf tokken on Base.",
+    "onlyThisMuchStaked": "You only get {{amount}} tokken deposite.",
+    "onlyLegacyWithdrawable": "Only {{amount}} tokken fit dey widraw now — di rest dey for Base pool, wey no get widrawal kontrak yet.",
+    "poolHasNoWithdrawal": "Your tokken dey for Base pool, wey no get widrawal kontrak yet. Kontak support to widraw.",
+    "lockedEarlyFee": "Lock till {{date}}. Widraw now go pay 88% — 12% fee, about {{fee}} tokken. Tap again to accept."
   },
   "communities": {
     "title": "Community dem",
@@ -3159,10 +3218,107 @@
         "oneDay": "1 day time",
         "oneWeek": "1 week time",
         "forever": "Forever and ever"
+      },
+      "ownerSection": "Owena",
+      "ownerLabel": "Owena",
+      "noOwner": "No owena on rekod.",
+      "administratorsSection": "Administrators",
+      "noAdmins": "No administrator yet. Promote member to help you moderat.",
+      "adminBadge": "Admin",
+      "rightsSummary": "{{granted}} of {{total}} rait",
+      "addAdministrator": "Add administrator",
+      "noMemberMatches": "No member match dat adres.",
+      "noPlainMembers": "Everybodi dey here already be admin.",
+      "searchTruncated": "Show first {{limit}} — keep typin to narrow down.",
+      "danger": {
+        "transferTitle": "Transfer owenship?",
+        "transferBody": "{{name}} become owena of dis komuniti. You drop to admin wit every rait, and dis no fit be undo.",
+        "transferConfirm": "Transfer",
+        "deleteTitle": "Dele community?",
+        "deleteBody": "{{name}} na everyting in am go permanent: every memba, every mesaji, every event and every invit link. Dis no dey reversible.",
+        "deleteConfirm": "Dele",
+        "transferHeading": "Transfer ownership",
+        "transferHint": "Pik out memba wey go dey own dis community from here on.",
+        "searchMembers": "Search members",
+        "noMatches": "No memba match di search.",
+        "noCandidates": "No oda active memba to hand dis community to.",
+        "transferAction": "Make owner",
+        "deleteHeading": "Dele community",
+        "deleteHint": "Every memba, mesaji, event and invit link go permanent remove. No way back.",
+        "deleteAction": "Dele dis community"
+      },
+      "inviteRevoked": "Revoked",
+      "inviteExpired": "Expired",
+      "inviteExhausted": "Limit reach",
+      "inviteExpiresMinutes": "expire go {{n}} min",
+      "inviteExpiresHours": "expire go {{n}}h",
+      "inviteExpiresDays": "expire go {{n}}d",
+      "inviteLimit": "limit {{n}}",
+      "inviteNeedsApproval": "need approval",
+      "inviteLink": "Invite link",
+      "inviteUses": "{{n}} join",
+      "copy": "Copy",
+      "revoke": "Revoke",
+      "inviteShareMessage": "Join dis community on DeHub",
+      "revokeInviteTitle": "Revoke invit link",
+      "revokeInviteBody": "Dis link go stop work straight away. Pipo wey already join with am stay.",
+      "inviteNoPermission": "Yu no get permission to manage invit link.",
+      "createInviteLink": "Create invit link",
+      "inviteNamePlaceholder": "Name (optional)",
+      "inviteExpiryLabel": "Expires",
+      "inviteLimitLabel": "Member limit",
+      "inviteRequireApproval": "Require admin approval",
+      "inviteRequireApprovalHint": "Pipo wey dey use dis link, dem must get approval before dem fit join.",
+      "createLink": "Create link",
+      "noInvites": "M no invite link yet, but me go create one to invite pipo directly.",
+      "permissionsUpdated": "Permissions updated",
+      "slowModeUpdated": "Slow mode updated",
+      "slowModeOffHint": "Members go send message witout delay.",
+      "slowModeOnHint": "Membas go send one mesaji every {{label}}. Admins no dey exempt.",
+      "defaultPermissions": "Default member permissions",
+      "defaultPermissionsHint": "Wen evriwan wan do here, unless admin tok say otherwise.",
+      "slowModeTitle": "Slow mode",
+      "log": {
+        "justNow": "just now",
+        "minutesAgo": "{{value}}m ago",
+        "hoursAgo": "{{value}}h ago",
+        "daysAgo": "{{value}}d ago",
+        "weeksAgo": "{{value}}w ago",
+        "monthsAgo": "{{value}}mo ago",
+        "yearsAgo": "{{value}}y ago",
+        "permanently": "permanently",
+        "forHours": "for {{value}}h",
+        "forDays": "for {{value}}d",
+        "forWeeks": "for {{value}}w",
+        "unknownActor": "Someone",
+        "reason": "Reason: {{value}}",
+        "restricted": "Moderators blong see log wey dem moderate.",
+        "empty": "Nem no dey yet. Moderation action go show up as dem dey happen.",
+        "showMore": "Show moa ({{value}})"
       }
     },
     "chooseAvatar": "Pick avatar",
-    "loadFailed": "No fit load communities"
+    "loadFailed": "No fit load communities",
+    "noPostsYet": "No post yet for dis community.",
+    "infoUpdated": "Kampanyi a waka update.",
+    "editInfo": "Na you go edit name and description?",
+    "saveChanges": "Save.",
+    "nowPrivate": "Komiuniti dey private.",
+    "nowPublic": "Kamunity na public.",
+    "bannedFromCommunity": "Yu no fit join dis community again.",
+    "manageButton": "Manaem",
+    "muted": "Muted.",
+    "privateHint": "Membas new join, dem dey need aprova bifor dem join.",
+    "publicHint": "Anybodi fit join fast fast.",
+    "invite": {
+      "joinFailed": "Mefail join.",
+      "revoked": "Link invite bi revok.",
+      "expired": "Link expire.",
+      "exhausted": "Invite link don dey full.",
+      "notFound": "Link no valid.",
+      "requestToJoin": "M chuo, na me dey request join.",
+      "approvalNote": "Admin go approve request yu before yu join."
+    }
   },
   "work": {
     "title": "Bounty dem",
@@ -3460,7 +3616,11 @@
     "vaultReleaseBody": "E go go back for di pool and anybody fit collect am. You no fit change am back, and if you wan buy am back, e go cost wetin di new owner ask.",
     "swapHintKept": "You go keep @{{handle}} — e go enter your usernames, and you fit wear am again or sell am later. Posts, followers and your wallet no go change.",
     "swapHintNoChange": "Posts, followers and your wallet no go change.",
-    "dollarPriceRange": "Type $1–$1,000,000, with up to two numbers after the point."
+    "dollarPriceRange": "Type $1–$1,000,000, with up to two numbers after the point.",
+    "payingOn": "Pay wia DeHub tokens for {{chain}}.",
+    "assurance": "Handle ya move only wen DeHub read token transfer back off chain. If no, payment dey record against sale, so seller go refund yu.",
+    "askingPriceDhb": "Prai pris in tokun",
+    "priceRange": "Bwain {{min}} na bwain {{max}}."
   },
   "stores": {
     "podToggle": "Print-on-demand item",
@@ -3550,7 +3710,11 @@
       "purchaseFailed": "Buy no work",
       "transactionCancelled": "Dem don cancel di transaction.",
       "pickRating": "Pick star rating fes.",
-      "confirmTitle": "Confirm buy"
+      "confirmTitle": "Confirm buy",
+      "paymentHint": "Pai for Base tokens for DeHub, direkt to seller's wallet.",
+      "priceUnavailable": "Tokken prais unavailable — try again for moment.",
+      "insufficientBalance": "Tokken no dey enough for dis purchase.",
+      "confirmBody": "Yu go pay {{amount}} tok (abaut {{usd}}) for Base, straight to seller's wallet. Dis no dey reversible."
     },
     "categories": {
       "all": "Ol",
@@ -3642,7 +3806,13 @@
     "resumeTransfer": "Continue di transfer",
     "history": "History",
     "sold": "Dem don sell-am",
-    "bought": "Dem don buy-am"
+    "bought": "Dem don buy-am",
+    "subtitle": "Akonto bilong sale, prais bilong DeHub tokens.",
+    "payingOn": "Pay wia DeHub tokens for {{chain}}.",
+    "assurance": "Account ya move afta DeHub read token transfer back of chain. If transfer dey stop, payment ya dey recorded against sale, na retry go resume am - you no go stranded.",
+    "askingPriceDhb": "Prai pris in tokun",
+    "priceRange": "Bwain {{min}} na bwain {{max}}.",
+    "walletStays": "Yua wallet no dey sell: tokens, staked badge balance and minted collectibles dey remain wit yua keys."
   },
   "screens": {
     "drafts": "Draft dem",
@@ -3687,7 +3857,14 @@
     "guideSubtitle": "Step-by-step guide for every feature",
     "searchGuide": "Search di guide...",
     "glossaryMintTxDesc": "Tap the info icon for post wey dem don mint for open yi mint transaction for block explorer and check the on-chain record. The full Post Info page — stats, holders, marketplace — dey for the web app for dehub.io.",
-    "glossaryTokenIdDesc": "One unique on-chain ID wey dem give post when dem mint am as NFT."
+    "glossaryTokenIdDesc": "One unique on-chain ID wey dem give post when dem mint am as NFT.",
+    "walletSubtitle": "Yon DeHub toknz manage.",
+    "glossaryTipDesc": "Senda DeHub tokns direkti to a kontent kreator as a rewod for dia kontent. Tipes dey rekord on-chain.",
+    "glossaryDhbTokenDesc": "DHB na simbol tiker fo DeHub tokn, tokn wey dey nativ fo DeHub. Na am use fo tip, pay-per-view kontent, govament votin, an stakin.",
+    "glossaryWalletDesc": "Yu wallet wey dey hold yu DeHub tokens anodda kripto asets. Connected via Web3Auth for easy access.",
+    "glossaryStakingDesc": "Yu lock ya DeHub tokens, yu go earn reward dey time go come. Tokens wey dey stake also give yu increase power to vote for governance.",
+    "glossaryGovernanceDesc": "Submit an' vote on proposals wey go shape platform. Power to vote be based on how many DeHub tokens you dey hold.",
+    "glossaryStakingBadgesDesc": "Badjes dey dey beside yu name, basd on how much DeHub tokens yu get (wallet + staked). Dey get 13 tias - de more tokens yu get, de higher yu go. Tias wey dey high, dem give yu more powa to vote and lower platform fees."
   },
   "arcade": {
     "submitAccessibility": "Sen game fo arcade",
@@ -3942,7 +4119,9 @@
     "freeImagesLeft_one": "You still get {{count}} free picture. You no need pay.",
     "freeImagesLeft_other": "You still get {{count}} free pictures. You no need pay.",
     "payAmount": "Pay {{amount}} tokens & {{action}}",
-    "yourDhb": "Your tokens"
+    "yourDhb": "Your tokens",
+    "payWithDhb": "Pay wit tokun",
+    "transferUnconfirmed": "Your token transfer don go but we no fit confirm am. E dey save and e go pay for your next try — no send am again."
   },
   "digest": {
     "andOthers_one": "{{names}} and {{count}} oda",
@@ -4128,7 +4307,8 @@
     "flareSentPending": "{{label}} don go. Di final count go show for Past usage.",
     "boostPostFailed": "We no fit boost dat post",
     "loadFailed": "We no fit load your SuperPowers now. Try again small time.",
-    "boostsLeftOf": "{{left}} for {{total}} boosts remain"
+    "boostsLeftOf": "{{left}} for {{total}} boosts remain",
+    "holdToUnlock": "Buy DeHub tokens to unlock a badj na im SuperPowers. Any bodi wey get badj, dem get am - staking no dey required."
   },
   "follow": {
     "followers": "Follower dem",
@@ -4331,7 +4511,8 @@
     "noteTwitch": "Na only ad money — e no add subs and bits, wey usually be di bigger share.",
     "noteTiktok": "Creator Rewards. E well known say e low per view; na di scale be di whole model.",
     "noteReels": "Bonus programmes na invite-only and dem don close am plenty times.",
-    "tokenAmount": "{{amount}} tokens"
+    "tokenAmount": "{{amount}} tokens",
+    "footnote": "Competitor figures be just estimate from what industry say, no be real payouts — real RPM change so much by what you talk about, where your audience come from, and how long people watch, so you must change each rate to fit what you really earn. DeHub figure be your real tip money, change to live token price, no include subscription, PPV, and store sales. Views be sum from your last 100 posts."
   },
   "sessions": {
     "androidDevice": "Android fon",
@@ -4498,7 +4679,10 @@
     "searchPlaceholder": "Search with address, transaction hash or chain",
     "queueLoadFailed": "Transfer dem no load. Try again.",
     "noMatches": "No transfer weh match. Try another address or transaction hash.",
-    "signInToBridge": "Sign in make you see your balance and move DeHub tokens between Base and BNB Chain."
+    "signInToBridge": "Sign in make you see your balance and move DeHub tokens between Base and BNB Chain.",
+    "relayAddress": "Bridj relay adres (send tokon dey here on saus chain):",
+    "insufficient": "Tokken no dey enough for {{chain}}.",
+    "insufficientOnChain": "Tokken no dey enough for {{chain}}. On-chain balance go differ from di one wey dey display."
   },
   "teamUp": {
     "title": "Join team",
@@ -4600,7 +4784,9 @@
     "tokenBalance": "Token balance",
     "unlockedSuccess": "E don open fine",
     "aboutToSpend": "You wan spend <accent>{{amount}} {{symbol}}</accent> for unlock this video.",
-    "lowTopUp": "{{symbol}} don low? We go top you up before we unlock am."
+    "lowTopUp": "{{symbol}} don low? We go top you up before we unlock am.",
+    "otherChain": "Dis post dey settle for another chain, so you need DeHub tokens for your wallet.",
+    "payHint": "Pay wit anytin wey you get for wallet. Na DeHub tokens go come out, and e go unlock straight away."
   },
   "walletSetup": {
     "tryBiometricsHint": "Use dis wan if na dis phone yu set up di wallet an di key suppose don dey hia already",
@@ -4894,7 +5080,9 @@
     "pillFailedNoRetries": "E fail · No retry remain",
     "uploadInProgressStay": "Your upload still dey go. Stay for this screen make e finish.",
     "removeQueuedBody": "E no post yet. If you remove am, the post go cancel.",
-    "removeUploadTitle": "Remove dis upload?"
+    "removeUploadTitle": "Remove dis upload?",
+    "quotaShortfall": "Dis post dey cost {{cost}} tokens and you get {{held}}.",
+    "shopAllowanceUsed": "{{allowance}} of {{allowance}} use wey. Stake more DeHub token fo’ higher badge na slot tori."
   },
   "bounty": {
     "claimed": "Don claim",
@@ -4943,7 +5131,8 @@
       "stakingLabel": "💎 Token Staking (Base)",
       "stakingBlurb": "Stake DeHub tokens, earn rewards",
       "tokenUtilityLabel": "🪙 Token Utility",
-      "fiatOnrampBlurb": "Card → USDC → DeHub tokens"
+      "fiatOnrampBlurb": "Card → USDC → DeHub tokens",
+      "storesBlurb": "Kam pala pala kommersi P2P na DeHub tokens for Base."
     }
   },
   "monetization": {
@@ -4961,7 +5150,8 @@
     "contractPlaceholder": "Contract address (0x…)",
     "symbolPlaceholder": "Symbol (like PEPE)",
     "tokensUnit": "tokens",
-    "minimumRequired": "Minimum {{currency}} required"
+    "minimumRequired": "Minimum {{currency}} required",
+    "paymentsBase": "Peyiment go dey for DeHub token on Base chain."
   },
   "subscriptions": {
     "switchFailed": "E no fit switch di subscription network",
@@ -4986,7 +5176,7 @@
     "subscriberContent": "Content for subscribers",
     "subscriberContentSub": "Create plans make you fit give subscribers special content",
     "createFirstPlan": "Create your first plan",
-    "addNewPlan": "Add new plan",
+    "addNewPlan": "Na new plan go dey.",
     "durations": {
       "oneMonth": "1 Month time",
       "threeMonths": "3 Months time",
@@ -5193,7 +5383,8 @@
     "buyingUnavailable": "Buying no dey until trading start again. Nothing don chop money.",
     "dontClose": "No close dis — di order dey write wen di transfer confirm for Base.",
     "affiliateDisclosure": "Affiliate links — di creator fit get commission for anything weh you buy. Price na di same for you.",
-    "nothingOnSale": "Nothing for sale here now."
+    "nothingOnSale": "Nothing for sale here now.",
+    "transfersPausedError": "Token transfers dey block for now, so dis purchase go fail. Try again wen trading resume."
   },
   "dpay": {
     "success": "E work",
@@ -5280,7 +5471,9 @@
     "gotIt": "A don understand",
     "otherBalancesNote": "Yua oda balance dem dey only for {{network}} (chain {{chainId}}). {{gas}} na yua gas balance. Values fit delay small. Bridge or transfer asset go {{network}} mek you fit yus am here.",
     "dpayBaseOnly": "Dpay dey only for Base.",
-    "tokensAndStocks": "Tokens an stocks"
+    "tokensAndStocks": "Tokens an stocks",
+    "dhbPositionNote": "Dis na your whole tokon posishun — held plus staked, across Base and BNB Chain. Most of am dey staked, so dis one dey big pass wetin you fit spend now.",
+    "stakedIncludesUnstaking": "Tokun tokun we dey stake, na dem wey you ask to unstake but no receive back yet."
   },
   "feedCard": {
     "reactionTip": "Press and hold the like button for see more reactions",
@@ -5467,7 +5660,12 @@
     "paymentSendingAmount": "Sending · {{amount}}",
     "planRestricted": "Dis pipul need subscription before e fit get message.",
     "planTypeNotAllowed": "Dis creator yi plan no allow dis kain message.",
-    "planMinTip": "Tip for dis creator must be at least {{amount}} DHB."
+    "planMinTip": "Tip for dis creator must be at least {{amount}} DHB.",
+    "prefsIntro": "Yu go set limit wey people go dey send message to yu, na so yu go charge dem token for DeHub.",
+    "eachMessagePaid": "Tokken payament fo each mesaji.",
+    "insufficientTokenBalance": "Tokken no dey enough · {{amount}} hold.",
+    "tippedYouAmount": "Tipped yu {{amount}}",
+    "paymentSentWith": "Wen yu send wia {{amount}}."
   },
   "editPost": {
     "mediaPermission": "You need media library permission",
@@ -5579,7 +5777,8 @@
     "tapShowControls": "Tap mek controls show",
     "doubleTapRewind": "Double tap mek e go back",
     "doubleTapForward": "Double tap mek e skip front",
-    "pipUnavailable": "Picture in picture no dey. Check sey dem allow am for DeHub for your device settings."
+    "pipUnavailable": "Picture in picture no dey. Check sey dem allow am for DeHub for your device settings.",
+    "yourDhbBalance": "Yu tok balance: {{amount}}"
   },
   "liveViewer": {
     "loadingStream": "Stream dey load...",
@@ -5716,7 +5915,8 @@
     "howNote": "Videos go publish as normal posts without minting, because batch no fit stop to ask your wallet make e sign each one.",
     "noUploadsBody": "This channel no get any video weh fit move.",
     "ownership": "This na my channel, or the person weh get the rights don allow me publish im videos for DeHub.",
-    "placeholder": "youtube.com/@you, tiktok.com/@you, vimeo.com/you…"
+    "placeholder": "youtube.com/@you, tiktok.com/@you, vimeo.com/you...",
+    "costsNote": "Pay in DeHub tok, one time, before batch start. Badge holder pay less - discount go apply to quote. If video no fit import, share go back to you for next migration."
   },
   "calls": {
     "voiceCall": "DeHub vois kol",
@@ -5767,7 +5967,10 @@
     "next": "Di next one",
     "topTier": "Di highest level",
     "everyTierUnlocked": "You don unlock every level",
-    "reached": "You don reach {{tier}}"
+    "reached": "You don reach {{tier}}",
+    "yourBalance": "Yu balans · {{amount}} toknz.",
+    "toNextTier": "{{amount}} tokns to {{tier}}",
+    "holdNote": "Wen yu unlock badge, e go dey belong to yu till yu hold token. Number of token wey yu need to unlock new badge go fit change wit token price."
   },
   "badgeShowcase": {
     "dialogLabel": "{{tier}} badge",
@@ -5903,7 +6106,8 @@
       "gold10": "Di screen don turn gold and coin de fall like rain for 10 seconds.",
       "ultimate": "All celebration for one time — gold, confetti, coin and trophy."
     },
-    "tokenAmount": "{{amount}} tokens"
+    "tokenAmount": "{{amount}} tokens",
+    "buyHint": "Buy tokens and go back to yor gift. Yor moni and message dey ready."
   },
   "goLive": {
     "streamKey": "Stream key",
@@ -6011,7 +6215,17 @@
     "viewDelivery": "View token transfer",
     "phase_delivering": "Payment settled · sending tokens",
     "phase_deliveryDelayed": "Token delivery delayed",
-    "phase_gasPending": "Tokens delivered · gas pending"
+    "phase_gasPending": "Tokens delivered · gas pending",
+    "description": "Choose tokun pay. Receive DeHub tokun in ya wallet.",
+    "receiveNet": "{{amount}} Toks de DeHub",
+    "confirmationTime": "Network confirmations na token delivery add time. Dis one no be countdown, be estimate.",
+    "destination": "Tokken destinashun on Base: {{address}}",
+    "detail_swapping": "Yout payment dey process. We go update dis receipt wen yout tokens arrive.",
+    "detail_delivering": "Payment don come. Your tokens dey go come.",
+    "detail_deliveryDelayed": "Payment don settle, but token delivery need try again. Keep dis purchase ID and contact DeHub support if e no deliver. No pay again.",
+    "detail_gasPending": "Token transfer don confirm. Transfer ETH gas still pending or dey try again.",
+    "detail_delivered": "Yon DeHub tokis don dey yor Base wallet.",
+    "directTiming": "Tokis dey deliver wen payment konfirm."
   },
   "dex": {
     "lowestPrice": "Price wey e low pass · USD",
@@ -6136,7 +6350,10 @@
       "opening": "We di open the pool…",
       "created": "{{symbol}} pool don open",
       "createFailed": "We no fit open the pool.",
-      "feeDhb": "≈ {{amount}} DeHub tokens"
+      "feeDhb": "≈ {{amount}} DeHub tokens",
+      "addDescription": "List any toki on Base, Ethereum, Robinhood Chain or Solana wit own order book. Open pool cost $100, paid in DeHub tokis.",
+      "priceUnavailable": "DeHub toki price no dey available now. Try again for minute.",
+      "swapNote": "Yor {{symbol}} swap to DeHub tokis for fee for same transaction. Any left over stay for yor wallet."
     },
     "pool": {
       "changeImage": "Change di image",
@@ -6235,7 +6452,8 @@
     "reviewSwap": "First swap about {{amountIn}} {{symbol}} for {{usdc}} USDC for Base. {{symbol}} weh you no use go return inside the same transaction.",
     "pendingSwapNote": "Your {{symbol}} don swap to USDC. Continue to create the position without to swap again.",
     "resumeNeedsBalances": "Wallet balances still di load. Try again small time.",
-    "prepareFailed": "We no fit prepare the position"
+    "prepareFailed": "We no fit prepare the position",
+    "buyWithBnbNote": "BNB Chain trading dey close. Na BNB? Use am buy DeHub tokis on Base."
   },
   "onboarding": {
     "optIn": {
@@ -6266,7 +6484,10 @@
         "title": "Put ya username an picture",
         "body": "Choose name weh people go recognise and add profile picture, so your posts go look like sey na you post dem."
       },
-      "wallet": {},
+      "wallet": {
+        "title": "See yor wallet and what DeHub tokis dey inside.",
+        "body": "Yor wallet already exist and hold yor DeHub tokis. Take look at what dey inside and where dem come from."
+      },
       "feed": {
         "title": "Choose weti you wan see",
         "body": "Answer two quick questions and your feed go start to show the kind posts weh you really want."
@@ -6824,7 +7045,14 @@
     "toastPaidAwaitingDelivery": "You don pay — we don tell di seller make e send your fraction dem",
     "toastPaidSettled": "You don pay — di trade don finish",
     "walletNotReady": "Your wallet never ready — try again small time.",
-    "wrongChain": "Dis trade dey settle for {{chain}}. Change go {{chain}} for Settings, then try again."
+    "wrongChain": "Dis trade dey settle for {{chain}}. Change go {{chain}} for Settings, then try again.",
+    "settlementNote": "Yor tokis go straight to seller and we verify am on-chain. Seller then get {{hours}} hours to send fraction — yor go see trade for portfolio until dem do, and dem record public.",
+    "paymentsFrozen": "Token transfer dey pause now, so dis payment go revert. Try again wen trading resume.",
+    "offerSubmitted_one": "Offer submit for {{count}} fraction at {{price}} tokis each",
+    "offerSubmitted_other": "Offer submit for {{count}} fractions at {{price}} tokis each",
+    "yourOfferLabel": "Yor Offer (tokis per Fraction)",
+    "listedToast_one": "Listed {{count}} fraction at {{price}} tokis each",
+    "listedToast_other": "Listed {{count}} fractions at {{price}} tokis each"
   },
   "moderation": {
     "appealDuplicate": "You don chop dis one",
@@ -6837,7 +7065,9 @@
     "appealFootnote": "You go get reference number, and answer go come back here. One appeal for one decision.",
     "appealRef": "Reference number {{ref}}",
     "appealSubtitleSubject": "One person go read dis one and look again for {{subject}}.",
-    "appealMore": "Characters still dey needed: {{count}}"
+    "appealMore": "Characters still dey needed: {{count}}",
+    "appealSentRef": "Appeal send · {{ref}}",
+    "appeal": "Appeal"
   },
   "support": {
     "title": "Support",
@@ -7034,7 +7264,19 @@
     "aiHint": "Talk weti you want for simple word. AI go fill all thing, you go just press Confirm.",
     "aiFailed": "AI no fit set am. Try talk am another way, or fill am for down.",
     "cancelled": "You don cancel am. Nothing sell.",
-    "doneInstant": "Sold {{amount}} tokens"
+    "doneInstant": "Sold {{amount}} tokens",
+    "easyHint": "Sell yor DeHub tokis for few taps. We pick best way to fill am.",
+    "sellTitle": "How many tokis you want to sell?",
+    "available": "You have {{amount}} tokis on Base",
+    "noDhb": "You no get tokis on Base to sell yet.",
+    "marketRateHint": "Sell now at about ${{price}} per toki, around {{usdc}} USDC in total.",
+    "myPriceHint": "Yor price per toki for USD",
+    "routeList": "Above market: yor tokis dey list on exchange and sell automatically wen price reach ${{price}}.",
+    "listNote": "Yor tokis stay yor own until dem sell. You fit withdraw dem any time from Exchange. Network gas apply.",
+    "doneList": "Listed {{amount}} tokis at ${{price}}",
+    "aiPlaceholder": "Try \"sell half my tokis at 6 cents\"",
+    "aiBuyOnly": "Easy trade sell tokis. To buy tokis, open Exchange.",
+    "aiNeedAmount": "How many tokis you want to sell?"
   },
   "tipFunding": {
     "lowLiquidity": "Uniswap no get enough liquidity for payment wey big like dis right now",
@@ -7048,7 +7290,10 @@
     "noGasForFee": "Network coin no reach to pay the cross-chain fee",
     "usdcPending": "Your USDC don land for Base but e never show. Send again small time.",
     "unlockWallet": "Open your wallet for pay with dis token",
-    "chainUnavailable": "You no fit pay from {{chain}} with dis wallet"
+    "chainUnavailable": "You no fit pay from {{chain}} with dis wallet",
+    "dpayDelayed": "DeHub Pay dey send payment, dem go send token to your wallet. Token go arrive shortly, send again once dem dey arrive.",
+    "priceMoved": "Token price move wumute wumute, while USDC dey arrive. USDC dey for wallet you for Base; send again to complete.",
+    "dhbPending": "Token purchase confirm, but no dey show yet. Send again for now."
   },
   "emojiPicker": {
     "searchEmoji": "Find emoji",
@@ -7108,113 +7353,443 @@
   "guide": {
     "sections": {
       "getting-started": {
-        "title": "Getting Started"
+        "title": "Getting Started",
+        "intro": "DeHub get five way enta, no one of dem need you buy wallet: Google, Apple, code wey dey send for your email, code wey dey send for your SMS, or wallet wey you connect already. Everyting except wallet way create non-custodial wallet for you for background - you hold key, DeHub pay gas so you fit post, tip and collect without buy native token.",
+        "steps": {
+          "2": "Klik 'Sign In'. Yu go see Google na Apple, filds for emai adres or fon nomber, na 'Connect Wallet' for existin wan.",
+          "3": "Wen yu use Google or Apple, komplait provider's flow. Wen yu use email or SMS, enta kod wey arrive.",
+          "4": "Wallet bi create an secure fo yin on first sign-in. Connectin yin own wallet bi mean one signat to prove address.",
+          "6": "Yu dey enter. Explore feed, set up profail, naa start post."
+        },
+        "tips": {
+          "2": "Yu dey come back to yor ol' DeHub account? Sign in wit yor email or phone number wey dey use before, migration go find am for yor.",
+          "3": "Yu fit keep several account for one device an' switch between dem for Settings → Profile."
+        }
       },
       "home-feed": {
         "title": "Home Feed",
         "tips": {
+          "1": "Grid view bi gud for browse image quick.",
+          "2": "Tab 'Home' dey show all tins wey dey mixed together.",
           "3": "Live tab shows currently active live streams."
+        },
+        "intro": "Feed ya dey where yu see post from pipo wey yu dey follow an trendin kontent. E support multiple kontent-type tab an sorting opshon.",
+        "steps": {
+          "1": "Go near /app – dis be your home feed.",
+          "2": "Yu go select tab wey you want, na so you go see content wey dey inside am.",
+          "3": "Swip lef/right ya, si tabz ya dey show ya more opshonz for mobail.",
+          "4": "Wen yu wok wit feed, yu go fit chenj sorting usin filter/sort button wey dey top-right of feed.",
+          "7": "Kam gud, yu fit chenj layout wey yu dey use, yu fit chenj to Grid or Feed view paa."
         }
       },
       "creating-posts": {
         "title": "Creating Posts",
         "tips": {
-          "1": "Posts support markdown-style formatting."
+          "1": "Posts support markdown-style formatting.",
+          "2": "Yuu go post again by klick am repost icon for post na select 'Quote'."
+        },
+        "intro": "Post, share pikin, voice notis, GIFs, an' more. Use #hashtag, cashtag, an' mention to increase reach.",
+        "steps": {
+          "1": "Klik post buton wey dey sidebar (desktop) or + buton (mobile).",
+          "2": "Na me dey wait for wetin you go write.",
+          "3": "Yu go click icon of media na select file.",
+          "4": "Tiketa voice note, klick microphone icon.",
+          "5": "Kam giff, klick GIF icon na search for one.",
+          "6": "I no understand wetin you dey talk.",
+          "7": "$cashtags no dey make sense for me.",
+          "9": "Klik 'Post' to publish. Ya post dey appear for feed immediately."
         }
       },
       "explore-search": {
-        "title": "Explore & Search"
+        "title": "Explore & Search",
+        "steps": {
+          "1": "Go find am for sidebar, navigate to /app/explore.",
+          "2": "Use di search bar for top go search for pipo, post, or tin wey you dey find.",
+          "3": "Yooki yooki, filter result bi tab: All, Pipo, Pọt, Piks, Vidiyo, Musik, Liva.",
+          "4": "Browse trendin topik an categories for explore paji.",
+          "5": "Klik insis on topik wey dey trend to see all post wey relate.",
+          "6": "Klik paa wuman bi search result to visit dia profail."
+        },
+        "tips": {
+          "1": "Yanga search support pesin wey dey use username, wallet address, and keyword for search.",
+          "2": "Trending topik update bas on recent post wey dey happen."
+        }
       },
       "profile": {
-        "title": "Profile"
+        "title": "Profile",
+        "intro": "Yout profail showkam yout póst, folozer, foloing, an wallet inforamayshun.",
+        "steps": {
+          "1": "Klik yor poto ya yu or 'Profile' for view yu profile.",
+          "3": "Uploa picha ya profail yu by klikin on yu avata in edit moda.",
+          "4": "Yu go check ya follower and followin count for ya profail page.",
+          "5": "Browse yor own post, media, and like content via di profile tab.",
+          "6": "Kopi wallet address yu, klick icon wey dey beside am.",
+          "7": "Go visit pipo profile by click dia username or dia poto anywhere for platform."
+        },
+        "tips": {
+          "1": "Yu be unique, na yu name dey show for yu profile URL (dehub.io/@username).",
+          "2": "Yu go fit control who go see ya follower count."
+        }
       },
       "messages": {
-        "title": "Messages"
+        "title": "Messages",
+        "intro": "Senda mesaji direkt to oda pesin we dey for platform.",
+        "steps": {
+          "1": "Klik 'Messages' for inbox open.",
+          "2": "Klik di kompos button to start new konversayshun.",
+          "3": "Sori, no be say you go find user by username, but you fit search am.",
+          "4": "Wen yu type yor mesaji, yu press send.",
+          "5": "Yüü yüü yin na ya conversation history ya me ya.",
+          "6": "Klik insait konversayshun na kontiniu chatti."
+        },
+        "tips": {
+          "1": "Yu go receive notis wen pesin send yu message.",
+          "2": "Kreator dem fit lock mesaji behind tip requirement."
+        }
       },
       "ai-assistant": {
-        "title": "AI Assistant"
+        "title": "AI Assistant",
+        "intro": "Chop chat wit' DeHub's AI assistant, e dey help yu wit' tins, give yu info, and even help yu wit' kreativ task.",
+        "steps": {
+          "1": "Klik 'Assistant' insaidbar to open chat bilong AI.",
+          "2": "Wen yu wan ask somtin, ask me.",
+          "3": "Ai go help yu wit kripto infor, platform question, na general knowlegde.",
+          "4": "Kam gud? Kip start new konversayshun by klik new chat buton.",
+          "5": "Yu go see yim konversayshun history for sidebar of assistant paje.",
+          "6": "Yu go attach images for me translate?"
+        },
+        "tips": {
+          "1": "Matai ai yong remember kontext for konversayshun.",
+          "3": "Kam conversation bi dey save an save, an dem dey fit dey access anytime."
+        }
       },
       "notifications": {
-        "title": "Notifications"
+        "title": "Notifications",
+        "intro": "Yap stay update wit like, komment, tip, follow, anoda aktiviti on yu kontri.",
+        "steps": {
+          "1": "Klik bell icon or 'Notifications' wey dey sidebar.",
+          "2": "Yu go see all notis wey dey for chronological list.",
+          "3": "Klik insis notification na go navigate to content wey relate.",
+          "4": "Notis dey include: new folowers, post vot, komment, tipe, and mention.",
+          "5": "Unred notifications dey shine — dem mark as red wen dey view."
+        },
+        "tips": {
+          "1": "Notifayshun bada show kount of unread notifayshun."
+        }
       },
       "wallet": {
-        "title": "Wallet"
+        "title": "Wallet",
+        "intro": "Yu go see ya DeHub tok balance for many chain, check staking deposit, na manage ya asset.",
+        "steps": {
+          "1": "Klik 'Wallet' for sidemenu, open wallet paja.",
+          "2": "Yu go see yam balance for all chain wey support am.",
+          "4": "Chek yor stakin deposit an reward.",
+          "6": "Kopi wallet yu adresa, na emi go dey receive tokens from odas."
+        },
+        "tips": {
+          "1": "Balans update automatic, but yu fit force refresh anytime."
+        }
       },
       "staking": {
-        "title": "Staking"
+        "title": "Staking",
+        "intro": "Stakim DeHub tokens ya, earn reward na increase ya powa go vot.",
+        "steps": {
+          "1": "Go find 'Staking' page forum sidebar.",
+          "2": "Wen yu wok wit stake, enter di numba of tokens yu wok wit.",
+          "3": "M chapa chain yu wok selekt?",
+          "4": "Yu confirm transaksion for wallet yu dey use (wallets outside) or e go auto-execute (login wey you dey use social media).",
+          "6": "Kam gud, enta amount na confirm transaksion."
+        },
+        "tips": {
+          "1": "Stakin ina increase vot weight in gavament propos.",
+          "3": "Yu fit stake for multiple chain simultaneously."
+        }
       },
       "leaderboard": {
         "title": "Leaderboard",
         "steps": {
-          "3": "Balance tab ranks users by their total token holdings."
+          "1": "Go find am 'Leaderboard' paa from sidebar.",
+          "3": "Balance tab ranks users by their total token holdings.",
+          "4": "Daily Spent tab show who dey dey active for tipping for last 24 hours.",
+          "5": "Talk of di Town show am di most-discussed topic/categories.",
+          "7": "Leaderboard update pia update periodically throughout da day."
         },
         "tips": {
           "1": "Daily rankings reset every 24 hours."
         }
       },
       "command-centre": {
-        "title": "Command Centre"
+        "title": "Command Centre",
+        "intro": "Dashboard ya yambo show key metriks na aktivity ya platfoim ya yu na one glans.",
+        "steps": {
+          "1": "Klik 'Command Centre' insid e sidebar.",
+          "2": "Yu go see yim profail summary, including post kaount, folowers, and engajment.",
+          "4": "Wok dis quick link fo find tins wey you dey look for."
+        },
+        "tips": {
+          "1": "Command Sentra giv yim bird-eye view of yim DeHub presence."
+        }
       },
       "governance": {
         "title": "Governance",
         "tips": {
+          "1": "Yu voting powa dey depend on di number of tokens yu stake.",
           "2": "Badge holders may get additional vote weight.",
           "3": "Proposals go through stages: Active → Passed/Rejected."
+        },
+        "intro": "Partisipate for platform govnans by create proposal and vot on komuniti decision.",
+        "steps": {
+          "1": "Go near \"Goverment\" from sidebar.",
+          "2": "Bros, browse active proposals wey community dey submit.",
+          "3": "Klik insis proposal na redi am full description na discussion.",
+          "4": "Vot blong propozishon usim buton up/down — vot yua wok bas on how mani DeHub tokn yua stak.",
+          "5": "Wen wun wan komot proposal, pipo go dey komot komot komot comment, dey go dey discuss am wit community.",
+          "6": "Wen yu wok wan submit yor own propoz, yu go klick di 'Kree8 Propoz' buton."
         }
       },
       "bookmarks": {
-        "title": "Bookmarks"
+        "title": "Bookmarks",
+        "intro": "Save post fo yor bookmark fo easy access later.",
+        "steps": {
+          "1": "Klik di bookmark icon for save post.",
+          "2": "Go find \"Bookmarks\" for side bar, see all save post.",
+          "3": "Klik an na bookmark post yu wok view am full.",
+          "4": "Kam deya, kip klick di bookmark icon anod remove di bookmark."
+        },
+        "tips": {
+          "1": "Bukmark dey private — only you sabi wetin you save.",
+          "2": "No limit to how many post you fit book mark."
+        }
       },
       "settings": {
         "title": "Settings",
         "steps": {
+          "1": "Klik 'Settings' insida sidebar.",
+          "2": "M chenge display laengen from selektan laengen.",
+          "3": "Adjust priwansi: Kontrolla who dey see your folo count na who you dey folo.",
+          "4": "Mi go set mi post visibility preference to Public.",
           "5": "Manage notification preferences."
         },
         "tips": {
+          "1": "DeHub support multiple langwaj, de whole interface dey translate.",
           "2": "Privacy settings apply immediately."
-        }
+        },
+        "intro": "Yook customize yor DeHub experience wit language, privacy, na display preference."
       },
       "reactions-and-safety": {
-        "title": "Reactions, Muting & Mature Content"
+        "title": "Reactions, Muting & Mature Content",
+        "intro": "Dem nine reaksishon dey for behin like button, na set of kontrols wey dey help yu decide wetin yu go see and who go fit reach yu.",
+        "steps": {
+          "2": "Di seven pipo we dey like, dem count towards di post like total; dislike and poo count against am.",
+          "5": "Kreator dem mark dia own post wey dey mature while dem dey kompose am; post wey dem mark dis way no go appear for public home feed.",
+          "6": "Na ya, turn on \"Show mature content\" for Settings."
+        },
+        "tips": {
+          "1": "Post wey dey mature, still dey visible for creator account and to pipo wey dey follow am.",
+          "2": "Blak blokin from pipo profile go beyond mute, na even block pesin from send yim messaji.",
+          "3": "Di reaksiyon tray dey show who reakt and wetin dem reakt wit, so yu no dey see just number, yu dey see di room."
+        }
       },
       "stages": {
-        "title": "Stages (Live Audio Rooms)"
+        "title": "Stages (Live Audio Rooms)",
+        "intro": "Stages bi audio room wey dey build inside DeHub. Host open room, bring speaker up, an anyone fit join listen from Stages paje or shared link.",
+        "steps": {
+          "2": "Tap live stage join listener, or set reminder on schedule one, get told wen e start.",
+          "4": "Mi go bring speaker-dem on stage, mute dem or remove dem, share screen, na soundboard go drive am.",
+          "5": "Pipo dey send live reactions and dey chat for room, but dem no dey come on stage.",
+          "6": "E ben stage record, na recording dey play back afta from card am dey sit."
+        },
+        "tips": {
+          "2": "Live dubbing go speak am for di room, make am de host own voice, dem dey bill am by minute for DeHub tokens.",
+          "4": "Mini-player dey keep room go, while yu browse rest of app."
+        }
       },
       "communities": {
-        "title": "Communities & Events"
+        "title": "Communities & Events",
+        "intro": "Kampani dem dey run by memba, wit dia own feed, memba, na aktivity. Evens add taim-bound progreming on top of dem.",
+        "steps": {
+          "1": "Kam gud, go open 'Communities' for sidbarr na browse public ones.",
+          "2": "Kam join one tap. Nya activity dey show as unread badge for navigation.",
+          "3": "Post, diskut, run poll na tip insid komuniti own feed.",
+          "4": "Kampanyun dem dey moderate dia own kampani na dem fit grant admin right to odas.",
+          "5": "Open 'Event' for schedule progam wey you fit follow along wit live, one paja per event."
+        },
+        "tips": {
+          "1": "Kam chat kam support @mention na @here, so post fit reach room.",
+          "2": "Invite link yɛ na yɛ bɛ kɛ community."
+        }
       },
       "arcade": {
-        "title": "Arcade"
+        "title": "Arcade",
+        "steps": {
+          "2": "Mi go chos King's Gambit.",
+          "4": "Chartopia also run for VR headset for WebXR."
+        },
+        "tips": {
+          "2": "Eva game get share card, so link to one dey unfurl wel wel wey yu post am."
+        }
       },
       "bounties-stores": {
-        "title": "Bounties & Stores"
+        "title": "Bounties & Stores",
+        "intro": "Yu go fit turn platform ya into income for yu: post or claim bounty, or open shop na sell to pipo wey dey follow yu.",
+        "steps": {
+          "1": "Buka 'Bounties' na browse open wok, filter by kategory or kurensi.",
+          "2": "Klaaim wan, go do am, na reward go dey wait am - anybodi fit be hunter, no need apply.",
+          "3": "Mun ya post ya bounti ya wona, na brief na reward ya DeHub token or USDC. Ya go into escrow moment ya post am.",
+          "4": "Kam paa 'Stores' set up stôr ai paa paja, wia e dey wok, na branding na listings.",
+          "5": "Product dey dey price an settle for DeHub tokens for wallet wey dey build-in, witout external checkout."
+        },
+        "tips": {
+          "1": "Bounties dey organize for Social Media, Clipping na Contracts.",
+          "2": "Dispute flow settle di disagreement wey dey come from delivery, so escrow always resolve fairly.",
+          "3": "Kreator dem use bounties to grow community - shares, klips an reaksyon dey all valid task."
+        }
       },
       "creator-studio": {
-        "title": "Creator Studio & Editor"
+        "title": "Creator Studio & Editor",
+        "intro": "Kreator Studio yonge images, video, musik, voice na 3D model from prompt, na hand dem to edito - including a full multi-track video edito wey run for browser.",
+        "steps": {
+          "1": "Mi go open Creator Studio, na me go dey create somtin new. Me want make video, but no be just any video, me want make video wey go dey interesting, wey go dey capture di attention of pipo. Me want make video wey go dey show di beauty of Cameroon, di culture, di people, di food, di music, di dance, di everything! Me want make video wey go dey make pipo feel like dem dey Cameroon, like dem dey feel di vibe, di energy, di passion of di people.",
+          "2": "Server go tell you price before e do job, so you know wetin you go pay before you pay am.",
+          "3": "Renders dey continue for one shared queue while yu dey browse app.",
+          "5": "I no understand wetin you dey talk."
+        },
+        "tips": {
+          "1": "Librai bilong free stok aset libri sit long side Studio, na emi dey for eni tins yu no wan genereit."
+        }
       },
       "buying-dhb": {
-        "title": "Buying Tokens"
+        "title": "Buying Tokens",
+        "steps": {
+          "1": "Go sidon sideway, find \"Buy\" paja, click am.",
+          "2": "Swap tokn yu wok want.",
+          "3": "Wen yu wok, enta di amount yu wan spend or di numba of tokens yu wan get.",
+          "4": "Na exchange rate na 1 USD dey sell for 570 CFA. Estimated output go be 1,140,000 CFA.",
+          "5": "Klik settings gear ikon to adjust slippage tolerance (defaut na 1%).",
+          "6": "Kam gud, transaction swap don confirm.",
+          "7": "DeHub tokens go dey for ya wallet wen transaction complete."
+        },
+        "tips": {
+          "1": "Slippaji ya up na, e dey increase chance of execute, but possibility of price bad dey high.",
+          "2": "Biko, check exchange rate beforu yu confirm.",
+          "3": "Yu fit set custom slippage for settings panel."
+        }
       },
       "bridge": {
         "title": "Bridge",
         "tips": {
-          "1": "Bridge fees vary by chain pair."
+          "1": "Bridge fees vary by chain pair.",
+          "2": "Bridging dey take 1-5 minute, depend on chain wey dey involved.",
+          "3": "Biko, dey always check chain of destination before confirm."
+        },
+        "intro": "Yu go move yor DeHub tokens wey dey different blockchain tok use cross-chain bridj.",
+        "steps": {
+          "1": "Go find Bridge page from sidebar.",
+          "2": "Tok tok tok chain na where my tok dey.",
+          "3": "Chain 1: Cameroon",
+          "4": "Na 5 token.",
+          "6": "Kam konfirm bridge transaction.",
+          "7": "Wata fi wait tori transaction komplet — bridging go take few minit."
         }
       },
       "music-tv": {
-        "title": "Music & TV"
+        "title": "Music & TV",
+        "intro": "Yen enjoy media kontent direkti for DeHub — stream musik and watch laif TV chanels.",
+        "steps": {
+          "1": "Go find 'Music' for sidebar, browse and play music post.",
+          "2": "Go near TV, see live TV channels.",
+          "3": "Browse chanel by kat or kontri.",
+          "4": "Klik an wan channel to start watch.",
+          "5": "Yu use player kontrollz adjust volume na playback."
+        },
+        "tips": {
+          "1": "TV chanels dey get veri-dem for reliabiliti.",
+          "2": "Muzik post dey fit pley wile yu dey browse anoda kontent."
+        }
       },
       "post-info": {
-        "title": "Post Info & Fractions"
+        "title": "Post Info & Fractions",
+        "intro": "Post wey dey minted na NFT wey dey split into 1,000 pieces. Post Info page show data wey dey on-chain, stat wey dey show how people dey engage, how ownership dey break down, and make you fit trade pieces of any post — on post wey no dey minted, e go offer you to mint instead.",
+        "steps": {
+          "1": "Tap am 'ⓘ' icon for post, open Post Info paja.",
+          "2": "Yu go see Token ID (unique on-chain identifier) an transaction hash — click hash to view am for block explorer.",
+          "3": "Bia, statis bileng na pipo don dey engage, na im dey show total laik, dislike, view, koment, na tipe dem don receive.",
+          "5": "If di post na pay-per-view (PPV), yu go see price, kuri, and how many pipo don buy access.",
+          "6": "Pipo wey dey own post, dem fit change visibility (Public, Unlisted, or Private) and edit titl/describ straight from dis page."
+        },
+        "tips": {
+          "1": "A newly minted post start wit di creator hold all 1,000 fractions (100% ownership).",
+          "2": "Transaksion hash link to BaseScan or BscScan depend on chain.",
+          "3": "Post wey no dey list, no go dey appear for feeds but still dey accessible via direct link."
+        }
       },
       "trading-fractions": {
-        "title": "Trading Fractions"
+        "title": "Trading Fractions",
+        "intro": "Fraishon taim frai, bai listin, mek ofa, listin ya own — dey happun for de web ap at dehub.io, for each pos on Post Info paj.",
+        "steps": {
+          "2": "Open post info paja na switch to marketplace tab.",
+          "4": "Wen trade kom complete, change go show for yin Fractions tab dey here for mobile."
+        },
+        "tips": {
+          "1": "Yu dey hold pawa of dat on-chain NFT.",
+          "2": "Kam check post holder wey dey online market before buy am.",
+          "3": "Manga creator, bi sell pawa fraishon, make fan dey own pawa wey dey content."
+        }
       },
       "minting-posts": {
-        "title": "Minting Posts (Creating NFTs)"
+        "title": "Minting Posts (Creating NFTs)",
+        "intro": "Minting na optional. Post publish of-chain, taim yu send am - no wallet, no sign, no gas - na yu go mint am as NFT, wen yu dey compose am or later from post itself.",
+        "steps": {
+          "1": "Klik post buton wey dey sidebar (desktop) or + buton (mobile).",
+          "4": "Publishing no wait am for chain: post go publish for feed, whether you like am or no.",
+          "5": "Tin mint later, opn post 'ⓘ' info paja na use Mint aktion dey.",
+          "6": "Wen mint, post get Token ID na transaction hash yu fit verify on-chain, na yu hold all 1,000 fraishun of am."
+        },
+        "tips": {
+          "3": "Minting na wetin make post dey fit trade and dey bring royalty. Post wey no dey mint still go get tips and views.",
+          "4": "Record ya on-chain permanent, even if post ya dey delete from feed."
+        }
       },
       "glossary": {
-        "title": "Glossary"
+        "title": "Glossary",
+        "intro": "Glossari ya kina ya kripto na neno la platformi ili kufahamu Web3.",
+        "steps": {
+          "1": "Glossari go dey for sidebar, go navigate.",
+          "4": "Termz de kip kip konsep kripto, DeFi terminolojia, na feyshon DeHub."
+        },
+        "tips": {
+          "1": "Resouw for pipo wey dey new to kripto and Web3.",
+          "2": "Glossari dey update regular wit new terms."
+        }
+      },
+      "interacting-with-posts": {
+        "intro": "Vot yong content, koment, tip, bukmark, shar, na translat.",
+        "steps": {
+          "1": "Voting post: upvote or downvote post wia arrow icon wey dey left side of post.",
+          "2": "Klik comment icon na open comment section, na leave reply.",
+          "3": "Klik na gem/tip ikon, sendim tip in DeHub tokens to post kreator.",
+          "4": "Klikim buk marka save post for later.",
+          "6": "Klik an na button ya translate (globe) wia post ya, na translate text to your language.",
+          "7": "Yu go use 'Translate Image' buton, taim get AI-translated version of text for image."
+        },
+        "tips": {
+          "3": "Bukumkum post dem dey accessible from Bookmarks paja for sidebar."
+        }
+      },
+      "posting-allowance": {
+        "steps": {
+          "1": "Post as normal. Wia allowance, no tins dey charge yu, no tins dey ask yu.",
+          "2": "Tek posts na media separate, so day yu dey upload video, all ten tek posts still free.",
+          "3": "Wen post go pass, app price am first, den check wallet whether you get money dey cover am before upload.",
+          "4": "Post go publish exactly like dat - publish no dey wait for payment.",
+          "5": "Yon dey approve wan transfer for dat post only, settle on wetin dey hold enough DeHub tokens for Base or BNB Chain."
+        },
+        "tips": {
+          "1": "Oversize dey dey calculate pro-rata: 200 MB pass yor allowance go cost 200 MB, no be whole gigabyte.",
+          "2": "Reposts, comments, reactions, tips na messages no dey cost naira, dem no dey touch allowance.",
+          "3": "Yu no go collect payment, post go remain up — amount go block yu next paid post until yu settle am. Tomorrow free allowance dey always belong to yu.",
+          "4": "A stakin badge ris raise free allowance na lower price of anytin wey pass am."
+        }
       }
     }
   },
@@ -7280,7 +7855,7 @@
     "shortcodePlaceholder": "name for the emoji (if you want)",
     "stickerEmojiPlaceholder": "emoji weh this sticker mean (if you want)",
     "linkPlaceholder": "Paste picture or GIF link",
-    "addFromLink": "Add from link",
+    "addFromLink": "I no understand wetin you mean.",
     "uploadFiles": "Upload images",
     "uploadHint": "PNG, GIF, WebP or JPEG, each one reach 2 MB. You fit choose plenty one time.",
     "uploadHintGif": "GIF, PNG, WebP or JPEG, each one reach 8 MB. You fit choose plenty one time.",
@@ -7589,7 +8164,7 @@
     "lookingForCreatorPlans": "You dey find Creator Studio AI plans?",
     "seeCreatorPricing": "See Creator Studio pricing",
     "adFreeLabel": "Ad-free feed",
-    "adFreeDetail": "No promoted posts, no upgrade banners",
+    "adFreeDetail": "No post wey no promote, no banner wey no upgrade.",
     "backgroundLabel": "Background playback",
     "backgroundDetail": "Audio and video go dey play even when screen off",
     "badgeLabel": "Animated Extra badge",
@@ -7607,7 +8182,7 @@
     "assistantMsgsLabel": "500 Assistant messages / mo",
     "assistantMsgsDetail": "10 times di free tier",
     "aiImagesLabel": "150 AI images / mo",
-    "aiImagesDetail": "All models, all styles",
+    "aiImagesDetail": "All model dem, all style dem",
     "aiVideoLabel": "20 seconds of AI video / mo",
     "aiVideoDetail": "Make clips for posts and shorts",
     "fiveSeatsLabel": "Up to 5 @usernames",
@@ -7721,7 +8296,7 @@
     "openSettings": "Open {{app}} connector settings",
     "chatgptDevMode": "Turn on Developer mode for di connector settings (read di risk notice wey dem show for there).",
     "chatgptComposer": "For di \"+\" menu wey dey di chat box, turn on Developer mode.",
-    "chatgptAddSources": "Choose Add sources, then Connect more.",
+    "chatgptAddSources": "Wen yu wok, chuz Add sources, den Connect mor.",
     "nameAndPaste": "Call di connector \"DeHub\" and paste di MCP URL wey dey up.",
     "askToUse": "Tell {{app}} make e use DeHub — like: \"Show me di posts wey dey trend for DeHub.\"",
     "claudeEnable": "Turn on di connector from Claude chat box, then tell am make e use DeHub.",
@@ -7809,5 +8384,10 @@
       "emptyTitle": "No apps wey go show yet 😕",
       "emptyBody": "\"Foist app wey go review na. Build one, wey go dey here.\""
     }
+  },
+  "postQuota": {
+    "transferredConfirming": "Your tokens don transfer. We go finish confirm payment soon.",
+    "sentUnconfirmed": "Yon tokens yin dey, but wetin we no fit confirm payment. No pay again.",
+    "transferIncomplete": "Di token transfer no finish. Dem go ask you again before your next paid post."
   }
 }

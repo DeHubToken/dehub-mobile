@@ -330,11 +330,11 @@
     "dark": "غامق",
     "system": "النظام",
     "minimal": "بسيط",
-    "cosmic": "Cosmic Pixels",
+    "cosmic": "وحدات البكسل الكونية",
     "hazy": "ليالي الضباب",
     "swarms": "الأسراب",
     "lavalamp": "مصباح الحمم",
-    "winter": "Winter Drops",
+    "winter": "قطرات الشتاء",
     "war": "حرب",
     "osaka": "أوساكا",
     "jungle": "الغابة",
@@ -780,7 +780,12 @@
     "smsBalance": "{{dhb}} رموز متبقية (${{usd}})",
     "smsTopUp": "اشحن {{dhb}} رموز",
     "smsCodeSent": "تم إرسال الرمز. كلف ذلك {{price}} رموز.",
-    "tokenBalanceAmount": "{{amount}} رموز"
+    "tokenBalanceAmount": "{{amount}} رموز",
+    "exportReady": "{{count}} حسابات، {{saved}} تم تصدير المقالات المحفوظة.",
+    "importDone": "تمت متابعة {{followed}}، وتم حظر {{blocked}}، وتم إنشاء {{folders}}.",
+    "importProgress": "تطبيق {{done}} من {{total}}...",
+    "channelSpeedCount": "{{count}} قناة(قنوات) تلعب بسرعتها الخاصة.",
+    "importPartial": "تعذر متابعة حسابات {{count}} — قم بتشغيل الاستيراد مرة أخرى لإعادة المحاولة."
   },
   "common": {
     "mute": "سكّت الصوت",
@@ -1001,7 +1006,9 @@
     "bounty": "مكافأة",
     "locked": "مسدود",
     "any": "أي",
-    "resetFilters": "رجع الفلاتر"
+    "resetFilters": "رجع الفلاتر",
+    "updatingFeed": "تجديد الشبكة",
+    "filters": "عوامل التصفية"
   },
   "drawers": {
     "ppvTitle": "محتوى الدفع لكل مشاهدة",
@@ -1898,7 +1905,13 @@
     "noMoreReplies": "لا مزيد من الردود",
     "offerSubmitted": "تم تقديم عرض {{amount}} رمز لـ {{handle}}",
     "offerWorthNow": "حوالي {{amount}} رمز بالسعر الحالي",
-    "offerCommitsNothing": "تقديم عرض لا يكلف شيئًا ولا يحتفظ بأي رموز. أنت تدفع فقط إذا قبل المالك."
+    "offerCommitsNothing": "تقديم عرض لا يكلف شيئًا ولا يحتفظ بأي رموز. أنت تدفع فقط إذا قبل المالك.",
+    "searchThisChannel": "البحث في هذه القناة",
+    "tabPosts": "المنشورات",
+    "tabVideos": "الفيديوهات",
+    "tabAudio": "الصوت",
+    "tabLive": "مباشر",
+    "tabPinned": "مثبت"
   },
   "tv": {
     "title": "التلفزة",
@@ -2361,10 +2374,10 @@
     "yourApplication": "الطلب ديالك",
     "fullName": "الاسم الكامل",
     "email": "الإيميل",
-    "telegram": "Telegram",
+    "telegram": "تلغرام",
     "xTwitter": "X (Twitter)",
-    "instagram": "Instagram",
-    "linkedin": "LinkedIn",
+    "instagram": "إنسكرام",
+    "linkedin": "لينكد إن",
     "otherSocials": "سوشل ميديا أخرى",
     "otherSocialsPlaceholder": "TikTok, YouTube, Discord, إلخ",
     "pastExperience": "التجربة السابقة",
@@ -3249,10 +3262,108 @@
         "oneDay": "1 يوم",
         "oneWeek": "1 أسبوع",
         "forever": "للأبد"
+      },
+      "ownerSection": "المالك",
+      "ownerLabel": "المالك",
+      "noOwner": "لا يوجد مالك مسجل.",
+      "administratorsSection": "المديرين",
+      "noAdmins": "لا مسؤولين بعد. حدد عضوًا لتعيينه مسؤولًا لمساعدتك في الإدارة.",
+      "adminBadge": "المدير",
+      "rightsSummary": "{{granted}} من حقوق {{total}}",
+      "addAdministrator": "إضافة مسؤول",
+      "noMemberMatches": "لا يوجد عضو يطابق هذا العنوان.",
+      "noPlainMembers": "الجميع هنا مسؤول بالفعل.",
+      "searchTruncated": "عرضي الاول {{limit}}",
+      "danger": {
+        "transferTitle": "تنتقل الملكية؟",
+        "transferBody": "{{name}} يصبح مالك لهذا المجتمع. تتحولك إلى مدير مع كل الصلاحيات، و هذا غير قابل للعكس.",
+        "transferConfirm": "تنتقل",
+        "deleteTitle": "حذف المجتمع هذا؟",
+        "deleteBody": "{{name}} وكل شيء فيه يذهب بشكل دائم: كل عضو، كل رسالة، كل حدث وكل رابط دعوة. لا يمكن التراجع عن هذا.",
+        "deleteConfirm": "مازال",
+        "transferHeading": "تنتقل الملكية",
+        "transferHint": "اختر العضو الذي يجب أن يمتلك هذا المجتمع من الآن فصاعدًا.",
+        "searchMembers": "البحث عن أعضاء",
+        "noMatches": "لا يوجد عضو يطابق هذا البحث.",
+        "noCandidates": "لا يوجد أعضاء نشطين آخرين لتسليم هذا المجتمع إليهم.",
+        "transferAction": "اجعل المالك",
+        "deleteHeading": "حذف المجتمع",
+        "deleteHint": "تتم إزالة كل عضو ورسالة وحدث ورابط دعوة بشكل دائم. لا يوجد طريق للعودة.",
+        "deleteAction": "حذف هذا المجتمع"
+      },
+      "inviteRevoked": "مُنقَضّ",
+      "inviteExpired": "مستحيل",
+      "inviteExhausted": "تم الوصول إلى الحد",
+      "inviteExpiresMinutes": "تنتهي صلاحيته خلال {{n}} دقيقة",
+      "inviteExpiresHours": "تنتهي صلاحيته في {{n}}h",
+      "inviteExpiresDays": "تنتهي صلاحيته في {{n}}يوم",
+      "inviteLimit": "الحد الأقصى {{n}}",
+      "inviteNeedsApproval": "يحتاج إلى الموافقة",
+      "inviteLink": "رابط الدعوة",
+      "inviteUses": "{{n}} انضم",
+      "copy": "نسخ",
+      "revoke": "إلغاء",
+      "inviteShareMessage": "انضم إلى هذا المجتمع على DeHub",
+      "revokeInviteTitle": "إلغاء رابط الدعوة",
+      "revokeInviteBody": "يتوقف هذا الرابط عن العمل على الفور. الأشخاص الذين انضموا إليها بالفعل يبقون.",
+      "inviteNoPermission": "ليس لديك إذن لإدارة روابط الدعوات.",
+      "createInviteLink": "إنشاء رابط دعوة",
+      "inviteNamePlaceholder": "الاسم (اختياري)",
+      "inviteExpiryLabel": "تنتهي صلاحيته",
+      "inviteLimitLabel": "الحد الأقصى للأعضاء",
+      "inviteRequireApproval": "تتطلب موافقة المشرف",
+      "inviteRequireApprovalHint": "يجب الموافقة على الأشخاص الذين يستخدمون هذا الرابط قبل أن يتمكنوا من الانضمام.",
+      "createLink": "إنشاء رابط",
+      "noInvites": "لا توجد روابط دعوة حتى الآن. أنشئ واحدًا لدعوة الأشخاص مباشرةً.",
+      "permissionsUpdated": "تم تحديث الأذونات",
+      "slowModeUpdated": "تم تحديث الوضع البطيء",
+      "slowModeOffHint": "يمكن للأعضاء إرسال رسائل دون تأخير.",
+      "slowModeOnHint": "الناس كايين يبعثو رسالة واحدة كل {{label}}. المديرين مفيش حتا.",
+      "defaultPermissions": "أذونات الأعضاء الافتراضية",
+      "defaultPermissionsHint": "ما يمكن للجميع القيام به هنا ما لم ينص حق المسؤول على خلاف ذلك.",
+      "slowModeTitle": "الوضع البطيء",
+      "log": {
+        "justNow": "الآن فقط",
+        "minutesAgo": "منذ {{value}}دقيقة",
+        "hoursAgo": "منذ {{value}}ساعة",
+        "daysAgo": "منذ {{value}}يوم",
+        "weeksAgo": "منذ {{value}}w",
+        "monthsAgo": "منذ {{value}}شهر",
+        "yearsAgo": "منذ {{value}}سنة",
+        "permanently": "بشكل دائم",
+        "forMinutes": "لمدة {{value}} دقيقة",
+        "forHours": "لمدة {{value}}ساعة",
+        "forDays": "لـ {{value}}d",
+        "forWeeks": "لأجل {{value}}w",
+        "unknownActor": "مَن",
+        "restricted": "لِلمُستخدمين",
+        "empty": "لا يوجد شيء هنا بعد. سوف تظهر إجراءات الإدارة كلما حدثت.",
+        "showMore": "عرض المزيد ({{value}})",
+        "reason": "السبب: {{value}}"
       }
     },
     "chooseAvatar": "اختر صورة رمزية",
-    "loadFailed": "تعذّر تحميل المجتمعات"
+    "loadFailed": "تعذّر تحميل المجتمعات",
+    "noPostsYet": "لا يوجد أي منشورات في هذه المجموعة بعد.",
+    "infoUpdated": "تم تحديث المجموعة",
+    "editInfo": "تعديل الاسم ووصف المجموعة",
+    "saveChanges": "حفظ",
+    "nowPrivate": "حسناً ، هذه المجموعة الآن خاصة",
+    "nowPublic": "حسناً ، هذه المجموعة الآن عامة",
+    "bannedFromCommunity": "تم حظرك من هذه المجموعة",
+    "manageButton": "إدارة",
+    "muted": "مكتوم",
+    "privateHint": "يجب على الأعضاء الجدد أن يتم موافقتهم قبل انضمامهم.",
+    "publicHint": "يمكن لأي شخص الانضمام بشكل فوري.",
+    "invite": {
+      "joinFailed": "فشل في الانضمام",
+      "revoked": "تم الغاء هذا الرابط الدعوي.",
+      "expired": "تم انتهاء صلاحية هذا الرابط الدعوي.",
+      "exhausted": "تم الوصول إلى الحد الأقصى للعضوية بهذا الرابط الدعوي.",
+      "notFound": "هذا الرابط الدعوي غير صالح.",
+      "requestToJoin": "طلب الانضمام",
+      "approvalNote": "يجب على أحد المسؤولين الموافقة على طلبك قبل أن تتمكن من الانضمام."
+    }
   },
   "work": {
     "title": "الجوائز",
@@ -3870,7 +3981,7 @@
     "warm": "دافي",
     "cool": "بارد",
     "vivid": "زاهي",
-    "vhs": "VHS",
+    "vhs": "فيديو فيديو كاسيت",
     "neon": "نيون",
     "pixelate": "بكسلة"
   },
@@ -6108,7 +6219,7 @@
   "nearBuy": {
     "otherCurrencies": "عملات أخرى",
     "search": "بحث عن توكن، شبكة أو عقد",
-    "onChain": "on {{chain}}",
+    "onChain": "في {{chain}}",
     "refundAddress": "عنوان استرداد على {{chain}}",
     "refundPlaceholder": "عنوان على شبكة الدفع",
     "refundHint": "تأكد أن هذا عنوان واليت ديالك على شبكة الدفع. تجنب عناوين البورصات اللي كتطلب ميمو أو تاغ. أي استرداد من المزود كيرجع لهنا.",
@@ -6195,8 +6306,8 @@
   },
   "dex": {
     "lowestPrice": "أرخص ثمن · USD",
-    "lpDhb": "LP · DHB",
-    "lpUsd": "LP · USD",
+    "lpDhb": "ل.ب · د.ه.ب",
+    "lpUsd": "ل.ب · دولار أمريكي",
     "totalLiquidity": "مجموع السيولة · USD",
     "lowestSell": "أقل بيع · USDC",
     "liveChartHint": "أقل بيع · USDC · اسحب للفحص",
@@ -6417,8 +6528,8 @@
     "sellAmount": "كمية البيع",
     "spend": "أنفق",
     "withdrawFailed": "السحب فشل",
-    "title": "DHB / USD",
-    "heading": "DHB / USD",
+    "title": "دي.إتش.بي / دولار أمريكي",
+    "heading": "دي.إتش.بي / دولار أمريكي",
     "buyWithBnbNote": "تداول BNB Chain مغلق. هل لديك BNB؟ استخدمه لشراء رموز DeHub على Base."
   },
   "onboarding": {
@@ -6787,7 +6898,7 @@
         "title": "برنامج المبدعين"
       },
       "quote": {
-        "author": "Don Draper",
+        "author": "دون درابر",
         "body": "خليها ساهلة، ولكن عندها معنى.",
         "title": "بطاقة اقتباس"
       },
@@ -6876,7 +6987,7 @@
     "signInToSee": "دخل باش تشوف التوليدات ديالك.",
     "libraryEmpty": "التوليدات اللي سجلتي غادي يبانو هنا.",
     "openGeneration": "فتح {{prompt}}",
-    "toolBuilder": "Builder",
+    "toolBuilder": "منشئ",
     "libraryHintStudio": "أجيالكم المحفوظة، التي تمت مشاركتها مع الخالق على الويب. يفتح الاستوديو في متصفحك."
   },
   "fractions": {
@@ -7031,7 +7142,9 @@
     "appealFootnote": "تحصل على رقم مرجعي، وتعود الإجابة هنا. استئناف واحد لكل قرار.",
     "appealRef": "المرجع {{ref}}",
     "appealSubtitleSubject": "سيقرأ الشخص هذا وينظر مرة أخرى في {{subject}}.",
-    "appealMore": "لا تزال الأحرف مطلوبة: {{count}}"
+    "appealMore": "لا تزال الأحرف مطلوبة: {{count}}",
+    "appealSentRef": "تم إرسال الاستئناف ·{{ref}}",
+    "appeal": "الاستئناف"
   },
   "support": {
     "title": "الدعم",
@@ -7442,7 +7555,8 @@
           "1": "الـ AI كيتفكر السياق داخل المحادثة.",
           "2": "يمكن ليك تسول الـ AI على ميزات DeHub، مصطلحات الكريبتو، أو أسئلة عامة.",
           "3": "المحادثات السابقة محفوظة ويمكن الوصول ليها في أي وقت."
-        }
+        },
+        "title": "مساعد الذكاء الاصطناعي"
       },
       "notifications": {
         "intro": "خليك على اطلاع بالـ likes، التعليقات، الـ tips، المتابعات، وأي نشاط آخر على المحتوى ديالك.",
@@ -7456,7 +7570,8 @@
         "tips": {
           "1": "الشارة ديال النوتيفيكاسيون كتعرض عدد النوتيفيكاسيون لي ما مقريينش.",
           "2": "نوتيفيكاسيون ديال الـ Tip كتعرض شحال ديال التوكنز توصلتي بيهم."
-        }
+        },
+        "title": "الإشعارات"
       },
       "wallet": {
         "intro": "شوف الرصيد ديال توكنز DeHub ديالك عبر شبكات متعددة، تحقق من إيداعات الـ staking، ودبر الأصول ديالك.",
@@ -7471,7 +7586,8 @@
         "tips": {
           "1": "الأرصدة كيتحدّثوا تلقائياً ولكن تقدر تفرض التحديث في أي وقت.",
           "2": "المحفظة كتعرض الأرصدة السائلة (المتوفرة) والأرصدة المودعة (staked)."
-        }
+        },
+        "title": "المحفظة"
       },
       "staking": {
         "title": "ستاكينغ",
@@ -7677,7 +7793,8 @@
           "1": "واحد الـ free stock asset library كاين حدا الـ Studio لأي حاجة مفضلتيش تصاوبها.",
           "2": "التوليد كيتخلص بـ DeHub tokens من الـ wallet ديالك — كتوقع على واحد الـ transfer لكل خدمة، و الثمن كيتقال قبل ما تخلص.",
           "3": "المستخدمين لي كيستعملو بزاف يمكن ياخدو واحد الـ Ultra، Team أو Scale plan، لي كيرسل واحد الـ monthly token allowance مباشرة للـ wallet ديالهم."
-        }
+        },
+        "title": "استوديو ومحرر المنشئ"
       },
       "buying-dhb": {
         "title": "شراي الـ Tokens",
@@ -7712,7 +7829,8 @@
           "1": "تختلف رسوم التحويل حسب زوج السلاسل.",
           "2": "يستغرق التحويل عادةً 1-5 دقائق حسب السلاسل المعنية.",
           "3": "تحقق دائمًا من سلسلة الوجهة قبل التأكيد."
-        }
+        },
+        "title": "الجسر"
       },
       "music-tv": {
         "title": "موسيقى وتلفزيون",
@@ -7946,7 +8064,7 @@
     "step3Body": "يمكن لأي شخص فتح الرابط. قم بالرد في الدردشة لتغيير أي شيء."
   },
   "depin": {
-    "title": "DePin",
+    "title": "ديبين",
     "noFixedRate": "ماكاينش ثمن ثابت، ولا ربح أدنى، ولا نسبة سنوية، ولا تقدير مستقبلي. سجلات المساهمة هي فقط مدخلات محاسبية، ماشي وعد بالدفع. أي تسوية مستقبلية للرموز غاتكون على Base وكاتبقى خاضعة للأهلية، وقواعد الشبكة، والقانون المطبق.",
     "dhbEarnedThisPeriod": "الرموز المكتسبة في هذه الفترة",
     "becomeANode": "ولي نود",
@@ -8133,7 +8251,7 @@
     "vol24h": "حجم التداول على مدار 24 ساعة",
     "volume24h": "حجم التداول على مدار 24 ساعة",
     "website": "الموقع الإلكتروني",
-    "twitter": "X / Twitter",
+    "twitter": "#الناس كايبوا #الناس كايبوا",
     "title": "منصة الإطلاق"
   },
   "premium": {
