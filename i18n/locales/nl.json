@@ -60,7 +60,8 @@
     "migrate": "Alles migreren",
     "creators": "Creators",
     "agents": "AI-agents",
-    "connectAi": "AI verbinden"
+    "connectAi": "AI verbinden",
+    "bridge": "Brug"
   },
   "affiliate": {
     "subtitle": "Verdien aan iedereen die je uitnodigt — voor altijd",
@@ -4481,7 +4482,15 @@
     "relayAddress": "Bridge-relaisadres (stuur hier tokens op de bronketen):",
     "insufficient": "Niet genoeg tokens op {{chain}}.",
     "insufficientOnChain": "Niet genoeg tokens op {{chain}}. On-chain saldo kan afwijken van weergegeven.",
-    "sentArriveShortly": "{{amount}} tokens verzonden van {{from}} → {{to}}. Ze komen spoedig aan."
+    "sentArriveShortly": "{{amount}} tokens verzonden van {{from}} → {{to}}. Ze komen spoedig aan.",
+    "subtitle": "Verplaats DeHub-tokens tussen chains",
+    "queueTitle": "Bruggen",
+    "transferCount": "Overboekingen: {{count}}",
+    "searchPlaceholder": "Zoeken op adres, transactiehash of keten",
+    "queueLoadFailed": "Overdrachten konden niet worden geladen. Probeer het opnieuw.",
+    "noMatches": "Geen overeenkomende overdrachten. Probeer een ander adres of transactiehash.",
+    "showMore": "Meer weergeven",
+    "signInToBridge": "Log in om je saldo te bekijken en DeHub-tokens te verplaatsen tussen Base en BNB Chain."
   },
   "banned": {
     "title": "Je account is geblokkeerd",

@@ -60,7 +60,8 @@
     "migrate": "Migreeri kõik",
     "creators": "Loojad",
     "agents": "AI-agendid",
-    "connectAi": "Ühenda AI"
+    "connectAi": "Ühenda AI",
+    "bridge": "Sild"
   },
   "affiliate": {
     "subtitle": "Teeni kõigilt, keda kutsud — igavesti",
@@ -4291,7 +4292,15 @@
     "relayAddress": "Silla edastusaadress (saatke märgid siia lähteahelas):",
     "insufficient": "{{chain}}-l pole piisavalt märke.",
     "insufficientOnChain": "{{chain}}-l pole piisavalt märke. Ahelas olev saldo võib kuvatavast erineda.",
-    "sentArriveShortly": "{{amount}} märgiga saadetud {{from}} → {{to}}. Need saabuvad peagi."
+    "sentArriveShortly": "{{amount}} märgiga saadetud {{from}} → {{to}}. Need saabuvad peagi.",
+    "subtitle": "Liigutage DeHub žetoone ahelate vahel",
+    "queueTitle": "Sillad",
+    "transferCount": "Ülekanded: {{count}}",
+    "searchPlaceholder": "Otsi aadressi, tehinguräsi või keti järgi",
+    "queueLoadFailed": "Edastusi ei saanud laadida. Proovige uuesti.",
+    "noMatches": "Sobivaid ülekandeid pole. Proovi teist aadressi või tehinguräsi.",
+    "showMore": "Kuva rohkem",
+    "signInToBridge": "Logige sisse, et näha oma saldosid ja liigutada DeHubi žetoone Base 'i ja BNB Chaini vahel."
   },
   "banned": {
     "title": "Sinu konto on keelatud",

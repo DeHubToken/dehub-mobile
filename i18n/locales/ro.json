@@ -60,7 +60,8 @@
     "migrate": "Migrare toate",
     "creators": "Creatori",
     "agents": "Agenți AI",
-    "connectAi": "Conectează AI"
+    "connectAi": "Conectează AI",
+    "bridge": "Pod"
   },
   "affiliate": {
     "subtitle": "Câștigă de la toți cei pe care îi inviți — pentru totdeauna",
@@ -4291,7 +4292,15 @@
     "relayAddress": "Adresa releului bridge (trimite tokenuri aici pe lanțul sursă):",
     "insufficient": "Nu sunt suficiente tokenuri pe {{chain}}.",
     "insufficientOnChain": "Nu sunt suficiente tokenuri pe {{chain}}. Soldul on-chain poate diferi de cel afișat.",
-    "sentArriveShortly": "{{amount}} tokenuri trimise de la {{from}} → {{to}}. Vor ajunge în curând."
+    "sentArriveShortly": "{{amount}} tokenuri trimise de la {{from}} → {{to}}. Vor ajunge în curând.",
+    "subtitle": "Mută tokenuri DeHub între lanțuri",
+    "queueTitle": "Poduri",
+    "transferCount": "Transferuri: {{count}}",
+    "searchPlaceholder": "Caută după adresă, hash-ul tranzacției sau lanț",
+    "queueLoadFailed": "Transferurile nu s-au putut încărca. Încearcă din nou.",
+    "noMatches": "Nu există transferuri care să se potrivească. Încearcă o altă adresă sau un alt hash de tranzacție.",
+    "showMore": "Afișează mai multe",
+    "signInToBridge": "Conectați-vă pentru a vă vedea soldurile și pentru a muta jetoanele DeHub între baza și lanțul BNB."
   },
   "banned": {
     "title": "Contul tău este interzis",

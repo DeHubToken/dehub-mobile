@@ -60,7 +60,8 @@
     "migrate": "सब्बो माइग्रेट करव",
     "creators": "क्रिएटर मन",
     "agents": "AI एजेंट",
-    "connectAi": "AI जोड़व"
+    "connectAi": "AI जोड़व",
+    "bridge": "ब्रिज"
   },
   "affiliate": {
     "subtitle": "आप जिन्हें बुलाते हैं उन सबसे कमाएँ — हमेशा के लिए",
@@ -4291,7 +4292,15 @@
     "relayAddress": "ब्रिज रिले पता (स्रोत श्रृंखला पर यहां टोकन भेजें):",
     "insufficient": "{{chain}} पर पर्याप्त टोकन नहीं हैं।",
     "insufficientOnChain": "{{chain}} पर पर्याप्त टोकन नहीं हैं। ऑन-चेन बैलेंस प्रदर्शित से भिन्न हो सकता है।",
-    "sentArriveShortly": "{{from}} से {{amount}} टोकन भेजे गए → {{to}}। वे जल्द ही आ जाएंगे।"
+    "sentArriveShortly": "{{from}} से {{amount}} टोकन भेजे गए → {{to}}। वे जल्द ही आ जाएंगे।",
+    "subtitle": "डीहब टोकन को चेन के बीच ले जाएं",
+    "queueTitle": "ब्रिजConstellation name (optional)",
+    "transferCount": "ट्रांसफर: {{count}}label",
+    "searchPlaceholder": "पता, ट्रांजेक्सन हैश या चेन से खोजव",
+    "queueLoadFailed": "ट्रांसफर लोड नइ कर सकिस. फिर से कोसिस करव.",
+    "noMatches": "कोई तुलनात्मक हस्तांतरन नइ. एक अउ पता या ट्रांजेक्सन हैश ल आजमाव.",
+    "showMore": "अधिक देखाव",
+    "signInToBridge": "अपन संतुलन ल देखे बर साइन इन करव अउ आधार अउ बीएनबी श्रृंखला के बीच DeHub टोकन ल स्थानांतरित करव ।"
   },
   "banned": {
     "title": "अपन खाता बंद करे गे हे",

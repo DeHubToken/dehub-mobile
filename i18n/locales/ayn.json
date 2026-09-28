@@ -60,7 +60,8 @@
     "migrate": "انقل الكل",
     "creators": "المبدعين",
     "agents": "وكلاء AI",
-    "connectAi": "وصّل AI"
+    "connectAi": "وصّل AI",
+    "bridge": "جسر"
   },
   "affiliate": {
     "subtitle": "اربح من كل من تدعوه — إلى الأبد",
@@ -4291,7 +4292,15 @@
     "relayAddress": "عنوان ترحيل الجسر (أرسل التوكنات هنا على سلسلة المصدر):",
     "insufficient": "لا توجد توكنات كافية على {{chain}}.",
     "insufficientOnChain": "لا توجد توكنات كافية على {{chain}}. قد يختلف الرصيد على السلسلة عن المعروض.",
-    "sentArriveShortly": "تم إرسال {{amount}} توكن من {{from}} → {{to}}. ستصل قريبًا."
+    "sentArriveShortly": "تم إرسال {{amount}} توكن من {{from}} → {{to}}. ستصل قريبًا.",
+    "subtitle": "نقل توكنات ديهوب بين السلاسل",
+    "queueTitle": "جسور",
+    "transferCount": "تحويلات: {{count}}",
+    "searchPlaceholder": "ابحث بالعنوان، أو هاش المعاملة، أو السلسلة",
+    "queueLoadFailed": "لم يتم تحميل التحويلات. حاول مرة أخرى.",
+    "noMatches": "لا توجد تحويلات مطابقة. جرب عنوانًا مختلفًا أو هاش معاملة.",
+    "showMore": "عرض المزيد",
+    "signInToBridge": "سجل الدخول لرؤية أرصدتك ونقل رموز DeHub بين Base و BNB Chain."
   },
   "banned": {
     "title": "حسابك محظور",

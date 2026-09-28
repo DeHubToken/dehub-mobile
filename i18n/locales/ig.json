@@ -60,7 +60,8 @@
     "migrate": "Mbugharị niile",
     "creators": "Ndị Okike",
     "agents": "Ndị Agent AI",
-    "connectAi": "Jikọọ AI"
+    "connectAi": "Jikọọ AI",
+    "bridge": "Bridge"
   },
   "affiliate": {
     "subtitle": "Nweta site na onye ọ bụla ị kpọrọ — ruo mgbe ebighị ebi",
@@ -4291,7 +4292,15 @@
     "relayAddress": "Adreesị relay bridge (zipụ tokens ebe a na agbụ isi iyi):",
     "insufficient": "Enweghị ezuru tokens na {{chain}}.",
     "insufficientOnChain": "Enweghị ezuru tokens na {{chain}}. Nguzozi dị na agbụ nwere ike ịdị iche na nke egosiri.",
-    "sentArriveShortly": "{{amount}} tokens zipụrụ site na {{from}} → {{to}}. Ha ga-abịa n'oge na-adịghị anya."
+    "sentArriveShortly": "{{amount}} tokens zipụrụ site na {{from}} → {{to}}. Ha ga-abịa n'oge na-adịghị anya.",
+    "subtitle": "Bufe token DeHub n'etiti agbụ",
+    "queueTitle": "Bridges",
+    "transferCount": "Nnyefe: {{count}}",
+    "searchPlaceholder": "Chọọ site na adreesị, azụmahịa hash ma ọ bụ yinye",
+    "queueLoadFailed": "Mbugharị enweghị ike ibubata. Gbalịa ọzọ.",
+    "noMatches": "Enweghị nnyefe kwekọrọ. Gbalịa adreesị dị iche ma ọ bụ hash azụmahịa.",
+    "showMore": "Gosi ihe ndị ọzọ",
+    "signInToBridge": "Banye ịhụ gị itule na-akpali DeHub tokens n 'etiti Base na BNB Chain."
   },
   "banned": {
     "title": "A machibidoro akaụntụ gị",

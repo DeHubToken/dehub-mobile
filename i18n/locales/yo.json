@@ -60,7 +60,8 @@
     "migrate": "Gbe gbogbo",
     "creators": "Àwọn olùdásílẹ̀",
     "agents": "Àwọn aṣojú AI",
-    "connectAi": "So AI pọ̀"
+    "connectAi": "So AI pọ̀",
+    "bridge": "Afárá"
   },
   "affiliate": {
     "subtitle": "Gba lati ọdọ gbogbo eniyan ti o pe — lailai",
@@ -4292,7 +4293,15 @@
     "relayAddress": "Adiresi afara afara (fi awọn token ranṣẹ nibi lori ẹwọn orisun):",
     "insufficient": "Ko to awọn token lori {{chain}}.",
     "insufficientOnChain": "Ko to awọn token lori {{chain}}. Iwọntọnwọnsọ lori pq le yatọ si ti o han.",
-    "sentArriveShortly": "{{amount}} token ti a fi ranṣẹ lati {{from}} → {{to}}. Wọn de laipẹ."
+    "sentArriveShortly": "{{amount}} token ti a fi ranṣẹ lati {{from}} → {{to}}. Wọn de laipẹ.",
+    "subtitle": "Gbé tóka DeHub láàárín àwọn ilé-iṣẹ́",
+    "queueTitle": "Afara",
+    "transferCount": "Gbigbe: {{count}}",
+    "searchPlaceholder": "Ṣàwárí nípa àdírẹ̀sì, hash ìdúnàádúrà tàbí pq",
+    "queueLoadFailed": "Àwọn ìfowópamọ́ kò lè gba ẹrù. Gbiyanju lẹ́ẹ̀kan síi.",
+    "noMatches": "Kò sí ìfowópamọ́ tí ó bá a mu. Gbìyànjú àdírẹ́sì mìíràn tàbí hash ìdúnàádúrà.",
+    "showMore": "Ṣàfihàn púpọ̀ síi",
+    "signInToBridge": "Wọle lati wo awọn iwontunwonsi rẹ ki o si gbe awọn ami DeHub laarin Base ati BNB Chain."
   },
   "banned": {
     "title": "A ti fòfin de àkántì rẹ.",

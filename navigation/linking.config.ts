@@ -215,6 +215,10 @@ export const DeepLinkPaths = {
 
   // DePin — dehub.io/depin, the community node network. Top-level on web.
   DEPIN: 'depin',
+
+  // Bridge — dehub.io/app/bridge is what web shares; the bare /bridge is
+  // rewritten onto it by APP_PREFIXED below.
+  BRIDGE: 'app/bridge',
 } as const;
 
 /**
@@ -330,6 +334,7 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
           [ScreenNames.Arcade]: DeepLinkPaths.ARCADE,
 
           [ScreenNames.DePin]: DeepLinkPaths.DEPIN,
+          [ScreenNames.Bridge]: DeepLinkPaths.BRIDGE,
 
           [ScreenNames.Root]: {
             screens: {
@@ -381,7 +386,7 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
     // and the link opened the website instead of the app.
     const APP_PREFIXED = new Set([
       'post', 'notifications', 'leaderboard', 'messages', 'communities',
-      'stores', 'events', 'fractions', 'agents',
+      'stores', 'events', 'fractions', 'agents', 'bridge',
     ]);
     // Builder lived at /app/builder before it took the top-level URL; web
     // redirects the old links, so do the same here.
@@ -682,6 +687,11 @@ export const parseDeepLink = (url: string): { type: string; params: Record<strin
     // /app/agents
     if (appParts[0] === 'agents') {
       return { type: 'agents', params: qp };
+    }
+
+    // /app/bridge
+    if (appParts[0] === 'bridge') {
+      return { type: 'bridge', params: qp };
     }
 
     // /app/events/:eventNumber

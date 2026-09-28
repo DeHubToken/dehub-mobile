@@ -60,7 +60,8 @@
     "migrate": "Migriraj sve",
     "creators": "Kreatori",
     "agents": "AI agenti",
-    "connectAi": "Poveži AI"
+    "connectAi": "Poveži AI",
+    "bridge": "Most"
   },
   "affiliate": {
     "subtitle": "Zaradite od svakoga koga pozovete — zauvijek",
@@ -4291,7 +4292,15 @@
     "relayAddress": "Adresa releja bridgea (pošaljite tokene ovdje na izvornom lancu):",
     "insufficient": "Nedovoljno tokena na {{chain}}.",
     "insufficientOnChain": "Nedovoljno tokena na {{chain}}. Stanje na lancu može se razlikovati od prikazanog.",
-    "sentArriveShortly": "{{amount}} tokena poslano s {{from}} → {{to}}. Stižu uskoro."
+    "sentArriveShortly": "{{amount}} tokena poslano s {{from}} → {{to}}. Stižu uskoro.",
+    "subtitle": "Premjestite DeHub tokene između lanaca",
+    "queueTitle": "Mostovi",
+    "transferCount": "Prijenosi: {{count}}",
+    "searchPlaceholder": "Pretraživanje po adresi, transakcijskom hashu ili lancu",
+    "queueLoadFailed": "Prijenos se nije mogao učitati. Pokušajte ponovno.",
+    "noMatches": "Nema odgovarajućih prijenosa. Pokušajte s drugom adresom ili raspršivanjem transakcija.",
+    "showMore": "Prikaži više",
+    "signInToBridge": "Prijavite se kako biste vidjeli svoja salda i premjestili DeHub tokene između osnovnog i BNB lanca."
   },
   "banned": {
     "title": "Tvoj je račun zabranjen",

@@ -60,7 +60,8 @@
     "migrate": "ሁሉንም አዛውር",
     "creators": "ፈጣሪዎች",
     "agents": "የAI ወኪሎች",
-    "connectAi": "AI አገናኝ"
+    "connectAi": "AI አገናኝ",
+    "bridge": "ድልድይ"
   },
   "affiliate": {
     "subtitle": "የጋበዝከው ሰው ሁሉ ያገኛል — ለዘላለም",
@@ -4321,7 +4322,15 @@
     "relayAddress": "የድልድይ ሪሌይ አድራሻ (በምንጭ ቻይኑ ላይ እዚህ ቶከኖችን ይላኩ)፡",
     "insufficient": "በ{{chain}} ላይ በቂ ቶከኖች የሉም።",
     "insufficientOnChain": "በ{{chain}} ላይ በቂ ቶከኖች የሉም። የኦን-ቼይን ቀሪ ሂሳብ ከሚታየው ሊለያይ ይችላል።",
-    "sentArriveShortly": "{{amount}} ቶከኖች ከ{{from}} → {{to}} ተልከዋል። በቅርቡ ይደርሳሉ።"
+    "sentArriveShortly": "{{amount}} ቶከኖች ከ{{from}} → {{to}} ተልከዋል። በቅርቡ ይደርሳሉ።",
+    "subtitle": "የDeHub ቶከኖችን በሰንሰለቶች መካከል ያንቀሳቅሱ",
+    "queueTitle": "ድልድዮች",
+    "transferCount": "ማስተላለፊያዎች: {{count}}",
+    "searchPlaceholder": "በአድራሻ ፣ በግብይት ሃሽ ወይም በሰንሰለት ይፈልጉ",
+    "queueLoadFailed": "ዝውውሮች መጫን አልቻሉም. እንደገና ይሞክሩ.",
+    "noMatches": "ምንም ተዛማጅ ዝውውሮች. የተለየ አድራሻ ወይም ግብይት ሃሽ ይሞክሩ.",
+    "showMore": "ተጨማሪ አሳይ",
+    "signInToBridge": "ሚዛንዎን ለማየት ይግቡ እና በመሠረት እና በ BNB ሰንሰለት መካከል የ DeHub ምልክቶችን ያንቀሳቅሱ ።"
   },
   "banned": {
     "title": "መለያዎ ታግዷል",

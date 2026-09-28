@@ -174,6 +174,11 @@ function AppNavigatorContent() {
           name={ScreenNames.DePin}
           getComponent={() => require("../screens/DePinScreen").default}
         />
+        {/* Public: the transfer list is open to everyone; bridging signs in. */}
+        <Stack.Screen
+          name={ScreenNames.Bridge}
+          getComponent={() => require("../screens/BridgeScreen").default}
+        />
         <Stack.Screen
           name={ScreenNames.Governance}
           getComponent={() => require("../screens/GovernanceScreen").default}

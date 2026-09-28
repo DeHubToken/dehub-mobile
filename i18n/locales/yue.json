@@ -60,7 +60,8 @@
     "migrate": "轉移所有嘢",
     "creators": "創作者",
     "agents": "AI 代理",
-    "connectAi": "連接 AI"
+    "connectAi": "連接 AI",
+    "bridge": "跨鏈橋"
   },
   "affiliate": {
     "subtitle": "你邀请的每个人都为你带来收入——永久有效",
@@ -4291,7 +4292,15 @@
     "relayAddress": "橋接中繼地址（在來源鏈上將代幣發送到此處）：",
     "insufficient": "{{chain}} 上代幣不足。",
     "insufficientOnChain": "{{chain}} 上代幣不足。鏈上餘額可能與顯示的不同。",
-    "sentArriveShortly": "{{amount}} 代幣從 {{from}} 發送到 {{to}}。它們很快就會到達。"
+    "sentArriveShortly": "{{amount}} 代幣從 {{from}} 發送到 {{to}}。它們很快就會到達。",
+    "subtitle": "在鏈之間移動 DeHub 代幣",
+    "queueTitle": "橋樑",
+    "transferCount": "轉數快： {{count}}",
+    "searchPlaceholder": "按地址、交易哈希或者鏈搜尋",
+    "queueLoadFailed": "轉移載入唔到。再試多次。",
+    "noMatches": "冇匹配嘅轉移。試下用唔同嘅地址或者交易哈希。",
+    "showMore": "顯示更多",
+    "signInToBridge": "登入嚟睇你嘅餘額，同埋喺 Base 同 BNB Chain 之間移動 DeHub 代幣。"
   },
   "banned": {
     "title": "你嘅帳戶已被禁用",

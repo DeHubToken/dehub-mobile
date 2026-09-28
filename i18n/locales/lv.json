@@ -60,7 +60,8 @@
     "migrate": "Migrēt visu",
     "creators": "Veidotāji",
     "agents": "MI aģenti",
-    "connectAi": "Savienot MI"
+    "connectAi": "Savienot MI",
+    "bridge": "Tilts"
   },
   "affiliate": {
     "subtitle": "Pelniet no ikviena, ko uzaicināt — mūžīgi",
@@ -4291,7 +4292,15 @@
     "relayAddress": "Tilta releja adrese (sūtiet marķierus šeit avota ķēdē):",
     "insufficient": "Nav pietiekami daudz marķieru uz {{chain}}.",
     "insufficientOnChain": "Nav pietiekami daudz marķieru uz {{chain}}. Atlikums ķēdē var atšķirties no parādītā.",
-    "sentArriveShortly": "{{amount}} marķieri nosūtīti no {{from}} → {{to}}. Tie drīzumā ieradīsies."
+    "sentArriveShortly": "{{amount}} marķieri nosūtīti no {{from}} → {{to}}. Tie drīzumā ieradīsies.",
+    "subtitle": "Pārvietojiet DeHub žetonus starp ķēdēm",
+    "queueTitle": "Tilti",
+    "transferCount": "Pārskaitījumi: {{count}}",
+    "searchPlaceholder": "Meklējiet pēc adreses, darījuma jaukšanas vai ķēdes",
+    "queueLoadFailed": "Pārsūtīšanu nevarēja ielādēt. Mēģiniet vēlreiz.",
+    "noMatches": "Nav atbilstošu pārskaitījumu. Izmēģiniet citu adresi vai darījuma jaukšanu.",
+    "showMore": "Rādīt vairāk",
+    "signInToBridge": "Pierakstieties, lai redzētu savus atlikumus un pārvietotu DeHub žetonus starp Base un BNB Chain."
   },
   "banned": {
     "title": "Jūsu konts ir bloķēts",

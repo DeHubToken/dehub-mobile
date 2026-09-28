@@ -60,7 +60,8 @@
     "migrate": "Összes áttelepítése",
     "creators": "Alkotók",
     "agents": "MI-ügynökök",
-    "connectAi": "MI csatlakoztatása"
+    "connectAi": "MI csatlakoztatása",
+    "bridge": "Híd"
   },
   "affiliate": {
     "subtitle": "Keress minden meghívottad után — örökre",
@@ -4295,7 +4296,15 @@
     "relayAddress": "Híd relé címe (küldj tokeneket ide a forrás blokkláncon):",
     "insufficient": "Nincs elég token a {{chain}}-on.",
     "insufficientOnChain": "Nincs elég token a {{chain}}-on. Az on-chain egyenleg eltérhet a kijelzettől.",
-    "sentArriveShortly": "{{amount}} token küldve innen: {{from}} → ide: {{to}}. Hamarosan megérkeznek."
+    "sentArriveShortly": "{{amount}} token küldve innen: {{from}} → ide: {{to}}. Hamarosan megérkeznek.",
+    "subtitle": "DeHub tokenek mozgatása láncok között",
+    "queueTitle": "Hidak",
+    "transferCount": "Átutalások: {{count}}",
+    "searchPlaceholder": "Keresés cím, tranzakciós kivonat vagy lánc alapján",
+    "queueLoadFailed": "Az átutalásokat nem sikerült betölteni. Próbálkozz újra.",
+    "noMatches": "Nincs egyező átutalás. Próbálkozz másik címmel vagy tranzakciós kivonattal.",
+    "showMore": "Továbbiak megjelenítése",
+    "signInToBridge": "Jelentkezzen be egyenlegei megtekintéséhez, és mozgassa a DeHub tokeneket a Base és a BNB Chain között."
   },
   "banned": {
     "title": "A fiókodat letiltottuk",

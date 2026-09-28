@@ -60,7 +60,8 @@
     "migrate": "להעביר הכול",
     "creators": "יוצרים",
     "agents": "סוכני AI",
-    "connectAi": "חיבור AI"
+    "connectAi": "חיבור AI",
+    "bridge": "גשר"
   },
   "affiliate": {
     "subtitle": "הרווח מכל מי שתזמין — לנצח",
@@ -4295,7 +4296,15 @@
     "relayAddress": "כתובת ממסר הגשר (שלח אסימונים לכאן ברשת המקור):",
     "insufficient": "אין מספיק אסימונים ב-{{chain}}.",
     "insufficientOnChain": "אין מספיק אסימונים ב-{{chain}}. יתרת הבלוקצ'יין עשויה להיות שונה מהמוצגת.",
-    "sentArriveShortly": "{{amount}} אסימונים נשלחו מ-{{from}} → {{to}}. הם יגיעו בקרוב."
+    "sentArriveShortly": "{{amount}} אסימונים נשלחו מ-{{from}} → {{to}}. הם יגיעו בקרוב.",
+    "subtitle": "העבר טוקני DeHub בין רשתות",
+    "queueTitle": "גשרים",
+    "transferCount": "הסעות: {{count}}",
+    "searchPlaceholder": "חיפוש לפי כתובת, גיבוב עסקה או שרשרת",
+    "queueLoadFailed": "לא ניתן לטעון את ההעברות. יש לנסות שוב.",
+    "noMatches": "אין העברות תואמות. אפשר לנסות כתובת אחרת או גיבוב עסקאות אחר.",
+    "showMore": "פרטים נוספים",
+    "signInToBridge": "התחבר כדי לראות את היתרות שלך ולהעביר אסימוני DeHub בין הבסיס לרשת BNB."
   },
   "banned": {
     "title": "החשבון שלך נחסם",

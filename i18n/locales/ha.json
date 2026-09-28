@@ -60,7 +60,8 @@
     "migrate": "Matsar da duka",
     "creators": "Masu ƙirƙira",
     "agents": "Wakilan AI",
-    "connectAi": "Haɗa AI"
+    "connectAi": "Haɗa AI",
+    "bridge": "Gada"
   },
   "affiliate": {
     "subtitle": "Samun kuɗi daga kowane mutum da ka gayyata — har abada",
@@ -4291,7 +4292,15 @@
     "relayAddress": "Adireshin relay na gada (aika tokens anan a kan hanyar tushe):",
     "insufficient": "Babu isassun tokens a {{chain}}.",
     "insufficientOnChain": "Babu isassun tokens a {{chain}}. Ma'auni na kan-chain na iya bambanta da abin da aka nuna.",
-    "sentArriveShortly": "An aika {{amount}} tokens daga {{from}} → {{to}}. Zasu iso nan da wani lokaci."
+    "sentArriveShortly": "An aika {{amount}} tokens daga {{from}} → {{to}}. Zasu iso nan da wani lokaci.",
+    "subtitle": "Canja wurin token na DeHub tsakanin sarƙoƙi",
+    "queueTitle": "Gadoji",
+    "transferCount": "Canja wurin: {{count}}",
+    "searchPlaceholder": "Bincika ta adireshin, ma'amala hash ko sarkar",
+    "queueLoadFailed": "Canja wurin ba zai iya ɗorawa ba. sake gwadawa.",
+    "noMatches": "Babu daidaitattun canja wurin. Gwada wani adireshin daban ko ma'amala hash.",
+    "showMore": "Nuna ƙarin",
+    "signInToBridge": "Shiga don ganin ma'aunin ku kuma motsa alamun DeHub tsakanin Base da BNB Chain."
   },
   "banned": {
     "title": "An haramta asusunka",

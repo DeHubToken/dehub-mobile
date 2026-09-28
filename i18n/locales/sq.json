@@ -60,7 +60,8 @@
     "migrate": "Migroji të gjitha",
     "creators": "Krijues",
     "agents": "Agjentë IA",
-    "connectAi": "Lidh IA-në"
+    "connectAi": "Lidh IA-në",
+    "bridge": "Ura"
   },
   "affiliate": {
     "subtitle": "Fito nga çdo person që fton — përgjithmonë",
@@ -4291,7 +4292,15 @@
     "relayAddress": "Adresa e relës së urës (dërgoni token këtu në zinxhirin burim):",
     "insufficient": "Nuk ka mjaft token në {{chain}}.",
     "insufficientOnChain": "Nuk ka mjaft token në {{chain}}. Balanca në zinxhir mund të ndryshojë nga ajo e shfaqur.",
-    "sentArriveShortly": "{{amount}} token të dërguara nga {{from}} → {{to}}. Ato do të mbërrijnë së shpejti."
+    "sentArriveShortly": "{{amount}} token të dërguara nga {{from}} → {{to}}. Ato do të mbërrijnë së shpejti.",
+    "subtitle": "Lëvizni tokenat DeHub midis zinxhirëve",
+    "queueTitle": "Urat",
+    "transferCount": "Transferimet: {{count}}",
+    "searchPlaceholder": "Kërko sipas adresës, hashit të transaksionit ose zinxhirit",
+    "queueLoadFailed": "Transferimet nuk mund të ngarkoheshin. Provo përsëri.",
+    "noMatches": "Nuk ka transferime që përputhen. Provo një adresë tjetër ose hash transaksionesh.",
+    "showMore": "Shfaq më shumë",
+    "signInToBridge": "Hyni për të parë ekuilibrat tuaj dhe për të lëvizur argumentet DeHub midis Bazës dhe Zinxhirit BNB."
   },
   "banned": {
     "title": "Llogaria jote është e ndaluar",

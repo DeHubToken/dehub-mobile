@@ -60,7 +60,8 @@
     "migrate": "Migrera alla",
     "creators": "Kreatörer",
     "agents": "AI-agenter",
-    "connectAi": "Anslut AI"
+    "connectAi": "Anslut AI",
+    "bridge": "Bro"
   },
   "affiliate": {
     "subtitle": "Tjäna från alla du bjuder in – för alltid",
@@ -4295,7 +4296,15 @@
     "relayAddress": "Bryggreläadress (skicka tokens hit på källkedjan):",
     "insufficient": "Inte tillräckligt med tokens på {{chain}}.",
     "insufficientOnChain": "Inte tillräckligt med tokens på {{chain}}. Saldot på kedjan kan skilja sig från det som visas.",
-    "sentArriveShortly": "{{amount}} tokens skickade från {{from}} → {{to}}. De anländer strax."
+    "sentArriveShortly": "{{amount}} tokens skickade från {{from}} → {{to}}. De anländer strax.",
+    "subtitle": "Flytta DeHub-tokens mellan kedjor",
+    "queueTitle": "Broar",
+    "transferCount": "Överföringar: {{count}}",
+    "searchPlaceholder": "Sök efter adress, transaktionshash eller kedja",
+    "queueLoadFailed": "Överföringar kunde inte laddas. Försök igen.",
+    "noMatches": "Inga matchande överföringar. Prova en annan adress eller transaktionshash.",
+    "showMore": "Visa mer",
+    "signInToBridge": "Logga in för att se dina saldon och flytta DeHub-tokens mellan Base och BNB Chain."
   },
   "banned": {
     "title": "Ditt konto är spärrat",

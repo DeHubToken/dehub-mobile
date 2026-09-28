@@ -60,7 +60,8 @@
     "migrate": "Migrar-ho tot",
     "creators": "Creadors",
     "agents": "Agents d'IA",
-    "connectAi": "Connecta la IA"
+    "connectAi": "Connecta la IA",
+    "bridge": "Pont"
   },
   "affiliate": {
     "subtitle": "Guanya de tothom que convidis, per sempre",
@@ -4291,7 +4292,15 @@
     "relayAddress": "Adreça del relleu del pont (envia tokens aquí a la cadena d'origen):",
     "insufficient": "No hi ha prou tokens a {{chain}}.",
     "insufficientOnChain": "No hi ha prou tokens a {{chain}}. El saldo a la cadena pot diferir del que es mostra.",
-    "sentArriveShortly": "S'han enviat {{amount}} tokens des de {{from}} → {{to}}. Arribaran aviat."
+    "sentArriveShortly": "S'han enviat {{amount}} tokens des de {{from}} → {{to}}. Arribaran aviat.",
+    "subtitle": "Mou tokens DeHub entre cadenes",
+    "queueTitle": "Ponts",
+    "transferCount": "Transferències: {{count}}",
+    "searchPlaceholder": "Cerca per adreça, hash de transacció o cadena",
+    "queueLoadFailed": "No s'han pogut carregar les transferències. Torna-ho a provar.",
+    "noMatches": "No hi ha transferències coincidents. Prova amb una altra adreça o hash de transacció.",
+    "showMore": "Mostra'n més",
+    "signInToBridge": "Inicia sessió per veure els teus saldos i mou les fitxes DeHub entre la base i la cadena BNB."
   },
   "banned": {
     "title": "El teu compte està bloquejat",

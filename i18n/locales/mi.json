@@ -60,7 +60,8 @@
     "migrate": "Hūnuku katoa",
     "creators": "Ngā kaihanga",
     "agents": "Ngā māngai AI",
-    "connectAi": "Honoa te AI"
+    "connectAi": "Honoa te AI",
+    "bridge": "Piriti"
   },
   "affiliate": {
     "subtitle": "Kia whiwhi mai i te katoa e powhiritia ana e koe — ake tonu atu",
@@ -4291,7 +4292,15 @@
     "relayAddress": "Wāhitau tuku piriti (tukuna ngā tohu ki konei i runga i te mekameka pūtake):",
     "insufficient": "Kāore he tohu nui i runga i te {{chain}}.",
     "insufficientOnChain": "Kāore he tohu nui i runga i te {{chain}}. Ka rereke pea te tauranga i runga i te mekameka i te mea kua whakaatuhia.",
-    "sentArriveShortly": "{{amount}} tohu i tukuna mai i te {{from}} → {{to}}. Ka tae mai i mua i te roa."
+    "sentArriveShortly": "{{amount}} tohu i tukuna mai i te {{from}} → {{to}}. Ka tae mai i mua i te roa.",
+    "subtitle": "Nekehia ngā tohu DeHub i waenga i ngā mekameka",
+    "queueTitle": "Ngā kōpae",
+    "transferCount": "Whakawhiti: {{count}}",
+    "searchPlaceholder": "Rapua ma te wahitau, te hash whakawhitiwhitinga, te mekameka ranei",
+    "queueLoadFailed": "Kaore e taea e nga whakawhitinga te utaina. Whakamātauria ano.",
+    "noMatches": "Kaore he whakawhitinga ōrite. Whakamātauria he wāhitau rerekē, he hash whakawhitiwhitinga rānei.",
+    "showMore": "Whakaaturia atu",
+    "signInToBridge": "Hokona ki roto ki te kite i to koutou toenga, me te neke tohu DeHub i waenganui i Base me BnB Chain."
   },
   "banned": {
     "title": "Kua aukatihia tō pūkete",

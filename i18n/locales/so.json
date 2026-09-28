@@ -60,7 +60,8 @@
     "migrate": "Dhammaan u guuri",
     "creators": "Hal-abuurayaal",
     "agents": "Wakiilada AI",
-    "connectAi": "Ku xir AI"
+    "connectAi": "Ku xir AI",
+    "bridge": "Buundo"
   },
   "affiliate": {
     "subtitle": "Ka soo hel qof kasta oo aad martiqaaddo — weligaa",
@@ -4291,7 +4292,15 @@
     "relayAddress": "Cinwaanka relay-ga ee buundada (halkan ku dir token-kaaga silsilada isha):",
     "insufficient": "Kama filna token-ka {{chain}}.",
     "insufficientOnChain": "Kama filna token-ka {{chain}}. Dhaqaalaha on-chain wuu ka duwanaan karaa kan la muujiyay.",
-    "sentArriveShortly": "{{amount}} token oo laga soo diray {{from}} → {{to}}. Waxay imanayaan dhawaan."
+    "sentArriveShortly": "{{amount}} token oo laga soo diray {{from}} → {{to}}. Waxay imanayaan dhawaan.",
+    "subtitle": "U wareeji lacagta DeHub-ka silsiladaha kala duwan",
+    "queueTitle": "Buundooyinka",
+    "transferCount": "Transfers: {{count}}",
+    "searchPlaceholder": "Raadi cinwaanka, macaamilka hash ama silsilad",
+    "queueLoadFailed": "Transfers ma cusbi karin. isku day mar kale.",
+    "noMatches": "No kala iibsiga dhigma. isku day cinwaan ama macaamil kale hash.",
+    "showMore": "Muuji wax badan",
+    "signInToBridge": "Gal si aad u aragto dheelitirkaaga oo u guurto calaamadaha DeHub inta udhaxeysa Base iyo BNB Chain."
   },
   "banned": {
     "title": "Koontadaada waa la mamnuucay",

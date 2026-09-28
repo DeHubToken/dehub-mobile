@@ -60,7 +60,8 @@
     "migrate": "모두 마이그레이션",
     "creators": "크리에이터",
     "agents": "AI 에이전트",
-    "connectAi": "AI 연결"
+    "connectAi": "AI 연결",
+    "bridge": "브리지"
   },
   "affiliate": {
     "subtitle": "초대한 모든 사람에게서 평생 수익을",
@@ -4344,7 +4345,15 @@
     "relayAddress": "브리지 릴레이 주소 (소스 체인의 여기로 토큰 전송):",
     "insufficient": "{{chain}}에 토큰이 부족합니다.",
     "insufficientOnChain": "{{chain}}에 토큰이 부족합니다. 온체인 잔액이 표시된 잔액과 다를 수 있습니다.",
-    "sentArriveShortly": "{{amount}}개의 토큰이 {{from}}에서 {{to}}로 전송되었습니다. 곧 도착합니다."
+    "sentArriveShortly": "{{amount}}개의 토큰이 {{from}}에서 {{to}}로 전송되었습니다. 곧 도착합니다.",
+    "subtitle": "체인 간 DeHub 토큰 이동",
+    "queueTitle": "교량",
+    "transferCount": "환승: {{count}}",
+    "searchPlaceholder": "주소, 트랜잭션 해시 또는 체인으로 검색",
+    "queueLoadFailed": "이체를 로드할 수 없습니다. 다시 시도하십시오.",
+    "noMatches": "일치하는 이체가 없습니다. 다른 주소 또는 트랜잭션 해시를 시도하십시오.",
+    "showMore": "더 보기",
+    "signInToBridge": "로그인하여 잔액을 확인하고 베이스와 BNB 체인 간에 DeHub 토큰을 이동하세요."
   },
   "banned": {
     "title": "계정이 차단되었습니다",

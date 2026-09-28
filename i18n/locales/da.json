@@ -60,7 +60,8 @@
     "migrate": "Migrer alle",
     "creators": "Skabere",
     "agents": "AI-agenter",
-    "connectAi": "Forbind AI"
+    "connectAi": "Forbind AI",
+    "bridge": "Bro"
   },
   "affiliate": {
     "subtitle": "Tjen penge på alle, du inviterer — for evigt",
@@ -4295,7 +4296,15 @@
     "relayAddress": "Bridge relay-adresse (send tokens hertil på kildekæden):",
     "insufficient": "Ikke nok tokens på {{chain}}.",
     "insufficientOnChain": "Ikke nok tokens på {{chain}}. On-chain balance kan afvige fra den viste.",
-    "sentArriveShortly": "{{amount}} tokens sendt fra {{from}} → {{to}}. De ankommer snart."
+    "sentArriveShortly": "{{amount}} tokens sendt fra {{from}} → {{to}}. De ankommer snart.",
+    "subtitle": "Flyt DeHub-tokens mellem kæder",
+    "queueTitle": "Broer",
+    "transferCount": "Overførsler:{{count}}",
+    "searchPlaceholder": "Søg efter adresse, transaktionshash eller kæde",
+    "queueLoadFailed": "Overførsler kunne ikke indlæses. Prøv igen.",
+    "noMatches": "Ingen matchende overførsler. Prøv en anden adresse eller transaktionshash.",
+    "showMore": "Vis mere",
+    "signInToBridge": "Log ind for at se dine saldi, og flyt DeHub-tokens mellem Base og BNB Chain."
   },
   "banned": {
     "title": "Din konto er spærret",

@@ -60,7 +60,8 @@
     "migrate": "Hemûyan bar bike",
     "creators": "Afirîner",
     "agents": "Ajanên AI",
-    "connectAi": "AI Girêde"
+    "connectAi": "AI Girêde",
+    "bridge": "Pir"
   },
   "affiliate": {
     "subtitle": "Ji her kesê ku hûn vexwendin qezenc bikin - her û her",
@@ -4152,7 +4153,15 @@
     "needGas": "Ji bo gazê li ser {{chain}} {{token}} ya resen hewce ye.",
     "bridging": "Tê veguhastin…",
     "bridgeAction": "Pir {{from}} → {{to}}",
-    "failed": "Pir bi ser neket"
+    "failed": "Pir bi ser neket",
+    "subtitle": "دەب هوب توکنەکان لە نێوان زنجیرەکاندا بجوڵێنە",
+    "queueTitle": "Pir",
+    "transferCount": "Veguhastin: {{count}}",
+    "searchPlaceholder": "Li gorî navnîşan, haşa danûstandinê an zincîrê bigere",
+    "queueLoadFailed": "Veguhastin nehatin barkirin. Dîsa biceribînin.",
+    "noMatches": "Veguhestinên hevber tune ne. Navnîşan an jî haşa danûstandinê ya cuda biceribînin.",
+    "showMore": "Zêdetir nîşan bide",
+    "signInToBridge": "Ji bo dîtina hevsengiyên xwe û veguhestina tokenên DeHub di navbera Base û BNB Chain de têkeve hesabê xwe."
   },
   "teamUp": {
     "title": "Tîmê pêk bîne",

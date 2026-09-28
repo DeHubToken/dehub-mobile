@@ -60,7 +60,8 @@
     "migrate": "Llapallanta huklawman astakuy",
     "creators": "Ruraqkuna",
     "agents": "IA Agentekuna",
-    "connectAi": "IA-wan t'inkiy"
+    "connectAi": "IA-wan t'inkiy",
+    "bridge": "Chaka"
   },
   "affiliate": {
     "subtitle": "Llapa invitasqaykimanta ganay — wiñaypaq",
@@ -4322,7 +4323,15 @@
     "relayAddress": "Bridge relay direcci (kachay tokenkuna kaypi source chainpi):",
     "insufficient": "Mana atiqchu tokenkuna {{chain}}pi.",
     "insufficientOnChain": "Mana atiqchu tokenkuna {{chain}}pi. On-chain balanceqa saykuyta atiq displayed.",
-    "sentArriveShortly": "{{amount}} tokenkuna kachasqa {{from}} → {{to}}manta. Chaykuna chayllaraq jamunqanku."
+    "sentArriveShortly": "{{amount}} tokenkuna kachasqa {{from}} → {{to}}manta. Chaykuna chayllaraq jamunqanku.",
+    "subtitle": "DeHub tokenskuna maymanpas chainman apay",
+    "queueTitle": "Puentekuna",
+    "transferCount": "T'inkisqakuna: {{count}}",
+    "searchPlaceholder": "Dirección, transacción hash utaq cadena nisqawan maskay",
+    "queueLoadFailed": "Transferencias mana cargayta atirqankuchu. Hukmanta kallpachakuy.",
+    "noMatches": "Mana tupaq transferenciakuna. Huk direccionta utaq transacción hash nisqatapas ruway.",
+    "showMore": "Astawan rikuchiy",
+    "signInToBridge": "Yaykuy saldoykikunata qhawanaykipaq chaymanta DeHub tokenkunata Base chaymanta BNB Cadena chawpipi kuyuchiy."
   },
   "banned": {
     "title": "Cuentaykiqa harkasqam kachkan",
