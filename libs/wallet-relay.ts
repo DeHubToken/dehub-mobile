@@ -35,3 +35,18 @@ export function isWalletRelayPublishError(error: unknown): boolean {
   }
   return false;
 }
+
+/** A missing wallet response must release the login controls without replaying it. */
+export async function waitForWalletSignature<T>(request: () => Promise<T>): Promise<T> {
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  try {
+    return await Promise.race([
+      request(),
+      new Promise<never>((_, reject) => {
+        timer = setTimeout(() => reject(new Error('Wallet signature timed out')), 120_000);
+      }),
+    ]);
+  } finally {
+    clearTimeout(timer);
+  }
+}

@@ -41,8 +41,8 @@ it('keeps repeated connect taps and provider updates to one login at a time', as
   await act(async () => { root.unmount(); });
 });
 
-it('reopens the wallet picker on the next tap after a relay publish failure', async () => {
-  mockSignIn.mockRejectedValue(new Error('Failed to publish payload, please try again. id:1 tag:1108'));
+it.each(['Failed to publish payload, please try again. id:1 tag:1108', 'Wallet signature timed out'])('reopens the wallet picker after %s', async message => {
+  mockSignIn.mockRejectedValue(new Error(message));
   let wallet!: ReturnType<typeof useWalletAuth>;
   function Screen() { wallet = useWalletAuth(); return null; }
   let root!: ReturnType<typeof create>;
