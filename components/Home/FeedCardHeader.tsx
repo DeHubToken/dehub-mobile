@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useRef } from "react";
 import { View, Text, Pressable } from "react-native";
 import SmartImage from "../common/SmartImage";
 import Avatar from "../common/Avatar";
@@ -6,6 +6,7 @@ import NewMemberChip from "../common/NewMemberChip";
 import Icon from "../ui/Icon";
 import DeferredBlock from "../common/DeferredBlock";
 import { getBadgeOpticalStyle } from "../../libs/misc";
+import { openBadgeShowcase, tierForBadgeImage } from "../../libs/badgeShowcase";
 import { useTranslation } from "react-i18next";
 
 const ICON_MUTED = "#6F7174";
@@ -52,6 +53,7 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
   isHidden,
 }) => {
   const { t } = useTranslation();
+  const badgeRef = useRef<View>(null);
   return (
     <View className="flex-row items-center pb-2">
       <Pressable onPress={onUserPress} style={{ flexShrink: 0 }} hitSlop={IDENTITY_HIT_SLOP}>
@@ -83,7 +85,10 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
             {displayName}
           </Text>
           {badgeImage && (
-            <View
+            <Pressable
+              ref={badgeRef}
+              onPress={() => openBadgeShowcase(tierForBadgeImage(badgeImage), badgeRef.current)}
+              hitSlop={6}
               style={{
                 flexShrink: 0,
                 height: DISPLAY_NAME_LINE_HEIGHT,
@@ -99,7 +104,7 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
                 ]}
                 contentFit="contain"
               />
-            </View>
+            </Pressable>
           )}
           {address && (
             <View

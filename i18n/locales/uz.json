@@ -5942,6 +5942,37 @@
     "toNextTier": "{{amount}} ta token {{tier}} ga",
     "holdNote": "Belgi ochilgandan so'ng, tokenlaringizni saqlab turganingizcha u sizniki bo'ladi. Yangi belgi ochish uchun kerak bo'lgan tokenlar miqdori token narxi bilan o'zgarishi mumkin."
   },
+  "badgeShowcase": {
+    "dialogLabel": "{{tier}} nishoni",
+    "close": "Yopish",
+    "badges": "Nishonlar",
+    "tierOf": "{{total}} ning {{index}} darajasi",
+    "youHaveThis": "Sizda bu nishon bor",
+    "toUnlock": "Ochish uchun yana {{amount}} token",
+    "holdToUnlock": "Uni ochish uchun kamida shuncha DeHub tokenlarini ushlab turing",
+    "sliderLabel": "Tokenlar ushlab turildi",
+    "sliderValue": "{{amount}} tokenlar · {{tier}}",
+    "you": "Siz",
+    "grants": "U nimani ochadi",
+    "perks": {
+      "fee": "Platforma toʻlovi",
+      "votes": "Boshqaruv ovozlari",
+      "reach": "Har bir koʻrish va reaksiya vazni",
+      "feedPosts": "Kunlik uy sahifasi postlari",
+      "images": "Har bir post uchun rasmlar",
+      "uploads": "Kunlik yuklash limiti",
+      "storage": "Muharrir xotirasi",
+      "profiles": "Saqlangan profillar",
+      "lending": "Nishon kreditlash slotlari",
+      "voice": "Ovozni klonlash",
+      "voiceFree": "Bepul",
+      "voiceLocked": "{{tier}} va undan yuqori"
+    },
+    "buy": "DHB oling",
+    "details": "Toʻliq tahlil",
+    "play": "Ijro etish",
+    "pause": "Pauza"
+  },
   "passwordStrength": {
     "veryWeak": "Juda zaif",
     "weak": "Zaif",

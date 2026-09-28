@@ -5928,6 +5928,37 @@
     "toNextTier": "{{amount}} אסימונים ל-{{tier}}",
     "holdNote": "ברגע שתג נפתח, הוא שלך כל עוד אתה מחזיק באסימונים שלך. מספר האסימונים הדרושים לפתיחת תג חדש יכול להשתנות עם מחיר האסימון."
   },
+  "badgeShowcase": {
+    "dialogLabel": "תג {{tier}}",
+    "close": "סגירה",
+    "badges": "תגים",
+    "tierOf": "רמה {{index}} מתוך {{total}}",
+    "youHaveThis": "יש לך את התג הזה",
+    "toUnlock": "{{amount}} אסימונים נוספים לשחרור הנעילה",
+    "holdToUnlock": "יש להחזיק לפחות כל כך הרבה אסימוני DeHub כדי לפתוח את הנעילה",
+    "sliderLabel": "אסימונים מוחזקים",
+    "sliderValue": "{{amount}} אסימונים ·{{tier}}",
+    "you": "אתם",
+    "grants": "מה זה משחרר",
+    "perks": {
+      "fee": "עמלת פלטפורמה",
+      "votes": "הצבעות ממשלתיות",
+      "reach": "משקל לכל תצוגה ותגובה",
+      "feedPosts": "פוסטים להזנה ביתית ביום",
+      "images": "תמונות לפוסט",
+      "uploads": "מגבלת העלאה יומית",
+      "storage": "אחסון בעורך",
+      "profiles": "פרופילים שמורים",
+      "lending": "חריצי השאלת תג",
+      "voice": "שכפול קולי",
+      "voiceFree": "חינם",
+      "voiceLocked": "{{tier}} ומעלה"
+    },
+    "buy": "לרכישת DHB",
+    "details": "פירוט מלא",
+    "play": "הפעלה",
+    "pause": "השהיה"
+  },
   "passwordStrength": {
     "veryWeak": "חלשה מאוד",
     "weak": "חלשה",

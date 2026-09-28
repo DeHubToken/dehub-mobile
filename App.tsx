@@ -41,6 +41,7 @@ import {
 import { AuthProvider, useAuthState, useUser } from "./context/AuthContext";
 import { recordScreenView, setScreenViewAddress } from "./services/pageView.service";
 import WalletUnlockHost from "./components/auth/WalletUnlockHost";
+import BadgeShowcaseHost from "./components/Badge/BadgeShowcaseHost";
 import { WebSocketProvider } from "./context/WebSocketContext";
 import { DMProvider } from "./context/DMContext";
 import { OnboardingChecklistProvider } from "./context/OnboardingChecklistContext";
@@ -195,6 +196,8 @@ export default function App() {
                   — post, tip, mint, stake, export. Mounted beside the tree
                   rather than inside a screen so it outlives navigation. */}
               <WalletUnlockHost />
+              {/* A tapped badge opens here, above whatever screen it was on. */}
+              <BadgeShowcaseHost />
             </AuthProvider>
             {/* Outside AuthProvider: badges draw for signed-out viewers too,
                 and every one of them resolves against this scale. */}

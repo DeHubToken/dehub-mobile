@@ -5924,6 +5924,37 @@
     "toNextTier": "{{amount}} tokena na {{tier}}",
     "holdNote": "Jednom kada se bedž otključa, on je vaš onoliko dugo koliko posjedujete svoje tokene. Broj tokena potrebnih za otključavanje novog bedža može se promijeniti s cijenom tokena."
   },
+  "badgeShowcase": {
+    "dialogLabel": "Značka {{tier}}",
+    "close": "Zatvori",
+    "badges": "Značke",
+    "tierOf": "Razina {{index}} od {{total}}",
+    "youHaveThis": "Imate ovu značku",
+    "toUnlock": "Još {{amount}} tokena za otključavanje",
+    "holdToUnlock": "Zadrži barem ovoliko DeHub tokena za otključavanje",
+    "sliderLabel": "Zadržani tokeni",
+    "sliderValue": "{{amount}} tokena · {{tier}}",
+    "you": "Vi",
+    "grants": "Što otključava",
+    "perks": {
+      "fee": "Naknada za platformu",
+      "votes": "Glasovi za upravljanje",
+      "reach": "Težina po prikazu i reakciji",
+      "feedPosts": "Objave o hrani za dom dnevno",
+      "images": "Slike po objavi",
+      "uploads": "Dnevno ograničenje prijenosa",
+      "storage": "Pohrana uređivača",
+      "profiles": "Spremljeni profili",
+      "lending": "Slotovi za posudbu znački",
+      "voice": "Kloniranje glasa",
+      "voiceFree": "Besplatno",
+      "voiceLocked": "{{tier}} i više"
+    },
+    "buy": "Nabavite DHB",
+    "details": "Cijeli prikaz po stavkama",
+    "play": "Pokreni",
+    "pause": "Pauziraj"
+  },
   "passwordStrength": {
     "veryWeak": "Vrlo slaba",
     "weak": "Slaba",

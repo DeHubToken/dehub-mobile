@@ -5937,6 +5937,37 @@
     "toNextTier": "{{amount}} mallattoo gara {{tier}}",
     "holdNote": "Baajiin tokko erga banamee booda hanga tookiin kee qabdutti kan kee ti. Lakkoofsi tookiin baajii haaraa banuuf barbaachisan gatii mallattoo wajjin jijjiiramuu danda'a."
   },
+  "badgeShowcase": {
+    "dialogLabel": "{{tier}} baajii",
+    "close": "Cufuu",
+    "badges": "Baajiiwwan",
+    "tierOf": "Sadarkaa {{index}} kan {{total}}",
+    "youHaveThis": "Baajii kana qabda",
+    "toUnlock": "{{amount}} tooken dabalataa itti banuuf",
+    "holdToUnlock": "Banuuf yoo xiqqaate mallattoolee DeHub baay'ee kana qabadhu",
+    "sliderLabel": "Tokens qabame",
+    "sliderValue": "{{amount}} mallattoo · {{tier}}",
+    "you": "Ati",
+    "grants": "Waan inni hiiku",
+    "perks": {
+      "fee": "Kaffaltii waltajjii",
+      "votes": "Sagalee bulchiinsa",
+      "reach": "Ulfaatina ilaalcha & deebii tokkoof",
+      "feedPosts": "Guyyaatti maxxansa manaa nyaachisu",
+      "images": "Suuraalee maxxansa tokkoon tokkoon",
+      "uploads": "Daangaa olkaa'uu guyyaa",
+      "storage": "Kuusaa gulaalaa",
+      "profiles": "Profaayilota qusataman",
+      "lending": "Bakkeewwan liqii baajii",
+      "voice": "Sagalee cloning gochuu",
+      "voiceFree": "Bilisa",
+      "voiceLocked": "{{tier}} fi ol"
+    },
+    "buy": "DHB argadhu",
+    "details": "Guutuu caccabuu",
+    "play": "Taphachuu",
+    "pause": "Gidduutti dhaabuu"
+  },
   "passwordStrength": {
     "veryWeak": "Baay'ee dadhabaa",
     "weak": "Dadhabaa",

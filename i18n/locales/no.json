@@ -5924,6 +5924,37 @@
     "toNextTier": "{{amount}} tokens til {{tier}}",
     "holdNote": "Når et badge er låst opp, er det ditt så lenge du holder dine tokens. Antallet tokens som trengs for å låse opp et nytt badge kan endre seg med token-prisen."
   },
+  "badgeShowcase": {
+    "dialogLabel": "{{tier}}-merket",
+    "close": "Lukke",
+    "badges": "Merker",
+    "tierOf": "Nivå {{index}} av {{total}}",
+    "youHaveThis": "Du har dette merket",
+    "toUnlock": "{{amount}} flere tokens for å låse den opp",
+    "holdToUnlock": "Hold minst så mange DeHub-tokens for å låse den opp",
+    "sliderLabel": "Poletter holdt",
+    "sliderValue": "{{amount}} tokens · {{tier}}",
+    "you": "Du",
+    "grants": "Hva den låser opp",
+    "perks": {
+      "fee": "Plattformavgift",
+      "votes": "Styringsstemmer",
+      "reach": "Vekt per visning og reaksjon",
+      "feedPosts": "Hjemmefeed-innlegg om dagen",
+      "images": "Bilder per innlegg",
+      "uploads": "Daglig opplastingsgrense",
+      "storage": "Redaktørens lagringsplass",
+      "profiles": "Lagrede profiler",
+      "lending": "Utlånsautomater for navneskilt",
+      "voice": "Stemmekloning",
+      "voiceFree": "Gratis",
+      "voiceLocked": "{{tier}} og oppover"
+    },
+    "buy": "Få DHB",
+    "details": "Fullstendig oversikt",
+    "play": "Spille",
+    "pause": "Pause"
+  },
   "passwordStrength": {
     "veryWeak": "Veldig svakt",
     "weak": "Svakt",

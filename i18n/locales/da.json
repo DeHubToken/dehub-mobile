@@ -5928,6 +5928,37 @@
     "toNextTier": "{{amount}} tokens til {{tier}}",
     "holdNote": "Når et badge er låst op, er det dit, så længe du beholder dine tokens. Antallet af tokens, der er nødvendigt for at låse et nyt badge op, kan ændre sig med token-prisen."
   },
+  "badgeShowcase": {
+    "dialogLabel": "{{tier}} badge",
+    "close": "Luk",
+    "badges": "Badges",
+    "tierOf": "Niveau {{index}} af {{total}}",
+    "youHaveThis": "Du har dette emblem",
+    "toUnlock": "{{amount}} flere poletter for at låse den op",
+    "holdToUnlock": "Hold mindst så mange DeHub-tokens for at låse den op",
+    "sliderLabel": "Tokens holdt",
+    "sliderValue": "{{amount}} tokens ·{{tier}}",
+    "you": "Dig",
+    "grants": "Det låser den op for",
+    "perks": {
+      "fee": "Platformsgebyr",
+      "votes": "Ledelsesafstemninger",
+      "reach": "Vægt pr. visning og reaktion",
+      "feedPosts": "Startfeed-opslag om dagen",
+      "images": "Billeder pr. indlæg",
+      "uploads": "Daglig uploadgrænse",
+      "storage": "Editor opbevaring",
+      "profiles": "Gemte profiler",
+      "lending": "Pladser til badgeudlån",
+      "voice": "Stemmekloning",
+      "voiceFree": "Gratis",
+      "voiceLocked": "{{tier}} og op"
+    },
+    "buy": "Få DHB",
+    "details": "Fuld opdeling",
+    "play": "Spil",
+    "pause": "Sæt på pause"
+  },
   "passwordStrength": {
     "veryWeak": "Meget svag",
     "weak": "Svag",

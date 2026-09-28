@@ -5924,6 +5924,37 @@
     "toNextTier": "{{amount}} calaamado ilaa {{tier}}",
     "holdNote": "Marka dallacaad la furo, waa adiga inta aad haysato calaamadaada. Tirada calaamadaha loo baahan yahay si loo furo dallacaad cusub way isbeddeli kartaa iyadoo ku xiran qiimaha calaamada."
   },
+  "badgeShowcase": {
+    "dialogLabel": "{{tier}} badge",
+    "close": "Xir",
+    "badges": "Calaamadaha",
+    "tierOf": "Tier {{index}} ee {{total}}",
+    "youHaveThis": "Calaamadan adaa leh",
+    "toUnlock": "{{amount}} calaamado dheeraad ah si loo furo",
+    "holdToUnlock": "Ku hay ugu yaraan calaamado badan DeHub si aad u furto",
+    "sliderLabel": "Calaamadaha la qabtay",
+    "sliderValue": "{{amount}} tokens · {{tier}}",
+    "you": "Adiga",
+    "grants": "Waxa uu furo",
+    "perks": {
+      "fee": "Khidmadda barxadda",
+      "votes": "Codadka maamulka",
+      "reach": "Miisaanka aragti kasta & falcelin",
+      "feedPosts": "Home Googooska Geeska Maalin Kasta",
+      "images": "Images per post",
+      "uploads": "Xadka soo dejinta maalinlaha ah",
+      "storage": "Kaydinta tifaftiraha",
+      "profiles": "Faahfaahinta la keydiyay",
+      "lending": "Boosaska amaahda badge",
+      "voice": "Codaynta",
+      "voiceFree": "Bilaash",
+      "voiceLocked": "{{tier}} iyo kor"
+    },
+    "buy": "Hel DHB",
+    "details": "Burbur buuxa",
+    "play": "Ciyaar",
+    "pause": "Jooji"
+  },
   "passwordStrength": {
     "veryWeak": "Aad u daciif ah",
     "weak": "Daciif",

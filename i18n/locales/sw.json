@@ -5925,6 +5925,37 @@
     "toNextTier": "{{amount}} tokeni kwa {{tier}}",
     "holdNote": "Mara tu beji inapofunguliwa, inakuwa yako kwa muda mrefu tu utakaposhikilia tokeni zako. Idadi ya tokeni zinazohitajika kufungua beji mpya inaweza kubadilika kulingana na bei ya tokeni."
   },
+  "badgeShowcase": {
+    "dialogLabel": "{{tier}} beji",
+    "close": "Funga",
+    "badges": "Beji",
+    "tierOf": "Kiwango {{index}} cha {{total}}",
+    "youHaveThis": "Una beji hii",
+    "toUnlock": "{{amount}} ishara zaidi ili kuifungua",
+    "holdToUnlock": "Shikilia angalau ishara hizi nyingi za DeHub ili kuifungua",
+    "sliderLabel": "Tokeni zilizoshikiliwa",
+    "sliderValue": "{{amount}} tokeni · {{tier}}",
+    "you": "Wewe",
+    "grants": "Kinachofungua",
+    "perks": {
+      "fee": "Ada ya tovuti",
+      "votes": "Kura za utawala",
+      "reach": "Uzito kwa kila mwonekano na mwitikio",
+      "feedPosts": "Machapisho ya kulisha nyumba kwa siku",
+      "images": "Picha kwa kila chapisho",
+      "uploads": "Kikomo cha upakiaji wa kila",
+      "storage": "Hifadhi ya mhariri",
+      "profiles": "Wasifu uliohifadhiwa",
+      "lending": "Nafasi za kukopesha beji",
+      "voice": "Upigaji picha za sauti",
+      "voiceFree": "Bila malipo",
+      "voiceLocked": "{{tier}} na juu"
+    },
+    "buy": "Pata DHB",
+    "details": "Mchanganuo kamili",
+    "play": "Cheza",
+    "pause": "Sitisha"
+  },
   "passwordStrength": {
     "veryWeak": "Dhaifu sana",
     "weak": "Dhaifu",

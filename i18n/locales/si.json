@@ -5936,6 +5936,37 @@
     "toNextTier": "{{amount}} ටෝකන {{tier}} වෙත",
     "holdNote": "බැජ් එකක් අගුළු හරින විට, එය ඔබේ ටෝකන තබා ගන්නා තාක් කල් ඔබට හිමිය. නව බැජ් එකක් අගුළු ඇරීමට අවශ්‍ය ටෝකන සංඛ්‍යාව ටෝකන් මිල සමඟ වෙනස් විය හැකිය."
   },
+  "badgeShowcase": {
+    "dialogLabel": "{{tier}} ලාංඡනය",
+    "close": "වසන්න",
+    "badges": "ලාංඡන",
+    "tierOf": "{{total}} න් මට්ටම {{index}}",
+    "youHaveThis": "ඔබට මෙම ලාංඡනය ඇත",
+    "toUnlock": "{{amount}} තවත් ටෝකන් එය අගුළු ඇරීමට",
+    "holdToUnlock": "එය අගුළු ඇරීමට අවම වශයෙන් මෙම DeHub ටෝකන බොහෝ තබා ගන්න",
+    "sliderLabel": "ටෝකන තබා ඇත",
+    "sliderValue": "ටෝකන් {{amount}} · {{tier}}",
+    "you": "ඔබ",
+    "grants": "එය අගුළු හරින දේ",
+    "perks": {
+      "fee": "ප්ලැට්ෆෝම් ගාස්තුව",
+      "votes": "පාලන ඡන්දය",
+      "reach": "දසුන හා ප් ‍ රතික් ‍ රියාව View and reaction",
+      "feedPosts": "Home Gossip News එක් දිනක් තුළ වාර්තාගත ආදායමක්",
+      "images": "තනතුරකට පින්තූර",
+      "uploads": "දෛනික උඩුගත කිරීමේ සීමාව",
+      "storage": "සංස්කාරක ගබඩාව",
+      "profiles": "සුරකින ලද පැතිකඩ",
+      "lending": "ලාංඡන ණය දීමේ මඳබව",
+      "voice": "හඬ ක්ලෝනකරණය",
+      "voiceFree": "නොමිලේ",
+      "voiceLocked": "{{tier}} සහ ඉහළට"
+    },
+    "buy": "DHB ලබා ගන්න",
+    "details": "සම්පූර්ණ සවිස්තර වාර්තාව",
+    "play": "වාදනය කරන්න",
+    "pause": "විරාමය"
+  },
   "passwordStrength": {
     "veryWeak": "ඉතා දුර්වලයි",
     "weak": "දුර්වලයි",

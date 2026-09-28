@@ -5973,6 +5973,37 @@
     "toNextTier": "{{amount}} jeton {{tier}}'e",
     "holdNote": "Bir rozet kilidi açıldığında, jetonlarınızı tuttuğunuz sürece sizindir. Yeni bir rozet kilidini açmak için gereken jeton sayısı, jeton fiyatıyla değişebilir."
   },
+  "badgeShowcase": {
+    "dialogLabel": "{{tier}} rozeti",
+    "close": "Kapat",
+    "badges": "Rozetler",
+    "tierOf": "Seviye {{index}}/{{total}}",
+    "youHaveThis": "Bu rozete sahipsin",
+    "toUnlock": "Açmak için {{amount}} jeton daha",
+    "holdToUnlock": "Kilidini açmak için en az bu kadar DeHub jetonu tut",
+    "sliderLabel": "Tutulan tokenler",
+    "sliderValue": "{{amount}} jeton ·{{tier}}",
+    "you": "Siz",
+    "grants": "Kilidi açılır",
+    "perks": {
+      "fee": "Platform ücreti",
+      "votes": "Yönetişim oyları",
+      "reach": "Görünüm ve reaksiyon başına ağırlık",
+      "feedPosts": "Günde bir ana sayfa yayını gönderisi",
+      "images": "Gönderi başına resim",
+      "uploads": "Günlük yükleme sınırı",
+      "storage": "Düzenleyici depolama alanı",
+      "profiles": "Kayıtlı profiller",
+      "lending": "Rozet ödünç verme yuvaları",
+      "voice": "Ses klonlama",
+      "voiceFree": "Ücretsiz",
+      "voiceLocked": "{{tier}} ve üzeri"
+    },
+    "buy": "DHB al",
+    "details": "Tam döküm",
+    "play": "Oynat",
+    "pause": "Duraklat"
+  },
   "passwordStrength": {
     "veryWeak": "Çok zayıf",
     "weak": "Zayıf",

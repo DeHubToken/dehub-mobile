@@ -5924,6 +5924,37 @@
     "toNextTier": "{{amount}} žetonų į {{tier}}",
     "holdNote": "Kai ženkliukas atrakinamas, jis lieka jūsų tol, kol turite savo žetonus. Žetonų skaičius, reikalingas naujam ženkliukui atrakinti, gali keistis priklausomai nuo žetono kainos."
   },
+  "badgeShowcase": {
+    "dialogLabel": "{{tier}} ženklelis",
+    "close": "Uždaryti",
+    "badges": "Ženkleliai",
+    "tierOf": "Lygis {{index}} iš {{total}}",
+    "youHaveThis": "Turite šį ženklelį",
+    "toUnlock": "{{amount}} daugiau žetonų, kad jį atrakintumėte",
+    "holdToUnlock": "Turėk bent tiek „DeHub“ žetonų, kad jį atrakintum",
+    "sliderLabel": "Turimi žetonai",
+    "sliderValue": "{{amount}} žetonai · {{tier}}",
+    "you": "Jūs",
+    "grants": "Ką ji atrakina",
+    "perks": {
+      "fee": "Platformos mokestis",
+      "votes": "Valdymo balsai",
+      "reach": "Svoris pagal rodinį ir reakciją",
+      "feedPosts": "Pašarų namuose įrašai per dieną",
+      "images": "Paveikslėliai vienam įrašui",
+      "uploads": "Įkėlimo per dieną limitas",
+      "storage": "Redaktoriaus saugykla",
+      "profiles": "Išsaugoti profiliai",
+      "lending": "Ženklelių skolinimo lizdai",
+      "voice": "Balso klonavimas",
+      "voiceFree": "Nemokamai",
+      "voiceLocked": "{{tier}} ir aukštyn"
+    },
+    "buy": "Gauti DHB",
+    "details": "Išsamus išskaidymas",
+    "play": "Paleisti",
+    "pause": "Pristabdyti"
+  },
   "passwordStrength": {
     "veryWeak": "Labai silpnas",
     "weak": "Silpnas",

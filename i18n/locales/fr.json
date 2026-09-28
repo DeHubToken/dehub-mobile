@@ -5977,6 +5977,37 @@
     "toNextTier": "{{amount}} tokens à {{tier}}",
     "holdNote": "Une fois qu'un badge est débloqué, il est à vous tant que vous détenez vos tokens. Le nombre de tokens nécessaires pour débloquer un nouveau badge peut changer avec le prix du token."
   },
+  "badgeShowcase": {
+    "dialogLabel": "Badge {{tier}}",
+    "close": "Fermer",
+    "badges": "Badges",
+    "tierOf": "Niveau {{index}} sur {{total}}",
+    "youHaveThis": "Vous avez ce badge",
+    "toUnlock": "{{amount}} jetons supplémentaires pour le déverrouiller",
+    "holdToUnlock": "Tenir au moins autant de jetons DeHub pour le déverrouiller",
+    "sliderLabel": "Jetons détenus",
+    "sliderValue": "{{amount}} jetons · {{tier}}",
+    "you": "Vous",
+    "grants": "Ce qu'il déverrouille",
+    "perks": {
+      "fee": "Frais de plateforme",
+      "votes": "Votes sur la gouvernance",
+      "reach": "Poids par vue et réaction",
+      "feedPosts": "Articles alimentés à domicile par jour",
+      "images": "Images par publication",
+      "uploads": "Limite de téléchargement quotidienne",
+      "storage": "Stockage de l'éditeur",
+      "profiles": "Profils enregistrés",
+      "lending": "Emplacements de prêt de badges",
+      "voice": "Clonage vocal",
+      "voiceFree": "Gratuit",
+      "voiceLocked": "{{tier}} et plus"
+    },
+    "buy": "Obtenir DHB",
+    "details": "Détail complet",
+    "play": "Lecture",
+    "pause": "Pause"
+  },
   "passwordStrength": {
     "veryWeak": "Très faible",
     "weak": "Faible",

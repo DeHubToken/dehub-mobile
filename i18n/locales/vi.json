@@ -5937,6 +5937,37 @@
     "toNextTier": "{{amount}} token đến {{tier}}",
     "holdNote": "Khi một huy hiệu được mở khóa, nó sẽ thuộc về bạn miễn là bạn giữ token của mình. Số lượng token cần thiết để mở khóa một huy hiệu mới có thể thay đổi theo giá token."
   },
+  "badgeShowcase": {
+    "dialogLabel": "Huy hiệu {{tier}}",
+    "close": "Đóng",
+    "badges": "Huy hiệu",
+    "tierOf": "Cấp độ {{index}}/{{total}}",
+    "youHaveThis": "Bạn có huy hiệu này",
+    "toUnlock": "Thêm{{amount}} mã thông báo để mở khóa",
+    "holdToUnlock": "Giữ ít nhất nhiều mã thông báo DeHub này để mở khóa",
+    "sliderLabel": "Mã thông báo được giữ",
+    "sliderValue": "{{amount}} token · {{tier}}",
+    "you": "Bạn",
+    "grants": "Những tính năng mở khóa",
+    "perks": {
+      "fee": "Phí nền tảng",
+      "votes": "Phiếu bầu của ban quản trị",
+      "reach": "Trọng lượng trên mỗi lượt xem & phản ứng",
+      "feedPosts": "Bài đăng nguồn cấp dữ liệu gia đình mỗi ngày",
+      "images": "Hình ảnh trên mỗi bài đăng",
+      "uploads": "Giới hạn tải lên hàng ngày",
+      "storage": "Lưu trữ trình chỉnh sửa",
+      "profiles": "Hồ sơ đã lưu",
+      "lending": "Các vị trí cho vay huy hiệu",
+      "voice": "Nhân bản giọng nói",
+      "voiceFree": "Miễn phí",
+      "voiceLocked": "{{tier}} trở lên"
+    },
+    "buy": "Nhận DHB",
+    "details": "Phân tích đầy đủ",
+    "play": "Phát",
+    "pause": "Tạm dừng"
+  },
   "passwordStrength": {
     "veryWeak": "Rất yếu",
     "weak": "Yếu",
