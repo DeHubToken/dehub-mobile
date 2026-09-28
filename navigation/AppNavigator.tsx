@@ -74,7 +74,7 @@ function AppNavigatorContent() {
   const { isSignedIn, needsUsername } = useAuthState();
   const { drawerOpen, closeDrawer } = useDrawer();
   const isAuthed = isSignedIn && !needsUsername;
-  const { isMinimal } = useAppTheme();
+  const { isMinimal, skin } = useAppTheme();
 
   return (
     <>
@@ -84,8 +84,9 @@ function AppNavigatorContent() {
         screenOptions={{
           headerShown: false,
           // An options object, not a JSX style prop, so the app-wide
-          // near-black -> #000 pass for minimal never sees it; branch here.
-          contentStyle: { backgroundColor: isMinimal ? '#000' : '#010305' },
+          // near-black pass (minimal's #000, a canvas theme's page colour)
+          // never sees it; branch here.
+          contentStyle: { backgroundColor: isMinimal ? '#000' : skin ? skin.page : '#010305' },
           // A screen you have navigated away from keeps rendering otherwise —
           // this stack holds sixty-odd of them, so Home -> Profile -> Community
           // -> Post left four live at once, all re-rendering together on every
@@ -97,6 +98,10 @@ function AppNavigatorContent() {
       <Stack.Screen
         name={ScreenNames.Root}
         component={BottomTabNavigator}
+        // The tabs sit over a canvas theme's live backdrop (ThemeBackdrop at
+        // the root), which the home feed shows through. Pushed screens keep
+        // the solid page colour above, so nothing shows through them.
+        options={skin ? { contentStyle: { backgroundColor: 'transparent' } } : undefined}
       />
 
       <Stack.Group>

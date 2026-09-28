@@ -330,9 +330,16 @@
     "dark": "গাঢ়",
     "system": "সিস্টেম",
     "minimal": "মিনিমাল",
+    "cosmic": "কসমিক পিক্সেলস",
+    "hazy": "কুয়াশাচ্ছন্ন রাত",
+    "swarms": "ঝাঁক",
+    "lavalamp": "লাভা ল্যাম্প",
+    "winter": "উইন্টার ড্রপস",
+    "war": "যুদ্ধ",
+    "osaka": "ওসাকা",
+    "jungle": "জঙ্গল",
     "themeDesc": "অ্যাপটি কেমন দেখাবে বেছে নিন",
     "themeMinimalDesc": "সমতল কালো, সোজা কোণ, পূর্ণ-প্রস্থ ছবি ও ভিডিও",
-    "cosmic": "মহাজাগতিক",
     "christmas": "বড়দিন",
     "island": "দ্বীপ",
     "hacker": "হ্যাকার",
@@ -5930,6 +5937,28 @@
     "details": "সম্পূর্ণ ব্রেকডাউন",
     "play": "খেলুন",
     "pause": "বিরতি"
+  },
+  "streamerShowcase": {
+    "cardOf": "কার্ড {{index}} এর {{total}}",
+    "progress": "আপনার অগ্রগতি",
+    "goal": {
+      "streams": "{{current}} / {{target}} স্ট্রিম",
+      "hours": "{{current}} / {{target}} ঘন্টা",
+      "session": "{{current}} / {{target}} মিনিট একটি স্ট্রিমে",
+      "streak": "{{current}} / {{target}} সপ্তাহ",
+      "level": "লেভেল {{current}} / {{target}}"
+    },
+    "onStream": "স্ট্রিমে যখন এটি ঘটে তখন আনলক করে",
+    "stats": {
+      "level": "স্তর",
+      "xp": "XP",
+      "hours": "যোগ্যতার সময়",
+      "streams": "কোয়ালিফাইং স্ট্রিম",
+      "longest": "দীর্ঘতম স্ট্রিম",
+      "streak": "সেরা স্ট্রাক"
+    },
+    "hoursShort": "{{hours}} ঘণ্টা",
+    "weeksShort": "{{count}} সপ্তাহ"
   },
   "passwordStrength": {
     "veryWeak": "খুব দুর্বল",

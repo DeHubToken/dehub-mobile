@@ -237,7 +237,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
   // Every comment tip on this post, in one query, plus the five best-tipped
   // ids — which are part of what the comment fetch asks for, so a well-tipped
   // comment deep in a long thread still leads it.
-  const { totals: tipTotals, bump: bumpTipTotal, topTippedIds } = useCommentTipTotals(tokenId);
+  const { totals: tipTotals, bump: bumpTipTotal, topTippedIds, tippers: tipTippers } = useCommentTipTotals(tokenId);
 
   // Media attachment state. A GIF is a hosted URL, so it is the one attachment
   // that can come back from a draft; an image or a voice note is a local file
@@ -644,6 +644,26 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
     Keyboard.dismiss();
     setEmojiPickerVisible(true);
   }, []);
+
+  // Android: with the keyboard up, the first tap's onPress is swallowed while
+  // the keyboard hides, so the picker needed a second tap. Open on touch-start
+  // there, like the post button, and ignore the onPress that may follow.
+  const emojiOpenedOnTouchRef = useRef(false);
+  const handleEmojiTouchStart = useCallback(() => {
+    if (Platform.OS !== "android") return;
+    emojiOpenedOnTouchRef.current = true;
+    setTimeout(() => {
+      emojiOpenedOnTouchRef.current = false;
+    }, 1500);
+    handleOpenEmojiPicker();
+  }, [handleOpenEmojiPicker]);
+  const handleEmojiPress = useCallback(() => {
+    if (emojiOpenedOnTouchRef.current) {
+      emojiOpenedOnTouchRef.current = false;
+      return;
+    }
+    handleOpenEmojiPicker();
+  }, [handleOpenEmojiPicker]);
 
   // Emoji selected from picker — appended, not a replacement, so it plays
   // nicely alongside whatever the user has already typed.
@@ -1264,6 +1284,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           onReply={handleReply}
           onTip={setTipComment}
           tipTotal={tipTotals[itemNumId]}
+          viewerTipped={!!userAddress && !!tipTippers[itemNumId]?.includes(userAddress.toLowerCase())}
           onLike={handleLikeComment}
           onDislike={handleDislikeComment}
           onReact={handleReactComment}
@@ -1287,6 +1308,8 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
     threadMeta,
     handleReply,
     tipTotals,
+    tipTippers,
+    userAddress,
     handleLikeComment,
     handleDislikeComment,
     handleUserPress,
@@ -1558,6 +1581,17 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
             </View>
 
             {inputText.trim() || editingComment ? (
+              <View style={{ flexDirection: "row", alignItems: "center", gap: COMPOSER.gap / 2 }}>
+              <Pressable
+                  onPress={handleEmojiPress}
+                  onTouchStart={handleEmojiTouchStart}
+                  hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+                  accessibilityRole="button"
+                  accessibilityLabel={t("comments.addEmoji")}
+                  style={composerStyles.iconControl}
+                >
+                <Text style={{ fontSize: 18 }}>🙂</Text>
+              </Pressable>
               <Pressable
                 onPress={handlePostPress}
                 // Raw touch-start arrives before the keyboard/sheet responder
@@ -1567,28 +1601,17 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
                 accessibilityRole="button"
                 accessibilityLabel={t("comments.postComment")}
                 style={[
-                  composerStyles.control,
+                  composerStyles.iconControl,
                   { backgroundColor: inputText.trim() ? "#F9FBFF" : "rgba(255,255,255,0.1)" },
                 ]}
               >
-                {/* The spinner is sized to the label it replaces so the pill does not
-                    resize mid-send. */}
-                <View style={{ minWidth: 30, alignItems: "center" }}>
-                  {posting ? (
-                    <ActivityIndicator size="small" color="#010305" />
-                  ) : (
-                    <Text
-                      style={{
-                        color: inputText.trim() ? "#010305" : "#6F7174",
-                        fontSize: 14,
-                        fontWeight: "600",
-                      }}
-                    >
-                      {t("sidebar.post")}
-                    </Text>
-                  )}
-                </View>
+                {posting ? (
+                  <ActivityIndicator size="small" color="#010305" />
+                ) : (
+                  <Icon name="Send" size={18} color={inputText.trim() ? "#010305" : "#6F7174"} />
+                )}
               </Pressable>
+              </View>
             ) : (
               <View style={{ flexDirection: "row", alignItems: "center", gap: COMPOSER.gap / 2 }}>
                 <Pressable
@@ -1612,7 +1635,8 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
                   <Text style={{ color: "#8B8D90", fontSize: 12, fontWeight: "700" }}>GIF</Text>
                 </Pressable>
                 <Pressable
-                  onPress={handleOpenEmojiPicker}
+                  onPress={handleEmojiPress}
+                  onTouchStart={handleEmojiTouchStart}
                   hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
                   accessibilityRole="button"
                   accessibilityLabel={t("comments.addEmoji")}

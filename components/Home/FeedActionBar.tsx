@@ -1,13 +1,6 @@
-import React, { memo, useCallback, useState } from "react";
+import React, { memo, useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { View, Pressable, Text } from "react-native";
-import Animated, {
-  useSharedValue,
-  useAnimatedStyle,
-  withSpring,
-  withSequence,
-  withTiming,
-} from "react-native-reanimated";
+import { Animated, View, Pressable, Text } from "react-native";
 import Icon from "../ui/Icon";
 import { formatCompactNumber } from "../../libs/numbers.util";
 import ReactionPicker from "./ReactionPicker";
@@ -24,6 +17,11 @@ import { ReactionEmoji } from "./ReactionEmoji";
 import { haptic } from "../../libs/haptics";
 import { maybeShowReactionTip, markReactionTipSeen } from "../../libs/reaction-tip";
 import { useAppPrefs } from "../../hooks/useAppPrefs";
+import { subscribePostTipped } from "../../libs/tip-events";
+import { TipGemIcon } from "./TipGemIcon";
+import { getActiveTheme } from "../../theme/colors";
+import { getThemeSkin, MONO_TEXT } from "../../theme/skins";
+import { useViewerTippedPost } from "../../hooks/useViewerTippedPost";
 
 const ICON_MUTED = "#6F7174";
 const ICON_ACTIVE = "#F9FBFF";
@@ -53,6 +51,10 @@ interface FeedActionBarProps {
   /** Opens the Share sheet (repost / quote / copy-link / send-in-DM / share-as-image). */
   onShare: () => void;
   onTip?: () => void;
+  /** The post's token id — lets the tip gem react when this viewer tips it. */
+  tokenId?: number | string | null;
+  /** Viewer wallet, to light the gem for a tip made before this load. */
+  viewerAddress?: string | null;
   onSave: () => void;
   onInfo: () => void;
   /** Which of the ten reactions the viewer holds. `liked`/`disliked` are its polarity. */
@@ -93,19 +95,32 @@ const AnimatedActionButton: React.FC<{
   glyph?: PostReaction;
   /** The glyph is the viewer's own reaction, so it plays its animation. */
   glyphAnimated?: boolean;
+  /** Renders in place of the icon — a custom, self-animating one. */
+  iconNode?: React.ReactNode;
   accessibilityLabel?: string;
-}> = ({ onPress, onPressIn, onLongPress, iconName, iconNameActive, active, activeColor, activeFill, activeStrokeWidth, inactiveColor, iconSize = 20, count, countColor, formatCount, glyph, glyphAnimated, accessibilityLabel }) => {
-  const scale = useSharedValue(1);
-
-  const animatedStyle = useAnimatedStyle(() => ({
-    transform: [{ scale: scale.value }],
-  }));
+}> = ({ onPress, onPressIn, onLongPress, iconName, iconNameActive, active, activeColor, activeFill, activeStrokeWidth, inactiveColor, iconSize = 20, count, countColor, formatCount, glyph, glyphAnimated, iconNode, accessibilityLabel }) => {
+  const scale = useRef(new Animated.Value(1)).current;
+  useEffect(() => () => scale.stopAnimation(), [scale]);
+  // Seven buttons per retained card only animate when tapped. Native-driver
+  // transforms avoid registering idle icons in every Reanimated props commit.
+  const animatedStyle = { transform: [{ scale }] };
 
   const handlePress = useCallback(() => {
-    scale.value = withSequence(
-      withTiming(1.3, { duration: 100 }),
-      withSpring(1, BOUNCE_CONFIG),
-    );
+    scale.stopAnimation();
+    Animated.sequence([
+      Animated.timing(scale, {
+        toValue: 1.3,
+        duration: 100,
+        useNativeDriver: true,
+        isInteraction: false,
+      }),
+      Animated.spring(scale, {
+        ...BOUNCE_CONFIG,
+        toValue: 1,
+        useNativeDriver: true,
+        isInteraction: false,
+      }),
+    ]).start();
     haptic.tap();
     onPress();
   }, [onPress, scale]);
@@ -115,6 +130,8 @@ const AnimatedActionButton: React.FC<{
   const resolvedColor = active ? (activeColor || ICON_ACTIVE) : baseColor;
   const resolvedFill = active && activeFill ? activeFill : undefined;
   const resolvedStrokeWidth = active && activeStrokeWidth ? activeStrokeWidth : 1.8;
+  // War reads counts as monospace readouts (web war-theme.css).
+  const mono = getThemeSkin(getActiveTheme())?.mono ? MONO_TEXT : null;
 
   return (
     <Pressable
@@ -143,7 +160,7 @@ const AnimatedActionButton: React.FC<{
       style={{ flexDirection: "row", alignItems: "center", gap: 4 }}
     >
       <Animated.View style={animatedStyle}>
-        {glyph ? (
+        {iconNode ? iconNode : glyph ? (
           <ReactionEmoji
             reaction={glyph}
             animate={glyphAnimated}
@@ -155,7 +172,7 @@ const AnimatedActionButton: React.FC<{
         )}
       </Animated.View>
       {count !== undefined && (
-        <Text style={{ fontSize: 12, color: countColor || COUNT_COLOR }}>
+        <Text style={[{ fontSize: 12, color: countColor || COUNT_COLOR }, mono]}>
           {formatCount ? formatCompactNumber(count) : count}
         </Text>
       )}
@@ -180,6 +197,8 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
   onCommentPressIn,
   onShare,
   onTip,
+  tokenId,
+  viewerAddress,
   onSave,
   onInfo,
   myReaction = null,
@@ -199,6 +218,15 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
   // The tray needs a handler to route to; without one this stays a plain
   // like/dislike bar (governance and other non-post surfaces).
   const reactionsEnabled = !!onReact;
+
+  const viewerTipped = useViewerTippedPost(tokenId, viewerAddress);
+  // Bumps each time this viewer tips this post, replaying the gem's swirl.
+  const [tipBurst, setTipBurst] = useState(0);
+  useEffect(() => {
+    if (tokenId == null) return;
+    const id = String(tokenId);
+    return subscribePostTipped((tipped) => { if (tipped === id) setTipBurst((n) => n + 1); });
+  }, [tokenId]);
 
   const handleSelect = useCallback((reaction: PostReaction) => {
     setOpenTray(null);
@@ -229,6 +257,7 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
           onPress={onTip}
           accessibilityLabel={t("comments.tip")}
           iconName="Gem"
+          iconNode={viewerTipped || tipBurst > 0 ? <TipGemIcon tipped burstKey={tipBurst} size={20} color={ICON_ACTIVE} /> : undefined}
           count={tipCount}
           formatCount
         />

@@ -330,9 +330,16 @@
     "dark": "მუქი",
     "system": "სისტემა",
     "minimal": "მინიმალური",
+    "cosmic": "Cosmic Pixels",
+    "hazy": "ნისლიანი ღამეები",
+    "swarms": "გუნდები",
+    "lavalamp": "ლავის ლამპა",
+    "winter": "Winter Drops",
+    "war": "ომი",
+    "osaka": "ოსაკა",
+    "jungle": "ჯუნგლები",
     "themeDesc": "აირჩიეთ, როგორ გამოიყურება აპი",
     "themeMinimalDesc": "ბრტყელი შავი, სწორი კიდეები, სრული სიგანის სურათები და ვიდეოები",
-    "cosmic": "კოსმიური",
     "christmas": "საშობაო",
     "island": "კუნძული",
     "hacker": "ჰაკერი",
@@ -5918,6 +5925,28 @@
     "details": "Სრული დეტალიზაცია",
     "play": "Დაკვრა",
     "pause": "Შეჩერება"
+  },
+  "streamerShowcase": {
+    "cardOf": "ბარათი {{index}} / {{total}}",
+    "progress": "Თქვენი პროგრესი",
+    "goal": {
+      "streams": "{{current}} / {{target}} ნაკადები",
+      "hours": "{{current}} / {{target}} საათი",
+      "session": "{{current}} / {{target}} წთ ერთ ნაკადში",
+      "streak": "{{current}} / {{target}} კვირა",
+      "level": "Დონე {{current}} / {{target}}"
+    },
+    "onStream": "Განბლოკეთ, როცა ეს ხდება ნაკადზე",
+    "stats": {
+      "level": "Დონე",
+      "xp": "XP",
+      "hours": "Შესარჩევი საათები",
+      "streams": "Შესაფერისი ნაკადები",
+      "longest": "Ყველაზე გრძელი ნაკადი",
+      "streak": "Საუკეთესო სტრიქონი"
+    },
+    "hoursShort": "{{hours}} სთ",
+    "weeksShort": "{{count}} კვ."
   },
   "passwordStrength": {
     "veryWeak": "ძალიან სუსტი",

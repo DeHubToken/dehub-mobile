@@ -330,9 +330,16 @@
     "dark": "Escuro",
     "system": "Sistema",
     "minimal": "Minimalista",
+    "cosmic": "Cosmic Pixels",
+    "hazy": "Noites Nebulosas",
+    "swarms": "Enxames",
+    "lavalamp": "Lâmpada de lava",
+    "winter": "Winter Drops",
+    "war": "Guerra",
+    "osaka": "Osaka",
+    "jungle": "Selva",
     "themeDesc": "Escolha a aparência do app",
     "themeMinimalDesc": "Preto liso, cantos retos, imagens e vídeos em largura total",
-    "cosmic": "Cósmico",
     "christmas": "Natal",
     "island": "Ilha",
     "hacker": "Hacker",
@@ -5983,6 +5990,28 @@
     "details": "Discriminação completa",
     "play": "Reproduzir",
     "pause": "Pausa"
+  },
+  "streamerShowcase": {
+    "cardOf": "Cartão {{index}} de {{total}}",
+    "progress": "O seu progresso",
+    "goal": {
+      "streams": "{{current}} / {{target}} transmissões",
+      "hours": "{{current}} / {{target}} horas",
+      "session": "{{current}} / {{target}} min numa transmissão",
+      "streak": "{{current}} / {{target}} semanas",
+      "level": "Nível {{current}} / {{target}}"
+    },
+    "onStream": "Desbloqueia quando acontece na transmissão",
+    "stats": {
+      "level": "Nível",
+      "xp": "XP",
+      "hours": "Horas de qualificação",
+      "streams": "Fluxos qualificados",
+      "longest": "Fluxo mais longo",
+      "streak": "Melhor sequência"
+    },
+    "hoursShort": "{{hours}} h",
+    "weeksShort": "{{count}} semana"
   },
   "passwordStrength": {
     "veryWeak": "Muito fraca",

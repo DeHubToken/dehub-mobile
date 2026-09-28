@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { View, Text, FlatList, TextInput, TouchableOpacity, ActivityIndicator, Keyboard, Platform, StyleSheet } from "react-native";
+import { View, Text, FlatList, Pressable, TextInput, TouchableOpacity, ActivityIndicator, Keyboard, Platform, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import ScreenHeader from "../components/ScreenHeader";
@@ -89,6 +89,7 @@ export default function FeedDetailScreen() {
   const focusCommentId = commentIdParam != null ? String(commentIdParam) : undefined;
 
   const user = useUser();
+  const viewerWallet = (user?.address || user?.walletAddress || "").toLowerCase();
   const { requireAuth } = useAuthActions();
   const address = useMemo(() => user?.walletAddress || user?.address || undefined, [user?.walletAddress, user?.address]);
 
@@ -172,7 +173,7 @@ export default function FeedDetailScreen() {
   const [likersCommentId, setLikersCommentId] = useState<number | null>(null);
   // Every comment tip on this post, in one query, plus the five best-tipped
   // ids — which the detail fetch passes on so those comments lead the thread.
-  const { totals: tipTotals, bump: bumpTipTotal, topTippedIds } = useCommentTipTotals(tokenId);
+  const { totals: tipTotals, bump: bumpTipTotal, topTippedIds, tippers: tipTippers } = useCommentTipTotals(tokenId);
 
   const inputRef = useRef<TextInput>(null);
   // Keyboard height minus the bottom inset the root SafeAreaView already spent
@@ -255,6 +256,26 @@ export default function FeedDetailScreen() {
   const handleOpenEmojiPicker = useCallback(() => {
     setEmojiPickerVisible(true);
   }, []);
+
+  // Android: with the keyboard up, the first tap's onPress is swallowed while
+  // the keyboard hides, so the picker needed a second tap. Open on touch-start
+  // there, like the post button, and ignore the onPress that may follow.
+  const emojiOpenedOnTouchRef = useRef(false);
+  const handleEmojiTouchStart = useCallback(() => {
+    if (Platform.OS !== "android") return;
+    emojiOpenedOnTouchRef.current = true;
+    setTimeout(() => {
+      emojiOpenedOnTouchRef.current = false;
+    }, 1500);
+    handleOpenEmojiPicker();
+  }, [handleOpenEmojiPicker]);
+  const handleEmojiPress = useCallback(() => {
+    if (emojiOpenedOnTouchRef.current) {
+      emojiOpenedOnTouchRef.current = false;
+      return;
+    }
+    handleOpenEmojiPicker();
+  }, [handleOpenEmojiPicker]);
 
   // Emoji selected from picker — appended, not a replacement, so it plays
   // nicely alongside whatever the user has already typed.
@@ -881,6 +902,7 @@ export default function FeedDetailScreen() {
             onReply={handleReplyPress}
             onTip={setTipComment}
             tipTotal={tipTotals[Number(c.id)]}
+            viewerTipped={!!viewerWallet && !!tipTippers[Number(c.id)]?.includes(viewerWallet)}
             onLike={handleLikeComment}
             onDislike={handleDislikeComment}
             onReact={handleReactComment}
@@ -894,7 +916,7 @@ export default function FeedDetailScreen() {
         </View>
       );
     },
-    [handleReplyPress, handleUserPress, tipTotals, handleLikeComment, handleDislikeComment, handleCommentLongPress, tokenId, highlightedCommentId, threadMeta, handleToggleThread, postCreator]
+    [handleReplyPress, handleUserPress, tipTotals, tipTippers, viewerWallet, handleLikeComment, handleDislikeComment, handleCommentLongPress, tokenId, highlightedCommentId, threadMeta, handleToggleThread, postCreator]
   );
 
   // Send media comment
@@ -1309,6 +1331,16 @@ export default function FeedDetailScreen() {
             </View>
 
             {inputText.trim() || editingComment ? (
+              <View className="flex-row items-center" style={{ gap: COMPOSER.gap / 2 }}>
+              <Pressable
+                  onPress={handleEmojiPress}
+                  onTouchStart={handleEmojiTouchStart}
+                  accessibilityRole="button"
+                  accessibilityLabel={t("comments.addEmoji")}
+                  style={composerStyles.iconControl}
+                >
+                  <Text style={{ fontSize: 18 }}>🙂</Text>
+                </Pressable>
               <TouchableOpacity
                 onPress={handleSend}
                 disabled={posting || !inputText.trim()}
@@ -1330,6 +1362,7 @@ export default function FeedDetailScreen() {
                   />
                 )}
               </TouchableOpacity>
+              </View>
             ) : (
               <View className="flex-row items-center" style={{ gap: COMPOSER.gap / 2 }}>
                 <TouchableOpacity
@@ -1352,9 +1385,9 @@ export default function FeedDetailScreen() {
                       because the box is sized explicitly rather than by padding. */}
                   <Text className="text-xs font-bold text-theme-neutrals-400">GIF</Text>
                 </TouchableOpacity>
-                <TouchableOpacity
-                  onPress={handleOpenEmojiPicker}
-                  activeOpacity={0.7}
+                <Pressable
+                  onPress={handleEmojiPress}
+                  onTouchStart={handleEmojiTouchStart}
                   accessibilityRole="button"
                   accessibilityLabel={t("comments.addEmoji")}
                   style={composerStyles.iconControl}
@@ -1363,7 +1396,7 @@ export default function FeedDetailScreen() {
                       thin line-art face reads smaller and washed-out next to a
                       solid rectangle and a solid capsule in identical boxes. */}
                   <Text style={{ fontSize: 18 }}>🙂</Text>
-                </TouchableOpacity>
+                </Pressable>
                 <TouchableOpacity
                   onPress={() => {
                     Keyboard.dismiss();

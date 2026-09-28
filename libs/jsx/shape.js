@@ -39,17 +39,37 @@ const SQUARE = Object.freeze(
 // Page and sheet backgrounds that are "black" in the system theme.
 const NEAR_BLACK = new Set(["#010305", "#0c0c0e", "#09090b", "#0a0a0a", "#050505"]);
 
-const BLACK = Object.freeze({ backgroundColor: "#000" });
-let SQUARE_BLACK;
+// What the pass does for the active theme. Minimal squares every corner and
+// takes near-blacks to #000; the canvas themes (theme/skins.ts) swap those
+// near-blacks for their own page colour, and War squares as well. System does
+// nothing, and then the whole pass is one boolean read.
+let square = false;
+let page = null;
+let active = false;
+let PAGE = null;
+let SQUARE_PAGE = null;
 
-let squaring = false;
+/** Configure the pass: square corners, and/or the colour near-black page fills become. */
+function setThemePass(nextSquare, nextPage) {
+  const s = !!nextSquare;
+  const p = typeof nextPage === "string" && nextPage ? nextPage : null;
+  if (s === square && p === page) return;
+  square = s;
+  page = p;
+  active = square || page !== null;
+  PAGE = page ? Object.freeze({ backgroundColor: page }) : null;
+  SQUARE_PAGE = page ? Object.freeze({ ...SQUARE, backgroundColor: page }) : null;
+  // Results depend on the pass, so a theme switch starts a fresh cache.
+  cache = new WeakMap();
+}
 
+/** Minimal's pass on or off. Kept for the callers that predate the other themes. */
 function setSquaring(on) {
-  squaring = !!on;
+  setThemePass(!!on, on ? "#000" : null);
 }
 
 function isSquaring() {
-  return squaring;
+  return square;
 }
 
 // Walks a style (object or nested array, later entries winning) and reports
@@ -76,15 +96,16 @@ function scan(style, acc) {
 
 function overrideFor(style) {
   const found = scan(style, { radius: false, bg: undefined });
-  const nearBlack = typeof found.bg === "string" && NEAR_BLACK.has(found.bg.toLowerCase());
-  if (!found.radius && !nearBlack) return null;
+  const rounded = square && found.radius;
+  const nearBlack = page !== null && typeof found.bg === "string" && NEAR_BLACK.has(found.bg.toLowerCase());
+  if (!rounded && !nearBlack) return null;
   if (!nearBlack) return SQUARE;
-  return found.radius ? SQUARE_BLACK : BLACK;
+  return rounded ? SQUARE_PAGE : PAGE;
 }
 
 // Same input object, same output array: a memoised child keeps seeing an
 // identical style prop across renders instead of a fresh array every time.
-const cache = new WeakMap();
+let cache = new WeakMap();
 
 function squareStyle(style) {
   if (!style || typeof style !== "object") return style;
@@ -102,7 +123,7 @@ function squareStyle(style) {
 
 /** Props with any radius in `style` / `imageStyle` squared off, or the same props. */
 function squareProps(props) {
-  if (!squaring || !props || typeof props !== "object") return props;
+  if (!active || !props || typeof props !== "object") return props;
   const style = props.style !== undefined ? squareStyle(props.style) : undefined;
   const imageStyle = props.imageStyle !== undefined ? squareStyle(props.imageStyle) : undefined;
   if (style === props.style && imageStyle === props.imageStyle) return props;
@@ -112,6 +133,4 @@ function squareProps(props) {
   return next;
 }
 
-SQUARE_BLACK = Object.freeze({ ...SQUARE, backgroundColor: "#000" });
-
-module.exports = { setSquaring, isSquaring, squareStyle, squareProps, SQUARE };
+module.exports = { setSquaring, setThemePass, isSquaring, squareStyle, squareProps, SQUARE };

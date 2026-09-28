@@ -15,8 +15,9 @@
  */
 import { useCallback, useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import type { AppThemeName } from '../theme/colors';
+import { isAppThemeName, type AppThemeName } from '../theme/colors';
 import { claimMinimalLaunch } from '../libs/minimalBootGuard';
+import { bootRevealed } from '../libs/bootReveal';
 
 /** Web key names — see dehubweb src/contexts/*.tsx and src/hooks/use-buy-bot-hidden.ts. */
 const KEYS = {
@@ -134,11 +135,15 @@ function init() {
       if (get('theme') === 'light') {
         AsyncStorage.setItem(KEYS.theme, 'system').catch(() => { /* best effort migration */ });
       }
-      // A minimal launch that never reached the screen falls back to System
+      // A themed launch that never reached the screen falls back to System
       // for good, rather than repeating on every launch (libs/minimalBootGuard).
-      const wantsMinimal = get('theme') === 'minimal';
-      const theme: AppThemeName = wantsMinimal && claimMinimalLaunch() ? 'minimal' : 'system';
-      if (wantsMinimal && theme === 'system') {
+      // Minimal first needed it; the canvas themes, which also start a WebView
+      // behind the app, get the same net.
+      const stored = get('theme');
+      const wanted: AppThemeName | null = isAppThemeName(stored) && stored !== 'system' ? stored : null;
+      const wantsThemed = wanted !== null;
+      const theme: AppThemeName = wanted !== null && claimMinimalLaunch(bootRevealed) ? wanted : 'system';
+      if (wantsThemed && theme === 'system') {
         AsyncStorage.setItem(KEYS.theme, 'system').catch(() => { /* best effort */ });
       }
       cache = {

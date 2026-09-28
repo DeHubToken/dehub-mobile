@@ -330,9 +330,16 @@
     "dark": "ڊارڪ",
     "system": "سسٽم",
     "minimal": "سادو",
+    "cosmic": "Cosmic Pixels",
+    "hazy": "Hazy Nights",
+    "swarms": "Swarms",
+    "lavalamp": "Lava Lamp",
+    "winter": "Winter Drops",
+    "war": "War",
+    "osaka": "Osaka",
+    "jungle": "Jungle",
     "themeDesc": "چونڊيو ته ايپ ڪيئن ڏسجي",
     "themeMinimalDesc": "سادو ڪارو، سڌا ڪنارا، پوري ويڪر وارا تصويرون ۽ وڊيوز",
-    "cosmic": "ڪاسمڪ",
     "christmas": "ڪرسمس",
     "island": "ٻيٽ",
     "hacker": "هيڪر",
@@ -5930,6 +5937,28 @@
     "details": "مڪمل ٽوڙڻ",
     "play": "کيڏيو",
     "pause": "پوئتي هٽايو"
+  },
+  "streamerShowcase": {
+    "cardOf": "ڪارڊ {{index}} جي {{total}}",
+    "progress": "توھان جي ترقي",
+    "goal": {
+      "streams": "{{current}} / {{target}} اسٽريمز",
+      "hours": "{{current}} / {{target}} ڪلاڪ",
+      "session": "هڪ اسٽريم ۾ {{current}} / {{target}} منٽ",
+      "streak": "{{current}} / {{target}} هفتا",
+      "level": "سطح {{current}} / {{target}}"
+    },
+    "onStream": "انلاڪ جڏهن اهو وهڪرو تي ٿئي ٿو",
+    "stats": {
+      "level": "سطح",
+      "xp": "XP",
+      "hours": "قابليت جا ڪلاڪ",
+      "streams": "قابليت وارو وهڪرو",
+      "longest": "سڀ کان ڊگهو وهڪرو",
+      "streak": "بهترين اسٽريٽجڪ"
+    },
+    "hoursShort": "{{hours}} ههه",
+    "weeksShort": "{{count}} هفته"
   },
   "passwordStrength": {
     "veryWeak": "تمام ڪمزور",

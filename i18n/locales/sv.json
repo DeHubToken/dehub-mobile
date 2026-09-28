@@ -330,9 +330,16 @@
     "dark": "Mörkt",
     "system": "System",
     "minimal": "Minimal",
+    "cosmic": "Cosmic Pixels",
+    "hazy": "Disiga nätter",
+    "swarms": "Svärmar",
+    "lavalamp": "Lavalampa",
+    "winter": "Winter Drops",
+    "war": "Krig",
+    "osaka": "Osaka",
+    "jungle": "Djungel",
     "themeDesc": "Välj hur appen ser ut",
     "themeMinimalDesc": "Platt svart, raka kanter, bilder och videor i full bredd",
-    "cosmic": "Kosmisk",
     "christmas": "Jul",
     "island": "Ö",
     "hacker": "Hacker",
@@ -5216,7 +5223,7 @@
         },
         "enduring": {
           "name": "Uthållig",
-          "hint": "Ström för fyra kvalificerade timmar i en session."
+          "hint": "Sänd i fyra kvalificerade timmar i en och samma session."
         },
         "circle": {
           "name": "Inre krets",
@@ -5934,6 +5941,28 @@
     "details": "Fullständig uppdelning",
     "play": "Spela",
     "pause": "Pausa"
+  },
+  "streamerShowcase": {
+    "cardOf": "Kort {{index}} av {{total}}",
+    "progress": "Dina framsteg",
+    "goal": {
+      "streams": "{{current}} / {{target}} sändningar",
+      "hours": "{{current}} / {{target}} timmar",
+      "session": "{{current}} / {{target}} min i en sändning",
+      "streak": "{{current}} / {{target}} veckor",
+      "level": "Nivå {{current}} / {{target}}"
+    },
+    "onStream": "Låses upp när det händer i strömmen",
+    "stats": {
+      "level": "Nivå",
+      "xp": "XP",
+      "hours": "Kvalificerande timmar",
+      "streams": "Kvalificerande strömmar",
+      "longest": "Längsta ström",
+      "streak": "Bästa strimman"
+    },
+    "hoursShort": "{{hours}} h",
+    "weeksShort": "{{count}} wk"
   },
   "passwordStrength": {
     "veryWeak": "Mycket svagt",

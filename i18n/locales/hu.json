@@ -330,9 +330,16 @@
     "dark": "Sötét",
     "system": "Rendszer",
     "minimal": "Minimalista",
+    "cosmic": "Cosmic Pixels",
+    "hazy": "Ködös éjszakák",
+    "swarms": "Rajok",
+    "lavalamp": "Lávalámpa",
+    "winter": "Winter Drops",
+    "war": "Háború",
+    "osaka": "Oszaka",
+    "jungle": "Dzsungel",
     "themeDesc": "Válaszd ki, hogyan nézzen ki az alkalmazás",
     "themeMinimalDesc": "Egyszínű fekete, szögletes szélek, teljes szélességű képek és videók",
-    "cosmic": "Kozmikus",
     "christmas": "Karácsony",
     "island": "Sziget",
     "hacker": "Hacker",
@@ -5934,6 +5941,28 @@
     "details": "Teljes részletezés",
     "play": "Játék",
     "pause": "Szüneteltetés"
+  },
+  "streamerShowcase": {
+    "cardOf": "{{total}}/{{index}}. kártya",
+    "progress": "Az előrehaladásod",
+    "goal": {
+      "streams": "{{current}} / {{target}} stream",
+      "hours": "{{current}} / {{target}} óra",
+      "session": "{{current}} / {{target}} perc egy adatfolyamban",
+      "streak": "{{current}} / {{target}} hét",
+      "level": "Szint {{current}} / {{target}}"
+    },
+    "onStream": "Feloldja a zárolást, amikor az adatfolyamban történik",
+    "stats": {
+      "level": "Szint",
+      "xp": "XP",
+      "hours": "Kvalifikációs órák",
+      "streams": "Minősített adatfolyamok",
+      "longest": "Leghosszabb adatfolyam",
+      "streak": "Legjobb széria"
+    },
+    "hoursShort": "{{hours}} h",
+    "weeksShort": "{{count}} hét"
   },
   "passwordStrength": {
     "veryWeak": "Nagyon gyenge",

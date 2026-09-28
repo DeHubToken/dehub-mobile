@@ -330,9 +330,16 @@
     "dark": "Qaranlıq",
     "system": "Sistem",
     "minimal": "Minimal",
+    "cosmic": "Cosmic Pixels",
+    "hazy": "Dumanlı gecələr",
+    "swarms": "Swarms",
+    "lavalamp": "Lava lampası",
+    "winter": "Winter Drops",
+    "war": "Müharibə",
+    "osaka": "Osaka",
+    "jungle": "Cəngəllik",
     "themeDesc": "Tətbiqin görünüşünü seçin",
     "themeMinimalDesc": "Düz qara, düz kənarlar, tam enli şəkil və videolar",
-    "cosmic": "Kosmik",
     "christmas": "Milad",
     "island": "Ada",
     "hacker": "Haker",
@@ -5150,7 +5157,7 @@
       "hours": "{{hours}} uyğun saat",
       "minutes": "{{count}} dəqiqə",
       "viewers": "{{count}} tamaşaçı",
-      "viewCards": "Kartları izləyin",
+      "viewCards": "Kartlara bax",
       "cardsTitle": "Kolleksiya kartları",
       "locked": "Kilidli",
       "earnedOn": "Qazanılmış {{date}}",
@@ -5184,7 +5191,7 @@
         },
         "century": {
           "name": "Əsr",
-          "hint": "Havada yüz uyğun saat əldə edin."
+          "hint": "Efirdə yüz uyğun saat toplayın."
         },
         "legend": {
           "name": "Əfsanə",
@@ -5192,7 +5199,7 @@
         },
         "ignition": {
           "name": "Alovlanma",
-          "hint": "Hava üzərində bir uyğun saatı tamamla."
+          "hint": "Efirdə bir uyğun saat toplayın."
         },
         "on-air": {
           "name": "Efirdə",
@@ -5216,23 +5223,23 @@
         },
         "circle": {
           "name": "Yaxın dairə",
-          "hint": "Bir anda 25 nəfəri izləyici edin."
+          "hint": "Eyni anda iyirmi beş nəfərin izləməsini təmin edin."
         },
         "arena": {
           "name": "Arena",
-          "hint": "Bir anda 50 nəfəri izləyici edin."
+          "hint": "Eyni anda əlli nəfərin izləməsini təmin edin."
         },
         "headliner": {
           "name": "Baş ulduz",
-          "hint": "Bir anda 100 nəfəri izləyici edin."
+          "hint": "Eyni anda yüz nəfərin izləməsini təmin edin."
         },
         "cornerstone": {
           "name": "Təməl daşı",
-          "hint": "İki onaltı ardıcıl həftə boyunca yay."
+          "hint": "İyirmi altı həftə ardıcıl yayım edin."
         },
         "veteran": {
           "name": "Veteran",
-          "hint": "Hava üzərində 250 uyğun saatı tamamla."
+          "hint": "Efirdə 250 uyğun saat toplayın."
         },
         "icon": {
           "name": "İkon",
@@ -5905,23 +5912,23 @@
     "dialogLabel": "{{tier}} nişan",
     "close": "Bağla",
     "badges": "Nişanlar",
-    "tierOf": "Səviyyə {{index}}{{total}}",
+    "tierOf": "Səviyyə {{index}} / {{total}}",
     "youHaveThis": "Bu nişanınız var",
-    "toUnlock": "{{amount}} onu kiliddən çıxarmaq üçün daha çox ayələr",
-    "holdToUnlock": "Kilidini açmaq üçün ən azı bu sayda DeHub işarəsini saxlayın",
-    "sliderLabel": "Tokenlər keçirilib",
-    "sliderValue": "{{amount}} tokens · {{tier}}",
+    "toUnlock": "Açmaq üçün daha {{amount}} token",
+    "holdToUnlock": "Açmaq üçün ən azı bu qədər DeHub tokeni saxlayın",
+    "sliderLabel": "Saxlanılan tokenlər",
+    "sliderValue": "{{amount}} token · {{tier}}",
     "you": "Siz",
-    "grants": "Nəyi blokdan çıxarır",
+    "grants": "Nəyi açır",
     "perks": {
       "fee": "Platforma haqqı",
       "votes": "İdarəçilik səsləri",
       "reach": "Hər baxış və reaksiya üçün çəki",
-      "feedPosts": "Gündə bir ev qidası paylaşımı",
+      "feedPosts": "Gündə ana lent paylaşımları",
       "images": "Hər yazıya düşən şəkillər",
       "uploads": "Gündəlik yüklənmə limiti",
       "storage": "Redaktor yaddaşı",
-      "lending": "Nişan verən aralıqlar",
+      "lending": "Nişan icarəsi yerləri",
       "voice": "Səs klonlaması",
       "voiceFree": "Pulsuz",
       "voiceLocked": "{{tier}} və yuxarı"
@@ -5929,7 +5936,29 @@
     "buyTokens": "Tokenlər al",
     "details": "Tam təhlil",
     "play": "Oxut",
-    "pause": "Fasilə ver"
+    "pause": "Fasilə"
+  },
+  "streamerShowcase": {
+    "cardOf": "Kart {{index}}{{total}}",
+    "progress": "İrəliləyişiniz",
+    "goal": {
+      "streams": "{{current}} / {{target}} yayım",
+      "hours": "{{current}} / {{target}} saat",
+      "session": "Bir yayımda {{current}} / {{target}} dəq",
+      "streak": "{{current}} / {{target}} həftə",
+      "level": "Səviyyə {{current}} / {{target}}"
+    },
+    "onStream": "Yayım zamanı baş verəndə açılır",
+    "stats": {
+      "level": "Səviyyə",
+      "xp": "XP",
+      "hours": "Seçmə saatlar",
+      "streams": "Uyğun axınlar",
+      "longest": "Ən uzun axın",
+      "streak": "Ən yaxşı zolaq"
+    },
+    "hoursShort": "{{hours}}",
+    "weeksShort": "{{count}} wk"
   },
   "passwordStrength": {
     "veryWeak": "Çox zəif",

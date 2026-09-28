@@ -330,9 +330,16 @@
     "dark": "Donker",
     "system": "Stelsel",
     "minimal": "Minimaal",
+    "cosmic": "Kosmiese Pixels",
+    "hazy": "Newelige Nagte",
+    "swarms": "Swerms",
+    "lavalamp": "Lawalamp",
+    "winter": "Winterdruppels",
+    "war": "Oorlog",
+    "osaka": "Osaka",
+    "jungle": "Oerwoud",
     "themeDesc": "Kies hoe die toep lyk",
     "themeMinimalDesc": "Plat swart, reguit rande, beelde en video's oor die volle breedte",
-    "cosmic": "Kosmies",
     "christmas": "Kersfees",
     "island": "Eiland",
     "hacker": "Hacker",
@@ -5221,7 +5228,7 @@
         },
         "legend": {
           "name": "Legende",
-          "hint": "Bereik Level 10."
+          "hint": "Bereik vlak tien."
         },
         "ignition": {
           "name": "Ignis",
@@ -5229,19 +5236,19 @@
         },
         "on-air": {
           "name": "Op die skerm",
-          "hint": "Voltooi tien kwalifiserende streams."
+          "hint": "Voltooi tien kwalifiserende uitsendings."
         },
         "storyteller": {
           "name": "Verhaalverteller",
-          "hint": "Voltooi vyf-en-twintig kwalifiserende streams."
+          "hint": "Voltooi vyf-en-twintig kwalifiserende uitsendings."
         },
         "broadcaster": {
           "name": "Uitsender",
-          "hint": "Voltooi vyftig kwalifiserende streams."
+          "hint": "Voltooi vyftig kwalifiserende uitsendings."
         },
         "centurion": {
           "name": "Honderdtal",
-          "hint": "Voltooi honderd kwalifiserende streams."
+          "hint": "Voltooi honderd kwalifiserende uitsendings."
         },
         "enduring": {
           "name": "Duurzaamheid",
@@ -5935,7 +5942,7 @@
     "holdNote": "Sodra 'n badge ontsluit is, is dit joune solank jy jou tokens hou. Die aantal tokens wat nodig is om 'n nuwe badge te ontsluit, kan verander met die token-prys."
   },
   "badgeShowcase": {
-    "dialogLabel": "{{tier}} badge",
+    "dialogLabel": "{{tier}}-badge",
     "close": "Sluit",
     "badges": "Kentekens",
     "tierOf": "Vlak {{index}} van {{total}}",
@@ -5954,7 +5961,7 @@
       "images": "Beelde per plasing",
       "uploads": "Daaglikse oplaai limiet",
       "storage": "Redigeerder stoor",
-      "lending": "Badge uitleen slots",
+      "lending": "Badge-uitleengleuwe",
       "voice": "Stemkloning",
       "voiceFree": "Gratis",
       "voiceLocked": "{{tier}} en op"
@@ -5963,6 +5970,28 @@
     "details": "Volle ineenstorting",
     "play": "Speel",
     "pause": "Pouseer"
+  },
+  "streamerShowcase": {
+    "cardOf": "Kaart {{index}} van {{total}}",
+    "progress": "Jou vordering",
+    "goal": {
+      "streams": "{{current}} / {{target}} uitsendings",
+      "hours": "{{current}} / {{target}} ure",
+      "session": "{{current}} / {{target}} min in een uitsending",
+      "streak": "{{current}} / {{target}} weke",
+      "level": "Vlak {{current}} / {{target}}"
+    },
+    "onStream": "Ontsluit wanneer dit gebeur op stroom",
+    "stats": {
+      "level": "Vlak",
+      "xp": "XP",
+      "hours": "Kwalifiserende ure",
+      "streams": "Kwalifiserende strome",
+      "longest": "Langste stroom",
+      "streak": "Beste streep"
+    },
+    "hoursShort": "{{hours}} h",
+    "weeksShort": "{{count}} wk"
   },
   "passwordStrength": {
     "veryWeak": "Baie swak",

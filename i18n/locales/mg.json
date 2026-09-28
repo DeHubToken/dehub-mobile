@@ -330,9 +330,16 @@
     "dark": "Maizina",
     "system": "Rafitra",
     "minimal": "Tsotra",
+    "cosmic": "Cosmic Pixels",
+    "hazy": "Alina Manjavozavo",
+    "swarms": "Swarms",
+    "lavalamp": "Jiro lava",
+    "winter": "Winter Drops",
+    "war": "Ady",
+    "osaka": "Osaka",
+    "jungle": "Ala",
     "themeDesc": "Safidio ny endriky ny fampiharana",
     "themeMinimalDesc": "Mainty tsotra, sisiny mahitsy, sary sy horonantsary mameno ny sakany",
-    "cosmic": "Kôsmika",
     "christmas": "Krismasy",
     "island": "Nosy",
     "hacker": "Hacker",
@@ -5258,7 +5265,7 @@
           "hint": "Mifanaraha amin’ny ora 250 amin’ny efijery."
         },
         "icon": {
-          "name": "Sary masina",
+          "name": "Olo-malaza",
           "hint": "Mifanaraha amin’ny ambaratonga 20."
         }
       },
@@ -5929,7 +5936,7 @@
     "close": "Hidio",
     "badges": "Mari-pahaizana",
     "tierOf": "Ambaratonga {{index}} amin'ny {{total}}",
-    "youHaveThis": "Manana ity mari-pahaizana ity ianao",
+    "youHaveThis": "Manana ity marika ity ianao",
     "toUnlock": "{{amount}} famantarana hafa mba hamohana azy",
     "holdToUnlock": "Hazonina, fara fahakeliny, izany maro DeHub famantarana mba hamoha azy",
     "sliderLabel": "Famantarana notazonina",
@@ -5953,6 +5960,28 @@
     "details": "Famakafakana feno",
     "play": "Alefa",
     "pause": "Atsaharo"
+  },
+  "streamerShowcase": {
+    "cardOf": "TAPAKA {{index}} {{total}}",
+    "progress": "Ny fivoaranao",
+    "goal": {
+      "streams": "{{current}} / {{target}} fandefasana",
+      "hours": "{{current}} / {{target}} ora",
+      "session": "{{current}} / {{target}} min amin’ny fandefasana iray",
+      "streak": "{{current}} / {{target}} herinandro",
+      "level": "Ambaratonga {{current}} / {{target}}"
+    },
+    "onStream": "Manafaka ilay rojom-panalahidy raha toa ka mihatra amin'ilay tosaka izany",
+    "stats": {
+      "level": "Tarehimarika",
+      "xp": "XP",
+      "hours": "Fahaizana ora",
+      "streams": "CURRENT",
+      "longest": "Ilay tosaka lava indrindra",
+      "streak": "Tsara indrindra Streak"
+    },
+    "hoursShort": "{{hours}} h",
+    "weeksShort": "{{count}} wk"
   },
   "passwordStrength": {
     "veryWeak": "Malemy be",

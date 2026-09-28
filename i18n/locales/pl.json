@@ -330,9 +330,16 @@
     "dark": "Ciemny",
     "system": "Systemowy",
     "minimal": "Minimalistyczny",
+    "cosmic": "Cosmic Pixels",
+    "hazy": "Mgliste noce",
+    "swarms": "Roje",
+    "lavalamp": "Lampa lawowa",
+    "winter": "Winter Drops",
+    "war": "Wojna",
+    "osaka": "Osaka",
+    "jungle": "Dżungla",
     "themeDesc": "Wybierz wygląd aplikacji",
     "themeMinimalDesc": "Jednolita czerń, proste krawędzie, obrazy i filmy na całą szerokość",
-    "cosmic": "Kosmiczny",
     "christmas": "Świąteczny",
     "island": "Wyspa",
     "hacker": "Haker",
@@ -5930,6 +5937,28 @@
     "details": "Pełne zestawienie",
     "play": "Odtwórz",
     "pause": "Wstrzymaj"
+  },
+  "streamerShowcase": {
+    "cardOf": "Karta {{index}} z {{total}}",
+    "progress": "Twoje postępy",
+    "goal": {
+      "streams": "Transmisje {{current}} /{{target}}",
+      "hours": "{{current}} / {{target}} godz.",
+      "session": "{{current}} / {{target}} min w jednym strumieniu",
+      "streak": "{{current}} / {{target}} tyg.",
+      "level": "Poziom {{current}} / {{target}}"
+    },
+    "onStream": "Odblokowuje się, gdy dzieje się to w strumieniu",
+    "stats": {
+      "level": "Poziom",
+      "xp": "XP",
+      "hours": "Godziny kwalifikacyjne",
+      "streams": "Kwalifikujące się strumienie",
+      "longest": "Najdłuższy strumień",
+      "streak": "Najlepsza seria"
+    },
+    "hoursShort": "{{hours}} h",
+    "weeksShort": "{{count}} tyg."
   },
   "passwordStrength": {
     "veryWeak": "Bardzo słabe",

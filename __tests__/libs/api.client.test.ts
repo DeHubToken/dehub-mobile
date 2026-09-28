@@ -56,6 +56,31 @@ describe('libs/api.client', () => {
   });
 
   describe('POST requests', () => {
+    it('recovers wallet login with the identical signed body through the relay', async () => {
+      const proof = { address: '0xaccount', sig: 'signed-proof', timestamp: 123 };
+      mockFetch.mockRejectedValueOnce(new TypeError('Network request failed'));
+      mockFetch.mockResolvedValueOnce({ ok: true, status: 201, headers: { get: () => 'application/json' }, json: async () => ({ token: 'session' }) });
+      await expect(apiClient.post('/mobile/auth', proof, { isAuthRequired: false, retrySession: true })).resolves.toEqual({ token: 'session' });
+      expect(mockFetch.mock.calls.map(call => call[0])).toEqual(['https://api.dehub.io/api/mobile/auth', 'https://dehub.io/_api/api/mobile/auth']);
+      expect(mockFetch.mock.calls[0][1].body).toBe(mockFetch.mock.calls[1][1].body);
+    });
+
+    it('does not retry a rejected wallet or repeat the relay failure', async () => {
+      mockFetch.mockResolvedValueOnce({ ok: false, status: 403, headers: { get: () => 'application/json' }, json: async () => ({ message: 'Wallet refused' }) });
+      await expect(apiClient.post('/mobile/auth', {}, { isAuthRequired: false, retrySession: true })).rejects.toThrow('Wallet refused');
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      mockFetch.mockReset().mockRejectedValue(new TypeError('Network request failed'));
+      await expect(apiClient.post('/mobile/auth', {}, { isAuthRequired: false, retrySession: true })).rejects.toThrow('Network request failed');
+      expect(mockFetch).toHaveBeenCalledTimes(2);
+    });
+
+    it('cannot enable session replay for purchases or refresh token rotation', async () => {
+      mockFetch.mockRejectedValue(new TypeError('Network request failed'));
+      for (const endpoint of ['/purchase', '/auth/refresh', '/auth/rotate-wallet']) {
+        await expect(apiClient.post(endpoint, {}, { isAuthRequired: false, retrySession: true })).rejects.toThrow('Network request failed');
+      }
+      expect(mockFetch).toHaveBeenCalledTimes(3);
+    });
     it('sends JSON body', async () => {
       mockFetch.mockResolvedValueOnce({
         ok: true,

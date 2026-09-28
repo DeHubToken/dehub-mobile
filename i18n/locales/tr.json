@@ -330,9 +330,16 @@
     "dark": "Koyu",
     "system": "Sistem",
     "minimal": "Minimal",
+    "cosmic": "Cosmic Pixels",
+    "hazy": "Puslu Geceler",
+    "swarms": "Sürüler",
+    "lavalamp": "Lav Lambası",
+    "winter": "Winter Drops",
+    "war": "Savaş",
+    "osaka": "Osaka",
+    "jungle": "Orman",
     "themeDesc": "Uygulamanın görünümünü seçin",
     "themeMinimalDesc": "Düz siyah, keskin kenarlar, tam genişlikte görseller ve videolar",
-    "cosmic": "Kozmik",
     "christmas": "Noel",
     "island": "Ada",
     "hacker": "Hacking",
@@ -5979,6 +5986,28 @@
     "details": "Tam döküm",
     "play": "Oynat",
     "pause": "Duraklat"
+  },
+  "streamerShowcase": {
+    "cardOf": "Kart {{index}}/{{total}}",
+    "progress": "İlerlemeniz",
+    "goal": {
+      "streams": "{{current}}/{{target}} akışları",
+      "hours": "{{current}}/{{target}} saat",
+      "session": "Bir akışta {{current}}/{{target}} dakika",
+      "streak": "{{current}}/{{target}} hafta",
+      "level": "Seviye {{current}}/{{target}}"
+    },
+    "onStream": "Akışta gerçekleştiğinde açılır",
+    "stats": {
+      "level": "Seviye",
+      "xp": "XP",
+      "hours": "Uygun saatler",
+      "streams": "Uygun akışlar",
+      "longest": "En uzun akış",
+      "streak": "EN iyi seri"
+    },
+    "hoursShort": "{{hours}} saat",
+    "weeksShort": "{{count}} hafta"
   },
   "passwordStrength": {
     "veryWeak": "Çok zayıf",

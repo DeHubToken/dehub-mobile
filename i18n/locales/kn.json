@@ -330,9 +330,16 @@
     "dark": "ಕತ್ತಲೆ",
     "system": "ಸಿಸ್ಟಮ್",
     "minimal": "ಮಿನಿಮಲ್",
+    "cosmic": "Cosmic Pixels",
+    "hazy": "ಮಬ್ಬು ರಾತ್ರಿಗಳು",
+    "swarms": "ಸ್ವಾರ್ಮ್‌ಗಳು",
+    "lavalamp": "ಲಾವಾ ಲ್ಯಾಂಪ್",
+    "winter": "Winter Drops",
+    "war": "ಯುದ್ಧ",
+    "osaka": "ಒಸಾಕ",
+    "jungle": "ಜಂಗಲ್",
     "themeDesc": "ಆ್ಯಪ್ ಹೇಗೆ ಕಾಣಬೇಕು ಎಂದು ಆಯ್ಕೆಮಾಡಿ",
     "themeMinimalDesc": "ಸಮತಟ್ಟಾದ ಕಪ್ಪು, ನೇರ ಅಂಚುಗಳು, ಪೂರ್ಣ ಅಗಲದ ಚಿತ್ರಗಳು ಮತ್ತು ವೀಡಿಯೊಗಳು",
-    "cosmic": "ಕಾಸ್ಮಿಕ್",
     "christmas": "ಕ್ರಿಸ್ಮಸ್",
     "island": "ದ್ವೀಪ",
     "hacker": "ಹ್ಯಾಕರ್",
@@ -5930,6 +5937,28 @@
     "details": "ಪೂರ್ಣ ವಿವರಣೆ",
     "play": "ಪ್ಲೇ ಮಾಡಿ",
     "pause": "ವಿರಾಮ"
+  },
+  "streamerShowcase": {
+    "cardOf": "ಕಾರ್ಡ್ {{index}} {{total}}",
+    "progress": "ನಿಮ್ಮ ಪ್ರಗತಿ",
+    "goal": {
+      "streams": "{{current}} /{{target}} ಸ್ಟ್ರೀಮ್‌ಗಳು",
+      "hours": "{{current}} / {{target}} ಗಂಟೆಗಳು",
+      "session": "{{current}} / {{target}} ನಿಮಿಷ ಒಂದು ಸ್ಟ್ರೀಮ್‌ನಲ್ಲಿ",
+      "streak": "{{current}} / {{target}} ವಾರಗಳು",
+      "level": "ಮಟ್ಟ {{current}} / {{target}}"
+    },
+    "onStream": "ಸ್ಟ್ರೀಮ್‌ನಲ್ಲಿ ಸಂಭವಿಸಿದಾಗ ಅನ್‌ಲಾಕ್ ಮಾಡುತ್ತದೆ",
+    "stats": {
+      "level": "ಮಟ್ಟ",
+      "xp": "XP",
+      "hours": "ಅರ್ಹತಾ ಸಮಯಗಳು",
+      "streams": "ಅರ್ಹತಾ ಸ್ಟ್ರೀಮ್‌ಗಳು",
+      "longest": "ಅತಿ ಉದ್ದದ ಸ್ಟ್ರೀಮ್",
+      "streak": "ಅತ್ಯುತ್ತಮ ಪರಂಪರೆ"
+    },
+    "hoursShort": "{{hours}} ಗಂ",
+    "weeksShort": "{{count}} ವಾರ"
   },
   "passwordStrength": {
     "veryWeak": "ತುಂಬಾ ದುರ್ಬಲ",

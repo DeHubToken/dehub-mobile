@@ -14,6 +14,7 @@ import {
 import { DeHubLoader } from "../DeHubLoader";
 import { DeHubRefreshControl, DeHubRefreshMark } from "./DeHubRefreshControl";
 import Animated from "react-native-reanimated";
+import { feedRenderBudget } from "../../libs/feed-render-budget";
 import { Ionicons } from "@expo/vector-icons";
 import { theme } from "../../theme";
 import { getFeedNFTs, type GetNFTsResult, type GetNFTsResponse, type SearchParams } from "../../services";
@@ -439,9 +440,9 @@ const InfiniteFeedBase: React.FC<
         // that grows once its data lands, adjusts contentOffset instead of
         // shoving whatever the user was reading.
         maintainVisibleContentPosition={MAINTAIN_POSITION}
-        initialNumToRender={4}
+        initialNumToRender={feedRenderBudget(items).initialRows}
         maxToRenderPerBatch={1}
-        windowSize={11}
+        windowSize={feedRenderBudget(items).windowSize}
         // No removeClippedSubviews, for the same reason as InfiniteVideoFeed:
         // clipping detaches off-screen children, and that is the exact array
         // Android walks to pick the maintainVisibleContentPosition anchor. The

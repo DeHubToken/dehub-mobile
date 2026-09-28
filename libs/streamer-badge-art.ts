@@ -56,14 +56,9 @@ const EMBLEMS: Record<StreamerBadgeId, string> = {
   veteran: 'M60 40l14 20-14 20-14-20zM38 39q-22 28 8 48M82 39q22 28-8 48M32 50l10 5M30 63l12 3M34 76l11-1M88 50l-10 5M90 63l-12 3M86 76l-11-1M50 92h20',
 };
 
-/** Pure SVG, supported by browser SVG and react-native-svg; no image downloads or filters. */
-export function streamerBadgeSvg(id: StreamerBadgeId, theme: string, earned: boolean, instance = 'badge'): string {
-  const index = STREAMER_BADGE_IDS.indexOf(id);
-  if (index < 0) return '';
-  const p = badgeMaterial(theme);
-  const key = instance.replace(/[^a-zA-Z0-9_-]/g, '') + id;
-  const metal = p.flat ? p.metal : `url(#${key}-metal)`;
-  const frame = theme === 'minimal' || theme === 'war'
+/** The outline a card is struck in: one of five shapes, or a chamfered square on flat themes. */
+function frameFor(index: number, theme: string): string {
+  return theme === 'minimal' || theme === 'war'
     ? 'M22 12H98L110 24V96L98 108H22L10 96V24Z'
     : [
       'M60 8a52 52 0 1 1 0 104 52 52 0 0 1 0-104Z',
@@ -72,6 +67,30 @@ export function streamerBadgeSvg(id: StreamerBadgeId, theme: string, earned: boo
       'M34 9H86L111 34V86L86 111H34L9 86V34Z',
       'M60 5L76 17 96 19 102 40 115 60 102 80 96 101 76 103 60 115 44 103 24 101 18 80 5 60 18 40 24 19 44 17Z',
     ][index % 5];
+}
+
+/**
+ * A card's silhouette in one flat colour, reaching as far as its stroke and
+ * drop shadow. The badge showcase cuts its sticker paper, shadow and foil
+ * masks from it.
+ */
+export function streamerBadgePlateSvg(id: StreamerBadgeId, theme: string, color: string): string {
+  const index = STREAMER_BADGE_IDS.indexOf(id);
+  if (index < 0) return '';
+  const frame = frameFor(index, theme);
+  return '<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120">'
+    + '<path d="' + frame + '" transform="translate(0 1)" fill="' + color + '" stroke="' + color
+    + '" stroke-width="6" stroke-linejoin="round"/></svg>';
+}
+
+/** Pure SVG, supported by browser SVG and react-native-svg; no image downloads or filters. */
+export function streamerBadgeSvg(id: StreamerBadgeId, theme: string, earned: boolean, instance = 'badge'): string {
+  const index = STREAMER_BADGE_IDS.indexOf(id);
+  if (index < 0) return '';
+  const p = badgeMaterial(theme);
+  const key = instance.replace(/[^a-zA-Z0-9_-]/g, '') + id;
+  const metal = p.flat ? p.metal : `url(#${key}-metal)`;
+  const frame = frameFor(index, theme);
   const ticks = Array.from({ length: Math.floor(index / 5) + 1 }, (_, n) =>
     `<path d="M${48 + n * 8} 99h4" stroke="${p.edge}" stroke-width="2"/>`).join('');
   const texture = theme === 'jungle'

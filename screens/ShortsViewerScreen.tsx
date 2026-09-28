@@ -21,7 +21,8 @@
  * comment; the navigator already sits inside a SafeAreaView.
  *
  * Two gestures clear and restore the chrome, both ported from web: swipe down
- * over the bottom stack to clear it, tap the middle band to bring it back.
+ * over the bottom stack to clear it, swipe up in that area to bring it back.
+ * A tap in the middle band also restores it; other video taps pause/play.
  * Holding the middle of the frame still hides it for a screenshot for as long
  * as the finger is down. See HIDE_SWIPE_MIN / RESTORE_ZONE_TOP.
  *
@@ -52,13 +53,14 @@ import {
   PanResponder,
 } from "react-native";
 import useKeyboard from "../hooks/useKeyboard";
-import Reanimated, { runOnJS, useAnimatedStyle, useSharedValue } from "react-native-reanimated";
+import { runOnJS, useSharedValue } from "react-native-reanimated";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import type { NativeGesture } from "react-native-gesture-handler";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import { VideoView, useVideoPlayer } from "expo-video";
 import { shortsPhotoMedia } from "../libs/shortsPhotos";
 import { ShortsPhotoPager } from "../components/Post/ShortsPhotoPager";
+import { useSettledVideoSource } from "../hooks/useSettledVideoSource";
 import PictureInPictureButton from "../components/common/PictureInPictureButton";
 import { configureForBackgroundPlayback, releaseBackgroundPlayback } from "../libs/audioSession";
 import { FEED_BUFFER_OPTIONS } from "../libs/videoBuffering";
@@ -159,10 +161,8 @@ const formatRate = (rate: number) => `${rate}x`;
  */
 
 /**
- * Swipe down over the bottom stack to clear the chrome, then tap the middle
- * band to bring it back — the same two gestures web runs (ShortsViewer.tsx
- * `handleOverlayGestureTouch*` / `handleRestoreTouch*`), with web's own
- * thresholds.
+ * Swipe down over the bottom stack to clear the chrome, then swipe up in the
+ * lower area to bring it back. Both directions use the same 40px threshold.
  *
  * RN and the DOM differ in the one way that matters here. On web the overlay
  * is `pointer-events-auto` above the carousel's drag layer, so a drag that
@@ -306,6 +306,7 @@ const ActionButton: React.FC<ActionButtonProps> = ({
 interface ShortItemProps {
   item: UnifiedFeedItem;
   isActive: boolean;
+  isNearby: boolean;
   activeVideoRef: React.RefObject<VideoView | null>;
   itemHeight: number;
   viewportHeight: number;
@@ -328,7 +329,7 @@ interface ShortItemProps {
   onCommentsVisibilityChange: (visible: boolean) => void;
 }
 
-const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, itemHeight, viewportHeight, isMuted, volume, playbackRate, pagerGesture, onChromeVisibilityChange, onCommentsVisibilityChange }) => {
+const ShortItem = React.memo<ShortItemProps>(({ item, isActive, isNearby, activeVideoRef, itemHeight, viewportHeight, isMuted, volume, playbackRate, pagerGesture, onChromeVisibilityChange, onCommentsVisibilityChange }) => {
   // Live window size, not a module-level snapshot: on iPad the pager cells
   // and tap zones were sized for the launch orientation.
   const { t } = useCopy();
@@ -461,7 +462,13 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
   const [showShareSheet, setShowShareSheet] = useState(false);
   const [isPlaying, setIsPlaying] = useState(true);
   const [isPausedByUser, setIsPausedByUser] = useState(false);
+  const pausedByUserRef = useRef(isPausedByUser);
+  pausedByUserRef.current = isPausedByUser;
+  const itemNavigation = useNavigation();
   const [firstFrameRendered, setFirstFrameRendered] = useState(false);
+  useEffect(() => {
+    if (!isActive) setFirstFrameRendered(false);
+  }, [isActive]);
   const [captionExpanded, setCaptionExpanded] = useState(false);
   const [screenshotMode, setScreenshotMode] = useState(false);
   const [is2xSpeed, setIs2xSpeed] = useState(false);
@@ -479,11 +486,17 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
   const chromeOpacity = useRef(new Animated.Value(1)).current;
   /** Touch origin for the swipe-down, read on the UI thread by hidePan. */
   const panStart = useSharedValue({ x: 0, y: 0 });
+  const restorePanStart = useSharedValue({ x: 0, y: 0 });
 
-  /** How far through the short we are, 0 → 1. A shared value rather than
-   *  state: the timeline moves four times a second and none of it needs a
-   *  React render — the fill is an animated style on the UI thread. */
-  const progress = useSharedValue(0);
+  // Keep the playback clock out of layout and Fabric commits while paging.
+  const progress = useRef(new Animated.Value(0)).current;
+  const trackWidth = Math.max(1, SCREEN_WIDTH - EDGE * 2);
+  useEffect(() => {
+    Animated.timing(progress, {
+      toValue: 0, duration: 0, useNativeDriver: true, isInteraction: false,
+    }).start();
+    return () => progress.stopAnimation();
+  }, [progress]);
   const durationRef = useRef(0);
   const [scrubbing, setScrubbing] = useState(false);
   /** Read by the time listener, which is subscribed once per player. */
@@ -543,19 +556,19 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
   const isActiveRef = useRef(isActive);
   isActiveRef.current = isActive;
 
-  // The list keeps a neighbour either side mounted, and each one's player
-  // starts buffering as soon as it has a source. Under data saver only the
-  // short being watched gets one, so swiping past costs nothing extra.
+  // FlatList also retains its initial cells after they leave the window.
+  // Keep those players empty, and let neighbours buffer only after settling.
   const { liteMode } = useDataSaver();
-  const playerSource = liteMode && !isActive ? null : videoUrl || null;
+  const playerSource = isActive || (isNearby && !liteMode) ? videoUrl || null : null;
 
-  const player = useVideoPlayer(playerSource, (p) => {
+  const player = useVideoPlayer(null, (p) => {
     p.staysActiveInBackground = isActive;
     p.showNowPlayingNotification = isActive;
     p.loop = true;
     p.muted = mutedRef.current;
     p.bufferOptions = FEED_BUFFER_OPTIONS;
   });
+
 
   const stopPlayback = useCallback(() => {
     try {
@@ -587,6 +600,10 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
       return false;
     }
   }, [player, stopPlayback]);
+
+  useSettledVideoSource(player, playerSource, isActive, () => {
+    if (!pausedByUserRef.current && itemNavigation.isFocused()) playIfActive();
+  });
 
   useEffect(() => {
     if (!player) return;
@@ -631,7 +648,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
       // A drag owns the bar until the finger lifts; the clock would otherwise
       // yank it back to wherever playback still is.
       if (scrubbingRef.current || !(total > 0)) return;
-      progress.value = Math.max(0, Math.min(1, (currentTime ?? 0) / total));
+      progress.setValue(Math.max(0, Math.min(1, (currentTime ?? 0) / total)));
     });
     return () => {
       sub.remove();
@@ -648,11 +665,11 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
   }, []);
 
   const handleScrub = useCallback((ratio: number) => {
-    progress.value = ratio;
+    progress.setValue(ratio);
   }, [progress]);
 
   const handleScrubCommit = useCallback((ratio: number) => {
-    progress.value = ratio;
+    progress.setValue(ratio);
     const total = durationRef.current;
     if (total > 0) {
       try { player.currentTime = ratio * total; } catch {}
@@ -683,8 +700,12 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
     blocks: scrubBlocks,
   });
 
-  const scrubFillStyle = useAnimatedStyle(() => ({ width: `${progress.value * 100}%` }));
-  const scrubThumbStyle = useAnimatedStyle(() => ({ left: `${progress.value * 100}%` }));
+  const scrubFillStyle = {
+    transform: [{ translateX: progress.interpolate({ inputRange: [0, 1], outputRange: [-trackWidth, 0] }) }],
+  };
+  const scrubThumbStyle = {
+    transform: [{ translateX: progress.interpolate({ inputRange: [0, 1], outputRange: [0, trackWidth] }) }],
+  };
 
   useEffect(() => {
     const sub = player.addListener("playingChange", ({ isPlaying: playing }) => {
@@ -704,7 +725,6 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
   // never sees a change and the short keeps looping underneath. The
   // navigation emitter fires regardless of freeze, so pause on blur there and
   // resume on focus if this is still the active, unpaused item.
-  const itemNavigation = useNavigation();
   useEffect(() => {
     if (!player) return;
     const onBlur = () => {
@@ -1037,6 +1057,47 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
     [panStart, pagerGesture],
   );
 
+  // Arbitrate before the native pager claims the upward flick. This remains
+  // on the video while the caption is hidden, so there is always a way back.
+  const restorePan = useMemo(() => Gesture.Pan()
+    .enabled(isActive && !showComments && !screenshotMode && (overlaysHidden || autoHidden))
+    .manualActivation(true)
+    .onTouchesDown((e, state) => {
+      "worklet";
+      const touch = e.allTouches[0];
+      if (e.numberOfTouches !== 1 || !touch || touch.y <= itemHeight * RESTORE_ZONE_TOP) {
+        state.fail();
+        return;
+      }
+      restorePanStart.value = { x: touch.x, y: touch.y };
+    })
+    .onTouchesMove((e, state) => {
+      "worklet";
+      const touch = e.allTouches[0];
+      if (!touch || e.numberOfTouches !== 1) {
+        state.fail();
+        return;
+      }
+      const dy = touch.y - restorePanStart.value.y;
+      const dx = Math.abs(touch.x - restorePanStart.value.x);
+      if (dy > DRAG_RELEASE_MIN || dx > Math.abs(dy) + DRAG_RELEASE_MIN) {
+        state.fail();
+        return;
+      }
+      if (dy < -DRAG_CLAIM_MIN && -dy > dx) state.activate();
+    })
+    .onEnd((e, success) => {
+      "worklet";
+      if (success && e.translationY < -HIDE_SWIPE_MIN && -e.translationY > Math.abs(e.translationX)) {
+        runOnJS(setOverlaysHidden)(false);
+        runOnJS(setAutoHidden)(false);
+        runOnJS(resetTapSequence)();
+      }
+    })
+    .blocksExternalGesture(pagerGesture),
+  [isActive, showComments, screenshotMode, overlaysHidden, autoHidden, itemHeight,
+    restorePanStart, pagerGesture, resetTapSequence]);
+
   // Resolve the complete tap gesture before casting: double = Like, triple = Love.
   const handleScreenTap = useCallback((pageX: number, pageY: number) => {
     if (longPressActiveRef.current) return;
@@ -1046,20 +1107,14 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
       setOpenTray(null);
       return;
     }
-    // Tap the middle band to bring cleared chrome back — web's
-    // `handleRestoreTouchEnd`. It restores on a tap rather than an upward
-    // swipe because an upward flick is exactly the gesture that pages to the
-    // next short, and the two fought; and the band stops short of the bottom
-    // 15% so a restore tap never lands on the action row. Returning here is
-    // what keeps the same tap from also toggling playback — web suppresses
-    // the follow-on tap for 400ms for the same reason.
-    if (overlaysHidden) {
-      if (
-        pageY > SCREEN_HEIGHT * RESTORE_ZONE_TOP &&
-        pageY < SCREEN_HEIGHT * RESTORE_ZONE_BOTTOM
-      ) {
-        setOverlaysHidden(false);
-      }
+    // A restore tap changes only the panel. Outside this band, hidden chrome
+    // must not swallow video playback or multi-tap reactions.
+    if (overlaysHidden &&
+      pageY > SCREEN_HEIGHT * RESTORE_ZONE_TOP &&
+      pageY < SCREEN_HEIGHT * RESTORE_ZONE_BOTTOM
+    ) {
+      setOverlaysHidden(false);
+      setAutoHidden(false);
       resetTapSequence();
       return;
     }
@@ -1174,8 +1229,8 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
       .runOnJS(true)
       .onStart((event) => handleLongPressIn(event.x))
       .onFinalize(() => handleLongPressOut());
-    return Gesture.Race(hold, tap);
-  }, [handleLongPressIn, handleLongPressOut, handleScreenTap, pagerGesture]);
+    return Gesture.Race(restorePan, hold, tap);
+  }, [handleLongPressIn, handleLongPressOut, handleScreenTap, pagerGesture, restorePan]);
 
   const chromeVisible = !showComments && !screenshotMode && !overlaysHidden && !autoHidden;
 
@@ -1384,7 +1439,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
         </View>
       )}
 
-      {isActive && isPausedByUser && chromeVisible && (
+      {isActive && isPausedByUser && !showComments && !screenshotMode && (
         <View style={styles.pauseOverlay} pointerEvents="none">
           <Icon name="Play" size={64} color="rgba(255,255,255,0.7)" />
         </View>
@@ -1406,12 +1461,12 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
             accessibilityRole="adjustable"
           >
             <View style={[styles.scrubLine, scrubbing && styles.scrubLineActive]}>
-              <Reanimated.View
+              <Animated.View
                 style={[styles.scrubFill, scrubbing && styles.scrubFillActive, scrubFillStyle]}
               />
             </View>
             {scrubbing && (
-              <Reanimated.View style={[styles.scrubThumb, scrubThumbStyle]} pointerEvents="none" />
+              <Animated.View style={[styles.scrubThumb, scrubThumbStyle]} pointerEvents="none" />
             )}
           </View>
         </GestureDetector>
@@ -1964,7 +2019,7 @@ const ShortsViewerScreen = () => {
     }
   }).current;
 
-  const viewabilityConfig = useRef({ itemVisiblePercentThreshold: 60 }).current;
+  const viewabilityConfig = useRef({ itemVisiblePercentThreshold: 60, minimumViewTime: 120 }).current;
 
   const listRef = useRef<FlatList>(null);
   /**
@@ -2047,6 +2102,7 @@ const ShortsViewerScreen = () => {
       <ShortItem
         item={item}
         isActive={index === activeIndex}
+        isNearby={Math.abs(index - activeIndex) <= 1}
         activeVideoRef={activeVideoRef}
         itemHeight={containerHeight}
         viewportHeight={viewportHeight}
@@ -2098,7 +2154,7 @@ const ShortsViewerScreen = () => {
           ListEmptyComponent={renderEmpty}
           removeClippedSubviews={false}
           windowSize={3}
-          maxToRenderPerBatch={2}
+          maxToRenderPerBatch={1}
           initialNumToRender={2}
           getItemLayout={getItemLayout}
         />
@@ -2336,6 +2392,7 @@ const styles = StyleSheet.create({
   },
   scrubLine: {
     height: 2,
+    overflow: "hidden",
     borderRadius: 1,
     backgroundColor: "rgba(255,255,255,0.25)",
     justifyContent: "center",
@@ -2346,6 +2403,7 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(255,255,255,0.35)",
   },
   scrubFill: {
+    width: "100%",
     height: "100%",
     borderRadius: 2,
     backgroundColor: "rgba(255,255,255,0.85)",
@@ -2355,6 +2413,7 @@ const styles = StyleSheet.create({
   },
   scrubThumb: {
     position: "absolute",
+    left: EDGE,
     bottom: 1,
     width: 14,
     height: 14,

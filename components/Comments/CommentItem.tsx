@@ -59,6 +59,8 @@ import { findDehubLinks, stripDehubLinkMatches } from "../../libs/dehub-links";
 import { AssetRefCards, MAX_ASSET_CARDS_PER_MESSAGE } from "../common/AssetRefCard";
 import { findAssetRefs, stripAssetRefs } from "../../libs/asset-refs";
 import { expandEmojiTokens } from "../common/EmojiText";
+import { TipGemIcon } from "../Home/TipGemIcon";
+import { subscribePostTipped, commentTipKey } from "../../libs/tip-events";
 
 const ICON_MUTED = "#6F7174";
 const ICON_ACTIVE = "#F9FBFF";
@@ -98,6 +100,8 @@ interface CommentItemProps {
   onTip?: (comment: Comment) => void;
   /** DHB already tipped to this comment, shown beside the gem when > 0. */
   tipTotal?: number;
+  /** This viewer has tipped this comment before. */
+  viewerTipped?: boolean;
   onLike?: (commentId: number) => Promise<LikeCommentResult | void>;
   onDislike?: (commentId: number) => Promise<DislikeCommentResult | void>;
   /**
@@ -130,6 +134,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
   onReply,
   onTip,
   tipTotal,
+  viewerTipped,
   onLike,
   onDislike,
   onReact,
@@ -149,6 +154,12 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
   const { showUserProfile } = useUserProfileSheet();
   const { isMinimal } = useAppTheme();
   const currentUser = useUser();
+  // Bumps each time this viewer tips this comment, replaying the gem swirl.
+  const [tipBurst, setTipBurst] = useState(0);
+  useEffect(() => {
+    const key = commentTipKey(comment.id);
+    return subscribePostTipped((id) => { if (id === key) setTipBurst((n) => n + 1); });
+  }, [comment.id]);
   const [liked, setLiked] = useState(!!comment.isLiked);
   const [likeCount, setLikeCount] = useState(comment.likeCount || 0);
   const [isLiking, setIsLiking] = useState(false);
@@ -782,7 +793,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
                 accessibilityLabel={t("comments.tip")}
                 style={{ flexDirection: "row", alignItems: "center", gap: 4 }}
               >
-                <Icon name="Gem" size={14} color={ICON_MUTED} strokeWidth={1.8} />
+                <TipGemIcon tipped={!!viewerTipped || tipBurst > 0} burstKey={tipBurst} size={14} color={ICON_MUTED} />
                 {(tipTotal ?? 0) > 0 && (
                   <Text style={{ fontSize: 12, color: "#8B8D90" }}>
                     {formatTipTotal(tipTotal!)}

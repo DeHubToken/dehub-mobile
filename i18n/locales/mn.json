@@ -330,9 +330,16 @@
     "dark": "Харанхуй",
     "system": "Систем",
     "minimal": "Минимал",
+    "cosmic": "Cosmic Pixels",
+    "hazy": "Манантай шөнө",
+    "swarms": "Сүрэг",
+    "lavalamp": "Лаав чийдэн",
+    "winter": "Winter Drops",
+    "war": "Дайн",
+    "osaka": "Осака",
+    "jungle": "Ширэнгэн ой",
     "themeDesc": "Аппын харагдах байдлыг сонгоно уу",
     "themeMinimalDesc": "Тэгш хар, шулуун ирмэг, бүтэн өргөнтэй зураг ба видео",
-    "cosmic": "Сансрын",
     "christmas": "Зул сар",
     "island": "Арал",
     "hacker": "Хакер",
@@ -5930,6 +5937,28 @@
     "details": "Бүтэн задаргаа",
     "play": "Тоглуулах",
     "pause": "Түр зогсоох"
+  },
+  "streamerShowcase": {
+    "cardOf": "Карт {{index}} / {{total}}",
+    "progress": "Таны ахиц дэвшил",
+    "goal": {
+      "streams": "{{current}} / {{target}} дамжуулалт",
+      "hours": "{{current}} / {{target}} цаг",
+      "session": "Нэг дамжуулалтад {{current}} / {{target}} мин",
+      "streak": "{{current}} / {{target}} долоо хоног",
+      "level": "Түвшин {{current}} / {{target}}"
+    },
+    "onStream": "Урсгалан дээр тохиолдох үед нээгдэнэ",
+    "stats": {
+      "level": "Түвшин",
+      "xp": "XP",
+      "hours": "Мэргэшсэн цагууд",
+      "streams": "ЧАНАРТАХ ГАЛУУД",
+      "longest": "Хамгийн урт урсгал",
+      "streak": "Шилдэг цуврал"
+    },
+    "hoursShort": "{{hours}} ц",
+    "weeksShort": "{{count}} долоо хоног"
   },
   "passwordStrength": {
     "veryWeak": "Маш сул",

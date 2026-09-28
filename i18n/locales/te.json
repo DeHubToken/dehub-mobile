@@ -330,9 +330,16 @@
     "dark": "డార్క్",
     "system": "సిస్టమ్",
     "minimal": "మినిమల్",
+    "cosmic": "కాస్మిక్ పిక్సెల్‌లు",
+    "hazy": "పొగమంచు రాత్రులు",
+    "swarms": "గుంపులు",
+    "lavalamp": "లావా ల్యాంప్",
+    "winter": "విన్టర్ డ్రాప్‌లు",
+    "war": "యుద్ధం",
+    "osaka": "ఒసాకా",
+    "jungle": "అడవి",
     "themeDesc": "యాప్ ఎలా కనిపించాలో ఎంచుకోండి",
     "themeMinimalDesc": "సమతల నలుపు, నేరైన అంచులు, పూర్తి వెడల్పు చిత్రాలు మరియు వీడియోలు",
-    "cosmic": "కాస్మిక్",
     "christmas": "క్రిస్మస్",
     "island": "ఐలాండ్",
     "hacker": "హ్యాకర్",
@@ -5934,6 +5941,28 @@
     "details": "పూర్తి విభజన",
     "play": "ప్లే చేయండి",
     "pause": "పాజ్ చేయండి"
+  },
+  "streamerShowcase": {
+    "cardOf": "కార్డ్ {{index}} {{total}}",
+    "progress": "మీ ప్రోగ్రెస్",
+    "goal": {
+      "streams": "{{current}} / {{target}} స్ట్రీమ్స్",
+      "hours": "{{current}} / {{target}} గంటలు",
+      "session": "{{current}} / {{target}} నిమి ఒక స్ట్రీమ్ ‌ లో",
+      "streak": "{{current}} / {{target}} వారాలు",
+      "level": "స్థాయి {{current}} / {{target}}"
+    },
+    "onStream": "స్ట్రీమ్ ‌ లో జరిగినప్పుడు అన్ ‌ లాక్ చేస్తుంది",
+    "stats": {
+      "level": "స్థాయి",
+      "xp": "XP",
+      "hours": "క్వాలిఫైయింగ్ గంటలు",
+      "streams": "క్వాలిఫైయింగ్ స్ట్రీమ్ ‌ లు",
+      "longest": "పొడవైన ప్రవాహం",
+      "streak": "ఉత్తమ పరంపర"
+    },
+    "hoursShort": "{{hours}} గం",
+    "weeksShort": "{{count}} వారాలు"
   },
   "passwordStrength": {
     "veryWeak": "చాలా బలహీనం",

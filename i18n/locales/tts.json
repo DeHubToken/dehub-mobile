@@ -330,9 +330,16 @@
     "dark": "มืด",
     "system": "ระบบ",
     "minimal": "มินิมอล",
+    "cosmic": "Cosmic Pixels",
+    "hazy": "คืนหมอกมัว",
+    "swarms": "ฝูง",
+    "lavalamp": "โคมลาวา",
+    "winter": "Winter Drops",
+    "war": "สงคราม",
+    "osaka": "โอซาก้า",
+    "jungle": "ป่า",
     "themeDesc": "เลือกว่าแอปสิเบิ่งจั่งใด",
     "themeMinimalDesc": "สีดำเรียบ ขอบซื่อ ฮูบ กับ วิดีโอเต็มความกว้าง",
-    "cosmic": "จักรวาล",
     "christmas": "คริสต์มาส",
     "island": "เกาะ",
     "hacker": "แฮกเกอร์",
@@ -5930,6 +5937,28 @@
     "details": "รายละเอียดทั้งหมด",
     "play": "เล่น",
     "pause": "หยุด"
+  },
+  "streamerShowcase": {
+    "cardOf": "บัตร {{index}} จาก {{total}}",
+    "progress": "ความคืบหน้าของคุณ",
+    "goal": {
+      "streams": "{{current}} / {{target}} สตรีม",
+      "hours": "{{current}} / {{target}} ชั่วโมง",
+      "session": "{{current}} / {{target}} นาที ในสตรีมเดียว",
+      "streak": "{{current}} / {{target}} สัปดาห์",
+      "level": "เลเวล {{current}} / {{target}}"
+    },
+    "onStream": "ปลดล็อกเมื่อเกิดขึ้นในสตรีม",
+    "stats": {
+      "level": "เลเวล",
+      "xp": "XP",
+      "hours": "ชั่วโมงที่ผ่านเกณฑ์",
+      "streams": "สตรีมที่ผ่านเกณฑ์",
+      "longest": "สตรีมที่ยาวที่สุด",
+      "streak": "สตรีคที่ดีที่สุด"
+    },
+    "hoursShort": "{{hours}} ชม.",
+    "weeksShort": "{{count}} สัปดาห์"
   },
   "passwordStrength": {
     "veryWeak": "อ่อนขนาด",

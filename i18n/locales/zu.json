@@ -330,9 +330,16 @@
     "dark": "Ubumnyama",
     "system": "Isistimu",
     "minimal": "Elula",
+    "cosmic": "Cosmic Pixels",
+    "hazy": "Ubusuku Obufiphele",
+    "swarms": "Imihlambi",
+    "lavalamp": "Isibani se-lava",
+    "winter": "Winter Drops",
+    "war": "Impi",
+    "osaka": "I-Osaka",
+    "jungle": "Ihlathi",
     "themeDesc": "Khetha ukuthi uhlelo lubukeka kanjani",
     "themeMinimalDesc": "Omnyama osicaba, imiphetho eqondile, izithombe namavidiyo agcwele ububanzi",
-    "cosmic": "Yomkhathi",
     "christmas": "UKhisimusi",
     "island": "Isiqhingi",
     "hacker": "Ihekha",
@@ -5936,7 +5943,7 @@
     "dialogLabel": "{{tier}} ibheji",
     "close": "Vala",
     "badges": "Amabheji",
-    "tierOf": "Ibanga {{index}} of {{total}}",
+    "tierOf": "Izinga {{index}} / {{total}}",
     "youHaveThis": "Unaleli bheji",
     "toUnlock": "{{amount}} amathokheni engeziwe ukuze uyivule",
     "holdToUnlock": "Bamba okungenani la mathokheni amaningi e-DeHub ukuze uyivule",
@@ -5961,6 +5968,28 @@
     "details": "Ukucazwa okuphelele",
     "play": "Dlala",
     "pause": "Misa okwesikhashana"
+  },
+  "streamerShowcase": {
+    "cardOf": "Ikhadi {{index}} / {{total}}",
+    "progress": "Inqubekela-phambili yakho",
+    "goal": {
+      "streams": "{{current}} / {{target}} streams",
+      "hours": "{{current}} / {{target}} amahora",
+      "session": "{{current}} / {{target}} min ekusakazeni okukodwa",
+      "streak": "{{current}} / {{target}} amaviki",
+      "level": "Izinga {{current}} / {{target}}"
+    },
+    "onStream": "Iyavula uma kwenzeka ekusakazeni",
+    "stats": {
+      "level": "Izinga",
+      "xp": "XP",
+      "hours": "Amahora okufanelekela",
+      "streams": "Ukusakaza okufanelekayo",
+      "longest": "Ukusakaza okude kunakho konke",
+      "streak": "Uchungechunge oluhle kakhulu"
+    },
+    "hoursShort": "{{hours}} h",
+    "weeksShort": "{{count}} wk"
   },
   "passwordStrength": {
     "veryWeak": "Buthakathaka kakhulu",

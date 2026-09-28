@@ -330,9 +330,16 @@
     "dark": "Цёмная",
     "system": "Сістэмная",
     "minimal": "Мінімальная",
+    "cosmic": "Касмічныя пікселі",
+    "hazy": "Туманныя ночы",
+    "swarms": "Рои",
+    "lavalamp": "Лававая лямпа",
+    "winter": "Зімовыя кроплі",
+    "war": "Вайна",
+    "osaka": "Асака",
+    "jungle": "Джунглі",
     "themeDesc": "Выберыце, як выглядае праграма",
     "themeMinimalDesc": "Плоскі чорны, прамыя вуглы, выявы і відэа на ўсю шырыню",
-    "cosmic": "Касмічная",
     "christmas": "Каляды",
     "island": "Востраў",
     "hacker": "Хакер",
@@ -5943,6 +5950,28 @@
     "details": "Поўны разбіўка",
     "play": "Прайграць",
     "pause": "Паўза"
+  },
+  "streamerShowcase": {
+    "cardOf": "Карта {{index}} з {{total}}",
+    "progress": "Ваш ход",
+    "goal": {
+      "streams": "{{current}} / {{target}} патокі",
+      "hours": "{{current}} / {{target}} гадзін",
+      "session": "{{current}} / {{target}} min у адным патоку",
+      "streak": "{{current}} / {{target}} тыдняў",
+      "level": "Узровень {{current}} / {{target}}"
+    },
+    "onStream": "Разблакіроўка, калі гэта адбываецца на патоку",
+    "stats": {
+      "level": "Узровень",
+      "xp": "XP",
+      "hours": "Кваліфікацыйныя гадзіны",
+      "streams": "Кваліфікацыйныя патокі",
+      "longest": "Самы доўгі струмень",
+      "streak": "Лепшая паласа"
+    },
+    "hoursShort": "{{hours}} г",
+    "weeksShort": "{{count}} тыдн."
   },
   "passwordStrength": {
     "veryWeak": "Вельмі слабы",

@@ -330,9 +330,16 @@
     "dark": "डार्क",
     "system": "सिस्टम",
     "minimal": "मिनिमल",
+    "cosmic": "कॉस्मिक पिक्सेल्स",
+    "hazy": "धुंद रात्री",
+    "swarms": "स्वार्म्स",
+    "lavalamp": "लाव्हा दिवा",
+    "winter": "विंटर ड्रॉप्स",
+    "war": "युद्ध",
+    "osaka": "ओसाका",
+    "jungle": "जंगल",
     "themeDesc": "अ‍ॅप कसे दिसावे ते निवडा",
     "themeMinimalDesc": "सपाट काळा, सरळ कडा, पूर्ण रुंदीच्या प्रतिमा आणि व्हिडिओ",
-    "cosmic": "कॉस्मिक",
     "christmas": "ख्रिसमस",
     "island": "बेट",
     "hacker": "हॅकर",
@@ -5920,7 +5927,7 @@
       "fee": "प्लॅटफॉर्म शुल्क",
       "votes": "प्रशासनाची मतमोजणी",
       "reach": "प्रति दृश्य आणि प्रतिक्रिया वजन",
-      "feedPosts": "Home Tags एकदिवसीय",
+      "feedPosts": "दररोज होम फीड पोस्ट",
       "images": "प्रति पोस्ट प्रतिमा",
       "uploads": "दररोज अपलोड करण्याची मर्यादा",
       "storage": "संपादक संचयन",
@@ -5933,6 +5940,28 @@
     "details": "संपूर्ण विश्लेषण",
     "play": "खेळ",
     "pause": "विराम द्या"
+  },
+  "streamerShowcase": {
+    "cardOf": "कार्ड {{index}} चे {{total}}",
+    "progress": "तुमची प्रगती",
+    "goal": {
+      "streams": "{{current}} / {{target}} स्ट्रीम",
+      "hours": "{{current}} / {{target}} तास",
+      "session": "एका स्ट्रीममध्ये {{current}} / {{target}} मिनिटे",
+      "streak": "{{current}} / {{target}} आठवडे",
+      "level": "लेव्हल {{current}} / {{target}}"
+    },
+    "onStream": "जेव्हा हे प्रवाहात येते तेव्हा अनलॉक करते",
+    "stats": {
+      "level": "स्तर",
+      "xp": "XP",
+      "hours": "पात्रता तास",
+      "streams": "पात्रता प्रवाह",
+      "longest": "सर्वात लांब प्रवाह",
+      "streak": "सर्वोत्कृष्ट स्ट्रेक"
+    },
+    "hoursShort": "{{hours}} ह",
+    "weeksShort": "{{count}} आठ."
   },
   "passwordStrength": {
     "veryWeak": "खूप कमकुवत",

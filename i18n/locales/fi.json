@@ -330,9 +330,16 @@
     "dark": "Tumma",
     "system": "Järjestelmä",
     "minimal": "Minimalistinen",
+    "cosmic": "Cosmic Pixels",
+    "hazy": "Usvaiset yöt",
+    "swarms": "Parvet",
+    "lavalamp": "Laavalamppu",
+    "winter": "Winter Drops",
+    "war": "Sota",
+    "osaka": "Osaka",
+    "jungle": "Viidakko",
     "themeDesc": "Valitse sovelluksen ulkoasu",
     "themeMinimalDesc": "Tasainen musta, suorat reunat, täysleveät kuvat ja videot",
-    "cosmic": "Kosminen",
     "christmas": "Joulu",
     "island": "Saari",
     "hacker": "Hakkeri",
@@ -5930,6 +5937,28 @@
     "details": "Täydellinen erittely",
     "play": "Toista",
     "pause": "Keskeytä"
+  },
+  "streamerShowcase": {
+    "cardOf": "Kortti {{index}}/{{total}}",
+    "progress": "Edistymisesi",
+    "goal": {
+      "streams": "{{current}} / {{target}} virtaa",
+      "hours": "{{current}} / {{target}} tuntia",
+      "session": "{{current}} / {{target}} minuuttia yhdessä streamissa",
+      "streak": "{{current}} / {{target}} viikkoa",
+      "level": "Taso {{current}} / {{target}}"
+    },
+    "onStream": "Avautuu, kun se tapahtuu suoratoistona",
+    "stats": {
+      "level": "Taso",
+      "xp": "XP",
+      "hours": "Kelpuutetut tunnit",
+      "streams": "Hyväksyttävät suoratoistot",
+      "longest": "Pisin virtaus",
+      "streak": "Paras putki"
+    },
+    "hoursShort": "{{hours}} h",
+    "weeksShort": "{{count}} viikkoa"
   },
   "passwordStrength": {
     "veryWeak": "Erittäin heikko",

@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<style>
+/* The handful of Tailwind utilities the web background components use. */
+.fixed{position:fixed}.absolute{position:absolute}.inset-0{top:0;right:0;bottom:0;left:0}
+.w-full{width:100%}.h-full{height:100%}.block{display:block}.z-0{z-index:0}.pointer-events-none{pointer-events:none}
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#000;-webkit-user-select:none;user-select:none}
+#bg{position:fixed;inset:0}
+/* Winter paints no canvas backdrop of its own; web's index.css gives the page this. */
+html[data-theme="winter"],html[data-theme="winter"] body{background:#05070a radial-gradient(120rem 60rem at 85% -20%,rgba(164,196,228,.10),transparent 55%),radial-gradient(90rem 50rem at 0% 115%,rgba(164,196,228,.05),transparent 60%)}
+html[data-theme="osaka"],html[data-theme="osaka"] body{background:rgb(10,8,18)}
+html[data-theme="war"],html[data-theme="war"] body{background:rgb(6,10,9)}
+html[data-theme="jungle"],html[data-theme="jungle"] body{background:rgb(22,17,12)}
+</style>
+<script>document.documentElement.dataset.theme=window.__BACKDROP_THEME||decodeURIComponent(location.hash.slice(1));</script>
+</head>
+<body>
+<div id="bg"></div>
+<script>/*BUNDLE*/</script>
+</body>
+</html>

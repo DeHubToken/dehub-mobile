@@ -47,6 +47,7 @@ import {
 } from "../common/AssetRefCard";
 import { findAssetRefs, stripAssetRefs } from "../../libs/asset-refs";
 import { haptic } from "../../libs/haptics";
+import { TipGemIcon } from "../Home/TipGemIcon";
 
 
 const resolveUrl = (path: string): string => {
@@ -599,7 +600,7 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
     return (
       <View className="items-center py-2 px-4">
         <View className="flex-row items-center bg-theme-neutrals-800/60 rounded-full px-3 py-1.5 gap-1.5">
-          <Text className="text-[13px]">💎</Text>
+          <TipGemIcon tipped burstKey={Date.now() - new Date(message.createdAt).getTime() < 15_000 ? 1 : 0} size={14} color="#F4F4F5" />
           <Text className="text-theme-neutrals-300 text-[12px] font-medium">
             {label}
           </Text>

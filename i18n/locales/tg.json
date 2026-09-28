@@ -330,9 +330,16 @@
     "dark": "Торик",
     "system": "Система",
     "minimal": "Минималӣ",
+    "cosmic": "Cosmic Pixels",
+    "hazy": "Шабҳои туманӣ",
+    "swarms": "Тӯдаҳо",
+    "lavalamp": "Lava Lamp",
+    "winter": "Winter Drops",
+    "war": "War",
+    "osaka": "Osaka",
+    "jungle": "Jungle",
     "themeDesc": "Намуди барномаро интихоб кунед",
     "themeMinimalDesc": "Сиёҳи ҳамвор, канораҳои рост, тасвирҳо ва видеоҳо дар тамоми паҳно",
-    "cosmic": "Кайҳонӣ",
     "christmas": "Солинавӣ",
     "island": "Ҷазира",
     "hacker": "Хакер",
@@ -5930,6 +5937,28 @@
     "details": "Барҳамдиҳии пурра",
     "play": "Бозикунӣ",
     "pause": "Таваққуф"
+  },
+  "streamerShowcase": {
+    "cardOf": "Корт {{index}} аз {{total}}",
+    "progress": "Пешрафти шумо",
+    "goal": {
+      "streams": "{{current}} / {{target}} пахш",
+      "hours": "{{current}} / {{target}} hours",
+      "session": "{{current}} / {{target}} дақ дар як ҷараён",
+      "streak": "{{current}} / {{target}} ҳафтаҳо",
+      "level": "Сатҳ {{current}} / {{target}}"
+    },
+    "onStream": "Кушодани қулф, вақте ки он дар ҷараён рӯй медиҳад",
+    "stats": {
+      "level": "Сатҳ",
+      "xp": "XP",
+      "hours": "Соатҳо тахассусӣ",
+      "streams": "Ҷараёни тахассусӣ",
+      "longest": "Ҷараёни дарозтарин",
+      "streak": "Беҳтарин сатр"
+    },
+    "hoursShort": "{{hours}} соат",
+    "weeksShort": "{{count}} ҳафта"
   },
   "passwordStrength": {
     "veryWeak": "Хеле заиф",

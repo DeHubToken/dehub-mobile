@@ -330,9 +330,16 @@
     "dark": "இருள்",
     "system": "கணினி",
     "minimal": "மினிமல்",
+    "cosmic": "அண்ட பிக்சல்கள்",
+    "hazy": "மங்கலான இரவுகள்",
+    "swarms": "ஸ்வார்ம்ஸ்",
+    "lavalamp": "லாவா விளக்கு",
+    "winter": "குளிர்கால துளிகள்",
+    "war": "போர்",
+    "osaka": "ஒசாகா",
+    "jungle": "காடு",
     "themeDesc": "ஆப் எப்படித் தோன்ற வேண்டும் என்பதைத் தேர்ந்தெடுக்கவும்",
     "themeMinimalDesc": "தட்டையான கருப்பு, நேரான விளிம்புகள், முழு அகல படங்களும் வீடியோக்களும்",
-    "cosmic": "அண்டம்",
     "christmas": "கிறிஸ்துமஸ்",
     "island": "தீவு",
     "hacker": "ஹேக்கர்",
@@ -5934,6 +5941,28 @@
     "details": "முழு விவரம்",
     "play": "இயக்கு",
     "pause": "இடைநிறுத்து"
+  },
+  "streamerShowcase": {
+    "cardOf": "கார்டு {{index}} {{total}}",
+    "progress": "உங்கள் முன்னேற்றம்",
+    "goal": {
+      "streams": "{{current}} / {{target}} ஸ்ட்ரீம்கள்",
+      "hours": "{{current}} / {{target}} மணிநேரம்",
+      "session": "{{current}} / {{target}} நிமிடம் ஒரு ஸ்ட்ரீமில்",
+      "streak": "{{current}} / {{target}} வாரங்கள்",
+      "level": "நிலை {{current}} / {{target}}"
+    },
+    "onStream": "ஸ்ட்ரீமில் நடக்கும்போது திறக்கிறது",
+    "stats": {
+      "level": "நிலை",
+      "xp": "XP",
+      "hours": "தகுதி நேரம்",
+      "streams": "தகுதிபெறும் ஸ்ட்ரீம்கள்",
+      "longest": "மிக நீளமான ஸ்ட்ரீம்",
+      "streak": "சிறந்த ஸ்ட்ரீக்"
+    },
+    "hoursShort": "{{hours}} மணி",
+    "weeksShort": "{{count}} வாரம்"
   },
   "passwordStrength": {
     "veryWeak": "மிகவும் பலவீனம்",

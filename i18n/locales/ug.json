@@ -330,9 +330,16 @@
     "dark": "قاراڭغۇ",
     "system": "سىستېما",
     "minimal": "ئاددىي",
+    "cosmic": "Cosmic Pixels",
+    "hazy": "تۇمانلىق كېچىلەر",
+    "swarms": "توپلار",
+    "lavalamp": "لاۋا چىرىغى",
+    "winter": "Winter Drops",
+    "war": "ئۇرۇش",
+    "osaka": "ئوساكا",
+    "jungle": "جۇڭگىل",
     "themeDesc": "ئەپنىڭ كۆرۈنۈشىنى تاللاڭ",
     "themeMinimalDesc": "تەكشى قارا، تۈز گىرۋەكلەر، تولۇق كەڭلىكتىكى رەسىم ۋە سىنلار",
-    "cosmic": "كائىنات",
     "christmas": "روژدېستۋو",
     "island": "ئارال",
     "hacker": "خاكېر",
@@ -5187,7 +5194,7 @@
           "hint": "ئايروپىلاندا 100 سائەت سەپەر قىلغىلى بولىدۇ."
         },
         "legend": {
-          "name": "ئىزاھات",
+          "name": "رىۋايەت",
           "hint": "ئونىنچى سەۋىيەگە يېتىش."
         },
         "ignition": {
@@ -5902,7 +5909,7 @@
     "holdNote": "بەلگە بىر قېتىم ئېچىلدىمۇ، tokenلىرىڭىزنى ساقلاپ تۇرغان مەزگىلىڭىزدە ئۇ ھەمىشە سىزنىڭكى بولىدۇ. يېڭى بەلگىنى ئېچىش ئۈچۈن كېرەكلىك token سانى token باھاسىنىڭ ئۆزگىرىشىگە ئەگىشىپ ئۆزگىرىشى مۇمكىن."
   },
   "badgeShowcase": {
-    "dialogLabel": "{{tier}} badge",
+    "dialogLabel": "{{tier}} بەلگىسى",
     "close": "قۇلۇپلاش",
     "badges": "بەلگىلەر",
     "tierOf": "{{total}} دىن {{index}}-دەرىجە",
@@ -5910,7 +5917,7 @@
     "toUnlock": "ئېچىش ئۈچۈن يەنە {{amount}} توكەن",
     "holdToUnlock": "قۇلۇپنى ئېچىش ئۈچۈن ئەڭ ئاز بولغاندا بۇ نۇرغۇن DeHub بەلگىلىرىنى تۇتۇڭ",
     "sliderLabel": "توكېنلار تۇتۇلدى",
-    "sliderValue": "{{amount}} tokens {{tier}}",
+    "sliderValue": "{{amount}} توكەن · {{tier}}",
     "you": "سەن",
     "grants": "ئۇ (بەچچىدانلارغا) تۆكىلىدىغان (ئاجىز مەنىي) ئەر",
     "perks": {
@@ -5930,6 +5937,28 @@
     "details": "تولۇق پارچىلىنىش",
     "play": "قويۇش",
     "pause": "توختىتىش"
+  },
+  "streamerShowcase": {
+    "cardOf": "كارتا {{index}} of {{total}}",
+    "progress": "ئىلگىرىلەش",
+    "goal": {
+      "streams": "{{current}} / {{target}} قېتىم تارقىتىش",
+      "hours": "{{current}} / {{target}} سائەت",
+      "session": "بىر قېتىملىق تارقىتىشتا {{current}} / {{target}} مىنۇت",
+      "streak": "{{current}} / {{target}} ھەپتە",
+      "level": "دەرىجە {{current}} / {{target}}"
+    },
+    "onStream": "ئېقىمىدا بولغاندا قۇلۇپنى ئېچىش پروگراممىسى",
+    "stats": {
+      "level": "دەرىجە",
+      "xp": "XP",
+      "hours": "قابىلىيەتلىك سائەتلەر",
+      "streams": "ئىختىساسلىق ئېقىمى",
+      "longest": "ئەڭ ئۇزۇن ئېقىن",
+      "streak": "ئەڭ ياخشى سەپلىمە"
+    },
+    "hoursShort": "{{hours}} h",
+    "weeksShort": "{{count}} wk"
   },
   "passwordStrength": {
     "veryWeak": "بەك ئاجىز",

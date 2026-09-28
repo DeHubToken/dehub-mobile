@@ -330,9 +330,16 @@
     "dark": "E errët",
     "system": "Sistemi",
     "minimal": "Minimal",
+    "cosmic": "Cosmic Pixels",
+    "hazy": "Netë të Mjegullta",
+    "swarms": "Tufa",
+    "lavalamp": "Llambë llave",
+    "winter": "Winter Drops",
+    "war": "Luftë",
+    "osaka": "Osaka",
+    "jungle": "Xhungla",
     "themeDesc": "Zgjidhni si duket aplikacioni",
     "themeMinimalDesc": "E zezë e sheshtë, cepa të drejtë, imazhe dhe video në gjerësi të plotë",
-    "cosmic": "Kozmike",
     "christmas": "Krishtlindje",
     "island": "Ishull",
     "hacker": "Haker",
@@ -5930,6 +5937,28 @@
     "details": "Zbërthimi i plotë",
     "play": "Luaj",
     "pause": "Ndalo"
+  },
+  "streamerShowcase": {
+    "cardOf": "Karta {{index}} e {{total}}",
+    "progress": "Ecuria jote",
+    "goal": {
+      "streams": "{{current}} / {{target}} streams",
+      "hours": "{{current}} / {{target}} orë",
+      "session": "{{current}} / {{target}} min në një transmetim",
+      "streak": "{{current}} / {{target}} javë",
+      "level": "Niveli {{current}} / {{target}}"
+    },
+    "onStream": "Zhbllokohet kur ndodh në transmetim",
+    "stats": {
+      "level": "Niveli",
+      "xp": "XP",
+      "hours": "Orari kualifikues",
+      "streams": "Rrjedhat kualifikuese",
+      "longest": "Rrjedha më e gjatë",
+      "streak": "Shiriti më i mirë"
+    },
+    "hoursShort": "{{hours}} h",
+    "weeksShort": "{{count}} wk"
   },
   "passwordStrength": {
     "veryWeak": "Shumë i dobët",
