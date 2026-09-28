@@ -208,10 +208,11 @@ export const runWithPermissions = async (
       return false;
     }
 
-    const userAccepted = await PermissionModal.showRationale(copy.rationale);
-
-    if (!userAccepted) {
-      return false; // User tapped "Not Now"
+    // On iOS the system dialog owns the choice. A dismissible pre-prompt
+    // delays that choice and fails App Review's permission requirements.
+    if (Platform.OS !== "ios") {
+      const userAccepted = await PermissionModal.showRationale(copy.rationale);
+      if (!userAccepted) return false;
     }
 
     const result = await ensureFn();

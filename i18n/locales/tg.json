@@ -8322,5 +8322,20 @@
     "subscriptionTokensOnly": "Танҳо барои насли AI",
     "subscriptionTokensValueNote": "Аломатҳои обуна арзиши доллари худро нигоҳ медоранд. Агар нархи нишона пеш аз истифодаи онҳо ҳаракат кунад, шумо нишонаҳои бештар ё камтарро мебинед, аммо онҳо ҳамеша ҳамон миқдори насли AI-ро мехаранд. Онҳоро бозпас гирифтан, фиристодан ё фурӯхтан мумкин нест.",
     "topUpEmptyHint": "Иловаи нишонаҳо барои тавлид бо AI"
+  },
+  "accountDeletion": {
+    "title": "& Ҳузфи қайдоти баҳисобгирӣ",
+    "description": "Pagtatanggal ng iyong account at personal na data",
+    "warning": "Ин доимо профили DeHub, постҳо, шарҳҳо, паёмҳо ва нусхаи эҳтиётии ҳамёнро нест мекунад. I-save ang iyong mga detalye sa pagkakaroon ng wallet at ilipat ang anumang mga halaga bago. Амалиётҳои blockchain ҷамъиятӣ ва сабтҳои пардохти қонунӣ талаб карда намешавад. Ang iyong profile ay naglalaman; tinatanggap ang pagtatanggap sa loob ng 30 araw. Ин наметавонад барҳам дода шавад.",
+    "cancel": "Бекор кардан",
+    "confirm": "Pagtatanggal ng aking account",
+    "busy": "Фиристодани дархости несткунӣ...",
+    "accepted": "Тоза кардани ҳисоб талаб карда шуд",
+    "receipt": "Ang iyong kahilingan sa pagtanggal ay nai-save. Ang iyong profile ay nakikita at ang iyong account ay mahalagang tanggalin sa loob ng 30 araw Hindi maaaring kanselahin ang pag-sign in na ito.",
+    "done": "Тайёр",
+    "error": "Hindi maipadala ang iyong kahilingan sa pagtanggal. Hindi nakatumpirma ang iyong account para sa pagtanggal. Mangyaring subukan muli.",
+    "back": "Bumalik sa Mga Setting",
+    "signIn": "Mag-sign in upang tanggalin ang iyong account",
+    "acknowledge": "Ман маълумоти барқароркунии ҳамёнро захира кардам ва мефаҳмам, ки несткунӣ доимӣ аст."
   }
 }

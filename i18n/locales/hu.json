@@ -8330,5 +8330,20 @@
     "subscriptionTokensOnly": "Csak MI-generáláshoz",
     "subscriptionTokensValueNote": "Az előfizetési tokenek megtartják dollárértéküket. Ha a token ára a használat előtt mozog, akkor több vagy kevesebb tokent fog látni, de mindig ugyanannyi AI generációt vásárolnak. Nem lehet visszavonni, elküldeni vagy kereskedni velük.",
     "topUpEmptyHint": "Adjon hozzá tokeneket az AI-vel történő generáláshoz"
+  },
+  "accountDeletion": {
+    "title": "Fiók törlése",
+    "description": "Véglegesen törölje fiókját és személyes adatait",
+    "warning": "Ez véglegesen törli DeHub-profilját, bejegyzéseit, megjegyzéseit, üzeneteit és a tárolt pénztárca biztonsági mentését. Mentse el a pénztárca helyreállítási adatait, és először mozgassa az eszközöket. A nyilvános blokklánc-tranzakciók és a jogilag előírt fizetési rekordok nem törölhetők. A profilod azonnal el lesz rejtve; a törlés 30 napon belül befejeződik. A művelet nem vonható vissza.",
+    "cancel": "Mégse",
+    "confirm": "A fiókom végleges törlése",
+    "busy": "Törlési kérés küldése folyamatban…",
+    "accepted": "Fiók törlését kérték",
+    "receipt": "A törlési kérésedet mentettük. A profilod rejtve van, és a fiókodat 30 napon belül véglegesen töröljük. A bejelentkezés nem szakíthatja meg ezt a kérést.",
+    "done": "Kész",
+    "error": "Nem sikerült elküldeni a törlési kérést. A fiókod törlését nem erősítettük meg. Próbálkozz újra.",
+    "back": "Vissza a beállításokhoz",
+    "signIn": "Jelentkezzen be a fiókjába",
+    "acknowledge": "Elmentettem a pénztárcám helyreállítási adatait, és tudomásul veszem, hogy a törlés végleges."
   }
 }

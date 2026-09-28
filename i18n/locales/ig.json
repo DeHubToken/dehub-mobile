@@ -8325,5 +8325,20 @@
     "subscriptionTokensOnly": "N 'ihi na AI ọgbọ naanị",
     "subscriptionTokensValueNote": "Ndenye aha tokens jide ha dollar uru. Ọ bụrụ na ọnụahịa akara ahụ na-aga n 'ihu tupu i jiri ha mee ihe ị ga-ahụ ọtụtụ ma ọ bụ obere akara ngosi, mana ha na-azụta otu ego nke ọgbọ AI mgbe niile. Enweghị ike iwepu ha, zipụ ma ọ bụ ree ha.",
     "topUpEmptyHint": "Tinye tokens n 'ịwa na AI"
+  },
+  "accountDeletion": {
+    "title": "Hichaa akaụntụ",
+    "description": "Na-adịgide adịgide ihichapụ akaụntụ gị na onye data",
+    "warning": "Nke a na-ehichapụ profaịlụ DeHub gị kpamkpam, posts, comments, ozi na echekwara obere akpa ndabere. Zọpụta gị obere akpa mgbake nkọwa na ịkpali ọ bụla akụ mbụ. Public blockchain azụmahịa na iwu chọrọ ugwo ndia ike-ehichapụ. A na-ezobe profaịlụ gị ozugbo; nhichapụ ga-agwụ n 'ime ụbọchị 30. Agaghị emezigharị ihe a.",
+    "cancel": "Kagbuo",
+    "confirm": "Hichaa akaụntụ m ruo mgbe ebighị ebi",
+    "busy": "Na-edebata arịrịọ nhichapụ...",
+    "accepted": "A chọrọ nhichapụ akaụntụ",
+    "receipt": "E chekwala arịrịọ nhichapụ gị. A na-ezobe profaịlụ gị ma a ga-ehichapụ akaụntụ gị n 'ime ụbọchị 30. Ịbanye enweghị ike ịkagbu arịrịọ a.",
+    "done": "Emere",
+    "error": "Agaghị ebubata arịrịọ nhichapụ gị. Emebeghi akaụntụ gị maka nhichapụ. Biko nwaa ọzọ.",
+    "back": "Laghachi na ntọala",
+    "signIn": "Banye ka ihichapụ akaụntụ gị",
+    "acknowledge": "Echekwala m nkọwa mgbake obere akpa m ma ghọta na nhichapụ na-adịgide adịgide."
   }
 }

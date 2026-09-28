@@ -8356,5 +8356,20 @@
     "subscriptionTokensOnly": "Nur für KI-Generierig",
     "subscriptionTokensValueNote": "Abonnemente-Token behalte ihr Dollar-Wert. Wenn de Token-Preis sich ändert, bevor du sie bruuchsch, gsehsch meh oder weniger Token, aber sie chöi immer di gliichi Menge AI-Generatio kaufe. Sie chöi nöd abhebe, gschickt oder gehandlet werde.",
     "topUpEmptyHint": "Füeg Token zum generiere mit AI hinzu"
+  },
+  "accountDeletion": {
+    "title": "Konto lösche",
+    "description": "Lösch dis Konto und dini persöndliche Date dauerhaft",
+    "warning": "Das löscht dis DeHub-Profil, d'Posts, d'Kommentarä, d'Nachrichte und d'sicherti Wallet-Backup für immer. Sichere dini Wallet-Wiederherstellungsdetails und verschieb alli Assetz zerscht. Öffentlechi Blockchain-Transaktione und gesetzlich erforderligi Zahltagsrekord chöi nöd glöscht werde. Dis Profil wird sofort versteckt; d'Löschung isch innerhalb vo 30 Täg fertig. Das cha nöd rückgängig gmacht werde.",
+    "cancel": "Understood, the request has been cancelled.",
+    "confirm": "Lösch mis Konto für immer",
+    "busy": "Löschantrag abschicke…",
+    "accepted": "Konto-Löschung aagforderet",
+    "receipt": "Dini Löschigsaag isch gspeicheret worde. Dini Profil isch versteckt und din Account wird innerhalb vo 30 Täg permanent glöscht. Ilogge chas die Aafrog nöd zruggzoge.",
+    "done": "Done",
+    "error": "Chönnt dini Löschig‑Aafrog nöd abschicke. Dini Konto isch nöd für d’Löschig bestätigt worde. Bitte probier’s nomal.",
+    "back": "Zrugg zu de Iistellige",
+    "signIn": "Melde dich a, um din Account z'lösche",
+    "acknowledge": "Ich ha mini Wallet‑Wiederherstellungsdatei gspeichert und verstoh, dass d’Löschung permanent isch."
   }
 }

@@ -8326,5 +8326,20 @@
     "subscriptionTokensOnly": "Vain tekoälyn tuottamiseen",
     "subscriptionTokensValueNote": "Tilaustunnukset säilyttävät dollarimääräisen arvonsa. Jos tunnuksen hinta siirtyy ennen niiden käyttöä, näet enemmän tai vähemmän tunnuksia, mutta he ostavat aina saman määrän tekoälysukupolvea. Niitä ei voi peruuttaa, lähettää tai vaihtaa.",
     "topUpEmptyHint": "Lisää poletteja luodaksesi tekoälyn avulla"
+  },
+  "accountDeletion": {
+    "title": "Poista tili",
+    "description": "Poista tilisi ja henkilötietosi pysyvästi",
+    "warning": "Tämä poistaa pysyvästi DeHub-profiilisi, julkaisusi, kommenttisi, viestisi ja tallennetun lompakon varmuuskopion. Tallenna lompakon palautustiedot ja siirrä kaikki varat ensin. Julkisia lohkoketjutapahtumia ja lakisääteisiä maksutietoja ei voi poistaa. Profiilisi piilotetaan välittömästi. Poisto suoritetaan 30 päivän kuluessa. Tätä ei voi kumota.",
+    "cancel": "Peruuta",
+    "confirm": "Poista tilini pysyvästi",
+    "busy": "Poistopyyntöä lähetetään…",
+    "accepted": "Tilin poistamista pyydetty",
+    "receipt": "Poistopyyntösi on tallennettu. Profiilisi on piilotettu, ja tilisi poistetaan pysyvästi 30 päivän kuluessa. Sisäänkirjautuminen ei voi peruuttaa tätä pyyntöä.",
+    "done": "Valmis",
+    "error": "Poistamispyyntöä ei voitu lähettää. Tiliäsi ei ole vahvistettu poistettavaksi. Yritä uudelleen.",
+    "back": "Takaisin asetukset -sivulle",
+    "signIn": "Kirjaudu tilillesi",
+    "acknowledge": "Olen tallentanut lompakkoni palautustiedot ja ymmärrän, että poistaminen on pysyvää."
   }
 }

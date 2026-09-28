@@ -8330,5 +8330,20 @@
     "subscriptionTokensOnly": "Pouze pro generaci AI",
     "subscriptionTokensValueNote": "Předplacené tokeny si zachovávají svou dolarovou hodnotu. Pokud se cena tokenu pohne předtím, než je použijete, uvidíte více nebo méně tokenů, ale vždy si koupí stejné množství generace AI. Nelze je vybrat, odeslat ani obchodovat.",
     "topUpEmptyHint": "Přidejte tokeny, které chcete generovat pomocí AI"
+  },
+  "accountDeletion": {
+    "title": "Odstranit účet",
+    "description": "Trvale smažte svůj účet a osobní údaje",
+    "warning": "Tím se trvale odstraní váš profil DeHub, příspěvky, komentáře, zprávy a uložená záloha peněženky. Uložte si podrobnosti o obnovení peněženky a nejprve přesuňte veškerá aktiva. Veřejné blockchainové transakce a zákonem požadované platební záznamy nelze odstranit. Tvůj profil je okamžitě skrytý; smazání je dokončeno do 30 dnů. Tuto akci nelze vrátit zpět.",
+    "cancel": "Zrušit",
+    "confirm": "Trvale smazat můj účet",
+    "busy": "Odesílání žádosti o odstranění...",
+    "accepted": "Vyžádáno smazání účtu",
+    "receipt": "Váš požadavek na odstranění byl uložen. Váš profil je skrytý a váš účet bude do 30 dnů trvale smazán. Přihlášením nelze tento požadavek zrušit.",
+    "done": "Hotovo",
+    "error": "Žádost o odstranění se nepodařilo odeslat. Smazání vašeho účtu nebylo potvrzeno. Zkuste to prosím znovu.",
+    "back": "Zpět na nastavení",
+    "signIn": "Přihlašte se do svého účtu",
+    "acknowledge": "Uložil (a) jsem si podrobnosti o obnovení peněženky a chápu, že smazání je trvalé."
   }
 }

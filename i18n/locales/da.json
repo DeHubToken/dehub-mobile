@@ -8330,5 +8330,20 @@
     "subscriptionTokensOnly": "Kun til AI-generering",
     "subscriptionTokensValueNote": "Abonnementstokens holder deres dollarværdi. Hvis tokenprisen bevæger sig, før du bruger dem, vil du se flere eller færre tokens, men de køber altid den samme mængde AI-generering. De kan ikke trækkes tilbage, sendes eller handles.",
     "topUpEmptyHint": "Tilføj tokens til at generere med AI"
+  },
+  "accountDeletion": {
+    "title": "Slet konto",
+    "description": "Slet din konto og dine personoplysninger permanent",
+    "warning": "Dette sletter permanent din DeHub-profil, dine opslag, kommentarer, beskeder og din gemte sikkerhedskopi af tegnebogen. Gem dine oplysninger om gendannelse af tegnebog, og flyt eventuelle aktiver først. Offentlige blockchain-transaktioner og lovpligtige betalingsoptegnelser kan ikke slettes. Din profil er skjult med det samme. Sletningen afsluttes inden for 30 dage. Dette kan ikke fortrydes.",
+    "cancel": "Annuller",
+    "confirm": "Slet permanent din konto",
+    "busy": "Indsender anmodning om sletning...",
+    "accepted": "Der er anmodet om sletning af konto",
+    "receipt": "Din anmodning om sletning er blevet gemt. Din profil er skjult, og din konto slettes permanent inden for 30 dage. Hvis du logger på, kan du ikke annullere denne anmodning.",
+    "done": "Færdig",
+    "error": "Kunne ikke indsende din anmodning om sletning. Din konto er ikke blevet bekræftet til sletning. Prøv igen.",
+    "back": "Tilbage til indstillinger",
+    "signIn": "Log ind på din konto",
+    "acknowledge": "Jeg har gemt oplysninger om gendannelse af min tegnebog og forstår, at sletning er permanent."
   }
 }

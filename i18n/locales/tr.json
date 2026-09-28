@@ -8326,5 +8326,20 @@
     "subscriptionTokensOnly": "Sadece yapay zeka üretimi için",
     "subscriptionTokensValueNote": "Abonelik tokenleri dolar değerlerini korur. Token fiyatı kullanmadan önce hareket ederse, daha fazla veya daha az token görürsünüz, ancak her zaman aynı miktarda AI üretimi satın alırlar. Geri çekilemez, gönderilemez veya takas edilemezler.",
     "topUpEmptyHint": "Yapay zeka ile oluşturmak için token ekleyin"
+  },
+  "accountDeletion": {
+    "title": "Hesabı sil",
+    "description": "Hesabınızı ve kişisel verilerinizi kalıcı olarak silin",
+    "warning": "Bu, DeHub profilinizi, gönderilerinizi, yorumlarınızı, mesajlarınızı ve saklanan cüzdan yedeklemenizi kalıcı olarak siler. Cüzdan kurtarma bilgilerinizi kaydedin ve önce varlıkları taşıyın. Halka açık blok zinciri işlemleri ve yasal olarak gerekli ödeme kayıtları silinemez. Profiliniz hemen gizlenir; silme işlemi 30 gün içinde tamamlanır. Bu işlem geri alınamaz.",
+    "cancel": "İptal",
+    "confirm": "Hesabı Kalıcı Olarak Sil",
+    "busy": "Silme isteği gönderiliyor…",
+    "accepted": "Hesabın silinmesi istendi",
+    "receipt": "Silme isteğiniz kaydedildi. Profiliniz gizlenmiştir ve hesabınız 30 gün içinde kalıcı olarak silinecektir. Oturum açma işlemi bu isteği iptal edemez.",
+    "done": "Bitti",
+    "error": "Silme isteğiniz gönderilemedi. Hesabınızın silinmesi onaylanmadı. Lütfen tekrar deneyin.",
+    "back": "Ayarlara Dön",
+    "signIn": "Hesabınızda oturum açın",
+    "acknowledge": "Cüzdan kurtarma bilgilerimi kaydettim ve silmenin kalıcı olduğunu anladım."
   }
 }

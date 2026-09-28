@@ -31,6 +31,7 @@ import { useUser, useAuthState, useAuthActions } from "../context/AuthContext";
 import { useGateToHome } from "../hooks/useGateToHome";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { toastSuccess, toastError } from "../libs";
+import { requestAccountErasure } from "../services/accountErasure.service";
 import ScreenHeader from "../components/ScreenHeader";
 import LiquidGlass from "../components/ui/LiquidGlass";
 import FullScreenLoader from "../components/FullScreenLoader";
@@ -41,7 +42,6 @@ import { openInApp } from "../libs/links.utils";
 import {
   TERMS_OF_SERVICE_LINK,
   PRIVACY_POLICY_LINK,
-  DELETE_DATA_OR_ACCOUNT_LINK,
 } from "../config/links";
 import GlassModal from "../components/ui/GlassModal";
 import { getFreeAccessList, removeFreeAccess } from "../services/dm/dm.api";
@@ -96,6 +96,7 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation, route }) => {
   const { signOut } = useAuthActions();
   const [activeTab, setActiveTab] = useState<TabKey>((route?.params?.initialTab as TabKey) ?? "profile");
   const [signingOut, setSigningOut] = useState(false);
+  const [deletingAccount, setDeletingAccount] = useState(false);
   const [bugModalVisible, setBugModalVisible] = useState(false);
   const [reviewModalVisible, setReviewModalVisible] = useState(false);
   const [freeDmModalVisible, setFreeDmModalVisible] = useState(false);
@@ -130,6 +131,25 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation, route }) => {
   }, []);
 
   useEffect(() => () => resetSettingsReveal(), []);
+
+  const handleDeleteAccount = () => {
+    if (deletingAccount) return;
+    Alert.alert(t("accountDeletion.title"), t("accountDeletion.warning"), [
+      { text: t("accountDeletion.cancel"), style: "cancel" },
+      { text: t("accountDeletion.confirm"), style: "destructive", onPress: async () => {
+        setDeletingAccount(true);
+        try {
+          await requestAccountErasure();
+          Alert.alert(t("accountDeletion.accepted"), t("accountDeletion.receipt"), [
+            { text: t("accountDeletion.done"), onPress: () => { void signOut(); } },
+          ], { cancelable: false });
+        } catch {
+          toastError(t("accountDeletion.error"));
+          setDeletingAccount(false);
+        }
+      } },
+    ]);
+  };
 
   const handleSignOut = useCallback(async () => {
     if (signingOut) return;
@@ -357,10 +377,9 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation, route }) => {
         <SettingsLinkRow
           icon="Trash2"
           destructive
-          label={t("settings.deleteAccountData")}
-          description={t("settings.deleteAccountDataDesc")}
-          external
-          onPress={() => openInApp(DELETE_DATA_OR_ACCOUNT_LINK)}
+          label={t("accountDeletion.title")}
+          description={t(deletingAccount ? "accountDeletion.busy" : "accountDeletion.description")}
+          onPress={handleDeleteAccount}
         />
       </SettingsSection>
 

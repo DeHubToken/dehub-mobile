@@ -8326,5 +8326,20 @@
     "subscriptionTokensOnly": "Tikai mākslīgā intelekta ģenerēšanai",
     "subscriptionTokensValueNote": "Abonēšanas žetoniem ir dolāra vērtība. Ja marķiera cena pārvietojas pirms jūs tos izmantojat, jūs redzēsiet vairāk vai mazāk marķierus, bet viņi vienmēr pērk tādu pašu daudzumu AI paaudzes. Tos nevar izņemt, nosūtīt vai tirgot.",
     "topUpEmptyHint": "Pievienojiet marķierus, ko ģenerēt ar MI"
+  },
+  "accountDeletion": {
+    "title": "Dzēst kontu",
+    "description": "Neatgriezeniski dzēst savu kontu un personas datus",
+    "warning": "Tādējādi tiek neatgriezeniski izdzēsts jūsu DeHub profils, ziņas, komentāri, ziņojumi un saglabātā maka dublējumkopija. Saglabājiet informāciju par maka atkopšanu un vispirms pārvietojiet visus materiālus. Publiskos blokķēdes darījumus un likumā noteiktos maksājumu ierakstus nevar dzēst. Jūsu profils tiek nekavējoties paslēpts; dzēšana tiek pabeigta 30 dienu laikā. Šo darbību nevar atsaukt.",
+    "cancel": "Atcelt",
+    "confirm": "Neatgriezeniski dzēst kontu",
+    "busy": "Iesniedz dzēšanas pieprasījumu...",
+    "accepted": "Pieprasīta konta dzēšana",
+    "receipt": "Jūsu dzēšanas pieprasījums ir saglabāts. Jūsu profils ir paslēpts, un konts tiks neatgriezeniski dzēsts 30 dienu laikā. Pierakstoties nevar atcelt šo pieprasījumu.",
+    "done": "Izpildīts",
+    "error": "Nevarēja iesniegt jūsu dzēšanas pieprasījumu. Jūsu konts nav apstiprināts dzēšanai. Lūdzu, mēģiniet vēlreiz.",
+    "back": "Dodieties atpakaļ uz iestatījumiem.",
+    "signIn": "Pierakstieties, lai dzēstu kontu",
+    "acknowledge": "Esmu saglabājis informāciju par maka atkopšanu un saprotu, ka dzēšana ir neatgriezeniska."
   }
 }
