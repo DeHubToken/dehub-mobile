@@ -6490,7 +6490,11 @@
         "false_dilemma": "Ili-ili uokvirivanje",
         "overgeneralisation": "Zahtjev za brisanje",
         "hostile_tone": "Neprijateljski ton"
-      }
+      },
+      "aiMenu": "AI alati",
+      "changeVibe": "Promijeni ton",
+      "fixSpelling": "Ispravi pravopis i gramatiku",
+      "rewriteFailed": "Nije moguće preoblikovati. Pokušajte ponovno."
     }
   },
   "drafts": {

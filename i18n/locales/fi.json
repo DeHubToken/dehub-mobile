@@ -6490,7 +6490,11 @@
         "false_dilemma": "Joko tai kehystys",
         "overgeneralisation": "Pyyhkäisyvaatimus",
         "hostile_tone": "Vihamielinen sävy"
-      }
+      },
+      "aiMenu": "Tekoälytyökalut",
+      "changeVibe": "Vaihda tunnelmaa",
+      "fixSpelling": "Korjaa oikeinkirjoitus ja kielioppi",
+      "rewriteFailed": "Uudelleenkirjoitus epäonnistui. Yritä uudelleen."
     }
   },
   "drafts": {

@@ -6490,7 +6490,11 @@
         "false_dilemma": "হয়- বা ফ্রেমিং",
         "overgeneralisation": "সুদূরপ্রসারী দাবি",
         "hostile_tone": "প্রতিকূল স্বর"
-      }
+      },
+      "aiMenu": "AI টুলস",
+      "changeVibe": "মেজাজ বদলান",
+      "fixSpelling": "বানান ও ব্যাকরণ ঠিক করুন",
+      "rewriteFailed": "পুনরায় লেখা যায়নি। আবার চেষ্টা করুন।"
     }
   },
   "drafts": {

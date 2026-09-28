@@ -6333,7 +6333,11 @@
       "checking": "We dey check the tone of your reply…",
       "allClear": "Nothing stand out. Your reply fair and calm.",
       "dismiss": "Remove this suggestion",
-      "settingHint": "E dey do quick tone check for long comments and e dey show common reasoning mistakes before you post. Na only suggestion, e no go ever block you."
+      "settingHint": "E dey do quick tone check for long comments and e dey show common reasoning mistakes before you post. Na only suggestion, e no go ever block you.",
+      "aiMenu": "AI tools",
+      "changeVibe": "Change di vibe",
+      "fixSpelling": "Fix spelling and grammar",
+      "rewriteFailed": "We no fit rewrite am. Try again."
     }
   },
   "drafts": {

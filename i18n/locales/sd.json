@@ -6490,7 +6490,11 @@
         "false_dilemma": "يا برنامه ريزي يافته",
         "overgeneralisation": "گزارشگري مالي",
         "hostile_tone": "دشمني وارو ٽون"
-      }
+      },
+      "aiMenu": "AI اوزار",
+      "changeVibe": "انداز بدلايو",
+      "fixSpelling": "اکر ۽ گرامر درست ڪريو",
+      "rewriteFailed": "ٻيهر لکي نه سگهياسين. ٻيهر ڪوشش ڪريو."
     }
   },
   "drafts": {

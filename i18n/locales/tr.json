@@ -6539,7 +6539,11 @@
         "false_dilemma": "Ya-ya da çerçevelemesi",
         "overgeneralisation": "Geniş çaplı iddia",
         "hostile_tone": "Düşmanca ton"
-      }
+      },
+      "aiMenu": "Yapay zekâ araçları",
+      "changeVibe": "Havayı değiştir",
+      "fixSpelling": "Yazım ve dilbilgisini düzelt",
+      "rewriteFailed": "Yeniden yazılamadı. Tekrar deneyin."
     }
   },
   "drafts": {

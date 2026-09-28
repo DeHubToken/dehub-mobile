@@ -6521,7 +6521,11 @@
         "false_dilemma": "Ukubeka izinto ngendlela eyodwa noma enye",
         "overgeneralisation": "Isimangalo esibanzi",
         "hostile_tone": "Isitayela esinobutha"
-      }
+      },
+      "aiMenu": "Amathuluzi e-AI",
+      "changeVibe": "Shintsha isimo",
+      "fixSpelling": "Lungisa ukupela nohlelo lolimi",
+      "rewriteFailed": "Akukwazanga ukubhala kabusha. Zama futhi."
     }
   },
   "drafts": {

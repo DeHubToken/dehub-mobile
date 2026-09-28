@@ -6490,7 +6490,11 @@
         "false_dilemma": "Ko dai- ko framing",
         "overgeneralisation": "Sweeping da'awar",
         "hostile_tone": "Sautin mai masaukin baki"
-      }
+      },
+      "aiMenu": "Kayan AI",
+      "changeVibe": "Canza salo",
+      "fixSpelling": "Gyara rubutu da nahawu",
+      "rewriteFailed": "An kasa sake rubutawa. Sake gwadawa."
     }
   },
   "drafts": {

@@ -6333,7 +6333,11 @@
         "false_dilemma": "Na only dis or dat",
         "overgeneralisation": "Claim wey e too wide",
         "hostile_tone": "Hostile tone"
-      }
+      },
+      "aiMenu": "AI tools dem",
+      "changeVibe": "Change the vibe",
+      "fixSpelling": "Fix spelling an grammar",
+      "rewriteFailed": "We no fit rewrite am. Try again."
     }
   },
   "drafts": {

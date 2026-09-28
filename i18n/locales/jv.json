@@ -6490,7 +6490,11 @@
         "false_dilemma": "Bingkai salah siji-utawa",
         "overgeneralisation": "Klaim gedhe",
         "hostile_tone": "Nada sengit"
-      }
+      },
+      "aiMenu": "Piranti AI",
+      "changeVibe": "Ganti gaya",
+      "fixSpelling": "Benerake ejaan lan tata basa",
+      "rewriteFailed": "Ora bisa nulis ulang. Coba maneh."
     }
   },
   "drafts": {

@@ -6508,7 +6508,11 @@
         "false_dilemma": "\"Yoki-yoki\" deb ramkalash",
         "overgeneralisation": "Keng qamrovli da'vo",
         "hostile_tone": "Dushmanona ohang"
-      }
+      },
+      "aiMenu": "SI vositalari",
+      "changeVibe": "Kayfiyatni o'zgartirish",
+      "fixSpelling": "Imlo va grammatikani tuzatish",
+      "rewriteFailed": "Qayta yozib bo'lmadi. Qayta urinib ko'ring."
     }
   },
   "drafts": {

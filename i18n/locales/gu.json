@@ -6490,7 +6490,11 @@
         "false_dilemma": "ક્યાં તો- અથવા ફ્રેમિંગ",
         "overgeneralisation": "વ્યાપક દાવો",
         "hostile_tone": "પ્રતિકૂળ સ્વર"
-      }
+      },
+      "aiMenu": "AI સાધનો",
+      "changeVibe": "મૂડ બદલો",
+      "fixSpelling": "જોડણી અને વ્યાકરણ સુધારો",
+      "rewriteFailed": "ફરીથી લખી શકાયું નહીં. ફરી પ્રયાસ કરો."
     }
   },
   "drafts": {

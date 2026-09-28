@@ -6490,7 +6490,11 @@
         "false_dilemma": "Įrėminimas",
         "overgeneralisation": "Šlavimo paraiška",
         "hostile_tone": "Priešiškas tonas"
-      }
+      },
+      "aiMenu": "DI įrankiai",
+      "changeVibe": "Pakeisti nuotaiką",
+      "fixSpelling": "Taisyti rašybą ir gramatiką",
+      "rewriteFailed": "Nepavyko perrašyti. Bandykite dar kartą."
     }
   },
   "drafts": {

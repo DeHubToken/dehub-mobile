@@ -6493,7 +6493,11 @@
         "false_dilemma": "एकतर - किंवा फ्रेमिंग",
         "overgeneralisation": "स्वीपिंग क्लेम",
         "hostile_tone": "वैमनस्यपूर्ण टोन"
-      }
+      },
+      "aiMenu": "AI साधने",
+      "changeVibe": "शैली बदला",
+      "fixSpelling": "शुद्धलेखन व व्याकरण सुधारा",
+      "rewriteFailed": "पुन्हा लिहिता आले नाही. पुन्हा प्रयत्न करा."
     }
   },
   "drafts": {

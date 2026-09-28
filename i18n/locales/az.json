@@ -6490,7 +6490,11 @@
         "false_dilemma": "Ya da çərçivələmə",
         "overgeneralisation": "Köklü iddia",
         "hostile_tone": "Ev sahibliyi tonu"
-      }
+      },
+      "aiMenu": "Sİ alətləri",
+      "changeVibe": "Ab-havanı dəyiş",
+      "fixSpelling": "Orfoqrafiya və qrammatikanı düzəlt",
+      "rewriteFailed": "Yenidən yazmaq alınmadı. Yenidən cəhd edin."
     }
   },
   "drafts": {

@@ -6520,7 +6520,11 @@
         "false_dilemma": "قاب‌بندی یا این یا آن",
         "overgeneralisation": "ادعای فراگیر",
         "hostile_tone": "لحن خصمانه"
-      }
+      },
+      "aiMenu": "ابزارهای هوش مصنوعی",
+      "changeVibe": "تغییر حال‌وهوا",
+      "fixSpelling": "اصلاح املا و دستور زبان",
+      "rewriteFailed": "بازنویسی ممکن نشد. دوباره تلاش کنید."
     }
   },
   "drafts": {

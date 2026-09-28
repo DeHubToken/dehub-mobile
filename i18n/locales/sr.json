@@ -6288,7 +6288,11 @@
         "false_dilemma": "Или-или уоквиривање",
         "overgeneralisation": "Захтјев за брисање",
         "hostile_tone": "Непријатељски тон"
-      }
+      },
+      "aiMenu": "AI алати",
+      "changeVibe": "Промени тон",
+      "fixSpelling": "Исправи правопис и граматику",
+      "rewriteFailed": "Није могуће преписати. Покушајте поново."
     }
   },
   "drafts": {

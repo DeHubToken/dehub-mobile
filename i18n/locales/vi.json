@@ -6503,7 +6503,11 @@
         "false_dilemma": "Đóng khung một trong hai",
         "overgeneralisation": "Yêu cầu thanh toán trực tiếp",
         "hostile_tone": "Giọng điệu thù địch"
-      }
+      },
+      "aiMenu": "Công cụ AI",
+      "changeVibe": "Đổi phong cách",
+      "fixSpelling": "Sửa chính tả và ngữ pháp",
+      "rewriteFailed": "Không thể viết lại. Hãy thử lại."
     }
   },
   "drafts": {

@@ -6513,7 +6513,11 @@
         "false_dilemma": "Na-na sary",
         "overgeneralisation": "Ny fehinteny ho fiarovana",
         "hostile_tone": "Ny'alotha Allseer"
-      }
+      },
+      "aiMenu": "Fitaovana AI",
+      "changeVibe": "Ovay ny endrika",
+      "fixSpelling": "Ahitsio ny tsipelina sy ny fitsipi-pitenenana",
+      "rewriteFailed": "Tsy afaka nanoratra indray. Andramo indray."
     }
   },
   "drafts": {
