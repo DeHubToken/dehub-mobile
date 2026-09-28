@@ -101,8 +101,8 @@ function squareStyle(style) {
 }
 
 /** Props with any radius in `style` / `imageStyle` squared off, or the same props. */
-function squareProps(props) {
-  if (!squaring || !props || typeof props !== "object") return props;
+function squareProps(props, minimal = squaring) {
+  if (!minimal || !props || typeof props !== "object") return props;
   const style = props.style !== undefined ? squareStyle(props.style) : undefined;
   const imageStyle = props.imageStyle !== undefined ? squareStyle(props.imageStyle) : undefined;
   if (style === props.style && imageStyle === props.imageStyle) return props;
