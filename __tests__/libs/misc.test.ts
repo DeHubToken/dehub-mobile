@@ -395,7 +395,7 @@ describe('libs/misc', () => {
     });
 
     it.each([
-      'Crab', 'Lobster', 'Piranha', 'Giant Tortoise', 'King Cobra', 'Octopus',
+      'Crab', 'Ghost Lobster', 'Piranha', 'Giant Tortoise', 'King Cobra', 'Octopus',
       'Crocodile', 'Dolphin', 'Tiger Shark', 'Great White Shark',
       'Killer Whale', 'Blue Whale', 'Megalodon',
     ])('keeps the %s artwork raised inside an explicit text line height', (tier) => {
