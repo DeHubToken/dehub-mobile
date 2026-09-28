@@ -5,7 +5,16 @@ jest.mock('../../components/ui/Icon', () => 'Icon');
 jest.mock('../../context/StageContext', () => ({ useStages: () => mockStage }));
 jest.mock('../../context/ThemeContext', () => ({ useAppTheme: () => ({ colors: { foreground: '#fff', background: '#000' } }) }));
 jest.mock('react-i18next', () => ({ useTranslation: () => ({ t: (key: string) => key }) }));
-jest.mock('react-native-reanimated', () => require('react-native-reanimated/mock'));
+jest.mock('react-native-reanimated', () => ({
+  __esModule: true,
+  default: { View: require('react-native').View },
+  useReducedMotion: () => true,
+  useSharedValue: () => ({ value: 0 }),
+  useAnimatedStyle: () => ({}),
+  cancelAnimation: jest.fn(),
+  withRepeat: jest.fn(),
+  withTiming: jest.fn(),
+}));
 import StageMiniPlayer from '../../components/Stages/StageMiniPlayer';
 
 const mockStage = { currentSpace: { title: 'Live room' }, isConnected: true, isModalOpen: false, openModal: jest.fn() };
