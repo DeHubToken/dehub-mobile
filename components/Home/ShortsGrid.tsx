@@ -79,6 +79,15 @@ const ShortsGrid: React.FC<ShortsGridProps> = ({
   // meant four to six concurrent streams per screen of grid; the rest show
   // their poster, and the viewer opens on tap anyway.
   const [playIndex, setPlayIndex] = useState<number | null>(null);
+  const [scrolling, setScrolling] = useState(false);
+  const beginScroll = useCallback(() => {
+    setScrolling(true);
+    onScrollBegin?.();
+  }, [onScrollBegin]);
+  const endScroll = useCallback(() => {
+    setScrolling(false);
+    onScrollEnd?.();
+  }, [onScrollEnd]);
 
   useScrollToTop(listRef);
 
@@ -208,13 +217,16 @@ const ShortsGrid: React.FC<ShortsGridProps> = ({
     [onScrollOffset],
   );
 
+  const viewerData = useRef({ displayItems, mergedParams, shuffleSeed });
+  viewerData.current = { displayItems, mergedParams, shuffleSeed };
   const handleItemPress = useCallback((index: number) => {
+    const current = viewerData.current;
     navigation.navigate(ScreenNames.ShortsViewer, {
       initialIndex: index,
-      initialItems: displayItems,
-      feedParams: { ...mergedParams, shuffleSeed },
+      initialItems: current.displayItems,
+      feedParams: { ...current.mergedParams, shuffleSeed: current.shuffleSeed },
     });
-  }, [displayItems, mergedParams, navigation, shuffleSeed]);
+  }, [navigation]);
 
   const onViewableItemsChanged = useRef(({ viewableItems }: { viewableItems: ViewToken[] }) => {
     // Viewability here means (nearly) fully on screen, so the first such cell
@@ -234,12 +246,12 @@ const ShortsGrid: React.FC<ShortsGridProps> = ({
       <ShortsGridCard
         item={item}
         index={index}
-        isVisible={active && playIndex === index}
+        isVisible={active && !scrolling && playIndex === index}
         onPress={handleItemPress}
         onUnavailable={markUnavailable}
       />
     ),
-    [handleItemPress, playIndex, markUnavailable, active],
+    [handleItemPress, playIndex, markUnavailable, active, scrolling],
   );
 
   const keyExtractor = useCallback(
@@ -301,7 +313,7 @@ const ShortsGrid: React.FC<ShortsGridProps> = ({
         }}
         showsVerticalScrollIndicator={false}
         initialNumToRender={8}
-        maxToRenderPerBatch={8}
+        maxToRenderPerBatch={2}
         windowSize={9}
         removeClippedSubviews={false}
         onEndReached={loadMore}
@@ -309,9 +321,10 @@ const ShortsGrid: React.FC<ShortsGridProps> = ({
         onViewableItemsChanged={onViewableItemsChanged}
         viewabilityConfig={viewabilityConfig}
         onScroll={scrollHandler ?? handleScroll}
-        onScrollBeginDrag={onScrollBegin}
-        onScrollEndDrag={onScrollEnd}
-        onMomentumScrollEnd={onScrollEnd}
+        onScrollBeginDrag={beginScroll}
+        onScrollEndDrag={endScroll}
+        onMomentumScrollBegin={beginScroll}
+        onMomentumScrollEnd={endScroll}
         scrollEventThrottle={16}
         refreshControl={
           <DeHubRefreshControl
