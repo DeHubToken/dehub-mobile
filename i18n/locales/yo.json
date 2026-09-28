@@ -5126,8 +5126,9 @@
     "tokenPrice": "{{amount}} àmi-òwo",
     "tokensUnit": "àmi-òwo",
     "atPreListingRate": "{{amount}} ní iye àkójọ",
-    "custodyNote": "Àwọn àmi-òwo rẹ dúró nínú ìfipamọ́ DeHub, a kò sì tà wọ́n. Olùdásílẹ̀ náà yóò gba ìwọ̀n ìkówọ́ tí a fi USDT ṣe àmì-òwo.",
-    "creatorReceives": "Ẹlẹ́dàá gba kírẹ́dítì {{amount}} USDT"
+    "paidToCreatorWallet": "Lọ taara si apamọwọ ẹlẹda.",
+    "creatorPaidDirectNote": "Ìpín olùṣẹ̀dá náà lọ tààrà sí àpamọ́ wọn ní àsìkò tí o bá ṣe ìforúkọsílẹ̀. DeHub máa ń san owó orí pẹpẹ kékeré.",
+    "creatorEarnsDirect": "Àwọn àmúyẹ fun gbígbọ́ orin ko le ṣiṣẹ lori ẹ̀rọ rẹ Àkọlé fídíò, ìwé àṣàrò kúkúrú, ìwé àṣàrò kúkúrú, ìwé àṣàrò kúkúrú. Àwọn ilẹ̀ ìpín rẹ nínú àpamọ́ rẹ ní àsìkò tí wọ́n bá ṣe ìforúkọsílẹ̀, dín owó pẹpẹ kù fún ìpele ìfipamọ́ rẹ."
   },
   "live": {
     "notSet": "Kò tíì ṣètò",
@@ -5391,17 +5392,10 @@
     "staked": "Tí a fi sí staking",
     "gotIt": "Mo ti gbọ́",
     "otherBalancesNote": "Àwọn ìyókù rẹ wà lórí {{network}} (ẹ̀wọ̀n {{chainId}}) nìkan. {{gas}} ni ìyókù gas rẹ. Àwọn iye lè pẹ́ díẹ̀ ní ìṣẹ́jú-àáyá. Gbé àwọn ohun-ìní lọ sí {{network}} kí o lè lò wọ́n níbí.",
-    "subscriptionEarnings": "Owó láti ọ̀dọ̀ alábùwọlé",
-    "cashOut": "Yọ owó",
-    "withdrawing": "Ń yọ…",
-    "withdrawableSoon": "Owó alábùwọlé yóò ṣeé yọ láìpẹ́",
     "dpayBaseOnly": "Dpay wà lórí Base nìkan.",
     "tokensAndStocks": "Awọn ami-iṣowo & awọn iṣura",
     "dhbPositionNote": "Èyí ni gbogbo ipò àmi-òwo rẹ — tí a mú dúró àti tí a fi pamọ́, kárí Base àti BNB Chain. Ọ̀pọ̀lọpọ̀ rẹ̀ ni a máa ń fi pamọ́, nítorí náà èyí tóbi ju ohun tí o lè ná lọ́wọ́lọ́wọ́.",
-    "stakedIncludesUnstaking": "Àwọn àmi-òwo tí a fi pamọ́ ni ohunkóhun tí o ti béèrè láti túmọ̀ sí ṣùgbọ́n tí o kò tíì gbà padà.",
-    "usdtSent": "A ti fi {{amount}} USDT ránṣẹ́",
-    "withdrawableOnBase": "Ó wà fún yíyọ lórí Base",
-    "pendingTreasury": "Ní USDT · ń dúró de ìpamọ́ ilé-ìṣúra"
+    "stakedIncludesUnstaking": "Àwọn àmi-òwo tí a fi pamọ́ ni ohunkóhun tí o ti béèrè láti túmọ̀ sí ṣùgbọ́n tí o kò tíì gbà padà."
   },
   "feedCard": {
     "reactionTip": "Di bọ́tìnnì ìfẹ́ mú fún àwọn ìdáhùn míràn",

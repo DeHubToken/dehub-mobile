@@ -5129,8 +5129,9 @@
     "tokenPrice": "{{amount}} tokens",
     "tokensUnit": "tokens",
     "atPreListingRate": "{{amount}}til satsen før annoncering",
-    "custodyNote": "Dine tokens forbliver i DeHub treasury custody og sælges ikke. Skaberen modtager en USDT-denomineret abonnementssaldo.",
-    "creatorReceives": "Skaberen modtager {{amount}} USDT i kredit"
+    "paidToCreatorWallet": "Går direkte til kreatørens tegnebog",
+    "creatorPaidDirectNote": "Kreatørens andel går direkte til vedkommendes tegnebog, så snart du abonnerer. DeHub beholder et lille platformgebyr.",
+    "creatorEarnsDirect": "Abonnenter betaler i DeHub-tokens. Din andel lander i din tegnebog, så snart vedkommende abonnerer, minus platformsgebyret for dit badgeniveau."
   },
   "live": {
     "notSet": "Ikke angivet",
@@ -5394,17 +5395,10 @@
     "staked": "Indsat",
     "gotIt": "Forstået",
     "otherBalancesNote": "Dine andre saldi er kun på {{network}} (kæde {{chainId}}). {{gas}} er din gas-saldo. Værdier kan halte et par sekunder bagefter. Brug bro eller overfør aktiver til {{network}} for at bruge dem her.",
-    "subscriptionEarnings": "Abonnementsindtægter",
-    "cashOut": "Hæv",
-    "withdrawing": "Hæver…",
-    "withdrawableSoon": "Abonnementsgebyrer kan snart hæves",
     "dpayBaseOnly": "Dpay er kun tilgængelig på Base.",
     "tokensAndStocks": "Tokens & aktier",
     "dhbPositionNote": "Dette er din samlede tokenposition — holdt plus staket, på tværs af Base og BNB Chain. Det meste er normalt staket, så dette er større end hvad du kan bruge lige nu.",
-    "stakedIncludesUnstaking": "Stakede tokens inkluderer alt, hvad du har bedt om at unstake, men endnu ikke har modtaget tilbage.",
-    "usdtSent": "{{amount}} USDT sendt",
-    "withdrawableOnBase": "Kan hæves på Base",
-    "pendingTreasury": "I USDT · afventer statskassereserve"
+    "stakedIncludesUnstaking": "Stakede tokens inkluderer alt, hvad du har bedt om at unstake, men endnu ikke har modtaget tilbage."
   },
   "feedCard": {
     "reactionTip": "Hold liker-knappen nede for flere reaktioner",

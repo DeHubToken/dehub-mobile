@@ -5125,8 +5125,9 @@
     "tokenPrice": "{{amount}} token",
     "tokensUnit": "token",
     "atPreListingRate": "Sanawa girizilmezden öňki nyrhda {{amount}}",
-    "custodyNote": "Siziň tokenleriňiz DeHub hazyna gözegçiliginde galýar we satylmaýar. Ýaradyjy USDT-de bahalandyrylan abuna balansyny alýar.",
-    "creatorReceives": "Döredijiler {{amount}} USDT karz alýar"
+    "paidToCreatorWallet": "Ýaradyjynyň çuwalyna baryň",
+    "creatorPaidDirectNote": "Ýaradyjynyň paýy siz ýazylan pursadyňyzda, olaryň pulçusyna geçýär. DeHub kiçijik platforma tölegini saklaýar.",
+    "creatorEarnsDirect": "Abonentler DeHub tokensinde töleýärler. Siziň paýyňyz olaryň ýazylan pursadyna çenli pul çuwalyňyzda ýerleşýär, bu bolsa pul çuwalyňyz üçin platformyň tölegini azaltýar."
   },
   "live": {
     "notSet": "Bellenmedi",
@@ -5390,17 +5391,10 @@
     "staked": "Steýkde",
     "gotIt": "Düşündim",
     "otherBalancesNote": "Beýleki galyndylaryňyz diňe {{network}} (zynjyr {{chainId}}) tor bar. {{gas}} siziň gaz galyndyňyzdyr. Bahalar birnäçe sekunt gijä galyp biler. Bu ýerde ulanmak üçin aktiwleri {{network}} tora geçiriň.",
-    "subscriptionEarnings": "Abunýa girdejisi",
-    "cashOut": "Çykar",
-    "withdrawing": "Çykarylýar…",
-    "withdrawableSoon": "Abunýa tölegleri ýakyn wagtda çykaryp bolar",
     "dpayBaseOnly": "Dpay diňe Base-de elýeterlidir.",
     "tokensAndStocks": "Tokenler we aksiýalar",
     "dhbPositionNote": "Bu siziň ähli token pozisiýaňyz — saklanan we goýlan, Base we BNB zynjyrlary boýunça. Köpüsi adatça goýlan, şonuň üçin bu häzir ulanyp bilýän zadyňyzdan köpdür.",
-    "stakedIncludesUnstaking": "Goýlan tokenler, size täzeden berilmegi soralan, ýöne heniz alyp bolmadyk islendik zady öz içine alýar.",
-    "usdtSent": "{{amount}} USDT iberildi",
-    "withdrawableOnBase": "Base-de çykaryp bolýar",
-    "pendingTreasury": "USDT-de · hazyna ätiýaçlygyna garaşylýar"
+    "stakedIncludesUnstaking": "Goýlan tokenler, size täzeden berilmegi soralan, ýöne heniz alyp bolmadyk islendik zady öz içine alýar."
   },
   "feedCard": {
     "reactionTip": "Has köp reaksiýa üçin halamak düwmesini basyp saklaň",

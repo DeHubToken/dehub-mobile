@@ -5156,8 +5156,9 @@
     "tokenPrice": "{{amount}} amathokheni",
     "tokensUnit": "amathokheni",
     "atPreListingRate": "{{amount}} ngesilinganiso sangaphambi kokufaka indlu",
-    "custodyNote": "Amathokheni akho ahlala ekugcineni kwe-DeHub futhi awathengiswa. Umdali uthola ibhalansi yokubhalisa ehlanganiswe ne-USDT.",
-    "creatorReceives": "Umdali uthola isikweletu se-{{amount}} USDT"
+    "paidToCreatorWallet": "Iya ngqo esikhwameni somsunguli",
+    "creatorPaidDirectNote": "Isabelo somsunguli siya ngqo esikhwameni sakhe semali lapho ubhalisa. I-DeHub igcina inani elincane lepulatifomu.",
+    "creatorEarnsDirect": "Ababhalisile bakhokha ngamathokheni e-DeHub. Izabelo zakho zihlala esikhwameni sakho semali lapho zibhalisa, nciphisa inani lepulatifomu lebanga lakho lebheji."
   },
   "live": {
     "notSet": "Akuzange kusethwe",
@@ -5421,17 +5422,10 @@
     "staked": "Okufakiwe",
     "gotIt": "Ngiyaqonda",
     "otherBalancesNote": "Amanye amabhalansi akho ase-{{network}} (uchungechunge {{chainId}}) kuphela. I-{{gas}} yibhalansi yakho yegesi. Amanani angase ephuze ngemizuzwana embalwa. Dlulisela impahla ku-{{network}} ukuze uyisebenzise lapha.",
-    "subscriptionEarnings": "Imali engenayo yokubhalisa",
-    "cashOut": "Khipha imali",
-    "withdrawing": "Kuyakhishwa…",
-    "withdrawableSoon": "Izimali zokubhalisa zizokwazi ukukhishwa maduze",
     "dpayBaseOnly": "I-Dpay itholakala ku-Base kuphela.",
     "tokensAndStocks": "Amathokheni & izitoko",
     "dhbPositionNote": "Lena yindawo yakho yonke yamathokheni — agciniwe kanye nabekwe, ku-Base naku-BNB Chain. Iningi lawo ngokuvamile libekwe, ngakho-ke leli likhulu kunalokho ongakuchitha njengamanje.",
-    "stakedIncludesUnstaking": "Amathokheni abekwe afaka noma yini oyicela ukuthi ikhishwe kodwa ongakayitholi.",
-    "usdtSent": "Kuthunyelwe {{amount}} USDT",
-    "withdrawableOnBase": "Kuyatholakala ukukhipha ku-Base",
-    "pendingTreasury": "Kubalwa nge-USDT · kulindwe isilondolozo somnyango wezimali"
+    "stakedIncludesUnstaking": "Amathokheni abekwe afaka noma yini oyicela ukuthi ikhishwe kodwa ongakayitholi."
   },
   "feedCard": {
     "reactionTip": "Bamba inkinobho yokuthanda ukuze uthole okunye ukusabela",

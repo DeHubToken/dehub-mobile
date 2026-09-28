@@ -5125,8 +5125,9 @@
     "tokenPrice": "{{amount}} tokenia",
     "tokensUnit": "tokenia",
     "atPreListingRate": "{{amount}} ennakkoilmoituksen hinnalla",
-    "custodyNote": "Tokenisi pysyvät DeHubin rahaston hallussa eivätkä ole myynnissä. Luoja saa USDT-määräisen tilaus-saldon.",
-    "creatorReceives": "Tekijä saa {{amount}} USDT hyvitystä"
+    "paidToCreatorWallet": "Siirtyy suoraan tekijän lompakkoon",
+    "creatorPaidDirectNote": "Tekijän osuus menee suoraan hänen lompakkoonsa heti, kun tilaat. DeHubilla on pieni palvelumaksu.",
+    "creatorEarnsDirect": "Tilaajat maksavat DeHub-poletteina. Osuutesi siirtyy lompakkoosi heti, kun he tilaavat sen, vähennettynä erikoismerkkitasostasi perittävällä alustamaksulla."
   },
   "live": {
     "notSet": "Ei asetettu",
@@ -5390,17 +5391,10 @@
     "staked": "Panostettu",
     "gotIt": "Selvä",
     "otherBalancesNote": "Muut saldosi ovat vain verkossa {{network}} (ketju {{chainId}}). {{gas}} on kaasusaldosi. Arvot voivat laahata muutaman sekunnin. Siirrä varat verkkoon {{network}}, jotta voit käyttää niitä täällä.",
-    "subscriptionEarnings": "Tilaustuotot",
-    "cashOut": "Nosta",
-    "withdrawing": "Nostetaan…",
-    "withdrawableSoon": "Tilausmaksut ovat pian nostettavissa",
     "dpayBaseOnly": "Dpay on käytettävissä vain Basessa.",
     "tokensAndStocks": "Tokenit ja osakkeet",
     "dhbPositionNote": "Tämä on koko token-asemasi – pidetyt ja panostetut, Base- ja BNB-ketjussa. Suurin osa siitä on yleensä panostettuna, joten tämä on suurempi kuin mitä voit käyttää tällä hetkellä.",
-    "stakedIncludesUnstaking": "Panostetut tokenit sisältävät kaiken, mitä olet pyytänyt nostamaan, mutta et ole vielä saanut takaisin.",
-    "usdtSent": "{{amount}} USDT lähetetty",
-    "withdrawableOnBase": "Nostettavissa Basessa",
-    "pendingTreasury": "USDT-määräinen · odottaa rahaston reserviä"
+    "stakedIncludesUnstaking": "Panostetut tokenit sisältävät kaiken, mitä olet pyytänyt nostamaan, mutta et ole vielä saanut takaisin."
   },
   "feedCard": {
     "reactionTip": "Pidä tykkää-painiketta painettuna nähdäksesi lisää reaktioita",

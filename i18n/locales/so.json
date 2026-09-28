@@ -5125,8 +5125,9 @@
     "tokenPrice": "{{amount}} token",
     "tokensUnit": "token",
     "atPreListingRate": "{{amount}} heerka pre-listing",
-    "custodyNote": "Token-kaaga waxa uu ku jiraa DeHub khasnajiga oo aan la iibin. Abuuraha waxa uu helaa dheelitirnaan isdiiwaangelin oo lagu bixiyo USDT.",
-    "creatorReceives": "Abuuraha wuxuu helayaa {{amount}} USDT deyn ah"
+    "paidToCreatorWallet": "Si toos ah u tag boorsada abuuraha",
+    "creatorPaidDirectNote": "Saamiga abuuraha wuxuu si toos ah ugu socdaa boorsadooda marka aad isdiiwaangeliso. DeHub wuxuu hayaa khidmad yar oo madal ah.",
+    "creatorEarnsDirect": "Macaamiisha waxay bixiyaan calaamadaha DeHub. Dhulalka saamigaaga ee boorsadaada marka ay isdiiwaangeliyaan, ka yar qiimaha boosteejada ee heerka calaamaddaada."
   },
   "live": {
     "notSet": "Lama dejin",
@@ -5390,17 +5391,10 @@
     "staked": "La dhigay",
     "gotIt": "Waan fahmay",
     "otherBalancesNote": "Hadhaagaaga kale waxay ku jiraan {{network}} (silsilada {{chainId}}) oo keliya. {{gas}} waa hadhaaga gaaska. Qiimayaashu waxay daahi karaan dhowr ilbiriqsi. U wareeji hantida {{network}} si aad halkan uga isticmaasho.",
-    "subscriptionEarnings": "Dakhliga rukumaadka",
-    "cashOut": "Lacag bixi",
-    "withdrawing": "Waa la bixinayaa…",
-    "withdrawableSoon": "Khidmadaha rukumaadka dhawaan waa la bixin doonaa",
     "dpayBaseOnly": "Dpay wuxuu ku shaqeeyaa Base oo keliya.",
     "tokensAndStocks": "Calaamadaha & Kaydka",
     "dhbPositionNote": "Tani waa dhammaan boqolkiiba token-kaaga — la haysto iyo kaydinta, dhammaan Base iyo BNB Chain. Intooda badan waxa la kaydiyaa, markaa tani waa ka weyn tahay waxa aad hadda isticmaali karto.",
-    "stakedIncludesUnstaking": "Token-ka kaydsan waxa ka mid ah wax kasta oo aad codsatay in la furo laakiin aan weli helin.",
-    "usdtSent": "{{amount}} USDT ayaa la diray",
-    "withdrawableOnBase": "Waa la bixin karaa Base",
-    "pendingTreasury": "Lagu qiimeeyay USDT · sugaya kaydka khasnadda"
+    "stakedIncludesUnstaking": "Token-ka kaydsan waxa ka mid ah wax kasta oo aad codsatay in la furo laakiin aan weli helin."
   },
   "feedCard": {
     "reactionTip": "Falcelin dheeraad ah, ku hay badhanka jeclaysiga",

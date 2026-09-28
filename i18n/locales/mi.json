@@ -5125,8 +5125,9 @@
     "tokenPrice": "{{amount}} tohu",
     "tokensUnit": "tohu",
     "atPreListingRate": "{{amount}} i te reiti o mua",
-    "custodyNote": "Ka noho ngā tohu ki te tiaki a te DeHub, kāore e hokona. Ka whiwhi te kaihanga i tētahi pauna ohaurunga USDT-denominated.",
-    "creatorReceives": "Ka whiwhi te kaihanga i te nama {{amount}} USDT"
+    "paidToCreatorWallet": "Haere tika ki te putea o te Kaihanga",
+    "creatorPaidDirectNote": "Ko te wahi o te kaihanga haere tika ki to ratou putea i te wa e ohauru koe. Kei te pupuri a DeHub i te utu papa iti.",
+    "creatorEarnsDirect": "Ka utua e nga kaiohauru nga tohu DeHub. Ko to koutou wahi whenua i roto i to koutou putea i te wa e rēhita ratou, iti iho i te utu papa mo to koutou taumata badge."
   },
   "live": {
     "notSet": "Kāore i tautuhia",
@@ -5390,17 +5391,10 @@
     "staked": "Kua tāpaetia",
     "gotIt": "Kua mārama",
     "otherBalancesNote": "Kei runga i te {{network}} (mekameka {{chainId}}) anake ō toenga kē. Ko {{gas}} tō toenga hinu. Tērā pea ka whakaroa ngā uara mō ētahi hēkona. Whakawhitia ngā rawa ki {{network}} kia whakamahia i konei.",
-    "subscriptionEarnings": "Moni ohaoha ā-ohunga",
-    "cashOut": "Tango moni",
-    "withdrawing": "E tango ana…",
-    "withdrawableSoon": "Kāore e roa ka taea te tango i ngā utu ohunga",
     "dpayBaseOnly": "Kei Base anake a Dpay.",
     "tokensAndStocks": "Tōkena me ngā hea",
     "dhbPositionNote": "Ko tēnei tō tūnga tohu katoa — kei te pupuri me te whakauru, puta noa i te Base me te BNB Chain. Ko te nuinga o taua mea ka whakauruhia, nō reira he nui ake tēnei i tō e taea e koe te whakapau i tēnei wā.",
-    "stakedIncludesUnstaking": "Kei roto i ngā tohu whakauru ngā mea katoa kua tono koe kia unuhia engari kāore anō kia tae mai ki a koe.",
-    "usdtSent": "Kua tukuna {{amount}} USDT",
-    "withdrawableOnBase": "E wātea ana kia tangohia i Base",
-    "pendingTreasury": "Ka whakawhāititia ki te USDT · e tatari ana ki te pūtea rāhui"
+    "stakedIncludesUnstaking": "Kei roto i ngā tohu whakauru ngā mea katoa kua tono koe kia unuhia engari kāore anō kia tae mai ki a koe."
   },
   "feedCard": {
     "reactionTip": "Pēhi roa i te pātene pai ki ahau mō ētahi atu tauhohenga",

@@ -5155,8 +5155,9 @@
     "tokenPrice": "{{amount}} ቶከኖች",
     "tokensUnit": "ቶከኖች",
     "atPreListingRate": "{{amount}} በቅድመ-ዝርዝሩ መጠን",
-    "custodyNote": "የእርስዎ ቶከኖች በDeHub ግምጃ ቤት ቁጥጥር ስር ይቆያሉ እና አይሸጡም። ፈጣሪ የUSDT-denominated የደንበኝነት ምዝገባ ቀሪ ሂሳብ ይቀበላል።",
-    "creatorReceives": "ፈጣሪው {{amount}} USDT ክሬዲት ይቀበላል"
+    "paidToCreatorWallet": "በቀጥታ ወደ ፈጣሪ ቦርሳ ይሂዱ",
+    "creatorPaidDirectNote": "የፈጣሪ ድርሻ እርስዎ በሚመዘገቡበት ቅጽበት በቀጥታ ወደ ኪስዎ ይሄዳል ። DeHub አነስተኛ የመሣሪያ ስርዓት ክፍያዎችን ይጠብቃል ።",
+    "creatorEarnsDirect": "ተመዝጋቢዎች በ DeHub ምልክቶች ውስጥ ይከፍላሉ ። የእርስዎ ድርሻ መሬቶች በኪስ ቦርሳዎ ውስጥ በሚመዘገቡበት ቅጽበት ፣ ለባጅ ደረጃዎ የመድረክ ክፍያ ያነሰ ።"
   },
   "live": {
     "notSet": "አልተቀናበረም",
@@ -5420,17 +5421,10 @@
     "staked": "የተቀመጠ",
     "gotIt": "ገባኝ",
     "otherBalancesNote": "ሌሎች ቀሪ ሂሳቦችዎ በ{{network}} ({{chainId}} ሰንሰለት) ላይ ብቻ ናቸው። {{gas}} የነዳጅ ሂሳብዎ ነው። እሴቶች ጥቂት ሰከንዶች ሊዘገዩ ይችላሉ። እዚህ ለመጠቀም ንብረቶችን ወደ {{network}} ያሻግሩ ወይም ያስተላልፉ።",
-    "subscriptionEarnings": "የምዝገባ ገቢ",
-    "cashOut": "አውጣ",
-    "withdrawing": "በማውጣት ላይ…",
-    "withdrawableSoon": "የምዝገባ ክፍያዎች በቅርቡ ማውጣት ይቻላል",
     "dpayBaseOnly": "Dpay የሚገኘው በBase ላይ ብቻ ነው።",
     "tokensAndStocks": "ቶከኖች እና አክሲዮኖች",
     "dhbPositionNote": "ይህ የእርስዎ ሙሉ የቶከን ቦታ ነው — በBase እና BNB Chain ላይ የተያዘ እና የተከማቸ። አብዛኛው ብዙውን ጊዜ የተከማቸ ነው፣ ስለዚህ ይህ አሁን ከሚችሉት በላይ ነው።",
-    "stakedIncludesUnstaking": "የተከማቹ ቶከኖች እርስዎ መልሰው ለመቀበል የጠየቁትን ነገር ግን ገና ያልተቀበሉትን ሁሉ ያካትታሉ።",
-    "usdtSent": "{{amount}} USDT ተልኳል",
-    "withdrawableOnBase": "በBase ላይ ለማውጣት ዝግጁ",
-    "pendingTreasury": "በUSDT የተተመነ · የግምጃ ቤት ክምችት በመጠባበቅ ላይ"
+    "stakedIncludesUnstaking": "የተከማቹ ቶከኖች እርስዎ መልሰው ለመቀበል የጠየቁትን ነገር ግን ገና ያልተቀበሉትን ሁሉ ያካትታሉ።"
   },
   "feedCard": {
     "reactionTip": "ለተጨማሪ ምላሾች የመውደድ ቁልፉን ተጭነው ይያዙ",

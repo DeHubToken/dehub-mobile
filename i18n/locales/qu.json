@@ -5156,8 +5156,9 @@
     "tokenPrice": "{{amount}} tokenkuna",
     "tokensUnit": "tokenkuna",
     "atPreListingRate": "{{amount}} chay tarifa pre-lista nisqapi",
-    "custodyNote": "Qanpa tokennikuna DeHub k'aspichapi waqaychasqa kachkan, mana salt'asqachu. Kamachiqqa USDT-pi sutichasqa qullqita hapin.",
-    "creatorReceives": "Kamaqqa {{amount}} USDT kreditota chaskin"
+    "paidToCreatorWallet": "Kamaqpa billeteranman chiqan rin",
+    "creatorPaidDirectNote": "Ruwaqpa rakiyninqa derecho billeterankuman rin chay rato suscribisqayki. DeHub huk huch&#39;uy plataforma qullqita waqaychan.",
+    "creatorEarnsDirect": "Suscriptorkuna DeHub tokenkunapi qullqita qunku. Accionesniyki billeteraykipi chayan chay rato suscribisqanku, menos plataforma qullqita insignia nivelniykipaq."
   },
   "live": {
     "notSet": "Mana churasqa",
@@ -5421,17 +5422,10 @@
     "staked": "Churasqa",
     "gotIt": "Hap' irquni",
     "otherBalancesNote": "Huk qullqiykikunaqa {{network}} (chain {{chainId}}) ukhullapim. {{gas}} gas qullqiykim. Yupaykunaqa pisi segundollatam qhipakunman. Kaypi llamk'achinaykipaq imayuq kaykunata {{network}} man apachiy.",
-    "subscriptionEarnings": "Qillqakuymanta qullqi",
-    "cashOut": "Qullqita horqoy",
-    "withdrawing": "Horqochkan…",
-    "withdrawableSoon": "Qillqakuy chaninkunaqa ñachu horqonalla kanqa",
     "dpayBaseOnly": "Dpay Base ukhullapim tarikun.",
     "tokensAndStocks": "Fichas & stocks nisqakuna",
     "dhbPositionNote": "Kayqa tukuy tokennikuna — hapishasqa chaynataq churashasqa, Base chaynataq BNB Chainpi. Astawanqa churashasqa kachkan, chayraykuytaq kunanqa pisillata llamk'achiyta atinki.",
-    "stakedIncludesUnstaking": "Churashasqa tokenkunaqa imaymana churashasqayki chaynataq kutiyta munashasqayki chaykuna, ichaqa manaraq hapishasqayki.",
-    "usdtSent": "{{amount}} USDT apachisqa",
-    "withdrawableOnBase": "Base ukhupi horqonapaq",
-    "pendingTreasury": "USDT-pi · qullqi wasi waqaychaykuta suyachkan"
+    "stakedIncludesUnstaking": "Churashasqa tokenkunaqa imaymana churashasqayki chaynataq kutiyta munashasqayki chaykuna, ichaqa manaraq hapishasqayki."
   },
   "feedCard": {
     "reactionTip": "Munani butunta ñit'iykuy aswan kutichiykunapaq",

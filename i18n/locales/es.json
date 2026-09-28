@@ -5174,8 +5174,9 @@
     "tokenPrice": "{{amount}} tokens",
     "tokensUnit": "tokens",
     "atPreListingRate": "{{amount}} a la tarifa de la lista previa",
-    "custodyNote": "Tus tokens permanecen bajo la custodia del tesoro de DeHub y no se venden. El creador recibe un saldo de suscripción denominado en USDT.",
-    "creatorReceives": "El creador recibe {{amount}} USDT de crédito"
+    "paidToCreatorWallet": "Va directamente al monedero del creador",
+    "creatorPaidDirectNote": "La parte del creador va directamente a su billetera en el momento en que te suscribes. DeHub mantiene una pequeña tarifa de plataforma.",
+    "creatorEarnsDirect": "Los suscriptores pagan en tokens DeHub. Tu acción llega a tu billetera en el momento en que se suscriben, menos la tarifa de la plataforma para tu nivel de insignia."
   },
   "live": {
     "notSet": "Sin definir",
@@ -5439,17 +5440,10 @@
     "staked": "En staking",
     "gotIt": "Entendido",
     "otherBalancesNote": "Tus otros saldos están solo en {{network}} (cadena {{chainId}}). {{gas}} es tu saldo de gas. Los valores pueden tardar unos segundos. Usa un puente o transfiere activos a {{network}} para utilizarlos aquí.",
-    "subscriptionEarnings": "Ingresos por suscripciones",
-    "cashOut": "Retirar",
-    "withdrawing": "Retirando…",
-    "withdrawableSoon": "Las cuotas de suscripción se podrán retirar pronto",
     "dpayBaseOnly": "Dpay solo está disponible en Base.",
     "tokensAndStocks": "Tokens y acciones",
     "dhbPositionNote": "Esta es tu posición total de tokens — mantenida más apostada, en Base y BNB Chain. La mayoría suele estar apostada, por lo que es mayor de lo que puedes gastar ahora mismo.",
-    "stakedIncludesUnstaking": "Los tokens apostados incluyen todo lo que has pedido retirar pero que aún no has recibido de vuelta.",
-    "usdtSent": "Se enviaron {{amount}} USDT",
-    "withdrawableOnBase": "Disponible para retirar en Base",
-    "pendingTreasury": "En USDT · pendiente de la reserva de tesorería"
+    "stakedIncludesUnstaking": "Los tokens apostados incluyen todo lo que has pedido retirar pero que aún no has recibido de vuelta."
   },
   "feedCard": {
     "reactionTip": "Mantén pulsado el botón de me gusta para ver más reacciones",

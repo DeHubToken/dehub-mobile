@@ -5125,8 +5125,9 @@
     "tokenPrice": "{{amount}} tokena",
     "tokensUnit": "tokena",
     "atPreListingRate": "{{amount}} po stopi prije oglašavanja",
-    "custodyNote": "Vaši tokeni ostaju u trezoru DeHub-a i ne prodaju se. Kreator dobiva pretplatnički saldo denominiran u USDT-u.",
-    "creatorReceives": "Autor prima {{amount}} USDT kredita"
+    "paidToCreatorWallet": "Ide izravno u kreatorov novčanik",
+    "creatorPaidDirectNote": "Kreatorov udio ide izravno u njegov novčanik čim se pretplatiš. DeHub zadržava malu naknadu za platformu.",
+    "creatorEarnsDirect": "Pretplatnici plaćaju u DeHub žetonima. Tvoja dionica završava u novčaniku čim se pretplati, umanjena za naknadu za platformu za tvoju razinu značke."
   },
   "live": {
     "notSet": "Nije postavljeno",
@@ -5390,17 +5391,10 @@
     "staked": "U stakingu",
     "gotIt": "Razumijem",
     "otherBalancesNote": "Ostala stanja su samo na {{network}} (lanac {{chainId}}). {{gas}} je vaše stanje za naknade. Vrijednosti mogu kasniti nekoliko sekundi. Prebacite imovinu na {{network}} da biste je koristili ovdje.",
-    "subscriptionEarnings": "Zarada od pretplata",
-    "cashOut": "Isplati",
-    "withdrawing": "Isplaćuje se…",
-    "withdrawableSoon": "Naknade od pretplata uskoro će se moći isplatiti",
     "dpayBaseOnly": "Dpay je dostupan samo na Baseu.",
     "tokensAndStocks": "Tokeni i dionice",
     "dhbPositionNote": "Ovo je vaša cjelokupna pozicija tokena — zadržana plus uložena, na Base i BNB Chainu. Većina je obično uložena, tako da je ovo više nego što možete potrošiti trenutno.",
-    "stakedIncludesUnstaking": "Uloženi tokeni uključuju sve što ste zatražili da se povuče, ali još niste primili natrag.",
-    "usdtSent": "Poslano {{amount}} USDT",
-    "withdrawableOnBase": "Dostupno za isplatu na Baseu",
-    "pendingTreasury": "U USDT-u · čeka rezervu riznice"
+    "stakedIncludesUnstaking": "Uloženi tokeni uključuju sve što ste zatražili da se povuče, ali još niste primili natrag."
   },
   "feedCard": {
     "reactionTip": "Za više reakcija pritisnite i držite gumb Sviđa mi se",

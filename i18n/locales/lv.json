@@ -5125,8 +5125,9 @@
     "tokenPrice": "{{amount}} žetoni",
     "tokensUnit": "žetoni",
     "atPreListingRate": "{{amount}} pēc iepriekšēja sludinājuma cenas",
-    "custodyNote": "Jūsu žetoni paliek DeHub kases pārvaldībā un netiek pārdoti. Radītājs saņem USDT denominētu abonementu atlikumu.",
-    "creatorReceives": "Autors saņem {{amount}} USDT kredītu"
+    "paidToCreatorWallet": "Dodas tieši uz radītāja maku",
+    "creatorPaidDirectNote": "Radītāja daļa nonāk tieši viņa makā brīdī, kad jūs abonējat. DeHub patur nelielu platformas maksu.",
+    "creatorEarnsDirect": "Abonenti maksā DeHub žetonos. Abonēšanas brīdī jūsu daļa nonāk jūsu makā, atskaitot platformas nodevu par jūsu nozīmītes līmeni."
   },
   "live": {
     "notSet": "Nav iestatīts",
@@ -5390,17 +5391,10 @@
     "staked": "Likmē",
     "gotIt": "Sapratu",
     "otherBalancesNote": "Pārējie atlikumi ir tikai {{network}} tīklā (ķēde {{chainId}}). {{gas}} ir jūsu gāzes atlikums. Vērtības var atpalikt dažas sekundes. Pārsūtiet aktīvus uz {{network}}, lai tos šeit izmantotu.",
-    "subscriptionEarnings": "Abonementu ieņēmumi",
-    "cashOut": "Izņemt",
-    "withdrawing": "Notiek izņemšana…",
-    "withdrawableSoon": "Abonementa maksas drīzumā varēs izņemt",
     "dpayBaseOnly": "Dpay ir pieejams tikai Base tīklā.",
     "tokensAndStocks": "Žetoni un akcijas",
     "dhbPositionNote": "Šī ir visa jūsu žetonu pozīcija — turēta un iemaksāta, gan Base, gan BNB Chain. Lielākā daļa parasti tiek iemaksāta, tāpēc tā ir lielāka nekā tā, ko jūs varat tērēt pašlaik.",
-    "stakedIncludesUnstaking": "Iemaksātie žetoni ietver visu, ko esat pieprasījis atsaukt, bet vēl neesat saņēmis atpakaļ.",
-    "usdtSent": "Nosūtīts {{amount}} USDT",
-    "withdrawableOnBase": "Pieejams izņemšanai Base tīklā",
-    "pendingTreasury": "USDT izteiksmē · gaida kases rezervi"
+    "stakedIncludesUnstaking": "Iemaksātie žetoni ietver visu, ko esat pieprasījis atsaukt, bet vēl neesat saņēmis atpakaļ."
   },
   "feedCard": {
     "reactionTip": "Lai redzētu vairāk reakciju, turiet nospiestu pogu “Patīk”",

@@ -5125,8 +5125,9 @@
     "tokenPrice": "{{amount}} žetooni",
     "tokensUnit": "žetooni",
     "atPreListingRate": "{{amount}} eelneva kuulutuse hinnaga",
-    "custodyNote": "Teie žetoonid jäävad DeHubi varakambri valdusesse ja neid ei müüda. Loojale laekub USDT-denominatsiooniga tellimuse saldo.",
-    "creatorReceives": "Looja saab {{amount}} USDT krediiti"
+    "paidToCreatorWallet": "Avab otse looja rahakoti",
+    "creatorPaidDirectNote": "Kohe, kui tellid, läheb looja osa otse tema rahakotti. DeHubil on väike platvormitasu.",
+    "creatorEarnsDirect": "Tellijad maksavad DeHubi žetoonides. Sinu osa jõuab Sinu rahakotti kohe, kui nad tellimuse tellivad, millest on maha arvatud platvormi tasu Sinu erimärgi taseme eest."
   },
   "live": {
     "notSet": "Määramata",
@@ -5390,17 +5391,10 @@
     "staked": "Panustatud",
     "gotIt": "Sain aru",
     "otherBalancesNote": "Sinu ülejäänud saldod on ainult võrgus {{network}} (ahel {{chainId}}). {{gas}} on sinu gaasisaldo. Väärtused võivad paar sekundit hilineda. Kanna varad üle võrku {{network}}, et neid siin kasutada.",
-    "subscriptionEarnings": "Tellimustulu",
-    "cashOut": "Võta välja",
-    "withdrawing": "Võtan välja…",
-    "withdrawableSoon": "Tellimustasusid saab varsti välja võtta",
     "dpayBaseOnly": "Dpay on saadaval ainult Base'is.",
     "tokensAndStocks": "Tokenid ja aktsiad",
     "dhbPositionNote": "See on teie kogu žetooni positsioon – hoitud pluss panustatud, Base'is ja BNB Chainis. Enamik sellest on tavaliselt panustatud, seega on see suurem kui see, mida saate praegu kulutada.",
-    "stakedIncludesUnstaking": "Panustatud žetoonid hõlmavad kõike, mida olete taotlenud tagasi võtta, kuid mida te pole veel tagasi saanud.",
-    "usdtSent": "{{amount}} USDT saadetud",
-    "withdrawableOnBase": "Saadaval väljavõtmiseks Base'is",
-    "pendingTreasury": "USDT-s · ootab varakassa reservi"
+    "stakedIncludesUnstaking": "Panustatud žetoonid hõlmavad kõike, mida olete taotlenud tagasi võtta, kuid mida te pole veel tagasi saanud."
   },
   "feedCard": {
     "reactionTip": "Rohkemate reaktsioonide jaoks hoia meeldib-nuppu all",

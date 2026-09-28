@@ -5174,8 +5174,9 @@
     "tokenPrice": "{{amount}} tokens",
     "tokensUnit": "tokens",
     "atPreListingRate": "{{amount}} at the pre-listing rate",
-    "custodyNote": "Your tokens stay in DeHub treasury custody and are not sold. The creator receives a USDT-denominated subscription balance.",
-    "creatorReceives": "Creator receives {{amount}} USDT credit"
+    "paidToCreatorWallet": "Goes straight to the creator's wallet",
+    "creatorPaidDirectNote": "The creator's share goes straight to their wallet the moment you subscribe. DeHub keeps a small platform fee.",
+    "creatorEarnsDirect": "Subscribers pay in DeHub tokens. Your share lands in your wallet the moment they subscribe, less the platform fee for your badge tier."
   },
   "live": {
     "notSet": "Not set",
@@ -5441,15 +5442,8 @@
     "dhbPositionNote": "This is your whole token position — held plus staked, across Base and BNB Chain. Most of it is usually staked, so this is larger than what you can spend right now.",
     "stakedIncludesUnstaking": "Staked tokens include anything you have asked to unstake but not yet received back.",
     "otherBalancesNote": "Your other balances are on {{network}} (chain {{chainId}}) only. {{gas}} is your gas balance. Values may lag a few seconds. Bridge or transfer assets to {{network}} to use them here.",
-    "subscriptionEarnings": "Subscription earnings",
-    "cashOut": "Cash out",
-    "withdrawing": "Withdrawing…",
-    "withdrawableSoon": "Subscription fees will be withdrawable soon",
     "dpayBaseOnly": "Dpay is only available on Base.",
-    "tokensAndStocks": "Tokens & stocks",
-    "usdtSent": "{{amount}} USDT sent",
-    "withdrawableOnBase": "Available to withdraw on Base",
-    "pendingTreasury": "USDT-denominated · pending treasury reserve"
+    "tokensAndStocks": "Tokens & stocks"
   },
   "feedCard": {
     "reactionTip": "Hold down the like button for more reactions",

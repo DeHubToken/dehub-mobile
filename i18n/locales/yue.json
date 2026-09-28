@@ -5125,8 +5125,9 @@
     "tokenPrice": "{{amount}} 個代幣",
     "tokensUnit": "代幣",
     "atPreListingRate": "{{amount}} 以上市前率計",
-    "custodyNote": "您的代幣將保留在 DeHub 金庫保管中，不會被出售。創作者將收到以 USDT 計價的訂閱餘額。",
-    "creatorReceives": "創作者獲得 {{amount}} USDT 額度"
+    "paidToCreatorWallet": "直接去創作者嘅銀包",
+    "creatorPaidDirectNote": "當你訂閱嗰一刻，創作者嘅分享就會直接去到佢哋嘅銀包。 DeHub 會保留少少平台費。",
+    "creatorEarnsDirect": "訂閱者用 DeHub 代幣付款。當佢哋訂閱嗰陣，你嘅份額就會喺你嘅銀包入面，減去你嘅徽章層嘅平台費用。"
   },
   "live": {
     "notSet": "未設定",
@@ -5390,17 +5391,10 @@
     "staked": "質押",
     "gotIt": "知道喇",
     "otherBalancesNote": "你其他嘅餘額只喺 {{network}}（鏈 {{chainId}}）上面。{{gas}} 係你嘅 gas 餘額。數值可能延遲幾秒。將資產跨鏈或轉賬去 {{network}} 先可以喺度用。",
-    "subscriptionEarnings": "訂閱收益",
-    "cashOut": "提現",
-    "withdrawing": "提現中…",
-    "withdrawableSoon": "訂閱費用好快就可以提現",
     "dpayBaseOnly": "Dpay 淨係喺 Base 先用得。",
     "tokensAndStocks": "代幣與股票",
     "dhbPositionNote": "這是您的全部代幣倉位 — 持有加上質押，分佈在 Base 和 BNB Chain 上。大部分通常已質押，因此這比您目前可以花費的金額要多。",
-    "stakedIncludesUnstaking": "已質押的代幣包括您已要求取消質押但尚未收回的任何內容。",
-    "usdtSent": "已發送 {{amount}} USDT",
-    "withdrawableOnBase": "可以喺 Base 提現",
-    "pendingTreasury": "以 USDT 計價 · 等待國庫儲備"
+    "stakedIncludesUnstaking": "已質押的代幣包括您已要求取消質押但尚未收回的任何內容。"
   },
   "feedCard": {
     "reactionTip": "㩒住讚好掣唔放，就可以揀更多反應",

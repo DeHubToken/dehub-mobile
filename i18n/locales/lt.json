@@ -5125,8 +5125,9 @@
     "tokenPrice": "{{amount}} žetonai",
     "tokensUnit": "žetonai",
     "atPreListingRate": "{{amount}} pagal išankstinio skelbimo įkainį",
-    "custodyNote": "Jūsų žetonai lieka DeHub iždo saugojime ir nėra parduodami. Kūrėjas gauna USDT denominuotą prenumeratos balansą.",
-    "creatorReceives": "Kūrėjas gauna {{amount}} USDT kredito"
+    "paidToCreatorWallet": "Eina tiesiai į kūrėjo piniginę",
+    "creatorPaidDirectNote": "Kūrėjo dalis iškart patenka į jo piniginę, kai tik užsiprenumeruoji. „DeHub“ taiko nedidelį platformos mokestį.",
+    "creatorEarnsDirect": "Prenumeratoriai moka DeHub žetonais. Kai tik užsiprenumeruosi, tavo dalis atsidurs tavo piniginėje, atėmus platformos mokestį už tavo ženklelio lygį."
   },
   "live": {
     "notSet": "Nenustatyta",
@@ -5390,17 +5391,10 @@
     "staked": "Įstatyta",
     "gotIt": "Supratau",
     "otherBalancesNote": "Kiti jūsų likučiai yra tik {{network}} tinkle (grandinė {{chainId}}). {{gas}} yra jūsų dujų likutis. Reikšmės gali vėluoti kelias sekundes. Perkelkite turtą į {{network}}, kad galėtumėte jį naudoti čia.",
-    "subscriptionEarnings": "Prenumeratų pajamos",
-    "cashOut": "Išsiimti",
-    "withdrawing": "Išimama…",
-    "withdrawableSoon": "Prenumeratos mokesčius netrukus bus galima išsiimti",
     "dpayBaseOnly": "Dpay galima naudoti tik Base tinkle.",
     "tokensAndStocks": "Žetonai ir akcijos",
     "dhbPositionNote": "Tai visa jūsų žetonų pozicija – laikomi ir statyti, „Base“ ir „BNB Chain“. Dauguma jų paprastai yra statyti, todėl tai yra daugiau nei galite išleisti dabar.",
-    "stakedIncludesUnstaking": "Statyti žetonai apima viską, ką paprašėte atstatyti, bet dar negavote atgal.",
-    "usdtSent": "Išsiųsta {{amount}} USDT",
-    "withdrawableOnBase": "Galima išsiimti Base tinkle",
-    "pendingTreasury": "USDT verte · laukiama iždo rezervo"
+    "stakedIncludesUnstaking": "Statyti žetonai apima viską, ką paprašėte atstatyti, bet dar negavote atgal."
   },
   "feedCard": {
     "reactionTip": "Daugiau reakcijų – palaikykite paspaudę mygtuką „Patinka“",
