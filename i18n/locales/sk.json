@@ -6598,7 +6598,11 @@
         "false_dilemma": "Buď - alebo rámovanie",
         "overgeneralisation": "Nárok na zametanie",
         "hostile_tone": "Nepriateľský tón"
-      }
+      },
+      "aiMenu": "Nástroje AI",
+      "changeVibe": "Zmeniť náladu",
+      "fixSpelling": "Opraviť pravopis a gramatiku",
+      "rewriteFailed": "Nepodarilo sa prepísať. Skúste to znova."
     }
   },
   "drafts": {

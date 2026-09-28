@@ -6541,7 +6541,11 @@
         "false_dilemma": "どちらかまたはフレーミング",
         "overgeneralisation": "徹底的な主張",
         "hostile_tone": "敵対的な口調"
-      }
+      },
+      "aiMenu": "AIツール",
+      "changeVibe": "雰囲気を変える",
+      "fixSpelling": "スペルと文法を修正",
+      "rewriteFailed": "書き換えられませんでした。もう一度お試しください。"
     }
   },
   "drafts": {

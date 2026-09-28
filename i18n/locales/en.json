@@ -6532,7 +6532,11 @@
         "false_dilemma": "Either-or framing",
         "overgeneralisation": "Sweeping claim",
         "hostile_tone": "Hostile tone"
-      }
+      },
+      "aiMenu": "AI tools",
+      "changeVibe": "Change the vibe",
+      "fixSpelling": "Fix spelling & grammar",
+      "rewriteFailed": "Couldn't rewrite that. Try again."
     }
   },
   "drafts": {

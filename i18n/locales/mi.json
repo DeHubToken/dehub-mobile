@@ -6490,7 +6490,11 @@
         "false_dilemma": "Whakatuwherahia te Whakatuwheratanga",
         "overgeneralisation": "Te whakahē i te tono",
         "hostile_tone": "Tonoa Hostile"
-      }
+      },
+      "aiMenu": "Ngā taputapu AI",
+      "changeVibe": "Hurihia te wairua",
+      "fixSpelling": "Whakatikahia te tuhi me te wetereo",
+      "rewriteFailed": "Kāore i taea te tuhi anō. Whakamātau anō."
     }
   },
   "drafts": {

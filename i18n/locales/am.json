@@ -6519,7 +6519,11 @@
         "false_dilemma": "ይህ ወይም ያኛው አቀራረብ",
         "overgeneralisation": "አጠቃላይ የይገባኛል ጥያቄ",
         "hostile_tone": "የጠላትነት ቃና"
-      }
+      },
+      "aiMenu": "የAI መሳሪያዎች",
+      "changeVibe": "ስሜቱን ቀይር",
+      "fixSpelling": "ፊደልና ሰዋሰው አስተካክል",
+      "rewriteFailed": "እንደገና መጻፍ አልተቻለም። እንደገና ይሞክሩ።"
     }
   },
   "drafts": {

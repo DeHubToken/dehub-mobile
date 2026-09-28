@@ -6539,7 +6539,11 @@
         "false_dilemma": "Inquadratura o- o",
         "overgeneralisation": "Reclamo a tappeto",
         "hostile_tone": "Tono ostile"
-      }
+      },
+      "aiMenu": "Strumenti IA",
+      "changeVibe": "Cambia stile",
+      "fixSpelling": "Correggi ortografia e grammatica",
+      "rewriteFailed": "Impossibile riscrivere. Riprova."
     }
   },
   "drafts": {

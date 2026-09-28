@@ -6490,7 +6490,11 @@
         "false_dilemma": "Kas või kadreerimine",
         "overgeneralisation": "Pühkimise nõue",
         "hostile_tone": "Vaenulik toon"
-      }
+      },
+      "aiMenu": "AI-tööriistad",
+      "changeVibe": "Muuda meeleolu",
+      "fixSpelling": "Paranda õigekiri ja grammatika",
+      "rewriteFailed": "Ümberkirjutamine ebaõnnestus. Proovi uuesti."
     }
   },
   "drafts": {

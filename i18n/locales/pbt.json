@@ -6489,7 +6489,11 @@
         "false_dilemma": "د فریکونسۍ یا فریکونسۍ",
         "overgeneralisation": "ادعاي خوبي داره",
         "hostile_tone": "د توبې توبې"
-      }
+      },
+      "aiMenu": "د AI وسایل",
+      "changeVibe": "بڼه بدله کړئ",
+      "fixSpelling": "املا او ګرامر سم کړئ",
+      "rewriteFailed": "بیا لیکل ونه شول. بیا هڅه وکړئ."
     }
   },
   "drafts": {

@@ -6490,7 +6490,11 @@
         "false_dilemma": "一係 - 或者係框架",
         "overgeneralisation": "掃地聲稱",
         "hostile_tone": "敵對語氣"
-      }
+      },
+      "aiMenu": "AI 工具",
+      "changeVibe": "換個風格",
+      "fixSpelling": "修正拼寫同文法",
+      "rewriteFailed": "改寫唔到，請再試。"
     }
   },
   "drafts": {

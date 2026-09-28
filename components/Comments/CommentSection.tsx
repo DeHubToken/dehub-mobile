@@ -9,6 +9,7 @@ import {
   Keyboard,
   Platform,
   StyleSheet,
+  ScrollView,
 } from "react-native";
 import { DeHubLoader } from "../DeHubLoader";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../Feed/DeHubRefreshControl";
@@ -78,6 +79,8 @@ import { usePostDiscussionSettings, useCommonGroundCompletion } from "../../hook
 import { useConversationCoach, COACH_MIN_CHARS } from "../../hooks/useConversationCoach";
 import { useAppPrefs } from "../../hooks/useAppPrefs";
 import CoachSuggestions from "./CoachSuggestions";
+import { AI_STYLE_OPTIONS } from "../../config/ai-styles.constants";
+import { enhanceText } from "../../services/ai.service";
 import CommonGroundSheet from "./CommonGroundSheet";
 
 // Extended comment type for flat list with reply info
@@ -1003,8 +1006,26 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
   }, [markCommonGroundDone, coachReset, submitComment]);
 
   const handleCheckTone = useCallback(() => {
+    setAiMenu("closed");
     void coachCheck(inputText);
   }, [coachCheck, inputText]);
+
+  // One AI button: tone check, a vibe rewrite (the assistant's styles) and a
+  // spelling/grammar pass, all through the shared enhance-text function.
+  const [aiMenu, setAiMenu] = useState<"closed" | "open" | "vibes">("closed");
+  const [aiRewriting, setAiRewriting] = useState(false);
+  const handleAiRewrite = useCallback(async (mode: "grammar" | "style", style?: string) => {
+    if (!inputText.trim() || aiRewriting) return;
+    setAiMenu("closed");
+    setAiRewriting(true);
+    try {
+      setInputText(await enhanceText(inputText, mode, style));
+    } catch {
+      toastError(t("conversation.coach.rewriteFailed"));
+    } finally {
+      setAiRewriting(false);
+    }
+  }, [inputText, aiRewriting, t]);
 
   const handlePostTouchStart = useCallback(() => {
     if (Platform.OS !== "android") return;
@@ -1455,10 +1476,10 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           </View>
         )}
 
-        {/* The coach: its cards above the field, and the button that asks for
-            them once there is enough text to review. Advice only — Post stays
-            live underneath, and "Post anyway" is the same call. */}
-        {(coachStatus !== "idle" || (coachEnabled && !editingComment && inputText.trim().length >= COACH_MIN_CHARS)) &&
+        {/* The coach's cards above the field, and the AI button that offers a
+            tone check, a vibe rewrite and a spelling/grammar pass once there
+            is text. Advice only — Post stays live underneath. */}
+        {(coachStatus !== "idle" || (!editingComment && inputText.trim().length > 0)) &&
           !commentsDisabled && !kidsOnlyThread && !accountBanned && (
           <View style={{ paddingHorizontal: COMPOSER.gutter, paddingTop: 8, gap: 6 }}>
             <CoachSuggestions
@@ -1468,23 +1489,55 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
               onClear={coachReset}
               onPostAnyway={inputText.trim() && !posting ? () => { void handlePost(); } : undefined}
             />
-            {coachEnabled && !editingComment && inputText.trim().length >= COACH_MIN_CHARS && coachStatus !== "loading" && (
-              <View className="flex-row justify-end">
-                <Pressable
-                  onPress={handleCheckTone}
-                  hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
-                  accessibilityRole="button"
-                  accessibilityLabel={t("conversation.coach.checkTone")}
-                  testID="coach-check-tone"
-                  className="flex-row items-center"
-                  style={[
-                    { gap: 6, paddingVertical: 4, paddingHorizontal: 10, borderRadius: 999, backgroundColor: "rgba(255,255,255,0.06)" },
-                    isMinimal && { backgroundColor: "transparent", borderWidth: 1, borderColor: MINIMAL_INPUT_LINE },
-                  ]}
-                >
-                  <Icon name="Sparkles" size={13} color="#A6A9AC" />
-                  <Text style={{ fontSize: 12, color: "#A6A9AC" }}>{t("conversation.coach.checkTone")}</Text>
-                </Pressable>
+            {!editingComment && inputText.trim().length > 0 && coachStatus !== "loading" && (
+              <View style={{ gap: 6 }}>
+                {aiMenu === "vibes" && (
+                  <ScrollView horizontal showsHorizontalScrollIndicator={false} keyboardShouldPersistTaps="handled" contentContainerStyle={{ gap: 6 }}>
+                    {AI_STYLE_OPTIONS.map((style) => (
+                      <Pressable
+                        key={style.id}
+                        onPress={() => { void handleAiRewrite("style", style.id); }}
+                        accessibilityRole="button"
+                        style={[aiChipStyle, isMinimal && aiChipMinimal]}
+                      >
+                        <Text style={{ fontSize: 12, color: "#A6A9AC" }}>{style.emoji} {style.label}</Text>
+                      </Pressable>
+                    ))}
+                  </ScrollView>
+                )}
+                <View className="flex-row justify-end flex-wrap" style={{ gap: 6 }}>
+                  {aiMenu !== "closed" && coachEnabled && inputText.trim().length >= COACH_MIN_CHARS && (
+                    <Pressable onPress={handleCheckTone} accessibilityRole="button" testID="coach-check-tone" className="flex-row items-center" style={[aiChipStyle, isMinimal && aiChipMinimal]}>
+                      <Icon name="Gauge" size={13} color="#A6A9AC" />
+                      <Text style={{ fontSize: 12, color: "#A6A9AC" }}>{t("conversation.coach.checkTone")}</Text>
+                    </Pressable>
+                  )}
+                  {aiMenu !== "closed" && (
+                    <Pressable onPress={() => setAiMenu(aiMenu === "vibes" ? "open" : "vibes")} accessibilityRole="button" className="flex-row items-center" style={[aiChipStyle, isMinimal && aiChipMinimal]}>
+                      <Icon name="Palette" size={13} color="#A6A9AC" />
+                      <Text style={{ fontSize: 12, color: "#A6A9AC" }}>{t("conversation.coach.changeVibe")}</Text>
+                    </Pressable>
+                  )}
+                  {aiMenu !== "closed" && (
+                    <Pressable onPress={() => { void handleAiRewrite("grammar"); }} accessibilityRole="button" className="flex-row items-center" style={[aiChipStyle, isMinimal && aiChipMinimal]}>
+                      <Icon name="SpellCheck" size={13} color="#A6A9AC" />
+                      <Text style={{ fontSize: 12, color: "#A6A9AC" }}>{t("conversation.coach.fixSpelling")}</Text>
+                    </Pressable>
+                  )}
+                  <Pressable
+                    onPress={() => setAiMenu(aiMenu === "closed" ? "open" : "closed")}
+                    disabled={aiRewriting}
+                    hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
+                    accessibilityRole="button"
+                    accessibilityLabel={t("conversation.coach.aiMenu")}
+                    testID="comment-ai-menu"
+                    className="flex-row items-center"
+                    style={[aiChipStyle, isMinimal && aiChipMinimal]}
+                  >
+                    {aiRewriting ? <ActivityIndicator size="small" color="#A6A9AC" /> : <Icon name={aiMenu === "closed" ? "Sparkles" : "X"} size={13} color="#A6A9AC" />}
+                    <Text style={{ fontSize: 12, color: "#A6A9AC" }}>{t("conversation.coach.aiMenu")}</Text>
+                  </Pressable>
+                </View>
               </View>
             )}
           </View>
@@ -1752,3 +1805,6 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
 
 export const CommentSection = memo(CommentSectionComponent);
 export default CommentSection;
+
+const aiChipStyle = { gap: 6, paddingVertical: 4, paddingHorizontal: 10, borderRadius: 999, backgroundColor: "rgba(255,255,255,0.06)" } as const;
+const aiChipMinimal = { backgroundColor: "transparent", borderWidth: 1, borderColor: MINIMAL_INPUT_LINE } as const;

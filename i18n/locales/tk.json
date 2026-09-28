@@ -6490,7 +6490,11 @@
         "false_dilemma": "Ýa-da çaryş",
         "overgeneralisation": "Dawaçylyk haky",
         "hostile_tone": "Duşman sesi"
-      }
+      },
+      "aiMenu": "AI gurallary",
+      "changeVibe": "Keýpi üýtget",
+      "fixSpelling": "Dürs ýazuwy we grammatikany düzet",
+      "rewriteFailed": "Täzeden ýazyp bolmady. Gaýtadan synanyşyň."
     }
   },
   "drafts": {

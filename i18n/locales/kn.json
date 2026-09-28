@@ -6490,7 +6490,11 @@
         "false_dilemma": "ಎರಡೂ ಅಥವಾ ಫ್ರೇಮಿಂಗ್",
         "overgeneralisation": "ಸ್ವೀಪಿಂಗ್ ಕ್ಲೈಮ್",
         "hostile_tone": "ಪ್ರತಿಕೂಲ ಟೋನ್"
-      }
+      },
+      "aiMenu": "AI ಪರಿಕರಗಳು",
+      "changeVibe": "ಶೈಲಿ ಬದಲಿಸಿ",
+      "fixSpelling": "ಕಾಗುಣಿತ ಮತ್ತು ವ್ಯಾಕರಣ ಸರಿಪಡಿಸಿ",
+      "rewriteFailed": "ಮರುಬರೆಯಲು ಆಗಲಿಲ್ಲ. ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ."
     }
   },
   "drafts": {

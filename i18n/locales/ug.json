@@ -6490,7 +6490,11 @@
         "false_dilemma": "ياكى- ياكى سۈرەتلەشتۈرۈش",
         "overgeneralisation": "Sweeping دەۋاسى",
         "hostile_tone": "دۈشمەنلىك ئاۋازى"
-      }
+      },
+      "aiMenu": "AI قوراللىرى",
+      "changeVibe": "ئۇسلۇبنى ئۆزگەرتىش",
+      "fixSpelling": "ئىملا ۋە گرامماتىكىنى تۈزىتىش",
+      "rewriteFailed": "قايتا يازغىلى بولمىدى. قايتا سىناڭ."
     }
   },
   "drafts": {

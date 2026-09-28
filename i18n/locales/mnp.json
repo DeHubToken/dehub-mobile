@@ -6435,7 +6435,11 @@
       "allClear": "無物出眾。汝回覆讀來公平且平靜。",
       "postAnyway": "發啦",
       "dismiss": "敆此建議",
-      "settingLabel": "展示指導建議"
+      "settingLabel": "展示指導建議",
+      "aiMenu": "AI 工具",
+      "changeVibe": "换个风格",
+      "fixSpelling": "修正拼写和语法",
+      "rewriteFailed": "无法改写，请重试。"
     },
     "commonGround": {
       "title": "共同點",

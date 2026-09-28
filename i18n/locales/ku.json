@@ -6193,7 +6193,11 @@
         "false_dilemma": "Çarçovekirin an jî",
         "overgeneralisation": "Daxwaza paqijkirinê",
         "hostile_tone": "Tona dijminane"
-      }
+      },
+      "aiMenu": "Amûrên AI",
+      "changeVibe": "Hewayê biguherîne",
+      "fixSpelling": "Rastnivîs û rêzimanê rast bike",
+      "rewriteFailed": "Ji nû ve nivîsandin çênebû. Dîsa biceribîne."
     }
   },
   "drafts": {

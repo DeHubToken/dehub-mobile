@@ -6680,7 +6680,11 @@
         "false_dilemma": "Ofwel of framing",
         "overgeneralisation": "Vegen van vordering",
         "hostile_tone": "Vijandige toon"
-      }
+      },
+      "aiMenu": "AI-tools",
+      "changeVibe": "Verander de sfeer",
+      "fixSpelling": "Spelling en grammatica verbeteren",
+      "rewriteFailed": "Herschrijven mislukt. Probeer het opnieuw."
     }
   },
   "drafts": {

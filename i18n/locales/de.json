@@ -6539,7 +6539,11 @@
         "false_dilemma": "Entweder-oder-Rahmen",
         "overgeneralisation": "Kehranspruch",
         "hostile_tone": "Feindseliger Ton"
-      }
+      },
+      "aiMenu": "KI-Tools",
+      "changeVibe": "Stimmung ändern",
+      "fixSpelling": "Rechtschreibung & Grammatik korrigieren",
+      "rewriteFailed": "Umschreiben fehlgeschlagen. Bitte erneut versuchen."
     }
   },
   "drafts": {

@@ -6494,7 +6494,11 @@
         "false_dilemma": "Antingen-eller inramning",
         "overgeneralisation": "Sopningsanspråk",
         "hostile_tone": "Fientlig ton"
-      }
+      },
+      "aiMenu": "AI-verktyg",
+      "changeVibe": "Byt stämning",
+      "fixSpelling": "Rätta stavning och grammatik",
+      "rewriteFailed": "Kunde inte skriva om. Försök igen."
     }
   },
   "drafts": {

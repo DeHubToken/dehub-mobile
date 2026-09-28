@@ -6825,7 +6825,11 @@
         "false_dilemma": "یا تو- یا فریمنگ",
         "overgeneralisation": "سویپنگ کلیم",
         "hostile_tone": "دشمنی کا لہجہ"
-      }
+      },
+      "aiMenu": "AI ٹولز",
+      "changeVibe": "انداز بدلیں",
+      "fixSpelling": "ہجے اور گرامر درست کریں",
+      "rewriteFailed": "دوبارہ نہیں لکھا جا سکا۔ پھر کوشش کریں۔"
     }
   },
   "cashtag": {

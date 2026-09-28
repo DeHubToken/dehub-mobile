@@ -6474,7 +6474,11 @@
         "false_dilemma": "یا-یا چوکاټ",
         "overgeneralisation": "پراخ ادعا",
         "hostile_tone": "دښمنانه ټون"
-      }
+      },
+      "aiMenu": "AI टूल्स",
+      "changeVibe": "अंदाज़ बदलें",
+      "fixSpelling": "वर्तनी और व्याकरण सुधारें",
+      "rewriteFailed": "इसे दोबारा नहीं लिख सके। फिर कोशिश करें।"
     }
   },
   "drafts": {

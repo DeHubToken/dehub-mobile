@@ -6520,7 +6520,11 @@
         "false_dilemma": "إما - أو التأطير",
         "overgeneralisation": "مطالبة كاسحة",
         "hostile_tone": "نبرة عدائية"
-      }
+      },
+      "aiMenu": "أدوات الذكاء الاصطناعي",
+      "changeVibe": "غيّر الأسلوب",
+      "fixSpelling": "صحّح الإملاء والقواعد",
+      "rewriteFailed": "تعذّرت إعادة الصياغة. حاول مرة أخرى."
     }
   },
   "drafts": {
