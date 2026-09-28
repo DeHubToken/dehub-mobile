@@ -89,6 +89,7 @@ export default function FeedDetailScreen() {
   const focusCommentId = commentIdParam != null ? String(commentIdParam) : undefined;
 
   const user = useUser();
+  const viewerWallet = (user?.address || user?.walletAddress || "").toLowerCase();
   const { requireAuth } = useAuthActions();
   const address = useMemo(() => user?.walletAddress || user?.address || undefined, [user?.walletAddress, user?.address]);
 
@@ -172,7 +173,7 @@ export default function FeedDetailScreen() {
   const [likersCommentId, setLikersCommentId] = useState<number | null>(null);
   // Every comment tip on this post, in one query, plus the five best-tipped
   // ids — which the detail fetch passes on so those comments lead the thread.
-  const { totals: tipTotals, bump: bumpTipTotal, topTippedIds } = useCommentTipTotals(tokenId);
+  const { totals: tipTotals, bump: bumpTipTotal, topTippedIds, tippers: tipTippers } = useCommentTipTotals(tokenId);
 
   const inputRef = useRef<TextInput>(null);
   // Keyboard height minus the bottom inset the root SafeAreaView already spent
@@ -901,6 +902,7 @@ export default function FeedDetailScreen() {
             onReply={handleReplyPress}
             onTip={setTipComment}
             tipTotal={tipTotals[Number(c.id)]}
+            viewerTipped={!!viewerWallet && !!tipTippers[Number(c.id)]?.includes(viewerWallet)}
             onLike={handleLikeComment}
             onDislike={handleDislikeComment}
             onReact={handleReactComment}
@@ -914,7 +916,7 @@ export default function FeedDetailScreen() {
         </View>
       );
     },
-    [handleReplyPress, handleUserPress, tipTotals, handleLikeComment, handleDislikeComment, handleCommentLongPress, tokenId, highlightedCommentId, threadMeta, handleToggleThread, postCreator]
+    [handleReplyPress, handleUserPress, tipTotals, tipTippers, viewerWallet, handleLikeComment, handleDislikeComment, handleCommentLongPress, tokenId, highlightedCommentId, threadMeta, handleToggleThread, postCreator]
   );
 
   // Send media comment
