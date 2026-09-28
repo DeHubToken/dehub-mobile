@@ -225,6 +225,8 @@ function HolderDetails({
     });
 
   const sliderValue = sliderPos ?? toPos(amount);
+  const youPos = standing && standing.balance > 0 ? Math.min(100, (toPos(standing.balance) / SLIDER_STEPS) * 100) : null;
+  const [markRowW, setMarkRowW] = useState(0);
 
   return (
     <>
@@ -263,29 +265,85 @@ function HolderDetails({
             {price && W >= 380 ? <Text style={[ui.muted, { fontSize: 12 }]}>≈ {formatUsd(amount * price)}</Text> : null}
           </View>
         </View>
-        <Slider
-          style={{ marginTop: 8, marginHorizontal: -6, height: 36 }}
-          minimumValue={0}
-          maximumValue={SLIDER_STEPS}
-          step={1}
-          value={sliderValue}
-          onSlidingStart={() => setSliderPos(toPos(amount))}
-          onValueChange={onSlide}
-          onSlidingComplete={() => setSliderPos(null)}
-          minimumTrackTintColor="#ffffff"
-          maximumTrackTintColor="rgba(255,255,255,0.2)"
-          thumbTintColor="#ffffff"
-          accessibilityLabel={t("badgeShowcase.sliderLabel")}
-          accessibilityValue={{ text: t("badgeShowcase.sliderValue", { amount: nf.format(amount), tier: name }) }}
-        />
-        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-          <Text style={ui.tiny}>{shortDhb(ladder[0].min)}</Text>
-          {standing && standing.balance > 0 ? (
-            <Text style={[ui.tiny, { color: "#6ee7b7" }]}>
-              {t("badgeShowcase.you")} · {shortDhb(standing.balance)}
-            </Text>
+        <View style={{ marginTop: 8 }}>
+          {youPos !== null ? (
+            <View
+              pointerEvents="none"
+              style={{
+                position: "absolute",
+                top: 12,
+                left: `${youPos}%`,
+                marginLeft: -6,
+                width: 12,
+                height: 12,
+                borderRadius: 6,
+                borderWidth: 2,
+                borderColor: "#6ee7b7",
+                backgroundColor: "#000",
+              }}
+            />
           ) : null}
-          <Text style={ui.tiny}>{shortDhb(ladder[count - 1].min)}</Text>
+          <Slider
+            style={{ marginHorizontal: -6, height: 36 }}
+            minimumValue={0}
+            maximumValue={SLIDER_STEPS}
+            step={1}
+            value={sliderValue}
+            onSlidingStart={() => setSliderPos(toPos(amount))}
+            onValueChange={onSlide}
+            onSlidingComplete={() => setSliderPos(null)}
+            minimumTrackTintColor="#ffffff"
+            maximumTrackTintColor="rgba(255,255,255,0.2)"
+            thumbTintColor="#ffffff"
+            accessibilityLabel={t("badgeShowcase.sliderLabel")}
+            accessibilityValue={{ text: t("badgeShowcase.sliderValue", { amount: nf.format(amount), tier: name }) }}
+          />
+        </View>
+        {/* "You" hangs directly under the green dot, like a you-are-here pin.
+            The label clamps inside the card; the pointer never does. */}
+        <View
+          style={{ flexDirection: "row", justifyContent: "space-between" }}
+          onLayout={(e) => setMarkRowW(e.nativeEvent.layout.width)}
+        >
+          <Text style={[ui.tiny, youPos !== null && youPos < 18 && { opacity: 0 }]}>{shortDhb(ladder[0].min)}</Text>
+          <Text style={[ui.tiny, youPos !== null && youPos > 82 && { opacity: 0 }]}>{shortDhb(ladder[count - 1].min)}</Text>
+          {youPos !== null && standing && markRowW > 0 ? (
+            <>
+              <View
+                pointerEvents="none"
+                style={{
+                  position: "absolute",
+                  top: -4,
+                  left: (youPos / 100) * markRowW - 4,
+                  width: 0,
+                  height: 0,
+                  borderLeftWidth: 4,
+                  borderRightWidth: 4,
+                  borderBottomWidth: 4,
+                  borderLeftColor: "transparent",
+                  borderRightColor: "transparent",
+                  borderBottomColor: "#6ee7b7",
+                }}
+              />
+              <Text
+                numberOfLines={1}
+                style={[
+                  ui.tiny,
+                  {
+                    position: "absolute",
+                    top: 0,
+                    width: 96,
+                    textAlign: "center",
+                    color: "#6ee7b7",
+                    fontWeight: "600",
+                    left: Math.min(Math.max(0, (youPos / 100) * markRowW - 48), markRowW - 96),
+                  },
+                ]}
+              >
+                {t("badgeShowcase.you")} · {shortDhb(standing.balance)}
+              </Text>
+            </>
+          ) : null}
         </View>
       </View>
 
