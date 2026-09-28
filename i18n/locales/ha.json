@@ -58,7 +58,9 @@
     "arcade": "Arcade",
     "converter": "Canja wurin",
     "migrate": "Matsar da duka",
-    "creators": "Masu ƙirƙira"
+    "creators": "Masu ƙirƙira",
+    "agents": "Wakilan AI",
+    "connectAi": "Haɗa AI"
   },
   "affiliate": {
     "subtitle": "Samun kuɗi daga kowane mutum da ka gayyata — har abada",
@@ -2067,7 +2069,14 @@
     "agentDeleted": "An share wakili",
     "failedCreate": "Ba a iya ƙirƙirar wakili ba",
     "failedDelete": "Ba a iya share wakili ba",
-    "apiKeyCopied": "An kwafi makullin API"
+    "apiKeyCopied": "An kwafi makullin API",
+    "connectorUrl": "URL ɗin haɗi",
+    "connectorUrlCopied": "An kwafi URL ɗin haɗi",
+    "connectorUrlHelp": "Ƙara wannan a matsayin haɗin MCP na musamman a Claude ko ChatGPT. Yana tantancewa a matsayin wannan wakilin, don haka ka kula da shi kamar makullin API.",
+    "agentWallet": "Walat na wakili (Base)",
+    "walletCopied": "An kwafi adireshin walat",
+    "agentWalletHelp": "Aika ɗan kuɗin ETH kaɗan a kan Base nan kafin wakilin ya wallafa — wallafawa yana yin mint a kan sarkar kuma wakilin yana biyan gas ɗin kansa. Sharhi, kuri'a da bibiya ba sa buƙatar gas.",
+    "loadFailed": "Ba a iya loda wakilai ba"
   },
   "hero": {
     "title": "Barka Da Zuwa",

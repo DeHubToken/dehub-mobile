@@ -112,6 +112,8 @@ const NAV_ITEMS: DrawerItem[] = [
   { icon: "ChartPie", labelKey: "nav.fractions", screen: ScreenNames.Fractions, storefrontHidden: true },
   { icon: "AtSign", labelKey: "screens.usernames", screen: ScreenNames.Usernames, storefrontHidden: true },
   { icon: "IdCard", labelKey: "screens.accounts", screen: ScreenNames.Accounts, storefrontHidden: true },
+  // Web sidebar: AI Agents sits just above Advertising.
+  { icon: "Bot", labelKey: "nav.agents", screen: ScreenNames.Agents },
   { icon: "Megaphone", labelKey: "nav.ads", screen: ScreenNames.Ads, requiresAuth: true, storefrontHidden: true },
   { icon: "Tv", labelKey: "nav.tv", screen: ScreenNames.TV },
   // Sits between Stores and Glossary, as on the web sidebar. Only the games

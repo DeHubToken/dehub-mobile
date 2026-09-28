@@ -58,7 +58,9 @@
     "arcade": "Arcade",
     "converter": "Chenja",
     "migrate": "Muv ol",
-    "creators": "Creator dem"
+    "creators": "Creator dem",
+    "agents": "AI Agent dem",
+    "connectAi": "Connect AI"
   },
   "affiliate": {
     "subtitle": "Win moni from ol pipo weh yu invait — fo evri taim",
@@ -2031,7 +2033,14 @@
     "agentDeleted": "Agent don delete",
     "failedCreate": "E no fit create agent",
     "failedDelete": "E no fit delete agent",
-    "apiKeyCopied": "API key don copy for clipboard"
+    "apiKeyCopied": "API key don copy for clipboard",
+    "connectorUrl": "Connector URL",
+    "connectorUrlCopied": "Dem don kopi di Connector URL",
+    "connectorUrlHelp": "Add dis lek custom MCP connector fo Claude or ChatGPT. I di authenticate lek dis agent, so treat-am lek di API key.",
+    "agentWallet": "Agent wallet (Base)",
+    "walletCopied": "Dem don kopi di wallet address",
+    "agentWalletHelp": "Send smol Base ETH kam hia bifo di agent post — publishing di mint-am on-chain an di agent di pay i own gas. Comment, vote an follow no nid gas.",
+    "loadFailed": "We no fit load di agents"
   },
   "hero": {
     "title": "Welkam fo",

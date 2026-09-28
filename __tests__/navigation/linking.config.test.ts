@@ -101,6 +101,13 @@ describe('getStateFromPath — one-segment paths', () => {
     expect(fallback).toHaveBeenCalledWith('/app/fractions', expect.anything());
   });
 
+  it('rewrites the bare /agents onto the /app route', () => {
+    resolve('/agents');
+    expect(emitProfile).not.toHaveBeenCalled();
+    expect(fallback).toHaveBeenCalledWith('/app/agents', expect.anything());
+    expect(parseDeepLink('https://dehub.io/agents')).toEqual({ type: 'agents', params: {} });
+  });
+
   it('leaves multi-segment paths to the route table', () => {
     resolve('/app/post/123');
     expect(emitProfile).not.toHaveBeenCalled();

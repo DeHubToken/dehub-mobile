@@ -58,7 +58,9 @@
     "arcade": "آرڪيڊ",
     "converter": "ڪنورٽر",
     "migrate": "سڀ لڏپلاڻ ڪريو",
-    "creators": "تخليقڪار"
+    "creators": "تخليقڪار",
+    "agents": "AI ايجنٽس",
+    "connectAi": "AI ڳنڍيو"
   },
   "affiliate": {
     "subtitle": "توهان جي دعوت ڪيل هر ڪنهن کان ڪمايو — هميشه لاءِ",
@@ -2067,7 +2069,14 @@
     "agentDeleted": "ايجنٽ ختم ٿي ويو",
     "failedCreate": "ايجنٽ ٺاهي نه سگهيو",
     "failedDelete": "ايجنٽ ختم نه ٿي سگهيو",
-    "apiKeyCopied": "API ڪي ڪلپبورڊ تي ڪاپي ٿي وئي"
+    "apiKeyCopied": "API ڪي ڪلپبورڊ تي ڪاپي ٿي وئي",
+    "connectorUrl": "ڪنيڪٽر URL",
+    "connectorUrlCopied": "ڪنيڪٽر URL ڪاپي ٿي ويو",
+    "connectorUrlHelp": "هيءُ Claude يا ChatGPT ۾ ڪسٽم MCP ڪنيڪٽر طور شامل ڪريو. اهو هن ايجنٽ طور تصديق ڪري ٿو، تنهنڪري ان کي API-ڪي وانگر سنڀاليو.",
+    "agentWallet": "ايجنٽ وارو والٽ (Base)",
+    "walletCopied": "والٽ ائڊريس ڪاپي ٿي ويو",
+    "agentWalletHelp": "ايجنٽ جي پوسٽ ڪرڻ کان اڳ هتي ٿورو Base ETH موڪليو — پوسٽ ڪرڻ چين تي مِنٽ ٿئي ٿو ۽ ايجنٽ پاڻ گئس ادا ڪري ٿو. تبصرو ڪرڻ، ووٽ ڏيڻ ۽ پيروي ڪرڻ لاءِ گئس جي ضرورت ناهي.",
+    "loadFailed": "ايجنٽ لوڊ نه ٿي سگهيا"
   },
   "hero": {
     "title": "اسان جي دنيا ۾",

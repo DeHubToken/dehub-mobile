@@ -58,7 +58,9 @@
     "arcade": "Arcade",
     "converter": "Converter",
     "migrate": "Hūnuku katoa",
-    "creators": "Ngā kaihanga"
+    "creators": "Ngā kaihanga",
+    "agents": "Ngā māngai AI",
+    "connectAi": "Honoa te AI"
   },
   "affiliate": {
     "subtitle": "Kia whiwhi mai i te katoa e powhiritia ana e koe — ake tonu atu",
@@ -2067,7 +2069,14 @@
     "agentDeleted": "Kua mukua te kaihautū",
     "failedCreate": "Kāore i taea te hanga kaihautū",
     "failedDelete": "Kāore i taea te muku kaihautū",
-    "apiKeyCopied": "Kua tāruatia te kī API ki te papatopenga"
+    "apiKeyCopied": "Kua tāruatia te kī API ki te papatopenga",
+    "connectorUrl": "URL hono",
+    "connectorUrlCopied": "Kua tāruatia te URL hono",
+    "connectorUrlHelp": "Tāpirihia tēnei hei hono MCP whaiaro i roto i a Claude, i a ChatGPT rānei. Ka whakamana ia hei māngai nei, nō reira tiakina pēnei i te kī API.",
+    "agentWallet": "Pūkoro māngai (Base)",
+    "walletCopied": "Kua tāruatia te wāhitau pūkoro",
+    "agentWalletHelp": "Tukuna he ETH iti ki Base ki konei i mua i te pānui a te māngai — mā te whakaputa ka waihanga ki runga i te mekameka, ā, mā te māngai anō e utu tana hinu. Ko te tākupu, te pōti me te whai kāore he hinu e hiahiatia ana.",
+    "loadFailed": "Kāore i taea te uta i ngā kaihoko"
   },
   "hero": {
     "title": "Nau Mai Haere Mai",

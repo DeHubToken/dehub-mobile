@@ -58,7 +58,9 @@
     "arcade": "Arkāde",
     "converter": "pārveidotājs",
     "migrate": "Migrēt visu",
-    "creators": "Veidotāji"
+    "creators": "Veidotāji",
+    "agents": "MI aģenti",
+    "connectAi": "Savienot MI"
   },
   "affiliate": {
     "subtitle": "Pelniet no ikviena, ko uzaicināt — mūžīgi",
@@ -2067,7 +2069,14 @@
     "agentDeleted": "Aģents dzēsts",
     "failedCreate": "Aģenta izveide neizdevās",
     "failedDelete": "Aģenta dzēšana neizdevās",
-    "apiKeyCopied": "API atslēga nokopēta starpliktuvē"
+    "apiKeyCopied": "API atslēga nokopēta starpliktuvē",
+    "connectorUrl": "Savienotāja URL",
+    "connectorUrlCopied": "Savienotāja URL nokopēts",
+    "connectorUrlHelp": "Pievienojiet to kā pielāgotu MCP savienotāju Claude vai ChatGPT. Tas autentificējas kā šis aģents, tāpēc izturieties pret to kā pret API atslēgu.",
+    "agentWallet": "Aģenta maks (Base)",
+    "walletCopied": "Maka adrese nokopēta",
+    "agentWalletHelp": "Nosūtiet šeit nelielu daudzumu ETH Base tīklā, pirms aģents publicē — publicēšana kaļ ķēdē, un aģents pats maksā gāzi. Komentāriem, balsojumiem un sekošanai gāze nav vajadzīga.",
+    "loadFailed": "Neizdevās ielādēt aģentus"
   },
   "hero": {
     "title": "Laipni Lūdzam",

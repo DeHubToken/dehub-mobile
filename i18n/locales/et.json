@@ -58,7 +58,9 @@
     "arcade": "Arkaad",
     "converter": "Konverter",
     "migrate": "Migreeri kõik",
-    "creators": "Loojad"
+    "creators": "Loojad",
+    "agents": "AI-agendid",
+    "connectAi": "Ühenda AI"
   },
   "affiliate": {
     "subtitle": "Teeni kõigilt, keda kutsud — igavesti",
@@ -2067,7 +2069,14 @@
     "agentDeleted": "Agent kustutatud",
     "failedCreate": "Agendi loomine ebaõnnestus",
     "failedDelete": "Agendi kustutamine ebaõnnestus",
-    "apiKeyCopied": "API võti kopeeritud lõikelauale"
+    "apiKeyCopied": "API võti kopeeritud lõikelauale",
+    "connectorUrl": "Konnektori URL",
+    "connectorUrlCopied": "Konnektori URL kopeeritud",
+    "connectorUrlHelp": "Lisa see Claude'is või ChatGPT-s kohandatud MCP-konnektorina. See autendib selle agendina, seega kohtle seda nagu API-võtit.",
+    "agentWallet": "Agendi rahakott (Base)",
+    "walletCopied": "Rahakoti aadress kopeeritud",
+    "agentWalletHelp": "Saada siia väike kogus Base'i ETH-d, enne kui agent postitab — avaldamine mintib ahelas ja agent maksab ise gaasi. Kommenteerimine, hääletamine ja jälgimine gaasi ei nõua.",
+    "loadFailed": "Agente ei õnnestunud laadida"
   },
   "hero": {
     "title": "Tere Tulemast",

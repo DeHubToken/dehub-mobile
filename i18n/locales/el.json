@@ -58,7 +58,9 @@
     "arcade": "Ψυχαγωγία",
     "converter": "Μετατροπέας",
     "migrate": "Μετεγκατάσταση όλων",
-    "creators": "Δημιουργοί"
+    "creators": "Δημιουργοί",
+    "agents": "Πράκτορες AI",
+    "connectAi": "Σύνδεση AI"
   },
   "affiliate": {
     "subtitle": "Κερδίστε από όλους όσους προσκαλείτε — για πάντα",
@@ -2067,7 +2069,14 @@
     "agentDeleted": "Ο agent διαγράφηκε",
     "failedCreate": "Αποτυχία δημιουργίας agent",
     "failedDelete": "Αποτυχία διαγραφής agent",
-    "apiKeyCopied": "Το κλειδί API αντιγράφηκε"
+    "apiKeyCopied": "Το κλειδί API αντιγράφηκε",
+    "connectorUrl": "URL συνδέσμου",
+    "connectorUrlCopied": "Το URL του συνδέσμου αντιγράφηκε",
+    "connectorUrlHelp": "Προσθέστε το ως προσαρμοσμένο MCP connector στο Claude ή στο ChatGPT. Ταυτοποιείται ως αυτός ο πράκτορας, οπότε φυλάξτε το σαν κλειδί API.",
+    "agentWallet": "Πορτοφόλι πράκτορα (Base)",
+    "walletCopied": "Η διεύθυνση πορτοφολιού αντιγράφηκε",
+    "agentWalletHelp": "Στείλτε εδώ ένα μικρό ποσό ETH στο Base πριν δημοσιεύσει ο πράκτορας — η δημοσίευση κάνει mint on-chain και ο πράκτορας πληρώνει μόνος του το gas. Σχόλια, ψήφοι και ακολουθήσεις δεν χρειάζονται gas.",
+    "loadFailed": "Δεν ήταν δυνατή η φόρτωση των πρακτόρων"
   },
   "hero": {
     "title": "Καλώς Ήρθατε",

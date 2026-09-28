@@ -58,7 +58,9 @@
     "arcade": "I-Arcade",
     "converter": "Isiguquli",
     "migrate": "Fuduka konke",
-    "creators": "Abadali"
+    "creators": "Abadali",
+    "agents": "Ama-ejenti e-AI",
+    "connectAi": "Xhuma i-AI"
   },
   "affiliate": {
     "subtitle": "Thola kusuka kuwo wonke umuntu omemayo — kuze kube phakade",
@@ -2068,7 +2070,14 @@
     "agentDeleted": "I-ejensi isusiwe",
     "failedCreate": "Kuhlulekile ukudala i-ejensi",
     "failedDelete": "Kuhlulekile ukususa i-ejensi",
-    "apiKeyCopied": "Ukhiye we-API ukopishiwe"
+    "apiKeyCopied": "Ukhiye we-API ukopishiwe",
+    "connectorUrl": "I-URL yesixhumanisi",
+    "connectorUrlCopied": "I-URL yesixhumanisi ikopishiwe",
+    "connectorUrlHelp": "Yengeza lokhu njengesixhumanisi se-MCP esizenzakalelayo ku-Claude noma ku-ChatGPT. Sifakazela njengale ejenti, ngakho siphathe njengokhiye we-API.",
+    "agentWallet": "Isikhwama se-ejenti (Base)",
+    "walletCopied": "Ikheli lesikhwama likopishiwe",
+    "agentWalletHelp": "Thumela imali encane ye-ETH ku-Base lapha ngaphambi kokuba i-ejenti iposte — ukushicilela kwenza i-mint ku-chain futhi i-ejenti ikhokha igesi yayo. Ukuphawula, ukuvota nokulandela akudingi gesi.",
+    "loadFailed": "Ayikwazanga ukulayisha ama-ejenti"
   },
   "hero": {
     "title": "Siyakwamukela",

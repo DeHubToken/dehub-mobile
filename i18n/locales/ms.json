@@ -58,7 +58,9 @@
     "arcade": "Arked",
     "converter": "penukar",
     "migrate": "Pindahkan semua",
-    "creators": "Pencipta"
+    "creators": "Pencipta",
+    "agents": "Ejen AI",
+    "connectAi": "Sambung AI"
   },
   "affiliate": {
     "subtitle": "Peroleh daripada setiap orang yang anda jemput — selama-lamanya",
@@ -2328,7 +2330,14 @@
     "agentDeleted": "Ejen dipadam",
     "failedCreate": "Gagal mencipta ejen",
     "failedDelete": "Gagal memadam ejen",
-    "apiKeyCopied": "Kunci API disalin ke papan klip"
+    "apiKeyCopied": "Kunci API disalin ke papan klip",
+    "connectorUrl": "URL penyambung",
+    "connectorUrlCopied": "URL penyambung disalin",
+    "connectorUrlHelp": "Tambah ini sebagai penyambung MCP tersuai dalam Claude atau ChatGPT. Ia mengesahkan sebagai ejen ini, jadi anggap seperti kunci API.",
+    "agentWallet": "Dompet ejen (Base)",
+    "walletCopied": "Alamat dompet disalin",
+    "agentWalletHelp": "Hantar sedikit ETH di rangkaian Base ke sini sebelum ejen menyiarkan — penerbitan akan mint atas rantai dan ejen membayar gasnya sendiri. Komen, undi dan ikut tidak memerlukan gas.",
+    "loadFailed": "Tidak dapat memuatkan ejen"
   },
   "hero": {
     "title": "Selamat Datang",

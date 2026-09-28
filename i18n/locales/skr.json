@@ -58,7 +58,9 @@
     "arcade": "آرکیڈ",
     "converter": "کنورٹر",
     "migrate": "سب کو منتقل کریں",
-    "creators": "بݨاوݨ آلے"
+    "creators": "بݨاوݨ آلے",
+    "agents": "AI ایجنٹ",
+    "connectAi": "AI جوڑو"
   },
   "affiliate": {
     "subtitle": "ہر اس شخص سے کمائیں جسے آپ مدعو کرتے ہیں — ہمیشہ کے لیے",
@@ -2067,7 +2069,14 @@
     "agentDeleted": "ایجنٹ مٹا ݙتا گیا",
     "failedCreate": "ایجنٹ کائنی بݨا",
     "failedDelete": "ایجنٹ کائنی مٹا",
-    "apiKeyCopied": "API کلید کلپ بورڈ تے نقل ہو گئی"
+    "apiKeyCopied": "API کلید کلپ بورڈ تے نقل ہو گئی",
+    "connectorUrl": "کنکٹر URL",
+    "connectorUrlCopied": "کنکٹر URL کاپی تھیا",
+    "connectorUrlHelp": "ایکوں Claude یا ChatGPT وچ کسٹم MCP کنکٹر بݨا کے ولاؤ۔ ایہ ایجنٹ دے طور تے پچھاݨ کریندا اے، تاہیوں API-کی وانگوں سنڀالو۔",
+    "agentWallet": "ایجنٹ دا بٹوا (Base)",
+    "walletCopied": "بٹوے دا پتہ کاپی تھیا",
+    "agentWalletHelp": "ایجنٹ دے پوسٹ کرن توں پہلے ایتھے تھوڑا Base ETH گھلو — پوسٹ کرݨ زنجیر تے منٹ تھیندی اے تے ایجنٹ اپݨا گیس خرچ کریندا اے۔ تبصرہ کرن، ووٹ ڈین تے پچھے چلݨ کیتے گیس نئیں چاہیدی۔",
+    "loadFailed": "ایجنٹ لوڈ نئیں تھی سگے"
   },
   "hero": {
     "title": "ساڈی دنیا وِچ",

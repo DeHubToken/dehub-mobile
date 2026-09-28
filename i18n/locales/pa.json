@@ -58,7 +58,9 @@
     "arcade": "ਆਰਕੇਡ",
     "converter": "ਪਰਿਵਰਤਕ",
     "migrate": "ਸਭ ਮਾਈਗਰੇਟ ਕਰੋ",
-    "creators": "ਕ੍ਰਿਏਟਰ"
+    "creators": "ਕ੍ਰਿਏਟਰ",
+    "agents": "AI ਏਜੰਟ",
+    "connectAi": "AI ਜੋੜੋ"
   },
   "affiliate": {
     "subtitle": "ਤੁਹਾਡੇ ਦੁਆਰਾ ਸੱਦੇ ਗਏ ਹਰ ਵਿਅਕਤੀ ਤੋਂ ਕਮਾਓ — ਹਮੇਸ਼ਾ ਲਈ",
@@ -2038,7 +2040,14 @@
     "agentDeleted": "ਏਜੰਟ ਮਿਟ ਗਿਆ",
     "failedCreate": "ਬਣਾਉਣ ਵਿੱਚ ਅਸਫ਼ਲ",
     "failedDelete": "ਮਿਟਾਉਣ ਵਿੱਚ ਅਸਫ਼ਲ",
-    "apiKeyCopied": "API ਕੁੰਜੀ ਕਾਪੀ ਹੋ ਗਈ"
+    "apiKeyCopied": "API ਕੁੰਜੀ ਕਾਪੀ ਹੋ ਗਈ",
+    "connectorUrl": "ਕਨੈਕਟਰ URL",
+    "connectorUrlCopied": "ਕਨੈਕਟਰ URL ਕਾਪੀ ਹੋਇਆ",
+    "connectorUrlHelp": "ਇਸਨੂੰ Claude ਜਾਂ ChatGPT ਵਿੱਚ ਇੱਕ ਕਸਟਮ MCP ਕਨੈਕਟਰ ਵਜੋਂ ਸ਼ਾਮਲ ਕਰੋ। ਇਹ ਇਸ ਏਜੰਟ ਵਜੋਂ ਪ੍ਰਮਾਣਿਤ ਹੁੰਦਾ ਹੈ, ਇਸ ਲਈ ਇਸਨੂੰ API ਕੁੰਜੀ ਵਾਂਗ ਸਮਝੋ।",
+    "agentWallet": "ਏਜੰਟ ਵਾਲਿਟ (Base)",
+    "walletCopied": "ਵਾਲਿਟ ਪਤਾ ਕਾਪੀ ਹੋਇਆ",
+    "agentWalletHelp": "ਏਜੰਟ ਦੇ ਪੋਸਟ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਇੱਥੇ ਥੋੜ੍ਹੀ ਮਾਤਰਾ ਵਿੱਚ Base ETH ਭੇਜੋ — ਪ੍ਰਕਾਸ਼ਿਤ ਕਰਨ ਨਾਲ ਚੇਨ 'ਤੇ ਮਿੰਟ ਹੁੰਦਾ ਹੈ ਅਤੇ ਏਜੰਟ ਆਪਣਾ ਗੈਸ ਖੁਦ ਅਦਾ ਕਰਦਾ ਹੈ। ਟਿੱਪਣੀ, ਵੋਟ ਅਤੇ ਫਾਲੋ ਕਰਨ ਲਈ ਗੈਸ ਦੀ ਲੋੜ ਨਹੀਂ।",
+    "loadFailed": "ਏਜੰਟ ਲੋਡ ਨਹੀਂ ਹੋ ਸਕੇ"
   },
   "hero": {
     "title": "ਸਾਡੀ ਦੁਨੀਆ ਵਿੱਚ",

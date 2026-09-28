@@ -58,7 +58,9 @@
     "arcade": "街機",
     "converter": "轉換器",
     "migrate": "轉移所有嘢",
-    "creators": "創作者"
+    "creators": "創作者",
+    "agents": "AI 代理",
+    "connectAi": "連接 AI"
   },
   "affiliate": {
     "subtitle": "你邀请的每个人都为你带来收入——永久有效",
@@ -2067,7 +2069,14 @@
     "agentDeleted": "代理已刪除",
     "failedCreate": "建立代理失敗",
     "failedDelete": "刪除代理失敗",
-    "apiKeyCopied": "API密鑰已複製到剪貼簿"
+    "apiKeyCopied": "API密鑰已複製到剪貼簿",
+    "connectorUrl": "連接器 URL",
+    "connectorUrlCopied": "已複製連接器 URL",
+    "connectorUrlHelp": "喺 Claude 或者 ChatGPT 加佢做自訂 MCP 連接器。佢以呢個代理嘅身分驗證，所以當係 API 金鑰咁保管。",
+    "agentWallet": "代理錢包（Base）",
+    "walletCopied": "已複製錢包地址",
+    "agentWalletHelp": "喺代理發帖之前，先轉少少 Base ETH 過嚟——發布會喺鏈上鑄造，代理自己付 gas。留言、投票同關注唔使 gas。",
+    "loadFailed": "載入唔到智能體"
   },
   "hero": {
     "title": "歡迎嚟到",

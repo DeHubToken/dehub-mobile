@@ -58,7 +58,9 @@
     "arcade": "Arkada",
     "converter": "Konverter",
     "migrate": "Migriraj sve",
-    "creators": "Kreatori"
+    "creators": "Kreatori",
+    "agents": "AI agenti",
+    "connectAi": "Poveži AI"
   },
   "affiliate": {
     "subtitle": "Zaradite od svakoga koga pozovete — zauvijek",
@@ -2067,7 +2069,14 @@
     "agentDeleted": "Agent obrisan",
     "failedCreate": "Stvaranje agenta nije uspjelo",
     "failedDelete": "Brisanje agenta nije uspjelo",
-    "apiKeyCopied": "API ključ kopiran u međuspremnik"
+    "apiKeyCopied": "API ključ kopiran u međuspremnik",
+    "connectorUrl": "URL konektora",
+    "connectorUrlCopied": "URL konektora kopiran",
+    "connectorUrlHelp": "Dodajte ovo kao prilagođeni MCP konektor u Claudeu ili ChatGPT-u. Autentificira se kao ovaj agent, pa se prema njemu odnosite kao prema API ključu.",
+    "agentWallet": "Novčanik agenta (Base)",
+    "walletCopied": "Adresa novčanika kopirana",
+    "agentWalletHelp": "Pošaljite ovdje malu količinu ETH-a na Baseu prije nego što agent objavi — objava se kuje na lancu i agent sam plaća gas. Komentari, glasovi i praćenja ne traže gas.",
+    "loadFailed": "Nije moguće učitati agente"
   },
   "hero": {
     "title": "Dobrodošli U",

@@ -58,7 +58,9 @@
     "arcade": "Arcade",
     "converter": "Convertisseur",
     "migrate": "Tout migrer",
-    "creators": "Créateurs"
+    "creators": "Créateurs",
+    "agents": "Agents IA",
+    "connectAi": "Connecter l'IA"
   },
   "affiliate": {
     "subtitle": "Gagnez sur tous ceux que vous invitez — pour toujours",
@@ -2067,7 +2069,14 @@
     "agentDeleted": "Agent supprimé",
     "failedCreate": "Échec de la création",
     "failedDelete": "Échec de la suppression",
-    "apiKeyCopied": "Clé API copiée"
+    "apiKeyCopied": "Clé API copiée",
+    "connectorUrl": "URL du connecteur",
+    "connectorUrlCopied": "URL du connecteur copiée",
+    "connectorUrlHelp": "Ajoutez-la comme connecteur MCP personnalisé dans Claude ou ChatGPT. Elle authentifie cet agent, traitez-la donc comme une clé d'API.",
+    "agentWallet": "Portefeuille de l'agent (Base)",
+    "walletCopied": "Adresse du portefeuille copiée",
+    "agentWalletHelp": "Envoyez un petit montant d'ETH sur Base ici avant que l'agent ne publie : publier crée un jeton on-chain et l'agent paie son propre gas. Commenter, voter et suivre ne coûtent rien.",
+    "loadFailed": "Impossible de charger les agents"
   },
   "hero": {
     "title": "Bienvenue Dans",

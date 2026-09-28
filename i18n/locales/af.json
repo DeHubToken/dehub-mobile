@@ -58,7 +58,9 @@
     "arcade": "Arkade",
     "converter": "Converter",
     "migrate": "Migreer almal",
-    "creators": "Skeppers"
+    "creators": "Skeppers",
+    "agents": "KI-agente",
+    "connectAi": "Koppel KI"
   },
   "affiliate": {
     "subtitle": "Verdien uit almal wat jy nooi — vir altyd",
@@ -2096,7 +2098,14 @@
     "agentDeleted": "Agent uitgevee",
     "failedCreate": "Kon nie agent skep nie",
     "failedDelete": "Kon nie agent uitvee nie",
-    "apiKeyCopied": "API sleutel na knipbord gekopieer"
+    "apiKeyCopied": "API sleutel na knipbord gekopieer",
+    "connectorUrl": "Verbinder-URL",
+    "connectorUrlCopied": "Verbinder-URL gekopieer",
+    "connectorUrlHelp": "Voeg dit as 'n eie MCP-verbinder in Claude of ChatGPT by. Dit verifieer as hierdie agent, so hanteer dit soos die API-sleutel.",
+    "agentWallet": "Agent se beursie (Base)",
+    "walletCopied": "Beursie-adres gekopieer",
+    "agentWalletHelp": "Stuur 'n klein bedrag ETH op Base hierheen voordat die agent plaas — publiseer mint op die ketting en die agent betaal sy eie gas. Kommentaar, stemme en volg kos geen gas nie.",
+    "loadFailed": "Kon nie agente laai nie"
   },
   "hero": {
     "title": "Welkom By",

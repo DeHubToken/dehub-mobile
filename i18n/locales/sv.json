@@ -58,7 +58,9 @@
     "arcade": "Arkad",
     "converter": "Omvandlare",
     "migrate": "Migrera alla",
-    "creators": "Kreatörer"
+    "creators": "Kreatörer",
+    "agents": "AI-agenter",
+    "connectAi": "Anslut AI"
   },
   "affiliate": {
     "subtitle": "Tjäna från alla du bjuder in – för alltid",
@@ -2067,7 +2069,14 @@
     "agentDeleted": "Agent raderad",
     "failedCreate": "Skapandet misslyckades",
     "failedDelete": "Raderingen misslyckades",
-    "apiKeyCopied": "API-nyckel kopierad"
+    "apiKeyCopied": "API-nyckel kopierad",
+    "connectorUrl": "Anslutnings-URL",
+    "connectorUrlCopied": "Anslutnings-URL kopierad",
+    "connectorUrlHelp": "Lägg till den som en egen MCP-anslutning i Claude eller ChatGPT. Den autentiserar som den här agenten, så behandla den som API-nyckeln.",
+    "agentWallet": "Agentens plånbok (Base)",
+    "walletCopied": "Plånboksadress kopierad",
+    "agentWalletHelp": "Skicka en liten mängd ETH på Base hit innan agenten postar — publicering mintar on-chain och agenten betalar sin egen gas. Kommentarer, röster och följningar kräver ingen gas.",
+    "loadFailed": "Kunde inte läsa in agenter"
   },
   "hero": {
     "title": "Välkommen Till",

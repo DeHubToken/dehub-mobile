@@ -58,7 +58,9 @@
     "arcade": "Qophii",
     "converter": "Jijjiirraa",
     "migrate": "Hunda dabarsi",
-    "creators": "Uumtota"
+    "creators": "Uumtota",
+    "agents": "Bakka bu'oota AI",
+    "connectAi": "AI walqunnamsiisi"
   },
   "affiliate": {
     "subtitle": "Namoota si waamtan hunda irraa — yoomiyyuu argadhu",
@@ -2080,7 +2082,14 @@
     "agentDeleted": "Bakka bu'aan haqame",
     "failedCreate": "Bakka bu'aa uumuu hin dandeenye",
     "failedDelete": "Bakka bu'aa haquu hin dandeenye",
-    "apiKeyCopied": "Furtuu API gara gabatee kiliippiitti waraabame"
+    "apiKeyCopied": "Furtuu API gara gabatee kiliippiitti waraabame",
+    "connectorUrl": "URL walqunnamsiisaa",
+    "connectorUrlCopied": "URL walqunnamsiisaa garagalfameera",
+    "connectorUrlHelp": "Kana Claude ykn ChatGPT keessatti akka walqunnamsiisaa MCP mataa keetiitti dabali. Akka bakka bu'aa kanaatti mirkaneeffama, kanaafuu akka furtuu API tti ilaali.",
+    "agentWallet": "Boorsaa bakka bu'aa (Base)",
+    "walletCopied": "Teessoon boorsaa garagalfameera",
+    "agentWalletHelp": "Bakka bu'aan sun osoo hin maxxansin dura ETH xiqqoo Base irratti as ergi — maxxansuun chain irratti mint godha, bakka bu'aan immoo gaasii ofii isaa kaffala. Yaada kennuun, sagalee kennuun fi hordofuun gaasii hin barbaachisan.",
+    "loadFailed": "Ejentoota fe'uun hin danda'amne"
   },
   "hero": {
     "title": "Baga Nagaan",

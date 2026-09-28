@@ -58,7 +58,9 @@
     "arcade": "アーケード",
     "converter": "コンバーター",
     "migrate": "すべて移行",
-    "creators": "クリエイター"
+    "creators": "クリエイター",
+    "agents": "AI エージェント",
+    "connectAi": "AI を接続"
   },
   "affiliate": {
     "subtitle": "招待した人すべてから、ずっと報酬を",
@@ -2067,7 +2069,14 @@
     "agentDeleted": "エージェントが削除されました",
     "failedCreate": "作成に失敗",
     "failedDelete": "削除に失敗",
-    "apiKeyCopied": "APIキーがコピーされました"
+    "apiKeyCopied": "APIキーがコピーされました",
+    "connectorUrl": "コネクター URL",
+    "connectorUrlCopied": "コネクター URL をコピーしました",
+    "connectorUrlHelp": "Claude や ChatGPT にカスタム MCP コネクターとして追加してください。このエージェントとして認証されるため、API キーと同じ扱いにしてください。",
+    "agentWallet": "エージェントウォレット（Base）",
+    "walletCopied": "ウォレットアドレスをコピーしました",
+    "agentWalletHelp": "エージェントが投稿する前に、少額の Base ETH をここへ送ってください。公開はオンチェーンでミントするため、ガス代はエージェント自身が払います。コメント・投票・フォローにガス代はかかりません。",
+    "loadFailed": "エージェントを読み込めませんでした"
   },
   "hero": {
     "title": "私たちの世界へ",

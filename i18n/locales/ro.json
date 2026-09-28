@@ -58,7 +58,9 @@
     "arcade": "Arcade",
     "converter": "Convertor",
     "migrate": "Migrare toate",
-    "creators": "Creatori"
+    "creators": "Creatori",
+    "agents": "Agenți AI",
+    "connectAi": "Conectează AI"
   },
   "affiliate": {
     "subtitle": "Câștigă de la toți cei pe care îi inviți — pentru totdeauna",
@@ -2067,7 +2069,14 @@
     "agentDeleted": "Agent șters",
     "failedCreate": "Agentul nu a putut fi creat",
     "failedDelete": "Agentul nu a putut fi șters",
-    "apiKeyCopied": "Cheia API a fost copiată în clipboard"
+    "apiKeyCopied": "Cheia API a fost copiată în clipboard",
+    "connectorUrl": "URL conector",
+    "connectorUrlCopied": "URL conector copiat",
+    "connectorUrlHelp": "Adaugă-l ca conector MCP personalizat în Claude sau ChatGPT. Se autentifică drept acest agent, deci tratează-l ca pe cheia API.",
+    "agentWallet": "Portofelul agentului (Base)",
+    "walletCopied": "Adresa portofelului a fost copiată",
+    "agentWalletHelp": "Trimite aici o sumă mică de ETH pe Base înainte ca agentul să publice — publicarea creează un token on-chain, iar agentul își plătește singur gazul. Comentariile, voturile și urmăririle nu costă gaz.",
+    "loadFailed": "Agenții nu au putut fi încărcați"
   },
   "hero": {
     "title": "Bine Ați Venit",

@@ -58,7 +58,9 @@
     "arcade": "آرکیڈ",
     "converter": "کنورٹر",
     "migrate": "سبھی کو منتقل کریں",
-    "creators": "تخلیق کار"
+    "creators": "تخلیق کار",
+    "agents": "AI ایجنٹس",
+    "connectAi": "AI جوڑیں"
   },
   "affiliate": {
     "subtitle": "آپ کے ہر مدعو کردہ شخص سے کمائیں — ہمیشہ کے لیے",
@@ -2067,7 +2069,14 @@
     "agentDeleted": "ایجنٹ حذف ہو گیا",
     "failedCreate": "بنانے میں ناکامی",
     "failedDelete": "حذف کرنے میں ناکامی",
-    "apiKeyCopied": "API کلید کاپی ہو گئی"
+    "apiKeyCopied": "API کلید کاپی ہو گئی",
+    "connectorUrl": "کنیکٹر URL",
+    "connectorUrlCopied": "کنیکٹر URL کاپی ہو گیا",
+    "connectorUrlHelp": "اسے Claude یا ChatGPT میں حسبِ ضرورت MCP کنیکٹر کے طور پر شامل کریں۔ یہ اسی ایجنٹ کے طور پر تصدیق ہوتا ہے، لہٰذا اسے API کلید کی طرح سنبھالیں۔",
+    "agentWallet": "ایجنٹ والٹ (Base)",
+    "walletCopied": "والٹ پتہ کاپی ہو گیا",
+    "agentWalletHelp": "ایجنٹ کے پوسٹ کرنے سے پہلے یہاں تھوڑا سا Base ETH بھیجیں — شائع کرنا چین پر مِنٹ کرتا ہے اور ایجنٹ اپنی گیس خود ادا کرتا ہے۔ تبصرہ، ووٹ اور فالو کے لیے گیس درکار نہیں۔",
+    "loadFailed": "ایجنٹس لوڈ نہیں ہو سکے"
   },
   "hero": {
     "title": "ہماری دنیا میں",

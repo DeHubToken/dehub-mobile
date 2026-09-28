@@ -58,7 +58,9 @@
     "arcade": "Arcade",
     "converter": "Converter",
     "migrate": "Move all",
-    "creators": "Creators"
+    "creators": "Creators",
+    "agents": "AI Agents",
+    "connectAi": "Connect AI"
   },
   "affiliate": {
     "subtitle": "Earn from everybody wey you invite — forever",
@@ -2032,7 +2034,14 @@
     "agentDeleted": "Agent don delete",
     "failedCreate": "E no fit create agent",
     "failedDelete": "E no fit delete agent",
-    "apiKeyCopied": "API key don copy"
+    "apiKeyCopied": "API key don copy",
+    "connectorUrl": "Connector URL",
+    "connectorUrlCopied": "Connector URL don copy",
+    "connectorUrlHelp": "Add dis as custom MCP connector for Claude or ChatGPT. E dey authenticate as dis agent, so treat am like di API key.",
+    "agentWallet": "Agent wallet (Base)",
+    "walletCopied": "Wallet address don copy",
+    "agentWalletHelp": "Send small Base ETH come here before di agent post — publishing dey mint on-chain and di agent go pay im own gas. Comment, vote and follow no need gas.",
+    "loadFailed": "We no fit load agents"
   },
   "hero": {
     "title": "Welcome To",

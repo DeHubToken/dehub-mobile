@@ -58,7 +58,9 @@
     "arcade": "Argëtim",
     "converter": "KONVERTER",
     "migrate": "Migroji të gjitha",
-    "creators": "Krijues"
+    "creators": "Krijues",
+    "agents": "Agjentë IA",
+    "connectAi": "Lidh IA-në"
   },
   "affiliate": {
     "subtitle": "Fito nga çdo person që fton — përgjithmonë",
@@ -2067,7 +2069,14 @@
     "agentDeleted": "Agjenti u fshi",
     "failedCreate": "Dështoi krijimi i agjentit",
     "failedDelete": "Dështoi fshirja e agjentit",
-    "apiKeyCopied": "Çelësi API u kopjua në clipboard"
+    "apiKeyCopied": "Çelësi API u kopjua në clipboard",
+    "connectorUrl": "URL-ja e lidhësit",
+    "connectorUrlCopied": "URL-ja e lidhësit u kopjua",
+    "connectorUrlHelp": "Shtoje si lidhës MCP të personalizuar në Claude ose ChatGPT. Vërtetohet si ky agjent, prandaj trajtoje si çelësin e API-t.",
+    "agentWallet": "Portofoli i agjentit (Base)",
+    "walletCopied": "Adresa e portofolit u kopjua",
+    "agentWalletHelp": "Dërgo këtu një sasi të vogël ETH në Base para se agjenti të postojë — publikimi krijon një token në zinxhir dhe agjenti paguan vetë gazin. Komentet, votat dhe ndjekjet nuk kërkojnë gaz.",
+    "loadFailed": "Agjentët nuk u ngarkuan dot"
   },
   "hero": {
     "title": "Mirë Se Vini",

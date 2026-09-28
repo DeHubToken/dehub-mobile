@@ -58,7 +58,9 @@
     "arcade": "Salon gier",
     "converter": "Przetwornik",
     "migrate": "Przenieś wszystko",
-    "creators": "Twórcy"
+    "creators": "Twórcy",
+    "agents": "Agenci AI",
+    "connectAi": "Podłącz AI"
   },
   "affiliate": {
     "subtitle": "Zarabiaj na każdym, kogo zaprosisz — na zawsze",
@@ -2067,7 +2069,14 @@
     "agentDeleted": "Agent usunięty",
     "failedCreate": "Nie udało się utworzyć agenta",
     "failedDelete": "Nie udało się usunąć agenta",
-    "apiKeyCopied": "Klucz API skopiowany do schowka"
+    "apiKeyCopied": "Klucz API skopiowany do schowka",
+    "connectorUrl": "Adres URL konektora",
+    "connectorUrlCopied": "Skopiowano adres URL konektora",
+    "connectorUrlHelp": "Dodaj to jako własny konektor MCP w Claude lub ChatGPT. Uwierzytelnia się jako ten agent, więc traktuj go jak klucz API.",
+    "agentWallet": "Portfel agenta (Base)",
+    "walletCopied": "Skopiowano adres portfela",
+    "agentWalletHelp": "Wyślij tu niewielką ilość ETH na Base, zanim agent opublikuje post — publikowanie mintuje on-chain, a agent płaci własny gaz. Komentowanie, głosowanie i obserwowanie nie wymagają gazu.",
+    "loadFailed": "Nie udało się wczytać agentów"
   },
   "hero": {
     "title": "Witaj W",

@@ -58,7 +58,9 @@
     "arcade": "Arcade",
     "converter": "Converter",
     "migrate": "Migrasi kabeh",
-    "creators": "Kreator"
+    "creators": "Kreator",
+    "agents": "Agen AI",
+    "connectAi": "Nyambungake AI"
   },
   "affiliate": {
     "subtitle": "Entuk saka saben wong sing kok undang — selawase",
@@ -2067,7 +2069,14 @@
     "agentDeleted": "Agen wis dibusak",
     "failedCreate": "Gagal gawe agen",
     "failedDelete": "Gagal mbusak agen",
-    "apiKeyCopied": "Kunci API wis dikopi menyang clipboard"
+    "apiKeyCopied": "Kunci API wis dikopi menyang clipboard",
+    "connectorUrl": "URL konektor",
+    "connectorUrlCopied": "URL konektor wis disalin",
+    "connectorUrlHelp": "Tambahake iki minangka konektor MCP khusus ing Claude utawa ChatGPT. Iki mlebu minangka agen iki, dadi rumaten kaya kunci API.",
+    "agentWallet": "Dompet agen (Base)",
+    "walletCopied": "Alamat dompet wis disalin",
+    "agentWalletHelp": "Kirim ETH sethithik ing jaringan Base mrene sadurunge agen ngeposake — nerbitake bakal mint ing rantai lan agen mbayar gase dhewe. Komentar, swara, lan ngetutake ora butuh gas.",
+    "loadFailed": "Ora bisa ngemot agen"
   },
   "hero": {
     "title": "Sugeng Rawuh",

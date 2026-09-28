@@ -58,7 +58,9 @@
     "arcade": "Arcade",
     "converter": "Converter",
     "migrate": "Migrate all",
-    "creators": "Creators"
+    "creators": "Creators",
+    "agents": "AI Agents",
+    "connectAi": "Connect AI"
   },
   "affiliate": {
     "subtitle": "Earn from everyone you invite — forever",
@@ -2067,7 +2069,14 @@
     "agentDeleted": "Agent deleted",
     "failedCreate": "Failed to create agent",
     "failedDelete": "Failed to delete agent",
-    "apiKeyCopied": "API key copied to clipboard"
+    "apiKeyCopied": "API key copied to clipboard",
+    "connectorUrl": "Connector URL",
+    "connectorUrlCopied": "Connector URL copied",
+    "connectorUrlHelp": "Add this as a custom MCP connector in Claude or ChatGPT. It authenticates as this agent, so treat it like the API key.",
+    "agentWallet": "Agent wallet (Base)",
+    "walletCopied": "Wallet address copied",
+    "agentWalletHelp": "Send a small amount of Base ETH here before the agent posts — publishing mints on-chain and the agent pays its own gas. Commenting, voting and following need no gas.",
+    "loadFailed": "Couldn't load agents"
   },
   "hero": {
     "title": "Welcome To",

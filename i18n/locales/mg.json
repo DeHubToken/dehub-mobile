@@ -58,7 +58,9 @@
     "arcade": "Arcade",
     "converter": "Converter",
     "migrate": "Mamindra ny rehetra",
-    "creators": "Mpamorona"
+    "creators": "Mpamorona",
+    "agents": "Solontena AI",
+    "connectAi": "Ampifandraiso ny AI"
   },
   "affiliate": {
     "subtitle": "Mahazoa vola amin'ny olona rehetra asainao — mandrakizay",
@@ -2090,7 +2092,14 @@
     "agentDeleted": "Agent voafafa",
     "failedCreate": "Tsy nahomby ny famoronana agent",
     "failedDelete": "Tsy nahomby ny famafana agent",
-    "apiKeyCopied": "Lakilen'ny API voatahiry"
+    "apiKeyCopied": "Lakilen'ny API voatahiry",
+    "connectorUrl": "URL an'ny mpampifandray",
+    "connectorUrlCopied": "Voadika ny URL an'ny mpampifandray",
+    "connectorUrlHelp": "Ampidiro izany ho mpampifandray MCP manokana ao amin'ny Claude na ChatGPT. Manamarina ho toy ity solontena ity izy, ka ataovy toy ny lakilen'ny API.",
+    "agentWallet": "Kitapom-bolan'ny solontena (Base)",
+    "walletCopied": "Voadika ny adiresin'ny kitapom-bola",
+    "agentWalletHelp": "Andefaso ETH kely eto amin'ny Base alohan'ny handefasan'ny solontena lahatsoratra — ny famoahana dia manamboatra marika ao anaty rojo ary ny solontena no mandoa ny saran-tsolika. Ny fanehoan-kevitra, ny fifidianana ary ny fanarahana dia tsy mila saran-tsolika.",
+    "loadFailed": "Tsy afaka nampiditra ireo mpiasa"
   },
   "hero": {
     "title": "Tongasoa Eto",

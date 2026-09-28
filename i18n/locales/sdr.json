@@ -58,7 +58,9 @@
     "arcade": "ئارکەید",
     "converter": "کنورٹر",
     "migrate": "सब माइग्रेट करो",
-    "creators": "بنانے والا"
+    "creators": "بنانے والا",
+    "agents": "AI ایجنٹ",
+    "connectAi": "AI جوڑو"
   },
   "affiliate": {
     "subtitle": "آپ کے ہر مدعو کردہ شخص سے کمائیں — ہمیشہ کے لیے",
@@ -2051,7 +2053,14 @@
     "agentDeleted": "ایجنٹ مٹ گیا",
     "failedCreate": "ایجنٹ بنانے میں ناکامی",
     "failedDelete": "ایجنٹ مٹانے میں ناکامی",
-    "apiKeyCopied": "API کلید کلپ بورڈ پر نقل ہو گئی"
+    "apiKeyCopied": "API کلید کلپ بورڈ پر نقل ہو گئی",
+    "connectorUrl": "کنکٹر URL",
+    "connectorUrlCopied": "کنکٹر URL کاپی ہوئل",
+    "connectorUrlHelp": "ایکرا Claude یا ChatGPT میں کسٹم MCP کنکٹر بنا کے جوڑو۔ ای ایجنٹ کے طور پر پہچان دیئے ہے، تاہی API-کی جیسن سنڀارو۔",
+    "agentWallet": "ایجنٹ کا بٹوا (Base)",
+    "walletCopied": "بٹوا کے پتہ کاپی ہوئل",
+    "agentWalletHelp": "ایجنٹ کے پوسٹ کرے سے پہلے هتی تھوڑا Base ETH بھیجو — پوسٹ کرل زنجیر پر مِنٹ ہوئے ہے اور ایجنٹ اپن گیس خرچ دیئے ہے۔ تبصرہ کرے، ووٹ دیوے اور پیچھے چلے کے واسطے گیس نہیں چاہی۔",
+    "loadFailed": "एजेंट लोड नी होय पारलक"
   },
   "hero": {
     "title": "ہماری دنیا میں",

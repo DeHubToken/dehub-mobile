@@ -58,7 +58,9 @@
     "arcade": "Ebe egwuregwu",
     "converter": "Ntụgharị",
     "migrate": "Mbugharị niile",
-    "creators": "Ndị Okike"
+    "creators": "Ndị Okike",
+    "agents": "Ndị Agent AI",
+    "connectAi": "Jikọọ AI"
   },
   "affiliate": {
     "subtitle": "Nweta site na onye ọ bụla ị kpọrọ — ruo mgbe ebighị ebi",
@@ -2067,7 +2069,14 @@
     "agentDeleted": "Ehichapụla onye ọrụ",
     "failedCreate": "Enweghị ike ịmepụta onye ọrụ",
     "failedDelete": "Enweghị ike ihichapụ onye ọrụ",
-    "apiKeyCopied": "Edetuola igodo API na clipboard"
+    "apiKeyCopied": "Edetuola igodo API na clipboard",
+    "connectorUrl": "URL Njikọ",
+    "connectorUrlCopied": "Edetuola URL Njikọ",
+    "connectorUrlHelp": "Tinye nke a dị ka njikọ MCP nke gị n'ime Claude ma ọ bụ ChatGPT. Ọ na-egosi onwe ya dị ka Agent a, ya mere jiri ya kpọrọ ihe dị ka API key.",
+    "agentWallet": "Obere akpa ego Agent (Base)",
+    "walletCopied": "Edetuola adreesị obere akpa ego",
+    "agentWalletHelp": "Zipu obere ETH Base ebe a tupu Agent ebipụta ihe — ibipụta na-emepụta ihe n'agbụ, Agent na-akwụkwa gaasị nke ya. Ịkọwa okwu, ịtụ vootu na iso adịghị achọ gaasị.",
+    "loadFailed": "Enweghị ike ibugo ndị nnọchite"
   },
   "hero": {
     "title": "Nnọọ N'ụwa",

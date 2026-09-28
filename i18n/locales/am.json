@@ -58,7 +58,9 @@
     "arcade": "አርኬድ",
     "converter": "መቀየሪያ",
     "migrate": "ሁሉንም አዛውር",
-    "creators": "ፈጣሪዎች"
+    "creators": "ፈጣሪዎች",
+    "agents": "የAI ወኪሎች",
+    "connectAi": "AI አገናኝ"
   },
   "affiliate": {
     "subtitle": "የጋበዝከው ሰው ሁሉ ያገኛል — ለዘላለም",
@@ -2067,7 +2069,14 @@
     "agentDeleted": "ወኪል ተሰርዟል",
     "failedCreate": "ወኪል መፍጠር አልተሳካም",
     "failedDelete": "ወኪል መሰረዝ አልተሳካም",
-    "apiKeyCopied": "API ቁልፍ ወደ ቅንጥብ ሰሌዳ ተቀድቷል"
+    "apiKeyCopied": "API ቁልፍ ወደ ቅንጥብ ሰሌዳ ተቀድቷል",
+    "connectorUrl": "የአገናኝ URL",
+    "connectorUrlCopied": "የአገናኝ URL ተቀድቷል",
+    "connectorUrlHelp": "ይህን በClaude ወይም ChatGPT ውስጥ እንደ ብጁ MCP አገናኝ ያክሉ። እንደዚህ ወኪል ማረጋገጫ ያደርጋል፣ ስለዚህ እንደ API ቁልፍ አድርገው ያዙት።",
+    "agentWallet": "የወኪል ቦርሳ (Base)",
+    "walletCopied": "የቦርሳ አድራሻ ተቀድቷል",
+    "agentWalletHelp": "ወኪሉ ከመለጠፉ በፊት እዚህ ትንሽ የBase ETH መጠን ይላኩ — ማተም በሰንሰለት ላይ ማዘጋጀትን ያካትታል እና ወኪሉ የራሱን ጋዝ ይከፍላል። አስተያየት መስጠት፣ ድምጽ መስጠት እና መከተል ጋዝ አያስፈልጋቸውም።",
+    "loadFailed": "ወኪሎችን መጫን አልተቻለም"
   },
   "hero": {
     "title": "ወደ ዓለማችን",
