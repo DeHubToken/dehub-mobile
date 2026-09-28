@@ -154,7 +154,7 @@ describe('the grandfather lock', () => {
   });
 
   it('finds the lock wherever a feed row happens to carry the author', () => {
-    const lock = { tier: 'Cobra', requirement: 250_000 };
+    const lock = { tier: 'King Cobra', requirement: 250_000 };
     expect(resolveBadgeLock({ badgeLock: lock })).toEqual(lock);
     expect(resolveBadgeLock({ minterUser: { badgeLock: lock } })).toEqual(lock);
     expect(resolveBadgeLock({ author: { badgeLock: lock } })).toEqual(lock);
@@ -212,6 +212,11 @@ describe("the legacy tier spellings", () => {
   it("maps the two typos onto the real names", () => {
     expect(canonicalTierName("Crocodite")).toBe("Crocodile");
     expect(canonicalTierName("Meglodon")).toBe("Megalodon");
+  });
+
+  it("maps the pre-rename Tortoise and Cobra onto Giant Tortoise and King Cobra", () => {
+    expect(canonicalTierName("Tortoise")).toBe("Giant Tortoise");
+    expect(canonicalTierName("Cobra")).toBe("King Cobra");
   });
 
   it("leaves every current name alone", () => {
