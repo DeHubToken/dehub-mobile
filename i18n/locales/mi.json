@@ -8481,5 +8481,36 @@
       "emptyTitle": "Kaore ano nga taupānga kua whakarārangitia",
       "emptyBody": "Kei te arotakehia nga taupānga tuatahi. Hangaia tetahi, a ka taea e te reira i konei."
     }
+  },
+  "aiStyles": {
+    "normal": "Noa",
+    "old-english": "Reo Ingarihi Tawhito",
+    "cockney": "Cockney",
+    "celtic": "Kerete",
+    "scouse": "Scouse",
+    "wild-west": "Uru Mohoao",
+    "asian-uncle": "Matua Āhia",
+    "russian-mafia": "Mafia Rūhia",
+    "pirate": "Kaipahua",
+    "alien": "Tauiwi o te ao kē",
+    "e-girl": "E-Girl",
+    "chad": "Chad",
+    "hopeless-romantic": "Tangata Aroha Hohonu",
+    "daddy": "Pāpā",
+    "mommy": "Māmā",
+    "big-brother": "Tuakana",
+    "lil-bro": "Teina tāne",
+    "big-sister": "Tuakana wahine",
+    "little-sister": "Teina wahine",
+    "conservative": "Kaitiaki tikanga",
+    "liberal": "Rīpera",
+    "antifa": "ANTIFA",
+    "capitalist": "Kaipakihi rawa",
+    "socialist": "Tōrangapū pāpori",
+    "neocon": "Neocon",
+    "feminist": "Kaiwawao wāhine",
+    "progressive": "Kauneke",
+    "nationalist": "Tangata whenua",
+    "communist": "Komunihi"
   }
 }

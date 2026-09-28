@@ -8481,5 +8481,36 @@
       "emptyTitle": "Enweghị usoroiheomume edepụtara ma",
       "emptyBody": "A na-enyocha ngwa ndị mbụ ahụ. Mepụta otu ma ọ nwere ike ịdị ebe a."
     }
+  },
+  "aiStyles": {
+    "normal": "Nkịtị",
+    "old-english": "Bekee ochie",
+    "cockney": "Cockney",
+    "celtic": "Celtic",
+    "scouse": "Scouse",
+    "wild-west": "Ọdịda anyanwụ ọhịa",
+    "asian-uncle": "Nwanne nna Eshia",
+    "russian-mafia": "Mafia Rọshịa",
+    "pirate": "Onye ohi mmiri",
+    "alien": "Onye mbịarambịa",
+    "e-girl": "E-Girl",
+    "chad": "Chad",
+    "hopeless-romantic": "Onye ịhụnanya enweghị olileanya",
+    "daddy": "Papa",
+    "mommy": "Mama",
+    "big-brother": "Nwanne nwoke ọkpara",
+    "lil-bro": "Nwanne nwoke nta",
+    "big-sister": "Nwanne nwanyị ọkpara",
+    "little-sister": "Nwanne nwanyị nta",
+    "conservative": "Onye nchekwa ọdịnala",
+    "liberal": "Onye nnwere onwe",
+    "antifa": "ANTIFA",
+    "capitalist": "Onye isi ego",
+    "socialist": "Onye soshalist",
+    "neocon": "Neocon",
+    "feminist": "Onye na-akwado ụmụ nwanyị",
+    "progressive": "Onye ọganihu",
+    "nationalist": "Onye mba",
+    "communist": "Onye kọmunist"
   }
 }

@@ -8487,5 +8487,36 @@
       "emptyTitle": "Няма приложения списани още",
       "emptyBody": "Първите приложения са в процеса на проверка. Създайте едно и то може да бъде тук."
     }
+  },
+  "aiStyles": {
+    "normal": "Нормален",
+    "old-english": "Староанглийски",
+    "cockney": "Кокни",
+    "celtic": "Келтски",
+    "scouse": "Скаус",
+    "wild-west": "Дивият запад",
+    "asian-uncle": "Азиатски чичо",
+    "russian-mafia": "Руска мафия",
+    "pirate": "Пират",
+    "alien": "Извънземен",
+    "e-girl": "Е-гърл",
+    "chad": "Чад",
+    "hopeless-romantic": "Безнадежден романтик",
+    "daddy": "Татко",
+    "mommy": "Мама",
+    "big-brother": "Батко",
+    "lil-bro": "Малкото братче",
+    "big-sister": "Кака",
+    "little-sister": "Малката сестричка",
+    "conservative": "Консерватор",
+    "liberal": "Либерал",
+    "antifa": "АНТИФА",
+    "capitalist": "Капиталист",
+    "socialist": "Социалист",
+    "neocon": "Неокон",
+    "feminist": "Феминистка",
+    "progressive": "Прогресист",
+    "nationalist": "Националист",
+    "communist": "Комунист"
   }
 }

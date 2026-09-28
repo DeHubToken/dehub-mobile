@@ -8477,5 +8477,36 @@
       "emptyTitle": "ଏପର୍ଯ୍ୟନ୍ତ କୌଣସି ପ୍ରୟୋଗ ତାଲିକାଭୁକ୍ତ ହୋଇନାହିଁ",
       "emptyBody": "ଏହାର ପ୍ରଥମ ଆପ୍ ‌ ଗୁଡ଼ିକର ସମୀକ୍ଷା କରାଯାଉଛି । ଗୋଟିଏ ତିଆରି କରନ୍ତୁ ଏବଂ ଏହା ଏଠାରେ ହୋଇପାରେ ।"
     }
+  },
+  "aiStyles": {
+    "normal": "ସାଧାରଣ",
+    "old-english": "ପୁରୁଣା ଇଂରାଜୀ",
+    "cockney": "କକନି",
+    "celtic": "କେଲ୍ଟିକ",
+    "scouse": "ସ୍କାଉସ",
+    "wild-west": "ୱାଇଲ୍ଡ ୱେଷ୍ଟ",
+    "asian-uncle": "ଏସୀୟ ମାମୁଁ",
+    "russian-mafia": "ରୁଷୀୟ ମାଫିଆ",
+    "pirate": "ଜଳଦସ୍ୟୁ",
+    "alien": "ଏଲିଏନ",
+    "e-girl": "ଇ-ଗର୍ଲ",
+    "chad": "ଚାଡ",
+    "hopeless-romantic": "ନିରାଶ ରୋମାଣ୍ଟିକ",
+    "daddy": "ବାପା",
+    "mommy": "ମା",
+    "big-brother": "ବଡ଼ ଭାଇ",
+    "lil-bro": "ସାନ ଭାଇ",
+    "big-sister": "ବଡ଼ ଭଉଣୀ",
+    "little-sister": "ସାନ ଭଉଣୀ",
+    "conservative": "ରକ୍ଷଣଶୀଳ",
+    "liberal": "ଉଦାରବାଦୀ",
+    "antifa": "ଆଣ୍ଟିଫା",
+    "capitalist": "ପୁଞ୍ଜିବାଦୀ",
+    "socialist": "ସମାଜବାଦୀ",
+    "neocon": "ନିଓକନ",
+    "feminist": "ନାରୀବାଦୀ",
+    "progressive": "ପ୍ରଗତିଶୀଳ",
+    "nationalist": "ଜାତୀୟତାବାଦୀ",
+    "communist": "ସାମ୍ୟବାଦୀ"
   }
 }

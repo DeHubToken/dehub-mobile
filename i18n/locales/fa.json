@@ -8513,5 +8513,36 @@
       "emptyTitle": "هنوز هیچ برنامه‌ای فهرست نشده است",
       "emptyBody": "اولین برنامه‌ها در حال بررسی هستند. یکی بسازید و ممکن است اینجا باشد."
     }
+  },
+  "aiStyles": {
+    "normal": "معمولی",
+    "old-english": "انگلیسی کهن",
+    "cockney": "کاکنی",
+    "celtic": "سلتی",
+    "scouse": "اسکاوس",
+    "wild-west": "غرب وحشی",
+    "asian-uncle": "عموی آسیایی",
+    "russian-mafia": "مافیای روسی",
+    "pirate": "دزد دریایی",
+    "alien": "فضایی",
+    "e-girl": "ای‌گرل",
+    "chad": "چاد",
+    "hopeless-romantic": "رمانتیک ناامید",
+    "daddy": "بابا",
+    "mommy": "مامان",
+    "big-brother": "برادر بزرگ",
+    "lil-bro": "داداش کوچیک",
+    "big-sister": "خواهر بزرگ",
+    "little-sister": "خواهر کوچیک",
+    "conservative": "محافظه‌کار",
+    "liberal": "لیبرال",
+    "antifa": "آنتیفا",
+    "capitalist": "سرمایه‌دار",
+    "socialist": "سوسیالیست",
+    "neocon": "نومحافظه‌کار",
+    "feminist": "فمینیست",
+    "progressive": "ترقی‌خواه",
+    "nationalist": "ملی‌گرا",
+    "communist": "کمونیست"
   }
 }

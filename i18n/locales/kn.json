@@ -8483,5 +8483,36 @@
       "emptyTitle": "ಇನ್ನೂ ಯಾವುದೇ ಆ್ಯಪ್‌ಗಳನ್ನು ಪಟ್ಟಿ ಮಾಡಲಾಗಿಲ್ಲ",
       "emptyBody": "ಮೊದಲ ಅಪ್ಲಿಕೇಶನ್‌ಗಳು ಪರಿಶೀಲನೆಯಲ್ಲಿದೆ. ಒಂದನ್ನು ನಿರ್ಮಿಸಿ ಮತ್ತು ಅದು ಇಲ್ಲಿರಬಹುದು."
     }
+  },
+  "aiStyles": {
+    "normal": "ಸಾಮಾನ್ಯ",
+    "old-english": "ಹಳೆಯ ಇಂಗ್ಲಿಷ್",
+    "cockney": "ಕಾಕ್ನಿ",
+    "celtic": "ಕೆಲ್ಟಿಕ್",
+    "scouse": "ಸ್ಕೌಸ್",
+    "wild-west": "ವೈಲ್ಡ್ ವೆಸ್ಟ್",
+    "asian-uncle": "ಏಷ್ಯನ್ ಮಾಮ",
+    "russian-mafia": "ರಷ್ಯನ್ ಮಾಫಿಯಾ",
+    "pirate": "ಕಡಲ್ಗಳ್ಳ",
+    "alien": "ಏಲಿಯನ್",
+    "e-girl": "ಇ-ಗರ್ಲ್",
+    "chad": "ಚಾಡ್",
+    "hopeless-romantic": "ನಿರಾಶ ರೊಮ್ಯಾಂಟಿಕ್",
+    "daddy": "ಅಪ್ಪ",
+    "mommy": "ಅಮ್ಮ",
+    "big-brother": "ಅಣ್ಣ",
+    "lil-bro": "ತಮ್ಮ",
+    "big-sister": "ಅಕ್ಕ",
+    "little-sister": "ತಂಗಿ",
+    "conservative": "ಸಂಪ್ರದಾಯವಾದಿ",
+    "liberal": "ಉದಾರವಾದಿ",
+    "antifa": "ಆಂಟಿಫಾ",
+    "capitalist": "ಬಂಡವಾಳಶಾಹಿ",
+    "socialist": "ಸಮಾಜವಾದಿ",
+    "neocon": "ನಿಯೋಕಾನ್",
+    "feminist": "ಸ್ತ್ರೀವಾದಿ",
+    "progressive": "ಪ್ರಗತಿಪರ",
+    "nationalist": "ರಾಷ್ಟ್ರೀಯವಾದಿ",
+    "communist": "ಕಮ್ಯುನಿಸ್ಟ್"
   }
 }

@@ -8487,5 +8487,36 @@
       "emptyTitle": "Ainda não há aplicações listadas",
       "emptyBody": "As primeiras aplicações estão em análise. Construa um e pode estar aqui."
     }
+  },
+  "aiStyles": {
+    "normal": "Normal",
+    "old-english": "Inglês antigo",
+    "cockney": "Cockney",
+    "celtic": "Celta",
+    "scouse": "Scouse",
+    "wild-west": "Velho Oeste",
+    "asian-uncle": "Tio asiático",
+    "russian-mafia": "Máfia russa",
+    "pirate": "Pirata",
+    "alien": "Alienígena",
+    "e-girl": "E-Girl",
+    "chad": "Chad",
+    "hopeless-romantic": "Romântico incurável",
+    "daddy": "Papai",
+    "mommy": "Mamãe",
+    "big-brother": "Irmão mais velho",
+    "lil-bro": "Irmãozinho",
+    "big-sister": "Irmã mais velha",
+    "little-sister": "Irmãzinha",
+    "conservative": "Conservador",
+    "liberal": "Liberal",
+    "antifa": "ANTIFA",
+    "capitalist": "Capitalista",
+    "socialist": "Socialista",
+    "neocon": "Neocon",
+    "feminist": "Feminista",
+    "progressive": "Progressista",
+    "nationalist": "Nacionalista",
+    "communist": "Comunista"
   }
 }

@@ -8483,5 +8483,36 @@
       "emptyTitle": "अद्याप कोणतेही अ‍ॅप्स सूचीबद्ध केलेले नाहीत",
       "emptyBody": "पहिल्या अॅप्सची तपासणी केली जात आहे. तो एक आहे, आणि तो येथे केले जाऊ शकते."
     }
+  },
+  "aiStyles": {
+    "normal": "सामान्य",
+    "old-english": "जुनी इंग्रजी",
+    "cockney": "कॉकनी",
+    "celtic": "केल्टिक",
+    "scouse": "स्काउस",
+    "wild-west": "वाइल्ड वेस्ट",
+    "asian-uncle": "आशियाई काका",
+    "russian-mafia": "रशियन माफिया",
+    "pirate": "चाचा",
+    "alien": "एलियन",
+    "e-girl": "ई-गर्ल",
+    "chad": "चॅड",
+    "hopeless-romantic": "हताश रोमँटिक",
+    "daddy": "बाबा",
+    "mommy": "आई",
+    "big-brother": "मोठा भाऊ",
+    "lil-bro": "धाकटा भाऊ",
+    "big-sister": "मोठी बहीण",
+    "little-sister": "धाकटी बहीण",
+    "conservative": "रूढिवादी",
+    "liberal": "उदारमतवादी",
+    "antifa": "अँटिफा",
+    "capitalist": "भांडवलवादी",
+    "socialist": "समाजवादी",
+    "neocon": "निओकॉन",
+    "feminist": "स्त्रीवादी",
+    "progressive": "पुरोगामी",
+    "nationalist": "राष्ट्रवादी",
+    "communist": "साम्यवादी"
   }
 }

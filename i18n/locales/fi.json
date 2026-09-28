@@ -8483,5 +8483,36 @@
       "emptyTitle": "Ei sovelluksia vielä lueteltuina",
       "emptyBody": "Ensimmäiset sovellukset ovat tarkastuksessa. Rakennathan yhden ja se saattaa tulla tänne."
     }
+  },
+  "aiStyles": {
+    "normal": "Normaali",
+    "old-english": "Muinaisenglanti",
+    "cockney": "Cockney",
+    "celtic": "Kelttiläinen",
+    "scouse": "Scouse",
+    "wild-west": "Villi länsi",
+    "asian-uncle": "Aasialainen setä",
+    "russian-mafia": "Venäläinen mafia",
+    "pirate": "Merirosvo",
+    "alien": "Avaruusolento",
+    "e-girl": "E-Girl",
+    "chad": "Chad",
+    "hopeless-romantic": "Toivoton romantikko",
+    "daddy": "Isi",
+    "mommy": "Äiti",
+    "big-brother": "Isoveli",
+    "lil-bro": "Pikkuveli",
+    "big-sister": "Isosisko",
+    "little-sister": "Pikkusisko",
+    "conservative": "Konservatiivi",
+    "liberal": "Liberaali",
+    "antifa": "ANTIFA",
+    "capitalist": "Kapitalisti",
+    "socialist": "Sosialisti",
+    "neocon": "Uuskonservatiivi",
+    "feminist": "Feministi",
+    "progressive": "Edistysmielinen",
+    "nationalist": "Nationalisti",
+    "communist": "Kommunisti"
   }
 }

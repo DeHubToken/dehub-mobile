@@ -8477,5 +8477,36 @@
       "emptyTitle": "هېڅ اپلیکېشن نه دی لېست شوی.",
       "emptyBody": "پخوانۍ اپلیکېشنونه د پېژندنې په حالت کې دي. یو جوړول او دې ځای ته ورسېدای شي."
     }
+  },
+  "aiStyles": {
+    "normal": "عادي",
+    "old-english": "زړه انګلیسي",
+    "cockney": "کاکني",
+    "celtic": "سلټیک",
+    "scouse": "سکاوس",
+    "wild-west": "وحشي لوېدیځ",
+    "asian-uncle": "آسیايي کاکا",
+    "russian-mafia": "روسي مافیا",
+    "pirate": "سمندري غل",
+    "alien": "پردی مخلوق",
+    "e-girl": "ای-ګرل",
+    "chad": "چاډ",
+    "hopeless-romantic": "نااميده رومانتيک",
+    "daddy": "پلار",
+    "mommy": "مور",
+    "big-brother": "مشر ورور",
+    "lil-bro": "کشر ورور",
+    "big-sister": "مشره خور",
+    "little-sister": "کشره خور",
+    "conservative": "محافظه کار",
+    "liberal": "لیبرال",
+    "antifa": "انټيفا",
+    "capitalist": "پانګه وال",
+    "socialist": "سوسیالیست",
+    "neocon": "نیوکان",
+    "feminist": "فیمینیست",
+    "progressive": "پرمختګ غوښتونکی",
+    "nationalist": "ملتپال",
+    "communist": "کمونیست"
   }
 }

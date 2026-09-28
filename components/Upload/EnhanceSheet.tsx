@@ -86,7 +86,7 @@ export default function EnhanceSheet({
                 className="flex-row items-center px-4 py-3"
               >
                 <Text className="text-lg">{style.emoji}</Text>
-                <Text className="text-white text-sm ml-3">{style.label}</Text>
+                <Text className="text-white text-sm ml-3">{t(`aiStyles.${style.id}`)}</Text>
               </TouchableOpacity>
             ))
           ) : (

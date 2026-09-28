@@ -8483,5 +8483,36 @@
       "emptyTitle": "Չկա հավելվածներ ցուցադրված դեռ։",
       "emptyBody": "Առաջին հավելվածները վերահսկվում են։ Ստեղծել մեկը և այն կարող է այստեղ լինել։"
     }
+  },
+  "aiStyles": {
+    "normal": "Սովորական",
+    "old-english": "Հին անգլերեն",
+    "cockney": "Քոքնի",
+    "celtic": "Կելտական",
+    "scouse": "Սքաուս",
+    "wild-west": "Վայրի Արևմուտք",
+    "asian-uncle": "Ասիացի քեռի",
+    "russian-mafia": "Ռուսական մաֆիա",
+    "pirate": "Ծովահեն",
+    "alien": "Այլմոլորակային",
+    "e-girl": "Ի-գյորլ",
+    "chad": "Չեդ",
+    "hopeless-romantic": "Անհույս ռոմանտիկ",
+    "daddy": "Հայրիկ",
+    "mommy": "Մայրիկ",
+    "big-brother": "Մեծ եղբայր",
+    "lil-bro": "Փոքր եղբայր",
+    "big-sister": "Մեծ քույր",
+    "little-sister": "Փոքր քույր",
+    "conservative": "Պահպանողական",
+    "liberal": "Լիբերալ",
+    "antifa": "ԱՆՏԻՖԱ",
+    "capitalist": "Կապիտալիստ",
+    "socialist": "Սոցիալիստ",
+    "neocon": "Նեոկոն",
+    "feminist": "Ֆեմինիստ",
+    "progressive": "Առաջադեմ",
+    "nationalist": "Ազգայնական",
+    "communist": "Կոմունիստ"
   }
 }

@@ -8511,5 +8511,36 @@
       "emptyTitle": "እስካሁን የተዘረዘሩ መተግበሪያዎች የሉም",
       "emptyBody": "የመጀመሪያዎቹ መተግበሪያዎች በግምገማ ላይ ናቸው ። አንዱን ይገንቡ እና እዚህ ሊሆን ይችላል ።"
     }
+  },
+  "aiStyles": {
+    "normal": "መደበኛ",
+    "old-english": "ጥንታዊ እንግሊዝኛ",
+    "cockney": "ኮክኒ",
+    "celtic": "ኬልቲክ",
+    "scouse": "ስካውስ",
+    "wild-west": "ዱር ምዕራብ",
+    "asian-uncle": "የእስያ አጎት",
+    "russian-mafia": "የሩሲያ ማፊያ",
+    "pirate": "የባሕር ወንበዴ",
+    "alien": "ባዕድ ፍጡር",
+    "e-girl": "ኢ-ገርል",
+    "chad": "ቻድ",
+    "hopeless-romantic": "ተስፋ ቢስ ሮማንቲክ",
+    "daddy": "አባዬ",
+    "mommy": "እማዬ",
+    "big-brother": "ታላቅ ወንድም",
+    "lil-bro": "ታናሽ ወንድም",
+    "big-sister": "ታላቅ እህት",
+    "little-sister": "ታናሽ እህት",
+    "conservative": "ወግ አጥባቂ",
+    "liberal": "ሊበራል",
+    "antifa": "አንቲፋ",
+    "capitalist": "ካፒታሊስት",
+    "socialist": "ሶሻሊስት",
+    "neocon": "ኒዮኮን",
+    "feminist": "ፌሚኒስት",
+    "progressive": "ተራማጅ",
+    "nationalist": "ብሔርተኛ",
+    "communist": "ኮሚኒስት"
   }
 }

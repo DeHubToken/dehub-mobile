@@ -1500,7 +1500,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
                         accessibilityRole="button"
                         style={[aiChipStyle, isMinimal && aiChipMinimal]}
                       >
-                        <Text style={{ fontSize: 12, color: "#A6A9AC" }}>{style.emoji} {style.label}</Text>
+                        <Text style={{ fontSize: 12, color: "#A6A9AC" }}>{style.emoji} {t(`aiStyles.${style.id}`)}</Text>
                       </Pressable>
                     ))}
                   </ScrollView>
@@ -1535,7 +1535,6 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
                     style={[aiChipStyle, isMinimal && aiChipMinimal]}
                   >
                     {aiRewriting ? <ActivityIndicator size="small" color="#A6A9AC" /> : <Icon name={aiMenu === "closed" ? "Sparkles" : "X"} size={13} color="#A6A9AC" />}
-                    <Text style={{ fontSize: 12, color: "#A6A9AC" }}>{t("conversation.coach.aiMenu")}</Text>
                   </Pressable>
                 </View>
               </View>

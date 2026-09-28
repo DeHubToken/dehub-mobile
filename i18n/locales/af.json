@@ -8608,5 +8608,36 @@
       "emptyTitle": "Geen apps gelys nie",
       "emptyBody": "Die eerste apps is in voorskou. Bou een en dit kan hier wees."
     }
+  },
+  "aiStyles": {
+    "normal": "Normaal",
+    "old-english": "Oud-Engels",
+    "cockney": "Cockney",
+    "celtic": "Kelties",
+    "scouse": "Scouse",
+    "wild-west": "Wilde Weste",
+    "asian-uncle": "Asiatiese Oom",
+    "russian-mafia": "Russiese Mafia",
+    "pirate": "Seerower",
+    "alien": "Ruimtewese",
+    "e-girl": "E-Girl",
+    "chad": "Chad",
+    "hopeless-romantic": "Hopelose Romantikus",
+    "daddy": "Pappa",
+    "mommy": "Mamma",
+    "big-brother": "Groot Broer",
+    "lil-bro": "Klein Boetie",
+    "big-sister": "Groot Suster",
+    "little-sister": "Klein Sussie",
+    "conservative": "Konserwatief",
+    "liberal": "Liberaal",
+    "antifa": "ANTIFA",
+    "capitalist": "Kapitalis",
+    "socialist": "Sosialis",
+    "neocon": "Neokonserwatief",
+    "feminist": "Feminis",
+    "progressive": "Progressief",
+    "nationalist": "Nasionalis",
+    "communist": "Kommunis"
   }
 }

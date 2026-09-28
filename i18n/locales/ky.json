@@ -8482,5 +8482,36 @@
       "emptyTitle": "Колдонмолордун тизмеси азырынча жок",
       "emptyBody": "Биринчи тиркемелер каралууда. Бирин куруп, бул жерде болушу мүмкүн."
     }
+  },
+  "aiStyles": {
+    "normal": "Кадимки",
+    "old-english": "Байыркы англис",
+    "cockney": "Кокни",
+    "celtic": "Кельт",
+    "scouse": "Скаус",
+    "wild-west": "Жапайы Батыш",
+    "asian-uncle": "Азиялык байке",
+    "russian-mafia": "Орус мафиясы",
+    "pirate": "Деңиз каракчысы",
+    "alien": "Келгин",
+    "e-girl": "И-гёрл",
+    "chad": "Чад",
+    "hopeless-romantic": "Үмүтсүз романтик",
+    "daddy": "Ата",
+    "mommy": "Апа",
+    "big-brother": "Байке",
+    "lil-bro": "Ини",
+    "big-sister": "Эже",
+    "little-sister": "Сиңди",
+    "conservative": "Консерватор",
+    "liberal": "Либерал",
+    "antifa": "АНТИФА",
+    "capitalist": "Капиталист",
+    "socialist": "Социалист",
+    "neocon": "Неокон",
+    "feminist": "Феминист",
+    "progressive": "Прогрессист",
+    "nationalist": "Улутчул",
+    "communist": "Коммунист"
   }
 }

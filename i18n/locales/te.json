@@ -8486,5 +8486,36 @@
       "emptyTitle": "ఇంకా యాప్ ‌ లు ఏవీ జాబితా చేయబడలేదు",
       "emptyBody": "ప్రాథమిక అప్లికేషన్లు సమీక్షలో ఉన్నాయి. ఒకటి నిర్మించి, అది ఇక్కడ ఉండవచ్చు."
     }
+  },
+  "aiStyles": {
+    "normal": "సాధారణ",
+    "old-english": "పాత ఇంగ్లీష్",
+    "cockney": "కాక్నీ",
+    "celtic": "కెల్టిక్",
+    "scouse": "స్కౌస్",
+    "wild-west": "వైల్డ్ వెస్ట్",
+    "asian-uncle": "ఆసియా మామయ్య",
+    "russian-mafia": "రష్యన్ మాఫియా",
+    "pirate": "సముద్రపు దొంగ",
+    "alien": "గ్రహాంతరవాసి",
+    "e-girl": "ఇ-గర్ల్",
+    "chad": "చాడ్",
+    "hopeless-romantic": "నిరాశ రొమాంటిక్",
+    "daddy": "నాన్న",
+    "mommy": "అమ్మ",
+    "big-brother": "అన్నయ్య",
+    "lil-bro": "తమ్ముడు",
+    "big-sister": "అక్క",
+    "little-sister": "చెల్లి",
+    "conservative": "సంప్రదాయవాది",
+    "liberal": "ఉదారవాది",
+    "antifa": "యాంటిఫా",
+    "capitalist": "పెట్టుబడిదారు",
+    "socialist": "సోషలిస్ట్",
+    "neocon": "నియోకాన్",
+    "feminist": "స్త్రీవాది",
+    "progressive": "ప్రగతిశీల",
+    "nationalist": "జాతీయవాది",
+    "communist": "కమ్యూనిస్ట్"
   }
 }

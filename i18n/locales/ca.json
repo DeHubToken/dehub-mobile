@@ -8483,5 +8483,36 @@
       "emptyTitle": "No hi ha aplicacions llistades encara",
       "emptyBody": "Les primeres aplicacions estan en revisió. Construeix-ne una i podria estar aquí."
     }
+  },
+  "aiStyles": {
+    "normal": "Normal",
+    "old-english": "Anglès antic",
+    "cockney": "Cockney",
+    "celtic": "Cèltic",
+    "scouse": "Scouse",
+    "wild-west": "Salvatge Oest",
+    "asian-uncle": "Oncle asiàtic",
+    "russian-mafia": "Màfia russa",
+    "pirate": "Pirata",
+    "alien": "Extraterrestre",
+    "e-girl": "E-Girl",
+    "chad": "Chad",
+    "hopeless-romantic": "Romàntic empedreït",
+    "daddy": "Papa",
+    "mommy": "Mama",
+    "big-brother": "Germà gran",
+    "lil-bro": "Germà petit",
+    "big-sister": "Germana gran",
+    "little-sister": "Germana petita",
+    "conservative": "Conservador",
+    "liberal": "Liberal",
+    "antifa": "ANTIFA",
+    "capitalist": "Capitalista",
+    "socialist": "Socialista",
+    "neocon": "Neocon",
+    "feminist": "Feminista",
+    "progressive": "Progressista",
+    "nationalist": "Nacionalista",
+    "communist": "Comunista"
   }
 }

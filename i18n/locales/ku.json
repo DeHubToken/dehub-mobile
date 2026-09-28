@@ -8437,5 +8437,36 @@
   },
   "accountDeletion": {
     "title": "حیسابی بەکارهێنەر بسڕەوە"
+  },
+  "aiStyles": {
+    "normal": "Asayî",
+    "old-english": "Îngilîziya Kevn",
+    "cockney": "Cockney",
+    "celtic": "Keltî",
+    "scouse": "Scouse",
+    "wild-west": "Rojavayê Hov",
+    "asian-uncle": "Mamê Asyayî",
+    "russian-mafia": "Mafyaya Rûsî",
+    "pirate": "Korsan",
+    "alien": "Biyanî",
+    "e-girl": "E-Girl",
+    "chad": "Chad",
+    "hopeless-romantic": "Romantîkê Bêhêvî",
+    "daddy": "Bavo",
+    "mommy": "Dayê",
+    "big-brother": "Birayê Mezin",
+    "lil-bro": "Birayê Biçûk",
+    "big-sister": "Xwişka Mezin",
+    "little-sister": "Xwişka Biçûk",
+    "conservative": "Muhafezekar",
+    "liberal": "Lîberal",
+    "antifa": "ANTIFA",
+    "capitalist": "Kapîtalîst",
+    "socialist": "Sosyalîst",
+    "neocon": "Neokon",
+    "feminist": "Femînîst",
+    "progressive": "Pêşverû",
+    "nationalist": "Neteweperest",
+    "communist": "Komunîst"
   }
 }

@@ -8483,5 +8483,36 @@
       "emptyTitle": "Pagaidām sarakstā nav nevienas lietotnes",
       "emptyBody": "Pirmās lietotnes tiek pārskatītas. Izveidojiet to, un tas varētu būt šeit."
     }
+  },
+  "aiStyles": {
+    "normal": "Parasts",
+    "old-english": "Senangļu",
+    "cockney": "Cockney",
+    "celtic": "Ķeltu",
+    "scouse": "Scouse",
+    "wild-west": "Mežonīgie Rietumi",
+    "asian-uncle": "Āzijas tēvocis",
+    "russian-mafia": "Krievu mafija",
+    "pirate": "Pirāts",
+    "alien": "Citplanētietis",
+    "e-girl": "E-Girl",
+    "chad": "Chad",
+    "hopeless-romantic": "Bezcerīgs romantiķis",
+    "daddy": "Tētis",
+    "mommy": "Mamma",
+    "big-brother": "Vecākais brālis",
+    "lil-bro": "Mazais brālis",
+    "big-sister": "Vecākā māsa",
+    "little-sister": "Mazā māsa",
+    "conservative": "Konservatīvais",
+    "liberal": "Liberālis",
+    "antifa": "ANTIFA",
+    "capitalist": "Kapitālists",
+    "socialist": "Sociālists",
+    "neocon": "Neokons",
+    "feminist": "Feministe",
+    "progressive": "Progresīvais",
+    "nationalist": "Nacionālists",
+    "communist": "Komunists"
   }
 }
