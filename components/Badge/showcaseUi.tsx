@@ -6,9 +6,9 @@
  * the Tailwind classes in its showcases): 1px borders, not hairlines, since a
  * CSS pixel is a dp here.
  */
-import React from "react";
-import { Pressable, StyleSheet, Text, View } from "react-native";
-import { Easing, withTiming } from "react-native-reanimated";
+import React, { useEffect, useState } from "react";
+import { Pressable, StyleSheet, Text, View, type StyleProp, type TextStyle } from "react-native";
+import Animated, { Easing, runOnJS, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
 import { LinearGradient } from "expo-linear-gradient";
 
 /** One gap, radius and padding for every panel, tile and button. */
@@ -22,35 +22,61 @@ export const tiltAt = (i: number) => TILTS[i % TILTS.length];
 
 const SWAP_EASE = Easing.bezier(0.16, 1, 0.3, 1);
 
-/** Web's text swap: the new value rises `distance` into place. */
-function riseIn(distance: number, duration: number) {
-  const timing = { duration, easing: SWAP_EASE };
-  return () => {
-    "worklet";
-    return {
-      initialValues: { opacity: 0, transform: [{ translateY: distance }] },
-      animations: { opacity: withTiming(1, timing), transform: [{ translateY: withTiming(0, timing) }] },
-    };
-  };
-}
+/**
+ * Web's text swap (framer-motion, popLayout): the new text rises `distance`
+ * into place while the old one rises the same distance out over it. Two plain
+ * animated layers rather than Reanimated's entering/exiting animations, whose
+ * exiting copies outlived the modal and were left drawn over the feed after
+ * the showcase closed.
+ */
+export function SwapText({
+  text,
+  distance,
+  duration,
+  align,
+  style,
+}: {
+  text: string;
+  distance: number;
+  duration: number;
+  /** Where the old text sits while it leaves: centred for the heading, right for a tile value. */
+  align: "center" | "right";
+  style: StyleProp<TextStyle>;
+}) {
+  const [shown, setShown] = useState(text);
+  const [leaving, setLeaving] = useState<string | null>(null);
+  const t = useSharedValue(1);
 
-/** ...and the old one rises the same distance out. */
-function riseOut(distance: number, duration: number) {
-  const timing = { duration, easing: SWAP_EASE };
-  return () => {
-    "worklet";
-    return {
-      initialValues: { opacity: 1, transform: [{ translateY: 0 }] },
-      animations: { opacity: withTiming(0, timing), transform: [{ translateY: withTiming(-distance, timing) }] },
-    };
-  };
-}
+  useEffect(() => {
+    if (text === shown) return;
+    setLeaving(shown);
+    setShown(text);
+    t.value = 0;
+    t.value = withTiming(1, { duration, easing: SWAP_EASE }, (done) => {
+      if (done) runOnJS(setLeaving)(null);
+    });
+    // Only a new text starts a swap.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [text]);
 
-/** The heading's swap (10px, 280ms) and a tile value's (8px, 250ms), as on web. */
-export const TITLE_IN = riseIn(10, 280);
-export const TITLE_OUT = riseOut(10, 280);
-export const VALUE_IN = riseIn(8, 250);
-export const VALUE_OUT = riseOut(8, 250);
+  const inStyle = useAnimatedStyle(() => ({ opacity: t.value, transform: [{ translateY: (1 - t.value) * distance }] }));
+  const outStyle = useAnimatedStyle(() => ({ opacity: 1 - t.value, transform: [{ translateY: -t.value * distance }] }));
+
+  return (
+    <View style={{ flexShrink: 1 }}>
+      <Animated.Text numberOfLines={1} style={[style, inStyle]}>
+        {shown}
+      </Animated.Text>
+      {leaving !== null ? (
+        <View pointerEvents="none" style={[ui.swapOut, align === "center" ? ui.swapCenter : ui.swapRight]}>
+          <Animated.Text numberOfLines={1} style={[style, outStyle]}>
+            {leaving}
+          </Animated.Text>
+        </View>
+      ) : null}
+    </View>
+  );
+}
 
 const CHROME_LIGHT = ["#fdfdfe", "#e1e4e8", "#a8adb5", "#eceef1", "#c2c6cc", "#f6f7f8"] as const;
 const CHROME_LIGHT_STOPS = [0, 0.16, 0.47, 0.53, 0.78, 1] as const;
@@ -210,6 +236,10 @@ export const ui = StyleSheet.create({
   chromeText: { color: "#0b0c0e", fontSize: 13, fontWeight: "700", textShadowColor: "rgba(255,255,255,0.6)", textShadowOffset: { width: 0, height: 1 }, textShadowRadius: 0 },
   chromeTextDark: { color: "#f3f4f6", fontSize: 13, fontWeight: "700", textShadowColor: "rgba(0,0,0,0.55)", textShadowOffset: { width: 0, height: -1 }, textShadowRadius: 0 },
   bar: { height: 6, borderRadius: 3, overflow: "hidden", backgroundColor: "rgba(255,255,255,0.1)" },
+  // Room either side, so a longer old text is not squeezed into the new one's box.
+  swapOut: { position: "absolute", top: 0 },
+  swapCenter: { left: -120, right: -120, alignItems: "center" },
+  swapRight: { left: -60, right: 0, alignItems: "flex-end" },
 });
 
 /** Three tiles and two gaps across a column that is the window less 16px either side. */
