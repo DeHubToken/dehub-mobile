@@ -168,6 +168,12 @@ function AppNavigatorContent() {
           name={ScreenNames.Creators}
           getComponent={() => require("../screens/CreatorsScreen").default}
         />
+        {/* Public: the network stats and the explainer are for everyone; the
+            ledger panel asks for sign-in. */}
+        <Stack.Screen
+          name={ScreenNames.DePin}
+          getComponent={() => require("../screens/DePinScreen").default}
+        />
         <Stack.Screen
           name={ScreenNames.Governance}
           getComponent={() => require("../screens/GovernanceScreen").default}

@@ -106,6 +106,7 @@ export enum ScreenNames {
   Builder = 'Builder',
   BuilderProject = 'BuilderProject',
   BuilderPreview = 'BuilderPreview',
+  DePin = 'DePin',
   // Auth screens
   Onboarding = 'Onboarding',
   SignIn = 'SignIn',
