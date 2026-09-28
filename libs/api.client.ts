@@ -13,8 +13,8 @@ const APP_VERSION = Constants.expoConfig?.version ?? '1.0.0';
 const PLATFORM = Platform.OS; // 'ios' | 'android'
 
 // Do not make the website hostname a mandatory dependency of the native app.
-// Read-only requests can try the apex relay after a direct transport failure;
-// mutations and uploads are never replayed across routes.
+// Reads and explicitly opted-in session establishment can try the apex relay
+// after a transport failure. Wallet writes and uploads are never replayed.
 const API_DIRECT_BASE_URL = env.API_URL || 'https://api.dehub.io/api';
 const API_RELAY_BASE_URL = `${(env.APP_ORIGIN || 'https://dehub.io').replace(/\/+$/, '')}/_api/api`;
 
@@ -291,7 +291,9 @@ export const apiClient = {
       // which is gated on DEBUG.
       return data as T;
     } catch (error) {
-      if (retrySession) sessionLog.error('login transport or response failed', { endpoint, method, route: url.startsWith(API_RELAY_BASE_URL) ? 'relay' : 'direct' }, error);
+      if (retrySession && (!quiet || !(error as { status?: number })?.status)) {
+        sessionLog.error('login transport or response failed', { endpoint, method, route: url.startsWith(API_RELAY_BASE_URL) ? 'relay' : 'direct' }, error);
+      }
       if (!quiet) console.error(`API Error (${url}):`, error);
       throw error;
     }
