@@ -155,6 +155,7 @@ const STOREFRONT_HIDDEN_SCREENS = new Set([
   ScreenNames.CommandCentre,
   ScreenNames.Arcade,
   ScreenNames.ArcadeGame,
+  ScreenNames.ArcadeChessOnline,
   ScreenNames.Stores,
   ScreenNames.StoreDetail,
   ScreenNames.ListingDetail,

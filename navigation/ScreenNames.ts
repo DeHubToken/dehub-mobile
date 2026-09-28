@@ -72,6 +72,7 @@ export enum ScreenNames {
   Guide = 'Guide',
   Arcade = 'Arcade',
   ArcadeGame = 'ArcadeGame',
+  ArcadeChessOnline = 'ArcadeChessOnline',
   Events = 'Events',
   Careers = 'Careers',
   // The creator application form — dehub.io/creators.
