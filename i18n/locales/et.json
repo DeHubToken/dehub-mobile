@@ -3792,7 +3792,10 @@
     "unpinConfirm": "Kas eemaldada see kinnitatud sõnum?",
     "pinMessage": "PIN-koodi teade",
     "unpinMessage": "Tühista sõnumi kinnitamine",
-    "jumpToLatest": "Hüppa uusimate sõnumite juurde"
+    "jumpToLatest": "Hüppa uusimate sõnumite juurde",
+    "ban": "Blokeeri",
+    "banConfirm": "Kas olete kindel, et soovite {{name}} blokeerida?",
+    "banFailed": "Kasutaja blokeerimine ebaõnnestus"
   },
   "promptFeed": {
     "headline": "Mida sa näha tahad?",
@@ -4832,7 +4835,20 @@
     "tokensSent": "{{amount}} märki saadetud",
     "percentUsed": "{{percent}}% kasutatud",
     "spentOfTotal": "{{spent}}/{{total}}",
-    "viewInWallet": "Vaata rahakotis"
+    "viewInWallet": "Vaata rahakotis",
+    "topUp": "Lisa märgid",
+    "topUpTitle": "Lisa tellimuse märgid",
+    "topUpCustom": "Muu summa (USD)",
+    "topUpYouSend": "Saatsid",
+    "topUpYouGet": "Sinu jäägile lisatud",
+    "topUpConfirm": "Lisa {{amount}}",
+    "topUpRange": "Sisesta {{min}} kuni {{max}}",
+    "topUpDone": "{{amount}} lisati sinu tellimustõenditele",
+    "topUpPending": "Sinu lisamine on kinnitamisel. See ilmub peagi Sinu jäägile.",
+    "topUpEmptyHint": "Lisa raha, et tellida loojaid",
+    "topUpStageWallet": "Kinnita oma rahakotis…",
+    "topUpStageConfirming": "Tehingu ootel...",
+    "topUpStageCrediting": "Sinu jäägile lisamine…"
   },
   "live": {
     "notSet": "Määramata",
@@ -4890,8 +4906,61 @@
         "legend": {
           "name": "Legend",
           "hint": "Saavuta kümnes tase."
+        },
+        "ignition": {
+          "name": "Süüde",
+          "hint": "Saavuta eetris üks kvalifitseeruv tund."
+        },
+        "on-air": {
+          "name": "Eetris",
+          "hint": "Lõpeta kümme kvalifitseeruvat striimi."
+        },
+        "storyteller": {
+          "name": "Jutustaja",
+          "hint": "Lõpeta kakskümmend viis kvalifitseeruvat striimi."
+        },
+        "broadcaster": {
+          "name": "Saatejuht",
+          "hint": "Lõpeta viiskümmend kvalifitseeruvat striimi."
+        },
+        "centurion": {
+          "name": "Sajamees",
+          "hint": "Lõpeta sada kvalifitseeruvat striimi."
+        },
+        "enduring": {
+          "name": "Vastupidav",
+          "hint": "Striimi neli kvalifitseeruvat tundi ühes sessioonis."
+        },
+        "circle": {
+          "name": "Siseklubi",
+          "hint": "Saa korraga vaatama kakskümmend viis inimest."
+        },
+        "arena": {
+          "name": "Areena",
+          "hint": "Saa korraga vaatama viiskümmend inimest."
+        },
+        "headliner": {
+          "name": "Peaesineja",
+          "hint": "Saa korraga vaatama sada inimest."
+        },
+        "cornerstone": {
+          "name": "Nurgakivi",
+          "hint": "Striimi kakskümmend kuus nädalat järjest."
+        },
+        "veteran": {
+          "name": "Vigane",
+          "hint": "Saavuta eetris 250 kvalifitseeruvat tundi."
+        },
+        "icon": {
+          "name": "Ikoon",
+          "hint": "Saavuta kahekümnes tase."
         }
-      }
+      },
+      "chooseBadge": "Vali oma profiilil kuvamiseks mis tahes avatud märk.",
+      "useBadge": "Märgi kasutamine",
+      "selectedBadge": "Valitud",
+      "savingBadge": "Märgi salvestamine…",
+      "saveBadgeError": "Märki ei õnnestunud salvestada. Palun proovi uuesti."
     },
     "unmuteMic": "Tühista mikrofoni vaigistus",
     "muteMic": "Vaigista mikrofon",
@@ -7523,5 +7592,98 @@
     "loadFailed": "Sinu ehitusi ei õnnestunud laadida",
     "previewHint": "Ehitatud DeHub Builderiga",
     "buildInChat": "Loo oma otsesõnumites koos @assistant'iga"
+  },
+  "depin": {
+    "title": "DePin",
+    "becomeANode": "Saa sõlmeks",
+    "ctaBody": "Päritolu tagasikäik, krüpteeritud kaitstud meedia ja kontrollitud töö tulevad enne avalike sõlmede auhindu.",
+    "ctaTitle": "Käivitage ainult siis, kui rike on ohutu.",
+    "earlyAccess": "Varajane juurdepääs",
+    "earlyAccessBody": "Kerge, brauseripõhine sõlm on allpool reaalne. Raskem, alati sisse lülitatud töölauasõlm on märgitud tulevikusuunaks, praegu pole saadaval. Osalemine ei garanteeri kunagi tasu.",
+    "fallbackFigureAria": "Sisutarne varuteekond",
+    "faqHeading": "Küsimused, selgelt vastatud.",
+    "footerNote": "DePin osalemine on panustamisteenuse, mitte investeerimistoote. Kättesaadavus, sobivus ja auhinnad võivad muutuda.",
+    "heroBlurb": "Pakkuge varuarvutusruumi, ribalaiust ja arvutusressursse, et aidata majutada, transkodeerida ja edastada DeHub'i sisu.",
+    "heroCaption": "DeHub säilitab originaalkopeerimise. Kogukonna sõlmed lisavad vastupidavad replika ja kohalikud edastamise võimalused.",
+    "heroEyebrow": "Kogukonna jõul töötav infrastruktuur",
+    "heroImageAlt": "Kompaktne servavõrgu arvutussõlm, mis on ühendatud kodudega ja loojate stuudioga",
+    "heroTitle": "Teie riistvara. DeHub'i meedia võrk.",
+    "noFixedRate": "Puudub fikseeritud määr, minimaalne tulu, APY või tuleviku prognoos. Sissemaksete andmed on ainult raamatupidamislikud sisendid, mitte maksekohustus. Iga tulevane tokeni arveldus toimuks Base'is ja jääks sõltuvaks sobivusest, võrgu reeglitest ja kehtivast seadusest.",
+    "nodesLeaveBody": "Ükski kogukonna masin ei oma ainsat koopiat. Tervisekontrollid, replika ja päritolu varuvariant hoiavad taasesitamise kättesaadavaks.",
+    "nodesLeaveTitle": "Võrk, mis eeldab, et sõlmed lahkuvad.",
+    "notTrackedYet": "Pole veel jälgitud",
+    "online": "Võrgus",
+    "privacyBody": "Kaitstud meedia jääb kogukonna riistvaras krüpteerituks. Esitamise võtmed väljastatakse eraldi volitatud vaatajatele.",
+    "privacyTitle": "Hostid salvestavad tükke, mitte juurdepääsu.",
+    "readTheDocs": "Loe dokumentatsiooni",
+    "runningCosts": "Sõlme käitamine kasutab elektrit, interneti andmeid ja riistvara eluiga. Operaatorid ei pruugi saada midagi ja nende kulud võivad ületada mis tahes tasu.",
+    "safestWorkloadBody": "DePin täiendab DeHub'i olemasolevat levitamisrada kõigepealt. Nõudlikumad töökoormused järgnevad alles pärast verifikatsiooni tõestamist.",
+    "safestWorkloadTitle": "Ehitatud kõige turvalisemast töökoormast alates.",
+    "signIn": "Logi sisse",
+    "statNotTracked": "Veel jälgimata.",
+    "statUnavailable": "Praegu pole saadaval.",
+    "threeJobsBody": "Operaatorid valivad oma salvestusruumi, ribalaiuse ja arvutuspiire. DeHub planeerib ainult tööd, mida nende masin turvaliselt käsitleda saab.",
+    "threeJobsTitle": "Üks sõlm, kolm kasulikku tööd.",
+    "transcode": "Transkodeeri",
+    "transcodeBody": "Sobivad masinad muudavad üleslaaditud videot kohanduvateks renderdamisteks. Iga väljund kontrollitakse enne, kui seda saab serveerida.",
+    "transcodeImageAlt": "Kodu looja tööjaam, mis panustab vaba GPU arvutust",
+    "verifiedWorkBody": "Panust mõõdetakse allkirjastatud kviitungite, tervisekontrollide ja väljundi valideerimisega. Ainult salvestamine ei loo tasu.",
+    "verifiedWorkTitle": "Kasulik töö on veritud. Tasud jäävad muutuvaks.",
+    "yourNode": "Teie sõlm",
+    "host": "Majuta",
+    "hostBody": "Sõlmed hoiavad krüpteeritud või sisule viitavaid segmente piiratud kohalikus vahemälus. DeHub'i päritolu salvestamine jääb tõe allikaks.",
+    "deliver": "Toimita",
+    "deliverBody": "Lähedased võrgupartnerid jagavad videosegmente, samal ajal kui tavaline tarneteekond jääb automaatse varuplaani jaoks valmis.",
+    "origin": "DeHub päritolu",
+    "originBody": "Alaline allikas koopia ja varulevitamine",
+    "availableReplicas": "Saadaolevad replika",
+    "availableReplicasBody": "Veritud segmentide serveerimise nõudluse lähedal",
+    "offlineNode": "Võrguühenduseta sõlm",
+    "offlineNodeBody": "Eemaldatud marsruutimisest kuni taasühendumiseni",
+    "viewer": "Vaataja",
+    "viewerBody": "Kasutab võrguühendust kui see on saadaval, allikat kui vaja",
+    "protectedContent": "Kaitstud sisu",
+    "protectedContentBody": "Telija, privaatne ja tasuta vaatamise segmendid saab salvestada šifreeritud tekstina. Sõlme operaatorid ei saa õiguste võtmeid lihtsalt seetõttu, et nad hostivad andmeid.",
+    "publicContent": "Avalik sisu",
+    "publicContentBody": "Krüptimine takistab vahemälus olevate failide juhuslikku kontrollimist, kuid avalik meedia jääb avaliku DeHub-mängija kaudu vaadatavaks. Me ei väida teisiti.",
+    "operatorControls": "Operaatori juhtelemendid",
+    "operatorControlsBody": "Operaatorid valivad kettapiirangud, ribalaius piirangud, tööajad ja sobivad avaliku sisu kategooriad. Eemaldamise teatised käivitavad vahemälu puhastamise.",
+    "deliveryReceipts": "Levitamise kviitungid",
+    "deliveryReceiptsBody": "Veritud baidid, mis on serveeritud tegelikele esitamise seansidele.",
+    "availability": "Kättesaadavus",
+    "availabilityBody": "Edukad otsingud ja usaldusväärne teenus määramisel.",
+    "validOutput": "Kehtiv väljund",
+    "validOutputBody": "Transkoodid peavad läbima tehnilised ja valimiga kontrollitud kvaliteedikontrollid.",
+    "revenuePool": "Tulude rahastatud fond",
+    "revenuePoolBody": "Kui see on aktiveeritud, määratakse tasude eelarve platvormitulust pärast epohhi sulgemist.",
+    "delivery": "Kohaletoimetamine",
+    "deliveryBody": "Kaaslastega abistatud reaalajas ja videokoolitamine automaatse tagasikäiguga.",
+    "adaptiveVideo": "Kohanduv video",
+    "adaptiveVideoBody": "Mitmed versioonid usaldusväärse taasesituse jaoks erinevate ühenduskiiruste korral.",
+    "desktopNodes": "Töölauasõlmed",
+    "desktopNodesBody": "Piiratud salvestusruum, ribalaiuse juhtimine ja kontrollitud kättesaadavus.",
+    "baseSettlement": "Baasarveldus",
+    "baseSettlementBody": "Tulutulundusega nõuded alles pärast operatiivset ja juriidilist ülevaatust.",
+    "statNodesOnline": "Sõlmed võrgus",
+    "statStored": "Salvestatud",
+    "statVerified": "Kinnitatud",
+    "verifiedBytes": "Kontrollitud baidid",
+    "totalStoredLedger": "Kokku salvestatud (pearaamat)",
+    "dhbEarnedThisPeriod": "Sel perioodil teenitud märgid",
+    "faqOfflineQ": "Mis juhtub, kui majutusvõrgu sõlm läheb võrguühenduseta?",
+    "faqOfflineA": "Koordinaator eemaldab selle aktiivse marsruutimise hulgast. Teine koopia teenindab segmenti või taasesitus langeb tagasi DeHub päritolu salvestusruumi, samal ajal kui asenduskoopiad on planeeritud.",
+    "faqCanOperatorSeeQ": "Kas sõlme operaator näeb sisu, mida ta majutab?",
+    "faqCanOperatorSeeA": "Kaitstud sisu salvestatakse krüpteeritud segmentidena ja host ei saa taasesituse võtmeid. Avalik sisu jääb DeHubi kaudu avalikult vaadatavaks.",
+    "faqHowMuchQ": "Kui palju saab sõlme operaator?",
+    "faqHowMuchA": "Fikseeritud määra ega prognoosi pole. Kontrollitud panus võib saada osa tulutulundusega auhindade kogumist pärast epohhi lõppu. Auhinnad ei ole garanteeritud ja elektri-, ribalaiuse ja riistvara kulud võivad ületada mis tahes auhinda.",
+    "faqSoftwareAvailableQ": "Kas sõlme tarkvara on nüüd saadaval?",
+    "faqSoftwareAvailableA": "Kerge, brauseripõhine tase on saadaval täna: logige sisse ja valige see lehel, ja teie avatud vahekaart muutub sõlmeks, kuni see jääb avatuks. Raskem, alati sisse lülitatud töölauasõlm on märgitud tuleviku suunaks — seda pole veel olemas.",
+    "faqInstallNeededQ": "Kas ma pean brauserisõlme jaoks midagi paigaldama?",
+    "faqInstallNeededA": "Ei. See töötab täielikult vahekaardis, kasutades teie brauseri kohalikku salvestusruumi. Vahekaardi sulgemine peatab teie sõlme; taustal pole teenust ega paigaldust.",
+    "appSignInBlurb": "Sõlme pearaamatu nägemiseks logi sisse: mida oled salvestanud, mida kontrolliti ja mida selle perioodi jooksul teenisid.",
+    "appNodeBody": "Sõlm töötab brauseri vahekaardil, mitte selles rakenduses. Ava DePin veebis, logi selle kontoga sisse ja liitu. Sinu pearaamat kuvatakse siin.",
+    "openOnWeb": "Ava DePin veebis",
+    "statusOffline": "Võrguühenduseta",
+    "statusUnregistered": "Registreerimata"
   }
 }

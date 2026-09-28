@@ -212,6 +212,9 @@ export const DeepLinkPaths = {
   ARCADE_CHESS_ONLINE: 'arcade/kings-gambit/online',
   ARCADE_GAME: 'arcade/:slug',
   ARCADE: 'arcade',
+
+  // DePin — dehub.io/depin, the community node network. Top-level on web.
+  DEPIN: 'depin',
 } as const;
 
 /**
@@ -325,6 +328,8 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
           },
 
           [ScreenNames.Arcade]: DeepLinkPaths.ARCADE,
+
+          [ScreenNames.DePin]: DeepLinkPaths.DEPIN,
 
           [ScreenNames.Root]: {
             screens: {

@@ -3792,7 +3792,10 @@
     "unpinConfirm": "Želite li ukloniti ovu prikvačenu poruku?",
     "pinMessage": "PIN poruka",
     "unpinMessage": "Otkvači poruku",
-    "jumpToLatest": "Prijeđi na najnovije poruke"
+    "jumpToLatest": "Prijeđi na najnovije poruke",
+    "ban": "Zabrani",
+    "banConfirm": "Jeste li sigurni da želite zabraniti {{name}}?",
+    "banFailed": "Zabrana korisnika nije uspjela"
   },
   "promptFeed": {
     "headline": "Što želiš gledati?",
@@ -4832,7 +4835,20 @@
     "tokensSent": "{{amount}} tokena je poslano",
     "percentUsed": "{{percent}}% iskorišteno",
     "spentOfTotal": "{{spent}} od {{total}}",
-    "viewInWallet": "Prikaži u novčaniku"
+    "viewInWallet": "Prikaži u novčaniku",
+    "topUp": "Dodaj tokene",
+    "topUpTitle": "Dodaj žetone za pretplatu",
+    "topUpCustom": "Drugi iznos (USD)",
+    "topUpYouSend": "Vi šaljete",
+    "topUpYouGet": "Dodano na tvoj saldo",
+    "topUpConfirm": "Dodaj {{amount}}",
+    "topUpRange": "Unesite {{min}} do {{max}}",
+    "topUpDone": "{{amount}} je dodano u vaše pretplatničke žetone",
+    "topUpPending": "Nadoplata se potvrđuje. Uskoro će se pojaviti na tvom saldu.",
+    "topUpEmptyHint": "Nadoplati i pretplati se na kreatore",
+    "topUpStageWallet": "Potvrdi u novčaniku…",
+    "topUpStageConfirming": "Čeka se transakcija...",
+    "topUpStageCrediting": "Kako povećati saldo..."
   },
   "live": {
     "notSet": "Nije postavljeno",
@@ -4890,8 +4906,61 @@
         "legend": {
           "name": "Legenda",
           "hint": "Dosegnite razinu deset."
+        },
+        "ignition": {
+          "name": "Paljenje",
+          "hint": "Dosegnite jedan kvalificirajući sat u eteru."
+        },
+        "on-air": {
+          "name": "U eteru",
+          "hint": "Završite deset kvalificirajućih prijenosa."
+        },
+        "storyteller": {
+          "name": "Pripovjedač",
+          "hint": "Završite dvadeset i pet kvalificirajućih prijenosa."
+        },
+        "broadcaster": {
+          "name": "Emiter",
+          "hint": "Završite pedeset kvalificirajućih prijenosa."
+        },
+        "centurion": {
+          "name": "Centurion",
+          "hint": "Završite sto kvalificirajućih prijenosa."
+        },
+        "enduring": {
+          "name": "Istrajan",
+          "hint": "Stremirajte četiri kvalificirajuća sata u jednoj sesiji."
+        },
+        "circle": {
+          "name": "Uži krug",
+          "hint": "Neka vas istovremeno gleda dvadeset i pet ljudi."
+        },
+        "arena": {
+          "name": "Arena",
+          "hint": "Neka vas istovremeno gleda pedeset ljudi."
+        },
+        "headliner": {
+          "name": "Glavna zvijezda",
+          "hint": "Neka vas istovremeno gleda sto ljudi."
+        },
+        "cornerstone": {
+          "name": "Kamen temeljac",
+          "hint": "Stremirajte dvadeset i šest uzastopnih tjedana."
+        },
+        "veteran": {
+          "name": "Veteran",
+          "hint": "Dosegnite 250 kvalificirajućih sati u eteru."
+        },
+        "icon": {
+          "name": "Ikona",
+          "hint": "Dosegnite dvadesetu razinu."
         }
-      }
+      },
+      "chooseBadge": "Odaberite bilo koju otključanu značku za prikaz na svom profilu.",
+      "useBadge": "Koristi značku",
+      "selectedBadge": "Odabrano",
+      "savingBadge": "Spremanje značke...",
+      "saveBadgeError": "Nije moguće spremiti vašu značku. Molimo pokušajte ponovno."
     },
     "unmuteMic": "Uključi mikrofon",
     "muteMic": "Isključivanje zvuka mikrofona",
@@ -7528,5 +7597,98 @@
     "loadFailed": "Vaše izrade nije bilo moguće učitati",
     "previewHint": "Izrađeno pomoću DeHub Buildera",
     "buildInChat": "Gradite u izravnim porukama s @assistant"
+  },
+  "depin": {
+    "title": "DePin",
+    "becomeANode": "Postanite čvor",
+    "ctaBody": "Povratak na izvor, šifrirana zaštićena medija i verificirani rad dolaze prije javnih nagrada čvorova.",
+    "ctaTitle": "Pokrenite samo kada je neuspjeh siguran.",
+    "earlyAccess": "Rani pristup",
+    "earlyAccessBody": "Lagani, čvor temeljen na pregledniku je dostupan ispod. Teži, uvijek uključeni čvor za stolno računalo je navedena buduća smjer, trenutno nije dostupan. Sudjelovanje nikada ne jamči nagradu.",
+    "fallbackFigureAria": "Putanja fallback dostave sadržaja",
+    "faqHeading": "Pitanja, odgovorena jasno.",
+    "footerNote": "DePin sudjelovanje je usluga doprinosa, a ne investicijski proizvod. Dostupnost, pravo na sudjelovanje i nagrade mogu se promijeniti.",
+    "heroBlurb": "Doprinesite rezervnu pohranu, propusni opseg i računalnu snagu kako bi pomogli u hostiranju, transcodiranju i isporuci DeHub sadržaja.",
+    "heroCaption": "DeHub čuva originalnu kopiju. Čvorovi zajednice dodaju otporne replike i lokalnu kapacitetu isporuke.",
+    "heroEyebrow": "Infrastruktura pokrenuta zajednicom",
+    "heroImageAlt": "Kompaktan čvor rubnog računanja povezan s domovima i studijima kreatora",
+    "heroTitle": "Vaš hardver. DeHub-ova mreža medija.",
+    "noFixedRate": "Ne postoji fiksna stopa, minimalni povrat, APY ili buduća procjena. Zapisi o doprinosima samo su računovodstveni unosi, a ne obećanje plaćanja. Bilo kakvo buduće poravnanje tokena odvijalo bi se na Baseu i ostalo bi podložno podobnosti, mrežnim pravilima i primjenjivom zakonu.",
+    "nodesLeaveBody": "Niti jedna zajednička mašina ne drži jedinu kopiju. Provjere zdravlja, replike i fallback izvora čuvaju dostupnost reprodukcije.",
+    "nodesLeaveTitle": "Mreža koja očekuje da čvorišta odlaze.",
+    "notTrackedYet": "Još nije praćeno",
+    "online": "Mrežno dostupna",
+    "privacyBody": "Zaštićeni mediji ostaju šifrirani na zajedničkoj opremi. Ključevi za reprodukciju izdaju se odvojeno ovlaštenim gledateljima.",
+    "privacyTitle": "Domaćini pohranjuju dijelove, ne pristup.",
+    "readTheDocs": "Pročitaj dokumentaciju",
+    "runningCosts": "Pokretanje čvora koristi struju, internetske podatke i životni vijek opreme. Operatori mogu ne dobiti ništa, a njihovi troškovi mogu premašiti bilo koju nagradu.",
+    "safestWorkloadBody": "DePin nadopunjava postojeću putanju dostave DeHub-a prvo. Zahtjevnije radne opterećenje slijedi tek nakon što se provjera dokaže.",
+    "safestWorkloadTitle": "Izgrađeno od najsigurnijeg opterećenja prema van.",
+    "signIn": "Prijava",
+    "statNotTracked": "Još nije praćeno.",
+    "statUnavailable": "Trenutno nije dostupno.",
+    "threeJobsBody": "Operatori biraju svoje granice pohrane, propusnosti i računanja. DeHub raspoređuje samo posao koji njihov stroj može sigurno obraditi.",
+    "threeJobsTitle": "Jedna čvorišta, tri korisna posla.",
+    "transcode": "Transkodiranje",
+    "transcodeBody": "Kvalificirane mašine pretvaraju učitane videozapise u prilagodljive verzije. Svaki izlaz se provjerava prije nego što može biti priložen.",
+    "transcodeImageAlt": "Radna stanica domaćeg kreatora koja doprinosi rezervnom GPU računanju",
+    "verifiedWorkBody": "Doprinos se mjeri kroz potpisane potvrde, provjere zdravlja i validaciju izlaza. Samo pohrana ne stvara nagradu.",
+    "verifiedWorkTitle": "Korisna rada se provjerava. Nagrade ostaju varijabilne.",
+    "yourNode": "Vaša čvorišta",
+    "host": "Domaćin",
+    "hostBody": "Čvorišta čuvaju šifrirane ili sadržajem adresne segmente u ograničenoj lokalnoj memoriji. DeHub izvorna pohrana ostaje izvor istine.",
+    "deliver": "Dostava",
+    "deliverBody": "Obližnje čvorište dijele videosegmente dok normalna putanja dostave ostaje spremna kao automatski fallback.",
+    "origin": "DeHub ishodište",
+    "originBody": "Trajni izvor kopije i rezervna dostava",
+    "availableReplicas": "Dostupne replike",
+    "availableReplicasBody": "Posluživanje provjerenih segmenata blizu potražnje",
+    "offlineNode": "Čvor izvan mreže",
+    "offlineNodeBody": "Uklonjen iz rutiranja dok se ponovno ne poveže",
+    "viewer": "Gledatelj",
+    "viewerBody": "Koristi peer kada je dostupan, ishodište kada je potrebno",
+    "protectedContent": "Zaštićeni sadržaj",
+    "protectedContentBody": "Segmenti za pretplatnike, privatni i pay-per-view mogu se pohraniti kao šifrirana tekst. Operatori čvorova ne primaju ključeve za prava samo zato što hostiraju podatke.",
+    "publicContent": "Javni sadržaj",
+    "publicContentBody": "Šifriranje sprječava slučajni pregled datoteka u predmemoriji, ali javni mediji ostaju dostupni kroz javni DeHub player. Nećemo tvrditi drugačije.",
+    "operatorControls": "Kontrole operatora",
+    "operatorControlsBody": "Operatori biraju ograničenja diska, ograničenja propusnosti, radno vrijeme i prihvatljive kategorije javnog sadržaja. Obavijesti o uklanjanju pokidaju predmemoriju.",
+    "deliveryReceipts": "Potvrde dostave",
+    "deliveryReceiptsBody": "Provjereni bajtovi posluženi stvarnim sesijama reprodukcije.",
+    "availability": "Dostupnost",
+    "availabilityBody": "Uspješne provjere dohvaćanja i pouzdana usluga kada je dodijeljena.",
+    "validOutput": "Valjani izlaz",
+    "validOutputBody": "Transkodiranja moraju proći tehničke i uzorkovane provjere kvalitete.",
+    "revenuePool": "Bazen financiran prihodima",
+    "revenuePoolBody": "Ako se aktivira, proračun nagrade bio bi postavljen iz prihoda platforme nakon zatvaranja epohe.",
+    "delivery": "Dostava",
+    "deliveryBody": "Peer-asistirana direktna i video dostava s automatskim povratkom.",
+    "adaptiveVideo": "Prilagodljivi video",
+    "adaptiveVideoBody": "Više verzija za pouzdanu reprodukciju na različitim brzinama veze.",
+    "desktopNodes": "Čvorovi na radnoj površini",
+    "desktopNodesBody": "Ograničena pohrana, kontrola propusnosti i verificirana dostupnost.",
+    "baseSettlement": "Osnovna nagodba",
+    "baseSettlementBody": "Prihodi financirani samo nakon operativnog i pravnog pregleda.",
+    "statNodesOnline": "Čvorovi na mreži",
+    "statStored": "Pohranjeno",
+    "statVerified": "Potvrđeno",
+    "verifiedBytes": "Verificirani bajtovi",
+    "totalStoredLedger": "Ukupno pohranjeno (knjiga)",
+    "dhbEarnedThisPeriod": "Tokeni zarađeni u ovom razdoblju",
+    "faqOfflineQ": "Što se događa kada čvor za hosting bude izvan mreže?",
+    "faqOfflineA": "Koordinator ga uklanja iz aktivnog usmjeravanja. Drugi replik služi segment, ili se reprodukcija vraća na DeHub izvornu pohranu dok se zamjenske kopije planiraju.",
+    "faqCanOperatorSeeQ": "Može li operator čvora vidjeti sadržaj koji hostira?",
+    "faqCanOperatorSeeA": "Zaštićeni sadržaj pohranjen je kao šifrirani segmenti i domaćin ne prima ključeve za reprodukciju. Javni sadržaj ostaje javno dostupan kroz DeHub prema dizajnu.",
+    "faqHowMuchQ": "Koliko će operator čvora primiti?",
+    "faqHowMuchA": "Nema fiksne stope ili prognoze. Verificirani doprinos može primiti dio fonda nagrada financiranog prihodima nakon što se epoha zatvori. Nagrade nisu zajamčene, a troškovi električne energije, propusnosti i hardvera mogu premašiti bilo koju nagradu.",
+    "faqSoftwareAvailableQ": "Je li softver čvora dostupan sada?",
+    "faqSoftwareAvailableA": "Lagana, web-bazirana razina dostupna je danas: prijavite se i pristanite na ovoj stranici, a vaša otvorena kartica postaje čvor dok ostaje otvorena. Teži, uvijek uključeni čvor na radnoj površini je navedeni budući smjer — još ne postoji.",
+    "faqInstallNeededQ": "Trebam li nešto instalirati za čvor preglednika?",
+    "faqInstallNeededA": "Ne. Radi se u potpunosti u kartici koristeći lokalnu pohranu vašeg preglednika. Zatvaranje kartice zaustavlja vaš čvor; nema pozadinske usluge i nema instalacije.",
+    "appSignInBlurb": "Prijavite se da biste vidjeli glavnu knjigu čvorova: što ste pohranili, što je potvrđeno i što ste zaradili u ovom razdoblju.",
+    "appNodeBody": "Čvor se pokreće u kartici preglednika, a ne u ovoj aplikaciji. Otvorite DePin na webu, prijavite se s ovim računom i uključite se. Ovdje se prikazuje vaša glavna knjiga.",
+    "openOnWeb": "Otvori DePin na webu",
+    "statusOffline": "Izvan mreže",
+    "statusUnregistered": "Nije registrirano"
   }
 }

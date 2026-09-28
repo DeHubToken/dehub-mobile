@@ -3841,7 +3841,10 @@
     "unpinConfirm": "Rimuovere questo messaggio bloccato?",
     "pinMessage": "Messaggio pin",
     "unpinMessage": "Sblocca messaggio",
-    "jumpToLatest": "Passa agli ultimi messaggi"
+    "jumpToLatest": "Passa agli ultimi messaggi",
+    "ban": "Banna",
+    "banConfirm": "Sei sicuro di voler bannare {{name}}?",
+    "banFailed": "Impossibile bannare l'utente"
   },
   "promptFeed": {
     "headline": "Cosa vuoi vedere?",
@@ -4881,7 +4884,20 @@
     "tokensSent": "Token {{amount}} inviati",
     "percentUsed": "{{percent}}% utilizzato",
     "spentOfTotal": "{{spent}} del {{total}}",
-    "viewInWallet": "Visualizza nel portafoglio"
+    "viewInWallet": "Visualizza nel portafoglio",
+    "topUp": "Aggiungi token",
+    "topUpTitle": "Aggiungi token di abbonamento",
+    "topUpCustom": "Altro importo (USD)",
+    "topUpYouSend": "Tu invii",
+    "topUpYouGet": "Aggiunto al tuo saldo",
+    "topUpConfirm": "Aggiungi {{amount}}",
+    "topUpRange": "Inserisci {{min}} a {{max}}",
+    "topUpDone": "{{amount}} aggiunto ai token di abbonamento",
+    "topUpPending": "La tua ricarica sta confermando. Apparirà nel tuo saldo a breve.",
+    "topUpEmptyHint": "Ricarica per iscriverti ai creator",
+    "topUpStageWallet": "Conferma nel tuo portafoglio...",
+    "topUpStageConfirming": "In attesa della transazione...",
+    "topUpStageCrediting": "Aggiunta al tuo saldo in corso..."
   },
   "live": {
     "notSet": "Non impostato",
@@ -4939,8 +4955,61 @@
         "legend": {
           "name": "Legenda",
           "hint": "Raggiungi il livello dieci."
+        },
+        "ignition": {
+          "name": "Accensione",
+          "hint": "Raggiungi un'ora qualificata in onda."
+        },
+        "on-air": {
+          "name": "In onda",
+          "hint": "Completa dieci stream qualificati."
+        },
+        "storyteller": {
+          "name": "Narratore",
+          "hint": "Completa venticinque stream qualificati."
+        },
+        "broadcaster": {
+          "name": "Broadcaster",
+          "hint": "Completa cinquanta stream qualificati."
+        },
+        "centurion": {
+          "name": "Centurione",
+          "hint": "Completa cento stream qualificati."
+        },
+        "enduring": {
+          "name": "Resistente",
+          "hint": "Trasmetti per quattro ore qualificate in una sessione."
+        },
+        "circle": {
+          "name": "Cerchio ristretto",
+          "hint": "Fai guardare venticinque persone contemporaneamente."
+        },
+        "arena": {
+          "name": "Arena",
+          "hint": "Fai guardare cinquanta persone contemporaneamente."
+        },
+        "headliner": {
+          "name": "Headliner",
+          "hint": "Fai guardare cento persone contemporaneamente."
+        },
+        "cornerstone": {
+          "name": "Pietra angolare",
+          "hint": "Trasmetti per ventisei settimane consecutive."
+        },
+        "veteran": {
+          "name": "Veterano",
+          "hint": "Raggiungi 250 ore qualificate in onda."
+        },
+        "icon": {
+          "name": "Icona",
+          "hint": "Raggiungi il livello venti."
         }
-      }
+      },
+      "chooseBadge": "Scegli qualsiasi badge sbloccato da visualizzare sul tuo profilo.",
+      "useBadge": "Usa badge",
+      "selectedBadge": "Selezionato",
+      "savingBadge": "Salvataggio badge…",
+      "saveBadgeError": "Impossibile salvare il badge. Riprova."
     },
     "unmuteMic": "Riattiva microfono",
     "muteMic": "Disattiva microfono",
@@ -7528,5 +7597,98 @@
     "loadFailed": "Impossibile caricare le tue build",
     "previewHint": "Creato con DeHub Builder",
     "buildInChat": "Crea nei tuoi messaggi diretti con @assistant"
+  },
+  "depin": {
+    "title": "DePin",
+    "becomeANode": "Diventa un nodo",
+    "ctaBody": "Fallback di origine, media protetti crittografati e lavoro verificato vengono prima delle ricompense pubbliche dei nodi.",
+    "ctaTitle": "Avvia solo quando il fallimento è sicuro.",
+    "earlyAccess": "Accesso anticipato",
+    "earlyAccessBody": "Un nodo leggero basato su browser è attivo di seguito. Un nodo desktop più pesante e sempre attivo è una direzione futura dichiarata, non ancora disponibile. La partecipazione non garantisce mai una ricompensa.",
+    "fallbackFigureAria": "Percorso di fallback della distribuzione dei contenuti",
+    "faqHeading": "Domande, risposte semplici.",
+    "footerNote": "La partecipazione a DePin è un servizio di contribuzione, non un prodotto di investimento. La disponibilità, l'idoneità e le ricompense possono cambiare.",
+    "heroBlurb": "Contribuisci con storage, larghezza di banda e capacità di calcolo di riserva per aiutare a ospitare, transcodificare e distribuire contenuti DeHub.",
+    "heroCaption": "DeHub mantiene la copia originale. I nodi della comunità aggiungono repliche resilienti e capacità di consegna locale.",
+    "heroEyebrow": "Infrastruttura alimentata dalla comunità",
+    "heroImageAlt": "Un nodo di edge-compute compatto collegato a case e studi di creator",
+    "heroTitle": "Il tuo hardware. La rete media di DeHub.",
+    "noFixedRate": "Non esiste una tariffa fissa, un rendimento minimo, un APY o una stima futura. I registri dei contributi sono solo input contabili, non una promessa di pagamento. Qualsiasi futuro regolamento in token avverrebbe su Base e rimarrebbe soggetto all'idoneità, alle regole di rete e alla legge applicabile.",
+    "nodesLeaveBody": "Nessuna macchina della comunità detiene l'unica copia. I controlli di integrità, le repliche e il fallback di origine mantengono la riproduzione disponibile.",
+    "nodesLeaveTitle": "Una rete che si aspetta che i nodi se ne vadano.",
+    "notTrackedYet": "Non ancora monitorato",
+    "privacyBody": "I media protetti rimangono crittografati sull'hardware della comunità. Le chiavi di riproduzione vengono emesse separatamente ai visualizzatori autorizzati.",
+    "privacyTitle": "Gli host memorizzano pezzi, non accesso.",
+    "readTheDocs": "Leggi la documentazione",
+    "runningCosts": "Gestire un nodo utilizza elettricità, dati Internet e vita dell'hardware. Gli operatori potrebbero non ricevere nulla e i loro costi potrebbero superare qualsiasi ricompensa.",
+    "safestWorkloadBody": "DePin integra prima il percorso di consegna esistente di DeHub. I carichi di lavoro più impegnativi seguono solo dopo che la verifica è provata.",
+    "safestWorkloadTitle": "Costruito dal carico di lavoro più sicuro in poi.",
+    "signIn": "Accedi",
+    "statNotTracked": "Non ancora monitorato.",
+    "statUnavailable": "Non disponibile al momento.",
+    "threeJobsBody": "Gli operatori scelgono i loro limiti di archiviazione, larghezza di banda e calcolo. DeHub programma solo il lavoro che la sua macchina può gestire in sicurezza.",
+    "threeJobsTitle": "Un nodo, tre lavori utili.",
+    "transcode": "Trascodifica",
+    "transcodeBody": "Le macchine idonee trasformano i video caricati in rappresentazioni adattive. Ogni output viene controllato prima di poter essere servito.",
+    "transcodeImageAlt": "Una workstation home creator che contribuisce al calcolo GPU di riserva",
+    "verifiedWorkBody": "Il contributo viene misurato attraverso ricevute firmate, controlli di integrità e convalida dell'output. L'archiviazione da sola non crea una ricompensa.",
+    "verifiedWorkTitle": "Il lavoro utile viene verificato. I premi rimangono variabili.",
+    "yourNode": "Il tuo nodo",
+    "hostBody": "I nodi mantengono segmenti crittografati o indirizzati per contenuto in una cache locale limitata. L'archiviazione di origine DeHub rimane la fonte di verità.",
+    "deliverBody": "I peer vicini condividono segmenti video mentre il percorso di consegna normale rimane pronto come fallback automatico.",
+    "origin": "Origine DeHub",
+    "originBody": "Copia permanente della fonte e consegna di fallback",
+    "availableReplicas": "Repliche disponibili",
+    "availableReplicasBody": "Servire segmenti verificati vicino alla domanda",
+    "offlineNode": "Nodo offline",
+    "offlineNodeBody": "Rimosso dal routing fino alla riconnessione",
+    "viewer": "Visualizzatore",
+    "viewerBody": "Utilizza un peer quando disponibile, l'origine quando necessario",
+    "protectedContent": "Contenuto protetto",
+    "protectedContentBody": "I segmenti di abbonamento, privati e pay-per-view possono essere archiviati come testo cifrato. Gli operatori dei nodi non ricevono chiavi di diritto semplicemente perché ospitano dati.",
+    "publicContent": "Contenuto pubblico",
+    "publicContentBody": "La crittografia impedisce l'ispezione casuale dei file memorizzati nella cache, ma i media pubblici rimangono visualizzabili attraverso il lettore DeHub pubblico. Non affermeremo il contrario.",
+    "operatorControls": "Controlli dell'operatore",
+    "operatorControlsBody": "Gli operatori scelgono limiti di disco, limiti di larghezza di banda, orari di lavoro e categorie di contenuto pubblico idonee. Gli avvisi di rimozione attivano le eliminazioni della cache.",
+    "deliveryReceipts": "Ricevute di consegna",
+    "deliveryReceiptsBody": "Byte verificati serviti a sessioni di riproduzione reali.",
+    "availability": "Disponibilità",
+    "availabilityBody": "Recuperi riusciti e servizio affidabile quando assegnato.",
+    "validOutput": "L'output è valido",
+    "validOutputBody": "I transcodifiche devono superare i controlli tecnici e di qualità campionati.",
+    "revenuePool": "Pool finanziato da ricavi",
+    "revenuePoolBody": "Se attivato, un budget di ricompensa verrebbe impostato dai ricavi della piattaforma dopo la chiusura dell'epoca.",
+    "delivery": "Consegna",
+    "deliveryBody": "Consegna live e video assistita da peer con fallback automatico.",
+    "adaptiveVideo": "Video adattivo",
+    "adaptiveVideoBody": "Più versioni per una riproduzione affidabile su diverse velocità di connessione.",
+    "desktopNodes": "Nodi desktop",
+    "desktopNodesBody": "Archiviazione limitata, controlli della larghezza di banda e disponibilità verificata.",
+    "baseSettlement": "Liquidazione su Base",
+    "baseSettlementBody": "Reclami finanziati da ricavi solo dopo revisione operativa e legale.",
+    "statNodesOnline": "Nodi online",
+    "statStored": "Memorizzato",
+    "statVerified": "Verifica effettuata",
+    "verifiedBytes": "Byte verificati",
+    "totalStoredLedger": "Totale archiviato (contabilità generale)",
+    "dhbEarnedThisPeriod": "Token guadagnati in questo periodo",
+    "faqOfflineQ": "Cosa succede quando un nodo di hosting va offline?",
+    "faqOfflineA": "Il coordinatore lo rimuove dal routing attivo. Un'altra replica serve il segmento, oppure la riproduzione ricade nell'archiviazione di origine DeHub mentre vengono programmate copie sostitutive.",
+    "faqCanOperatorSeeQ": "Un operatore di nodo può vedere il contenuto che ospita?",
+    "faqCanOperatorSeeA": "Il contenuto protetto viene archiviato come segmenti crittografati e l'host non riceve le chiavi di riproduzione. Il contenuto pubblico rimane pubblicamente visualizzabile tramite DeHub per progettazione.",
+    "faqHowMuchQ": "Quanto riceverà un operatore di nodo?",
+    "faqHowMuchA": "Non esiste un tasso fisso o una previsione. Il contributo verificato potrebbe ricevere una quota di un pool di ricompense finanziato da ricavi dopo la chiusura di un'epoca. Le ricompense non sono garantite e i costi di elettricità, larghezza di banda e hardware potrebbero superare qualsiasi ricompensa.",
+    "faqSoftwareAvailableQ": "Il software del nodo è disponibile ora?",
+    "faqSoftwareAvailableA": "Un livello leggero basato su browser è disponibile oggi: accedi e aderisci su questa pagina, e la tua scheda aperta diventa un nodo mentre rimane aperta. Un nodo desktop più pesante e sempre attivo è una direzione futura dichiarata — non esiste ancora.",
+    "faqInstallNeededQ": "Devo installare qualcosa per il nodo del browser?",
+    "faqInstallNeededA": "No. Funziona interamente nella scheda utilizzando l'archiviazione locale del tuo browser. Chiudere la scheda arresta il tuo nodo; non c'è servizio di background e nessuna installazione.",
+    "online": "Online",
+    "host": "Host",
+    "deliver": "Consegna",
+    "appSignInBlurb": "Accedi per vedere il tuo registro dei nodi: cosa hai memorizzato, cosa è stato verificato e cosa hai guadagnato in questo periodo.",
+    "appNodeBody": "Il nodo viene eseguito in una scheda del browser, non in questa app. Apri DePin sul web, accedi con questo account e attiva. Il tuo libro mastro appare qui.",
+    "openOnWeb": "Apri DePin sul web",
+    "statusOffline": "Offline",
+    "statusUnregistered": "Non registrato"
   }
 }

@@ -3792,7 +3792,10 @@
     "unpinConfirm": "Mbusak pesen sematan iki?",
     "pinMessage": "Semat pesen",
     "unpinMessage": "Copot semat pesen",
-    "jumpToLatest": "Luncurna pesen paling anyar"
+    "jumpToLatest": "Luncurna pesen paling anyar",
+    "ban": "Blokir",
+    "banConfirm": "Apa sampeyan yakin arep mblokir {{name}}?",
+    "banFailed": "Gagal mblokir pangguna"
   },
   "promptFeed": {
     "headline": "Sampeyan pengin ndeleng apa?",
@@ -4832,7 +4835,20 @@
     "tokensSent": "{{amount}} token dikirim",
     "percentUsed": "{{percent}}% digunakake",
     "spentOfTotal": "{{spent}} saka {{total}}",
-    "viewInWallet": "Deleng ing dompet"
+    "viewInWallet": "Deleng ing dompet",
+    "topUp": "Tambahake token",
+    "topUpTitle": "Tambah token langganan",
+    "topUpCustom": "Jumlah liyane (USD)",
+    "topUpYouSend": "Sampeyan ngirim",
+    "topUpYouGet": "Ditrapake ing imbangan sampeyan",
+    "topUpConfirm": "Tambah {{amount}}",
+    "topUpRange": "Lebokake {{min}} menyang {{max}}",
+    "topUpDone": "{{amount}} ditambahake menyang token langganan sampeyan",
+    "topUpPending": "Isi ulang sampeyan lagi dikonfirmasi. Bakal katon ing imbangan sampeyan sanalika.",
+    "topUpEmptyHint": "Isi ulang kanggo langganan kreator",
+    "topUpStageWallet": "Konfirmasi ing dompet sampeyan…",
+    "topUpStageConfirming": "Ngenteni transaksi…",
+    "topUpStageCrediting": "Ditrapake ing imbangan sampeyan…"
   },
   "live": {
     "notSet": "Durung disetel",
@@ -4890,8 +4906,61 @@
         "legend": {
           "name": "Legenda",
           "hint": "Nganti tingkat sepuluh."
+        },
+        "ignition": {
+          "name": "Panyala",
+          "hint": "Entuk siji jam siaran sing mumpuni."
+        },
+        "on-air": {
+          "name": "Siaran",
+          "hint": "Rampungake sepuluh siaran sing mumpuni."
+        },
+        "storyteller": {
+          "name": "Pencerita",
+          "hint": "Rampungake rong puluh lima siaran sing mumpuni."
+        },
+        "broadcaster": {
+          "name": "Penyiar",
+          "hint": "Rampungake seket siaran sing mumpuni."
+        },
+        "centurion": {
+          "name": "Centurion",
+          "hint": "Rampungake satus siaran sing mumpuni."
+        },
+        "enduring": {
+          "name": "Tahan",
+          "hint": "Siaran suwene patang jam sing mumpuni ing siji sesi."
+        },
+        "circle": {
+          "name": "Lingkaran njero",
+          "hint": "Ana wong rong puluh lima sing nonton bebarengan."
+        },
+        "arena": {
+          "name": "Arena",
+          "hint": "Ana wong seket sing nonton bebarengan."
+        },
+        "headliner": {
+          "name": "Bintang utama",
+          "hint": "Ana wong satus sing nonton bebarengan."
+        },
+        "cornerstone": {
+          "name": "Watu penjuru",
+          "hint": "Siaran ing rong puluh enem minggu saur-saure."
+        },
+        "veteran": {
+          "name": "Veteran",
+          "hint": "Entuk 250 jam siaran sing mumpuni."
+        },
+        "icon": {
+          "name": "Ikon",
+          "hint": "Entuk level rong puluh."
         }
-      }
+      },
+      "chooseBadge": "Pilih lencana apa wae sing wis kebuka kanggo ditampilake ing profil sampeyan.",
+      "useBadge": "Gunakake lencana",
+      "selectedBadge": "Dipilih",
+      "savingBadge": "Nyimpen lencana…",
+      "saveBadgeError": "Gagal nyimpen lencana sampeyan. Coba maneh."
     },
     "unmuteMic": "Mateni mikropon",
     "muteMic": "Uripake mikropon",
@@ -7528,5 +7597,98 @@
     "loadFailed": "Ora bisa mbukak build sampeyan",
     "previewHint": "Digawe nganggo DeHub Builder",
     "buildInChat": "Gawe ing DM-mu bareng @assistant"
+  },
+  "depin": {
+    "title": "DePin",
+    "noFixedRate": "Ora ana tarif tetep, imbalan minimal, APY utawa prakiraan ngarep. Cathetan kontribusi mung minangka input akuntansi, dudu janji pembayaran. Sembarang pemukiman token ing mangsa ngarep bakal kelakon ing Base lan tetep tundhuk marang kelayakan, aturan jaringan lan hukum sing ditrapake.",
+    "dhbEarnedThisPeriod": "Token sing entuk ing periode iki",
+    "becomeANode": "Dadi simpul",
+    "ctaBody": "Panggonan asal, media terenkripsi sing dilindhungi, lan karya sing diverifikasi luwih dhisik tinimbang hadiah simpul publik.",
+    "ctaTitle": "Mulai mung nalika kegagalan aman.",
+    "earlyAccess": "Akses awal",
+    "earlyAccessBody": "Simpul basis browser sing entheng wis aktif ing ngisor iki. Simpul desktop sing luwih abot lan tansah aktif minangka arah mbesuk sing wis ditemtokake, durung kasedhiya. Partisipasi ora nate njamin hadiah.",
+    "fallbackFigureAria": "Jalur fallback pangiriman konten",
+    "faqHeading": "Pitakonan, dijawab kanthi gamblang.",
+    "footerNote": "Partisipasi DePin minangka layanan kontribusi, dudu produk investasi. Kasedhiyan, kelayakan, lan hadiah bisa diganti.",
+    "heroBlurb": "Kontribusi panyimpenan, bandwidth, lan komputasi sing luwih sithik kanggo mbantu nyimpen, ngowahi, lan ngirim konten DeHub.",
+    "heroCaption": "DeHub nyimpen salinan asli. Simpul komunitas nambahake replika sing tahan banting lan kapasitas pangiriman lokal.",
+    "heroEyebrow": "Infrastruktur sing didukung komunitas",
+    "heroImageAlt": "Simpul komputasi pinggiran sing kompak disambungake menyang omah lan studio kreator",
+    "heroTitle": "Piranti keras sampeyan. Jaringan media DeHub.",
+    "nodesLeaveBody": "Ora ana mesin komunitas sing nyimpen siji-sijine salinan. Pemeriksaan kesehatan, replika, lan fallback asli njaga puter maneh kasedhiya.",
+    "nodesLeaveTitle": "Jaringan sing ngarepake simpul bakal metu.",
+    "notTrackedYet": "Durung dilacak",
+    "online": "Online",
+    "privacyBody": "Media sing dilindhungi tetep terenkripsi ing piranti keras komunitas. Kunci puter maneh diterbitake kanthi kapisah menyang pamirso sing sah.",
+    "privacyTitle": "Host nyimpen bagean, dudu akses.",
+    "readTheDocs": "Waca dokumentasi",
+    "runningCosts": "Ngoperasikake simpul nggunakake listrik, data internet, lan umur piranti keras. Operator bisa uga ora nampa apa-apa, lan biaya bisa ngluwihi hadiah apa wae.",
+    "safestWorkloadBody": "DePin nambahake jalur pangiriman DeHub sing wis ana luwih dhisik. Beban kerja sing luwih nuntut mung bakal ditindakake sawise verifikasi wis kabukten.",
+    "safestWorkloadTitle": "Dibangun saka beban kerja sing paling aman.",
+    "signIn": "Mlebu",
+    "statNotTracked": "Durung dilacak.",
+    "statUnavailable": "Ora kasedhiya saiki.",
+    "threeJobsBody": "Operator milih watesan panyimpenan, bandwidth, lan komputasi. DeHub mung njadwalake karya sing bisa ditangani kanthi aman dening mesin kasebut.",
+    "threeJobsTitle": "Siji simpul, telung tugas migunani.",
+    "transcode": "Transcode",
+    "transcodeBody": "Mesin sing layak ngowahi video sing diunggah dadi adaptasi sing bisa diadaptasi. Saben output dipriksa sadurunge bisa dilayani.",
+    "transcodeImageAlt": "Stasiun kerja kreator omah sing nyumbangake komputasi GPU luwih",
+    "verifiedWorkBody": "Kontribusi diukur liwat kuitansi sing ditandatangani, pemeriksaan kesehatan, lan validasi output. Panyimpenan wae ora ngasilake hadiah.",
+    "verifiedWorkTitle": "Pakaryan sing migunani wis diverifikasi. Hadiah tetep variabel.",
+    "yourNode": "Nodemu",
+    "host": "Host",
+    "hostBody": "Node nyimpen segmen sing dienkripsi utawa dialamatake konten ing cache lokal sing diwatesi. Panyimpenan asal DeHub tetep dadi sumber bebener.",
+    "deliver": "Ngirim",
+    "deliverBody": "Peer sing cedhak nuduhake segmen video nalika jalur pangiriman normal tetep siyap minangka fallback otomatis.",
+    "origin": "Asal DeHub",
+    "originBody": "Salinan sumber permanen lan pangiriman fallback",
+    "availableReplicas": "Replika sing kasedhiya",
+    "availableReplicasBody": "Sajikake segmen sing diverifikasi cedhak karo panjaluk",
+    "offlineNode": "Node offline",
+    "offlineNodeBody": "Dibusak saka routing nganti nyambung maneh",
+    "viewer": "Pirsani",
+    "viewerBody": "Nggunakake peer nalika kasedhiya, asal nalika dibutuhake",
+    "protectedContent": "Konten sing dilindhungi",
+    "protectedContentBody": "Segmen pelanggan, pribadi, lan bayar-per-tayangan bisa disimpen minangka ciphertext. Operator node ora nampa kunci hak mung amarga dheweke nyimpen data.",
+    "publicContent": "Konten umum",
+    "publicContentBody": "Enkripsi nyegah pemeriksaan santai file sing disimpen, nanging media umum tetep bisa ditonton liwat pamuter DeHub umum. Kita ora bakal ngaku liya.",
+    "operatorControls": "Kontrol operator",
+    "operatorControlsBody": "Operator milih watesan disk, watesan bandwidth, jam kerja, lan kategori konten umum sing layak. Pesen penghapusan memicu pembersihan cache.",
+    "deliveryReceipts": "Kuitansi pangiriman",
+    "deliveryReceiptsBody": "Byte sing diverifikasi disajikake menyang sesi puter maneh nyata.",
+    "availability": "Kasedhiyan",
+    "availabilityBody": "Pemeriksaan pengambilan sing sukses lan layanan sing bisa dipercaya nalika ditugasake.",
+    "validOutput": "Output sing sah",
+    "validOutputBody": "Transkode kudu lulus pemeriksaan kualitas teknis lan sampel.",
+    "revenuePool": "Kolam dana pendapatan",
+    "revenuePoolBody": "Yen diaktifake, anggaran hadiah bakal disetel saka pendapatan platform sawise jaman ditutup.",
+    "delivery": "Pangiriman",
+    "deliveryBody": "Pangiriman langsung lan video sing dibantu kanca kanthi fallback otomatis.",
+    "adaptiveVideo": "Video adaptif",
+    "adaptiveVideoBody": "Sawetara rendition kanggo puter maneh sing bisa dipercaya ing macem-macem kacepetan sambungan.",
+    "desktopNodes": "Node desktop",
+    "desktopNodesBody": "Panyimpenan winates, kontrol bandwidth lan kasedhiyan sing diverifikasi.",
+    "baseSettlement": "Penyelesaian dhasar",
+    "baseSettlementBody": "Klaim sing didanai pendapatan mung sawise tinjauan operasional lan hukum.",
+    "statNodesOnline": "Node online",
+    "statStored": "Disimpen",
+    "statVerified": "Diverifikasi",
+    "verifiedBytes": "Byte sing diverifikasi",
+    "totalStoredLedger": "Total disimpen (ledger)",
+    "faqOfflineQ": "Apa sing kedadeyan nalika node hosting mati?",
+    "faqOfflineA": "Koordinator mbusak saka routing aktif. Replika liyane nyedhiyakake segmen, utawa puter maneh bali menyang panyimpenan asal DeHub nalika salinan panggantos dijadwalake.",
+    "faqCanOperatorSeeQ": "Apa operator node bisa ndeleng konten sing di-host?",
+    "faqCanOperatorSeeA": "Konten sing dilindhungi disimpen minangka segmen terenkripsi lan host ora nampa kunci puter maneh. Konten umum tetep bisa dideleng umum liwat DeHub miturut desain.",
+    "faqHowMuchQ": "Pira sing bakal ditampa operator node?",
+    "faqHowMuchA": "Ora ana tarif tetep utawa ramalan. Kontribusi sing diverifikasi bisa nampa bagean saka kumpulan hadiah sing didanai pendapatan sawise jaman ditutup. Hadiah ora dijamin, lan biaya listrik, bandwidth lan piranti keras bisa ngluwihi hadiah apa wae.",
+    "faqSoftwareAvailableQ": "Apa piranti lunak node kasedhiya saiki?",
+    "faqSoftwareAvailableA": "Tingkat basis browser sing entheng kasedhiya saiki: mlebu lan milih ing kaca iki, lan tab mbukak sampeyan dadi node nalika tetep mbukak. Node desktop sing luwih abot lan tansah aktif minangka arah mbesuk sing wis ditemtokake — durung ana.",
+    "faqInstallNeededQ": "Apa aku kudu nginstal apa wae kanggo node browser?",
+    "faqInstallNeededA": "Ora. Iku mlaku kabeh ing tab nggunakake panyimpenan lokal browser sampeyan. Nutup tab mungkasi node sampeyan; ora ana layanan latar mburi lan ora ana instalasi.",
+    "appSignInBlurb": "Mlebu kanggo ndeleng ledger node sampeyan: apa sing wis disimpen, apa sing wis diverifikasi lan apa sing wis sampeyan entuk ing periode iki.",
+    "appNodeBody": "Node mlaku ing tab browser, ora ing aplikasi iki. Bukak DePin ing web, mlebu nganggo akun iki lan milih. Ledger sampeyan katon ing kene.",
+    "openOnWeb": "Bukak DePin ing web",
+    "statusOffline": "Offline",
+    "statusUnregistered": "Ora kadhaptar"
   }
 }

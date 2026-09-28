@@ -3792,7 +3792,10 @@
     "pinMessage": "置顶消息",
     "unpinMessage": "取消置顶消息",
     "jumpToLatest": "跳到最新消息",
-    "attachGif": "GIF"
+    "attachGif": "GIF",
+    "ban": "封禁",
+    "banConfirm": "您确定要封禁 {{name}} 吗？",
+    "banFailed": "封禁用户失败"
   },
   "promptFeed": {
     "headline": "你想看什么？",
@@ -4832,7 +4835,20 @@
     "tokensSent": "已发送 {{amount}} 代币",
     "percentUsed": "{{percent}}% 已使用",
     "spentOfTotal": "{{spent}} 的 {{total}}",
-    "viewInWallet": "在钱包中查看"
+    "viewInWallet": "在钱包中查看",
+    "topUp": "添加令牌",
+    "topUpTitle": "添加订阅代币",
+    "topUpCustom": "其他金额 (美元)",
+    "topUpYouSend": "您发送",
+    "topUpYouGet": "已添加到您的余额",
+    "topUpConfirm": "添加 {{amount}}",
+    "topUpRange": "输入 {{min}} 以 {{max}}",
+    "topUpDone": "{{amount}} 已添加到您的订阅代币",
+    "topUpPending": "您的充值正在确认中。稍后将显示在您的余额中。",
+    "topUpEmptyHint": "充值以订阅创作者",
+    "topUpStageWallet": "在您的钱包中确认…",
+    "topUpStageConfirming": "等待交易…",
+    "topUpStageCrediting": "正在添加到您的余额…"
   },
   "live": {
     "notSet": "未设置",
@@ -4890,8 +4906,61 @@
         "legend": {
           "name": "傳奇",
           "hint": "抵達十級。"
+        },
+        "ignition": {
+          "name": "點火",
+          "hint": "在直播中達到一個合格小時。"
+        },
+        "on-air": {
+          "name": "直播中",
+          "hint": "完成十個合格的直播。"
+        },
+        "storyteller": {
+          "name": "說書人",
+          "hint": "完成二十五個合格的直播。"
+        },
+        "broadcaster": {
+          "name": "廣播員",
+          "hint": "完成五十個合格的直播。"
+        },
+        "centurion": {
+          "name": "百夫長",
+          "hint": "完成一百個合格的直播。"
+        },
+        "enduring": {
+          "name": "持久",
+          "hint": "一次直播四個合格小時。"
+        },
+        "circle": {
+          "name": "核心圈",
+          "hint": "同時有二十五人觀看。"
+        },
+        "arena": {
+          "name": "競技場",
+          "hint": "同時有五十人觀看。"
+        },
+        "headliner": {
+          "name": "領銜",
+          "hint": "同時有一百人觀看。"
+        },
+        "cornerstone": {
+          "name": "基石",
+          "hint": "連續二十六週直播。"
+        },
+        "veteran": {
+          "name": "老兵",
+          "hint": "在直播中達到250個合格小時。"
+        },
+        "icon": {
+          "name": "偶像",
+          "hint": "達到20級。"
         }
-      }
+      },
+      "chooseBadge": "選擇任何已解鎖的徽章顯示在您的個人資料上。",
+      "useBadge": "使用徽章",
+      "selectedBadge": "已選擇",
+      "savingBadge": "正在保存徽章…",
+      "saveBadgeError": "無法保存您的徽章。請再試一次。"
     },
     "unmuteMic": "解除麥克風靜音",
     "muteMic": "靜音麥克風",
@@ -7531,5 +7600,98 @@
     "loadFailed": "无法加载你的构建",
     "previewHint": "由 DeHub 构建器构建",
     "buildInChat": "在私信里共 @assistant 一起搭建"
+  },
+  "depin": {
+    "title": "DePin",
+    "noFixedRate": "無固定匯率、最低回報、年化收益率或未來預測。貢獻記錄僅為會計輸入，不構成付款承諾。任何未來的代幣結算將在 Base 上進行，並仍受資格、網路規則和適用法律的約束。",
+    "dhbEarnedThisPeriod": "本期赚取的代币",
+    "becomeANode": "成为节点",
+    "ctaBody": "源落后、加密保护媒体和已验证工作优先于公共节点奖励。",
+    "ctaTitle": "仅在失败安全时启动。",
+    "earlyAccess": "早期访问",
+    "earlyAccessBody": "下面是一个轻量级、基于浏览器的节点。更重、更持续运行的桌面节点是未来的计划，尚未提供。参与并不保证奖励。",
+    "fallbackFigureAria": "内容交付回退路径",
+    "faqHeading": "问题，直接回答。",
+    "footerNote": "DePin 参与是一个贡献服务，而非投资产品。可用性、资格和奖励可能会变化。",
+    "heroBlurb": "贡献闲置存储、带宽和计算资源，帮助托管、转码和交付 DeHub 内容。",
+    "heroCaption": "DeHub 保留原始副本。社区节点添加弹性副本和本地交付能力。",
+    "heroEyebrow": "社区驱动的基础设施",
+    "heroImageAlt": "一个紧凑的边缘计算节点，连接家庭和创作者工作室",
+    "heroTitle": "你的硬件。DeHub 的媒体网络。",
+    "nodesLeaveBody": "没有社区机器持有唯一副本。健康检查、复制和源回退保持播放可用。",
+    "nodesLeaveTitle": "一个期望节点离开的网络。",
+    "notTrackedYet": "尚未跟踪",
+    "online": "在线",
+    "privacyBody": "受保护的媒体在社区硬件上保持加密。播放密钥单独发放给授权观众。",
+    "privacyTitle": "托管方存储片段，而非访问。",
+    "readTheDocs": "阅读文档",
+    "runningCosts": "运行节点需要电力、互联网数据和硬件寿命。运营者可能一无所获，成本可能超过任何奖励。",
+    "safestWorkloadBody": "DePin 首先补充 DeHub 的现有交付路径。更高需求的工作仅在验证通过后才跟随。",
+    "safestWorkloadTitle": "从最安全的工作负载开始构建。",
+    "signIn": "登录",
+    "statNotTracked": "尚未跟踪。",
+    "statUnavailable": "目前不可用。",
+    "threeJobsBody": "运营者选择其存储、带宽和计算限制。DeHub 仅安排其机器能安全处理的工作。",
+    "threeJobsTitle": "一个节点，三个有用的工作。",
+    "transcode": "转码",
+    "transcodeBody": "符合条件的机器将上传的视频转成自适应版本。每个输出在提供前都会被检查。",
+    "transcodeImageAlt": "一个家用创作者工作站贡献备用 GPU 计算",
+    "verifiedWorkBody": "贡献通过签名收据、健康检查和输出验证来衡量。仅存储本身不会产生奖励。",
+    "verifiedWorkTitle": "有用的工作会被验证。奖励保持可变。",
+    "yourNode": "你的节点",
+    "host": "主机",
+    "hostBody": "节点在受限本地缓存中保留加密或内容寻址的段。DeHub 原始存储仍然是事实来源。",
+    "deliver": "交付",
+    "deliverBody": "附近的节点共享视频段，而正常的交付路径保持为自动回退。",
+    "origin": "DeHub 原始",
+    "originBody": "永久源副本和回退交付",
+    "availableReplicas": "可用副本",
+    "availableReplicasBody": "在需求附近提供已验证的段",
+    "offlineNode": "离线节点",
+    "offlineNodeBody": "被移除路由，直到重新连接",
+    "viewer": "观看者",
+    "viewerBody": "使用可用的节点，必要时使用原始源",
+    "protectedContent": "受保护内容",
+    "protectedContentBody": "订阅者、私有和按观看付费的段可以以密文形式存储。节点运营商仅因为托管数据而不获得授权密钥。",
+    "publicContent": "公共内容",
+    "publicContentBody": "加密防止随意检查缓存文件，但公共媒体仍可通过公共 DeHub 播放器观看。我们不会声称相反。",
+    "operatorControls": "运营商控制",
+    "operatorControlsBody": "运营商选择磁盘限制、带宽限制、工作时间和可用公共内容类别。移除通知会触发缓存清除。",
+    "deliveryReceipts": "交付收据",
+    "deliveryReceiptsBody": "已验证的字节已提供给真实播放会话。",
+    "availability": "可用性",
+    "availabilityBody": "成功检索检查和可靠服务时已分配。",
+    "validOutput": "有效输出",
+    "validOutputBody": "转码必须通过技术和采样质量检查。",
+    "revenuePool": "收入资助池",
+    "revenuePoolBody": "如果激活，奖励预算将在纪元结束后从平台收入中设定。",
+    "delivery": "配送",
+    "deliveryBody": "同伴辅助的实时和视频配送，具有自动回退功能。",
+    "adaptiveVideo": "自适应视频",
+    "adaptiveVideoBody": "多种版本，可在不同连接速度下可靠播放。",
+    "desktopNodes": "桌面节点",
+    "desktopNodesBody": "有限的存储空间、带宽控制和已验证的可用性。",
+    "baseSettlement": "基础结算",
+    "baseSettlementBody": "仅在运营和法律审查后，根据收入进行索赔。",
+    "statNodesOnline": "在线节点",
+    "statStored": "已存储",
+    "statVerified": "已验证",
+    "verifiedBytes": "已验证字节",
+    "totalStoredLedger": "总存储量（账本）",
+    "faqOfflineQ": "托管节点离线时会发生什么？",
+    "faqOfflineA": "协调器将其从活动路由中移除。另一个副本将服务该片段，或回退到 DeHub 源存储进行播放，同时安排替换副本。",
+    "faqCanOperatorSeeQ": "节点运营商能否看到他们托管的内容？",
+    "faqCanOperatorSeeA": "受保护的内容以加密片段的形式存储，主机不会收到播放密钥。根据设计，公共内容仍可通过 DeHub 公开查看。",
+    "faqHowMuchQ": "节点运营商能收到多少？",
+    "faqHowMuchA": "没有固定费率或预测。经过验证的贡献者在时期结束后，可能会获得收入资助的奖励池的一部分。奖励不保证，并且电力、带宽和硬件成本可能超过任何奖励。",
+    "faqSoftwareAvailableQ": "节点软件现在可用吗？",
+    "faqSoftwareAvailableA": "轻量级的、基于浏览器的版本今天可用：在此页面上登录并选择加入，您的打开的标签页将成为一个节点，只要它保持打开状态。更重型的、始终在线的桌面节点是未来明确的方向——它目前尚不存在。",
+    "faqInstallNeededQ": "浏览器节点需要安装什么吗？",
+    "faqInstallNeededA": "不需要。它完全在标签页中使用浏览器的本地存储运行。关闭标签页将停止您的节点；没有后台服务，也没有安装。",
+    "appSignInBlurb": "登录以查看您的节点账本：您已存储的内容、已验证的内容以及本期赚取的收入。",
+    "appNodeBody": "节点在浏览器标签页中运行，而不是在此应用程序中。在网上打开 DePin，使用此帐户登录并选择加入。您的账本会显示在这里。",
+    "openOnWeb": "在网上打开 DePin",
+    "statusOffline": "离线",
+    "statusUnregistered": "未注册"
   }
 }

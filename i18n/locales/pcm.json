@@ -3706,7 +3706,10 @@
     "unpinMessage": "Unpin message",
     "voiceUploadFailed": "We no fit upload di voice message",
     "unpinConfirm": "Remove dis pinned message?",
-    "jumpToLatest": "Go to di latest messages"
+    "jumpToLatest": "Go to di latest messages",
+    "ban": "Ban am",
+    "banConfirm": "You sure say you wan ban {{name}}?",
+    "banFailed": "We no fit ban di user"
   },
   "promptFeed": {
     "headline": "Wetin you wan see?",
@@ -4712,7 +4715,20 @@
     "tokensSent": "We don send {{amount}} tokens",
     "percentUsed": "{{percent}}% used",
     "spentOfTotal": "{{spent}} of {{total}}",
-    "viewInWallet": "View in wallet"
+    "viewInWallet": "View in wallet",
+    "topUp": "Add tokens",
+    "topUpTitle": "Add subscription tokens",
+    "topUpCustom": "Anoda amount (USD)",
+    "topUpYouSend": "Wetin you go send",
+    "topUpYouGet": "Wetin go enter your balance",
+    "topUpConfirm": "Add {{amount}}",
+    "topUpRange": "Put from {{min}} reach {{max}}",
+    "topUpDone": "We don add {{amount}} to your subscription tokens",
+    "topUpPending": "Your top-up dey confirm. E go show for your balance soon.",
+    "topUpEmptyHint": "Add tokens make you fit subscribe to creators",
+    "topUpStageWallet": "Confirm am for your wallet…",
+    "topUpStageConfirming": "We dey wait for di transaction…",
+    "topUpStageCrediting": "We dey add am to your balance…"
   },
   "live": {
     "notSet": "Dem never set am",
@@ -4766,12 +4782,65 @@
         "legend": {
           "name": "Legend",
           "hint": "Climb reach level ten."
+        },
+        "ignition": {
+          "name": "First Fire",
+          "hint": "Do one correct hour wey count for live."
+        },
+        "on-air": {
+          "name": "Don Dey Live",
+          "hint": "Finish ten stream wey count."
+        },
+        "storyteller": {
+          "name": "Story Man",
+          "hint": "Finish twenty-five stream wey count."
+        },
+        "broadcaster": {
+          "name": "Big Broadcaster",
+          "hint": "Finish fifty stream wey count."
+        },
+        "centurion": {
+          "name": "Hundred Man",
+          "hint": "Finish one hundred stream wey count."
+        },
+        "enduring": {
+          "name": "Strong Leg",
+          "hint": "Stream four hour wey count for one sitting."
+        },
+        "circle": {
+          "name": "Close Paddy Dem",
+          "hint": "Make twenty-five people dey watch you at once."
+        },
+        "arena": {
+          "name": "Big Arena",
+          "hint": "Make fifty people dey watch you at once."
+        },
+        "headliner": {
+          "name": "Main Act",
+          "hint": "Make one hundred people dey watch you at once."
+        },
+        "cornerstone": {
+          "name": "Foundation Stone",
+          "hint": "Stream every week for twenty-six weeks wey follow each other."
+        },
+        "veteran": {
+          "name": "Old Soldier",
+          "hint": "Reach 250 hours wey count for live."
+        },
+        "icon": {
+          "name": "Big Name",
+          "hint": "Reach level twenty."
         }
       },
       "toNext": "{{minutes}} more minutes wey count before you reach level {{level}}",
       "rule": "Na only streams wey run ten minutes or pass, with at least one person dey watch, go count for your level.",
       "notCounted": "E no count",
-      "noStreams": "Go live to start to earn XP."
+      "noStreams": "Go live to start to earn XP.",
+      "useBadge": "Use dis badge",
+      "selectedBadge": "Na dis one",
+      "savingBadge": "We dey save your badge…",
+      "chooseBadge": "Pick any badge wey don open make e show for your profile.",
+      "saveBadgeError": "We no fit save your badge. Abeg try again."
     },
     "unmuteMic": "On di microphone",
     "muteMic": "Off di microphone",
@@ -6975,5 +7044,98 @@
     "loadFailed": "E no fit load your builds",
     "previewHint": "Dem build am with DeHub Builder",
     "buildInChat": "Build for your DM wit @assistant"
+  },
+  "depin": {
+    "title": "DePin",
+    "becomeANode": "Become a node",
+    "earlyAccess": "Early access",
+    "fallbackFigureAria": "Content delivery fallback path",
+    "faqHeading": "Questions, answered plainly.",
+    "heroEyebrow": "Community-powered infrastructure",
+    "online": "Online",
+    "signIn": "Sign in",
+    "threeJobsTitle": "One node, three useful jobs.",
+    "transcode": "Transcode",
+    "yourNode": "Your node",
+    "host": "Host",
+    "deliver": "Deliver",
+    "origin": "DeHub origin",
+    "availableReplicas": "Available replicas",
+    "offlineNode": "Offline node",
+    "viewer": "Viewer",
+    "protectedContent": "Protected content",
+    "publicContent": "Public content",
+    "operatorControls": "Operator controls",
+    "deliveryReceipts": "Delivery receipts",
+    "availability": "Availability",
+    "validOutput": "Valid output",
+    "revenuePool": "Revenue-funded pool",
+    "delivery": "Delivery",
+    "adaptiveVideo": "Adaptive video",
+    "desktopNodes": "Desktop nodes",
+    "baseSettlement": "Base settlement",
+    "statNodesOnline": "Nodes online",
+    "statStored": "Stored",
+    "statVerified": "Verified",
+    "verifiedBytes": "Verified bytes",
+    "totalStoredLedger": "Total stored (ledger)",
+    "statusOffline": "Offline",
+    "statusUnregistered": "Not registered",
+    "ctaBody": "Origin backup, encrypted protected media and work wey dem don check go come first before any public node reward.",
+    "ctaTitle": "Launch only when e safe if something fail.",
+    "earlyAccessBody": "Small node wey dey run for browser don dey live for down. Bigger desktop node wey go dey on all the time na plan for future, e never ready. To join no mean say you go surely collect reward.",
+    "footerNote": "DePin participation na contribution service, e no be investment product. Availability, who fit join and rewards fit change.",
+    "heroBlurb": "Give your extra storage, bandwidth and compute make e help host, transcode and deliver DeHub content.",
+    "heroCaption": "DeHub dey keep the main copy. Community nodes dey add strong backup copies and local delivery power.",
+    "heroImageAlt": "Small edge-compute node wey connect to houses and creator studios",
+    "heroTitle": "Your hardware. DeHub media network.",
+    "noFixedRate": "No fixed rate, no minimum return, no APY and no forecast dey. Contribution records na for accounting only, dem no be promise say we go pay. Any token settlement for future go happen for Base and e go depend on who qualify, network rules and the law wey apply.",
+    "nodesLeaveBody": "No community machine dey hold the only copy. Health checks, backup copies and origin backup dey make playback dey available.",
+    "nodesLeaveTitle": "Network wey sabi say nodes go comot.",
+    "notTrackedYet": "We never dey track am",
+    "privacyBody": "Protected media dey stay encrypted for community hardware. Dem dey give playback keys separately to viewers wey get permission.",
+    "privacyTitle": "Hosts dey keep pieces, dem no get access.",
+    "readTheDocs": "Go read the docs",
+    "runningCosts": "To run node dey use light, internet data and hardware life. Operators fit collect nothing, and their cost fit pass any reward.",
+    "safestWorkloadBody": "DePin dey first support the delivery path wey DeHub get already. Harder work go follow only after dem don prove say checking dey work.",
+    "safestWorkloadTitle": "We build am from the safest work go outside.",
+    "statNotTracked": "We never dey track am.",
+    "statUnavailable": "E no dey available now.",
+    "threeJobsBody": "Operators dey choose their storage, bandwidth and compute limit. DeHub dey give only the work wey their machine fit carry safely.",
+    "transcodeBody": "Machines wey qualify dey turn uploaded video to different quality versions. Dem dey check every output before dem fit serve am.",
+    "transcodeImageAlt": "Creator workstation for house wey dey give extra GPU compute",
+    "verifiedWorkBody": "Dem dey measure contribution with signed receipts, health checks and output checks. Storage alone no dey bring reward.",
+    "verifiedWorkTitle": "Dem dey check useful work. Rewards no dey fixed.",
+    "hostBody": "Nodes dey keep encrypted or content-addressed pieces for small local cache wey get limit. DeHub origin storage still be the main source.",
+    "deliverBody": "Peers wey dey near dey share video pieces while the normal delivery path dey ready as automatic backup.",
+    "originBody": "Main source copy wey no dey go and backup delivery",
+    "availableReplicasBody": "Dey serve checked pieces near where people need am",
+    "offlineNodeBody": "Dem remove am from routing until e connect again",
+    "viewerBody": "E dey use peer when e dey, origin when e need am",
+    "protectedContentBody": "Subscriber, private and pay-per-view pieces fit dey stored as ciphertext. Node operators no dey get access keys just because dem host data.",
+    "publicContentBody": "Encryption dey stop people from just dey look inside cached files, but people fit still watch public media for the public DeHub player. We no go talk anything different.",
+    "operatorControlsBody": "Operators dey choose disk limit, bandwidth limit, work hours and the public content categories wey dem allow. Removal notice dey clear the cache.",
+    "deliveryReceiptsBody": "Checked bytes wey dem serve to real playback sessions.",
+    "availabilityBody": "Retrieval checks wey pass and service wey dey reliable when dem give am work.",
+    "validOutputBody": "Transcodes must pass technical checks and quality checks wey dem sample.",
+    "revenuePoolBody": "If dem start am, reward budget go come from platform revenue after the epoch close.",
+    "deliveryBody": "Live and video delivery wey peers dey help, with automatic backup.",
+    "adaptiveVideoBody": "Different quality versions so playback go dey steady for any connection speed.",
+    "desktopNodesBody": "Storage wey get limit, bandwidth control and availability wey dem don check.",
+    "baseSettlementBody": "Claims wey revenue dey fund only after operation and legal review.",
+    "dhbEarnedThisPeriod": "Tokens wey you earn this period",
+    "faqOfflineQ": "Wetin go happen when hosting node go offline?",
+    "faqOfflineA": "The coordinator go remove am from active routing. Another copy go serve the piece, or playback go fall back to DeHub origin storage while dem dey arrange new copies.",
+    "faqCanOperatorSeeQ": "Node operator fit see the content wey e dey host?",
+    "faqCanOperatorSeeA": "Protected content dey stored as encrypted pieces and the host no dey get playback keys. Public content still dey open for everybody to watch for DeHub, na so dem design am.",
+    "faqHowMuchQ": "How much node operator go collect?",
+    "faqHowMuchA": "No fixed rate or forecast dey. Contribution wey dem don check fit get share from reward pool wey revenue dey fund after epoch close. Rewards no dey guaranteed, and light, bandwidth and hardware cost fit pass any reward.",
+    "faqSoftwareAvailableQ": "Node software don dey available now?",
+    "faqSoftwareAvailableA": "Small browser-based level dey available today: sign in and opt in for this page, and your open tab go turn node while e still dey open. Bigger desktop node wey go dey on all the time na plan for future — e never exist.",
+    "faqInstallNeededQ": "I need install anything for the browser node?",
+    "faqInstallNeededA": "No. E dey run inside the tab with your browser local storage. If you close the tab your node go stop; no background service and no install.",
+    "appSignInBlurb": "Sign in make you see your node ledger: wetin you don store, wetin dem don check and wetin you earn this period.",
+    "appNodeBody": "The node dey run for browser tab, no be for this app. Open DePin for web, sign in with this account and opt in. Your ledger go show for here.",
+    "openOnWeb": "Open DePin for web"
   }
 }
