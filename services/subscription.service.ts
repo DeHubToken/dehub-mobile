@@ -372,8 +372,12 @@ export async function payPlanWithCredits(subId: string, hash?: string, chainId?:
   });
 }
 
-export async function getSubscriptionCredits(): Promise<SubscriptionCreditBalance | null> {
-  await reconcilePendingCreditTopUps();
+/**
+ * `address` is the signed-in wallet: pending top-ups are only retried for
+ * the account that sent them.
+ */
+export async function getSubscriptionCredits(address?: string | null): Promise<SubscriptionCreditBalance | null> {
+  if (address) await reconcilePendingCreditTopUps(address);
   const res = await apiClient.get<{ credits?: SubscriptionCreditBalance }>("/subscription-credits");
   return (res as any)?.credits ?? null;
 }
@@ -408,7 +412,13 @@ const PENDING_CREDIT_TOPUPS_KEY = "dehub.pending-credit-topups.v1";
 interface PendingCreditTopUp {
   hash: string;
   chainId: number;
+  /** The account that sent it. Another profile on this device must never claim it. */
+  address: string;
+  /** When it was sent. A hash still unresolved after a week is given up on. */
+  at: number;
 }
+
+const PENDING_TOPUP_MAX_AGE_MS = 7 * 24 * 60 * 60 * 1000;
 
 async function pendingCreditTopUps(): Promise<PendingCreditTopUp[]> {
   try {
@@ -424,10 +434,10 @@ async function storePendingCreditTopUps(items: PendingCreditTopUp[]): Promise<vo
   else await AsyncStorage.removeItem(PENDING_CREDIT_TOPUPS_KEY);
 }
 
-export async function rememberPendingCreditTopUp(item: PendingCreditTopUp): Promise<void> {
+export async function rememberPendingCreditTopUp(item: Omit<PendingCreditTopUp, "at">): Promise<void> {
   const hash = item.hash.toLowerCase();
   const rest = (await pendingCreditTopUps()).filter((p) => p.hash.toLowerCase() !== hash);
-  await storePendingCreditTopUps([...rest, item]);
+  await storePendingCreditTopUps([...rest, { ...item, address: item.address.toLowerCase(), at: Date.now() }]);
 }
 
 export async function clearPendingCreditTopUp(hash: string): Promise<void> {
@@ -435,11 +445,21 @@ export async function clearPendingCreditTopUp(hash: string): Promise<void> {
   await storePendingCreditTopUps((await pendingCreditTopUps()).filter((p) => p.hash.toLowerCase() !== lower));
 }
 
-/** Statuses that are the API's final word on a hash: retrying cannot change them. */
-const FINAL_TOPUP_STATUSES = new Set([400, 403, 404, 409, 410]);
+/**
+ * The API's final word on a hash: 400 (not a valid payment) or 409 (already
+ * used). Anything else — rate limits, a proxy's 403/404, 5xx — is retried.
+ */
+export const FINAL_TOPUP_STATUSES = new Set([400, 409]);
 
-async function reconcilePendingCreditTopUps(): Promise<void> {
+async function reconcilePendingCreditTopUps(address: string): Promise<void> {
+  const owner = address.toLowerCase();
+  const now = Date.now();
   for (const item of await pendingCreditTopUps()) {
+    if (!item.at || now - item.at > PENDING_TOPUP_MAX_AGE_MS) {
+      await clearPendingCreditTopUp(item.hash);
+      continue;
+    }
+    if ((item.address || "").toLowerCase() !== owner) continue;
     try {
       const result = await claimSubscriptionCreditTopUp(item.hash, item.chainId);
       if (!result?.pending) await clearPendingCreditTopUp(item.hash);

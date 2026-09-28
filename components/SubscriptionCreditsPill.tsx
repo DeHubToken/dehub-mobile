@@ -5,7 +5,7 @@ import { useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { DhbCoin } from "./common/DhbCoin";
-import { useAuthState } from "../context/AuthContext";
+import { useAuthState, useUser } from "../context/AuthContext";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { DIGITAL_PURCHASES_ENABLED } from "../config/storefront";
 import { getSubscriptionCredits } from "../services/subscription.service";
@@ -22,6 +22,7 @@ const usd = (value: number) =>
  */
 const SubscriptionCreditsPill: React.FC = () => {
   const { isSignedIn } = useAuthState();
+  const user = useUser();
   const { t } = useTranslation();
   const navigation = useNavigation<any>();
   const insets = useSafeAreaInsets();
@@ -30,7 +31,7 @@ const SubscriptionCreditsPill: React.FC = () => {
 
   const { data } = useQuery({
     queryKey: ["subscription-credits"],
-    queryFn: getSubscriptionCredits,
+    queryFn: () => getSubscriptionCredits(user?.address),
     enabled: isSignedIn && DIGITAL_PURCHASES_ENABLED,
     staleTime: 30_000,
     retry: false,
