@@ -2,6 +2,7 @@ import { DIGITAL_PURCHASES_ENABLED } from "../config/storefront";
 import React, { memo, useCallback, useEffect, useMemo, useRef } from "react";
 import {
   Animated as NativeAnimated,
+  Easing as NativeEasing,
   View,
   Text,
   Pressable,
@@ -509,7 +510,7 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
     containerAnim.value = withDelay(30, withSpring(1, { damping: 18, stiffness: 80, mass: 0.8 }));
     entranceFade.value = withDelay(30, withTiming(1, { duration: 320 }));
     const animation = NativeAnimated.timing(animProgress, {
-      toValue: 1, delay: 100, duration: 700, easing: Easing.bezier(0.22, 1, 0.36, 1), useNativeDriver: true, isInteraction: false,
+      toValue: 1, delay: 100, duration: 700, easing: NativeEasing.bezier(0.22, 1, 0.36, 1), useNativeDriver: true, isInteraction: false,
     });
     animation.start();
     return () => animation.stop();
