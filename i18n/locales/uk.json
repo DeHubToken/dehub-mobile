@@ -5192,7 +5192,20 @@
     "tokensSent": "Надіслано токенів: {{amount}}",
     "percentUsed": "{{percent}}% використано",
     "spentOfTotal": "{{spent}} з {{total}}",
-    "viewInWallet": "Переглянути в гаманці"
+    "viewInWallet": "Переглянути в гаманці",
+    "topUp": "Додати токени",
+    "topUpTitle": "Додати токени підписки",
+    "topUpCustom": "Інша сума (дол. США)",
+    "topUpYouSend": "Ви надсилаєте",
+    "topUpYouGet": "Додано до балансу",
+    "topUpConfirm": "Додати {{amount}}",
+    "topUpRange": "Введіть від {{min}} до {{max}}",
+    "topUpDone": "{{amount}} додано до ваших токенів підписки",
+    "topUpPending": "Ваше поповнення підтверджується. Незабаром вона з 'явиться на вашому балансі.",
+    "topUpEmptyHint": "Поповніть баланс, щоб підписатися на авторів",
+    "topUpStageWallet": "Підтвердьте в гаманці…",
+    "topUpStageConfirming": "Очікування транзакції…",
+    "topUpStageCrediting": "Поповнення балансу…"
   },
   "live": {
     "notSet": "Не задано",

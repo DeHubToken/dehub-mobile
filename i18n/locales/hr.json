@@ -4835,7 +4835,20 @@
     "tokensSent": "{{amount}} tokena je poslano",
     "percentUsed": "{{percent}}% iskorišteno",
     "spentOfTotal": "{{spent}} od {{total}}",
-    "viewInWallet": "Prikaži u novčaniku"
+    "viewInWallet": "Prikaži u novčaniku",
+    "topUp": "Dodaj tokene",
+    "topUpTitle": "Dodaj žetone za pretplatu",
+    "topUpCustom": "Drugi iznos (USD)",
+    "topUpYouSend": "Vi šaljete",
+    "topUpYouGet": "Dodano na tvoj saldo",
+    "topUpConfirm": "Dodaj {{amount}}",
+    "topUpRange": "Unesite {{min}} do {{max}}",
+    "topUpDone": "{{amount}} je dodano u vaše pretplatničke žetone",
+    "topUpPending": "Nadoplata se potvrđuje. Uskoro će se pojaviti na tvom saldu.",
+    "topUpEmptyHint": "Nadoplati i pretplati se na kreatore",
+    "topUpStageWallet": "Potvrdi u novčaniku…",
+    "topUpStageConfirming": "Čeka se transakcija...",
+    "topUpStageCrediting": "Kako povećati saldo..."
   },
   "live": {
     "notSet": "Nije postavljeno",

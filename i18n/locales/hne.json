@@ -4831,7 +4831,20 @@
     "tokensSent": "{{amount}} टोकन भेजे गे",
     "percentUsed": "{{percent}}% खरचा होगे",
     "spentOfTotal": "{{total}} म ले {{spent}}",
-    "viewInWallet": "पोर्टफोलियो म दृश्य"
+    "viewInWallet": "पोर्टफोलियो म दृश्य",
+    "topUp": "टोकन जोड़व",
+    "topUpTitle": "सब्सक्रिप्सन टोकन जोड़व",
+    "topUpCustom": "सकल घरेलू उत्पाद (USD)",
+    "topUpYouSend": "भेजे जा रहे हो",
+    "topUpYouGet": "अउ अपन संतुलन के रक्षा करे बर",
+    "topUpConfirm": "जोड़व {{amount}}",
+    "topUpRange": "भरव {{min}} to {{max}}",
+    "topUpDone": "{{amount}} तोर सब्सक्रिप्शन टोकन म जुड़ गे",
+    "topUpPending": "तोर टॉप-अप ह पुष्टि करत हवय । जल्दी ही एहर आपके संतुलन म दिखाई दिही ।",
+    "topUpEmptyHint": "अपन रचनाकार मन ल सब्सक्राइब करे बर",
+    "topUpStageWallet": "- अपन बटुआ म रख...",
+    "topUpStageConfirming": "लेनदेन के प्रतीक्षा करत हवय...",
+    "topUpStageCrediting": "अपन संतुलन ल बढ़ाए बर..."
   },
   "live": {
     "notSet": "सेट नइ हे",

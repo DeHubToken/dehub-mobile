@@ -4884,7 +4884,20 @@
     "tokensSent": "{{amount}} tokens sent",
     "percentUsed": "{{percent}}% used",
     "spentOfTotal": "{{spent}} of {{total}}",
-    "viewInWallet": "View in wallet"
+    "viewInWallet": "View in wallet",
+    "topUp": "Add tokens",
+    "topUpTitle": "Add subscription tokens",
+    "topUpCustom": "Other amount (USD)",
+    "topUpYouSend": "You send",
+    "topUpYouGet": "Added to your balance",
+    "topUpConfirm": "Add {{amount}}",
+    "topUpRange": "Enter {{min}} to {{max}}",
+    "topUpDone": "{{amount}} added to your subscription tokens",
+    "topUpPending": "Your top-up is confirming. It will appear in your balance shortly.",
+    "topUpEmptyHint": "Top up to subscribe to creators",
+    "topUpStageWallet": "Confirm in your wallet…",
+    "topUpStageConfirming": "Waiting for the transaction…",
+    "topUpStageCrediting": "Adding to your balance…"
   },
   "live": {
     "notSet": "Not set",

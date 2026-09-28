@@ -4866,7 +4866,20 @@
     "tokensSent": "{{amount}} amathokheni athunyelwe",
     "percentUsed": "{{percent}}% isetshenzisiwe",
     "spentOfTotal": "{{spent}} of {{total}}",
-    "viewInWallet": "Buka esikhwameni semali"
+    "viewInWallet": "Buka esikhwameni semali",
+    "topUp": "Faka amathokheni",
+    "topUpTitle": "Faka amathokheni okubhalisa",
+    "topUpCustom": "Elinye inani (USD)",
+    "topUpYouSend": "Uyathumela",
+    "topUpYouGet": "Kufakwe kubhalansi yakho",
+    "topUpConfirm": "Faka {{amount}}",
+    "topUpRange": "Faka {{min}} ku {{max}}",
+    "topUpDone": "{{amount}} kufakwe kumathokheni akho okubhalisa",
+    "topUpPending": "Okuthe xaxa kwakho kuyaqinisekisa. Izovela kubhalansi yakho maduzane.",
+    "topUpEmptyHint": "Ngaphezu kwalokho ukuze ubhalisele abasunguli",
+    "topUpStageWallet": "Qinisekisa esikhwameni sakho semali...",
+    "topUpStageConfirming": "Ilinde ukuthengiselana...",
+    "topUpStageCrediting": "Kufakwa kubhalansi yakho..."
   },
   "live": {
     "notSet": "Akuzange kusethwe",

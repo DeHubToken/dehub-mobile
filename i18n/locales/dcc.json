@@ -4664,7 +4664,20 @@
     "tokensSent": "{{amount}} टोकन भेजे गए",
     "percentUsed": "{{percent}}% استعمال ہوا",
     "spentOfTotal": "{{spent}} کا {{total}}",
-    "viewInWallet": "والٹ میں دیکھیں"
+    "viewInWallet": "والٹ میں دیکھیں",
+    "topUp": "ٹوکنز جوڑو",
+    "topUpTitle": "سبسکرپشن ٹوکنز جوڑو",
+    "topUpCustom": "دوسری رقم (USD)",
+    "topUpYouSend": "آپ بھیجتے",
+    "topUpYouGet": "آپ کے بیلنس میں جڑتا",
+    "topUpConfirm": "{{amount}} جوڑو",
+    "topUpRange": "{{min}} سے {{max}} تک لکھو",
+    "topUpDone": "{{amount}} آپ کے سبسکرپشن ٹوکنز میں جڑ گئے",
+    "topUpPending": "آپ کا ٹاپ اپ تصدیق ہو رہا۔ تھوڑی دیر میں بیلنس میں دکھتا۔",
+    "topUpEmptyHint": "کریئٹرز کو سبسکرائب کرنے کے واسطے ٹوکنز جوڑو",
+    "topUpStageWallet": "اپنے والٹ میں تصدیق کرو…",
+    "topUpStageConfirming": "ٹرانزیکشن کا انتظار…",
+    "topUpStageCrediting": "بیلنس میں جوڑ رئیں…"
   },
   "live": {
     "notSet": "مقرر نئیں",

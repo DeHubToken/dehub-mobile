@@ -4835,7 +4835,20 @@
     "tokensSent": "{{amount}} alamun da aka aika",
     "percentUsed": "{{percent}}% amfani",
     "spentOfTotal": "{{spent}} na {{total}}",
-    "viewInWallet": "Duba a cikin walat"
+    "viewInWallet": "Duba a cikin walat",
+    "topUp": "Ƙara alamomi",
+    "topUpTitle": "Ƙara alamun biyan kuɗi",
+    "topUpCustom": "Sauran adadin (USD)",
+    "topUpYouSend": "Kuna aikawa",
+    "topUpYouGet": "Ƙara zuwa ma'auni naka",
+    "topUpConfirm": "Ƙara {{amount}}",
+    "topUpRange": "Shigar da {{min}} zuwa {{max}}",
+    "topUpDone": "{{amount}} kara zuwa alamomin biyan ku",
+    "topUpPending": "Your top-up yana tabbatarwa. Zai bayyana a cikin ma'auni ba da daɗewa ba.",
+    "topUpEmptyHint": "Top har zuwa biyan kuɗi ga masu kirkiro",
+    "topUpStageWallet": "Tabbatar a cikin walat ɗin ku...",
+    "topUpStageConfirming": "Jira don ma'amala...",
+    "topUpStageCrediting": "Ƙarawa zuwa ma'auni naka..."
   },
   "live": {
     "notSet": "Ba a saita ba",

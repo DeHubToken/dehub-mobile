@@ -4835,7 +4835,20 @@
     "tokensSent": "{{amount}} nosūtītie žetoni",
     "percentUsed": "{{percent}}% izmantots",
     "spentOfTotal": "{{spent}} no {{total}}",
-    "viewInWallet": "Skatīt makā"
+    "viewInWallet": "Skatīt makā",
+    "topUp": "Pievienot marķierus",
+    "topUpTitle": "Pievienot abonēšanas marķierus",
+    "topUpCustom": "Cita summa (USD)",
+    "topUpYouSend": "Jūs nosūtāt",
+    "topUpYouGet": "Pievienots atlikumam",
+    "topUpConfirm": "Pievienot {{amount}}",
+    "topUpRange": "Ievadiet {{min}} uz {{max}}",
+    "topUpDone": "{{amount}} pievienoja jūsu abonēšanas marķieriem",
+    "topUpPending": "Papildinājums tiek apstiprināts. Drīzumā tā būs redzama atlikumā.",
+    "topUpEmptyHint": "Papildini, lai abonētu veidotājus",
+    "topUpStageWallet": "Apstiprini makā...",
+    "topUpStageConfirming": "Gaida darījumu...",
+    "topUpStageCrediting": "Pievieno atlikumam..."
   },
   "live": {
     "notSet": "Nav iestatīts",

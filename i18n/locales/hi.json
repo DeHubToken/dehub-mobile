@@ -4890,7 +4890,20 @@
     "tokensSent": "{{amount}} टोकन भेजे गए",
     "percentUsed": "{{percent}}% का इस्तेमाल किया गया",
     "spentOfTotal": "{{spent}} में से {{total}}",
-    "viewInWallet": "वॉलेट में देखें"
+    "viewInWallet": "वॉलेट में देखें",
+    "topUp": "टोकन जोड़ें",
+    "topUpTitle": "सब्सक्रिप्शन टोकन जोड़ें",
+    "topUpCustom": "अन्य राशि (USD)",
+    "topUpYouSend": "आप भेजते हैं",
+    "topUpYouGet": "आपके बैलेंस में जोड़ा गया",
+    "topUpConfirm": "{{amount}} जोड़ें",
+    "topUpRange": "{{min}} से {{max}} दर्ज करें",
+    "topUpDone": "{{amount}} आपके सब्सक्रिप्शन टोकन में जोड़े गए",
+    "topUpPending": "आपका टॉप - अप कन्फ़र्म कर रहा है। यह जल्द ही आपके बैलेंस में दिखाई देगा।",
+    "topUpEmptyHint": "क्रिएटर्स को सब्सक्राइब करने के लिए टॉप अप",
+    "topUpStageWallet": "अपने वॉलेट में कन्फ़र्म करें...",
+    "topUpStageConfirming": "लेन - देन का इंतज़ार किया जा रहा है...",
+    "topUpStageCrediting": "आपके बैलेंस में जोड़ा जा रहा है..."
   },
   "live": {
     "notSet": "सेट नहीं",

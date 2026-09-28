@@ -4820,7 +4820,20 @@
     "tokensSent": "{{amount}} ٹوکنز بھیجے گئے",
     "percentUsed": "{{percent}}% استعمال تھیندا",
     "spentOfTotal": "{{spent}} دا {{total}}",
-    "viewInWallet": "والٹ وچ ویکھو"
+    "viewInWallet": "والٹ وچ ویکھو",
+    "topUp": "ٹیکناں دا وادھو کرو",
+    "topUpTitle": "سبسکرپشن ٹوکن شامل کرو",
+    "topUpCustom": "دوسرا رقم (USD)",
+    "topUpYouSend": "تُسیں بھیج رہے ہو",
+    "topUpYouGet": "تُہاڈے بیلنس وچ شامل ہو گیا",
+    "topUpConfirm": "{{amount}} شامل کرو",
+    "topUpRange": "{{min}} نوں {{max}} وچ داخل کرو",
+    "topUpDone": "{{amount}} تُہاڈے سبسکرپشن ٹوکن وچ شامل ہو گیا",
+    "topUpPending": "تُہاڈی ٹاپ اپ تصدیق ہو رہی ہے۔ ایہہ جلد ہی تُہاڈے بیلنس وچ ظاہر ہو جائے گا۔",
+    "topUpEmptyHint": "کریئیٹرز نوں سبسکرائب کرنے لئی ٹاپ اپ",
+    "topUpStageWallet": "اپنے والیٹ وچ تصدیق کرو…",
+    "topUpStageConfirming": "ٹرانزیکشن دا انتظار ہو رہا اے…",
+    "topUpStageCrediting": "تُہاڈے بیلنس وچ شامل ہو رہا اے…"
   },
   "live": {
     "notSet": "مقرر کائنی",

@@ -4835,7 +4835,20 @@
     "tokensSent": "{{amount}} token iberildi",
     "percentUsed": "{{percent}}% ulanyldy",
     "spentOfTotal": "{{spent}} of {{total}}",
-    "viewInWallet": "Çöpçäniň içine seret"
+    "viewInWallet": "Çöpçäniň içine seret",
+    "topUp": "Tokenleri ekle",
+    "topUpTitle": "Subskripsiýa tokenleri goş",
+    "topUpCustom": "Başga pullar (USD)",
+    "topUpYouSend": "Sen iberersiň",
+    "topUpYouGet": "Sen öz deň-de-sarygyňy sakla",
+    "topUpConfirm": "{{amount}}",
+    "topUpRange": "{{min}} to{{max}}",
+    "topUpDone": "{{amount}} abuna tokenleriňize goşuldy",
+    "topUpPending": "Seniň üstüň tassyklaýar. Bu tizden siziň deň-de-sarygyňyzda görüner.",
+    "topUpEmptyHint": "Ýaradyjylara ýazylmak",
+    "topUpStageWallet": "Çantalaryňyza girip görüň...",
+    "topUpStageConfirming": "Biz häkimiýetde pul tölemek üçin dogulduk...",
+    "topUpStageCrediting": "Sen öz deň-de-sarygyňy ýitirýärsiň..."
   },
   "live": {
     "notSet": "Bellenmedi",

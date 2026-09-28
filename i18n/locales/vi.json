@@ -4848,7 +4848,20 @@
     "tokensSent": "Đã gửi mã thông báo {{amount}}",
     "percentUsed": "Đã sử dụng {{percent}}%",
     "spentOfTotal": "{{spent}}/{{total}}",
-    "viewInWallet": "Xem trong ví"
+    "viewInWallet": "Xem trong ví",
+    "topUp": "Thêm mã thông báo",
+    "topUpTitle": "Thêm mã thông báo đăng ký",
+    "topUpCustom": "Số tiền khác (USD)",
+    "topUpYouSend": "Bạn gửi",
+    "topUpYouGet": "Đã thêm vào số dư của bạn",
+    "topUpConfirm": "Thêm {{amount}}",
+    "topUpRange": "Nhập {{min}} vào {{max}}",
+    "topUpDone": "{{amount}} đã được thêm vào mã thông báo đăng ký của bạn",
+    "topUpPending": "Nạp tiền của bạn đang được xác nhận. Nó sẽ sớm xuất hiện trong số dư của bạn.",
+    "topUpEmptyHint": "Nạp tiền để đăng ký người sáng tạo",
+    "topUpStageWallet": "Xác nhận trong ví của bạn…",
+    "topUpStageConfirming": "Đang chờ giao dịch…",
+    "topUpStageCrediting": "Đang thêm vào số dư của bạn..."
   },
   "live": {
     "notSet": "Chưa đặt",

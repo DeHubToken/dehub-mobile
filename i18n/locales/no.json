@@ -4835,7 +4835,20 @@
     "tokensSent": "{{amount}} tokener sendt",
     "percentUsed": "{{percent}}% brukt",
     "spentOfTotal": "{{spent}} av {{total}}",
-    "viewInWallet": "Vis i lommeboken"
+    "viewInWallet": "Vis i lommeboken",
+    "topUp": "Legg til tokener",
+    "topUpTitle": "Legg til abonnementstokener",
+    "topUpCustom": "Annet beløp (USD)",
+    "topUpYouSend": "Du sender",
+    "topUpYouGet": "Lagt til saldoen din",
+    "topUpConfirm": "Legg til {{amount}}",
+    "topUpRange": "Skriv inn {{min}} til {{max}}",
+    "topUpDone": "{{amount}} lagt til i abonnementstokenene dine",
+    "topUpPending": "Påfyllingen din bekreftes. Den vil vises på saldoen din snart.",
+    "topUpEmptyHint": "Fyll på penger for å abonnere på skapere",
+    "topUpStageWallet": "Bekreft i lommeboken din…",
+    "topUpStageConfirming": "Venter på transaksjonen …",
+    "topUpStageCrediting": "Legger til i saldoen din …"
   },
   "live": {
     "notSet": "Ikke angitt",

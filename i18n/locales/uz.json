@@ -4853,7 +4853,20 @@
     "tokensSent": "{{amount}} tokenlar yuborildi",
     "percentUsed": "{{percent}}% ishlatilgan",
     "spentOfTotal": "{{spent}} ning {{total}}",
-    "viewInWallet": "Hamyonda ko&#39;rish"
+    "viewInWallet": "Hamyonda ko&#39;rish",
+    "topUp": "Tokenlarni qo&#39;shish",
+    "topUpTitle": "Obuna tokenlarini qo&#39;shish",
+    "topUpCustom": "Boshqa miqdor (AQSh dollari)",
+    "topUpYouSend": "Siz yuborasiz",
+    "topUpYouGet": "Balansingizga qo&#39;shildi",
+    "topUpConfirm": "{{amount}} qo&#39;shing",
+    "topUpRange": "{{min}} dan {{max}} gacha kiriting",
+    "topUpDone": "Obuna tokenlaringizga {{amount}} qo&#39;shildi",
+    "topUpPending": "Hisobingizni to&#39;ldirish tasdiqlanmoqda. Tez orada hisobingizda paydo bo&#39;ladi.",
+    "topUpEmptyHint": "Ijodkorlarga obuna bo&#39;lish uchun hisobingizni to&#39;ldiring",
+    "topUpStageWallet": "Hamyoningizda tasdiqlang…",
+    "topUpStageConfirming": "Tranzaksiya kutilmoqda…",
+    "topUpStageCrediting": "Balansingizga qoʻshilmoqda…"
   },
   "live": {
     "notSet": "Belgilanmagan",

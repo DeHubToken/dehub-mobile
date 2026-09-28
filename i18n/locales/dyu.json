@@ -4791,7 +4791,20 @@
     "tokensSent": "Token {{amount}} cilen don",
     "percentUsed": "{{percent}} % ka baara kɛ",
     "spentOfTotal": "{{spent}} ka {{total}}",
-    "viewInWallet": "Fɛɛn min be sɔrɔ a kɔnɔ"
+    "viewInWallet": "Fɛɛn min be sɔrɔ a kɔnɔ",
+    "topUp": "Token fara a kan",
+    "topUpTitle": "Abonman token fara a kan",
+    "topUpCustom": "Wari hakɛ wɛrɛ (USD)",
+    "topUpYouSend": "I bɛ ci",
+    "topUpYouGet": "A bɛ fara i ka jatebɔ kan",
+    "topUpConfirm": "{{amount}} fara a kan",
+    "topUpRange": "A sɛbɛn {{min}} ni {{max}} cɛ",
+    "topUpDone": "{{amount}} farala i ka abonman token kan",
+    "topUpPending": "I ka sarali bɛ ka dafa. A bɛna bɔ i ka jatebɔ la sɔɔni.",
+    "topUpEmptyHint": "Token fara a kan walasa ka don dabagaw la",
+    "topUpStageWallet": "A dafa i ka wariboro la…",
+    "topUpStageConfirming": "Jago makɔnɔni…",
+    "topUpStageCrediting": "A bɛ ka fara i ka jatebɔ kan…"
   },
   "live": {
     "notSet": "A ma sigi",

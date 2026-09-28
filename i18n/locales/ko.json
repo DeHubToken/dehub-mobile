@@ -4888,7 +4888,20 @@
     "tokensSent": "{{amount}} 개의 토큰이 전송되었습니다",
     "percentUsed": "{{percent}} % 사용됨",
     "spentOfTotal": "{{total}} 중 {{spent}}",
-    "viewInWallet": "지갑에서 보기"
+    "viewInWallet": "지갑에서 보기",
+    "topUp": "토큰 추가",
+    "topUpTitle": "구독 토큰 추가",
+    "topUpCustom": "기타 금액 (USD)",
+    "topUpYouSend": "전송한 금액",
+    "topUpYouGet": "잔액에 추가됨",
+    "topUpConfirm": "{{amount}} 추가",
+    "topUpRange": "{{max}} (으) 로 {{min}} 입력",
+    "topUpDone": "{{amount}} 이 (가) 구독 토큰에 추가되었습니다",
+    "topUpPending": "잔액을 충전하는 중입니다. 곧 잔액에 표시됩니다.",
+    "topUpEmptyHint": "크리에이터를 구독하려면 충전하세요",
+    "topUpStageWallet": "지갑에서 확인...",
+    "topUpStageConfirming": "거래를 기다리는 중...",
+    "topUpStageCrediting": "잔액에 추가 중..."
   },
   "live": {
     "notSet": "설정 안 됨",

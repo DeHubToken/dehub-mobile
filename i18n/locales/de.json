@@ -4884,7 +4884,20 @@
     "tokensSent": "{{amount}} Token gesendet",
     "percentUsed": "{{percent}}% verwendet",
     "spentOfTotal": "{{spent}} von {{total}}",
-    "viewInWallet": "In Wallet anzeigen"
+    "viewInWallet": "In Wallet anzeigen",
+    "topUp": "Token hinzufügen",
+    "topUpTitle": "Abonnement-Token hinzufügen",
+    "topUpCustom": "Sonstiger Betrag (USD)",
+    "topUpYouSend": "Sie senden",
+    "topUpYouGet": "Deinem Guthaben hinzugefügt",
+    "topUpConfirm": "{{amount}}hinzufügen",
+    "topUpRange": "Geben Sie {{min}} bis {{max}} ein",
+    "topUpDone": "{{amount}} zu Ihren Abonnement-Token hinzugefügt",
+    "topUpPending": "Ihre Aufladung wird bestätigt. Es wird in Kürze auf Ihrem Guthaben erscheinen.",
+    "topUpEmptyHint": "Aufladen, um Kreative zu abonnieren",
+    "topUpStageWallet": "In Ihrem Portemonnaie bestätigen...",
+    "topUpStageConfirming": "Warten auf die Transaktion...",
+    "topUpStageCrediting": "Wird zu Ihrem Guthaben hinzugefügt..."
   },
   "live": {
     "notSet": "Nicht festgelegt",

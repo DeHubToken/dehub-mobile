@@ -4839,7 +4839,20 @@
     "tokensSent": "{{amount}} אסימונים נשלחו",
     "percentUsed": "%{{percent}} בשימוש",
     "spentOfTotal": "{{spent}} מתוך {{total}}",
-    "viewInWallet": "הצגה בארנק"
+    "viewInWallet": "הצגה בארנק",
+    "topUp": "הוספת אסימונים",
+    "topUpTitle": "הוספת אסימוני מינוי",
+    "topUpCustom": "סכום אחר (USD)",
+    "topUpYouSend": "אתם שולחים",
+    "topUpYouGet": "נוסף ליתרה שלך",
+    "topUpConfirm": "הוספה של {{amount}}",
+    "topUpRange": "יש להזין {{min}} אל {{max}}",
+    "topUpDone": "{{amount}} נוספו לאסימוני המינוי שלך",
+    "topUpPending": "התוספת שלך מאשרת. הוא יופיע ביתרה שלך בקרוב.",
+    "topUpEmptyHint": "למעלה כדי להירשם כמנוי ליוצרים",
+    "topUpStageWallet": "אשר בארנק שלך…",
+    "topUpStageConfirming": "בהמתנה לעסקה…",
+    "topUpStageCrediting": "מוסיף ליתרה שלך..."
   },
   "live": {
     "notSet": "לא הוגדר",

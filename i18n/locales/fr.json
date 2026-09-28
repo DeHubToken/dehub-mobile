@@ -4888,7 +4888,20 @@
     "tokensSent": "{{amount}} jetons envoyés",
     "percentUsed": "{{percent}}% utilisé",
     "spentOfTotal": "{{spent}} sur {{total}}",
-    "viewInWallet": "Afficher dans le portefeuille"
+    "viewInWallet": "Afficher dans le portefeuille",
+    "topUp": "Ajouter des jetons",
+    "topUpTitle": "Ajouter des jetons d'abonnement",
+    "topUpCustom": "Autre montant (USD)",
+    "topUpYouSend": "Vous envoyez",
+    "topUpYouGet": "Ajouté à votre solde",
+    "topUpConfirm": "Ajouter {{amount}}",
+    "topUpRange": "Entrez {{min}} à {{max}}",
+    "topUpDone": "{{amount}} ajouté à vos jetons d'abonnement",
+    "topUpPending": "Votre recharge est en cours de confirmation. Il apparaîtra dans votre solde sous peu.",
+    "topUpEmptyHint": "Rechargez pour vous abonner aux créateurs",
+    "topUpStageWallet": "Confirmez dans votre portefeuille…",
+    "topUpStageConfirming": "En attente de la transaction…",
+    "topUpStageCrediting": "Ajout à votre solde..."
   },
   "live": {
     "notSet": "Non défini",

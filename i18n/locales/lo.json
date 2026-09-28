@@ -4806,7 +4806,20 @@
     "tokensSent": "ສົ່ງ {{amount}} ໂທເຄັນແລ້ວ",
     "percentUsed": "{{percent}}% ໃຊ້ແລ້ວ",
     "spentOfTotal": "{{spent}} ຂອງ {{total}}",
-    "viewInWallet": "ເບິ່ງໃນກະເປົາເງິນ"
+    "viewInWallet": "ເບິ່ງໃນກະເປົາເງິນ",
+    "topUp": "ເພີ່ມໂທເຄນ",
+    "topUpTitle": "ເພີ່ມໂທເຄນການຈອງ",
+    "topUpCustom": "ຈໍາ ນວນເງິນອື່ນໆ (USD)",
+    "topUpYouSend": "ທ່ານສົ່ງ",
+    "topUpYouGet": "ເພີ່ມເຂົ້າໃນການດຸ່ນດ່ຽງຂອງທ່ານ",
+    "topUpConfirm": "ເພີ່ມ {{amount}}",
+    "topUpRange": "ໃສ່ {{min}} ເຖິງ {{max}}",
+    "topUpDone": "ເພີ່ມ {{amount}} ເຂົ້າໃນໂທເຄັນສະມາຊິກຂອງທ່ານແລ້ວ",
+    "topUpPending": "ການເຕີມເງິນຂອງເຈົ້າກຳລັງຢືນຢັນ. ມັນຈະປາກົດຢູ່ໃນຄວາມສົມດຸນຂອງທ່ານໃນໄວໆນີ້.",
+    "topUpEmptyHint": "ສະຫມັກຂໍເອົາຜູ້ສ້າງ",
+    "topUpStageWallet": "ຢືນຢັນໃນກະເປົາເງິນຂອງທ່ານ...",
+    "topUpStageConfirming": "ລໍຖ້າການເຮັດທຸລະກໍາ...",
+    "topUpStageCrediting": "ເພື່ອຮັກສາຄວາມສົມດຸນ..."
   },
   "live": {
     "notSet": "ຍັງບໍ່ໄດ້ຕັ້ງ",
