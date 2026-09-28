@@ -4035,7 +4035,23 @@
     "reviewDescriptionPlaceholder": "Řekni něco o tomto příspěvku (nepovinné)",
     "reviewLiveWarning": "Tento odkaz je živý přenos. Počkejte, dokud neskončí, a místo toho importujte záznam.",
     "reviewCancel": "Zrušit",
-    "reviewConfirm": "Import"
+    "reviewConfirm": "Import",
+    "podcast": {
+      "tab": "Podcast",
+      "feedUrlLabel": "Adresa URL podcastového RSS kanálu",
+      "fetchFeed": "Načíst kanál",
+      "fetching": "Načítání zdroje...",
+      "showBy": "Do {{author}}",
+      "episodes": "{{n}} epizody",
+      "selectAll": "Vybrat vše",
+      "alreadyImported": "Již importováno",
+      "importSelected": "Importovat epizody {{n}}",
+      "importing": "Probíhá import...",
+      "done": "Ve frontě",
+      "emptyFeed": "V tomto kanálu jsme nenašli žádné epizody.",
+      "badFeed": "Tento odkaz nevypadá jako zdroj podcastů.",
+      "tooMany": "Importujte až 20 epizod najednou."
+    }
   },
   "earnings": {
     "filter24h": "24h",

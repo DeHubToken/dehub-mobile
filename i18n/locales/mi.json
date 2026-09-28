@@ -4031,7 +4031,23 @@
     "reviewDescriptionPlaceholder": "Korero i tetahi mea e pā ana ki tenei pou (kōwhiringa)",
     "reviewLiveWarning": "Ko tenei hononga he awa ora. Kia tae noa ki te mutunga, me te kawemai i te tuhi i te wahi.",
     "reviewCancel": "Whakakorea",
-    "reviewConfirm": "Te kawemai"
+    "reviewConfirm": "Te kawemai",
+    "podcast": {
+      "tab": "Podcast",
+      "feedUrlLabel": "Podcast RSS whangai URL",
+      "fetchFeed": "Whangai whangai",
+      "fetching": "He kai kai...",
+      "showBy": "Na te {{author}}",
+      "episodes": "{{n}} wāhanga",
+      "selectAll": "Kōwhiri i te katoa",
+      "alreadyImported": "Kua kawemai",
+      "importSelected": "Kawemai {{n}} episodes",
+      "importing": "Ko te kawemai...",
+      "done": "Kohikohinga",
+      "emptyFeed": "Kaore i kitea e matou tetahi waahanga i roto i taua kai.",
+      "badFeed": "Kaore tenei hononga e rite ki te kai podcast.",
+      "tooMany": "Whakauru atu ki te 20 ngā wāhanga i te wā kotahi."
+    }
   },
   "earnings": {
     "filter24h": "24h",

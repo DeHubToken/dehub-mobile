@@ -4084,7 +4084,23 @@
     "reviewDescriptionPlaceholder": "介绍一下这篇帖子（选填）",
     "reviewLiveWarning": "该链接是实时流。等到录制结束，然后导入录制。",
     "reviewCancel": "取消",
-    "reviewConfirm": "进口"
+    "reviewConfirm": "进口",
+    "podcast": {
+      "tab": "播客",
+      "feedUrlLabel": "播客RSS源网址",
+      "fetchFeed": "获取订阅源",
+      "fetching": "正在获取订阅源…",
+      "showBy": "作者： {{author}}",
+      "episodes": "{{n}}集",
+      "selectAll": "全选",
+      "alreadyImported": "已导入",
+      "importSelected": "导入{{n}}集",
+      "importing": "正在导入…",
+      "done": "已排队",
+      "emptyFeed": "我们在该订阅源中找不到任何剧集。",
+      "badFeed": "该链接看起来不像播客源。",
+      "tooMany": "一次最多可导入20集。"
+    }
   },
   "earnings": {
     "filter24h": "24小时",

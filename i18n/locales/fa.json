@@ -4061,7 +4061,23 @@
     "reviewDescriptionPlaceholder": "نظر خود را در مورد این پست بنویسید (اختیاری)",
     "reviewLiveWarning": "آن لینک یک پخش زنده است. صبر کنید تا تمام شود و سپس فایل ضبط شده را وارد کنید.",
     "reviewCancel": "لغو کنید",
-    "reviewConfirm": "وارد کردن"
+    "reviewConfirm": "وارد کردن",
+    "podcast": {
+      "tab": "پادکست",
+      "feedUrlLabel": "آدرس فید RSS پادکست",
+      "fetchFeed": "& واکشی خوراندن‌",
+      "fetching": "در حال دریافت خوراک…",
+      "showBy": "توسط {{author}}",
+      "episodes": "{{n}} قسمت",
+      "selectAll": "انتخاب همه",
+      "alreadyImported": "دمو با موفقیت درون ریزی شد",
+      "importSelected": "وارد کردن قسمت‌های {{n}}",
+      "importing": "وارد کردن...",
+      "done": "در صف",
+      "emptyFeed": "ما نتوانستیم هیچ قسمتی را در آن فید پیدا کنیم.",
+      "badFeed": "آن لینک شبیه فید پادکست نیست.",
+      "tooMany": "حداکثر 20 قسمت را همزمان وارد کنید."
+    }
   },
   "earnings": {
     "filter24h": "۲۴س",

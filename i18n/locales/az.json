@@ -4031,7 +4031,23 @@
     "reviewLiveWarning": "Bu link canlı yayımdır. Bitənə qədər gözləyin və əvəzinə səsyazmanı idxal edin.",
     "reviewCancel": "Ləğv et",
     "reviewConfirm": "İdxal et",
-    "toastImported": "{{source}} mənbəyindən idxal edildi!"
+    "toastImported": "{{source}} mənbəyindən idxal edildi!",
+    "podcast": {
+      "tab": "Podkast",
+      "feedUrlLabel": "Podcast RSS Feed URL",
+      "fetchFeed": "Dəzgah lenti",
+      "fetching": "Yem əldə edilir...",
+      "showBy": "Müəllif: {{author}}",
+      "episodes": "{{n}} epizod",
+      "selectAll": "Hamısını seç",
+      "alreadyImported": "Artıq idxal edilib",
+      "importSelected": "{{n}} epizodlarını idxal edin",
+      "importing": "İdxal olunur...",
+      "done": "Növbəli",
+      "emptyFeed": "Bu lentdə heç bir epizod tapa bilmədik.",
+      "badFeed": "Bu link podkast lentinə bənzəmir.",
+      "tooMany": "Bir dəfəyə 20-yə qədər seriya idxal edin."
+    }
   },
   "earnings": {
     "filter24h": "24s",

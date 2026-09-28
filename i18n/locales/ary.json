@@ -4061,7 +4061,23 @@
     "reviewDescriptionPlaceholder": "قل شيئًا عن هذا المنشور (اختياري)",
     "reviewLiveWarning": "هذا الرابط هو بث مباشر. انتظر حتى ينتهي واستورد التسجيل بدلاً من ذلك.",
     "reviewCancel": "إلغاء",
-    "reviewConfirm": "استيراد"
+    "reviewConfirm": "استيراد",
+    "podcast": {
+      "tab": "بودكاست",
+      "feedUrlLabel": "رابط موجز RSS للبودكاست",
+      "fetchFeed": "إحضار الخلاصة",
+      "fetching": "جارٍ جلب الخلاصة...",
+      "showBy": "بواسطة {{author}}",
+      "episodes": "{{n}} حلقة",
+      "selectAll": "تحديد الكل",
+      "alreadyImported": "تم استيراده بالفعل",
+      "importSelected": "استيراد {{n}} حلقة",
+      "importing": "جارٍ الاستيراد...",
+      "done": "في قائمة الانتظار",
+      "emptyFeed": "لم نتمكن من العثور على أي حلقات في تلك الخلاصة.",
+      "badFeed": "لا يبدو هذا الرابط كملف بودكاست.",
+      "tooMany": "استيراد ما يصل إلى 20 حلقة في وقت واحد."
+    }
   },
   "earnings": {
     "filter24h": "24س",

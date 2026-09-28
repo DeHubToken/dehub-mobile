@@ -4140,7 +4140,23 @@
     "reviewDescriptionPlaceholder": "এই পোস্ট সম্পর্কে কিছু বলুন (ঐচ্ছিক)",
     "reviewLiveWarning": "সেই লিংকটা লাইভ স্ট্রিম। এটা শেষ না হওয়া পর্যন্ত অপেক্ষা করুন এবং তারপর রেকর্ডিং ইম্পোর্ট করুন।",
     "reviewCancel": "বাতিল",
-    "reviewConfirm": "ইম্পোর্ট"
+    "reviewConfirm": "ইম্পোর্ট",
+    "podcast": {
+      "tab": "পডকাস্ট",
+      "feedUrlLabel": "পডকাস্ট RSS ফিডর URL",
+      "fetchFeed": "ফিড আনো",
+      "fetching": "ফিড আনর…",
+      "showBy": "{{author}} র",
+      "episodes": "{{n}}টা এপিসোড",
+      "selectAll": "বেগ্গুন বাছো",
+      "alreadyImported": "আগেই ইমপোর্ট অইয়ে",
+      "importSelected": "{{n}}টা এপিসোড ইমপোর্ট গরো",
+      "importing": "ইমপোর্ট অর…",
+      "done": "লাইনত আছে",
+      "emptyFeed": "এই ফিডত কোনো এপিসোড পাই ন পারি।",
+      "badFeed": "এই লিংক পডকাস্ট ফিডর মতো ন লাগের।",
+      "tooMany": "একবারে ২০টা পর্যন্ত এপিসোড ইমপোর্ট গরো।"
+    }
   },
   "earnings": {
     "filter24h": "২৪ঘ",

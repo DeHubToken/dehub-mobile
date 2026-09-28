@@ -4082,7 +4082,23 @@
     "reviewDescriptionPlaceholder": "この投稿について教えてください（任意）",
     "reviewLiveWarning": "そのリンクはライブストリームです。 終了するまで待ち、代わりに録画をインポートします。",
     "reviewCancel": "キャンセル",
-    "reviewConfirm": "インポート"
+    "reviewConfirm": "インポート",
+    "podcast": {
+      "tab": "ポッドキャスト",
+      "feedUrlLabel": "ポッドキャストRSSフィードURL",
+      "fetchFeed": "フィードを取得",
+      "fetching": "フィードを取得しています…",
+      "showBy": "{{author}}による",
+      "episodes": "{{n}}エピソード",
+      "selectAll": "すべて選択",
+      "alreadyImported": "すでにインポートされています",
+      "importSelected": "{{n}}エピソードをインポート",
+      "importing": "インポート中…",
+      "done": "待機中",
+      "emptyFeed": "そのフィードにエピソードが見つかりませんでした。",
+      "badFeed": "そのリンクはポッドキャストフィードのようには見えません。",
+      "tooMany": "一度に最大20エピソードをインポートできます。"
+    }
   },
   "earnings": {
     "filter24h": "24時間",

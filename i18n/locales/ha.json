@@ -4031,7 +4031,23 @@
     "reviewDescriptionPlaceholder": "Ka ce wani abu game da wannan post (zaɓi)",
     "reviewLiveWarning": "Wannan hanyar haɗi shine rafi mai rai. Jira har sai ya ƙare kuma shigo da rikodin maimakon.",
     "reviewCancel": "Cancel",
-    "reviewConfirm": "Shigo"
+    "reviewConfirm": "Shigo",
+    "podcast": {
+      "tab": "Podcast",
+      "feedUrlLabel": "Podcast RSS ciyar URL",
+      "fetchFeed": "Abincin Fetch",
+      "fetching": "Fetching abinci...",
+      "showBy": "Daga {{author}}",
+      "episodes": "Shirye-shirye {{n}}",
+      "selectAll": "Zaɓi duk",
+      "alreadyImported": "Tuni an shigo da shi",
+      "importSelected": "Shigo {{n}} episodes",
+      "importing": "Shigo da...",
+      "done": "An saka a jerin gwano",
+      "emptyFeed": "Ba za mu iya samun wani bangare a cikin wannan abincin ba.",
+      "badFeed": "Wannan mahaɗin ba ya kama da abincin kwasfan fayiloli.",
+      "tooMany": "Shigo har zuwa kashi 20 a lokaci guda."
+    }
   },
   "earnings": {
     "filter24h": "24a",

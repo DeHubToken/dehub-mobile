@@ -4031,7 +4031,23 @@
     "reviewDescriptionPlaceholder": "Pastāsti kaut ko par šo ziņu (neobligāti)",
     "reviewLiveWarning": "Šī saite ir tiešraide. Uzgaidiet, līdz tas beidzas, un tā vietā importējiet ierakstu.",
     "reviewCancel": "Atcelt",
-    "reviewConfirm": "Importēt"
+    "reviewConfirm": "Importēt",
+    "podcast": {
+      "tab": "Aplāde",
+      "feedUrlLabel": "Aplādes RSS plūsmas URL",
+      "fetchFeed": "Ieneses plūsma",
+      "fetching": "Notiek plūsmas ielāde...",
+      "showBy": "Autors {{author}}",
+      "episodes": "{{n}} sērijas",
+      "selectAll": "Atlasīt visu",
+      "alreadyImported": "Jau importēts",
+      "importSelected": "Importēt {{n}} sērijas",
+      "importing": "Notiek importēšana...",
+      "done": "Rindā",
+      "emptyFeed": "Šajā plūsmā mēs nevarējām atrast nevienu sēriju.",
+      "badFeed": "Šī saite neizskatās kā aplādes plūsma.",
+      "tooMany": "Vienlaikus importējiet līdz 20 sērijām."
+    }
   },
   "earnings": {
     "filter24h": "24h",

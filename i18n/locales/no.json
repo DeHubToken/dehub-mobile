@@ -4031,7 +4031,23 @@
     "reviewDescriptionPlaceholder": "Si noe om dette innlegget (valgfritt)",
     "reviewLiveWarning": "Den lenken er en direktestrømming. Vent til den slutter og importer opptaket i stedet.",
     "reviewCancel": "Avbryt",
-    "reviewConfirm": "Importere"
+    "reviewConfirm": "Importere",
+    "podcast": {
+      "tab": "Podcast",
+      "feedUrlLabel": "Podkast-RSS-strøm",
+      "fetchFeed": "& Hent kjelde",
+      "fetching": "Henter feeden …",
+      "showBy": "Av {{author}}",
+      "episodes": "{{n}} episoder",
+      "selectAll": "Velg alle",
+      "alreadyImported": "Allerede importert",
+      "importSelected": "Importer {{n}} episoder",
+      "importing": "Importerer",
+      "done": "Lagt i kø",
+      "emptyFeed": "Vi fant ingen episoder i den feeden.",
+      "badFeed": "Den lenken ser ikke ut som en podkastfeed.",
+      "tooMany": "Importer opptil 20 episoder om gangen."
+    }
   },
   "earnings": {
     "filter24h": "24t",

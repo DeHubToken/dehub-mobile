@@ -4031,7 +4031,23 @@
     "reviewDescriptionPlaceholder": "Recite nešto o ovoj objavi (nije obavezno)",
     "reviewLiveWarning": "Ta je poveznica prijenos uživo. Pričekajte da završi i umjesto toga importirajte snimku.",
     "reviewCancel": "Odustani",
-    "reviewConfirm": "Uvoz"
+    "reviewConfirm": "Uvoz",
+    "podcast": {
+      "tab": "Podcast",
+      "feedUrlLabel": "URL RSS feeda podcasta",
+      "fetchFeed": "Dohvati feed",
+      "fetching": "Dohvaćanje feeda…",
+      "showBy": "Autor:{{author}}",
+      "episodes": "Epizode: {{n}}",
+      "selectAll": "Odaberi sve",
+      "alreadyImported": "Već uvezeno",
+      "importSelected": "Uvezi {{n}} epizoda",
+      "importing": "Uvoz…",
+      "done": "U redu čekanja",
+      "emptyFeed": "Nismo mogli pronaći nijednu epizodu u tom feedu.",
+      "badFeed": "Ta poveznica ne izgleda kao feed podcasta.",
+      "tooMany": "Uvezite do 20 epizoda odjednom."
+    }
   },
   "earnings": {
     "filter24h": "24h",

@@ -4035,7 +4035,23 @@
     "reviewDescriptionPlaceholder": "Sig noget om dette opslag (valgfrit)",
     "reviewLiveWarning": "Linket er en livestream. Vent, indtil den slutter, og importer optagelsen i stedet.",
     "reviewCancel": "Annuller",
-    "reviewConfirm": "Importer"
+    "reviewConfirm": "Importer",
+    "podcast": {
+      "tab": "Podcast",
+      "feedUrlLabel": "Podcast RSS-feed URL",
+      "fetchFeed": "Hent feed",
+      "fetching": "Henter feed...",
+      "showBy": "Af {{author}}",
+      "episodes": "{{n}} episoder",
+      "selectAll": "Vælg alle",
+      "alreadyImported": "Allerede importeret",
+      "importSelected": "Importer {{n}} episoder",
+      "importing": "Importerer...",
+      "done": "I kø",
+      "emptyFeed": "Vi kunne ikke finde nogen episoder i det feed.",
+      "badFeed": "Dette link ligner ikke et podcast-feed.",
+      "tooMany": "Importer op til 20 episoder ad gangen."
+    }
   },
   "earnings": {
     "filter24h": "24t",

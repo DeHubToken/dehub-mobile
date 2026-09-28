@@ -4031,7 +4031,23 @@
     "reviewDescriptionPlaceholder": "આ પોસ્ટ વિશે કંઈક કહો (વૈકલ્પિક)",
     "reviewLiveWarning": "તે લિંક લાઇવ સ્ટ્રીમ છે. તે સમાપ્ત થાય ત્યાં સુધી રાહ જુઓ અને તેના બદલે રેકોર્ડિંગ આયાત કરો.",
     "reviewCancel": "રદ કરો",
-    "reviewConfirm": "આયાત કરો"
+    "reviewConfirm": "આયાત કરો",
+    "podcast": {
+      "tab": "પોડકાસ્ટ",
+      "feedUrlLabel": "પોડકાસ્ટ RSS ફીડ URL",
+      "fetchFeed": "ફીડ મેળવો",
+      "fetching": "ફીડ લાવી રહ્યા છીએ...",
+      "showBy": "{{author}} દ્વારા",
+      "episodes": "{{n}} એપિસોડ્સ",
+      "selectAll": "બધા પસંદ કરો",
+      "alreadyImported": "પહેલેથી જ આયાત કરેલું છે",
+      "importSelected": "{{n}} એપિસોડ્સ આયાત કરો",
+      "importing": "આયાત કરી રહ્યું છે...",
+      "done": "કતારમાં છે",
+      "emptyFeed": "અમને તે ફીડમાં કોઈ એપિસોડ મળી શક્યા નહીં.",
+      "badFeed": "તે લિંક પોડકાસ્ટ ફીડ જેવી દેખાતી નથી.",
+      "tooMany": "એક સમયે 20 એપિસોડ સુધી આયાત કરો."
+    }
   },
   "earnings": {
     "filter24h": "24ક",

@@ -4031,7 +4031,23 @@
     "reviewConfirm": "ኣምጽእ",
     "statusDownloadingPercent": "ኣብ ምውራድ {{percent}}%",
     "paste": "ኣትሕት",
-    "statusImported": "ኣስመዐ"
+    "statusImported": "ኣስመዐ",
+    "podcast": {
+      "tab": "ፖድካስት",
+      "feedUrlLabel": "ፖድካስት RSS feed URL",
+      "fetchFeed": "መግብን መግብን",
+      "fetching": "መግብን መግብን...",
+      "showBy": "ብ {{author}}",
+      "episodes": "{{n}} ክፍልታት",
+      "selectAll": "ንዅሉ ምረጽ",
+      "alreadyImported": "ቀዲሙ ዝተኣተወ",
+      "importSelected": "{{n}}Episodes ኣምጽእ",
+      "importing": "ኣምጽእ...",
+      "done": "ኩዌድ",
+      "emptyFeed": "ኣብዚ ምግቢ እዚ ገለ ፍጻመታት ክንረክብ ኣይንኽእልን ኢና ።",
+      "badFeed": "ኣብ ፖድካስት መልክዕ እንተተረኽበ ኣይመስለንን ።",
+      "tooMany": "ኣብ ሓደ እዋን ክሳብ 20 ክፋላት ኣእቲኻ ።"
+    }
   },
   "earnings": {
     "filter24h": "24ሰ",

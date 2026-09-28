@@ -4031,7 +4031,23 @@
     "reviewDescriptionPlaceholder": "بۇ يازما ھەققىدە بىر نەرسە دېگىن (ئىختىيارىي)",
     "reviewLiveWarning": "بۇ ئۇلانما ھاياتلىق ئېقىمى. ئاخىرلىشىشىنى كۈتۈپ، ئۇنىڭ ئورنىغا خاتىرە ھۆججىتىنى ئىمپورت قىلىڭ.",
     "reviewCancel": "ئەمەلدىن قالدۇرۇش",
-    "reviewConfirm": "ئىمپورت"
+    "reviewConfirm": "ئىمپورت",
+    "podcast": {
+      "tab": "Podcast",
+      "feedUrlLabel": "Podcast RSS فېدېراتسىيە URL",
+      "fetchFeed": "يىمەكلىكنى ئېلىش پروگراممىسى",
+      "fetching": "يىمەكلىكنى ئالماشتۇرۇش",
+      "showBy": "ئاپتورى: {{author}}",
+      "episodes": "{{n}} Episodes",
+      "selectAll": "ھەممىسىنى تاللاڭ",
+      "alreadyImported": "ئاللىقاچان ئىمپورت قىلىنغان",
+      "importSelected": "ئىمپورت {{n}} قىسىملىرى",
+      "importing": "ئىمپورت قىلىش...",
+      "done": "ئۆچرەتكە قوشۇلدى",
+      "emptyFeed": "بۇ يىمەكلىكتىن ھېچبىر قىسمىنى تاپالمىدۇق.",
+      "badFeed": "ئۇ ئۇلانمىدا Podcast فېدېراتسىيىسى كۆرۈنمەيدۇ.",
+      "tooMany": "بىرلا ۋاقىتتا 20 قىسىمغىچە ئىمپورت قىلغىلى بولىدۇ."
+    }
   },
   "earnings": {
     "filter24h": "24س",

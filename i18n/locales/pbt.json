@@ -4031,7 +4031,23 @@
     "reviewCancel": "لغوه کول",
     "reviewConfirm": "د وارداتو په اړه",
     "toastImported": "له {{source}} څخه وارد شو!",
-    "errorUnsupported": "موږ نشو کولی له دې لینک څخه وارد کړو. یو له دې هڅه وکړئ: {{sources}}"
+    "errorUnsupported": "موږ نشو کولی له دې لینک څخه وارد کړو. یو له دې هڅه وکړئ: {{sources}}",
+    "podcast": {
+      "tab": "پوډکاسټ",
+      "feedUrlLabel": "د RSS فیډ URL ډاونلوډ کړئ",
+      "fetchFeed": "د تغذیې خواړه",
+      "fetching": "د خوراکي توکو د...",
+      "showBy": "د {{author}} لخوا",
+      "episodes": "{{n}} برخې",
+      "selectAll": "ټول غوره کړئ",
+      "alreadyImported": "له دې وړاندې لیکنه واردات",
+      "importSelected": "{{n}} برخې واردې کړئ",
+      "importing": "د وارداتو لپاره...",
+      "done": "په صف کې",
+      "emptyFeed": "موږ په دې خواړو کې هیڅ شی نه شو موندلی.",
+      "badFeed": "دا لینک د ویډیو په څیر نه ښکاري.",
+      "tooMany": "په یو وخت کې تر 20 پورې ویډیوګانې ثبت کړئ."
+    }
   },
   "earnings": {
     "filter24h": "24س",
