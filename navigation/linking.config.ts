@@ -226,6 +226,12 @@ export const DeepLinkPaths = {
   LAUNCHPAD_CREATE: 'app/launchpad/create',
   LAUNCHPAD_COIN: 'app/launchpad/:mintId',
   LAUNCHPAD: 'app/launchpad',
+
+  // Connect AI — dehub.io/connect and one guide per assistant. The guides
+  // are declared first, the more specific pattern before the bare hub.
+  CONNECT_CHATGPT: 'connect/chatgpt',
+  CONNECT_CLAUDE: 'connect/claude',
+  CONNECT: 'connect',
 } as const;
 
 /**
@@ -339,6 +345,10 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
           },
 
           [ScreenNames.Arcade]: DeepLinkPaths.ARCADE,
+
+          [ScreenNames.ConnectChatGPT]: DeepLinkPaths.CONNECT_CHATGPT,
+          [ScreenNames.ConnectClaude]: DeepLinkPaths.CONNECT_CLAUDE,
+          [ScreenNames.Connect]: DeepLinkPaths.CONNECT,
 
           [ScreenNames.DePin]: DeepLinkPaths.DEPIN,
           [ScreenNames.Bridge]: DeepLinkPaths.BRIDGE,

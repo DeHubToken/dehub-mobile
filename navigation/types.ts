@@ -193,6 +193,9 @@ export type AppStackParamList = {
   [ScreenNames.Migrate]: undefined;
   [ScreenNames.Glossary]: undefined;
   [ScreenNames.Guide]: undefined;
+  [ScreenNames.Connect]: undefined;
+  [ScreenNames.ConnectChatGPT]: undefined;
+  [ScreenNames.ConnectClaude]: undefined;
   [ScreenNames.Arcade]: undefined;
   /** `slug` keys into ARCADE_GAMES; an unknown one renders the "no such game" panel. */
   [ScreenNames.ArcadeGame]: { slug: string; room?: string; symbol?: string; view?: string };
