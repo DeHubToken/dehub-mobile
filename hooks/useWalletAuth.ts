@@ -54,6 +54,7 @@ export const useWalletAuth = () => {
   // connection — AppKit's account/provider hooks can re-render several times
   // as a connection settles, and each render is not a new "the user connected".
   const authenticatedKeyRef = useRef<string | null>(null);
+  const authenticatingRef = useRef(false);
 
   // True only while THIS mount is actively waiting on a connection the user
   // just asked for via handleWalletConnect()'s open() call. AppKit persists
@@ -76,11 +77,14 @@ export const useWalletAuth = () => {
 
   const authenticateWithWallet = useCallback(
     async (address: string, chainId: number) => {
+      if (authenticatingRef.current) return;
       if (!walletProvider) {
         log.warn("authenticate:no-provider");
         toastError(null, "Wallet connected but not ready to sign yet. Please try again.");
         return;
       }
+      authenticatingRef.current = true;
+      awaitingUserInitiatedConnectRef.current = false;
       setIsWalletLoading(true);
       // Register the connected wallet as the signer BEFORE calling
       // signInWithWallet — see the file header for why this is required.
@@ -96,6 +100,7 @@ export const useWalletAuth = () => {
           toastError(error, "Wallet authentication failed. Please try again.");
         }
       } finally {
+        authenticatingRef.current = false;
         clearSigningProvider();
         setIsWalletLoading(false);
       }
