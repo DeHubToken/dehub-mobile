@@ -757,6 +757,7 @@ export default function HomeScreen() {
     if (key === "feed-images") {
       return (
         <HomeImageGrid
+          active={isPlaybackActive}
           gridRef={imageGridRef}
           params={feedParams}
           pageSize={20}
