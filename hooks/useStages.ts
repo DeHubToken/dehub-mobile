@@ -433,6 +433,28 @@ export function useStages(): UseStagesReturn {
     [userAddress],
   );
 
+  // Stages with nobody talking for 30 minutes are ended server-side, so a
+  // host/speaker who is audibly talking bumps `last_speech_at` — at most once
+  // a minute here, and the RPC throttles again.
+  const isMutedRef = useRef(true);
+  useEffect(() => { isMutedRef.current = isMuted; }, [isMuted]);
+  const lastSpeechTouchRef = useRef(0);
+  const touchStageSpeech = useCallback(() => {
+    const space = currentSpaceRef.current;
+    const role = myRoleRef.current;
+    if (!space || !role || role === "listener" || isMutedRef.current) return;
+    const now = Date.now();
+    if (now - lastSpeechTouchRef.current < 60_000) return;
+    lastSpeechTouchRef.current = now;
+    void (async () => {
+      const { error } = await withWalletHeader(
+        supabase.rpc("touch_stage_speech" as never, { space_id: space.id } as never) as never,
+        userAddressRef.current,
+      );
+      if (error) log.error("Failed to record stage speech:", error);
+    })();
+  }, []);
+
   const reactionCounterRef = useRef(0);
   const lastReactionTimeRef = useRef(0);
   const reactionsChannelRef = useRef<ReturnType<typeof supabase.channel> | null>(null);
@@ -588,6 +610,8 @@ export function useStages(): UseStagesReturn {
         .filter((s: any) => (s.volume || 0) > 10)
         .map((s: any) => s.uid as number);
       setActiveSpeakerUids(active);
+      // uid 0 is the local user in Agora's volume report.
+      if (active.includes(0)) touchStageSpeech();
     },
   });
 
