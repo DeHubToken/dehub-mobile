@@ -249,6 +249,13 @@ export type AppStackParamList = {
     job?: import('../hooks/useWork').WorkJob;
   };
   [ScreenNames.WorkPost]: undefined;
+  /** `jobKey` is a job_number (/bounty/7/edit) or the legacy uuid. */
+  [ScreenNames.WorkEdit]: {
+    jobKey: string;
+    job?: import('../hooks/useWork').WorkJob;
+  };
+  [ScreenNames.WorkHistory]: undefined;
+  [ScreenNames.WorkDisputes]: undefined;
   /** `proposalId` is an older deep link into one proposal; the board hands it on. */
   [ScreenNames.Governance]: { proposalId?: string } | undefined;
   /** One proposal and its discussion. `commentId` is the comment a

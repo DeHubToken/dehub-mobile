@@ -54,6 +54,7 @@ import {
   useLeaveReview,
   useOpenDispute,
   useMarkComplete,
+  isJobEditable,
   type WorkJobStatus,
   type WorkSubmission,
 } from "../hooks/useWork";
@@ -246,7 +247,23 @@ export default function WorkJobDetailScreen() {
 
   return (
     <View style={styles.root}>
-      <ScreenHeader title={job.title} />
+      <ScreenHeader
+        title={job.title}
+        rightContent={
+          isPoster && isJobEditable(job) ? (
+            <Pressable
+              onPress={() => navigation.navigate(ScreenNames.WorkEdit, { jobKey: job.id, job })}
+              hitSlop={10}
+              style={styles.editBtn}
+              accessibilityRole="button"
+              accessibilityLabel={t("common.edit")}
+            >
+              <Icon name="Pencil" size={13} color="#FFFFFF" />
+              <Text style={styles.editBtnText}>{t("common.edit")}</Text>
+            </Pressable>
+          ) : undefined
+        }
+      />
 
       <KeyboardAvoidingView
         style={{ flex: 1 }}
@@ -791,6 +808,16 @@ export default function WorkJobDetailScreen() {
 }
 
 const styles = StyleSheet.create({
+  editBtn: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 6,
+    paddingHorizontal: 12,
+    paddingVertical: 7,
+    borderRadius: 10,
+    backgroundColor: "rgba(255,255,255,0.10)",
+  },
+  editBtnText: { color: "#FFFFFF", fontSize: 12.5, fontWeight: "600" },
   root: { flex: 1, backgroundColor: "#010305" },
   center: { flex: 1, alignItems: "center", justifyContent: "center" },
 

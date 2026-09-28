@@ -117,6 +117,19 @@ describe('getStateFromPath — one-segment paths', () => {
     expect(screens.ConnectClaude).toBe('connect/claude');
   });
 
+  it('rewrites the legacy /work/:uuid/edit onto the /bounty edit route', () => {
+    resolve('/work/3fa85f64-5717-4562-b3fc-2c963f66afa6/edit');
+    expect(fallback).toHaveBeenCalledWith(
+      '/bounty/3fa85f64-5717-4562-b3fc-2c963f66afa6/edit',
+      expect.anything(),
+    );
+  });
+
+  it('drops the /app prefix from the bounty pages', () => {
+    resolve('/app/work/history');
+    expect(fallback).toHaveBeenCalledWith('/work/history', expect.anything());
+  });
+
   it('leaves multi-segment paths to the route table', () => {
     resolve('/app/post/123');
     expect(emitProfile).not.toHaveBeenCalled();

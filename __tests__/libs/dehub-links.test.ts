@@ -346,6 +346,7 @@ describe('findDehubLinks /bounty and legacy /work', () => {
     expect(parseDehubLink('https://dehub.io/work')).toBeNull();
     expect(parseDehubLink('https://dehub.io/work/post')).toBeNull();
     expect(parseDehubLink('https://dehub.io/work/history')).toBeNull();
+    expect(parseDehubLink('https://dehub.io/work/disputes')).toBeNull();
   });
 
   it('does not read the bare board as a profile called "bounty"/"work"', () => {

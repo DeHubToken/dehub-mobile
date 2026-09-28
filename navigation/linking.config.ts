@@ -242,6 +242,13 @@ export const DeepLinkPaths = {
   // on web. Neither screen reads a param, so ?plan= is left to the web page.
   PREMIUM: 'premium',
   PRICING: 'pricing',
+
+  // Bounties — dehub.io/work/history and /work/disputes are app pages; the
+  // edit form is the canonical /bounty/:n/edit. The legacy /work/:uuid/edit
+  // and the /app/work/... forms are rewritten onto these in getStateFromPath.
+  WORK_HISTORY: 'work/history',
+  WORK_DISPUTES: 'work/disputes',
+  WORK_EDIT: 'bounty/:jobKey/edit',
 } as const;
 
 /**
@@ -377,6 +384,13 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
           [ScreenNames.Premium]: DeepLinkPaths.PREMIUM,
           [ScreenNames.Pricing]: DeepLinkPaths.PRICING,
 
+          [ScreenNames.WorkHistory]: DeepLinkPaths.WORK_HISTORY,
+          [ScreenNames.WorkDisputes]: DeepLinkPaths.WORK_DISPUTES,
+          [ScreenNames.WorkEdit]: {
+            path: DeepLinkPaths.WORK_EDIT,
+            parse: { jobKey: (jobKey: string) => jobKey },
+          },
+
           [ScreenNames.Root]: {
             screens: {
               [ScreenNames.DM]: DeepLinkPaths.MESSAGES,
@@ -439,6 +453,19 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
     if (segments.length > 0 && APP_PREFIXED.has(segments[0])) {
       const newPath = `/app/${segments.join('/')}${queryString ? `?${queryString}` : ''}`;
       logger.info('Bare /app section rewritten', { from: path, to: newPath });
+      return getStateFromPath(newPath, options);
+    }
+
+    // Web serves the bounty pages under /app/work too; the canonical form is
+    // the bare one. /work/:uuid/edit is the pre-job-number edit link.
+    const workSegs = segments[0] === 'app' && segments[1] === 'work' ? segments.slice(1) : segments;
+    if (workSegs[0] === 'work' && workSegs[1] && workSegs[2] === 'edit') {
+      const newPath = `/bounty/${workSegs[1]}/edit`;
+      logger.info('Legacy bounty edit link rewritten', { from: path, to: newPath });
+      return getStateFromPath(newPath, options);
+    }
+    if (workSegs !== segments) {
+      const newPath = `/${workSegs.join('/')}${queryString ? `?${queryString}` : ''}`;
       return getStateFromPath(newPath, options);
     }
 
