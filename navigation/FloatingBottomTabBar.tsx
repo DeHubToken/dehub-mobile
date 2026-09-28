@@ -1,5 +1,5 @@
 import { DIGITAL_PURCHASES_ENABLED } from "../config/storefront";
-import React, { memo, useCallback, useEffect, useRef } from "react";
+import React, { memo, useCallback, useEffect, useMemo, useRef } from "react";
 import {
   Animated as NativeAnimated,
   View,
@@ -24,7 +24,6 @@ import Reanimated, {
   withDelay,
   Easing,
   interpolate,
-  type SharedValue,
 } from "react-native-reanimated";
 import { BlurView } from "expo-blur";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -204,7 +203,6 @@ const KIDS_MODE_SCREENS = new Set([
   ScreenNames.AccountSettings,
 ]);
 
-const AnimatedPressable = Reanimated.createAnimatedComponent(Pressable);
 
 // A canvas theme's coloured halo (War cyan, Osaka pink) on the active tab and
 // the centre button — web's drop-shadow glow. One object per colour.
@@ -240,44 +238,39 @@ const NavButton = memo<{
   onPress: (routeName: string) => void;
   index: number;
   tabW: number;
-  animProgress: SharedValue<number>;
+  animProgress: NativeAnimated.Value;
   badgeCount?: number;
 }>(({ icon, label, isActive, isCenter, routeName, onPress, index, tabW, animProgress, badgeCount = 0 }) => {
   const { colors, isLight, isMinimal, skin } = useAppTheme();
-  const scale = useSharedValue(1);
+  const scale = useRef(new NativeAnimated.Value(1)).current;
 
   const handlePress = useCallback(() => onPress(routeName), [onPress, routeName]);
 
   const handlePressIn = useCallback(() => {
-    scale.value = withSpring(0.88, { damping: 15, stiffness: 300 });
+    NativeAnimated.spring(scale, { toValue: 0.88, damping: 15, stiffness: 300, useNativeDriver: true, isInteraction: false }).start();
   }, [scale]);
 
   const handlePressOut = useCallback(() => {
-    scale.value = withSpring(1, { damping: 15, stiffness: 300 });
+    NativeAnimated.spring(scale, { toValue: 1, damping: 15, stiffness: 300, useNativeDriver: true, isInteraction: false }).start();
   }, [scale]);
 
-  const animatedStyle = useAnimatedStyle(() => {
+  const animatedStyle = useMemo(() => {
     const staggerDelay = index * 0.07;
-    const itemProgress = interpolate(
-      animProgress.value,
-      [staggerDelay, staggerDelay + 0.6],
-      [0, 1],
-      "clamp",
-    );
+    const itemProgress = animProgress.interpolate({ inputRange: [staggerDelay, staggerDelay + 0.6], outputRange: [0, 1], extrapolate: 'clamp' });
     return {
       transform: [
-        { scale: scale.value * interpolate(itemProgress, [0, 1], [0.5, 1], "clamp") },
-        { translateY: interpolate(itemProgress, [0, 1], [10, 0], "clamp") },
+        { scale: NativeAnimated.multiply(scale, itemProgress.interpolate({ inputRange: [0, 1], outputRange: [0.5, 1] })) },
+        { translateY: itemProgress.interpolate({ inputRange: [0, 1], outputRange: [10, 0] }) },
       ],
-      opacity: interpolate(itemProgress, [0, 0.35, 1], [0, 0.85, 1], "clamp"),
+      opacity: itemProgress.interpolate({ inputRange: [0, 0.35, 1], outputRange: [0, 0.85, 1] }),
     };
-  });
+  }, [animProgress, index, scale]);
 
   if (isCenter && isMinimal) {
     // No glass in minimal: the blur, wash and inset highlight all go, leaving
     // a plain 1px outlined square around the icon. Same 52pt tap target.
     return (
-      <AnimatedPressable
+      <NativeAnimatedPressable
         accessibilityRole="button"
         accessibilityLabel={label}
         onPress={handlePress}
@@ -288,7 +281,7 @@ const NavButton = memo<{
         <View style={styles.minimalCenterIcon}>
           <Icon name={icon} size={20} color={MINIMAL_TAB_TEXT_ACTIVE} strokeWidth={2} />
         </View>
-      </AnimatedPressable>
+      </NativeAnimatedPressable>
     );
   }
 
@@ -296,7 +289,7 @@ const NavButton = memo<{
     // A canvas theme's centre button (theme/skins.ts): its own outlined tile,
     // glowing in War's cyan or Osaka's pink.
     return (
-      <AnimatedPressable
+      <NativeAnimatedPressable
         accessibilityRole="button"
         accessibilityLabel={label}
         onPress={handlePress}
@@ -307,13 +300,13 @@ const NavButton = memo<{
         <View style={[styles.skinCenterIcon, skin.glow ? glowStyle(skin.glow) : null, skin.centre]}>
           <Icon name={icon} size={20} color={skin.centreIcon} strokeWidth={2} />
         </View>
-      </AnimatedPressable>
+      </NativeAnimatedPressable>
     );
   }
 
   if (isCenter) {
     return (
-      <AnimatedPressable
+      <NativeAnimatedPressable
         accessibilityRole="button"
         accessibilityLabel={label}
         onPress={handlePress}
@@ -347,12 +340,12 @@ const NavButton = memo<{
           />
           <Icon name={icon} size={20} color={colors.foreground} strokeWidth={2} />
         </View>
-      </AnimatedPressable>
+      </NativeAnimatedPressable>
     );
   }
 
   return (
-    <AnimatedPressable
+    <NativeAnimatedPressable
       accessibilityRole="tab"
       // Which tab you are on is conveyed purely by icon colour and a glow, and
       // the unread count purely by a red badge — neither reaches a screen
@@ -394,7 +387,7 @@ const NavButton = memo<{
           </Text>
         </View>
       )}
-    </AnimatedPressable>
+    </NativeAnimatedPressable>
   );
 });
 
@@ -487,7 +480,7 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
   // tail of this choreography as movement right on top of the reveal. The
   // first mount after the curtain has lifted — auth replace, sign-out/in —
   // plays it once.
-  const animProgress = useSharedValue(1);
+  const animProgress = useRef(new NativeAnimated.Value(1)).current;
   const containerAnim = useSharedValue(1);
   const entranceFade = useSharedValue(1);
   const hasAnimated = useRef(false);
@@ -510,15 +503,16 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
   useEffect(() => {
     if (hasAnimated.current || !bootRevealed) return;
     hasAnimated.current = true;
-    animProgress.value = 0;
+    animProgress.setValue(0);
     containerAnim.value = 0;
     entranceFade.value = 0;
     containerAnim.value = withDelay(30, withSpring(1, { damping: 18, stiffness: 80, mass: 0.8 }));
     entranceFade.value = withDelay(30, withTiming(1, { duration: 320 }));
-    animProgress.value = withDelay(
-      100,
-      withTiming(1, { duration: 700, easing: Easing.bezier(0.22, 1, 0.36, 1) }),
-    );
+    const animation = NativeAnimated.timing(animProgress, {
+      toValue: 1, delay: 100, duration: 700, easing: Easing.bezier(0.22, 1, 0.36, 1), useNativeDriver: true, isInteraction: false,
+    });
+    animation.start();
+    return () => animation.stop();
   }, [animProgress, containerAnim, entranceFade]);
 
   // Nudge the nav pill sideways once, ever, to show it scrolls. It used to fire
