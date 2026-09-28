@@ -19,6 +19,7 @@ import { maybeShowReactionTip, markReactionTipSeen } from "../../libs/reaction-t
 import { useAppPrefs } from "../../hooks/useAppPrefs";
 import { subscribePostTipped } from "../../libs/tip-events";
 import { TipGemIcon } from "./TipGemIcon";
+import { useViewerTippedPost } from "../../hooks/useViewerTippedPost";
 
 const ICON_MUTED = "#6F7174";
 const ICON_ACTIVE = "#F9FBFF";
@@ -50,6 +51,8 @@ interface FeedActionBarProps {
   onTip?: () => void;
   /** The post's token id — lets the tip gem react when this viewer tips it. */
   tokenId?: number | string | null;
+  /** Viewer wallet, to light the gem for a tip made before this load. */
+  viewerAddress?: string | null;
   onSave: () => void;
   onInfo: () => void;
   /** Which of the ten reactions the viewer holds. `liked`/`disliked` are its polarity. */
@@ -191,6 +194,7 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
   onShare,
   onTip,
   tokenId,
+  viewerAddress,
   onSave,
   onInfo,
   myReaction = null,
@@ -211,6 +215,7 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
   // like/dislike bar (governance and other non-post surfaces).
   const reactionsEnabled = !!onReact;
 
+  const viewerTipped = useViewerTippedPost(tokenId, viewerAddress);
   // Bumps each time this viewer tips this post, replaying the gem's swirl.
   const [tipBurst, setTipBurst] = useState(0);
   useEffect(() => {
@@ -248,7 +253,7 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
           onPress={onTip}
           accessibilityLabel={t("comments.tip")}
           iconName="Gem"
-          iconNode={tipBurst > 0 ? <TipGemIcon tipped burstKey={tipBurst} size={20} color={ICON_ACTIVE} /> : undefined}
+          iconNode={viewerTipped || tipBurst > 0 ? <TipGemIcon tipped burstKey={tipBurst} size={20} color={ICON_ACTIVE} /> : undefined}
           count={tipCount}
           formatCount
         />

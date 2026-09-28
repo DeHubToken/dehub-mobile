@@ -237,7 +237,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
   // Every comment tip on this post, in one query, plus the five best-tipped
   // ids — which are part of what the comment fetch asks for, so a well-tipped
   // comment deep in a long thread still leads it.
-  const { totals: tipTotals, bump: bumpTipTotal, topTippedIds } = useCommentTipTotals(tokenId);
+  const { totals: tipTotals, bump: bumpTipTotal, topTippedIds, tippers: tipTippers } = useCommentTipTotals(tokenId);
 
   // Media attachment state. A GIF is a hosted URL, so it is the one attachment
   // that can come back from a draft; an image or a voice note is a local file
@@ -1284,6 +1284,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           onReply={handleReply}
           onTip={setTipComment}
           tipTotal={tipTotals[itemNumId]}
+          viewerTipped={!!userAddress && !!tipTippers[itemNumId]?.includes(userAddress.toLowerCase())}
           onLike={handleLikeComment}
           onDislike={handleDislikeComment}
           onReact={handleReactComment}
@@ -1307,6 +1308,8 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
     threadMeta,
     handleReply,
     tipTotals,
+    tipTippers,
+    userAddress,
     handleLikeComment,
     handleDislikeComment,
     handleUserPress,

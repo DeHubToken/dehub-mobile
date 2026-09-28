@@ -18,6 +18,8 @@ export const TOP_TIPPED_COUNT = 5;
  */
 export function useCommentTipTotals(tokenId: number | string | undefined) {
   const [totals, setTotals] = useState<Record<number, number>>({});
+  // commentId → lowercase wallets that tipped it, so a tipper sees their own gem lit.
+  const [tippers, setTippers] = useState<Record<number, string[]>>({});
 
   useEffect(() => {
     if (tokenId == null) return;
@@ -25,7 +27,7 @@ export function useCommentTipTotals(tokenId: number | string | undefined) {
     (async () => {
       const { data, error } = await supabase
         .from("tip_records")
-        .select("comment_id, amount")
+        .select("comment_id, amount, sender_address")
         .eq("token_id", String(tokenId))
         .not("comment_id", "is", null);
       if (cancelled) return;
@@ -34,6 +36,7 @@ export function useCommentTipTotals(tokenId: number | string | undefined) {
         return;
       }
       const next: Record<number, number> = {};
+      const who: Record<number, string[]> = {};
       for (const r of (data || []) as Array<{
         comment_id: string | null;
         amount: number;
@@ -42,8 +45,10 @@ export function useCommentTipTotals(tokenId: number | string | undefined) {
         const id = Number(r.comment_id);
         if (!Number.isFinite(id)) continue;
         next[id] = (next[id] || 0) + Number(r.amount);
+        if (r.sender_address) (who[id] ??= []).push(r.sender_address.toLowerCase());
       }
       setTotals(next);
+      setTippers(who);
     })();
     return () => {
       cancelled = true;
@@ -67,5 +72,5 @@ export function useCommentTipTotals(tokenId: number | string | undefined) {
     [totals],
   );
 
-  return { totals, bump, topTippedIds };
+  return { totals, bump, topTippedIds, tippers };
 }
