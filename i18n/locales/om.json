@@ -5137,8 +5137,9 @@
     "tokenPrice": "{{amount}} maarkii",
     "tokensUnit": "maarkii",
     "atPreListingRate": "{{amount}} saffisa tarreessuun duraatiin",
-    "custodyNote": "Maarkii kee Baase tti qabamuu, hin gurguramu. Uumaan galii USDT argata.",
-    "creatorReceives": "Uumaan kireedii {{amount}} USDT argata"
+    "paidToCreatorWallet": "Kallattiin gara boorsaa uumaa deema",
+    "creatorPaidDirectNote": "Share uumaa yeroo subscribe gootan kallattiin gara boorsaa isaaniitti deema. DeHub kaffaltii waltajjii xiqqaa qaba.",
+    "creatorEarnsDirect": "Maamiltoonni mallattoo DeHub tiin kaffalu. Aksiyooniin keessan yeroo isaan subscribe godhanitti boorsaa keessan keessa bu&#39;a, kaffaltii waltajjii sadarkaa baajii keessanii hir&#39;isuun."
   },
   "live": {
     "notSet": "Hin qindoofne",
@@ -5402,17 +5403,10 @@
     "staked": "Staked ta'e",
     "gotIt": "Hubadheera",
     "otherBalancesNote": "Baankiin kee kan biroo {{network}} (chain {{chainId}}) irra qofa jira. {{gas}} baankii gaazii keeti. Gatiin sekondii muraasaaf duubatti hafuu dandaʼa. Asitti fayyadamuuf qabeenya gara {{network}} dabarsi.",
-    "subscriptionEarnings": "Galii galmee",
-    "cashOut": "Maallaqa baasi",
-    "withdrawing": "Baasaa jira…",
-    "withdrawableSoon": "Kaffaltiin galmee dhiyootti baafamuu dandaʼa",
     "dpayBaseOnly": "Dpay Base irratti qofa argama.",
     "tokensAndStocks": "Tokens & istookii",
     "dhbPositionNote": "Kun maarkii kee guutuudha — qabamee fi galchaa, Baase fi BNB Chain irratti. Baayyeen isaa galchaa waan ta'eef, amma itti fayyadamuu hin dandeessu.",
-    "stakedIncludesUnstaking": "Maarkii galchaa keessatti, waan galchaa irraa kaasee, garuu hin argatinis argachuuf jira.",
-    "usdtSent": "{{amount}} USDT ergameera",
-    "withdrawableOnBase": "Base irratti baafamuu dandaʼa",
-    "pendingTreasury": "USDT-n · kuusaa qabeenyaa eeggachaa jira"
+    "stakedIncludesUnstaking": "Maarkii galchaa keessatti, waan galchaa irraa kaasee, garuu hin argatinis argachuuf jira."
   },
   "feedCard": {
     "reactionTip": "Deebii dabalataaf qabduu jaalachuu qabadhu",

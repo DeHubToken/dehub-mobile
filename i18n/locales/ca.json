@@ -5124,8 +5124,9 @@
     "tokenPrice": "{{amount}} jetons",
     "tokensUnit": "jetons",
     "atPreListingRate": "{{amount}} a la tarifa prèvia a l'anunci",
-    "custodyNote": "Els teus jetons romanen sota la custòdia del tresor de DeHub i no es venen. El creador rep un saldo de subscripció denominat en USDT.",
-    "creatorReceives": "El creador rep {{amount}} USDT de crèdit"
+    "paidToCreatorWallet": "Va directament a la cartera del creador",
+    "creatorPaidDirectNote": "La part del creador es dirigeix directament a la seva cartera en el moment en què et subscrius. DeHub manté una petita tarifa de plataforma.",
+    "creatorEarnsDirect": "Els subscriptors paguen amb fitxes DeHub. La teva participació arribarà a la teva cartera en el moment en què es subscriguin, menys la tarifa de la plataforma per al teu nivell d'distintiu."
   },
   "live": {
     "notSet": "Sense definir",
@@ -5389,17 +5390,10 @@
     "staked": "En staking",
     "gotIt": "Entesos",
     "otherBalancesNote": "Els altres saldos només són a {{network}} (cadena {{chainId}}). {{gas}} és el teu saldo de gas. Els valors poden trigar uns segons. Fes pont o transfereix actius a {{network}} per fer-los servir aquí.",
-    "subscriptionEarnings": "Guanys per subscripcions",
-    "cashOut": "Retira",
-    "withdrawing": "Retirant…",
-    "withdrawableSoon": "Les quotes de subscripció es podran retirar aviat",
     "dpayBaseOnly": "Dpay només està disponible a Base.",
     "tokensAndStocks": "Tokens i accions",
     "dhbPositionNote": "Aquesta és la teva posició total de jetons — mantinguts més invertits, a través de Base i BNB Chain. La majoria solen estar invertits, per la qual cosa és més gran del que pots gastar ara mateix.",
-    "stakedIncludesUnstaking": "Els jetons invertits inclouen qualsevol cosa que hagis demanat desinvertir però que encara no hagis rebut.",
-    "usdtSent": "S'han enviat {{amount}} USDT",
-    "withdrawableOnBase": "Disponible per retirar a Base",
-    "pendingTreasury": "En USDT · pendent de la reserva de tresoreria"
+    "stakedIncludesUnstaking": "Els jetons invertits inclouen qualsevol cosa que hagis demanat desinvertir però que encara no hagis rebut."
   },
   "feedCard": {
     "reactionTip": "Mantén premut el botó de m'agrada per a més reaccions",

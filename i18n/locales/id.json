@@ -5173,8 +5173,9 @@
     "tokenPrice": "{{amount}} token",
     "tokensUnit": "token",
     "atPreListingRate": "{{amount}} dengan harga pra - iklan",
-    "custodyNote": "Token Anda tetap dalam kustodi perbendaharaan DeHub dan tidak dijual. Pembuat menerima saldo langganan yang dinyatakan dalam USDT.",
-    "creatorReceives": "Kreator menerima kredit {{amount}} USDT"
+    "paidToCreatorWallet": "Langsung ke dompet kreator",
+    "creatorPaidDirectNote": "Bagian kreator langsung masuk ke dompet mereka saat kamu berlangganan. DeHub mengenakan sedikit biaya platform.",
+    "creatorEarnsDirect": "Pelanggan membayar dalam token DeHub. Bagian Anda masuk ke dompet Anda saat mereka berlangganan, dikurangi biaya platform untuk tingkatan lencana Anda."
   },
   "live": {
     "notSet": "Belum diatur",
@@ -5438,17 +5439,10 @@
     "staked": "Di-staking",
     "gotIt": "Mengerti",
     "otherBalancesNote": "Saldo Anda yang lain hanya ada di {{network}} (chain {{chainId}}). {{gas}} adalah saldo gas Anda. Nilai bisa tertinggal beberapa detik. Bridge atau transfer aset ke {{network}} untuk memakainya di sini.",
-    "subscriptionEarnings": "Pendapatan langganan",
-    "cashOut": "Tarik dana",
-    "withdrawing": "Menarik dana…",
-    "withdrawableSoon": "Biaya langganan segera bisa ditarik",
     "dpayBaseOnly": "Dpay hanya tersedia di Base.",
     "tokensAndStocks": "Token & saham",
     "dhbPositionNote": "Ini adalah seluruh posisi token Anda — ditahan ditambah dipertaruhkan, di seluruh Base dan BNB Chain. Sebagian besar biasanya dipertaruhkan, jadi ini lebih besar dari yang dapat Anda belanjakan saat ini.",
-    "stakedIncludesUnstaking": "Token yang dipertaruhkan mencakup apa pun yang telah Anda minta untuk di-unstake tetapi belum diterima kembali.",
-    "usdtSent": "{{amount}} USDT terkirim",
-    "withdrawableOnBase": "Tersedia untuk ditarik di Base",
-    "pendingTreasury": "Dalam USDT · menunggu cadangan treasury"
+    "stakedIncludesUnstaking": "Token yang dipertaruhkan mencakup apa pun yang telah Anda minta untuk di-unstake tetapi belum diterima kembali."
   },
   "feedCard": {
     "reactionTip": "Tekan lama tombol suka untuk reaksi lainnya",

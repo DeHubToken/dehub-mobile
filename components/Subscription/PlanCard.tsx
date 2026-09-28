@@ -303,12 +303,12 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
           </Text>
           {totalDhbEstimate !== null && (
             <Text style={s.confirmCheckoutDhb}>
-              {t("subscriptions.creatorReceives", { amount: formatAmount(total ?? undefined, 2) })}
+              {t("subscriptions.paidToCreatorWallet")}
             </Text>
           )}
           {isUsdPriced && (
             <Text style={s.smartFundingText}>
-              {t("subscriptions.custodyNote")}
+              {t("subscriptions.creatorPaidDirectNote")}
             </Text>
           )}
           {targetChainId === 8453 && account && totalDhbEstimate ? (

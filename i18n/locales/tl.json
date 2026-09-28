@@ -5171,8 +5171,9 @@
     "tokenPrice": "{{amount}} token",
     "tokensUnit": "token",
     "atPreListingRate": "{{amount}} sa pre - listing rate",
-    "custodyNote": "Ang iyong mga token ay mananatili sa pangangalaga ng DeHub treasury at hindi ibebenta. Ang lumikha ay makakatanggap ng subscription balance na nakadominasyon sa USDT.",
-    "creatorReceives": "Makakatanggap ang creator ng {{amount}} USDT credit"
+    "paidToCreatorWallet": "Dumiretso sa wallet ng creator",
+    "creatorPaidDirectNote": "Ang bahagi ng tagalikha ay dumiretso sa kanilang wallet sa sandaling mag - subscribe ka. Ang DeHub ay nagpapanatili ng isang maliit na bayad sa platform.",
+    "creatorEarnsDirect": "Nagbabayad ang mga subscriber sa mga token ng DeHub. Ang iyong share ay nasa iyong wallet sa sandaling mag - subscribe sila, mas mababa ang bayarin sa platform para sa iyong badge tier."
   },
   "live": {
     "notSet": "Hindi nakatakda",
@@ -5436,17 +5437,10 @@
     "staked": "Naka-stake",
     "gotIt": "Nakuha ko",
     "otherBalancesNote": "Nasa {{network}} (chain {{chainId}}) lang ang iba mong balanse. Ang {{gas}} ang gas balance mo. Puwedeng ma-delay ng ilang segundo ang halaga. Mag-bridge o maglipat ng asset sa {{network}} para magamit dito.",
-    "subscriptionEarnings": "Kita mula sa subscription",
-    "cashOut": "Mag-cash out",
-    "withdrawing": "Nagwi-withdraw…",
-    "withdrawableSoon": "Malapit nang mai-withdraw ang bayad sa subscription",
     "dpayBaseOnly": "Available lang ang Dpay sa Base.",
     "tokensAndStocks": "Mga Token at stock",
     "dhbPositionNote": "Ito ang iyong buong posisyon sa token — hawak kasama ang naka-stake, sa Base at BNB Chain. Karamihan dito ay karaniwang naka-stake, kaya mas malaki ito kaysa sa magagamit mo ngayon.",
-    "stakedIncludesUnstaking": "Kasama sa mga naka-stake na token ang anumang hiniling mong i-unstake ngunit hindi pa natatanggap pabalik.",
-    "usdtSent": "Naipadala ang {{amount}} USDT",
-    "withdrawableOnBase": "Puwedeng i-withdraw sa Base",
-    "pendingTreasury": "Nakasukat sa USDT · naghihintay ng treasury reserve"
+    "stakedIncludesUnstaking": "Kasama sa mga naka-stake na token ang anumang hiniling mong i-unstake ngunit hindi pa natatanggap pabalik."
   },
   "feedCard": {
     "reactionTip": "Pindutin nang matagal ang like button para sa iba pang reaksyon",

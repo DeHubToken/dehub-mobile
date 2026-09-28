@@ -5124,8 +5124,9 @@
     "tokenPrice": "{{amount}} token",
     "tokensUnit": "tokenlər",
     "atPreListingRate": "{{amount}} əvvəlcədən elan qiyməti ilə",
-    "custodyNote": "Tokenləriniz DeHub xəzinəsinin nəzarətində qalır və satılmır. Yaradıcı USDT ilə ifadə edilmiş abunə balansı alır.",
-    "creatorReceives": "Yaradıcı {{amount}} USDT kredit alır"
+    "paidToCreatorWallet": "Birbaşa yaradıcının cüzdanına doğru gedir",
+    "creatorPaidDirectNote": "Yaradıcı şəxsin payı birbaşa abunə olduğunuz an cüzdanına keçir. DeHub kiçik platforma haqqı saxlayır.",
+    "creatorEarnsDirect": "Abunəçilər DeHub tokenlərində ödəniş edirlər. Pay torpaqlarınız abunə olduqları an cüzdanınızda olur, nişan səviyyəniz üçün platforma haqqını azaldın."
   },
   "live": {
     "notSet": "Təyin edilməyib",
@@ -5389,17 +5390,10 @@
     "staked": "Steyk edilmiş",
     "gotIt": "Anladım",
     "otherBalancesNote": "Digər balanslarınız yalnız {{network}} ({{chainId}} zənciri) üzərindədir. {{gas}} sizin qaz balansınızdır. Dəyərlər bir neçə saniyə gecikə bilər. Burada istifadə etmək üçün aktivləri {{network}} şəbəkəsinə körpüləyin və ya köçürün.",
-    "subscriptionEarnings": "Abunə gəlirləri",
-    "cashOut": "Çıxar",
-    "withdrawing": "Çıxarılır…",
-    "withdrawableSoon": "Abunə haqları tezliklə çıxarıla biləcək",
     "dpayBaseOnly": "Dpay yalnız Base şəbəkəsində mövcuddur.",
     "tokensAndStocks": "Tokenlər və səhmlər",
     "dhbPositionNote": "Bu, sizin bütün token mövqeyinizdir — Base və BNB Chain-də saxlanılan və steykinq edilmiş. Əksəriyyəti adətən steykinq edilir, buna görə də bu, hazırda xərcləyə biləcəyinizdən daha böyükdür.",
-    "stakedIncludesUnstaking": "Steykinq edilmiş tokenlər, geri qaytarılmasını xahiş etdiyiniz, lakin hələ almadığınız hər şeyi əhatə edir.",
-    "usdtSent": "{{amount}} USDT göndərildi",
-    "withdrawableOnBase": "Base şəbəkəsində çıxarıla bilər",
-    "pendingTreasury": "USDT ilə ifadə olunur · xəzinə ehtiyatı gözlənilir"
+    "stakedIncludesUnstaking": "Steykinq edilmiş tokenlər, geri qaytarılmasını xahiş etdiyiniz, lakin hələ almadığınız hər şeyi əhatə edir."
   },
   "feedCard": {
     "reactionTip": "Daha çox reaksiya üçün bəyən düyməsini basıb saxlayın",

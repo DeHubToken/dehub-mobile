@@ -5125,8 +5125,9 @@
     "tokenPrice": "{{amount}} tokeni",
     "tokensUnit": "tokeni",
     "atPreListingRate": "{{amount}} kwa bei ya tangazo la awali",
-    "custodyNote": "Tokeni zako hukaa kwenye hazina ya DeHub na hazizing'uzwi. Muundaji hupokea salio la usajili lililotajwa kwa USDT.",
-    "creatorReceives": "Mtayarishaji anapokea salio la {{amount}} USDT"
+    "paidToCreatorWallet": "Huenda moja kwa moja kwenye pochi ya mtengenezaji",
+    "creatorPaidDirectNote": "Sehemu ya mtengenezaji huenda moja kwa moja kwenye pochi yake wakati unapojisajili. DeHub huweka ada ndogo ya tovuti.",
+    "creatorEarnsDirect": "Wasajili hulipa kwa ishara za DeHub. Gawio lako linatua kwenye mkoba wako pindi wanapojisajili, punguza ada ya tovuti ya kiwango cha beji yako."
   },
   "live": {
     "notSet": "Haijawekwa",
@@ -5390,17 +5391,10 @@
     "staked": "Kilichowekwa",
     "gotIt": "Nimeelewa",
     "otherBalancesNote": "Salio zako nyingine ziko kwenye {{network}} (mnyororo {{chainId}}) pekee. {{gas}} ni salio lako la gesi. Thamani zinaweza kuchelewa sekunde chache. Hamisha mali hadi {{network}} ili uzitumie hapa.",
-    "subscriptionEarnings": "Mapato ya usajili",
-    "cashOut": "Toa fedha",
-    "withdrawing": "Inatoa…",
-    "withdrawableSoon": "Ada za usajili zitaweza kutolewa hivi karibuni",
     "dpayBaseOnly": "Dpay inapatikana kwenye Base pekee.",
     "tokensAndStocks": "Tokeni na hisa",
     "dhbPositionNote": "Hii ndiyo nafasi yako yote ya tokeni — iliyoshikiliwa pamoja na iliyowekwa, kwenye Base na BNB Chain. Nyingi yake huwa imewekwa, kwa hivyo hii ni kubwa kuliko unachoweza kutumia sasa hivi.",
-    "stakedIncludesUnstaking": "Tokeni zilizowekwa zinajumuisha chochote ambacho umeomba kuondoa lakini bado hujapokea tena.",
-    "usdtSent": "{{amount}} USDT zimetumwa",
-    "withdrawableOnBase": "Inapatikana kutolewa kwenye Base",
-    "pendingTreasury": "Kwa USDT · inasubiri akiba ya hazina"
+    "stakedIncludesUnstaking": "Tokeni zilizowekwa zinajumuisha chochote ambacho umeomba kuondoa lakini bado hujapokea tena."
   },
   "feedCard": {
     "reactionTip": "Bonyeza na ushikilie kitufe cha kupenda kwa maoni zaidi",

@@ -5124,8 +5124,9 @@
     "tokenPrice": "{{amount}} 粒",
     "tokensUnit": "粒",
     "atPreListingRate": "{{amount}} 以预上市价",
-    "custodyNote": "汝个粒留勒 DeHub 金库里，弗会卖。创作者会收到 USDT 计价个订阅余额。",
-    "creatorReceives": "创作者获得 {{amount}} USDT 额度"
+    "paidToCreatorWallet": "直落创作者个荷包",
+    "creatorPaidDirectNote": "訂閱了，創作者的份額就直接進到他們的錢包。DeHub 留一小筆平台費。",
+    "creatorEarnsDirect": "订阅者用DeHub代币支付。一旦他们订阅，你的份额就会立即进入你的钱包，减去你徽章等级的平台费用。"
   },
   "live": {
     "notSet": "未设置",
@@ -5389,17 +5390,10 @@
     "staked": "质押",
     "gotIt": "知道了",
     "otherBalancesNote": "你的其他余额只在 {{network}}（链 {{chainId}}）上。{{gas}} 是你的 gas 余额。数值可能延迟几秒。把资产跨链或转账到 {{network}} 才能在这里使用。",
-    "subscriptionEarnings": "订阅收益",
-    "cashOut": "提现",
-    "withdrawing": "提现中…",
-    "withdrawableSoon": "订阅费用很快就能提现",
     "dpayBaseOnly": "Dpay 仅在 Base 上可用。",
     "tokensAndStocks": "代币和股票",
     "dhbPositionNote": "伊是汝所有粒个总数 — 持有搭质押个，横跨 Base 搭 BNB Chain。大部分通常是质押个，所以伊比汝现在能用个要多。",
-    "stakedIncludesUnstaking": "质押个粒包括汝要求取消质押但还没收到个所有东西。",
-    "usdtSent": "已发送 {{amount}} USDT",
-    "withdrawableOnBase": "可在 Base 上提现",
-    "pendingTreasury": "以 USDT 计价 · 等待国库储备"
+    "stakedIncludesUnstaking": "质押个粒包括汝要求取消质押但还没收到个所有东西。"
   },
   "feedCard": {
     "reactionTip": "长按点赞按钮，就会选更多表情",

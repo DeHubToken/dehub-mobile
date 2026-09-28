@@ -26,11 +26,6 @@ import arcIcon from "../../assets/chains/arc-icon.png";
 import { getArcUsdcBalance } from "../../libs/arc-wallet";
 import { useTranslation } from "react-i18next";
 import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
-import {
-  getSubscriptionEarnings,
-  withdrawSubscriptionEarnings,
-  type SubscriptionEarnings,
-} from "../../services/subscription.service";
 
 /** Shimmering placeholder shown while balances load for the first time. */
 const BalanceSkeleton: React.FC = () => (
@@ -50,26 +45,12 @@ const ProfileAssets = () => {
   const navigation = useNavigation<any>();
   const [showDHBOptions, setShowDHBOptions] = useState(false);
   const [showInfo, setShowInfo] = useState(false);
-  const [subscriptionEarnings, setSubscriptionEarnings] = useState<SubscriptionEarnings | null>(null);
-  const [withdrawingSubscriptions, setWithdrawingSubscriptions] = useState(false);
 
   const mountedRef = React.useRef(true);
   React.useEffect(() => {
     mountedRef.current = true;
     return () => { mountedRef.current = false; };
   }, []);
-  const refreshSubscriptionEarnings = useCallback(() => {
-    getSubscriptionEarnings()
-      .then((value) => { if (mountedRef.current) setSubscriptionEarnings(value); })
-      .catch(() => { /* the on-chain wallet still renders if this private read is unavailable */ });
-  }, [user?.address, user?.walletAddress]);
-
-  React.useEffect(() => {
-    refreshSubscriptionEarnings();
-  }, [refreshSubscriptionEarnings]);
-  // Every 30s while the host screen is the one on screen — not for as long as
-  // a profile or the wallet sits somewhere in the stack.
-  useFocusedInterval(refreshSubscriptionEarnings, 30_000, { catchUp: true });
 
   // USDC on Arc lives outside the active-chain balances: Arc is never the
   // active chain, so it is read directly and shown whenever there is any.
@@ -169,22 +150,6 @@ const ProfileAssets = () => {
     setShowDHBOptions((prev) => !prev);
   };
 
-  const handleSubscriptionWithdrawal = async () => {
-    if (!subscriptionEarnings?.withdrawalAvailable) {
-      toastInfo(subscriptionEarnings?.withdrawalMessage || t("assets.withdrawableSoon"));
-      return;
-    }
-    setWithdrawingSubscriptions(true);
-    try {
-      const result = await withdrawSubscriptionEarnings();
-      setSubscriptionEarnings(result.status);
-      toastSuccess(t("assets.usdtSent", { amount: result.amountUsdt.toLocaleString() }));
-    } catch (error) {
-      toastError(error, t("assets.withdrawableSoon"));
-    } finally {
-      setWithdrawingSubscriptions(false);
-    }
-  };
 
   return (
     <View className="mx-4 my-3 bg-theme-neutrals-800 rounded-xl p-4 relative">
@@ -344,35 +309,6 @@ const ProfileAssets = () => {
             className="ml-11 mb-2 py-2 px-3 rounded-xl bg-theme-neutrals-700 self-start"
           >
             <Text className="text-xs text-white">{t("assets.send")}</Text>
-          </TouchableOpacity>
-        </View>
-      )}
-      {subscriptionEarnings && (subscriptionEarnings.pendingUsdt + subscriptionEarnings.processingUsdt) > 0 && (
-        <View className="mt-2 pt-3 border-t border-white/10">
-          <View className="flex-row items-center justify-between">
-            <View className="flex-row items-center flex-1">
-              <Image source={usdtIcon} className="w-8 h-8 rounded-full mr-3" />
-              <View className="flex-1">
-                <Text className="text-sm text-white font-semibold">{t("assets.subscriptionEarnings")}</Text>
-                <Text className="text-[11px] text-white/50">
-                  {subscriptionEarnings.withdrawalAvailable
-                    ? t("assets.withdrawableOnBase")
-                    : t("assets.pendingTreasury")}
-                </Text>
-              </View>
-            </View>
-            <Text className="text-base text-gray-300">
-              {(subscriptionEarnings.pendingUsdt + subscriptionEarnings.processingUsdt).toLocaleString()} USDT
-            </Text>
-          </View>
-          <TouchableOpacity
-            onPress={handleSubscriptionWithdrawal}
-            disabled={withdrawingSubscriptions}
-            className="mt-3 py-2.5 rounded-xl items-center bg-theme-neutrals-700"
-          >
-            <Text className="text-xs text-white font-semibold">
-              {withdrawingSubscriptions ? t("assets.withdrawing") : t("assets.cashOut")}
-            </Text>
           </TouchableOpacity>
         </View>
       )}

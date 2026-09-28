@@ -5124,8 +5124,9 @@
     "tokenPrice": "{{amount}} tokeni",
     "tokensUnit": "tokeni",
     "atPreListingRate": "{{amount}} la tariful de pre-listare",
-    "custodyNote": "Tokenii tăi rămân în custodia trezoreriei DeHub și nu sunt vânduți. Creatorul primește un sold de abonament denominat în USDT.",
-    "creatorReceives": "Creatorul primește credit de {{amount}} USDT"
+    "paidToCreatorWallet": "Merge direct la portofelul creatorului",
+    "creatorPaidDirectNote": "Cota creatorului ajunge direct în portofel în momentul în care te abonezi. DeHub păstrează o mică taxă de platformă.",
+    "creatorEarnsDirect": "Abonații plătesc în jetoane DeHub. Cota ta ajunge în portofel în momentul în care se abonează, mai puțin taxa de platformă pentru nivelul insignei."
   },
   "live": {
     "notSet": "Nesetat",
@@ -5389,17 +5390,10 @@
     "staked": "În staking",
     "gotIt": "Am înțeles",
     "otherBalancesNote": "Celelalte solduri sunt doar pe {{network}} (lanțul {{chainId}}). {{gas}} este soldul tău de gas. Valorile pot întârzia câteva secunde. Transferă activele pe {{network}} ca să le folosești aici.",
-    "subscriptionEarnings": "Venituri din abonamente",
-    "cashOut": "Retrage",
-    "withdrawing": "Se retrage…",
-    "withdrawableSoon": "Taxele de abonament vor putea fi retrase în curând",
     "dpayBaseOnly": "Dpay este disponibil doar pe Base.",
     "tokensAndStocks": "Tokenuri și acțiuni",
     "dhbPositionNote": "Aceasta este întreaga ta poziție de tokeni — deținuți plus mizați, pe Base și BNB Chain. Majoritatea sunt de obicei mizați, deci aceasta este mai mare decât ceea ce poți cheltui acum.",
-    "stakedIncludesUnstaking": "Tokenii mizați includ orice ai cerut să fie retras, dar nu ai primit încă înapoi.",
-    "usdtSent": "{{amount}} USDT trimiși",
-    "withdrawableOnBase": "Disponibil pentru retragere pe Base",
-    "pendingTreasury": "În USDT · în așteptarea rezervei de trezorerie"
+    "stakedIncludesUnstaking": "Tokenii mizați includ orice ai cerut să fie retras, dar nu ai primit încă înapoi."
   },
   "feedCard": {
     "reactionTip": "Țineți apăsat butonul Îmi place pentru mai multe reacții",

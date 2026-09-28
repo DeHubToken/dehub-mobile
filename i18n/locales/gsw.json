@@ -5154,8 +5154,9 @@
     "tokenPrice": "{{amount}} Tokens",
     "tokensUnit": "Tokens",
     "atPreListingRate": "{{amount}} zum Vorab-Listing-Preis",
-    "custodyNote": "Dini Tokens bliebed i de DeHub Treasury Verwaltig und werded nöd verkouft. De Ersteller bekunnt en USDT-denominierti Abo-Bilanz.",
-    "creatorReceives": "De Ersteller überchunnt {{amount}} USDT Guthabe"
+    "paidToCreatorWallet": "Geit direkt i d Wallet vom Schöpfer",
+    "creatorPaidDirectNote": "Dr Schär vom Creator gaht grad i sini Wallet, grad wenn du abonnierisch. DeHub behaltet e chlii Plattform-Gebühr.",
+    "creatorEarnsDirect": "Abonnente zahled mit DeHub Tokens. Din Anteil landet i dim Wallet, grad wenn sie abonniered, abzüglich de Plattformgebühr für din Badge-Tier."
   },
   "live": {
     "notSet": "Nöd festgleit",
@@ -5419,17 +5420,10 @@
     "staked": "Gstaked",
     "gotIt": "Verstande",
     "otherBalancesNote": "Dini andere Guethabe sind nur uf {{network}} (Chain {{chainId}}). {{gas}} isch dis Gas-Guethabe. Wärt chönd es paar Sekunde hingerherhinke. Bridge oder transferier Assets uf {{network}}, zum si da z bruuche.",
-    "subscriptionEarnings": "Abo-Iinahme",
-    "cashOut": "Uszahle",
-    "withdrawing": "Wird uszahlt…",
-    "withdrawableSoon": "Abo-Gebühre chöi bald uszahlt werde",
     "dpayBaseOnly": "Dpay isch nur uf Base verfüegbar.",
     "tokensAndStocks": "Token & Aktie",
     "dhbPositionNote": "Das isch din ganzi Token-Bestand — ghaltä plus gestaket, uf Base und BNB Chain. Dä Grossteil isch normalerwiis gestaket, drum isch das grösser als was du grad chasch usgä.",
-    "stakedIncludesUnstaking": "Gestaketi Tokens schliesse alles i, wo du gfrogt hesch zum usstaken, aber no nöd zrugg becho hesch.",
-    "usdtSent": "{{amount}} USDT gschickt",
-    "withdrawableOnBase": "Uf Base uszahlbar",
-    "pendingTreasury": "In USDT · wartet uf d Treasury-Reserve"
+    "stakedIncludesUnstaking": "Gestaketi Tokens schliesse alles i, wo du gfrogt hesch zum usstaken, aber no nöd zrugg becho hesch."
   },
   "feedCard": {
     "reactionTip": "Heb dr Gfallt-mr-Chnopf druckt für meh Reaktione",

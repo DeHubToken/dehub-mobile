@@ -5142,8 +5142,9 @@
     "tokenPrice": "{{amount}} token",
     "tokensUnit": "tokenlar",
     "atPreListingRate": "{{amount}} ro'yxatga olishdan oldingi narxda",
-    "custodyNote": "Sizning tokenlaringiz DeHub xazina nazoratida qoladi va sotilmaydi. Yaratuvchi USDT qiymatidagi obuna balansini oladi.",
-    "creatorReceives": "Muallif {{amount}} USDT kredit oladi"
+    "paidToCreatorWallet": "To&#39;g&#39;ridan-to&#39;g&#39;ri ijodkorning hamyoniga tushadi",
+    "creatorPaidDirectNote": "Obuna bo&#39;lishingiz bilan ijodkorning ulushi to&#39;g&#39;ridan-to&#39;g&#39;ri ularning hamyoniga tushadi. DeHub kichik platforma to&#39;lovini ushlab qoladi.",
+    "creatorEarnsDirect": "Obunachilar DeHub tokenlarida to&#39;lov qilishadi. Ular obuna bo&#39;lgan zahoti sizning ulushingiz hamyoningizga tushadi, nishon darajangiz uchun platforma to&#39;lovi chegiriladi."
   },
   "live": {
     "notSet": "Belgilanmagan",
@@ -5407,17 +5408,10 @@
     "staked": "Steykingda",
     "gotIt": "Tushundim",
     "otherBalancesNote": "Boshqa balanslaringiz faqat {{network}} tarmog'ida ({{chainId}} zanjiri). {{gas}} — bu gaz balansingiz. Qiymatlar bir necha soniya kechikishi mumkin. Bu yerda ishlatish uchun aktivlarni {{network}} ga o'tkazing.",
-    "subscriptionEarnings": "Obuna daromadi",
-    "cashOut": "Naqd qilish",
-    "withdrawing": "Yechilmoqda…",
-    "withdrawableSoon": "Obuna to'lovlarini tez orada yechib olish mumkin bo'ladi",
     "dpayBaseOnly": "Dpay faqat Base da mavjud.",
     "tokensAndStocks": "Tokenlar va aktsiyalar",
     "dhbPositionNote": "Bu sizning barcha token pozitsiyangiz — Base va BNB Chain boʻylab saqlangan va stavka qilingan. Koʻp qismi odatda stavka qilingan, shuning uchun bu hozirda sarflashingiz mumkin boʻlganidan kattaroqdir.",
-    "stakedIncludesUnstaking": "Stavka qilingan tokenlar siz olib qoʻyishni soʻragan, lekin hali qaytarib olmagan har qanday narsani oʻz ichiga oladi.",
-    "usdtSent": "{{amount}} USDT yuborildi",
-    "withdrawableOnBase": "Base da yechib olish mumkin",
-    "pendingTreasury": "USDT da · g'aznachilik zaxirasini kutmoqda"
+    "stakedIncludesUnstaking": "Stavka qilingan tokenlar siz olib qoʻyishni soʻragan, lekin hali qaytarib olmagan har qanday narsani oʻz ichiga oladi."
   },
   "feedCard": {
     "reactionTip": "Ko‘proq reaksiyalar uchun yoqdi tugmasini bosib turing",
