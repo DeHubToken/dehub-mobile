@@ -8339,5 +8339,32 @@
     "back": "Kthehu te Cilësimet",
     "signIn": "Hyr në llogarinë tënde",
     "acknowledge": "Kam ruajtur detajet e rimëkëmbjes së portofolit dhe e kuptoj se fshirja është e përhershme."
+  },
+  "miniApps": {
+    "badge": {
+      "verified": "Verifikuar",
+      "unreviewed": "Pa revizuar",
+      "dev": "Përshkrim nga zhvilluesi"
+    },
+    "host": {
+      "close": "Mbyll aplikacion",
+      "backToStore": "Kthehu tek Aplikacionet",
+      "notFound": "Ky aplikacion nuk është në DeHub App Store, ose është fshirë.",
+      "badUrl": "Ky adresë nuk mund të hapet si një mini-aplikacion. Ai duhet të fillojë me **https://**, ose të jetë një adresë localhost në modin e zhvillimit.",
+      "readyTimeout": "Ky aplikacion nuk ka thirrur **dehub.ready()**, për këtë arsye ekrani i fillimit u fshi pas 8 sekondave."
+    },
+    "signIn": {
+      "title": "Regjistrohu në **{{name}}**?",
+      "body": "Ky aplikacion do të marrë adresën e portofolit të DeHub-të dhe një token për hyrje që vepron vetëm për këtë aplikacion. Ai nuk do të marrë akses në portofolin tuaj, fondet tuaja ose kontot tuaj në DeHub.",
+      "cancel": "Jo tani",
+      "confirm": "Regjistrohu"
+    },
+    "store": {
+      "title": "Aplikacionet",
+      "intro": "Mini-aplikacionet ndërtuar për DeHub nga çdo person. Ata hapen brenda DeHub-it, ju jeni të regjistruar me sukses, dhe çdo aplikacion shfaq adresën e tij të vërtetë të web-it.",
+      "buildCta": "Bëj një aplikacion",
+      "emptyTitle": "Nuk janë listuar aplikacionet ende",
+      "emptyBody": "Aplikacionet e para janë në procesin e revizimit. Bëj një tjetër dhe ai mund të përfshijë këtu."
+    }
   }
 }

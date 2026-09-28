@@ -8352,5 +8352,32 @@
     "back": "Înapoi la Setări",
     "signIn": "Conectează-te la contul tău",
     "acknowledge": "Am salvat detaliile de recuperare a portofelului și înțeleg că ștergerea este permanentă."
+  },
+  "miniApps": {
+    "badge": {
+      "verified": "Verificat",
+      "unreviewed": "Nerevizuit",
+      "dev": "Previzualizare dezvoltator"
+    },
+    "host": {
+      "close": "Închide aplicația",
+      "backToStore": "Înapoi la Aplicații",
+      "notFound": "Această aplicație nu se află în magazinul de aplicații DeHub sau a fost eliminată.",
+      "badUrl": "Această adresă nu poate fi deschisă ca miniaplicație. Trebuie să înceapă cu https://sau să fie o adresă a gazdei locale în modul dezvoltator.",
+      "readyTimeout": "Această aplicație nu a apelat niciodatădehub.ready (), astfel încât ecranul de pornire a fost ascuns după 8 secunde."
+    },
+    "signIn": {
+      "title": "Te conectezi la {{name}}?",
+      "body": "Această aplicație va primi adresa portofelului DeHub și un simbol de conectare care funcționează numai pentru această aplicație. Nu va avea acces la portofelul tău, la fondurile tale sau la contul tău DeHub.",
+      "cancel": "Nu acum",
+      "confirm": "Conectează-te"
+    },
+    "store": {
+      "title": "Aplicații",
+      "intro": "Mini-aplicații construite pentru DeHub de oricine. Acestea se deschid în cadrul DeHub, ești deja conectat (ă) și fiecare aplicație își afișează adresa web reală.",
+      "buildCta": "Creează o aplicație",
+      "emptyTitle": "Nicio aplicație listată încă",
+      "emptyBody": "Primele aplicații sunt în curs de examinare. Construiește una și ar putea fi aici."
+    }
   }
 }

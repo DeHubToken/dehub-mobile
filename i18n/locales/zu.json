@@ -8370,5 +8370,32 @@
     "back": "Buyela Kumasethingi",
     "signIn": "Ngena ngemvume ukuze ususe i-akhawunti yakho",
     "acknowledge": "Ngilondoloze imininingwane yami yokubuyisela isikhwama semali futhi ngiyaqonda ukuthi ukudilitha akupheli."
+  },
+  "miniApps": {
+    "badge": {
+      "verified": "Kuqinisekisiwe",
+      "unreviewed": "Akubuyekeziwe",
+      "dev": "Ukubuka kuqala konjiniyela"
+    },
+    "host": {
+      "close": "Vala i-app",
+      "backToStore": "Buyela kuma-App",
+      "notFound": "Le app ayikho ku-DeHub App Store, noma ikhishiwe.",
+      "badUrl": "Ngokwe nge-inkomo yethu yethu, i-inkomo yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yeth",
+      "readyTimeout": "Le app ayikaze ibizwenge-dehub.ready (), ngakho isikrini sokushelela sasifihliwe ngemva kwemizuzwana engu-8."
+    },
+    "signIn": {
+      "title": "Ngena ngemvume ku- {{name}}?",
+      "body": "Le app izothola ikheli lakho lesikhwama se-DeHub nethokheni yokungena ngemvume esebenza kuphela kule app. Ngeke ikwazi ukungena esikhwameni sakho semali, izimali zakho noma i-akhawunti yakho ye-DeHub.",
+      "cancel": "Hhayi manje",
+      "confirm": "Ngena ngemvume ku-akhawunti"
+    },
+    "store": {
+      "title": "Ama-app",
+      "intro": "Ama-app amancane akhelwe i-DeHub yinoma ubani. Ivuleka ngaphakathi kwe-DeHub, usuvele ungene ngemvume, futhi yonke i-app ibonisa ikheli layo lewebhu langempela.",
+      "buildCta": "Yakha i-app",
+      "emptyTitle": "Awekho ama-app afakiwe okwamanje",
+      "emptyBody": "Ama-app okuqala ayahlolwa. Yakha eyodwa futhi kungaba lapha."
+    }
   }
 }

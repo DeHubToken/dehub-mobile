@@ -8367,5 +8367,32 @@
     "back": "Ajustes nisqaman kutiy",
     "signIn": "Yaykuy yupayniyki chinkachinaykipaq",
     "acknowledge": "Billetera recuperación detallesniyta waqaychani chaymanta entiendeni qulluyqa wiñaypaq kasqanmanta."
+  },
+  "miniApps": {
+    "badge": {
+      "verified": "Chiqapchasqa",
+      "unreviewed": "Mana qhawarisqa",
+      "dev": "Paqarichiq ñawpaq qhaway"
+    },
+    "host": {
+      "close": "App nisqata wichqay",
+      "backToStore": "Apps nisqaman kutiy",
+      "notFound": "Kay app mana DeHub App Store kaqpichu kachkan, utaq uraykachisqa.",
+      "badUrl": "Chay direccionqa manan kichayta atikunmanchu mini app hina. https:// kaqwan qallarinan tiyan, utaq huk localhost tiyay kanan tiyan paqarichiqniyuq ruwaypi.",
+      "readyTimeout": "Kay app mana hayk&#39;aqpas dehub.ready() waqyasqachu, chayrayku pantalla salpicadura 8 segundos qhipaman pakasqa karqa."
+    },
+    "signIn": {
+      "title": "¿{{name}} nisqaman yaykuy?",
+      "body": "Kay ruwana DeHub billetera direccionniyki chaymanta huk yaykuy token kay apppaqlla llamkan chayta chaskinqa. Mana billeteraykiman, qullqiykiman utaq DeHub yupayniykiman yaykuyta tarinqachu.",
+      "cancel": "Kunan manam",
+      "confirm": "Yaykuy"
+    },
+    "store": {
+      "title": "Apps nisqakuna",
+      "intro": "Mini apps DeHubpaq pillapas ruwasqa. DeHub ukhupi kicharikunku, yaykusqaña kanki, chaymanta sapa app chiqa web direccionninta rikuchin.",
+      "buildCta": "Huk app nisqa ruway",
+      "emptyTitle": "Manaraqmi appkuna listasqachu kachkan",
+      "emptyBody": "Ñawpaq kaq appkuna qhawaypi kachkanku. Hukninta ruway hinaspa kaypi kanman."
+    }
   }
 }

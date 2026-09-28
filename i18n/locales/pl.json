@@ -8407,5 +8407,32 @@
     "back": "Wróć do Ustawień",
     "signIn": "Zaloguj się",
     "acknowledge": "Zapisałem szczegóły odzyskiwania portfela i rozumiem, że usunięcie jest trwałe."
+  },
+  "miniApps": {
+    "badge": {
+      "verified": "Zweryfikowano",
+      "unreviewed": "Nie oceniono",
+      "dev": "Podgląd dewelopera"
+    },
+    "host": {
+      "close": "Zamknij aplikację",
+      "backToStore": "Wróć do aplikacji",
+      "notFound": "Ta aplikacja nie znajduje się w DeHub App Store lub została usunięta.",
+      "badUrl": "Tego adresu nie można otworzyć jako mini aplikacji. Musi zaczynać się od https://lub być adresem hosta lokalnego w trybie programisty.",
+      "readyTimeout": "Ta aplikacja nigdy nie wywołaładehub.ready (), więc ekran powitalny został ukryty po 8 sekundach."
+    },
+    "signIn": {
+      "title": "Zaloguj się do {{name}}?",
+      "body": "Ta aplikacja otrzyma Twój adres portfela DeHub i token logowania, który działa tylko dla tej aplikacji. Nie uzyska dostępu do Twojego portfela, środków ani konta DeHub.",
+      "cancel": "Nie teraz",
+      "confirm": "Zaloguj się"
+    },
+    "store": {
+      "title": "Aplikacje",
+      "intro": "Miniaturowe aplikacje stworzone dla DeHub przez każdego. Otwierają się w DeHub, jesteś już zalogowany, a każda aplikacja pokazuje swój prawdziwy adres internetowy.",
+      "buildCta": "Stwórz aplikację",
+      "emptyTitle": "Brak aplikacji na liście",
+      "emptyBody": "Pierwsze aplikacje są sprawdzane. Zbuduj jeden i może być tutaj."
+    }
   }
 }

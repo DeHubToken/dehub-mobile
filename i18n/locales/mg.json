@@ -8438,5 +8438,32 @@
     "back": "Makany amin'ny fandrindrana",
     "signIn": "Hiditra ao amin'ny kaontinao.",
     "acknowledge": "Izaho no namonjy ny kitapom-batsy fanarenana antsipirihany sy hahatakatra fa famafana maharitra."
+  },
+  "miniApps": {
+    "badge": {
+      "verified": "Voamarina",
+      "unreviewed": "Tsy hita maso",
+      "dev": "Topy mason'ny mpamorona"
+    },
+    "host": {
+      "close": "Akatony ny app",
+      "backToStore": "Miverina amin'ny Apps",
+      "notFound": "Ity rindrambaiko ity dia tsy ao amin'ny DeHub App Store, na efa nesorina.",
+      "badUrl": "Na izany aza, io lalana io dia tsy azo ovaina ho toy ny rindrankajy kely. Tsy maintsy manomboka amin'ny https://, na ho adiresy localhost amin'ny fomba developer.",
+      "readyTimeout": "Io fampiharana tsy antsoina hoedehub.ready (), ka ny hanosotra lamba dia nafenina taorian'ny 8 segondra."
+    },
+    "signIn": {
+      "title": "Midira ao amin'ny {{name}}?",
+      "body": "Ity fampiharana ity dia hahazo ny adiresy kitapom-bolanao DeHub sy ny famantarana famantarana izay miasa ho an'ity fampiharana ity. Tsy afaka miditra amin'ny kitaponao, ny volanao na ny kaontinao DeHub.",
+      "cancel": "Tsy hita",
+      "confirm": "Hiditra"
+    },
+    "store": {
+      "title": "Aplikasina",
+      "intro": "Mini fampiharana natao ho an'ny DeHub na iza na iza. Misokatra ao amin'ny DeHub izy ireo, efa nosoniavina ianao, ary ny fampiharana rehetra dia mampiseho ny adiresy Internet tena izy.",
+      "buildCta": "Manaova fampiharana",
+      "emptyTitle": "Tsy misy apps voatanisa",
+      "emptyBody": "Mbola eo am-pandinihana ny rindrambaikon'ny solosaina voalohany. Afaka mahazo ity volo ity ianao ary afaka mipetraka eto."
+    }
   }
 }

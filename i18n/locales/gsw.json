@@ -8369,5 +8369,32 @@
     "back": "Zrugg zu de Iistellige",
     "signIn": "Melde dich a, um din Account z'lösche",
     "acknowledge": "Ich ha mini Wallet‑Wiederherstellungsdatei gspeichert und verstoh, dass d’Löschung permanent isch."
+  },
+  "miniApps": {
+    "badge": {
+      "verified": "Verifiziert",
+      "unreviewed": "Ungeprüft",
+      "dev": "Entwickler-Vorschau"
+    },
+    "host": {
+      "close": "App schliessen",
+      "backToStore": "Zurück zu Apps",
+      "notFound": "Diese App ist nicht im DeHub App Store, oder sie wurde entfernt.",
+      "badUrl": "Diese Adresse kann nicht als Mini-App geöffnet werden. Sie muss mit **https://** beginnen oder eine localhost-Adresse in Entwicklermodus sein.",
+      "readyTimeout": "Diese App hat nie **dehub.ready()** aufgerufen, deshalb wurde der Splash-Screen nach 8 Sekunden versteckt."
+    },
+    "signIn": {
+      "title": "Anmelden bei {{name}}?",
+      "body": "Diese App wird deine DeHub-Wallet-Adresse und einen Anmeldetoken erhalten, der nur für diese App gilt. Sie bekommt keinen Zugriff auf dein Wallet, deine Gelder oder dein DeHub-Konto.",
+      "cancel": "Jetzt nicht",
+      "confirm": "Anmelden"
+    },
+    "store": {
+      "title": "Apps",
+      "intro": "Mini-Apps, die von jedermann für DeHub gebaut werden. Sie öffnen sich innerhalb von DeHub, du bist bereits angemeldet, und jede App zeigt ihre echte Web-Adresse an.",
+      "buildCta": "Eine App erstellen",
+      "emptyTitle": "Keine Apps aufgelistet",
+      "emptyBody": "Die ersten Apps werden geprüft. Baue eine und sie könnte hier erscheinen."
+    }
   }
 }

@@ -8339,5 +8339,32 @@
     "back": "Grįžti į nustatymus",
     "signIn": "Prisijunkite, kad ištrintumėte paskyrą",
     "acknowledge": "Išsaugojau savo piniginės atkūrimo informaciją ir suprantu, kad ištrynimas yra negrįžtamas."
+  },
+  "miniApps": {
+    "badge": {
+      "verified": "Patvirtinta",
+      "unreviewed": "Nepateikta recenzija",
+      "dev": "Kūrėjo apžiūra"
+    },
+    "host": {
+      "close": "Uždaryti prietaisą",
+      "backToStore": "Grįžti į Prietaisus",
+      "notFound": "Šis prietaisas nėra DeHub prietaisų sandūroje, arba buvo pašalintas.",
+      "badUrl": "Ši adreso nuoroda negali būti atidaryta kaip mažas prietaisas. Ji turi prasidėti su **https://**, arba būti vietinėje vietoje (localhost) kūrėjo režime.",
+      "readyTimeout": "Šis prietaisas niekada nešaukė **dehub.ready()**, todėl pradinė ekranų dėmė buvo paslėpta po 8 sekundžių."
+    },
+    "signIn": {
+      "title": "Prisijungti prie {{name}}?",
+      "body": "Šis prietaisas gaus jūsų DeHub portmonės adresą ir prisijungimo tokeną, kuris veikia tik šiam prietaisui. Jis nebus prisijungęs prie jūsų portmonės, pinigų arba DeHub sąskaitos.",
+      "cancel": "Vėliau",
+      "confirm": "Prisijungti"
+    },
+    "store": {
+      "title": "Prietaisai",
+      "intro": "Maži prietaisai, sukurti DeHub naudotojams. Jie atidarysi DeHub viduje, jūs jau prisijungę, ir kiekvienas prietaisas rodo savo tikrąjį interneto adresą.",
+      "buildCta": "Sukurkite prietaisą",
+      "emptyTitle": "Nėra sąrašo prietaisų",
+      "emptyBody": "Pirmieji prietaisai yra recenzijai. Sukurkite vieną ir jis gali būti čia."
+    }
   }
 }

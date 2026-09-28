@@ -8343,5 +8343,32 @@
     "back": "Voltar para as Configurações",
     "signIn": "Inicie sessão na sua conta",
     "acknowledge": "Salvei os detalhes de recuperação da minha carteira e entendi que a exclusão é permanente."
+  },
+  "miniApps": {
+    "badge": {
+      "verified": "Verificado",
+      "unreviewed": "Não avaliado",
+      "dev": "Pré-visualização do programador"
+    },
+    "host": {
+      "close": "Fechar aplicação",
+      "backToStore": "Voltar às aplicações",
+      "notFound": "Este aplicativo não está na DeHub App Store ou foi removido.",
+      "badUrl": "Esse endereço não pode ser aberto como um mini app. Ele deve começar com https://ou ser um endereço localhost no modo de desenvolvedor.",
+      "readyTimeout": "Este aplicativo nunca chamou odehub.ready (), então a tela inicial ficou oculta após 8 segundos."
+    },
+    "signIn": {
+      "title": "Iniciar sessão em {{name}}?",
+      "body": "Esta aplicação receberá o endereço da sua carteira DeHub e um token de início de sessão que só funciona para esta aplicação. Não terá acesso à sua carteira, aos seus fundos ou à sua conta DeHub.",
+      "cancel": "Agora não",
+      "confirm": "Entrar"
+    },
+    "store": {
+      "title": "Aplicações",
+      "intro": "Miniaplicativos criados para o DeHub por qualquer pessoa. Eles abrem dentro do DeHub, você já está conectado e cada aplicativo mostra o seu endereço real da web.",
+      "buildCta": "Criar uma aplicação",
+      "emptyTitle": "Ainda não há aplicações listadas",
+      "emptyBody": "As primeiras aplicações estão em análise. Construa um e pode estar aqui."
+    }
   }
 }

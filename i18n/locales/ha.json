@@ -8338,5 +8338,32 @@
     "back": "Komawa zuwa Saituna",
     "signIn": "Shiga don share asusunka",
     "acknowledge": "Na ajiye ta walat dawo da cikakkun bayanai da kuma fahimtar cewa shafewa ne na dindindin."
+  },
+  "miniApps": {
+    "badge": {
+      "verified": "Tabbatacce",
+      "unreviewed": "Ba a duba shi ba",
+      "dev": "Mai haɓaka samfoti"
+    },
+    "host": {
+      "close": "Kusa app",
+      "backToStore": "Komawa zuwa Apps",
+      "notFound": "Wannan app ba a cikin DeHub App Store, ko an sauke shi.",
+      "badUrl": "Ba za a iya buɗe wannan adireshin a matsayin aikace-aikacen mini ba. Dole ne ya fara da https://, ko zama adireshin gidahost a yanayin mai haɓakawa.",
+      "readyTimeout": "Wannan app taba kira dehub.ready(), don haka splash allon da aka boye bayan 8 seconds."
+    },
+    "signIn": {
+      "title": "Shiga cikin {{name}}?",
+      "body": "Wannan app zai samu your DeHub walat address da kuma sa hannu alama cewa kawai aiki ga wannan app. Ba zai sami damar shiga walat ɗinku ba, kuɗin ku ko asusun DeHub ɗinku.",
+      "cancel": "Ba yanzu ba",
+      "confirm": "Shiga ciki"
+    },
+    "store": {
+      "title": "Aikace-aikace",
+      "intro": "Mini apps gina don DeHub da kowa. Suna buɗewa a ciki DeHub, kun riga kun sanya hannu a ciki, kuma kowane aikace-aikacen yana nuna ainihin adireshin yanar gizon sa.",
+      "buildCta": "Gina wani app",
+      "emptyTitle": "Babu apps da aka jera tukuna",
+      "emptyBody": "Aikace-aikacen farko suna cikin bita. Gina daya kuma zai iya zama a nan."
+    }
   }
 }

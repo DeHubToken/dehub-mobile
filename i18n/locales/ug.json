@@ -8334,5 +8334,32 @@
     "back": "تەڭشەكلەرگە قايتىش",
     "signIn": "ھېساباتىڭىزنى ئۆچۈرۈش ئۈچۈن تىزىملىتىڭ",
     "acknowledge": "مەن يانچۇقۇمنى ئەسلىگە كەلتۈرۈش تەپسىلاتىنى ساقلىدىم ۋە ئۆچۈرۈشنىڭ مەڭگۈلۈك ئىكەنلىكىنى چۈشىنىمەن."
+  },
+  "miniApps": {
+    "badge": {
+      "verified": "Tasdiqlanmighan",
+      "unreviewed": "Tartibsiz",
+      "dev": "Kelgizhkan yig'izhkan"
+    },
+    "host": {
+      "close": "Qurghun app",
+      "backToStore": "App'larga qayt",
+      "notFound": "Bu app DeHub App Store'ida yo'q, yoki uni olib tashlagan.",
+      "badUrl": "Bu mini app manzili ochilmaydi. U https:// bilan boshlanishi kerak, yoki developer rejimida localhost manzili bo'lishi kerak.",
+      "readyTimeout": "Bu app dehub.ready()ni chaqirmagan, shuning uchun splash ekrani 8 sekunddan keyin yashilandi."
+    },
+    "signIn": {
+      "title": "{{name}}ga kirish kerakmi?",
+      "body": "Bu app sizning DeHub pul yig'imi manzili va faqat bu app uchun ishlaydigan kirish tokenini oladi. U sizning pul yig'imi, pulingiz yoki DeHub hisobingizga kirish huquqiga ega bo'lmaydi.",
+      "cancel": "Keyinchalik",
+      "confirm": "Kirish"
+    },
+    "store": {
+      "title": "App'lardan",
+      "intro": "DeHub uchun har qanday odam tomonidan qurilgan mini app'lardan. Ular DeHub ichida ochiladi, siz avvaldan kirish qilingan, va har bir appning haqiqiy web manzili ko'rsatiladi.",
+      "buildCta": "App qur",
+      "emptyTitle": "App'lardan yo'q",
+      "emptyBody": "App'lardan birinchi app'lardan tartibsiz. Birini qurib, u erda bo'lishi mumkin."
+    }
   }
 }
