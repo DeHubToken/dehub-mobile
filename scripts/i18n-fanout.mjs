@@ -351,6 +351,39 @@ function isUntranslatedProse(source, candidate, locale) {
   return hasTranslatableWords(source) && ENGLISH_FUNCTION_WORDS.test(source);
 }
 
+/**
+ * Serbian ships in Cyrillic, but the provider answers `sr` in Latin script
+ * ("Sačuvaj promene"). wrongScript rightly rejects that, which left every new
+ * Serbian key in English. The two alphabets map letter for letter, so convert
+ * rather than drop. Anything that is not Serbian Latin (brand names, URLs,
+ * placeholders already restored) is left alone only when it has no Serbian
+ * diacritics and reads as a token rather than prose — in practice brand names
+ * like "DeHub" come through the same way the existing Cyrillic values have them.
+ */
+const SR_DIGRAPHS = [['Lj', 'Љ'], ['LJ', 'Љ'], ['lj', 'љ'], ['Nj', 'Њ'], ['NJ', 'Њ'], ['nj', 'њ'], ['Dž', 'Џ'], ['DŽ', 'Џ'], ['dž', 'џ']];
+const SR_LETTERS = {
+  A: 'А', B: 'Б', C: 'Ц', Č: 'Ч', Ć: 'Ћ', D: 'Д', Đ: 'Ђ', E: 'Е', F: 'Ф', G: 'Г', H: 'Х', I: 'И', J: 'Ј', K: 'К',
+  L: 'Л', M: 'М', N: 'Н', O: 'О', P: 'П', R: 'Р', S: 'С', Š: 'Ш', T: 'Т', U: 'У', V: 'В', Z: 'З', Ž: 'Ж',
+  a: 'а', b: 'б', c: 'ц', č: 'ч', ć: 'ћ', d: 'д', đ: 'ђ', e: 'е', f: 'ф', g: 'г', h: 'х', i: 'и', j: 'ј', k: 'к',
+  l: 'л', m: 'м', n: 'н', o: 'о', p: 'п', r: 'р', s: 'с', š: 'ш', t: 'т', u: 'у', v: 'в', z: 'з', ž: 'ж',
+};
+/** Tokens that must survive as written: placeholders, tags, URLs, @/#/$ tags, and DeHub/crypto names. */
+const SR_KEEP = /\{\{[^}]+\}\}|\{[a-zA-Z0-9_]+\}|<\/?[a-zA-Z][a-zA-Z0-9]*>|https?:\/\/\S+|[@#$][\w.-]+|\b(?:DeHub|DHB|BNB|BSC|ETH|USDT|USDC|NFTs?|DEX|APY|API|URL|ID|PIN|QR|OTP|AI|RPC|TikTok|YouTube|Google|Apple|Android|iOS|Telegram|Discord|X|MetaMask|WalletConnect|Web3|OK)\b/g;
+function toLocaleScript(text, locale) {
+  if (text == null || locale !== 'sr') return text;
+  let out = '';
+  let last = 0;
+  const convert = (chunk) => {
+    for (const [lat, cyr] of SR_DIGRAPHS) chunk = chunk.split(lat).join(cyr);
+    return chunk.replace(/[A-Za-zČčĆćĐđŠšŽž]/g, (ch) => SR_LETTERS[ch] ?? ch);
+  };
+  for (const m of text.matchAll(SR_KEEP)) {
+    out += convert(text.slice(last, m.index)) + m[0];
+    last = m.index + m[0].length;
+  }
+  return out + convert(text.slice(last));
+}
+
 /* ---------- network ---------- */
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -517,21 +550,34 @@ for (const locale of targets) {
       }
     }
 
-    keys.forEach((k, j) => {
-      const candidate = out[j] == null ? null : restore(out[j].trim(), prepared[j].found, sources[j]);
+    const accept = (j, line) => {
+      if (line == null) return null;
+      const candidate = toLocaleScript(restore(line.trim(), prepared[j].found, sources[j]), locale);
       if (
         candidate == null ||
         looksUnfinished(candidate, sources[j]) ||
         isUntranslatedProse(sources[j], candidate, locale) ||
         !placeholdersMatch(sources[j], candidate) ||
         wrongScript(candidate, locale, raw)
-      ) {
-        dropped++;
-        return;
+      ) return null;
+      return candidate;
+    };
+
+    for (let j = 0; j < keys.length; j++) {
+      let candidate = accept(j, out[j]);
+      // Inside a batch the provider often hands a whole block back in English
+      // for the smaller locales (rkt, dcc, skr…) while translating the same line
+      // correctly on its own. A lone retry is a different cache key, so it is
+      // not just served the same English again.
+      if (candidate == null && out.length > 1) {
+        const single = await translateBatch([prepared[j].masked], locale, key);
+        candidate = accept(j, single ? single[0] : null);
+        await sleep(PAUSE_MS);
       }
-      setDeep(raw, k, candidate);
+      if (candidate == null) { dropped++; continue; }
+      setDeep(raw, keys[j], candidate);
       written++;
-    });
+    }
 
     await sleep(PAUSE_MS);
     process.stdout.write(`  ${Math.min(i + BATCH_LINES, todo.length)}/${todo.length}\r`);
