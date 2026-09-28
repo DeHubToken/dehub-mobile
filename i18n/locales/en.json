@@ -8332,5 +8332,32 @@
     "back": "Back to Settings",
     "signIn": "Sign in to delete your account",
     "acknowledge": "I have saved my wallet recovery details and understand that deletion is permanent."
+  },
+  "miniApps": {
+    "badge": {
+      "verified": "Verified",
+      "unreviewed": "Unreviewed",
+      "dev": "Developer preview"
+    },
+    "host": {
+      "close": "Close app",
+      "backToStore": "Back to Apps",
+      "notFound": "This app is not in the DeHub App Store, or it has been taken down.",
+      "badUrl": "That address cannot be opened as a mini app. It must start with https://, or be a localhost address in developer mode.",
+      "readyTimeout": "This app never called dehub.ready(), so the splash screen was hidden after 8 seconds."
+    },
+    "signIn": {
+      "title": "Sign in to {{name}}?",
+      "body": "This app will get your DeHub wallet address and a sign-in token that only works for this app. It will not get access to your wallet, your funds or your DeHub account.",
+      "cancel": "Not now",
+      "confirm": "Sign in"
+    },
+    "store": {
+      "title": "Apps",
+      "intro": "Mini apps built for DeHub by anyone. They open inside DeHub, you're already signed in, and every app shows its real web address.",
+      "buildCta": "Build an app",
+      "emptyTitle": "No apps listed yet",
+      "emptyBody": "The first apps are in review. Build one and it could be here."
+    }
   }
 }

@@ -8339,5 +8339,32 @@
     "back": "Parametrlərə qayıt",
     "signIn": "Hesabınızı silmək üçün daxil olun",
     "acknowledge": "Cüzdan bərpa təfərrüatlarımı yaddaşda saxladım və silinmənin daimi olduğunu başa düşdüm."
+  },
+  "miniApps": {
+    "badge": {
+      "verified": "Təsdiqlənib",
+      "unreviewed": "Baxılmamış",
+      "dev": "İnşaatçının önbaxışı"
+    },
+    "host": {
+      "close": "Tətbiqi bağla",
+      "backToStore": "Tətbiqlərə qayıt",
+      "notFound": "Bu tətbiq DeHub App Store-da yoxdur və ya aşağı salınıb.",
+      "badUrl": "Həmin ünvan mini tətbiq kimi açıla bilməz. O, https://ilə başlamalı və ya developer rejimində lokal ev sahibi ünvanı olmalıdır.",
+      "readyTimeout": "Bu tətbiq heç vaxt dehub. ready() adlandırılmayıb, buna görə də sıçrayış ekranı 8 saniyədən sonra gizlədilib."
+    },
+    "signIn": {
+      "title": "{{name}} ünvanına daxil olursunuz?",
+      "body": "Bu tətbiq DeHub cüzdan ünvanınızı və yalnız bu tətbiq üçün işləyən bir işarə əldə edəcək. Pul kisənizə, vəsaitinizə və ya DeHub hesabınıza giriş əldə etməyəcək.",
+      "cancel": "İndi yox",
+      "confirm": "Daxil ol"
+    },
+    "store": {
+      "title": "Tətbiqlər",
+      "intro": "Hər kəs tərəfindən DeHub üçün hazırlanmış mini tətbiqlər. Onlar DeHub-un daxilində açılır, siz artıq daxil olmusunuz və hər bir tətbiqdə onun həqiqi veb ünvanı göstərilir.",
+      "buildCta": "Tətbiq yaradın",
+      "emptyTitle": "Hələ ki, heç bir tətbiq aktiv deyil",
+      "emptyBody": "İlk tətbiqlər nəzərdən keçirilir. Birini qurun və o, burada ola bilər."
+    }
   }
 }

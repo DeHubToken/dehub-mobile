@@ -8338,5 +8338,32 @@
     "back": "Hoki ki ngā tautuhinga",
     "signIn": "Hokona ki roto ki te muku i to koutou pūkete",
     "acknowledge": "Kua penapena e au aku taipitopito whakaora putea me te mohio he pumau te whakakore."
+  },
+  "miniApps": {
+    "badge": {
+      "verified": "Whakamātauria",
+      "unreviewed": "Kaore i kitea",
+      "dev": "Te tirohanga a te kaiwhakawhanake"
+    },
+    "host": {
+      "close": "Tikiake taupānga",
+      "backToStore": "Hoki ki ngā taupānga",
+      "notFound": "E kore tenei taupānga i roto i te DeHub App Store, ranei kua tangohia iho.",
+      "badUrl": "Kaore e taea te whakatuwhera i taua wāhitau hei taupānga iti. Me tīmata ki https://, ranei kia he wāhitau ā-rohe i roto i te aratau kaiwhakawhanake.",
+      "readyTimeout": "Tenei taupānga kihai i huaina dehub.ready(), na ka huna te mata splash i muri i 8 hēkona."
+    },
+    "signIn": {
+      "title": "Hokona ki {{name}}?",
+      "body": "Ka whiwhi tēnei taupānga i tō wāhitau putea DeHub me tētahi tohu tohu e mahi ana anake mō tēnei taupānga. Kaore e uru atu ki to putea, ki o moni, ki to kaute DeHub ranei.",
+      "cancel": "Ehara i te mea i tenei wa",
+      "confirm": "Tohu i roto i"
+    },
+    "store": {
+      "title": "Ngā taupānga",
+      "intro": "Ko nga taupānga iti i hangaia mo DeHub e tetahi. Ka whakatuwhera ratou i roto i DeHub, kua hainatia koe, a ka whakaatu ia taupānga tona wāhitau tukutuku tūturu.",
+      "buildCta": "Hangaia he taupānga",
+      "emptyTitle": "Kaore ano nga taupānga kua whakarārangitia",
+      "emptyBody": "Kei te arotakehia nga taupānga tuatahi. Hangaia tetahi, a ka taea e te reira i konei."
+    }
   }
 }

@@ -8339,5 +8339,32 @@
     "back": "Back to Settings",
     "signIn": "Soo gal si aad u tirtirto akoonkaaga",
     "acknowledge": "Waxaan kaydiyay faahfaahinta soo kabashada jeebkayga oo waxaan fahamsanahay in tirtiridu ay tahay mid joogto ah."
+  },
+  "miniApps": {
+    "badge": {
+      "verified": "La xaqiijiyay",
+      "unreviewed": "Lama eegi karo",
+      "dev": "Horudhac horumariyaha"
+    },
+    "host": {
+      "close": "Xidh APP",
+      "backToStore": "Ku noqo Apps",
+      "notFound": "App-kan kuma jiro DeHub App Store, ama waa la qaaday.",
+      "badUrl": "Cinwaankaas lama furi karo sida app mini ah. Waa inay ku bilaabataa https://, ama noqo cinwaanka maxalliga ah ee qaabka horumariyaha.",
+      "readyTimeout": "App Tani marna loo yaqaan dehub.ready(), sidaa darteed shaashadda splash ayaa la qariyey ka dib 8 ilbiriqsi."
+    },
+    "signIn": {
+      "title": "Gal {{name}}?",
+      "body": "Codsigan wuxuu heli doonaa cinwaankaaga boorsada DeHub iyo calaamadda is-diiwaangelinta ee kaliya u shaqeysa barnaamijkan. Ma heli doonto boorsadaada, lacagtaada ama koontadaada DeHub.",
+      "cancel": "Hadda ma ahan",
+      "confirm": "Gal"
+    },
+    "store": {
+      "title": "Barnaamijyada",
+      "intro": "Barnaamijyada Mini ee loo dhisay DeHub qof kasta. Waxay u furan yihiin gudaha DeHub, horeyba waad u saxiixday, barnaamij kastana wuxuu muujinayaa cinwaankiisa dhabta ah ee webka.",
+      "buildCta": "Samee app ah",
+      "emptyTitle": "Ma jiro barnaamijyo weli la taxay",
+      "emptyBody": "Codsiyada ugu horreeya ayaa dib u eegis ku jira. Dhis mid ka mid ah iyo waxaa laga yaabaa in ay halkan."
+    }
   }
 }

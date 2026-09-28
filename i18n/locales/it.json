@@ -8339,5 +8339,32 @@
     "back": "Torna alle Impostazioni",
     "signIn": "Accedi al tuo account",
     "acknowledge": "Ho salvato i dettagli di recupero del mio portafoglio e capisco che l'eliminazione è permanente."
+  },
+  "miniApps": {
+    "badge": {
+      "verified": "Verificato",
+      "unreviewed": "Non recensito",
+      "dev": "Anteprima sviluppatore"
+    },
+    "host": {
+      "close": "Chiudi l'app",
+      "backToStore": "Torna alle app",
+      "notFound": "Questa app non è nell'App Store di DeHub o è stata rimossa.",
+      "badUrl": "Quell' indirizzo non può essere aperto come una mini app. Deve iniziare con https://, o essere un indirizzo localhost in modalità sviluppatore.",
+      "readyTimeout": "Questa app non ha mai chiamatodehub.ready (), quindi la schermata iniziale è stata nascosta dopo 8 secondi."
+    },
+    "signIn": {
+      "title": "Accedi a {{name}}?",
+      "body": "Questa app otterrà l'indirizzo del tuo portafoglio DeHub e un token di accesso che funziona solo per questa app. Non avrà accesso al tuo portafoglio, ai tuoi fondi o al tuo account DeHub.",
+      "cancel": "Non ora",
+      "confirm": "Accedi"
+    },
+    "store": {
+      "title": "App",
+      "intro": "Mini app create per DeHub da chiunque. Si aprono all'interno di DeHub, hai già effettuato l'accesso e ogni app mostra il suo vero indirizzo web.",
+      "buildCta": "Crea un'app",
+      "emptyTitle": "Nessuna app ancora elencata",
+      "emptyBody": "Le prime app sono in fase di revisione. Costruiscine uno e potrebbe essere qui."
+    }
   }
 }

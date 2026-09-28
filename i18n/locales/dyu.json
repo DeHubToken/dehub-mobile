@@ -8149,5 +8149,32 @@
     "back": "An ka segi an ka ladɛrɛsiw kan",
     "signIn": "N'i ye mɔgɔ dɔ weele ka na i ka site web kan",
     "acknowledge": "Ne ye n ka wari sɔrɔli kunnafoniw mara ani n' y'a faamu ko n' ka wari bɔli ye kudayi ye."
+  },
+  "miniApps": {
+    "badge": {
+      "verified": "Verified",
+      "unreviewed": "Unreviewed",
+      "dev": "Developer preview"
+    },
+    "host": {
+      "close": "Close app",
+      "backToStore": "Back to Apps",
+      "notFound": "O app tɛ DeHub App Store kɔnɔ, wala a bɔra.",
+      "badUrl": "O la, a ka ɲi ka tɛmɛ fɛɛrɛ dɔw fɛ k'a yira ko a ka di mɔgɔ ye ka baara kɛ n'a ye. O ka kan ka daminɛ ni https://, walima ka kɛ yɔrɔ labɛnbaga ka ladɛrɛsi ye.",
+      "readyTimeout": "O app tun ma deli ka wele dehub. ready (), o la, a tun dogonin lo segindi 8 kɔnɔ."
+    },
+    "signIn": {
+      "title": "Sign in to {{name}}?",
+      "body": "O app bena i ka DeHub ka wari sɔrɔyɔrɔ n'i ka siginiden tagamasiɲɛ sɔrɔ min be baara kɛ o app dɔrɔn lo kama. O la, i tɛna se ka wari sɔrɔ i ka wari la, i ka wari wala i ka DeHub ka wari la.",
+      "cancel": "Not now",
+      "confirm": "Sign in"
+    },
+    "store": {
+      "title": "Apps",
+      "intro": "Mɔgɔ si tɛ se ka min kɛ, o ye ka baara kɛ n'o ye. U be yɛlɛ DeHub kɔnɔ, i ye siginiden ye ka ban, ani app kelen kelen bɛɛ b'a ka site web tɔgɔ yira.",
+      "buildCta": "Build an app",
+      "emptyTitle": "PAS EncARA Kɔrɔbɔli",
+      "emptyBody": "O kama, a ka ɲi ka tɛmɛ fɛɛrɛ dɔw fɛ k'a yira ko a ka ɲi ka kɛ ni miiriya ɲuman A tun be se ka kɛ ko a tun be se ka kɛ a yɛrɛ ye."
+    }
   }
 }

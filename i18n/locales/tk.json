@@ -8339,5 +8339,32 @@
     "back": "Parametrlere dolanmak",
     "signIn": "Şkaýyňy silmek üçin gir",
     "acknowledge": "Men pulumy gaýtargylamagyň jikme-jiklerini sakladym we ýitirilmegiň hemişelikdigini bilýärin."
+  },
+  "miniApps": {
+    "badge": {
+      "verified": "Seret",
+      "unreviewed": "Görülmedik",
+      "dev": "Geliştirici öňünden seret"
+    },
+    "host": {
+      "close": "Ulyjy ýap",
+      "backToStore": "Ulymalara dolanmak",
+      "notFound": "Bu ulag DeHub App Store-da ýok, ýa-da ýykyldy.",
+      "badUrl": "Bu adres kiçijik ulag hökmünde açylmaýar. Bu https://bilen başlamaly ýa-da geliwci modunda ýerli host adresidir.",
+      "readyTimeout": "Bu ulag hiç haçan dehub.ready() diýip atlandyrylmady, şonuň üçin ekran 8 saniýeden soň gizlendi."
+    },
+    "signIn": {
+      "title": "{{name}}diýenýazgydaýazylanmy?",
+      "body": "Bu ulag siziň DeHub pul adresini we diňe bu ulag üçin işleýän bir girişi alar. Bu siziň pulumyza, pulumyza ýa-da DeHub hesabyňyza girmez.",
+      "cancel": "Häzir däl",
+      "confirm": "Saýlan"
+    },
+    "store": {
+      "title": "Ulymalar",
+      "intro": "DeHub üçin hiç kimden ýasalan mini-ilgiler. Olar DeHub-da açylýar, siz eýýäm girýärsiňiz we her bir ulag öz web adresini görkezýär.",
+      "buildCta": "Bir ulag ýaratmak",
+      "emptyTitle": "Hiç hili habar berilmedi",
+      "emptyBody": "Birinji ulaglar seredilýär. Birini gurup, ol ýerde bolup biler."
+    }
   }
 }

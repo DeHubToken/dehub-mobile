@@ -8343,5 +8343,32 @@
     "back": "Tilbage til indstillinger",
     "signIn": "Log ind på din konto",
     "acknowledge": "Jeg har gemt oplysninger om gendannelse af min tegnebog og forstår, at sletning er permanent."
+  },
+  "miniApps": {
+    "badge": {
+      "verified": "Verificeret",
+      "unreviewed": "Ugennemgået",
+      "dev": "Udviklerforhåndsvisning"
+    },
+    "host": {
+      "close": "Luk app",
+      "backToStore": "Tilbage til Apps",
+      "notFound": "Denne app er ikke i DeHub App Store, eller den er blevet fjernet.",
+      "badUrl": "Denne adresse kan ikke åbnes som en mini-app. Den skal starte med https://, eller være en localhost-adresse i udviklermodus.",
+      "readyTimeout": "Denne app har aldrig kaldt dehub.ready(), så splash-skrænet blev skjult efter 8 sekunder."
+    },
+    "signIn": {
+      "title": "Log ind på {{name}}?",
+      "body": "Denne app vil få din DeHub-vælgeradresse og en log-in-token, der kun gælder for denne app. Den vil ikke få adgang til din vælger, dine midler eller din DeHub-konto.",
+      "cancel": "Ikke nu",
+      "confirm": "Log ind"
+    },
+    "store": {
+      "title": "Apps",
+      "intro": "Mini-apps bygget til DeHub af enhver. De åbnes inde i DeHub, du er allerede logget ind, og hver app viser sin rigtige webadresse.",
+      "buildCta": "Byg en app",
+      "emptyTitle": "Ingen apps listet endnu",
+      "emptyBody": "De første apps er under gennemgang. Byg en og den kunne være her."
+    }
   }
 }

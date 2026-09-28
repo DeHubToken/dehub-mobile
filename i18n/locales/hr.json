@@ -8339,5 +8339,32 @@
     "back": "Natrag na postavke",
     "signIn": "Prijavite se na svoj račun",
     "acknowledge": "Spremio/la sam podatke o oporavku novčanika i razumijem da je brisanje trajno."
+  },
+  "miniApps": {
+    "badge": {
+      "verified": "Verificirano",
+      "unreviewed": "Neprovjereno",
+      "dev": "Pregled razvojne verzije"
+    },
+    "host": {
+      "close": "Zatvori aplikaciju",
+      "backToStore": "Natrag na Aplikacije",
+      "notFound": "Ova aplikacija nije dostupna u DeHub App Store-u, ili je uklonjena.",
+      "badUrl": "Ova adresa ne može biti otvorena kao mini aplikacija. Mora početi s `https://`, ili morati biti lokalna adresa u razvojnom načinu.",
+      "readyTimeout": "Ova aplikacija nikad nije pozvala `dehub.ready()`, pa je ekran pojava skrio nakon 8 sekundi."
+    },
+    "signIn": {
+      "title": "Prijavi se na {{name}}?",
+      "body": "Ova aplikacija će dobiti vašu DeHub novčanu adresu i token za prijavu koji važi samo za ovu aplikaciju. Neće imati pristup vašem novčaniku, vašim sredstvima ili vašem DeHub računu.",
+      "cancel": "Ne sad",
+      "confirm": "Prijavi se"
+    },
+    "store": {
+      "title": "Aplikacije",
+      "intro": "Mini aplikacije koje su izgrađene za DeHub od strane bilo tko. Otvaraju se unutar DeHub-a, već ste prijavljeni, i svaka aplikacija prikazuje svoju stvarnu web adresu.",
+      "buildCta": "Izgradi aplikaciju",
+      "emptyTitle": "Nema aplikacija na popisu još.",
+      "emptyBody": "Prve aplikacije su u provjeri. Izgradi jednu i možda će se pojaviti ovdje."
+    }
   }
 }

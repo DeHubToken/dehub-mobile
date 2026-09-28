@@ -8339,5 +8339,32 @@
     "back": "Zurück zu den Einstellungen",
     "signIn": "Melden Sie sich bei Ihrem Konto an",
     "acknowledge": "Ich habe meine Daten zur Wiederherstellung der Brieftasche gespeichert und verstehe, dass die Löschung dauerhaft ist."
+  },
+  "miniApps": {
+    "badge": {
+      "verified": "Verifiziert",
+      "unreviewed": "Ungeprüft",
+      "dev": "Entwickler-Vorschau"
+    },
+    "host": {
+      "close": "App schließen",
+      "backToStore": "Zurück zu Apps",
+      "notFound": "Diese App ist nicht im DeHub App Store verfügbar oder wurde entfernt.",
+      "badUrl": "Diese Adresse kann nicht als Mini-App geöffnet werden. Sie muss mit **https://** beginnen oder eine localhost-Adresse in der Entwicklermodus sein.",
+      "readyTimeout": "Diese App hat nie **dehub.ready()** aufgerufen, daher wurde der Splash-Screen nach 8 Sekunden versteckt."
+    },
+    "signIn": {
+      "title": "Anmelden bei {{name}}?",
+      "body": "Diese App wird deine DeHub-Wallet-Adresse und einen Anmeldetoken abrufen, der nur für diese App gilt. Sie erhält keinen Zugriff auf dein Wallet, deine Mittel oder dein DeHub-Konto.",
+      "cancel": "Nicht jetzt",
+      "confirm": "Anmelden"
+    },
+    "store": {
+      "title": "Apps",
+      "intro": "Mini-Apps, die für DeHub von jedem erstellt werden. Sie öffnen sich innerhalb von DeHub, du bist bereits angemeldet, und jede App zeigt ihre echte Webadresse an.",
+      "buildCta": "Eine App erstellen",
+      "emptyTitle": "Keine Apps aufgelistet",
+      "emptyBody": "Die ersten Apps werden geprüft. Erstelle eine und sie könnte hier erscheinen."
+    }
   }
 }

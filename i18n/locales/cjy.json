@@ -8383,5 +8383,32 @@
     "back": "返回设置",
     "signIn": "登录以删除您的账户",
     "acknowledge": "我已保存钱包恢复详情，并且了解删除是永久性的。"
+  },
+  "miniApps": {
+    "badge": {
+      "verified": "验证通过",
+      "unreviewed": "未经审核",
+      "dev": "开发者预览"
+    },
+    "host": {
+      "close": "关闭应用",
+      "backToStore": "回到应用程序",
+      "notFound": "这个应用程序不在 DeHub 应用商店中，或者已经被移除。",
+      "badUrl": "该地址无法作为小程序打开。必须以 `https://` 开头，或者在开发者模式下为本地地址。",
+      "readyTimeout": "这个应用从未调用 `dehub.ready()`，因此启动画面在 8 秒后被隐藏。"
+    },
+    "signIn": {
+      "title": "登录 {{name}}？",
+      "body": "这个应用将获取您的 DeHub 钱包地址和仅限此应用使用的登录令牌。它不会访问您的钱包、资金或 DeHub 账户。",
+      "cancel": "现在不行",
+      "confirm": "请登录"
+    },
+    "store": {
+      "title": "应用程序",
+      "intro": "由任何人为 DeHub 开发的小程序。它们在 DeHub 内打开，你已经自动登录，每个应用都会显示其真实的网址。",
+      "buildCta": "建立一个应用程序",
+      "emptyTitle": "没有应用程序列表可供显示",
+      "emptyBody": "第一批应用正在审核中。你也可以建一个，或许它很快就会出现。"
+    }
   }
 }

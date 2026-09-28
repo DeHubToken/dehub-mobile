@@ -8340,5 +8340,32 @@
     "back": "Pada si Eto",
     "signIn": "Wọle lati paarẹ akọọlẹ rẹ",
     "acknowledge": "Mo ti fi àwọn kúlẹ̀kúlẹ̀ ìmúpadàbọ̀sípò àpamọ́wọ́ mi pamọ́, mo sì lóye pé píparẹ́ jẹ́ ohun tí ó wà pẹ́ títí."
+  },
+  "miniApps": {
+    "badge": {
+      "verified": "Ti jẹrisi",
+      "unreviewed": "A kò ṣe àyẹ̀wò rẹ̀",
+      "dev": "Awotẹlẹ Olùgbéejáde"
+    },
+    "host": {
+      "close": "Sún APP",
+      "backToStore": "Pada si Awọn ohun elo",
+      "notFound": "Ohun-èlò yìí kò sí nínú ilé-ìtajà ohun-èlò DeHub, tàbí wọ́n ti mú un kúrò.",
+      "badUrl": "Àdírẹ̀sì yẹn kò lè ṣí gẹ́gẹ́ bí ohun èlò kékeré. Ó gbọ́dọ̀ bẹ̀rẹ̀ pẹ̀lú https://, tàbí kí ó jẹ́ àdírẹ́sì àlejò àdúgbò ní ipò olùdásílẹ̀.",
+      "readyTimeout": "Ohun-èlò yìí kò pè nídehub.ready (), nítorí náà a fi mànàárà pamọ́ lẹ́yìn ìṣẹ́jú-aaya 8."
+    },
+    "signIn": {
+      "title": "Wọlé sí {{name}}?",
+      "body": "Ohun-èlò yìí yóò gba àdírẹ́sì apamọwọ DeHub rẹ àti àmì ìforúkọsílẹ̀ tí ó kàn ń ṣiṣẹ́ fún ohun-èlò yìí. Kò ní wọlé sí àpamọ́ rẹ, owó rẹ tàbí àkọsílẹ̀ DeHub rẹ.",
+      "cancel": "Kò sí ní ìsinsin yìí",
+      "confirm": "Wọlé"
+    },
+    "store": {
+      "title": "Àwọn ohun-èlò",
+      "intro": "Àwọn ohun-èlò kéékèèké tí ẹnikẹ́ni kọ́ fún DeHub. Wọ́n ṣí inú DeHub, o ti wọlé tẹ́lẹ̀, gbogbo ohun èlò sì ń fi àdírẹ́sì ayélujára gidi hàn.",
+      "buildCta": "Kọ ohun elo kan",
+      "emptyTitle": "Ko si awọn ohun elo ti a ṣe akojọ sibẹ",
+      "emptyBody": "Àwọn ohun èlò àkọ́kọ́ wà nínú àtúnyẹ̀wò. Kọ́ ọ̀kan ó sì lè wà níbí."
+    }
   }
 }

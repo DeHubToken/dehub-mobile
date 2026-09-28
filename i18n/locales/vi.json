@@ -8427,5 +8427,32 @@
     "back": "Quay lại Cài đặt",
     "signIn": "ĐĂNG NHẬP VÀO TÀI KHOẢN CỦA BẠN",
     "acknowledge": "Tôi đã lưu chi tiết khôi phục ví của mình và hiểu rằng việc xóa là vĩnh viễn."
+  },
+  "miniApps": {
+    "badge": {
+      "verified": "Xác minh",
+      "unreviewed": "Chưa được đánh giá",
+      "dev": "Phiên bản thử nghiệm dành cho nhà phát triển"
+    },
+    "host": {
+      "close": "Đóng ứng dụng",
+      "backToStore": "Quay lại Ứng dụng",
+      "notFound": "Ứng dụng này không có trong DeHub App Store, hoặc đã bị gỡ bỏ.",
+      "badUrl": "Địa chỉ này không thể mở được dưới dạng mini ứng dụng. Nó phải bắt đầu bằng `https://`, hoặc là địa chỉ localhost trong chế độ phát triển.",
+      "readyTimeout": "Ứng dụng này chưa gọi `dehub.ready()`, vì vậy màn hình loading đã bị ẩn sau 8 giây."
+    },
+    "signIn": {
+      "title": "Đăng nhập vào {{name}}?",
+      "body": "Ứng dụng này sẽ lấy địa chỉ ví DeHub của bạn và một mã token đăng nhập chỉ hoạt động cho ứng dụng này. Nó sẽ không lấy quyền truy cập vào ví, tài sản hoặc tài khoản DeHub của bạn.",
+      "cancel": "Không bây giờ",
+      "confirm": "Đăng nhập"
+    },
+    "store": {
+      "title": "Ứng dụng",
+      "intro": "Mini ứng dụng được xây dựng cho DeHub bởi bất kỳ ai. Chúng mở trong DeHub, bạn đã đăng nhập, và mỗi ứng dụng hiển thị địa chỉ web thực của nó.",
+      "buildCta": "Xây dựng ứng dụng",
+      "emptyTitle": "Không có ứng dụng nào được liệt kê hiện tại",
+      "emptyBody": "Các ứng dụng đầu tiên đang trong quá trình đánh giá. Xây dựng một ứng dụng và nó có thể xuất hiện ở đây."
+    }
   }
 }

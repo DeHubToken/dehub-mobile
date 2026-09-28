@@ -8393,5 +8393,32 @@
     "back": "Sozlamalarga qaytish",
     "signIn": "Hisobingizni o&#39;chirish uchun tizimga kiring",
     "acknowledge": "Men hamyonimni tiklash ma&#39;lumotlarini saqladim va o&#39;chirish doimiy ekanligini tushunaman."
+  },
+  "miniApps": {
+    "badge": {
+      "verified": "Tasdiqlangan",
+      "unreviewed": "Ko&#39;rib chiqilmagan",
+      "dev": "Dasturchi uchun oldindan ko&#39;rish"
+    },
+    "host": {
+      "close": "Yoping uzatishni tugatish",
+      "backToStore": "Ilovalarga qaytish",
+      "notFound": "Bu ilova DeHub App Store’da yo‘q yoki olib tashlangan.",
+      "badUrl": "Bu manzilni mini-ilova sifatida ochib bo&#39;lmaydi. U https:// bilan boshlanishi yoki dasturchi rejimida localhost manzili bo&#39;lishi kerak.",
+      "readyTimeout": "Bu ilova hech qachon dehub.ready() ni chaqirmagan, shuning uchun ekran 8 soniyadan keyin yashirilgan."
+    },
+    "signIn": {
+      "title": "{{name}} ga kirish?",
+      "body": "Ushbu ilova sizning DeHub hamyoningiz manzilini va faqat ushbu ilova uchun ishlaydigan kirish tokenini oladi. U hamyoningizga, mablag&#39;laringizga yoki DeHub hisobingizga kira olmaydi.",
+      "cancel": "Hozir emas",
+      "confirm": "tizimga kirish"
+    },
+    "store": {
+      "title": "Ilovalar",
+      "intro": "DeHub uchun har kim tomonidan yaratilgan mini-ilovalar. Ular DeHub ichida ochiladi, siz allaqachon tizimga kirgansiz va har bir ilova o&#39;zining haqiqiy veb-manzilini ko&#39;rsatadi.",
+      "buildCta": "Ilova yarating",
+      "emptyTitle": "Hali hech qanday ilova ro&#39;yxatda yo&#39;q",
+      "emptyBody": "Birinchi ilovalar ko&#39;rib chiqilmoqda. Bittasini yarating, shunda u shu yerda bo&#39;lishi mumkin."
+    }
   }
 }
