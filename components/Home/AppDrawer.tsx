@@ -181,10 +181,6 @@ const PINNED_KEYS = [
   "nav.messages", "nav.notifications", "nav.bookmarks", "screens.stores", "nav.staking", "nav.profile", "nav.settings",
 ];
 
-// Items that carry a small "Test" badge on the web sidebar (matched by key
-// since labels are now translated).
-const TEST_BADGE_KEYS = new Set(["nav.prompt", "screens.work", "screens.stores"]);
-
 /** What the themes layer hands us; null for system/minimal (dark glass). */
 type SheetSkin = ThemeSkin;
 
@@ -195,7 +191,6 @@ interface TileProps {
   width: number;
   active?: boolean;
   disabled?: boolean;
-  testLabel?: string;
   soonLabel: string;
   skin: SheetSkin | null;
   /** War: glyphs in HUD cyan instead of raster art. */
@@ -204,7 +199,7 @@ interface TileProps {
   onPress: () => void;
 }
 
-const Tile = memo<TileProps>(({ label, icon, iconUrl, width, active, disabled, testLabel, soonLabel, skin, hud, square, onPress }) => {
+const Tile = memo<TileProps>(({ label, icon, iconUrl, width, active, disabled, soonLabel, skin, hud, square, onPress }) => {
   const glyphColor = hud
     ? skin?.glow ?? "#22D3EE"
     : active ? skin?.tabIconActive ?? "#FFFFFF" : skin?.tabIcon ?? "rgba(255,255,255,0.9)";
@@ -238,11 +233,6 @@ const Tile = memo<TileProps>(({ label, icon, iconUrl, width, active, disabled, t
           <Image source={{ uri: iconUrl }} style={styles.tileImage} contentFit="contain" cachePolicy="disk" transition={120} />
         ) : (
           <Icon name={icon} size={30} color={glyphColor} strokeWidth={1.6} />
-        )}
-        {testLabel && (
-          <View style={styles.testBadge}>
-            <Text style={styles.testBadgeText}>{testLabel}</Text>
-          </View>
         )}
       </View>
       <Text
@@ -481,7 +471,6 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
         width={tileWidth}
         active={!!item.screen && item.screen === activeRouteName && !item.params}
         disabled={item.disabled}
-        testLabel={TEST_BADGE_KEYS.has(item.labelKey) ? t("common.test") : undefined}
         soonLabel={t("screens.soon")}
         skin={skin}
         hud={hud}
@@ -887,24 +876,6 @@ const styles = StyleSheet.create({
     color: "#A1A1AA",
     fontSize: 15,
     fontWeight: "500",
-  },
-  testBadge: {
-    position: "absolute",
-    top: -6,
-    alignSelf: "center",
-    paddingHorizontal: 3,
-    height: 12,
-    borderRadius: 3,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "rgba(255, 255, 255, 0.9)",
-  },
-  testBadgeText: {
-    color: "#000000",
-    fontSize: 7,
-    fontWeight: "700",
-    letterSpacing: 0.3,
-    textTransform: "uppercase",
   },
 });
 
