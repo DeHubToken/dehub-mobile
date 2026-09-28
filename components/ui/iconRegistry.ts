@@ -133,6 +133,7 @@ import ImageDownIcon from "lucide-react-native/dist/esm/icons/image-down";
 import ImagePlusIcon from "lucide-react-native/dist/esm/icons/image-plus";
 import ImagesIcon from "lucide-react-native/dist/esm/icons/images";
 import ImportIcon from "lucide-react-native/dist/esm/icons/import";
+import InfinityIcon from "lucide-react-native/dist/esm/icons/infinity";
 import InfoIcon from "lucide-react-native/dist/esm/icons/info";
 import InstagramIcon from "lucide-react-native/dist/esm/icons/instagram";
 import ItalicIcon from "lucide-react-native/dist/esm/icons/italic";
@@ -425,6 +426,7 @@ export const iconRegistry = {
   ImagePlus: ImagePlusIcon,
   Images: ImagesIcon,
   Import: ImportIcon,
+  Infinity: InfinityIcon,
   Info: InfoIcon,
   Instagram: InstagramIcon,
   Italic: ItalicIcon,

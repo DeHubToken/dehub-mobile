@@ -206,6 +206,8 @@ export type AppStackParamList = {
   [ScreenNames.Launchpad]: undefined;
   [ScreenNames.LaunchpadCoin]: { mintId: string };
   [ScreenNames.LaunchpadCreate]: undefined;
+  [ScreenNames.Premium]: undefined;
+  [ScreenNames.Pricing]: undefined;
   [ScreenNames.Affiliate]: undefined;
   /** `requestId` is a notification's deep link into one request, `commentId`
    *  the comment inside it the row was about. */
