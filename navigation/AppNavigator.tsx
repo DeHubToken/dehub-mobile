@@ -101,6 +101,9 @@ function AppNavigatorContent() {
 
       <Stack.Group>
         <Stack.Screen name={ScreenNames.Creator} getComponent={() => require('../screens/CreatorScreen').default} />
+        {/* A shared flow is readable signed-out; your flows and copying sign in. */}
+        <Stack.Screen name={ScreenNames.CreatorFlow} getComponent={() => require('../screens/CreatorFlowScreen').default} />
+        <Stack.Screen name={ScreenNames.CreatorFlowView} getComponent={() => require('../screens/CreatorFlowViewScreen').default} />
         {/* No swipe-back: a horizontal drag on the page moves the selected layer. */}
         <Stack.Screen name={ScreenNames.MediaEditor} getComponent={() => require('../screens/MediaEditorScreen').default} options={{ gestureEnabled: false }} />
         <Stack.Screen
