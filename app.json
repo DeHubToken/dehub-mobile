@@ -192,6 +192,11 @@
               "scheme": "https",
               "host": "dehub.io",
               "path": "/pricing"
+            },
+            {
+              "scheme": "https",
+              "host": "dehub.io",
+              "path": "/raffle"
             }
           ],
           "category": [

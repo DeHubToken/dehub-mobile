@@ -173,6 +173,9 @@ export const DeepLinkPaths = {
   // onto. `?handle=` on a shared listing link seeds the search box.
   ACCOUNTS: 'accounts',
 
+  // Prize draws — dehub.io/raffle, where the retired prize-draw sites redirect.
+  RAFFLE: 'raffle',
+
   // Cinema — dehub.io/cinema is the search, /cinema/film/:id and
   // /cinema/series/:id one title. Both optional segments land on one screen,
   // as they do on web.
@@ -333,6 +336,8 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
           [ScreenNames.Usernames]: DeepLinkPaths.USERNAMES,
 
           [ScreenNames.Accounts]: DeepLinkPaths.ACCOUNTS,
+
+          [ScreenNames.Raffle]: DeepLinkPaths.RAFFLE,
 
           [ScreenNames.Cinema]: {
             path: DeepLinkPaths.CINEMA,
@@ -684,6 +689,8 @@ export const ShareLinks = {
   /** One film or series — dehub.io/cinema/film/:id or /cinema/series/:id */
   film: (objectType: 'movie' | 'show', id: string | number) =>
     `${SHARE_BASE}/cinema/${objectType === 'show' ? 'series' : 'film'}/${encodeURIComponent(String(id))}`,
+  /** Prize draws — dehub.io/raffle */
+  raffle: () => `${SHARE_BASE}/raffle`,
   /** Arcade grid — dehub.io/arcade */
   arcade: () => `${SHARE_BASE}/arcade`,
   /** One game — dehub.io/arcade/:slug */
@@ -799,6 +806,11 @@ export const parseDeepLink = (url: string): { type: string; params: Record<strin
       return pathParts[2]
         ? { type: 'film', params: { filmType: pathParts[1], filmId: pathParts[2], ...qp } }
         : { type: 'cinema', params: qp };
+    }
+
+    // /raffle — prize draws
+    if (pathParts[0] === 'raffle' && pathParts.length === 1) {
+      return { type: 'raffle', params: qp };
     }
 
     // Legacy: /stream/:videoId
