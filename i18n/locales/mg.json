@@ -5148,8 +5148,9 @@
     "tokenPrice": "{{amount}} famantarana",
     "tokensUnit": "famantarana",
     "atPreListingRate": "{{amount}} tamin'ny taha nisian'ny lisitra",
-    "custodyNote": "Mijanona ao amin'ny fitantanan'ny DeHub ny famantaranao ary tsy amidy. Ny mpamorona dia mahazo fifandanjana famandrihana mitentina USDT.",
-    "creatorReceives": "Mahazo kredy {{amount}} USDT ny mpamorona"
+    "paidToCreatorWallet": "Mandeha mivantana any amin'ny kitapom-bolan'ny mpamorona",
+    "creatorPaidDirectNote": "Mivantana avy hatrany any amin'ny kitapon'izy ireo ny fizarana ny mpamorona raha vao misoratra anarana ianao. Ny tranonkala DeHub dia manana rindran-damina kely.",
+    "creatorEarnsDirect": "Ny mpandraharaha mandoa ao DeHub famantarana. Ny anjara tany ao amin'ny kitapom-batsy ny fotoana izy ireo misoratra anarana, tsy ny sehatra saran'ny noho ny badge Tier."
   },
   "live": {
     "notSet": "Tsy voafaritra",
@@ -5413,17 +5414,10 @@
     "staked": "Nampiasaina staking",
     "gotIt": "Azoko",
     "otherBalancesNote": "Ao amin'ny {{network}} (rojo {{chainId}}) ihany ny volanao hafa. {{gas}} no volanao ho an'ny gas. Mety hisy fahatarana segondra vitsy ny sanda. Alefaso any amin'ny {{network}} ny fananana raha te hampiasa azy eto.",
-    "subscriptionEarnings": "Vola azo amin'ny fisoratana anarana",
-    "cashOut": "Esory ny vola",
-    "withdrawing": "Manesotra…",
-    "withdrawableSoon": "Ho azo esorina tsy ho ela ny sara fisoratana anarana",
     "dpayBaseOnly": "Ao amin'ny Base ihany no misy Dpay.",
     "tokensAndStocks": "Tombontsoa sy tahiry",
     "dhbPositionNote": "Ity no toerana famantaranao manontolo — voatazona sy napetraka, manerana ny Base sy BNB Chain. Ny ankamaroany dia matetika napetraka, ka lehibe kokoa noho izay azonao ampiasaina amin'izao fotoana izao izany.",
-    "stakedIncludesUnstaking": "Ny famantarana napetraka dia ahitana izay nangatahinao hofoanana fa mbola tsy raisinao akory.",
-    "usdtSent": "Nalefa {{amount}} USDT",
-    "withdrawableOnBase": "Azo esorina ao amin'ny Base",
-    "pendingTreasury": "Amin'ny USDT · miandry ny tahiry"
+    "stakedIncludesUnstaking": "Ny famantarana napetraka dia ahitana izay nangatahinao hofoanana fa mbola tsy raisinao akory."
   },
   "feedCard": {
     "reactionTip": "Tazony ny bokotra tia raha hahazo fihetsika fanampiny",

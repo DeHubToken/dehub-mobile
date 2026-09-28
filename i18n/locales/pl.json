@@ -5125,8 +5125,9 @@
     "tokenPrice": "{{amount}} tokenów",
     "tokensUnit": "tokenów",
     "atPreListingRate": "{{amount}} w stosunku do stawki obowiązującej przed opublikowaniem oferty",
-    "custodyNote": "Twoje tokeny pozostają pod opieką skarbu DeHub i nie są sprzedawane. Twórca otrzymuje saldo subskrypcji denominowane w USDT.",
-    "creatorReceives": "Twórca otrzymuje {{amount}} USDT kredytu"
+    "paidToCreatorWallet": "Przechodzi bezpośrednio do portfela twórcy",
+    "creatorPaidDirectNote": "Udział twórcy trafia bezpośrednio do jego portfela w momencie subskrypcji. DeHub zachowuje niewielką opłatę za platformę.",
+    "creatorEarnsDirect": "Abonenci płacą w tokenach DeHub. Twój udział pojawi się w portfelu w momencie subskrypcji, pomniejszony o opłatę platformową za próg odznaki."
   },
   "live": {
     "notSet": "Nie ustawiono",
@@ -5390,17 +5391,10 @@
     "staked": "W stakingu",
     "gotIt": "Rozumiem",
     "otherBalancesNote": "Twoje pozostałe salda są tylko w sieci {{network}} (łańcuch {{chainId}}). {{gas}} to saldo na opłaty. Wartości mogą być opóźnione o kilka sekund. Przenieś aktywa do {{network}}, aby ich tu użyć.",
-    "subscriptionEarnings": "Przychody z subskrypcji",
-    "cashOut": "Wypłać",
-    "withdrawing": "Wypłacanie…",
-    "withdrawableSoon": "Opłaty subskrypcyjne wkrótce będzie można wypłacić",
     "dpayBaseOnly": "Dpay jest dostępny tylko na Base.",
     "tokensAndStocks": "Tokeny i akcje",
     "dhbPositionNote": "To jest Twoja cała pozycja tokenów — posiadane plus postawione, na Base i BNB Chain. Większość z nich jest zazwyczaj postawiona, więc jest to więcej niż możesz teraz wydać.",
-    "stakedIncludesUnstaking": "Postawione tokeny obejmują wszystko, co poprosiłeś o wycofanie, ale jeszcze nie otrzymałeś z powrotem.",
-    "usdtSent": "Wysłano {{amount}} USDT",
-    "withdrawableOnBase": "Dostępne do wypłaty na Base",
-    "pendingTreasury": "W USDT · oczekuje na rezerwę skarbca"
+    "stakedIncludesUnstaking": "Postawione tokeny obejmują wszystko, co poprosiłeś o wycofanie, ale jeszcze nie otrzymałeś z powrotem."
   },
   "feedCard": {
     "reactionTip": "Przytrzymaj przycisk Lubię to, aby zobaczyć więcej reakcji",

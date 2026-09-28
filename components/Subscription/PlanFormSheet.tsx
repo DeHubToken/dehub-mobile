@@ -366,6 +366,9 @@ const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
                 </Text>
               </View>
             </View>
+            <Text className="text-theme-neutrals-500 text-xs mt-1.5">
+              {t("subscriptions.creatorEarnsDirect")}
+            </Text>
             {!existingIsUsdPriced && (
               <Text className="text-theme-neutrals-500 text-xs mt-1.5">
                 {t("subscriptions.legacyMigrationNote")}

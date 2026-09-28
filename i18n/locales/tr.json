@@ -5174,8 +5174,9 @@
     "tokenPrice": "{{amount}} jeton",
     "tokensUnit": "jetonlar",
     "atPreListingRate": "Ön kayıt ücretinde {{amount}}",
-    "custodyNote": "Jetonlarınız DeHub hazine emanetinde kalır ve satılmaz. Oluşturucu, USDT cinsinden bir abonelik bakiyesi alır.",
-    "creatorReceives": "Oluşturan {{amount}} USDT kredi alır"
+    "paidToCreatorWallet": "Doğrudan yaratıcının cüzdanına gider",
+    "creatorPaidDirectNote": "Abone olduğun anda yaratıcının payı doğrudan cüzdanına gider. DeHub küçük bir platform ücreti alır.",
+    "creatorEarnsDirect": "Aboneler DeHub tokenleri ile ödeme yapar. Payınız, abone oldukları anda cüzdanınıza düşer ve rozet seviyenizin platform ücreti düşülür."
   },
   "live": {
     "notSet": "Ayarlanmadı",
@@ -5439,17 +5440,10 @@
     "staked": "Stake edilmiş",
     "gotIt": "Anladım",
     "otherBalancesNote": "Diğer bakiyeleriniz yalnızca {{network}} üzerinde ({{chainId}} zinciri). {{gas}} gas bakiyenizdir. Değerler birkaç saniye gecikebilir. Burada kullanmak için varlıkları {{network}} ağına aktarın.",
-    "subscriptionEarnings": "Abonelik kazançları",
-    "cashOut": "Paraya çevir",
-    "withdrawing": "Çekiliyor…",
-    "withdrawableSoon": "Abonelik ücretleri yakında çekilebilir olacak",
     "dpayBaseOnly": "Dpay yalnızca Base üzerinde kullanılabilir.",
     "tokensAndStocks": "Tokenlar ve hisse senetleri",
     "dhbPositionNote": "Bu, Base ve BNB Chain genelindeki toplam jeton pozisyonunuzdur — tutulan artı stake edilmiş. Çoğu genellikle stake edilmiş durumdadır, bu nedenle bu, şu anda harcayabileceğinizden daha büyüktür.",
-    "stakedIncludesUnstaking": "Stake edilmiş jetonlar, geri çekilmesini istediğiniz ancak henüz geri almadığınız her şeyi içerir.",
-    "usdtSent": "{{amount}} USDT gönderildi",
-    "withdrawableOnBase": "Base üzerinde çekilebilir",
-    "pendingTreasury": "USDT cinsinden · hazine rezervi bekleniyor"
+    "stakedIncludesUnstaking": "Stake edilmiş jetonlar, geri çekilmesini istediğiniz ancak henüz geri almadığınız her şeyi içerir."
   },
   "feedCard": {
     "reactionTip": "Daha fazla tepki için beğen düğmesini basılı tutun",

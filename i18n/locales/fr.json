@@ -5178,8 +5178,9 @@
     "tokenPrice": "{{amount}} jetons",
     "tokensUnit": "jetons",
     "atPreListingRate": "{{amount}} au tarif de pré-commercialisation",
-    "custodyNote": "Vos jetons restent sous la garde du trésor DeHub et ne sont pas vendus. Le créateur reçoit un solde d'abonnement libellé en USDT.",
-    "creatorReceives": "Le créateur reçoit {{amount}} USDT de crédit"
+    "paidToCreatorWallet": "Va directement au portefeuille du créateur",
+    "creatorPaidDirectNote": "La part du créateur revient directement à son portefeuille au moment où vous vous abonnez. DeHub conserve des frais de plateforme minimes.",
+    "creatorEarnsDirect": "Les abonnés paient en jetons DeHub. Votre part atterrit dans votre portefeuille au moment où ils s'abonnent, moins les frais de plateforme pour votre niveau de badge."
   },
   "live": {
     "notSet": "Non défini",
@@ -5443,17 +5444,10 @@
     "staked": "En staking",
     "gotIt": "Compris",
     "otherBalancesNote": "Vos autres soldes sont uniquement sur {{network}} (chaîne {{chainId}}). {{gas}} est votre solde de gas. Les valeurs peuvent accuser quelques secondes de retard. Transférez vos actifs vers {{network}} pour les utiliser ici.",
-    "subscriptionEarnings": "Revenus d'abonnement",
-    "cashOut": "Retirer",
-    "withdrawing": "Retrait en cours…",
-    "withdrawableSoon": "Les frais d'abonnement seront bientôt retirables",
     "dpayBaseOnly": "Dpay n'est disponible que sur Base.",
     "tokensAndStocks": "Tokens et actions",
     "dhbPositionNote": "Ceci est votre position totale en jetons — détenus plus mis en jeu, sur Base et BNB Chain. La plupart est généralement mise en jeu, donc c'est plus que ce que vous pouvez dépenser actuellement.",
-    "stakedIncludesUnstaking": "Les jetons mis en jeu incluent tout ce que vous avez demandé de retirer mais que vous n'avez pas encore reçu.",
-    "usdtSent": "{{amount}} USDT envoyés",
-    "withdrawableOnBase": "Disponible au retrait sur Base",
-    "pendingTreasury": "Libellé en USDT · en attente de la réserve de trésorerie"
+    "stakedIncludesUnstaking": "Les jetons mis en jeu incluent tout ce que vous avez demandé de retirer mais que vous n'avez pas encore reçu."
   },
   "feedCard": {
     "reactionTip": "Maintenez le bouton J'aime pour plus de réactions",

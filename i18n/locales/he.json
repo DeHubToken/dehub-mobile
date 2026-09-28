@@ -5129,8 +5129,9 @@
     "tokenPrice": "{{amount}} אסימונים",
     "tokensUnit": "אסימונים",
     "atPreListingRate": "{{amount}} בתעריף הרישום מראש",
-    "custodyNote": "האסימונים שלך נשארים בחזקת אוצר DeHub ואינם נמכרים. היוצר מקבל יתרת מנוי בדולר ארה\"ב.",
-    "creatorReceives": "היוצר מקבל זיכוי של {{amount}} USDT"
+    "paidToCreatorWallet": "הולך ישר לארנק של היוצר",
+    "creatorPaidDirectNote": "החלק של היוצר הולך ישר לארנק שלו ברגע שאתם נרשמים. DeHub שומר עמלה קטנה על הפלטפורמה.",
+    "creatorEarnsDirect": "מנויים משלמים באסימוני DeHub. החלק שלכם מגיע לארנק ברגע שהם נרשמים, בניכוי עמלת הפלטפורמה עבור רמת התג שלכם."
   },
   "live": {
     "notSet": "לא הוגדר",
@@ -5394,17 +5395,10 @@
     "staked": "בהפקדה",
     "gotIt": "הבנתי",
     "otherBalancesNote": "היתרות האחרות שלך נמצאות רק ב-{{network}} (רשת {{chainId}}). {{gas}} היא יתרת העמלות שלך. הערכים עשויים להתעדכן בפיגור של כמה שניות. העבירו נכסים אל {{network}} כדי להשתמש בהם כאן.",
-    "subscriptionEarnings": "הכנסות ממנויים",
-    "cashOut": "משיכה",
-    "withdrawing": "מושך…",
-    "withdrawableSoon": "דמי המנוי יהיו זמינים למשיכה בקרוב",
     "dpayBaseOnly": "Dpay זמין רק ב-Base.",
     "tokensAndStocks": "אסימונים ומניות",
     "dhbPositionNote": "זהו כל מצב האסימונים שלך — מוחזק בתוספת מושקע, על פני Base ו-BNB Chain. רובם מושקעים בדרך כלל, כך שזה גדול ממה שאתה יכול להוציא כרגע.",
-    "stakedIncludesUnstaking": "אסימונים מושקעים כוללים כל דבר שביקשת להוציא אך עדיין לא קיבלת בחזרה.",
-    "usdtSent": "נשלחו {{amount}} USDT",
-    "withdrawableOnBase": "זמין למשיכה ב-Base",
-    "pendingTreasury": "נקוב ב-USDT · ממתין לרזרבת האוצר"
+    "stakedIncludesUnstaking": "אסימונים מושקעים כוללים כל דבר שביקשת להוציא אך עדיין לא קיבלת בחזרה."
   },
   "feedCard": {
     "reactionTip": "לחצו לחיצה ארוכה על כפתור הלייק לתגובות נוספות",

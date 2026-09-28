@@ -5125,8 +5125,9 @@
     "tokenPrice": "{{amount}} توكنز",
     "tokensUnit": "توكنز",
     "atPreListingRate": "{{amount}} عند سعر ما قبل القوائم",
-    "custodyNote": "توكنزك بتفضل في عهدة خزينة DeHub ومش بتتباع. المبدع بيستلم رصيد اشتراك بالدولار الأمريكي.",
-    "creatorReceives": "المنشئ بياخد رصيد {{amount}} USDT"
+    "paidToCreatorWallet": "يروح مباشرةً لمحفظة المُبدع",
+    "creatorPaidDirectNote": "حق المبدع يروح على طول لمحفظته أول ما تشترك. ديهاب ياخذ نسبة بسيطة رسوم للمنصة.",
+    "creatorEarnsDirect": "المشتركون يدفعون برموز DeHub. حصتك توصل لمحفظتك لحظة اشتراكهم، بعد خصم رسوم المنصة حسب مستوى شارتك."
   },
   "live": {
     "notSet": "مش محدد",
@@ -5390,17 +5391,10 @@
     "staked": "مركون",
     "gotIt": "فهمت",
     "otherBalancesNote": "باقي أرصدتك على {{network}} (تشين {{chainId}}) بس. {{gas}} هو رصيد الغاز مالتك. القيم تتأخر ثواني. سوّي جسر أو حوّل الأصول لـ {{network}} حتى تستخدمها هنا.",
-    "subscriptionEarnings": "أرباح الاشتراكات",
-    "cashOut": "اسحب",
-    "withdrawing": "يجري السحب…",
-    "withdrawableSoon": "رسوم الاشتراكات راح تنسحب قريباً",
     "dpayBaseOnly": "Dpay متاح بس على Base.",
     "tokensAndStocks": "رموز وأسهم",
     "dhbPositionNote": "دا كل مركز التوكنز بتاعك — محتفظ بيه مع الستايك، عبر Base و BNB Chain. معظمها بيكون معمول له ستايك، عشان كدا دا أكبر من اللي تقدر تصرفه حالياً.",
-    "stakedIncludesUnstaking": "التوكنز اللي معمول لها ستايك تشمل أي حاجة طلبت تشيلها من الستايك بس لسه ما استلمتهاش.",
-    "usdtSent": "انرسل {{amount}} USDT",
-    "withdrawableOnBase": "متاح للسحب على Base",
-    "pendingTreasury": "مقوّم بالـ USDT · بانتظار احتياطي الخزينة"
+    "stakedIncludesUnstaking": "التوكنز اللي معمول لها ستايك تشمل أي حاجة طلبت تشيلها من الستايك بس لسه ما استلمتهاش."
   },
   "feedCard": {
     "reactionTip": "اضغط مطوّل على زر الإعجاب عشان تشوف تفاعلات أكثر",

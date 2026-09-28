@@ -5315,8 +5315,9 @@
     "tokenPrice": "{{amount}} tokens",
     "tokensUnit": "tokens",
     "atPreListingRate": "{{amount}} tegen de pre-listing rate",
-    "custodyNote": "Uw tokens blijven in de kluis van DeHub en worden niet verkocht. De maker ontvangt een op USDT gebaseerd abonnementsaldo.",
-    "creatorReceives": "De maker ontvangt {{amount}} USDT tegoed"
+    "paidToCreatorWallet": "Gaat rechtstreeks naar de portemonnee van de maker",
+    "creatorPaidDirectNote": "Het aandeel van de maker gaat direct naar zijn/haar portemonnee op het moment dat je je abonneert. DeHub houdt een kleine platformvergoeding in.",
+    "creatorEarnsDirect": "Abonnees betalen in DeHub-tokens. Je aandeel komt in je portemonnee terecht op het moment dat ze zich abonneren, minus de platformkosten voor je badge-niveau."
   },
   "live": {
     "notSet": "Niet ingesteld",
@@ -5580,17 +5581,10 @@
     "staked": "Gestaket",
     "gotIt": "Begrepen",
     "otherBalancesNote": "Je andere saldi staan alleen op {{network}} (chain {{chainId}}). {{gas}} is je gassaldo. Waarden kunnen enkele seconden achterlopen. Bridge of verstuur assets naar {{network}} om ze hier te gebruiken.",
-    "subscriptionEarnings": "Abonnementsinkomsten",
-    "cashOut": "Uitbetalen",
-    "withdrawing": "Bezig met opnemen…",
-    "withdrawableSoon": "Abonnementskosten kunnen binnenkort worden opgenomen",
     "dpayBaseOnly": "Dpay is alleen beschikbaar op Base.",
     "tokensAndStocks": "Tokens & aandelen",
     "dhbPositionNote": "Dit is je volledige tokenpositie — vastgehouden plus gestaked, op Base en BNB Chain. Het meeste is meestal gestaked, dus dit is groter dan wat je nu kunt uitgeven.",
-    "stakedIncludesUnstaking": "Gestakede tokens omvatten alles wat je hebt gevraagd om te ontstake maar nog niet hebt terugontvangen.",
-    "usdtSent": "{{amount}} USDT verzonden",
-    "withdrawableOnBase": "Beschikbaar om op te nemen via Base",
-    "pendingTreasury": "In USDT · wacht op treasuryreserve"
+    "stakedIncludesUnstaking": "Gestakede tokens omvatten alles wat je hebt gevraagd om te ontstake maar nog niet hebt terugontvangen."
   },
   "feedCard": {
     "reactionTip": "Houd de vind-ik-leuk-knop ingedrukt voor meer reacties",

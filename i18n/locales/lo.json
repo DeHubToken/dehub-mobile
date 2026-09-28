@@ -5096,8 +5096,9 @@
     "tokenPrice": "{{amount}} ໂຕເຄັນ",
     "tokensUnit": "ໂຕເຄັນ",
     "atPreListingRate": "{{amount}} ໃນອັດຕາການລົງທະບຽນກ່ອນ ຫນ້າ ນີ້",
-    "custodyNote": "ໂຕເຄັນຂອງທ່ານຍັງຄົງຢູ່ໃນການຄຸ້ມຄອງຂອງ DeHub treasury ແລະບໍ່ໄດ້ຂາຍ. ຜູ້ສ້າງໄດ້ຮັບຍອດສະໝັກສະມາຊິກທີ່ສະແດງເປັນ USDT.",
-    "creatorReceives": "ຜູ້ສ້າງໄດ້ຮັບເຄຣດິດ {{amount}} USDT"
+    "paidToCreatorWallet": "ໄປໂດຍກົງກັບກະເປົາເງິນຂອງຜູ້ສ້າງ",
+    "creatorPaidDirectNote": "ສ່ວນແບ່ງຂອງຜູ້ສ້າງຈະໄປຫາກະເປົາເງິນຂອງພວກເຂົາທັນທີທີ່ທ່ານລົງທະບຽນ. DeHub ຮັກສາຄ່າ ທໍາ ນຽມເວທີຂະ ຫນາດ ນ້ອຍ.",
+    "creatorEarnsDirect": "ຜູ້ສະມາຊິກຈ່າຍເປັນໂທເຄັນ DeHub. ສ່ວນແບ່ງຂອງທ່ານເຂົ້າກະເປົາເງິນຂອງທ່ານທັນທີທີ່ເຂົາເຈົ້າສະໝັກ, ຫັກຄ່າທຳນຽມແພລດຟອມຕາມລະດັບປ້າຍຂອງທ່ານ."
   },
   "live": {
     "notSet": "ຍັງບໍ່ໄດ້ຕັ້ງ",
@@ -5360,17 +5361,10 @@
     "staked": "ສະເຕັກ",
     "gotIt": "ເຂົ້າໃຈແລ້ວ",
     "otherBalancesNote": "ຍອດເງິນອື່ນຂອງທ່ານຢູ່ໃນ {{network}} (ເຄືອຂ່າຍ {{chainId}}) ເທົ່ານັ້ນ. {{gas}} ແມ່ນຍອດຄ່າ gas ຂອງທ່ານ. ຄ່າອາດຊ້າສອງສາມວິນາທີ. ໂອນຊັບສິນໄປ {{network}} ເພື່ອໃຊ້ຢູ່ນີ້.",
-    "subscriptionEarnings": "ລາຍໄດ້ຈາກການສະໝັກ",
-    "cashOut": "ຖອນເງິນ",
-    "withdrawing": "ກຳລັງຖອນ…",
-    "withdrawableSoon": "ຄ່າສະໝັກຈະຖອນໄດ້ໃນໄວໆນີ້",
     "dpayBaseOnly": "Dpay ໃຊ້ໄດ້ສະເພາະໃນ Base ເທົ່ານັ້ນ.",
     "tokensAndStocks": "ໂຕເຄັນ & ຮຸ້ນ",
     "dhbPositionNote": "ນີ້ແມ່ນ ຕຳ ແໜ່ງ token ທັງ ໝົດ ຂອງທ່ານ — ຖື ແລະ stake, ທົ່ວ Base ແລະ BNB Chain. ສ່ວນຫຼາຍແມ່ນ stake, ສະນັ້ນນີ້ໃຫຍ່ກວ່າສິ່ງທີ່ທ່ານສາມາດໃຊ້ໄດ້ໃນຕອນນີ້.",
-    "stakedIncludesUnstaking": "ໂຕເຄັນທີ່ stake ລວມມີສິ່ງໃດກໍຕາມທີ່ທ່ານໄດ້ຮ້ອງຂໍໃຫ້ unstake ແຕ່ຍັງບໍ່ທັນໄດ້ຮັບຄືນ.",
-    "usdtSent": "ສົ່ງ {{amount}} USDT ແລ້ວ",
-    "withdrawableOnBase": "ຖອນໄດ້ຢູ່ Base",
-    "pendingTreasury": "ຄິດເປັນ USDT · ລໍຖ້າທຶນສຳຮອງ"
+    "stakedIncludesUnstaking": "ໂຕເຄັນທີ່ stake ລວມມີສິ່ງໃດກໍຕາມທີ່ທ່ານໄດ້ຮ້ອງຂໍໃຫ້ unstake ແຕ່ຍັງບໍ່ທັນໄດ້ຮັບຄືນ."
   },
   "feedCard": {
     "reactionTip": "ກົດຄ້າງປຸ່ມມັກ ເພື່ອເບິ່ງການຕອບສະໜອງເພີ່ມເຕີມ",

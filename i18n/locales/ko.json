@@ -5178,8 +5178,9 @@
     "tokenPrice": "{{amount}} 개의 토큰",
     "tokensUnit": "토큰",
     "atPreListingRate": "사전 등록 요금으로 {{amount}}",
-    "custodyNote": "귀하의 토큰은 DeHub 재무부에서 보관하며 판매되지 않습니다. 크리에이터는 USDT로 표시된 구독 잔액을 받습니다.",
-    "creatorReceives": "크리에이터는 {{amount}} USDT 크레딧을 받습니다"
+    "paidToCreatorWallet": "크리에이터 지갑으로 바로 이동합니다.",
+    "creatorPaidDirectNote": "구독하는 순간 크리에이터의 몫이 지갑으로 바로 이동합니다. DeHub는 소정의 플랫폼 수수료를 부과합니다.",
+    "creatorEarnsDirect": "구독자는 DeHub 토큰으로 결제합니다. 구독하는 순간 지갑에 공유가 들어오므로 배지 등급에 대한 플랫폼 수수료가 줄어듭니다."
   },
   "live": {
     "notSet": "설정 안 됨",
@@ -5443,17 +5444,10 @@
     "staked": "스테이킹",
     "gotIt": "확인",
     "otherBalancesNote": "다른 잔액은 {{network}}(체인 {{chainId}})에만 있습니다. {{gas}}는 가스 잔액입니다. 값은 몇 초 늦을 수 있습니다. 여기서 쓰려면 자산을 {{network}}로 브릿지하거나 전송하세요.",
-    "subscriptionEarnings": "구독 수익",
-    "cashOut": "출금",
-    "withdrawing": "출금 중…",
-    "withdrawableSoon": "구독료는 곧 출금할 수 있게 됩니다",
     "dpayBaseOnly": "Dpay는 Base에서만 사용할 수 있습니다.",
     "tokensAndStocks": "토큰 및 주식",
     "dhbPositionNote": "이것은 Base 및 BNB 체인에 걸쳐 보유 및 스테이킹된 전체 토큰 포지션입니다. 대부분은 일반적으로 스테이킹되므로 현재 사용할 수 있는 것보다 많습니다.",
-    "stakedIncludesUnstaking": "스테이킹된 토큰에는 언스테이킹을 요청했지만 아직 받지 못한 모든 것이 포함됩니다.",
-    "usdtSent": "{{amount}} USDT 전송 완료",
-    "withdrawableOnBase": "Base에서 출금 가능",
-    "pendingTreasury": "USDT 기준 · 트레저리 준비금 대기 중"
+    "stakedIncludesUnstaking": "스테이킹된 토큰에는 언스테이킹을 요청했지만 아직 받지 못한 모든 것이 포함됩니다."
   },
   "feedCard": {
     "reactionTip": "좋아요 버튼을 길게 누르면 더 많은 반응을 남길 수 있어요",

@@ -5174,8 +5174,9 @@
     "tokenPrice": "{{amount}} token",
     "tokensUnit": "token",
     "atPreListingRate": "{{amount}} alla tariffa di pre-listing",
-    "custodyNote": "I tuoi token rimangono nella custodia del tesoro DeHub e non vengono venduti. Il creatore riceve un saldo di abbonamento denominato in USDT.",
-    "creatorReceives": "Il creator riceve {{amount}} USDT di credito"
+    "paidToCreatorWallet": "Va direttamente al portafoglio del creator",
+    "creatorPaidDirectNote": "La quota del creator va direttamente al suo portafoglio nel momento in cui ti iscrivi. DeHub mantiene una piccola commissione per la piattaforma.",
+    "creatorEarnsDirect": "Gli abbonati pagano in token DeHub. La tua quota arriva nel tuo portafoglio nel momento in cui si iscrivono, meno la commissione della piattaforma per il tuo livello di badge."
   },
   "live": {
     "notSet": "Non impostato",
@@ -5439,17 +5440,10 @@
     "staked": "In staking",
     "gotIt": "Ho capito",
     "otherBalancesNote": "I tuoi altri saldi sono solo su {{network}} (chain {{chainId}}). {{gas}} è il tuo saldo per il gas. I valori possono avere qualche secondo di ritardo. Porta gli asset su {{network}} per usarli qui.",
-    "subscriptionEarnings": "Guadagni da abbonamenti",
-    "cashOut": "Preleva",
-    "withdrawing": "Prelievo in corso…",
-    "withdrawableSoon": "Le quote di abbonamento saranno presto prelevabili",
     "dpayBaseOnly": "Dpay è disponibile solo su Base.",
     "tokensAndStocks": "Token e azioni",
     "dhbPositionNote": "Questa è la tua intera posizione in token — detenuti più messi in staking, su Base e BNB Chain. La maggior parte è solitamente messa in staking, quindi questa è più grande di quella che puoi spendere al momento.",
-    "stakedIncludesUnstaking": "I token messi in staking includono tutto ciò che hai richiesto di rimuovere dallo staking ma non hai ancora ricevuto indietro.",
-    "usdtSent": "Inviati {{amount}} USDT",
-    "withdrawableOnBase": "Disponibile per il prelievo su Base",
-    "pendingTreasury": "In USDT · in attesa della riserva di tesoreria"
+    "stakedIncludesUnstaking": "I token messi in staking includono tutto ciò che hai richiesto di rimuovere dallo staking ma non hai ancora ricevuto indietro."
   },
   "feedCard": {
     "reactionTip": "Tieni premuto il pulsante Mi piace per altre reazioni",

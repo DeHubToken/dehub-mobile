@@ -5158,8 +5158,9 @@
     "tokenPrice": "{{amount}} tokens",
     "tokensUnit": "tokens",
     "atPreListingRate": "{{amount}} in die pre-listende Rate",
-    "custodyNote": "Jou tokens bly in DeHub tesourie bewaring en word nie verkoop nie. Die skepper ontvang 'n USDT-gedenomineerde intekening balans.",
-    "creatorReceives": "Die skepper ontvang {{amount}} USDT krediet"
+    "paidToCreatorWallet": "Gaan direk na die skepper se beursie",
+    "creatorPaidDirectNote": "Die skepper se deel gaan direk na hul beursie die oomblik dat jy inteken. DeHub hou 'n klein platformfooi.",
+    "creatorEarnsDirect": "Intekenare betaal in DeHub-tokens. Jou aandeel land in jou beursie die oomblik dat hulle inteken, minder die platformfooi vir jou wapenvlak."
   },
   "live": {
     "notSet": "Nie gestel nie",
@@ -5423,17 +5424,10 @@
     "staked": "Gestaak",
     "gotIt": "Ek verstaan",
     "otherBalancesNote": "Jou ander saldo's is net op {{network}} (ketting {{chainId}}). {{gas}} is jou gasbalans. Waardes kan 'n paar sekondes agterloop. Brug of dra bates oor na {{network}} om hulle hier te gebruik.",
-    "subscriptionEarnings": "Intekenverdienste",
-    "cashOut": "Trek uit",
-    "withdrawing": "Onttrek tans…",
-    "withdrawableSoon": "Intekengelde sal binnekort onttrekbaar wees",
     "dpayBaseOnly": "Dpay is net op Base beskikbaar.",
     "tokensAndStocks": "Tokens & aandele",
     "dhbPositionNote": "Dit is jou hele token posisie — gehou plus gestake, oor Basis en BNB Chain. Die meeste daarvan is gewoonlik gestake, so dit is groter as wat jy nou kan spandeer.",
-    "stakedIncludesUnstaking": "Gestake tokens sluit enigiets in wat jy gevra het om te onstake maar nog nie terug ontvang het nie.",
-    "usdtSent": "{{amount}} USDT gestuur",
-    "withdrawableOnBase": "Beskikbaar om op Base te onttrek",
-    "pendingTreasury": "In USDT · wag op tesourie-reserwe"
+    "stakedIncludesUnstaking": "Gestake tokens sluit enigiets in wat jy gevra het om te onstake maar nog nie terug ontvang het nie."
   },
   "feedCard": {
     "reactionTip": "Hou die hou-van-knoppie in vir meer reaksies",

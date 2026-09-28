@@ -5138,8 +5138,9 @@
     "tokenPrice": "{{amount}} token",
     "tokensUnit": "token",
     "atPreListingRate": "{{amount}} theo mức giá cho thuê trước",
-    "custodyNote": "Token của bạn vẫn thuộc quyền giám sát của kho bạc DeHub và không bị bán. Người sáng tạo nhận được số dư đăng ký được định giá bằng USDT.",
-    "creatorReceives": "Người sáng tạo nhận {{amount}} USDT tín dụng"
+    "paidToCreatorWallet": "Đi thẳng vào ví của người sáng tạo",
+    "creatorPaidDirectNote": "Phần của người sáng tạo sẽ được chuyển thẳng vào ví của họ ngay khi bạn đăng ký. DeHub giữ một khoản phí nền tảng nhỏ.",
+    "creatorEarnsDirect": "Người đăng ký thanh toán bằng mã thông báo DeHub. Cổ phần của bạn nằm trong ví của bạn ngay khi họ đăng ký, trừ đi phí nền tảng cho cấp độ huy hiệu của bạn."
   },
   "live": {
     "notSet": "Chưa đặt",
@@ -5403,17 +5404,10 @@
     "staked": "Đang stake",
     "gotIt": "Đã hiểu",
     "otherBalancesNote": "Các số dư khác của bạn chỉ nằm trên {{network}} (chuỗi {{chainId}}). {{gas}} là số dư gas của bạn. Giá trị có thể trễ vài giây. Hãy chuyển tài sản sang {{network}} để dùng ở đây.",
-    "subscriptionEarnings": "Thu nhập từ đăng ký",
-    "cashOut": "Rút tiền",
-    "withdrawing": "Đang rút…",
-    "withdrawableSoon": "Phí đăng ký sẽ sớm có thể rút được",
     "dpayBaseOnly": "Dpay chỉ có trên Base.",
     "tokensAndStocks": "Token & cổ phiếu",
     "dhbPositionNote": "Đây là toàn bộ vị thế token của bạn — đã giữ và đã stake, trên chuỗi Base và BNB. Hầu hết chúng thường được stake, vì vậy con số này lớn hơn số bạn có thể chi tiêu ngay bây giờ.",
-    "stakedIncludesUnstaking": "Token đã stake bao gồm bất kỳ thứ gì bạn đã yêu cầu bỏ stake nhưng chưa nhận lại.",
-    "usdtSent": "Đã gửi {{amount}} USDT",
-    "withdrawableOnBase": "Có thể rút trên Base",
-    "pendingTreasury": "Tính bằng USDT · đang chờ quỹ dự trữ"
+    "stakedIncludesUnstaking": "Token đã stake bao gồm bất kỳ thứ gì bạn đã yêu cầu bỏ stake nhưng chưa nhận lại."
   },
   "feedCard": {
     "reactionTip": "Nhấn giữ nút thích để có thêm cảm xúc",

@@ -5385,8 +5385,9 @@
     "tokenPrice": "{{amount}} token",
     "tokensUnit": "token",
     "atPreListingRate": "{{amount}} pada kadar prapenyenaraian",
-    "custodyNote": "Token anda kekal dalam simpanan perbendaharaan DeHub dan tidak dijual. Pencipta menerima baki langganan yang dinyatakan dalam USDT.",
-    "creatorReceives": "Pencipta menerima kredit {{amount}} USDT"
+    "paidToCreatorWallet": "Terus ke dompet pengkarya",
+    "creatorPaidDirectNote": "Bahagian pengkarya terus ke dompet mereka sebaik sahaja anda melanggan. DeHub mengekalkan yuran platform yang kecil.",
+    "creatorEarnsDirect": "Pelanggan membayar dalam token DeHub. Bahagian anda masuk ke dalam dompet anda sebaik sahaja mereka melanggan, tolak yuran platform untuk peringkat lencana anda."
   },
   "live": {
     "notSet": "Belum ditetapkan",
@@ -5650,17 +5651,10 @@
     "staked": "Distaking",
     "gotIt": "Faham",
     "otherBalancesNote": "Baki anda yang lain hanya ada di {{network}} (rantaian {{chainId}}). {{gas}} ialah baki gas anda. Nilai mungkin lewat beberapa saat. Bridge atau pindahkan aset ke {{network}} untuk menggunakannya di sini.",
-    "subscriptionEarnings": "Pendapatan langganan",
-    "cashOut": "Keluarkan tunai",
-    "withdrawing": "Sedang mengeluarkan…",
-    "withdrawableSoon": "Yuran langganan akan boleh dikeluarkan tidak lama lagi",
     "dpayBaseOnly": "Dpay hanya tersedia di Base.",
     "tokensAndStocks": "Token & saham",
     "dhbPositionNote": "Ini adalah keseluruhan kedudukan token anda — dipegang ditambah ditanam, merentasi Base dan BNB Chain. Kebanyakannya biasanya ditanam, jadi ini lebih besar daripada apa yang anda boleh belanjakan sekarang.",
-    "stakedIncludesUnstaking": "Token yang ditanam termasuk apa sahaja yang anda minta untuk dinyah-tanam tetapi belum terima semula.",
-    "usdtSent": "{{amount}} USDT dihantar",
-    "withdrawableOnBase": "Boleh dikeluarkan di Base",
-    "pendingTreasury": "Dalam USDT · menunggu rizab perbendaharaan"
+    "stakedIncludesUnstaking": "Token yang ditanam termasuk apa sahaja yang anda minta untuk dinyah-tanam tetapi belum terima semula."
   },
   "feedCard": {
     "reactionTip": "Tekan lama butang suka untuk lebih banyak reaksi",
