@@ -113,7 +113,8 @@ runs; the remaining missed deadlines are not an all-pages smoothness pass.
 
 Native idle traces showed repeated Fabric property updates even away from Home.
 This identifies shared work to investigate, without proving one root cause.
-Secondary dock buttons now use native-driver press springs instead of keeping
-a Reanimated animated style registered for each offscreen destination. Main
+Secondary dock buttons and the seven action icons per feed card now use
+native-driver touch animations instead of keeping idle Reanimated animated
+styles registered across retained rows and offscreen destinations. Main
 tab entrance and scroll-linked dock animations keep their existing UI-thread
 implementation. This change still needs measurements from its published OTA.
