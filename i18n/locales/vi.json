@@ -6528,7 +6528,7 @@
       "description": "Huy hiệu được trao dựa trên số lượng token DHB mà người dùng đã stake.",
       "tiers": [
         {
-          "name": "Tortoise",
+          "name": "Giant Tortoise",
           "min": 0,
           "color": "white"
         },
@@ -6548,7 +6548,7 @@
           "color": "white"
         },
         {
-          "name": "Cobra",
+          "name": "King Cobra",
           "min": 250000,
           "color": "white"
         },

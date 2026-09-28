@@ -52,7 +52,7 @@ describe("engagementWeight", () => {
 
   it("honours a grandfathered tier", () => {
     expect(
-      engagementWeight(10_000, { lock: { tier: "Cobra", requirement: 10_000 } }),
+      engagementWeight(10_000, { lock: { tier: "King Cobra", requirement: 10_000 } }),
     ).toBe(6);
   });
 
@@ -115,7 +115,7 @@ describe("a badge granted by name", () => {
 
   it("matches what the API will apply, so the count does not snap", () => {
     // The bug this shipped for, in the other direction: the API grants
-    // Megalodon by name, so a guess of 6 off the Cobra balance behind it would
+    // Megalodon by name, so a guess of 6 off the King Cobra balance behind it would
     // be corrected upward a frame later.
     expect(engagementWeight(296_435, undefined, "maldoteth")).toBe(
       MAX_ENGAGEMENT_WEIGHT,

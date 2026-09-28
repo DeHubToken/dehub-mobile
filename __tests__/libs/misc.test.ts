@@ -334,7 +334,7 @@ describe('libs/misc', () => {
     });
 
     it('handles string input', () => {
-      expect(getBadgeName('100000')).toBe('Tortoise');
+      expect(getBadgeName('100000')).toBe('Giant Tortoise');
     });
 
     it('returns undefined for NaN/Infinity', () => {
@@ -395,7 +395,7 @@ describe('libs/misc', () => {
     });
 
     it.each([
-      'Crab', 'Lobster', 'Piranha', 'Tortoise', 'Cobra', 'Octopus',
+      'Crab', 'Lobster', 'Piranha', 'Giant Tortoise', 'King Cobra', 'Octopus',
       'Crocodile', 'Dolphin', 'Tiger Shark', 'Great White Shark',
       'Killer Whale', 'Blue Whale', 'Megalodon',
     ])('keeps the %s artwork raised inside an explicit text line height', (tier) => {
