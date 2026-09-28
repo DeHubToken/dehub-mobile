@@ -178,6 +178,16 @@
             {
               "scheme": "https",
               "host": "dehub.io",
+              "path": "/apps"
+            },
+            {
+              "scheme": "https",
+              "host": "dehub.io",
+              "pathPrefix": "/apps/"
+            },
+            {
+              "scheme": "https",
+              "host": "dehub.io",
               "path": "/cinema"
             },
             {

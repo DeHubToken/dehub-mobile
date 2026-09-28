@@ -8464,5 +8464,32 @@
     "back": "Terug na Instellings",
     "signIn": "Teken in om jou rekening te skrap",
     "acknowledge": "Ek het my beursie herstel besonderhede gestoor en verstaan dat skrapping permanent is."
+  },
+  "miniApps": {
+    "badge": {
+      "verified": "Verifiseer",
+      "unreviewed": "Ongeëvalueer",
+      "dev": "Ontwikkelaarvoorskou"
+    },
+    "host": {
+      "close": "Sluit app",
+      "backToStore": "Terug na Apps",
+      "notFound": "Hierdie app is nie in die DeHub App Store nie, of dit is afgeneem.",
+      "badUrl": "Hierdie adres kan nie geopen word as 'n mini-app nie. Dit moet begin met **https://**, of 'n localhost-adres wees in ontwikkelaarmodus.",
+      "readyTimeout": "Hierdie app het nooit **dehub.ready()** aangeroep nie, dus is die splash-skerm na 8 sekondes verberg."
+    },
+    "signIn": {
+      "title": "Inlog by {{name}}?",
+      "body": "Hierdie app sal jou DeHub portemonnei-adres en 'n inlogtoeken kry wat slegs vir hierdie app geld. Dit sal nie toegang tot jou portemonnei, jou fondse of jou DeHub-rekening kry nie.",
+      "cancel": "Nog nie",
+      "confirm": "Inlog"
+    },
+    "store": {
+      "title": "Apps",
+      "intro": "Mini-apps wat deur iemand vir DeHub gebou word. Hulle oop binne DeHub, jy is al ingelog, en elke app toon sy eie werklike webadres.",
+      "buildCta": "Maak 'n app",
+      "emptyTitle": "Geen apps gelys nie",
+      "emptyBody": "Die eerste apps is in voorskou. Bou een en dit kan hier wees."
+    }
   }
 }

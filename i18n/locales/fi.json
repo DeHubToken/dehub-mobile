@@ -8339,5 +8339,32 @@
     "back": "Takaisin asetukset -sivulle",
     "signIn": "Kirjaudu tilillesi",
     "acknowledge": "Olen tallentanut lompakkoni palautustiedot ja ymmärrän, että poistaminen on pysyvää."
+  },
+  "miniApps": {
+    "badge": {
+      "verified": "Tarkistettu",
+      "unreviewed": "Ei tarkistettu",
+      "dev": "Kehittäjän esikatselu"
+    },
+    "host": {
+      "close": "Sulje sovellus",
+      "backToStore": "Takaisin sovelluksiin",
+      "notFound": "Tämä sovellus ei ole DeHub-sovellusliikkeessä, tai se on poistettu.",
+      "badUrl": "Tätä osoitetta ei voida avata mini-sovelluksena. Se täytyy alkaa https://:lla tai olla localhost-osoite kehittäjätilassa.",
+      "readyTimeout": "Tämä sovellus ei koskaan kutsunut dehub.ready(), joten latausruutu piiloutui 8 sekunnin kuluttua."
+    },
+    "signIn": {
+      "title": "Kirjaudu sisään {{name}}?",
+      "body": "Tämä sovellus saa DeHub-lompakkosi osoitteen ja kirjautumistokenin, joka toimii vain tälle sovellukselle. Se ei saa pääsyä lompakkosi, varoihisi tai DeHub-tiliisi.",
+      "cancel": "Ei nyt",
+      "confirm": "Kirjaudu sisään"
+    },
+    "store": {
+      "title": "Sovellukset",
+      "intro": "Mini-sovellukset, jotka on rakennettu DeHubille kuka tahansa. Ne avautuvat DeHubin sisällä, olet jo kirjautunut sisään, ja jokainen sovellus näyttää sen todellisen verkkosivun osoitteen.",
+      "buildCta": "Rakennetaan sovellus",
+      "emptyTitle": "Ei sovelluksia vielä lueteltuina",
+      "emptyBody": "Ensimmäiset sovellukset ovat tarkastuksessa. Rakennathan yhden ja se saattaa tulla tänne."
+    }
   }
 }

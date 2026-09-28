@@ -8339,5 +8339,32 @@
     "back": "Torna a la configuració",
     "signIn": "Inicia sessió per eliminar el teu compte",
     "acknowledge": "He desat les dades de recuperació de la meva cartera i entenc que l'eliminació és permanent."
+  },
+  "miniApps": {
+    "badge": {
+      "verified": "Verificat",
+      "unreviewed": "No revisat",
+      "dev": "Vista preliminar per a desenvolupadors"
+    },
+    "host": {
+      "close": "Tanca l'aplicació",
+      "backToStore": "Torna a les Aplicacions",
+      "notFound": "Aquesta aplicació no està a la DeHub App Store, o ha estat retirada.",
+      "badUrl": "Aquesta adreça no es pot obrir com a miniaplicació. Ha de començar amb https://, o ser una adreça localhost en mode desenvolupador.",
+      "readyTimeout": "Aquesta aplicació mai ha cridat `dehub.ready()`, per la qual cosa la pantalla d'espera s'ha amagat després de 8 segons."
+    },
+    "signIn": {
+      "title": "Inicia sessió a {{name}}?",
+      "body": "Aquesta aplicació obtindrà l'adreça del teu portafoli DeHub i un token d'inici de sessió que només funciona per a aquesta aplicació. No obtindrà accés al teu portafoli, als teus fons ni a la teva compte de DeHub.",
+      "cancel": "No ara",
+      "confirm": "Inicia sessió"
+    },
+    "store": {
+      "title": "Aplicacions",
+      "intro": "Miniaplicacions construïdes per a DeHub per qualsevol. S'obren dins de DeHub, ja estàs iniciat sessió, i cada aplicació mostra la seva adreça web real.",
+      "buildCta": "Construeix una aplicació",
+      "emptyTitle": "No hi ha aplicacions llistades encara",
+      "emptyBody": "Les primeres aplicacions estan en revisió. Construeix-ne una i podria estar aquí."
+    }
   }
 }

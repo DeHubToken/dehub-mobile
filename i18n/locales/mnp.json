@@ -8342,5 +8342,26 @@
     "back": "返回设置",
     "signIn": "登录以删除您的账户",
     "acknowledge": "我已保存钱包恢复详情，并了解删除是永久性的。"
+  },
+  "miniApps": {
+    "badge": {
+      "verified": "🔍 **確認過**",
+      "dev": "開發者預覽版"
+    },
+    "host": {
+      "close": "🔌📱 **關閉應用**",
+      "backToStore": "回到 App 囉",
+      "notFound": "😢 這個 App 咱家 DeHub App Store 咱家有，或者已經被刪除咧！",
+      "badUrl": "🚫 咱家這個地址無法開啟小程式，得是以 `https://` 開頭，或者開發模式下用本地地址。",
+      "readyTimeout": "😅 這個 app 好像都唔係用 `dehub.ready()` 咧，所以 splash screen 8 秒後就自動隱藏咧！"
+    },
+    "signIn": {
+      "title": "登入 {{name}} 嗎？",
+      "confirm": "登入"
+    },
+    "store": {
+      "emptyTitle": "😕 尚未有應用列出喔！",
+      "emptyBody": "🔥 先頭幾個 App 正在審核中！你也快點做一個，可能就會出來囉！"
+    }
   }
 }

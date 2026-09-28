@@ -8599,5 +8599,32 @@
     "back": "Kembali ke Tetapan",
     "signIn": "Log masuk untuk memadam akaun anda",
     "acknowledge": "Saya telah menyimpan butiran pemulihan dompet saya dan faham bahawa pemadaman adalah kekal."
+  },
+  "miniApps": {
+    "badge": {
+      "verified": "Disahkan",
+      "unreviewed": "Belum disemak",
+      "dev": "Pratonton pembangun"
+    },
+    "host": {
+      "close": "Tutup aplikasi",
+      "backToStore": "Kembali ke Aplikasi",
+      "notFound": "Aplikasi ini tidak ada di DeHub App Store, atau ia telah diturunkan.",
+      "badUrl": "Alamat tersebut tidak boleh dibuka sebagai aplikasi mini. Ia mesti bermula dengan https://, atau alamat localhost dalam mod pembangun.",
+      "readyTimeout": "Aplikasi ini tidak pernah memanggildehub.ready (), jadi skrin percikan disembunyikan selepas 8 saat."
+    },
+    "signIn": {
+      "title": "Log masuk ke {{name}}?",
+      "body": "Aplikasi ini akan mendapat alamat dompet DeHub anda dan token log masuk yang hanya berfungsi untuk aplikasi ini. Ia tidak akan mendapat akses kepada dompet anda, dana anda atau akaun DeHub anda.",
+      "cancel": "Bukan sekarang",
+      "confirm": "Log masuk"
+    },
+    "store": {
+      "title": "Aplikasi",
+      "intro": "Aplikasi mini yang dibina untuk DeHub oleh sesiapa sahaja. Ia dibuka di dalam DeHub, anda sudah log masuk, dan setiap aplikasi menunjukkan alamat web sebenar.",
+      "buildCta": "Bina aplikasi",
+      "emptyTitle": "Belum ada aplikasi yang disenaraikan",
+      "emptyBody": "Aplikasi pertama sedang disemak. Bina satu dan ia boleh berada di sini."
+    }
   }
 }

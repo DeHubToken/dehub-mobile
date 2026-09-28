@@ -24,7 +24,7 @@
 /** Paths that really exist on the web app: router, /app children, edge, redirects. */
 const ROUTE_SEGMENTS = [
   // SPA top-level routes
-  "accounts", "admin", "admin-manual", "affiliate", "agents", "apk", "app", "arcade", "assistant",
+  "accounts", "admin", "admin-manual", "affiliate", "agents", "apk", "app", "apps", "arcade", "assistant",
   "auth", "bounty", "bridge", "builder", "cinema", "communities", "connect", "converter",
   "creator", "creators",
   "delete-account", "depin", "docs", "editor", "events", "explore", "features",

@@ -81,6 +81,10 @@ export enum ScreenNames {
   Arcade = 'Arcade',
   ArcadeGame = 'ArcadeGame',
   ArcadeChessOnline = 'ArcadeChessOnline',
+  Apps = 'Apps',
+  MiniApp = 'MiniApp',
+  /** Same component as MiniApp, in developer mode: any URL, clearly marked. */
+  MiniAppDev = 'MiniAppDev',
   Events = 'Events',
   Careers = 'Careers',
   // Prize draws explainer — dehub.io/raffle.

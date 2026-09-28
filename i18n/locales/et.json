@@ -8334,5 +8334,32 @@
     "back": "Mine tagasi seadistuste juurde",
     "signIn": "Logi oma kontole sisse",
     "acknowledge": "Salvestasin oma rahakoti taastamise üksikasjad ja mõistan, et kustutamine on lõplik."
+  },
+  "miniApps": {
+    "badge": {
+      "verified": "Tõestatud",
+      "unreviewed": "Kontrollimata",
+      "dev": "Arendaja eelvaade"
+    },
+    "host": {
+      "close": "Sulge rakendus",
+      "backToStore": "Tagasi rakendustesse",
+      "notFound": "See rakendus ei ole DeHubi rakenduste kaupluses või see on eemaldatud.",
+      "badUrl": "See aadress ei saa avada mini-rakenduse kui mini-rakendusena. See peab algama https://-ga või olema localhost-aadress arendaja režiimis.",
+      "readyTimeout": "See rakendus ei kutsunud kunagi välja dehub.ready(), seetõttu peideti splahh-ekraan 8 sekundiga pärast."
+    },
+    "signIn": {
+      "title": "Sisse logi {{name}}?",
+      "body": "See rakendus võtab sinult DeHubi portfelli aadressi ja sisse logimistokeni, mis töötab ainult selle rakenduse jaoks. See ei saa juurdepääsu sinu portfellile, sinu rahalisele panusele ega DeHubi kontole.",
+      "cancel": "Hiljem",
+      "confirm": "Sisse logi"
+    },
+    "store": {
+      "title": "Rakendused",
+      "intro": "Mini-rakendused, mis on loodud DeHubile kellegi poolt. Nad avanevad DeHubis, oled juba sisse logitud, ja iga rakendus näitab oma tõeliselt veebiaadressi.",
+      "buildCta": "Loo rakendus",
+      "emptyTitle": "Ei ole loetletud rakendusi veel",
+      "emptyBody": "Esimesed rakendused on kontrollimisel. Loo üks ja see võiks siia ilmuda."
+    }
   }
 }

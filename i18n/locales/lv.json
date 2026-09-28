@@ -8339,5 +8339,32 @@
     "back": "Dodieties atpakaļ uz iestatījumiem.",
     "signIn": "Pierakstieties, lai dzēstu kontu",
     "acknowledge": "Esmu saglabājis informāciju par maka atkopšanu un saprotu, ka dzēšana ir neatgriezeniska."
+  },
+  "miniApps": {
+    "badge": {
+      "verified": "Pārbaudīts",
+      "unreviewed": "Nepārskatīts",
+      "dev": "Izstrādātāja priekšskatījums"
+    },
+    "host": {
+      "close": "Aizvērt lietotni",
+      "backToStore": "Atpakaļ uz lietotnēm",
+      "notFound": "Šī lietotne nav pieejama DeHub App Store, vai arī tā ir noņemta.",
+      "badUrl": "Šo adresi nevar atvērt kā mini lietotni. Tam jāsākas ar https://vai jābūt vietējā resursdatora adresei izstrādātāja režīmā.",
+      "readyTimeout": "Šī lietotne nekad netika saukta par dehub.ready (), tāpēc uzplaiksnījuma ekrāns tika paslēpts pēc 8 sekundēm."
+    },
+    "signIn": {
+      "title": "Vai pierakstīties {{name}}?",
+      "body": "Šī lietotne saņems jūsu DeHub maka adresi un pierakstīšanās marķieri, kas darbojas tikai šajā lietotnē. Tas nesaņems piekļuvi jūsu makam, līdzekļiem vai DeHub kontam.",
+      "cancel": "Ne tagad",
+      "confirm": "Pierakstīties"
+    },
+    "store": {
+      "title": "Lietotnes",
+      "intro": "Mini lietotnes, ko DeHub izveidojis ikviens. Tie tiek atvērti DeHub, jūs jau esat pierakstījies, un katrā lietotnē ir redzama tās īstā tīmekļa adrese.",
+      "buildCta": "Izveidot aplikāciju",
+      "emptyTitle": "Pagaidām sarakstā nav nevienas lietotnes",
+      "emptyBody": "Pirmās lietotnes tiek pārskatītas. Izveidojiet to, un tas varētu būt šeit."
+    }
   }
 }
