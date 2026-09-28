@@ -31,7 +31,8 @@ export type DehubLinkKind =
   | 'listing'
   | 'event'
   | 'stage'
-  | 'bounty';
+  | 'bounty'
+  | 'film';
 
 export interface DehubLinkMatch {
   kind: DehubLinkKind;
@@ -54,6 +55,10 @@ export interface DehubLinkMatch {
    * either shape, so the raw key is carried through rather than split in two.
    */
   bountyJobKey?: string;
+  /** `/cinema/film/<id>` or `/cinema/series/<id>`: a JustWatch title id. */
+  filmId?: string;
+  /** The API's name for the URL's `film` / `series` segment. */
+  filmObjectType?: 'movie' | 'show';
 }
 
 // ── Hosts ───────────────────────────────────────────────────────────────────
@@ -204,6 +209,22 @@ export function parseDehubLink(input: string): DehubLinkMatch | null {
     return { ...base, kind: 'stage', stageShortId: scoped[1] };
   }
 
+  // ── /cinema/:type/:id — one film or series ──
+  //
+  // Top-level, like /stage. The type segment is part of the URL because the
+  // offers lookup is keyed by object type as well as id. Bare /cinema is the
+  // search page and carries nothing to card, so it stays a plain link.
+  if (scoped[0] === 'cinema' && scoped[1] && scoped[2]) {
+    if (scoped[1] !== 'film' && scoped[1] !== 'series') return null;
+    if (!/^\d+$/.test(scoped[2])) return null;
+    return {
+      ...base,
+      kind: 'film',
+      filmObjectType: scoped[1] === 'series' ? 'show' : 'movie',
+      filmId: scoped[2],
+    };
+  }
+
   // ── /bounty/:jobNumber — the canonical bounty detail link ──
   //
   // Top-level, like /stage. Only the numeric shape: bare /bounty has no route
@@ -335,6 +356,7 @@ export function dehubLinkLabel(kind: DehubLinkKind): string {
     case 'event': return 'event';
     case 'stage': return 'stage';
     case 'bounty': return 'bounty';
+    case 'film': return 'title';
     default: return 'link';
   }
 }

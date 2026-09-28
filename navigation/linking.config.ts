@@ -173,6 +173,11 @@ export const DeepLinkPaths = {
   // onto. `?handle=` on a shared listing link seeds the search box.
   ACCOUNTS: 'accounts',
 
+  // Cinema — dehub.io/cinema is the search, /cinema/film/:id and
+  // /cinema/series/:id one title. Both optional segments land on one screen,
+  // as they do on web.
+  CINEMA: 'cinema/:filmType?/:filmId?',
+
   // Creator application — dehub.io/creators.
   CREATORS: 'creators',
 
@@ -310,6 +315,11 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
           [ScreenNames.Usernames]: DeepLinkPaths.USERNAMES,
 
           [ScreenNames.Accounts]: DeepLinkPaths.ACCOUNTS,
+
+          [ScreenNames.Cinema]: {
+            path: DeepLinkPaths.CINEMA,
+            parse: { filmType: (s: string) => s, filmId: (s: string) => s },
+          },
 
           [ScreenNames.Creators]: DeepLinkPaths.CREATORS,
 
@@ -626,6 +636,9 @@ export const ShareLinks = {
   bounty: (jobNumber: string | number) => `${SHARE_BASE}/bounty/${encodeURIComponent(String(jobNumber))}`,
   /** Creator application — dehub.io/creators */
   creators: () => `${SHARE_BASE}/creators`,
+  /** One film or series — dehub.io/cinema/film/:id or /cinema/series/:id */
+  film: (objectType: 'movie' | 'show', id: string | number) =>
+    `${SHARE_BASE}/cinema/${objectType === 'show' ? 'series' : 'film'}/${encodeURIComponent(String(id))}`,
   /** Arcade grid — dehub.io/arcade */
   arcade: () => `${SHARE_BASE}/arcade`,
   /** One game — dehub.io/arcade/:slug */
@@ -734,6 +747,13 @@ export const parseDeepLink = (url: string): { type: string; params: Record<strin
     // /creators — the creator application
     if (pathParts[0] === 'creators' && pathParts.length === 1) {
       return { type: 'creators', params: qp };
+    }
+
+    // /cinema, /cinema/film/:id, /cinema/series/:id
+    if (pathParts[0] === 'cinema') {
+      return pathParts[2]
+        ? { type: 'film', params: { filmType: pathParts[1], filmId: pathParts[2], ...qp } }
+        : { type: 'cinema', params: qp };
     }
 
     // Legacy: /stream/:videoId

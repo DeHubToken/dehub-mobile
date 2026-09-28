@@ -87,6 +87,8 @@
         <data android:scheme="https" android:host="dehub.io" android:pathPrefix="/stages/"/>
         <data android:scheme="https" android:host="dehub.io" android:path="/packs"/>
         <data android:scheme="https" android:host="dehub.io" android:pathPrefix="/packs/"/>
+        <data android:scheme="https" android:host="dehub.io" android:path="/cinema"/>
+        <data android:scheme="https" android:host="dehub.io" android:pathPrefix="/cinema/"/>
         <data android:scheme="https" android:host="dehub.io" android:path="/creators"/>
         <data android:scheme="https" android:host="dehub.io" android:path="/builder"/>
         <data android:scheme="https" android:host="dehub.io" android:pathPrefix="/builder/"/>

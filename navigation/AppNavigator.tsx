@@ -163,6 +163,11 @@ function AppNavigatorContent() {
           name={ScreenNames.Careers}
           getComponent={() => require("../screens/CareersScreen").default}
         />
+        {/* Public: browsing is open, reviewing signs in. */}
+        <Stack.Screen
+          name={ScreenNames.Cinema}
+          getComponent={() => require("../screens/CinemaScreen").default}
+        />
         {/* Public: applying needs no account, same as the web form. */}
         <Stack.Screen
           name={ScreenNames.Creators}

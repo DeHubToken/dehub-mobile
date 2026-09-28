@@ -75,6 +75,8 @@ export enum ScreenNames {
   ArcadeChessOnline = 'ArcadeChessOnline',
   Events = 'Events',
   Careers = 'Careers',
+  // Where to watch any film or series — dehub.io/cinema[/film|series/:id].
+  Cinema = 'Cinema',
   // The creator application form — dehub.io/creators.
   Creators = 'Creators',
   // Plan pages. Buying happens on the website, and only where Google Play
