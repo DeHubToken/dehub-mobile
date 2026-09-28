@@ -1751,7 +1751,7 @@
     "walletImported": "Hamyon import qilindi",
     "importWallet": "Hamyonni import qilish",
     "privateKeyPlaceholder": "Shaxsiy kalitingizni kiriting",
-    "importExternalWallet": "Tashqi hamyonni import qilish",
+    "importExternalWallet": "Kalitlarni import qilish",
     "migrateAccount": "Hisobni ko'chirish",
     "migrateAccountBody": "Ilgari DeHub akkaunti bo'lganmi? O'sha paytda foydalangan elektron pochta manzili, telefon raqami, Google yoki Apple loginingiz bilan tizimga kiring. Agar u avvalgi akkauntga mos kelsa, sizga uning hamyoni, foydalanuvchi nomi va balansini olib kelish taklif qilinadi.",
     "migrateAccountNote": "Eski login bilan bir martalik kirish hamyon kalitingizni ushbu qurilmada xavfsiz ravishda oladi. U hech qachon bizning serverlarimizga tegmaydi.",
@@ -4842,9 +4842,9 @@
     "noUsableBackup": "Ushbu hisobda elektron pochta manzili mavjud, ammo ushbu telefon foydalana oladigan zaxira nusxasi yo'q — yoki u <em>biometrik yoki vebdagi kalit</em> bilan himoyalangan (bu ochish brauzerda qoladi va bu yerga sinxronlanmaydi), yoki ushbu telefonda avvalgi ro'yxatdan o'tish tugallanmasdan to'xtatilgan.",
     "addPasswordOnWeb": "Agar siz dehub.io saytidan oldin foydalangan bo'lsangiz, uni kompyuteringizda oching, xuddi shu tarzda va xuddi shu hisob bilan tizimga kiring va <em>hamyon parolini qo'shing</em> — bu bulutga shifrlangan zaxira nusxasini saqlaydi. Keyin bu yerga qayting va yana urinib ko'ring.",
     "walletAddress": "Hamyon: {{address}}",
-    "biometricKeepsFailing": "{{error}} Agar bu ish bermasa, quyida hamyon parolingizdan foydalaning yoki \"Tashqi hamyonni import qilish\" tugmasini bosing.",
+    "biometricKeepsFailing": "{{error}} Agar bu ish bermasa, quyida hamyon parolingizdan foydalaning yoki \"Kalitlarni import qilish\" tugmasini bosing.",
     "deviceBoundKey": "Ushbu hamyon <em>faqat bitta qurilmadagi biometrik ma'lumotlar</em> bilan ochiladi — ya'ni u yaratilgan telefon yoki brauzerda. Bu telefon bu kalitga ega emas, dehub.io ham ega emas: kalit hech qachon uni yaratgan qurilmani tark etmaydi.",
-    "unlockPasskeyOnly": "Ushbu hamyon veb-saytda parol bilan himoyalangan va hali bulutda parolni tiklash imkoniyati mavjud emas. Agar siz dehub.io saytida hamyon parolini o'rnatsangiz, uni shu yerga kiriting — aks holda quyida \"Tashqi hamyonni import qilish\" tugmasini bosing.",
+    "unlockPasskeyOnly": "Ushbu hamyon veb-saytda parol bilan himoyalangan va hali bulutda parolni tiklash imkoniyati mavjud emas. Agar siz dehub.io saytida hamyon parolini o'rnatsangiz, uni shu yerga kiriting — aks holda quyida \"Kalitlarni import qilish\" tugmasini bosing.",
     "unlockWithPasswordExplainer": "Ushbu hisobda allaqachon parol bilan himoyalangan hamyon mavjud. Ushbu qurilmada hamyoningizni tiklash uchun parolni kiriting."
   },
   "transcript": {

@@ -1733,7 +1733,7 @@
     "walletImported": "Cüzdan içe aktarıldı",
     "importWallet": "Cüzdan içe aktar",
     "privateKeyPlaceholder": "Özel anahtarınızı girin",
-    "importExternalWallet": "Harici cüzdanı içe aktar",
+    "importExternalWallet": "Anahtarları içe aktar",
     "migrateAccount": "Hesabı taşı",
     "migrateAccountBody": "Daha önce DeHub hesabınız var mıydı? O zamanlar kullandığınız e - posta, telefon, Google veya Apple giriş bilgileriyle oturum açın. Daha önceki bir hesapla eşleşirse cüzdanını, kullanıcı adını ve bakiyesini getirmeniz teklif edilir.",
     "migrateAccountNote": "Eski oturum açma bilgileriyle tek seferlik oturum açma, cüzdan anahtarınızı bu cihazda güvenli bir şekilde alır. Sunucularımıza asla dokunmaz.",
@@ -4873,9 +4873,9 @@
     "noUsableBackup": "Bu hesabın kayıtlı bir cüzdan adresi var, ancak bu telefonun kullanamayacağı bir yedeği yok — ya <em>biyometriklerle</em> veya web'deki bir şifre anahtarıyla korunmuştu (bu kilit tarayıcıda kalır ve burada eşitlenmez) veya bu telefondaki önceki bir kayıt işlemi tamamlanmadan kesintiye uğradı.",
     "addPasswordOnWeb": "Daha önce dehub.io kullandıysanız, bilgisayarınızda açın, aynı şekilde ve aynı hesapla oturum açın ve <em>bir cüzdan şifresi ekleyin</em> — bu, buluta şifrelenmiş bir yedekleme kaydeder. Sonra buraya geri dönün ve tekrar deneyin.",
     "walletAddress": "Cüzdan: {{address}}",
-    "biometricKeepsFailing": "{{error}} Bu işlem sürekli başarısız olursa, aşağıdaki cüzdan şifrenizi veya \"Harici cüzdanı içe aktar\" seçeneğini kullanın.",
+    "biometricKeepsFailing": "{{error}} Bu işlem sürekli başarısız olursa, aşağıdaki cüzdan şifrenizi veya \"Anahtarları içe aktar\" seçeneğini kullanın.",
     "deviceBoundKey": "Bu cüzdan, yalnızca kurulduğu telefonda veya tarayıcıda bulunan <em>belirli bir cihazdaki biyometrik verilerle</em> açılır. Bu telefonda o anahtar bulunmuyor, dehub.io'da da bulunmuyor: anahtar asla oluşturulduğu cihazdan ayrılmaz.",
-    "unlockPasskeyOnly": "Bu cüzdan web'de bir geçiş anahtarıyla güvence altına alındı ve henüz bulutta bir şifre yedeği bulunmuyor. dehub.io'da bir cüzdan şifresi ayarladıysanız, onu buraya girin — aksi takdirde aşağıdaki Harici cüzdanı içe aktar seçeneğini kullanın.",
+    "unlockPasskeyOnly": "Bu cüzdan web'de bir geçiş anahtarıyla güvence altına alındı ve henüz bulutta bir şifre yedeği bulunmuyor. dehub.io'da bir cüzdan şifresi ayarladıysanız, onu buraya girin — aksi takdirde aşağıdaki Anahtarları içe aktar seçeneğini kullanın.",
     "unlockWithPasswordExplainer": "Bu hesaba ait bir cüzdan zaten var ve bir şifre ile korunuyor. Cüzdanınızı bu cihazda kurtarmak için şifreyi girin."
   },
   "transcript": {

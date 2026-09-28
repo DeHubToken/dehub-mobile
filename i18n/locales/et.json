@@ -1733,7 +1733,7 @@
     "walletImported": "Rahakott imporditud",
     "importWallet": "Impordi rahakott",
     "privateKeyPlaceholder": "Sisesta oma privaatvõti",
-    "importExternalWallet": "Impordi väline rahakott",
+    "importExternalWallet": "Impordi võtmed",
     "migrateAccount": "Kanna konto üle",
     "migrateAccountBody": "Kas Sul on varem olnud DeHubi konto? Logi sisse sama e-posti aadressi, telefoni, Google 'i või Apple' i sisselogimisnimega, mida sel ajal kasutasid. Kui see ühtib varasema kontoga, pakutakse sulle selle rahakotti, kasutajanime ja saldot.",
     "migrateAccountNote": "Ühekordne sisselogimine vana sisselogimisnimega toob teie rahakoti võtme turvaliselt sellesse seadmesse. See ei puuduta kunagi meie servereid.",

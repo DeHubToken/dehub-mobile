@@ -1733,7 +1733,7 @@
     "walletImported": "Tárca importálva",
     "importWallet": "Tárca importálása",
     "privateKeyPlaceholder": "Add meg a privát kulcsodat",
-    "importExternalWallet": "Külső tárca importálása",
+    "importExternalWallet": "Kulcsok importálása",
     "migrateAccount": "Fiók áttelepítése",
     "migrateAccountBody": "Korábban is volt DeHub-fiókod? Jelentkezzen be ugyanazzal az e-mail-címmel, telefonnal, Google- vagy Apple-bejelentkezéssel, amelyet akkor használt. Ha egyezik egy korábbi fiókkal, felajánljuk, hogy áthozza a pénztárcáját, felhasználónevét és egyenlegét.",
     "migrateAccountNote": "Egy egyszeri bejelentkezés a régi bejelentkezéssel biztonságosan letölti a pénztárca kulcsát ezen az eszközön. Soha nem érinti a szervereinket.",

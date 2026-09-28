@@ -1733,7 +1733,7 @@
     "walletImported": "Lommebok importert",
     "importWallet": "Importer lommebok",
     "privateKeyPlaceholder": "Skriv inn den private nøkkelen din",
-    "importExternalWallet": "Importer ekstern lommebok",
+    "importExternalWallet": "Importer nøkler",
     "migrateAccount": "Migrer konto",
     "migrateAccountBody": "Hadde du en DeHub-konto før? Logg inn med samme e-postadresse, telefonnummer, Google- eller Apple-pålogging som du brukte den gang. Hvis den samsvarer med en tidligere konto, vil du bli bedt om å ta med lommeboken, brukernavnet og saldoen.",
     "migrateAccountNote": "Én gangs innlogging med den gamle innloggingen henter lommeboknøkkelen din sikkert på denne enheten. Den berører aldri serverne våre.",
@@ -4824,9 +4824,9 @@
     "noUsableBackup": "Denne kontoen har en lommebokadresse lagret, men ingen sikkerhetskopi denne telefonen kan bruke — enten ble den beskyttet med <em>biometri eller en passnøkkel på nettet</em> (den opplåsing forblir i nettleseren og synkroniseres ikke hit), eller en tidligere registrering på denne telefonen ble avbrutt før den ble fullført.",
     "addPasswordOnWeb": "Hvis du har brukt dehub.io før, åpne det på datamaskinen din, logg inn på samme måte og med samme konto, og <em>legg til et lommebokpassord</em> — det lagrer en kryptert sikkerhetskopi i skyen. Kom deretter tilbake hit og prøv igjen.",
     "walletAddress": "Lommebok: {{address}}",
-    "biometricKeepsFailing": "{{error}} Hvis dette fortsetter å feile, bruk lommebokpassordet ditt nedenfor eller \"Importer ekstern lommebok\".",
+    "biometricKeepsFailing": "{{error}} Hvis dette fortsetter å feile, bruk lommebokpassordet ditt nedenfor eller \"Importer nøkler\".",
     "deviceBoundKey": "Denne lommeboken låses opp med <em>biometri lagret på én spesifikk enhet</em> — telefonen eller nettleseren den ble satt opp på. Denne telefonen har ikke den nøkkelen, og det har heller ikke dehub.io: nøkkelen forlater aldri enheten som opprettet den.",
-    "unlockPasskeyOnly": "Denne lommeboken ble sikret med en passnøkkel på nettet og har ennå ingen passord-sikkerhetskopi i skyen. Hvis du setter et lommebokpassord på dehub.io, skriv det inn her — ellers bruk Importer ekstern lommebok nedenfor.",
+    "unlockPasskeyOnly": "Denne lommeboken ble sikret med en passnøkkel på nettet og har ennå ingen passord-sikkerhetskopi i skyen. Hvis du setter et lommebokpassord på dehub.io, skriv det inn her — ellers bruk Importer nøkler nedenfor.",
     "unlockWithPasswordExplainer": "Denne kontoen har allerede en lommebok, beskyttet av et passord. Skriv det inn for å gjenopprette lommeboken din på denne enheten."
   },
   "transcript": {

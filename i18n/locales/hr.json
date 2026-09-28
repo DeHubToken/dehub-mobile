@@ -1733,7 +1733,7 @@
     "walletImported": "Novčanik uvezen",
     "importWallet": "Uvezi novčanik",
     "privateKeyPlaceholder": "Unesite svoj privatni ključ",
-    "importExternalWallet": "Uvezi vanjski novčanik",
+    "importExternalWallet": "Uvezi ključeve",
     "migrateAccount": "Migriraj račun",
     "migrateAccountBody": "Već ste imali DeHub račun? Prijavite se istom e-poštom, telefonom, Googleom ili Appleovom prijavom koju ste tada koristili. Ako se podudara s ranijim računom, ponudit ćemo vam da donesete njegov novčanik, korisničko ime i saldo.",
     "migrateAccountNote": "Jednokratna prijava sa starom prijavom sigurno dohvaća vaš ključ novčanika na ovom uređaju. Nikada ne dira naše poslužitelje.",
@@ -4824,9 +4824,9 @@
     "noUsableBackup": "Ovaj račun ima adresu novčanika na datoteci, ali nijednu sigurnosnu kopiju koju ovaj telefon može koristiti — ili je zaštićena <em>biometrijom ili passkeyjem na webu</em> (to otključavanje ostaje u pregledniku i ne sinkronizira se ovdje), ili je ranija prijava na ovom telefonu prekinuta prije nego što je završila.",
     "addPasswordOnWeb": "Ako ste već koristili dehub.io, otvorite ga na svom računalu, prijavite se na isti način i s istim računom te <em>dodajte lozinku za novčanik</em> — to sprema šifriranu sigurnosnu kopiju u oblak. Zatim se vratite ovdje i pokušajte ponovno.",
     "walletAddress": "Novčanik: {{address}}",
-    "biometricKeepsFailing": "{{error}} Ako ovo nastavi ne uspijevati, upotrijebite lozinku za svoj novčanik ispod ili \"Uvezi vanjski novčanik\".",
+    "biometricKeepsFailing": "{{error}} Ako ovo nastavi ne uspijevati, upotrijebite lozinku za svoj novčanik ispod ili \"Uvezi ključeve\".",
     "deviceBoundKey": "Ovaj novčanik otključava se pomoću <em>biometrije pohranjene na jednom specifičnom uređaju</em> — telefonu ili pregledniku na kojem je postavljen. Ovaj telefon nema taj ključ, kao ni dehub.io: ključ nikada ne napušta uređaj koji ga je stvorio.",
-    "unlockPasskeyOnly": "Ovaj novčanik je osiguran lozinkom na webu i još nema sigurnosnu kopiju lozinke u oblaku. Ako postavite lozinku za novčanik na dehub.io, unesite je ovdje — inače upotrijebite Uvezi vanjski novčanik ispod.",
+    "unlockPasskeyOnly": "Ovaj novčanik je osiguran lozinkom na webu i još nema sigurnosnu kopiju lozinke u oblaku. Ako postavite lozinku za novčanik na dehub.io, unesite je ovdje — inače upotrijebite Uvezi ključeve ispod.",
     "unlockWithPasswordExplainer": "Ovaj račun već ima novčanik zaštićen lozinkom. Unesite je kako biste vratili svoj novčanik na ovom uređaju."
   },
   "transcript": {

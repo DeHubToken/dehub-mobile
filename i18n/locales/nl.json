@@ -1923,7 +1923,7 @@
     "walletImported": "Wallet geïmporteerd",
     "importWallet": "Wallet importeren",
     "privateKeyPlaceholder": "Voer je privésleutel in",
-    "importExternalWallet": "Externe wallet importeren",
+    "importExternalWallet": "Sleutels importeren",
     "migrateAccount": "Account migreren",
     "migrateAccountBody": "Had je eerder een DeHub-account? Log in met dezelfde e-mail, telefoon, Google of Apple-login die je toen hebt gebruikt. Als deze overeenkomt met een eerder account, krijg je de optie om de wallet, gebruikersnaam en het saldo ervan over te zetten.",
     "migrateAccountNote": "Een eenmalige aanmelding met de oude login haalt je wallet-sleutel veilig op dit apparaat op. Het raakt nooit onze servers.",

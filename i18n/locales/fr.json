@@ -1733,7 +1733,7 @@
     "walletImported": "Portefeuille importé",
     "importWallet": "Importer un portefeuille",
     "privateKeyPlaceholder": "Saisissez votre clé privée",
-    "importExternalWallet": "Importer un portefeuille externe",
+    "importExternalWallet": "Importer des clés",
     "migrateAccount": "Migrer le compte",
     "migrateAccountBody": "Vous aviez déjà un compte DeHub ? Connectez-vous avec la même adresse e-mail, le même téléphone, la même connexion Google ou Apple que vous utilisiez à l'époque. S'il correspond à un compte antérieur, il vous sera proposé d'apporter son portefeuille, son nom d'utilisateur et son solde.",
     "migrateAccountNote": "Une connexion unique avec l'ancienne connexion récupère votre clé de portefeuille en toute sécurité sur cet appareil. Il ne touche jamais nos serveurs.",
@@ -4877,9 +4877,9 @@
     "noUsableBackup": "Ce compte a une adresse de portefeuille enregistrée, mais aucune sauvegarde que ce téléphone peut utiliser — soit elle était protégée par <em>la biométrie ou une clé d'accès sur le web</em> (ce déverrouillage reste dans le navigateur et ne se synchronise pas ici), soit une inscription antérieure sur ce téléphone a été interrompue avant de se terminer.",
     "addPasswordOnWeb": "Si vous avez déjà utilisé dehub.io, ouvrez-le sur votre ordinateur, connectez-vous de la même manière et avec le même compte, et <em>ajoutez un mot de passe de portefeuille</em> — cela enregistre une sauvegarde cryptée dans le cloud. Revenez ensuite ici et réessayez.",
     "walletAddress": "Portefeuille : {{address}}",
-    "biometricKeepsFailing": "{{error}} Si cela continue d'échouer, utilisez le mot de passe de votre portefeuille ci-dessous ou \"Importer un portefeuille externe\".",
+    "biometricKeepsFailing": "{{error}} Si cela continue d'échouer, utilisez le mot de passe de votre portefeuille ci-dessous ou \"Importer des clés\".",
     "deviceBoundKey": "Ce portefeuille se déverrouille avec <em>des données biométriques stockées sur un appareil spécifique</em> — le téléphone ou le navigateur sur lequel il a été configuré. Ce téléphone ne possède pas cette clé, et dehub.io non plus : la clé ne quitte jamais l'appareil qui l'a créée.",
-    "unlockPasskeyOnly": "Ce portefeuille a été sécurisé avec une passkey sur le web et ne dispose pas encore de sauvegarde de mot de passe dans le cloud. Si vous avez défini un mot de passe de portefeuille sur dehub.io, entrez-le ici — sinon, utilisez \"Importer un portefeuille externe\" ci-dessous.",
+    "unlockPasskeyOnly": "Ce portefeuille a été sécurisé avec une passkey sur le web et ne dispose pas encore de sauvegarde de mot de passe dans le cloud. Si vous avez défini un mot de passe de portefeuille sur dehub.io, entrez-le ici — sinon, utilisez \"Importer des clés\" ci-dessous.",
     "unlockWithPasswordExplainer": "Ce compte possède déjà un portefeuille, protégé par un mot de passe. Entrez-le pour récupérer votre portefeuille sur cet appareil."
   },
   "transcript": {
