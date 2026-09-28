@@ -13,7 +13,7 @@ import Slider from "@react-native-community/slider";
 import { useTranslation } from "react-i18next";
 import Icon, { type IconName } from "../ui/Icon";
 import { DhbCoin } from "../common/DhbCoin";
-import ShowcaseShell, { type ShowcaseApi, type ShowcaseEntry } from "./ShowcaseShell";
+import ShowcaseShell, { type ShowcaseApi, type ShowcaseEntry, type ShowcaseIntro } from "./ShowcaseShell";
 import type { StickerArt } from "./BadgeSticker";
 import { tiltAt, tileWidthFor, ui } from "./showcaseUi";
 import { useUser } from "../../context/AuthContext";
@@ -22,6 +22,7 @@ import {
   BADGE_ORDER,
   badgeImage,
   badgeThresholds,
+  canonicalTierName,
   getBadgeStanding,
   resolveBadgeBalance,
   resolveBadgeLock,
@@ -29,7 +30,7 @@ import {
   type BadgeStanding,
 } from "../../libs/misc";
 import { BADGE_PLATES } from "../../libs/badgePlates";
-import { shortDhb } from "../../libs/badgeMotion";
+import { badgeMotion, shortDhb } from "../../libs/badgeMotion";
 import { badgePerksForIndex, formatBytes } from "../../libs/badgePerks";
 import { fetchVoiceClonePrice } from "../../libs/voiceClonePrice";
 import type { MeasurableAnchor } from "../../libs/badgeShowcase";
@@ -38,6 +39,11 @@ import { ScreenNames } from "../../navigation/ScreenNames";
 
 interface Props {
   tier: string | null;
+  /**
+   * Present when this opens as a promotion: the tier left behind, or null
+   * for a first badge. Undefined for an ordinary tap.
+   */
+  promotedFrom?: string | null;
   anchor: MeasurableAnchor | null;
   onClose: () => void;
 }
@@ -73,7 +79,7 @@ function holderArt(tier: string): StickerArt {
   };
 }
 
-export default function BadgeShowcase({ tier, anchor, onClose }: Props) {
+export default function BadgeShowcase({ tier, promotedFrom, anchor, onClose }: Props) {
   const { t } = useTranslation();
   const user = useUser();
   const scale = useBadgeScale();
@@ -101,16 +107,35 @@ export default function BadgeShowcase({ tier, anchor, onClose }: Props) {
 
   const owned = (i: number) => !!standing && standing.index >= i;
 
+  const intro = useMemo<ShowcaseIntro | undefined>(() => {
+    if (promotedFrom === undefined) return undefined;
+    const motion = badgeMotion(BADGE_ORDER[originIndex]);
+    if (!motion) return undefined;
+    const from = canonicalTierName(promotedFrom);
+    return { fromArt: from ? holderArt(from) : null, motion };
+  }, [promotedFrom, originIndex]);
+
   return (
     <ShowcaseShell
       entries={entries}
       originIndex={originIndex}
       anchor={anchor}
       onClose={onClose}
+      intro={intro}
       dialogLabel={(i) => t("badgeShowcase.dialogLabel", { tier: BADGE_ORDER[i] })}
       owned={owned}
     >
-      {(api) => <HolderDetails api={api} standing={standing} ladder={ladder} price={price} scale={scale} owned={owned} />}
+      {(api) => (
+        <HolderDetails
+          api={api}
+          standing={standing}
+          ladder={ladder}
+          price={price}
+          scale={scale}
+          owned={owned}
+          promotedTo={intro ? originIndex : null}
+        />
+      )}
     </ShowcaseShell>
   );
 }
@@ -125,7 +150,10 @@ function HolderDetails({
   price,
   scale,
   owned,
+  promotedTo,
 }: {
+  /** Ladder index just reached, when the showcase opened as a promotion. */
+  promotedTo: number | null;
   api: ShowcaseApi;
   standing: BadgeStanding | null;
   ladder: ReturnType<typeof badgeThresholds>;
@@ -181,6 +209,9 @@ function HolderDetails({
 
   const name = BADGE_ORDER[index];
   const threshold = ladder[index].min;
+  // On the tier just reached, the header congratulates instead of counting.
+  const celebrating = promotedTo === index;
+  const lineKey = celebrating ? badgeMotion(name)?.lineKey : undefined;
   // The quotas resolve against the live ladder, so a new price means new perks.
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const perks = useMemo(() => badgePerksForIndex(index), [index, scale]);
@@ -229,6 +260,23 @@ function HolderDetails({
   return (
     <>
       <View style={{ alignItems: "center", gap: 6 }}>
+        {lineKey ? (
+          <Text
+            style={{
+              color: "#6ee7b7",
+              fontSize: 10,
+              lineHeight: 12,
+              fontWeight: "700",
+              letterSpacing: 1.4,
+              textTransform: "uppercase",
+              textAlign: "center",
+              textShadowColor: "rgba(110,231,183,0.45)",
+              textShadowRadius: 14,
+            }}
+          >
+            {t(lineKey)}
+          </Text>
+        ) : null}
         <View style={ui.titleRow}>
           <Animated.Text key={name} entering={FadeInDown.duration(260)} exiting={FadeOutUp.duration(180)} style={ui.title}>
             {SHORT_NAMES[name] ?? name}
@@ -241,7 +289,9 @@ function HolderDetails({
           </View>
         </View>
         <Text style={ui.muted} numberOfLines={1}>
-          {standing
+          {celebrating
+            ? t("badgeAscension.reached", { tier: name })
+            : standing
             ? owned(index)
               ? t("badgeShowcase.youHaveThis")
               : t("badgeShowcase.toUnlock", { amount: nf.format(Math.ceil(remaining)) })
