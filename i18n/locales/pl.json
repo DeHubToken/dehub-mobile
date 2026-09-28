@@ -4890,8 +4890,61 @@
         "legend": {
           "name": "Legenda",
           "hint": "Osiągnij poziom dziesiąty."
+        },
+        "ignition": {
+          "name": "Zapłon",
+          "hint": "Osiągnij jedną kwalifikującą się godzinę transmisji."
+        },
+        "on-air": {
+          "name": "Transmisja",
+          "hint": "Ukończ dziesięć kwalifikujących się transmisji."
+        },
+        "storyteller": {
+          "name": "Narrator",
+          "hint": "Ukończ dwadzieścia pięć kwalifikujących się transmisji."
+        },
+        "broadcaster": {
+          "name": "Nadawca",
+          "hint": "Ukończ pięćdziesiąt kwalifikujących się transmisji."
+        },
+        "centurion": {
+          "name": "Setnik",
+          "hint": "Ukończ sto kwalifikujących się transmisji."
+        },
+        "enduring": {
+          "name": "Wytrwały",
+          "hint": "Streamuj przez cztery kwalifikujące się godziny w jednej sesji."
+        },
+        "circle": {
+          "name": "Wewnętrzny krąg",
+          "hint": "Miej jednocześnie dwadzieścia pięć osób oglądających."
+        },
+        "arena": {
+          "name": "Arena",
+          "hint": "Miej jednocześnie pięćdziesiąt osób oglądających."
+        },
+        "headliner": {
+          "name": "Gwiazda",
+          "hint": "Miej jednocześnie sto osób oglądających."
+        },
+        "cornerstone": {
+          "name": "Kamień węgielny",
+          "hint": "Streamuj przez dwadzieścia sześć kolejnych tygodni."
+        },
+        "veteran": {
+          "name": "Weteran",
+          "hint": "Osiągnij 250 kwalifikujących się godzin transmisji."
+        },
+        "icon": {
+          "name": "Ikona",
+          "hint": "Osiągnij poziom dwudziesty."
         }
-      }
+      },
+      "chooseBadge": "Wybierz dowolną odblokowaną odznakę do wyświetlenia na swoim profilu.",
+      "useBadge": "Użyj odznaki",
+      "selectedBadge": "Wybrane",
+      "savingBadge": "Zapisywanie odznaki…",
+      "saveBadgeError": "Nie udało się zapisać odznaki. Spróbuj ponownie."
     },
     "unmuteMic": "Wycisz mikrofon",
     "muteMic": "Włącz mikrofon",

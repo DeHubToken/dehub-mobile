@@ -4890,8 +4890,61 @@
         "legend": {
           "name": "Sagn",
           "hint": "Nå nivå ti."
+        },
+        "ignition": {
+          "name": "Tenningssystem",
+          "hint": "Oppnå én kvalifiserende time på lufta."
+        },
+        "on-air": {
+          "name": "På lufta",
+          "hint": "Fullfør ti kvalifiserende sendinger."
+        },
+        "storyteller": {
+          "name": "Historieforteller",
+          "hint": "Fullfør tjuefem kvalifiserende sendinger."
+        },
+        "broadcaster": {
+          "name": "Sender",
+          "hint": "Fullfør femti kvalifiserende sendinger."
+        },
+        "centurion": {
+          "name": "Centurion",
+          "hint": "Fullfør hundre kvalifiserende sendinger."
+        },
+        "enduring": {
+          "name": "Utholdende",
+          "hint": "Send i fire kvalifiserende timer i én økt."
+        },
+        "circle": {
+          "name": "Indre sirkel",
+          "hint": "Ha tjuefem personer som ser på samtidig."
+        },
+        "arena": {
+          "name": "Arena",
+          "hint": "Ha femti personer som ser på samtidig."
+        },
+        "headliner": {
+          "name": "Hovednavn",
+          "hint": "Ha hundre personer som ser på samtidig."
+        },
+        "cornerstone": {
+          "name": "Hjørnestein",
+          "hint": "Send i tjueseks sammenhengende uker."
+        },
+        "veteran": {
+          "name": "Veteran",
+          "hint": "Oppnå 250 kvalifiserende timer på lufta."
+        },
+        "icon": {
+          "name": "Ikon",
+          "hint": "Nå nivå tjue."
         }
-      }
+      },
+      "chooseBadge": "Velg et hvilket som helst ulåst merke å vise på profilen din.",
+      "useBadge": "Bruk merke",
+      "selectedBadge": "Valgt",
+      "savingBadge": "Lagrer merke…",
+      "saveBadgeError": "Kunne ikke lagre merket ditt. Prøv igjen."
     },
     "unmuteMic": "Fjern blokkering av mikrofon",
     "muteMic": "Blokker mikrofon",

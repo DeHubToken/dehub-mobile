@@ -4894,8 +4894,61 @@
         "legend": {
           "name": "Legende",
           "hint": "Nå niveau ti."
+        },
+        "ignition": {
+          "name": "Tænding",
+          "hint": "Opnå én kvalificerende time på luften."
+        },
+        "on-air": {
+          "name": "På luften",
+          "hint": "Afslut ti kvalificerende streams."
+        },
+        "storyteller": {
+          "name": "Fortæller",
+          "hint": "Afslut femogtyve kvalificerende streams."
+        },
+        "broadcaster": {
+          "name": "Broadcaster",
+          "hint": "Afslut halvtreds kvalificerende streams."
+        },
+        "centurion": {
+          "name": "Centurion",
+          "hint": "Afslut et hundrede kvalificerende streams."
+        },
+        "enduring": {
+          "name": "Udholdende",
+          "hint": "Stream i fire kvalificerende timer i én session."
+        },
+        "circle": {
+          "name": "Inderkreds",
+          "hint": "Hav femogtyve personer, der ser med på én gang."
+        },
+        "arena": {
+          "name": "Arena",
+          "hint": "Hav halvtreds personer, der ser med på én gang."
+        },
+        "headliner": {
+          "name": "Headliner",
+          "hint": "Hav et hundrede personer, der ser med på én gang."
+        },
+        "cornerstone": {
+          "name": "Hjørnesten",
+          "hint": "Stream i seksogtyve uger i træk."
+        },
+        "veteran": {
+          "name": "Veteran",
+          "hint": "Opnå 250 kvalificerende timer på luften."
+        },
+        "icon": {
+          "name": "Ikon",
+          "hint": "Opnå niveau tyve."
         }
-      }
+      },
+      "chooseBadge": "Vælg et hvilket som helst ulåst badge til at vise på din profil.",
+      "useBadge": "Brug badge",
+      "selectedBadge": "Valgt",
+      "savingBadge": "Gemmer badge…",
+      "saveBadgeError": "Kunne ikke gemme dit badge. Prøv igen."
     },
     "unmuteMic": "Slå mikrofonen til",
     "muteMic": "Slå mikrofonen fra",

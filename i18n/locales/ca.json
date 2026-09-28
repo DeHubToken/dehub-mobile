@@ -4890,8 +4890,61 @@
         "legend": {
           "name": "Llegenda",
           "hint": "Arriba al nivell deu."
+        },
+        "ignition": {
+          "name": "Ignició",
+          "hint": "Assolir una hora qualificada a l'aire."
+        },
+        "on-air": {
+          "name": "A l'aire",
+          "hint": "Completar deu transmissions qualificades."
+        },
+        "storyteller": {
+          "name": "Narrador",
+          "hint": "Completar vint-i-cinc transmissions qualificades."
+        },
+        "broadcaster": {
+          "name": "Locutor",
+          "hint": "Completar cinquanta transmissions qualificades."
+        },
+        "centurion": {
+          "name": "Centurió",
+          "hint": "Completar cent transmissions qualificades."
+        },
+        "enduring": {
+          "name": "Durador",
+          "hint": "Transmetre durant quatre hores qualificades en una sessió."
+        },
+        "circle": {
+          "name": "Cercle íntim",
+          "hint": "Tenir vint-i-cinc persones mirant alhora."
+        },
+        "arena": {
+          "name": "Arena",
+          "hint": "Tenir cinquanta persones mirant alhora."
+        },
+        "headliner": {
+          "name": "Cap de cartell",
+          "hint": "Tenir cent persones mirant alhora."
+        },
+        "cornerstone": {
+          "name": "Pedra angular",
+          "hint": "Transmetre durant vint-i-sis setmanes consecutives."
+        },
+        "veteran": {
+          "name": "Veterà",
+          "hint": "Assolir 250 hores qualificades a l'aire."
+        },
+        "icon": {
+          "name": "Icona",
+          "hint": "Assolir el nivell vint."
         }
-      }
+      },
+      "chooseBadge": "Tria qualsevol distintiu desbloquejat per mostrar al teu perfil.",
+      "useBadge": "Utilitza distintiu",
+      "selectedBadge": "Seleccionat",
+      "savingBadge": "Desant distintiu…",
+      "saveBadgeError": "No s'ha pogut desar el teu distintiu. Torna-ho a provar."
     },
     "unmuteMic": "Activa el silenci del micròfon",
     "muteMic": "Silenciar micròfon",

@@ -4901,10 +4901,63 @@
         "legend": {
           "name": "Aduu",
           "hint": "Lakkofsa 10 gahi."
+        },
+        "ignition": {
+          "name": "Dabarsuu",
+          "hint": "Sa'aatii tokko kan filatame irratti dabarsuu."
+        },
+        "on-air": {
+          "name": "Qilleensa irra",
+          "hint": "Lakkofsa 10 kan filatame irratti dabarsuu."
+        },
+        "storyteller": {
+          "name": "Dubbii Barreessaa",
+          "hint": "Lakkofsa 25 kan filatame irratti dabarsuu."
+        },
+        "broadcaster": {
+          "name": "Baraa",
+          "hint": "Lakkofsa 50 kan filatame irratti dabarsuu."
+        },
+        "centurion": {
+          "name": "Dhibbaa",
+          "hint": "Lakkofsa 100 kan filatame irratti dabarsuu."
+        },
+        "enduring": {
+          "name": "Furtuu",
+          "hint": "Sa'aatii 4 kan filatame tokko irratti dabarsuu."
+        },
+        "circle": {
+          "name": "Mootummaa",
+          "hint": "Namoota 25 yoo si ilaalan."
+        },
+        "arena": {
+          "name": "Areenna",
+          "hint": "Namoota 50 yoo si ilaalan."
+        },
+        "headliner": {
+          "name": "Guddaa",
+          "hint": "Namoota 100 yoo si ilaalan."
+        },
+        "cornerstone": {
+          "name": "Buna",
+          "hint": "Wiixineewwan 26 walitti aansee dabarsuu."
+        },
+        "veteran": {
+          "name": "Jaarraa",
+          "hint": "Sa'aatii 250 kan filatame irratti dabarsuu."
+        },
+        "icon": {
+          "name": "Aduu",
+          "hint": "Sadarkaa 20 gahuu."
         }
       },
       "level": "Sadarkaa {{level}}",
-      "minutes": "{{count}} daqiiqaa"
+      "minutes": "{{count}} daqiiqaa",
+      "chooseBadge": "Badii baname kamiyyuu filadhuu fuula kee irratti agarsiisi.",
+      "useBadge": "Badii fayyadami",
+      "selectedBadge": "Filatame",
+      "savingBadge": "Badii galmeessaa jira...",
+      "saveBadgeError": "Badii galmeessuu hin danda'amne. Yeroo biraatti yaali."
     },
     "unmuteMic": "Maaykiroofoonii sagalee dhaamsuu",
     "muteMic": "Maaykiroofoonii afaan hin qabne",

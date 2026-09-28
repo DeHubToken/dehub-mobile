@@ -4890,8 +4890,61 @@
         "legend": {
           "name": "Ngā kōrero",
           "hint": "Haere ki te taumata 10."
+        },
+        "ignition": {
+          "name": "Te Whakaoho",
+          "hint": "Kia kotahi te haora whai tohu ki runga i te hau."
+        },
+        "on-air": {
+          "name": "I runga i te hau",
+          "hint": "Whakaotia tekau nga awa whai tohu."
+        },
+        "storyteller": {
+          "name": "Kaituhi korero",
+          "hint": "Whakaotia rua tekau ma rima nga awa whai tohu."
+        },
+        "broadcaster": {
+          "name": "Kaiwhakawhitiwhiti",
+          "hint": "Whakaotia rima tekau nga awa whai tohu."
+        },
+        "centurion": {
+          "name": "Rau Tau",
+          "hint": "Whakaotia kotahi rau nga awa whai tohu."
+        },
+        "enduring": {
+          "name": "Mau Tonu",
+          "hint": "Rere mo nga haora whai tohu e wha i roto i te kotahi huihuinga."
+        },
+        "circle": {
+          "name": "Porowhita o roto",
+          "hint": "Kia rua tekau ma rima nga tangata e matakitaki ana i te wa kotahi."
+        },
+        "arena": {
+          "name": "Papa Whakataetae",
+          "hint": "Kia rima tekau nga tangata e matakitaki ana i te wa kotahi."
+        },
+        "headliner": {
+          "name": "Kaiwhakaatu Matua",
+          "hint": "Kia kotahi rau nga tangata e matakitaki ana i te wa kotahi."
+        },
+        "cornerstone": {
+          "name": "Kamupene",
+          "hint": "Rere i roto i nga wiki e rua tekau ma ono e whai ana."
+        },
+        "veteran": {
+          "name": "Matawhao",
+          "hint": "Kia rua rau ma rima tekau nga haora whai tohu i runga i te hau."
+        },
+        "icon": {
+          "name": "Toi",
+          "hint": "Kia e rua tekau te taumata."
         }
-      }
+      },
+      "chooseBadge": "Kōwhiria he tohu kua iriti hei whakaatu ki tō kōtaha.",
+      "useBadge": "Whakamahia te tohu",
+      "selectedBadge": "Kua Tīpakohia",
+      "savingBadge": "Te Tiaki Tohu…",
+      "saveBadgeError": "Kore i taea te Tiaki i tō Tohu. Tēnā anō kia whakamātau anō."
     },
     "unmuteMic": "Microphone Unmute",
     "muteMic": "Whakarongo ki te hopuoro",

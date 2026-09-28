@@ -4890,8 +4890,61 @@
         "legend": {
           "name": "Legenda",
           "hint": "Pasiekite dešimtą lygį."
+        },
+        "ignition": {
+          "name": "Uždegimas",
+          "hint": "Pasiekite vieną kvalifikacinę valandą eteryje."
+        },
+        "on-air": {
+          "name": "Eteryje",
+          "hint": "Užbaikite dešimt kvalifikacinių transliacijų."
+        },
+        "storyteller": {
+          "name": "Pasakotojas",
+          "hint": "Užbaikite dvidešimt penkias kvalifikacines transliacijas."
+        },
+        "broadcaster": {
+          "name": "Transliuotojas",
+          "hint": "Užbaikite penkiasdešimt kvalifikacinių transliacijų."
+        },
+        "centurion": {
+          "name": "Šimtmetis",
+          "hint": "Užbaikite šimtą kvalifikacinių transliacijų."
+        },
+        "enduring": {
+          "name": "Ištvermingasis",
+          "hint": "Transliuokite keturias kvalifikacines valandas vienos sesijos metu."
+        },
+        "circle": {
+          "name": "Artimas ratas",
+          "hint": "Turėkite dvidešimt penkis žiūrovus vienu metu."
+        },
+        "arena": {
+          "name": "Arena",
+          "hint": "Turėkite penkiasdešimt žiūrovų vienu metu."
+        },
+        "headliner": {
+          "name": "Antraštė",
+          "hint": "Turėkite šimtą žiūrovų vienu metu."
+        },
+        "cornerstone": {
+          "name": "Kampas",
+          "hint": "Transliuokite dvidešimt šešias savaites iš eilės."
+        },
+        "veteran": {
+          "name": "Veteranas",
+          "hint": "Pasiekite 250 kvalifikacinių valandų eteryje."
+        },
+        "icon": {
+          "name": "Ikona",
+          "hint": "Pasiekite dvidešimtą lygį."
         }
-      }
+      },
+      "chooseBadge": "Pasirinkite bet kokį atrakintą ženklelį, kad jį rodytumėte savo profilyje.",
+      "useBadge": "Naudoti ženklelį",
+      "selectedBadge": "Pasirinkta",
+      "savingBadge": "Įrašomas ženklelis…",
+      "saveBadgeError": "Nepavyko įrašyti jūsų ženklelio. Bandykite dar kartą."
     },
     "unmuteMic": "Įjungti mikrofono garsą",
     "muteMic": "Nutildyti mikrofoną",

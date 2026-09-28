@@ -4891,8 +4891,61 @@
         "legend": {
           "name": "Hadithi",
           "hint": "Fikia kiwango cha kumi."
+        },
+        "ignition": {
+          "name": "Unyevu",
+          "hint": "Fikia saa moja inayostahiki hewani."
+        },
+        "on-air": {
+          "name": "Hewa",
+          "hint": "Kamilisha vipindi kumi vinavyostahiki."
+        },
+        "storyteller": {
+          "name": "Msimulizi",
+          "hint": "Kamilisha vipindi ishirini na tano vinavyostahiki."
+        },
+        "broadcaster": {
+          "name": "Mwenye Matangazo",
+          "hint": "Kamilisha vipindi virobaini na tano vinavyostahiki."
+        },
+        "centurion": {
+          "name": "Mwamvuli",
+          "hint": "Kamilisha vipindi mia moja vinavyostahiki."
+        },
+        "enduring": {
+          "name": "Mvumilivu",
+          "hint": "Tiririsha kwa saa nne zinazostahiki katika kipindi kimoja."
+        },
+        "circle": {
+          "name": "Mzunguko wa Ndani",
+          "hint": "Kuwa na watu ishirini na tano wanaotazama kwa wakati mmoja."
+        },
+        "arena": {
+          "name": "Uwanja",
+          "hint": "Kuwa na watu hamsini wanaotazama kwa wakati mmoja."
+        },
+        "headliner": {
+          "name": "Mkuu wa habari",
+          "hint": "Kuwa na watu mia moja wanaotazama kwa wakati mmoja."
+        },
+        "cornerstone": {
+          "name": "Jiwe la Msingi",
+          "hint": "Tiririsha kwa wiki ishirini na sita mfululizo."
+        },
+        "veteran": {
+          "name": "Mkongwe",
+          "hint": "Fikia saa 250 zinazostahiki hewani."
+        },
+        "icon": {
+          "name": "Ishara",
+          "hint": "Fikia kiwango cha ishirini."
         }
-      }
+      },
+      "chooseBadge": "Chagua beji yoyote iliyofunguliwa ili ionyeshwe kwenye wasifu wako.",
+      "useBadge": "Tumia beji",
+      "selectedBadge": "Uchaguliwa",
+      "savingBadge": "Inahifadhi beji...",
+      "saveBadgeError": "Imeshindwa kuhifadhi beji yako. Tafadhali jaribu tena."
     },
     "unmuteMic": "Simamisha maikrofoni",
     "muteMic": "Kipaza sauti",
