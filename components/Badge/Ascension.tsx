@@ -9,10 +9,11 @@
  * take over, so the sticker's own reveal finishes the moment. Web's twin is
  * dehubweb `src/components/app/badge-showcase/ascension.ts`.
  *
- * The web draws the glitter on a canvas. There is no Skia here (see
- * `libs/badgeMotion`), so every flake, wedge, streak and ring is a view, all
- * driven off one clock on the UI thread; the old art breaks into rectangles
- * rather than the canvas's wedges. Glitter is the sticker burst's palette —
+ * The web draws the glitter on a canvas. Builds with Skia draw it the same
+ * way (`SkiaGlitter`); older builds without it, which still take updates, get
+ * every flake, wedge, streak and ring as a view, all driven off one clock on
+ * the UI thread, with the old art breaking into rectangles rather than the
+ * canvas's wedges. Glitter is the sticker burst's palette —
  * white with a pastel holo tint — so the ceremony and the sticker read as
  * one thing. Per-tier sizing comes from `badgeMotion`.
  */
@@ -31,6 +32,10 @@ import { LinearGradient } from "expo-linear-gradient";
 import type { StickerArt } from "./BadgeSticker";
 import { EMBER_COUNT, SPARKS_PER_BURST, type BadgeMotion } from "../../libs/badgeMotion";
 import { haptic } from "../../libs/haptics";
+import { optionalSkia } from "../../libs/skia";
+
+// Null on builds without Skia; see libs/skia.
+const SkiaGlitter = optionalSkia(() => require("./SkiaGlitter").default as typeof import("./SkiaGlitter").default);
 
 export interface AscensionBox {
   x: number;
@@ -105,9 +110,10 @@ function timeline(motion: BadgeMotion, hasOld: boolean) {
   return { i, hasOld, LIFT, CHARGE, POP, OUT, SWIRL, SWIRL_AT, FORM, SETTLE, LAND, TAIL };
 }
 type Timeline = ReturnType<typeof timeline>;
+export type AscensionTimeline = Timeline;
 
 /** Where everything gathers: the middle of the hero box. */
-interface Center {
+export interface AscensionCenter {
   cx: number;
   cy: number;
   R: number;
@@ -119,7 +125,7 @@ const HANDOFF_MS = 220;
 export default function Ascension({ from, hero, fromArt, toArt, restTilt, motion, landed, onLanded, onFinished }: Props) {
   const { width: W, height: H } = useWindowDimensions();
   const tl = useMemo(() => timeline(motion, !!fromArt), [motion, fromArt]);
-  const c = useMemo<Center>(() => ({ cx: hero.x + hero.size / 2, cy: hero.y + hero.size / 2, R: hero.size / 2 }), [hero.x, hero.y, hero.size]);
+  const c = useMemo<AscensionCenter>(() => ({ cx: hero.x + hero.size / 2, cy: hero.y + hero.size / 2, R: hero.size / 2 }), [hero.x, hero.y, hero.size]);
   const clock = useSharedValue(0);
 
   useEffect(() => {
@@ -357,17 +363,24 @@ export default function Ascension({ from, hero, fromArt, toArt, restTilt, motion
         <Pressable style={StyleSheet.absoluteFill} onPress={skip} importantForAccessibility="no" accessible={false} />
       )}
 
-      <Animated.View
-        pointerEvents="none"
-        style={[
-          styles.bloom,
-          { left: cx - R * 2.4, top: cy - R * 2.4, width: R * 4.8, height: R * 4.8, borderRadius: R * 2.4 },
-          bloom,
-        ]}
-      >
-        <View style={[styles.bloomRing, { margin: R * 1.0, borderRadius: R * 1.4, backgroundColor: holo(0.6, 0.25, 0.08) }]} />
-        <View style={[styles.bloomRing, { margin: R * 1.7, borderRadius: R * 0.7, backgroundColor: "rgba(255,255,255,0.16)" }]} />
-      </Animated.View>
+      {/* Builds with Skia draw all the light and glitter on one canvas, above
+          the badges, exactly as the web does; the views below are the
+          fallback for builds without it. */}
+      {!SkiaGlitter && (
+        <>
+          <Animated.View
+            pointerEvents="none"
+            style={[
+              styles.bloom,
+              { left: cx - R * 2.4, top: cy - R * 2.4, width: R * 4.8, height: R * 4.8, borderRadius: R * 2.4 },
+              bloom,
+            ]}
+          >
+            <View style={[styles.bloomRing, { margin: R * 1.0, borderRadius: R * 1.4, backgroundColor: holo(0.6, 0.25, 0.08) }]} />
+            <View style={[styles.bloomRing, { margin: R * 1.7, borderRadius: R * 0.7, backgroundColor: "rgba(255,255,255,0.16)" }]} />
+          </Animated.View>
+        </>
+      )}
 
       {fromArt && (
         <Animated.View pointerEvents="none" style={[styles.badge, oldBadge]}>
@@ -381,53 +394,68 @@ export default function Ascension({ from, hero, fromArt, toArt, restTilt, motion
         {toArt.renderArt()}
       </Animated.View>
 
-      {motion.fx.streak && (
-        <View
-          pointerEvents="none"
-          style={{
-            position: "absolute",
-            left: cx - R * 0.98,
-            top: cy - R * 0.98,
-            width: R * 1.96,
-            height: R * 1.96,
-            borderRadius: R * 0.98,
-            overflow: "hidden",
-          }}
-        >
-          <Animated.View style={[{ position: "absolute", left: 0, top: 0, width: R, height: R * 1.96 }, sweep]}>
-            <LinearGradient
-              colors={["rgba(255,255,255,0)", "#ffffff", "rgba(255,255,255,0)"]}
-              start={{ x: 0, y: 0.5 }}
-              end={{ x: 1, y: 0.5 }}
-              style={StyleSheet.absoluteFill}
-            />
-          </Animated.View>
-        </View>
+      {SkiaGlitter ? (
+        <SkiaGlitter
+          clock={clock}
+          tl={tl}
+          c={c}
+          W={W}
+          H={H}
+          restTilt={restTilt}
+          motion={motion}
+          fromSource={fromArt?.source ?? null}
+        />
+      ) : (
+        <>
+          {motion.fx.streak && (
+            <View
+              pointerEvents="none"
+              style={{
+                position: "absolute",
+                left: cx - R * 0.98,
+                top: cy - R * 0.98,
+                width: R * 1.96,
+                height: R * 1.96,
+                borderRadius: R * 0.98,
+                overflow: "hidden",
+              }}
+            >
+              <Animated.View style={[{ position: "absolute", left: 0, top: 0, width: R, height: R * 1.96 }, sweep]}>
+                <LinearGradient
+                  colors={["rgba(255,255,255,0)", "#ffffff", "rgba(255,255,255,0)"]}
+                  start={{ x: 0, y: 0.5 }}
+                  end={{ x: 1, y: 0.5 }}
+                  style={StyleSheet.absoluteFill}
+                />
+              </Animated.View>
+            </View>
+          )}
+
+          {fromArt &&
+            shards.map((s, k) => <Shard key={`s${k}`} clock={clock} tl={tl} c={c} spec={s} art={fromArt} restTilt={restTilt} />)}
+
+          {motes.map((m, k) => (
+            <Mote key={`m${k}`} clock={clock} tl={tl} c={c} spec={m} far={Math.max(W, H) * 0.75} />
+          ))}
+
+          {flakes.map((f, k) => (
+            <SwirlFlake key={`f${k}`} clock={clock} tl={tl} c={c} spec={f} />
+          ))}
+
+          {Array.from({ length: motion.shockwaves }, (_, w) => (
+            <Ring key={`w${w}`} clock={clock} tl={tl} c={c} index={w} />
+          ))}
+
+          {pops.map((p, k) => (
+            <PopFlake key={`p${k}`} clock={clock} spec={p} W={W} H={H} />
+          ))}
+          {fall.map((e, k) => (
+            <FallFlake key={`e${k}`} clock={clock} tl={tl} spec={e} W={W} H={H} />
+          ))}
+
+          <Animated.View pointerEvents="none" style={[styles.flash, flash]} />
+        </>
       )}
-
-      {fromArt &&
-        shards.map((s, k) => <Shard key={`s${k}`} clock={clock} tl={tl} c={c} spec={s} art={fromArt} restTilt={restTilt} />)}
-
-      {motes.map((m, k) => (
-        <Mote key={`m${k}`} clock={clock} tl={tl} c={c} spec={m} far={Math.max(W, H) * 0.75} />
-      ))}
-
-      {flakes.map((f, k) => (
-        <SwirlFlake key={`f${k}`} clock={clock} tl={tl} c={c} spec={f} />
-      ))}
-
-      {Array.from({ length: motion.shockwaves }, (_, w) => (
-        <Ring key={`w${w}`} clock={clock} tl={tl} c={c} index={w} />
-      ))}
-
-      {pops.map((p, k) => (
-        <PopFlake key={`p${k}`} clock={clock} spec={p} W={W} H={H} />
-      ))}
-      {fall.map((e, k) => (
-        <FallFlake key={`e${k}`} clock={clock} tl={tl} spec={e} W={W} H={H} />
-      ))}
-
-      <Animated.View pointerEvents="none" style={[styles.flash, flash]} />
     </View>
   );
 }
@@ -498,7 +526,7 @@ function SwirlFlake({
 }: {
   clock: SharedValue<number>;
   tl: Timeline;
-  c: Center;
+  c: AscensionCenter;
   spec: { k: number; a0: number; out: number; lag: number; swirl: number; size: number; rot: number; rotV: number; hue: number; star: boolean };
 }) {
   const place = (t: number) => {
@@ -608,7 +636,7 @@ function Mote({
 }: {
   clock: SharedValue<number>;
   tl: Timeline;
-  c: Center;
+  c: AscensionCenter;
   spec: { a0: number; spread: number; lag: number; swirl: number; r: number; color: string };
   far: number;
 }) {
@@ -665,7 +693,7 @@ function Shard({
 }: {
   clock: SharedValue<number>;
   tl: Timeline;
-  c: Center;
+  c: AscensionCenter;
   spec: { col: number; row: number; grid: number; dx: number; dy: number; spin: number; lag: number; grav: number };
   art: StickerArt;
   restTilt: number;
@@ -698,7 +726,7 @@ function Shard({
 }
 
 /** A holo ring off the new badge; one per `shockwaves`. */
-function Ring({ clock, tl, c, index }: { clock: SharedValue<number>; tl: Timeline; c: Center; index: number }) {
+function Ring({ clock, tl, c, index }: { clock: SharedValue<number>; tl: Timeline; c: AscensionCenter; index: number }) {
   const style = useAnimatedStyle(() => {
     const t = clock.value;
     const wp = clamp01(((t - tl.FORM) / 900 - index * 0.16) / (1 - index * 0.16));

@@ -72,6 +72,7 @@ function holderArt(tier: string): StickerArt {
   const plate = BADGE_PLATES[tier];
   return {
     key: tier,
+    source,
     renderArt: () => <Image source={source} resizeMode="contain" style={{ width: "100%", height: "100%" }} />,
     renderPlate: (color, blur) => (
       <Image source={plate} blurRadius={blur} resizeMode="contain" style={{ width: "100%", height: "100%", tintColor: color }} />
