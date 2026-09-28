@@ -1,14 +1,17 @@
-import { readFileSync } from "fs";
-import { resolve } from "path";
+import { pagerPageIntersectsViewport } from '../../libs/pagerVisibility';
 
-const src = readFileSync(resolve(__dirname, "../../screens/HomeScreen.tsx"), "utf8");
-
-// Measured on a Galaxy S24+: six mounted feeds held ~340 image textures, 112MB
-// of Android's 121MB GPU budget on a fresh launch, and a long session tipped
-// into re-uploading every bitmap every frame. Pages more than one step from the
-// active tab must not be drawn.
-describe("home pager hides far pages from the renderer", () => {
-  it("sets display none on pages beyond the active tab's neighbours", () => {
-    expect(src).toMatch(/display: Math\.abs\(index - activeIndex\) <= 1 \? "flex" : "none"/);
+describe('home pager draw window', () => {
+  it('draws only the active page while idle', () => {
+    expect([0, 1, 2, 3, 4, 5].filter(index => pagerPageIntersectsViewport(index, 2))).toEqual([2]);
+  });
+  it('reveals both pages during a swipe in either direction', () => {
+    expect([0, 1, 2, 3, 4, 5].filter(index => pagerPageIntersectsViewport(index, 2.3))).toEqual([2, 3]);
+    expect([0, 1, 2, 3, 4, 5].filter(index => pagerPageIntersectsViewport(index, 1.8))).toEqual([1, 2]);
+  });
+  it('keeps the edge page drawn during overscroll', () => {
+    expect(pagerPageIntersectsViewport(0, -0.2)).toBe(true);
+    expect(pagerPageIntersectsViewport(5, 5.2)).toBe(true);
+    expect(pagerPageIntersectsViewport(1, -0.2)).toBe(false);
+    expect(pagerPageIntersectsViewport(4, 5.2)).toBe(false);
   });
 });
