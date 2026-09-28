@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useCallback, useRef, useEffect, useDeferredValue } from "react";
-import { BackHandler, Image, View, StyleSheet, InteractionManager, useWindowDimensions } from "react-native";
+import { BackHandler, Image, View, StyleSheet, InteractionManager, useWindowDimensions, type LayoutChangeEvent } from "react-native";
 import { useIsFocused, useNavigation } from "@react-navigation/native";
 import type { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
 import Animated, {
@@ -21,7 +21,7 @@ import ImageFeedDrawer, { type ImageFeedDrawerHandle } from "../components/Home/
 import ShortsGrid, { type ShortsGridHandle } from "../components/Home/ShortsGrid";
 import MusicFeed, { type MusicFeedHandle } from "../components/Music/MusicFeed";
 import HomeHeader from "../components/HomeHeader";
-import FeedNavBar from "../components/Home/FeedNavBar";
+import FeedNavBar, { NAV_PILL_TOP_INSET } from "../components/Home/FeedNavBar";
 import { useDrawer } from "../context/DrawerContext";
 import { useTabBarHide } from "../context/TabBarHideContext";
 import FeedFilterPanel, { FeedFilters, PostTypeOption } from "../components/Home/FeedFilterPanel";
@@ -467,6 +467,24 @@ export default function HomeScreen() {
     [pageWidth, commitIndex, progress, dragStart, showHeader],
   );
 
+  // Canvas themes draw the header translucent over the live backdrop, and
+  // Android has no backdrop blur to soften what scrolls under it, so posts
+  // showed sharp behind the avatar, logo and bell. Web's glass themes cut the
+  // feed off at the top edge of the nav pill instead; this does the same. The
+  // viewport slides down to the pill's top and its content slides back up by
+  // the same amount: two transforms on the UI thread, no layout per frame.
+  const navPillTop = useSharedValue(0);
+  const onNavLayout = useCallback((e: LayoutChangeEvent) => {
+    navPillTop.value = e.nativeEvent.layout.y + NAV_PILL_TOP_INSET;
+  }, [navPillTop]);
+  const clipOn = !!skin;
+  const feedClipStyle = useAnimatedStyle(() => ({
+    transform: [{ translateY: clipOn ? Math.max(0, navPillTop.value + headerTranslateY.value) : 0 }],
+  }));
+  const feedUnclipStyle = useAnimatedStyle(() => ({
+    transform: [{ translateY: clipOn ? -Math.max(0, navPillTop.value + headerTranslateY.value) : 0 }],
+  }));
+
   const pagerStyle = useAnimatedStyle(() => ({
     transform: [{ translateX: -progress.value * pageWidth }],
   }));
@@ -862,6 +880,7 @@ export default function HomeScreen() {
           onMenuPress={openDrawer}
         />
 
+        <View onLayout={onNavLayout}>
         <FeedNavBar
           activeIndex={activeIndex}
           progress={progress}
@@ -872,6 +891,7 @@ export default function HomeScreen() {
           backMode={feedProfileVisible || !!imageFeed}
           onBackPress={feedProfileVisible ? hideUserProfile : handleImageFeedBack}
         />
+        </View>
 
 
         <FeedFilterPanel
@@ -886,7 +906,8 @@ export default function HomeScreen() {
       </Animated.View>
 
       <GestureDetector gesture={pagerGesture}>
-        <View style={styles.pagerViewport}>
+        <Animated.View style={[styles.pagerViewport, feedClipStyle]}>
+          <Animated.View style={[styles.feedUnclip, feedUnclipStyle]}>
           <PagerGestureProvider gestureRef={pagerGestureRef}>
             <Animated.View
               style={[styles.pagerRow, { width: pageWidth * TAB_ORDER.length }, pagerStyle]}
@@ -926,7 +947,8 @@ export default function HomeScreen() {
           {/* Covers the pager, never the header: the filter panel and nav bar
               stay live so the user can keep adjusting while this is up. */}
           {filterLoaderActive && <FeedFilterLoader topInset={headerHeight} />}
-        </View>
+          </Animated.View>
+        </Animated.View>
       </GestureDetector>
 
       {feedProfileVisible ? (
@@ -977,6 +999,7 @@ const styles = StyleSheet.create({
   // The row is six screens wide and slides under a clipped viewport, so the
   // five inactive pages are outside the visible bounds and cost no compositing.
   pagerViewport: { flex: 1, overflow: "hidden" },
+  feedUnclip: { flex: 1 },
   pagerRow: {
     position: "absolute",
     top: 0,

@@ -343,10 +343,13 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
   );
 };
 
+/** Gap between the top of FeedNavBar and the top edge of its pill. */
+export const NAV_PILL_TOP_INSET = 8;
+
 const styles = StyleSheet.create({
   outerWrap: {
     paddingHorizontal: 8,
-    paddingTop: 8,
+    paddingTop: NAV_PILL_TOP_INSET,
     // 2pt wrapper + 4pt list inset + 6pt card margin matches the 12pt gap
     // between every pair of feed bentos.
     paddingBottom: 2,
