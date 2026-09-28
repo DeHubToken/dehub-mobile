@@ -5,6 +5,7 @@ import { Asset } from "expo-asset";
 import * as FileSystem from "expo-file-system/legacy";
 import { useAppTheme } from "../../context/ThemeContext";
 import { isThemeBackdropVisible, subscribeThemeBackdrop } from "../../libs/themeBackdrop";
+import { isFeedScrolling, subscribeFeedScrollStart, subscribeFeedSettled } from "../../libs/scrollActivity";
 import { createLogger } from "../../libs/logger";
 
 const log = createLogger("ThemeBackdrop");
@@ -81,8 +82,13 @@ const ThemeBackdrop: React.FC = () => {
   }, [skin, theme]);
 
   // Web's own pause gate: stop drawing whenever nothing can see the frames.
+  // Also held while the home feed is moving. The phone draws this WebView
+  // inside the app's own frame, so a live 3D scene and a fling share one GPU
+  // budget: traced on a Galaxy S24+ under Cosmic, the render thread spent
+  // ~9ms a frame against 8.3ms at 120Hz, most of it waiting on the GPU. The
+  // scene holds its last frame through the fling and resumes on settle.
   const sync = useCallback(() => {
-    const running = AppState.currentState === "active" && isThemeBackdropVisible();
+    const running = AppState.currentState === "active" && isThemeBackdropVisible() && !isFeedScrolling();
     webRef.current?.injectJavaScript(
       `window.dehubBackdrop&&window.dehubBackdrop.pause(${running ? "false" : "true"});true;`,
     );
@@ -91,9 +97,13 @@ const ThemeBackdrop: React.FC = () => {
   useEffect(() => {
     const appState = AppState.addEventListener("change", sync);
     const unsubscribe = subscribeThemeBackdrop(sync);
+    const unsubscribeStart = subscribeFeedScrollStart(sync);
+    const unsubscribeSettle = subscribeFeedSettled(sync);
     return () => {
       appState.remove();
       unsubscribe();
+      unsubscribeStart();
+      unsubscribeSettle();
     };
   }, [sync]);
 
@@ -129,12 +139,12 @@ const ThemeBackdrop: React.FC = () => {
           showsVerticalScrollIndicator={false}
           mediaPlaybackRequiresUserAction={false}
           allowsInlineMediaPlayback
-          androidLayerType="hardware"
+          // No offscreen layer: the scene redraws every frame, so a hardware
+          // layer only added a full-screen copy per frame on top of it.
           onLoadEnd={sync}
           onRenderProcessGone={onGone}
           onContentProcessDidTerminate={onGone}
           style={[styles.web, { backgroundColor: skin.page }]}
-          containerStyle={{ backgroundColor: skin.page }}
         />
       ) : null}
     </View>
