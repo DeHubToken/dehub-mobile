@@ -5912,7 +5912,6 @@
     "dialogLabel": "{{tier}} -merkki",
     "close": "Sulje",
     "badges": "Merkit",
-    "tierOf": "Taso {{index}}/{{total}}",
     "youHaveThis": "Sinulla on tämä erikoismerkki",
     "toUnlock": "{{amount}} merkkiä lisää lukituksen avaamiseksi",
     "holdToUnlock": "Avaa lukitus pitämällä vähintään yhtä monta DeHub-polettia",

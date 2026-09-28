@@ -6723,7 +6723,6 @@
     "dialogLabel": "باجی {{tier}}",
     "close": "داخستن",
     "badges": "باجەکان",
-    "tierOf": "ئاستی {{index}} لە {{total}}",
     "youHaveThis": "ئەم باجەت هەیە",
     "toUnlock": "{{amount}} توکنی تر بۆ کردنەوەی",
     "holdToUnlock": "لانیکەم ئەم ژمارەیە توکنی DeHub هەڵبگرە بۆ کردنەوەی",

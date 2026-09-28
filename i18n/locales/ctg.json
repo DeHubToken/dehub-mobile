@@ -6008,7 +6008,6 @@
     "dialogLabel": "{{tier}} ব্যাজ",
     "close": "বন্ধ করুন",
     "badges": "ব্যাজ",
-    "tierOf": "টায়ার {{index}} এর {{total}}",
     "youHaveThis": "আপনার এই ব্যাজ আছে",
     "toUnlock": "এটা আনলক করতে {{amount}} টোকেন লাগবে",
     "holdToUnlock": "DeHub টোকেন অন্তত এতগুলা ধরি রাখলে এটা আনলক অইব",

@@ -5912,7 +5912,6 @@
     "dialogLabel": "{{tier}} شارة",
     "close": "أغلق",
     "badges": "الوشوم",
-    "tierOf": "الطبقة {{index}} من {{total}}",
     "youHaveThis": "أنت تملك هالشارة",
     "toUnlock": "{{amount}} توكنات زيادة لفتحها",
     "holdToUnlock": "احمل على الأقل هالعدد من توكنات DeHub لفتحها",

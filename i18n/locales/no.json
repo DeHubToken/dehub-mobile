@@ -5912,7 +5912,6 @@
     "dialogLabel": "{{tier}}-merket",
     "close": "Lukke",
     "badges": "Merker",
-    "tierOf": "Nivå {{index}} av {{total}}",
     "youHaveThis": "Du har dette merket",
     "toUnlock": "{{amount}} flere tokens for å låse den opp",
     "holdToUnlock": "Hold minst så mange DeHub-tokens for å låse den opp",

@@ -5912,7 +5912,6 @@
     "dialogLabel": "{{tier}} 徽章",
     "close": "閂",
     "badges": "徽章",
-    "tierOf": "{{index}} 嘅 {{total}} 層",
     "youHaveThis": "你有呢個徽章",
     "toUnlock": "{{amount}} 多啲令牌可以解鎖佢",
     "holdToUnlock": "至少拎住咁多個 DeHub 代幣先可以解鎖",

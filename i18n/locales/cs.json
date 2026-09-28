@@ -5916,7 +5916,6 @@
     "dialogLabel": "Odznak {{tier}}",
     "close": "Zavřít",
     "badges": "Odznaky",
-    "tierOf": "Úroveň {{index}} z {{total}}",
     "youHaveThis": "Máte tento odznak",
     "toUnlock": "{{amount}} další žetony k odemknutí",
     "holdToUnlock": "Podržte alespoň tolik žetonů DeHub, abyste jej odemkli",

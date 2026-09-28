@@ -5961,7 +5961,6 @@
     "dialogLabel": "{{tier}} Abzeichen",
     "close": "Schließen",
     "badges": "Abzeichen",
-    "tierOf": "Level {{index}} von {{total}}",
     "youHaveThis": "Sie haben dieses Abzeichen",
     "toUnlock": "{{amount}} weitere Token zum Freischalten",
     "holdToUnlock": "Halte mindestens so viele DeHub-Token, um sie freizuschalten",

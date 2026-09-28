@@ -5912,7 +5912,6 @@
     "dialogLabel": "Odznaka {{tier}}",
     "close": "Zamknij",
     "badges": "Odznaki",
-    "tierOf": "Próg {{index}} z {{total}}",
     "youHaveThis": "Masz tę odznakę",
     "toUnlock": "{{amount}} więcej tokenów do odblokowania",
     "holdToUnlock": "Przytrzymaj co najmniej tyle tokenów DeHub, aby je odblokować",

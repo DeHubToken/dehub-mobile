@@ -5916,7 +5916,6 @@
     "dialogLabel": "Значка {{tier}}",
     "close": "Затваряне",
     "badges": "Значки",
-    "tierOf": "Ниво {{index}} от {{total}}",
     "youHaveThis": "Имате тази значка",
     "toUnlock": "Още{{amount}} жетони за отключване",
     "holdToUnlock": "Задръжте поне толкова DeHub токена, за да го отключите",

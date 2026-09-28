@@ -5912,7 +5912,6 @@
     "dialogLabel": "{{tier}} nyşany",
     "close": "Ýap",
     "badges": "Nyşanlar",
-    "tierOf": "Dereje {{index}} / {{total}}",
     "youHaveThis": "Bu nyşan sizde bar",
     "toUnlock": "Açmak üçin ýene {{amount}} token",
     "holdToUnlock": "Ony açmak üçin, iň bolmanda, bu köp DeHub tokenlerini saklaň",

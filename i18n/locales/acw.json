@@ -5912,7 +5912,6 @@
     "dialogLabel": "{{tier}} شارة",
     "close": "قفل",
     "badges": "الوشوش",
-    "tierOf": "الطبقة {{index}} من {{total}}",
     "youHaveThis": "أنت عندك هالشارة",
     "toUnlock": "{{amount}} توكنز زيادة لتفتحها",
     "holdToUnlock": "خليك ماسك على الأقل التوكنز دي من DeHub عشان تفتحه",

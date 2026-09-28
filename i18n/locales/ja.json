@@ -5963,7 +5963,6 @@
     "dialogLabel": "{{tier}}バッジ",
     "close": "閉じる",
     "badges": "バッジ",
-    "tierOf": "{{total}}のティア{{index}}",
     "youHaveThis": "このバッジを持っています",
     "toUnlock": "さらに{{amount}}枚のトークンでアンロック",
     "holdToUnlock": "少なくともこの数のDeHubトークンを持ってロックを解除してください",

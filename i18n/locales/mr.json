@@ -5915,7 +5915,6 @@
     "dialogLabel": "{{tier}} बॅज",
     "close": "बंद करा",
     "badges": "बॅजेस",
-    "tierOf": "स्तर {{index}} of {{total}}",
     "youHaveThis": "तुमच्याकडे हा बिल्ला आहे",
     "toUnlock": "{{amount}} अधिक टोकन ते अनलॉक करण्यासाठी",
     "holdToUnlock": "किमान हे अनेक डीहब टोकन अनलॉक करण्यासाठी धरून ठेवा",

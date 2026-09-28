@@ -5912,7 +5912,6 @@
     "dialogLabel": "{{tier}} NAME OF TRANSLATORS",
     "close": "Пӯшидан",
     "badges": "Нишонаҳо",
-    "tierOf": "Сатҳи {{index}} аз {{total}}",
     "youHaveThis": "Шумо ин нишонаро доред",
     "toUnlock": "Барои кушодан боз {{amount}} токен",
     "holdToUnlock": "Ҳадди аққал ин бисёр нишонаҳои DeHub-ро барои кушодани он нигоҳ доред",

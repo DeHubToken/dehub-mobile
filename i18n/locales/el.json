@@ -5941,7 +5941,6 @@
     "dialogLabel": "Σήμα {{tier}}",
     "close": "Κλείσιμο",
     "badges": "Σήματα",
-    "tierOf": "Επίπεδο {{index}} από {{total}}",
     "youHaveThis": "Έχετε αυτό το σήμα",
     "toUnlock": "{{amount}} ακόμα μάρκες για να το ξεκλειδώσετε",
     "holdToUnlock": "Κρατήστε τουλάχιστον τόσα DeHub tokens για να το ξεκλειδώσετε",

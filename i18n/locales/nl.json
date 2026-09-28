@@ -6102,7 +6102,6 @@
     "dialogLabel": "{{tier}} badge",
     "close": "Sluiten",
     "badges": "Badges",
-    "tierOf": "Niveau {{index}} van {{total}}",
     "youHaveThis": "Je hebt deze badge",
     "toUnlock": "{{amount}} meer tokens om het te ontgrendelen",
     "holdToUnlock": "Houd minstens zoveel DeHub-tokens vast om deze te ontgrendelen",

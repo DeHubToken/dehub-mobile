@@ -216,7 +216,6 @@ function HolderDetails({
   return (
     <>
       <View style={{ alignItems: "center", gap: 6 }}>
-        <Text style={ui.overline}>{t("badgeShowcase.tierOf", { index: index + 1, total: count })}</Text>
         <View style={ui.titleRow}>
           <Animated.Text key={name} entering={FadeInDown.duration(260)} exiting={FadeOutUp.duration(180)} style={ui.title}>
             {name}
@@ -290,7 +289,7 @@ function HolderDetails({
                 {row.label}
               </Text>
             </View>
-            <View style={ui.tileFoot}>
+            <View style={[ui.tileFoot, { justifyContent: "flex-end" }]}>
               <Animated.Text key={row.value} entering={FadeInDown.duration(220)} numberOfLines={1} style={row.locked ? ui.tileMuted : ui.tileValue}>
                 {row.value}
               </Animated.Text>

@@ -5912,7 +5912,6 @@
     "dialogLabel": "{{tier}} ženklelis",
     "close": "Uždaryti",
     "badges": "Ženkleliai",
-    "tierOf": "Lygis {{index}} iš {{total}}",
     "youHaveThis": "Turite šį ženklelį",
     "toUnlock": "{{amount}} daugiau žetonų, kad jį atrakintumėte",
     "holdToUnlock": "Turėk bent tiek „DeHub“ žetonų, kad jį atrakintum",

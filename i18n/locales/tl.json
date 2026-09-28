@@ -5959,7 +5959,6 @@
     "dialogLabel": "Badge na {{tier}}",
     "close": "Isara",
     "badges": "Mga Badge",
-    "tierOf": "Tier {{index}} ng {{total}}",
     "youHaveThis": "Mayroon kang badge na ito",
     "toUnlock": "{{amount}} pang token para ma-unlock ito",
     "holdToUnlock": "Maghawak ng hindi bababa sa ganitong dami ng DeHub token para ma-unlock ito",

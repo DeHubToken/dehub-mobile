@@ -5912,7 +5912,6 @@
     "dialogLabel": "{{tier}} nozīme",
     "close": "Aizvērt",
     "badges": "Nozīmītes",
-    "tierOf": "Līmenis {{index}} no {{total}}",
     "youHaveThis": "Jums ir šī nozīmīte",
     "toUnlock": "{{amount}} vēl žetoni, lai to atbloķētu",
     "holdToUnlock": "Turiet vismaz tik daudz DeHub marķieru, lai to atbloķētu",

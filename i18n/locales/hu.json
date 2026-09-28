@@ -5916,7 +5916,6 @@
     "dialogLabel": "{{tier}} jelvény",
     "close": "Bezárás",
     "badges": "Jelvények",
-    "tierOf": "{{total}}/{{index}}. szint",
     "youHaveThis": "Van ez a jelvényed",
     "toUnlock": "Még {{amount}} token a feloldáshoz",
     "holdToUnlock": "Tartson legalább ennyi DeHub tokent a feloldáshoz",

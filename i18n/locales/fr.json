@@ -5965,7 +5965,6 @@
     "dialogLabel": "Badge {{tier}}",
     "close": "Fermer",
     "badges": "Badges",
-    "tierOf": "Niveau {{index}} sur {{total}}",
     "youHaveThis": "Vous avez ce badge",
     "toUnlock": "{{amount}} jetons supplémentaires pour le déverrouiller",
     "holdToUnlock": "Tenir au moins autant de jetons DeHub pour le déverrouiller",

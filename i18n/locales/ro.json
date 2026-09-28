@@ -5912,7 +5912,6 @@
     "dialogLabel": "Insignă {{tier}}",
     "close": "Închide",
     "badges": "Insigne",
-    "tierOf": "Nivelul {{index}} din {{total}}",
     "youHaveThis": "Ai această insignă",
     "toUnlock": "{{amount}} mai multe jetoane pentru a-l debloca",
     "holdToUnlock": "Păstrează cel puțin acest număr de jetoane DeHub pentru a-l debloca",
