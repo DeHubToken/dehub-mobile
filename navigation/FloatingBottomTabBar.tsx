@@ -69,14 +69,6 @@ const NAV_EDGE_PAD = 4; // matches web's pl-1/pr-1
 const tabWidthFor = (screenW: number) =>
   (Math.min((screenW - 16) * 0.72, 340) - CENTER_W - NAV_EDGE_PAD * 2) / 4;
 
-/**
- * Minimal's bar runs edge to edge with no side padding, so the four primary
- * tabs and the centre button share the whole width instead of 72% of it. The
- * floor keeps every tap target at 44pt on the narrowest phones.
- */
-const minimalTabWidthFor = (screenW: number) =>
-  Math.max(44, (screenW - CENTER_W - NAV_EDGE_PAD * 2) / 4);
-
 interface TabDef {
   name: string;
   icon: IconName;
@@ -435,10 +427,8 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
   const { isKidsMode } = useKidsMode();
   const { currentSpace, isConnected, isModalOpen } = useStages();
   const hasStageChip = !!currentSpace && isConnected && !isModalOpen && !isKidsMode;
-  const pillWidth = isMinimal
-    ? screenW - (hasStageChip ? 44 : 0)
-    : Math.min((screenW - 16) * 0.72, 340, screenW - 16 - (hasStageChip ? 44 : 0));
-  const tabW = isMinimal ? minimalTabWidthFor(pillWidth) : tabWidthFor(screenW);
+  const pillWidth = Math.min((screenW - 16) * 0.72, 340, screenW - 16 - (hasStageChip ? 44 : 0));
+  const tabW = tabWidthFor(screenW);
   const user = useUser();
   const myUserId = ((user as any)?._id || (user as any)?.id) as string | undefined;
   const dmUnread = useTotalUnreadMessagesCount(myUserId);
@@ -637,44 +627,35 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
       style={[
         styles.outerWrap,
         { paddingBottom: bottomPadding },
-        // Minimal has no floating pill: the bar sits flush on the bottom edge,
-        // full width, with the home-indicator inset inside its own black fill
-        // so nothing scrolls visibly beneath it.
-        isMinimal && styles.minimalOuterWrap,
-        isMinimal && { paddingBottom: insets.bottom },
         hideStyle,
       ]}
-      // Minimal's wrapper is an opaque bar, so a tap on its inset strip must
-      // not fall through to content hidden underneath it.
-      pointerEvents={isMinimal ? "auto" : "box-none"}
+      pointerEvents="box-none"
     >
       <Reanimated.View style={[styles.dock, entranceStyle]}>
-      <View style={[styles.navContainer, isMinimal && styles.minimalNavContainer, { width: pillWidth }]}>
+      <View style={[styles.navContainer, { width: pillWidth }]}>
         {/* The pill is a solid surface, not glass. It used to be a blur under a
             near-transparent wash, which meant its appearance was a function of
             whatever happened to be behind it — fine over the dark feed, clear
             glass with icons floating on video over Shorts — and it needed a
             96pt gradient scrim under it to hold a luminance floor. One opaque
             fill does the same job with no scrim, no per-platform blur library
-            and no backdrop sampling on every scrolled frame. Minimal skips
-            both layers; outerWrap's black fill and top hairline replace them. */}
-        {!isMinimal && (
-          <>
-            <View
-              style={[
-                StyleSheet.absoluteFill,
-                styles.pillFill,
-                isLight && { backgroundColor: colors.background },
-              ]}
-            />
-            <View
-              style={[
-                styles.pillBorder,
-                isLight && { borderColor: 'rgba(0, 0, 0, 0.12)' },
-              ]}
-            />
-          </>
-        )}
+            and no backdrop sampling on every scrolled frame. Minimal floats
+            the same pill, flat black with its hairline border. */}
+        <View
+          style={[
+            StyleSheet.absoluteFill,
+            styles.pillFill,
+            isLight && { backgroundColor: colors.background },
+            isMinimal && { backgroundColor: "#000" },
+          ]}
+        />
+        <View
+          style={[
+            styles.pillBorder,
+            isLight && { borderColor: 'rgba(0, 0, 0, 0.12)' },
+            isMinimal && { borderColor: MINIMAL_HAIRLINE },
+          ]}
+        />
         <ScrollView
           ref={scrollRef}
           horizontal
@@ -763,20 +744,6 @@ const styles = StyleSheet.create({
       },
       android: {},
     }),
-  },
-  minimalOuterWrap: {
-    bottom: 0,
-    paddingHorizontal: 0,
-    alignItems: "stretch",
-    backgroundColor: "#000",
-    borderTopWidth: 1,
-    borderTopColor: MINIMAL_HAIRLINE,
-  },
-  minimalNavContainer: {
-    width: "100%",
-    maxWidth: "100%",
-    shadowOpacity: 0,
-    elevation: 0,
   },
   // Plain outlined square in place of the glass stack — deliberately not built
   // on centerIconWrap, so none of its drop shadow or elevation comes along.
