@@ -8281,7 +8281,7 @@
     "topUpCustom": "Sonstiger Betrag (USD)",
     "topUpYouSend": "Sie senden",
     "topUpYouGet": "Deinem Guthaben hinzugefügt",
-    "topUpConfirm": "{{amount}}hinzufügen",
+    "topUpConfirm": "{{amount}} hinzufügen",
     "topUpRange": "Geben Sie {{min}} bis {{max}} ein",
     "topUpDone": "{{amount}} zu Ihren Abonnement-Token hinzugefügt",
     "topUpPending": "Ihre Aufladung wird bestätigt. Es wird in Kürze auf Ihrem Guthaben erscheinen.",

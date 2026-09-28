@@ -8286,7 +8286,7 @@
     "topUpYouSend": "Ön küldi",
     "topUpYouGet": "Hozzáadva az egyenlegedhez",
     "topUpConfirm": "{{amount}} hozzáadása",
-    "topUpRange": "{{min}} és {{max}}között",
+    "topUpRange": "{{min}} és {{max}} között",
     "topUpDone": "{{amount}} hozzáadva az előfizetési tokenjeidhez",
     "topUpPending": "A feltöltés megerősítése folyamatban van. Hamarosan megjelenik az egyenlegeden.",
     "topUpFailed": "Nem sikerült előfizetési tokeneket hozzáadni",
