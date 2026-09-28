@@ -142,10 +142,13 @@ const InfiniteFeedBase: React.FC<
   useEffect(() => {
     visibilityStore.setLive(isFocused ?? true);
   }, [visibilityStore, isFocused]);
+  const visibilityKeyExtractor = useCallback((item: unknown, index: number) =>
+    keyExtractor ? keyExtractor(item as FeedItem, index) : (item as FeedItem).__listKey,
+  [keyExtractor]);
   const {
     viewabilityConfig: feedCardViewabilityConfig,
     onViewableItemsChanged: onFeedCardViewableItemsChanged,
-  } = useFeedCardVisibility(keyExtractor, visibilityStore);
+  } = useFeedCardVisibility(visibilityKeyExtractor, visibilityStore);
   const [refreshing, setRefreshing] = useState(false);
   const [showBackToTop, setShowBackToTop] = useState(false);
   const loadMoreCooldownRef = useRef(0);
