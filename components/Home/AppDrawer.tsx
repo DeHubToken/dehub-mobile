@@ -61,11 +61,6 @@ interface DrawerItem {
   requiresAuth?: boolean;
   /** Left out of the App Store build — see config/storefront. */
   storefrontHidden?: boolean;
-  /**
-   * Only listed while the menu search has text — web's SEARCH_ONLY_ITEMS:
-   * real pages with no row of their own on the resting menu.
-   */
-  searchOnly?: boolean;
   /** Screen lives inside the bottom-tab navigator (Root), so it needs nested navigation. */
   tab?: boolean;
   /**
