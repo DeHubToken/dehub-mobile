@@ -162,6 +162,16 @@
               "scheme": "https",
               "host": "dehub.io",
               "path": "/arcade/kings-gambit/online"
+            },
+            {
+              "scheme": "https",
+              "host": "dehub.io",
+              "path": "/cinema"
+            },
+            {
+              "scheme": "https",
+              "host": "dehub.io",
+              "pathPrefix": "/cinema/"
             }
           ],
           "category": [

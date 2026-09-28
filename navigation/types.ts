@@ -203,6 +203,8 @@ export type AppStackParamList = {
   [ScreenNames.Events]: undefined;
   [ScreenNames.Stages]: undefined;
   [ScreenNames.Careers]: undefined;
+  /** With no `filmId` the search hub; with one, that title (`filmType` is `film` or `series`). */
+  [ScreenNames.Cinema]: { filmType?: string; filmId?: string } | undefined;
   [ScreenNames.Creators]: undefined;
   [ScreenNames.DePin]: undefined;
   [ScreenNames.Bridge]: undefined;

@@ -112,6 +112,25 @@ describe('parseDehubLink', () => {
     expect(parseDehubLink('https://dehub.io/stages/upcoming')).toBeNull();
   });
 
+  it('reads a film or series link, mapping the URL type onto the API one', () => {
+    expect(parseDehubLink('https://dehub.io/cinema/film/12345')).toMatchObject({
+      kind: 'film',
+      filmId: '12345',
+      filmObjectType: 'movie',
+    });
+    expect(parseDehubLink('https://dehub.io/cinema/series/678')).toMatchObject({
+      kind: 'film',
+      filmId: '678',
+      filmObjectType: 'show',
+    });
+  });
+
+  it('leaves the cinema search page and malformed titles alone', () => {
+    expect(parseDehubLink('https://dehub.io/cinema')).toBeNull();
+    expect(parseDehubLink('https://dehub.io/cinema/film/abc')).toBeNull();
+    expect(parseDehubLink('https://dehub.io/cinema/podcast/1')).toBeNull();
+  });
+
   it('reads a profile link and strips a leading @', () => {
     expect(parseDehubLink('https://dehub.io/sableraven')).toMatchObject({
       kind: 'profile',

@@ -38,6 +38,8 @@ import StageRecordingPlayer from '../Stages/StageRecordingPlayer';
 import { useWorkJob, WORK_TYPE_LABEL } from '../../hooks/useWork';
 import { appLocale } from "../../libs/date.util";
 import { useAppTheme } from '../../context/ThemeContext';
+import { fetchTitleOffers } from '../../services/justwatch.service';
+import { detectLocale } from '../../libs/cinema-locales';
 import { minimalFlat } from '../../theme/minimal';
 
 /** How many cards one message or caption may draw before the rest stay as text. */
@@ -456,6 +458,45 @@ const BountyCardEmbed: React.FC<{ jobKey: string; onOpen: () => void; fallback: 
   );
 };
 
+/**
+ * A /cinema/<type>/<id> link. Until the JustWatch partnership is live the
+ * catalogue answers nothing and every one of these is the fallback chip,
+ * which still opens the Cinema screen. That is intended.
+ */
+const FilmCardEmbed: React.FC<{
+  filmId: string;
+  objectType: 'movie' | 'show';
+  onOpen: () => void;
+  fallback: React.ReactElement;
+}> = ({ filmId, objectType, onOpen, fallback }) => {
+  const { t } = useTranslation();
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ['dehub-link', 'film', objectType, filmId],
+    queryFn: async () => fetchTitleOffers(filmId, await detectLocale(), objectType),
+    staleTime: 30 * 60_000,
+    retry: false,
+  });
+
+  if (isLoading) return <SkeletonCard />;
+  const title = data?.title;
+  if (isError || !title) return fallback;
+
+  const streams = title.offers.filter((o) => o.monetizationType === 'flatrate').length;
+  return (
+    <RowCard
+      eyebrow={t('cinema.title')}
+      title={title.title}
+      subtitle={[title.year ? String(title.year) : null, objectType === 'show' ? t('cinema.series') : null]
+        .filter(Boolean)
+        .join(' · ') || undefined}
+      meta={streams > 0 ? t('cinema.streamingOn', { count: streams }) : t('cinema.seeWhereToWatch')}
+      imageUri={title.poster}
+      fallbackIcon="Clapperboard"
+      onPress={onOpen}
+    />
+  );
+};
+
 const ProfileCardEmbed: React.FC<{ username: string; onOpen: () => void; fallback: React.ReactElement }> = ({
   username,
   onOpen,
@@ -600,6 +641,12 @@ export function useOpenDehubLink() {
           })();
           return;
         }
+        case 'film':
+          navigation.navigate(ScreenNames.Cinema, {
+            filmType: link.filmObjectType === 'show' ? 'series' : 'film',
+            filmId: link.filmId,
+          });
+          return;
         default:
           return;
       }
@@ -676,6 +723,16 @@ const DehubLinkCardComponent: React.FC<DehubLinkCardProps> = ({
       break;
     case 'bounty':
       card = <BountyCardEmbed jobKey={link.bountyJobKey!} onOpen={open} fallback={fallback} />;
+      break;
+    case 'film':
+      card = (
+        <FilmCardEmbed
+          filmId={link.filmId!}
+          objectType={link.filmObjectType ?? 'movie'}
+          onOpen={open}
+          fallback={fallback}
+        />
+      );
       break;
     default:
       card = fallback;
