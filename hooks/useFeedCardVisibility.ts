@@ -1,6 +1,7 @@
 import { useCallback, useMemo, useRef, useState } from "react";
 import type { ViewToken } from "react-native";
 import { isVideoItem, isLiveItem } from "../services/feed.unified.service";
+import type { FeedVisibilityStore } from "../libs/feedVisibility";
 
 function getListItemKey(item: unknown): string | null {
   if (!item || typeof item !== "object") return null;
@@ -25,11 +26,14 @@ type KeyExtractor = (item: unknown, index: number) => string;
  * the feed looked stuck on whichever video started first. Only *autoplay* is
  * exclusive; a tap may start any row the viewer can actually see.
  */
-export function useFeedCardVisibility(keyExtractor?: KeyExtractor) {
+export function useFeedCardVisibility(keyExtractor?: KeyExtractor, store?: FeedVisibilityStore) {
   const [visibleItemKeys, setVisibleItemKeys] = useState<Set<string>>(new Set());
   const [activeVideoKey, setActiveVideoKey] = useState<string | null>(null);
   const keyExtractorRef = useRef(keyExtractor);
   keyExtractorRef.current = keyExtractor;
+  const storeRef = useRef(store);
+  storeRef.current = store;
+  const visibleKeysRef = useRef<Set<string>>(new Set());
 
   const resolveKey = useCallback((item: unknown, index?: number | null) => {
     if (keyExtractorRef.current && index != null) {
@@ -55,24 +59,24 @@ export function useFeedCardVisibility(keyExtractor?: KeyExtractor) {
       viewableItems: ViewToken[];
       changed: ViewToken[];
     }) => {
-      setVisibleItemKeys((prev) => {
-        let membershipChanged = false;
-        const next = new Set(prev);
-        for (const entry of changed) {
-          const key = resolveKey(entry.item, entry.index);
-          if (!key) continue;
-          if (entry.isViewable) {
-            if (!prev.has(key)) {
-              next.add(key);
-              membershipChanged = true;
-            }
-          } else if (prev.has(key)) {
-            next.delete(key);
+      const prev = visibleKeysRef.current;
+      let membershipChanged = false;
+      const next = new Set(prev);
+      for (const entry of changed) {
+        const key = resolveKey(entry.item, entry.index);
+        if (!key) continue;
+        if (entry.isViewable) {
+          if (!prev.has(key)) {
+            next.add(key);
             membershipChanged = true;
           }
+        } else if (prev.has(key)) {
+          next.delete(key);
+          membershipChanged = true;
         }
-        return membershipChanged ? next : prev;
-      });
+      }
+      const visible = membershipChanged ? next : prev;
+      visibleKeysRef.current = visible;
 
       // Autoplay belongs to the topmost row that can actually hold a video.
       // Sorting over every viewable row handed it to whatever text or image
@@ -100,9 +104,13 @@ export function useFeedCardVisibility(keyExtractor?: KeyExtractor) {
       const topVideo =
         playable.filter((v) => isLiveItem(v.item as any)).sort(byPosition)[0] ??
         playable.sort(byPosition)[0];
-      setActiveVideoKey(
-        topVideo ? resolveKey(topVideo.item, topVideo.index) : null,
-      );
+      const autoplayKey = topVideo ? resolveKey(topVideo.item, topVideo.index) : null;
+      if (storeRef.current) {
+        storeRef.current.update(visible, autoplayKey);
+      } else {
+        setVisibleItemKeys(visible);
+        setActiveVideoKey(autoplayKey);
+      }
     },
   ).current;
 

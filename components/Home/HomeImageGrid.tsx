@@ -108,10 +108,9 @@ const GridItem = memo<GridItemProps>(({ item, index, size, onPress }) => {
         style={StyleSheet.absoluteFill}
         contentFit="cover"
         recyclingKey={`home-grid-${item.tokenId || item.id}`}
-        // Grid thumbnails are cheap to decode and numerous. Disk caching keeps
-        // scroll-back fast without retaining every decoded bitmap in Glide's
-        // memory cache for the lifetime of the six-page home pager.
-        cachePolicy="disk"
+        // Glide bounds its memory cache; keep recently decoded thumbnails so
+        // reversing a scroll does not decode them again from disk.
+        cachePolicy="memory-disk"
         transition={150}
       />
       {hasMultiple && (

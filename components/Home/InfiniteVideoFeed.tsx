@@ -602,6 +602,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   // or a re-sort is applied at once so the list never shows stale rows.
   const heldRef = useRef<FeedItem[] | null>(null);
   const holdPendingRef = useRef(false);
+  const releaseAppendRef = useRef(false);
   const [holdRelease, setHoldRelease] = useState(0);
   const listData = useMemo(() => {
     const held = heldRef.current;
@@ -612,11 +613,12 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
       held.length > 0 &&
       feedItems[0] === held[0] &&
       feedItems[held.length - 1] === held[held.length - 1];
-    if (scrollingRef.current && isAppend) {
+    if (scrollingRef.current && isAppend && !releaseAppendRef.current) {
       holdPendingRef.current = true;
       return held;
     }
     holdPendingRef.current = false;
+    releaseAppendRef.current = false;
     heldRef.current = feedItems;
     return feedItems;
     // holdRelease re-runs this once the scroll has settled.
@@ -638,6 +640,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     // the viewport instead; once they are in, the list re-measures and this
     // fires again if the following page is really due.
     if (holdPendingRef.current) {
+      releaseAppendRef.current = true;
       setHoldRelease((v) => v + 1);
       return;
     }
