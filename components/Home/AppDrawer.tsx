@@ -62,8 +62,11 @@ const ICON_SIZE = 52;
 const RASTER_THEMES = new Set([
   "system", "minimal", "light", "cosmic", "hazy", "swarms", "lavalamp", "winter", "osaka", "jungle",
 ]);
+// Bump alongside web's ThemedIcon when a file is redrawn in place, or the disk
+// cache keeps serving the old art forever.
+const ICON_REVISIONS: Record<string, string> = { dao: "?v=3" };
 const themeIconUrl = (theme: string, key: string) =>
-  `${WEBSITE_LINK}/theme-icons/${RASTER_THEMES.has(theme) ? theme : "system"}/${key}.webp`;
+  `${WEBSITE_LINK}/theme-icons/${RASTER_THEMES.has(theme) ? theme : "system"}/${key}.webp${ICON_REVISIONS[key] ?? ""}`;
 
 interface DrawerItem {
   icon: IconName;
@@ -152,7 +155,9 @@ const NAV_ITEMS: DrawerItem[] = [
   { icon: "Tag", labelKey: "nav.pricing", screen: ScreenNames.Pricing, storefrontHidden: true, searchOnly: true },
 ];
 
-// Rows with their own 3D artwork (web ThemeIconKey). The rest draw their glyph.
+// Row → 3D artwork (web ThemeIconKey). Rows without a bespoke render borrow the
+// closest one: a flat glyph beside the glossy set reads as a broken tile, so
+// the glyph is only the fallback for art that fails to download.
 const ICON_KEYS: Record<string, string> = {
   "nav.home": "home", "nav.profile": "profile", "nav.explore": "search", "nav.prompt": "wand",
   "nav.notifications": "notifications", "nav.messages": "messages", "nav.communities": "communities",
@@ -163,6 +168,10 @@ const ICON_KEYS: Record<string, string> = {
   "screens.work": "bounties", "nav.careers": "careers", "screens.stores": "stores",
   "nav.fractions": "fractions", "screens.usernames": "usernames", "screens.accounts": "accounts",
   "nav.ads": "ads", "nav.tv": "tv", "nav.arcade": "arcade", "nav.glossary": "glossary", "nav.bridge": "bridge",
+  "nav.wallet": "buy", "creatorPacks.title": "images", "nav.affiliate": "subscriptions",
+  "nav.creators": "subscriptions", "nav.agents": "assistant", "nav.converter": "videos",
+  "nav.migrate": "bridge", "nav.guide": "pinned", "nav.connectAi": "command", "nav.docs": "posts",
+  "nav.blog": "email", "nav.premium": "boost", "nav.pricing": "buy",
 };
 
 type FeedPostType = "video" | "feed-images" | "feed-audio" | "live";
@@ -203,6 +212,9 @@ const Tile = memo<TileProps>(({ label, icon, iconUrl, width, active, disabled, s
   const glyphColor = hud
     ? skin?.glow ?? "#22D3EE"
     : active ? skin?.tabIconActive ?? "#FFFFFF" : skin?.tabIcon ?? "rgba(255,255,255,0.9)";
+  // Offline or a failed download would otherwise leave an empty tile.
+  const [artFailed, setArtFailed] = useState(false);
+  useEffect(() => setArtFailed(false), [iconUrl]);
   return (
     <TouchableOpacity
       accessibilityRole="button"
@@ -229,8 +241,15 @@ const Tile = memo<TileProps>(({ label, icon, iconUrl, width, active, disabled, s
       ) : null}
       {skin?.brackets ? <HudBrackets color={skin.brackets} length={8} width={1} /> : null}
       <View style={styles.tileIcon}>
-        {iconUrl && !hud ? (
-          <Image source={{ uri: iconUrl }} style={styles.tileImage} contentFit="contain" cachePolicy="disk" transition={120} />
+        {iconUrl && !hud && !artFailed ? (
+          <Image
+            source={{ uri: iconUrl }}
+            style={styles.tileImage}
+            contentFit="contain"
+            cachePolicy="disk"
+            transition={120}
+            onError={() => setArtFailed(true)}
+          />
         ) : (
           <Icon name={icon} size={30} color={glyphColor} strokeWidth={1.6} />
         )}
