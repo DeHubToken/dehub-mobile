@@ -502,7 +502,9 @@ export default function ShowcaseShell({
   }));
   const backdropStyle = useAnimatedStyle(() => ({ opacity: backdrop.value }));
   const glowStyle = useAnimatedStyle(() => ({ opacity: glow.value }));
-  const stickerStyle = useAnimatedStyle(() => ({ opacity: sticker.value }));
+  // Never quite 0: Android stops drawing a WebView it considers invisible, and
+  // the hand-off would then wait on its first frame.
+  const stickerStyle = useAnimatedStyle(() => ({ opacity: 0.01 + sticker.value * 0.99 }));
   const loaderStyle = useAnimatedStyle(() => ({ opacity: loader.value }));
   const closeStyle = useAnimatedStyle(() => ({ opacity: closeIn.value }));
   const detailsStyle = useAnimatedStyle(() => ({
