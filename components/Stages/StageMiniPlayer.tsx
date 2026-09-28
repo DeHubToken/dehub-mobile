@@ -1,121 +1,59 @@
-import React from "react";
-import { View, Text, StyleSheet } from "react-native";
-import { TouchableOpacity } from "react-native";
+import React, { useEffect } from "react";
+import { Pressable, StyleSheet } from "react-native";
+import Animated, { cancelAnimation, useAnimatedStyle, useReducedMotion, useSharedValue, withRepeat, withTiming } from "react-native-reanimated";
+import { useTranslation } from "react-i18next";
 import Icon from "../ui/Icon";
 import { useStages } from "../../context/StageContext";
-import { useTranslation } from "react-i18next";
-import { confirmEndStage } from "./confirmEndStage";
+import { useAppTheme } from "../../context/ThemeContext";
 
-const StageMiniPlayer: React.FC = () => {
-  const { currentSpace, isConnected, myRole, leaveSpace, endSpace, openModal, screenShareUid } =
-    useStages();
+/** Lives beside the nav's scroll viewport, so scrolling never hides the room. */
+export default function StageMiniPlayer() {
+  const { currentSpace, isConnected, isModalOpen, openModal } = useStages();
+  const { colors, isLight, isMinimal } = useAppTheme();
   const { t } = useTranslation();
+  const reducedMotion = useReducedMotion();
+  const pulse = useSharedValue(0);
+  const visible = !!currentSpace && isConnected && !isModalOpen;
 
-  if (!currentSpace || !isConnected) return null;
+  useEffect(() => {
+    pulse.value = 0;
+    if (visible && !reducedMotion) pulse.value = withRepeat(withTiming(1, { duration: 1000 }), -1, true);
+    return () => cancelAnimation(pulse);
+  }, [visible, reducedMotion, pulse]);
 
-  const isHost = myRole === "host";
-  // The screen only exists inside the full room, so the collapsed player says
-  // one is up rather than reading as a stage with nothing to look at.
-  const isWatchingScreen = screenShareUid != null;
+  const pulseStyle = useAnimatedStyle(() => ({
+    opacity: 0.65 + pulse.value * 0.35,
+    transform: [{ scale: 1 + pulse.value * 0.08 }],
+  }));
 
+  if (!visible) return null;
   return (
-    <TouchableOpacity activeOpacity={0.9} onPress={() => openModal("live")} style={styles.container}>
-      <View style={styles.info}>
-        <View style={styles.iconWrap}>
-          <Icon name="Radio" size={14} color="#D4D4D8" />
-        </View>
-        <View>
-          <Text style={styles.title} numberOfLines={1}>{currentSpace.title}</Text>
-          <View style={styles.subtitleRow}>
-            <Text style={styles.subtitle}>{isHost ? "Hosting" : myRole === "speaker" ? "Speaking" : "Listening"}</Text>
-            {isWatchingScreen && (
-              <>
-                <Text style={styles.subtitle}>·</Text>
-                <Icon name="ScreenShare" size={11} color="rgba(255,255,255,0.7)" />
-              </>
-            )}
-          </View>
-        </View>
-      </View>
-      <TouchableOpacity
-        onPress={isHost ? () => confirmEndStage(t, currentSpace.title, endSpace) : leaveSpace}
-        style={[styles.leaveBtn, isHost && styles.endBtn]}
-        hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-        accessibilityRole="button"
-      >
-        <Text style={[styles.leaveText, isHost && styles.endText]}>{isHost ? "End" : "Leave"}</Text>
-      </TouchableOpacity>
-    </TouchableOpacity>
+    <Pressable
+      onPress={() => openModal("live")}
+      accessibilityRole="button"
+      accessibilityLabel={`${t("nav.stages")}: ${currentSpace.title}`}
+      testID="stage-nav-chip"
+      style={[styles.chip, {
+        backgroundColor: isMinimal ? "#000" : isLight ? colors.background : "#18181B",
+        borderColor: isLight ? "rgba(0,0,0,0.12)" : "rgba(255,255,255,0.10)",
+      }]}
+    >
+      <Animated.View style={pulseStyle} pointerEvents="none">
+        <Icon name="Headphones" size={20} color={colors.foreground} />
+      </Animated.View>
+    </Pressable>
   );
-};
+}
 
 const styles = StyleSheet.create({
-  container: {
-    position: "absolute",
-    bottom: 80,
-    left: 16,
-    right: 16,
-    height: 48,
-    borderRadius: 24,
-    backgroundColor: "#0C0C0E",
+  chip: {
+    width: 44,
+    height: 44,
     borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.12)",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    paddingHorizontal: 12,
-    zIndex: 99,
-  },
-  info: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 10,
-    flex: 1,
-  },
-  iconWrap: {
-    width: 32,
-    height: 32,
-    borderRadius: 12,
-    backgroundColor: "rgba(255,255,255,0.1)",
+    borderLeftWidth: 0,
+    borderTopRightRadius: 16,
+    borderBottomRightRadius: 16,
     alignItems: "center",
     justifyContent: "center",
-  },
-  title: {
-    color: "#FFFFFF",
-    fontSize: 13,
-    fontWeight: "500",
-    maxWidth: 160,
-  },
-  subtitleRow: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 4,
-  },
-  subtitle: {
-    color: "rgba(255,255,255,0.5)",
-    fontSize: 11,
-  },
-  leaveBtn: {
-    // 32pt pill plus the 8pt slop fills the 48pt bar, so the target is as
-    // tall as it can be without reaching outside the player.
-    minHeight: 32,
-    justifyContent: "center",
-    paddingHorizontal: 14,
-    paddingVertical: 6,
-    borderRadius: 14,
-    backgroundColor: "rgba(255,255,255,0.2)",
-  },
-  leaveText: {
-    color: "#F4F4F5",
-    fontSize: 12,
-    fontWeight: "600",
-  },
-  endBtn: {
-    backgroundColor: "rgba(255,255,255,0.15)",
-  },
-  endText: {
-    color: "#fff",
   },
 });
-
-export default StageMiniPlayer;
