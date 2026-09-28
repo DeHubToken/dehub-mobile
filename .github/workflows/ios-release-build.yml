@@ -36,8 +36,12 @@ jobs:
           const fs = require('fs');
           const result = JSON.parse(fs.readFileSync('ios-build.json', 'utf8'));
           const build = Array.isArray(result) ? result[0] : result;
+          const expectedVersion = JSON.parse(fs.readFileSync('app.json', 'utf8')).expo.version;
           if (build.status !== 'FINISHED' || build.platform !== 'IOS' || !build.id) {
             throw new Error('EAS did not return a completed iOS build');
+          }
+          if (build.appVersion !== expectedVersion || build.gitCommitHash !== process.env.GITHUB_SHA) {
+            throw new Error('EAS build version or commit does not match this release');
           }
           fs.appendFileSync(process.env.GITHUB_OUTPUT, `id=${build.id}\n`);
           console.log(JSON.stringify({
