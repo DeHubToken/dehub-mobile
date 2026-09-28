@@ -330,11 +330,11 @@
     "dark": "深色",
     "system": "系统",
     "minimal": "简约",
-    "cosmic": "Cosmic Pixels",
+    "cosmic": "宇宙像素",
     "hazy": "朦胧之夜",
     "swarms": "蜂群",
     "lavalamp": "熔岩灯",
-    "winter": "Winter Drops",
+    "winter": "冬季降落",
     "war": "战争",
     "osaka": "大阪",
     "jungle": "丛林",
@@ -780,7 +780,12 @@
     "smsBalance": "剩余 {{dhb}} 代币（${{usd}}）",
     "smsTopUp": "充值 {{dhb}} 代币",
     "smsCodeSent": "代码已发送。这花费了 {{price}} 代币。",
-    "tokenBalanceAmount": "{{amount}} 代币"
+    "tokenBalanceAmount": "{{amount}} 代币",
+    "channelSpeedCount": "{{count}}频道以自己的速度播放。",
+    "exportReady": "{{count}}账户，{{saved}}保存的帖子导出。",
+    "importDone": "跟随{{followed}}，屏蔽{{blocked}}，{{folders}}文件夹创建。",
+    "importPartial": "{{count}}账户无法跟随 — 重新运行导入以重试它们。",
+    "importProgress": "应用{{done}}个{{total}}…"
   },
   "common": {
     "mute": "静音",
@@ -1001,7 +1006,9 @@
     "bounty": "悬赏",
     "locked": "受限",
     "any": "全部",
-    "resetFilters": "重置筛选"
+    "resetFilters": "重置筛选",
+    "updatingFeed": "更新feed",
+    "filters": "过滤器"
   },
   "drawers": {
     "ppvTitle": "付费观看内容",
@@ -1420,7 +1427,7 @@
     "solanaAddressHint": "仅限SOL和SPL代币",
     "solanaAddressCopied": "索拉纳地址已复制",
     "chooseNetwork": "选择网络",
-    "evmAddressLabel": "EVM"
+    "evmAddressLabel": "電子投票機"
   },
   "bookmarks": {
     "title": "我的收藏",
@@ -1898,7 +1905,13 @@
     "noMoreReplies": "没有更多回复了",
     "offerSubmitted": "已提交 {{amount}} 枚代币的报价给 {{handle}}",
     "offerWorthNow": "按当前汇率约 {{amount}} 枚代币",
-    "offerCommitsNothing": "出价不收取任何费用，也不会冻结代币。只有在卖家接受后才付款。"
+    "offerCommitsNothing": "出价不收取任何费用，也不会冻结代币。只有在卖家接受后才付款。",
+    "searchThisChannel": "搜索此频道",
+    "tabPosts": "帖子",
+    "tabVideos": "视频",
+    "tabAudio": "音频",
+    "tabLive": "直播",
+    "tabPinned": "固定"
   },
   "tv": {
     "title": "电视",
@@ -2092,7 +2105,7 @@
     "impressions": "曝光",
     "clicks": "点击",
     "spend": "支出",
-    "ecpm": "eCPM",
+    "ecpm": "每千次展示的广告收入",
     "campaigns": "广告系列",
     "noCampaigns": "暂无广告系列",
     "createCampaign": "创建广告系列",
@@ -2368,7 +2381,7 @@
     "telegram": "Telegram",
     "xTwitter": "X (Twitter)",
     "instagram": "Instagram",
-    "linkedin": "LinkedIn",
+    "linkedin": "领英",
     "otherSocials": "其他社交媒体",
     "otherSocialsPlaceholder": "TikTok、YouTube、Discord 等",
     "pastExperience": "过往经验",
@@ -3223,10 +3236,107 @@
         "oneDay": "1 天",
         "oneWeek": "1 周",
         "forever": "永久"
-      }
+      },
+      "ownerSection": "拥有者",
+      "ownerLabel": "拥有者",
+      "noOwner": "没有记录的拥有者。",
+      "administratorsSection": "管理员",
+      "noAdmins": "还没有管理员。推广成员以帮助您管理。",
+      "adminBadge": "管理员",
+      "rightsSummary": "{{total}}权限中的{{granted}}",
+      "noMemberMatches": "没有与该地址匹配的成员。",
+      "noPlainMembers": "每个人都已经是管理员了。",
+      "searchTruncated": "显示第一个{{limit}} —继续输入以缩小范围。",
+      "danger": {
+        "transferTitle": "转让所有权？",
+        "transferBody": "{{name}}成为此社区的所有者。您在每项权利下都会跳转到管理员，此操作无法撤消。",
+        "transferConfirm": "转移",
+        "deleteTitle": "删除此社区？",
+        "deleteBody": "{{name}} ，其中的一切都将永久保留：每个成员、每个消息、每个活动和每个邀请链接。此操作无法撤消。",
+        "deleteConfirm": "删除",
+        "transferHeading": "转让所有权",
+        "transferHint": "从现在开始，选择应拥有此社区的成员。",
+        "searchMembers": "搜索成员",
+        "noMatches": "没有与该搜索匹配的成员。",
+        "noCandidates": "没有其他活动成员可以将此社区移交给。",
+        "transferAction": "设为所有者",
+        "deleteHeading": "删除社区",
+        "deleteHint": "每个成员、消息、活动和邀请链接都将被永久删除。没有回头路了。",
+        "deleteAction": "删除此社区"
+      },
+      "inviteRevoked": "已撤销",
+      "inviteExpired": "过期",
+      "inviteExhausted": "已达到上限",
+      "inviteExpiresMinutes": "{{n}}分钟后过期",
+      "inviteExpiresHours": "{{n}}小时后过期",
+      "inviteExpiresDays": "{{n}} d后过期",
+      "inviteNeedsApproval": "需要审批",
+      "inviteLink": "邀请链接",
+      "inviteUses": "{{n}}已加入",
+      "copy": "复制",
+      "revoke": "撤销",
+      "inviteShareMessage": "在DeHub上加入此社区",
+      "revokeInviteTitle": "撤销邀请链接",
+      "revokeInviteBody": "此链接立即停止工作。已加入的房客将入住此房源。",
+      "inviteNoPermission": "您无权管理邀请链接。",
+      "createInviteLink": "创建邀请链接",
+      "inviteNamePlaceholder": "姓名（选填）",
+      "inviteExpiryLabel": "过期",
+      "inviteLimitLabel": "成员限制",
+      "inviteRequireApproval": "需要管理员批准",
+      "inviteRequireApprovalHint": "使用此链接的人员必须获得批准才能加入。",
+      "createLink": "创建链接",
+      "noInvites": "还没有邀请链接。创建一个账号，直接邀请他人。",
+      "permissionsUpdated": "权限已更新",
+      "slowModeUpdated": "慢速模式已更新",
+      "slowModeOffHint": "会员可以毫不拖延地发送消息。",
+      "slowModeOnHint": "成员可以每{{label}}发送一条消息。管理员可免登记。",
+      "defaultPermissions": "默认成员权限",
+      "defaultPermissionsHint": "除非管理员权限另有规定，否则每个人都可以在这里做什么。",
+      "slowModeTitle": "慢速模式",
+      "log": {
+        "justNow": "刚才",
+        "minutesAgo": "{{value}}分钟前",
+        "hoursAgo": "{{value}}小时前",
+        "daysAgo": "{{value}} d前",
+        "weeksAgo": "{{value}} w前",
+        "monthsAgo": "{{value}}个月前",
+        "yearsAgo": "{{value}}年前",
+        "permanently": "永久",
+        "forMinutes": "为{{value}}分钟",
+        "forHours": "为{{value}}小时",
+        "forDays": "为{{value}}天",
+        "forWeeks": "为{{value}}周",
+        "unknownActor": "有人",
+        "reason": "原因：{{value}}",
+        "restricted": "只有管理员才能看到管理日志。",
+        "empty": "这里什么都没有。管理操作将随着发生而显示。",
+        "showMore": "显示更多（{{value}}）"
+      },
+      "addAdministrator": "添加管理员"
     },
     "chooseAvatar": "选择头像",
-    "loadFailed": "无法加载社区"
+    "loadFailed": "无法加载社区",
+    "noPostsYet": "这个社区里还没有帖子。",
+    "infoUpdated": "社区更新",
+    "editInfo": "编辑名称和描述",
+    "saveChanges": "保存",
+    "nowPrivate": "社区现在是私有的",
+    "nowPublic": "社区现在是公开的",
+    "bannedFromCommunity": "你被社区封禁了",
+    "manageButton": "管理",
+    "muted": "静音",
+    "privateHint": "新成员必须经过管理员审批才能加入。",
+    "publicHint": "任何人都可以立即加入。",
+    "invite": {
+      "joinFailed": "加入失败",
+      "revoked": "这个邀请链接已经被撤销。",
+      "expired": "这个邀请链接已经过期。",
+      "exhausted": "这个邀请链接已经达到成员限制。",
+      "notFound": "这个邀请链接无效。",
+      "requestToJoin": "申请加入",
+      "approvalNote": "管理员必须审批你的申请才能让你加入。"
+    }
   },
   "work": {
     "title": "悬赏",
@@ -6131,7 +6241,7 @@
   "nearBuy": {
     "otherCurrencies": "其他货币",
     "search": "搜索代币、网络或合约",
-    "onChain": "on {{chain}}",
+    "onChain": "在{{chain}}",
     "refundAddress": "{{chain}} 上的退款地址",
     "refundPlaceholder": "付款网络上的地址",
     "refundHint": "请检查这是您在付款网络上控制的钱包。避免使用需要备忘录或标签的交易所地址。任何提供商的退款将返回此处。",
@@ -6219,7 +6329,7 @@
   "dex": {
     "lowestPrice": "最低价 · USD",
     "lpDhb": "LP · DHB",
-    "lpUsd": "LP · USD",
+    "lpUsd": "美元",
     "totalLiquidity": "总流动性 · USD",
     "lowestSell": "最低卖出 · USDC",
     "liveChartHint": "最低卖出 · USDC · 拖动以检查",
@@ -6810,7 +6920,7 @@
         "title": "创作者秀"
       },
       "quote": {
-        "author": "Don Draper",
+        "author": "唐·德拉弗尔",
         "body": "简单，但有分量。",
         "title": "语录卡片"
       },
@@ -6899,7 +7009,7 @@
     "signInToSee": "登录后即可查看你的生成内容。",
     "libraryEmpty": "你保存的生成内容会显示在这里。",
     "openGeneration": "打开 {{prompt}}",
-    "toolBuilder": "Builder",
+    "toolBuilder": "生成器",
     "libraryHintStudio": "您保存的世代，在网上与创作者分享。Studio将在您的浏览器中打开。"
   },
   "fractions": {
@@ -7054,7 +7164,9 @@
     "appealFootnote": "您会得到一个参考编号，答案会回到这里。 每项决定一次申诉。",
     "appealRef": "推荐语{{ref}}",
     "appealSubtitleSubject": "有人会阅读此内容并再次查看{{subject}}。",
-    "appealMore": "仍需输入字符： {{count}}"
+    "appealMore": "仍需输入字符： {{count}}",
+    "appealSentRef": "申诉已发送· {{ref}}",
+    "appeal": "申诉"
   },
   "cashtag": {
     "noData": "未找到 ${{symbol}} 的数据",
@@ -7925,7 +8037,7 @@
     "step3Body": "任何人都可以打开链接。在聊天中回复以更改任何内容。"
   },
   "depin": {
-    "title": "DePin",
+    "title": "德平",
     "becomeANode": "成为节点",
     "ctaBody": "源站兜底、受保护媒体的加密与工作验证，都排在公开节点奖励之前。",
     "ctaTitle": "只有在失败也安全时才上线。",

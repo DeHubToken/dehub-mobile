@@ -770,7 +770,20 @@
     "smsPricePerMessage": "{{dhb}} tokens (${{usd}})",
     "smsDepositAction": "Send {{dhb}} tokens",
     "smsBalance": "{{dhb}} tokens left (${{usd}})",
-    "tokenBalanceAmount": "{{amount}} tokens"
+    "tokenBalanceAmount": "{{amount}} tokens",
+    "dhbBalanceIncludesStaked": "O kɔ, u ye wari caaman di u ma.",
+    "badgeDelegationNoBadge": "O yɔrɔ la, u be taga ni batɛmu ye. O kɔ, a ye dɔ fara a ka baara kan.",
+    "badgeDelegationEarn": "DeHub ka tagamasiɲɛw yira walisa ka batɛmu sɔrɔ. O be na ni juru ye i ka yɛlɛyɔrɔ bɛɛ la.",
+    "smsNotificationsLocked": "Ka ban ni {{dhb}} tokens (${{usd}}) ye",
+    "smsDialogIntro": "O kama, o kanpaɲi be baara kɛ ni juru ye min be sɔrɔ DeHub ka tagamasiɲɛw kan.",
+    "smsUnlockPrice": "{{dhb}} tokens ($ {{usd}}) be kuma dɔw yɛlɛ ka kɛ i ka balansi fɔlɔ ye.",
+    "smsNeedDhb": "I mako be {{dhb}}tokens la walisa ka kunnafoniw sɔrɔ.",
+    "smsCodeSent": "Code sent.O wari {{price}} tokens.",
+    "channelSpeedCount": "{{count}} channel (w) be se ka kɛ i yɛrɛ ka teliya la.",
+    "exportReady": "{{count}} accounts, {{saved}} saved posts exported.",
+    "importDone": "Followed {{followed}}, blocked {{blocked}}, {{folders}} folders created.",
+    "importPartial": "{{count}}kunnafoniw tɛ se ka tugu u kɔ — a to u ka segi ka don.",
+    "importProgress": "{{done}} {{total}}..."
   },
   "common": {
     "mute": "Kan bɔ",
@@ -874,7 +887,16 @@
     "minAmount": "Min {{amount}} tokens.",
     "attachAmount": "Attach {{amount}} tokens",
     "tokensUnit": "tokens",
-    "tokenAmount": "{{amount}} tokens"
+    "tokenAmount": "{{amount}} tokens",
+    "insufficientDhb": "O tɛ se ka kɛ",
+    "attachDescription": "DeHub ka tagamasiɲɛw yira i ka kuma na",
+    "payViaBridge": "Swapped to DeHub tokens on Uniswap, arrive in ~{{seconds}}s",
+    "payViaSwap": "DeHub ka tagamasiɲɛw ye Uniswap kan",
+    "stageSwap": "O kama, a tun ka kan ka kɛ i n'a fɔ a tun y'a fɔ cogo min na.",
+    "payFailed": "Can't convert {{symbol}} to DeHub tokens",
+    "stageDelivering": "O kɔ, a ye wari di a ma.",
+    "payViaDpay": "DeHub ka wari sara, tagamasiyɛnw be se ka kɛ saan 30 ɲɔgɔn kɔnɔ",
+    "payViaBridgeDpay": "O kɔ, a ye wari di a ma. A ye wari di a ma."
   },
   "postOptions": {
     "options": "Sugandiliw",
@@ -982,7 +1004,9 @@
     "bounty": "Sara",
     "locked": "Datugulen",
     "any": "O o",
-    "resetFilters": "Sɛgɛnnaw segin a fɔlɔ la"
+    "resetFilters": "Sɛgɛnnaw segin a fɔlɔ la",
+    "updatingFeed": "Updating feed",
+    "filters": "Filters"
   },
   "drawers": {
     "ppvTitle": "PPV Kɔrɔbɔ",
@@ -1879,7 +1903,13 @@
     "noMoreReplies": "O kɔ, a ma sɔn ka kuma tugu.",
     "offerSubmitted": "Chipo che {{amount}} tokens chakatumirwa pa {{handle}}",
     "offerWorthNow": "Nezve {{amount}} tokens pachiyero chazvino",
-    "offerCommitsNothing": "Kupa chipo hakukoshi uye hakubati ma tokens. Uchabhadhara chete kana muridzi achibvuma."
+    "offerCommitsNothing": "Kupa chipo hakukoshi uye hakubati ma tokens. Uchabhadhara chete kana muridzi achibvuma.",
+    "searchThisChannel": "Ka tɛmɛ o kan",
+    "tabPosts": "Posts",
+    "tabVideos": "Videos",
+    "tabAudio": "Audio",
+    "tabLive": "Live",
+    "tabPinned": "Pinned"
   },
   "tv": {
     "title": "TV",
@@ -2467,7 +2497,9 @@
     "amountLabel": "Amount (tokens)",
     "sendAmount": "Send {{amount}} tokens",
     "yourContribution": "{{amount}} tokens contributed",
-    "pooledTotal": "{{amount}} tokens pooled"
+    "pooledTotal": "{{amount}} tokens pooled",
+    "sentDesc": "{{amount}}tokens sent to the Treasury on {{chain}}. I ka wari hakɛ kofɔra ka ban tuma min na, i ka wari hakɛ kofɔra ka ban.",
+    "sendAnyWallet": "Mɔgɔ o mɔgɔ be se ka DeHub ka tagamasiyɛnw ci yan ka bɔ wari la wala ka wari feere. O la, i bena a ye ko i ye wari min sɔrɔ, o ye wari min ye, o ye wari min ye."
   },
   "governance": {
     "title": "Ɲɛmɔgɔya",
@@ -2528,7 +2560,9 @@
       "empty": "O kama, n' tun b'a fɛ ka kuma n' fɛ.",
       "joinOnProposal": "O be se ka kɛ sababu ye an be baro kɛ",
       "authorChip": "Sɛbɛbaga"
-    }
+    },
+    "holdTokensToVote": "N'i b'a fɛ ka vote, i ka vote kɛ",
+    "mustHoldTokens": "I ka kan ka DeHub ka tagamasiɲɛw mara walisa ka se ka gofɛrɛnɛman ka cikanw labato."
   },
   "sidebar": {
     "talkOfTheTown": "Dugu kɔnɔ kumaw",
@@ -2881,7 +2915,9 @@
     "rate_limited": "A ka teli kojugu, i sabali",
     "failedToUnfollowUser": "Mɔgɔ min ma sɔn ka baara kɛ n'a ye, a ka kan ka baara kɛ n'o ye",
     "no_dhb_balance": "No token balance",
-    "staking_dhb": "Staking tokens..."
+    "staking_dhb": "Staking tokens...",
+    "no_dhb_tokens_either_chain": "I tɛ ni dehub tagamasiyɛnw ye jɔrɔkɔ fila kan",
+    "dhb_found_on_both_chains": "O kɔ, a ye n' ka soow bɛɛ datugu."
   },
   "staking": {
     "title": "Staking",
@@ -2968,7 +3004,20 @@
     "availableToStake": "Available: {{amount}} tokens",
     "tokensUnit": "o ye koo ɲuman ye.",
     "tokenAmount": "{{amount}} tokens",
-    "unstakeSent": "Withdrew {{amount}} tokens! TX: {{hash}}…"
+    "unstakeSent": "Withdrew {{amount}} tokens! TX: {{hash}}…",
+    "dhbOnBase": "Kala Lagaw Ya - Kala Lagaw Ya",
+    "stakeOnBaseDesc": "DeHub ka wari min be sɔrɔ a ka wari la, o be se ka kɛ sababu ye a be wari sɔrɔ.",
+    "unstakeFromBnbDesc": "O ye BNB ka baara kɛcogo ye. O kama, a tun man nɔgɔ ka taga bɔ jamana wɛrɛ la.",
+    "withdrawableOnBnb": "Wutala: {{amount}} token ni BNB Chain",
+    "orSendDirectly": "Wala ka DeHub ka tagamasiɲɛw ci ka taga u bila a ka banki la:",
+    "pendingConfirmed": "{{amount}}tokensconfirmed. I ka wari mara kunnafoniw ka kan ka yɛlɛ. Kana o kuma fɔ ne tulo kɔrɔ tugun! '",
+    "pendingSubmitted": "{{amount}}tokens submitted. Confirmation be to ka sɛgɛsɛgɛ. Kana o kuma fɔ ne tulo kɔrɔ tugun! '",
+    "foundNewStake": "Found {{amount}} tokens. i ka wari be yɛlɛla.",
+    "stakeConfirmedOnBase": "{{amount}} tokens ka kan ka kɛ basigilan ye.",
+    "insufficientOnBase": "O tɛ se ka kɛ sababu ye mɔgɔ tɛ se ka koo jugu kɛ.",
+    "onlyThisMuchStaked": "I ka kan ka {{amount}} tokens di.",
+    "onlyLegacyWithdrawable": "{{amount}} tokens dɔrɔn lo be se ka bɔ sisan — a tɔɔ be sɔrɔ basigilan kɔnɔ, min ma wari bɔ fɔlɔ.",
+    "poolHasNoWithdrawal": "I ka tagamasiyɛnw be sɔrɔ kɔlɔn kɔnɔ, min ma wari bɔ fɔlɔ. N'i ye mɔgɔ dɔ weele ka na i ka soo, i ka kan k'a weele ka na i ka soo."
   },
   "communities": {
     "title": "Jɛkuluw",
@@ -3177,10 +3226,100 @@
         "oneDay": "1 jour",
         "oneWeek": "1 semaine",
         "forever": "Pour toujours"
+      },
+      "ownerSection": "Owner",
+      "ownerLabel": "Owner",
+      "noOwner": "No owner on record.",
+      "administratorsSection": "Administrators",
+      "noAdmins": "Mɔgɔ minw be baara kɛ ni mɔgɔ wɛrɛw ye, olu tɛ se ka mɔgɔ wɛrɛw dɛmɛ.",
+      "adminBadge": "K'a to a ka baara la",
+      "rightsSummary": "{{granted}} ka {{total}} ka",
+      "addAdministrator": "Mɔgɔ min be baara kɛ",
+      "noMemberMatches": "O la, a tun tɛ se ka kɛ ko a tun ye mɔgɔ dɔ ye min tun",
+      "noPlainMembers": "Mɔgɔ bɛɛ be yan ka ban.",
+      "searchTruncated": "A yira fɔlɔ {{limit}} — to ka sɛbɛri kɛ ka tɛmɛ a kan.",
+      "danger": {
+        "transferTitle": "Ka wari di mɔgɔw ma?",
+        "transferBody": "{{name}} be kɛ jɛnkulu nin tigi ye. I be se k'i yɛrɛ tanga o ma.",
+        "transferConfirm": "Ka tɛmɛ",
+        "deleteTitle": "Yala u bena o jɛnkulu halaki wa?",
+        "deleteBody": "{{name}} ani fɛɛn o fɛɛn be yen, o be to kudayi: mɔgɔ kelen kelen bɛɛ, kuma kelen kelen bɛɛ, koo kelen kelen bɛɛ ani weleweledalaw bɛɛ. O tɛ se ka ban.",
+        "deleteConfirm": "A tun banna",
+        "transferHeading": "Fɛɛn min be sɔrɔ a ka nafolo la",
+        "transferHint": "I ka kan ka mɔgɔ min weele ka na i ka jɛnkulu kɔnɔ, i ka o tigi sugandi.",
+        "searchMembers": "Mɔgɔ minw be ɲini ka kɛ u ka lasigidenw",
+        "noMatches": "O kama, a tun man nɔgɔ ka mɔgɔ si ye.",
+        "noCandidates": "Mɔgɔ wɛrɛ tɛ yen min be se ka jɛnkulu nin sigi.",
+        "transferAction": "Ka kɛ a tigi ye",
+        "deleteHeading": "Ka jɛnkulu dɔ sigi",
+        "deleteHint": "Mɔgɔ o mɔgɔ ye mɔgɔ weele ka na, a ka kuma, a ka koo ani a ka weleliw bɛɛ be ban pewu. I ma foyi ye, i be taga kɔfɛ.",
+        "deleteAction": "Ka bɔ o mara la"
+      },
+      "inviteRevoked": "O kɔ, a y'a ka baara dabila.",
+      "inviteExpired": "O bɛɛ banna.",
+      "inviteExhausted": "Fanga min be se ka kɛ",
+      "inviteNeedsApproval": "ka sɔn",
+      "inviteLink": "Aw ye mɔgɔ dɔ weele ka na aw ka yɔrɔ dɔ",
+      "inviteUses": "{{n}} join ye",
+      "copy": "Kɔrɔbɔli",
+      "revoke": "O kɔ, a ye n' ka soow lɔ",
+      "inviteShareMessage": "I be se ka jɛn ni o jɛnkulu ye DeHub kan",
+      "revokeInviteTitle": "O kɔ, a ye mɔgɔ dɔ weele ka na a ka soo.",
+      "revokeInviteBody": "O la, a tun be se ka kɛ ko a tun be baara kɛ ni fanga ye. Mɔgɔ minw tun be yen ka ban, olu tora yen.",
+      "inviteNoPermission": "I tɛ se ka mɔgɔ weele ka na i ka soo.",
+      "createInviteLink": "Ka mɔgɔ weele ka na",
+      "inviteNamePlaceholder": "Kalanfaw (manfa ye)",
+      "inviteExpiryLabel": "A laban",
+      "inviteLimitLabel": "Fanga min be mɔgɔ ka baara la",
+      "inviteRequireApproval": "Ka sɔn ka baara kɛ ni mɔgɔ dɔ ye",
+      "inviteRequireApprovalHint": "Mɔgɔ minw be tɛmɛ o link kan, olu ka kan ka sɔn o ma sanni u ka se ka don.",
+      "createLink": "Fanga be mɔgɔ minw na, olu ka kan",
+      "noInvites": "Mɔgɔ si tɛ yen Gayɛli gɛrɛfɛ. I yɛrɛ labɛn ka mɔgɔw weele ka na i ka soo.",
+      "permissionsUpdated": "Ladili kuraw",
+      "slowModeUpdated": "Modɛli kura",
+      "slowModeOffHint": "Mɔgɔ minw be se ka kuma, u be se ka kuma u fɛ joona joona.",
+      "defaultPermissions": "Mɔgɔ minw be se ka baara kɛ ni mɔgɔ wɛrɛw ye, olu ka kan ka",
+      "defaultPermissionsHint": "Mɔgɔ bɛɛ be se ka mun lo kɛ yan n'a ma fɔ ko a tɛ se ka koo dɔ kɛ min bɛnnin tɛ?",
+      "slowModeTitle": "Modɛli min be yɛlɛma dɔɔni dɔɔni",
+      "log": {
+        "justNow": "sisan yɛrɛ",
+        "minutesAgo": "{{value}} m ka kan ka kɛ",
+        "hoursAgo": "{{value}}h ago",
+        "daysAgo": "{{value}}d d ago",
+        "weeksAgo": "{{value}}w ago",
+        "monthsAgo": "{{value}}mo ago",
+        "yearsAgo": "{{value}}y ka kan ka kɛ",
+        "permanently": "o ye kudayi ye",
+        "forHours": "for {{value}}h",
+        "forWeeks": "ka {{value}}w",
+        "unknownActor": "Mɔgɔ dɔ",
+        "restricted": "Mɔgɔ minw be se k'o kɛ, olu dɔrɔn lo be se k'o kɛ.",
+        "empty": "O kama, an ka ɲi k'an yɛrɛ tanga o ma.",
+        "showMore": "Ka dɔ fara a kan ({{value}})"
       }
     },
     "chooseAvatar": "Choisir un avatar",
-    "loadFailed": "U tun tɛ se ka jɛnkuluw sigi"
+    "loadFailed": "U tun tɛ se ka jɛnkuluw sigi",
+    "noPostsYet": "O yɔrɔ la, mɔgɔ si tɛ se ka taga yen.",
+    "infoUpdated": "An ka kunnafoniw",
+    "editInfo": "Tɔgɔ ni ɲɛfɔliModifier",
+    "saveChanges": "K'i yɛrɛ tanga",
+    "nowPrivate": "O kama, an ka ɲi k'an yɛrɛ tanga o ma.",
+    "nowPublic": "Jamana ye jama ye sisan",
+    "bannedFromCommunity": "I banna ka bɔ o jɛnkulu kɔnɔ",
+    "manageButton": "K'a to a ka baara la",
+    "muted": "Dɔnkili",
+    "privateHint": "Mɔgɔ kuraw ka kan ka sɔn ka don.",
+    "publicHint": "Mɔgɔ o mɔgɔ be se ka jɛn n'u ye joona joona.",
+    "invite": {
+      "joinFailed": "I tɛ se ka jɛn ni mɔgɔ dɔ ye",
+      "revoked": "O la, a tun be se ka kɛ ko a tun ye mɔgɔ dɔ weele ka na a ka",
+      "expired": "O la, a tun be se ka kɛ ko a tun ye mɔgɔ weele ka na a ka soo",
+      "exhausted": "O la, a tun be se ka kɛ ko a tun ye mɔgɔ dɔ weele ka na a ka soo.",
+      "notFound": "O la, a ka ɲi ka tɛmɛ o fɛɛrɛw fɛ ka mɔgɔ weele ka na a ka soo.",
+      "requestToJoin": "Ka jɛn ni mɔgɔ dɔ ye",
+      "approvalNote": "I ka ɲi ka sɔn i ka fɔta ma sanni i ka se ka don."
+    }
   },
   "work": {
     "title": "Sarakaw",
@@ -6109,7 +6248,10 @@
     "detail_delivering": "I ka tagamasiyɛnw be sira kan.",
     "phase_deliveryDelayed": "Token delivery delayed",
     "detail_deliveryDelayed": "I ka juru sara ka ban, nka i ka juru sara ka kan ka segi ka kɛ i ka juru sara ye. N'i tora ka mɛn, i ka la a la ko i ye mɔgɔ dɔ weele ka na i ka soo. O kama, ne tɛ se k'a sara tugun.",
-    "phase_gasPending": "Tokens delivered · gas pending"
+    "phase_gasPending": "Tokens delivered · gas pending",
+    "detail_gasPending": "I ka siginidenw yɛlɛmana ka kɛ siginidenw ye. O kama, a ka ɲi ka to ka to ka kuma ni mɔgɔ wɛrɛw ye.",
+    "detail_delivered": "I ka DeHub tagamasiyɛnw donna i ka wari sɔrɔyɔrɔ la.",
+    "directTiming": "I ka wari sara ka ban tuma min na, i ka wari sara ka ban."
   },
   "dex": {
     "lowestPrice": "Sɔngɔ dɔgɔmannin · USD",
@@ -6257,7 +6399,10 @@
       "opening": "Ṣiṣi pool naa…",
       "created": "{{symbol}} pool ti ṣii",
       "createFailed": "A ko le ṣii pool naa.",
-      "feeDhb": "≈ {{amount}} DeHub tokens"
+      "feeDhb": "≈ {{amount}} DeHub tokens",
+      "addDescription": "N'i ye tagamasiɲɛ dɔ ye min be se ka kɛ tagamasiɲɛ ye, o ye tagamasiɲɛ ye min be se ka kɛ tagamasiɲɛ ye. A ka wari ye $ 100 ye, a ka wari ye DeHub ka tagamasiɲɛw ye.",
+      "priceUnavailable": "O kama, an ka ɲi k'a ɲini k'a lɔn ko an ka ɲi ka mun lo kɛ walisa ka se k'an yɛrɛ tanga o ma. I ka segi k'a kɛ miniti kelen kɔnɔ.",
+      "swapNote": "I ka {{symbol}} be yɛlɛma ka kɛ DeHub ka tagamasiɲɛw ye wari min sara o wari kelen na. O kɔ, i ka wari bɛɛ to i ka wari la."
     },
     "pool": {
       "missingTitle": "Pool ko ri — DeHub DEX",
@@ -6333,7 +6478,8 @@
     "sellExplanation": "DHB dɔrɔn bila. I ka feereli sɔngɔ dɔgɔman ye sɔngɔ duguma ye; position bɛ fa ni DHB sɔngɔ bɛ yɛlɛn ka tɛmɛ dan cɛ la.",
     "newPosition": "DHB / USDC position kura",
     "reviewDetail": "Lajɛ: {{amount}} DHB feere {{chain}} kan {{minPrice}}–{{maxPrice}} USDC la DHB kelen o kelen. I ka wallet bɛna sɔnw ɲini ka position dilan.",
-    "reviewSwap": "{{amountIn}} {{symbol}} ɲɔgɔn fala ni {{usdc}} USDC ye Base kan fɔlɔ. {{symbol}} min ma baara kɛ, o bɛ segin jago kelen kɔnɔ."
+    "reviewSwap": "{{amountIn}} {{symbol}} ɲɔgɔn fala ni {{usdc}} USDC ye Base kan fɔlɔ. {{symbol}} min ma baara kɛ, o bɛ segin jago kelen kɔnɔ.",
+    "buyWithBnbNote": "O kɔ, u y'a fɔ ko: \"An ka kan ka taga bɔ an ka jamana na. O kama, a tun ka kan ka kɛ i n'a fɔ a tun y'a fɔ cogo min na."
   },
   "onboarding": {
     "optIn": {
@@ -6376,7 +6522,10 @@
         "title": "I ka username ni i ja sigi",
         "body": "Tɔgɔ dɔ sugandi mɔgɔw bɛna min dɔn ani ka profile ja fara a kan, walasa i ka postw ka jira ko u bɔra i de fɛ."
       },
-      "wallet": {},
+      "wallet": {
+        "title": "Wo wo wallet ni ka i ni DeHub tokens",
+        "body": "I ka wari be yen ka ban ani i ka DeHub tagamasiɲɛw be yen. Aw yɛrɛ y'a ye ko o ye mun ye."
+      },
       "feed": {
         "title": "I b'a fɛ ka min ye, o sugandi",
         "body": "Ɲininkali teliman fila jaabi, i ka feed bɛna daminɛ ka post suguya jira i b'a fɛ ka minnu ye tiɲɛ na."
@@ -6941,7 +7090,9 @@
     "appealFootnote": "O la, i bena a ye ko i ye mɔgɔ dɔ ye min be se k'i dɛmɛ. O kama, a ka ɲi ka kiti tigɛ ka kɛɲɛ ni sariya ye.",
     "appealRef": "Taamasiyɛn {{ref}}",
     "appealSubtitleSubject": "Mɔgɔ dɔ bena o kalan ani a bena a filɛ tugun {{subject}}.",
-    "appealMore": "Sɛbɛnden minnu ka kan fɔlɔ: {{count}}"
+    "appealMore": "Sɛbɛnden minnu ka kan fɔlɔ: {{count}}",
+    "appealSentRef": "Ala ka Kuma: {{ref}}",
+    "appeal": "Ka delili kɛ"
   },
   "support": {
     "title": "Dɛmɛ ɲini",
@@ -7213,11 +7364,26 @@
   "guide": {
     "sections": {
       "getting-started": {
-        "title": "Getting Started"
+        "title": "Getting Started",
+        "intro": "DeHub sira duuru lo be yen ani u si t'a ɲini i fɛ i ka wari sɔrɔ: Google, Apple, code min cira i ka e-mail ma, code min cira sms fɛ, wala wari min be yen. O la, i be se ka fɛɛn bɛɛ ci, ka fɛɛn dɔ ci ani ka fɛɛn dɔ lajɛn i ma.",
+        "steps": {
+          "1": "Visit dehub.io - a ka dumuni kɛyɔrɔ ye a ka ɲɛfɛyɔrɔ ye, o la, i be se ka filɛli kɛ ka sɔrɔ ka don.",
+          "2": "I bena Google ni Apple ye, yɔrɔ minw na i be se ka e-mail wala telefɔni nimɔrɔ sɔrɔ, ani \"Connect Wallet\" yɔrɔ minw na i be yen.",
+          "3": "N'i be baara kɛ ni Google wala Apple ye, i ka baara kɛ ni a ye. N'i ye e-mail wala sms ci, i ka code min sɔrɔ, o don.",
+          "4": "O la, aw bena aw yɛrɛ tanga o ma. N'i ye i ka wari bila ɲɔgɔn na, o kɔrɔ ko i ka sɛbɛ dɔ kɛ min b'a yira ko i ye mɔgɔ dɔ ye.",
+          "5": "I ka mɔgɔ tɔgɔ sugandi. Mɔgɔw be min ye, o ye nin ye: i ka dehub.io/ <username> profile link.",
+          "6": "I ka dumuniw lajɛ, i ka kunnafoniw labɛn ani i ka sɛbɛw bila."
+        },
+        "tips": {
+          "1": "Sosiyalisitiw, e-mailw ani smsw tɛ wari sara abada - DeHub b'o wari di. O la, a ka ɲi ka kɛ ni wari ye min be se ka kɛ a ka wari ye.",
+          "2": "Yala i be se ka segi ka na ni a ye wa? I ka e-mail wala telefɔni nimɔrɔ sɛbɛn k'a yira ko i be se ka taga jamana wɛrɛ la.",
+          "3": "I be se ka kunnafoni caaman mara i ka baarakɛminan kelen kan ani k'u yɛlɛma ka kɛ i ka → ladɛrɛsi ye."
+        }
       },
       "home-feed": {
         "title": "Home Feed",
         "steps": {
+          "1": "N'i b'a fɛ ka dumuni kɛ, i ka taga a filɛ.",
           "2": "Ka tɛmɛ tabolow kan ka filɛri kɛ ka kɛɲɛ ni kunnafoniw ye: soo (ALL), videwo, jaa, yɔrɔ, dɔnkilila, walima ɲanamanya.",
           "3": "N'i b'a fɛ ka tɛmɛ o kan, i ka tɛmɛ o kan ka tɛmɛ o kan.",
           "4": "N'i b'a fɛ ka dumuni yɛlɛma, i ka filɛri/farisogo tuguni (ka tɛmɛ dumuni kinibolo fɛ) kɛ k'a yɛlɛma: funteni, kura, walima sanfɛyɔrɔ.",
@@ -7229,7 +7395,8 @@
           "1": "O ye fɛɛrɛ ɲuman ye ka ɲɛtaga kɛ ni fotow ye joona joona.",
           "2": "O la, a be se ka kɛ ko a be fɛɛn bɛɛ ɲagami ɲɔgɔn na.",
           "3": "O la, a ka di mɔgɔ caaman ye ka to ka to ka baro kɛ n'u ye."
-        }
+        },
+        "intro": "I be mɔgɔ minw ka site webw filɛ ani u be taga ɲɛ, i be olu ka site webw filɛ. O be se ka kɛ sababu ye ka mɔgɔ caaman dɛmɛ u ka se ka baara kɛ ni u ka miiriya ye."
       },
       "creating-posts": {
         "title": "Ka baara kɛ ni barokunw ye",
@@ -7402,28 +7569,63 @@
         }
       },
       "command-centre": {
-        "title": "Kɛlɛkɛyɔrɔ"
+        "title": "Kɛlɛkɛyɔrɔ",
+        "intro": "O la, i bena a ye ko i ye mɔgɔ dɔ ye min be se k'i ka baara kɛ.",
+        "steps": {
+          "1": "I ka ɲi ka \"Command Center\" lajɛ barokun nin na.",
+          "2": "I ka kunnafoniw lajɛ, i ka lɛtɛrɛw, i ka kalandenw ani i ka laɲinitaw.",
+          "3": "I ka baara n'i ka kokɛcogow lajɛ.",
+          "4": "Ka tɛmɛ fɛɛrɛ dɔw fɛ, i be se ka tɛmɛ fɛɛrɛ dɔw fɛ ka tɛmɛ fɛɛrɛ wɛrɛw fɛ."
+        },
+        "tips": {
+          "1": "O yɔrɔ la, i be se ka kɔnɔwye i ka DeHub ka yɔrɔ la."
+        }
       },
       "governance": {
         "title": "Governance",
         "tips": {
+          "1": "I ye tagamasiyɛn minw sigi, o lo b'a to i be se ka vote.",
           "2": "Badge holders may get additional vote weight.",
           "3": "Proposals go through stages: Active → Passed/Rejected."
+        },
+        "intro": "Ka kɛ sababu ye ka mɔgɔw dɛmɛ u ka se ka laɲinitaw dafa.",
+        "steps": {
+          "1": "Ka taga \"Dugukolokura\" yɔrɔ la, o kɔrɔ ko ka taga \"Dugukolokura\" yɔrɔ la.",
+          "2": "O kama, an ka ɲi k'an seko bɛɛ kɛ ka mɔgɔw dɛmɛ u ka se ka Jehova bato.",
+          "3": "N'i b'a fɛ ka kuma o koo la, i ka ɲi ka tɛmɛ o kan ka kuma o koo la.",
+          "4": "I ka vote ka kɛɲɛ ni DeHub ka tagamasiɲɛ hakɛ ye.",
+          "5": "A to i ka kuma dɔw fɔ walisa ka baro kɛ ni mɔgɔw ye.",
+          "6": "I yɛrɛ ka ladili di n'i ye \"Dɔtɔrɔso la\" tuguni kan."
         }
       },
       "bookmarks": {
-        "title": "Bookmarks"
+        "title": "Bookmarks",
+        "intro": "I ka gafew bila yɔrɔ dɔw la walisa u ka se ka sɔrɔ kɔfɛ.",
+        "steps": {
+          "1": "I ka kan ka sɛbɛri kɛ ka sɔrɔ ka sɛbɛri kɛ.",
+          "2": "I ka taga \"Bookmarks\" yɔrɔ la barokɛyɔrɔ la walisa ka kunnafoniw bɛɛ lajɛ.",
+          "3": "I ka ɲi ka tɛmɛ o kan ka sɛbɛri kɛ.",
+          "4": "N'i ye tagamasiɲɛ dɔ bila a kan, i ka tagamasiɲɛ tagamasiɲɛ dɔ bila a kan."
+        },
+        "tips": {
+          "1": "I ka sɛbɛw be se ka kɛ i yɛrɛ ka sɛbɛw ye.",
+          "2": "I be se ka baara minw kɛ, daan t'o la."
+        }
       },
       "settings": {
         "title": "Settings",
         "steps": {
+          "1": "I ka ɲi ka \"Siga\" sɔrɔ barokun nin na.",
+          "2": "I ka kaan yɛlɛma ka bɔ kaan sugandili la.",
+          "3": "I ka laɲinitaw yɛlɛma: k'a filɛ i ka kalandenw be jatiminɛ kɛra cogo min na ani u be tugu i kɔ cogo min na.",
           "4": "I ka laɲinitaw sigi sen kan.",
           "5": "O kama, a ka ɲi ka tɛmɛ fɛɛrɛ dɔw fɛ k'a yira ko a ka"
         },
         "tips": {
           "1": "DeHub be kaan caaman fɔ — a ka baara bɛɛ be bayɛlɛma.",
           "2": "N'o tɛ, a ka ɲi ka to ka kuma n'a ye."
-        }
+        },
+        "intro": "I ka DeHub ka lɔnniya yɛlɛma ni kaan, dan na ani i ka ɲɛnagwɛkow ye."
       },
       "posting-allowance": {
         "title": "I ka loon o loon wari hakɛ",
@@ -7464,23 +7666,98 @@
         "title": "O la, an bena a ye ko an be se ka ɲɛnamaya kɛ cogo nɔgɔman na.",
         "intro": "O yɔrɔ la, u ye boon dɔw lɔ DeHub kɔnɔ. Mɔgɔ min be se ka mɔgɔ weele ka na a ka site web kan, ale be se ka mɔgɔ weele ka na a ka site web kan wala ka tɛmɛ a ka site web kan.",
         "steps": {
-          "1": "I ka \"Stages\" yɛlɛ barokɛyɔrɔ la walisa k'a filɛ min be kɛra sisan ani min labɛnna."
+          "1": "I ka \"Stages\" yɛlɛ barokɛyɔrɔ la walisa k'a filɛ min be kɛra sisan ani min labɛnna.",
+          "2": "I ka kan ka to ka to ka to ka lamɛnni kɛ. Wala i ka kan ka hakili jigi a la ko a bena daminɛ tuma min na, i bena a fɔ a ye.",
+          "3": "I yɛrɛ ka baara daminɛ o yɔrɔ kelen na — i be se ka to ka baara kɛ n'i ka barokunw ye, i kana OBS wala i ka barokunw bila.",
+          "4": "I be se ka mɔgɔ weele ka na kuma, ka kuma, ka kuma, ka kuma, ka kuma.",
+          "5": "Mɔgɔ minw be lamɛnni kɛra, olu be to ka kuma ɲɔgɔn fɛ ani ka kuma ɲɔgɔn fɛ.",
+          "6": "O kɔ, a be segi ka bɔ a ka karti kan."
+        },
+        "tips": {
+          "1": "I be kaan min kalanna, i ka sɛbɛri kɛ o kaan na ani i ka sɛbɛri kɛ o kaan na.",
+          "2": "Live dubbing be se ka kuma ni kaanba ye a tigi yɛrɛ ka kaan na, min labɛnna miniti kelen kɔnɔ DeHub ka tagamasiyɛnw kɔnɔ.",
+          "3": "Mɔgɔ minw be se ka baro kɛ ni mɔgɔ wɛrɛw ye, olu be se ka baro kɛ ni mɔgɔ wɛrɛw ye.",
+          "4": "O la, i bena a ye ko i ye mɔgɔ dɔ ye min be se ka baara kɛ n'i ye."
         }
       },
       "communities": {
-        "title": "Communities & Events"
+        "title": "Communities & Events",
+        "intro": "Jamanaw ye mɔgɔ dɔw ka sigiyɔrɔw ye u yɛrɛ ka dumuniw, u ka mɔgɔ dɔw ani u ka baaraw la. Koo minw be kɛra, u be se ka kɛ sababu ye u be wagati ta ka baara kɛ n'u ye.",
+        "steps": {
+          "1": "Aw ka 'Jama' dayɛlɛ ka bɔ kɛnɛ kan ka taga bɔ jama ye.",
+          "2": "O kɔ, a ye dɔ fara a kan. O baara kura b'a yira ko a tɛ se ka kɛ batɛmu ye min be se ka kɛ batɛmu ye.",
+          "3": "Ka baro kɛ, ka votew kɛ ani ka ladili di mɔgɔw ma u yɛrɛ ka dumuni na.",
+          "4": "Jamana kuntigiw b'u yɛrɛ ka yɔrɔ labɛn ani u be se ka mɔgɔw dɛmɛ u ka se ka baara kɛ ni u ka setigiya ye.",
+          "5": "O la, i be se ka koo bɛɛ kɛ ka ɲɛ ani ka to ka to ka to ka to ka baro kɛ n'i ye."
+        },
+        "tips": {
+          "1": "Jamana ka baro be dɛmɛ don @mentions ni @here, o la, yɔrɔ dɔ be se ka se ka don boon kɔnɔ.",
+          "2": "N'i ye mɔgɔ weele ka na i ka soo, i be se ka mɔgɔw weele ka na i ka soo."
+        }
       },
       "arcade": {
-        "title": "Arcade"
+        "title": "Arcade",
+        "intro": "O la, a tun ka kan ka kɛ i n'a fɔ a tun y'a fɔ cogo min na.",
+        "steps": {
+          "1": "Aw ye \"Arcade\" yɛlɛ barokɛyɔrɔ la.",
+          "2": "O la, a tun be se ka kɛ ko a tun ye masacɛ ye. A tun be se ka kɛ ko a tun ye masacɛ ye.",
+          "3": "A' ye to ka to ka to ka to ka to ka ɲɔgɔn lajɛn. King's Gambit ni Street Slayer ye ɲɛyirali ɲumanw ye.",
+          "4": "Chartopia fana be baara kɛ VR ka telefɔni na WebXR sababu fɛ."
+        },
+        "tips": {
+          "1": "U fila be dogo u ka ɲɛda koo la - u be baara kɛ ka kɛlɛ kɛ Claude ka baara kama, walima ka kɛlɛ kɛ ka taga kongo kɔnɔ.",
+          "2": "O kama, i mana a bila yɔrɔ o yɔrɔ, i ka kan ka tɛmɛ o yɔrɔ kan."
+        }
       },
       "bounties-stores": {
-        "title": "Bounties & Stores"
+        "title": "Bounties & Stores",
+        "intro": "I be se k'o kɛ cogo fila la: ka wari caaman ci wala ka wari caaman ɲini, ka lɔgɔfiyɛ dɔ yɛlɛ ani ka feere i lamɛnbagaw ma.",
+        "steps": {
+          "1": "I be se ka baara kɛ ni \"Bounties\" ye ka baara kɛ ni \"Bounties\" ye.",
+          "2": "O la, mɔgɔ si tɛ se ka kɛ jagokɛla ye. O tigi tɛ se ka kɛ jagokɛla ye.",
+          "3": "I yɛrɛ ka wari di a ma ni wari dɔɔni ye ani a sara dɔ ye DeHub ka tagamasiɲɛw wala USDC kɔnɔ. I ye min sɛbɛ, o ye tiɲɛ ye.",
+          "4": "I ka \"Stores\" dayɛlɛ walisa ka furaburu dɔ lɔ a yɛrɛ ka site web kan, a ka tagamasiɲɛw ani a ka sɛbɛninw.",
+          "5": "O la, a tun be se ka kɛ ko a tun be wari min sɔrɔ, a tun b'o wari di a ma."
+        },
+        "tips": {
+          "1": "O kama, a ka ɲi ka tɛmɛ fɛɛrɛ dɔw fɛ ka mɔgɔw dɛmɛ u ka se ka baara kɛ ni ɲɔgɔn ye.",
+          "2": "O kama, a ka ɲi ka bɛnbaliyakow ɲɛnabɔ cogo tilennin na.",
+          "3": "Danbaga be tɛmɛ wari caaman fɛ ka mɔgɔw dɛmɛ u ka kɛ jɛnkulu mɔgɔw ye."
+        }
       },
       "creator-studio": {
-        "title": "Creator Studio & Editor"
+        "title": "Creator Studio & Editor",
+        "intro": "Danbaga ka baarakɛyɔrɔ be fotow, videwow, dɔnkiliw, kumakanw ani 3D modɛliw dilan joona joona ani k'u di sɛbɛbaga ma. O la, a be se ka kɛ videow labɛnbaga ye min be baara kɛ a ka porogaramu kɔnɔ.",
+        "steps": {
+          "1": "I b'a fɛ ka min kɛ, i ka o ɲɛfɔ.",
+          "2": "O kama, i be se k'a filɛ a be wari min sara sanni i ka baara ka ban.",
+          "3": "I be to ka baara kɛ n'i ka porogramu ye tuma min na, i be wari caaman sɔrɔ.",
+          "4": "O kama, a ka ɲi ka a ka baara kɛ ka ɲɛ ani k'a ka baara kɛ ka ɲɛ.",
+          "5": "N'i ye fɛɛn dɔ sɛbɛ, a to o yɔrɔ ka kɛ lɛtɛrɛ dɔ ye, a ka kɛ lɛtɛrɛ dɔ ye wala a ka kɛ lɛtɛrɛ dɔ ye."
+        },
+        "tips": {
+          "1": "O yɔrɔ la, i be se ka fɛɛn o fɛɛn sɔrɔ, i tɛ se k'o sɔrɔ.",
+          "2": "O la, i bena a yira ko i ye baara dɔ kɛ min sara ka tɛmɛ i ka wari hakɛ kan.",
+          "3": "Heavier ka baarakɛlaw be se ka Ultra, Team wala Scale labɛn ta min be kalo o kalo token sara ci u ka wari la"
+        }
       },
       "buying-dhb": {
-        "title": "Buying Tokens"
+        "title": "Buying Tokens",
+        "intro": "DeHub ka tagamasiɲɛw san ka ɲɛ app kɔnɔ ka tɛmɛ a ka saratiw kan.",
+        "steps": {
+          "1": "N'i b'a fɛ ka taga yɔrɔ dɔ la, i ka taga a filɛ yɔrɔ min na i be se ka taga yɔrɔ dɔ la.",
+          "2": "I b'a fɛ ka tagamasiɲɛ min yɛlɛma, i ka o sugandi (misali la, ETH, USDC).",
+          "3": "I b'a fɛ ka wari min kɛ wala i b'a fɛ ka tagamasiɲɛ minw sɔrɔ, i ka o sɛbɛ.",
+          "4": "O la, a ka ɲi ka kɛ ni miiriya ɲuman ye.",
+          "5": "N'i b'a fɛ ka sɔn o ma, i ka ɲi ka tɛmɛ o fɛ ka sɔn o ma.",
+          "6": "I ka wari di a ma.",
+          "7": "DeHub ka tagamasiyɛnw bena bɔ i ka wari la tuma min na i ka wari sara banna."
+        },
+        "tips": {
+          "1": "Ni mɔgɔ dɔ ye a ka baara kɛ ni a ye, a be se ka a ka baara kɛ ni a ye.",
+          "2": "Tuma bɛɛ, a filɛ ni wari hakɛ ye sanni a ka fɔ.",
+          "3": "I be se ka la a la ko i ka laɲinita ye ka la a la ko a ka ɲi ka kɛ i yɛrɛ ka laɲinita ye."
+        }
       },
       "bridge": {
         "title": "Bridge",
@@ -7497,7 +7774,8 @@
           "1": "Bridge fees kɛnɛ kɛnɛ.",
           "2": "Bridging kɛnɛ kɛnɛ.",
           "3": "Ajiye chain ni destination kɛnɛ kɛnɛ."
-        }
+        },
+        "intro": "I ka DeHub tagamasiɲɛw bila ɲɔgɔn na ni bulokisɛw ye minw be dɛmɛ don ni jɔrɔkɔ ye."
       },
       "music-tv": {
         "title": "Music & TV",

@@ -330,11 +330,11 @@
     "dark": "深色",
     "system": "系统",
     "minimal": "简约",
-    "cosmic": "Cosmic Pixels",
+    "cosmic": "宇宙像素",
     "hazy": "朦胧夜",
     "swarms": "蜂群",
     "lavalamp": "熔岩灯",
-    "winter": "Winter Drops",
+    "winter": "冬季降落",
     "war": "战争",
     "osaka": "大阪",
     "jungle": "丛林",
@@ -780,7 +780,12 @@
     "smsBalance": "还剩 {{dhb}} 个代币 (${{usd}})",
     "smsTopUp": "充值 {{dhb}} 个代币",
     "smsCodeSent": "代码已发送。这花费了 {{price}} 个代币。",
-    "tokenBalanceAmount": "{{amount}} 个代币"
+    "tokenBalanceAmount": "{{amount}} 个代币",
+    "channelSpeedCount": "{{count}}頻道自行播放。",
+    "exportReady": "{{count}}帳號，{{saved}}儲存的貼文匯出。",
+    "importDone": "跟隨{{followed}}，封鎖{{blocked}}，{{folders}}資料夾建立。",
+    "importPartial": "{{count}}帳號無法跟隨 — 再次執行匯入以重試。",
+    "importProgress": "套用{{done}}個{{total}}…"
   },
   "common": {
     "mute": "静音",
@@ -1001,7 +1006,9 @@
     "bounty": "赏金",
     "locked": "已锁定",
     "any": "任何",
-    "resetFilters": "重设筛选"
+    "resetFilters": "重设筛选",
+    "updatingFeed": "更新feed",
+    "filters": "過濾器"
   },
   "drawers": {
     "ppvTitle": "付费内容",
@@ -1419,8 +1426,8 @@
     "solanaAddressHint": "仅限 SOL 和 SPL 代币",
     "solanaAddressCopied": "Solana 地址已复制",
     "chooseNetwork": "选择网络",
-    "solanaAddressLabel": "Solana",
-    "evmAddressLabel": "EVM"
+    "solanaAddressLabel": "索拉纳",
+    "evmAddressLabel": "電子投票機"
   },
   "bookmarks": {
     "title": "侬个书签",
@@ -1604,7 +1611,7 @@
     "category": "类别",
     "contentType": "内容类型",
     "bounty": "赏金",
-    "ppv": "PPV",
+    "ppv": "付費節目",
     "gated": "受限",
     "datePosted": "发布日期",
     "engagement": "互动",
@@ -1898,7 +1905,13 @@
     "noMoreReplies": "沒（mî）有（iû）更（gèng）多（dō）回（huí）覆（hû）",
     "offerSubmitted": "已提交 {{amount}} 个代币的报价给 {{handle}}",
     "offerWorthNow": "按当前汇率约 {{amount}} 个代币",
-    "offerCommitsNothing": "出价不收费，也不占用代币。只有在对方接受后才付款。"
+    "offerCommitsNothing": "出价不收费，也不占用代币。只有在对方接受后才付款。",
+    "searchThisChannel": "搜尋此頻道",
+    "tabPosts": "貼文",
+    "tabVideos": "視頻",
+    "tabAudio": "音頻",
+    "tabLive": "直播",
+    "tabPinned": "釘選"
   },
   "tv": {
     "title": "电视",
@@ -2092,7 +2105,7 @@
     "impressions": "展示",
     "clicks": "点击",
     "spend": "花销",
-    "ecpm": "eCPM",
+    "ecpm": "每千次展示的广告收入",
     "campaigns": "活动",
     "noCampaigns": "还呒没活动",
     "createCampaign": "做只活动",
@@ -2364,7 +2377,7 @@
     "telegram": "Telegram",
     "xTwitter": "X (Twitter)",
     "instagram": "Instagram",
-    "linkedin": "LinkedIn",
+    "linkedin": "連結在線",
     "otherSocials": "其他社交",
     "otherSocialsPlaceholder": "TikTok、YouTube、Discord等",
     "pastExperience": "过去经验",
@@ -3219,10 +3232,108 @@
         "oneDay": "1 天",
         "oneWeek": "1 周",
         "forever": "永久"
-      }
+      },
+      "ownerSection": "擁有者",
+      "ownerLabel": "擁有者",
+      "noOwner": "無任何擁有者記錄。",
+      "administratorsSection": "管治者",
+      "noAdmins": "無管理员。提升一名成员来协助你管理。",
+      "rightsSummary": "{{granted}}個{{total}}權",
+      "noMemberMatches": "無法找到該地址的會員。",
+      "noPlainMembers": "每個人都已經是管理員了。",
+      "danger": {
+        "transferTitle": "轉移所有權？",
+        "transferBody": "{{name}}變成本社區的主人。您將獲得所有管理權限，且無法逆轉。",
+        "deleteTitle": "刪除這個社群？",
+        "deleteBody": "{{name}}以及裡面的所有東西都永久刪除：所有成員、所有訊息、所有事件和所有邀請連結。這不可逆轉。",
+        "deleteConfirm": "無法翻譯",
+        "transferHeading": "轉讓所有權",
+        "searchMembers": "查找會員",
+        "noMatches": "無任何成員符合該搜尋。",
+        "noCandidates": "無法找到其他活躍的成員交接這個社群。",
+        "deleteHint": "每一位會員、訊息、活動和邀請連結都永久刪除，無法恢復。",
+        "transferConfirm": "轉移",
+        "transferHint": "從這裡選擇應該擁有這個社區的成員。",
+        "transferAction": "設置擁有者",
+        "deleteHeading": "刪除社區",
+        "deleteAction": "刪除這個社區"
+      },
+      "inviteRevoked": "撤回",
+      "inviteExpired": "過期",
+      "inviteExhausted": "已達上限",
+      "inviteExpiresMinutes": "過期{{n}}分",
+      "inviteExpiresHours": "將於{{n}}小時內過期",
+      "inviteExpiresDays": "過期{{n}}天",
+      "inviteLimit": "限制 {{n}}",
+      "inviteNeedsApproval": "需要審核",
+      "inviteLink": "邀請鏈接",
+      "inviteUses": "{{n}}加入",
+      "copy": "複製",
+      "revoke": "撤銷",
+      "inviteShareMessage": "在DeHub加入這個社區",
+      "revokeInviteTitle": "撤銷邀請鏈接",
+      "revokeInviteBody": "這個鏈接立即失效。已經使用它加入的人除外。",
+      "inviteNoPermission": "你沒有管理邀請鏈接的權限。",
+      "createInviteLink": "創建邀請鏈接",
+      "inviteNamePlaceholder": "名稱（可選）",
+      "inviteExpiryLabel": "有效期限",
+      "inviteLimitLabel": "成員限制",
+      "inviteRequireApproval": "需要管理員審核",
+      "inviteRequireApprovalHint": "使用這個鏈接的人需要在加入前被審核。",
+      "createLink": "創建鏈接",
+      "noInvites": "尚無邀請鏈接。直接邀請人加入。",
+      "permissionsUpdated": "權限更新",
+      "slowModeUpdated": "慢速模式更新",
+      "slowModeOffHint": "成員可以不受延遲發送訊息。",
+      "slowModeOnHint": "成員可以在{{label}}內發送一則訊息。管理員除外。",
+      "defaultPermissions": "預設成員權限",
+      "defaultPermissionsHint": "除非管理員權限另有規定，否則任何人都可以這樣做。",
+      "slowModeTitle": "慢速模式",
+      "log": {
+        "justNow": "剛剛",
+        "minutesAgo": "{{value}}分前",
+        "hoursAgo": "{{value}}小時前",
+        "daysAgo": "{{value}}天前",
+        "weeksAgo": "{{value}}週前",
+        "monthsAgo": "{{value}}年前",
+        "yearsAgo": "{{value}}年前",
+        "permanently": "永久",
+        "forMinutes": "{{value}}分鐘",
+        "forHours": "{{value}}小時",
+        "forDays": "{{value}}天",
+        "forWeeks": "{{value}}周",
+        "unknownActor": "有人",
+        "reason": "原因：{{value}}",
+        "restricted": "只有管理員才能看到管理記錄。",
+        "empty": "沒有任何內容。管理動作將在發生時顯示。",
+        "showMore": "顯示更多 ({{value}})"
+      },
+      "adminBadge": "管理員",
+      "addAdministrator": "添加管理员",
+      "searchTruncated": "顯示第一個{{limit}} — 繼續輸入以縮小查詢範圍"
     },
     "chooseAvatar": "选择头像",
-    "loadFailed": "社区加载失败"
+    "loadFailed": "社区加载失败",
+    "noPostsYet": "社區尚未有任何內容。",
+    "infoUpdated": "社區更新",
+    "editInfo": "編輯名稱和描述",
+    "saveChanges": "儲存",
+    "nowPrivate": "社區現在是私密的",
+    "nowPublic": "社區現在是公開的",
+    "bannedFromCommunity": "您已被從社區封禁",
+    "manageButton": "管理",
+    "muted": "靜音",
+    "privateHint": "新成員必須經管理員批准才能加入。",
+    "publicHint": "任何人都可以立即加入。",
+    "invite": {
+      "joinFailed": "加入失敗",
+      "revoked": "邀請鏈接已被撤銷。",
+      "expired": "邀請鏈接已過期。",
+      "exhausted": "邀請鏈接已達到成員限制。",
+      "notFound": "邀請鏈接無效。",
+      "requestToJoin": "加入請求",
+      "approvalNote": "管理員必須批准您的加入請求才能加入。"
+    }
   },
   "work": {
     "title": "赏金",
@@ -6165,8 +6276,8 @@
   },
   "dex": {
     "lowestPrice": "最低价 · USD",
-    "lpDhb": "LP · DHB",
-    "lpUsd": "LP · USD",
+    "lpDhb": "路跑 · 大湖杯",
+    "lpUsd": "美元",
     "totalLiquidity": "总流动性 · USD",
     "lowestSell": "最低卖出 · USDC",
     "liveChartHint": "最低卖出 · USDC · 拖动以检查",
@@ -6757,7 +6868,7 @@
         "title": "创作者节目"
       },
       "quote": {
-        "author": "Don Draper",
+        "author": "唐·德拉弗爾",
         "body": "简单，但有分量。",
         "title": "语录卡片"
       },
@@ -6846,7 +6957,7 @@
     "signInToSee": "登录以后就看得到侬个生成内容。",
     "libraryEmpty": "侬保存个生成内容会辣此地显示。",
     "openGeneration": "打开 {{prompt}}",
-    "toolBuilder": "Builder",
+    "toolBuilder": "建造者",
     "libraryHintStudio": "侬保存个生成内容，通过网页分享畀 Creator。Studio 会得勒侬浏览器里向打开。"
   },
   "fractions": {
@@ -7001,7 +7112,9 @@
     "appealFootnote": "侬会得到一个参考号码，答案会回来箇里。一个决定只能申诉一次。",
     "appealRef": "参考号码 {{ref}}",
     "appealSubtitleSubject": "会有人来看，重新审视 {{subject}}。",
-    "appealMore": "还有 {{count}} 个字数限制"
+    "appealMore": "还有 {{count}} 个字数限制",
+    "appealSentRef": "上訴信 · {{ref}}",
+    "appeal": "上訴"
   },
   "support": {
     "title": "支持",
@@ -7778,7 +7891,7 @@
     "tab": {
       "emoji": "表情符号",
       "sticker": "贴纸",
-      "gif": "GIF"
+      "gif": "動畫圖片"
     },
     "kind": {
       "emoji": "表情符号包",
@@ -7804,7 +7917,7 @@
       "packs": "包",
       "emoji": "表情符号",
       "stickers": "贴纸",
-      "gifs": "GIF"
+      "gifs": "動畫圖片"
     },
     "signInToCreate": "创建包的登录",
     "signInToAdd": "添加的登录",
@@ -7921,7 +8034,7 @@
     "step3Body": "啥人侪可以打开链接。在聊天里回话就可以改。"
   },
   "depin": {
-    "title": "DePin",
+    "title": "德平",
     "noFixedRate": "倷拉倷有固定个汇率、最低个回报、年化收益率或者前瞻性个估计。贡献个记录只倷个记账输入，弗是付款个承诺。任何未来个代币结算都会发生勒Base浪，并且依然受资格、网络规则搭适用法律个约束。",
     "dhbEarnedThisPeriod": "本期赚取的代币",
     "becomeANode": "变成一个节点",
@@ -8252,7 +8365,7 @@
     "basicAnalytics": "基础分析",
     "detailedAnalytics": "详细分析",
     "prioritySupport": "优先支持",
-    "sso": "SSO",
+    "sso": "單一登入",
     "adminSpendControl": "管理员支出控制",
     "priorityQueue": "优先队列",
     "priorityQueueFast": "优先队列以加快任务处理",
