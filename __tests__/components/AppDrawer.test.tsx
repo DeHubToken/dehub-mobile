@@ -16,7 +16,7 @@ jest.mock('../../context/ThemeContext', () => ({
   useAppTheme: () => ({ isMinimal: false, isLight: false, colors: jest.requireActual('../../theme/colors').systemColors }),
 }));
 jest.mock('react-native', () => ({
-  View: 'View', Text: 'Text', TextInput: 'TextInput', TouchableOpacity: 'TouchableOpacity', ScrollView: 'ScrollView',
+  View: 'View', Text: 'Text', TextInput: 'TextInput', TouchableOpacity: 'TouchableOpacity', ScrollView: 'ScrollView', Image: 'Image',
   Platform: { OS: 'android' },
   Dimensions: { get: () => ({ width: 390, height: 844 }) },
   useWindowDimensions: () => ({ width: 390, height: 844, scale: 3, fontScale: 1 }),
