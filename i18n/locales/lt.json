@@ -8326,5 +8326,20 @@
     "subscriptionTokensOnly": "Tik DI generavimui",
     "subscriptionTokensValueNote": "Prenumeratos žetonai turi savo dolerio vertę. Jei žetono kaina pasikeis prieš juos panaudojant, pamatysite daugiau ar mažiau žetonų, tačiau jie visada perka tą patį AI generavimo kiekį. Jų negalima atsiimti, išsiųsti ar parduoti.",
     "topUpEmptyHint": "Pridėk žetonų, kuriuos galėtum sugeneruoti dirb"
+  },
+  "accountDeletion": {
+    "title": "Nauja sąskaita...",
+    "description": "Visam laikui ištrinkite savo paskyrą ir asmens duomenis",
+    "warning": "Taip visam laikui ištrinsite savo „DeHub“ profilį, įrašus, komentarus, žinutes ir išsaugotą piniginės atsarginę kopiją. Išsaugokite piniginės atkūrimo informaciją ir pirmiausia perkelkite visus išteklius. Viešų blokų grandinės operacijų ir teisiškai privalomų mokėjimų įrašų ištrinti negalima. Jūsų profilis iš karto paslėptas; ištrynimas baigiamas per 30 dienų. Tai negali būti anuliuota.",
+    "cancel": "Atšaukti",
+    "confirm": "Visam laikui ištrinti mano paskyrą",
+    "busy": "Pateikiama ištrynimo užklausa...",
+    "accepted": "Prašoma ištrinti paskyrą",
+    "receipt": "Jūsų ištrynimo užklausa išsaugota. Jūsų profilis paslėptas, o paskyra bus visam laikui ištrinta per 30 dienų. Prisijungiant šios užklausos atšaukti negalima.",
+    "done": "Atlikta",
+    "error": "Nepavyko pateikti prašymo ištrinti. Jūsų paskyra nepatvirtinta ištrinti. Bandykite dar kartą.",
+    "back": "Grįžti į nustatymus",
+    "signIn": "Prisijunkite, kad ištrintumėte paskyrą",
+    "acknowledge": "Išsaugojau savo piniginės atkūrimo informaciją ir suprantu, kad ištrynimas yra negrįžtamas."
   }
 }

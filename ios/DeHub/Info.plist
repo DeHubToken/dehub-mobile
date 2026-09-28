@@ -64,15 +64,15 @@
       <true/>
     </dict>
     <key>NSCameraUsageDescription</key>
-    <string>This app requires access to your camera.</string>
+    <string>DeHub uses your camera when you choose to take a profile photo, record a video for a post, or start a live stream.</string>
     <key>NSFaceIDUsageDescription</key>
     <string>Allow $(PRODUCT_NAME) to access your Face ID biometric data.</string>
     <key>NSMicrophoneUsageDescription</key>
-    <string>This app requires access to your microphone.</string>
+    <string>DeHub uses your microphone when you record a voice message or video, or speak in a live stream or audio stage.</string>
     <key>NSPhotoLibraryAddUsageDescription</key>
-    <string>Allow $(PRODUCT_NAME) to save photos</string>
+    <string>DeHub saves a photo or video to your library only when you choose Save or Download, such as saving a photo from a post.</string>
     <key>NSPhotoLibraryUsageDescription</key>
-    <string>Allow $(PRODUCT_NAME) to access your photos</string>
+    <string>DeHub lets you choose photos and videos from your library to share in posts and messages or use as your profile picture. For example, you can select a photo to attach to a new post.</string>
     <key>RCTNewArchEnabled</key>
     <true/>
     <key>UIBackgroundModes</key>

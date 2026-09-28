@@ -8327,5 +8327,20 @@
     "subscriptionTokensOnly": "Fún ìran AI nìkan",
     "subscriptionTokensValueNote": "Àmì ìforúkọsílẹ̀ dúró fún iye dọ́là wọn. Bí iye owó àfihàn náà bá ń lọ kí o tó lò wọ́n o máa rí àwọn àfihàn púpọ̀ tàbí díẹ̀ sí i, ṣùgbọ́n wọ́n máa ń ra iye kan náà ti ìran AI. Wọn kò lè yọ̀ǹda ara wọn, kí wọ́n rán wọn jáde tàbí kí wọ́n ṣòwò wọn.",
     "topUpEmptyHint": "Ṣafikun awọn ami lati ṣe pẹlu AI"
+  },
+  "accountDeletion": {
+    "title": "Pa àkọọ́lé rẹ́",
+    "description": "Pa àkántì rẹ àti àkántì ara ẹni tì láéláé.",
+    "warning": "Èyí máa ń pa àkọsílẹ̀ DeHub rẹ, àwọn àtẹ̀jíṣẹ́, àwọn àlàyé, àwọn àtẹ̀jíṣẹ́ àti ìpamọ́ àpamọ́ àpamọ́. Fipamọ awọn alaye imularada apamọwọ rẹ ki o si gbe eyikeyi dukia ni akọkọ. Àwọn ìṣòwò blockchain tí gbogbo ènìyàn ń ṣe àti àwọn àkọsílẹ̀ ìsanwó tí òfin béèrè kò lè di píparẹ́. Àkọsílẹ̀ rẹ pamọ́ lẹ́sẹ̀kẹsẹ̀; píparẹ́ yóò parí láàárín ọgbọ̀n ọjọ́. Èyí kò lè di àtúnṣe.",
+    "cancel": "Fagilé",
+    "confirm": "Pa àkántì mi rẹ́ títí láé",
+    "busy": "Fífi ẹ̀bẹ̀ píparẹ́ ránṣẹ́...",
+    "accepted": "Pípa àkántì tí a béèrè",
+    "receipt": "A ti fi ìbẹ̀wò píparẹ́ rẹ pamọ́. Àkọsílẹ̀ rẹ ti pamọ́, àkáǹtì rẹ yóò sì di píparẹ́ títí láé láàárín ọgbọ̀n ọjọ́. Fíforúkọsílẹ̀ kò lè fagilé ìbẹ̀wò yìí.",
+    "done": "Ṣetán",
+    "error": "Kò lè fi ẹ̀bẹ̀ píparẹ́ rẹ sílẹ̀. A kò tíì fìdí àkáǹtì rẹ múlẹ̀ fún píparẹ́. Jọ̀wọ́ gbìyànjú lẹ́ẹ̀kan síi.",
+    "back": "Pada si Eto",
+    "signIn": "Wọle lati paarẹ akọọlẹ rẹ",
+    "acknowledge": "Mo ti fi àwọn kúlẹ̀kúlẹ̀ ìmúpadàbọ̀sípò àpamọ́wọ́ mi pamọ́, mo sì lóye pé píparẹ́ jẹ́ ohun tí ó wà pẹ́ títí."
   }
 }

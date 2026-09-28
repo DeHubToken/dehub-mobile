@@ -8326,5 +8326,20 @@
     "subscriptionTokensOnly": "Waayo, jiilka AI kaliya",
     "subscriptionTokensValueNote": "Calaamadaha isdiiwaangelinta waxay haystaan qiimaheeda doolarka. Haddii qiimaha calaamadda uu dhaqaaqo ka hor intaadan isticmaalin waxaad arki doontaa calaamado badan ama ka yar, laakiin had iyo jeer waxay iibsadaan qadar isku mid ah jiilka AI. Laguma soo celin karo, laguma diri karo ama laguma ganacsan karo.",
     "topUpEmptyHint": "Ku dar calaamadaha si aad u soo saarto AI"
+  },
+  "accountDeletion": {
+    "title": "Delete account",
+    "description": "Si joogto ah u tirtir akoonkaaga iyo xogtaada shakhsiyeed",
+    "warning": "Tani waxay si joogto ah u tirtiraysaa profile-kaaga DeHub, qoraallada, faallooyinka, farriimaha iyo nuqulka kaydka jeebka. Kaydi faahfaahinta soo kabashada jeebkaaga oo marka hore u wareeji hanti kasta. Hawlgallada blockchain-ka ee dadweynaha iyo diiwaanada lacag bixinta ee sharciga ah lama tirtiri karo. Profile-kaaga si degdeg ah ayaa loo qariyaa; tirtirida waxay dhamaataa 30 maalmood gudahood. Tani lama celin karo.",
+    "cancel": "Cancel",
+    "confirm": "Si joogto ah u tirtir akoonkeyga",
+    "busy": "Soo gudbin codsiga tirtirida…",
+    "accepted": "Codsiga tirtirida akoonka waa la codsaday",
+    "receipt": "Codsigaaga tirtirida waa la keydiyay. Profile-kaaga waa la qariyay waxaana akoonkaaga si joogto ah loo tirtiri doonaa 30 maalmood gudahood. Galitaanka dib looma joojin karo codsigan.",
+    "done": "Done",
+    "error": "Lama soo gudbin karin codsigaaga tirtirida. Akoonkaaga lama xaqiijinin in la tirtiro. Fadlan isku day mar kale.",
+    "back": "Back to Settings",
+    "signIn": "Soo gal si aad u tirtirto akoonkaaga",
+    "acknowledge": "Waxaan kaydiyay faahfaahinta soo kabashada jeebkayga oo waxaan fahamsanahay in tirtiridu ay tahay mid joogto ah."
   }
 }

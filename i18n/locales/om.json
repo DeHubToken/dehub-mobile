@@ -8376,5 +8376,20 @@
     "subscriptionTokensOnly": "Dhaloota AI qofaaf",
     "subscriptionTokensValueNote": "Tookoonni maallaqa galchuu gatii doolaara isaanii qabatu. Yoo gatiin token osoo hin fayyadamin socho&#39;e token baay&#39;ee ykn xiqqaa argita, garuu yeroo hunda dhaloota AI hamma walfakkaatu bitatu. Isaanis baafamuu, ergamuu fi daldalamuu hin danda’an.",
     "topUpEmptyHint": "AI waliin maddisiisuudhaaf tokens itti dabali"
+  },
+  "accountDeletion": {
+    "title": "Akkaawuntii haquu",
+    "description": "Akkaawuntii fi daataa dhuunfaa keessan dhaabbataadhaan haquu",
+    "warning": "Kunis dhaabbataadhaan piroofaayilii DeHub, maxxansa, yaada, ergaa fi duwwaa boorsaa kuufame haqa. Bal&#39;ina deebisanii dhaabuu boorsaa keessanii save gochuun qabeenya kamiyyuu dursaa sochoosaa. Daldalli bilookicheenii ummataa fi galmee kaffaltii seeraan barbaadamu haqamuu hin danda’u. Profaayilli kee battalumatti dhokata; haquun guyyoota 30 keessatti xumurama. Kun duubatti deebi’uu hin danda’u.",
+    "cancel": "Haquu",
+    "confirm": "Akkaawuntii koo dhaabbataadhaan haqi",
+    "busy": "Gaaffii haquu dhiyeessuun...",
+    "accepted": "Akkaawuntii akka haqamu gaafatame",
+    "receipt": "Gaaffiin haquu kee qusatameera. Profaayilli keessan dhokatee waan jiruuf guyyoota 30 keessatti akkaawuntiin keessan dhaabbataadhaan ni haqama. Galmaa&#39;uun gaaffii kana haquu hin danda&#39;u.",
+    "done": "Raawwatame",
+    "error": "Gaaffii haquu kee dhiyeessuu hin dandeenye. Akkaawuntii keessan haqamuuf hin mirkanoofne. Mee irra deebi&#39;ii yaalaa.",
+    "back": "Gara Sajootti deebi&#39;aa",
+    "signIn": "Akkaawuntii keessan haquuf seena",
+    "acknowledge": "Bal&#39;ina boorsaa koo deebisuu save godheera, haquun dhaabbataa akka ta&#39;e hubadheera."
   }
 }
