@@ -21,6 +21,7 @@ const SAFETY_MS = 2500;
 let scrolling = false;
 let safety: ReturnType<typeof setTimeout> | null = null;
 const listeners = new Set<() => void>();
+const startListeners = new Set<() => void>();
 
 function notify(): void {
   listeners.forEach((fn) => fn());
@@ -36,7 +37,9 @@ export function setFeedScrolling(next: boolean): void {
     safety = null;
   }
   if (next) {
+    const started = !scrolling;
     scrolling = true;
+    if (started) startListeners.forEach((fn) => fn());
     safety = setTimeout(() => {
       safety = null;
       if (scrolling) {
@@ -55,6 +58,14 @@ export function subscribeFeedSettled(fn: () => void): () => void {
   listeners.add(fn);
   return () => {
     listeners.delete(fn);
+  };
+}
+
+/** Fires when a feed goes from rest to moving; the settle side is above. */
+export function subscribeFeedScrollStart(fn: () => void): () => void {
+  startListeners.add(fn);
+  return () => {
+    startListeners.delete(fn);
   };
 }
 
@@ -81,4 +92,5 @@ export function __resetScrollActivityForTests(): void {
   if (safety) clearTimeout(safety);
   safety = null;
   listeners.clear();
+  startListeners.clear();
 }
