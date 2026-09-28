@@ -359,7 +359,7 @@ export default function BadgeShowcase({ tier, anchor, onClose }: Props) {
     },
     [],
   );
-  const THUMB = 52;
+  const THUMB = 46;
   useEffect(() => {
     railRef.current?.scrollTo({ x: Math.max(0, index * THUMB - W / 2 + THUMB * 1.5), animated: true });
   }, [index, W]);
@@ -425,16 +425,8 @@ export default function BadgeShowcase({ tier, anchor, onClose }: Props) {
           accessibilityViewIsModal
           accessibilityLabel={t("badgeShowcase.dialogLabel", { tier: name })}
         >
-          {/* Header */}
-          <Animated.View style={[styles.header, chromeStyle]} pointerEvents={phase === "open" ? "auto" : "none"}>
-            <Text style={styles.overline}>{t("badgeShowcase.badges")}</Text>
-            <Chrome dark onPress={requestClose} hitSlop={10} style={styles.close} accessibilityLabel={t("badgeShowcase.close")}>
-              <Icon name="X" size={18} color="#f3f4f6" />
-            </Chrome>
-          </Animated.View>
-
-          {/* Stage */}
-          <View style={{ flex: 1, minHeight: H * 0.4 }} onLayout={onStageLayout} pointerEvents="box-none">
+          {/* Stage: takes whatever height the details leave, never under 160. */}
+          <View style={{ flex: 1, minHeight: 160 }} onLayout={onStageLayout} pointerEvents="box-none">
             {stage && phase !== "enter" && (
               <View style={StyleSheet.absoluteFill} pointerEvents="box-none">
                 <Animated.View
@@ -455,28 +447,28 @@ export default function BadgeShowcase({ tier, anchor, onClose }: Props) {
           </View>
 
           {/* Details */}
-          <Animated.View style={[{ maxHeight: H * 0.44, flexShrink: 1 }, chromeStyle]} pointerEvents={phase === "open" ? "auto" : "none"}>
-            <ScrollView contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 8 }} showsVerticalScrollIndicator={false}>
-              <View style={{ alignItems: "center" }}>
+          <Animated.View style={[{ flexShrink: 1 }, chromeStyle]} pointerEvents={phase === "open" ? "auto" : "none"}>
+            <ScrollView contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 4 }} showsVerticalScrollIndicator={false} bounces={false}>
+              <View style={{ alignItems: "center", gap: 6 }}>
                 <Text style={styles.overline}>{t("badgeShowcase.tierOf", { index: index + 1, total: count })}</Text>
-                <Animated.Text key={name} entering={FadeInDown.duration(260)} exiting={FadeOutUp.duration(180)} style={styles.tierName}>
-                  {name}
-                </Animated.Text>
-                <View style={{ flexDirection: "row", alignItems: "center", marginTop: 10, gap: 8 }}>
+                <View style={{ flexDirection: "row", flexWrap: "wrap", alignItems: "center", justifyContent: "center", columnGap: 10, rowGap: 6 }}>
+                  <Animated.Text key={name} entering={FadeInDown.duration(260)} exiting={FadeOutUp.duration(180)} style={styles.tierName}>
+                    {name}
+                  </Animated.Text>
                   <View style={styles.chip}>
-                    <DhbCoin size={18} />
+                    <DhbCoin size={16} />
                     <Text style={styles.chipText}>{shortDhb(threshold)}</Text>
                     <View style={styles.chipDivider} />
-                    <Icon name={owned(index) ? "Check" : "Lock"} size={13} color={owned(index) ? "#fff" : "rgba(255,255,255,0.6)"} />
+                    <Icon name={owned(index) ? "Check" : "Lock"} size={12} color={owned(index) ? "#fff" : "rgba(255,255,255,0.6)"} />
                   </View>
-                  {price ? <Text style={styles.muted}>≈ {formatUsd(threshold * price)}</Text> : null}
                 </View>
-                <Text style={[styles.muted, { marginTop: 8 }]}>
+                <Text style={styles.muted} numberOfLines={1}>
                   {standing
                     ? owned(index)
                       ? t("badgeShowcase.youHaveThis")
                       : t("badgeShowcase.toUnlock", { amount: nf.format(Math.ceil(remaining)) })
                     : t("badgeShowcase.holdToUnlock")}
+                  {price ? <Text style={{ color: "rgba(255,255,255,0.35)" }}>{` (≈ ${formatUsd(threshold * price)})`}</Text> : null}
                 </Text>
               </View>
 
@@ -517,7 +509,6 @@ export default function BadgeShowcase({ tier, anchor, onClose }: Props) {
                 </View>
               </View>
 
-              <Text style={[styles.label, { marginTop: 12 }]}>{t("badgeShowcase.grants")}</Text>
               <View style={styles.grid}>
                 {perkRows.map((row) => (
                   // Fixed geometry: the label always gets two lines and the
@@ -594,8 +585,8 @@ export default function BadgeShowcase({ tier, anchor, onClose }: Props) {
                       source={badgeImage(tierName)}
                       resizeMode="contain"
                       style={{
-                        width: 38,
-                        height: 38,
+                        width: 34,
+                        height: 34,
                         opacity: active ? 1 : 0.45,
                         transform: [{ rotateZ: `${TILTS[i]}deg` }, { scale: active ? 1.08 : 0.84 }],
                       }}
@@ -617,6 +608,12 @@ export default function BadgeShowcase({ tier, anchor, onClose }: Props) {
             </Chrome>
           </Animated.View>
         </View>
+
+        <Animated.View style={[styles.closeWrap, { top: insets.top + 10 }, chromeStyle]} pointerEvents={phase === "open" ? "box-none" : "none"}>
+          <Chrome dark onPress={requestClose} hitSlop={10} style={styles.close} accessibilityLabel={t("badgeShowcase.close")}>
+            <Icon name="X" size={18} color="#f3f4f6" />
+          </Chrome>
+        </Animated.View>
 
         {/* The badge in flight. */}
         <Animated.View pointerEvents="none" style={[{ position: "absolute", left: 0, top: 0 }, flyerStyle]}>
@@ -720,10 +717,10 @@ function stickerExit(direction: SharedValue<number>, height: number) {
 }
 
 const styles = StyleSheet.create({
-  header: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 16 },
-  overline: { color: "rgba(255,255,255,0.45)", fontSize: 11, fontWeight: "700", letterSpacing: 1.8, textTransform: "uppercase" },
-  close: { width: 38, height: 38, borderRadius: 19 },
-  tierName: { color: "#fff", fontSize: 28, lineHeight: 32, fontWeight: "900", textTransform: "uppercase", letterSpacing: -0.5, marginTop: 4 },
+  closeWrap: { position: "absolute", right: 16, zIndex: 20 },
+  overline: { color: "rgba(255,255,255,0.4)", fontSize: 10, lineHeight: 12, fontWeight: "700", letterSpacing: 1.4, textTransform: "uppercase" },
+  close: { width: 36, height: 36, borderRadius: 18 },
+  tierName: { color: "#fff", fontSize: 22, lineHeight: 24, fontWeight: "900", textTransform: "uppercase", letterSpacing: -0.4 },
   chip: {
     flexDirection: "row",
     alignItems: "center",
@@ -736,7 +733,7 @@ const styles = StyleSheet.create({
     borderWidth: StyleSheet.hairlineWidth,
     borderColor: "rgba(255,255,255,0.22)",
   },
-  chipText: { color: "#fff", fontSize: 15, fontWeight: "700", fontVariant: ["tabular-nums"] },
+  chipText: { color: "#fff", fontSize: 13, fontWeight: "700", fontVariant: ["tabular-nums"] },
   chipDivider: { width: StyleSheet.hairlineWidth, height: 14, backgroundColor: "rgba(255,255,255,0.25)" },
   muted: { color: "rgba(255,255,255,0.5)", fontSize: 12.5 },
   card: {
@@ -752,7 +749,7 @@ const styles = StyleSheet.create({
   tiny: { color: "rgba(255,255,255,0.35)", fontSize: 10.5, fontVariant: ["tabular-nums"] },
   grid: { flexDirection: "row", flexWrap: "wrap", gap: GAP, marginTop: GAP },
   perk: {
-    height: 80,
+    height: 68,
     padding: PAD,
     borderRadius: RADIUS,
     justifyContent: "space-between",
@@ -763,17 +760,17 @@ const styles = StyleSheet.create({
   perkUp: { backgroundColor: "rgba(255,255,255,0.08)", borderColor: "rgba(255,255,255,0.24)" },
   perkHead: { flexDirection: "row", alignItems: "flex-start", gap: 5 },
   perkIcon: { width: 13, height: 13, alignItems: "center", justifyContent: "center" },
-  perkLabel: { flex: 1, color: "rgba(255,255,255,0.5)", fontSize: 10.5, lineHeight: 13, height: 26 },
-  perkFoot: { flexDirection: "row", alignItems: "center", gap: 5, height: 20, overflow: "hidden" },
-  perkValue: { flexShrink: 1, color: "#fff", fontSize: 16, lineHeight: 20, fontWeight: "700", fontVariant: ["tabular-nums"] },
-  perkLocked: { flexShrink: 1, color: "rgba(255,255,255,0.4)", fontSize: 12, lineHeight: 20, fontWeight: "600" },
+  perkLabel: { flex: 1, color: "rgba(255,255,255,0.5)", fontSize: 10, lineHeight: 12, height: 24 },
+  perkFoot: { flexDirection: "row", alignItems: "center", gap: 4, height: 18, overflow: "hidden" },
+  perkValue: { flexShrink: 1, color: "#fff", fontSize: 14, lineHeight: 18, fontWeight: "700", fontVariant: ["tabular-nums"] },
+  perkLocked: { flexShrink: 1, color: "rgba(255,255,255,0.4)", fontSize: 11, lineHeight: 18, fontWeight: "600" },
   up: { color: "#34d399", fontSize: 10, fontWeight: "700" },
   actions: { flexDirection: "row", gap: GAP, marginTop: GAP },
-  button: { flex: 1, height: 44, borderRadius: RADIUS, paddingHorizontal: PAD },
+  button: { flex: 1, height: 40, borderRadius: RADIUS, paddingHorizontal: PAD },
   chrome: { overflow: "hidden", alignItems: "center", justifyContent: "center", borderWidth: StyleSheet.hairlineWidth },
   chromeLip: { position: "absolute", top: 0, left: 0, right: 0, height: StyleSheet.hairlineWidth * 2 },
-  chromeText: { color: "#0b0c0e", fontSize: 14, fontWeight: "700", textShadowColor: "rgba(255,255,255,0.6)", textShadowOffset: { width: 0, height: 1 }, textShadowRadius: 0 },
-  chromeTextDark: { color: "#f3f4f6", fontSize: 14, fontWeight: "700", textShadowColor: "rgba(0,0,0,0.55)", textShadowOffset: { width: 0, height: -1 }, textShadowRadius: 0 },
+  chromeText: { color: "#0b0c0e", fontSize: 13, fontWeight: "700", textShadowColor: "rgba(255,255,255,0.6)", textShadowOffset: { width: 0, height: 1 }, textShadowRadius: 0 },
+  chromeTextDark: { color: "#f3f4f6", fontSize: 13, fontWeight: "700", textShadowColor: "rgba(0,0,0,0.55)", textShadowOffset: { width: 0, height: -1 }, textShadowRadius: 0 },
   dock: {
     flexDirection: "row",
     alignItems: "center",
