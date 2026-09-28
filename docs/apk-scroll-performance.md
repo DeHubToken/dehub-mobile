@@ -47,8 +47,35 @@ so runway could not grow until momentum ended. Secondary InfiniteFeed lists
 also update visibility through row subscriptions instead of React state on
 the list, and mount one card per batch.
 
-These are baseline measurements; repeat on the published update before
-claiming an improvement.
+## First OTA measurement
+
+Production Android update `01a0e615-4a51-7ab6-88e1-13180fad2d0b`,
+runtime 1.18.0, published 28 September 2026 at 03:35:50 UTC. Native Expo
+update logs recorded its completed download; the same installed APK was
+restarted to apply it before testing. The same six-down/six-up gesture sequence
+produced:
+
+| Feed | Frames | Missed deadlines | p95 | p99 |
+| --- | ---: | ---: | ---: | ---: |
+| Home | 452 | 41 (9.07%) | 20 ms | 40 ms |
+| Videos | 450 | 44 (9.78%) | 19 ms | 42 ms |
+| Shorts | 399 | 55 (13.78%) | 26 ms | 44 ms |
+| Images | 401 | 54 (13.47%) | 19 ms | 36 ms |
+| Music | 414 | 33 (7.97%) | 22 ms | 42 ms |
+| Live | 374 | 86 (22.99%) | 34 ms | 73 ms |
+
+Before this update the image grid missed 80 of 80 frame deadlines in a repeat
+baseline, with p95/p99 of 150 ms. These measurements show improvement, but
+remaining misses, particularly in Live, mean this is not an all-pages
+smoothness pass. Dynamic feed content, image-cache state, playback and device
+refresh-rate scheduling can differ between runs.
+
+Explore subsequently measured 91 of 356 missed deadlines (25.56%), p95 30 ms
+and p99 61 ms. Its trending cards were all mounted in a ScrollView. The next
+change virtualizes that list, makes both trending and search visibility reach
+individual rows, and pauses media when the screen loses focus. Live previews
+also defer player allocation until their candidate dwells for 400 ms. These
+follow-up changes still require measurements from their published OTA.
 
 ## Release verification
 
@@ -57,4 +84,5 @@ direction changes, pagination, and scrolls starting over video timelines and
 image galleries. Compare frame timing with Android System Trace while crossing
 video rows. Also verify poster taps with autoplay enabled and disabled, Data
 Saver, gated posts, and picture-in-picture. Web staging cannot establish native
-APK smoothness. No device trace has yet been captured for this change.
+APK smoothness. Frame statistics have been captured; a system trace and
+authenticated secondary-page verification remain outstanding.
