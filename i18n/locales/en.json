@@ -3841,7 +3841,10 @@
     "unpinConfirm": "Remove this pinned message?",
     "pinMessage": "Pin message",
     "unpinMessage": "Unpin message",
-    "jumpToLatest": "Jump to latest messages"
+    "jumpToLatest": "Jump to latest messages",
+    "ban": "Ban",
+    "banConfirm": "Are you sure you want to ban {{name}}?",
+    "banFailed": "Failed to ban user"
   },
   "promptFeed": {
     "headline": "What do you want to see?",

@@ -3792,7 +3792,10 @@
     "pinMessage": "ПИН мессеж",
     "unpinMessage": "Үл мэдэгдэх мессеж",
     "jumpToLatest": "Сүүлийн зурвас руу очих",
-    "attachGif": "GIF"
+    "attachGif": "GIF",
+    "ban": "Хориглох",
+    "banConfirm": "Та {{name}}-г хориглохдоо итгэлтэй байна уу?",
+    "banFailed": "Хэрэглэгчийг хориглох боломжгүй боллоо"
   },
   "promptFeed": {
     "headline": "Та юу үзэхийг хүсэж байна?",

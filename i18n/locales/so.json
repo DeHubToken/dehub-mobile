@@ -3792,7 +3792,10 @@
     "unpinConfirm": "Ka saar fariintan qaawan?",
     "pinMessage": "Fariin PIN ah",
     "unpinMessage": "Fariin Unpin ah",
-    "jumpToLatest": "Ku bood fariimaha ugu dambeeyay"
+    "jumpToLatest": "Ku bood fariimaha ugu dambeeyay",
+    "ban": "Xayir",
+    "banConfirm": "Ma hubtaa inaad xayirto {{name}}?",
+    "banFailed": "Waa lagu guuldareystay xayiridda isticmaalaha"
   },
   "promptFeed": {
     "headline": "Maxaad rabtaa inaad aragto?",

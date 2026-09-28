@@ -3792,7 +3792,10 @@
     "pinMessage": "تثبيت الرسالة",
     "unpinMessage": "إلغاء تثبيت الرسالة",
     "jumpToLatest": "ارجع لآخر رسالة",
-    "attachGif": "GIF"
+    "attachGif": "GIF",
+    "ban": "حظر",
+    "banConfirm": "متأكد عايز تحظر {{name}}؟",
+    "banFailed": "فشل في حظر المستخدم"
   },
   "promptFeed": {
     "headline": "داير تشوف شنو؟",

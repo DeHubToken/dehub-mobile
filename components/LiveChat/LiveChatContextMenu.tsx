@@ -44,6 +44,10 @@ interface LiveChatContextMenuProps {
   onEdit?: (msg: LiveChatMessageData) => void;
   onDelete?: (msg: LiveChatMessageData) => void;
   onPin?: (msg: LiveChatMessageData) => void;
+  /** Whether this message's author is on the room's ban list, so a moderator is offered Unban instead. */
+  isSenderBanned?: boolean;
+  onBan?: (msg: LiveChatMessageData) => void;
+  onUnban?: (msg: LiveChatMessageData) => void;
 }
 
 const REACTION_EMOJIS = ["🔥", "❤️", "😂", "👀", "💯", "🙌"];
@@ -209,6 +213,9 @@ const LiveChatContextMenuComponent: React.FC<LiveChatContextMenuProps> = ({
   onEdit,
   onDelete,
   onPin,
+  isSenderBanned,
+  onBan,
+  onUnban,
 }) => {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
@@ -252,6 +259,12 @@ const LiveChatContextMenuComponent: React.FC<LiveChatContextMenuProps> = ({
     setTimeout(() => onPin?.(message), 100);
   }, [onClose, onPin, message]);
 
+  const handleBanToggle = useCallback(() => {
+    if (!message) return;
+    onClose();
+    setTimeout(() => (isSenderBanned ? onUnban : onBan)?.(message), 100);
+  }, [onClose, onBan, onUnban, isSenderBanned, message]);
+
   const handleReaction = useCallback(
     (emoji: string) => {
       if (!message) return;
@@ -270,8 +283,9 @@ const LiveChatContextMenuComponent: React.FC<LiveChatContextMenuProps> = ({
     if (isMe && message.messageType === "text" && message.content?.trim()) count++; // Edit
     if (isMe || isModerator) count++; // Delete
     if (isModerator) count++; // Pin/Unpin
+    if (isModerator && !isMe && (onBan || onUnban)) count++; // Ban/Unban
     return count;
-  }, [message, isMe, isModerator, onReply]);
+  }, [message, isMe, isModerator, onReply, onBan, onUnban]);
 
   const estimatedActionsHeight = useMemo(
     () => REACTION_ROW_HEIGHT + actionCount * 48 + 16,
@@ -464,6 +478,15 @@ const LiveChatContextMenuComponent: React.FC<LiveChatContextMenuProps> = ({
                       {message.isPinned ? t("liveChat.unpinMessage") : t("liveChat.pinMessage")}
                     </Text>
                   </TouchableOpacity>
+                )}
+
+                {isModerator && !isMe && (isSenderBanned ? onUnban : onBan) && (
+                  <ActionRow
+                    icon={isSenderBanned ? "ShieldCheck" : "Ban"}
+                    label={isSenderBanned ? t("publicChat.unbanUser") : t("publicChat.banUser")}
+                    onPress={handleBanToggle}
+                    destructive={!isSenderBanned}
+                  />
                 )}
 
                 {canDelete && onDelete && (

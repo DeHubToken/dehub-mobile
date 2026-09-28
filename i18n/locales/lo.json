@@ -3767,7 +3767,10 @@
     "unpinMessage": "ຖອນການສຳເນົາຂໍ້ຄວາມ",
     "jumpToLatest": "ໂດດໄປທີ່ຂໍ້ຄວາມລ່າສຸດ",
     "attachGif": "GIF",
-    "modBadge": "ຜູ້ດູແລ"
+    "modBadge": "ຜູ້ດູແລ",
+    "ban": "ແບນ",
+    "banConfirm": "ທ່ານແນ່ໃຈບໍ່ວ່າທ່ານຕ້ອງການແບນ {{name}}?",
+    "banFailed": "ບໍ່ສາມາດແບນຜູ້ໃຊ້ໄດ້"
   },
   "promptFeed": {
     "headline": "ທ່ານຢາກເບິ່ງຫຍັງ?",

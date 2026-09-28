@@ -3982,7 +3982,10 @@
     "unpinConfirm": "Dit vastgezette bericht verwijderen?",
     "pinMessage": "PIN-bericht",
     "unpinMessage": "Bericht losmaken",
-    "jumpToLatest": "Ga naar laatste berichten"
+    "jumpToLatest": "Ga naar laatste berichten",
+    "ban": "Verbannen",
+    "banConfirm": "Weet je zeker dat je {{name}} wilt verbannen?",
+    "banFailed": "Gebruiker verbannen mislukt"
   },
   "promptFeed": {
     "headline": "Wat wil je zien?",

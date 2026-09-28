@@ -3805,7 +3805,10 @@
     "anon": "අඥාත",
     "jumpToLatest": "නවතම පණිවිඩ වෙත යන්න",
     "attachGif": "GIF",
-    "modBadge": "මොඩ්"
+    "modBadge": "මොඩ්",
+    "ban": "තහනම් කරන්න",
+    "banFailed": "පරිශීලකයා තහනම් කිරීමට අසමත් විය",
+    "banConfirm": "{{name}} තහනම් කිරීමට ඔබ නිසැකද?"
   },
   "promptFeed": {
     "headline": "ඔබට බලන්න ඕනෑ මොනවාද?",

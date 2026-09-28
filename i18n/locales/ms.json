@@ -4053,7 +4053,10 @@
     "unpinConfirm": "Buang mesej yang disematkan ini?",
     "pinMessage": "Pin mesej",
     "unpinMessage": "Batalkan pin mesej",
-    "jumpToLatest": "Lompat ke mesej terkini"
+    "jumpToLatest": "Lompat ke mesej terkini",
+    "ban": "Sekat",
+    "banConfirm": "Adakah anda pasti mahu menyekat {{name}}?",
+    "banFailed": "Gagal menyekat pengguna"
   },
   "promptFeed": {
     "headline": "Apa yang anda mahu lihat?",

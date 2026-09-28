@@ -3847,7 +3847,10 @@
     "pinMessage": "पिन मैसेज",
     "unpinMessage": "मैसेज अनपिन करें",
     "jumpToLatest": "ताज़ा मैसेज पर जाएँ",
-    "attachGif": "जीआईएफ"
+    "attachGif": "जीआईएफ",
+    "ban": "बैन करें",
+    "banConfirm": "क्या आप वाकई {{name}} को बैन करना चाहते हैं?",
+    "banFailed": "उपयोगकर्ता को बैन करने में विफल"
   },
   "promptFeed": {
     "headline": "आप क्या देखना चाहते हैं?",

@@ -3792,7 +3792,10 @@
     "unpinConfirm": "Bu sancaqlanmış mesaj silinsin?",
     "pinMessage": "PİN kod mesajı",
     "unpinMessage": "Mesajı ləğv et",
-    "jumpToLatest": "Ən son mesajlara keç"
+    "jumpToLatest": "Ən son mesajlara keç",
+    "ban": "Qadağan et",
+    "banFailed": "İstifadəçini qadağan etmək alınmadı",
+    "banConfirm": "Əminsiniz ki, {{name}} istifadəçisini qadağan etmək istəyirsiniz?"
   },
   "promptFeed": {
     "headline": "Nə görmək istəyirsən?",

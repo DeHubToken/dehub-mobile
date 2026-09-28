@@ -3841,7 +3841,10 @@
     "unpinConfirm": "Hapus pesan yang disematkan ini?",
     "pinMessage": "Pesan PIN",
     "unpinMessage": "Batalkan sematan pesan",
-    "jumpToLatest": "Langsung ke pesan terbaru"
+    "jumpToLatest": "Langsung ke pesan terbaru",
+    "ban": "Blokir",
+    "banConfirm": "Apakah Anda yakin ingin memblokir {{name}}?",
+    "banFailed": "Gagal memblokir pengguna"
   },
   "promptFeed": {
     "headline": "Apa yang ingin kamu lihat?",

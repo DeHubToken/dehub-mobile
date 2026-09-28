@@ -3934,7 +3934,10 @@
     "pinMessage": "বার্তা পিন করুন",
     "unpinMessage": "পিন করা বার্তা সরান",
     "jumpToLatest": "সর্বশেষ মেসেজে যান",
-    "attachGif": "জি- আই- এফName"
+    "attachGif": "জি- আই- এফName",
+    "ban": "ব্যান করউক্কা",
+    "banConfirm": "আপনি কি নিশ্চিত যে {{name}}-কে ব্যান করতে চান?",
+    "banFailed": "ব্যবহারকারীকে ব্যান করতে ব্যর্থ"
   },
   "promptFeed": {
     "headline": "তুমি কিতা দেখতে চাও?",

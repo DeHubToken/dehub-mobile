@@ -3792,7 +3792,10 @@
     "pinMessage": "መልእኽቲ ፒን",
     "unpinMessage": "መልእኽቲ ኣወግድ",
     "jumpToLatest": "ናብ ናይ መወዳእታ መልእኽትታት ጠውቑ",
-    "attachGif": "GIF"
+    "attachGif": "GIF",
+    "ban": "ኣግድ",
+    "banConfirm": "ርግጽዶ ኣለኻ ን{{name}} ክትዕግቶ?",
+    "banFailed": "ንተጠቃሚ ምእጋድ ኣይተኻእለን"
   },
   "promptFeed": {
     "headline": "እንታይ ክትርኢ ትደሊ?",

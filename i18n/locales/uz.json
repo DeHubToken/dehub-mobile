@@ -3810,7 +3810,10 @@
     "pinMessage": "Xabarni qadash",
     "unpinMessage": "Xabarni olib tashlash",
     "reply": "Ответить",
-    "jumpToLatest": "So&#39;nggi xabarlarga o&#39;tish"
+    "jumpToLatest": "So&#39;nggi xabarlarga o&#39;tish",
+    "ban": "Taqiqlash",
+    "banConfirm": "{{name}} ni taqiqlashga ishonchingiz komilmi?",
+    "banFailed": "Foydalanuvchini taqiqlashda xatolik yuz berdi"
   },
   "promptFeed": {
     "headline": "Nimani ko‘rmoqchisiz?",

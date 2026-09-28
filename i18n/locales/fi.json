@@ -3792,7 +3792,10 @@
     "unpinConfirm": "Poistetaanko tämä kiinnitetty viesti?",
     "pinMessage": "Kiinnitä viesti",
     "unpinMessage": "Poista viestin kiinnitys",
-    "jumpToLatest": "Siirry uusimpiin viesteihin"
+    "jumpToLatest": "Siirry uusimpiin viesteihin",
+    "ban": "Estä",
+    "banConfirm": "Haluatko varmasti estää käyttäjän {{name}}?",
+    "banFailed": "Käyttäjän estäminen epäonnistui"
   },
   "promptFeed": {
     "headline": "Mitä haluat nähdä?",

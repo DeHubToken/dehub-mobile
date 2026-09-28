@@ -3823,7 +3823,10 @@
     "unpinConfirm": "Susa lo mlayezo ophiniwe?",
     "pinMessage": "Umlayezo we-PIN",
     "unpinMessage": "Khipha umlayezo",
-    "jumpToLatest": "Yeqela emiyalezweni yakamuva"
+    "jumpToLatest": "Yeqela emiyalezweni yakamuva",
+    "ban": "Vimbela",
+    "banConfirm": "Uqinisekile ukuthi ufuna ukuvimbela u-{{name}}?",
+    "banFailed": "Kwehlulekile ukuvimbela umsebenzisi"
   },
   "promptFeed": {
     "headline": "Ufuna ukubona ini?",

@@ -3822,7 +3822,10 @@
     "pinMessage": "PIN መልዕክት",
     "unpinMessage": "Unpin መልዕክት",
     "jumpToLatest": "ወደ የቅርብ ጊዜ መልዕክቶች ዝለል",
-    "attachGif": "GIF"
+    "attachGif": "GIF",
+    "ban": "አግድ",
+    "banConfirm": "{{name}}ን ማገድ እንደሚፈልጉ እርግጠኛ ነዎት?",
+    "banFailed": "ተጠቃሚውን ማገድ አልተቻለም"
   },
   "promptFeed": {
     "headline": "ምን ማየት ይፈልጋሉ?",

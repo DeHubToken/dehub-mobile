@@ -3792,7 +3792,10 @@
     "pinMessage": "تثبيت الرسالة",
     "unpinMessage": "إلغاء تثبيت الرسالة",
     "jumpToLatest": "ارجع لآخر الرسائل",
-    "attachGif": "GIF"
+    "attachGif": "GIF",
+    "ban": "حظر",
+    "banConfirm": "متأكد تريد تحظر {{name}}؟",
+    "banFailed": "فشل حظر المستخدم"
   },
   "promptFeed": {
     "headline": "شتريد تشوف؟",
