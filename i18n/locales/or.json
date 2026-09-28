@@ -1563,7 +1563,8 @@
     "directReferrals_other": "{{count}} ପ୍ରତ୍ୟକ୍ଷ",
     "secondaryReferrals_one": "{{count}} ଦ୍ୱିତୀୟ ସ୍ତର",
     "secondaryReferrals_other": "{{count}} ଦ୍ୱିତୀୟ ସ୍ତର",
-    "retry": "ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ"
+    "retry": "ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ",
+    "provisional": "ଅସ୍ଥାୟୀ"
   },
   "explorePage": {
     "searchPlaceholder": "ଲୋକ, ପୋଷ୍ଟ କିମ୍ବା ବିଷୟବସ୍ତୁ ଖୋଜନ୍ତୁ...",
@@ -3495,7 +3496,12 @@
       "waiting": "ପ୍ରତିପକ୍ଷ ପାଇଁ ଅପେକ୍ଷା କରୁଛି…",
       "backToLobby": "ଲବିକୁ ଫେରନ୍ତୁ |",
       "serverDidNotAnswer": "ମ୍ୟାଚ୍ ସର୍ଭର ଉତ୍ତର ଦେଇ ନାହିଁ |"
-    }
+    },
+    "gamesRecord_one": "{{count}} ଖେଳ · {{wins}}ଜ {{losses}}ହା {{draws}}ଡ୍ର",
+    "gamesRecord_other": "{{count}} ଖେଳ · {{wins}}ଜ {{losses}}ହା {{draws}}ଡ୍ର",
+    "kingsGambitBoardTitle": "ରେଟିଂ",
+    "kingsGambitBoardBlurb": "ସମସ୍ତ ଅନଲାଇନ ମ୍ୟାଚର Elo। ସମସ୍ତେ 1200 ରୁ ଆରମ୍ଭ କରନ୍ତି; ଶକ୍ତିଶାଳୀ ଖେଳାଳିଙ୍କୁ ହରାଇବା ଦୁର୍ବଳଙ୍କୁ ହରାଇବା ଅପେକ୍ଷା ଅଧିକ ମୂଲ୍ୟବାନ, ତେଣୁ ଦ୍ୱିତୀୟ ୱାଲେଟରେ ର୍ୟାଙ୍କ ବଢ଼ାଇ ହେବ ନାହିଁ।",
+    "kingsGambitBoardEmpty": "ଏପର୍ଯ୍ୟନ୍ତ କୌଣସି ଅନଲାଇନ ମ୍ୟାଚ ଶେଷ ହୋଇନାହିଁ। ଏକ ଚ୍ୟାଲେଞ୍ଜ ଖୋଲନ୍ତୁ।"
   },
   "videoLooks": {
     "button": "କ୍ୟାମେରା ଲୁକ୍",

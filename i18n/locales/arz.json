@@ -1583,7 +1583,8 @@
     "retry": "جرب تاني",
     "addedToLeaderboard": "لقد تمت إضافتك! الرصيد: {{balance}} رمز مميز",
     "balanceTooLow": "الرصيد منخفض جدًا ({{balance}} رمز مميز)",
-    "tokenAmount": "{{amount}} رمز مميز"
+    "tokenAmount": "{{amount}} رمز مميز",
+    "provisional": "مؤقت"
   },
   "explorePage": {
     "searchPlaceholder": "ابحث عن ناس، بوستات، أو محتوى...",
@@ -3525,7 +3526,12 @@
       "waiting": "في انتظار خصم…",
       "backToLobby": "ارجع لللوبي",
       "serverDidNotAnswer": "سيرفر المباراة ما ردش."
-    }
+    },
+    "gamesRecord_one": "{{count}} ماتش · {{wins}}ف {{losses}}خ {{draws}}ت",
+    "gamesRecord_other": "{{count}} ماتشات · {{wins}}ف {{losses}}خ {{draws}}ت",
+    "kingsGambitBoardTitle": "التصنيف",
+    "kingsGambitBoardBlurb": "تصنيف إيلو على كل الماتشات أونلاين. الكل بيبدأ من 1200؛ الفوز على لاعب أقوى بيجيب أكتر من الفوز على أضعف، فمينفعش تعلّي ترتيبك بمحفظة تانية.",
+    "kingsGambitBoardEmpty": "مفيش ماتش أونلاين خلص لسه. افتح تحدي."
   },
   "videoLooks": {
     "button": "مظاهر الكاميرا",

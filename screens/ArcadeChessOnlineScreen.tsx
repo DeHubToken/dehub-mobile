@@ -73,6 +73,13 @@ const HOST_SOURCE = "dehub-host";
 const OPEN_QUERY_KEY = "chess-open-challenges";
 const MINE_QUERY_KEY = "chess-my-match";
 const RECORDS_QUERY_KEY = "chess-records";
+/** Same key web's ArcadeLeaderboard caches the King's Gambit ladder under. */
+const LADDER_QUERY_KEY = "arcade-board";
+const LADDER_LIMIT = 10;
+/** Games before a rating is treated as settled rather than still finding its level. */
+const PROVISIONAL_UNDER = 5;
+/** Gold, silver, bronze, then nothing — the rank's colour. */
+const PODIUM = ["#FCD34D", "#D4D4D8", "#D97706"];
 /** Same key useWorkProfile caches under, so a row's lookup is reused here. */
 const PROFILE_QUERY_KEY = "work-wallet-profile";
 
@@ -169,6 +176,32 @@ function otherPlayer(match: ChessMatch, me: string | null): string | null {
   return match.created_by === me ? match.opponent : match.created_by;
 }
 
+/** One rung of the `chess_ladder()` Elo ladder, the same read web's board makes. */
+interface ChessLadderRow {
+  wallet: string;
+  rating: number;
+  played: number;
+  wins: number;
+  losses: number;
+  draws: number;
+}
+
+async function fetchChessLadder(limit: number): Promise<ChessLadderRow[]> {
+  try {
+    // Not in the generated types (managed by migration), hence the loose handle.
+    const { data, error } = await (
+      supabase as unknown as {
+        rpc: (fn: string, args?: Record<string, unknown>) => Promise<{ data: unknown; error: unknown }>;
+      }
+    ).rpc("chess_ladder", { p_limit: limit });
+    if (error || !Array.isArray(data)) return [];
+    return data as ChessLadderRow[];
+  } catch {
+    // Until the ladder exists the board is empty rather than the lobby broken.
+    return [];
+  }
+}
+
 // ---------------------------------------------------------------- the lobby
 
 const ChallengeRow = ({
@@ -231,6 +264,71 @@ const ChallengeRow = ({
           <Icon name="Crown" size={14} color={colors.accentForeground} />
           <Text style={styles.rowButtonPrimaryLabel}>{t("arcade.chessOnline.accept")}</Text>
         </Pressable>
+      )}
+    </View>
+  );
+};
+
+// ---------------------------------------------------------------- the ladder
+
+const LadderRow = ({ row, rank, mine }: { row: ChessLadderRow; rank: number; mine: boolean }) => {
+  const { t } = useTranslation();
+  const profile = useWorkProfile(row.wallet);
+  const name = workProfileName(profile, row.wallet);
+  return (
+    <View style={[styles.ladderRow, mine && styles.ladderRowMine]}>
+      <Text style={[styles.ladderRank, { color: PODIUM[rank - 1] ?? "#52525B" }]}>{rank}</Text>
+      <Avatar uri={workProfileAvatar(profile, 32)} size={32} name={name} />
+      <View style={styles.rowText}>
+        <Text style={styles.rowName} numberOfLines={1}>
+          {name}
+          {mine ? <Text style={styles.rowYou}> {t("arcade.chessOnline.you")}</Text> : null}
+        </Text>
+        <Text style={styles.ladderDetail} numberOfLines={1}>
+          {t("arcade.gamesRecord", {
+            count: row.played,
+            wins: row.wins,
+            losses: row.losses,
+            draws: row.draws,
+          })}
+        </Text>
+      </View>
+      <View style={styles.ladderValue}>
+        <Text style={styles.ladderRating}>{row.rating}</Text>
+        {row.played < PROVISIONAL_UNDER ? (
+          <Text style={styles.ladderProvisional}>{t("leaderboard.provisional")}</Text>
+        ) : null}
+      </View>
+    </View>
+  );
+};
+
+/** The top ten of the King's Gambit Elo ladder, as web shows under its lobby. */
+const ChessLadder = ({ wallet }: { wallet: string | null }) => {
+  const { t } = useTranslation();
+  const { data: rows = [], isLoading } = useQuery({
+    queryKey: [LADDER_QUERY_KEY, "kings-gambit", LADDER_LIMIT],
+    queryFn: () => fetchChessLadder(LADDER_LIMIT),
+    // The ladder replays every finished match per call; a minute stale is fine.
+    staleTime: 60_000,
+  });
+  return (
+    <View style={styles.ladder}>
+      <View style={styles.ladderHead}>
+        <Icon name="Trophy" size={18} color="#A1A1AA" />
+        <Text style={styles.sectionTitle}>{t("arcade.kingsGambitBoardTitle")}</Text>
+      </View>
+      <Text style={styles.ladderBlurb}>{t("arcade.kingsGambitBoardBlurb")}</Text>
+      {isLoading ? (
+        [0, 1, 2].map((i) => <View key={i} style={styles.ladderSkeleton} />)
+      ) : rows.length === 0 ? (
+        <View style={styles.ladderEmpty}>
+          <Text style={styles.ladderEmptyText}>{t("arcade.kingsGambitBoardEmpty")}</Text>
+        </View>
+      ) : (
+        rows.map((row, index) => (
+          <LadderRow key={row.wallet} row={row} rank={index + 1} mine={Boolean(wallet) && row.wallet === wallet} />
+        ))
       )}
     </View>
   );
@@ -773,6 +871,9 @@ const ArcadeChessOnlineScreen = () => {
             )}
           </>
         )}
+
+        {/* Outside the sign-in gate, as on web: the ladder is the reason to sign in. */}
+        <ChessLadder wallet={wallet} />
       </ScrollView>
     </View>
   );
@@ -852,6 +953,29 @@ const styles = StyleSheet.create({
   rowButtonMutedLabel: { color: "#D4D4D8", fontSize: 12, fontWeight: "600" },
   rowButtonPrimary: { backgroundColor: colors.accent },
   rowButtonPrimaryLabel: { color: colors.accentForeground, fontSize: 12, fontWeight: "600" },
+  ladder: { marginTop: 18, gap: 6 },
+  ladderHead: { flexDirection: "row", alignItems: "center", gap: 8, paddingHorizontal: 2 },
+  ladderBlurb: { color: "#71717A", fontSize: 11, lineHeight: 16, paddingHorizontal: 2, marginBottom: 2 },
+  ladderEmpty: { borderRadius: 12, paddingHorizontal: 16, paddingVertical: 22, backgroundColor: "#18181B" },
+  ladderEmptyText: { color: "#71717A", fontSize: 12, textAlign: "center" },
+  ladderSkeleton: { height: 52, borderRadius: 12, backgroundColor: "#18181B" },
+  ladderRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 12,
+    borderRadius: 12,
+    paddingHorizontal: 12,
+    paddingVertical: 9,
+    backgroundColor: "#18181B",
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.06)",
+  },
+  ladderRowMine: { backgroundColor: "rgba(255,255,255,0.07)", borderColor: "rgba(255,255,255,0.2)" },
+  ladderRank: { width: 22, textAlign: "center", fontSize: 12, fontWeight: "700", fontVariant: ["tabular-nums"] },
+  ladderDetail: { color: "#71717A", fontSize: 11 },
+  ladderValue: { alignItems: "flex-end" },
+  ladderRating: { color: "#FFFFFF", fontSize: 14, fontWeight: "600", fontVariant: ["tabular-nums"] },
+  ladderProvisional: { color: "#52525B", fontSize: 10 },
   matchScreen: { flex: 1, backgroundColor: "#000" },
   web: { flex: 1, backgroundColor: "#000" },
   exit: {

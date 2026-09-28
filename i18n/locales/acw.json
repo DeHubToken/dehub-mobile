@@ -1583,7 +1583,8 @@
     "retry": "جرب مرة ثانية",
     "addedToLeaderboard": "تمت إضافتك! الرصيد: {{balance}} رمز",
     "balanceTooLow": "الرصيد منخفض جدًا ({{balance}} رمز)",
-    "tokenAmount": "{{amount}} رمز"
+    "tokenAmount": "{{amount}} رمز",
+    "provisional": "مؤقت"
   },
   "explorePage": {
     "searchPlaceholder": "ابحث عن ناس أو منشورات أو محتوى...",
@@ -3525,7 +3526,12 @@
       "waiting": "انتظار خصم…",
       "backToLobby": "العودة للوبي",
       "serverDidNotAnswer": "خادم المباراة لم يرد."
-    }
+    },
+    "gamesRecord_one": "{{count}} مباراة · {{wins}}ف {{losses}}خ {{draws}}ت",
+    "gamesRecord_other": "{{count}} مباريات · {{wins}}ف {{losses}}خ {{draws}}ت",
+    "kingsGambitBoardTitle": "التصنيف",
+    "kingsGambitBoardBlurb": "تصنيف إيلو على كل المباريات أونلاين. الكل يبدأ من 1200؛ الفوز على لاعب أقوى يسوى أكثر من الفوز على أضعف، فما تقدر تعلّي ترتيبك بمحفظة ثانية.",
+    "kingsGambitBoardEmpty": "لسه ما خلصت أي مباراة أونلاين. افتح تحدي."
   },
   "videoLooks": {
     "button": "مظاهر الكاميرا",

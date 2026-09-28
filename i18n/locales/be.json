@@ -1596,7 +1596,8 @@
     "retry": "Паўтарыць",
     "addedToLeaderboard": "Вы дададзены! Баланс: {{balance}} токенаў",
     "balanceTooLow": "Баланс занадта нізкі ({{balance}} токенаў)",
-    "tokenAmount": "{{amount}} токенаў"
+    "tokenAmount": "{{amount}} токенаў",
+    "provisional": "папярэдні"
   },
   "explorePage": {
     "searchPlaceholder": "Шукаць людзей, публікацыі або кантэнт...",
@@ -3538,7 +3539,12 @@
       "waiting": "Чаканне суперніка…",
       "backToLobby": "Назад у лобі",
       "serverDidNotAnswer": "Сервер матчаў не адказаў."
-    }
+    },
+    "gamesRecord_one": "{{count}} партыя · {{wins}}П {{losses}}Пр {{draws}}Н",
+    "gamesRecord_other": "{{count}} партый · {{wins}}П {{losses}}Пр {{draws}}Н",
+    "kingsGambitBoardTitle": "Рэйтынг",
+    "kingsGambitBoardBlurb": "Эла па ўсіх анлайн-партыях. Усе пачынаюць з 1200; перамога над мацнейшым гульцом каштуе больш, чым над слабейшым, таму накруціць рэйтынг другім кашальком не выйдзе.",
+    "kingsGambitBoardEmpty": "Ніводная анлайн-партыя яшчэ не завершана. Кіньце выклік."
   },
   "videoLooks": {
     "button": "Стылі камеры",

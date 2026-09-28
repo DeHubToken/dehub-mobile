@@ -1606,7 +1606,8 @@
     },
     "addedToLeaderboard": "Jy is bygevoeg! Saldo: {{balance}} tokens",
     "balanceTooLow": "Saldo te laag ({{balance}} tokens)",
-    "tokenAmount": "{{amount}} tokens"
+    "tokenAmount": "{{amount}} tokens",
+    "provisional": "voorlopig"
   },
   "explorePage": {
     "searchPlaceholder": "Soek na mense, poste of inhoud",
@@ -3558,7 +3559,12 @@
       "waiting": "Wag vir 'n teenstander…",
       "backToLobby": "Terug na die onthaal",
       "serverDidNotAnswer": "Die wedstrydbediener het nie geantwoord nie."
-    }
+    },
+    "gamesRecord_one": "{{count}} spel · {{wins}}W {{losses}}V {{draws}}G",
+    "gamesRecord_other": "{{count}} spelle · {{wins}}W {{losses}}V {{draws}}G",
+    "kingsGambitBoardTitle": "Gradering",
+    "kingsGambitBoardBlurb": "Elo oor elke aanlyn wedstryd. Almal begin by 1200; om 'n sterker speler te klop tel meer as om 'n swakker een te klop, so die leer kan nie met 'n tweede beursie opgejaag word nie.",
+    "kingsGambitBoardEmpty": "Geen aanlyn wedstryd is nog voltooi nie. Open 'n uitdaging."
   },
   "videoLooks": {
     "button": "Kameravoorkomste",

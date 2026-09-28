@@ -1583,7 +1583,8 @@
     "retry": "Coba lagi",
     "addedToLeaderboard": "Anda telah ditambahkan! Saldo: {{balance}} token",
     "balanceTooLow": "Saldo terlalu rendah ({{balance}} token)",
-    "tokenAmount": "{{amount}} token"
+    "tokenAmount": "{{amount}} token",
+    "provisional": "sementara"
   },
   "explorePage": {
     "searchPlaceholder": "Cari orang, postingan, atau konten...",
@@ -3525,7 +3526,12 @@
       "waiting": "Menunggu lawan…",
       "backToLobby": "Kembali ke lobi",
       "serverDidNotAnswer": "Server pertandingan tidak merespons."
-    }
+    },
+    "gamesRecord_one": "{{count}} permainan · {{wins}}M {{losses}}K {{draws}}S",
+    "gamesRecord_other": "{{count}} permainan · {{wins}}M {{losses}}K {{draws}}S",
+    "kingsGambitBoardTitle": "Peringkat Elo",
+    "kingsGambitBoardBlurb": "Elo dari semua pertandingan daring. Semua mulai dari 1200; mengalahkan pemain yang lebih kuat bernilai lebih daripada yang lebih lemah, jadi peringkat tidak bisa dikatrol dengan dompet kedua.",
+    "kingsGambitBoardEmpty": "Belum ada pertandingan daring yang selesai. Buka tantangan."
   },
   "videoLooks": {
     "button": "Gaya kamera",

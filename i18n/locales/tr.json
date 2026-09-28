@@ -1583,7 +1583,8 @@
     "retry": "Tekrar Dene",
     "addedToLeaderboard": "Eklendiniz! Bakiye: {{balance}} token",
     "balanceTooLow": "Bakiye çok düşük ({{balance}} token)",
-    "tokenAmount": "{{amount}} token"
+    "tokenAmount": "{{amount}} token",
+    "provisional": "geçici"
   },
   "explorePage": {
     "searchPlaceholder": "Kişi, gönderi veya içerik ara...",
@@ -3525,7 +3526,12 @@
       "waiting": "Rakip bekleniyor…",
       "backToLobby": "Lobiye geri dön",
       "serverDidNotAnswer": "Maç sunucusu yanıt vermedi."
-    }
+    },
+    "gamesRecord_one": "{{count}} maç · {{wins}}G {{losses}}M {{draws}}B",
+    "gamesRecord_other": "{{count}} maç · {{wins}}G {{losses}}M {{draws}}B",
+    "kingsGambitBoardTitle": "Puan",
+    "kingsGambitBoardBlurb": "Tüm çevrimiçi maçlardaki Elo. Herkes 1200'den başlar; güçlü bir oyuncuyu yenmek zayıfını yenmekten daha değerlidir, bu yüzden sıralama ikinci bir cüzdanla şişirilemez.",
+    "kingsGambitBoardEmpty": "Henüz hiçbir çevrimiçi maç bitmedi. Bir meydan okuma başlat."
   },
   "videoLooks": {
     "button": "Kamera görünümleri",

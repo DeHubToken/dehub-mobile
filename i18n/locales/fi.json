@@ -1583,7 +1583,8 @@
     "retry": "Yritä uudelleen",
     "addedToLeaderboard": "Sinut lisättiin! Saldo: {{balance}} tokenia",
     "balanceTooLow": "Saldo liian alhainen ({{balance}} tokenia)",
-    "tokenAmount": "{{amount}} tokenia"
+    "tokenAmount": "{{amount}} tokenia",
+    "provisional": "alustava"
   },
   "explorePage": {
     "searchPlaceholder": "Etsi ihmisiä, julkaisuja tai sisältöä...",
@@ -3525,7 +3526,12 @@
       "waiting": "Odotetaan vastustajaa…",
       "backToLobby": "Takaisin aulaan",
       "serverDidNotAnswer": "Ottelupalvelin ei vastannut."
-    }
+    },
+    "gamesRecord_one": "{{count}} peli · {{wins}}V {{losses}}H {{draws}}T",
+    "gamesRecord_other": "{{count}} peliä · {{wins}}V {{losses}}H {{draws}}T",
+    "kingsGambitBoardTitle": "Luokitus",
+    "kingsGambitBoardBlurb": "Elo kaikista verkkopeleistä. Kaikki aloittavat 1200:sta; vahvemman pelaajan voittaminen on arvokkaampaa kuin heikomman, joten tikapuita ei voi nostaa toisella lompakolla.",
+    "kingsGambitBoardEmpty": "Yhtään verkkopeliä ei ole vielä päättynyt. Avaa haaste."
   },
   "videoLooks": {
     "button": "Kameratyylit",

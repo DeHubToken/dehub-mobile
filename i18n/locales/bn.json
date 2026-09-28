@@ -1583,7 +1583,8 @@
     "retry": "আবার চেষ্টা করুন",
     "addedToLeaderboard": "আপনাকে যোগ করা হয়েছে! ব্যালেন্স: {{balance}} টোকেন",
     "balanceTooLow": "ব্যালেন্স খুব কম ({{balance}} টোকেন)",
-    "tokenAmount": "{{amount}} টোকেন"
+    "tokenAmount": "{{amount}} টোকেন",
+    "provisional": "অস্থায়ী"
   },
   "explorePage": {
     "searchPlaceholder": "মানুষ, পোস্ট বা কন্টেন্ট খুঁজুন...",
@@ -3525,7 +3526,12 @@
       "waiting": "প্রতিপক্ষের জন্য অপেক্ষা করা হচ্ছে…",
       "backToLobby": "লবিতে ফিরে যান",
       "serverDidNotAnswer": "ম্যাচ সার্ভার উত্তর দেয়নি।"
-    }
+    },
+    "gamesRecord_one": "{{count}} গেম · {{wins}}জ {{losses}}হা {{draws}}ড্র",
+    "gamesRecord_other": "{{count}} গেম · {{wins}}জ {{losses}}হা {{draws}}ড্র",
+    "kingsGambitBoardTitle": "রেটিং",
+    "kingsGambitBoardBlurb": "সব অনলাইন ম্যাচের Elo। সবাই ১২০০ থেকে শুরু করে; শক্তিশালী খেলোয়াড়কে হারানো দুর্বলকে হারানোর চেয়ে বেশি মূল্যবান, তাই দ্বিতীয় ওয়ালেট দিয়ে র‍্যাঙ্ক বাড়ানো যায় না।",
+    "kingsGambitBoardEmpty": "এখনও কোনো অনলাইন ম্যাচ শেষ হয়নি। একটি চ্যালেঞ্জ খুলুন।"
   },
   "videoLooks": {
     "button": "ক্যামেরা লুক",

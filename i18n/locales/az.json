@@ -1583,7 +1583,8 @@
     "retry": "Yenidən cəhd et",
     "addedToLeaderboard": "Siz əlavə olundunuz! Balans: {{balance}} token",
     "balanceTooLow": "Balans çox aşağıdır ({{balance}} token)",
-    "tokenAmount": "{{amount}} token"
+    "tokenAmount": "{{amount}} token",
+    "provisional": "müvəqqəti"
   },
   "explorePage": {
     "searchPlaceholder": "İnsanlar, paylaşımlar və ya məzmun axtar...",
@@ -3525,7 +3526,12 @@
       "waiting": "Düşmən gözlənilir…",
       "backToLobby": "Lobbyya qayıdın",
       "serverDidNotAnswer": "Müsabiqə serveri cavab vermədi."
-    }
+    },
+    "gamesRecord_one": "{{count}} oyun · {{wins}}Q {{losses}}M {{draws}}H",
+    "gamesRecord_other": "{{count}} oyun · {{wins}}Q {{losses}}M {{draws}}H",
+    "kingsGambitBoardTitle": "Reytinq",
+    "kingsGambitBoardBlurb": "Bütün onlayn oyunlar üzrə Elo. Hamı 1200-dən başlayır; güclü oyunçunu məğlub etmək zəifi məğlub etməkdən daha dəyərlidir, ona görə də reytinqi ikinci pulqabı ilə şişirtmək olmaz.",
+    "kingsGambitBoardEmpty": "Hələ heç bir onlayn oyun bitməyib. Çağırış açın."
   },
   "videoLooks": {
     "button": "Kamera görünüşləri",

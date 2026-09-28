@@ -1584,7 +1584,8 @@
     "retry": "Gbìyànjú lẹ́ẹ̀kan sí i",
     "addedToLeaderboard": "A ti fi ọ kun! Iwọntọnwọnsi: {{balance}} tokens",
     "balanceTooLow": "Iwọntọnwọnsi kere pupọ ({{balance}} tokens)",
-    "tokenAmount": "{{amount}} tokens"
+    "tokenAmount": "{{amount}} tokens",
+    "provisional": "fún ìgbà díẹ̀"
   },
   "explorePage": {
     "searchPlaceholder": "Wá àwọn ènìyàn, àròkọ tàbí àkóónú...",
@@ -3526,7 +3527,12 @@
       "waiting": "N duro de oludije…",
       "backToLobby": "Pada si ibi iduro",
       "serverDidNotAnswer": "Sọfitiwia idije ko dahun."
-    }
+    },
+    "gamesRecord_one": "eré {{count}} · {{wins}}B {{losses}}P {{draws}}D",
+    "gamesRecord_other": "àwọn eré {{count}} · {{wins}}B {{losses}}P {{draws}}D",
+    "kingsGambitBoardTitle": "Ìdíwọ̀n",
+    "kingsGambitBoardBlurb": "Elo lórí gbogbo ìdíje orí ayélujára. Gbogbo ènìyàn bẹ̀rẹ̀ láti 1200; ṣíṣẹ́gun agbára ju níye lórí ju ṣíṣẹ́gun aláìlágbára lọ, nítorí náà a kò lè fi àpò kejì gbé ipò sókè.",
+    "kingsGambitBoardEmpty": "Kò tíì sí ìdíje orí ayélujára tó parí. Ṣí ìpèníjà kan."
   },
   "videoLooks": {
     "button": "Àwọn ìrísí kámẹ́rà",

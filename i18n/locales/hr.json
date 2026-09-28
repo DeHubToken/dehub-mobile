@@ -1583,7 +1583,8 @@
     "retry": "Pokušaj ponovno",
     "addedToLeaderboard": "Dodani ste! Stanje: {{balance}} tokena",
     "balanceTooLow": "Premalo tokena ({{balance}} tokena)",
-    "tokenAmount": "{{amount}} tokena"
+    "tokenAmount": "{{amount}} tokena",
+    "provisional": "privremeno"
   },
   "explorePage": {
     "searchPlaceholder": "Pretraži ljude, objave ili sadržaj...",
@@ -3525,7 +3526,12 @@
       "waiting": "Čekanje protivnika…",
       "backToLobby": "Natrag u predvorje",
       "serverDidNotAnswer": "Poslužitelj utakmice nije odgovorio."
-    }
+    },
+    "gamesRecord_one": "{{count}} partija · {{wins}}P {{losses}}I {{draws}}R",
+    "gamesRecord_other": "{{count}} partija · {{wins}}P {{losses}}I {{draws}}R",
+    "kingsGambitBoardTitle": "Rejting",
+    "kingsGambitBoardBlurb": "Elo kroz sve online partije. Svi počinju od 1200; pobjeda nad jačim igračem vrijedi više od pobjede nad slabijim, pa se ljestvica ne može napumpati drugim novčanikom.",
+    "kingsGambitBoardEmpty": "Nijedna online partija još nije završila. Otvori izazov."
   },
   "videoLooks": {
     "button": "Izgledi kamere",

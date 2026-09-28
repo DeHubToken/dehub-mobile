@@ -1562,7 +1562,8 @@
     "secondaryReferrals_other": "{{count}} ຂັ້ນສອງ",
     "retry": "ລອງໃໝ່",
     "addedToLeaderboard": "ທ່ານໄດ້ຖືກເພີ່ມແລ້ວ! ຍອດເຫຼືອ: {{balance}} tokens",
-    "balanceTooLow": "ຍອດເຫຼືອຕຳ່ເກີນໄປ ({{balance}} tokens)"
+    "balanceTooLow": "ຍອດເຫຼືອຕຳ່ເກີນໄປ ({{balance}} tokens)",
+    "provisional": "ຊົ່ວຄາວ"
   },
   "explorePage": {
     "searchPlaceholder": "ຄົ້ນຫາຄົນ, ໂພສ ຫຼື ເນື້ອຫາ...",
@@ -3500,7 +3501,12 @@
       "waiting": "ລໍຖ້າຄູ່ຕໍ່ສູ້…",
       "backToLobby": "ກັບຄືນໄປຫ້ອງຮັບແຂກ",
       "serverDidNotAnswer": "ເຊີບເວີການແຂ່ງຂັນບໍ່ຕອບສະໜອງ."
-    }
+    },
+    "gamesRecord_one": "{{count}} ເກມ · ຊະນະ {{wins}} ແພ້ {{losses}} ສະເໝີ {{draws}}",
+    "gamesRecord_other": "{{count}} ເກມ · ຊະນະ {{wins}} ແພ້ {{losses}} ສະເໝີ {{draws}}",
+    "kingsGambitBoardTitle": "ຄະແນນລະດັບ",
+    "kingsGambitBoardBlurb": "Elo ຈາກທຸກການແຂ່ງຂັນອອນລາຍ. ທຸກຄົນເລີ່ມທີ່ 1200; ຊະນະຜູ້ຫຼິ້ນທີ່ເກັ່ງກວ່າໄດ້ຄະແນນຫຼາຍກວ່າຊະນະຜູ້ອ່ອນກວ່າ, ສະນັ້ນຈຶ່ງປັ່ນອັນດັບດ້ວຍກະເປົາທີສອງບໍ່ໄດ້.",
+    "kingsGambitBoardEmpty": "ຍັງບໍ່ມີການແຂ່ງຂັນອອນລາຍທີ່ຈົບລົງ. ເປີດຄຳທ້າເລີຍ."
   },
   "videoLooks": {
     "button": "ຮູບແບບກ້ອງ",

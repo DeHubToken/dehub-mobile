@@ -1571,7 +1571,8 @@
     "retry": "ხელახლა ცდა",
     "addedToLeaderboard": "თქვენ დამატებული ხართ! ბალანსი: {{balance}} ტოკენი",
     "balanceTooLow": "ბალანსი ძალიან დაბალია ({{balance}} ტოკენი)",
-    "tokenAmount": "{{amount}} ტოკენი"
+    "tokenAmount": "{{amount}} ტოკენი",
+    "provisional": "წინასწარი"
   },
   "explorePage": {
     "searchPlaceholder": "ხალხის, პოსტების ან კონტენტის ძებნა...",
@@ -3513,7 +3514,12 @@
       "waiting": "მოწინააღმდეგის მოლოდინში…",
       "backToLobby": "ლობიში დაბრუნება",
       "serverDidNotAnswer": "მატჩის სერვერმა არ უპასუხა."
-    }
+    },
+    "gamesRecord_one": "{{count}} პარტია · {{wins}}მ {{losses}}წ {{draws}}ფ",
+    "gamesRecord_other": "{{count}} პარტია · {{wins}}მ {{losses}}წ {{draws}}ფ",
+    "kingsGambitBoardTitle": "რეიტინგი",
+    "kingsGambitBoardBlurb": "Elo ყველა ონლაინ პარტიიდან. ყველა იწყებს 1200-დან; ძლიერი მოთამაშის დამარცხება მეტად ფასობს, ვიდრე სუსტისა, ამიტომ რეიტინგის მეორე საფულით აწევა შეუძლებელია.",
+    "kingsGambitBoardEmpty": "ჯერ არცერთი ონლაინ პარტია არ დასრულებულა. გახსენი გამოწვევა."
   },
   "videoLooks": {
     "button": "კამერის იერსახეები",

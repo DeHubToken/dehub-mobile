@@ -1583,7 +1583,8 @@
     "retry": "Կրկին փորձել",
     "addedToLeaderboard": "Դուք ավելացվել եք։ Մնացորդ՝ {{balance}} թոքեններ",
     "balanceTooLow": "Մնացորդը չափազանց ցածր է ({{balance}} թոքեններ)",
-    "tokenAmount": "{{amount}} թոքեններ"
+    "tokenAmount": "{{amount}} թոքեններ",
+    "provisional": "նախնական"
   },
   "explorePage": {
     "searchPlaceholder": "Փնտրել մարդկանց, գրառումներ կամ բովանդակություն...",
@@ -3525,7 +3526,12 @@
       "waiting": "Սպասում ենք հակառակորդի…",
       "backToLobby": "Վերադառնալ նախասրահ",
       "serverDidNotAnswer": "Համընկնող սերվերը չպատասխանեց:"
-    }
+    },
+    "gamesRecord_one": "{{count}} խաղ · {{wins}}Հ {{losses}}Պ {{draws}}Ո",
+    "gamesRecord_other": "{{count}} խաղ · {{wins}}Հ {{losses}}Պ {{draws}}Ո",
+    "kingsGambitBoardTitle": "Վարկանիշ",
+    "kingsGambitBoardBlurb": "Էլո բոլոր առցանց խաղերի հիման վրա: Բոլորը սկսում են 1200-ից. ուժեղ խաղացողին հաղթելն ավելի արժեքավոր է, քան թույլին, ուստի վարկանիշը երկրորդ դրամապանակով բարձրացնել չի ստացվի:",
+    "kingsGambitBoardEmpty": "Դեռ ոչ մի առցանց խաղ չի ավարտվել: Բացեք մարտահրավեր:"
   },
   "videoLooks": {
     "button": "Տեսախցիկի տեսքեր",

@@ -1584,7 +1584,8 @@
     "retry": "Yapamanta ruway",
     "addedToLeaderboard": "¡Has sido añadido! Saldo: {{balance}} tokens",
     "balanceTooLow": "Saldo demasiado bajo ({{balance}} tokens)",
-    "tokenAmount": "{{amount}} tokens"
+    "tokenAmount": "{{amount}} tokens",
+    "provisional": "ratupaq"
   },
   "explorePage": {
     "searchPlaceholder": "Runata, churasqata icha willakuyta maskay...",
@@ -3556,7 +3557,12 @@
       "waiting": "Suyuq wawqita...",
       "backToLobby": "Kamachiy wasiman kutiy",
       "serverDidNotAnswer": "Kamachiyta ruwaqqa mana kutirqachu."
-    }
+    },
+    "gamesRecord_one": "{{count}} pukllay · {{wins}}A {{losses}}Q {{draws}}K",
+    "gamesRecord_other": "{{count}} pukllaykuna · {{wins}}A {{losses}}Q {{draws}}K",
+    "kingsGambitBoardTitle": "Chaninchay",
+    "kingsGambitBoardBlurb": "Elo llapa kawsay-ñiqpi pukllaykunapi. Llapanku 1200manta qallarinku; kallpasapa pukllaqta atipayqa pisi kallpayuqta atipaymanta aswan chaniyuq, chayrayku iskay kaq qullqi-wayaqawan ñiqita mana wicharichiy atikunchu.",
+    "kingsGambitBoardEmpty": "Manaraq ima kawsay-ñiqpi pukllaypas tukunchu. Huk atipanakuyta kichay."
   },
   "videoLooks": {
     "button": "Kamara rikchaykuna",

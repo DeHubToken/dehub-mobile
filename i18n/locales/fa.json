@@ -1583,7 +1583,8 @@
     "retry": "تلاش دوباره",
     "addedToLeaderboard": "شما اضافه شدید! موجودی: {{balance}} توکن",
     "balanceTooLow": "موجودی کم است ({{balance}} توکن)",
-    "tokenAmount": "{{amount}} توکن"
+    "tokenAmount": "{{amount}} توکن",
+    "provisional": "موقت"
   },
   "explorePage": {
     "searchPlaceholder": "جستجوی افراد، پست‌ها یا محتوا...",
@@ -3555,7 +3556,12 @@
       "waiting": "در انتظار حریف…",
       "backToLobby": "بازگشت به لابی",
       "serverDidNotAnswer": "سرور مسابقه پاسخ نداد."
-    }
+    },
+    "gamesRecord_one": "{{count}} بازی · {{wins}}ب {{losses}}ش {{draws}}م",
+    "gamesRecord_other": "{{count}} بازی · {{wins}}ب {{losses}}ش {{draws}}م",
+    "kingsGambitBoardTitle": "امتیاز",
+    "kingsGambitBoardBlurb": "الو در همهٔ بازی‌های آنلاین. همه از ۱۲۰۰ شروع می‌کنند؛ بردن بازیکن قوی‌تر بیش از بردن بازیکن ضعیف‌تر می‌ارزد، پس نمی‌شود با کیف پول دوم رتبه را بالا برد.",
+    "kingsGambitBoardEmpty": "هنوز هیچ بازی آنلاینی تمام نشده. یک چالش باز کن."
   },
   "videoLooks": {
     "button": "ظاهرهای دوربین",

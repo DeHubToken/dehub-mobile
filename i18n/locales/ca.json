@@ -1583,7 +1583,8 @@
     "retry": "Torna-ho a provar",
     "addedToLeaderboard": "Has estat afegit! Balanç: {{balance}} fitxes",
     "balanceTooLow": "Balanç massa baix ({{balance}} fitxes)",
-    "tokenAmount": "{{amount}} fitxes"
+    "tokenAmount": "{{amount}} fitxes",
+    "provisional": "provisori"
   },
   "explorePage": {
     "searchPlaceholder": "Cercar persones, publicacions o contingut...",
@@ -3525,7 +3526,12 @@
       "waiting": "Esperant un oponent…",
       "backToLobby": "Torna al lobby",
       "serverDidNotAnswer": "El servidor de partides no ha respost."
-    }
+    },
+    "gamesRecord_one": "{{count}} partida · {{wins}}V {{losses}}D {{draws}}E",
+    "gamesRecord_other": "{{count}} partides · {{wins}}V {{losses}}D {{draws}}E",
+    "kingsGambitBoardTitle": "Puntuació",
+    "kingsGambitBoardBlurb": "Elo de totes les partides en línia. Tothom comença a 1200; guanyar un jugador més fort val més que guanyar-ne un de més feble, així que la classificació no es pot inflar amb una segona cartera.",
+    "kingsGambitBoardEmpty": "Encara no ha acabat cap partida en línia. Obre un desafiament."
   },
   "videoLooks": {
     "button": "Aspectes de la càmera",

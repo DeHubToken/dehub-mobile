@@ -1583,7 +1583,8 @@
     "retry": "נסו שוב",
     "addedToLeaderboard": "נוספתם! יתרה: {{balance}} אסימונים",
     "balanceTooLow": "יתרה נמוכה מדי ({{balance}} אסימונים)",
-    "tokenAmount": "{{amount}} אסימונים"
+    "tokenAmount": "{{amount}} אסימונים",
+    "provisional": "זמני"
   },
   "explorePage": {
     "searchPlaceholder": "חפש אנשים, פוסטים או תוכן...",
@@ -3529,7 +3530,12 @@
       "waiting": "ממתין ליריב…",
       "backToLobby": "חזרה ללובי",
       "serverDidNotAnswer": "שרת המשחק לא הגיב."
-    }
+    },
+    "gamesRecord_one": "{{count}} משחק · {{wins}}נ {{losses}}ה {{draws}}ת",
+    "gamesRecord_other": "{{count}} משחקים · {{wins}}נ {{losses}}ה {{draws}}ת",
+    "kingsGambitBoardTitle": "דירוג",
+    "kingsGambitBoardBlurb": "אלו על פני כל המשחקים המקוונים. כולם מתחילים מ-1200; ניצחון על שחקן חזק שווה יותר מניצחון על חלש, ולכן אי אפשר לנפח את הסולם עם ארנק שני.",
+    "kingsGambitBoardEmpty": "עדיין לא הסתיים אף משחק מקוון. פתח אתגר."
   },
   "videoLooks": {
     "button": "מראות מצלמה",

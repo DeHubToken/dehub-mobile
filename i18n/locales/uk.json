@@ -1940,7 +1940,8 @@
     "retry": "Повторити",
     "addedToLeaderboard": "Ви додані! Баланс: {{balance}} токенів",
     "balanceTooLow": "Низький баланс ({{balance}} токенів)",
-    "tokenAmount": "{{amount}} токенів"
+    "tokenAmount": "{{amount}} токенів",
+    "provisional": "попередній"
   },
   "explorePage": {
     "searchPlaceholder": "Шукайте людей, пости або контент...",
@@ -3882,7 +3883,12 @@
       "waiting": "Очікування суперника…",
       "backToLobby": "Назад до лобі",
       "serverDidNotAnswer": "Сервер матчу не відповів."
-    }
+    },
+    "gamesRecord_one": "{{count}} партія · {{wins}}В {{losses}}П {{draws}}Н",
+    "gamesRecord_other": "{{count}} партій · {{wins}}В {{losses}}П {{draws}}Н",
+    "kingsGambitBoardTitle": "Рейтинг",
+    "kingsGambitBoardBlurb": "Ело за всі онлайн-партії. Усі починають із 1200; перемога над сильнішим гравцем важить більше, ніж над слабшим, тож накрутити рейтинг другим гаманцем не вийде.",
+    "kingsGambitBoardEmpty": "Жодна онлайн-партія ще не завершена. Киньте виклик."
   },
   "videoLooks": {
     "button": "Стилі камери",

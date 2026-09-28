@@ -1583,7 +1583,8 @@
     "retry": "Riprova",
     "addedToLeaderboard": "Sei stato aggiunto! Saldo: {{balance}} token",
     "balanceTooLow": "Saldo troppo basso ({{balance}} token)",
-    "tokenAmount": "{{amount}} token"
+    "tokenAmount": "{{amount}} token",
+    "provisional": "provvisorio"
   },
   "explorePage": {
     "searchPlaceholder": "Cerca persone, post o contenuti...",
@@ -3525,7 +3526,12 @@
       "waiting": "In attesa di un avversario…",
       "backToLobby": "Torna alla lobby",
       "serverDidNotAnswer": "Il server di gioco non ha risposto."
-    }
+    },
+    "gamesRecord_one": "{{count}} partita · {{wins}}V {{losses}}S {{draws}}P",
+    "gamesRecord_other": "{{count}} partite · {{wins}}V {{losses}}S {{draws}}P",
+    "kingsGambitBoardTitle": "Punteggio",
+    "kingsGambitBoardBlurb": "Elo su tutte le partite online. Tutti partono da 1200; battere un giocatore più forte vale più che batterne uno più debole, quindi la classifica non si può gonfiare con un secondo wallet.",
+    "kingsGambitBoardEmpty": "Nessuna partita online è ancora finita. Apri una sfida."
   },
   "videoLooks": {
     "button": "Effetti fotocamera",

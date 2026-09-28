@@ -1583,7 +1583,8 @@
     "retry": "Sake gwadawa",
     "addedToLeaderboard": "An ƙara ka! Kuɗi: {{balance}} tokens",
     "balanceTooLow": "Ƙarancin kuɗi ({{balance}} tokens)",
-    "tokenAmount": "{{amount}} tokens"
+    "tokenAmount": "{{amount}} tokens",
+    "provisional": "na wucin gadi"
   },
   "explorePage": {
     "searchPlaceholder": "Nemo mutane, rubutu ko abun ciki...",
@@ -3525,7 +3526,12 @@
       "waiting": "Jiran abokin gaba…",
       "backToLobby": "Komawa lobby",
       "serverDidNotAnswer": "Uwar garken wasan bai amsa ba."
-    }
+    },
+    "gamesRecord_one": "wasa {{count}} · {{wins}}N {{losses}}R {{draws}}C",
+    "gamesRecord_other": "wasanni {{count}} · {{wins}}N {{losses}}R {{draws}}C",
+    "kingsGambitBoardTitle": "Ƙima",
+    "kingsGambitBoardBlurb": "Elo a kan kowane wasa na kan layi. Kowa yana farawa daga 1200; doke ƙwararren ɗan wasa ya fi darajar doke mai rauni, don haka ba za a iya ƙara matsayi da walat na biyu ba.",
+    "kingsGambitBoardEmpty": "Babu wasan kan layi da ya ƙare tukuna. Buɗe ƙalubale."
   },
   "videoLooks": {
     "button": "Kamannin kamara",
