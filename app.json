@@ -182,6 +182,16 @@
               "scheme": "https",
               "host": "dehub.io",
               "pathPrefix": "/cinema/"
+            },
+            {
+              "scheme": "https",
+              "host": "dehub.io",
+              "path": "/premium"
+            },
+            {
+              "scheme": "https",
+              "host": "dehub.io",
+              "path": "/pricing"
             }
           ],
           "category": [
