@@ -181,6 +181,7 @@ const ConversationItemComponent: React.FC<ConversationItemProps> = ({
         icon: "trash-outline",
         color: "#DC2626",
         onPress: () => onDelete(conversation, other),
+        destructive: true,
       });
     }
     return list;

@@ -130,6 +130,8 @@ export type ChatScreenProps = {
       title?: string;
       /** Pre-filled text for the message input (e.g. shared post URL) */
       sharedText?: string;
+      /** Sent on open, once — the Builder lander's request to @assistant. */
+      autoSendText?: string;
     };
   };
 };
@@ -1180,6 +1182,19 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
     },
     [dmDisabled, dmReason, dmFee, editingMessage, currentConvId, userId, address, peer.address, ensureConversation, ws, scrollToBottom, replyTo, tipAmount, dispatchStandaloneTip, settlePendingEdit, planBlocks],
   );
+
+  // The Builder lander hands its request over as `autoSendText`: sent once,
+  // exactly as if it had been typed here, so the build starts in this thread
+  // the moment it opens. Cleared from the params so coming back to the screen
+  // never sends it twice.
+  const autoSendRef = useRef<string | undefined>(route?.params?.autoSendText);
+  useEffect(() => {
+    const text = autoSendRef.current;
+    if (!text || !peer.address) return;
+    autoSendRef.current = undefined;
+    navigation.setParams?.({ autoSendText: undefined });
+    onSendText(text);
+  }, [onSendText, peer.address, navigation]);
 
   const onSendGif = useCallback(
     (gifUrl: string, caption?: string) => {

@@ -121,9 +121,8 @@ export enum ScreenNames {
   // Creator packs (emoji, sticker and GIF) — the hub and one pack's share page.
   Packs = 'Packs',
   Pack = 'Pack',
-  // Builder — describe an app, AI writes and hosts it; the preview is public.
+  // Builder — a lander into the @assistant DM, which builds and hosts the app; the preview is public.
   Builder = 'Builder',
-  BuilderProject = 'BuilderProject',
   BuilderPreview = 'BuilderPreview',
   DePin = 'DePin',
   Bridge = 'Bridge',

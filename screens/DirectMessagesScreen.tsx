@@ -26,6 +26,8 @@ import { useUser, useAuthState, type User } from "../context/AuthContext";
 import { useUserProfileSheet } from "../context/UserProfileSheetContext";
 import { truncateAddress } from "../libs/strings.util";
 import { toastInfo, toastSuccess, toastError } from "../libs/toast";
+import { toast } from "sonner-native";
+import { scheduleDelete, undoDelete, usePendingDeletes, UNDO_WINDOW_MS } from "../libs/undoable-delete";
 import { blockUser } from "../services/block.service";
 import { deleteConversation, getDmUserStatus, addFreeAccess, removeFreeAccess, type DmUserStatus } from "../services/dm/dm.api";
 import SignInGate from "../components/auth/SignInGate";
@@ -55,6 +57,7 @@ const DirectMessagesInner: React.FC = () => {
 
   const { contactsLoading, contactsError, refreshContacts } = useDMContext();
   const conversations = useDmContacts();
+  const pendingDeletes = usePendingDeletes();
   const { showUserProfile } = useUserProfileSheet();
   // The KeyboardAvoidingView below is this screen's outermost element, so the
   // only chrome above it is the root SafeAreaView's own inset.
@@ -103,14 +106,18 @@ const DirectMessagesInner: React.FC = () => {
           return title.includes(q) || preview.includes(q);
         })
       : conversations;
-    return [...list].sort(
-      (a, b) =>
-        +new Date(b.updatedAt || b.lastMessageAt || 0) -
-        +new Date(a.updatedAt || a.lastMessageAt || 0),
-    );
-  }, [conversations, query, myUserId, myAddress]);
+    return list
+      .filter((c) => !pendingDeletes.has(c._id))
+      .sort(
+        (a, b) =>
+          +new Date(b.updatedAt || b.lastMessageAt || 0) -
+          +new Date(a.updatedAt || a.lastMessageAt || 0),
+      );
+  }, [conversations, query, myUserId, myAddress, pendingDeletes]);
 
-  const hasConversations = (conversations?.length || 0) > 0;
+  // Rows waiting out their undo window count as gone, so swiping away the last
+  // one lands on the real empty state rather than "no matches".
+  const hasConversations = (conversations || []).some((c) => !pendingDeletes.has(c._id));
 
 
   const openMenu = useCallback(() => setMenuVisible(true), []);
@@ -187,25 +194,29 @@ const DirectMessagesInner: React.FC = () => {
     ]);
   }, [t]);
 
+  // The row goes at once, with Undo in the toast; the real delete runs when
+  // that window closes. A confirm dialog after every swipe defeated the point
+  // of swiping, and a mistaken swipe is exactly what Undo is for.
   const deleteConv = useCallback(
     (conv: DmConversation | null) => {
       if (!conv) return;
-      Alert.alert(t("dm.deleteConversationTitle"), t("dm.deleteConversationBody"), [
-        { text: t("common.cancel"), style: "cancel" },
-        {
-          text: t("common.delete"),
-          style: "destructive",
-          onPress: async () => {
-            try {
-              await deleteConversation(conv._id, myAddress);
-              dmActions.removeConversation(conv._id);
-              toastSuccess(t("toasts.conversation_deleted"));
-            } catch (e) {
-              toastError(e, t("dm.failedToDeleteConversation"));
-            }
-          },
+      const id = conv._id;
+      scheduleDelete(id, async () => {
+        try {
+          await deleteConversation(id, myAddress);
+          dmActions.removeConversation(id);
+        } catch (e) {
+          toastError(e, t("dm.failedToDeleteConversation"));
+        }
+      });
+      const toastId = toastSuccess(t("toasts.conversation_deleted"), {
+        duration: UNDO_WINDOW_MS,
+        actionLabel: t("common.undo"),
+        onActionPress: () => {
+          undoDelete(id);
+          toast.dismiss(toastId);
         },
-      ]);
+      });
     },
     [myAddress, t],
   );
