@@ -5917,13 +5917,12 @@
       "images": "Images per post",
       "uploads": "Xadka soo dejinta maalinlaha ah",
       "storage": "Kaydinta tifaftiraha",
-      "profiles": "Faahfaahinta la keydiyay",
       "lending": "Boosaska amaahda badge",
       "voice": "Codaynta",
       "voiceFree": "Bilaash",
       "voiceLocked": "{{tier}} iyo kor"
     },
-    "buy": "Hel DHB",
+    "buyTokens": "Iibso calaamadaha",
     "details": "Burbur buuxa",
     "play": "Ciyaar",
     "pause": "Jooji"

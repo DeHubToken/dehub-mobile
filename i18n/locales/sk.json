@@ -6025,13 +6025,12 @@
       "images": "Obrázky na príspevok",
       "uploads": "Denný limit nahrávania",
       "storage": "Úložisko editora",
-      "profiles": "Uložené profily",
       "lending": "Sloty na požičiavanie odznakov",
       "voice": "Klonovanie hlasu",
       "voiceFree": "Zadarmo",
       "voiceLocked": "{{tier}} a vyššie"
     },
-    "buy": "Získajte DHB",
+    "buyTokens": "Kúpiť žetóny",
     "details": "Úplný rozpis",
     "play": "Prehrať",
     "pause": "Pozastaviť"

@@ -5917,13 +5917,12 @@
       "images": "Whakaahua mo ia pou",
       "uploads": "Te rohe tuku i ia ra",
       "storage": "Te rokiroki o te kaituhi",
-      "profiles": "Ngā pūkete whakaora",
       "lending": "Badge i 'ai nama",
       "voice": "Kohikohinga reo",
       "voiceFree": "Free",
       "voiceLocked": "{{tier}} me runga ake"
     },
-    "buy": "Haere DHB",
+    "buyTokens": "Hokona nga tohu",
     "details": "Te wehenga katoa",
     "play": "Play",
     "pause": "Pause"

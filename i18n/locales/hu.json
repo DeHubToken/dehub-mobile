@@ -5921,13 +5921,12 @@
       "images": "Képek bejegyzésenként",
       "uploads": "Napi feltöltési korlát",
       "storage": "Szerkesztő tárhelye",
-      "profiles": "Mentett profilok",
       "lending": "Jelvénykölcsönző bővítőhelyek",
       "voice": "Hangklónozás",
       "voiceFree": "Ingyenes",
       "voiceLocked": "{{tier}} és feljebb"
     },
-    "buy": "Kérjen DHB-t",
+    "buyTokens": "Tokenvásárlás",
     "details": "Teljes részletezés",
     "play": "Játék",
     "pause": "Szüneteltetés"

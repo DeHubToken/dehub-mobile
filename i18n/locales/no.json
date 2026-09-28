@@ -5917,13 +5917,12 @@
       "images": "Bilder per innlegg",
       "uploads": "Daglig opplastingsgrense",
       "storage": "Redaktørens lagringsplass",
-      "profiles": "Lagrede profiler",
       "lending": "Utlånsautomater for navneskilt",
       "voice": "Stemmekloning",
       "voiceFree": "Gratis",
       "voiceLocked": "{{tier}} og oppover"
     },
-    "buy": "Få DHB",
+    "buyTokens": "Kjøp tokens",
     "details": "Fullstendig oversikt",
     "play": "Spille",
     "pause": "Pause"

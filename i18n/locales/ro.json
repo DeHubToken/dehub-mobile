@@ -5917,13 +5917,12 @@
       "images": "Imagini per postare",
       "uploads": "Limita zilnică de încărcare",
       "storage": "Stocarea editorului",
-      "profiles": "Profiluri salvate",
       "lending": "Sloturi de creditare a insignelor",
       "voice": "Clonare vocală",
       "voiceFree": "Gratuit",
       "voiceLocked": "{{tier}} și în sus"
     },
-    "buy": "Obțineți DHB",
+    "buyTokens": "Cumpără jetoane",
     "details": "Defalcare completă",
     "play": "Redare",
     "pause": "Pauză"

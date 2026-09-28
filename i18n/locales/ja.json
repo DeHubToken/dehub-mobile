@@ -5968,13 +5968,12 @@
       "images": "投稿ごとの画像",
       "uploads": "1日あたりのアップロード制限",
       "storage": "エディターストレージ",
-      "profiles": "保存されたプロフィール",
       "lending": "バッジ貸出スロット",
       "voice": "音声クローニング",
       "voiceFree": "無料",
       "voiceLocked": "{{tier}}以上"
     },
-    "buy": "DHBを取得",
+    "buyTokens": "トークンを購入",
     "details": "完全な内訳",
     "play": "再生",
     "pause": "一時停止"

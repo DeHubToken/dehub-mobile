@@ -5966,13 +5966,12 @@
       "images": "Gönderi başına resim",
       "uploads": "Günlük yükleme sınırı",
       "storage": "Düzenleyici depolama alanı",
-      "profiles": "Kayıtlı profiller",
       "lending": "Rozet ödünç verme yuvaları",
       "voice": "Ses klonlama",
       "voiceFree": "Ücretsiz",
       "voiceLocked": "{{tier}} ve üzeri"
     },
-    "buy": "DHB al",
+    "buyTokens": "Jeton satın al",
     "details": "Tam döküm",
     "play": "Oynat",
     "pause": "Duraklat"

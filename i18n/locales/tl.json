@@ -5964,13 +5964,12 @@
       "images": "Mga larawan bawat post",
       "uploads": "Araw - araw na limitasyon sa pag - upload",
       "storage": "Imbakan ng editor",
-      "profiles": "Naka - save na mga profile",
       "lending": "Mga puwang ng pagpapahiram ng badge",
       "voice": "Pag - clone ng boses",
       "voiceFree": "Libre",
       "voiceLocked": "{{tier}}pataas"
     },
-    "buy": "Kunin ang DHB",
+    "buyTokens": "Bumili ng mga token",
     "details": "Buong detalye",
     "play": "Maglaro",
     "pause": "I - pause"

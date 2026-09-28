@@ -5918,13 +5918,12 @@
       "images": "Picha kwa kila chapisho",
       "uploads": "Kikomo cha upakiaji wa kila",
       "storage": "Hifadhi ya mhariri",
-      "profiles": "Wasifu uliohifadhiwa",
       "lending": "Nafasi za kukopesha beji",
       "voice": "Upigaji picha za sauti",
       "voiceFree": "Bila malipo",
       "voiceLocked": "{{tier}} na juu"
     },
-    "buy": "Pata DHB",
+    "buyTokens": "Nunua tokeni",
     "details": "Mchanganuo kamili",
     "play": "Cheza",
     "pause": "Sitisha"

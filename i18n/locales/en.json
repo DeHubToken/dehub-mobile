@@ -5959,13 +5959,12 @@
       "images": "Images per post",
       "uploads": "Daily upload limit",
       "storage": "Editor storage",
-      "profiles": "Saved profiles",
       "lending": "Badge lending slots",
       "voice": "Voice cloning",
       "voiceFree": "Free",
       "voiceLocked": "{{tier}} and up"
     },
-    "buy": "Get DHB",
+    "buyTokens": "Buy tokens",
     "details": "Full breakdown",
     "play": "Play",
     "pause": "Pause"

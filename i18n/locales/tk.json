@@ -5917,13 +5917,12 @@
       "images": "Post üçin suratlar",
       "uploads": "Gündelik yükleme çägi",
       "storage": "Editör depgesi",
-      "profiles": "Saýlanan profiler",
       "lending": "Garawul diňi we Garawul diňi",
       "voice": "Ses klonlaşmagy",
       "voiceFree": "Azat",
       "voiceLocked": "{{tier}} we ondan ýokary"
     },
-    "buy": "DHB al",
+    "buyTokens": "Tokenleri satyn al",
     "details": "Bütin döwüş",
     "play": "Oynat",
     "pause": "Galanlar"
