@@ -6490,7 +6490,11 @@
         "false_dilemma": "Ma ọ bụ-ma ọ bụ framing",
         "overgeneralisation": "Swieping na-ekwu",
         "hostile_tone": "Akpọrọ asị ụda"
-      }
+      },
+      "aiMenu": "Ngwaọrụ AI",
+      "changeVibe": "Gbanwee ụdị",
+      "fixSpelling": "Dozie mkpụrụ okwu na ụtọasụsụ",
+      "rewriteFailed": "Enweghị ike idegharị ya. Nwaa ọzọ."
     }
   },
   "drafts": {

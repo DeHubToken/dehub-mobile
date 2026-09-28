@@ -6475,7 +6475,11 @@
         "false_dilemma": "یا تاں ایہ یا اوہ فریم",
         "overgeneralisation": "وڈی دعویٰ",
         "hostile_tone": "دشمنانہ ٹون"
-      }
+      },
+      "aiMenu": "AI ٹولز",
+      "changeVibe": "انداز بدلیں",
+      "fixSpelling": "ہجے اور گرامر درست کریں",
+      "rewriteFailed": "دوبارہ نہیں لکھا جا سکا۔ پھر کوشش کریں۔"
     }
   },
   "drafts": {

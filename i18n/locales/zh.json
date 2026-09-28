@@ -6543,7 +6543,11 @@
         "false_dilemma": "要么-要么-框架",
         "overgeneralisation": "扫荡声明",
         "hostile_tone": "敌对的语气"
-      }
+      },
+      "aiMenu": "AI 工具",
+      "changeVibe": "换个风格",
+      "fixSpelling": "修正拼写和语法",
+      "rewriteFailed": "无法改写，请重试。"
     }
   },
   "drafts": {

@@ -6503,7 +6503,11 @@
         "false_dilemma": "या त - वा फ्रेमिङ",
         "overgeneralisation": "व्यापक दावी",
         "hostile_tone": "शत्रुतापूर्ण स्वर"
-      }
+      },
+      "aiMenu": "AI उपकरणहरू",
+      "changeVibe": "शैली बदल्नुहोस्",
+      "fixSpelling": "हिज्जे र व्याकरण सुधार्नुहोस्",
+      "rewriteFailed": "पुनर्लेखन गर्न सकिएन। फेरि प्रयास गर्नुहोस्।"
     }
   },
   "drafts": {

@@ -6494,7 +6494,11 @@
         "false_dilemma": "או - או מסגור",
         "overgeneralisation": "תביעה גורפת",
         "hostile_tone": "טון עוין"
-      }
+      },
+      "aiMenu": "כלי AI",
+      "changeVibe": "שנה אווירה",
+      "fixSpelling": "תקן איות ודקדוק",
+      "rewriteFailed": "לא ניתן היה לנסח מחדש. נסו שוב."
     }
   },
   "drafts": {

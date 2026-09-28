@@ -6489,7 +6489,11 @@
         "false_dilemma": "अथवा - ॐ भूर्भुवः",
         "overgeneralisation": "अतिक्रमण दावे",
         "hostile_tone": "प्रतिद्वन्द्वी टोन"
-      }
+      },
+      "aiMenu": "AI साधनानि",
+      "changeVibe": "शैलीं परिवर्तयतु",
+      "fixSpelling": "वर्तनीं व्याकरणं च शोधयतु",
+      "rewriteFailed": "पुनर्लेखनं न शक्यम्। पुनः प्रयतताम्।"
     }
   },
   "drafts": {

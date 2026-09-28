@@ -6459,7 +6459,11 @@
         "false_dilemma": "ଅଥବା ଫ୍ରେମିଂ",
         "overgeneralisation": "ଜୋରଦାର ଦାବି",
         "hostile_tone": "ଶତୃ ସ୍ୱର"
-      }
+      },
+      "aiMenu": "AI ଉପକରଣ",
+      "changeVibe": "ଶୈଳୀ ବଦଳାନ୍ତୁ",
+      "fixSpelling": "ବନାନ ଓ ବ୍ୟାକରଣ ଠିକ କରନ୍ତୁ",
+      "rewriteFailed": "ପୁଣି ଲେଖି ହେଲା ନାହିଁ। ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।"
     }
   },
   "drafts": {

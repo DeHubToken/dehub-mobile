@@ -6632,7 +6632,11 @@
         "false_dilemma": "হয়-নয় ফ্রেম",
         "overgeneralisation": "ব্যাপক দাবি",
         "hostile_tone": "বিরূপ টোন"
-      }
+      },
+      "aiMenu": "AI টুলস",
+      "changeVibe": "মেজাজ বদলান",
+      "fixSpelling": "বানান ও ব্যাকরণ ঠিক করুন",
+      "rewriteFailed": "পুনরায় লেখা যায়নি। আবার চেষ্টা করুন।"
     }
   },
   "drafts": {

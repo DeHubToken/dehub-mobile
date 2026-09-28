@@ -6490,7 +6490,11 @@
         "false_dilemma": "O bé o bé emmarcar",
         "overgeneralisation": "Sol·licitud àmplia",
         "hostile_tone": "To hostil"
-      }
+      },
+      "aiMenu": "Eines d'IA",
+      "changeVibe": "Canvia l'estil",
+      "fixSpelling": "Corregeix l'ortografia i la gramàtica",
+      "rewriteFailed": "No s'ha pogut reescriure. Torna-ho a provar."
     }
   },
   "drafts": {

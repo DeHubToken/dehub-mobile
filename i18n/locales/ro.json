@@ -6490,7 +6490,11 @@
         "false_dilemma": "Încadrare de tipul \"ori-ori\"",
         "overgeneralisation": "Afirmație generală",
         "hostile_tone": "Ton ostil"
-      }
+      },
+      "aiMenu": "Instrumente AI",
+      "changeVibe": "Schimbă stilul",
+      "fixSpelling": "Corectează ortografia și gramatica",
+      "rewriteFailed": "Nu s-a putut rescrie. Încearcă din nou."
     }
   },
   "drafts": {

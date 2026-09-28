@@ -6490,7 +6490,11 @@
         "false_dilemma": "Ose inkuadrim ose inkuadrim",
         "overgeneralisation": "Kërkesë për dëmshpërblim gjithëpërfshirës",
         "hostile_tone": "Toni armiqësor"
-      }
+      },
+      "aiMenu": "Mjete AI",
+      "changeVibe": "Ndrysho stilin",
+      "fixSpelling": "Korrigjo drejtshkrimin dhe gramatikën",
+      "rewriteFailed": "Nuk u rishkrua dot. Provo përsëri."
     }
   },
   "drafts": {

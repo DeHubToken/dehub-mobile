@@ -6750,7 +6750,11 @@
         "false_dilemma": "Sama ada-atau membingkaikan",
         "overgeneralisation": "Tuntutan menyapu",
         "hostile_tone": "Nada bermusuhan"
-      }
+      },
+      "aiMenu": "Alat AI",
+      "changeVibe": "Tukar gaya",
+      "fixSpelling": "Betulkan ejaan & tatabahasa",
+      "rewriteFailed": "Tidak dapat menulis semula. Cuba lagi."
     }
   },
   "drafts": {

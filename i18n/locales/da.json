@@ -6494,7 +6494,11 @@
         "false_dilemma": "Enten-eller indramning",
         "overgeneralisation": "Fejende krav",
         "hostile_tone": "Fjendtlig tone"
-      }
+      },
+      "aiMenu": "AI-værktøjer",
+      "changeVibe": "Skift stemning",
+      "fixSpelling": "Ret stavning og grammatik",
+      "rewriteFailed": "Kunne ikke omskrive. Prøv igen."
     }
   },
   "drafts": {

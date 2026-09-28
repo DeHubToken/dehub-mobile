@@ -6502,7 +6502,11 @@
         "false_dilemma": "එක්කෝ හෝ රාමු කිරීම",
         "overgeneralisation": "Sweeping හිමිකම්",
         "hostile_tone": "සතුරු ස්වරය"
-      }
+      },
+      "aiMenu": "AI මෙවලම්",
+      "changeVibe": "රටාව වෙනස් කරන්න",
+      "fixSpelling": "අක්ෂර වින්‍යාසය සහ ව්‍යාකරණ නිවැරදි කරන්න",
+      "rewriteFailed": "නැවත ලිවිය නොහැකි විය. නැවත උත්සාහ කරන්න."
     }
   },
   "drafts": {

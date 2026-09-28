@@ -6502,7 +6502,11 @@
         "false_dilemma": "တစ်ခုခု-သို့မဟုတ် frameing",
         "overgeneralisation": "Sweeping တောင်းဆိုချက်",
         "hostile_tone": "ရန်လိုသောအသံ"
-      }
+      },
+      "aiMenu": "AI ကိရိယာများ",
+      "changeVibe": "ဟန်ပြောင်းရန်",
+      "fixSpelling": "စာလုံးပေါင်းနှင့် သဒ္ဒါ ပြင်ရန်",
+      "rewriteFailed": "ပြန်ရေး၍ မရပါ။ ထပ်ကြိုးစားပါ။"
     }
   },
   "drafts": {

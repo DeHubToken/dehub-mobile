@@ -6406,7 +6406,11 @@
         "false_dilemma": "ਜਾਂ ਤਾਂ- ਜਾਂ ਫਰੇਮਿੰਗ",
         "overgeneralisation": "ਸਵੀਪਿੰਗ ਕਲੇਮ",
         "hostile_tone": "ਦੁਸ਼ਮਣੀ ਟੋਨ"
-      }
+      },
+      "aiMenu": "AI ਟੂਲ",
+      "changeVibe": "ਅੰਦਾਜ਼ ਬਦਲੋ",
+      "fixSpelling": "ਸ਼ਬਦ-ਜੋੜ ਤੇ ਵਿਆਕਰਨ ਠੀਕ ਕਰੋ",
+      "rewriteFailed": "ਦੁਬਾਰਾ ਨਹੀਂ ਲਿਖ ਸਕੇ। ਫਿਰ ਕੋਸ਼ਿਸ਼ ਕਰੋ।"
     }
   },
   "drafts": {

@@ -6494,7 +6494,11 @@
         "false_dilemma": "Vagy-vagy keretezés",
         "overgeneralisation": "Söprési igény",
         "hostile_tone": "Ellenséges hangnem"
-      }
+      },
+      "aiMenu": "MI-eszközök",
+      "changeVibe": "Hangulatváltás",
+      "fixSpelling": "Helyesírás és nyelvtan javítása",
+      "rewriteFailed": "Nem sikerült átírni. Próbáld újra."
     }
   },
   "drafts": {
