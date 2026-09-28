@@ -5942,7 +5942,6 @@
     "dialogLabel": "نشان {{tier}}",
     "close": "بستن",
     "badges": "نشان‌ها",
-    "tierOf": "ردیف {{index}} از {{total}}",
     "youHaveThis": "شما این نشان را دارید",
     "toUnlock": "{{amount}} توکن‌های بیشتر برای باز کردن قفل آن",
     "holdToUnlock": "برای باز کردن قفل، حداقل این تعداد توکن DeHub را نگه دارید",

@@ -5773,7 +5773,6 @@
     "dialogLabel": "{{tier}} badge",
     "close": "Close",
     "badges": "Badges",
-    "tierOf": "Level {{index}} for {{total}}",
     "youHaveThis": "You get dis badge",
     "toUnlock": "{{amount}} more tokens to open am",
     "holdToUnlock": "Hold at least dis many DeHub tokens to open am",

@@ -5915,7 +5915,6 @@
     "dialogLabel": "{{tier}} بیج",
     "close": "بند کریں",
     "badges": "بیجز",
-    "tierOf": "درجہ {{index}} از {{total}}",
     "youHaveThis": "آپ کے پاس یہ بیج ہے",
     "toUnlock": "اسے ان لاک کرنے کے لیے {{amount}} مزید ٹوکنز",
     "holdToUnlock": "اسے غیر مقفل کرنے کے لیے کم از کم اتنے DeHub ٹوکنز رکھیں",

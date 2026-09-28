@@ -5967,7 +5967,6 @@
     "dialogLabel": "{{tier}} बैज",
     "close": "बंद करें",
     "badges": "बैज",
-    "tierOf": "टियर {{index}} में से {{total}}",
     "youHaveThis": "आपके पास यह बैज है",
     "toUnlock": "इसे अनलॉक करने के लिए {{amount}} और टोकन",
     "holdToUnlock": "इसे अनलॉक करने के लिए कम से कम इतने DeHub टोकन पकड़ें",

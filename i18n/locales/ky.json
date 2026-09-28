@@ -5912,7 +5912,6 @@
     "dialogLabel": "{{tier}} badge",
     "close": "Жабуу",
     "badges": "Белгилер",
-    "tierOf": "Деңгээл {{index}} of {{total}}",
     "youHaveThis": "Сизде бул белги бар",
     "toUnlock": "Аны кулпусун ачуу үчүн {{amount}} дагы белгилер",
     "holdToUnlock": "Аны кулпусун ачуу үчүн жок дегенде ушул көптөгөн DeHub белгилерин кармаңыз",

@@ -5900,7 +5900,6 @@
     "dialogLabel": "{{tier}} ბეიჯი",
     "close": "Დახურვა",
     "badges": "Სამკერდე ნიშნები",
-    "tierOf": "დონე {{index}} / {{total}}",
     "youHaveThis": "Თქვენ გაქვთ ეს ნიშანი",
     "toUnlock": "{{amount}} მეტი სიმბოლოს განბლოკვა",
     "holdToUnlock": "Დაიჭირეთ მინიმუმ ეს ბევრი DeHub ტოკენი მის განბლოკვისთვის",

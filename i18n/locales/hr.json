@@ -5912,7 +5912,6 @@
     "dialogLabel": "Značka {{tier}}",
     "close": "Zatvori",
     "badges": "Značke",
-    "tierOf": "Razina {{index}} od {{total}}",
     "youHaveThis": "Imate ovu značku",
     "toUnlock": "Još {{amount}} tokena za otključavanje",
     "holdToUnlock": "Zadrži barem ovoliko DeHub tokena za otključavanje",

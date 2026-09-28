@@ -6054,7 +6054,6 @@
     "dialogLabel": "{{tier}} বেইজ",
     "close": "বন্ধ করুন",
     "badges": "বেইজসমূহ",
-    "tierOf": "{{total}} এর {{index}} টায়ার",
     "youHaveThis": "আপনার এই বেইজ আছে",
     "toUnlock": "এটি আনলক করতে {{amount}} টোকেন লাগবে",
     "holdToUnlock": "DeHub টোকেন অন্তত এতগুলো ধরে রাখুন এটা আনলক করতে",

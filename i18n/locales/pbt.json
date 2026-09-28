@@ -5911,7 +5911,6 @@
     "dialogLabel": "د {{tier}} بیج",
     "close": "تړل شوی",
     "badges": "د نښې نښانې",
-    "tierOf": "کچه {{index}} له {{total}}",
     "youHaveThis": "تاسو د دې ټایټ ټایټ لرئ",
     "toUnlock": "د خلاصولو لپاره نور {{amount}} ټوکنونه",
     "holdToUnlock": "د دې د خلاصولو لپاره دا ډیری DeHub ټوکنونه وساتئ",

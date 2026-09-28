@@ -5912,7 +5912,6 @@
     "dialogLabel": "{{tier}} شارة",
     "close": "إغلاق",
     "badges": "الشارات",
-    "tierOf": "المستوى {{index}} من {{total}}",
     "youHaveThis": "لديك هذه الشارة",
     "toUnlock": "{{amount}} المزيد من الرموز لفتحه",
     "holdToUnlock": "احتفظ على الأقل بهذا العدد الكبير من رموز DeHub لفتحه",

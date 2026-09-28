@@ -5912,7 +5912,6 @@
     "dialogLabel": "{{tier}} nişan",
     "close": "Bağla",
     "badges": "Nişanlar",
-    "tierOf": "Səviyyə {{index}} / {{total}}",
     "youHaveThis": "Bu nişanınız var",
     "toUnlock": "Açmaq üçün daha {{amount}} token",
     "holdToUnlock": "Açmaq üçün ən azı bu qədər DeHub tokeni saxlayın",

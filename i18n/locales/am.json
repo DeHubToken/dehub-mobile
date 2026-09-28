@@ -5941,7 +5941,6 @@
     "dialogLabel": "{{tier}} ባጅ",
     "close": "ዝጋ",
     "badges": "ባጆች",
-    "tierOf": "ደረጃ {{index}} of {{total}}",
     "youHaveThis": "ይህ ባጅ አለህ",
     "toUnlock": "{{amount}} እሱን ለመክፈት ተጨማሪ ምልክቶች",
     "holdToUnlock": "እሱን ለመክፈት ቢያንስ ይህንን ብዙ የ DeHub ምልክቶችን ይያዙ",

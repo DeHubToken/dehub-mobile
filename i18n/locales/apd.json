@@ -5911,7 +5911,6 @@
     "dialogLabel": "{{tier}} شارة",
     "close": "إغلاق",
     "badges": "شارات",
-    "tierOf": "مستوى {{index}} من {{total}}",
     "youHaveThis": "لديك هذه الشارة",
     "toUnlock": "{{amount}} توكن إضافية لفتحها",
     "holdToUnlock": "خليك ماسك العدد دا من توكنز DeHub عشان تفتحها",

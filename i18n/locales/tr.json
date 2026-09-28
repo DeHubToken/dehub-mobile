@@ -5961,7 +5961,6 @@
     "dialogLabel": "{{tier}} rozeti",
     "close": "Kapat",
     "badges": "Rozetler",
-    "tierOf": "Seviye {{index}}/{{total}}",
     "youHaveThis": "Bu rozete sahipsin",
     "toUnlock": "Açmak için {{amount}} jeton daha",
     "holdToUnlock": "Kilidini açmak için en az bu kadar DeHub jetonu tut",

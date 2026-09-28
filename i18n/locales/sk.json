@@ -6020,7 +6020,6 @@
     "dialogLabel": "Odznak {{tier}}",
     "close": "Zatvoriť",
     "badges": "Odznaky",
-    "tierOf": "Úroveň {{index}} z {{total}}",
     "youHaveThis": "Máte tento odznak",
     "toUnlock": "{{amount}} ďalšie žetóny na odomknutie",
     "holdToUnlock": "Podržte aspoň toľko tokenov DeHub, aby ste ho odomkli",

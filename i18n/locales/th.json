@@ -5936,7 +5936,6 @@
     "dialogLabel": "ตรา {{tier}}",
     "close": "ปิด",
     "badges": "แบดจ์",
-    "tierOf": "ระดับ {{index}} จาก {{total}}",
     "youHaveThis": "คุณมีแบดจ์นี้",
     "toUnlock": "ปลดล็อคโทเค็นอีก {{amount}} รายการ",
     "holdToUnlock": "เก็บโทเค็น DeHub จำนวนมากขนาดนี้เป็นอย่างน้อยเพื่อปลดล็อก",

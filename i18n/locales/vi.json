@@ -5925,7 +5925,6 @@
     "dialogLabel": "Huy hiệu {{tier}}",
     "close": "Đóng",
     "badges": "Huy hiệu",
-    "tierOf": "Cấp độ {{index}}/{{total}}",
     "youHaveThis": "Bạn có huy hiệu này",
     "toUnlock": "Thêm{{amount}} mã thông báo để mở khóa",
     "holdToUnlock": "Giữ ít nhất nhiều mã thông báo DeHub này để mở khóa",

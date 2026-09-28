@@ -5965,7 +5965,6 @@
     "dialogLabel": "{{tier}} emblema",
     "close": "Fechar",
     "badges": "Crachás",
-    "tierOf": "Nível {{index}} de {{total}}",
     "youHaveThis": "Tem este emblema",
     "toUnlock": "{{amount}} mais tokens para desbloquear",
     "holdToUnlock": "Mantenha pelo menos este número de tokens DeHub para desbloqueá-lo",

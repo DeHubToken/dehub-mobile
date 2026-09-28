@@ -5912,7 +5912,6 @@
     "dialogLabel": "{{tier}} เหรียญตรา",
     "close": "ปิด",
     "badges": "เหรียญตรา",
-    "tierOf": "ระดับ {{index}} จาก {{total}}",
     "youHaveThis": "คุณมีเหรียญตรานี้",
     "toUnlock": "อีก {{amount}} โทเคนเพื่อปลดล็อก",
     "holdToUnlock": "ถือครองโทเคน DeHub อย่างน้อยเท่านี้เพื่อปลดล็อก",

@@ -5895,7 +5895,6 @@
     "dialogLabel": "{{tier}} ব্যাজ",
     "close": "বন্ধ করেন",
     "badges": "ব্যাজ",
-    "tierOf": "{{total}} টার মধ্যে {{index}} নম্বর স্তর",
     "youHaveThis": "আপনার এই ব্যাজটা আছে",
     "toUnlock": "খুলবার জন্যে আরো {{amount}} টোকেন লাগবে",
     "holdToUnlock": "খুলবার জন্যে কমপক্ষে এতগুলা DeHub টোকেন রাখেন",

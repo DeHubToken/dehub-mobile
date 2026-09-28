@@ -5930,7 +5930,6 @@
     "dialogLabel": "{{tier}} nishoni",
     "close": "Yopish",
     "badges": "Nishonlar",
-    "tierOf": "{{total}} ning {{index}} darajasi",
     "youHaveThis": "Sizda bu nishon bor",
     "toUnlock": "Ochish uchun yana {{amount}} token",
     "holdToUnlock": "Uni ochish uchun kamida shuncha DeHub tokenlarini ushlab turing",

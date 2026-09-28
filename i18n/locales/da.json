@@ -5916,7 +5916,6 @@
     "dialogLabel": "{{tier}} badge",
     "close": "Luk",
     "badges": "Badges",
-    "tierOf": "Niveau {{index}} af {{total}}",
     "youHaveThis": "Du har dette emblem",
     "toUnlock": "{{amount}} flere poletter for at låse den op",
     "holdToUnlock": "Hold mindst så mange DeHub-tokens for at låse den op",

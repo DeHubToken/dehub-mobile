@@ -5916,7 +5916,6 @@
     "dialogLabel": "תג {{tier}}",
     "close": "סגירה",
     "badges": "תגים",
-    "tierOf": "רמה {{index}} מתוך {{total}}",
     "youHaveThis": "יש לך את התג הזה",
     "toUnlock": "{{amount}} אסימונים נוספים לשחרור הנעילה",
     "holdToUnlock": "יש להחזיק לפחות כל כך הרבה אסימוני DeHub כדי לפתוח את הנעילה",

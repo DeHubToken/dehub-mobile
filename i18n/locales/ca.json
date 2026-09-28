@@ -5912,7 +5912,6 @@
     "dialogLabel": "Insígnia {{tier}}",
     "close": "Tanca",
     "badges": "Insígnies",
-    "tierOf": "Nivell {{index}} de {{total}}",
     "youHaveThis": "Tens aquest distintiu",
     "toUnlock": "{{amount}} més fitxes per desbloquejar-lo",
     "holdToUnlock": "Mantén almenys aquesta quantitat de fitxes DeHub per desbloquejar-la",

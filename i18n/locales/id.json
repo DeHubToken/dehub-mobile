@@ -5961,7 +5961,6 @@
     "dialogLabel": "{{tier}} lencana",
     "close": "Tutup",
     "badges": "Lencana",
-    "tierOf": "Tingkat {{index}} dari {{total}}",
     "youHaveThis": "Anda memiliki lencana ini",
     "toUnlock": "{{amount}} token lagi untuk membukanya",
     "holdToUnlock": "Tahan setidaknya token DeHub sebanyak ini untuk membukanya",
