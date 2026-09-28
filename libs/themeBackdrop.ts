@@ -8,10 +8,17 @@
  */
 let visible = false;
 const listeners = new Set<() => void>();
+const HOLD_MS = 1500;
+let held = false;
+let holdTimer: ReturnType<typeof setTimeout> | null = null;
 
 export function setThemeBackdropVisible(next: boolean): void {
   if (next === visible) return;
   visible = next;
+  notify();
+}
+
+function notify(): void {
   listeners.forEach((l) => {
     try {
       l();
@@ -22,7 +29,24 @@ export function setThemeBackdropVisible(next: boolean): void {
 }
 
 export function isThemeBackdropVisible(): boolean {
-  return visible;
+  return visible && !held;
+}
+
+/**
+ * A drag on any home tab holds the scene still for a moment. Every tab reports
+ * the start of a drag, but not all of them report the end of the fling that
+ * follows, so the hold lapses on its own; each new drag extends it.
+ */
+export function holdThemeBackdrop(): void {
+  if (holdTimer) clearTimeout(holdTimer);
+  holdTimer = setTimeout(() => {
+    holdTimer = null;
+    held = false;
+    notify();
+  }, HOLD_MS);
+  if (held) return;
+  held = true;
+  notify();
 }
 
 export function subscribeThemeBackdrop(listener: () => void): () => void {
