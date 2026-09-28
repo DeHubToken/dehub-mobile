@@ -132,6 +132,36 @@
               "scheme": "https",
               "host": "dehub.io",
               "pathPrefix": "/builder/"
+            },
+            {
+              "scheme": "https",
+              "host": "dehub.io",
+              "path": "/launchpad"
+            },
+            {
+              "scheme": "https",
+              "host": "dehub.io",
+              "pathPrefix": "/launchpad/"
+            },
+            {
+              "scheme": "https",
+              "host": "dehub.io",
+              "path": "/bridge"
+            },
+            {
+              "scheme": "https",
+              "host": "dehub.io",
+              "path": "/depin"
+            },
+            {
+              "scheme": "https",
+              "host": "dehub.io",
+              "path": "/agents"
+            },
+            {
+              "scheme": "https",
+              "host": "dehub.io",
+              "path": "/arcade/kings-gambit/online"
             }
           ],
           "category": [
