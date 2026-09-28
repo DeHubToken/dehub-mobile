@@ -1767,6 +1767,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           onShare={handleOpenShare}
           onTip={DIGITAL_PURCHASES_ENABLED && !minterUser?.hideBadgeAndBalance ? handleTipPress : undefined}
           tokenId={tokenId}
+          viewerAddress={userAddress}
           onSave={handleSavePress}
           onInfo={handleInfoPress}
           onShowReactionInfo={
