@@ -17,7 +17,7 @@ import { useTranslation } from "react-i18next";
 import Icon, { type IconName } from "../ui/Icon";
 import ShowcaseShell, { type ShowcaseApi, type ShowcaseEntry } from "./ShowcaseShell";
 import type { StickerFinish } from "./StickerStage";
-import { Chrome, TITLE_IN, TITLE_OUT, tiltAt, tileWidthFor, ui } from "./showcaseUi";
+import { Chrome, SwapText, tiltAt, tileWidthFor, ui } from "./showcaseUi";
 import { useAppTheme } from "../../context/ThemeContext";
 import { useSelectStreamerBadge, useStreamerProgress } from "../../hooks/useStreamerProgress";
 import { STREAMER_BADGE_IDS, streamerBadgeSvg, type StreamerBadgeId } from "../../libs/streamer-badge-art";
@@ -176,9 +176,7 @@ function StreamerDetails({
       <View style={{ alignItems: "center", gap: 6 }}>
         <Text style={ui.overline}>{t("streamerShowcase.cardOf", { index: api.index + 1, total })}</Text>
         <View style={ui.titleRow}>
-          <Animated.Text key={id} entering={TITLE_IN} exiting={TITLE_OUT} style={ui.title}>
-            {name}
-          </Animated.Text>
+          <SwapText text={name} distance={10} duration={280} align="center" style={ui.title} />
           <View style={[ui.chip, styles.chip]}>
             {earned ? (
               <Icon name="Check" size={12} strokeWidth={3} color="#fff" />

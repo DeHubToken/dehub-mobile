@@ -443,21 +443,29 @@ export default function ShowcaseShell({
 
   const progress = useSharedValue(0);
   const next = useCallback(() => goTo(index + 1), [goTo, index]);
+  // How far the current entry's timer got, kept on the JS side. Reading
+  // `progress.value` back here raced the reset to 0 (a JS write lands on the
+  // UI thread a frame later), saw the old entry's finished 1, and played on
+  // at once: the dock raced through the set two or three badges a second.
+  const timer = useRef({ from: 0, startedAt: 0 });
 
   useEffect(() => {
-    progress.value = 0;
-  }, [index, progress]);
+    timer.current = { from: 0, startedAt: 0 };
+  }, [index]);
 
   useEffect(() => {
-    if (!playing || phase !== "open") {
-      cancelAnimation(progress);
-      return;
-    }
-    const remaining = Math.max(0, 1 - progress.value) * AUTOPLAY_MS;
-    progress.value = withTiming(1, { duration: remaining, easing: Easing.linear }, (done) => {
+    if (!playing || phase !== "open") return;
+    const from = timer.current.from;
+    timer.current.startedAt = Date.now();
+    progress.value = from;
+    progress.value = withTiming(1, { duration: (1 - from) * AUTOPLAY_MS, easing: Easing.linear }, (done) => {
       if (done) runOnJS(next)();
     });
-    return () => cancelAnimation(progress);
+    return () => {
+      cancelAnimation(progress);
+      // A pause resumes from here rather than starting the entry over.
+      timer.current.from = Math.min(1, from + (Date.now() - timer.current.startedAt) / AUTOPLAY_MS);
+    };
   }, [playing, phase, index, next, progress]);
 
   /* ---------- dock ---------- */

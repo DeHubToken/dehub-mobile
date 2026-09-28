@@ -9,7 +9,6 @@
  */
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Image, StyleSheet, Text, View, useWindowDimensions, type ImageSourcePropType } from "react-native";
-import Animated from "react-native-reanimated";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import { LinearGradient } from "expo-linear-gradient";
 import { useTranslation } from "react-i18next";
@@ -18,7 +17,7 @@ import { DhbCoin } from "../common/DhbCoin";
 import ShowcaseShell, { type ShowcaseApi, type ShowcaseEntry, type ShowcaseIntro } from "./ShowcaseShell";
 import { assetDataUrl, type StickerFinish } from "./StickerStage";
 import type { StickerArt } from "./Ascension";
-import { GlassButton, TITLE_IN, TITLE_OUT, VALUE_IN, VALUE_OUT, tiltAt, tileWidthFor, ui } from "./showcaseUi";
+import { GlassButton, SwapText, tiltAt, tileWidthFor, ui } from "./showcaseUi";
 import { useUser } from "../../context/AuthContext";
 import { useBadgeLadderPrice, useBadgeScale } from "../../hooks/useBadgeScale";
 import {
@@ -289,9 +288,7 @@ function HolderDetails({
       <View style={{ alignItems: "center", gap: 6 }}>
         {lineKey ? <Text style={styles.cheer}>{t(lineKey)}</Text> : null}
         <View style={ui.titleRow}>
-          <Animated.Text key={name} entering={TITLE_IN} exiting={TITLE_OUT} style={ui.title}>
-            {SHORT_NAMES[name] ?? name}
-          </Animated.Text>
+          <SwapText text={SHORT_NAMES[name] ?? name} distance={10} duration={280} align="center" style={ui.title} />
           <View style={ui.chip}>
             <DhbCoin size={16} />
             <Text style={ui.chipText}>{shortDhb(threshold)}</Text>
@@ -377,9 +374,7 @@ function HolderDetails({
               </Text>
             </View>
             <View style={[ui.tileFoot, { justifyContent: "flex-end" }]}>
-              <Animated.Text key={row.value} entering={VALUE_IN} exiting={VALUE_OUT} numberOfLines={1} style={ui.tileValue}>
-                {row.value}
-              </Animated.Text>
+              <SwapText text={row.value} distance={8} duration={250} align="right" style={ui.tileValue} />
               {row.coin ? <DhbCoin size={14} /> : null}
               {row.up ? <Text style={ui.up}>▲</Text> : null}
             </View>
