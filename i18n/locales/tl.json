@@ -8507,5 +8507,20 @@
     "subscriptionTokensOnly": "Para sa henerasyon ng AI lamang",
     "subscriptionTokensValueNote": "Ang mga token ng subscription ay may hawak na halaga ng dolyar. Kung gumagalaw ang presyo ng token bago mo gamitin ang mga ito makikita mo ang higit pa o mas kaunting mga token, ngunit palagi silang bumili ng parehong halaga ng henerasyon ng AI. Hindi sila maaaring bawiin, ipadala o ipagpalit.",
     "topUpEmptyHint": "Magdagdag ng mga token na bubuo gamit ang AI"
+  },
+  "accountDeletion": {
+    "title": "Burahin ang account",
+    "description": "Permanenteng tanggalin ang iyong account at personal na data",
+    "warning": "Permanenteng tinatanggal nito ang iyong DeHub profile, mga post, mga komento, mga mensahe at naka - imbak na backup ng wallet. I - save muna ang mga detalye ng pagbawi ng iyong wallet at ilipat muna ang anumang asset. Hindi matatanggal ang mga pampublikong transaksyon sa blockchain at mga legal na kinakailangang rekord ng pagbabayad. Nakatago kaagad ang iyong profile; nakumpleto ang pagtanggal sa loob ng 30 araw. Hindi ito mababawi.",
+    "cancel": "Kanselahin",
+    "confirm": "Permanenteng tanggalin ang aking account",
+    "busy": "Pagsusumite ng kahilingan sa pagtatanggal...",
+    "accepted": "Hiniling ang pagtanggal ng account",
+    "receipt": "Na - save na ang iyong kahilingan sa pagtanggal. Nakatago ang iyong profile at permanenteng tatanggalin ang iyong account sa loob ng 30 araw. Hindi puwedeng kanselahin ng pag - sign in ang kahilingang ito.",
+    "done": "Tapos na",
+    "error": "Hindi maisumite ang iyong kahilingan sa pagtanggal. Ang iyong account ay hindi nakumpirma para sa pagtanggal. Pakisubukan muli.",
+    "back": "Bumalik sa Mga Setting",
+    "signIn": "Mag - sign in para tanggalin ang iyong account",
+    "acknowledge": "Na - save ko ang aking mga detalye sa pagbawi ng wallet at nauunawaan ko na ang pagtanggal ay permanente."
   }
 }

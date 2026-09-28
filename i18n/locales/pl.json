@@ -8394,5 +8394,20 @@
     "subscriptionTokensOnly": "Tylko dla generacji sztucznej inteligencji",
     "subscriptionTokensValueNote": "Tokeny abonamentowe utrzymują swoją wartość w dolarach. Jeśli cena tokena zmieni się przed ich użyciem, zobaczysz więcej lub mniej tokenów, ale zawsze kupują tę samą ilość generowania sztucznej inteligencji. Nie można ich wycofywać, wysyłać ani handlować nimi.",
     "topUpEmptyHint": "Dodaj tokeny do wygenerowania za pomocą sztucznej inteligencji"
+  },
+  "accountDeletion": {
+    "title": "Usuwanie konta",
+    "description": "Trwale usuń swoje konto i dane osobowe",
+    "warning": "Spowoduje to trwałe usunięcie Twojego profilu DeHub, postów, komentarzy, wiadomości i zapisanych kopii zapasowych portfela. Zapisz szczegóły odzyskiwania portfela i najpierw przenieś wszelkie zasoby. Publiczne transakcje blockchain i wymagane prawem rekordy płatności nie mogą zostać usunięte. Twój profil zostanie natychmiast ukryty. Usunięcie nastąpi w ciągu 30 dni. Tej czynności nie można cofnąć.",
+    "cancel": "Anuluj",
+    "confirm": "Trwale usuń moje konto",
+    "busy": "Przesyłanie prośby o usunięcie…",
+    "accepted": "Poproszono o usunięcie konta",
+    "receipt": "Twoja prośba o usunięcie została zapisana. Twój profil jest ukryty, a Twoje konto zostanie trwale usunięte w ciągu 30 dni. Logowanie nie może anulować tej prośby.",
+    "done": "Gotowe",
+    "error": "Nie można przesłać prośby o usunięcie. Twoje konto nie zostało potwierdzone do usunięcia. Spróbuj ponownie.",
+    "back": "Wróć do Ustawień",
+    "signIn": "Zaloguj się",
+    "acknowledge": "Zapisałem szczegóły odzyskiwania portfela i rozumiem, że usunięcie jest trwałe."
   }
 }

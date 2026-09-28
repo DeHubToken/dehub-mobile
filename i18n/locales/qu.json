@@ -8354,5 +8354,20 @@
     "subscriptionTokensOnly": "AI mirayllapaq",
     "subscriptionTokensValueNote": "Suscripción tokenkuna dólar chaninninta hap&#39;in. Sichus token chanin kuyun manaraq llamk&#39;achkaspa aswan utaq pisi tokenkunata rikunki, ichaqa sapa kuti kikin qullqita AI mirayta rantinku. Manan qechuyta, apachiyta, qhatuytapas atinkuchu.",
     "topUpEmptyHint": "AIwan paqarichinapaq tokenkunata yapay"
+  },
+  "accountDeletion": {
+    "title": "Cuenta chinkachiy",
+    "description": "Wiñaypaq yupayniyki chaymanta sapalla willayniyki qulluy",
+    "warning": "Kayqa wiñaypaq DeHub perfilniyki, qillqakuna, rimaykuna, willakuykunata chaymanta waqaychasqa billetera waqaychasqa kaqta qulluchin. Billeterayki kutichiy detallesniyki waqaychay chaymanta ima kaqniykikunatapas ñawpaqta kuyuchiy. Llaqtapaq blockchain ruwanakuna chaymanta kamachiywan kamachisqa qullqi quy registrokuna mana qulluyta atikunkuchu. Perfilniykiqa chaylla pakasqa kachkan; qulluchiyqa 30 punchawllapim tukun. Kaytaqa manam kutichiyta atikunmanchu.",
+    "cancel": "Sayachiy...",
+    "confirm": "Cuentayta wiñaypaq chinkachiy",
+    "busy": "Qulluy mañakuyta apachispa...",
+    "accepted": "Cuenta chinkachiy mañasqa",
+    "receipt": "Qulluy mañakuyniykiqa waqaychasqañam. Perfilniyki pakasqa kachkan chaymanta yupayniyki wiñaypaq qullusqa kanqa 30 p&#39;unchawkunapi. Yaykuyqa manam kay mañakuyta qulluyta atinchu.",
+    "done": "Ñam",
+    "error": "Mana qulluy mañakuyniyki apachiyta atirqanchu. Yupayniykiqa manam qulluypaq takyachisqachu. Ama hina kaspa, hukmanta kallpachakuy.",
+    "back": "Ajustes nisqaman kutiy",
+    "signIn": "Yaykuy yupayniyki chinkachinaykipaq",
+    "acknowledge": "Billetera recuperación detallesniyta waqaychani chaymanta entiendeni qulluyqa wiñaypaq kasqanmanta."
   }
 }

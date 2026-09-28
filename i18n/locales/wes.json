@@ -7773,5 +7773,14 @@
     "subscriptionTokensOnly": "Na only for AI generation",
     "subscriptionTokensValueNote": "Subscription tokens di keep dia dollar value. If token price change before you use dem, you go see more or less tokens, but dem go always buy di same amount of AI generation. You no fit withdraw, send or trade dem.",
     "topUpEmptyHint": "Add tokens make you fit generate with AI"
+  },
+  "accountDeletion": {
+    "title": "Delete account",
+    "cancel": "Cancel",
+    "confirm": "Permanently delete my account",
+    "busy": "Submitting deletion request…",
+    "accepted": "Account deletion requested",
+    "done": "Done",
+    "back": "Back to Settings"
   }
 }

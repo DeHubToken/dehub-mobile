@@ -5,6 +5,7 @@
 // provisioned/reused for them.
 import * as WebBrowser from "expo-web-browser";
 import * as Linking from "expo-linking";
+import { Platform } from "react-native";
 import { supabase } from "../supabase";
 import { createLogger } from "../../libs/logger";
 
@@ -203,6 +204,35 @@ export async function signInWithGoogle(): Promise<string> {
 }
 
 export async function signInWithApple(): Promise<string> {
+  if (Platform.OS === "ios") {
+    const AppleAuthentication: typeof import("expo-apple-authentication") = require("expo-apple-authentication");
+    const Crypto: typeof import("expo-crypto") = require("expo-crypto");
+    const nonce = Crypto.randomUUID();
+    const hashedNonce = await Crypto.digestStringAsync(Crypto.CryptoDigestAlgorithm.SHA256, nonce);
+    const credential = await AppleAuthentication.signInAsync({
+      requestedScopes: [
+        AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
+        AppleAuthentication.AppleAuthenticationScope.EMAIL,
+      ],
+      nonce: hashedNonce,
+    });
+    if (!credential.identityToken) throw new Error("Apple sign-in did not return an identity token");
+    const { data, error } = await supabase.auth.signInWithIdToken({
+      provider: "apple",
+      token: credential.identityToken,
+      nonce,
+    });
+    if (error || !data.session?.user.id) {
+      throw new Error(error?.message || "Could not establish Apple sign-in session");
+    }
+    // Apple supplies the name only on the first authorization.
+    const fullName = [credential.fullName?.givenName, credential.fullName?.familyName]
+      .filter(Boolean).join(" ");
+    if (fullName) {
+      await supabase.auth.updateUser({ data: { full_name: fullName } });
+    }
+    return data.session.user.id;
+  }
   return signInWithOAuthProvider("apple");
 }
 

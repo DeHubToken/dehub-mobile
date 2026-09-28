@@ -8381,5 +8381,19 @@
     "subscriptionTokensOnly": "Faqat AI yaratish uchun",
     "subscriptionTokensValueNote": "Obuna tokenlari o&#39;zlarining dollar qiymatini saqlab qoladi. Agar token narxi siz ulardan foydalanishdan oldin o&#39;zgarsa, siz ko&#39;proq yoki kamroq tokenlarni ko&#39;rasiz, lekin ular har doim bir xil miqdorda sun&#39;iy intellekt ishlab chiqarishni sotib olishadi. Ularni qaytarib olish, yuborish yoki sotish mumkin emas.",
     "topUpEmptyHint": "Sun&#39;iy intellekt yordamida yaratish uchun tokenlarni qo&#39;shing"
+  },
+  "accountDeletion": {
+    "title": "Akkauntni o`chirish",
+    "description": "Hisobingiz va shaxsiy ma&#39;lumotlaringizni butunlay o&#39;chirib tashlang",
+    "warning": "Bu sizning DeHub profilingizni, postlaringizni, sharhlaringizni, xabarlaringizni va saqlangan hamyon zaxira nusxangizni butunlay o&#39;chirib tashlaydi. Hamyoningizni tiklash ma&#39;lumotlarini saqlang va avval barcha aktivlarni boshqa joyga ko&#39;chiring. Ommaviy blokcheyn tranzaksiyalari va qonuniy talab qilinadigan to&#39;lov yozuvlarini o&#39;chirib bo&#39;lmaydi. Profilingiz darhol yashirinadi; o&#39;chirish 30 kun ichida yakunlanadi. Buni bekor qilib bo&#39;lmaydi.",
+    "cancel": "Bekor qilish",
+    "confirm": "Hisobimni butunlay o&#39;chirish",
+    "busy": "O&#39;chirish so&#39;rovi yuborilmoqda…",
+    "accepted": "Hisobni o&#39;chirish so&#39;ralgan",
+    "receipt": "O&#39;chirish so&#39;rovingiz saqlandi. Profilingiz yashiringan va hisobingiz 30 kun ichida butunlay o&#39;chiriladi. Tizimga kirish orqali ushbu so&#39;rovni bekor qilib bo&#39;lmaydi.",
+    "error": "O&#39;chirish so&#39;rovingizni yuborib bo&#39;lmadi. Hisobingiz o&#39;chirish uchun tasdiqlanmadi. Iltimos, qaytadan urinib ko&#39;ring.",
+    "back": "Sozlamalarga qaytish",
+    "signIn": "Hisobingizni o&#39;chirish uchun tizimga kiring",
+    "acknowledge": "Men hamyonimni tiklash ma&#39;lumotlarini saqladim va o&#39;chirish doimiy ekanligini tushunaman."
   }
 }
