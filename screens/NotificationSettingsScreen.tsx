@@ -362,7 +362,7 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation, embedded }) => 
         {!pushPermissionGranted && (
           <TouchableOpacity
             onPress={openSystemSettings}
-            className="mx-4 mt-4 p-4 bg-white/10 border border-white/20 rounded-xl flex-row items-center"
+            className="mt-4 p-4 bg-white/10 border border-white/20 rounded-xl flex-row items-center"
           >
             <View className="w-10 h-10 rounded-xl bg-white/15 items-center justify-center mr-3">
               <Icon name="BellOff" size={20} color="#D4D4D8" />
@@ -376,7 +376,7 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation, embedded }) => 
         )}
 
         {pushUnreachable && (
-          <View className="mx-4 mt-4 p-4 bg-white/10 border border-amber-500/40 rounded-xl flex-row items-center">
+          <View className="mt-4 p-4 bg-white/10 border border-amber-500/40 rounded-xl flex-row items-center">
             <View className="w-10 h-10 rounded-xl bg-white/15 items-center justify-center mr-3">
               <Icon name="BellOff" size={20} color="#D4D4D8" />
             </View>
@@ -388,30 +388,30 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation, embedded }) => 
         )}
 
         <SettingsAnchor id="master-controls">
-          <View className="mt-4 mx-4">
-            <Text className="text-theme-neutrals-500 text-[11px] uppercase mb-2 ml-1 tracking-widest font-semibold">{t('settings.masterControls')}</Text>
-            <View className="bg-theme-neutrals-800 rounded-xl overflow-hidden border border-theme-neutrals-700">
-              <View className="px-4 py-3.5 flex-row items-center justify-between">
+          <View className="mt-4">
+            <Text className="text-theme-neutrals-400 text-sm font-medium mb-2">{t('settings.masterControls')}</Text>
+            <View className="-mx-4">
+              <View className="px-4 py-2 flex-row items-center justify-between">
                 <View className="flex-row items-center flex-1 pr-3">
-                  <View className="mr-3 w-9 h-9 rounded-xl bg-theme-neutrals-700/50 items-center justify-center">
-                    <Icon name="Bell" size={18} color="#9ca3af" />
+                  <View className="mr-3 w-5 h-5 items-center justify-center">
+                    <Icon name="Bell" size={20} color="#8B8D90" />
                   </View>
                   <View className="flex-1">
-                    <Text className="text-white text-sm font-medium">{t('settings.inAppNotificationsLabel')}</Text>
-                    <Text className="text-theme-neutrals-500 text-xs mt-0.5">{t('settings.inAppNotificationsDesc')}</Text>
+                    <Text className="text-white text-base leading-5 font-medium">{t('settings.inAppNotificationsLabel')}</Text>
+                    <Text className="text-theme-neutrals-500 text-sm leading-5 mt-0.5">{t('settings.inAppNotificationsDesc')}</Text>
                   </View>
                 </View>
                 <CustomSwitch value={prefs.inAppEnabled} onValueChange={(v) => updatePrefs({ inAppEnabled: v })} />
               </View>
               <Divider />
-              <View className="px-4 py-3.5 flex-row items-center justify-between">
+              <View className="px-4 py-2 flex-row items-center justify-between">
                 <View className="flex-row items-center flex-1 pr-3">
-                  <View className="mr-3 w-9 h-9 rounded-xl bg-theme-neutrals-700/50 items-center justify-center">
-                    <Icon name="Smartphone" size={18} color="#9ca3af" />
+                  <View className="mr-3 w-5 h-5 items-center justify-center">
+                    <Icon name="Smartphone" size={20} color="#8B8D90" />
                   </View>
                   <View className="flex-1">
-                    <Text className="text-white text-sm font-medium">{t('settings.pushNotifications')}</Text>
-                    <Text className="text-theme-neutrals-500 text-xs mt-0.5">{t('settings.pushNotificationsDeviceDesc')}</Text>
+                    <Text className="text-white text-base leading-5 font-medium">{t('settings.pushNotifications')}</Text>
+                    <Text className="text-theme-neutrals-500 text-sm leading-5 mt-0.5">{t('settings.pushNotificationsDeviceDesc')}</Text>
                   </View>
                 </View>
                 <CustomSwitch
@@ -421,14 +421,14 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation, embedded }) => 
                 />
               </View>
               <Divider />
-              <View className="px-4 py-3.5 flex-row items-center justify-between">
+              <View className="px-4 py-2 flex-row items-center justify-between">
                 <View className="flex-row items-center flex-1 pr-3">
-                  <View className="mr-3 w-9 h-9 rounded-xl bg-theme-neutrals-700/50 items-center justify-center">
-                    <Icon name="Mail" size={18} color="#9ca3af" />
+                  <View className="mr-3 w-5 h-5 items-center justify-center">
+                    <Icon name="Mail" size={20} color="#8B8D90" />
                   </View>
                   <View className="flex-1">
-                    <Text className="text-white text-sm font-medium">{t('settings.emailNotifications')}</Text>
-                    <Text className="text-theme-neutrals-500 text-xs mt-0.5">
+                    <Text className="text-white text-base leading-5 font-medium">{t('settings.emailNotifications')}</Text>
+                    <Text className="text-theme-neutrals-500 text-sm leading-5 mt-0.5">
                       {notifyEmail
                         ? t('settings.emailNotificationsDescLinked', { email: notifyEmail })
                         : t('settings.emailNotificationsNoAddressMobile')}
@@ -449,18 +449,18 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation, embedded }) => 
                 a toggle that turns on over a channel that cannot deliver is
                 worse than one that will not turn on.
               */}
-              <View className="px-4 py-3.5 flex-row items-center justify-between">
+              <View className="px-4 py-2 flex-row items-center justify-between">
                 <TouchableOpacity
                   className="flex-row items-center flex-1 pr-3"
                   activeOpacity={0.7}
                   onPress={() => setSmsSheetOpen(true)}
                 >
-                  <View className="mr-3 w-9 h-9 rounded-xl bg-theme-neutrals-700/50 items-center justify-center">
-                    <Icon name="MessageSquare" size={18} color="#9ca3af" />
+                  <View className="mr-3 w-5 h-5 items-center justify-center">
+                    <Icon name="MessageSquare" size={20} color="#8B8D90" />
                   </View>
                   <View className="flex-1">
-                    <Text className="text-white text-sm font-medium">{t('settings.smsNotifications')}</Text>
-                    <Text className="text-theme-neutrals-500 text-xs mt-0.5">{smsRowDescription}</Text>
+                    <Text className="text-white text-base leading-5 font-medium">{t('settings.smsNotifications')}</Text>
+                    <Text className="text-theme-neutrals-500 text-sm leading-5 mt-0.5">{smsRowDescription}</Text>
                   </View>
                 </TouchableOpacity>
                 <CustomSwitch
@@ -479,17 +479,17 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation, embedded }) => 
                 <>
                   <Divider />
                   <TouchableOpacity
-                    className="px-4 py-3.5 flex-row items-center justify-between"
+                    className="px-4 py-2 flex-row items-center justify-between"
                     activeOpacity={0.7}
                     onPress={() => setSmsScopePicker(true)}
                   >
                     <View className="flex-row items-center flex-1 pr-3">
-                      <View className="mr-3 w-9 h-9 rounded-xl bg-theme-neutrals-700/50 items-center justify-center">
-                        <Icon name="ListFilter" size={18} color="#9ca3af" />
+                      <View className="mr-3 w-5 h-5 items-center justify-center">
+                        <Icon name="ListFilter" size={20} color="#8B8D90" />
                       </View>
                       <View className="flex-1">
-                        <Text className="text-white text-sm font-medium">{t('settings.smsScopeLabel')}</Text>
-                        <Text className="text-theme-neutrals-500 text-xs mt-0.5">{t('settings.smsScopeDesc')}</Text>
+                        <Text className="text-white text-base leading-5 font-medium">{t('settings.smsScopeLabel')}</Text>
+                        <Text className="text-theme-neutrals-500 text-sm leading-5 mt-0.5">{t('settings.smsScopeDesc')}</Text>
                       </View>
                     </View>
                     <Text className="text-theme-neutrals-400 text-sm" numberOfLines={1}>
@@ -504,12 +504,12 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation, embedded }) => 
 
         {CATEGORIES.map(category => (
           <SettingsAnchor key={category.key} id={'notify-' + category.key}>
-            <View className="mt-6 mx-4">
+            <View className="mt-6">
               <View className="flex-row items-center mb-2 ml-1">
                 <Icon name={category.icon} size={13} color="#9ca3af" />
                 <Text className="text-theme-neutrals-500 text-[11px] uppercase ml-1.5 tracking-widest font-semibold">{category.label}</Text>
               </View>
-              <View className="bg-theme-neutrals-800 rounded-xl overflow-hidden border border-theme-neutrals-700">
+              <View className="-mx-4">
                 {typesByCategory[category.key]?.map((type, i) => (
                   <React.Fragment key={type.key}>
                     {i > 0 && <Divider />}
@@ -530,19 +530,19 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation, embedded }) => 
         ))}
 
         <SettingsAnchor id="chat">
-          <View className="mt-6 mx-4">
+          <View className="mt-6">
             <View className="flex-row items-center mb-2 ml-1">
               <Icon name="MessageSquare" size={13} color="#9ca3af" />
               <Text className="text-theme-neutrals-500 text-[11px] uppercase ml-1.5 tracking-widest font-semibold">{t('settings.chatSection')}</Text>
             </View>
-            <View className="bg-theme-neutrals-800 rounded-xl overflow-hidden border border-theme-neutrals-700">
-              <View className="px-4 py-3.5 flex-row items-center justify-between">
+            <View className="-mx-4">
+              <View className="px-4 py-2 flex-row items-center justify-between">
                 <View className="flex-row items-center flex-1 pr-3">
                   <View className="mr-3 w-8 h-8 rounded-lg bg-theme-neutrals-700/50 items-center justify-center">
                     <Icon name="MessagesSquare" size={16} color="#9ca3af" />
                   </View>
                   <View className="flex-1">
-                    <Text className="text-white text-sm font-medium">{t('settings.publicChatAlerts')}</Text>
+                    <Text className="text-white text-base leading-5 font-medium">{t('settings.publicChatAlerts')}</Text>
                     <Text className="text-theme-neutrals-500 text-xs">
                       {publicChatAlerts
                         ? t('settings.publicChatAlertsOnDesc')
@@ -558,11 +558,11 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation, embedded }) => 
                   <TouchableOpacity
                     onPress={() => setRatePicker(true)}
                     activeOpacity={0.7}
-                    className="px-4 py-3.5 flex-row items-center justify-between"
+                    className="px-4 py-2 flex-row items-center justify-between"
                   >
                     <View className="flex-1 pr-3">
-                      <Text className="text-white text-sm font-medium">{t('settings.publicChatAlertsRate')}</Text>
-                      <Text className="text-theme-neutrals-500 text-xs mt-0.5">{t('settings.publicChatAlertsRateHint')}</Text>
+                      <Text className="text-white text-base leading-5 font-medium">{t('settings.publicChatAlertsRate')}</Text>
+                      <Text className="text-theme-neutrals-500 text-sm leading-5 mt-0.5">{t('settings.publicChatAlertsRateHint')}</Text>
                     </View>
                     <View className="bg-theme-neutrals-700 px-4 py-2.5 rounded-xl">
                       <Text className="text-white text-sm">
@@ -573,26 +573,26 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation, embedded }) => 
                 </>
               )}
               <Divider />
-              <View className="px-4 py-3.5 flex-row items-center justify-between">
+              <View className="px-4 py-2 flex-row items-center justify-between">
                 <View className="flex-row items-center flex-1 pr-3">
                   <View className="mr-3 w-8 h-8 rounded-lg bg-theme-neutrals-700/50 items-center justify-center">
                     <Icon name="Bot" size={16} color="#9ca3af" />
                   </View>
                   <View className="flex-1">
-                    <Text className="text-white text-sm font-medium">{t('settings.buyBotAlerts')}</Text>
+                    <Text className="text-white text-base leading-5 font-medium">{t('settings.buyBotAlerts')}</Text>
                     <Text className="text-theme-neutrals-500 text-xs">{t('settings.buyBotAlertsDesc')}</Text>
                   </View>
                 </View>
                 <CustomSwitch value={buyBotAlerts} onValueChange={onToggleBuyBot} />
               </View>
               <Divider />
-              <View className="px-4 py-3.5 flex-row items-center justify-between" testID="coach-suggestions-row">
+              <View className="px-4 py-2 flex-row items-center justify-between" testID="coach-suggestions-row">
                 <View className="flex-row items-center flex-1 pr-3">
                   <View className="mr-3 w-8 h-8 rounded-lg bg-theme-neutrals-700/50 items-center justify-center">
                     <Icon name="Sparkles" size={16} color="#9ca3af" />
                   </View>
                   <View className="flex-1">
-                    <Text className="text-white text-sm font-medium">{t('conversation.coach.settingLabel')}</Text>
+                    <Text className="text-white text-base leading-5 font-medium">{t('conversation.coach.settingLabel')}</Text>
                     <Text className="text-theme-neutrals-500 text-xs">{t('conversation.coach.settingHint')}</Text>
                   </View>
                 </View>
@@ -603,17 +603,17 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation, embedded }) => 
         </SettingsAnchor>
 
         <SettingsAnchor id="quiet-hours">
-          <View className="mt-6 mx-4">
-            <Text className="text-theme-neutrals-500 text-[11px] uppercase mb-2 ml-1 tracking-widest font-semibold">{t('settings.quietHours')}</Text>
-            <View className="bg-theme-neutrals-800 rounded-xl overflow-hidden border border-theme-neutrals-700">
-              <View className="px-4 py-3.5 flex-row items-center justify-between">
+          <View className="mt-6">
+            <Text className="text-theme-neutrals-400 text-sm font-medium mb-2">{t('settings.quietHours')}</Text>
+            <View className="-mx-4">
+              <View className="px-4 py-2 flex-row items-center justify-between">
                 <View className="flex-row items-center flex-1 pr-3">
-                  <View className="mr-3 w-9 h-9 rounded-xl bg-theme-neutrals-700/50 items-center justify-center">
-                    <Icon name="Moon" size={18} color="#9ca3af" />
+                  <View className="mr-3 w-5 h-5 items-center justify-center">
+                    <Icon name="Moon" size={20} color="#8B8D90" />
                   </View>
                   <View className="flex-1">
-                    <Text className="text-white text-sm font-medium">{t('settings.enableQuietHours')}</Text>
-                    <Text className="text-theme-neutrals-500 text-xs mt-0.5">{t('settings.quietHoursPauseDesc')}</Text>
+                    <Text className="text-white text-base leading-5 font-medium">{t('settings.enableQuietHours')}</Text>
+                    <Text className="text-theme-neutrals-500 text-sm leading-5 mt-0.5">{t('settings.quietHoursPauseDesc')}</Text>
                   </View>
                 </View>
                 <CustomSwitch
@@ -661,7 +661,7 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation, embedded }) => 
           </View>
         </SettingsAnchor>
 
-        <View className="mt-6 mx-4 p-4 bg-theme-neutrals-800/50 rounded-xl flex-row items-start">
+        <View className="mt-6 p-4 bg-white/5 rounded-xl flex-row items-start">
           <Icon name="Info" size={16} color="#6b7280" />
           <Text className="text-theme-neutrals-500 text-xs ml-2 flex-1">
             {t('settings.notifInfoNote')}

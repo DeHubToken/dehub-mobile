@@ -49,10 +49,10 @@ const DelegationRow: React.FC<{
 }> = ({ entry, label, ending, onEnd }) => {
   const { t } = useTranslation();
   return (
-  <View className="px-4 py-3.5 flex-row items-center">
+  <View className="px-4 py-2 flex-row items-center">
     <View className="flex-1 mr-2">
       <Text className="text-white text-sm font-mono">{truncateAddress(entry.address, 8, 6)}</Text>
-      <Text className="text-theme-neutrals-500 text-xs mt-0.5">{label}</Text>
+      <Text className="text-theme-neutrals-500 text-sm leading-5 mt-0.5">{label}</Text>
     </View>
     <View className="mr-3">
       <TierBadge tier={entry.tier} />
@@ -131,7 +131,7 @@ const BadgeDelegationSection: React.FC = () => {
       />
       <Divider />
 
-      <View className="px-4 py-3.5">
+      <View className="px-4 py-2">
         {data.ownTier ? (
           <Text className="text-theme-neutrals-400 text-xs leading-5">
             {t('settings.badgeDelegationSlots', {

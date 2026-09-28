@@ -2,7 +2,7 @@
  * Appearance panel — mirrors web's `AppearanceSettings`
  * (dehubweb src/pages/app/SettingsPage.tsx).
  *
- * Ported: Theme (System, Minimal), Language, Dim Lights (+ strength),
+ * Ported: Theme (a sample per theme, as web's picker), Language, Dim Lights (+ strength),
  * Auto-play, Data Saver. Web's seasonal themes and Light are not: Light was
  * tried and pulled (#673), and the seasonal ones are canvas art.
  * Not ported, deliberately:
@@ -16,14 +16,15 @@ import { View, Text, Alert } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import Slider from '@react-native-community/slider';
 import LanguageSelectModal from './LanguageSelectModal';
-import { SettingsScrollView } from './SettingsAnchor';
+import { SettingsAnchor, SettingsScrollView } from './SettingsAnchor';
 import {
+  SectionLabel,
   SettingsSection,
   SettingsLinkRow,
   SettingsToggleRow,
-  SettingsOptionModal,
   Divider,
 } from './SettingsPrimitives';
+import ThemePicker from './ThemePicker';
 import { useAppPrefs, setAppPref } from '../../hooks/useAppPrefs';
 import { useDataSaver, setDataSaverPref } from '../../hooks/useDataSaver';
 import { useHighQualityImages, setHighQualityImages } from '../../libs/cdnImage';
@@ -32,32 +33,12 @@ import {
   clearCreatorPlaybackRates,
 } from '../../libs/video-preferences';
 import i18nInstance, { SUPPORTED_LANGUAGES } from '../../i18n';
-import Icon from '../ui/Icon';
 import { useAppTheme } from '../../context/ThemeContext';
-import { isAppThemeName } from '../../theme/colors';
 
 const AppearancePanel: React.FC = () => {
   const { t } = useTranslation();
   const prefs = useAppPrefs();
-  const { colors, theme, setTheme } = useAppTheme();
-  const [themeModalVisible, setThemeModalVisible] = useState(false);
-  // Web's names for the same themes (settings.<theme> in both apps' locales).
-  const themeOptions = [
-    { value: 'system', label: t('settings.system') },
-    {
-      value: 'minimal',
-      label: t('settings.minimal'),
-      description: t('settings.themeMinimalDesc'),
-    },
-    { value: 'cosmic', label: t('settings.cosmic') },
-    { value: 'hazy', label: t('settings.hazy') },
-    { value: 'swarms', label: t('settings.swarms') },
-    { value: 'lavalamp', label: t('settings.lavalamp') },
-    { value: 'winter', label: t('settings.winter') },
-    { value: 'war', label: t('settings.war') },
-    { value: 'osaka', label: t('settings.osaka') },
-    { value: 'jungle', label: t('settings.jungle') },
-  ];
+  const { colors } = useAppTheme();
   const { pref: dataSaverPref } = useDataSaver();
   const highQuality = useHighQualityImages();
   const [languageModalVisible, setLanguageModalVisible] = useState(false);
@@ -95,16 +76,14 @@ const AppearancePanel: React.FC = () => {
   return (
     <SettingsScrollView className="flex-1" contentContainerStyle={{ paddingBottom: 40 }}>
       {/* Same key and values as web (`dehub.theme`), so each theme means the
-          same thing on both. */}
-      <SettingsSection label={t('settings.theme')} icon="Palette" className="mt-4" anchor="theme">
-        <SettingsLinkRow
-          icon="Palette"
-          label={t('settings.theme')}
-          description={t('settings.themeDesc')}
-          value={themeOptions.find((o) => o.value === theme)?.label}
-          onPress={() => setThemeModalVisible(true)}
-        />
-      </SettingsSection>
+          same thing on both. A sample per theme, as web draws it, rather than
+          a list of names to guess from. */}
+      <SettingsAnchor id="theme">
+        <View className="mt-4">
+          <SectionLabel label={t('settings.theme')} />
+          <ThemePicker />
+        </View>
+      </SettingsAnchor>
 
       <SettingsSection label={t('settings.appearance')} icon="Monitor" anchor="dim-lights">
         <SettingsToggleRow
@@ -213,17 +192,6 @@ const AppearancePanel: React.FC = () => {
           onPress={resetChannelSpeeds}
         />
       </SettingsSection>
-
-      <SettingsOptionModal
-        visible={themeModalVisible}
-        onClose={() => setThemeModalVisible(false)}
-        title={t('settings.theme')}
-        value={theme}
-        options={themeOptions}
-        onSelect={(v) => {
-          if (isAppThemeName(v)) setTheme(v);
-        }}
-      />
 
       <LanguageSelectModal
         visible={languageModalVisible}

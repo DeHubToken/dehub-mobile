@@ -45,11 +45,11 @@ const SettingsSearchBar: React.FC<{ onSelect: (hit: SettingsSearchHit) => void }
   };
 
   return (
-    <View className="mb-3">
-      <View className="flex-row items-center bg-theme-neutrals-700/40 rounded-xl px-3">
+    <View className="mb-4">
+      <View className="h-10 flex-row items-center bg-white/5 border border-white/10 rounded-xl px-3">
         <Icon name="Search" size={16} color="#8B8D90" />
         <TextInput
-          className="flex-1 text-white py-2.5 px-2 text-sm"
+          className="flex-1 text-white py-0 px-2 text-sm"
           placeholder={t('settings.searchPlaceholder', 'Search settings')}
           placeholderTextColor="#8B8D90"
           value={query}
@@ -72,19 +72,17 @@ const SettingsSearchBar: React.FC<{ onSelect: (hit: SettingsSearchHit) => void }
       </View>
 
       {open ? (
-        <View className="mt-2 bg-theme-neutrals-800 border border-theme-neutrals-700 rounded-xl overflow-hidden">
+        <View className="mt-2 bg-theme-neutrals-900 border border-white/10 rounded-xl overflow-hidden">
           {results.length ? (
-            results.map((hit, i) => (
+            results.map((hit) => (
               <TouchableOpacity
                 key={`${hit.tab}:${hit.anchor}:${hit.label}`}
                 onPress={() => handleSelect(hit)}
                 activeOpacity={0.7}
-                className={`flex-row items-center justify-between px-4 py-3 ${
-                  i > 0 ? 'border-t border-theme-neutrals-700' : ''
-                }`}
+                className="flex-row items-center justify-between px-4 py-3"
               >
                 <Text className="text-white text-sm flex-1 mr-2">{hit.displayLabel}</Text>
-                <Text className="text-theme-neutrals-500 text-[11px] uppercase tracking-widest">
+                <Text className="text-theme-neutrals-500 text-xs">
                   {t(TAB_KEYS[hit.tab] ?? '', hit.tab)}
                 </Text>
               </TouchableOpacity>

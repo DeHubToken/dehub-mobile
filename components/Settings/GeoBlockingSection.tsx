@@ -90,7 +90,7 @@ const GeoBlockingSection: React.FC = () => {
   };
 
   return (
-    <View className="mt-6 mx-4">
+    <View className="mt-6">
       <SectionLabel label={t('settings.geoBlocking')} icon="MapPin" />
       <Text className="text-theme-neutrals-500 text-xs mb-3 ml-1">
         {t('settings.geoBlockingDesc')}
@@ -119,7 +119,7 @@ const GeoBlockingSection: React.FC = () => {
       <TouchableOpacity
         onPress={() => setOpen(true)}
         activeOpacity={0.7}
-        className="flex-row items-center justify-between px-4 py-3.5 bg-theme-neutrals-800 border border-theme-neutrals-700 rounded-xl"
+        className="flex-row items-center justify-between px-4 py-2 bg-theme-neutrals-800 border border-theme-neutrals-700 rounded-xl"
       >
         <View className="flex-row items-center" style={{ gap: 8 }}>
           <Icon name="MapPin" size={16} color="#6b7280" />

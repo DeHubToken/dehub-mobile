@@ -3,26 +3,36 @@
  * `SettingToggle` and `SettingDrawerSelect` (dehubweb
  * src/pages/app/SettingsPage.tsx, src/components/app/settings/).
  *
- * Every settings panel builds from these so the two clients stay structurally
- * identical: icon + title + description on the left, control on the right,
- * grouped under an uppercase section label inside a bordered card.
+ * Every settings panel builds from these so the two clients stay identical:
+ * web's `SettingsRow` grid (bare 20px icon, 16px title, 14px description,
+ * control centred on the right), rows 16px apart under a plain grey heading,
+ * all inside the one page bento that SettingsScrollView draws. No card per
+ * group and no icon chips — web has neither.
  *
  * `comingSoon` matches web exactly — the control is inert and tapping it
  * toasts instead of writing anything.
  */
-import React from 'react';
+import React, { useContext } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import Icon, { type IconName } from '../ui/Icon';
 import CustomSwitch from '../ui/CustomSwitch';
 import GlassModal from '../ui/GlassModal';
-import { SettingsAnchor } from './SettingsAnchor';
+import { InSettingsBento, SettingsAnchor } from './SettingsAnchor';
 import { toastInfo } from '../../libs';
 import { useAppTheme } from '../../context/ThemeContext';
 import { MINIMAL_HAIRLINE } from '../../theme/colors';
 
+/**
+ * Web's section heading (`font-medium text-zinc-400 text-sm`). `icon` is
+ * accepted so callers need not change, but web's headings carry none.
+ */
 export const SectionLabel: React.FC<{ label: string; icon?: IconName }> = ({ label, icon }) => {
   const { colors } = useAppTheme();
+  const inBento = useContext(InSettingsBento);
+  if (inBento) {
+    return <Text className="text-theme-neutrals-400 text-sm font-medium mb-2">{label}</Text>;
+  }
   return (
     <View className="flex-row items-center mb-2 ml-1">
       {icon ? <Icon name={icon} size={13} color={colors.neutrals[400]} /> : null}
@@ -35,10 +45,16 @@ export const SectionLabel: React.FC<{ label: string; icon?: IconName }> = ({ lab
   );
 };
 
+/**
+ * A group of rows. Web has no box here — the rows sit straight on the page
+ * bento. Rows keep their own 16px side padding (they are also tap targets),
+ * so the group bleeds 16px each side to put their content flush with the
+ * heading above.
+ */
 export const SectionCard: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { isMinimal } = useAppTheme();
-  // Minimal dissolves page bentos into the canvas (web [data-page-bento]):
-  // no fill, no box, just a hairline above and below the group.
+  const inBento = useContext(InSettingsBento);
+  if (inBento) return <View className="-mx-4">{children}</View>;
   if (isMinimal) {
     return (
       <View style={{ borderTopWidth: 1, borderBottomWidth: 1, borderColor: MINIMAL_HAIRLINE }}>
@@ -53,7 +69,11 @@ export const SectionCard: React.FC<{ children: React.ReactNode }> = ({ children 
   );
 };
 
-export const Divider = () => <View className="h-px bg-theme-neutrals-700 ml-16" />;
+/** In a bento rows are spaced by their own padding, as web's `space-y-4`; no rule between them. */
+export const Divider = () => {
+  const inBento = useContext(InSettingsBento);
+  return inBento ? null : <View className="h-px bg-theme-neutrals-700 ml-12" />;
+};
 
 /**
  * Section wrapper: label + card, with the spacing web uses between blocks.
@@ -71,12 +91,13 @@ export const SettingsSection: React.FC<{
   className?: string;
   anchor?: string;
 }> = ({ label, icon, note, children, className, anchor }) => {
+  const inBento = useContext(InSettingsBento);
   const body = (
-    <View className={`mt-6 mx-4 ${className ?? ''}`}>
+    <View className={`mt-6 ${inBento ? '' : 'mx-4'} ${className ?? ''}`}>
       <SectionLabel label={label} icon={icon} />
       <SectionCard>{children}</SectionCard>
       {note ? (
-        <Text className="text-theme-neutrals-500 text-xs mt-2 mx-1">{note}</Text>
+        <Text className="text-theme-neutrals-500 text-sm mt-2">{note}</Text>
       ) : null}
     </View>
   );
@@ -102,21 +123,23 @@ const RowShell: React.FC<BaseRowProps & { right?: React.ReactNode }> = ({
   right,
 }) => {
   const { colors } = useAppTheme();
-  const resolvedIconColor = iconColor === '#A6A9AC' ? colors.neutrals[400] : iconColor;
+  const inBento = useContext(InSettingsBento);
+  const resolvedIconColor = iconColor === '#A6A9AC' ? colors.neutrals[500] : iconColor;
+  // Web's grid: icon on the title's line, text column, control centred.
   return (
-    <View className={`px-4 py-3.5 flex-row items-center ${disabled ? 'opacity-40' : ''}`}>
-      <View className="mr-3 w-9 h-9 rounded-xl bg-theme-neutrals-700/50 items-center justify-center">
-        <Icon name={icon} size={18} color={destructive ? colors.foreground : resolvedIconColor} />
+    <View className={`px-4 ${inBento ? 'py-2' : 'py-3.5'} flex-row items-start ${disabled ? 'opacity-40' : ''}`}>
+      <View className="mr-3 w-5 h-5 items-center justify-center">
+        <Icon name={icon} size={20} color={destructive ? colors.foreground : resolvedIconColor} />
       </View>
       <View className="flex-1 mr-2">
-        <Text className={`text-sm font-medium ${destructive ? 'text-white/80' : 'text-white'}`}>
+        <Text className={`text-base leading-5 font-medium ${destructive ? 'text-white/80' : 'text-white'}`}>
           {label}
         </Text>
         {description ? (
-          <Text className="text-theme-neutrals-500 text-xs mt-0.5">{description}</Text>
+          <Text className="text-theme-neutrals-500 text-sm leading-5 mt-0.5">{description}</Text>
         ) : null}
       </View>
-      {right}
+      {right ? <View className="ml-2 self-center">{right}</View> : null}
     </View>
   );
 };
@@ -131,16 +154,25 @@ export const SettingsLinkRow: React.FC<
       <RowShell
         {...rest}
         right={
-          <View className="flex-row items-center">
-            {value ? (
-              <Text className="text-theme-neutrals-400 text-xs mr-2">{value}</Text>
-            ) : null}
+          value ? (
+            // Web's select trigger (SETTINGS_CONTROL_CLASS): the value in a
+            // 36px pill with a chevron, not loose grey text.
+            <View
+              className="h-9 px-3 rounded-xl flex-row items-center bg-white/5 border border-theme-neutrals-700"
+              style={{ gap: 6, maxWidth: 160 }}
+            >
+              <Text numberOfLines={1} className="text-white text-sm font-medium flex-shrink">
+                {value}
+              </Text>
+              <Icon name="ChevronDown" size={16} color={colors.neutrals[400]} />
+            </View>
+          ) : (
             <Icon
               name={external ? 'ExternalLink' : 'ChevronRight'}
               size={18}
               color={rest.destructive ? colors.foreground : colors.neutrals[500]}
             />
-          </View>
+          )
         }
       />
     </TouchableOpacity>
@@ -250,8 +282,8 @@ export const SettingsOptionModal: React.FC<{
 
 /** Grey explainer block web renders under several sections. */
 export const SettingsNote: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-  <View className="mt-6 mx-4 p-4 bg-theme-neutrals-800/50 rounded-xl flex-row items-start">
+  <View className="mt-6 p-4 bg-white/5 rounded-xl flex-row items-start">
     <Icon name="Info" size={16} color="#8B8D90" />
-    <Text className="text-theme-neutrals-500 text-xs ml-2 flex-1">{children}</Text>
+    <Text className="text-theme-neutrals-500 text-sm ml-2 flex-1">{children}</Text>
   </View>
 );

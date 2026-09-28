@@ -122,7 +122,7 @@ export function StreamKeySection() {
 
   return (
     <SettingsSection label={t('settings.streamKey.section', 'Stream key')} icon="Radio" anchor="stream-key">
-      <View className="px-4 py-3.5">
+      <View className="px-4 py-2">
         <Text className="text-theme-neutrals-400 text-xs leading-5">
           {t(
             'settings.streamKey.blurb',
@@ -152,8 +152,8 @@ export function StreamKeySection() {
         <>
           <Divider />
 
-          <View className="px-4 py-3.5">
-            <Text className="text-white text-sm font-medium">
+          <View className="px-4 py-2">
+            <Text className="text-white text-base leading-5 font-medium">
               {t('settings.streamKey.server', 'Server')}
             </Text>
             <View className="flex-row items-center mt-2">
@@ -176,8 +176,8 @@ export function StreamKeySection() {
 
           <Divider />
 
-          <View className="px-4 py-3.5">
-            <Text className="text-white text-sm font-medium">
+          <View className="px-4 py-2">
+            <Text className="text-white text-base leading-5 font-medium">
               {t('settings.streamKey.key', 'Stream key')}
             </Text>
             <View className="flex-row items-center mt-2">
@@ -213,8 +213,8 @@ export function StreamKeySection() {
 
           <Divider />
 
-          <View className="px-4 py-3.5">
-            <Text className="text-white text-sm font-medium">
+          <View className="px-4 py-2">
+            <Text className="text-white text-base leading-5 font-medium">
               {t('settings.streamKey.defaultTitle', 'Default stream title')}
             </Text>
             <View className="flex-row items-center mt-2">
@@ -254,7 +254,7 @@ export function StreamKeySection() {
 
           <Divider />
 
-          <View className="px-4 py-3.5">
+          <View className="px-4 py-2">
             <TouchableOpacity
               onPress={rotate}
               disabled={busy}
