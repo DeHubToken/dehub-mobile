@@ -5,6 +5,9 @@ import { createAuthHeaders, getAuthToken } from './auth.utils';
 import { tokenRefreshManager } from './token-refresh';
 import { getDeviceHeaders } from './device';
 import { isKidsModeLocked } from './kids-mode-lock';
+import { createLogger } from './logger';
+
+const sessionLog = createLogger('SessionRequest');
 
 const APP_VERSION = Constants.expoConfig?.version ?? '1.0.0';
 const PLATFORM = Platform.OS; // 'ios' | 'android'
@@ -67,6 +70,8 @@ interface ApiOptions {
    * doesn't read as a crash.
    */
   quiet?: boolean;
+  /** Reuse the signed login proof once through the relay if transport fails. */
+  retrySession?: boolean;
 }
 
 /**
@@ -88,6 +93,7 @@ export const apiClient = {
       params,
       timeoutMs,
       quiet = false,
+      retrySession = false,
     } = options;
 
     // Robust RN FormData detection: works across polyfills/realms
@@ -164,7 +170,10 @@ export const apiClient = {
       try {
         return await fetch(url, { ...init, signal: controller.signal });
       } catch (err: any) {
-        if (allowFallback && method === 'GET' && !isFormData && API_DIRECT_BASE_URL === 'https://api.dehub.io/api' && url.startsWith(`${API_DIRECT_BASE_URL}/`)) {
+        const isSessionRequest = retrySession && !isAuthRequired && method === 'POST' &&
+          (endpoint === '/mobile/auth' || endpoint === '/web/auth/supabase');
+        const transportFailed = timedOut || (err instanceof TypeError && /network|fetch|load failed/i.test(err.message));
+        if (allowFallback && (method === 'GET' || (isSessionRequest && transportFailed)) && !isFormData && API_DIRECT_BASE_URL === 'https://api.dehub.io/api' && url.startsWith(`${API_DIRECT_BASE_URL}/`)) {
           clearTimeout(timer);
           url = API_RELAY_BASE_URL + url.slice(API_DIRECT_BASE_URL.length);
           return withTimeout(init, false);
@@ -282,6 +291,7 @@ export const apiClient = {
       // which is gated on DEBUG.
       return data as T;
     } catch (error) {
+      if (retrySession) sessionLog.error('login transport or response failed', { endpoint, method, route: url.startsWith(API_RELAY_BASE_URL) ? 'relay' : 'direct' }, error);
       if (!quiet) console.error(`API Error (${url}):`, error);
       throw error;
     }

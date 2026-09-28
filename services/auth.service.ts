@@ -5,6 +5,9 @@ import {
   buildAuthRequestPayload,
 } from "../libs/web3.auth.sign";
 import { User } from "../context/AuthContext";
+import { createLogger } from '../libs/logger';
+
+const walletLoginLog = createLogger('WalletLogin');
 
 // Interface for authentication responses
 interface AuthResponse {
@@ -54,6 +57,7 @@ export const AuthService = {
     chainId: number,
     opts?: { privateKey?: string; storePrivateKey?: boolean; web3AuthMeta?: Record<string, any> }
   ): Promise<AuthResponse> {
+    let stage = 'signature';
     try {
       const sigMeta = await getOrCreateAuthSignature(
         address,
@@ -82,10 +86,11 @@ export const AuthService = {
       // if (typeof opts?.storePrivateKey === "boolean") {
       //   body.storePrivateKey = opts.storePrivateKey;
       // }
+      stage = 'session';
       const response = await apiClient.post<AuthResponse>(
         "/mobile/auth",
         body,
-        { isAuthRequired: false }
+        { isAuthRequired: false, retrySession: true }
       );
       const augmentedUser = { ...response.user, authSignature: sigMeta } as any;
       // isNewAccount ALONE, exactly as dehubweb decides it (AuthProvider's
@@ -114,6 +119,7 @@ export const AuthService = {
         needsUsername: false,
       };
     } catch (error) {
+      walletLoginLog.error('wallet login failed', { stage, address: address.toLowerCase() }, error);
       console.error("Wallet sign in error:", error);
       throw error;
     }
@@ -149,6 +155,7 @@ export const AuthService = {
           // handled below — mirrors the web client, which logs these as a
           // warn and falls back to signing instead of surfacing an error.
           quiet: true,
+          retrySession: true,
         }
       );
       // isNewAccount alone — same rule as signInWithWallet above and as web.
