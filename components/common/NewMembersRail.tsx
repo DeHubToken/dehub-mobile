@@ -31,6 +31,9 @@ const ROSTER_SIZE = 40;
 /** Keep at least this many cards on screen once follows start removing them. */
 const VISIBLE_LIMIT = 20;
 
+/** Follow-status lookups in flight at once. */
+const FOLLOW_CHECK_CONCURRENCY = 4;
+
 type FollowState = {
   isFollowing: boolean;
   isPending: boolean;
@@ -63,12 +66,18 @@ const NewMembersRail: FC = () => {
       };
     }
 
-    void Promise.all(
-      members.map(async (member) => {
-        const relationship = await isFollowing(member.address);
-        return [member.address.toLowerCase(), relationship] as const;
-      }),
-    ).then((relationships) => {
+    // A few at a time, not the whole roster at once: forty simultaneous
+    // is_following calls tripped the API's rate limit, which then refused the
+    // feed's own requests too, and a refused check reads as "not following".
+    const relationships: (readonly [string, Awaited<ReturnType<typeof isFollowing>>])[] = [];
+    let cursor = 0;
+    const worker = async () => {
+      while (!cancelled && cursor < members.length) {
+        const member = members[cursor++];
+        relationships.push([member.address.toLowerCase(), await isFollowing(member.address)] as const);
+      }
+    };
+    void Promise.all(Array.from({ length: FOLLOW_CHECK_CONCURRENCY }, worker)).then(() => {
       if (cancelled) return;
       setFollowStates((current) => {
         const next: Record<string, FollowState> = {};
