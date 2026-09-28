@@ -354,6 +354,8 @@
     "compactModeDesc": "Ahena ny elanelana mba hahitana atiny bebe kokoa",
     "autoPlay": "Mitanjaka ho azy",
     "autoPlayDesc": "Alefaso ho azy ny horonan-tsary amin'ny vaovao",
+    "autoPlayMuted": "Atombohy tsy misy feo ny fandefasana ho azy",
+    "autoPlayMutedDesc": "Ny horonan-tsary mandeha ho azy dia manomboka tsy misy feo foana",
     "showAnimations": "Asehoy ny hetsika",
     "showAnimationsDesc": "Avoahy ny fihovana malefaka sy ny vokatr'izy ireo",
     "coinPlacement": "Toeran'ny vola",

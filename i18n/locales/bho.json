@@ -353,6 +353,8 @@
     "compactModeDesc": "अधिक सामग्री देखे खातिर अंतर कम करीं",
     "autoPlay": "वीडियो ऑटो प्ले",
     "autoPlayDesc": "फीड में वीडियो स्वतः चालू होखे",
+    "autoPlayMuted": "ऑटोप्ले बिना आवाज के शुरू करीं",
+    "autoPlayMutedDesc": "अपने से चले वाला वीडियो हमेशा बिना आवाज के शुरू होई",
     "showAnimations": "एनिमेशन दिखाईं",
     "showAnimationsDesc": "सुचारु संक्रमण आ प्रभाव चालू करीं",
     "coinPlacement": "सिक्का स्थान",

@@ -354,6 +354,8 @@
     "compactModeDesc": "Daha fazla içerik için boşlukları azaltın",
     "autoPlay": "Videoları Otomatik Oynat",
     "autoPlayDesc": "Akıştaki videoları otomatik oynat",
+    "autoPlayMuted": "Otomatik oynatmayı sessiz başlat",
+    "autoPlayMutedDesc": "Kendiliğinden oynayan videolar her zaman sessiz başlar",
     "showAnimations": "Animasyonları Göster",
     "showAnimationsDesc": "Yumuşak geçişleri ve efektleri etkinleştir",
     "coinPlacement": "Coin Yerleşimi",

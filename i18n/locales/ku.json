@@ -352,6 +352,8 @@
     "compactModeDesc": "Cihê kêm bike ji bo naveroka zêdetir",
     "autoPlay": "Vîdyoyan bixweber bilîze",
     "autoPlayDesc": "Di feedê de vîdyoyan bixweber bilîze",
+    "autoPlayMuted": "Lêdana xweber bê deng dest pê bike",
+    "autoPlayMutedDesc": "Vîdyoyên ku bi xwe dilîzin her tim bê deng dest pê dikin",
     "showAnimations": "Anîmasyon nîşan bide",
     "showAnimationsDesc": "Veguheztin û bandorên nerm çalak bike",
     "coinPlacement": "Cihê Diravê",

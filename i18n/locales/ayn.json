@@ -354,6 +354,8 @@
     "compactModeDesc": "قلل المسافات لمحتوى أكثر",
     "autoPlay": "تشغيل تلقائي للفيديو",
     "autoPlayDesc": "شغّل الفيديوهات تلقائي بالمنشورات",
+    "autoPlayMuted": "ابدأ التشغيل التلقائي بدون صوت",
+    "autoPlayMutedDesc": "الفيديوهات اللي تشتغل وحدها تبدأ دايم بدون صوت",
     "showAnimations": "عرض الحركات",
     "showAnimationsDesc": "فعّل الانتقالات والتأثيرات السلسة",
     "coinPlacement": "مكان العملة",

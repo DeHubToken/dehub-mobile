@@ -354,6 +354,8 @@
     "compactModeDesc": "Vähenda vahesid rohkema sisu jaoks",
     "autoPlay": "Videode automaatesitus",
     "autoPlayDesc": "Mängi videoid voos automaatselt",
+    "autoPlayMuted": "Alusta automaatesitust vaigistatult",
+    "autoPlayMutedDesc": "Iseenesest mängivad videod algavad alati ilma helita",
     "showAnimations": "Näita animatsioone",
     "showAnimationsDesc": "Luba sujuvad üleminekud ja efektid",
     "coinPlacement": "Mündi paigutus",

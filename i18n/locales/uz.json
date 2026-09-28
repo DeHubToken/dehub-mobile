@@ -354,6 +354,8 @@
     "compactModeDesc": "Koʻproq kontent uchun intervalni kamaytiring",
     "autoPlay": "Avtomatik ijro",
     "autoPlayDesc": "Lentada videolarni avtomatik ijro etish",
+    "autoPlayMuted": "Avtomatik ijroni ovozsiz boshlash",
+    "autoPlayMutedDesc": "O'zi ijro etiladigan videolar har doim ovozsiz boshlanadi",
     "showAnimations": "Animatsiyalarni koʻrsatish",
     "showAnimationsDesc": "Silliq oʻtishlar va effektlarni yoqish",
     "coinPlacement": "Tanga joylashuvi",

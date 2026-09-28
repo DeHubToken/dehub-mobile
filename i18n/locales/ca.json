@@ -354,6 +354,8 @@
     "compactModeDesc": "Reduir espaiat per a més contingut",
     "autoPlay": "Reproducció automàtica de vídeos",
     "autoPlayDesc": "Reproduir automàticament els vídeos al feed",
+    "autoPlayMuted": "Inicia la reproducció automàtica sense so",
+    "autoPlayMutedDesc": "Els vídeos que es reprodueixen sols sempre comencen amb el so apagat",
     "showAnimations": "Mostrar animacions",
     "showAnimationsDesc": "Activar transicions i efectes suaus",
     "coinPlacement": "Ubicació de la moneda",

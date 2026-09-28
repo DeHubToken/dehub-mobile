@@ -354,6 +354,8 @@
     "compactModeDesc": "Has köp mazmun üçin aralygy azaltmak",
     "autoPlay": "Awtomatik oýnamak",
     "autoPlayDesc": "Wideolary awtomatik oýnamak",
+    "autoPlayMuted": "Awtomatik oýnatmany sessiz başla",
+    "autoPlayMutedDesc": "Özbaşdak oýnaýan wideolar hemişe sessiz başlaýar",
     "showAnimations": "Animasiýalary görkezmek",
     "showAnimationsDesc": "Ýumşak geçişleri açmak",
     "coinPlacement": "Teňňäniň ýeri",

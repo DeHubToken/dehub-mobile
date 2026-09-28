@@ -354,6 +354,8 @@
     "compactModeDesc": "K'itikuna pisiyachiy aswan imaymana kananpaq",
     "autoPlay": "Kikin kuyuriy videokuna",
     "autoPlayDesc": "Videokuna kikin kuyurichiy feed kaqpi",
+    "autoPlayMuted": "Kikinmanta pukllachiyta mana uyarisqa qallariy",
+    "autoPlayMutedDesc": "Kikinmanta pukllaq vidiyokunaqa sapa kuti mana uyarisqa qallarinku",
     "showAnimations": "Kuyuriykuna rikuchiy",
     "showAnimationsDesc": "Allin tikraykuna kuyuriykuna hurquy",
     "coinPlacement": "Qullqi churay",
