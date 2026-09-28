@@ -33,10 +33,11 @@ export const MATURE_CONTENT_ENABLED = !IS_APP_STORE_BUILD;
 
 /**
  * Whether any crypto-backed commerce or reward action is available in the
- * App Store build. Off on iOS: that includes boosts, creator plans, AI
+ * App Store build. Off on iOS: that includes purchases of creator plans, AI
  * generation, ad credit, paid posting, PPV, bounties, tips, staking, token
  * purchases and marketplace checkout. Previously acquired access may still
  * be rendered by read-only content APIs, but iOS never offers a purchase,
- * claim, earn or outbound web-buy action.
+ * claim, earn or outbound web-buy action. Free gameplay and the use of
+ * server-granted badge allowances must not be gated by this purchase flag.
  */
 export const DIGITAL_PURCHASES_ENABLED = !IS_APP_STORE_BUILD;

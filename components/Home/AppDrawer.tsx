@@ -121,14 +121,12 @@ const NAV_ITEMS: DrawerItem[] = [
   // Staking lives as a tab inside the wallet (Dpay) screen rather than its own
   // route, so it deep-links there. Web has it as a separate sidebar entry.
   { icon: "Vault", labelKey: "nav.staking", screen: ScreenNames.Dpay, params: { initialTab: "stake" }, requiresAuth: true, storefrontHidden: true },
-  // Sits under Staking because it is what staking buys. No `requiresAuth`: the
-  // ladder is worth reading before you hold a badge, which is the whole point
-  // of the screen.
-  { icon: "Zap", labelKey: "nav.superpowers", screen: ScreenNames.SuperPowers, storefrontHidden: true },
+  // Badge grants and existing allowances are available on every platform.
+  { icon: "Zap", labelKey: "nav.superpowers", screen: ScreenNames.SuperPowers },
   // Emoji, sticker and GIF packs — creating one is a badge perk, so it sits with
   // the other things staking buys. Browsing and adding packs is open to all.
   { icon: "Smile", labelKey: "creatorPacks.title", screen: ScreenNames.Packs },
-  { icon: "ShieldCheck", labelKey: "nav.governance", screen: ScreenNames.Governance, storefrontHidden: true },
+  { icon: "ShieldCheck", labelKey: "nav.governance", screen: ScreenNames.Governance },
   { icon: "Landmark", labelKey: "nav.dao", screen: ScreenNames.Dao, storefrontHidden: true },
   { icon: "Briefcase", labelKey: "screens.work", screen: ScreenNames.Work, storefrontHidden: true },
   { icon: "Users", labelKey: "nav.affiliate", screen: ScreenNames.Affiliate, requiresAuth: true, storefrontHidden: true },
@@ -146,8 +144,8 @@ const NAV_ITEMS: DrawerItem[] = [
   { icon: "Tv", labelKey: "nav.tv", screen: ScreenNames.TV },
   // Sits between Stores and Glossary, as on the web sidebar. Only the games
   // that work on a touchscreen are listed — see config/arcade-games.
-  { icon: "Gamepad2", labelKey: "nav.arcade", screen: ScreenNames.Arcade, storefrontHidden: true },
-  // The mini app store. Third-party apps, so kept off the iOS storefront build like the arcade.
+  { icon: "Gamepad2", labelKey: "nav.arcade", screen: ScreenNames.Arcade },
+  // The third-party mini app store has its own storefront review pending.
   { icon: "LayoutGrid", labelKey: "miniApps.store.title", screen: ScreenNames.Apps, storefrontHidden: true },
   { icon: "ArrowDownToLine", labelKey: "nav.converter", screen: ScreenNames.Converter, requiresAuth: true },
   { icon: "FolderInput", labelKey: "nav.migrate", screen: ScreenNames.Migrate },

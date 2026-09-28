@@ -7,8 +7,7 @@
  * draw works and points at the feed, where the live draw is announced.
  *
  * Paid entry is left out of the App Store build (config/storefront): the DHB
- * ticket card and the staking route are hidden there, along with the arcade
- * link, which is a storefront-hidden screen of its own. Every draw carries a
+ * ticket card and the staking route are hidden there. Every draw carries a
  * free entry route, so nothing a reader needs is lost.
  */
 import React, { useCallback, useRef } from "react";
@@ -83,9 +82,8 @@ const FAQ = [
   ["raffle.faq6Q", "raffle.faq6A"],
 ] as const;
 
-// The arcade is itself a storefront-hidden screen, so its link goes with it.
 const linkAllowed = (card: Card) =>
-  DIGITAL_PURCHASES_ENABLED || (!card.paid && card.titleKey !== "raffle.arcadeTitle");
+  DIGITAL_PURCHASES_ENABLED || !card.paid;
 
 function SectionHeading({ title, body }: { title: string; body: string }) {
   return (

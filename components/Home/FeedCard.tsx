@@ -1646,7 +1646,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         onMenuPress={handleOpenOptions}
         onAiPress={handleAiPress}
         onBoostPress={
-          DIGITAL_PURCHASES_ENABLED && isOwnerPost && isSignedIn && tokenId != null
+          isOwnerPost && isSignedIn && tokenId != null
             ? handleBoostPress
             : undefined
         }
@@ -1935,12 +1935,12 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           // The sheet is mounted below rather than inside the menu: the menu is
           // conditionally rendered, so onClose unmounts it and any state set in
           // the same handler goes with it.
-          // Neither row exists in the App Store build: a boost is a DHB unlock.
+          // Server-granted boost allowances also apply in the App Store build.
           onBoostPress={
-            DIGITAL_PURCHASES_ENABLED && isOwnerPost && isSignedIn ? () => setShowBoost(true) : undefined
+            isOwnerPost && isSignedIn ? () => setShowBoost(true) : undefined
           }
           onGiftBoostPress={
-            DIGITAL_PURCHASES_ENABLED && !isOwnerPost && isSignedIn && canGiftBoost
+            !isOwnerPost && isSignedIn && canGiftBoost
               ? () => setShowBoost(true)
               : undefined
           }
