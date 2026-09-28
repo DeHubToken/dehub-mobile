@@ -9,10 +9,11 @@ describe('post media presentation', () => {
     const detail = readSource('screens', 'FeedDetailScreen.tsx');
     const feedCard = readSource('components', 'Home', 'FeedCard.tsx');
     const containedImage = readSource('components', 'Home', 'ContainedFeedImage.tsx');
+    const gallery = readSource('components', 'Home', 'FeedImageGallery.tsx');
 
     expect(detail).toContain('prioritizeMedia');
     expect(feedCard).toContain('priority={prioritizeMedia ? "high" : "normal"}');
-    expect(feedCard).toContain('priority={prioritizeMedia && index === 0 ? "high" : "normal"}');
+    expect(gallery).toContain("priority={prioritizeMedia && index === 0 ? 'high' : 'normal'}");
     expect(containedImage).toContain('priority={priority}');
   });
 

@@ -15,6 +15,7 @@ interface ContainedFeedImageProps {
   fallbackWidth: number;
   priority?: "low" | "normal" | "high";
   active?: boolean;
+  drawBitmap?: boolean;
 }
 
 /** Natural-ratio feed image with the same 600-unit height cap as the web app. */
@@ -25,6 +26,7 @@ const ContainedFeedImage: React.FC<ContainedFeedImageProps> = ({
   fallbackWidth,
   priority,
   active = true,
+  drawBitmap = true,
 }) => {
   const animate = useSettledAutoplay(active, uri, 400);
   const { ratio: aspectRatio, onLoad } = useImageAspect(uri);
@@ -67,7 +69,7 @@ const ContainedFeedImage: React.FC<ContainedFeedImageProps> = ({
           overflow: "hidden",
         }}
       >
-        <SmartImage
+        {drawBitmap && <SmartImage
           source={{ uri }}
           contentFit="contain"
           cachePolicy="memory-disk"
@@ -76,7 +78,7 @@ const ContainedFeedImage: React.FC<ContainedFeedImageProps> = ({
           priority={priority}
           autoplay={animate}
           onLoad={onLoad}
-        />
+        />}
       </View>
     </View>
   );

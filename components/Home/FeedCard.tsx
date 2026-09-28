@@ -11,7 +11,6 @@ import {
   StyleSheet,
   type LayoutChangeEvent,
 } from "react-native";
-import { ScrollView as RNScrollView } from "react-native";
 import { GestureDetector } from "react-native-gesture-handler";
 import { useHorizontalScrollGuard } from "../../context/PagerGestureContext";
 import { useNavigation } from "@react-navigation/native";
@@ -42,6 +41,7 @@ import { useAppTheme } from "../../context/ThemeContext";
 import { MINIMAL_HAIRLINE } from "../../theme/colors";
 import MarkdownText from "../ui/MarkdownText";
 import ContainedFeedImage from "./ContainedFeedImage";
+import FeedImageGallery from "./FeedImageGallery";
 import PostTapSurface from "./PostTapSurface";
 import LiveFeedPreview from "../common/LiveFeedPreview";
 import LiveFeedReactionFlow, { type SelfReaction } from "../LiveProducer/LiveFeedReactionFlow";
@@ -1278,36 +1278,17 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       );
     }
     const gallery = (
-      <RNScrollView
-        horizontal
-        nestedScrollEnabled
-        directionalLockEnabled
-        // The gallery owns horizontal movement; vertical drags belong to the feed.
-        alwaysBounceVertical={false}
-        // Let a flick carry its natural momentum across the whole strip instead
-        // of forcing every gesture to stop after exactly one image.
-        showsHorizontalScrollIndicator={false}
+      <FeedImageGallery
+        key={galleryImages.join('|')}
+        images={galleryImages}
+        width={itemWidth}
+        fallbackWidth={IMAGE_WIDTH}
+        active={isVisible}
+        prioritizeMedia={prioritizeMedia}
         onLayout={handleGalleryLayout}
-        decelerationRate="normal"
-      >
-        {galleryImages.map((uri, index) => (
-          <PostTapSurface
-            key={uri}
-            onPress={() => handleImagePress(index)}
-            onReaction={handleVideoTapReaction}
-            style={{ marginRight: index === galleryImages.length - 1 ? 0 : 8 }}
-          >
-            <ContainedFeedImage
-              active={isVisible}
-              uri={uri}
-              width={itemWidth}
-              compact
-              fallbackWidth={IMAGE_WIDTH}
-              priority={prioritizeMedia && index === 0 ? "high" : "normal"}
-            />
-          </PostTapSurface>
-        ))}
-      </RNScrollView>
+        onImagePress={handleImagePress}
+        onReaction={handleVideoTapReaction}
+      />
     );
 
     return (
