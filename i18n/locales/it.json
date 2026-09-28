@@ -5970,16 +5970,15 @@
     "grants": "Cosa sblocca",
     "perks": {
       "fee": "Canone piattaforma",
-      "votes": "Voti di governance",
-      "reach": "Peso per vista e reazione",
-      "feedPosts": "Post di alimentazione domestica al giorno",
+      "votes": "Peso del voto",
+      "reach": "Peso reazioni",
+      "feedPosts": "Post in home",
       "images": "Immagini per post",
-      "uploads": "Limite di caricamento giornaliero",
+      "uploads": "Limite giornaliero",
       "storage": "Archiviazione editor",
-      "lending": "Slot per prestito badge",
+      "lending": "Slot prestito",
       "voice": "Clonazione vocale",
-      "voiceFree": "Gratis",
-      "voiceLocked": "{{tier}} e oltre"
+      "voiceFree": "Gratis"
     },
     "buyTokens": "Acquista token",
     "details": "Dettaglio completo",

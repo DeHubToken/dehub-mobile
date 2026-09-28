@@ -5925,16 +5925,15 @@
     "grants": "Vad den låser upp",
     "perks": {
       "fee": "Plattformsavgift",
-      "votes": "Styrelseomröstningar",
-      "reach": "Vikt per vy och reaktion",
-      "feedPosts": "Hemmatningsinlägg om dagen",
-      "images": "Bilder per inlägg",
-      "uploads": "Daglig uppladdningsgräns",
+      "votes": "Röststyrka",
+      "reach": "Reaktionsstyrka",
+      "feedPosts": "Hemflödesinlägg",
+      "images": "Inläggsbilder",
+      "uploads": "Daglig gräns",
       "storage": "Redigeringslagring",
-      "lending": "Utlåningsplatser för emblem",
+      "lending": "Utlåningsplatser",
       "voice": "Röstkloning",
-      "voiceFree": "Gratis",
-      "voiceLocked": "{{tier}} och uppåt"
+      "voiceFree": "Gratis"
     },
     "buyTokens": "Köp polletter",
     "details": "Fullständig uppdelning",

@@ -5974,16 +5974,15 @@
     "grants": "它解锁了什么",
     "perks": {
       "fee": "平台费",
-      "votes": "治理投票",
-      "reach": "每个视图和反应的重量",
-      "feedPosts": "每天在主页上发布帖子",
-      "images": "每篇文章的图片数",
-      "uploads": "每日上传限制",
+      "votes": "投票权重",
+      "reach": "互动权重",
+      "feedPosts": "首页帖子",
+      "images": "帖子图片",
+      "uploads": "每日上限",
       "storage": "编辑器存储",
-      "lending": "徽章借出时段",
+      "lending": "借出名额",
       "voice": "语音克隆",
-      "voiceFree": "免费",
-      "voiceLocked": "{{tier}}及以上"
+      "voiceFree": "免费"
     },
     "buyTokens": "购买代币",
     "details": "完整明细",

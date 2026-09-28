@@ -5921,16 +5921,15 @@
     "grants": "佢解鎖嘅嘢",
     "perks": {
       "fee": "平台費用",
-      "votes": "治理投票",
-      "reach": "每次觀看同反應嘅重量",
-      "feedPosts": "每日嘅家居資訊帖子",
-      "images": "每個帖子嘅圖片",
-      "uploads": "每日上載限制",
+      "votes": "投票權重",
+      "reach": "互動權重",
+      "feedPosts": "首頁帖文",
+      "images": "帖文圖片",
+      "uploads": "每日上限",
       "storage": "編輯器儲存空間",
-      "lending": "徽章借用槽",
+      "lending": "借出名額",
       "voice": "語音克隆",
-      "voiceFree": "免費",
-      "voiceLocked": "{{tier}} 以上"
+      "voiceFree": "免費"
     },
     "buyTokens": "買代幣",
     "details": "完整嘅細分",

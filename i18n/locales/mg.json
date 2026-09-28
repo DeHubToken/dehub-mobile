@@ -5944,16 +5944,15 @@
     "grants": "Izay amohany azy",
     "perks": {
       "fee": "Sarany sehatra",
-      "votes": "Latsa-bato fitantanana",
-      "reach": "Lanja isaky ny fahitana & fihetsika",
-      "feedPosts": "Lahatsoratra fohy ao an-trano isan'andro",
-      "images": "Sary isaky ny lahatsoratra",
-      "uploads": "Daily mampakatra fetra",
+      "votes": "Herin'ny vato",
+      "reach": "Herin'ny fihetsika",
+      "feedPosts": "Lahatsoratra fandraisana",
+      "images": "Sarin'ny lahatsoratra",
+      "uploads": "Fetra isan'andro",
       "storage": "Fitehirizana fanontana",
-      "lending": "Slots fampisamborana mari-pahaizana",
+      "lending": "Toerana findramana",
       "voice": "Fanakarana feo",
-      "voiceFree": "Maimaimpoana",
-      "voiceLocked": "{{tier}} and."
+      "voiceFree": "Maimaimpoana"
     },
     "buyTokens": "Mambran'ny",
     "details": "Famakafakana feno",

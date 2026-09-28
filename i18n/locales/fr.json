@@ -5974,16 +5974,15 @@
     "grants": "Ce qu'il déverrouille",
     "perks": {
       "fee": "Frais de plateforme",
-      "votes": "Votes sur la gouvernance",
-      "reach": "Poids par vue et réaction",
-      "feedPosts": "Articles alimentés à domicile par jour",
-      "images": "Images par publication",
-      "uploads": "Limite de téléchargement quotidienne",
+      "votes": "Poids de vote",
+      "reach": "Poids des réactions",
+      "feedPosts": "Posts d'accueil",
+      "images": "Images par post",
+      "uploads": "Limite quotidienne",
       "storage": "Stockage de l'éditeur",
-      "lending": "Emplacements de prêt de badges",
+      "lending": "Places de prêt",
       "voice": "Clonage vocal",
-      "voiceFree": "Gratuit",
-      "voiceLocked": "{{tier}} et plus"
+      "voiceFree": "Gratuit"
     },
     "buyTokens": "Acheter des jetons",
     "details": "Détail complet",

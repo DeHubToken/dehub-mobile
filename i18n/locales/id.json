@@ -5970,16 +5970,15 @@
     "grants": "Apa yang dibukanya",
     "perks": {
       "fee": "Biaya platform",
-      "votes": "Suara tata kelola",
-      "reach": "Berat per tampilan & reaksi",
-      "feedPosts": "Postingan feed beranda sehari",
-      "images": "Gambar per postingan",
-      "uploads": "Batas unggahan harian",
+      "votes": "Kekuatan suara",
+      "reach": "Kekuatan reaksi",
+      "feedPosts": "Postingan beranda",
+      "images": "Gambar postingan",
+      "uploads": "Batas harian",
       "storage": "Penyimpanan editor",
-      "lending": "Slot pinjaman lencana",
+      "lending": "Slot pinjaman",
       "voice": "Kloning suara",
-      "voiceFree": "Gratis",
-      "voiceLocked": "{{tier}} ke atas"
+      "voiceFree": "Gratis"
     },
     "buyTokens": "Beli token",
     "details": "Perincian lengkap",

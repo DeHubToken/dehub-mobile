@@ -5972,16 +5972,15 @@
     "grants": "アンロックされるもの",
     "perks": {
       "fee": "プラットフォーム料金",
-      "votes": "ガバナンス投票",
-      "reach": "ビューとリアクションあたりの重量",
-      "feedPosts": "1日あたりのホームフィードの投稿数",
-      "images": "投稿ごとの画像",
-      "uploads": "1日あたりのアップロード制限",
+      "votes": "投票力",
+      "reach": "リアクション力",
+      "feedPosts": "ホーム投稿",
+      "images": "投稿画像",
+      "uploads": "1日の上限",
       "storage": "エディターストレージ",
-      "lending": "バッジ貸出スロット",
+      "lending": "貸出枠",
       "voice": "音声クローニング",
-      "voiceFree": "無料",
-      "voiceLocked": "{{tier}}以上"
+      "voiceFree": "無料"
     },
     "buyTokens": "トークンを購入",
     "details": "完全な内訳",

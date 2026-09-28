@@ -5921,16 +5921,15 @@
     "grants": "Ihe ọ na-emeghe",
     "perks": {
       "fee": "Platform ụgwọ",
-      "votes": "Ọchịchị votu",
-      "reach": "Arọ kwa echiche & mmeghachi omume",
-      "feedPosts": "Home-nri posts a ụbọchị",
-      "images": "Onyonyo n’ozi ọ bụla",
-      "uploads": "Daily bulite ịgba",
+      "votes": "Ike ntuli aka",
+      "reach": "Ike mmeghachi",
+      "feedPosts": "Ozi ụlọ",
+      "images": "Onyonyo ozi",
+      "uploads": "Oke kwa ụbọchị",
       "storage": "Nchekwa ndezi",
-      "lending": "Baajị agbazinye ohere mpere",
+      "lending": "Ohere mbinye",
       "voice": "Iṅomi olu",
-      "voiceFree": "N’efu",
-      "voiceLocked": "{{tier}} na elu"
+      "voiceFree": "N’efu"
     },
     "buyTokens": "Ịzụta tokens",
     "details": "Full mebiri emebi",

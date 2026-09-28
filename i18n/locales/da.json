@@ -5925,16 +5925,15 @@
     "grants": "Det låser den op for",
     "perks": {
       "fee": "Platformsgebyr",
-      "votes": "Ledelsesafstemninger",
-      "reach": "Vægt pr. visning og reaktion",
-      "feedPosts": "Startfeed-opslag om dagen",
-      "images": "Billeder pr. indlæg",
-      "uploads": "Daglig uploadgrænse",
+      "votes": "Stemmevægt",
+      "reach": "Reaktionsvægt",
+      "feedPosts": "Forsideopslag",
+      "images": "Billeder pr. opslag",
+      "uploads": "Daglig grænse",
       "storage": "Editor opbevaring",
-      "lending": "Pladser til badgeudlån",
+      "lending": "Udlånspladser",
       "voice": "Stemmekloning",
-      "voiceFree": "Gratis",
-      "voiceLocked": "{{tier}} og op"
+      "voiceFree": "Gratis"
     },
     "buyTokens": "Køb tokens",
     "details": "Fuld opdeling",

@@ -5922,16 +5922,15 @@
     "grants": "Kinachofungua",
     "perks": {
       "fee": "Ada ya tovuti",
-      "votes": "Kura za utawala",
-      "reach": "Uzito kwa kila mwonekano na mwitikio",
-      "feedPosts": "Machapisho ya kulisha nyumba kwa siku",
-      "images": "Picha kwa kila chapisho",
-      "uploads": "Kikomo cha upakiaji wa kila",
+      "votes": "Nguvu ya kura",
+      "reach": "Nguvu ya maoni",
+      "feedPosts": "Machapisho ya mwanzo",
+      "images": "Picha za chapisho",
+      "uploads": "Kikomo cha siku",
       "storage": "Hifadhi ya mhariri",
-      "lending": "Nafasi za kukopesha beji",
+      "lending": "Nafasi za kukopesha",
       "voice": "Upigaji picha za sauti",
-      "voiceFree": "Bila malipo",
-      "voiceLocked": "{{tier}} na juu"
+      "voiceFree": "Bila malipo"
     },
     "buyTokens": "Nunua tokeni",
     "details": "Mchanganuo kamili",

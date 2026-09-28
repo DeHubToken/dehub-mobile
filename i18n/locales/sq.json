@@ -5921,16 +5921,15 @@
     "grants": "Çfarë zhbllokon",
     "perks": {
       "fee": "Tarifa e platformës",
-      "votes": "Votat e qeverisjes",
-      "reach": "Pesha sipas pamjes dhe reaksionit",
-      "feedPosts": "Postimet për ushqimin në shtëpi në ditë",
-      "images": "Imazhe për postim",
-      "uploads": "Kufiri ditor i ngarkimit",
+      "votes": "Fuqia e votës",
+      "reach": "Fuqia e reagimit",
+      "feedPosts": "Postime kryesore",
+      "images": "Imazhe postimi",
+      "uploads": "Kufiri ditor",
       "storage": "Ruajtja e redaktorit",
-      "lending": "Vende për kreditimin e distinktivit",
+      "lending": "Vende huazimi",
       "voice": "Klonimi i zërit",
-      "voiceFree": "Falas",
-      "voiceLocked": "{{tier}} dhe lart"
+      "voiceFree": "Falas"
     },
     "buyTokens": "Bli argumente",
     "details": "Zbërthimi i plotë",

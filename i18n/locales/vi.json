@@ -5934,16 +5934,15 @@
     "grants": "Những tính năng mở khóa",
     "perks": {
       "fee": "Phí nền tảng",
-      "votes": "Phiếu bầu của ban quản trị",
-      "reach": "Trọng lượng trên mỗi lượt xem & phản ứng",
-      "feedPosts": "Bài đăng nguồn cấp dữ liệu gia đình mỗi ngày",
-      "images": "Hình ảnh trên mỗi bài đăng",
-      "uploads": "Giới hạn tải lên hàng ngày",
+      "votes": "Sức mạnh bỏ phiếu",
+      "reach": "Sức mạnh tương tác",
+      "feedPosts": "Bài trang chủ",
+      "images": "Ảnh mỗi bài",
+      "uploads": "Giới hạn ngày",
       "storage": "Lưu trữ trình chỉnh sửa",
-      "lending": "Các vị trí cho vay huy hiệu",
+      "lending": "Suất cho mượn",
       "voice": "Nhân bản giọng nói",
-      "voiceFree": "Miễn phí",
-      "voiceLocked": "{{tier}} trở lên"
+      "voiceFree": "Miễn phí"
     },
     "buyTokens": "Mua mã thông báo",
     "details": "Phân tích đầy đủ",

@@ -5934,16 +5934,15 @@
     "grants": "Waan inni hiiku",
     "perks": {
       "fee": "Kaffaltii waltajjii",
-      "votes": "Sagalee bulchiinsa",
-      "reach": "Ulfaatina ilaalcha & deebii tokkoof",
-      "feedPosts": "Guyyaatti maxxansa manaa nyaachisu",
-      "images": "Suuraalee maxxansa tokkoon tokkoon",
-      "uploads": "Daangaa olkaa'uu guyyaa",
+      "votes": "Humna sagalee",
+      "reach": "Humna deebii",
+      "feedPosts": "Maxxansa manaa",
+      "images": "Suuraa maxxansaa",
+      "uploads": "Daangaa guyyaa",
       "storage": "Kuusaa gulaalaa",
-      "lending": "Bakkeewwan liqii baajii",
+      "lending": "Bakka liqii",
       "voice": "Sagalee cloning gochuu",
-      "voiceFree": "Bilisa",
-      "voiceLocked": "{{tier}} fi ol"
+      "voiceFree": "Bilisa"
     },
     "buyTokens": "Tookiin bitadhaa",
     "details": "Guutuu caccabuu",
