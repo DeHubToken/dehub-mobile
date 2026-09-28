@@ -125,6 +125,8 @@ jobs:
       # Read through env so the steps below can test for it — the secrets
       # context is not available in an `if:` directly.
       EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+      # Metro's source-map export exceeds Node's default heap on this bundle.
+      NODE_OPTIONS: --max-old-space-size=6144
     steps:
       - name: Say why nothing was published
         if: env.EXPO_TOKEN == ''
