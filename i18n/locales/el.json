@@ -4013,7 +4013,11 @@
     "roleStageSpeaker": "Ηχείο σκηνής",
     "leaveStage": "Αποχώρηση από το στάδιο",
     "inviteToSpeak": "Πρόσκληση για ομιλία",
-    "textToSpeech": "& Κείμενο- σε- ομιλία"
+    "textToSpeech": "& Κείμενο- σε- ομιλία",
+    "autoEnd": {
+      "title": "Το ηχητικό δωμάτιο έληξε λόγω αδράνειας",
+      "description": "Κανείς δεν μίλησε στο «{{title}}» για 30 λεπτά, οπότε έκλεισε."
+    }
   },
   "signInSheet": {
     "continueAs": "Συνέχεια ως"

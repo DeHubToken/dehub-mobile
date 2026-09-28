@@ -4015,7 +4015,11 @@
     "noSegments": "Mana tarikuchkanchu simikuna",
     "roleStageSpeaker": "Escenariopi rimaq",
     "leaveStage": "Etapamanta lluqsiy",
-    "inviteToSpeak": "Rimanaykipaq invitay"
+    "inviteToSpeak": "Rimanaykipaq invitay",
+    "autoEnd": {
+      "title": "Rimanakuy wasiqa tukurqan mana pipas rimasqanrayku",
+      "description": "Mana pipas \"{{title}}\" nisqapi 30 minutu rimarqanchu, chayrayku wichqasqa."
+    }
   },
   "signInSheet": {
     "continueAs": "Kayhina hina qatipay"

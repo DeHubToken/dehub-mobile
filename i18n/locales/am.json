@@ -4014,7 +4014,11 @@
     "noSegments": "የግልባጭ ክፍሎች አልተገኙም።",
     "roleStageSpeaker": "ደረጃ ተናጋሪ",
     "leaveStage": "ደረጃን ይተው",
-    "inviteToSpeak": "እንዲናገር ጋብዝ"
+    "inviteToSpeak": "እንዲናገር ጋብዝ",
+    "autoEnd": {
+      "title": "የድምፅ ክፍሉ እንቅስቃሴ ባለመኖሩ ተዘግቷል",
+      "description": "በ\"{{title}}\" ውስጥ ለ30 ደቂቃ ማንም ስላልተናገረ ተዘግቷል።"
+    }
   },
   "signInSheet": {
     "continueAs": "እንደ ቀጥል"

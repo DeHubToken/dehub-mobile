@@ -3985,7 +3985,11 @@
     "noSegments": "Ko si awọn apa iwe-akọọlẹ ti a rii",
     "roleStageSpeaker": "Agbọrọsọ Ipele",
     "leaveStage": "Fi ipele silẹ",
-    "inviteToSpeak": "Pe lati sọrọ"
+    "inviteToSpeak": "Pe lati sọrọ",
+    "autoEnd": {
+      "title": "Yàrá ohùn ti parí nítorí àìsí ìgbòkègbodò",
+      "description": "Kò sí ẹni tó sọ̀rọ̀ nínú \"{{title}}\" fún ìṣẹ́jú 30, nítorí náà a ti tì í."
+    }
   },
   "signInSheet": {
     "continueAs": "Tẹ̀síwájú gẹ́gẹ́ bí"

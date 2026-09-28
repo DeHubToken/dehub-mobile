@@ -4014,7 +4014,11 @@
     "speakers_one": "{{count}} بلندگو",
     "speakers_other": "{{count}} بلندگو",
     "listeners_one": "{{count}} شنونده",
-    "listeners_other": "{{count}} شنونده"
+    "listeners_other": "{{count}} شنونده",
+    "autoEnd": {
+      "title": "اتاق صوتی به دلیل عدم فعالیت پایان یافت",
+      "description": "به مدت ۳۰ دقیقه کسی در «{{title}}» صحبت نکرد، بنابراین بسته شد."
+    }
   },
   "signInSheet": {
     "continueAs": "ادامه به عنوان"

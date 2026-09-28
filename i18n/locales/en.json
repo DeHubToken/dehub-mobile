@@ -4033,7 +4033,11 @@
     "noSegments": "No transcript segments found",
     "roleStageSpeaker": "Stage speaker",
     "leaveStage": "Leave stage",
-    "inviteToSpeak": "Invite to speak"
+    "inviteToSpeak": "Invite to speak",
+    "autoEnd": {
+      "title": "Stage ended due to inactivity",
+      "description": "Nobody spoke on \"{{title}}\" for 30 minutes, so it was closed."
+    }
   },
   "signInSheet": {
     "continueAs": "Continue as"

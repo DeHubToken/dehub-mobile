@@ -3940,7 +3940,11 @@
     "customSoundLabel": "{{name}}. ka to ka kuma fɔɔ ka taga se a daan na.",
     "announcement": "🎙️ {{title}} — live Stages kan {{date}}, {{time}}",
     "frontRowBooked": "Ɲɛfɛ sigiyɔrɔ miniti {{count}} kama",
-    "quoteOnStage": "— {{speaker}} Stage kan: \"{{title}}\""
+    "quoteOnStage": "— {{speaker}} Stage kan: \"{{title}}\"",
+    "autoEnd": {
+      "title": "Kan bon banna sabu kuma tɛ yen",
+      "description": "Mɔgɔ si ma kuma \"{{title}}\" kɔnɔ miniti 30 kɔnɔ, o de kosɔn a datugura."
+    }
   },
   "signInSheet": {
     "continueAs": "Ka taa ɲɛ i n'a fɔ"

@@ -3984,7 +3984,11 @@
     "inviteToSpeak": "Çykyş etmäge çagyryň",
     "announcement": "🎙️ {{title}} — {{date}}, {{time}} - nji aşamalarda ýaşamak",
     "listeners_one": "{{count}} diňleýjiler",
-    "listeners_other": "{{count}} diňleýjiler"
+    "listeners_other": "{{count}} diňleýjiler",
+    "autoEnd": {
+      "title": "Ses otagy işjeňsizlik sebäpli tamamlandy",
+      "description": "\"{{title}}\" otagynda 30 minut hiç kim gürlemedi, şonuň üçin ýapyldy."
+    }
   },
   "signInSheet": {
     "continueAs": "Şu hökmünde dowam et"

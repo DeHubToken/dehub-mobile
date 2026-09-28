@@ -4033,7 +4033,11 @@
     "noSegments": "Keine Transkriptionssegmente gefunden",
     "roleStageSpeaker": "Bühnenlautsprecher",
     "leaveStage": "Phase verlassen",
-    "inviteToSpeak": "Zum Reden einladen"
+    "inviteToSpeak": "Zum Reden einladen",
+    "autoEnd": {
+      "title": "Audioraum wegen Inaktivität beendet",
+      "description": "In „{{title}}“ hat 30 Minuten lang niemand gesprochen, daher wurde er geschlossen."
+    }
   },
   "signInSheet": {
     "continueAs": "Weiter als"

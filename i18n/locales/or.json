@@ -3954,7 +3954,11 @@
     "roleStageSpeaker": "ପର୍ଯ୍ୟାୟ ବାଚସ୍ପତି",
     "leaveStage": "ପର୍ୟ୍ୟାୟ ଛାଡ଼ନ୍ତୁ",
     "inviteToSpeak": "କହିବା ପାଇଁ ନିମନ୍ତ୍ରଣ କରନ୍ତୁ",
-    "announcement": "🎙️ {{title}} — ପର୍ଯ୍ୟାୟ {{date}}, {{time}} ରେ ଲାଇଭ"
+    "announcement": "🎙️ {{title}} — ପର୍ଯ୍ୟାୟ {{date}}, {{time}} ରେ ଲାଇଭ",
+    "autoEnd": {
+      "title": "ନିଷ୍କ୍ରିୟତା ଯୋଗୁଁ ଅଡିଓ ରୁମ୍ ଶେଷ ହେଲା",
+      "description": "\"{{title}}\" ରେ 30 ମିନିଟ ପର୍ଯ୍ୟନ୍ତ କେହି କହିଲେ ନାହିଁ, ତେଣୁ ଏହାକୁ ବନ୍ଦ କରାଗଲା।"
+    }
   },
   "signInSheet": {
     "continueAs": "ଏହି ଭାବରେ ଜାରି ରଖନ୍ତୁ"

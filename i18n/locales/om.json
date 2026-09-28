@@ -3997,7 +3997,11 @@
     "noSegments": "Qabxiin argamu hin jiru",
     "roleStageSpeaker": "Dubbataa waltajjii",
     "leaveStage": "Waltajjii dhiisaa",
-    "inviteToSpeak": "Dubbachuuf afeeri"
+    "inviteToSpeak": "Dubbachuuf afeeri",
+    "autoEnd": {
+      "title": "Kutaan sagalee sochii dhabuu irraa kan ka'e xumurameera",
+      "description": "Daqiiqaa 30f namni \"{{title}}\" keessatti hin dubbanne, kanaaf cufameera."
+    }
   },
   "signInSheet": {
     "continueAs": "Akka kanatti itti fufi"

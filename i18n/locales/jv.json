@@ -3984,7 +3984,11 @@
     "noSegments": "Ora ana segmen transkrip sing ditemokake",
     "roleStageSpeaker": "Pamicara panggung",
     "leaveStage": "Ninggalake panggung",
-    "inviteToSpeak": "Ngajak ngomong"
+    "inviteToSpeak": "Ngajak ngomong",
+    "autoEnd": {
+      "title": "Ruang swara rampung amarga ora ana kegiatan",
+      "description": "Ora ana sing ngomong ing \"{{title}}\" suwene 30 menit, mula ditutup."
+    }
   },
   "signInSheet": {
     "continueAs": "Terusake minangka"

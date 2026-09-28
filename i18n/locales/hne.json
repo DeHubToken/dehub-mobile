@@ -3984,7 +3984,11 @@
     "speakers_one": "{{count}} वक्ता",
     "speakers_other": "{{count}} वक्ताओं",
     "listeners_one": "{{count}} सुनइया मन",
-    "listeners_other": "{{count}} सुनइया मन"
+    "listeners_other": "{{count}} सुनइया मन",
+    "autoEnd": {
+      "title": "निष्क्रियता के कारण ऑडियो रूम समाप्त हुआ",
+      "description": "\"{{title}}\" में 30 मिनट तक कोई नहीं बोला, इसलिए इसे बंद कर दिया गया।"
+    }
   },
   "signInSheet": {
     "continueAs": "ए रूप म आगू बढ़व"

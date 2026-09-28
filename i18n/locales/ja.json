@@ -4035,7 +4035,11 @@
     "quoteOnStage": "—ステージ: \"{{title}}\"で{{speaker}}",
     "roleStageSpeaker": "ステージスピーカー",
     "leaveStage": "ステージを離れる",
-    "inviteToSpeak": "スピーチに招待する"
+    "inviteToSpeak": "スピーチに招待する",
+    "autoEnd": {
+      "title": "無操作のため音声ルームが終了しました",
+      "description": "「{{title}}」で30分間誰も話さなかったため、終了しました。"
+    }
   },
   "signInSheet": {
     "continueAs": "次のアカウントで続行"

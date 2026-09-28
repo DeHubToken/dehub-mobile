@@ -3988,7 +3988,11 @@
     "noSegments": "Nem található átirat szegmens",
     "roleStageSpeaker": "Színpadi hangszóró",
     "leaveStage": "Szakasz elhagyása",
-    "inviteToSpeak": "Felszólalás meghívása"
+    "inviteToSpeak": "Felszólalás meghívása",
+    "autoEnd": {
+      "title": "A hangszoba inaktivitás miatt véget ért",
+      "description": "30 percig senki sem beszélt itt: „{{title}}”, ezért bezárult."
+    }
   },
   "signInSheet": {
     "continueAs": "Folytatás mint"

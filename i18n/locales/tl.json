@@ -4031,7 +4031,11 @@
     "quoteOnStage": "— {{speaker}} sa Stage: \"{{title}}\"",
     "roleStageSpeaker": "Tagapagsalita ng entablado",
     "leaveStage": "Yugto ng pag - alis",
-    "inviteToSpeak": "Imbitahang magsalita"
+    "inviteToSpeak": "Imbitahang magsalita",
+    "autoEnd": {
+      "title": "Natapos ang audio room dahil walang aktibidad",
+      "description": "Walang nagsalita sa \"{{title}}\" sa loob ng 30 minuto, kaya isinara ito."
+    }
   },
   "signInSheet": {
     "continueAs": "Magpatuloy bilang"

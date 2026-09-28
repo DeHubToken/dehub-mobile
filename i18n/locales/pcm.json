@@ -3900,7 +3900,11 @@
     "uploadCustomSound": "Upload your own sound",
     "transcriptShare": "Check dis Stage transcript: \"{{title}}\"",
     "quoteOnStage": "— {{speaker}} for Stage: \"{{title}}\"",
-    "noSegments": "We no see any transcript segment"
+    "noSegments": "We no see any transcript segment",
+    "autoEnd": {
+      "title": "Audio room don end because nobody dey talk",
+      "description": "Nobody talk for \"{{title}}\" for 30 minutes, so e don close."
+    }
   },
   "signInSheet": {
     "continueAs": "Continue as"

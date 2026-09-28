@@ -4174,7 +4174,11 @@
     "noSegments": "Geen transcriptsegmenten gevonden",
     "roleStageSpeaker": "Podiumspreker",
     "leaveStage": "Fase verlaten",
-    "inviteToSpeak": "Uitnodigen om te spreken"
+    "inviteToSpeak": "Uitnodigen om te spreken",
+    "autoEnd": {
+      "title": "Audioruimte beëindigd wegens inactiviteit",
+      "description": "Niemand sprak 30 minuten in \"{{title}}\", dus is die gesloten."
+    }
   },
   "signInSheet": {
     "continueAs": "Doorgaan als"

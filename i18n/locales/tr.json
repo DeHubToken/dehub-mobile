@@ -4033,7 +4033,11 @@
     "noSegments": "Transkript segmenti bulunamadı",
     "roleStageSpeaker": "Sahne konuşmacısı",
     "leaveStage": "Sahneden ayrıl",
-    "inviteToSpeak": "Konuşmaya davet et"
+    "inviteToSpeak": "Konuşmaya davet et",
+    "autoEnd": {
+      "title": "Sesli oda etkinlik olmadığı için sona erdi",
+      "description": "\"{{title}}\" odasında 30 dakika boyunca kimse konuşmadı, bu yüzden kapatıldı."
+    }
   },
   "signInSheet": {
     "continueAs": "Şu hesapla devam et"

@@ -3984,7 +3984,11 @@
     "noSegments": "Nav atrasti transkripcijas segmenti",
     "roleStageSpeaker": "Skatuves skaļrunis",
     "leaveStage": "Iziet no posma",
-    "inviteToSpeak": "Uzaicināt izteikties"
+    "inviteToSpeak": "Uzaicināt izteikties",
+    "autoEnd": {
+      "title": "Audio istaba beigta neaktivitātes dēļ",
+      "description": "Neviens nerunāja “{{title}}” 30 minūtes, tāpēc tā tika slēgta."
+    }
   },
   "signInSheet": {
     "continueAs": "Turpināt kā"

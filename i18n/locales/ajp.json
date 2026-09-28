@@ -3984,7 +3984,11 @@
     "noSegments": "لم يتم العثور على مقاطع نصية",
     "roleStageSpeaker": "متحدث المسرح",
     "leaveStage": "مغادرة المسرح",
-    "inviteToSpeak": "دعوة للتحدث"
+    "inviteToSpeak": "دعوة للتحدث",
+    "autoEnd": {
+      "title": "انتهت الغرفة الصوتية بسبب عدم النشاط",
+      "description": "لم يتحدث أحد في \"{{title}}\" لمدة 30 دقيقة، لذلك تم إغلاقها."
+    }
   },
   "signInSheet": {
     "continueAs": "كمّل باسم"
