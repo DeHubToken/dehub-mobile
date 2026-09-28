@@ -9,6 +9,7 @@ import {
   Text,
   NativeSyntheticEvent,
   NativeScrollEvent,
+  ViewToken,
 } from "react-native";
 import { DeHubLoader } from "../DeHubLoader";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../Feed/DeHubRefreshControl";
@@ -26,6 +27,8 @@ import { useInfiniteQuery, useQueryClient } from "@tanstack/react-query";
 import { flattenFeedPages } from "../../libs/feed-pages";
 import { useAppTheme } from "../../context/ThemeContext";
 import { MINIMAL_TAB_LINE } from "../../theme/minimal";
+import { createFeedVisibilityStore, useRowVisibility, type FeedVisibilityStore } from "../../libs/feedVisibility";
+import { useSettledAutoplay } from "../../hooks/useSettledAutoplay";
 
 // Minimal: tiles sit on black while their image loads, and an empty tile or a
 // skeleton cell is a faint lift off black rather than a grey square.
@@ -37,6 +40,7 @@ export interface HomeImageGridHandle {
 }
 
 interface HomeImageGridProps {
+  active?: boolean;
   params?: Partial<UnifiedFeedParams>;
   pageSize?: number;
   gridRef?: React.MutableRefObject<HomeImageGridHandle | null>;
@@ -77,9 +81,10 @@ interface GridItemProps {
   index: number;
   size: number;
   onPress: (index: number) => void;
+  animate: boolean;
 }
 
-const GridItem = memo<GridItemProps>(({ item, index, size, onPress }) => {
+const GridItem = memo<GridItemProps>(({ item, index, size, onPress, animate }) => {
   const imageUri = useMemo(() => {
     const urls: string[] = Array.isArray(item.imageUrls) ? item.imageUrls : [];
     // API-served post images are on a different host to the CDN and are not a
@@ -94,6 +99,13 @@ const GridItem = memo<GridItemProps>(({ item, index, size, onPress }) => {
   const hasMultiple = (item.imageUrls?.length ?? 0) > 1;
   const handlePress = useCallback(() => onPress(index), [onPress, index]);
   const { isMinimal } = useAppTheme();
+  const imageRef = useRef<Image>(null);
+  const settled = useSettledAutoplay(animate, imageUri ?? undefined, 400);
+  const syncAnimation = useCallback(() => {
+    const operation = settled ? imageRef.current?.startAnimating() : imageRef.current?.stopAnimating();
+    operation?.catch(() => {});
+  }, [settled]);
+  useEffect(syncAnimation, [syncAnimation]);
 
   if (!imageUri) return <View style={{ width: size, height: size, backgroundColor: isMinimal ? MINIMAL_PLACEHOLDER_BG : "#262626" }} />;
 
@@ -104,6 +116,9 @@ const GridItem = memo<GridItemProps>(({ item, index, size, onPress }) => {
       style={{ width: size, height: size, backgroundColor: isMinimal ? MINIMAL_TILE_BG : "#262626" }}
     >
       <Image
+        ref={imageRef}
+        autoplay={false}
+        onLoad={syncAnimation}
         source={imageUri}
         style={StyleSheet.absoluteFill}
         contentFit="cover"
@@ -121,9 +136,12 @@ const GridItem = memo<GridItemProps>(({ item, index, size, onPress }) => {
     </TouchableOpacity>
   );
 }, (prev, next) =>
+  prev.item === next.item &&
   prev.item.tokenId === next.item.tokenId &&
   prev.size === next.size &&
-  prev.index === next.index
+  prev.index === next.index &&
+  prev.animate === next.animate &&
+  prev.onPress === next.onPress
 );
 
 interface GridRowData {
@@ -150,9 +168,11 @@ interface GridRowProps {
   data: UnifiedFeedItem[];
   onItemPress: (index: number) => void;
   m: GridMetrics;
+  store: FeedVisibilityStore;
 }
 
-const GridRow = memo<GridRowProps>(({ row, data, onItemPress, m }) => {
+const GridRow = memo<GridRowProps>(({ row, data, onItemPress, m, store }) => {
+  const { isVisible } = useRowVisibility(store, row.key);
   const { rowType, startIndex } = row;
   const { small: SMALL_SIZE, big: BIG_SIZE } = m;
   const a = data[startIndex];
@@ -162,10 +182,10 @@ const GridRow = memo<GridRowProps>(({ row, data, onItemPress, m }) => {
   if (rowType === 0) {
     return (
       <View style={styles.patternRow}>
-        {a && <GridItem item={a} index={startIndex} size={BIG_SIZE} onPress={onItemPress} />}
+        {a && <GridItem item={a} index={startIndex} size={BIG_SIZE} onPress={onItemPress} animate={isVisible} />}
         <View style={styles.stackedColumn}>
-          {b && <GridItem item={b} index={startIndex + 1} size={SMALL_SIZE} onPress={onItemPress} />}
-          {c && <GridItem item={c} index={startIndex + 2} size={SMALL_SIZE} onPress={onItemPress} />}
+          {b && <GridItem item={b} index={startIndex + 1} size={SMALL_SIZE} onPress={onItemPress} animate={isVisible} />}
+          {c && <GridItem item={c} index={startIndex + 2} size={SMALL_SIZE} onPress={onItemPress} animate={isVisible} />}
         </View>
       </View>
     );
@@ -174,18 +194,18 @@ const GridRow = memo<GridRowProps>(({ row, data, onItemPress, m }) => {
     return (
       <View style={styles.patternRow}>
         <View style={styles.stackedColumn}>
-          {a && <GridItem item={a} index={startIndex} size={SMALL_SIZE} onPress={onItemPress} />}
-          {b && <GridItem item={b} index={startIndex + 1} size={SMALL_SIZE} onPress={onItemPress} />}
+          {a && <GridItem item={a} index={startIndex} size={SMALL_SIZE} onPress={onItemPress} animate={isVisible} />}
+          {b && <GridItem item={b} index={startIndex + 1} size={SMALL_SIZE} onPress={onItemPress} animate={isVisible} />}
         </View>
-        {c && <GridItem item={c} index={startIndex + 2} size={BIG_SIZE} onPress={onItemPress} />}
+        {c && <GridItem item={c} index={startIndex + 2} size={BIG_SIZE} onPress={onItemPress} animate={isVisible} />}
       </View>
     );
   }
   return (
     <View style={styles.equalRow}>
-      {a && <GridItem item={a} index={startIndex} size={SMALL_SIZE} onPress={onItemPress} />}
-      {b && <GridItem item={b} index={startIndex + 1} size={SMALL_SIZE} onPress={onItemPress} />}
-      {c && <GridItem item={c} index={startIndex + 2} size={SMALL_SIZE} onPress={onItemPress} />}
+      {a && <GridItem item={a} index={startIndex} size={SMALL_SIZE} onPress={onItemPress} animate={isVisible} />}
+      {b && <GridItem item={b} index={startIndex + 1} size={SMALL_SIZE} onPress={onItemPress} animate={isVisible} />}
+      {c && <GridItem item={c} index={startIndex + 2} size={SMALL_SIZE} onPress={onItemPress} animate={isVisible} />}
     </View>
   );
 });
@@ -234,6 +254,7 @@ const getGridItemLayout = (m: GridMetrics, index: number) => {
 };
 
 const HomeImageGrid: React.FC<HomeImageGridProps> = ({
+  active = true,
   params,
   pageSize = 20,
   gridRef,
@@ -252,6 +273,25 @@ const HomeImageGrid: React.FC<HomeImageGridProps> = ({
   const metrics = useMemo(() => gridMetrics(screenWidth), [screenWidth]);
   const listRef = useRef<FlatList>(null);
   const prevYRef = useRef(0);
+  const visibilityStore = useMemo(() => createFeedVisibilityStore(active), []);
+  const scrollingRef = useRef(false);
+  const activeRef = useRef(active);
+  activeRef.current = active;
+  useEffect(() => visibilityStore.setLive(active && !scrollingRef.current), [active, visibilityStore]);
+  const beginScroll = useCallback(() => {
+    scrollingRef.current = true;
+    visibilityStore.setLive(false);
+    onScrollBegin?.();
+  }, [onScrollBegin, visibilityStore]);
+  const endScroll = useCallback(() => {
+    scrollingRef.current = false;
+    visibilityStore.setLive(activeRef.current);
+    onScrollEnd?.();
+  }, [onScrollEnd, visibilityStore]);
+  const onViewableItemsChanged = useRef(({ viewableItems }: { viewableItems: ViewToken[] }) => {
+    visibilityStore.update(new Set(viewableItems.filter(v => v.isViewable).map(v => (v.item as GridRowData).key)), null);
+  }).current;
+  const viewabilityConfig = useRef({ itemVisiblePercentThreshold: 20, minimumViewTime: 150 }).current;
 
   // Fixed height — see the note in InfiniteVideoFeed. Animating this resized the
   // list's content box on every frame of the header animation, which relaid out
@@ -350,29 +390,35 @@ const HomeImageGrid: React.FC<HomeImageGridProps> = ({
     [onScrollOffset],
   );
 
+  const viewerData = useRef({ items, mergedParams, onOpenImageFeed });
+  viewerData.current = { items, mergedParams, onOpenImageFeed };
   const handleGridItemPress = useCallback((index: number) => {
-    if (onOpenImageFeed) {
-      onOpenImageFeed(index, items);
+    const current = viewerData.current;
+    if (current.onOpenImageFeed) {
+      current.onOpenImageFeed(index, current.items);
       return;
     }
     navigation.navigate(ScreenNames.ImageFeed as any, {
       initialIndex: index,
-      initialItems: items,
-      feedParams: mergedParams,
+      initialItems: current.items,
+      feedParams: current.mergedParams,
     });
-  }, [items, navigation, mergedParams, onOpenImageFeed]);
+  }, [navigation]);
 
   const gridRows = useMemo(() => buildGridRows(items.length), [items.length]);
 
   const renderGridRow = useCallback(
     ({ item: row }: { item: GridRowData }) => (
-      <GridRow row={row} data={items} onItemPress={handleGridItemPress} m={metrics} />
+      <GridRow row={row} data={items} onItemPress={handleGridItemPress} m={metrics} store={visibilityStore} />
     ),
-    [items, handleGridItemPress, metrics],
+    [items, handleGridItemPress, metrics, visibilityStore],
   );
   const itemLayout = useCallback(
-    (_data: any, index: number) => getGridItemLayout(metrics, index),
-    [metrics],
+    (_data: any, index: number) => {
+      const layout = getGridItemLayout(metrics, index);
+      return { ...layout, offset: layout.offset + headerInset + 4 };
+    },
+    [metrics, headerInset],
   );
 
   const keyExtractor = useCallback((item: GridRowData) => item.key, []);
@@ -421,15 +467,18 @@ const HomeImageGrid: React.FC<HomeImageGridProps> = ({
         style={{ borderRadius: 12, overflow: 'hidden' }}
         showsVerticalScrollIndicator={false}
         initialNumToRender={6}
-        maxToRenderPerBatch={6}
+        maxToRenderPerBatch={1}
         windowSize={9}
         removeClippedSubviews={false}
         onEndReached={loadMore}
         onEndReachedThreshold={2.5}
         onScroll={scrollHandler ?? handleScroll}
-        onScrollBeginDrag={onScrollBegin}
-        onScrollEndDrag={onScrollEnd}
-        onMomentumScrollEnd={onScrollEnd}
+        onScrollBeginDrag={beginScroll}
+        onScrollEndDrag={endScroll}
+        onMomentumScrollBegin={beginScroll}
+        onMomentumScrollEnd={endScroll}
+        onViewableItemsChanged={onViewableItemsChanged}
+        viewabilityConfig={viewabilityConfig}
         scrollEventThrottle={16}
         refreshControl={
           <DeHubRefreshControl
