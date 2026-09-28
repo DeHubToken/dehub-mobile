@@ -3792,7 +3792,10 @@
     "unpinConfirm": "Vai noņemt šo piesprausto ziņojumu?",
     "pinMessage": "Piespraust ziņojumu",
     "unpinMessage": "Atspraust ziņojumu",
-    "jumpToLatest": "Pāriet uz jaunākajiem ziņojumiem"
+    "jumpToLatest": "Pāriet uz jaunākajiem ziņojumiem",
+    "ban": "Bloķēt",
+    "banConfirm": "Vai tiešām vēlaties bloķēt {{name}}?",
+    "banFailed": "Lietotāja bloķēšana neizdevās"
   },
   "promptFeed": {
     "headline": "Ko tu vēlies redzēt?",
@@ -4832,7 +4835,20 @@
     "tokensSent": "{{amount}} nosūtītie žetoni",
     "percentUsed": "{{percent}}% izmantots",
     "spentOfTotal": "{{spent}} no {{total}}",
-    "viewInWallet": "Skatīt makā"
+    "viewInWallet": "Skatīt makā",
+    "topUp": "Pievienot marķierus",
+    "topUpTitle": "Pievienot abonēšanas marķierus",
+    "topUpCustom": "Cita summa (USD)",
+    "topUpYouSend": "Jūs nosūtāt",
+    "topUpYouGet": "Pievienots atlikumam",
+    "topUpConfirm": "Pievienot {{amount}}",
+    "topUpRange": "Ievadiet {{min}} uz {{max}}",
+    "topUpDone": "{{amount}} pievienoja jūsu abonēšanas marķieriem",
+    "topUpPending": "Papildinājums tiek apstiprināts. Drīzumā tā būs redzama atlikumā.",
+    "topUpEmptyHint": "Papildini, lai abonētu veidotājus",
+    "topUpStageWallet": "Apstiprini makā...",
+    "topUpStageConfirming": "Gaida darījumu...",
+    "topUpStageCrediting": "Pievieno atlikumam..."
   },
   "live": {
     "notSet": "Nav iestatīts",
@@ -4890,8 +4906,61 @@
         "legend": {
           "name": "Apzīmējumi",
           "hint": "Sasniedziet desmito līmeni."
+        },
+        "ignition": {
+          "name": "Aizdedze",
+          "hint": "Sasniegt vienu kvalificējošu stundu ēterā."
+        },
+        "on-air": {
+          "name": "Ēterā",
+          "hint": "Pabeigt desmit kvalificējošas straumes."
+        },
+        "storyteller": {
+          "name": "Stāstnieks",
+          "hint": "Pabeigt divdesmit piecas kvalificējošas straumes."
+        },
+        "broadcaster": {
+          "name": "Straumētājs",
+          "hint": "Pabeigt piecdesmit kvalificējošas straumes."
+        },
+        "centurion": {
+          "name": "Centurionam",
+          "hint": "Pabeigt simts kvalificējošas straumes."
+        },
+        "enduring": {
+          "name": "Izturīgs",
+          "hint": "Straumei četras kvalificējošas stundas vienā sesijā."
+        },
+        "circle": {
+          "name": "Iekšējais loks",
+          "hint": "Vienlaicīgi skatās divdesmit pieci cilvēki."
+        },
+        "arena": {
+          "name": "Arēna",
+          "hint": "Vienlaicīgi skatās piecdesmit cilvēki."
+        },
+        "headliner": {
+          "name": "Galvenais mākslinieks",
+          "hint": "Vienlaicīgi skatās simts cilvēki."
+        },
+        "cornerstone": {
+          "name": "Pamatakmens",
+          "hint": "Straumei divdesmit sešas nedēļas pēc kārtas."
+        },
+        "veteran": {
+          "name": "Veterāns",
+          "hint": "Sasniegt 250 kvalificējošas stundas ēterā."
+        },
+        "icon": {
+          "name": "Ikona",
+          "hint": "Sasniegt divdesmito līmeni."
         }
-      }
+      },
+      "chooseBadge": "Izvēlieties jebkuru atbloķēto emblēmu, lai parādītu to savā profilā.",
+      "useBadge": "Lietot emblēmu",
+      "selectedBadge": "Izvēlēts",
+      "savingBadge": "Saglabā emblēmu…",
+      "saveBadgeError": "Neizdevās saglabāt emblēmu. Lūdzu, mēģiniet vēlreiz."
     },
     "unmuteMic": "Ieslēgt mikrofona skaņu",
     "muteMic": "Izslēgt mikrofona skaņu",
@@ -7528,5 +7597,98 @@
     "loadFailed": "Neizdevās ielādēt jūsu izveides",
     "previewHint": "Izveidots ar DeHub Builder",
     "buildInChat": "Veido savās privātajās ziņās ar @assistant"
+  },
+  "depin": {
+    "title": "DePin",
+    "becomeANode": "Kļūsti par mezglu",
+    "ctaBody": "Izcelsmes atgriešanās, šifrēti aizsargāti mediji un pārbaudīts darbs pirms sabiedrisko mezglu atlīdzībām.",
+    "ctaTitle": "Palaižiet tikai tad, kad kļūme ir droša.",
+    "earlyAccess": "Agrīna piekļuve",
+    "earlyAccessBody": "Viegls, pārlūkprogrammā balstīts mezgls ir pieejams zemāk. Smagāks, vienmēr ieslēgts darbvirsmas mezgls ir norādīts kā nākotnes virziens, vēl nav pieejams. Dalība nekad negarantē atlīdzību.",
+    "fallbackFigureAria": "Satura piegādes rezerves ceļš",
+    "faqHeading": "Jautājumi, uz kuriem atbildēts vienkārši.",
+    "footerNote": "DePin dalība ir ieguldījumu pakalpojums, nevis ieguldījumu produkts. Pieejamība, piemērotība un atlīdzības var mainīties.",
+    "heroBlurb": "Nodrošiniet lieko krātuvi, joslas platumu un aprēķināšanas jaudu, lai palīdzētu mitināt, transkodēt un piegādāt DeHub saturu.",
+    "heroCaption": "DeHub saglabā oriģinālo kopiju. Kopienas mezgli pievieno izturīgas kopijas un vietējās piegādes jaudu.",
+    "heroEyebrow": "Kopienas darbināma infrastruktūra",
+    "heroImageAlt": "Kompakts malu aprēķināšanas mezgls, kas savienots ar mājām un radošajām studijām",
+    "heroTitle": "Jūsu aparatūra. DeHub mediju tīkls.",
+    "noFixedRate": "Nav noteikta likme, minimālā atdeve, APY vai nākotnes prognoze. Iemaksu reģistri ir tikai grāmatvedības dati, nevis solījums par maksājumu. Jebkura turpmāka marķieru norēķināšanās notiktu uz Base un joprojām būtu pakļauta atbilstībai, tīkla noteikumiem un piemērojamiem likumiem.",
+    "nodesLeaveBody": "Neviena kopienas iekārta netur vienīgo kopiju. Veselības pārbaudes, kopijas un izcelsmes rezerves risinājums nodrošina atskaņošanas pieejamību.",
+    "nodesLeaveTitle": "Tīkls, kas sagaida, ka mezgli izslēgsies.",
+    "notTrackedYet": "Vēl netiek izsekots",
+    "online": "Tiešsaistē",
+    "privacyBody": "Aizsargātie mediji paliek šifrēti kopienas aparatūrā. Atskaņošanas atslēgas tiek izsniegtas atsevišķi pilnvarotiem skatītājiem.",
+    "privacyTitle": "Resursdatori glabā daļas, nevis piekļuvi.",
+    "readTheDocs": "Lasīt dokumentāciju",
+    "runningCosts": "Darbības mezgls patērē elektrību, interneta datus un aparatūras kalpošanas laiku. Operatoriem var nebūt nekā, un viņu izmaksas var pārsniegt jebkuru atlīdzību.",
+    "safestWorkloadBody": "DePin vispirms papildina esošo DeHub piegādes ceļu. Prasīgākas darba slodzes seko tikai pēc tam, kad ir pierādīta verifikācija.",
+    "safestWorkloadTitle": "Izveidots, sākot ar drošāko darba slodzi.",
+    "signIn": "Pierakstīties",
+    "statNotTracked": "Vēl nav izsekots.",
+    "statUnavailable": "Pašlaik nav pieejams.",
+    "threeJobsBody": "Operatoriem ir iespēja izvēlēties savus krātuves, joslas platuma un aprēķinu limitus. DeHub plāno tikai tos darbus, ko viņu iekārta var droši apstrādāt.",
+    "threeJobsTitle": "Viens mezgls, trīs noderīgi darbi.",
+    "transcode": "Transkodēt",
+    "transcodeBody": "Atbilstošas iekārtas pārvērš augšupielādētos video adaptīvos atveidojumos. Katrs izvads tiek pārbaudīts pirms tā apkalpošanas.",
+    "transcodeImageAlt": "Mājas radošā darbstacija, kas nodrošina papildu GPU aprēķinu jaudu",
+    "verifiedWorkBody": "Ieguldījums tiek mērīts, izmantojot parakstītus kvītus, veselības pārbaudes un izvades validāciju. Tikai glabāšana nerada atlīdzību.",
+    "verifiedWorkTitle": "Noderīgs darbs tiek pārbaudīts. Atlīdzības paliek mainīgas.",
+    "yourNode": "Jūsu mezgls",
+    "host": "Hostēt",
+    "hostBody": "Mezgli saglabā šifrētus vai satura adresētus segmentus ierobežotā vietējā kešatmiņā. DeHub izcelsmes krātuve paliek patiesības avots.",
+    "deliver": "Piegādāt",
+    "deliverBody": "Tuvumā esošie vienaudži kopīgo video segmentus, kamēr parastais piegādes ceļš paliek gatavs kā automātisks rezerves risinājums.",
+    "origin": "DeHub izcelsme",
+    "originBody": "Pastāvīga avota kopija un rezerves piegāde",
+    "availableReplicas": "Pieejamās kopijas",
+    "availableReplicasBody": "Apkalpot pārbaudītus segmentus tuvu pieprasījumam",
+    "offlineNode": "Bezsaistes mezgls",
+    "offlineNodeBody": "Noņemts no maršrutēšanas, līdz tas atkārtoti savienojas",
+    "viewer": "Skatītājs",
+    "viewerBody": "Izmanto vienaudzi, kad tas ir pieejams, izcelsmi, kad tas ir nepieciešams",
+    "protectedContent": "Aizsargāts saturs",
+    "protectedContentBody": "Abonementu, privātos un maksas segmentus var glabāt kā šifrētu tekstu. Mezglu operatori nesaņem tiesību atslēgas tikai tāpēc, ka viņi glabā datus.",
+    "publicContent": "Publisks saturs",
+    "publicContentBody": "Šifrēšana novērš kešatmiņā esošo failu nejaušu pārbaudi, taču publiskos medijus joprojām var skatīties, izmantojot publisko DeHub atskaņotāju. Mēs nepretendēsim uz ko citu.",
+    "operatorControls": "Operatoru vadīklas",
+    "operatorControlsBody": "Operatoru izvēlētie diska ierobežojumi, joslas platuma ierobežojumi, darba laiks un atbilstošās publiskā satura kategorijas. Paziņojumi par noņemšanu izraisa kešatmiņas tīrīšanu.",
+    "deliveryReceipts": "Piegādes kvītis",
+    "deliveryReceiptsBody": "Pārbaudīti baiti, kas piegādāti reālām atskaņošanas sesijām.",
+    "availability": "Pieejamība",
+    "availabilityBody": "Veiksmīgas izgūšanas pārbaudes un uzticama apkalpošana, kad tā ir piešķirta.",
+    "validOutput": "Derīga izvade",
+    "validOutputBody": "Transkodesi jāiziet tehniskās un izlases kvalitātes pārbaudes.",
+    "revenuePool": "Ienākumu finansēts fonds",
+    "revenuePoolBody": "Ja tas ir aktivizēts, atlīdzības budžets tiktu noteikts no platformas ienākumiem pēc epohas slēgšanas.",
+    "delivery": "Piegāde",
+    "deliveryBody": "Ar vienaudžu palīdzību nodrošināta tiešraides un video piegāde ar automātisku rezerves nodrošinājumu.",
+    "adaptiveVideo": "Adaptīvais video",
+    "adaptiveVideoBody": "Vairāki atveidojumi uzticamai atskaņošanai dažādos savienojuma ātrumos.",
+    "desktopNodes": "Darbvirsmā esošie mezgli",
+    "desktopNodesBody": "Ierobežota krātuve, joslas platuma kontrole un pārbaudīta pieejamība.",
+    "baseSettlement": "Pamata norēķins",
+    "baseSettlementBody": "Ienākumu finansēti prasījumi tikai pēc operatīvās un juridiskās pārbaudes.",
+    "statNodesOnline": "Tiešsaistes mezgli",
+    "statStored": "Saglabāts",
+    "statVerified": "Pārbaudīts",
+    "verifiedBytes": "Pārbaudīti baiti",
+    "totalStoredLedger": "Kopā saglabāts (reģistrs)",
+    "dhbEarnedThisPeriod": "Šajā periodā nopelnītie žetoni",
+    "faqOfflineQ": "Kas notiek, kad viesošanas mezgls atvienojas?",
+    "faqOfflineA": "Koordinatora to noņem no aktīvās maršrutēšanas. Cits kopija apkalpo segmentu, vai atskaņošana atgriežas pie DeHub izcelsmes krātuves, kamēr tiek plānotas rezerves kopijas.",
+    "faqCanOperatorSeeQ": "Vai mezgla operators var redzēt saturu, ko tas mitina?",
+    "faqCanOperatorSeeA": "Aizsargātais saturs tiek glabāts kā šifrēti segmenti, un mitinātājs nesaņem atskaņošanas atslēgas. Sabiedrībai pieejamais saturs paliek publiski skatāms, izmantojot DeHub pēc dizaina.",
+    "faqHowMuchQ": "Cik daudz saņems mezgla operators?",
+    "faqHowMuchA": "Nav noteiktas likmes vai prognozes. Pārbaudīts ieguldījums var saņemt daļu no ienākumu finansēta atlīdzības fonda pēc epohas slēgšanas. Atlīdzības nav garantētas, un elektrības, joslas platuma un aparatūras izmaksas var pārsniegt jebkuru atlīdzību.",
+    "faqSoftwareAvailableQ": "Vai mezgla programmatūra ir pieejama tagad?",
+    "faqSoftwareAvailableA": "Viegls, pārlūkprogrammā balstīts līmenis ir pieejams šodien: piesakieties un izvēlieties šajā lapā, un jūsu atvērtā cilne kļūst par mezglu, kamēr tā paliek atvērta. Smagāks, vienmēr ieslēgts darbvirsmas mezgls ir norādīts nākotnes virziens – tas vēl nepastāv.",
+    "faqInstallNeededQ": "Vai man ir kaut kas jāinstalē pārlūkprogrammas mezglam?",
+    "faqInstallNeededA": "Nē. Tas darbojas pilnībā cilnē, izmantojot jūsu pārlūkprogrammas lokālo krātuvi. Cilnes aizvēršana aptur jūsu mezglu; nav fona pakalpojuma un nav instalācijas.",
+    "appSignInBlurb": "Pierakstieties, lai skatītu savu mezglu virsgrāmatu: ko esat saglabājis, kas tika pārbaudīts un ko nopelnījāt šajā periodā.",
+    "appNodeBody": "Mezgls darbojas pārlūkprogrammas cilnē, nevis šajā lietotnē. Atveriet DePin tīmeklī, pierakstieties ar šo kontu un piesakieties. Šeit parādās jūsu virsgrāmata.",
+    "openOnWeb": "Atveriet DePin tīmeklī",
+    "statusOffline": "Bezsaistē",
+    "statusUnregistered": "Nav reģistrēts"
   }
 }

@@ -3792,7 +3792,10 @@
     "unpinConfirm": "Bu sancaqlanmış mesaj silinsin?",
     "pinMessage": "PİN kod mesajı",
     "unpinMessage": "Mesajı ləğv et",
-    "jumpToLatest": "Ən son mesajlara keç"
+    "jumpToLatest": "Ən son mesajlara keç",
+    "ban": "Qadağan et",
+    "banFailed": "İstifadəçini qadağan etmək alınmadı",
+    "banConfirm": "Əminsiniz ki, {{name}} istifadəçisini qadağan etmək istəyirsiniz?"
   },
   "promptFeed": {
     "headline": "Nə görmək istəyirsən?",
@@ -4832,7 +4835,20 @@
     "tokensSent": "{{amount}} tokenlər göndərildi",
     "percentUsed": "{{percent}}% istifadə olunur",
     "spentOfTotal": "{{spent}} {{total}}",
-    "viewInWallet": "Pul kisəsinə baxın"
+    "viewInWallet": "Pul kisəsinə baxın",
+    "topUp": "Tokenlər əlavə edin",
+    "topUpTitle": "Abunə ayələr əlavə et",
+    "topUpCustom": "Digər məbləğ (ABŞ dolları)",
+    "topUpYouSend": "Göndərirsiniz",
+    "topUpYouGet": "Balansınıza əlavə edildi",
+    "topUpConfirm": "{{amount}} əlavə edin",
+    "topUpRange": "{{min}} ilə {{max}} arasında daxil edin",
+    "topUpDone": "{{amount}} abunə ayələrinizə əlavə edildi",
+    "topUpPending": "Üstünlüyünüz təsdiqlənir. Qısa zamanda balansınızda görünəcək.",
+    "topUpEmptyHint": "Yaradıcılara abunə olmaq üçün yuxarı",
+    "topUpStageWallet": "Pul kisənizdə təsdiq edin...",
+    "topUpStageConfirming": "Əməliyyat gözlənilir...",
+    "topUpStageCrediting": "Balansınıza əlavə edilir..."
   },
   "live": {
     "notSet": "Təyin edilməyib",
@@ -4890,8 +4906,61 @@
         "legend": {
           "name": "Əfsanə",
           "hint": "On səviyyəyə çatın."
+        },
+        "ignition": {
+          "name": "Alovlanma",
+          "hint": "Hava üzərində bir uyğun saatı tamamla."
+        },
+        "on-air": {
+          "name": "Efirdə",
+          "hint": "Onu uyğun 10 yayını tamamla."
+        },
+        "storyteller": {
+          "name": "Hekayəçi",
+          "hint": "Onu uyğun 25 yayını tamamla."
+        },
+        "broadcaster": {
+          "name": "Yayımçı",
+          "hint": "Onu uyğun 50 yayını tamamla."
+        },
+        "centurion": {
+          "name": "Yüzbaşı",
+          "hint": "Onu uyğun 100 yayını tamamla."
+        },
+        "enduring": {
+          "name": "Dözümlü",
+          "hint": "Bir sessiyada dörd uyğun saatı yay."
+        },
+        "circle": {
+          "name": "Yaxın dairə",
+          "hint": "Bir anda 25 nəfəri izləyici edin."
+        },
+        "arena": {
+          "name": "Arena",
+          "hint": "Bir anda 50 nəfəri izləyici edin."
+        },
+        "headliner": {
+          "name": "Baş ulduz",
+          "hint": "Bir anda 100 nəfəri izləyici edin."
+        },
+        "cornerstone": {
+          "name": "Təməl daşı",
+          "hint": "İki onaltı ardıcıl həftə boyunca yay."
+        },
+        "veteran": {
+          "name": "Veteran",
+          "hint": "Hava üzərində 250 uyğun saatı tamamla."
+        },
+        "icon": {
+          "name": "İkon",
+          "hint": "20-ci səviyyəyə çat."
         }
-      }
+      },
+      "chooseBadge": "Profilinizdə göstərmək üçün açıq olan hər hansı bir nişanı seçin.",
+      "useBadge": "Nişanı istifadə et",
+      "selectedBadge": "Seçilib",
+      "savingBadge": "Nişan saxlanılır…",
+      "saveBadgeError": "Nişanınızı saxlamaq mümkün olmadı. Yenidən cəhd edin."
     },
     "unmuteMic": "Mikrofonu səssizləşdirin",
     "muteMic": "Səssiz mikrofon",
@@ -7528,5 +7597,98 @@
     "loadFailed": "Qurmalarını yükləmək mümkün olmadı",
     "previewHint": "DeHub Builder ilə quruldu",
     "buildInChat": "@assistant ilə şəxsi mesajlarınızda yaradın"
+  },
+  "depin": {
+    "title": "DePin",
+    "becomeANode": "Düyün olun",
+    "ctaBody": "Mənbə geri qayıtması, şifrələnmiş qorunan media və təsdiqlənmiş iş ictimai node mükafatlarından əvvəl gəlir.",
+    "ctaTitle": "Uğursuzluq təhlükəsiz olduqda yalnız başlayın.",
+    "earlyAccess": "Erkən giriş",
+    "earlyAccessBody": "Yüngül, brauzer əsaslı düyün aşağıda canlıdır. Daha ağır, həmişə açıq masaüstü düyünü gələcəyin istiqaməti olsa da, hələ mövcud deyil. İştirak heç vaxt mükafat təmin etmir.",
+    "fallbackFigureAria": "Məzmun çatdırılması fallback yolu",
+    "faqHeading": "Suallar, aydın cavablandırılmış.",
+    "footerNote": "DePin iştirakı investisiya məhsulu deyil, töhfə xidmətidir. Əlçatanlıq, uyğunluq və mükafatlar dəyişə biləcəyi.",
+    "heroBlurb": "DeHub məzmununu host etmək, transcode etmək və çatdırmaq üçün ehtiyat saxlama, bant genişliyi və hesablama qabiliyyətini töhfə verin.",
+    "heroCaption": "DeHub orijinal nüsxəni saxlayır. Cəmiyyət düyünləri elastik replikalı və lokal çatdırma qabiliyyətini əlavə edir.",
+    "heroEyebrow": "Cəmiyyət tərəfindən gücləndirilən infrastruktur",
+    "heroImageAlt": "Evlər və yaradıcı studiyalara bağlı kompakt kənar-hesablama düyünü",
+    "heroTitle": "Sizin avadanlığınız. DeHub-un media şəbəkəsi.",
+    "noFixedRate": "Sabit bir məbləğ, minimum gəlir, illik faiz dərəcəsi (APY) və ya gələcək proqnoz yoxdur. Tövsif qeydləri yalnız mühasibatlıq məlumatlarıdır, ödəniş vəd deyil. Gələcəkdə hər hansı bir token köçürülməsi Base-də baş tutacaq və uyğunluq, şəbəkə qaydaları və tətbiq olunan qanunlara tabe olacaq.",
+    "nodesLeaveBody": "Heç bir icma maşını yeganə nüsxəni saxlamır. Sağlamlıq yoxlamaları, replikalı versiyalar və mənbə fallback-i oynatmanı mövcud saxlayır.",
+    "nodesLeaveTitle": "Düğümlərin ayrılmasını gözləyən şəbəkə.",
+    "notTrackedYet": "Hələ izlənilmir",
+    "online": "Onlayn",
+    "privacyBody": "Qorunan media icma aparatında şifrələnmiş qalır. Oynatma açarları ayrıca yetkili tamaşaçılara verilir.",
+    "privacyTitle": "Hostlar parçaları saxlayır, deyil, girişi.",
+    "readTheDocs": "Sənədləri oxuyun",
+    "runningCosts": "Düyün işlətmə elektrik enerjisi, internet məlumatları və aparatın ömrünü istifadə edir. Operatorlar heç bir şey almaya bilərlər və onların xərcləri hər hansı mükafatdan çox ola biləri.",
+    "safestWorkloadBody": "DePin əvvəlcə DeHub-un mövcud çatdırılma yolunu tamamlayır. Daha tələbkar iş yükləri yalnız doğrulama sübut edildikdən sonra izləyir.",
+    "safestWorkloadTitle": "Ən təhlükəsiz iş yükündən qurulmuş.",
+    "signIn": "Daxil ol",
+    "statNotTracked": "Hələ izlənilmir.",
+    "statUnavailable": "Hazırda mövcud deyil.",
+    "threeJobsBody": "Operatorlar öz yaddaş, bant genişliyi və hesablama limitlərini seçirlər. DeHub yalnız maşının təhlükəsiz şəkildə idarə edə biləcəyi işləri planlaşdırır.",
+    "threeJobsTitle": "Bir düğüm, üç faydalı iş.",
+    "transcodeBody": "Uyğun maşınlar yüklənmiş videoyu uyarlanabilir versiyalara çevirər. Hər bir çıxış xidmət göstərilməzdən əvvəl yoxlanılır.",
+    "transcodeImageAlt": "Evinizin yaradıcı iş stansiyası ehtiyat GPU hesablamasına töhfə verir",
+    "verifiedWorkBody": "Töhfə imzalı qəbzlər, sağlamlıq yoxlamaları və çıxış doğrulanması vasitəsilə ölçülür. Yalnız saxlama mükafat yaratmır.",
+    "verifiedWorkTitle": "Faydalı iş yoxlanılır. Mükafatlar dəyişkən qalır.",
+    "yourNode": "Sizin düğümünüz",
+    "hostBody": "Düğümlər şifrələnmiş və ya məzmun ünvanlandırılmış seqmentləri məhdud yerli keşdə saxlayırlar. DeHub mənbə yaddaşı həqiqətin mənbəyi olaraq qalır.",
+    "deliverBody": "Yaxın həmyaşıdlar video seqmentlərini paylaşırlar, normal çatdırılma yolu avtomatik fallback olaraq hazır qalır.",
+    "origin": "DeHub mənşəyi",
+    "originBody": "Daimi mənbə nüsxəsi və ehtiyat çatdırılması",
+    "availableReplicas": "Mövcud replikalı",
+    "availableReplicasBody": "Tələbə yaxın yoxlanılmış seqmentləri təqdim edin",
+    "offlineNode": "Oflayn düyün",
+    "offlineNodeBody": "Yenidən qoşulana qədər marşrutlaşdırmadan çıxarılmış",
+    "viewer": "Tamaşaçı",
+    "viewerBody": "Mövcud olduqda peer istifadə edir, lazım olduqda mənbə istifadə edir",
+    "protectedContent": "Qorunan məzmun",
+    "protectedContentBody": "Abonə, şəxsi və hər baxış üçün ödəmə seqmentləri şifrəli mətn kimi saxlanıla bilər. Düyün operatorları sadəcə məlumat saxladıqları üçün hüquq açarları almırlar.",
+    "publicContent": "Açıq məzmun",
+    "publicContentBody": "Şifrələmə keşləşdirilmiş faylların təsadüfi yoxlanmasını əngəllər, lakin açıq media açıq DeHub oynatıcısı vasitəsilə izlənə bilər. Biz bunun əksini iddia etməyəcəyik.",
+    "operatorControls": "Operator nəzarəti",
+    "operatorControlsBody": "Operatorlar disk limitlərini, bant genişliyi limitlərini, iş saatlarını və uyğun açıq məzmun kateqoriyalarını seçirlər. Silmə bildirişləri keş təmizləməsini aktivləşdirir.",
+    "deliveryReceipts": "Çatdırılma qəbzləri",
+    "deliveryReceiptsBody": "Həqiqi oynatma seanslarına yoxlanılmış baytlar çatdırılmışdır.",
+    "availability": "Mövcudluq",
+    "availabilityBody": "Uğurlu əldə etmə yoxlamaları və təyin olunduqda etibarlı xidmət.",
+    "validOutput": "Etibarlı çıxış",
+    "validOutputBody": "Transkoddəmələr texniki və nümunə keyfiyyət yoxlamalarından keçməlidir.",
+    "revenuePool": "Gəlir tərəfindən maliyyələşdirilən fond",
+    "revenuePoolBody": "Aktivləşdirilirsə, mükafat büdcəsi epox bağlandıqdan sonra platforma gəlirindən təyin ediləcəkdir.",
+    "delivery": "Çatdırılma",
+    "deliveryBody": "Həmyaşıd tərəfindən dəstəklənən canlı və video çatdırılma avtomatik geri qayıtma ilə.",
+    "adaptiveVideo": "Adaptiv video",
+    "adaptiveVideoBody": "Müxtəlif bağlantı sürətləri üzrə etibarlı oynatma üçün çoxlu versiyalar.",
+    "desktopNodes": "Desktop nodları",
+    "desktopNodesBody": "Məhdud yaddaş, bant genişliyi nəzarəti və təsdiqlənmiş əlçatanlıq.",
+    "baseSettlement": "Əsas tənzimləmə",
+    "baseSettlementBody": "Operasional və hüquqi baxışdan sonra yalnız gəlir tərəfindən maliyyələşdirilən iddialar.",
+    "statNodesOnline": "Onlayn düyünlər",
+    "statStored": "Saxlanılan",
+    "statVerified": "Təsdiqlənmiş",
+    "verifiedBytes": "Yoxlanılmış baytlar",
+    "totalStoredLedger": "Cəmi saxlanılan (dəftər)",
+    "dhbEarnedThisPeriod": "Bu dövr ərzində qazanılan jetonlar",
+    "faqOfflineQ": "Hosting nodu offline olduqda nə olur?",
+    "faqOfflineA": "Koordinator onu aktiv marşrutlaşdırmadan çıxarır. Başqa bir replika seqmenti xidmət edir və ya oynatma DeHub mənbə yaddaşına geri qayıdır, əvəzləmə nüsxələri planlaşdırılır.",
+    "faqCanOperatorSeeQ": "Node operatoru onların host etdiyi məzmunu görə bilərlərmi?",
+    "faqCanOperatorSeeA": "Qorunan məzmun şifrələnmiş seqmentlər kimi saxlanılır və host oynatma açarlarını almır. Açıq məzmun DeHub vasitəsilə dizayn üzrə açıq şəkildə görünür.",
+    "faqHowMuchQ": "Node operatoru nə qədər alacaq?",
+    "faqHowMuchA": "Sabit tarif və ya proqnoz yoxdur. Təsdiqlənmiş töhfə bir epox bağlandıqdan sonra gəlir tərəfindən maliyyələşdirilən mükafat fonunun payını ala biləcəyi. Mükafatlar təmin edilmir və elektrik, bant genişliyi və hardware xərcləri hər hansı mükafatı aşa biləcəyi.",
+    "faqSoftwareAvailableQ": "Node proqramı indi mövcuddurmu?",
+    "faqSoftwareAvailableA": "Yüngül, brauzer əsaslı səviyyə bu gün mövcuddur: bu səhifəyə daxil olun və qoşulun, və açıq sekməniz açıq qaldığı müddətcə node olur. Daha ağır, həmişə açıq desktop nodu göstərilən gələcək istiqamətdir — hələ mövcud deyil.",
+    "faqInstallNeededQ": "Brauzer nodu üçün heç nə quraşdırmaq lazımdırmi?",
+    "faqInstallNeededA": "Xeyr. Brauzerinizin lokal yaddaşından istifadə edərək tamamilə sekmədə işləyir. Sekməni bağlamaq nodunuzu dayandırır; arxa fon xidməti yoxdur və quraşdırma yoxdur.",
+    "transcode": "Transkod",
+    "host": "Ev sahibi",
+    "deliver": "Təhvil ver",
+    "appSignInBlurb": "Düyünlü karnizinizi görmək üçün daxil olun: nə saxladığınız, nə təsdiqləndiyi və bu müddət ərzində nə qazandığınız.",
+    "appNodeBody": "Qovşaq bu tətbiqdə deyil, brauzer tabında işləyir. DePin-i internetdə açın, bu hesabla daxil olun və qəbul edin. Karniz burada görünür.",
+    "openOnWeb": "DePin-i internetdə açın",
+    "statusOffline": "Oflayn",
+    "statusUnregistered": "Qeydiyyatdan keçirilməyib"
   }
 }

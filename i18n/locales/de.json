@@ -3841,7 +3841,10 @@
     "unpinConfirm": "Diese angeheftete Nachricht entfernen?",
     "pinMessage": "PIN-Nachricht",
     "unpinMessage": "Nachricht lösen",
-    "jumpToLatest": "Zu den neuesten Nachrichten springen"
+    "jumpToLatest": "Zu den neuesten Nachrichten springen",
+    "ban": "Sperren",
+    "banConfirm": "Möchtest du {{name}} wirklich sperren?",
+    "banFailed": "Benutzer konnte nicht gesperrt werden"
   },
   "promptFeed": {
     "headline": "Was möchtest du sehen?",
@@ -4881,7 +4884,20 @@
     "tokensSent": "{{amount}} Token gesendet",
     "percentUsed": "{{percent}}% verwendet",
     "spentOfTotal": "{{spent}} von {{total}}",
-    "viewInWallet": "In Wallet anzeigen"
+    "viewInWallet": "In Wallet anzeigen",
+    "topUp": "Token hinzufügen",
+    "topUpTitle": "Abonnement-Token hinzufügen",
+    "topUpCustom": "Sonstiger Betrag (USD)",
+    "topUpYouSend": "Sie senden",
+    "topUpYouGet": "Deinem Guthaben hinzugefügt",
+    "topUpConfirm": "{{amount}}hinzufügen",
+    "topUpRange": "Geben Sie {{min}} bis {{max}} ein",
+    "topUpDone": "{{amount}} zu Ihren Abonnement-Token hinzugefügt",
+    "topUpPending": "Ihre Aufladung wird bestätigt. Es wird in Kürze auf Ihrem Guthaben erscheinen.",
+    "topUpEmptyHint": "Aufladen, um Kreative zu abonnieren",
+    "topUpStageWallet": "In Ihrem Portemonnaie bestätigen...",
+    "topUpStageConfirming": "Warten auf die Transaktion...",
+    "topUpStageCrediting": "Wird zu Ihrem Guthaben hinzugefügt..."
   },
   "live": {
     "notSet": "Nicht festgelegt",
@@ -4939,8 +4955,61 @@
         "legend": {
           "name": "Legende",
           "hint": "Erreiche Stufe zehn."
+        },
+        "ignition": {
+          "name": "Zündung",
+          "hint": "Erreiche eine qualifizierende Stunde auf Sendung."
+        },
+        "on-air": {
+          "name": "Auf Sendung",
+          "hint": "Schließe zehn qualifizierende Streams ab."
+        },
+        "storyteller": {
+          "name": "Geschichtenerzähler",
+          "hint": "Schließe fünfundzwanzig qualifizierende Streams ab."
+        },
+        "broadcaster": {
+          "name": "Sender",
+          "hint": "Schließe fünfzig qualifizierende Streams ab."
+        },
+        "centurion": {
+          "name": "Zenturio",
+          "hint": "Schließe hundert qualifizierende Streams ab."
+        },
+        "enduring": {
+          "name": "Ausdauernd",
+          "hint": "Streame vier qualifizierende Stunden in einer Sitzung."
+        },
+        "circle": {
+          "name": "Innerer Kreis",
+          "hint": "Habe gleichzeitig fünfundzwanzig Zuschauer."
+        },
+        "arena": {
+          "name": "Arena",
+          "hint": "Habe gleichzeitig fünfzig Zuschauer."
+        },
+        "headliner": {
+          "name": "Hauptredner",
+          "hint": "Habe gleichzeitig hundert Zuschauer."
+        },
+        "cornerstone": {
+          "name": "Eckpfeiler",
+          "hint": "Streame in sechsundzwanzig aufeinanderfolgenden Wochen."
+        },
+        "veteran": {
+          "name": "Veteran",
+          "hint": "Erreiche 250 qualifizierende Stunden auf Sendung."
+        },
+        "icon": {
+          "name": "Ikone",
+          "hint": "Erreiche Level zwanzig."
         }
-      }
+      },
+      "chooseBadge": "Wähle ein beliebiges freigeschaltetes Abzeichen aus, um es auf deinem Profil anzuzeigen.",
+      "useBadge": "Abzeichen verwenden",
+      "selectedBadge": "Ausgewählt",
+      "savingBadge": "Abzeichen wird gespeichert…",
+      "saveBadgeError": "Dein Abzeichen konnte nicht gespeichert werden. Bitte versuche es erneut."
     },
     "unmuteMic": "Mikrofon stumm schalten",
     "muteMic": "Mikrofon stummschalten",
@@ -7528,5 +7597,98 @@
     "loadFailed": "Deine Builds konnten nicht geladen werden",
     "previewHint": "Erstellt mit DeHub Builder",
     "buildInChat": "In deinen DMs mit @assistant bauen"
+  },
+  "depin": {
+    "title": "DePin",
+    "becomeANode": "Werden Sie ein Node",
+    "ctaBody": "Origin Fallback, verschlüsselte geschützte Medien und verifizierte Arbeit kommen vor öffentlichen Knotenbelohnungen.",
+    "ctaTitle": "Starten Sie nur, wenn Fehler sicher sind.",
+    "earlyAccess": "Früher Zugang",
+    "earlyAccessBody": "Ein leichtgewichtiger, browserbasierter Node ist unten live. Ein schwererer, immer aktiver Desktop-Node ist eine erklärte zukünftige Richtung, noch nicht verfügbar. Die Teilnahme garantiert niemals eine Belohnung.",
+    "fallbackFigureAria": "Fallback-Pfad für Content Delivery",
+    "faqHeading": "Fragen, klar beantwortet.",
+    "footerNote": "Die DePin-Beteiligung ist eine Beitragsleistung, kein Anlageprodukt. Verfügbarkeit, Berechtigung und Prämien können sich ändern.",
+    "heroBlurb": "Tragen Sie zu Speicherplatz, Bandbreite und Rechenleistung bei, um DeHub-Inhalte zu hosten, zu transcodieren und bereitzustellen.",
+    "heroCaption": "DeHub behält die Origin-Kopie. Community-Knoten fügen belastbare Replikate und lokale Lieferkapazitäten hinzu.",
+    "heroEyebrow": "Community-basierte Infrastruktur",
+    "heroImageAlt": "Ein kompakter Edge-Computing-Knoten, der mit Unterkünften und Kreativstudios verbunden ist",
+    "heroTitle": "Ihre Hardware. Das Mediennetzwerk von DeHub.",
+    "noFixedRate": "Es gibt keinen festen Satz, keine Mindestrendite, keinen APY oder keine zukünftige Schätzung. Beitragsaufzeichnungen sind nur Buchhaltungseingaben, keine Zahlungsversprechen. Jede zukünftige Token-Abrechnung würde auf Base erfolgen und unterliegt weiterhin der Berechtigung, den Netzwerkregeln und dem geltenden Recht.",
+    "nodesLeaveBody": "Keine Community-Maschine hält die einzige Kopie. Integritätsprüfungen, Replikationen und Ursprungs-Fallback halten die Wiedergabe verfügbar.",
+    "nodesLeaveTitle": "Ein Netzwerk, das erwartet, dass Knoten offline gehen.",
+    "notTrackedYet": "Noch nicht nachverfolgt",
+    "privacyBody": "Geschützte Medien bleiben auf Community-Hardware verschlüsselt. Wiedergabeschlüssel werden separat an autorisierte Zuschauer ausgegeben.",
+    "privacyTitle": "Hosts speichern Teile, nicht Zugriff.",
+    "readTheDocs": "Lesen Sie die Dokumentation",
+    "runningCosts": "Der Betrieb eines Knotens verbraucht Strom, Internetdaten und Hardwarelebensdauer. Betreiber erhalten möglicherweise nichts, und ihre Kosten können alle Belohnungen übersteigen.",
+    "safestWorkloadBody": "DePin ergänzt zunächst DeHubs bestehenden Lieferpfad. Anspruchsvollere Arbeitslasten folgen erst nach bewiesener Verifizierung.",
+    "safestWorkloadTitle": "Von der sichersten Arbeitslast nach außen gebaut.",
+    "signIn": "Anmelden",
+    "statNotTracked": "Noch nicht nachverfolgt.",
+    "statUnavailable": "Derzeit nicht verfügbar.",
+    "threeJobsBody": "Operatoren wählen ihre Speicher-, Bandbreiten- und Rechenlimits. DeHub plant nur die Arbeit, die ihre Maschine sicher bewältigen kann.",
+    "threeJobsTitle": "Ein Node, drei nützliche Jobs.",
+    "transcode": "Transkodierung",
+    "transcodeBody": "Berechtigte Maschinen wandeln hochgeladene Videos in adaptive Ausgabeformate um. Jede Ausgabe wird überprüft, bevor sie bereitgestellt werden kann.",
+    "transcodeImageAlt": "Ein Home-Creator-Workstation-Knoten trägt GPU-Rechenleistung bei",
+    "verifiedWorkBody": "Der Beitrag wird durch signierte Quittungen, Integritätsprüfungen und Ausgabevalidierung gemessen. Nur Speicher erzeugt keine Belohnung.",
+    "verifiedWorkTitle": "Nützliche Arbeit wird überprüft. Belohnungen bleiben variabel.",
+    "yourNode": "Ihr Node",
+    "hostBody": "Knoten speichern verschlüsselte oder inhaltsadressierte Segmente in einem begrenzten lokalen Cache. DeHub-Ursprungsspeicher bleibt die Quelle der Wahrheit.",
+    "deliver": "Bereitstellung",
+    "deliverBody": "Nahegelegene Peers teilen Videosegmente, während der normale Bereitstellungspfad als automatisches Fallback bereit bleibt.",
+    "origin": "DeHub-Ursprung",
+    "originBody": "Permanente Quellkopie und Fallback-Bereitstellung",
+    "availableReplicas": "Verfügbare Replikationen",
+    "availableReplicasBody": "Überprüfte Segmente in der Nähe der Nachfrage bereitstellen",
+    "offlineNode": "Offline-Knoten",
+    "offlineNodeBody": "Aus dem Routing entfernt, bis er sich wieder verbindet",
+    "viewer": "Zuschauer",
+    "viewerBody": "Nutzt einen Peer, wenn verfügbar, Ursprung bei Bedarf",
+    "protectedContent": "Geschützter Inhalt",
+    "protectedContentBody": "Abonnement-, private und Pay-per-View-Segmente können als Chiffretext gespeichert werden. Knotenbetreiber erhalten keine Berechtigungsschlüssel, nur weil sie Daten hosten.",
+    "publicContent": "Öffentlicher Inhalt",
+    "publicContentBody": "Verschlüsselung verhindert beiläufige Überprüfung zwischengespeicherter Dateien, aber öffentliche Medien bleiben über den öffentlichen DeHub-Player abrufbar. Wir werden das Gegenteil nicht behaupten.",
+    "operatorControls": "Betreiberkontrollen",
+    "operatorControlsBody": "Betreiber wählen Speicherlimits, Bandbreitenlimits, Arbeitszeiten und berechtigte öffentliche Inhaltskategorien. Entfernungsmitteilungen lösen Cache-Löschungen aus.",
+    "deliveryReceipts": "Bereitstellungsquittungen",
+    "deliveryReceiptsBody": "Überprüfte Bytes, die an echte Wiedergabesitzungen bereitgestellt werden.",
+    "availability": "Verfügbarkeit",
+    "availabilityBody": "Erfolgreiche Abrufprüfungen und zuverlässiger Service bei Zuweisung.",
+    "validOutput": "Gültige Ausgabe",
+    "validOutputBody": "Transcodierungen müssen technische und stichprobenartige Qualitätsprüfungen bestehen.",
+    "revenuePool": "Umsatzfinanzierter Pool",
+    "revenuePoolBody": "Bei Aktivierung würde ein Belohnungsbudget aus der Plattformeinnahmen nach Ablauf der Epoche festgelegt.",
+    "delivery": "Lieferung",
+    "deliveryBody": "Peer-gestützte Live- und Videolieferung mit automatischem Fallback.",
+    "adaptiveVideo": "Adaptive Videos",
+    "adaptiveVideoBody": "Mehrere Versionen für zuverlässige Wiedergabe über verschiedene Verbindungsgeschwindigkeiten.",
+    "desktopNodes": "Desktop-Knoten",
+    "desktopNodesBody": "Begrenzte Speicherung, Bandbreitenkontrolle und verifizierte Verfügbarkeit.",
+    "baseSettlement": "Base-Abrechnung",
+    "baseSettlementBody": "Umsatzfinanzierte Ansprüche nur nach operativer und rechtlicher Überprüfung.",
+    "statStored": "Gespeichert",
+    "statVerified": "Verifiziert",
+    "verifiedBytes": "Verifizierte Bytes",
+    "totalStoredLedger": "Insgesamt gespeichert (Ledger)",
+    "dhbEarnedThisPeriod": "In dieser Periode verdiente Token",
+    "faqOfflineQ": "Was passiert, wenn ein Hosting-Knoten offline geht?",
+    "faqOfflineA": "Der Koordinator entfernt ihn aus dem aktiven Routing. Ein anderes Replikat bedient das Segment, oder die Wiedergabe fällt auf DeHub-Ursprungsspeicher zurück, während Ersatzkopien eingeplant werden.",
+    "faqCanOperatorSeeQ": "Kann ein Knotenbetreiber den Inhalt sehen, den er hostet?",
+    "faqCanOperatorSeeA": "Geschützter Inhalt wird als verschlüsselte Segmente gespeichert und der Host erhält keine Wiedergabeschlüssel. Öffentlicher Inhalt bleibt nach Design durch DeHub öffentlich einsehbar.",
+    "faqHowMuchQ": "Wie viel erhält ein Knotenbetreiber?",
+    "faqHowMuchA": "Es gibt keinen festen Satz oder Prognose. Verifizierter Beitrag kann einen Anteil an einem umsatzfinanzierten Belohnungspool nach Ablauf einer Epoche erhalten. Belohnungen sind nicht garantiert, und Strom-, Bandbreiten- und Hardwarekosten können alle Belohnungen übersteigen.",
+    "faqSoftwareAvailableQ": "Ist die Knotensoftware jetzt verfügbar?",
+    "faqSoftwareAvailableA": "Eine leichte, browserbasierte Ebene ist heute verfügbar: Melden Sie sich an und aktivieren Sie sie auf dieser Seite, und Ihr offener Tab wird zu einem Knoten, solange er offen bleibt. Ein schwererer, immer aktiver Desktop-Knoten ist eine erklärte zukünftige Richtung – es existiert noch nicht.",
+    "faqInstallNeededQ": "Muss ich etwas für den Browser-Knoten installieren?",
+    "faqInstallNeededA": "Nein. Er läuft vollständig im Tab mit dem lokalen Speicher Ihres Browsers. Das Schließen des Tabs stoppt Ihren Knoten; es gibt keinen Hintergrunddienst und keine Installation.",
+    "online": "Online",
+    "host": "Gastgeber",
+    "statNodesOnline": "Nodes online",
+    "appSignInBlurb": "Melden Sie sich an, um Ihr Knotenbuch zu sehen: was Sie gespeichert haben, was verifiziert wurde und was Sie in diesem Zeitraum verdient haben.",
+    "appNodeBody": "Der Knoten wird in einem Browser-Tab ausgeführt, nicht in dieser App. Öffnen Sie DePin im Web, melden Sie sich mit diesem Konto an und melden Sie sich an. Ihr Hauptbuch wird hier angezeigt.",
+    "openOnWeb": "DePin im Web öffnen",
+    "statusOffline": "Offline",
+    "statusUnregistered": "Nicht registriert"
   }
 }

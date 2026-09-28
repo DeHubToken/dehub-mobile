@@ -3792,7 +3792,10 @@
     "unpinConfirm": "Pašalinti šią prisegtą žinutę?",
     "pinMessage": "Prisegti žinutę",
     "unpinMessage": "Atsegti žinutę",
-    "jumpToLatest": "Pereiti prie naujausių žinučių"
+    "jumpToLatest": "Pereiti prie naujausių žinučių",
+    "ban": "Užblokuoti",
+    "banConfirm": "Ar tikrai norite užblokuoti {{name}}?",
+    "banFailed": "Nepavyko užblokuoti vartotojo"
   },
   "promptFeed": {
     "headline": "Ką norite matyti?",
@@ -4832,7 +4835,20 @@
     "tokensSent": "{{amount}} žetonai išsiųsti",
     "percentUsed": "{{percent}}% naudota",
     "spentOfTotal": "{{spent}} iš {{total}}",
-    "viewInWallet": "Peržiūrėti piniginėje"
+    "viewInWallet": "Peržiūrėti piniginėje",
+    "topUp": "Pridėti žetonų",
+    "topUpTitle": "Pridėti prenumeratos žetonus",
+    "topUpCustom": "Kita suma (USD)",
+    "topUpYouSend": "Siunčiate",
+    "topUpYouGet": "Pridėta prie jūsų likučio",
+    "topUpConfirm": "Pridėti {{amount}}",
+    "topUpRange": "Įveskite {{min}} į {{max}}",
+    "topUpDone": "{{amount}} pridėta prie jūsų prenumeratos žetonų",
+    "topUpPending": "Papildymas bus patvirtintas. Netrukus jis bus rodomas jūsų balanse.",
+    "topUpEmptyHint": "Papildyk ir užsiprenumeruok kūrėjus",
+    "topUpStageWallet": "Patvirtinkite savo piniginėje...",
+    "topUpStageConfirming": "Laukiama operacijos...",
+    "topUpStageCrediting": "Pridedama prie jūsų likučio..."
   },
   "live": {
     "notSet": "Nenustatyta",
@@ -4890,8 +4906,61 @@
         "legend": {
           "name": "Legenda",
           "hint": "Pasiekite dešimtą lygį."
+        },
+        "ignition": {
+          "name": "Uždegimas",
+          "hint": "Pasiekite vieną kvalifikacinę valandą eteryje."
+        },
+        "on-air": {
+          "name": "Eteryje",
+          "hint": "Užbaikite dešimt kvalifikacinių transliacijų."
+        },
+        "storyteller": {
+          "name": "Pasakotojas",
+          "hint": "Užbaikite dvidešimt penkias kvalifikacines transliacijas."
+        },
+        "broadcaster": {
+          "name": "Transliuotojas",
+          "hint": "Užbaikite penkiasdešimt kvalifikacinių transliacijų."
+        },
+        "centurion": {
+          "name": "Šimtmetis",
+          "hint": "Užbaikite šimtą kvalifikacinių transliacijų."
+        },
+        "enduring": {
+          "name": "Ištvermingasis",
+          "hint": "Transliuokite keturias kvalifikacines valandas vienos sesijos metu."
+        },
+        "circle": {
+          "name": "Artimas ratas",
+          "hint": "Turėkite dvidešimt penkis žiūrovus vienu metu."
+        },
+        "arena": {
+          "name": "Arena",
+          "hint": "Turėkite penkiasdešimt žiūrovų vienu metu."
+        },
+        "headliner": {
+          "name": "Antraštė",
+          "hint": "Turėkite šimtą žiūrovų vienu metu."
+        },
+        "cornerstone": {
+          "name": "Kampas",
+          "hint": "Transliuokite dvidešimt šešias savaites iš eilės."
+        },
+        "veteran": {
+          "name": "Veteranas",
+          "hint": "Pasiekite 250 kvalifikacinių valandų eteryje."
+        },
+        "icon": {
+          "name": "Ikona",
+          "hint": "Pasiekite dvidešimtą lygį."
         }
-      }
+      },
+      "chooseBadge": "Pasirinkite bet kokį atrakintą ženklelį, kad jį rodytumėte savo profilyje.",
+      "useBadge": "Naudoti ženklelį",
+      "selectedBadge": "Pasirinkta",
+      "savingBadge": "Įrašomas ženklelis…",
+      "saveBadgeError": "Nepavyko įrašyti jūsų ženklelio. Bandykite dar kartą."
     },
     "unmuteMic": "Įjungti mikrofono garsą",
     "muteMic": "Nutildyti mikrofoną",
@@ -7528,5 +7597,98 @@
     "loadFailed": "Nepavyko įkelti jūsų kūrinių",
     "previewHint": "Sukurta su DeHub Builder",
     "buildInChat": "Kurkite asmeninėse žinutėse su @assistant"
+  },
+  "depin": {
+    "title": "DePin",
+    "becomeANode": "Tapti mazgu",
+    "ctaBody": "Pirminis atsarginis variantas, užšifruota apsaugota laikmena ir patvirtintas darbas yra prieš viešus mazgo apdovanojimus.",
+    "ctaTitle": "Paleiskite tik tada, kai gedimas yra saugus.",
+    "earlyAccess": "Ankstyva prieiga",
+    "earlyAccessBody": "Lengvas, naršyklėje veikiantis mazgas veikia žemiau. Sunkesnis, visada įjungtas stalinis mazgas yra numatyta ateities kryptis, dar neprieinamas. Dalyvavimas niekada negarantuoja atlygio.",
+    "fallbackFigureAria": "Turinio pristatymo atsarginis kelias",
+    "faqHeading": "Klausimai, atsakyti aiškiai.",
+    "footerNote": "DePin dalyvavimas yra paslaugų teikimas, o ne investicinis produktas. Prieinamumas, tinkamumas ir apdovanojimai gali keistis.",
+    "heroBlurb": "Pridėkite savo laisvą saugyklą, pralaidumą ir skaičiavimo galią, kad padėtumėte talpinti, transkoduoti ir pristatyti DeHub turinį.",
+    "heroCaption": "DeHub saugo originalią kopiją. Bendruomenės mazgai prideda atsparias kopijas ir vietinio pristatymo pajėgumus.",
+    "heroEyebrow": "Bendruomenės valdoma infrastruktūra",
+    "heroImageAlt": "Kompaktiškas kraštinis skaičiavimo mazgas, prijungtas prie namų ir kūrėjų studijų",
+    "heroTitle": "Jūsų aparatinė įranga. DeHub medijos tinklas.",
+    "noFixedRate": "Nėra fiksuoto kurso, minimalios grąžos, APY ar prognozės. Įnašų įrašai yra tik apskaitos duomenys, o ne pažadas sumokėti. Bet koks būsimas žetonų atsiskaitymas vyktų „Base“ tinkle ir jam taikomi tinkamumo, tinklo taisyklių bei taikomų įstatymų reikalavimai.",
+    "nodesLeaveBody": "Jokia bendruomenės mašina neturi vienintelės kopijos. Sveikatos patikrinimai, kopijos ir pirminis atsarginis variantas užtikrina atkūrimo prieinamumą.",
+    "nodesLeaveTitle": "Tinklas, kuriame tikimasi, kad mazgai išeis.",
+    "notTrackedYet": "Dar nesekama",
+    "online": "Prisijungta",
+    "privacyBody": "Apsaugotos laikmenos lieka užšifruotos bendruomenės aparatinėje įrangoje. Atkūrimo raktai išduodami atskirai įgaliotiems žiūrovams.",
+    "privacyTitle": "Priimančiosios stotys saugo dalis, ne prieigą.",
+    "readTheDocs": "Skaityti dokumentus",
+    "runningCosts": "Mazgo veikimas naudoja elektrą, interneto duomenis ir aparatinės įrangos tarnavimo laiką. Operatoriai gali nieko negauti, o jų išlaidos gali viršyti bet kokį atlygį.",
+    "safestWorkloadBody": "„DePin“ pirmiausia papildo esamą „DeHub“ pristatymo kelią. Sudėtingesni darbo krūviai seka tik po to, kai įrodomas patvirtinimas.",
+    "safestWorkloadTitle": "Sukurta nuo saugiausio darbo krūvio į išorę.",
+    "signIn": "Prisijungti",
+    "statNotTracked": "Dar nepradėta stebėti.",
+    "statUnavailable": "Šiuo metu neprieinama.",
+    "threeJobsBody": "Operatoriai pasirenka savo saugyklos, pralaidumo ir skaičiavimo limitus. DeHub planuoja tik tuos darbus, kuriuos jų mašina gali saugiai atlikti.",
+    "threeJobsTitle": "Vienas mazgas, trys naudingos užduotys.",
+    "transcode": "Transkoduoti",
+    "transcodeBody": "Tinkami įrenginiai vaizdo įrašus paverčia adaptiniais variantais. Kiekvienas rezultatas yra patikrinamas prieš jį galima pateikti.",
+    "transcodeImageAlt": "Namų kūrėjo darbo stotis, prisidedanti papildoma GPU galia",
+    "verifiedWorkBody": "Indėlis matuojamas per pasirašytus kvitus, sveikatos patikrinimus ir išvesties patvirtinimą. Vien tik saugojimas nesukuria atlygio.",
+    "verifiedWorkTitle": "Naudingas darbas yra patikrintas. Atlygiai lieka kintami.",
+    "yourNode": "Jūsų mazgas",
+    "host": "Priimti",
+    "hostBody": "Mazgai saugo užšifruotus arba turinio adresų segmentus ribotoje vietinėje talpykloje. DeHub pirminė saugykla išlieka tiesos šaltiniu.",
+    "deliver": "Pristatyti",
+    "deliverBody": "Netoliese esantys bendraamžiai dalijasi vaizdo įrašų segmentais, o įprastas pristatymo kelias lieka paruoštas kaip automatinis atsarginis variantas.",
+    "origin": "DeHub pirminis",
+    "originBody": "Nuolatinė pirminė kopija ir atsarginis pristatymas",
+    "availableReplicas": "Galimos kopijos",
+    "availableReplicasBody": "Pateikti patvirtintus segmentus arti paklausos",
+    "offlineNode": "Neprisijungęs mazgas",
+    "offlineNodeBody": "Pašalinta iš maršruto, kol vėl prisijungs",
+    "viewer": "Žiūrovas",
+    "viewerBody": "Naudoja bendraamžį, kai įmanoma, kilmę, kai reikia",
+    "protectedContent": "Apsaugotas turinys",
+    "protectedContentBody": "Prenumeratos, privatūs ir mokami peržiūros segmentai gali būti saugomi kaip šifruotas tekstas. Mazgo operatoriai negauna teisių raktų vien dėl to, kad jie saugo duomenis.",
+    "publicContent": "Viešas turinys",
+    "publicContentBody": "Šifravimas neleidžia atsitiktinai apžiūrėti talpykloje esančių failų, tačiau vieša laikmena lieka žiūrima per viešą „DeHub“ grotuvą. Mes neteigsime kitaip.",
+    "operatorControls": "Operatoriaus valdikliai",
+    "operatorControlsBody": "Operatoriai pasirenka disko limitus, pralaidumo limitus, darbo valandas ir tinkamas viešojo turinio kategorijas. Pašalinimo pranešimai sukelia talpyklos išvalymą.",
+    "deliveryReceipts": "Pristatymo kvittai",
+    "deliveryReceiptsBody": "Patvirtinti baitai, pateikti realiuose atkūrimo seansuose.",
+    "availability": "Prieinamumas",
+    "availabilityBody": "Sėkmingi paėmimo patikrinimai ir patikimas aptarnavimas, kai paskirta.",
+    "validOutput": "Tinkama išvestis",
+    "validOutputBody": "Transkoduoti failai turi atitikti techninius ir imties kokybės patikrinimus.",
+    "revenuePool": "Pajamomis finansuojamas fondas",
+    "revenuePoolBody": "Jei aktyvuotas, atlygio biudžetas būtų nustatomas iš platformos pajamų po epochos uždarymo.",
+    "delivery": "Pristatymas",
+    "deliveryBody": "Bendradarbiais paremtas tiesioginis ir vaizdo pristatymas su automatiniu atsarginio perdavimo mechanizmu.",
+    "adaptiveVideo": "Adaptuojamas vaizdo įrašas",
+    "adaptiveVideoBody": "Keli variantai patikimam atkūrimui esant skirtingiems ryšio greičiams.",
+    "desktopNodes": "Darbalaukio mazgai",
+    "desktopNodesBody": "Saugyklos limitai, pralaidumo valdikliai ir patvirtintas prieinamumas.",
+    "baseSettlement": "Pagrindinis atsiskaitymas",
+    "baseSettlementBody": "Iš pajamų finansuojami reikalavimai tik po operacinio ir teisinio patikrinimo.",
+    "statNodesOnline": "Mazgai prisijungę",
+    "statStored": "Saugojama",
+    "statVerified": "Patvirtinta",
+    "verifiedBytes": "Patvirtinti baitai",
+    "totalStoredLedger": "Iš viso saugoma (registras)",
+    "dhbEarnedThisPeriod": "Šiuo laikotarpiu uždirbti žetonai",
+    "faqOfflineQ": "Kas nutinka, kai serverio mazgas dingsta iš tinklo?",
+    "faqOfflineA": "Koordinatorius pašalina jį iš aktyvaus maršruto. Kitas kopijos segmentas aptarnauja segmentą, arba atkūrimas grįžta į DeHub pirminę saugyklą, kol suplanuojamos pakeičiamos kopijos.",
+    "faqCanOperatorSeeQ": "Ar serverio mazgo operatorius gali matyti turinį, kurį jis laiko?",
+    "faqCanOperatorSeeA": "Apsaugotas turinys saugomas kaip užšifruoti segmentai, o serverio operatorius negauna atkūrimo raktų. Viešas turinys lieka viešai matomas per DeHub pagal dizainą.",
+    "faqHowMuchQ": "Kiek gaus serverio mazgo operatorius?",
+    "faqHowMuchA": "Nėra fiksuoto tarifo ar prognozės. Patvirtintas indėlis gali gauti dalį iš pajamų finansuojamo apdovanojimų fondo po epochos uždarymo. Apdovanojimai negarantuojami, o elektros, pralaidumo ir techninės įrangos išlaidos gali viršyti bet kokį apdovanojimą.",
+    "faqSoftwareAvailableQ": "Ar serverio mazgo programinė įranga jau prieinama?",
+    "faqSoftwareAvailableA": "Lengvas, naršyklėje veikiantis lygis yra prieinamas šiandien: prisijunkite ir pasirinkite šį puslapį, ir jūsų atidaryta kortelė taps serverio mazgu, kol ji liks atidaryta. Sunki, visada veikianti stalinių kompiuterių mazgo versija yra numatyta ateities kryptis – jos dar nėra.",
+    "faqInstallNeededQ": "Ar man reikia ką nors įdiegti naršyklės mazgui?",
+    "faqInstallNeededA": "Ne. Jis veikia visiškai kortelėje, naudojant jūsų naršyklės vietinę saugyklą. Uždarius kortelę, jūsų mazgas sustoja; nėra fono paslaugos ir diegimo.",
+    "appSignInBlurb": "Prisijunkite, kad pamatytumėte savo mazgų knygą: ką išsaugojote, kas buvo patvirtinta ir kiek uždirbote per šį laikotarpį.",
+    "appNodeBody": "Mazgas veikia naršyklės skirtuke, o ne šioje programėlėje. Atidarykite „DePin“ žiniatinklyje, prisijunkite naudodami šią paskyrą ir prisijunkite. Čia pasirodys jūsų didžioji knyga.",
+    "openOnWeb": "Atidaryti „DePin“ žiniatinklyje",
+    "statusOffline": "Neprisijungęs",
+    "statusUnregistered": "Neužregistruota"
   }
 }

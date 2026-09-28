@@ -3805,7 +3805,10 @@
     "unpinConfirm": "Xóa tin nhắn đã ghim này?",
     "pinMessage": "Tin nhắn ghim",
     "unpinMessage": "Bỏ ghim tin nhắn",
-    "jumpToLatest": "Chuyển đến tin nhắn mới nhất"
+    "jumpToLatest": "Chuyển đến tin nhắn mới nhất",
+    "ban": "Cấm",
+    "banConfirm": "Bạn có chắc chắn muốn cấm {{name}} không?",
+    "banFailed": "Không thể cấm người dùng"
   },
   "promptFeed": {
     "headline": "Bạn muốn xem gì?",
@@ -4845,7 +4848,20 @@
     "tokensSent": "Đã gửi mã thông báo {{amount}}",
     "percentUsed": "Đã sử dụng {{percent}}%",
     "spentOfTotal": "{{spent}}/{{total}}",
-    "viewInWallet": "Xem trong ví"
+    "viewInWallet": "Xem trong ví",
+    "topUp": "Thêm mã thông báo",
+    "topUpTitle": "Thêm mã thông báo đăng ký",
+    "topUpCustom": "Số tiền khác (USD)",
+    "topUpYouSend": "Bạn gửi",
+    "topUpYouGet": "Đã thêm vào số dư của bạn",
+    "topUpConfirm": "Thêm {{amount}}",
+    "topUpRange": "Nhập {{min}} vào {{max}}",
+    "topUpDone": "{{amount}} đã được thêm vào mã thông báo đăng ký của bạn",
+    "topUpPending": "Nạp tiền của bạn đang được xác nhận. Nó sẽ sớm xuất hiện trong số dư của bạn.",
+    "topUpEmptyHint": "Nạp tiền để đăng ký người sáng tạo",
+    "topUpStageWallet": "Xác nhận trong ví của bạn…",
+    "topUpStageConfirming": "Đang chờ giao dịch…",
+    "topUpStageCrediting": "Đang thêm vào số dư của bạn..."
   },
   "live": {
     "notSet": "Chưa đặt",
@@ -4903,8 +4919,61 @@
         "legend": {
           "name": "Huyền thoại",
           "hint": "Đạt cấp mười."
+        },
+        "ignition": {
+          "name": "Khởi động",
+          "hint": "Đạt một giờ phát sóng đủ điều kiện."
+        },
+        "on-air": {
+          "name": "Đang phát sóng",
+          "hint": "Hoàn thành mười buổi phát sóng đủ điều kiện."
+        },
+        "storyteller": {
+          "name": "Người kể chuyện",
+          "hint": "Hoàn thành hai mươi lăm buổi phát sóng đủ điều kiện."
+        },
+        "broadcaster": {
+          "name": "Người phát sóng",
+          "hint": "Hoàn thành năm mươi buổi phát sóng đủ điều kiện."
+        },
+        "centurion": {
+          "name": "Bách chiến",
+          "hint": "Hoàn thành một trăm buổi phát sóng đủ điều kiện."
+        },
+        "enduring": {
+          "name": "Bền bỉ",
+          "hint": "Phát sóng bốn giờ đủ điều kiện trong một phiên."
+        },
+        "circle": {
+          "name": "Vòng thân cận",
+          "hint": "Có hai mươi lăm người xem cùng lúc."
+        },
+        "arena": {
+          "name": "Đấu trường",
+          "hint": "Có năm mươi người xem cùng lúc."
+        },
+        "headliner": {
+          "name": "Ngôi sao chính",
+          "hint": "Có một trăm người xem cùng lúc."
+        },
+        "cornerstone": {
+          "name": "Viên đá nền",
+          "hint": "Phát sóng liên tục trong hai mươi sáu tuần."
+        },
+        "veteran": {
+          "name": "Kỳ cựu",
+          "hint": "Đạt hai trăm năm mươi giờ phát sóng đủ điều kiện."
+        },
+        "icon": {
+          "name": "Biểu tượng",
+          "hint": "Đạt cấp độ hai mươi."
         }
-      }
+      },
+      "chooseBadge": "Chọn bất kỳ huy hiệu đã mở khóa nào để hiển thị trên hồ sơ của bạn.",
+      "useBadge": "Dùng huy hiệu",
+      "selectedBadge": "Đã chọn",
+      "savingBadge": "Đang lưu huy hiệu…",
+      "saveBadgeError": "Không thể lưu huy hiệu của bạn. Vui lòng thử lại."
     },
     "unmuteMic": "Bật tiếng micrô",
     "muteMic": "Tắt tiếng micrô",
@@ -7616,5 +7685,98 @@
     "loadFailed": "Không thể tải bản dựng của bạn",
     "previewHint": "Được xây dựng bằng DeHub Builder",
     "buildInChat": "Tạo trong tin nhắn riêng với @assistant"
+  },
+  "depin": {
+    "title": "DePin",
+    "becomeANode": "Trở thành một nút",
+    "ctaBody": "Dự phòng ban đầu, phương tiện được bảo vệ được mã hóa và công việc được xác minh đến trước phần thưởng nút công khai.",
+    "ctaTitle": "Chỉ khởi chạy khi lỗi là an toàn.",
+    "earlyAccess": "Quyền truy cập sớm",
+    "earlyAccessBody": "Một nút nhẹ dựa trên trình duyệt đang hoạt động bên dưới. Một nút máy tính nặng hơn, luôn bật là một hướng phát triển được nêu rõ, chưa có sẵn. Tham gia không bao giờ đảm bảo phần thưởng.",
+    "fallbackFigureAria": "Đường dẫn dự phòng phân phối nội dung",
+    "faqHeading": "Câu hỏi, được trả lời rõ ràng.",
+    "footerNote": "Sự tham gia của DePin là một dịch vụ đóng góp, không phải là một sản phẩm đầu tư. Tình trạng còn phòng, tính đủ điều kiện và phần thưởng có thể thay đổi.",
+    "heroBlurb": "Đóng góp dung lượng dự phòng, băng thông và tính toán để giúp lưu trữ, chuyển mã và cung cấp nội dung DeHub.",
+    "heroCaption": "DeHub giữ bản gốc. Các nút cộng đồng bổ sung các bản sao có khả năng phục hồi và khả năng phân phối tại địa phương.",
+    "heroEyebrow": "Cơ sở hạ tầng do cộng đồng cung",
+    "heroImageAlt": "Một nút điện toán ranh giới nhỏ gọn kết nối với nhà ở và studio của người sáng tạo",
+    "heroTitle": "Phần cứng của bạn. Mạng truyền thông của DeHub.",
+    "noFixedRate": "Không có tỷ lệ cố định, lợi nhuận tối thiểu, APY hoặc ước tính trước. Hồ sơ đóng góp chỉ là đầu vào kế toán, không phải là lời hứa thanh toán. Bất kỳ việc thanh toán token nào trong tương lai sẽ diễn ra trên Base và vẫn tuân theo các quy định về đủ điều kiện, quy tắc mạng và luật hiện hành.",
+    "nodesLeaveBody": "Không có máy cộng đồng nào giữ bản sao duy nhất. Kiểm tra sức khỏe, bản sao và dự phòng gốc giữ cho phát lại khả dụng.",
+    "nodesLeaveTitle": "Một mạng lưới dự kiến các nút sẽ rời đi.",
+    "notTrackedYet": "Chưa được theo dõi",
+    "online": "Trực tuyến",
+    "privacyBody": "Phương tiện được bảo vệ vẫn được mã hóa trên phần cứng cộng đồng. Các khóa phát lại được cấp riêng cho những người xem được phép.",
+    "privacyTitle": "Các máy chủ lưu trữ các phần, không phải quyền truy cập.",
+    "readTheDocs": "Đọc tài liệu",
+    "runningCosts": "Chạy một nút sử dụng điện, dữ liệu internet và tuổi thọ phần cứng. Các nhà điều hành có thể không nhận được gì, và chi phí của họ có thể vượt quá bất kỳ phần thưởng nào.",
+    "safestWorkloadBody": "DePin bổ sung đường dẫn cung cấp hiện có của DeHub trước tiên. Các khối lượng công việc đòi hỏi cao hơn chỉ theo sau khi xác minh được chứng minh.",
+    "safestWorkloadTitle": "Được xây dựng từ khối lượng công việc an toàn nhất trở ra ngoài.",
+    "signIn": "Đăng nhập",
+    "statNotTracked": "Chưa được theo dõi.",
+    "statUnavailable": "Hiện không có sẵn.",
+    "threeJobsBody": "Các nhà điều hành chọn giới hạn lưu trữ, băng thông và tính toán của họ. DeHub chỉ lên lịch công việc mà máy của họ có thể xử lý một cách an toàn.",
+    "threeJobsTitle": "Một nút, ba công việc hữu ích.",
+    "transcode": "Chuyển mã",
+    "transcodeBody": "Các máy đủ điều kiện chuyển đổi video được tải lên thành các bản dựng thích ứng. Mọi đầu ra được kiểm tra trước khi có thể được phục vụ.",
+    "transcodeImageAlt": "Một trạm làm việc của người tạo nội dung tại nhà đóng góp tính toán GPU dự phòng",
+    "verifiedWorkBody": "Đóng góp được đo lường thông qua các biên lai ký, kiểm tra sức khỏe và xác thực đầu ra. Lưu trữ một mình không tạo ra phần thưởng.",
+    "verifiedWorkTitle": "Công việc hữu ích được xác minh. Phần thưởng vẫn thay đổi.",
+    "yourNode": "Nút của bạn",
+    "host": "Lưu trữ",
+    "hostBody": "Các nút giữ các đoạn được mã hóa hoặc được xác định bằng nội dung trong bộ nhớ cache cục bộ có giới hạn. Bộ lưu trữ gốc DeHub vẫn là nguồn sự thật.",
+    "deliver": "Phân phối",
+    "deliverBody": "Các nút ngang hàng gần đó chia sẻ các đoạn video trong khi đường dẫn phân phối bình thường vẫn sẵn sàng như một dự phòng tự động.",
+    "origin": "Gốc DeHub",
+    "originBody": "Bản sao nguồn vĩnh viễn và phân phối dự phòng",
+    "availableReplicas": "Bản sao có sẵn",
+    "availableReplicasBody": "Phục vụ các đoạn được xác minh gần nhu cầu",
+    "offlineNode": "Nút ngoại tuyến",
+    "offlineNodeBody": "Bị xóa khỏi định tuyến cho đến khi kết nối lại",
+    "viewer": "Người xem",
+    "viewerBody": "Sử dụng nút ngang hàng khi có sẵn, gốc khi cần thiết",
+    "protectedContent": "Nội dung được bảo vệ",
+    "protectedContentBody": "Các đoạn dành cho người đăng ký, riêng tư và trả tiền cho mỗi lần xem có thể được lưu trữ dưới dạng bản mã. Các nhà điều hành nút không nhận được các khóa quyền chỉ vì họ lưu trữ dữ liệu.",
+    "publicContent": "Nội dung công khai",
+    "publicContentBody": "Mã hóa ngăn chặn kiểm tra bình thường của các tệp được lưu trong bộ nhớ cache, nhưng phương tiện công khai vẫn có thể xem được thông qua trình phát DeHub công khai. Chúng tôi sẽ không khẳng định ngược lại.",
+    "operatorControls": "Điều khiển nhà điều hành",
+    "operatorControlsBody": "Các nhà điều hành chọn giới hạn đĩa, giới hạn băng thông, giờ làm việc và danh mục nội dung công khai đủ điều kiện. Thông báo xóa kích hoạt xóa bộ nhớ cache.",
+    "deliveryReceipts": "Biên lai phân phối",
+    "deliveryReceiptsBody": "Các byte được xác minh phục vụ cho các phiên phát lại thực.",
+    "availability": "Tính khả dụng",
+    "availabilityBody": "Kiểm tra truy xuất thành công và dịch vụ đáng tin cậy khi được giao.",
+    "validOutput": "Đầu ra hợp lệ",
+    "validOutputBody": "Các bản mã hóa lại phải vượt qua kiểm tra chất lượng kỹ thuật và mẫu.",
+    "revenuePool": "Quỹ được tài trợ bằng doanh thu",
+    "revenuePoolBody": "Nếu được kích hoạt, ngân sách phần thưởng sẽ được đặt từ doanh thu nền tảng sau khi epoch đóng lại.",
+    "delivery": "Cung cấp",
+    "deliveryBody": "Cung cấp trực tiếp và video hỗ trợ ngang hàng với dự phòng tự động.",
+    "adaptiveVideo": "Video thích ứng",
+    "adaptiveVideoBody": "Nhiều bản dựng để phát lại đáng tin cậy trên các tốc độ kết nối.",
+    "desktopNodes": "Nút máy tính để bàn",
+    "desktopNodesBody": "Lưu trữ được giới hạn, kiểm soát băng thông và tính khả dụng được xác minh.",
+    "baseSettlement": "Thanh toán Base",
+    "baseSettlementBody": "Chỉ các yêu cầu được tài trợ bằng doanh thu sau khi xem xét hoạt động và pháp lý.",
+    "statNodesOnline": "Các nút trực tuyến",
+    "statStored": "Đã lưu trữ",
+    "statVerified": "Đã xác minh",
+    "verifiedBytes": "Byte đã xác minh",
+    "totalStoredLedger": "Tổng đã lưu trữ (sổ cái)",
+    "dhbEarnedThisPeriod": "Mã thông báo kiếm được trong kỳ này",
+    "faqOfflineQ": "Điều gì xảy ra khi một nút lưu trữ ngoại tuyến?",
+    "faqOfflineA": "Bộ điều phối loại bỏ nó khỏi định tuyến hoạt động. Một bản sao khác phục vụ phân đoạn, hoặc phát lại quay trở lại lưu trữ gốc DeHub trong khi các bản sao thay thế được lên lịch.",
+    "faqCanOperatorSeeQ": "Nhà điều hành nút có thể xem nội dung mà họ lưu trữ không?",
+    "faqCanOperatorSeeA": "Nội dung được bảo vệ được lưu trữ dưới dạng các phân đoạn được mã hóa và máy chủ không nhận được các khóa phát lại. Nội dung công khai vẫn có thể xem công khai thông qua DeHub theo thiết kế.",
+    "faqHowMuchQ": "Nhà điều hành nút sẽ nhận được bao nhiêu?",
+    "faqHowMuchA": "Không có tỷ lệ cố định hoặc dự báo. Đóng góp được xác minh có thể nhận được một phần của quỹ phần thưởng được tài trợ bằng doanh thu sau khi epoch đóng lại. Phần thưởng không được đảm bảo, và chi phí điện, băng thông và phần cứng có thể vượt quá bất kỳ phần thưởng nào.",
+    "faqSoftwareAvailableQ": "Phần mềm nút có sẵn ngay bây giờ không?",
+    "faqSoftwareAvailableA": "Một tầng nhẹ dựa trên trình duyệt có sẵn ngày hôm nay: đăng nhập và chọn tham gia trên trang này, và tab mở của bạn trở thành một nút trong khi nó vẫn mở. Một nút máy tính để bàn nặng hơn, luôn bật là một hướng được nêu trong tương lai — nó chưa tồn tại.",
+    "faqInstallNeededQ": "Tôi có cần cài đặt bất cứ điều gì cho nút trình duyệt không?",
+    "faqInstallNeededA": "Không. Nó chạy hoàn toàn trong tab bằng bộ nhớ cục bộ của trình duyệt. Đóng tab sẽ dừng nút của bạn; không có dịch vụ nền và không cài đặt.",
+    "appSignInBlurb": "Đăng nhập để xem sổ cái nút của bạn: những gì bạn đã lưu trữ, những gì đã được xác minh và những gì bạn kiếm được trong giai đoạn này.",
+    "appNodeBody": "Nút chạy trong tab trình duyệt, không phải trong ứng dụng này. Mở DePin trên web, đăng nhập bằng tài khoản này và chọn tham gia. Sổ cái của bạn xuất hiện ở đây.",
+    "openOnWeb": "Mở DePin trên web",
+    "statusOffline": "Ngoại tuyến",
+    "statusUnregistered": "Chưa đăng ký"
   }
 }

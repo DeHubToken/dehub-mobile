@@ -3792,7 +3792,10 @@
     "unpinConfirm": "Poistetaanko tämä kiinnitetty viesti?",
     "pinMessage": "Kiinnitä viesti",
     "unpinMessage": "Poista viestin kiinnitys",
-    "jumpToLatest": "Siirry uusimpiin viesteihin"
+    "jumpToLatest": "Siirry uusimpiin viesteihin",
+    "ban": "Estä",
+    "banConfirm": "Haluatko varmasti estää käyttäjän {{name}}?",
+    "banFailed": "Käyttäjän estäminen epäonnistui"
   },
   "promptFeed": {
     "headline": "Mitä haluat nähdä?",
@@ -4832,7 +4835,20 @@
     "tokensSent": "{{amount}} polettia lähetetty",
     "percentUsed": "{{percent}}% käytetty",
     "spentOfTotal": "{{spent}}/{{total}}",
-    "viewInWallet": "Näytä lompakossa"
+    "viewInWallet": "Näytä lompakossa",
+    "topUp": "Lisää tunnuksia",
+    "topUpTitle": "Lisää tilaustunnukset",
+    "topUpCustom": "Muu summa (USD)",
+    "topUpYouSend": "Lähetät",
+    "topUpYouGet": "Lisätty saldoosi",
+    "topUpConfirm": "Lisää {{amount}}",
+    "topUpRange": "Syötä {{min}} - {{max}}",
+    "topUpDone": "{{amount}} lisättiin tilaustunnuksiisi",
+    "topUpPending": "Täytteesi on vahvistamassa. Se näkyy pian saldossasi.",
+    "topUpEmptyHint": "Lisää rahaa tilataksesi tekijöitä",
+    "topUpStageWallet": "Vahvista lompakossasi…",
+    "topUpStageConfirming": "Odotetaan tapahtumaa...",
+    "topUpStageCrediting": "Lisätään saldoosi…"
   },
   "live": {
     "notSet": "Ei asetettu",
@@ -4890,8 +4906,61 @@
         "legend": {
           "name": "Selite",
           "hint": "Saavuta taso 10."
+        },
+        "ignition": {
+          "name": "Sytytys",
+          "hint": "Saavuta yksi kelvollinen tunti ilmassa."
+        },
+        "on-air": {
+          "name": "Ilmassa",
+          "hint": "Valmista kymmenen kelvollista suoratoistoa."
+        },
+        "storyteller": {
+          "name": "Tarina",
+          "hint": "Valmista kaksikymmentäviisi kelvollista suoratoistoa."
+        },
+        "broadcaster": {
+          "name": "Lähettäjä",
+          "hint": "Valmista viisikymmentä kelvollista suoratoistoa."
+        },
+        "centurion": {
+          "name": "Centurion",
+          "hint": "Valmista sata kelvollista suoratoistoa."
+        },
+        "enduring": {
+          "name": "Kestävä",
+          "hint": "Suoratoista neljä kelvollista tuntia yhdellä istunnolla."
+        },
+        "circle": {
+          "name": "Sisäpiiri",
+          "hint": "Tee kaksikymmentäviisi ihmistä katsomassa kerrallaan."
+        },
+        "arena": {
+          "name": "Areena",
+          "hint": "Tee viisikymmentä ihmistä katsomassa kerrallaan."
+        },
+        "headliner": {
+          "name": "Pääkäsikirjoittaja",
+          "hint": "Tee sata ihmistä katsomassa kerrallaan."
+        },
+        "cornerstone": {
+          "name": "Kärki",
+          "hint": "Suoratoista kaksikymmentäkuusi peräkkäistä viikkoa."
+        },
+        "veteran": {
+          "name": "Kokene",
+          "hint": "Saavuta 250 kelvollista tuntia ilmassa."
+        },
+        "icon": {
+          "name": "Ikoni",
+          "hint": "Saavuta taso kaksikymmentä."
         }
-      }
+      },
+      "chooseBadge": "Valitse mikä tahansa avattu badge näyttämään profiilissasi.",
+      "useBadge": "Käytä badge",
+      "selectedBadge": "Valittu",
+      "savingBadge": "Tallennetaan badge…",
+      "saveBadgeError": "Badgea ei voitu tallentaa. Yritä uudelleen."
     },
     "unmuteMic": "Poista mikrofonin mykistys",
     "muteMic": "Mykistä mikrofoni",
@@ -7528,5 +7597,98 @@
     "loadFailed": "Rakennuksiasi ei voitu ladata",
     "previewHint": "Rakennettu DeHub Builderilla",
     "buildInChat": "Rakenna yksityisviesteissä @assistantin kanssa"
+  },
+  "depin": {
+    "title": "DePin",
+    "becomeANode": "Tule solmuksi",
+    "ctaBody": "Alkuperäinen varasuunnitelma, salattu suojattu media ja vahvistettu työ tulevat ennen julkisia solmupalkkioita.",
+    "ctaTitle": "Käynnistä vain, kun vika on turvallinen.",
+    "earlyAccess": "Varhainen pääsy",
+    "earlyAccessBody": "Kevyt, selainpohjainen solmu on käytössä alla. Raskaampi, aina päällä oleva työpöytäsolmu on ilmoitettu tulevaksi suunnaksi, ei vielä saatavilla. Osallistuminen ei koskaan takaa palkkiota.",
+    "fallbackFigureAria": "Sisällön toimittamisen varasuunnitelman polku",
+    "faqHeading": "Kysymykset, vastattuna selkeästi.",
+    "footerNote": "DePin-osallistuminen on osallistumispalvelu, ei sijoitustuote. Saatavuus, kelpoisuus ja palkkiot voivat muuttua.",
+    "heroBlurb": "Osallistu varavaralla olevalla tallennustilalla, kaistanleveydellä ja laskentakapasiteetilla DeHub-sisällön isännöintiin, transkoodaukseen ja toimittamiseen.",
+    "heroCaption": "DeHub säilyttää alkuperäisen kopion. Yhteisön solmut lisäävät kestäviä replikkoja ja paikallisen toimittamisen kapasiteettia.",
+    "heroEyebrow": "Yhteisön toimittama infrastruktuuri",
+    "heroImageAlt": "Kompakti edge-compute-solmu, joka on kytketty koteihin ja luojien studioihin",
+    "heroTitle": "Sinun laitteistosi. DeHubin mediaverkko.",
+    "noFixedRate": "Ei ole kiinteää kurssia, vähimmäistuottoa, APY:tä tai tulevaisuuden ennustetta. Osallistumistiedot ovat vain kirjanpidollisia syötteitä, eivät lupaus maksusta. Mahdollinen tuleva token-selvitys tapahtuisi Base-verkossa ja olisi edelleen kelpoisuuden, verkon sääntöjen ja sovellettavan lain alainen.",
+    "nodesLeaveBody": "Mikään yhteisökoneen ei pidä olla ainoa kopio. Terveystarkistukset, replikat ja alkuperäinen varasuunnitelma pitävät toiston saatavilla.",
+    "nodesLeaveTitle": "Verkko, joka odottaa solmujen poistumista.",
+    "notTrackedYet": "Ei seurattu vielä",
+    "online": "Verkossa",
+    "privacyBody": "Suojattu media pysyy salattuna yhteisön laitteistolla. Toistamisavaimet myönnetään erikseen valtuutetuille katseluille.",
+    "privacyTitle": "Isännät tallentavat palasia, ei pääsyä.",
+    "readTheDocs": "Lue dokumentaatio",
+    "runningCosts": "Solmun käyttäminen kuluttaa sähköä, internet-dataa ja laitteiston käyttöikää. Operaattorit eivät saa mitään, ja heidän kustannuksensa voivat ylittää mahdolliset palkkiot.",
+    "safestWorkloadBody": "DePin täydentää DeHubin olemassa olevaa toimituspolkua ensin. Vaativammat työkuormat seuraavat vasta sen jälkeen, kun vahvistus on todistettu.",
+    "safestWorkloadTitle": "Rakennettu turvallisimmasta työkuormasta ulospäin.",
+    "signIn": "Kirjaudu sisään",
+    "statNotTracked": "Ei vielä seurattu.",
+    "statUnavailable": "Ei saatavilla juuri nyt.",
+    "threeJobsBody": "Operaattorit valitsevat tallennustilansa, kaistanleveytensä ja laskentarajansa. DeHub ajoittaa vain työn, jonka heidän koneensa voi turvallisesti käsitellä.",
+    "threeJobsTitle": "Yksi solmu, kolme hyödyllistä tehtävää.",
+    "transcode": "Muunna",
+    "transcodeBody": "Kelvolliset koneet muuntavat ladatun videon adaptiivisiksi versioiksi. Jokainen tulos tarkistetaan ennen kuin se voidaan toimittaa.",
+    "transcodeImageAlt": "Kotiluoja-työasema, joka osallistuu varaosien GPU-laskentaan",
+    "verifiedWorkBody": "Osuus mitataan allekirjoitettujen kuittien, terveystarkistusten ja tuotoksen validoinnin avulla. Pelkkä tallennus ei luo palkkiota.",
+    "verifiedWorkTitle": "Hyödyllinen työ vahvistetaan. Palkkiot pysyvät muuttuvina.",
+    "yourNode": "Sinun solmusi",
+    "host": "Isäntä",
+    "hostBody": "Solmut säilyttävät salattuja tai sisältöosoitteella varustettuja segmenttejä rajoitetussa paikallisessa välimuistissa. DeHub-alkuperäinen tallennus pysyy totuuden lähteenä.",
+    "deliver": "Toimita",
+    "deliverBody": "Lähellä olevat vertaiset jakavat videosegmenttejä, kun taas normaali toimintapolku pysyy valmiina automaattisena varasuunnitelmana.",
+    "originBody": "Pysyvä lähdelähde ja varatoimituspolku",
+    "availableReplicas": "Saatavilla olevat repliikat",
+    "availableReplicasBody": "Toimita vahvistettuja segmenttejä lähellä kysyntää",
+    "offlineNode": "Offline-solmu",
+    "offlineNodeBody": "Poistettu reitityksestä, kunnes se muodostaa yhteyden uudelleen",
+    "viewer": "Katselija",
+    "viewerBody": "Käyttää vertaisverkkoa kun saatavilla, alkuperää tarvittaessa",
+    "protectedContent": "Suojattu sisältö",
+    "protectedContentBody": "Tilaaja-, yksityis- ja pay-per-view-segmentit voidaan tallentaa salatekstinä. Solmun operaattorit eivät saa oikeuksien avaimia pelkästään siksi, että he isännöivät tietoja.",
+    "publicContent": "Julkinen sisältö",
+    "publicContentBody": "Salaus estää välimuistiin tallennettujen tiedostojen satunnaisen tarkastelun, mutta julkinen media pysyy katsottavana julkisen DeHub-soittimen kautta. Emme väitä muuta.",
+    "operatorControls": "Operaattorin hallinta",
+    "operatorControlsBody": "Operaattorit valitsevat levytilan rajat, kaistanleveyden rajat, työajat ja kelvolliset julkisen sisällön kategoriat. Poistamisilmoitukset käynnistävät välimuistin tyhjennykset.",
+    "deliveryReceipts": "Toimitus kuittit",
+    "deliveryReceiptsBody": "Vahvistetut tavut toimitettu todellisiin toistaistuloihin.",
+    "availability": "Saatavuus",
+    "availabilityBody": "Onnistuneet hakutarkistukset ja luotettava palvelu, kun se on määritetty.",
+    "validOutput": "Kelvollinen tuotos",
+    "validOutputBody": "Transkoodaukset on läpäistävä tekniset ja näytteistetyt laaduntarkistukset.",
+    "revenuePool": "Tulorahoitettu pooli",
+    "revenuePoolBody": "Jos aktivoitu, palkkiobudjetti määritettäisiin alustan tuloista kauden päätyttyä.",
+    "delivery": "Toimitus",
+    "deliveryBody": "Vertaisavusteinen live- ja videolähetys automaattisella varasuunnitelmalla.",
+    "adaptiveVideo": "Mukautuva video",
+    "adaptiveVideoBody": "Useita versioita luotettavaa toistoa varten eri yhteysnopeuksilla.",
+    "desktopNodes": "Työpöytäsolmut",
+    "desktopNodesBody": "Rajoitettu tallennus, kaistanleveyden hallinta ja vahvistettu saatavuus.",
+    "baseSettlement": "Perusratkaisu",
+    "baseSettlementBody": "Tulotukiset korvaukset vain operatiivisen ja oikeudellisen tarkistuksen jälkeen.",
+    "statNodesOnline": "Solmut verkossa",
+    "statStored": "Tallennettu",
+    "statVerified": "Vahvistettu",
+    "verifiedBytes": "Vahvistetut tavut",
+    "totalStoredLedger": "Yhteensä tallennettu (pääkirja)",
+    "dhbEarnedThisPeriod": "Tällä kaudella ansaitut tokenit",
+    "faqOfflineQ": "Mitä tapahtuu, kun isäntäsolmu siirtyy offline-tilaan?",
+    "faqOfflineA": "Koordinaattori poistaa sen aktiivisesta reitityksestä. Toinen replika palvelee segmenttiä, tai toisto palautuu DeHub-alkuperäisvarastoon samalla kun korvaavat kopiot ajoitetaan.",
+    "faqCanOperatorSeeQ": "Voiko solmun operaattori nähdä sisällön, jota he isännöivät?",
+    "faqCanOperatorSeeA": "Suojattu sisältö tallennetaan salattuina segmentteina ja isäntä ei saa toiston avaimia. Julkinen sisältö pysyy julkisesti näkyvissä DeHubin kautta suunnitelmallisesti.",
+    "faqHowMuchQ": "Kuinka paljon solmun operaattori saa?",
+    "faqHowMuchA": "Kiinteää hintaa tai ennustetta ei ole. Vahvistettu panos voi saada osuuden tulotukisesta palkkiopoolin jälkeen, kun epokki päättyy. Palkkiot eivät ole taattuja, ja sähkö-, kaistanleveys- ja laitteistokustannukset voivat ylittää mahdolliset palkkiot.",
+    "faqSoftwareAvailableQ": "Onko solmun ohjelmisto saatavilla nyt?",
+    "faqSoftwareAvailableA": "Kevyt, selainpohjainen taso on saatavilla tänään: kirjaudu sisään ja valitse osallistuminen tällä sivulla, ja avoin välilehti muuttuu solmuksi niin kauan kuin se pysyy auki. Raskaampi, aina käytössä oleva työpöytäsolmu on ilmoitettu tulevaisuuden suunta — sitä ei ole vielä olemassa.",
+    "faqInstallNeededQ": "Tarvitsenko asentaa mitään selainsolmua varten?",
+    "faqInstallNeededA": "Ei. Se toimii kokonaan välilehdessä käyttäen selaimen paikallista varastoa. Välilehden sulkeminen pysäyttää solmusi; taustaohjelmaa ei ole ja asennusta ei tarvita.",
+    "origin": "DeHub-alkuperä",
+    "appSignInBlurb": "Kirjaudu sisään nähdäksesi solmupääkirjasi: mitä olet tallentanut, mitä vahvistettiin ja mitä ansaitsit tällä kaudella.",
+    "appNodeBody": "Solmu toimii selaimen välilehdellä, ei tässä sovelluksessa. Avaa DePin verkossa, kirjaudu sisään tällä tilillä ja ota käyttöön. Tilikirjasi näkyy täällä.",
+    "openOnWeb": "Avaa DePin verkossa",
+    "statusOffline": "Offline-tila",
+    "statusUnregistered": "Ei rekisteröity"
   }
 }

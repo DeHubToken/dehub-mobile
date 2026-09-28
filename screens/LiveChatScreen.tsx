@@ -27,6 +27,8 @@ import { useLiveChat } from "../hooks/useLiveChat";
 import { useUser } from "../context/AuthContext";
 import { useUserProfileSheet } from "../context/UserProfileSheetContext";
 import {
+  banUser as banUserApi,
+  unbanUser as unbanUserApi,
   pinMessage as pinMessageApi,
   unpinMessage as unpinMessageApi,
   uploadLiveChatImage,
@@ -37,6 +39,10 @@ import { toastError } from "../libs/toast";
 import type { LiveChatMessageData, LiveChatUser, SendMessagePayload } from "../services/livechat.service";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { setPublicChatOpen } from "../libs/public-chat-alerts";
+
+/** How a message author is named in the ban and unban prompts. */
+const senderName = (msg: LiveChatMessageData) =>
+  msg.sender?.displayName || msg.sender?.username || msg.senderAddress?.slice(0, 8) || "";
 
 /** Returns a readable date label for message grouping */
 const getDateLabel = (iso: string, t: TFunction, lang?: string): string => {
@@ -132,6 +138,7 @@ const LiveChatScreen: React.FC = () => {
     setTyping,
     loadMoreMessages,
     reconnect,
+    updateBannedList,
   } = useLiveChat();
 
   const [replyingTo, setReplyingTo] = useState<LiveChatMessageData | null>(null);
@@ -539,6 +546,54 @@ const LiveChatScreen: React.FC = () => {
     [showConfirm, dismissConfirm]
   );
 
+  // Moderator ban and unban from a message: the same /livechat/mod/ban routes web uses.
+  const handleContextBan = useCallback(
+    (msg: LiveChatMessageData) => {
+      const address = msg.senderAddress?.toLowerCase();
+      if (!address) return;
+      const name = senderName(msg);
+      showConfirm({
+        title: t("publicChat.banUser"),
+        description: t("liveChat.banConfirm", { name }),
+        confirmText: t("liveChat.ban"),
+        confirmKind: "danger",
+        onConfirm: async () => {
+          dismissConfirm();
+          try {
+            await banUserApi(address);
+            updateBannedList(address, true);
+          } catch {
+            toastError(t("liveChat.banFailed"));
+          }
+        },
+      });
+    },
+    [showConfirm, dismissConfirm, updateBannedList, t]
+  );
+
+  const handleContextUnban = useCallback(
+    (msg: LiveChatMessageData) => {
+      const address = msg.senderAddress?.toLowerCase();
+      if (!address) return;
+      const name = senderName(msg);
+      showConfirm({
+        title: t("publicChat.unbanUser"),
+        description: t("liveChat.unbanConfirm", { name }),
+        confirmText: t("liveChat.unban"),
+        onConfirm: async () => {
+          dismissConfirm();
+          try {
+            await unbanUserApi(address);
+            updateBannedList(address, false);
+          } catch {
+            toastError(t("liveChat.unbanFailed"));
+          }
+        },
+      });
+    },
+    [showConfirm, dismissConfirm, updateBannedList, t]
+  );
+
   const handleUnpinFromBar = useCallback(
     async (msg: LiveChatMessageData) => {
       try {
@@ -867,6 +922,14 @@ const LiveChatScreen: React.FC = () => {
         onEdit={handleContextEdit}
         onDelete={handleContextDelete}
         onPin={handleContextPin}
+        isSenderBanned={
+          !!contextMenuMessage?.senderAddress &&
+          (room?.bannedUsers || []).some(
+            (a) => a?.toLowerCase() === contextMenuMessage.senderAddress.toLowerCase()
+          )
+        }
+        onBan={handleContextBan}
+        onUnban={handleContextUnban}
       />
 
       <ConfirmModal

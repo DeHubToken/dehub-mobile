@@ -3841,7 +3841,10 @@
     "unpinConfirm": "Remove this pinned message?",
     "pinMessage": "Pin message",
     "unpinMessage": "Unpin message",
-    "jumpToLatest": "Jump to latest messages"
+    "jumpToLatest": "Jump to latest messages",
+    "ban": "Ban",
+    "banConfirm": "Are you sure you want to ban {{name}}?",
+    "banFailed": "Failed to ban user"
   },
   "promptFeed": {
     "headline": "What do you want to see?",
@@ -4881,7 +4884,20 @@
     "tokensSent": "{{amount}} tokens sent",
     "percentUsed": "{{percent}}% used",
     "spentOfTotal": "{{spent}} of {{total}}",
-    "viewInWallet": "View in wallet"
+    "viewInWallet": "View in wallet",
+    "topUp": "Add tokens",
+    "topUpTitle": "Add subscription tokens",
+    "topUpCustom": "Other amount (USD)",
+    "topUpYouSend": "You send",
+    "topUpYouGet": "Added to your balance",
+    "topUpConfirm": "Add {{amount}}",
+    "topUpRange": "Enter {{min}} to {{max}}",
+    "topUpDone": "{{amount}} added to your subscription tokens",
+    "topUpPending": "Your top-up is confirming. It will appear in your balance shortly.",
+    "topUpEmptyHint": "Top up to subscribe to creators",
+    "topUpStageWallet": "Confirm in your wallet…",
+    "topUpStageConfirming": "Waiting for the transaction…",
+    "topUpStageCrediting": "Adding to your balance…"
   },
   "live": {
     "notSet": "Not set",
@@ -4939,8 +4955,61 @@
         "legend": {
           "name": "Legend",
           "hint": "Reach level ten."
+        },
+        "ignition": {
+          "name": "Ignition",
+          "hint": "Reach one qualifying hour on air."
+        },
+        "on-air": {
+          "name": "On air",
+          "hint": "Finish ten qualifying streams."
+        },
+        "storyteller": {
+          "name": "Storyteller",
+          "hint": "Finish twenty-five qualifying streams."
+        },
+        "broadcaster": {
+          "name": "Broadcaster",
+          "hint": "Finish fifty qualifying streams."
+        },
+        "centurion": {
+          "name": "Centurion",
+          "hint": "Finish one hundred qualifying streams."
+        },
+        "enduring": {
+          "name": "Enduring",
+          "hint": "Stream for four qualifying hours in one session."
+        },
+        "circle": {
+          "name": "Inner circle",
+          "hint": "Have twenty-five people watching at once."
+        },
+        "arena": {
+          "name": "Arena",
+          "hint": "Have fifty people watching at once."
+        },
+        "headliner": {
+          "name": "Headliner",
+          "hint": "Have one hundred people watching at once."
+        },
+        "cornerstone": {
+          "name": "Cornerstone",
+          "hint": "Stream in twenty-six consecutive weeks."
+        },
+        "veteran": {
+          "name": "Veteran",
+          "hint": "Reach 250 qualifying hours on air."
+        },
+        "icon": {
+          "name": "Icon",
+          "hint": "Reach level twenty."
         }
-      }
+      },
+      "chooseBadge": "Choose any unlocked badge to display on your profile.",
+      "useBadge": "Use badge",
+      "selectedBadge": "Selected",
+      "savingBadge": "Saving badge…",
+      "saveBadgeError": "Could not save your badge. Please try again."
     },
     "unmuteMic": "Unmute microphone",
     "muteMic": "Mute microphone",
@@ -7521,5 +7590,98 @@
     "loadFailed": "Could not load your builds",
     "previewHint": "Built with DeHub Builder",
     "buildInChat": "Build in your DMs with @assistant"
+  },
+  "depin": {
+    "title": "DePin",
+    "becomeANode": "Become a node",
+    "ctaBody": "Origin fallback, encrypted protected media and verified work come before public node rewards.",
+    "ctaTitle": "Launch only when failure is safe.",
+    "earlyAccess": "Early access",
+    "earlyAccessBody": "A lightweight, browser-based node is live below. A heavier, always-on desktop node is a stated future direction, not available yet. Participation never guarantees a reward.",
+    "fallbackFigureAria": "Content delivery fallback path",
+    "faqHeading": "Questions, answered plainly.",
+    "footerNote": "DePin participation is a contribution service, not an investment product. Availability, eligibility and rewards may change.",
+    "heroBlurb": "Contribute spare storage, bandwidth and compute to help host, transcode and deliver DeHub content.",
+    "heroCaption": "DeHub keeps the origin copy. Community nodes add resilient replicas and local delivery capacity.",
+    "heroEyebrow": "Community-powered infrastructure",
+    "heroImageAlt": "A compact edge-compute node connected to homes and creator studios",
+    "heroTitle": "Your hardware. DeHub's media network.",
+    "noFixedRate": "There is no fixed rate, minimum return, APY or forward estimate. Contribution records are accounting inputs only, not a promise of payment. Any future token settlement would occur on Base and remain subject to eligibility, network rules and applicable law.",
+    "nodesLeaveBody": "No community machine holds the only copy. Health checks, replicas and origin fallback keep playback available.",
+    "nodesLeaveTitle": "A network that expects nodes to leave.",
+    "notTrackedYet": "Not tracked yet",
+    "online": "Online",
+    "privacyBody": "Protected media stays encrypted on community hardware. Playback keys are issued separately to authorised viewers.",
+    "privacyTitle": "Hosts store pieces, not access.",
+    "readTheDocs": "Read the docs",
+    "runningCosts": "Running a node uses electricity, internet data and hardware life. Operators may receive nothing, and their costs may exceed any reward.",
+    "safestWorkloadBody": "DePin supplements DeHub's existing delivery path first. More demanding workloads follow only after verification is proven.",
+    "safestWorkloadTitle": "Built from the safest workload outward.",
+    "signIn": "Sign in",
+    "statNotTracked": "Not tracked yet.",
+    "statUnavailable": "Unavailable right now.",
+    "threeJobsBody": "Operators choose their storage, bandwidth and compute limits. DeHub schedules only the work their machine can safely handle.",
+    "threeJobsTitle": "One node, three useful jobs.",
+    "transcode": "Transcode",
+    "transcodeBody": "Eligible machines turn uploaded video into adaptive renditions. Every output is checked before it can be served.",
+    "transcodeImageAlt": "A home creator workstation contributing spare GPU compute",
+    "verifiedWorkBody": "Contribution is measured through signed receipts, health checks and output validation. Storage alone does not create a reward.",
+    "verifiedWorkTitle": "Useful work is verified. Rewards stay variable.",
+    "yourNode": "Your node",
+    "host": "Host",
+    "hostBody": "Nodes keep encrypted or content-addressed segments in a capped local cache. DeHub origin storage remains the source of truth.",
+    "deliver": "Deliver",
+    "deliverBody": "Nearby peers share video segments while the normal delivery path stays ready as an automatic fallback.",
+    "origin": "DeHub origin",
+    "originBody": "Permanent source copy and fallback delivery",
+    "availableReplicas": "Available replicas",
+    "availableReplicasBody": "Serve verified segments close to demand",
+    "offlineNode": "Offline node",
+    "offlineNodeBody": "Removed from routing until it reconnects",
+    "viewer": "Viewer",
+    "viewerBody": "Uses a peer when available, origin when needed",
+    "protectedContent": "Protected content",
+    "protectedContentBody": "Subscriber, private and pay-per-view segments can be stored as ciphertext. Node operators do not receive entitlement keys simply because they host data.",
+    "publicContent": "Public content",
+    "publicContentBody": "Encryption prevents casual inspection of cached files, but public media remains watchable through the public DeHub player. We will not claim otherwise.",
+    "operatorControls": "Operator controls",
+    "operatorControlsBody": "Operators choose disk limits, bandwidth limits, working hours and eligible public content categories. Removal notices trigger cache purges.",
+    "deliveryReceipts": "Delivery receipts",
+    "deliveryReceiptsBody": "Verified bytes served to real playback sessions.",
+    "availability": "Availability",
+    "availabilityBody": "Successful retrieval checks and reliable service when assigned.",
+    "validOutput": "Valid output",
+    "validOutputBody": "Transcodes must pass technical and sampled quality checks.",
+    "revenuePool": "Revenue-funded pool",
+    "revenuePoolBody": "If activated, a reward budget would be set from platform revenue after the epoch closes.",
+    "delivery": "Delivery",
+    "deliveryBody": "Peer-assisted live and video delivery with automatic fallback.",
+    "adaptiveVideo": "Adaptive video",
+    "adaptiveVideoBody": "Multiple renditions for reliable playback across connection speeds.",
+    "desktopNodes": "Desktop nodes",
+    "desktopNodesBody": "Capped storage, bandwidth controls and verified availability.",
+    "baseSettlement": "Base settlement",
+    "baseSettlementBody": "Revenue-funded claims only after operational and legal review.",
+    "statNodesOnline": "Nodes online",
+    "statStored": "Stored",
+    "statVerified": "Verified",
+    "verifiedBytes": "Verified bytes",
+    "totalStoredLedger": "Total stored (ledger)",
+    "dhbEarnedThisPeriod": "Tokens earned this period",
+    "faqOfflineQ": "What happens when a hosting node goes offline?",
+    "faqOfflineA": "The coordinator removes it from active routing. Another replica serves the segment, or playback falls back to DeHub origin storage while replacement copies are scheduled.",
+    "faqCanOperatorSeeQ": "Can a node operator see the content they host?",
+    "faqCanOperatorSeeA": "Protected content is stored as encrypted segments and the host does not receive playback keys. Public content remains publicly viewable through DeHub by design.",
+    "faqHowMuchQ": "How much will a node operator receive?",
+    "faqHowMuchA": "There is no fixed rate or forecast. Verified contribution may receive a share of a revenue-funded reward pool after an epoch closes. Rewards are not guaranteed, and electricity, bandwidth and hardware costs may exceed any reward.",
+    "faqSoftwareAvailableQ": "Is the node software available now?",
+    "faqSoftwareAvailableA": "A lightweight, browser-based tier is available today: sign in and opt in on this page, and your open tab becomes a node while it stays open. A heavier, always-on desktop node is a stated future direction — it does not exist yet.",
+    "faqInstallNeededQ": "Do I need to install anything for the browser node?",
+    "faqInstallNeededA": "No. It runs entirely in the tab using your browser's local storage. Closing the tab stops your node; there is no background service and no install.",
+    "appSignInBlurb": "Sign in to see your node ledger: what you have stored, what was verified and what you earned this period.",
+    "appNodeBody": "The node runs in a browser tab, not in this app. Open DePin on the web, sign in with this account and opt in. Your ledger shows up here.",
+    "openOnWeb": "Open DePin on the web",
+    "statusOffline": "Offline",
+    "statusUnregistered": "Not registered"
   }
 }

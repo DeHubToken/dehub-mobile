@@ -3796,7 +3796,10 @@
     "unpinConfirm": "Eltávolítod ezt a rögzített üzenetet?",
     "pinMessage": "PIN-üzenet",
     "unpinMessage": "Üzenet rögzítésének megszüntetése",
-    "jumpToLatest": "Ugrás a legújabb üzenetekre"
+    "jumpToLatest": "Ugrás a legújabb üzenetekre",
+    "ban": "Kitiltás",
+    "banConfirm": "Biztosan ki akarod tiltani {{name}} felhasználót?",
+    "banFailed": "Nem sikerült kitiltani a felhasználót"
   },
   "promptFeed": {
     "headline": "Mit szeretnél látni?",
@@ -4836,7 +4839,20 @@
     "tokensSent": "{{amount}} token elküldve",
     "percentUsed": "{{percent}}% felhasználva",
     "spentOfTotal": "{{total}}/{{spent}}",
-    "viewInWallet": "Megtekintés pénztárcában"
+    "viewInWallet": "Megtekintés pénztárcában",
+    "topUp": "Token hozzáadása",
+    "topUpTitle": "Előfizetési tokenek hozzáadása",
+    "topUpCustom": "Egyéb összeg (USD)",
+    "topUpYouSend": "Ön küldi",
+    "topUpYouGet": "Hozzáadva az egyenlegedhez",
+    "topUpConfirm": "{{amount}} hozzáadása",
+    "topUpRange": "{{min}} és {{max}}között",
+    "topUpDone": "{{amount}} hozzáadva az előfizetési tokenjeidhez",
+    "topUpPending": "A feltöltés megerősítése folyamatban van. Hamarosan megjelenik az egyenlegeden.",
+    "topUpEmptyHint": "Töltsd fel, hogy feliratkozhass az alkotóknak",
+    "topUpStageWallet": "Megerősítés a pénztárcádban…",
+    "topUpStageConfirming": "Várakozás a tranzakcióra...",
+    "topUpStageCrediting": "Hozzáadás az egyenlegedhez…"
   },
   "live": {
     "notSet": "Nincs beállítva",
@@ -4894,8 +4910,61 @@
         "legend": {
           "name": "Jelmagyarázat",
           "hint": "Érd el a tízes szintet."
+        },
+        "ignition": {
+          "name": "Gyújtás",
+          "hint": "Érj el egy minősítő órát adásban."
+        },
+        "on-air": {
+          "name": "Adásban",
+          "hint": "Teljesíts tíz minősítő streamet."
+        },
+        "storyteller": {
+          "name": "Mesélő",
+          "hint": "Teljesíts huszonöt minősítő streamet."
+        },
+        "broadcaster": {
+          "name": "Műsorszóró",
+          "hint": "Teljesíts ötven minősítő streamet."
+        },
+        "centurion": {
+          "name": "Centurio",
+          "hint": "Teljesíts száz minősítő streamet."
+        },
+        "enduring": {
+          "name": "Kitartó",
+          "hint": "Streamelj négy minősítő órát egy menetben."
+        },
+        "circle": {
+          "name": "Belső kör",
+          "hint": "Legyen huszonöt néződ egyszerre."
+        },
+        "arena": {
+          "name": "Aréna",
+          "hint": "Legyen ötven néződ egyszerre."
+        },
+        "headliner": {
+          "name": "Főszereplő",
+          "hint": "Legyen száz néződ egyszerre."
+        },
+        "cornerstone": {
+          "name": "Alapkő",
+          "hint": "Streamelj huszonhat egymást követő héten."
+        },
+        "veteran": {
+          "name": "Veterán",
+          "hint": "Érj el 250 minősítő órát adásban."
+        },
+        "icon": {
+          "name": "Ikon",
+          "hint": "Érj el huszadik szintet."
         }
-      }
+      },
+      "chooseBadge": "Válassz bármilyen feloldott kitűzőt, hogy megjelenjen a profilodon.",
+      "useBadge": "Kitűző használata",
+      "selectedBadge": "Kiválasztva",
+      "savingBadge": "Mentés folyamatban…",
+      "saveBadgeError": "Nem sikerült elmenteni a kitűzőt. Kérlek, próbáld újra."
     },
     "unmuteMic": "Mikrofon némításának feloldása",
     "muteMic": "Mikrofon elnémítása",
@@ -7532,5 +7601,98 @@
     "loadFailed": "Nem sikerült betölteni a buildjeidet",
     "previewHint": "DeHub Builderrel készült",
     "buildInChat": "Építs a privát üzeneteidben az @assistant segítségével"
+  },
+  "depin": {
+    "title": "DePin",
+    "becomeANode": "Válj csomóponttá",
+    "ctaBody": "Az eredeti tartalék, a titkosított védett média és az ellenőrzött munka megelőzi a nyilvános csomópont-jutalmazást.",
+    "ctaTitle": "Csak akkor indítson, amikor a hiba biztonságos.",
+    "earlyAccess": "Korai hozzáférés",
+    "earlyAccessBody": "Egy könnyű, böngészőalapú csomópont él alul. Egy nehezebb, mindig bekapcsolt asztali csomópont egy megállapított jövőbeli irány, jelenleg nem elérhető. A részvétel soha nem garantál jutalmat.",
+    "fallbackFigureAria": "Tartalomszolgáltatás tartalék útvonala",
+    "faqHeading": "Kérdések, egyszerűen megválaszolva.",
+    "footerNote": "A DePin részvétel egy hozzájárulási szolgáltatás, nem egy befektetési termék. A rendelkezésre állás, a jogosultság és a jutalmak változhatnak.",
+    "heroBlurb": "Járuljon hozzá tartalék tárolókapacitással, sávszélességgel és számítási teljesítménnyel a DeHub tartalom hosztolásához, átkódolásához és szállításához.",
+    "heroCaption": "A DeHub megtartja az eredeti másolatot. A közösségi csomópontok rugalmas replikákat és helyi szállítási kapacitást adnak hozzá.",
+    "heroEyebrow": "Közösség által működtetett infrastruktúra",
+    "heroImageAlt": "Egy kompakt edge-compute csomópont, amely otthonokhoz és kreatív stúdiókhoz csatlakozik",
+    "heroTitle": "Az Ön hardvere. DeHub médiaháló.",
+    "noFixedRate": "Nincs fix árfolyam, minimális hozam, APY vagy előrejelzés. A hozzájárulási nyilvántartások csak számviteli bejegyzések, nem fizetési ígéretek. Bármilyen jövőbeli token-elszámolás a Base-en történne, és továbbra is függne a jogosultságtól, a hálózati szabályoktól és az alkalmazandó jogszabályoktól.",
+    "nodesLeaveBody": "Egyetlen közösségi gép sem tartja az egyetlen másolatot. Az állapot-ellenőrzések, replikák és az eredeti tartalék biztosítják a lejátszás elérhetőségét.",
+    "nodesLeaveTitle": "Egy hálózat, amely arra számít, hogy a csomópontok elhagyják.",
+    "notTrackedYet": "Még nem követett",
+    "privacyBody": "A védett média titkosítva marad a közösségi hardveren. A lejátszási kulcsokat külön adják ki az arra jogosult nézőknek.",
+    "privacyTitle": "A gazdagépek darabokat tárolnak, nem hozzáférést.",
+    "readTheDocs": "Olvass a dokumentációból",
+    "runningCosts": "A csomópont futtatása elektromosságot, internetes adatokat és hardver élettartamot igényel. Az operátorok semmit sem kaphatnak, és költségeik meghaladhatják az esetleges jutalmat.",
+    "safestWorkloadBody": "A DePin a DeHub meglévő szállítási útvonalát egészíti ki először. Az igényesebb terhelések csak az ellenőrzés után következnek.",
+    "safestWorkloadTitle": "A legbiztonságosabb terhelésből kiépítve.",
+    "signIn": "Bejelentkezés",
+    "statNotTracked": "Még nem követett.",
+    "statUnavailable": "Jelenleg nem elérhető.",
+    "threeJobsBody": "Az operátorok választják meg a tárolási, sávszélesség és számítási korlátaikat. A DeHub csak azt az munkát ütemezi, amelyet a gépük biztonságosan kezelni tud.",
+    "threeJobsTitle": "Egy csomópont, három hasznos feladat.",
+    "transcode": "Átkódolás",
+    "transcodeBody": "Az alkalmas gépek feltöltött videókat adaptív verziókká alakítanak. Minden kimenet ellenőrzésre kerül, mielőtt kiszolgálható lenne.",
+    "transcodeImageAlt": "Egy otthoni kreatív munkaállomás, amely tartalék GPU számítási kapacitást biztosít",
+    "verifiedWorkBody": "A hozzájárulást aláírt nyugták, állapot-ellenőrzések és kimeneti validálás alapján mérik. Az önmagában történő tárolás nem hoz létre jutalmat.",
+    "verifiedWorkTitle": "A hasznos munka ellenőrzött. A jutalmak változóak maradnak.",
+    "yourNode": "Az ön csomópontja",
+    "host": "Gazdagép",
+    "hostBody": "A csomópontok titkosított vagy tartalomcímzett szegmenseket tartanak egy korlátozott helyi gyorsítótárban. A DeHub eredeti tárolása az igazság forrása marad.",
+    "deliver": "Kézbesítés",
+    "deliverBody": "A közeli társak videoszegmenseket osztanak meg, miközben a normál kézbesítési útvonal automatikus tartalékként marad.",
+    "originBody": "Állandó forrás másolat és tartalék szállítás",
+    "availableReplicas": "Elérhető replikák",
+    "availableReplicasBody": "Ellenőrzött szegmensek kiszolgálása az igény közelében",
+    "offlineNode": "Offline csomópont",
+    "offlineNodeBody": "Az útválasztásból eltávolítva, amíg újra nem csatlakozik",
+    "viewer": "Nézető",
+    "viewerBody": "Peer-t használ, ha elérhető, szükség esetén az origót",
+    "protectedContent": "Védett tartalom",
+    "protectedContentBody": "Az előfizető, privát és pay-per-view szegmensek titkosított szövegként tárolhatók. A csomópont-operátorok nem kapják meg a jogosultsági kulcsokat csak azért, mert adatokat tárolnak.",
+    "publicContent": "Nyilvános tartalom",
+    "publicContentBody": "A titkosítás megakadályozza a gyorsítótárban tárolt fájlok alkalmi vizsgálatát, de a nyilvános média továbbra is megtekinthető a nyilvános DeHub lejátszón keresztül. Nem állítunk mást.",
+    "operatorControls": "Operátor vezérlése",
+    "operatorControlsBody": "Az operátorok választják meg a lemezkorlátokat, sávszélesség-korlátokat, munkaidőt és jogosult nyilvános tartalom kategóriákat. Az eltávolítási értesítések gyorsítótár-törléseket indítanak el.",
+    "deliveryReceipts": "Szállítási nyugták",
+    "deliveryReceiptsBody": "Valós lejátszási munkamenetekhez ellenőrzött bájtok szállítása.",
+    "availability": "Elérhetőség",
+    "availabilityBody": "Sikeres lekérési ellenőrzések és megbízható szolgáltatás hozzárendeléskor.",
+    "validOutput": "Érvényes kimenet",
+    "validOutputBody": "A transzkódoknak technikai és mintavételes minőségi ellenőrzéseken kell átmenniük.",
+    "revenuePool": "Bevételből finanszírozott pool",
+    "revenuePoolBody": "Ha aktiválva van, a jutalmazási költségvetést az epoch lezárása után a platform bevételéből állítanák be.",
+    "delivery": "Szállítás",
+    "deliveryBody": "Peer-támogatott élő és videó szállítás automatikus tartalékkal.",
+    "adaptiveVideo": "Adaptív videó",
+    "adaptiveVideoBody": "Több verziót biztosít a megbízható lejátszáshoz különböző kapcsolatsebességek mellett.",
+    "desktopNodes": "Asztali csomópontok",
+    "desktopNodesBody": "Korlátozott tárolás, sávszélesség-vezérlés és ellenőrzött rendelkezésre állás.",
+    "baseSettlement": "Alapszintű rendezés",
+    "baseSettlementBody": "Csak a működési és jogi felülvizsgálat után bevételből finanszírozott igények.",
+    "statNodesOnline": "Online csomópontok",
+    "statStored": "Tárolva",
+    "statVerified": "Ellenőrizve",
+    "verifiedBytes": "Ellenőrzött bájtok",
+    "totalStoredLedger": "Összes tárolt (főkönyv)",
+    "dhbEarnedThisPeriod": "Ebben az időszakban szerzett tokenek",
+    "faqOfflineQ": "Mi történik, ha egy üzemeltetési csomópont offline kerül?",
+    "faqOfflineA": "A koordinátor eltávolítja az aktív útválasztásból. Egy másik replika kiszolgálja a szegmenst, vagy a lejátszás visszaesik a DeHub eredeti tárolóra, miközben a helyettesítő másolatok ütemezésre kerülnek.",
+    "faqCanOperatorSeeQ": "Láthat-e egy csomópont-operátor olyan tartalmat, amelyet üzemeltet?",
+    "faqCanOperatorSeeA": "A védett tartalom titkosított szegmensekként tárolódik, és az üzemeltető nem kapja meg a lejátszási kulcsokat. A nyilvános tartalom a DeHub-on keresztül nyilvánosan megtekinthető a tervezés szerint.",
+    "faqHowMuchQ": "Mennyit kap egy csomópont-operátor?",
+    "faqHowMuchA": "Nincs rögzített díj vagy előrejelzés. Az ellenőrzött hozzájárulás egy bevételből finanszírozott jutalmazási készlet részesedésében részesülhet egy korszak lezárása után. A jutalmak nem garantáltak, és az elektromosság, a sávszélesség és a hardver költségei meghaladhatják az esetleges jutalmat.",
+    "faqSoftwareAvailableQ": "Elérhető-e már a csomópont szoftver?",
+    "faqSoftwareAvailableA": "Egy könnyű, böngészőalapú szint már ma elérhető: jelentkezzen be és engedélyezze ezt az oldalt, és az Ön nyitott lapja csomóponttá válik, amíg nyitva marad. Egy nehezebb, mindig bekapcsolt asztali csomópont egy megállapított jövőbeli irány — még nem létezik.",
+    "faqInstallNeededQ": "Telepítenem kell valamit a böngésző csomóponthoz?",
+    "faqInstallNeededA": "Nem. Teljes egészében a lapon fut a böngésző helyi tárolóját használva. A lap bezárása leállítja a csomópontot; nincs háttérszolgáltatás és nincs telepítés.",
+    "online": "Online",
+    "origin": "DeHub eredete",
+    "appSignInBlurb": "Jelentkezzen be a csomópont főkönyvének megtekintéséhez: mit tárolt, mit igazoltak és mit keresett ebben az időszakban.",
+    "appNodeBody": "A csomópont egy böngésző lapon fut, nem ebben az alkalmazásban. Nyissa meg a DePint az interneten, jelentkezzen be ezzel a fiókkal, és jelentkezzen be. Itt jelenik meg a főkönyved.",
+    "openOnWeb": "Nyissa meg a DePin-t az interneten",
+    "statusOffline": "Offline",
+    "statusUnregistered": "Nincs regisztrálva"
   }
 }

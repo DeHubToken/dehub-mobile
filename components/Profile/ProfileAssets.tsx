@@ -66,7 +66,7 @@ const ProfileAssets = () => {
     getSubscriptionEarnings()
       .then((value) => { if (mountedRef.current) setSubscriptionEarnings(value); })
       .catch(() => { /* the on-chain wallet still renders if this private read is unavailable */ });
-    getSubscriptionCredits()
+    getSubscriptionCredits(user?.address)
       .then((value) => { if (mountedRef.current) setSubscriptionCredits(value); })
       .catch(() => {});
   }, [user?.address, user?.walletAddress]);

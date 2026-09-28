@@ -3815,7 +3815,10 @@
     "unpinConfirm": "Hametra-panontaniana mikasika izany hafatra izany ve aho?",
     "pinMessage": "Hafatra PIN",
     "unpinMessage": "Filazana tsy misy dikany",
-    "jumpToLatest": "Handeha any amin'ny hafatra farany"
+    "jumpToLatest": "Handeha any amin'ny hafatra farany",
+    "ban": "Raraho",
+    "banConfirm": "Tena azonao antoka ve fa te handrara an'i {{name}} ianao?",
+    "banFailed": "Tsy nahomby ny fandrarana ny mpampiasa"
   },
   "promptFeed": {
     "headline": "Inona no tianao hojerena?",
@@ -4855,7 +4858,20 @@
     "tokensSent": "{{amount}} tokens naniraka",
     "percentUsed": "{{percent}}% ampiasaina",
     "spentOfTotal": "{{spent}} amin'ny {{total}}",
-    "viewInWallet": "Jereo ao amin'ny kitapom-bola"
+    "viewInWallet": "Jereo ao amin'ny kitapom-bola",
+    "topUp": "Add famantarana",
+    "topUpTitle": "Add famandrihana famantarana",
+    "topUpCustom": "Vola hafa (USD)",
+    "topUpYouSend": "Mandefa ianao",
+    "topUpYouGet": "Tafiditra ao amin'ny fifandanjanao",
+    "topUpConfirm": "Add {{amount}}",
+    "topUpRange": "Midira {{min}} to {{max}}",
+    "topUpDone": "{{amount}} nanampy ho an'ny famandrihan-toerana misy anao",
+    "topUpPending": "Ny fanamafisany ny endriny ambony indrindra dia manamarina. Hiverina hividy indray tsy ho ela aho.",
+    "topUpEmptyHint": "Ambony mba misoratra anarana amin'ny mpamorona",
+    "topUpStageWallet": "Hamarino ao anaty kitaponao...",
+    "topUpStageConfirming": "Miandry ny fifampiraharahana...",
+    "topUpStageCrediting": "Hanampy anao amin'ny fandinihi..."
   },
   "live": {
     "notSet": "Tsy voafaritra",
@@ -4913,8 +4929,61 @@
         "legend": {
           "name": "Angano",
           "hint": "Ny faritr'ora dia +10."
+        },
+        "ignition": {
+          "name": "Fandrehitra",
+          "hint": "Mifanaraha amin’ny ora iray amin’ny efijery."
+        },
+        "on-air": {
+          "name": "An-tsehatra",
+          "hint": "Mamarana folo fizarana mifanaraka."
+        },
+        "storyteller": {
+          "name": "Mpitantara",
+          "hint": "Mamarana dimampolo sy dimy fizarana mifanaraka."
+        },
+        "broadcaster": {
+          "name": "Mpandefa",
+          "hint": "Mamarana dimampolo sy dimby fizarana mifanaraka."
+        },
+        "centurion": {
+          "name": "Zato",
+          "hint": "Mamarana zato fizarana mifanaraka."
+        },
+        "enduring": {
+          "name": "Maharitra",
+          "hint": "Mifampizara amin’ny ora efatra mifanaraka amin’ny fivoriana iray."
+        },
+        "circle": {
+          "name": "Faribolana akaiky",
+          "hint": "Manana olona dimampolo sy dimy mijery amin’ny fotoana iray."
+        },
+        "arena": {
+          "name": "Kianja",
+          "hint": "Manana olona dimampolo sy dimby mijery amin’ny fotoana iray."
+        },
+        "headliner": {
+          "name": "Kintana lehibe",
+          "hint": "Manana olona zato mijery amin’ny fotoana iray."
+        },
+        "cornerstone": {
+          "name": "Vato fehizoro",
+          "hint": "Mifampizara amin’ny herinandro 26 mitohy."
+        },
+        "veteran": {
+          "name": "Efa za-draharaha",
+          "hint": "Mifanaraha amin’ny ora 250 amin’ny efijery."
+        },
+        "icon": {
+          "name": "Sary masina",
+          "hint": "Mifanaraha amin’ny ambaratonga 20."
         }
-      }
+      },
+      "chooseBadge": "Mifidiana marika voavoha iray haseho amin'ny mombamomba anao.",
+      "useBadge": "Ampiasao ny marika",
+      "selectedBadge": "Voafidy",
+      "savingBadge": "Mitahiry ny marika…",
+      "saveBadgeError": "Tsy voatahiry ny marikao. Andramo indray azafady."
     },
     "unmuteMic": "Mikrô",
     "muteMic": "Mikrô",
@@ -7627,5 +7696,98 @@
     "loadFailed": "Tsy afaka naka ny fanamboaranao",
     "previewHint": "Namboarina tamin'ny DeHub Builder",
     "buildInChat": "Manamboara ao amin'ny hafatra manokana miaraka amin'i @assistant"
+  },
+  "depin": {
+    "title": "DePin",
+    "becomeANode": "Ho lasa vona",
+    "ctaBody": "Ny fivadihan-trano niandohana, ny fampitam-baovao voaaro voaaro ary ny asa voamarina dia tonga alohan'ny valisoa azony avy amin'ny node ho an'ny daholobe.",
+    "ctaTitle": "Atomboka raha tsy azo antoka ny tsy fahombiazana.",
+    "earlyAccess": "Fidirana aloha",
+    "earlyAccessBody": "Ny ampahany lehibe indrindra amin'ny navigateur dia mitoetra etsy ambany. Ny mavesatra kokoa, foana-on biraonao node dia nilaza hoavy tari-dalana, tsy mbola misy. Tsy hanome trosa azy ny Banky.",
+    "fallbackFigureAria": "Sori-dàlan'ny famerenana amin'ny mpiaty",
+    "faqHeading": "Mazava tsara ny fanontaniana.",
+    "footerNote": "Pennyauctionwizards dia fandraisana anjara amin'ny fanompoana, fa tsy amin'ny fampiasam-bola ny vokatra. Ny vidiny, ny fahamendrehana ary ny fahafahana dia mety hiova.",
+    "heroBlurb": "Anjara ny tahirin-tsakafo, ny bandwidth ary ny compute mba hanampy ny mpampiantrano, transcode ary hanolotra ny votoatin'ny DeHub.",
+    "heroCaption": "Ny dobo dia mitana ny kopia niaviany. Community nodes manampy Mitovy tanteraka sy ny eo an-toerana fanaterana fahaiza-.",
+    "heroEyebrow": "Foto-drafitr'asa eo amin'ny fiarahamonina",
+    "heroImageAlt": "A voalamina tsara sisin'ny-mifandrindra ny node mifandray amin'ny trano sy ny mpamorona Studios",
+    "heroTitle": "Ny fitaovanao. Ny tambazotran'ny haino aman-jery DeHub.",
+    "noFixedRate": "Tsy misy tahan'ny vidiny raikitra, tombony farany ambany, APY na vinavina ho avy. Ny firaketana ny fandraisana anjara dia fidirana amin'ny kaonty ihany, tsy fanekena handoa. Ny famahana ny token ho avy dia hatao ao amin'ny Base ary mbola iharan'ny fepetra momba ny fahazoan-dalana, ny fitsipiky ny tambajotra ary ny lalàna mifehy.",
+    "nodesLeaveBody": "Tsy misy ny Baiboly irery ihany no mitazona izany kopia izany. Ny fanamarinana ara-pahasalamana, ny kopia ary ny fahalavoana dia mitahiry ny playback misy.",
+    "nodesLeaveTitle": "Tambajotra iray izay antenainy handosirana nodes.",
+    "notTrackedYet": "Tsy mbola voamarika tsara",
+    "online": "Fiofanana an-tserasera",
+    "privacyBody": "Ny fampitam-baovao voaaro dia mijanona ho voafandrika ao amin'ny fitaovan'ny vondrom-piarahamonina. Navoaka manokana ho an'izay mpijery nahazo alalana ny kitendry Playback.",
+    "privacyTitle": "Mpampiantrano tapa-tahiry, fa tsy fidirana.",
+    "readTheDocs": "Vakio ny tahirin-kevitra",
+    "runningCosts": "Mampiasa herinaratra, angona amin'ny aterineto sy ny fiainana ara-pitaovana ny mandeha node. Mety tsy hahazo na inona na inona ny mpandraharaha, ary ny vola lany dia mety mihoatra izay valisoa.",
+    "safestWorkloadBody": "DePin dia manampy ny lalam-pamindrana misy an'i DeHub voalohany. More fitakiana asan'izy manaraka raha tsy aorian'ny fanamarinana dia voaporofo.",
+    "safestWorkloadTitle": "Azo atao amin'ny faritra voaaro tsara indrindra ny asa famatsian-drano.",
+    "signIn": "Hiditra",
+    "statNotTracked": "Tsy mbola hita izy hatramin'izao.",
+    "statUnavailable": "Mbola tsy azo atao ny mandeha amin'izao fotoana izao.",
+    "threeJobsBody": "Mpandraharaha mifidy ny fitehirizana, passante sy compute fetra. Ny fandaharam-potoana DeHub dia ny asa izay azon'ny mason'izy ireo atao amin'ny fomba azo antoka.",
+    "threeJobsTitle": "Ny an'ny TSIA koa, dia mizara telo ny asany.",
+    "transcodeBody": "Milina mendrika mamadika ny lahatsary ho adapta dikantsoratra. Ny vokatra rehetra dia hodinihina alohan'ny hanatanterahana izany.",
+    "transcodeImageAlt": "Trano iray mpamorona workstation manome solosaina GPU",
+    "verifiedWorkBody": "Ny fandraisana anjara dia refesina amin'ny alalan'ny sonia rosia, ny fahasalamana sy ny vokatra taratasim-bola. Ny fisiana ara-daharampehintany ary ara-daharanjarahasin'ilay kaominina dia tsy nahazo valisoa.",
+    "verifiedWorkTitle": "Voamarina ny asa mahasoa. Ny vokany dia miovaova.",
+    "yourNode": "Ny vona",
+    "host": "Mpampiantrano",
+    "hostBody": "Ny Nodes foana mari-pamantarana na votoatyaddressed fizarana ao amin'ny Tsikirity an-toerana. Ny fikolokoloana ny vorona dia mazava ho azy fa loharanon'ny fahamarinana.",
+    "deliver": "Vonjeo",
+    "deliverBody": "Ireo mpiara-mianatra akaiky dia mizara fizarana video raha ny lalam-pamindrana ara-dalàna dia vonona ho toy ny fialana tampoka.",
+    "origin": "DeHub no niaviany",
+    "originBody": "Loharanon-kevitra maharitra dika mitovy sy ny fallback fanaterana",
+    "availableReplicas": "Ireo rakitra misy",
+    "availableReplicasBody": "Manompo voamarina fizarana akaiky ny fangatahana",
+    "offlineNode": "Node tsy mila fifandraisana",
+    "offlineNodeBody": "Esorina amin'ny lalana mandra-piveriny",
+    "viewer": "Mpijery",
+    "viewerBody": "Mampiasa ny mpiara, raha misy, fiaviana rehefa ilaina",
+    "protectedContent": "Afa-po arovana",
+    "protectedContentBody": "Subscriber, tsy miankina sy ny karama-mijery fizarana azo tehirizina ho ciphertext. Ny mpandraharaha Node dia tsy mahazo alalana amin'ny fanalahidy satria fotsiny izy ireo mampiantrano ny angona.",
+    "publicContent": "Votoatin'ny besinimaro",
+    "publicContentBody": "Ny fanafenana dia manakana ny fanaraha-maso ireo antontan-taratasy voatampina tsotsotra, saingy mijanona ho azo fehezina amin'ny alàlan'ny mpilalao DeHub ho an'ny daholobe ny fampahalalam-baovaom-panjakana. Tsy hilaza zavatra hafa isika.",
+    "operatorControls": "Fifehezana ny mpikirakira",
+    "operatorControlsBody": "Ny mpandraharaha misafidy kapila fetra, passante fetra, miasa ora sy azo fidiana votoaty-bahoaka sokajy. Ny fanesorana filazana nahatonga cache fanadiovana.",
+    "deliveryReceipts": "Fandefasana entana",
+    "deliveryReceiptsBody": "Verified bytes nanompo ny tena playback fivoriana.",
+    "availability": "Fisiana",
+    "availabilityBody": "Nahomby retrieval taratasim-bola sy ny asa fanompoana azo antoka rehefa voatendry.",
+    "validOutput": "Valin'ny famoahana",
+    "validOutputBody": "Transcodes tsy maintsy mandalo fanaraha-maso ara-teknika sy ny santionany kalitao.",
+    "revenuePool": "Revenue-vatsian'ny dobo",
+    "revenuePoolBody": "Raha ampiharina, ny valisoa teti-bola ho nametraka avy amin'ny sehatra vola miditra rehefa ny vanim-potoana mikatona.",
+    "delivery": "Hanitatra",
+    "deliveryBody": "Peer-nanampy velona sy lahatsary fanaterana amin'ny alalan'ny mandeha ho azy fallback.",
+    "adaptiveVideoBody": "Multiple dikan ho an'ny playback azo antoka manerana fifandraisana hafainganam-pandeha.",
+    "desktopNodesBody": "Fitehirizana voaendy, fanaraha-maso ny bandwidth ary voamarina ny fisian'ny.",
+    "baseSettlement": "Fametrahana fototra",
+    "baseSettlementBody": "Fangatahana vola amin'ny vola miditra raha tsy aorian'ny famerenana sy famerenana ara-dalàna.",
+    "statNodesOnline": "Nodes-tserasera",
+    "statStored": "Mitahiry",
+    "statVerified": "Voamarina",
+    "verifiedBytes": "Octet voamarina",
+    "totalStoredLedger": "Total voatahiry (masontsivana)",
+    "dhbEarnedThisPeriod": "Token azo tamin'ity vanim-potoana ity",
+    "faqOfflineQ": "Inona no hitranga raha tsy misy ny faktiora fampiantranoana?",
+    "faqOfflineA": "Ny mpandrindra dia manaisotra izany amin'ny fitarihana mavitrika. Ny kopia iray hafa dia manompo ny ampahany, na ny playback dia miverina amin'ny tahiry DeHub origin raha toa ka voalahatra ny kopia fanoloana.",
+    "faqCanOperatorSeeQ": "Mpandraharaha mitady ny votoaty ampiantranoiny ve ianao?",
+    "faqCanOperatorSeeA": "Ilay votoaty voaaro dia voatahiry ho toy ny faritra misy sora-miafina ary ilay mpampiantrano dia tsy mandray ny fanalahidin'ny playback. Ny votoatiny dia mijanona ho hitan'ny besinimaro amin'ny alalan'ny DeHub amin'ny alalan'ny famolavolana.",
+    "faqHowMuchQ": "Ohatrinona ny vidin'ny Hamburgianina?",
+    "faqHowMuchA": "Tsy misy sanda azo ametrahana na fanombanana mialoha. Ny fandraisana anjara voamarina dia mety hahazo anjara amin'ny dobo valisoa ara-bola aorian'ny fikatonan'ny vanim-potoana. Tsy azo antoka ny loka, ary mety hihoatra ny valisoa ny herinaratra, ny \"bande passante\" ary ny vidin'ny fitaovana.",
+    "faqSoftwareAvailableQ": "Amin'izao fotoana izao, ny rafitra fototra dia manana ny rindrambaiko?",
+    "faqSoftwareAvailableA": "Ny maivana, mifototra amin'ny navigateur tier tsy ampy amin'izao fotoana izao: sonia in ary hifidy eto amin'ity pejy ity, ary ny vakizoro misokatra lasa node raha mitoetra misokatra. Ny mavesatra, foana-on biraonao node dia nilaza hoavy tari-dalana â Tsy mbola misy.",
+    "faqInstallNeededQ": "Ve aho tokony hametraka na inona na inona ho an'ny navigateur node?",
+    "faqInstallNeededA": "Tsia. Mihazakazaka tanteraka ao amin'ny tabilao izy io amin'ny fampiasana ny fitahirizana ao an-toerana misy ny navigateur. Ny famaranana ny vakizoro mijanona ny node; tsy misy fototra fanompoana ary tsy misy hametraka.",
+    "transcode": "Transcode",
+    "adaptiveVideo": "Adaptive Video",
+    "desktopNodes": "Desktop nodes",
+    "appSignInBlurb": "Midira raha te hahita ny node mason'ny: inona no efa voatahiry, izay voamarina ary inona no nahazo izany vanim-potoana.",
+    "appNodeBody": "Mandeha ao anaty fitety ny node, fa tsy ao amin'ity app ity. Sokafy ny DePin amin'ny tranonkala, midira amin'ny kaonty ity ary misafidy. Fanjakan'ny lanitra no resahina eto.",
+    "openOnWeb": "Sokafy ny DePin ao amin'ny WEB",
+    "statusOffline": "Ivelan'ny aterineto",
+    "statusUnregistered": "Tsy voasoratra"
   }
 }

@@ -3792,7 +3792,10 @@
     "unpinConfirm": "Bu habaryň ýaýramagyny isleýärmisiňiz?",
     "pinMessage": "Pin habar",
     "unpinMessage": "Unpin habar",
-    "jumpToLatest": "Soňky habarlara seret"
+    "jumpToLatest": "Soňky habarlara seret",
+    "ban": "Gadagan et",
+    "banConfirm": "{{name}} ulanyjyny gadagan etmek isleýärsiňizmi?",
+    "banFailed": "Ulanyjyny gadagan etmek başa barmady"
   },
   "promptFeed": {
     "headline": "Näme görmek isleýärsiňiz?",
@@ -4832,7 +4835,20 @@
     "tokensSent": "{{amount}} token iberildi",
     "percentUsed": "{{percent}}% ulanyldy",
     "spentOfTotal": "{{spent}} of {{total}}",
-    "viewInWallet": "Çöpçäniň içine seret"
+    "viewInWallet": "Çöpçäniň içine seret",
+    "topUp": "Tokenleri ekle",
+    "topUpTitle": "Subskripsiýa tokenleri goş",
+    "topUpCustom": "Başga pullar (USD)",
+    "topUpYouSend": "Sen iberersiň",
+    "topUpYouGet": "Sen öz deň-de-sarygyňy sakla",
+    "topUpConfirm": "{{amount}}",
+    "topUpRange": "{{min}} to{{max}}",
+    "topUpDone": "{{amount}} abuna tokenleriňize goşuldy",
+    "topUpPending": "Seniň üstüň tassyklaýar. Bu tizden siziň deň-de-sarygyňyzda görüner.",
+    "topUpEmptyHint": "Ýaradyjylara ýazylmak",
+    "topUpStageWallet": "Çantalaryňyza girip görüň...",
+    "topUpStageConfirming": "Biz häkimiýetde pul tölemek üçin dogulduk...",
+    "topUpStageCrediting": "Sen öz deň-de-sarygyňy ýitirýärsiň..."
   },
   "live": {
     "notSet": "Bellenmedi",
@@ -4890,8 +4906,61 @@
         "legend": {
           "name": "Asly",
           "hint": "10. Honto ýönekeý kesildi"
+        },
+        "ignition": {
+          "name": "Otdal",
+          "hint": "Awa çykyp, bir sagat kwalifikasiýa ýetiriň."
+        },
+        "on-air": {
+          "name": "Awa çykyp",
+          "hint": "On kwalifikasiýaly ýaýlym tamamlaň."
+        },
+        "storyteller": {
+          "name": "Gürrüňçi",
+          "hint": "Ýigrimi bäş kwalifikasiýaly ýaýlym tamamlaň."
+        },
+        "broadcaster": {
+          "name": "Ýaýlyma çykaryjy",
+          "hint": "Tähtiş ýaýlym tamamlaň."
+        },
+        "centurion": {
+          "name": "Ýüzbaşy",
+          "hint": "Ýüz kwalifikasiýaly ýaýlym tamamlaň."
+        },
+        "enduring": {
+          "name": "Durnukly",
+          "hint": "Bir sessiýada dört sagat kwalifikasiýaly ýaýlym alyp baryň."
+        },
+        "circle": {
+          "name": "Içki halka",
+          "hint": "Bir wagtyň özünde ýigrimi bäş adamy tomaşa ediň."
+        },
+        "arena": {
+          "name": "Arena",
+          "hint": "Bir wagtyň özünde tähtiş adamy tomaşa ediň."
+        },
+        "headliner": {
+          "name": "Baş sahypa",
+          "hint": "Bir wagtyň özünde ýüz adamy tomaşa ediň."
+        },
+        "cornerstone": {
+          "name": "Esasy daýanç",
+          "hint": "Ýigrimi alty hepdeläp yzygiderli ýaýlym alyp baryň."
+        },
+        "veteran": {
+          "name": "Weterinar",
+          "hint": "Awa çykyp, 250 kwalifikasiýaly sagat ýetiriň."
+        },
+        "icon": {
+          "name": "Ikon",
+          "hint": "20-njy derejä ýetiriň."
         }
-      }
+      },
+      "chooseBadge": "Profiliňizde görkezmek üçin islendik açylan nyşany saýlaň.",
+      "useBadge": "Nyşan ulanyň",
+      "selectedBadge": "Saýlanan",
+      "savingBadge": "Nyşan ýazylýar…",
+      "saveBadgeError": "Nyşany ýazyp bolmady. Gaýtadan synanyşyň."
     },
     "unmuteMic": "Mikrofon",
     "muteMic": "Mikrofon",
@@ -7528,5 +7597,98 @@
     "loadFailed": "Gurluşlaryňyzy ýükläp bolmady",
     "previewHint": "DeHub Builder bilen guruldy",
     "buildInChat": "@assistant bilen şahsy habarlaryňyzda dörediň"
+  },
+  "depin": {
+    "title": "DePin",
+    "noFixedRate": "Bellenmeýän bahasy, iň pes girdeji, APY ýa-da öňünden aýdyňlygy ýok. Goşant ýazgylary diňe hasaplaşyk üçin girizilýär, töleg wada däldir. Geljekdäki islendik token nagtlaşdyrmagy Base-de amala aşyrylar we isleglere, tor düzgünlerine we degişli kanunlara tabyn bolar.",
+    "dhbEarnedThisPeriod": "Bu döwürde gazanylan nyşanlar",
+    "becomeANode": "Dugun bol",
+    "ctaBody": "Çeşme yza gaýdyp gelmek, şifrlenen goragly media we tassyklanan iş, köpçülikleýin dugun baýraklaryndan öň gelýär.",
+    "ctaTitle": "Howpsuzlygyň ýokdugyna göz ýetireniňizde işe başlaň.",
+    "earlyAccess": "Irki elýeterlilik",
+    "earlyAccessBody": "Aşakda ýeňil, brauzer esasly dugun işleýär. Agyr, hemişe işleýän iş stoluň dugun, aýdylan geljek ugry, heniz elýeterli däl. Gatnaşmak baýragy kepillendirmeýär.",
+    "fallbackFigureAria": "Media ibermegiň yza gaýdyp gelmek ýoly",
+    "faqHeading": "Soraglar, düşündirildi.",
+    "footerNote": "DePin gatnaşmagy hyzmat hökmünde hyzmat edýär, maýa goýum önümi däl. Elýeterlilik, mynasyplyk we baýraklar üýtgeýär.",
+    "heroBlurb": "DeHub mediasyny ýerleşdirmek, transkodlamak we ibermek üçin boş saklanýan ýeri, zolak we hasaplaýyş güýjüni goşaň.",
+    "heroCaption": "DeHub çeşme nusgasyny saklaýar. Köpçülikleýin dugunler durnukly gaýtalamalary we ýerli ibermegiň mümkinçiligini goşýar.",
+    "heroEyebrow": "Köpçülik tarapyndan dolandyrylýan desgalar",
+    "heroImageAlt": "Öýlere we döredijilik studiýalaryna baglanyşykly ýygnalýan çäkli hasaplaýyş dugun",
+    "heroTitle": "Siziň enjamlaryňyz. DeHub media toruny.",
+    "nodesLeaveBody": "Hiç bir köpçülikleýin maşyn ýeke-täk nusgany saklamaýar. Saglyk barlaglary, gaýtalamalar we çeşme yza gaýdyp gelmek, oýnamagy elýeterli saklaýar.",
+    "nodesLeaveTitle": "Dugunleriň aýrylmagyna garaşýan tor.",
+    "notTrackedYet": "Heniz yzarlanylanok",
+    "online": "Online",
+    "privacyBody": "Goragly media köpçülikleýin enjamlarda şifrlenen galýar. Oýnamak açarlary aýratyn ygtyýarly tomaşaçylara berilýär.",
+    "privacyTitle": "Ýerleşdirijiler bölekleri saklaýar, elýeterliligi däl.",
+    "readTheDocs": "Dokumentleri okaň",
+    "runningCosts": "Dugun işletmek, elektrik togy, internet maglumatlary we enjam ömrüni ulanýar. Operatorlar hiç zat alyp bilmeýärler, olaryň çykdajylary islendik baýragyňdan köp bolup biler.",
+    "safestWorkloadBody": "DePin ilki bilen DeHub-yň bar bolan ibermegiň ýoluny ýeňilýär. Has çylşyrymly işler diňe tassyklama subut edileninden soň dowam edýär.",
+    "safestWorkloadTitle": "Iň howpsuz işden başlap gurlan.",
+    "signIn": "Giriň",
+    "statNotTracked": "Heniz yzarlanylanok.",
+    "statUnavailable": "Häzirki wagtda elýeterli däl.",
+    "threeJobsBody": "Operatorlar öz saklanýan ýerleriniň, zolagynyň we hasaplaýyş güýjüniň çäklerini saýlaýarlar. DeHub diňe maşynynyň howpsuz ýerine ýetirip bilýän işini meýilleşdirýär.",
+    "threeJobsTitle": "Bir dugun, üç peýdaly iş.",
+    "transcode": "Transkodlamak",
+    "transcodeBody": "Myrasly maşynlar ýüklenen wideony sazlaşdyrylan görnüşlere öwürýär. Her bir netije ibermezden öň barlanylýar.",
+    "transcodeImageAlt": "Aşhana dörediji iş stansiýasy, goşmaça GPU hasaplaýyş güýjüni goşýar",
+    "verifiedWorkBody": "Goşant, gol çekilen kvitansiýalar, saglyk barlaglary we netijeleriň tassyklysy arkaly ölçülýär. Diňe saklamak baýrak döretmeýär.",
+    "verifiedWorkTitle": "Peýdaly iş tassyklanýar. Baýraklar üýtgeýär.",
+    "yourNode": "Siziň düwüňiz",
+    "host": "Ýer eýesi",
+    "hostBody": "Düwünler çäklendirilen ýerli keşde şifrlenen ýa-da mazmun salgylanan bölekleri saklaýar. DeHub çeşme saklanmagy hakykat çeşmesi bolup galar.",
+    "deliver": "Ýetiriň",
+    "deliverBody": "Golaýdaky deň-duşlar wideo böleklerini paýlaşýarlar, adatdaky ýetiriş ýoly awtomatiki gaýta ýükleme hökmünde taýyn galýar.",
+    "origin": "DeHub çeşmesi",
+    "originBody": "Galyjy çeşme göçürmesi we gaýta ýükleme ýetirişi",
+    "availableReplicas": "Bar bolan gaýtalamalar",
+    "availableReplicasBody": "Talaba ýakyn tassyklanan bölekleri hyzmat ediň",
+    "offlineNode": "Ofllaýn düwün",
+    "offlineNodeBody": "Oňaýlaşdyrylandan soň reýtingden aýryldy",
+    "viewer": "Görýän",
+    "viewerBody": "Mümkin bolsa deň-duş, zerur bolsa çeşme ulanyp",
+    "protectedContent": "Goralýan mazmun",
+    "protectedContentBody": "Abonement, hususy we tölegli görkezme bölekleri şifrlenen tekst hökmünde saklanyp bilner. Düwün operatorlary diňe maglumat saklaýandyklary üçin ygtyýarnama açarlaryny almaýarlar.",
+    "publicContent": "Jemgyýetçilik mazmuny",
+    "publicContentBody": "Şifrleme keşdelenen faýllaryň ýönekeý gözegçiliginiň öňüni alýar, ýöne jemgyýetçilik media jemgyýetçilik DeHub pleýeri arkaly görüp bolýar. Biz başga zat diýmeris.",
+    "operatorControls": "Operator gözegçilikleri",
+    "operatorControlsBody": "Operatorlar disk çäklendirmelerini, zolak çäklendirmelerini, iş wagtyny we ygtyýarly jemgyýetçilik mazmun kategoriýalaryny saýlaýarlar. Aýyrmak bildirişleri keşde arassalamaklygy çaltlandyrýar.",
+    "deliveryReceipts": "Ýetiriş kvitansiýalary",
+    "deliveryReceiptsBody": "Hakyky oýun sessiýalaryna hyzmat edilen tassyklanan baýtlary.",
+    "availability": "Bar bolmagy",
+    "availabilityBody": "Üstünlikli ýerine ýetiriş barlaglary we bellenen wagtyňda ygtybarly hyzmat.",
+    "validOutput": "Dogry netije",
+    "validOutputBody": "Transkodlar tehniki we synagdan geçen hil barlaglaryndan geçmelidir.",
+    "revenuePool": "Gelir bilen maliýeleşdirilen pool",
+    "revenuePoolBody": "Açylsa, epoch ýapylyp, platforma girdejisinden baýrak býudžeti belleniler.",
+    "delivery": "Teslimat",
+    "deliveryBody": "Özara goldawly göni ýaýlym we wideonyň üpjün edilmegi, awtomatiki yzyna düşmek bilen.",
+    "adaptiveVideo": "Uýgunlaşýan wideo",
+    "adaptiveVideoBody": "Baglanşyk tizliginde ygtybarly oýnamak üçin köp sanly görnüş.",
+    "desktopNodes": "Desktopyň düwünleri",
+    "desktopNodesBody": "Çäklendirilen ýat, zolak tizliginiň gözegçiligi we tassyklanan elýeterlilik.",
+    "baseSettlement": "Esasy hasaplaşyk",
+    "baseSettlementBody": "Operatiw we hukuk seljerişinden soň, girdejiler bilen maliýeleşdirilen talaplar.",
+    "statNodesOnline": "Düwünler onlaýn",
+    "statStored": "Saklanan",
+    "statVerified": "Tassyklanan",
+    "verifiedBytes": "Tassyklanan baytlar",
+    "totalStoredLedger": "Jemi saklanan (ýazgy)",
+    "faqOfflineQ": "Hosting düwni offline bolsa näme bolýar?",
+    "faqOfflineA": "Utgaşdyryjy ony işjeň ugurdan aýyrýar. Başga bir göçme ýazgy bölegi hyzmat edýär, ýa-da çalşyryjy nusgalar meýilleşdirilýän wagtynda oýnamak DeHub esasy ýatyna düşýär.",
+    "faqCanOperatorSeeQ": "Düwni operator özüniň saklaýan mazmunyny görüp bilýärmi?",
+    "faqCanOperatorSeeA": "Goralýan mazmun şifrlenen bölekler hökmünde saklanýar we hostingçi oýnamak açarlaryny almýar. Köpçülikleýin mazmun DeHub arkaly köpçülikleýin görünýär.",
+    "faqHowMuchQ": "Düwni operator näçe alar?",
+    "faqHowMuchA": "Bellenen bahas ýa-da çaklama ýok. Tassyklanan goşant goşmak döwür tamamlanandan soň girdejiler bilen maliýeleşdirilen baýrak pulunyň paýyny alyp biler. Baýraklar kepillendirilmeýär, we elektrik, zolak tizligi we enjamlaryň bahasy islendik baýragyň mukdaryndan geçip biler.",
+    "faqSoftwareAvailableQ": "Düwni programma üpjünçiligi häzir elýeterlimi?",
+    "faqSoftwareAvailableA": "Agyryly, brauzer esasly gatlak şu gün elýeterlidir: şu sahypada giriň we isläň, we açyk düwmäňiz ony saklaýan wagtynda düwni bolýar. Agryly, hemişe-işleýän desktopyň düwni geljek ugry hökmünde bellendi — ol heniz ýok.",
+    "faqInstallNeededQ": "Brauzer düwni üçin bir zat gurmalymy?",
+    "faqInstallNeededA": "Ýok. Ol diňe brauzeriňiziň ýerli ýatyny ulanyp, düwmäňizde işleýär. Düwmäni ýapmak düwniňizi bes edýär; fon hyzmaty ýok we gurnama ýok.",
+    "appSignInBlurb": "Düwniňiziň ýazgysyny görmek üçin giriň: näme sakladyňyz, näme tassyklanyldy we şu döwürde näme gazandyňyz.",
+    "appNodeBody": "Düwni brauzer düwmäňizde işleýär, bu goşundynyň içinde däl. DePin-i webde açyň, şu hasap bilen giriň we isläň. Siziň ýazgyňyz şu ýerde peýda bolýar.",
+    "openOnWeb": "DePin-i webde açyň",
+    "statusOffline": "Offline",
+    "statusUnregistered": "Häzirlikçe bellik edilmedi"
   }
 }

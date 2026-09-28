@@ -3845,7 +3845,10 @@
     "unpinConfirm": "Supprimer ce message épinglé ?",
     "pinMessage": "Message pin",
     "unpinMessage": "Désépingler le message",
-    "jumpToLatest": "Aller aux derniers messages"
+    "jumpToLatest": "Aller aux derniers messages",
+    "ban": "Bannir",
+    "banConfirm": "Êtes-vous sûr de vouloir bannir {{name}} ?",
+    "banFailed": "Échec du bannissement de l'utilisateur"
   },
   "promptFeed": {
     "headline": "Que voulez-vous voir ?",
@@ -4885,7 +4888,20 @@
     "tokensSent": "{{amount}} jetons envoyés",
     "percentUsed": "{{percent}}% utilisé",
     "spentOfTotal": "{{spent}} sur {{total}}",
-    "viewInWallet": "Afficher dans le portefeuille"
+    "viewInWallet": "Afficher dans le portefeuille",
+    "topUp": "Ajouter des jetons",
+    "topUpTitle": "Ajouter des jetons d'abonnement",
+    "topUpCustom": "Autre montant (USD)",
+    "topUpYouSend": "Vous envoyez",
+    "topUpYouGet": "Ajouté à votre solde",
+    "topUpConfirm": "Ajouter {{amount}}",
+    "topUpRange": "Entrez {{min}} à {{max}}",
+    "topUpDone": "{{amount}} ajouté à vos jetons d'abonnement",
+    "topUpPending": "Votre recharge est en cours de confirmation. Il apparaîtra dans votre solde sous peu.",
+    "topUpEmptyHint": "Rechargez pour vous abonner aux créateurs",
+    "topUpStageWallet": "Confirmez dans votre portefeuille…",
+    "topUpStageConfirming": "En attente de la transaction…",
+    "topUpStageCrediting": "Ajout à votre solde..."
   },
   "live": {
     "notSet": "Non défini",
@@ -4943,8 +4959,61 @@
         "legend": {
           "name": "Légende",
           "hint": "Atteignez le niveau dix."
+        },
+        "ignition": {
+          "name": "Allumage",
+          "hint": "Cumulez une heure de direct admissible."
+        },
+        "on-air": {
+          "name": "À l’antenne",
+          "hint": "Terminez dix directs admissibles."
+        },
+        "storyteller": {
+          "name": "Conteur",
+          "hint": "Terminez vingt-cinq directs admissibles."
+        },
+        "broadcaster": {
+          "name": "Présentateur",
+          "hint": "Terminez cinquante directs admissibles."
+        },
+        "centurion": {
+          "name": "Centurion",
+          "hint": "Terminez cent directs admissibles."
+        },
+        "enduring": {
+          "name": "Endurance",
+          "hint": "Diffusez quatre heures admissibles en une session."
+        },
+        "circle": {
+          "name": "Cercle proche",
+          "hint": "Réunissez vingt-cinq spectateurs simultanés."
+        },
+        "arena": {
+          "name": "Arène",
+          "hint": "Réunissez cinquante spectateurs simultanés."
+        },
+        "headliner": {
+          "name": "Tête d’affiche",
+          "hint": "Réunissez cent spectateurs simultanés."
+        },
+        "cornerstone": {
+          "name": "Pilier",
+          "hint": "Diffusez pendant vingt-six semaines consécutives."
+        },
+        "veteran": {
+          "name": "Vétéran",
+          "hint": "Cumulez 250 heures de direct admissibles."
+        },
+        "icon": {
+          "name": "Icône",
+          "hint": "Atteignez le niveau vingt."
         }
-      }
+      },
+      "chooseBadge": "Choisissez un badge débloqué à afficher sur votre profil.",
+      "useBadge": "Utiliser ce badge",
+      "selectedBadge": "Sélectionné",
+      "savingBadge": "Enregistrement du badge…",
+      "saveBadgeError": "Impossible d’enregistrer votre badge. Réessayez."
     },
     "unmuteMic": "Activer le son du microphone",
     "muteMic": "Mise en sourdine du microphone",
@@ -7532,5 +7601,98 @@
     "loadFailed": "Impossible de charger vos créations",
     "previewHint": "Créé avec DeHub Builder",
     "buildInChat": "Créez dans vos messages privés avec @assistant"
+  },
+  "depin": {
+    "title": "DePin",
+    "becomeANode": "Devenir un nœud",
+    "ctaBody": "Le repli d'origine, les médias protégés cryptés et le travail vérifié viennent avant les récompenses des nœuds publics.",
+    "ctaTitle": "Lancer uniquement lorsque l'échec est sûr.",
+    "earlyAccess": "Accès anticipé",
+    "earlyAccessBody": "Un nœud léger basé sur navigateur est actif ci-dessous. Un nœud de bureau plus lourd et toujours actif est une direction future déclarée, pas encore disponible. La participation ne garantit jamais une récompense.",
+    "fallbackFigureAria": "Chemin de secours de la livraison de contenu",
+    "faqHeading": "Questions, réponses claires.",
+    "footerNote": "La participation à DePin est un service de contribution et non un produit d'investissement. La disponibilité, l'admissibilité et les récompenses peuvent changer.",
+    "heroBlurb": "Contribuez du stockage, de la bande passante et de la puissance de calcul inutilisés pour aider à héberger, transcoder et livrer du contenu DeHub.",
+    "heroCaption": "DeHub conserve la copie d'origine. Les nœuds communautaires ajoutent des répliques résilientes et une capacité de livraison locale.",
+    "heroEyebrow": "Infrastructure alimentée par la communauté",
+    "heroImageAlt": "Un nœud de calcul de périphérie compact connecté aux maisons et aux studios de créateurs",
+    "heroTitle": "Votre matériel. Réseau médiatique de DeHub.",
+    "noFixedRate": "Il n'y a pas de taux fixe, de rendement minimum, d'APY ou d'estimation prospective. Les enregistrements de contribution ne sont que des entrées comptables, pas une promesse de paiement. Tout règlement futur de jetons se ferait sur Base et resterait soumis à l'éligibilité, aux règles du réseau et à la loi applicable.",
+    "nodesLeaveBody": "Aucune machine communautaire ne détient la seule copie. Les vérifications de santé, les répliques et le secours d'origine maintiennent la lecture disponible.",
+    "nodesLeaveTitle": "Un réseau qui s'attend à ce que les nœuds se déconnectent.",
+    "notTrackedYet": "Pas encore suivi",
+    "online": "En ligne",
+    "privacyBody": "Le contenu multimédia protégé reste chiffré sur le matériel communautaire. Les clés de lecture sont émises séparément aux spectateurs autorisés.",
+    "privacyTitle": "Les hôtes stockent des pièces, pas l'accès.",
+    "readTheDocs": "Lire la documentation",
+    "runningCosts": "L'exploitation d'un nœud consomme de l'électricité, des données Internet et la durée de vie du matériel. Les opérateurs peuvent ne rien recevoir, et leurs coûts peuvent dépasser toute récompense.",
+    "safestWorkloadBody": "DePin complète d'abord le chemin de livraison existant de DeHub. Les charges de travail plus exigeantes ne suivent qu'après vérification de la preuve.",
+    "safestWorkloadTitle": "Construit à partir de la charge de travail la plus sûre vers l'extérieur.",
+    "signIn": "Se connecter",
+    "statNotTracked": "Pas encore suivi.",
+    "statUnavailable": "Indisponible pour le moment.",
+    "threeJobsBody": "Les opérateurs choisissent leurs limites de stockage, de bande passante et de calcul. DeHub planifie uniquement le travail que leur machine peut gérer en toute sécurité.",
+    "threeJobsTitle": "Un nœud, trois travaux utiles.",
+    "transcode": "Transcodage",
+    "transcodeBody": "Les machines éligibles transforment les vidéos téléchargées en rendus adaptatifs. Chaque sortie est vérifiée avant de pouvoir être servie.",
+    "transcodeImageAlt": "Une station de travail créateur domestique contribuant du calcul GPU de secours",
+    "verifiedWorkBody": "La contribution est mesurée par des reçus signés, des vérifications de santé et la validation des résultats. Le stockage seul ne crée pas de récompense.",
+    "verifiedWorkTitle": "Le travail utile est vérifié. Les récompenses restent variables.",
+    "yourNode": "Votre nœud",
+    "host": "Hébergement",
+    "hostBody": "Les nœuds conservent les segments chiffrés ou adressables par contenu dans un cache local limité. Le stockage d'origine DeHub reste la source de vérité.",
+    "deliver": "Livraison",
+    "deliverBody": "Les pairs à proximité partagent les segments vidéo tandis que le chemin de livraison normal reste prêt comme secours automatique.",
+    "origin": "Origine DeHub",
+    "originBody": "Copie source permanente et livraison de secours",
+    "availableReplicas": "Répliques disponibles",
+    "availableReplicasBody": "Servir les segments vérifiés près de la demande",
+    "offlineNode": "Nœud hors ligne",
+    "offlineNodeBody": "Supprimé du routage jusqu'à sa reconnexion",
+    "viewer": "Spectateur",
+    "viewerBody": "Utilise un pair quand disponible, l'origine quand nécessaire",
+    "protectedContent": "Contenu protégé",
+    "protectedContentBody": "Les segments abonnés, privés et à la carte peuvent être stockés sous forme de texte chiffré. Les opérateurs de nœuds ne reçoivent pas les clés de droits simplement parce qu'ils hébergent des données.",
+    "publicContent": "Contenu public",
+    "publicContentBody": "Le chiffrement empêche l'inspection occasionnelle des fichiers en cache, mais le contenu public reste regardable via le lecteur DeHub public. Nous ne prétendrons pas le contraire.",
+    "operatorControls": "Contrôles de l'opérateur",
+    "operatorControlsBody": "Les opérateurs choisissent les limites de disque, les limites de bande passante, les heures de travail et les catégories de contenu public éligibles. Les avis de suppression déclenchent les purges du cache.",
+    "deliveryReceipts": "Reçus de livraison",
+    "deliveryReceiptsBody": "Octets vérifiés servis aux sessions de lecture réelles.",
+    "availability": "Disponibilité",
+    "availabilityBody": "Vérifications de récupération réussies et service fiable lorsqu'assigné.",
+    "validOutput": "Sortie valide",
+    "validOutputBody": "Les transcodages doivent passer les vérifications techniques et les contrôles de qualité échantillonnés.",
+    "revenuePool": "Pool financé par les revenus",
+    "revenuePoolBody": "S'il est activé, un budget de récompense serait défini à partir des revenus de la plateforme après la fermeture de l'époque.",
+    "delivery": "Livraison",
+    "deliveryBody": "Livraison en direct et vidéo assistée par les pairs avec basculement automatique.",
+    "adaptiveVideo": "Vidéo adaptative",
+    "adaptiveVideoBody": "Plusieurs rendus pour une lecture fiable sur différentes vitesses de connexion.",
+    "desktopNodes": "Nœuds de bureau",
+    "desktopNodesBody": "Stockage plafonné, contrôles de bande passante et disponibilité vérifiée.",
+    "baseSettlement": "Règlement sur Base",
+    "baseSettlementBody": "Réclamations financées par les revenus uniquement après examen opérationnel et juridique.",
+    "statNodesOnline": "Nœuds en ligne",
+    "statStored": "Stocké",
+    "statVerified": "Vérifié",
+    "verifiedBytes": "Octets vérifiés",
+    "totalStoredLedger": "Total stocké (registre)",
+    "dhbEarnedThisPeriod": "Tokens gagnés cette période",
+    "faqOfflineQ": "Que se passe-t-il lorsqu'un nœud d'hébergement se déconnecte ?",
+    "faqOfflineA": "Le coordinateur le supprime du routage actif. Un autre réplica sert le segment, ou la lecture bascule vers le stockage d'origine DeHub tandis que les copies de remplacement sont programmées.",
+    "faqCanOperatorSeeQ": "Un opérateur de nœud peut-il voir le contenu qu'il héberge ?",
+    "faqCanOperatorSeeA": "Le contenu protégé est stocké sous forme de segments chiffrés et l'hôte ne reçoit pas les clés de lecture. Le contenu public reste publiquement visible via DeHub par conception.",
+    "faqHowMuchQ": "Combien un opérateur de nœud recevra-t-il ?",
+    "faqHowMuchA": "Il n'y a pas de taux fixe ou de prévision. La contribution vérifiée peut recevoir une part d'un pool de récompenses financé par les revenus après la fermeture d'une époque. Les récompenses ne sont pas garanties, et les coûts d'électricité, de bande passante et de matériel peuvent dépasser toute récompense.",
+    "faqSoftwareAvailableQ": "Le logiciel de nœud est-il disponible maintenant ?",
+    "faqSoftwareAvailableA": "Un niveau léger basé sur navigateur est disponible aujourd'hui : connectez-vous et acceptez sur cette page, et votre onglet ouvert devient un nœud tant qu'il reste ouvert. Un nœud de bureau plus lourd et toujours actif est une direction future déclarée — il n'existe pas encore.",
+    "faqInstallNeededQ": "Dois-je installer quelque chose pour le nœud du navigateur ?",
+    "faqInstallNeededA": "Non. Il s'exécute entièrement dans l'onglet en utilisant le stockage local de votre navigateur. Fermer l'onglet arrête votre nœud ; il n'y a pas de service en arrière-plan et pas d'installation.",
+    "appSignInBlurb": "Connectez-vous pour voir votre registre de nœuds : ce que vous avez stocké, ce qui a été vérifié et ce que vous avez gagné pendant cette période.",
+    "appNodeBody": "Le nœud s'exécute dans un onglet du navigateur, pas dans cette application. Ouvrez DePin sur le Web, connectez-vous avec ce compte et inscrivez-vous. Votre registre apparaît ici.",
+    "openOnWeb": "Ouvrez DePin sur le web",
+    "statusOffline": "Hors ligne",
+    "statusUnregistered": "Non enregistré"
   }
 }
