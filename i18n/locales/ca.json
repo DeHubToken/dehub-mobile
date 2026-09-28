@@ -1733,7 +1733,7 @@
     "walletImported": "Cartera importada",
     "importWallet": "Importa una cartera",
     "privateKeyPlaceholder": "Introdueix la teva clau privada",
-    "importExternalWallet": "Importa una cartera externa",
+    "importExternalWallet": "Importa claus",
     "migrateAccount": "Migra el compte",
     "migrateAccountBody": "Tens un compte de DeHub? Inicia la sessió amb el mateix correu electrònic, telèfon, inici de sessió de Google o Apple que feies servir aleshores. Si coincideix amb un compte anterior, se t'oferirà la possibilitat de portar el seu moneder, nom d'usuari i saldo.",
     "migrateAccountNote": "Un inici de sessió únic amb l'inici de sessió antic recupera la clau de la cartera de forma segura en aquest dispositiu. Mai toca els nostres servidors.",

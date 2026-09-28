@@ -1733,7 +1733,7 @@
     "walletImported": "Maks importēts",
     "importWallet": "Importēt maku",
     "privateKeyPlaceholder": "Ievadiet savu privāto atslēgu",
-    "importExternalWallet": "Importēt ārējo maku",
+    "importExternalWallet": "Importēt atslēgas",
     "migrateAccount": "Migrēt kontu",
     "migrateAccountBody": "Vai jums iepriekš bija DeHub konts? Pierakstieties ar to pašu e-pasta adresi, tālruni, Google vai Apple pieteikumvārdu, ko toreiz izmantojāt. Ja tas atbilst iepriekšējam kontam, tev tiks piedāvāts paņemt līdzi tā maku, lietotājvārdu un atlikumu.",
     "migrateAccountNote": "Vienreizēja pierakstīšanās ar veco pieteikumvārdu droši izgūst jūsu maka atslēgu šajā ierīcē. Tas nekad neskar mūsu serverus.",
@@ -4824,9 +4824,9 @@
     "noUsableBackup": "Šim kontam ir saglabāta maka adrese, taču šis tālrunis nevar izmantot rezerves kopiju — vai nu tā tika aizsargāta ar <em>biometriskiem datiem vai piekļuves atslēgu tīmeklī</em> (šī atbloķēšana paliek pārlūkprogrammā un netiek sinhronizēta šeit), vai arī iepriekšēja pieteikšanās šajā tālrunī tika pārtraukta pirms tās pabeigšanas.",
     "addPasswordOnWeb": "Ja esat iepriekš izmantojis dehub.io, atveriet to savā datorā, piesakieties tajā pašā veidā un ar to pašu kontu un <em>pievienojiet maka paroli</em> — tas saglabā šifrētu rezerves kopiju mākonī. Pēc tam atgriezieties šeit un mēģiniet vēlreiz.",
     "walletAddress": "Maks: {{address}}",
-    "biometricKeepsFailing": "{{error}} Ja tas turpinās neizdoties, izmantojiet savu maka paroli zemāk vai \"Importēt ārējo maku\".",
+    "biometricKeepsFailing": "{{error}} Ja tas turpinās neizdoties, izmantojiet savu maka paroli zemāk vai \"Importēt atslēgas\".",
     "deviceBoundKey": "Šis maks tiek atbloķēts ar <em>biometriskiem datiem, kas glabājas vienā konkrētā ierīcē</em> — tālrunī vai pārlūkprogrammā, kurā tas tika iestatīts. Šim tālrunim nav šīs atslēgas, un arī dehub.io nav: atslēga nekad neatstāj ierīci, kas to izveidoja.",
-    "unlockPasskeyOnly": "Šis maks tika nodrošināts ar piekļuves atslēgu tīmeklī, un tam vēl nav paroles rezerves kopijas mākonī. Ja iestatāt maka paroli vietnē dehub.io, ievadiet to šeit — pretējā gadījumā izmantojiet \"Importēt ārējo maku\" zemāk.",
+    "unlockPasskeyOnly": "Šis maks tika nodrošināts ar piekļuves atslēgu tīmeklī, un tam vēl nav paroles rezerves kopijas mākonī. Ja iestatāt maka paroli vietnē dehub.io, ievadiet to šeit — pretējā gadījumā izmantojiet \"Importēt atslēgas\" zemāk.",
     "unlockWithPasswordExplainer": "Šim kontam jau ir maks, ko aizsargā parole. Ievadiet to, lai atgūtu savu maku šajā ierīcē."
   },
   "transcript": {

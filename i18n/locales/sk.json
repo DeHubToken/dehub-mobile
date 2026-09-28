@@ -1790,7 +1790,7 @@
     "walletImported": "Peňaženka importovaná",
     "importWallet": "Importovať peňaženku",
     "privateKeyPlaceholder": "Zadajte svoj súkromný kľúč",
-    "importExternalWallet": "Importovať externú peňaženku",
+    "importExternalWallet": "Importovať kľúče",
     "migrateAccount": "Migrovať účet",
     "migrateAccountBody": "Mali ste predtým účet DeHub? Prihláste sa rovnakým e-mailom, telefónom, prihlásením cez Google alebo Apple, ktoré ste vtedy používali. Ak sa zhoduje s predchádzajúcim účtom, budete mať možnosť preniesť si svoju peňaženku, používateľské meno a zostatok.",
     "migrateAccountNote": "Jednorazové prihlásenie starým prihlasovacím údajom bezpečne získa váš kľúč k peňaženke na tomto zariadení. Nikdy sa nedotkne našich serverov.",
@@ -4932,9 +4932,9 @@
     "noUsableBackup": "Tento účet má na zázname adresu peňaženky, ale žiadnu zálohu, ktorú by tento telefón mohol použiť — buď bola chránená <em>biometrickými údajmi alebo heslovou frázou na webe</em> (toto prihlásenie zostáva v prehliadači a nesynchronizuje sa sem), alebo bolo skoršie prihlásenie na tomto telefóne prerušené pred dokončením.",
     "addPasswordOnWeb": "Ak ste už predtým používali dehub.io, otvorte ho na svojom počítači, prihláste sa rovnakým spôsobom a s rovnakým účtom a <em>pridajte heslo k peňaženke</em> — to uloží šifrovanú zálohu do cloudu. Potom sa vráťte sem a skúste to znova.",
     "walletAddress": "Peňaženka: {{address}}",
-    "biometricKeepsFailing": "{{error}} Ak to bude naďalej zlyhávať, použite nižšie heslo k vašej peňaženke alebo \"Importovať externú peňaženku\".",
+    "biometricKeepsFailing": "{{error}} Ak to bude naďalej zlyhávať, použite nižšie heslo k vašej peňaženke alebo \"Importovať kľúče\".",
     "deviceBoundKey": "Táto peňaženka sa odomyká pomocou <em>biometrických údajov uložených na jednom konkrétnom zariadení</em> — telefóne alebo prehliadači, na ktorom bola nastavená. Tento telefón nemá tento kľúč a ani dehub.io: kľúč nikdy neopustí zariadenie, ktoré ho vytvorilo.",
-    "unlockPasskeyOnly": "Táto peňaženka bola zabezpečená pomocou passkey na webe a zatiaľ nemá zálohu hesla v cloude. Ak ste si nastavili heslo k peňaženke na dehub.io, zadajte ho sem — inak použite nižšie možnosť Importovať externú peňaženku.",
+    "unlockPasskeyOnly": "Táto peňaženka bola zabezpečená pomocou passkey na webe a zatiaľ nemá zálohu hesla v cloude. Ak ste si nastavili heslo k peňaženke na dehub.io, zadajte ho sem — inak použite nižšie možnosť Importovať kľúče.",
     "unlockWithPasswordExplainer": "Tento účet už má peňaženku chránenú heslom. Zadajte ho na obnovenie vašej peňaženky na tomto zariadení."
   },
   "transcript": {

@@ -1733,7 +1733,7 @@
     "walletImported": "Dompet diimpor",
     "importWallet": "Impor dompet",
     "privateKeyPlaceholder": "Masukkan kunci privat Anda",
-    "importExternalWallet": "Impor dompet eksternal",
+    "importExternalWallet": "Impor kunci",
     "migrateAccount": "Migrasikan akun",
     "migrateAccountBody": "Punya akun DeHub sebelumnya? Masuk dengan email, telepon, Google, atau login Apple yang sama dengan yang Anda gunakan saat itu. Jika cocok dengan akun sebelumnya, Anda akan ditawarkan untuk membawa dompet, nama pengguna, dan saldo.",
     "migrateAccountNote": "Satu kali masuk dengan login lama mengambil kunci dompet Anda dengan aman di perangkat ini. Tidak pernah menyentuh server kami.",
@@ -4873,9 +4873,9 @@
     "noUsableBackup": "Akun ini memiliki alamat dompet yang tersimpan, tetapi tidak ada cadangan yang dapat digunakan oleh ponsel ini — baik itu dilindungi dengan <em>biometrik atau kunci akses di web</em> (kunci akses itu tetap ada di peramban dan tidak disinkronkan di sini), atau pendaftaran sebelumnya di ponsel ini terputus sebelum selesai.",
     "addPasswordOnWeb": "Jika Anda pernah menggunakan dehub.io sebelumnya, buka di komputer Anda, masuk dengan cara yang sama dan dengan akun yang sama, dan <em>tambahkan kata sandi dompet</em> — itu akan menyimpan cadangan terenkripsi ke cloud. Kemudian kembali ke sini dan coba lagi.",
     "walletAddress": "Dompet: {{address}}",
-    "biometricKeepsFailing": "{{error}} Jika ini terus gagal, gunakan kata sandi dompet Anda di bawah atau \"Impor dompet eksternal\".",
+    "biometricKeepsFailing": "{{error}} Jika ini terus gagal, gunakan kata sandi dompet Anda di bawah atau \"Impor kunci\".",
     "deviceBoundKey": "Dompet ini terbuka dengan <em>biometrik yang tersimpan di satu perangkat tertentu</em> — ponsel atau peramban tempat dompet itu dibuat. Ponsel ini tidak memiliki kunci tersebut, begitu pula dehub.io: kunci tidak pernah meninggalkan perangkat yang membuatnya.",
-    "unlockPasskeyOnly": "Dompet ini diamankan dengan passkey di web dan belum memiliki cadangan kata sandi di cloud. Jika Anda mengatur kata sandi dompet di dehub.io, masukkan di sini — jika tidak, gunakan Impor dompet eksternal di bawah.",
+    "unlockPasskeyOnly": "Dompet ini diamankan dengan passkey di web dan belum memiliki cadangan kata sandi di cloud. Jika Anda mengatur kata sandi dompet di dehub.io, masukkan di sini — jika tidak, gunakan Impor kunci di bawah.",
     "unlockWithPasswordExplainer": "Akun ini sudah memiliki dompet, yang dilindungi oleh kata sandi. Masukkan untuk memulihkan dompet Anda di perangkat ini."
   },
   "transcript": {

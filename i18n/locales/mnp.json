@@ -1733,7 +1733,7 @@
     "walletImported": "钱包已导入",
     "importWallet": "导入钱包",
     "privateKeyPlaceholder": "输入你的私钥",
-    "importExternalWallet": "导入外部钱包",
+    "importExternalWallet": "导入密钥",
     "migrateAccount": "迁移账号",
     "migrateAccountBody": "有 DeHub 帳號？用以前的 email、電話、Google 或 Apple 帳號登入。若與舊帳號相符，系統會詢問是否要帶回錢包、用戶名和餘額。",
     "migrateAccountNote": "用舊帳號登入一次，即可安全地在此裝置上取回你的錢包金鑰。此金鑰不會傳送至我們的伺服器。",

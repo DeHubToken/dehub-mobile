@@ -1733,7 +1733,7 @@
     "walletImported": "Wallet imported",
     "importWallet": "Import Wallet",
     "privateKeyPlaceholder": "Enter your private key",
-    "importExternalWallet": "Import external wallet",
+    "importExternalWallet": "Import keys",
     "migrateAccount": "Migrate account",
     "migrateAccountBody": "Had a DeHub account before? Sign in with the same email, phone, Google or Apple login you used back then. If it matches an earlier account, you will be offered to bring over its wallet, username and balance.",
     "migrateAccountNote": "A one-time sign-in with the old login retrieves your wallet key securely on this device. It never touches our servers.",
@@ -4873,9 +4873,9 @@
     "noUsableBackup": "This account has a wallet address on file, but no backup this phone can use — either it was protected with <em>biometrics or a passkey on the web</em> (that unlock stays in the browser and does not sync here), or an earlier sign-up on this phone was interrupted before it finished.",
     "addPasswordOnWeb": "If you have used dehub.io before, open it on your computer, sign in the same way and with the same account, and <em>add a wallet password</em> — that saves an encrypted backup to the cloud. Then come back here and try again.",
     "walletAddress": "Wallet: {{address}}",
-    "biometricKeepsFailing": "{{error}} If this keeps failing, use your wallet password below or \"Import external wallet\".",
+    "biometricKeepsFailing": "{{error}} If this keeps failing, use your wallet password below or \"Import keys\".",
     "deviceBoundKey": "This wallet unlocks with <em>biometrics held on one specific device</em> — the phone or browser it was set up on. This phone doesn't have that key, and neither does dehub.io: the key never leaves the device that made it.",
-    "unlockPasskeyOnly": "This wallet was secured with a passkey on the web and has no password backup in the cloud yet. If you set a wallet password on dehub.io, enter it here — otherwise use Import external wallet below.",
+    "unlockPasskeyOnly": "This wallet was secured with a passkey on the web and has no password backup in the cloud yet. If you set a wallet password on dehub.io, enter it here — otherwise use Import keys below.",
     "unlockWithPasswordExplainer": "This account already has a wallet, protected by a password. Enter it to recover your wallet on this device."
   },
   "transcript": {

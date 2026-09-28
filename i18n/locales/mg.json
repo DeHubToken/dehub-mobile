@@ -1756,7 +1756,7 @@
     "walletImported": "Nampidirina ny poketra",
     "importWallet": "Ampidiro ny poketra",
     "privateKeyPlaceholder": "Ampidiro ny lakile manokana anao",
-    "importExternalWallet": "Ampidiro ny poketra ivelany",
+    "importExternalWallet": "Ampidiro ny fanalahidy",
     "migrateAccount": "Manilika ny kaonty",
     "migrateAccountBody": "Efa nisy teo aloha eo amin'ny toerana DeHub? Midira amin'ny mailaka, telefaona, Google na Apple login izay nampiasainao tamin'izany fotoana izany. Raha mifanaraka amin'ny kaonty teo aloha, dia homena anao ny hitondra ny kitapom-batsy, ny anarana famantarana sy ny fifandanjana.",
     "migrateAccountNote": "Ny indray mandeha sonia-in ny taloha fidirana retrieves ny kitapom-batsy manan-danja tsy manana ahiahy eo amin'ny fitaovana ity. Tsy nosakanana velively ny serveur anay.",
