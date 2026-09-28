@@ -8326,5 +8326,20 @@
     "subscriptionTokensOnly": "Samo za generiranje umjetne inteligencije",
     "subscriptionTokensValueNote": "Pretplatnički tokeni zadržavaju svoju vrijednost u dolarima. Ako se cijena tokena promijeni prije nego što ih upotrijebite, vidjet ćete više ili manje tokena, ali oni uvijek kupuju istu količinu umjetne inteligencije. Ne mogu se povući, poslati ili trgovati.",
     "topUpEmptyHint": "Dodajte tokene za generiranje pomoću umjetne inteligencije"
+  },
+  "accountDeletion": {
+    "title": "Obrisati nalog",
+    "description": "Trajno izbrišite svoj račun i osobne podatke",
+    "warning": "Time se trajno brišu tvoj DeHub profil, objave, komentari, poruke i pohranjena sigurnosna kopija novčanika. Spremite pojedinosti o oporavku novčanika i najprije premjestite sredstva. Javne transakcije u lancu blokova i zakonski obvezni zapisi o plaćanju ne mogu se izbrisati. Vaš je profil odmah skriven; brisanje se dovršava u roku od 30 dana. To se ne može poništiti.",
+    "cancel": "Odustani",
+    "confirm": "Trajno izbriši moj račun",
+    "busy": "Slanje zahtjeva za brisanje...",
+    "accepted": "Zatraženo je brisanje računa",
+    "receipt": "Vaš je zahtjev za brisanje spremljen. Tvoj je profil skriven i tvoj ćemo račun trajno izbrisati u roku od 30 dana. Prijava ne može poništiti ovaj zahtjev.",
+    "done": "Želimo vam ugodan dan!",
+    "error": "Slanje zahtjeva za brisanje nije uspjelo. Vaš račun nije potvrđen za brisanje. Pokušajte ponovno.",
+    "back": "Natrag na postavke",
+    "signIn": "Prijavite se na svoj račun",
+    "acknowledge": "Spremio/la sam podatke o oporavku novčanika i razumijem da je brisanje trajno."
   }
 }

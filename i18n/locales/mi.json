@@ -8325,5 +8325,20 @@
     "subscriptionTokensOnly": "Mo te whakatupuranga AI anake",
     "subscriptionTokensValueNote": "Ko nga tohu ohaurunga e pupuri ana i to raatau uara taara. Mena ka neke te utu tohu i mua i to whakamahi, ka kite koe i nga tohu iti ake ranei, engari ka hoko tonu i te nui o te whakatupuranga AI. Kaore e taea te whakakore, te tuku, te hokohoko ranei.",
     "topUpEmptyHint": "Tāpiri tohu ki te whakaputa ki AI"
+  },
+  "accountDeletion": {
+    "title": "Whakakorea te kaute",
+    "description": "Mukua tonu tō pūkete me ngā raraunga whaiaro",
+    "warning": "Ka mukua tonu e tēnei tō pūkete DeHub, pou, kōrero, karere me te tārua putea rokiroki. Tiaki koutou taipitopito whakaora putea, me te neke i tetahi rawa tuatahi. Kaore e taea te whakakore i nga whakawhitinga blockchain a te iwi me nga rekoata utu e hiahiatia ana e te ture. Kei te huna tonu tō pūkete; ka oti te whakakore i roto i te 30 ra. Kaore e taea te whakakore i tenei.",
+    "cancel": "Whakakore",
+    "confirm": "Mukua tonu taku kaute",
+    "busy": "Te tuku i te tono whakakorenga...",
+    "accepted": "Te whakakore i te kaute i tonoa",
+    "receipt": "Kua ora tō tono whakakore. Kei te huna tō pūkete, ā, ka mukua tō pūkete i roto i te 30 ra. Kaore e taea e te hainatanga te whakakore i tenei tono.",
+    "done": "Kua oti",
+    "error": "Kaore e taea e au te tuku i to tono whakakore. Kaore i whakapumautia to kaute mo te whakakore. Tena koa tamata ano.",
+    "back": "Hoki ki ngā tautuhinga",
+    "signIn": "Hokona ki roto ki te muku i to koutou pūkete",
+    "acknowledge": "Kua penapena e au aku taipitopito whakaora putea me te mohio he pumau te whakakore."
   }
 }

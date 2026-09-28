@@ -8326,5 +8326,20 @@
     "subscriptionTokensOnly": "Diňe nesilden-nesle",
     "subscriptionTokensValueNote": "Öwrenme biletleri dollaryň gymmatyny saklaýar. Eger token bahasy olary ulanmazdan öň hereket etse, onda siz köp ýa-da az tokenleri görersiňiz, ýöne olar hemişe birmeňzeş sany AI neslini satyn alýarlar. Olar çekilmeýär, iberilmeýär ýa-da satylmaýar.",
     "topUpEmptyHint": "AI bilen ýaradylmak üçin tokenler goş"
+  },
+  "accountDeletion": {
+    "title": "Saýlan Saýlan",
+    "description": "Şoňa görä-de, siz öz hasabatyňyzy we maglumatlaryňyzy hemişelik silmeli.",
+    "warning": "Bu DeHub profilyňyzy, postlaryňyzy, pikirleriňizi, habarlaryňyzy we saklanýan pul pulyňyzy hemişelik silýär. Pul puluny gaýtargylamak üçin jikme-jikleri saklaň we öňürti bir zady aýryp taşlaň. Halkara blockchain işlemeleri we kanun boýunça talap edilen töleg rekordlary ýitirip bolmaýar. Siziň profilyňyz dessine gizlenýär; silgi 30 günüň içinde tamamlanýar. Bu şeýle ret edilmeli däl.",
+    "cancel": "Bes et...",
+    "confirm": "Meniň hasabatymy hemişelik silmek",
+    "busy": "Ýitirme haýyşyny ber...",
+    "accepted": "Saýlan hasabyň silmegi",
+    "receipt": "Siziň silgi haýyşyňyz halas boldy. Siziň profilyňyz gizlin we 30 günüň içinde hasabatyňyz hemişelik silinýär. Petitsiýany gaýd etmekden gorkmaň.",
+    "done": "GameTextFile",
+    "error": "Siz öz ret etmegiňiziň haýyşyny berip bilmediňiz. Siziň hasabatyňyz silinmek üçin tassyklanmady. Gaýtalaň",
+    "back": "Parametrlere dolanmak",
+    "signIn": "Şkaýyňy silmek üçin gir",
+    "acknowledge": "Men pulumy gaýtargylamagyň jikme-jiklerini sakladym we ýitirilmegiň hemişelikdigini bilýärin."
   }
 }

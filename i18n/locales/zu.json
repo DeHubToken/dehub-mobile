@@ -8357,5 +8357,20 @@
     "subscriptionTokensOnly": "Okwesizukulwane se-AI kuphela",
     "subscriptionTokensValueNote": "Amathokheni okubhalisa anenani lawo lamadola. Uma inani lethokheni lihamba ngaphambi kokulisebenzisa uzobona amathokheni amaningi noma ambalwa, kodwa ngaso sonke isikhathi bathenga inani elifanayo lesizukulwane se-AI. Awukwazi ukuhoxiswa, ukuthunyelwa noma ukudayiswa.",
     "topUpEmptyHint": "Faka amathokheni ukuze ukhiqize nge-AI"
+  },
+  "accountDeletion": {
+    "title": "Sula Ikhawundi",
+    "description": "Susa i-akhawunti yakho nedatha yakho unomphela",
+    "warning": "Lokhu kudilitha unomphela iphrofayili yakho ye-DeHub, amaphosti, amakhomenti, imilayezo kanye ne-backup ye-wallet egciniwe. Gcina imininingwane yakho yokubuyisela isikhwama bese uhambisa noma yiziphi izimpahla kuqala. Ukuthengiselana kwe-blockchain yomphakathi namarekhodi enkokhelo adingekayo ngokomthetho awakwazi ukususwa. Iphrofayili yakho ifihliwe ngokushesha; ukudilitha kuphothulwa zingakapheli izinsuku ezingu-30. Lokhu akukwazi ukuhlehliswa.",
+    "cancel": "Khansela",
+    "confirm": "Susa i-akhawunti yami unomphela",
+    "busy": "Ithumela isicelo sokususa...",
+    "accepted": "Kucelwe ukususwa kwe-akhawunti",
+    "receipt": "Isicelo sakho sokususa sigciniwe. Iphrofayili yakho ifihliwe futhi i-akhawunti yakho izodilithwa unomphela zingakapheli izinsuku ezingu-30. Ukungena ngemvume akukwazi ukukhansela lesi sicelo.",
+    "done": "Kwenziwe",
+    "error": "Ayikwazanga ukuthumela isicelo sakho sokususa. I-akhawunti yakho ayikaqinisekiswa ukuthi isusiwe. Sicela uzame futhi.",
+    "back": "Buyela Kumasethingi",
+    "signIn": "Ngena ngemvume ukuze ususe i-akhawunti yakho",
+    "acknowledge": "Ngilondoloze imininingwane yami yokubuyisela isikhwama semali futhi ngiyaqonda ukuthi ukudilitha akupheli."
   }
 }

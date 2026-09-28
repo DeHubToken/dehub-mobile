@@ -8326,5 +8326,20 @@
     "subscriptionTokensOnly": "Yalnız AI nəsli üçün",
     "subscriptionTokensValueNote": "Abunə nişanları dollar dəyərini saxlayır. İstifadə etməzdən əvvəl mötəbər qiymət hərəkət edərsə, daha çox və ya daha az işarə görəcəksiniz, lakin onlar həmişə eyni miqdarda AI nəsli alırlar. Onları geri götürmək, göndərmək və ya satmaq mümkün deyil.",
     "topUpEmptyHint": "AI ilə yaratmaq üçün ayələr əlavə edin"
+  },
+  "accountDeletion": {
+    "title": "Hesabı sil",
+    "description": "Hesabınızı və şəxsi məlumatlarınızı həmişəlik silin",
+    "warning": "Bu, DeHub profilinizi, yazılarınızı, şərhlərinizi, mesajlarınızı və saxlanmış cüzdan ehtiyat nüsxənizi həmişəlik silir. Cüzdan bərpa təfərrüatlarınızı yaddaşda saxlayın və əvvəlcə istənilən aktivi hərəkət etdirin. İctimai Blockchain əməliyyatları və qanunla tələb olunan ödəniş qeydləri silinə bilməz. Profiliniz dərhal gizlədilir; silinmə 30 gün ərzində tamamlanır. Bunu geri qaytarmaq mümkün deyil.",
+    "cancel": "Ləğv et",
+    "confirm": "Hesabımı həmişəlik silin",
+    "busy": "Silinmə sorğusu təqdim edilir...",
+    "accepted": "Hesabın silinməsi üçün sorğu göndərilib",
+    "receipt": "Silinmə sorğunuz yaddaşda saxlanıldı. Profiliniz gizlədilib və hesabınız 30 gün ərzində həmişəlik silinəcək. Daxil olmaq bu sorğunu ləğv edə bilməz.",
+    "done": "Hazırdl",
+    "error": "Silinmə sorğunuzu təqdim etmək mümkün olmadı. Hesabınız silinməsi üçün təsdiqlənməyib. Yenidən cəhd edin.",
+    "back": "Parametrlərə qayıt",
+    "signIn": "Hesabınızı silmək üçün daxil olun",
+    "acknowledge": "Cüzdan bərpa təfərrüatlarımı yaddaşda saxladım və silinmənin daimi olduğunu başa düşdüm."
   }
 }

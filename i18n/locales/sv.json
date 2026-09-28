@@ -8330,5 +8330,20 @@
     "subscriptionTokensOnly": "Endast för AI-generering",
     "subscriptionTokensValueNote": "Prenumerationstoken har sitt dollarvärde. Om tokenpriset rör sig innan du använder dem kommer du att se fler eller färre tokens, men de köper alltid samma mängd AI-generering. De kan inte tas ut, skickas eller handlas.",
     "topUpEmptyHint": "Lägg till tokens för att generera med AI"
+  },
+  "accountDeletion": {
+    "title": "Radera konto",
+    "description": "Radera ditt konto och dina personuppgifter permanent",
+    "warning": "Detta raderar permanent din DeHub-profil, dina inlägg, kommentarer, meddelanden och sparade säkerhetskopior av plånboken. Spara dina återställningsuppgifter för plånboken och flytta eventuella tillgångar först. Offentliga blockchain-transaktioner och lagstadgade betalningsuppgifter kan inte raderas. Din profil döljs omedelbart; raderingen slutförs inom 30 dagar. Detta kan inte ångras.",
+    "cancel": "Avbryt",
+    "confirm": "Ta bort konto permanent",
+    "busy": "Skickar raderingsbegäran...",
+    "accepted": "Borttagning av konto begärd",
+    "receipt": "Din begäran om radering har sparats. Din profil är dold och ditt konto kommer att raderas permanent inom 30 dagar. Inloggning kan inte avbryta denna begäran.",
+    "done": "Färdig",
+    "error": "Det gick inte att skicka din begäran om radering. Ditt konto har inte bekräftats för radering. Vänligen försök igen.",
+    "back": "Tillbaka till inställningar",
+    "signIn": "Logga in på ditt konto",
+    "acknowledge": "Jag har sparat mina återställningsuppgifter för plånboken och förstår att raderingen är permanent."
   }
 }
