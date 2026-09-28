@@ -10,6 +10,7 @@ import { cdnImage } from "../../libs/cdnImage";
 import type { UnifiedFeedItem } from "../../services/feed.unified.service";
 import { resolveViewCount } from "../../libs/numbers.util";
 import { useAppTheme } from "../../context/ThemeContext";
+import { useSettledAutoplay } from "../../hooks/useSettledAutoplay";
 
 const GRID_GAP = 4;
 const GRID_PADDING = 16;
@@ -159,6 +160,7 @@ const ShortsGridCardComponent: React.FC<ShortsGridCardProps> = ({ item, index, i
       getVideoUrl(tokenId),
     [item.previewUrl, item.videoUrl, tokenId],
   );
+  const previewSettled = useSettledAutoplay(isVisible, previewUrl, 400);
 
   const username = item.minterUser?.username || item.minterUsername || "";
   // Signed-out viewers are already folded into totalViews by the API.
@@ -200,7 +202,7 @@ const ShortsGridCardComponent: React.FC<ShortsGridCardProps> = ({ item, index, i
           expo-video builds a native ExoPlayer in the constructor whether or not
           a source is attached, so a player per mounted cell (20+ in this grid)
           was a player object graph per cell regardless of the null source. */}
-      {isVisible && previewUrl && <CellPreview previewUrl={previewUrl} />}
+      {previewSettled && previewUrl && <CellPreview previewUrl={previewUrl} />}
 
       {/* Bottom gradient + info overlay */}
       <View style={styles.overlay} pointerEvents="none" />
