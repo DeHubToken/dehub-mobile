@@ -219,6 +219,13 @@ export const DeepLinkPaths = {
   // Bridge — dehub.io/app/bridge is what web shares; the bare /bridge is
   // rewritten onto it by APP_PREFIXED below.
   BRIDGE: 'app/bridge',
+
+  // Launchpad — web serves it at both /launchpad and /app/launchpad; the bare
+  // form is rewritten onto the /app one by APP_PREFIXED below. /create is a
+  // literal segment, so it outranks the :mintId pattern.
+  LAUNCHPAD_CREATE: 'app/launchpad/create',
+  LAUNCHPAD_COIN: 'app/launchpad/:mintId',
+  LAUNCHPAD: 'app/launchpad',
 } as const;
 
 /**
@@ -335,6 +342,12 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
 
           [ScreenNames.DePin]: DeepLinkPaths.DEPIN,
           [ScreenNames.Bridge]: DeepLinkPaths.BRIDGE,
+          [ScreenNames.LaunchpadCreate]: DeepLinkPaths.LAUNCHPAD_CREATE,
+          [ScreenNames.LaunchpadCoin]: {
+            path: DeepLinkPaths.LAUNCHPAD_COIN,
+            parse: { mintId: (mintId: string) => mintId },
+          },
+          [ScreenNames.Launchpad]: DeepLinkPaths.LAUNCHPAD,
 
           [ScreenNames.Root]: {
             screens: {
@@ -386,7 +399,7 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
     // and the link opened the website instead of the app.
     const APP_PREFIXED = new Set([
       'post', 'notifications', 'leaderboard', 'messages', 'communities',
-      'stores', 'events', 'fractions', 'agents', 'bridge',
+      'stores', 'events', 'fractions', 'agents', 'bridge', 'launchpad',
     ]);
     // Builder lived at /app/builder before it took the top-level URL; web
     // redirects the old links, so do the same here.
@@ -692,6 +705,14 @@ export const parseDeepLink = (url: string): { type: string; params: Record<strin
     // /app/bridge
     if (appParts[0] === 'bridge') {
       return { type: 'bridge', params: qp };
+    }
+
+    // /app/launchpad, /app/launchpad/create and /app/launchpad/:mintId
+    if (appParts[0] === 'launchpad') {
+      if (appParts[1] === 'create') return { type: 'launchpadCreate', params: qp };
+      return appParts[1]
+        ? { type: 'launchpadCoin', params: { mintId: appParts[1], ...qp } }
+        : { type: 'launchpad', params: qp };
     }
 
     // /app/events/:eventNumber
