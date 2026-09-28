@@ -4,6 +4,7 @@ import {
   __resetScrollActivityForTests,
   isFeedScrolling,
   setFeedScrolling,
+  subscribeFeedScrollStart,
   subscribeFeedSettled,
 } from "../../libs/scrollActivity";
 
@@ -24,6 +25,17 @@ describe("feed scroll activity", () => {
     setFeedScrolling(false);
     expect(fn).toHaveBeenCalledTimes(1);
     expect(isFeedScrolling()).toBe(false);
+  });
+
+  it("notifies start once per rest-to-moving transition", () => {
+    const fn = jest.fn();
+    subscribeFeedScrollStart(fn);
+    setFeedScrolling(true);
+    setFeedScrolling(true);
+    expect(fn).toHaveBeenCalledTimes(1);
+    setFeedScrolling(false);
+    setFeedScrolling(true);
+    expect(fn).toHaveBeenCalledTimes(2);
   });
 
   it("clears itself if no settle ever arrives", () => {

@@ -52,7 +52,7 @@ import GettingStartedCard from "../components/Onboarding/GettingStartedCard";
 import { pagerPageIntersectsViewport } from "../libs/pagerVisibility";
 import { useAppTheme } from "../context/ThemeContext";
 import { GRAIN } from "../theme/skins";
-import { setThemeBackdropVisible } from "../libs/themeBackdrop";
+import { holdThemeBackdrop, setThemeBackdropVisible } from "../libs/themeBackdrop";
 
 const FALLBACK_CATEGORIES: string[] = [];
 const SHUFFLE_SEED_EXPIRY_MS = 30 * 60 * 1000;
@@ -654,6 +654,7 @@ export default function HomeScreen() {
 
   const handleScrollBegin = useCallback(() => {
     setFilterPanelVisible(false);
+    holdThemeBackdrop();
   }, []);
 
   const handleCategorySelect = useCallback((category: string) => {
