@@ -7570,6 +7570,7 @@
     "sendFailed": "معرفناش نبعت ده",
     "deleteFailed": "معرفناش نمسح البناء",
     "loadFailed": "معرفناش نحمّل بناءاتك",
-    "previewHint": "اتبنى بواسطة DeHub Builder"
+    "previewHint": "اتبنى بواسطة DeHub Builder",
+    "buildInChat": "ابنِ في رسايلك الخاصة مع @assistant"
   }
 }

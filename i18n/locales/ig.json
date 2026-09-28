@@ -7525,6 +7525,7 @@
     "sendFailed": "Enweghị ike izipu nke ahụ",
     "deleteFailed": "Enweghị ike ihichapụ ihe owuwu",
     "loadFailed": "Enweghị ike ibu ihe owuwu gị",
-    "previewHint": "E ji DeHub Builder wuo ya"
+    "previewHint": "E ji DeHub Builder wuo ya",
+    "buildInChat": "Wuo n'ozi nzuzo gị na @assistant"
   }
 }

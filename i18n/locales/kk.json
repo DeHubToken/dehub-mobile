@@ -7580,6 +7580,7 @@
     "sendFailed": "Мұны жіберу мүмкін болмады",
     "deleteFailed": "Құрастыруды жою мүмкін болмады",
     "loadFailed": "Құрастыруларыңызды жүктеу мүмкін болмады",
-    "previewHint": "DeHub Builder арқылы құрастырылды"
+    "previewHint": "DeHub Builder арқылы құрастырылды",
+    "buildInChat": "@assistant-пен жеке хабарламаларда жасаңыз"
   }
 }

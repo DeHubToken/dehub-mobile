@@ -7526,6 +7526,7 @@
     "sendFailed": "Imeshindwa kutuma hilo",
     "deleteFailed": "Imeshindwa kufuta ujenzi",
     "loadFailed": "Imeshindwa kupakia ujenzi wako",
-    "previewHint": "Imejengwa kwa DeHub Builder"
+    "previewHint": "Imejengwa kwa DeHub Builder",
+    "buildInChat": "Jenga kwenye jumbe zako za faragha ukiwa na @assistant"
   }
 }

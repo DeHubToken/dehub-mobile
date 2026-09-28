@@ -7547,6 +7547,7 @@
     "sendFailed": "ამის გაგზავნა ვერ მოხერხდა",
     "deleteFailed": "აშენების წაშლა ვერ მოხერხდა",
     "loadFailed": "თქვენი აშენებების ჩატვირთვა ვერ მოხერხდა",
-    "previewHint": "აშენებულია DeHub Builder-ით"
+    "previewHint": "აშენებულია DeHub Builder-ით",
+    "buildInChat": "შექმენით პირად შეტყობინებებში @assistant-თან ერთად"
   }
 }

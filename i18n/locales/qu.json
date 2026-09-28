@@ -7554,6 +7554,7 @@
     "sendFailed": "Chayta mana kachayta atinchu",
     "deleteFailed": "Ruwanata mana thuqayta atinchu",
     "loadFailed": "Ruwaykikunata mana cargayta atinchu",
-    "previewHint": "DeHub Builderwan ruwasqa"
+    "previewHint": "DeHub Builderwan ruwasqa",
+    "buildInChat": "Sapaq willakuyniykikunapi @assistant-wan ruray"
   }
 }

@@ -7532,6 +7532,7 @@
     "sendFailed": "इसे भेजा नहीं जा सका",
     "deleteFailed": "बिल्ड हटाया नहीं जा सका",
     "loadFailed": "आपके बिल्ड लोड नहीं हो सके",
-    "previewHint": "DeHub Builder से बनाया गया"
+    "previewHint": "DeHub Builder से बनाया गया",
+    "buildInChat": "@assistant के साथ अपने DM में बनाएं"
   }
 }

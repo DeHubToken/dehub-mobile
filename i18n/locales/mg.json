@@ -7625,6 +7625,7 @@
     "sendFailed": "Tsy afaka nandefa izany",
     "deleteFailed": "Tsy afaka namafa ny fanamboarana",
     "loadFailed": "Tsy afaka naka ny fanamboaranao",
-    "previewHint": "Namboarina tamin'ny DeHub Builder"
+    "previewHint": "Namboarina tamin'ny DeHub Builder",
+    "buildInChat": "Manamboara ao amin'ny hafatra manokana miaraka amin'i @assistant"
   }
 }

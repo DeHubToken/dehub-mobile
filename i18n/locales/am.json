@@ -7554,6 +7554,7 @@
     "sendFailed": "ያንን መላክ አልተቻለም",
     "deleteFailed": "ግንባታውን መሰረዝ አልተቻለም",
     "loadFailed": "ግንባታዎችህን መጫን አልተቻለም",
-    "previewHint": "በDeHub Builder የተገነባ"
+    "previewHint": "በDeHub Builder የተገነባ",
+    "buildInChat": "በቀጥታ መልዕክቶችዎ ከ@assistant ጋር ይገንቡ"
   }
 }

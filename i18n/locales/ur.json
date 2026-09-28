@@ -7528,6 +7528,7 @@
     "sendFailed": "وہ بھیجا نہیں جا سکا",
     "deleteFailed": "بلڈ حذف نہیں ہو سکا",
     "loadFailed": "آپ کے بلڈز لوڈ نہیں ہو سکے",
-    "previewHint": "DeHub Builder کے ساتھ بنایا گیا"
+    "previewHint": "DeHub Builder کے ساتھ بنایا گیا",
+    "buildInChat": "@assistant کے ساتھ اپنے DM میں بنائیں"
   }
 }

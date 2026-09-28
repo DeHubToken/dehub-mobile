@@ -7495,6 +7495,7 @@
     "sendFailed": "ତାହା ପଠାଇହେଲା ନାହିଁ",
     "deleteFailed": "ନିର୍ମାଣ ବିଲୋପ କରିହେଲା ନାହିଁ",
     "loadFailed": "ଆପଣଙ୍କ ନିର୍ମାଣ ଲୋଡ୍ କରିହେଲା ନାହିଁ",
-    "previewHint": "DeHub ବିଲଡର ସହିତ ନିର୍ମିତ"
+    "previewHint": "DeHub ବିଲଡର ସହିତ ନିର୍ମିତ",
+    "buildInChat": "@assistant ସହ ଆପଣଙ୍କ DMରେ ତିଆରି କରନ୍ତୁ"
   }
 }

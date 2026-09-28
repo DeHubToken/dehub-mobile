@@ -7556,6 +7556,7 @@
     "sendFailed": "ارسال آن ممکن نشد",
     "deleteFailed": "حذف ساخت ممکن نشد",
     "loadFailed": "بارگذاری ساخته‌های شما ممکن نشد",
-    "previewHint": "ساخته‌شده با DeHub Builder"
+    "previewHint": "ساخته‌شده با DeHub Builder",
+    "buildInChat": "در پیام‌های خصوصی با @assistant بسازید"
   }
 }

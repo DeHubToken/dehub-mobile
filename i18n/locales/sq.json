@@ -7526,6 +7526,7 @@
     "sendFailed": "Nuk u dërgua dot",
     "deleteFailed": "Ndërtimi nuk mund të fshihej",
     "loadFailed": "Ndërtimet e tua nuk u ngarkuan dot",
-    "previewHint": "Ndërtuar me DeHub Builder"
+    "previewHint": "Ndërtuar me DeHub Builder",
+    "buildInChat": "Ndërto në mesazhet private me @assistant"
   }
 }

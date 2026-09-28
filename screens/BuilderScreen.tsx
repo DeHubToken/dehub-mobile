@@ -21,6 +21,7 @@ import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
 import { useAuthActions, useUser } from "../context/AuthContext";
 import { DIGITAL_PURCHASES_ENABLED } from "../config/storefront";
 import { toastError, toastSuccess } from "../libs/toast";
+import { ASSISTANT_ADDRESS, ASSISTANT_USERNAME } from "../libs/assistant";
 import { ScreenNames } from "../navigation/ScreenNames";
 import type { AppStackParamList } from "../navigation/types";
 import {
@@ -171,6 +172,23 @@ export default function BuilderScreen() {
             big
           />
 
+          {/* The same builds from a DM: @assistant runs them against this
+              allowance and messages the link back when the app is live. */}
+          <Pressable
+            accessibilityRole="button"
+            onPress={() =>
+              nav.navigate(ScreenNames.Chat, {
+                targetAddress: ASSISTANT_ADDRESS,
+                title: `@${ASSISTANT_USERNAME}`,
+                targetUser: { username: ASSISTANT_USERNAME, address: ASSISTANT_ADDRESS },
+              })
+            }
+            style={({ pressed }) => [styles.chatPill, pressed && { opacity: 0.7 }]}
+          >
+            <Icon name="MessageCircle" size={15} color="#e8e8ea" />
+            <Text style={styles.chatPillText}>{t("builder.buildInChat")}</Text>
+          </Pressable>
+
           <View style={{ marginTop: 28 }}>
             <SectionLabel label={t("builder.yourBuilds")} icon="Sparkles" />
             <LiquidGlass className="rounded-2xl">
@@ -239,6 +257,20 @@ const styles = StyleSheet.create({
     paddingVertical: 9,
   },
   pillText: { color: "#fff", fontSize: 14, fontWeight: "600" },
+  chatPill: {
+    alignSelf: "center",
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 8,
+    marginTop: 14,
+    borderRadius: 999,
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.09)",
+    backgroundColor: "rgba(20,20,22,0.6)",
+    paddingHorizontal: 14,
+    paddingVertical: 8,
+  },
+  chatPillText: { color: "#e8e8ea", fontSize: 14, fontWeight: "500" },
   greeting: { color: "#fff", fontSize: 30, fontWeight: "800", textAlign: "center", marginTop: 22, marginBottom: 18 },
   dim: { color: "#949499", fontSize: 13, fontWeight: "400" },
   empty: { padding: 18, textAlign: "center" },

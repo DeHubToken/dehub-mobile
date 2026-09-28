@@ -6973,6 +6973,7 @@
     "sendFailed": "E no fit send am",
     "deleteFailed": "E no fit delete di build",
     "loadFailed": "E no fit load your builds",
-    "previewHint": "Dem build am with DeHub Builder"
+    "previewHint": "Dem build am with DeHub Builder",
+    "buildInChat": "Build for your DM wit @assistant"
   }
 }

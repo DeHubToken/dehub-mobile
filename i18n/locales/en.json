@@ -7519,6 +7519,7 @@
     "sendFailed": "Could not send that",
     "deleteFailed": "Could not delete the build",
     "loadFailed": "Could not load your builds",
-    "previewHint": "Built with DeHub Builder"
+    "previewHint": "Built with DeHub Builder",
+    "buildInChat": "Build in your DMs with @assistant"
   }
 }

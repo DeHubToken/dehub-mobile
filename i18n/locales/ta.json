@@ -7529,6 +7529,7 @@
     "sendFailed": "அதை அனுப்ப முடியவில்லை",
     "deleteFailed": "உருவாக்கத்தை நீக்க முடியவில்லை",
     "loadFailed": "உங்கள் உருவாக்கங்களை ஏற்ற முடியவில்லை",
-    "previewHint": "DeHub Builder மூலம் உருவாக்கப்பட்டது"
+    "previewHint": "DeHub Builder மூலம் உருவாக்கப்பட்டது",
+    "buildInChat": "@assistant உடன் உங்கள் DM-இல் உருவாக்குங்கள்"
   }
 }

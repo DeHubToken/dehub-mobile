@@ -7557,6 +7557,7 @@
     "sendFailed": "ထိုအရာကို ပို့၍မရပါ",
     "deleteFailed": "တည်ဆောက်မှုကို ဖျက်၍မရပါ",
     "loadFailed": "သင့်တည်ဆောက်မှုများကို ဖွင့်၍မရပါ",
-    "previewHint": "DeHub Builder ဖြင့် တည်ဆောက်ထားသည်"
+    "previewHint": "DeHub Builder ဖြင့် တည်ဆောက်ထားသည်",
+    "buildInChat": "@assistant နဲ့ သင့် DM ထဲမှာ တည်ဆောက်ပါ"
   }
 }

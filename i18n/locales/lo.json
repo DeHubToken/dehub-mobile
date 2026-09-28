@@ -7362,6 +7362,7 @@
     "sendFailed": "ບໍ່ສາມາດສົ່ງອັນນັ້ນໄດ້",
     "deleteFailed": "ບໍ່ສາມາດລຶບການສ້າງໄດ້",
     "loadFailed": "ບໍ່ສາມາດໂຫຼດການສ້າງຂອງທ່ານໄດ້",
-    "previewHint": "ສ້າງດ້ວຍ DeHub Builder"
+    "previewHint": "ສ້າງດ້ວຍ DeHub Builder",
+    "buildInChat": "ສ້າງໃນຂໍ້ຄວາມສ່ວນຕົວກັບ @assistant"
   }
 }

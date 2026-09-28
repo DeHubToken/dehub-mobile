@@ -7526,6 +7526,7 @@
     "sendFailed": "Ora bisa ngirim kuwi",
     "deleteFailed": "Ora bisa mbusak build",
     "loadFailed": "Ora bisa mbukak build sampeyan",
-    "previewHint": "Digawe nganggo DeHub Builder"
+    "previewHint": "Digawe nganggo DeHub Builder",
+    "buildInChat": "Gawe ing DM-mu bareng @assistant"
   }
 }

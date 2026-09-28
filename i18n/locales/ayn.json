@@ -7526,6 +7526,7 @@
     "sendFailed": "ما قدرنا نرسل هذا",
     "deleteFailed": "ما قدرنا نحذف البناء",
     "loadFailed": "ما قدرنا نحمّل بناءاتك",
-    "previewHint": "تم البناء بواسطة DeHub Builder"
+    "previewHint": "تم البناء بواسطة DeHub Builder",
+    "buildInChat": "ابنِ في رسائلك الخاصة مع @assistant"
   }
 }

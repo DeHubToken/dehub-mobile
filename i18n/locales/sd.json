@@ -7526,6 +7526,7 @@
     "sendFailed": "اهو موڪلي نه سگهيو",
     "deleteFailed": "تعمير ڊاهي نه سگهي",
     "loadFailed": "توهان جون تعميرون لوڊ ٿي نه سگهيون",
-    "previewHint": "DeHub بلڊر سان تعمير ڪيل"
+    "previewHint": "DeHub بلڊر سان تعمير ڪيل",
+    "buildInChat": "@assistant سان پنهنجن DM ۾ ٺاهيو"
   }
 }

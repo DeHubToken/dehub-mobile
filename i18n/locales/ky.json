@@ -7525,6 +7525,7 @@
     "sendFailed": "Аны жөнөтүү мүмкүн болгон жок",
     "deleteFailed": "Курулушту өчүрүү мүмкүн болгон жок",
     "loadFailed": "Курулуштарыңызды жүктөө мүмкүн болгон жок",
-    "previewHint": "DeHub Builder менен курулган"
+    "previewHint": "DeHub Builder менен курулган",
+    "buildInChat": "@assistant менен жеке билдирүүлөрдө түзүңүз"
   }
 }

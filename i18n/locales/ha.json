@@ -7525,6 +7525,7 @@
     "sendFailed": "An kasa aika wannan",
     "deleteFailed": "An kasa share ginin",
     "loadFailed": "An kasa loda ginin ka",
-    "previewHint": "An gina da DeHub Builder"
+    "previewHint": "An gina da DeHub Builder",
+    "buildInChat": "Gina a cikin saƙonninka na sirri tare da @assistant"
   }
 }

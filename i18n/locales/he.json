@@ -7530,6 +7530,7 @@
     "sendFailed": "לא ניתן היה לשלוח את זה",
     "deleteFailed": "לא ניתן היה למחוק את הבנייה",
     "loadFailed": "לא ניתן היה לטעון את הבניות שלך",
-    "previewHint": "נבנה עם DeHub Builder"
+    "previewHint": "נבנה עם DeHub Builder",
+    "buildInChat": "בנו בהודעות הפרטיות עם @assistant"
   }
 }

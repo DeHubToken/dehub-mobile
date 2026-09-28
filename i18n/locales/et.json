@@ -7521,6 +7521,7 @@
     "sendFailed": "Seda ei õnnestunud saata",
     "deleteFailed": "Ehitust ei õnnestunud kustutada",
     "loadFailed": "Sinu ehitusi ei õnnestunud laadida",
-    "previewHint": "Ehitatud DeHub Builderiga"
+    "previewHint": "Ehitatud DeHub Builderiga",
+    "buildInChat": "Loo oma otsesõnumites koos @assistant'iga"
   }
 }

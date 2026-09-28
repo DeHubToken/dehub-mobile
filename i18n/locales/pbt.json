@@ -7522,6 +7522,7 @@
     "sendFailed": "دا لیږل ونشول",
     "deleteFailed": "جوړونه ړنګه نشوه کړای",
     "loadFailed": "ستاسو جوړونې پورته نشوې کړای",
-    "previewHint": "د DeHub جوړونکي سره جوړ شوی"
+    "previewHint": "د DeHub جوړونکي سره جوړ شوی",
+    "buildInChat": "په خپلو شخصي پیغامونو کې له @assistant سره جوړ کړئ"
   }
 }

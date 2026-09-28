@@ -7524,6 +7524,7 @@
     "sendFailed": "এটি পাঠানো যায়নি",
     "deleteFailed": "বিল্ড মুছে ফেলা যায়নি",
     "loadFailed": "আপনার বিল্ড লোড করা যায়নি",
-    "previewHint": "DeHub Builder দিয়ে তৈরি"
+    "previewHint": "DeHub Builder দিয়ে তৈরি",
+    "buildInChat": "@assistant-এর সাথে আপনার DM-এ তৈরি করুন"
   }
 }

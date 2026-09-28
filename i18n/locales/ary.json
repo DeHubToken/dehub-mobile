@@ -7551,6 +7551,7 @@
     "sendFailed": "ما قدرناش نصيفطو هادشي",
     "deleteFailed": "ما قدرناش نحيدو البناء",
     "loadFailed": "ما قدرناش نحملو البناءات ديالك",
-    "previewHint": "تبنى ب DeHub Builder"
+    "previewHint": "تبنى ب DeHub Builder",
+    "buildInChat": "بني فالميساجات الخاصة مع @assistant"
   }
 }

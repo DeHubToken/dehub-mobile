@@ -7526,6 +7526,7 @@
     "sendFailed": "Sitä ei voitu lähettää",
     "deleteFailed": "Rakennusta ei voitu poistaa",
     "loadFailed": "Rakennuksiasi ei voitu ladata",
-    "previewHint": "Rakennettu DeHub Builderilla"
+    "previewHint": "Rakennettu DeHub Builderilla",
+    "buildInChat": "Rakenna yksityisviesteissä @assistantin kanssa"
   }
 }

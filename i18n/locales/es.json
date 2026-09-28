@@ -7526,6 +7526,7 @@
     "sendFailed": "No se pudo enviar eso",
     "deleteFailed": "No se pudo eliminar la compilación",
     "loadFailed": "No se pudieron cargar tus compilaciones",
-    "previewHint": "Creado con DeHub Builder"
+    "previewHint": "Creado con DeHub Builder",
+    "buildInChat": "Crea en tus mensajes directos con @assistant"
   }
 }

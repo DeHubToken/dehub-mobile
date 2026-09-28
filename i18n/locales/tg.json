@@ -7522,6 +7522,7 @@
     "sendFailed": "Фиристода нашуд",
     "deleteFailed": "Сохтмон нест карда нашуд",
     "loadFailed": "Сохтмонҳои шумо бор карда нашуданд",
-    "previewHint": "Бо DeHub Builder сохта шудааст"
+    "previewHint": "Бо DeHub Builder сохта шудааст",
+    "buildInChat": "Дар паёмҳои шахсӣ бо @assistant созед"
   }
 }
