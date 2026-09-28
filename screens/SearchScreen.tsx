@@ -780,20 +780,6 @@ const SearchScreen: React.FC = () => {
     return null;
   }, [loadingMore, activeTab, accountsPagination, contentPagination, accounts.length, content.length]);
 
-  const renderTrendingItem = useCallback(
-    ({ item }: { item: UnifiedFeedItem }) => (
-      <View className="px-4">
-        <FeedCard item={item} />
-      </View>
-    ),
-    [],
-  );
-
-  const trendingKeyExtractor = useCallback(
-    (item: UnifiedFeedItem, index: number) => `trending-${item.tokenId ?? item.id}-${index}`,
-    [],
-  );
-
   const renderContent = () => {
     // Loading
     if (loading) {
