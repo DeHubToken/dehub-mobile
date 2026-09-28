@@ -41,7 +41,12 @@ export interface ThemeSkin {
   glow: string | null;
   /** HUD corner brackets on the tab strip and bottom nav (War), or null. */
   brackets: string | null;
+  /** Post titles, captions and counts set in monospace, as War sets them. */
+  mono: boolean;
 }
+
+/** War's readout type (web: ui-monospace, 0.1em tracking). */
+export const MONO_TEXT = { fontFamily: 'monospace', letterSpacing: 1.2 } as const;
 
 /** Cosmic, Hazy Nights, Swarms, Lava Lamp and Winter share one smoked glass. */
 const glass: Omit<ThemeSkin, 'page'> = {
@@ -83,6 +88,7 @@ const glass: Omit<ThemeSkin, 'page'> = {
   grain: false,
   glow: null,
   brackets: null,
+  mono: false,
 };
 
 const HUD = 'rgb(79,227,224)';
@@ -136,6 +142,7 @@ const SKINS: Partial<Record<AppThemeName, ThemeSkin>> = {
     grain: false,
     glow: HUD,
     brackets: 'rgba(79,227,224,0.8)',
+    mono: true,
   },
 
   // Rainy neon city. The canvas carries every sign colour; the chrome locks to
@@ -187,6 +194,7 @@ const SKINS: Partial<Record<AppThemeName, ThemeSkin>> = {
     grain: false,
     glow: SAKURA,
     brackets: null,
+    mono: false,
   },
 
   // Carved timber: bark planks with a lit top edge, the active tab sunk in.
@@ -242,6 +250,7 @@ const SKINS: Partial<Record<AppThemeName, ThemeSkin>> = {
     grain: true,
     glow: null,
     brackets: null,
+    mono: false,
   },
 };
 
