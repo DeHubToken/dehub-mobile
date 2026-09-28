@@ -780,7 +780,12 @@
     "smsBalance": "{{dhb}} ଟୋକେନ୍ ବାକି ଅଛି (${{usd}})",
     "smsTopUp": "{{dhb}} ଟୋକେନ୍ ଟପ୍ ଅପ୍ କରନ୍ତୁ",
     "smsCodeSent": "କୋଡ୍ ପଠାଯାଇଛି। ଏଥିରେ {{price}} ଟୋକେନ୍ ଖର୍ଚ୍ଚ ହୋଇଛି।",
-    "tokenBalanceAmount": "{{amount}} ଟୋକେନ୍"
+    "tokenBalanceAmount": "{{amount}} ଟୋକେନ୍",
+    "channelSpeedCount": "{{count}} ଚେନାଲ୍‌ଗୁଡିକ ନିଜ ଗତିରେ ଖେଳନ୍ତି।",
+    "exportReady": "{{count}} ଆକାଉଣ୍ଟ୍, {{saved}} ସଞ୍ଚିତ ପୋଷ୍ଟ୍ ରପ୍ତାନି ହୋଇଛି।",
+    "importDone": "{{followed}} ଙ୍କୁ ଅନୁସରଣ କରାଯାଇଛି, {{blocked}} ଙ୍କୁ ଅବରୋଧ କରାଯାଇଛି, {{folders}} ଫୋଲ୍ଡର୍ ତିଆରି ହୋଇଛି।",
+    "importPartial": "{{count}} ଆକାଉଣ୍ଟ୍‌ଗୁଡିକୁ ଅନୁସରଣ କରାଯାଇପାରିବ ନାହିଁ — ସେଗୁଡିକୁ ପୁନର୍ବାର ଚେଷ୍ଟା କରିବା ପାଇଁ ପୁଣି ଥରେ ଆମଦାନୀ କରନ୍ତୁ।",
+    "importProgress": "{{done}} ର {{total}} ପ୍ରୟୋଗ କରାଯାଉଛି…"
   },
   "common": {
     "mute": "ମ୍ୟୁଟ୍ କରନ୍ତୁ",
@@ -1001,7 +1006,9 @@
     "bounty": "ବାଉଣ୍ଟି",
     "locked": "ଲକ୍ଡ",
     "any": "ଯେକୌଣସି",
-    "resetFilters": "ଫିଲ୍ଟର ରିସେଟ କରନ୍ତୁ"
+    "resetFilters": "ଫିଲ୍ଟର ରିସେଟ କରନ୍ତୁ",
+    "updatingFeed": "ଫିଡ୍ ଅପ୍‌ଡେଟ୍ କରାଯାଉଛି",
+    "filters": "ଫିଲ୍ଟର୍"
   },
   "drawers": {
     "ppvTitle": "ପେ-ପର-ଭ୍ୟୁ ବିଷୟବସ୍ତୁ",
@@ -1040,7 +1047,12 @@
     "firstViews_one": "ପ୍ରଥମ {{count}} ଦର୍ଶନ",
     "firstViews_other": "ପ୍ରଥମ {{count}} ଦର୍ଶନ",
     "firstComments_one": "ପ୍ରଥମ {{count}} ମନ୍ତବ୍ୟ",
-    "firstComments_other": "ପ୍ରଥମ {{count}} ମନ୍ତବ୍ୟ"
+    "firstComments_other": "ପ୍ରଥମ {{count}} ମନ୍ତବ୍ୟ",
+    "ppvDhbInfo": "ପେମେଣ୍ଟଗୁଡିକ ବେସ୍ ଚେନ୍‌ରେ DeHub ଟୋକେନ୍‌ରେ ଅଛି",
+    "rewardPerPerson": "ପୁରସ୍କାର ପ୍ରତି ବ୍ୟକ୍ତି (ଟୋକେନ୍)",
+    "totalLocked": "ମୋଟ୍: {{amount}} ଟୋକେନ୍ ପୁରସ୍କାର ପାଇଁ ଲକ୍ ହୋଇଯିବ",
+    "requiresDhb": "ବେସ୍ ଚେନ୍‌ରେ DeHub ଟୋକେନ୍ ଆବଶ୍ୟକ",
+    "minimumDhb": "ଆବଶ୍ୟକୀୟ ସର୍ବନିମ୍ନ ଟୋକେନ୍"
   },
   "assistant": {
     "title": "ସହାୟକ",
@@ -1200,7 +1212,8 @@
     "couldNotPreparePost": "ପୋଷ୍ଟ କରିବା ପାଇଁ ପ୍ରସ୍ତୁତ କରିବାରେ ଅସମର୍ଥ",
     "imageFailed": "ଚିତ୍ର ତିଆରି ବିଫଳ — ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ",
     "rateLimited": "ଅଧିକ ଅନୁରୋଧ — ଟିକେ ପରେ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ",
-    "requestFailed": "AI ଅନୁରୋଧ ବିଫଳ"
+    "requestFailed": "AI ଅନୁରୋଧ ବିଫଳ",
+    "outOfCredit": "AI କ୍ରେଡିଟ୍ ଶେଷ ହୋଇଯାଇଛି। ଆଗକୁ ବଢିବା ପାଇଁ DeHub ଟୋକେନ୍‌ ସହିତ ଟପ୍ ଅପ୍ କରନ୍ତୁ।"
   },
   "commandCentre": {
     "title": "କಮାଣ୍ଡ ସେଣ୍ଟର",
@@ -1230,7 +1243,8 @@
       "tipReceived": "ପ୍ରାପ୍ତ ଟିପ",
       "tipSent": "ପଠାଯାଇଥିବା ଟିପ",
       "ppvSale": "PPV ବିକ୍ରୟ",
-      "ppvPurchase": "PPV କ୍ରୟ"
+      "ppvPurchase": "PPV କ୍ରୟ",
+      "dhbPurchase": "ଟୋକେନ୍ କ୍ରୟ"
     },
     "time": {
       "justNow": "ଏବେ",
@@ -1317,7 +1331,7 @@
     "crossChainDesc": "BTC, SOL, ETH, USDC ଓ ଅଧିକ କୌଣସି ବି ଚେନରୁ",
     "depositFromAnyChain": "ଯେକୌଣସି ଚେନରୁ ଜମା କରନ୍ତୁ",
     "sendCryptoToReceive": "ଯେକୌଣସି ଚେନରୁ କ୍ରିପ୍ଟୋ ପଠାନ୍ତୁ → {{dest}} ଗ୍ରହଣ କରନ୍ତୁ",
-    "tokenOnChainTo": "{{symbol}} on {{chain}} → {{dest}}",
+    "tokenOnChainTo": "{{symbol}} ରେ {{chain}} → {{dest}}",
     "tokenAmount": "{{symbol}} ପରିମାଣ",
     "estimatedReceived": "ଅଟକଳ {{symbol}} ଗ୍ରହଣ କରାଯାଇଛି",
     "getDepositAddress": "ଜମା ଠିକଣା ପାଆନ୍ତୁ",
@@ -1338,7 +1352,16 @@
     "depositExpired": "ଜମା ଅବଧି ଶେଷ ହୋଇଯାଇଛି। ଦୟାକରି ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।",
     "depositFailedMsg": "ଜମା ବିଫଳ ହୋଇଛି।",
     "crossChainCompleted": "କ୍ରସ୍-ଚେନ୍ ଜମା ସମ୍ପୂର୍ଣ୍ଣ ହୋଇଛି! Base ରେ {{symbol}} ଗ୍ରହଣ କରାଯାଇଛି।",
-    "tryAgain": "ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ"
+    "tryAgain": "ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ",
+    "totalDhbBalance": "ମୋଟ୍ ଟୋକେନ୍ ବାଲାନ୍ସ",
+    "txPurchased": "ଆପଣ {{amount}} ଟୋକେନ୍ କିଣିଛନ୍ତି",
+    "txSold": "ଆପଣ {{amount}} ଟୋକେନ୍ ବିକ୍ରି କରିଛନ୍ତି",
+    "txTransfer": "{{amount}} ଟୋକେନ୍‌ର ହସ୍ତାନ୍ତର",
+    "txPpvUnlock": "PPV ଅନଲକ୍ — {{amount}} ଟୋକେନ୍",
+    "txPpvSale": "PPV ବିକ୍ରି — {{amount}} ଟୋକେନ୍",
+    "txTipSent": "ଆପଣ {{name}} ଟୋକେନ୍‌କୁ {{amount}} ଙ୍କୁ ଟିପ୍ ଦେଇଛନ୍ତି",
+    "txTipReceived": "{{name}} ଆପଣଙ୍କୁ {{amount}} ଟୋକେନ୍ ଟିପ୍ ଦେଇଛନ୍ତି",
+    "transferDhb": "ଟୋକେନ୍ ହସ୍ତାନ୍ତର କରନ୍ତୁ"
   },
   "wallet": {
     "connectUnavailable": "ଏହି ସଂସ୍କରଣରେ ୱାଲେଟ୍ ସଂଯୋଗ ଉପଲବ୍ଧ ନାହିଁ — ରିକଭରି ଫ୍ରେଜ୍ ଦ୍ୱାରା ପୁନରୁଦ୍ଧାର କରନ୍ତୁ।",
@@ -1538,7 +1561,8 @@
     "badgeHandedBack": "{{name}} ଆପଣଙ୍କୁ ଋଣ ଦେଇଥିବା {{tier}} ବ୍ୟାଜ୍ ଫେରାଇ ଦେଇଛି",
     "badgeLoanLapsed": "{{name}} ଆଉ ଆପଣଙ୍କୁ ସେମାନଙ୍କର {{tier}} ବ୍ୟାଜ୍ ଋଣ ଦେଇପାରିବେ ନାହିଁ",
     "badgeLoanDropped": "ଆପଣ ଆଉ ଆପଣଙ୍କର {{tier}} ବ୍ୟାଜ୍ {{name}} କୁ ଋଣ ଦେଇପାରିବେ ନାହିଁ",
-    "badgeLoanRetiered": "{{name}} ଏବେ ଆପଣଙ୍କୁ ଏକ {{tier}} ବ୍ୟାଜ୍ ୰ଦେଉଛି"
+    "badgeLoanRetiered": "{{name}} ଏବେ ଆପଣଙ୍କୁ ଏକ {{tier}} ବ୍ୟାଜ୍ ୰ଦେଉଛି",
+    "tokenAmount": "{{amount}} ଟୋକେନ୍"
   },
   "leaderboard": {
     "title": "ଲିଡରବୋର୍ଡ",
@@ -1575,7 +1599,10 @@
     "secondaryReferrals_one": "{{count}} ଦ୍ୱିତୀୟ ସ୍ତର",
     "secondaryReferrals_other": "{{count}} ଦ୍ୱିତୀୟ ସ୍ତର",
     "retry": "ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ",
-    "provisional": "ଅସ୍ଥାୟୀ"
+    "provisional": "ଅସ୍ଥାୟୀ",
+    "addedToLeaderboard": "ଆପଣ ଯୋଗ କରାଯାଇଛନ୍ତି! ବାଲାନ୍ସ: {{balance}} ଟୋକେନ୍",
+    "balanceTooLow": "ବାଲାନ୍ସ ଅତି କମ୍ ({{balance}} ଟୋକେନ୍)",
+    "tokenAmount": "{{amount}} ଟୋକେନ୍"
   },
   "explorePage": {
     "searchPlaceholder": "ଲୋକ, ପୋଷ୍ଟ କିମ୍ବା ବିଷୟବସ୍ତୁ ଖୋଜନ୍ତୁ...",
@@ -1875,7 +1902,16 @@
     "refreshFailed": "ରିଫ୍ରେସ୍ ବିଫଳ",
     "noRepliesYet": "ଏପର୍ଯ୍ୟନ୍ତ କୌଣସି ରିପ୍ଲାଇ ନାହିଁ",
     "noRepliesYetSub": "ଯେତେବେଳେ ଏହି ଉପଭୋକ୍ତା ପୋଷ୍ଟଗୁଡ଼ିକରେ ରିପ୍ଲାଇ ଦେବେ, ସେଗୁଡ଼ିକ ଏଠାରେ ଦେଖାଯିବ।",
-    "noMoreReplies": "ଆଉ ରିପ୍ଲାଇ ନାହିଁ"
+    "noMoreReplies": "ଆଉ ରିପ୍ଲାଇ ନାହିଁ",
+    "offerSubmitted": "{{handle}} ପାଇଁ {{amount}} ଟୋକେନ୍‌ର ଅଫର୍ ଦାଖଲ କରାଯାଇଛି",
+    "offerWorthNow": "ବର୍ତ୍ତମାନର ହାରରେ {{amount}} ଟୋକେନ୍‌ ବିଷୟରେ",
+    "offerCommitsNothing": "ଅଫର ଦେବା ପାଇଁ କିଛି ଖର୍ଚ୍ଚ ହୋଇନଥାଏ ଏବଂ କୌଣସି ଟୋକନ ମଧ୍ୟ ରଖିନଥାଏ । ମାଲିକ ରାଜି ହେଲେ ହିଁ ଟଙ୍କା ଦେବେ ।",
+    "searchThisChannel": "ଏହି ଚ୍ୟାନେଲକୁ ଖୋଜନ୍ତୁ",
+    "tabPosts": "ପୋଷ୍ଟଗୁଡିକ",
+    "tabVideos": "ଭିଡ଼ିଓ",
+    "tabAudio": "ଧ୍ୱନି",
+    "tabLive": "ଲାଇଭ",
+    "tabPinned": "ପିନ୍ ‌ ହୋଇଥିବା"
   },
   "tv": {
     "title": "TV",
@@ -1918,7 +1954,8 @@
     "dismissReply": "ରିପ୍ଲାଇ ଡିସମିସ୍ କରନ୍ତୁ",
     "typeHere": "ଏଠାରେ ଟାଇପ୍ କରନ୍ତୁ...",
     "send": "ପଠାନ୍ତୁ",
-    "signInToChat": "ଚାଟ୍ କରିବା ପାଇଁ ସାଇନ୍ ଇନ୍ କରନ୍ତୁ"
+    "signInToChat": "ଚାଟ୍ କରିବା ପାଇଁ ସାଇନ୍ ଇନ୍ କରନ୍ତୁ",
+    "sentAmount": "{{amount}}tokensକୁ ପଠାଯାଇଛି"
   },
   "cinema": {
     "title": "ସିନେମା",
@@ -2089,7 +2126,11 @@
     "sponsored": "ସ୍ପୋନ୍ସର୍ଡ",
     "morePosts": "ଆହୁରି ପୋଷ୍ଟ",
     "loadMorePosts": "ଆହୁରି ପୋଷ୍ଟ ଲୋଡ୍ କରନ୍ତୁ",
-    "playAdVideo": "ଏଡ୍ ଭିଡିଓ ପ୍ଲେ କରନ୍ତୁ"
+    "playAdVideo": "ଏଡ୍ ଭିଡିଓ ପ୍ଲେ କରନ୍ତୁ",
+    "priceUnavailable": "ଟୋକନ ମୂଲ୍ୟ ଉପଲବ୍ଧ ନାହିଁ — କିଛି ସମୟ ପରେ ପୁଣିଥରେ ଚେଷ୍ଟା କରନ୍ତୁ ।",
+    "insufficientBalance": "ଏହି ଟପ-ଅପ ପାଇଁ ପର୍ଯ୍ୟାପ୍ତ ଟୋକନ ନାହିଁ ।",
+    "payDhb": "{{amount}} tokens",
+    "topUpExplanation": "ଆପଣଙ୍କର ଟୋକନଗୁଡ଼ିକ ଡେହବ ବିଜ୍ଞାପନ ଟ୍ରେଜେରୀକୁ ଅନ-ଚେନ୍ରେ ସ୍ଥାନାନ୍ତରିତ ହୋଇଥାଏ, ତା 'ପରେ ଆପଣଙ୍କର ବାଲାନ୍ସ ସ୍ୱାଧୀନ ଅନ-ଚେନ୍ ଯାଞ୍ଚ ପରେ କ୍ରେଡିଟ୍ ହୋଇଥାଏ ।"
   },
   "buyCoins": {
     "title": "କଏନ କିଣନ୍ତୁ",
@@ -2459,7 +2500,8 @@
     "sentDesc": "{{amount}} ଟୋକେନ୍ {{chain}} ରେ ଟ୍ରେଜେରୀକୁ ପଠାଯାଇଛି। ବ୍ଲକ୍ ଇଣ୍ଡେକ୍ସ ହେବା ପରେ ଆପଣଙ୍କ ଅଂଶ ଅପଡେଟ୍ ହେବ।",
     "sendAnyWallet": "ଯେ କେହି ବି ଡିହବ୍ ଟୋକେନ୍ ଏଠାକୁ ଯେ କୌଣସି ୱାଲେଟ୍ କିମ୍ବା ଏକ୍ସଚେଞ୍ଜରୁ ପଠାଇପାରିବେ। ବେସ୍ ଏବଂ BNB ରେ ହୋଇଥିବା ଟ୍ରାନ୍ସଫର୍ ଉପରେ ଆପଣଙ୍କ ଅଂଶ ଗଣନା କରାଯିବ।",
     "yourContribution": "{{amount}} ଟୋକେନ୍ ଅବଦାନ କରାଯାଇଛି",
-    "pooledTotal": "{{amount}} ଟୋକେନ୍ ପୁଲ୍ କରାଯାଇଛି"
+    "pooledTotal": "{{amount}} ଟୋକେନ୍ ପୁଲ୍ କରାଯାଇଛି",
+    "contributeIntro": "ଆପଣଙ୍କ ପକେଟରୁ ଡିହବ ଟୋକନଗୁଡ଼ିକୁ କୋଷାଗାରକୁ ପଠାନ୍ତୁ । ଆପଣ ଯୋଗ କରୁଥିବା ପ୍ରତ୍ୟେକ ଟୋକନ ପୁଷ୍କରିଣୀର ଅଂଶକୁ ବଢ଼ାଇଥାଏ, ଏବଂ ଆପଣଙ୍କ ଅଂଶ ହେଉଛି ଆପଣଙ୍କ ଭୋଟ୍ ‌ ର ଓଜନ ଯେତେବେଳେ ଡିଏଓ ଏହା କିପରି ଖର୍ଚ୍ଚ ହୁଏ ତାହା ସ୍ଥିର କରେ ।"
   },
   "governance": {
     "title": "ଗଭର୍ନାନ୍ସ",
@@ -3189,10 +3231,105 @@
         "oneDay": "1 ଦିନ",
         "oneWeek": "1 ସପ୍ତାହ",
         "forever": "ସର୍ବଦା"
-      }
+      },
+      "ownerSection": "ମାଲିକ",
+      "ownerLabel": "ମାଲିକ",
+      "noOwner": "ରେକର୍ଡରେ କୌଣସି ମାଲିକ ନାହାନ୍ତି ।",
+      "administratorsSection": "ଆଡମିନିଷ୍ଟ୍ରେସନ",
+      "noAdmins": "ଏପର୍ଯ୍ୟନ୍ତ କୌଣସି ପ୍ରଶାସକ ନାହିଁ । ଆପଣଙ୍କୁ ମଧ୍ୟମ କରିବାରେ ସାହାଯ୍ୟ କରିବା ପାଇଁ ଜଣେ ସଦସ୍ୟଙ୍କୁ ପ୍ରୋତ୍ସାହିତ କରନ୍ତୁ ।",
+      "adminBadge": "ଆଡମିନିଷ୍ଟ୍ରେସନ",
+      "addAdministrator": "ପ୍ରଶାସକ ଯୋଗ କରନ୍ତୁ",
+      "noMemberMatches": "ସେହି ଅଭିଭାଷଣ ସହ କୌଣସି ସଦସ୍ୟ ମେଳ ଖାଉନାହାନ୍ତି ।",
+      "noPlainMembers": "ଏଠାରେ ସମସ୍ତେ ଜଣେ ଜଣେ ପ୍ରଶାସକ ।",
+      "danger": {
+        "transferTitle": "ମାଲିକାନା ହସ୍ତାନ୍ତର କରିବେ କି?",
+        "transferBody": "{{name}} ଏହି ସମ୍ପ୍ରଦାୟର ମାଲିକ ହେବ । ଆପଣ ସମସ୍ତ ଅଧିକାର ସହିତ ପ୍ରଶାସନର ନିକଟକୁ ଯାଆନ୍ତି, ଏବଂ ଏହା ପୁନଃନିର୍ମାଣ କରାଯାଇପାରିବ ନାହିଁ ।",
+        "transferConfirm": "ସ୍ଥାନାନ୍ତର",
+        "deleteTitle": "ଏହି ସମ୍ପ୍ରଦାୟକୁ ଅପସାରଣ କରିବେ କି?",
+        "deleteConfirm": "ଅପସାରଣ କରନ୍ତୁ",
+        "transferHeading": "ମାଲିକାନା ହସ୍ତାନ୍ତର କରନ୍ତୁ",
+        "transferHint": "ଏଠାରୁ ଏହି ସମ୍ପ୍ରଦାୟର ମାଲିକ ହେବାକୁ ଥିବା ସଦସ୍ୟଙ୍କୁ ବାଛନ୍ତୁ ।",
+        "searchMembers": "ସଦସ୍ୟ ଖୋଜନ୍ତୁ",
+        "noMatches": "ସେହି ସନ୍ଧାନ ସହିତ କୌଣସି ସଦସ୍ୟ ମେଳ ଖାଆନ୍ତି ନାହିଁ ।",
+        "noCandidates": "ଏହି ସମ୍ପ୍ରଦାୟକୁ ହସ୍ତାନ୍ତର କରିବା ପାଇଁ ଅନ୍ୟ କୌଣସି ସକ୍ରିୟ ସଦସ୍ୟ ନାହିଁ ।",
+        "transferAction": "ମାଲିକ ବନାନ୍ତୁ",
+        "deleteHeading": "ସମ୍ପ୍ରଦାୟକୁ ଅପସାରଣ କରନ୍ତୁ",
+        "deleteHint": "ପ୍ରତ୍ୟେକ ସଦସ୍ୟ, ସନ୍ଦେଶ, ଘଟଣା ଏବଂ ନିମନ୍ତ୍ରଣ ଲିଙ୍କକୁ ସ୍ଥାୟୀ ଭାବରେ ଅପସାରଣ କରାଯାଇଛି । ଆଉ ଫେରିବାର ଉପାୟ ନାହିଁ ।",
+        "deleteAction": "ଏହି ସମ୍ପ୍ରଦାୟକୁ ଅପସାରଣ କରନ୍ତୁ"
+      },
+      "inviteRevoked": "ପ୍ରତ୍ୟାଖ୍ୟାନ କରାଯାଇଛି",
+      "inviteExpired": "ଅବସାନ ଘଟିଛି",
+      "inviteExhausted": "ସୀମାରେ ପହଞ୍ଚିଛି",
+      "inviteExpiresMinutes": "{{n}} min ରେ ଅବସାନ ଘଟିବ",
+      "inviteExpiresHours": "{{n}}h ରେ ଅବସାନ ଘଟିବ",
+      "inviteExpiresDays": "{{n}}d ରେ ଅବସାନ ଘଟିବ",
+      "inviteLimit": "ସୀମିତ {{n}}",
+      "inviteNeedsApproval": "ଅନୁମୋଦନ ଆବଶ୍ୟକ",
+      "inviteLink": "ସଂଯୋଗକୁ ଆମନ୍ତ୍ରଣ କରନ୍ତୁ",
+      "inviteUses": "{{n}} join",
+      "copy": "ନକଲ କରନ୍ତୁ",
+      "revoke": "ପ୍ରତ୍ୟାହାର କରନ୍ତୁ",
+      "inviteShareMessage": "DeHubରେ ଏହି ସମ୍ପ୍ରଦାୟରେ ଯୋଗ ଦିଅନ୍ତୁ",
+      "revokeInviteTitle": "ଆମନ୍ତ୍ରଣ ଲିଙ୍କକୁ ପ୍ରତ୍ୟାହାର କରନ୍ତୁ",
+      "revokeInviteBody": "ଏହି ଲିଙ୍କଟି ତୁରନ୍ତ କାମ କରିବା ବନ୍ଦ କରିଦିଏ । ଯେଉଁମାନେ ପୂର୍ବରୁ ଏଥିରେ ସାମିଲ ହୋଇସାରିଛନ୍ତି, ସେମାନେ ରହିଯାଆନ୍ତୁ ।",
+      "inviteNoPermission": "ନିମନ୍ତ୍ରଣ ଲିଙ୍କଗୁଡ଼ିକୁ ପରିଚାଳନା କରିବା ପାଇଁ ଆପଣଙ୍କ ପାଖରେ ଅନୁମତି ନାହିଁ ।",
+      "createInviteLink": "ଆମନ୍ତ୍ରଣ ଲିଙ୍କ ସୃଷ୍ଟି କରନ୍ତୁ",
+      "inviteNamePlaceholder": "ନାମ (ବୈକଳ୍ପିକ)",
+      "inviteExpiryLabel": "ଅବସାନ",
+      "inviteLimitLabel": "ସଦସ୍ୟ ସୀମା",
+      "inviteRequireApproval": "ପ୍ରଶାସନିକ ଅନୁମୋଦନ ଆବଶ୍ୟକ",
+      "inviteRequireApprovalHint": "ଯେଉଁମାନେ ଏହି ଲିଙ୍କ୍ ‌ ବ୍ୟବହାର କରୁଛନ୍ତି ସେମାନଙ୍କୁ ଯୋଗଦେବା ପୂର୍ବରୁ ଅନୁମୋଦନ ନେବାକୁ ପଡ଼ିବ ।",
+      "createLink": "ସଂଯୋଗ ନିର୍ମାଣ କରନ୍ତୁ",
+      "noInvites": "ଏପର୍ଯ୍ୟନ୍ତ କୌଣସି ନିମନ୍ତ୍ରଣ ଲିଙ୍କ ନାହିଁ । ସିଧାସଳଖ ଲୋକଙ୍କୁ ନିମନ୍ତ୍ରଣ କରିବା ପାଇଁ ଏକ ସୃଷ୍ଟି କରନ୍ତୁ ।",
+      "permissionsUpdated": "ଅନୁମତିଗୁଡ଼ିକୁ ଅଦ୍ୟତନ କରାଯାଇଛି",
+      "slowModeUpdated": "ଧୀର ଅବସ୍ଥା ଅଦ୍ୟତନ ହୋଇଛି",
+      "slowModeOffHint": "ସଦସ୍ୟମାନେ ବିନା ବିଳମ୍ବରେ ମେସେଜ ପଠାଇପାରିବେ ।",
+      "slowModeOnHint": "ସଦସ୍ୟମାନେ {{label}} ପ୍ରତ୍ୟେକ ଗୋଟିଏ ମେସେଜ ପଠାଇ ପାରିବେ । ପ୍ରଶାସକମାନେ ଏଥିରୁ ବାଦ ପଡ଼ିଛନ୍ତି ।",
+      "defaultPermissionsHint": "ଜଣେ ପ୍ରଶାସକ ଅନ୍ୟ କିଛି ନ କହିଲେ ସମସ୍ତେ ଏଠି କ 'ଣ କରିପାରିବେ?",
+      "log": {
+        "justNow": "ବର୍ତ୍ତମାନ",
+        "minutesAgo": "{{value}}m ପୂର୍ବରୁ",
+        "hoursAgo": "{{value}}h ପୂର୍ବରୁ",
+        "daysAgo": "{{value}}d ପୂର୍ବରୁ",
+        "weeksAgo": "{{value}}w ପୂର୍ବରୁ",
+        "monthsAgo": "{{value}}mo ପୂର୍ବରୁ",
+        "yearsAgo": "{{value}}y ପୂର୍ବରୁ",
+        "permanently": "ସ୍ଥାୟୀ",
+        "forMinutes": "{{value}} min",
+        "forHours": "{{value}}h ପାଇଁ",
+        "forDays": "{{value}}d ପାଇଁ",
+        "forWeeks": "{{value}}w ପାଇଁ",
+        "unknownActor": "କେହି",
+        "reason": "କାରଣ: {{value}}",
+        "restricted": "କେବଳ ସଂଯୋଜକମାନେ ସଂଯୋଜନ ଲଗକୁ ଦେଖିପାରିବେ ।",
+        "empty": "ଏଠାରେ ଏପର୍ଯ୍ୟନ୍ତ କିଛି ନାହିଁ । ସଂଯମତା କାର୍ଯ୍ୟକଳାପ ଯେତେବେଳେ ଘଟିବ ସେତେବେଳେ ଦେଖାଯିବ ।",
+        "showMore": "ଅଧିକ ଦର୍ଶାନ୍ତୁ ({{value}})"
+      },
+      "defaultPermissions": "ପୂର୍ବନିର୍ଦ୍ଧାରିତ ସଦସ୍ୟ ଅନୁମତି",
+      "slowModeTitle": "ଧୀର ଅବସ୍ଥା"
     },
     "chooseAvatar": "ଆଭାତାର ବାଛନ୍ତୁ",
-    "loadFailed": "ସମ୍ପ୍ରଦାୟଗୁଡ଼ିକୁ ଧାରଣ କରିପାରିଲା ନାହିଁ"
+    "loadFailed": "ସମ୍ପ୍ରଦାୟଗୁଡ଼ିକୁ ଧାରଣ କରିପାରିଲା ନାହିଁ",
+    "noPostsYet": "ଏହି ସମ୍ପ୍ରଦାୟରେ ଏପର୍ଯ୍ୟନ୍ତ କୌଣସି ପଦବୀ ନାହିଁ ।",
+    "infoUpdated": "ସମ୍ପ୍ରଦାୟ ଅଦ୍ୟତନ",
+    "editInfo": "ନାମ ଏବଂ ବର୍ଣ୍ଣନା ସମ୍ପାଦନ କରନ୍ତୁ",
+    "saveChanges": "ସଂରକ୍ଷଣ କରନ୍ତୁ",
+    "nowPrivate": "କମ୍ୟୁନିଟି ଏବେ ପ୍ରାଇଭେଟ",
+    "nowPublic": "ସମ୍ପ୍ରଦାୟ ଏବେ ସାର୍ବଜନୀନ",
+    "bannedFromCommunity": "ଆପଣଙ୍କୁ ଏହି ସମ୍ପ୍ରଦାୟରୁ ନିଷିଦ୍ଧ କରାଯାଇଛି ।",
+    "manageButton": "ପରିଚାଳନା କରନ୍ତୁ",
+    "muted": "ନିରବଚ୍ଛିନ୍ନ",
+    "privateHint": "ଏଥିରେ ଯୋଗଦେବା ପାଇଁ ନୂଆ ସଦସ୍ୟଙ୍କୁ ମଞ୍ଜୁରୀ ଦେବାକୁ ପଡ଼ିବ ।",
+    "publicHint": "ଯେକୌଣସି ବ୍ୟକ୍ତି ତୁରନ୍ତ ଯୋଗ ଦେଇପାରିବେ ।",
+    "invite": {
+      "joinFailed": "ଯୋଗଦେବାରେ ବିଫଳ",
+      "revoked": "ଏହି ନିମନ୍ତ୍ରଣ ଲିଙ୍କକୁ ବାତିଲ କରାଯାଇଛି ।",
+      "expired": "ଏହି ନିମନ୍ତ୍ରଣ ଲିଙ୍କଟି ସମାପ୍ତ ହୋଇସାରିଛି ।",
+      "exhausted": "ଏହି ନିମନ୍ତ୍ରଣ ଲିଙ୍କଟି ଏହାର ସଦସ୍ୟ ସୀମାରେ ପହଞ୍ଚିଛି ।",
+      "notFound": "ଏହି ନିମନ୍ତ୍ରଣ ଲିଙ୍କଟି ବୈଧ ନୁହେଁ ।",
+      "requestToJoin": "ଯୋଗଦେବା ପାଇଁ ଅନୁରୋଧ କରନ୍ତୁ",
+      "approvalNote": "ଯୋଗଦେବା ପୂର୍ବରୁ ଜଣେ ପ୍ରଶାସକଙ୍କୁ ଆପଣଙ୍କ ଅନୁରୋଧକୁ ସ୍ୱୀକୃତି ଦେବାକୁ ପଡିବ ।"
+    }
   },
   "work": {
     "title": "ପୁରସ୍କାର",
@@ -6970,7 +7107,9 @@
     "appealFootnote": "ଆପଣ ଏକ ରେଫରେନ୍ସ ନମ୍ବର ପାଇବେ, ଏବଂ ଉତ୍ତର ଏଠାରେ ଫେରିଆସିବ । ନିଷ୍ପତ୍ତି ଅନୁଯାୟୀ ଗୋଟିଏ ଅପିଲ ।",
     "appealRef": "ସନ୍ଦର୍ଭ {{ref}}",
     "appealSubtitleSubject": "ଜଣେ ବ୍ୟକ୍ତି ଏହା ପଢ଼ିବେ ଏବଂ {{subject}}କୁ ପୁନର୍ବାର ଦେଖିବେ ।",
-    "appealMore": "ଅକ୍ଷରଗୁଡ଼ିକ ଏପର୍ଯ୍ୟନ୍ତ ଆବଶ୍ୟକ: {{count}}"
+    "appealMore": "ଅକ୍ଷରଗୁଡ଼ିକ ଏପର୍ଯ୍ୟନ୍ତ ଆବଶ୍ୟକ: {{count}}",
+    "appealSentRef": "ଅପିଲ ପଠାଯାଇଛି · {{ref}}",
+    "appeal": "ଅପିଲ"
   },
   "support": {
     "title": "ସହଯୋଗ",

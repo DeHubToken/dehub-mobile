@@ -765,7 +765,27 @@
     "smsCodeLabel": "Koda ku me ji {{phone}} re şandiye",
     "smsVerify": "Kodê piştrast bike",
     "leftHanded": "Moda çepgir",
-    "leftHandedDesc": "Bişkoka hezkirinê bibe aliyê çepê yê barika reaksiyonan"
+    "leftHandedDesc": "Bişkoka hezkirinê bibe aliyê çepê yê barika reaksiyonan",
+    "dmPerMessageFeeLabel": "Peygeha Pêşniyê (tokên)",
+    "dhbBalanceIncludesStaked": "Hevpeyvîn û tokên ku stakirî",
+    "badgeDelegationNoBadge": "Slotên delegasyona bi xelata stakirina. Tokên DeHub bi stakirina bidawê.",
+    "badgeDelegationEarn": "Tokên DeHub bi stakirina xelata bidawê, û bi slotek ji bo her çendînî ya ku têne xelat kirin.",
+    "smsNotificationsDescReady": "Pewandiye li {{phone}} — {{dhb}} tokên herî, li gorî {{count}} yên ku li pêşniyê ne",
+    "smsNotificationsLocked": "Bi {{dhb}} tokên (${{usd}}) ji bo têkiliyê",
+    "smsDialogIntro": "Pewandiye li pêşniyê, ji ber ku pirtûkên wêne ji bo pêşniyê ne, û pêşniyê bi tokên DeHub ku ji bo têkiliyê tên topla kirin.",
+    "smsUnlockPrice": "{{dhb}} tokên (${{usd}}) ji bo têkiliyê",
+    "smsPricePerMessage": "{{dhb}} tokens (${{usd}})",
+    "smsDepositAction": "Li gorî {{dhb}} tokên ji bo pêşniyê.",
+    "smsNeedDhb": "Ji bo vekirina agahdariyên nivîskî, pêdivîya te bi nîşanekan heye bi {{dhb}}.",
+    "smsBalance": "{{dhb}} token mane (${{usd}})",
+    "smsTopUp": "Kodê pêşniyê hate peyivîn. Êdî {{dhb}} tokên ji bo wêne hatine topla kirin.",
+    "smsCodeSent": "{{price}} tokên",
+    "tokenBalanceAmount": "{{amount}} pêşniyên ku li gorî xwe xweşînin.",
+    "channelSpeedCount": "Kanal(ên) {{count}} bi leza xwe dilîzin.",
+    "exportReady": "Hesabên {{count}}, nivîsên tomarkirî yên {{saved}} hatin hinardekirin.",
+    "importDone": "{{followed}} şopand, {{blocked}} asteng kir, peldankên {{folders}} hatin çêkirin.",
+    "importPartial": "Pewandiye {{count}} tokên",
+    "importProgress": "Sepandina {{done}} ji {{total}}…"
   },
   "common": {
     "mute": "Bêdeng bike",
@@ -863,7 +883,22 @@
     "stageApprove": "{{symbol}} tê pejirandin…",
     "stageBridge": "{{symbol}} ji {{chain}} tê şandin…",
     "stageArriving": "Digihîje Base, bi gelemperî çend çirke…",
-    "stagePay": "Bi {{symbol}} ji DeHub Pay re tê dayîn…"
+    "stagePay": "Bi {{symbol}} ji DeHub Pay re tê dayîn…",
+    "sendAmount": "Nîşaneyên {{amount}} bişîne",
+    "balance": "Balanse: {{amount}} token",
+    "insufficientDhb": "Tokenên têrê nakin",
+    "attachDescription": "Nîşaneyên DeHub wekî serişteyek li peyama xwe ve girêdin",
+    "minAmount": "Tokên DeHub bi tokên Uniswap hatine swap kirin, û li gorî {{amount}}s hatine",
+    "attachAmount": "Nîşaneyên {{amount}} pê ve girêbide",
+    "payViaBridge": "Li ser Uniswapê bi nîşanekanên DeHub ve hat guhertin, di ~{{seconds}}s de digihîje.",
+    "payViaSwap": "DeHub tokên li Uniswap bi karê bike",
+    "stageSwap": "Kirîna nîşanekanên DeHub li ser Uniswap…",
+    "payFailed": "Nexweşîne {{symbol}} bi DeHub tokên",
+    "stageDelivering": "DeHub Pay tokensی تۆ دەنێرێت…",
+    "payViaDpay": "بۆ DeHub Pay درا، tokensـەکان لە ماوەی ٣٠ چرکەدا دەگەن",
+    "payViaBridgeDpay": "گواستراوە بۆ Base و بۆ DeHub Pay درا، tokensـەکان لە ماوەی یەک خولەکدا دەگەن",
+    "tokensUnit": "tokens",
+    "tokenAmount": "{{amount}} tokens"
   },
   "postOptions": {
     "options": "Vebijêrk",
@@ -971,7 +1006,9 @@
     "bounty": "Xelat",
     "locked": "Girtî",
     "any": "Her",
-    "resetFilters": "Fîlteran sifir bike"
+    "resetFilters": "Fîlteran sifir bike",
+    "updatingFeed": "نوێکردنەوەی فیید",
+    "filters": "فلتەرەکان"
   },
   "drawers": {
     "ppvTitle": "Naveroka Per-Dîtin Bidê",
@@ -1010,7 +1047,12 @@
     "firstViews_one": "Dîtina {{count}} ya pêşîn",
     "firstViews_other": "{{count}} dîtinên pêşîn",
     "firstComments_one": "Şîroveya {{count}} ya pêşîn",
-    "firstComments_other": "{{count}} şîroveyên pêşîn"
+    "firstComments_other": "{{count}} şîroveyên pêşîn",
+    "ppvDhbInfo": "پارەدانەکان بە DeHub tokensـەوە لەسەر زنجیرەی Baseـن",
+    "rewardPerPerson": "پاداش بۆ هەر کەسێک (tokens)",
+    "totalLocked": "کۆی گشتی: {{amount}} tokens بۆ پاداش قفڵ دەکرێت",
+    "requiresDhb": "پێویستی بە DeHub tokensـە لەسەر زنجیرەی Base",
+    "minimumDhb": "کەمترین tokensـی پێویست"
   },
   "assistant": {
     "title": "Arîkar",
@@ -1170,7 +1212,8 @@
     "generateVideo": "Vîdyoyê Çêbike",
     "imageFailed": "Çêkirina wêneyê bi ser neket — dîsa biceribîne",
     "rateLimited": "Daxwazên pir zêde - di demek kurt de dîsa biceribînin",
-    "requestFailed": "Daxwaza AI bi ser neket"
+    "requestFailed": "Daxwaza AI bi ser neket",
+    "outOfCredit": "بێبەش بوو لە AI credit. پڕی بکەرەوە بە DeHub tokensـەکان بۆ بەردەوامبوون."
   },
   "commandCentre": {
     "title": "Navenda Fermanê",
@@ -1200,7 +1243,8 @@
       "tipReceived": "Bexşîşa wergirtî",
       "tipSent": "Bexşîşa şandî",
       "ppvSale": "Firotina PPV",
-      "ppvPurchase": "Kirîna PPV"
+      "ppvPurchase": "Kirîna PPV",
+      "dhbPurchase": "کڕینی token"
     },
     "time": {
       "justNow": "niha",
@@ -1287,7 +1331,7 @@
     "crossChainDesc": "BTC, SOL, ETH, USDC û bêtir ji her zincîrekê",
     "depositFromAnyChain": "Depozîto ji her zincîrekê",
     "sendCryptoToReceive": "Ji her zincîrekê krîpto bişîne → {{dest}} bistîne",
-    "tokenOnChainTo": "{{symbol}} on {{chain}} → {{dest}}",
+    "tokenOnChainTo": "{{symbol}} لەسەر {{chain}} → {{dest}}",
     "tokenAmount": "{{symbol}} Nirx",
     "estimatedReceived": "Texmînkirî {{symbol}} wergirtî",
     "getDepositAddress": "Navnîşana Depozîtoyê Bistîne",
@@ -1308,7 +1352,16 @@
     "depositExpired": "Depozît qediya. Ji kerema xwe dîsa biceribînin.",
     "depositFailedMsg": "Depozîto bi ser neket.",
     "crossChainCompleted": "Emaneta zincîra xaçerê qediya! {{symbol}} li ser Base hat wergirtin.",
-    "tryAgain": "Dubare bixebitin"
+    "tryAgain": "Dubare bixebitin",
+    "totalDhbBalance": "کۆی گشتی tokenـی ماوە",
+    "txPurchased": "تۆ {{amount}} tokensـت کڕی",
+    "txSold": "تۆ {{amount}} tokensـت فرۆشت",
+    "txTransfer": "گواستنەوەی {{amount}} tokens",
+    "txPpvUnlock": "PPV unlock — {{amount}} tokens",
+    "txPpvSale": "PPV sale — {{amount}} tokens",
+    "txTipSent": "تۆ {{name}} {{amount}} tokensـت پێبەخشیوە",
+    "txTipReceived": "{{name}} tokensـی {{amount}}ـی پێبەخشیویت",
+    "transferDhb": "گواستنەوەی tokens"
   },
   "wallet": {
     "connectUnavailable": "Girêdana cizdanê di vê guhertoyê de tune ye — bi hevoka vegerandinê vegerîne.",
@@ -1508,7 +1561,8 @@
       "mentionedNamed": "{{name}} di \"{{community}}\" de behsa te kir",
       "here": "{{name}} ji her kesî re di civakê de peyamek şand",
       "hereNamed": "{{name}} ji her kesî re di \"{{community}}\" de peyamek şand"
-    }
+    },
+    "tokenAmount": "{{amount}} tokens"
   },
   "leaderboard": {
     "title": "Pêşengtî",
@@ -1545,7 +1599,10 @@
     "secondaryReferrals_one": "{{count}} asta duyem",
     "secondaryReferrals_other": "{{count}} asta duyem",
     "retry": "Dîsa biceribîne",
-    "provisional": "demkî"
+    "provisional": "demkî",
+    "addedToLeaderboard": "تۆ زیادکراویت! ماوە: {{balance}} tokens",
+    "balanceTooLow": "ماوە کەمە ({{balance}} tokens)",
+    "tokenAmount": "{{amount}} tokens"
   },
   "explorePage": {
     "searchPlaceholder": "Li kes, şandin, an naverokê bigerin...",
@@ -1845,7 +1902,16 @@
       "dehubFollowers": "Şopînerên DeHub",
       "selfReported": "Jimareya şopînerên medyaya civakî ji hêla afirîner ve tê nivîsandin."
     },
-    "tabPlaylists": "Lîsteyên lêdanê"
+    "tabPlaylists": "Lîsteyên lêdanê",
+    "offerSubmitted": "ئۆفەری {{amount}} tokens پێشکەش کرا بۆ {{handle}}",
+    "offerWorthNow": "نزیکەی {{amount}} tokens بە نرخی ئێستا",
+    "offerCommitsNothing": "دروستکردنی پێشنیار هیچ پارەیەک ناچێت و هیچ توکنێک ناگرێت. تەنها ئەگەر خاوەنەکە قبوڵی کرد پارە دەدەیت.",
+    "searchThisChannel": "لەم کەناڵە بگەڕێ",
+    "tabPosts": "پۆستەکان",
+    "tabVideos": "ڤیدیۆکان",
+    "tabAudio": "دەنگ",
+    "tabLive": "ڕاستەوخۆ",
+    "tabPinned": "دانراو"
   },
   "tv": {
     "title": "TV",
@@ -1888,7 +1954,8 @@
     "dismissReply": "Bersivê red bike",
     "typeHere": "Li vir binivîse...",
     "send": "Şandin",
-    "signInToChat": "Têkeve ji bo sohbetê"
+    "signInToChat": "Têkeve ji bo sohbetê",
+    "sentAmount": "نێردرا {{amount}} توکن"
   },
   "cinema": {
     "title": "Sînema",
@@ -2059,7 +2126,11 @@
     "sponsored": "Sponsorkirî",
     "morePosts": "Nivîsên zêdetir",
     "loadMorePosts": "Postên zêdetir bar bike",
-    "playAdVideo": "Vîdyoya reklamê bilîze"
+    "playAdVideo": "Vîdyoya reklamê bilîze",
+    "priceUnavailable": "نرخی توکن بەردەست نییە - دوای چرکەیەک هەوڵ بدەرەوە.",
+    "insufficientBalance": "توکنی پێویست بۆ ئەم پڕکردنەوەیە نییە.",
+    "payDhb": "بدە {{amount}} توکن",
+    "topUpExplanation": "توکنەکانت لەسەر زنجیرە بۆ گەنجینەی ڕیکلامەکانی DeHub دەگوازرێنەوە، پاشان باڵانسەکەت دوای پشتڕاستکردنەوەی سەربەخۆی لەسەر زنجیرە دادەنرێت."
   },
   "buyCoins": {
     "title": "Dirav Bikirin",
@@ -2092,7 +2163,8 @@
     "otherTokens": "Tokenên din",
     "otherTokensDesc": "Bi karta xwe li ser Base ETH an USDC bikire",
     "shareToFeed": "Li ser feedê min parve bike",
-    "sharePostTemplate": "Min tenê {{amount}} $DHB li ser DeHubê xwe zêde kir. Bi civakê re ava dikim. #DeHub #DHB"
+    "sharePostTemplate": "Min tenê {{amount}} $DHB li ser DeHubê xwe zêde kir. Bi civakê re ava dikim. #DeHub #DHB",
+    "minDhbPurchase": "کەمترین کڕینی توکن ٥٠ سەنتە"
   },
   "agents": {
     "title": "Ajanên AI",
@@ -2422,7 +2494,15 @@
     "transferCount": "{{count}} veguhestin",
     "transferCount_one": "{{count}} veguhestin",
     "transferCount_other": "{{count}} veguhestin",
-    "power": "hêz"
+    "power": "hêz",
+    "contributeIntro": "توکنی DeHub لە والێتەکەتەوە بۆ گەنجینە بنێرە. هەموو توکنێک کە زیاد دەکەیت پشکی تۆ لە پۆلەکە زیاد دەکات، و پشکی تۆ کێشی دەنگدانی تۆیە کاتێک DAO بڕیار دەدات چۆن خەرج بکرێت.",
+    "amountLabel": "ڕێژە (توکن)",
+    "youHold": "تۆ {{amount}} توکن هەیە",
+    "sendAmount": "بنێرە {{amount}} توکن",
+    "sentDesc": "{{amount}} توکن لە {{chain}} نێردرا بۆ گەنجینە. پشکی تۆ دوای ئەوەی بلۆکەکە ئیندێکس کرا نوێ دەکرێتەوە.",
+    "sendAnyWallet": "هەر کەسێک دەتوانێت توکنی DeHub لێرە لە هەر والێتێک یان ئاڵوگۆڕێکەوە بنێرێت. گواستنەوەکان لەسەر Base و BNB بۆ پشکی تۆ هەژمار دەکرێن.",
+    "yourContribution": "{{amount}} توکن بەشداربوو",
+    "pooledTotal": "{{amount}} توکن لە پۆل دایە"
   },
   "governance": {
     "title": "Rêvebirî",
@@ -2483,7 +2563,9 @@
       "empty": "Hîn pirs tune ne. Gotûbêjê dest pê bike.",
       "joinOnProposal": "Tevlî nîqaşê bibe",
       "authorChip": "Nivîskarê pêşniyarê"
-    }
+    },
+    "holdTokensToVote": "توکنی DeHub بگرە بۆ دەنگدان",
+    "mustHoldTokens": "دەبێت توکنی DeHub بگریت بۆ دەنگدان لەسەر پێشنیارەکانی بەڕێوەبردن."
   },
   "sidebar": {
     "talkOfTheTown": "Gotina Bajêr",
@@ -2834,7 +2916,13 @@
     "rate_limited": "Rêje bi sînor e, hêdî dibe",
     "image_too_large_tier": "Wêne pir mezin e — asta te ya {{tier}} wêneyan heta {{limit}} MB hildigire.",
     "image_too_large_untiered": "Wêne pir mezin e — wêne heta {{limit}} MB têne hilanîn",
-    "failedToUnfollowUser": "Nekarî şopandina bikarhêner betal bike"
+    "failedToUnfollowUser": "Nekarî şopandina bikarhêner betal bike",
+    "no_dhb_balance": "هیچ باڵانسێکی توکن نییە",
+    "no_dhb_tokens_either_chain": "هیچ توکنی DeHubت لە هیچ یەکێک لە دوو زنجیرەکەدا نییە.",
+    "dhb_found_on_both_chains": "توکنەکان لە هەردوو زنجیرەکەدا دۆزرانەوە",
+    "staking_dhb": "توکنەکان دادەنرێن...",
+    "dhb_token_not_configured": "توکنی DeHub بۆ {{chain}} ڕێک نەخراوە.",
+    "dhb_staked_on_chain": "{{amount}} توکن لەسەر {{chain}} دانراوە."
   },
   "staking": {
     "title": "Staking",
@@ -2917,7 +3005,25 @@
     "txCancelled": "Danûstendin hat betalkirin.",
     "stakeUnconfirmed": "Nekare depozîto piştrast bike. Berî ku dîsa biceribînin çalakiya walleta xwe kontrol bikin.",
     "unstakeReverted": "Vekişîn li ser zincîrê vegeriya.",
-    "unstakeFailed": "Vekişîn têk çû."
+    "unstakeFailed": "Vekişîn têk çû.",
+    "dhbOnBase": "توکنی DeHub لەسەر Base",
+    "stakeOnBaseDesc": "Ji bo qezenckirina xelatên protokolê, nîşaneyên DeHub li ser Base razînin.",
+    "unstakeFromBnbDesc": "Ji peymana BNB Chain vekişin. Tokenên di hewza bingehîn de hîn peymana vekişînê nînin.",
+    "availableToStake": "Berdest: nîşanekan {{amount}}",
+    "withdrawableOnBnb": "Vekêşandin: {{amount}} token li ser BNB Chain",
+    "orSendDirectly": "An jî nîşanekanên DeHub rasterast ji navnîşana emanetê ya li ser Base re bişînin:",
+    "pendingConfirmed": "Tokenên {{amount}} hatin piştrastkirin. Dîroka emaneta we tê nûvekirin. Wan dîsa neşînin.",
+    "pendingSubmitted": "{{amount}} nîşanekan hatin şandin. Piştrastkirin hîn jî tê kontrolkirin. Wan dîsa neşînin.",
+    "foundNewStake": "Tokenên {{amount}} hatin dîtin. Emaneta te nû ye.",
+    "stakeConfirmedOnBase": "{{amount}} nîşanekan li ser Base hatin piştrast kirin.",
+    "insufficientOnBase": "Tokenên têra xwe li ser Bingehê nînin.",
+    "onlyThisMuchStaked": "Tenê tokenên te yên {{amount}} hatine razandin hene.",
+    "onlyLegacyWithdrawable": "Tenê tokenên {{amount}} niha dikarin werin vekişandin - yên mayî di hewza bingehîn de ne, ku hîn peymana vekişandinê tune ye.",
+    "poolHasNoWithdrawal": "Tokenên te di hewza bingehîn de ne, ku hîn peymana vekişînê tune ye. Ji bo vekişînê bi piştgiriyê re têkilî daynin.",
+    "lockedEarlyFee": "Qefilandî heta {{date}}. Niha kişandina pereyan %88 vedigerîne — xercek %12, nêzîkî tokenên {{fee}}. Ji bo qebûlkirinê dîsa bikirtînin.",
+    "unstakeSent": "Tokenên {{amount}} vekişiya! TX: {{hash}}…",
+    "tokensUnit": "nîşanekan",
+    "tokenAmount": "{{amount}} nîşanekan"
   },
   "communities": {
     "title": "Civak",
@@ -3126,10 +3232,108 @@
         "oneDay": "1 roj",
         "oneWeek": "1 hefte",
         "forever": "Herdem"
+      },
+      "ownerSection": "Xwedî",
+      "ownerLabel": "Xwedî",
+      "noOwner": "Xwediyê wê tune ye.",
+      "administratorsSection": "Birêvebir",
+      "noAdmins": "Hîn rêveber tune ne. Endamekî bilind bike da ku alîkariya te bike ku moderatoriyê bikî.",
+      "adminBadge": "Rêveber",
+      "rightsSummary": "{{granted}} ji mafên {{total}}",
+      "addAdministrator": "Rêveber lê zêde bike",
+      "noMemberMatches": "Ti endamek li gorî wê navnîşanê nîne.",
+      "noPlainMembers": "Her kes li vir jixwe rêveber e.",
+      "searchTruncated": "Nîşandana {{limit}} ya yekem — ji bo tengkirina navnîşanê nivîsandinê berdewam bike.",
+      "danger": {
+        "transferTitle": "Xwedîtîyê veguhezîne?",
+        "transferBody": "{{name}} dibe xwediyê vê civakê. Hûn bi hemû mafên xwe dibin rêvebir, û ev nayê vegerandin.",
+        "transferConfirm": "گواستنەوە",
+        "deleteTitle": "سڕینەوەی ئەم کۆمەڵگایە؟",
+        "deleteBody": "{{name}} و هەموو شتێک کە تێیدایە بە هەمیشەیی دەڕوات: هەموو ئەندامێک، هەموو نامەیەک، هەموو ڕووداوێک و هەموو لینکێکی بانگهێشت. ئەمە ناگەڕێتەوە.",
+        "deleteConfirm": "سڕینەوە",
+        "transferHeading": "گواستنەوەی خاوەندارێتی",
+        "transferHint": "ئەندامێک هەڵبژێرە کە لەمەودوا خاوەنی ئەم کۆمەڵگایە دەبێت.",
+        "searchMembers": "گەڕان بەدوای ئەنداماندا",
+        "noMatches": "هیچ ئەندامێک ناگونجێت لەگەڵ ئەم گەڕانەدا.",
+        "noCandidates": "هیچ ئەندامێکی تری چالاک نییە بۆ گواستنەوەی ئەم کۆمەڵگایە.",
+        "transferAction": "بکە بە خاوەن",
+        "deleteHeading": "سڕینەوەی کۆمەڵگا",
+        "deleteHint": "هەموو ئەندامێک، نامەیەک، ڕووداوێک و لینکێکی بانگهێشت بە هەمیشەیی لادەبرێت. هیچ ڕێگای گەڕانەوە نییە.",
+        "deleteAction": "سڕینەوەی ئەم کۆمەڵگایە"
+      },
+      "inviteRevoked": "هەڵوەشێنراوە",
+      "inviteExpired": "بەسەرچوو",
+      "inviteExhausted": "سنوور گەیشت",
+      "inviteExpiresMinutes": "لە {{n}} خولەکدا بەسەر دەچێت",
+      "inviteExpiresHours": "لە {{n}} کاتژمێردا بەسەر دەچێت",
+      "inviteExpiresDays": "لە {{n}} ڕۆژدا بەسەر دەچێت",
+      "inviteLimit": "سنوور {{n}}",
+      "inviteNeedsApproval": "پێویستی بە پەسەندکردن هەیە",
+      "inviteLink": "لینک بانگهێشت",
+      "inviteUses": "{{n}} بوو بە ئەندام",
+      "copy": "لەبەرگرتنەوە",
+      "revoke": "هەڵوەشاندنەوە",
+      "inviteShareMessage": "پەیوەندی بکە بەم کۆمەڵگایە لە DeHub",
+      "revokeInviteTitle": "هەڵوەشاندنەوەی لینک بانگهێشت",
+      "revokeInviteBody": "ئەم لینکە دەستبەجێ کارناکات. ئەو کەسانەی کە پێشتر بەم لینکە بوونەتە ئەندام، دەمێننەوە.",
+      "inviteNoPermission": "تۆ مۆڵەتی بەڕێوەبردنی لینکەکانی بانگهێشتت نییە.",
+      "createInviteLink": "دروستکردنی لینک بانگهێشت",
+      "inviteNamePlaceholder": "Nav (vebijarkî)",
+      "inviteExpiryLabel": "Diqede",
+      "inviteLimitLabel": "Sînorê endaman",
+      "inviteRequireApproval": "Pêwîstiya pejirandina rêveberiyê",
+      "inviteRequireApprovalHint": "Kesên ku vê lînkê bikar tînin divê berî ku beşdar bibin werin pejirandin.",
+      "createLink": "Girêdanê biafirîne",
+      "noInvites": "Hîn lînkên vexwendinê tune ne. Ji bo vexwendina rasterast a mirovan yek biafirînin.",
+      "permissionsUpdated": "Destûr hatin nûvekirin",
+      "slowModeUpdated": "Moda Hêdî hate nûvekirin",
+      "slowModeOffHint": "Endam dikarin bêyî derengmayînê peyaman bişînin.",
+      "slowModeOnHint": "Endam dikarin her {{label}} peyamekê bişînin. Rêvebir ji vê yekê azad in.",
+      "defaultPermissions": "Destûrên endamên xwerû",
+      "defaultPermissionsHint": "Tiştê ku her kes dikare li vir bike heya ku mafê rêveberiyê tiştekî din nebêje.",
+      "slowModeTitle": "Moda Hêdî",
+      "log": {
+        "justNow": "tenê niha",
+        "minutesAgo": "{{value}}m berê",
+        "hoursAgo": "{{value}}h berê",
+        "daysAgo": "{{value}}d berê",
+        "weeksAgo": "{{value}}w berê",
+        "monthsAgo": "{{value}}meh berê",
+        "yearsAgo": "{{value}}y berê",
+        "permanently": "herdemî",
+        "forMinutes": "ji bo {{value}} deqîqe",
+        "forHours": "ji bo {{value}}h",
+        "forDays": "ji bo {{value}}d",
+        "forWeeks": "ji bo {{value}}w",
+        "unknownActor": "Kasê",
+        "reason": "Sedem: {{value}}",
+        "restricted": "Tenê moderator dikarin qeyda moderatoriyê bibînin.",
+        "empty": "Hîn tiştek li vir tune. Çalakiyên moderasyonê dê dema ku ew çêdibin xuya bibin.",
+        "showMore": "Zêdetir nîşan bide ({{value}})"
       }
     },
     "chooseAvatar": "Avatar hilbijêre",
-    "loadFailed": "Nikarîbû civakan bar bike"
+    "loadFailed": "Nikarîbû civakan bar bike",
+    "noPostsYet": "Hîn di vê civakê de tu nivîs tune ne.",
+    "infoUpdated": "Civak hate nûvekirin",
+    "editInfo": "Nav û danasînê biguherîne",
+    "saveChanges": "Rizgarkirin",
+    "nowPrivate": "Civak niha taybet e",
+    "nowPublic": "Civak niha giştî ye",
+    "bannedFromCommunity": "Tu ji vê civakê hatî qedexekirin",
+    "manageButton": "Rêvebirin",
+    "muted": "Bêdeng",
+    "privateHint": "Divê endamên nû ji bo tevlêbûnê werin pejirandin.",
+    "publicHint": "Her kes dikare tavilê tevlî bibe.",
+    "invite": {
+      "joinFailed": "Tevlîbûn neçû serî",
+      "revoked": "Ev lînka vexwendinê hate betalkirin.",
+      "expired": "Ev lînka vexwendinê qediyaye.",
+      "exhausted": "Ev lînka vexwendinê gihîştiye sînorê endamên xwe.",
+      "notFound": "Ev lînka vexwendinê derbasdar nîne.",
+      "requestToJoin": "Daxwaza tevlêbûnê",
+      "approvalNote": "Pêdivî ye ku rêveberek daxwaza we pesend bike berî ku hûn beşdar bibin."
+    }
   },
   "work": {
     "title": "Xelat",
@@ -3309,7 +3513,8 @@
     "bountyUpdated": "Xelat hat nûkirin",
     "updateFailed": "Nûkirina xelatê têk çû",
     "disputeResolved": "Nakokî hat çareserkirin",
-    "resolveFailed": "Çareserkirina nakokiyê têk çû"
+    "resolveFailed": "Çareserkirina nakokiyê têk çû",
+    "subtitle": "Xelatek bidin an jî yekê bişopînin. Bi nîşanekan DeHub an USDC tê dayîn."
   },
   "usernames": {
     "subtitle": "Navên ji bo firotinê, bi USD bihabûyî",
@@ -3427,7 +3632,11 @@
     "fixedDollarPrice": "Bihayê dolar sabît dimîne; mîqdara tokenê tê nûvekirin.",
     "priceUpdated": "Biha hat nûvekirin. Mîqdarê binirxînin û dîsa li ser Kirînê bikirtînin.",
     "tokensPaidToSeller": "Rasterast ji firoşkar re tê dayîn",
-    "priceUsd": "Biha (USD)"
+    "priceUsd": "Biha (USD)",
+    "payingOn": "Pere bi nîşanekanên DeHub li ser {{chain}} tê dayîn",
+    "assurance": "Destgir tenê piştî ku DeHub veguhestina nîşana we ji zincîrê vedigerîne, tevdigere. Heke ew nikaribe, drav li dijî firotanê tê tomar kirin da ku firoşkar bikaribe pereyên we vegerîne.",
+    "askingPriceDhb": "Bihayê daxwazkirî di nîşanekan de",
+    "priceRange": "Di navbera tokenên {{min}} û {{max}} de."
   },
   "stores": {
     "podToggle": "Berhema çapkirinê li gorî daxwazê",
@@ -3517,7 +3726,12 @@
       "purchaseFailed": "Kirîn bi ser neket",
       "transactionCancelled": "Danûstendin hate betalkirin.",
       "pickRating": "Pêşî nirxandina stêrkan hilbijêre.",
-      "confirmTitle": "Kirînê piştrast bike"
+      "confirmTitle": "Kirînê piştrast bike",
+      "buyFor": "Ji bo tokenên {{amount}} bikirin",
+      "paymentHint": "Bi nîşanekan DeHub li ser Base, rasterast bo berîka firoşkar hatiye dayîn.",
+      "priceUnavailable": "Bihayê nîşanekê ne berdest e - piştî demekê dîsa biceribînin.",
+      "insufficientBalance": "Ji bo vê kirînê tokenên têrê nakin.",
+      "confirmBody": "Tu dê li ser Base tokenên {{amount}} (nêzîkî {{usd}}) rasterast bidî berîka firoşkar. Ev nayê vegerandin."
     },
     "categories": {
       "all": "Hemû",
@@ -3609,7 +3823,13 @@
     "resumeTransfer": "Veguhastinê Berdewam Bike",
     "history": "Dîrok",
     "sold": "Firotî",
-    "bought": "Kirî"
+    "bought": "Kirî",
+    "subtitle": "Hesabên tevahî ji bo firotanê, bi bihayê tokenên DeHub",
+    "payingOn": "پارەدان بە تۆکنەکانی DeHub لەسەر {{chain}}",
+    "assurance": "هەژمارەکە تەنها دوای ئەوە دەجوڵێت کە DeHub گواستنەوەی تۆکنی تۆ لەسەر زنجیرەکە دەخوێنێتەوە. ئەگەر گواستنەوەکە پەک بکەوێت، پارەدانی تۆ لە دژی فرۆشەکە تۆمار دەکرێت و هەوڵی دووبارەدانەوەی دەست پێ دەکاتەوە - تۆ هەرگیز لە دۆخێکی خراپدا نابیت.",
+    "askingPriceDhb": "نرخی داواکراو بە تۆکن",
+    "priceRange": "لە نێوان {{min}} و {{max}} تۆکن.",
+    "walletStays": "سندوقی دراوی تۆ نافرۆشێت: تۆکنەکان، باڵانسی ناوبەستراو و کۆکراوەی دروستکراو لەگەڵ کلیلەکانتدا دەمێننەوە."
   },
   "screens": {
     "drafts": "Reşnivîs",
@@ -3654,7 +3874,16 @@
     "noMoreReposts": "Êdî ji nû ve post tune",
     "noMoreQuotes": "Êdî gotin tune ne",
     "noRepostsYet": "Hîn tu postên dubare tune ne",
-    "noQuotesYet": "Hîn ti gotin tune ne"
+    "noQuotesYet": "Hîn ti gotin tune ne",
+    "walletSubtitle": "تۆکنەکانی DeHubی خۆت بەڕێوەبەرە",
+    "glossaryTipDesc": "تۆکنەکانی DeHub ڕاستەوخۆ بنێرە بۆ دروستکەرێکی ناوەڕۆک وەک پاداشتێک بۆ ناوەڕۆکەکەی. سەرنجەکان لەسەر زنجیرەکە تۆمار دەکرێن.",
+    "glossaryPpvDesc": "ناوەرۆکی ناوازە کە پێویستی بە پارەدان بە تۆکنەکانی DeHub هەیە بۆ کردنەوەی. دروستکەران نرخ دادەنێن و داهات لە هەر بینینێکەوە پەیدا دەکەن.",
+    "glossaryDhbTokenDesc": "DHB نیشانەی بازرگانییە بۆ تۆکنەکانی DeHub، کە تۆکنی خزمەتگوزاریی ڕەسەنی DeHubە. بەکاردێت بۆ سەرنجدان، ناوەڕۆکی پارە-بۆ-بینین، دەنگدان بۆ بەڕێوەبردن، و ناوبەستن.",
+    "glossaryWalletDesc": "سندوقی دراوی تۆ لەسەر زنجیرەکە کە تۆکنەکانی DeHub و شتومەکی دیکەی دراوییت تێدایە. بە وێب٣ئێڵ (Web3Auth) بەستراوەتەوە بۆ دەستڕاگەیشتنی ئاسان.",
+    "glossaryStakingDesc": "تۆکنەکانی DeHubی خۆت قفڵ بکە بۆ ئەوەی لەگەڵ تێپەڕبوونی کاتدا پاداشت بەدەست بهێنیت. تۆکنە ناوبەستراوەکان هەروەها هێزی دەنگدانی زیاترت پێدەبەخشن لە بەڕێوەبردندا.",
+    "glossaryGovernanceDesc": "پێشنیارەکان پێشکەش بکە و دەنگ بدە کە شێوەی پلاتفۆرمەکە دیاری دەکەن. هێزی دەنگدانی تۆ بە قورسایی ئەو تۆکنە DeHubانەی کە هەتە دیاری دەکرێت.",
+    "glossaryStakingBadgesDesc": "نیشانەکان کە لە تەنیشت ناوی بەکارهێنەرتەوە دەردەکەون لەسەر بنەمای کۆی تۆکنە DeHubەکانی تۆ (سندوقی دراوی + ناوبەستراو). ١٣ پلە هەیە - هەرچی تۆکنی زیاتر هەبێت، پلەی نیشانەکەت بەرزتر دەبێت. پلە بەرزەکان هێزی دەنگدانی زیاتری بەڕێوەبردن و خەرجی کەمتر لە پلاتفۆرمەکە دەبەخشن.",
+    "glossaryLeaderboardDesc": "بەکارهێنەران بە کۆی باڵانسی تۆکنی DeHub (سندوقی دراوی + ناوبەستراو لەسەر هەموو زنجیرەکان) ڕیزبەندی دەکرێن. ڕیزبەندییەکان بە شێوەیەکی وەرزی نوێ دەکرێنەوە و گۆڕانکارییەکانی ١-ڕۆژ و ١-هەفتە دەگرن. هەروەها دەتوانیت بەپێی سەرنجی نێردراو، سەرنجی وەرگیراو، شوێنکەوتووان، لایکەکان، یان بەشداربووان ڕیزبەند بکەیت."
   },
   "arcade": {
     "submitAccessibility": "Lîstikek ji bo arcade bişînin",
@@ -3907,7 +4136,11 @@
     "generateFree_one": "Belaş çêbike · {{count}} hişt",
     "generateFree_other": "Belaş çêbike · {{count}} hişt",
     "freeImagesLeft_one": "Wêneyekî belaş ê {{count}} li cem te maye. Pêdivî bi pereyan nîne.",
-    "freeImagesLeft_other": "{{count}} wêneyên belaş li cem te mane. Pêdivî bi pereyan nîne."
+    "freeImagesLeft_other": "{{count}} wêneyên belaş li cem te mane. Pêdivî bi pereyan nîne.",
+    "payAmount": "تۆکنی {{amount}} و {{action}} بدە",
+    "payWithDhb": "بە تۆکن پارە بدە",
+    "yourDhb": "تۆکنەکانی تۆ",
+    "transferUnconfirmed": "گواستنەوەی تۆکنی تۆ نێردراوە بەڵام ئێمە ناتوانین پشتڕاستی بکەینەوە. پارێزراوە و بۆ هەوڵی داهاتووی تۆ پارە دەدات - دووبارە مەنێرە."
   },
   "digest": {
     "someone": "Kesek",
@@ -4086,7 +4319,9 @@
     "refillsShort": "dagirtin {{date}}",
     "minutesUnit": "deqîqe",
     "sendSignalFlare": "Fîşeka îşaretê bişîne",
-    "spend": "Xerckirin"
+    "spend": "Xerckirin",
+    "holdToUnlock": "تۆکنی DeHub بکڕە بۆ کردنەوەی نیشانەیەک و سووپەرپاوەرەکانی. هەر خاوەن نیشانەیەک ئەوانە بەدەست دەهێنێت - ناوبەستن پێویست نییە.",
+    "anyBadgeHolder": "هەر خاوەن نیشانەیەک سووپەرپاوەرەکان بەدەست دەهێنێت. تۆکنی DeHub بکڕە بۆ کردنەوەی نیشانەیەک - ناوبەستن پێویست نییە."
   },
   "follow": {
     "followers": "Şopîner",
@@ -4300,7 +4535,9 @@
     "noteYoutube": "Piştî ku YouTube 45% ji dahata reklamê digire. Herî zêde li gorî mijar û welatê temaşevan diguhere.",
     "noteTwitch": "Tenê dahata reklamê — subs û bits tê de nînin, ku bi gelemperî para mezintir in.",
     "noteTiktok": "Creator Rewards. Bi kêmbûna xwe ya ji bo her dîtinê navdar e; tevahiya modelê pîvan e.",
-    "noteReels": "Bernameyên bonusê tenê bi vexwendinê ne û gelek caran hatine girtin."
+    "noteReels": "Bernameyên bonusê tenê bi vexwendinê ne û gelek caran hatine girtin.",
+    "footnote": "ڕێژەکانی کێبەرکەران پێشبینییەکانی ناو بازنەکانی پیشەسازی بڵاوکراوەن، نەک پێوانە کراوەکان - داهاتی ڕاستەقینەی RPM بە شێوەیەکی زۆر جیاوازە بەپێی بوار، وڵاتی بینەران و کاتی سێرجکردن، بۆیە هەر ڕێژەیەک دەستکاری بکە بۆ ئەوەی لەگەڵ ئەوەی کە ڕاستەقینە پەیدای دەکەیت بگونجێت. ڕێژەی DeHub داهاتی سەرنجی ڕاستەقینەی تۆیە کە بە نرخی تۆکنی زیندوو گۆڕدراوە، و گشتگیر نابێت، پارە-بۆ-بینین و فرۆشی دوکان. بینینەکان لە ١٠٠ پۆستی دواییەکەی تۆ کۆدەکرێنەوە.",
+    "tokenAmount": "تۆکنی {{amount}}"
   },
   "sessions": {
     "androidDevice": "Cîhaza Android",
@@ -4466,7 +4703,13 @@
     "queueLoadFailed": "Veguhastin nehatin barkirin. Dîsa biceribînin.",
     "noMatches": "Veguhestinên hevber tune ne. Navnîşan an jî haşa danûstandinê ya cuda biceribînin.",
     "showMore": "Zêdetir nîşan bide",
-    "signInToBridge": "Ji bo dîtina hevsengiyên xwe û veguhestina tokenên DeHub di navbera Base û BNB Chain de têkeve hesabê xwe."
+    "signInToBridge": "Ji bo dîtina hevsengiyên xwe û veguhestina tokenên DeHub di navbera Base û BNB Chain de têkeve hesabê xwe.",
+    "title": "تۆکنەکان پرد بکە",
+    "howItWorksBody": "تۆکنەکانی DeHub بنێرە بۆ ناونیشانی پردی گواستنەوە لەسەر زنجیرەی سەرچاوە. گواستنەوەکە بە شێوەیەکی خۆکار بڕی یەکسان لەسەر زنجیرەی مەبەست لە ماوەی چەند خولەکێکدا دابین دەکات.",
+    "relayAddress": "ناونیشانی پردی گواستنەوە (لێرەدا تۆکن بنێرە لەسەر زنجیرەی سەرچاوە):",
+    "insufficient": "تۆکنی بەس نین لەسەر {{chain}}.",
+    "insufficientOnChain": "تۆکنی بەس نین لەسەر {{chain}}. باڵانسی لەسەر زنجیرەکە لەوانەیە جیاواز بێت لەگەڵ ئەوەی نیشان دەدرێت.",
+    "sentArriveShortly": "تۆکنی {{amount}} لە {{from}} → {{to}} نێردرا. ئەوان لە ماوەیەکی کورتدا دەگەن."
   },
   "teamUp": {
     "title": "Tîmê pêk bîne",
@@ -4522,7 +4765,10 @@
     "approveFailed": "Nekarî wê daxwazê ​​​​pejirîne",
     "declineFailed": "Nekarî wê daxwazê ​​red bike",
     "updated": "Tîm hate nûvekirin",
-    "updateFailed": "Nikaribû wê tîmê nûve bike"
+    "updateFailed": "Nikaribû wê tîmê nûve bike",
+    "pooled": "{{amount}} تۆکن کۆکراوەتەوە",
+    "teamMeta": "{{count}}/{{max}} ئەندام، {{tier}}، {{amount}} تۆکن",
+    "memberTokens": "{{amount}} tokens"
   },
   "addToFolder": {
     "title": "Di peldankê de tomar bike",
@@ -4565,7 +4811,9 @@
     "aboutToSpend": "Tu dê <accent>{{amount}} {{symbol}}</accent> xerc bikî da ku vê vîdyoyê vebikî.",
     "tokenBalance": "Bîlançoya Tokenan",
     "lowTopUp": "{{symbol}} kêm e? Berî vekirinê, em ê hesabê we şarj bikin.",
-    "unlockedSuccess": "Bi serkeftî hate vekirin"
+    "unlockedSuccess": "Bi serkeftî hate vekirin",
+    "otherChain": "Hemîn post diçe ser çavkanînê, ji vê wêne re DeHub tokens di walletê te de hene.",
+    "payHint": "Bi xeyalî ji walletê te re bawerî bike. Bi vê wêne re DeHub tokens dibe û di binêre."
   },
   "walletSetup": {
     "tryBiometricsHint": "Vê bi kar bîne eger te ev cizdan li ser vê telefonê saz kiribe û divê mifte jixwe li vir be",
@@ -4859,7 +5107,9 @@
     "pillMinimize": "Rewşa barkirinê kêm bike",
     "uploadInProgressStay": "Barkirina te hîn didome. Heta ku biqede li ser vê ekranê bimîne.",
     "removeUploadTitle": "Vê barkirinê rake?",
-    "removeQueuedBody": "Hîn nehatiye weşandin. Rakirina wê weşanê betal dike."
+    "removeQueuedBody": "Hîn nehatiye weşandin. Rakirina wê weşanê betal dike.",
+    "quotaShortfall": "Hemîn wêne {{cost}} tokens û te dikele {{held}}.",
+    "shopAllowanceUsed": "{{allowance}} ji {{allowance}} hatiye bikaranîn."
   },
   "bounty": {
     "claimed": "Hate wergirtin",
@@ -4903,7 +5153,14 @@
     "includeWebsite": "Malperê tê de bike",
     "includeSocials": "Medyaya civakî tê de bike",
     "extraNotes": "Nîşeyên zêde",
-    "notesPlaceholder": "Her tiştê din ku divê poster nîşan bide"
+    "notesPlaceholder": "Her tiştê din ku divê poster nîşan bide",
+    "features": {
+      "stakingLabel": "💎 Stakingê ya Token (Base)",
+      "stakingBlurb": "Stake DeHub tokens, xelatên xizmetê bike",
+      "tokenUtilityLabel": "🪙 Hevşêwazî ya Token",
+      "fiatOnrampBlurb": "Card → USDC → DeHub tokens",
+      "storesBlurb": "Hevşêwazî P2P bi DeHub tokens li ser Base"
+    }
   },
   "monetization": {
     "tokenGated": "Bi token sînordar",
@@ -4918,7 +5175,10 @@
     "mustHoldOn": "Divê temaşevan vê tokenê li ser {{chain}} bigirin",
     "custom": "Taybet",
     "contractPlaceholder": "Navnîşana peymanê (0x…)",
-    "symbolPlaceholder": "Sembol (mînak PEPE)"
+    "symbolPlaceholder": "Sembol (mînak PEPE)",
+    "paymentsBase": "Peymendinên li ser Base chain bi DeHub tokens ne",
+    "tokensUnit": "tokens",
+    "minimumRequired": "Kêmîn {{currency}}"
   },
   "subscriptions": {
     "switchFailed": "Tora abonetiyê nehat guhertin",
@@ -5150,7 +5410,9 @@
     "buyingUnavailable": "Kirîn heta ku bazirganî ji nû ve dest pê neke nayê kirin. Tiştek nehatiye xerc kirin.",
     "dontClose": "Vê negire - ferman piştî ku veguhastin li ser Base hate piştrast kirin tê nivîsandin.",
     "affiliateDisclosure": "Girêdanên hevkarîyê — afirîner dikare li ser her tiştê ku hûn bikirin komîsyonek qezenc bike. Biha ji bo we yek in.",
-    "nothingOnSale": "Niha tiştek li vir nayê firotin."
+    "nothingOnSale": "Niha tiştek li vir nayê firotin.",
+    "transfersPaused": "Hevşêwazî ya tokenê paşî ye",
+    "transfersPausedError": "Hevşêwazî ya tokenê paşî ye, ji ber vê yekê, hêrêmîn wêne nekaribe bidomîne. Pêwîstî bêje ku pêvajoyeke dinêre."
   },
   "dpay": {
     "success": "Serkeftin",
@@ -5206,7 +5468,9 @@
     "showAll": "Hemûyan nîşan bide",
     "sentTo": "{{amount}} {{symbol}} ji {{address}} re hat şandin",
     "tokensSentTo": "Token ji {{address}} re hatin şandin",
-    "goToProfile": "Biçe Profîlê"
+    "goToProfile": "Biçe Profîlê",
+    "topUpSubtitle": "DeHub tokens bi cardê bixêre û gasê xwe bi karî bike",
+    "tokensLabel": "DeHub tokens"
   },
   "musicSheet": {
     "title": "Stranek çêke",
@@ -5236,7 +5500,9 @@
     "gotIt": "Fêm kir",
     "otherBalancesNote": "Balansên te yên din tenê li ser {{network}} (zincîra {{chainId}}) in. {{gas}} balansa gaza te ye. Nirx dikarin çend saniyan dereng bin. Ji bo bikaranîna li vir, sermayeyan veguhezîne {{network}}.",
     "dpayBaseOnly": "Dpay tenê li ser Base heye.",
-    "tokensAndStocks": "Token û stok"
+    "tokensAndStocks": "Token û stok",
+    "dhbPositionNote": "Hemîn wêne ji wêneke te ye — li ser Base û BNB Chain. Çend caran li ser Base stakirî ye, ji ber vê yekê, wêneke mezin e.",
+    "stakedIncludesUnstaking": "Stakirî ya tokenên li ser Base û BNB Chain ne."
   },
   "feedCard": {
     "reactionTip": "Ji bo bêtir bertekan bişkoka hezkirinê bigire",
@@ -5415,7 +5681,21 @@
     "doNotDisturbOn": "Neêşîne: Vekirî",
     "planRestricted": "Ev bikarhêner ji bo wergirtina peyaman abonetiyê dixwaze.",
     "planTypeNotAllowed": "Plana vî afirîner vî cureyê peyamê qebûl nake.",
-    "planMinTip": "Ji bo vî afirîner bexşîş divê herî kêm {{amount}} DHB be."
+    "planMinTip": "Ji bo vî afirîner bexşîş divê herî kêm {{amount}} DHB be.",
+    "perMessageFee": "Bi-Message Fee (tokens)",
+    "prefsIntro": "Kontrol bike ku kesê çawa ji te re meleket û bi DeHub tokens bi karî bike.",
+    "normallyFee": "Normal {{fee}} tokens ji bo çavkanînê",
+    "feePerMessage": "{{fee}} tokens ji bo çavkanînê",
+    "eachMessagePaid": "Çavkanînê ji bo çavkanînê xatir bike",
+    "tipBelowFee": "Tipê ji bo çavkanînê bi {{amount}} tokens bêje",
+    "insufficientTokenBalance": "Nevîne ji bo çavkanînê · {{amount}} te dikele",
+    "tokenBalance": "Balance: {{amount}} tokens",
+    "tokenAmount": "{{amount}} tokens",
+    "tokensUnit": "tokens",
+    "tippedYouAmount": "Te re {{amount}} tokens hatî tipî.",
+    "paymentFailedAmount": "Têkçû · {{amount}}",
+    "paymentSendingAmount": "Dişîne · {{amount}}",
+    "paymentSentWith": "Bi {{amount}} hat şandin"
   },
   "editPost": {
     "mediaPermission": "Destûra pirtûkxaneya medyayê pêwîst e",
@@ -5527,7 +5807,8 @@
     "doubleTapForward": "Ji bo ber bi pêş ve biçe du caran bikirtînin",
     "pipUnavailable": "Wêne di wêneyê de ne berdest e. Kontrol bike ka ew ji bo DeHub di mîhengên cîhaza xwe de destûr e.",
     "noVideo": "Vîdyo tune",
-    "rotate": "Yîvirrîn"
+    "rotate": "Yîvirrîn",
+    "yourDhbBalance": "Bîlançoya nîşanekan te: {{amount}}"
   },
   "liveViewer": {
     "loadingStream": "Weşan tê barkirin...",
@@ -5664,7 +5945,8 @@
     "freeCovered": "Belaş (bi krediyê ve tê nixumandin)",
     "freeOnce": "Belaş, carekê",
     "getPriceMany": "Bihayê vîdyoyên {{n}} bistînin",
-    "placeholder": "youtube.com/@tu, tiktok.com/@tu, vimeo.com/tu…"
+    "placeholder": "youtube.com/@tu, tiktok.com/@tu, vimeo.com/tu…",
+    "costsNote": "Berî destpêkirina komê, carekê, bi nîşanekan DeHub tê dayîn. Xwediyên nîşanan kêmtir didin - daxistina we li ser pêşniyarê tê sepandin. Ger vîdyoyek neyê importkirin, para wê ji bo koçberiya we ya din tê vegerandin."
   },
   "calls": {
     "calling": "Gazîkirin...",
@@ -5734,7 +6016,8 @@
     "noOldAccountFound": "Li ser vê têketinê hesabê DeHub-ê yê berê tune ye, ji ber vê yekê tiştek tune ku were veguheztin. Li şûna wê hesabê nû tê sazkirin.",
     "didNotRecoverEither": "Wê têketinê tu profîlek ku li vir tê nîşandan venegerand. Tiştek neguherî. Ji bo profîla ku tu dixwazî têketina resen biceribîne.",
     "didNotRecoverThis": "Wê têketinê berîkek din vegerand, ne ya vê profîlê. Tiştek neguherî. Têketina ku ew di destpêkê de çêkiribû biceribîne.",
-    "couldNotRetrieve": "Nikarîbû ew berîka kevn li ser vê amûrê were wergirtin. Tu hîn jî dikarî wê li jêr li ser dehub.io vegerînî."
+    "couldNotRetrieve": "Nikarîbû ew berîka kevn li ser vê amûrê were wergirtin. Tu hîn jî dikarî wê li jêr li ser dehub.io vegerînî.",
+    "matchedWithBalance": "Li hev hat, nîşanekan {{balance}}"
   },
   "liveGift": {
     "buyTokens": "Tokenan bikirin",
@@ -5772,7 +6055,9 @@
     "sendAGift": "Diyariyek Bişîne",
     "minPlaceholder": "Kêmtirîn: {{amount}}",
     "minGift": "Diyariya herî kêm {{amount}} ye",
-    "sendGift": "Diyariyê Bişîne"
+    "sendGift": "Diyariyê Bişîne",
+    "buyHint": "Tokenan bikirin û diyariya xwe vegerînin. Mîqdar û peyama we amade dimînin.",
+    "tokenAmount": "{{amount}} nîşanekan"
   },
   "goLive": {
     "streamKey": "Kilîda Weşanê",
@@ -5872,7 +6157,25 @@
     "noWalletFunds": "Pereyek hilbijêre, an jî li pereyên din û torên din bigere.",
     "connectSolana": "Berîka Solana girêde",
     "balanceUnknown": "Bakiye ne berdest e",
-    "balanceAmount": "Berdest: {{amount}} {{symbol}}"
+    "balanceAmount": "Berdest: {{amount}} {{symbol}}",
+    "description": "Nîşanek hilbijêre ji bo dayînê. Nîşanên DeHub di berîka xwe de werbigire.",
+    "dhbAmount": "Mîqdara nîşana DeHub",
+    "quoteEstimate": "Nîşaneyên DeHub ên {{amount}} werbigire · Texmînkirî {{minutes}} min",
+    "delivered": "Token hatin radestkirin",
+    "settled": "Krîpto çareser bû. Token tên radestkirin…",
+    "receiveNet": "Tu distînî: {{amount}} nîşaneyên DeHub",
+    "confirmationTime": "Piştrastkirinên torê û radestkirina nîşanekan demê zêde dikin. Ev texmînek e, ne hejmartinek paşve ye.",
+    "destination": "Cihê nîşanekê li ser bingehê: {{address}}",
+    "viewDelivery": "Veguhestina nîşanekan bibîne",
+    "detail_swapping": "Pereyê te tê pêvajokirin. Dema ku tokenên te bigihîjin, em ê vê wergirtinê nûve bikin.",
+    "phase_delivering": "Pere hate dayîn · şandina tokenan",
+    "detail_delivering": "Pere hat wergirtin. Tokenên te di rê de ne.",
+    "phase_deliveryDelayed": "Radestkirina nîşanekê dereng ma",
+    "detail_deliveryDelayed": "Pereyê te hatiye dayîn, lê divê radestkirina tokenê ji nû ve were ceribandin. Vê IDya kirînê biparêze û heke dereng bimîne bi piştgiriya DeHub re têkilî daynin. Careke din pere nede.",
+    "phase_gasPending": "Token hatine şandin · benzîn li bendê ye",
+    "detail_gasPending": "Veguhestina nîşana we hat pejirandin. Veguhestina gaza ETH ya cuda hîn jî li benda ye an jî ji nû ve tê ceribandin.",
+    "detail_delivered": "Tokenên DeHub tevayî ji bo walletê xwe hatine dîtin.",
+    "directTiming": "Token piştî piştrastkirina dravdana we têne radest kirin."
   },
   "dex": {
     "lowestPrice": "Bihayê herî kêm · USD",
@@ -6033,7 +6336,11 @@
       "opening": "Vekirina hewzê…",
       "created": "Hewza {{symbol}} vekiriye",
       "createFailed": "Hewz nehat vekirin.",
-      "payAndOpen": "${{amount}} bidin û hewza xwe vekin"
+      "payAndOpen": "${{amount}} bidin û hewza xwe vekin",
+      "addDescription": "Her tokenek li ser Base, Ethereum, Robinhood Chain an Solana bi pirtûka fermanê ya xwe navnîş bike. Vekirina hewzekê 100 dolar lê diçe, bi tokenên DeHub tê dayîn.",
+      "feeDhb": "≈ {{amount}} Nîşaneyên DeHub",
+      "priceUnavailable": "Nirxa nîşana DeHub niha ne berdest e. Piştî çend deqeyan dîsa biceribînin.",
+      "swapNote": "{{symbol}} ya te di heman danûstandinê de bi berdêla xercê bi tokenên DeHub tê guhertin. Her tiştê mayî di berîka te de dimîne."
     },
     "pool": {
       "missingTitle": "Hewz nehat dîtin — DeHub DEX",
@@ -6095,7 +6402,8 @@
       "priceLabel": "{{symbol}} bihayê şamdankan bi USD",
       "depthHint": "Berhevkirî {{symbol}} · ji bo vekolînê bizivirîne ser ekranê",
       "priceHint": "{{symbol}} biha · USD · ji bo vekolînê bizivirîne ser maseyê"
-    }
+    },
+    "buyWithBnbNote": "Bazirganiya zincîra BNB girtî ye. BNB te heye? Ji bo kirîna tokenên DeHub li ser Base wê bikar bîne."
   },
   "onboarding": {
     "optIn": {
@@ -6128,7 +6436,10 @@
         "title": "Navê bikarhêner û wêneyê xwe destnîşan bike",
         "body": "Navekî hilbijêre ku mirov wê nas bikin û wêneyekî profîlê lê zêde bike, da ku nivîsên te wekî ku ji te hatine xuya bikin."
       },
-      "wallet": {},
+      "wallet": {
+        "title": "Berîka xwe û nîşaneyên DeHub bibînin",
+        "body": "Berîka te jixwe heye û nîşanekanên DeHub-a te dihewîne. Li tiştên tê de û ji ku derê hatine binêre."
+      },
       "feed": {
         "title": "Tiştê ku hûn dixwazin bibînin hilbijêrin",
         "body": "Bersîva çend pirsên bilez bide û xwarina te dê dest bi nîşandana celebê postên ku tu bi rastî dixwazî ​​bike."
@@ -6684,7 +6995,14 @@
     "toastPaidAwaitingDelivery": "Hatiye dayîn — ji firoşkar hatiye xwestin ku perçeyên we bişîne",
     "toastPaidSettled": "Hatiye dayîn - bazirganî hatiye çareserkirin",
     "walletNotReady": "Berîka te hîn amade nîne - piştî demekê dîsa biceribîne.",
-    "wrongChain": "Ev bazirganî li ser {{chain}} bi dawî dibe. Di Mîhengan de biguhere {{chain}}, paşê dîsa biceribîne."
+    "wrongChain": "Ev bazirganî li ser {{chain}} bi dawî dibe. Di Mîhengan de biguhere {{chain}}, paşê dîsa biceribîne.",
+    "settlementNote": "Tokenên we rasterast diçin cem firoşkar û em wan li ser zincîrê verast dikin. Dûv re firoşkar {{hours}} demjimêr hene ku perçeyan bişîne - hûn ê bazirganiyê di portfoliyoya xwe de bibînin heya ku ew wiya bikin, û qeyda wan giştî ye.",
+    "paymentsFrozen": "Veguhestina nîşanekan niha hatiye rawestandin, ji ber vê yekê ev drav dê vegere rewşa berê. Dema ku bazirganî ji nû ve dest pê bike, dîsa biceribînin.",
+    "offerSubmitted_one": "Pêşniyar ji bo fraksiyona {{count}} li her yek ji {{price}} tokenan hat şandin",
+    "offerSubmitted_other": "Pêşniyar ji bo perçeyên {{count}} li her yek ji tokenên {{price}} hat şandin",
+    "yourOfferLabel": "Pêşniyara Te (nîşanên ji bo her perçeyekê)",
+    "listedToast_one": "Beşa {{count}} li {{price}} tokenan hatîye lîstekirin her yek",
+    "listedToast_other": "Kêmasiyên {{count}} li {{price}} tokenan hatine lîstekirin"
   },
   "moderation": {
     "appealDuplicate": "Te berê li ser vê îtiraz kiriye",
@@ -6697,7 +7015,9 @@
     "appealFootnote": "Tu jimareyeke referansê distînî, û bersiv dê li vir vegere. Ji bo her biryarê yek îtiraz.",
     "appealRef": "Referans {{ref}}",
     "appealSubtitleSubject": "Kesek wê vê bixwîne û dîsa li {{subject}} binêre.",
-    "appealMore": "Tîpên hîn pêwîst: {{count}}"
+    "appealMore": "Tîpên hîn pêwîst: {{count}}",
+    "appealSentRef": "Îtiraz hat şandin · {{ref}}",
+    "appeal": "Lidijderketin"
   },
   "badgeAscension": {
     "none": "Netû",
@@ -6721,7 +7041,10 @@
       "blueWhale": "Mezintirîn tiştê ku heta niha jiyaye. Ew tu yî.",
       "megalodon": "Ev taca te ye - tu êdî şahê sepanê yî"
     },
-    "continue": "Vegere DeHubê"
+    "continue": "Vegere DeHubê",
+    "yourBalance": "Bîlançoya te · {{amount}} token",
+    "toNextTier": "{{amount}} nîşanekan bo {{tier}}",
+    "holdNote": "Dema nîşanek vebû, ew heta ku nîşanekên we hebin a we ye. Hejmara nîşanekan ku ji bo vekirina nîşanek nû hewce ne dikare bi bihayê nîşanekê re biguhere."
   },
   "badgeShowcase": {
     "dialogLabel": "باجی {{tier}}",
@@ -6963,7 +7286,18 @@
     "aiHint": "Bi gotinên sade bêje çi dixwazî. AI her tiştî tijî dike, tu tenê bişkoja \"Piştrastkirinê\" ditikînî.",
     "aiFailed": "AI nekarî wê saz bike. Biceribînin ku bi awayekî din bibêjin, an jî li jêr binivîsin.",
     "cancelled": "Hate betalkirin. Tiştek nehat firotin.",
-    "aiNeedAmount": "Hûn dixwazin çend tokenan bifroşin?"
+    "aiNeedAmount": "Hûn dixwazin çend tokenan bifroşin?",
+    "easyHint": "Tokenên DeHub-a xwe di çend tikandinan de bifroşin. Em rêya çêtirîn ji bo dagirtina wê hildibijêrin.",
+    "sellTitle": "Hûn dixwazin çend tokenan bifroşin?",
+    "available": "Te li ser bingehê {{amount}} token hene",
+    "noDhb": "Li ser Base-ê hêj tu nîşanekên te yên ji bo firotinê nînin.",
+    "myPriceHint": "Bihayê we ji bo her tokenê bi USD",
+    "routeList": "Li jor bazarê: tokenên we li ser borsayê têne navnîş kirin û dema ku biha bigihîje ${{price}} bixweber têne firotin.",
+    "listNote": "Tokenên te heta ku bifroşin a te dimînin. Tu dikarî wan her dem ji Borsayê vekişînî. Gaza torê derbas dibe.",
+    "doneInstant": "Tokenên {{amount}} hatin firotin",
+    "doneList": "Nîşaneyên {{amount}} li ${{price}} hatine navnîşkirin",
+    "aiPlaceholder": "Biceribîne \"nîvê tokenên xwe bi 6 sentan bifroşim\"",
+    "aiBuyOnly": "Bazirganiya hêsan nîşanekan difiroşe. Ji bo kirîna nîşanekan, Exchange veke."
   },
   "tipFunding": {
     "lowLiquidity": "Niha ji bo dayîneke bi vê mezinahiyê têra xwe likîdîteya Uniswap tune ye",
@@ -7089,6 +7423,7 @@
           "1": "لە لای دسکەپدا، کرتە لە دوگمەی 'پۆست' بکە لە لای پانێل، یان لە مۆبایلدا کرتە لە دوگمەی +.",
           "2": "دەقەکەت لە ناوچەی نووسیندا بنووسە.",
           "3": "بۆ زیادکردنی وێنە یان ڤیدیۆ، کرتە لە ئایکۆنی میدیا بکە و فایلێک هەڵبژێرە.",
+          "4": "Ji bo tomarkirina dengî, li ser îkona mîkrofonê bikirtînin.",
           "5": "بۆ زیادکردنی GIF، کرتە لە ئایکۆنی GIF بکە و گەڕان بکە.",
           "6": "بۆ پۆلێنکردنی پۆستەکەت، #هەشتەگ بەکاربهێنە (بۆ نموونە، #crypto، #defi).",
           "7": "بۆ ئاماژەدان بە توکنەکان، $کاسهەگ بەکاربهێنە (بۆ نموونە، $DHB، $ETH).",
@@ -7306,6 +7641,7 @@
           "5": "ڕێنماییەکانی ئاگادارکردنەوە بەڕێوەبەرە."
         },
         "tips": {
+          "1": "DeHub gelek zimanan piştgirî dike - tevahiya navrû werdigerîne.",
           "2": "ڕێنماییەکانی تایبەتیت دەستبەجێ جێبەجێ دەبن."
         }
       },
@@ -7368,6 +7704,7 @@
         "steps": {
           "1": "کۆمەڵگاکان لە لایەن لاوەکەدا بکەرەوە و ئەوانەی گشتی بگەڕێ.",
           "2": "بە یەک تاپ بچۆ ژوورەوە. چالاکی نوێ وەک بازنەیەکی نەخوێندراو لە ناوچەی نێواندا دەردەکەوێت.",
+          "3": "Di hundirê fîda civatekê de biweşînin, nîqaş bikin, anketan bimeşînin û şîretan bidin.",
           "4": "خاوەن کۆمەڵگاکان بۆشایی خۆیان چاودێری دەکەن و دەتوانن مافی بەڕێوەبەرایەتی بە کەسانی تر بدەن.",
           "5": "ڕووداوەکان بکەرەوە بۆ پڕۆگرامکردنی کات-دیاریکراو، لەگەڵ لاپەڕەیەکی تەواو بۆ هەر ڕووداوێک کە دەتوانیت بە زیندوویی چاودێری بکەیت."
         },
@@ -7437,7 +7774,8 @@
           "1": "تاقەتی پەرشوبڵاوبوونی بەرزتر = ئەگەری جێبەجێبوونی زیاتر، بەڵام ئەگەری نرخی خراپتر.",
           "2": "ھەمیشە نرخی گۆڕینەوەکە پێش پشتڕاستکردنەوە وردبینی بکەرەوە.",
           "3": "دەتوانیت پەرشوبڵاوبوونی تایبەت لە پەنەڵی دانان دیاری بکەیت."
-        }
+        },
+        "intro": "DeHub tokens به‌ شێوه‌ی ڕاسته‌وخۆ له‌ناو ئه‌پڵیکه‌یشه‌نه‌که‌دا له‌ ڕێگه‌ی ده‌ستکاریکردنی بازدانه‌وه‌ بکڕه‌."
       },
       "bridge": {
         "title": "پرده",
@@ -7496,7 +7834,45 @@
         "steps": {
           "1": "کرتە بکە لەسەر دوگمەی 'Post' لە لای لاپەڕەکە (دێسکتۆپ) یان دوگمەی + (مۆبایل).",
           "2": "دەقەکەت بنووسە، میدیا (وێنە، ڤیدیۆ، دەنگ) دابگرە، و پۆلەکان زیاد بکە.",
-          "3": "'Mint post'ـی داخستراو بهێڵەرەوە بۆ بڵاوکردنەوە لە دەرەوەی بلۆکچەین، یان بیکەرەوە بۆ ئەوەی لە کاتی بڵاوکردنەوەدا بیکەیت بە NFT."
+          "3": "'Mint post'ـی داخستراو بهێڵەرەوە بۆ بڵاوکردنەوە لە دەرەوەی بلۆکچەین، یان بیکەرەوە بۆ ئەوەی لە کاتی بڵاوکردنەوەدا بیکەیت بە NFT.",
+          "4": "بڵاوکردنه‌وه‌ هه‌رگیز چاوه‌ڕێی زنجیره‌که‌ ناکات: پۆسته‌که‌ له‌ هه‌ردوو حاڵه‌تدا له‌ فید ده‌رده‌که‌وێت.",
+          "5": "بۆ دروستکردنی داهاتوو، لاپه‌ڕه‌ی زانیاری پۆسته‌که‌ 'ⓘ' بکه‌وه‌و ئه‌کشنه‌که‌ی دروستکردنی له‌وێ به‌کاربهێنه‌.",
+          "6": "کاتێک دروست کرا، پۆسته‌که‌ ناسنامه‌ی توکن و هه‌شێکی ته‌وافق ده‌گرێت که‌ ده‌توانیت له‌سه‌ر زنجیره‌که‌ بسه‌لمێنیت، و تۆ هه‌موو 1,000 به‌شه‌که‌ی ده‌گرێته‌ ده‌ست."
+        },
+        "tips": {
+          "1": "چوونه‌ژووره‌وه‌ به‌ سۆشیال، ئیمێڵ و SMS هیچ گازی تێناچێت — DeHub کرێی دروستکردن دابین ده‌کات.",
+          "2": "بەکارهێنەرانی وایەرلێس ده‌ره‌کی پێویستیان به‌ ETH له‌سه‌ر Base یان BNB له‌سه‌ر BNB Chain بۆ گاز هه‌یه‌.",
+          "3": "دروستکردن ئه‌و شته‌یه‌ که‌ پۆستێک ده‌کات به‌ بازرگانیکردن و مافی پاداش. پۆستێکی دروستنه‌کراو هێشتا پاداش و بینین به‌ده‌ست ده‌هێنێت.",
+          "4": "تۆماری سه‌ر زنجیره‌که‌ هه‌میشه‌ییه‌ کاتێک دروست کرا، ته‌نانه‌ت ئه‌گه‌ر پۆسته‌که‌ دواتر له‌ فید بسڕدرێته‌وه‌."
+        }
+      },
+      "trading-fractions": {
+        "title": "بازرگانیکردن به‌ به‌شه‌کان",
+        "intro": "بازرگانیکردن به‌ به‌شه‌کان — گه‌ڕان به‌دوای لیستی نوێ، پێشکه‌شکردنی نرخ، و دانانی به‌شه‌کانی خۆت — له‌ وێب ئه‌پڵیکه‌یشه‌نه‌که‌دا له‌ dehub.io، له‌ لاپه‌ڕه‌ی زانیاری پۆسته‌کاندا هه‌یه‌.",
+        "steps": {
+          "1": "dehub.io له‌ وێبگه‌ڕێکدا بکه‌وه‌و به‌ هه‌مان ئه‌کاونت بچه‌ره‌ژووره‌وه‌.",
+          "2": "لاپه‌ڕه‌ی زانیاری پۆسته‌که‌ بکه‌وه‌و بچۆ سه‌ر ته‌باخی بازاڕی ئه‌و.",
+          "3": "گه‌ڕان به‌دوای لیستی نوێ، نرخێک پێشکه‌ش بکه‌ به‌و نرخه‌ی خۆت ده‌ته‌وێت، یان به‌شه‌کانی خۆت که‌ هه‌ته‌ بخه‌ره‌ بازاڕه‌وه‌.",
+          "4": "کاتێک بازرگانیکردنێک ته‌واو بوو، گۆڕانکارییه‌کان له‌ ته‌باخی به‌شه‌کانی خۆتدا لێره‌ له‌ مۆبایل ده‌رده‌که‌ون."
+        },
+        "tips": {
+          "1": "خاوه‌ندارێتی به‌شه‌کانی پۆستێک واته‌ تۆ به‌شێک له‌و NFT یه‌ له‌سه‌ر زنجیره‌که‌ت هه‌یه‌.",
+          "2": "پشکنینی خاوه‌نه‌کانی پۆستێک له‌ بازاڕی وێبدا بکه‌ بۆ بینینی دابه‌شبوونی خاوه‌ندارێتی پێش ئه‌وه‌ی بکڕیت.",
+          "3": "وه‌ک دروستکه‌رێک، فرۆشتنی به‌شه‌کان ڕێگه‌ به‌ هه‌واداران ده‌دات هاوبه‌ش بن له‌ ناوه‌ڕۆکی تۆ."
+        }
+      },
+      "glossary": {
+        "title": "فه‌رهه‌نگۆک",
+        "intro": "فه‌رهه‌نگۆکێکی گشتگیر بۆ تێرمه‌کانی کریپتو و پلاتفۆرم بۆ یارمه‌تیت بۆ گه‌شتکردن له‌ Web3.",
+        "steps": {
+          "1": "له‌ لایه‌ن لاوه‌که‌وه‌ بچۆ بۆ 'فه‌رهه‌نگۆک'.",
+          "2": "گه‌ڕان به‌دوای تێرمه‌کان به‌ پیتی ئه‌لفوبێ یان به‌کاربهێنه‌ بۆ دۆزینه‌وه‌ی تێرمی دیاریکراو.",
+          "3": "کرتێ بکه‌ له‌سه‌ر تێرمێک بۆ بینینی پێناسه‌ و ڕوونکردنه‌وه‌ی ته‌واوی.",
+          "4": "تێرمه‌کان چه‌مکی کریپتو، تێرمه‌کانی DeFi، و تایبه‌تمه‌ندییه‌کانی تایبه‌ت به‌ DeHub ده‌گرێته‌وه‌."
+        },
+        "tips": {
+          "1": "سه‌رچاوه‌یه‌کی نایاب بۆ تازه‌هاتووه‌کان بۆ کریپتو و Web3.",
+          "2": "فه‌رهه‌نگۆکه‌ به‌ به‌رده‌وامی نوێ ده‌کرێته‌وه‌ به‌ تێرمی نوێوه‌."
         }
       }
     }

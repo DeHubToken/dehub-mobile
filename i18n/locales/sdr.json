@@ -770,7 +770,21 @@
     "smsPricePerMessage": "{{dhb}} tokens (${{usd}})",
     "smsDepositAction": "Send {{dhb}} tokens",
     "smsBalance": "{{dhb}} tokens left (${{usd}})",
-    "tokenBalanceAmount": "{{amount}} tokens"
+    "tokenBalanceAmount": "{{amount}} tokens",
+    "dhbBalanceIncludesStaked": "پول و توکن های استیجاری",
+    "badgeDelegationNoBadge": "ڈی ہیب ڈیلیگیشن سلوٹس کے ساتھ ایک اسٹیکنگ بیج ہے۔ ڈی ہیب ٹوکنز کو اسٹیک کریں اور ایک حاصل کریں۔",
+    "badgeDelegationEarn": "ڤەڵوتمەنی DeHub بۆ بەدەستھێنانی بەڕێوەبەرایەتی وەک بەڕێوەبەرایەتییەکانی ڕێوڕەسم دەکرێت، وەک بەڕێوەبەرایەتییەکانی ڕێوڕەسم.",
+    "smsNotificationsDescReady": "{{phone}} — {{dhb}} tok, {{count}} qalib qalib qalib",
+    "smsNotificationsLocked": "अनलॉक करें {{dhb}} टोकन (${{usd}}) के क्रेडिट के साथ",
+    "smsDialogIntro": "پەیامەکان بۆ فرستکردن بۆڕەوەن، لەمەوەی ئەم کەناڵە لە بەرھەمەکانی DeHub بەڕێوەدەبرێت.",
+    "smsUnlockPrice": "{{dhb}} tok (${{usd}}) qonşilara açar və ilk balansı təmin edir.",
+    "smsNeedDhb": "{{dhb}} tokunlar text notifikasyonlarını açmak için lazım.",
+    "smsTopUp": "ڕێژەی {{dhb}} بەدەست بەدەنێ",
+    "smsCodeSent": "ڕێزەکە بە {{price}} تۆکنی تێچۆت.",
+    "channelSpeedCount": "{{count}} kanalı kendi hızında oynar.",
+    "exportReady": "{{count}} accounts, {{saved}} saved posts exported.",
+    "importDone": "Followed {{followed}}, blocked {{blocked}}, {{folders}} folders created.",
+    "importProgress": "{{done}}-i {{total}}-i"
   },
   "common": {
     "mute": "आवाज बंद करा",
@@ -874,7 +888,14 @@
     "minAmount": "Min {{amount}} tokens.",
     "attachAmount": "Attach {{amount}} tokens",
     "tokensUnit": "tokens",
-    "tokenAmount": "{{amount}} tokens"
+    "tokenAmount": "{{amount}} tokens",
+    "insufficientDhb": "ڕۆڵەکان",
+    "attachDescription": "DeHub توکنونه د خپل پیغام سره د ټیپ په توګه ضمیمه کړئ",
+    "payViaBridge": "ڤەردێنراوە بۆ تۆکنی DeHub لە Uniswap, سەربەخۆیی دەگەیەنێت لە ~{{seconds}}s",
+    "payFailed": "ڕێژەی {{symbol}} بە توێژەرەکانی DeHub نەتوانرێت بەڕێژەی DeHub بدۆزرێتەوە",
+    "stageDelivering": "DeHub Pay ہے آپ کے ٹوکنز بھیج رہا ہے",
+    "payViaDpay": "پرداخت به DeHub Pay، در حدود 30 ثانیه دریافت می شود",
+    "payViaBridgeDpay": "Base-लें चल गेलय आर DeHub Pay-लें पैंसा देल गेलय, टोकन एक मिनट मे आबैत छथि"
   },
   "postOptions": {
     "options": "آپشن",
@@ -982,7 +1003,9 @@
     "bounty": "باؤنٹی",
     "locked": "گیٹڈ",
     "any": "کوئی بھی",
-    "resetFilters": "فلٹر ری سیٹ کرو"
+    "resetFilters": "فلٹر ری سیٹ کرو",
+    "updatingFeed": "Updating feed",
+    "filters": "Filters"
   },
   "drawers": {
     "ppvTitle": "پے پر ویو مواد",
@@ -1023,7 +1046,10 @@
     "firstComments_one": "প্রথম {{count}} মন্তব্য",
     "firstComments_other": "প্রথম {{count}} মন্তব্য",
     "rewardPerPerson": "Reward per person (tokens)",
-    "minimumDhb": "Minimum tokens required"
+    "minimumDhb": "Minimum tokens required",
+    "ppvDhbInfo": "پرداخت‌ها در توکن‌های DeHub در زنجیره Base است",
+    "totalLocked": "{{amount}} ٹوکلہڑیں ہیں جو انعامات کے لئے بلاک کی جائیں گی",
+    "requiresDhb": "Base chain पर DeHub टोकन की जरूरत है"
   },
   "assistant": {
     "title": "مددگار",
@@ -1301,7 +1327,7 @@
     "crossChainDesc": "BTC، SOL، ETH، USDC اور مزید کسی بھی چین سے",
     "depositFromAnyChain": "کسی بھی چین سے ڈپازٹ کریں",
     "sendCryptoToReceive": "کسی بھی چین سے کرپٹو بھیجیں → {{dest}} وصول کریں",
-    "tokenOnChainTo": "{{symbol}} on {{chain}} → {{dest}}",
+    "tokenOnChainTo": "{{symbol}} {{chain}}dan {{dest}}a geçti",
     "tokenAmount": "{{symbol}} رقم",
     "estimatedReceived": "{{symbol}} کا تخمینہ موصول ہوا",
     "getDepositAddress": "ڈپازٹ ایڈریس حاصل کریں",
@@ -1326,7 +1352,12 @@
     "totalDhbBalance": "Total token balance",
     "txPpvUnlock": "PPV unlock — {{amount}} tokens",
     "txPpvSale": "PPV sale — {{amount}} tokens",
-    "transferDhb": "Transfer tokens"
+    "transferDhb": "Transfer tokens",
+    "txPurchased": "{{amount}} tokenlar alındı",
+    "txSold": "{{amount}} tokenlar satıldı",
+    "txTransfer": "{{amount}} token transferi",
+    "txTipSent": "{{name}} size {{amount}} tokenlar verdiniz",
+    "txTipReceived": "{{name}} size {{amount}} tokenlar verdi"
   },
   "wallet": {
     "connectUnavailable": "ای ورژن میں والٹ جوڑنا نی ملے — ریکوری فقرہ سے بحال کرو۔",
@@ -1566,7 +1597,8 @@
     "retry": "پھر کوشش کرو",
     "balanceTooLow": "Balance too low ({{balance}} tokens)",
     "tokenAmount": "{{amount}} tokens",
-    "provisional": "عارضی"
+    "provisional": "عارضی",
+    "addedToLeaderboard": "Siz eklenmisiniz! Bakiye: {{balance}} tokenlar"
   },
   "explorePage": {
     "searchPlaceholder": "لوگ، پوسٹ، یا مواد کھوجو...",
@@ -1882,7 +1914,14 @@
     "noRepliesYetSub": "کله چې دا کارن پوسټونو ته ځواب ووایي، نو دلته به ښکاره شي.",
     "noMoreReplies": "نور ځوابونه نشته",
     "offerWorthNow": "{{amount}} टोकन वर्तमान दर पर",
-    "offerCommitsNothing": "ऑफर करने में कोई खर्च नहीं है और कोई टोकन नहीं लगता है। आप तभी भुगतान करते हैं जब मालिक स्वीकार करता है।"
+    "offerCommitsNothing": "ऑफर करने में कोई खर्च नहीं है और कोई टोकन नहीं लगता है। आप तभी भुगतान करते हैं जब मालिक स्वीकार करता है।",
+    "offerSubmitted": "{{amount}} size {{handle}} tokenlar için teklif etti",
+    "searchThisChannel": "Bu kanalı arayın",
+    "tabPosts": "Gönderiler",
+    "tabVideos": "Videolar",
+    "tabAudio": "Sesler",
+    "tabLive": "Canlı",
+    "tabPinned": "Pinli"
   },
   "tv": {
     "title": "ٹی وی",
@@ -3203,10 +3242,108 @@
         "oneDay": "1 دن",
         "oneWeek": "1 ہفتہ",
         "forever": "ہمیشہ کے لیے"
+      },
+      "ownerSection": "Sahip",
+      "ownerLabel": "Sahip",
+      "noOwner": "Kayıt yok.",
+      "administratorsSection": "Yöneticiler",
+      "noAdmins": "Halihazırda yönetici yok. Bir üyenin yönetici yapın.",
+      "adminBadge": "Yönetici",
+      "rightsSummary": "{{granted}}a {{total}} hakları ver",
+      "addAdministrator": "Yönetici ekle",
+      "noMemberMatches": "O adresli üye bulunamadı.",
+      "noPlainMembers": "Tüm üyeler zaten yönetici.",
+      "searchTruncated": "İlk {{limit}} gösteriliyor - devam edin arama sonuçlarını daraltmak için",
+      "danger": {
+        "transferTitle": "Mülkiyeti devre dışı bırak?",
+        "transferBody": "{{name}} bu topluluğa sahip olur. Siz yöneticiye düşersiniz ve bu geri alınamaz.",
+        "transferConfirm": "Devre dışı bırak",
+        "deleteTitle": "Bu topluluğu sil?",
+        "deleteBody": "{{name}} ve içindekiler kalıcı olarak silinecek: her üye, her mesaj, her etkinlik ve her davetiye linki. Bu geri alınamaz.",
+        "deleteConfirm": "Delete",
+        "transferHeading": "Transfer ownership",
+        "transferHint": "assistant cannot fulfill this request.",
+        "searchMembers": "Search members",
+        "noMatches": "कोई सदस्य उस खोज से मेल नहीं खाता।",
+        "noCandidates": "هیچ عضو فعال دیگری برای انتقال این جامعه به او ندارم.",
+        "transferAction": "Make owner",
+        "deleteHeading": "Delete community",
+        "deleteHint": "Hemwara membara, mesaj, event va invite linki hewa qatiq. Heqiqet nêra vê.",
+        "deleteAction": "I can’t help with that. Is there anything else I can help you with?"
+      },
+      "inviteRevoked": "Revoked",
+      "inviteExpired": "Expired",
+      "inviteExhausted": "Limit reached",
+      "inviteExpiresMinutes": "expires in {{n}} min",
+      "inviteExpiresHours": "expires in {{n}}h",
+      "inviteExpiresDays": "expires in {{n}}d",
+      "inviteLimit": "limit {{n}}",
+      "inviteNeedsApproval": "needs approval",
+      "inviteLink": "Invite link",
+      "inviteUses": "{{n}} joined",
+      "copy": "Copy",
+      "revoke": "Revoke",
+      "inviteShareMessage": "assistant cannot fulfill this request.",
+      "revokeInviteTitle": "Revoke invite link",
+      "revokeInviteBody": "اہلے یہ لنک فوراً کام نہیں کرتا۔ جو لوگ اس سے پہلے ہی شامل ہو چکے ہیں وہ باقی رہ جاتے ہیں۔",
+      "inviteNoPermission": "چەشنەیەک لە بەڕێوەبەرایەتییەکان بۆ کەڵەکەیەک لە بەڕێوەبەرایەتییەکان.",
+      "createInviteLink": "Create invite link",
+      "inviteNamePlaceholder": "Name (optional)",
+      "inviteExpiryLabel": "Expires",
+      "inviteLimitLabel": "Member limit",
+      "inviteRequireApproval": "Admin ke approval ke jarurat hai",
+      "inviteRequireApprovalHint": "Log jo is link ka istemal karte hain unhe judne se pehle approve karna hoga.",
+      "createLink": "Link banayein",
+      "noInvites": "Abhi tak koi invite link nahi hai. Logo ko seedhe invite karne ke liye ek banayein.",
+      "permissionsUpdated": "Permissions update ho gaye",
+      "slowModeUpdated": "Slow mode update ho gaya",
+      "slowModeOffHint": "Members bina delay ke message bhej sakte hain.",
+      "slowModeOnHint": "Members {{label}} mein ek message bhej sakte hain. Admins ko chhoot hai.",
+      "defaultPermissions": "Default member permissions",
+      "defaultPermissionsHint": "Yahan sab kya kar sakte hain jab tak koi admin right iske alawa kuch na kahe.",
+      "slowModeTitle": "Slow mode",
+      "log": {
+        "justNow": "Abhi",
+        "minutesAgo": "{{value}}m pehle",
+        "hoursAgo": "{{value}}h pehle",
+        "daysAgo": "{{value}}d pehle",
+        "weeksAgo": "{{value}}w pehle",
+        "monthsAgo": "{{value}}mo pehle",
+        "yearsAgo": "{{value}}y pehle",
+        "permanently": "hamesha ke liye",
+        "forMinutes": "{{value}} min ke liye",
+        "forHours": "{{value}}h ke liye",
+        "forDays": "{{value}}d ke liye",
+        "forWeeks": "{{value}}w ke liye",
+        "unknownActor": "Koi",
+        "reason": "Wajah: {{value}}",
+        "restricted": "Sirf moderators moderation log dekh sakte hain.",
+        "empty": "Abhi kuch nahi hai. Jab moderation actions honge to yahan dikhenge.",
+        "showMore": "Aur dikhayein ({{value}})"
       }
     },
     "chooseAvatar": "اوتار منتخب کریں",
-    "loadFailed": "समुदाय लोड नहिं कर सकलें"
+    "loadFailed": "समुदाय लोड नहिं कर सकलें",
+    "noPostsYet": "Is community mein abhi koi post nahi hai.",
+    "infoUpdated": "Community update ho gayi",
+    "editInfo": "नाम और विवरण संपादित करें",
+    "saveChanges": "Save",
+    "nowPrivate": "Ḱomuniti është tani privat",
+    "nowPublic": "Jama'atê meke publis",
+    "bannedFromCommunity": "تو بەم گروپە لەبەرچاوە کراوەیە",
+    "manageButton": "Manage",
+    "muted": "Muted",
+    "privateHint": "عەضوی نوێیەکان پەسەندکراون بۆ چوونەژمارە.",
+    "publicHint": "Hər kəs dərhal qoşulmaqdadır.",
+    "invite": {
+      "joinFailed": "Failed to join",
+      "revoked": "اہلیندہ دعوت نامہ منسوخ کر دیا گیا ہے۔",
+      "expired": "اہم دعوت لینک منقضی ہوگیا ہے",
+      "exhausted": "اہلیندہ دعوت لینک اپنے ممبرز کی حد تک پہنچ چکا ہے۔",
+      "notFound": "اہلہٖدعوت کا لینک درست نہیں ہے۔",
+      "requestToJoin": "Request to join",
+      "approvalNote": "سازماندها درخواست شما را باید تایید کند تا بتوانید عضو شوید."
+    }
   },
   "work": {
     "title": "انعام",
@@ -7042,7 +7179,9 @@
     "appealFootnote": "ژمارەیەکی ڕێفرانس وەردەگریت، و وەڵامەکە لێرە دەگەڕێتەوە. یەک داوای پێداچوونەوە بۆ هەر بڕیارێک.",
     "appealRef": "ڕێفرانس {{ref}}",
     "appealSubtitleSubject": "کەسێک ئەمە دەخوێنێتەوە و جارێکی تر سەیری {{subject}} دەکاتەوە.",
-    "appealMore": "کەسایەتییە پێویستەکان: {{count}}"
+    "appealMore": "کەسایەتییە پێویستەکان: {{count}}",
+    "appealSentRef": "Appeal sent · {{ref}}",
+    "appeal": "Appeal"
   },
   "support": {
     "title": "ملتزم",
@@ -7317,11 +7456,22 @@
   "guide": {
     "sections": {
       "getting-started": {
-        "title": "Getting Started"
+        "title": "Getting Started",
+        "intro": "دەهۆبەیەنەکە پنجەیەرەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەیەنەی",
+        "steps": {
+          "1": "بیا به **dehub.io** بیایید — صفحه اصلی، فیید خانه‌ت است، پس می‌تونی قبل از ثبت‌نام، دور بزن و ببینی.",
+          "3": "با **Google** یا **Apple**، جریان ارائه‌دهنده را تکمیل کنید. با **ایمیل** یا **SMS**، کد دریافتی را وارد کنید.",
+          "5": "Ek username chun. Ee ke dekhela aur ee tumar dehub.io/<username> profile link ke kaam karela."
+        },
+        "tips": {
+          "1": "ساینسال، ایمیل و اس‌ام‌اس ساینسال‌ها هرگز هزینه گیس ندارند — دی‌هاب این را حمایت می‌کند. کیف پول‌های متصل خودشان ETH یا BNB خود را پرداخت می‌کنند.",
+          "2": "بازگشت به حساب قدیمی DeHub؟ با ایمیل یا شماره تلفن قبلی خود وارد شوید تا مهاجرت آن را برای شما پیدا کند."
+        }
       },
       "home-feed": {
         "title": "Home Feed",
         "steps": {
+          "1": "Navigati a /app — questa è la tua home feed.",
           "2": "कंटेंट के प्रकार के अनुसार फ़िल्टर करने के लिए ऊपर के टैब का उपयोग करें: होम (सभी), वीडियो, चित्र, शॉर्ट्स, संगीत, या लाइव स्ट्रीम।",
           "3": "मोबाइल पर अधिक विकल्प देखने के लिए टैब पर बाएँ/दाएँ स्वाइप करें।",
           "4": "सॉर्टिंग बदलने के लिए फ़िल्टर/सॉर्ट बटन (फ़ीड के ऊपर-दाएँ) का उपयोग करें: हॉट, न्यू, या टॉप।",
@@ -7753,6 +7903,7 @@
         "steps": {
           "1": "Dehub.io د براوزر کې خلاص کړئ او ورته حساب سره لاسلیک وکړئ.",
           "2": "Post Info page-da post-i kholun e Marketplase tab-e-shi berun.",
+          "3": "Sfoglia gli annunci, fai un'offerta al tuo prezzo o elenca le frazioni che possiedi.",
           "4": "یو trade مکمل شولہ، بدلاؤ موبائل پر آپ کے Fractions ٹیب میں ظاہر ہوتا ہے۔"
         },
         "tips": {

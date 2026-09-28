@@ -330,13 +330,13 @@
     "dark": "ጸልማት",
     "system": "ስርዓት",
     "minimal": "ቀሊል",
-    "cosmic": "Cosmic Pixels",
+    "cosmic": "ኮስሚክ ፒክስል",
     "hazy": "ግመ ለይትታት",
     "swarms": "መንጋታት",
     "lavalamp": "ናይ ላቫ መብራህቲ",
-    "winter": "Winter Drops",
+    "winter": "ክረምቲ",
     "war": "ውግእ",
-    "osaka": "Osaka",
+    "osaka": "ኦሳካ",
     "jungle": "ጫካ",
     "themeDesc": "እቲ ኣፕ ከመይ ከም ዝመስል ምረጽ",
     "themeMinimalDesc": "ጠፍጣፍ ጸሊም፣ ቀጥ ዝበሉ ጫፋት፣ ምሉእ ስፍሓት ስእልታትን ቪድዮታትን",
@@ -780,7 +780,10 @@
     "smsBalance": "{{dhb}} ቶክንስ ዝተረፈ (${{usd}})",
     "smsTopUp": "{{dhb}} ቶክንስ መልእዎ",
     "smsCodeSent": "ኮድ ተላ an። እዚ ድማ {{price}} ቶክንስ ወሰደ።",
-    "tokenBalanceAmount": "{{amount}} ቶክንስ"
+    "tokenBalanceAmount": "{{amount}} ቶክንስ",
+    "channelSpeedCount": "{{count}} channel(ታት) ብገዛእ ፍጥነት ይጻወቱ ።",
+    "exportReady": "{{count}}መለያታት ፣ {{saved}} ዝተድሓኑ ልኡኽታት ወፃኢ ።",
+    "importPartial": "{{count}} መለያታት ክኽተል ኣይከኣለን — ነቲ ኣታዊ ንምምላስ መሊስካ ስዓቦ ።"
   },
   "common": {
     "mute": "ድምጺ ኣጥፍእ",
@@ -1001,7 +1004,9 @@
     "bounty": "ሽልማት",
     "locked": "ዝተዓገተ",
     "any": "ዝኾነ",
-    "resetFilters": "ፊልተራት ደምስስ"
+    "resetFilters": "ፊልተራት ደምስስ",
+    "updatingFeed": "ዝዘመነ ምግቢ",
+    "filters": "ፍሊተራት"
   },
   "drawers": {
     "ppvTitle": "ብኽፍሊት-ንነፍሲ-ወከፍ-ምርኣይ ትሕዝቶ",
@@ -1898,7 +1903,13 @@
     "noMoreReplies": "መልሲ ኣይረኸብኩን ።",
     "offerWorthNow": "ብዛዕባ {{amount}} ቶክን ብዝለዓለ ዋጋ",
     "offerCommitsNothing": "ﻥ ቶክን ምቕራብ ዋጋ የብሉን ቶክን ድማ ኣይጸልዉን። ተቐባልነት እንተረኺቡ ጥራይ እዩ እትኸፍል።",
-    "offerSubmitted": "ናይ {{amount}} ምልክታት ን {{handle}}"
+    "offerSubmitted": "ናይ {{amount}} ምልክታት ን {{handle}}",
+    "searchThisChannel": "ነዚ ቻነል እዚ መርምር",
+    "tabPosts": "ልኡኻት",
+    "tabVideos": "ቪድዮታት",
+    "tabAudio": "ድምጺ",
+    "tabLive": "ህያው",
+    "tabPinned": "ዕንጨይቲ"
   },
   "tv": {
     "title": "ቲቪ",
@@ -2092,7 +2103,7 @@
     "impressions": "ምርኢታት",
     "clicks": "ጠውቕታት",
     "spend": "ወጻኢ",
-    "ecpm": "eCPM",
+    "ecpm": "አትክልት ኮስት ፓር",
     "campaigns": "ወፍርታት",
     "noCampaigns": "ገና ወፍርታት የለዉን",
     "createCampaign": "ወፍሪ ፍጠር",
@@ -2361,10 +2372,10 @@
     "yourApplication": "ምልክታኻ",
     "fullName": "ሙሉእ ስም",
     "email": "ኢመይል",
-    "telegram": "Telegram",
-    "xTwitter": "X (Twitter)",
-    "instagram": "Instagram",
-    "linkedin": "LinkedIn",
+    "telegram": "ቴሌግራም",
+    "xTwitter": "X (ትዊተር)",
+    "instagram": "ኢንስታግራም",
+    "linkedin": "ሊንክዲን",
     "otherSocials": "ካልእ ማሕበራዊ",
     "otherSocialsPlaceholder": "TikTok, YouTube, Discord ወዘተ.",
     "pastExperience": "ዝሓለፈ ተመክሮ",
@@ -2941,7 +2952,7 @@
     "noRecentUnstakeEvents": "ናይ ምውፃእ ተጸባይ የለን",
     "wallet": "ኣፍደገ",
     "amount": "መጠን",
-    "chain": "Chain",
+    "chain": "ሰንሰለት",
     "when": "መኣስ",
     "multiChainNotice": "ኣብ ክልተኦም ሰንሰለታት BNBን Baseን ቶክናት ኣለዉዎም። ምእታው ሓንቲ ሰንሰለት ብሓንቲ እዩ ዝግበር – ካልኣይቲ ንምእታው ድሕሪኡ ተመሊስኩም።",
     "whyStake": "ስለምንታይ ምእታው?",
@@ -3219,10 +3230,103 @@
         "oneDay": "1 መዓልቲ",
         "oneWeek": "1 ሰሙን",
         "forever": "ንዘለኣለም"
+      },
+      "ownerSection": "ናይ ገዛኢ",
+      "ownerLabel": "ናይ ገዛኢ",
+      "noOwner": "ኣብ ሪከርድ ጌና የለን።",
+      "administratorsSection": "ኣብዚ ኣለዉ",
+      "noAdmins": "ገና ኣይተመዘገቡን። ንምዕያይ ሓደ ኣባል ሸሞም።",
+      "adminBadge": "ኣብዚ ኣለዉ",
+      "rightsSummary": "{{granted}} ካብ {{total}} መሰላት",
+      "addAdministrator": "ኣብዚ ኣለዉ ሸሞም።",
+      "noMemberMatches": "ኣብዚ ኣድራሻ ዝሰማማዕ ኣባል የለን።",
+      "noPlainMembers": "ኩሎም ኣብዚ ዝርከቡ ኣባላት ኣለዉ።",
+      "searchTruncated": "መጀመርታ {{limit}} ይርአ። ንምጥባብ እናጸሓፍካ ቀጽል።",
+      "danger": {
+        "transferTitle": "ብሓላፍነት ምቕያር?",
+        "transferBody": "{{name}} ናይዚ ሓላፊ ይኸውን። ንስኻ ድማ ብኹሉ መሰላት ኣባል ትኸውን፣ እዚ ድማ ክምለስ ዘይክእል እዩ።",
+        "transferConfirm": "ምቕያር",
+        "deleteTitle": "እዚ ሓላፍነት ምፍሳስ?",
+        "deleteBody": "{{name}} ምስ ኩሉ ዘለዎ ብዘለኣለም ክጠፍእ እዩ፦ ኩሉ ኣባል፣ ኩሉ መልእኽቲ፣ ኩሉ ኣጋጣሚን ኩሉ ዕድመ ጸውዒትን። እዚ ድማ ክምለስ ዘይክእል እዩ።",
+        "deleteConfirm": "ምፍሳስ",
+        "transferHeading": "ሓላፍነት ምቕያር",
+        "transferHint": "ካብዚ ንደሓር ሓላፊ ናይዚ ሓላፍነት ዝኸውን ኣባል ምረጽ።",
+        "searchMembers": "ኣባላት ድለ።",
+        "noMatches": "ኣብዚ ድለ ዝሰማማዕ ኣባል የለን።",
+        "noCandidates": "ናብዚ ሓላፍነት ዝመሓላለፍ ካልእ ንጥፈት ኣባል የለን።",
+        "transferAction": "ሓላፊ ግበር።",
+        "deleteHeading": "ሓላፍነት ምፍሳስ።",
+        "deleteHint": "ኩሉ ኣባል፣ መልእኽቲ፣ ኣጋጣሚን ዕድመ ጸውዒትን ብዘለኣለም ይፍሳሱ። መሊሱ ክመጽእ ኣይክእልን።",
+        "deleteAction": "እዚ ሓላፍነት ምፍሳስ።"
+      },
+      "inviteRevoked": "ተኣሪዩ",
+      "inviteExpired": "ተዛዚሙ",
+      "inviteExhausted": "ገደብ በጺሑ",
+      "inviteExpiresMinutes": "ኣብ {{n}} ደቒቕ ይዛዘም",
+      "inviteExpiresHours": "ኣብ {{n}} ሰዓት ይዛዘም",
+      "inviteExpiresDays": "ኣብ {{n}} መዓልቲ ይዛዘም",
+      "inviteLimit": "ገደብ {{n}}",
+      "inviteNeedsApproval": "ፍቓድ የድሊ",
+      "inviteLink": "ብጻይ መጻሓፍ",
+      "inviteUses": "{{n}} ተጸንበረ",
+      "copy": "ኣህጉር",
+      "revoke": "ኣቋርጽ",
+      "inviteShareMessage": "ኣብ DeHub ብጻይ እዚ ሓድነት ተጸንበረ",
+      "revokeInviteTitle": "ብጻይ መጻሓፍ ኣቋርጽ",
+      "revokeInviteBody": "እዚ መጻሓፍ ብቕጽበት ይዕንቀፍ። እቶም ብኡ ዝጸንበሩ ይጸንሑ።",
+      "inviteNoPermission": "ንኣመራርሕቲ ብጻይ መጻሓፍቲ መሰል የብልካን።",
+      "createInviteLink": "ብጻይ መጻሓፍ ፍጠር",
+      "inviteNamePlaceholder": "ስም (ኣማራጺ)",
+      "inviteExpiryLabel": "ይውዳእ",
+      "inviteLimitLabel": "ገደብ ኣባላት",
+      "inviteRequireApproval": "ፍቓድ ኣመሓዳሪ የድሊ",
+      "inviteRequireApprovalHint": "እቶም ብዚ መጻሓፍ ዝጥቀሙ ቅድሚ ምጽንባሮም ፍቓድ ክግበረሎም ኣለዎም።",
+      "createLink": "መጻሓፍ ፍጠር",
+      "noInvites": "ሎሚ ብጻይ መጻሓፍ የለን። ንሰባት ብቐጥታ ንምጻይ ሓደ ፍጠር።",
+      "permissionsUpdated": "ፍቓዳት ተሓደሱ",
+      "slowModeUpdated": "ምቁጽጻር ግዜ ተሓደሰ",
+      "slowModeOffHint": "ኣባላት ብዘይዘገይት መልእኽቲ ክሰዱ ይኽእሉ እዮም።",
+      "slowModeOnHint": "ኣባላት በየናይ {{label}} ሓደ መልእኽቲ ክሰዱ ይኽእሉ እዮም። ኣመሓዳሪታት ካብኡ ይጽናሕ።",
+      "defaultPermissions": "ኣባላት መሰል",
+      "defaultPermissionsHint": "ንኹሉ ሰብ ኣብዚ ክገብሮ ዝኽእሎ እዩ እዚ ኣብዚ ኣመሓዳሪ መሰል ካልእ እንተዘይበለ።",
+      "slowModeTitle": "ምቁጽጻር ግዜ",
+      "log": {
+        "justNow": "ሕጂ",
+        "minutesAgo": "{{value}}m ቅድሚ ሕጂ",
+        "hoursAgo": "{{value}}h ቅድሚ ሕጂ",
+        "daysAgo": "{{value}}ኣይኮም ኣዝያለዎም",
+        "monthsAgo": "{{value}}mo ቅድሚ ሕጂ",
+        "yearsAgo": "{{value}}y ቅድሚ ሕጂ",
+        "permanently": "ንሓዋሩ",
+        "unknownActor": "ሓደ ሰብ",
+        "reason": "ምኽንያት ፦ {{value}}",
+        "restricted": "እቶም ኣማሓደርቲ ጥራይ እዮም ነቲ ናይ ሚዛናዊነት መዝገብ ክርእይዎ ዝኽእሉ ።",
+        "empty": "ኣብዚ ዋላ ሓንቲ ነገር የለን ። ሚዛናዊ ተግባራት ከም ዝፍጸም ክግለጽ እዩ ።",
+        "showMore": "ዝያዳ ኣርኢ ({{value}})"
       }
     },
     "chooseAvatar": "ኣቫታር ምረጽ",
-    "loadFailed": "ማሕበረሰባት ክጭፍኑ ኣይከኣሉን ።"
+    "loadFailed": "ማሕበረሰባት ክጭፍኑ ኣይከኣሉን ።",
+    "noPostsYet": "ኣብዚ ማሕበረሰብ እዚ ገና ቦታ የለን ።",
+    "infoUpdated": "ማሕበረሰብ ዝሕደስ",
+    "editInfo": "ስምን መግለጺን ኣዐሪ",
+    "saveChanges": "ኣድሕን",
+    "nowPrivate": "ሕብረተሰብ ሕጂ ብሕታዊ እዩ",
+    "nowPublic": "እቲ ሕብረተሰብ ሕጂ ኣብ ህዝቢ እዩ ዘሎ",
+    "bannedFromCommunity": "ካብ'ዚ ማሕበረሰብ'ዚ ተኣጊድካ ኢኻ",
+    "manageButton": "ተቖጻጻጻሪ",
+    "muted": "ማድሪድ",
+    "privateHint": "ሓደስቲ ኣባላት ክሳተፉ ክፈቕዱ ኣለዎም ።",
+    "publicHint": "ዝኾነ ሰብ ብኡብኡ ክሳተፍ ይኽእል እዩ ።",
+    "invite": {
+      "joinFailed": "ክትቀላቀሉ ዘይከኣሉ",
+      "revoked": "እዚ ናይ ዕድመ ሊንክ እዚ ተቛሪጹ እዩ ።",
+      "expired": "እዚ ናይ ዕድመ ሊንክ እዚ ተዛዚሙ እዩ ።",
+      "exhausted": "እዚ ናይ ዕድመ ሊንክ እዚ ናብ ናይ ኣባል ገደብኡ በጺሑ ኣሎ ።",
+      "notFound": "እዚ ናይ ዕድመ ሊንክ እዚ ኣይቅጽልን እዩ ።",
+      "requestToJoin": "ክትቀላቀሉ ትሓትት",
+      "approvalNote": "ሓደ ኣማሓዳሪ ነቲ ሕቶኻ ቅድሚ ምእታዉ ክጽድቕ ኣለዎ ።"
+    }
   },
   "work": {
     "title": "ሽልማታት",
@@ -4098,7 +4202,7 @@
     "pinMessage": "መልእኽቲ ፒን",
     "unpinMessage": "መልእኽቲ ኣወግድ",
     "jumpToLatest": "ናብ ናይ መወዳእታ መልእኽትታት ጠውቑ",
-    "attachGif": "GIF",
+    "attachGif": "ግሪፍ",
     "ban": "ኣግድ",
     "banConfirm": "ርግጽዶ ኣለኻ ን{{name}} ክትዕግቶ?",
     "banFailed": "ንተጠቃሚ ምእጋድ ኣይተኻእለን"
@@ -6078,7 +6182,7 @@
   "nearBuy": {
     "otherCurrencies": "ኻልኦት መዛግብቲ",
     "search": "ቶክን፣ ኔትወርክ ወይ ኮንትራክ ተደﻟ",
-    "onChain": "on {{chain}}",
+    "onChain": "ኣብ {{chain}}",
     "refundAddress": "ኣብ {{chain}} ናይ ምኽሳብ ኣድራሻ",
     "refundPlaceholder": "ኣድራሻ ኣብ ኔትወርክ ክፍያ",
     "refundHint": "ሕረይ'ዚ ኣብ ኔትወርክ ክፍያ እትቆጻጸርዎ ቦርሳ ምዃኑ። ናይ ልውጢ ኣድራሻታት ብሜሞ ወይ ታግ ዝሓትያ ተጠንቀቐሉ። ዝኾነ ኣቕረብቲ ተመላላሽ ናብዚ ይመለስ።",
@@ -6165,8 +6269,8 @@
   },
   "dex": {
     "lowestPrice": "ዝተሓተ ዋጋ · USD",
-    "lpDhb": "LP · DHB",
-    "lpUsd": "LP · USD",
+    "lpDhb": "ለፍልስፍና አስተዳደር",
+    "lpUsd": "ለአሜሪካን ደረግ",
     "totalLiquidity": "ጠቅላላ ፈሳስነት · USD",
     "lowestSell": "ዝቅተኛ ሽያጭ · USDC",
     "liveChartHint": "ዝቅተኛ ሽያጭ · USDC · ንክኪ ብምግባር ንምርሳዕ",
@@ -6331,7 +6435,8 @@
       "createFailed": "ኣብ ሓይቂ ዘሎ ገንዳ ክፉት ክኸውን ኣይከኣለን።",
       "addDescription": "ኣብ መሰረት ፡ ኢትሬም ፡ ሮቢንሃውድ ቻይን ወይ ሶላና ዘሎ ዝኾነ ይኹን ምልክት ብገዛእ ርእሱ ናይ ትእዛዝ መጽሓፍ ተዘርዚሩ ኣሎ ። ሓደ ገንዳ ክኽፈት 100 $ ይኽፈል ፡ ኣብ DeHub ምልክታት ይኽፈል ።",
       "feeDhb": "≈ {{amount}} DeHub ምልክታት",
-      "priceUnavailable": "እቲ ናይ DeHub ናይ ምልክት ዋጋ ኣብዚ እዋን እዚ ኣይተረኽበን ። ኣብ ውሽጢ ሓደ ደቒቕ እንደገና ፈትኖ ።"
+      "priceUnavailable": "እቲ ናይ DeHub ናይ ምልክት ዋጋ ኣብዚ እዋን እዚ ኣይተረኽበን ። ኣብ ውሽጢ ሓደ ደቒቕ እንደገና ፈትኖ ።",
+      "swapNote": "Your {{symbol}} ኣብ ሓደ ግብይት ብተመሳሳሊ ዋጋ ናብ DeHub tokens ይቕየር። ዝተርፍ ድማ ኣብ  ኪስካ ይጸንሕ።"
     },
     "pool": {
       "missingTitle": "ገንዳ ኣይተረኽበን — DeHub DEX",
@@ -6756,7 +6861,7 @@
         "title": "ናይ ፈጠርቲ ምርኢት"
       },
       "quote": {
-        "author": "Don Draper",
+        "author": "ዶን ድራፐር",
         "body": "ቀሊል ግበሮ፣ ግን ትርጉም ዘለዎ።",
         "title": "ካርድ ጥቕሲ"
       },
@@ -6845,7 +6950,7 @@
     "signInToSee": "ፍርያትካ ንምርኣይ እቶ።",
     "libraryEmpty": "ዝዓቀብካዮም ፍርያት ኣብዚ ክርኣዩ እዮም።",
     "openGeneration": "{{prompt}} ክፈት",
-    "toolBuilder": "Builder",
+    "toolBuilder": "ብጻይ",
     "libraryHintStudio": "ኣባኻትኩም ዝተቐመጠ ትውልድታት፣ ምስ ፈጣሪ ኣብ ዌብ ዝተካፈለ። ስቱድዮ ኣብ ብራውዘርካ ይኽፈት።"
   },
   "fractions": {
@@ -6985,7 +7090,9 @@
     "paymentsFrozen": "ናይ ቶከን ምትሕልላፍ ኣብዚ እዋን እዚ ተዓጽዩ ስለ ዘሎ ፡ እዚ ክፍሊት እዚ ክምለስ እዩ ። እንደገና ንግዲ ክትጅምር ፈትን ።",
     "offerSubmitted_one": "ን {{count}}fraction ኣብ {{price}} tkens every",
     "offerSubmitted_other": "ን {{count}}fractions ኣብ {{price}} tkens every",
-    "yourOfferLabel": "እቲ ዜሐጕስ ግና እቲ ዜሐጕስ ግና ንሱ እዩ ።"
+    "yourOfferLabel": "እቲ ዜሐጕስ ግና እቲ ዜሐጕስ ግና ንሱ እዩ ።",
+    "listedToast_one": "{{count}}  ክፋል ብ{{price}} tokens ሓደ ሓደ  ተሸይሙ",
+    "listedToast_other": "{{count}}  ክፋላት ብ{{price}} tokens ሓደ ሓደ  ተሸይሙ"
   },
   "moderation": {
     "appealDuplicate": "ነዚ ኣቐዲምካ ኣመልኪትካዮ ኣለኻ",
@@ -6998,7 +7105,9 @@
     "appealFootnote": "ናይ መጠንቀቕታ ቁጽሪ ትረክብ ፡ እቲ መልሲ ድማ ኣብዚ ይምለስ ። ሓደ ጻውዒት ኣብ ነፍሲ ወከፍ ውሳነ ።",
     "appealRef": "መወከሲ {{ref}}",
     "appealSubtitleSubject": "ሓደ ሰብ ነዚ ኣንቢቡ እንደገና ናብ {{subject}} ክርኢ እዩ ።",
-    "appealMore": "እቲ ዜድሊ ባህርያት ፦ {{count}}"
+    "appealMore": "እቲ ዜድሊ ባህርያት ፦ {{count}}",
+    "appealSentRef": "ቅትት ተላኢኹ · {{ref}}",
+    "appeal": "ቅትት"
   },
   "support": {
     "title": "ደገፍ",
@@ -7186,7 +7295,9 @@
     "doneList": "ዝርዝር {{amount}} ምልክታት ኣብ ${{price}}",
     "aiPlaceholder": "\"ኣብ 6 ሳንቲም ፍርቂ ምልክታተይ ሸይጥ\"",
     "aiBuyOnly": "ቀሊል ንግዲ ምልክታት ይሽየጥ ። ትኬት ንምግዛእ ፡ ክፉት ልውውጥ ።",
-    "aiNeedAmount": "ክንደይ ምልክታት ኢኻ እትሸይጥ ፧"
+    "aiNeedAmount": "ክንደይ ምልክታት ኢኻ እትሸይጥ ፧",
+    "available": "ኣብ Base  {{amount}} tokens ኣለካ",
+    "doneInstant": "{{amount}} tokens ተሸይሙ"
   },
   "tipFunding": {
     "lowLiquidity": "ሕጂ ንክንድዚ ዝኣክል ክፍሊት ኣብ Uniswap እኹል ፈሳሲ ገንዘብ የለን",
@@ -7209,7 +7320,9 @@
   "postQuota": {
     "transferredConfirming": "እቲ ምልክታትካ ተንቀሳቒሱ ኣሎ ። ሰባት ንነዊሕ እዋን ተጸበዩ ፡ ፈነወ ወረቐት ሒዝና ኽመጽእ ኢና ።",
     "sentUnconfirmed": "ምልክታትካ ተላኢኹ ፡ ነቲ ክፍሊት ግን ከነረጋግጽ ኣይንኽእልን ኢና ። በጃኻ ኣይትጨነቕ ፡ ከም'ዚ... እንደገና ይዞር ኣሎ ።",
-    "transferIncomplete": "እቲ ናይ ምስሊ መግለጺ ዛጊት ኣይተዛዘመን ። ቅድሚ እቲ ዚቕጽል እተኸፍለሉ ልኡኽካ እንደገና ኽትሓትት ኢኻ ።"
+    "transferIncomplete": "እቲ ናይ ምስሊ መግለጺ ዛጊት ኣይተዛዘመን ። ቅድሚ እቲ ዚቕጽል እተኸፍለሉ ልኡኽካ እንደገና ኽትሓትት ኢኻ ።",
+    "notEnoughTokens": "{{subject}}  ብ{{amount}} tokens ይኽፈል  ከምኡ ድማ  {{held}}  ኣለካ።",
+    "paidForPost": "{{amount}} tokens ንዚኣዚ  ጽሑፍ ተኸፊሉ።"
   },
   "emojiPicker": {
     "searchEmoji": "ኢሞጂ ድለ",
@@ -7405,7 +7518,8 @@
           "1": "AI ኣብ ሓደ ርክብ ናይቲ ሓሳባት ይዝክር።",
           "2": "ብዛዕባ DeHub ባህርያት፣ ክሪፕቶ ቃላት ወይ ሓፈሻዊ ሕቶታት ንAI ክትሓትዎ ትኽእል።",
           "3": "ቅድሚ ርክባት ተመዝጊቦም ብዝኾነ ግዜ ክርከቡ ይኽእሉ።"
-        }
+        },
+        "title": "ሓጋዚ AI"
       },
       "notifications": {
         "intro": "ብዛዕባ ምፍቃር፣ ርእይቶታት፣ ምኽሳትን ካልእ ኣብቲ ፍርያትካ ዝፍጠር ንጥፈታት ተሓድስ።",
@@ -7419,7 +7533,8 @@
         "tips": {
           "1": "ማዕጾ ምልክት ንቁጽሪ ዘይተነበቡ ማዕጾታት የርኢ።",
           "2": "ማዕጾታት ምኽሳብ ከምዚኣ ዝኣክል ቶክን ከም ዝረኸብካ የርኢ።"
-        }
+        },
+        "title": "ኣፍልጦታት"
       },
       "wallet": {
         "intro": "ኣብ DeHub ቶክን ሂሳብካ ኣብ ዝተፈላለየ ሰንሰለት ርኣይ፣ ንምኽሳብ ዝኣቶኻ ሪኢኻ ንዓቕቢኻ ኣመሓድር።",
@@ -7434,7 +7549,8 @@
         "tips": {
           "1": "ሚዛናት ብቐጥታ ይዕደሱ እኳ እንተኾነ ብዝኾነ ግዜ ንኽትዕድሶም ክትግድፎም ትኽእል።",
           "2": "እቲ ቦርሳ ንክልቲኡ ፈሳሲ (ተረኽበ) ከምኡውን ዝተቐመጠ ባጤራታት የርኢ ።"
-        }
+        },
+        "title": "ቦርሳ"
       },
       "staking": {
         "title": "ምብትታን",
@@ -7911,7 +8027,7 @@
     "step3Body": "ዝኾነ ሰብ ነቲ ሊንክ ክኸፍት ይኽእል እዩ ። ዝኾነ ነገር ንምቕያር ኣብ ቻት መልሲ ሃቡ ።"
   },
   "depin": {
-    "title": "DePin",
+    "title": "ደፕን",
     "noFixedRate": "ብሰለ ሓደ ተመሓይሸት ዋጋ የለን፣ ዝተሳኣነ ምምላስ፣ APY ወይ ድማ ቅድሚት ግምት። መዝገብቲ ሓገዝ ንርክብ ሒሳብ ጥራይ እዮም፣ ከም ተስፋ ኸይከፍል እዩ። ዝኾነ ጸገም ናይ ቶክን ምፍታሕ ኣብ Base ክኸውን እዩን ኣብ ትሕቲ ብቕዓት፣ ሕጊ ኔትወርክን ዝምልከቶ ሕጊን ክኸውን እዩ።",
     "dhbEarnedThisPeriod": "ነዚ እዋን እዚ ዝዕወት ቶከንስ",
     "becomeANode": "ኖድ ኩን",
@@ -8097,7 +8213,7 @@
     "fieldCurve": "ኩርባ",
     "graduatesAtValue": "$ 42,000 ሜካፕ",
     "mcap": "ሜካፕ",
-    "twitter": "X / Twitter",
+    "twitter": "እንተሳሳተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራርተል እንተስራር",
     "buySymbol": "{{symbol}} ግዛእ",
     "sellSymbol": "{{symbol}} ሽጥ"
   },
