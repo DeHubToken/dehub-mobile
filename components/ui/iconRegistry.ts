@@ -200,6 +200,7 @@ import PinIcon from "lucide-react-native/dist/esm/icons/pin";
 import PinOffIcon from "lucide-react-native/dist/esm/icons/pin-off";
 import PlaneIcon from "lucide-react-native/dist/esm/icons/plane";
 import PlayIcon from "lucide-react-native/dist/esm/icons/play";
+import PlugIcon from "lucide-react-native/dist/esm/icons/plug";
 import PlusIcon from "lucide-react-native/dist/esm/icons/plus";
 import QuoteIcon from "lucide-react-native/dist/esm/icons/quote";
 import RadioIcon from "lucide-react-native/dist/esm/icons/radio";
@@ -493,6 +494,7 @@ export const iconRegistry = {
   PinOff: PinOffIcon,
   Plane: PlaneIcon,
   Play: PlayIcon,
+  Plug: PlugIcon,
   Plus: PlusIcon,
   Quote: QuoteIcon,
   Radio: RadioIcon,
