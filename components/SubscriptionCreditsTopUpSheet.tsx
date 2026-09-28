@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { ActivityIndicator, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { useQueryClient } from "@tanstack/react-query";
@@ -17,6 +17,7 @@ import ERC20_ABI from "../config/abis/erc20.json";
 import {
   claimSubscriptionCreditTopUp,
   clearPendingCreditTopUp,
+  FINAL_TOPUP_STATUSES,
   getSubscriptionCreditTopUpTarget,
   rememberPendingCreditTopUp,
 } from "../services/subscription.service";
@@ -55,6 +56,14 @@ const SubscriptionCreditsTopUpSheet: React.FC<Props> = ({ visible, onClose, dhbP
   // would start two transfers. This flag is set synchronously.
   const inFlight = useRef(false);
 
+  // Switched when the sheet opens, not mid-payment: the provider this
+  // component holds only reflects the new chain after a render.
+  useEffect(() => {
+    if (visible && chainId && chainId !== BASE_CHAIN_ID) {
+      switchChain(BASE_CHAIN_ID).catch(() => undefined);
+    }
+  }, [visible, chainId, switchChain]);
+
   const usd = preset ?? Number(custom);
   const validUsd = Number.isFinite(usd) && usd >= MIN_USD && usd <= MAX_USD;
   // Whole tokens, rounded up, so the transfer always covers the dollars chosen.
@@ -70,10 +79,14 @@ const SubscriptionCreditsTopUpSheet: React.FC<Props> = ({ visible, onClose, dhbP
       toastError(null, t("subscriptions.connectWallet"));
       return;
     }
+    if (chainId !== BASE_CHAIN_ID) {
+      // Still switching; the next tap sends on Base.
+      switchChain(BASE_CHAIN_ID).catch((e: any) => toastError(e, t("subscriptions.switchFailed")));
+      return;
+    }
     inFlight.current = true;
     try {
       setStage(t("subscriptions.topUpStageWallet"));
-      if (chainId !== BASE_CHAIN_ID) await switchChain(BASE_CHAIN_ID);
       const target = await getSubscriptionCreditTopUpTarget(BASE_CHAIN_ID);
 
       if (payWith) {
@@ -93,13 +106,21 @@ const SubscriptionCreditsTopUpSheet: React.FC<Props> = ({ visible, onClose, dhbP
         [target.treasuryAddress, ethers.utils.parseUnits(String(tokens), 18)],
         { context: "send" },
       );
-      setStage(t("subscriptions.topUpStageConfirming"));
-      await tx.wait(1);
       if (!tx?.hash) throw new Error(t("subscriptions.noTxHash"));
-
-      // The DHB has left the wallet. From here on the hash is kept until the
-      // API credits it, even if the app closes.
-      await rememberPendingCreditTopUp({ hash: tx.hash, chainId: BASE_CHAIN_ID });
+      // Saved the moment it is sent, before waiting: if the wait fails or the
+      // app closes, the transfer may still land, and the hash is what gets it
+      // credited. The API answers "pending" for a hash not yet mined.
+      await rememberPendingCreditTopUp({ hash: tx.hash, chainId: BASE_CHAIN_ID, address: account });
+      setStage(t("subscriptions.topUpStageConfirming"));
+      try {
+        await tx.wait(1);
+      } catch {
+        // Confirmation could not be read, which is not the same as failed.
+        queryClient.invalidateQueries({ queryKey: ["subscription-credits"] });
+        toastInfo(t("subscriptions.topUpPending"));
+        onClose();
+        return;
+      }
       setStage(t("subscriptions.topUpStageCrediting"));
       let credited = false;
       for (let attempt = 0; attempt < CLAIM_ATTEMPTS && !credited; attempt++) {
@@ -108,7 +129,7 @@ const SubscriptionCreditsTopUpSheet: React.FC<Props> = ({ visible, onClose, dhbP
           const result = await claimSubscriptionCreditTopUp(tx.hash, BASE_CHAIN_ID);
           credited = !result?.pending;
         } catch (err: any) {
-          if (err?.status && err.status < 500) {
+          if (err?.status && FINAL_TOPUP_STATUSES.has(err.status)) {
             await clearPendingCreditTopUp(tx.hash);
             throw err;
           }
