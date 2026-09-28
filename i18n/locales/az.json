@@ -354,6 +354,8 @@
     "compactModeDesc": "Daha çox məzmun üçün boşluğu azalt",
     "autoPlay": "Videoları Avto-oynat",
     "autoPlayDesc": "Lentdə videoları avtomatik oynat",
+    "autoPlayMuted": "Avtomatik oynatmanı səssiz başlat",
+    "autoPlayMutedDesc": "Özü oynayan videolar həmişə səssiz başlayır",
     "showAnimations": "Animasiyaları Göstər",
     "showAnimationsDesc": "Hamar keçidlər və effektləri aktivləşdir",
     "coinPlacement": "Sikkə Yerləşdirməsi",

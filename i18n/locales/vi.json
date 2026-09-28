@@ -354,6 +354,8 @@
     "compactModeDesc": "Thu hẹp khoảng cách để hiển thị nhiều nội dung hơn",
     "autoPlay": "Tự động phát video",
     "autoPlayDesc": "Tự động phát video trong bảng tin",
+    "autoPlayMuted": "Tự động phát ở chế độ tắt tiếng",
+    "autoPlayMutedDesc": "Video tự phát luôn bắt đầu với âm thanh tắt",
     "showAnimations": "Hiện hiệu ứng động",
     "showAnimationsDesc": "Bật chuyển cảnh và hiệu ứng mượt mà",
     "coinPlacement": "Vị trí đồng coin",

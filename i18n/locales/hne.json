@@ -354,6 +354,8 @@
     "compactModeDesc": "अउ सामग्री बर दूरी कम करव",
     "autoPlay": "वीडियो अपने आप चलाव",
     "autoPlayDesc": "फीड मा वीडियो अपने आप चलाव",
+    "autoPlayMuted": "ऑटोप्ले ल बिना आवाज के सुरू करव",
+    "autoPlayMutedDesc": "अपन आप चलइया वीडियो हमेसा बिना आवाज के सुरू होही",
     "showAnimations": "एनिमेशन देखाव",
     "showAnimationsDesc": "स्मूथ ट्रांजिशन अउ इफेक्ट चालू करव",
     "coinPlacement": "सिक्का प्लेसमेंट",

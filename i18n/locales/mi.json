@@ -354,6 +354,8 @@
     "compactModeDesc": "Whakaitia ngā mokowā mō te ihirangi nui ake",
     "autoPlay": "Whakaatu aunoa ataata",
     "autoPlayDesc": "Whakaatu aunoa ngā ataata i te pūrere",
+    "autoPlayMuted": "Tīmata te pūrei aunoa me te kore oro",
+    "autoPlayMutedDesc": "Ka tīmata tonu ngā ataata ka pūrei ā-ake me te kore oro",
     "showAnimations": "Whakaaturia ngā nekehanga",
     "showAnimationsDesc": "Whakahoehia ngā whitiwhiti māmā me ngā pānga",
     "coinPlacement": "Wāhi moni",

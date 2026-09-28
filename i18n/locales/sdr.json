@@ -354,6 +354,8 @@
     "compactModeDesc": "زیادہ مواد کے لیے فاصلہ کم کرو",
     "autoPlay": "خودکار ویڈیو چلاؤ",
     "autoPlayDesc": "فیڈ میں ویڈیو خودکار چلائی جائیں",
+    "autoPlayMuted": "ऑटोप्ले बिना आवाज से शुरू करा",
+    "autoPlayMutedDesc": "अपने से चलेक वाला वीडियो हमेशा बिना आवाज से शुरू होवी",
     "showAnimations": "اینیمیشن دکھاؤ",
     "showAnimationsDesc": "ہموار تبدیلی اور اثرات فعال کرو",
     "coinPlacement": "سکے کی جگہ",

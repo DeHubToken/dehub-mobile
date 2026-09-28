@@ -354,6 +354,8 @@
     "compactModeDesc": "Zmniejsz odstępy dla większej ilości treści",
     "autoPlay": "Autoodtwarzanie",
     "autoPlayDesc": "Automatycznie odtwarzaj filmy w kanale",
+    "autoPlayMuted": "Uruchamiaj autoodtwarzanie bez dźwięku",
+    "autoPlayMutedDesc": "Filmy odtwarzane automatycznie zawsze zaczynają się z wyłączonym dźwiękiem",
     "showAnimations": "Pokaż animacje",
     "showAnimationsDesc": "Włącz płynne przejścia i efekty",
     "coinPlacement": "Umiejscowienie monety",

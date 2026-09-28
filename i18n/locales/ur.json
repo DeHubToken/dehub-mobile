@@ -354,6 +354,8 @@
     "compactModeDesc": "زیادہ مواد دکھانے کے لیے فاصلہ کم کریں",
     "autoPlay": "خودکار ویڈیو چلائیں",
     "autoPlayDesc": "ویڈیوز خود بخود چلائیں",
+    "autoPlayMuted": "آٹو پلے خاموش حالت میں شروع کریں",
+    "autoPlayMutedDesc": "خود بخود چلنے والی ویڈیوز ہمیشہ آواز بند کے ساتھ شروع ہوں گی",
     "showAnimations": "متحرک تصاویر دکھائیں",
     "showAnimationsDesc": "منتقلی کے اثرات فعال کریں",
     "coinPlacement": "سکے کی جگہ",

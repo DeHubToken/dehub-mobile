@@ -354,6 +354,8 @@
     "compactModeDesc": "Cilikake jarak kanggo ndeleng luwih akeh konten",
     "autoPlay": "Putar Otomatis Video",
     "autoPlayDesc": "Video ing feed diputer otomatis",
+    "autoPlayMuted": "Wiwiti puter otomatis tanpa swara",
+    "autoPlayMutedDesc": "Video sing muter dhewe tansah diwiwiti kanthi swara mati",
     "showAnimations": "Tampilake Animasi",
     "showAnimationsDesc": "Aktifake transisi lan efek sing alus",
     "coinPlacement": "Panggonan Koin",

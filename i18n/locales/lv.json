@@ -354,6 +354,8 @@
     "compactModeDesc": "Samazināt atstarpes vairāk saturam",
     "autoPlay": "Video automātiskā atskaņošana",
     "autoPlayDesc": "Automātiski atskaņot video plūsmā",
+    "autoPlayMuted": "Sākt automātisko atskaņošanu bez skaņas",
+    "autoPlayMutedDesc": "Video, kas atskaņojas paši, vienmēr sākas ar izslēgtu skaņu",
     "showAnimations": "Rādīt animācijas",
     "showAnimationsDesc": "Iespējot gludas pārejas un efektus",
     "coinPlacement": "Monētas izvietojums",

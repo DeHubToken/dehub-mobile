@@ -353,6 +353,8 @@
     "compactModeDesc": "Reduce space make more content show",
     "autoPlay": "Auto-play videos",
     "autoPlayDesc": "Automatically play videos for feed",
+    "autoPlayMuted": "Make autoplay start without sound",
+    "autoPlayMutedDesc": "Video wey dey play by imsef go always start with sound off",
     "showAnimations": "Show animations",
     "showAnimationsDesc": "Turn on smooth transitions and effects",
     "coinPlacement": "Coin placement",

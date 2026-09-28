@@ -354,6 +354,8 @@
     "compactModeDesc": "더 많은 콘텐츠를 위해 간격 줄이기",
     "autoPlay": "동영상 자동 재생",
     "autoPlayDesc": "피드의 동영상 자동 재생",
+    "autoPlayMuted": "자동 재생을 음소거로 시작",
+    "autoPlayMutedDesc": "자동으로 재생되는 동영상은 항상 소리 없이 시작됩니다",
     "showAnimations": "애니메이션 표시",
     "showAnimationsDesc": "부드러운 전환 효과 활성화",
     "coinPlacement": "코인 배치",

@@ -354,6 +354,8 @@
     "compactModeDesc": "Redyus ples fo si mo tin",
     "autoPlay": "Mek video dem ple dia sef",
     "autoPlayDesc": "Play videos by themselves for feed",
+    "autoPlayMuted": "Make autoplay start without sound",
+    "autoPlayMutedDesc": "Video weh di play by yi sef go always start with sound off",
     "showAnimations": "Shaw animation dem",
     "showAnimationsDesc": "On fain fain muvment an efek dem",
     "coinPlacement": "Weh koin go sidon",

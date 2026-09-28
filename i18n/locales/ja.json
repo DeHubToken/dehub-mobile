@@ -354,6 +354,8 @@
     "compactModeDesc": "間隔を狭くしてより多くの内容を表示",
     "autoPlay": "動画の自動再生",
     "autoPlayDesc": "フィード内の動画を自動再生",
+    "autoPlayMuted": "自動再生をミュートで開始",
+    "autoPlayMutedDesc": "自動で再生される動画は常に音声オフで始まります",
     "showAnimations": "アニメーションを表示",
     "showAnimationsDesc": "滑らかなトランジションを有効化",
     "coinPlacement": "コインの配置",

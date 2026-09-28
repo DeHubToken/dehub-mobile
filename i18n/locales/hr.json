@@ -354,6 +354,8 @@
     "compactModeDesc": "Smanjite razmak za više sadržaja",
     "autoPlay": "Automatsko pokretanje videa",
     "autoPlayDesc": "Automatski pokreni videozapise u feedu",
+    "autoPlayMuted": "Pokreni automatsku reprodukciju bez zvuka",
+    "autoPlayMutedDesc": "Videozapisi koji se sami pokreću uvijek počinju bez zvuka",
     "showAnimations": "Prikaži animacije",
     "showAnimationsDesc": "Omogući glatke prijelaze i efekte",
     "coinPlacement": "Položaj novčića",

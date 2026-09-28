@@ -354,6 +354,8 @@
     "compactModeDesc": "Rage tazara don ƙarin abun ciki",
     "autoPlay": "Bidiyo ta atomatik",
     "autoPlayDesc": "Bidiyo ta tashi ta atomatik a cikin jerin",
+    "autoPlayMuted": "Fara kunna kai tsaye ba sauti",
+    "autoPlayMutedDesc": "Bidiyoyin da ke kunnawa da kansu koyaushe za su fara ba tare da sauti ba",
     "showAnimations": "Nuna motsi",
     "showAnimationsDesc": "Kunna sauye-sauye masu laushi da tasiri",
     "coinPlacement": "Wurin tsabar kuɗi",

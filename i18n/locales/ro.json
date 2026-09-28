@@ -354,6 +354,8 @@
     "compactModeDesc": "Reduce spațierea pentru mai mult conținut",
     "autoPlay": "Redare automată video-uri",
     "autoPlayDesc": "Redă automat video-urile din flux",
+    "autoPlayMuted": "Pornește redarea automată fără sunet",
+    "autoPlayMutedDesc": "Videoclipurile care pornesc singure încep mereu cu sunetul oprit",
     "showAnimations": "Afișează animații",
     "showAnimationsDesc": "Activează tranziții și efecte fluide",
     "coinPlacement": "Plasare monedă",
