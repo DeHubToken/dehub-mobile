@@ -7641,7 +7641,8 @@
     "sendFailed": "Lokho akukwazanga ukuthunyelwa",
     "deleteFailed": "Ukwakha akukwazanga ukususwa",
     "loadFailed": "Ukwakha kwakho akukwazanga ukulayishwa",
-    "previewHint": "Kwakhiwe nge-DeHub Builder"
+    "previewHint": "Kwakhiwe nge-DeHub Builder",
+    "buildInChat": "Yakha kuma-DM akho no-@assistant"
   },
   "depin": {
     "title": "DePin",

@@ -7340,7 +7340,8 @@
     "sendFailed": "نەیتوانرا ئەوە بنێردرێت",
     "deleteFailed": "نەیتوانرا دروستکردنەکە بسڕدرێتەوە",
     "loadFailed": "نەیتوانرا دروستکردنەکانت باربکرێن",
-    "previewHint": "بە DeHub Builder دروستکراوە"
+    "previewHint": "بە DeHub Builder دروستکراوە",
+    "buildInChat": "لە نامە تایبەتەکانتدا لەگەڵ @assistant دروستی بکە"
   },
   "depin": {
     "title": "DePin",

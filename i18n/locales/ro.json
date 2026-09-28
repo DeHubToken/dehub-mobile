@@ -7623,7 +7623,8 @@
     "sendFailed": "Nu s-a putut trimite",
     "deleteFailed": "Construcția nu a putut fi ștearsă",
     "loadFailed": "Construcțiile tale nu au putut fi încărcate",
-    "previewHint": "Construit cu DeHub Builder"
+    "previewHint": "Construit cu DeHub Builder",
+    "buildInChat": "Construiește în mesajele directe cu @assistant"
   },
   "depin": {
     "title": "DePin",

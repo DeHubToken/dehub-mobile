@@ -7612,7 +7612,8 @@
     "sendFailed": "Изпращането не бе успешно",
     "deleteFailed": "Строежът не можа да бъде изтрит",
     "loadFailed": "Строежите не можаха да се заредят",
-    "previewHint": "Построено с DeHub Builder"
+    "previewHint": "Построено с DeHub Builder",
+    "buildInChat": "Създавайте в личните съобщения с @assistant"
   },
   "depin": {
     "title": "DePin",

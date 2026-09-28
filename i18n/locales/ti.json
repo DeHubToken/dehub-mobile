@@ -7600,7 +7600,8 @@
     "sendFailed": "ምስዳድ ኣይተኻእለን",
     "deleteFailed": "ህንጸት ክድምሰስ ኣይከኣለን",
     "loadFailed": "ህንጸታትካ ክጽዕኑ ኣይከኣለን",
-    "previewHint": "ብDeHub Builder ተሃኒጹ"
+    "previewHint": "ብDeHub Builder ተሃኒጹ",
+    "buildInChat": "ኣብ ብሕታዊ መልእኽትታትካ ምስ @assistant ስራሕ"
   },
   "depin": {
     "title": "DePin",

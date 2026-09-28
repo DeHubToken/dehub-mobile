@@ -7613,7 +7613,8 @@
     "sendFailed": "无法发送",
     "deleteFailed": "无法删除该构建",
     "loadFailed": "无法加载你的构建",
-    "previewHint": "由 DeHub 构建器构建"
+    "previewHint": "由 DeHub 构建器构建",
+    "buildInChat": "在私信里共 @assistant 一起搭建"
   },
   "depin": {
     "title": "DePin",

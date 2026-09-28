@@ -7067,7 +7067,8 @@
     "sendFailed": "Слање није успело",
     "deleteFailed": "Израда није могла да се обрише",
     "loadFailed": "Ваше израде нису могле да се учитају",
-    "previewHint": "Направљено помоћу DeHub Builder-а"
+    "previewHint": "Направљено помоћу DeHub Builder-а",
+    "buildInChat": "Правите у приватним порукама са @assistant"
   },
   "depin": {
     "title": "DePin",

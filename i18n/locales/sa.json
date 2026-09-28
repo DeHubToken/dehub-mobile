@@ -7519,7 +7519,8 @@
     "sendFailed": "तत् प्रेषयितुं न शक्यते स्म",
     "deleteFailed": "निर्माणं विलोपयितुं न शक्यते स्म",
     "loadFailed": "भवतः निर्माणानि भारयितुं न शक्यन्त",
-    "previewHint": "DeHub निर्मापकेन निर्मितम्"
+    "previewHint": "DeHub निर्मापकेन निर्मितम्",
+    "buildInChat": "@assistant सह स्वसन्देशेषु निर्मीयताम्"
   },
   "depin": {
     "title": "DePin",

@@ -7646,7 +7646,8 @@
     "sendFailed": "एला भेजा नइ जा सकिस",
     "deleteFailed": "बिल्ड ला मेटाया नइ जा सकिस",
     "loadFailed": "तुंहर बिल्ड लोड नइ हो सकिस",
-    "previewHint": "DeHub Builder ले बनाय गे"
+    "previewHint": "DeHub Builder ले बनाय गे",
+    "buildInChat": "@assistant के संग अपन DM म बनावव"
   },
   "depin": {
     "title": "DePin",

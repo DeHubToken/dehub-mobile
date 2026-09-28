@@ -7610,7 +7610,8 @@
     "sendFailed": "To nije bilo moguće poslati",
     "deleteFailed": "Izradu nije bilo moguće izbrisati",
     "loadFailed": "Vaše izrade nije bilo moguće učitati",
-    "previewHint": "Izrađeno pomoću DeHub Buildera"
+    "previewHint": "Izrađeno pomoću DeHub Buildera",
+    "buildInChat": "Gradite u izravnim porukama s @assistant"
   },
   "depin": {
     "title": "DePin",

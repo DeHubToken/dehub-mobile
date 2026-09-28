@@ -7610,7 +7610,8 @@
     "sendFailed": "ما گدرنا نرسل هذا",
     "deleteFailed": "ما گدرنا نحذف البناء",
     "loadFailed": "ما گدرنا نحمّل بناءاتك",
-    "previewHint": "تم البناء بواسطة DeHub Builder"
+    "previewHint": "تم البناء بواسطة DeHub Builder",
+    "buildInChat": "ابنِ بالرسائل الخاصة ويا @assistant"
   },
   "depin": {
     "title": "DePin",

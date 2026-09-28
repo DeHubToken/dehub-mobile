@@ -7610,7 +7610,8 @@
     "sendFailed": "Konnte nicht gesendet werden",
     "deleteFailed": "Build konnte nicht gelöscht werden",
     "loadFailed": "Deine Builds konnten nicht geladen werden",
-    "previewHint": "Erstellt mit DeHub Builder"
+    "previewHint": "Erstellt mit DeHub Builder",
+    "buildInChat": "In deinen DMs mit @assistant bauen"
   },
   "depin": {
     "title": "DePin",

@@ -7614,7 +7614,8 @@
     "sendFailed": "Impossible d'envoyer ce message",
     "deleteFailed": "Impossible de supprimer la création",
     "loadFailed": "Impossible de charger vos créations",
-    "previewHint": "Créé avec DeHub Builder"
+    "previewHint": "Créé avec DeHub Builder",
+    "buildInChat": "Créez dans vos messages privés avec @assistant"
   },
   "depin": {
     "title": "DePin",

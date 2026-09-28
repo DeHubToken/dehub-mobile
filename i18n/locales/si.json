@@ -7603,7 +7603,8 @@
     "sendFailed": "එය යැවිය නොහැකි විය",
     "deleteFailed": "ගොඩනැගීම මකා දැමිය නොහැකි විය",
     "loadFailed": "ඔබේ ගොඩනැගීම් පූරණය කළ නොහැකි විය",
-    "previewHint": "DeHub බිල්ඩර් සමඟ තනන ලදී"
+    "previewHint": "DeHub බිල්ඩර් සමඟ තනන ලදී",
+    "buildInChat": "@assistant සමඟ ඔබේ DM තුළ ගොඩනගන්න"
   },
   "depin": {
     "title": "DePin",

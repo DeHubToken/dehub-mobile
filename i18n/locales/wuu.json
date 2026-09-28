@@ -7610,7 +7610,8 @@
     "sendFailed": "发勿脱",
     "deleteFailed": "删勿脱作品",
     "loadFailed": "读勿出侬个作品",
-    "previewHint": "用DeHub Builder造个"
+    "previewHint": "用DeHub Builder造个",
+    "buildInChat": "勒私信里搭 @assistant 一道搭建"
   },
   "depin": {
     "title": "DePin",

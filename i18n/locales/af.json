@@ -7735,7 +7735,8 @@
     "sendFailed": "Kon dit nie stuur nie",
     "deleteFailed": "Kon nie die bou skrap nie",
     "loadFailed": "Kon nie jou boue laai nie",
-    "previewHint": "Gebou met DeHub Builder"
+    "previewHint": "Gebou met DeHub Builder",
+    "buildInChat": "Bou in jou DM's met @assistant"
   },
   "depin": {
     "title": "DePin",

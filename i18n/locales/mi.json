@@ -7609,7 +7609,8 @@
     "sendFailed": "Kāore i taea te tuku i tērā",
     "deleteFailed": "Kāore i taea te muku i te hangatanga",
     "loadFailed": "Kāore i taea te utu mai i āu hangatanga",
-    "previewHint": "I hangaia mā te DeHub Builder"
+    "previewHint": "I hangaia mā te DeHub Builder",
+    "buildInChat": "Hangaia i ō karere tōtika me @assistant"
   },
   "depin": {
     "title": "DePin",

@@ -7611,7 +7611,8 @@
     "sendFailed": "A kò lè fi ránṣẹ́",
     "deleteFailed": "A kò lè pa ìkọ́ rẹ́",
     "loadFailed": "A kò lè gbé àwọn ìkọ́ rẹ wọlé",
-    "previewHint": "A fi DeHub Builder kọ́ ọ"
+    "previewHint": "A fi DeHub Builder kọ́ ọ",
+    "buildInChat": "Kọ́ nínú àwọn ìfiránṣẹ́ àdáni rẹ pẹ̀lú @assistant"
   },
   "depin": {
     "title": "DePin",

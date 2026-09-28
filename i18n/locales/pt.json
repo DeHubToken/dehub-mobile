@@ -7614,7 +7614,8 @@
     "sendFailed": "Não foi possível enviar isso",
     "deleteFailed": "Não foi possível excluir o build",
     "loadFailed": "Não foi possível carregar seus builds",
-    "previewHint": "Criado com o DeHub Builder"
+    "previewHint": "Criado com o DeHub Builder",
+    "buildInChat": "Crie nas suas mensagens diretas com @assistant"
   },
   "depin": {
     "title": "DePin",

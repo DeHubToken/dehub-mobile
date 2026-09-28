@@ -7605,7 +7605,8 @@
     "sendFailed": "ओकरा भेजल ना जा सकल",
     "deleteFailed": "बिल्ड मेटावल ना जा सकल",
     "loadFailed": "रउरा बिल्ड लोड ना हो सकल",
-    "previewHint": "DeHub Builder से बनल"
+    "previewHint": "DeHub Builder से बनल",
+    "buildInChat": "@assistant के संगे अपना DM में बनाईं"
   },
   "depin": {
     "title": "DePin",

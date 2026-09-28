@@ -7693,7 +7693,8 @@
     "sendFailed": "ইতা পাঠানো যায়নি",
     "deleteFailed": "বিল্ড মুছা যায়নি",
     "loadFailed": "তোমার বিল্ড লোড করা যায়নি",
-    "previewHint": "DeHub Builder দিয়া বানানো"
+    "previewHint": "DeHub Builder দিয়া বানানো",
+    "buildInChat": "@assistant-এর লগে আপনার DM-এ বানাউকা"
   },
   "depin": {
     "title": "DePin",
