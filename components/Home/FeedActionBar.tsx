@@ -17,6 +17,8 @@ import { ReactionEmoji } from "./ReactionEmoji";
 import { haptic } from "../../libs/haptics";
 import { maybeShowReactionTip, markReactionTipSeen } from "../../libs/reaction-tip";
 import { useAppPrefs } from "../../hooks/useAppPrefs";
+import { subscribePostTipped } from "../../libs/tip-events";
+import { TipGemIcon } from "./TipGemIcon";
 
 const ICON_MUTED = "#6F7174";
 const ICON_ACTIVE = "#F9FBFF";
@@ -46,6 +48,8 @@ interface FeedActionBarProps {
   /** Opens the Share sheet (repost / quote / copy-link / send-in-DM / share-as-image). */
   onShare: () => void;
   onTip?: () => void;
+  /** The post's token id — lets the tip gem react when this viewer tips it. */
+  tokenId?: number | string | null;
   onSave: () => void;
   onInfo: () => void;
   /** Which of the ten reactions the viewer holds. `liked`/`disliked` are its polarity. */
@@ -86,8 +90,10 @@ const AnimatedActionButton: React.FC<{
   glyph?: PostReaction;
   /** The glyph is the viewer's own reaction, so it plays its animation. */
   glyphAnimated?: boolean;
+  /** Renders in place of the icon — a custom, self-animating one. */
+  iconNode?: React.ReactNode;
   accessibilityLabel?: string;
-}> = ({ onPress, onPressIn, onLongPress, iconName, iconNameActive, active, activeColor, activeFill, activeStrokeWidth, inactiveColor, iconSize = 20, count, countColor, formatCount, glyph, glyphAnimated, accessibilityLabel }) => {
+}> = ({ onPress, onPressIn, onLongPress, iconName, iconNameActive, active, activeColor, activeFill, activeStrokeWidth, inactiveColor, iconSize = 20, count, countColor, formatCount, glyph, glyphAnimated, iconNode, accessibilityLabel }) => {
   const scale = useRef(new Animated.Value(1)).current;
   useEffect(() => () => scale.stopAnimation(), [scale]);
   // Seven buttons per retained card only animate when tapped. Native-driver
@@ -147,7 +153,7 @@ const AnimatedActionButton: React.FC<{
       style={{ flexDirection: "row", alignItems: "center", gap: 4 }}
     >
       <Animated.View style={animatedStyle}>
-        {glyph ? (
+        {iconNode ? iconNode : glyph ? (
           <ReactionEmoji
             reaction={glyph}
             animate={glyphAnimated}
@@ -184,6 +190,7 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
   onCommentPressIn,
   onShare,
   onTip,
+  tokenId,
   onSave,
   onInfo,
   myReaction = null,
@@ -203,6 +210,14 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
   // The tray needs a handler to route to; without one this stays a plain
   // like/dislike bar (governance and other non-post surfaces).
   const reactionsEnabled = !!onReact;
+
+  // Bumps each time this viewer tips this post, replaying the gem's swirl.
+  const [tipBurst, setTipBurst] = useState(0);
+  useEffect(() => {
+    if (tokenId == null) return;
+    const id = String(tokenId);
+    return subscribePostTipped((tipped) => { if (tipped === id) setTipBurst((n) => n + 1); });
+  }, [tokenId]);
 
   const handleSelect = useCallback((reaction: PostReaction) => {
     setOpenTray(null);
@@ -233,6 +248,7 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
           onPress={onTip}
           accessibilityLabel={t("comments.tip")}
           iconName="Gem"
+          iconNode={tipBurst > 0 ? <TipGemIcon tipped burstKey={tipBurst} size={20} color={ICON_ACTIVE} /> : undefined}
           count={tipCount}
           formatCount
         />
