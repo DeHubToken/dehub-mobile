@@ -40,6 +40,7 @@ export function useCommentTipTotals(tokenId: number | string | undefined) {
       for (const r of (data || []) as Array<{
         comment_id: string | null;
         amount: number;
+        sender_address: string | null;
       }>) {
         if (!r.comment_id) continue;
         const id = Number(r.comment_id);
