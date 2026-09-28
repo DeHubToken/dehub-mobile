@@ -8,6 +8,7 @@ import AppDrawer from '../../components/Home/AppDrawer';
 const mockDispatch = jest.fn();
 let mockSignedIn = true;
 const mockOpenLink = jest.fn();
+const mockRequestTab = jest.fn();
 jest.mock('react-native-css-interop/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
 // The system theme, without the native modules the real provider loads.
 jest.mock('../../context/ThemeContext', () => ({
@@ -34,7 +35,7 @@ jest.mock('react-native-gesture-handler', () => ({
   GestureDetector: ({ children }: { children: React.ReactNode }) => children,
   Gesture: { Pan: () => {
     const gesture: Record<string, unknown> = {};
-    ['activeOffsetX', 'failOffsetY', 'onStart', 'onUpdate', 'onEnd', 'onFinalize'].forEach(key => { gesture[key] = () => gesture; });
+    ['activeOffsetY', 'failOffsetX', 'onStart', 'onUpdate', 'onEnd', 'onFinalize'].forEach(key => { gesture[key] = () => gesture; });
     return gesture;
   } },
 }));
@@ -45,6 +46,8 @@ jest.mock('react-native-reanimated', () => ({
   Easing: { bezier: jest.fn() }, interpolate: jest.fn(),
 }));
 jest.mock('../../components/common/Avatar', () => 'Avatar');
+jest.mock('expo-image', () => ({ Image: 'Image' }));
+jest.mock('../../libs/eventBus', () => ({ homeTabEvents: { requestTab: (postType: string) => mockRequestTab(postType) } }));
 jest.mock('../../components/ui/Icon', () => 'Icon');
 jest.mock('../../config/storefront', () => ({ DIGITAL_PURCHASES_ENABLED: true }));
 jest.mock('../../context/AuthContext', () => ({
@@ -88,16 +91,12 @@ it.each(destinations)('%s immediately closes and targets its registered nested s
   expect(navigator).toContain(`name={ScreenNames.${screen}}`);
 });
 
-it('routes the profile header, follower tabs, and Post through App', () => {
+it('routes the profile header, balance chip, and Post through App', () => {
   const view = render(<AppDrawer visible onClose={jest.fn()} />);
   fireEvent.press(view.getByText('member'));
   expect(mockDispatch).toHaveBeenLastCalledWith({ type: 'NAVIGATE', payload: { name: 'App', params: { screen: 'Profile', params: undefined } } });
-  for (const tab of ['following', 'followers']) {
-    fireEvent.press(view.getByText(` ${'profile.' + tab}`));
-    expect(mockDispatch).toHaveBeenLastCalledWith({ type: 'NAVIGATE', payload: { name: 'App', params: { screen: 'FollowList', params: {
-      address: '0xmember', username: 'member', initialTab: tab, isOwnProfile: true,
-    } } } });
-  }
+  fireEvent.press(view.getByLabelText('nav.wallet 0'));
+  expect(mockDispatch).toHaveBeenLastCalledWith({ type: 'NAVIGATE', payload: { name: 'App', params: { screen: 'Dpay', params: { initialTab: 'buy' } } } });
   fireEvent.press(view.getByLabelText('sidebar.post'));
   expect(mockDispatch).toHaveBeenLastCalledWith({ type: 'NAVIGATE', payload: { name: 'App', params: { screen: 'Upload', params: undefined } } });
 });
@@ -121,4 +120,13 @@ it('searches Explore with the menu query and opens documentation links', () => {
   expect(mockDispatch).toHaveBeenCalledWith({ type: 'NAVIGATE', payload: { name: 'App', params: { screen: 'Root', params: {
     screen: 'Explore', params: { q: 'hello', ts: expect.any(Number) },
   } } } });
+});
+
+it.each([['feed.videos', 'video'], ['feed.images', 'feed-images'], ['feed.music', 'feed-audio'], ['feed.live', 'live']])('%s opens Home on its feed tab', (label, postType) => {
+  const close = jest.fn();
+  const view = render(<AppDrawer visible onClose={close} />);
+  fireEvent.press(view.getByLabelText(label));
+  expect(close).toHaveBeenCalledTimes(1);
+  expect(mockDispatch).toHaveBeenCalledWith({ type: 'NAVIGATE', payload: { name: 'App', params: { screen: 'Root', params: { screen: 'Home', params: undefined } } } });
+  expect(mockRequestTab).toHaveBeenCalledWith(postType);
 });
