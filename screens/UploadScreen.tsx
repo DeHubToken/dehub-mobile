@@ -95,7 +95,7 @@ import type { LiveUploadPayload } from "../hooks/useUploadLive";
 import type { AppStackParamList } from "../navigation/types";
 import { useStages } from "../context/StageContext";
 import { ScreenNames } from "../navigation/ScreenNames";
-import CrossPostPicker from "../components/Upload/CrossPostPicker";
+import CrossPostPicker, { CrossPostButton } from "../components/Upload/CrossPostPicker";
 import { crossPostState } from "../libs/crosspost-store";
 import QuotedPostEmbed from "../components/common/QuotedPostEmbed";
 import { enhanceText } from "../services/ai.service";
@@ -916,6 +916,7 @@ export default function UploadScreen() {
   const [showSoundPicker, setShowSoundPicker] = useState(false);
   const [scheduledDate, setScheduledDate] = useState<Date | null>(null);
   const [showScheduleSheet, setShowScheduleSheet] = useState(false);
+  const [crossPostOpen, setCrossPostOpen] = useState(false);
 
   const soundtrackEnabled =
     !isLiveMode && !isQuoteMode && (mediaMode === "video" || mediaMode === "images");
@@ -2131,6 +2132,12 @@ export default function UploadScreen() {
                 </TouchableOpacity>
               )}
 
+              <CrossPostButton
+                open={crossPostOpen}
+                onToggle={() => setCrossPostOpen((v) => !v)}
+                onManage={() => nav.navigate(ScreenNames.AccountSettings, { initialTab: "multipost" })}
+              />
+
               {!activeIsUploading && (
                 <TouchableOpacity
                   onPress={formHasContent ? handleDraftButton : () => nav.navigate(ScreenNames.Drafts)}
@@ -2177,7 +2184,9 @@ export default function UploadScreen() {
             </TouchableOpacity>
           )}
 
-          <CrossPostPicker onManage={() => nav.navigate(ScreenNames.AccountSettings, { initialTab: "multipost" })} />
+          {crossPostOpen && (
+            <CrossPostPicker onManage={() => nav.navigate(ScreenNames.AccountSettings, { initialTab: "multipost" })} />
+          )}
 
           <View className="mt-3">
             {showTitleInput && (

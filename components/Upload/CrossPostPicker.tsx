@@ -9,8 +9,7 @@ import { PLATFORM_NAMES, getMultipostStatus } from "../../services/multipost.ser
 import { creditsFor } from "../../libs/social-pricing";
 import { multipostQueryKey, platformIcon, useMultipostWallet } from "../Settings/MultiPostPanel";
 
-const CrossPostPicker: React.FC<{ onManage: () => void }> = ({ onManage }) => {
-  const { t } = useTranslation();
+function useCrossPostAccounts() {
   const wallet = useMultipostWallet();
   const { selected } = useSnapshot(crossPostState);
   const status = useQuery({
@@ -19,21 +18,70 @@ const CrossPostPicker: React.FC<{ onManage: () => void }> = ({ onManage }) => {
     enabled: !!wallet,
     staleTime: 60_000,
   });
-
-  if (!wallet || status.isError) return null;
+  const hidden = !wallet || status.isError;
   const accounts = (status.data?.accounts ?? []).filter((a) => !a.pending);
+  return { hidden, accounts, selected, credits: status.data?.credits ?? 0 };
+}
+
+/**
+ * The one control for posting to other platforms, sitting in the composer's
+ * icon row. With nothing connected it goes straight to setup; otherwise it
+ * shows or hides the account list, and the badge counts accounts switched on.
+ */
+export const CrossPostButton: React.FC<{ open: boolean; onToggle: () => void; onManage: () => void }> = ({
+  open,
+  onToggle,
+  onManage,
+}) => {
+  const { t } = useTranslation();
+  const { hidden, accounts, selected } = useCrossPostAccounts();
+  if (hidden) return null;
+  const count = accounts.filter((a) => selected.includes(a.id)).length;
+  const lit = open || count > 0;
+
+  return (
+    <TouchableOpacity
+      onPress={accounts.length ? onToggle : onManage}
+      activeOpacity={0.7}
+      className="w-9 h-9 rounded-xl items-center justify-center border"
+      style={{
+        backgroundColor: lit ? "rgba(255,255,255,0.2)" : "rgba(255,255,255,0.1)",
+        borderColor: lit ? "rgba(255,255,255,0.4)" : "rgba(255,255,255,0.2)",
+      }}
+      hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+      accessibilityRole="button"
+      accessibilityState={{ expanded: open }}
+      accessibilityLabel={accounts.length ? t("multiPost.alsoPostTo") : t("multiPost.setUp")}
+    >
+      <Icon name="Share2" size={16} color="#fff" />
+      {count > 0 && (
+        <View
+          className="absolute w-4 h-4 rounded-full bg-white items-center justify-center"
+          style={{ top: -4, right: -4 }}
+        >
+          <Text className="text-black font-bold" style={{ fontSize: 10 }}>
+            {count}
+          </Text>
+        </View>
+      )}
+    </TouchableOpacity>
+  );
+};
+
+const CrossPostPicker: React.FC<{ onManage: () => void }> = ({ onManage }) => {
+  const { t } = useTranslation();
+  const { hidden, accounts, selected, credits } = useCrossPostAccounts();
+
+  if (hidden || !accounts.length) return null;
   const active = accounts.filter((a) => selected.includes(a.id)).reduce((sum, a) => sum + creditsFor(a.platform), 0);
 
   return (
     <View className="mt-3">
       <View className="flex-row items-center justify-between mb-2">
-        <View className="flex-row items-center gap-1.5">
-          <Icon name="Share2" size={12} color="#A1A1AA" />
-          <Text className="text-theme-neutrals-400 text-xs">{t("multiPost.alsoPostTo")}</Text>
-        </View>
+        <Text className="text-theme-neutrals-400 text-xs">{t("multiPost.alsoPostTo")}</Text>
         {active > 0 && (
           <Text className="text-theme-neutrals-400 text-xs">
-            {t("multiPost.creditsUsed", { count: active, balance: status.data?.credits ?? 0 })}
+            {t("multiPost.creditsUsed", { count: active, balance: credits })}
           </Text>
         )}
       </View>
@@ -66,9 +114,7 @@ const CrossPostPicker: React.FC<{ onManage: () => void }> = ({ onManage }) => {
           className="px-2.5 py-1 rounded-full"
           style={{ borderWidth: 1, borderStyle: "dashed", borderColor: "rgba(255,255,255,0.2)" }}
         >
-          <Text className="text-theme-neutrals-400 text-xs">
-            {accounts.length ? t("multiPost.manage") : t("multiPost.setUp")}
-          </Text>
+          <Text className="text-theme-neutrals-400 text-xs">{t("multiPost.manage")}</Text>
         </TouchableOpacity>
       </View>
     </View>
