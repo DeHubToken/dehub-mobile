@@ -142,6 +142,8 @@ const NAV_ITEMS: DrawerItem[] = [
   // Sits between Stores and Glossary, as on the web sidebar. Only the games
   // that work on a touchscreen are listed — see config/arcade-games.
   { icon: "Gamepad2", labelKey: "nav.arcade", screen: ScreenNames.Arcade, storefrontHidden: true },
+  // The mini app store. Third-party apps, so kept off the iOS storefront build like the arcade.
+  { icon: "LayoutGrid", labelKey: "miniApps.store.title", screen: ScreenNames.Apps, storefrontHidden: true },
   { icon: "ArrowDownToLine", labelKey: "nav.converter", screen: ScreenNames.Converter, requiresAuth: true },
   { icon: "FolderInput", labelKey: "nav.migrate", screen: ScreenNames.Migrate },
   { icon: "Scroll", labelKey: "nav.glossary", screen: ScreenNames.Glossary },
@@ -167,7 +169,7 @@ const ICON_KEYS: Record<string, string> = {
   "nav.superpowers": "superpowers", "nav.governance": "governance", "nav.dao": "dao",
   "screens.work": "bounties", "nav.careers": "careers", "screens.stores": "stores",
   "nav.fractions": "fractions", "screens.usernames": "usernames", "screens.accounts": "accounts",
-  "nav.ads": "ads", "nav.tv": "tv", "nav.arcade": "arcade", "nav.glossary": "glossary", "nav.bridge": "bridge",
+  "nav.ads": "ads", "nav.tv": "tv", "nav.arcade": "arcade", "miniApps.store.title": "stores", "nav.glossary": "glossary", "nav.bridge": "bridge",
   "nav.wallet": "buy", "creatorPacks.title": "images", "nav.affiliate": "subscriptions",
   "nav.creators": "subscriptions", "nav.agents": "assistant", "nav.converter": "videos",
   "nav.migrate": "bridge", "nav.guide": "pinned", "nav.connectAi": "command", "nav.docs": "posts",
