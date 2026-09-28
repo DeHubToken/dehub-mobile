@@ -80,7 +80,10 @@ export async function getOrCreateAuthSignature(
         method: "personal_sign",
         params: [message, address],
       });
-    } catch {
+    } catch (error: any) {
+      // Changing parameter order only fixes an invalid-params response. A
+      // cancellation or broken WalletConnect transport must not prompt twice.
+      if (error?.code !== -32602 && !/invalid params|invalid parameters/i.test(error?.message ?? '')) throw error;
       signature = await injected.request({
         method: "personal_sign",
         params: [address, message],
