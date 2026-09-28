@@ -57,6 +57,7 @@ import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import type { NativeGesture } from "react-native-gesture-handler";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import { VideoView, useVideoPlayer } from "expo-video";
+import { useSettledVideoSource } from "../hooks/useSettledVideoSource";
 import PictureInPictureButton from "../components/common/PictureInPictureButton";
 import { configureForBackgroundPlayback, releaseBackgroundPlayback } from "../libs/audioSession";
 import { FEED_BUFFER_OPTIONS } from "../libs/videoBuffering";
@@ -304,6 +305,7 @@ const ActionButton: React.FC<ActionButtonProps> = ({
 interface ShortItemProps {
   item: UnifiedFeedItem;
   isActive: boolean;
+  isNearby: boolean;
   activeVideoRef: React.RefObject<VideoView | null>;
   itemHeight: number;
   viewportHeight: number;
@@ -326,7 +328,7 @@ interface ShortItemProps {
   onCommentsVisibilityChange: (visible: boolean) => void;
 }
 
-const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, itemHeight, viewportHeight, isMuted, volume, playbackRate, pagerGesture, onChromeVisibilityChange, onCommentsVisibilityChange }) => {
+const ShortItem = React.memo<ShortItemProps>(({ item, isActive, isNearby, activeVideoRef, itemHeight, viewportHeight, isMuted, volume, playbackRate, pagerGesture, onChromeVisibilityChange, onCommentsVisibilityChange }) => {
   // Live window size, not a module-level snapshot: on iPad the pager cells
   // and tap zones were sized for the launch orientation.
   const { t } = useCopy();
@@ -457,7 +459,13 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
   const [showShareSheet, setShowShareSheet] = useState(false);
   const [isPlaying, setIsPlaying] = useState(true);
   const [isPausedByUser, setIsPausedByUser] = useState(false);
+  const pausedByUserRef = useRef(isPausedByUser);
+  pausedByUserRef.current = isPausedByUser;
+  const itemNavigation = useNavigation();
   const [firstFrameRendered, setFirstFrameRendered] = useState(false);
+  useEffect(() => {
+    if (!isActive) setFirstFrameRendered(false);
+  }, [isActive]);
   const [captionExpanded, setCaptionExpanded] = useState(false);
   const [screenshotMode, setScreenshotMode] = useState(false);
   const [is2xSpeed, setIs2xSpeed] = useState(false);
@@ -544,19 +552,19 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
   const isActiveRef = useRef(isActive);
   isActiveRef.current = isActive;
 
-  // The list keeps a neighbour either side mounted, and each one's player
-  // starts buffering as soon as it has a source. Under data saver only the
-  // short being watched gets one, so swiping past costs nothing extra.
+  // FlatList also retains its initial cells after they leave the window.
+  // Keep those players empty, and let neighbours buffer only after settling.
   const { liteMode } = useDataSaver();
-  const playerSource = liteMode && !isActive ? null : videoUrl || null;
+  const playerSource = isActive || (isNearby && !liteMode) ? videoUrl || null : null;
 
-  const player = useVideoPlayer(playerSource, (p) => {
+  const player = useVideoPlayer(null, (p) => {
     p.staysActiveInBackground = isActive;
     p.showNowPlayingNotification = isActive;
     p.loop = true;
     p.muted = mutedRef.current;
     p.bufferOptions = FEED_BUFFER_OPTIONS;
   });
+
 
   const stopPlayback = useCallback(() => {
     try {
@@ -580,6 +588,10 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
       return false;
     }
   }, [player, stopPlayback]);
+
+  useSettledVideoSource(player, playerSource, isActive, () => {
+    if (!pausedByUserRef.current && itemNavigation.isFocused()) playIfActive();
+  });
 
   useEffect(() => {
     if (!player) return;
@@ -701,7 +713,6 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
   // never sees a change and the short keeps looping underneath. The
   // navigation emitter fires regardless of freeze, so pause on blur there and
   // resume on focus if this is still the active, unpaused item.
-  const itemNavigation = useNavigation();
   useEffect(() => {
     if (!player) return;
     const onBlur = () => {
@@ -2035,6 +2046,7 @@ const ShortsViewerScreen = () => {
       <ShortItem
         item={item}
         isActive={index === activeIndex}
+        isNearby={Math.abs(index - activeIndex) <= 1}
         activeVideoRef={activeVideoRef}
         itemHeight={containerHeight}
         viewportHeight={viewportHeight}
