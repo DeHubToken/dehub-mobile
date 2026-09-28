@@ -1268,6 +1268,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           style={{ alignSelf: "stretch", marginTop: 8 }}
         >
           <ContainedFeedImage
+            active={isVisible}
             uri={galleryImages[0]}
             width={isMinimal ? SCREEN_WIDTH : SINGLE_IMAGE_WIDTH}
             fallbackWidth={isMinimal ? SCREEN_WIDTH : SINGLE_IMAGE_WIDTH}
@@ -1297,6 +1298,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             style={{ marginRight: index === galleryImages.length - 1 ? 0 : 8 }}
           >
             <ContainedFeedImage
+              active={isVisible}
               uri={uri}
               width={itemWidth}
               compact
