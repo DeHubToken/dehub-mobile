@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   ActivityIndicator,
   ListRenderItem,
-} from "react-native";
+} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { DeHubLoader } from "../components/DeHubLoader";
@@ -368,10 +368,10 @@ const LeaderboardScreen = () => {
   const getItemLayout = useCallback(
     (_: any, index: number) => ({
       length: ROW_HEIGHT,
-      offset: ROW_HEIGHT * index,
+      offset: headerHeight + ROW_HEIGHT * index,
       index,
     }),
-    []
+    [headerHeight]
   );
 
   const renderEmpty = useCallback(
@@ -460,9 +460,9 @@ const LeaderboardScreen = () => {
               progressViewOffset={refreshOffset}
             />
           }
-          initialNumToRender={20}
+          initialNumToRender={10}
           windowSize={10}
-          maxToRenderPerBatch={20}
+          maxToRenderPerBatch={4}
           updateCellsBatchingPeriod={50}
           removeClippedSubviews={false}
           getItemLayout={getItemLayout}
