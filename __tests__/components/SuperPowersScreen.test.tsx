@@ -27,15 +27,18 @@ jest.mock('../../components/ScreenHeader', () => 'ScreenHeader');
 jest.mock('../../components/Badge/BadgeProgress', () => ({ BadgeProgress: () => null }));
 jest.mock('../../components/common/SuperPowerIcon', () => 'SuperPowerIcon');
 jest.mock('../../components/ui/GlassModal', () => ({ __esModule: true, default: () => null }));
-jest.mock('../../components/common/SpendPowerSheet', () => ({
-  __esModule: true, default: ({ power }: any) => power ? React.createElement('Text', { testID: 'spend-power' }, power.key) : null,
-}));
-jest.mock('../../components/common/TeamUpSheet', () => ({
-  __esModule: true, default: ({ visible }: any) => visible ? React.createElement('Text', { testID: 'team-up' }, 'Team up open') : null,
-}));
-jest.mock('../../components/Dpay/BuyDhbSheet', () => ({
-  __esModule: true, default: () => React.createElement('Text', { testID: 'token-purchase' }, 'Token purchase'),
-}));
+jest.mock('../../components/common/SpendPowerSheet', () => {
+  const element = require('react').createElement;
+  return { __esModule: true, default: ({ power }: any) => power ? element('Text', { testID: 'spend-power' }, power.key) : null };
+});
+jest.mock('../../components/common/TeamUpSheet', () => {
+  const element = require('react').createElement;
+  return { __esModule: true, default: ({ visible }: any) => visible ? element('Text', { testID: 'team-up' }, 'Team up open') : null };
+});
+jest.mock('../../components/Dpay/BuyDhbSheet', () => {
+  const element = require('react').createElement;
+  return { __esModule: true, default: () => element('Text', { testID: 'token-purchase' }, 'Token purchase') };
+});
 
 beforeEach(() => { mockStatus = undefined; mockPurchases = false; });
 
