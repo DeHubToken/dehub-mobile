@@ -1,49 +1,14 @@
 /**
- * DeHub Builder client. Same `builder-api` edge function as dehubweb's
- * src/lib/builder/api.ts (wallet-native auth via x-wallet-address +
- * x-dehub-token), plus the public URLs a generated app is served from.
+ * Where DeHub Builder apps live, and how to render one.
+ *
+ * Builds are started from Messages now — @assistant calls dehubweb's
+ * `builder-api` function on the user's behalf — so the app no longer talks to it.
+ * What is left is the public address a generated app is served from and the
+ * renderer the /builder/preview/:id screen uses, which is where the links the
+ * bot sends land.
  */
 import env from "../config/env";
-import { supabase } from "./supabase";
-import { dehubAuthHeaders } from "./ai.service";
 import { SHARE_ORIGIN } from "../libs/dehub-links";
-
-export type BuilderStatus = "queued" | "generating" | "publishing" | "updating" | "live" | "error";
-export type BuilderModel = "best" | "fast";
-
-export interface BuilderProject {
-  id: string;
-  name: string;
-  emoji: string;
-  prompt: string;
-  status: BuilderStatus;
-  status_detail: string | null;
-  error: string | null;
-  version: number;
-  is_public: boolean;
-  created_at: string;
-  updated_at: string;
-}
-
-export interface BuilderMessage {
-  id: string;
-  role: "user" | "agent" | "log";
-  content: string;
-  created_at: string;
-}
-
-export interface BuilderFile {
-  path: string;
-  content: string;
-}
-
-export interface BuilderAllowance {
-  used: number;
-  limit: number;
-  tierName: string;
-}
-
-export const BUSY_STATUSES: ReadonlySet<string> = new Set(["queued", "generating", "publishing", "updating"]);
 
 /** Public Storage directory the generated files live in (trailing slash). */
 export function builderStorageBase(projectId: string): string {
@@ -54,51 +19,6 @@ export function builderStorageBase(projectId: string): string {
 export function builderShareUrl(projectId: string): string {
   return `${SHARE_ORIGIN}/builder/preview/${projectId}`;
 }
-
-async function invokeBuilder<T>(wallet: string | null | undefined, body: Record<string, unknown>): Promise<T> {
-  const headers = await dehubAuthHeaders(wallet);
-  if (!headers["x-dehub-token"] || !headers["x-wallet-address"]) throw new Error("Sign in to use the Builder.");
-  const { data, error } = await supabase.functions.invoke("builder-api", { body, headers });
-  if (error) {
-    // functions.invoke swallows non-2xx bodies; surface the server's message.
-    const ctx = (error as { context?: any }).context;
-    let payload: { error?: string } | null = null;
-    try {
-      if (ctx && typeof ctx.json === "function") payload = await ctx.json();
-      else if (typeof ctx?.body === "string") payload = JSON.parse(ctx.body);
-    } catch {
-      /* not JSON */
-    }
-    throw new Error(payload?.error || error.message || "Builder request failed");
-  }
-  if (data?.error) throw new Error(data.error);
-  return data as T;
-}
-
-export const fetchBuilderAllowance = (wallet?: string | null) =>
-  invokeBuilder<{ allowance: BuilderAllowance }>(wallet, { action: "allowance" });
-
-export const listBuilderProjects = (wallet?: string | null) =>
-  invokeBuilder<{ projects: BuilderProject[] }>(wallet, { action: "list" });
-
-export const createBuilderProject = (wallet: string | null | undefined, prompt: string, model: BuilderModel) =>
-  invokeBuilder<{ projectId: string; allowance: BuilderAllowance }>(wallet, { action: "create", prompt, model });
-
-export const sendBuilderMessage = (
-  wallet: string | null | undefined,
-  projectId: string,
-  content: string,
-  model: BuilderModel,
-) => invokeBuilder<{ ok: boolean; allowance: BuilderAllowance }>(wallet, { action: "send", projectId, content, model });
-
-export const getBuilderProject = (wallet: string | null | undefined, projectId: string) =>
-  invokeBuilder<{ project: BuilderProject; messages: BuilderMessage[]; files: BuilderFile[] }>(wallet, {
-    action: "get",
-    projectId,
-  });
-
-export const removeBuilderProject = (wallet: string | null | undefined, projectId: string) =>
-  invokeBuilder<{ ok: boolean }>(wallet, { action: "remove", projectId });
 
 // Storage serves the uploaded HTML as text/plain, so a WebView pointed at it
 // shows source instead of an app. Fetch the text and render it ourselves, with

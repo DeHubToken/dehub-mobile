@@ -1,238 +1,160 @@
 /**
  * BuilderScreen — dehub.io/builder
  *
- * Native port of dehubweb's pages/app/BuilderPage.tsx home + "Your builds"
- * drawer: describe an app, pick a model, and the builder-api function writes
- * and hosts it. Each build opens in BuilderProjectScreen.
+ * A lander, as on web. Building happens in Messages: @assistant takes the
+ * request in the user's DM, builds the app and posts the link back in the same
+ * thread, where a reply changes it. So this screen explains the idea and hands
+ * whatever is typed here straight to that DM, sent, which keeps every build and
+ * every change in the user's messages rather than in a second inbox here.
+ *
+ * BuilderPreviewScreen stays: that is where the links the bot sends open.
  */
-import React, { useState } from "react";
-import { Alert, KeyboardAvoidingView, Pressable, RefreshControl, ScrollView, StyleSheet, Text, View } from "react-native";
+import React, { useRef, useState } from "react";
+import { KeyboardAvoidingView, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
 import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import ScreenHeader, { SCREEN_HEADER_HEIGHT } from "../components/ScreenHeader";
-import Icon from "../components/ui/Icon";
+import Icon, { type IconName } from "../components/ui/Icon";
 import LiquidGlass from "../components/ui/LiquidGlass";
-import { SectionLabel } from "../components/Settings/SettingsPrimitives";
-import { BuildSphere, Composer, useBuilderModel, useStatusMeta } from "../components/Builder/BuilderParts";
 import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
-import { useAuthActions, useUser } from "../context/AuthContext";
+import { useAuthActions } from "../context/AuthContext";
 import { DIGITAL_PURCHASES_ENABLED } from "../config/storefront";
-import { toastError, toastSuccess } from "../libs/toast";
 import { ASSISTANT_ADDRESS, ASSISTANT_USERNAME } from "../libs/assistant";
 import { ScreenNames } from "../navigation/ScreenNames";
 import type { AppStackParamList } from "../navigation/types";
-import {
-  createBuilderProject,
-  fetchBuilderAllowance,
-  listBuilderProjects,
-  removeBuilderProject,
-  type BuilderProject,
-} from "../services/builder.service";
+
+const EXAMPLE_KEYS = ["builder.example1", "builder.example2", "builder.example3"] as const;
+
+const STEPS: Array<{ icon: IconName; title: string; body: string }> = [
+  { icon: "Sparkles", title: "builder.step1Title", body: "builder.step1Body" },
+  { icon: "Wand", title: "builder.step2Title", body: "builder.step2Body" },
+  { icon: "Share2", title: "builder.step3Title", body: "builder.step3Body" },
+];
 
 export default function BuilderScreen() {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const keyboardOffset = useKeyboardOffset(SCREEN_HEADER_HEIGHT);
   const nav = useNavigation<NativeStackNavigationProp<AppStackParamList>>();
-  const queryClient = useQueryClient();
-  const user = useUser();
   const { requireAuth } = useAuthActions();
-  const wallet = user?.walletAddress || user?.address || null;
-  const statusMeta = useStatusMeta();
-  const [model, setModel] = useBuilderModel();
   const [prompt, setPrompt] = useState("");
-  const [creating, setCreating] = useState(false);
+  const inputRef = useRef<TextInput>(null);
 
-  const allowanceQuery = useQuery({
-    queryKey: ["builder-allowance", wallet],
-    queryFn: async () => (await fetchBuilderAllowance(wallet)).allowance,
-    enabled: !!wallet,
-    staleTime: 60_000,
-  });
-  const projectsQuery = useQuery({
-    queryKey: ["builder-projects", wallet],
-    queryFn: async () => (await listBuilderProjects(wallet)).projects,
-    enabled: !!wallet,
-    staleTime: 15_000,
-  });
+  /** Open the @assistant thread, sending `body` into it when there is one. */
+  const openChat = (body?: string) => {
+    requireAuth(() => {
+      nav.navigate(ScreenNames.Chat, {
+        targetAddress: ASSISTANT_ADDRESS,
+        title: `@${ASSISTANT_USERNAME}`,
+        targetUser: { username: ASSISTANT_USERNAME, address: ASSISTANT_ADDRESS },
+        ...(body ? { autoSendText: body } : {}),
+      });
+      if (body) setPrompt("");
+    });
+  };
 
-  const openProject = (id: string) => nav.navigate(ScreenNames.BuilderProject, { id });
-
-  const handleCreate = async () => {
-    const request = prompt.trim();
-    if (!request || creating || !wallet) return;
-    setCreating(true);
-    try {
-      const res = await createBuilderProject(wallet, request, model);
-      queryClient.setQueryData(["builder-allowance", wallet], res.allowance);
-      setPrompt("");
-      void queryClient.invalidateQueries({ queryKey: ["builder-projects"] });
-      openProject(res.projectId);
-    } catch (err) {
-      toastError(err instanceof Error && err.message ? err.message : t("builder.createFailed"));
-    } finally {
-      setCreating(false);
+  const send = () => {
+    const text = prompt.trim();
+    if (!text) {
+      inputRef.current?.focus();
+      return;
     }
+    openChat(text);
   };
 
-  const confirmDelete = (p: BuilderProject) => {
-    Alert.alert(t("builder.deleteBuild"), t("builder.deleteConfirm", { name: p.name }), [
-      { text: t("common.cancel"), style: "cancel" },
-      {
-        text: t("common.delete"),
-        style: "destructive",
-        onPress: async () => {
-          try {
-            await removeBuilderProject(wallet, p.id);
-            void queryClient.invalidateQueries({ queryKey: ["builder-projects"] });
-            toastSuccess(t("builder.deleted"));
-          } catch (err) {
-            toastError(err instanceof Error && err.message ? err.message : t("builder.deleteFailed"));
-          }
-        },
-      },
-    ]);
-  };
-
-  if (!wallet) {
-    return (
-      <View style={styles.screen}>
-        <ScreenHeader title={t("creator.toolBuilder")} />
-        <View style={styles.center}>
-          <Icon name="Sparkles" size={28} color="#f0b3ff" />
-          <Text style={styles.signInText}>{t("builder.signIn")}</Text>
-          <Pressable accessibilityRole="button" onPress={() => requireAuth(() => {})} style={styles.primary}>
-            <Text style={styles.primaryText}>{t("common.signIn")}</Text>
-          </Pressable>
-        </View>
-      </View>
-    );
-  }
-
-  const allowance = allowanceQuery.data;
-  const buildsLeft = allowance ? Math.max(0, allowance.limit - allowance.used) : null;
-  const projects = projectsQuery.data ?? [];
-
-  const allowancePill = (
-    <View style={styles.pill}>
-      <Icon name="Sparkles" size={15} color="#f0b3ff" />
-      <Text style={styles.pillText}>
-        {buildsLeft === null ? "…" : t("builder.buildsLeft", { count: buildsLeft })}
-        {allowance?.tierName ? <Text style={styles.dim}>{` · ${allowance.tierName}`}</Text> : null}
-      </Text>
-      {DIGITAL_PURCHASES_ENABLED && <Icon name="ArrowRight" size={15} color="#fff" />}
-    </View>
-  );
+  const canSend = !!prompt.trim();
 
   return (
     <View style={styles.screen}>
       <ScreenHeader title={t("creator.toolBuilder")} />
       <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding" keyboardVerticalOffset={keyboardOffset}>
         <ScrollView
-          contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 8, paddingBottom: insets.bottom + 32 }}
+          contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 12, paddingBottom: insets.bottom + 32 }}
           keyboardShouldPersistTaps="handled"
-          refreshControl={
-            <RefreshControl
-              refreshing={projectsQuery.isRefetching}
-              onRefresh={() => {
-                void projectsQuery.refetch();
-                void allowanceQuery.refetch();
-              }}
-              tintColor="#fff"
-            />
-          }
         >
-          {/* Staking raises the allowance; the stake screen is a purchase surface, hidden on iOS. */}
-          {DIGITAL_PURCHASES_ENABLED ? (
-            <Pressable
-              accessibilityRole="button"
-              accessibilityHint={t("builder.stakeForAllowance")}
-              onPress={() => nav.navigate(ScreenNames.Dpay, { initialTab: "stake" })}
-              style={{ alignSelf: "center" }}
-            >
-              {allowancePill}
-            </Pressable>
-          ) : (
-            <View style={{ alignSelf: "center" }}>{allowancePill}</View>
-          )}
+          <Text style={styles.title}>{t("builder.landerTitle")}</Text>
+          <Text style={styles.subtitle}>{t("builder.landerSubtitle")}</Text>
 
-          <Text style={styles.greeting}>{t("builder.greeting")}</Text>
+          <LiquidGlass className="rounded-3xl" style={{ marginTop: 22 }}>
+            <View style={styles.composer}>
+              <TextInput
+                ref={inputRef}
+                value={prompt}
+                onChangeText={setPrompt}
+                placeholder={t("builder.promptPlaceholder")}
+                placeholderTextColor="#7a7a80"
+                multiline
+                maxLength={2000}
+                style={styles.input}
+              />
+              <Pressable
+                onPress={send}
+                disabled={!canSend}
+                accessibilityRole="button"
+                style={({ pressed }) => [styles.send, !canSend && { opacity: 0.35 }, pressed && { opacity: 0.7 }]}
+              >
+                <Text style={styles.sendText}>{t("builder.sendToAssistant")}</Text>
+                <Icon name="ArrowUp" size={18} color="#000" strokeWidth={2.5} />
+              </Pressable>
+            </View>
+          </LiquidGlass>
 
-          <Composer
-            value={prompt}
-            onChange={setPrompt}
-            onSend={handleCreate}
-            placeholder={t("builder.composerPlaceholder")}
-            sending={creating}
-            model={model}
-            onModel={setModel}
-            big
-          />
+          <View style={styles.chips}>
+            {EXAMPLE_KEYS.map((key) => (
+              <Pressable
+                key={key}
+                onPress={() => {
+                  setPrompt(t(key));
+                  inputRef.current?.focus();
+                }}
+                accessibilityRole="button"
+                style={({ pressed }) => [styles.chip, pressed && { opacity: 0.7 }]}
+              >
+                <Text style={styles.chipText}>{t(key)}</Text>
+              </Pressable>
+            ))}
+          </View>
 
-          {/* The same builds from a DM: @assistant runs them against this
-              allowance and messages the link back when the app is live. */}
+          <View style={{ marginTop: 28, gap: 10 }}>
+            {STEPS.map((step, i) => (
+              <LiquidGlass key={step.title} className="rounded-2xl">
+                <View style={styles.step}>
+                  <View style={styles.stepIcon}>
+                    <Icon name={step.icon} size={16} color="#fff" />
+                  </View>
+                  <View style={{ flex: 1 }}>
+                    <Text style={styles.stepTitle}>
+                      {`${i + 1}. `}
+                      {t(step.title)}
+                    </Text>
+                    <Text style={styles.stepBody}>{t(step.body)}</Text>
+                  </View>
+                </View>
+              </LiquidGlass>
+            ))}
+          </View>
+
           <Pressable
             accessibilityRole="button"
-            onPress={() =>
-              nav.navigate(ScreenNames.Chat, {
-                targetAddress: ASSISTANT_ADDRESS,
-                title: `@${ASSISTANT_USERNAME}`,
-                targetUser: { username: ASSISTANT_USERNAME, address: ASSISTANT_ADDRESS },
-              })
-            }
+            onPress={() => openChat()}
             style={({ pressed }) => [styles.chatPill, pressed && { opacity: 0.7 }]}
           >
             <Icon name="MessageCircle" size={15} color="#e8e8ea" />
             <Text style={styles.chatPillText}>{t("builder.buildInChat")}</Text>
           </Pressable>
 
-          <View style={{ marginTop: 28 }}>
-            <SectionLabel label={t("builder.yourBuilds")} icon="Sparkles" />
-            <LiquidGlass className="rounded-2xl">
-              {projectsQuery.isError ? (
-                <Text style={[styles.dim, styles.empty]}>{t("builder.loadFailed")}</Text>
-              ) : projects.length === 0 ? (
-                <Text style={[styles.dim, styles.empty]}>{projectsQuery.isLoading ? "…" : t("builder.noBuilds")}</Text>
-              ) : (
-                projects.map((p, i) => {
-                  const s = statusMeta(p);
-                  return (
-                    <Pressable
-                      key={p.id}
-                      onPress={() => openProject(p.id)}
-                      onLongPress={() => confirmDelete(p)}
-                      accessibilityRole="button"
-                      style={({ pressed }) => [styles.row, i > 0 && styles.rowBorder, pressed && { opacity: 0.7 }]}
-                    >
-                      <BuildSphere id={p.id} emoji={p.emoji} />
-                      <View style={{ flex: 1, minWidth: 0 }}>
-                        <Text numberOfLines={1} style={styles.rowTitle}>
-                          {p.name}
-                        </Text>
-                        <View style={styles.statusRow}>
-                          <View style={[styles.dot, { backgroundColor: s.dot }]} />
-                          <Text style={styles.dim}>{s.label}</Text>
-                        </View>
-                      </View>
-                      <Pressable
-                        onPress={() => confirmDelete(p)}
-                        hitSlop={10}
-                        accessibilityRole="button"
-                        accessibilityLabel={t("builder.deleteBuild")}
-                        style={{ padding: 6 }}
-                      >
-                        <Icon name="Trash2" size={16} color="#6b6b70" />
-                      </Pressable>
-                      <Icon name="ChevronRight" size={16} color="#5a5a5e" />
-                    </Pressable>
-                  );
-                })
-              )}
-            </LiquidGlass>
-          </View>
+          {/* Staking raises the allowance; the stake screen is a purchase surface, hidden on iOS. */}
+          {DIGITAL_PURCHASES_ENABLED && (
+            <Pressable
+              accessibilityRole="button"
+              onPress={() => nav.navigate(ScreenNames.Dpay, { initialTab: "stake" })}
+              style={{ alignSelf: "center", marginTop: 14, padding: 4 }}
+            >
+              <Text style={styles.footnote}>{t("builder.stakeForAllowance")}</Text>
+            </Pressable>
+          )}
         </ScrollView>
       </KeyboardAvoidingView>
     </View>
@@ -241,42 +163,57 @@ export default function BuilderScreen() {
 
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: "#000" },
-  center: { flex: 1, alignItems: "center", justifyContent: "center", paddingHorizontal: 24, gap: 14 },
-  signInText: { color: "#fff", fontSize: 17, fontWeight: "600", textAlign: "center" },
-  primary: { backgroundColor: "#fff", borderRadius: 999, paddingHorizontal: 22, paddingVertical: 12 },
-  primaryText: { color: "#000", fontWeight: "700", fontSize: 15 },
-  pill: {
+  title: { color: "#fff", fontSize: 30, fontWeight: "800", textAlign: "center", lineHeight: 35 },
+  subtitle: { color: "#c9c9ce", fontSize: 15, lineHeight: 22, textAlign: "center", marginTop: 12, paddingHorizontal: 6 },
+  composer: { padding: 14 },
+  input: { color: "#fff", fontSize: 17, minHeight: 64, maxHeight: 160, textAlignVertical: "top", paddingVertical: 4 },
+  send: {
+    alignSelf: "flex-end",
     flexDirection: "row",
     alignItems: "center",
-    gap: 8,
+    gap: 6,
+    marginTop: 10,
+    height: 42,
+    paddingLeft: 14,
+    paddingRight: 12,
+    borderRadius: 14,
+    backgroundColor: "#fff",
+  },
+  sendText: { color: "#000", fontSize: 15, fontWeight: "700" },
+  chips: { flexDirection: "row", flexWrap: "wrap", justifyContent: "center", gap: 8, marginTop: 12 },
+  chip: {
     borderRadius: 999,
     borderWidth: 1,
     borderColor: "rgba(255,255,255,0.09)",
-    backgroundColor: "rgba(20,20,22,0.9)",
-    paddingHorizontal: 16,
-    paddingVertical: 9,
+    backgroundColor: "rgba(20,20,22,0.6)",
+    paddingHorizontal: 13,
+    paddingVertical: 8,
   },
-  pillText: { color: "#fff", fontSize: 14, fontWeight: "600" },
+  chipText: { color: "#e8e8ea", fontSize: 14 },
+  step: { flexDirection: "row", gap: 12, padding: 14 },
+  stepIcon: {
+    width: 30,
+    height: 30,
+    borderRadius: 9,
+    backgroundColor: "rgba(255,255,255,0.08)",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  stepTitle: { color: "#fff", fontSize: 15, fontWeight: "700" },
+  stepBody: { color: "#949499", fontSize: 14, lineHeight: 20, marginTop: 3 },
   chatPill: {
     alignSelf: "center",
     flexDirection: "row",
     alignItems: "center",
     gap: 8,
-    marginTop: 14,
+    marginTop: 24,
     borderRadius: 999,
     borderWidth: 1,
     borderColor: "rgba(255,255,255,0.09)",
     backgroundColor: "rgba(20,20,22,0.6)",
     paddingHorizontal: 14,
-    paddingVertical: 8,
+    paddingVertical: 9,
   },
   chatPillText: { color: "#e8e8ea", fontSize: 14, fontWeight: "500" },
-  greeting: { color: "#fff", fontSize: 30, fontWeight: "800", textAlign: "center", marginTop: 22, marginBottom: 18 },
-  dim: { color: "#949499", fontSize: 13, fontWeight: "400" },
-  empty: { padding: 18, textAlign: "center" },
-  row: { flexDirection: "row", alignItems: "center", gap: 12, paddingHorizontal: 14, paddingVertical: 12 },
-  rowBorder: { borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: "rgba(255,255,255,0.09)" },
-  rowTitle: { color: "#fff", fontSize: 16, fontWeight: "700" },
-  statusRow: { flexDirection: "row", alignItems: "center", gap: 6, marginTop: 2 },
-  dot: { width: 8, height: 8, borderRadius: 4 },
+  footnote: { color: "#949499", fontSize: 13, textAlign: "center" },
 });
