@@ -5,11 +5,12 @@
  * jest.config.js.
  */
 const base = require("nativewind/jsx-runtime");
-const { squareProps } = require("./shape");
+const { themedType } = require("./themed-shape");
 
 function wrap(fn) {
   return function (type, props, ...rest) {
-    return fn(type, squareProps(props), ...rest);
+    const shaped = props && (props.style !== undefined || props.imageStyle !== undefined);
+    return fn(shaped ? themedType(type, base.jsx) : type, props, ...rest);
   };
 }
 
