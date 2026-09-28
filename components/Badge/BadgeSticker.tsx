@@ -37,8 +37,11 @@ interface Props {
   onInteract?: () => void;
 }
 
-/** The artwork's share of the sticker; the rest is cut border. */
-export const ART_SHARE = 0.84;
+/**
+ * The artwork's share of the sticker. The plate is already grown past the
+ * art, so a small margin is enough for a thin white edge that hugs it.
+ */
+export const ART_SHARE = 0.95;
 const MAX_TILT = 26;
 const RAINBOW = ["#ff6b8b", "#ffc46b", "#fff27a", "#7dffc0", "#6ad8ff", "#a98bff", "#ff7ae6", "#ff6b8b"] as const;
 
