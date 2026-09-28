@@ -6490,7 +6490,11 @@
         "false_dilemma": "Ama framing",
         "overgeneralisation": "Sheegashada dhididka",
         "hostile_tone": "Qaylo-dhaanta martida"
-      }
+      },
+      "aiMenu": "Qalabka AI",
+      "changeVibe": "Beddel qaabka",
+      "fixSpelling": "Sax higaadda iyo naxwaha",
+      "rewriteFailed": "Dib looma qori karin. Isku day mar kale."
     }
   },
   "drafts": {

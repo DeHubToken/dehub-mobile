@@ -6543,7 +6543,11 @@
         "false_dilemma": "Enquadramento ou-ou",
         "overgeneralisation": "Reivindicação abrangente",
         "hostile_tone": "Tom hostil"
-      }
+      },
+      "aiMenu": "Ferramentas de IA",
+      "changeVibe": "Mudar a vibe",
+      "fixSpelling": "Corrigir ortografia e gramática",
+      "rewriteFailed": "Não foi possível reescrever. Tente novamente."
     }
   },
   "drafts": {

@@ -6489,7 +6489,11 @@
         "false_dilemma": "ከምዚ ወይ ከምቲ",
         "overgeneralisation": "ብሓደ ቃላት ይፈርድ",
         "hostile_tone": "ብዘይ ምኽንያት ይወቅዕ"
-      }
+      },
+      "aiMenu": "መሳርሒታት AI",
+      "changeVibe": "ቅዲ ቀይር",
+      "fixSpelling": "ፊደልን ሰዋስውን ኣስተኻኽል",
+      "rewriteFailed": "ዳግማይ ክጽሓፍ ኣይተኻእለን። ደጊምካ ፈትን።"
     }
   },
   "drafts": {

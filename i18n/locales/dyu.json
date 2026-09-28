@@ -6431,7 +6431,11 @@
         "false_dilemma": "O la, a tun be se ka kɛ ko a tun ye mɔgɔ ye.",
         "overgeneralisation": "Fanga be min na, o ye ka to ka to ka to ka",
         "hostile_tone": "Tɔɔrɔ min be mɔgɔ kan"
-      }
+      },
+      "aiMenu": "AI baarakɛminanw",
+      "changeVibe": "Kuma cogo yɛlɛma",
+      "fixSpelling": "Sɛbɛnni ni kaan latilen",
+      "rewriteFailed": "A ma se ka sɛbɛn kokura. I ka segin a kan."
     }
   },
   "drafts": {

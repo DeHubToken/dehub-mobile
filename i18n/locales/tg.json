@@ -6490,7 +6490,11 @@
         "false_dilemma": "Чорчӯбаи ё- or",
         "overgeneralisation": "Даъвои ҷӯшон",
         "hostile_tone": "Оҳанги душманона"
-      }
+      },
+      "aiMenu": "Абзорҳои ЗС",
+      "changeVibe": "Табъро иваз кунед",
+      "fixSpelling": "Имло ва грамматикаро ислоҳ кунед",
+      "rewriteFailed": "Аз нав навиштан нашуд. Боз кӯшиш кунед."
     }
   },
   "drafts": {

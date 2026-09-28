@@ -6523,7 +6523,11 @@
         "false_dilemma": "Een of ander raamwerk",
         "overgeneralisation": "Vloeiende bewering",
         "hostile_tone": "Vyandige toon"
-      }
+      },
+      "aiMenu": "KI-hulpmiddels",
+      "changeVibe": "Verander die gevoel",
+      "fixSpelling": "Herstel spelling en grammatika",
+      "rewriteFailed": "Kon dit nie herskryf nie. Probeer weer."
     }
   },
   "drafts": {

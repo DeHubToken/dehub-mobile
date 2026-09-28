@@ -6494,7 +6494,11 @@
         "false_dilemma": "Buď - nebo rámování",
         "overgeneralisation": "Zametací nárok",
         "hostile_tone": "Nepřátelský tón"
-      }
+      },
+      "aiMenu": "Nástroje AI",
+      "changeVibe": "Změnit náladu",
+      "fixSpelling": "Opravit pravopis a gramatiku",
+      "rewriteFailed": "Nepodařilo se přepsat. Zkuste to znovu."
     }
   },
   "drafts": {

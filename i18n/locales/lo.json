@@ -6447,7 +6447,11 @@
         "false_dilemma": "ຫລື ສຣະໄອ ໄມ້ມະໄລ ນຶ່ງ (ໄ) ສຣະໄອ",
         "overgeneralisation": "ການອ້າງສິດການຂູດຮີດ",
         "hostile_tone": "ສຽງທີ່ເປັນສັດຕູ"
-      }
+      },
+      "aiMenu": "ເຄື່ອງມື AI",
+      "changeVibe": "ປ່ຽນບັນຍາກາດ",
+      "fixSpelling": "ແກ້ການສະກົດ ແລະ ໄວຍາກອນ",
+      "rewriteFailed": "ບໍ່ສາມາດຂຽນຄືນໄດ້. ລອງໃໝ່."
     }
   },
   "drafts": {

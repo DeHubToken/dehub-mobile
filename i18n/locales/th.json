@@ -6514,7 +6514,11 @@
         "false_dilemma": "ทั้งสองอย่าง - หรือการทำกรอบ",
         "overgeneralisation": "การกวาดเคลม",
         "hostile_tone": "โทนเสียงที่ไม่เป็นมิตร"
-      }
+      },
+      "aiMenu": "เครื่องมือ AI",
+      "changeVibe": "เปลี่ยนโทน",
+      "fixSpelling": "แก้การสะกดและไวยากรณ์",
+      "rewriteFailed": "เขียนใหม่ไม่สำเร็จ ลองอีกครั้ง"
     }
   },
   "drafts": {

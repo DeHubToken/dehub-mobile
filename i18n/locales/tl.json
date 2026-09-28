@@ -6537,7 +6537,11 @@
         "false_dilemma": "Framing na \"alinman-o\"",
         "overgeneralisation": "Malawakang pahayag",
         "hostile_tone": "Mapusok na tono"
-      }
+      },
+      "aiMenu": "Mga AI tool",
+      "changeVibe": "Palitan ang vibe",
+      "fixSpelling": "Ayusin ang spelling at grammar",
+      "rewriteFailed": "Hindi ma-rewrite. Subukan muli."
     }
   },
   "drafts": {

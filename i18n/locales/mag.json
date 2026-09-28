@@ -6489,7 +6489,11 @@
         "false_dilemma": "चाहे झुकना, चाहे झुकना,",
         "overgeneralisation": "दावा करना, दावा करना",
         "hostile_tone": "हल्ला बोल - हल्ला बोल"
-      }
+      },
+      "aiMenu": "AI टूल्स",
+      "changeVibe": "अंदाज़ बदलें",
+      "fixSpelling": "वर्तनी और व्याकरण सुधारें",
+      "rewriteFailed": "इसे दोबारा नहीं लिख सके। फिर कोशिश करें।"
     }
   },
   "drafts": {

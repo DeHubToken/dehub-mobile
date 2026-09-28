@@ -6521,7 +6521,11 @@
         "false_dilemma": "Yaqa-utaq enmarcación",
         "overgeneralisation": "Reclamación barredora",
         "hostile_tone": "Tono awqa"
-      }
+      },
+      "aiMenu": "Herramientas de IA",
+      "changeVibe": "Cambiar el estilo",
+      "fixSpelling": "Corregir ortografía y gramática",
+      "rewriteFailed": "No se pudo reescribir. Inténtalo de nuevo."
     }
   },
   "drafts": {

@@ -6490,7 +6490,11 @@
         "false_dilemma": "Ierāmēšana vai nu, vai nu",
         "overgeneralisation": "Slaucīšanas pieprasījums",
         "hostile_tone": "Naidīgs tonis"
-      }
+      },
+      "aiMenu": "MI rīki",
+      "changeVibe": "Mainīt noskaņu",
+      "fixSpelling": "Labot pareizrakstību un gramatiku",
+      "rewriteFailed": "Neizdevās pārrakstīt. Mēģiniet vēlreiz."
     }
   },
   "drafts": {

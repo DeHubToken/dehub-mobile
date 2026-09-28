@@ -6491,7 +6491,11 @@
         "false_dilemma": "Ama-au kutunga fremu",
         "overgeneralisation": "Dai la kufagia",
         "hostile_tone": "Toni ya chuki"
-      }
+      },
+      "aiMenu": "Zana za AI",
+      "changeVibe": "Badilisha mtindo",
+      "fixSpelling": "Rekebisha tahajia na sarufi",
+      "rewriteFailed": "Imeshindwa kuandika upya. Jaribu tena."
     }
   },
   "drafts": {

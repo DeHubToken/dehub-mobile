@@ -6487,7 +6487,11 @@
         "false_dilemma": "चाहे घुमावदार हो",
         "overgeneralisation": "दावे खोखले",
         "hostile_tone": "टाइलें टाइलें"
-      }
+      },
+      "aiMenu": "AI टूल्स",
+      "changeVibe": "अंदाज़ बदलें",
+      "fixSpelling": "वर्तनी और व्याकरण सुधारें",
+      "rewriteFailed": "इसे दोबारा नहीं लिख सके। फिर कोशिश करें।"
     }
   },
   "drafts": {

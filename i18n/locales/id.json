@@ -6539,7 +6539,11 @@
         "false_dilemma": "Entah - atau framing",
         "overgeneralisation": "Klaim menyapu",
         "hostile_tone": "Nada bermusuhan"
-      }
+      },
+      "aiMenu": "Alat AI",
+      "changeVibe": "Ubah gaya",
+      "fixSpelling": "Perbaiki ejaan & tata bahasa",
+      "rewriteFailed": "Gagal menulis ulang. Coba lagi."
     }
   },
   "drafts": {

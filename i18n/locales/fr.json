@@ -6543,7 +6543,11 @@
         "false_dilemma": "Encadrement ou encadrement",
         "overgeneralisation": "Réclamation de balayage",
         "hostile_tone": "Tonalité hostile"
-      }
+      },
+      "aiMenu": "Outils IA",
+      "changeVibe": "Changer le style",
+      "fixSpelling": "Corriger l'orthographe et la grammaire",
+      "rewriteFailed": "Réécriture impossible. Réessayez."
     }
   },
   "drafts": {
