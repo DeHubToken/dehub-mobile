@@ -5961,6 +5961,28 @@
     "play": "بازی",
     "pause": "مکث"
   },
+  "streamerShowcase": {
+    "cardOf": "کارت {{index}} از {{total}}",
+    "progress": "پیشرفت شما",
+    "goal": {
+      "streams": "{{current}} / {{target}} استریم‌ها",
+      "hours": "{{current}} / {{target}} ساعت",
+      "session": "{{current}} / {{target}} دقیقه در یک جریان",
+      "streak": "{{current}} / {{target}} هفته",
+      "level": "سطح {{current}} / {{target}}"
+    },
+    "onStream": "وقتی در حال پخش اتفاق می‌افتد، قفل باز می‌شود",
+    "stats": {
+      "level": "سطح",
+      "xp": "ایکس پی",
+      "hours": "ساعات واجد شرایط",
+      "streams": "جریان‌های واجد شرایط",
+      "longest": "طولانی‌ترین جریان",
+      "streak": "بهترین روند"
+    },
+    "hoursShort": "{{hours}} ساعت",
+    "weeksShort": "{{count}} هفته"
+  },
   "passwordStrength": {
     "veryWeak": "خیلی ضعیف",
     "weak": "ضعیف",

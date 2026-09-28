@@ -5931,6 +5931,28 @@
     "play": "പ്ലേ ചെയ്യുക",
     "pause": "താല്‍ക്കാലികമായി നിര്‍ത്തുക"
   },
+  "streamerShowcase": {
+    "cardOf": "കാർഡ് {{index}}{{total}}",
+    "progress": "നിങ്ങളുടെ പുരോഗതി",
+    "goal": {
+      "streams": "{{current}} / {{target}} സ്ട്രീമുകൾ",
+      "hours": "{{current}} / {{target}} മണിക്കൂർ",
+      "session": "{{current}}/{{target}} മിനിറ്റ് ഒറ്റ സ്ട്രീമിൽ",
+      "streak": "{{current}}/ {{target}} ആഴ്ചകൾ",
+      "level": "ലെവൽ {{current}} / {{target}}"
+    },
+    "onStream": "സ്ട്രീമിൽ സംഭവിക്കുമ്പോൾ അൺലോക്ക് ചെയ്യുന്നു",
+    "stats": {
+      "level": "നില",
+      "xp": "XP",
+      "hours": "യോഗ്യതാ സമയം",
+      "streams": "യോഗ്യതാ സ്ട്രീമുകൾ",
+      "longest": "ഏറ്റവും ദൈർഘ്യമേറിയ സ്ട്രീം",
+      "streak": "മികച്ച സ്ട്രീക്ക്"
+    },
+    "hoursShort": "{{hours}} മ.",
+    "weeksShort": "{{count}} ആഴ്ച"
+  },
   "passwordStrength": {
     "veryWeak": "വളരെ ദുർബലം",
     "weak": "ദുർബലം",

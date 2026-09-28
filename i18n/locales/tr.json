@@ -5980,6 +5980,28 @@
     "play": "Oynat",
     "pause": "Duraklat"
   },
+  "streamerShowcase": {
+    "cardOf": "Kart {{index}}/{{total}}",
+    "progress": "İlerlemeniz",
+    "goal": {
+      "streams": "{{current}}/{{target}} akışları",
+      "hours": "{{current}}/{{target}} saat",
+      "session": "Bir akışta {{current}}/{{target}} dakika",
+      "streak": "{{current}}/{{target}} hafta",
+      "level": "Seviye {{current}}/{{target}}"
+    },
+    "onStream": "Akışta gerçekleştiğinde açılır",
+    "stats": {
+      "level": "Seviye",
+      "xp": "XP",
+      "hours": "Uygun saatler",
+      "streams": "Uygun akışlar",
+      "longest": "En uzun akış",
+      "streak": "EN iyi seri"
+    },
+    "hoursShort": "{{hours}} saat",
+    "weeksShort": "{{count}} hafta"
+  },
   "passwordStrength": {
     "veryWeak": "Çok zayıf",
     "weak": "Zayıf",

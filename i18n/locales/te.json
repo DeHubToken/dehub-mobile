@@ -5935,6 +5935,28 @@
     "play": "ప్లే చేయండి",
     "pause": "పాజ్ చేయండి"
   },
+  "streamerShowcase": {
+    "cardOf": "కార్డ్ {{index}} {{total}}",
+    "progress": "మీ ప్రోగ్రెస్",
+    "goal": {
+      "streams": "{{current}} / {{target}} స్ట్రీమ్స్",
+      "hours": "{{current}} / {{target}} గంటలు",
+      "session": "{{current}} / {{target}} నిమి ఒక స్ట్రీమ్ ‌ లో",
+      "streak": "{{current}} / {{target}} వారాలు",
+      "level": "స్థాయి {{current}} / {{target}}"
+    },
+    "onStream": "స్ట్రీమ్ ‌ లో జరిగినప్పుడు అన్ ‌ లాక్ చేస్తుంది",
+    "stats": {
+      "level": "స్థాయి",
+      "xp": "XP",
+      "hours": "క్వాలిఫైయింగ్ గంటలు",
+      "streams": "క్వాలిఫైయింగ్ స్ట్రీమ్ ‌ లు",
+      "longest": "పొడవైన ప్రవాహం",
+      "streak": "ఉత్తమ పరంపర"
+    },
+    "hoursShort": "{{hours}} గం",
+    "weeksShort": "{{count}} వారాలు"
+  },
   "passwordStrength": {
     "veryWeak": "చాలా బలహీనం",
     "weak": "బలహీనం",

@@ -5935,6 +5935,28 @@
     "play": "இயக்கு",
     "pause": "இடைநிறுத்து"
   },
+  "streamerShowcase": {
+    "cardOf": "கார்டு {{index}} {{total}}",
+    "progress": "உங்கள் முன்னேற்றம்",
+    "goal": {
+      "streams": "{{current}} / {{target}} ஸ்ட்ரீம்கள்",
+      "hours": "{{current}} / {{target}} மணிநேரம்",
+      "session": "{{current}} / {{target}} நிமிடம் ஒரு ஸ்ட்ரீமில்",
+      "streak": "{{current}} / {{target}} வாரங்கள்",
+      "level": "நிலை {{current}} / {{target}}"
+    },
+    "onStream": "ஸ்ட்ரீமில் நடக்கும்போது திறக்கிறது",
+    "stats": {
+      "level": "நிலை",
+      "xp": "XP",
+      "hours": "தகுதி நேரம்",
+      "streams": "தகுதிபெறும் ஸ்ட்ரீம்கள்",
+      "longest": "மிக நீளமான ஸ்ட்ரீம்",
+      "streak": "சிறந்த ஸ்ட்ரீக்"
+    },
+    "hoursShort": "{{hours}} மணி",
+    "weeksShort": "{{count}} வாரம்"
+  },
   "passwordStrength": {
     "veryWeak": "மிகவும் பலவீனம்",
     "weak": "பலவீனம்",

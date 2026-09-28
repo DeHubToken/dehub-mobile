@@ -5931,6 +5931,28 @@
     "play": "ಪ್ಲೇ ಮಾಡಿ",
     "pause": "ವಿರಾಮ"
   },
+  "streamerShowcase": {
+    "cardOf": "ಕಾರ್ಡ್ {{index}} {{total}}",
+    "progress": "ನಿಮ್ಮ ಪ್ರಗತಿ",
+    "goal": {
+      "streams": "{{current}} /{{target}} ಸ್ಟ್ರೀಮ್‌ಗಳು",
+      "hours": "{{current}} / {{target}} ಗಂಟೆಗಳು",
+      "session": "{{current}} / {{target}} ನಿಮಿಷ ಒಂದು ಸ್ಟ್ರೀಮ್‌ನಲ್ಲಿ",
+      "streak": "{{current}} / {{target}} ವಾರಗಳು",
+      "level": "ಮಟ್ಟ {{current}} / {{target}}"
+    },
+    "onStream": "ಸ್ಟ್ರೀಮ್‌ನಲ್ಲಿ ಸಂಭವಿಸಿದಾಗ ಅನ್‌ಲಾಕ್ ಮಾಡುತ್ತದೆ",
+    "stats": {
+      "level": "ಮಟ್ಟ",
+      "xp": "XP",
+      "hours": "ಅರ್ಹತಾ ಸಮಯಗಳು",
+      "streams": "ಅರ್ಹತಾ ಸ್ಟ್ರೀಮ್‌ಗಳು",
+      "longest": "ಅತಿ ಉದ್ದದ ಸ್ಟ್ರೀಮ್",
+      "streak": "ಅತ್ಯುತ್ತಮ ಪರಂಪರೆ"
+    },
+    "hoursShort": "{{hours}} ಗಂ",
+    "weeksShort": "{{count}} ವಾರ"
+  },
   "passwordStrength": {
     "veryWeak": "ತುಂಬಾ ದುರ್ಬಲ",
     "weak": "ದುರ್ಬಲ",

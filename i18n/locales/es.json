@@ -5980,6 +5980,28 @@
     "play": "Jugar",
     "pause": "Pausar"
   },
+  "streamerShowcase": {
+    "cardOf": "Tarjeta {{index}} de {{total}}",
+    "progress": "Tu progreso",
+    "goal": {
+      "streams": "{{current}} / {{target}} streams",
+      "hours": "{{current}} / {{target}} horas",
+      "session": "{{current}} / {{target}} min en una transmisión",
+      "streak": "{{current}} / {{target}} semanas",
+      "level": "Nivel {{current}} / {{target}}"
+    },
+    "onStream": "Se desbloquea cuando ocurre en la transmisión",
+    "stats": {
+      "level": "Nivel",
+      "xp": "XP",
+      "hours": "Horas que cumplen con los requisitos",
+      "streams": "Transmisiones que cumplen los requisitos",
+      "longest": "Transmisión más larga",
+      "streak": "Mejor racha"
+    },
+    "hoursShort": "{{hours}} h",
+    "weeksShort": "{{count}} wk"
+  },
   "passwordStrength": {
     "veryWeak": "Muy débil",
     "weak": "Débil",

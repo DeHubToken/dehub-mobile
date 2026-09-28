@@ -5934,6 +5934,28 @@
     "play": "کھیلیں",
     "pause": "موقوف کریں"
   },
+  "streamerShowcase": {
+    "cardOf": "کارڈ {{index}} از {{total}}",
+    "progress": "آپ کی پیشرفت",
+    "goal": {
+      "streams": "{{current}}/{{target}} اسٹریمز",
+      "hours": "{{current}}/{{target}} گھنٹے",
+      "session": "ایک اسٹریم میں {{current}}/{{target}} منٹ",
+      "streak": "{{current}}/{{target}} ہفتے",
+      "level": "لیول {{current}}/{{target}}"
+    },
+    "onStream": "جب یہ اسٹریم پر ہوتا ہے تو اسے غیر مقفل کر دیتا ہے",
+    "stats": {
+      "level": "سطح",
+      "xp": "XP",
+      "hours": "اہل ہونے کے اوقات",
+      "streams": "کوالیفائنگ اسٹریمز",
+      "longest": "سب سے طویل ندی",
+      "streak": "بہترین سلسلہ"
+    },
+    "hoursShort": "{{hours}} گھنٹہ",
+    "weeksShort": "{{count}} ہفتہ"
+  },
   "passwordStrength": {
     "veryWeak": "بہت کمزور",
     "weak": "کمزور",

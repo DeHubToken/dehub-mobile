@@ -5962,6 +5962,28 @@
     "play": "Dlala",
     "pause": "Misa okwesikhashana"
   },
+  "streamerShowcase": {
+    "cardOf": "Ikhadi {{index}} of {{total}}",
+    "progress": "Inqubekela-phambili yakho",
+    "goal": {
+      "streams": "{{current}} / {{target}} streams",
+      "hours": "{{current}} / {{target}} amahora",
+      "session": "{{current}} / {{target}} min ekusakazeni okukodwa",
+      "streak": "{{current}} / {{target}} amaviki",
+      "level": "Izinga {{current}} / {{target}}"
+    },
+    "onStream": "Iyavula uma kwenzeka ekusakazeni",
+    "stats": {
+      "level": "Izinga",
+      "xp": "XP",
+      "hours": "Amahora okufanelekela",
+      "streams": "Ukusakaza okufanelekayo",
+      "longest": "Ukusakaza okude kunakho konke",
+      "streak": "I-streak ehamba phambili"
+    },
+    "hoursShort": "{{hours}} h",
+    "weeksShort": "{{count}} wk"
+  },
   "passwordStrength": {
     "veryWeak": "Buthakathaka kakhulu",
     "weak": "Buthakathaka",

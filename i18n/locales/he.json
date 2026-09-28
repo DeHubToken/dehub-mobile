@@ -5935,6 +5935,28 @@
     "play": "הפעלה",
     "pause": "השהיה"
   },
+  "streamerShowcase": {
+    "cardOf": "כרטיס {{index}} מתוך {{total}}",
+    "progress": "ההתקדמות שלכם",
+    "goal": {
+      "streams": "{{current}}/{{target}} זרמים",
+      "hours": "{{current}}/{{target}} שעות",
+      "session": "{{current}}/{{target}} דקות בנחל אחד",
+      "streak": "{{current}}/{{target}} שבועות",
+      "level": "רמה {{current}}/{{target}}"
+    },
+    "onStream": "משחרר את הנעילה כשזה קורה בזרם",
+    "stats": {
+      "level": "רמה",
+      "xp": "XP",
+      "hours": "שעות פעילות שעומדות בקריטריונים",
+      "streams": "זרמים שעומדים בקריטריונים",
+      "longest": "הזרם הארוך ביותר",
+      "streak": "הרצף הטוב ביותר"
+    },
+    "hoursShort": "{{hours}} שע '",
+    "weeksShort": "{{count}} שב׳"
+  },
   "passwordStrength": {
     "veryWeak": "חלשה מאוד",
     "weak": "חלשה",

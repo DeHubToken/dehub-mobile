@@ -5930,6 +5930,28 @@
     "play": "لوبې وکړئ",
     "pause": "په وقفه کې"
   },
+  "streamerShowcase": {
+    "cardOf": "کارت {{index}} له {{total}}",
+    "progress": "ستاسو د پرمختګ په هيله",
+    "goal": {
+      "streams": "{{current}} / {{target}} خپرونې",
+      "hours": "{{current}} / {{target}} ساعته",
+      "session": "په یوه خپرونه کې {{current}} / {{target}} دقیقې",
+      "streak": "{{current}} / {{target}} اونۍ",
+      "level": "کچه {{current}} / {{target}}"
+    },
+    "onStream": "کله چې په ټرانسپورټ کې پیښ شي نو د ټرانسپورټ په اړه وغږیږئ",
+    "stats": {
+      "level": "په کچه",
+      "xp": "د XP په اړه",
+      "hours": "د زده کړې ساعتونه",
+      "streams": "د وړتیاوو د جريان",
+      "longest": "تر ټولو اوږده لاره",
+      "streak": "تر ټولو ښه توپ اچونه"
+    },
+    "hoursShort": "{{hours}} س",
+    "weeksShort": "{{count}} اونۍ"
+  },
   "passwordStrength": {
     "veryWeak": "ډېر کمزوری",
     "weak": "کمزوری",

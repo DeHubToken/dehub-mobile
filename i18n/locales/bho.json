@@ -5928,6 +5928,28 @@
     "play": "खेला करेनीं",
     "pause": "ब्रेक लें"
   },
+  "streamerShowcase": {
+    "cardOf": "{{total}} में से कार्ड {{index}}",
+    "progress": "आपन प्रगति",
+    "goal": {
+      "streams": "{{current}} / {{target}} स्ट्रीम",
+      "hours": "{{current}} / {{target}} घंटा",
+      "session": "एक स्ट्रीम में {{current}} / {{target}} मिनट",
+      "streak": "{{current}} / {{target}} हफ्ता",
+      "level": "लेवल {{current}} / {{target}}"
+    },
+    "onStream": "लॉकडाउन के वक्त क्या करे क्या ना करे",
+    "stats": {
+      "level": "स्तर समायोजित करें",
+      "xp": "XP",
+      "hours": "घंटे के हिसाब से बदलें",
+      "streams": "क्वालिफाई करे जा रहे स्ट्रिंग्स",
+      "longest": "दीर्घकालीन निकास लिएर आऊ",
+      "streak": "सब से ज़्यादा ग़ज़ल वाला"
+    },
+    "hoursShort": "{{hours}} घं",
+    "weeksShort": "{{count}} हफ्ता"
+  },
   "passwordStrength": {
     "veryWeak": "बहुत कमजोर",
     "weak": "कमजोर",

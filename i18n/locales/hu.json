@@ -5935,6 +5935,28 @@
     "play": "Játék",
     "pause": "Szüneteltetés"
   },
+  "streamerShowcase": {
+    "cardOf": "{{total}}/{{index}}. kártya",
+    "progress": "Az előrehaladásod",
+    "goal": {
+      "streams": "{{current}} / {{target}} stream",
+      "hours": "{{current}} / {{target}} óra",
+      "session": "{{current}} / {{target}} perc egy adatfolyamban",
+      "streak": "{{current}} / {{target}} hét",
+      "level": "Szint {{current}} / {{target}}"
+    },
+    "onStream": "Feloldja a zárolást, amikor az adatfolyamban történik",
+    "stats": {
+      "level": "Szint",
+      "xp": "XP",
+      "hours": "Kvalifikációs órák",
+      "streams": "Minősített adatfolyamok",
+      "longest": "Leghosszabb adatfolyam",
+      "streak": "Legjobb széria"
+    },
+    "hoursShort": "{{hours}} h",
+    "weeksShort": "{{count}} hét"
+  },
   "passwordStrength": {
     "veryWeak": "Nagyon gyenge",
     "weak": "Gyenge",

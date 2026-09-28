@@ -5931,6 +5931,28 @@
     "play": "Play",
     "pause": "Pause"
   },
+  "streamerShowcase": {
+    "cardOf": "Kāri {{index}} {{total}}",
+    "progress": "Ko tō whakatutukitanga",
+    "goal": {
+      "streams": "{{current}} {{target}} awa",
+      "hours": "{{current}} {{target}} haora",
+      "session": "{{current}} {{target}} min i roto i te awa kotahi",
+      "streak": "{{current}} {{target}} wiki",
+      "level": "Taumata {{current}} / {{target}}"
+    },
+    "onStream": "Whakatuwhera i te wa e tupu ana i runga i te awa",
+    "stats": {
+      "level": "Taumata",
+      "xp": "XP",
+      "hours": "Nga haora e tika ana",
+      "streams": "Nga awa e tika ana",
+      "longest": "Te awa roa rawa atu",
+      "streak": "Best streak"
+    },
+    "hoursShort": "{{hours}} h",
+    "weeksShort": "{{count}} wk"
+  },
   "passwordStrength": {
     "veryWeak": "Tino ngoikore",
     "weak": "Ngoikore",

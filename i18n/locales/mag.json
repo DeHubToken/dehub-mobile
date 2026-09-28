@@ -5930,6 +5930,28 @@
     "play": "ई कुर्सी खेलऽ हइ",
     "pause": "रुकावट"
   },
+  "streamerShowcase": {
+    "cardOf": "{{total}} में से कार्ड {{index}}",
+    "progress": "अपन तरक्की के",
+    "goal": {
+      "streams": "{{current}} / {{target}} स्ट्रीम",
+      "hours": "{{current}} / {{target}} घंटा",
+      "session": "एक स्ट्रीम में {{current}} / {{target}} मिनट",
+      "streak": "{{current}} / {{target}} हफ्ता",
+      "level": "लेवल {{current}} / {{target}}"
+    },
+    "onStream": "जब होल्ड होल्ड अप होल्ड ऑन लियोन",
+    "stats": {
+      "level": "स्तरित कैलक्यूलेटर",
+      "xp": "पीसीआर कैलक्यूलेटर",
+      "hours": "कैलक्यूलेटर घंटे",
+      "streams": "कैलक्यूलेटर स्ट्रिंग्स",
+      "longest": "लंबाई के लिए स्ट्रिंग लंबाई",
+      "streak": "बेस्ट होवरक्राफ्ट"
+    },
+    "hoursShort": "{{hours}} घं",
+    "weeksShort": "{{count}} हफ्ता"
+  },
   "passwordStrength": {
     "veryWeak": "बहुत कमजोर",
     "weak": "कमजोर",

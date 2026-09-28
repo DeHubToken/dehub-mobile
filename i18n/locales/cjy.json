@@ -5931,6 +5931,28 @@
     "play": "播放",
     "pause": "暂停"
   },
+  "streamerShowcase": {
+    "cardOf": "卡片 {{index}} / {{total}}",
+    "progress": "你的进度",
+    "goal": {
+      "streams": "{{current}} / {{target}} 直播",
+      "hours": "{{current}} / {{target}} 小时",
+      "session": "{{current}} / {{target}} 分钟/场",
+      "streak": "{{current}} / {{target}} 周",
+      "level": "等级 {{current}} / {{target}}"
+    },
+    "onStream": "当在直播中发生时解锁",
+    "stats": {
+      "level": "等级",
+      "xp": "经验值",
+      "hours": "合格小时数",
+      "streams": "合格直播次数",
+      "longest": "最长直播",
+      "streak": "最佳连胜"
+    },
+    "hoursShort": "{{hours}} 小时",
+    "weeksShort": "{{count}} 周"
+  },
   "passwordStrength": {
     "veryWeak": "非常弱",
     "weak": "弱",

@@ -5944,6 +5944,28 @@
     "play": "Phát",
     "pause": "Tạm dừng"
   },
+  "streamerShowcase": {
+    "cardOf": "Thẻ {{index}} trong số {{total}}",
+    "progress": "Tiến độ của bạn",
+    "goal": {
+      "streams": "{{current}} / {{target}} buổi phát",
+      "hours": "{{current}} / {{target}} giờ",
+      "session": "{{current}} / {{target}} phút trong một luồng",
+      "streak": "{{current}} / {{target}} tuần",
+      "level": "Cấp {{current}} / {{target}}"
+    },
+    "onStream": "Mở khóa khi sự cố xảy ra trên luồng",
+    "stats": {
+      "level": "Cấp",
+      "xp": "XP",
+      "hours": "Số giờ đủ điều kiện",
+      "streams": "Các luồng đủ điều kiện",
+      "longest": "Luồng dài nhất",
+      "streak": "Chuỗi tốt nhất"
+    },
+    "hoursShort": "{{hours}} h",
+    "weeksShort": "{{count}} tuần"
+  },
   "passwordStrength": {
     "veryWeak": "Rất yếu",
     "weak": "Yếu",

@@ -5931,6 +5931,28 @@
     "play": "Oynat",
     "pause": "Galanlar"
   },
+  "streamerShowcase": {
+    "cardOf": "Kart {{index}} of {{total}}",
+    "progress": "Ösüş",
+    "goal": {
+      "streams": "{{current}} {{target}} streams",
+      "hours": "{{current}} / {{target}} sagat",
+      "session": "Bir ýaýlymda {{current}} / {{target}} min",
+      "streak": "{{current}} {{target}} hepdeleri",
+      "level": "{{current}} / {{target}}"
+    },
+    "onStream": "Bu akyşda bolanda, açylýar",
+    "stats": {
+      "level": "Seret",
+      "xp": "XP",
+      "hours": "Saýlama sagady",
+      "streams": "Kvalifikasiýa akymy",
+      "longest": "Garawul diňi",
+      "streak": "Gowy ýol"
+    },
+    "hoursShort": "{{hours}} h",
+    "weeksShort": "{{count}} wk"
+  },
   "passwordStrength": {
     "veryWeak": "Örän gowşak",
     "weak": "Gowşak",
