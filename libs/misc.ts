@@ -324,8 +324,8 @@ const BADGE_LEVELS: BadgeDef[] = [
   { name: "Crab", min: 10_000 },
   { name: "Lobster", min: 25_000 },
   { name: "Piranha", min: 50_000 },
-  { name: "Tortoise", min: 100_000 },
-  { name: "Cobra", min: 250_000 },
+  { name: "Giant Tortoise", min: 100_000 },
+  { name: "King Cobra", min: 250_000 },
   { name: "Octopus", min: 500_000 },
   { name: "Crocodile", min: 1_000_000 },
   { name: "Dolphin", min: 2_000_000 },
@@ -345,9 +345,11 @@ const BADGE_LEVELS: BadgeDef[] = [
 export const BADGE_ORDER: string[] = BADGE_LEVELS.map((b) => b.name);
 
 /**
- * Tier names as they were spelled before 2026-09-13, mapped to the real ones.
+ * Tier names the ladder used to carry, mapped to the current ones.
  *
- * Both were misspellings, and the API stores them on rows that outlive the
+ * `Crocodite` and `Meglodon` were misspellings, fixed 2026-09-13; `Tortoise`
+ * and `Cobra` were renamed Giant Tortoise and King Cobra on 2026-09-28. The
+ * API stores tier names on rows that outlive the
  * deploy that wrote them — a holder's `badgeLock.tier` most of all. Every
  * match on this side fails CLOSED: `parseBadgeLock` returns undefined and the
  * holder loses a grandfathered tier, `BADGE_IMAGES` returns nothing and the
@@ -360,6 +362,8 @@ export const BADGE_ORDER: string[] = BADGE_LEVELS.map((b) => b.name);
 const LEGACY_TIER_NAMES: Record<string, string> = {
   Crocodite: "Crocodile",
   Meglodon: "Megalodon",
+  Tortoise: "Giant Tortoise",
+  Cobra: "King Cobra",
 };
 
 /** The current spelling of a tier name, whatever spelling it arrived in. */
@@ -540,12 +544,12 @@ export function getBadgeName(
 
 // Preload badge images (static requires; dynamic requires not supported by Metro)
 const BADGE_IMAGES: Record<string, number> = {
-  Tortoise: require("../assets/badges/Tortoise.png"),
+  "Giant Tortoise": require("../assets/badges/Giant Tortoise.png"),
   Crab: require("../assets/badges/Crab.png"),
   Piranha: require("../assets/badges/Piranha.png"),
   Lobster: require("../assets/badges/Lobster.png"),
   Octopus: require("../assets/badges/Octopus.png"),
-  Cobra: require("../assets/badges/Cobra.png"),
+  "King Cobra": require("../assets/badges/King Cobra.png"),
   Crocodile: require("../assets/badges/Crocodile.png"),
   Dolphin: require("../assets/badges/Dolphin.png"),
   "Tiger Shark": require("../assets/badges/Tiger Shark.png"),
@@ -559,8 +563,8 @@ const BADGE_OPTICS: Record<string, { scale: number; bottomInset: number }> = {
   Crab: { scale: 1, bottomInset: 8 },
   Lobster: { scale: 1.04, bottomInset: 7 },
   Piranha: { scale: 1, bottomInset: 8 },
-  Tortoise: { scale: 1, bottomInset: 11 },
-  Cobra: { scale: 1, bottomInset: 6 },
+  "Giant Tortoise": { scale: 1, bottomInset: 11 },
+  "King Cobra": { scale: 1, bottomInset: 6 },
   Octopus: { scale: 1.02, bottomInset: 7 },
   Crocodile: { scale: 1, bottomInset: 11 },
   Dolphin: { scale: 1.03, bottomInset: 7 },
