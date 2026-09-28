@@ -60,7 +60,8 @@
     "migrate": "Migrate all",
     "creators": "Creators",
     "agents": "AI Agents",
-    "connectAi": "Connect AI"
+    "connectAi": "Connect AI",
+    "bridge": "Bridge"
   },
   "affiliate": {
     "subtitle": "Earn from everyone you invite — forever",
@@ -4346,7 +4347,15 @@
     "bridging": "Bridging…",
     "bridgeAction": "Bridge {{from}} → {{to}}",
     "failed": "Bridge failed",
-    "sentArriveShortly": "{{amount}} tokens sent from {{from}} → {{to}}. They arrive shortly."
+    "sentArriveShortly": "{{amount}} tokens sent from {{from}} → {{to}}. They arrive shortly.",
+    "subtitle": "Move DeHub tokens between chains",
+    "queueTitle": "Bridges",
+    "transferCount": "Transfers: {{count}}",
+    "searchPlaceholder": "Search by address, transaction hash or chain",
+    "queueLoadFailed": "Transfers could not load. Try again.",
+    "noMatches": "No matching transfers. Try a different address or transaction hash.",
+    "showMore": "Show more",
+    "signInToBridge": "Sign in to see your balances and move DeHub tokens between Base and BNB Chain."
   },
   "banned": {
     "title": "Your account is banned",

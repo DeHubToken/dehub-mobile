@@ -60,7 +60,8 @@
     "migrate": "Hunda dabarsi",
     "creators": "Uumtota",
     "agents": "Bakka bu'oota AI",
-    "connectAi": "AI walqunnamsiisi"
+    "connectAi": "AI walqunnamsiisi",
+    "bridge": "Riqicha"
   },
   "affiliate": {
     "subtitle": "Namoota si waamtan hunda irraa — yoomiyyuu argadhu",
@@ -4310,7 +4311,15 @@
     "relayAddress": "Teessoo riqicha rileey (tokens asitti sansalata madda irratti ergi):",
     "insufficient": "{{chain}} irratti mallattoo gahaa miti.",
     "insufficientOnChain": "{{chain}} irratti mallattoo gahaa miti. Madaalliin sansalataa irratti mul'ate irraa adda ta'uu danda'a.",
-    "sentArriveShortly": "{{amount}} mallattoolee {{from}} → {{to}} irraa ergaman. Yeroo gabaabaa keessatti ni dhufu."
+    "sentArriveShortly": "{{amount}} mallattoolee {{from}} → {{to}} irraa ergaman. Yeroo gabaabaa keessatti ni dhufu.",
+    "subtitle": "Mallattoolee DeHub sansalata gidduutti sochoosi",
+    "queueTitle": "Riqichawwan",
+    "transferCount": "Jijjiirraa: {{count}}",
+    "searchPlaceholder": "Teessoo, haashiin daldalaa ykn sansalataan barbaadi",
+    "queueLoadFailed": "Jijjiirraan fe'uu hin dandeenye. Ammas yaalaa.",
+    "noMatches": "Jijjiirraa walsimsiisu hin jiru. Teessoo ykn haashii daldalaa adda ta'e yaali.",
+    "showMore": "Dabalata agarsiisi",
+    "signInToBridge": "Madaallii kee ilaaluuf galmaa'ii fi mallattoolee DeHub Base fi BNB Chain gidduutti sochoosi."
   },
   "banned": {
     "title": "Akkaawuntii keessan dhorkameera",

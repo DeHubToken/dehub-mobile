@@ -60,7 +60,8 @@
     "migrate": "Pindahkan semua",
     "creators": "Kreator",
     "agents": "Agen AI",
-    "connectAi": "Hubungkan AI"
+    "connectAi": "Hubungkan AI",
+    "bridge": "Jembatan"
   },
   "affiliate": {
     "subtitle": "Dapat penghasilan dari semua yang kamu undang — selamanya",
@@ -4346,7 +4347,15 @@
     "relayAddress": "Alamat relay jembatan (kirim token ke sini di rantai sumber):",
     "insufficient": "Token tidak cukup di {{chain}}.",
     "insufficientOnChain": "Token tidak cukup di {{chain}}. Saldo on-chain mungkin berbeda dari yang ditampilkan.",
-    "sentArriveShortly": "{{amount}} token dikirim dari {{from}} → {{to}}. Token akan tiba segera."
+    "sentArriveShortly": "{{amount}} token dikirim dari {{from}} → {{to}}. Token akan tiba segera.",
+    "subtitle": "Pindahkan token DeHub antar rantai",
+    "queueTitle": "Jembatan",
+    "transferCount": "Transfer: {{count}}",
+    "searchPlaceholder": "Cari berdasarkan alamat, hash transaksi, atau rantai",
+    "queueLoadFailed": "Transfer tidak dapat dimuat. Coba lagi.",
+    "noMatches": "Tidak ada transfer yang cocok. Coba alamat atau hash transaksi yang berbeda.",
+    "showMore": "Tampilkan lebih banyak",
+    "signInToBridge": "Masuk untuk melihat saldo Anda dan pindahkan token DeHub antara Base dan BNB Chain."
   },
   "banned": {
     "title": "Akun Anda diblokir",

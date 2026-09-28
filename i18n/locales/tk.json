@@ -60,7 +60,8 @@
     "migrate": "Ähli zady göçür",
     "creators": "Döredijiler",
     "agents": "AI Agentler",
-    "connectAi": "AI birikdir"
+    "connectAi": "AI birikdir",
+    "bridge": "Köpri"
   },
   "affiliate": {
     "subtitle": "Çaýran her bir adamyň hasabyna ebedi girdeji alyň",
@@ -4297,7 +4298,15 @@
     "relayAddress": "Köprü relýe salgyty (çeşme zynjyrynda şu ýere tokenleri iberiň):",
     "insufficient": "{{chain}} -da ýeterlik token ýok.",
     "insufficientOnChain": "{{chain}} -da ýeterlik token ýok. Zynjyrdaky balans görkezilenden tapawutlanyp biler.",
-    "sentArriveShortly": "{{from}} -dan iberilen {{amount}} token → {{to}}. Olar tizden geler."
+    "sentArriveShortly": "{{from}} -dan iberilen {{amount}} token → {{to}}. Olar tizden geler.",
+    "subtitle": "DeHub tokenlerini zynjyrlaryň arasyndan geçir",
+    "queueTitle": "Köprüler",
+    "transferCount": "Öwrenmeler: {{count}}",
+    "searchPlaceholder": "Adres, işlemä hash ýa-da zähmet bilen gözle",
+    "queueLoadFailed": "Transferler ýüklenip bilmedi. ýene synanyň.",
+    "noMatches": "Ötdirilenler deňeşdirilmeýär. Başga bir adres ýa-da işlem hashyny synap görüň.",
+    "showMore": "Mundan artyk görkez",
+    "signInToBridge": "Siz öz balanslaryňyzy görmek üçin girip, DeHub tokenlerini Base we BnB zähmet zähmetiniň arasyndan äkidip bilersiňiz."
   },
   "banned": {
     "title": "Siziň hasabatyňyz gadagan edilýär",

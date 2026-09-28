@@ -60,7 +60,8 @@
     "migrate": "Mamindra ny rehetra",
     "creators": "Mpamorona",
     "agents": "Solontena AI",
-    "connectAi": "Ampifandraiso ny AI"
+    "connectAi": "Ampifandraiso ny AI",
+    "bridge": "Tetezana"
   },
   "affiliate": {
     "subtitle": "Mahazoa vola amin'ny olona rehetra asainao — mandrakizay",
@@ -4320,7 +4321,15 @@
     "relayAddress": "Adiresin'ny relay tetezana (alefaso eto ny token eo amin'ny rojo loharano):",
     "insufficient": "Tsy ampy ny token ao amin'ny {{chain}}.",
     "insufficientOnChain": "Tsy ampy ny token ao amin'ny {{chain}}. Ny sandan'ny on-chain dia mety tsy mitovy amin'ny aseho.",
-    "sentArriveShortly": "{{amount}} token nalefa avy amin'ny {{from}} → {{to}}. Ho tonga tsy ho ela."
+    "sentArriveShortly": "{{amount}} token nalefa avy amin'ny {{from}} → {{to}}. Ho tonga tsy ho ela.",
+    "subtitle": "Afindra ny tapaka DeHub eo anelanelan'ny onja",
+    "queueTitle": "Bridges",
+    "transferCount": "Famindrana: {{count}}",
+    "searchPlaceholder": "Search amin'ny alalan'ny adiresy, barotra hash na ny rojo",
+    "queueLoadFailed": "Tsy afaka naka ny famindrana. Andramo indray.",
+    "noMatches": "Tsy mifanandrify famindrana. Manandrama hafa adiresy na raharaham-barotra hash.",
+    "showMore": "Asehoy more",
+    "signInToBridge": "Midira raha te hahita ny balanao ary afindrao ny famantarana DeHub eo anelanelan'ny Base sy BNB Chain."
   },
   "banned": {
     "title": "Voarara ny kaontinao",

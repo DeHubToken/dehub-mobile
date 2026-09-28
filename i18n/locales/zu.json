@@ -60,7 +60,8 @@
     "migrate": "Fuduka konke",
     "creators": "Abadali",
     "agents": "Ama-ejenti e-AI",
-    "connectAi": "Xhuma i-AI"
+    "connectAi": "Xhuma i-AI",
+    "bridge": "Ibhuloho"
   },
   "affiliate": {
     "subtitle": "Thola kusuka kuwo wonke umuntu omemayo — kuze kube phakade",
@@ -4328,7 +4329,15 @@
     "relayAddress": "Ikheli le-relay lebhuloho (thumela amathokheni lapha eketangeni lomthombo):",
     "insufficient": "Awekho amathokheni anele ku-{{chain}}.",
     "insufficientOnChain": "Awekho amathokheni anele ku-{{chain}}. Isilinganiso se-On-chain singahluka kulesi esibonisiwe.",
-    "sentArriveShortly": "Amathokheni {{amount}} athunyelwe kusuka ku-{{from}} → {{to}}. Azofika kungekudala."
+    "sentArriveShortly": "Amathokheni {{amount}} athunyelwe kusuka ku-{{from}} → {{to}}. Azofika kungekudala.",
+    "subtitle": "Hambisa amathokheni e-DeHub phakathi kwamaketanga",
+    "queueTitle": "Amabhuloho",
+    "transferCount": "Ukudluliselwa: {{count}}",
+    "searchPlaceholder": "Sesha ngekheli, i-hash yemali engenayo nephumayo noma uchungechunge",
+    "queueLoadFailed": "Ukudluliswa akukwazanga ukulayisha. Zama futhi.",
+    "noMatches": "Akukho ukudluliselwa okufanayo. Zama ikheli elihlukile noma i-hash yemali engenayo nephumayo.",
+    "showMore": "Bonisa okwengeziwe",
+    "signInToBridge": "Ngena ngemvume ukuze ubone amabhalansi akho futhi uhambise amathokheni e-DeHub phakathi kwe-Base NE-BNB Chain."
   },
   "banned": {
     "title": "I-akhawunti yakho ivinjelwe",

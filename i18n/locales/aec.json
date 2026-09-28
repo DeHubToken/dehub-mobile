@@ -60,7 +60,8 @@
     "migrate": "انقل الكل",
     "creators": "المبدعين",
     "agents": "وكلاء AI",
-    "connectAi": "ربط AI"
+    "connectAi": "ربط AI",
+    "bridge": "الجسر"
   },
   "affiliate": {
     "subtitle": "اربح من كل من تدعوه — إلى الأبد",
@@ -4297,7 +4298,15 @@
     "relayAddress": "عنوان الـ bridge relay (ابعت التوكنز هنا على الشبكة المصدر):",
     "insufficient": "مافيش توكنز كفاية على {{chain}}.",
     "insufficientOnChain": "مافيش توكنز كفاية على {{chain}}. رصيد الـ on-chain ممكن يختلف عن المعروض.",
-    "sentArriveShortly": "تم إرسال {{amount}} توكن من {{from}} → {{to}}. هيوصلوا قريب."
+    "sentArriveShortly": "تم إرسال {{amount}} توكن من {{from}} → {{to}}. هيوصلوا قريب.",
+    "subtitle": "نقل توكنات DeHub بين السلاسل",
+    "queueTitle": "جسور",
+    "transferCount": "التحويلات: {{count}}",
+    "searchPlaceholder": "ابحث بالعنوان، أو هاش المعاملة أو السلسلة",
+    "queueLoadFailed": "ما قدرناش نحمل التحويلات. جرّب تاني.",
+    "noMatches": "مفيش تحويلات مطابقة. جرّب عنوان أو هاش معاملة تانية.",
+    "showMore": "اعرض أكتر",
+    "signInToBridge": "سجّل دخولك عشان تشوف رصيدك وتنقل توكنات DeHub بين Base و BNB Chain."
   },
   "banned": {
     "title": "الحساب بتاعك محظور",

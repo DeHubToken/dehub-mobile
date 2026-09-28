@@ -60,7 +60,8 @@
     "migrate": "Alle migrieren",
     "creators": "Creator",
     "agents": "KI-Agenten",
-    "connectAi": "KI verbinden"
+    "connectAi": "KI verbinden",
+    "bridge": "Brücke"
   },
   "affiliate": {
     "subtitle": "Verdiene an allen, die du einlädst — für immer",
@@ -4346,7 +4347,15 @@
     "relayAddress": "Bridge-Relay-Adresse (Token hier auf der Quellkette senden):",
     "insufficient": "Nicht genügend Token auf {{chain}}.",
     "insufficientOnChain": "Nicht genügend Token auf {{chain}}. Das On-Chain-Guthaben kann vom angezeigten abweichen.",
-    "sentArriveShortly": "{{amount}} Token gesendet von {{from}} → {{to}}. Sie kommen in Kürze an."
+    "sentArriveShortly": "{{amount}} Token gesendet von {{from}} → {{to}}. Sie kommen in Kürze an.",
+    "subtitle": "DeHub-Token zwischen Ketten verschieben",
+    "queueTitle": "Brücken",
+    "transferCount": "Überweisungen: {{count}}",
+    "searchPlaceholder": "Suche nach Adresse, Transaktions-Hash oder Kette",
+    "queueLoadFailed": "Übertragungen konnten nicht geladen werden. Versuchen Sie es erneut.",
+    "noMatches": "Keine passenden Überweisungen. Versuchen Sie es mit einer anderen Adresse oder einem anderen Transaktions-Hash.",
+    "showMore": "Mehr anzeigen",
+    "signInToBridge": "Melden Sie sich an, um Ihre Salden zu sehen und DeHub-Token zwischen Basis und BNB-Kette zu verschieben."
   },
   "banned": {
     "title": "Dein Konto ist gesperrt",

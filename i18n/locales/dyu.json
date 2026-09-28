@@ -60,7 +60,8 @@
     "migrate": "Minw bɛɛ be taga kalifa",
     "creators": "Dilanbagaw",
     "agents": "AI Ejɛnw",
-    "connectAi": "AI jɛnsɛn"
+    "connectAi": "AI jɛnsɛn",
+    "bridge": "Zuòshàngq"
   },
   "affiliate": {
     "subtitle": "Wari sɔrɔ i ye mɔgɔ minnu bɛɛ wele — badaa",
@@ -4253,7 +4254,15 @@
     "relayAddress": "Adiresi afara afara (fi awọn tokens ranṣẹ nibi lori ẹwọn orisun):",
     "insufficient": "Ko to awọn tokens lori {{chain}}.",
     "insufficientOnChain": "Ko to awọn tokens lori {{chain}}. Iwọntọnwọnsi lori-ẹwọn le yatọ si ti o han.",
-    "sentArriveShortly": "{{amount}} tokens ti a fi ranṣẹ lati {{from}} → {{to}}. Wọn de laipẹ."
+    "sentArriveShortly": "{{amount}} tokens ti a fi ranṣẹ lati {{from}} → {{to}}. Wọn de laipẹ.",
+    "subtitle": "O kɔ, a ye dɔ fara a ka jɔrɔkɔw kan.",
+    "queueTitle": "O ye kɔlɔnw ye",
+    "transferCount": "Ka sɛbɛri kɛ: {{count}}",
+    "searchPlaceholder": "I be se ka taga yɔrɔ min na, i ka taga yɔrɔ min na, i ka taga yɔrɔ min na.",
+    "queueLoadFailed": "Transfers tun tɛ se ka doni ta.",
+    "noMatches": "O tɛ bɛn ni wari ye. I ka kan ka tɛmɛ o kan ka tɛmɛ o kan ka tɛmɛ o kan.",
+    "showMore": "Ka dɔ fara a kan",
+    "signInToBridge": "I ka siginiden bila ka taga i ka balansi filɛ ani ka DeHub ka tagamasiyɛnw yɛlɛma BNB ka jɔrɔkɔ ni BNB ka jɔrɔkɔ cɛ."
   },
   "banned": {
     "title": "I ka wari man kan ka kɛ",

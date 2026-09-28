@@ -60,7 +60,8 @@
     "migrate": "Migreer almal",
     "creators": "Skeppers",
     "agents": "KI-agente",
-    "connectAi": "Koppel KI"
+    "connectAi": "Koppel KI",
+    "bridge": "Brug"
   },
   "affiliate": {
     "subtitle": "Verdien uit almal wat jy nooi — vir altyd",
@@ -4330,7 +4331,15 @@
     "relayAddress": "Brug-aflosadres (stuur tokens hier op bronketting):",
     "insufficient": "Nie genoeg tokens op {{chain}} nie.",
     "insufficientOnChain": "Nie genoeg tokens op {{chain}} nie. On-chain balans mag verskil van vertoonde.",
-    "sentArriveShortly": "{{amount}} tokens gestuur vanaf {{from}} → {{to}}. Hulle arriveer binnekort."
+    "sentArriveShortly": "{{amount}} tokens gestuur vanaf {{from}} → {{to}}. Hulle arriveer binnekort.",
+    "subtitle": "Beweeg DeHub-tokens tussen kettings",
+    "queueTitle": "Brûe",
+    "transferCount": "Oordragte: {{count}}",
+    "searchPlaceholder": "Soek deur adres, transaksie hash of ketting",
+    "queueLoadFailed": "Oordragte kon nie laai nie. Probeer weer.",
+    "noMatches": "Geen ooreenstemmende oordragte nie. Probeer 'n ander adres of transaksie hash.",
+    "showMore": "Wys meer",
+    "signInToBridge": "Teken in om jou saldo's te sien en beweeg DeHub-tokens tussen Base en BnB-ketting."
   },
   "banned": {
     "title": "Jou rekening is verbode",

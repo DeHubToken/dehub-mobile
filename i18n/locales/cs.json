@@ -60,7 +60,8 @@
     "migrate": "Migrovat vše",
     "creators": "Tvůrci",
     "agents": "AI agenti",
-    "connectAi": "Připojit AI"
+    "connectAi": "Připojit AI",
+    "bridge": "Most"
   },
   "affiliate": {
     "subtitle": "Získejte z každého, koho pozvete — navždy",
@@ -4301,7 +4302,15 @@
     "relayAddress": "Adresa relé mostu (zde pošlete tokeny na zdrojovém řetězci):",
     "insufficient": "Nedostatek tokenů na {{chain}}.",
     "insufficientOnChain": "Nedostatek tokenů na {{chain}}. Zůstatek na řetězci se může lišit od zobrazeného.",
-    "sentArriveShortly": "{{amount}} tokenů odesláno z {{from}} → {{to}}. Dorazí brzy."
+    "sentArriveShortly": "{{amount}} tokenů odesláno z {{from}} → {{to}}. Dorazí brzy.",
+    "subtitle": "Přesun tokenů DeHub mezi řetězci",
+    "queueTitle": "Mosty",
+    "transferCount": "Převody: {{count}}",
+    "searchPlaceholder": "Hledat podle adresy, hodnoty hash transakce nebo řetězce",
+    "queueLoadFailed": "Převody se nepodařilo načíst. Zkuste to znovu.",
+    "noMatches": "Žádné odpovídající převody. Zkuste jinou adresu nebo hash transakce.",
+    "showMore": "Zobrazit více",
+    "signInToBridge": "Přihlaste se, abyste viděli své zůstatky a přesunuli tokeny DeHub mezi Base a BNB Chain."
   },
   "banned": {
     "title": "Tvůj účet je zablokován",
