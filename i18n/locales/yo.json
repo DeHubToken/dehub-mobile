@@ -5918,13 +5918,12 @@
       "images": "Awọn aworan fun ifiweranṣẹ",
       "uploads": "Ifilelẹ gbigbe lojoojumọ",
       "storage": "Ibi ìpamọ́ atọ́ka",
-      "profiles": "Fipamọ awọn profaili",
       "lending": "Àwọn ìkòkò ìfẹ̀yìntì badge",
       "voice": "Ṣíṣe ìfipamọ́ ohùn",
       "voiceFree": "FREE",
       "voiceLocked": "{{tier}} àti sókè"
     },
-    "buy": "Gba DHB",
+    "buyTokens": "Ra àwọn àmì",
     "details": "Ìparun kíkún",
     "play": "Play",
     "pause": "Duro"

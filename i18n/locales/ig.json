@@ -5917,13 +5917,12 @@
       "images": "Images kwa post",
       "uploads": "Daily bulite ịgba",
       "storage": "Nchekwa ndezi",
-      "profiles": "Chekwaa profaịlụ",
       "lending": "Baajị agbazinye ohere mpere",
       "voice": "Voice cloning",
       "voiceFree": "Free",
       "voiceLocked": "{{tier}} na elu"
     },
-    "buy": "Nweta DHB",
+    "buyTokens": "Ịzụta tokens",
     "details": "Full mebiri emebi",
     "play": "Gwuo",
     "pause": "Kwụsị"

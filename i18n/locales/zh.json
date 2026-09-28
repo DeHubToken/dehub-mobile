@@ -5970,13 +5970,12 @@
       "images": "每篇文章的图片数",
       "uploads": "每日上传限制",
       "storage": "编辑器存储",
-      "profiles": "已保存的个人资料",
       "lending": "徽章借出时段",
       "voice": "语音克隆",
       "voiceFree": "免费",
       "voiceLocked": "{{tier}}及以上"
     },
-    "buy": "获取DHB",
+    "buyTokens": "购买代币",
     "details": "完整明细",
     "play": "播放",
     "pause": "暂停"

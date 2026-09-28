@@ -5930,13 +5930,12 @@
       "images": "Suuraalee maxxansa tokkoon tokkoon",
       "uploads": "Daangaa olkaa'uu guyyaa",
       "storage": "Kuusaa gulaalaa",
-      "profiles": "Profaayilota qusataman",
       "lending": "Bakkeewwan liqii baajii",
       "voice": "Sagalee cloning gochuu",
       "voiceFree": "Bilisa",
       "voiceLocked": "{{tier}} fi ol"
     },
-    "buy": "DHB argadhu",
+    "buyTokens": "Tookiin bitadhaa",
     "details": "Guutuu caccabuu",
     "play": "Taphachuu",
     "pause": "Gidduutti dhaabuu"

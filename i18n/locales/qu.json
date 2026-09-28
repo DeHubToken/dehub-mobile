@@ -5948,13 +5948,12 @@
       "images": "Imahinakuna sapa qillqasqa",
       "uploads": "Sapa punchaw cargapa limite",
       "storage": "Editor waqaychasqa",
-      "profiles": "Waqaychasqa perfiles",
       "lending": "Insignia manukuy ranuras",
       "voice": "Kunka clonación nisqa",
       "voiceFree": "Qispisqa",
       "voiceLocked": "{{tier}} y wichayman"
     },
-    "buy": "DHB nisqawan yanapachikuy",
+    "buyTokens": "Fichas nisqakunata rantiy",
     "details": "Hunt’asqa pakiy",
     "play": "Pukllay",
     "pause": "Suyay"

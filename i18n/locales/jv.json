@@ -5917,13 +5917,12 @@
       "images": "Gambar saben kiriman",
       "uploads": "Watesan unggah saben dina",
       "storage": "Panyimpenan editor",
-      "profiles": "Profil disimpen",
       "lending": "Slot ngutangi lencana",
       "voice": "Kloning swara",
       "voiceFree": "Gratis",
       "voiceLocked": "{{tier}} lan munggah"
     },
-    "buy": "Entuk DHB",
+    "buyTokens": "Tuku token",
     "details": "Rincian lengkap",
     "play": "Putar",
     "pause": "Paus"

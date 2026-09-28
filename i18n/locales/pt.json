@@ -5970,13 +5970,12 @@
       "images": "Imagens por post",
       "uploads": "Limite de carregamento diário",
       "storage": "Armazenamento do editor",
-      "profiles": "Perfis guardados",
       "lending": "Slots de empréstimo de crachás",
       "voice": "Clonagem vocal",
       "voiceFree": "Grátis",
       "voiceLocked": "{{tier}} e acima"
     },
-    "buy": "Obter DHB",
+    "buyTokens": "Comprar tokens",
     "details": "Discriminação completa",
     "play": "Reproduzir",
     "pause": "Pausa"

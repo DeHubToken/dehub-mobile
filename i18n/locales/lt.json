@@ -5917,13 +5917,12 @@
       "images": "Paveikslėliai vienam įrašui",
       "uploads": "Įkėlimo per dieną limitas",
       "storage": "Redaktoriaus saugykla",
-      "profiles": "Išsaugoti profiliai",
       "lending": "Ženklelių skolinimo lizdai",
       "voice": "Balso klonavimas",
       "voiceFree": "Nemokamai",
       "voiceLocked": "{{tier}} ir aukštyn"
     },
-    "buy": "Gauti DHB",
+    "buyTokens": "Pirkite žetonus",
     "details": "Išsamus išskaidymas",
     "play": "Paleisti",
     "pause": "Pristabdyti"

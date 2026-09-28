@@ -5917,13 +5917,12 @@
       "images": "Attēli uz ziņu",
       "uploads": "Ikdienas augšupielādes ierobežojums",
       "storage": "Redaktora krātuve",
-      "profiles": "Saglabātie profili",
       "lending": "Žetonu aizdošanas laika nišas",
       "voice": "Balss klonēšana",
       "voiceFree": "Bezmaksas",
       "voiceLocked": "{{tier}} un uz augšu"
     },
-    "buy": "Iegūt DHB",
+    "buyTokens": "Iegādāties žetonus",
     "details": "Pilns sadalījums",
     "play": "Atskaņot",
     "pause": "Apturēt"

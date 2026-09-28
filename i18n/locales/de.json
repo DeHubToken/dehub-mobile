@@ -5966,13 +5966,12 @@
       "images": "Bilder pro Beitrag",
       "uploads": "Tägliches Upload-Lim",
       "storage": "Editor-Speicher",
-      "profiles": "Gespeicherte Profile",
       "lending": "Ausleih-Slots für Abzeichen",
       "voice": "Voice-Klonen",
       "voiceFree": "Kostenlos",
       "voiceLocked": "{{tier}} und höher"
     },
-    "buy": "Holen Sie sich DHB",
+    "buyTokens": "Token kaufen",
     "details": "Vollständige Aufschlüsselung",
     "play": "Spielen",
     "pause": "Pause"

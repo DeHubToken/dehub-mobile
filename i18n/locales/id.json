@@ -5966,13 +5966,12 @@
       "images": "Gambar per postingan",
       "uploads": "Batas unggahan harian",
       "storage": "Penyimpanan editor",
-      "profiles": "Profil tersimpan",
       "lending": "Slot pinjaman lencana",
       "voice": "Kloning suara",
       "voiceFree": "Gratis",
       "voiceLocked": "{{tier}} ke atas"
     },
-    "buy": "Dapatkan DHB",
+    "buyTokens": "Beli token",
     "details": "Perincian lengkap",
     "play": "Mainkan",
     "pause": "Jeda"

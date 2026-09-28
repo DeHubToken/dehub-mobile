@@ -5940,13 +5940,12 @@
       "images": "Sary isaky ny lahatsoratra",
       "uploads": "Daily mampakatra fetra",
       "storage": "Fitehirizana fanontana",
-      "profiles": "Tohanan-javatra voavonjy",
       "lending": "Slots fampisamborana mari-pahaizana",
       "voice": "Fanakarana feo",
       "voiceFree": "Maimaimpoana",
       "voiceLocked": "{{tier}} and."
     },
-    "buy": "Mahazoa DHB",
+    "buyTokens": "Mambran'ny",
     "details": "Famakafakana feno",
     "play": "Alefa",
     "pause": "Atsaharo"
