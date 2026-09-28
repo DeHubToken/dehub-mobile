@@ -8487,5 +8487,36 @@
       "emptyTitle": "아직 등록된 앱이 없습니다",
       "emptyBody": "첫 번째 앱을 검토 중입니다. 하나를 만들면 여기에 있을 수 있습니다."
     }
+  },
+  "aiStyles": {
+    "normal": "기본",
+    "old-english": "고대 영어",
+    "cockney": "코크니",
+    "celtic": "켈트",
+    "scouse": "스카우스",
+    "wild-west": "와일드 웨스트",
+    "asian-uncle": "아시아 삼촌",
+    "russian-mafia": "러시아 마피아",
+    "pirate": "해적",
+    "alien": "외계인",
+    "e-girl": "이걸",
+    "chad": "채드",
+    "hopeless-romantic": "구제불능 로맨티스트",
+    "daddy": "아빠",
+    "mommy": "엄마",
+    "big-brother": "형/오빠",
+    "lil-bro": "남동생",
+    "big-sister": "누나/언니",
+    "little-sister": "여동생",
+    "conservative": "보수주의자",
+    "liberal": "자유주의자",
+    "antifa": "안티파",
+    "capitalist": "자본주의자",
+    "socialist": "사회주의자",
+    "neocon": "네오콘",
+    "feminist": "페미니스트",
+    "progressive": "진보주의자",
+    "nationalist": "민족주의자",
+    "communist": "공산주의자"
   }
 }

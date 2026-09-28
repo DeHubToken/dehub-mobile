@@ -8483,5 +8483,36 @@
       "emptyTitle": "Hiç hili habar berilmedi",
       "emptyBody": "Birinji ulaglar seredilýär. Birini gurup, ol ýerde bolup biler."
     }
+  },
+  "aiStyles": {
+    "normal": "Adaty",
+    "old-english": "Gadymy iňlis",
+    "cockney": "Kokni",
+    "celtic": "Kelt",
+    "scouse": "Skaus",
+    "wild-west": "Wagşy Günbatar",
+    "asian-uncle": "Aziýaly daýy",
+    "russian-mafia": "Rus mafiýasy",
+    "pirate": "Garakçy",
+    "alien": "Gelmişek",
+    "e-girl": "E-Girl",
+    "chad": "Chad",
+    "hopeless-romantic": "Umytsyz romantik",
+    "daddy": "Kaka",
+    "mommy": "Eje",
+    "big-brother": "Uly dogan",
+    "lil-bro": "Kiçi dogan",
+    "big-sister": "Uly aýal dogan",
+    "little-sister": "Kiçi aýal dogan",
+    "conservative": "Konserwatiw",
+    "liberal": "Liberal",
+    "antifa": "ANTIFA",
+    "capitalist": "Kapitalist",
+    "socialist": "Sosialist",
+    "neocon": "Neokon",
+    "feminist": "Feminist",
+    "progressive": "Progressiw",
+    "nationalist": "Milletçi",
+    "communist": "Kommunist"
   }
 }

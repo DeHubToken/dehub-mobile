@@ -8523,5 +8523,36 @@
       "emptyTitle": "अहिलेसम्म कुनै पनि एपहरू सूचीबद्ध गरिएको छैन",
       "emptyBody": "पहिलो अनुप्रयोगहरू समीक्षामा छन् । एउटा बनाउनुहोस् र यो यहाँ हुन सक्छ ।"
     }
+  },
+  "aiStyles": {
+    "normal": "सामान्य",
+    "old-english": "पुरानो अङ्ग्रेजी",
+    "cockney": "कक्नी",
+    "celtic": "केल्टिक",
+    "scouse": "स्काउस",
+    "wild-west": "वाइल्ड वेस्ट",
+    "asian-uncle": "एसियाली काका",
+    "russian-mafia": "रुसी माफिया",
+    "pirate": "समुद्री डाकु",
+    "alien": "एलियन",
+    "e-girl": "ई-गर्ल",
+    "chad": "च्याड",
+    "hopeless-romantic": "निराश रोमान्टिक",
+    "daddy": "बुबा",
+    "mommy": "आमा",
+    "big-brother": "दाजु",
+    "lil-bro": "भाइ",
+    "big-sister": "दिदी",
+    "little-sister": "बहिनी",
+    "conservative": "रूढिवादी",
+    "liberal": "उदारवादी",
+    "antifa": "एन्टिफा",
+    "capitalist": "पूँजीवादी",
+    "socialist": "समाजवादी",
+    "neocon": "नियोकन",
+    "feminist": "नारीवादी",
+    "progressive": "प्रगतिशील",
+    "nationalist": "राष्ट्रवादी",
+    "communist": "साम्यवादी"
   }
 }

@@ -146,7 +146,7 @@ const AssistantStyleSheetComponent: React.FC<AssistantStyleSheetProps> = ({
                   accessibilityState={{ selected }}
                 >
                   <Text style={s.emoji}>{style.emoji}</Text>
-                  <Text style={s.label}>{style.label}</Text>
+                  <Text style={s.label}>{t(`aiStyles.${style.id}`)}</Text>
                   {selected && <Icon name="Check" size={16} color="#F9FBFF" />}
                 </TouchableOpacity>
               );

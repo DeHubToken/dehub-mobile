@@ -8484,5 +8484,36 @@
       "emptyTitle": "まだアプリがリストされていません",
       "emptyBody": "最初のアプリは審査中です。1つ建てれば、ここにあるかもしれません。"
     }
+  },
+  "aiStyles": {
+    "normal": "ノーマル",
+    "old-english": "古英語",
+    "cockney": "コックニー",
+    "celtic": "ケルト",
+    "scouse": "スカウス",
+    "wild-west": "ワイルド・ウエスト",
+    "asian-uncle": "アジアのおじさん",
+    "russian-mafia": "ロシアン・マフィア",
+    "pirate": "海賊",
+    "alien": "エイリアン",
+    "e-girl": "E-Girl",
+    "chad": "チャド",
+    "hopeless-romantic": "救いようのないロマンチスト",
+    "daddy": "パパ",
+    "mommy": "ママ",
+    "big-brother": "お兄ちゃん",
+    "lil-bro": "弟",
+    "big-sister": "お姉ちゃん",
+    "little-sister": "妹",
+    "conservative": "保守派",
+    "liberal": "リベラル",
+    "antifa": "アンティファ",
+    "capitalist": "資本主義者",
+    "socialist": "社会主義者",
+    "neocon": "ネオコン",
+    "feminist": "フェミニスト",
+    "progressive": "進歩派",
+    "nationalist": "ナショナリスト",
+    "communist": "共産主義者"
   }
 }

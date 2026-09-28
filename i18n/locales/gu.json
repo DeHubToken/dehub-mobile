@@ -8483,5 +8483,36 @@
       "emptyTitle": "હજી સુધી કોઈ એપ્લિકેશન્સ સૂચિબદ્ધ નથી",
       "emptyBody": "પ્રથમ એપ્લિકેશન્સની સમીક્ષા કરવામાં આવી રહી છે. એક બનાવો અને તે અહીં હોઈ શકે છે."
     }
+  },
+  "aiStyles": {
+    "normal": "સામાન્ય",
+    "old-english": "જૂની અંગ્રેજી",
+    "cockney": "કોકની",
+    "celtic": "કેલ્ટિક",
+    "scouse": "સ્કાઉસ",
+    "wild-west": "વાઇલ્ડ વેસ્ટ",
+    "asian-uncle": "એશિયન કાકા",
+    "russian-mafia": "રશિયન માફિયા",
+    "pirate": "ચાંચિયો",
+    "alien": "એલિયન",
+    "e-girl": "ઈ-ગર્લ",
+    "chad": "ચૅડ",
+    "hopeless-romantic": "નિરાશ રોમેન્ટિક",
+    "daddy": "પપ્પા",
+    "mommy": "મમ્મી",
+    "big-brother": "મોટો ભાઈ",
+    "lil-bro": "નાનો ભાઈ",
+    "big-sister": "મોટી બહેન",
+    "little-sister": "નાની બહેન",
+    "conservative": "રૂઢિચુસ્ત",
+    "liberal": "ઉદારવાદી",
+    "antifa": "એન્ટિફા",
+    "capitalist": "મૂડીવાદી",
+    "socialist": "સમાજવાદી",
+    "neocon": "નિયોકોન",
+    "feminist": "નારીવાદી",
+    "progressive": "પ્રગતિશીલ",
+    "nationalist": "રાષ્ટ્રવાદી",
+    "communist": "સામ્યવાદી"
   }
 }

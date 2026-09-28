@@ -8537,5 +8537,36 @@
       "emptyTitle": "Hali hech qanday ilova ro&#39;yxatda yo&#39;q",
       "emptyBody": "Birinchi ilovalar ko&#39;rib chiqilmoqda. Bittasini yarating, shunda u shu yerda bo&#39;lishi mumkin."
     }
+  },
+  "aiStyles": {
+    "normal": "Oddiy",
+    "old-english": "Qadimgi ingliz",
+    "cockney": "Kokni",
+    "celtic": "Kelt",
+    "scouse": "Skaus",
+    "wild-west": "Yovvoyi G'arb",
+    "asian-uncle": "Osiyolik amaki",
+    "russian-mafia": "Rus mafiyasi",
+    "pirate": "Qaroqchi",
+    "alien": "O'zga sayyoralik",
+    "e-girl": "E-Girl",
+    "chad": "Chad",
+    "hopeless-romantic": "Umidsiz romantik",
+    "daddy": "Dada",
+    "mommy": "Oyi",
+    "big-brother": "Aka",
+    "lil-bro": "Uka",
+    "big-sister": "Opa",
+    "little-sister": "Singil",
+    "conservative": "Konservator",
+    "liberal": "Liberal",
+    "antifa": "ANTIFA",
+    "capitalist": "Kapitalist",
+    "socialist": "Sotsialist",
+    "neocon": "Neokon",
+    "feminist": "Feminist",
+    "progressive": "Progressiv",
+    "nationalist": "Millatchi",
+    "communist": "Kommunist"
   }
 }

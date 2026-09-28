@@ -8482,5 +8482,36 @@
       "emptyTitle": "এখনও কোনও অ্যাপ তালিকাভুক্ত করা হয়নি",
       "emptyBody": "প্রথম অ্যাপগুলি পর্যালোচনা করা হচ্ছে । একটি তৈরি করুন এবং এটি এখানে হতে পারে ।"
     }
+  },
+  "aiStyles": {
+    "normal": "স্বাভাবিক",
+    "old-english": "পুরোনো ইংরেজি",
+    "cockney": "ককনি",
+    "celtic": "কেল্টিক",
+    "scouse": "স্কাউস",
+    "wild-west": "ওয়াইল্ড ওয়েস্ট",
+    "asian-uncle": "এশীয় চাচা",
+    "russian-mafia": "রুশ মাফিয়া",
+    "pirate": "জলদস্যু",
+    "alien": "এলিয়েন",
+    "e-girl": "ই-গার্ল",
+    "chad": "চ্যাড",
+    "hopeless-romantic": "আশাহীন রোমান্টিক",
+    "daddy": "বাবা",
+    "mommy": "মা",
+    "big-brother": "বড় ভাই",
+    "lil-bro": "ছোট ভাই",
+    "big-sister": "বড় বোন",
+    "little-sister": "ছোট বোন",
+    "conservative": "রক্ষণশীল",
+    "liberal": "উদারপন্থী",
+    "antifa": "অ্যান্টিফা",
+    "capitalist": "পুঁজিবাদী",
+    "socialist": "সমাজতন্ত্রী",
+    "neocon": "নিওকন",
+    "feminist": "নারীবাদী",
+    "progressive": "প্রগতিশীল",
+    "nationalist": "জাতীয়তাবাদী",
+    "communist": "কমিউনিস্ট"
   }
 }

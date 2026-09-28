@@ -8483,5 +8483,36 @@
       "emptyTitle": "Ei ole loetletud rakendusi veel",
       "emptyBody": "Esimesed rakendused on kontrollimisel. Loo üks ja see võiks siia ilmuda."
     }
+  },
+  "aiStyles": {
+    "normal": "Tavaline",
+    "old-english": "Vanainglise",
+    "cockney": "Cockney",
+    "celtic": "Keldi",
+    "scouse": "Scouse",
+    "wild-west": "Metsik Lääs",
+    "asian-uncle": "Aasia onu",
+    "russian-mafia": "Vene maffia",
+    "pirate": "Piraat",
+    "alien": "Tulnukas",
+    "e-girl": "E-Girl",
+    "chad": "Chad",
+    "hopeless-romantic": "Parandamatu romantik",
+    "daddy": "Issi",
+    "mommy": "Emme",
+    "big-brother": "Suur vend",
+    "lil-bro": "Väike vend",
+    "big-sister": "Suur õde",
+    "little-sister": "Väike õde",
+    "conservative": "Konservatiiv",
+    "liberal": "Liberaal",
+    "antifa": "ANTIFA",
+    "capitalist": "Kapitalist",
+    "socialist": "Sotsialist",
+    "neocon": "Neokonservatiiv",
+    "feminist": "Feminist",
+    "progressive": "Progressiivne",
+    "nationalist": "Rahvuslane",
+    "communist": "Kommunist"
   }
 }

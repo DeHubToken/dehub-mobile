@@ -8483,5 +8483,36 @@
       "emptyTitle": "Nėra sąrašo prietaisų",
       "emptyBody": "Pirmieji prietaisai yra recenzijai. Sukurkite vieną ir jis gali būti čia."
     }
+  },
+  "aiStyles": {
+    "normal": "Įprastas",
+    "old-english": "Senoji anglų",
+    "cockney": "Cockney",
+    "celtic": "Keltų",
+    "scouse": "Scouse",
+    "wild-west": "Laukiniai Vakarai",
+    "asian-uncle": "Azijietis dėdė",
+    "russian-mafia": "Rusų mafija",
+    "pirate": "Piratas",
+    "alien": "Ateivis",
+    "e-girl": "E-Girl",
+    "chad": "Chad",
+    "hopeless-romantic": "Beviltiškas romantikas",
+    "daddy": "Tėtis",
+    "mommy": "Mama",
+    "big-brother": "Vyresnysis brolis",
+    "lil-bro": "Mažasis brolis",
+    "big-sister": "Vyresnioji sesuo",
+    "little-sister": "Mažoji sesuo",
+    "conservative": "Konservatorius",
+    "liberal": "Liberalas",
+    "antifa": "ANTIFA",
+    "capitalist": "Kapitalistas",
+    "socialist": "Socialistas",
+    "neocon": "Neokonas",
+    "feminist": "Feministė",
+    "progressive": "Progresyvus",
+    "nationalist": "Nacionalistas",
+    "communist": "Komunistas"
   }
 }

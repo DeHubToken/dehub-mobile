@@ -8462,5 +8462,36 @@
       "emptyTitle": "अभी तक जारी नहीं भइल आवेदन",
       "emptyBody": "पहिले के आवेदन के जाँच कइल जात बा. \"बिल्कुल, बिल्कुल\" कई आवाज़ें उठीं ।"
     }
+  },
+  "aiStyles": {
+    "normal": "सामान्य",
+    "old-english": "पुरानी अंग्रेज़ी",
+    "cockney": "कॉकनी",
+    "celtic": "केल्टिक",
+    "scouse": "स्काउस",
+    "wild-west": "वाइल्ड वेस्ट",
+    "asian-uncle": "एशियाई चाचा",
+    "russian-mafia": "रूसी माफ़िया",
+    "pirate": "समुद्री डाकू",
+    "alien": "एलियन",
+    "e-girl": "ई-गर्ल",
+    "chad": "चैड",
+    "hopeless-romantic": "बेबस रोमांटिक",
+    "daddy": "पापा",
+    "mommy": "मम्मी",
+    "big-brother": "बड़ा भाई",
+    "lil-bro": "छोटा भाई",
+    "big-sister": "बड़ी बहन",
+    "little-sister": "छोटी बहन",
+    "conservative": "रूढ़िवादी",
+    "liberal": "उदारवादी",
+    "antifa": "एंटीफ़ा",
+    "capitalist": "पूंजीवादी",
+    "socialist": "समाजवादी",
+    "neocon": "नियोकॉन",
+    "feminist": "नारीवादी",
+    "progressive": "प्रगतिशील",
+    "nationalist": "राष्ट्रवादी",
+    "communist": "साम्यवादी"
   }
 }

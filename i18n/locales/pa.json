@@ -8486,5 +8486,36 @@
       "emptyTitle": "ਅਜੇ ਤੱਕ ਕੋਈ ਐਪਸ ਸੂਚੀਬੱਧ ਨਹੀਂ ਹਨ",
       "emptyBody": "ਪਹਿਲੇ ਐਪਸ ਦੀ ਸਮੀਖਿਆ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ. ਇੱਕ ਬਣਾਓ ਅਤੇ ਇਹ ਇੱਥੇ ਹੋ ਸਕਦਾ ਹੈ."
     }
+  },
+  "aiStyles": {
+    "normal": "ਆਮ",
+    "old-english": "ਪੁਰਾਣੀ ਅੰਗਰੇਜ਼ੀ",
+    "cockney": "ਕੌਕਨੀ",
+    "celtic": "ਕੈਲਟਿਕ",
+    "scouse": "ਸਕਾਊਸ",
+    "wild-west": "ਵਾਈਲਡ ਵੈਸਟ",
+    "asian-uncle": "ਏਸ਼ੀਆਈ ਚਾਚਾ",
+    "russian-mafia": "ਰੂਸੀ ਮਾਫ਼ੀਆ",
+    "pirate": "ਸਮੁੰਦਰੀ ਡਾਕੂ",
+    "alien": "ਏਲੀਅਨ",
+    "e-girl": "ਈ-ਗਰਲ",
+    "chad": "ਚੈਡ",
+    "hopeless-romantic": "ਬੇਵੱਸ ਰੋਮਾਂਟਿਕ",
+    "daddy": "ਪਾਪਾ",
+    "mommy": "ਮੰਮੀ",
+    "big-brother": "ਵੱਡਾ ਭਰਾ",
+    "lil-bro": "ਛੋਟਾ ਭਰਾ",
+    "big-sister": "ਵੱਡੀ ਭੈਣ",
+    "little-sister": "ਛੋਟੀ ਭੈਣ",
+    "conservative": "ਰੂੜੀਵਾਦੀ",
+    "liberal": "ਉਦਾਰਵਾਦੀ",
+    "antifa": "ਐਂਟੀਫ਼ਾ",
+    "capitalist": "ਪੂੰਜੀਵਾਦੀ",
+    "socialist": "ਸਮਾਜਵਾਦੀ",
+    "neocon": "ਨਿਓਕੌਨ",
+    "feminist": "ਨਾਰੀਵਾਦੀ",
+    "progressive": "ਪ੍ਰਗਤੀਸ਼ੀਲ",
+    "nationalist": "ਰਾਸ਼ਟਰਵਾਦੀ",
+    "communist": "ਕਮਿਊਨਿਸਟ"
   }
 }

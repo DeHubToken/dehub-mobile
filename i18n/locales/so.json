@@ -8483,5 +8483,36 @@
       "emptyTitle": "Ma jiro barnaamijyo weli la taxay",
       "emptyBody": "Codsiyada ugu horreeya ayaa dib u eegis ku jira. Dhis mid ka mid ah iyo waxaa laga yaabaa in ay halkan."
     }
+  },
+  "aiStyles": {
+    "normal": "Caadi",
+    "old-english": "Ingiriisi Hore",
+    "cockney": "Cockney",
+    "celtic": "Kelti",
+    "scouse": "Scouse",
+    "wild-west": "Galbeedka Duurjoogta",
+    "asian-uncle": "Adeerka Aasiya",
+    "russian-mafia": "Mafiyada Ruushka",
+    "pirate": "Burcad-badeed",
+    "alien": "Shisheeye",
+    "e-girl": "E-Girl",
+    "chad": "Chad",
+    "hopeless-romantic": "Jacayl-qabe Rajo Beelay",
+    "daddy": "Aabo",
+    "mommy": "Hooyo",
+    "big-brother": "Walaal Weyn",
+    "lil-bro": "Walaal Yar",
+    "big-sister": "Walaashay Weyn",
+    "little-sister": "Walaashay Yar",
+    "conservative": "Muxaafid",
+    "liberal": "Libaraal",
+    "antifa": "ANTIFA",
+    "capitalist": "Hantiwadaag-diid",
+    "socialist": "Hantiwadaag",
+    "neocon": "Neocon",
+    "feminist": "Haweenka u doode",
+    "progressive": "Horumar-doon",
+    "nationalist": "Waddani",
+    "communist": "Shuuci"
   }
 }

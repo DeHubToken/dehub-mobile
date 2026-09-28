@@ -8533,5 +8533,36 @@
       "emptyTitle": "Appilikeeshiniiwwan hanga ammaatti hin tarreeffamne",
       "emptyBody": "Appilikeeshiniiwwan jalqabaa gamaaggama irra jiru. Tokko ijaaraa asitti ta&#39;uu danda&#39;a."
     }
+  },
+  "aiStyles": {
+    "normal": "Idilee",
+    "old-english": "Ingliffa Durii",
+    "cockney": "Cockney",
+    "celtic": "Keltii",
+    "scouse": "Scouse",
+    "wild-west": "Dhiha Bosonaa",
+    "asian-uncle": "Eessuma Eeshiyaa",
+    "russian-mafia": "Maafiyaa Raashiyaa",
+    "pirate": "Saamtuu Galaanaa",
+    "alien": "Alagaa Pilaaneetii",
+    "e-girl": "E-Girl",
+    "chad": "Chad",
+    "hopeless-romantic": "Jaalalaan Abdii Kutate",
+    "daddy": "Abbaa",
+    "mommy": "Haadha",
+    "big-brother": "Obboleessa Hangaftuu",
+    "lil-bro": "Obboleessa Quxisuu",
+    "big-sister": "Obboleettii Hangaftuu",
+    "little-sister": "Obboleettii Quxisuu",
+    "conservative": "Duudhaa Eegduu",
+    "liberal": "Liberaalii",
+    "antifa": "ANTIFA",
+    "capitalist": "Kaappitaalistii",
+    "socialist": "Sooshaalistii",
+    "neocon": "Neocon",
+    "feminist": "Deeggartuu Dubartootaa",
+    "progressive": "Guddinaaf Hojjetaa",
+    "nationalist": "Biyyaaf Qabdu",
+    "communist": "Komunistii"
   }
 }

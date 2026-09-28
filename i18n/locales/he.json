@@ -8487,5 +8487,36 @@
       "emptyTitle": "אין אפליקציות רשומות עדיין",
       "emptyBody": "האפליקציות הראשונות נמצאות בבדיקה. בנה אחת והיא עשויה להיות כאן."
     }
+  },
+  "aiStyles": {
+    "normal": "רגיל",
+    "old-english": "אנגלית עתיקה",
+    "cockney": "קוקני",
+    "celtic": "קלטי",
+    "scouse": "סקאוס",
+    "wild-west": "המערב הפרוע",
+    "asian-uncle": "דוד אסייתי",
+    "russian-mafia": "מאפיה רוסית",
+    "pirate": "פיראט",
+    "alien": "חייזר",
+    "e-girl": "אי-גירל",
+    "chad": "צ'אד",
+    "hopeless-romantic": "רומנטיקן חסר תקנה",
+    "daddy": "אבא",
+    "mommy": "אמא",
+    "big-brother": "אח גדול",
+    "lil-bro": "אח קטן",
+    "big-sister": "אחות גדולה",
+    "little-sister": "אחות קטנה",
+    "conservative": "שמרן",
+    "liberal": "ליברל",
+    "antifa": "אנטיפה",
+    "capitalist": "קפיטליסט",
+    "socialist": "סוציאליסט",
+    "neocon": "ניאו-שמרן",
+    "feminist": "פמיניסטית",
+    "progressive": "פרוגרסיבי",
+    "nationalist": "לאומן",
+    "communist": "קומוניסט"
   }
 }

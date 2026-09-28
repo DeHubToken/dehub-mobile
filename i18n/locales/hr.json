@@ -8483,5 +8483,36 @@
       "emptyTitle": "Nema aplikacija na popisu još.",
       "emptyBody": "Prve aplikacije su u provjeri. Izgradi jednu i možda će se pojaviti ovdje."
     }
+  },
+  "aiStyles": {
+    "normal": "Normalno",
+    "old-english": "Staroengleski",
+    "cockney": "Cockney",
+    "celtic": "Keltski",
+    "scouse": "Scouse",
+    "wild-west": "Divlji zapad",
+    "asian-uncle": "Azijski ujak",
+    "russian-mafia": "Ruska mafija",
+    "pirate": "Gusar",
+    "alien": "Vanzemaljac",
+    "e-girl": "E-Girl",
+    "chad": "Chad",
+    "hopeless-romantic": "Beznadni romantik",
+    "daddy": "Tata",
+    "mommy": "Mama",
+    "big-brother": "Stariji brat",
+    "lil-bro": "Mlađi brat",
+    "big-sister": "Starija sestra",
+    "little-sister": "Mlađa sestra",
+    "conservative": "Konzervativac",
+    "liberal": "Liberal",
+    "antifa": "ANTIFA",
+    "capitalist": "Kapitalist",
+    "socialist": "Socijalist",
+    "neocon": "Neokon",
+    "feminist": "Feministica",
+    "progressive": "Progresivac",
+    "nationalist": "Nacionalist",
+    "communist": "Komunist"
   }
 }

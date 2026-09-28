@@ -8482,5 +8482,36 @@
       "buildCta": "ايپ ٺاهيو",
       "emptyTitle": "اڃان تائين ڪوبه ايپس لسٽ نه ڪيو ويو آهي"
     }
+  },
+  "aiStyles": {
+    "normal": "عام",
+    "old-english": "پراڻي انگريزي",
+    "cockney": "ڪاڪني",
+    "celtic": "ڪيلٽڪ",
+    "scouse": "اسڪائوس",
+    "wild-west": "جهنگلي اولهه",
+    "asian-uncle": "ايشيائي چاچو",
+    "russian-mafia": "روسي مافيا",
+    "pirate": "سامونڊي ڌاڙيل",
+    "alien": "ڌارين ڌرتيءَ وارو",
+    "e-girl": "اي-گرل",
+    "chad": "چيڊ",
+    "hopeless-romantic": "نااميد رومانوي",
+    "daddy": "بابا",
+    "mommy": "امي",
+    "big-brother": "وڏو ڀاءُ",
+    "lil-bro": "ننڍو ڀاءُ",
+    "big-sister": "وڏي ڀيڻ",
+    "little-sister": "ننڍي ڀيڻ",
+    "conservative": "قدامت پسند",
+    "liberal": "لبرل",
+    "antifa": "اينٽيفا",
+    "capitalist": "سرمائيدار",
+    "socialist": "سوشلسٽ",
+    "neocon": "نيوڪان",
+    "feminist": "فيمينسٽ",
+    "progressive": "ترقي پسند",
+    "nationalist": "قوم پرست",
+    "communist": "ڪميونسٽ"
   }
 }

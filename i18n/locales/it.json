@@ -8483,5 +8483,36 @@
       "emptyTitle": "Nessuna app ancora elencata",
       "emptyBody": "Le prime app sono in fase di revisione. Costruiscine uno e potrebbe essere qui."
     }
+  },
+  "aiStyles": {
+    "normal": "Normale",
+    "old-english": "Inglese antico",
+    "cockney": "Cockney",
+    "celtic": "Celtico",
+    "scouse": "Scouse",
+    "wild-west": "Selvaggio West",
+    "asian-uncle": "Zio asiatico",
+    "russian-mafia": "Mafia russa",
+    "pirate": "Pirata",
+    "alien": "Alieno",
+    "e-girl": "E-Girl",
+    "chad": "Chad",
+    "hopeless-romantic": "Romantico senza speranza",
+    "daddy": "Papà",
+    "mommy": "Mamma",
+    "big-brother": "Fratello maggiore",
+    "lil-bro": "Fratellino",
+    "big-sister": "Sorella maggiore",
+    "little-sister": "Sorellina",
+    "conservative": "Conservatore",
+    "liberal": "Liberale",
+    "antifa": "ANTIFA",
+    "capitalist": "Capitalista",
+    "socialist": "Socialista",
+    "neocon": "Neocon",
+    "feminist": "Femminista",
+    "progressive": "Progressista",
+    "nationalist": "Nazionalista",
+    "communist": "Comunista"
   }
 }

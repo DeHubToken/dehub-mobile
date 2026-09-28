@@ -7902,5 +7902,36 @@
       "emptyTitle": "No app wey fit for display yet 😕",
       "emptyBody": "🚀 **First apps dey for review now.** Build one, maybe you get one here soon. 💻🔥"
     }
+  },
+  "aiStyles": {
+    "normal": "Normal",
+    "old-english": "Old English",
+    "cockney": "Cockney",
+    "celtic": "Celtic",
+    "scouse": "Scouse",
+    "wild-west": "Wild West",
+    "asian-uncle": "Asian Uncle",
+    "russian-mafia": "Russian Mafia",
+    "pirate": "Pirate",
+    "alien": "Alien",
+    "e-girl": "E-Girl",
+    "chad": "Chad",
+    "hopeless-romantic": "Love-struck Romantic",
+    "daddy": "Papa",
+    "mommy": "Mama",
+    "big-brother": "Big Broda",
+    "lil-bro": "Small Broda",
+    "big-sister": "Big Sista",
+    "little-sister": "Small Sista",
+    "conservative": "Conservative",
+    "liberal": "Liberal",
+    "antifa": "ANTIFA",
+    "capitalist": "Capitalist",
+    "socialist": "Socialist",
+    "neocon": "Neocon",
+    "feminist": "Feminist",
+    "progressive": "Progressive",
+    "nationalist": "Nationalist",
+    "communist": "Communist"
   }
 }

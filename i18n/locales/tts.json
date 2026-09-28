@@ -8471,5 +8471,36 @@
       "title": "แอปส์",
       "emptyTitle": "🚫 ไม่มีแอปที่แสดงอยู่เลย"
     }
+  },
+  "aiStyles": {
+    "normal": "ปกติ",
+    "old-english": "อังกฤษโบราณ",
+    "cockney": "ค็อกนีย์",
+    "celtic": "เซลติก",
+    "scouse": "สเกาส์",
+    "wild-west": "ตะวันตกสุดเถื่อน",
+    "asian-uncle": "ลุงชาวเอเชีย",
+    "russian-mafia": "มาเฟียรัสเซีย",
+    "pirate": "โจรสลัด",
+    "alien": "มนุษย์ต่างดาว",
+    "e-girl": "อีเกิร์ล",
+    "chad": "แชด",
+    "hopeless-romantic": "คนโรแมนติกขั้นสุด",
+    "daddy": "พ่อ",
+    "mommy": "แม่",
+    "big-brother": "พี่ชาย",
+    "lil-bro": "น้องชาย",
+    "big-sister": "พี่สาว",
+    "little-sister": "น้องสาว",
+    "conservative": "อนุรักษนิยม",
+    "liberal": "เสรีนิยม",
+    "antifa": "แอนติฟา",
+    "capitalist": "นายทุน",
+    "socialist": "สังคมนิยม",
+    "neocon": "นีโอคอน",
+    "feminist": "สตรีนิยม",
+    "progressive": "หัวก้าวหน้า",
+    "nationalist": "ชาตินิยม",
+    "communist": "คอมมิวนิสต์"
   }
 }
