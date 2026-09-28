@@ -5964,6 +5964,28 @@
     "play": "Speel",
     "pause": "Pouseer"
   },
+  "streamerShowcase": {
+    "cardOf": "Kaart {{index}} van {{total}}",
+    "progress": "Jou vordering",
+    "goal": {
+      "streams": "{{current}} / {{target}} strome",
+      "hours": "{{current}} / {{target}} ure",
+      "session": "{{current}} / {{target}} min in een stroom",
+      "streak": "{{current}} {{target}} weke",
+      "level": "Vlak {{current}} / {{target}}"
+    },
+    "onStream": "Ontsluit wanneer dit gebeur op stroom",
+    "stats": {
+      "level": "Vlak",
+      "xp": "XP",
+      "hours": "Kwalifiserende ure",
+      "streams": "Kwalifiserende strome",
+      "longest": "Langste stroom",
+      "streak": "Beste streep"
+    },
+    "hoursShort": "{{hours}} h",
+    "weeksShort": "{{count}} wk"
+  },
   "passwordStrength": {
     "veryWeak": "Baie swak",
     "weak": "Swak",

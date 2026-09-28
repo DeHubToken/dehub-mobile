@@ -5935,6 +5935,28 @@
     "play": "Spela",
     "pause": "Pausa"
   },
+  "streamerShowcase": {
+    "cardOf": "Kort {{index}} av {{total}}",
+    "progress": "Dina framsteg",
+    "goal": {
+      "streams": "{{current}} / {{target}} strömmar",
+      "hours": "{{current}} / {{target}} timmar",
+      "session": "{{current}} / {{target}} min i en ström",
+      "streak": "{{current}} / {{target}} veckor",
+      "level": "Nivå {{current}} / {{target}}"
+    },
+    "onStream": "Låses upp när det händer i strömmen",
+    "stats": {
+      "level": "Nivå",
+      "xp": "XP",
+      "hours": "Kvalificerande timmar",
+      "streams": "Kvalificerande strömmar",
+      "longest": "Längsta ström",
+      "streak": "Bästa strimman"
+    },
+    "hoursShort": "{{hours}} h",
+    "weeksShort": "{{count}} wk"
+  },
   "passwordStrength": {
     "veryWeak": "Mycket svagt",
     "weak": "Svagt",

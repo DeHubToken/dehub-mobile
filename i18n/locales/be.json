@@ -5944,6 +5944,28 @@
     "play": "Прайграць",
     "pause": "Паўза"
   },
+  "streamerShowcase": {
+    "cardOf": "Карта {{index}} з {{total}}",
+    "progress": "Ваш ход",
+    "goal": {
+      "streams": "{{current}} / {{target}} патокі",
+      "hours": "{{current}} / {{target}} гадзін",
+      "session": "{{current}} / {{target}} min у адным патоку",
+      "streak": "{{current}} / {{target}} тыдняў",
+      "level": "Узровень {{current}} / {{target}}"
+    },
+    "onStream": "Разблакіроўка, калі гэта адбываецца на патоку",
+    "stats": {
+      "level": "Узровень",
+      "xp": "XP",
+      "hours": "Кваліфікацыйныя гадзіны",
+      "streams": "Кваліфікацыйныя патокі",
+      "longest": "Самы доўгі струмень",
+      "streak": "Лепшая паласа"
+    },
+    "hoursShort": "{{hours}} г",
+    "weeksShort": "{{count}} тыдн."
+  },
   "passwordStrength": {
     "veryWeak": "Вельмі слабы",
     "weak": "Слабы",

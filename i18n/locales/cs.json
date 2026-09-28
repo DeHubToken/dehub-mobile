@@ -5935,6 +5935,28 @@
     "play": "Hrát",
     "pause": "Pozastavit"
   },
+  "streamerShowcase": {
+    "cardOf": "Karta {{index}} z {{total}}",
+    "progress": "Váš pokrok",
+    "goal": {
+      "streams": "{{current}} / {{target}} streamů",
+      "hours": "{{current}} / {{target}} hodin",
+      "session": "{{current}} / {{target}} min v jednom streamu",
+      "streak": "{{current}} / {{target}} týdnů",
+      "level": "Úroveň {{current}} / {{target}}"
+    },
+    "onStream": "Odemkne, když se to stane ve streamu",
+    "stats": {
+      "level": "Úroveň",
+      "xp": "XP",
+      "hours": "Kvalifikační hodiny",
+      "streams": "Způsobilé streamy",
+      "longest": "Nejdelší stream",
+      "streak": "Nejlepší série"
+    },
+    "hoursShort": "{{hours}} h",
+    "weeksShort": "{{count}} týden"
+  },
   "passwordStrength": {
     "veryWeak": "Velmi slabé",
     "weak": "Slabé",

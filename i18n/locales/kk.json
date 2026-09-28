@@ -5949,6 +5949,28 @@
     "play": "Ойнату",
     "pause": "Пауза"
   },
+  "streamerShowcase": {
+    "cardOf": "Карта {{index}} of {{total}}",
+    "progress": "Сіздің прогресіңіз",
+    "goal": {
+      "streams": "{{current}} / {{target}} ағындары",
+      "hours": "{{current}} / {{target}} сағат",
+      "session": "{{current}} / {{target}} min бір ағынмен",
+      "streak": "{{current}} / {{target}} апта",
+      "level": "Деңгей {{current}} / {{target}}"
+    },
+    "onStream": "Ағында болған кезде құлыптарды ашу",
+    "stats": {
+      "level": "Деңгей",
+      "xp": "XP",
+      "hours": "Біліктілік сағаттары",
+      "streams": "Біліктілік ағындары",
+      "longest": "Ең ұзын ағын",
+      "streak": "Үздік жолақ"
+    },
+    "hoursShort": "{{hours}} сағ",
+    "weeksShort": "{{count}} апта"
+  },
   "passwordStrength": {
     "veryWeak": "Өте әлсіз",
     "weak": "Әлсіз",

@@ -6027,6 +6027,28 @@
     "play": "চালান",
     "pause": "বিরতি দিন"
   },
+  "streamerShowcase": {
+    "cardOf": "কার্ড {{index}} এর {{total}}",
+    "progress": "তোমার অগ্রগতি",
+    "goal": {
+      "streams": "{{current}} / {{target}} স্ট্রিম",
+      "hours": "{{current}} / {{target}} ঘন্টা",
+      "session": "{{current}} / {{target}} মিনিট এক স্ট্রিমে",
+      "streak": "{{current}} / {{target}} সপ্তাহ",
+      "level": "লেভেল {{current}} / {{target}}"
+    },
+    "onStream": "স্ট্রিমে ঘটলে আনলক হয়",
+    "stats": {
+      "level": "লেভেল",
+      "xp": "এক্সপি",
+      "hours": "যোগ্য ঘন্টা",
+      "streams": "যোগ্য স্ট্রিম",
+      "longest": "সর্বোচ্চ স্ট্রিম",
+      "streak": "সেরা স্ট্রিক"
+    },
+    "hoursShort": "{{hours}} ঘ",
+    "weeksShort": "{{count}} সপ্তাহ"
+  },
   "passwordStrength": {
     "veryWeak": "বউত দুর্বল",
     "weak": "দুর্বল",

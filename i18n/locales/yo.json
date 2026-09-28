@@ -5932,6 +5932,28 @@
     "play": "Play",
     "pause": "Duro"
   },
+  "streamerShowcase": {
+    "cardOf": "Káàdì {{index}} ti {{total}}",
+    "progress": "Ìlọsíwájú rẹ",
+    "goal": {
+      "streams": "{{current}} / {{target}} awọn ṣiṣan",
+      "hours": "{{current}} / {{target}} wakati",
+      "session": "{{current}} / {{target}} min nínú ìṣàn kan",
+      "streak": "{{current}} / {{target}} ọsẹ",
+      "level": "Ipele {{current}} / {{target}}"
+    },
+    "onStream": "Ṣii silẹ nigbati o ba ṣẹlẹ lori ṣiṣan",
+    "stats": {
+      "level": "Ipele",
+      "xp": "XP",
+      "hours": "Awọn wakati ti o yẹ",
+      "streams": "Awọn ṣiṣan ti o yẹ",
+      "longest": "Odò tó gùn jùlọ",
+      "streak": "Ti o dara ju streak"
+    },
+    "hoursShort": "{{hours}} h",
+    "weeksShort": "{{count}} wk"
+  },
   "passwordStrength": {
     "veryWeak": "Aláìlera gidigidi",
     "weak": "Aláìlera",

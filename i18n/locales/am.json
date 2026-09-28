@@ -5960,6 +5960,28 @@
     "play": "አጫውት",
     "pause": "እረፍት"
   },
+  "streamerShowcase": {
+    "cardOf": "ካርድ {{index}} ከ{{total}}",
+    "progress": "የእርስዎ እድገት",
+    "goal": {
+      "streams": "{{current}} / {{target}} ዥረቶች",
+      "hours": "{{current}} / {{target}} ሰዓቶች",
+      "session": "{{current}} / {{target}} min በአንድ ዥረት ውስጥ",
+      "streak": "{{current}} / {{target}} ሳምንቶች",
+      "level": "ደረጃ {{current}} / {{target}}"
+    },
+    "onStream": "በዥረት ላይ ሲከሰት ይከፍታል",
+    "stats": {
+      "level": "ደረጃ",
+      "xp": "XP",
+      "hours": "የብቃት ሰዓቶች",
+      "streams": "ብቃት ያላቸው ጅረቶች",
+      "longest": "ረዥሙ ዥረት",
+      "streak": "ምርጥ streak"
+    },
+    "hoursShort": "{{hours}} ሸ",
+    "weeksShort": "{{count}} ሳምንት"
+  },
   "passwordStrength": {
     "veryWeak": "በጣም ደካማ",
     "weak": "ደካማ",

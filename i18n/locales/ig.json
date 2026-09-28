@@ -5931,6 +5931,28 @@
     "play": "Gwuo",
     "pause": "Kwụsị"
   },
+  "streamerShowcase": {
+    "cardOf": "Kaadị {{index}} nke {{total}}",
+    "progress": "Ọganihu gị",
+    "goal": {
+      "streams": "{{current}} / {{target}} iyi",
+      "hours": "{{current}}/{{target}} 1 awa",
+      "session": "{{current}} / {{target}} min na otu iyi",
+      "streak": "{{current}} / {{target}} izu",
+      "level": "Ọkwa {{current}} / {{target}}"
+    },
+    "onStream": "Na-ekpughe mgbe ọ na-eme na iyi",
+    "stats": {
+      "level": "Ọkwa",
+      "xp": "XP",
+      "hours": "Iru eru awa",
+      "streams": "Iru eru iyi",
+      "longest": "Longest iyi",
+      "streak": "Best streak"
+    },
+    "hoursShort": "{{hours}} h",
+    "weeksShort": "{{count}} wk"
+  },
   "passwordStrength": {
     "veryWeak": "Adịghị ike ma ọlị",
     "weak": "Adịghị ike",

@@ -5984,6 +5984,28 @@
     "play": "Lecture",
     "pause": "Pause"
   },
+  "streamerShowcase": {
+    "cardOf": "Carte {{index}} de {{total}}",
+    "progress": "Votre progression",
+    "goal": {
+      "streams": "{{current}} / {{target}} streams",
+      "hours": "{{current}} / {{target}} heures",
+      "session": "{{current}} / {{target}} min en un seul flux",
+      "streak": "{{current}} / {{target}} semaines",
+      "level": "Niveau {{current}} / {{target}}"
+    },
+    "onStream": "Se déverrouille lorsque cela se produit en streaming",
+    "stats": {
+      "level": "Niveau",
+      "xp": "XP",
+      "hours": "Heures de qualification",
+      "streams": "Flux admissibles",
+      "longest": "Ruisseau le plus long",
+      "streak": "Meilleure série"
+    },
+    "hoursShort": "{{hours}} h",
+    "weeksShort": "{{count}} sem"
+  },
   "passwordStrength": {
     "veryWeak": "Très faible",
     "weak": "Faible",

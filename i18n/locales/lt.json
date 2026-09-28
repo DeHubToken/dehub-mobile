@@ -5931,6 +5931,28 @@
     "play": "Paleisti",
     "pause": "Pristabdyti"
   },
+  "streamerShowcase": {
+    "cardOf": "Kortelė {{index}} iš {{total}}",
+    "progress": "Jūsų pažanga",
+    "goal": {
+      "streams": "{{current}} / {{target}} srautai",
+      "hours": "{{current}} / {{target}} val.",
+      "session": "{{current}} / {{target}} min viename sraute",
+      "streak": "{{current}} / {{target}} savaitės",
+      "level": "Lygis {{current}} / {{target}}"
+    },
+    "onStream": "Atrakinama, kai tai įvyksta sraute",
+    "stats": {
+      "level": "Lygis",
+      "xp": "XP",
+      "hours": "Reikalavimus atitinkančios valandos",
+      "streams": "Reikalavimus atitinkantys srautai",
+      "longest": "Ilgiausias srautas",
+      "streak": "Geriausia serija"
+    },
+    "hoursShort": "{{hours}} h",
+    "weeksShort": "{{count}} sav."
+  },
   "passwordStrength": {
     "veryWeak": "Labai silpnas",
     "weak": "Silpnas",

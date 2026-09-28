@@ -5931,6 +5931,28 @@
     "play": "ተጻወት",
     "pause": "ዕረፍቲ"
   },
+  "streamerShowcase": {
+    "cardOf": "ካርታ {{index}} of {{total}}",
+    "progress": "ዕቤትካ",
+    "goal": {
+      "streams": "{{current}} / {{target}} ስርጭታት",
+      "hours": "{{current}} / {{target}} ሰዓታት",
+      "session": "{{current}} / {{target}} min ኣብ ሓደ ዥረት",
+      "streak": "{{current}} / {{target}} ሰሙን",
+      "level": "ደረጃ {{current}} / {{target}}"
+    },
+    "onStream": "ኣብ ዥረት ምስ ዝኸውን ክፉት",
+    "stats": {
+      "level": "ደረጃ",
+      "xp": "XP",
+      "hours": "ናይ ብቕዓት ሰዓታት",
+      "streams": "ብቕዓት ዘለዎ ዥረት",
+      "longest": "ነዊሕ ዥረት",
+      "streak": "ዝበለጸ ስክሪፕት"
+    },
+    "hoursShort": "{{hours}} ሰዓት",
+    "weeksShort": "{{count}} ሰሙን"
+  },
   "passwordStrength": {
     "veryWeak": "ኣዝዩ ድኹም",
     "weak": "ድኹም",

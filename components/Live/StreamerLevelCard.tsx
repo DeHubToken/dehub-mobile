@@ -13,8 +13,8 @@
  * Renders nothing for an address that has never ended a stream: a profile
  * that is not a streamer's must not grow a streamer panel.
  */
-import React, { useId, useState } from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import React, { useId, useRef, useState } from "react";
+import { View, Text, TouchableOpacity, Pressable } from "react-native";
 import { SvgXml } from "react-native-svg";
 import { useTranslation } from "react-i18next";
 import Icon from "../ui/Icon";
@@ -24,6 +24,10 @@ import { useUser } from "../../context/AuthContext";
 import { useAppTheme } from "../../context/ThemeContext";
 import { STREAMER_BADGE_IDS, badgeMaterial, streamerBadgeSvg } from "../../libs/streamer-badge-art";
 import type { StreamerCardId, StreamerProgress } from "../../services/live.service";
+import { openStreamerShowcase } from "../../libs/badgeShowcase";
+
+/** How long the cards sheet takes to leave before the showcase takes the screen. */
+const SHEET_EXIT_MS = 320;
 
 interface Props {
   address?: string | null;
@@ -59,6 +63,7 @@ const StreamerLevelCard: React.FC<Props> = ({ address, className }) => {
   const me = ((user?.walletAddress || user?.address || "") as string).toLowerCase();
   // Only the owner of this ladder can equip a badge; the call always saves the viewer's own.
   const canSelect = !!address && !!me && address.toLowerCase() === me;
+  const equippedRef = useRef<View>(null);
 
   if (!data || !(data.totalStreams > 0)) return null;
 
@@ -73,7 +78,17 @@ const StreamerLevelCard: React.FC<Props> = ({ address, className }) => {
         <View className="flex-row flex-wrap items-center justify-center gap-3">
           <View className="w-20 min-h-20 p-2 rounded-xl border border-white/15 bg-white/5 items-center justify-center">
             {equipped ? (
-              <SvgXml xml={streamerBadgeSvg(equipped.id, theme, true, instance)} width={64} height={64} />
+              <Pressable
+                ref={equippedRef}
+                collapsable={false}
+                accessibilityRole="button"
+                accessibilityLabel={t(`live.progress.card.${equipped.id}.name`)}
+                onPress={() => {
+                  if (address) openStreamerShowcase(equipped.id, address, canSelect, equippedRef.current);
+                }}
+              >
+                <SvgXml xml={streamerBadgeSvg(equipped.id, theme, true, instance)} width={64} height={64} />
+              </Pressable>
             ) : (
               <>
                 <Text className="w-full text-center text-white/40 text-[9px] leading-3 uppercase tracking-wider">{t("live.progress.title")}</Text>
@@ -166,6 +181,15 @@ const StreamerLevelCard: React.FC<Props> = ({ address, className }) => {
           locale={i18n.language}
           saving={selection.isPending}
           onSelect={canSelect && address ? (badgeId) => selection.mutate({ address, badgeId }) : undefined}
+          onOpen={
+            address
+              ? (badgeId) => {
+                  // Two native modals must not overlap on iOS: let the sheet go first.
+                  setCardsOpen(false);
+                  setTimeout(() => openStreamerShowcase(badgeId, address, canSelect, null), SHEET_EXIT_MS);
+                }
+              : undefined
+          }
         />
         <RecentList progress={data} locale={i18n.language} />
       </GlassModal>
@@ -178,7 +202,8 @@ const CardGrid: React.FC<{
   locale: string;
   saving: boolean;
   onSelect?: (id: StreamerCardId) => void;
-}> = ({ progress, locale, saving, onSelect }) => {
+  onOpen?: (id: StreamerCardId) => void;
+}> = ({ progress, locale, saving, onSelect, onOpen }) => {
   const { t } = useTranslation();
   const { theme, isMinimal } = useAppTheme();
   const instance = useId();
@@ -201,7 +226,14 @@ const CardGrid: React.FC<{
                 borderRadius: isMinimal ? 0 : 16,
               }}
             >
-              <SvgXml xml={streamerBadgeSvg(id, theme, earned, instance)} width={80} height={80} />
+              <Pressable
+                disabled={!onOpen}
+                onPress={() => onOpen?.(id)}
+                accessibilityRole="button"
+                accessibilityLabel={t(`live.progress.card.${id}.name`)}
+              >
+                <SvgXml xml={streamerBadgeSvg(id, theme, earned, instance)} width={80} height={80} />
+              </Pressable>
               <Text className="text-xs font-semibold mt-1.5 text-center" style={{ color: material.text }}>
                 {t(`live.progress.card.${id}.name`)}
               </Text>

@@ -5900,6 +5900,28 @@
     "play": "ຫຼິ້ນ",
     "pause": "ພັກຜ່ອນ"
   },
+  "streamerShowcase": {
+    "cardOf": "ບັດ {{index}} ຂອງ {{total}}",
+    "progress": "ຄວາມຄືບ ຫນ້າ ຂອງທ່ານ",
+    "goal": {
+      "streams": "{{current}} / {{target}} ສະຕຣີມ",
+      "hours": "{{current}} / {{target}} ຊົ່ວໂມງ",
+      "session": "{{current}} / {{target}} min ໃນ ຫນຶ່ງ ຖ້ຽວ",
+      "streak": "{{current}} / {{target}} ອາທິດ",
+      "level": "ລະດັບ {{current}} / {{target}}"
+    },
+    "onStream": "ປົດລັອກເມື່ອມັນເກີດຂື້ນໃນສະຕີມ",
+    "stats": {
+      "level": "ລະດັບ",
+      "xp": "XP",
+      "hours": "ເວລາການຄົບຖ້ວນ",
+      "streams": "ສະຕີມທີ່ມີຄຸນສົມບັດ",
+      "longest": "ກະແສນ້ໍາທີ່ຍາວທີ່ສຸດ",
+      "streak": "Streak ທີ່ດີທີ່ສຸດ"
+    },
+    "hoursShort": "{{hours}} ຊມ",
+    "weeksShort": "{{count}} ອາທິດ"
+  },
   "passwordStrength": {
     "veryWeak": "ອ່ອນຫຼາຍ",
     "weak": "ອ່ອນ",

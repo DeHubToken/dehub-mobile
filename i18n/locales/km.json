@@ -5911,6 +5911,28 @@
     "play": "ចាក់",
     "pause": "ផ្អាក"
   },
+  "streamerShowcase": {
+    "cardOf": "កាត {{index}} នៃ {{total}}",
+    "progress": "វឌ្ឍនភាពរបស់អ្នក",
+    "goal": {
+      "streams": "{{current}} / {{target}} ស្ទ្រីម",
+      "hours": "{{current}} /{{target}} ម៉ោង",
+      "session": "{{current}} / {{target}} នាទីនៅក្នុងស្ទ្រីមមួយ",
+      "streak": "{{current}} /{{target}} សប្តាហ៍",
+      "level": "កម្រិត {{current}} /{{target}}"
+    },
+    "onStream": "ដោះសោនៅពេលវាកើតឡើងនៅលើស្ទ្រីម",
+    "stats": {
+      "level": "កម្រិត",
+      "xp": "XP",
+      "hours": "ម៉ោងមានលក្ខណៈសម្បត្តិគ្រប់គ្រាន់",
+      "streams": "ស្ទ្រីមដែលមានលក្ខណៈសម្បត្តិគ្រប់គ្រាន់",
+      "longest": "ស្ទ្រីមវែងបំផុត",
+      "streak": "Streak ល្អបំផុត"
+    },
+    "hoursShort": "{{hours}} ម៉ោង",
+    "weeksShort": "{{count}} សប្ដាហ៍"
+  },
   "passwordStrength": {
     "veryWeak": "ខ្សោយណាស់",
     "weak": "ខ្សោយ",

@@ -5944,6 +5944,28 @@
     "play": "खेल्नुहोस्",
     "pause": "पज गर्नुहोस्"
   },
+  "streamerShowcase": {
+    "cardOf": "कार्ड {{index}} को {{total}}",
+    "progress": "तपाईंको प्रगति",
+    "goal": {
+      "streams": "{{current}}/{{target}} स्ट्रिमहरू",
+      "hours": "{{current}}/{{target}} घण्टा",
+      "session": "{{current}}/{{target}} एक स्ट्रिममा मिनेट",
+      "streak": "{{current}}/{{target}} हप्ताहरू",
+      "level": "स्तर {{current}}/{{target}}"
+    },
+    "onStream": "जब यो स्ट्रिममा हुन्छ अनलक हुन्छ",
+    "stats": {
+      "level": "स्तर",
+      "xp": "XP",
+      "hours": "योग्यता समय",
+      "streams": "योग्य स्ट्रिमहरू",
+      "longest": "सबैभन्दा लामो धारा",
+      "streak": "उत्कृष्ट लकीर"
+    },
+    "hoursShort": "{{hours}} घ",
+    "weeksShort": "{{count}} हप्ता"
+  },
   "passwordStrength": {
     "veryWeak": "धेरै कमजोर",
     "weak": "कमजोर",

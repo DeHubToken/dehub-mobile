@@ -5961,6 +5961,28 @@
     "play": "Abspiele",
     "pause": "Pause"
   },
+  "streamerShowcase": {
+    "cardOf": "Chärtli {{index}} vo {{total}}",
+    "progress": "Dini Fortschritti",
+    "goal": {
+      "streams": "{{current}} / {{target}} Streams",
+      "hours": "{{current}} / {{target}} Stundä",
+      "session": "{{current}} / {{target}} Min. i dimene Stream",
+      "streak": "{{current}} / {{target}} Wuchä",
+      "level": "Level {{current}} / {{target}}"
+    },
+    "onStream": "Schaltet frei, wenn's im Stream passiert",
+    "stats": {
+      "level": "Level",
+      "xp": "XP",
+      "hours": "Qualifizierendi Stundä",
+      "streams": "Qualifizierendi Streams",
+      "longest": "Längschti Stream",
+      "streak": "Beschti Serie"
+    },
+    "hoursShort": "{{hours}} h",
+    "weeksShort": "{{count}} Wuchä"
+  },
   "passwordStrength": {
     "veryWeak": "Sehr schwach",
     "weak": "Schwach",

@@ -5955,6 +5955,28 @@
     "play": "เล่น",
     "pause": "หยุดชั่วคราว"
   },
+  "streamerShowcase": {
+    "cardOf": "การ์ด {{index}} จาก {{total}}",
+    "progress": "ความคืบหน้าของคุณ",
+    "goal": {
+      "streams": "{{current}}/{{target}} สตรีม",
+      "hours": "{{current}}/{{target}} ชั่วโมง",
+      "session": "{{current}}/{{target}} นาทีในสตรีมเดียว",
+      "streak": "{{current}}/{{target}} สัปดาห์",
+      "level": "ระดับ {{current}}/{{target}}"
+    },
+    "onStream": "ปลดล็อกเมื่อเกิดขึ้นบนสตรีม",
+    "stats": {
+      "level": "ระดับ",
+      "xp": "XP",
+      "hours": "ช่วงเวลาที่มีสิทธิ์",
+      "streams": "สตรีมที่ตรงตามคุณสมบัติ",
+      "longest": "สตรีมที่ยาวที่สุด",
+      "streak": "ต่อเนื่องดีที่สุด"
+    },
+    "hoursShort": "{{hours}} ชม.",
+    "weeksShort": "{{count}} สัปดาห์"
+  },
   "passwordStrength": {
     "veryWeak": "อ่อนมาก",
     "weak": "อ่อน",
