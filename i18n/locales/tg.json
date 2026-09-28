@@ -5935,7 +5935,7 @@
     "cardOf": "Корт {{index}} аз {{total}}",
     "progress": "Пешрафти шумо",
     "goal": {
-      "streams": "{{current}}/ {{target}} streams",
+      "streams": "{{current}} / {{target}} пахш",
       "hours": "{{current}} / {{target}} hours",
       "session": "{{current}} / {{target}} дақ дар як ҷараён",
       "streak": "{{current}} / {{target}} ҳафтаҳо",

@@ -5902,44 +5902,44 @@
     "holdNote": "Nyşan açylandan soň, ol sizde tokenlaryňyzy saklaýan wagtyňyzda bolýar. Täze nyşany açmak üçin gerek bolan tokenlaryň sany token bahasyna görä üýtgeýär."
   },
   "badgeShowcase": {
-    "dialogLabel": "{{tier}} badge",
+    "dialogLabel": "{{tier}} nyşany",
     "close": "Ýap",
-    "badges": "Ýagdaýlar",
-    "tierOf": "{{index}} of {{total}}",
-    "youHaveThis": "Men bu çüýçäni alyp barýaryn",
-    "toUnlock": "{{amount}} more tokens ony açmak üçin",
+    "badges": "Nyşanlar",
+    "tierOf": "Dereje {{index}} / {{total}}",
+    "youHaveThis": "Bu nyşan sizde bar",
+    "toUnlock": "Açmak üçin ýene {{amount}} token",
     "holdToUnlock": "Ony açmak üçin, iň bolmanda, bu köp DeHub tokenlerini saklaň",
-    "sliderLabel": "Ýapyşýan toksinler",
-    "sliderValue": "{{amount}} tokens {{tier}}",
+    "sliderLabel": "Saklanýan tokenler",
+    "sliderValue": "{{amount}} token · {{tier}}",
     "you": "Siz",
     "grants": "Näme açýar",
     "perks": {
       "fee": "Platforma tölegi",
       "votes": "Ýolbaşçylyk saýlamalary",
       "reach": "Görüş we reaksiýa üçin ýük",
-      "feedPosts": "Öýden-öýe postlary",
+      "feedPosts": "Günde baş sahypa ýazgylary",
       "images": "Post üçin suratlar",
       "uploads": "Gündelik yükleme çägi",
-      "storage": "Editör depgesi",
-      "lending": "Garawul diňi we Garawul diňi",
+      "storage": "Redaktor ammary",
+      "lending": "Nyşan karz bermek ýerleri",
       "voice": "Ses klonlaşmagy",
       "voiceFree": "Azat",
       "voiceLocked": "{{tier}} we ondan ýokary"
     },
     "buyTokens": "Tokenleri satyn al",
-    "details": "Bütin döwüş",
+    "details": "Doly maglumat",
     "play": "Oynat",
-    "pause": "Galanlar"
+    "pause": "Duruz"
   },
   "streamerShowcase": {
-    "cardOf": "Kart {{index}} of {{total}}",
+    "cardOf": "Kart {{index}} / {{total}}",
     "progress": "Ösüş",
     "goal": {
-      "streams": "{{current}} {{target}} streams",
+      "streams": "{{current}} / {{target}} ýaýlym",
       "hours": "{{current}} / {{target}} sagat",
       "session": "Bir ýaýlymda {{current}} / {{target}} min",
-      "streak": "{{current}} {{target}} hepdeleri",
-      "level": "{{current}} / {{target}}"
+      "streak": "{{current}} / {{target}} hepde",
+      "level": "Dereje {{current}} / {{target}}"
     },
     "onStream": "Bu akyşda bolanda, açylýar",
     "stats": {
