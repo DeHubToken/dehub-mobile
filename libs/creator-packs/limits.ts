@@ -13,7 +13,7 @@ export type PackKind = "emoji" | "sticker" | "gif";
 export const PACK_KINDS: PackKind[] = ["emoji", "sticker", "gif"];
 
 export const PACK_TIER_ORDER = [
-  "Crab", "Lobster", "Piranha", "Giant Tortoise", "King Cobra", "Octopus", "Crocodile",
+  "Crab", "Ghost Lobster", "Piranha", "Giant Tortoise", "King Cobra", "Octopus", "Crocodile",
   "Dolphin", "Tiger Shark", "Great White Shark", "Killer Whale", "Blue Whale", "Megalodon",
 ];
 
@@ -35,7 +35,7 @@ export interface PackLimits {
 export const NO_PACK_LIMITS: PackLimits = { packs: 0, items: { emoji: 0, sticker: 0, gif: 0 } };
 
 export function packLimitsFor(tier: string | null | undefined): PackLimits {
-  const i = tier ? PACK_TIER_ORDER.indexOf(tier) : -1;
+  const i = tier ? PACK_TIER_ORDER.indexOf(tier === "Lobster" ? "Ghost Lobster" : tier) : -1;
   if (i < 0) return NO_PACK_LIMITS;
   return {
     packs: PACKS_PER_KIND[i],

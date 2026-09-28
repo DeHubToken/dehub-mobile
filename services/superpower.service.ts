@@ -1,3 +1,4 @@
+import { canonicalTierName } from '../libs/misc';
 /**
  * SuperPowers — spending a badge on reach
  * =======================================
@@ -295,7 +296,7 @@ export async function fetchSuperpowerStatus(): Promise<SuperPowerStatus> {
     method: 'GET',
     isAuthRequired: true,
   });
-  return response.result;
+  return { ...currentTier(response.result), powers: response.result.powers.map(currentTier), bookings: response.result.bookings.map(currentTier) };
 }
 
 /** The published ladder. Public — no badge needed to read what one buys. */
@@ -307,7 +308,7 @@ export async function fetchSuperpowerTiers(): Promise<SuperPowerLadder> {
     // turned off explicitly or a signed-out viewer never sees it.
     isAuthRequired: false,
   });
-  return response.result;
+  return { ...response.result, tiers: response.result.tiers.map(row => ({ ...row, name: canonicalTierName(row.name) ?? null })), powers: response.result.powers.map(currentTier) };
 }
 
 /**
@@ -609,4 +610,9 @@ export function spendablePowers(
             : 'No boosts left this cycle'
           : '',
     }));
+}
+
+/** A cached API ladder can predate the badge rename. */
+function currentTier<T extends { tier: string | null }>(row: T): T {
+  return { ...row, tier: canonicalTierName(row.tier) ?? null };
 }

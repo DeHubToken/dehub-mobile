@@ -67,7 +67,7 @@ const LAST = BADGE_ORDER.length - 1;
 
 const LINE_KEYS: Record<string, string> = {
   Crab: "badgeAscension.lines.crab",
-  Lobster: "badgeAscension.lines.lobster",
+  "Ghost Lobster": "badgeAscension.lines.lobster",
   Piranha: "badgeAscension.lines.piranha",
   "Giant Tortoise": "badgeAscension.lines.tortoise",
   "King Cobra": "badgeAscension.lines.cobra",

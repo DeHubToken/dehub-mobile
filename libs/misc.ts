@@ -322,7 +322,7 @@ interface BadgeDef {
 // anchor price. Users below the entry rung get NO badge.
 const BADGE_LEVELS: BadgeDef[] = [
   { name: "Crab", min: 10_000 },
-  { name: "Lobster", min: 25_000 },
+  { name: "Ghost Lobster", min: 25_000 },
   { name: "Piranha", min: 50_000 },
   { name: "Giant Tortoise", min: 100_000 },
   { name: "King Cobra", min: 250_000 },
@@ -360,6 +360,7 @@ export const BADGE_ORDER: string[] = BADGE_LEVELS.map((b) => b.name);
  * Mirrors `LEGACY_TIER_NAMES` in web's `src/lib/staking-badges.ts`.
  */
 const LEGACY_TIER_NAMES: Record<string, string> = {
+  Lobster: "Ghost Lobster",
   Crocodite: "Crocodile",
   Meglodon: "Megalodon",
   Tortoise: "Giant Tortoise",
@@ -457,7 +458,7 @@ export function badgeThreshold(
   scale: number = activeScale,
 ): number | undefined {
   if (!tier) return undefined;
-  return badgeThresholds(scale).find((b) => b.name === tier)?.min;
+  return badgeThresholds(scale).find((b) => b.name === canonicalTierName(tier))?.min;
 }
 
 /**
@@ -547,7 +548,7 @@ const BADGE_IMAGES: Record<string, number> = {
   "Giant Tortoise": require("../assets/badges/Giant Tortoise.png"),
   Crab: require("../assets/badges/Crab.png"),
   Piranha: require("../assets/badges/Piranha.png"),
-  Lobster: require("../assets/badges/Lobster.png"),
+  "Ghost Lobster": require("../assets/badges/Ghost Lobster.png"),
   Octopus: require("../assets/badges/Octopus.png"),
   "King Cobra": require("../assets/badges/King Cobra.png"),
   Crocodile: require("../assets/badges/Crocodile.png"),
@@ -561,7 +562,7 @@ const BADGE_IMAGES: Record<string, number> = {
 
 const BADGE_OPTICS: Record<string, { scale: number; bottomInset: number }> = {
   Crab: { scale: 1, bottomInset: 8 },
-  Lobster: { scale: 1.04, bottomInset: 7 },
+  "Ghost Lobster": { scale: 1.04, bottomInset: 7 },
   Piranha: { scale: 1, bottomInset: 8 },
   "Giant Tortoise": { scale: 1, bottomInset: 11 },
   "King Cobra": { scale: 1, bottomInset: 6 },
