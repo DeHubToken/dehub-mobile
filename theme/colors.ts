@@ -159,6 +159,11 @@ export function setActiveTheme(name: AppThemeName): void {
   activeTheme = name;
 }
 
+/** The theme ThemeContext last rendered, for leaf components outside React context. */
+export function getActiveTheme(): AppThemeName {
+  return activeTheme;
+}
+
 /**
  * Backwards-compatible live palette for existing `theme.colors` imports.
  * Render-time reads follow the active theme while runtime NativeWind classes

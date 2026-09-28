@@ -19,6 +19,8 @@ import { maybeShowReactionTip, markReactionTipSeen } from "../../libs/reaction-t
 import { useAppPrefs } from "../../hooks/useAppPrefs";
 import { subscribePostTipped } from "../../libs/tip-events";
 import { TipGemIcon } from "./TipGemIcon";
+import { getActiveTheme } from "../../theme/colors";
+import { getThemeSkin, MONO_TEXT } from "../../theme/skins";
 import { useViewerTippedPost } from "../../hooks/useViewerTippedPost";
 
 const ICON_MUTED = "#6F7174";
@@ -128,6 +130,8 @@ const AnimatedActionButton: React.FC<{
   const resolvedColor = active ? (activeColor || ICON_ACTIVE) : baseColor;
   const resolvedFill = active && activeFill ? activeFill : undefined;
   const resolvedStrokeWidth = active && activeStrokeWidth ? activeStrokeWidth : 1.8;
+  // War reads counts as monospace readouts (web war-theme.css).
+  const mono = getThemeSkin(getActiveTheme())?.mono ? MONO_TEXT : null;
 
   return (
     <Pressable
@@ -168,7 +172,7 @@ const AnimatedActionButton: React.FC<{
         )}
       </Animated.View>
       {count !== undefined && (
-        <Text style={{ fontSize: 12, color: countColor || COUNT_COLOR }}>
+        <Text style={[{ fontSize: 12, color: countColor || COUNT_COLOR }, mono]}>
           {formatCount ? formatCompactNumber(count) : count}
         </Text>
       )}
