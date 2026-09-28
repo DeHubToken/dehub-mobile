@@ -47,6 +47,9 @@ export enum ScreenNames {
   FullscreenVideo = 'FullscreenVideo',
   AIChat = 'AIChat',
   Creator = 'Creator',
+  // Creator Flow — your flows (/creator/flow) and one flow (/creator/flow/:id).
+  CreatorFlow = 'CreatorFlow',
+  CreatorFlowView = 'CreatorFlowView',
   MediaEditor = 'MediaEditor',
   Explore = 'Explore',
   UploadQueue = 'UploadQueue',

@@ -173,6 +173,11 @@ export const DeepLinkPaths = {
   // onto. `?handle=` on a shared listing link seeds the search box.
   ACCOUNTS: 'accounts',
 
+  // Creator Flow — /creator/flow is your flows, /creator/flow/:id a shared
+  // one. The id path first, like the community invite.
+  CREATOR_FLOW_VIEW: 'creator/flow/:id',
+  CREATOR_FLOW: 'creator/flow',
+
   // Prize draws — dehub.io/raffle, where the retired prize-draw sites redirect.
   RAFFLE: 'raffle',
 
@@ -336,6 +341,12 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
           [ScreenNames.Usernames]: DeepLinkPaths.USERNAMES,
 
           [ScreenNames.Accounts]: DeepLinkPaths.ACCOUNTS,
+
+          [ScreenNames.CreatorFlowView]: {
+            path: DeepLinkPaths.CREATOR_FLOW_VIEW,
+            parse: { id: (id: string) => id },
+          },
+          [ScreenNames.CreatorFlow]: DeepLinkPaths.CREATOR_FLOW,
 
           [ScreenNames.Raffle]: DeepLinkPaths.RAFFLE,
 
@@ -691,6 +702,8 @@ export const ShareLinks = {
     `${SHARE_BASE}/cinema/${objectType === 'show' ? 'series' : 'film'}/${encodeURIComponent(String(id))}`,
   /** Prize draws — dehub.io/raffle */
   raffle: () => `${SHARE_BASE}/raffle`,
+  /** A shared Creator Flow — dehub.io/creator/flow/:id */
+  creatorFlow: (id: string) => `${SHARE_BASE}/creator/flow/${encodeURIComponent(id)}`,
   /** Arcade grid — dehub.io/arcade */
   arcade: () => `${SHARE_BASE}/arcade`,
   /** One game — dehub.io/arcade/:slug */
@@ -811,6 +824,13 @@ export const parseDeepLink = (url: string): { type: string; params: Record<strin
     // /raffle — prize draws
     if (pathParts[0] === 'raffle' && pathParts.length === 1) {
       return { type: 'raffle', params: qp };
+    }
+
+    // /creator/flow and /creator/flow/:id
+    if (pathParts[0] === 'creator' && pathParts[1] === 'flow') {
+      return pathParts[2]
+        ? { type: 'creatorFlow', params: { id: pathParts[2], ...qp } }
+        : { type: 'creatorFlows', params: qp };
     }
 
     // Legacy: /stream/:videoId

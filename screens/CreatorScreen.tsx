@@ -29,10 +29,10 @@ export default function CreatorScreen() {
     <View className="flex-1 bg-theme-neutrals-900">
       <ScreenHeader title={t('commandCentre.creator')} />
       <View className="flex-row px-4 py-3" style={{ gap: 12 }}>
-        {/* Studio and Flow are web pages; the editor runs in the app. */}
+        {/* Studio is a web page; Flow and the editor run in the app. */}
         {([
           { key: 'studio', label: t('creator.navStudio'), open: () => void openInApp(`${env.APP_ORIGIN}/creator`) },
-          { key: 'flow', label: t('creator.flow'), open: () => void openInApp(`${env.APP_ORIGIN}/creator/flow`) },
+          { key: 'flow', label: t('creator.flow'), open: () => nav.navigate(ScreenNames.CreatorFlow) },
           { key: 'editor', label: t('creator.editor'), open: () => nav.navigate(ScreenNames.MediaEditor) },
           { key: 'builder', label: t('creator.toolBuilder'), open: () => nav.navigate(ScreenNames.Builder) },
         ]).map((b) => (

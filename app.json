@@ -197,6 +197,16 @@
               "scheme": "https",
               "host": "dehub.io",
               "path": "/raffle"
+            },
+            {
+              "scheme": "https",
+              "host": "dehub.io",
+              "path": "/creator/flow"
+            },
+            {
+              "scheme": "https",
+              "host": "dehub.io",
+              "pathPrefix": "/creator/flow/"
             }
           ],
           "category": [
