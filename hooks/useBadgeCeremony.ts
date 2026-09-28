@@ -79,8 +79,9 @@ export function useBadgeCeremony({ enabled, address, tier }: Args) {
     };
   }, [enabled, address, current, ceremony]);
 
-  /** Call when the ceremony ends or is skipped — the marker is written here,
-   *  so an interrupted ceremony is not replayed on the next visit. */
+  /** Call once the ceremony has been handed to the badge showcase — the marker
+   *  is written here, so one skipped or closed early is not replayed on the
+   *  next visit. */
   const dismiss = useCallback(() => {
     setCeremony((playing) => {
       const key = storageKey(address);

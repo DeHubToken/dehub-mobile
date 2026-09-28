@@ -23,5 +23,13 @@ export default function BadgeShowcaseHost() {
       />
     );
   }
-  return <BadgeShowcase key={request.id} tier={request.tier} anchor={request.anchor} onClose={closeBadgeShowcase} />;
+  return (
+    <BadgeShowcase
+      key={request.id}
+      tier={request.tier}
+      promotedFrom={request.promotedFrom}
+      anchor={request.anchor}
+      onClose={closeBadgeShowcase}
+    />
+  );
 }
