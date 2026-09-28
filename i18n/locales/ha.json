@@ -5124,8 +5124,9 @@
     "tokenPrice": "{{amount}} token",
     "tokensUnit": "token",
     "atPreListingRate": "{{amount}} a pre-listing kudi",
-    "custodyNote": "Token ɗinka suna zama a cikin kulawar DeHub kuma ba a sayar da su ba. Mai ƙirƙirar yana karɓar ma'auni na biyan kuɗi da aka bayyana a cikin USDT.",
-    "creatorReceives": "Mahaliccin zai karɓi kuɗin {{amount}} USDT"
+    "paidToCreatorWallet": "Je kai tsaye zuwa walat na mahalicci",
+    "creatorPaidDirectNote": "Rabon mahalicci yana kai tsaye zuwa walat ɗin su lokacin da kuka yi rajista. DeHub yana riƙe da ƙaramin kuɗin dandamali.",
+    "creatorEarnsDirect": "Masu biyan kuɗi suna biyan kuɗi a cikin alamun DeHub. Kasashen rabon ku a cikin walat ɗin ku lokacin da suka yi rajista, ƙasa da kuɗin dandamali don ƙimar alamar ku."
   },
   "live": {
     "notSet": "Ba a saita ba",
@@ -5389,17 +5390,10 @@
     "staked": "An yi staking",
     "gotIt": "Na gane",
     "otherBalancesNote": "Sauran ma'aunanka suna kan {{network}} (sarƙa {{chainId}}) kawai. {{gas}} shine ma'aunin gas ɗinka. Ƙimomi na iya jinkirta 'yan daƙiƙu. Ka canja kadarori zuwa {{network}} don amfani da su a nan.",
-    "subscriptionEarnings": "Kuɗin shiga na biyan kuɗi",
-    "cashOut": "Cire kuɗi",
-    "withdrawing": "Ana cirewa…",
-    "withdrawableSoon": "Za a iya cire kuɗin biyan kuɗi nan ba da jimawa ba",
     "dpayBaseOnly": "Dpay yana samuwa a Base kawai.",
     "tokensAndStocks": "Bayanan kula & hannun jari",
     "dhbPositionNote": "Wannan shine cikakken matsayin token ɗinka — ana riƙe da kuma saka, a duk faɗin Base da BNB Chain. Yawancin lokaci ana saka shi, don haka wannan ya fi girma fiye da abin da za ku iya kashewa a yanzu.",
-    "stakedIncludesUnstaking": "Token da aka saka sun haɗa da duk abin da kuka buƙaci a cire amma ba ku karɓa ba tukuna.",
-    "usdtSent": "An aika {{amount}} USDT",
-    "withdrawableOnBase": "Ana iya cirewa a Base",
-    "pendingTreasury": "An lissafa cikin USDT · ana jiran ajiyar baitulmali"
+    "stakedIncludesUnstaking": "Token da aka saka sun haɗa da duk abin da kuka buƙaci a cire amma ba ku karɓa ba tukuna."
   },
   "feedCard": {
     "reactionTip": "Ka riƙe maɓallin so don ƙarin martani",

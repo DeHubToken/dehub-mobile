@@ -5232,8 +5232,9 @@
     "tokenPrice": "{{amount}} tokenov",
     "tokensUnit": "tokenov",
     "atPreListingRate": "{{amount}} pri sadzbe predbežnej ponuky",
-    "custodyNote": "Vaše tokeny zostávajú v úschove pokladnice DeHub a nepredávajú sa. Tvorca dostáva predplatné zostatok denominovaný v USDT.",
-    "creatorReceives": "Tvorca dostane kredit {{amount}} USDT"
+    "paidToCreatorWallet": "Ide priamo do peňaženky tvorcu",
+    "creatorPaidDirectNote": "Podiel tvorcu ide priamo do jeho peňaženky v okamihu, keď sa prihlásite na odber. DeHub si ponecháva malý poplatok za platformu.",
+    "creatorEarnsDirect": "Predplatitelia platia v žetónoch DeHub. Váš podiel sa dostane do peňaženky v okamihu, keď sa prihlásia na odber, po odpočítaní poplatku za platformu pre vašu úroveň odznaku."
   },
   "live": {
     "notSet": "Nenastavené",
@@ -5497,17 +5498,10 @@
     "staked": "V stakingu",
     "gotIt": "Rozumiem",
     "otherBalancesNote": "Vaše ostatné zostatky sú len na {{network}} (reťazec {{chainId}}). {{gas}} je váš zostatok na poplatky. Hodnoty sa môžu o pár sekúnd oneskoriť. Presuňte aktíva na {{network}}, aby ste ich tu mohli použiť.",
-    "subscriptionEarnings": "Príjmy z predplatného",
-    "cashOut": "Vybrať",
-    "withdrawing": "Vyberá sa…",
-    "withdrawableSoon": "Poplatky z predplatného bude čoskoro možné vybrať",
     "dpayBaseOnly": "Dpay je dostupný len na Base.",
     "tokensAndStocks": "Tokeny a akcie",
     "dhbPositionNote": "Toto je vaša celá pozícia tokenov – držané plus stakované, naprieč Base a BNB Chain. Väčšina z nich je zvyčajne stakovaná, takže je to viac, ako môžete momentálne minúť.",
-    "stakedIncludesUnstaking": "Stakované tokeny zahŕňajú čokoľvek, čo ste požiadali o zrušenie stakovania, ale ešte ste nedostali späť.",
-    "usdtSent": "Odoslaných {{amount}} USDT",
-    "withdrawableOnBase": "Dostupné na výber na Base",
-    "pendingTreasury": "V USDT · čaká na rezervu pokladnice"
+    "stakedIncludesUnstaking": "Stakované tokeny zahŕňajú čokoľvek, čo ste požiadali o zrušenie stakovania, ale ešte ste nedostali späť."
   },
   "feedCard": {
     "reactionTip": "Pre ďalšie reakcie podržte tlačidlo Páči sa mi to",

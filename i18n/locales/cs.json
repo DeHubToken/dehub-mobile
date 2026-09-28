@@ -5128,8 +5128,9 @@
     "tokenPrice": "{{amount}} tokenů",
     "tokensUnit": "tokenů",
     "atPreListingRate": "{{amount}} při sazbě před zveřejněním nabídky",
-    "custodyNote": "Vaše tokeny zůstávají v úschově pokladnice DeHub a neprodávají se. Tvůrce obdrží předplatné v USD.",
-    "creatorReceives": "Tvůrce obdrží kredit {{amount}} USDT"
+    "paidToCreatorWallet": "Přejde přímo do peněženky tvůrce",
+    "creatorPaidDirectNote": "Podíl tvůrce jde přímo do jeho peněženky v okamžiku, kdy se přihlásíš k odběru. DeHub si ponechává malý poplatek za platformu.",
+    "creatorEarnsDirect": "Předplatitelé platí v žetonech DeHub. Váš podíl se dostane do peněženky v okamžiku, kdy se přihlásí k odběru, po odečtení poplatku za platformu pro vaši úroveň odznaku."
   },
   "live": {
     "notSet": "Nenastaveno",
@@ -5393,17 +5394,10 @@
     "staked": "Ve stakingu",
     "gotIt": "Rozumím",
     "otherBalancesNote": "Vaše ostatní zůstatky jsou jen na {{network}} (řetězec {{chainId}}). {{gas}} je váš zůstatek na poplatky. Hodnoty se mohou o pár sekund zpožďovat. Aktiva převeďte na {{network}}, abyste je tu mohli použít.",
-    "subscriptionEarnings": "Výdělky z předplatného",
-    "cashOut": "Vybrat",
-    "withdrawing": "Vybírá se…",
-    "withdrawableSoon": "Poplatky z předplatného půjde brzy vybrat",
     "dpayBaseOnly": "Dpay je dostupný jen na Base.",
     "tokensAndStocks": "Tokeny a akcie",
     "dhbPositionNote": "Toto je vaše celá pozice tokenů – držené plus vsazené, napříč Base a BNB Chain. Většina z nich je obvykle vsazená, takže je to více, než můžete právě teď utratit.",
-    "stakedIncludesUnstaking": "Vsazené tokeny zahrnují cokoli, co jste požádali o zrušení sázky, ale ještě jste neobdrželi zpět.",
-    "usdtSent": "Odesláno {{amount}} USDT",
-    "withdrawableOnBase": "K dispozici k výběru na Base",
-    "pendingTreasury": "V USDT · čeká na rezervu pokladny"
+    "stakedIncludesUnstaking": "Vsazené tokeny zahrnují cokoli, co jste požádali o zrušení sázky, ale ještě jste neobdrželi zpět."
   },
   "feedCard": {
     "reactionTip": "Pro další reakce podržte tlačítko To se mi líbí",

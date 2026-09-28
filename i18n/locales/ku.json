@@ -4961,8 +4961,9 @@
     "tokenPrice": "{{amount}} nîşanekan",
     "tokensUnit": "nîşanekan",
     "atPreListingRate": "{{amount}} bi rêjeya pêş-lîstekirinê",
-    "custodyNote": "Tokenên te di bin çavdêriya xezîneya DeHub de dimînin û nayên firotin. Afirîner hevsengiya abonetiyê ya bi denomînasyona USDT werdigire.",
-    "creatorReceives": "Afirîner {{amount}} USDT krediyê distîne"
+    "paidToCreatorWallet": "ڕاستەوخۆ دەچێتە جزدانی دروستکەر",
+    "creatorPaidDirectNote": "کاتێک بەشداری دەکەیت، بەشی دروستکەر ڕاستەوخۆ دەچێتە جزدانەکەی. DeHub کرێیەکی بچووکی پلاتفۆرم دەهێڵێتەوە.",
+    "creatorEarnsDirect": "بەشداربووان بە تۆکنی DeHub پارە دەدەن. کاتێک بەشداری دەکەن، بەشەکەت دەگاتە جزدانەکەت، دوای کرێی پلاتفۆرم بەپێی ئاستی باجەکەت."
   },
   "live": {
     "notSet": "Nehatiye danîn",
@@ -5222,15 +5223,8 @@
     "staked": "Stacked",
     "gotIt": "Fêm kir",
     "otherBalancesNote": "Balansên te yên din tenê li ser {{network}} (zincîra {{chainId}}) in. {{gas}} balansa gaza te ye. Nirx dikarin çend saniyan dereng bin. Ji bo bikaranîna li vir, sermayeyan veguhezîne {{network}}.",
-    "subscriptionEarnings": "Dahata abonetiyê",
-    "cashOut": "Derxîne",
-    "withdrawing": "Tê derxistin…",
-    "withdrawableSoon": "Heqên abonetiyê di demek nêz de tên derxistin",
     "dpayBaseOnly": "Dpay tenê li ser Base heye.",
-    "tokensAndStocks": "Token û stok",
-    "usdtSent": "{{amount}} USDT hate şandin",
-    "withdrawableOnBase": "Li ser Base tê derxistin",
-    "pendingTreasury": "Bi USDT · li benda rezerva xezîneyê"
+    "tokensAndStocks": "Token û stok"
   },
   "feedCard": {
     "reactionTip": "Ji bo bêtir bertekan bişkoka hezkirinê bigire",

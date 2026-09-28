@@ -5128,8 +5128,9 @@
     "tokenPrice": "{{amount}} token",
     "tokensUnit": "tokenek",
     "atPreListingRate": "{{amount}} a hirdetés előtti áron",
-    "custodyNote": "Tokenjei a DeHub kincstár kezelésében maradnak, és nem kerülnek eladásra. A létrehozó USDT-denominált előfizetési egyenleget kap.",
-    "creatorReceives": "A készítő {{amount}} USDT jóváírást kap"
+    "paidToCreatorWallet": "Egyenesen az alkotó pénztárcájára ugrik",
+    "creatorPaidDirectNote": "Az alkotó részesedése azonnal a pénztárcájába kerül, amint feliratkozol. A DeHub egy kis platformdíjat tart fenn.",
+    "creatorEarnsDirect": "Az előfizetők DeHub tokenekben fizetnek. A részvényed az előfizetés pillanatában a pénztárcádba kerül, levonva belőle a jelvényszinted platformdíját."
   },
   "live": {
     "notSet": "Nincs beállítva",
@@ -5393,17 +5394,10 @@
     "staked": "Stakelve",
     "gotIt": "Értem",
     "otherBalancesNote": "A többi egyenleged csak a(z) {{network}} hálózaton van ({{chainId}} lánc). A {{gas}} a gázegyenleged. Az értékek pár másodpercet késhetnek. Küldd át az eszközöket a(z) {{network}} hálózatra, hogy itt használhasd őket.",
-    "subscriptionEarnings": "Előfizetési bevétel",
-    "cashOut": "Kifizetés",
-    "withdrawing": "Kifizetés folyamatban…",
-    "withdrawableSoon": "Az előfizetési díjak hamarosan kivehetők lesznek",
     "dpayBaseOnly": "A Dpay csak a Base-en érhető el.",
     "tokensAndStocks": "Tokenek és részvények",
     "dhbPositionNote": "Ez a teljes token pozíciója – tartott és stakelt, Base és BNB Chain között. A legtöbb általában stakelt, így ez nagyobb, mint amit jelenleg el tud költeni.",
-    "stakedIncludesUnstaking": "A stakelt tokenek magukban foglalják mindazt, amit feloldani kért, de még nem kapott vissza.",
-    "usdtSent": "{{amount}} USDT elküldve",
-    "withdrawableOnBase": "Kivehető a Base-en",
-    "pendingTreasury": "USDT-ben · a kincstári tartalékra vár"
+    "stakedIncludesUnstaking": "A stakelt tokenek magukban foglalják mindazt, amit feloldani kért, de még nem kapott vissza."
   },
   "feedCard": {
     "reactionTip": "További reakciókért tartsd lenyomva a Tetszik gombot",

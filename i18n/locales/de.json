@@ -5173,8 +5173,9 @@
     "tokenPrice": "{{amount}} Token",
     "tokensUnit": "Token",
     "atPreListingRate": "{{amount}} zum Preis vor dem Inserat",
-    "custodyNote": "Ihre Token bleiben im Besitz der DeHub-Schatzkammer und werden nicht verkauft. Der Ersteller erhält ein USDT-denominiertes Abonnementguthaben.",
-    "creatorReceives": "Der Ersteller erhält {{amount}} USDT Guthaben"
+    "paidToCreatorWallet": "Geht direkt zum Wallet des/der Kreativen",
+    "creatorPaidDirectNote": "Der Anteil des/der Kreativen geht in dem Moment, in dem du dich abonnierst, direkt in sein/ihr Portemonnaie. DeHub behält eine geringe Plattformgebühr.",
+    "creatorEarnsDirect": "Abonnenten zahlen in DeHub-Token. Deine Aktie landet in deinem Wallet, sobald sie abonniert wird, abzüglich der Plattformgebühr für dein Abzeichen-Level."
   },
   "live": {
     "notSet": "Nicht festgelegt",
@@ -5438,17 +5439,10 @@
     "staked": "Gestaked",
     "gotIt": "Verstanden",
     "otherBalancesNote": "Deine übrigen Guthaben liegen nur auf {{network}} (Chain {{chainId}}). {{gas}} ist dein Gas-Guthaben. Werte können ein paar Sekunden hinterherhinken. Bridge oder transferiere Assets nach {{network}}, um sie hier zu nutzen.",
-    "subscriptionEarnings": "Abo-Einnahmen",
-    "cashOut": "Auszahlen",
-    "withdrawing": "Wird ausgezahlt…",
-    "withdrawableSoon": "Abo-Gebühren lassen sich bald auszahlen",
     "dpayBaseOnly": "Dpay ist nur auf Base verfügbar.",
     "tokensAndStocks": "Token & Aktien",
     "dhbPositionNote": "Dies ist Ihre gesamte Token-Position – gehalten und gestaket, auf Base und BNB Chain. Die meisten davon sind normalerweise gestaket, daher ist dies mehr, als Sie derzeit ausgeben können.",
-    "stakedIncludesUnstaking": "Gestakete Token umfassen alles, dessen Entnahme Sie beantragt haben, aber noch nicht zurückerhalten haben.",
-    "usdtSent": "{{amount}} USDT gesendet",
-    "withdrawableOnBase": "Auf Base auszahlbar",
-    "pendingTreasury": "In USDT · wartet auf Treasury-Reserve"
+    "stakedIncludesUnstaking": "Gestakete Token umfassen alles, dessen Entnahme Sie beantragt haben, aber noch nicht zurückerhalten haben."
   },
   "feedCard": {
     "reactionTip": "Halte den Gefällt-mir-Button gedrückt für weitere Reaktionen",

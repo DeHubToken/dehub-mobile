@@ -5124,8 +5124,9 @@
     "tokenPrice": "{{amount}} توكن",
     "tokensUnit": "توكنات",
     "atPreListingRate": "{{amount}} بسعر ما قبل الإدراج",
-    "custodyNote": "تبقى توكناتك في عهدة خزينة DeHub ولا يتم بيعها. يتلقى المنشئ رصيد اشتراك مقوم بالدولار الأمريكي.",
-    "creatorReceives": "المنشئ بياخد رصيد {{amount}} USDT"
+    "paidToCreatorWallet": "بيروح دغري على محفظة المبدع",
+    "creatorPaidDirectNote": "يروح حصة المُبدع مباشرةً لمحفظته أول ما تشترك. DeHub بتحافظ على عمولة منصة صغيرة.",
+    "creatorEarnsDirect": "المشتركون بيدفعوا بعملة DeHub. حصتك بتوصل لمحفظتك فور اشتراكهم، ناقص رسوم المنصة حسب فئة شارتك."
   },
   "live": {
     "notSet": "مش محدد",
@@ -5389,17 +5390,10 @@
     "staked": "مركون",
     "gotIt": "فهمت",
     "otherBalancesNote": "باقي أرصدتك على {{network}} (تشين {{chainId}}) بس. {{gas}} هو رصيد الغاز تبعك. القيم بتتأخر كم ثانية. اعمل جسر أو حوّل الأصول لـ {{network}} لتستخدمها هون.",
-    "subscriptionEarnings": "أرباح الاشتراكات",
-    "cashOut": "اسحب",
-    "withdrawing": "عم بينسحب…",
-    "withdrawableSoon": "رسوم الاشتراكات رح تصير قابلة للسحب قريباً",
     "dpayBaseOnly": "Dpay متوفر بس على Base.",
     "tokensAndStocks": "رموز وأسهم",
     "dhbPositionNote": "هذا هو وضع التوكن الكامل الخاص بك - محتفظ به بالإضافة إلى مخزن، عبر سلاسل Base و BNB. معظمه مخزن عادةً، لذا هذا أكبر مما يمكنك إنفاقه حالياً.",
-    "stakedIncludesUnstaking": "التوكنات المخزنة تشمل أي شيء طلبته إلغاء تخزينه ولكن لم تستلمه بعد.",
-    "usdtSent": "انبعت {{amount}} USDT",
-    "withdrawableOnBase": "متاح للسحب على Base",
-    "pendingTreasury": "محسوب بالـ USDT · بانتظار احتياطي الخزينة"
+    "stakedIncludesUnstaking": "التوكنات المخزنة تشمل أي شيء طلبته إلغاء تخزينه ولكن لم تستلمه بعد."
   },
   "feedCard": {
     "reactionTip": "اضغط مطوّل على زر الإعجاب لتشوف تفاعلات أكتر",

@@ -5124,8 +5124,9 @@
     "tokenPrice": "{{amount}} akara",
     "tokensUnit": "akara",
     "atPreListingRate": "{{amount}} na tupu-ndepụta ọnụego",
-    "custodyNote": "Akara gị na-anọ na nchekwa DeHub ma anaghị ere ha. Onye kere ya na-enweta nguzozi ndenye aha USDT.",
-    "creatorReceives": "Onye kere ya na-anata kredit {{amount}} USDT"
+    "paidToCreatorWallet": "Na-aga ozugbo na obere akpa nke onye mmepụta",
+    "creatorPaidDirectNote": "Akụkụ onye mmepụta na-aga ozugbo na obere akpa ha mgbe ị debanyere aha. DeHub na-edebe obere ego n 'elu ikpo okwu.",
+    "creatorEarnsDirect": "Ndị debanyere aha na-akwụ ụgwọ na akara ngosi DeHub. Gị òkè ala gị obere akpa mgbe ha debanyere aha, obere n 'elu ikpo okwu ego maka gị baajị tier."
   },
   "live": {
     "notSet": "Edobeghị",
@@ -5389,17 +5390,10 @@
     "staked": "Etinyere",
     "gotIt": "Aghọtara m",
     "otherBalancesNote": "Ego ndị ọzọ gị dị naanị na {{network}} (chain {{chainId}}). {{gas}} bụ ego gas gị. Ụkpụrụ nwere ike ịla azụ sekọnd ole na ole. Bufee akụ gaa {{network}} iji jiri ha ebe a.",
-    "subscriptionEarnings": "Ego ndenye aha",
-    "cashOut": "Wepụta ego",
-    "withdrawing": "Na-ewepụta…",
-    "withdrawableSoon": "A ga-enwe ike iwepụta ụgwọ ndenye aha n'oge na-adịghị anya",
     "dpayBaseOnly": "Dpay dị naanị na Base.",
     "tokensAndStocks": "Tokens & ngwaahịa",
     "dhbPositionNote": "Nke a bụ ọnụ ọgụgụ akara gị niile — ejidere yana etinyere, na Base na BNB Chain. Ọtụtụ n'ime ya na-etinye ya, yabụ nke a buru ibu karịa ihe ị nwere ike imefu ugbu a.",
-    "stakedIncludesUnstaking": "Akara etinyere gụnyere ihe ọ bụla ị rịọrọ ka ewepụ ya mana ị nweteghị azụ.",
-    "usdtSent": "Ezigara {{amount}} USDT",
-    "withdrawableOnBase": "Ị nwere ike iwepụ ya na Base",
-    "pendingTreasury": "N'USDT · na-echere ndoputa akụ"
+    "stakedIncludesUnstaking": "Akara etinyere gụnyere ihe ọ bụla ị rịọrọ ka ewepụ ya mana ị nweteghị azụ."
   },
   "feedCard": {
     "reactionTip": "Jide bọtịnụ amasịrị m maka mmeghachi omume ndị ọzọ",

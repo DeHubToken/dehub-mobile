@@ -4953,8 +4953,9 @@
     "createAndPublish": "بنائیں اور شائع کریں",
     "publishingOnChain": "پبلشنگ ایک آن چین ٹرانزیکشن ہے",
     "atPreListingRate": "پری لسٹنگ ریٹ پو {{amount}}",
-    "creatorReceives": "بنانے والے کو {{amount}} USDT کریڈٹ ملے گا",
-    "custodyNote": "آپ کے ٹوکنز DeHub ٹریژری کی نگرانی میں رہتے اور بیچے نئیں جاتے۔ کریئٹر کو USDT میں سبسکرپشن بیلنس ملتا۔"
+    "paidToCreatorWallet": "سیدھا تخلیق کار کے والیٹ پر جاتا ہے",
+    "creatorPaidDirectNote": "آپ سبسکرائب کرتے ہی کریئٹر کا حصہ سیدھا ان کے والٹ میں جاتا۔ DeHub تھوڑی سی پلیٹ فارم فیس رکھتا۔",
+    "creatorEarnsDirect": "سبسکرائبرز DeHub ٹوکنز میں ادا کرتے۔ سبسکرائب کرتے ہی آپ کا حصہ آپ کے والٹ میں آجاتا، آپ کے بیج لیول کی پلیٹ فارم فیس کٹ کو۔"
   },
   "live": {
     "notSet": "مقرر نئیں",
@@ -5214,15 +5215,8 @@
     "staked": "اسٹیک شدہ",
     "gotIt": "سمجھ گیا",
     "otherBalancesNote": "آپ کے باقی بیلنس صرف {{network}} (چین {{chainId}}) پر ہیں۔ {{gas}} آپ کا گیس بیلنس ہے۔ قدریں چند سیکنڈ پیچھے ہو سکتی ہیں۔ یہاں استعمال کے لیے اثاثے {{network}} پر برج یا منتقل کریں۔",
-    "subscriptionEarnings": "سبسکرپشن آمدنی",
-    "cashOut": "کیش آؤٹ",
-    "withdrawing": "نکالا جا رہا ہے…",
-    "withdrawableSoon": "سبسکرپشن فیس جلد نکالی جا سکے گی",
     "dpayBaseOnly": "Dpay صرف Base پر دستیاب ہے۔",
-    "tokensAndStocks": "ٹکٹس اور اسٹاکس",
-    "usdtSent": "{{amount}} USDT بھیجے گئے",
-    "withdrawableOnBase": "Base پر نکالنے کے لیے دستیاب",
-    "pendingTreasury": "USDT میں · ٹریژری ریزرو کا انتظار"
+    "tokensAndStocks": "ٹکٹس اور اسٹاکس"
   },
   "feedCard": {
     "reactionTip": "اور ری ایکشنز کے واسطے لائک بٹن دبا کو رکھو",

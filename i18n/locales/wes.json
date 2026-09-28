@@ -5004,8 +5004,9 @@
     "tokensUnit": "tokens",
     "legacyMigrationNote": "Saving dey move dis old token-priced plan go dollar pricing at di pre-listing rate.",
     "atPreListingRate": "{{amount}} at di pre-listing rate",
-    "custodyNote": "Your token dem stay for DeHub treasury custody and dem no dey sell. The creator dey get USDT-denominated subscription balance.",
-    "creatorReceives": "Di creator go receive {{amount}} USDT credit"
+    "paidToCreatorWallet": "E go straight for di creator wallet",
+    "creatorPaidDirectNote": "Di creator share go straight go im wallet as soon as you subscribe. DeHub dey keep small platform fee.",
+    "creatorEarnsDirect": "Subscribers di pay with DeHub tokens. Your share go land for your wallet di moment dem subscribe, minus di platform fee for your badge level."
   },
   "live": {
     "notSet": "Dem never set am",
@@ -5266,15 +5267,8 @@
     "staked": "Wetin you stake",
     "gotIt": "A don understand",
     "otherBalancesNote": "Yua oda balance dem dey only for {{network}} (chain {{chainId}}). {{gas}} na yua gas balance. Values fit delay small. Bridge or transfer asset go {{network}} mek you fit yus am here.",
-    "subscriptionEarnings": "Subscription moni",
-    "cashOut": "Komot moni",
-    "withdrawing": "Dey withdraw…",
-    "withdrawableSoon": "You go soon fit withdraw subscription fees",
     "dpayBaseOnly": "Dpay dey only for Base.",
-    "tokensAndStocks": "Tokens an stocks",
-    "usdtSent": "{{amount}} USDT don send",
-    "withdrawableOnBase": "You fit withdraw am for Base",
-    "pendingTreasury": "Na USDT · e dey wait treasury reserve"
+    "tokensAndStocks": "Tokens an stocks"
   },
   "feedCard": {
     "reactionTip": "Press and hold the like button for see more reactions",

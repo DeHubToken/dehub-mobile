@@ -5080,8 +5080,9 @@
     "tokenPrice": "{{amount}} tɔkɛns",
     "tokensUnit": "tɔkɛns",
     "atPreListingRate": "{{amount}} ka tɛmɛ sanga ni wagati kan",
-    "custodyNote": "Yɔ tɔkɛns stɛ na DeHub tɛzɔri kɔstɔdi ɛn dɛn nɔ sɔl. Di krietɔ risiv a USDT-dɛnimɛnɛt sabsɛpshɔn bɛlɛns.",
-    "creatorReceives": "Dilanbaa bɛ {{amount}} USDT sɔrɔ"
+    "paidToCreatorWallet": "A bɛ taa dabaga ka wariboro la sisan",
+    "creatorPaidDirectNote": "I mana don tuma min na, dabaga ka tila bɛ taa a ka wariboro la sisan. DeHub bɛ sara fitinin dɔ mara.",
+    "creatorEarnsDirect": "Abonnew bɛ sara DeHub token na. U mana don tuma min na, i ka tila bɛ se i ka wariboro la, i ka badge hakɛ ka sara bɔlen a la."
   },
   "live": {
     "notSet": "A ma sigi",
@@ -5345,17 +5346,10 @@
     "staked": "Staking kɛlen",
     "gotIt": "N y'a faamu",
     "otherBalancesNote": "I ka wari tɔw bɛ {{network}} (chain {{chainId}}) dɔrɔn kan. {{gas}} ye i ka gas wari ye. Hakɛw bɛ se ka kɔfɛ ni sekonde damadɔ ye. Nafolow lasegin {{network}} kan walisa k'u baara yan.",
-    "subscriptionEarnings": "Bilali sɔrɔ",
-    "cashOut": "A bɔ",
-    "withdrawing": "A bɛ bɔ la…",
-    "withdrawableSoon": "Bilali wari bɛna se ka bɔ sɔɔni",
     "dpayBaseOnly": "Dpay bɛ sɔrɔ Base dɔrɔn kan.",
     "tokensAndStocks": "Fɛɛn minw be sɔrɔ a kɔnɔ, a ka ɲi ka kɛ olu ye",
     "dhbPositionNote": "Dis na yɔ hɔl tɔkɛn pɔzishɔn — hɛl plɛs stɛk, kros Bɛs ɛn BNB Cɛn. Mɔs ɔf i yuzhɔli stɛk, sɔ dis na lɔja dɛn wa yɔ kɛn spɛn rait naw.",
-    "stakedIncludesUnstaking": "Stɛk tɔkɛns inklud nafitin yɔ ɛs fɔ ʌnstɛk bɔt nɔ yɛt risiv bɛk.",
-    "usdtSent": "{{amount}} USDT cira",
-    "withdrawableOnBase": "A bɛ se ka bɔ Base kan",
-    "pendingTreasury": "USDT la · sɔrɔyɔrɔ marali makɔnɔni"
+    "stakedIncludesUnstaking": "Stɛk tɔkɛns inklud nafitin yɔ ɛs fɔ ʌnstɛk bɔt nɔ yɛt risiv bɛk."
   },
   "feedCard": {
     "reactionTip": "Ka jaabi wɛrɛw sɔrɔ, i ka « a ka di n ye » butɔn digi ka mɛn",

@@ -5124,8 +5124,9 @@
     "tokenPrice": "{{amount}} tokena",
     "tokensUnit": "tokena",
     "atPreListingRate": "{{amount}} në normën e listimit paraprak",
-    "custodyNote": "Tokenat tuaja qëndrojnë në kujdestarinë e thesarit të DeHub dhe nuk shiten. Krijuesi merr një bilanc abonimi të denominuar në USDT.",
-    "creatorReceives": "Krijuesi merr kredit {{amount}} USDT"
+    "paidToCreatorWallet": "Shkon drejt e në portofolin e krijuesit",
+    "creatorPaidDirectNote": "Pjesa e krijuesit shkon direkt në portofolin e tij në momentin që ti regjistrohesh. DeHub mban një tarifë të vogël të platformës.",
+    "creatorEarnsDirect": "Abonentët paguajnë në tokenët DeHub. Pjesa jote vendoset në portofolin tënd në momentin që ata regjistrohen, minus tarifën e platformës për nivelin e distinktivit tënd."
   },
   "live": {
     "notSet": "I pacaktuar",
@@ -5389,17 +5390,10 @@
     "staked": "Në staking",
     "gotIt": "E kuptova",
     "otherBalancesNote": "Bilancet e tua të tjera janë vetëm në {{network}} (zinxhiri {{chainId}}). {{gas}} është bilanci yt i gazit. Vlerat mund të vonohen disa sekonda. Kalo asetet te {{network}} për t'i përdorur këtu.",
-    "subscriptionEarnings": "Fitimet nga abonimet",
-    "cashOut": "Tërhiq",
-    "withdrawing": "Po tërhiqet…",
-    "withdrawableSoon": "Tarifat e abonimit do të mund të tërhiqen së shpejti",
     "dpayBaseOnly": "Dpay është i disponueshëm vetëm në Base.",
     "tokensAndStocks": "Shenjat dhe aksionet",
     "dhbPositionNote": "Kjo është e gjithë pozicioni juaj i tokenave - i mbajtur plus i vendosur, në Base dhe BNB Chain. Shumica e tyre zakonisht janë të vendosura, kështu që kjo është më e madhe se sa mund të shpenzoni tani.",
-    "stakedIncludesUnstaking": "Tokenat e vendosura përfshijnë gjithçka që keni kërkuar të çvendosni, por ende nuk i keni marrë.",
-    "usdtSent": "U dërguan {{amount}} USDT",
-    "withdrawableOnBase": "I disponueshëm për tërheqje në Base",
-    "pendingTreasury": "Në USDT · në pritje të rezervës së thesarit"
+    "stakedIncludesUnstaking": "Tokenat e vendosura përfshijnë gjithçka që keni kërkuar të çvendosni, por ende nuk i keni marrë."
   },
   "feedCard": {
     "reactionTip": "Mbani shtypur butonin Pëlqej për më shumë reagime",

@@ -5004,8 +5004,9 @@
     "tokenPrice": "{{amount}} tokens",
     "tokensUnit": "tokens",
     "atPreListingRate": "{{amount}} for di pre-listing rate",
-    "creatorReceives": "Di creator go receive {{amount}} USDT credit",
-    "custodyNote": "Your tokens go stay for DeHub treasury custody, dem no go sell am. Di creator go get subscription balance for USDT."
+    "paidToCreatorWallet": "E go straight enter di creator wallet",
+    "creatorPaidDirectNote": "Di creator share go enter dia wallet di moment you subscribe. DeHub dey keep small platform fee.",
+    "creatorEarnsDirect": "Subscribers dey pay with DeHub tokens. Your share go land for your wallet di moment dem subscribe, minus di platform fee for your badge level."
   },
   "live": {
     "notSet": "Dem never set am",
@@ -5266,15 +5267,8 @@
     "staked": "Wetin you stake",
     "gotIt": "I don understand",
     "otherBalancesNote": "Your other balance dem dey only for {{network}} (chain {{chainId}}). {{gas}} na your gas balance. Values fit delay small. Bridge or transfer asset go {{network}} make you fit use am here.",
-    "subscriptionEarnings": "Subscription money",
-    "cashOut": "Cash out",
-    "withdrawing": "Dey withdraw…",
-    "withdrawableSoon": "You go soon fit withdraw subscription fees",
     "dpayBaseOnly": "Dpay dey only for Base.",
-    "tokensAndStocks": "Tokens & stocks",
-    "usdtSent": "{{amount}} USDT don send",
-    "withdrawableOnBase": "You fit withdraw am for Base",
-    "pendingTreasury": "Na USDT · e dey wait treasury reserve"
+    "tokensAndStocks": "Tokens & stocks"
   },
   "feedCard": {
     "reactionTip": "Press and hold the like button make you see more reactions",

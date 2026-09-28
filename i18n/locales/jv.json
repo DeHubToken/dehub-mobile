@@ -5124,8 +5124,9 @@
     "tokenPrice": "{{amount}} token",
     "tokensUnit": "token",
     "atPreListingRate": "{{amount}} ing tarif pra-listing",
-    "custodyNote": "Token sampeyan tetep ana ing kustodi kas DeHub lan ora didol. Pencipta nampa imbangan langganan sing didominasi USDT.",
-    "creatorReceives": "Kreator nampa kredit {{amount}} USDT"
+    "paidToCreatorWallet": "Mlebu langsung menyang dompet pangripta",
+    "creatorPaidDirectNote": "Bagean kreator langsung mlebu menyang dompete nalika sampeyan langganan. DeHub njupuk biaya platform cilik.",
+    "creatorEarnsDirect": "Pelanggan mbayar nganggo token DeHub. Bagianmu mlebu ing dompetmu nalika dheweke langganan, dikurangi biaya platform kanggo tingkatan lencana."
   },
   "live": {
     "notSet": "Durung disetel",
@@ -5389,17 +5390,10 @@
     "staked": "Di-staking",
     "gotIt": "Ngerti",
     "otherBalancesNote": "Saldo liyane mung ana ing {{network}} (chain {{chainId}}). {{gas}} iku saldo gas sampeyan. Nilai bisa telat sawetara detik. Bridge utawa transfer aset menyang {{network}} supaya bisa dienggo ing kene.",
-    "subscriptionEarnings": "Pemasukan langganan",
-    "cashOut": "Tarik dana",
-    "withdrawing": "Narik dana…",
-    "withdrawableSoon": "Ragad langganan bakal bisa ditarik ora suwe maneh",
     "dpayBaseOnly": "Dpay mung kasedhiya ing Base.",
     "tokensAndStocks": "Token & saham",
     "dhbPositionNote": "Iki kabeh posisi token sampeyan — dicekel ditambah stake, ing Base lan BNB Chain. Umume biasane di-stake, mula iki luwih gedhe tinimbang sing bisa sampeyan gunakake saiki.",
-    "stakedIncludesUnstaking": "Token sing di-stake kalebu apa wae sing wis sampeyan njaluk kanggo dicopot stake nanging durung ditampa maneh.",
-    "usdtSent": "{{amount}} USDT wis dikirim",
-    "withdrawableOnBase": "Bisa ditarik ing Base",
-    "pendingTreasury": "Ing USDT · ngenteni cadangan kas"
+    "stakedIncludesUnstaking": "Token sing di-stake kalebu apa wae sing wis sampeyan njaluk kanggo dicopot stake nanging durung ditampa maneh."
   },
   "feedCard": {
     "reactionTip": "Pencet suwe tombol seneng kanggo reaksi liyane",

@@ -5177,8 +5177,9 @@
     "tokenPrice": "{{amount}} tokens",
     "tokensUnit": "tokens",
     "atPreListingRate": "{{amount}} à taxa de pré-listagem",
-    "custodyNote": "Seus tokens permanecem sob custódia do tesouro DeHub e não são vendidos. O criador recebe um saldo de assinatura denominado em USDT.",
-    "creatorReceives": "O criador recebe {{amount}} USDT de crédito"
+    "paidToCreatorWallet": "Vai diretamente para a carteira do criador",
+    "creatorPaidDirectNote": "A parte do criador vai diretamente para a carteira no momento em que você se inscreve. O DeHub mantém uma pequena taxa de plataforma.",
+    "creatorEarnsDirect": "Os assinantes pagam em tokens DeHub. A sua parte fica na sua carteira no momento em que é subscrita, menos a taxa da plataforma para o seu nível de emblema."
   },
   "live": {
     "notSet": "Não definido",
@@ -5442,17 +5443,10 @@
     "staked": "Em staking",
     "gotIt": "Entendi",
     "otherBalancesNote": "Os seus outros saldos estão apenas na {{network}} (cadeia {{chainId}}). {{gas}} é o seu saldo de gás. Os valores podem atrasar alguns segundos. Faça bridge ou transfira ativos para a {{network}} para os usar aqui.",
-    "subscriptionEarnings": "Receitas de subscrição",
-    "cashOut": "Levantar",
-    "withdrawing": "A levantar…",
-    "withdrawableSoon": "As taxas de subscrição poderão ser levantadas em breve",
     "dpayBaseOnly": "O Dpay só está disponível na Base.",
     "tokensAndStocks": "Tokens e ações",
     "dhbPositionNote": "Esta é toda a sua posição de tokens — detidos mais em stake, em Base e BNB Chain. A maior parte geralmente está em stake, então este valor é maior do que o que você pode gastar no momento.",
-    "stakedIncludesUnstaking": "Tokens em stake incluem qualquer coisa que você solicitou para retirar do stake, mas ainda não recebeu de volta.",
-    "usdtSent": "{{amount}} USDT enviados",
-    "withdrawableOnBase": "Disponível para levantamento na Base",
-    "pendingTreasury": "Em USDT · a aguardar reserva do tesouro"
+    "stakedIncludesUnstaking": "Tokens em stake incluem qualquer coisa que você solicitou para retirar do stake, mas ainda não recebeu de volta."
   },
   "feedCard": {
     "reactionTip": "Mantenha pressionado o botão de curtir para mais reações",

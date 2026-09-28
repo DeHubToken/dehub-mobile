@@ -5175,8 +5175,9 @@
     "tokenPrice": "{{amount}} トークン",
     "tokensUnit": "トークン",
     "atPreListingRate": "事前公開料金で{{amount}}",
-    "custodyNote": "あなたのトークンは DeHub トレジャリーの管理下にあり、売却されません。クリエイターは USDT 建てのサブスクリプション残高を受け取ります。",
-    "creatorReceives": "クリエイターは {{amount}} USDT のクレジットを受け取ります"
+    "paidToCreatorWallet": "クリエイターのウォレットに直接移動",
+    "creatorPaidDirectNote": "サブスクリプションを購入すると、クリエイターのシェアはウォレットに直接送られます。DeHubは少額のプラットフォーム料金を保持しています。",
+    "creatorEarnsDirect": "加入者はDeHubトークンで支払います。購読した瞬間にシェアがウォレットに表示されますが、バッジランクのプラットフォーム手数料は差し引かれます。"
   },
   "live": {
     "notSet": "未設定",
@@ -5440,17 +5441,10 @@
     "staked": "ステーキング中",
     "gotIt": "了解",
     "otherBalancesNote": "他の残高は {{network}}（チェーン {{chainId}}）にのみあります。{{gas}} はガス残高です。値は数秒遅れることがあります。ここで使うには資産を {{network}} へブリッジまたは送付してください。",
-    "subscriptionEarnings": "サブスク収益",
-    "cashOut": "出金",
-    "withdrawing": "出金中…",
-    "withdrawableSoon": "サブスク収益はまもなく出金できるようになります",
     "dpayBaseOnly": "Dpay は Base でのみ利用できます。",
     "tokensAndStocks": "トークンと株式",
     "dhbPositionNote": "これはあなたの全トークンポジションです — Base と BNB Chain を合わせた保有およびステーク分です。ほとんどは通常ステークされているため、現在使用できる量よりも多いです。",
-    "stakedIncludesUnstaking": "ステークされたトークンには、アンステークをリクエストしたがまだ返却されていないものも含まれます。",
-    "usdtSent": "{{amount}} USDT を送金しました",
-    "withdrawableOnBase": "Base で出金できます",
-    "pendingTreasury": "USDT 建て · トレジャリー準備待ち"
+    "stakedIncludesUnstaking": "ステークされたトークンには、アンステークをリクエストしたがまだ返却されていないものも含まれます。"
   },
   "feedCard": {
     "reactionTip": "いいねボタンを長押しすると、ほかのリアクションを選べます",
