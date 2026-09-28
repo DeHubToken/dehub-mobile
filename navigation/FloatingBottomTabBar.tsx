@@ -26,7 +26,6 @@ import Reanimated, {
   Easing,
   interpolate,
 } from "react-native-reanimated";
-import { BlurView } from "expo-blur";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import type { BottomTabBarProps } from "@react-navigation/bottom-tabs";
 import Icon from "../components/ui/Icon";
@@ -267,45 +266,8 @@ const NavButton = memo<{
     };
   }, [animProgress, index, scale]);
 
-  if (isCenter && isMinimal) {
-    // No glass in minimal: the blur, wash and inset highlight all go, leaving
-    // a plain 1px outlined square around the icon. Same 52pt tap target.
-    return (
-      <NativeAnimatedPressable
-        accessibilityRole="button"
-        accessibilityLabel={label}
-        onPress={handlePress}
-        onPressIn={handlePressIn}
-        onPressOut={handlePressOut}
-        style={[styles.centerButton, animatedStyle]}
-      >
-        <View style={styles.minimalCenterIcon}>
-          <Icon name={icon} size={20} color={MINIMAL_TAB_TEXT_ACTIVE} strokeWidth={2} />
-        </View>
-      </NativeAnimatedPressable>
-    );
-  }
-
-  if (isCenter && skin) {
-    // A canvas theme's centre button (theme/skins.ts): its own outlined tile,
-    // glowing in War's cyan or Osaka's pink.
-    return (
-      <NativeAnimatedPressable
-        accessibilityRole="button"
-        accessibilityLabel={label}
-        onPress={handlePress}
-        onPressIn={handlePressIn}
-        onPressOut={handlePressOut}
-        style={[styles.centerButton, animatedStyle]}
-      >
-        <View style={[styles.skinCenterIcon, skin.glow ? glowStyle(skin.glow) : null, skin.centre]}>
-          <Icon name={icon} size={20} color={skin.centreIcon} strokeWidth={2} />
-        </View>
-      </NativeAnimatedPressable>
-    );
-  }
-
   if (isCenter) {
+    const glyphColor = isMinimal ? MINIMAL_TAB_TEXT_ACTIVE : skin ? skin.centreIcon : colors.foreground;
     return (
       <NativeAnimatedPressable
         accessibilityRole="button"
@@ -315,31 +277,18 @@ const NavButton = memo<{
         onPressOut={handlePressOut}
         style={[styles.centerButton, animatedStyle]}
       >
-        <View style={styles.centerIconWrap}>
-          {/* Web: bg-white/18 + backdrop-blur(24px) + border-white/30 +
-              inset_0_1px_1px white/20 + 0_2px_8px black/30 */}
-          <BlurView
-            intensity={24}
-            tint="light"
-            style={styles.centerGlassBlur}
-          />
-          <View
-            style={[
-              styles.centerGlass,
-              isLight && {
-                backgroundColor: 'rgba(26, 26, 26, 0.06)',
-                borderColor: 'rgba(26, 26, 26, 0.25)',
-              },
-            ]}
-          />
-          <View
-            style={[
-              styles.centerGlassInsetTop,
-              isLight && { backgroundColor: 'rgba(26, 26, 26, 0.12)' },
-            ]}
-            pointerEvents="none"
-          />
-          <Icon name={icon} size={20} color={colors.foreground} strokeWidth={2} />
+        <View
+          pointerEvents="none"
+          style={[
+            styles.centerIconWrap,
+            isLight && { backgroundColor: 'rgba(26,26,26,0.06)', borderColor: 'rgba(26,26,26,0.25)' },
+            isMinimal && { backgroundColor: 'transparent', borderColor: MINIMAL_TAB_LINE },
+            skin && skin.centre,
+          ]}
+        >
+          {/* Native strokes stay visible without an elevated blur surface or deferred SVG mount. */}
+          <View style={[styles.createStroke, { width: 20, height: 2, backgroundColor: glyphColor }]} />
+          <View style={[styles.createStroke, { width: 2, height: 20, backgroundColor: glyphColor }]} />
         </View>
       </NativeAnimatedPressable>
     );
@@ -802,24 +751,6 @@ const styles = StyleSheet.create({
       android: {},
     }),
   },
-  // A canvas theme's centre tile; its fill, outline and radius come from the skin.
-  skinCenterIcon: {
-    width: 36,
-    height: 36,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  // Plain outlined square in place of the glass stack — deliberately not built
-  // on centerIconWrap, so none of its drop shadow or elevation comes along.
-  minimalCenterIcon: {
-    width: 36,
-    height: 36,
-    alignItems: "center",
-    justifyContent: "center",
-    borderWidth: 1,
-    borderColor: MINIMAL_TAB_LINE,
-    backgroundColor: "transparent",
-  },
   pillFill: {
     // zinc-900. The app background is #010305, so a flat near-black would make
     // the pill disappear into the page; this is the house raised-surface value
@@ -859,35 +790,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     position: "relative",
-    overflow: "hidden",
-    ...Platform.select({
-      ios: {
-        shadowColor: "#000",
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.3,
-        shadowRadius: 8,
-      },
-      android: { elevation: 4 },
-    }),
-  },
-  centerGlassBlur: {
-    ...StyleSheet.absoluteFillObject,
-    borderRadius: 12,
-  },
-  centerGlass: {
-    ...StyleSheet.absoluteFillObject,
-    borderRadius: 12,
     backgroundColor: "rgba(255, 255, 255, 0.18)",
     borderWidth: 1,
     borderColor: "rgba(255, 255, 255, 0.30)",
   },
-  centerGlassInsetTop: {
+  createStroke: {
     position: "absolute",
-    top: 1,
-    left: 1,
-    right: 1,
-    height: 1,
-    backgroundColor: "rgba(255, 255, 255, 0.20)",
+    borderRadius: 1,
   },
   activeGlow: {
     // Web: drop-shadow only on the active icon — inactive tabs stay flat/dim.
