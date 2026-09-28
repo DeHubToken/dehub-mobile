@@ -1,9 +1,9 @@
 import { feedRenderBudget } from '../../libs/feed-render-budget';
 
 test('keeps the reversal buffer for ordinary and mixed feeds', () => {
-  expect(feedRenderBudget([]).windowSize).toBe(11);
-  expect(feedRenderBudget([{ imageUrls: ['a', 'b'] }, {}, {}, {}]).windowSize).toBe(11);
-  expect(feedRenderBudget([...Array.from({ length: 4 }, () => ({ imageUrls: ['a', 'b'] })), ...Array.from({ length: 5 }, () => ({}))]).windowSize).toBe(11);
+  expect(feedRenderBudget([]).windowSize).toBe(7);
+  expect(feedRenderBudget([{ imageUrls: ['a', 'b'] }, {}, {}, {}]).windowSize).toBe(7);
+  expect(feedRenderBudget([...Array.from({ length: 4 }, () => ({ imageUrls: ['a', 'b'] })), ...Array.from({ length: 5 }, () => ({}))]).windowSize).toBe(7);
 });
 
 test('bounds the bitmap working set when galleries dominate a channel', () => {
