@@ -1733,7 +1733,7 @@
     "walletImported": "Pul kisəsi idxal edildi",
     "importWallet": "Pul kisəsini idxal et",
     "privateKeyPlaceholder": "Şəxsi açarınızı daxil edin",
-    "importExternalWallet": "Xarici pul kisəsini idxal et",
+    "importExternalWallet": "Açarları idxal et",
     "migrateAccount": "Hesabı köçürün",
     "migrateAccountBody": "Əvvəl DeHub hesabı var idi? Daha sonra istifadə etdiyiniz e-poçt, telefon, Google və ya Apple girişi ilə daxil olun. Daha əvvəlki hesaba uyğun gələrsə, sizə onun cüzdanını, istifadəçi adını və balansını gətirmək təklif olunacaq.",
     "migrateAccountNote": "Köhnə giriş ilə birdəfəlik giriş cüzdan açarınızı bu cihazda təhlükəsiz şəkildə əldə edir. Heç vaxt serverlərimizə toxunmur.",

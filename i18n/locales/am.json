@@ -1733,7 +1733,7 @@
     "walletImported": "ቦርሳው ገብቷል",
     "importWallet": "ቦርሳ አስገባ",
     "privateKeyPlaceholder": "የግል ቁልፍዎን ያስገቡ",
-    "importExternalWallet": "የውጭ ቦርሳ አስገባ",
+    "importExternalWallet": "ቁልፎችን አስገባ",
     "migrateAccount": "የስደተኞች መለያ",
     "migrateAccountBody": "ከዚህ በፊት DeHub መለያ ነበረው? በዚያን ጊዜ በተጠቀሙበት ተመሳሳይ ኢሜይል ፣ ስልክ ፣ ጉግል ወይም አፕል መግቢያ ይግቡ ። ከቀድሞ መለያ ጋር የሚዛመድ ከሆነ የኪስ ቦርሳውን ፣ የተጠቃሚ ስሙን እና ሚዛኑን ለማምጣት ይቀርባል ።",
     "migrateAccountNote": "የድሮ የመግቢያ ጋር አንድ ጊዜ ምዝገባ በዚህ መሣሪያ ላይ ደህንነቱ በተጠበቀ የኪስ ቦርሳ ቁልፍዎን ይመልሳል. አገልጋዮቻችንን በጭራሽ አይነካውም ።",

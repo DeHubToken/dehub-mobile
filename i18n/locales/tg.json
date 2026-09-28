@@ -1733,7 +1733,7 @@
     "walletImported": "Ҳамён ворид шуд",
     "importWallet": "Ҳамёнро ворид кунед",
     "privateKeyPlaceholder": "Калиди шахсии худро ворид кунед",
-    "importExternalWallet": "Ҳамёни берунаро ворид кунед",
+    "importExternalWallet": "Калидҳоро ворид кунед",
     "migrateAccount": "Ҳисоби худро кӯчонед",
     "migrateAccountBody": "Пеш аз он ки ҳисоби DeHub буд? Mag-sign in gamit ang parehong email, telepono, Google o Apple login na iyong ginamit na pagkatapos. Агар он ба ҳисоби қаблӣ мувофиқат кунад, ба шумо пешниҳод карда мешавад, ки ҳамён, номи корбар ва тавозуни онро бардоред.",
     "migrateAccountNote": "Воридшавии якдафъаина бо вурудоти кӯҳна калиди ҳамёни шуморо дар ин дастгоҳ бехатар барқарор мекунад. Он ҳеҷ гоҳ ба серверҳои мо даст намерасонад.",

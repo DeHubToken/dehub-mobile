@@ -1733,7 +1733,7 @@
     "walletImported": "Portofel importat",
     "importWallet": "Importă portofel",
     "privateKeyPlaceholder": "Introdu cheia ta privată",
-    "importExternalWallet": "Importă portofel extern",
+    "importExternalWallet": "Importă chei",
     "migrateAccount": "Migrează contul",
     "migrateAccountBody": "Ai avut deja un cont DeHub? Autentifică-te cu același e-mail, număr de telefon, cont Google sau Apple pe care l-ai folosit atunci. Dacă se potrivește cu un cont anterior, ți se va oferi posibilitatea de a-ți transfera portofelul, numele de utilizator și soldul.",
     "migrateAccountNote": "O singură autentificare cu vechiul login îți va prelua cheia portofelului în siguranță pe acest dispozitiv. Aceasta nu atinge niciodată serverele noastre.",
@@ -4824,9 +4824,9 @@
     "noUsableBackup": "Acest cont are o adresă de portofel înregistrată, dar niciun backup pe care acest telefon îl poate folosi — fie a fost protejat cu <em>biometrice sau o cheie de acces pe web</em> (această deblocare rămâne în browser și nu se sincronizează aici), fie o înregistrare anterioară pe acest telefon a fost întreruptă înainte de a se finaliza.",
     "addPasswordOnWeb": "Dacă ați folosit dehub.io înainte, deschideți-l pe computer, conectați-vă în același mod și cu același cont și <em>adăugați o parolă de portofel</em> — aceasta salvează un backup criptat în cloud. Apoi reveniți aici și încercați din nou.",
     "walletAddress": "Portofel: {{address}}",
-    "biometricKeepsFailing": "{{error}} Dacă acest lucru continuă să eșueze, folosiți parola portofelului de mai jos sau \"Importă portofel extern\".",
+    "biometricKeepsFailing": "{{error}} Dacă acest lucru continuă să eșueze, folosiți parola portofelului de mai jos sau \"Importă chei\".",
     "deviceBoundKey": "Acest portofel se deblochează cu <em>date biometrice deținute pe un dispozitiv specific</em> — telefonul sau browserul pe care a fost configurat. Acest telefon nu are acea cheie, și nici dehub.io: cheia nu părăsește niciodată dispozitivul care a creat-o.",
-    "unlockPasskeyOnly": "Acest portofel a fost securizat cu o parolă pe web și nu are încă o copie de rezervă a parolei în cloud. Dacă ați setat o parolă pentru portofel pe dehub.io, introduceți-o aici — altfel folosiți Importă portofel extern de mai jos.",
+    "unlockPasskeyOnly": "Acest portofel a fost securizat cu o parolă pe web și nu are încă o copie de rezervă a parolei în cloud. Dacă ați setat o parolă pentru portofel pe dehub.io, introduceți-o aici — altfel folosiți Importă chei de mai jos.",
     "unlockWithPasswordExplainer": "Acest cont are deja un portofel, protejat de o parolă. Introduceți-o pentru a vă recupera portofelul pe acest dispozitiv."
   },
   "transcript": {

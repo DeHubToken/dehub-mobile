@@ -1733,7 +1733,7 @@
     "walletImported": "Portofoli u importua",
     "importWallet": "Importo portofolin",
     "privateKeyPlaceholder": "Fut çelësin tënd privat",
-    "importExternalWallet": "Importo portofol të jashtëm",
+    "importExternalWallet": "Importo çelësat",
     "migrateAccount": "Migro llogarinë",
     "migrateAccountBody": "A ke pasur llogari në DeHub më parë? Hyr me të njëjtin email, telefon, hyrje në Google ose Apple që ke përdorur atëherë. Nëse përputhet me një llogari të mëparshme, do të të ofrohet të sjellësh portofolin, emrin e përdoruesit dhe balancën e saj.",
     "migrateAccountNote": "Një hyrje e vetme me hyrjen e vjetër e merr çelësin e portofolit në mënyrë të sigurt në këtë pajisje. Nuk i prek kurrë serverët tanë.",

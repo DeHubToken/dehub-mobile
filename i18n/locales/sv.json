@@ -1733,7 +1733,7 @@
     "walletImported": "Plånbok importerad",
     "importWallet": "Importera plånbok",
     "privateKeyPlaceholder": "Ange din privata nyckel",
-    "importExternalWallet": "Importera extern plånbok",
+    "importExternalWallet": "Importera nycklar",
     "migrateAccount": "Migrera konto",
     "migrateAccountBody": "Hade du ett DeHub-konto tidigare? Logga in med samma e-postadress, telefon, Google- eller Apple-inloggning som du använde då. Om det matchar ett tidigare konto kommer du att erbjudas att ta över dess plånbok, användarnamn och saldo.",
     "migrateAccountNote": "En engångsinloggning med den gamla inloggningen hämtar din plånboksnyckel säkert på den här enheten. Den berör aldrig våra servrar.",
@@ -4828,9 +4828,9 @@
     "noUsableBackup": "Det här kontot har en plånboksadress sparad, men ingen säkerhetskopia som den här telefonen kan använda — antingen skyddades den med <em>biometri eller en passkey på webben</em> (den upplåsningen stannar i webbläsaren och synkroniseras inte hit), eller så avbröts en tidigare registrering på den här telefonen innan den slutfördes.",
     "addPasswordOnWeb": "Om du har använt dehub.io tidigare, öppna det på din dator, logga in på samma sätt och med samma konto, och <em>lägg till ett plånbokslösenord</em> — det sparar en krypterad säkerhetskopia till molnet. Kom sedan tillbaka hit och försök igen.",
     "walletAddress": "Plånbok: {{address}}",
-    "biometricKeepsFailing": "{{error}} Om detta fortsätter att misslyckas, använd ditt plånbokslösenord nedan eller \"Importera extern plånbok\".",
+    "biometricKeepsFailing": "{{error}} Om detta fortsätter att misslyckas, använd ditt plånbokslösenord nedan eller \"Importera nycklar\".",
     "deviceBoundKey": "Denna plånbok låses upp med <em>biometri som lagras på en specifik enhet</em> — telefonen eller webbläsaren den ställdes in på. Den här telefonen har inte den nyckeln, och det har inte heller dehub.io: nyckeln lämnar aldrig enheten som skapade den.",
-    "unlockPasskeyOnly": "Den här plånboken säkrades med en passkey på webben och har ännu ingen lösenordsbackup i molnet. Om du ställer in ett plånbokslösenord på dehub.io, ange det här — annars använd Importera extern plånbok nedan.",
+    "unlockPasskeyOnly": "Den här plånboken säkrades med en passkey på webben och har ännu ingen lösenordsbackup i molnet. Om du ställer in ett plånbokslösenord på dehub.io, ange det här — annars använd Importera nycklar nedan.",
     "unlockWithPasswordExplainer": "Det här kontot har redan en plånbok, skyddad av ett lösenord. Ange det för att återställa din plånbok på den här enheten."
   },
   "transcript": {

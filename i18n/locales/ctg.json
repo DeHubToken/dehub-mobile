@@ -1804,7 +1804,7 @@
     "walletImported": "ওয়ালেট ইমপোর্ট অইছে",
     "importWallet": "ওয়ালেট ইমপোর্ট করন",
     "privateKeyPlaceholder": "আঁর প্রাইভেট কী দন",
-    "importExternalWallet": "বাইরের ওয়ালেট ইমপোর্ট করন",
+    "importExternalWallet": "কী ইমপোর্ট করন",
     "migrateAccount": "অ্যাকাউন্ট বদল",
     "migrateAccountBody": "DeHub account আছিল? হেই সেইম ইমেইল, ফোন, Google বা Apple login দিয়া sign in করু যেতা আগে ব্যবহার করসিলি। যদি হেইটা আগের একাউন্টর লগে মিলে, তয় তোক তার wallet, username আর balance নিয়া আইবার অফার দিবো।",
     "migrateAccountNote": "Old login দিয়া একবার sign in করলেই তোর wallet key এই ডিভাইসতে secure হই যাইবো। হেইটা আমাগো server touch করবো না।",

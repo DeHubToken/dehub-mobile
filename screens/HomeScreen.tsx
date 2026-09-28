@@ -438,6 +438,10 @@ export default function HomeScreen() {
         .onStart(() => {
           cancelAnimation(progress);
           dragStart.value = progress.value;
+          // The header hides on the vertical scroll of the page being left.
+          // Carried hidden into the next page, that page's top spacer shows as
+          // a blank band above its first post, so a page turn brings it back.
+          runOnJS(showHeader)();
         })
         .onUpdate((e) => {
           if (pageWidth <= 0) return;
@@ -460,7 +464,7 @@ export default function HomeScreen() {
           progress.value = withTiming(target, PAGE_ANIM);
           if (target !== from) runOnJS(commitIndex)(target);
         }),
-    [pageWidth, commitIndex, progress, dragStart],
+    [pageWidth, commitIndex, progress, dragStart, showHeader],
   );
 
   const pagerStyle = useAnimatedStyle(() => ({
