@@ -5924,6 +5924,37 @@
     "toNextTier": "{{amount}} توكن لـ {{tier}}",
     "holdNote": "من تفتح شارة، تظل مالتك طول ما انت محتفظ بتوكناتك. عدد التوكنات المطلوبة لفتح شارة جديدة ممكن يتغير ويا سعر التوكن."
   },
+  "badgeShowcase": {
+    "dialogLabel": "{{tier}} شارة",
+    "close": "أغلق",
+    "badges": "الوشوم",
+    "tierOf": "الطبقة {{index}} من {{total}}",
+    "youHaveThis": "أنت تملك هالشارة",
+    "toUnlock": "{{amount}} توكنات زيادة لفتحها",
+    "holdToUnlock": "احمل على الأقل هالعدد من توكنات DeHub لفتحها",
+    "sliderLabel": "التوكنات المحتفظ بها",
+    "sliderValue": "{{amount}} توكنات · {{tier}}",
+    "you": "أنت",
+    "grants": "ما الذي يفتح",
+    "perks": {
+      "fee": "رسوم المنصة",
+      "votes": "تصويت الحوكمة",
+      "reach": "وزن لكل مشاهدة وتفاعل",
+      "feedPosts": "منشورات في الصفحة الرئيسية يوميًا",
+      "images": "صور لكل منشور",
+      "uploads": "حد اليومي للرفع",
+      "storage": "تخزين المحرر",
+      "profiles": "ملفات محفوظة",
+      "lending": "مقاطع استعارة الشارة",
+      "voice": "تقليد الصوت",
+      "voiceFree": "مجاني",
+      "voiceLocked": "{{tier}} وما فوق"
+    },
+    "buy": "احصل على DHB",
+    "details": "تفصيل كامل",
+    "play": "تشغيل",
+    "pause": "إيقاف"
+  },
   "passwordStrength": {
     "veryWeak": "ضعيف جداً",
     "weak": "ضعيف",

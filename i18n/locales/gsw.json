@@ -5954,6 +5954,37 @@
     "toNextTier": "{{amount}} Tokens a {{tier}}",
     "holdNote": "Sobald en Badge freigschaltet isch, ghört er der so lang, wie du dini Tokens behaltsch. D Zahl vo Tokens, wo bruucht wird zum en neue Badge freizschalte, cha sich mit em Token-Priis ändere."
   },
+  "badgeShowcase": {
+    "dialogLabel": "{{tier}} Abzeichen",
+    "close": "Schliessen",
+    "badges": "Abzeichen",
+    "tierOf": "Tier {{index}} vo {{total}}",
+    "youHaveThis": "Du hesch das Abzeichen",
+    "toUnlock": "{{amount}} meh Toke zum freischalte",
+    "holdToUnlock": "Halte mindestens so viel DeHub Tokens, um es freizuschalten",
+    "sliderLabel": "Toke ghalte",
+    "sliderValue": "{{amount}} Toke · {{tier}}",
+    "you": "Du",
+    "grants": "Was es freischaltet",
+    "perks": {
+      "fee": "Plattform Gebühr",
+      "votes": "Governance Stimmä",
+      "reach": "Gwicht pro Ussicht & Reaktion",
+      "feedPosts": "Home-Feed Postä pro Tag",
+      "images": "Bilder pro Post",
+      "uploads": "Tägliches Upload-Limit",
+      "storage": "Editor Speicher",
+      "profiles": "Gspeichereti Profile",
+      "lending": "Abzeichen Lih-Slots",
+      "voice": "Stimme klone",
+      "voiceFree": "Gratis",
+      "voiceLocked": "{{tier}} und höher"
+    },
+    "buy": "DHB hole",
+    "details": "Vollständigi Uufschlüsselig",
+    "play": "Abspiele",
+    "pause": "Pause"
+  },
   "passwordStrength": {
     "veryWeak": "Sehr schwach",
     "weak": "Schwach",

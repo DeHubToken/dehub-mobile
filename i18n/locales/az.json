@@ -5924,6 +5924,37 @@
     "toNextTier": "{{amount}} token, {{tier}} üçün",
     "holdNote": "Rozet kilidi açıldıqdan sonra, tokenlərinizi saxladığınız müddətcə o sizin olacaq. Yeni rozet kilidini açmaq üçün lazım olan tokenlərin sayı token qiyməti ilə dəyişə bilər."
   },
+  "badgeShowcase": {
+    "dialogLabel": "{{tier}} nişan",
+    "close": "Bağla",
+    "badges": "Nişanlar",
+    "tierOf": "Səviyyə {{index}}{{total}}",
+    "youHaveThis": "Bu nişanınız var",
+    "toUnlock": "{{amount}} onu kiliddən çıxarmaq üçün daha çox ayələr",
+    "holdToUnlock": "Kilidini açmaq üçün ən azı bu sayda DeHub işarəsini saxlayın",
+    "sliderLabel": "Tokenlər keçirilib",
+    "sliderValue": "{{amount}} tokens · {{tier}}",
+    "you": "Siz",
+    "grants": "Nəyi blokdan çıxarır",
+    "perks": {
+      "fee": "Platforma haqqı",
+      "votes": "İdarəçilik səsləri",
+      "reach": "Hər baxış və reaksiya üçün çəki",
+      "feedPosts": "Gündə bir ev qidası paylaşımı",
+      "images": "Hər yazıya düşən şəkillər",
+      "uploads": "Gündəlik yüklənmə limiti",
+      "storage": "Redaktor yaddaşı",
+      "profiles": "Saxlanılan profillər",
+      "lending": "Nişan verən aralıqlar",
+      "voice": "Səs klonlaması",
+      "voiceFree": "Pulsuz",
+      "voiceLocked": "{{tier}} və yuxarı"
+    },
+    "buy": "DHB əldə edin",
+    "details": "Tam təhlil",
+    "play": "Oxut",
+    "pause": "Fasilə ver"
+  },
   "passwordStrength": {
     "veryWeak": "Çox zəif",
     "weak": "Zəif",

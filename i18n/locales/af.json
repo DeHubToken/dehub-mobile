@@ -5957,6 +5957,37 @@
     "toNextTier": "{{amount}} tokens aan {{tier}}",
     "holdNote": "Sodra 'n badge ontsluit is, is dit joune solank jy jou tokens hou. Die aantal tokens wat nodig is om 'n nuwe badge te ontsluit, kan verander met die token-prys."
   },
+  "badgeShowcase": {
+    "dialogLabel": "{{tier}} badge",
+    "close": "Sluit",
+    "badges": "Kentekens",
+    "tierOf": "Vlak {{index}} van {{total}}",
+    "youHaveThis": "Jy het hierdie badge",
+    "toUnlock": "{{amount}} meer tekens om dit te ontsluit",
+    "holdToUnlock": "Hou ten minste hierdie baie DeHub tekens om dit te ontsluit",
+    "sliderLabel": "Tekens gehou",
+    "sliderValue": "{{amount}} tokens · {{tier}}",
+    "you": "Jy",
+    "grants": "Wat is ontsluierd",
+    "perks": {
+      "fee": "Platformfooi",
+      "votes": "Regeringsstemme",
+      "reach": "Gewig per aansig en reaksie",
+      "feedPosts": "Home Posters EenVandaag",
+      "images": "Beelde per plasing",
+      "uploads": "Daaglikse oplaai limiet",
+      "storage": "Redigeerder stoor",
+      "profiles": "Gestoorde profiele",
+      "lending": "Badge uitleen slots",
+      "voice": "Stemkloning",
+      "voiceFree": "Gratis",
+      "voiceLocked": "{{tier}} en op"
+    },
+    "buy": "Kry DHB",
+    "details": "Volle ineenstorting",
+    "play": "Speel",
+    "pause": "Pouseer"
+  },
   "passwordStrength": {
     "veryWeak": "Baie swak",
     "weak": "Swak",

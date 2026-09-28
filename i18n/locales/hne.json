@@ -5918,6 +5918,37 @@
     "toNextTier": "{{amount}} टोकन {{tier}} को",
     "holdNote": "एक बार बैज अनलॉक हो जाने पर, यह तब तक आपका है जब तक आप अपने टोकन रखते हैं। नए बैज को अनलॉक करने के लिए आवश्यक टोकन की संख्या टोकन मूल्य के साथ बदल सकती है।"
   },
+  "badgeShowcase": {
+    "dialogLabel": "{{tier}} बैज",
+    "close": "बन्द करव",
+    "badges": "बैजConstellation name (",
+    "tierOf": "{{total}} म ले स्तर {{index}}",
+    "youHaveThis": "तुमन ए बटुआ ल पाय हव",
+    "toUnlock": "खोले बर {{amount}} अउ टोकन",
+    "holdToUnlock": "एला अनलॉक करे बर कम से कम ए बहुत डेहब टोकन मन ल रखव",
+    "sliderLabel": "रखे गए टोकन",
+    "sliderValue": "{{amount}} टोकन · {{tier}}",
+    "you": "आप",
+    "grants": "जो खुलता हे",
+    "perks": {
+      "fee": "प्लेटफार्म फीस",
+      "votes": "वोट करे सरकार",
+      "reach": "प्रति दृस्य अउ प्रतिक्रिया के भार",
+      "feedPosts": "Home Tags हर दिन हर पल",
+      "images": "प्रति पोस्ट फोटू",
+      "uploads": "दैनिक अपलोड सीमा",
+      "storage": "संपादक भंडारन",
+      "profiles": "सहेजे गे प्रोफाइल",
+      "lending": "बैज लोनिंग स्लॉट",
+      "voice": "अवाज क्लोनिंग",
+      "voiceFree": "मुक्त",
+      "voiceLocked": "{{tier}} अउ ओकर ले ऊपर"
+    },
+    "buy": "डीएचबी प्राप्त करव",
+    "details": "पूरा ब्रेकडाउन",
+    "play": "बजाव",
+    "pause": "ठहरव"
+  },
   "passwordStrength": {
     "veryWeak": "बहुत कमजोर",
     "weak": "कमजोर",

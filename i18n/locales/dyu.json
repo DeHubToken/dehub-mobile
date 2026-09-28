@@ -5877,6 +5877,37 @@
     "yourBalance": "I ka balansi · {{amount}} tokens",
     "holdNote": "N'i ye batɛmu ta, i ka batɛmu be se ka kɛ i ta ye fɔɔ i k'i ka batɛmu ta. tagamasiɲɛ minw ka kan ka yɛlɛ badge kura dɔ la, olu hakɛ be se ka yɛlɛma ni tagamasiɲɛ sɔngɔ ye"
   },
+  "badgeShowcase": {
+    "dialogLabel": "{{tier}} badge",
+    "close": "O kɔ, a ye dɔ fara",
+    "badges": "Fanga be mɔgɔ minw na, olu ka kan",
+    "tierOf": "Tier {{index}} ka {{total}}",
+    "youHaveThis": "I ka kan ka o kɛ",
+    "toUnlock": "Tokɛn {{amount}} wɛrɛ ka a dayɛlɛ",
+    "holdToUnlock": "O la, a tun ka kan ka kɛ i n'a fɔ a tun y'a fɔ cogo min na.",
+    "sliderLabel": "O kɔ, a ye n' ka soow lɔ.",
+    "sliderValue": "{{amount}} tokens · {{tier}}",
+    "you": "Aw kɔni, aw ye",
+    "grants": "Mun lo be yɛlɛ",
+    "perks": {
+      "fee": "Fɛɛn min be se k'an dɛmɛ ka baara kɛ",
+      "votes": "Kalanfaw ka kan ka vote",
+      "reach": "Fanga min be mɔgɔ la ani a be min kɛ",
+      "feedPosts": "Fɛɛn minw be sɔrɔ soo kɔnɔ loon o loon",
+      "images": "Jaa kelen kelen bɛɛ kɔnɔ",
+      "uploads": "Lon o lon, a ka kan ka yɛlɛ",
+      "storage": "Dɔnkililabaga",
+      "profiles": "Mɔgɔ minw tun ye mɔgɔ dɔw ye, u tun be",
+      "lending": "Lɛnpominɛlaw ka juruw",
+      "voice": "Kloning kaan",
+      "voiceFree": "See min dira mɔgɔ ma ka hɔɔrɔnya",
+      "voiceLocked": "{{tier}} and up"
+    },
+    "buy": "Ne ye DHB ye",
+    "details": "Fɛɛn bɛɛ halakira",
+    "play": "A be to ka to ka to",
+    "pause": "N' ye n' ka baara dabila"
+  },
   "passwordStrength": {
     "veryWeak": "A barika ka dɔgɔn kosɛbɛ",
     "weak": "A barika ka dɔgɔn",

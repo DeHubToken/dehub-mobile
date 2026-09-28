@@ -5928,6 +5928,37 @@
     "toNextTier": "{{amount}} token {{tier}} -nek",
     "holdNote": "Ha egy badge fel van oldva, az a tiéd, amíg a tokenjeidet tartod. Egy új badge feloldásához szükséges tokenek száma a token árfolyamával változhat."
   },
+  "badgeShowcase": {
+    "dialogLabel": "{{tier}} jelvény",
+    "close": "Bezárás",
+    "badges": "Jelvények",
+    "tierOf": "{{total}}/{{index}}. szint",
+    "youHaveThis": "Van ez a jelvényed",
+    "toUnlock": "Még {{amount}} token a feloldáshoz",
+    "holdToUnlock": "Tartson legalább ennyi DeHub tokent a feloldáshoz",
+    "sliderLabel": "Birtokolt tokenek",
+    "sliderValue": "{{amount}} token · {{tier}}",
+    "you": "Te",
+    "grants": "Mit nyit meg?",
+    "perks": {
+      "fee": "Platformdíj",
+      "votes": "Kormányzati szavazatok",
+      "reach": "Tömeg megtekintésenként és reakciónként",
+      "feedPosts": "Home-feed bejegyzések naponta",
+      "images": "Képek bejegyzésenként",
+      "uploads": "Napi feltöltési korlát",
+      "storage": "Szerkesztő tárhelye",
+      "profiles": "Mentett profilok",
+      "lending": "Jelvénykölcsönző bővítőhelyek",
+      "voice": "Hangklónozás",
+      "voiceFree": "Ingyenes",
+      "voiceLocked": "{{tier}} és feljebb"
+    },
+    "buy": "Kérjen DHB-t",
+    "details": "Teljes részletezés",
+    "play": "Játék",
+    "pause": "Szüneteltetés"
+  },
   "passwordStrength": {
     "veryWeak": "Nagyon gyenge",
     "weak": "Gyenge",

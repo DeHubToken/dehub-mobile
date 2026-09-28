@@ -5924,6 +5924,37 @@
     "toNextTier": "{{amount}} tokenë për {{tier}}",
     "holdNote": "Pasi një shenjë të zhbllokohet, ajo është e jotja për aq kohë sa të mbash tokenët e tu. Numri i tokenëve të nevojshëm për të zhbllokuar një shenjë të re mund të ndryshojë me çmimin e tokenit."
   },
+  "badgeShowcase": {
+    "dialogLabel": "{{tier}} distinktiv",
+    "close": "Mbyll",
+    "badges": "Distinktivët",
+    "tierOf": "Niveli {{index}} i {{total}}",
+    "youHaveThis": "Ke këtë distinktiv",
+    "toUnlock": "{{amount}} më shumë shenja për ta zhbllokuar",
+    "holdToUnlock": "Mbaje të paktën këtë numër shenjash DeHub për ta zhbllokuar",
+    "sliderLabel": "Shenjat e mbajtura",
+    "sliderValue": "{{amount}} tokens · {{tier}}",
+    "you": "Ti",
+    "grants": "Çfarë zhbllokon",
+    "perks": {
+      "fee": "Tarifa e platformës",
+      "votes": "Votat e qeverisjes",
+      "reach": "Pesha sipas pamjes dhe reaksionit",
+      "feedPosts": "Postimet për ushqimin në shtëpi në ditë",
+      "images": "Imazhe për postim",
+      "uploads": "Kufiri ditor i ngarkimit",
+      "storage": "Ruajtja e redaktorit",
+      "profiles": "Profilet e ruajtura",
+      "lending": "Vende për kreditimin e distinktivit",
+      "voice": "Klonimi i zërit",
+      "voiceFree": "Falas",
+      "voiceLocked": "{{tier}} dhe lart"
+    },
+    "buy": "Merr DHB",
+    "details": "Zbërthimi i plotë",
+    "play": "Luaj",
+    "pause": "Ndalo"
+  },
   "passwordStrength": {
     "veryWeak": "Shumë i dobët",
     "weak": "I dobët",

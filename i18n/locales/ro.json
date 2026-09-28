@@ -5924,6 +5924,37 @@
     "toNextTier": "{{amount}} tokenuri către {{tier}}",
     "holdNote": "Odată ce o insignă este deblocată, ea îți aparține atâta timp cât deții tokenurile tale. Numărul de tokenuri necesare pentru a debloca o nouă insignă se poate schimba odată cu prețul tokenului."
   },
+  "badgeShowcase": {
+    "dialogLabel": "Insignă {{tier}}",
+    "close": "Închide",
+    "badges": "Insigne",
+    "tierOf": "Nivelul {{index}} din {{total}}",
+    "youHaveThis": "Ai această insignă",
+    "toUnlock": "{{amount}} mai multe jetoane pentru a-l debloca",
+    "holdToUnlock": "Păstrează cel puțin acest număr de jetoane DeHub pentru a-l debloca",
+    "sliderLabel": "Jetoane deținute",
+    "sliderValue": "{{amount}} jetoane · {{tier}}",
+    "you": "Tu",
+    "grants": "Ce deblochează",
+    "perks": {
+      "fee": "Taxă de platformă",
+      "votes": "Voturi privind guvernanța",
+      "reach": "Greutate per vizualizare și reacție",
+      "feedPosts": "Postări Home-feed pe zi",
+      "images": "Imagini per postare",
+      "uploads": "Limita zilnică de încărcare",
+      "storage": "Stocarea editorului",
+      "profiles": "Profiluri salvate",
+      "lending": "Sloturi de creditare a insignelor",
+      "voice": "Clonare vocală",
+      "voiceFree": "Gratuit",
+      "voiceLocked": "{{tier}} și în sus"
+    },
+    "buy": "Obțineți DHB",
+    "details": "Defalcare completă",
+    "play": "Redare",
+    "pause": "Pauză"
+  },
   "passwordStrength": {
     "veryWeak": "Foarte slabă",
     "weak": "Slabă",

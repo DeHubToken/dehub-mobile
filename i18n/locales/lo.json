@@ -5893,6 +5893,37 @@
     "toNextTier": "{{amount}} ໂຕເຄັນ ຫາ {{tier}}",
     "holdNote": "ເມື່ອປ້າຍຖືກປົດລັອກແລ້ວ, ມັນຈະເປັນຂອງທ່ານ ຕາບໃດທີ່ທ່ານຖືໂຕເຄັນຂອງທ່ານ. ຈຳນວນໂຕເຄັນທີ່ຕ້ອງການເພື່ອປົດລັອກປ້າຍໃໝ່ສາມາດປ່ຽນແປງໄດ້ຕາມລາຄາໂຕເຄັນ."
   },
+  "badgeShowcase": {
+    "dialogLabel": "ປ້າຍ {{tier}}",
+    "close": "ປິດ",
+    "badges": "ເຄື່ອງໝາຍ",
+    "tierOf": "Tier {{index}} ຂອງ {{total}}",
+    "youHaveThis": "ເຈົ້າມີປ້າຍນີ້",
+    "toUnlock": "{{amount}} tokens ເພີ່ມເຕີມເພື່ອປົດລັອກມັນ",
+    "holdToUnlock": "ຖືຢ່າງຫນ້ອຍນີ້ຫຼາຍ DeHub tokens ເພື່ອປົດລັອກມັນ",
+    "sliderLabel": "Tokens ຈັດພີມມາ",
+    "sliderValue": "{{amount}} ໂທເຄັນ · {{tier}}",
+    "you": "ທ່ານ",
+    "grants": "ສິ່ງ ທີ່ ເຮັດ ໃຫ້ ມັນ ມີ ຄວາມ ຮຸນ ແຮງ",
+    "perks": {
+      "fee": "ຄ່າທໍານຽມ Platform",
+      "votes": "ຄະແນນສຽງປົກຄອງ",
+      "reach": "ນ້ ໍາ ຫນັກ ຕໍ່ການເບິ່ງ & ປະຕິກິລິຍາ",
+      "feedPosts": "Home Feed Posts ສາລະວັນ",
+      "images": "ຮູບພາບຕໍ່ໂພສ",
+      "uploads": "ຈຳກັດການອັບໂຫຼດປະຈ",
+      "storage": "ການເກັບຮັກສາບັນນາທິການ",
+      "profiles": "ໂປຣໄຟລ໌ທີ່ຖືກບັນທຶກໄວ້",
+      "lending": "Badge ສະລັອດຕິງການໃຫ້ກູ້ຢືມ",
+      "voice": "ການກັ່ນຕອງສຽງ",
+      "voiceFree": "ຟຣີ",
+      "voiceLocked": "{{tier}} ແລະຂຶ້ນໄປ"
+    },
+    "buy": "ຮັບ DHB",
+    "details": "ການລະລາຍເຕັມຮູບແບບ",
+    "play": "ຫຼິ້ນ",
+    "pause": "ພັກຜ່ອນ"
+  },
   "passwordStrength": {
     "veryWeak": "ອ່ອນຫຼາຍ",
     "weak": "ອ່ອນ",

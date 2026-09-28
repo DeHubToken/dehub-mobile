@@ -5857,6 +5857,37 @@
     "topTier": "ਟਾਪ ਟਾਇਰ",
     "everyTierUnlocked": "ਹਰ ਟਾਇਰ ਅਨਲੌਕ ਕੀਤਾ ਗਿਆ"
   },
+  "badgeShowcase": {
+    "dialogLabel": "{{tier}} ਬੈਜ",
+    "close": "ਬੰਦ ਕਰੋ",
+    "badges": "ਬੈਜ",
+    "tierOf": "ਟੀਅਰ {{index}} ਦਾ {{total}}",
+    "youHaveThis": "ਤੁਹਾਡੇ ਕੋਲ ਇਹ ਬੈਜ ਹੈ",
+    "toUnlock": "{{amount}} ਇਸ ਨੂੰ ਅਨਲੌਕ ਕਰਨ ਲਈ ਵਧੇਰੇ ਟੋਕਨ",
+    "holdToUnlock": "ਇਸ ਨੂੰ ਅਨਲੌਕ ਕਰਨ ਲਈ ਘੱਟੋ ਘੱਟ ਇਹ ਬਹੁਤ ਸਾਰੇ ਡੀਹਬ ਟੋਕਨ ਫੜੋ",
+    "sliderLabel": "ਟੋਕਨ ਰੱਖੇ ਗਏ",
+    "sliderValue": "{{amount}} ਟੋਕਨਜ਼ · {{tier}}",
+    "you": "ਤੁਸੀਂ",
+    "grants": "ਕੀ ਇਸ ਨੂੰ ਅਨਲੌਕ ਕਰਦਾ ਹੈ",
+    "perks": {
+      "fee": "ਪਲੇਟਫਾਰਮ ਫੀਸ",
+      "votes": "ਸ਼ਾਸਨ ਵੋਟ",
+      "reach": "ਪ੍ਰਤੀ ਝਲਕ & ਪ੍ਰਤੀਕਰਮ ਭਾਰ",
+      "feedPosts": "ਇੱਕ ਦਿਨ ਵਿੱਚ ਹੋਮ-ਫੀਡ ਪੋਸਟਾਂ",
+      "images": "ਪ੍ਰਤੀ ਪੋਸਟ ਚਿੱਤਰ",
+      "uploads": "ਰੋਜ਼ਾਨਾ ਅੱਪਲੋਡ ਸੀਮਾ",
+      "storage": "ਸੰਪਾਦਕ ਸਟੋਰੇਜ਼",
+      "profiles": "ਸੰਭਾਲੀਆਂ ਪਰੋਫਾਇਲ",
+      "lending": "ਬੈਜ ਉਧਾਰ ਦੇਣ ਵਾਲੇ ਸਲੋਟ",
+      "voice": "ਵੌਇਸ ਕਲੋਨਿੰਗ",
+      "voiceFree": "ਮੁਫ਼ਤ",
+      "voiceLocked": "{{tier}} ਅਤੇ ਉੱਪਰ"
+    },
+    "buy": "DHB ਪ੍ਰਾਪਤ ਕਰੋ",
+    "details": "ਪੂਰਾ ਟੁੱਟਣਾ",
+    "play": "ਚਲਾਓ",
+    "pause": "ਵਿਰਾਮ"
+  },
   "passwordStrength": {
     "veryWeak": "ਬਹੁਤ ਕਮਜ਼ੋਰ",
     "weak": "ਕਮਜ਼ੋਰ",

@@ -5973,6 +5973,37 @@
     "toNextTier": "{{amount}} token ke {{tier}}",
     "holdNote": "Setelah lencana dibuka, lencana itu menjadi milik Anda selama Anda memegang token Anda. Jumlah token yang dibutuhkan untuk membuka lencana baru dapat berubah seiring dengan harga token."
   },
+  "badgeShowcase": {
+    "dialogLabel": "{{tier}} lencana",
+    "close": "Tutup",
+    "badges": "Lencana",
+    "tierOf": "Tingkat {{index}} dari {{total}}",
+    "youHaveThis": "Anda memiliki lencana ini",
+    "toUnlock": "{{amount}} token lagi untuk membukanya",
+    "holdToUnlock": "Tahan setidaknya token DeHub sebanyak ini untuk membukanya",
+    "sliderLabel": "Token yang dipegang",
+    "sliderValue": "{{amount}} token · {{tier}}",
+    "you": "Anda",
+    "grants": "Apa yang dibukanya",
+    "perks": {
+      "fee": "Biaya platform",
+      "votes": "Suara tata kelola",
+      "reach": "Berat per tampilan & reaksi",
+      "feedPosts": "Postingan feed beranda sehari",
+      "images": "Gambar per postingan",
+      "uploads": "Batas unggahan harian",
+      "storage": "Penyimpanan editor",
+      "profiles": "Profil tersimpan",
+      "lending": "Slot pinjaman lencana",
+      "voice": "Kloning suara",
+      "voiceFree": "Gratis",
+      "voiceLocked": "{{tier}} ke atas"
+    },
+    "buy": "Dapatkan DHB",
+    "details": "Perincian lengkap",
+    "play": "Mainkan",
+    "pause": "Jeda"
+  },
   "passwordStrength": {
     "veryWeak": "Sangat lemah",
     "weak": "Lemah",

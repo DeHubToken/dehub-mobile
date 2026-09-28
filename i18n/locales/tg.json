@@ -5924,6 +5924,37 @@
     "toNextTier": "{{amount}} токен ба {{tier}}",
     "holdNote": "Вақте ки нишон кушода мешавад, он то он даме, ки шумо токенҳои худро доред, аз они шумост. Шумораи токенҳои барои кушодани нишони нав лозимӣ метавонад бо нархи токен тағйир ёбад."
   },
+  "badgeShowcase": {
+    "dialogLabel": "{{tier}} NAME OF TRANSLATORS",
+    "close": "Пӯшидан",
+    "badges": "Нишонаҳо",
+    "tierOf": "Сатҳи {{index}} аз {{total}}",
+    "youHaveThis": "Шумо ин нишонаро доред",
+    "toUnlock": "Барои кушодан боз {{amount}} токен",
+    "holdToUnlock": "Ҳадди аққал ин бисёр нишонаҳои DeHub-ро барои кушодани он нигоҳ доред",
+    "sliderLabel": "Ð  Ð ° Ð ¼ Ð",
+    "sliderValue": "{{amount}} tokens {{tier}}",
+    "you": "Шумо",
+    "grants": "Он чӣ кушода мешавад",
+    "perks": {
+      "fee": "Пардохти платформа",
+      "votes": "Ҳокимият овозҳо",
+      "reach": "Вазн аз рӯи & реаксия",
+      "feedPosts": "Постҳои хонагӣ дар як рӯз",
+      "images": "Тасвирҳо дар як пост",
+      "uploads": "Маҳдудияти боркунии ҳаррӯза",
+      "storage": "Захираи муҳаррир",
+      "profiles": "Mga profile na naka-save",
+      "lending": "Фиристодани почтаи электронӣ",
+      "voice": "Клонизатсияи овоз",
+      "voiceFree": "Озод",
+      "voiceLocked": "{{tier}} at up"
+    },
+    "buy": "Гирифтани DHB",
+    "details": "Барҳамдиҳии пурра",
+    "play": "Бозикунӣ",
+    "pause": "Таваққуф"
+  },
   "passwordStrength": {
     "veryWeak": "Хеле заиф",
     "weak": "Заиф",

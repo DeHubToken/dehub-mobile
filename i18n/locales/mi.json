@@ -5924,6 +5924,37 @@
     "toNextTier": "{{amount}} tohu ki {{tier}}",
     "holdNote": "Ka oti ana tētahi tohu, kei a koe taua tohu kia mau tonu koe ki ō tohu. Ka taea te whakarerekē te maha o ngā tohu e hiahiatia ana hei whakatuwhera i tētahi tohu hou i te wā e huri ana te utu o te tohu."
   },
+  "badgeShowcase": {
+    "dialogLabel": "{{tier}} badge",
+    "close": "Tata",
+    "badges": "Ngā pātene",
+    "tierOf": "Tier {{index}} {{total}}",
+    "youHaveThis": "Kei a koe tenei potae",
+    "toUnlock": "{{amount}} Ētahi atu tohu ki te whakatuwhera i te reira",
+    "holdToUnlock": "Kia mau ki te iti rawa tenei maha tohu DeHub ki te whakatuwhera i te reira",
+    "sliderLabel": "Tokens pupuri",
+    "sliderValue": "{{amount}} tokens · {{tier}}",
+    "you": "Ko koe",
+    "grants": "He aha te mea e whakatuwhera ana",
+    "perks": {
+      "fee": "Utu papa",
+      "votes": "Ngā pōti kāwanatanga",
+      "reach": "Te taumaha mo ia tirohanga me te urupare",
+      "feedPosts": "Ngā pou i te kāinga i te rā",
+      "images": "Whakaahua mo ia pou",
+      "uploads": "Te rohe tuku i ia ra",
+      "storage": "Te rokiroki o te kaituhi",
+      "profiles": "Ngā pūkete whakaora",
+      "lending": "Badge i 'ai nama",
+      "voice": "Kohikohinga reo",
+      "voiceFree": "Free",
+      "voiceLocked": "{{tier}} me runga ake"
+    },
+    "buy": "Haere DHB",
+    "details": "Te wehenga katoa",
+    "play": "Play",
+    "pause": "Pause"
+  },
   "passwordStrength": {
     "veryWeak": "Tino ngoikore",
     "weak": "Ngoikore",

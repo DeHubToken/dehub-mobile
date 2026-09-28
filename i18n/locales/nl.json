@@ -6114,6 +6114,37 @@
     "toNextTier": "{{amount}} tokens naar {{tier}}",
     "holdNote": "Zodra een badge is ontgrendeld, is deze van jou zolang je je tokens aanhoudt. Het aantal tokens dat nodig is om een nieuwe badge te ontgrendelen, kan veranderen met de tokenprijs."
   },
+  "badgeShowcase": {
+    "dialogLabel": "{{tier}} badge",
+    "close": "Sluiten",
+    "badges": "Badges",
+    "tierOf": "Niveau {{index}} van {{total}}",
+    "youHaveThis": "Je hebt deze badge",
+    "toUnlock": "{{amount}} meer tokens om het te ontgrendelen",
+    "holdToUnlock": "Houd minstens zoveel DeHub-tokens vast om deze te ontgrendelen",
+    "sliderLabel": "Tokens aangehouden",
+    "sliderValue": "{{amount}} tokens · {{tier}}",
+    "you": "Jij",
+    "grants": "Wat het ontgrendelt",
+    "perks": {
+      "fee": "Platformkosten",
+      "votes": "Bestuursstemmen",
+      "reach": "Gewicht per weergave & reactie",
+      "feedPosts": "Home-feed berichten per dag",
+      "images": "Afbeeldingen per post",
+      "uploads": "Dagelijkse uploadlimiet",
+      "storage": "Editoropslag",
+      "profiles": "Opgeslagen profielen",
+      "lending": "Sleuven voor het uitlenen van bad",
+      "voice": "Stem klonen",
+      "voiceFree": "Gratis",
+      "voiceLocked": "{{tier}} en hoger"
+    },
+    "buy": "Ontvang DHB",
+    "details": "Volledige uitsplitsing",
+    "play": "Afspelen",
+    "pause": "Pauzeren"
+  },
   "passwordStrength": {
     "veryWeak": "Zeer zwak",
     "weak": "Zwak",

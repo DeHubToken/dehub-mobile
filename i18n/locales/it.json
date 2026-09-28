@@ -5973,6 +5973,37 @@
     "toNextTier": "{{amount}} token a {{tier}}",
     "holdNote": "Una volta sbloccato un badge, è tuo finché detieni i tuoi token. Il numero di token necessari per sbloccare un nuovo badge può cambiare con il prezzo del token."
   },
+  "badgeShowcase": {
+    "dialogLabel": "Badge {{tier}}",
+    "close": "Chiudi",
+    "badges": "Distintivi",
+    "tierOf": "Livello {{index}} di {{total}}",
+    "youHaveThis": "Hai questo badge",
+    "toUnlock": "{{amount}} altri token per sbloccarlo",
+    "holdToUnlock": "Tieni almeno questi token DeHub per sbloccarlo",
+    "sliderLabel": "Gettoni detenuti",
+    "sliderValue": "{{amount}} token · {{tier}}",
+    "you": "Tu",
+    "grants": "Cosa sblocca",
+    "perks": {
+      "fee": "Canone piattaforma",
+      "votes": "Voti di governance",
+      "reach": "Peso per vista e reazione",
+      "feedPosts": "Post di alimentazione domestica al giorno",
+      "images": "Immagini per post",
+      "uploads": "Limite di caricamento giornaliero",
+      "storage": "Archiviazione editor",
+      "profiles": "Profili salvati",
+      "lending": "Slot per prestito badge",
+      "voice": "Clonazione vocale",
+      "voiceFree": "Gratis",
+      "voiceLocked": "{{tier}} e oltre"
+    },
+    "buy": "Ottieni DHB",
+    "details": "Dettaglio completo",
+    "play": "Gioca",
+    "pause": "Pausa"
+  },
   "passwordStrength": {
     "veryWeak": "Molto debole",
     "weak": "Debole",

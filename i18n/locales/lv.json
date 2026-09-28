@@ -5924,6 +5924,37 @@
     "toNextTier": "{{amount}} žetoni uz {{tier}}",
     "holdNote": "Kad badge ir atbloķēts, tas ir jūsu, kamēr vien turat savus žetonus. Žetonu skaits, kas nepieciešams jauna badge atbloķēšanai, var mainīties atkarībā no žetonu cenas."
   },
+  "badgeShowcase": {
+    "dialogLabel": "{{tier}} nozīme",
+    "close": "Aizvērt",
+    "badges": "Nozīmītes",
+    "tierOf": "Līmenis {{index}} no {{total}}",
+    "youHaveThis": "Jums ir šī nozīmīte",
+    "toUnlock": "{{amount}} vēl žetoni, lai to atbloķētu",
+    "holdToUnlock": "Turiet vismaz tik daudz DeHub marķieru, lai to atbloķētu",
+    "sliderLabel": "Turētie žetoni",
+    "sliderValue": "{{amount}} tokens · {{tier}}",
+    "you": "Jūs",
+    "grants": "Ko tā atbloķē",
+    "perks": {
+      "fee": "Platformas nodeva",
+      "votes": "Pārvaldības balsis",
+      "reach": "Svars vienam skatam un reakcijai",
+      "feedPosts": "Mājas padeves ieraksti dienā",
+      "images": "Attēli uz ziņu",
+      "uploads": "Ikdienas augšupielādes ierobežojums",
+      "storage": "Redaktora krātuve",
+      "profiles": "Saglabātie profili",
+      "lending": "Žetonu aizdošanas laika nišas",
+      "voice": "Balss klonēšana",
+      "voiceFree": "Bezmaksas",
+      "voiceLocked": "{{tier}} un uz augšu"
+    },
+    "buy": "Iegūt DHB",
+    "details": "Pilns sadalījums",
+    "play": "Atskaņot",
+    "pause": "Apturēt"
+  },
   "passwordStrength": {
     "veryWeak": "Ļoti vājš",
     "weak": "Vājš",

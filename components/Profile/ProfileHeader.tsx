@@ -1,11 +1,12 @@
 import React, { useState, useMemo, useCallback, useRef } from "react";
-import { View, Text, TouchableOpacity, ActivityIndicator, useWindowDimensions } from "react-native";
+import { View, Text, TouchableOpacity, Pressable, ActivityIndicator, useWindowDimensions } from "react-native";
 import SmartImage from "../common/SmartImage";
 import Avatar from "../common/Avatar";
 import { Ionicons } from "@expo/vector-icons";
 import LiquidGlass from "../ui/LiquidGlass";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../../navigation/ScreenNames";
+import { openBadgeShowcase } from "../../libs/badgeShowcase";
 import { useTranslation } from "react-i18next";
 
 import { copyToClipboard } from "../../libs";
@@ -428,14 +429,20 @@ const ProfileHeader = () => {
                 {displayName}
               </Text>
               {badge && badgeImage && (
-                <View ref={badgeSlotRef} onLayout={measureBadgeSlot} collapsable={false}>
+                <Pressable
+                  ref={badgeSlotRef}
+                  onLayout={measureBadgeSlot}
+                  collapsable={false}
+                  hitSlop={8}
+                  onPress={() => openBadgeShowcase(badge, badgeSlotRef.current)}
+                >
                   <SmartImage
                     source={badgeImage as any}
                     contentFit="contain"
                     cachePolicy="memory-disk"
                     style={[getBadgeOpticalStyle(badgeImage as number, 20), { marginLeft: 0 }]}
                   />
-                </View>
+                </Pressable>
               )}
             </View>
             {socials.length > 0 && (

@@ -5924,6 +5924,37 @@
     "toNextTier": "{{amount}} tokenów do {{tier}}",
     "holdNote": "Gdy odznaka zostanie odblokowana, jest Twoja tak długo, jak długo będziesz posiadać swoje tokeny. Liczba tokenów potrzebnych do odblokowania nowej odznaki może się zmieniać wraz z ceną tokena."
   },
+  "badgeShowcase": {
+    "dialogLabel": "Odznaka {{tier}}",
+    "close": "Zamknij",
+    "badges": "Odznaki",
+    "tierOf": "Próg {{index}} z {{total}}",
+    "youHaveThis": "Masz tę odznakę",
+    "toUnlock": "{{amount}} więcej tokenów do odblokowania",
+    "holdToUnlock": "Przytrzymaj co najmniej tyle tokenów DeHub, aby je odblokować",
+    "sliderLabel": "Posiadane tokeny",
+    "sliderValue": "{{amount}} tokenów · {{tier}}",
+    "you": "Ty",
+    "grants": "Co odblokowuje",
+    "perks": {
+      "fee": "Opłata za platformę",
+      "votes": "Głosowanie nad zarządzaniem",
+      "reach": "Waga na widok i reakcję",
+      "feedPosts": "Domowe posty dziennie",
+      "images": "Zdjęcia na post",
+      "uploads": "Dzienny limit przesyłania",
+      "storage": "Pamięć edytora",
+      "profiles": "Zapisane profile",
+      "lending": "Miejsca do wypożyczania odznak",
+      "voice": "Klonowanie głosu",
+      "voiceFree": "Darmowe",
+      "voiceLocked": "{{tier}} i więcej"
+    },
+    "buy": "Pobierz DHB",
+    "details": "Pełne zestawienie",
+    "play": "Odtwórz",
+    "pause": "Wstrzymaj"
+  },
   "passwordStrength": {
     "veryWeak": "Bardzo słabe",
     "weak": "Słabe",

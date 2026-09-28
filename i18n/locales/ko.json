@@ -5977,6 +5977,37 @@
     "toNextTier": "{{amount}}개 토큰을 {{tier}}개로",
     "holdNote": "배지가 잠금 해제되면 토큰을 보유하는 동안 계속 유지됩니다. 새 배지를 잠금 해제하는 데 필요한 토큰 수는 토큰 가격에 따라 변경될 수 있습니다."
   },
+  "badgeShowcase": {
+    "dialogLabel": "{{tier}} 배지",
+    "close": "닫기",
+    "badges": "배지",
+    "tierOf": "{{total}} 의 {{index}} 등급",
+    "youHaveThis": "이 배지가 있습니다",
+    "toUnlock": "잠금 해제할 수 있는 토큰이 {{amount}} 개 더 있습니다",
+    "holdToUnlock": "잠금을 해제하려면 최소 이 많은 DeHub 토큰을 보유하세요",
+    "sliderLabel": "보유 토큰",
+    "sliderValue": "{{amount}} 토큰 · {{tier}}",
+    "you": "귀하",
+    "grants": "잠금 해제 내용",
+    "perks": {
+      "fee": "플랫폼 수수료",
+      "votes": "거버넌스 투표",
+      "reach": "보기당 중량 및 반응",
+      "feedPosts": "하루 홈 피드 게시물",
+      "images": "게시물당 이미지 수",
+      "uploads": "일일 업로드 한도",
+      "storage": "편집기 저장소",
+      "profiles": "저장된 프로필",
+      "lending": "배지 대여 슬롯",
+      "voice": "음성 복제",
+      "voiceFree": "무료",
+      "voiceLocked": "{{tier}} 이상"
+    },
+    "buy": "DHB 받기",
+    "details": "전체 내역",
+    "play": "재생",
+    "pause": "일시 중지"
+  },
   "passwordStrength": {
     "veryWeak": "매우 약함",
     "weak": "약함",

@@ -16,6 +16,7 @@ import Avatar from "../common/Avatar";
 import NewMemberChip from "../common/NewMemberChip";
 import VoiceNotePlayer from "./VoiceNotePlayer";
 import { getAvatarUrl, buildCdnPath, getBadgeUrlFor, getBadgeOpticalStyle } from "../../libs/misc";
+import { openBadgeShowcase, tierForBadgeImage } from "../../libs/badgeShowcase";
 import { formatCompactNumber } from "../../libs/numbers.util";
 import { isAssistantAddress } from "../../libs/assistant";
 import { checkImpersonation } from "../../libs/impersonation";
@@ -204,6 +205,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
     () => (user?.hideBadgeAndBalance ? undefined : getBadgeUrlFor(user)),
     [user],
   );
+  const badgeRef = useRef<View>(null);
   const isOwnComment = currentUser?.address === user?.address ||
                        currentUser?.walletAddress === user?.address ||
                        currentUser?.username === user?.username;
@@ -473,7 +475,8 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
               </Text>
               {badgeImg && (
                 <Pressable
-                  onPress={handleUserPress}
+                  ref={badgeRef}
+                  onPress={() => openBadgeShowcase(tierForBadgeImage(badgeImg), badgeRef.current)}
                   style={{ flexShrink: 0, height: 20, marginLeft: 2, justifyContent: "center" }}
                   hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
                 >

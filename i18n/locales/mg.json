@@ -5947,6 +5947,37 @@
     "toNextTier": "{{amount}} marika ho an'ny {{tier}}",
     "holdNote": "Raha vao misokatra ny badge, dia anao izany raha mbola mitazona ny marikao ianao. Ny isan'ny marika ilaina mba hisokafan'ny badge vaovao dia mety miova miaraka amin'ny vidin'ny marika."
   },
+  "badgeShowcase": {
+    "dialogLabel": "{{tier}} mari-pahaizana",
+    "close": "Hidio",
+    "badges": "Mari-pahaizana",
+    "tierOf": "Ambaratonga {{index}} amin'ny {{total}}",
+    "youHaveThis": "Manana ity mari-pahaizana ity ianao",
+    "toUnlock": "{{amount}} famantarana hafa mba hamohana azy",
+    "holdToUnlock": "Hazonina, fara fahakeliny, izany maro DeHub famantarana mba hamoha azy",
+    "sliderLabel": "Famantarana notazonina",
+    "sliderValue": "{{amount}} famantarana · {{tier}}",
+    "you": "Ianao",
+    "grants": "Izay amohany azy",
+    "perks": {
+      "fee": "Sarany sehatra",
+      "votes": "Latsa-bato fitantanana",
+      "reach": "Lanja isaky ny fahitana & fihetsika",
+      "feedPosts": "Lahatsoratra fohy ao an-trano isan'andro",
+      "images": "Sary isaky ny lahatsoratra",
+      "uploads": "Daily mampakatra fetra",
+      "storage": "Fitehirizana fanontana",
+      "profiles": "Tohanan-javatra voavonjy",
+      "lending": "Slots fampisamborana mari-pahaizana",
+      "voice": "Fanakarana feo",
+      "voiceFree": "Maimaimpoana",
+      "voiceLocked": "{{tier}} and."
+    },
+    "buy": "Mahazoa DHB",
+    "details": "Famakafakana feno",
+    "play": "Alefa",
+    "pause": "Atsaharo"
+  },
   "passwordStrength": {
     "veryWeak": "Malemy be",
     "weak": "Malemy",

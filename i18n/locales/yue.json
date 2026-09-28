@@ -5924,6 +5924,37 @@
     "toNextTier": "{{amount}} 個代幣 至 {{tier}}",
     "holdNote": "一旦解鎖徽章，只要你持有代幣，該徽章就屬於你。解鎖新徽章所需嘅代幣數量會隨住代幣價格而改變。"
   },
+  "badgeShowcase": {
+    "dialogLabel": "{{tier}} 徽章",
+    "close": "閂",
+    "badges": "徽章",
+    "tierOf": "{{index}} 嘅 {{total}} 層",
+    "youHaveThis": "你有呢個徽章",
+    "toUnlock": "{{amount}} 多啲令牌可以解鎖佢",
+    "holdToUnlock": "至少拎住咁多個 DeHub 代幣先可以解鎖",
+    "sliderLabel": "持有代幣",
+    "sliderValue": "{{amount}} 令牌 · {{tier}}",
+    "you": "你",
+    "grants": "佢解鎖嘅嘢",
+    "perks": {
+      "fee": "平台費用",
+      "votes": "治理投票",
+      "reach": "每次觀看同反應嘅重量",
+      "feedPosts": "每日嘅家居資訊帖子",
+      "images": "每個帖子嘅圖片",
+      "uploads": "每日上載限制",
+      "storage": "編輯器儲存空間",
+      "profiles": "儲存咗嘅個人檔案",
+      "lending": "徽章借用槽",
+      "voice": "語音克隆",
+      "voiceFree": "免費",
+      "voiceLocked": "{{tier}} 以上"
+    },
+    "buy": "攞 DHB",
+    "details": "完整嘅細分",
+    "play": "玩",
+    "pause": "暫停"
+  },
   "passwordStrength": {
     "veryWeak": "非常弱",
     "weak": "弱",

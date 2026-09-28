@@ -5953,6 +5953,37 @@
     "toNextTier": "{{amount}} ማስመሰያ ወደ {{tier}}",
     "holdNote": "ባጅ ከተከፈተ በኋላ፣ ማስመሰያዎን እስካሉ ድረስ የእርስዎ ነው። አዲስ ባጅ ለመክፈት የሚያስፈልጉት ማስመሰያዎች ብዛት ከማስመሰያው ዋጋ ጋር ሊለወጥ ይችላል።"
   },
+  "badgeShowcase": {
+    "dialogLabel": "{{tier}} ባጅ",
+    "close": "ዝጋ",
+    "badges": "ባጆች",
+    "tierOf": "ደረጃ {{index}} of {{total}}",
+    "youHaveThis": "ይህ ባጅ አለህ",
+    "toUnlock": "{{amount}} እሱን ለመክፈት ተጨማሪ ምልክቶች",
+    "holdToUnlock": "እሱን ለመክፈት ቢያንስ ይህንን ብዙ የ DeHub ምልክቶችን ይያዙ",
+    "sliderLabel": "ምልክቶች ተይዘዋል",
+    "sliderValue": "{{amount}} ቶከኖች · {{tier}}",
+    "you": "አንተ",
+    "grants": "ምን ይከፍታል",
+    "perks": {
+      "fee": "የመድረክ ክፍያ",
+      "votes": "የአስተዳደር ድምጽ",
+      "reach": "ክብደት በአንድ እይታ እና ምላሽ",
+      "feedPosts": "የቤት ውስጥ ምግብ ልጥፎች በቀን",
+      "images": "ምስሎች በእያንዳንዱ ልጥፍ",
+      "uploads": "ዕለታዊ የሰቀላ ገደብ",
+      "storage": "የአርትዖት ማከማቻ",
+      "profiles": "የተቀመጡ መገለጫዎች",
+      "lending": "ባጅ ብድር መክተቻዎች",
+      "voice": "የድምፅ ክሎኒንግ",
+      "voiceFree": "ነጻ",
+      "voiceLocked": "{{tier}} እና ወደ ላይ"
+    },
+    "buy": "DHB ያግኙ",
+    "details": "ሙሉ ማፍረስ",
+    "play": "አጫውት",
+    "pause": "እረፍት"
+  },
   "passwordStrength": {
     "veryWeak": "በጣም ደካማ",
     "weak": "ደካማ",

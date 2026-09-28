@@ -5924,6 +5924,37 @@
     "toNextTier": "{{amount}} akara na {{tier}}",
     "holdNote": "Ozugbo akara akara mepere, ọ bụ gị ka ọ ga-adị ogologo oge ị ji akara gị. Ọnụ ọgụgụ akara achọrọ iji mepee akara ọhụrụ nwere ike ịgbanwe na ọnụ ahịa akara."
   },
+  "badgeShowcase": {
+    "dialogLabel": "{{tier}} baajị",
+    "close": "Mechie",
+    "badges": "Baajị",
+    "tierOf": "Tier {{index}} nke {{total}}",
+    "youHaveThis": "I nwere baajị a",
+    "toUnlock": "{{amount}} ọzọ tokens Ị kpọghee ekwt ya",
+    "holdToUnlock": "Jide dịkarịa ala a ọtụtụ DeHub tokens Ị kpọghee ekwt ya",
+    "sliderLabel": "Tokens ẹkenịmde",
+    "sliderValue": "{{amount}} tokens · {{tier}}",
+    "you": "Gị",
+    "grants": "Ihe ọ na-emeghe",
+    "perks": {
+      "fee": "Platform ụgwọ",
+      "votes": "Ọchịchị votu",
+      "reach": "Arọ kwa echiche & mmeghachi omume",
+      "feedPosts": "Home-nri posts a ụbọchị",
+      "images": "Images kwa post",
+      "uploads": "Daily bulite ịgba",
+      "storage": "Nchekwa ndezi",
+      "profiles": "Chekwaa profaịlụ",
+      "lending": "Baajị agbazinye ohere mpere",
+      "voice": "Voice cloning",
+      "voiceFree": "Free",
+      "voiceLocked": "{{tier}} na elu"
+    },
+    "buy": "Nweta DHB",
+    "details": "Full mebiri emebi",
+    "play": "Gwuo",
+    "pause": "Kwụsị"
+  },
   "passwordStrength": {
     "veryWeak": "Adịghị ike ma ọlị",
     "weak": "Adịghị ike",

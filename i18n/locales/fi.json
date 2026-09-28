@@ -5924,6 +5924,37 @@
     "toNextTier": "{{amount}} tokenia kohteeseen {{tier}}",
     "holdNote": "Kun merkki on avattu, se on sinun niin kauan kuin pidät tokeneitasi. Uuden merkin avaamiseen tarvittavien tokenien määrä voi muuttua tokenin hinnan mukaan."
   },
+  "badgeShowcase": {
+    "dialogLabel": "{{tier}} -merkki",
+    "close": "Sulje",
+    "badges": "Merkit",
+    "tierOf": "Taso {{index}}/{{total}}",
+    "youHaveThis": "Sinulla on tämä erikoismerkki",
+    "toUnlock": "{{amount}} merkkiä lisää lukituksen avaamiseksi",
+    "holdToUnlock": "Avaa lukitus pitämällä vähintään yhtä monta DeHub-polettia",
+    "sliderLabel": "Poletteja pidetty",
+    "sliderValue": "{{amount}} merkkiä · {{tier}}",
+    "you": "Sinä",
+    "grants": "Mitä se avaa",
+    "perks": {
+      "fee": "Alustamaksu",
+      "votes": "Hallintoäänet",
+      "reach": "Paino katselukertaa ja reaktiota kohti",
+      "feedPosts": "Kotisyötejulkaisut päivässä",
+      "images": "Kuvia julkaisua kohti",
+      "uploads": "Päivittäinen latausraja",
+      "storage": "Muokkaimen tallennustila",
+      "profiles": "Tallennetut profiilit",
+      "lending": "Merkkien lainausajat",
+      "voice": "Äänen kloonaus",
+      "voiceFree": "Ilmainen",
+      "voiceLocked": "{{tier}} ja ylös"
+    },
+    "buy": "Hanki DHB",
+    "details": "Täydellinen erittely",
+    "play": "Toista",
+    "pause": "Keskeytä"
+  },
   "passwordStrength": {
     "veryWeak": "Erittäin heikko",
     "weak": "Heikko",

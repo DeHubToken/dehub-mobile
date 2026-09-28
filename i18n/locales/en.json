@@ -5966,6 +5966,37 @@
     "everyTierUnlocked": "Every tier unlocked",
     "holdNote": "Once a badge is unlocked, it is yours for as long as you hold your tokens. The number of tokens needed to unlock a new badge can change with the token price."
   },
+  "badgeShowcase": {
+    "dialogLabel": "{{tier}} badge",
+    "close": "Close",
+    "badges": "Badges",
+    "tierOf": "Tier {{index}} of {{total}}",
+    "youHaveThis": "You have this badge",
+    "toUnlock": "{{amount}} more tokens to unlock it",
+    "holdToUnlock": "Hold at least this many DeHub tokens to unlock it",
+    "sliderLabel": "Tokens held",
+    "sliderValue": "{{amount}} tokens · {{tier}}",
+    "you": "You",
+    "grants": "What it unlocks",
+    "perks": {
+      "fee": "Platform fee",
+      "votes": "Governance votes",
+      "reach": "Weight per view & reaction",
+      "feedPosts": "Home-feed posts a day",
+      "images": "Images per post",
+      "uploads": "Daily upload limit",
+      "storage": "Editor storage",
+      "profiles": "Saved profiles",
+      "lending": "Badge lending slots",
+      "voice": "Voice cloning",
+      "voiceFree": "Free",
+      "voiceLocked": "{{tier}} and up"
+    },
+    "buy": "Get DHB",
+    "details": "Full breakdown",
+    "play": "Play",
+    "pause": "Pause"
+  },
   "passwordStrength": {
     "veryWeak": "Very weak",
     "weak": "Weak",

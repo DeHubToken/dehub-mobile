@@ -5971,6 +5971,37 @@
     "toNextTier": "{{amount}} tokens patungong {{tier}}",
     "holdNote": "Kapag na-unlock na ang isang badge, ito ay sa iyo hangga't hawak mo ang iyong mga token. Ang bilang ng mga token na kailangan upang ma-unlock ang isang bagong badge ay maaaring magbago kasama ang presyo ng token."
   },
+  "badgeShowcase": {
+    "dialogLabel": "{{tier}} badge",
+    "close": "Isara",
+    "badges": "Mga Badge",
+    "tierOf": "Tier {{index}} ng {{total}}",
+    "youHaveThis": "Mayroon kang badge na ito",
+    "toUnlock": "{{amount}} higit pang mga token para i - unlock ito",
+    "holdToUnlock": "I - hold ang hindi bababa sa maraming mga token ng DeHub na ito upang i - unlock ito",
+    "sliderLabel": "Mga token na hawak",
+    "sliderValue": "{{amount}}token ·{{tier}}",
+    "you": "Ikaw",
+    "grants": "Ano ang ina - unlock nito",
+    "perks": {
+      "fee": "Bayarin sa platform",
+      "votes": "Mga boto sa pamamahala",
+      "reach": "Timbang bawat view & reaksyon",
+      "feedPosts": "Home - feed post sa isang araw",
+      "images": "Mga larawan bawat post",
+      "uploads": "Araw - araw na limitasyon sa pag - upload",
+      "storage": "Imbakan ng editor",
+      "profiles": "Naka - save na mga profile",
+      "lending": "Mga puwang ng pagpapahiram ng badge",
+      "voice": "Pag - clone ng boses",
+      "voiceFree": "Libre",
+      "voiceLocked": "{{tier}}pataas"
+    },
+    "buy": "Kunin ang DHB",
+    "details": "Buong detalye",
+    "play": "Maglaro",
+    "pause": "I - pause"
+  },
   "passwordStrength": {
     "veryWeak": "Napakahina",
     "weak": "Mahina",

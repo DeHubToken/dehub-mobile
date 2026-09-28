@@ -6735,6 +6735,37 @@
     },
     "continue": "Vegere DeHubê"
   },
+  "badgeShowcase": {
+    "dialogLabel": "باجی {{tier}}",
+    "close": "داخستن",
+    "badges": "باجەکان",
+    "tierOf": "ئاستی {{index}} لە {{total}}",
+    "youHaveThis": "ئەم باجەت هەیە",
+    "toUnlock": "{{amount}} توکنی تر بۆ کردنەوەی",
+    "holdToUnlock": "لانیکەم ئەم ژمارەیە توکنی DeHub هەڵبگرە بۆ کردنەوەی",
+    "sliderLabel": "توکنە هەڵگیراوەکان",
+    "sliderValue": "{{amount}} توکن · {{tier}}",
+    "you": "تۆ",
+    "grants": "چی دەکاتەوە",
+    "perks": {
+      "fee": "کرێی پلاتفۆرم",
+      "votes": "دەنگەکانی بەڕێوەبردن",
+      "reach": "کێشی هەر بینین و کاردانەوەیەک",
+      "feedPosts": "پۆستی فیدی سەرەکی لە ڕۆژێکدا",
+      "images": "وێنە بۆ هەر پۆستێک",
+      "uploads": "سنووری بارکردنی ڕۆژانە",
+      "storage": "کۆگای دەستکاریکەر",
+      "profiles": "پرۆفایلە پاشەکەوتکراوەکان",
+      "lending": "شوێنی قەرزدانی باج",
+      "voice": "کلۆنکردنی دەنگ",
+      "voiceFree": "بەخۆڕایی",
+      "voiceLocked": "{{tier}} و سەرەوە"
+    },
+    "buy": "DHB بەدەست بهێنە",
+    "details": "وردەکاری تەواو",
+    "play": "لێدان",
+    "pause": "وەستان"
+  },
   "support": {
     "title": "Piştgirî",
     "subtitle": "Bilêtên we û rewşa wan. Bê AI, bê xerc.",
