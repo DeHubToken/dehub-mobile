@@ -330,9 +330,16 @@
     "dark": "Fosc",
     "system": "Sistema",
     "minimal": "Minimalista",
+    "cosmic": "Cosmic Pixels",
+    "hazy": "Nits Boiroses",
+    "swarms": "Eixams",
+    "lavalamp": "Llum de lava",
+    "winter": "Winter Drops",
+    "war": "Guerra",
+    "osaka": "Osaka",
+    "jungle": "Jungla",
     "themeDesc": "Tria com es veu l'aplicació",
     "themeMinimalDesc": "Negre pla, cantonades rectes, imatges i vídeos a tota amplada",
-    "cosmic": "Còsmic",
     "christmas": "Nadal",
     "island": "Illa",
     "hacker": "Hacker",
@@ -5930,6 +5937,28 @@
     "details": "Desglossament complet",
     "play": "Jugar",
     "pause": "Pausa"
+  },
+  "streamerShowcase": {
+    "cardOf": "Targeta {{index}} de {{total}}",
+    "progress": "El teu progrés",
+    "goal": {
+      "streams": "{{current}} / {{target}} fluxos",
+      "hours": "{{current}} / {{target}} hores",
+      "session": "{{current}} / {{target}} min en un sol flux",
+      "streak": "{{current}} / {{target}} setmanes",
+      "level": "Nivell {{current}} / {{target}}"
+    },
+    "onStream": "Es desbloqueja quan es produeix en directe",
+    "stats": {
+      "level": "Nivell",
+      "xp": "XP",
+      "hours": "Horaris que compleixen els requisits",
+      "streams": "Fluxos que compleixen els requisits",
+      "longest": "El flux més llarg",
+      "streak": "Millor ratxa"
+    },
+    "hoursShort": "{{hours}} h",
+    "weeksShort": "{{count}} wk"
   },
   "passwordStrength": {
     "veryWeak": "Molt feble",

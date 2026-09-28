@@ -330,9 +330,16 @@
     "dark": "כהה",
     "system": "מערכת",
     "minimal": "מינימלי",
+    "cosmic": "קוסמיק פיקסלס",
+    "hazy": "לילות ערפיליים",
+    "swarms": "נחילים",
+    "lavalamp": "מנורת לבה",
+    "winter": "טיפות חורף",
+    "war": "מלחמה",
+    "osaka": "אוסקה",
+    "jungle": "ג'ונגל",
     "themeDesc": "בחרו איך האפליקציה נראית",
     "themeMinimalDesc": "שחור שטוח, פינות ישרות, תמונות וסרטונים ברוחב מלא",
-    "cosmic": "קוסמי",
     "christmas": "חג המולד",
     "island": "אי",
     "hacker": "האקר",
@@ -5934,6 +5941,28 @@
     "details": "פירוט מלא",
     "play": "הפעלה",
     "pause": "השהיה"
+  },
+  "streamerShowcase": {
+    "cardOf": "כרטיס {{index}} מתוך {{total}}",
+    "progress": "ההתקדמות שלכם",
+    "goal": {
+      "streams": "{{current}}/{{target}} זרמים",
+      "hours": "{{current}}/{{target}} שעות",
+      "session": "{{current}}/{{target}} דקות בנחל אחד",
+      "streak": "{{current}}/{{target}} שבועות",
+      "level": "רמה {{current}}/{{target}}"
+    },
+    "onStream": "משחרר את הנעילה כשזה קורה בזרם",
+    "stats": {
+      "level": "רמה",
+      "xp": "XP",
+      "hours": "שעות פעילות שעומדות בקריטריונים",
+      "streams": "זרמים שעומדים בקריטריונים",
+      "longest": "הזרם הארוך ביותר",
+      "streak": "הרצף הטוב ביותר"
+    },
+    "hoursShort": "{{hours}} שע '",
+    "weeksShort": "{{count}} שב׳"
   },
   "passwordStrength": {
     "veryWeak": "חלשה מאוד",

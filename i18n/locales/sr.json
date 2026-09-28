@@ -328,9 +328,16 @@
     "dark": "Тамна",
     "system": "Систем",
     "minimal": "Минималистички",
+    "cosmic": "Cosmic Pixels",
+    "hazy": "Магловите ноћи",
+    "swarms": "Ројеви",
+    "lavalamp": "Лава лампа",
+    "winter": "Winter Drops",
+    "war": "Рат",
+    "osaka": "Осака",
+    "jungle": "Џунгла",
     "themeDesc": "Изаберите како апликација изгледа",
     "themeMinimalDesc": "Равна црна, равне ивице, слике и видео снимци пуном ширином",
-    "cosmic": "Космичка",
     "christmas": "Божић",
     "island": "Острво",
     "hacker": "Хакер",
@@ -5740,6 +5747,28 @@
     "details": "Детаљан преглед",
     "play": "Пусти",
     "pause": "Паузирај"
+  },
+  "streamerShowcase": {
+    "cardOf": "Картица {{index}} од {{total}}",
+    "progress": "Ваш напредак",
+    "goal": {
+      "streams": "{{current}} / {{target}} стримова",
+      "hours": "{{current}} / {{target}} сати",
+      "session": "{{current}} / {{target}} мин у једном стриму",
+      "streak": "{{current}} / {{target}} недеља",
+      "level": "Ниво {{current}} / {{target}}"
+    },
+    "onStream": "Откључава се када се деси током стрима",
+    "stats": {
+      "level": "Ниво",
+      "xp": "XP",
+      "hours": "Сати који се рачунају",
+      "streams": "Стримови који се рачунају",
+      "longest": "Најдужи стрим",
+      "streak": "Најбољи низ"
+    },
+    "hoursShort": "{{hours}} ч",
+    "weeksShort": "{{count}} нед."
   },
   "passwordStrength": {
     "veryWeak": "Веома слаба",

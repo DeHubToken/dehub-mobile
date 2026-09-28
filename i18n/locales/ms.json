@@ -330,9 +330,16 @@
     "dark": "Gelap",
     "system": "Sistem",
     "minimal": "Minimal",
+    "cosmic": "Piksel Kosmik",
+    "hazy": "Malam Berkabus",
+    "swarms": "Swarms",
+    "lavalamp": "Lampu Lava",
+    "winter": "Titisan Musim Sejuk",
+    "war": "Perang",
+    "osaka": "Osaka",
+    "jungle": "Rimba",
     "themeDesc": "Pilih rupa aplikasi",
     "themeMinimalDesc": "Hitam rata, tepi lurus, imej dan video selebar skrin",
-    "cosmic": "Kosmik",
     "christmas": "Krismas",
     "island": "Pulau",
     "hacker": "Penggodam",
@@ -6190,6 +6197,28 @@
     "details": "Pecahan penuh",
     "play": "Main",
     "pause": "Jeda"
+  },
+  "streamerShowcase": {
+    "cardOf": "Kad {{index}} daripada {{total}}",
+    "progress": "Kemajuan anda",
+    "goal": {
+      "streams": "{{current}} / {{target}} strim",
+      "hours": "{{current}} / {{target}} jam",
+      "session": "{{current}} / {{target}} min dalam satu strim",
+      "streak": "{{current}} / {{target}} minggu",
+      "level": "Tahap {{current}} / {{target}}"
+    },
+    "onStream": "Dibuka apabila ia berlaku semasa strim",
+    "stats": {
+      "level": "Tahap",
+      "xp": "XP",
+      "hours": "Jam kelayakan",
+      "streams": "Strim kelayakan",
+      "longest": "Strim terpanjang",
+      "streak": "Rentetan terbaik"
+    },
+    "hoursShort": "{{hours}} j",
+    "weeksShort": "{{count}} mgg"
   },
   "passwordStrength": {
     "veryWeak": "Sangat lemah",

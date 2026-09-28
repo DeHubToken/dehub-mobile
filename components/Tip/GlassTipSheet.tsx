@@ -81,6 +81,7 @@ import TipPayWith, { tipStageLabel } from "./TipPayWith";
 import { fundTip, type TipFundingSource } from "../../libs/tip-funding";
 import { fundingErrorText } from "../../libs/tip-funding-error";
 import { useYieldToWalletUnlock } from "../../hooks/useYieldToWalletUnlock";
+import { emitPostTipped, commentTipKey } from "../../libs/tip-events";
 
 // ── Assets ───────────────────────────────────────────────────────────────────
 const DEHUB_COIN = require("../../assets/web-icons/dehub-coin.png");
@@ -395,6 +396,8 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
           setPhase("sent");
           haptic.success();
           setLastAmount(numericAmount);
+          if (commentId != null) emitPostTipped(commentTipKey(commentId));
+          else if (tokenId) emitPostTipped(tokenId);
           onSuccess?.(numericAmount);
           setAmount("");
           setSelectedPreset(null);
@@ -538,6 +541,8 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
             } as any));
           } catch {}
 
+          if (commentId != null) emitPostTipped(commentTipKey(commentId));
+          else if (tokenId) emitPostTipped(tokenId);
           onSuccess?.(numericAmount, txHash || undefined);
           setAmount("");
           setSelectedPreset(null);

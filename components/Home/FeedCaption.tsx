@@ -12,6 +12,8 @@ import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import { stripSoundtrackTag } from "../../libs/parseSoundtrack";
 import { openCategoryFeed } from "../../libs/openCategoryFeed";
 import { expandEmojiTokens } from "../common/EmojiText";
+import { getActiveTheme } from "../../theme/colors";
+import { getThemeSkin, MONO_TEXT } from "../../theme/skins";
 
 type Segment =
   | { type: "text"; value: string }
@@ -242,6 +244,8 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
   const hasTitle = !!title?.trim();
   const hasDescription = !!cleanDescription?.trim();
   const hasCategories = showCategories && categories && categories.length > 0;
+  // War sets captions as readouts: monospace, tracked out (web war-theme.css).
+  const mono = getThemeSkin(getActiveTheme())?.mono ? MONO_TEXT : null;
 
   if (!hasTitle && !hasDescription && !hasCategories) {
     return null;
@@ -254,7 +258,7 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
       {hasTitle && (
         <Text
           className="text-theme-neutrals-100"
-          style={{ fontSize: 16.8, lineHeight: 23.1 }}
+          style={[{ fontSize: 16.8, lineHeight: 23.1 }, mono]}
           numberOfLines={fullContent ? undefined : 2}
           ellipsizeMode="tail"
         >
@@ -269,7 +273,7 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
         <>
           <Text
             className="text-theme-neutrals-300 mt-1"
-            style={{ fontSize: 15.75, lineHeight: 23.1 }}
+            style={[{ fontSize: 15.75, lineHeight: 23.1 }, mono]}
             numberOfLines={fullContent || expanded ? undefined : maxLines}
             ellipsizeMode="tail"
             onTextLayout={handleTextLayout}

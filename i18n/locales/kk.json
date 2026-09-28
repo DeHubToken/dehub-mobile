@@ -330,9 +330,16 @@
     "dark": "Қараңғы",
     "system": "Жүйе",
     "minimal": "Минималды",
+    "cosmic": "Cosmic Pixels",
+    "hazy": "Тұманды түндер",
+    "swarms": "Swarms",
+    "lavalamp": "Лава шамы",
+    "winter": "Winter Drops",
+    "war": "Соғыс",
+    "osaka": "Осака",
+    "jungle": "Джунгли",
     "themeDesc": "Қолданбаның көрінісін таңдаңыз",
     "themeMinimalDesc": "Тегіс қара, түзу жиектер, толық енді суреттер мен бейнелер",
-    "cosmic": "Ғарыштық",
     "christmas": "Рождество",
     "island": "Арал",
     "hacker": "Хакер",
@@ -5925,7 +5932,7 @@
     "badges": "Танымбелгілер",
     "tierOf": "{{index}} of {{total}} деңгейі",
     "youHaveThis": "Сізде бұл белгі бар",
-    "toUnlock": "Оны құлыптан шығару үшін {{amount}} more таңбалауыштары",
+    "toUnlock": "Ашу үшін тағы {{amount}} токен",
     "holdToUnlock": "Оны құлыптан шығару үшін, кем дегенде, осы көптеген DeHub таңбашаларын ұстаңыз",
     "sliderLabel": "Токендер өткізілді",
     "sliderValue": "{{amount}} токен · {{tier}}",
@@ -5948,6 +5955,28 @@
     "details": "Толық бұзылу",
     "play": "Ойнату",
     "pause": "Пауза"
+  },
+  "streamerShowcase": {
+    "cardOf": "Карта {{index}} of {{total}}",
+    "progress": "Сіздің прогресіңіз",
+    "goal": {
+      "streams": "{{current}} / {{target}} ағындары",
+      "hours": "{{current}} / {{target}} сағат",
+      "session": "{{current}} / {{target}} min бір ағынмен",
+      "streak": "{{current}} / {{target}} апта",
+      "level": "Деңгей {{current}} / {{target}}"
+    },
+    "onStream": "Ағында болған кезде құлыптарды ашу",
+    "stats": {
+      "level": "Деңгей",
+      "xp": "XP",
+      "hours": "Біліктілік сағаттары",
+      "streams": "Біліктілік ағындары",
+      "longest": "Ең ұзын ағын",
+      "streak": "Үздік жолақ"
+    },
+    "hoursShort": "{{hours}} сағ",
+    "weeksShort": "{{count}} апта"
   },
   "passwordStrength": {
     "veryWeak": "Өте әлсіз",

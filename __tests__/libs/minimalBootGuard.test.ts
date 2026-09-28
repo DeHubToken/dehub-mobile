@@ -24,4 +24,10 @@ describe('minimal launch guard', () => {
     expect(claimMinimalLaunch()).toBe(false);
     expect(claimMinimalLaunch()).toBe(true);
   });
+
+  it('does not leave an unfinished launch marker when preferences arrive after reveal', () => {
+    settleMinimalLaunch();
+    expect(claimMinimalLaunch(true)).toBe(true);
+    expect(mockStore.size).toBe(0);
+  });
 });

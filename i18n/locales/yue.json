@@ -330,9 +330,16 @@
     "dark": "深色",
     "system": "系統",
     "minimal": "簡約",
+    "cosmic": "Cosmic Pixels",
+    "hazy": "朦朧夜",
+    "swarms": "蜂群",
+    "lavalamp": "熔岩燈",
+    "winter": "Winter Drops",
+    "war": "戰爭",
+    "osaka": "大阪",
+    "jungle": "叢林",
     "themeDesc": "揀應用程式嘅外觀",
     "themeMinimalDesc": "純黑、直角邊、全闊度圖片同影片",
-    "cosmic": "宇宙",
     "christmas": "聖誕",
     "island": "海島",
     "hacker": "黑客",
@@ -5930,6 +5937,28 @@
     "details": "完整嘅細分",
     "play": "玩",
     "pause": "暫停"
+  },
+  "streamerShowcase": {
+    "cardOf": "{{total}} 嘅卡片 {{index}}",
+    "progress": "你嘅進度",
+    "goal": {
+      "streams": "{{current}}/{{target}} 流",
+      "hours": "{{current}}/{{target}}小時",
+      "session": "{{current}} / {{target}} 一個流中嘅分鐘",
+      "streak": "{{current}}/{{target}} 星期",
+      "level": "等級 {{current}} / {{target}}"
+    },
+    "onStream": "當佢喺串流上面發生嗰陣解鎖",
+    "stats": {
+      "level": "級數",
+      "xp": "XP",
+      "hours": "預選時間",
+      "streams": "合格嘅流",
+      "longest": "最長嘅流",
+      "streak": "最好嘅連勝"
+    },
+    "hoursShort": "{{hours}} 小時",
+    "weeksShort": "{{count}} 星期"
   },
   "passwordStrength": {
     "veryWeak": "非常弱",

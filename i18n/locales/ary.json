@@ -330,9 +330,16 @@
     "dark": "غامق",
     "system": "النظام",
     "minimal": "بسيط",
+    "cosmic": "Cosmic Pixels",
+    "hazy": "ليالي الضباب",
+    "swarms": "الأسراب",
+    "lavalamp": "مصباح الحمم",
+    "winter": "Winter Drops",
+    "war": "حرب",
+    "osaka": "أوساكا",
+    "jungle": "الغابة",
     "themeDesc": "ختار كيفاش يبان التطبيق",
     "themeMinimalDesc": "كحل ساده، جناب مربعين، تصاور وفيديوهات بعرض الشاشة",
-    "cosmic": "كوزميك",
     "christmas": "كريسماس",
     "island": "جزيرة",
     "hacker": "هاكر",
@@ -5960,6 +5967,28 @@
     "details": "عطل كامل",
     "play": "تشغيل",
     "pause": "إيقاف مؤقت"
+  },
+  "streamerShowcase": {
+    "cardOf": "البطاقة {{index}} من {{total}}",
+    "progress": "تقدمك",
+    "goal": {
+      "streams": "{{current}}/{{target}} تدفقات",
+      "hours": "{{current}}/{{target}} ساعات",
+      "session": "{{current}}/{{target}} دقيقة في بث واحد",
+      "streak": "{{current}}/{{target}} أسابيع",
+      "level": "المستوى {{current}}/{{target}}"
+    },
+    "onStream": "يفتح عندما يحدث ذلك أثناء البث",
+    "stats": {
+      "level": "المستوى",
+      "xp": "XP",
+      "hours": "الساعات المؤهلة",
+      "streams": "التدفقات المؤهلة",
+      "longest": "أطول تيار",
+      "streak": "أفضل سلسلة"
+    },
+    "hoursShort": "{{hours}} س",
+    "weeksShort": "{{count}} أسبوع"
   },
   "passwordStrength": {
     "veryWeak": "ضعيف بزاف",

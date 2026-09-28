@@ -330,9 +330,16 @@
     "dark": "Gelap",
     "system": "Sistem",
     "minimal": "Minimal",
+    "cosmic": "Cosmic Pixels",
+    "hazy": "Hazy Nights",
+    "swarms": "Swarms",
+    "lavalamp": "Lampu Lava",
+    "winter": "Winter Drops",
+    "war": "Perang",
+    "osaka": "Osaka",
+    "jungle": "Rimba",
     "themeDesc": "Pilih tampilan aplikasi",
     "themeMinimalDesc": "Hitam polos, sudut tegas, gambar dan video selebar layar",
-    "cosmic": "Kosmik",
     "christmas": "Natal",
     "island": "Pulau",
     "hacker": "Peretas",
@@ -5979,6 +5986,28 @@
     "details": "Perincian lengkap",
     "play": "Mainkan",
     "pause": "Jeda"
+  },
+  "streamerShowcase": {
+    "cardOf": "Kartu {{index}} dari {{total}}",
+    "progress": "Kemajuan Anda",
+    "goal": {
+      "streams": "{{current}}/{{target}} streaming",
+      "hours": "{{current}}/{{target}} jam",
+      "session": "{{current}}/{{target}} menit dalam satu aliran",
+      "streak": "{{current}}/{{target}} minggu",
+      "level": "Level {{current}}/{{target}}"
+    },
+    "onStream": "Membuka kunci saat hal itu terjadi saat streaming",
+    "stats": {
+      "level": "Level",
+      "xp": "XP",
+      "hours": "Jam kualifikasi",
+      "streams": "Streaming yang memenuhi syarat",
+      "longest": "Streaming terpanjang",
+      "streak": "Streak terbaik"
+    },
+    "hoursShort": "{{hours}} h",
+    "weeksShort": "{{count}} minggu"
   },
   "passwordStrength": {
     "veryWeak": "Sangat lemah",

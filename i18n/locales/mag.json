@@ -329,9 +329,16 @@
     "dark": "अंधार",
     "system": "सिस्टम",
     "minimal": "मिनिमल",
+    "cosmic": "Cosmic Pixels",
+    "hazy": "धुंधला रात",
+    "swarms": "स्वार्म्स",
+    "lavalamp": "Lava Lamp",
+    "winter": "Winter Drops",
+    "war": "War",
+    "osaka": "Osaka",
+    "jungle": "Jungle",
     "themeDesc": "ऐप कइसन देखाई दे, चुनूँ",
     "themeMinimalDesc": "सादा करिया, सीधा किनारा, पूरा चौड़ाई के फोटो आउ वीडियो",
-    "cosmic": "कॉस्मिक",
     "christmas": "क्रिसमस",
     "island": "द्वीप",
     "hacker": "हैकर",
@@ -5184,7 +5191,7 @@
         },
         "century": {
           "name": "सदी",
-          "hint": "हाँ, 100 घंटे में 3 hryvnias के लिए"
+          "hint": "लाइव में सौ गिनती वाला घंटा पूरा करऽ।"
         },
         "legend": {
           "name": "किंवदंती हई",
@@ -5907,7 +5914,7 @@
     "tierOf": "{{total}} में से स्तर {{index}}",
     "youHaveThis": "अपने के पास हइ ई बटुआ",
     "toUnlock": "अनलॉक करे ला {{amount}} आउ टोकन",
-    "holdToUnlock": "कम से कम, यह खोलने के लिए बहुत सारे Dehub टोकन होल्ड करें",
+    "holdToUnlock": "एकरा खोले ला कम से कम एतना DeHub टोकन रखऽ",
     "sliderLabel": "होल्ड होल्ड अप होल्ड ऑन लियोन",
     "sliderValue": "{{amount}} टोकन · {{tier}}",
     "you": "कसको आप/i हई",
@@ -5922,13 +5929,35 @@
       "storage": "संग्रहीत कैलकुलेटर",
       "lending": "बैंडिंग होल्डिंग स्लॉट, बैंडिंग होल्डिंग स्लॉट",
       "voice": "आवाज़ क्लोनिंग, हलचल, हलचल",
-      "voiceFree": "Free के तरीका से Promote करे",
+      "voiceFree": "मुफ्त",
       "voiceLocked": "{{tier}} आउ ओकरा से ऊपर"
     },
     "buyTokens": "टोकन, टोकन, हल्के सामान खरीदें",
     "details": "पूरी कलई खोलना",
     "play": "ई कुर्सी खेलऽ हइ",
     "pause": "रुकावट"
+  },
+  "streamerShowcase": {
+    "cardOf": "{{total}} में से कार्ड {{index}}",
+    "progress": "अपन तरक्की के",
+    "goal": {
+      "streams": "{{current}} / {{target}} स्ट्रीम",
+      "hours": "{{current}} / {{target}} घंटा",
+      "session": "एक स्ट्रीम में {{current}} / {{target}} मिनट",
+      "streak": "{{current}} / {{target}} हफ्ता",
+      "level": "लेवल {{current}} / {{target}}"
+    },
+    "onStream": "जब होल्ड होल्ड अप होल्ड ऑन लियोन",
+    "stats": {
+      "level": "स्तरित कैलक्यूलेटर",
+      "xp": "पीसीआर कैलक्यूलेटर",
+      "hours": "कैलक्यूलेटर घंटे",
+      "streams": "कैलक्यूलेटर स्ट्रिंग्स",
+      "longest": "लंबाई के लिए स्ट्रिंग लंबाई",
+      "streak": "बेस्ट होवरक्राफ्ट"
+    },
+    "hoursShort": "{{hours}} घं",
+    "weeksShort": "{{count}} हफ्ता"
   },
   "passwordStrength": {
     "veryWeak": "बहुत कमजोर",

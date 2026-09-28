@@ -330,9 +330,16 @@
     "dark": "Giza",
     "system": "Mfumo",
     "minimal": "Rahisi",
+    "cosmic": "Cosmic Pixels",
+    "hazy": "Usiku wa Ukungu",
+    "swarms": "Makundi",
+    "lavalamp": "Taa ya Lava",
+    "winter": "Winter Drops",
+    "war": "Vita",
+    "osaka": "Osaka",
+    "jungle": "Msitu",
     "themeDesc": "Chagua jinsi programu inavyoonekana",
     "themeMinimalDesc": "Nyeusi tupu, kingo zilizonyooka, picha na video za upana kamili",
-    "cosmic": "Ulimwengu",
     "christmas": "Krismasi",
     "island": "Kisiwa",
     "hacker": "Hakeri",
@@ -5931,6 +5938,28 @@
     "details": "Mchanganuo kamili",
     "play": "Cheza",
     "pause": "Sitisha"
+  },
+  "streamerShowcase": {
+    "cardOf": "Kadi {{index}} ya {{total}}",
+    "progress": "Maendeleo yako",
+    "goal": {
+      "streams": "{{current}} / {{target}} mito",
+      "hours": "{{current}} / {{target}} saa",
+      "session": "{{current}} / {{target}} dakika katika mkondo mmoja",
+      "streak": "{{current}} / {{target}} wiki",
+      "level": "Ngazi {{current}} / {{target}}"
+    },
+    "onStream": "Hufungua inapotokea kwenye mkondo",
+    "stats": {
+      "level": "Kiwango",
+      "xp": "XP",
+      "hours": "Saa za kufuzu",
+      "streams": "Mito inayostahiki",
+      "longest": "Mkondo mrefu zaidi",
+      "streak": "Mfuatano bora zaidi"
+    },
+    "hoursShort": "{{hours}} h",
+    "weeksShort": "{{count}} wk"
   },
   "passwordStrength": {
     "veryWeak": "Dhaifu sana",

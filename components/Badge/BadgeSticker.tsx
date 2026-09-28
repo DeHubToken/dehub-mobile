@@ -8,8 +8,8 @@
  * Dragging tilts it in 3D, and every layer moves off the same two angles —
  * that shared motion is what sells the foil.
  */
-import React, { useCallback, useEffect, useMemo } from "react";
-import { Image, StyleSheet, View } from "react-native";
+import React, { useCallback, useEffect, useMemo, type ReactNode } from "react";
+import { StyleSheet, View } from "react-native";
 import Animated, {
   Easing,
   runOnJS,
@@ -24,11 +24,20 @@ import Animated, {
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import MaskedView from "@react-native-masked-view/masked-view";
 import { LinearGradient } from "expo-linear-gradient";
-import { badgeImage } from "../../libs/misc";
-import { BADGE_PLATES } from "../../libs/badgePlates";
+
+/**
+ * What a sticker is cut from: the artwork, and a solid silhouette of it for
+ * the paper edge, the shadow and the foil masks. Both fill their parent.
+ */
+export interface StickerArt {
+  /** Stable per artwork; seeds the glitter so it never reshuffles. */
+  key: string;
+  renderArt: () => ReactNode;
+  renderPlate: (color: string, blur?: number) => ReactNode;
+}
 
 interface Props {
-  tier: string;
+  art: StickerArt;
   /** Sticker size, cut border included. */
   size: number;
   /** Resting tilt in degrees. */
@@ -80,7 +89,7 @@ function sparklePoints(seed: string, count: number) {
 
 const REVEAL_MS = 1100;
 
-export default function BadgeSticker({ tier, size, tilt = 0, onTap, onInteract, reveal = false }: Props) {
+export default function BadgeSticker({ art, size, tilt = 0, onTap, onInteract, reveal = false }: Props) {
   const intro = useSharedValue(reveal ? 0 : 1);
   useEffect(() => {
     if (reveal) intro.value = withTiming(1, { duration: REVEAL_MS, easing: Easing.out(Easing.quad) });
@@ -164,12 +173,10 @@ export default function BadgeSticker({ tier, size, tilt = 0, onTap, onInteract, 
     ],
   }));
 
-  const plate = BADGE_PLATES[tier];
-  const art = badgeImage(tier, "light") ?? badgeImage(tier);
   const artSize = size * ART_SHARE;
-  const sparkles = useMemo(() => sparklePoints(tier, 14), [tier]);
+  const sparkles = useMemo(() => sparklePoints(art.key, 14), [art.key]);
 
-  const plateImage = <Image source={plate} style={{ width: size, height: size }} resizeMode="contain" />;
+  const plateImage = <View style={{ width: size, height: size }}>{art.renderPlate("#000")}</View>;
 
   return (
     <GestureDetector gesture={gesture}>
@@ -177,19 +184,14 @@ export default function BadgeSticker({ tier, size, tilt = 0, onTap, onInteract, 
         {/* Cast shadow, flat on the table while the sticker tilts above it. */}
         <Animated.View pointerEvents="none" style={[StyleSheet.absoluteFill, shadowStyle]}>
           <Animated.View style={paperStyle}>
-            <Image
-              source={plate}
-              blurRadius={10}
-              resizeMode="contain"
-              style={{ width: size, height: size, tintColor: "#000", opacity: 0.55 }}
-            />
+            <View style={{ width: size, height: size, opacity: 0.55 }}>{art.renderPlate("#000", 10)}</View>
           </Animated.View>
         </Animated.View>
 
         <Animated.View style={[StyleSheet.absoluteFill, cardStyle]}>
           {/* Cut border. */}
           <Animated.View pointerEvents="none" style={[StyleSheet.absoluteFill, paperStyle]}>
-            <Image source={plate} resizeMode="contain" style={{ position: "absolute", width: size, height: size, tintColor: "#f3f3f6" }} />
+            <View style={{ position: "absolute", width: size, height: size }}>{art.renderPlate("#f3f3f6")}</View>
           </Animated.View>
 
           {/* Rainbow foil on the border and in the gaps. */}
@@ -201,11 +203,9 @@ export default function BadgeSticker({ tier, size, tilt = 0, onTap, onInteract, 
           </MaskedView>
           </Animated.View>
 
-          <Image
-            source={art}
-            resizeMode="contain"
-            style={{ position: "absolute", left: (size - artSize) / 2, top: (size - artSize) / 2, width: artSize, height: artSize }}
-          />
+          <View style={{ position: "absolute", left: (size - artSize) / 2, top: (size - artSize) / 2, width: artSize, height: artSize }}>
+            {art.renderArt()}
+          </View>
 
           {/* Glare band and a faint holo wash across everything. */}
           <Animated.View pointerEvents="none" style={[StyleSheet.absoluteFill, shineStyle]}>
@@ -230,7 +230,7 @@ export default function BadgeSticker({ tier, size, tilt = 0, onTap, onInteract, 
           </Animated.View>
         </Animated.View>
 
-        {reveal ? <GlitterBurst size={size} seed={tier} /> : null}
+        {reveal ? <GlitterBurst size={size} seed={art.key} /> : null}
       </View>
     </GestureDetector>
   );

@@ -330,9 +330,16 @@
     "dark": "Dukkana",
     "system": "Sirna",
     "minimal": "Salphaa",
+    "cosmic": "Cosmic Pixels",
+    "hazy": "Halkan Hurrii",
+    "swarms": "Tuutota",
+    "lavalamp": "Ibsaa lava",
+    "winter": "Winter Drops",
+    "war": "Waraana",
+    "osaka": "Osaka",
+    "jungle": "Bosona",
     "themeDesc": "Appichi akkamitti akka mul'atu filadhu",
     "themeMinimalDesc": "Gurraacha diriiraa, qarree qajeelaa, suuraa fi viidiyoo bal'ina guutuu",
-    "cosmic": "Hawaa",
     "christmas": "Kiristmaasii",
     "island": "Odola",
     "hacker": "Haakara",
@@ -5943,6 +5950,28 @@
     "details": "Guutuu caccabuu",
     "play": "Taphachuu",
     "pause": "Gidduutti dhaabuu"
+  },
+  "streamerShowcase": {
+    "cardOf": "Kaardii {{index}} kan {{total}}",
+    "progress": "Guddina kee",
+    "goal": {
+      "streams": "{{current}} / {{target}} dhaamsa",
+      "hours": "{{current}} / {{target}} sa'aatii",
+      "session": "{{current}} / {{target}} daqiiqaa tamsaasa tokko keessatti",
+      "streak": "{{current}} / {{target}} torbanitti",
+      "level": "Sadarkaa {{current}} / {{target}}"
+    },
+    "onStream": "Yeroo stream irratti ta'u ni bana",
+    "stats": {
+      "level": "Sadarkaa",
+      "xp": "XP",
+      "hours": "Sa'aatii ulaagaa guutuu",
+      "streams": "Sululawwan ulaagaa guutan",
+      "longest": "Sulula dheeraa",
+      "streak": "Guddaa cimaa"
+    },
+    "hoursShort": "{{hours}} h",
+    "weeksShort": "{{count}} wk"
   },
   "passwordStrength": {
     "veryWeak": "Baay'ee dadhabaa",

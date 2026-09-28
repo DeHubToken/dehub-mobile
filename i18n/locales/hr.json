@@ -330,9 +330,16 @@
     "dark": "Tamno",
     "system": "Sustav",
     "minimal": "Minimalistički",
+    "cosmic": "Cosmic Pixels",
+    "hazy": "Maglovite noći",
+    "swarms": "Rojevi",
+    "lavalamp": "Lava lampa",
+    "winter": "Winter Drops",
+    "war": "Rat",
+    "osaka": "Osaka",
+    "jungle": "Džungla",
     "themeDesc": "Odaberite kako aplikacija izgleda",
     "themeMinimalDesc": "Ravna crna, ravni rubovi, slike i videozapisi punom širinom",
-    "cosmic": "Kozmičko",
     "christmas": "Božić",
     "island": "Otok",
     "hacker": "Haker",
@@ -5930,6 +5937,28 @@
     "details": "Cijeli prikaz po stavkama",
     "play": "Pokreni",
     "pause": "Pauziraj"
+  },
+  "streamerShowcase": {
+    "cardOf": "Kartica {{index}} od {{total}}",
+    "progress": "Vaš napredak",
+    "goal": {
+      "streams": "{{current}} / {{target}} streamovi",
+      "hours": "{{current}} / {{target}} h",
+      "session": "{{current}} / {{target}} min u jednom streamu",
+      "streak": "{{current}} / {{target}} tjedana",
+      "level": "Razina {{current}} / {{target}}"
+    },
+    "onStream": "Otključava se kada se to dogodi na streamu",
+    "stats": {
+      "level": "Razina",
+      "xp": "XP",
+      "hours": "Kvalificirani sati",
+      "streams": "Kvalificirani prijenosi",
+      "longest": "Najduži stream",
+      "streak": "Najbolji niz"
+    },
+    "hoursShort": "{{hours}} h",
+    "weeksShort": "{{count}} tjedno"
   },
   "passwordStrength": {
     "veryWeak": "Vrlo slaba",

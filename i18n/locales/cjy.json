@@ -330,9 +330,16 @@
     "dark": "暗色",
     "system": "系统",
     "minimal": "简约",
+    "cosmic": "Cosmic Pixels",
+    "hazy": "朦胧夜",
+    "swarms": "蜂群",
+    "lavalamp": "熔岩灯",
+    "winter": "Winter Drops",
+    "war": "战争",
+    "osaka": "大阪",
+    "jungle": "丛林",
     "themeDesc": "选择应用的外观",
     "themeMinimalDesc": "纯黑背景、直角边缘、全宽图片和视频",
-    "cosmic": "宇宙",
     "christmas": "圣诞",
     "island": "海岛",
     "hacker": "黑客",
@@ -5930,6 +5937,28 @@
     "details": "完整明细",
     "play": "播放",
     "pause": "暂停"
+  },
+  "streamerShowcase": {
+    "cardOf": "卡片 {{index}} / {{total}}",
+    "progress": "你的进度",
+    "goal": {
+      "streams": "{{current}} / {{target}} 直播",
+      "hours": "{{current}} / {{target}} 小时",
+      "session": "{{current}} / {{target}} 分钟/场",
+      "streak": "{{current}} / {{target}} 周",
+      "level": "等级 {{current}} / {{target}}"
+    },
+    "onStream": "当在直播中发生时解锁",
+    "stats": {
+      "level": "等级",
+      "xp": "经验值",
+      "hours": "合格小时数",
+      "streams": "合格直播次数",
+      "longest": "最长直播",
+      "streak": "最佳连胜"
+    },
+    "hoursShort": "{{hours}} 小时",
+    "weeksShort": "{{count}} 周"
   },
   "passwordStrength": {
     "veryWeak": "非常弱",

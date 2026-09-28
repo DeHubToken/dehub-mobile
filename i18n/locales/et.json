@@ -330,9 +330,16 @@
     "dark": "Tume",
     "system": "Süsteem",
     "minimal": "Minimalistlik",
+    "cosmic": "Cosmic Pixels",
+    "hazy": "Udused ööd",
+    "swarms": "Parved",
+    "lavalamp": "Laavalamp",
+    "winter": "Winter Drops",
+    "war": "Sõda",
+    "osaka": "Osaka",
+    "jungle": "Džungel",
     "themeDesc": "Vali, milline rakendus välja näeb",
     "themeMinimalDesc": "Ühtlane must, sirged servad, täislaiuses pildid ja videod",
-    "cosmic": "Kosmiline",
     "christmas": "Jõulud",
     "island": "Saar",
     "hacker": "Häkker",
@@ -5930,6 +5937,28 @@
     "details": "Täielik jaotus",
     "play": "Esita",
     "pause": "Peata"
+  },
+  "streamerShowcase": {
+    "cardOf": "Kaart {{index}}/{{total}}",
+    "progress": "Sinu edusammud",
+    "goal": {
+      "streams": "{{current}} / {{target}} voogu",
+      "hours": "{{current}} / {{target}} tundi",
+      "session": "{{current}} / {{target}} minutit ühes voos",
+      "streak": "{{current}} / {{target}} nädalat",
+      "level": "Tase {{current}} / {{target}}"
+    },
+    "onStream": "Avab lukustuse, kui see toimub voos",
+    "stats": {
+      "level": "Tase",
+      "xp": "XP",
+      "hours": "Kvalifitseeruvad tunnid",
+      "streams": "Kvalifitseeruvad vood",
+      "longest": "Pikim voog",
+      "streak": "Parim triip"
+    },
+    "hoursShort": "{{hours}} h",
+    "weeksShort": "{{count}} nädal"
   },
   "passwordStrength": {
     "veryWeak": "Väga nõrk",

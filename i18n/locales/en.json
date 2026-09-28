@@ -330,9 +330,16 @@
     "dark": "Dark",
     "system": "System",
     "minimal": "Minimal",
+    "cosmic": "Cosmic Pixels",
+    "hazy": "Hazy Nights",
+    "swarms": "Swarms",
+    "lavalamp": "Lava Lamp",
+    "winter": "Winter Drops",
+    "war": "War",
+    "osaka": "Osaka",
+    "jungle": "Jungle",
     "themeDesc": "Choose how the app looks",
     "themeMinimalDesc": "Flat black, square edges, full-width images and videos",
-    "cosmic": "Cosmic",
     "christmas": "Christmas",
     "island": "Island",
     "hacker": "Hacker",
@@ -5972,6 +5979,28 @@
     "details": "Full breakdown",
     "play": "Play",
     "pause": "Pause"
+  },
+  "streamerShowcase": {
+    "cardOf": "Card {{index}} of {{total}}",
+    "progress": "Your progress",
+    "goal": {
+      "streams": "{{current}} / {{target}} streams",
+      "hours": "{{current}} / {{target}} hours",
+      "session": "{{current}} / {{target}} min in one stream",
+      "streak": "{{current}} / {{target}} weeks",
+      "level": "Level {{current}} / {{target}}"
+    },
+    "onStream": "Unlocks when it happens on stream",
+    "stats": {
+      "level": "Level",
+      "xp": "XP",
+      "hours": "Qualifying hours",
+      "streams": "Qualifying streams",
+      "longest": "Longest stream",
+      "streak": "Best streak"
+    },
+    "hoursShort": "{{hours}} h",
+    "weeksShort": "{{count}} wk"
   },
   "passwordStrength": {
     "veryWeak": "Very weak",

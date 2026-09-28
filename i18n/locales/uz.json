@@ -330,9 +330,16 @@
     "dark": "Qorongʻi",
     "system": "Tizim",
     "minimal": "Minimal",
+    "cosmic": "Cosmic Pixels",
+    "hazy": "Tumanli tunlar",
+    "swarms": "Swarms",
+    "lavalamp": "Lava chirog'i",
+    "winter": "Winter Drops",
+    "war": "Urush",
+    "osaka": "Osaka",
+    "jungle": "Jangal",
     "themeDesc": "Ilova ko'rinishini tanlang",
     "themeMinimalDesc": "Tekis qora, to'g'ri qirralar, to'liq kenglikdagi rasm va videolar",
-    "cosmic": "Kosmik",
     "christmas": "Rojdestvo",
     "island": "Orol",
     "hacker": "Xaker",
@@ -5948,6 +5955,28 @@
     "details": "Toʻliq tahlil",
     "play": "Ijro etish",
     "pause": "Pauza"
+  },
+  "streamerShowcase": {
+    "cardOf": "{{total}} tadan {{index}}-karta",
+    "progress": "Sizning taraqqiyotingiz",
+    "goal": {
+      "streams": "{{current}} / {{target}} oqimlari",
+      "hours": "{{current}} / {{target}} soat",
+      "session": "bitta oqimda {{current}} / {{target}} daqiqa",
+      "streak": "{{current}} / {{target}} haftalar",
+      "level": "Daraja {{current}} / {{target}}"
+    },
+    "onStream": "Striming paytida qulfdan chiqariladi",
+    "stats": {
+      "level": "Daraja",
+      "xp": "XP",
+      "hours": "Saralash soatlari",
+      "streams": "Saralash bosqichidagi oqimlar",
+      "longest": "Eng uzun oqim",
+      "streak": "Eng yaxshi seriya"
+    },
+    "hoursShort": "{{hours}} h",
+    "weeksShort": "{{count}} hafta"
   },
   "passwordStrength": {
     "veryWeak": "Juda zaif",

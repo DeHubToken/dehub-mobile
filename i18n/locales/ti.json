@@ -330,9 +330,16 @@
     "dark": "ጸልማት",
     "system": "ስርዓት",
     "minimal": "ቀሊል",
+    "cosmic": "Cosmic Pixels",
+    "hazy": "ግመ ለይትታት",
+    "swarms": "መንጋታት",
+    "lavalamp": "ናይ ላቫ መብራህቲ",
+    "winter": "Winter Drops",
+    "war": "ውግእ",
+    "osaka": "Osaka",
+    "jungle": "ጫካ",
     "themeDesc": "እቲ ኣፕ ከመይ ከም ዝመስል ምረጽ",
     "themeMinimalDesc": "ጠፍጣፍ ጸሊም፣ ቀጥ ዝበሉ ጫፋት፣ ምሉእ ስፍሓት ስእልታትን ቪድዮታትን",
-    "cosmic": "ኮስሚክ",
     "christmas": "ልደት",
     "island": "ደሴት",
     "hacker": "ሃከር",
@@ -5156,7 +5163,7 @@
       "earnedOn": "ዝረኸብካዮ {{date}}",
       "recentTitle": "ቅርብቲ ጸወታታት",
       "notCounted": "ኣይተቘጸረን",
-      "noStreams": "XP ንምርካብ ናይ live ጸወታ ጀምር።",
+      "noStreams": "XP ንምርካብ ቀጥታ ስርጭት ጀምር።",
       "card": {
         "first-light": {
           "name": "ቀዳመይቲ ብርሃን",
@@ -5917,7 +5924,7 @@
       "fee": "ክፍሊት መድረኽ",
       "votes": "ናይ ምምሕዳር ድምጺ",
       "reach": "ክብደት ኣብ ነፍሲ ወከፍ ርእይቶን ግብረመልስን",
-      "feedPosts": "Home \"ዜናታት\" ኣብ መዓልቲ",
+      "feedPosts": "ናይ መበገሲ ገጽ ልጥፋት ኣብ መዓልቲ",
       "images": "ኣብ ነፍሲ ወከፍ ልኡኽ እተቐርቡ ስእል",
       "uploads": "ዕለታዊ ናይ ምስዋእ ገደብ",
       "storage": "ኣሰናዳኢ ኣሰናዳኢ",
@@ -5930,6 +5937,28 @@
     "details": "ምሉእ ምብትታን",
     "play": "ተጻወት",
     "pause": "ዕረፍቲ"
+  },
+  "streamerShowcase": {
+    "cardOf": "ካርታ {{index}} of {{total}}",
+    "progress": "ዕቤትካ",
+    "goal": {
+      "streams": "{{current}} / {{target}} ስርጭታት",
+      "hours": "{{current}} / {{target}} ሰዓታት",
+      "session": "{{current}} / {{target}} min ኣብ ሓደ ዥረት",
+      "streak": "{{current}} / {{target}} ሰሙን",
+      "level": "ደረጃ {{current}} / {{target}}"
+    },
+    "onStream": "ኣብ ዥረት ምስ ዝኸውን ክፉት",
+    "stats": {
+      "level": "ደረጃ",
+      "xp": "XP",
+      "hours": "ናይ ብቕዓት ሰዓታት",
+      "streams": "ብቕዓት ዘለዎ ዥረት",
+      "longest": "ነዊሕ ዥረት",
+      "streak": "ዝበለጸ ስክሪፕት"
+    },
+    "hoursShort": "{{hours}} ሰዓት",
+    "weeksShort": "{{count}} ሰሙን"
   },
   "passwordStrength": {
     "veryWeak": "ኣዝዩ ድኹም",

@@ -82,6 +82,7 @@ import { isWalletConnectAvailable } from "./config/reown.config";
 import { markBootRevealed } from "./libs/bootReveal";
 import BadgeLadderSync from "./components/Badge/BadgeLadderSync";
 import { AppThemeProvider, useAppTheme, useThemeRootStyle } from "./context/ThemeContext";
+import ThemeBackdrop from "./components/theme/ThemeBackdrop";
 
 const logger = createLogger("App");
 
@@ -242,6 +243,9 @@ const ThemedRootView: React.FC<{ children: React.ReactNode }> = ({ children }) =
   const style = useThemeRootStyle();
   return (
     <GestureHandlerRootView className="bg-theme-background" style={[{ flex: 1 }, style]}>
+      {/* First, so everything else draws over it: a canvas theme's live
+          background, which the home feed shows through. Null otherwise. */}
+      <ThemeBackdrop />
       {children}
     </GestureHandlerRootView>
   );
@@ -270,34 +274,8 @@ const REVEAL_FAILSAFE_MS = 5000;
 // Long enough that a slow network boot is not reported as a stall.
 const BOOT_STALL_MS = 15000;
 
-/** The same navigation state as a fresh one: every route gets a new key, so every screen remounts. */
-function withFreshRouteKeys(state: NavigationState): any {
-  const { key: _key, ...rest } = state as any;
-  return {
-    ...rest,
-    stale: true,
-    routes: state.routes.map(({ key: _routeKey, ...route }: any) => ({
-      ...route,
-      state: route.state ? withFreshRouteKeys(route.state) : undefined,
-    })),
-  };
-}
-
 const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
   const { colors, isLight, theme } = useAppTheme();
-  // Switching theme remounts every screen: one already on the stack only
-  // re-reads its inline shapes when it renders again (libs/jsx/shape.js), and
-  // most would not. Re-issuing the current state with its route keys stripped
-  // does that and nothing else — same routes, same params, you stay on
-  // Settings with the stack behind it — while the providers around the
-  // navigator (calls, stages, messaging, push) are left running.
-  const lastThemeRef = useRef(theme);
-  useEffect(() => {
-    if (lastThemeRef.current === theme) return;
-    lastThemeRef.current = theme;
-    if (!navigationRef.isReady()) return;
-    navigationRef.resetRoot(withFreshRouteKeys(navigationRef.getRootState()));
-  }, [theme]);
   const { isBootLoading, isSignedIn, needsUsername } = useAuthState();
   const user = useUser();
   const isAuthenticated = isSignedIn && !needsUsername;

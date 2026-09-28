@@ -330,9 +330,16 @@
     "dark": "Темна",
     "system": "Системна",
     "minimal": "Мінімальна",
+    "cosmic": "Космічні Пікселі",
+    "hazy": "Імлисті Ночі",
+    "swarms": "Рої",
+    "lavalamp": "Лава-лампа",
+    "winter": "Зимові Краплі",
+    "war": "Війна",
+    "osaka": "Осака",
+    "jungle": "Джунглі",
     "themeDesc": "Виберіть, як виглядає застосунок",
     "themeMinimalDesc": "Плаский чорний, прямі кути, зображення й відео на всю ширину",
-    "cosmic": "Космічна",
     "christmas": "Різдвяна",
     "island": "Острівна",
     "hacker": "Хакерська",
@@ -6287,6 +6294,28 @@
     "details": "Повна розбивка",
     "play": "Грати",
     "pause": "Призупинити"
+  },
+  "streamerShowcase": {
+    "cardOf": "Картка {{index}} з {{total}}",
+    "progress": "Ваш прогрес",
+    "goal": {
+      "streams": "Трансляції: {{current}}/{{target}}",
+      "hours": "{{current}} / {{target}} год",
+      "session": "{{current}} / {{target}} хв одним потоком",
+      "streak": "{{current}} / {{target}} тижнів",
+      "level": "Рівень {{current}} / {{target}}"
+    },
+    "onStream": "Розблоковується, коли це відбувається в потоці",
+    "stats": {
+      "level": "Рівень",
+      "xp": "XP",
+      "hours": "Кваліфікаційні години",
+      "streams": "Потоки, що відповідають вимогам",
+      "longest": "Найдовший потік",
+      "streak": "Найкраща серія"
+    },
+    "hoursShort": "{{hours}} год",
+    "weeksShort": "{{count}} тиждень"
   },
   "passwordStrength": {
     "veryWeak": "Дуже слабкий",

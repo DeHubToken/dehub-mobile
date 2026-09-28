@@ -328,9 +328,16 @@
     "dark": "Tarî",
     "system": "Pergal",
     "minimal": "Mînîmal",
+    "cosmic": "Cosmic Pixels",
+    "hazy": "Şevên Mijî",
+    "swarms": "Swarms",
+    "lavalamp": "Lava Lamp",
+    "winter": "Winter Drops",
+    "war": "War",
+    "osaka": "Osaka",
+    "jungle": "Jungle",
     "themeDesc": "Hilbijêre ka sepan çawa xuya dike",
     "themeMinimalDesc": "Reşê sade, keviyên rast, wêne û vîdyoyên bi firehiya tevahî",
-    "cosmic": "Kozmîk",
     "christmas": "Noel",
     "island": "Girav",
     "hacker": "Haker",
@@ -6741,6 +6748,28 @@
     "details": "وردەکاری تەواو",
     "play": "لێدان",
     "pause": "وەستان"
+  },
+  "streamerShowcase": {
+    "cardOf": "کارتی {{index}} لە {{total}}",
+    "progress": "پێشکەوتنەکەت",
+    "goal": {
+      "streams": "{{current}} / {{target}} پەخش",
+      "hours": "{{current}} / {{target}} کاتژمێر",
+      "session": "{{current}} / {{target}} خولەک لە یەک پەخشدا",
+      "streak": "هەفتەی {{current}} / {{target}}",
+      "level": "ئاستی {{current}} / {{target}}"
+    },
+    "onStream": "کاتێک لە پەخشدا ڕوودەدات دەکرێتەوە",
+    "stats": {
+      "level": "ئاست",
+      "xp": "XP",
+      "hours": "کاتژمێرە ژمێردراوەکان",
+      "streams": "پەخشە ژمێردراوەکان",
+      "longest": "درێژترین پەخش",
+      "streak": "باشترین زنجیرە"
+    },
+    "hoursShort": "{{hours}} ه",
+    "weeksShort": "{{count}} هەفتە"
   },
   "support": {
     "title": "Piştgirî",

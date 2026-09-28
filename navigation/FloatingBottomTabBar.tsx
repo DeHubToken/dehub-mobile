@@ -1,6 +1,8 @@
 import { DIGITAL_PURCHASES_ENABLED } from "../config/storefront";
-import React, { memo, useCallback, useEffect, useRef } from "react";
+import React, { memo, useCallback, useEffect, useMemo, useRef } from "react";
 import {
+  Animated as NativeAnimated,
+  Easing as NativeEasing,
   View,
   Text,
   Pressable,
@@ -9,7 +11,11 @@ import {
   Platform,
   InteractionManager,
   useWindowDimensions,
+  Image,
+  type ViewStyle,
 } from "react-native";
+import { GRAIN } from "../theme/skins";
+import HudBrackets from "../components/theme/HudBrackets";
 import Reanimated, {
   useSharedValue,
   useAnimatedStyle,
@@ -19,7 +25,6 @@ import Reanimated, {
   withDelay,
   Easing,
   interpolate,
-  type SharedValue,
 } from "react-native-reanimated";
 import { BlurView } from "expo-blur";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -67,14 +72,6 @@ const NAV_EDGE_PAD = 4; // matches web's pl-1/pr-1
  */
 const tabWidthFor = (screenW: number) =>
   (Math.min((screenW - 16) * 0.72, 340) - CENTER_W - NAV_EDGE_PAD * 2) / 4;
-
-/**
- * Minimal's bar runs edge to edge with no side padding, so the four primary
- * tabs and the centre button share the whole width instead of 72% of it. The
- * floor keeps every tap target at 44pt on the narrowest phones.
- */
-const minimalTabWidthFor = (screenW: number) =>
-  Math.max(44, (screenW - CENTER_W - NAV_EDGE_PAD * 2) / 4);
 
 interface TabDef {
   name: string;
@@ -207,7 +204,26 @@ const KIDS_MODE_SCREENS = new Set([
   ScreenNames.AccountSettings,
 ]);
 
-const AnimatedPressable = Reanimated.createAnimatedComponent(Pressable);
+
+// A canvas theme's coloured halo (War cyan, Osaka pink) on the active tab and
+// the centre button — web's drop-shadow glow. One object per colour.
+const glowCache = new Map<string, ViewStyle>();
+function glowStyle(color: string): ViewStyle {
+  let s = glowCache.get(color);
+  if (!s) {
+    s = {
+      shadowColor: color,
+      shadowOffset: { width: 0, height: 0 },
+      shadowOpacity: 0.7,
+      shadowRadius: 8,
+      // Android draws a coloured shadow only behind a non-transparent fill.
+      ...(Platform.OS === "android" ? { backgroundColor: "rgba(255,255,255,0.01)", elevation: 0 } : null),
+    };
+    glowCache.set(color, s);
+  }
+  return s;
+}
+const NativeAnimatedPressable = NativeAnimated.createAnimatedComponent(Pressable);
 
 // `routeName` + a stable `onPress`, rather than an `onPress` closure built at
 // the call site. An inline arrow is a fresh identity on every render, which
@@ -223,44 +239,39 @@ const NavButton = memo<{
   onPress: (routeName: string) => void;
   index: number;
   tabW: number;
-  animProgress: SharedValue<number>;
+  animProgress: NativeAnimated.Value;
   badgeCount?: number;
 }>(({ icon, label, isActive, isCenter, routeName, onPress, index, tabW, animProgress, badgeCount = 0 }) => {
-  const { colors, isLight, isMinimal } = useAppTheme();
-  const scale = useSharedValue(1);
+  const { colors, isLight, isMinimal, skin } = useAppTheme();
+  const scale = useRef(new NativeAnimated.Value(1)).current;
 
   const handlePress = useCallback(() => onPress(routeName), [onPress, routeName]);
 
   const handlePressIn = useCallback(() => {
-    scale.value = withSpring(0.88, { damping: 15, stiffness: 300 });
+    NativeAnimated.spring(scale, { toValue: 0.88, damping: 15, stiffness: 300, useNativeDriver: true, isInteraction: false }).start();
   }, [scale]);
 
   const handlePressOut = useCallback(() => {
-    scale.value = withSpring(1, { damping: 15, stiffness: 300 });
+    NativeAnimated.spring(scale, { toValue: 1, damping: 15, stiffness: 300, useNativeDriver: true, isInteraction: false }).start();
   }, [scale]);
 
-  const animatedStyle = useAnimatedStyle(() => {
+  const animatedStyle = useMemo(() => {
     const staggerDelay = index * 0.07;
-    const itemProgress = interpolate(
-      animProgress.value,
-      [staggerDelay, staggerDelay + 0.6],
-      [0, 1],
-      "clamp",
-    );
+    const itemProgress = animProgress.interpolate({ inputRange: [staggerDelay, staggerDelay + 0.6], outputRange: [0, 1], extrapolate: 'clamp' });
     return {
       transform: [
-        { scale: scale.value * interpolate(itemProgress, [0, 1], [0.5, 1], "clamp") },
-        { translateY: interpolate(itemProgress, [0, 1], [10, 0], "clamp") },
+        { scale: NativeAnimated.multiply(scale, itemProgress.interpolate({ inputRange: [0, 1], outputRange: [0.5, 1] })) },
+        { translateY: itemProgress.interpolate({ inputRange: [0, 1], outputRange: [10, 0] }) },
       ],
-      opacity: interpolate(itemProgress, [0, 0.35, 1], [0, 0.85, 1], "clamp"),
+      opacity: itemProgress.interpolate({ inputRange: [0, 0.35, 1], outputRange: [0, 0.85, 1] }),
     };
-  });
+  }, [animProgress, index, scale]);
 
   if (isCenter && isMinimal) {
     // No glass in minimal: the blur, wash and inset highlight all go, leaving
     // a plain 1px outlined square around the icon. Same 52pt tap target.
     return (
-      <AnimatedPressable
+      <NativeAnimatedPressable
         accessibilityRole="button"
         accessibilityLabel={label}
         onPress={handlePress}
@@ -271,13 +282,32 @@ const NavButton = memo<{
         <View style={styles.minimalCenterIcon}>
           <Icon name={icon} size={20} color={MINIMAL_TAB_TEXT_ACTIVE} strokeWidth={2} />
         </View>
-      </AnimatedPressable>
+      </NativeAnimatedPressable>
+    );
+  }
+
+  if (isCenter && skin) {
+    // A canvas theme's centre button (theme/skins.ts): its own outlined tile,
+    // glowing in War's cyan or Osaka's pink.
+    return (
+      <NativeAnimatedPressable
+        accessibilityRole="button"
+        accessibilityLabel={label}
+        onPress={handlePress}
+        onPressIn={handlePressIn}
+        onPressOut={handlePressOut}
+        style={[styles.centerButton, animatedStyle]}
+      >
+        <View style={[styles.skinCenterIcon, skin.glow ? glowStyle(skin.glow) : null, skin.centre]}>
+          <Icon name={icon} size={20} color={skin.centreIcon} strokeWidth={2} />
+        </View>
+      </NativeAnimatedPressable>
     );
   }
 
   if (isCenter) {
     return (
-      <AnimatedPressable
+      <NativeAnimatedPressable
         accessibilityRole="button"
         accessibilityLabel={label}
         onPress={handlePress}
@@ -311,12 +341,12 @@ const NavButton = memo<{
           />
           <Icon name={icon} size={20} color={colors.foreground} strokeWidth={2} />
         </View>
-      </AnimatedPressable>
+      </NativeAnimatedPressable>
     );
   }
 
   return (
-    <AnimatedPressable
+    <NativeAnimatedPressable
       accessibilityRole="tab"
       // Which tab you are on is conveyed purely by icon colour and a glow, and
       // the unread count purely by a red badge — neither reaches a screen
@@ -331,14 +361,22 @@ const NavButton = memo<{
       style={[styles.tabButton, { width: tabW }, animatedStyle]}
     >
       {/* Minimal shows the active tab by colour alone — no glow. */}
-      <View style={isActive && !isLight && !isMinimal ? styles.activeGlow : undefined}>
+      <View
+        style={
+          isActive && !isLight && !isMinimal
+            ? skin?.glow ? glowStyle(skin.glow) : styles.activeGlow
+            : undefined
+        }
+      >
         <Icon
           name={icon}
           size={20}
           color={
             isMinimal
               ? isActive ? MINIMAL_TAB_TEXT_ACTIVE : MINIMAL_TAB_TEXT
-              : isActive ? colors.foreground : isLight ? "rgba(26, 26, 26, 0.66)" : "rgba(255, 255, 255, 0.72)"
+              : skin
+                ? isActive ? skin.barIconActive : skin.barIcon
+                : isActive ? colors.foreground : isLight ? "rgba(26, 26, 26, 0.66)" : "rgba(255, 255, 255, 0.72)"
           }
           strokeWidth={isActive ? 2 : 1.75}
         />
@@ -350,7 +388,7 @@ const NavButton = memo<{
           </Text>
         </View>
       )}
-    </AnimatedPressable>
+    </NativeAnimatedPressable>
   );
 });
 
@@ -363,27 +401,40 @@ const ScrollNavButton = memo<{
   badgeCount?: number;
 }>(
   ({ icon, label, item, onPress, tabW, badgeCount = 0 }) => {
-    const { colors, isLight, isMinimal } = useAppTheme();
-    const scale = useSharedValue(1);
+    const { colors, isLight, isMinimal, skin } = useAppTheme();
+    const scale = useRef(new NativeAnimated.Value(1)).current;
+    useEffect(() => () => scale.stopAnimation(), [scale]);
 
     // SCROLL_NAV_ITEMS is module scope, so `item` is a stable identity and this
     // callback is too — which is what lets the memo above actually hold.
     const handlePress = useCallback(() => onPress(item), [onPress, item]);
 
     const handlePressIn = useCallback(() => {
-      scale.value = withSpring(0.88, { damping: 15, stiffness: 300 });
+      NativeAnimated.spring(scale, {
+        toValue: 0.88,
+        damping: 15,
+        stiffness: 300,
+        useNativeDriver: true,
+        isInteraction: false,
+      }).start();
     }, [scale]);
 
     const handlePressOut = useCallback(() => {
-      scale.value = withSpring(1, { damping: 15, stiffness: 300 });
+      NativeAnimated.spring(scale, {
+        toValue: 1,
+        damping: 15,
+        stiffness: 300,
+        useNativeDriver: true,
+        isInteraction: false,
+      }).start();
     }, [scale]);
 
-    const animatedStyle = useAnimatedStyle(() => ({
-      transform: [{ scale: scale.value }],
-    }));
+    // Secondary buttons only animate on touch. Avoid keeping each hidden
+    // button in the Reanimated props registry between presses.
+    const animatedStyle = { transform: [{ scale }] };
 
     return (
-      <AnimatedPressable
+      <NativeAnimatedPressable
         accessibilityRole="button"
         accessibilityLabel={badgeCount > 0 ? `${label}, ${badgeCount} unread` : label}
         onPress={handlePress}
@@ -394,7 +445,7 @@ const ScrollNavButton = memo<{
         <Icon
           name={icon}
           size={20}
-          color={isMinimal ? MINIMAL_TAB_TEXT : isLight ? "rgba(26, 26, 26, 0.66)" : "rgba(255, 255, 255, 0.72)"}
+          color={isMinimal ? MINIMAL_TAB_TEXT : skin ? skin.barIcon : isLight ? "rgba(26, 26, 26, 0.66)" : "rgba(255, 255, 255, 0.72)"}
           strokeWidth={1.75}
         />
         {badgeCount > 0 && (
@@ -404,14 +455,14 @@ const ScrollNavButton = memo<{
             </Text>
           </View>
         )}
-      </AnimatedPressable>
+      </NativeAnimatedPressable>
     );
   },
 );
 
 const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }) => {
   const { t } = useTranslation();
-  const { colors, isLight, isMinimal } = useAppTheme();
+  const { colors, isLight, isMinimal, skin } = useAppTheme();
   const insets = useSafeAreaInsets();
   // Live, not a module constant — see tabWidthFor.
   const { width: screenW } = useWindowDimensions();
@@ -420,10 +471,8 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
   const { isKidsMode } = useKidsMode();
   const { currentSpace, isConnected, isModalOpen } = useStages();
   const hasStageChip = !!currentSpace && isConnected && !isModalOpen && !isKidsMode;
-  const pillWidth = isMinimal
-    ? screenW - (hasStageChip ? 44 : 0)
-    : Math.min((screenW - 16) * 0.72, 340, screenW - 16 - (hasStageChip ? 44 : 0));
-  const tabW = isMinimal ? minimalTabWidthFor(pillWidth) : tabWidthFor(screenW);
+  const pillWidth = Math.min((screenW - 16) * 0.72, 340, screenW - 16 - (hasStageChip ? 44 : 0));
+  const tabW = tabWidthFor(screenW);
   const user = useUser();
   const myUserId = ((user as any)?._id || (user as any)?.id) as string | undefined;
   const dmUnread = useTotalUnreadMessagesCount(myUserId);
@@ -432,7 +481,7 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
   // tail of this choreography as movement right on top of the reveal. The
   // first mount after the curtain has lifted — auth replace, sign-out/in —
   // plays it once.
-  const animProgress = useSharedValue(1);
+  const animProgress = useRef(new NativeAnimated.Value(1)).current;
   const containerAnim = useSharedValue(1);
   const entranceFade = useSharedValue(1);
   const hasAnimated = useRef(false);
@@ -455,15 +504,16 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
   useEffect(() => {
     if (hasAnimated.current || !bootRevealed) return;
     hasAnimated.current = true;
-    animProgress.value = 0;
+    animProgress.setValue(0);
     containerAnim.value = 0;
     entranceFade.value = 0;
     containerAnim.value = withDelay(30, withSpring(1, { damping: 18, stiffness: 80, mass: 0.8 }));
     entranceFade.value = withDelay(30, withTiming(1, { duration: 320 }));
-    animProgress.value = withDelay(
-      100,
-      withTiming(1, { duration: 700, easing: Easing.bezier(0.22, 1, 0.36, 1) }),
-    );
+    const animation = NativeAnimated.timing(animProgress, {
+      toValue: 1, delay: 100, duration: 700, easing: NativeEasing.bezier(0.22, 1, 0.36, 1), useNativeDriver: true, isInteraction: false,
+    });
+    animation.start();
+    return () => animation.stop();
   }, [animProgress, containerAnim, entranceFade]);
 
   // Nudge the nav pill sideways once, ever, to show it scrolls. It used to fire
@@ -622,44 +672,47 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
       style={[
         styles.outerWrap,
         { paddingBottom: bottomPadding },
-        // Minimal has no floating pill: the bar sits flush on the bottom edge,
-        // full width, with the home-indicator inset inside its own black fill
-        // so nothing scrolls visibly beneath it.
-        isMinimal && styles.minimalOuterWrap,
-        isMinimal && { paddingBottom: insets.bottom },
         hideStyle,
       ]}
-      // Minimal's wrapper is an opaque bar, so a tap on its inset strip must
-      // not fall through to content hidden underneath it.
-      pointerEvents={isMinimal ? "auto" : "box-none"}
+      pointerEvents="box-none"
     >
       <Reanimated.View style={[styles.dock, entranceStyle]}>
-      <View style={[styles.navContainer, isMinimal && styles.minimalNavContainer, { width: pillWidth }]}>
+      <View
+        style={[
+          styles.navContainer,
+          { width: pillWidth },
+          skin ? { borderRadius: skin.barBorder.borderRadius } : null,
+        ]}
+      >
         {/* The pill is a solid surface, not glass. It used to be a blur under a
             near-transparent wash, which meant its appearance was a function of
             whatever happened to be behind it — fine over the dark feed, clear
             glass with icons floating on video over Shorts — and it needed a
             96pt gradient scrim under it to hold a luminance floor. One opaque
             fill does the same job with no scrim, no per-platform blur library
-            and no backdrop sampling on every scrolled frame. Minimal skips
-            both layers; outerWrap's black fill and top hairline replace them. */}
-        {!isMinimal && (
-          <>
-            <View
-              style={[
-                StyleSheet.absoluteFill,
-                styles.pillFill,
-                isLight && { backgroundColor: colors.background },
-              ]}
-            />
-            <View
-              style={[
-                styles.pillBorder,
-                isLight && { borderColor: 'rgba(0, 0, 0, 0.12)' },
-              ]}
-            />
-          </>
-        )}
+            and no backdrop sampling on every scrolled frame. Minimal floats
+            the same pill, flat black with its hairline border. */}
+        <View
+          style={[
+            StyleSheet.absoluteFill,
+            styles.pillFill,
+            isLight && { backgroundColor: colors.background },
+            isMinimal && { backgroundColor: "#000" },
+            skin && skin.barFill,
+          ]}
+        />
+        {skin?.grain ? (
+          <Image source={GRAIN} resizeMode="repeat" style={StyleSheet.absoluteFill} />
+        ) : null}
+        <View
+          style={[
+            styles.pillBorder,
+            isLight && { borderColor: 'rgba(0, 0, 0, 0.12)' },
+            isMinimal && { borderColor: MINIMAL_HAIRLINE },
+            skin && skin.barBorder,
+          ]}
+        />
+        {skin?.brackets ? <HudBrackets color={skin.brackets} /> : null}
         <ScrollView
           ref={scrollRef}
           horizontal
@@ -749,19 +802,12 @@ const styles = StyleSheet.create({
       android: {},
     }),
   },
-  minimalOuterWrap: {
-    bottom: 0,
-    paddingHorizontal: 0,
-    alignItems: "stretch",
-    backgroundColor: "#000",
-    borderTopWidth: 1,
-    borderTopColor: MINIMAL_HAIRLINE,
-  },
-  minimalNavContainer: {
-    width: "100%",
-    maxWidth: "100%",
-    shadowOpacity: 0,
-    elevation: 0,
+  // A canvas theme's centre tile; its fill, outline and radius come from the skin.
+  skinCenterIcon: {
+    width: 36,
+    height: 36,
+    alignItems: "center",
+    justifyContent: "center",
   },
   // Plain outlined square in place of the glass stack — deliberately not built
   // on centerIconWrap, so none of its drop shadow or elevation comes along.

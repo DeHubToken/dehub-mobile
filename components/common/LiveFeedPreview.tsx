@@ -20,6 +20,7 @@ import { DeHubLoader } from "../DeHubLoader";
 import SmartImage from "./SmartImage";
 import Icon from "../ui/Icon";
 import { sharedLivePlayerHolders, useSharedLivePlayer } from "../../libs/sharedLivePlayer";
+import { useSettledAutoplay } from "../../hooks/useSettledAutoplay";
 
 interface Props {
   /** HLS ladder for the stream. */
@@ -169,6 +170,10 @@ function useScreenFocused(): boolean {
 
 function LiveFeedPreviewComponent({ url, thumbnail, active, label }: Props) {
   const poster = usablePoster(thumbnail);
+  // A viewability tick can hand this slot to a card passing through a fling.
+  // Wait before mounting LivePlayer: even a paused native player allocates its
+  // decoder and buffers, and doing that at each live row interrupts scrolling.
+  const settled = useSettledAutoplay(active, url, 400);
   const [failedPoster, setFailedPoster] = useState<string | undefined>();
   return (
     <View style={StyleSheet.absoluteFill}>
@@ -198,7 +203,7 @@ function LiveFeedPreviewComponent({ url, thumbnail, active, label }: Props) {
           feed of live posts mounted one per card — which is the shape that
           produced the OutOfMemoryError in ExoPlayerImplInternal. The poster
           below stays put, so an inactive card still shows the stream's frame. */}
-      {active && <LivePlayer key={url} url={url} />}
+      {settled && <LivePlayer key={url} url={url} />}
     </View>
   );
 }

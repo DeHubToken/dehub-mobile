@@ -8,9 +8,12 @@ import {
   type AppThemeName,
   type ThemeColors,
 } from '../theme/colors';
+import { getThemeSkin, type ThemeSkin } from '../theme/skins';
 // Plain JS shared with the JSX runtime, which loads before any of this.
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { setSquaring } = require('../libs/jsx/shape') as { setSquaring: (on: boolean) => void };
+const { setThemePass } = require('../libs/jsx/shape') as {
+  setThemePass: (square: boolean, page: string | null) => void;
+};
 
 type AppThemeContextValue = {
   theme: AppThemeName;
@@ -18,6 +21,8 @@ type AppThemeContextValue = {
   /** Web's `minimal` theme: flat black canvas, square corners, edge-to-edge media. */
   isMinimal: boolean;
   colors: ThemeColors;
+  /** A canvas theme's chrome (theme/skins.ts), or null for system and minimal. */
+  skin: ThemeSkin | null;
   setTheme: (theme: AppThemeName) => void;
 };
 
@@ -67,15 +72,52 @@ export const MINIMAL_ROOT_VARS = vars({
   '--color-zinc-950': '0 0 0',
 });
 
+/** "#0A0812" -> "10 8 18", the form the colour variables take. */
+function hexTriplet(hex: string): string {
+  const n = parseInt(hex.slice(1), 16);
+  return `${(n >> 16) & 255} ${(n >> 8) & 255} ${n & 255}`;
+}
+
+/**
+ * A canvas theme's variables: its page colour on the background tokens, and
+ * War's square corners. Same keys as SYSTEM_ROOT_VARS, for the reason above.
+ */
+const SKIN_ROOT_VARS = new Map<AppThemeName, ReturnType<typeof vars>>();
+function skinRootVars(theme: AppThemeName, skin: ThemeSkin) {
+  let v = SKIN_ROOT_VARS.get(theme);
+  if (!v) {
+    const page = hexTriplet(skin.page);
+    const r = skin.square;
+    v = vars({
+      '--radius-sm': r ? 0 : 4,
+      '--radius': r ? 0 : 3.5,
+      '--radius-md': r ? 0 : 6,
+      '--radius-lg': r ? 0 : 8,
+      '--radius-xl': r ? 0 : 10.5,
+      '--radius-2xl': r ? 0 : 14,
+      '--radius-3xl': r ? 0 : 21,
+      '--radius-full': r ? 0 : 9999,
+      '--color-theme-background': page,
+      '--color-theme-neutrals-900': page,
+      '--color-zinc-950': page,
+    });
+    SKIN_ROOT_VARS.set(theme, v);
+  }
+  return v;
+}
+
 export const AppThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const prefs = useAppPrefs();
   const theme = prefs.theme;
   const colors = getThemeColors(theme);
+  const skin = getThemeSkin(theme);
 
   setActiveTheme(theme);
-  // Inline StyleSheet radii (see libs/jsx/shape.js). Set during render so the
-  // children rendered below this already see it.
-  setSquaring(theme === 'minimal');
+  // Inline StyleSheet radii and near-black page fills (see libs/jsx/shape.js).
+  // Set during render so the children rendered below this already see it.
+  if (theme === 'minimal') setThemePass(true, '#000');
+  else if (skin) setThemePass(skin.square, skin.page);
+  else setThemePass(false, null);
 
   useEffect(() => {
     colorScheme.set('dark');
@@ -87,8 +129,8 @@ export const AppThemeProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   }, []);
 
   const value = useMemo<AppThemeContextValue>(
-    () => ({ theme, isLight: false, isMinimal: theme === 'minimal', colors, setTheme }),
-    [colors, setTheme, theme],
+    () => ({ theme, isLight: false, isMinimal: theme === 'minimal', colors, skin, setTheme }),
+    [colors, setTheme, skin, theme],
   );
 
   return <AppThemeContext.Provider value={value}>{children}</AppThemeContext.Provider>;
@@ -102,6 +144,7 @@ export function useAppTheme(): AppThemeContextValue {
 
 /** Style for the app's root view: always a set of variables — see SYSTEM_ROOT_VARS. */
 export function useThemeRootStyle() {
-  const { isMinimal } = useAppTheme();
-  return isMinimal ? MINIMAL_ROOT_VARS : SYSTEM_ROOT_VARS;
+  const { isMinimal, skin, theme } = useAppTheme();
+  if (isMinimal) return MINIMAL_ROOT_VARS;
+  return skin ? skinRootVars(theme, skin) : SYSTEM_ROOT_VARS;
 }

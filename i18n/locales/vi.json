@@ -330,9 +330,16 @@
     "dark": "Tối",
     "system": "Hệ thống",
     "minimal": "Tối giản",
+    "cosmic": "Cosmic Pixels",
+    "hazy": "Đêm mờ sương",
+    "swarms": "Swarms",
+    "lavalamp": "Đèn dung nham",
+    "winter": "Winter Drops",
+    "war": "Chiến tranh",
+    "osaka": "Osaka",
+    "jungle": "Rừng rậm",
     "themeDesc": "Chọn giao diện cho ứng dụng",
     "themeMinimalDesc": "Đen phẳng, góc vuông, hình ảnh và video tràn chiều ngang",
-    "cosmic": "Vũ trụ",
     "christmas": "Giáng sinh",
     "island": "Đảo",
     "hacker": "Tin tặc",
@@ -5943,6 +5950,28 @@
     "details": "Phân tích đầy đủ",
     "play": "Phát",
     "pause": "Tạm dừng"
+  },
+  "streamerShowcase": {
+    "cardOf": "Thẻ {{index}} trong số {{total}}",
+    "progress": "Tiến độ của bạn",
+    "goal": {
+      "streams": "{{current}} / {{target}} buổi phát",
+      "hours": "{{current}} / {{target}} giờ",
+      "session": "{{current}} / {{target}} phút trong một luồng",
+      "streak": "{{current}} / {{target}} tuần",
+      "level": "Cấp {{current}} / {{target}}"
+    },
+    "onStream": "Mở khóa khi sự cố xảy ra trên luồng",
+    "stats": {
+      "level": "Cấp",
+      "xp": "XP",
+      "hours": "Số giờ đủ điều kiện",
+      "streams": "Các luồng đủ điều kiện",
+      "longest": "Luồng dài nhất",
+      "streak": "Chuỗi tốt nhất"
+    },
+    "hoursShort": "{{hours}} h",
+    "weeksShort": "{{count}} tuần"
   },
   "passwordStrength": {
     "veryWeak": "Rất yếu",

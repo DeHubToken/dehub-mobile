@@ -334,9 +334,16 @@
     "dark": "অন্ধার",
     "system": "সিস্টেম",
     "minimal": "মিনিমাল",
+    "cosmic": "কসমিক পিক্সেল",
+    "hazy": "কুয়াশার রাইত",
+    "swarms": "সোয়ার্ম",
+    "lavalamp": "Lava Lamp",
+    "winter": "উইন্টার ড্রপস",
+    "war": "War",
+    "osaka": "Osaka",
+    "jungle": "Jungle",
     "themeDesc": "অ্যাপ কিলান দেখাইব বাছি লাউকা",
     "themeMinimalDesc": "সমান কালা, সিধা কিনারা, পুরা চওড়া ছবি আর ভিডিও",
-    "cosmic": "মহাজাগতিক",
     "christmas": "বড়দিন",
     "island": "দ্বীপ",
     "hacker": "হ্যাকার",
@@ -6072,6 +6079,28 @@
     "details": "সম্পূর্ণ ব্রেকডাউন",
     "play": "চালান",
     "pause": "থামুন"
+  },
+  "streamerShowcase": {
+    "cardOf": "{{total}}টার মাঝে কার্ড {{index}}",
+    "progress": "আফনার আগাইন্যা",
+    "goal": {
+      "streams": "{{current}} / {{target}} স্ট্রিম",
+      "hours": "{{current}} / {{target}} ঘণ্টা",
+      "session": "এক স্ট্রিমো {{current}} / {{target}} মিনিট",
+      "streak": "{{current}} / {{target}} হপ্তা",
+      "level": "লেভেল {{current}} / {{target}}"
+    },
+    "onStream": "স্ট্রিমো অইলে খুলে",
+    "stats": {
+      "level": "লেভেল",
+      "xp": "XP",
+      "hours": "গণা ঘণ্টা",
+      "streams": "গণা স্ট্রিম",
+      "longest": "হকলতাকি লম্বা স্ট্রিম",
+      "streak": "হকলতাকি বালা ধারা"
+    },
+    "hoursShort": "{{hours}} ঘণ্টা",
+    "weeksShort": "{{count}} হপ্তা"
   },
   "passwordStrength": {
     "veryWeak": "খুব দুর্বল",

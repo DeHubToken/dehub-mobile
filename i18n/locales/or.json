@@ -329,9 +329,16 @@
     "dark": "ଡାର୍କ",
     "system": "ସିଷ୍ଟମ",
     "minimal": "ମିନିମାଲ",
+    "cosmic": "Cosmic Pixels",
+    "hazy": "ହେଜି ନାଇଟ୍ସ",
+    "swarms": "ସ୍ୱାର୍ମ",
+    "lavalamp": "ଲାଭା ଲ୍ୟାମ୍ପ",
+    "winter": "Winter Drops",
+    "war": "ଯୁଦ୍ଧ",
+    "osaka": "ଓସାକା",
+    "jungle": "ଜଙ୍ଗଲ",
     "themeDesc": "ଆପ୍ କିପରି ଦେଖାଯିବ ବାଛନ୍ତୁ",
     "themeMinimalDesc": "ସମତଳ କଳା, ସିଧା ଧାର, ପୂର୍ଣ୍ଣ ଓସାରର ଛବି ଓ ଭିଡିଓ",
-    "cosmic": "କସମିକ",
     "christmas": "ବଡଦିନ",
     "island": "ଦ୍ୱୀପ",
     "hacker": "ହ୍ୟାକର",
@@ -5158,7 +5165,7 @@
         },
         "legend": {
           "name": "କିମ୍ବଦନ୍ତୀ",
-          "hint": "କିନ୍ତୁ ସେ କହିଲେ yemiti huye 1st 1st."
+          "hint": "ସ୍ତର ଦଶରେ ପହଞ୍ଚନ୍ତୁ।"
         },
         "ignition": {
           "name": "ଇଗ୍ନିସନ୍",
@@ -5871,7 +5878,7 @@
     "holdNote": "ଥରେ ଏକ ବ୍ୟାଜ୍ ଅନଲକ୍ ହୋଇଗଲେ, ଆପଣଙ୍କ ଟୋକେନ୍ ଧରିବା ପର୍ଯ୍ୟନ୍ତ ତାହା ଆପଣଙ୍କର ହୋଇ ରହିବ। ଏକ ନୂତନ ବ୍ୟାଜ୍ ଅନଲକ୍ କରିବା ପାଇଁ ଆବଶ୍ୟକ ଟୋକେନ୍ ସଂଖ୍ୟା ଟୋକେନ୍ ମୂଲ୍ୟ ସହିତ ପରିବର୍ତ୍ତନ ହୋଇପାରେ।"
   },
   "badgeShowcase": {
-    "dialogLabel": "{{tier}} badge",
+    "dialogLabel": "{{tier}} ବ୍ୟାଜ୍",
     "close": "ବନ୍ଦ କରନ୍ତୁ",
     "badges": "ବ୍ୟାଜଗୁଡ଼ିକ",
     "tierOf": "{{total}} ମଧ୍ୟରୁ ସ୍ତର {{index}}",
@@ -5879,7 +5886,7 @@
     "toUnlock": "ଅନଲକ୍ କରିବାକୁ ଆଉ {{amount}} ଟୋକେନ୍",
     "holdToUnlock": "ଏହାକୁ ଖୋଲିବା ପାଇଁ ଅତି କମରେ ଏହି ଅନେକ DeHub ଟୋକନକୁ ଧାରଣ କରନ୍ତୁ",
     "sliderLabel": "ଟୋକନ ଧାରଣ କରାଯାଇଛି",
-    "sliderValue": "{{amount}} tokens · {{tier}}",
+    "sliderValue": "{{amount}} ଟୋକେନ୍ · {{tier}}",
     "you": "ଆପଣ",
     "grants": "କ 'ଣ ଖୋଲା ଅଛି",
     "perks": {
@@ -5899,6 +5906,28 @@
     "details": "ସମ୍ପୂର୍ଣ୍ଣ ବିଖଣ୍ଡନ",
     "play": "ଚଲାନ୍ତୁ",
     "pause": "ବିରତି"
+  },
+  "streamerShowcase": {
+    "cardOf": "କାର୍ଡ଼ {{index}} {{total}}",
+    "progress": "ଆପଣଙ୍କ ପ୍ରଗତି",
+    "goal": {
+      "streams": "{{current}} / {{target}} ଷ୍ଟ୍ରିମ୍",
+      "hours": "{{current}} / {{target}} ଘଣ୍ଟା",
+      "session": "ଗୋଟିଏ ଷ୍ଟ୍ରିମ୍‌ରେ {{current}} / {{target}} ମିନିଟ୍",
+      "streak": "{{current}} / {{target}} ସପ୍ତାହ",
+      "level": "ସ୍ତର {{current}} / {{target}}"
+    },
+    "onStream": "ଯେତେବେଳେ ଏହା ପ୍ରବାହରେ ଘଟେ ସେତେବେଳେ ଏହାକୁ ଖୋଲନ୍ତୁ",
+    "stats": {
+      "level": "ସ୍ତର",
+      "xp": "XP",
+      "hours": "ଯୋଗ୍ୟତା ସମୟ",
+      "streams": "ଯୋଗ୍ୟତା ପ୍ରବାହ",
+      "longest": "ଦୀର୍ଘତମ ଧାରା",
+      "streak": "ଶ୍ରେଷ୍ଠ ପ୍ରବାହ"
+    },
+    "hoursShort": "{{hours}} h",
+    "weeksShort": "{{count}} wk"
   },
   "passwordStrength": {
     "veryWeak": "ବହୁତ ଦୁର୍ବଳ",

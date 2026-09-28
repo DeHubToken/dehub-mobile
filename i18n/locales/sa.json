@@ -329,9 +329,16 @@
     "dark": "अन्धकारः",
     "system": "तन्त्रम्",
     "minimal": "सरलम्",
+    "cosmic": "Cosmic Pixels",
+    "hazy": "Hazy Nights",
+    "swarms": "Swarms",
+    "lavalamp": "Lava Lamp",
+    "winter": "Winter Drops",
+    "war": "War",
+    "osaka": "Osaka",
+    "jungle": "Jungle",
     "themeDesc": "अनुप्रयोगस्य रूपं चिनुत",
     "themeMinimalDesc": "समतलः कृष्णः, ऋजवः प्रान्ताः, पूर्णविस्तारचित्राणि चलचित्राणि च",
-    "cosmic": "विश्वीयम्",
     "christmas": "नाताळम्",
     "island": "द्वीपः",
     "hacker": "हैकर्",
@@ -5917,7 +5924,7 @@
       "votes": "मतदान अधिकार",
       "reach": "दृश्य और प्रतिक्रिया के प्रति भार",
       "feedPosts": "गृहपृष्ठ ∕ समाचार ∕ एकदिनमा",
-      "images": "इमेज कॉपीरइट POST",
+      "images": "प्रत्येकस्मिन् पोस्ट्-मध्ये चित्राणि",
       "uploads": "प्रतिदिन अपलोड सीमा",
       "storage": "सम्पादकस्य भण्डारणम्",
       "lending": "उधार धानियां",
@@ -5929,6 +5936,28 @@
     "details": "पूर्णविभाजनम्",
     "play": "वाद्यताम्",
     "pause": "विरामः"
+  },
+  "streamerShowcase": {
+    "cardOf": "{{total}} मध्ये पत्रम् {{index}}",
+    "progress": "भवतां उन्नतिः",
+    "goal": {
+      "streams": "{{current}} / {{target}} प्रसारणानि",
+      "hours": "{{current}} / {{target}} होराः",
+      "session": "एकस्मिन् प्रसारणे {{current}} / {{target}} निमेषाः",
+      "streak": "{{current}} / {{target}} सप्ताहाः",
+      "level": "स्तरः {{current}} / {{target}}"
+    },
+    "onStream": "नित्यं यदा नित्यं नित्यं",
+    "stats": {
+      "level": "स्तर",
+      "xp": "XP",
+      "hours": "योग्यता घंटा",
+      "streams": "गुणात्मकं प्रवाहं",
+      "longest": "दीर्घतम धारा",
+      "streak": "उत्तमं स्तोत्रम्"
+    },
+    "hoursShort": "{{hours}} हो.",
+    "weeksShort": "{{count}} सप्ता."
   },
   "passwordStrength": {
     "veryWeak": "अतीव दुर्बलम्",

@@ -330,9 +330,16 @@
     "dark": "ਗੂੜ੍ਹਾ",
     "system": "ਸਿਸਟਮ",
     "minimal": "ਮਿਨੀਮਲ",
+    "cosmic": "Cosmic Pixels",
+    "hazy": "ਹੇਜ਼ੀ ਨਾਈਟਸ",
+    "swarms": "ਸਵਾਰਮ",
+    "lavalamp": "ਲਾਵਾ ਲੈਂਪ",
+    "winter": "Winter Drops",
+    "war": "ਜੰਗ",
+    "osaka": "ਓਸਾਕਾ",
+    "jungle": "ਜੰਗਲ",
     "themeDesc": "ਚੁਣੋ ਕਿ ਐਪ ਕਿਵੇਂ ਦਿਸੇ",
     "themeMinimalDesc": "ਸਾਦਾ ਕਾਲਾ, ਸਿੱਧੇ ਕਿਨਾਰੇ, ਪੂਰੀ ਚੌੜਾਈ ਵਾਲੀਆਂ ਤਸਵੀਰਾਂ ਅਤੇ ਵੀਡੀਓ",
-    "cosmic": "ਬ੍ਰਹਿਮੰਡੀ",
     "christmas": "ਕ੍ਰਿਸਮਸ",
     "island": "ਟਾਪੂ",
     "hacker": "ਹੈਕਰ",
@@ -5863,6 +5870,28 @@
     "details": "ਪੂਰਾ ਟੁੱਟਣਾ",
     "play": "ਚਲਾਓ",
     "pause": "ਵਿਰਾਮ"
+  },
+  "streamerShowcase": {
+    "cardOf": "ਕਾਰਡ {{index}} ਦਾ {{total}}",
+    "progress": "ਤੁਹਾਡੀ ਤਰੱਕੀ",
+    "goal": {
+      "streams": "{{current}} / {{target}} ਸਟ੍ਰੀਮਜ਼",
+      "hours": "{{current}} / {{target}} ਘੰਟੇ",
+      "session": "{{current}} / {{target}} ਇੱਕ ਸਟਰੀਮ ਵਿੱਚ ਮਿੰਟ",
+      "streak": "{{current}} / {{target}} ਹਫ਼ਤੇ",
+      "level": "ਲੈਵਲ {{current}} / {{target}}"
+    },
+    "onStream": "ਜਦੋਂ ਇਹ ਸਟ੍ਰੀਮ ਤੇ ਹੁੰਦਾ ਹੈ ਤਾਂ ਅਨਲੌਕ ਕਰਦਾ ਹੈ",
+    "stats": {
+      "level": "ਪੱਧਰ",
+      "xp": "XP",
+      "hours": "ਕੁਆਲੀਫਾਈ ਕਰਨ ਦੇ ਘੰਟੇ",
+      "streams": "ਯੋਗ ਸਟਰੀਮ",
+      "longest": "ਸਭ ਤੋਂ ਲੰਬੀ ਸਟਰੀਮ",
+      "streak": "ਬੈਸਟ ਸਟ੍ਰੀਕ"
+    },
+    "hoursShort": "{{hours}} ਘੰ",
+    "weeksShort": "{{count}} ਹਫ਼ਤੇ"
   },
   "passwordStrength": {
     "veryWeak": "ਬਹੁਤ ਕਮਜ਼ੋਰ",

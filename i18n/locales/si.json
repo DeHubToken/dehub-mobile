@@ -330,9 +330,16 @@
     "dark": "අඳුරු",
     "system": "පද්ධතිය",
     "minimal": "සරල",
+    "cosmic": "කොස්මික් පික්සල",
+    "hazy": "මීදුම් රාත්‍රී",
+    "swarms": "රංචු",
+    "lavalamp": "ලාවා ලාම්පුව",
+    "winter": "ශීත ඍතු බිංදු",
+    "war": "යුද්ධය",
+    "osaka": "ඔසාකා",
+    "jungle": "වනාන්තරය",
     "themeDesc": "යෙදුම පෙනෙන ආකාරය තෝරන්න",
     "themeMinimalDesc": "පැතලි කළු, සෘජු දාර, පූර්ණ පළලේ රූප සහ වීඩියෝ",
-    "cosmic": "කොස්මික්",
     "christmas": "නත්තල්",
     "island": "දූපත",
     "hacker": "හැකර්",
@@ -5164,7 +5171,7 @@
       "minutes": "{{count}} මිනිත්තු",
       "viewers": "{{count}} නරඹන්නන්",
       "viewCards": "කාඩ්පත් බලන්න",
-      "cardsTitle": "සං riconoscimento කාඩ්පත්",
+      "cardsTitle": "එකතු කළ හැකි කාඩ්පත්",
       "locked": "අගුළු ලා ඇත",
       "earnedOn": "සම්මත {{date}}",
       "recentTitle": "මෑත විකාශන",
@@ -5928,8 +5935,8 @@
     "perks": {
       "fee": "ප්ලැට්ෆෝම් ගාස්තුව",
       "votes": "පාලන ඡන්දය",
-      "reach": "දසුන හා ප් ‍ රතික් ‍ රියාව View and reaction",
-      "feedPosts": "Home Gossip News එක් දිනක් තුළ වාර්තාගත ආදායමක්",
+      "reach": "එක් බැලීමකට සහ ප්‍රතිචාරයකට බර",
+      "feedPosts": "දිනකට මුල් පිටු පළකිරීම්",
       "images": "තනතුරකට පින්තූර",
       "uploads": "දෛනික උඩුගත කිරීමේ සීමාව",
       "storage": "සංස්කාරක ගබඩාව",
@@ -5942,6 +5949,28 @@
     "details": "සම්පූර්ණ සවිස්තර වාර්තාව",
     "play": "වාදනය කරන්න",
     "pause": "විරාමය"
+  },
+  "streamerShowcase": {
+    "cardOf": "කාඩ් {{index}} {{total}}",
+    "progress": "ඔබේ ප් ‍ රගතිය",
+    "goal": {
+      "streams": "{{current}}/{{target}} ස්ට් ‍ රීම්ස්",
+      "hours": "{{current}} / {{target}} පැය",
+      "session": "එක් ප්‍රවාහයක {{current}} / {{target}} මිනිත්තු",
+      "streak": "{{current}} / {{target}} සති",
+      "level": "මට්ටම {{current}} / {{target}}"
+    },
+    "onStream": "ප් රවාහයේදී එය සිදු වූ විට අගුළු හරින්න",
+    "stats": {
+      "level": "මට්ටම",
+      "xp": "XP",
+      "hours": "සුදුසුකම් ලබන පැය",
+      "streams": "සුදුසුකම් ලත් ධාරා",
+      "longest": "දිගම ධාරාව",
+      "streak": "හොඳම ස්ට් ‍ රීක්"
+    },
+    "hoursShort": "පැය {{hours}}",
+    "weeksShort": "සති {{count}}"
   },
   "passwordStrength": {
     "veryWeak": "ඉතා දුර්වලයි",

@@ -330,9 +330,16 @@
     "dark": "Tumšs",
     "system": "Sistēma",
     "minimal": "Minimālisms",
+    "cosmic": "Cosmic Pixels",
+    "hazy": "Miglainās naktis",
+    "swarms": "Spieti",
+    "lavalamp": "Lavas lampa",
+    "winter": "Winter Drops",
+    "war": "Karš",
+    "osaka": "Osaka",
+    "jungle": "Džungļi",
     "themeDesc": "Izvēlieties, kā izskatās lietotne",
     "themeMinimalDesc": "Vienkrāsaini melns, taisnas malas, pilna platuma attēli un video",
-    "cosmic": "Kosmisks",
     "christmas": "Ziemassvētki",
     "island": "Sala",
     "hacker": "Hakeris",
@@ -5930,6 +5937,28 @@
     "details": "Pilns sadalījums",
     "play": "Atskaņot",
     "pause": "Apturēt"
+  },
+  "streamerShowcase": {
+    "cardOf": "Karte {{index}} no {{total}}",
+    "progress": "Jūsu progress",
+    "goal": {
+      "streams": "{{current}} / {{target}} straumes",
+      "hours": "{{current}} / {{target}} stundas",
+      "session": "{{current}} / {{target}} min vienā plūsmā",
+      "streak": "{{current}} / {{target}} nedēļas",
+      "level": "Līmenis {{current}} / {{target}}"
+    },
+    "onStream": "Atbloķē, kad tas notiek straumē",
+    "stats": {
+      "level": "Līmenis",
+      "xp": "XP",
+      "hours": "Kvalifikācijai atbilstošās stundas",
+      "streams": "Kvalificētās straumes",
+      "longest": "Garākā straume",
+      "streak": "Labākā sērija"
+    },
+    "hoursShort": "{{hours}} h",
+    "weeksShort": "{{count}} ned."
   },
   "passwordStrength": {
     "veryWeak": "Ļoti vājš",

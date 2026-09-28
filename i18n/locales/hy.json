@@ -330,9 +330,16 @@
     "dark": "Մուգ",
     "system": "Համակարգ",
     "minimal": "Մինիմալ",
+    "cosmic": "Cosmic Pixels",
+    "hazy": "Մշուշոտ գիշերներ",
+    "swarms": "Պարսեր",
+    "lavalamp": "Լավայի լամպ",
+    "winter": "Winter Drops",
+    "war": "Պատերազմ",
+    "osaka": "Օսակա",
+    "jungle": "Ջունգլի",
     "themeDesc": "Ընտրեք, թե ինչպես է երևում հավելվածը",
     "themeMinimalDesc": "Հարթ սև, ուղիղ եզրեր, ամբողջ լայնությամբ պատկերներ և տեսանյութեր",
-    "cosmic": "Տիեզերական",
     "christmas": "Սուրբ Ծնունդ",
     "island": "Կղզի",
     "hacker": "Հաքեր",
@@ -5930,6 +5937,28 @@
     "details": "Ամբողջական մանրամասներ",
     "play": "Նվագարկել",
     "pause": "Դադարեցնել"
+  },
+  "streamerShowcase": {
+    "cardOf": "Քարտ {{index}}՝ {{total}}-ից",
+    "progress": "Ձեր առաջընթացը",
+    "goal": {
+      "streams": "{{current}}/{{target}} հոսքեր",
+      "hours": "{{current}}/{{target}} ժամ",
+      "session": "{{current}}/{{target}} րոպե մեկ հոսքում",
+      "streak": "{{current}}/{{target}} շաբաթ",
+      "level": "Մակարդակ {{current}}/{{target}}"
+    },
+    "onStream": "Արգելաբացում, երբ դա տեղի է ունենում հոսքի վրա",
+    "stats": {
+      "level": "Մակարդակ",
+      "xp": "XP",
+      "hours": "Համապատասխանության ժամեր",
+      "streams": "Համապատասխան հոսքեր",
+      "longest": "Ամենաերկար հոսքը",
+      "streak": "Լավագույն սթրիք"
+    },
+    "hoursShort": "{{hours}} h",
+    "weeksShort": "{{count}} wk"
   },
   "passwordStrength": {
     "veryWeak": "Շատ թույլ",

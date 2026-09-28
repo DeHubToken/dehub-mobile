@@ -4,6 +4,7 @@ import { FEED_BENTO_RADIUS, fitFeedImageWithin } from "../../libs/feed-image-lay
 import { useImageAspect } from "../../hooks/useImageAspect";
 import SmartImage from "../common/SmartImage";
 import { useAppTheme } from "../../context/ThemeContext";
+import { useSettledAutoplay } from "../../hooks/useSettledAutoplay";
 
 interface ContainedFeedImageProps {
   uri: string;
@@ -13,6 +14,8 @@ interface ContainedFeedImageProps {
   compact?: boolean;
   fallbackWidth: number;
   priority?: "low" | "normal" | "high";
+  active?: boolean;
+  drawBitmap?: boolean;
 }
 
 /** Natural-ratio feed image with the same 600-unit height cap as the web app. */
@@ -22,7 +25,10 @@ const ContainedFeedImage: React.FC<ContainedFeedImageProps> = ({
   compact = false,
   fallbackWidth,
   priority,
+  active = true,
+  drawBitmap = true,
 }) => {
+  const animate = useSettledAutoplay(active, uri, 400);
   const { ratio: aspectRatio, onLoad } = useImageAspect(uri);
   const { isMinimal } = useAppTheme();
   const [measuredWidth, setMeasuredWidth] = useState(fallbackWidth);
@@ -63,15 +69,16 @@ const ContainedFeedImage: React.FC<ContainedFeedImageProps> = ({
           overflow: "hidden",
         }}
       >
-        <SmartImage
+        {drawBitmap && <SmartImage
           source={{ uri }}
           contentFit="contain"
           cachePolicy="memory-disk"
           style={{ width: "100%", height: "100%" }}
           recyclingKey={uri}
           priority={priority}
+          autoplay={animate}
           onLoad={onLoad}
-        />
+        />}
       </View>
     </View>
   );

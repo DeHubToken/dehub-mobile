@@ -330,9 +330,16 @@
     "dark": "Yana",
     "system": "Sistema",
     "minimal": "Ch'uqchay",
+    "cosmic": "Cosmic Pixels",
+    "hazy": "Phuyu Tutakuna",
+    "swarms": "Swarms",
+    "lavalamp": "Lava Lámpara",
+    "winter": "Winter Drops",
+    "war": "Maqanakuy",
+    "osaka": "Osaka",
+    "jungle": "Sach'a sach'a",
     "themeDesc": "Aplicacionpa rikchayninta akllay",
     "themeMinimalDesc": "Yana llanu, chiqan kantukuna, lliw kinraypi siq'ikuna, videokunapas",
-    "cosmic": "Hanaq pacha",
     "christmas": "Navidad",
     "island": "Wat'a",
     "hacker": "Hacker",
@@ -5961,6 +5968,28 @@
     "details": "Hunt’asqa pakiy",
     "play": "Pukllay",
     "pause": "Suyay"
+  },
+  "streamerShowcase": {
+    "cardOf": "Tarjeta {{index}} de {{total}}",
+    "progress": "Ñawpaqman purisqayki",
+    "goal": {
+      "streams": "{{current}} / {{target}} mayukuna",
+      "hours": "{{current}} / {{target}} horas",
+      "session": "{{current}} / {{target}} min huk mayullapi",
+      "streak": "{{current}} / {{target}} semanakuna",
+      "level": "Nivel {{current}} / {{target}} nisqapi."
+    },
+    "onStream": "Mayupi pasaptin kichakun",
+    "stats": {
+      "level": "Pata",
+      "xp": "XP",
+      "hours": "Horarios calificativos nisqa",
+      "streams": "Corrientes calificadas nisqakuna",
+      "longest": "Aswan suni mayu",
+      "streak": "Aswan allin racha"
+    },
+    "hoursShort": "{{hours}} h",
+    "weeksShort": "{{count}} wk"
   },
   "passwordStrength": {
     "veryWeak": "Ancha pisi kallpa",

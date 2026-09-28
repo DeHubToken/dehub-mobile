@@ -330,9 +330,16 @@
     "dark": "Òkùnkùn",
     "system": "Ètò ẹ̀rọ",
     "minimal": "Rọrùn",
+    "cosmic": "Cosmic Pixels",
+    "hazy": "Òru Kùrukùru",
+    "swarms": "Swarms",
+    "lavalamp": "Àtùpà lava",
+    "winter": "Winter Drops",
+    "war": "Ogun",
+    "osaka": "Osaka",
+    "jungle": "Igbó",
     "themeDesc": "Yan bí ìṣàfilọ́lẹ̀ náà ṣe máa rí",
     "themeMinimalDesc": "Dúdú pẹlẹbẹ, etí tààrà, àwọn àwòrán àti fídíò tó kún fífẹ̀",
-    "cosmic": "Sánmà",
     "christmas": "Kérésìmesì",
     "island": "Erékùṣù",
     "hacker": "Agbere",
@@ -5220,7 +5227,7 @@
           "hint": "Ni awọn eniyan mejilelaadọta ti n wo ni ẹẹkan."
         },
         "arena": {
-          "name": "Arena",
+          "name": "Pápá ìṣeré",
           "hint": "Ni awọn eniyan aadọta ti n wo ni ẹẹkan."
         },
         "headliner": {
@@ -5903,7 +5910,7 @@
     "holdNote": "Lọ́fẹ́ tí a bá ti ṣí àmì-ìdánilẹ́kọ̀ọ́ kan sílẹ̀, yóò jẹ́ tirẹ́ níwọ̀n ìgbà tí o bá ní àmì rẹ. Iye àmì tí a nílò láti ṣí àmì-ìdánilẹ́kọ̀ọ́ tuntun sílẹ̀ lè yí padà pẹ̀lú iye àmì."
   },
   "badgeShowcase": {
-    "dialogLabel": "{{tier}} badge",
+    "dialogLabel": "Àmì {{tier}}",
     "close": "Pa",
     "badges": "Àmì ọ̀pá àṣẹ ilẹ̀",
     "tierOf": "Tier {{index}} ti {{total}}",
@@ -5923,14 +5930,36 @@
       "uploads": "Ifilelẹ gbigbe lojoojumọ",
       "storage": "Ibi ìpamọ́ atọ́ka",
       "lending": "Àwọn ìkòkò ìfẹ̀yìntì badge",
-      "voice": "Ṣíṣe ìfipamọ́ ohùn",
+      "voice": "Ṣíṣe àdàkọ ohùn",
       "voiceFree": "FREE",
       "voiceLocked": "{{tier}} àti sókè"
     },
     "buyTokens": "Ra àwọn àmì",
     "details": "Ìparun kíkún",
-    "play": "Play",
+    "play": "Bẹ̀rẹ̀",
     "pause": "Duro"
+  },
+  "streamerShowcase": {
+    "cardOf": "Káàdì {{index}} ti {{total}}",
+    "progress": "Ìlọsíwájú rẹ",
+    "goal": {
+      "streams": "{{current}} / {{target}} awọn ṣiṣan",
+      "hours": "{{current}} / {{target}} wakati",
+      "session": "{{current}} / {{target}} min nínú ìṣàn kan",
+      "streak": "{{current}} / {{target}} ọsẹ",
+      "level": "Ipele {{current}} / {{target}}"
+    },
+    "onStream": "Ṣii silẹ nigbati o ba ṣẹlẹ lori ṣiṣan",
+    "stats": {
+      "level": "Ipele",
+      "xp": "XP",
+      "hours": "Awọn wakati ti o yẹ",
+      "streams": "Awọn ṣiṣan ti o yẹ",
+      "longest": "Odò tó gùn jùlọ",
+      "streak": "Ìtẹ̀léra tó dára jù"
+    },
+    "hoursShort": "{{hours}} h",
+    "weeksShort": "{{count}} wk"
   },
   "passwordStrength": {
     "veryWeak": "Aláìlera gidigidi",

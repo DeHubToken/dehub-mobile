@@ -330,9 +330,16 @@
     "dark": "ጨለማ",
     "system": "ስርዓት",
     "minimal": "ቀላል",
+    "cosmic": "Cosmic Pixels",
+    "hazy": "ጭጋጋማ ሌሊቶች",
+    "swarms": "መንጋዎች",
+    "lavalamp": "ላቫ መብራት",
+    "winter": "Winter Drops",
+    "war": "ጦርነት",
+    "osaka": "ኦሳካ",
+    "jungle": "ጫካ",
     "themeDesc": "መተግበሪያው እንዴት እንደሚታይ ይምረጡ",
     "themeMinimalDesc": "ጠፍጣፋ ጥቁር፣ ቀጥ ያሉ ጠርዞች፣ ሙሉ ስፋት ምስሎች እና ቪዲዮዎች",
-    "cosmic": "ጠፈራዊ",
     "christmas": "ገና",
     "island": "ደሴት",
     "hacker": "ሃከር",
@@ -5959,6 +5966,28 @@
     "details": "ሙሉ ማፍረስ",
     "play": "አጫውት",
     "pause": "እረፍት"
+  },
+  "streamerShowcase": {
+    "cardOf": "ካርድ {{index}} ከ{{total}}",
+    "progress": "የእርስዎ እድገት",
+    "goal": {
+      "streams": "{{current}} / {{target}} ዥረቶች",
+      "hours": "{{current}} / {{target}} ሰዓቶች",
+      "session": "{{current}} / {{target}} min በአንድ ዥረት ውስጥ",
+      "streak": "{{current}} / {{target}} ሳምንቶች",
+      "level": "ደረጃ {{current}} / {{target}}"
+    },
+    "onStream": "በዥረት ላይ ሲከሰት ይከፍታል",
+    "stats": {
+      "level": "ደረጃ",
+      "xp": "XP",
+      "hours": "የብቃት ሰዓቶች",
+      "streams": "ብቃት ያላቸው ጅረቶች",
+      "longest": "ረዥሙ ዥረት",
+      "streak": "ምርጥ ተከታታይ"
+    },
+    "hoursShort": "{{hours}} ሸ",
+    "weeksShort": "{{count}} ሳምንት"
   },
   "passwordStrength": {
     "veryWeak": "በጣም ደካማ",

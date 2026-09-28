@@ -334,9 +334,16 @@
     "dark": "অন্ধার",
     "system": "সিস্টেম",
     "minimal": "মিনিমাল",
+    "cosmic": "কসমিক পিক্সেল",
+    "hazy": "হেজি নাইটস",
+    "swarms": "সোয়ার্মস",
+    "lavalamp": "লাভা ল্যাম্প",
+    "winter": "উইন্টার ড্রপস",
+    "war": "যুদ্ধ",
+    "osaka": "ওসাকা",
+    "jungle": "জাঙ্গল",
     "themeDesc": "অ্যাপ কেন দেহাইবো বাছি লন",
     "themeMinimalDesc": "সমান কালা, সিধা কিনারা, পুরা চওড়া ছবি আর ভিডিও",
-    "cosmic": "মহাজাগতিক",
     "christmas": "বড়দিন",
     "island": "দ্বীপ",
     "hacker": "হ্যাকার",
@@ -6026,6 +6033,28 @@
     "details": "সম্পূর্ণ ব্রেকডাউন",
     "play": "চালান",
     "pause": "বিরতি দিন"
+  },
+  "streamerShowcase": {
+    "cardOf": "কার্ড {{index}} এর {{total}}",
+    "progress": "তোমার অগ্রগতি",
+    "goal": {
+      "streams": "{{current}} / {{target}} স্ট্রিম",
+      "hours": "{{current}} / {{target}} ঘন্টা",
+      "session": "{{current}} / {{target}} মিনিট এক স্ট্রিমে",
+      "streak": "{{current}} / {{target}} সপ্তাহ",
+      "level": "লেভেল {{current}} / {{target}}"
+    },
+    "onStream": "স্ট্রিমে ঘটলে আনলক হয়",
+    "stats": {
+      "level": "লেভেল",
+      "xp": "এক্সপি",
+      "hours": "যোগ্য ঘন্টা",
+      "streams": "যোগ্য স্ট্রিম",
+      "longest": "সর্বোচ্চ স্ট্রিম",
+      "streak": "সেরা স্ট্রিক"
+    },
+    "hoursShort": "{{hours}} ঘ",
+    "weeksShort": "{{count}} সপ্তাহ"
   },
   "passwordStrength": {
     "veryWeak": "বউত দুর্বল",
