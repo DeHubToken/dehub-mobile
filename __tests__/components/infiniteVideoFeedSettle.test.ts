@@ -37,7 +37,9 @@ describe('home feed scroll settle timing', () => {
 
   it('releases a held page before the list runs into its end', () => {
     const loadMore = feed.match(/const loadMore = useCallback\(\(\) => \{([\s\S]*?)\}, \[/)?.[1] ?? '';
-    expect(loadMore).toMatch(/if \(holdPendingRef\.current\) \{\s*setHoldRelease/);
+    expect(loadMore).toMatch(/if \(holdPendingRef\.current\) \{\s*releaseAppendRef\.current = true;\s*setHoldRelease/);
+    // A render alone previously entered the same hold branch again.
+    expect(feed).toMatch(/isAppend && !releaseAppendRef\.current/);
   });
 });
 

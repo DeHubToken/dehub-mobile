@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useIsFocused, useNavigation, useScrollToTop } from "@react-navigation/native";
 import {
@@ -30,6 +30,7 @@ import { mergeLiveCounts } from "../../libs/liveCounts";
 import { isPostDeletedSync, warmDeletedPosts } from "../../libs/deleted-posts-store";
 import { useWatchedVideoIds, filterWatched } from "../../hooks/useWatchedVideos";
 import { tabPressIntentOf } from "../../navigation/tabPressIntent";
+import { createFeedVisibilityStore, useRowVisibility, type FeedVisibilityStore } from "../../libs/feedVisibility";
 
 export type InfiniteFeedRenderItemInfo = {
   item: GetNFTsResult;
@@ -93,6 +94,16 @@ interface FeedItem extends GetNFTsResult {
   __listKey: string;
 }
 
+const VisibleFeedRow = memo(function VisibleFeedRow({ info, rowKey, store, renderItem }: {
+  info: InfiniteFeedRenderItemInfo;
+  rowKey: string;
+  store: FeedVisibilityStore;
+  renderItem: InfiniteFeedProps['renderItem'];
+}) {
+  const { isVisible, isAutoplay } = useRowVisibility(store, rowKey);
+  return renderItem({ ...info, isVisible, isAutoplayActive: isAutoplay });
+});
+
 type InfiniteFeedInternalProps = Omit<InfiniteFeedProps, "insideNavigatorScreen">;
 
 const InfiniteFeedBase: React.FC<
@@ -127,13 +138,14 @@ const InfiniteFeedBase: React.FC<
   trackFeedCardVisibility = true,
 }) => {
   const { t } = useTranslation();
+  const visibilityStore = useMemo(() => createFeedVisibilityStore(isFocused ?? true), []);
+  useEffect(() => {
+    visibilityStore.setLive(isFocused ?? true);
+  }, [visibilityStore, isFocused]);
   const {
     viewabilityConfig: feedCardViewabilityConfig,
     onViewableItemsChanged: onFeedCardViewableItemsChanged,
-    isItemVisible,
-    isItemAutoplayActive,
-    visibilityExtraData,
-  } = useFeedCardVisibility();
+  } = useFeedCardVisibility(keyExtractor, visibilityStore);
   const [refreshing, setRefreshing] = useState(false);
   const [showBackToTop, setShowBackToTop] = useState(false);
   const loadMoreCooldownRef = useRef(0);
@@ -201,12 +213,16 @@ const InfiniteFeedBase: React.FC<
         separators: info.separators,
       };
       if (trackFeedCardVisibility) {
-        payload.isVisible = isItemVisible(info.item.__listKey);
-        payload.isAutoplayActive = isItemAutoplayActive(info.item.__listKey);
+        return <VisibleFeedRow
+          info={payload}
+          rowKey={keyExtractor ? keyExtractor(info.item, info.index) : info.item.__listKey}
+          store={visibilityStore}
+          renderItem={renderItem}
+        />;
       }
       return renderItem(payload as any);
     },
-    [renderItem, trackFeedCardVisibility, isItemVisible, isItemAutoplayActive],
+    [renderItem, trackFeedCardVisibility, keyExtractor, visibilityStore],
   );
 
   // fetchPage and params are read through refs rather than closed over by the
@@ -421,8 +437,8 @@ const InfiniteFeedBase: React.FC<
         // shoving whatever the user was reading.
         maintainVisibleContentPosition={MAINTAIN_POSITION}
         initialNumToRender={4}
-        maxToRenderPerBatch={4}
-        windowSize={7}
+        maxToRenderPerBatch={1}
+        windowSize={11}
         // No removeClippedSubviews, for the same reason as InfiniteVideoFeed:
         // clipping detaches off-screen children, and that is the exact array
         // Android walks to pick the maintainVisibleContentPosition anchor. The
@@ -445,7 +461,6 @@ const InfiniteFeedBase: React.FC<
         onEndReachedThreshold={2.5}
         viewabilityConfig={feedCardViewabilityConfig}
         onViewableItemsChanged={handleViewableItemsChanged}
-        extraData={trackFeedCardVisibility ? visibilityExtraData : undefined}
         refreshControl={
           <DeHubRefreshControl
             refreshing={refreshing}

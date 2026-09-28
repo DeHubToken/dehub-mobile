@@ -23,6 +23,33 @@ mounts its player automatically. A tap bypasses the timer, and picture-in-pictur
 retains its player. Initial playback requests provide the source on construction,
 avoiding an empty player followed immediately by a replacement instance.
 
+## Connected-phone baseline, 28 September 2026
+
+Galaxy S24+ (SM-S926B), production channel, runtime 1.18.0. Six 230 ms
+swipes down followed by six up, measured with `dumpsys gfxinfo` after resetting
+its counters per tab:
+
+| Feed | Frames | Missed deadlines | p95 | p99 |
+| --- | ---: | ---: | ---: | ---: |
+| Home | 312 | 68 (21.79%) | 27 ms | 48 ms |
+| Videos | 301 | 69 (22.92%) | 42 ms | 65 ms |
+| Shorts | 210 | 84 (40.00%) | 150 ms | 200 ms |
+
+Slow bitmap uploads were flagged for 68, 67 and 80 frames respectively.
+These counters identify overlap, not proof that uploads alone caused every
+missed deadline. Idle adjacent pager pages previously remained drawn; pages
+now draw only while intersecting the horizontal viewport. Feed images and
+image-grid thumbnails use Glide's bounded memory cache as well as disk.
+
+Home's threshold release now bypasses the pending-page hold once. Previously
+it requested a render but the render immediately held the same append again,
+so runway could not grow until momentum ended. Secondary InfiniteFeed lists
+also update visibility through row subscriptions instead of React state on
+the list, and mount one card per batch.
+
+These are baseline measurements; repeat on the published update before
+claiming an improvement.
+
 ## Release verification
 
 Use a release APK on the affected Android phone. Check slow drags, fast flings,
