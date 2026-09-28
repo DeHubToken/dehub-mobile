@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import { Image, type ImageProps, type ImageContentFit } from "expo-image";
 import type { ImageStyle, StyleProp } from "react-native";
 
@@ -65,8 +65,24 @@ export const SmartImage: React.FC<SmartImageProps> = ({
   onLoadEnd,
   onError,
 }) => {
+  const imageRef = useRef<Image>(null);
+  const animatedRef = useRef(false);
+  const syncAnimation = useCallback(() => {
+    if (!animatedRef.current || autoplay === undefined) return;
+    const operation = autoplay ? imageRef.current?.startAnimating() : imageRef.current?.stopAnimating();
+    operation?.catch(() => {});
+  }, [autoplay]);
+  // Android's autoplay prop controls newly loaded resources. An existing GIF
+  // needs the native animation command when its row leaves the viewport.
+  useEffect(syncAnimation, [syncAnimation]);
+  const handleLoad = useCallback<NonNullable<ImageProps['onLoad']>>((event) => {
+    animatedRef.current = event.source.isAnimated ?? false;
+    syncAnimation();
+    onLoad?.(event);
+  }, [onLoad, syncAnimation]);
   return (
     <Image
+      ref={imageRef}
       source={source}
       contentFit={contentFit}
       cachePolicy={cachePolicy}
@@ -84,7 +100,7 @@ export const SmartImage: React.FC<SmartImageProps> = ({
       style={style}
       className={className as any}
       onLoadStart={onLoadStart}
-      onLoad={onLoad}
+      onLoad={handleLoad}
       onLoadEnd={onLoadEnd}
       onError={onError}
     />
