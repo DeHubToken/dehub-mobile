@@ -1583,7 +1583,8 @@
     "retry": "دوبارہ کوشش کریں",
     "addedToLeaderboard": "آپ کو شامل کر لیا گیا ہے! بیلنس: {{balance}} ٹوکن",
     "balanceTooLow": "بیلنس بہت کم ہے ({{balance}} ٹوکن)",
-    "tokenAmount": "{{amount}} ٹوکن"
+    "tokenAmount": "{{amount}} ٹوکن",
+    "provisional": "عارضی"
   },
   "explorePage": {
     "searchPlaceholder": "لوگ، پوسٹس یا مواد تلاش کریں...",
@@ -3529,7 +3530,12 @@
       "waiting": "دشمن کا انتظار ہے…",
       "backToLobby": "لابی میں واپس جائیں",
       "serverDidNotAnswer": "میچ سرور نے جواب نہیں دیا۔"
-    }
+    },
+    "gamesRecord_one": "{{count}} گیم · {{wins}}ج {{losses}}ہ {{draws}}ب",
+    "gamesRecord_other": "{{count}} گیمز · {{wins}}ج {{losses}}ہ {{draws}}ب",
+    "kingsGambitBoardTitle": "ریٹنگ",
+    "kingsGambitBoardBlurb": "تمام آن لائن میچوں کا ایلو۔ سب 1200 سے شروع کرتے ہیں؛ مضبوط کھلاڑی کو ہرانا کمزور کو ہرانے سے زیادہ قیمتی ہے، اس لیے دوسرے والٹ سے درجہ بندی نہیں بڑھائی جا سکتی۔",
+    "kingsGambitBoardEmpty": "ابھی کوئی آن لائن میچ مکمل نہیں ہوا۔ چیلنج کھولیں۔"
   },
   "videoLooks": {
     "button": "کیمرہ لُکس",

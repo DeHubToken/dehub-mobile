@@ -1583,7 +1583,8 @@
     "retry": "Erneut versuchen",
     "addedToLeaderboard": "Sie wurden hinzugefügt! Guthaben: {{balance}} Tokens",
     "balanceTooLow": "Guthaben zu niedrig ({{balance}} Tokens)",
-    "tokenAmount": "{{amount}} Tokens"
+    "tokenAmount": "{{amount}} Tokens",
+    "provisional": "vorläufig"
   },
   "explorePage": {
     "searchPlaceholder": "Personen, Beiträge oder Inhalte suchen...",
@@ -3525,7 +3526,12 @@
       "waiting": "Warte auf einen Gegner…",
       "backToLobby": "Zurück zur Lobby",
       "serverDidNotAnswer": "Der Match-Server hat nicht geantwortet."
-    }
+    },
+    "gamesRecord_one": "{{count}} Partie · {{wins}}S {{losses}}N {{draws}}U",
+    "gamesRecord_other": "{{count}} Partien · {{wins}}S {{losses}}N {{draws}}U",
+    "kingsGambitBoardTitle": "Wertung",
+    "kingsGambitBoardBlurb": "Elo über alle Online-Partien. Alle starten bei 1200; ein Sieg gegen einen stärkeren Spieler zählt mehr als einer gegen einen schwächeren, daher lässt sich die Rangliste nicht mit einer zweiten Wallet hochtreiben.",
+    "kingsGambitBoardEmpty": "Noch keine Online-Partie beendet. Eröffne eine Herausforderung."
   },
   "videoLooks": {
     "button": "Kamera-Looks",

@@ -1678,7 +1678,8 @@
     "mostLiked": "সবচে বেশি ভালা লাগা",
     "addedToLeaderboard": "আপনাকে যোগ করা হয়েছে! ব্যালেন্স: {{balance}} টোকেন",
     "balanceTooLow": "ব্যালেন্স কম ({{balance}} টোকেন)",
-    "tokenAmount": "{{amount}} টোকেন"
+    "tokenAmount": "{{amount}} টোকেন",
+    "provisional": "অস্থায়ী"
   },
   "explorePage": {
     "searchPlaceholder": "মানুষ, পোস্ট বা কন্টেন্ট খুঁজুন...",
@@ -3667,7 +3668,12 @@
       "waiting": "প্রতিপক্ষের জন্য অপেক্ষা করছি…",
       "backToLobby": "লবিতে ফিরে যান",
       "serverDidNotAnswer": "ম্যাচ সার্ভার উত্তর দেয়নি।"
-    }
+    },
+    "gamesRecord_one": "{{count}} গেম · {{wins}}জ {{losses}}হা {{draws}}ড্র",
+    "gamesRecord_other": "{{count}} গেম · {{wins}}জ {{losses}}হা {{draws}}ড্র",
+    "kingsGambitBoardTitle": "রেটিং",
+    "kingsGambitBoardBlurb": "হকল অনলাইন ম্যাচর Elo। হকলে ১২০০ থাকি শুরু করে; শক্ত খেলোয়াড়রে হারাইলে দুর্বলরে হারানির থাকি বেশি ফাইবা, তাই দ্বিতীয় ওয়ালেট দিয়া র‍্যাঙ্ক বাড়ানি যায় না।",
+    "kingsGambitBoardEmpty": "এখনো কুনু অনলাইন ম্যাচ শেষ অইছে না। একটা চ্যালেঞ্জ খুলৌকা।"
   },
   "videoLooks": {
     "button": "ক্যামেরা লুক",

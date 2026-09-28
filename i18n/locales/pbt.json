@@ -1583,7 +1583,8 @@
     "retry": "بیا هڅه وکړئ",
     "addedToLeaderboard": "تاسو اضافه شوي یاست! بیلانس: {{balance}} ټوکنونه",
     "balanceTooLow": "ټیټ بیلانس ({{balance}} ټوکنونه)",
-    "tokenAmount": "{{amount}} ټوکنونه"
+    "tokenAmount": "{{amount}} ټوکنونه",
+    "provisional": "لنډمهاله"
   },
   "explorePage": {
     "searchPlaceholder": "خلک، پوسټونه، یا منځپانګه ولټوئ...",
@@ -3525,7 +3526,12 @@
       "waiting": "د مخالف لپاره انتظار...",
       "backToLobby": "لابي ته بیرته",
       "serverDidNotAnswer": "د میچ سرور ځواب ورنه کړ."
-    }
+    },
+    "gamesRecord_one": "{{count}} لوبه · {{wins}}ګ {{losses}}ب {{draws}}م",
+    "gamesRecord_other": "{{count}} لوبې · {{wins}}ګ {{losses}}ب {{draws}}م",
+    "kingsGambitBoardTitle": "ریټنګ",
+    "kingsGambitBoardBlurb": "د ټولو آنلاین لوبو ایلو. ټول له 1200 څخه پیل کوي؛ پر پیاوړي لوبغاړي بریا د کمزوري پر وړاندې له بریا څخه ډېر ارزښت لري، نو رتبه بندي په دویم والټ نه شي لوړېدلی.",
+    "kingsGambitBoardEmpty": "تر اوسه هېڅ آنلاین لوبه نه ده پای ته رسېدلې. یوه ننګونه پرانیزه."
   },
   "videoLooks": {
     "button": "د کامرې بڼې",

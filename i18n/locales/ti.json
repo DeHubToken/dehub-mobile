@@ -1583,7 +1583,8 @@
     "retry": "እንደገና ፈትን",
     "balanceTooLow": "ﻥ ቶክን ዝተሓተተ ({{balance}} ቶክን)",
     "tokenAmount": "{{amount}} ቶክን",
-    "addedToLeaderboard": "ተወሰኸ! ባጤራ ፦ {{balance}} tokens"
+    "addedToLeaderboard": "ተወሰኸ! ባጤራ ፦ {{balance}} tokens",
+    "provisional": "ግዝያዊ"
   },
   "explorePage": {
     "searchPlaceholder": "ሰባት፣ ጽሑፋት፣ ወይ ትሕዝቶ ድለ...",
@@ -3525,7 +3526,12 @@
       "waiting": "ሓደ ተጻዋታይ ይጽበዮ ኣሎ...",
       "backToLobby": "ናብ ሎቢ ተመለስ",
       "serverDidNotAnswer": "እቲ ናይ ጸወታ ኣገልጋሊ መልሲ ኣይሃበን ።"
-    }
+    },
+    "gamesRecord_one": "{{count}} ጸወታ · {{wins}}ዓ {{losses}}ስ {{draws}}ማ",
+    "gamesRecord_other": "{{count}} ጸወታታት · {{wins}}ዓ {{losses}}ስ {{draws}}ማ",
+    "kingsGambitBoardTitle": "ደረጃ ነጥቢ",
+    "kingsGambitBoardBlurb": "ኣብ ኩሉ ናይ መስመር ጸወታታት Elo። ኩሉ ካብ 1200 ይጅምር፤ ንሓያል ተጻዋታይ ምስዓር ካብ ንድኹም ምስዓር ዝያዳ ዋጋ ኣለዎ፣ ስለዚ በቲ ካልኣይ ዋሌት ደረጃ ክብ ክበሃል ኣይክእልን።",
+    "kingsGambitBoardEmpty": "ገና ዝተወድአ ናይ መስመር ጸወታ የለን። ብድሆ ክፈት።"
   },
   "videoLooks": {
     "button": "ናይ ካሜራ ትርኢታት",

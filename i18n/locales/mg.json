@@ -1606,7 +1606,8 @@
     "retry": "Andramo indray",
     "addedToLeaderboard": "Nampiana ianao! Balance: {{balance}} tokens",
     "balanceTooLow": "Tsy ampy ny balance ({{balance}} tokens)",
-    "tokenAmount": "{{amount}} tokens"
+    "tokenAmount": "{{amount}} tokens",
+    "provisional": "vonjimaika"
   },
   "explorePage": {
     "searchPlaceholder": "Hikaroka olona, lahatsoratra na atiny...",
@@ -3548,7 +3549,12 @@
       "waiting": "Miandry mpifanandrina…",
       "backToLobby": "Miverina amin'ny lobby",
       "serverDidNotAnswer": "Tsy namaly ny mpametaka ny lalao."
-    }
+    },
+    "gamesRecord_one": "lalao {{count}} · {{wins}}R {{losses}}L {{draws}}S",
+    "gamesRecord_other": "lalao {{count}} · {{wins}}R {{losses}}L {{draws}}S",
+    "kingsGambitBoardTitle": "Isa",
+    "kingsGambitBoardBlurb": "Elo amin'ny lalao an-tserasera rehetra. Manomboka amin'ny 1200 ny rehetra; sarobidy kokoa ny mandresy mpilalao matanjaka noho ny mandresy malemy, ka tsy azo ampiakarina amin'ny poketra faharoa ny laharana.",
+    "kingsGambitBoardEmpty": "Mbola tsy nisy lalao an-tserasera vita. Manokafa fanamby."
   },
   "videoLooks": {
     "button": "Endrik ny fakan-tsary",

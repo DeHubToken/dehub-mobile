@@ -1583,7 +1583,8 @@
     "retry": "Zkusit znovu",
     "addedToLeaderboard": "Byli jste přidáni! Zůstatek: {{balance}} tokenů",
     "balanceTooLow": "Nedostatečný zůstatek ({{balance}} tokenů)",
-    "tokenAmount": "{{amount}} tokenů"
+    "tokenAmount": "{{amount}} tokenů",
+    "provisional": "předběžné"
   },
   "explorePage": {
     "searchPlaceholder": "Hledat lidi, příspěvky nebo obsah...",
@@ -3529,7 +3530,12 @@
       "waiting": "Čekání na protivníka…",
       "backToLobby": "Zpět do lobby",
       "serverDidNotAnswer": "Server zápasu neodpověděl."
-    }
+    },
+    "gamesRecord_one": "{{count}} partie · {{wins}}V {{losses}}P {{draws}}R",
+    "gamesRecord_other": "{{count}} partií · {{wins}}V {{losses}}P {{draws}}R",
+    "kingsGambitBoardTitle": "Hodnocení",
+    "kingsGambitBoardBlurb": "Elo ze všech online partií. Všichni začínají na 1200; výhra nad silnějším hráčem má větší hodnotu než nad slabším, takže žebříček nejde nahnat druhou peněženkou.",
+    "kingsGambitBoardEmpty": "Zatím neskončila žádná online partie. Vyzvi někoho."
   },
   "videoLooks": {
     "button": "Vzhledy kamery",

@@ -1583,7 +1583,8 @@
     "retry": "Prøv igjen",
     "addedToLeaderboard": "Du er lagt til! Balanse: {{balance}} tokens",
     "balanceTooLow": "Balanse for lav ({{balance}} tokens)",
-    "tokenAmount": "{{amount}} tokens"
+    "tokenAmount": "{{amount}} tokens",
+    "provisional": "foreløpig"
   },
   "explorePage": {
     "searchPlaceholder": "Søk etter folk, innlegg eller innhold...",
@@ -3525,7 +3526,12 @@
       "waiting": "Venter på en motstander…",
       "backToLobby": "Tilbake til lobbyen",
       "serverDidNotAnswer": "Kamp-serveren svarte ikke."
-    }
+    },
+    "gamesRecord_one": "{{count}} parti · {{wins}}S {{losses}}T {{draws}}R",
+    "gamesRecord_other": "{{count}} partier · {{wins}}S {{losses}}T {{draws}}R",
+    "kingsGambitBoardTitle": "Ratingtall",
+    "kingsGambitBoardBlurb": "Elo på tvers av alle nettpartier. Alle starter på 1200; å slå en sterkere spiller er verdt mer enn å slå en svakere, så stigen kan ikke pumpes opp med en ekstra lommebok.",
+    "kingsGambitBoardEmpty": "Ingen nettpartier er fullført ennå. Åpne en utfordring."
   },
   "videoLooks": {
     "button": "Kameralooker",

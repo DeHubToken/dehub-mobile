@@ -1583,7 +1583,8 @@
     "retry": "Дахин оролдох",
     "addedToLeaderboard": "Та нэмэгдлээ! Үлдэгдэл: {{balance}} токен",
     "balanceTooLow": "Үлдэгдэл хэт бага байна ({{balance}} токен)",
-    "tokenAmount": "{{amount}} токен"
+    "tokenAmount": "{{amount}} токен",
+    "provisional": "урьдчилсан"
   },
   "explorePage": {
     "searchPlaceholder": "Хүмүүс, нийтлэл эсвэл агуулга хайх...",
@@ -3525,7 +3526,12 @@
       "waiting": "Өрсөлдөгчийг хүлээж байна…",
       "backToLobby": "Лобби руу буцах",
       "serverDidNotAnswer": "Тоглоомын сервер хариу өгсөнгүй."
-    }
+    },
+    "gamesRecord_one": "{{count}} тоглолт · {{wins}}Х {{losses}}Я {{draws}}Т",
+    "gamesRecord_other": "{{count}} тоглолт · {{wins}}Х {{losses}}Я {{draws}}Т",
+    "kingsGambitBoardTitle": "Үнэлгээ",
+    "kingsGambitBoardBlurb": "Бүх онлайн тоглолтын Elo. Бүгд 1200-аас эхэлнэ; хүчтэй тоглогчийг ялах нь сул тоглогчийг ялахаас илүү үнэ цэнэтэй тул хоёр дахь хэтэвчээр зэрэглэлээ өсгөх боломжгүй.",
+    "kingsGambitBoardEmpty": "Одоогоор нэг ч онлайн тоглолт дуусаагүй байна. Сорилт нээнэ үү."
   },
   "videoLooks": {
     "button": "Камерын загварууд",

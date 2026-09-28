@@ -1583,7 +1583,8 @@
     "retry": "Provo sërish",
     "addedToLeaderboard": "Jeni shtuar! Bilanci: {{balance}} tokena",
     "balanceTooLow": "Bilanci i ulët ({{balance}} tokena)",
-    "tokenAmount": "{{amount}} tokena"
+    "tokenAmount": "{{amount}} tokena",
+    "provisional": "i përkohshëm"
   },
   "explorePage": {
     "searchPlaceholder": "Kërkoni për njerëz, postime, ose përmbajtje...",
@@ -3525,7 +3526,12 @@
       "waiting": "Në pritje të kundërshtarit…",
       "backToLobby": "Kthehu në lob",
       "serverDidNotAnswer": "Serveri i ndeshjes nuk u përgjigj."
-    }
+    },
+    "gamesRecord_one": "{{count}} lojë · {{wins}}F {{losses}}H {{draws}}B",
+    "gamesRecord_other": "{{count}} lojëra · {{wins}}F {{losses}}H {{draws}}B",
+    "kingsGambitBoardTitle": "Vlerësimi",
+    "kingsGambitBoardBlurb": "Elo në çdo ndeshje online. Të gjithë nisin nga 1200; të mundësh një lojtar më të fortë vlen më shumë se të mundësh një më të dobët, kështu që renditja nuk mund të fryhet me një portofol të dytë.",
+    "kingsGambitBoardEmpty": "Asnjë ndeshje online nuk ka përfunduar ende. Hap një sfidë."
   },
   "videoLooks": {
     "button": "Pamjet e kamerës",

@@ -1583,7 +1583,8 @@
     "retry": "Încearcă din nou",
     "addedToLeaderboard": "Ai fost adăugat! Sold: {{balance}} tokenuri",
     "balanceTooLow": "Sold prea mic ({{balance}} tokenuri)",
-    "tokenAmount": "{{amount}} tokenuri"
+    "tokenAmount": "{{amount}} tokenuri",
+    "provisional": "provizoriu"
   },
   "explorePage": {
     "searchPlaceholder": "Caută persoane, postări sau conținut...",
@@ -3525,7 +3526,12 @@
       "waiting": "Așteptând un adversar…",
       "backToLobby": "Înapoi la lobby",
       "serverDidNotAnswer": "Serverul de meciuri nu a răspuns."
-    }
+    },
+    "gamesRecord_one": "{{count}} partidă · {{wins}}V {{losses}}Î {{draws}}R",
+    "gamesRecord_other": "{{count}} partide · {{wins}}V {{losses}}Î {{draws}}R",
+    "kingsGambitBoardTitle": "Rating Elo",
+    "kingsGambitBoardBlurb": "Elo pe toate partidele online. Toți pornesc de la 1200; o victorie împotriva unui jucător mai puternic valorează mai mult decât una împotriva unuia mai slab, așa că clasamentul nu poate fi umflat cu un al doilea portofel.",
+    "kingsGambitBoardEmpty": "Nicio partidă online nu s-a încheiat încă. Deschide o provocare."
   },
   "videoLooks": {
     "button": "Aspecte ale camerei",

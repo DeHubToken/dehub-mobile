@@ -1583,7 +1583,8 @@
     "retry": "إعادة المحاولة",
     "addedToLeaderboard": "تمت إضافتك! الرصيد: {{balance}} رمز مميز",
     "balanceTooLow": "الرصيد منخفض جدًا ({{balance}} رمز مميز)",
-    "tokenAmount": "{{amount}} رمز مميز"
+    "tokenAmount": "{{amount}} رمز مميز",
+    "provisional": "مؤقت"
   },
   "explorePage": {
     "searchPlaceholder": "ابحث عن أشخاص أو منشورات أو محتوى...",
@@ -3529,7 +3530,12 @@
       "waiting": "في انتظار الخصم…",
       "backToLobby": "العودة إلى القاعة",
       "serverDidNotAnswer": "لم يرد خادم المباراة."
-    }
+    },
+    "gamesRecord_one": "{{count}} مباراة · {{wins}}ف {{losses}}خ {{draws}}ت",
+    "gamesRecord_other": "{{count}} مباريات · {{wins}}ف {{losses}}خ {{draws}}ت",
+    "kingsGambitBoardTitle": "التصنيف",
+    "kingsGambitBoardBlurb": "تصنيف إيلو عبر كل المباريات عبر الإنترنت. يبدأ الجميع من 1200؛ الفوز على لاعب أقوى يساوي أكثر من الفوز على أضعف، لذا لا يمكن تضخيم السلم بمحفظة ثانية.",
+    "kingsGambitBoardEmpty": "لم تنتهِ أي مباراة عبر الإنترنت بعد. افتح تحديًا."
   },
   "videoLooks": {
     "button": "مظاهر الكاميرا",

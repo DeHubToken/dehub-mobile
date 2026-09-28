@@ -1583,7 +1583,8 @@
     "retry": "عاود جرب",
     "addedToLeaderboard": "لقد تمت إضافتك! الرصيد: {{balance}} رمز",
     "balanceTooLow": "الرصيد منخفض جدًا ({{balance}} رمز)",
-    "tokenAmount": "{{amount}} رمز"
+    "tokenAmount": "{{amount}} رمز",
+    "provisional": "مؤقت"
   },
   "explorePage": {
     "searchPlaceholder": "قلّب على ناس أو بوستات أو محتوى...",
@@ -3555,7 +3556,12 @@
       "waiting": "في انتظار خصم…",
       "backToLobby": "العودة إلى اللوبي",
       "serverDidNotAnswer": "خادم المباراة لم يجب."
-    }
+    },
+    "gamesRecord_one": "{{count}} ماتش · {{wins}}ف {{losses}}خ {{draws}}ت",
+    "gamesRecord_other": "{{count}} ماتشات · {{wins}}ف {{losses}}خ {{draws}}ت",
+    "kingsGambitBoardTitle": "التصنيف",
+    "kingsGambitBoardBlurb": "تصنيف إيلو على كاع الماتشات أونلاين. كولشي كيبدا من 1200؛ الفوز على لاعب قوي كيجيب كتر من الفوز على ضعيف، إذن ما يمكنش تطلع الترتيب بمحفظة تانية.",
+    "kingsGambitBoardEmpty": "مازال حتى ماتش أونلاين ما سالا. حل تحدي."
   },
   "videoLooks": {
     "button": "مظاهر الكاميرا",

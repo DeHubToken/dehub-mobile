@@ -1555,7 +1555,8 @@
     "secondaryReferrals_other": "{{count}} second level",
     "retry": "Try again",
     "balanceTooLow": "Balance too low ({{balance}} tokens)",
-    "tokenAmount": "{{amount}} tokens"
+    "tokenAmount": "{{amount}} tokens",
+    "provisional": "e never sure"
   },
   "explorePage": {
     "searchPlaceholder": "Find people, post or content...",
@@ -3441,7 +3442,12 @@
       "backToLobby": "Go back to di lobby",
       "serverDidNotAnswer": "Di match server no answer."
     },
-    "chessOnlineIntro": "Live fight against oda players. Betting wit DeHub tokens dey come."
+    "chessOnlineIntro": "Live fight against oda players. Betting wit DeHub tokens dey come.",
+    "gamesRecord_one": "{{count}} game · {{wins}}W {{losses}}L {{draws}}D",
+    "gamesRecord_other": "{{count}} games · {{wins}}W {{losses}}L {{draws}}D",
+    "kingsGambitBoardTitle": "Rating",
+    "kingsGambitBoardBlurb": "Elo for every online match. Everybody start from 1200; to beat person wey strong pass you dey worth pass to beat person wey weak, so you no fit pump di ladder with second wallet.",
+    "kingsGambitBoardEmpty": "No online match don finish yet. Open challenge."
   },
   "videoLooks": {
     "button": "Camera looks",

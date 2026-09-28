@@ -1583,7 +1583,8 @@
     "retry": "ولدا کوشش کرو",
     "addedToLeaderboard": "تساں شامل کر لِتّے گئے ہو! بیلنس: {{balance}} ٹوکن",
     "balanceTooLow": "بیلنس گھٹ اے ({{balance}} ٹوکن)",
-    "tokenAmount": "{{amount}} ٹوکن"
+    "tokenAmount": "{{amount}} ٹوکن",
+    "provisional": "عارضی"
   },
   "explorePage": {
     "searchPlaceholder": "لوک، پوسٹاں یا مواد ڳولو...",
@@ -3525,7 +3526,12 @@
       "waiting": "مقابلي جو انتظار آهي…",
       "backToLobby": "لابِي ڏانهن واپس",
       "serverDidNotAnswer": "ميچ سرور جواب نه ڏنو."
-    }
+    },
+    "gamesRecord_one": "{{count}} گیم · {{wins}}ج {{losses}}ہ {{draws}}ب",
+    "gamesRecord_other": "{{count}} گیماں · {{wins}}ج {{losses}}ہ {{draws}}ب",
+    "kingsGambitBoardTitle": "ریٹنگ",
+    "kingsGambitBoardBlurb": "سبھ آن لائن میچاں دا ایلو۔ سبھ 1200 توں شروع کریندن؛ مضبوط کھلاڑی کوں ہراوݨ کمزور کوں ہراوݨ توں ودھ قیمتی ہے، ایں کیتے ٻئے والٹ نال درجہ بندی نئیں ودھائی ونڄ سڳدی۔",
+    "kingsGambitBoardEmpty": "ہجے کوئی آن لائن میچ پورا کائنی تھیا۔ چیلنج کھولو۔"
   },
   "videoLooks": {
     "button": "کیمرہ لُک",

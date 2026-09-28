@@ -1601,7 +1601,8 @@
     "retry": "Qayta urinish",
     "addedToLeaderboard": "Siz qo'shildingiz! Balans: {{balance}} token",
     "balanceTooLow": "Balans past ({{balance}} token)",
-    "tokenAmount": "{{amount}} token"
+    "tokenAmount": "{{amount}} token",
+    "provisional": "dastlabki"
   },
   "explorePage": {
     "searchPlaceholder": "Odamlar, postlar yoki kontent qidirish...",
@@ -3543,7 +3544,12 @@
       "waiting": "Raqib kutmoqda…",
       "backToLobby": "Lobbiga qaytish",
       "serverDidNotAnswer": "Match serveri javob bermadi."
-    }
+    },
+    "gamesRecord_one": "{{count}} o'yin · {{wins}}G' {{losses}}M {{draws}}D",
+    "gamesRecord_other": "{{count}} o'yin · {{wins}}G' {{losses}}M {{draws}}D",
+    "kingsGambitBoardTitle": "Reyting",
+    "kingsGambitBoardBlurb": "Barcha onlayn o'yinlar bo'yicha Elo. Hamma 1200 dan boshlaydi; kuchli o'yinchini yengish kuchsizni yengishdan qimmatroq, shuning uchun reytingni ikkinchi hamyon bilan oshirib bo'lmaydi.",
+    "kingsGambitBoardEmpty": "Hali birorta onlayn o'yin tugamadi. Chaqiriq oching."
   },
   "videoLooks": {
     "button": "Kamera koʻrinishlari",

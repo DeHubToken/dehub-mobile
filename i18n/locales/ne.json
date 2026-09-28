@@ -1596,7 +1596,8 @@
     "retry": "पुनः प्रयास",
     "addedToLeaderboard": "तपाईं थपिनुभएको छ! ब्यालेन्स: {{balance}} टोकन",
     "balanceTooLow": "ब्यालेन्स धेरै कम छ ({{balance}} टोकन)",
-    "tokenAmount": "{{amount}} टोकन"
+    "tokenAmount": "{{amount}} टोकन",
+    "provisional": "अस्थायी"
   },
   "explorePage": {
     "searchPlaceholder": "मानिसहरू, पोस्टहरू वा सामग्री खोज्नुहोस्...",
@@ -3538,7 +3539,12 @@
       "waiting": "प्रतिस्पर्धीको लागि पर्खँदै...",
       "backToLobby": "लबीमा फर्कनुहोस्",
       "serverDidNotAnswer": "म्याच सर्भरले जवाफ दिएन।"
-    }
+    },
+    "gamesRecord_one": "{{count}} खेल · {{wins}}जि {{losses}}हा {{draws}}ब",
+    "gamesRecord_other": "{{count}} खेल · {{wins}}जि {{losses}}हा {{draws}}ब",
+    "kingsGambitBoardTitle": "रेटिङ",
+    "kingsGambitBoardBlurb": "सबै अनलाइन खेलहरूको Elo। सबै 1200 बाट सुरु गर्छन्; बलियो खेलाडीलाई हराउनु कमजोरलाई हराउनुभन्दा बढी मूल्यवान छ, त्यसैले दोस्रो वालेटले र्‍याङ्क बढाउन सकिँदैन।",
+    "kingsGambitBoardEmpty": "अहिलेसम्म कुनै अनलाइन खेल सकिएको छैन। चुनौती खोल्नुहोस्।"
   },
   "videoLooks": {
     "button": "क्यामेरा लुक",

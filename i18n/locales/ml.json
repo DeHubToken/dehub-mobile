@@ -1583,7 +1583,8 @@
     "retry": "വീണ്ടും ശ്രമിക്കുക",
     "addedToLeaderboard": "നിങ്ങൾ ചേർക്കപ്പെട്ടു! ബാലൻസ്: {{balance}} ടോക്കണുകൾ",
     "balanceTooLow": "ബാലൻസ് വളരെ കുറവാണ് ({{balance}} ടോക്കണുകൾ)",
-    "tokenAmount": "{{amount}} ടോക്കണുകൾ"
+    "tokenAmount": "{{amount}} ടോക്കണുകൾ",
+    "provisional": "താൽക്കാലികം"
   },
   "explorePage": {
     "searchPlaceholder": "ആളുകൾ, പോസ്റ്റുകൾ അല്ലെങ്കിൽ ഉള്ളടക്കം തിരയുക...",
@@ -3525,7 +3526,12 @@
       "waiting": "എതിരാളിക്കായി കാത്തിരിക്കുന്നു…",
       "backToLobby": "ലോബിയിലേക്ക് മടങ്ങുക",
       "serverDidNotAnswer": "മാച്ച് സെർവർ പ്രതികരിച്ചില്ല."
-    }
+    },
+    "gamesRecord_one": "{{count}} ഗെയിം · {{wins}}ജ {{losses}}തോ {{draws}}സ",
+    "gamesRecord_other": "{{count}} ഗെയിമുകൾ · {{wins}}ജ {{losses}}തോ {{draws}}സ",
+    "kingsGambitBoardTitle": "റേറ്റിംഗ്",
+    "kingsGambitBoardBlurb": "എല്ലാ ഓൺലൈൻ മത്സരങ്ങളുടെയും Elo. എല്ലാവരും 1200-ൽ തുടങ്ങുന്നു; ശക്തനായ കളിക്കാരനെ തോൽപ്പിക്കുന്നത് ദുർബലനെ തോൽപ്പിക്കുന്നതിനേക്കാൾ വിലപ്പെട്ടതാണ്, അതിനാൽ രണ്ടാമതൊരു വാലറ്റുകൊണ്ട് റാങ്ക് ഉയർത്താനാവില്ല.",
+    "kingsGambitBoardEmpty": "ഇതുവരെ ഒരു ഓൺലൈൻ മത്സരവും പൂർത്തിയായിട്ടില്ല. ഒരു ചലഞ്ച് തുറക്കൂ."
   },
   "videoLooks": {
     "button": "ക്യാമറ ലുക്കുകൾ",

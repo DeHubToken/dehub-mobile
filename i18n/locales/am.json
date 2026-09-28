@@ -1583,7 +1583,8 @@
     "retry": "እንደገና ሞክር",
     "addedToLeaderboard": "ተጨምረዋል! ቀሪ ሂሳብ፡ {{balance}} ቶከኖች",
     "balanceTooLow": "ቀሪ ሂሳብ በጣም ዝቅተኛ ነው ({{balance}} ቶከኖች)",
-    "tokenAmount": "{{amount}} ቶከኖች"
+    "tokenAmount": "{{amount}} ቶከኖች",
+    "provisional": "ጊዜያዊ"
   },
   "explorePage": {
     "searchPlaceholder": "ሰዎች፣ ልጥፎች ወይም ይዘት ፈልግ...",
@@ -3555,7 +3556,12 @@
       "waiting": "ተቀናቃኝ በመጠበቅ ላይ…",
       "backToLobby": "ወደ ሎቢው ተመለስ",
       "serverDidNotAnswer": "የጨዋታው አገልጋይ ምላሽ አልሰጠም።"
-    }
+    },
+    "gamesRecord_one": "{{count}} ጨዋታ · {{wins}}ድ {{losses}}ሽ {{draws}}አ",
+    "gamesRecord_other": "{{count}} ጨዋታዎች · {{wins}}ድ {{losses}}ሽ {{draws}}አ",
+    "kingsGambitBoardTitle": "ደረጃ ነጥብ",
+    "kingsGambitBoardBlurb": "በሁሉም የመስመር ላይ ጨዋታዎች ላይ Elo። ሁሉም ከ1200 ይጀምራሉ፤ ጠንካራ ተጫዋችን ማሸነፍ ደካማን ከማሸነፍ የበለጠ ዋጋ አለው፣ ስለዚህ በሁለተኛ ዋሌት ደረጃውን ማሳደግ አይቻልም።",
+    "kingsGambitBoardEmpty": "እስካሁን ምንም የመስመር ላይ ጨዋታ አልተጠናቀቀም። ፈተና ይክፈቱ።"
   },
   "videoLooks": {
     "button": "የካሜራ መልኮች",

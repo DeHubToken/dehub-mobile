@@ -1583,7 +1583,8 @@
     "retry": "Ponów",
     "addedToLeaderboard": "Zostałeś dodany! Saldo: {{balance}} tokenów",
     "balanceTooLow": "Zbyt niskie saldo ({{balance}} tokenów)",
-    "tokenAmount": "{{amount}} tokenów"
+    "tokenAmount": "{{amount}} tokenów",
+    "provisional": "tymczasowy"
   },
   "explorePage": {
     "searchPlaceholder": "Szukaj ludzi, postów lub treści...",
@@ -3525,7 +3526,12 @@
       "waiting": "Oczekiwanie na przeciwnika…",
       "backToLobby": "Wróć do lobby",
       "serverDidNotAnswer": "Serwer meczu nie odpowiedział."
-    }
+    },
+    "gamesRecord_one": "{{count}} partia · {{wins}}W {{losses}}P {{draws}}R",
+    "gamesRecord_other": "{{count}} partii · {{wins}}W {{losses}}P {{draws}}R",
+    "kingsGambitBoardTitle": "Ranking",
+    "kingsGambitBoardBlurb": "Elo ze wszystkich partii online. Każdy zaczyna od 1200; wygrana z silniejszym graczem jest warta więcej niż ze słabszym, więc rankingu nie da się nabić drugim portfelem.",
+    "kingsGambitBoardEmpty": "Żadna partia online jeszcze się nie zakończyła. Rzuć wyzwanie."
   },
   "videoLooks": {
     "button": "Wyglądy kamery",

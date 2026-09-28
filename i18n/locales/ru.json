@@ -1583,7 +1583,8 @@
     "retry": "Повторить",
     "addedToLeaderboard": "Вы добавлены! Баланс: {{balance}} токенов",
     "balanceTooLow": "Недостаточно средств ({{balance}} токенов)",
-    "tokenAmount": "{{amount}} токенов"
+    "tokenAmount": "{{amount}} токенов",
+    "provisional": "предварительный"
   },
   "explorePage": {
     "searchPlaceholder": "Поиск людей, публикаций или контента...",
@@ -3529,7 +3530,12 @@
       "waiting": "Ожидание противника…",
       "backToLobby": "Назад в лобби",
       "serverDidNotAnswer": "Сервер матча не ответил."
-    }
+    },
+    "gamesRecord_one": "{{count}} партия · {{wins}}В {{losses}}П {{draws}}Н",
+    "gamesRecord_other": "{{count}} партий · {{wins}}В {{losses}}П {{draws}}Н",
+    "kingsGambitBoardTitle": "Рейтинг",
+    "kingsGambitBoardBlurb": "Эло по всем онлайн-партиям. Все начинают с 1200; победа над более сильным игроком стоит больше, чем над слабым, так что накрутить рейтинг вторым кошельком не выйдет.",
+    "kingsGambitBoardEmpty": "Ни одна онлайн-партия ещё не завершена. Бросьте вызов."
   },
   "videoLooks": {
     "button": "Стили камеры",

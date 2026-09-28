@@ -1583,7 +1583,8 @@
     "retry": "Нов опит",
     "addedToLeaderboard": "Добавени сте! Баланс: {{balance}} токена",
     "balanceTooLow": "Балансът е твърде нисък ({{balance}} токена)",
-    "tokenAmount": "{{amount}} токена"
+    "tokenAmount": "{{amount}} токена",
+    "provisional": "предварителен"
   },
   "explorePage": {
     "searchPlaceholder": "Търсете хора, публикации или съдържание...",
@@ -3529,7 +3530,12 @@
       "waiting": "Чака се противник…",
       "backToLobby": "Връщане в лобито",
       "serverDidNotAnswer": "Сървърът за мачове не отговори."
-    }
+    },
+    "gamesRecord_one": "{{count}} партия · {{wins}}П {{losses}}З {{draws}}Р",
+    "gamesRecord_other": "{{count}} партии · {{wins}}П {{losses}}З {{draws}}Р",
+    "kingsGambitBoardTitle": "Рейтинг",
+    "kingsGambitBoardBlurb": "Ело от всички онлайн партии. Всички започват от 1200; победа над по-силен играч носи повече от победа над по-слаб, така че класацията не може да се надуе с втори портфейл.",
+    "kingsGambitBoardEmpty": "Още няма завършена онлайн партия. Отправи предизвикателство."
   },
   "videoLooks": {
     "button": "Стилове на камерата",

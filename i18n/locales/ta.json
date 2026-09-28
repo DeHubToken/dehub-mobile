@@ -1583,7 +1583,8 @@
     "retry": "மீண்டும் முயற்சி",
     "addedToLeaderboard": "நீங்கள் சேர்க்கப்பட்டுள்ளீர்கள்! இருப்பு: {{balance}} டோக்கன்கள்",
     "balanceTooLow": "இருப்பு மிகவும் குறைவு ({{balance}} டோக்கன்கள்)",
-    "tokenAmount": "{{amount}} டோக்கன்கள்"
+    "tokenAmount": "{{amount}} டோக்கன்கள்",
+    "provisional": "தற்காலிகம்"
   },
   "explorePage": {
     "searchPlaceholder": "நபர்கள், பதிவுகள் அல்லது உள்ளடக்கத்தைத் தேடு...",
@@ -3529,7 +3530,12 @@
       "waiting": "எதிராளி காத்திருக்கிறது…",
       "backToLobby": "லாபிக்கு திரும்பு",
       "serverDidNotAnswer": "மட்ச் சர்வர் பதிலளிக்கவில்லை."
-    }
+    },
+    "gamesRecord_one": "{{count}} ஆட்டம் · {{wins}}வெ {{losses}}தோ {{draws}}ச",
+    "gamesRecord_other": "{{count}} ஆட்டங்கள் · {{wins}}வெ {{losses}}தோ {{draws}}ச",
+    "kingsGambitBoardTitle": "மதிப்பீடு",
+    "kingsGambitBoardBlurb": "எல்லா ஆன்லைன் ஆட்டங்களின் Elo. அனைவரும் 1200-இல் தொடங்குகிறார்கள்; வலிமையான வீரரை வெல்வது பலவீனமானவரை வெல்வதை விட மதிப்புமிக்கது, எனவே இரண்டாவது வாலட்டால் தரவரிசையை உயர்த்த முடியாது.",
+    "kingsGambitBoardEmpty": "இன்னும் எந்த ஆன்லைன் ஆட்டமும் முடியவில்லை. சவால் ஒன்றைத் திறக்கவும்."
   },
   "videoLooks": {
     "button": "கேமரா தோற்றங்கள்",

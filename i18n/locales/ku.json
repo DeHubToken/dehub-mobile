@@ -1533,7 +1533,8 @@
     "directReferrals_other": "{{count}} rasterast",
     "secondaryReferrals_one": "{{count}} asta duyem",
     "secondaryReferrals_other": "{{count}} asta duyem",
-    "retry": "Dîsa biceribîne"
+    "retry": "Dîsa biceribîne",
+    "provisional": "demkî"
   },
   "explorePage": {
     "searchPlaceholder": "Li kes, şandin, an naverokê bigerin...",
@@ -3407,7 +3408,12 @@
       "waiting": "چاوەڕوانی بۆ ڕکابەر…",
       "backToLobby": "گەڕانەوە بۆ هۆڵەکە",
       "serverDidNotAnswer": "سێرڤەری یارییەکە وەڵامی نەداوەتەوە."
-    }
+    },
+    "gamesRecord_one": "{{count}} lîstik · {{wins}}S {{losses}}T {{draws}}B",
+    "gamesRecord_other": "{{count}} lîstik · {{wins}}S {{losses}}T {{draws}}B",
+    "kingsGambitBoardTitle": "Nirxandin",
+    "kingsGambitBoardBlurb": "Elo di hemû lîstikên serhêl de. Her kes ji 1200 dest pê dike; têkbirina lîstikvanekî bihêztir ji ya lawaztir bêtir bi nirx e, ji ber vê yekê rêzbendî bi cizdanekî duyem nayê zêdekirin.",
+    "kingsGambitBoardEmpty": "Hîn tu lîstika serhêl neqediyaye. Pêşbaziyekê veke."
   },
   "videoLooks": {
     "button": "Dîmenên kamerayê",

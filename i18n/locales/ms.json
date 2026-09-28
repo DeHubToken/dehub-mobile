@@ -1844,7 +1844,8 @@
     "retry": "Cuba semula",
     "addedToLeaderboard": "Anda telah ditambah! Baki: {{balance}} token",
     "balanceTooLow": "Baki terlalu rendah ({{balance}} token)",
-    "tokenAmount": "{{amount}} token"
+    "tokenAmount": "{{amount}} token",
+    "provisional": "sementara"
   },
   "explorePage": {
     "searchPlaceholder": "Cari orang, siaran, atau kandungan...",
@@ -3786,7 +3787,12 @@
       "waiting": "Menunggu lawan…",
       "backToLobby": "Kembali ke lobi",
       "serverDidNotAnswer": "Pelayan perlawanan tidak memberi respons."
-    }
+    },
+    "gamesRecord_one": "{{count}} perlawanan · {{wins}}M {{losses}}K {{draws}}S",
+    "gamesRecord_other": "{{count}} perlawanan · {{wins}}M {{losses}}K {{draws}}S",
+    "kingsGambitBoardTitle": "Penarafan",
+    "kingsGambitBoardBlurb": "Elo merentas semua perlawanan dalam talian. Semua bermula pada 1200; menewaskan pemain lebih kuat bernilai lebih daripada yang lebih lemah, jadi kedudukan tidak boleh dinaikkan dengan dompet kedua.",
+    "kingsGambitBoardEmpty": "Belum ada perlawanan dalam talian yang tamat. Buka cabaran."
   },
   "videoLooks": {
     "button": "Gaya kamera",

@@ -1583,7 +1583,8 @@
     "retry": "ลองใหม่",
     "addedToLeaderboard": "คุณถูกเพิ่มแล้ว! ยอดคงเหลือ: {{balance}} โทเคน",
     "balanceTooLow": "ยอดคงเหลือต่ำเกินไป ({{balance}} โทเคน)",
-    "tokenAmount": "{{amount}} โทเคน"
+    "tokenAmount": "{{amount}} โทเคน",
+    "provisional": "ชั่วคราว"
   },
   "explorePage": {
     "searchPlaceholder": "ค้นหาคน โพสต์ หรือเนื้อหา...",
@@ -3525,7 +3526,12 @@
       "waiting": "รอคู่ต่อสู้…",
       "backToLobby": "กลับไปที่ล็อบบี้",
       "serverDidNotAnswer": "เซิร์ฟเวอร์จับคู่ไม่ตอบสนอง"
-    }
+    },
+    "gamesRecord_one": "{{count}} เกม · ชนะ {{wins}} แพ้ {{losses}} เสมอ {{draws}}",
+    "gamesRecord_other": "{{count}} เกม · ชนะ {{wins}} แพ้ {{losses}} เสมอ {{draws}}",
+    "kingsGambitBoardTitle": "เรตติ้ง",
+    "kingsGambitBoardBlurb": "Elo จากทุกแมตช์ออนไลน์ ทุกคนเริ่มที่ 1200 ชนะผู้เล่นที่เก่งกว่าได้คะแนนหลายกว่าชนะผู้เล่นที่อ่อนกว่า จั่งปั่นอันดับด้วยกระเป๋าที่สองบ่ได้",
+    "kingsGambitBoardEmpty": "ยังบ่มีแมตช์ออนไลน์ที่จบลง เปิดคำท้าเลย"
   },
   "videoLooks": {
     "button": "ลุคกล้อง",

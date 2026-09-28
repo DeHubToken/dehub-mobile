@@ -1583,7 +1583,8 @@
     "retry": "Coba maneh",
     "addedToLeaderboard": "Sampeyan wis ditambahake! Imbangan: {{balance}} token",
     "balanceTooLow": "Imbangan kurang ({{balance}} token)",
-    "tokenAmount": "{{amount}} token"
+    "tokenAmount": "{{amount}} token",
+    "provisional": "sementara"
   },
   "explorePage": {
     "searchPlaceholder": "Goleki wong, kiriman, utawa konten...",
@@ -3525,7 +3526,12 @@
       "waiting": "Ngenteni lawan…",
       "backToLobby": "Bali menyang lobi",
       "serverDidNotAnswer": "Server pertandingan ora mangsuli."
-    }
+    },
+    "gamesRecord_one": "{{count}} dolanan · {{wins}}M {{losses}}K {{draws}}S",
+    "gamesRecord_other": "{{count}} dolanan · {{wins}}M {{losses}}K {{draws}}S",
+    "kingsGambitBoardTitle": "Rating Elo",
+    "kingsGambitBoardBlurb": "Elo saka kabeh tandhing online. Kabeh wiwit saka 1200; ngalahake pemain sing luwih kuwat regane luwih akeh tinimbang sing luwih ringkih, dadi peringkat ora bisa dikatrol nganggo dompet kapindho.",
+    "kingsGambitBoardEmpty": "Durung ana tandhing online sing rampung. Bukak tantangan."
   },
   "videoLooks": {
     "button": "Tampilan kamera",

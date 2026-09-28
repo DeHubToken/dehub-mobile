@@ -1773,7 +1773,8 @@
     "retry": "Opnieuw",
     "addedToLeaderboard": "Je bent toegevoegd! Saldo: {{balance}} tokens",
     "balanceTooLow": "Saldo te laag ({{balance}} tokens)",
-    "tokenAmount": "{{amount}} tokens"
+    "tokenAmount": "{{amount}} tokens",
+    "provisional": "voorlopig"
   },
   "explorePage": {
     "searchPlaceholder": "Zoek mensen, berichten of inhoud...",
@@ -3715,7 +3716,12 @@
       "waiting": "Wachten op een tegenstander…",
       "backToLobby": "Terug naar de lobby",
       "serverDidNotAnswer": "De matchserver heeft niet geantwoord."
-    }
+    },
+    "gamesRecord_one": "{{count}} partij · {{wins}}W {{losses}}V {{draws}}R",
+    "gamesRecord_other": "{{count}} partijen · {{wins}}W {{losses}}V {{draws}}R",
+    "kingsGambitBoardTitle": "Speelsterkte",
+    "kingsGambitBoardBlurb": "Elo over alle online partijen. Iedereen begint op 1200; winnen van een sterkere speler is meer waard dan winnen van een zwakkere, dus de ladder kan niet met een tweede wallet worden opgekrikt.",
+    "kingsGambitBoardEmpty": "Nog geen online partij afgerond. Open een uitdaging."
   },
   "videoLooks": {
     "button": "Cameralooks",

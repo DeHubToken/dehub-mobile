@@ -1596,7 +1596,8 @@
     "retry": "Irra deebi'ii yaali",
     "addedToLeaderboard": "Siif dabalamte! Dabalii: {{balance}} ispoonsii",
     "balanceTooLow": "Dabalii xinnaa ({{balance}} ispoonsii)",
-    "tokenAmount": "{{amount}} ispoonsii"
+    "tokenAmount": "{{amount}} ispoonsii",
+    "provisional": "yeroo gabaabaaf"
   },
   "explorePage": {
     "searchPlaceholder": "Namoota, barreeffamoota yookaan qabiyyee barbaadi...",
@@ -3538,7 +3539,12 @@
       "waiting": "Mootichaaf eegaa…",
       "backToLobby": "Lobbii deebi'i",
       "serverDidNotAnswer": "Serverri walitti qabuu hin deebisu."
-    }
+    },
+    "gamesRecord_one": "taphoota {{count}} · {{wins}}M {{losses}}K {{draws}}W",
+    "gamesRecord_other": "taphoota {{count}} · {{wins}}M {{losses}}K {{draws}}W",
+    "kingsGambitBoardTitle": "Madaallii",
+    "kingsGambitBoardBlurb": "Elo taphoota toora interneetii hunda irratti. Hundi 1200 irraa jalqaba; taphataa cimaa mo'uun isa dadhabaa mo'uu caalaa gatii qaba, kanaaf sadarkaan waaleetii lammaffaan ol guddifamuu hin danda'u.",
+    "kingsGambitBoardEmpty": "Ammatti taphni toora interneetii xumurame hin jiru. Dorgommii bani."
   },
   "videoLooks": {
     "button": "Bifannoota kaameraa",

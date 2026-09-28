@@ -1563,7 +1563,8 @@
     "directReferrals_other": "{{count}} ਸਿੱਧੇ",
     "secondaryReferrals_one": "{{count}} ਦੂਜੇ ਪੱਧਰ ਦੇ",
     "secondaryReferrals_other": "{{count}} ਦੂਜੇ ਪੱਧਰ ਦੇ",
-    "retry": "ਫਿਰ ਕੋਸ਼ਿਸ਼ ਕਰੋ"
+    "retry": "ਫਿਰ ਕੋਸ਼ਿਸ਼ ਕਰੋ",
+    "provisional": "ਆਰਜ਼ੀ"
   },
   "explorePage": {
     "searchPlaceholder": "ਲੋਕ, ਪੋਸਟਾਂ ਜਾਂ ਸਮੱਗਰੀ ਖੋਜੋ...",
@@ -3471,7 +3472,12 @@
       "waiting": "ਵਿਰੋਧੀ ਦੀ ਉਡੀਕ ਕਰ ਰਹੇ ਹਨ…",
       "backToLobby": "ਲੌਬੀ ਤੇ ਵਾਪਸ ਜਾਓ",
       "serverDidNotAnswer": "ਮੈਚ ਸਰਵਰ ਨੇ ਜਵਾਬ ਨਹੀਂ ਦਿੱਤਾ।"
-    }
+    },
+    "gamesRecord_one": "{{count}} ਗੇਮ · {{wins}}ਜ {{losses}}ਹ {{draws}}ਬ",
+    "gamesRecord_other": "{{count}} ਗੇਮਾਂ · {{wins}}ਜ {{losses}}ਹ {{draws}}ਬ",
+    "kingsGambitBoardTitle": "ਰੇਟਿੰਗ",
+    "kingsGambitBoardBlurb": "ਸਾਰੇ ਆਨਲਾਈਨ ਮੈਚਾਂ ਦਾ Elo। ਸਾਰੇ 1200 ਤੋਂ ਸ਼ੁਰੂ ਕਰਦੇ ਹਨ; ਤਕੜੇ ਖਿਡਾਰੀ ਨੂੰ ਹਰਾਉਣਾ ਕਮਜ਼ੋਰ ਨੂੰ ਹਰਾਉਣ ਨਾਲੋਂ ਵੱਧ ਕੀਮਤੀ ਹੈ, ਇਸ ਲਈ ਦੂਜੇ ਵਾਲਿਟ ਨਾਲ ਰੈਂਕ ਨਹੀਂ ਵਧਾਇਆ ਜਾ ਸਕਦਾ।",
+    "kingsGambitBoardEmpty": "ਹਾਲੇ ਕੋਈ ਆਨਲਾਈਨ ਮੈਚ ਪੂਰਾ ਨਹੀਂ ਹੋਇਆ। ਚੈਲੇਂਜ ਖੋਲ੍ਹੋ।"
   },
   "videoLooks": {
     "button": "ਕੈਮਰਾ ਲੁੱਕ",

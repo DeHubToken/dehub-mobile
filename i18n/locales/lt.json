@@ -1583,7 +1583,8 @@
     "retry": "Bandyti dar kartą",
     "addedToLeaderboard": "Jūs pridėtas! Balansas: {{balance}} žetonų",
     "balanceTooLow": "Per mažas balansas ({{balance}} žetonų)",
-    "tokenAmount": "{{amount}} žetonų"
+    "tokenAmount": "{{amount}} žetonų",
+    "provisional": "preliminarus"
   },
   "explorePage": {
     "searchPlaceholder": "Ieškoti žmonių, įrašų ar turinio...",
@@ -3525,7 +3526,12 @@
       "waiting": "Laukiama varžovo…",
       "backToLobby": "Atgal į fojė",
       "serverDidNotAnswer": "Rungtynių serveris neatsakė."
-    }
+    },
+    "gamesRecord_one": "{{count}} partija · {{wins}}P {{losses}}Pr {{draws}}L",
+    "gamesRecord_other": "{{count}} partijos · {{wins}}P {{losses}}Pr {{draws}}L",
+    "kingsGambitBoardTitle": "Reitingas",
+    "kingsGambitBoardBlurb": "Elo pagal visas internetines partijas. Visi pradeda nuo 1200; pergalė prieš stipresnį žaidėją verta daugiau nei prieš silpnesnį, tad reitingo nepakelsi antra pinigine.",
+    "kingsGambitBoardEmpty": "Dar nebaigta nė viena internetinė partija. Mesk iššūkį."
   },
   "videoLooks": {
     "button": "Kameros stiliai",

@@ -1583,7 +1583,8 @@
     "retry": "Prøv igen",
     "addedToLeaderboard": "Du er blevet tilføjet! Saldo: {{balance}} tokens",
     "balanceTooLow": "Saldo for lav ({{balance}} tokens)",
-    "tokenAmount": "{{amount}} tokens"
+    "tokenAmount": "{{amount}} tokens",
+    "provisional": "foreløbig"
   },
   "explorePage": {
     "searchPlaceholder": "Søg personer, opslag eller indhold...",
@@ -3529,7 +3530,12 @@
       "waiting": "Venter på en modstander…",
       "backToLobby": "Tilbage til lobbyen",
       "serverDidNotAnswer": "Kamp-serveren svarede ikke."
-    }
+    },
+    "gamesRecord_one": "{{count}} parti · {{wins}}V {{losses}}T {{draws}}U",
+    "gamesRecord_other": "{{count}} partier · {{wins}}V {{losses}}T {{draws}}U",
+    "kingsGambitBoardTitle": "Ratingtal",
+    "kingsGambitBoardBlurb": "Elo på tværs af alle online-partier. Alle starter på 1200; at slå en stærkere spiller er mere værd end at slå en svagere, så stigen kan ikke pumpes op med en ekstra wallet.",
+    "kingsGambitBoardEmpty": "Intet online-parti er afsluttet endnu. Åbn en udfordring."
   },
   "videoLooks": {
     "button": "Kameralooks",

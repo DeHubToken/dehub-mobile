@@ -1583,7 +1583,8 @@
     "retry": "Mēģināt vēlreiz",
     "addedToLeaderboard": "Jūs esat pievienots! Atlikums: {{balance}} žetoni",
     "balanceTooLow": "Atlikums pārāk zems ({{balance}} žetoni)",
-    "tokenAmount": "{{amount}} žetoni"
+    "tokenAmount": "{{amount}} žetoni",
+    "provisional": "provizorisks"
   },
   "explorePage": {
     "searchPlaceholder": "Meklēt cilvēkus, ierakstus vai saturu...",
@@ -3525,7 +3526,12 @@
       "waiting": "Gaida pretinieku…",
       "backToLobby": "Atpakaļ uz lobiņu",
       "serverDidNotAnswer": "Spēles serveris neatbildēja."
-    }
+    },
+    "gamesRecord_one": "{{count}} partija · {{wins}}U {{losses}}Z {{draws}}N",
+    "gamesRecord_other": "{{count}} partijas · {{wins}}U {{losses}}Z {{draws}}N",
+    "kingsGambitBoardTitle": "Reitings",
+    "kingsGambitBoardBlurb": "Elo pēc visām tiešsaistes partijām. Visi sāk no 1200; uzvara pār spēcīgāku spēlētāju ir vērtīgāka nekā pār vājāku, tāpēc reitingu nevar uzpumpēt ar otru maku.",
+    "kingsGambitBoardEmpty": "Neviena tiešsaistes partija vēl nav beigusies. Izveido izaicinājumu."
   },
   "videoLooks": {
     "button": "Kameras izskati",

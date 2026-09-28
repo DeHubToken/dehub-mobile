@@ -1583,7 +1583,8 @@
     "retry": "Nomol probiere",
     "addedToLeaderboard": "Du bisch dezuecho! Guthabe: {{balance}} Tokens",
     "balanceTooLow": "Guthabe z'wenig ({{balance}} Tokens)",
-    "tokenAmount": "{{amount}} Tokens"
+    "tokenAmount": "{{amount}} Tokens",
+    "provisional": "vorläufig"
   },
   "explorePage": {
     "searchPlaceholder": "Such nach Lüt, Biträg oder Inhalt...",
@@ -3555,7 +3556,12 @@
       "waiting": "Warte uf en Gegener…",
       "backToLobby": "Zurück zur Lobby",
       "serverDidNotAnswer": "De Matchserver het nöd antwortet."
-    }
+    },
+    "gamesRecord_one": "{{count}} Partie · {{wins}}S {{losses}}N {{draws}}U",
+    "gamesRecord_other": "{{count}} Partie · {{wins}}S {{losses}}N {{draws}}U",
+    "kingsGambitBoardTitle": "Wertig",
+    "kingsGambitBoardBlurb": "Elo über alli Online-Partie. Alli fanged bi 1200 aa; en Sieg gäge en stercheren Spiiler zellt meh als eine gäge en schwächere, drum chan me d Ranglischte nöd mit ere zweite Wallet ufblase.",
+    "kingsGambitBoardEmpty": "No kei Online-Partie isch fertig. Mach e Useforderig uf."
   },
   "videoLooks": {
     "button": "Kamera-Looks",

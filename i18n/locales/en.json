@@ -1583,7 +1583,8 @@
     "secondaryReferrals_one": "{{count}} secondary",
     "secondaryReferrals_other": "{{count}} secondary",
     "retry": "Retry",
-    "tokenAmount": "{{amount}} tokens"
+    "tokenAmount": "{{amount}} tokens",
+    "provisional": "provisional"
   },
   "explorePage": {
     "searchPlaceholder": "Search for people, posts, or content...",
@@ -3525,7 +3526,12 @@
       "waiting": "Waiting for an opponent…",
       "backToLobby": "Back to the lobby",
       "serverDidNotAnswer": "The match server did not answer."
-    }
+    },
+    "gamesRecord_one": "{{count}} game · {{wins}}W {{losses}}L {{draws}}D",
+    "gamesRecord_other": "{{count}} games · {{wins}}W {{losses}}L {{draws}}D",
+    "kingsGambitBoardTitle": "Rating",
+    "kingsGambitBoardBlurb": "Elo across every online match. Everyone starts at 1200; beating a stronger player is worth more than beating a weaker one, so the ladder cannot be farmed with a second wallet.",
+    "kingsGambitBoardEmpty": "No online matches have finished yet. Open a challenge."
   },
   "videoLooks": {
     "button": "Camera looks",

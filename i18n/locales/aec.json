@@ -1583,7 +1583,8 @@
     "retry": "جرب تاني",
     "addedToLeaderboard": "تم إضافتك! الرصيد: {{balance}} توكنز",
     "balanceTooLow": "الرصيد قليل ({{balance}} توكنز)",
-    "tokenAmount": "{{amount}} توكنز"
+    "tokenAmount": "{{amount}} توكنز",
+    "provisional": "مؤقت"
   },
   "explorePage": {
     "searchPlaceholder": "دوّر على ناس أو منشورات أو محتوى...",
@@ -3525,7 +3526,12 @@
       "waiting": "مستني خصم…",
       "backToLobby": "ارجع للوبي",
       "serverDidNotAnswer": "سيرفر الماتش ماردش."
-    }
+    },
+    "gamesRecord_one": "{{count}} ماتش · {{wins}}ف {{losses}}خ {{draws}}ت",
+    "gamesRecord_other": "{{count}} ماتشات · {{wins}}ف {{losses}}خ {{draws}}ت",
+    "kingsGambitBoardTitle": "التصنيف",
+    "kingsGambitBoardBlurb": "تصنيف إيلو على كل الماتشات أونلاين. الكل بيبدأ من 1200؛ الفوز على لاعب أقوى بيجيب أكتر من الفوز على أضعف، فمينفعش تعلّي ترتيبك بمحفظة تانية.",
+    "kingsGambitBoardEmpty": "لسه مافيش ماتش أونلاين خلص. افتح تحدي."
   },
   "videoLooks": {
     "button": "مظاهر الكاميرا",

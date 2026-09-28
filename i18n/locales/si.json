@@ -1596,7 +1596,8 @@
     "retry": "නැවත උත්සාහ කරන්න",
     "addedToLeaderboard": "ඔබව එක් කර ඇත! ශේෂය: {{balance}} ටෝකන",
     "balanceTooLow": "ශේෂය ඉතා අඩුයි ({{balance}} ටෝකන)",
-    "tokenAmount": "{{amount}} ටෝකන"
+    "tokenAmount": "{{amount}} ටෝකන",
+    "provisional": "තාවකාලික"
   },
   "explorePage": {
     "searchPlaceholder": "පුද්ගලයන්, පළකිරීම් හෝ අන්තර්ගතය සොයන්න...",
@@ -3538,7 +3539,12 @@
       "waiting": "ප්‍රතිවාදියෙකු එනතුරු රැඳී සිටිමින්…",
       "backToLobby": "ලොබියට ආපසු",
       "serverDidNotAnswer": "තරඟ සේවාදායකය පිළිතුරු දුන්නේ නැත."
-    }
+    },
+    "gamesRecord_one": "{{count}} ක්‍රීඩාව · {{wins}}ජ {{losses}}පැ {{draws}}ස",
+    "gamesRecord_other": "{{count}} ක්‍රීඩා · {{wins}}ජ {{losses}}පැ {{draws}}ස",
+    "kingsGambitBoardTitle": "ශ්‍රේණිගත අගය",
+    "kingsGambitBoardBlurb": "සියලු මාර්ගගත තරග පුරා Elo. සියල්ලෝම 1200 සිට අරඹති; ශක්තිමත් ක්‍රීඩකයෙකු පරාජය කිරීම දුර්වලයෙකු පරාජය කිරීමට වඩා වටිනා නිසා දෙවන පසුම්බියකින් ශ්‍රේණිය වැඩි කළ නොහැක.",
+    "kingsGambitBoardEmpty": "තවම කිසිදු මාර්ගගත තරගයක් අවසන් වී නැත. අභියෝගයක් විවෘත කරන්න."
   },
   "videoLooks": {
     "button": "කැමරා පෙනුම්",

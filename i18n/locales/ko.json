@@ -1583,7 +1583,8 @@
     "retry": "다시 시도",
     "addedToLeaderboard": "추가되었습니다! 잔액: {{balance}} 개의 토큰",
     "balanceTooLow": "잔액 부족 ({{balance}} 개의 토큰)",
-    "tokenAmount": "{{amount}} 개의 토큰"
+    "tokenAmount": "{{amount}} 개의 토큰",
+    "provisional": "잠정"
   },
   "explorePage": {
     "searchPlaceholder": "사람, 게시물, 콘텐츠 검색...",
@@ -3529,7 +3530,12 @@
       "waiting": "상대방 기다리는 중…",
       "backToLobby": "로비로 돌아가기",
       "serverDidNotAnswer": "매치 서버가 응답하지 않았습니다."
-    }
+    },
+    "gamesRecord_one": "{{count}}판 · {{wins}}승 {{losses}}패 {{draws}}무",
+    "gamesRecord_other": "{{count}}판 · {{wins}}승 {{losses}}패 {{draws}}무",
+    "kingsGambitBoardTitle": "레이팅",
+    "kingsGambitBoardBlurb": "모든 온라인 대국의 Elo. 모두 1200에서 시작하며, 강한 상대를 이기면 약한 상대를 이길 때보다 더 많이 얻으므로 두 번째 지갑으로 순위를 올릴 수 없습니다.",
+    "kingsGambitBoardEmpty": "아직 끝난 온라인 대국이 없습니다. 도전을 열어 보세요."
   },
   "videoLooks": {
     "button": "카메라 효과",

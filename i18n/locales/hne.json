@@ -1583,7 +1583,8 @@
     "retry": "फेर कोशिश करव",
     "addedToLeaderboard": "आपको जोड़ा गया है! शेष: {{balance}} टोकन",
     "balanceTooLow": "शेष बहुत कम है ({{balance}} टोकन)",
-    "tokenAmount": "{{amount}} टोकन"
+    "tokenAmount": "{{amount}} टोकन",
+    "provisional": "अस्थायी"
   },
   "explorePage": {
     "searchPlaceholder": "लोग, पोस्ट या सामग्री खोजव...",
@@ -3525,7 +3526,12 @@
       "waiting": "प्रतिद्वंद्वी का इंतज़ार…",
       "backToLobby": "लॉबी में वापस",
       "serverDidNotAnswer": "मैच सर्वर ने जवाब नहीं दिया।"
-    }
+    },
+    "gamesRecord_one": "{{count}} गेम · {{wins}}जी {{losses}}हा {{draws}}ड्रॉ",
+    "gamesRecord_other": "{{count}} गेम · {{wins}}जी {{losses}}हा {{draws}}ड्रॉ",
+    "kingsGambitBoardTitle": "रेटिंग",
+    "kingsGambitBoardBlurb": "जम्मो ऑनलाइन मैच के Elo। सब 1200 ले शुरू करथें; मजबूत खिलाड़ी ला हराना कमजोर ला हराए ले जादा मायने रखथे, एकर सेती दूसर वॉलेट ले रैंक नइ बढ़ाय जा सकय।",
+    "kingsGambitBoardEmpty": "अभी कोनो ऑनलाइन मैच पूरा नइ होइस। चैलेंज खोलव।"
   },
   "videoLooks": {
     "button": "कैमरा लुक",

@@ -1601,7 +1601,8 @@
     "retry": "Қайта көру",
     "addedToLeaderboard": "Сіз қосылдыңыз! Баланс: {{balance}} токен",
     "balanceTooLow": "Баланс тым төмен ({{balance}} токен)",
-    "tokenAmount": "{{amount}} токен"
+    "tokenAmount": "{{amount}} токен",
+    "provisional": "алдын ала"
   },
   "explorePage": {
     "searchPlaceholder": "Адамдарды, жазбаларды немесе мазмұнды іздеу...",
@@ -3543,7 +3544,12 @@
       "waiting": "Ойыншыны күту…",
       "backToLobby": "Лоббиге оралу",
       "serverDidNotAnswer": "Матч сервері жауап бермеді."
-    }
+    },
+    "gamesRecord_one": "{{count}} ойын · {{wins}}Ж {{losses}}Ұ {{draws}}Т",
+    "gamesRecord_other": "{{count}} ойын · {{wins}}Ж {{losses}}Ұ {{draws}}Т",
+    "kingsGambitBoardTitle": "Рейтинг",
+    "kingsGambitBoardBlurb": "Барлық онлайн ойындар бойынша Elo. Барлығы 1200-ден бастайды; күшті ойыншыны жеңу әлсізді жеңуден құндырақ, сондықтан рейтингті екінші әмиянмен көтеру мүмкін емес.",
+    "kingsGambitBoardEmpty": "Әзірге бірде-бір онлайн ойын аяқталған жоқ. Шақыру ашыңыз."
   },
   "videoLooks": {
     "button": "Камера стильдері",

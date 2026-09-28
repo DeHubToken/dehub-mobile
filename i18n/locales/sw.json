@@ -1584,7 +1584,8 @@
     "retry": "Jaribu tena",
     "addedToLeaderboard": "Umeongezwa! Salio: tokeni {{balance}}",
     "balanceTooLow": "Salio la chini sana (tokeni {{balance}})",
-    "tokenAmount": "Tokeni {{amount}}"
+    "tokenAmount": "Tokeni {{amount}}",
+    "provisional": "ya muda"
   },
   "explorePage": {
     "searchPlaceholder": "Tafuta watu, machapisho au maudhui...",
@@ -3526,7 +3527,12 @@
       "waiting": "Ngoja mpinzani…",
       "backToLobby": "Rudi kwenye lobi",
       "serverDidNotAnswer": "Seva ya mechi haikujibu."
-    }
+    },
+    "gamesRecord_one": "mchezo {{count}} · {{wins}}U {{losses}}K {{draws}}S",
+    "gamesRecord_other": "michezo {{count}} · {{wins}}U {{losses}}K {{draws}}S",
+    "kingsGambitBoardTitle": "Kiwango",
+    "kingsGambitBoardBlurb": "Elo katika kila mechi ya mtandaoni. Kila mtu huanza kwa 1200; kumshinda mchezaji hodari kuna thamani zaidi kuliko kumshinda dhaifu, kwa hiyo ngazi haiwezi kupandishwa kwa pochi ya pili.",
+    "kingsGambitBoardEmpty": "Bado hakuna mechi ya mtandaoni iliyomalizika. Fungua changamoto."
   },
   "videoLooks": {
     "button": "Mionekano ya kamera",

@@ -1583,7 +1583,8 @@
     "retry": "ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ",
     "addedToLeaderboard": "ನೀವು ಸೇರಿಸಲ್ಪಟ್ಟಿದ್ದೀರಿ! ಬ್ಯಾಲೆನ್ಸ್: {{balance}} ಟೋಕನ್‌ಗಳು",
     "balanceTooLow": "ಬ್ಯಾಲೆನ್ಸ್ ತುಂಬಾ ಕಡಿಮೆ ({{balance}} ಟೋಕನ್‌ಗಳು)",
-    "tokenAmount": "{{amount}} ಟೋಕನ್‌ಗಳು"
+    "tokenAmount": "{{amount}} ಟೋಕನ್‌ಗಳು",
+    "provisional": "ತಾತ್ಕಾಲಿಕ"
   },
   "explorePage": {
     "searchPlaceholder": "ಜನರು, ಪೋಸ್ಟ್‌ಗಳು ಅಥವಾ ವಿಷಯ ಹುಡುಕಿ...",
@@ -3525,7 +3526,12 @@
       "waiting": "ಪ್ರತಿಸ್ಪರ್ಧಿಗಾಗಿ ಕಾಯುತ್ತಿದೆ…",
       "backToLobby": "ಲಾಬಿಗೆ ಹಿಂತಿರುಗಿ",
       "serverDidNotAnswer": "ಮ್ಯಾಚ್ ಸರ್ವರ್ ಉತ್ತರಿಸಿಲ್ಲ."
-    }
+    },
+    "gamesRecord_one": "{{count}} ಆಟ · {{wins}}ಗೆ {{losses}}ಸೋ {{draws}}ಡ್ರಾ",
+    "gamesRecord_other": "{{count}} ಆಟಗಳು · {{wins}}ಗೆ {{losses}}ಸೋ {{draws}}ಡ್ರಾ",
+    "kingsGambitBoardTitle": "ರೇಟಿಂಗ್",
+    "kingsGambitBoardBlurb": "ಎಲ್ಲಾ ಆನ್‌ಲೈನ್ ಪಂದ್ಯಗಳ Elo. ಎಲ್ಲರೂ 1200 ರಿಂದ ಆರಂಭಿಸುತ್ತಾರೆ; ಬಲಿಷ್ಠ ಆಟಗಾರನನ್ನು ಸೋಲಿಸುವುದು ದುರ್ಬಲನನ್ನು ಸೋಲಿಸುವುದಕ್ಕಿಂತ ಹೆಚ್ಚು ಮೌಲ್ಯಯುತ, ಆದ್ದರಿಂದ ಎರಡನೇ ವಾಲೆಟ್‌ನಿಂದ ಶ್ರೇಣಿ ಹೆಚ್ಚಿಸಲಾಗದು.",
+    "kingsGambitBoardEmpty": "ಇನ್ನೂ ಯಾವುದೇ ಆನ್‌ಲೈನ್ ಪಂದ್ಯ ಮುಗಿದಿಲ್ಲ. ಸವಾಲು ತೆರೆಯಿರಿ."
   },
   "videoLooks": {
     "button": "ಕ್ಯಾಮೆರಾ ಲುಕ್",

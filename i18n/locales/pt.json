@@ -1583,7 +1583,8 @@
     "retry": "Tentar novamente",
     "addedToLeaderboard": "Você foi adicionado! Saldo: {{balance}} tokens",
     "balanceTooLow": "Saldo baixo ({{balance}} tokens)",
-    "tokenAmount": "{{amount}} tokens"
+    "tokenAmount": "{{amount}} tokens",
+    "provisional": "provisório"
   },
   "explorePage": {
     "searchPlaceholder": "Buscar pessoas, posts ou conteúdo...",
@@ -3529,7 +3530,12 @@
       "waiting": "Esperando por um oponente…",
       "backToLobby": "Voltar para o lobby",
       "serverDidNotAnswer": "O servidor de partidas não respondeu."
-    }
+    },
+    "gamesRecord_one": "{{count}} partida · {{wins}}V {{losses}}D {{draws}}E",
+    "gamesRecord_other": "{{count}} partidas · {{wins}}V {{losses}}D {{draws}}E",
+    "kingsGambitBoardTitle": "Pontuação",
+    "kingsGambitBoardBlurb": "Elo em todas as partidas online. Todos começam em 1200; vencer um jogador mais forte vale mais do que vencer um mais fraco, então a classificação não pode ser inflada com uma segunda carteira.",
+    "kingsGambitBoardEmpty": "Nenhuma partida online terminou ainda. Abra um desafio."
   },
   "videoLooks": {
     "button": "Estilos de câmera",

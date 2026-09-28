@@ -1554,7 +1554,8 @@
     "secondaryReferrals_other": "{{count}} second level",
     "retry": "Try again",
     "balanceTooLow": "Balance too low ({{balance}} tokens)",
-    "tokenAmount": "{{amount}} tokens"
+    "tokenAmount": "{{amount}} tokens",
+    "provisional": "e never sure"
   },
   "explorePage": {
     "searchPlaceholder": "Find pipul, post, or content...",
@@ -3440,7 +3441,12 @@
       "backToLobby": "Go back for di lobby",
       "serverDidNotAnswer": "Di match server no answer."
     },
-    "chessOnlineIntro": "Live fight against oda players. Betting wit DeHub tokens di come."
+    "chessOnlineIntro": "Live fight against oda players. Betting wit DeHub tokens di come.",
+    "gamesRecord_one": "{{count}} game · {{wins}}W {{losses}}L {{draws}}D",
+    "gamesRecord_other": "{{count}} games · {{wins}}W {{losses}}L {{draws}}D",
+    "kingsGambitBoardTitle": "Rating",
+    "kingsGambitBoardBlurb": "Elo for all online match. All man start for 1200; for beat man weh e strong pass you e worth pass for beat man weh e weak, so you no fit pump di ladder with second wallet.",
+    "kingsGambitBoardEmpty": "No online match don finish yet. Open challenge."
   },
   "videoLooks": {
     "button": "Kamera looks",

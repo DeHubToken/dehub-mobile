@@ -1583,7 +1583,8 @@
     "retry": "Újra",
     "addedToLeaderboard": "Hozzáadtak! Egyenleg: {{balance}} token",
     "balanceTooLow": "Az egyenleg túl alacsony ({{balance}} token)",
-    "tokenAmount": "{{amount}} token"
+    "tokenAmount": "{{amount}} token",
+    "provisional": "ideiglenes"
   },
   "explorePage": {
     "searchPlaceholder": "Emberek, bejegyzések vagy tartalom keresése...",
@@ -3529,7 +3530,12 @@
       "waiting": "Várakozás ellenfélre…",
       "backToLobby": "Vissza a lobbyba",
       "serverDidNotAnswer": "A meccsszerver nem válaszolt."
-    }
+    },
+    "gamesRecord_one": "{{count}} játszma · {{wins}}Gy {{losses}}V {{draws}}D",
+    "gamesRecord_other": "{{count}} játszma · {{wins}}Gy {{losses}}V {{draws}}D",
+    "kingsGambitBoardTitle": "Értékelés",
+    "kingsGambitBoardBlurb": "Elo minden online játszma alapján. Mindenki 1200-ról indul; egy erősebb játékos legyőzése többet ér, mint egy gyengébbé, így a ranglista nem tolható fel egy második tárcával.",
+    "kingsGambitBoardEmpty": "Még egyetlen online játszma sem ért véget. Nyiss egy kihívást."
   },
   "videoLooks": {
     "button": "Kameramegjelenések",

@@ -1583,7 +1583,8 @@
     "retry": "ફરી પ્રયાસ કરો",
     "addedToLeaderboard": "તમને ઉમેરવામાં આવ્યા છે! બેલેન્સ: {{balance}} ટોકન્સ",
     "balanceTooLow": "બેલેન્સ ખૂબ ઓછું ({{balance}} ટોકન્સ)",
-    "tokenAmount": "{{amount}} ટોકન્સ"
+    "tokenAmount": "{{amount}} ટોકન્સ",
+    "provisional": "કામચલાઉ"
   },
   "explorePage": {
     "searchPlaceholder": "લોકો, પોસ્ટ્સ અથવા સામગ્રી શોધો...",
@@ -3525,7 +3526,12 @@
       "waiting": "પ્રતિસ્પર્ધીની રાહ જોઈ રહ્યા છીએ…",
       "backToLobby": "લોબીમાં પાછા ફરો",
       "serverDidNotAnswer": "મેચ સર્વર જવાબ આપ્યો નથી."
-    }
+    },
+    "gamesRecord_one": "{{count}} ગેમ · {{wins}}જી {{losses}}હા {{draws}}ડ્રો",
+    "gamesRecord_other": "{{count}} ગેમ · {{wins}}જી {{losses}}હા {{draws}}ડ્રો",
+    "kingsGambitBoardTitle": "રેટિંગ",
+    "kingsGambitBoardBlurb": "બધી ઓનલાઇન મેચોનું Elo. બધા 1200થી શરૂ કરે છે; મજબૂત ખેલાડીને હરાવવું નબળાને હરાવવા કરતાં વધુ મૂલ્યવાન છે, તેથી બીજા વૉલેટથી રેન્ક વધારી શકાતો નથી.",
+    "kingsGambitBoardEmpty": "હજુ કોઈ ઓનલાઇન મેચ પૂરી થઈ નથી. ચેલેન્જ ખોલો."
   },
   "videoLooks": {
     "button": "કૅમેરા લુક",

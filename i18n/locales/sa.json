@@ -1583,7 +1583,8 @@
     "retry": "पुनः प्रयतताम्",
     "addedToLeaderboard": "आपको जोड़ा गया है! शेष: {{balance}} टोकन",
     "balanceTooLow": "शेष बहुत कम है ({{balance}} टोकन)",
-    "tokenAmount": "{{amount}} टोकन"
+    "tokenAmount": "{{amount}} टोकन",
+    "provisional": "अस्थायी"
   },
   "explorePage": {
     "searchPlaceholder": "जनान्, प्रकाशनानि, वा विषयम् अन्विष्यतु...",
@@ -3525,7 +3526,12 @@
       "waiting": "प्रतिद्वंद्वी की प्रतीक्षा है…",
       "backToLobby": "लॉबी में वापस",
       "serverDidNotAnswer": "मैच सर्वर ने उत्तर नहीं दिया।"
-    }
+    },
+    "gamesRecord_one": "{{count}} क्रीडा · {{wins}}ज {{losses}}प {{draws}}स",
+    "gamesRecord_other": "{{count}} क्रीडाः · {{wins}}ज {{losses}}प {{draws}}स",
+    "kingsGambitBoardTitle": "मूल्याङ्कनम्",
+    "kingsGambitBoardBlurb": "सर्वासु अन्तर्जालक्रीडासु Elo। सर्वे 1200 तः आरभन्ते; बलवतः क्रीडकस्य पराजयः दुर्बलस्य पराजयात् अधिकमूल्यः, अतः द्वितीयेन वॉलेटेन क्रमः न वर्धयितुं शक्यते।",
+    "kingsGambitBoardEmpty": "अद्यापि कापि अन्तर्जालक्रीडा न समाप्ता। आह्वानम् उद्घाटयतु।"
   },
   "videoLooks": {
     "button": "कैमरा रूपाणि",

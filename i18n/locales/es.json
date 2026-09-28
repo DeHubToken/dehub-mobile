@@ -1583,7 +1583,8 @@
     "retry": "Reintentar",
     "addedToLeaderboard": "¡Has sido añadido! Saldo: {{balance}} tokens",
     "balanceTooLow": "Saldo bajo ({{balance}} tokens)",
-    "tokenAmount": "{{amount}} tokens"
+    "tokenAmount": "{{amount}} tokens",
+    "provisional": "preliminar"
   },
   "explorePage": {
     "searchPlaceholder": "Buscar personas, publicaciones o contenido...",
@@ -3525,7 +3526,12 @@
       "waiting": "Esperando a un oponente…",
       "backToLobby": "Volver al lobby",
       "serverDidNotAnswer": "El servidor de partidas no respondió."
-    }
+    },
+    "gamesRecord_one": "{{count}} partida · {{wins}}V {{losses}}D {{draws}}E",
+    "gamesRecord_other": "{{count}} partidas · {{wins}}V {{losses}}D {{draws}}E",
+    "kingsGambitBoardTitle": "Puntuación",
+    "kingsGambitBoardBlurb": "Elo en todas las partidas en línea. Todos empiezan en 1200; ganar a un jugador más fuerte vale más que ganar a uno más débil, así que la clasificación no se puede inflar con una segunda billetera.",
+    "kingsGambitBoardEmpty": "Aún no ha terminado ninguna partida en línea. Lanza un desafío."
   },
   "videoLooks": {
     "button": "Estilos de cámara",

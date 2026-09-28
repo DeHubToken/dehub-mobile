@@ -1596,7 +1596,8 @@
     "retry": "ပြန်ကြိုးစားရန်",
     "addedToLeaderboard": "သင့်အား ထည့်သွင်းပြီးပါပြီ။ လက်ကျန်- {{balance}} တိုကင်",
     "balanceTooLow": "လက်ကျန်ငွေ နည်းလွန်းသည် ({{balance}} တိုကင်)",
-    "tokenAmount": "{{amount}} တိုကင်"
+    "tokenAmount": "{{amount}} တိုကင်",
+    "provisional": "ယာယီ"
   },
   "explorePage": {
     "searchPlaceholder": "လူများ၊ ပို့စ်များ သို့မဟုတ် အကြောင်းအရာ ရှာဖွေပါ...",
@@ -3538,7 +3539,12 @@
       "waiting": "ကစားသမားကို စောင့်နေသည်…",
       "backToLobby": "လော်ဘီသို့ပြန်သွားပါ။",
       "serverDidNotAnswer": "ပွဲဆာဗာမှ အကြောင်းပြန်ကြားခြင်းမရှိပါ။"
-    }
+    },
+    "gamesRecord_one": "{{count}} ပွဲ · နိုင် {{wins}} ရှုံး {{losses}} သရေ {{draws}}",
+    "gamesRecord_other": "{{count}} ပွဲ · နိုင် {{wins}} ရှုံး {{losses}} သရေ {{draws}}",
+    "kingsGambitBoardTitle": "အဆင့်သတ်မှတ်ချက်",
+    "kingsGambitBoardBlurb": "အွန်လိုင်းပွဲအားလုံး၏ Elo။ လူတိုင်း 1200 မှ စသည်၊ ပိုအားကောင်းသူကို နိုင်ခြင်းက ပိုအားနည်းသူကို နိုင်ခြင်းထက် တန်ဖိုးပိုရှိသဖြင့် ဒုတိယပိုက်ဆံအိတ်ဖြင့် အဆင့်ကို မြှင့်၍မရပါ။",
+    "kingsGambitBoardEmpty": "အွန်လိုင်းပွဲ တစ်ပွဲမှ မပြီးသေးပါ။ စိန်ခေါ်မှုတစ်ခု ဖွင့်ပါ။"
   },
   "videoLooks": {
     "button": "ကင်မရာ အသွင်များ",

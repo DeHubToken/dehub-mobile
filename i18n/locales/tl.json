@@ -1630,7 +1630,8 @@
     },
     "addedToLeaderboard": "Naidagdag ka na! Balanse: {{balance}} tokens",
     "balanceTooLow": "Masyadong mababa ang balanse ({{balance}} tokens)",
-    "tokenAmount": "{{amount}} tokens"
+    "tokenAmount": "{{amount}} tokens",
+    "provisional": "pansamantala"
   },
   "explorePage": {
     "searchPlaceholder": "Maghanap ng mga tao, post, o nilalaman...",
@@ -3572,7 +3573,12 @@
       "waiting": "Naghihintay ng kalaban…",
       "backToLobby": "Bumalik sa lobby",
       "serverDidNotAnswer": "Hindi sumagot ang match server."
-    }
+    },
+    "gamesRecord_one": "{{count}} laro · {{wins}}P {{losses}}T {{draws}}Ta",
+    "gamesRecord_other": "{{count}} laro · {{wins}}P {{losses}}T {{draws}}Ta",
+    "kingsGambitBoardTitle": "Rating Elo",
+    "kingsGambitBoardBlurb": "Elo sa lahat ng online na laban. Lahat ay nagsisimula sa 1200; mas malaki ang halaga ng panalo sa mas malakas na manlalaro kaysa sa mas mahina, kaya hindi mapapalaki ang ranggo gamit ang pangalawang wallet.",
+    "kingsGambitBoardEmpty": "Wala pang natapos na online na laban. Magbukas ng hamon."
   },
   "videoLooks": {
     "button": "Mga look ng camera",

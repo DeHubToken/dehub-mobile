@@ -1583,7 +1583,8 @@
     "retry": "మళ్ళీ ప్రయత్నించండి",
     "addedToLeaderboard": "మీరు జోడించబడ్డారు! బ్యాలెన్స్: {{balance}} టోకెన్లు",
     "balanceTooLow": "బ్యాలెన్స్ చాలా తక్కువ ({{balance}} టోకెన్లు)",
-    "tokenAmount": "{{amount}} టోకెన్లు"
+    "tokenAmount": "{{amount}} టోకెన్లు",
+    "provisional": "తాత్కాలికం"
   },
   "explorePage": {
     "searchPlaceholder": "వ్యక్తులు, పోస్ట్‌లు లేదా కంటెంట్‌ను వెతకండి...",
@@ -3529,7 +3530,12 @@
       "waiting": "ప్రత్యర్థి కోసం వేచి ఉంది…",
       "backToLobby": "లాబీకి తిరిగి వెళ్ళు",
       "serverDidNotAnswer": "మ్యాచ్ సర్వర్ స్పందించలేదు."
-    }
+    },
+    "gamesRecord_one": "{{count}} గేమ్ · {{wins}}గె {{losses}}ఓ {{draws}}డ్రా",
+    "gamesRecord_other": "{{count}} గేమ్‌లు · {{wins}}గె {{losses}}ఓ {{draws}}డ్రా",
+    "kingsGambitBoardTitle": "రేటింగ్",
+    "kingsGambitBoardBlurb": "అన్ని ఆన్‌లైన్ మ్యాచ్‌ల Elo. అందరూ 1200 నుండి మొదలుపెడతారు; బలమైన ఆటగాడిని ఓడించడం బలహీనుడిని ఓడించడం కంటే విలువైనది, కాబట్టి రెండో వాలెట్‌తో ర్యాంక్ పెంచలేరు.",
+    "kingsGambitBoardEmpty": "ఇంకా ఏ ఆన్‌లైన్ మ్యాచ్ పూర్తవలేదు. ఛాలెంజ్ తెరవండి."
   },
   "videoLooks": {
     "button": "కెమెరా లుక్‌లు",

@@ -1583,7 +1583,8 @@
     "retry": "Бори дигар кӯшиш кунед",
     "addedToLeaderboard": "Шумо илова карда шудед! Баланс: {{balance}} токен",
     "balanceTooLow": "Баланс хеле паст аст ({{balance}} токен)",
-    "tokenAmount": "{{amount}} токен"
+    "tokenAmount": "{{amount}} токен",
+    "provisional": "пешакӣ"
   },
   "explorePage": {
     "searchPlaceholder": "Ҷустуҷӯи одамон, нашрҳо ё мундариҷа...",
@@ -3525,7 +3526,12 @@
       "waiting": "Интизор барои рақиб…",
       "backToLobby": "Бозоғар ба лобӣ",
       "serverDidNotAnswer": "Сервери матч ҷавоб надидааст."
-    }
+    },
+    "gamesRecord_one": "{{count}} бозӣ · {{wins}}Ғ {{losses}}М {{draws}}Д",
+    "gamesRecord_other": "{{count}} бозӣ · {{wins}}Ғ {{losses}}М {{draws}}Д",
+    "kingsGambitBoardTitle": "Рейтинг",
+    "kingsGambitBoardBlurb": "Elo дар ҳамаи бозиҳои онлайн. Ҳама аз 1200 оғоз мекунанд; ғалаба бар бозигари қавитар аз ғалаба бар заифтар арзишноктар аст, бинобар ин рейтингро бо ҳамёни дуюм баланд кардан мумкин нест.",
+    "kingsGambitBoardEmpty": "Ҳанӯз ягон бозии онлайн ба охир нарасидааст. Даъват кушоед."
   },
   "videoLooks": {
     "button": "Намудҳои камера",

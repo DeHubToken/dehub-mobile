@@ -1583,7 +1583,8 @@
     "retry": "Nwaa ọzọ",
     "addedToLeaderboard": "A gbakwunyere gị! Ngwaahịa: {{balance}} tokens",
     "balanceTooLow": "Ngwaahịa dị ala ({{balance}} tokens)",
-    "tokenAmount": "{{amount}} tokens"
+    "tokenAmount": "{{amount}} tokens",
+    "provisional": "nwa oge"
   },
   "explorePage": {
     "searchPlaceholder": "Chọọ ndị mmadụ, ozi ma ọ bụ ọdịnaya...",
@@ -3525,7 +3526,12 @@
       "waiting": "Na-eche onye na-eme egwuregwu…",
       "backToLobby": "Weghachite na ụlọ nkwụnye",
       "serverDidNotAnswer": "Ụlọ ọrụ egwuregwu ahụ ekweghị azịza."
-    }
+    },
+    "gamesRecord_one": "egwuregwu {{count}} · {{wins}}M {{losses}}D {{draws}}N",
+    "gamesRecord_other": "egwuregwu {{count}} · {{wins}}M {{losses}}D {{draws}}N",
+    "kingsGambitBoardTitle": "Ọkwa ntụle",
+    "kingsGambitBoardBlurb": "Elo n'egwuregwu ịntanetị niile. Onye ọ bụla na-amalite na 1200; imeri onye ọkpụkpọ siri ike bara uru karịa imeri onye na-adịghị ike, ya mere a pụghị iji akpa ego nke abụọ bulie ọkwa.",
+    "kingsGambitBoardEmpty": "Ọ dịbeghị egwuregwu ịntanetị gwụchara. Mepee ịma aka."
   },
   "videoLooks": {
     "button": "Ụdị igwefoto",

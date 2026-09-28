@@ -1583,7 +1583,8 @@
     "retry": "再试",
     "addedToLeaderboard": "您已添加！余额：{{balance}} 枚代币",
     "balanceTooLow": "余额不足（{{balance}} 枚代币）",
-    "tokenAmount": "{{amount}} 枚代币"
+    "tokenAmount": "{{amount}} 枚代币",
+    "provisional": "暂定"
   },
   "explorePage": {
     "searchPlaceholder": "搜索人、帖子或内容...",
@@ -3525,7 +3526,12 @@
       "waiting": "等待对手…",
       "backToLobby": "返回大厅",
       "serverDidNotAnswer": "比赛服务器未响应。"
-    }
+    },
+    "gamesRecord_one": "{{count}} 局 · {{wins}}胜 {{losses}}负 {{draws}}平",
+    "gamesRecord_other": "{{count}} 局 · {{wins}}胜 {{losses}}负 {{draws}}平",
+    "kingsGambitBoardTitle": "等级分",
+    "kingsGambitBoardBlurb": "所有在线对局的 Elo。人人从 1200 起步；赢强手比赢弱手得分多，所以用第二个钱包刷不了榜。",
+    "kingsGambitBoardEmpty": "还没在线对局结束。开个挑战。"
   },
   "videoLooks": {
     "button": "摄像头滤镜",

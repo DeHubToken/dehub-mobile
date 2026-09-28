@@ -1583,7 +1583,8 @@
     "retry": "قايتا سىناش",
     "addedToLeaderboard": "Siz goşuldyňyz! Balans: {{balance}} token",
     "balanceTooLow": "Balans pes ({{balance}} token)",
-    "tokenAmount": "{{amount}} token"
+    "tokenAmount": "{{amount}} token",
+    "provisional": "ۋاقىتلىق"
   },
   "explorePage": {
     "searchPlaceholder": "كىشى، يوللانما ياكى مەزمۇن ئىزدەش...",
@@ -3525,7 +3526,12 @@
       "waiting": "قوشۇلغۇچىنى كۈتۈش…",
       "backToLobby": "لاۋبغا قايتىش",
       "serverDidNotAnswer": "ئويۇن مۇلازىمىتى جاۋاب بەرمىدى."
-    }
+    },
+    "gamesRecord_one": "{{count}} ئويۇن · {{wins}}غ {{losses}}م {{draws}}ت",
+    "gamesRecord_other": "{{count}} ئويۇن · {{wins}}غ {{losses}}م {{draws}}ت",
+    "kingsGambitBoardTitle": "رېتىڭ",
+    "kingsGambitBoardBlurb": "بارلىق توردىكى ئويۇنلارنىڭ Elo نومۇرى. ھەممەيلەن 1200 دىن باشلايدۇ؛ كۈچلۈك ئويۇنچىنى يېڭىش ئاجىزنى يېڭىشتىن قىممەتلىك، شۇڭا ئىككىنچى ھەميان بىلەن تەرتىپنى ئۆستۈرگىلى بولمايدۇ.",
+    "kingsGambitBoardEmpty": "تېخى ھېچقانداق توردىكى ئويۇن ئاخىرلاشمىدى. رىقابەت ئېچىڭ."
   },
   "videoLooks": {
     "button": "كامېرا كۆرۈنۈشلىرى",

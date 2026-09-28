@@ -1583,7 +1583,8 @@
     "retry": "Ngana anō",
     "addedToLeaderboard": "Kua tāpirihia koe! Tohu toenga: {{balance}} tohu",
     "balanceTooLow": "He iti rawa te toenga ({{balance}} tohu)",
-    "tokenAmount": "{{amount}} tohu"
+    "tokenAmount": "{{amount}} tohu",
+    "provisional": "taupua"
   },
   "explorePage": {
     "searchPlaceholder": "Rapu tāngata, pānui, ihirangi rānei...",
@@ -3525,7 +3526,12 @@
       "waiting": "Tatari i tētahi wero…",
       "backToLobby": "Hoki ki te rūma",
       "serverDidNotAnswer": "Kāore te tūmau rangatira i whakautu."
-    }
+    },
+    "gamesRecord_one": "{{count}} kēmu · {{wins}}W {{losses}}H {{draws}}T",
+    "gamesRecord_other": "{{count}} kēmu · {{wins}}W {{losses}}H {{draws}}T",
+    "kingsGambitBoardTitle": "Whakatauranga",
+    "kingsGambitBoardBlurb": "Elo puta noa i ngā tukinga tuihono katoa. Ka tīmata te katoa i te 1200; he nui ake te uara o te wikitoria ki tētahi kaitākaro kaha i tētahi ngoikore, nō reira kāore e taea te whakapiki i te arawhata mā tētahi pūkoro tuarua.",
+    "kingsGambitBoardEmpty": "Kāore anō he tukinga tuihono kia oti. Whakatuwheratia he wero."
   },
   "videoLooks": {
     "button": "Ngā āhua kāmera",

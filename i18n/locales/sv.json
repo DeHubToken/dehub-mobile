@@ -1583,7 +1583,8 @@
     "retry": "Försök igen",
     "addedToLeaderboard": "Du har lagts till! Saldo: {{balance}} tokens",
     "balanceTooLow": "Saldo för lågt ({{balance}} tokens)",
-    "tokenAmount": "{{amount}} tokens"
+    "tokenAmount": "{{amount}} tokens",
+    "provisional": "preliminär"
   },
   "explorePage": {
     "searchPlaceholder": "Sök personer, inlägg eller innehåll...",
@@ -3529,7 +3530,12 @@
       "waiting": "Väntar på en motståndare…",
       "backToLobby": "Tillbaka till lobbyn",
       "serverDidNotAnswer": "Matchservern svarade inte."
-    }
+    },
+    "gamesRecord_one": "{{count}} parti · {{wins}}V {{losses}}F {{draws}}R",
+    "gamesRecord_other": "{{count}} partier · {{wins}}V {{losses}}F {{draws}}R",
+    "kingsGambitBoardTitle": "Ratingtal",
+    "kingsGambitBoardBlurb": "Elo över alla onlinepartier. Alla börjar på 1200; att slå en starkare spelare är värt mer än att slå en svagare, så stegen kan inte pumpas upp med en andra plånbok.",
+    "kingsGambitBoardEmpty": "Inget onlineparti har avslutats än. Öppna en utmaning."
   },
   "videoLooks": {
     "button": "Kameralooks",

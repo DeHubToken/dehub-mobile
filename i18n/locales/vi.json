@@ -1596,7 +1596,8 @@
     "retry": "Thử lại",
     "addedToLeaderboard": "Bạn đã được thêm! Số dư: {{balance}} token",
     "balanceTooLow": "Số dư quá thấp ({{balance}} token)",
-    "tokenAmount": "{{amount}} token"
+    "tokenAmount": "{{amount}} token",
+    "provisional": "tạm thời"
   },
   "explorePage": {
     "searchPlaceholder": "Tìm người, bài viết hoặc nội dung...",
@@ -3538,7 +3539,12 @@
       "waiting": "Đang chờ đối thủ…",
       "backToLobby": "Quay lại sảnh",
       "serverDidNotAnswer": "Máy chủ trận đấu không phản hồi."
-    }
+    },
+    "gamesRecord_one": "{{count}} ván · {{wins}}T {{losses}}B {{draws}}H",
+    "gamesRecord_other": "{{count}} ván · {{wins}}T {{losses}}B {{draws}}H",
+    "kingsGambitBoardTitle": "Điểm xếp hạng",
+    "kingsGambitBoardBlurb": "Elo trên mọi ván đấu trực tuyến. Ai cũng bắt đầu từ 1200; thắng người mạnh hơn được nhiều điểm hơn thắng người yếu hơn, nên không thể cày hạng bằng ví thứ hai.",
+    "kingsGambitBoardEmpty": "Chưa có ván đấu trực tuyến nào kết thúc. Mở một lời thách đấu."
   },
   "videoLooks": {
     "button": "Kiểu camera",

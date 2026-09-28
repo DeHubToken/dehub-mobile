@@ -1628,7 +1628,8 @@
     "topEarners": "সবচেয়ে বেশি কামানো",
     "topTippers": "সবচেয়ে বেশি টিপ",
     "mostFollowed": "সবচেয়ে বেশি ফলো",
-    "mostLiked": "সবচেয়ে বেশি ভালো লাগা"
+    "mostLiked": "সবচেয়ে বেশি ভালো লাগা",
+    "provisional": "অস্থায়ী"
   },
   "explorePage": {
     "searchPlaceholder": "মানুষ, পোস্ট বা কন্টেন্ট খুঁজুন...",
@@ -3578,7 +3579,12 @@
       "backToLobby": "লবিতে ফিরে যান",
       "serverDidNotAnswer": "ম্যাচ সার্ভার সাড়া দেয়নি।"
     },
-    "chessOnlineIntro": "অন্য খেলোয়াড়দের সাথে লাইভ দ্বৈরথ। DeHub টোকেনে বাজি আসছে।"
+    "chessOnlineIntro": "অন্য খেলোয়াড়দের সাথে লাইভ দ্বৈরথ। DeHub টোকেনে বাজি আসছে।",
+    "gamesRecord_one": "{{count}} গেম · {{wins}}জ {{losses}}হা {{draws}}ড্র",
+    "gamesRecord_other": "{{count}} গেম · {{wins}}জ {{losses}}হা {{draws}}ড্র",
+    "kingsGambitBoardTitle": "রেটিং",
+    "kingsGambitBoardBlurb": "সব অনলাইন ম্যাচের Elo। সবাই ১২০০ থাকি শুরু করে; শক্ত খেলোয়াড়ক হারাইলে দুর্বলক হারাবার চেয়ে বেশি পাওয়া যায়, তাই দ্বিতীয় ওয়ালেট দিয়া র‍্যাঙ্ক বাড়ানো যায় না।",
+    "kingsGambitBoardEmpty": "এখনো কোনো অনলাইন ম্যাচ শেষ হয় নাই। একটা চ্যালেঞ্জ খোলেন।"
   },
   "videoLooks": {
     "button": "ক্যামেরা লুক",

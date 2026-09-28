@@ -1583,7 +1583,8 @@
     "retry": "पुन्हा प्रयत्न करा",
     "addedToLeaderboard": "तुम्हाला जोडले गेले आहे! शिल्लक: {{balance}} टोकन्स",
     "balanceTooLow": "शिल्लक खूप कमी आहे ({{balance}} टोकन्स)",
-    "tokenAmount": "{{amount}} टोकन्स"
+    "tokenAmount": "{{amount}} टोकन्स",
+    "provisional": "तात्पुरते"
   },
   "explorePage": {
     "searchPlaceholder": "लोक, पोस्ट्स किंवा मजकूर शोधा...",
@@ -3529,7 +3530,12 @@
       "waiting": "प्रतिस्पर्ध्याची वाट पाहत आहे…",
       "backToLobby": "लॉबीमध्ये परत जा",
       "serverDidNotAnswer": "सामना सर्व्हरने प्रतिसाद दिला नाही."
-    }
+    },
+    "gamesRecord_one": "{{count}} गेम · {{wins}}वि {{losses}}प {{draws}}ड्रॉ",
+    "gamesRecord_other": "{{count}} गेम · {{wins}}वि {{losses}}प {{draws}}ड्रॉ",
+    "kingsGambitBoardTitle": "रेटिंग",
+    "kingsGambitBoardBlurb": "सर्व ऑनलाइन सामन्यांचे Elo. सर्वजण 1200 पासून सुरू करतात; बलवान खेळाडूला हरवणे कमकुवत खेळाडूला हरवण्यापेक्षा अधिक मोलाचे, त्यामुळे दुसऱ्या वॉलेटने रँक वाढवता येत नाही.",
+    "kingsGambitBoardEmpty": "अद्याप कोणताही ऑनलाइन सामना पूर्ण झालेला नाही. आव्हान द्या."
   },
   "videoLooks": {
     "button": "कॅमेरा लुक",
