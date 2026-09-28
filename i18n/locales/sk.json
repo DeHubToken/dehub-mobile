@@ -6032,6 +6032,37 @@
     "toNextTier": "{{amount}} tokenov pre {{tier}}",
     "holdNote": "Akonáhle je odznak odomknutý, je váš tak dlho, ako budete držať svoje tokeny. Počet tokenov potrebných na odomknutie nového odznaku sa môže meniť s cenou tokenu."
   },
+  "badgeShowcase": {
+    "dialogLabel": "Odznak {{tier}}",
+    "close": "Zatvoriť",
+    "badges": "Odznaky",
+    "tierOf": "Úroveň {{index}} z {{total}}",
+    "youHaveThis": "Máte tento odznak",
+    "toUnlock": "{{amount}} ďalšie žetóny na odomknutie",
+    "holdToUnlock": "Podržte aspoň toľko tokenov DeHub, aby ste ho odomkli",
+    "sliderLabel": "Držané tokeny",
+    "sliderValue": "{{amount}} žetóny · {{tier}}",
+    "you": "Vy",
+    "grants": "Čo odomkne",
+    "perks": {
+      "fee": "Poplatok za platformu",
+      "votes": "Hlasovanie o riadení",
+      "reach": "Hmotnosť na zobrazenie a reakciu",
+      "feedPosts": "Príspevky s domácim informačným kanálom denne",
+      "images": "Obrázky na príspevok",
+      "uploads": "Denný limit nahrávania",
+      "storage": "Úložisko editora",
+      "profiles": "Uložené profily",
+      "lending": "Sloty na požičiavanie odznakov",
+      "voice": "Klonovanie hlasu",
+      "voiceFree": "Zadarmo",
+      "voiceLocked": "{{tier}} a vyššie"
+    },
+    "buy": "Získajte DHB",
+    "details": "Úplný rozpis",
+    "play": "Prehrať",
+    "pause": "Pozastaviť"
+  },
   "passwordStrength": {
     "veryWeak": "Veľmi slabé",
     "weak": "Slabé",

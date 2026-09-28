@@ -5928,6 +5928,37 @@
     "toNextTier": "{{amount}} tokens till {{tier}}",
     "holdNote": "När en badge har låsts upp är den din så länge du innehar dina tokens. Antalet tokens som behövs för att låsa upp en ny badge kan ändras med tokenpriset."
   },
+  "badgeShowcase": {
+    "dialogLabel": "{{tier}} -märke",
+    "close": "Stäng",
+    "badges": "Märken",
+    "tierOf": "Nivå {{index}} av {{total}}",
+    "youHaveThis": "Du har detta märke",
+    "toUnlock": "{{amount}} fler tokens för att låsa upp den",
+    "holdToUnlock": "Håll åtminstone så här många DeHub-tokens för att låsa upp den",
+    "sliderLabel": "Tokens hålls",
+    "sliderValue": "{{amount}} polletter · {{tier}}",
+    "you": "Du",
+    "grants": "Vad den låser upp",
+    "perks": {
+      "fee": "Plattformsavgift",
+      "votes": "Styrelseomröstningar",
+      "reach": "Vikt per vy och reaktion",
+      "feedPosts": "Hemmatningsinlägg om dagen",
+      "images": "Bilder per inlägg",
+      "uploads": "Daglig uppladdningsgräns",
+      "storage": "Redigeringslagring",
+      "profiles": "Sparade profiler",
+      "lending": "Utlåningsplatser för emblem",
+      "voice": "Röstkloning",
+      "voiceFree": "Gratis",
+      "voiceLocked": "{{tier}} och uppåt"
+    },
+    "buy": "Skaffa DHB",
+    "details": "Fullständig uppdelning",
+    "play": "Spela",
+    "pause": "Pausa"
+  },
   "passwordStrength": {
     "veryWeak": "Mycket svagt",
     "weak": "Svagt",

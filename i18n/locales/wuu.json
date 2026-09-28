@@ -5924,6 +5924,37 @@
     "toNextTier": "{{amount}} 个代币 到 {{tier}}",
     "holdNote": "一旦一个徽章解锁，只要倷个持有代币，它就属于倷。解锁新徽章所需的代币数量会随着代币价格变化。"
   },
+  "badgeShowcase": {
+    "dialogLabel": "{{tier}} 徽章",
+    "close": "关闭",
+    "badges": "徽章",
+    "tierOf": "等级 {{index}} / {{total}}",
+    "youHaveThis": "您拥有此徽章",
+    "toUnlock": "还差 {{amount}} 个代币即可解锁",
+    "holdToUnlock": "至少持有这么多 DeHub 代币才能解锁",
+    "sliderLabel": "持有代币",
+    "sliderValue": "{{amount}} 个代币 · {{tier}}",
+    "you": "您",
+    "grants": "解锁内容",
+    "perks": {
+      "fee": "平台费用",
+      "votes": "治理投票",
+      "reach": "每观看和反应的权重",
+      "feedPosts": "每日首页帖子数",
+      "images": "每帖图片数",
+      "uploads": "每日上传限制",
+      "storage": "编辑器存储空间",
+      "profiles": "已保存的个人资料",
+      "lending": "徽章借用槽位",
+      "voice": "语音克隆",
+      "voiceFree": "免费",
+      "voiceLocked": "{{tier}} 及以上"
+    },
+    "buy": "获取 DHB",
+    "details": "完整明细",
+    "play": "播放",
+    "pause": "暂停"
+  },
   "passwordStrength": {
     "veryWeak": "老弱",
     "weak": "弱",

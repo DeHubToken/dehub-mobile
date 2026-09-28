@@ -5785,6 +5785,37 @@
     "everyTierUnlocked": "You don unlock every level",
     "reached": "You don reach {{tier}}"
   },
+  "badgeShowcase": {
+    "dialogLabel": "{{tier}} badge",
+    "close": "Close",
+    "badges": "Badges",
+    "tierOf": "Level {{index}} for {{total}}",
+    "youHaveThis": "You get dis badge",
+    "toUnlock": "{{amount}} more tokens to open am",
+    "holdToUnlock": "Hold at least dis many DeHub tokens to open am",
+    "sliderLabel": "Tokens held",
+    "sliderValue": "{{amount}} tokens · {{tier}}",
+    "you": "You",
+    "grants": "What it unlocks",
+    "perks": {
+      "fee": "Platform fee",
+      "votes": "Governance votes",
+      "reach": "Weight per view & reaction",
+      "feedPosts": "Home-feed posts every day",
+      "images": "Images per post",
+      "uploads": "Daily upload limit",
+      "storage": "Editor storage",
+      "profiles": "Saved profiles",
+      "lending": "Badge lending slots",
+      "voice": "Voice cloning",
+      "voiceFree": "Free",
+      "voiceLocked": "{{tier}} and up"
+    },
+    "buy": "Get DHB",
+    "details": "Full breakdown",
+    "play": "Play",
+    "pause": "Pause"
+  },
   "passwordStrength": {
     "veryWeak": "E weak well well",
     "weak": "E weak",

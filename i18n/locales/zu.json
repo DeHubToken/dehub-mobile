@@ -5955,6 +5955,37 @@
     "toNextTier": "{{amount}} amathokheni kuya ku {{tier}}",
     "holdNote": "Uma ibheji ivuliwe, ingeyakho inqobo nje uma ubamba amathokheni akho. Inani lamathokheni adingekayo ukuvula ibheji entsha lingashintsha ngentengo yamathokheni."
   },
+  "badgeShowcase": {
+    "dialogLabel": "{{tier}} ibheji",
+    "close": "Vala",
+    "badges": "Amabheji",
+    "tierOf": "Ibanga {{index}} of {{total}}",
+    "youHaveThis": "Unaleli bheji",
+    "toUnlock": "{{amount}} amathokheni engeziwe ukuze uyivule",
+    "holdToUnlock": "Bamba okungenani la mathokheni amaningi e-DeHub ukuze uyivule",
+    "sliderLabel": "Amathokheni abanjwe",
+    "sliderValue": "{{amount}} amathokheni · {{tier}}",
+    "you": "Wena",
+    "grants": "Lokho okuvulayo",
+    "perks": {
+      "fee": "Imali yenkundla",
+      "votes": "Amavoti okubusa",
+      "reach": "Isisindo ngokubuka nokusabela ngakunye",
+      "feedPosts": "Amaphosti okuphakelwa ekhaya ngosuku",
+      "images": "Izithombe ngephosti ngayinye",
+      "uploads": "Umkhawulo wokufaka nsuku zonke",
+      "storage": "Isitoreji somhleli",
+      "profiles": "Amaphrofayili alondoloziwe",
+      "lending": "Izikhala zokubolekisa ngebheji",
+      "voice": "Ukudlaliswa kwezwi",
+      "voiceFree": "Mahhala",
+      "voiceLocked": "{{tier}} nangaphezulu"
+    },
+    "buy": "Thola i-DHB",
+    "details": "Ukucazwa okuphelele",
+    "play": "Dlala",
+    "pause": "Misa okwesikhashana"
+  },
   "passwordStrength": {
     "veryWeak": "Buthakathaka kakhulu",
     "weak": "Buthakathaka",

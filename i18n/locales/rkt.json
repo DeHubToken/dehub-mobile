@@ -5907,6 +5907,37 @@
     "topTier": "শীর্ষ স্তর",
     "everyTierUnlocked": "প্রতিটি স্তর আনলক করা হয়েছে"
   },
+  "badgeShowcase": {
+    "dialogLabel": "{{tier}} ব্যাজ",
+    "close": "বন্ধ করেন",
+    "badges": "ব্যাজ",
+    "tierOf": "{{total}} টার মধ্যে {{index}} নম্বর স্তর",
+    "youHaveThis": "আপনার এই ব্যাজটা আছে",
+    "toUnlock": "খুলবার জন্যে আরো {{amount}} টোকেন লাগবে",
+    "holdToUnlock": "খুলবার জন্যে কমপক্ষে এতগুলা DeHub টোকেন রাখেন",
+    "sliderLabel": "হাতত থাকা টোকেন",
+    "sliderValue": "{{amount}} টোকেন · {{tier}}",
+    "you": "আপনি",
+    "grants": "কী কী খোলে",
+    "perks": {
+      "fee": "প্ল্যাটফর্ম ফি",
+      "votes": "গভর্ন্যান্স ভোট",
+      "reach": "প্রতি ভিউ আর রিঅ্যাকশনের ওজন",
+      "feedPosts": "দিনত হোম ফিডের পোস্ট",
+      "images": "প্রতি পোস্টত ছবি",
+      "uploads": "দিনের আপলোড সীমা",
+      "storage": "এডিটরের স্টোরেজ",
+      "profiles": "সেভ করা প্রোফাইল",
+      "lending": "ব্যাজ ধার দেওয়ার স্লট",
+      "voice": "ভয়েস ক্লোনিং",
+      "voiceFree": "ফ্রি",
+      "voiceLocked": "{{tier}} আর তার উপরে"
+    },
+    "buy": "DHB নেন",
+    "details": "পুরা বিবরণ",
+    "play": "চালান",
+    "pause": "থামান"
+  },
   "passwordStrength": {
     "veryWeak": "বহুত দুর্বল",
     "weak": "দুর্বল",

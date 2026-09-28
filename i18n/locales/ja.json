@@ -5975,6 +5975,37 @@
     "toNextTier": "{{amount}} トークンを {{tier}} へ",
     "holdNote": "バッジがアンロックされると、トークンを保有している限り、そのバッジはあなたのものになります。新しいバッジをアンロックするために必要なトークン数は、トークン価格によって変動する可能性があります。"
   },
+  "badgeShowcase": {
+    "dialogLabel": "{{tier}}バッジ",
+    "close": "閉じる",
+    "badges": "バッジ",
+    "tierOf": "{{total}}のティア{{index}}",
+    "youHaveThis": "このバッジを持っています",
+    "toUnlock": "さらに{{amount}}枚のトークンでアンロック",
+    "holdToUnlock": "少なくともこの数のDeHubトークンを持ってロックを解除してください",
+    "sliderLabel": "保有トークン",
+    "sliderValue": "{{amount}}トークン· {{tier}}",
+    "you": "あなた",
+    "grants": "アンロックされるもの",
+    "perks": {
+      "fee": "プラットフォーム料金",
+      "votes": "ガバナンス投票",
+      "reach": "ビューとリアクションあたりの重量",
+      "feedPosts": "1日あたりのホームフィードの投稿数",
+      "images": "投稿ごとの画像",
+      "uploads": "1日あたりのアップロード制限",
+      "storage": "エディターストレージ",
+      "profiles": "保存されたプロフィール",
+      "lending": "バッジ貸出スロット",
+      "voice": "音声クローニング",
+      "voiceFree": "無料",
+      "voiceLocked": "{{tier}}以上"
+    },
+    "buy": "DHBを取得",
+    "details": "完全な内訳",
+    "play": "再生",
+    "pause": "一時停止"
+  },
   "passwordStrength": {
     "veryWeak": "非常に弱い",
     "weak": "弱い",
