@@ -18,6 +18,7 @@ import {
   ViewToken,
 } from "react-native";
 import { DeHubLoader } from "../DeHubLoader";
+import { feedRenderBudget } from "../../libs/feed-render-budget";
 import Animated, { useAnimatedStyle, type SharedValue } from "react-native-reanimated";
 import EmptyFeedState from "./EmptyFeedState";
 import FeedCard from "./FeedCard";
@@ -1028,7 +1029,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
         // scroll-to-top and pull-to-refresh still behave normally.
         maintainVisibleContentPosition={MAINTAIN_POSITION}
         onContentSizeChange={handleContentSizeChange}
-        initialNumToRender={3}
+        initialNumToRender={feedRenderBudget(cappedItems).initialRows}
         // One card per batch, mounted farther ahead. A screen recording of an
         // upward fling on a Galaxy S24+ showed the content freezing for one to
         // three frames at a time and then jumping on; every one of those UI
@@ -1039,12 +1040,9 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
         // already. The GPU budget this used to cost was freed by hiding the
         // far pager pages.
         maxToRenderPerBatch={1}
-        // Eleven viewports, not seven. The render window trails the scroll, so
-        // after a long scroll down the rows just above the viewport are unmounted
-        // and a reversed fling mounts them in its first frames — every upward
-        // fling on the S24+ froze one frame right at its start for exactly that.
-        // The extra rows fit the GPU budget now that far pager pages are hidden.
-        windowSize={11}
+        // Ordinary feeds retain the reversal buffer. Gallery-heavy channels
+        // bound decoded bitmaps instead of retaining eleven screens of photos.
+        windowSize={feedRenderBudget(cappedItems).windowSize}
         // Deliberately NOT removeClippedSubviews. It and
         // maintainVisibleContentPosition cannot both be on: Android picks the
         // MVCP anchor by walking the content view's ATTACHED children
