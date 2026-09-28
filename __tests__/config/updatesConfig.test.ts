@@ -27,7 +27,7 @@ const root = join(__dirname, '..', '..');
 const read = (...p: string[]) => readFileSync(join(root, ...p), 'utf8');
 
 const appJson = JSON.parse(read('app.json')) as {
-  expo: { updates?: { url?: string; enabled?: boolean }; runtimeVersion?: unknown };
+  expo: { version: string; updates?: { url?: string; enabled?: boolean }; runtimeVersion?: unknown };
 };
 const manifest = read('android', 'app', 'src', 'main', 'AndroidManifest.xml');
 const plist = read('ios', 'DeHub', 'Supporting', 'Expo.plist');
@@ -47,6 +47,12 @@ function plistString(key: string): string | undefined {
 }
 
 describe('OTA update config agrees across app.json and both native projects', () => {
+  it('keeps the release version equal across Expo, iOS and Android', () => {
+    const ios = read('ios', 'DeHub', 'Info.plist');
+    const android = read('android', 'app', 'build.gradle');
+    expect(ios.match(/<key>CFBundleShortVersionString<\/key>\s*<string>([^<]*)<\/string>/)?.[1]).toBe(appJson.expo.version);
+    expect(android.match(/versionName\s+"([^"]+)"/)?.[1]).toBe(appJson.expo.version);
+  });
   it('points every platform at an update server', () => {
     const url = appJson.expo.updates?.url;
     expect(url).toBeTruthy();
