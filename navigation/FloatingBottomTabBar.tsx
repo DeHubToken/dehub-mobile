@@ -39,6 +39,8 @@ import type { TabPressIntent } from "./tabPressIntent";
 import { useTranslation } from "react-i18next";
 import { useAppTheme } from "../context/ThemeContext";
 import { useKidsMode } from "../hooks/useKidsMode";
+import StageMiniPlayer from "../components/Stages/StageMiniPlayer";
+import { useStages } from "../context/StageContext";
 import {
   MINIMAL_HAIRLINE,
   MINIMAL_TAB_LINE,
@@ -413,10 +415,15 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
   const insets = useSafeAreaInsets();
   // Live, not a module constant — see tabWidthFor.
   const { width: screenW } = useWindowDimensions();
-  const tabW = isMinimal ? minimalTabWidthFor(screenW) : tabWidthFor(screenW);
   const { isSignedIn, needsUsername } = useAuthState();
   const isAuthed = isSignedIn && !needsUsername;
   const { isKidsMode } = useKidsMode();
+  const { currentSpace, isConnected, isModalOpen } = useStages();
+  const hasStageChip = !!currentSpace && isConnected && !isModalOpen && !isKidsMode;
+  const pillWidth = isMinimal
+    ? screenW - (hasStageChip ? 44 : 0)
+    : Math.min((screenW - 16) * 0.72, 340, screenW - 16 - (hasStageChip ? 44 : 0));
+  const tabW = isMinimal ? minimalTabWidthFor(pillWidth) : tabWidthFor(screenW);
   const user = useUser();
   const myUserId = ((user as any)?._id || (user as any)?.id) as string | undefined;
   const dmUnread = useTotalUnreadMessagesCount(myUserId);
@@ -626,7 +633,8 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
       // not fall through to content hidden underneath it.
       pointerEvents={isMinimal ? "auto" : "box-none"}
     >
-      <Reanimated.View style={[styles.navContainer, isMinimal && styles.minimalNavContainer, entranceStyle]}>
+      <Reanimated.View style={[styles.dock, entranceStyle]}>
+      <View style={[styles.navContainer, isMinimal && styles.minimalNavContainer, { width: pillWidth }]}>
         {/* The pill is a solid surface, not glass. It used to be a blur under a
             near-transparent wash, which meant its appearance was a function of
             whatever happened to be behind it — fine over the dark feed, clear
@@ -701,12 +709,19 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
             />
           ))}
         </ScrollView>
+      </View>
+      {hasStageChip && <StageMiniPlayer />}
       </Reanimated.View>
     </Reanimated.View>
   );
 };
 
 const styles = StyleSheet.create({
+  dock: {
+    flexDirection: "row",
+    alignItems: "center",
+    alignSelf: "center",
+  },
   outerWrap: {
     position: "absolute",
     bottom: -12,

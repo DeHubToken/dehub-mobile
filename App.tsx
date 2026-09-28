@@ -49,6 +49,7 @@ import { UserProfileSheetProvider } from "./context/UserProfileSheetContext";
 import NewMemberRegistrar from "./components/common/NewMemberRegistrar";
 import OnlinePresenceHost from "./components/common/OnlinePresenceHost";
 import RootNavigator from "./navigation/RootNavigator";
+import StageNavFallback from "./components/Stages/StageNavFallback";
 import { MessagingProvider } from "./context/MessagingContext";
 import { PushNotificationsProvider } from "./services/push";
 import { linkingConfig } from "./navigation/linking.config";
@@ -73,7 +74,6 @@ import CallModalsHost from "./components/Call/CallModalsHost";
 import CallMiniPlayer from "./components/Call/CallMiniPlayer";
 import { StageProvider } from "./context/StageContext";
 import StagesModalsHost from "./components/Stages/StagesModalsHost";
-import StageMiniPlayer from "./components/Stages/StageMiniPlayer";
 import StageRecordingMiniPlayer from "./components/Stages/StageRecordingMiniPlayer";
 import RadioMiniPlayer from "./components/Music/RadioMiniPlayer";
 import AudioPostMiniPlayer from "./components/Home/AudioPostMiniPlayer";
@@ -461,7 +461,7 @@ const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
                         <CallModalsHost />
                         <CallMiniPlayer />
                         <StagesModalsHost />
-                        <StageMiniPlayer />
+                        <StageNavFallback navigationRef={navigationRef} />
                         <StageRecordingMiniPlayer />
                         <RadioMiniPlayer />
                         <AudioPostMiniPlayer />
