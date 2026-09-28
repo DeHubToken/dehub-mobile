@@ -7526,6 +7526,7 @@
     "sendFailed": "Bu gönderilemedi",
     "deleteFailed": "Yapım silinemedi",
     "loadFailed": "Yapımların yüklenemedi",
-    "previewHint": "DeHub Builder ile oluşturuldu"
+    "previewHint": "DeHub Builder ile oluşturuldu",
+    "buildInChat": "@assistant ile özel mesajlarında oluştur"
   }
 }

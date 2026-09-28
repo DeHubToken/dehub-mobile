@@ -7507,6 +7507,7 @@
     "sendFailed": "บ่สามารถส่งได้",
     "deleteFailed": "บ่สามารถลบผลงานสร้างได้",
     "loadFailed": "บ่สามารถโหลดผลงานสร้างของเจ้าได้",
-    "previewHint": "สร้างตวย DeHub Builder"
+    "previewHint": "สร้างตวย DeHub Builder",
+    "buildInChat": "สร้างในข้อความส่วนตัวกับ @assistant"
   }
 }

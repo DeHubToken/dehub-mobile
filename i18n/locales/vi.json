@@ -7614,6 +7614,7 @@
     "sendFailed": "Không thể gửi",
     "deleteFailed": "Không thể xóa bản dựng",
     "loadFailed": "Không thể tải bản dựng của bạn",
-    "previewHint": "Được xây dựng bằng DeHub Builder"
+    "previewHint": "Được xây dựng bằng DeHub Builder",
+    "buildInChat": "Tạo trong tin nhắn riêng với @assistant"
   }
 }

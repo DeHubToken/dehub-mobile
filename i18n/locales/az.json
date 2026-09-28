@@ -7526,6 +7526,7 @@
     "sendFailed": "Onu göndərmək mümkün olmadı",
     "deleteFailed": "Qurmanı silmək mümkün olmadı",
     "loadFailed": "Qurmalarını yükləmək mümkün olmadı",
-    "previewHint": "DeHub Builder ilə quruldu"
+    "previewHint": "DeHub Builder ilə quruldu",
+    "buildInChat": "@assistant ilə şəxsi mesajlarınızda yaradın"
   }
 }

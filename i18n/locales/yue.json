@@ -7526,6 +7526,7 @@
     "sendFailed": "冇辦法傳送",
     "deleteFailed": "冇辦法刪除建構",
     "loadFailed": "冇辦法載入你嘅建構",
-    "previewHint": "用DeHub Builder整嘅"
+    "previewHint": "用DeHub Builder整嘅",
+    "buildInChat": "喺私訊同 @assistant 一齊整"
   }
 }

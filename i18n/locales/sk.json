@@ -7691,6 +7691,7 @@
     "sendFailed": "Nepodarilo sa to odoslať",
     "deleteFailed": "Zostavenie sa nepodarilo odstrániť",
     "loadFailed": "Nepodarilo sa načítať vaše zostavenia",
-    "previewHint": "Vytvorené pomocou DeHub Builder"
+    "previewHint": "Vytvorené pomocou DeHub Builder",
+    "buildInChat": "Tvorte v súkromných správach s @assistant"
   }
 }

@@ -7530,6 +7530,7 @@
     "sendFailed": "దాన్ని పంపలేకపోయాము",
     "deleteFailed": "బిల్డ్‌ను తొలగించలేకపోయాము",
     "loadFailed": "మీ బిల్డ్‌లను లోడ్ చేయలేకపోయాము",
-    "previewHint": "DeHub Builder తో నిర్మించబడింది"
+    "previewHint": "DeHub Builder తో నిర్మించబడింది",
+    "buildInChat": "@assistant తో మీ DMలో నిర్మించండి"
   }
 }

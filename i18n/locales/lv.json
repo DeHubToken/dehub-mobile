@@ -7526,6 +7526,7 @@
     "sendFailed": "Neizdevās to nosūtīt",
     "deleteFailed": "Neizdevās dzēst izveidi",
     "loadFailed": "Neizdevās ielādēt jūsu izveides",
-    "previewHint": "Izveidots ar DeHub Builder"
+    "previewHint": "Izveidots ar DeHub Builder",
+    "buildInChat": "Veido savās privātajās ziņās ar @assistant"
   }
 }

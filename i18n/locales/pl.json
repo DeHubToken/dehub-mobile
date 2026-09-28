@@ -7594,6 +7594,7 @@
     "sendFailed": "Nie udało się tego wysłać",
     "deleteFailed": "Nie udało się usunąć builda",
     "loadFailed": "Nie udało się wczytać Twoich buildów",
-    "previewHint": "Zbudowano za pomocą DeHub Builder"
+    "previewHint": "Zbudowano za pomocą DeHub Builder",
+    "buildInChat": "Twórz w wiadomościach prywatnych z @assistant"
   }
 }

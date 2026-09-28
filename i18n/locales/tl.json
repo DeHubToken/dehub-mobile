@@ -7707,6 +7707,7 @@
     "sendFailed": "Hindi maipadala iyon",
     "deleteFailed": "Hindi mabura ang build",
     "loadFailed": "Hindi ma-load ang iyong mga build",
-    "previewHint": "Ginawa gamit ang DeHub Builder"
+    "previewHint": "Ginawa gamit ang DeHub Builder",
+    "buildInChat": "Gumawa sa iyong mga DM kasama si @assistant"
   }
 }

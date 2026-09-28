@@ -8008,6 +8008,7 @@
     "sendFailed": "Не вдалося надіслати",
     "deleteFailed": "Не вдалося видалити збірку",
     "loadFailed": "Не вдалося завантажити ваші збірки",
-    "previewHint": "Створено за допомогою DeHub Builder"
+    "previewHint": "Створено за допомогою DeHub Builder",
+    "buildInChat": "Створюйте в особистих повідомленнях з @assistant"
   }
 }

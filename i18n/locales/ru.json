@@ -7529,6 +7529,7 @@
     "sendFailed": "Не удалось это отправить",
     "deleteFailed": "Не удалось удалить сборку",
     "loadFailed": "Не удалось загрузить ваши сборки",
-    "previewHint": "Создано с помощью DeHub Builder"
+    "previewHint": "Создано с помощью DeHub Builder",
+    "buildInChat": "Создавайте в личных сообщениях с @assistant"
   }
 }

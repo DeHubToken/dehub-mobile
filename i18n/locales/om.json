@@ -7576,6 +7576,7 @@
     "sendFailed": "Kana ergu hin dandeenye",
     "deleteFailed": "Ijaarsa haquu hin dandeenye",
     "loadFailed": "Ijaarsa kee fe'uu hin dandeenye",
-    "previewHint": "DeHub Builder'iin ijaarame"
+    "previewHint": "DeHub Builder'iin ijaarame",
+    "buildInChat": "Ergaa dhuunfaa kee keessatti @assistant waliin ijaari"
   }
 }

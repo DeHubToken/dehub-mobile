@@ -7530,6 +7530,7 @@
     "sendFailed": "无法发送",
     "deleteFailed": "无法删除构建",
     "loadFailed": "无法加载你的构建",
-    "previewHint": "使用 DeHub Builder 构建"
+    "previewHint": "使用 DeHub Builder 构建",
+    "buildInChat": "在私信中与 @assistant 一起搭建"
   }
 }

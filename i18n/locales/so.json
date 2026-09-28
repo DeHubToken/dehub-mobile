@@ -7526,6 +7526,7 @@
     "sendFailed": "Taas lama diri karin",
     "deleteFailed": "Dhismaha lama tirtiri karin",
     "loadFailed": "Dhismayaashaada lama soo rari karin",
-    "previewHint": "Waxaa lagu dhisay DeHub Builder"
+    "previewHint": "Waxaa lagu dhisay DeHub Builder",
+    "buildInChat": "Ku dhis fariimahaaga gaarka ah adigoo la jooga @assistant"
   }
 }

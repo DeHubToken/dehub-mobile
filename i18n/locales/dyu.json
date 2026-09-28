@@ -7336,6 +7336,7 @@
     "sendFailed": "O ci ma se ka kɛ",
     "deleteFailed": "Jɔyɔrɔ jɔsili ma se ka kɛ",
     "loadFailed": "I ka jɔyɔrɔw ladenw ma se ka kɛ",
-    "previewHint": "A dilanna DeHub Builder fɛ"
+    "previewHint": "A dilanna DeHub Builder fɛ",
+    "buildInChat": "I ka DM kɔnɔ dilanni kɛ ni @assistant ye"
   }
 }

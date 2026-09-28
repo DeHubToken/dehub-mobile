@@ -7528,6 +7528,7 @@
     "sendFailed": "ते पाठवता आले नाही",
     "deleteFailed": "बिल्ड हटवता आले नाही",
     "loadFailed": "तुमचे बिल्ड लोड करता आले नाहीत",
-    "previewHint": "DeHub बिल्डरने तयार केले"
+    "previewHint": "DeHub बिल्डरने तयार केले",
+    "buildInChat": "@assistant सोबत तुमच्या DM मध्ये तयार करा"
   }
 }

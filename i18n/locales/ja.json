@@ -7528,6 +7528,7 @@
     "sendFailed": "送信できませんでした",
     "deleteFailed": "ビルドを削除できませんでした",
     "loadFailed": "ビルドを読み込めませんでした",
-    "previewHint": "DeHub Builderで作成"
+    "previewHint": "DeHub Builderで作成",
+    "buildInChat": "@assistant とのDMでつくる"
   }
 }

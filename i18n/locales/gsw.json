@@ -7556,6 +7556,7 @@
     "sendFailed": "Het nid chönne gschickt werde",
     "deleteFailed": "Bauwärch het nid chönne glöscht werde",
     "loadFailed": "Dini Bauwärch händ nid chönne glade werde",
-    "previewHint": "Erstellt mit DeHub Builder"
+    "previewHint": "Erstellt mit DeHub Builder",
+    "buildInChat": "I dine DMs mit @assistant baue"
   }
 }

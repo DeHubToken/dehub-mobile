@@ -7530,6 +7530,7 @@
     "sendFailed": "Nem sikerült elküldeni",
     "deleteFailed": "Nem sikerült törölni a buildet",
     "loadFailed": "Nem sikerült betölteni a buildjeidet",
-    "previewHint": "DeHub Builderrel készült"
+    "previewHint": "DeHub Builderrel készült",
+    "buildInChat": "Építs a privát üzeneteidben az @assistant segítségével"
   }
 }

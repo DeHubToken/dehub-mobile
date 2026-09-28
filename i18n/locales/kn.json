@@ -7481,6 +7481,7 @@
     "sendFailed": "ಅದನ್ನು ಕಳುಹಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ",
     "deleteFailed": "ಬಿಲ್ಡ್ ಅಳಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ",
     "loadFailed": "ನಿಮ್ಮ ಬಿಲ್ಡ್‌ಗಳನ್ನು ಲೋಡ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ",
-    "previewHint": "DeHub Builder ನೊಂದಿಗೆ ನಿರ್ಮಿಸಲಾಗಿದೆ"
+    "previewHint": "DeHub Builder ನೊಂದಿಗೆ ನಿರ್ಮಿಸಲಾಗಿದೆ",
+    "buildInChat": "@assistant ಜೊತೆ ನಿಮ್ಮ DM ಗಳಲ್ಲಿ ನಿರ್ಮಿಸಿ"
   }
 }

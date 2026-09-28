@@ -7566,6 +7566,7 @@
     "sendFailed": "त्यो पठाउन सकिएन",
     "deleteFailed": "निर्माण मेटाउन सकिएन",
     "loadFailed": "तपाईंका निर्माणहरू लोड गर्न सकिएन",
-    "previewHint": "DeHub बिल्डरले निर्माण गरेको"
+    "previewHint": "DeHub बिल्डरले निर्माण गरेको",
+    "buildInChat": "@assistant सँग आफ्नो DM मा बनाउनुहोस्"
   }
 }

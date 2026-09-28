@@ -7441,6 +7441,7 @@
     "sendFailed": "ਇਹ ਭੇਜਿਆ ਨਹੀਂ ਜਾ ਸਕਿਆ",
     "deleteFailed": "ਬਿਲਡ ਮਿਟਾਇਆ ਨਹੀਂ ਜਾ ਸਕਿਆ",
     "loadFailed": "ਤੁਹਾਡੇ ਬਿਲਡ ਲੋਡ ਨਹੀਂ ਹੋ ਸਕੇ",
-    "previewHint": "DeHub ਬਿਲਡਰ ਨਾਲ ਬਣਾਇਆ ਗਿਆ"
+    "previewHint": "DeHub ਬਿਲਡਰ ਨਾਲ ਬਣਾਇਆ ਗਿਆ",
+    "buildInChat": "@assistant ਨਾਲ ਆਪਣੇ DM ਵਿੱਚ ਬਣਾਓ"
   }
 }
