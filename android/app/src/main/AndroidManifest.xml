@@ -105,6 +105,8 @@
         <data android:scheme="https" android:host="dehub.io" android:path="/arcade/kings-gambit/online"/>
         <data android:scheme="https" android:host="dehub.io" android:path="/premium"/>
         <data android:scheme="https" android:host="dehub.io" android:path="/pricing"/>
+        <data android:scheme="https" android:host="dehub.io" android:path="/work/history"/>
+        <data android:scheme="https" android:host="dehub.io" android:path="/work/disputes"/>
         <category android:name="android.intent.category.BROWSABLE"/>
         <category android:name="android.intent.category.DEFAULT"/>
       </intent-filter>
