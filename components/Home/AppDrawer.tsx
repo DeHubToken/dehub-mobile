@@ -10,8 +10,9 @@ import {
   useWindowDimensions,
   BackHandler,
   Keyboard,
-  I18nManager,
+  type ViewStyle,
 } from "react-native";
+import { Image } from "expo-image";
 import { CommonActions, useNavigation, useNavigationState } from "@react-navigation/native";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import Animated, {
@@ -30,26 +31,36 @@ import { WEBSITE_LINK } from "../../config/links";
 import { getAvatarUrl } from "../../libs/misc";
 import { toastError, toastInfo } from "../../libs";
 import { openInApp } from "../../libs/links.utils";
+import { homeTabEvents } from "../../libs/eventBus";
 import { useTranslation } from "react-i18next";
 import { useAppTheme } from "../../context/ThemeContext";
-import { MINIMAL_HAIRLINE, MINIMAL_INSET, minimalFlat } from "../../theme/minimal";
 
-// Under a right-to-left locale React Native mirrors `left: 0` to the right
-// edge, so the drawer lives on the right and has to leave the screen to the
-// RIGHT. Hiding it with -DRAWER_WIDTH pushed it left instead and left the
-// last 18% of it painted down the left edge of every screen while closed: an
-// icon rail nobody designed. The drag that closes it flips with it.
-const IS_RTL = I18nManager.isRTL;
-// Multiplies a horizontal delta so that "toward the drawer's own edge" is
-// always negative: left in LTR, right in RTL.
-const TOWARD_EDGE = IS_RTL ? -1 : 1;
+// The menu is a bottom sheet: grab handle, who is signed in, the search field,
+// then a three-column grid of the same glossy 3D icons the web menu uses. It
+// rises from the bottom in every locale, so there is no RTL mirroring to get
+// wrong the way the old side drawer had to.
 
-const OPEN_TIMING = { duration: 280, easing: Easing.bezier(0.25, 0.1, 0.25, 1) };
+const OPEN_TIMING = { duration: 300, easing: Easing.bezier(0.25, 0.1, 0.25, 1) };
 const CLOSE_TIMING = { duration: 220, easing: Easing.bezier(0.25, 0.1, 0.25, 1) };
 
 const VELOCITY_THRESHOLD = 500;
-// Fraction of the drawer width a release has to cover to count as a close.
-const POSITION_THRESHOLD = 0.4;
+// Fraction of the sheet height a downward drag has to cover to count as a close.
+const POSITION_THRESHOLD = 0.3;
+// Web caps its sheet at 85dvh; same here.
+const SHEET_HEIGHT_RATIO = 0.85;
+
+const GRID_GAP = 10;
+const GRID_PADDING = 16;
+const ICON_SIZE = 52;
+
+// Per-theme 3D artwork is served by the website (public/theme-icons/<theme>/),
+// the same files the web menu draws, so both stay on one set. expo-image keeps
+// them in its disk cache after the first open.
+const RASTER_THEMES = new Set([
+  "system", "minimal", "light", "cosmic", "hazy", "swarms", "lavalamp", "winter", "osaka", "jungle",
+]);
+const themeIconUrl = (theme: string, key: string) =>
+  `${WEBSITE_LINK}/theme-icons/${RASTER_THEMES.has(theme) ? theme : "system"}/${key}.webp`;
 
 interface DrawerItem {
   icon: IconName;
@@ -138,80 +149,109 @@ const NAV_ITEMS: DrawerItem[] = [
   { icon: "Tag", labelKey: "nav.pricing", screen: ScreenNames.Pricing, storefrontHidden: true, searchOnly: true },
 ];
 
-interface MenuItemProps {
-  icon: IconName;
-  label: string;
-  labelKey: string;
-  testLabel: string;
-  soonLabel: string;
-  onPress: () => void;
-  disabled?: boolean;
-  active?: boolean;
-  /** Minimal theme — passed down rather than read per row from context. */
-  minimal?: boolean;
-}
+// Rows with their own 3D artwork (web ThemeIconKey). The rest draw their glyph.
+const ICON_KEYS: Record<string, string> = {
+  "nav.home": "home", "nav.profile": "profile", "nav.explore": "search", "nav.prompt": "wand",
+  "nav.notifications": "notifications", "nav.messages": "messages", "nav.communities": "communities",
+  "nav.assistant": "assistant", "nav.settings": "settings", "nav.leaderboard": "trophy",
+  "nav.stats": "stats", "nav.bookmarks": "bookmarks", "nav.command": "command", "nav.events": "events",
+  "nav.stages": "stages", "nav.featureRequests": "features", "nav.staking": "staking",
+  "nav.superpowers": "superpowers", "nav.governance": "governance", "nav.dao": "dao",
+  "screens.work": "bounties", "nav.careers": "careers", "screens.stores": "stores",
+  "nav.fractions": "fractions", "screens.usernames": "usernames", "screens.accounts": "accounts",
+  "nav.ads": "ads", "nav.tv": "tv", "nav.arcade": "arcade", "nav.glossary": "glossary", "nav.bridge": "bridge",
+};
+
+type FeedPostType = "video" | "feed-images" | "feed-audio" | "live";
+
+// The home feed's tabs, reached from the sheet as if they were pages.
+const FEED_TILES: { labelKey: string; iconKey: string; icon: IconName; postType: FeedPostType }[] = [
+  { labelKey: "feed.videos", iconKey: "videos", icon: "Film", postType: "video" },
+  { labelKey: "feed.images", iconKey: "images", icon: "Image", postType: "feed-images" },
+  { labelKey: "feed.music", iconKey: "audio", icon: "Mic", postType: "feed-audio" },
+  { labelKey: "feed.live", iconKey: "live", icon: "Radio", postType: "live" },
+];
+
+// The curated first screen after Home and the feed tiles, in order. Every other
+// destination follows under a hairline.
+const PINNED_KEYS = [
+  "nav.messages", "nav.notifications", "nav.bookmarks", "screens.stores", "nav.staking", "nav.profile", "nav.settings",
+];
 
 // Items that carry a small "Test" badge on the web sidebar (matched by key
 // since labels are now translated).
 const TEST_BADGE_KEYS = new Set(["nav.prompt", "screens.work", "screens.stores"]);
 
-const MenuItem = memo<MenuItemProps>(({ icon, label, labelKey, testLabel, soonLabel, onPress, disabled, active, minimal }) => (
-  <TouchableOpacity
-    accessibilityRole="button"
-    accessibilityLabel={label}
-    className="flex-row items-center gap-3.5 px-3 py-3 mx-2 rounded-xl"
-    activeOpacity={disabled ? 1 : 0.6}
-    onPress={onPress}
-    style={[
-      styles.itemBase,
-      active && styles.itemActive,
-      // Minimal: rows run the full panel width with no box; the active one is
-      // marked by a 2pt white bar on its leading edge plus the bold label.
-      minimal && styles.minimalItem,
-      minimal && active && styles.minimalItemActive,
-      disabled ? { opacity: 0.45 } : null,
-    ]}
-  >
-    {/* Icon chip — matches web's translucent rounded-square with hairline border,
-        brighter when the item is the active route (web's active icon container).
-        Minimal keeps the box for alignment but drops its fill and border. */}
-    <View style={[styles.iconChip, active && styles.iconChipActive, minimal && minimalFlat]}>
-      <Icon name={icon} size={22} color={disabled ? "#6b7280" : "#FFFFFF"} strokeWidth={active ? 2 : 1.8} />
-      {TEST_BADGE_KEYS.has(labelKey) && (
-        <View style={styles.testBadge}>
-          <Text style={styles.testBadgeText}>{testLabel}</Text>
-        </View>
-      )}
-    </View>
-    <Text
-      className={`text-[15px] ${disabled ? "text-neutral-500" : "text-white"}`}
-      style={[styles.itemLabel, active && styles.itemLabelActive]}
-      numberOfLines={1}
-    >
-      {label}
-    </Text>
-    {disabled && (
-      <View className="bg-white/10 rounded-full px-2 py-0.5">
-        <Text className="text-[10px] text-neutral-400 font-medium">{soonLabel}</Text>
-      </View>
-    )}
-  </TouchableOpacity>
-));
+/** What the themes layer hands us; null for system/minimal (dark glass). */
+interface SheetSkin {
+  page?: string;
+  card?: ViewStyle;
+  stripActive?: ViewStyle;
+  tabIcon?: string;
+  tabIconActive?: string;
+  glow?: string | null;
+  square?: boolean;
+}
 
-interface FollowStatProps {
-  count: number;
+interface TileProps {
   label: string;
+  icon: IconName;
+  iconUrl?: string;
+  width: number;
+  active?: boolean;
+  disabled?: boolean;
+  testLabel?: string;
+  soonLabel: string;
+  skin: SheetSkin | null;
+  /** War: glyphs in HUD cyan instead of raster art. */
+  hud: boolean;
+  square: boolean;
   onPress: () => void;
 }
 
-const FollowStat = memo<FollowStatProps>(({ count, label, onPress }) => (
-  <TouchableOpacity onPress={onPress} activeOpacity={0.7}>
-    <Text className="text-white text-sm">
-      <Text className="font-bold">{count}</Text>
-      <Text className="text-neutral-400"> {label}</Text>
-    </Text>
-  </TouchableOpacity>
-));
+const Tile = memo<TileProps>(({ label, icon, iconUrl, width, active, disabled, testLabel, soonLabel, skin, hud, square, onPress }) => {
+  const glyphColor = hud
+    ? skin?.glow ?? "#22D3EE"
+    : active ? skin?.tabIconActive ?? "#FFFFFF" : skin?.tabIcon ?? "rgba(255,255,255,0.9)";
+  return (
+    <TouchableOpacity
+      accessibilityRole="button"
+      accessibilityLabel={label}
+      accessibilityState={{ selected: !!active, disabled: !!disabled }}
+      activeOpacity={disabled ? 1 : 0.7}
+      onPress={onPress}
+      style={[
+        styles.tile,
+        { width },
+        skin?.card,
+        active && styles.tileActive,
+        active && skin?.stripActive,
+        square && styles.square,
+        disabled ? { opacity: 0.45 } : null,
+      ]}
+    >
+      <View style={styles.tileIcon}>
+        {iconUrl && !hud ? (
+          <Image source={{ uri: iconUrl }} style={styles.tileImage} contentFit="contain" cachePolicy="disk" transition={120} />
+        ) : (
+          <Icon name={icon} size={30} color={glyphColor} strokeWidth={1.6} />
+        )}
+        {testLabel && (
+          <View style={styles.testBadge}>
+            <Text style={styles.testBadgeText}>{testLabel}</Text>
+          </View>
+        )}
+      </View>
+      <Text
+        style={[styles.tileLabel, active && styles.tileLabelActive, skin?.tabIcon ? { color: active ? skin.tabIconActive ?? skin.tabIcon : skin.tabIcon } : null]}
+        numberOfLines={1}
+      >
+        {label}
+      </Text>
+      {disabled && <Text style={styles.soon}>{soonLabel}</Text>}
+    </TouchableOpacity>
+  );
+});
 
 interface AppDrawerProps {
   visible: boolean;
@@ -224,17 +264,21 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
   const { signOut } = useAuthActions();
   const user = useUser();
   const { t } = useTranslation();
-  const { isMinimal } = useAppTheme();
+  const appTheme = useAppTheme() as ReturnType<typeof useAppTheme> & { theme?: string; skin?: SheetSkin | null };
+  const themeName: string = appTheme.theme ?? (appTheme.isMinimal ? "minimal" : "system");
+  const skin = appTheme.skin ?? null;
+  const hud = themeName === "war";
+  const square = !!skin?.square || appTheme.isMinimal;
   const [menuQuery, setMenuQuery] = useState("");
   const [isSigningOut, setIsSigningOut] = useState(false);
-  // Live width, so split-screen and unfolding resize the drawer and its
+  // Live size, so split-screen and unfolding resize the sheet and its
   // off-screen position instead of keeping the size from app start.
-  const { width: screenWidth } = useWindowDimensions();
-  const DRAWER_WIDTH = screenWidth * 0.82;
-  const CLOSED_X = IS_RTL ? DRAWER_WIDTH : -DRAWER_WIDTH;
+  const { width: screenWidth, height: screenHeight } = useWindowDimensions();
+  const SHEET_HEIGHT = screenHeight * SHEET_HEIGHT_RATIO;
+  const tileWidth = Math.floor((screenWidth - GRID_PADDING * 2 - GRID_GAP * 2) / 3);
 
-  // Current route name, so the matching drawer item highlights like the web
-  // sidebar. Tab screens live nested under Root — descend into it to find them.
+  // Current route name, so the matching tile highlights like the web menu.
+  // Tab screens live nested under Root — descend into it to find them.
   const activeRouteName = useNavigationState((state: any) => {
     if (!state) return undefined;
     const root = state.routes?.[state.index];
@@ -268,22 +312,22 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
     return () => sub.remove();
   }, [visible, onClose]);
 
+  // Drag-to-dismiss lives on the handle and header only, so the tile grid
+  // keeps its own vertical scroll.
   const panGesture = Gesture.Pan()
-    .activeOffsetX([-15, 15])
-    .failOffsetY([-15, 15])
+    .activeOffsetY([-10, 10])
+    .failOffsetX([-20, 20])
     .onStart(() => {
       dragging.value = true;
     })
     .onUpdate((e) => {
-      const clamped = Math.max(0, Math.min(1, 1 + (TOWARD_EDGE * e.translationX) / DRAWER_WIDTH));
-      progress.value = clamped;
+      progress.value = Math.max(0, Math.min(1, 1 - e.translationY / SHEET_HEIGHT));
     })
     .onEnd((e) => {
       dragging.value = false;
-      const velocity = TOWARD_EDGE * e.velocityX;
       const shouldClose =
-        velocity < -VELOCITY_THRESHOLD ||
-        (velocity <= VELOCITY_THRESHOLD && progress.value < 1 - POSITION_THRESHOLD);
+        e.velocityY > VELOCITY_THRESHOLD ||
+        (e.velocityY >= -VELOCITY_THRESHOLD && progress.value < 1 - POSITION_THRESHOLD);
 
       if (shouldClose) {
         progress.value = withTiming(0, CLOSE_TIMING);
@@ -304,9 +348,9 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
     opacity: progress.value,
   }));
 
-  const drawerStyle = useAnimatedStyle(() => ({
+  const sheetStyle = useAnimatedStyle(() => ({
     transform: [
-      { translateX: interpolate(progress.value, [0, 1], [CLOSED_X, 0]) },
+      { translateY: interpolate(progress.value, [0, 1], [SHEET_HEIGHT, 0]) },
     ],
   }));
 
@@ -314,7 +358,7 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
     (screen: string, params?: Record<string, any>, tab?: boolean) => {
       onClose();
       Keyboard.dismiss();
-      // This drawer is a sibling of AppNavigator's stack, so useNavigation
+      // This sheet is a sibling of AppNavigator's stack, so useNavigation
       // belongs to the outer App screen. Actions cannot navigate down into
       // that stack implicitly: include App, and Root for bottom-tab routes.
       navigation.dispatch(CommonActions.navigate({
@@ -328,7 +372,7 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
   );
 
   // Menu search. Matching is a case-insensitive substring of the TRANSLATED
-  // label, so it works in the language the row is actually rendered in; prefix
+  // label, so it works in the language the tile is actually rendered in; prefix
   // matches sort ahead of mid-word ones and ties keep the menu's own order,
   // which Array#sort preserves.
   const visibleItems = useMemo(() => {
@@ -344,7 +388,20 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
       .map((entry) => entry.item);
   }, [isSignedIn, menuQuery, t]);
 
-  // Never reopen the drawer mid-filter.
+  const searching = menuQuery.trim().length > 0;
+
+  // Resting order: Home, the four feed tiles, the pinned rows, then the rest.
+  const { home, pinned, rest } = useMemo(() => {
+    if (searching) return { home: undefined, pinned: [] as DrawerItem[], rest: visibleItems };
+    const byKey = new Map(visibleItems.map((item) => [item.labelKey, item]));
+    const pinnedItems = PINNED_KEYS.map((key) => byKey.get(key)).filter((item): item is DrawerItem => !!item);
+    const taken = new Set<DrawerItem>(pinnedItems);
+    const homeItem = byKey.get("nav.home");
+    if (homeItem) taken.add(homeItem);
+    return { home: homeItem, pinned: pinnedItems, rest: visibleItems.filter((item) => !taken.has(item)) };
+  }, [searching, visibleItems]);
+
+  // Never reopen the sheet mid-filter.
   useEffect(() => {
     if (!visible) setMenuQuery("");
   }, [visible]);
@@ -375,6 +432,14 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
     [navigate, onClose, t],
   );
 
+  const openFeedTab = useCallback(
+    (postType: FeedPostType) => {
+      navigate(ScreenNames.Home, undefined, true);
+      homeTabEvents.requestTab(postType);
+    },
+    [navigate],
+  );
+
   const handleSignOut = useCallback(async () => {
     if (isSigningOut) return;
     setIsSigningOut(true);
@@ -398,9 +463,32 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
 
   const displayName = user?.displayName || user?.username || t("common.anonymous");
   const handle = user?.username ? `@${user.username}` : "";
-  const avatarUrl = getAvatarUrl(user?.avatarImageUrl);
-  const hasAvatar = !!user?.avatarImageUrl;
-  const initial = displayName.charAt(0).toUpperCase();
+  const avatarUrl = user?.avatarImageUrl ? getAvatarUrl(user.avatarImageUrl) : undefined;
+  // The DHB the wallet actually holds; badgeBalance can include delegation.
+  const gemBalance = Math.floor(user?.ownBadgeBalance ?? user?.badgeBalance ?? 0);
+
+  const renderItem = (item: DrawerItem) => {
+    const key = ICON_KEYS[item.labelKey];
+    return (
+      <Tile
+        key={item.labelKey}
+        label={t(item.labelKey)}
+        icon={item.icon}
+        iconUrl={key ? themeIconUrl(themeName, key) : undefined}
+        width={tileWidth}
+        active={!!item.screen && item.screen === activeRouteName && !item.params}
+        disabled={item.disabled}
+        testLabel={TEST_BADGE_KEYS.has(item.labelKey) ? t("common.test") : undefined}
+        soonLabel={t("screens.soon")}
+        skin={skin}
+        hud={hud}
+        square={square}
+        onPress={() => handleItemPress(item)}
+      />
+    );
+  };
+
+  const hairline = skin?.card?.borderColor ?? "rgba(255, 255, 255, 0.10)";
 
   return (
     <View
@@ -411,100 +499,72 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
         <TouchableOpacity
           activeOpacity={1}
           onPress={onClose}
-          style={[StyleSheet.absoluteFill, { backgroundColor: "rgba(0,0,0,0.5)" }]}
+          accessibilityLabel={t("common.close")}
+          style={[StyleSheet.absoluteFill, { backgroundColor: "rgba(0,0,0,0.55)" }]}
         />
       </Animated.View>
 
-      <GestureDetector gesture={panGesture}>
-        <Animated.View
-          style={[styles.drawer, isMinimal && styles.minimalDrawer, drawerStyle, { width: DRAWER_WIDTH }]}
-        >
-          {/* Web gets border-white/10 over a real backdrop-blur(24px). Android
-              cannot: expo-blur paints a flat tint instead of blurring, and the
-              one method that does blur re-snapshots the root view every frame
-              and crashes when the feed underneath mutates mid-draw. So the
-              panel is simply opaque. */}
-          <View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: "#09090B" }]} />
+      <Animated.View
+        style={[
+          styles.sheet,
+          { height: SHEET_HEIGHT, backgroundColor: skin?.page ?? "#0B0B0E", borderColor: hairline },
+          square && styles.square,
+          sheetStyle,
+        ]}
+      >
+        {/* Opaque on purpose: expo-blur paints a flat tint on Android rather
+            than blurring, and the one method that does blur re-snapshots the
+            root view every frame and crashes when the feed mutates mid-draw. */}
+        <GestureDetector gesture={panGesture}>
+          <View>
+            <View style={styles.handleZone}>
+              <View style={styles.handle} />
+            </View>
 
-          {/* The profile block and the search field are pinned; only the item
-              list scrolls under them. The field has to sit outside the
-              ScrollView to stay put, and the profile comes with it so the field
-              keeps its place directly beneath.
-
-              Plain padding, NOT insets.top/insets.bottom. This drawer lives
-              inside the navigator, and the navigator is already wrapped in a
-              full-edge <SafeAreaView> up in App.tsx's BootGate — so the panel's
-              own top: 0 is already below the status bar. Adding the device
-              inset again here counted it twice, which pushed the profile block
-              down by a second notch-height and left a dead band above it. */}
-          <View style={{ paddingTop: 16 }}>
             {isSignedIn && user ? (
-              <View className="px-5 pb-4 mb-2">
+              <View style={styles.header}>
                 <TouchableOpacity
+                  style={styles.headerIdentity}
                   onPress={() => navigate(ScreenNames.Profile)}
                   activeOpacity={0.7}
                 >
-                  {hasAvatar ? (
-                    <Avatar uri={avatarUrl} size={48} name={displayName || handle} />
-                  ) : (
-                    <Avatar uri={undefined} size={48} name={displayName || handle} />
-                  )}
-                  <Text className="text-white text-base font-semibold mt-3">{displayName}</Text>
-                  {handle ? (
-                    <Text className="text-neutral-400 text-sm mt-0.5">{handle}</Text>
-                  ) : null}
+                  <Avatar uri={avatarUrl} size={44} name={displayName || handle} />
+                  <View style={styles.headerText}>
+                    <Text style={styles.headerName} numberOfLines={1}>{displayName}</Text>
+                    {handle ? <Text style={styles.headerHandle} numberOfLines={1}>{handle}</Text> : null}
+                  </View>
                 </TouchableOpacity>
-
-                <View className="flex-row mt-3 gap-4">
-                  <FollowStat
-                    count={user.followings ?? 0}
-                    label={t("profile.following")}
-                    onPress={() =>
-                      navigate(ScreenNames.FollowList, {
-                        address: user.walletAddress || user.address,
-                        username: user.username,
-                        initialTab: "following",
-                        isOwnProfile: true,
-                      })
-                    }
-                  />
-                  <FollowStat
-                    count={user.followers ?? 0}
-                    label={t("profile.followers")}
-                    onPress={() =>
-                      navigate(ScreenNames.FollowList, {
-                        address: user.walletAddress || user.address,
-                        username: user.username,
-                        initialTab: "followers",
-                        isOwnProfile: true,
-                      })
-                    }
-                  />
-                </View>
+                {DIGITAL_PURCHASES_ENABLED && (
+                  <TouchableOpacity
+                    accessibilityRole="button"
+                    accessibilityLabel={`${t("nav.wallet")} ${gemBalance.toLocaleString()}`}
+                    onPress={() => navigate(ScreenNames.Dpay, { initialTab: "buy" })}
+                    activeOpacity={0.7}
+                    style={[styles.balanceChip, square && styles.square]}
+                  >
+                    <Icon name="Gem" size={15} color="#FFFFFF" strokeWidth={2} />
+                    <Text style={styles.balanceText}>{gemBalance.toLocaleString()}</Text>
+                  </TouchableOpacity>
+                )}
               </View>
             ) : (
-              <View className="px-5 pb-4 mb-2">
-                <TouchableOpacity
-                  className="flex-row items-center"
-                  onPress={handleSignIn}
-                  activeOpacity={0.7}
-                >
-                  <View className="w-12 h-12 rounded-xl bg-white/10 items-center justify-center">
-                    <Icon name="User" size={24} color="#9CA3AF" />
+              <View style={styles.header}>
+                <TouchableOpacity style={styles.headerIdentity} onPress={handleSignIn} activeOpacity={0.7}>
+                  <View style={[styles.signInIcon, square && styles.square]}>
+                    <Icon name="User" size={22} color="#9CA3AF" />
                   </View>
-                  <View className="ml-3">
-                    <Text className="text-white text-base font-semibold">{t("screens.signIn")}</Text>
-                    <Text className="text-neutral-400 text-sm">{t("screens.tapToGetStarted")}</Text>
+                  <View style={styles.headerText}>
+                    <Text style={styles.headerName}>{t("screens.signIn")}</Text>
+                    <Text style={styles.headerHandle}>{t("screens.tapToGetStarted")}</Text>
                   </View>
                 </TouchableOpacity>
               </View>
             )}
 
-            {/* Menu search. This filters the 27 rows below it — it is not a
-                second content search, which is why it says "Search menu".
-                Anything that is not a page is one row away: the hand-off at the
-                bottom of the list runs the query on the Explore tab. */}
-            <View style={[styles.searchWrap, isMinimal && styles.minimalSearchWrap]}>
+            {/* Menu search. Filters the tiles below; anything that is not a
+                page is one tap away via the hand-off, which runs the query on
+                the Explore tab. */}
+            <View style={[styles.searchWrap, square && styles.square]}>
               <Icon name="Search" size={16} color="#808089" />
               <TextInput
                 value={menuQuery}
@@ -530,156 +590,182 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
               )}
             </View>
           </View>
+        </GestureDetector>
 
-          <ScrollView
-            // flex: 1 now that the ScrollView has a sibling above it — without
-            // it the list sizes to its content inside the fixed-height panel
-            // and stops scrolling at the bottom of the drawer.
-            style={{ flex: 1 }}
-            showsVerticalScrollIndicator={false}
-            bounces={false}
-            keyboardShouldPersistTaps="handled"
-            contentContainerStyle={{ flexGrow: 1, paddingBottom: 24 }}
-          >
-            <View className="py-2">
-              {visibleItems.map((item) => (
-                <MenuItem
-                  key={item.labelKey}
-                  icon={item.icon}
-                  label={t(item.labelKey)}
-                  labelKey={item.labelKey}
-                  testLabel={t("common.test")}
+        <ScrollView
+          style={{ flex: 1 }}
+          showsVerticalScrollIndicator={false}
+          bounces={false}
+          keyboardShouldPersistTaps="handled"
+          contentContainerStyle={{ paddingHorizontal: GRID_PADDING, paddingBottom: 16 }}
+        >
+          {!searching && (
+            <View style={styles.grid}>
+              {home && renderItem(home)}
+              {FEED_TILES.map((tile) => (
+                <Tile
+                  key={tile.postType}
+                  label={t(tile.labelKey)}
+                  icon={tile.icon}
+                  iconUrl={themeIconUrl(themeName, tile.iconKey)}
+                  width={tileWidth}
                   soonLabel={t("screens.soon")}
-                  disabled={item.disabled}
-                  active={!!item.screen && item.screen === activeRouteName}
-                  minimal={isMinimal}
-                  onPress={() => handleItemPress(item)}
+                  skin={skin}
+                  hud={hud}
+                  square={square}
+                  onPress={() => openFeedTab(tile.postType)}
                 />
               ))}
-
-              {menuQuery.trim().length > 0 && (
-                <>
-                  {visibleItems.length === 0 && (
-                    <Text className="text-neutral-500 text-sm px-5 py-3">
-                      {t("sidebar.noMenuMatches")}
-                    </Text>
-                  )}
-                  <View style={[styles.handoffRule, isMinimal && styles.minimalHandoffRule]} />
-                  <TouchableOpacity
-                    accessibilityRole="button"
-                    className="flex-row items-center gap-3.5 px-3 py-3 mx-2 rounded-xl"
-                    activeOpacity={0.6}
-                    onPress={runFullSearch}
-                    style={isMinimal ? styles.minimalItem : undefined}
-                  >
-                    <View style={[styles.iconChip, isMinimal && minimalFlat]}>
-                      <Icon name="Search" size={20} color="#A1A1AA" strokeWidth={1.8} />
-                    </View>
-                    <Text className="text-[15px] text-neutral-400 flex-1" numberOfLines={1}>
-                      {t("sidebar.searchDehubFor", { query: menuQuery.trim() })}
-                    </Text>
-                    <Icon name="ChevronRight" size={16} color="#808089" />
-                  </TouchableOpacity>
-                </>
-              )}
-            </View>
-          </ScrollView>
-
-          {isSignedIn && (
-            <View style={[styles.logoutFooter, isMinimal && { borderTopColor: MINIMAL_HAIRLINE }]}>
-              <TouchableOpacity
-                accessibilityRole="button"
-                accessibilityLabel={t("sidebar.logOut")}
-                activeOpacity={0.6}
-                disabled={isSigningOut}
-                onPress={handleSignOut}
-                style={[styles.logoutButton, isSigningOut && styles.logoutButtonDisabled]}
-              >
-                <Icon name="LogOut" size={20} color="#A1A1AA" strokeWidth={1.8} />
-                <Text style={styles.logoutLabel}>{t("sidebar.logOut")}</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                accessibilityRole="button"
-                accessibilityLabel={t("sidebar.post")}
-                activeOpacity={0.7}
-                onPress={handlePost}
-                style={styles.postButton}
-              >
-                <Icon name="SquarePen" size={20} color="#FFFFFF" strokeWidth={2} />
-              </TouchableOpacity>
+              {pinned.map(renderItem)}
             </View>
           )}
-        </Animated.View>
-      </GestureDetector>
+
+          {rest.length > 0 && (
+            <View style={[styles.grid, !searching && [styles.restGrid, { borderTopColor: hairline }]]}>
+              {rest.map(renderItem)}
+            </View>
+          )}
+
+          {searching && (
+            <>
+              {visibleItems.length === 0 && (
+                <Text style={styles.noMatches}>{t("sidebar.noMenuMatches")}</Text>
+              )}
+              <TouchableOpacity
+                accessibilityRole="button"
+                activeOpacity={0.6}
+                onPress={runFullSearch}
+                style={[styles.handoff, { borderTopColor: hairline }]}
+              >
+                <Icon name="Search" size={18} color="#A1A1AA" strokeWidth={1.8} />
+                <Text style={styles.handoffText} numberOfLines={1}>
+                  {t("sidebar.searchDehubFor", { query: menuQuery.trim() })}
+                </Text>
+                <Icon name="ChevronRight" size={16} color="#808089" />
+              </TouchableOpacity>
+            </>
+          )}
+        </ScrollView>
+
+        {isSignedIn && (
+          <View style={[styles.footer, { borderTopColor: hairline }]}>
+            <TouchableOpacity
+              accessibilityRole="button"
+              accessibilityLabel={t("sidebar.logOut")}
+              activeOpacity={0.6}
+              disabled={isSigningOut}
+              onPress={handleSignOut}
+              style={[styles.logoutButton, isSigningOut && styles.logoutButtonDisabled]}
+            >
+              <Icon name="LogOut" size={20} color="#A1A1AA" strokeWidth={1.8} />
+              <Text style={styles.logoutLabel}>{t("sidebar.logOut")}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              accessibilityRole="button"
+              accessibilityLabel={t("sidebar.post")}
+              activeOpacity={0.7}
+              onPress={handlePost}
+              style={styles.postButton}
+            >
+              <Icon name="SquarePen" size={20} color="#FFFFFF" strokeWidth={2} />
+            </TouchableOpacity>
+          </View>
+        )}
+      </Animated.View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  drawer: {
+  sheet: {
     position: "absolute",
     left: 0,
-    top: 0,
+    right: 0,
     bottom: 0,
     overflow: "hidden",
     zIndex: 999,
-    elevation: 10,
-    // Web: border border-white/10 — hairline on the exposed edge.
-    borderRightWidth: 1,
-    borderRightColor: "rgba(255, 255, 255, 0.10)",
-  },
-  // Transparent border on every row keeps height stable when the active border appears.
-  itemBase: {
+    elevation: 12,
+    borderTopLeftRadius: 24,
+    borderTopRightRadius: 24,
     borderWidth: 1,
-    borderColor: "transparent",
+    borderBottomWidth: 0,
   },
-  // Active row — web's liquid-glass indicator pill (gradient white + hairline border).
-  itemActive: {
+  square: {
+    borderRadius: 0,
+    borderTopLeftRadius: 0,
+    borderTopRightRadius: 0,
+  },
+  handleZone: {
+    alignItems: "center",
+    paddingTop: 10,
+    paddingBottom: 12,
+  },
+  handle: {
+    width: 36,
+    height: 4,
+    borderRadius: 2,
+    backgroundColor: "rgba(255, 255, 255, 0.28)",
+  },
+  header: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingHorizontal: GRID_PADDING,
+    marginBottom: 14,
+    gap: 12,
+  },
+  headerIdentity: {
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 12,
+  },
+  headerText: {
+    flex: 1,
+    minWidth: 0,
+  },
+  headerName: {
+    color: "#FFFFFF",
+    fontSize: 16,
+    fontWeight: "700",
+  },
+  headerHandle: {
+    color: "#A1A1AA",
+    fontSize: 13,
+    marginTop: 1,
+  },
+  signInIcon: {
+    width: 44,
+    height: 44,
+    borderRadius: 12,
+    alignItems: "center",
+    justifyContent: "center",
     backgroundColor: "rgba(255, 255, 255, 0.10)",
-    borderColor: "rgba(255, 255, 255, 0.22)",
   },
-  // Minimal: the panel edge is the only line; no raised elevation shadow.
-  minimalDrawer: {
-    borderRightColor: MINIMAL_HAIRLINE,
-    elevation: 0,
+  balanceChip: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 6,
+    height: 34,
+    paddingHorizontal: 12,
+    borderRadius: 10,
+    backgroundColor: "rgba(255, 255, 255, 0.08)",
+    borderWidth: 1,
+    borderColor: "rgba(255, 255, 255, 0.16)",
   },
-  // Full-width row (overrides the mx-2 / px-3 classes). The 2pt transparent
-  // leading border is always present so the active bar never shifts the text.
-  minimalItem: {
-    marginHorizontal: 0,
-    paddingLeft: MINIMAL_INSET - 2,
-    paddingRight: MINIMAL_INSET,
-    backgroundColor: "transparent",
-    borderWidth: 0,
-    borderLeftWidth: 2,
-    borderLeftColor: "transparent",
+  balanceText: {
+    color: "#FFFFFF",
+    fontSize: 13,
+    fontWeight: "700",
+    fontVariant: ["tabular-nums"],
   },
-  minimalItemActive: {
-    borderLeftColor: "#FFFFFF",
-  },
-  // Minimal field: no box, just a hairline underneath, edge to edge.
-  minimalSearchWrap: {
-    marginHorizontal: 0,
-    paddingHorizontal: MINIMAL_INSET,
-    backgroundColor: "transparent",
-    borderWidth: 0,
-    borderBottomWidth: 1,
-    borderBottomColor: MINIMAL_HAIRLINE,
-  },
-  minimalHandoffRule: {
-    marginHorizontal: 0,
-    backgroundColor: MINIMAL_HAIRLINE,
-  },
-  // Same translucent fill and hairline as the icon chips, so the field reads as
-  // part of the menu rather than a control dropped on top of it.
   searchWrap: {
     flexDirection: "row",
     alignItems: "center",
     gap: 9,
-    height: 40,
-    marginHorizontal: 14,
-    marginBottom: 10,
-    paddingHorizontal: 11,
+    height: 42,
+    marginHorizontal: GRID_PADDING,
+    marginBottom: 14,
+    paddingHorizontal: 12,
     borderRadius: 12,
     backgroundColor: "rgba(255, 255, 255, 0.06)",
     borderWidth: 1,
@@ -693,21 +779,84 @@ const styles = StyleSheet.create({
     // text off-centre inside a fixed-height row.
     paddingVertical: 0,
   },
-  handoffRule: {
-    height: 1,
-    marginHorizontal: 18,
-    marginVertical: 8,
-    backgroundColor: "rgba(255, 255, 255, 0.10)",
+  grid: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    gap: GRID_GAP,
   },
-  logoutFooter: {
+  restGrid: {
+    marginTop: GRID_GAP,
+    paddingTop: GRID_GAP,
+    borderTopWidth: 1,
+  },
+  tile: {
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 8,
+    padding: 12,
+    minHeight: 100,
+    borderRadius: 14,
+    backgroundColor: "rgba(255, 255, 255, 0.04)",
+    borderWidth: 1,
+    borderColor: "rgba(255, 255, 255, 0.08)",
+  },
+  tileActive: {
+    backgroundColor: "rgba(255, 255, 255, 0.12)",
+    borderColor: "rgba(255, 255, 255, 0.24)",
+  },
+  tileIcon: {
+    width: ICON_SIZE,
+    height: ICON_SIZE,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  tileImage: {
+    width: ICON_SIZE,
+    height: ICON_SIZE,
+  },
+  tileLabel: {
+    color: "rgba(255, 255, 255, 0.9)",
+    fontSize: 12.5,
+    fontWeight: "500",
+    textAlign: "center",
+    alignSelf: "stretch",
+  },
+  tileLabelActive: {
+    color: "#FFFFFF",
+    fontWeight: "700",
+  },
+  soon: {
+    color: "#A1A1AA",
+    fontSize: 10,
+    fontWeight: "500",
+  },
+  noMatches: {
+    color: "#71717A",
+    fontSize: 14,
+    paddingVertical: 12,
+  },
+  handoff: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 12,
+    marginTop: 10,
+    paddingVertical: 14,
+    paddingHorizontal: 4,
+    borderTopWidth: 1,
+  },
+  handoffText: {
+    flex: 1,
+    color: "#A1A1AA",
+    fontSize: 15,
+  },
+  footer: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
     paddingHorizontal: 10,
-    paddingTop: 10,
-    paddingBottom: 12,
+    paddingTop: 8,
+    paddingBottom: 10,
     borderTopWidth: 1,
-    borderTopColor: "rgba(255, 255, 255, 0.10)",
   },
   logoutButton: {
     height: 48,
@@ -731,30 +880,9 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: "500",
   },
-  iconChip: {
-    width: 40,
-    height: 40,
-    borderRadius: 12,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "rgba(255, 255, 255, 0.06)",
-    borderWidth: 1,
-    borderColor: "rgba(255, 255, 255, 0.08)",
-  },
-  iconChipActive: {
-    backgroundColor: "rgba(255, 255, 255, 0.14)",
-    borderColor: "rgba(255, 255, 255, 0.16)",
-  },
-  itemLabel: {
-    flex: 1,
-    fontWeight: "500",
-  },
-  itemLabelActive: {
-    fontWeight: "700",
-  },
   testBadge: {
     position: "absolute",
-    top: -5,
+    top: -6,
     alignSelf: "center",
     paddingHorizontal: 3,
     height: 12,

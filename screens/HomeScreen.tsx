@@ -27,7 +27,7 @@ import { useTabBarHide } from "../context/TabBarHideContext";
 import FeedFilterPanel, { FeedFilters, PostTypeOption } from "../components/Home/FeedFilterPanel";
 import { getCategoriesCached } from "../services/nft.service";
 import { storage } from "../libs/storage";
-import { promptFeedEvents } from "../libs/eventBus";
+import { homeTabEvents, promptFeedEvents } from "../libs/eventBus";
 import { useCollapsibleHeader } from "../hooks/useCollapsibleHeader";
 import { useIsFetching, useQueryClient } from "@tanstack/react-query";
 import FeedFilterLoader from "../components/Home/FeedFilterLoader";
@@ -724,6 +724,9 @@ export default function HomeScreen() {
       }),
     [beginFilterTransition],
   );
+
+  // The menu sheet's Videos / Images / Music / Live tiles land here.
+  useEffect(() => homeTabEvents.onTabRequested(handleNavPostTypeChange), [handleNavPostTypeChange]);
 
   useEffect(() => {
     let mounted = true;

@@ -37,3 +37,23 @@ export const promptFeedEvents = {
     promptListeners.forEach((fn) => fn(category));
   },
 };
+
+type HomeTabListener = (postType: "video" | "feed-images" | "feed-audio" | "live") => void;
+
+const homeTabListeners = new Set<HomeTabListener>();
+
+/**
+ * The menu sheet opens the home feed on a given tab (Videos, Images, Music,
+ * Live). HomeScreen owns the pager state and stays mounted under the tab
+ * navigator, so the request reaches it here rather than through route params.
+ */
+export const homeTabEvents = {
+  onTabRequested(listener: HomeTabListener): () => void {
+    homeTabListeners.add(listener);
+    return () => { homeTabListeners.delete(listener); };
+  },
+
+  requestTab(postType: Parameters<HomeTabListener>[0]): void {
+    homeTabListeners.forEach((fn) => fn(postType));
+  },
+};
