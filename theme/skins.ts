@@ -92,6 +92,7 @@ const glass: Omit<ThemeSkin, 'page'> = {
 };
 
 const HUD = 'rgb(79,227,224)';
+const RAIN = 'rgb(57,255,136)';
 const SAKURA = 'rgb(255,111,181)';
 
 const SKINS: Partial<Record<AppThemeName, ThemeSkin>> = {
@@ -100,6 +101,52 @@ const SKINS: Partial<Record<AppThemeName, ThemeSkin>> = {
   swarms: { ...glass, page: '#03080D' },
   lavalamp: { ...glass, page: '#120704' },
   winter: { ...glass, page: '#05070A' },
+  island: { ...glass, page: '#1A2A4A' },
+  horror: { ...glass, page: '#0B0C0D' },
+
+  // Terminal: black panels ringed in rain green, square corners, monospace.
+  hacker: {
+    backdrop: true,
+    page: '#000000',
+    square: true,
+    header: { backgroundColor: 'rgba(0,0,0,0.6)' },
+    card: {
+      backgroundColor: 'rgba(0,8,3,0.86)',
+      borderWidth: 1,
+      borderColor: 'rgba(57,255,136,0.30)',
+      borderTopColor: 'rgba(57,255,136,0.45)',
+      borderRadius: 0,
+    },
+    strip: {
+      backgroundColor: 'rgba(0,8,3,0.9)',
+      borderWidth: 1,
+      borderColor: 'rgba(57,255,136,0.30)',
+      borderRadius: 0,
+    },
+    stripActive: {
+      backgroundColor: 'rgba(57,255,136,0.12)',
+      borderWidth: 1,
+      borderColor: 'rgba(57,255,136,0.6)',
+      borderRadius: 0,
+    },
+    tabIcon: 'rgb(120,200,150)',
+    tabIconActive: RAIN,
+    barFill: { backgroundColor: 'rgba(0,8,3,0.9)' },
+    barBorder: { borderWidth: 1, borderColor: 'rgba(57,255,136,0.4)', borderRadius: 0 },
+    centre: {
+      backgroundColor: 'rgba(57,255,136,0.14)',
+      borderWidth: 1,
+      borderColor: 'rgba(57,255,136,0.8)',
+      borderRadius: 0,
+    },
+    centreIcon: RAIN,
+    barIcon: 'rgba(180,255,210,0.75)',
+    barIconActive: RAIN,
+    grain: false,
+    glow: RAIN,
+    brackets: null,
+    mono: true,
+  },
 
   // Tactical HUD: one cyan accent, sand readouts, square everything.
   war: {

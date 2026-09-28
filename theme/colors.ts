@@ -15,6 +15,9 @@ export const APP_THEMES = [
   'war',
   'osaka',
   'jungle',
+  'island',
+  'hacker',
+  'horror',
 ] as const;
 
 export type AppThemeName = (typeof APP_THEMES)[number];
@@ -132,6 +135,28 @@ export const jungleColors = canvasColors('#16110C', {
   mutedForeground: '#C6B69E',
 });
 
+// The three 2D-canvas themes (web IslandBackground / HackerBackground /
+// HorrorBackground): a lagoon that follows the clock, green rain, VHS tape.
+export const islandColors = canvasColors('#1A2A4A', {
+  card: '#1E2F52',
+  border: '#3A4F80',
+  accent: '#FF7A8A',
+  accentForeground: '#1A2A4A',
+});
+export const hackerColors = canvasColors('#000000', {
+  card: '#020A05',
+  border: '#0E4A26',
+  accent: '#39FF88',
+  accentForeground: '#000000',
+  mutedForeground: '#7FD9A6',
+});
+export const horrorColors = canvasColors('#0B0C0D', {
+  card: '#121315',
+  border: '#2A2C2F',
+  accent: '#FF2B2B',
+  accentForeground: '#FFFFFF',
+});
+
 const palettes: Record<AppThemeName, ThemeColors> = {
   system: systemColors,
   minimal: minimalColors,
@@ -143,6 +168,9 @@ const palettes: Record<AppThemeName, ThemeColors> = {
   war: warColors,
   osaka: osakaColors,
   jungle: jungleColors,
+  island: islandColors,
+  hacker: hackerColors,
+  horror: horrorColors,
 };
 
 let activeTheme: AppThemeName = 'system';
