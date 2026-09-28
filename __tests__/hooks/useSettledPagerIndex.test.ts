@@ -38,8 +38,8 @@ describe('settled pager player selection', () => {
 
   it('uses current dimensions and item count, clamps the footer, and cleans up', () => {
     const commit = jest.fn();
-    const { result, rerender, unmount } = renderHook<ReturnType<typeof useSettledPagerIndex>, { height: number; count: number }>(
-      ({ height, count }) => useSettledPagerIndex(commit, height, count),
+    const { result, rerender, unmount } = renderHook(
+      ({ height, count }: { height: number; count: number }) => useSettledPagerIndex(commit, height, count),
       { initialProps: { height: 800, count: 2 } },
     );
     rerender({ height: 600, count: 4 });
