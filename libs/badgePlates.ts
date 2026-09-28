@@ -4,7 +4,7 @@
 // these, so gaps inside the outline read as sticker paper rather than holes.
 export const BADGE_PLATES: Record<string, number> = {
   "Crab": require("../assets/badges/plates/Crab.png"),
-  "Lobster": require("../assets/badges/plates/Lobster.png"),
+  "Ghost Lobster": require("../assets/badges/plates/Ghost Lobster.png"),
   "Piranha": require("../assets/badges/plates/Piranha.png"),
   "Giant Tortoise": require("../assets/badges/plates/Giant Tortoise.png"),
   "King Cobra": require("../assets/badges/plates/King Cobra.png"),

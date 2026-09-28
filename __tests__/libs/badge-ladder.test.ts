@@ -167,7 +167,7 @@ describe('getBadgeStanding', () => {
   it('fills across the current tier, not across the whole ladder', () => {
     const standing = getBadgeStanding(17_500, { scale: 1 });
     expect(standing.tier).toBe('Crab');
-    expect(standing.nextTier).toBe('Lobster');
+    expect(standing.nextTier).toBe('Ghost Lobster');
     expect(standing.nextThreshold).toBe(25_000);
     expect(standing.remaining).toBe(7_500);
     expect(standing.progress).toBeCloseTo(0.5, 5);
@@ -243,5 +243,17 @@ describe("the legacy tier spellings", () => {
   it("still grandfathers a tier locked under the old spelling", () => {
     const lock = { tier: "Meglodon", requirement: 5_000_000 };
     expect(getBadgeName(5_000_000, { scale: 1, lock })).toBe("Megalodon");
+  });
+});
+
+
+describe('Ghost Lobster compatibility', () => {
+  it('preserves the second tier and a legacy grandfathered lock', () => {
+    expect(getBadgeName(25_000)).toBe('Ghost Lobster');
+    expect(canonicalTierName('Lobster')).toBe('Ghost Lobster');
+    expect(badgeThreshold('Lobster')).toBe(25_000);
+    expect(parseBadgeLock({ tier: 'Lobster', requirement: 2_500 }))
+      .toEqual({ tier: 'Ghost Lobster', requirement: 2_500 });
+    expect(getBadgeName(2_500, { scale: 1, lock: { tier: 'Lobster', requirement: 2_500 } })).toBe('Ghost Lobster');
   });
 });

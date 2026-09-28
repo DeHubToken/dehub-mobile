@@ -296,7 +296,7 @@ describe("device profile limit", () => {
   it("names the tier that would lift the limit", () => {
     const allowance = getProfileAllowance([{ badgeBalance: 10_000 }]);
     expect(allowance.tierName).toBe("Crab");
-    expect(allowance.nextTierName).toBe("Lobster");
+    expect(allowance.nextTierName).toBe("Ghost Lobster");
     expect(allowance.nextTierProfiles).toBe(4);
   });
 
