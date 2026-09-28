@@ -6177,13 +6177,12 @@
       "images": "Imej setiap hantaran",
       "uploads": "Had muat naik harian",
       "storage": "Storan editor",
-      "profiles": "Profil yang disimpan",
       "lending": "Slot pinjaman lencana",
       "voice": "Pengklonan suara",
       "voiceFree": "Percuma",
       "voiceLocked": "{{tier}} dan ke atas"
     },
-    "buy": "Dapatkan DHB",
+    "buyTokens": "Beli token",
     "details": "Pecahan penuh",
     "play": "Main",
     "pause": "Jeda"

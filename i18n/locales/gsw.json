@@ -5947,13 +5947,12 @@
       "images": "Bilder pro Post",
       "uploads": "Tägliches Upload-Limit",
       "storage": "Editor Speicher",
-      "profiles": "Gspeichereti Profile",
       "lending": "Abzeichen Lih-Slots",
       "voice": "Stimme klone",
       "voiceFree": "Gratis",
       "voiceLocked": "{{tier}} und höher"
     },
-    "buy": "DHB hole",
+    "buyTokens": "Toke choufe",
     "details": "Vollständigi Uufschlüsselig",
     "play": "Abspiele",
     "pause": "Pause"

@@ -5917,13 +5917,12 @@
       "images": "Hər yazıya düşən şəkillər",
       "uploads": "Gündəlik yüklənmə limiti",
       "storage": "Redaktor yaddaşı",
-      "profiles": "Saxlanılan profillər",
       "lending": "Nişan verən aralıqlar",
       "voice": "Səs klonlaması",
       "voiceFree": "Pulsuz",
       "voiceLocked": "{{tier}} və yuxarı"
     },
-    "buy": "DHB əldə edin",
+    "buyTokens": "Tokenlər al",
     "details": "Tam təhlil",
     "play": "Oxut",
     "pause": "Fasilə ver"

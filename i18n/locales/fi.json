@@ -5917,13 +5917,12 @@
       "images": "Kuvia julkaisua kohti",
       "uploads": "Päivittäinen latausraja",
       "storage": "Muokkaimen tallennustila",
-      "profiles": "Tallennetut profiilit",
       "lending": "Merkkien lainausajat",
       "voice": "Äänen kloonaus",
       "voiceFree": "Ilmainen",
       "voiceLocked": "{{tier}} ja ylös"
     },
-    "buy": "Hanki DHB",
+    "buyTokens": "Osta poletteja",
     "details": "Täydellinen erittely",
     "play": "Toista",
     "pause": "Keskeytä"

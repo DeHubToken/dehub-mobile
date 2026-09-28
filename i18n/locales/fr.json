@@ -5970,13 +5970,12 @@
       "images": "Images par publication",
       "uploads": "Limite de téléchargement quotidienne",
       "storage": "Stockage de l'éditeur",
-      "profiles": "Profils enregistrés",
       "lending": "Emplacements de prêt de badges",
       "voice": "Clonage vocal",
       "voiceFree": "Gratuit",
       "voiceLocked": "{{tier}} et plus"
     },
-    "buy": "Obtenir DHB",
+    "buyTokens": "Acheter des jetons",
     "details": "Détail complet",
     "play": "Lecture",
     "pause": "Pause"

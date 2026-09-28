@@ -5917,13 +5917,12 @@
       "images": "Imatges per publicació",
       "uploads": "Límit de càrrega diària",
       "storage": "Emmagatzematge de l'",
-      "profiles": "Perfils desats",
       "lending": "Ranures per al préstec d'insígnies",
       "voice": "Clonació de veu",
       "voiceFree": "Gratis",
       "voiceLocked": "{{tier}} o més"
     },
-    "buy": "Aconsegueix DHB",
+    "buyTokens": "Comprar fitxes",
     "details": "Desglossament complet",
     "play": "Jugar",
     "pause": "Pausa"

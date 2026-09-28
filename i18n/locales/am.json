@@ -5946,13 +5946,12 @@
       "images": "ምስሎች በእያንዳንዱ ልጥፍ",
       "uploads": "ዕለታዊ የሰቀላ ገደብ",
       "storage": "የአርትዖት ማከማቻ",
-      "profiles": "የተቀመጡ መገለጫዎች",
       "lending": "ባጅ ብድር መክተቻዎች",
       "voice": "የድምፅ ክሎኒንግ",
       "voiceFree": "ነጻ",
       "voiceLocked": "{{tier}} እና ወደ ላይ"
     },
-    "buy": "DHB ያግኙ",
+    "buyTokens": "ምልክቶችን ይግዙ",
     "details": "ሙሉ ማፍረስ",
     "play": "አጫውት",
     "pause": "እረፍት"

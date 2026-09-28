@@ -5917,13 +5917,12 @@
       "images": "Pildid postituse kohta",
       "uploads": "Päevane üleslaadimise limiit",
       "storage": "Redaktori salvestusruum",
-      "profiles": "Salvestatud profiilid",
       "lending": "Märgilaenu teenindusajad",
       "voice": "Hääle kloonimine",
       "voiceFree": "Tasuta",
       "voiceLocked": "{{tier}} ja järgmised"
     },
-    "buy": "Hangi DHB",
+    "buyTokens": "Osta žetoone",
     "details": "Täielik jaotus",
     "play": "Esita",
     "pause": "Peata"

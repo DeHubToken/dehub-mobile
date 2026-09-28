@@ -5948,13 +5948,12 @@
       "images": "Izithombe ngephosti ngayinye",
       "uploads": "Umkhawulo wokufaka nsuku zonke",
       "storage": "Isitoreji somhleli",
-      "profiles": "Amaphrofayili alondoloziwe",
       "lending": "Izikhala zokubolekisa ngebheji",
       "voice": "Ukudlaliswa kwezwi",
       "voiceFree": "Mahhala",
       "voiceLocked": "{{tier}} nangaphezulu"
     },
-    "buy": "Thola i-DHB",
+    "buyTokens": "Thenga amathokheni",
     "details": "Ukucazwa okuphelele",
     "play": "Dlala",
     "pause": "Misa okwesikhashana"

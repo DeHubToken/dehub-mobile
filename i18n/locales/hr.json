@@ -5917,13 +5917,12 @@
       "images": "Slike po objavi",
       "uploads": "Dnevno ograničenje prijenosa",
       "storage": "Pohrana uređivača",
-      "profiles": "Spremljeni profili",
       "lending": "Slotovi za posudbu znački",
       "voice": "Kloniranje glasa",
       "voiceFree": "Besplatno",
       "voiceLocked": "{{tier}} i više"
     },
-    "buy": "Nabavite DHB",
+    "buyTokens": "Kupi žetone",
     "details": "Cijeli prikaz po stavkama",
     "play": "Pokreni",
     "pause": "Pauziraj"

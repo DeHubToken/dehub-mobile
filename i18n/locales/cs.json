@@ -5921,13 +5921,12 @@
       "images": "Obrázky na příspěvek",
       "uploads": "Denní limit nahrávání",
       "storage": "Úložiště editoru",
-      "profiles": "Uložené profily",
       "lending": "Sloty pro půjčování odznaků",
       "voice": "Klonování hlasu",
       "voiceFree": "Zdarma",
       "voiceLocked": "{{tier}} a vyšší"
     },
-    "buy": "Získat DHB",
+    "buyTokens": "Koupit žetony",
     "details": "Úplný rozpis",
     "play": "Hrát",
     "pause": "Pozastavit"

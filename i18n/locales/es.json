@@ -5966,13 +5966,12 @@
       "images": "Imágenes por publicación",
       "uploads": "Límite de carga diaria",
       "storage": "Almacenamiento del editor",
-      "profiles": "Perfiles guardados",
       "lending": "Ranuras de préstamo de insignias",
       "voice": "Clonación de voz",
       "voiceFree": "Gratis",
       "voiceLocked": "{{tier}} o más"
     },
-    "buy": "Obtener DHB",
+    "buyTokens": "Comprar tokens",
     "details": "Desglose completo",
     "play": "Jugar",
     "pause": "Pausar"

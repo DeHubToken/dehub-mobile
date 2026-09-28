@@ -5917,13 +5917,12 @@
       "images": "Тасвирҳо дар як пост",
       "uploads": "Маҳдудияти боркунии ҳаррӯза",
       "storage": "Захираи муҳаррир",
-      "profiles": "Mga profile na naka-save",
       "lending": "Фиристодани почтаи электронӣ",
       "voice": "Клонизатсияи овоз",
       "voiceFree": "Озод",
       "voiceLocked": "{{tier}} at up"
     },
-    "buy": "Гирифтани DHB",
+    "buyTokens": "Харидани нишонаҳо",
     "details": "Барҳамдиҳии пурра",
     "play": "Бозикунӣ",
     "pause": "Таваққуф"

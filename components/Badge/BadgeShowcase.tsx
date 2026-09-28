@@ -32,6 +32,7 @@ import Animated, {
   type SharedValue,
 } from "react-native-reanimated";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { LinearGradient } from "expo-linear-gradient";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Slider from "@react-native-community/slider";
 import { useTranslation } from "react-i18next";
@@ -82,6 +83,15 @@ const SLIDER_STEPS = 1000;
 const SNAP = 12;
 const FLY_OUT_MS = 760;
 const FLY_HOME_MS = 560;
+/** One gap, radius and padding for every panel, tile and button. */
+const GAP = 8;
+const RADIUS = 16;
+const PAD = 12;
+
+const CHROME_LIGHT = ["#fdfdfe", "#e1e4e8", "#a8adb5", "#eceef1", "#c2c6cc", "#f6f7f8"] as const;
+const CHROME_LIGHT_STOPS = [0, 0.16, 0.47, 0.53, 0.78, 1] as const;
+const CHROME_DARK = ["#50545b", "#2c2f34", "#15171a", "#2d3035"] as const;
+const CHROME_DARK_STOPS = [0, 0.45, 0.55, 1] as const;
 
 function outCubic(x: number) {
   "worklet";
@@ -354,6 +364,7 @@ export default function BadgeShowcase({ tier, anchor, onClose }: Props) {
   const remaining = standing ? Math.max(0, threshold - standing.balance) : 0;
   const nf = useMemo(() => new Intl.NumberFormat(i18n.language), [i18n.language]);
 
+  // Nine tiles, so the three-column grid never ends on a ragged row.
   const perkRows: { key: string; icon: IconName; label: string; value: string; up: boolean; locked?: boolean }[] = [
     { key: "fee", icon: "Receipt", label: t("badgeShowcase.perks.fee"), value: `${perks.platformFee}%`, up: perks.platformFee < below.platformFee },
     { key: "votes", icon: "Landmark", label: t("badgeShowcase.perks.votes"), value: `×${perks.voteWeight}`, up: perks.voteWeight > below.voteWeight },
@@ -362,7 +373,6 @@ export default function BadgeShowcase({ tier, anchor, onClose }: Props) {
     { key: "images", icon: "Images", label: t("badgeShowcase.perks.images"), value: nf.format(perks.imagesPerPost), up: perks.imagesPerPost > below.imagesPerPost },
     { key: "uploads", icon: "Upload", label: t("badgeShowcase.perks.uploads"), value: formatBytes(perks.uploadBytesPerDay), up: perks.uploadBytesPerDay > below.uploadBytesPerDay },
     { key: "storage", icon: "HardDrive", label: t("badgeShowcase.perks.storage"), value: formatBytes(perks.editorStorageBytes), up: perks.editorStorageBytes > below.editorStorageBytes },
-    { key: "profiles", icon: "Users", label: t("badgeShowcase.perks.profiles"), value: nf.format(perks.savedProfiles), up: perks.savedProfiles > below.savedProfiles },
     { key: "lending", icon: "Share2", label: t("badgeShowcase.perks.lending"), value: nf.format(perks.lendingSlots), up: perks.lendingSlots > below.lendingSlots },
     {
       key: "voice",
@@ -387,6 +397,8 @@ export default function BadgeShowcase({ tier, anchor, onClose }: Props) {
   };
 
   const sliderValue = sliderPos ?? toPos(amount);
+  // The column is the window less 16px either side: three tiles, two gaps.
+  const tileWidth = Math.floor((W - 32 - GAP * 2) / 3);
 
   return (
     <Modal transparent visible animationType="none" statusBarTranslucent navigationBarTranslucent onRequestClose={requestClose}>
@@ -403,9 +415,9 @@ export default function BadgeShowcase({ tier, anchor, onClose }: Props) {
           {/* Header */}
           <Animated.View style={[styles.header, chromeStyle]} pointerEvents={phase === "open" ? "auto" : "none"}>
             <Text style={styles.overline}>{t("badgeShowcase.badges")}</Text>
-            <Pressable onPress={requestClose} hitSlop={10} style={styles.close} accessibilityRole="button" accessibilityLabel={t("badgeShowcase.close")}>
-              <Icon name="X" size={18} color="rgba(255,255,255,0.85)" />
-            </Pressable>
+            <Chrome dark onPress={requestClose} hitSlop={10} style={styles.close} accessibilityLabel={t("badgeShowcase.close")}>
+              <Icon name="X" size={18} color="#f3f4f6" />
+            </Chrome>
           </Animated.View>
 
           {/* Stage */}
@@ -456,12 +468,14 @@ export default function BadgeShowcase({ tier, anchor, onClose }: Props) {
               </View>
 
               <View style={styles.card}>
-                <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
-                  <Text style={styles.label}>{t("badgeShowcase.sliderLabel")}</Text>
-                  <View style={{ flexDirection: "row", alignItems: "center", gap: 5 }}>
-                    <Text style={styles.amount}>{nf.format(amount)}</Text>
+                <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", height: 24, gap: 8 }}>
+                  <Text style={[styles.label, { flexShrink: 1 }]} numberOfLines={1}>
+                    {t("badgeShowcase.sliderLabel")}
+                  </Text>
+                  <View style={{ flexDirection: "row", alignItems: "center", gap: 5, flexShrink: 0 }}>
+                    <Text style={styles.amount} numberOfLines={1}>{nf.format(amount)}</Text>
                     <DhbCoin size={15} />
-                    {price ? <Text style={[styles.muted, { fontSize: 12 }]}>≈ {formatUsd(amount * price)}</Text> : null}
+                    {price && W >= 380 ? <Text style={[styles.muted, { fontSize: 12 }]}>≈ {formatUsd(amount * price)}</Text> : null}
                   </View>
                 </View>
                 <Slider
@@ -491,24 +505,25 @@ export default function BadgeShowcase({ tier, anchor, onClose }: Props) {
               </View>
 
               <Text style={[styles.label, { marginTop: 12 }]}>{t("badgeShowcase.grants")}</Text>
-              <ScrollView
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                style={{ marginHorizontal: -16, marginTop: 8 }}
-                contentContainerStyle={{ paddingHorizontal: 16, gap: 8 }}
-              >
+              <View style={styles.grid}>
                 {perkRows.map((row) => (
-                  <View key={row.key} style={[styles.perk, row.up && styles.perkUp]}>
-                    <View style={{ flexDirection: "row", alignItems: "center", gap: 5 }}>
-                      <Icon name={row.icon} size={13} color="rgba(255,255,255,0.5)" />
+                  // Fixed geometry: the label always gets two lines and the
+                  // value one, so a one-line label never shifts its tile out of
+                  // step with the tiles beside it.
+                  <View key={row.key} style={[styles.perk, { width: tileWidth }, row.up && styles.perkUp]}>
+                    <View style={styles.perkHead}>
+                      <View style={styles.perkIcon}>
+                        <Icon name={row.icon} size={13} color="rgba(255,255,255,0.5)" />
+                      </View>
                       <Text style={styles.perkLabel} numberOfLines={2}>
                         {row.label}
                       </Text>
                     </View>
-                    <View style={{ flexDirection: "row", alignItems: "center", gap: 5, marginTop: 4 }}>
+                    <View style={styles.perkFoot}>
                       <Animated.Text
                         key={row.value}
                         entering={FadeInDown.duration(220)}
+                        numberOfLines={1}
                         style={row.locked ? styles.perkLocked : styles.perkValue}
                       >
                         {row.value}
@@ -517,15 +532,15 @@ export default function BadgeShowcase({ tier, anchor, onClose }: Props) {
                     </View>
                   </View>
                 ))}
-              </ScrollView>
+              </View>
 
-              <View style={{ flexDirection: "row", gap: 8, marginTop: 14 }}>
-                <Pressable style={[styles.button, styles.buttonPrimary]} onPress={() => goToScreen(ScreenNames.Dpay, { initialTab: "buy" })}>
-                  <Text style={styles.buttonPrimaryText}>{t("badgeShowcase.buy")}</Text>
-                </Pressable>
-                <Pressable style={[styles.button, styles.buttonGhost]} onPress={() => goToScreen(ScreenNames.Glossary)}>
-                  <Text style={styles.buttonGhostText}>{t("badgeShowcase.details")}</Text>
-                </Pressable>
+              <View style={styles.actions}>
+                <Chrome style={styles.button} onPress={() => goToScreen(ScreenNames.Dpay, { initialTab: "buy" })}>
+                  <Text style={styles.chromeText} numberOfLines={1}>{t("badgeShowcase.buyTokens")}</Text>
+                </Chrome>
+                <Chrome dark style={styles.button} onPress={() => goToScreen(ScreenNames.Glossary)}>
+                  <Text style={styles.chromeTextDark} numberOfLines={1}>{t("badgeShowcase.details")}</Text>
+                </Chrome>
               </View>
             </ScrollView>
           </Animated.View>
@@ -561,14 +576,14 @@ export default function BadgeShowcase({ tier, anchor, onClose }: Props) {
               })}
             </ScrollView>
             <View style={styles.dockDivider} />
-            <Pressable
+            <Chrome
+              dark
               onPress={() => setPlaying((p) => !p)}
               style={styles.play}
-              accessibilityRole="button"
               accessibilityLabel={playing ? t("badgeShowcase.pause") : t("badgeShowcase.play")}
             >
-              <Icon name={playing ? "Pause" : "Play"} size={15} color="#fff" />
-            </Pressable>
+              <Icon name={playing ? "Pause" : "Play"} size={15} color="#f3f4f6" />
+            </Chrome>
           </Animated.View>
         </View>
 
@@ -582,6 +597,49 @@ export default function BadgeShowcase({ tier, anchor, onClose }: Props) {
         </Animated.View>
       </GestureHandlerRootView>
     </Modal>
+  );
+}
+
+/** Polished chrome, or gunmetal with `dark`: a banded gradient and a lit top edge. */
+function Chrome({
+  dark,
+  style,
+  children,
+  onPress,
+  hitSlop,
+  accessibilityLabel,
+}: {
+  dark?: boolean;
+  style?: object;
+  children: React.ReactNode;
+  onPress: () => void;
+  hitSlop?: number;
+  accessibilityLabel?: string;
+}) {
+  return (
+    <Pressable
+      onPress={onPress}
+      hitSlop={hitSlop}
+      accessibilityRole="button"
+      accessibilityLabel={accessibilityLabel}
+      style={({ pressed }) => [
+        styles.chrome,
+        { borderColor: dark ? "rgba(255,255,255,0.14)" : "rgba(255,255,255,0.35)" },
+        style,
+        pressed && { transform: [{ translateY: 1 }], opacity: 0.92 },
+      ]}
+    >
+      <LinearGradient
+        colors={dark ? CHROME_DARK : CHROME_LIGHT}
+        locations={dark ? CHROME_DARK_STOPS : CHROME_LIGHT_STOPS}
+        style={StyleSheet.absoluteFill}
+      />
+      <View
+        pointerEvents="none"
+        style={[styles.chromeLip, { backgroundColor: dark ? "rgba(255,255,255,0.28)" : "rgba(255,255,255,0.95)" }]}
+      />
+      {children}
+    </Pressable>
   );
 }
 
@@ -633,16 +691,7 @@ function stickerExit(direction: SharedValue<number>, height: number) {
 const styles = StyleSheet.create({
   header: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 16 },
   overline: { color: "rgba(255,255,255,0.45)", fontSize: 11, fontWeight: "700", letterSpacing: 1.8, textTransform: "uppercase" },
-  close: {
-    width: 38,
-    height: 38,
-    borderRadius: 19,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "rgba(255,255,255,0.08)",
-    borderWidth: StyleSheet.hairlineWidth,
-    borderColor: "rgba(255,255,255,0.14)",
-  },
+  close: { width: 38, height: 38, borderRadius: 19 },
   tierName: { color: "#fff", fontSize: 28, lineHeight: 32, fontWeight: "900", textTransform: "uppercase", letterSpacing: -0.5, marginTop: 4 },
   chip: {
     flexDirection: "row",
@@ -661,8 +710,8 @@ const styles = StyleSheet.create({
   muted: { color: "rgba(255,255,255,0.5)", fontSize: 12.5 },
   card: {
     marginTop: 12,
-    padding: 14,
-    borderRadius: 16,
+    padding: PAD,
+    borderRadius: RADIUS,
     backgroundColor: "rgba(255,255,255,0.05)",
     borderWidth: StyleSheet.hairlineWidth,
     borderColor: "rgba(255,255,255,0.12)",
@@ -670,25 +719,30 @@ const styles = StyleSheet.create({
   label: { color: "rgba(255,255,255,0.45)", fontSize: 11, fontWeight: "700", letterSpacing: 1.2, textTransform: "uppercase" },
   amount: { color: "#fff", fontSize: 17, fontWeight: "700", fontVariant: ["tabular-nums"] },
   tiny: { color: "rgba(255,255,255,0.35)", fontSize: 10.5, fontVariant: ["tabular-nums"] },
+  grid: { flexDirection: "row", flexWrap: "wrap", gap: GAP, marginTop: GAP },
   perk: {
-    width: 138,
-    paddingHorizontal: 12,
-    paddingVertical: 10,
-    borderRadius: 12,
+    height: 80,
+    padding: PAD,
+    borderRadius: RADIUS,
+    justifyContent: "space-between",
     backgroundColor: "rgba(255,255,255,0.035)",
     borderWidth: StyleSheet.hairlineWidth,
     borderColor: "rgba(255,255,255,0.12)",
   },
   perkUp: { backgroundColor: "rgba(255,255,255,0.08)", borderColor: "rgba(255,255,255,0.24)" },
-  perkLabel: { color: "rgba(255,255,255,0.5)", fontSize: 11, lineHeight: 13, flexShrink: 1 },
-  perkValue: { color: "#fff", fontSize: 17, fontWeight: "700", fontVariant: ["tabular-nums"] },
-  perkLocked: { color: "rgba(255,255,255,0.4)", fontSize: 13, fontWeight: "600" },
+  perkHead: { flexDirection: "row", alignItems: "flex-start", gap: 5 },
+  perkIcon: { width: 13, height: 13, alignItems: "center", justifyContent: "center" },
+  perkLabel: { flex: 1, color: "rgba(255,255,255,0.5)", fontSize: 10.5, lineHeight: 13, height: 26 },
+  perkFoot: { flexDirection: "row", alignItems: "center", gap: 5, height: 20, overflow: "hidden" },
+  perkValue: { flexShrink: 1, color: "#fff", fontSize: 16, lineHeight: 20, fontWeight: "700", fontVariant: ["tabular-nums"] },
+  perkLocked: { flexShrink: 1, color: "rgba(255,255,255,0.4)", fontSize: 12, lineHeight: 20, fontWeight: "600" },
   up: { color: "#34d399", fontSize: 10, fontWeight: "700" },
-  button: { flex: 1, borderRadius: 12, paddingVertical: 11, alignItems: "center" },
-  buttonPrimary: { backgroundColor: "#fff" },
-  buttonPrimaryText: { color: "#000", fontSize: 14, fontWeight: "700" },
-  buttonGhost: { backgroundColor: "rgba(255,255,255,0.07)", borderWidth: StyleSheet.hairlineWidth, borderColor: "rgba(255,255,255,0.18)" },
-  buttonGhostText: { color: "rgba(255,255,255,0.88)", fontSize: 14, fontWeight: "700" },
+  actions: { flexDirection: "row", gap: GAP, marginTop: GAP },
+  button: { flex: 1, height: 44, borderRadius: RADIUS, paddingHorizontal: PAD },
+  chrome: { overflow: "hidden", alignItems: "center", justifyContent: "center", borderWidth: StyleSheet.hairlineWidth },
+  chromeLip: { position: "absolute", top: 0, left: 0, right: 0, height: StyleSheet.hairlineWidth * 2 },
+  chromeText: { color: "#0b0c0e", fontSize: 14, fontWeight: "700", textShadowColor: "rgba(255,255,255,0.6)", textShadowOffset: { width: 0, height: 1 }, textShadowRadius: 0 },
+  chromeTextDark: { color: "#f3f4f6", fontSize: 14, fontWeight: "700", textShadowColor: "rgba(0,0,0,0.55)", textShadowOffset: { width: 0, height: -1 }, textShadowRadius: 0 },
   dock: {
     flexDirection: "row",
     alignItems: "center",
@@ -702,7 +756,7 @@ const styles = StyleSheet.create({
     borderColor: "rgba(255,255,255,0.14)",
   },
   dockDivider: { width: StyleSheet.hairlineWidth, height: 34, backgroundColor: "rgba(255,255,255,0.14)", marginHorizontal: 4 },
-  play: { width: 42, height: 42, borderRadius: 21, alignItems: "center", justifyContent: "center" },
+  play: { width: 40, height: 40, borderRadius: 20, marginLeft: 2 },
   ownedDot: { position: "absolute", top: 5, right: 6, width: 6, height: 6, borderRadius: 3, backgroundColor: "#34d399" },
   progressTrack: {
     position: "absolute",

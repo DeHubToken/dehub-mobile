@@ -5970,13 +5970,12 @@
       "images": "게시물당 이미지 수",
       "uploads": "일일 업로드 한도",
       "storage": "편집기 저장소",
-      "profiles": "저장된 프로필",
       "lending": "배지 대여 슬롯",
       "voice": "음성 복제",
       "voiceFree": "무료",
       "voiceLocked": "{{tier}} 이상"
     },
-    "buy": "DHB 받기",
+    "buyTokens": "토큰 구매",
     "details": "전체 내역",
     "play": "재생",
     "pause": "일시 중지"

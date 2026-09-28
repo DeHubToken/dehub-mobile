@@ -5930,13 +5930,12 @@
       "images": "Hình ảnh trên mỗi bài đăng",
       "uploads": "Giới hạn tải lên hàng ngày",
       "storage": "Lưu trữ trình chỉnh sửa",
-      "profiles": "Hồ sơ đã lưu",
       "lending": "Các vị trí cho vay huy hiệu",
       "voice": "Nhân bản giọng nói",
       "voiceFree": "Miễn phí",
       "voiceLocked": "{{tier}} trở lên"
     },
-    "buy": "Nhận DHB",
+    "buyTokens": "Mua mã thông báo",
     "details": "Phân tích đầy đủ",
     "play": "Phát",
     "pause": "Tạm dừng"

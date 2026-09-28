@@ -5935,13 +5935,12 @@
       "images": "Har bir post uchun rasmlar",
       "uploads": "Kunlik yuklash limiti",
       "storage": "Muharrir xotirasi",
-      "profiles": "Saqlangan profillar",
       "lending": "Nishon kreditlash slotlari",
       "voice": "Ovozni klonlash",
       "voiceFree": "Bepul",
       "voiceLocked": "{{tier}} va undan yuqori"
     },
-    "buy": "DHB oling",
+    "buyTokens": "Tokenlarni sotib oling",
     "details": "Toʻliq tahlil",
     "play": "Ijro etish",
     "pause": "Pauza"

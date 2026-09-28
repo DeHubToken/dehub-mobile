@@ -5921,13 +5921,12 @@
       "images": "תמונות לפוסט",
       "uploads": "מגבלת העלאה יומית",
       "storage": "אחסון בעורך",
-      "profiles": "פרופילים שמורים",
       "lending": "חריצי השאלת תג",
       "voice": "שכפול קולי",
       "voiceFree": "חינם",
       "voiceLocked": "{{tier}} ומעלה"
     },
-    "buy": "לרכישת DHB",
+    "buyTokens": "קנה אסימונים",
     "details": "פירוט מלא",
     "play": "הפעלה",
     "pause": "השהיה"

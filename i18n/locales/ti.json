@@ -5917,13 +5917,12 @@
       "images": "ኣብ ነፍሲ ወከፍ ልኡኽ እተቐርቡ ስእል",
       "uploads": "ዕለታዊ ናይ ምስዋእ ገደብ",
       "storage": "ኣሰናዳኢ ኣሰናዳኢ",
-      "profiles": "እተድሕኑ መገለጫታት",
       "lending": "ናይ ባጅ ልቓሕ ኣፈታትሓ",
       "voice": "ድምጺ ክሎኒንግ",
       "voiceFree": "ነጻ",
       "voiceLocked": "{{tier}}ን ልዕሊኡን"
     },
-    "buy": "DHB ውሰድ",
+    "buyTokens": "ምልክታት ግዛ",
     "details": "ምሉእ ምብትታን",
     "play": "ተጻወት",
     "pause": "ዕረፍቲ"

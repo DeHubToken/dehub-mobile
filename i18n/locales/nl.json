@@ -6107,13 +6107,12 @@
       "images": "Afbeeldingen per post",
       "uploads": "Dagelijkse uploadlimiet",
       "storage": "Editoropslag",
-      "profiles": "Opgeslagen profielen",
       "lending": "Sleuven voor het uitlenen van bad",
       "voice": "Stem klonen",
       "voiceFree": "Gratis",
       "voiceLocked": "{{tier}} en hoger"
     },
-    "buy": "Ontvang DHB",
+    "buyTokens": "Tokens kopen",
     "details": "Volledige uitsplitsing",
     "play": "Afspelen",
     "pause": "Pauzeren"

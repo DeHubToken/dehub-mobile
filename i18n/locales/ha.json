@@ -5917,13 +5917,12 @@
       "images": "Images da Post",
       "uploads": "Iyakar loda yau da kullum",
       "storage": "Edita ajiya",
-      "profiles": "An adana bayanan martaba",
       "lending": "Baje bashi ramummuka",
       "voice": "Muryar murya cloning",
       "voiceFree": "Kyauta",
       "voiceLocked": "{{tier}} kuma sama"
     },
-    "buy": "Samu DHB",
+    "buyTokens": "Sayi alamomi",
     "details": "Cikakken rushewa",
     "play": "Yi wasa",
     "pause": "Dakatar da"

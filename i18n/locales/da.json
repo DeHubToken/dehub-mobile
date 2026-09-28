@@ -5921,13 +5921,12 @@
       "images": "Billeder pr. indlæg",
       "uploads": "Daglig uploadgrænse",
       "storage": "Editor opbevaring",
-      "profiles": "Gemte profiler",
       "lending": "Pladser til badgeudlån",
       "voice": "Stemmekloning",
       "voiceFree": "Gratis",
       "voiceLocked": "{{tier}} og op"
     },
-    "buy": "Få DHB",
+    "buyTokens": "Køb tokens",
     "details": "Fuld opdeling",
     "play": "Spil",
     "pause": "Sæt på pause"

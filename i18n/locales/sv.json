@@ -5921,13 +5921,12 @@
       "images": "Bilder per inlägg",
       "uploads": "Daglig uppladdningsgräns",
       "storage": "Redigeringslagring",
-      "profiles": "Sparade profiler",
       "lending": "Utlåningsplatser för emblem",
       "voice": "Röstkloning",
       "voiceFree": "Gratis",
       "voiceLocked": "{{tier}} och uppåt"
     },
-    "buy": "Skaffa DHB",
+    "buyTokens": "Köp polletter",
     "details": "Fullständig uppdelning",
     "play": "Spela",
     "pause": "Pausa"

@@ -5870,13 +5870,12 @@
       "images": "Jaa kelen kelen bɛɛ kɔnɔ",
       "uploads": "Lon o lon, a ka kan ka yɛlɛ",
       "storage": "Dɔnkililabaga",
-      "profiles": "Mɔgɔ minw tun ye mɔgɔ dɔw ye, u tun be",
       "lending": "Lɛnpominɛlaw ka juruw",
       "voice": "Kloning kaan",
       "voiceFree": "See min dira mɔgɔ ma ka hɔɔrɔnya",
       "voiceLocked": "{{tier}} and up"
     },
-    "buy": "Ne ye DHB ye",
+    "buyTokens": "Ka to ka to ka to ka dumuni kɛ",
     "details": "Fɛɛn bɛɛ halakira",
     "play": "A be to ka to ka to",
     "pause": "N' ye n' ka baara dabila"

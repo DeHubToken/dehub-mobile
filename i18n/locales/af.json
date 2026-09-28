@@ -5950,13 +5950,12 @@
       "images": "Beelde per plasing",
       "uploads": "Daaglikse oplaai limiet",
       "storage": "Redigeerder stoor",
-      "profiles": "Gestoorde profiele",
       "lending": "Badge uitleen slots",
       "voice": "Stemkloning",
       "voiceFree": "Gratis",
       "voiceLocked": "{{tier}} en op"
     },
-    "buy": "Kry DHB",
+    "buyTokens": "Koop tekens",
     "details": "Volle ineenstorting",
     "play": "Speel",
     "pause": "Pouseer"

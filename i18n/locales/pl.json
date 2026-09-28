@@ -5917,13 +5917,12 @@
       "images": "Zdjęcia na post",
       "uploads": "Dzienny limit przesyłania",
       "storage": "Pamięć edytora",
-      "profiles": "Zapisane profile",
       "lending": "Miejsca do wypożyczania odznak",
       "voice": "Klonowanie głosu",
       "voiceFree": "Darmowe",
       "voiceLocked": "{{tier}} i więcej"
     },
-    "buy": "Pobierz DHB",
+    "buyTokens": "Kup tokeny",
     "details": "Pełne zestawienie",
     "play": "Odtwórz",
     "pause": "Wstrzymaj"

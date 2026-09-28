@@ -5917,13 +5917,12 @@
       "images": "Imazhe për postim",
       "uploads": "Kufiri ditor i ngarkimit",
       "storage": "Ruajtja e redaktorit",
-      "profiles": "Profilet e ruajtura",
       "lending": "Vende për kreditimin e distinktivit",
       "voice": "Klonimi i zërit",
       "voiceFree": "Falas",
       "voiceLocked": "{{tier}} dhe lart"
     },
-    "buy": "Merr DHB",
+    "buyTokens": "Bli argumente",
     "details": "Zbërthimi i plotë",
     "play": "Luaj",
     "pause": "Ndalo"

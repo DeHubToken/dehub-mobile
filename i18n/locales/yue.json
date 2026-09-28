@@ -5917,13 +5917,12 @@
       "images": "每個帖子嘅圖片",
       "uploads": "每日上載限制",
       "storage": "編輯器儲存空間",
-      "profiles": "儲存咗嘅個人檔案",
       "lending": "徽章借用槽",
       "voice": "語音克隆",
       "voiceFree": "免費",
       "voiceLocked": "{{tier}} 以上"
     },
-    "buy": "攞 DHB",
+    "buyTokens": "買代幣",
     "details": "完整嘅細分",
     "play": "玩",
     "pause": "暫停"
