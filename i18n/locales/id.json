@@ -7610,7 +7610,8 @@
     "sendFailed": "Tidak dapat mengirim itu",
     "deleteFailed": "Tidak dapat menghapus build",
     "loadFailed": "Tidak dapat memuat build Anda",
-    "previewHint": "Dibuat dengan DeHub Builder"
+    "previewHint": "Dibuat dengan DeHub Builder",
+    "buildInChat": "Bangun di DM kamu bersama @assistant"
   },
   "depin": {
     "title": "DePin",

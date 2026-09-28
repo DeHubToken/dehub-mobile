@@ -7565,7 +7565,8 @@
     "sendFailed": "તે મોકલી શકાયું નથી",
     "deleteFailed": "બિલ્ડ કાઢી શકાયું નથી",
     "loadFailed": "તમારા બિલ્ડ લોડ કરી શકાયા નથી",
-    "previewHint": "DeHub Builder સાથે બનાવેલ"
+    "previewHint": "DeHub Builder સાથે બનાવેલ",
+    "buildInChat": "@assistant સાથે તમારા DMમાં બનાવો"
   },
   "depin": {
     "title": "DePin",

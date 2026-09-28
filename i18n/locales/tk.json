@@ -7610,7 +7610,8 @@
     "sendFailed": "Ony iberip bolmady",
     "deleteFailed": "Gurluşy pozup bolmady",
     "loadFailed": "Gurluşlaryňyzy ýükläp bolmady",
-    "previewHint": "DeHub Builder bilen guruldy"
+    "previewHint": "DeHub Builder bilen guruldy",
+    "buildInChat": "@assistant bilen şahsy habarlaryňyzda dörediň"
   },
   "depin": {
     "title": "DePin",

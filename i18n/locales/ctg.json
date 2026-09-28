@@ -7543,7 +7543,8 @@
     "sendFailed": "ইতা পাঠাইতে পারলাম না",
     "deleteFailed": "বিল্ড মুছিতে পারলাম না",
     "loadFailed": "তুঁয়ার বিল্ড লোড গরা গেলো না",
-    "previewHint": "DeHub Builder দিয়া বনানো"
+    "previewHint": "DeHub Builder দিয়া বনানো",
+    "buildInChat": "@assistant-র লগে আঁর DM-ত বানন"
   },
   "depin": {
     "title": "DePin",

@@ -7610,7 +7610,8 @@
     "sendFailed": "No s'ha pogut enviar això",
     "deleteFailed": "No s'ha pogut eliminar la construcció",
     "loadFailed": "No s'han pogut carregar les teves construccions",
-    "previewHint": "Construït amb DeHub Builder"
+    "previewHint": "Construït amb DeHub Builder",
+    "buildInChat": "Crea als teus missatges directes amb @assistant"
   },
   "depin": {
     "title": "DePin",

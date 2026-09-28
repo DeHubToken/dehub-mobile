@@ -7871,7 +7871,8 @@
     "sendFailed": "Tidak dapat menghantar itu",
     "deleteFailed": "Tidak dapat memadam binaan",
     "loadFailed": "Tidak dapat memuatkan binaan anda",
-    "previewHint": "Dibina dengan DeHub Builder"
+    "previewHint": "Dibina dengan DeHub Builder",
+    "buildInChat": "Bina dalam DM anda bersama @assistant"
   },
   "depin": {
     "title": "DePin",

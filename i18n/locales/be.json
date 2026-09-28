@@ -7650,7 +7650,8 @@
     "sendFailed": "Не ўдалося адправіць гэта",
     "deleteFailed": "Не ўдалося выдаліць пабудову",
     "loadFailed": "Не ўдалося загрузіць вашы пабудовы",
-    "previewHint": "Пабудавана з дапамогай DeHub Builder"
+    "previewHint": "Пабудавана з дапамогай DeHub Builder",
+    "buildInChat": "Ствараце ў асабістых паведамленнях з @assistant"
   },
   "depin": {
     "title": "DePin",

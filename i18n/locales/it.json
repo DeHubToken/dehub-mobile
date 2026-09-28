@@ -7610,7 +7610,8 @@
     "sendFailed": "Impossibile inviarlo",
     "deleteFailed": "Impossibile eliminare la build",
     "loadFailed": "Impossibile caricare le tue build",
-    "previewHint": "Creato con DeHub Builder"
+    "previewHint": "Creato con DeHub Builder",
+    "buildInChat": "Crea nei tuoi messaggi diretti con @assistant"
   },
   "depin": {
     "title": "DePin",

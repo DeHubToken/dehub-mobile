@@ -7504,7 +7504,8 @@
     "sendFailed": "មិនអាចផ្ញើវាបានទេ",
     "deleteFailed": "មិនអាចលុបការបង្កើតបានទេ",
     "loadFailed": "មិនអាចផ្ទុកការបង្កើតរបស់អ្នកបានទេ",
-    "previewHint": "បង្កើតដោយ DeHub Builder"
+    "previewHint": "បង្កើតដោយ DeHub Builder",
+    "buildInChat": "បង្កើតក្នុងសារផ្ទាល់ជាមួយ @assistant"
   },
   "depin": {
     "title": "DePin",

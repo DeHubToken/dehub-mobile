@@ -6868,7 +6868,8 @@
     "sendFailed": "یہ بھیجا نئیں جا سکا",
     "deleteFailed": "بلڈ مٹایا نئیں جا سکا",
     "loadFailed": "تمھارے بلڈ لوڈ نئیں ہو سکے",
-    "previewHint": "DeHub Builder سے بنایا گیا"
+    "previewHint": "DeHub Builder سے بنایا گیا",
+    "buildInChat": "@assistant کے ساتھ اپنے DM میں بناؤ"
   },
   "depin": {
     "title": "DePin",

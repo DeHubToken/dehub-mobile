@@ -7614,7 +7614,8 @@
     "sendFailed": "تعذّر إرسال ذلك",
     "deleteFailed": "تعذّر حذف الإنشاء",
     "loadFailed": "تعذّر تحميل إنشاءاتك",
-    "previewHint": "تم الإنشاء باستخدام DeHub Builder"
+    "previewHint": "تم الإنشاء باستخدام DeHub Builder",
+    "buildInChat": "ابنِ في رسائلك الخاصة مع @assistant"
   },
   "depin": {
     "title": "DePin",

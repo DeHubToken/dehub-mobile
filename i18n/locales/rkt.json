@@ -7104,7 +7104,8 @@
     "sendFailed": "এইডা পাঠানো যায় নাই",
     "deleteFailed": "বিল্ড মুছা যায় নাই",
     "loadFailed": "তোমার বিল্ডগুলা লোড করা যায় নাই",
-    "previewHint": "DeHub বিল্ডার দিয়া বানানো"
+    "previewHint": "DeHub বিল্ডার দিয়া বানানো",
+    "buildInChat": "@assistant-এর সাথে তোমার DM-ত বানাও"
   },
   "depin": {
     "title": "DePin",

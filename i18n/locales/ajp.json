@@ -7608,7 +7608,8 @@
     "sendFailed": "ما قدرنا نرسل هاد",
     "deleteFailed": "ما قدرنا نحذف البناية",
     "loadFailed": "ما قدرنا نحمّل بناياتك",
-    "previewHint": "تم البناء بواسطة DeHub Builder"
+    "previewHint": "تم البناء بواسطة DeHub Builder",
+    "buildInChat": "ابني بالرسائل الخاصة مع @assistant"
   },
   "depin": {
     "title": "DePin",

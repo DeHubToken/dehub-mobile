@@ -7864,7 +7864,8 @@
     "sendFailed": "Kon dat niet verzenden",
     "deleteFailed": "Kon de build niet verwijderen",
     "loadFailed": "Kon je builds niet laden",
-    "previewHint": "Gebouwd met DeHub Builder"
+    "previewHint": "Gebouwd met DeHub Builder",
+    "buildInChat": "Bouw in je DM's met @assistant"
   },
   "depin": {
     "title": "DePin",

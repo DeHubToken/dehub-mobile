@@ -7614,7 +7614,8 @@
     "sendFailed": "전송할 수 없습니다",
     "deleteFailed": "빌드를 삭제할 수 없습니다",
     "loadFailed": "빌드를 불러올 수 없습니다",
-    "previewHint": "DeHub Builder로 제작됨"
+    "previewHint": "DeHub Builder로 제작됨",
+    "buildInChat": "@assistant와 DM에서 만들기"
   },
   "depin": {
     "title": "DePin",

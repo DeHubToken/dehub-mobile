@@ -7614,7 +7614,8 @@
     "sendFailed": "Kunde inte skicka det",
     "deleteFailed": "Kunde inte ta bort bygget",
     "loadFailed": "Kunde inte läsa in dina byggen",
-    "previewHint": "Byggd med DeHub Builder"
+    "previewHint": "Byggd med DeHub Builder",
+    "buildInChat": "Bygg i dina DM med @assistant"
   },
   "depin": {
     "title": "DePin",

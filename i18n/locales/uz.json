@@ -7665,7 +7665,8 @@
     "sendFailed": "Buni yuborib bo'lmadi",
     "deleteFailed": "Qurilishni o'chirib bo'lmadi",
     "loadFailed": "Qurilishlaringizni yuklab bo'lmadi",
-    "previewHint": "DeHub Builder yordamida qurilgan"
+    "previewHint": "DeHub Builder yordamida qurilgan",
+    "buildInChat": "@assistant bilan shaxsiy xabarlarda yarating"
   },
   "depin": {
     "title": "DePin",

@@ -7610,7 +7610,8 @@
     "sendFailed": "Nepavyko to išsiųsti",
     "deleteFailed": "Nepavyko ištrinti kūrinio",
     "loadFailed": "Nepavyko įkelti jūsų kūrinių",
-    "previewHint": "Sukurta su DeHub Builder"
+    "previewHint": "Sukurta su DeHub Builder",
+    "buildInChat": "Kurkite asmeninėse žinutėse su @assistant"
   },
   "depin": {
     "title": "DePin",

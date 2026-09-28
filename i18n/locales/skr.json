@@ -7495,7 +7495,8 @@
     "sendFailed": "ایہ گھل کائنی سگیا",
     "deleteFailed": "بلڈ مٹ کائنی سگیا",
     "loadFailed": "تہاڈے بلڈ لوڈ کائنی تھی سگے",
-    "previewHint": "DeHub بلڈر نال بنایا ویا"
+    "previewHint": "DeHub بلڈر نال بنایا ویا",
+    "buildInChat": "@assistant نال اپݨے DM وچ بݨاؤ"
   },
   "depin": {
     "title": "DePin",

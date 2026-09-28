@@ -7600,7 +7600,8 @@
     "sendFailed": "Հնարավոր չեղավ ուղարկել այն",
     "deleteFailed": "Հնարավոր չեղավ ջնջել կառուցումը",
     "loadFailed": "Հնարավոր չեղավ բեռնել ձեր կառուցումները",
-    "previewHint": "Կառուցված է DeHub Builder-ով"
+    "previewHint": "Կառուցված է DeHub Builder-ով",
+    "buildInChat": "Ստեղծեք ձեր անձնական հաղորդագրություններում @assistant-ի հետ"
   },
   "depin": {
     "title": "DePin",

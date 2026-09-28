@@ -7654,7 +7654,8 @@
     "sendFailed": "无法发送",
     "deleteFailed": "无法删除构建",
     "loadFailed": "无法加载你的构建",
-    "previewHint": "由DeHub Builder构建"
+    "previewHint": "由DeHub Builder构建",
+    "buildInChat": "在私信里跟 @assistant 一起搭建"
   },
   "depin": {
     "title": "DePin",

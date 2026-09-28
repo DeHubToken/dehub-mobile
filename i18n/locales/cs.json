@@ -7614,7 +7614,8 @@
     "sendFailed": "Nepodařilo se to odeslat",
     "deleteFailed": "Sestavení se nepodařilo smazat",
     "loadFailed": "Nepodařilo se načíst tvoje sestavení",
-    "previewHint": "Vytvořeno pomocí DeHub Builder"
+    "previewHint": "Vytvořeno pomocí DeHub Builder",
+    "buildInChat": "Tvořte v soukromých zprávách s @assistant"
   },
   "depin": {
     "title": "DePin",

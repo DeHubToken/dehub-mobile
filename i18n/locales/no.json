@@ -7610,7 +7610,8 @@
     "sendFailed": "Kunne ikke sende det",
     "deleteFailed": "Kunne ikke slette bygget",
     "loadFailed": "Kunne ikke laste inn byggene dine",
-    "previewHint": "Bygget med DeHub Builder"
+    "previewHint": "Bygget med DeHub Builder",
+    "buildInChat": "Bygg i direktemeldingene dine med @assistant"
   },
   "depin": {
     "title": "DePin",

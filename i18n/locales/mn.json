@@ -7607,7 +7607,8 @@
     "sendFailed": "Үүнийг илгээж чадсангүй",
     "deleteFailed": "Бүтээлийг устгаж чадсангүй",
     "loadFailed": "Таны бүтээлүүдийг ачаалж чадсангүй",
-    "previewHint": "DeHub Билдерээр бүтээгдсэн"
+    "previewHint": "DeHub Билдерээр бүтээгдсэн",
+    "buildInChat": "@assistant-тай хувийн мессежээрээ бүтээгээрэй"
   },
   "depin": {
     "title": "DePin",

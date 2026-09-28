@@ -7643,7 +7643,8 @@
     "sendFailed": "ไม่สามารถส่งได้",
     "deleteFailed": "ไม่สามารถลบผลงานสร้างได้",
     "loadFailed": "ไม่สามารถโหลดผลงานสร้างของคุณได้",
-    "previewHint": "สร้างด้วย DeHub Builder"
+    "previewHint": "สร้างด้วย DeHub Builder",
+    "buildInChat": "สร้างในข้อความส่วนตัวกับ @assistant"
   },
   "depin": {
     "title": "DePin",

@@ -7614,7 +7614,8 @@
     "sendFailed": "Kunne ikke sende det",
     "deleteFailed": "Kunne ikke slette build",
     "loadFailed": "Kunne ikke indlæse dine builds",
-    "previewHint": "Bygget med DeHub Builder"
+    "previewHint": "Bygget med DeHub Builder",
+    "buildInChat": "Byg i dine DM'er med @assistant"
   },
   "depin": {
     "title": "DePin",

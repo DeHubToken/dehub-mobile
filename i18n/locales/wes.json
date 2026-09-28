@@ -7057,7 +7057,8 @@
     "sendFailed": "E no fit send dat",
     "deleteFailed": "E no fit delete di build",
     "loadFailed": "E no fit load your build dem",
-    "previewHint": "Dem build am with DeHub Builder"
+    "previewHint": "Dem build am with DeHub Builder",
+    "buildInChat": "Build for ya DM wit @assistant"
   },
   "depin": {
     "title": "DePin",

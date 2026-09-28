@@ -7605,7 +7605,8 @@
     "sendFailed": "ئۇنى ئەۋەتكىلى بولمىدى",
     "deleteFailed": "قۇرۇشنى ئۆچۈرگىلى بولمىدى",
     "loadFailed": "قۇرۇشلىرىڭىزنى يۈكلىگىلى بولمىدى",
-    "previewHint": "DeHub Builder بىلەن قۇرۇلدى"
+    "previewHint": "DeHub Builder بىلەن قۇرۇلدى",
+    "buildInChat": "@assistant بىلەن شەخسىي ئۇچۇرلىرىڭىزدا قۇرۇڭ"
   },
   "depin": {
     "title": "DePin",
