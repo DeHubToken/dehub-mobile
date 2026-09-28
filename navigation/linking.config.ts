@@ -237,6 +237,11 @@ export const DeepLinkPaths = {
   CONNECT_CHATGPT: 'connect/chatgpt',
   CONNECT_CLAUDE: 'connect/claude',
   CONNECT: 'connect',
+
+  // Premium and the AI plans — dehub.io/premium and /pricing, both top-level
+  // on web. Neither screen reads a param, so ?plan= is left to the web page.
+  PREMIUM: 'premium',
+  PRICING: 'pricing',
 } as const;
 
 /**
@@ -368,6 +373,9 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
             parse: { mintId: (mintId: string) => mintId },
           },
           [ScreenNames.Launchpad]: DeepLinkPaths.LAUNCHPAD,
+
+          [ScreenNames.Premium]: DeepLinkPaths.PREMIUM,
+          [ScreenNames.Pricing]: DeepLinkPaths.PRICING,
 
           [ScreenNames.Root]: {
             screens: {
