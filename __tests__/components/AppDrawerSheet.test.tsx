@@ -3,12 +3,10 @@ import { render } from '@testing-library/react-native';
 import { interpolate } from 'react-native-reanimated';
 import AppDrawer from '../../components/Home/AppDrawer';
 
-// Under a right-to-left locale React Native mirrors `left: 0` to the right
-// edge, so the drawer lives on the right of the screen. Closed, it has to be
-// parked off the RIGHT edge; parking it off the left (the LTR offset) leaves
-// the last 18% of it painted down the left side of every screen.
-const SCREEN_WIDTH = 390;
-const DRAWER_WIDTH = SCREEN_WIDTH * 0.82;
+// The menu is a bottom sheet in every locale: parked below the screen when
+// closed, dismissed by dragging or flinging it down. RTL is on here to prove
+// the mirroring that the old side drawer needed no longer applies.
+const SHEET_HEIGHT = 844 * 0.85;
 
 const mockHandlers: Record<string, (e: Record<string, number>) => void> = {};
 jest.mock('react-native-css-interop/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
@@ -35,7 +33,7 @@ jest.mock('react-native-gesture-handler', () => ({
   GestureDetector: ({ children }: { children: React.ReactNode }) => children,
   Gesture: { Pan: () => {
     const gesture: Record<string, unknown> = {};
-    ['activeOffsetX', 'failOffsetY'].forEach(key => { gesture[key] = () => gesture; });
+    ['activeOffsetY', 'failOffsetX'].forEach(key => { gesture[key] = () => gesture; });
     ['onStart', 'onUpdate', 'onEnd', 'onFinalize'].forEach(key => {
       gesture[key] = (fn: (e: Record<string, number>) => void) => { mockHandlers[key] = fn; return gesture; };
     });
@@ -50,6 +48,8 @@ jest.mock('react-native-reanimated', () => ({
   Easing: { bezier: jest.fn() }, interpolate: jest.fn(() => 0),
 }));
 jest.mock('../../components/common/Avatar', () => 'Avatar');
+jest.mock('expo-image', () => ({ Image: 'Image' }));
+jest.mock('../../libs/eventBus', () => ({ homeTabEvents: { requestTab: jest.fn() } }));
 jest.mock('../../components/ui/Icon', () => 'Icon');
 jest.mock('../../config/storefront', () => ({ DIGITAL_PURCHASES_ENABLED: true }));
 jest.mock('../../context/AuthContext', () => ({
@@ -64,39 +64,38 @@ jest.mock('react-i18next', () => ({ useTranslation: () => ({ t: (key: string) =>
 
 beforeEach(() => { jest.clearAllMocks(); });
 
-it('parks the closed drawer off the right edge, not the left', () => {
+it('parks the closed sheet below the screen, not beside it', () => {
   render(<AppDrawer visible={false} onClose={jest.fn()} />);
-  expect(interpolate).toHaveBeenCalledWith(expect.anything(), [0, 1], [DRAWER_WIDTH, 0]);
-  expect(interpolate).not.toHaveBeenCalledWith(expect.anything(), [0, 1], [-DRAWER_WIDTH, 0]);
+  expect(interpolate).toHaveBeenCalledWith(expect.anything(), [0, 1], [SHEET_HEIGHT, 0]);
 });
 
-it('closes on a drag toward the right edge and ignores one away from it', () => {
+it('closes on a drag or fling down and ignores one up', () => {
   const close = jest.fn();
   render(<AppDrawer visible onClose={close} />);
 
-  // Halfway toward the right edge and released: past the position threshold.
+  // Halfway down and released: past the position threshold.
   mockHandlers.onStart({});
-  mockHandlers.onUpdate({ translationX: DRAWER_WIDTH / 2 });
-  mockHandlers.onEnd({ velocityX: 0 });
+  mockHandlers.onUpdate({ translationY: SHEET_HEIGHT / 2 });
+  mockHandlers.onEnd({ velocityY: 0 });
   expect(close).toHaveBeenCalledTimes(1);
 
-  // Dragged left, away from the edge (into the screen): stays open.
+  // Dragged up: stays open.
   close.mockClear();
   mockHandlers.onStart({});
-  mockHandlers.onUpdate({ translationX: -DRAWER_WIDTH / 2 });
-  mockHandlers.onEnd({ velocityX: 0 });
+  mockHandlers.onUpdate({ translationY: -SHEET_HEIGHT / 2 });
+  mockHandlers.onEnd({ velocityY: 0 });
   expect(close).not.toHaveBeenCalled();
 
-  // A fling toward the right edge closes even from fully open.
+  // A fling down closes even from fully open.
   mockHandlers.onStart({});
-  mockHandlers.onUpdate({ translationX: 0 });
-  mockHandlers.onEnd({ velocityX: 1000 });
+  mockHandlers.onUpdate({ translationY: 0 });
+  mockHandlers.onEnd({ velocityY: 1000 });
   expect(close).toHaveBeenCalledTimes(1);
 
-  // A fling to the left is the LTR close gesture and must not close here.
+  // A fling up does not.
   close.mockClear();
   mockHandlers.onStart({});
-  mockHandlers.onUpdate({ translationX: 0 });
-  mockHandlers.onEnd({ velocityX: -1000 });
+  mockHandlers.onUpdate({ translationY: 0 });
+  mockHandlers.onEnd({ velocityY: -1000 });
   expect(close).not.toHaveBeenCalled();
 });
