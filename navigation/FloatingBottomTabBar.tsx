@@ -1,6 +1,7 @@
 import { DIGITAL_PURCHASES_ENABLED } from "../config/storefront";
 import React, { memo, useCallback, useEffect, useRef } from "react";
 import {
+  Animated as NativeAnimated,
   View,
   Text,
   Pressable,
@@ -208,6 +209,7 @@ const KIDS_MODE_SCREENS = new Set([
 ]);
 
 const AnimatedPressable = Reanimated.createAnimatedComponent(Pressable);
+const NativeAnimatedPressable = NativeAnimated.createAnimatedComponent(Pressable);
 
 // `routeName` + a stable `onPress`, rather than an `onPress` closure built at
 // the call site. An inline arrow is a fresh identity on every render, which
@@ -364,26 +366,39 @@ const ScrollNavButton = memo<{
 }>(
   ({ icon, label, item, onPress, tabW, badgeCount = 0 }) => {
     const { colors, isLight, isMinimal } = useAppTheme();
-    const scale = useSharedValue(1);
+    const scale = useRef(new NativeAnimated.Value(1)).current;
+    useEffect(() => () => scale.stopAnimation(), [scale]);
 
     // SCROLL_NAV_ITEMS is module scope, so `item` is a stable identity and this
     // callback is too — which is what lets the memo above actually hold.
     const handlePress = useCallback(() => onPress(item), [onPress, item]);
 
     const handlePressIn = useCallback(() => {
-      scale.value = withSpring(0.88, { damping: 15, stiffness: 300 });
+      NativeAnimated.spring(scale, {
+        toValue: 0.88,
+        damping: 15,
+        stiffness: 300,
+        useNativeDriver: true,
+        isInteraction: false,
+      }).start();
     }, [scale]);
 
     const handlePressOut = useCallback(() => {
-      scale.value = withSpring(1, { damping: 15, stiffness: 300 });
+      NativeAnimated.spring(scale, {
+        toValue: 1,
+        damping: 15,
+        stiffness: 300,
+        useNativeDriver: true,
+        isInteraction: false,
+      }).start();
     }, [scale]);
 
-    const animatedStyle = useAnimatedStyle(() => ({
-      transform: [{ scale: scale.value }],
-    }));
+    // Secondary buttons only animate on touch. Avoid keeping each hidden
+    // button in the Reanimated props registry between presses.
+    const animatedStyle = { transform: [{ scale }] };
 
     return (
-      <AnimatedPressable
+      <NativeAnimatedPressable
         accessibilityRole="button"
         accessibilityLabel={badgeCount > 0 ? `${label}, ${badgeCount} unread` : label}
         onPress={handlePress}
@@ -404,7 +419,7 @@ const ScrollNavButton = memo<{
             </Text>
           </View>
         )}
-      </AnimatedPressable>
+      </NativeAnimatedPressable>
     );
   },
 );

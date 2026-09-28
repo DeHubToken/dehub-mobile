@@ -84,5 +84,36 @@ direction changes, pagination, and scrolls starting over video timelines and
 image galleries. Compare frame timing with Android System Trace while crossing
 video rows. Also verify poster taps with autoplay enabled and disabled, Data
 Saver, gated posts, and picture-in-picture. Web staging cannot establish native
-APK smoothness. Frame statistics have been captured; a system trace and
-authenticated secondary-page verification remain outstanding.
+APK smoothness. Frame statistics, native idle traces and authenticated
+secondary-page measurements have been captured. Active scroll traces and the
+remaining release checks still require verification.
+
+## Second OTA measurement
+
+Production Android update `01a0e627-7e0d-72c0-96ee-ed2e4ee791d5`, runtime
+1.18.0, downloaded and applied in the same installed APK on 28 September 2026.
+The same six-down/six-up sequence produced:
+
+| Feed | Missed deadlines | p95 | p99 |
+| --- | ---: | ---: | ---: |
+| Home | 45 / 441 (10.20%) | 20 ms | 31 ms |
+| Images | 35 / 491 (7.13%) | 19 ms | 40 ms |
+| Shorts | 47 / 420 (11.19%) | 23 ms | 36 ms |
+| Videos | 53 / 440 (12.05%) | 19 ms | 46 ms |
+| Music | 33 / 412 (8.01%) | 21 ms | 40 ms |
+| Live | 62 / 419 (14.80%) | 23 ms | 57 ms |
+| Messages | 57 / 360 (15.83%) | 48 ms | 73 ms |
+| Public chat | 42 / 502 (8.37%) | 16 ms | 18 ms |
+| Communities | 17 / 443 (3.84%) | 12 ms | 48 ms |
+| Community posts | 56 / 415 (13.49%) | 25 ms | 31 ms |
+
+Notifications and the current empty profile were exercised, but their short
+lists do not establish long-feed performance. Content and caches differ between
+runs; the remaining missed deadlines are not an all-pages smoothness pass.
+
+Native idle traces showed repeated Fabric property updates even away from Home.
+This identifies shared work to investigate, without proving one root cause.
+Secondary dock buttons now use native-driver press springs instead of keeping
+a Reanimated animated style registered for each offscreen destination. Main
+tab entrance and scroll-linked dock animations keep their existing UI-thread
+implementation. This change still needs measurements from its published OTA.
