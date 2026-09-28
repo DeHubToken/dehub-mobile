@@ -32,6 +32,8 @@ import { LinearGradient } from "expo-linear-gradient";
 export interface StickerArt {
   /** Stable per artwork; seeds the glitter so it never reshuffles. */
   key: string;
+  /** The artwork as a bundled image, for anything that draws it itself (the Skia shatter). */
+  source?: number;
   renderArt: () => ReactNode;
   renderPlate: (color: string, blur?: number) => ReactNode;
 }
