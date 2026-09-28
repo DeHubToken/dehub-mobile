@@ -111,7 +111,7 @@ const MultiPostPanel: React.FC = () => {
   return (
     <SettingsScrollView className="flex-1" contentContainerStyle={{ paddingBottom: 40 }}>
       <SettingsAnchor id="multipost">
-        <View className="mt-4 mx-4">
+        <View className="mt-4">
           <Text className="text-white text-lg font-semibold">{t("multiPost.title")}</Text>
           <Text className="text-theme-neutrals-400 text-sm mt-1">{t("multiPost.intro")}</Text>
         </View>
@@ -126,7 +126,7 @@ const MultiPostPanel: React.FC = () => {
         <Divider />
         <View className="px-4 py-4">
           <View className="flex-row justify-between items-baseline mb-2">
-            <Text className="text-white text-sm font-medium">{t("multiPost.topUpTitle")}</Text>
+            <Text className="text-white text-base leading-5 font-medium">{t("multiPost.topUpTitle")}</Text>
             <Text className="text-emerald-400 text-sm">
               {discount > 0 ? t("multiPost.discount", { percent: Math.round(discount * 100) }) : t("multiPost.noDiscount")}
             </Text>

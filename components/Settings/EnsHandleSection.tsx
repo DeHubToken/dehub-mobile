@@ -265,15 +265,15 @@ export function EnsHandleSection() {
 
   return (
     <SettingsSection label={t('settings.ensHandle', 'ENS name')} icon="Globe">
-      <View className="px-4 py-3.5 flex-row items-center">
-        <View className="mr-3 w-9 h-9 rounded-xl bg-theme-neutrals-700/50 items-center justify-center">
+      <View className="px-4 py-2 flex-row items-center">
+        <View className="mr-3 w-5 h-5 items-center justify-center">
           <Icon name="Globe" size={18} color="#A6A9AC" />
         </View>
         <View className="flex-1 mr-2">
-          <Text className="text-white text-sm font-medium">
+          <Text className="text-white text-base leading-5 font-medium">
             {link ? link.name : t('settings.ensHandle', 'ENS name')}
           </Text>
-          <Text className="text-theme-neutrals-500 text-xs mt-0.5">
+          <Text className="text-theme-neutrals-500 text-sm leading-5 mt-0.5">
             {link
               ? t('settings.ensLinkedDesc', 'You are also at dehub.io/{{name}}', {
                   name: link.name,

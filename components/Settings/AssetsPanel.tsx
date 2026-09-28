@@ -124,9 +124,9 @@ const AssetsPanel: React.FC<{ navigation: any }> = ({ navigation }) => {
     <SettingsScrollView className="flex-1" contentContainerStyle={{ paddingBottom: 40 }}>
       <SettingsSection label={t('settings.assets')} icon="Wallet" className="mt-4" anchor="assets">
         <TouchableOpacity onPress={() => setCopyAddressVisible(true)} disabled={!address} activeOpacity={0.7}>
-          <View className={`px-4 py-3.5 flex-row items-center ${address ? '' : 'opacity-40'}`}>
-            <View className="mr-3 w-9 h-9 rounded-xl bg-theme-neutrals-700/50 items-center justify-center">
-              <Icon name="Wallet" size={18} color="#9ca3af" />
+          <View className={`px-4 py-2 flex-row items-center ${address ? '' : 'opacity-40'}`}>
+            <View className="mr-3 w-5 h-5 items-center justify-center">
+              <Icon name="Wallet" size={20} color="#8B8D90" />
             </View>
             <Text className="flex-1 text-white text-sm font-mono">
               {address ? truncateAddress(address, 8, 6) : t('settings.notConnected')}
@@ -149,18 +149,18 @@ const AssetsPanel: React.FC<{ navigation: any }> = ({ navigation }) => {
         <TouchableOpacity
           onPress={() => setChainModalVisible(true)}
           activeOpacity={0.7}
-          className="px-4 py-3.5 flex-row items-center"
+          className="px-4 py-2 flex-row items-center"
         >
-          <View className="mr-3 w-9 h-9 rounded-xl bg-theme-neutrals-700/50 items-center justify-center">
+          <View className="mr-3 w-5 h-5 items-center justify-center">
             {chainId && CHAIN_ICONS[chainId] ? (
               <Image source={CHAIN_ICONS[chainId]} className="w-5 h-5 rounded-full" />
             ) : (
-              <Icon name="Link" size={18} color="#9ca3af" />
+              <Icon name="Link" size={20} color="#8B8D90" />
             )}
           </View>
           <View className="flex-1 mr-2">
-            <Text className="text-white text-sm font-medium">{t('settings.activeChain')}</Text>
-            <Text className="text-theme-neutrals-500 text-xs mt-0.5">{chainLabel}</Text>
+            <Text className="text-white text-base leading-5 font-medium">{t('settings.activeChain')}</Text>
+            <Text className="text-theme-neutrals-500 text-sm leading-5 mt-0.5">{chainLabel}</Text>
           </View>
           <Icon name="ChevronRight" size={18} color="#6b7280" />
         </TouchableOpacity>

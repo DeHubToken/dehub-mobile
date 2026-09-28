@@ -25,6 +25,7 @@ import {
   ActivityIndicator,
   FlatList,
   Alert,
+  I18nManager,
 } from "react-native";
 import Constants from "expo-constants";
 import { useUser, useAuthState, useAuthActions } from "../context/AuthContext";
@@ -32,7 +33,10 @@ import { useGateToHome } from "../hooks/useGateToHome";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { toastSuccess, toastError } from "../libs";
 import { requestAccountErasure } from "../services/accountErasure.service";
-import ScreenHeader from "../components/ScreenHeader";
+import AppTopBar from "../components/AppTopBar";
+import { Ionicons } from "@expo/vector-icons";
+import { Image } from "expo-image";
+import { useAppTheme } from "../context/ThemeContext";
 import LiquidGlass from "../components/ui/LiquidGlass";
 import FullScreenLoader from "../components/FullScreenLoader";
 import ReportBugModal from "../components/Settings/ReportBugModal";
@@ -68,7 +72,9 @@ import {
 import SettingsSearchBar from "../components/Settings/SettingsSearchBar";
 import {
   SettingsAnchor,
+  SettingsPanelContext,
   SettingsScrollView,
+  useSettingsBentoStyle,
 } from "../components/Settings/SettingsAnchor";
 import {
   revealSetting,
@@ -77,6 +83,26 @@ import {
 } from "../libs/settings-search";
 
 const APP_VERSION = Constants.expoConfig?.version ?? "1.0.0";
+
+/**
+ * Web heads the settings page with its themed 3D settings icon
+ * (public/theme-icons/<theme>/settings.webp). War draws its own HUD glyph on
+ * web, which the app has no counterpart for, so it keeps the system one.
+ */
+const SETTINGS_ICONS: Record<string, number> = {
+  system: require("../assets/theme-icons/settings-system.webp"),
+  minimal: require("../assets/theme-icons/settings-minimal.webp"),
+  cosmic: require("../assets/theme-icons/settings-cosmic.webp"),
+  hazy: require("../assets/theme-icons/settings-hazy.webp"),
+  swarms: require("../assets/theme-icons/settings-swarms.webp"),
+  lavalamp: require("../assets/theme-icons/settings-lavalamp.webp"),
+  winter: require("../assets/theme-icons/settings-winter.webp"),
+  osaka: require("../assets/theme-icons/settings-osaka.webp"),
+  jungle: require("../assets/theme-icons/settings-jungle.webp"),
+};
+
+/** Web's small header control: `h-10 rounded-xl bg-white/5 border border-white/10`. */
+const HEADER_CONTROL = "h-10 w-10 rounded-xl bg-white/5 border border-white/10 items-center justify-center flex-row";
 
 /** Same tabs, same order, same icons as web's `tabs` array. */
 type TabKey =
@@ -104,6 +130,8 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation, route }) => {
   const [freeAccessLoading, setFreeAccessLoading] = useState(false);
   const [revokingAddress, setRevokingAddress] = useState<string | null>(null);
   const { t } = useTranslation();
+  const { theme, skin } = useAppTheme();
+  const bento = useSettingsBentoStyle();
   const allow = isSignedIn && !needsUsername;
   useGateToHome(allow);
 
@@ -200,10 +228,68 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation, route }) => {
     [t]
   );
 
-  /** Page bento: tab row, matching web's sticky settings header. */
+  const activeTabMeta = TABS.find((tab) => tab.key === activeTab) ?? TABS[0];
+  const panelContext = useMemo(
+    () => ({ title: activeTabMeta.label, icon: activeTabMeta.icon }),
+    [activeTabMeta],
+  );
+
+  /**
+   * Page bento, as web's sticky settings header: themed icon, title and
+   * subtitle with log out on the right, then search, then the icon tab row.
+   * Web has no back button here (its drawer lives in the top bar); a pushed
+   * screen needs one, so it leads the row in the same control material.
+   */
   const headerBento = (
-    <View className="px-4 pt-3">
-      <View className="bg-theme-neutrals-800 rounded-2xl p-4 border border-theme-neutrals-700">
+    <View className="px-2 pt-1">
+      <View style={[bento, { padding: 16 }]}>
+        <View className="flex-row items-center justify-between mb-4">
+          <View className="flex-row items-center flex-1 mr-3" style={{ gap: 12 }}>
+            {navigation?.canGoBack?.() ? (
+              <TouchableOpacity
+                onPress={() => navigation.goBack()}
+                activeOpacity={0.7}
+                accessibilityRole="button"
+                accessibilityLabel={t("common.goBack")}
+                className={HEADER_CONTROL}
+              >
+                <Ionicons
+                  name="arrow-back"
+                  size={18}
+                  color="#F4F4F5"
+                  style={I18nManager.isRTL ? { transform: [{ scaleX: -1 }] } : undefined}
+                />
+              </TouchableOpacity>
+            ) : null}
+            <Image
+              source={SETTINGS_ICONS[theme] ?? SETTINGS_ICONS.system}
+              style={{ width: 40, height: 40 }}
+              contentFit="contain"
+            />
+            <View className="flex-1">
+              <Text numberOfLines={1} className="text-white text-xl font-bold">
+                {t("settings.title")}
+              </Text>
+              <Text numberOfLines={1} className="text-theme-neutrals-500 text-sm">
+                {t("settings.manageAccount")}
+              </Text>
+            </View>
+          </View>
+          <TouchableOpacity
+            onPress={handleSignOut}
+            disabled={signingOut}
+            activeOpacity={0.7}
+            accessibilityRole="button"
+            accessibilityLabel={t("settings.logOut")}
+            className={`${HEADER_CONTROL} ${signingOut ? "opacity-60" : ""}`}
+          >
+            {signingOut ? (
+              <ActivityIndicator size="small" color="#F4F4F5" />
+            ) : (
+              <Icon name="LogOut" size={16} color="#F4F4F5" />
+            )}
+          </TouchableOpacity>
+        </View>
         <SettingsSearchBar onSelect={handleSearchSelect} />
         <ScrollView
           horizontal
@@ -213,8 +299,12 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation, route }) => {
           {TABS.map((tab) => {
             const active = activeTab === tab.key;
             const inner = (
-              <View className="p-3.5">
-                <Icon name={tab.icon} size={18} color={active ? "#fff" : "#8B8D90"} />
+              <View style={{ padding: 11 }}>
+                <Icon
+                  name={tab.icon}
+                  size={18}
+                  color={active ? skin?.tabIconActive ?? "#fff" : skin?.tabIcon ?? "#8B8D90"}
+                />
               </View>
             );
             return (
@@ -252,7 +342,7 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation, route }) => {
         className="mt-4"
         anchor="profile-settings"
       >
-        <View className="px-4 py-3.5 flex-row items-center">
+        <View className="px-4 py-2 flex-row items-center">
           <Avatar
             uri={(() => {
               const raw = (user as any)?.avatarImageUrl;
@@ -263,10 +353,10 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation, route }) => {
             name={user?.displayName || user?.username}
           />
           <View className="flex-1 ml-3">
-            <Text className="text-white text-sm font-medium">
+            <Text className="text-white text-base leading-5 font-medium">
               {user?.displayName || user?.username || "Anonymous"}
             </Text>
-            <Text className="text-theme-neutrals-500 text-xs mt-0.5">
+            <Text className="text-theme-neutrals-500 text-sm leading-5 mt-0.5">
               @{user?.username || "—"}
             </Text>
           </View>
@@ -396,34 +486,11 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation, route }) => {
   return (
     <View className="flex-1 bg-theme-neutrals-900">
       {signingOut && <FullScreenLoader message={t("settings.signingOut")} />}
-      <ScreenHeader
-        title={t("settings.title")}
-        canGoBack
-        rightContent={
-          <TouchableOpacity
-            onPress={handleSignOut}
-            disabled={signingOut}
-            activeOpacity={0.7}
-            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-            className="flex-row items-center px-2.5 py-1.5 rounded-lg bg-white/10 border border-white/20"
-            style={{ gap: 6 }}
-          >
-            {signingOut ? (
-              <ActivityIndicator size="small" color="#F4F4F5" />
-            ) : (
-              <>
-                <Icon name="LogOut" size={15} color="#F4F4F5" />
-                <Text className="text-white/80 text-xs font-semibold">
-                  {t("settings.logOut")}
-                </Text>
-              </>
-            )}
-          </TouchableOpacity>
-        }
-      />
+      <AppTopBar />
 
       {headerBento}
 
+      <SettingsPanelContext.Provider value={panelContext}>
       <View className="flex-1">
         {activeTab === "profile" && profilePanel}
         {activeTab === "appearance" && <AppearancePanel />}
@@ -450,6 +517,7 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation, route }) => {
         {activeTab === "multipost" && <MultiPostPanel />}
         {activeTab === "support" && supportPanel}
       </View>
+      </SettingsPanelContext.Provider>
 
       <ReportBugModal
         visible={bugModalVisible}

@@ -227,18 +227,18 @@ const DMSettingsSection: React.FC = () => {
 
   return (
     <>
-      <Text className="text-theme-neutrals-500 text-[11px] uppercase mb-2 ml-1 tracking-widest font-semibold">
+      <Text className="text-theme-neutrals-400 text-sm font-medium mb-2">
         {t("settings.dmSectionTitle")}
       </Text>
-      <View className="bg-theme-neutrals-800 rounded-xl overflow-hidden border border-theme-neutrals-700">
-        <View className="px-4 py-3.5 flex-row items-center justify-between">
+      <View className="-mx-4">
+        <View className="px-4 py-2 flex-row items-center justify-between">
           <View className="flex-row items-center flex-1 pr-3">
-            <View className="mr-3 w-9 h-9 rounded-xl bg-theme-neutrals-700/50 items-center justify-center">
-              <Icon name="MessageSquare" size={18} color="#9ca3af" />
+            <View className="mr-3 w-5 h-5 items-center justify-center">
+              <Icon name="MessageSquare" size={20} color="#8B8D90" />
             </View>
             <View className="flex-1">
-              <Text className="text-white text-sm font-medium">{t("settings.dmEnableLabel")}</Text>
-              <Text className="text-theme-neutrals-500 text-xs mt-0.5">
+              <Text className="text-white text-base leading-5 font-medium">{t("settings.dmEnableLabel")}</Text>
+              <Text className="text-theme-neutrals-500 text-sm leading-5 mt-0.5">
                 {t("settings.dmEnableDesc")}
               </Text>
             </View>
@@ -249,15 +249,14 @@ const DMSettingsSection: React.FC = () => {
             disabled={dmSubmitting}
           />
         </View>
-        <View className="h-px bg-theme-neutrals-700 ml-16" />
-        <View className={`px-4 py-3.5 flex-row items-center justify-between ${!dmsEnabled ? "opacity-40" : ""}`}>
+        <View className={`px-4 py-2 flex-row items-center justify-between ${!dmsEnabled ? "opacity-40" : ""}`}>
           <View className="flex-row items-center flex-1 pr-3">
-            <View className="mr-3 w-9 h-9 rounded-xl bg-theme-neutrals-700/50 items-center justify-center">
-              <Icon name="UserPlus" size={18} color="#9ca3af" />
+            <View className="mr-3 w-5 h-5 items-center justify-center">
+              <Icon name="UserPlus" size={20} color="#8B8D90" />
             </View>
             <View className="flex-1">
-              <Text className="text-white text-sm font-medium">{t("settings.dmAllowNewLabel")}</Text>
-              <Text className="text-theme-neutrals-500 text-xs mt-0.5">
+              <Text className="text-white text-base leading-5 font-medium">{t("settings.dmAllowNewLabel")}</Text>
+              <Text className="text-theme-neutrals-500 text-sm leading-5 mt-0.5">
                 {dmsEnabled
                   ? t("settings.dmAllowNewDesc")
                   : t("settings.dmAllowNewDisabled")}
@@ -270,15 +269,14 @@ const DMSettingsSection: React.FC = () => {
             disabled={!dmsEnabled || dmSubmitting}
           />
         </View>
-        <View className="h-px bg-theme-neutrals-700 ml-16" />
-        <View className="px-4 py-3.5">
+        <View className="px-4 py-2">
           <View className="flex-row items-center mb-2">
-            <View className="mr-3 w-9 h-9 rounded-xl bg-theme-neutrals-700/50 items-center justify-center">
-              <Icon name="Coins" size={18} color="#9ca3af" />
+            <View className="mr-3 w-5 h-5 items-center justify-center">
+              <Icon name="Coins" size={20} color="#8B8D90" />
             </View>
             <View className="flex-1">
-              <Text className="text-white text-sm font-medium">{t("settings.dmPerMessageFeeLabel")}</Text>
-              <Text className="text-theme-neutrals-500 text-xs mt-0.5">
+              <Text className="text-white text-base leading-5 font-medium">{t("settings.dmPerMessageFeeLabel")}</Text>
+              <Text className="text-theme-neutrals-500 text-sm leading-5 mt-0.5">
                 {t("settings.dmPerMessageFeeDesc")}
               </Text>
             </View>
@@ -312,15 +310,14 @@ const DMSettingsSection: React.FC = () => {
             </View>
           )}
         </View>
-        <View className="h-px bg-theme-neutrals-700 ml-16" />
-        <View className="px-4 py-3.5 flex-row items-center justify-between">
+        <View className="px-4 py-2 flex-row items-center justify-between">
           <View className="flex-row items-center flex-1 pr-3">
-            <View className="mr-3 w-9 h-9 rounded-xl bg-theme-neutrals-700/50 items-center justify-center">
-              <Icon name="BellOff" size={18} color="#9ca3af" />
+            <View className="mr-3 w-5 h-5 items-center justify-center">
+              <Icon name="BellOff" size={20} color="#8B8D90" />
             </View>
             <View className="flex-1">
-              <Text className="text-white text-sm font-medium">{t('settings.doNotDisturb')}</Text>
-              <Text className="text-theme-neutrals-500 text-xs mt-0.5">
+              <Text className="text-white text-base leading-5 font-medium">{t('settings.doNotDisturb')}</Text>
+              <Text className="text-theme-neutrals-500 text-sm leading-5 mt-0.5">
                 {t('settings.doNotDisturbDesc')}
               </Text>
             </View>

@@ -11,8 +11,18 @@
  * flash is a white pulse, monochrome like the rest of the app, and it is what
  * turns "we switched your tab" into "this is the one".
  */
-import React, { useCallback, useEffect, useRef } from 'react';
-import { Animated, ScrollView, type LayoutChangeEvent, type ScrollViewProps } from 'react-native';
+import React, { createContext, useCallback, useContext, useEffect, useRef } from 'react';
+import {
+  Animated,
+  ScrollView,
+  Text,
+  View,
+  type LayoutChangeEvent,
+  type ScrollViewProps,
+  type ViewStyle,
+} from 'react-native';
+import Icon, { type IconName } from '../ui/Icon';
+import { useAppTheme } from '../../context/ThemeContext';
 
 import {
   registerSettingsAnchor,
@@ -22,7 +32,56 @@ import {
   getSettingsHighlight,
 } from '../../libs/settings-search';
 
-export const SettingsScrollView: React.FC<ScrollViewProps> = ({ children, ...rest }) => {
+/**
+ * The page bento web puts every settings surface in (`[data-page-bento]`,
+ * `bg-zinc-900 rounded-2xl`): the theme's own card on the canvas themes,
+ * nothing at all on minimal (web dissolves bentos into the page there).
+ */
+export function useSettingsBentoStyle(): ViewStyle {
+  const { colors, isMinimal, skin } = useAppTheme();
+  if (skin) return skin.card;
+  if (isMinimal) return { backgroundColor: 'transparent', borderRadius: 0 };
+  return { backgroundColor: colors.neutrals[800], borderRadius: 16 };
+}
+
+/**
+ * The open tab's name and icon. Web heads every tab's bento with them
+ * (`<Palette /> Appearance`); the settings screen provides it so each panel
+ * does not have to draw its own.
+ */
+export const SettingsPanelContext = createContext<{ title: string; icon: IconName } | null>(
+  null,
+);
+
+const PanelHeader: React.FC<{ title: string; icon: IconName }> = ({ title, icon }) => {
+  const { colors } = useAppTheme();
+  return (
+    <View className="flex-row items-center mb-2" style={{ gap: 12 }}>
+      <Icon name={icon} size={20} color={colors.neutrals[400]} />
+      <Text className="text-white text-lg font-semibold">{title}</Text>
+    </View>
+  );
+};
+
+/**
+ * True inside a settings page bento. The row primitives are also used outside
+ * Settings (ConnectScreen), where there is no bento to sit on, and keep their
+ * boxed card there.
+ */
+export const InSettingsBento = createContext(false);
+
+/**
+ * The bento is the scroll content container itself rather than a view inside
+ * it, so every SettingsAnchor stays a direct child and its onLayout `y` is
+ * still a scroll offset.
+ */
+export const SettingsScrollView: React.FC<ScrollViewProps> = ({
+  children,
+  contentContainerStyle,
+  ...rest
+}) => {
+  const bento = useSettingsBentoStyle();
+  const panel = useContext(SettingsPanelContext);
   // React detaches the outgoing panel's ref (calling this with null) before it
   // attaches the incoming one, so the switch lands in the right order. An
   // unmount effect clearing the scroller would not: passive cleanup runs after
@@ -32,8 +91,20 @@ export const SettingsScrollView: React.FC<ScrollViewProps> = ({ children, ...res
   }, []);
 
   return (
-    <ScrollView ref={attach} {...rest}>
-      {children}
+    <ScrollView
+      ref={attach}
+      keyboardShouldPersistTaps="handled"
+      {...rest}
+      contentContainerStyle={[
+        contentContainerStyle,
+        bento,
+        { marginHorizontal: 8, marginTop: 8, marginBottom: 32, padding: 16, paddingBottom: 24 },
+      ]}
+    >
+      <InSettingsBento.Provider value>
+        {panel ? <PanelHeader title={panel.title} icon={panel.icon} /> : null}
+        {children}
+      </InSettingsBento.Provider>
     </ScrollView>
   );
 };
