@@ -77,6 +77,10 @@ export enum ScreenNames {
   Careers = 'Careers',
   // The creator application form — dehub.io/creators.
   Creators = 'Creators',
+  // Plan pages. Buying happens on the website, and only where Google Play
+  // allows linking out to it — see hooks/useWebCheckout.
+  Premium = 'Premium',
+  Pricing = 'Pricing',
   Affiliate = 'Affiliate',
   // Comments expand inline in the card (as on web) — there is no detail route.
   FeatureRequests = 'FeatureRequests',

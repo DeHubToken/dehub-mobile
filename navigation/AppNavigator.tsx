@@ -194,6 +194,14 @@ function AppNavigatorContent() {
           getComponent={() => require("../screens/LaunchpadCreateScreen").default}
         />
         <Stack.Screen
+          name={ScreenNames.Premium}
+          getComponent={() => require("../screens/PremiumScreen").default}
+        />
+        <Stack.Screen
+          name={ScreenNames.Pricing}
+          getComponent={() => require("../screens/PricingScreen").default}
+        />
+        <Stack.Screen
           name={ScreenNames.Governance}
           getComponent={() => require("../screens/GovernanceScreen").default}
         />
