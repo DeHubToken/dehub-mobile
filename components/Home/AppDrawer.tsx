@@ -26,6 +26,7 @@ import Animated, {
   interpolate,
 } from "react-native-reanimated";
 import Avatar from "../common/Avatar";
+import { DhbCoin } from "../common/DhbCoin";
 import Icon, { type IconName } from "../ui/Icon";
 import { useUser, useAuthState, useAuthActions } from "../../context/AuthContext";
 import { ScreenNames } from "../../navigation/ScreenNames";
@@ -467,7 +468,7 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
   const handle = user?.username ? `@${user.username}` : "";
   const avatarUrl = user?.avatarImageUrl ? getAvatarUrl(user.avatarImageUrl) : undefined;
   // The DHB the wallet actually holds; badgeBalance can include delegation.
-  const gemBalance = Math.floor(user?.ownBadgeBalance ?? user?.badgeBalance ?? 0);
+  const dhbBalance = Math.floor(user?.ownBadgeBalance ?? user?.badgeBalance ?? 0);
 
   const renderItem = (item: DrawerItem) => {
     const key = ICON_KEYS[item.labelKey];
@@ -541,16 +542,16 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
                     {handle ? <Text style={styles.headerHandle} numberOfLines={1}>{handle}</Text> : null}
                   </View>
                 </TouchableOpacity>
-                {DIGITAL_PURCHASES_ENABLED && (
+                {DIGITAL_PURCHASES_ENABLED && dhbBalance > 0 && (
                   <TouchableOpacity
                     accessibilityRole="button"
-                    accessibilityLabel={`${t("nav.wallet")} ${gemBalance.toLocaleString()}`}
+                    accessibilityLabel={`${t("nav.wallet")} ${dhbBalance.toLocaleString()}`}
                     onPress={() => navigate(ScreenNames.Dpay, { initialTab: "buy" })}
                     activeOpacity={0.7}
                     style={[styles.balanceChip, square && styles.square]}
                   >
-                    <Icon name="Gem" size={15} color="#FFFFFF" strokeWidth={2} />
-                    <Text style={styles.balanceText}>{gemBalance.toLocaleString()}</Text>
+                    <DhbCoin size={16} />
+                    <Text style={styles.balanceText}>{dhbBalance.toLocaleString()}</Text>
                   </TouchableOpacity>
                 )}
               </View>
