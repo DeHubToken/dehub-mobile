@@ -202,6 +202,7 @@ export type AppStackParamList = {
   [ScreenNames.Careers]: undefined;
   [ScreenNames.Creators]: undefined;
   [ScreenNames.DePin]: undefined;
+  [ScreenNames.Bridge]: undefined;
   [ScreenNames.Affiliate]: undefined;
   /** `requestId` is a notification's deep link into one request, `commentId`
    *  the comment inside it the row was about. */

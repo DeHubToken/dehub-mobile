@@ -60,7 +60,8 @@
     "migrate": "Move all",
     "creators": "Creators",
     "agents": "AI Agents",
-    "connectAi": "Connect AI"
+    "connectAi": "Connect AI",
+    "bridge": "Bridge"
   },
   "affiliate": {
     "subtitle": "Earn from everybody wey you invite — forever",
@@ -4191,7 +4192,15 @@
     "bridging": "Dey bridge…",
     "bridgeAction": "Bridge {{from}} → {{to}}",
     "failed": "Bridge fail",
-    "title": "Bridge Tokens"
+    "title": "Bridge Tokens",
+    "subtitle": "Move DeHub tokens from one chain go another",
+    "queueTitle": "Bridge dem",
+    "transferCount": "Transfer dem: {{count}}",
+    "showMore": "Show more tins",
+    "searchPlaceholder": "Search with address, transaction hash or chain",
+    "queueLoadFailed": "Transfer dem no load. Try again.",
+    "noMatches": "No transfer wey match. Try another address or transaction hash.",
+    "signInToBridge": "Sign in make you see your balance and move DeHub tokens between Base and BNB Chain."
   },
   "teamUp": {
     "title": "Join team",

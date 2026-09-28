@@ -60,7 +60,8 @@
     "migrate": "سب کو منتقل کریں",
     "creators": "بݨاوݨ آلے",
     "agents": "AI ایجنٹ",
-    "connectAi": "AI جوڑو"
+    "connectAi": "AI جوڑو",
+    "bridge": "پل (Bridge)"
   },
   "affiliate": {
     "subtitle": "ہر اس شخص سے کمائیں جسے آپ مدعو کرتے ہیں — ہمیشہ کے لیے",
@@ -4283,7 +4284,15 @@
     "needGas": "{{chain}} تے گیس کیتے اصل {{token}} چاہیدا ہے۔",
     "bridging": "برج تھیندا پیا ہے…",
     "bridgeAction": "{{from}} → {{to}} برج کرو",
-    "failed": "برج ناکام تھیا"
+    "failed": "برج ناکام تھیا",
+    "subtitle": "DeHub ٹوکن چیناں دے وچکار منتقل کرو",
+    "queueTitle": "پل",
+    "transferCount": "منتقلی: {{count}}",
+    "searchPlaceholder": "پتہ، لین دین دے ہیش یا چین دے لحاظ نال تلاش کرو",
+    "queueLoadFailed": "منتقلی لوڈ نہ تھی سگیاں۔ دوبارہ کوشش کرو۔",
+    "noMatches": "کوئی وی منتقلی نہ ملی۔ کوئی ہور پتہ یا لین دین دا ہیش استعمال کرو۔",
+    "showMore": "ہور دکھاؤ",
+    "signInToBridge": "اپنے بیلنس ویکھن تے Base تے BNB Chain دے وچکار DeHub ٹوکن منتقل کرن لئی سائن ان کرو۔"
   },
   "banned": {
     "title": "تہاڈو اکاؤنٹ بند ہے",

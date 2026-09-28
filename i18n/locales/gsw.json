@@ -60,7 +60,8 @@
     "migrate": "Migriere alli",
     "creators": "Creator",
     "agents": "KI-Agente",
-    "connectAi": "KI verbinde"
+    "connectAi": "KI verbinde",
+    "bridge": "Brügg"
   },
   "affiliate": {
     "subtitle": "Verdiene an allen, die du einlädst — für immer",
@@ -4327,7 +4328,15 @@
     "relayAddress": "Bridge-Relay-Adress (Tokens do uf de Quell-Chaine schickä):",
     "insufficient": "Nöd gnueg Tokens uf {{chain}}.",
     "insufficientOnChain": "Nöd gnueg Tokens uf {{chain}}. D'On-Chain-Balanze chan vo de dargstellte abwiiche.",
-    "sentArriveShortly": "{{amount}} Tokens gschickt vo {{from}} → {{to}}. Sie chömed bald."
+    "sentArriveShortly": "{{amount}} Tokens gschickt vo {{from}} → {{to}}. Sie chömed bald.",
+    "subtitle": "DeHub Token zwüsche Chän verschiebe",
+    "queueTitle": "Brügg",
+    "transferCount": "Überwise: {{count}}",
+    "searchPlaceholder": "Suche nach Adrässe, Transaktionshash oder Chaine",
+    "queueLoadFailed": "Überwise chönd nöd glade werde. Versuechs no einisch.",
+    "noMatches": "Keini passendi Überwise. Versuechs mit einere andere Adrässe oder Transaktionshash.",
+    "showMore": "Meh zeige",
+    "signInToBridge": "Zeich dich ii zum dini Bilanze z'seh und DeHub Tokens zwüsche Base und BNB Chain z'verschiebe."
   },
   "banned": {
     "title": "Dini Konto isch gsperrt",

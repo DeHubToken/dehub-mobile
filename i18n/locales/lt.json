@@ -60,7 +60,8 @@
     "migrate": "Perkelti visus",
     "creators": "Kūrėjai",
     "agents": "DI agentai",
-    "connectAi": "Prijungti DI"
+    "connectAi": "Prijungti DI",
+    "bridge": "Tiltas"
   },
   "affiliate": {
     "subtitle": "Uždirbkite iš kiekvieno pakviesto asmens – visam laikui",
@@ -4297,7 +4298,15 @@
     "relayAddress": "Tilto perdavimo adresas (siųskite žetonus čia šaltinio grandinėje):",
     "insufficient": "Nepakanka žetonų {{chain}}.",
     "insufficientOnChain": "Nepakanka žetonų {{chain}}. Grandinės likutis gali skirtis nuo rodomo.",
-    "sentArriveShortly": "{{amount}} žetonų išsiųsta iš {{from}} → {{to}}. Jie atvyks netrukus."
+    "sentArriveShortly": "{{amount}} žetonų išsiųsta iš {{from}} → {{to}}. Jie atvyks netrukus.",
+    "subtitle": "Perkelkite „DeHub“ žetonus tarp grandinių",
+    "queueTitle": "Tiltai",
+    "transferCount": "Pervedimai: {{count}}",
+    "searchPlaceholder": "Ieškoti pagal adresą, operacijų maišą arba grandinę",
+    "queueLoadFailed": "Nepavyko įkelti pervedimų. Bandykite dar kartą.",
+    "noMatches": "Nėra atitinkančių perkėlimų. Išbandykite kitą adresą arba operacijos maišą.",
+    "showMore": "Rodyti daugiau",
+    "signInToBridge": "Prisijunkite, kad pamatytumėte savo likučius ir perkeltumėte „DeHub“ žetonus tarp „Base“ IR BNB grandinės."
   },
   "banned": {
     "title": "Jūsų paskyra užblokuota",

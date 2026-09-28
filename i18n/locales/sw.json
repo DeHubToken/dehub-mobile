@@ -60,7 +60,8 @@
     "migrate": "Hamisha zote",
     "creators": "Waundaji",
     "agents": "Mawakala wa AI",
-    "connectAi": "Unganisha AI"
+    "connectAi": "Unganisha AI",
+    "bridge": "Daraja"
   },
   "affiliate": {
     "subtitle": "Pata kutoka kwa kila mtu unayemwalika — milele",
@@ -4298,7 +4299,15 @@
     "relayAddress": "Anwani ya relay ya daraja (tuma tokeni hapa kwenye mnyororo wa chanzo):",
     "insufficient": "Hakuna tokeni za kutosha kwenye {{chain}}.",
     "insufficientOnChain": "Hakuna tokeni za kutosha kwenye {{chain}}. Salio la kwenye mnyororo linaweza kutofautiana na lililoonyeshwa.",
-    "sentArriveShortly": "Tokeni {{amount}} zilitumwa kutoka {{from}} → {{to}}. Zitafika hivi karibuni."
+    "sentArriveShortly": "Tokeni {{amount}} zilitumwa kutoka {{from}} → {{to}}. Zitafika hivi karibuni.",
+    "subtitle": "Sogeza tokeni za DeHub kati ya minyororo",
+    "queueTitle": "Madaraja",
+    "transferCount": "Uhamisho: {{count}}",
+    "searchPlaceholder": "Tafuta kwa anwani, hash ya muamala au mlolongo",
+    "queueLoadFailed": "Uhamisho haukuweza kupakia. Jaribu tena.",
+    "noMatches": "Hakuna uhawilishaji unaolingana. Jaribu anwani tofauti au hash ya muamala.",
+    "showMore": "Onyesha zaidi",
+    "signInToBridge": "Ingia ili uone salio lako na uhamishe tokeni za DeHub kati ya Msingi na Mnyororo wa BNB."
   },
   "banned": {
     "title": "Akaunti yako imepigwa marufuku",

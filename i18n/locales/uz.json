@@ -60,7 +60,8 @@
     "migrate": "Barchasini ko‘chirish",
     "creators": "Ijodkorlar",
     "agents": "SI agentlari",
-    "connectAi": "SI ulash"
+    "connectAi": "SI ulash",
+    "bridge": "Ko'prik"
   },
   "affiliate": {
     "subtitle": "Taklif qilgan har bir kishidan abadiy daromad oling",
@@ -4315,7 +4316,15 @@
     "relayAddress": "Ko'prikni uzatish manzili (manba zanjirida tokenlarni shu yerga yuboring):",
     "insufficient": "{{chain}} da yetarli token yo'q.",
     "insufficientOnChain": "{{chain}} da yetarli token yo'q. On-chain balans ko'rsatilganidan farq qilishi mumkin.",
-    "sentArriveShortly": "{{amount}} token {{from}} dan → {{to}} yuborildi. Ular tez orada yetib keladi."
+    "sentArriveShortly": "{{amount}} token {{from}} dan → {{to}} yuborildi. Ular tez orada yetib keladi.",
+    "subtitle": "DeHub tokenlarini zanjirlar o'rtasida ko'chiring",
+    "queueTitle": "Ko'priklar",
+    "transferCount": "O'tkazmalar: {{count}}",
+    "searchPlaceholder": "Manzil, tranzaksiya xeshi yoki zanjiri bo'yicha qidiruv",
+    "queueLoadFailed": "O'tkazmalar yuklanmadi. Qaytadan urinib ko'ring.",
+    "noMatches": "Mos keladigan oʻtkazmalar yoʻq. Boshqa manzil yoki tranzaksiya xeshini sinab koʻring.",
+    "showMore": "Batafsil ma'lumot",
+    "signInToBridge": "Balansingizni ko'rish va DeHub tokenlarini Base va BNB Chain o'rtasida o'tkazish uchun tizimga kiring."
   },
   "banned": {
     "title": "Hisobingiz bloklandi",

@@ -60,7 +60,8 @@
     "migrate": "Tümünü taşı",
     "creators": "Üreticiler",
     "agents": "Yapay Zekâ Ajanları",
-    "connectAi": "Yapay Zekâyı Bağla"
+    "connectAi": "Yapay Zekâyı Bağla",
+    "bridge": "Köprü"
   },
   "affiliate": {
     "subtitle": "Davet ettiğin herkesten sonsuza dek kazan",
@@ -4346,7 +4347,15 @@
     "relayAddress": "Köprü röle adresi (kaynak zincirinde buraya jeton gönderin):",
     "insufficient": "{{chain}} üzerinde yeterli jeton yok.",
     "insufficientOnChain": "{{chain}} üzerinde yeterli jeton yok. Zincir üstü bakiye gösterilenden farklı olabilir.",
-    "sentArriveShortly": "{{from}} → {{to}} adresinden {{amount}} jetonu gönderildi. Kısa süre sonra ulaşırlar."
+    "sentArriveShortly": "{{from}} → {{to}} adresinden {{amount}} jetonu gönderildi. Kısa süre sonra ulaşırlar.",
+    "subtitle": "DeHub jetonlarını zincirler arasında taşıyın",
+    "queueTitle": "Köprüler",
+    "transferCount": "Transferler: {{count}}",
+    "searchPlaceholder": "Adrese, işlem hash'ine veya zincire göre ara",
+    "queueLoadFailed": "Transferler yüklenemedi. Tekrar deneyin.",
+    "noMatches": "Eşleşen transfer yok. Farklı bir adres veya işlem karması deneyin.",
+    "showMore": "Daha fazla göster",
+    "signInToBridge": "Bakiyelerinizi görmek ve DeHub tokenlerini Base ve BNB Chain arasında taşımak için oturum açın."
   },
   "banned": {
     "title": "Hesabınız yasaklandı",

@@ -60,7 +60,8 @@
     "migrate": "I-migrate lahat",
     "creators": "Mga creator",
     "agents": "Mga AI agent",
-    "connectAi": "Ikonekta ang AI"
+    "connectAi": "Ikonekta ang AI",
+    "bridge": "Tulay"
   },
   "affiliate": {
     "subtitle": "Kumita mula sa lahat ng iyong iniimbitahan — magpakailanman",
@@ -4344,7 +4345,15 @@
     "relayAddress": "Bridge relay address (magpadala ng mga token dito sa source chain):",
     "insufficient": "Walang sapat na token sa {{chain}}.",
     "insufficientOnChain": "Walang sapat na token sa {{chain}}. Maaaring iba ang balanse sa on-chain sa ipinapakita.",
-    "sentArriveShortly": "{{amount}} token na ipinadala mula sa {{from}} → {{to}}. Darating ang mga ito sa madaling panahon."
+    "sentArriveShortly": "{{amount}} token na ipinadala mula sa {{from}} → {{to}}. Darating ang mga ito sa madaling panahon.",
+    "subtitle": "Ilipat ang DeHub token sa pagitan ng mga chain",
+    "queueTitle": "Mga Tulay",
+    "transferCount": "Mga paglilipat:{{count}}",
+    "searchPlaceholder": "Maghanap ayon sa address, hash ng transaksyon o chain",
+    "queueLoadFailed": "Hindi ma - load ang mga transfer. Subukan muli.",
+    "noMatches": "Walang tumutugmang paglilipat. Sumubok ng ibang address o hash sa transaksyon.",
+    "showMore": "Magpakita pa",
+    "signInToBridge": "Mag - sign in upang makita ang iyong mga balanse at ilipat ang mga token ng DeHub sa pagitan ng Base AT BNB Chain."
   },
   "banned": {
     "title": "Ipinagbabawal ang iyong account",

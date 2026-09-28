@@ -60,7 +60,8 @@
     "migrate": "Migrar tudo",
     "creators": "Criadores",
     "agents": "Agentes de IA",
-    "connectAi": "Conectar IA"
+    "connectAi": "Conectar IA",
+    "bridge": "Ponte"
   },
   "affiliate": {
     "subtitle": "Ganhe com todos que você convidar — para sempre",
@@ -4350,7 +4351,15 @@
     "relayAddress": "Endereço de retransmissão da ponte (envie tokens aqui na cadeia de origem):",
     "insufficient": "Tokens insuficientes em {{chain}}.",
     "insufficientOnChain": "Tokens insuficientes em {{chain}}. O saldo na cadeia pode diferir do exibido.",
-    "sentArriveShortly": "{{amount}} tokens enviados de {{from}} → {{to}}. Eles chegarão em breve."
+    "sentArriveShortly": "{{amount}} tokens enviados de {{from}} → {{to}}. Eles chegarão em breve.",
+    "subtitle": "Mover tokens DeHub entre redes",
+    "queueTitle": "Pontes",
+    "transferCount": "Transferências: {{count}}",
+    "searchPlaceholder": "Pesquisar por endereço, hash de transação ou cadeia",
+    "queueLoadFailed": "Não foi possível carregar as transferências. Tente novamente.",
+    "noMatches": "Sem transferências correspondentes. Tente um endereço ou hash de transação diferente.",
+    "showMore": "Mostrar mais",
+    "signInToBridge": "Inicie sessão para ver os seus saldos e mover os tokens DeHub entre a Base e a BNB Chain."
   },
   "banned": {
     "title": "A sua conta foi banida",

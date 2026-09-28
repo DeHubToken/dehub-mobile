@@ -63,6 +63,12 @@ interface DrawerItem {
   storefrontHidden?: boolean;
   /** Screen lives inside the bottom-tab navigator (Root), so it needs nested navigation. */
   tab?: boolean;
+  /**
+   * Only listed while the menu search matches it — web's SEARCH_ONLY_ITEMS.
+   * A real page reached from inside another one (Bridge from the wallet), so
+   * the resting menu stays the length it is.
+   */
+  searchOnly?: boolean;
   disabled?: boolean;
   disabledMessage?: string;
 }
@@ -123,6 +129,7 @@ const NAV_ITEMS: DrawerItem[] = [
   { icon: "FolderInput", labelKey: "nav.migrate", screen: ScreenNames.Migrate },
   { icon: "Scroll", labelKey: "nav.glossary", screen: ScreenNames.Glossary },
   { icon: "Map", labelKey: "nav.guide", screen: ScreenNames.Guide },
+  { icon: "ArrowLeftRight", labelKey: "nav.bridge", screen: ScreenNames.Bridge, searchOnly: true, storefrontHidden: true },
   { icon: "BookOpen", labelKey: "nav.docs", url: `${WEBSITE_LINK}/docs` },
   { icon: "FileText", labelKey: "nav.blog", url: `${WEBSITE_LINK}/docs/blog` },
 ];
@@ -325,7 +332,7 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
       (item) => (isSignedIn || !item.requiresAuth) && (DIGITAL_PURCHASES_ENABLED || !item.storefrontHidden),
     );
     const query = menuQuery.trim().toLowerCase();
-    if (!query) return allowed;
+    if (!query) return allowed.filter((item) => !item.searchOnly);
     return allowed
       .map((item) => ({ item, at: t(item.labelKey).toLowerCase().indexOf(query) }))
       .filter((entry) => entry.at !== -1)

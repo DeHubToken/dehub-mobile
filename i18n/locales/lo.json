@@ -60,7 +60,8 @@
     "migrate": "ຍ້າຍທັງໝົດ",
     "creators": "ຜູ້ສ້າງ",
     "agents": "ຕົວແທນ AI",
-    "connectAi": "ເຊື່ອມຕໍ່ AI"
+    "connectAi": "ເຊື່ອມຕໍ່ AI",
+    "bridge": "ສະພານ"
   },
   "affiliate": {
     "subtitle": "ຫາ​ລາຍ​ໄດ້​ຈາກ​ທຸກ​ຄົນ​ທີ່​ທ່ານ​ເຊີນ — ຕະຫຼອດ​ໄປ",
@@ -4270,7 +4271,15 @@
     "relayAddress": "ທີ່ຢູ່ relay ຂອງ bridge (ສົ່ງ tokens ທີ່ນີ້ໃນ chain ຕົ້ນທາງ):",
     "insufficient": "ບໍ່ມີ tokens ພຽງພໍໃນ {{chain}}.",
     "insufficientOnChain": "ບໍ່ມີ tokens ພຽງພໍໃນ {{chain}}. ຍອດເງິນໃນ On-chain ອາດແຕກຕ່າງຈາກທີ່ສະແດງ.",
-    "sentArriveShortly": "{{amount}} tokens ຖືກສົ່ງຈາກ {{from}} → {{to}}. ພວກມັນຈະມາຮອດໃນໄວໆນີ້."
+    "sentArriveShortly": "{{amount}} tokens ຖືກສົ່ງຈາກ {{from}} → {{to}}. ພວກມັນຈະມາຮອດໃນໄວໆນີ້.",
+    "subtitle": "ຍ້າຍ DeHub tokens ລະຫວ່າງ chains",
+    "queueTitle": "ຂົວ",
+    "transferCount": "ການໂອນເງິນ: {{count}}",
+    "searchPlaceholder": "ຄົ້ນຫາຕາມທີ່ຢູ່, ການເຮັດທຸລະກໍາ hash ຫຼືຕ່ອງໂສ້",
+    "queueLoadFailed": "ການໂອນເງິນບໍ່ສາມາດໂຫຼດໄດ້. ລອງໃໝ່ອີກຄັ້ງ.",
+    "noMatches": "ບໍ່ມີການໂອນເງິນທີ່ກົງກັນ. ລອງໃຊ້ທີ່ຢູ່ ຫຼື ຮາດການເຮັດທຸລະກຳທີ່ແຕກຕ່າງກັນ.",
+    "showMore": "ສະແດງເພີ່ມເຕີມ",
+    "signInToBridge": "ເຂົ້າສູ່ລະບົບເພື່ອເບິ່ງຄວາມສົມດຸນຂອງທ່ານແລະຍ້າຍ DeHub tokens ລະຫວ່າງ Base ແລະ BnB Chain."
   },
   "banned": {
     "title": "ບັນຊີຂອງທ່ານຖືກຫ້າມ",

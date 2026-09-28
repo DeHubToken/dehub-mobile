@@ -60,7 +60,8 @@
     "migrate": "Siirrä kaikki",
     "creators": "Tekijät",
     "agents": "Tekoälyagentit",
-    "connectAi": "Yhdistä tekoäly"
+    "connectAi": "Yhdistä tekoäly",
+    "bridge": "Silta"
   },
   "affiliate": {
     "subtitle": "Ansaitse jokaiselta kutsumaltasi henkilöltä – ikuisesti",
@@ -4297,7 +4298,15 @@
     "relayAddress": "Silta-välitysosoite (lähetä tokenit tänne lähdeketjussa):",
     "insufficient": "Ei tarpeeksi tokeneita {{chain}}.",
     "insufficientOnChain": "Ei tarpeeksi tokeneita {{chain}}. Lohkoketjun saldo voi poiketa näytetystä.",
-    "sentArriveShortly": "{{amount}} tokenia lähetetty {{from}} → {{to}}. Ne saapuvat pian."
+    "sentArriveShortly": "{{amount}} tokenia lähetetty {{from}} → {{to}}. Ne saapuvat pian.",
+    "subtitle": "Siirrä DeHub-tokeneita ketjujen välillä",
+    "queueTitle": "Sillat",
+    "transferCount": "Siirrot: {{count}}",
+    "searchPlaceholder": "Hae osoitteen, tapahtuman hash-tunnisteen tai ketjun perusteella",
+    "queueLoadFailed": "Siirtoja ei voitu ladata. Yritä uudelleen.",
+    "noMatches": "Ei vastaavia siirtoja. Kokeile toista osoitetta tai tapahtuman tiivistettä.",
+    "showMore": "Näytä lisää",
+    "signInToBridge": "Kirjaudu sisään nähdäksesi saldosi ja siirrä DeHub-poletit Base- ja BnB-ketjujen välillä."
   },
   "banned": {
     "title": "Tilisi on estetty",

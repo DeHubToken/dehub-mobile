@@ -60,7 +60,8 @@
     "migrate": "ኩሉ ኣግዕዝ",
     "creators": "ፈጠርቲ",
     "agents": "ናይ AI ኤጀንትታት",
-    "connectAi": "AI ኣራኽብ"
+    "connectAi": "AI ኣራኽብ",
+    "bridge": "ድልድል"
   },
   "affiliate": {
     "subtitle": "ካብ ኩሉ ሰብ እትዕድሞ ንዘለኣለም ተረክብ",
@@ -4297,7 +4298,15 @@
     "relayAddress": "\"Bridge relay address\" (ኣብ  ናይ  መበገሲ  ሰንሰል  ቶክን  ኣብዚ  ስደዱ):",
     "insufficient": "ኣብ  {{chain}}  ቶክን  ኣይኣኽሉን።",
     "insufficientOnChain": "ኣብ  {{chain}}  ቶክን  ኣይኣኽሉን።  \"On-chain balance\"  ካብ  ዝተራእየ  ይፈላለይ  ይኽእል።",
-    "sentArriveShortly": "{{amount}}  ቶክን  ካብ  {{from}}  ናብ  {{to}}  ተሰደደ።  ብቕልጡፍ  ክመጽእ  እዩ።"
+    "sentArriveShortly": "{{amount}}  ቶክን  ካብ  {{from}}  ናብ  {{to}}  ተሰደደ።  ብቕልጡፍ  ክመጽእ  እዩ።",
+    "subtitle": "ኣብ መንጎ ሰንሰለታት ዘሎ ምልክታት DeHub ይንቀሳቐስ",
+    "queueTitle": "ድልድልታት",
+    "transferCount": "ምትሕልላፍ ፦ {{count}}",
+    "searchPlaceholder": "ኣድራሻ ፡ ግብረ-ግብሪ ሃሽ ወይ ሰንሰለት ይደሊ",
+    "queueLoadFailed": "እቲ ምትሕልላፍ ክጭፍልቕ ኣይከኣለን ። እንደገና ፈትኖ ።",
+    "noMatches": "ናይ ምትእስሳር ምትሕልላፍ የለን ። ካልእ ኣድራሻ ወይ ግብረ-ሰናይ ሃሽ ፈትኖ ።",
+    "showMore": "ዝያዳ ኣርኢ",
+    "signInToBridge": "ነቲ ሚዛንካ ንምርኣይ ኣቲኻ ኣብ መንጎ መሰረታዊን BnB Chainን ዘሎ DeHub ምልክታት ከተንቀሳቐስ ትኽእል ኢኻ ።"
   },
   "banned": {
     "title": "ሕሳብካ ክልኩል እዩ",

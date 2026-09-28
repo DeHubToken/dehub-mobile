@@ -60,7 +60,8 @@
     "migrate": "Hamısını köçür",
     "creators": "Yaradıcılar",
     "agents": "Süni intellekt agentləri",
-    "connectAi": "Süni intellekti qoş"
+    "connectAi": "Süni intellekti qoş",
+    "bridge": "Körpü"
   },
   "affiliate": {
     "subtitle": "Dəvət etdiyiniz hər kəsdən qazanın — əbədi",
@@ -4297,7 +4298,15 @@
     "relayAddress": "Körpü ötürücü ünvanı (mənşə zəncirində bura token göndərin):",
     "insufficient": "{{chain}}-da kifayət qədər token yoxdur.",
     "insufficientOnChain": "{{chain}}-da kifayət qədər token yoxdur. Blokcheyn balansı göstəriləndən fərqli ola bilər.",
-    "sentArriveShortly": "{{amount}} token {{from}}-dan → {{to}}-ə göndərildi. Onlar qısa müddətdə gələcək."
+    "sentArriveShortly": "{{amount}} token {{from}}-dan → {{to}}-ə göndərildi. Onlar qısa müddətdə gələcək.",
+    "subtitle": "DeHub tokenlərini zəncirlər arasında köçürün",
+    "queueTitle": "Körpülər",
+    "transferCount": "Köçürmələr: {{count}}",
+    "searchPlaceholder": "Ünvan, əməliyyat həştəqi və ya zəncirə görə axtarın",
+    "queueLoadFailed": "Köçürmələr yüklənmədi. Yenidən cəhd edin.",
+    "noMatches": "Uyğun köçürmələr yoxdur. Başqa ünvan və ya əməliyyat həştəqini sınayın.",
+    "showMore": "Daha çox göstər",
+    "signInToBridge": "Balanslarınızı görmək üçün daxil olun və Baza və BNB Zənciri arasında DeHub işarələrini hərəkət etdirin."
   },
   "banned": {
     "title": "Hesabınız qadağan edildi",

@@ -21,6 +21,7 @@ import { FIELD_TEXT } from "../../theme/inputs";
 import { sanitizeAmountInput } from "../../libs/amount-input";
 import { useAppTheme } from "../../context/ThemeContext";
 import { minimalFlat, minimalRow } from "../../theme/minimal";
+import { DIGITAL_PURCHASES_ENABLED } from "../../config/storefront";
 
 interface BridgeTransfer {
   txHash: string;
@@ -243,7 +244,9 @@ const BridgeTab: React.FC = () => {
         </View>
       </View>
 
-      {/* Bridge card */}
+      {/* Bridge card. Sending tokens across chains is a token action, so the
+          App Store build shows balances and history only (config/storefront). */}
+      {DIGITAL_PURCHASES_ENABLED && (
       <View className="bg-white/5 border border-white/10 rounded-xl p-4 mb-4" style={mRow}>
         <Text className="text-white font-semibold text-base mb-4">{t("bridge.title")}</Text>
 
@@ -329,8 +332,10 @@ const BridgeTab: React.FC = () => {
           </Text>
         </TouchableOpacity>
       </View>
+      )}
 
       {/* Info note */}
+      {DIGITAL_PURCHASES_ENABLED && (
       <View className="bg-white/5 border border-white/10 rounded-xl p-4 mb-4" style={mRow}>
         <View className="flex-row items-center gap-2 mb-2">
           <Ionicons name="information-circle-outline" size={16} color="#D4D4D8" />
@@ -340,6 +345,7 @@ const BridgeTab: React.FC = () => {
           {t("bridge.howItWorksBody")}
         </Text>
       </View>
+      )}
 
       {/* Recent bridges */}
       <View className="bg-white/[0.03] border border-white/10 rounded-xl p-4 mb-4" style={mRow}>
@@ -387,6 +393,7 @@ const BridgeTab: React.FC = () => {
       </View>
 
       {/* Manual bridge address */}
+      {DIGITAL_PURCHASES_ENABLED && (
       <View className="bg-white/[0.03] border border-white/10 rounded-xl p-4" style={mFlat}>
         <Text className="text-white/50 text-xs mb-2">
           {t("bridge.relayAddress")}
@@ -401,6 +408,7 @@ const BridgeTab: React.FC = () => {
           <Ionicons name="copy-outline" size={14} color="rgba(255,255,255,0.4)" />
         </TouchableOpacity>
       </View>
+      )}
 
       <TouchableOpacity
         onPress={fetchBalances}

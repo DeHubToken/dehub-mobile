@@ -60,7 +60,8 @@
     "migrate": "सर्वं स्थानान्तरयतु",
     "creators": "निर्मातारः",
     "agents": "कृत्रिमाभिकर्तारः (AI Agents)",
-    "connectAi": "AI सम्बद्ध्यताम्"
+    "connectAi": "AI सम्बद्ध्यताम्",
+    "bridge": "सेतुः (Bridge)"
   },
   "affiliate": {
     "subtitle": "यान् सर्वान् आमन्त्रयति तेभ्यः अर्जयतु — सदा",
@@ -4297,7 +4298,15 @@
     "relayAddress": "ब्रिज रिले पता (स्रोत चेन पर यहां टोकन भेजें):",
     "insufficient": "{{chain}} पर पर्याप्त टोकन नहीं हैं।",
     "insufficientOnChain": "{{chain}} पर पर्याप्त टोकन नहीं हैं। ऑन-चेन शेष राशि प्रदर्शित से भिन्न हो सकती है।",
-    "sentArriveShortly": "{{from}} → {{to}} से {{amount}} टोकन भेजे गए। वे शीघ्र ही पहुंचेंगे।"
+    "sentArriveShortly": "{{from}} → {{to}} से {{amount}} टोकन भेजे गए। वे शीघ्र ही पहुंचेंगे।",
+    "subtitle": "चेन के बीच DeHub टोकन ले जाएँ",
+    "queueTitle": "सेतुः",
+    "searchPlaceholder": "खोजः खोजषब्द पता, खोजषब्द हॅश",
+    "queueLoadFailed": "Msgstr \"पुनः प्रयच्छतुः पुनः प्रयच्छतु ।",
+    "noMatches": "न चानुपपत्तेः, न चानुपपत्तेः ।",
+    "showMore": "अधिकं दर्शयतु",
+    "signInToBridge": ".",
+    "transferCount": "स्थानान्तरणानि: {{count}}"
   },
   "banned": {
     "title": "भवतः खाता प्रतिषिद्धः अस्ति ।",

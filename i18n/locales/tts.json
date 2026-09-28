@@ -60,7 +60,8 @@
     "migrate": "ย้ายทั้งหมด",
     "creators": "ครีเอเตอร์",
     "agents": "AI Agents",
-    "connectAi": "เชื่อมต่อ AI"
+    "connectAi": "เชื่อมต่อ AI",
+    "bridge": "สะพาน"
   },
   "affiliate": {
     "subtitle": "รับรายได้จากทุกคนที่คุณเชิญ — ตลอดไป",
@@ -4297,7 +4298,15 @@
     "relayAddress": "ที่อยู่รีเลย์สะพาน (ส่งโทเคนที่นี่บนเชนต้นทาง):",
     "insufficient": "โทเคนไม่พอใน {{chain}}",
     "insufficientOnChain": "โทเคนไม่พอใน {{chain}} ยอดคงเหลือบนเชนอาจแตกต่างจากที่แสดง",
-    "sentArriveShortly": "{{amount}} โทเคนส่งจาก {{from}} → {{to}} พวกเขาจะมาถึงในไม่ช้า"
+    "sentArriveShortly": "{{amount}} โทเคนส่งจาก {{from}} → {{to}} พวกเขาจะมาถึงในไม่ช้า",
+    "subtitle": "ย้ายโทเค็น DeHub ระหว่างเชน",
+    "queueTitle": "สะพาน",
+    "transferCount": "การโอน: {{count}}",
+    "searchPlaceholder": "ค้นหาตามที่อยู่, แฮชธุรกรรม หรือเชน",
+    "queueLoadFailed": "ไม่สามารถโหลดรายการโอนได้ ลองอีกครั้ง",
+    "noMatches": "ไม่พบรายการโอนที่ตรงกัน ลองใช้ที่อยู่อื่น หรือแฮชธุรกรรมอื่น",
+    "showMore": "แสดงเพิ่มเติม",
+    "signInToBridge": "ลงชื่อเข้าใช้เพื่อดูยอดคงเหลือของคุณ และย้ายโทเค็น DeHub ระหว่าง Base และ BNB Chain"
   },
   "banned": {
     "title": "บัญชีของคุณถูกแบน",

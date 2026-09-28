@@ -60,7 +60,8 @@
     "migrate": "すべて移行",
     "creators": "クリエイター",
     "agents": "AI エージェント",
-    "connectAi": "AI を接続"
+    "connectAi": "AI を接続",
+    "bridge": "ブリッジ"
   },
   "affiliate": {
     "subtitle": "招待した人すべてから、ずっと報酬を",
@@ -4348,7 +4349,15 @@
     "relayAddress": "ブリッジリレーアドレス（ソースチェーンでここにトークンを送信）：",
     "insufficient": "{{chain}} にトークンが不足しています。",
     "insufficientOnChain": "{{chain}} にトークンが不足しています。オンチェーン残高が表示と異なる場合があります。",
-    "sentArriveShortly": "{{amount}} トークンが {{from}} から {{to}} に送信されました。まもなく到着します。"
+    "sentArriveShortly": "{{amount}} トークンが {{from}} から {{to}} に送信されました。まもなく到着します。",
+    "subtitle": "DeHubトークンをチェーン間で移動する",
+    "queueTitle": "ブリッジ",
+    "transferCount": "乗り換え：{{count}}",
+    "searchPlaceholder": "住所、トランザクションハッシュ、またはチェーンで検索",
+    "queueLoadFailed": "転送を読み込めませんでした。もう一度お試しください。",
+    "noMatches": "一致する送金はありません。別のアドレスまたはトランザクションハッシュを試してください。",
+    "showMore": "さらに表示",
+    "signInToBridge": "サインインして残高を確認し、DeHubトークンをベースチェーンとBNBチェーンの間で移動します。"
   },
   "banned": {
     "title": "アカウントが禁止されています",

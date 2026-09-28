@@ -60,7 +60,8 @@
     "migrate": "Migrer alle",
     "creators": "Skapere",
     "agents": "KI-agenter",
-    "connectAi": "Koble til KI"
+    "connectAi": "Koble til KI",
+    "bridge": "Bro"
   },
   "affiliate": {
     "subtitle": "Tjen fra alle du inviterer — for alltid",
@@ -4297,7 +4298,15 @@
     "relayAddress": "Broreléadresse (send tokens hit på kildenettverket):",
     "insufficient": "Ikke nok tokens på {{chain}}.",
     "insufficientOnChain": "Ikke nok tokens på {{chain}}. Balanse på kjeden kan avvike fra den viste.",
-    "sentArriveShortly": "{{amount}} tokens sendt fra {{from}} → {{to}}. De kommer snart."
+    "sentArriveShortly": "{{amount}} tokens sendt fra {{from}} → {{to}}. De kommer snart.",
+    "subtitle": "Flytt DeHub-tokens mellom kjeder",
+    "queueTitle": "Broer",
+    "transferCount": "Overføringer: {{count}}",
+    "searchPlaceholder": "Søk etter adresse, transaksjonshash eller kjede",
+    "queueLoadFailed": "Overføringene kunne ikke lastes inn. Prøv på nytt.",
+    "noMatches": "Ingen samsvarende overføringer. Prøv en annen adresse eller transaksjons-hash.",
+    "showMore": "Vis mer",
+    "signInToBridge": "Logg inn for å se saldoene dine og flytte DeHub-tokens mellom Base og BNB Chain."
   },
   "banned": {
     "title": "Kontoen din er utestengt",

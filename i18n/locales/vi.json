@@ -60,7 +60,8 @@
     "migrate": "Di chuyển tất cả",
     "creators": "Nhà sáng tạo",
     "agents": "Tác nhân AI",
-    "connectAi": "Kết nối AI"
+    "connectAi": "Kết nối AI",
+    "bridge": "Cầu nối"
   },
   "affiliate": {
     "subtitle": "Kiếm tiền từ mọi người bạn mời — mãi mãi",
@@ -4310,7 +4311,15 @@
     "relayAddress": "Địa chỉ chuyển tiếp cầu nối (gửi token tại đây trên chuỗi nguồn):",
     "insufficient": "Không đủ token trên {{chain}}.",
     "insufficientOnChain": "Không đủ token trên {{chain}}. Số dư trên chuỗi có thể khác với số dư hiển thị.",
-    "sentArriveShortly": "{{amount}} token đã được gửi từ {{from}} → {{to}}. Chúng sẽ đến sớm."
+    "sentArriveShortly": "{{amount}} token đã được gửi từ {{from}} → {{to}}. Chúng sẽ đến sớm.",
+    "subtitle": "Di chuyển token DeHub giữa các chuỗi",
+    "queueTitle": "Cầu",
+    "transferCount": "Chuyển khoản: {{count}}",
+    "searchPlaceholder": "Tìm kiếm theo địa chỉ, hàm băm giao dịch hoặc chuỗi",
+    "queueLoadFailed": "Không thể tải chuyển khoản. Hãy thử lại.",
+    "noMatches": "Không có chuyển khoản phù hợp. Hãy thử một địa chỉ hoặc hàm băm giao dịch khác.",
+    "showMore": "Hiển thị thêm",
+    "signInToBridge": "Đăng nhập để xem số dư của bạn và di chuyển mã thông báo DeHub giữa Base và BNB Chain."
   },
   "banned": {
     "title": "Tài khoản của bạn đã bị cấm",
