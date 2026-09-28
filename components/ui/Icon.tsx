@@ -23,6 +23,8 @@ import { useReadyAfterScroll } from "../../libs/scrollActivity";
 import GlassIndicator, { GLASS_SHADOW } from "./GlassIndicator";
 // Not lucide's `icons` barrel: that bundles and evaluates every icon at boot.
 import { iconRegistry, type IconName } from "./iconRegistry";
+import { iconPaths } from "./iconPaths";
+import Svg, { Path } from "react-native-svg";
 
 export type { IconName };
 
@@ -95,12 +97,29 @@ const Icon: React.FC<IconProps> = ({
     if (__DEV__) console.warn(`[Icon] "${name}" is not in iconRegistry; run \`npm run icons:write\``);
     return <View style={{ width: size, height: size }} />;
   }
-  if (!ready) {
+  // One merged path is three native views at most, cheap enough to mount in
+  // the middle of a fling, so it draws straight away instead of popping in
+  // once the list settles. A fill spreads over the merged outline the same as
+  // over one shape, so filled icons use it only when they are one shape.
+  const merged = gradient && gradient.length >= 2 ? undefined : iconPaths[name];
+  const single = merged && (!fill || fill === "none" || merged[1] === 1) ? merged[0] : null;
+  if (!ready && !single) {
     const box = glass ? size + glassPadding * 2 : size;
     return <View style={{ width: box, height: box }} />;
   }
 
-  const iconElement = gradient && gradient.length >= 2 ? (
+  const iconElement = single ? (
+    <Svg width={size} height={size} viewBox="0 0 24 24">
+      <Path
+        d={single}
+        stroke={color}
+        strokeWidth={strokeWidth}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill={fill || "none"}
+      />
+    </Svg>
+  ) : gradient && gradient.length >= 2 ? (
     <MaskedView
       style={{ width: size, height: size }}
       maskElement={
