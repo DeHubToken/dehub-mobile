@@ -236,11 +236,11 @@ export function parseDehubLink(input: string): DehubLinkMatch | null {
 
   // ── /work/:uuid — the legacy bounty detail link, from before job numbers ──
   //
-  // Bare /work (the board), /work/post and /work/history are app pages, not
+  // Bare /work (the board), /work/post, /work/history and /work/disputes are app pages, not
   // entities — like bare /stages, they stay plain links. Only the uuid detail
   // shape cards, `/edit` tail and all, so the card still opens wherever the
   // link pointed.
-  if (scoped[0] === 'work' && scoped[1] && scoped[1] !== 'post' && scoped[1] !== 'history') {
+  if (scoped[0] === 'work' && scoped[1] && scoped[1] !== 'post' && scoped[1] !== 'history' && scoped[1] !== 'disputes') {
     if (!/^[a-fA-F0-9-]{8,}$/.test(scoped[1])) return null;
     return { ...base, kind: 'bounty', bountyJobKey: scoped[1] };
   }

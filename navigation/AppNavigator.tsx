@@ -326,6 +326,18 @@ function AppNavigatorContent() {
           getComponent={() => require("../screens/WorkPostScreen").default}
         />
         <Stack.Screen
+          name={ScreenNames.WorkEdit}
+          getComponent={() => require("../screens/WorkEditScreen").default}
+        />
+        <Stack.Screen
+          name={ScreenNames.WorkHistory}
+          getComponent={() => require("../screens/WorkHistoryScreen").default}
+        />
+        <Stack.Screen
+          name={ScreenNames.WorkDisputes}
+          getComponent={() => require("../screens/WorkDisputesScreen").default}
+        />
+        <Stack.Screen
           name={ScreenNames.CommunityDetail}
           getComponent={() => require("../screens/CommunityDetailScreen").default}
         />

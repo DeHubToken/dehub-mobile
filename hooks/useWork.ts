@@ -20,6 +20,7 @@ import {
   keepPreviousData,
 } from "@tanstack/react-query";
 import { ethers } from "ethers";
+import i18n from "i18next";
 import { supabase } from "../services/supabase";
 import { withWalletHeader } from "../libs/supabase-wallet-client";
 import { useUser } from "../context/AuthContext";
@@ -141,6 +142,20 @@ export const DEHUB_WORK_ADDRESS = "0x0000000000000000000000000000000000000000";
 export const isWorkContractDeployed = () =>
   DEHUB_WORK_ADDRESS.toLowerCase() !== "0x0000000000000000000000000000000000000000";
 
+/** Same explorer web links escrow and payout hashes to (workExplorerTxUrl). */
+export const workExplorerTxUrl = (txHash: string) => `https://basescan.org/tx/${txHash}`;
+
+/**
+ * Wallets (lowercased) that can resolve disputes on the Disputes screen.
+ * Mirrors web's WORK_ADMIN_ARBITERS — keep the two lists identical.
+ */
+export const WORK_ADMIN_ARBITERS: string[] = [];
+
+export function isWorkAdmin(addr?: string | null): boolean {
+  if (!addr) return false;
+  return WORK_ADMIN_ARBITERS.includes(addr.toLowerCase());
+}
+
 export const WORK_TYPE_LABEL: Record<WorkJobType, string> = {
   shill: "Comment / Shill",
   clipping: "Clipping",
@@ -261,7 +276,7 @@ export function useWorkJob(jobKey: string | undefined, seed?: WorkJob) {
   });
 }
 
-export function useMyPostedJobs() {
+export function useMyPostedJobs(enabled = true) {
   const wallet = useWallet();
   return useQuery({
     queryKey: ["work-my-posted", wallet],
@@ -274,8 +289,103 @@ export function useMyPostedJobs() {
       if (error) throw error;
       return (data || []) as WorkJob[];
     },
-    enabled: !!wallet,
+    enabled: enabled && !!wallet,
+    staleTime: 5 * 60_000,
   });
+}
+
+/** Every submission this wallet has made, across all jobs — the "worked on" side of history. */
+export function useMyWorkSubmissions(enabled = true) {
+  const wallet = useWallet();
+  return useQuery({
+    queryKey: ["work-my-submissions", wallet],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from(TBL_SUBS)
+        .select("*, job:work_jobs(*)")
+        .eq("worker_address", wallet!.toLowerCase())
+        .order("created_at", { ascending: false });
+      if (error) throw error;
+      return (data || []) as unknown as (WorkSubmission & { job: WorkJob | null })[];
+    },
+    enabled: enabled && !!wallet,
+    staleTime: 5 * 60_000,
+  });
+}
+
+// ── Edit job ────────────────────────────────────────────────────────────────
+
+/**
+ * Poster-only edit, same as web's useUpdateJob. Money fields are only sent
+ * while `isBudgetEditable` holds, and `total_budget` moves with them.
+ */
+export function useUpdateJob() {
+  const wallet = useWallet();
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: async (params: {
+      id: string;
+      title: string;
+      description: string;
+      platform?: WorkPlatform | null;
+      target_url?: string | null;
+      deadline?: string | null;
+      budget?: { currency: WorkCurrency; price_per_unit: number; max_units: number };
+    }) => {
+      if (!wallet) throw new Error("Not authenticated");
+      const addr = wallet.toLowerCase();
+      const patch: Record<string, unknown> = {
+        title: params.title,
+        description: params.description,
+        platform: params.platform || null,
+        target_url: params.target_url || null,
+        deadline: params.deadline || null,
+      };
+      if (params.budget) {
+        patch.currency = params.budget.currency;
+        patch.price_per_unit = params.budget.price_per_unit;
+        patch.max_units = params.budget.max_units;
+        patch.total_budget = params.budget.price_per_unit * params.budget.max_units;
+      }
+      const { data, error } = await withWalletHeader(
+        supabase.from(TBL_JOBS).update(patch).eq("id", params.id).select().maybeSingle(),
+        addr,
+      );
+      if (error) throw error;
+      // RLS filters the row out rather than erroring for a non-poster.
+      if (!data) throw new Error(i18n.t("work.onlyPosterCanEdit"));
+      return data as WorkJob;
+    },
+    onSuccess: (job) => {
+      // Cached under whichever key the screen was opened with — seed both.
+      qc.setQueryData(["work-job", job.id], job);
+      if (job.job_number != null) qc.setQueryData(["work-job", String(job.job_number)], job);
+      qc.invalidateQueries({ queryKey: ["work-job"] });
+      qc.invalidateQueries({ queryKey: ["work-jobs-browse"] });
+      qc.invalidateQueries({ queryKey: ["work-my-posted"] });
+      toastSuccess(i18n.t("work.bountyUpdated"));
+    },
+    onError: (e: any) => {
+      log.error("Update job failed:", e);
+      toastError(e, i18n.t("work.updateFailed"));
+    },
+  });
+}
+
+/** Live bounties stay editable; completed, cancelled, expired and disputed ones freeze. */
+export function isJobEditable(job: WorkJob): boolean {
+  return job.status === "draft" || job.status === "open" || job.status === "in_progress";
+}
+
+/** Terms lock once escrowed, applied to, submitted against, or no longer open. */
+export function isBudgetEditable(job: WorkJob): boolean {
+  return (
+    job.status === "draft" ||
+    (job.status === "open" &&
+      !job.fund_tx_hash &&
+      job.application_count === 0 &&
+      job.submission_count === 0)
+  );
 }
 
 // ── Create job ──────────────────────────────────────────────────────────────
@@ -898,6 +1008,111 @@ export function useOpenDispute() {
     onError: (e: any) => {
       log.error("Open dispute failed:", e);
       toastError(e, "Failed to open dispute");
+    },
+  });
+}
+
+// ── Admin: disputes queue + resolve ────────────────────────────────────────
+
+export interface WorkDispute {
+  id: string;
+  job_id: string;
+  opened_by_address: string;
+  reason: string;
+  evidence_url: string | null;
+  created_at: string;
+  job: WorkJob | null;
+}
+
+export function useAdminDisputes(enabled = true) {
+  return useQuery({
+    queryKey: ["work-disputes-admin"],
+    enabled,
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from(TBL_DISPUTES)
+        .select("*, job:work_jobs(*)")
+        .eq("status", "open")
+        .order("created_at", { ascending: true });
+      if (error) throw error;
+      return (data || []) as unknown as WorkDispute[];
+    },
+    staleTime: 15_000,
+  });
+}
+
+/**
+ * Same as web's useAdminResolveDispute. With no escrow deployed the split is a
+ * written decision; `pay_worker` sends the worker's share from the arbiter's
+ * own wallet as part of resolving. Column names match the live schema
+ * (resolution_tx_hash, resolution_note, resolved_by_address).
+ */
+export function useAdminResolveDispute() {
+  const wallet = useWallet();
+  const qc = useQueryClient();
+  const payout = useWorkPayout();
+  return useMutation({
+    mutationFn: async (params: {
+      dispute_id: string;
+      job_id: string;
+      currency: WorkCurrency;
+      worker_address: string;
+      worker_amount: number;
+      poster_refund: number;
+      resolution_notes?: string;
+      pay_worker?: boolean;
+    }) => {
+      if (!wallet) throw new Error("Not authenticated");
+      const addr = wallet.toLowerCase();
+
+      // On-chain resolve skipped while the contract is undeployed (see header).
+      let txHash: string | null = null;
+      if (!isWorkContractDeployed() && params.pay_worker && params.worker_amount > 0) {
+        txHash = await payout(params.currency, params.worker_address, params.worker_amount);
+      }
+
+      const newStatus =
+        params.worker_amount > 0 && params.poster_refund > 0
+          ? "resolved_split"
+          : params.worker_amount > 0
+            ? "resolved_worker"
+            : "resolved_poster";
+
+      // Money may already have moved — see libs/payout-record.
+      await persistPayout(
+        () =>
+          withWalletHeader(
+            supabase
+              .from(TBL_DISPUTES)
+              .update({
+                status: newStatus,
+                resolved_by_address: addr,
+                resolved_at: new Date().toISOString(),
+                worker_amount: params.worker_amount,
+                poster_refund: params.poster_refund,
+                resolution_tx_hash: txHash,
+                resolution_note: params.resolution_notes || null,
+              })
+              .eq("id", params.dispute_id),
+            addr,
+          ),
+        txHash,
+      );
+
+      const { error: e2 } = await withWalletHeader(
+        supabase.from(TBL_JOBS).update({ status: "completed" }).eq("id", params.job_id),
+        addr,
+      );
+      if (e2) throw e2;
+    },
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ["work-disputes-admin"] });
+      qc.invalidateQueries({ queryKey: ["work-job"] });
+      toastSuccess(i18n.t("work.disputeResolved"));
+    },
+    onError: (e: any) => {
+      log.error("Resolve dispute failed:", e);
+      toastError(e, i18n.t("work.resolveFailed"));
     },
   });
 }
