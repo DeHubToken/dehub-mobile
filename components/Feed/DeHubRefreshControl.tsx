@@ -41,10 +41,10 @@ const MARK_SIZE = 38;
 
 /**
  * Distance from the refresh origin down to the mark's box. The native circle
- * settles roughly this far below `progressViewOffset`; matching it keeps the
- * wait in the place the eye is already looking after a pull.
+ * settles below `progressViewOffset`; keeping the mark a few pixels higher
+ * leaves clearance above the feed text during refresh.
  */
-const MARK_DROP = 8;
+const MARK_DROP = 4;
 
 export const DeHubRefreshControl = ({
   refreshing,
