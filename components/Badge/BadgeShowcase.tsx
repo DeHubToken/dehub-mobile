@@ -440,7 +440,7 @@ export default function BadgeShowcase({ tier, anchor, onClose }: Props) {
                     opacity: phase === "exit" && index === originIndex ? 0 : 1,
                   }}
                 >
-                  <BadgeSticker tier={name} size={stickerSize} tilt={TILTS[index] * 0.5} onTap={next} onInteract={pause} />
+                  <BadgeSticker tier={name} size={stickerSize} tilt={TILTS[index] * 0.5} onTap={next} onInteract={pause} reveal={!changed} />
                 </Animated.View>
               </View>
             )}

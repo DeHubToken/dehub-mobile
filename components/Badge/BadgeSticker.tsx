@@ -35,6 +35,12 @@ interface Props {
   tilt?: number;
   onTap?: () => void;
   onInteract?: () => void;
+  /**
+   * Wake up on mount: start as the bare art (matching the flying copy it
+   * takes over from), then grow the paper edge, bring the foil in and throw a
+   * small burst of sparks, rather than jumping to glitter in one frame.
+   */
+  reveal?: boolean;
 }
 
 /**
@@ -72,7 +78,19 @@ function sparklePoints(seed: string, count: number) {
   });
 }
 
-export default function BadgeSticker({ tier, size, tilt = 0, onTap, onInteract }: Props) {
+const REVEAL_MS = 1100;
+
+export default function BadgeSticker({ tier, size, tilt = 0, onTap, onInteract, reveal = false }: Props) {
+  const intro = useSharedValue(reveal ? 0 : 1);
+  useEffect(() => {
+    if (reveal) intro.value = withTiming(1, { duration: REVEAL_MS, easing: Easing.out(Easing.quad) });
+  }, [reveal, intro]);
+  // Paper and shadow come in over the first half, the foil over the rest.
+  const paperStyle = useAnimatedStyle(() => ({ opacity: Math.min(1, intro.value * 2) }));
+  const shineStyle = useAnimatedStyle(() => {
+    const k = clamp((intro.value - 0.2) / 0.8, 0, 1);
+    return { opacity: k * k * (3 - 2 * k) };
+  });
   const rotX = useSharedValue(0);
   const rotY = useSharedValue(0);
   const press = useSharedValue(0);
@@ -158,24 +176,30 @@ export default function BadgeSticker({ tier, size, tilt = 0, onTap, onInteract }
       <View style={{ width: size, height: size }}>
         {/* Cast shadow, flat on the table while the sticker tilts above it. */}
         <Animated.View pointerEvents="none" style={[StyleSheet.absoluteFill, shadowStyle]}>
-          <Image
-            source={plate}
-            blurRadius={10}
-            resizeMode="contain"
-            style={{ width: size, height: size, tintColor: "#000", opacity: 0.55 }}
-          />
+          <Animated.View style={paperStyle}>
+            <Image
+              source={plate}
+              blurRadius={10}
+              resizeMode="contain"
+              style={{ width: size, height: size, tintColor: "#000", opacity: 0.55 }}
+            />
+          </Animated.View>
         </Animated.View>
 
         <Animated.View style={[StyleSheet.absoluteFill, cardStyle]}>
           {/* Cut border. */}
-          <Image source={plate} resizeMode="contain" style={{ position: "absolute", width: size, height: size, tintColor: "#f3f3f6" }} />
+          <Animated.View pointerEvents="none" style={[StyleSheet.absoluteFill, paperStyle]}>
+            <Image source={plate} resizeMode="contain" style={{ position: "absolute", width: size, height: size, tintColor: "#f3f3f6" }} />
+          </Animated.View>
 
           {/* Rainbow foil on the border and in the gaps. */}
+          <Animated.View pointerEvents="none" style={[StyleSheet.absoluteFill, shineStyle]}>
           <MaskedView style={StyleSheet.absoluteFill} maskElement={plateImage}>
             <Animated.View style={[{ position: "absolute", left: -size, top: -size * 0.5, width: size * 3, height: size * 2, opacity: HOLO_STRENGTH }, holoStyle]}>
               <LinearGradient colors={RAINBOW} start={{ x: 0, y: 0.2 }} end={{ x: 1, y: 0.8 }} style={StyleSheet.absoluteFill} />
             </Animated.View>
           </MaskedView>
+          </Animated.View>
 
           <Image
             source={art}
@@ -184,6 +208,7 @@ export default function BadgeSticker({ tier, size, tilt = 0, onTap, onInteract }
           />
 
           {/* Glare band and a faint holo wash across everything. */}
+          <Animated.View pointerEvents="none" style={[StyleSheet.absoluteFill, shineStyle]}>
           <MaskedView style={StyleSheet.absoluteFill} maskElement={plateImage} pointerEvents="none">
             <Animated.View style={[{ position: "absolute", left: -size * 0.7, top: -size * 0.7, width: size * 2.4, height: size * 2.4 }, glareStyle]}>
               <LinearGradient
@@ -196,13 +221,86 @@ export default function BadgeSticker({ tier, size, tilt = 0, onTap, onInteract }
               <LinearGradient colors={RAINBOW} start={{ x: 0, y: 1 }} end={{ x: 1, y: 0 }} style={[StyleSheet.absoluteFill, { opacity: HOLO_STRENGTH * 0.26 }]} />
             </Animated.View>
           </MaskedView>
+          </Animated.View>
 
-          {sparkles.map((s, i) => (
-            <Sparkle key={i} x={s.x * size} y={s.y * size} scale={s.scale} phase={s.phase} ax={ax} ay={ay} />
-          ))}
+          <Animated.View pointerEvents="none" style={[StyleSheet.absoluteFill, shineStyle]}>
+            {sparkles.map((s, i) => (
+              <Sparkle key={i} x={s.x * size} y={s.y * size} scale={s.scale} phase={s.phase} ax={ax} ay={ay} />
+            ))}
+          </Animated.View>
         </Animated.View>
+
+        {reveal ? <GlitterBurst size={size} seed={tier} /> : null}
       </View>
     </GestureDetector>
+  );
+}
+
+/** A ring of small sparks thrown off the rim as the sticker wakes up. */
+function GlitterBurst({ size, seed }: { size: number; seed: string }) {
+  const progress = useSharedValue(0);
+  useEffect(() => {
+    progress.value = withTiming(1, { duration: 1000, easing: Easing.linear });
+  }, [progress]);
+  const parts = useMemo(() => {
+    let h = 7;
+    for (let i = 0; i < seed.length; i++) h = (h * 31 + seed.charCodeAt(i)) >>> 0;
+    const rand = () => {
+      h = (h * 1664525 + 1013904223) >>> 0;
+      return h / 4294967296;
+    };
+    return Array.from({ length: 22 }, (_, i) => ({
+      angle: (i / 22) * Math.PI * 2 + (rand() - 0.5) * 0.35,
+      travel: 0.1 + rand() * 0.2,
+      spark: 7 + rand() * 7,
+      delay: rand() * 0.18,
+    }));
+  }, [seed]);
+  return (
+    <View pointerEvents="none" style={StyleSheet.absoluteFill}>
+      {parts.map((part, i) => (
+        <BurstSpark key={i} {...part} size={size} progress={progress} />
+      ))}
+    </View>
+  );
+}
+
+function BurstSpark({
+  angle,
+  travel,
+  spark,
+  delay,
+  size,
+  progress,
+}: {
+  angle: number;
+  travel: number;
+  spark: number;
+  delay: number;
+  size: number;
+  progress: SharedValue<number>;
+}) {
+  const style = useAnimatedStyle(() => {
+    const k = clamp((progress.value - delay) / (1 - delay), 0, 1);
+    const ease = 1 - Math.pow(1 - k, 3);
+    const r = size * (0.42 + travel * ease);
+    return {
+      opacity: (1 - k) * Math.min(1, k * 10),
+      transform: [
+        { translateX: Math.cos(angle) * r },
+        { translateY: Math.sin(angle) * r + k * k * size * 0.06 },
+        { scale: 1 - 0.45 * k },
+        { rotateZ: "45deg" },
+      ],
+    };
+  });
+  return (
+    <Animated.View
+      style={[{ position: "absolute", left: size / 2 - spark / 2, top: size / 2 - spark / 2, width: spark, height: spark }, style]}
+    >
+      <View style={{ position: "absolute", left: spark / 2 - 0.75, top: 0, width: 1.5, height: spark, borderRadius: 1, backgroundColor: "#fff" }} />
+      <View style={{ position: "absolute", left: 0, top: spark / 2 - 0.75, width: spark, height: 1.5, borderRadius: 1, backgroundColor: "#fff" }} />
+    </Animated.View>
   );
 }
 
