@@ -552,7 +552,7 @@ export default function BadgeShowcase({ tier, anchor, onClose }: Props) {
           {/* Dock */}
           <Animated.View style={[styles.dock, chromeStyle]} pointerEvents={phase === "open" ? "auto" : "none"}>
             <MaskedView
-              style={{ flexShrink: 1 }}
+              style={{ flex: 1 }}
               maskElement={
                 <LinearGradient
                   colors={[railFade.start ? "transparent" : "#000", "#000", "#000", railFade.end ? "transparent" : "#000"]}
@@ -774,9 +774,9 @@ const styles = StyleSheet.create({
   dock: {
     flexDirection: "row",
     alignItems: "center",
-    alignSelf: "center",
-    maxWidth: "94%",
-    marginTop: 6,
+    // Same 16px gutters as the details column, so the edges line up.
+    marginHorizontal: 16,
+    marginTop: 8,
     padding: 5,
     borderRadius: 20,
     backgroundColor: "rgba(255,255,255,0.08)",

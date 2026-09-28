@@ -43,6 +43,8 @@ interface Props {
  */
 export const ART_SHARE = 0.95;
 const MAX_TILT = 26;
+/** Rainbow strength on the foil: toned to read as metal first, rainbow second. */
+const HOLO_STRENGTH = 0.33;
 const RAINBOW = ["#ff6b8b", "#ffc46b", "#fff27a", "#7dffc0", "#6ad8ff", "#a98bff", "#ff7ae6", "#ff6b8b"] as const;
 
 function clamp(value: number, min: number, max: number) {
@@ -170,7 +172,7 @@ export default function BadgeSticker({ tier, size, tilt = 0, onTap, onInteract }
 
           {/* Rainbow foil on the border and in the gaps. */}
           <MaskedView style={StyleSheet.absoluteFill} maskElement={plateImage}>
-            <Animated.View style={[{ position: "absolute", left: -size, top: -size * 0.5, width: size * 3, height: size * 2, opacity: 0.5 }, holoStyle]}>
+            <Animated.View style={[{ position: "absolute", left: -size, top: -size * 0.5, width: size * 3, height: size * 2, opacity: HOLO_STRENGTH }, holoStyle]}>
               <LinearGradient colors={RAINBOW} start={{ x: 0, y: 0.2 }} end={{ x: 1, y: 0.8 }} style={StyleSheet.absoluteFill} />
             </Animated.View>
           </MaskedView>
@@ -191,7 +193,7 @@ export default function BadgeSticker({ tier, size, tilt = 0, onTap, onInteract }
                 end={{ x: 1, y: 1 }}
                 style={StyleSheet.absoluteFill}
               />
-              <LinearGradient colors={RAINBOW} start={{ x: 0, y: 1 }} end={{ x: 1, y: 0 }} style={[StyleSheet.absoluteFill, { opacity: 0.13 }]} />
+              <LinearGradient colors={RAINBOW} start={{ x: 0, y: 1 }} end={{ x: 1, y: 0 }} style={[StyleSheet.absoluteFill, { opacity: HOLO_STRENGTH * 0.26 }]} />
             </Animated.View>
           </MaskedView>
 
