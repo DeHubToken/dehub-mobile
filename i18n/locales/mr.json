@@ -3988,7 +3988,11 @@
     "roleStageSpeaker": "स्टेज स्पीकर",
     "leaveStage": "स्टेज सोडा",
     "inviteToSpeak": "बोलण्यासाठी आमंत्रित करा",
-    "listeners_other": "{{count}} श्रोते"
+    "listeners_other": "{{count}} श्रोते",
+    "autoEnd": {
+      "title": "निष्क्रियतेमुळे ऑडिओ रूम संपला",
+      "description": "\"{{title}}\" मध्ये 30 मिनिटे कोणीही बोलले नाही, म्हणून तो बंद करण्यात आला."
+    }
   },
   "signInSheet": {
     "continueAs": "या नावाने सुरू ठेवा"

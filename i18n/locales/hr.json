@@ -3984,7 +3984,11 @@
     "noSegments": "Nisu pronađeni segmenti transkripta",
     "roleStageSpeaker": "Zvučnik za pozornicu",
     "leaveStage": "Napusti pozornicu",
-    "inviteToSpeak": "Pozovite sudionike da govore"
+    "inviteToSpeak": "Pozovite sudionike da govore",
+    "autoEnd": {
+      "title": "Audio soba završena zbog neaktivnosti",
+      "description": "Nitko nije govorio u „{{title}}” 30 minuta pa je zatvorena."
+    }
   },
   "signInSheet": {
     "continueAs": "Nastavi kao"

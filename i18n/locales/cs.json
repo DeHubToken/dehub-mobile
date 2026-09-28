@@ -3988,7 +3988,11 @@
     "noSegments": "Nebyly nalezeny žádné segmenty přepisu",
     "roleStageSpeaker": "Jevištní reproduktor",
     "leaveStage": "Opustit fázi",
-    "inviteToSpeak": "Pozvat k projevu"
+    "inviteToSpeak": "Pozvat k projevu",
+    "autoEnd": {
+      "title": "Audio místnost skončila kvůli nečinnosti",
+      "description": "V „{{title}}“ nikdo 30 minut nemluvil, proto byla uzavřena."
+    }
   },
   "signInSheet": {
     "continueAs": "Pokračovat jako"

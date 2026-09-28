@@ -3984,7 +3984,11 @@
     "roleStageSpeaker": "Kōrero Taumata",
     "leaveStage": "Te tuku i te atamira",
     "inviteToSpeak": "Ka tono ahau ki te korero",
-    "announcement": "🎙️ {{title}} — ora i runga i ngā wāhanga {{date}}, {{time}}"
+    "announcement": "🎙️ {{title}} — ora i runga i ngā wāhanga {{date}}, {{time}}",
+    "autoEnd": {
+      "title": "Kua mutu te rūma ororongo nā te korenga o te mahi",
+      "description": "Kāore he tangata i kōrero i \"{{title}}\" mō ngā meneti 30, nā reira kua katia."
+    }
   },
   "signInSheet": {
     "continueAs": "Haere tonu hei"

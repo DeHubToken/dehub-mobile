@@ -19,7 +19,7 @@ import { AGORA_APP_ID } from "../config/agora.config";
 import { useAuth } from "../context/AuthContext";
 import { createLogger } from "../libs/logger";
 import { t } from "i18next";
-import { toastError } from "../libs/toast";
+import { toastError, toastInfo } from "../libs/toast";
 import { persistableAvatar } from "../libs/misc";
 import env from "../config/env";
 import { getAuthToken } from "../libs/auth.utils";
@@ -71,6 +71,8 @@ export interface AudioSpace {
   speaker_count: number;
   started_at: string;
   ended_at?: string | null;
+  /** Last time a host or speaker was heard; silent 30 minutes auto-ends the stage. */
+  last_speech_at?: string | null;
   created_at: string;
   recording_url?: string | null;
   /** Intended start time — set only on `scheduled` stages. */
@@ -433,6 +435,28 @@ export function useStages(): UseStagesReturn {
     [userAddress],
   );
 
+  // Stages with nobody talking for 30 minutes are ended server-side, so a
+  // host/speaker who is audibly talking bumps `last_speech_at` — at most once
+  // a minute here, and the RPC throttles again.
+  const isMutedRef = useRef(true);
+  useEffect(() => { isMutedRef.current = isMuted; }, [isMuted]);
+  const lastSpeechTouchRef = useRef(0);
+  const touchStageSpeech = useCallback(() => {
+    const space = currentSpaceRef.current;
+    const role = myRoleRef.current;
+    if (!space || !role || role === "listener" || isMutedRef.current) return;
+    const now = Date.now();
+    if (now - lastSpeechTouchRef.current < 60_000) return;
+    lastSpeechTouchRef.current = now;
+    void (async () => {
+      const { error } = await withWalletHeader(
+        supabase.rpc("touch_stage_speech" as never, { space_id: space.id } as never) as never,
+        userAddressRef.current,
+      );
+      if (error) log.error("Failed to record stage speech:", error);
+    })();
+  }, []);
+
   const reactionCounterRef = useRef(0);
   const lastReactionTimeRef = useRef(0);
   const reactionsChannelRef = useRef<ReturnType<typeof supabase.channel> | null>(null);
@@ -588,6 +612,8 @@ export function useStages(): UseStagesReturn {
         .filter((s: any) => (s.volume || 0) > 10)
         .map((s: any) => s.uid as number);
       setActiveSpeakerUids(active);
+      // uid 0 is the local user in Agora's volume report.
+      if (active.includes(0)) touchStageSpeech();
     },
   });
 
@@ -980,6 +1006,13 @@ export function useStages(): UseStagesReturn {
         async (payload: any) => {
           const updated = payload.new as AudioSpace;
           if (updated.status === "ended") {
+            // Silent for 30 minutes means the server closed it, not the host.
+            const lastSpoke = updated.last_speech_at || updated.started_at;
+            if (lastSpoke && Date.now() - new Date(lastSpoke).getTime() >= 29 * 60_000) {
+              toastInfo(t("stages.autoEnd.title"), {
+                description: t("stages.autoEnd.description", { title: updated.title }),
+              });
+            }
             await leaveStageChannel();
             setCurrentSpace(null);
             setMyRole(null);

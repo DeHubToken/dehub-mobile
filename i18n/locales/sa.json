@@ -3984,7 +3984,11 @@
     "listeners_one": "{{count}} ॐ श्रवणायै नमः ।",
     "raisedHands": "हस्तः = हस्तः ({{count}})",
     "announcement": "🎙️ {{title}} — Stages-मध्ये सजीवम् {{date}}, {{time}}",
-    "listeners_other": "{{count}} श्रोतारः"
+    "listeners_other": "{{count}} श्रोतारः",
+    "autoEnd": {
+      "title": "निष्क्रियतायाः कारणात् श्रव्यकक्षः समाप्तः",
+      "description": "\"{{title}}\" इत्यत्र त्रिंशत् निमेषान् यावत् कोऽपि न अवदत्, अतः सः पिहितः।"
+    }
   },
   "signInSheet": {
     "continueAs": "एतद्रूपेण अनुवर्तताम्"

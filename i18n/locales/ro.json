@@ -3984,7 +3984,11 @@
     "noSegments": "Nu s-au găsit segmente de transcriere",
     "roleStageSpeaker": "Difuzor scenă",
     "leaveStage": "Părăsește scena",
-    "inviteToSpeak": "Invitați să vorbească"
+    "inviteToSpeak": "Invitați să vorbească",
+    "autoEnd": {
+      "title": "Camera audio s-a încheiat din cauza inactivității",
+      "description": "Nimeni nu a vorbit în „{{title}}” timp de 30 de minute, așa că a fost închisă."
+    }
   },
   "signInSheet": {
     "continueAs": "Continuă ca"

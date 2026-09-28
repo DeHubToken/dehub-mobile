@@ -3997,7 +3997,11 @@
     "noSegments": "Không tìm thấy phân đoạn bản ghi",
     "roleStageSpeaker": "Diễn giả sân khấu",
     "leaveStage": "Rời khỏi giai đoạn",
-    "inviteToSpeak": "Mời phát biểu"
+    "inviteToSpeak": "Mời phát biểu",
+    "autoEnd": {
+      "title": "Phòng âm thanh đã kết thúc do không hoạt động",
+      "description": "Không ai nói trong \"{{title}}\" suốt 30 phút nên phòng đã bị đóng."
+    }
   },
   "signInSheet": {
     "continueAs": "Tiếp tục với tư cách"

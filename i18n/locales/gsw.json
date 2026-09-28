@@ -4014,7 +4014,11 @@
     "noSegments": "Keini Abschriftssegmente gfunde",
     "roleStageSpeaker": "Bühne Redner",
     "leaveStage": "Bühni verloh",
-    "inviteToSpeak": "Zum Rede iilade"
+    "inviteToSpeak": "Zum Rede iilade",
+    "autoEnd": {
+      "title": "Audio-Ruum wäge Inaktivität beändet",
+      "description": "In „{{title}}“ het 30 Minute lang niemer gredt, drum isch er zuegmacht worde."
+    }
   },
   "signInSheet": {
     "continueAs": "Wiiter als"

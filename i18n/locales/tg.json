@@ -3984,7 +3984,11 @@
     "inviteToSpeak": "Даъват ба гуфтугӯ",
     "announcement": "🎙️ {{title}} — зинда дар марҳилаҳои {{date}}, {{time}}",
     "frontRowBooked": "Сатри пешӣ барои дақиқаҳои {{count}}",
-    "listeners_one": "Шунавандаи {{count}}"
+    "listeners_one": "Шунавандаи {{count}}",
+    "autoEnd": {
+      "title": "Утоқи аудиоӣ аз сабаби ғайрифаъолӣ ба охир расид",
+      "description": "Дар «{{title}}» 30 дақиқа касе сухан нагуфт, бинобар ин он баста шуд."
+    }
   },
   "signInSheet": {
     "continueAs": "Идома додан ҳамчун"

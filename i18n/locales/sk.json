@@ -4092,7 +4092,11 @@
     "noSegments": "Nenašli sa žiadne segmenty prepisu",
     "roleStageSpeaker": "Jevištny reproduktor",
     "leaveStage": "Opustiť fázu",
-    "inviteToSpeak": "Pozvať na prednášku"
+    "inviteToSpeak": "Pozvať na prednášku",
+    "autoEnd": {
+      "title": "Audio miestnosť skončila pre nečinnosť",
+      "description": "V „{{title}}“ nikto 30 minút nehovoril, preto bola zatvorená."
+    }
   },
   "signInSheet": {
     "continueAs": "Pokračovať ako"

@@ -3984,7 +3984,11 @@
     "share": "分享",
     "minimize": "减到最小",
     "audioStage": "音频舞台",
-    "audioStageTranscript": "音频舞台字幕"
+    "audioStageTranscript": "音频舞台字幕",
+    "autoEnd": {
+      "title": "语音房因无人发言已结束",
+      "description": "“{{title}}”已有 30 分钟无人发言，因此已关闭。"
+    }
   },
   "signInSheet": {
     "continueAs": "以此身份继续"

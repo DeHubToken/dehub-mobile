@@ -4037,7 +4037,11 @@
     "roleStageSpeaker": "무대 스피커",
     "leaveStage": "스테이지 나가기",
     "inviteToSpeak": "연설하도록 초대하기",
-    "speakers_one": "{{count}} 스피커"
+    "speakers_one": "{{count}} 스피커",
+    "autoEnd": {
+      "title": "활동이 없어 오디오 룸이 종료되었습니다",
+      "description": "\"{{title}}\"에서 30분 동안 아무도 말하지 않아 종료되었습니다."
+    }
   },
   "signInSheet": {
     "continueAs": "다음 계정으로 계속"

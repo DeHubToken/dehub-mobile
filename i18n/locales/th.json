@@ -4008,7 +4008,11 @@
     "noSegments": "ไม่พบส่วนของบทถอดเสียง",
     "roleStageSpeaker": "ลำโพงบนเวที",
     "leaveStage": "ออกจากเวที",
-    "inviteToSpeak": "เชิญมาพูด"
+    "inviteToSpeak": "เชิญมาพูด",
+    "autoEnd": {
+      "title": "ห้องเสียงสิ้นสุดเนื่องจากไม่มีการใช้งาน",
+      "description": "ไม่มีใครพูดใน \"{{title}}\" เป็นเวลา 30 นาที จึงถูกปิดแล้ว"
+    }
   },
   "signInSheet": {
     "continueAs": "ดำเนินการต่อในชื่อ"

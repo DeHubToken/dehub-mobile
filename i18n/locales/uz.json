@@ -4002,7 +4002,11 @@
     "inviteToSpeak": "Gapirishga taklif qiling",
     "scheduling": "Режа бўйича",
     "speakers_one": "{{count}} karnay",
-    "speakers_other": "{{count}} ta karnay"
+    "speakers_other": "{{count}} ta karnay",
+    "autoEnd": {
+      "title": "Audio xona faollik yo‘qligi sababli yakunlandi",
+      "description": "\"{{title}}\" xonasida 30 daqiqa hech kim gapirmadi, shuning uchun u yopildi."
+    }
   },
   "signInSheet": {
     "continueAs": "Sifatida davom etish"

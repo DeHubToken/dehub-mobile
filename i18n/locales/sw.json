@@ -3985,7 +3985,11 @@
     "noSegments": "Hakuna sehemu za nakala zilizopatikana",
     "roleStageSpeaker": "Spika ya jukwaa",
     "leaveStage": "Ondoka kwenye jukwaa",
-    "inviteToSpeak": "Mwalike azungumze"
+    "inviteToSpeak": "Mwalike azungumze",
+    "autoEnd": {
+      "title": "Chumba cha sauti kimefungwa kwa kukosa shughuli",
+      "description": "Hakuna aliyezungumza kwenye \"{{title}}\" kwa dakika 30, kwa hivyo kimefungwa."
+    }
   },
   "signInSheet": {
     "continueAs": "Endelea kama"
