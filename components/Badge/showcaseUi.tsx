@@ -122,6 +122,18 @@ export const ui = StyleSheet.create({
   button: { flex: 1, height: 40, borderRadius: RADIUS, paddingHorizontal: PAD },
   chrome: { overflow: "hidden", alignItems: "center", justifyContent: "center", borderWidth: StyleSheet.hairlineWidth },
   chromeLip: { position: "absolute", top: 0, left: 0, right: 0, height: StyleSheet.hairlineWidth * 2 },
+  // The app's liquid-glass buttons: solid white for the primary action,
+  // frosted white for the secondary, as on web.
+  glassPrimary: { backgroundColor: "#ffffff", alignItems: "center", justifyContent: "center" },
+  glass: {
+    backgroundColor: "rgba(255,255,255,0.12)",
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: "rgba(255,255,255,0.3)",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  glassPrimaryText: { color: "#000000", fontSize: 14, fontWeight: "500" },
+  glassText: { color: "#ffffff", fontSize: 14, fontWeight: "500" },
   chromeText: { color: "#0b0c0e", fontSize: 13, fontWeight: "700", textShadowColor: "rgba(255,255,255,0.6)", textShadowOffset: { width: 0, height: 1 }, textShadowRadius: 0 },
   chromeTextDark: { color: "#f3f4f6", fontSize: 13, fontWeight: "700", textShadowColor: "rgba(0,0,0,0.55)", textShadowOffset: { width: 0, height: -1 }, textShadowRadius: 0 },
   bar: { height: 6, borderRadius: 3, overflow: "hidden", backgroundColor: "rgba(255,255,255,0.12)" },
