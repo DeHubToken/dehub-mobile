@@ -58,7 +58,9 @@
     "arcade": "Tulonkɛyɔrɔ",
     "converter": "Ka yɛlɛma",
     "migrate": "Minw bɛɛ be taga kalifa",
-    "creators": "Dilanbagaw"
+    "creators": "Dilanbagaw",
+    "agents": "AI Ejɛnw",
+    "connectAi": "AI jɛnsɛn"
   },
   "affiliate": {
     "subtitle": "Wari sɔrɔ i ye mɔgɔ minnu bɛɛ wele — badaa",
@@ -2048,7 +2050,14 @@
     "agentDeleted": "Agent jɔsira",
     "failedCreate": "Agent ma se ka dilan",
     "failedDelete": "Agent ma se ka jɔsi",
-    "apiKeyCopied": "API key kopiyara"
+    "apiKeyCopied": "API key kopiyara",
+    "connectorUrl": "Jɛnsɛnnan URL",
+    "connectorUrlCopied": "Jɛnsɛnnan URL kopiyala",
+    "connectorUrlHelp": "Nin fara Claude walima ChatGPT kan i ka MCP jɛnsɛnnan ye. A bɛ i tɔgɔ sɛbɛn nin ejɛn cogo la, o la a minɛ i n'a fɔ API key.",
+    "agentWallet": "Ejɛn waribon (Base)",
+    "walletCopied": "Waribon ladɛrɛsi kopiyala",
+    "agentWalletHelp": "Ejɛn ka sɛbɛn bilali ɲɛ, Base ETH dɔɔnin ci yan — o bilali bɛ minti sirasira kan wa ejɛn yɛrɛ b'a ka gaz sara. Kuma bilali, kalata ni tugulili tɛ gaz wajibiya.",
+    "loadFailed": "Agent ninnu ma se ka ladon"
   },
   "hero": {
     "title": "I bisimila",

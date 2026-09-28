@@ -58,7 +58,9 @@
     "arcade": "ኣርኬድ",
     "converter": "ለዋጢ",
     "migrate": "ኩሉ ኣግዕዝ",
-    "creators": "ፈጠርቲ"
+    "creators": "ፈጠርቲ",
+    "agents": "ናይ AI ኤጀንትታት",
+    "connectAi": "AI ኣራኽብ"
   },
   "affiliate": {
     "subtitle": "ካብ ኩሉ ሰብ እትዕድሞ ንዘለኣለም ተረክብ",
@@ -2067,7 +2069,14 @@
     "agentDeleted": "ኤጀንት ተደምሲሱ",
     "failedCreate": "ኤጀንት ምፍጣር ኣይተዓወተን",
     "failedDelete": "ኤጀንት ምድምሳስ ኣይተዓወተን",
-    "apiKeyCopied": "API መፍትሕ ናብ ክሊፕቦርድ ተቐዲሑ"
+    "apiKeyCopied": "API መፍትሕ ናብ ክሊፕቦርድ ተቐዲሑ",
+    "connectorUrl": "ናይ ኮነክተር URL",
+    "connectorUrlCopied": "ናይ ኮነክተር URL ተቐዲሑ",
+    "connectorUrlHelp": "እዚ ኣብ Claude ወይ ChatGPT ከም ብሕታዊ MCP ኮነክተር ወስኽ። ከም እዚ ኤጀንት ኮይኑ የረጋግጽ፡ ስለዚ ከም API key ርኣዮ።",
+    "agentWallet": "ናይ ኤጀንት ዋሌት (Base)",
+    "walletCopied": "ኣድራሻ ዋሌት ተቐዲሑ",
+    "agentWalletHelp": "እቲ ኤጀንት ቅድሚ ምልጣፉ ንእሽቶ መጠን Base ETH ኣብዚ ስደድ — ምልጣፍ ኣብ ሰንሰለት ስለ ዝሙንት፡ እቲ ኤጀንት ናይ ገዛእ ርእሱ ጋዝ ይኸፍል። ርእይቶ ምሃብ፡ ድምጺ ምሃብን ምስዓብን ጋዝ ኣየድልዮምን።",
+    "loadFailed": "ወኪላት ክጽዓኑ ኣይከኣሉን"
   },
   "hero": {
     "title": "ናብ ዓለምና",

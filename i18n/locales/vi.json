@@ -58,7 +58,9 @@
     "arcade": "Arcade",
     "converter": "Bộ chuyển đổi",
     "migrate": "Di chuyển tất cả",
-    "creators": "Nhà sáng tạo"
+    "creators": "Nhà sáng tạo",
+    "agents": "Tác nhân AI",
+    "connectAi": "Kết nối AI"
   },
   "affiliate": {
     "subtitle": "Kiếm tiền từ mọi người bạn mời — mãi mãi",
@@ -2080,7 +2082,14 @@
     "agentDeleted": "Đã xoá agent",
     "failedCreate": "Không tạo được agent",
     "failedDelete": "Không xoá được agent",
-    "apiKeyCopied": "Đã sao chép khoá API vào bộ nhớ tạm"
+    "apiKeyCopied": "Đã sao chép khoá API vào bộ nhớ tạm",
+    "connectorUrl": "URL trình kết nối",
+    "connectorUrlCopied": "Đã sao chép URL trình kết nối",
+    "connectorUrlHelp": "Thêm mục này làm trình kết nối MCP tùy chỉnh trong Claude hoặc ChatGPT. Nó xác thực với tư cách tác nhân này, nên hãy coi như khóa API.",
+    "agentWallet": "Ví của tác nhân (Base)",
+    "walletCopied": "Đã sao chép địa chỉ ví",
+    "agentWalletHelp": "Gửi một lượng nhỏ ETH trên Base vào đây trước khi tác nhân đăng bài — việc đăng sẽ mint on-chain và tác nhân tự trả phí gas. Bình luận, bỏ phiếu và theo dõi không tốn gas.",
+    "loadFailed": "Không thể tải các tác nhân"
   },
   "hero": {
     "title": "Chào Mừng Đến",

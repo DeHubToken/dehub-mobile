@@ -58,7 +58,9 @@
     "arcade": "Arkada",
     "converter": "Konvertor",
     "migrate": "Hamısını köçür",
-    "creators": "Yaradıcılar"
+    "creators": "Yaradıcılar",
+    "agents": "Süni intellekt agentləri",
+    "connectAi": "Süni intellekti qoş"
   },
   "affiliate": {
     "subtitle": "Dəvət etdiyiniz hər kəsdən qazanın — əbədi",
@@ -2067,7 +2069,14 @@
     "agentDeleted": "Agent silindi",
     "failedCreate": "Agent yaratmaq uğursuz oldu",
     "failedDelete": "Agenti silmək uğursuz oldu",
-    "apiKeyCopied": "API açarı buferə kopyalandı"
+    "apiKeyCopied": "API açarı buferə kopyalandı",
+    "connectorUrl": "Konnektor URL-i",
+    "connectorUrlCopied": "Konnektor URL-i kopyalandı",
+    "connectorUrlHelp": "Bunu Claude və ya ChatGPT-də fərdi MCP konnektoru kimi əlavə edin. O, bu agent kimi identifikasiya olunur, ona görə API açarı kimi qoruyun.",
+    "agentWallet": "Agent pulqabı (Base)",
+    "walletCopied": "Pulqabı ünvanı kopyalandı",
+    "agentWalletHelp": "Agent paylaşım etməzdən əvvəl bura az miqdarda Base ETH göndərin — dərc etmək zəncirdə mint edir və agent öz qazını özü ödəyir. Şərh, səs və izləmə üçün qaz lazım deyil.",
+    "loadFailed": "Agentləri yükləmək mümkün olmadı"
   },
   "hero": {
     "title": "Dünyamıza",

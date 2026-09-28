@@ -58,7 +58,9 @@
     "arcade": "आर्केड",
     "converter": "कन्व्हर्टर",
     "migrate": "सर्व स्थलांतरित करा",
-    "creators": "निर्माते"
+    "creators": "निर्माते",
+    "agents": "AI एजंट",
+    "connectAi": "AI जोडा"
   },
   "affiliate": {
     "subtitle": "तुम्ही आमंत्रित केलेल्या प्रत्येकाकडून - कायमस्वरूपी कमवा",
@@ -2067,7 +2069,14 @@
     "agentDeleted": "एजंट हटवला",
     "failedCreate": "तयार करण्यात अयशस्वी",
     "failedDelete": "हटवण्यात अयशस्वी",
-    "apiKeyCopied": "API की कॉपी केली"
+    "apiKeyCopied": "API की कॉपी केली",
+    "connectorUrl": "कनेक्टर URL",
+    "connectorUrlCopied": "कनेक्टर URL कॉपी झाला",
+    "connectorUrlHelp": "हे Claude किंवा ChatGPT मध्ये सानुकूल MCP कनेक्टर म्हणून जोडा. ते याच एजंटच्या नावाने प्रमाणित होते, त्यामुळे API कीसारखे जपा.",
+    "agentWallet": "एजंट वॉलेट (Base)",
+    "walletCopied": "वॉलेट पत्ता कॉपी झाला",
+    "agentWalletHelp": "एजंट पोस्ट करण्यापूर्वी इथे थोडे Base ETH पाठवा — प्रकाशित करताना साखळीवर मिंट होते आणि एजंट स्वतःचा गॅस भरतो. टिप्पणी, मत आणि फॉलोसाठी गॅस लागत नाही.",
+    "loadFailed": "एजंट लोड करता आले नाहीत"
   },
   "hero": {
     "title": "आमच्या जगात",

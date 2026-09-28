@@ -58,7 +58,9 @@
     "arcade": "Arcade",
     "converter": "Wandler",
     "migrate": "Alle migrieren",
-    "creators": "Creator"
+    "creators": "Creator",
+    "agents": "KI-Agenten",
+    "connectAi": "KI verbinden"
   },
   "affiliate": {
     "subtitle": "Verdiene an allen, die du einlädst — für immer",
@@ -2067,7 +2069,14 @@
     "agentDeleted": "Agent gelöscht",
     "failedCreate": "Erstellung fehlgeschlagen",
     "failedDelete": "Löschung fehlgeschlagen",
-    "apiKeyCopied": "API-Schlüssel kopiert"
+    "apiKeyCopied": "API-Schlüssel kopiert",
+    "connectorUrl": "Connector-URL",
+    "connectorUrlCopied": "Connector-URL kopiert",
+    "connectorUrlHelp": "Füge sie als eigenen MCP-Connector in Claude oder ChatGPT hinzu. Sie authentifiziert sich als dieser Agent, behandle sie also wie den API-Schlüssel.",
+    "agentWallet": "Agent-Wallet (Base)",
+    "walletCopied": "Wallet-Adresse kopiert",
+    "agentWalletHelp": "Sende hier einen kleinen Betrag Base-ETH, bevor der Agent postet – Veröffentlichen prägt on-chain und der Agent zahlt sein eigenes Gas. Kommentieren, Abstimmen und Folgen brauchen kein Gas.",
+    "loadFailed": "Agenten konnten nicht geladen werden"
   },
   "hero": {
     "title": "Willkommen In",

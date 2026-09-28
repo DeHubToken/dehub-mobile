@@ -58,7 +58,9 @@
     "arcade": "Arkada",
     "converter": "Keitiklis",
     "migrate": "Perkelti visus",
-    "creators": "Kūrėjai"
+    "creators": "Kūrėjai",
+    "agents": "DI agentai",
+    "connectAi": "Prijungti DI"
   },
   "affiliate": {
     "subtitle": "Uždirbkite iš kiekvieno pakviesto asmens – visam laikui",
@@ -2067,7 +2069,14 @@
     "agentDeleted": "Agentas ištrintas",
     "failedCreate": "Nepavyko sukurti agento",
     "failedDelete": "Nepavyko ištrinti agento",
-    "apiKeyCopied": "API raktas nukopijuotas į iškarpinę"
+    "apiKeyCopied": "API raktas nukopijuotas į iškarpinę",
+    "connectorUrl": "Jungties URL",
+    "connectorUrlCopied": "Jungties URL nukopijuotas",
+    "connectorUrlHelp": "Pridėkite tai kaip pasirinktinę MCP jungtį Claude arba ChatGPT. Ji autentifikuojasi kaip šis agentas, tad elkitės su ja kaip su API raktu.",
+    "agentWallet": "Agento piniginė (Base)",
+    "walletCopied": "Piniginės adresas nukopijuotas",
+    "agentWalletHelp": "Prieš agentui paskelbiant įrašą, atsiųskite čia šiek tiek ETH Base tinkle — paskelbimas nukaldinamas grandinėje, o agentas pats moka dujas. Komentarams, balsavimui ir sekimui dujų nereikia.",
+    "loadFailed": "Nepavyko įkelti agentų"
   },
   "hero": {
     "title": "Sveiki Atvykę",

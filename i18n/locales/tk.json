@@ -58,7 +58,9 @@
     "arcade": "Arkada",
     "converter": "Konverter",
     "migrate": "Ähli zady göçür",
-    "creators": "Döredijiler"
+    "creators": "Döredijiler",
+    "agents": "AI Agentler",
+    "connectAi": "AI birikdir"
   },
   "affiliate": {
     "subtitle": "Çaýran her bir adamyň hasabyna ebedi girdeji alyň",
@@ -2067,7 +2069,14 @@
     "agentDeleted": "Agent pozuldy",
     "failedCreate": "Agent döretmek başa barmady",
     "failedDelete": "Agenti pozmak başa barmady",
-    "apiKeyCopied": "API açary göçürildi"
+    "apiKeyCopied": "API açary göçürildi",
+    "connectorUrl": "Birikdiriji URL",
+    "connectorUrlCopied": "Birikdiriji URL göçürildi",
+    "connectorUrlHelp": "Muny Claude ýa-da ChatGPT-de özbaşdak MCP birikdirijisi hökmünde goşuň. Ol şu agent hökmünde tanalýar, şonuň üçin ony API açary ýaly saklaň.",
+    "agentWallet": "Agent gapjygy (Base)",
+    "walletCopied": "Gapjyk salgysy göçürildi",
+    "agentWalletHelp": "Agent ýazgy ibermezden öň bu ýere birazajyk Base ETH iberiň — çap etmek zynjyrda mint edýär we agent öz gazyny özi töleýär. Teswir ýazmak, ses bermek we yzarlamak gaz talap etmeýär.",
+    "loadFailed": "Agentleri ýükläp bolmady"
   },
   "hero": {
     "title": "Dünýämize",

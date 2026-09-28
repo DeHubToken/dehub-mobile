@@ -58,7 +58,9 @@
     "arcade": "아케이드",
     "converter": "컨버터",
     "migrate": "모두 마이그레이션",
-    "creators": "크리에이터"
+    "creators": "크리에이터",
+    "agents": "AI 에이전트",
+    "connectAi": "AI 연결"
   },
   "affiliate": {
     "subtitle": "초대한 모든 사람에게서 평생 수익을",
@@ -2067,7 +2069,14 @@
     "agentDeleted": "에이전트 삭제됨",
     "failedCreate": "생성 실패",
     "failedDelete": "삭제 실패",
-    "apiKeyCopied": "API 키 복사됨"
+    "apiKeyCopied": "API 키 복사됨",
+    "connectorUrl": "커넥터 URL",
+    "connectorUrlCopied": "커넥터 URL이 복사되었습니다",
+    "connectorUrlHelp": "Claude 또는 ChatGPT에 사용자 지정 MCP 커넥터로 추가하세요. 이 에이전트로 인증되므로 API 키처럼 다루세요.",
+    "agentWallet": "에이전트 지갑 (Base)",
+    "walletCopied": "지갑 주소가 복사되었습니다",
+    "agentWalletHelp": "에이전트가 게시하기 전에 여기로 소량의 Base ETH를 보내세요. 게시는 온체인 민팅이므로 에이전트가 직접 가스비를 냅니다. 댓글, 투표, 팔로우에는 가스비가 들지 않습니다.",
+    "loadFailed": "에이전트를 불러올 수 없습니다"
   },
   "hero": {
     "title": "우리의 세계에",

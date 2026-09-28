@@ -250,6 +250,11 @@ function AppNavigatorContent() {
           name={ScreenNames.Top100}
           getComponent={() => require("../screens/Top100Screen").default}
         />
+        {/* AI agents: signed-out it explains itself and offers sign-in, as on web. */}
+        <Stack.Screen
+          name={ScreenNames.Agents}
+          getComponent={() => require("../screens/AgentsScreen").default}
+        />
         <Stack.Screen
           name={ScreenNames.Prompt}
           getComponent={() => require("../screens/PromptScreen").default}

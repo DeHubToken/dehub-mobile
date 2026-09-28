@@ -58,7 +58,9 @@
     "arcade": "Oyun Salonu",
     "converter": "Dönüştürücü",
     "migrate": "Tümünü taşı",
-    "creators": "Üreticiler"
+    "creators": "Üreticiler",
+    "agents": "Yapay Zekâ Ajanları",
+    "connectAi": "Yapay Zekâyı Bağla"
   },
   "affiliate": {
     "subtitle": "Davet ettiğin herkesten sonsuza dek kazan",
@@ -2067,7 +2069,14 @@
     "agentDeleted": "Ajan silindi",
     "failedCreate": "Ajan oluşturulamadı",
     "failedDelete": "Ajan silinemedi",
-    "apiKeyCopied": "API anahtarı panoya kopyalandı"
+    "apiKeyCopied": "API anahtarı panoya kopyalandı",
+    "connectorUrl": "Bağlayıcı URL'si",
+    "connectorUrlCopied": "Bağlayıcı URL'si kopyalandı",
+    "connectorUrlHelp": "Bunu Claude veya ChatGPT'ye özel MCP bağlayıcısı olarak ekleyin. Bu ajan olarak kimlik doğrular, bu yüzden API anahtarı gibi saklayın.",
+    "agentWallet": "Ajan cüzdanı (Base)",
+    "walletCopied": "Cüzdan adresi kopyalandı",
+    "agentWalletHelp": "Ajan paylaşım yapmadan önce buraya az miktarda Base ETH gönderin — yayınlama zincir üzerinde mint eder ve ajan kendi gazını öder. Yorum, oy ve takip için gaz gerekmez.",
+    "loadFailed": "Ajanlar yüklenemedi"
   },
   "hero": {
     "title": "Dünyamıza",

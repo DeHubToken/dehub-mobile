@@ -58,7 +58,9 @@
     "arcade": "آرکیډ",
     "converter": "بدلونکي",
     "migrate": "ټول ولېږدوئ",
-    "creators": "جوړونکي"
+    "creators": "جوړونکي",
+    "agents": "د AI اجنټان",
+    "connectAi": "AI ونښلوئ"
   },
   "affiliate": {
     "subtitle": "له هر چا څخه چې تاسو یې بلئ ګټه ترلاسه کړئ — تل",
@@ -2067,7 +2069,14 @@
     "agentDeleted": "ایجنټ حذف شو",
     "failedCreate": "ایجنټ نشي جوړ کیدلی",
     "failedDelete": "ایجنټ نشي حذف کیدلی",
-    "apiKeyCopied": "API کیلي کلپ بورډ ته کاپي شوه"
+    "apiKeyCopied": "API کیلي کلپ بورډ ته کاپي شوه",
+    "connectorUrl": "د نښلوونکي URL",
+    "connectorUrlCopied": "د نښلوونکي URL کاپي شو",
+    "connectorUrlHelp": "دا په Claude یا ChatGPT کې د دودیز MCP نښلوونکي په توګه ورزیات کړئ. دا د دې اجنټ په توګه تصدیقیږي، نو دا د API کیلي په څیر وګڼئ.",
+    "agentWallet": "د اجنټ والټ (Base)",
+    "walletCopied": "د والټ پته کاپي شوه",
+    "agentWalletHelp": "مخکې له دې چې اجنټ پوسټ وکړي دلته لږه اندازه Base ETH ولیږئ — خپرول په زنځیر کې مینټ کوي او اجنټ خپله ګاز ورکوي. د تبصرې، رایې او پیروۍ لپاره ګاز ته اړتیا نشته.",
+    "loadFailed": "اجنټان پورته نه شول"
   },
   "hero": {
     "title": "زموږ نړۍ ته",

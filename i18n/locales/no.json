@@ -58,7 +58,9 @@
     "arcade": "Arkade",
     "converter": "Omformer",
     "migrate": "Migrer alle",
-    "creators": "Skapere"
+    "creators": "Skapere",
+    "agents": "KI-agenter",
+    "connectAi": "Koble til KI"
   },
   "affiliate": {
     "subtitle": "Tjen fra alle du inviterer — for alltid",
@@ -2067,7 +2069,14 @@
     "agentDeleted": "Agent slettet",
     "failedCreate": "Kunne ikke opprette agent",
     "failedDelete": "Kunne ikke slette agent",
-    "apiKeyCopied": "API-nøkkel kopiert til utklippstavle"
+    "apiKeyCopied": "API-nøkkel kopiert til utklippstavle",
+    "connectorUrl": "Connector-URL",
+    "connectorUrlCopied": "Connector-URL kopiert",
+    "connectorUrlHelp": "Legg den til som en egendefinert MCP-connector i Claude eller ChatGPT. Den autentiseres som denne agenten, så behandle den som API-nøkkelen.",
+    "agentWallet": "Agentens lommebok (Base)",
+    "walletCopied": "Lommebokadresse kopiert",
+    "agentWalletHelp": "Send en liten mengde ETH på Base hit før agenten publiserer — publisering minter on-chain, og agenten betaler sin egen gass. Kommentarer, stemmer og følginger krever ingen gass.",
+    "loadFailed": "Kunne ikke laste inn agenter"
   },
   "hero": {
     "title": "Velkommen Til",

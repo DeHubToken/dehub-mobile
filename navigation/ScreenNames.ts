@@ -88,6 +88,7 @@ export enum ScreenNames {
   ListingDetail = 'ListingDetail',
   CommandCentre = 'CommandCentre',
   Top100 = 'Top100',
+  Agents = 'Agents',
   Ads = 'Ads',
   Prompt = 'Prompt',
   TV = 'TV',

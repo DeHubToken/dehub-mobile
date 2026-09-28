@@ -58,7 +58,9 @@
     "arcade": "Arkad",
     "converter": "Veguherîner",
     "migrate": "Hemûyan bar bike",
-    "creators": "Afirîner"
+    "creators": "Afirîner",
+    "agents": "Ajanên AI",
+    "connectAi": "AI Girêde"
   },
   "affiliate": {
     "subtitle": "Ji her kesê ku hûn vexwendin qezenc bikin - her û her",
@@ -2008,7 +2010,14 @@
     "agentDeleted": "Ajan hate jêbirin",
     "failedCreate": "Afirandina ajanê têkçû",
     "failedDelete": "Jêbirina ajanê têkçû",
-    "apiKeyCopied": "Mifteya API li panoyê hat kopîkirin"
+    "apiKeyCopied": "Mifteya API li panoyê hat kopîkirin",
+    "connectorUrl": "URL-a Girêdanê",
+    "connectorUrlCopied": "URL-a girêdanê hate kopîkirin",
+    "connectorUrlHelp": "Vê wek girêdaneke MCP ya taybet li Claude an ChatGPT zêde bike. Ew wek vî ajanî tê piştrastkirin, ji ber vê wê wek mifteya API bihesibîne.",
+    "agentWallet": "Cizdana ajanê (Base)",
+    "walletCopied": "Navnîşana cizdanê hate kopîkirin",
+    "agentWalletHelp": "Berî ku ajan biweşîne, mîqdareke piçûk a Base ETH li vir bişîne — weşandin li ser zincîrê tê çêkirin (mint) û ajan gaza xwe bi xwe dide. Şîrovekirin, dengdan û şopandin hewceyî gazê nînin.",
+    "loadFailed": "Ajan nehatin barkirin"
   },
   "hero": {
     "title": "Bi Xêr Hatin",
