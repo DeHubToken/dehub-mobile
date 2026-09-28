@@ -35,14 +35,14 @@ describe('badge tier change notifications', () => {
 
   it('says something different when the badge steps down, and again when it goes', () => {
     const stepped = localizedNotificationContent(
-      { type: 'badge_tier_down', metadata: { tier: 'Cobra', previousTier: 'Dolphin' } },
+      { type: 'badge_tier_down', metadata: { tier: 'King Cobra', previousTier: 'Dolphin' } },
       t,
     );
     const gone = localizedNotificationContent(
       { type: 'badge_tier_down', metadata: { previousTier: 'Crab' } },
       t,
     );
-    expect(stepped).toContain('Cobra');
+    expect(stepped).toContain('King Cobra');
     // Not the same sentence with a hole in it: losing the last rung reads as
     // its own thing, and names no tier because there is none to name.
     expect(gone).not.toEqual(stepped);

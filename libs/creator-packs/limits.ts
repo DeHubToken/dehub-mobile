@@ -13,7 +13,7 @@ export type PackKind = "emoji" | "sticker" | "gif";
 export const PACK_KINDS: PackKind[] = ["emoji", "sticker", "gif"];
 
 export const PACK_TIER_ORDER = [
-  "Crab", "Lobster", "Piranha", "Tortoise", "Cobra", "Octopus", "Crocodile",
+  "Crab", "Lobster", "Piranha", "Giant Tortoise", "King Cobra", "Octopus", "Crocodile",
   "Dolphin", "Tiger Shark", "Great White Shark", "Killer Whale", "Blue Whale", "Megalodon",
 ];
 
