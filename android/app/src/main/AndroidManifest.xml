@@ -88,6 +88,14 @@
         <data android:scheme="https" android:host="dehub.io" android:path="/packs"/>
         <data android:scheme="https" android:host="dehub.io" android:pathPrefix="/packs/"/>
         <data android:scheme="https" android:host="dehub.io" android:path="/creators"/>
+        <data android:scheme="https" android:host="dehub.io" android:path="/builder"/>
+        <data android:scheme="https" android:host="dehub.io" android:pathPrefix="/builder/"/>
+        <data android:scheme="https" android:host="dehub.io" android:path="/launchpad"/>
+        <data android:scheme="https" android:host="dehub.io" android:pathPrefix="/launchpad/"/>
+        <data android:scheme="https" android:host="dehub.io" android:path="/bridge"/>
+        <data android:scheme="https" android:host="dehub.io" android:path="/depin"/>
+        <data android:scheme="https" android:host="dehub.io" android:path="/agents"/>
+        <data android:scheme="https" android:host="dehub.io" android:path="/arcade/kings-gambit/online"/>
         <category android:name="android.intent.category.BROWSABLE"/>
         <category android:name="android.intent.category.DEFAULT"/>
       </intent-filter>
