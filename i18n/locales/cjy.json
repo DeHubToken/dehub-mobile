@@ -3984,7 +3984,11 @@
     "noSegments": "未找到记录片段",
     "roleStageSpeaker": "舞台讲者",
     "leaveStage": "离开舞台",
-    "inviteToSpeak": "邀请发言"
+    "inviteToSpeak": "邀请发言",
+    "autoEnd": {
+      "title": "语音房因无人发言已结束",
+      "description": "“{{title}}”已有 30 分钟无人发言，因此已关闭。"
+    }
   },
   "signInSheet": {
     "continueAs": "以此身份继续"

@@ -3982,7 +3982,11 @@
     "announcement": "🎙️ {{title}} — Stages पर लाइव {{date}}, {{time}}",
     "joinMe": "DeHub Stages पर हमरा साथे जुड़ीं: \"{{title}}\"",
     "frontRowBooked": "{{count}} मिनट खातिर आगे के लाइन",
-    "raisedHands": "उठल हाथ ({{count}})"
+    "raisedHands": "उठल हाथ ({{count}})",
+    "autoEnd": {
+      "title": "निष्क्रियता के कारण ऑडियो रूम समाप्त हुआ",
+      "description": "\"{{title}}\" में 30 मिनट तक कोई नहीं बोला, इसलिए इसे बंद कर दिया गया।"
+    }
   },
   "signInSheet": {
     "continueAs": "एह रूप में जारी राखीं"

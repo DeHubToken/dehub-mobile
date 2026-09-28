@@ -4033,7 +4033,11 @@
     "noSegments": "Nessun segmento di trascrizione trovato",
     "roleStageSpeaker": "Altoparlante da palco",
     "leaveStage": "Abbandona fase",
-    "inviteToSpeak": "Invita a parlare"
+    "inviteToSpeak": "Invita a parlare",
+    "autoEnd": {
+      "title": "Stanza audio terminata per inattività",
+      "description": "Nessuno ha parlato in \"{{title}}\" per 30 minuti, quindi è stata chiusa."
+    }
   },
   "signInSheet": {
     "continueAs": "Continua come"

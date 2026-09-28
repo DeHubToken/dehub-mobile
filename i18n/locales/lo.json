@@ -3959,7 +3959,11 @@
     "aiSummary": "ສະຫຼຸບໂດຍຫຍໍ້ຂອງ AI",
     "roleStageSpeaker": "ລໍາໂພງດ່ານ",
     "leaveStage": "ອອກຈາກດ່ານ",
-    "inviteToSpeak": "ເຊີນໃຫ້ເວົ້າ"
+    "inviteToSpeak": "ເຊີນໃຫ້ເວົ້າ",
+    "autoEnd": {
+      "title": "ຫ້ອງສຽງສິ້ນສຸດເນື່ອງຈາກບໍ່ມີການເຄື່ອນໄຫວ",
+      "description": "ບໍ່ມີໃຜເວົ້າໃນ \"{{title}}\" ເປັນເວລາ 30 ນາທີ, ສະນັ້ນມັນຈຶ່ງຖືກປິດ."
+    }
   },
   "signInSheet": {
     "continueAs": "ດຳເນີນຕໍ່ໃນຖານະ"

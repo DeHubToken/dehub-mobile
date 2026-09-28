@@ -4037,7 +4037,11 @@
     "noSegments": "Aucun segment de transcription trouvé",
     "roleStageSpeaker": "Haut-parleur de scène",
     "leaveStage": "Quitter l'étape",
-    "inviteToSpeak": "Inviter à prendre la parole"
+    "inviteToSpeak": "Inviter à prendre la parole",
+    "autoEnd": {
+      "title": "Salon audio terminé pour inactivité",
+      "description": "Personne n'a parlé dans « {{title}} » pendant 30 minutes, il a donc été fermé."
+    }
   },
   "signInSheet": {
     "continueAs": "Continuer en tant que"

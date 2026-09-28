@@ -3984,7 +3984,11 @@
     "roleStageSpeaker": "اسٽيج اسپيڪر",
     "leaveStage": "اسٽيج ڇڏي ڏيو",
     "inviteToSpeak": "ڳالهائڻ لاءِ دعوت ڏيو",
-    "textToSpeech": "🔊 لکت کان آواز"
+    "textToSpeech": "🔊 لکت کان آواز",
+    "autoEnd": {
+      "title": "غير فعال هجڻ سبب آڊيو روم ختم ٿي ويو",
+      "description": "\"{{title}}\" ۾ 30 منٽن تائين ڪو به نه ڳالهايو، تنهن ڪري ان کي بند ڪيو ويو."
+    }
   },
   "signInSheet": {
     "continueAs": "هن طور جاري رکو"

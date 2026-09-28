@@ -3984,7 +3984,11 @@
     "roleStageSpeaker": "ተዛረብቲ ደረጃ",
     "leaveStage": "ደረጃ ምውጻእ",
     "inviteToSpeak": "ክዛረብ ይዕድመኒ",
-    "listeners_one": "{{count}} ሰማዕቲ"
+    "listeners_one": "{{count}} ሰማዕቲ",
+    "autoEnd": {
+      "title": "ናይ ድምጺ ክፍሊ ብሰንኪ ዘይምንቅስቓስ ተዓጺዩ",
+      "description": "ኣብ \"{{title}}\" ን30 ደቒቕ ዝተዛረበ ሰብ ስለዘይነበረ ተዓጺዩ።"
+    }
   },
   "signInSheet": {
     "continueAs": "ከም ቀጽል"

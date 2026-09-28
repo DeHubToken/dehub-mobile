@@ -3984,7 +3984,11 @@
     "noSegments": "ไม่พบส่วนของบทสนทนา",
     "roleStageSpeaker": "ผู้พูดบนเวที",
     "leaveStage": "ออกจากเวที",
-    "inviteToSpeak": "เชิญพูด"
+    "inviteToSpeak": "เชิญพูด",
+    "autoEnd": {
+      "title": "ห้องเสียงสิ้นสุดเนื่องจากบ่มีการใช้งาน",
+      "description": "บ่มีไผเว้าใน \"{{title}}\" 30 นาที เลยถูกปิดแล้ว"
+    }
   },
   "signInSheet": {
     "continueAs": "ต่อในชื่อ"

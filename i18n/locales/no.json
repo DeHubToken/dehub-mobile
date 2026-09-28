@@ -3984,7 +3984,11 @@
     "leaveStage": "Forlat scenen",
     "inviteToSpeak": "Inviter til å snakke",
     "speakers_one": "{{count}} høyttalere",
-    "speakers_other": "{{count}} høyttalere"
+    "speakers_other": "{{count}} høyttalere",
+    "autoEnd": {
+      "title": "Lydrommet ble avsluttet på grunn av inaktivitet",
+      "description": "Ingen snakket i «{{title}}» på 30 minutter, så det ble stengt."
+    }
   },
   "signInSheet": {
     "continueAs": "Fortsett som"

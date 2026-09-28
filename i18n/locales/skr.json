@@ -3984,7 +3984,11 @@
     "noSegments": "کوئی ٹرانسکرپٹ سیگمنٹ نئیں لبھیا",
     "roleStageSpeaker": "سٹیج سپیکر",
     "leaveStage": "سٹیج چھڈو",
-    "inviteToSpeak": "بولن لئی سداؤ"
+    "inviteToSpeak": "بولن لئی سداؤ",
+    "autoEnd": {
+      "title": "غیر فعالیت کی وجہ سے آڈیو روم ختم ہو گیا",
+      "description": "\"{{title}}\" میں 30 منٹ تک کوئی نہیں بولا، اس لیے اسے بند کر دیا گیا۔"
+    }
   },
   "signInSheet": {
     "continueAs": "ایں طرح جاری رکھو"

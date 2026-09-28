@@ -3984,7 +3984,11 @@
     "roleStageSpeaker": "Stage ọkà okwu",
     "leaveStage": "Ahapụ ogbo",
     "inviteToSpeak": "Kpọọ ka ị kwuo okwu",
-    "listeners_other": "{{count}} na-ege ntị"
+    "listeners_other": "{{count}} na-ege ntị",
+    "autoEnd": {
+      "title": "Ọnụ ụlọ olu kwụsịrị n'ihi enweghị ọrụ",
+      "description": "Ọ dịghị onye kwuru okwu na \"{{title}}\" ruo nkeji 30, ya mere e mechiri ya."
+    }
   },
   "signInSheet": {
     "continueAs": "Gaa n'ihu dịka"

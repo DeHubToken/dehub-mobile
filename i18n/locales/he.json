@@ -3988,7 +3988,11 @@
     "noSegments": "לא נמצאו קטעי תמלול",
     "roleStageSpeaker": "רמקול לבמה",
     "leaveStage": "יציאה מהבמה",
-    "inviteToSpeak": "הזמן לדבר"
+    "inviteToSpeak": "הזמן לדבר",
+    "autoEnd": {
+      "title": "חדר האודיו הסתיים עקב חוסר פעילות",
+      "description": "אף אחד לא דיבר ב\"{{title}}\" במשך 30 דקות, ולכן הוא נסגר."
+    }
   },
   "signInSheet": {
     "continueAs": "המשך בתור"

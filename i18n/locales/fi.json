@@ -3984,7 +3984,11 @@
     "noSegments": "Transkriptiosegmenttejä ei löytynyt",
     "roleStageSpeaker": "Näyttämökaiutin",
     "leaveStage": "Poistu vaiheesta",
-    "inviteToSpeak": "Kutsu puhumaan"
+    "inviteToSpeak": "Kutsu puhumaan",
+    "autoEnd": {
+      "title": "Äänihuone päättyi toimettomuuden vuoksi",
+      "description": "Kukaan ei puhunut huoneessa ”{{title}}” 30 minuuttiin, joten se suljettiin."
+    }
   },
   "signInSheet": {
     "continueAs": "Jatka käyttäjänä"

@@ -3984,7 +3984,11 @@
     "removeSpeaker": "移除",
     "joinMe": "加入我的DeHub Stages ： “{{title}}”",
     "minimize": "最小化",
-    "roleStageSpeaker": "舞台演讲者"
+    "roleStageSpeaker": "舞台演讲者",
+    "autoEnd": {
+      "title": "語音房因無人發言已結束",
+      "description": "「{{title}}」已有 30 分鐘無人發言，因此已關閉。"
+    }
   },
   "signInSheet": {
     "continueAs": "以此身份继续"

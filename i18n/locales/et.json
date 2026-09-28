@@ -3984,7 +3984,11 @@
     "noSegments": "Transkripti segmente ei leitud",
     "roleStageSpeaker": "Lava kõlar",
     "leaveStage": "Lahku etapist",
-    "inviteToSpeak": "Kutsu rääkima"
+    "inviteToSpeak": "Kutsu rääkima",
+    "autoEnd": {
+      "title": "Helituba lõpetati tegevusetuse tõttu",
+      "description": "Keegi ei rääkinud toas „{{title}}“ 30 minutit, seega see suleti."
+    }
   },
   "signInSheet": {
     "continueAs": "Jätka kui"

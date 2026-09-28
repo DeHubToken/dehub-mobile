@@ -3930,7 +3930,11 @@
     "noSegments": "ਕੋਈ ਟ੍ਰਾਂਸਕ੍ਰਿਪਟ ਸੈਗਮੈਂਟ ਨਹੀਂ ਮਿਲਿਆ",
     "roleStageSpeaker": "ਸਟੇਜ ਸਪੀਕਰ",
     "leaveStage": "ਸਟੇਜ ਛੱਡੋ",
-    "inviteToSpeak": "ਬੋਲਣ ਲਈ ਸੱਦਾ ਦਿਓ"
+    "inviteToSpeak": "ਬੋਲਣ ਲਈ ਸੱਦਾ ਦਿਓ",
+    "autoEnd": {
+      "title": "ਨਾ-ਸਰਗਰਮੀ ਕਾਰਨ ਆਡੀਓ ਰੂਮ ਖਤਮ ਹੋ ਗਿਆ",
+      "description": "\"{{title}}\" ਵਿੱਚ 30 ਮਿੰਟ ਤੱਕ ਕੋਈ ਨਹੀਂ ਬੋਲਿਆ, ਇਸ ਲਈ ਇਸਨੂੰ ਬੰਦ ਕਰ ਦਿੱਤਾ ਗਿਆ।"
+    }
   },
   "signInSheet": {
     "continueAs": "ਇਸ ਵਜੋਂ ਜਾਰੀ ਰੱਖੋ"

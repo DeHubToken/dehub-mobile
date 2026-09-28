@@ -4007,7 +4007,11 @@
     "roleStageSpeaker": "Mpandahateny Stage",
     "leaveStage": "Mialà sehatra",
     "inviteToSpeak": "Manasa hiteny",
-    "announcement": "🎙️ {{title}} — mivantana amin'ny Stages {{date}}, {{time}}"
+    "announcement": "🎙️ {{title}} — mivantana amin'ny Stages {{date}}, {{time}}",
+    "autoEnd": {
+      "title": "Nifarana ny efitrano feo noho ny tsy fisian'asa",
+      "description": "Tsy nisy niteny tao amin'ny \"{{title}}\" nandritra ny 30 minitra, ka nakatona izy."
+    }
   },
   "signInSheet": {
     "continueAs": "Tohizo amin'ny maha"

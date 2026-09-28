@@ -3984,7 +3984,11 @@
     "noSegments": "No s'han trobat segments de transcripció",
     "roleStageSpeaker": "Altaveu escènic",
     "leaveStage": "Abandona l'etapa",
-    "inviteToSpeak": "Convida'ns a parlar"
+    "inviteToSpeak": "Convida'ns a parlar",
+    "autoEnd": {
+      "title": "La sala d'àudio ha acabat per inactivitat",
+      "description": "Ningú no ha parlat a «{{title}}» durant 30 minuts, així que s'ha tancat."
+    }
   },
   "signInSheet": {
     "continueAs": "Continua com a"

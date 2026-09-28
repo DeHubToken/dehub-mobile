@@ -4244,7 +4244,11 @@
     "noSegments": "Tiada segmen transkrip ditemui",
     "roleStageSpeaker": "Pembesar suara pentas",
     "leaveStage": "Keluar dari peringkat",
-    "inviteToSpeak": "Jemput bercakap"
+    "inviteToSpeak": "Jemput bercakap",
+    "autoEnd": {
+      "title": "Bilik audio tamat kerana tiada aktiviti",
+      "description": "Tiada sesiapa bercakap dalam \"{{title}}\" selama 30 minit, jadi ia ditutup."
+    }
   },
   "signInSheet": {
     "continueAs": "Teruskan sebagai"

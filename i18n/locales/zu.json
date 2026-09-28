@@ -4015,7 +4015,11 @@
     "noSegments": "Awekho izingxenye zesihloko ezitholiwe",
     "roleStageSpeaker": "Isipikha sesiteji",
     "leaveStage": "Phuma esiteji",
-    "inviteToSpeak": "Mema ukuthi ukhulume"
+    "inviteToSpeak": "Mema ukuthi ukhulume",
+    "autoEnd": {
+      "title": "Igumbi lomsindo liphelile ngenxa yokungasebenzi",
+      "description": "Akekho okhulume ku-\"{{title}}\" imizuzu engu-30, ngakho livaliwe."
+    }
   },
   "signInSheet": {
     "continueAs": "Qhubeka njengo"

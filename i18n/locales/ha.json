@@ -3984,7 +3984,11 @@
     "noSegments": "Babu sassan rubutu da aka samu",
     "roleStageSpeaker": "Mai magana da mataki",
     "leaveStage": "Bar mataki",
-    "inviteToSpeak": "Ku gayyaci yin magana"
+    "inviteToSpeak": "Ku gayyaci yin magana",
+    "autoEnd": {
+      "title": "An rufe dakin sauti saboda rashin aiki",
+      "description": "Babu wanda ya yi magana a \"{{title}}\" na mintuna 30, don haka an rufe shi."
+    }
   },
   "signInSheet": {
     "continueAs": "Ci gaba a matsayin"
