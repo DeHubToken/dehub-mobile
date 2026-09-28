@@ -1,0 +1,398 @@
+diff --git a/node_modules/@reown/appkit-scaffold-react-native/src/modal/w3m-modal/index.tsx b/node_modules/@reown/appkit-scaffold-react-native/src/modal/w3m-modal/index.tsx
+index 6823724..d0aef63 100644
+--- a/node_modules/@reown/appkit-scaffold-react-native/src/modal/w3m-modal/index.tsx
++++ b/node_modules/@reown/appkit-scaffold-react-native/src/modal/w3m-modal/index.tsx
+@@ -1,7 +1,9 @@
+ import { useSnapshot } from 'valtio';
+ import { useCallback, useEffect } from 'react';
+-import { useWindowDimensions, StatusBar } from 'react-native';
++import { useWindowDimensions, Platform, View, Keyboard } from 'react-native';
+ import Modal from 'react-native-modal';
++import { useSafeAreaInsets } from 'react-native-safe-area-context';
++import { useKeyboard } from '../../hooks/useKeyboard';
+ import { Card, ThemeProvider } from '@reown/appkit-ui-react-native';
+ import {
+   AccountController,
+@@ -23,7 +25,6 @@ import { SIWEController } from '@reown/appkit-siwe-react-native';
+ import { AppKitRouter } from '../w3m-router';
+ import { Header } from '../../partials/w3m-header';
+ import { Snackbar } from '../../partials/w3m-snackbar';
+-import { useCustomDimensions } from '../../hooks/useCustomDimensions';
+ import styles from './styles';
+ 
+ export function AppKit() {
+@@ -32,9 +33,11 @@ export function AppKit() {
+   const { caipAddress, isConnected } = useSnapshot(AccountController.state);
+   const { themeMode, themeVariables } = useSnapshot(ThemeController.state);
+   const { height } = useWindowDimensions();
+-  const { isLandscape } = useCustomDimensions();
+-  const portraitHeight = height - 80;
+-  const landScapeHeight = height * 0.95 - (StatusBar.currentHeight ?? 0);
++  const insets = useSafeAreaInsets();
++  const { keyboardShown, coordinates } = useKeyboard();
++  const keyboardOverlap = Platform.OS === 'android' && keyboardShown
++    ? Math.max(0, height - coordinates.end.screenY) : 0;
++  const availableHeight = Math.max(0, height - insets.top - 8 - keyboardOverlap);
+   const authProvider = connectors.find(c => c.type === 'AUTH')?.provider as AppKitFrameProvider;
+   const AuthView = authProvider?.AuthView;
+   const SocialView = authProvider?.Webview;
+@@ -45,7 +48,8 @@ export function AppKit() {
+       return RouterController.goBack();
+     }
+ 
+-    return handleClose();
++    Keyboard.dismiss();
++    return ModalController.close();
+   };
+ 
+   const prefetch = async () => {
+@@ -126,7 +130,7 @@ export function AppKit() {
+     <>
+       <ThemeProvider themeMode={themeMode} themeVariables={themeVariables}>
+         <Modal
+-          style={styles.modal}
++          style={[styles.modal, { paddingBottom: keyboardOverlap }]}
+           coverScreen={false}
+           isVisible={open}
+           useNativeDriver
+@@ -140,10 +144,11 @@ export function AppKit() {
+           testID="w3m-modal"
+         >
+           <Card
+-            style={[styles.card, { maxHeight: isLandscape ? landScapeHeight : portraitHeight }]}
++            style={[styles.card, { maxHeight: availableHeight }]}
+           >
+             <Header />
+             <AppKitRouter />
++            <View style={{ height: keyboardShown ? 0 : insets.bottom, flexShrink: 0 }} />
+             <Snackbar />
+           </Card>
+         </Modal>
+diff --git a/node_modules/@reown/appkit-scaffold-react-native/lib/module/modal/w3m-modal/index.js b/node_modules/@reown/appkit-scaffold-react-native/lib/module/modal/w3m-modal/index.js
+index f93d8c6..b18e1ef 100644
+--- a/node_modules/@reown/appkit-scaffold-react-native/lib/module/modal/w3m-modal/index.js
++++ b/node_modules/@reown/appkit-scaffold-react-native/lib/module/modal/w3m-modal/index.js
+@@ -1,14 +1,15 @@
+ import { useSnapshot } from 'valtio';
+ import { useCallback, useEffect } from 'react';
+-import { useWindowDimensions, StatusBar } from 'react-native';
++import { useWindowDimensions, Platform, View, Keyboard } from 'react-native';
+ import Modal from 'react-native-modal';
++import { useSafeAreaInsets } from 'react-native-safe-area-context';
++import { useKeyboard } from '../../hooks/useKeyboard';
+ import { Card, ThemeProvider } from '@reown/appkit-ui-react-native';
+ import { AccountController, ApiController, ConnectionController, ConnectorController, CoreHelperUtil, EventsController, ModalController, OptionsController, RouterController, TransactionsController, ThemeController } from '@reown/appkit-core-react-native';
+ import { SIWEController } from '@reown/appkit-siwe-react-native';
+ import { AppKitRouter } from '../w3m-router';
+ import { Header } from '../../partials/w3m-header';
+ import { Snackbar } from '../../partials/w3m-snackbar';
+-import { useCustomDimensions } from '../../hooks/useCustomDimensions';
+ import styles from './styles';
+ export function AppKit() {
+   const {
+@@ -30,11 +31,13 @@ export function AppKit() {
+   const {
+     height
+   } = useWindowDimensions();
++  const insets = useSafeAreaInsets();
+   const {
+-    isLandscape
+-  } = useCustomDimensions();
+-  const portraitHeight = height - 80;
+-  const landScapeHeight = height * 0.95 - (StatusBar.currentHeight ?? 0);
++    keyboardShown,
++    coordinates
++  } = useKeyboard();
++  const keyboardOverlap = Platform.OS === 'android' && keyboardShown ? Math.max(0, height - coordinates.end.screenY) : 0;
++  const availableHeight = Math.max(0, height - insets.top - 8 - keyboardOverlap);
+   const authProvider = connectors.find(c => c.type === 'AUTH')?.provider;
+   const AuthView = authProvider?.AuthView;
+   const SocialView = authProvider?.Webview;
+@@ -43,7 +46,8 @@ export function AppKit() {
+     if (RouterController.state.history.length > 1) {
+       return RouterController.goBack();
+     }
+-    return handleClose();
++    Keyboard.dismiss();
++    return ModalController.close();
+   };
+   const prefetch = async () => {
+     await ApiController.prefetch();
+@@ -112,7 +116,9 @@ export function AppKit() {
+     themeMode: themeMode,
+     themeVariables: themeVariables
+   }, /*#__PURE__*/React.createElement(Modal, {
+-    style: styles.modal,
++    style: [styles.modal, {
++      paddingBottom: keyboardOverlap
++    }],
+     coverScreen: false,
+     isVisible: open,
+     useNativeDriver: true,
+@@ -126,8 +132,12 @@ export function AppKit() {
+     testID: "w3m-modal"
+   }, /*#__PURE__*/React.createElement(Card, {
+     style: [styles.card, {
+-      maxHeight: isLandscape ? landScapeHeight : portraitHeight
++      maxHeight: availableHeight
+     }]
+-  }, /*#__PURE__*/React.createElement(Header, null), /*#__PURE__*/React.createElement(AppKitRouter, null), /*#__PURE__*/React.createElement(Snackbar, null))), !!showAuth && AuthView && /*#__PURE__*/React.createElement(AuthView, null), !!showAuth && SocialView && /*#__PURE__*/React.createElement(SocialView, null)));
++  }, /*#__PURE__*/React.createElement(Header, null), /*#__PURE__*/React.createElement(AppKitRouter, null), /*#__PURE__*/React.createElement(View, {
++    style: {
++      height: keyboardShown ? 0 : insets.bottom,
++      flexShrink: 0
++    }
++  }), /*#__PURE__*/React.createElement(Snackbar, null))), !!showAuth && AuthView && /*#__PURE__*/React.createElement(AuthView, null), !!showAuth && SocialView && /*#__PURE__*/React.createElement(SocialView, null)));
+ }
+-//# sourceMappingURL=index.js.map
+\ No newline at end of file
+diff --git a/node_modules/@reown/appkit-scaffold-react-native/lib/commonjs/modal/w3m-modal/index.js b/node_modules/@reown/appkit-scaffold-react-native/lib/commonjs/modal/w3m-modal/index.js
+index 2afcde5..a1fd38e 100644
+--- a/node_modules/@reown/appkit-scaffold-react-native/lib/commonjs/modal/w3m-modal/index.js
++++ b/node_modules/@reown/appkit-scaffold-react-native/lib/commonjs/modal/w3m-modal/index.js
+@@ -8,13 +8,14 @@ var _valtio = require("valtio");
+ var _react = require("react");
+ var _reactNative = require("react-native");
+ var _reactNativeModal = _interopRequireDefault(require("react-native-modal"));
++var _reactNativeSafeAreaContext = require("react-native-safe-area-context");
++var _useKeyboard = require("../../hooks/useKeyboard");
+ var _appkitUiReactNative = require("@reown/appkit-ui-react-native");
+ var _appkitCoreReactNative = require("@reown/appkit-core-react-native");
+ var _appkitSiweReactNative = require("@reown/appkit-siwe-react-native");
+ var _w3mRouter = require("../w3m-router");
+ var _w3mHeader = require("../../partials/w3m-header");
+ var _w3mSnackbar = require("../../partials/w3m-snackbar");
+-var _useCustomDimensions = require("../../hooks/useCustomDimensions");
+ var _styles = _interopRequireDefault(require("./styles"));
+ function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
+ function AppKit() {
+@@ -37,11 +38,13 @@ function AppKit() {
+   const {
+     height
+   } = (0, _reactNative.useWindowDimensions)();
++  const insets = (0, _reactNativeSafeAreaContext.useSafeAreaInsets)();
+   const {
+-    isLandscape
+-  } = (0, _useCustomDimensions.useCustomDimensions)();
+-  const portraitHeight = height - 80;
+-  const landScapeHeight = height * 0.95 - (_reactNative.StatusBar.currentHeight ?? 0);
++    keyboardShown,
++    coordinates
++  } = (0, _useKeyboard.useKeyboard)();
++  const keyboardOverlap = _reactNative.Platform.OS === 'android' && keyboardShown ? Math.max(0, height - coordinates.end.screenY) : 0;
++  const availableHeight = Math.max(0, height - insets.top - 8 - keyboardOverlap);
+   const authProvider = connectors.find(c => c.type === 'AUTH')?.provider;
+   const AuthView = authProvider?.AuthView;
+   const SocialView = authProvider?.Webview;
+@@ -50,7 +53,8 @@ function AppKit() {
+     if (_appkitCoreReactNative.RouterController.state.history.length > 1) {
+       return _appkitCoreReactNative.RouterController.goBack();
+     }
+-    return handleClose();
++    _reactNative.Keyboard.dismiss();
++    return _appkitCoreReactNative.ModalController.close();
+   };
+   const prefetch = async () => {
+     await _appkitCoreReactNative.ApiController.prefetch();
+@@ -119,7 +123,9 @@ function AppKit() {
+     themeMode: themeMode,
+     themeVariables: themeVariables
+   }, /*#__PURE__*/React.createElement(_reactNativeModal.default, {
+-    style: _styles.default.modal,
++    style: [_styles.default.modal, {
++      paddingBottom: keyboardOverlap
++    }],
+     coverScreen: false,
+     isVisible: open,
+     useNativeDriver: true,
+@@ -133,8 +139,12 @@ function AppKit() {
+     testID: "w3m-modal"
+   }, /*#__PURE__*/React.createElement(_appkitUiReactNative.Card, {
+     style: [_styles.default.card, {
+-      maxHeight: isLandscape ? landScapeHeight : portraitHeight
++      maxHeight: availableHeight
+     }]
+-  }, /*#__PURE__*/React.createElement(_w3mHeader.Header, null), /*#__PURE__*/React.createElement(_w3mRouter.AppKitRouter, null), /*#__PURE__*/React.createElement(_w3mSnackbar.Snackbar, null))), !!showAuth && AuthView && /*#__PURE__*/React.createElement(AuthView, null), !!showAuth && SocialView && /*#__PURE__*/React.createElement(SocialView, null)));
++  }, /*#__PURE__*/React.createElement(_w3mHeader.Header, null), /*#__PURE__*/React.createElement(_w3mRouter.AppKitRouter, null), /*#__PURE__*/React.createElement(_reactNative.View, {
++    style: {
++      height: keyboardShown ? 0 : insets.bottom,
++      flexShrink: 0
++    }
++  }), /*#__PURE__*/React.createElement(_w3mSnackbar.Snackbar, null))), !!showAuth && AuthView && /*#__PURE__*/React.createElement(AuthView, null), !!showAuth && SocialView && /*#__PURE__*/React.createElement(SocialView, null)));
+ }
+-//# sourceMappingURL=index.js.map
+\ No newline at end of file
+diff --git a/node_modules/@reown/appkit-scaffold-react-native/src/views/w3m-connecting-view/index.tsx b/node_modules/@reown/appkit-scaffold-react-native/src/views/w3m-connecting-view/index.tsx
+index 44ee537..dc957c5 100644
+--- a/node_modules/@reown/appkit-scaffold-react-native/src/views/w3m-connecting-view/index.tsx
++++ b/node_modules/@reown/appkit-scaffold-react-native/src/views/w3m-connecting-view/index.tsx
+@@ -1,3 +1,4 @@
++import { ScrollView } from 'react-native';
+ import { useSnapshot } from 'valtio';
+ import { useEffect, useState } from 'react';
+ import {
+@@ -147,9 +148,9 @@ export function ConnectingView() {
+   }, [isQr]);
+ 
+   return (
+-    <>
++    <ScrollView bounces={false} keyboardShouldPersistTaps="handled" style={{ flexShrink: 1 }}>
+       {headerTemplate()}
+       {platformTemplate()}
+-    </>
++    </ScrollView>
+   );
+ }
+diff --git a/node_modules/@reown/appkit-scaffold-react-native/lib/module/views/w3m-connecting-view/index.js b/node_modules/@reown/appkit-scaffold-react-native/lib/module/views/w3m-connecting-view/index.js
+index a358983..664bc2b 100644
+--- a/node_modules/@reown/appkit-scaffold-react-native/lib/module/views/w3m-connecting-view/index.js
++++ b/node_modules/@reown/appkit-scaffold-react-native/lib/module/views/w3m-connecting-view/index.js
+@@ -1,3 +1,4 @@
++import { ScrollView } from 'react-native';
+ import { useSnapshot } from 'valtio';
+ import { useEffect, useState } from 'react';
+ import { AccountController, ConnectionController, ConstantsUtil, CoreHelperUtil, ModalController, RouterController, SnackController, OptionsController, ApiController, EventsController, ConnectorController } from '@reown/appkit-core-react-native';
+@@ -130,6 +131,11 @@ export function ConnectingView() {
+     return () => clearInterval(_interval);
+     // eslint-disable-next-line react-hooks/exhaustive-deps
+   }, [isQr]);
+-  return /*#__PURE__*/React.createElement(React.Fragment, null, headerTemplate(), platformTemplate());
++  return /*#__PURE__*/React.createElement(ScrollView, {
++    bounces: false,
++    keyboardShouldPersistTaps: "handled",
++    style: {
++      flexShrink: 1
++    }
++  }, headerTemplate(), platformTemplate());
+ }
+-//# sourceMappingURL=index.js.map
+\ No newline at end of file
+diff --git a/node_modules/@reown/appkit-scaffold-react-native/lib/commonjs/views/w3m-connecting-view/index.js b/node_modules/@reown/appkit-scaffold-react-native/lib/commonjs/views/w3m-connecting-view/index.js
+index 581e679..6542879 100644
+--- a/node_modules/@reown/appkit-scaffold-react-native/lib/commonjs/views/w3m-connecting-view/index.js
++++ b/node_modules/@reown/appkit-scaffold-react-native/lib/commonjs/views/w3m-connecting-view/index.js
+@@ -4,6 +4,7 @@ Object.defineProperty(exports, "__esModule", {
+   value: true
+ });
+ exports.ConnectingView = ConnectingView;
++var _reactNative = require("react-native");
+ var _valtio = require("valtio");
+ var _react = require("react");
+ var _appkitCoreReactNative = require("@reown/appkit-core-react-native");
+@@ -136,6 +137,11 @@ function ConnectingView() {
+     return () => clearInterval(_interval);
+     // eslint-disable-next-line react-hooks/exhaustive-deps
+   }, [isQr]);
+-  return /*#__PURE__*/React.createElement(React.Fragment, null, headerTemplate(), platformTemplate());
++  return /*#__PURE__*/React.createElement(_reactNative.ScrollView, {
++    bounces: false,
++    keyboardShouldPersistTaps: "handled",
++    style: {
++      flexShrink: 1
++    }
++  }, headerTemplate(), platformTemplate());
+ }
+-//# sourceMappingURL=index.js.map
+\ No newline at end of file
+diff --git a/node_modules/@reown/appkit-scaffold-react-native/src/partials/w3m-all-wallets-list/index.tsx b/node_modules/@reown/appkit-scaffold-react-native/src/partials/w3m-all-wallets-list/index.tsx
+index d2d6040..4413dd8 100644
+--- a/node_modules/@reown/appkit-scaffold-react-native/src/partials/w3m-all-wallets-list/index.tsx
++++ b/node_modules/@reown/appkit-scaffold-react-native/src/partials/w3m-all-wallets-list/index.tsx
+@@ -158,6 +158,8 @@ export function AllWalletsList({ columns, itemWidth, onItemPress }: AllWalletsLi
+ 
+   return (
+     <FlatList
++      keyboardShouldPersistTaps="handled"
++      keyboardDismissMode="on-drag"
+       key={columns}
+       fadingEdgeLength={20}
+       bounces={false}
+diff --git a/node_modules/@reown/appkit-scaffold-react-native/lib/module/partials/w3m-all-wallets-list/index.js b/node_modules/@reown/appkit-scaffold-react-native/lib/module/partials/w3m-all-wallets-list/index.js
+index 35969a5..f50f6ae 100644
+--- a/node_modules/@reown/appkit-scaffold-react-native/lib/module/partials/w3m-all-wallets-list/index.js
++++ b/node_modules/@reown/appkit-scaffold-react-native/lib/module/partials/w3m-all-wallets-list/index.js
+@@ -131,6 +131,8 @@ export function AllWalletsList({
+     });
+   }
+   return /*#__PURE__*/React.createElement(FlatList, {
++    keyboardShouldPersistTaps: "handled",
++    keyboardDismissMode: "on-drag",
+     key: columns,
+     fadingEdgeLength: 20,
+     bounces: false,
+@@ -151,4 +153,3 @@ export function AllWalletsList({
+     })
+   });
+ }
+-//# sourceMappingURL=index.js.map
+\ No newline at end of file
+diff --git a/node_modules/@reown/appkit-scaffold-react-native/lib/commonjs/partials/w3m-all-wallets-list/index.js b/node_modules/@reown/appkit-scaffold-react-native/lib/commonjs/partials/w3m-all-wallets-list/index.js
+index f811945..476e0f2 100644
+--- a/node_modules/@reown/appkit-scaffold-react-native/lib/commonjs/partials/w3m-all-wallets-list/index.js
++++ b/node_modules/@reown/appkit-scaffold-react-native/lib/commonjs/partials/w3m-all-wallets-list/index.js
+@@ -138,6 +138,8 @@ function AllWalletsList({
+     });
+   }
+   return /*#__PURE__*/React.createElement(_reactNative.FlatList, {
++    keyboardShouldPersistTaps: "handled",
++    keyboardDismissMode: "on-drag",
+     key: columns,
+     fadingEdgeLength: 20,
+     bounces: false,
+@@ -158,4 +160,3 @@ function AllWalletsList({
+     })
+   });
+ }
+-//# sourceMappingURL=index.js.map
+\ No newline at end of file
+diff --git a/node_modules/@reown/appkit-scaffold-react-native/src/partials/w3m-all-wallets-search/index.tsx b/node_modules/@reown/appkit-scaffold-react-native/src/partials/w3m-all-wallets-search/index.tsx
+index 172f3b0..a56bacb 100644
+--- a/node_modules/@reown/appkit-scaffold-react-native/src/partials/w3m-all-wallets-search/index.tsx
++++ b/node_modules/@reown/appkit-scaffold-react-native/src/partials/w3m-all-wallets-search/index.tsx
+@@ -128,6 +128,8 @@ export function AllWalletsSearch({
+ 
+   return (
+     <FlatList
++      keyboardShouldPersistTaps="handled"
++      keyboardDismissMode="on-drag"
+       key={columns}
+       fadingEdgeLength={20}
+       bounces={false}
+diff --git a/node_modules/@reown/appkit-scaffold-react-native/lib/module/partials/w3m-all-wallets-search/index.js b/node_modules/@reown/appkit-scaffold-react-native/lib/module/partials/w3m-all-wallets-search/index.js
+index a69b6dd..492086a 100644
+--- a/node_modules/@reown/appkit-scaffold-react-native/lib/module/partials/w3m-all-wallets-search/index.js
++++ b/node_modules/@reown/appkit-scaffold-react-native/lib/module/partials/w3m-all-wallets-search/index.js
+@@ -103,6 +103,8 @@ export function AllWalletsSearch({
+     return emptyTemplate();
+   }
+   return /*#__PURE__*/React.createElement(FlatList, {
++    keyboardShouldPersistTaps: "handled",
++    keyboardDismissMode: "on-drag",
+     key: columns,
+     fadingEdgeLength: 20,
+     bounces: false,
+@@ -121,4 +123,3 @@ export function AllWalletsSearch({
+     })
+   });
+ }
+-//# sourceMappingURL=index.js.map
+\ No newline at end of file
+diff --git a/node_modules/@reown/appkit-scaffold-react-native/lib/commonjs/partials/w3m-all-wallets-search/index.js b/node_modules/@reown/appkit-scaffold-react-native/lib/commonjs/partials/w3m-all-wallets-search/index.js
+index f19888d..9dc014c 100644
+--- a/node_modules/@reown/appkit-scaffold-react-native/lib/commonjs/partials/w3m-all-wallets-search/index.js
++++ b/node_modules/@reown/appkit-scaffold-react-native/lib/commonjs/partials/w3m-all-wallets-search/index.js
+@@ -110,6 +110,8 @@ function AllWalletsSearch({
+     return emptyTemplate();
+   }
+   return /*#__PURE__*/React.createElement(_reactNative.FlatList, {
++    keyboardShouldPersistTaps: "handled",
++    keyboardDismissMode: "on-drag",
+     key: columns,
+     fadingEdgeLength: 20,
+     bounces: false,
+@@ -128,4 +130,3 @@ function AllWalletsSearch({
+     })
+   });
+ }
+-//# sourceMappingURL=index.js.map
+\ No newline at end of file
