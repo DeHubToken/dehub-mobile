@@ -5921,16 +5921,15 @@
     "grants": "Abin da yake buše",
     "perks": {
       "fee": "Kudin dandamali",
-      "votes": "Gwamnati ta kada kuri'u",
-      "reach": "Nauyin kowane ra'ayi & amsawa",
-      "feedPosts": "Gida-feed posts a rana",
-      "images": "Hotuna a kowane rubutu",
-      "uploads": "Iyakar loda yau da kullum",
+      "votes": "Ƙarfin zaɓe",
+      "reach": "Ƙarfin martani",
+      "feedPosts": "Rubuce-rubucen gida",
+      "images": "Hotunan rubutu",
+      "uploads": "Iyakar yau",
       "storage": "Edita ajiya",
-      "lending": "Baje bashi ramummuka",
+      "lending": "Gurbin aro",
       "voice": "Muryar murya cloning",
-      "voiceFree": "Kyauta",
-      "voiceLocked": "{{tier}} kuma sama"
+      "voiceFree": "Kyauta"
     },
     "buyTokens": "Sayi alamomi",
     "details": "Cikakken rushewa",

@@ -6111,16 +6111,15 @@
     "grants": "Wat het ontgrendelt",
     "perks": {
       "fee": "Platformkosten",
-      "votes": "Bestuursstemmen",
-      "reach": "Gewicht per weergave & reactie",
-      "feedPosts": "Home-feed berichten per dag",
-      "images": "Afbeeldingen per post",
-      "uploads": "Dagelijkse uploadlimiet",
+      "votes": "Stemkracht",
+      "reach": "Reactiekracht",
+      "feedPosts": "Home-posts",
+      "images": "Postafbeeldingen",
+      "uploads": "Daglimiet",
       "storage": "Editoropslag",
-      "lending": "Sleuven voor het uitlenen van bad",
+      "lending": "Uitleenplekken",
       "voice": "Stem klonen",
-      "voiceFree": "Gratis",
-      "voiceLocked": "{{tier}} en hoger"
+      "voiceFree": "Gratis"
     },
     "buyTokens": "Tokens kopen",
     "details": "Volledige uitsplitsing",

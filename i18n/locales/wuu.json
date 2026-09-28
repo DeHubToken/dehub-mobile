@@ -5921,16 +5921,15 @@
     "grants": "解锁内容",
     "perks": {
       "fee": "平台费用",
-      "votes": "治理投票",
-      "reach": "每观看和反应的权重",
-      "feedPosts": "每日首页帖子数",
-      "images": "每帖图片数",
-      "uploads": "每日上传限制",
+      "votes": "投票权重",
+      "reach": "互动权重",
+      "feedPosts": "首页帖子",
+      "images": "帖子图片",
+      "uploads": "每日上限",
       "storage": "编辑器存储空间",
-      "lending": "徽章借用槽位",
+      "lending": "借出槽位",
       "voice": "语音克隆",
-      "voiceFree": "免费",
-      "voiceLocked": "{{tier}} 及以上"
+      "voiceFree": "免费"
     },
     "buyTokens": "买代币",
     "details": "完整明细",

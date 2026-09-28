@@ -5970,16 +5970,15 @@
     "grants": "Kilidi açılır",
     "perks": {
       "fee": "Platform ücreti",
-      "votes": "Yönetişim oyları",
-      "reach": "Görünüm ve reaksiyon başına ağırlık",
-      "feedPosts": "Günde bir ana sayfa yayını gönderisi",
-      "images": "Gönderi başına resim",
-      "uploads": "Günlük yükleme sınırı",
+      "votes": "Oy gücü",
+      "reach": "Tepki gücü",
+      "feedPosts": "Ana sayfa gönderileri",
+      "images": "Gönderi görselleri",
+      "uploads": "Günlük sınır",
       "storage": "Düzenleyici depolama alanı",
-      "lending": "Rozet ödünç verme yuvaları",
+      "lending": "Ödünç yuvaları",
       "voice": "Ses klonlama",
-      "voiceFree": "Ücretsiz",
-      "voiceLocked": "{{tier}} ve üzeri"
+      "voiceFree": "Ücretsiz"
     },
     "buyTokens": "Jeton satın al",
     "details": "Tam döküm",

@@ -5921,16 +5921,15 @@
     "grants": "He aha te mea e whakatuwhera ana",
     "perks": {
       "fee": "Utu papa",
-      "votes": "Ngā pōti kāwanatanga",
-      "reach": "Te taumaha mo ia tirohanga me te urupare",
-      "feedPosts": "Ngā pou i te kāinga i te rā",
-      "images": "Whakaahua mo ia pou",
-      "uploads": "Te rohe tuku i ia ra",
+      "votes": "Mana pōti",
+      "reach": "Mana urupare",
+      "feedPosts": "Ngā pou kāinga",
+      "images": "Whakaahua pou",
+      "uploads": "Tepe ia rā",
       "storage": "Te rokiroki o te kaituhi",
-      "lending": "Ngā wāhi tuku tohu",
+      "lending": "Wāhi tuku tārewa",
       "voice": "Kohikohinga reo",
-      "voiceFree": "Kore utu",
-      "voiceLocked": "{{tier}} me runga ake"
+      "voiceFree": "Kore utu"
     },
     "buyTokens": "Hokona ngā tokena",
     "details": "Te wehenga katoa",

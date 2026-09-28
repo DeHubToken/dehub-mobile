@@ -5963,16 +5963,15 @@
     "grants": "What it unlocks",
     "perks": {
       "fee": "Platform fee",
-      "votes": "Governance votes",
-      "reach": "Weight per view & reaction",
-      "feedPosts": "Home-feed posts a day",
-      "images": "Images per post",
-      "uploads": "Daily upload limit",
+      "votes": "Voting power",
+      "reach": "Reaction power",
+      "feedPosts": "Home posts",
+      "images": "Post images",
+      "uploads": "Daily limit",
       "storage": "Editor storage",
-      "lending": "Badge lending slots",
+      "lending": "Lending slots",
       "voice": "Voice cloning",
-      "voiceFree": "Free",
-      "voiceLocked": "{{tier}} and up"
+      "voiceFree": "Free"
     },
     "buyTokens": "Buy tokens",
     "details": "Full breakdown",

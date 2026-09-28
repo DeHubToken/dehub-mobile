@@ -5925,16 +5925,15 @@
     "grants": "Mit nyit meg?",
     "perks": {
       "fee": "Platformdíj",
-      "votes": "Kormányzati szavazatok",
-      "reach": "Tömeg megtekintésenként és reakciónként",
-      "feedPosts": "Home-feed bejegyzések naponta",
-      "images": "Képek bejegyzésenként",
-      "uploads": "Napi feltöltési korlát",
+      "votes": "Szavazati erő",
+      "reach": "Reakcióerő",
+      "feedPosts": "Kezdőlap-posztok",
+      "images": "Poszt képei",
+      "uploads": "Napi limit",
       "storage": "Szerkesztő tárhelye",
-      "lending": "Jelvénykölcsönző bővítőhelyek",
+      "lending": "Kölcsönzőhelyek",
       "voice": "Hangklónozás",
-      "voiceFree": "Ingyenes",
-      "voiceLocked": "{{tier}} és feljebb"
+      "voiceFree": "Ingyenes"
     },
     "buyTokens": "Tokenvásárlás",
     "details": "Teljes részletezés",

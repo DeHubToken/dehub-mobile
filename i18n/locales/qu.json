@@ -5952,16 +5952,15 @@
     "grants": "Imakunatataq kicharin",
     "perks": {
       "fee": "Plataformamanta qullqi",
-      "votes": "Kamachiy votokuna",
-      "reach": "Llasaq sapa qhaway & reacción",
-      "feedPosts": "Wasi-mikhuy qillqakuna huk punchaw",
-      "images": "Imahinakuna sapa qillqasqa",
-      "uploads": "Sapa punchaw cargapa limite",
+      "votes": "Akllay kallpa",
+      "reach": "Kutichiy kallpa",
+      "feedPosts": "Qallariy qillqakuna",
+      "images": "Qillqa rikchaykuna",
+      "uploads": "Punchaw limite",
       "storage": "Editor waqaychasqa",
-      "lending": "Insignia manukuy ranuras",
+      "lending": "Manukuy ranuras",
       "voice": "Kunka clonación nisqa",
-      "voiceFree": "Qispisqa",
-      "voiceLocked": "{{tier}} y wichayman"
+      "voiceFree": "Qispisqa"
     },
     "buyTokens": "Fichas nisqakunata rantiy",
     "details": "Hunt’asqa pakiy",

@@ -5974,16 +5974,15 @@
     "grants": "O que desbloqueia",
     "perks": {
       "fee": "Taxa da plataforma",
-      "votes": "Votos de governança",
-      "reach": "Peso por visualização e reação",
-      "feedPosts": "Publicações de feed em casa por dia",
+      "votes": "Poder de voto",
+      "reach": "Poder de reação",
+      "feedPosts": "Posts do início",
       "images": "Imagens por post",
-      "uploads": "Limite de carregamento diário",
+      "uploads": "Limite diário",
       "storage": "Armazenamento do editor",
-      "lending": "Slots de empréstimo de crachás",
+      "lending": "Vagas de empréstimo",
       "voice": "Clonagem vocal",
-      "voiceFree": "Grátis",
-      "voiceLocked": "{{tier}} e acima"
+      "voiceFree": "Grátis"
     },
     "buyTokens": "Comprar tokens",
     "details": "Discriminação completa",

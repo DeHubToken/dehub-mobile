@@ -30,7 +30,8 @@ import {
 } from "../../libs/misc";
 import { BADGE_PLATES } from "../../libs/badgePlates";
 import { shortDhb } from "../../libs/badgeMotion";
-import { FREE_VOICE_CLONING_FROM, badgePerksForIndex, formatBytes } from "../../libs/badgePerks";
+import { badgePerksForIndex, formatBytes } from "../../libs/badgePerks";
+import { fetchVoiceClonePrice } from "../../libs/voiceClonePrice";
 import type { MeasurableAnchor } from "../../libs/badgeShowcase";
 import { navigationRef } from "../../App";
 import { ScreenNames } from "../../navigation/ScreenNames";
@@ -114,6 +115,9 @@ export default function BadgeShowcase({ tier, anchor, onClose }: Props) {
   );
 }
 
+/** Names too long for the showcase heading, shortened for display only. */
+const SHORT_NAMES: Record<string, string> = { "Great White Shark": "Great White" };
+
 function HolderDetails({
   api,
   standing,
@@ -186,8 +190,17 @@ function HolderDetails({
   const nf = useMemo(() => new Intl.NumberFormat(i18n.language), [i18n.language]);
   const tileWidth = tileWidthFor(W);
 
+  const [clonePrice, setClonePrice] = useState<number | null>(null);
+  useEffect(() => {
+    let live = true;
+    void fetchVoiceClonePrice().then((p) => live && setClonePrice(p));
+    return () => {
+      live = false;
+    };
+  }, []);
+
   // Nine tiles, so the three-column grid never ends on a ragged row.
-  const perkRows: { key: string; icon: IconName; label: string; value: string; up: boolean; locked?: boolean }[] = [
+  const perkRows: { key: string; icon: IconName; label: string; value: string; up: boolean; coin?: boolean }[] = [
     { key: "fee", icon: "Receipt", label: t("badgeShowcase.perks.fee"), value: `${perks.platformFee}%`, up: perks.platformFee < below.platformFee },
     { key: "votes", icon: "Landmark", label: t("badgeShowcase.perks.votes"), value: `×${perks.voteWeight}`, up: perks.voteWeight > below.voteWeight },
     { key: "reach", icon: "Eye", label: t("badgeShowcase.perks.reach"), value: `×${perks.reach}`, up: perks.reach > below.reach },
@@ -200,9 +213,9 @@ function HolderDetails({
       key: "voice",
       icon: "Mic",
       label: t("badgeShowcase.perks.voice"),
-      value: perks.freeVoiceCloning ? t("badgeShowcase.perks.voiceFree") : t("badgeShowcase.perks.voiceLocked", { tier: FREE_VOICE_CLONING_FROM }),
+      value: perks.freeVoiceCloning ? t("badgeShowcase.perks.voiceFree") : clonePrice ? shortDhb(clonePrice) : "—",
       up: perks.freeVoiceCloning && !below.freeVoiceCloning,
-      locked: !perks.freeVoiceCloning,
+      coin: !perks.freeVoiceCloning && !!clonePrice,
     },
   ];
 
@@ -218,7 +231,7 @@ function HolderDetails({
       <View style={{ alignItems: "center", gap: 6 }}>
         <View style={ui.titleRow}>
           <Animated.Text key={name} entering={FadeInDown.duration(260)} exiting={FadeOutUp.duration(180)} style={ui.title}>
-            {name}
+            {SHORT_NAMES[name] ?? name}
           </Animated.Text>
           <View style={ui.chip}>
             <DhbCoin size={16} />
@@ -290,9 +303,10 @@ function HolderDetails({
               </Text>
             </View>
             <View style={[ui.tileFoot, { justifyContent: "flex-end" }]}>
-              <Animated.Text key={row.value} entering={FadeInDown.duration(220)} numberOfLines={1} style={row.locked ? ui.tileMuted : ui.tileValue}>
+              <Animated.Text key={row.value} entering={FadeInDown.duration(220)} numberOfLines={1} style={ui.tileValue}>
                 {row.value}
               </Animated.Text>
+              {row.coin ? <DhbCoin size={14} /> : null}
               {row.up ? <Text style={ui.up}>▲</Text> : null}
             </View>
           </View>

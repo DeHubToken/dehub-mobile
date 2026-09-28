@@ -5921,16 +5921,15 @@
     "grants": "Hva den låser opp",
     "perks": {
       "fee": "Plattformavgift",
-      "votes": "Styringsstemmer",
-      "reach": "Vekt per visning og reaksjon",
-      "feedPosts": "Hjemmefeed-innlegg om dagen",
-      "images": "Bilder per innlegg",
-      "uploads": "Daglig opplastingsgrense",
+      "votes": "Stemmevekt",
+      "reach": "Reaksjonsvekt",
+      "feedPosts": "Hjem-innlegg",
+      "images": "Innleggsbilder",
+      "uploads": "Daglig grense",
       "storage": "Redaktørens lagringsplass",
-      "lending": "Utlånsautomater for navneskilt",
+      "lending": "Utlånsplasser",
       "voice": "Stemmekloning",
-      "voiceFree": "Gratis",
-      "voiceLocked": "{{tier}} og oppover"
+      "voiceFree": "Gratis"
     },
     "buyTokens": "Kjøp tokens",
     "details": "Fullstendig oversikt",

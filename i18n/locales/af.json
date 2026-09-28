@@ -5954,16 +5954,15 @@
     "grants": "Wat is ontsluierd",
     "perks": {
       "fee": "Platformfooi",
-      "votes": "Regeringsstemme",
-      "reach": "Gewig per aansig en reaksie",
-      "feedPosts": "Home Posters EenVandaag",
-      "images": "Beelde per plasing",
-      "uploads": "Daaglikse oplaai limiet",
+      "votes": "Stemkrag",
+      "reach": "Reaksiekrag",
+      "feedPosts": "Tuisplasings",
+      "images": "Plasingbeelde",
+      "uploads": "Daaglikse limiet",
       "storage": "Redigeerder stoor",
-      "lending": "Badge-uitleengleuwe",
+      "lending": "Uitleengleuwe",
       "voice": "Stemkloning",
-      "voiceFree": "Gratis",
-      "voiceLocked": "{{tier}} en op"
+      "voiceFree": "Gratis"
     },
     "buyTokens": "Koop tekens",
     "details": "Volle ineenstorting",
