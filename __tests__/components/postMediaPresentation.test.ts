@@ -49,15 +49,15 @@ describe('post media presentation', () => {
     expect(card).not.toContain('paddingBottom: 24,');
   });
 
-  it('does not retain decoded feed bitmaps or hidden audio players', () => {
+  it('caches recently decoded feed images and releases hidden audio players', () => {
     const containedImage = readSource('components', 'Home', 'ContainedFeedImage.tsx');
     const imageGrid = readSource('components', 'Home', 'HomeImageGrid.tsx');
     const audioPlayer = readSource('components', 'Home', 'AudioPostPlayer.tsx');
     const musicFeed = readSource('components', 'Music', 'MusicFeed.tsx');
     const home = readSource('screens', 'HomeScreen.tsx');
 
-    expect(containedImage).toContain('cachePolicy="disk"');
-    expect(imageGrid).toContain('cachePolicy="disk"');
+    expect(containedImage).toContain('cachePolicy="memory-disk"');
+    expect(imageGrid).toContain('cachePolicy="memory-disk"');
     expect(audioPlayer).toContain('if (isVisible && isFocused) return;');
     expect(audioPlayer).toContain('player.remove()');
     expect(musicFeed).toContain('isVisible={active && visibleIds.has(');

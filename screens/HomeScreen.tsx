@@ -49,6 +49,7 @@ import {
 } from "../context/UserProfileSheetContext";
 import UserProfileBottomSheet from "../components/UserProfile/UserProfileBottomSheet";
 import GettingStartedCard from "../components/Onboarding/GettingStartedCard";
+import { pagerPageIntersectsViewport } from "../libs/pagerVisibility";
 
 const FALLBACK_CATEGORIES: string[] = [];
 const SHUFFLE_SEED_EXPIRY_MS = 30 * 60 * 1000;
@@ -90,7 +91,7 @@ function PagerPage({ index, progress, children }: {
   children: React.ReactNode;
 }) {
   const style = useAnimatedStyle(() => ({
-    display: Math.abs(index - progress.value) < 1 ? 'flex' : 'none',
+    display: pagerPageIntersectsViewport(index, progress.value) ? 'flex' : 'none',
   }));
   return <Animated.View style={[{ flex: 1 }, style]}>{children}</Animated.View>;
 }
