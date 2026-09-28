@@ -384,6 +384,30 @@ function toLocaleScript(text, locale) {
   return out + convert(text.slice(last));
 }
 
+/**
+ * The AI tier answers the smaller locales (pcm above all) as if replying to a
+ * chat message: the whole line wrapped in quotes, sometimes with a flourish of
+ * its own — "Allow AI scraping of my content" came back as
+ * "\"Let AI bot scrape my content for me, no problem 👍\"". Quotes the source
+ * did not have are stripped; an emoji the source did not have means the line
+ * was embellished rather than translated, so it is dropped.
+ */
+const QUOTE_PAIRS = [['"', '"'], ['“', '”'], ['„', '“'], ['«', '»'], ['「', '」'], ["'", "'"]];
+function unwrapQuotes(text, source) {
+  if (text == null) return text;
+  for (const [open, close] of QUOTE_PAIRS) {
+    if (text.length > 2 && text.startsWith(open) && text.endsWith(close) && !source.trim().startsWith(open)) {
+      return text.slice(open.length, -close.length).trim();
+    }
+  }
+  return text;
+}
+const EMOJI = /\p{Extended_Pictographic}/gu;
+function addsEmoji(candidate, source) {
+  const had = new Set(source.match(EMOJI) ?? []);
+  return (candidate.match(EMOJI) ?? []).some((e) => !had.has(e));
+}
+
 /* ---------- network ---------- */
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -552,9 +576,10 @@ for (const locale of targets) {
 
     const accept = (j, line) => {
       if (line == null) return null;
-      const candidate = toLocaleScript(restore(line.trim(), prepared[j].found, sources[j]), locale);
+      const candidate = toLocaleScript(unwrapQuotes(restore(line.trim(), prepared[j].found, sources[j]), sources[j]), locale);
       if (
         candidate == null ||
+        addsEmoji(candidate, sources[j]) ||
         looksUnfinished(candidate, sources[j]) ||
         isUntranslatedProse(sources[j], candidate, locale) ||
         !placeholdersMatch(sources[j], candidate) ||
