@@ -9,8 +9,10 @@ import {
   useWindowDimensions,
   Pressable,
   StyleSheet,
+  Image,
   type LayoutChangeEvent,
 } from "react-native";
+import { GRAIN } from "../../theme/skins";
 import { GestureDetector } from "react-native-gesture-handler";
 import { useHorizontalScrollGuard } from "../../context/PagerGestureContext";
 import { useNavigation } from "@react-navigation/native";
@@ -294,7 +296,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     userAddress && minterAddress && userAddress.toLowerCase() === minterAddress.toLowerCase()
   );
 
-  const { isMinimal } = useAppTheme();
+  const { isMinimal, skin } = useAppTheme();
   // How far this card has to step out to span the screen. Worked out from the
   // width the list actually gives it, so a list with other padding still
   // lands edge to edge. The applied margin is added back before comparing, or
@@ -1536,7 +1538,12 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         paddingBottom: 10,
         borderBottomWidth: 1,
         borderBottomColor: MINIMAL_HAIRLINE,
-      } : {
+      } : skin ? [
+        // A canvas theme's bento (theme/skins.ts): smoked glass, War's cyan
+        // frame, Osaka's slate with a pink edge, Jungle's plank.
+        skin.card,
+        { paddingTop: 12, paddingHorizontal: 12, paddingBottom: 12, marginVertical: 6 },
+      ] : {
         borderWidth: 1,
         borderColor: 'rgba(255,255,255,0.12)',
         backgroundColor: 'rgba(255,255,255,0.03)',
@@ -1547,6 +1554,13 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         marginVertical: 6,
       }}
     >
+      {skin?.grain ? (
+        <Image
+          source={GRAIN}
+          resizeMode="repeat"
+          style={[StyleSheet.absoluteFill, { borderRadius: skin.card.borderRadius }]}
+        />
+      ) : null}
       {showRepostLabel && (
         <View className="flex-row items-center gap-1.5 mb-2">
           <Icon name="Repeat2" size={14} color="#9CA3AF" />

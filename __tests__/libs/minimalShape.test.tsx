@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import { render } from '@testing-library/react-native';
-import { setSquaring, squareStyle, squareProps, SQUARE } from '../../libs/jsx/shape';
+import { setSquaring, setThemePass, squareStyle, squareProps, SQUARE } from '../../libs/jsx/shape';
 
 // Same stub the other render tests use: the real styling runtime needs a
 // device. What is under test is the pass in front of it.
@@ -53,6 +53,27 @@ describe('minimal theme shape pass', () => {
     // A later entry that repaints the element wins, as it does on screen.
     const layered = [{ backgroundColor: '#0C0C0E' }, { backgroundColor: '#fff' }];
     expect(squareStyle(layered)).toBe(layered);
+  });
+
+  it('gives a canvas theme its own page colour without squaring its corners', () => {
+    setThemePass(false, '#0A0812');
+    expect(squareStyle({ flex: 1, backgroundColor: '#010305' })).toEqual([
+      { flex: 1, backgroundColor: '#010305' },
+      { backgroundColor: '#0A0812' },
+    ]);
+    const rounded = { borderRadius: 12 };
+    expect(squareProps({ style: rounded }).style).toBe(rounded);
+  });
+
+  it('squares and repaints together for War, and a theme switch drops cached results', () => {
+    const style = { borderRadius: 12, backgroundColor: '#0c0c0e' };
+    setSquaring(true);
+    expect(squareStyle(style)).toEqual([style, { ...SQUARE, backgroundColor: '#000' }]);
+    setThemePass(true, '#060A09');
+    expect(squareStyle(style)).toEqual([style, { ...SQUARE, backgroundColor: '#060A09' }]);
+    setThemePass(false, null);
+    const props = { style };
+    expect(squareProps(props)).toBe(props);
   });
 
   it('reaches elements rendered through the app JSX runtime', () => {

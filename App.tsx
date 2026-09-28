@@ -82,6 +82,7 @@ import { isWalletConnectAvailable } from "./config/reown.config";
 import { markBootRevealed } from "./libs/bootReveal";
 import BadgeLadderSync from "./components/Badge/BadgeLadderSync";
 import { AppThemeProvider, useAppTheme, useThemeRootStyle } from "./context/ThemeContext";
+import ThemeBackdrop from "./components/theme/ThemeBackdrop";
 
 const logger = createLogger("App");
 
@@ -242,6 +243,9 @@ const ThemedRootView: React.FC<{ children: React.ReactNode }> = ({ children }) =
   const style = useThemeRootStyle();
   return (
     <GestureHandlerRootView className="bg-theme-background" style={[{ flex: 1 }, style]}>
+      {/* First, so everything else draws over it: a canvas theme's live
+          background, which the home feed shows through. Null otherwise. */}
+      <ThemeBackdrop />
       {children}
     </GestureHandlerRootView>
   );
