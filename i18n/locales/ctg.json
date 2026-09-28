@@ -1654,7 +1654,8 @@
     "mostLiked": "সবচে বেশি পছন্দ",
     "addedToLeaderboard": "তুঁই অ্যাড অই গেছ! ব্যালেন্স: {{balance}} টোকেন",
     "balanceTooLow": "ব্যালেন্স কম ({{balance}} টোকেন)",
-    "tokenAmount": "{{amount}} টোকেন"
+    "tokenAmount": "{{amount}} টোকেন",
+    "provisional": "অস্থায়ী"
   },
   "explorePage": {
     "searchPlaceholder": "মানুষ, পোস্ট বা কন্টেন্ট খোজো...",
@@ -3634,7 +3635,12 @@
       "waiting": "প্রতিপক্ষের জন্য অপেক্ষা করছি…",
       "backToLobby": "লবিতে ফিরে যান",
       "serverDidNotAnswer": "ম্যাচ সার্ভার উত্তর দেয়নি।"
-    }
+    },
+    "gamesRecord_one": "{{count}} গেম · {{wins}}জ {{losses}}হা {{draws}}ড্র",
+    "gamesRecord_other": "{{count}} গেম · {{wins}}জ {{losses}}হা {{draws}}ড্র",
+    "kingsGambitBoardTitle": "রেটিং",
+    "kingsGambitBoardBlurb": "সব অনলাইন ম্যাচর Elo। সবাই ১২০০ থেকি শুরু গরে; শক্ত খেলোয়াড়রে হারাইলে দুর্বলরে হারাইবার চেয়ে বেশি পাইবা, তাই দ্বিতীয় ওয়ালেট দি র‍্যাঙ্ক বাড়ানি ন যায়।",
+    "kingsGambitBoardEmpty": "এখনো কোনো অনলাইন ম্যাচ শেষ ন অয়। একখান চ্যালেঞ্জ খোলন।"
   },
   "videoLooks": {
     "button": "ক্যামেরা লুক",

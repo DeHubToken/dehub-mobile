@@ -1533,7 +1533,8 @@
     "directReferrals_other": "{{count}} ڈائریکٹ",
     "secondaryReferrals_one": "{{count}} سیکنڈری",
     "secondaryReferrals_other": "{{count}} سیکنڈری",
-    "retry": "پھر کوشش کرو"
+    "retry": "پھر کوشش کرو",
+    "provisional": "عارضی"
   },
   "explorePage": {
     "searchPlaceholder": "لوگ، پوسٹ، یا کانٹینٹ ڈھونڈو...",
@@ -3407,7 +3408,12 @@
       "waiting": "विरोधी का इंतजार हो रहा है…",
       "backToLobby": "लॉबी पर वापस जाएँ",
       "serverDidNotAnswer": "मैच सर्वर ने जवाब नहीं दिया।"
-    }
+    },
+    "gamesRecord_one": "{{count}} گیم · {{wins}}ج {{losses}}ہ {{draws}}ب",
+    "gamesRecord_other": "{{count}} گیمز · {{wins}}ج {{losses}}ہ {{draws}}ب",
+    "kingsGambitBoardTitle": "ریٹنگ",
+    "kingsGambitBoardBlurb": "سب آن لائن میچوں کا ایلو۔ سب 1200 سے شروع کرتے؛ مضبوط کھلاڑی کو ہرانا کمزور کو ہرانے سے زیادہ قیمتی ہے، اس لیے دوسرے والٹ سے درجہ بندی نئیں بڑھا سکتے۔",
+    "kingsGambitBoardEmpty": "ابھی کوئی آن لائن میچ پورا نئیں ہوا۔ چیلنج کھولو۔"
   },
   "videoLooks": {
     "button": "کیمرہ لُکس",

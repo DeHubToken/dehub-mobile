@@ -1584,7 +1584,8 @@
     "retry": "Zama futhi",
     "addedToLeaderboard": "Ungenisiwe! Ibhalansi: ama-{{balance}} tokens",
     "balanceTooLow": "Ibhalansi iphansi kakhulu (ama-{{balance}} tokens)",
-    "tokenAmount": "Ama-{{amount}} tokens"
+    "tokenAmount": "Ama-{{amount}} tokens",
+    "provisional": "okwesikhashana"
   },
   "explorePage": {
     "searchPlaceholder": "Sesha abantu, okuthunyelwe noma okuqukethwe...",
@@ -3556,7 +3557,12 @@
       "waiting": "Kulindwe umphikisi…",
       "backToLobby": "Buyela ku-lobby",
       "serverDidNotAnswer": "Iseva yomdlalo ayiphendulanga."
-    }
+    },
+    "gamesRecord_one": "{{count}} umdlalo · {{wins}}W {{losses}}L {{draws}}D",
+    "gamesRecord_other": "{{count}} imidlalo · {{wins}}W {{losses}}L {{draws}}D",
+    "kingsGambitBoardTitle": "Isilinganiso",
+    "kingsGambitBoardBlurb": "I-Elo kuyo yonke imidlalo eku-inthanethi. Wonke umuntu uqala ku-1200; ukunqoba umdlali onamandla kubaluleke kakhulu kunokunqoba obuthaka, ngakho isikhundla asikwazi ukukhushulwa ngesikhwama sesibili.",
+    "kingsGambitBoardEmpty": "Awukho umdlalo oku-inthanethi osuphelile okwamanje. Vula inselelo."
   },
   "videoLooks": {
     "button": "Ukubukeka kwekhamera",

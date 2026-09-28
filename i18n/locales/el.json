@@ -1583,7 +1583,8 @@
     "retry": "Δοκιμή ξανά",
     "addedToLeaderboard": "Προσθήκη! Υπόλοιπο: {{balance}} tokens",
     "balanceTooLow": "Χαμηλό υπόλοιπο ({{balance}} tokens)",
-    "tokenAmount": "{{amount}} μάρκες"
+    "tokenAmount": "{{amount}} μάρκες",
+    "provisional": "προσωρινό"
   },
   "explorePage": {
     "searchPlaceholder": "Αναζήτηση ατόμων, δημοσιεύσεων ή περιεχομένου...",
@@ -3554,7 +3555,12 @@
       "waiting": "Αναμονή για αντίπαλο…",
       "backToLobby": "Επιστροφή στο lobby",
       "serverDidNotAnswer": "Ο διακομιστής αγώνα δεν απάντησε."
-    }
+    },
+    "gamesRecord_one": "{{count}} παρτίδα · {{wins}}Ν {{losses}}Η {{draws}}Ι",
+    "gamesRecord_other": "{{count}} παρτίδες · {{wins}}Ν {{losses}}Η {{draws}}Ι",
+    "kingsGambitBoardTitle": "Βαθμολογία",
+    "kingsGambitBoardBlurb": "Elo από κάθε online παρτίδα. Όλοι ξεκινούν από 1200· η νίκη επί ισχυρότερου παίκτη αξίζει περισσότερο από τη νίκη επί ασθενέστερου, οπότε η κατάταξη δεν φουσκώνει με δεύτερο πορτοφόλι.",
+    "kingsGambitBoardEmpty": "Καμία online παρτίδα δεν έχει ολοκληρωθεί ακόμη. Άνοιξε μια πρόκληση."
   },
   "videoLooks": {
     "button": "Στιλ κάμερας",

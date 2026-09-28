@@ -1583,7 +1583,8 @@
     "retry": "ٻيهر ڪوشش ڪريو",
     "addedToLeaderboard": "توھان شامل ڪيو ويو آھي! بيلنس: {{balance}} ٽوڪن",
     "balanceTooLow": "گھٽ بيلنس ({{balance}} ٽوڪن)",
-    "tokenAmount": "{{amount}} ٽوڪن"
+    "tokenAmount": "{{amount}} ٽوڪن",
+    "provisional": "عارضي"
   },
   "explorePage": {
     "searchPlaceholder": "ماڻهو، پوسٽون يا مواد ڳولهيو...",
@@ -3525,7 +3526,12 @@
       "waiting": "مقابلي جو انتظار آهي…",
       "backToLobby": "لابي ڏانهن واپس",
       "serverDidNotAnswer": "ميچ سرور جواب نه ڏنو."
-    }
+    },
+    "gamesRecord_one": "{{count}} راند · {{wins}}ک {{losses}}ه {{draws}}ب",
+    "gamesRecord_other": "{{count}} رانديون · {{wins}}ک {{losses}}ه {{draws}}ب",
+    "kingsGambitBoardTitle": "ريٽنگ",
+    "kingsGambitBoardBlurb": "سڀني آن لائن ميچن جو ايلو. سڀ 1200 کان شروع ڪن ٿا؛ مضبوط رانديگر کي هارائڻ ڪمزور کي هارائڻ کان وڌيڪ قيمتي آهي، تنهنڪري ٻئي والٽ سان درجه بندي وڌائي نٿي سگهجي.",
+    "kingsGambitBoardEmpty": "اڃا ڪو آن لائن ميچ مڪمل ناهي ٿيو. چئلينج کوليو."
   },
   "videoLooks": {
     "button": "ڪيمرا لُڪ",

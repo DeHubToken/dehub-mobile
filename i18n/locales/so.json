@@ -1583,7 +1583,8 @@
     "retry": "Isku day mar kale",
     "addedToLeaderboard": "Waa lagu daray! Xisaabta: {{balance}} tokens",
     "balanceTooLow": "Xisaabta oo aad u hooseysa ({{balance}} tokens)",
-    "tokenAmount": "{{amount}} tokens"
+    "tokenAmount": "{{amount}} tokens",
+    "provisional": "ku-meel-gaar"
   },
   "explorePage": {
     "searchPlaceholder": "Raadi dadka, qoraallada, ama nuxurka...",
@@ -3525,7 +3526,12 @@
       "waiting": "Sugaya ciyaartoy",
       "backToLobby": "Ku noqo lobby-ga",
       "serverDidNotAnswer": "Server-ka ciyaarta ma jawaabin."
-    }
+    },
+    "gamesRecord_one": "{{count}} ciyaar · {{wins}}G {{losses}}L {{draws}}B",
+    "gamesRecord_other": "{{count}} ciyaarood · {{wins}}G {{losses}}L {{draws}}B",
+    "kingsGambitBoardTitle": "Qiimeyn",
+    "kingsGambitBoardBlurb": "Elo dhammaan ciyaaraha internetka. Qof walba wuxuu ka bilaabaa 1200; ka adkaanshaha ciyaaryahan xoog badan wuxuu ka qiimo badan yahay mid tabar yar, sidaas darteed liiska laguma kordhin karo boorso labaad.",
+    "kingsGambitBoardEmpty": "Weli ciyaar internet ah ma dhammaan. Fur tartan."
   },
   "videoLooks": {
     "button": "Muuqaallada kaamirada",

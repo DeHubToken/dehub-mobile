@@ -1583,7 +1583,8 @@
     "retry": "Gaýtadan synanyş",
     "addedToLeaderboard": "Siz goşuldyňyz! Balans: {{balance}} token",
     "balanceTooLow": "Balans pes ({{balance}} token)",
-    "tokenAmount": "{{amount}} token"
+    "tokenAmount": "{{amount}} token",
+    "provisional": "deslapky"
   },
   "explorePage": {
     "searchPlaceholder": "Adam, ýazgy ýa-da mazmun gözle...",
@@ -3525,7 +3526,12 @@
       "waiting": "Oýunçy garaşýarys…",
       "backToLobby": "Lobbiye dolan",
       "serverDidNotAnswer": "Match server jogap bermedi."
-    }
+    },
+    "gamesRecord_one": "{{count}} oýun · {{wins}}Ý {{losses}}U {{draws}}D",
+    "gamesRecord_other": "{{count}} oýun · {{wins}}Ý {{losses}}U {{draws}}D",
+    "kingsGambitBoardTitle": "Reýting",
+    "kingsGambitBoardBlurb": "Ähli onlaýn oýunlar boýunça Elo. Hemmeler 1200-den başlaýar; güýçli oýunçyny ýeňmek gowşagy ýeňmekden gymmatly, şonuň üçin reýtingi ikinji gapjyk bilen ýokarlandyryp bolmaýar.",
+    "kingsGambitBoardEmpty": "Entek hiç bir onlaýn oýun tamamlanmady. Çagyryş açyň."
   },
   "videoLooks": {
     "button": "Kamera görnüşleri",

@@ -1583,7 +1583,8 @@
     "retry": "Réessayer",
     "addedToLeaderboard": "Vous avez été ajouté ! Solde : {{balance}} tokens",
     "balanceTooLow": "Solde trop bas ({{balance}} tokens)",
-    "tokenAmount": "{{amount}} tokens"
+    "tokenAmount": "{{amount}} tokens",
+    "provisional": "provisoire"
   },
   "explorePage": {
     "searchPlaceholder": "Rechercher des personnes, publications ou contenus...",
@@ -3529,7 +3530,12 @@
       "waiting": "En attente d'un adversaire…",
       "backToLobby": "Retour au lobby",
       "serverDidNotAnswer": "Le serveur de match n'a pas répondu."
-    }
+    },
+    "gamesRecord_one": "{{count}} partie · {{wins}}V {{losses}}D {{draws}}N",
+    "gamesRecord_other": "{{count}} parties · {{wins}}V {{losses}}D {{draws}}N",
+    "kingsGambitBoardTitle": "Classement Elo",
+    "kingsGambitBoardBlurb": "Elo sur toutes les parties en ligne. Tout le monde part de 1200 ; battre un joueur plus fort rapporte plus que battre un plus faible, donc impossible de gonfler le classement avec un second portefeuille.",
+    "kingsGambitBoardEmpty": "Aucune partie en ligne terminée pour l'instant. Lancez un défi."
   },
   "videoLooks": {
     "button": "Styles de caméra",

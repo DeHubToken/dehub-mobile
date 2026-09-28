@@ -1583,7 +1583,8 @@
     "retry": "再試行",
     "addedToLeaderboard": "追加されました！残高：{{balance}} トークン",
     "balanceTooLow": "残高が少なすぎます（{{balance}} トークン）",
-    "tokenAmount": "{{amount}} トークン"
+    "tokenAmount": "{{amount}} トークン",
+    "provisional": "暫定"
   },
   "explorePage": {
     "searchPlaceholder": "人、投稿、コンテンツを検索...",
@@ -3527,7 +3528,12 @@
       "waiting": "対戦相手を待っています…",
       "backToLobby": "ロビーに戻る",
       "serverDidNotAnswer": "マッチサーバーが応答しませんでした。"
-    }
+    },
+    "gamesRecord_one": "{{count}}試合 · {{wins}}勝 {{losses}}敗 {{draws}}分",
+    "gamesRecord_other": "{{count}}試合 · {{wins}}勝 {{losses}}敗 {{draws}}分",
+    "kingsGambitBoardTitle": "レーティング",
+    "kingsGambitBoardBlurb": "全オンライン対局のElo。全員1200からスタート。強い相手に勝つほど多く得られるので、別のウォレットで順位を稼ぐことはできません。",
+    "kingsGambitBoardEmpty": "まだオンライン対局が終わっていません。チャレンジを作成しよう。"
   },
   "videoLooks": {
     "button": "カメラエフェクト",

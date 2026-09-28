@@ -1583,7 +1583,8 @@
     "retry": "Proovi uuesti",
     "addedToLeaderboard": "Oled lisatud! Saldo: {{balance}} žetooni",
     "balanceTooLow": "Saldo liiga madal ({{balance}} žetooni)",
-    "tokenAmount": "{{amount}} žetooni"
+    "tokenAmount": "{{amount}} žetooni",
+    "provisional": "esialgne"
   },
   "explorePage": {
     "searchPlaceholder": "Otsi inimesi, postitusi või sisu...",
@@ -3525,7 +3526,12 @@
       "waiting": "Ootab vastast…",
       "backToLobby": "Tagasi lobby'le",
       "serverDidNotAnswer": "Mängiserver ei vastanud."
-    }
+    },
+    "gamesRecord_one": "{{count}} partii · {{wins}}V {{losses}}K {{draws}}V",
+    "gamesRecord_other": "{{count}} partiid · {{wins}}V {{losses}}K {{draws}}V",
+    "kingsGambitBoardTitle": "Reiting",
+    "kingsGambitBoardBlurb": "Elo kõigi veebipartiide põhjal. Kõik alustavad 1200-lt; tugevama mängija võitmine on väärt rohkem kui nõrgema võitmine, nii et edetabelit ei saa teise rahakotiga üles ajada.",
+    "kingsGambitBoardEmpty": "Ükski veebipartii pole veel lõppenud. Ava väljakutse."
   },
   "videoLooks": {
     "button": "Kaamera stiilid",

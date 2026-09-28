@@ -1566,7 +1566,8 @@
     "retry": "ព្យាយាមម្ដងទៀត",
     "addedToLeaderboard": "អ្នកត្រូវបានបន្ថែមហើយ! សមតុល្យ៖ តូខឹន {{balance}}",
     "balanceTooLow": "សមតុល្យទាបពេក (តូខឹន {{balance}})",
-    "tokenAmount": "តូខឹន {{amount}}"
+    "tokenAmount": "តូខឹន {{amount}}",
+    "provisional": "បណ្ដោះអាសន្ន"
   },
   "explorePage": {
     "searchPlaceholder": "ស្វែងរកមនុស្ស ការបង្ហោះ ឬមាតិកា...",
@@ -3507,7 +3508,12 @@
       "waiting": "រង់ចាំអ្នកប្រឆាំង…",
       "backToLobby": "ត្រឡប់ទៅ Lobby",
       "serverDidNotAnswer": "ម៉ាស៊ីនបម្រើការប្រកួតមិនបានឆ្លើយ។"
-    }
+    },
+    "gamesRecord_one": "{{count}} ប្រកួត · ឈ្នះ {{wins}} ចាញ់ {{losses}} ស្មើ {{draws}}",
+    "gamesRecord_other": "{{count}} ប្រកួត · ឈ្នះ {{wins}} ចាញ់ {{losses}} ស្មើ {{draws}}",
+    "kingsGambitBoardTitle": "ពិន្ទុកម្រិត",
+    "kingsGambitBoardBlurb": "Elo ពីគ្រប់ការប្រកួតអនឡាញ។ គ្រប់គ្នាចាប់ផ្ដើមពី 1200; ឈ្នះអ្នកលេងខ្លាំងជាងបានពិន្ទុច្រើនជាងឈ្នះអ្នកខ្សោយជាង ដូច្នេះមិនអាចបូមចំណាត់ថ្នាក់ដោយកាបូបទីពីរបានទេ។",
+    "kingsGambitBoardEmpty": "មិនទាន់មានការប្រកួតអនឡាញណាចប់ទេ។ បើកការប្រកួតប្រជែង។"
   },
   "videoLooks": {
     "button": "រូបរាងកាមេរ៉ា",

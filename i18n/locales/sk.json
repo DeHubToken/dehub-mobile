@@ -1640,7 +1640,8 @@
     "mostLiked": "Najviac obľúbení",
     "addedToLeaderboard": "Boli ste pridaní! Zostatok: {{balance}} tokenov",
     "balanceTooLow": "Nízky zostatok ({{balance}} tokenov)",
-    "tokenAmount": "{{amount}} tokenov"
+    "tokenAmount": "{{amount}} tokenov",
+    "provisional": "predbežné"
   },
   "explorePage": {
     "searchPlaceholder": "Hľadať ľudí, príspevky alebo obsah...",
@@ -3633,7 +3634,12 @@
       "waiting": "Čakám na súpera…",
       "backToLobby": "Späť do lobby",
       "serverDidNotAnswer": "Zápasový server neodpovedal."
-    }
+    },
+    "gamesRecord_one": "{{count}} partia · {{wins}}V {{losses}}P {{draws}}R",
+    "gamesRecord_other": "{{count}} partií · {{wins}}V {{losses}}P {{draws}}R",
+    "kingsGambitBoardTitle": "Hodnotenie",
+    "kingsGambitBoardBlurb": "Elo zo všetkých online partií. Všetci začínajú na 1200; výhra nad silnejším hráčom má väčšiu hodnotu než nad slabším, takže rebríček sa nedá nahnať druhou peňaženkou.",
+    "kingsGambitBoardEmpty": "Zatiaľ sa neskončila žiadna online partia. Vyzvi niekoho."
   },
   "videoLooks": {
     "button": "Vzhľady kamery",

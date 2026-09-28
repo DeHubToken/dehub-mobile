@@ -1533,7 +1533,8 @@
     "directReferrals_other": "{{count}} директних",
     "secondaryReferrals_one": "{{count}} другог нивоа",
     "secondaryReferrals_other": "{{count}} другог нивоа",
-    "retry": "Покушај поново"
+    "retry": "Покушај поново",
+    "provisional": "привремено"
   },
   "explorePage": {
     "searchPlaceholder": "Претражите људе, објаве или садржај...",
@@ -3411,7 +3412,12 @@
       "waiting": "Чекамо противника…",
       "backToLobby": "Назад у лоби",
       "serverDidNotAnswer": "Сервер за мечеве није одговорио."
-    }
+    },
+    "gamesRecord_one": "{{count}} партија · {{wins}}П {{losses}}И {{draws}}Р",
+    "gamesRecord_other": "{{count}} партија · {{wins}}П {{losses}}И {{draws}}Р",
+    "kingsGambitBoardTitle": "Рејтинг",
+    "kingsGambitBoardBlurb": "Ело кроз све онлајн партије. Сви почињу од 1200; победа над јачим играчем вреди више од победе над слабијим, па се ранг листа не може напумпати другим новчаником.",
+    "kingsGambitBoardEmpty": "Ниједна онлајн партија још није завршена. Отвори изазов."
   },
   "videoLooks": {
     "button": "Изгледи камере",

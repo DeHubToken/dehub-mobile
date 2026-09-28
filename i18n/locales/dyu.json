@@ -1564,7 +1564,8 @@
     "retry": "A lajɛ tuguni",
     "addedToLeaderboard": "Wawedzerwa! Balance: {{balance}} tokens",
     "balanceTooLow": "Balance yakaderera ({{balance}} tokens)",
-    "tokenAmount": "{{amount}} tokens"
+    "tokenAmount": "{{amount}} tokens",
+    "provisional": "waati kelen ta"
   },
   "explorePage": {
     "searchPlaceholder": "Dɔ, kɔrɔbɔw, fɔlɔw fɛɛrɛ...",
@@ -3481,7 +3482,12 @@
       "waiting": "Ka mɔgɔ jugu dɔ kunbɛn...",
       "backToLobby": "An ka kɔsegi an ka soo",
       "serverDidNotAnswer": "O kama, u tun tɛ se k'u yɛrɛ tanga o ma."
-    }
+    },
+    "gamesRecord_one": "tulon {{count}} · {{wins}}S {{losses}}B {{draws}}K",
+    "gamesRecord_other": "tulon {{count}} · {{wins}}S {{losses}}B {{draws}}K",
+    "kingsGambitBoardTitle": "Jate",
+    "kingsGambitBoardBlurb": "Elo tulon bɛɛ la ɛntɛrinɛti kan. Bɛɛ bɛ daminɛ 1200 la; mɔgɔ barikaman se ka bonya ka tɛmɛ mɔgɔ barikantan se kan, o la, i tɛ se ka i ka jɔyɔrɔ yɛlɛn ni wari-bɔrɔ filanan ye.",
+    "kingsGambitBoardEmpty": "Tulon si ma ban ɛntɛrinɛti kan fɔlɔ. Kɛlɛ dɔ da."
   },
   "videoLooks": {
     "button": "Kamera cogoya",
