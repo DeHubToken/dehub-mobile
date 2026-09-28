@@ -10,6 +10,7 @@ import Animated, {
   useSharedValue,
   withTiming,
   Easing,
+  type SharedValue,
 } from "react-native-reanimated";
 import { Gesture, GestureDetector, type GestureType } from "react-native-gesture-handler";
 import { PagerGestureProvider } from "../context/PagerGestureContext";
@@ -48,6 +49,7 @@ import {
 } from "../context/UserProfileSheetContext";
 import UserProfileBottomSheet from "../components/UserProfile/UserProfileBottomSheet";
 import GettingStartedCard from "../components/Onboarding/GettingStartedCard";
+import { pagerPageIntersectsViewport } from "../libs/pagerVisibility";
 
 const FALLBACK_CATEGORIES: string[] = [];
 const SHUFFLE_SEED_EXPIRY_MS = 30 * 60 * 1000;
@@ -78,6 +80,21 @@ const DEFAULT_FILTERS: FeedFilters = {
 const TAB_ORDER = ["all", "short", "feed-images", "video", "feed-audio", "live"] as const;
 type TabKey = (typeof TAB_ORDER)[number];
 const LAST_INDEX = TAB_ORDER.length - 1;
+
+// Keep the slot and React state, but draw a page only while it intersects the
+// pager viewport. Idle neighbours otherwise retain hundreds of GPU textures
+// throughout vertical scrolling. Progress also reveals both sides of a swipe
+// and every intermediate page of a tab animation on the UI thread.
+function PagerPage({ index, progress, children }: {
+  index: number;
+  progress: SharedValue<number>;
+  children: React.ReactNode;
+}) {
+  const style = useAnimatedStyle(() => ({
+    display: pagerPageIntersectsViewport(index, progress.value) ? 'flex' : 'none',
+  }));
+  return <Animated.View style={[{ flex: 1 }, style]}>{children}</Animated.View>;
+}
 
 // The four tabs served by InfiniteVideoFeed (images and shorts have their own
 // grid components). Each gets its own kept-mounted list so switching never
@@ -740,6 +757,7 @@ export default function HomeScreen() {
     if (key === "feed-images") {
       return (
         <HomeImageGrid
+          active={isPlaybackActive}
           gridRef={imageGridRef}
           params={feedParams}
           pageSize={20}
@@ -863,7 +881,7 @@ export default function HomeScreen() {
                   // that would not land. `display: none` maps to INVISIBLE on
                   // Android: skipped at draw, so its textures become
                   // purgeable, while React state and the query cache stay put.
-                  // The neighbours stay drawn because a drag reveals them.
+                  // PagerPage reveals neighbours only as a drag reaches them.
                   // The slot itself always keeps its width. Hiding the slot
                   // took it out of the row's layout, every page after it slid
                   // one slot left, and the pager's translate — index times
@@ -873,14 +891,9 @@ export default function HomeScreen() {
                   style={{ width: pageWidth }}
                   pointerEvents={index === activeIndex ? "auto" : "none"}
                 >
-                  <View
-                    style={{
-                      flex: 1,
-                      display: Math.abs(index - activeIndex) <= 1 ? "flex" : "none",
-                    }}
-                  >
+                  <PagerPage index={index} progress={progress}>
                     {renderPage(key, index)}
-                  </View>
+                  </PagerPage>
                 </View>
               ))}
             </Animated.View>

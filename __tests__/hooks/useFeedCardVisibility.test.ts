@@ -8,6 +8,7 @@ jest.mock('../../services/feed.unified.service', () => ({
 }));
 
 import useFeedCardVisibility from '../../hooks/useFeedCardVisibility';
+import { createFeedVisibilityStore } from '../../libs/feedVisibility';
 
 type Row = { __listKey: string; postType?: string };
 
@@ -30,6 +31,26 @@ const report = (rows: Array<[Row, number, boolean]>) => {
 };
 
 describe('hooks/useFeedCardVisibility', () => {
+  it('updates row subscribers without re-rendering the list when a store is supplied', () => {
+    const store = createFeedVisibilityStore();
+    const rowChanged = jest.fn();
+    store.subscribe('a', rowChanged);
+    let renders = 0;
+    const { result } = renderHook(() => {
+      renders++;
+      return useFeedCardVisibility(undefined, store);
+    });
+    const initialRenders = renders;
+    act(() => result.current.onViewableItemsChanged(report([[video('a'), 0, true]])));
+    expect(store.isVisible('a')).toBe(true);
+    expect(store.isAutoplay('a')).toBe(true);
+    expect(rowChanged).toHaveBeenCalledTimes(1);
+    expect(renders).toBe(initialRenders);
+    act(() => result.current.onViewableItemsChanged(report([[video('a'), 0, false]])));
+    expect(store.isVisible('a')).toBe(false);
+    expect(store.isAutoplay('a')).toBe(false);
+    expect(renders).toBe(initialRenders);
+  });
   it('reports every viewable row as visible, not just the autoplay one', () => {
     const a = video('a');
     const b = video('b');
