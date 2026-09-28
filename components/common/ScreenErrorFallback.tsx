@@ -6,6 +6,7 @@ import { Ionicons } from "@expo/vector-icons";
 import ErrorBoundary from "../ErrorBoundary";
 import { restartApp } from "../../libs/crashRecovery";
 import { ScreenNames } from "../../navigation/ScreenNames";
+import { useAppTheme } from "../../context/ThemeContext";
 
 /**
  * What a screen shows when it throws, instead of taking the navigator with it.
@@ -93,14 +94,20 @@ interface ScreenErrorBoundaryProps {
 }
 
 /** One boundary per screen, named so the log row says which screen fell over. */
-export const ScreenErrorBoundary: FC<ScreenErrorBoundaryProps> = ({ name, children }) => (
-  <ErrorBoundary
-    scope={`screen:${name}`}
-    renderFallback={(retry) => <ScreenErrorFallback retry={retry} />}
-  >
-    {children}
-  </ErrorBoundary>
-);
+export const ScreenErrorBoundary: FC<ScreenErrorBoundaryProps> = ({ name, children }) => {
+  const { theme } = useAppTheme();
+  return (
+    <ErrorBoundary
+      // Repaint screen content without replacing native navigation route keys.
+      // Root owns the tab navigator; each tab has its own themed boundary.
+      key={name === ScreenNames.Root ? name : `${name}:${theme}`}
+      scope={`screen:${name}`}
+      renderFallback={(retry) => <ScreenErrorFallback retry={retry} />}
+    >
+      {children}
+    </ErrorBoundary>
+  );
+};
 
 /**
  * The `screenLayout` both navigators pass: every screen renders inside its own
