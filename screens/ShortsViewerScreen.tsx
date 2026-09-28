@@ -61,6 +61,7 @@ import { VideoView, useVideoPlayer } from "expo-video";
 import { shortsPhotoMedia } from "../libs/shortsPhotos";
 import { ShortsPhotoPager } from "../components/Post/ShortsPhotoPager";
 import { useSettledVideoSource } from "../hooks/useSettledVideoSource";
+import { useSettledPagerIndex } from "../hooks/useSettledPagerIndex";
 import PictureInPictureButton from "../components/common/PictureInPictureButton";
 import { configureForBackgroundPlayback, releaseBackgroundPlayback } from "../libs/audioSession";
 import { FEED_BUFFER_OPTIONS } from "../libs/videoBuffering";
@@ -2013,9 +2014,10 @@ const ShortsViewerScreen = () => {
     setActiveIndex((i) => Math.max(0, i - 1));
   }, [activeTokenId, navigation]);
 
+  const { begin: beginPaging, endDrag: endPagingDrag, settle: settlePaging, candidate: pagerCandidate } = useSettledPagerIndex(setActiveIndex, containerHeight, items.length);
   const onViewableItemsChanged = useRef(({ viewableItems }: { viewableItems: ViewToken[] }) => {
     if (viewableItems.length > 0 && viewableItems[0].index != null) {
-      setActiveIndex(viewableItems[0].index);
+      pagerCandidate(viewableItems[0].index);
     }
   }).current;
 
@@ -2080,6 +2082,7 @@ const ShortsViewerScreen = () => {
   }, [initialLoading, containerHeight, t]);
 
   const handleScrollEnd = useCallback((e: NativeSyntheticEvent<NativeScrollEvent>) => {
+    settlePaging(e.nativeEvent.contentOffset.y);
     if (!noMoreShorts || !listRef.current || items.length === 0) return;
     // Only snap back if user scrolled past the last real item (into footer)
     const offsetY = e.nativeEvent.contentOffset.y;
@@ -2093,7 +2096,7 @@ const ShortsViewerScreen = () => {
         animated: true,
       });
     }, 1500);
-  }, [noMoreShorts, items.length, containerHeight, t]);
+  }, [noMoreShorts, items.length, containerHeight, t, settlePaging]);
 
   const activeVideoRef = useRef<VideoView>(null);
 
@@ -2150,6 +2153,9 @@ const ShortsViewerScreen = () => {
           onEndReached={loadMore}
           onEndReachedThreshold={0.5}
           onMomentumScrollEnd={handleScrollEnd}
+          onScrollBeginDrag={beginPaging}
+          onMomentumScrollBegin={beginPaging}
+          onScrollEndDrag={(e) => endPagingDrag(e.nativeEvent.contentOffset.y)}
           ListFooterComponent={renderFooter}
           ListEmptyComponent={renderEmpty}
           removeClippedSubviews={false}
