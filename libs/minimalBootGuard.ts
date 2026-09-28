@@ -13,7 +13,12 @@ import { storage } from "./storage";
 const PENDING_KEY = "minimal-boot-pending-v1";
 
 /** True when this launch may start in minimal; false after a minimal launch that never came up. */
-export function claimMinimalLaunch(): boolean {
+export function claimMinimalLaunch(appVisible = false): boolean {
+  // Preferences may resolve after the boot cover has already lifted.
+  if (appVisible) {
+    settleMinimalLaunch();
+    return true;
+  }
   try {
     if (storage.getBoolean(PENDING_KEY)) {
       storage.delete(PENDING_KEY);
