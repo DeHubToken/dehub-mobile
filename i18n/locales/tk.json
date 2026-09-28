@@ -8282,7 +8282,7 @@
     "topUpYouSend": "Sen iberersiň",
     "topUpYouGet": "Sen öz deň-de-sarygyňy sakla",
     "topUpConfirm": "{{amount}}",
-    "topUpRange": "{{min}} to{{max}}",
+    "topUpRange": "{{min}} bilen {{max}} aralygynda giriziň",
     "topUpDone": "{{amount}} abuna tokenleriňize goşuldy",
     "topUpPending": "Seniň üstüň tassyklaýar. Bu tizden siziň deň-de-sarygyňyzda görüner.",
     "topUpFailed": "Subskripsiýa tokenlerini goşup bolmady",

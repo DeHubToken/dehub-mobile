@@ -8283,7 +8283,7 @@
     "topUpYouGet": "Bakiyenize eklendi",
     "topUpConfirm": "{{amount}} ekle",
     "topUpRange": "{{min}} ila {{max}} girin",
-    "topUpDone": "Abonelik jetonlarınıza{{amount}} eklendi",
+    "topUpDone": "Abonelik jetonlarınıza {{amount}} eklendi",
     "topUpPending": "Eklemeniz onaylanıyor. Kısa süre içinde bakiyenizde görünecektir.",
     "topUpFailed": "Abonelik belirteçleri eklenemedi",
     "topUpStageFunding": "Jetonlar alınıyor…",

@@ -8286,7 +8286,7 @@
     "topUpYouSend": "Du sender",
     "topUpYouGet": "Føjet til din saldo",
     "topUpConfirm": "Tilføj {{amount}}",
-    "topUpRange": "Indtast{{min}} til {{max}}",
+    "topUpRange": "Indtast {{min}} til {{max}}",
     "topUpDone": "{{amount}} føjet til dine abonnementstokens",
     "topUpPending": "Din påfyldning bekræftes. Det vil snart fremgå af din saldo.",
     "topUpFailed": "Kunne ikke tilføje abonnementstokens",
