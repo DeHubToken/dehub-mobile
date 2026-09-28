@@ -10,7 +10,7 @@ describe('video gesture wiring', () => {
 
     expect(viewer).toContain('Gesture.Tap()');
     expect(viewer).toContain('.maxDistance(MEDIA_TAP_SLOP_PX)');
-    expect(viewer).toContain('Gesture.Race(hold, tap)');
+    expect(viewer).toContain('Gesture.Race(restorePan, hold, tap)');
     expect(viewer).not.toContain('onPress={handleScreenPress}');
   });
 
