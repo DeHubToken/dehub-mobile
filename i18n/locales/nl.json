@@ -5080,8 +5080,61 @@
         "legend": {
           "name": "Legenda",
           "hint": "Bereik niveau tien."
+        },
+        "ignition": {
+          "name": "Ontsteking",
+          "hint": "Bereik één kwalificerend uur op de zender."
+        },
+        "on-air": {
+          "name": "Op de zender",
+          "hint": "Voltooi tien kwalificerende streams."
+        },
+        "storyteller": {
+          "name": "Verteller",
+          "hint": "Voltooi vijfentwintig kwalificerende streams."
+        },
+        "broadcaster": {
+          "name": "Omroeper",
+          "hint": "Voltooi vijftig kwalificerende streams."
+        },
+        "centurion": {
+          "name": "Eeuweling",
+          "hint": "Voltooi honderd kwalificerende streams."
+        },
+        "enduring": {
+          "name": "Duurzaam",
+          "hint": "Stream vier kwalificerende uren in één sessie."
+        },
+        "circle": {
+          "name": "Binnenkring",
+          "hint": "Heb vijfentwintig mensen tegelijkertijd kijkend."
+        },
+        "arena": {
+          "name": "Arena",
+          "hint": "Heb vijftig mensen tegelijkertijd kijkend."
+        },
+        "headliner": {
+          "name": "Kopstuk",
+          "hint": "Heb honderd mensen tegelijkertijd kijkend."
+        },
+        "cornerstone": {
+          "name": "Hoeksteen",
+          "hint": "Stream gedurende zesentwintig opeenvolgende weken."
+        },
+        "veteran": {
+          "name": "Veteraan",
+          "hint": "Bereik 250 kwalificerende uren op de zender."
+        },
+        "icon": {
+          "name": "Icoon",
+          "hint": "Bereik niveau twintig."
         }
-      }
+      },
+      "chooseBadge": "Kies een ontgrendeld insigne om op je profiel weer te geven.",
+      "useBadge": "Insigne gebruiken",
+      "selectedBadge": "Geselecteerd",
+      "savingBadge": "Insigne opslaan…",
+      "saveBadgeError": "Kon je insigne niet opslaan. Probeer het opnieuw."
     },
     "unmuteMic": "Microfoon dempen opheffen",
     "muteMic": "Microfoon dempen",

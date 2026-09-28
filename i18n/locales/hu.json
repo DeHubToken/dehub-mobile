@@ -4894,8 +4894,61 @@
         "legend": {
           "name": "Jelmagyarázat",
           "hint": "Érd el a tízes szintet."
+        },
+        "ignition": {
+          "name": "Gyújtás",
+          "hint": "Érj el egy minősítő órát adásban."
+        },
+        "on-air": {
+          "name": "Adásban",
+          "hint": "Teljesíts tíz minősítő streamet."
+        },
+        "storyteller": {
+          "name": "Mesélő",
+          "hint": "Teljesíts huszonöt minősítő streamet."
+        },
+        "broadcaster": {
+          "name": "Műsorszóró",
+          "hint": "Teljesíts ötven minősítő streamet."
+        },
+        "centurion": {
+          "name": "Centurio",
+          "hint": "Teljesíts száz minősítő streamet."
+        },
+        "enduring": {
+          "name": "Kitartó",
+          "hint": "Streamelj négy minősítő órát egy menetben."
+        },
+        "circle": {
+          "name": "Belső kör",
+          "hint": "Legyen huszonöt néződ egyszerre."
+        },
+        "arena": {
+          "name": "Aréna",
+          "hint": "Legyen ötven néződ egyszerre."
+        },
+        "headliner": {
+          "name": "Főszereplő",
+          "hint": "Legyen száz néződ egyszerre."
+        },
+        "cornerstone": {
+          "name": "Alapkő",
+          "hint": "Streamelj huszonhat egymást követő héten."
+        },
+        "veteran": {
+          "name": "Veterán",
+          "hint": "Érj el 250 minősítő órát adásban."
+        },
+        "icon": {
+          "name": "Ikon",
+          "hint": "Érj el huszadik szintet."
         }
-      }
+      },
+      "chooseBadge": "Válassz bármilyen feloldott kitűzőt, hogy megjelenjen a profilodon.",
+      "useBadge": "Kitűző használata",
+      "selectedBadge": "Kiválasztva",
+      "savingBadge": "Mentés folyamatban…",
+      "saveBadgeError": "Nem sikerült elmenteni a kitűzőt. Kérlek, próbáld újra."
     },
     "unmuteMic": "Mikrofon némításának feloldása",
     "muteMic": "Mikrofon elnémítása",

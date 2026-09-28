@@ -4890,8 +4890,61 @@
         "legend": {
           "name": "Alama",
           "hint": "Samu matsayi na goma."
+        },
+        "ignition": {
+          "name": "Wurin kunna injin",
+          "hint": "A kai awa ɗaya mai cancanta a iska."
+        },
+        "on-air": {
+          "name": "A iska",
+          "hint": "Ƙare rafin da suka cancanta guda goma."
+        },
+        "storyteller": {
+          "name": "Mai ba da labari",
+          "hint": "Ƙare rafin da suka cancanta ashirin da biyar."
+        },
+        "broadcaster": {
+          "name": "Mai watsa shirye-shirye",
+          "hint": "Ƙare rafin da suka cancanta hamsin."
+        },
+        "centurion": {
+          "name": "Mai karni",
+          "hint": "Ƙare rafin da suka cancanta ɗari."
+        },
+        "enduring": {
+          "name": "Mai dawwama",
+          "hint": "Yi watsa shirye-shirye na awanni huɗu masu cancanta a zama ɗaya."
+        },
+        "circle": {
+          "name": "Cikakken da'ira",
+          "hint": "Samun mutane ashirin da biyar suna kallo a lokaci ɗaya."
+        },
+        "arena": {
+          "name": "Filin wasa",
+          "hint": "Samun mutane hamsin suna kallo a lokaci ɗaya."
+        },
+        "headliner": {
+          "name": "Babban tauraro",
+          "hint": "Samun mutane ɗari suna kallo a lokaci ɗaya."
+        },
+        "cornerstone": {
+          "name": "Tushen gini",
+          "hint": "Yi watsa shirye-shirye na makonni ashirin da shida a jere."
+        },
+        "veteran": {
+          "name": "Tsohon soja",
+          "hint": "Kai awanni 250 masu cancanta a iska."
+        },
+        "icon": {
+          "name": "Siffa",
+          "hint": "Kai matsayi na ashirin."
         }
-      }
+      },
+      "chooseBadge": "Zaɓi kowane alamar da aka buɗe don nuna akan bayanan ku.",
+      "useBadge": "Yi amfani da alamar",
+      "selectedBadge": "An zaɓa",
+      "savingBadge": "Ana adana alamar…",
+      "saveBadgeError": "An kasa adana alamar ku. Da fatan za a sake gwadawa."
     },
     "unmuteMic": "Unmute makirufo",
     "muteMic": "Mute makirufo",

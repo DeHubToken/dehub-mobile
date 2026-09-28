@@ -4890,8 +4890,61 @@
         "legend": {
           "name": "Legend",
           "hint": "Saavuta kümnes tase."
+        },
+        "ignition": {
+          "name": "Süüde",
+          "hint": "Saavuta eetris üks kvalifitseeruv tund."
+        },
+        "on-air": {
+          "name": "Eetris",
+          "hint": "Lõpeta kümme kvalifitseeruvat striimi."
+        },
+        "storyteller": {
+          "name": "Jutustaja",
+          "hint": "Lõpeta kakskümmend viis kvalifitseeruvat striimi."
+        },
+        "broadcaster": {
+          "name": "Saatejuht",
+          "hint": "Lõpeta viiskümmend kvalifitseeruvat striimi."
+        },
+        "centurion": {
+          "name": "Sajamees",
+          "hint": "Lõpeta sada kvalifitseeruvat striimi."
+        },
+        "enduring": {
+          "name": "Vastupidav",
+          "hint": "Striimi neli kvalifitseeruvat tundi ühes sessioonis."
+        },
+        "circle": {
+          "name": "Siseklubi",
+          "hint": "Saa korraga vaatama kakskümmend viis inimest."
+        },
+        "arena": {
+          "name": "Areena",
+          "hint": "Saa korraga vaatama viiskümmend inimest."
+        },
+        "headliner": {
+          "name": "Peaesineja",
+          "hint": "Saa korraga vaatama sada inimest."
+        },
+        "cornerstone": {
+          "name": "Nurgakivi",
+          "hint": "Striimi kakskümmend kuus nädalat järjest."
+        },
+        "veteran": {
+          "name": "Vigane",
+          "hint": "Saavuta eetris 250 kvalifitseeruvat tundi."
+        },
+        "icon": {
+          "name": "Ikoon",
+          "hint": "Saavuta kahekümnes tase."
         }
-      }
+      },
+      "chooseBadge": "Vali oma profiilil kuvamiseks mis tahes avatud märk.",
+      "useBadge": "Märgi kasutamine",
+      "selectedBadge": "Valitud",
+      "savingBadge": "Märgi salvestamine…",
+      "saveBadgeError": "Märki ei õnnestunud salvestada. Palun proovi uuesti."
     },
     "unmuteMic": "Tühista mikrofoni vaigistus",
     "muteMic": "Vaigista mikrofon",

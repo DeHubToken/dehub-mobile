@@ -4890,8 +4890,61 @@
         "legend": {
           "name": "Legjenda",
           "hint": "Arrijeni nivelin dhjetë."
+        },
+        "ignition": {
+          "name": "Ndizja",
+          "hint": "Arrij një orë kualifikuese në transmetim."
+        },
+        "on-air": {
+          "name": "Në transmetim",
+          "hint": "Mbaro dhjetë transmetime kualifikuese."
+        },
+        "storyteller": {
+          "name": "Tregimtar",
+          "hint": "Mbaro njëzet e pesë transmetime kualifikuese."
+        },
+        "broadcaster": {
+          "name": "Transmetues",
+          "hint": "Mbaro pesëdhjetë transmetime kualifikuese."
+        },
+        "centurion": {
+          "name": "Centurion",
+          "hint": "Mbaro njëqind transmetime kualifikuese."
+        },
+        "enduring": {
+          "name": "I qëndrueshëm",
+          "hint": "Transmeto për katër orë kualifikuese në një sesion."
+        },
+        "circle": {
+          "name": "Rrethi i brendshëm",
+          "hint": "Keni njëzet e pesë persona që shikojnë në të njëjtën kohë."
+        },
+        "arena": {
+          "name": "Arenë",
+          "hint": "Keni pesëdhjetë persona që shikojnë në të njëjtën kohë."
+        },
+        "headliner": {
+          "name": "Ylli kryesor",
+          "hint": "Keni njëqind persona që shikojnë në të njëjtën kohë."
+        },
+        "cornerstone": {
+          "name": "Gurthemeli",
+          "hint": "Transmeto për njëzet e gjashtë javë radhazi."
+        },
+        "veteran": {
+          "name": "Veteran",
+          "hint": "Arrij 250 orë kualifikuese në transmetim."
+        },
+        "icon": {
+          "name": "Ikonë",
+          "hint": "Arrij nivelin njëzet."
         }
-      }
+      },
+      "chooseBadge": "Zgjidh çdo shenjë të zhbllokuar për ta shfaqur në profilin tënd.",
+      "useBadge": "Përdor shenjën",
+      "selectedBadge": "Zgjedhur",
+      "savingBadge": "Ruajtja e shenjës…",
+      "saveBadgeError": "Nuk u ruajt shenja jote. Ju lutemi provoni përsëri."
     },
     "unmuteMic": "Mikrofoni i çaktivizuar",
     "muteMic": "Mikrofoni pa zë",

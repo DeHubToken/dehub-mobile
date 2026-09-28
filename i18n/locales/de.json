@@ -4939,8 +4939,61 @@
         "legend": {
           "name": "Legende",
           "hint": "Erreiche Stufe zehn."
+        },
+        "ignition": {
+          "name": "Zündung",
+          "hint": "Erreiche eine qualifizierende Stunde auf Sendung."
+        },
+        "on-air": {
+          "name": "Auf Sendung",
+          "hint": "Schließe zehn qualifizierende Streams ab."
+        },
+        "storyteller": {
+          "name": "Geschichtenerzähler",
+          "hint": "Schließe fünfundzwanzig qualifizierende Streams ab."
+        },
+        "broadcaster": {
+          "name": "Sender",
+          "hint": "Schließe fünfzig qualifizierende Streams ab."
+        },
+        "centurion": {
+          "name": "Zenturio",
+          "hint": "Schließe hundert qualifizierende Streams ab."
+        },
+        "enduring": {
+          "name": "Ausdauernd",
+          "hint": "Streame vier qualifizierende Stunden in einer Sitzung."
+        },
+        "circle": {
+          "name": "Innerer Kreis",
+          "hint": "Habe gleichzeitig fünfundzwanzig Zuschauer."
+        },
+        "arena": {
+          "name": "Arena",
+          "hint": "Habe gleichzeitig fünfzig Zuschauer."
+        },
+        "headliner": {
+          "name": "Hauptredner",
+          "hint": "Habe gleichzeitig hundert Zuschauer."
+        },
+        "cornerstone": {
+          "name": "Eckpfeiler",
+          "hint": "Streame in sechsundzwanzig aufeinanderfolgenden Wochen."
+        },
+        "veteran": {
+          "name": "Veteran",
+          "hint": "Erreiche 250 qualifizierende Stunden auf Sendung."
+        },
+        "icon": {
+          "name": "Ikone",
+          "hint": "Erreiche Level zwanzig."
         }
-      }
+      },
+      "chooseBadge": "Wähle ein beliebiges freigeschaltetes Abzeichen aus, um es auf deinem Profil anzuzeigen.",
+      "useBadge": "Abzeichen verwenden",
+      "selectedBadge": "Ausgewählt",
+      "savingBadge": "Abzeichen wird gespeichert…",
+      "saveBadgeError": "Dein Abzeichen konnte nicht gespeichert werden. Bitte versuche es erneut."
     },
     "unmuteMic": "Mikrofon stumm schalten",
     "muteMic": "Mikrofon stummschalten",

@@ -4890,8 +4890,61 @@
         "legend": {
           "name": "Əfsanə",
           "hint": "On səviyyəyə çatın."
+        },
+        "ignition": {
+          "name": "Alovlanma",
+          "hint": "Hava üzərində bir uyğun saatı tamamla."
+        },
+        "on-air": {
+          "name": "Efirdə",
+          "hint": "Onu uyğun 10 yayını tamamla."
+        },
+        "storyteller": {
+          "name": "Hekayəçi",
+          "hint": "Onu uyğun 25 yayını tamamla."
+        },
+        "broadcaster": {
+          "name": "Yayımçı",
+          "hint": "Onu uyğun 50 yayını tamamla."
+        },
+        "centurion": {
+          "name": "Yüzbaşı",
+          "hint": "Onu uyğun 100 yayını tamamla."
+        },
+        "enduring": {
+          "name": "Dözümlü",
+          "hint": "Bir sessiyada dörd uyğun saatı yay."
+        },
+        "circle": {
+          "name": "Yaxın dairə",
+          "hint": "Bir anda 25 nəfəri izləyici edin."
+        },
+        "arena": {
+          "name": "Arena",
+          "hint": "Bir anda 50 nəfəri izləyici edin."
+        },
+        "headliner": {
+          "name": "Baş ulduz",
+          "hint": "Bir anda 100 nəfəri izləyici edin."
+        },
+        "cornerstone": {
+          "name": "Təməl daşı",
+          "hint": "İki onaltı ardıcıl həftə boyunca yay."
+        },
+        "veteran": {
+          "name": "Veteran",
+          "hint": "Hava üzərində 250 uyğun saatı tamamla."
+        },
+        "icon": {
+          "name": "İkon",
+          "hint": "20-ci səviyyəyə çat."
         }
-      }
+      },
+      "chooseBadge": "Profilinizdə göstərmək üçün açıq olan hər hansı bir nişanı seçin.",
+      "useBadge": "Nişanı istifadə et",
+      "selectedBadge": "Seçilib",
+      "savingBadge": "Nişan saxlanılır…",
+      "saveBadgeError": "Nişanınızı saxlamaq mümkün olmadı. Yenidən cəhd edin."
     },
     "unmuteMic": "Mikrofonu səssizləşdirin",
     "muteMic": "Səssiz mikrofon",

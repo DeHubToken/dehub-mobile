@@ -4923,8 +4923,61 @@
         "legend": {
           "name": "Legende",
           "hint": "Bereik Level 10."
+        },
+        "ignition": {
+          "name": "Ignis",
+          "hint": "Bereik een kwalifiserende uur op die skerm."
+        },
+        "on-air": {
+          "name": "Op die skerm",
+          "hint": "Voltooi tien kwalifiserende streams."
+        },
+        "storyteller": {
+          "name": "Verhaalverteller",
+          "hint": "Voltooi vyf-en-twintig kwalifiserende streams."
+        },
+        "broadcaster": {
+          "name": "Uitsender",
+          "hint": "Voltooi vyftig kwalifiserende streams."
+        },
+        "centurion": {
+          "name": "Honderdtal",
+          "hint": "Voltooi honderd kwalifiserende streams."
+        },
+        "enduring": {
+          "name": "Duurzaamheid",
+          "hint": "Stream vir vier kwalifiserende ure in een sessie."
+        },
+        "circle": {
+          "name": "Binnekring",
+          "hint": "Het vyf-en-twintig mense wat terselfdertyd kyk."
+        },
+        "arena": {
+          "name": "Arena",
+          "hint": "Het vyftig mense wat terselfdertyd kyk."
+        },
+        "headliner": {
+          "name": "Hoofster",
+          "hint": "Het honderd mense wat terselfdertyd kyk."
+        },
+        "cornerstone": {
+          "name": "Hoeksteen",
+          "hint": "Stream in vyse-en-tyd opeenvolgende woeke."
+        },
+        "veteran": {
+          "name": "Veteraan",
+          "hint": "Bereik 250 kwalifiserende ure op die skerm."
+        },
+        "icon": {
+          "name": "Ikoon",
+          "hint": "Bereik vlak twintig."
         }
-      }
+      },
+      "chooseBadge": "Kies enige ontgrendelde badge om op jou profiel te vertoon.",
+      "useBadge": "Gebruik badge",
+      "selectedBadge": "Gekozen",
+      "savingBadge": "Stoor badge…",
+      "saveBadgeError": "Kon nie jou badge stoor nie. Probeer asseblief weer."
     },
     "unmuteMic": "Ontkoppel mikrofoon",
     "muteMic": "Doof mikrofoon",

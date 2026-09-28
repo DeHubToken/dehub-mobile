@@ -4890,8 +4890,61 @@
         "legend": {
           "name": "Legenda",
           "hint": "Nganti tingkat sepuluh."
+        },
+        "ignition": {
+          "name": "Panyala",
+          "hint": "Entuk siji jam siaran sing mumpuni."
+        },
+        "on-air": {
+          "name": "Siaran",
+          "hint": "Rampungake sepuluh siaran sing mumpuni."
+        },
+        "storyteller": {
+          "name": "Pencerita",
+          "hint": "Rampungake rong puluh lima siaran sing mumpuni."
+        },
+        "broadcaster": {
+          "name": "Penyiar",
+          "hint": "Rampungake seket siaran sing mumpuni."
+        },
+        "centurion": {
+          "name": "Centurion",
+          "hint": "Rampungake satus siaran sing mumpuni."
+        },
+        "enduring": {
+          "name": "Tahan",
+          "hint": "Siaran suwene patang jam sing mumpuni ing siji sesi."
+        },
+        "circle": {
+          "name": "Lingkaran njero",
+          "hint": "Ana wong rong puluh lima sing nonton bebarengan."
+        },
+        "arena": {
+          "name": "Arena",
+          "hint": "Ana wong seket sing nonton bebarengan."
+        },
+        "headliner": {
+          "name": "Bintang utama",
+          "hint": "Ana wong satus sing nonton bebarengan."
+        },
+        "cornerstone": {
+          "name": "Watu penjuru",
+          "hint": "Siaran ing rong puluh enem minggu saur-saure."
+        },
+        "veteran": {
+          "name": "Veteran",
+          "hint": "Entuk 250 jam siaran sing mumpuni."
+        },
+        "icon": {
+          "name": "Ikon",
+          "hint": "Entuk level rong puluh."
         }
-      }
+      },
+      "chooseBadge": "Pilih lencana apa wae sing wis kebuka kanggo ditampilake ing profil sampeyan.",
+      "useBadge": "Gunakake lencana",
+      "selectedBadge": "Dipilih",
+      "savingBadge": "Nyimpen lencana…",
+      "saveBadgeError": "Gagal nyimpen lencana sampeyan. Coba maneh."
     },
     "unmuteMic": "Mateni mikropon",
     "muteMic": "Uripake mikropon",

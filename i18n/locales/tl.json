@@ -4937,8 +4937,61 @@
         "legend": {
           "name": "Alamat",
           "hint": "Abutin ang level ten."
+        },
+        "ignition": {
+          "name": "Pagsiklab",
+          "hint": "Makamit ang isang kwalipikadong oras sa air."
+        },
+        "on-air": {
+          "name": "Nasa ere",
+          "hint": "Tapusin ang sampung kwalipikadong stream."
+        },
+        "storyteller": {
+          "name": "Mananalaysay",
+          "hint": "Tapusin ang dalawampu't limang kwalipikadong stream."
+        },
+        "broadcaster": {
+          "name": "Brodkaster",
+          "hint": "Tapusin ang limampung kwalipikadong stream."
+        },
+        "centurion": {
+          "name": "Senturyon",
+          "hint": "Tapusin ang isang daang kwalipikadong stream."
+        },
+        "enduring": {
+          "name": "Matatag",
+          "hint": "Mag-stream ng apat na kwalipikadong oras sa isang session."
+        },
+        "circle": {
+          "name": "Malapit na bilog",
+          "hint": "May dalawampu't limang tao na nanonood nang sabay-sabay."
+        },
+        "arena": {
+          "name": "Arena",
+          "hint": "May limampung tao na nanonood nang sabay-sabay."
+        },
+        "headliner": {
+          "name": "Pangunahing bituin",
+          "hint": "May isang daang tao na nanonood nang sabay-sabay."
+        },
+        "cornerstone": {
+          "name": "Batong panulok",
+          "hint": "Mag-stream sa dalawampu't anim na magkakasunod na linggo."
+        },
+        "veteran": {
+          "name": "Beterano",
+          "hint": "Makamit ang 250 kwalipikadong oras sa air."
+        },
+        "icon": {
+          "name": "Ikono",
+          "hint": "Makamit ang antas dalawampu."
         }
-      }
+      },
+      "chooseBadge": "Pumili ng anumang nakabukas na badge upang ipakita sa iyong profile.",
+      "useBadge": "Gamitin ang badge",
+      "selectedBadge": "Napili",
+      "savingBadge": "Sine-save ang badge…",
+      "saveBadgeError": "Hindi na-save ang iyong badge. Pakisubukang muli."
     },
     "unmuteMic": "I - unmute ang mikropono",
     "muteMic": "I - mute ang mikropono",
