@@ -457,7 +457,7 @@ export default function EmojiSheet({ visible, onClose, onSelect, selected }: Emo
           />
         )}
 
-        {preview && previewChar && (
+        {!adding && preview && previewChar && (
           <View pointerEvents="none" style={styles.previewWrap}>
             <View style={styles.preview}>
               {previewAnimated ? (
