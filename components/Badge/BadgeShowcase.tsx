@@ -7,7 +7,7 @@
  * dehubweb `src/components/app/badge-showcase/BadgeShowcase.tsx`.
  */
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { Image, Text, View, useWindowDimensions } from "react-native";
+import { Image, Pressable, Text, View, useWindowDimensions } from "react-native";
 import Animated, { FadeInDown, FadeOutUp } from "react-native-reanimated";
 import Slider from "@react-native-community/slider";
 import { useTranslation } from "react-i18next";
@@ -15,7 +15,7 @@ import Icon, { type IconName } from "../ui/Icon";
 import { DhbCoin } from "../common/DhbCoin";
 import ShowcaseShell, { type ShowcaseApi, type ShowcaseEntry } from "./ShowcaseShell";
 import type { StickerArt } from "./BadgeSticker";
-import { Chrome, tiltAt, tileWidthFor, ui } from "./showcaseUi";
+import { tiltAt, tileWidthFor, ui } from "./showcaseUi";
 import { useUser } from "../../context/AuthContext";
 import { useBadgeLadderPrice, useBadgeScale } from "../../hooks/useBadgeScale";
 import {
@@ -314,16 +314,24 @@ function HolderDetails({
       </View>
 
       <View style={ui.actions}>
-        <Chrome style={ui.button} onPress={() => goToScreen(ScreenNames.Dpay, { initialTab: "buy" })}>
-          <Text style={ui.chromeText} numberOfLines={1}>
+        <Pressable
+          accessibilityRole="button"
+          style={({ pressed }) => [ui.button, ui.glassPrimary, pressed && { opacity: 0.8 }]}
+          onPress={() => goToScreen(ScreenNames.Dpay, { initialTab: "buy" })}
+        >
+          <Text style={ui.glassPrimaryText} numberOfLines={1}>
             {t("badgeShowcase.buyTokens")}
           </Text>
-        </Chrome>
-        <Chrome dark style={ui.button} onPress={() => goToScreen(ScreenNames.Glossary)}>
-          <Text style={ui.chromeTextDark} numberOfLines={1}>
+        </Pressable>
+        <Pressable
+          accessibilityRole="button"
+          style={({ pressed }) => [ui.button, ui.glass, pressed && { opacity: 0.8 }]}
+          onPress={() => goToScreen(ScreenNames.Glossary)}
+        >
+          <Text style={ui.glassText} numberOfLines={1}>
             {t("badgeShowcase.details")}
           </Text>
-        </Chrome>
+        </Pressable>
       </View>
     </>
   );

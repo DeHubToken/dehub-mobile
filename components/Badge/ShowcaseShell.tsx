@@ -473,6 +473,9 @@ const styles = StyleSheet.create({
     marginHorizontal: 16,
     marginTop: 8,
     padding: 5,
+    // The 20px corners curve into the round play button at 5px, so the
+    // right side gets more room than the rest.
+    paddingRight: 10,
     borderRadius: 20,
     backgroundColor: "rgba(255,255,255,0.08)",
     borderWidth: StyleSheet.hairlineWidth,
