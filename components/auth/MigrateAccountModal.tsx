@@ -34,7 +34,7 @@ const MigrateAccountModal: React.FC<MigrateAccountModalProps> = memo(({ visible,
   }, [onClose]);
 
   return (
-    <GlassModal visible={visible} onClose={handleCancel} presentation="center" blurIntensity={50}>
+    <GlassModal visible={visible} onClose={handleCancel} presentation="center" blurIntensity={50} scrollable>
       <View style={styles.sheet}>
         <Text style={authText.modalTitle}>{t("auth.migrateAccount")}</Text>
         <Text style={[authText.body, { marginTop: 12 }]}>{t("auth.migrateAccountBody")}</Text>

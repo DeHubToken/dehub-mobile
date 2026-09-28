@@ -74,6 +74,9 @@ jobs:
       - name: TypeScript check
         run: npx tsc --noEmit
 
+      - name: Wallet picker patch regression checks
+        run: node --test scripts/wallet-picker.test.cjs
+
       # Thresholds are enforced by coverageThreshold in jest.config.js, so a
       # coverage regression fails this step directly.
       - name: Run tests with coverage

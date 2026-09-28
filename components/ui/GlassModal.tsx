@@ -116,7 +116,7 @@ const GlassModal: React.FC<GlassModalProps> = ({
   // keys.
   const [keyboardUp, setKeyboardUp] = useState(false);
   useEffect(() => {
-    if (!isBottom) return;
+    if (!isBottom && !scrollable) return;
     const showEvent = Platform.OS === "ios" ? "keyboardWillShow" : "keyboardDidShow";
     const hideEvent = Platform.OS === "ios" ? "keyboardWillHide" : "keyboardDidHide";
     const show = Keyboard.addListener(showEvent, () => {
@@ -128,7 +128,7 @@ const GlassModal: React.FC<GlassModalProps> = ({
       show.remove();
       hide.remove();
     };
-  }, [isBottom]);
+  }, [isBottom, scrollable]);
 
   return (
     <Modal
@@ -146,6 +146,7 @@ const GlassModal: React.FC<GlassModalProps> = ({
       // bar AND paid the inset again as padding, which is the double gap that
       // left a strip of the feed showing under it.
       statusBarTranslucent
+      navigationBarTranslucent
     >
       {/* The insets are spent on the foreground, never on this container, so
           the dim (and the blur) reach the status bar and the gesture bar

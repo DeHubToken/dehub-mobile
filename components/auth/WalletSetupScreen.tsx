@@ -900,9 +900,9 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
         dismissible={!busy}
       >
         <ScrollView
-          className="px-6 pt-6 pb-8"
+          style={{ flexShrink: 1 }}
           keyboardShouldPersistTaps="handled"
-          contentContainerStyle={{ flexGrow: 1 }}
+          contentContainerStyle={{ paddingHorizontal: 24, paddingTop: 24, paddingBottom: 32 }}
         >
           <Text style={[authText.title, { marginBottom: 8 }]}>{title}</Text>
 
