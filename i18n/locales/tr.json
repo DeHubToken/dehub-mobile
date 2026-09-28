@@ -8483,5 +8483,36 @@
       "emptyTitle": "Henüz listelenen uygulama yok",
       "emptyBody": "İlk uygulamalar inceleniyor. Bir tane inşa edersen burada olabilir."
     }
+  },
+  "aiStyles": {
+    "normal": "Normal",
+    "old-english": "Eski İngilizce",
+    "cockney": "Cockney",
+    "celtic": "Kelt",
+    "scouse": "Scouse",
+    "wild-west": "Vahşi Batı",
+    "asian-uncle": "Asyalı Amca",
+    "russian-mafia": "Rus Mafyası",
+    "pirate": "Korsan",
+    "alien": "Uzaylı",
+    "e-girl": "E-Girl",
+    "chad": "Chad",
+    "hopeless-romantic": "Umutsuz Romantik",
+    "daddy": "Baba",
+    "mommy": "Anne",
+    "big-brother": "Abi",
+    "lil-bro": "Küçük Kardeş",
+    "big-sister": "Abla",
+    "little-sister": "Kız Kardeş",
+    "conservative": "Muhafazakâr",
+    "liberal": "Liberal",
+    "antifa": "ANTİFA",
+    "capitalist": "Kapitalist",
+    "socialist": "Sosyalist",
+    "neocon": "Neocon",
+    "feminist": "Feminist",
+    "progressive": "İlerici",
+    "nationalist": "Milliyetçi",
+    "communist": "Komünist"
   }
 }

@@ -8514,5 +8514,36 @@
       "emptyTitle": "Awekho ama-app afakiwe okwamanje",
       "emptyBody": "Ama-app okuqala ayahlolwa. Yakha eyodwa futhi kungaba lapha."
     }
+  },
+  "aiStyles": {
+    "normal": "Okujwayelekile",
+    "old-english": "IsiNgisi Sakudala",
+    "cockney": "Cockney",
+    "celtic": "IsiCeltic",
+    "scouse": "Scouse",
+    "wild-west": "INtshonalanga Yasendle",
+    "asian-uncle": "Umalume wase-Asia",
+    "russian-mafia": "IMafia yaseRussia",
+    "pirate": "Ipirate",
+    "alien": "Isidalwa sasemkhathini",
+    "e-girl": "E-Girl",
+    "chad": "Chad",
+    "hopeless-romantic": "Othandweni Ongenathemba",
+    "daddy": "Baba",
+    "mommy": "Mama",
+    "big-brother": "Ubhuti Omdala",
+    "lil-bro": "Ubhuti Omncane",
+    "big-sister": "Usisi Omdala",
+    "little-sister": "Usisi Omncane",
+    "conservative": "Olondolozayo",
+    "liberal": "Okhululekile",
+    "antifa": "ANTIFA",
+    "capitalist": "Ongxowankulu",
+    "socialist": "Onobuzwe bomphakathi",
+    "neocon": "Neocon",
+    "feminist": "Umlweli wamalungelo abesifazane",
+    "progressive": "Oqhubekela phambili",
+    "nationalist": "Owobuzwe",
+    "communist": "UmKhomanisi"
   }
 }

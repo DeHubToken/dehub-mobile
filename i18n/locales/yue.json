@@ -8482,5 +8482,36 @@
       "emptyTitle": "仲未列出任何應用程式",
       "emptyBody": "🚀 咁多個應用程式正在審核中。你造一個，就可能出現囉！"
     }
+  },
+  "aiStyles": {
+    "normal": "普通",
+    "old-english": "古英文",
+    "cockney": "倫敦腔",
+    "celtic": "凱爾特",
+    "scouse": "利物浦腔",
+    "wild-west": "狂野西部",
+    "asian-uncle": "亞洲阿叔",
+    "russian-mafia": "俄羅斯黑手黨",
+    "pirate": "海盜",
+    "alien": "外星人",
+    "e-girl": "E-Girl",
+    "chad": "型男",
+    "hopeless-romantic": "無可救藥嘅浪漫派",
+    "daddy": "老豆",
+    "mommy": "阿媽",
+    "big-brother": "大佬",
+    "lil-bro": "細佬",
+    "big-sister": "家姐",
+    "little-sister": "細妹",
+    "conservative": "保守派",
+    "liberal": "自由派",
+    "antifa": "反法西斯",
+    "capitalist": "資本家",
+    "socialist": "社會主義者",
+    "neocon": "新保守派",
+    "feminist": "女權主義者",
+    "progressive": "進步派",
+    "nationalist": "民族主義者",
+    "communist": "共產主義者"
   }
 }

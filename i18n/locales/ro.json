@@ -8497,5 +8497,36 @@
       "emptyTitle": "Nicio aplicație listată încă",
       "emptyBody": "Primele aplicații sunt în curs de examinare. Construiește una și ar putea fi aici."
     }
+  },
+  "aiStyles": {
+    "normal": "Normal",
+    "old-english": "Engleză veche",
+    "cockney": "Cockney",
+    "celtic": "Celtic",
+    "scouse": "Scouse",
+    "wild-west": "Vestul Sălbatic",
+    "asian-uncle": "Unchiul asiatic",
+    "russian-mafia": "Mafia rusească",
+    "pirate": "Pirat",
+    "alien": "Extraterestru",
+    "e-girl": "E-Girl",
+    "chad": "Chad",
+    "hopeless-romantic": "Romantic incurabil",
+    "daddy": "Tati",
+    "mommy": "Mami",
+    "big-brother": "Frate mai mare",
+    "lil-bro": "Frățior",
+    "big-sister": "Soră mai mare",
+    "little-sister": "Surioară",
+    "conservative": "Conservator",
+    "liberal": "Liberal",
+    "antifa": "ANTIFA",
+    "capitalist": "Capitalist",
+    "socialist": "Socialist",
+    "neocon": "Neocon",
+    "feminist": "Feministă",
+    "progressive": "Progresist",
+    "nationalist": "Naționalist",
+    "communist": "Comunist"
   }
 }

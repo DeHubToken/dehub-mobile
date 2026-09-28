@@ -8513,5 +8513,36 @@
       "emptyTitle": "Δεν υπάρχουν ακόμα καταχωρημένες εφαρμογές",
       "emptyBody": "Οι πρώτες εφαρμογές είναι υπό έλεγχο. Φτιάξτε ένα και θα μπορούσε να είναι εδώ."
     }
+  },
+  "aiStyles": {
+    "normal": "Κανονικό",
+    "old-english": "Παλαιά Αγγλικά",
+    "cockney": "Κόκνεϊ",
+    "celtic": "Κελτικό",
+    "scouse": "Σκάουζ",
+    "wild-west": "Άγρια Δύση",
+    "asian-uncle": "Ασιάτης θείος",
+    "russian-mafia": "Ρωσική μαφία",
+    "pirate": "Πειρατής",
+    "alien": "Εξωγήινος",
+    "e-girl": "E-Girl",
+    "chad": "Chad",
+    "hopeless-romantic": "Απελπιστικά ρομαντικός",
+    "daddy": "Μπαμπάς",
+    "mommy": "Μαμά",
+    "big-brother": "Μεγάλος αδερφός",
+    "lil-bro": "Μικρός αδερφός",
+    "big-sister": "Μεγάλη αδερφή",
+    "little-sister": "Μικρή αδερφή",
+    "conservative": "Συντηρητικός",
+    "liberal": "Φιλελεύθερος",
+    "antifa": "ANTIFA",
+    "capitalist": "Καπιταλιστής",
+    "socialist": "Σοσιαλιστής",
+    "neocon": "Νεοσυντηρητικός",
+    "feminist": "Φεμινίστρια",
+    "progressive": "Προοδευτικός",
+    "nationalist": "Εθνικιστής",
+    "communist": "Κομμουνιστής"
   }
 }

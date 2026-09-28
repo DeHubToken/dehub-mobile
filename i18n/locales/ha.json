@@ -8483,5 +8483,36 @@
       "emptyTitle": "Babu apps da aka jera tukuna",
       "emptyBody": "Aikace-aikacen farko suna cikin bita. Gina daya kuma zai iya zama a nan."
     }
+  },
+  "aiStyles": {
+    "normal": "Na al'ada",
+    "old-english": "Tsohon Turanci",
+    "cockney": "Cockney",
+    "celtic": "Celtic",
+    "scouse": "Scouse",
+    "wild-west": "Yamma Mai Hatsari",
+    "asian-uncle": "Kawun Asiya",
+    "russian-mafia": "Mafiyar Rasha",
+    "pirate": "Ɗan fashin teku",
+    "alien": "Baƙon duniya",
+    "e-girl": "E-Girl",
+    "chad": "Chad",
+    "hopeless-romantic": "Mai soyayya marar bege",
+    "daddy": "Baba",
+    "mommy": "Mama",
+    "big-brother": "Babban yaya",
+    "lil-bro": "Ƙanin",
+    "big-sister": "Babbar yaya",
+    "little-sister": "Ƙanwa",
+    "conservative": "Mai ra'ayin mazan jiya",
+    "liberal": "Mai sassaucin ra'ayi",
+    "antifa": "ANTIFA",
+    "capitalist": "Ɗan jari-hujja",
+    "socialist": "Ɗan gurguzu",
+    "neocon": "Neocon",
+    "feminist": "Mai fafutukar mata",
+    "progressive": "Mai ci gaba",
+    "nationalist": "Mai kishin ƙasa",
+    "communist": "Ɗan kwaminisanci"
   }
 }

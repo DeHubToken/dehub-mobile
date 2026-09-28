@@ -8481,5 +8481,36 @@
       "emptyTitle": "ຍັງບໍ່ມີແອັບພລິເຄຊັນທີ່ລະບຸໄວ້",
       "emptyBody": "ແອັບພລິເຄຊັນ ທໍາ ອິດແມ່ນຢູ່ໃນການທົບທວນຄືນ. ສ້າງຫນຶ່ງແລະມັນສາມາດມີຢູ່ໃນນີ້."
     }
+  },
+  "aiStyles": {
+    "normal": "ປົກກະຕິ",
+    "old-english": "ອັງກິດບູຮານ",
+    "cockney": "ຄັອກນີ",
+    "celtic": "ເຊວຕິກ",
+    "scouse": "ສະກາວສ໌",
+    "wild-west": "ຕາເວັນຕົກປ່າເຖື່ອນ",
+    "asian-uncle": "ລຸງຊາວອາຊີ",
+    "russian-mafia": "ມາເຟຍຣັດເຊຍ",
+    "pirate": "ໂຈນສະຫຼັດ",
+    "alien": "ມະນຸດຕ່າງດາວ",
+    "e-girl": "ອີ-ເກີລ",
+    "chad": "ແຊດ",
+    "hopeless-romantic": "ຄົນໂຣແມນຕິກສິ້ນຫວັງ",
+    "daddy": "ພໍ່",
+    "mommy": "ແມ່",
+    "big-brother": "ອ້າຍ",
+    "lil-bro": "ນ້ອງຊາຍ",
+    "big-sister": "ເອື້ອຍ",
+    "little-sister": "ນ້ອງສາວ",
+    "conservative": "ອະນຸລັກນິຍົມ",
+    "liberal": "ເສລີນິຍົມ",
+    "antifa": "ແອນຕີຟາ",
+    "capitalist": "ນາຍທຶນ",
+    "socialist": "ສັງຄົມນິຍົມ",
+    "neocon": "ນີໂອຄອນ",
+    "feminist": "ສະຕີນິຍົມ",
+    "progressive": "ກ້າວໜ້າ",
+    "nationalist": "ຊາດນິຍົມ",
+    "communist": "ຄອມມິວນິດ"
   }
 }

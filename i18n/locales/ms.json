@@ -8743,5 +8743,36 @@
       "emptyTitle": "Belum ada aplikasi yang disenaraikan",
       "emptyBody": "Aplikasi pertama sedang disemak. Bina satu dan ia boleh berada di sini."
     }
+  },
+  "aiStyles": {
+    "normal": "Biasa",
+    "old-english": "Inggeris Kuno",
+    "cockney": "Cockney",
+    "celtic": "Celtic",
+    "scouse": "Scouse",
+    "wild-west": "Barat Liar",
+    "asian-uncle": "Pakcik Asia",
+    "russian-mafia": "Mafia Rusia",
+    "pirate": "Lanun",
+    "alien": "Makhluk Asing",
+    "e-girl": "E-Girl",
+    "chad": "Chad",
+    "hopeless-romantic": "Romantik Tegar",
+    "daddy": "Ayah",
+    "mommy": "Ibu",
+    "big-brother": "Abang",
+    "lil-bro": "Adik Lelaki",
+    "big-sister": "Kakak",
+    "little-sister": "Adik Perempuan",
+    "conservative": "Konservatif",
+    "liberal": "Liberal",
+    "antifa": "ANTIFA",
+    "capitalist": "Kapitalis",
+    "socialist": "Sosialis",
+    "neocon": "Neokon",
+    "feminist": "Feminis",
+    "progressive": "Progresif",
+    "nationalist": "Nasionalis",
+    "communist": "Komunis"
   }
 }

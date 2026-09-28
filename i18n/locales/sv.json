@@ -8487,5 +8487,36 @@
       "emptyTitle": "Inga appar listade ännu",
       "emptyBody": "De första apparna är under granskning. Bygg en och den kan vara här."
     }
+  },
+  "aiStyles": {
+    "normal": "Normal",
+    "old-english": "Fornengelska",
+    "cockney": "Cockney",
+    "celtic": "Keltisk",
+    "scouse": "Scouse",
+    "wild-west": "Vilda västern",
+    "asian-uncle": "Asiatisk farbror",
+    "russian-mafia": "Ryska maffian",
+    "pirate": "Pirat",
+    "alien": "Utomjording",
+    "e-girl": "E-Girl",
+    "chad": "Chad",
+    "hopeless-romantic": "Hopplös romantiker",
+    "daddy": "Pappa",
+    "mommy": "Mamma",
+    "big-brother": "Storebror",
+    "lil-bro": "Lillebror",
+    "big-sister": "Storasyster",
+    "little-sister": "Lillasyster",
+    "conservative": "Konservativ",
+    "liberal": "Liberal",
+    "antifa": "ANTIFA",
+    "capitalist": "Kapitalist",
+    "socialist": "Socialist",
+    "neocon": "Neokon",
+    "feminist": "Feminist",
+    "progressive": "Progressiv",
+    "nationalist": "Nationalist",
+    "communist": "Kommunist"
   }
 }

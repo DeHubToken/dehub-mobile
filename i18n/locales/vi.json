@@ -8570,5 +8570,36 @@
       "emptyTitle": "Không có ứng dụng nào được liệt kê hiện tại",
       "emptyBody": "Các ứng dụng đầu tiên đang trong quá trình đánh giá. Xây dựng một ứng dụng và nó có thể xuất hiện ở đây."
     }
+  },
+  "aiStyles": {
+    "normal": "Bình thường",
+    "old-english": "Tiếng Anh cổ",
+    "cockney": "Cockney",
+    "celtic": "Celt",
+    "scouse": "Scouse",
+    "wild-west": "Miền Tây hoang dã",
+    "asian-uncle": "Chú châu Á",
+    "russian-mafia": "Mafia Nga",
+    "pirate": "Cướp biển",
+    "alien": "Người ngoài hành tinh",
+    "e-girl": "E-Girl",
+    "chad": "Chad",
+    "hopeless-romantic": "Kẻ lãng mạn vô phương cứu chữa",
+    "daddy": "Bố",
+    "mommy": "Mẹ",
+    "big-brother": "Anh trai",
+    "lil-bro": "Em trai",
+    "big-sister": "Chị gái",
+    "little-sister": "Em gái",
+    "conservative": "Bảo thủ",
+    "liberal": "Tự do",
+    "antifa": "ANTIFA",
+    "capitalist": "Tư bản",
+    "socialist": "Xã hội chủ nghĩa",
+    "neocon": "Tân bảo thủ",
+    "feminist": "Nữ quyền",
+    "progressive": "Cấp tiến",
+    "nationalist": "Dân tộc chủ nghĩa",
+    "communist": "Cộng sản"
   }
 }

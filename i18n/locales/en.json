@@ -8476,5 +8476,36 @@
       "emptyTitle": "No apps listed yet",
       "emptyBody": "The first apps are in review. Build one and it could be here."
     }
+  },
+  "aiStyles": {
+    "normal": "Normal",
+    "old-english": "Old English",
+    "cockney": "Cockney",
+    "celtic": "Celtic",
+    "scouse": "Scouse",
+    "wild-west": "Wild West",
+    "asian-uncle": "Asian Uncle",
+    "russian-mafia": "Russian Mafia",
+    "pirate": "Pirate",
+    "alien": "Alien",
+    "e-girl": "E-Girl",
+    "chad": "Chad",
+    "hopeless-romantic": "Hopeless Romantic",
+    "daddy": "Daddy",
+    "mommy": "Mommy",
+    "big-brother": "Big Brother",
+    "lil-bro": "Lil Bro",
+    "big-sister": "Big Sister",
+    "little-sister": "Little Sister",
+    "conservative": "Conservative",
+    "liberal": "Liberal",
+    "antifa": "ANTIFA",
+    "capitalist": "Capitalist",
+    "socialist": "Socialist",
+    "neocon": "Neocon",
+    "feminist": "Feminist",
+    "progressive": "Progressive",
+    "nationalist": "Nationalist",
+    "communist": "Communist"
   }
 }

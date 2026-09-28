@@ -8484,5 +8484,36 @@
       "emptyTitle": "Hainajulikana app yoyote bado",
       "emptyBody": "Apps ya kwanza zimekuwa katika ufuatiliaji. Jenga moja na hatawezi kuwa hapa."
     }
+  },
+  "aiStyles": {
+    "normal": "Kawaida",
+    "old-english": "Kiingereza cha Kale",
+    "cockney": "Cockney",
+    "celtic": "Kiselti",
+    "scouse": "Scouse",
+    "wild-west": "Magharibi Pori",
+    "asian-uncle": "Mjomba wa Kiasia",
+    "russian-mafia": "Mafia wa Urusi",
+    "pirate": "Maharamia",
+    "alien": "Kiumbe wa Anga",
+    "e-girl": "E-Girl",
+    "chad": "Chad",
+    "hopeless-romantic": "Mpenzi Asiye na Tumaini",
+    "daddy": "Baba",
+    "mommy": "Mama",
+    "big-brother": "Kaka Mkubwa",
+    "lil-bro": "Kaka Mdogo",
+    "big-sister": "Dada Mkubwa",
+    "little-sister": "Dada Mdogo",
+    "conservative": "Mhafidhina",
+    "liberal": "Mliberali",
+    "antifa": "ANTIFA",
+    "capitalist": "Bepari",
+    "socialist": "Mjamaa",
+    "neocon": "Neocon",
+    "feminist": "Mtetezi wa Wanawake",
+    "progressive": "Mwendelezaji",
+    "nationalist": "Mzalendo",
+    "communist": "Mkomunisti"
   }
 }

@@ -8473,5 +8473,36 @@
       "emptyTitle": "Ga ada aplikasian yang terdaftar sekarang",
       "emptyBody": "Aplikasi pertama masih di review. Buat satu dan bisa nampilin di sini."
     }
+  },
+  "aiStyles": {
+    "normal": "Normal",
+    "old-english": "Inggris Kuna",
+    "cockney": "Cockney",
+    "celtic": "Kelt",
+    "scouse": "Scouse",
+    "wild-west": "Kulon Liar",
+    "asian-uncle": "Paklik Asia",
+    "russian-mafia": "Mafia Rusia",
+    "pirate": "Bajak Laut",
+    "alien": "Alien",
+    "e-girl": "E-Girl",
+    "chad": "Chad",
+    "hopeless-romantic": "Romantis Tanpa Pangarep",
+    "daddy": "Bapak",
+    "mommy": "Ibu",
+    "big-brother": "Mas",
+    "lil-bro": "Adhik Lanang",
+    "big-sister": "Mbak",
+    "little-sister": "Adhik Wadon",
+    "conservative": "Konservatif",
+    "liberal": "Liberal",
+    "antifa": "ANTIFA",
+    "capitalist": "Kapitalis",
+    "socialist": "Sosialis",
+    "neocon": "Neokon",
+    "feminist": "Feminis",
+    "progressive": "Progresif",
+    "nationalist": "Nasionalis",
+    "communist": "Komunis"
   }
 }

@@ -8478,5 +8478,36 @@
       "emptyTitle": "ما فدش عايزه تطبيقات مش فدش",
       "emptyBody": "البرامج الأولى بتتخضع للتشغيل. بنكمل واحدة وتكون هنا."
     }
+  },
+  "aiStyles": {
+    "normal": "عادي",
+    "old-english": "إنجليزية قديمة",
+    "cockney": "كوكني",
+    "celtic": "سلتي",
+    "scouse": "سكاوس",
+    "wild-west": "الغرب المتوحش",
+    "asian-uncle": "العم الآسيوي",
+    "russian-mafia": "المافيا الروسية",
+    "pirate": "قرصان",
+    "alien": "فضائي",
+    "e-girl": "إي-غيرل",
+    "chad": "تشاد",
+    "hopeless-romantic": "رومانسي حالم",
+    "daddy": "بابا",
+    "mommy": "ماما",
+    "big-brother": "الأخ الأكبر",
+    "lil-bro": "الأخ الصغير",
+    "big-sister": "الأخت الكبرى",
+    "little-sister": "الأخت الصغرى",
+    "conservative": "محافظ",
+    "liberal": "ليبرالي",
+    "antifa": "أنتيفا",
+    "capitalist": "رأسمالي",
+    "socialist": "اشتراكي",
+    "neocon": "محافظ جديد",
+    "feminist": "نسوي",
+    "progressive": "تقدمي",
+    "nationalist": "قومي",
+    "communist": "شيوعي"
   }
 }
