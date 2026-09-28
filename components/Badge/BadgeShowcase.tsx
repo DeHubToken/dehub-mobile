@@ -33,6 +33,7 @@ import Animated, {
 } from "react-native-reanimated";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { LinearGradient } from "expo-linear-gradient";
+import MaskedView from "@react-native-masked-view/masked-view";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Slider from "@react-native-community/slider";
 import { useTranslation } from "react-i18next";
@@ -346,6 +347,18 @@ export default function BadgeShowcase({ tier, anchor, onClose }: Props) {
   /* ---------- dock ---------- */
 
   const railRef = useRef<ScrollView>(null);
+  // Thumbnails fade out toward whichever end still has more to scroll to, so
+  // the rail melts into the play button instead of stopping at a rule.
+  const [railFade, setRailFade] = useState({ start: false, end: true });
+  const onRailScroll = useCallback(
+    (e: { nativeEvent: { contentOffset: { x: number }; layoutMeasurement: { width: number }; contentSize: { width: number } } }) => {
+      const { contentOffset, layoutMeasurement, contentSize } = e.nativeEvent;
+      const start = contentOffset.x > 2;
+      const end = contentOffset.x + layoutMeasurement.width < contentSize.width - 2;
+      setRailFade((f) => (f.start === start && f.end === end ? f : { start, end }));
+    },
+    [],
+  );
   const THUMB = 52;
   useEffect(() => {
     railRef.current?.scrollTo({ x: Math.max(0, index * THUMB - W / 2 + THUMB * 1.5), animated: true });
@@ -547,7 +560,25 @@ export default function BadgeShowcase({ tier, anchor, onClose }: Props) {
 
           {/* Dock */}
           <Animated.View style={[styles.dock, chromeStyle]} pointerEvents={phase === "open" ? "auto" : "none"}>
-            <ScrollView ref={railRef} horizontal showsHorizontalScrollIndicator={false} style={{ flexShrink: 1 }}>
+            <MaskedView
+              style={{ flexShrink: 1 }}
+              maskElement={
+                <LinearGradient
+                  colors={[railFade.start ? "transparent" : "#000", "#000", "#000", railFade.end ? "transparent" : "#000"]}
+                  locations={[0, 0.1, 0.84, 1]}
+                  start={{ x: 0, y: 0.5 }}
+                  end={{ x: 1, y: 0.5 }}
+                  style={StyleSheet.absoluteFill}
+                />
+              }
+            >
+            <ScrollView
+              ref={railRef}
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              onScroll={onRailScroll}
+              scrollEventThrottle={32}
+            >
               {BADGE_ORDER.map((tierName, i) => {
                 const active = i === index;
                 return (
@@ -575,7 +606,7 @@ export default function BadgeShowcase({ tier, anchor, onClose }: Props) {
                 );
               })}
             </ScrollView>
-            <View style={styles.dockDivider} />
+            </MaskedView>
             <Chrome
               dark
               onPress={() => setPlaying((p) => !p)}
@@ -755,7 +786,6 @@ const styles = StyleSheet.create({
     borderWidth: StyleSheet.hairlineWidth,
     borderColor: "rgba(255,255,255,0.14)",
   },
-  dockDivider: { width: StyleSheet.hairlineWidth, height: 34, backgroundColor: "rgba(255,255,255,0.14)", marginHorizontal: 4 },
   play: { width: 40, height: 40, borderRadius: 20, marginLeft: 2 },
   ownedDot: { position: "absolute", top: 5, right: 6, width: 6, height: 6, borderRadius: 3, backgroundColor: "#34d399" },
   progressTrack: {
