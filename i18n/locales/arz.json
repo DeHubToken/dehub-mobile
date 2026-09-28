@@ -8271,5 +8271,31 @@
     "faqAccountQ": "هل أحتاج إلى حساب DeHub؟",
     "chatgptFaqAccount": "لا يلزم وجود حساب لقراءة المحتوى العام عبر الموصل. يلزم وجود حساب DeHub فقط إذا كنت ترغب في النشر أو الإكرامية أو الاحتفاظ بتوكنات DeHub.",
     "claudeFaqAccount": "لا. قراءة المحتوى العام تعمل بدون حساب. أنت تحتاج فقط إلى حساب DeHub للنشر أو الإكرامية أو الاحتفاظ بتوكنات DeHub."
+  },
+  "credits": {
+    "percentUsed": "{{percent}}%مستخدم",
+    "spentOfTotal": "{{spent}} من {{total}}",
+    "subscriptionTokens": "رموز الاشتراك",
+    "topUp": "إضافة الرموز المميزة",
+    "topUpTitle": "إضافة رموز اشتراك",
+    "topUpCustom": "مبلغ آخر (بالدولار الأمريكي)",
+    "topUpYouSend": "أنت ترسل",
+    "topUpYouGet": "تمت الإضافة إلى رصيدك",
+    "topUpConfirm": "إضافة {{amount}}",
+    "topUpRange": "أدخل {{min}} إلى {{max}}",
+    "topUpDone": "تمت إضافة {{amount}} إلى رموز اشتراكك",
+    "topUpPending": "تم تأكيد تعبئة رصيدك. سيظهر في رصيدك قريبًا.",
+    "topUpFailed": "تعذر إضافة رموز الاشتراك",
+    "topUpStageFunding": "الحصول على الرموز المميزة...",
+    "topUpStageWallet": "تأكيد في محفظتك...",
+    "topUpStageConfirming": "في انتظار المعاملة...",
+    "topUpStageCrediting": "جارٍ الإضافة إلى رصيدك...",
+    "untradableTokens": "هذه رموز اشتراك غير قابلة للتداول",
+    "withdraw": "سحب",
+    "close": "إغلاق",
+    "tokenAmount": "{{amount}} توكن",
+    "subscriptionTokensOnly": "لجيل الذكاء الاصطناعي فقط",
+    "subscriptionTokensValueNote": "تحتفظ رموز الاشتراك بقيمتها بالدولار. إذا تحرك سعر الرمز المميز قبل استخدامها، فسترى المزيد أو أقل من الرموز، لكنهم يشترون دائمًا نفس الكمية من جيل الذكاء الاصطناعي. لا يمكن سحبها أو إرسالها أو تداولها.",
+    "topUpEmptyHint": "إضافة رموز للإنشاء باستخدام الذكاء الاصطناعي"
   }
 }

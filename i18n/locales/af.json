@@ -8396,5 +8396,31 @@
     "faqAccountQ": "Het ek 'n DeHub-rekening nodig?",
     "chatgptFaqAccount": "Geen rekening word benodig om publieke inhoud deur die connector te lees nie. 'n DeHub-rekening word slegs benodig as jy DeHub-tokens wil plaas, wenk of hou.",
     "claudeFaqAccount": "Nee. Die lees van publieke inhoud werk sonder 'n rekening. Jy benodig slegs 'n DeHub-rekening om DeHub-tokens te plaas, wenk of te hou."
+  },
+  "credits": {
+    "percentUsed": "{{percent}}% gebruik",
+    "spentOfTotal": "{{spent}} van {{total}}",
+    "subscriptionTokens": "Intekening tekens",
+    "topUp": "Voeg tekens by",
+    "topUpTitle": "Voeg intekeningtekens by",
+    "topUpCustom": "Ander bedrag (USD)",
+    "topUpYouSend": "Jy stuur",
+    "topUpYouGet": "Voeg by jou balans",
+    "topUpConfirm": "Voeg by {{amount}}",
+    "topUpRange": "Tik {{min}} na {{max}}",
+    "topUpDone": "{{amount}} Voeg by jou inskrywing tekens",
+    "topUpPending": "Jou hoogtepunt is bevestigend. Dit sal binnekort in jou balans verskyn.",
+    "topUpFailed": "Kon nie intekeningtekens byvoeg nie",
+    "topUpStageFunding": "Kry tans tekens...",
+    "topUpStageWallet": "Bevestig in jou beursie...",
+    "topUpStageConfirming": "Wag vir die transaksie...",
+    "topUpStageCrediting": "Voeg by jou balans...",
+    "untradableTokens": "Dit is onuitwisbare subskripsie-tokens",
+    "withdraw": "Onttrek",
+    "close": "Sluit",
+    "tokenAmount": "{{amount}} tokens",
+    "subscriptionTokensOnly": "Uitsluitend voor generasies",
+    "subscriptionTokensValueNote": "Inskrywingstekeninge hou hulle dollarwaarde in stand. As die tekenprys beweeg voordat jy dit gebruik, sal jy min of meer tekens sien, maar hulle koop altyd dieselfde hoeveelheid AI-generasie. Hulle kan nie teruggetrek, gestuur of verhandel word nie.",
+    "topUpEmptyHint": "Voeg tekens by om met AI te genereer"
   }
 }

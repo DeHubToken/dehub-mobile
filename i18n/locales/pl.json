@@ -8339,5 +8339,31 @@
     "faqAccountQ": "Czy potrzebuję konta DeHub?",
     "chatgptFaqAccount": "Do czytania publicznych treści za pośrednictwem konektora nie jest wymagane żadne konto. Konto DeHub jest potrzebne tylko wtedy, gdy chcesz publikować, dawać napiwki lub posiadać tokeny DeHub.",
     "claudeFaqAccount": "Nie. Czytanie publicznych treści działa bez konta. Konto DeHub jest potrzebne tylko do publikowania, dawania napiwków lub posiadania tokenów DeHub."
+  },
+  "credits": {
+    "percentUsed": "Użyto {{percent}}%",
+    "spentOfTotal": "{{spent}} z {{total}}",
+    "subscriptionTokens": "Tokeny subskrypcji",
+    "topUp": "Dodaj tokeny",
+    "topUpTitle": "Dodaj tokeny subskrypcji",
+    "topUpCustom": "Inna kwota (USD)",
+    "topUpYouSend": "Wysyłasz",
+    "topUpYouGet": "Dodano do Twojego salda",
+    "topUpConfirm": "Dodaj {{amount}}",
+    "topUpRange": "Wejdź na {{min}} do {{max}}",
+    "topUpDone": "{{amount}} dodano do tokenów subskrypcji",
+    "topUpPending": "Doładowanie jest potwierdzane. Wkrótce pojawi się na Twoim saldzie.",
+    "topUpFailed": "Nie można dodać tokenów subskrypcji",
+    "topUpStageFunding": "Pobieranie tokenów…",
+    "topUpStageWallet": "Potwierdź w swoim portfelu...",
+    "topUpStageConfirming": "Oczekiwanie na transakcję…",
+    "topUpStageCrediting": "Trwa dodawanie do Twojego salda…",
+    "untradableTokens": "To są niehandlowe tokeny subskrypcji",
+    "withdraw": "Wycofaj",
+    "close": "Zamknij",
+    "tokenAmount": "{{amount}} tokenów",
+    "subscriptionTokensOnly": "Tylko dla generacji sztucznej inteligencji",
+    "subscriptionTokensValueNote": "Tokeny abonamentowe utrzymują swoją wartość w dolarach. Jeśli cena tokena zmieni się przed ich użyciem, zobaczysz więcej lub mniej tokenów, ale zawsze kupują tę samą ilość generowania sztucznej inteligencji. Nie można ich wycofywać, wysyłać ani handlować nimi.",
+    "topUpEmptyHint": "Dodaj tokeny do wygenerowania za pomocą sztucznej inteligencji"
   }
 }

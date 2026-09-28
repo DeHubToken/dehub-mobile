@@ -3,9 +3,15 @@
  * =====================================
  * Mirror of dehubweb's `hooks/use-ai-quote.ts` + `lib/ai-payment.ts`.
  *
- * There is one way to pay: sign a DHB transfer to the treasury for what the
- * job costs, and hand the hash to the generation function, which confirms it
- * on chain before it spends anything with a provider.
+ * Sign a DHB transfer to the treasury for what the job costs, and hand the
+ * hash to the generation function, which confirms it on chain before it
+ * spends anything with a provider.
+ *
+ * Subscription tokens pay first when they cover the job: the call carries
+ * `txHash: "credits"` instead, and the function debits the balance server
+ * side and refunds it if the job fails. Only the generation functions accept
+ * that marker (generate-image, generate-video, generate-3d, fal-ai-tools and
+ * the elevenlabs functions), so it is only ever handed to them.
  *
  * What this replaces was a credit balance that could be filled three ways — an
  * on-chain top-up, a Stripe plan grant, or a free daily allowance minted out of
@@ -31,9 +37,33 @@ import {
   listUnspentAiPayments,
   type AiQuoteRequest,
 } from '../services/ai.service';
+import { getSubscriptionCredits } from '../services/credits.service';
 import { createLogger } from '../libs/logger';
 
 const log = createLogger('useAiPayment');
+
+/**
+ * Sent as a job's `txHash` when it is paid from subscription tokens instead
+ * of a transfer. The generation functions debit the balance server side.
+ */
+export const CREDITS_PAYMENT = 'credits';
+
+/** Prices are DHB at the peg: one DHB is $0.001, so a job costs priceDhb × 1000 micro-dollars. */
+const USD_MICROS_PER_DHB = 1000;
+
+/** Whether a subscription-token balance of `usd` dollars pays a job of `priceDhb`. */
+export function creditsCoverPrice(usd: number, priceDhb: number): boolean {
+  return priceDhb > 0 && Math.round(usd * 1_000_000) >= Math.ceil(priceDhb * USD_MICROS_PER_DHB);
+}
+
+async function creditsCover(priceDhb: number, wallet: string): Promise<boolean> {
+  try {
+    const credits = await getSubscriptionCredits(wallet);
+    return !!credits && creditsCoverPrice(credits.usd, priceDhb);
+  } catch {
+    return false;
+  }
+}
 
 /**
  * The AI treasury. Same address as web's `AI_TREASURY` and the edge function's
@@ -116,12 +146,20 @@ export function useJobQuote(request: AiQuoteRequest | null, enabled = true) {
 }
 
 export interface JobPaymentState {
-  /** DHB held on the connected chain, or 0 while unknown. */
+  /**
+   * What one job can be paid from: the larger of DHB held on the connected
+   * chain and subscription tokens counted at the peg. 0 while unknown.
+   */
   walletDhb: number;
+  /** Subscription-token balance in dollars, or 0 while unknown. */
+  creditsUsd: number;
   isLoading: boolean;
   /** Null when the connected chain is one the verifier reads. */
   unsupportedChain: string | null;
-  /** Pay `priceDhb` for the job about to run. Returns the transfer hash. */
+  /**
+   * Pay `priceDhb` for the job about to run. Returns the transfer hash, or
+   * `CREDITS_PAYMENT` when subscription tokens cover it.
+   */
   payForJob: (priceDhb: number) => Promise<string>;
   refresh: () => void;
 }
@@ -141,6 +179,7 @@ export function useJobPayment(enabled = true): JobPaymentState {
   const tokenContract = useERC20Contract(dhbAddress);
 
   const [walletDhb, setWalletDhb] = useState(0);
+  const [creditsUsd, setCreditsUsd] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
 
   const supported = !!chainId && PAYMENT_CHAIN_IDS.includes(chainId);
@@ -149,19 +188,30 @@ export function useJobPayment(enabled = true): JobPaymentState {
     : `Switch to ${CHAIN_LABELS[ChainId.BASE_MAINNET]} or ${CHAIN_LABELS[ChainId.BSC_MAINNET]} to pay for this run.`;
 
   const refresh = useCallback(async () => {
-    if (!tokenContract || !account || !supported || !enabled) {
+    if (!account || !enabled) {
       setWalletDhb(0);
+      setCreditsUsd(0);
       return;
     }
     setIsLoading(true);
     try {
-      const raw = await tokenContract.balanceOf(account);
-      const ethers = (ethersImport as any).ethers || ethersImport;
-      setWalletDhb(Number(ethers.utils.formatUnits(raw, 18)));
-    } catch (err) {
-      // A flaky RPC reads as "no balance" rather than aborting the paywall.
-      log.error('wallet DHB lookup failed:', err);
-      setWalletDhb(0);
+      let onChain = 0;
+      if (tokenContract && supported) {
+        try {
+          const raw = await tokenContract.balanceOf(account);
+          const ethers = (ethersImport as any).ethers || ethersImport;
+          onChain = Number(ethers.utils.formatUnits(raw, 18));
+        } catch (err) {
+          // A flaky RPC reads as "no balance" rather than aborting the paywall.
+          log.error('wallet DHB lookup failed:', err);
+        }
+      }
+      // Subscription tokens pay a job on their own too, so the paywall may go
+      // ahead when they cover it. Still one source per job: the larger.
+      const credits = await getSubscriptionCredits(account).catch(() => null);
+      const usd = credits?.usd ?? 0;
+      setCreditsUsd(usd);
+      setWalletDhb(Math.max(onChain, (usd * 1_000_000) / USD_MICROS_PER_DHB));
     } finally {
       setIsLoading(false);
     }
@@ -173,10 +223,18 @@ export function useJobPayment(enabled = true): JobPaymentState {
 
   const payForJob = useCallback(
     async (priceDhb: number): Promise<string> => {
-      if (!supported) throw new Error(unsupportedChain || 'Unsupported chain.');
-      if (!tokenContract || !account) throw new Error('Connect your wallet to pay for a generation.');
+      if (!account) throw new Error('Connect your wallet to pay for a generation.');
       if (!Number.isFinite(priceDhb) || priceDhb <= 0) throw new Error('Nothing to pay.');
       await apiClient.fetch('/auth/verify');
+
+      // Subscription tokens pay first when they cover the job: no signature,
+      // no transfer and no particular chain. The generation function debits
+      // the balance and refunds it if the job fails. Anything short falls
+      // through to paying with DHB as before.
+      if (await creditsCover(priceDhb, account)) return CREDITS_PAYMENT;
+
+      if (!supported) throw new Error(unsupportedChain || 'Unsupported chain.');
+      if (!tokenContract) throw new Error('Connect your wallet to pay for a generation.');
 
       // Money already sent for a job that never ran is spent before asking for
       // more. The server is the record — not this device — so a payment
@@ -254,5 +312,5 @@ export function useJobPayment(enabled = true): JobPaymentState {
     [supported, unsupportedChain, tokenContract, account, refresh],
   );
 
-  return { walletDhb, isLoading, unsupportedChain, payForJob, refresh };
+  return { walletDhb, creditsUsd, isLoading, unsupportedChain, payForJob, refresh };
 }

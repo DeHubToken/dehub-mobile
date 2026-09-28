@@ -8315,5 +8315,31 @@
     "faqAccountQ": "我需要 DeHub 账号吗？",
     "chatgptFaqAccount": "无需账户即可通过连接器阅读公开内容。只有在您想发帖、打赏或持有 DeHub 代币时才需要 DeHub 账户。",
     "claudeFaqAccount": "不。阅读公开内容无需账户。您只需要一个 DeHub 账户即可发帖、打赏或持有 DeHub 代币。"
+  },
+  "credits": {
+    "percentUsed": "已用 {{percent}}%",
+    "spentOfTotal": "{{spent}} / {{total}}",
+    "subscriptionTokens": "订阅代币",
+    "topUp": "添加代币",
+    "topUpTitle": "添加订阅代币",
+    "topUpCustom": "其他金额 (美元)",
+    "topUpYouSend": "您发送",
+    "topUpYouGet": "已添加到您的余额",
+    "topUpConfirm": "添加 {{amount}}",
+    "topUpRange": "输入 {{min}} 以 {{max}}",
+    "topUpDone": "{{amount}} 已添加到您的订阅代币",
+    "topUpPending": "您的充值正在确认中。它将很快显示在您的余额中。",
+    "topUpFailed": "无法添加订阅代币",
+    "topUpStageFunding": "正在获取代币…",
+    "topUpStageWallet": "在您的钱包中确认…",
+    "topUpStageConfirming": "等待交易…",
+    "topUpStageCrediting": "正在添加到您的余额…",
+    "untradableTokens": "这些是不可交易的订阅代币",
+    "withdraw": "提现",
+    "close": "关闭",
+    "tokenAmount": "{{amount}} 个代币",
+    "subscriptionTokensOnly": "仅供 AI 生成使用",
+    "subscriptionTokensValueNote": "订阅令牌保持其美元价值。如果在使用前令牌价格变动，你会看到更多或更少的令牌，但它们始终购买相同数量的 AI 生成。它们不能被提取、发送或交易。",
+    "topUpEmptyHint": "添加代币以供 AI 生成"
   }
 }

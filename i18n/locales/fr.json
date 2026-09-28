@@ -8275,5 +8275,31 @@
     "faqAccountQ": "Ai-je besoin d'un compte DeHub ?",
     "chatgptFaqAccount": "Aucun compte n'est requis pour lire le contenu public via le connecteur. Un compte DeHub n'est nécessaire que si vous souhaitez publier, donner un pourboire ou détenir des tokens DeHub.",
     "claudeFaqAccount": "Non. La lecture du contenu public fonctionne sans compte. Vous n'avez besoin d'un compte DeHub que pour publier, donner un pourboire ou détenir des tokens DeHub."
+  },
+  "credits": {
+    "percentUsed": "{{percent}}% utilisé",
+    "spentOfTotal": "{{spent}} sur {{total}}",
+    "subscriptionTokens": "Jetons d'abonnement",
+    "topUp": "Ajouter des jetons",
+    "topUpTitle": "Ajouter des jetons d'abonnement",
+    "topUpCustom": "Autre montant (USD)",
+    "topUpYouSend": "Vous envoyez",
+    "topUpYouGet": "Ajouté à votre solde",
+    "topUpConfirm": "Ajouter {{amount}}",
+    "topUpRange": "Entrez {{min}} à {{max}}",
+    "topUpDone": "{{amount}} ajouté à vos jetons d'abonnement",
+    "topUpPending": "Votre recharge est en cours de confirmation. Il apparaîtra dans votre solde sous peu.",
+    "topUpFailed": "Impossible d'ajouter des jetons d'abonnement",
+    "topUpStageFunding": "Obtenir des jetons...",
+    "topUpStageWallet": "Confirmez dans votre portefeuille…",
+    "topUpStageConfirming": "En attente de la transaction…",
+    "topUpStageCrediting": "Ajout à votre solde...",
+    "untradableTokens": "Ce sont des jetons d'abonnement non échangeables",
+    "withdraw": "Retirer",
+    "close": "Fermer",
+    "tokenAmount": "{{amount}} jetons",
+    "subscriptionTokensOnly": "Pour la génération d'IA uniquement",
+    "subscriptionTokensValueNote": "Les jetons d'abonnement conservent leur valeur en dollars. Si le prix du jeton évolue avant que vous ne l'utilisiez, vous verrez plus ou moins de jetons, mais ils achètent toujours la même quantité de génération d'IA. Ils ne peuvent pas être retirés, envoyés ou échangés.",
+    "topUpEmptyHint": "Ajouter des jetons à générer avec l'IA"
   }
 }

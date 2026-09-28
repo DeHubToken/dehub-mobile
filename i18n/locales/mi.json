@@ -8270,5 +8270,31 @@
     "faqAccountQ": "Me whai pūkete DeHub ahau?",
     "chatgptFaqAccount": "Kāore he pūkete e hiahiatia ana hei pānui i ngā kōrero tūmatanui mā te hononga. Me whai pūkete DeHub anake koe ki te hiahia koe ki te whakaputa, ki te hoatu ranei, ki te pupuri rānei i ngā tohu DeHub.",
     "claudeFaqAccount": "Kāore. Ka taea te pānui i ngā kōrero tūmatanui me te kore he pūkete. Me whai pūkete DeHub anake koe ki te whakaputa, ki te hoatu ranei, ki te pupuri rānei i ngā tohu DeHub."
+  },
+  "credits": {
+    "percentUsed": "{{percent}}% used",
+    "spentOfTotal": "{{spent}} of {{total}}",
+    "subscriptionTokens": "Ngā tohu ohaurunga",
+    "topUp": "Tāpirihia nga tohu",
+    "topUpTitle": "Tāpirihia nga tohu ohaurunga",
+    "topUpCustom": "Ētahi atu moni (USD)",
+    "topUpYouSend": "Ka tonoa e koe",
+    "topUpYouGet": "Tāpiri ki to koutou toenga",
+    "topUpConfirm": "Tāpiri {{amount}}",
+    "topUpRange": "Tāurua mai i te {{min}} ki te {{max}}",
+    "topUpDone": "{{amount}} taapirihia ki to tohu ohaurunga",
+    "topUpPending": "Kei te whakapūmau tō kōtaha. Ka puta i roto i to koutou toenga tata.",
+    "topUpFailed": "Kaore e taea te taapiri i nga tohu ohaurunga",
+    "topUpStageFunding": "He tohu...",
+    "topUpStageWallet": "Whakautu i roto i to koutou putea...",
+    "topUpStageConfirming": "Kei te tatari ahau ki te whakawhitinga...",
+    "topUpStageCrediting": "I tua atu i to koutou toenga...",
+    "untradableTokens": "He tohu ohaurunga kore e taea te whakawhiti",
+    "withdraw": "Whakakorea",
+    "close": "Katia",
+    "tokenAmount": "{{amount}} tohu",
+    "subscriptionTokensOnly": "Mo te whakatupuranga AI anake",
+    "subscriptionTokensValueNote": "Ko nga tohu ohaurunga e pupuri ana i to raatau uara taara. Mena ka neke te utu tohu i mua i to whakamahi, ka kite koe i nga tohu iti ake ranei, engari ka hoko tonu i te nui o te whakatupuranga AI. Kaore e taea te whakakore, te tuku, te hokohoko ranei.",
+    "topUpEmptyHint": "Tāpiri tohu ki te whakaputa ki AI"
   }
 }

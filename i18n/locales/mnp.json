@@ -8274,5 +8274,31 @@
     "faqAccountQ": "我需要 DeHub 账号吗？",
     "chatgptFaqAccount": "无需账户即可通过连接器读取公共内容。只有当您想发布、打赏或持有 DeHub 代币时，才需要 DeHub 账户。",
     "claudeFaqAccount": "不。阅读公共内容无需账户。您只需要一个 DeHub 账户来发布、打赏或持有 DeHub 代币。"
+  },
+  "credits": {
+    "percentUsed": "{{percent}}% 已使用",
+    "spentOfTotal": "{{spent}} 的 {{total}}",
+    "subscriptionTokens": "訂閱代幣",
+    "topUp": "添加令牌",
+    "topUpTitle": "添加订阅代币",
+    "topUpCustom": "其他金额 (美元)",
+    "topUpYouSend": "您发送",
+    "topUpYouGet": "已添加到您的余额",
+    "topUpConfirm": "添加 {{amount}}",
+    "topUpRange": "输入 {{min}} 以 {{max}}",
+    "topUpDone": "{{amount}} 已添加到您的订阅代币",
+    "topUpPending": "您的充值正在确认中。稍后将显示在您的余额中。",
+    "topUpFailed": "无法添加订阅代币",
+    "topUpStageFunding": "正在获取代币…",
+    "topUpStageWallet": "在您的钱包中确认…",
+    "topUpStageConfirming": "等待交易…",
+    "topUpStageCrediting": "正在添加到您的余额…",
+    "untradableTokens": "这些是不可交易的订阅代币",
+    "withdraw": "提取",
+    "close": "關閉",
+    "tokenAmount": "{{amount}} 代币",
+    "subscriptionTokensOnly": "仅供 AI 生成",
+    "subscriptionTokensValueNote": "訂閱代幣保持佢哋嘅美元價值。若代幣價錢喺你用之前變動，你會見到多啲或少啲代幣，但佢哋永遠買到一樣多嘅AI生成。唔可以提取、發送或交易。",
+    "topUpEmptyHint": "加代幣予AI生成"
   }
 }

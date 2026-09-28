@@ -8271,5 +8271,31 @@
     "faqAccountQ": "هل أحتاج إلى حساب DeHub؟",
     "chatgptFaqAccount": "لا يلزم وجود حساب لقراءة المحتوى العام عبر الموصل. يلزم وجود حساب DeHub فقط إذا كنت ترغب في النشر أو الإكرامية أو الاحتفاظ بتوكنات DeHub.",
     "claudeFaqAccount": "لا. قراءة المحتوى العام تعمل بدون حساب. أنت تحتاج فقط إلى حساب DeHub للنشر أو الإكرامية أو الاحتفاظ بتوكنات DeHub."
+  },
+  "credits": {
+    "percentUsed": "{{percent}}% مستَخدم",
+    "spentOfTotal": "{{spent}} من {{total}}",
+    "subscriptionTokens": "توكنات الاشتراك",
+    "topUp": "ضيف توكنات",
+    "topUpTitle": "إضافة رموز اشتراك",
+    "topUpCustom": "مبلغ آخر (دولار أمريكي)",
+    "topUpYouSend": "ترسل",
+    "topUpYouGet": "تمت إضافته إلى رصيدك",
+    "topUpConfirm": "إضافة {{amount}}",
+    "topUpRange": "أدخل {{min}} إلى {{max}}",
+    "topUpDone": "تمت إضافة {{amount}} إلى رموز اشتراكك",
+    "topUpPending": "عملية الشحن قيد التأكيد. ستظهر في رصيدك قريباً.",
+    "topUpFailed": "تعذر إضافة رموز الاشتراك",
+    "topUpStageFunding": "جاري الحصول على الرموز...",
+    "topUpStageWallet": "تأكيد في محفظتك...",
+    "topUpStageConfirming": "انتظار المعاملة...",
+    "topUpStageCrediting": "جاري الإضافة إلى رصيدك...",
+    "untradableTokens": "هذوله توكنات اشتراك ما تنكدر تتبدل",
+    "withdraw": "اسحب",
+    "close": "إغلاق",
+    "tokenAmount": "{{amount}} توكن",
+    "subscriptionTokensOnly": "للتوليد بالذكاء الاصطناعي فقط",
+    "subscriptionTokensValueNote": "التوكنات مال الاشتراك تحتفظ بقيمتها بالدولار. إذا سعر التوكن تغير قبل ما تستخدمهن راح تشوف توكنات أكثر أو أقل، بس دايماً يشترن نفس الكمية من توليد الذكاء الاصطناعي. ما ينفع تسحبهن، ترسلهن أو تبادلهن.",
+    "topUpEmptyHint": "ضيف توكنات لتوليدها بالذكاء الاصطناعي"
   }
 }

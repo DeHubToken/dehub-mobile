@@ -8271,5 +8271,31 @@
     "faqAccountQ": "Brauche ich ein DeHub-Konto?",
     "chatgptFaqAccount": "Zum Lesen öffentlicher Inhalte über den Connector ist kein Konto erforderlich. Ein DeHub-Konto wird nur benötigt, wenn Sie DeHub-Token posten, Trinkgeld geben oder halten möchten.",
     "claudeFaqAccount": "Nein. Das Lesen öffentlicher Inhalte funktioniert ohne Konto. Sie benötigen nur ein DeHub-Konto, um DeHub-Token zu posten, Trinkgeld zu geben oder zu halten."
+  },
+  "credits": {
+    "percentUsed": "{{percent}}% verwendet",
+    "spentOfTotal": "{{spent}} von {{total}}",
+    "subscriptionTokens": "Abonnement-Token",
+    "topUp": "Token hinzufügen",
+    "topUpTitle": "Abonnement-Token hinzufügen",
+    "topUpCustom": "Sonstiger Betrag (USD)",
+    "topUpYouSend": "Sie senden",
+    "topUpYouGet": "Deinem Guthaben hinzugefügt",
+    "topUpConfirm": "{{amount}} hinzufügen",
+    "topUpRange": "Geben Sie {{min}} bis {{max}} ein",
+    "topUpDone": "{{amount}} zu Ihren Abonnement-Token hinzugefügt",
+    "topUpPending": "Ihre Aufladung wird bestätigt. Es wird in Kürze auf Ihrem Guthaben erscheinen.",
+    "topUpFailed": "Abonnement-Token konnten nicht hinzugefügt werden",
+    "topUpStageFunding": "Token werden abgerufen...",
+    "topUpStageWallet": "In Ihrem Portemonnaie bestätigen...",
+    "topUpStageConfirming": "Warten auf die Transaktion...",
+    "topUpStageCrediting": "Wird zu Ihrem Guthaben hinzugefügt...",
+    "untradableTokens": "Dies sind nicht handelbare Abonnement-Token",
+    "withdraw": "Zurückziehen",
+    "close": "Schließen",
+    "tokenAmount": "{{amount}} Token",
+    "subscriptionTokensOnly": "Nur für die KI-Generierung",
+    "subscriptionTokensValueNote": "Abonnement-Token behalten ihren Dollar-Wert. Wenn sich der Token-Preis bewegt, bevor Sie sie verwenden, werden Sie mehr oder weniger Token sehen, aber sie kaufen immer die gleiche Menge an KI-Generierung. Sie können nicht abgehoben, gesendet oder gehandelt werden.",
+    "topUpEmptyHint": "Tokens zum Generieren mit KI hinzufügen"
   }
 }

@@ -8271,5 +8271,31 @@
     "faqAccountQ": "Necessito un compte de DeHub?",
     "chatgptFaqAccount": "No es requereix cap compte per llegir contingut públic a través del connector. Només es necessita un compte DeHub si voleu publicar, donar propines o tenir tokens DeHub.",
     "claudeFaqAccount": "No. La lectura de contingut públic funciona sense compte. Només necessites un compte DeHub per publicar, donar propines o tenir tokens DeHub."
+  },
+  "credits": {
+    "percentUsed": "S'ha utilitzat el {{percent}}%",
+    "spentOfTotal": "{{spent}} de {{total}}",
+    "subscriptionTokens": "Tokens de subscripció",
+    "topUp": "Afegeix fitxes",
+    "topUpTitle": "Afegeix fitxes de subscripció",
+    "topUpCustom": "Altres quantitats (USD)",
+    "topUpYouSend": "Tu envies",
+    "topUpYouGet": "S'ha afegit al teu saldo",
+    "topUpConfirm": "Afegeix {{amount}}",
+    "topUpRange": "Escriu {{min}} a {{max}}",
+    "topUpDone": "S'han afegit {{amount}} als tokens de subscripció",
+    "topUpPending": "La recàrrega s'està confirmant. En breu apareixerà al teu saldo.",
+    "topUpFailed": "No s'han pogut afegir fitxes de subscripció",
+    "topUpStageFunding": "S'estan obtenint fitxes...",
+    "topUpStageWallet": "Confirma a la teva cartera...",
+    "topUpStageConfirming": "S'està esperant la transacció...",
+    "topUpStageCrediting": "S'està afegint al teu saldo...",
+    "untradableTokens": "Són fitxes de subscripció no comercialitzables",
+    "withdraw": "Retirar",
+    "close": "Tancar",
+    "tokenAmount": "{{amount}} testimonis",
+    "subscriptionTokensOnly": "Només per a la generació d'IA",
+    "subscriptionTokensValueNote": "Les fitxes de subscripció mantenen el seu valor en dòlars. Si el preu del token es mou abans que els facis servir, veuràs més o menys tokens, però sempre compren la mateixa quantitat de generació d'IA. No es poden retirar, enviar ni comercialitzar.",
+    "topUpEmptyHint": "Afegeix fitxes per generar amb IA"
   }
 }

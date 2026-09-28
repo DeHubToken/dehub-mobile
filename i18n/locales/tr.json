@@ -8271,5 +8271,31 @@
     "faqAccountQ": "DeHub hesabına ihtiyacım var mı?",
     "chatgptFaqAccount": "Bağlayıcı aracılığıyla herkese açık içeriği okumak için hesap gerekmez. Yalnızca gönderi yapmak, bahşiş vermek veya DeHub jetonu tutmak istiyorsanız bir DeHub hesabı gereklidir.",
     "claudeFaqAccount": "Hayır. Herkese açık içeriği okumak hesap olmadan çalışır. Yalnızca gönderi yapmak, bahşiş vermek veya DeHub jetonu tutmak için bir DeHub hesabına ihtiyacınız vardır."
+  },
+  "credits": {
+    "percentUsed": "%{{percent}} kullanıldı",
+    "spentOfTotal": "{{spent}}/{{total}}",
+    "subscriptionTokens": "Abonelik tokenleri",
+    "topUp": "Jeton ekleyin",
+    "topUpTitle": "Abonelik tokenleri ekleyin",
+    "topUpCustom": "Diğer tutar (USD)",
+    "topUpYouSend": "Gönderdiğiniz",
+    "topUpYouGet": "Bakiyenize eklendi",
+    "topUpConfirm": "{{amount}} ekle",
+    "topUpRange": "{{min}} ila {{max}} girin",
+    "topUpDone": "Abonelik jetonlarınıza {{amount}} eklendi",
+    "topUpPending": "Eklemeniz onaylanıyor. Kısa süre içinde bakiyenizde görünecektir.",
+    "topUpFailed": "Abonelik belirteçleri eklenemedi",
+    "topUpStageFunding": "Jetonlar alınıyor…",
+    "topUpStageWallet": "Cüzdanınızda onaylayın…",
+    "topUpStageConfirming": "İşlem bekleniyor…",
+    "topUpStageCrediting": "Bakiyenize ekleniyor…",
+    "untradableTokens": "Bunlar takas edilemez abonelik belirteçleridir",
+    "withdraw": "Para Çekme",
+    "close": "Kapat",
+    "tokenAmount": "{{amount}} jeton",
+    "subscriptionTokensOnly": "Sadece yapay zeka üretimi için",
+    "subscriptionTokensValueNote": "Abonelik tokenleri dolar değerlerini korur. Token fiyatı kullanmadan önce hareket ederse, daha fazla veya daha az token görürsünüz, ancak her zaman aynı miktarda AI üretimi satın alırlar. Geri çekilemez, gönderilemez veya takas edilemezler.",
+    "topUpEmptyHint": "Yapay zeka ile oluşturmak için token ekleyin"
   }
 }

@@ -8272,5 +8272,31 @@
     "faqAccountQ": "Ṣé mo nílò àkọọ́lẹ̀ DeHub?",
     "chatgptFaqAccount": "Kò sí àkọsílẹ̀ tí ó jẹ́ dandan láti ka ohun tí gbogbo ènìyàn lè kà nípasẹ̀ ìsopọ̀. Àkọsílẹ̀ DeHub nìkan ni a nílò tí o bá fẹ́ fi ohun sílẹ̀, fúnni ní ẹ̀bùn tàbí kó tóka DeHub.",
     "claudeFaqAccount": "Bẹ́ẹ̀ kọ́. Kíka ohun tí gbogbo ènìyàn lè kà máa ń ṣiṣẹ́ láì sí àkọsílẹ̀. O nìkan ní àkọsílẹ̀ DeHub tí o bá fẹ́ fi ohun sílẹ̀, fúnni ní ẹ̀bùn tàbí kó tóka DeHub."
+  },
+  "credits": {
+    "percentUsed": "{{percent}}% lo",
+    "spentOfTotal": "{{spent}} ti {{total}}",
+    "subscriptionTokens": "Awọn tokeni ṣiṣe alabapin",
+    "topUp": "Ṣafikun awọn ami",
+    "topUpTitle": "Ṣafikun awọn ami ìforúkọsílẹ",
+    "topUpCustom": "Iye míràn (USD)",
+    "topUpYouSend": "O firanṣẹ",
+    "topUpYouGet": "Fi kun si iwontunwonsi rẹ",
+    "topUpConfirm": "Fi {{amount}} kun",
+    "topUpRange": "Wọ {{min}} si {{max}}",
+    "topUpDone": "{{amount}} fi kun si awọn ami ìforúkọsílẹ rẹ",
+    "topUpPending": "Top-up rẹ ń fìdí múlẹ̀. Yóò farahàn nínú ìdúróṣánṣán rẹ láìpẹ́.",
+    "topUpFailed": "Kò lè fi àwọn àmì ìforúkọsílẹ̀ kún un",
+    "topUpStageFunding": "Gbigba awọn ami...",
+    "topUpStageWallet": "Jẹrisi ninu apamọwọ rẹ...",
+    "topUpStageConfirming": "Dúró fún ìdúnàádúrà náà...",
+    "topUpStageCrediting": "Fífi kún ìdúróṣánṣán rẹ...",
+    "untradableTokens": "Àwọn wọ̀nyí ni àwọn àmì ìforúkọsílẹ̀ tí a kò lè fà mọ́ra.",
+    "withdraw": "Yiyọ kuro",
+    "close": "Pa",
+    "tokenAmount": "{{amount}} àmi-ìṣẹ́",
+    "subscriptionTokensOnly": "Fún ìran AI nìkan",
+    "subscriptionTokensValueNote": "Àmì ìforúkọsílẹ̀ dúró fún iye dọ́là wọn. Bí iye owó àfihàn náà bá ń lọ kí o tó lò wọ́n o máa rí àwọn àfihàn púpọ̀ tàbí díẹ̀ sí i, ṣùgbọ́n wọ́n máa ń ra iye kan náà ti ìran AI. Wọn kò lè yọ̀ǹda ara wọn, kí wọ́n rán wọn jáde tàbí kí wọ́n ṣòwò wọn.",
+    "topUpEmptyHint": "Ṣafikun awọn ami lati ṣe pẹlu AI"
   }
 }

@@ -26,6 +26,7 @@ import arcIcon from "../../assets/chains/arc-icon.png";
 import { getArcUsdcBalance } from "../../libs/arc-wallet";
 import { useTranslation } from "react-i18next";
 import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
+import { useSubscriptionCredits } from "../../hooks/useSubscriptionCredits";
 
 /** Shimmering placeholder shown while balances load for the first time. */
 const BalanceSkeleton: React.FC = () => (
@@ -45,6 +46,7 @@ const ProfileAssets = () => {
   const navigation = useNavigation<any>();
   const [showDHBOptions, setShowDHBOptions] = useState(false);
   const [showInfo, setShowInfo] = useState(false);
+  const { data: subscriptionCredits } = useSubscriptionCredits();
 
   const mountedRef = React.useRef(true);
   React.useEffect(() => {
@@ -310,6 +312,45 @@ const ProfileAssets = () => {
           >
             <Text className="text-xs text-white">{t("assets.send")}</Text>
           </TouchableOpacity>
+        </View>
+      )}
+      {/* Subscription tokens count like tokens but hold their dollar value and
+          only spend on AI generation, so every way out says so. */}
+      {subscriptionCredits && subscriptionCredits.tokens > 0 && (
+        <View className="mb-1">
+          <View className="flex-row items-center justify-between py-2">
+            <View className="flex-row items-center flex-1">
+              <View className="mr-3">
+                <Image source={dhbIcon} className="w-8 h-8 rounded-full" />
+                <View className="absolute -bottom-0.5 -right-0.5 w-4 h-4 rounded-full bg-black items-center justify-center">
+                  <Ionicons name="lock-closed" size={9} color="#FFFFFF" />
+                </View>
+              </View>
+              <View className="flex-1">
+                <Text className="text-lg text-white">{t("credits.subscriptionTokens")}</Text>
+                <Text className="text-[11px] text-white/50">{t("credits.subscriptionTokensOnly")}</Text>
+              </View>
+            </View>
+            <View className="items-end">
+              <Text className="text-lg text-gray-300">{formatCompactNumber(subscriptionCredits.tokens)}</Text>
+              <Text className="text-[11px] text-white/50">
+                {subscriptionCredits.usd.toLocaleString(undefined, { style: "currency", currency: "USD" })}
+              </Text>
+            </View>
+          </View>
+          <View className="ml-9 mt-1 mb-2 flex-row">
+            {(["send", "trade", "withdraw"] as const).map((key) => (
+              <TouchableOpacity
+                key={key}
+                className="py-2 px-3 rounded-xl flex-1 mx-1 bg-theme-neutrals-700"
+                onPress={() => toastInfo(t("credits.untradableTokens"))}
+              >
+                <Text className="text-xs text-white text-center">
+                  {key === "send" ? t("assets.send") : key === "trade" ? t("wallet.trade") : t("credits.withdraw")}
+                </Text>
+              </TouchableOpacity>
+            ))}
+          </View>
         </View>
       )}
       <TransferModal open={transferOpen} onOpenChange={setTransferOpen} />

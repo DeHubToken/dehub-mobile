@@ -8271,5 +8271,31 @@
     "faqAccountQ": "Je, ninahitaji akaunti ya DeHub?",
     "chatgptFaqAccount": "Hakuna akaunti inayohitajika kusoma maudhui ya umma kupitia kiunganishi. Akaunti ya DeHub inahitajika tu ikiwa unataka kuchapisha, kutoa kiinua mgongo au kushikilia tokeni za DeHub.",
     "claudeFaqAccount": "Hapana. Kusoma maudhui ya umma hufanya kazi bila akaunti. Unahitaji tu akaunti ya DeHub ili kuchapisha, kutoa kiinua mgongo au kushikilia tokeni za DeHub."
+  },
+  "credits": {
+    "percentUsed": "{{percent}}% imetumika",
+    "spentOfTotal": "{{spent}} ya {{total}}",
+    "subscriptionTokens": "Alama za usajili",
+    "topUp": "Ongeza ishara",
+    "topUpTitle": "Weka ishara za usajili",
+    "topUpCustom": "Kiasi kingine (USD)",
+    "topUpYouSend": "Unatuma",
+    "topUpYouGet": "Imeongezwa kwenye salio lako",
+    "topUpConfirm": "Weka {{amount}}",
+    "topUpRange": "Weka {{min}} kwa {{max}}",
+    "topUpDone": "{{amount}} imeongezwa kwenye ishara zako za usajili",
+    "topUpPending": "Ziada yako inathibitisha. Itaonekana kwenye salio lako hivi karibuni.",
+    "topUpFailed": "Haikuweza kuweka ishara za usajili",
+    "topUpStageFunding": "Kupata ishara...",
+    "topUpStageWallet": "Thibitisha kwenye pochi yako...",
+    "topUpStageConfirming": "Inasubiri muamala...",
+    "topUpStageCrediting": "Inaongeza kwenye salio lako...",
+    "untradableTokens": "Hizi ni ishara za usajili zisizoweza kufikishwa",
+    "withdraw": "Ondoa",
+    "close": "Funga",
+    "tokenAmount": "{{amount}} tokeni",
+    "subscriptionTokensOnly": "Kwa kizazi cha AI pekee",
+    "subscriptionTokensValueNote": "Alama za usajili zinashikilia thamani yake ya dola. Ikiwa bei ya tokeni itasonga mbele kabla ya kuitumia utaona tokeni zaidi au chache, lakini kila wakati hununua kiasi sawa cha kizazi cha AI. Haiwezi kuondolewa, kutumwa au kufanyiwa biashara.",
+    "topUpEmptyHint": "Ongeza ishara za kuzalisha kwa kutumia AI"
   }
 }

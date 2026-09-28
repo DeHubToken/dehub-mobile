@@ -8270,5 +8270,31 @@
     "faqAccountQ": "Achọrọ m akaụntụ DeHub?",
     "chatgptFaqAccount": "Achọghị akaụntụ iji gụọ ọdịnaya ọha site na njikọ. A chọrọ naanị akaụntụ DeHub ma ọ bụrụ na ịchọrọ ibipụta, ịkwanye ma ọ bụ jide token DeHub.",
     "claudeFaqAccount": "Mba. Ịgụ ọdịnaya ọha na-arụ ọrụ na-enweghị akaụntụ. Naanị ị chọrọ akaụntụ DeHub iji bipụta, ịkwanye ma ọ bụ jide token DeHub."
+  },
+  "credits": {
+    "percentUsed": "{{percent}}% used",
+    "spentOfTotal": "{{spent}} nke {{total}}",
+    "subscriptionTokens": "Ndenye aha tokens",
+    "topUp": "Tinye tokens",
+    "topUpTitle": "Tinye ndenye aha tokens",
+    "topUpCustom": "Ego ndị ọzọ (USD)",
+    "topUpYouSend": "I zigara",
+    "topUpYouGet": "Agbakwunyere na nguzozi gị",
+    "topUpConfirm": "Tinye {{amount}}",
+    "topUpRange": "Tinye {{min}} {{max}}",
+    "topUpDone": "{{amount}} agbakwunyere gị na ndenye aha tokens",
+    "topUpPending": "Gị n 'elu-elu bụ enen. Ọ ga-apụta na nguzozi gị n 'oge na-adịghị anya.",
+    "topUpFailed": "Enweghị ike ịgbakwunye tokens ndenye aha",
+    "topUpStageFunding": "Inweta tokens…",
+    "topUpStageWallet": "Gosi na obere akpa gị...",
+    "topUpStageConfirming": "Ihe ọzọ bụ na, you can reach all these destinations by train…",
+    "topUpStageCrediting": "Ihe ọzọ bụ na, you can reach all these destinations by train…",
+    "untradableTokens": "Ndị a bụ untradable ndenye aha tokens",
+    "withdraw": "Wepụ",
+    "close": "Mechie",
+    "tokenAmount": "{{amount}} tokenịị",
+    "subscriptionTokensOnly": "N 'ihi na AI ọgbọ naanị",
+    "subscriptionTokensValueNote": "Ndenye aha tokens jide ha dollar uru. Ọ bụrụ na ọnụahịa akara ahụ na-aga n 'ihu tupu i jiri ha mee ihe ị ga-ahụ ọtụtụ ma ọ bụ obere akara ngosi, mana ha na-azụta otu ego nke ọgbọ AI mgbe niile. Enweghị ike iwepu ha, zipụ ma ọ bụ ree ha.",
+    "topUpEmptyHint": "Tinye tokens n 'ịwa na AI"
   }
 }

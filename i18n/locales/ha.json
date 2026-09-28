@@ -8270,5 +8270,31 @@
     "faqAccountQ": "Ina buƙatar asusun DeHub?",
     "chatgptFaqAccount": "Ba a buƙatar asusu don karanta abubuwan jama'a ta hanyar haɗin gwiwa. Ana buƙatar asusu na DeHub ne kawai idan kana son aika sako, ba da kyauta, ko riƙe token na DeHub.",
     "claudeFaqAccount": "A'a. Karanta abubuwan jama'a yana aiki ba tare da asusu ba. Kuna buƙatar asusu na DeHub ne kawai don aika sako, ba da kyauta, ko riƙe token na DeHub."
+  },
+  "credits": {
+    "percentUsed": "{{percent}}% amfani",
+    "spentOfTotal": "{{spent}} na {{total}}",
+    "subscriptionTokens": "Subscription tokens",
+    "topUp": "Ƙara alamomi",
+    "topUpTitle": "Ƙara alamun biyan kuɗi",
+    "topUpCustom": "Sauran adadin (USD)",
+    "topUpYouSend": "Kuna aikawa",
+    "topUpYouGet": "Ƙara zuwa ma'auni naka",
+    "topUpConfirm": "Ƙara {{amount}}",
+    "topUpRange": "Shigar da {{min}} zuwa {{max}}",
+    "topUpDone": "{{amount}} kara zuwa alamomin biyan ku",
+    "topUpPending": "Your top-up yana tabbatarwa. Zai bayyana a cikin ma'auni ba da daɗewa ba.",
+    "topUpFailed": "Ba za a iya ƙara alamun biyan kuɗi ba",
+    "topUpStageFunding": "Samun alamomi...",
+    "topUpStageWallet": "Tabbatar a cikin walat ɗin ku...",
+    "topUpStageConfirming": "Jira don ma'amala...",
+    "topUpStageCrediting": "Ƙarawa zuwa ma'auni naka...",
+    "untradableTokens": "Waɗannan alamun biyan kuɗi ne waɗanda ba za a iya amfana ba",
+    "withdraw": "Janyewa",
+    "close": "Rufe",
+    "tokenAmount": "{{amount}} tokens",
+    "subscriptionTokensOnly": "Domin AI tsara kawai",
+    "subscriptionTokensValueNote": "Alamomin biyan kuɗi suna riƙe da darajar dala. Idan farashin alamar yana motsawa kafin kayi amfani da su za ku ga alamomi da yawa ko ƙasa, amma koyaushe suna siyan adadin ƙarni na AI. Ba za a iya janye su ba, aika su ko ciniki.",
+    "topUpEmptyHint": "Ƙara alamomi don samar da AI"
   }
 }
