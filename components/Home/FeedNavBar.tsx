@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useState, useRef, useMemo } from "react";
-import { View, Pressable, StyleSheet, Platform } from "react-native";
+import { View, Pressable, StyleSheet, Platform, Image } from "react-native";
 import { BlurView } from "expo-blur";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import Reanimated, {
@@ -16,6 +16,8 @@ import GlassIndicator, { GLASS_SHADOW } from "../ui/GlassIndicator";
 import type { PostTypeOption } from "./FeedFilterPanel";
 import { useAppTheme } from "../../context/ThemeContext";
 import { MINIMAL_TAB_LINE } from "../../theme/colors";
+import { GRAIN } from "../../theme/skins";
+import HudBrackets from "../theme/HudBrackets";
 
 interface NavItem {
   icon: IconName;
@@ -72,7 +74,9 @@ const NavButton = memo<{
   active: boolean;
   onPress: () => void;
   minimal?: boolean;
-}>(({ icon, label, active, onPress, minimal = false }) => (
+  /** A canvas theme's icon colours (theme/skins.ts). */
+  tint?: { on: string; off: string };
+}>(({ icon, label, active, onPress, minimal = false, tint }) => (
   // These six are the most-used control in the app and were icon-only with no
   // label, so a screen reader announced all of them identically as "button".
   // NAV_ITEMS already carries the right words in `tooltip`; `selected` is what
@@ -89,7 +93,7 @@ const NavButton = memo<{
         <Icon
           name={icon}
           size={16}
-          color={active ? "#FFFFFF" : minimal ? "#A1A1AA" : "#808089"}
+          color={tint ? (active ? tint.on : tint.off) : active ? "#FFFFFF" : minimal ? "#A1A1AA" : "#808089"}
           strokeWidth={active ? 2 : 1.8}
         />
       </View>
@@ -107,7 +111,11 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
   backMode = false,
   onBackPress,
 }) => {
-  const { isMinimal } = useAppTheme();
+  const { isMinimal, skin } = useAppTheme();
+  const tint = useMemo(
+    () => (skin ? { on: skin.tabIconActive, off: skin.tabIcon } : undefined),
+    [skin],
+  );
   const [containerWidth, setContainerWidth] = useState(0);
   const buttonCount = NAV_ITEMS.length + 1; // +1 for the leading filter/back slot
   const buttonWidth = containerWidth > 0 ? containerWidth / buttonCount : 60;
@@ -236,27 +244,45 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
       ) : (
       <View style={styles.outerWrap}>
         <View
-          style={styles.container}
+          style={[styles.container, skin ? { borderRadius: skin.strip.borderRadius } : null]}
           onLayout={(e) => setContainerWidth(e.nativeEvent.layout.width)}
         >
-          {/* Android's experimental blur (dimezisBlurView) crashes with
-              IndexOutOfBoundsException when list views mutate during its
-              pre-draw snapshot — real blur is iOS-only, Android gets a
-              translucent glass-tinted fallback. */}
-          {Platform.OS === "ios" ? (
-            <BlurView intensity={80} tint="dark" style={StyleSheet.absoluteFill} />
+          {skin ? (
+            // A canvas theme's strip (theme/skins.ts): no blur — the backdrop
+            // moving behind it is the point — just the theme's own surface.
+            <>
+              <View style={[StyleSheet.absoluteFill, skin.strip]} pointerEvents="none" />
+              {skin.grain ? (
+                <Image source={GRAIN} resizeMode="repeat" style={StyleSheet.absoluteFill} />
+              ) : null}
+            </>
           ) : (
-            <View style={styles.androidBlurFallback} />
+            <>
+              {/* Android's experimental blur (dimezisBlurView) crashes with
+                  IndexOutOfBoundsException when list views mutate during its
+                  pre-draw snapshot — real blur is iOS-only, Android gets a
+                  translucent glass-tinted fallback. */}
+              {Platform.OS === "ios" ? (
+                <BlurView intensity={80} tint="dark" style={StyleSheet.absoluteFill} />
+              ) : (
+                <View style={styles.androidBlurFallback} />
+              )}
+              <View style={styles.glassOverlay} pointerEvents="none" />
+            </>
           )}
-          <View style={styles.glassOverlay} pointerEvents="none" />
 
           {/* Sliding glass indicator — one indicator that translates between
               tabs (web parity), driven on the UI thread for taps and drags */}
-          <Reanimated.View style={[styles.glassIndicator, indicatorStyle]}>
-            <View style={[StyleSheet.absoluteFill, { borderRadius: 12 }, GLASS_SHADOW]}>
-              <GlassIndicator borderRadius={12} blurIntensity={30} />
-            </View>
+          <Reanimated.View style={[styles.glassIndicator, skin ? { borderRadius: skin.stripActive.borderRadius } : null, indicatorStyle]}>
+            {skin ? (
+              <View style={[StyleSheet.absoluteFill, skin.stripActive]} />
+            ) : (
+              <View style={[StyleSheet.absoluteFill, { borderRadius: 12 }, GLASS_SHADOW]}>
+                <GlassIndicator borderRadius={12} blurIntensity={30} />
+              </View>
+            )}
           </Reanimated.View>
+          {skin?.brackets ? <HudBrackets color={skin.brackets} /> : null}
 
           <View style={styles.navRow}>
             {/* Leading slot, web parity: filter toggle normally, the image
@@ -273,18 +299,24 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
                 const filterActive = !backMode && (isFilterOpen || hasActiveFilters);
                 return (
                   <>
-                    {filterActive && (
+                    {filterActive && (skin ? (
+                      <View style={[StyleSheet.absoluteFill, skin.stripActive]} />
+                    ) : (
                       <View
                         style={[StyleSheet.absoluteFill, { borderRadius: 12 }, GLASS_SHADOW]}
                       >
                         <GlassIndicator borderRadius={12} blurIntensity={30} />
                       </View>
-                    )}
+                    ))}
                     <View style={{ opacity: pressed ? 0.6 : 1 }}>
                       <Icon
                         name={backMode ? "ArrowLeft" : isFilterOpen ? "X" : "Settings2"}
                         size={16}
-                        color={filterActive || backMode ? "#FFFFFF" : "#808089"}
+                        color={
+                          tint
+                            ? filterActive || backMode ? tint.on : tint.off
+                            : filterActive || backMode ? "#FFFFFF" : "#808089"
+                        }
                         strokeWidth={filterActive || backMode ? 2 : 1.8}
                       />
                     </View>
@@ -300,6 +332,7 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
                 label={item.tooltip}
                 active={index === activeIndex}
                 onPress={() => handleNavPress(item.postType)}
+                tint={tint}
               />
             ))}
           </View>

@@ -41,6 +41,7 @@ const AppearancePanel: React.FC = () => {
   const prefs = useAppPrefs();
   const { colors, theme, setTheme } = useAppTheme();
   const [themeModalVisible, setThemeModalVisible] = useState(false);
+  // Web's names for the same themes (settings.<theme> in both apps' locales).
   const themeOptions = [
     { value: 'system', label: t('settings.system') },
     {
@@ -48,6 +49,14 @@ const AppearancePanel: React.FC = () => {
       label: t('settings.minimal'),
       description: t('settings.themeMinimalDesc'),
     },
+    { value: 'cosmic', label: t('settings.cosmic') },
+    { value: 'hazy', label: t('settings.hazy') },
+    { value: 'swarms', label: t('settings.swarms') },
+    { value: 'lavalamp', label: t('settings.lavalamp') },
+    { value: 'winter', label: t('settings.winter') },
+    { value: 'war', label: t('settings.war') },
+    { value: 'osaka', label: t('settings.osaka') },
+    { value: 'jungle', label: t('settings.jungle') },
   ];
   const { pref: dataSaverPref } = useDataSaver();
   const highQuality = useHighQualityImages();
@@ -85,7 +94,7 @@ const AppearancePanel: React.FC = () => {
 
   return (
     <SettingsScrollView className="flex-1" contentContainerStyle={{ paddingBottom: 40 }}>
-      {/* Same key and values as web (`dehub.theme`), so Minimal means the
+      {/* Same key and values as web (`dehub.theme`), so each theme means the
           same thing on both. */}
       <SettingsSection label={t('settings.theme')} icon="Palette" className="mt-4" anchor="theme">
         <SettingsLinkRow

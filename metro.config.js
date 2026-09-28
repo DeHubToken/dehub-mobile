@@ -34,6 +34,12 @@ if (config.resolver.assetExts && !config.resolver.assetExts.includes('riv')) {
 	config.resolver.assetExts.push('riv');
 }
 
+// The canvas-theme backdrop page (assets/theme-backdrop/index.html), read at
+// runtime and handed to a WebView — see components/theme/ThemeBackdrop.tsx.
+if (config.resolver.assetExts && !config.resolver.assetExts.includes('html')) {
+	config.resolver.assetExts.push('html');
+}
+
 // Ensure TypeScript/TSX supported (Expo already includes these; safeguard only)
 if (config.resolver.sourceExts) {
 	['cjs','mjs','js','jsx','ts','tsx'].forEach(ext => {

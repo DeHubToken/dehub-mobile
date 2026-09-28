@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useCallback, useRef, useEffect, useDeferredValue } from "react";
-import { BackHandler, View, StyleSheet, InteractionManager, useWindowDimensions } from "react-native";
+import { BackHandler, Image, View, StyleSheet, InteractionManager, useWindowDimensions } from "react-native";
 import { useIsFocused, useNavigation } from "@react-navigation/native";
 import type { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
 import Animated, {
@@ -50,6 +50,9 @@ import {
 import UserProfileBottomSheet from "../components/UserProfile/UserProfileBottomSheet";
 import GettingStartedCard from "../components/Onboarding/GettingStartedCard";
 import { pagerPageIntersectsViewport } from "../libs/pagerVisibility";
+import { useAppTheme } from "../context/ThemeContext";
+import { GRAIN } from "../theme/skins";
+import { setThemeBackdropVisible } from "../libs/themeBackdrop";
 
 const FALLBACK_CATEGORIES: string[] = [];
 const SHUFFLE_SEED_EXPIRY_MS = 30 * 60 * 1000;
@@ -162,6 +165,13 @@ export default function HomeScreen() {
   const [selectedCategory, setSelectedCategory] = useState<string | undefined>(undefined);
   const { width: pageWidth } = useWindowDimensions();
   const isFocused = useIsFocused();
+  const { skin } = useAppTheme();
+  // A canvas theme's live backdrop shows through this screen only, so it runs
+  // while this screen is in front and pauses otherwise (libs/themeBackdrop).
+  useEffect(() => {
+    setThemeBackdropVisible(isFocused);
+  }, [isFocused]);
+  useEffect(() => () => setThemeBackdropVisible(false), []);
   const { hideUserProfile } = useUserProfileSheet();
   const {
     profileVisible,
@@ -835,7 +845,13 @@ export default function HomeScreen() {
 
   return (
     <View className="flex-1">
-      <Animated.View style={[styles.headerClip, headerAnimatedStyle]} onLayout={onHeaderLayout}>
+      <Animated.View
+        style={[styles.headerClip, skin ? skin.header : null, headerAnimatedStyle]}
+        onLayout={onHeaderLayout}
+      >
+        {skin?.grain ? (
+          <Image source={GRAIN} resizeMode="repeat" style={StyleSheet.absoluteFill} />
+        ) : null}
         <HomeHeader
           onLogoPress={handleLogoPress}
           onMenuPress={openDrawer}
