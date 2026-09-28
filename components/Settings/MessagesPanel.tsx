@@ -36,7 +36,7 @@ const MessagesPanel: React.FC<{ onOpenFreeAccessList: () => void }> = ({
   return (
     <SettingsScrollView className="flex-1" contentContainerStyle={{ paddingBottom: 40 }}>
       <SettingsAnchor id="dm-access">
-        <View className="mt-4 mx-4">
+        <View className="mt-4">
           <DMSettingsSection />
         </View>
       </SettingsAnchor>
@@ -105,12 +105,12 @@ const MessagesPanel: React.FC<{ onOpenFreeAccessList: () => void }> = ({
 
       {/* Storage — same placeholder meter web renders. */}
       <SettingsAnchor id="message-storage">
-        <View className="mt-6 mx-4">
+        <View className="mt-6">
           <SectionLabel label={t('settings.storage')} icon="HardDrive" />
           <SectionCard>
             <View className="px-4 py-4">
               <View className="flex-row justify-between mb-2">
-                <Text className="text-white text-sm font-medium">{t('settings.storageUsed')}</Text>
+                <Text className="text-white text-base leading-5 font-medium">{t('settings.storageUsed')}</Text>
                 <Text className="text-theme-neutrals-400 text-sm">{t('settings.storageAmount')}</Text>
               </View>
               <View className="w-full h-2 bg-theme-neutrals-700 rounded-lg mb-3 overflow-hidden">
@@ -130,7 +130,7 @@ const MessagesPanel: React.FC<{ onOpenFreeAccessList: () => void }> = ({
 
       {/* Quick actions */}
       <SettingsAnchor id="quick-actions">
-        <View className="mt-6 mx-4">
+        <View className="mt-6">
           <SectionLabel label={t('settings.quickActions')} icon="Zap" />
           <View className="flex-row" style={{ gap: 12 }}>
             {([

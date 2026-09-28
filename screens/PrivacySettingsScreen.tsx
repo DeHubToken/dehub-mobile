@@ -395,15 +395,15 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
 
         {/* Account Visibility */}
         <SettingsAnchor id="account-visibility">
-          <View className="mt-4 mx-4">
-            <Text className="text-theme-neutrals-500 text-[11px] uppercase mb-2 ml-1 tracking-widest font-semibold">
+          <View className="mt-4">
+            <Text className="text-theme-neutrals-400 text-sm font-medium mb-2">
               {t('settings.accountVisibility')}
             </Text>
-            <View className="bg-theme-neutrals-800 rounded-xl overflow-hidden border border-theme-neutrals-700">
-              <View className="px-4 py-3.5 flex-row items-center justify-between">
+            <View className="-mx-4">
+              <View className="px-4 py-2 flex-row items-center justify-between">
                 <View className="flex-row items-center flex-1 pr-3">
-                  <View className="mr-3 w-9 h-9 rounded-xl bg-theme-neutrals-700/50 items-center justify-center">
-                    <Icon name="Lock" size={18} color="#9ca3af" />
+                  <View className="mr-3 w-5 h-5 items-center justify-center">
+                    <Icon name="Lock" size={20} color="#8B8D90" />
                   </View>
                   <View className="flex-1">
                     <Text className={`text-sm font-medium ${saving ? 'text-theme-neutrals-500' : 'text-white'}`}>
@@ -416,33 +416,29 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
                 </View>
                 <CustomSwitch value={isPrivate} onValueChange={handleTogglePrivate} disabled={saving} />
               </View>
-
-              <View className="h-px bg-theme-neutrals-700 ml-16" />
-              <View className="px-4 py-3.5 flex-row items-center justify-between">
+              <View className="px-4 py-2 flex-row items-center justify-between">
                 <View className="flex-row items-center flex-1 pr-3">
-                  <View className="mr-3 w-9 h-9 rounded-xl bg-theme-neutrals-700/50 items-center justify-center">
-                    <Icon name="EyeOff" size={18} color="#9ca3af" />
+                  <View className="mr-3 w-5 h-5 items-center justify-center">
+                    <Icon name="EyeOff" size={20} color="#8B8D90" />
                   </View>
                   <View className="flex-1">
-                    <Text className="text-white text-sm font-medium">{t('settings.hideBadgeAndBalance')}</Text>
-                    <Text className="text-theme-neutrals-500 text-xs mt-0.5">
+                    <Text className="text-white text-base leading-5 font-medium">{t('settings.hideBadgeAndBalance')}</Text>
+                    <Text className="text-theme-neutrals-500 text-sm leading-5 mt-0.5">
                       {t('settings.hideBadgeAndBalanceDesc')}
                     </Text>
                   </View>
                 </View>
                 <CustomSwitch value={hideBadgeAndBalance} onValueChange={handleTogglePrivateBalance} disabled={saving} />
               </View>
-
-              <View className="h-px bg-theme-neutrals-700 ml-16" />
               <SettingsAnchor id="show-online">
-                <View className="px-4 py-3.5 flex-row items-center justify-between">
+                <View className="px-4 py-2 flex-row items-center justify-between">
                   <View className="flex-row items-center flex-1 pr-3">
-                    <View className="mr-3 w-9 h-9 rounded-xl bg-theme-neutrals-700/50 items-center justify-center">
-                      <Icon name="Radio" size={18} color="#9ca3af" />
+                    <View className="mr-3 w-5 h-5 items-center justify-center">
+                      <Icon name="Radio" size={20} color="#8B8D90" />
                     </View>
                     <View className="flex-1">
-                      <Text className="text-white text-sm font-medium">{t('settings.showOnline')}</Text>
-                      <Text className="text-theme-neutrals-500 text-xs mt-0.5">
+                      <Text className="text-white text-base leading-5 font-medium">{t('settings.showOnline')}</Text>
+                      <Text className="text-theme-neutrals-500 text-sm leading-5 mt-0.5">
                         {t('settings.showOnlineDesc')}
                       </Text>
                     </View>
@@ -453,18 +449,17 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
 
               {isPrivate && pendingCount > 0 && (
                 <>
-                  <View className="h-px bg-theme-neutrals-700 ml-16" />
                   <TouchableOpacity
                     onPress={handleOpenRequests}
                     activeOpacity={0.7}
-                    className="px-4 py-3.5 flex-row items-center"
+                    className="px-4 py-2 flex-row items-center"
                   >
-                    <View className="mr-3 w-9 h-9 rounded-xl bg-theme-neutrals-700/50 items-center justify-center">
-                      <Icon name="UserPlus" size={18} color="#9ca3af" />
+                    <View className="mr-3 w-5 h-5 items-center justify-center">
+                      <Icon name="UserPlus" size={20} color="#8B8D90" />
                     </View>
                     <View className="flex-1 mr-2">
-                      <Text className="text-white text-sm font-medium">{t('settings.followRequests')}</Text>
-                      <Text className="text-theme-neutrals-500 text-xs mt-0.5">
+                      <Text className="text-white text-base leading-5 font-medium">{t('settings.followRequests')}</Text>
+                      <Text className="text-theme-neutrals-500 text-sm leading-5 mt-0.5">
                         {pendingCount === 1
                           ? t('settings.pendingRequestCountSingular', { count: pendingCount })
                           : t('settings.pendingRequestCountPlural', { count: pendingCount })}
@@ -488,23 +483,23 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
 
         {/* Post Visibility */}
         <SettingsAnchor id="post-visibility">
-          <View className="mt-6 mx-4">
-            <Text className="text-theme-neutrals-500 text-[11px] uppercase mb-2 ml-1 tracking-widest font-semibold">
+          <View className="mt-6">
+            <Text className="text-theme-neutrals-400 text-sm font-medium mb-2">
               {t('settings.postVisibility')}
             </Text>
-            <View className="bg-theme-neutrals-800 rounded-xl overflow-hidden border border-theme-neutrals-700">
+            <View className="-mx-4">
               <TouchableOpacity
                 onPress={() => setShowPostVisModal(true)}
                 activeOpacity={0.7}
-                className="px-4 py-3.5 flex-row items-center"
+                className="px-4 py-2 flex-row items-center"
                 disabled={saving}
               >
-                <View className="mr-3 w-9 h-9 rounded-xl bg-theme-neutrals-700/50 items-center justify-center">
-                  <Icon name="Eye" size={18} color="#9ca3af" />
+                <View className="mr-3 w-5 h-5 items-center justify-center">
+                  <Icon name="Eye" size={20} color="#8B8D90" />
                 </View>
                 <View className="flex-1 mr-2">
-                  <Text className="text-white text-sm font-medium">{t('settings.defaultPostVisibility')}</Text>
-                  <Text className="text-theme-neutrals-500 text-xs mt-0.5">
+                  <Text className="text-white text-base leading-5 font-medium">{t('settings.defaultPostVisibility')}</Text>
+                  <Text className="text-theme-neutrals-500 text-sm leading-5 mt-0.5">
                     {t('settings.newPostsDefaultDesc', { visibility: postVisLabel[defaultPostVisibility].toLowerCase() })}
                   </Text>
                 </View>
@@ -519,19 +514,19 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
 
         {/* AI Scraping */}
         <SettingsAnchor id="ai-scraping">
-          <View className="mt-6 mx-4">
-            <Text className="text-theme-neutrals-500 text-[11px] uppercase mb-2 ml-1 tracking-widest font-semibold">
+          <View className="mt-6">
+            <Text className="text-theme-neutrals-400 text-sm font-medium mb-2">
               {t('settings.aiScraping.section')}
             </Text>
-            <View className="bg-theme-neutrals-800 rounded-xl overflow-hidden border border-theme-neutrals-700">
-              <View className="px-4 py-3.5 flex-row items-center justify-between">
+            <View className="-mx-4">
+              <View className="px-4 py-2 flex-row items-center justify-between">
                 <View className="flex-row items-center flex-1 pr-3">
-                  <View className="mr-3 w-9 h-9 rounded-xl bg-theme-neutrals-700/50 items-center justify-center">
-                    <Icon name="Bot" size={18} color="#9ca3af" />
+                  <View className="mr-3 w-5 h-5 items-center justify-center">
+                    <Icon name="Bot" size={20} color="#8B8D90" />
                   </View>
                   <View className="flex-1">
-                    <Text className="text-white text-sm font-medium">{t('settings.aiScraping.label')}</Text>
-                    <Text className="text-theme-neutrals-500 text-xs mt-0.5">
+                    <Text className="text-white text-base leading-5 font-medium">{t('settings.aiScraping.label')}</Text>
+                    <Text className="text-theme-neutrals-500 text-sm leading-5 mt-0.5">
                       {aiScraping === 'allow' ? t('settings.aiScraping.hintAllow') : t('settings.aiScraping.hintDeny')}
                     </Text>
                   </View>
@@ -544,23 +539,23 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
 
         {/* Follower Visibility */}
         <SettingsAnchor id="follower-visibility">
-          <View className="mt-6 mx-4">
-            <Text className="text-theme-neutrals-500 text-[11px] uppercase mb-2 ml-1 tracking-widest font-semibold">
+          <View className="mt-6">
+            <Text className="text-theme-neutrals-400 text-sm font-medium mb-2">
               {t('settings.followerVisibilitySection')}
             </Text>
-            <View className="bg-theme-neutrals-800 rounded-xl overflow-hidden border border-theme-neutrals-700">
+            <View className="-mx-4">
               <TouchableOpacity
                 onPress={() => setShowFollowerVisModal(true)}
                 activeOpacity={0.7}
-                className="px-4 py-3.5 flex-row items-center"
+                className="px-4 py-2 flex-row items-center"
                 disabled={saving}
               >
-                <View className="mr-3 w-9 h-9 rounded-xl bg-theme-neutrals-700/50 items-center justify-center">
-                  <Icon name="EyeOff" size={18} color="#9ca3af" />
+                <View className="mr-3 w-5 h-5 items-center justify-center">
+                  <Icon name="EyeOff" size={20} color="#8B8D90" />
                 </View>
                 <View className="flex-1 mr-2">
-                  <Text className="text-white text-sm font-medium">{t('settings.hideFollowersFollowing')}</Text>
-                  <Text className="text-theme-neutrals-500 text-xs mt-0.5">
+                  <Text className="text-white text-base leading-5 font-medium">{t('settings.hideFollowersFollowing')}</Text>
+                  <Text className="text-theme-neutrals-500 text-sm leading-5 mt-0.5">
                     {followerVisibility === 'public' && t('settings.followerVisPublicDesc')}
                     {followerVisibility === 'counts-only' && t('settings.followerVisCountsDesc')}
                     {followerVisibility === 'hidden' && t('settings.followerVisHiddenDesc')}
@@ -678,7 +673,7 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
           <GeoBlockingSection />
         </SettingsAnchor>
 
-        <View className="mt-6 mx-4 p-4 bg-theme-neutrals-800/50 rounded-xl flex-row items-start">
+        <View className="mt-6 p-4 bg-white/5 rounded-xl flex-row items-start">
           <Icon name="Info" size={16} color="#6b7280" />
           <Text className="text-theme-neutrals-500 text-xs ml-2 flex-1">
             {t('settings.privacyHelpNote')}
@@ -797,7 +792,7 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
                       name={item.requesterDisplayName || item.requesterUsername}
                     />
                     <View className="flex-1">
-                      <Text className="text-white text-sm font-medium" numberOfLines={1}>
+                      <Text className="text-white text-base leading-5 font-medium" numberOfLines={1}>
                         {item.requesterDisplayName || item.requesterUsername || t('settings.unknown')}
                       </Text>
                       {item.requesterUsername && (
@@ -859,7 +854,7 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
             >
               <View className="flex-1">
                 <Text className="text-white text-[15px] font-medium">{opt.label}</Text>
-                <Text className="text-theme-neutrals-500 text-xs mt-0.5">{opt.desc}</Text>
+                <Text className="text-theme-neutrals-500 text-sm leading-5 mt-0.5">{opt.desc}</Text>
               </View>
               {followerVisibility === opt.value && (
                 <Icon name="Check" size={18} color="#D4D4D8" />
@@ -893,7 +888,7 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
             >
               <View className="flex-1">
                 <Text className="text-white text-[15px] font-medium">{opt.label}</Text>
-                <Text className="text-theme-neutrals-500 text-xs mt-0.5">{opt.desc}</Text>
+                <Text className="text-theme-neutrals-500 text-sm leading-5 mt-0.5">{opt.desc}</Text>
               </View>
               {defaultPostVisibility === opt.value && (
                 <Icon name="Check" size={18} color="#D4D4D8" />

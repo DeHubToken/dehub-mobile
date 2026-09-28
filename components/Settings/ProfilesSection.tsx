@@ -103,10 +103,10 @@ export function ProfilesSection() {
                 />
               </View>
               <View className="flex-1 mr-2">
-                <Text className="text-white text-sm font-medium" numberOfLines={1}>
+                <Text className="text-white text-base leading-5 font-medium" numberOfLines={1}>
                   {profile.name || profile.username || shortAddress(profile.address)}
                 </Text>
-                <Text className="text-theme-neutrals-500 text-xs mt-0.5" numberOfLines={1}>
+                <Text className="text-theme-neutrals-500 text-sm leading-5 mt-0.5" numberOfLines={1}>
                   {shortAddress(profile.address)}
                   {!profile.session
                     ? ` · ${t('settings.profileSignedOut', 'sign in to switch')}`
@@ -133,7 +133,7 @@ export function ProfilesSection() {
           <Icon name="Plus" size={16} color="#9ca3af" />
         </View>
         <View className="flex-1">
-          <Text className="text-white text-sm font-medium">
+          <Text className="text-white text-base leading-5 font-medium">
             {t('settings.addProfile', 'Add profile')}
           </Text>
         </View>
