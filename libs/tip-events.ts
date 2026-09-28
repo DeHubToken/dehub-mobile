@@ -14,3 +14,6 @@ export function subscribePostTipped(fn: Listener): () => void {
   listeners.add(fn);
   return () => { listeners.delete(fn); };
 }
+
+/** Comment tips share the channel under a prefixed key, so they never light a post's gem. */
+export const commentTipKey = (commentId: string | number) => `comment:${commentId}`;

@@ -21,6 +21,7 @@ jest.mock('../../components/Home/ReactionEmoji', () => ({ ReactionEmoji: 'Reacti
 jest.mock('../../hooks/useAppPrefs', () => ({ useAppPrefs: () => ({ leftHanded: false }) }));
 jest.mock('../../libs/haptics', () => ({ haptic: { tap: jest.fn(), press: jest.fn() } }));
 jest.mock('../../libs/reaction-tip', () => ({ maybeShowReactionTip: jest.fn(), markReactionTipSeen: jest.fn() }));
+jest.mock('../../hooks/useViewerTippedPost', () => ({ useViewerTippedPost: () => false }));
 
 function props() {
   return {
