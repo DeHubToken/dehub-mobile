@@ -52,7 +52,7 @@ import {
   PanResponder,
 } from "react-native";
 import useKeyboard from "../hooks/useKeyboard";
-import Reanimated, { runOnJS, useAnimatedStyle, useSharedValue } from "react-native-reanimated";
+import { runOnJS, useSharedValue } from "react-native-reanimated";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import type { NativeGesture } from "react-native-gesture-handler";
 import { useRoute, useNavigation } from "@react-navigation/native";
@@ -476,10 +476,15 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
   /** Touch origin for the swipe-down, read on the UI thread by hidePan. */
   const panStart = useSharedValue({ x: 0, y: 0 });
 
-  /** How far through the short we are, 0 → 1. A shared value rather than
-   *  state: the timeline moves four times a second and none of it needs a
-   *  React render — the fill is an animated style on the UI thread. */
-  const progress = useSharedValue(0);
+  // Keep the playback clock out of layout and Fabric commits while paging.
+  const progress = useRef(new Animated.Value(0)).current;
+  const trackWidth = Math.max(1, SCREEN_WIDTH - EDGE * 2);
+  useEffect(() => {
+    Animated.timing(progress, {
+      toValue: 0, duration: 0, useNativeDriver: true, isInteraction: false,
+    }).start();
+    return () => progress.stopAnimation();
+  }, [progress]);
   const durationRef = useRef(0);
   const [scrubbing, setScrubbing] = useState(false);
   /** Read by the time listener, which is subscribed once per player. */
@@ -619,7 +624,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
       // A drag owns the bar until the finger lifts; the clock would otherwise
       // yank it back to wherever playback still is.
       if (scrubbingRef.current || !(total > 0)) return;
-      progress.value = Math.max(0, Math.min(1, (currentTime ?? 0) / total));
+      progress.setValue(Math.max(0, Math.min(1, (currentTime ?? 0) / total)));
     });
     return () => {
       sub.remove();
@@ -636,11 +641,11 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
   }, []);
 
   const handleScrub = useCallback((ratio: number) => {
-    progress.value = ratio;
+    progress.setValue(ratio);
   }, [progress]);
 
   const handleScrubCommit = useCallback((ratio: number) => {
-    progress.value = ratio;
+    progress.setValue(ratio);
     const total = durationRef.current;
     if (total > 0) {
       try { player.currentTime = ratio * total; } catch {}
@@ -671,8 +676,12 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
     blocks: scrubBlocks,
   });
 
-  const scrubFillStyle = useAnimatedStyle(() => ({ width: `${progress.value * 100}%` }));
-  const scrubThumbStyle = useAnimatedStyle(() => ({ left: `${progress.value * 100}%` }));
+  const scrubFillStyle = {
+    transform: [{ translateX: progress.interpolate({ inputRange: [0, 1], outputRange: [-trackWidth, 0] }) }],
+  };
+  const scrubThumbStyle = {
+    transform: [{ translateX: progress.interpolate({ inputRange: [0, 1], outputRange: [0, trackWidth] }) }],
+  };
 
   useEffect(() => {
     const sub = player.addListener("playingChange", ({ isPlaying: playing }) => {
@@ -1386,12 +1395,12 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
             accessibilityRole="adjustable"
           >
             <View style={[styles.scrubLine, scrubbing && styles.scrubLineActive]}>
-              <Reanimated.View
+              <Animated.View
                 style={[styles.scrubFill, scrubbing && styles.scrubFillActive, scrubFillStyle]}
               />
             </View>
             {scrubbing && (
-              <Reanimated.View style={[styles.scrubThumb, scrubThumbStyle]} pointerEvents="none" />
+              <Animated.View style={[styles.scrubThumb, scrubThumbStyle]} pointerEvents="none" />
             )}
           </View>
         </GestureDetector>
@@ -1943,7 +1952,7 @@ const ShortsViewerScreen = () => {
     }
   }).current;
 
-  const viewabilityConfig = useRef({ itemVisiblePercentThreshold: 60 }).current;
+  const viewabilityConfig = useRef({ itemVisiblePercentThreshold: 60, minimumViewTime: 120 }).current;
 
   const listRef = useRef<FlatList>(null);
   /**
@@ -2077,7 +2086,7 @@ const ShortsViewerScreen = () => {
           ListEmptyComponent={renderEmpty}
           removeClippedSubviews={false}
           windowSize={3}
-          maxToRenderPerBatch={2}
+          maxToRenderPerBatch={1}
           initialNumToRender={2}
           getItemLayout={getItemLayout}
         />
@@ -2315,6 +2324,7 @@ const styles = StyleSheet.create({
   },
   scrubLine: {
     height: 2,
+    overflow: "hidden",
     borderRadius: 1,
     backgroundColor: "rgba(255,255,255,0.25)",
     justifyContent: "center",
@@ -2325,6 +2335,7 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(255,255,255,0.35)",
   },
   scrubFill: {
+    width: "100%",
     height: "100%",
     borderRadius: 2,
     backgroundColor: "rgba(255,255,255,0.85)",
@@ -2334,6 +2345,7 @@ const styles = StyleSheet.create({
   },
   scrubThumb: {
     position: "absolute",
+    left: EDGE,
     bottom: 1,
     width: 14,
     height: 14,
