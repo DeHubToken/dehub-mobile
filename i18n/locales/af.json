@@ -8451,5 +8451,20 @@
     "subscriptionTokensOnly": "Uitsluitend voor generasies",
     "subscriptionTokensValueNote": "Inskrywingstekeninge hou hulle dollarwaarde in stand. As die tekenprys beweeg voordat jy dit gebruik, sal jy min of meer tekens sien, maar hulle koop altyd dieselfde hoeveelheid AI-generasie. Hulle kan nie teruggetrek, gestuur of verhandel word nie.",
     "topUpEmptyHint": "Voeg tekens by om met AI te genereer"
+  },
+  "accountDeletion": {
+    "title": "Sluit profiel",
+    "description": "Skrap jou rekening en persoonlike data permanent",
+    "warning": "Dit verwyder permanent jou DeHub profiel, plasings, kommentaar, boodskappe en gestoor beursie rugsteun. Stoor jou beursie herstel besonderhede en beweeg enige bates eerste. Openbare blokkettingtransaksies en wetlik vereiste betalingsrekords kan nie verwyder word nie. Jou profiel is onmiddellik weggesteek; skrapping voltooi binne 30 dae. Dit kan nie ongedaan gemaak word nie.",
+    "cancel": "Kanselleer",
+    "confirm": "Skrap my rekening permanent",
+    "busy": "Indiening van skrapversoek...",
+    "accepted": "Rekening skrap versoek",
+    "receipt": "Jou uitvee-versoek is gestoor. Jou profiel is weggesteek en jou rekening sal permanent verwyder word binne 30 dae. Ondertekening kan nie hierdie versoek kanselleer nie.",
+    "done": "Klaar",
+    "error": "Kon nie jou uitvee-versoek indien nie. Jou rekening is nie bevestig om uitgevee te word nie. Probeer asseblief weer.",
+    "back": "Terug na Instellings",
+    "signIn": "Teken in om jou rekening te skrap",
+    "acknowledge": "Ek het my beursie herstel besonderhede gestoor en verstaan dat skrapping permanent is."
   }
 }

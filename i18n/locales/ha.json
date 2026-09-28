@@ -8325,5 +8325,20 @@
     "subscriptionTokensOnly": "Domin AI tsara kawai",
     "subscriptionTokensValueNote": "Alamomin biyan kuɗi suna riƙe da darajar dala. Idan farashin alamar yana motsawa kafin kayi amfani da su za ku ga alamomi da yawa ko ƙasa, amma koyaushe suna siyan adadin ƙarni na AI. Ba za a iya janye su ba, aika su ko ciniki.",
     "topUpEmptyHint": "Ƙara alamomi don samar da AI"
+  },
+  "accountDeletion": {
+    "title": "Share wannan Asusun",
+    "description": "Kullum share asusunka da bayanan sirri",
+    "warning": "Wannan har abada share your DeHub profile, posts, comments, saƙonni da kuma adana walat madadin. Ajiye ka walat dawo da cikakken bayani da kuma matsar da dukiya farko. Jama'a blockchain ma'amaloli da kuma doka da ake bukata biya records ba za a iya share. Bayaninka an ɓoye nan da nan; shafewa ya kammala cikin kwanaki 30. Ba za a iya cire wannan ba.",
+    "cancel": "QSql",
+    "confirm": "Kullum share asusun na",
+    "busy": "Gabatar da buƙatun sharewa…",
+    "accepted": "Asusun shafewa da aka nema",
+    "receipt": "An adana buƙatarku na sharewa. Bayaninka yana ɓoye kuma za a share asusunka har abada a cikin kwanaki 30. Shiga ciki ba zai iya soke wannan buƙatar ba.",
+    "done": "QSoftKeyManager",
+    "error": "Ba zai iya gabatar da buƙatarku na sharewa ba. Ba a tabbatar da asusunka don sharewa ba. Don Allah a sake gwadawa.",
+    "back": "Komawa zuwa Saituna",
+    "signIn": "Shiga don share asusunka",
+    "acknowledge": "Na ajiye ta walat dawo da cikakkun bayanai da kuma fahimtar cewa shafewa ne na dindindin."
   }
 }

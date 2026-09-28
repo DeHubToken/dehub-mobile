@@ -8580,5 +8580,20 @@
     "subscriptionTokensOnly": "Alleen voor AI-generatie",
     "subscriptionTokensValueNote": "Abonnementstokens hebben hun dollarwaarde. Als de tokenprijs beweegt voordat je ze gebruikt, zie je meer of minder tokens, maar ze kopen altijd dezelfde hoeveelheid AI-generatie. Ze kunnen niet worden ingetrokken, verzonden of verhandeld.",
     "topUpEmptyHint": "Voeg tokens toe om te genereren met AI"
+  },
+  "accountDeletion": {
+    "title": "Account verwijderen",
+    "description": "Je account en persoonlijke gegevens permanent verwijderen",
+    "warning": "Hiermee worden uw DeHub-profiel, berichten, opmerkingen, berichten en opgeslagen portefeuilleback-up permanent verwijderd. Sla de herstelgegevens van je portemonnee op en verplaats eerst alle activa. Openbare blockchain-transacties en wettelijk vereiste betalingsrecords kunnen niet worden verwijderd. Je profiel is onmiddellijk verborgen; verwijdering is binnen 30 dagen voltooid. Dit kan niet ongedaan worden gemaakt.",
+    "cancel": "Annuleren",
+    "confirm": "Mijn account permanent verwijderen",
+    "busy": "Verwijderingsverzoek indienen...",
+    "accepted": "Verwijdering van account aangevraagd",
+    "receipt": "Uw verwijderingsverzoek is opgeslagen. Je profiel is verborgen en je account wordt binnen 30 dagen permanent verwijderd. Inloggen kan dit verzoek niet annuleren.",
+    "done": "Klaar",
+    "error": "Kon uw verwijderingsverzoek niet indienen. Je account is niet bevestigd voor verwijdering. Probeer het opnieuw.",
+    "back": "Terug naar instellingen",
+    "signIn": "Log in bij uw account",
+    "acknowledge": "Ik heb de herstelgegevens van mijn portemonnee opgeslagen en begrijp dat het verwijderen permanent is."
   }
 }

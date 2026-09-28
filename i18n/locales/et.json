@@ -8321,5 +8321,20 @@
     "subscriptionTokensOnly": "Ainult tehisintellekti loomiseks",
     "subscriptionTokensValueNote": "Tellimuse märgid hoiavad oma väärtust dollarites. Kui sümboolne hind liigub enne nende kasutamist, näete rohkem või vähem sümboleid, kuid nad ostavad alati sama koguse tehisintellekti põlvkonda. Neid ei saa tagasi võtta, saata ega vahetada.",
     "topUpEmptyHint": "Tehisintellekti abil genereerimiseks lisa žetoonid"
+  },
+  "accountDeletion": {
+    "title": "Kustuta konto",
+    "description": "Kustuta jäädavalt oma konto ja isikuandmed",
+    "warning": "See kustutab jäädavalt sinu DeHubi profiili, postitused, kommentaarid, sõnumid ja salvestatud rahakoti varukoopia. Salvesta oma rahakoti taastamise üksikasjad ja teisalda esmalt kõik kasulikud asjad. Avalikke plokiahela tehinguid ja seadusega nõutud maksekirjeid ei saa kustutada. Sinu profiil peidetakse kohe; kustutamine lõpeb 30 päeva jooksul. Seda ei saa tagasi võtta.",
+    "cancel": "Saab sisse lülitada",
+    "confirm": "Kustuta minu konto jäädavalt",
+    "busy": "Kustutamistaotluse esitamine…",
+    "accepted": "Konto kustutamine on taotletud",
+    "receipt": "Sinu kustutamistaotlus on salvestatud. Sinu profiil on peidetud ja sinu konto kustutatakse jäädavalt 30 päeva jooksul. Sisselogimine ei saa seda taotlust tühistada.",
+    "done": "Skänni QR-kood, et kuvada",
+    "error": "Kustutamistaotlust ei saanud esitada. Sinu konto ei ole kustutamiseks kinnitatud. Proovi uuesti.",
+    "back": "Mine tagasi seadistuste juurde",
+    "signIn": "Logi oma kontole sisse",
+    "acknowledge": "Salvestasin oma rahakoti taastamise üksikasjad ja mõistan, et kustutamine on lõplik."
   }
 }

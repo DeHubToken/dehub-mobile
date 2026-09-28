@@ -8326,5 +8326,20 @@
     "subscriptionTokensOnly": "Solo para la generación de IA",
     "subscriptionTokensValueNote": "Los tokens de suscripción mantienen su valor en dólares. Si el precio del token se mueve antes de que los uses, verás más o menos tokens, pero siempre compran la misma cantidad de generación de IA. No se pueden retirar, enviar ni negociar.",
     "topUpEmptyHint": "Añadir tokens para generar con IA"
+  },
+  "accountDeletion": {
+    "title": "Eliminar cuenta",
+    "description": "Elimina permanentemente tu cuenta y tus datos personales",
+    "warning": "Esto elimina permanentemente tu perfil de DeHub, publicaciones, comentarios, mensajes y copias de seguridad de monedero almacenadas. Guarde los detalles de recuperación de su billetera y mueva cualquier activo primero. Las transacciones públicas de blockchain y los registros de pago legalmente requeridos no se pueden eliminar. Tu perfil se oculta de inmediato; la eliminación se completa en un plazo de 30 días. Esto no se puede deshacer.",
+    "cancel": "Cancelar",
+    "confirm": "Borrar mi cuenta permanentemente",
+    "busy": "Enviando solicitud de eliminación...",
+    "accepted": "Eliminación de cuenta solicitada",
+    "receipt": "Se ha guardado tu solicitud de eliminación. Tu perfil está oculto y tu cuenta se eliminará de forma permanente en un plazo de 30 días. Iniciar sesión no puede cancelar esta solicitud.",
+    "done": "Terminado",
+    "error": "No se ha podido enviar su solicitud de eliminación. Tu cuenta no ha sido confirmada para su eliminación. Inténtalo de nuevo.",
+    "back": "Volver a Ajustes",
+    "signIn": "Inicia sesión para eliminar tu cuenta",
+    "acknowledge": "He guardado los datos de recuperación de mi monedero y entiendo que la eliminación es permanente."
   }
 }

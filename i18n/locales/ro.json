@@ -8339,5 +8339,20 @@
     "subscriptionTokensOnly": "Numai pentru generarea AI",
     "subscriptionTokensValueNote": "Jetoanele de abonament își păstrează valoarea în dolari. Dacă prețul jetonului se mișcă înainte de a le utiliza, vei vedea mai multe sau mai puține jetoane, dar cumpără întotdeauna aceeași cantitate de generare AI. Acestea nu pot fi retrase, trimise sau tranzacționate.",
     "topUpEmptyHint": "Adaugă jetoane pentru a genera cu AI"
+  },
+  "accountDeletion": {
+    "title": "Ștergere cont",
+    "description": "Ștergerea definitivă a contului și a datelor cu caracter personal",
+    "warning": "Acest lucru șterge definitiv profilul dvs. DeHub, postările, comentariile, mesajele și copiile de rezervă ale portofelului stocate. Salvați detaliile de recuperare a portofelului și mutați mai întâi activele. Tranzacțiile publice de tip blockchain și înregistrările de plăți obligatorii din punct de vedere legal nu pot fi șterse. Profilul tău este ascuns imediat; ștergerea se finalizează în termen de 30 de zile. Acest lucru nu poate fi anulat.",
+    "cancel": "Anulare",
+    "confirm": "Ștergere definitivă cont",
+    "busy": "Se trimite cererea de ștergere...",
+    "accepted": "Ștergerea contului a fost solicitată",
+    "receipt": "Cererea ta de ștergere a fost salvată. Profilul tău este ascuns și contul tău va fi șters definitiv în termen de 30 de zile. Conectarea nu poate anula această cerere.",
+    "done": "Terminat",
+    "error": "Cererea de ștergere nu a putut fi trimisă. Contul tău nu a fost confirmat pentru ștergere. Te rugăm să încerci din nou.",
+    "back": "Înapoi la Setări",
+    "signIn": "Conectează-te la contul tău",
+    "acknowledge": "Am salvat detaliile de recuperare a portofelului și înțeleg că ștergerea este permanentă."
   }
 }

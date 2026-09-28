@@ -8425,5 +8425,20 @@
     "subscriptionTokensOnly": "Ho an'ny taranaka mifandimby ihany",
     "subscriptionTokensValueNote": "Ny dolara azo tamin'ny tokony ividianana ombivavy. Raha toa ka mihetsika ny vidin'ny famantarana alohan'ny hampiasanao azy ireo dia hahita famantarana bebe kokoa ianao, saingy mividy ny habetsaky ny AI foana izy ireo. Tsy azo esorina izy ireo, alefa, na amidy.",
     "topUpEmptyHint": "Ampio famantarana mba hamoronana amin'ny AI"
+  },
+  "accountDeletion": {
+    "title": "Fafana ny kaonty",
+    "description": "Hamafa hatrany ny kaontinao sy ny mombamomba anao manokana",
+    "warning": "Izany dia mamafa tanteraka ny mombamomba anao ao amin'ny DeHub, ny lahatsoratra, ny fanehoan-kevitra, ny hafatra ary ny tahirin-tsakafo. Vonjeo ny kitapom-batsy fanarenana tsipiriany ary hifindra misy fananana aloha. Public blockchain varotra sy ny fandoavam-bola takiana ara-dalàna ny firaketana dia tsy azo fafàna. Ny mombamomba anao dia miafina avy hatrany; Ny famafana dia mamarana ao anatin'ny 30 andro. Voavaha io taratasin-tadidy io.",
+    "cancel": "Hanajanona",
+    "confirm": "Hamafa hatrany ny kaonty",
+    "busy": "Famafana fangatahana...",
+    "accepted": "Fafàna ny kaonty",
+    "receipt": "Voavonjy ny fangatahanao famafàna. Ny mombamomba anao dia miafina ary ho voafafa tanteraka ny kaontinao ao anatin'ny 30 andro. Ny fisoratana anarana dia tsy afaka hanafoana ny fangatahana toy izany.",
+    "done": "GameTextFile",
+    "error": "Tsy afaka namaritra ny fangatahana famafana ianao. Tsy voamarina ny kaontinao noho ny famafana azy. Avereno andramana azafady.",
+    "back": "Makany amin'ny fandrindrana",
+    "signIn": "Hiditra ao amin'ny kaontinao.",
+    "acknowledge": "Izaho no namonjy ny kitapom-batsy fanarenana antsipirihany sy hahatakatra fa famafana maharitra."
   }
 }
