@@ -370,7 +370,12 @@ const SR_LETTERS = {
 /** Tokens that must survive as written: placeholders, tags, URLs, @/#/$ tags, and DeHub/crypto names. */
 const SR_KEEP = /\{\{[^}]+\}\}|\{[a-zA-Z0-9_]+\}|<\/?[a-zA-Z][a-zA-Z0-9]*>|https?:\/\/\S+|[@#$][\w.-]+|\b(?:DeHub|DHB|BNB|BSC|ETH|USDT|USDC|NFTs?|DEX|APY|API|URL|ID|PIN|QR|OTP|AI|RPC|TikTok|YouTube|Google|Apple|Android|iOS|Telegram|Discord|X|MetaMask|WalletConnect|Web3|OK)\b/g;
 function toLocaleScript(text, locale) {
-  if (text == null || locale !== 'sr') return text;
+  if (text == null) return text;
+  // Georgian has no case, but the provider capitalises the first letter of a
+  // line into Mtavruli (U+1C90…), which reads as a stray display capital —
+  // "Საყოველთაო". Every letter there has a Mkhedruli lowercase form.
+  if (locale === 'ka') return text.replace(/[Ა-Ჿ]/g, (ch) => ch.toLowerCase());
+  if (locale !== 'sr') return text;
   let out = '';
   let last = 0;
   const convert = (chunk) => {
