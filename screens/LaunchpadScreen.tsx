@@ -96,7 +96,8 @@ export default function LaunchpadScreen() {
         data={FILTERS}
         keyExtractor={(f) => f.id}
         showsHorizontalScrollIndicator={false}
-        contentContainerStyle={{ gap: 6 }}
+        style={{ marginHorizontal: -16 }}
+        contentContainerStyle={{ gap: 6, paddingHorizontal: 16 }}
         renderItem={({ item: f }) => {
           const active = filter === f.id;
           return (
