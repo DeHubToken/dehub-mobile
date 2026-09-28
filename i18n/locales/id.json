@@ -8271,5 +8271,31 @@
     "faqAccountQ": "Apakah saya perlu akun DeHub?",
     "chatgptFaqAccount": "Tidak diperlukan akun untuk membaca konten publik melalui konektor. Akun DeHub hanya diperlukan jika Anda ingin memposting, memberi tip, atau menyimpan token DeHub.",
     "claudeFaqAccount": "Tidak. Membaca konten publik berfungsi tanpa akun. Anda hanya memerlukan akun DeHub untuk memposting, memberi tip, atau menyimpan token DeHub."
+  },
+  "credits": {
+    "percentUsed": "{{percent}}% digunakan",
+    "spentOfTotal": "{{spent}} dari {{total}}",
+    "subscriptionTokens": "Token langganan",
+    "topUp": "Tambahkan token",
+    "topUpTitle": "Tambahkan token berlangganan",
+    "topUpCustom": "Jumlah lainnya (USD)",
+    "topUpYouSend": "Anda mengirim",
+    "topUpYouGet": "Ditambahkan ke saldo Anda",
+    "topUpConfirm": "Tambahkan {{amount}}",
+    "topUpRange": "Masukkan {{min}} ke {{max}}",
+    "topUpDone": "{{amount}} ditambahkan ke token langganan Anda",
+    "topUpPending": "Isi ulang Anda mengonfirmasi. Ini akan segera muncul di saldo Anda.",
+    "topUpFailed": "Tidak dapat menambahkan token berlangganan",
+    "topUpStageFunding": "Mendapatkan token…",
+    "topUpStageWallet": "Konfirmasi di dompet Anda…",
+    "topUpStageConfirming": "Menunggu transaksi…",
+    "topUpStageCrediting": "Menambah saldo Anda…",
+    "untradableTokens": "Ini adalah token langganan yang tidak dapat diperdagangkan",
+    "withdraw": "Tarik",
+    "close": "Tutup",
+    "tokenAmount": "{{amount}} token",
+    "subscriptionTokensOnly": "Hanya untuk pembuatan AI",
+    "subscriptionTokensValueNote": "Token langganan mempertahankan nilai dolarnya. Jika harga token bergerak sebelum Anda menggunakannya, Anda akan melihat lebih banyak atau lebih sedikit token, tetapi mereka selalu membeli jumlah generasi AI yang sama. Mereka tidak dapat ditarik, dikirim, atau diperdagangkan.",
+    "topUpEmptyHint": "Tambahkan token untuk dibuat dengan AI"
   }
 }

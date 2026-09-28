@@ -8299,5 +8299,31 @@
     "faqAccountQ": "¿DeHub cuentata munanichu?",
     "chatgptFaqAccount": "Mana kaqta reqsinachu public content qhawana connector kaqwan. DeHub kaqta reqsinallataqmi qelqayta, tipayta chaynataq DeHub tokens hap'iyta atikanki.",
     "claudeFaqAccount": "Mana. Public content qhawana kaqqa mana kaqta reqsinachu. DeHub kaqta reqsinallataqmi qelqayta, tipayta chaynataq DeHub tokens hap'iyta atikanki."
+  },
+  "credits": {
+    "percentUsed": "{{percent}}% llamk&#39;achisqa",
+    "spentOfTotal": "{{spent}} nisqamanta {{total}} nisqamanta.",
+    "subscriptionTokens": "Suscripción tokenkunata",
+    "topUp": "Tokenkunata yapay",
+    "topUpTitle": "Suscripción tokenkunata yapay",
+    "topUpCustom": "Huk qullqi (USD) .",
+    "topUpYouSend": "Qam kachayki",
+    "topUpYouGet": "Saldoykiman yapasqa",
+    "topUpConfirm": "Yanapay {{amount}}",
+    "topUpRange": "{{min}} nisqamanta {{max}} nisqaman qillqay.",
+    "topUpDone": "{{amount}} suscripción tokensniykiman yapasqa",
+    "topUpPending": "Recargoykiqa takyachiqmi. Pisi tiempollamantan balanzaykipi rikhurimunqa.",
+    "topUpFailed": "Mana suscripción tokenkunata yapayta atirqanchu",
+    "topUpStageFunding": "Fichas nisqakunata chaskispa...",
+    "topUpStageWallet": "Billeteraykipi takyachiy...",
+    "topUpStageConfirming": "Chay rantinakuyta suyaspa...",
+    "topUpStageCrediting": "Saldoykiman yapaspa...",
+    "untradableTokens": "Kaykunaqa mana rantikuy atiq kikinmi",
+    "withdraw": "Hark'ay",
+    "close": "Kichay",
+    "tokenAmount": "{{amount}} fichas nisqakuna",
+    "subscriptionTokensOnly": "AI mirayllapaq",
+    "subscriptionTokensValueNote": "Suscripción tokenkuna dólar chaninninta hap&#39;in. Sichus token chanin kuyun manaraq llamk&#39;achkaspa aswan utaq pisi tokenkunata rikunki, ichaqa sapa kuti kikin qullqita AI mirayta rantinku. Manan qechuyta, apachiyta, qhatuytapas atinkuchu.",
+    "topUpEmptyHint": "AIwan paqarichinapaq tokenkunata yapay"
   }
 }

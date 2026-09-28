@@ -6,10 +6,12 @@ import { useTranslation } from 'react-i18next';
 import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import ScreenHeader from '../components/ScreenHeader';
+import SubscriptionCreditsPill from '../components/SubscriptionCreditsPill';
 import { listCreatorAssets } from '../services/creator.service';
 import { openInApp } from '../libs/links.utils';
 import env from '../config/env';
 import { useUser } from '../context/AuthContext';
+import { DIGITAL_PURCHASES_ENABLED } from '../config/storefront';
 import { ScreenNames } from '../navigation/ScreenNames';
 import type { AppStackParamList } from '../navigation/types';
 
@@ -27,7 +29,11 @@ export default function CreatorScreen() {
   });
   return (
     <View className="flex-1 bg-theme-neutrals-900">
-      <ScreenHeader title={t('commandCentre.creator')} />
+      {/* Subscription tokens: the balance AI generation here is paid from. */}
+      <ScreenHeader
+        title={t('commandCentre.creator')}
+        rightContent={DIGITAL_PURCHASES_ENABLED && wallet ? <SubscriptionCreditsPill /> : undefined}
+      />
       <View className="flex-row px-4 py-3" style={{ gap: 12 }}>
         {/* Studio is a web page; Flow and the editor run in the app. */}
         {([

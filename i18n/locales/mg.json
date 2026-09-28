@@ -8370,5 +8370,31 @@
     "faqAccountQ": "Mila kaonty DeHub ve aho?",
     "chatgptFaqAccount": "Tsy mila kaonty ny famakiana votoaty ampahibemaso amin'ny alalan'ny mpampifandray. Ny kaonty DeHub ihany no ilaina raha te-mandefa, manome na mitazona tapaka DeHub ianao.",
     "claudeFaqAccount": "Tsia. Ny famakiana votoaty ampahibemaso dia mandeha tsy misy kaonty. Ny kaonty DeHub ihany no ilainao raha te-mandefa, manome na mitazona tapaka DeHub ianao."
+  },
+  "credits": {
+    "percentUsed": "{{percent}}% ampiasaina",
+    "spentOfTotal": "{{spent}} amin'ny {{total}}",
+    "subscriptionTokens": "Famandrihana famantarana",
+    "topUp": "Add famantarana",
+    "topUpTitle": "Add famandrihana famantarana",
+    "topUpCustom": "Vola hafa (USD)",
+    "topUpYouSend": "Mandefa ianao",
+    "topUpYouGet": "Tafiditra ao amin'ny fifandanjanao",
+    "topUpConfirm": "Add {{amount}}",
+    "topUpRange": "Midira {{min}} to {{max}}",
+    "topUpDone": "{{amount}} nanampy ho an'ny famandrihan-toerana misy anao",
+    "topUpPending": "Ny fanamafisany ny endriny ambony indrindra dia manamarina. Hiverina hividy indray tsy ho ela aho.",
+    "topUpFailed": "Tsy afaka nampiditra famantarana famandrihana",
+    "topUpStageFunding": "Mahazo famantarana...",
+    "topUpStageWallet": "Hamarino ao anaty kitaponao...",
+    "topUpStageConfirming": "Miandry ny fifampiraharahana...",
+    "topUpStageCrediting": "Hanampy anao amin'ny fandinihi...",
+    "untradableTokens": "Ireo dia mari-pamantarana tsy azo ovaina",
+    "withdraw": "Fanesorana",
+    "close": "Mifanakaiky",
+    "tokenAmount": "{{amount}} tapaho",
+    "subscriptionTokensOnly": "Ho an'ny taranaka mifandimby ihany",
+    "subscriptionTokensValueNote": "Ny dolara azo tamin'ny tokony ividianana ombivavy. Raha toa ka mihetsika ny vidin'ny famantarana alohan'ny hampiasanao azy ireo dia hahita famantarana bebe kokoa ianao, saingy mividy ny habetsaky ny AI foana izy ireo. Tsy azo esorina izy ireo, alefa, na amidy.",
+    "topUpEmptyHint": "Ampio famantarana mba hamoronana amin'ny AI"
   }
 }

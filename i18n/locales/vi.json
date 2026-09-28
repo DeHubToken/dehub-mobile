@@ -8359,5 +8359,31 @@
     "faqAccountQ": "Tôi có cần tài khoản DeHub không?",
     "chatgptFaqAccount": "Không cần tài khoản để đọc nội dung công khai thông qua trình kết nối. Chỉ cần tài khoản DeHub nếu bạn muốn đăng, tặng tiền hoặc giữ token DeHub.",
     "claudeFaqAccount": "Không. Đọc nội dung công khai hoạt động mà không cần tài khoản. Bạn chỉ cần tài khoản DeHub để đăng, tặng tiền hoặc giữ token DeHub."
+  },
+  "credits": {
+    "percentUsed": "Đã sử dụng {{percent}}%",
+    "spentOfTotal": "{{spent}}/{{total}}",
+    "subscriptionTokens": "Mã thông báo đăng ký",
+    "topUp": "Thêm mã thông báo",
+    "topUpTitle": "Thêm mã thông báo đăng ký",
+    "topUpCustom": "Số tiền khác (USD)",
+    "topUpYouSend": "Bạn gửi",
+    "topUpYouGet": "Đã thêm vào số dư của bạn",
+    "topUpConfirm": "Thêm {{amount}}",
+    "topUpRange": "Nhập {{min}} vào {{max}}",
+    "topUpDone": "{{amount}} đã được thêm vào mã thông báo đăng ký của bạn",
+    "topUpPending": "Nạp tiền của bạn đang được xác nhận. Nó sẽ sớm xuất hiện trong số dư của bạn.",
+    "topUpFailed": "Không thể thêm mã thông báo đăng ký",
+    "topUpStageFunding": "Đang nhận mã thông báo...",
+    "topUpStageWallet": "Xác nhận trong ví của bạn…",
+    "topUpStageConfirming": "Đang chờ giao dịch…",
+    "topUpStageCrediting": "Đang thêm vào số dư của bạn...",
+    "untradableTokens": "Đây là những token đăng ký không thể giao dịch",
+    "withdraw": "Rút tiền",
+    "close": "Đóng",
+    "tokenAmount": "{{amount}} token",
+    "subscriptionTokensOnly": "Chỉ dành cho thế hệ AI",
+    "subscriptionTokensValueNote": "Mã thông báo đăng ký giữ giá trị bằng đô la của chúng. Nếu giá mã thông báo di chuyển trước khi bạn sử dụng chúng, bạn sẽ thấy nhiều hoặc ít mã thông báo hơn, nhưng chúng luôn mua cùng một lượng thế hệ AI. Chúng không thể được rút, gửi hoặc giao dịch.",
+    "topUpEmptyHint": "Thêm mã thông báo để tạo bằng AI"
   }
 }

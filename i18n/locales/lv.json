@@ -8271,5 +8271,31 @@
     "faqAccountQ": "Vai man vajag DeHub kontu?",
     "chatgptFaqAccount": "Lai lasītu publisku saturu, izmantojot savienotāju, nav nepieciešams konts. DeHub konts ir nepieciešams tikai tad, ja vēlaties publicēt, dot dzeramnaudu vai turēt DeHub žetonus.",
     "claudeFaqAccount": "Nē. Publiskā satura lasīšana darbojas bez konta. DeHub konts ir nepieciešams tikai, lai publicētu, dotu dzeramnaudu vai turētu DeHub žetonus."
+  },
+  "credits": {
+    "percentUsed": "{{percent}}% izmantots",
+    "spentOfTotal": "{{spent}} no {{total}}",
+    "subscriptionTokens": "Abonēšanas marķieri",
+    "topUp": "Pievienot marķierus",
+    "topUpTitle": "Pievienot abonēšanas marķierus",
+    "topUpCustom": "Cita summa (USD)",
+    "topUpYouSend": "Jūs nosūtāt",
+    "topUpYouGet": "Pievienots atlikumam",
+    "topUpConfirm": "Pievienot {{amount}}",
+    "topUpRange": "Ievadiet {{min}} uz {{max}}",
+    "topUpDone": "{{amount}} pievienoja jūsu abonēšanas marķieriem",
+    "topUpPending": "Papildinājums tiek apstiprināts. Drīzumā tā būs redzama atlikumā.",
+    "topUpFailed": "Nevarēja pievienot abonēšanas marķierus",
+    "topUpStageFunding": "Iegūst marķierus...",
+    "topUpStageWallet": "Apstiprini makā...",
+    "topUpStageConfirming": "Gaida darījumu...",
+    "topUpStageCrediting": "Pievieno atlikumam...",
+    "untradableTokens": "Tie ir netirgojami abonēšanas marķieri",
+    "withdraw": "Atsaukt",
+    "close": "Aizvērt",
+    "tokenAmount": "{{amount}} žetonu",
+    "subscriptionTokensOnly": "Tikai mākslīgā intelekta ģenerēšanai",
+    "subscriptionTokensValueNote": "Abonēšanas žetoniem ir dolāra vērtība. Ja marķiera cena pārvietojas pirms jūs tos izmantojat, jūs redzēsiet vairāk vai mazāk marķierus, bet viņi vienmēr pērk tādu pašu daudzumu AI paaudzes. Tos nevar izņemt, nosūtīt vai tirgot.",
+    "topUpEmptyHint": "Pievienojiet marķierus, ko ģenerēt ar MI"
   }
 }

@@ -8271,5 +8271,31 @@
     "faqAccountQ": "Ma u baahanahay koonto DeHub?",
     "chatgptFaqAccount": "Maaha lagama maarmaan in akoon la yeesho si loo akhriyo waxyaabaha dadwaynaha loo soo bandhigay iyadoo la isticmaalayo isku xiraha. Akoon DeHub waxa kaliya loo baahan yahay haddii aad rabto inaad soo dhigto, siiso ama aad hayso lacagta DeHub.",
     "claudeFaqAccount": "Maya. Akhrinta waxyaabaha dadwaynaha loo soo bandhigay waxa ay shaqaysaa iyada oo aan lahayn akoon. Waxaad u baahan tahay akoon DeHub kaliya si aad u soo dhigto, u siiso ama aad u hayso lacagta DeHub."
+  },
+  "credits": {
+    "percentUsed": "{{percent}}% loo isticmaalo",
+    "spentOfTotal": "{{spent}} ee {{total}}",
+    "subscriptionTokens": "Calaamadaha is-diiwaangelinta",
+    "topUp": "Ku dar calaamadaha",
+    "topUpTitle": "Ku dar calaamadaha isdiiwaangelinta",
+    "topUpCustom": "Qadarka kale (USD)",
+    "topUpYouSend": "Waxaad dirtaa",
+    "topUpYouGet": "Ku dar dheelitirkaaga",
+    "topUpConfirm": "Ku dar {{amount}}",
+    "topUpRange": "Gali {{min}} ilaa {{max}}",
+    "topUpDone": "{{amount}} lagu daray calaamadahaaga isdiiwaangelinta",
+    "topUpPending": "Your top-up ayaa xaqiijinaya. Waxay ka muuqan doontaa dheelitirkaaga goor dhow.",
+    "topUpFailed": "Ma ku dari karo calaamadaha isdiiwaangelinta",
+    "topUpStageFunding": "Helitaanka calaamadaha...",
+    "topUpStageWallet": "Xaqiiji boorsadaada...",
+    "topUpStageConfirming": "Sugitaanka macaamilka...",
+    "topUpStageCrediting": "Ku dar dheelitirkaaga...",
+    "untradableTokens": "Kuwani waa calaamadaha isdiiwaangelinta ee aan la iibsan karin",
+    "withdraw": "Ka noqoshada",
+    "close": "Xir",
+    "tokenAmount": "{{amount}} tokens",
+    "subscriptionTokensOnly": "Waayo, jiilka AI kaliya",
+    "subscriptionTokensValueNote": "Calaamadaha isdiiwaangelinta waxay haystaan qiimaheeda doolarka. Haddii qiimaha calaamadda uu dhaqaaqo ka hor intaadan isticmaalin waxaad arki doontaa calaamado badan ama ka yar, laakiin had iyo jeer waxay iibsadaan qadar isku mid ah jiilka AI. Laguma soo celin karo, laguma diri karo ama laguma ganacsan karo.",
+    "topUpEmptyHint": "Ku dar calaamadaha si aad u soo saarto AI"
   }
 }

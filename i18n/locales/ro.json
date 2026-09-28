@@ -8284,5 +8284,31 @@
     "faqAccountQ": "Am nevoie de un cont DeHub?",
     "chatgptFaqAccount": "Nu este necesar un cont pentru a citi conținut public prin conector. Un cont DeHub este necesar doar dacă dorești să postezi, să oferi bacșiș sau să deții tokenuri DeHub.",
     "claudeFaqAccount": "Nu. Citirea conținutului public funcționează fără cont. Ai nevoie doar de un cont DeHub pentru a posta, a oferi bacșiș sau a deține tokenuri DeHub."
+  },
+  "credits": {
+    "percentUsed": "{{percent}}% utilizat",
+    "spentOfTotal": "{{spent}} din {{total}}",
+    "subscriptionTokens": "Jetoane de abonament",
+    "topUp": "Adaugă jetoane",
+    "topUpTitle": "Adaugă jetoane de abonament",
+    "topUpCustom": "Altă sumă (USD)",
+    "topUpYouSend": "Trimiteți",
+    "topUpYouGet": "Adăugat la soldul tău",
+    "topUpConfirm": "Adaugă {{amount}}",
+    "topUpRange": "Introduceți {{min}} până la {{max}}",
+    "topUpDone": "{{amount}} adăugat la jetoanele de abonament",
+    "topUpPending": "Reîncărcarea se confirmă. Acesta va apărea în soldul dvs. în scurt timp.",
+    "topUpFailed": "Nu s-au putut adăuga jetoane de abonament",
+    "topUpStageFunding": "Obținerea jetoanelor...",
+    "topUpStageWallet": "Confirmă în portofel...",
+    "topUpStageConfirming": "Se așteaptă tranzacția...",
+    "topUpStageCrediting": "Se adaugă la soldul tău...",
+    "untradableTokens": "Acestea sunt jetoane de abonament netranzacționabile",
+    "withdraw": "Retragere",
+    "close": "Închidere",
+    "tokenAmount": "{{amount}} token-uri",
+    "subscriptionTokensOnly": "Numai pentru generarea AI",
+    "subscriptionTokensValueNote": "Jetoanele de abonament își păstrează valoarea în dolari. Dacă prețul jetonului se mișcă înainte de a le utiliza, vei vedea mai multe sau mai puține jetoane, dar cumpără întotdeauna aceeași cantitate de generare AI. Acestea nu pot fi retrase, trimise sau tranzacționate.",
+    "topUpEmptyHint": "Adaugă jetoane pentru a genera cu AI"
   }
 }
