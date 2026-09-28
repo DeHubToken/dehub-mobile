@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 /**
  * Builds assets/theme-backdrop/index.html: dehubweb's canvas-theme backgrounds
- * (Cosmic, Hazy Nights, Swarms, Lava Lamp, Winter, War, Osaka, Jungle) bundled
+ * (Cosmic, Hazy Nights, Swarms, Lava Lamp, Winter, War, Osaka, Jungle,
+ * Island, Hacker, Horror) bundled
  * unchanged into one page that the app runs in a WebView behind its screens.
  *
  *   node scripts/theme-backdrop/build.js ../dehubweb
@@ -36,7 +37,9 @@ const STUBS = {
   "react-router-dom": "stubs/router.ts",
 };
 
-const result = esbuild.buildSync({
+// Async build: esbuild only runs plugins through its async API.
+(async () => {
+const result = await esbuild.build({
   entryPoints: [path.join(here, "entry.tsx")],
   bundle: true,
   minify: true,
@@ -81,3 +84,7 @@ const template = fs.readFileSync(path.join(here, "page.html"), "utf8");
 fs.mkdirSync(path.dirname(out), { recursive: true });
 fs.writeFileSync(out, template.replace("/*BUNDLE*/", () => js));
 console.log(`Wrote ${path.relative(process.cwd(), out)} (${Math.round(fs.statSync(out).size / 1024)} KB)`);
+})().catch((err) => {
+  console.error(err);
+  process.exit(1);
+});

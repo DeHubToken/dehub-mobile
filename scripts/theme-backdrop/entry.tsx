@@ -18,6 +18,9 @@ import { WarBackground } from '@/components/app/WarBackground';
 import { OsakaBackground } from '@/components/app/OsakaBackground';
 import { JungleBackground } from '@/components/app/JungleBackground';
 import { WinterSnow } from '@/components/app/WinterSnow';
+import { IslandBackground } from '@/components/app/IslandBackground';
+import { HackerBackground } from '@/components/app/HackerBackground';
+import { HorrorBackground } from '@/components/app/HorrorBackground';
 
 const BACKGROUNDS: Record<string, React.ComponentType> = {
   cosmic: CosmicBackground,
@@ -28,6 +31,9 @@ const BACKGROUNDS: Record<string, React.ComponentType> = {
   war: WarBackground,
   osaka: OsakaBackground,
   jungle: JungleBackground,
+  island: IslandBackground,
+  hacker: HackerBackground,
+  horror: HorrorBackground,
 };
 
 const w = window as unknown as Record<string, unknown>;
