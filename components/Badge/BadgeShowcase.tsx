@@ -158,7 +158,8 @@ export default function BadgeShowcase({ tier, anchor, onClose }: Props) {
 
   /* ---------- geometry ---------- */
 
-  const stickerSize = stage ? Math.min(stage.h * 0.78, stage.w * 0.72) : 0;
+  // The sticker is the point, like a sticker pack: as big as the stage allows.
+  const stickerSize = stage ? Math.min(stage.h * 0.86, stage.w * 0.84) : 0;
   const hero: Box | null = stage
     ? {
         x: (stage.w - stickerSize * ART_SHARE) / 2,
@@ -408,7 +409,7 @@ export default function BadgeShowcase({ tier, anchor, onClose }: Props) {
           </Animated.View>
 
           {/* Stage */}
-          <View style={{ flex: 1, minHeight: H * 0.3 }} onLayout={onStageLayout} pointerEvents="box-none">
+          <View style={{ flex: 1, minHeight: H * 0.4 }} onLayout={onStageLayout} pointerEvents="box-none">
             {stage && phase !== "enter" && (
               <View style={StyleSheet.absoluteFill} pointerEvents="box-none">
                 <Animated.View
@@ -429,7 +430,7 @@ export default function BadgeShowcase({ tier, anchor, onClose }: Props) {
           </View>
 
           {/* Details */}
-          <Animated.View style={[{ maxHeight: H * 0.46 }, chromeStyle]} pointerEvents={phase === "open" ? "auto" : "none"}>
+          <Animated.View style={[{ maxHeight: H * 0.44, flexShrink: 1 }, chromeStyle]} pointerEvents={phase === "open" ? "auto" : "none"}>
             <ScrollView contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 8 }} showsVerticalScrollIndicator={false}>
               <View style={{ alignItems: "center" }}>
                 <Text style={styles.overline}>{t("badgeShowcase.tierOf", { index: index + 1, total: count })}</Text>
@@ -489,8 +490,13 @@ export default function BadgeShowcase({ tier, anchor, onClose }: Props) {
                 </View>
               </View>
 
-              <Text style={[styles.label, { marginTop: 16 }]}>{t("badgeShowcase.grants")}</Text>
-              <View style={styles.grid}>
+              <Text style={[styles.label, { marginTop: 12 }]}>{t("badgeShowcase.grants")}</Text>
+              <ScrollView
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                style={{ marginHorizontal: -16, marginTop: 8 }}
+                contentContainerStyle={{ paddingHorizontal: 16, gap: 8 }}
+              >
                 {perkRows.map((row) => (
                   <View key={row.key} style={[styles.perk, row.up && styles.perkUp]}>
                     <View style={{ flexDirection: "row", alignItems: "center", gap: 5 }}>
@@ -511,7 +517,7 @@ export default function BadgeShowcase({ tier, anchor, onClose }: Props) {
                     </View>
                   </View>
                 ))}
-              </View>
+              </ScrollView>
 
               <View style={{ flexDirection: "row", gap: 8, marginTop: 14 }}>
                 <Pressable style={[styles.button, styles.buttonPrimary]} onPress={() => goToScreen(ScreenNames.Dpay, { initialTab: "buy" })}>
@@ -654,7 +660,7 @@ const styles = StyleSheet.create({
   chipDivider: { width: StyleSheet.hairlineWidth, height: 14, backgroundColor: "rgba(255,255,255,0.25)" },
   muted: { color: "rgba(255,255,255,0.5)", fontSize: 12.5 },
   card: {
-    marginTop: 16,
+    marginTop: 12,
     padding: 14,
     borderRadius: 16,
     backgroundColor: "rgba(255,255,255,0.05)",
@@ -664,9 +670,8 @@ const styles = StyleSheet.create({
   label: { color: "rgba(255,255,255,0.45)", fontSize: 11, fontWeight: "700", letterSpacing: 1.2, textTransform: "uppercase" },
   amount: { color: "#fff", fontSize: 17, fontWeight: "700", fontVariant: ["tabular-nums"] },
   tiny: { color: "rgba(255,255,255,0.35)", fontSize: 10.5, fontVariant: ["tabular-nums"] },
-  grid: { flexDirection: "row", flexWrap: "wrap", justifyContent: "space-between", rowGap: 8, marginTop: 8 },
   perk: {
-    width: "48.8%",
+    width: 138,
     paddingHorizontal: 12,
     paddingVertical: 10,
     borderRadius: 12,
