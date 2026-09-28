@@ -1,13 +1,14 @@
 import React from 'react';
 import { act, create, ReactTestRenderer } from 'react-test-renderer';
 jest.mock('react-native-css-interop/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
+jest.mock('react-native', () => ({ Pressable: 'Pressable', StyleSheet: { create: (styles: unknown) => styles } }));
 jest.mock('../../components/ui/Icon', () => 'Icon');
 jest.mock('../../context/StageContext', () => ({ useStages: () => mockStage }));
 jest.mock('../../context/ThemeContext', () => ({ useAppTheme: () => ({ colors: { foreground: '#fff', background: '#000' } }) }));
 jest.mock('react-i18next', () => ({ useTranslation: () => ({ t: (key: string) => key }) }));
 jest.mock('react-native-reanimated', () => ({
   __esModule: true,
-  default: { View: require('react-native').View },
+  default: { View: 'AnimatedView' },
   useReducedMotion: () => true,
   useSharedValue: () => ({ value: 0 }),
   useAnimatedStyle: () => ({}),
