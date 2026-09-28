@@ -3841,7 +3841,10 @@
     "unpinConfirm": "Bu sabitlenmiş mesaj kaldırılsın mı?",
     "pinMessage": "Pin mesajı",
     "unpinMessage": "Mesajın sabitlemesini kaldır",
-    "jumpToLatest": "En son mesajlara atla"
+    "jumpToLatest": "En son mesajlara atla",
+    "ban": "Yasakla",
+    "banConfirm": "{{name}} kullanıcısını yasaklamak istediğinizden emin misiniz?",
+    "banFailed": "Kullanıcı yasaklanamadı"
   },
   "promptFeed": {
     "headline": "Ne görmek istiyorsun?",

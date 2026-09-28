@@ -3774,7 +3774,10 @@
     "pinMessage": "សារ PIN",
     "unpinMessage": "ដកខ្ទាស់សារ",
     "jumpToLatest": "លោតទៅសារចុងក្រោយបំផុត",
-    "modBadge": "អ្នកសម្រប"
+    "modBadge": "អ្នកសម្រប",
+    "ban": "ហាមឃាត់",
+    "banConfirm": "តើអ្នកប្រាកដថាអ្នកចង់ហាមឃាត់ {{name}} ទេ?",
+    "banFailed": "បរាជ័យក្នុងការហាមឃាត់អ្នកប្រើ"
   },
   "promptFeed": {
     "headline": "តើអ្នកចង់មើលអ្វី?",

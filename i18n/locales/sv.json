@@ -3796,7 +3796,10 @@
     "unpinConfirm": "Ta bort detta fästa meddelande?",
     "pinMessage": "PIN-meddelande",
     "unpinMessage": "Ta bort fäste för meddelande",
-    "jumpToLatest": "Gå till de senaste meddelandena"
+    "jumpToLatest": "Gå till de senaste meddelandena",
+    "ban": "Stäng av",
+    "banConfirm": "Är du säker på att du vill stänga av {{name}}?",
+    "banFailed": "Det gick inte att stänga av användaren"
   },
   "promptFeed": {
     "headline": "Vad vill du se?",

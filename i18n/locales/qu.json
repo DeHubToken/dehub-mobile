@@ -3823,7 +3823,10 @@
     "photo": "Foto",
     "pinMessage": "Pin willakuy",
     "unpinMessage": "Unpin willakuy",
-    "jumpToLatest": "Qhipa willakuykunaman saltay"
+    "jumpToLatest": "Qhipa willakuykunaman saltay",
+    "ban": "Hark'ay",
+    "banConfirm": "Aswan kanki chayri {{name}}-ta hark'ayta munankichu?",
+    "banFailed": "Mana llamk'aqta hark'ayta atirqanchu"
   },
   "promptFeed": {
     "headline": "Imatataq rikuyta munanki?",

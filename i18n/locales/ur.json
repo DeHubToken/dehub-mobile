@@ -3796,7 +3796,10 @@
     "unpinMessage": "پیغام ان پن کریں",
     "jumpToLatest": "تازہ ترین پیغامات پر جائیں",
     "attachGif": "GIF",
-    "modBadge": "موڈ"
+    "modBadge": "موڈ",
+    "ban": "بین کریں",
+    "banConfirm": "کیا آپ یقین سے {{name}} کو بین کرنا چاہتے ہیں؟",
+    "banFailed": "صارف کو بین کرنے میں ناکام"
   },
   "promptFeed": {
     "headline": "آپ کیا دیکھنا چاہتے ہیں؟",

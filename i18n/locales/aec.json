@@ -3792,7 +3792,10 @@
     "pinMessage": "ثَبِّت الرِّسَالَة",
     "unpinMessage": "اِفْكُك تَثْبِيت الرِّسَالَة",
     "jumpToLatest": "انزل لأخر رسالة",
-    "attachGif": "GIF"
+    "attachGif": "GIF",
+    "ban": "حظر",
+    "banConfirm": "متأكد إنك عايز تحظر {{name}}؟",
+    "banFailed": "فشل حظر المستخدم"
   },
   "promptFeed": {
     "headline": "عايز تشوف إيه؟",

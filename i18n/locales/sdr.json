@@ -3776,7 +3776,10 @@
     "unpinConfirm": "إزالة هذه الرسالة المثبتة؟",
     "pinMessage": "تثبيت الرسالة",
     "unpinMessage": "إلغاء تثبيت الرسالة",
-    "jumpToLatest": "Latest message me jump kara"
+    "jumpToLatest": "Latest message me jump kara",
+    "ban": "قەدەغەکردن",
+    "banConfirm": "دڵنیایت دەتەوێت {{name}} قەدەغە بکەیت؟",
+    "banFailed": "قەدەغەکردنی بەکارهێنەر شکستی هێنا"
   },
   "promptFeed": {
     "headline": "তুমি কি দেখিবা চাও?",

@@ -3792,7 +3792,10 @@
     "unpinConfirm": "Usunąć tę przypiętą wiadomość?",
     "pinMessage": "Wiadomość PIN",
     "unpinMessage": "Odepnij wiadomość",
-    "jumpToLatest": "Przejdź do najnowszych wiadomości"
+    "jumpToLatest": "Przejdź do najnowszych wiadomości",
+    "ban": "Zbanuj",
+    "banConfirm": "Czy na pewno chcesz zbanować {{name}}?",
+    "banFailed": "Nie udało się zbanować użytkownika"
   },
   "promptFeed": {
     "headline": "Co chcesz oglądać?",

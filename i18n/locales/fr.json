@@ -3845,7 +3845,10 @@
     "unpinConfirm": "Supprimer ce message épinglé ?",
     "pinMessage": "Message pin",
     "unpinMessage": "Désépingler le message",
-    "jumpToLatest": "Aller aux derniers messages"
+    "jumpToLatest": "Aller aux derniers messages",
+    "ban": "Bannir",
+    "banConfirm": "Êtes-vous sûr de vouloir bannir {{name}} ?",
+    "banFailed": "Échec du bannissement de l'utilisateur"
   },
   "promptFeed": {
     "headline": "Que voulez-vous voir ?",

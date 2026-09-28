@@ -3796,7 +3796,10 @@
     "unpinConfirm": "Eltávolítod ezt a rögzített üzenetet?",
     "pinMessage": "PIN-üzenet",
     "unpinMessage": "Üzenet rögzítésének megszüntetése",
-    "jumpToLatest": "Ugrás a legújabb üzenetekre"
+    "jumpToLatest": "Ugrás a legújabb üzenetekre",
+    "ban": "Kitiltás",
+    "banConfirm": "Biztosan ki akarod tiltani {{name}} felhasználót?",
+    "banFailed": "Nem sikerült kitiltani a felhasználót"
   },
   "promptFeed": {
     "headline": "Mit szeretnél látni?",

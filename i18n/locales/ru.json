@@ -3845,7 +3845,10 @@
     "pinMessage": "PIN-сообщение",
     "unpinMessage": "Открепить сообщение",
     "jumpToLatest": "Перейти к последним сообщениям",
-    "attachGif": "GIF"
+    "attachGif": "GIF",
+    "ban": "Заблокировать",
+    "banConfirm": "Вы уверены, что хотите заблокировать {{name}}?",
+    "banFailed": "Не удалось заблокировать пользователя"
   },
   "promptFeed": {
     "headline": "Что вы хотите видеть?",

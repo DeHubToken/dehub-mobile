@@ -3816,7 +3816,10 @@
     "pinMessage": "ปักหมุดข้อความ",
     "unpinMessage": "เลิกปักหมุดข้อความ",
     "jumpToLatest": "ข้ามไปยังข้อความล่าสุด",
-    "attachGif": "GIF"
+    "attachGif": "GIF",
+    "ban": "แบน",
+    "banConfirm": "คุณแน่ใจหรือไม่ว่าต้องการแบน {{name}}?",
+    "banFailed": "ไม่สามารถแบนผู้ใช้ได้"
   },
   "promptFeed": {
     "headline": "คุณอยากดูอะไร",

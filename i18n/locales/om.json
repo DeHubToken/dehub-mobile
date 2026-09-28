@@ -3805,7 +3805,10 @@
     "unpinConfirm": "Ergaa pinned ta'e kana haqi?",
     "pinMessage": "Ergaa pin",
     "unpinMessage": "Ergaa unpin",
-    "jumpToLatest": "Gara ergaawwan haaraatti utaali"
+    "jumpToLatest": "Gara ergaawwan haaraatti utaali",
+    "ban": "Dhorki",
+    "banConfirm": "{{name}} dhorkuu akka barbaaddu mirkaneeffatteettaa?",
+    "banFailed": "Fayyadamaa dhorkuun hin danda'amne"
   },
   "promptFeed": {
     "headline": "Maal ilaaluu barbaadda?",

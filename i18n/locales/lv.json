@@ -3792,7 +3792,10 @@
     "unpinConfirm": "Vai noņemt šo piesprausto ziņojumu?",
     "pinMessage": "Piespraust ziņojumu",
     "unpinMessage": "Atspraust ziņojumu",
-    "jumpToLatest": "Pāriet uz jaunākajiem ziņojumiem"
+    "jumpToLatest": "Pāriet uz jaunākajiem ziņojumiem",
+    "ban": "Bloķēt",
+    "banConfirm": "Vai tiešām vēlaties bloķēt {{name}}?",
+    "banFailed": "Lietotāja bloķēšana neizdevās"
   },
   "promptFeed": {
     "headline": "Ko tu vēlies redzēt?",

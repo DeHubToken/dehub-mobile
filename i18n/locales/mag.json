@@ -3792,7 +3792,10 @@
     "unpinConfirm": "ई पिन कइल संदेश हटाईं?",
     "pinMessage": "पेपैल होल्डिंग्स, मैसेजिंग",
     "unpinMessage": "अनंत संदेश, अनंत संदेश,",
-    "jumpToLatest": "Latest संग्राहलय"
+    "jumpToLatest": "Latest संग्राहलय",
+    "ban": "बैन करी",
+    "banFailed": "उपयोगकर्ता के बैन न हो सकल",
+    "banConfirm": "का अपने पक्का {{name}} के बैन करे ला चाहऽ ही?"
   },
   "promptFeed": {
     "headline": "अहाँ की देखल चाहैत छी?",

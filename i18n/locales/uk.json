@@ -4149,7 +4149,10 @@
     "pinMessage": "Повідомлення PIN-коду",
     "unpinMessage": "Відкріпити повідомлення",
     "jumpToLatest": "Перейти до останніх повідомлень",
-    "attachGif": "GIF"
+    "attachGif": "GIF",
+    "ban": "Заблокувати",
+    "banConfirm": "Ви впевнені, що хочете заблокувати {{name}}?",
+    "banFailed": "Не вдалося заблокувати користувача"
   },
   "promptFeed": {
     "headline": "Що ви хочете бачити?",

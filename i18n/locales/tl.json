@@ -3839,7 +3839,10 @@
     "unpinConfirm": "Alisin ang naka - pin na mensaheng ito?",
     "pinMessage": "Mensahe ng pin",
     "unpinMessage": "I - unpin ang mensahe",
-    "jumpToLatest": "Pumunta sa mga pinakabagong mensahe"
+    "jumpToLatest": "Pumunta sa mga pinakabagong mensahe",
+    "ban": "I-ban",
+    "banConfirm": "Sigurado ka bang gusto mong i-ban si {{name}}?",
+    "banFailed": "Nabigong i-ban ang user"
   },
   "promptFeed": {
     "headline": "Ano ang gusto mong makita?",

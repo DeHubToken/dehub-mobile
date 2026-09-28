@@ -3792,7 +3792,10 @@
     "unpinConfirm": "Do ta heqësh këtë mesazh të mbërthyer?",
     "pinMessage": "Mesazhi PIN",
     "unpinMessage": "Çaktivizo mesazhin",
-    "jumpToLatest": "Kalo te mesazhet e fundit"
+    "jumpToLatest": "Kalo te mesazhet e fundit",
+    "ban": "Ndalo",
+    "banConfirm": "Jeni të sigurt se dëshironi të ndaloni {{name}}?",
+    "banFailed": "Dështoi ndalimi i përdoruesit"
   },
   "promptFeed": {
     "headline": "Çfarë do të shohësh?",

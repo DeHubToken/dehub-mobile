@@ -3841,7 +3841,10 @@
     "unpinConfirm": "Diese angeheftete Nachricht entfernen?",
     "pinMessage": "PIN-Nachricht",
     "unpinMessage": "Nachricht lösen",
-    "jumpToLatest": "Zu den neuesten Nachrichten springen"
+    "jumpToLatest": "Zu den neuesten Nachrichten springen",
+    "ban": "Sperren",
+    "banConfirm": "Möchtest du {{name}} wirklich sperren?",
+    "banFailed": "Benutzer konnte nicht gesperrt werden"
   },
   "promptFeed": {
     "headline": "Was möchtest du sehen?",

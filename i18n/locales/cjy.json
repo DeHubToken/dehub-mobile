@@ -3792,7 +3792,10 @@
     "pinMessage": "置顶消息",
     "unpinMessage": "取消置顶消息",
     "jumpToLatest": "跳至最新消息",
-    "attachGif": "GIF"
+    "attachGif": "GIF",
+    "ban": "封禁",
+    "banConfirm": "您确定要封禁 {{name}} 吗？",
+    "banFailed": "封禁用户失败"
   },
   "promptFeed": {
     "headline": "你想看什么？",

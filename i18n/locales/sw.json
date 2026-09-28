@@ -3793,7 +3793,10 @@
     "unpinConfirm": "Ondoa ujumbe huu uliopachikwa?",
     "pinMessage": "Ujumbe wa PIN",
     "unpinMessage": "Ondoa ujumbe",
-    "jumpToLatest": "Nenda kwenye ujumbe wa hivi karibuni"
+    "jumpToLatest": "Nenda kwenye ujumbe wa hivi karibuni",
+    "ban": "Piga marufuku",
+    "banConfirm": "Je, una uhakika unataka kumpiga marufuku {{name}}?",
+    "banFailed": "Imeshindwa kumpiga marufuku mtumiaji"
   },
   "promptFeed": {
     "headline": "Unataka kuona nini?",

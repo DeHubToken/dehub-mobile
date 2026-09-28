@@ -3805,7 +3805,10 @@
     "unpinConfirm": "Xóa tin nhắn đã ghim này?",
     "pinMessage": "Tin nhắn ghim",
     "unpinMessage": "Bỏ ghim tin nhắn",
-    "jumpToLatest": "Chuyển đến tin nhắn mới nhất"
+    "jumpToLatest": "Chuyển đến tin nhắn mới nhất",
+    "ban": "Cấm",
+    "banConfirm": "Bạn có chắc chắn muốn cấm {{name}} không?",
+    "banFailed": "Không thể cấm người dùng"
   },
   "promptFeed": {
     "headline": "Bạn muốn xem gì?",

@@ -3822,7 +3822,10 @@
     "unpinConfirm": "Die angepinnti Nouti lösche?",
     "pinMessage": "Nadel Nachricht",
     "unpinMessage": "Nadel Nachricht usnäh",
-    "jumpToLatest": "Spring zu de letschte Nöie"
+    "jumpToLatest": "Spring zu de letschte Nöie",
+    "ban": "Sperre",
+    "banConfirm": "Bisch sicher, dass du {{name}} sperre wotsch?",
+    "banFailed": "User konnt nöd gsperrt werde"
   },
   "promptFeed": {
     "headline": "Was wotsch gseh?",

@@ -3780,7 +3780,10 @@
     "pinMessage": "PIN-შეტყობინება",
     "unpinMessage": "Შეტყობინების მოხსნა",
     "jumpToLatest": "Ბოლო შეტყობინებებზე გადასვლა",
-    "attachGif": "GIF"
+    "attachGif": "GIF",
+    "ban": "დაბლოკვა",
+    "banConfirm": "დარწმუნებული ხართ, რომ გსურთ {{name}}-ის დაბლოკვა?",
+    "banFailed": "მომხმარებლის დაბლოკვა ვერ მოხერხდა"
   },
   "promptFeed": {
     "headline": "რისი ნახვა გსურთ?",

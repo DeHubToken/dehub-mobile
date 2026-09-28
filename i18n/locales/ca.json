@@ -3792,7 +3792,10 @@
     "unpinConfirm": "Vols eliminar aquest missatge fixat?",
     "pinMessage": "Enllaça el missatge",
     "unpinMessage": "Desenllaça el missatge",
-    "jumpToLatest": "Ves als últims missatges"
+    "jumpToLatest": "Ves als últims missatges",
+    "ban": "Bandejar",
+    "banConfirm": "Estàs segur que vols bandejar {{name}}?",
+    "banFailed": "No s'ha pogut bandejar l'usuari"
   },
   "promptFeed": {
     "headline": "Què vols veure?",
