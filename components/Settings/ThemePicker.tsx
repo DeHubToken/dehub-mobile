@@ -8,8 +8,15 @@
  * never read from the active theme, so every sample shows its own theme and
  * not the current one. Keep the palette in step with web's THEME_SWATCHES.
  */
-import React from 'react';
-import { ScrollView, Text, TouchableOpacity, View, type ViewStyle } from 'react-native';
+import React, { useCallback, useRef } from 'react';
+import {
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View,
+  type LayoutChangeEvent,
+  type ViewStyle,
+} from 'react-native';
 import { Image } from 'expo-image';
 import { useTranslation } from 'react-i18next';
 import { useAppTheme } from '../../context/ThemeContext';
@@ -56,6 +63,12 @@ const RING: Partial<Record<AppThemeName, string>> = {
   jungle: 'rgba(140,190,90,0.8)',
 };
 
+const CARD_W = 112;
+const CARD_H = 164;
+const GAP = 12;
+/** SettingsScrollView's bento padding; the row bleeds through it to the bento edge. */
+const BENTO_PAD = 16;
+
 const MockPost: React.FC<{ s: Swatch; media?: boolean }> = ({ s, media }) => {
   const r = s.square ? 0 : 6;
   const frame: ViewStyle = s.flat
@@ -92,15 +105,25 @@ const ThemeSample: React.FC<{
       accessibilityRole="button"
       accessibilityState={{ selected: active }}
       accessibilityLabel={label}
-      style={{ alignItems: 'center', width: 112 }}
+      style={{ alignItems: 'center', width: CARD_W }}
     >
+      {/* The ring sits outside the sample with a gap, as web's ring-offset
+          does, so the backdrop fills the sample edge to edge instead of
+          stopping short of a transparent border. */}
       <View
         style={{
-          width: 112,
-          height: 160,
-          borderRadius: 12,
+          width: CARD_W,
+          height: CARD_H,
+          padding: 2,
+          borderRadius: s.square ? 0 : 14,
           borderWidth: 2,
           borderColor: active ? ring : 'transparent',
+        }}
+      >
+      <View
+        style={{
+          flex: 1,
+          borderRadius: s.square ? 0 : 10,
           overflow: 'hidden',
           backgroundColor: s.page,
         }}
@@ -152,6 +175,7 @@ const ThemeSample: React.FC<{
           </View>
         </View>
       </View>
+      </View>
       <Text
         numberOfLines={1}
         className={`mt-2 text-sm ${active ? 'text-white font-medium' : 'text-theme-neutrals-400'}`}
@@ -166,11 +190,32 @@ const ThemePicker: React.FC = () => {
   const { t } = useTranslation();
   const { theme, setTheme } = useAppTheme();
   const ring = RING[theme] ?? '#ffffff';
+  const scroller = useRef<ScrollView>(null);
+  const opened = useRef(false);
+
+  // Open on the active theme: at phone width the later ones (Osaka, Jungle)
+  // start off screen, which reads as the picker having lost the selection.
+  const onLayout = useCallback(
+    (e: LayoutChangeEvent) => {
+      if (opened.current) return;
+      opened.current = true;
+      const width = e.nativeEvent.layout.width;
+      const x = BENTO_PAD + APP_THEMES.indexOf(theme) * (CARD_W + GAP) - (width - CARD_W) / 2;
+      if (x > 0) scroller.current?.scrollTo({ x, animated: false });
+    },
+    [theme],
+  );
+
   return (
+    // Bleeds through the bento's padding, so samples scroll out under the
+    // bento's own edge instead of being sliced off 16px inside it.
     <ScrollView
+      ref={scroller}
       horizontal
       showsHorizontalScrollIndicator={false}
-      contentContainerStyle={{ gap: 12, paddingBottom: 8 }}
+      onLayout={onLayout}
+      style={{ marginHorizontal: -BENTO_PAD }}
+      contentContainerStyle={{ gap: GAP, paddingHorizontal: BENTO_PAD, paddingBottom: 8 }}
     >
       {APP_THEMES.map((value) => (
         <ThemeSample

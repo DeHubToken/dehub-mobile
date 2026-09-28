@@ -123,6 +123,7 @@ const MyLibraryScreen: React.FC = () => {
           horizontal
           showsHorizontalScrollIndicator={false}
           bounces={false}
+          style={{ marginHorizontal: -16 }}
           contentContainerStyle={styles.tabRow}
         >
           <Animated.View style={[styles.indicator, indicatorStyle]}>
@@ -179,6 +180,7 @@ const styles = StyleSheet.create({
   tabRow: {
     flexDirection: "row",
     gap: 8,
+    paddingHorizontal: 16,
     position: "relative",
   },
   indicator: {

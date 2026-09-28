@@ -1142,7 +1142,8 @@ const SearchScreen: React.FC = () => {
             <ScrollView
               horizontal
               showsHorizontalScrollIndicator={false}
-              contentContainerStyle={{ position: "relative", gap: isMinimal ? 0 : 8 }}
+              style={isMinimal ? undefined : { marginHorizontal: -16 }}
+              contentContainerStyle={{ position: "relative", gap: isMinimal ? 0 : 8, paddingHorizontal: isMinimal ? 0 : 16 }}
             >
               {isMinimal ? (
                 <Animated.View style={[styles.minimalIndicator, pillStyle]} />

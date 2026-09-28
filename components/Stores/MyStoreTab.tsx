@@ -381,8 +381,8 @@ const ListingForm: React.FC<{
             <ScrollView keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false}>
               {/* Images */}
               <Text style={styles.label}>{t("stores.photos", { count: images.length, max: MAX_IMAGES })}</Text>
-              <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ marginBottom: 4 }}>
-                <View style={{ flexDirection: "row", gap: 8 }}>
+              <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ marginBottom: 4, marginHorizontal: -18 }}>
+                <View style={{ flexDirection: "row", gap: 8, paddingHorizontal: 18 }}>
                   {images.map((uri, i) => (
                     <View key={`${uri}-${i}`} style={styles.thumb}>
                       <Image source={{ uri }} style={StyleSheet.absoluteFill} contentFit="cover" />
@@ -756,8 +756,8 @@ const MyStoreTab: React.FC<{ isAuthed: boolean; onSignIn: () => void }> = ({
 
       {/* Store switcher when there's more than one */}
       {stores.length > 1 && (
-        <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ marginTop: 10 }}>
-          <View style={{ flexDirection: "row", gap: 8 }}>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ marginTop: 10, marginHorizontal: -12 }}>
+          <View style={{ flexDirection: "row", gap: 8, paddingHorizontal: 12 }}>
             {stores.map((s) => (
               <Pressable
                 key={s.id}

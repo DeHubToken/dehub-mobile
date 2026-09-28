@@ -128,7 +128,8 @@ const ProfileContentToolbar: React.FC<ProfileContentToolbarProps> = ({
         <ScrollView
           horizontal
           showsHorizontalScrollIndicator={false}
-          contentContainerStyle={{ gap: 8 }}
+          style={{ marginHorizontal: -12 }}
+          contentContainerStyle={{ gap: 8, paddingHorizontal: 12 }}
         >
         <Pressable
           onPress={() => setIsSearchOpen(true)}
