@@ -780,7 +780,12 @@
     "smsBalance": "{{dhb}} märki jäänud (${{usd}})",
     "smsTopUp": "Täienda {{dhb}} märki",
     "smsCodeSent": "Kood saadetud. See maksis {{price}} märki.",
-    "tokenBalanceAmount": "{{amount}} märki"
+    "tokenBalanceAmount": "{{amount}} märki",
+    "channelSpeedCount": "{{count}} kanaleid mängib oma kiirusega.",
+    "exportReady": "{{count}} kontod, {{saved}} salvestatud postid eksportitud.",
+    "importDone": "Järginud {{followed}}, blokeeritud {{blocked}}, {{folders}} kaustu loodud.",
+    "importPartial": "{{count}} kontod ei saanud järgida – käivita import uuesti, et katsta neid uuesti.",
+    "importProgress": "Töötleb {{done}} seast {{total}}…"
   },
   "common": {
     "mute": "Vaigista",
@@ -1001,7 +1006,9 @@
     "bounty": "Preemia",
     "locked": "Piiratud",
     "any": "Ükskõik",
-    "resetFilters": "Lähtesta filtrid"
+    "resetFilters": "Lähtesta filtrid",
+    "updatingFeed": "Värskendab tootlust",
+    "filters": "Filtri"
   },
   "drawers": {
     "ppvTitle": "Maksa-vaatamise-eest sisu",
@@ -1324,7 +1331,7 @@
     "crossChainDesc": "BTC, SOL, ETH, USDC ja muu mis tahes ahelast",
     "depositFromAnyChain": "Hoia mis tahes ahelast",
     "sendCryptoToReceive": "Saada krüpto mis tahes ahelast → saada {{dest}}",
-    "tokenOnChainTo": "{{symbol}} on {{chain}} → {{dest}}",
+    "tokenOnChainTo": "{{symbol}} seast {{chain}} → {{dest}}",
     "tokenAmount": "{{symbol}} Summa",
     "estimatedReceived": "Hinnanguliselt saadud {{symbol}}",
     "getDepositAddress": "Hangi hoiuse aadress",
@@ -1898,7 +1905,13 @@
     "noMoreReplies": "Rohkem vastuseid pole",
     "offerSubmitted": "Esitatud pakkumine {{amount}} žetooni eest {{handle}}",
     "offerWorthNow": "Umbes {{amount}} žetooni praeguse kursiga",
-    "offerCommitsNothing": "Pakkumise tegemine ei maksa midagi ja ei broneeri žetoone. Maksad ainult siis, kui omanik nõustub."
+    "offerCommitsNothing": "Pakkumise tegemine ei maksa midagi ja ei broneeri žetoone. Maksad ainult siis, kui omanik nõustub.",
+    "searchThisChannel": "Otsi kanali",
+    "tabPosts": "Postitused",
+    "tabVideos": "Videod",
+    "tabAudio": "Audio",
+    "tabLive": "Ühiskonnas",
+    "tabPinned": "Pinnatud"
   },
   "tv": {
     "title": "TV",
@@ -3219,10 +3232,108 @@
         "oneDay": "1 päev",
         "oneWeek": "1 nädal",
         "forever": "Igavesti"
+      },
+      "ownerSection": "Omanik",
+      "ownerLabel": "Omanik",
+      "noOwner": "Ei ole ühtegi omanikku.",
+      "administratorsSection": "Administrandid",
+      "noAdmins": "Ei ole veel administratoreid. Tõsta üks liige, et teie saate taluda ühiskonna modereerimist.",
+      "adminBadge": "Admin",
+      "rightsSummary": "{{granted}} õigusi {{total}}",
+      "addAdministrator": "Lisa administraator",
+      "noMemberMatches": "Ei leidnud ühtegi liiget, mis vastaks sellele aadressile.",
+      "noPlainMembers": "Kõik on juba adminid.",
+      "searchTruncated": "Näitab esimest {{limit}} – jutustage edasi, et piirata tulemust.",
+      "danger": {
+        "transferTitle": "Ühiskonna üleandmine?",
+        "transferBody": "{{name}} saab ühiskonna omanikuks. Te saate alla adminiga, kõik õigused, ja see ei saa enam tagasi tulla.",
+        "transferConfirm": "Üleandmine",
+        "deleteTitle": "Kustuta ühiskond?",
+        "deleteBody": "{{name}} ja kõik sellest lähtuvad asjad lähevad püsivalt kaduma: kõik liikmed, kõik postitused, kõik sündmused ja kõik kutselinkid. See ei saa enam tagasi tulla.",
+        "deleteConfirm": "Kustuta",
+        "transferHeading": "Ülemuse üleandmine",
+        "transferHint": "Valige ülemuseks üksikasjast edasiminekut teostav liige.",
+        "searchMembers": "Otsi liikmeid",
+        "noMatches": "Ei leitud ühtegi vastavat liikmete otsingut.",
+        "noCandidates": "Ei ole ühtegi aktiivset liiget, kellele ülemuse üleandmine oleks võimalik.",
+        "transferAction": "Ülemuse määramine",
+        "deleteHeading": "Kustuta üksikasja",
+        "deleteHint": "Kõik liikmed, sõnumid, üritused ja kutselinkid kustutatakse püsivalt. Ei ole võimalik tagasi tulla.",
+        "deleteAction": "Kustuta üksikasja"
+      },
+      "inviteRevoked": "Revolveeritud",
+      "inviteExpired": "Aegunud",
+      "inviteExhausted": "Piiratud",
+      "inviteExpiresMinutes": "Lõppub pärast {{n}} min",
+      "inviteExpiresHours": "Lõppub pärast {{n}} tundi",
+      "inviteExpiresDays": "Lõppub pärast {{n}} päeva",
+      "inviteLimit": "Piiratud {{n}}",
+      "inviteNeedsApproval": "Nõuab heakskiitu",
+      "inviteLink": "Kutselink",
+      "inviteUses": "{{n}} liitus",
+      "copy": "Kopeerimine",
+      "revoke": "Revolveerida",
+      "inviteShareMessage": "Liitu üksikasjaga DeHubi",
+      "revokeInviteTitle": "Revolveerida kutselink",
+      "revokeInviteBody": "See link lõpetab töö tegemise kohe. Kellelgi, kes on juba selle abil liitunud, see ei mõjuta.",
+      "inviteNoPermission": "Teil pole lubatud kutselinkide haldamist.",
+      "createInviteLink": "Loo kutselink",
+      "inviteNamePlaceholder": "Nimi (võimalik)",
+      "inviteExpiryLabel": "Lõppemisaeg",
+      "inviteLimitLabel": "Liikme piirang",
+      "inviteRequireApproval": "Nõua administraatori heakskiitu",
+      "inviteRequireApprovalHint": "Inimesed, kes kasutavad seda linki, peavad enne liitumist heaks kiitma.",
+      "createLink": "Loo link",
+      "noInvites": "Kutselinke pole veel. Loo üks, et inimesi otse kutsuda.",
+      "permissionsUpdated": "Õigused värskendatud",
+      "slowModeUpdated": "Aeglane režiim värskendatud",
+      "slowModeOffHint": "Liikmed saavad sõnumeid saata ilma viivituseta.",
+      "slowModeOnHint": "Liikmed saavad saata ühe sõnumi iga {{label}}. Adminid on vabastatud.",
+      "defaultPermissions": "Vaikimisi liikmeõigused",
+      "defaultPermissionsHint": "Mida igaüks siin teha saab, välja arvatud juhul, kui administraatori õigus ütleb teisiti.",
+      "slowModeTitle": "Aeglane režiim",
+      "log": {
+        "justNow": "just nüüd",
+        "minutesAgo": "{{value}}m tagasi",
+        "hoursAgo": "{{value}}h tagasi",
+        "daysAgo": "{{value}}d tagasi",
+        "weeksAgo": "{{value}}w tagasi",
+        "monthsAgo": "{{value}}mo tagasi",
+        "yearsAgo": "{{value}}y tagasi",
+        "permanently": "püsivalt",
+        "forMinutes": "{{value}} minutit",
+        "forHours": "{{value}} tundi",
+        "forDays": "{{value}} päeva",
+        "forWeeks": "{{value}} nädalat",
+        "unknownActor": "Keegi",
+        "reason": "Põhjus: {{value}}",
+        "restricted": "Ainult moderaatorid saavad näha modereerimislogi.",
+        "empty": "Siin pole veel midagi. Modereerimistoimingud kuvatakse, kui need toimuvad.",
+        "showMore": "Kuva rohkem ({{value}})"
       }
     },
     "chooseAvatar": "Vali avatar",
-    "loadFailed": "Kogukondi ei saanud laadida"
+    "loadFailed": "Kogukondi ei saanud laadida",
+    "noPostsYet": "Selles kogukonnas pole veel postitusi.",
+    "infoUpdated": "Kogukond värskendatud",
+    "editInfo": "Muuda nime ja kirjeldust",
+    "saveChanges": "Salvesta",
+    "nowPrivate": "Kogukond on nüüd privaatne",
+    "nowPublic": "Kogukond on nüüd avalik",
+    "bannedFromCommunity": "Sul on keelatud sellest kogukonnast lahkuda",
+    "manageButton": "Halda",
+    "muted": "Vaigistatud",
+    "privateHint": "Uued liikmed peavad liitumiseks olema kinnitatud.",
+    "publicHint": "Igaüks saab kohe liituda.",
+    "invite": {
+      "joinFailed": "Liitumine ebaõnnestus",
+      "revoked": "See kutselink tühistati.",
+      "expired": "See kutselink on aegunud.",
+      "exhausted": "See kutselink on saavutanud liikmelimiidi.",
+      "notFound": "See kutselink on kehtetu.",
+      "requestToJoin": "Taotle liitumist",
+      "approvalNote": "Enne liitumist peab administraator sinu taotluse kinnitama."
+    }
   },
   "work": {
     "title": "Preemiad",
@@ -7001,7 +7112,9 @@
     "appealFootnote": "Saad viitenumbri ja vastus tuleb siia tagasi. Üks kaebus otsuse kohta.",
     "appealRef": "Viide {{ref}}",
     "appealSubtitleSubject": "Isik loeb seda ja vaatab uuesti aadressil {{subject}}.",
-    "appealMore": "Vaja on veel märke: {{count}}"
+    "appealMore": "Vaja on veel märke: {{count}}",
+    "appealSentRef": "Kaebus saadetud · {{ref}}",
+    "appeal": "Kaebus"
   },
   "support": {
     "title": "Tugi",
@@ -7718,7 +7831,8 @@
         },
         "tips": {
           "1": "Värskelt loodud postitus algab sellest, et looja omab kõiki 1000 fraktsiooni (100% omand).",
-          "2": "Tehingu räsi viitab BaseScanile või BscScanile, sõltuvalt kettist."
+          "2": "Tehingu räsi viitab BaseScanile või BscScanile, sõltuvalt kettist.",
+          "3": "Loendisse kandmata postitusi ei kuvata voogudes, kuid neile pääseb siiski juurde otselingi kaudu."
         }
       },
       "trading-fractions": {
@@ -7739,6 +7853,9 @@
       "minting-posts": {
         "title": "Minting Posts (Creating NFTs)",
         "steps": {
+          "1": "Klõpsa külgribal nuppu „Postita“ (töölaud) või nuppu + (mobiil).",
+          "2": "Kirjuta oma tekst, lisa meediumifaile (pildid, videod, heli) ja lisa kategooriaid.",
+          "3": "Ahelaväliseks avaldamiseks jäta rahapaja postitus välja või lülita see avaldamise ajal rahapaja sisse.",
           "4": "Avaldamine ei oota kunagi ahelas: postitus ilmub voos mõlemal viisil.",
           "5": "Mündi hilisemaks vermimiseks ava postituse infoleht „Ř“ ja kasuta seal rahapaja toimingut.",
           "6": "Kui postitus on vermitud, saab see žetooni ID ja tehinguräsi, mida saate ahelas kontrollida, ning teil on sellest kõik 1000 murdosa."
@@ -7748,7 +7865,8 @@
           "2": "Välise rahakoti kasutajad vajavad ETH-d baasil VÕI BNB-d BNB ketil gaasi jaoks.",
           "3": "Rahapaja on see, mis muudab postkauba kaubeldavaks ja autoritasusid kandvaks. Mündita postitus teenib endiselt nõuandeid ja vaatamisi.",
           "4": "Ahelasisene kirje on pärast vermimist püsiv, isegi kui postitus hiljem kanalist kustutatakse."
-        }
+        },
+        "intro": "Rahapaigutamine on vabatahtlik. Postitus avaldatakse saatmise hetkel ketiväliselt — rahakott puudub, allkiri puudub, bensiin puudub — ja saate seda vermida NFT-na igal ajal, kui soovite, kas siis, kui seda koostate, või hiljem postitusest endast."
       },
       "glossary": {
         "title": "Sõnastik",

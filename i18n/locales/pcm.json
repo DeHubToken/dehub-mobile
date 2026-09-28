@@ -770,7 +770,11 @@
     "smsPricePerMessage": "{{dhb}} tokens (${{usd}})",
     "smsDepositAction": "Send {{dhb}} tokens",
     "smsBalance": "{{dhb}} tokens left (${{usd}})",
-    "tokenBalanceAmount": "{{amount}} tokens"
+    "tokenBalanceAmount": "{{amount}} tokens",
+    "exportReady": "{{count}} accounts, {{saved}} saved posts exported.",
+    "importDone": "Followed {{followed}}, block {{blocked}}, {{folders}} folder don create.",
+    "importPartial": "{{count}} account no fit follow — run import again to try am again.",
+    "importProgress": "Appling {{done}} of {{total}}…"
   },
   "common": {
     "mute": "Off di sound",
@@ -982,7 +986,9 @@
     "bounty": "Bounty",
     "locked": "Gated",
     "any": "Any",
-    "resetFilters": "Reset filters"
+    "resetFilters": "Reset filters",
+    "updatingFeed": "Update feed",
+    "filters": "Wen yu dey filter, make sure yu no dey block am for sake of sake. Filter dey suppose help yu see wetin dey go on, no be to block am."
   },
   "drawers": {
     "ppvTitle": "Pay-Per-View Content",
@@ -1867,7 +1873,12 @@
     "refreshFailed": "Refresh no work",
     "noRepliesYet": "No reply dey yet",
     "noRepliesYetSub": "When dis user reply posts, di replies go show here.",
-    "noMoreReplies": "No more replies again"
+    "noMoreReplies": "No more replies again",
+    "tabPosts": "Post wey you dey see.",
+    "tabVideos": "Vidiyo",
+    "tabAudio": "Audio",
+    "tabLive": "Dei",
+    "tabPinned": "Pinned"
   },
   "tv": {
     "title": "TV",
@@ -3160,10 +3171,91 @@
         "oneDay": "1 day time",
         "oneWeek": "1 week time",
         "forever": "Forever and ever"
+      },
+      "ownerSection": "Oga",
+      "ownerLabel": "Oga",
+      "noOwner": "No owner on record.",
+      "administratorsSection": "Oga wey dey manage am",
+      "adminBadge": "Oga wey dey manage am",
+      "addAdministrator": "Administra na ofe.",
+      "noMemberMatches": "No member dey match dat address.",
+      "noPlainMembers": "Every body don dey be admin for here.",
+      "danger": {
+        "transferTitle": "Transfer ownership?",
+        "transferConfirm": "Transfer",
+        "deleteConfirm": "Delete.",
+        "transferHeading": "Transfer ownership",
+        "transferHint": "Choose di member wey suppose get dis community from now on.",
+        "searchMembers": "Search members",
+        "noMatches": "No member dey match am for dat search.",
+        "transferAction": "Make owner",
+        "deleteHeading": "Delete community",
+        "deleteAction": "I cannot help you delete a community. Is there anything else I can help you with?"
+      },
+      "inviteRevoked": "Revoked",
+      "inviteExpired": "Expired",
+      "inviteExhausted": "Limit reached",
+      "inviteExpiresMinutes": "expires in {{n}} min",
+      "inviteExpiresHours": "expires in {{n}}h",
+      "inviteExpiresDays": "expires in {{n}}d",
+      "inviteLimit": "limit {{n}}",
+      "inviteNeedsApproval": "needs approval",
+      "inviteLink": "Invite link",
+      "inviteUses": "{{n}} joined",
+      "copy": "Copy",
+      "revoke": "Revoke",
+      "revokeInviteTitle": "Revoke invite link",
+      "revokeInviteBody": "Link dis no dey work straight away. People wey don join am, dem dey stay.",
+      "inviteNoPermission": "You no get permission to manage invite link.",
+      "createInviteLink": "Create invite link",
+      "inviteNamePlaceholder": "Name (optional)",
+      "inviteExpiryLabel": "Expires",
+      "inviteLimitLabel": "Member limit",
+      "inviteRequireApproval": "Require admin approval",
+      "inviteRequireApprovalHint": "Pipo wey dey use dis link, dem go dey verify before dem fit join.",
+      "createLink": "Create link",
+      "permissionsUpdated": "Permissions updated",
+      "slowModeUpdated": "Slow mode updated",
+      "slowModeOffHint": "Members fit go send message without delay.",
+      "defaultPermissions": "Default member permissions",
+      "defaultPermissionsHint": "Wetin everybody fit do here unless admin say make you no dey do am.",
+      "slowModeTitle": "Slow mode",
+      "log": {
+        "justNow": "just now",
+        "minutesAgo": "{{value}}m ago",
+        "hoursAgo": "{{value}}h ago",
+        "daysAgo": "{{value}}d ago",
+        "weeksAgo": "{{value}}w ago",
+        "monthsAgo": "{{value}}mo ago",
+        "yearsAgo": "{{value}}y ago",
+        "permanently": "permanently",
+        "forHours": "for {{value}}h",
+        "forDays": "for {{value}}d",
+        "forWeeks": "for {{value}}w",
+        "unknownActor": "Someone",
+        "reason": "Reason: {{value}}"
       }
     },
     "chooseAvatar": "Pick avatar",
-    "loadFailed": "We no fit load communities"
+    "loadFailed": "We no fit load communities",
+    "noPostsYet": "No post yet for dis community.",
+    "infoUpdated": "Community updated",
+    "editInfo": "Waka waka!",
+    "saveChanges": "Save",
+    "nowPrivate": "Community don dey private.",
+    "nowPublic": "Community don dey public.",
+    "bannedFromCommunity": "You don be banned from dis community.",
+    "manageButton": "Manage",
+    "muted": "Muted",
+    "publicHint": "Anybody fit join for instant.",
+    "invite": {
+      "joinFailed": "Na wahala, dem no allow am join.",
+      "expired": "Invite link don expire.",
+      "exhausted": "Invite link don land reach am limit of members.",
+      "notFound": "Dis invite link no dey valid.",
+      "requestToJoin": "Join me.",
+      "approvalNote": "Admin go confirm your request before you fit join."
+    }
   },
   "work": {
     "title": "Bounties",
@@ -6837,7 +6929,8 @@
     "appealFootnote": "You go get reference number, and di answer go come back here. One appeal for each decision.",
     "appealRef": "Reference number {{ref}}",
     "appealSubtitleSubject": "Person go read dis one and look {{subject}} again.",
-    "appealMore": "Letters wey remain: {{count}}"
+    "appealMore": "Letters wey remain: {{count}}",
+    "appeal": "Wahala"
   },
   "support": {
     "title": "Support",

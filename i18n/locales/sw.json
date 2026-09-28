@@ -780,7 +780,12 @@
     "smsBalance": "{{dhb}} tokeni zimebaki (${{usd}})",
     "smsTopUp": "Ongeza {{dhb}} tokeni",
     "smsCodeSent": "Nambari imetumwa. Iligharimu {{price}} tokeni.",
-    "tokenBalanceAmount": "{{amount}} tokeni"
+    "tokenBalanceAmount": "{{amount}} tokeni",
+    "channelSpeedCount": "{{count}} chaneli(chaneli) hucheza kwa kasi yake mwenyewe.",
+    "exportReady": "{{count}} accounts, {{saved}} posts zilizohifadhiwa zimehamishwa.",
+    "importDone": "Imefuata {{followed}}, imezuiwa {{blocked}}, {{folders}} folda zimeundwa.",
+    "importPartial": "{{count}} akaunti hazikuweza kufuatwa — endesha uingizaji tena ili kuzijaribu tena.",
+    "importProgress": "Inatumika {{done}} ya {{total}}…"
   },
   "common": {
     "mute": "Nyamazisha",
@@ -1001,7 +1006,9 @@
     "bounty": "Zawadi",
     "locked": "Imefungwa",
     "any": "Yoyote",
-    "resetFilters": "Weka upya vichujio"
+    "resetFilters": "Weka upya vichujio",
+    "updatingFeed": "Kusasisha malisho",
+    "filters": "Vichujio"
   },
   "drawers": {
     "ppvTitle": "Maudhui ya Kulipa-Kwa-Kutazama",
@@ -1324,7 +1331,7 @@
     "crossChainDesc": "BTC, SOL, ETH, USDC na zaidi kutoka kwa mnyororo wowote",
     "depositFromAnyChain": "Amana kutoka kwa Mnyororo Wowote",
     "sendCryptoToReceive": "Tuma crypto kutoka kwa mnyororo wowote → pokea {{dest}}",
-    "tokenOnChainTo": "{{symbol}} on {{chain}} → {{dest}}",
+    "tokenOnChainTo": "{{symbol}} {{chain}} → {{dest}}",
     "tokenAmount": "{{symbol}} Kiasi",
     "estimatedReceived": "Inakadiriwa {{symbol}} kupokelewa",
     "getDepositAddress": "Pata Anwani ya Amana",
@@ -1899,7 +1906,13 @@
     "noMoreReplies": "Hakuna majibu zaidi",
     "offerSubmitted": "Ofa ya tokeni {{amount}} imewasilishwa kwa {{handle}}",
     "offerWorthNow": "Kama tokeni {{amount}} kwa kiwango cha sasa",
-    "offerCommitsNothing": "Kutoa ofa hakugharimu chochote na haishikilii tokeni zozote. Unalipa tu ikiwa mmiliki atakubali."
+    "offerCommitsNothing": "Kutoa ofa hakugharimu chochote na haishikilii tokeni zozote. Unalipa tu ikiwa mmiliki atakubali.",
+    "searchThisChannel": "Tafuta chaneli hii",
+    "tabPosts": "Machapisho",
+    "tabVideos": "Video",
+    "tabAudio": "Sauti",
+    "tabLive": "Moja kwa moja",
+    "tabPinned": "Imepachikwa"
   },
   "tv": {
     "title": "TV",
@@ -3220,10 +3233,108 @@
         "oneDay": "1 siku",
         "oneWeek": "1 wiki",
         "forever": "Milele"
+      },
+      "ownerSection": "Mmiliki",
+      "ownerLabel": "Mmiliki",
+      "noOwner": "Hakuna mmiliki kwenye rekodi.",
+      "administratorsSection": "Msimamizi",
+      "noAdmins": "Hakuna wasimamizi bado. Kukuza mwanachama kukusaidia wastani.",
+      "adminBadge": "Msimamizi",
+      "rightsSummary": "{{granted}} ya {{total}} haki",
+      "addAdministrator": "Ongeza msimamizi",
+      "noMemberMatches": "Hakuna mwanachama anayelingana na anwani hiyo.",
+      "noPlainMembers": "Kila mtu hapa tayari ni msimamizi.",
+      "searchTruncated": "Inaonyesha {{limit}} ya kwanza — endelea kuandika ili kuipunguza.",
+      "danger": {
+        "transferTitle": "Ungependa kuhamisha umiliki?",
+        "transferBody": "{{name}} anakuwa mmiliki wa jumuiya hii. Unashuka hadi msimamizi kwa kila haki, na hii haiwezi kutenduliwa.",
+        "transferConfirm": "Hamisha",
+        "deleteTitle": "Ungependa kufuta jumuiya hii?",
+        "deleteBody": "{{name}} na kila kitu ndani yake kinakwenda kabisa: kila mwanachama, kila ujumbe, kila tukio na kila kiunganishi cha mwaliko. Hii haiwezi kutenduliwa.",
+        "deleteConfirm": "Onyosha",
+        "transferHeading": "Onachukua umiliki",
+        "transferHint": "Chagua mwanachama anayechukua umiliki hii kwa sasa.",
+        "searchMembers": "Tafuta wanachama",
+        "noMatches": "Hakuna mwanachama unaolingana na utafiti huu.",
+        "noCandidates": "Hakuna wanachama wengine wanaofanya kazi wanaohitaji kuchukua umiliki hii.",
+        "transferAction": "Ona mwenye umiliki",
+        "deleteHeading": "Onyosha jumuiya",
+        "deleteHint": "Kila mwanachama, taarifa, tukio na link ya kuwahimiza hutupwa kwa uwezekano wa kudumu. Hakuna njia ya kurudi nyuma.",
+        "deleteAction": "Onyosha jumuiya hii"
+      },
+      "inviteRevoked": "Revoked",
+      "inviteExpired": "Imeharibika",
+      "inviteExhausted": "Imesalia",
+      "inviteExpiresMinutes": "Imebakiza {{n}} min",
+      "inviteExpiresHours": "Imebakiza {{n}}h",
+      "inviteExpiresDays": "Imebakiza {{n}} siku",
+      "inviteLimit": "Hakuna kikomo {{n}}",
+      "inviteNeedsApproval": "inahitaji kuaminiwa",
+      "inviteLink": "Link ya kuwahimiza",
+      "inviteUses": "{{n}} alijiunga",
+      "copy": "Kupiga",
+      "revoke": "Onyosha",
+      "inviteShareMessage": "Jiunge na jumuiya hii kwenye DeHub",
+      "revokeInviteTitle": "Onyosha link ya kuwahimiza",
+      "revokeInviteBody": "Link hii inaishia kufanya kazi haraka. Wale waliopataji kwa njia hiyo wanaendelea.",
+      "inviteNoPermission": "Haijalishi nini kwa uwezo wako kuhusu kuwezesha link za kuwahimiza.",
+      "createInviteLink": "Tengeneza link ya kuwahimiza",
+      "inviteNamePlaceholder": "Jina (ya kibinafsi)",
+      "inviteExpiryLabel": "Imebakiza",
+      "inviteLimitLabel": "Kikomo cha wanachama",
+      "inviteRequireApproval": "Require admin approval",
+      "inviteRequireApprovalHint": "Watu wanaotumia kiunganishi hiki wanapaswa kuidhinishwa kabla ya kujiunga.",
+      "createLink": "Create link",
+      "noInvites": "Hakuna viunganishi vya mwaliko bado. Unda moja ili kuwaalika watu moja kwa moja.",
+      "permissionsUpdated": "Permissions updated",
+      "slowModeUpdated": "Slow mode updated",
+      "slowModeOffHint": "Wanachama wanaweza kutuma ujumbe bila kuchelewa.",
+      "slowModeOnHint": "Wanachama wanaweza kutuma ujumbe mmoja kila {{label}}. Wasimamizi wana msamaha.",
+      "defaultPermissions": "Default member permissions",
+      "defaultPermissionsHint": "Kile ambacho kila mtu anaweza kufanya hapa isipokuwa haki ya msimamizi inasema vinginevyo.",
+      "slowModeTitle": "Slow mode",
+      "log": {
+        "justNow": "just now",
+        "minutesAgo": "{{value}}m ago",
+        "hoursAgo": "{{value}}h ago",
+        "daysAgo": "{{value}}d ago",
+        "weeksAgo": "{{value}}w ago",
+        "monthsAgo": "{{value}}mo ago",
+        "yearsAgo": "{{value}}y ago",
+        "permanently": "permanently",
+        "forMinutes": "kwa {{value}} dakika",
+        "forHours": "for {{value}}h",
+        "forDays": "for {{value}}d",
+        "forWeeks": "for {{value}}w",
+        "unknownActor": "Someone",
+        "reason": "Reason: {{value}}",
+        "restricted": "Wasimamizi pekee ndio wanaweza kuona logi ya upimaji.",
+        "empty": "Hakuna kitu hapa bado. Hatua za kiasi zitaonekana zinapotokea.",
+        "showMore": "Onyesha zaidi ({{value}})"
       }
     },
     "chooseAvatar": "Chagua avatar",
-    "loadFailed": "Imeshindwa kupakia jumuiya"
+    "loadFailed": "Imeshindwa kupakia jumuiya",
+    "noPostsYet": "Hakuna machapisho katika jumuiya hii bado.",
+    "infoUpdated": "Community updated",
+    "editInfo": "Kupanga jina na maandishi",
+    "saveChanges": "Kuweka kwenye sanduku",
+    "nowPrivate": "Jumuiya ni sasa ya kibinafsi",
+    "nowPublic": "Jumuiya ni sasa ya umma",
+    "bannedFromCommunity": "Unasuluhishwa kutoka kwenye jumuiya hii",
+    "manageButton": "Kudhibiti",
+    "muted": "Imeondolewa",
+    "privateHint": "Wanachama wapya lazima wawe wasuluhishwe ili kujiunga.",
+    "publicHint": "Wote wanaweza kujiongeza haraka.",
+    "invite": {
+      "joinFailed": "Iliyopita kujiongeza",
+      "revoked": "Linki ya kujiunga iliyopigwa kufuta.",
+      "expired": "Linki ya kujiunga iliyopita kufikia mwisho wake.",
+      "exhausted": "Linki ya kujiunga iliyopita kufikia kikomo cha wanachama.",
+      "notFound": "Linki ya kujiunga si sahihi.",
+      "requestToJoin": "Kuomba kujiunga",
+      "approvalNote": "Mkuu lazima aweze kukubali maombi yako kabla ya kujiunga."
+    }
   },
   "work": {
     "title": "Zawadi",
@@ -5849,7 +5960,7 @@
     "viewFeed": "Angalia mpasho wako",
     "yourChannel": "Chaneli yako",
     "yourChannelHint": "Bandika anwani yako ya chaneli — kishikio kwenye kazi zake pia.",
-    "placeholder": "youtube.com/@you, tiktok.com/@you, vimeo.com/you…",
+    "placeholder": "youtube.com/@wewe, tiktok.com/@wewe, vimeo.com/wewe…",
     "costsNote": "Linalipwa kwa tokeni za DeHub, mara moja, kabla ya kundi kuanza. Wamiliki wa beji hulipa kidogo — punguzo lako linaongezwa kwenye nukuu. Ikiwa video haiwezi kuingizwa, sehemu yake inarejeshwa kuelekea uhamishaji wako unaofuata."
   },
   "calls": {
@@ -7002,7 +7113,9 @@
     "appealFootnote": "Unapata nambari ya kumbukumbu, na jibu linarudi hapa. Rufaa moja kwa kila uamuzi.",
     "appealRef": "Marejeleo {{ref}}",
     "appealSubtitleSubject": "Mtu atasoma hii na kuangalia tena {{subject}}.",
-    "appealMore": "Herufi bado zinahitajika: {{count}}"
+    "appealMore": "Herufi bado zinahitajika: {{count}}",
+    "appealSentRef": "Uamuzi uliotolewa · {{ref}}",
+    "appeal": "Uamuzi"
   },
   "support": {
     "title": "Usaidizi",
@@ -7328,7 +7441,8 @@
           "1": "Machapisho yanaunga mkono upangaji wa mtindo wa markdown.",
           "2": "Unaweza kunukuu chapisho kwa kubofya ikoni ya kurudisha chapisho kwenye chapisho lolote na kuchagua 'Nukuu'.",
           "3": "Kategoria (#hashtags) huonekana kwenye ubao wa wanaoongoza wa 'Maudhui Yanayojadiliwa Zaidi'."
-        }
+        },
+        "intro": "Tunaweka maandishi ya kujadili, kushiriki picha, video, sauti za kumbukumbu, GIFs, na kadhalika. Tumia hashtagi, hashtagi za fedha, na wataalamu ili kuongeza kasi."
       },
       "interacting-with-posts": {
         "title": "Kuingiliana na Machapisho",
