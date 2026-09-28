@@ -6611,6 +6611,28 @@
     "play": "پلے",
     "pause": "پاز"
   },
+  "streamerShowcase": {
+    "cardOf": "{{total}} میں سے کارڈ {{index}}",
+    "progress": "آپ کی پیش رفت",
+    "goal": {
+      "streams": "{{current}} / {{target}} سٹریم",
+      "hours": "{{current}} / {{target}} گھنٹے",
+      "session": "ایک سٹریم میں {{current}} / {{target}} منٹ",
+      "streak": "{{current}} / {{target}} ہفتے",
+      "level": "لیول {{current}} / {{target}}"
+    },
+    "onStream": "سٹریم پر ہونے سے کھلتا ہے",
+    "stats": {
+      "level": "لیول",
+      "xp": "XP",
+      "hours": "گنے جانے والے گھنٹے",
+      "streams": "گنے جانے والے سٹریم",
+      "longest": "سب سے لمبا سٹریم",
+      "streak": "بہترین سلسلہ"
+    },
+    "hoursShort": "{{hours}} گھنٹے",
+    "weeksShort": "{{count}} ہفتے"
+  },
   "onboarding": {
     "swipeToStart": "شروع کرنے کے لیے سوائپ کریں",
     "optIn": {

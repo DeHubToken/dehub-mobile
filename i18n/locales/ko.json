@@ -5984,6 +5984,28 @@
     "play": "재생",
     "pause": "일시 중지"
   },
+  "streamerShowcase": {
+    "cardOf": "{{index}} of {{total}} 카드",
+    "progress": "진행 상황",
+    "goal": {
+      "streams": "{{current}}/{{target}} 스트림",
+      "hours": "{{current}}/{{target}} 시간",
+      "session": "한 스트림에서 {{current}}/{{target}} 분",
+      "streak": "{{current}}/{{target}} 주",
+      "level": "레벨 {{current}}/{{target}}"
+    },
+    "onStream": "스트림에서 발생하면 잠금 해제",
+    "stats": {
+      "level": "레벨",
+      "xp": "XP",
+      "hours": "요건을 충족하는 시간",
+      "streams": "요건을 충족하는 스트림",
+      "longest": "가장 긴 스트림",
+      "streak": "최고의 연승"
+    },
+    "hoursShort": "{{hours}} 시간",
+    "weeksShort": "{{count}} 주"
+  },
   "passwordStrength": {
     "veryWeak": "매우 약함",
     "weak": "약함",

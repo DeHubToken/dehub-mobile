@@ -6121,6 +6121,28 @@
     "play": "Afspelen",
     "pause": "Pauzeren"
   },
+  "streamerShowcase": {
+    "cardOf": "Kaart {{index}} van {{total}}",
+    "progress": "Je voortgang",
+    "goal": {
+      "streams": "{{current}} / {{target}} streams",
+      "hours": "{{current}} / {{target}} uur",
+      "session": "{{current}} / {{target}} min in één stream",
+      "streak": "{{current}} / {{target}} weken",
+      "level": "Niveau {{current}} / {{target}}"
+    },
+    "onStream": "Ontgrendelt wanneer het op stream gebeurt",
+    "stats": {
+      "level": "Niveau",
+      "xp": "XP",
+      "hours": "Kwalificerende uren",
+      "streams": "Kwalificerende streams",
+      "longest": "Langste stream",
+      "streak": "Beste reeks"
+    },
+    "hoursShort": "{{hours}} h",
+    "weeksShort": "{{count}} wk"
+  },
   "passwordStrength": {
     "veryWeak": "Zeer zwak",
     "weak": "Zwak",

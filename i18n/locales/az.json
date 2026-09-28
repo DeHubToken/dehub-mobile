@@ -5931,6 +5931,28 @@
     "play": "Oxut",
     "pause": "Fasilə ver"
   },
+  "streamerShowcase": {
+    "cardOf": "Kart {{index}}{{total}}",
+    "progress": "İrəliləyişiniz",
+    "goal": {
+      "streams": "{{current}} / {{target}} axınları",
+      "hours": "{{current}} {{target}} saat",
+      "session": "{{current}} {{target}} min bir axınla",
+      "streak": "{{current}} {{target}} həftə",
+      "level": "Səviyyə {{current}} / {{target}}"
+    },
+    "onStream": "Axında nə baş verdiyini kiliddən çıxarın",
+    "stats": {
+      "level": "Səviyyə",
+      "xp": "XP",
+      "hours": "Seçmə saatlar",
+      "streams": "Uyğun axınlar",
+      "longest": "Ən uzun axın",
+      "streak": "Ən yaxşı zolaq"
+    },
+    "hoursShort": "{{hours}}",
+    "weeksShort": "{{count}} wk"
+  },
   "passwordStrength": {
     "veryWeak": "Çox zəif",
     "weak": "Zəif",

@@ -5914,6 +5914,28 @@
     "play": "চালান",
     "pause": "থামান"
   },
+  "streamerShowcase": {
+    "cardOf": "{{total}} টার মধ্যে কার্ড {{index}}",
+    "progress": "আপনার অগ্রগতি",
+    "goal": {
+      "streams": "{{current}} / {{target}} স্ট্রিম",
+      "hours": "{{current}} / {{target}} ঘণ্টা",
+      "session": "এক স্ট্রিমত {{current}} / {{target}} মিনিট",
+      "streak": "{{current}} / {{target}} সপ্তাহ",
+      "level": "লেভেল {{current}} / {{target}}"
+    },
+    "onStream": "স্ট্রিমত ঘটিলে খোলে",
+    "stats": {
+      "level": "লেভেল",
+      "xp": "XP",
+      "hours": "গণ্য ঘণ্টা",
+      "streams": "গণ্য স্ট্রিম",
+      "longest": "সবচেয়ে লম্বা স্ট্রিম",
+      "streak": "সেরা ধারা"
+    },
+    "hoursShort": "{{hours}} ঘণ্টা",
+    "weeksShort": "{{count}} সপ্তাহ"
+  },
   "passwordStrength": {
     "veryWeak": "বহুত দুর্বল",
     "weak": "দুর্বল",

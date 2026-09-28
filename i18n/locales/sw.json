@@ -5932,6 +5932,28 @@
     "play": "Cheza",
     "pause": "Sitisha"
   },
+  "streamerShowcase": {
+    "cardOf": "Card {{index}} ya {{total}}",
+    "progress": "Maendeleo yako",
+    "goal": {
+      "streams": "{{current}} / {{target}} mito",
+      "hours": "{{current}} / {{target}} saa",
+      "session": "{{current}} / {{target}} dakika katika mkondo mmoja",
+      "streak": "{{current}} / {{target}} wiki",
+      "level": "Ngazi {{current}} / {{target}}"
+    },
+    "onStream": "Hufungua inapotokea kwenye mkondo",
+    "stats": {
+      "level": "Kiwango",
+      "xp": "XP",
+      "hours": "Saa za kufuzu",
+      "streams": "Mito inayostahiki",
+      "longest": "Mkondo mrefu zaidi",
+      "streak": "Mfuatano bora zaidi"
+    },
+    "hoursShort": "{{hours}} h",
+    "weeksShort": "{{count}} wk"
+  },
   "passwordStrength": {
     "veryWeak": "Dhaifu sana",
     "weak": "Dhaifu",

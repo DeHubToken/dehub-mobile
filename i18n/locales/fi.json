@@ -5931,6 +5931,28 @@
     "play": "Toista",
     "pause": "Keskeytä"
   },
+  "streamerShowcase": {
+    "cardOf": "Kortti {{index}}/{{total}}",
+    "progress": "Edistymisesi",
+    "goal": {
+      "streams": "{{current}} / {{target}} virtaa",
+      "hours": "{{current}} / {{target}} tuntia",
+      "session": "{{current}} / {{target}} minuuttia yhdessä streamissa",
+      "streak": "{{current}} / {{target}} viikkoa",
+      "level": "Taso {{current}} / {{target}}"
+    },
+    "onStream": "Avautuu, kun se tapahtuu suoratoistona",
+    "stats": {
+      "level": "Taso",
+      "xp": "XP",
+      "hours": "Kelpuutetut tunnit",
+      "streams": "Hyväksyttävät suoratoistot",
+      "longest": "Pisin virtaus",
+      "streak": "Paras putki"
+    },
+    "hoursShort": "{{hours}} h",
+    "weeksShort": "{{count}} viikkoa"
+  },
   "passwordStrength": {
     "veryWeak": "Erittäin heikko",
     "weak": "Heikko",

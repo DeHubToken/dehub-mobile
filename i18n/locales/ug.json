@@ -5931,6 +5931,28 @@
     "play": "قويۇش",
     "pause": "توختىتىش"
   },
+  "streamerShowcase": {
+    "cardOf": "كارتا {{index}} of {{total}}",
+    "progress": "ئىلگىرىلەش",
+    "goal": {
+      "streams": "{{current}} /{{target}} streams",
+      "hours": "{{current}} /{{target}} hours",
+      "session": "بىر قېتىملىق تارقىتىشتا {{current}} / {{target}} مىنۇت",
+      "streak": "{{current}} / {{target}} weeks",
+      "level": "دەرىجە {{current}} / {{target}}"
+    },
+    "onStream": "ئېقىمىدا بولغاندا قۇلۇپنى ئېچىش پروگراممىسى",
+    "stats": {
+      "level": "Level",
+      "xp": "XP",
+      "hours": "قابىلىيەتلىك سائەتلەر",
+      "streams": "ئىختىساسلىق ئېقىمى",
+      "longest": "ئەڭ ئۇزۇن ئېقىن",
+      "streak": "ئەڭ ياخشى سەپلىمە"
+    },
+    "hoursShort": "{{hours}} h",
+    "weeksShort": "{{count}} wk"
+  },
   "passwordStrength": {
     "veryWeak": "بەك ئاجىز",
     "weak": "ئاجىز",

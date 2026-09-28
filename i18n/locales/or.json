@@ -5900,6 +5900,28 @@
     "play": "ଚଲାନ୍ତୁ",
     "pause": "ବିରତି"
   },
+  "streamerShowcase": {
+    "cardOf": "କାର୍ଡ଼ {{index}} {{total}}",
+    "progress": "ଆପଣଙ୍କ ପ୍ରଗତି",
+    "goal": {
+      "streams": "{{current}} / {{target}} ଷ୍ଟ୍ରିମ୍",
+      "hours": "{{current}} / {{target}} ଘଣ୍ଟା",
+      "session": "{{current}} {{target}} min in one stream",
+      "streak": "{{current}} / {{target}} ସପ୍ତାହ",
+      "level": "ସ୍ତର {{current}} {{target}}"
+    },
+    "onStream": "ଯେତେବେଳେ ଏହା ପ୍ରବାହରେ ଘଟେ ସେତେବେଳେ ଏହାକୁ ଖୋଲନ୍ତୁ",
+    "stats": {
+      "level": "ସ୍ତର",
+      "xp": "XP",
+      "hours": "ଯୋଗ୍ୟତା ସମୟ",
+      "streams": "ଯୋଗ୍ୟତା ପ୍ରବାହ",
+      "longest": "ଦୀର୍ଘତମ ଧାରା",
+      "streak": "ଶ୍ରେଷ୍ଠ ପ୍ରବାହ"
+    },
+    "hoursShort": "{{hours}} h",
+    "weeksShort": "{{count}} wk"
+  },
   "passwordStrength": {
     "veryWeak": "ବହୁତ ଦୁର୍ବଳ",
     "weak": "ଦୁର୍ବଳ",

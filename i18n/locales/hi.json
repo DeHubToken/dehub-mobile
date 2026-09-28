@@ -5986,6 +5986,28 @@
     "play": "खेलें",
     "pause": "रोकें"
   },
+  "streamerShowcase": {
+    "cardOf": "कार्ड {{index}} में से {{total}}",
+    "progress": "आपकी प्रगति",
+    "goal": {
+      "streams": "{{current}}/{{target}} स्ट्रीम",
+      "hours": "{{current}}/{{target}} घंटे",
+      "session": "एक स्ट्रीम में {{current}}/{{target}} मिनट",
+      "streak": "{{current}}/{{target}} हफ़्ते",
+      "level": "स्तर {{current}}/{{target}}"
+    },
+    "onStream": "स्ट्रीम पर होने पर अनलॉक हो जाता है",
+    "stats": {
+      "level": "स्तर",
+      "xp": "XP",
+      "hours": "क्वालिफ़ाई करने का समय",
+      "streams": "क्वालिफ़ाइंग स्ट्रीम",
+      "longest": "सबसे लंबी स्ट्रीम",
+      "streak": "सबसे अच्छी लकीर"
+    },
+    "hoursShort": "{{hours}} घं",
+    "weeksShort": "{{count}} सप्ताह"
+  },
   "passwordStrength": {
     "veryWeak": "बहुत कमज़ोर",
     "weak": "कमज़ोर",

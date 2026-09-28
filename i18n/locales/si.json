@@ -5943,6 +5943,28 @@
     "play": "වාදනය කරන්න",
     "pause": "විරාමය"
   },
+  "streamerShowcase": {
+    "cardOf": "කාඩ් {{index}} {{total}}",
+    "progress": "ඔබේ ප් ‍ රගතිය",
+    "goal": {
+      "streams": "{{current}}/{{target}} ස්ට් ‍ රීම්ස්",
+      "hours": "{{current}} / {{target}} පැය",
+      "session": "එක් ප්‍රවාහයක {{current}} / {{target}} මිනිත්තු",
+      "streak": "{{current}} / {{target}} සති",
+      "level": "මට්ටම {{current}} / {{target}}"
+    },
+    "onStream": "ප් රවාහයේදී එය සිදු වූ විට අගුළු හරින්න",
+    "stats": {
+      "level": "මට්ටම",
+      "xp": "XP",
+      "hours": "සුදුසුකම් ලබන පැය",
+      "streams": "සුදුසුකම් ලත් ධාරා",
+      "longest": "දිගම ධාරාව",
+      "streak": "හොඳම ස්ට් ‍ රීක්"
+    },
+    "hoursShort": "පැය {{hours}}",
+    "weeksShort": "සති {{count}}"
+  },
   "passwordStrength": {
     "veryWeak": "ඉතා දුර්වලයි",
     "weak": "දුර්වලයි",

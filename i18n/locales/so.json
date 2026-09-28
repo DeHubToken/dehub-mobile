@@ -5931,6 +5931,28 @@
     "play": "Ciyaar",
     "pause": "Jooji"
   },
+  "streamerShowcase": {
+    "cardOf": "Kaarka {{index}} ee {{total}}",
+    "progress": "Horumarkaaga",
+    "goal": {
+      "streams": "{{current}} /{{target}} durdurrada",
+      "hours": "{{current}} / {{target}} saacadaha",
+      "session": "{{current}}/{{target}} min hal durdur",
+      "streak": "{{current}} / {{target}} weeks",
+      "level": "Heerka {{current}} / {{target}}"
+    },
+    "onStream": "Fureyso marka ay dhacdo qulqulka",
+    "stats": {
+      "level": "Heerka",
+      "xp": "XP",
+      "hours": "Saacadaha u qalmida",
+      "streams": "Wabiyada u qalma",
+      "longest": "Wabiga ugu dheer",
+      "streak": "Isbedelka Streak ugu fiican"
+    },
+    "hoursShort": "{{hours}} h",
+    "weeksShort": "{{count}} wk"
+  },
   "passwordStrength": {
     "veryWeak": "Aad u daciif ah",
     "weak": "Daciif",

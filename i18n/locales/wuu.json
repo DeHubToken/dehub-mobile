@@ -5931,6 +5931,28 @@
     "play": "播放",
     "pause": "暂停"
   },
+  "streamerShowcase": {
+    "cardOf": "卡片 {{index}} / {{total}}",
+    "progress": "侬个进度",
+    "goal": {
+      "streams": "{{current}} / {{target}} 场直播",
+      "hours": "{{current}} / {{target}} 小时",
+      "session": "一场直播 {{current}} / {{target}} 分钟",
+      "streak": "{{current}} / {{target}} 周",
+      "level": "等级 {{current}} / {{target}}"
+    },
+    "onStream": "直播辰光发生个辰光解锁",
+    "stats": {
+      "level": "等级",
+      "xp": "经验值",
+      "hours": "符合资格个辰光",
+      "streams": "符合资格个直播场数",
+      "longest": "最长个直播",
+      "streak": "最长个连续直播"
+    },
+    "hoursShort": "{{hours}} 小时",
+    "weeksShort": "{{count}} 周"
+  },
   "passwordStrength": {
     "veryWeak": "老弱",
     "weak": "弱",

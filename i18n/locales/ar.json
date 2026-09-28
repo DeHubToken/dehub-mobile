@@ -5984,6 +5984,28 @@
     "play": "تشغيل",
     "pause": "إيقاف مؤقت"
   },
+  "streamerShowcase": {
+    "cardOf": "البطاقة {{index}} من {{total}}",
+    "progress": "تقدمك",
+    "goal": {
+      "streams": "{{current}}/{{target}} تدفقات",
+      "hours": "{{current}}/{{target}} ساعات",
+      "session": "{{current}}/{{target}} دقيقة في بث واحد",
+      "streak": "{{current}}/{{target}} أسابيع",
+      "level": "المستوى {{current}}/{{target}}"
+    },
+    "onStream": "يفتح عندما يحدث ذلك أثناء البث",
+    "stats": {
+      "level": "المستوى",
+      "xp": "XP",
+      "hours": "الساعات المؤهلة",
+      "streams": "التدفقات المؤهلة",
+      "longest": "أطول تيار",
+      "streak": "أفضل سلسلة"
+    },
+    "hoursShort": "{{hours}} س",
+    "weeksShort": "{{count}} أسبوع"
+  },
   "passwordStrength": {
     "veryWeak": "ضعيف جداً",
     "weak": "ضعيف",

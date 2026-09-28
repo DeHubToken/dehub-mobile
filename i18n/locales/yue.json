@@ -5931,6 +5931,28 @@
     "play": "玩",
     "pause": "暫停"
   },
+  "streamerShowcase": {
+    "cardOf": "{{total}} 嘅卡片 {{index}}",
+    "progress": "你嘅進度",
+    "goal": {
+      "streams": "{{current}}/{{target}} 流",
+      "hours": "{{current}}/{{target}}小時",
+      "session": "{{current}} / {{target}} 一個流中嘅分鐘",
+      "streak": "{{current}}/{{target}} 星期",
+      "level": "等級 {{current}} / {{target}}"
+    },
+    "onStream": "當佢喺串流上面發生嗰陣解鎖",
+    "stats": {
+      "level": "級數",
+      "xp": "XP",
+      "hours": "預選時間",
+      "streams": "合格嘅流",
+      "longest": "最長嘅流",
+      "streak": "最好嘅連勝"
+    },
+    "hoursShort": "{{hours}} 小時",
+    "weeksShort": "{{count}} 星期"
+  },
   "passwordStrength": {
     "veryWeak": "非常弱",
     "weak": "弱",

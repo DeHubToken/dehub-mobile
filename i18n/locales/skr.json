@@ -5916,6 +5916,28 @@
     "play": "کھیڈو",
     "pause": "روکو"
   },
+  "streamerShowcase": {
+    "cardOf": "{{total}} وچوں کارڈ {{index}}",
+    "progress": "تہاڈی ترقی",
+    "goal": {
+      "streams": "{{current}} / {{target}} سٹریم",
+      "hours": "{{current}} / {{target}} گھنٹے",
+      "session": "ہک سٹریم وچ {{current}} / {{target}} منٹ",
+      "streak": "{{current}} / {{target}} ہفتے",
+      "level": "لیول {{current}} / {{target}}"
+    },
+    "onStream": "سٹریم تے تھیوݨ نال کھلدا اے",
+    "stats": {
+      "level": "لیول",
+      "xp": "XP",
+      "hours": "گنے ونڄݨ آلے گھنٹے",
+      "streams": "گنے ونڄݨ آلے سٹریم",
+      "longest": "سبھ توں لمبا سٹریم",
+      "streak": "بہترین سلسلہ"
+    },
+    "hoursShort": "{{hours}} گھنٹے",
+    "weeksShort": "{{count}} ہفتے"
+  },
   "passwordStrength": {
     "veryWeak": "بہوں کمزور",
     "weak": "کمزور",

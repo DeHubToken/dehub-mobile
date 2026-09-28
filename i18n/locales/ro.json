@@ -5931,6 +5931,28 @@
     "play": "Redare",
     "pause": "Pauză"
   },
+  "streamerShowcase": {
+    "cardOf": "Cardul {{index}} din {{total}}",
+    "progress": "Progresul tău",
+    "goal": {
+      "streams": "{{current}} / {{target}} transmisiuni",
+      "hours": "{{current}} / {{target}} ore",
+      "session": "{{current}} / {{target}} min într-un singur flux",
+      "streak": "{{current}} / {{target}} săptămâni",
+      "level": "Nivel {{current}} / {{target}}"
+    },
+    "onStream": "Deblochează când se întâmplă în flux",
+    "stats": {
+      "level": "Nivel",
+      "xp": "XP",
+      "hours": "Ore de calificare",
+      "streams": "Fluxuri de calificare",
+      "longest": "Cel mai lung flux",
+      "streak": "Cea mai bună dungă"
+    },
+    "hoursShort": "{{hours}} h",
+    "weeksShort": "{{count}} săpt."
+  },
   "passwordStrength": {
     "veryWeak": "Foarte slabă",
     "weak": "Slabă",

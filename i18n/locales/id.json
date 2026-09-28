@@ -5980,6 +5980,28 @@
     "play": "Mainkan",
     "pause": "Jeda"
   },
+  "streamerShowcase": {
+    "cardOf": "Kartu {{index}} dari {{total}}",
+    "progress": "Kemajuan Anda",
+    "goal": {
+      "streams": "{{current}}/{{target}} streaming",
+      "hours": "{{current}}/{{target}} jam",
+      "session": "{{current}}/{{target}} menit dalam satu aliran",
+      "streak": "{{current}}/{{target}} minggu",
+      "level": "Level {{current}}/{{target}}"
+    },
+    "onStream": "Membuka kunci saat hal itu terjadi saat streaming",
+    "stats": {
+      "level": "Level",
+      "xp": "XP",
+      "hours": "Jam kualifikasi",
+      "streams": "Streaming yang memenuhi syarat",
+      "longest": "Streaming terpanjang",
+      "streak": "Streak terbaik"
+    },
+    "hoursShort": "{{hours}} h",
+    "weeksShort": "{{count}} minggu"
+  },
   "passwordStrength": {
     "veryWeak": "Sangat lemah",
     "weak": "Lemah",

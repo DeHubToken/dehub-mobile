@@ -5741,6 +5741,28 @@
     "play": "Пусти",
     "pause": "Паузирај"
   },
+  "streamerShowcase": {
+    "cardOf": "Картица {{index}} од {{total}}",
+    "progress": "Ваш напредак",
+    "goal": {
+      "streams": "{{current}} / {{target}} стримова",
+      "hours": "{{current}} / {{target}} сати",
+      "session": "{{current}} / {{target}} мин у једном стриму",
+      "streak": "{{current}} / {{target}} недеља",
+      "level": "Ниво {{current}} / {{target}}"
+    },
+    "onStream": "Откључава се када се деси током стрима",
+    "stats": {
+      "level": "Ниво",
+      "xp": "XP",
+      "hours": "Сати који се рачунају",
+      "streams": "Стримови који се рачунају",
+      "longest": "Најдужи стрим",
+      "streak": "Најбољи низ"
+    },
+    "hoursShort": "{{hours}} ч",
+    "weeksShort": "{{count}} нед."
+  },
   "passwordStrength": {
     "veryWeak": "Веома слаба",
     "weak": "Слаба",

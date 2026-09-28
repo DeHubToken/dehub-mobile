@@ -5931,6 +5931,28 @@
     "play": "Pokreni",
     "pause": "Pauziraj"
   },
+  "streamerShowcase": {
+    "cardOf": "Kartica {{index}} od {{total}}",
+    "progress": "Vaš napredak",
+    "goal": {
+      "streams": "{{current}} / {{target}} streamovi",
+      "hours": "{{current}} / {{target}} h",
+      "session": "{{current}} / {{target}} min u jednom streamu",
+      "streak": "{{current}} / {{target}} tjedana",
+      "level": "Razina {{current}} / {{target}}"
+    },
+    "onStream": "Otključava se kada se to dogodi na streamu",
+    "stats": {
+      "level": "Razina",
+      "xp": "XP",
+      "hours": "Kvalificirani sati",
+      "streams": "Kvalificirani prijenosi",
+      "longest": "Najduži stream",
+      "streak": "Najbolji niz"
+    },
+    "hoursShort": "{{hours}} h",
+    "weeksShort": "{{count}} tjedno"
+  },
   "passwordStrength": {
     "veryWeak": "Vrlo slaba",
     "weak": "Slaba",

@@ -5864,6 +5864,28 @@
     "play": "ਚਲਾਓ",
     "pause": "ਵਿਰਾਮ"
   },
+  "streamerShowcase": {
+    "cardOf": "ਕਾਰਡ {{index}} ਦਾ {{total}}",
+    "progress": "ਤੁਹਾਡੀ ਤਰੱਕੀ",
+    "goal": {
+      "streams": "{{current}} / {{target}} ਸਟ੍ਰੀਮਜ਼",
+      "hours": "{{current}} / {{target}} ਘੰਟੇ",
+      "session": "{{current}} / {{target}} ਇੱਕ ਸਟਰੀਮ ਵਿੱਚ ਮਿੰਟ",
+      "streak": "{{current}} / {{target}} ਹਫ਼ਤੇ",
+      "level": "ਲੈਵਲ {{current}} / {{target}}"
+    },
+    "onStream": "ਜਦੋਂ ਇਹ ਸਟ੍ਰੀਮ ਤੇ ਹੁੰਦਾ ਹੈ ਤਾਂ ਅਨਲੌਕ ਕਰਦਾ ਹੈ",
+    "stats": {
+      "level": "ਪੱਧਰ",
+      "xp": "XP",
+      "hours": "ਕੁਆਲੀਫਾਈ ਕਰਨ ਦੇ ਘੰਟੇ",
+      "streams": "ਯੋਗ ਸਟਰੀਮ",
+      "longest": "ਸਭ ਤੋਂ ਲੰਬੀ ਸਟਰੀਮ",
+      "streak": "ਬੈਸਟ ਸਟ੍ਰੀਕ"
+    },
+    "hoursShort": "{{hours}} ਘੰ",
+    "weeksShort": "{{count}} ਹਫ਼ਤੇ"
+  },
   "passwordStrength": {
     "veryWeak": "ਬਹੁਤ ਕਮਜ਼ੋਰ",
     "weak": "ਕਮਜ਼ੋਰ",

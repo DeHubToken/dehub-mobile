@@ -5982,6 +5982,28 @@
     "play": "再生",
     "pause": "一時停止"
   },
+  "streamerShowcase": {
+    "cardOf": "{{total}}の{{index}}カード",
+    "progress": "あなたの進捗状況",
+    "goal": {
+      "streams": "{{current}}/{{target}}ストリーム",
+      "hours": "{{current}}/{{target}}時間",
+      "session": "1つのストリームで{{current}}/{{target}}分",
+      "streak": "{{current}}/{{target}}週間",
+      "level": "レベル{{current}}/{{target}}"
+    },
+    "onStream": "ストリーミング中にロックが解除されます",
+    "stats": {
+      "level": "レベル",
+      "xp": "XP",
+      "hours": "対象となる営業時間",
+      "streams": "対象となるストリーム",
+      "longest": "最長ストリーム",
+      "streak": "ベストストリーク"
+    },
+    "hoursShort": "{{hours}}時間",
+    "weeksShort": "{{count}}週"
+  },
   "passwordStrength": {
     "veryWeak": "非常に弱い",
     "weak": "弱い",

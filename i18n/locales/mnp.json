@@ -5918,6 +5918,28 @@
     "play": "播放",
     "pause": "暂停"
   },
+  "streamerShowcase": {
+    "cardOf": "卡片 {{index}} / {{total}}",
+    "progress": "汝个进度",
+    "goal": {
+      "streams": "{{current}} / {{target}} 股溪流",
+      "hours": "{{current}} / {{target}} 点钟",
+      "session": "{{current}} / {{target}} 分钟一趟溪流",
+      "streak": "{{current}} / {{target}} 礼拜",
+      "level": "等级 {{current}} / {{target}}"
+    },
+    "onStream": "解锁当汝溪流发生",
+    "stats": {
+      "level": "等级",
+      "xp": "经验值",
+      "hours": "合格点钟",
+      "streams": "合格溪流",
+      "longest": "最长溪流",
+      "streak": "最好连贯"
+    },
+    "hoursShort": "{{hours}} 点钟",
+    "weeksShort": "{{count}} 礼拜"
+  },
   "passwordStrength": {
     "veryWeak": "野弱",
     "weak": "弱",

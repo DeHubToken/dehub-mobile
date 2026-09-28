@@ -5925,6 +5925,28 @@
     "play": "बजाव",
     "pause": "ठहरव"
   },
+  "streamerShowcase": {
+    "cardOf": "{{total}} म ले कार्ड {{index}}",
+    "progress": "आप मन के प्रगति",
+    "goal": {
+      "streams": "{{current}} / {{target}} स्ट्रीम",
+      "hours": "{{current}} / {{target}} घंटा",
+      "session": "{{current}} {{target}} min एक स्ट्रीम में",
+      "streak": "{{current}} / {{target}} हफ्ता",
+      "level": "स्तर {{current}} / {{target}}"
+    },
+    "onStream": "जब ले चलती हे तब ले चलती हे",
+    "stats": {
+      "level": "स्तर",
+      "xp": "एक्सपी",
+      "hours": "योग्यता समय",
+      "streams": "प्रवाह के योग्यता",
+      "longest": "सबसे लंबा स्ट्रीम",
+      "streak": "बेस्ट स्ट्रीकConstellation name"
+    },
+    "hoursShort": "{{hours}} घं",
+    "weeksShort": "{{count}} हफ्ता"
+  },
   "passwordStrength": {
     "veryWeak": "बहुत कमजोर",
     "weak": "कमजोर",

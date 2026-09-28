@@ -5931,6 +5931,28 @@
     "play": "રમો",
     "pause": "થોભો"
   },
+  "streamerShowcase": {
+    "cardOf": "{{total}} નું {{index}} કાર્ડ",
+    "progress": "તમારી પ્રગતિ",
+    "goal": {
+      "streams": "{{current}} / {{target}} સ્ટ્રીમ્સ",
+      "hours": "{{current}} / {{target}} કલાક",
+      "session": "{{current}} / {{target}} મિનિટ એક સ્ટ્રીમમાં",
+      "streak": "{{current}} / {{target}} અઠવાડિયા",
+      "level": "લેવલ {{current}} / {{target}}"
+    },
+    "onStream": "જ્યારે તે સ્ટ્રીમ પર થાય છે ત્યારે અનલૉક કરે છે",
+    "stats": {
+      "level": "સ્તર",
+      "xp": "XP",
+      "hours": "ક્વોલિફાઇંગ કલાકો",
+      "streams": "ક્વોલિફાઇંગ સ્ટ્રીમ્સ",
+      "longest": "સૌથી લાંબો પ્રવાહ",
+      "streak": "બેસ્ટ સ્ટ્રીક"
+    },
+    "hoursShort": "{{hours}} ક.",
+    "weeksShort": "{{count}} અઠ."
+  },
   "passwordStrength": {
     "veryWeak": "ખૂબ નબળો",
     "weak": "નબળો",

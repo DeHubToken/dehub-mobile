@@ -5931,6 +5931,28 @@
     "play": "کيڏيو",
     "pause": "پوئتي هٽايو"
   },
+  "streamerShowcase": {
+    "cardOf": "ڪارڊ {{index}} جي {{total}}",
+    "progress": "توھان جي ترقي",
+    "goal": {
+      "streams": "{{current}}{{target}} اسٽريمز",
+      "hours": "{{current}} {{target}} ڪلاڪ",
+      "session": "{{current}}{{target}} منٽ هڪ وهڪرو ۾",
+      "streak": "{{current}} {{target}} هفتو",
+      "level": "سطح {{current}} {{target}}"
+    },
+    "onStream": "انلاڪ جڏهن اهو وهڪرو تي ٿئي ٿو",
+    "stats": {
+      "level": "سطح",
+      "xp": "XP",
+      "hours": "قابليت جا ڪلاڪ",
+      "streams": "قابليت وارو وهڪرو",
+      "longest": "سڀ کان ڊگهو وهڪرو",
+      "streak": "بهترين اسٽريٽجڪ"
+    },
+    "hoursShort": "{{hours}} ههه",
+    "weeksShort": "{{count}} هفته"
+  },
   "passwordStrength": {
     "veryWeak": "تمام ڪمزور",
     "weak": "ڪمزور",

@@ -5954,6 +5954,28 @@
     "play": "Alefa",
     "pause": "Atsaharo"
   },
+  "streamerShowcase": {
+    "cardOf": "TAPAKA {{index}} {{total}}",
+    "progress": "Ny fivoaranao",
+    "goal": {
+      "streams": "{{current}}{{target}} streams",
+      "hours": "{{current}} {{target}} hours",
+      "session": "{{current}} {{target}} min ho an'ny tosaka iray monja",
+      "streak": "{{current}} /{{target}} herinandro",
+      "level": "Ambaratonga {{current}} {{target}}"
+    },
+    "onStream": "Manafaka ilay rojom-panalahidy raha toa ka mihatra amin'ilay tosaka izany",
+    "stats": {
+      "level": "Tarehimarika",
+      "xp": "XP",
+      "hours": "Fahaizana ora",
+      "streams": "CURRENT",
+      "longest": "Ilay tosaka lava indrindra",
+      "streak": "Tsara indrindra Streak"
+    },
+    "hoursShort": "{{hours}} h",
+    "weeksShort": "{{count}} wk"
+  },
   "passwordStrength": {
     "veryWeak": "Malemy be",
     "weak": "Malemy",

@@ -5931,6 +5931,28 @@
     "play": "খেলুন",
     "pause": "বিরতি"
   },
+  "streamerShowcase": {
+    "cardOf": "কার্ড {{index}} এর {{total}}",
+    "progress": "আপনার অগ্রগতি",
+    "goal": {
+      "streams": "{{current}} / {{target}} স্ট্রিম",
+      "hours": "{{current}} / {{target}} ঘন্টা",
+      "session": "{{current}} / {{target}} মিনিট একটি স্ট্রিমে",
+      "streak": "{{current}} / {{target}} সপ্তাহ",
+      "level": "লেভেল {{current}} / {{target}}"
+    },
+    "onStream": "স্ট্রিমে যখন এটি ঘটে তখন আনলক করে",
+    "stats": {
+      "level": "স্তর",
+      "xp": "XP",
+      "hours": "যোগ্যতার সময়",
+      "streams": "কোয়ালিফাইং স্ট্রিম",
+      "longest": "দীর্ঘতম স্ট্রিম",
+      "streak": "সেরা স্ট্রাক"
+    },
+    "hoursShort": "{{hours}} ঘণ্টা",
+    "weeksShort": "{{count}} সপ্তাহ"
+  },
   "passwordStrength": {
     "veryWeak": "খুব দুর্বল",
     "weak": "দুর্বল",

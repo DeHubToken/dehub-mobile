@@ -6742,6 +6742,28 @@
     "play": "لێدان",
     "pause": "وەستان"
   },
+  "streamerShowcase": {
+    "cardOf": "کارتی {{index}} لە {{total}}",
+    "progress": "پێشکەوتنەکەت",
+    "goal": {
+      "streams": "{{current}} / {{target}} پەخش",
+      "hours": "{{current}} / {{target}} کاتژمێر",
+      "session": "{{current}} / {{target}} خولەک لە یەک پەخشدا",
+      "streak": "هەفتەی {{current}} / {{target}}",
+      "level": "ئاستی {{current}} / {{target}}"
+    },
+    "onStream": "کاتێک لە پەخشدا ڕوودەدات دەکرێتەوە",
+    "stats": {
+      "level": "ئاست",
+      "xp": "XP",
+      "hours": "کاتژمێرە ژمێردراوەکان",
+      "streams": "پەخشە ژمێردراوەکان",
+      "longest": "درێژترین پەخش",
+      "streak": "باشترین زنجیرە"
+    },
+    "hoursShort": "{{hours}} ه",
+    "weeksShort": "{{count}} هەفتە"
+  },
   "support": {
     "title": "Piştgirî",
     "subtitle": "Bilêtên we û rewşa wan. Bê AI, bê xerc.",

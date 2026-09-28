@@ -5935,6 +5935,28 @@
     "play": "Spil",
     "pause": "Sæt på pause"
   },
+  "streamerShowcase": {
+    "cardOf": "Kort {{index}} af {{total}}",
+    "progress": "Dine fremskridt",
+    "goal": {
+      "streams": "{{current}}/{{target}} streams",
+      "hours": "{{current}}/{{target}} timer",
+      "session": "{{current}}/{{target}} min. i én stream",
+      "streak": "{{current}}/{{target}} uger",
+      "level": "Niveau {{current}}/{{target}}"
+    },
+    "onStream": "Låses op, når det sker på stream",
+    "stats": {
+      "level": "Niveau",
+      "xp": "XP",
+      "hours": "Kvalificerende timer",
+      "streams": "Kvalificerende streams",
+      "longest": "Længste stream",
+      "streak": "Bedste stribe"
+    },
+    "hoursShort": "{{hours}}h",
+    "weeksShort": "{{count}} uge"
+  },
   "passwordStrength": {
     "veryWeak": "Meget svag",
     "weak": "Svag",

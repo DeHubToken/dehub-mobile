@@ -5884,6 +5884,28 @@
     "play": "A be to ka to ka to",
     "pause": "N' ye n' ka baara dabila"
   },
+  "streamerShowcase": {
+    "cardOf": "Kariti {{index}} ka {{total}}",
+    "progress": "An ka ɲɛtaga",
+    "goal": {
+      "streams": "{{current}} {{target}} streams",
+      "hours": "{{current}} {{target}} hrs",
+      "session": "{{current}} {{target}} min in one stream",
+      "streak": "{{current}} {{target}} weeks",
+      "level": "Level {{current}} / {{target}}"
+    },
+    "onStream": "O la, a tun be se ka kɛ ko a tun be to ka taga.",
+    "stats": {
+      "level": "Kala Lagaw Ya",
+      "xp": "Fɛɛn min be yen, o ye",
+      "hours": "Mɔgɔ minw be se ka kɛ lakɔli la",
+      "streams": "Kala Lagaw Ya",
+      "longest": "Jiijan",
+      "streak": "Fɛɛn min ka di mɔgɔ ye, o ye ka to ka to ka"
+    },
+    "hoursShort": "{{hours}} h",
+    "weeksShort": "{{count}} wk"
+  },
   "passwordStrength": {
     "veryWeak": "A barika ka dɔgɔn kosɛbɛ",
     "weak": "A barika ka dɔgɔn",

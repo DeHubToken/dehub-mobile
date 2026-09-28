@@ -5943,6 +5943,28 @@
     "play": "ကစားပါ",
     "pause": "ခေတ္တရပ်နားပါ"
   },
+  "streamerShowcase": {
+    "cardOf": "ကဒ် {{index}} ၏ {{total}}",
+    "progress": "သင် ၏ တိုးတက်မှု",
+    "goal": {
+      "streams": "{{current}} / {{target}} ထုတ်လွှင့်မှု",
+      "hours": "{{current}} {{target}} နာရီ",
+      "session": "တစ်ကြိမ်ထုတ်လွှင့်မှုတွင် {{current}} / {{target}} မိနစ်",
+      "streak": "{{current}} {{target}} ရက်သတ္တပတ်များ",
+      "level": "အဆင့် {{current}} {{target}}"
+    },
+    "onStream": "ရေစီးကြောင်းပေါ်တွင်ဖြစ်ပျက်သည့်အခါသော့ဖွင့်သည်",
+    "stats": {
+      "level": "အဆင့်",
+      "xp": "XP",
+      "hours": "အရည်အချင်းပြည့်မီသော နာရီများ",
+      "streams": "အရည်အချင်းပြည့်မီသောစီးကြောင်းများ",
+      "longest": "အရှည်ဆုံးစီးဆင်းမှု",
+      "streak": "အကောင်းဆုံး Streak"
+    },
+    "hoursShort": "{{hours}} နာရီ",
+    "weeksShort": "{{count}} ပတ်"
+  },
   "passwordStrength": {
     "veryWeak": "အလွန်အားနည်း",
     "weak": "အားနည်း",

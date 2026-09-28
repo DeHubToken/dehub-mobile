@@ -5935,6 +5935,28 @@
     "play": "Възпроизвеждане",
     "pause": "Пауза"
   },
+  "streamerShowcase": {
+    "cardOf": "Карта {{index}} от {{total}}",
+    "progress": "Вашият напредък",
+    "goal": {
+      "streams": "Потоци от {{current}}/{{target}}",
+      "hours": "{{current}}/{{target}} часа",
+      "session": "{{current}}/{{target}} мин в един поток",
+      "streak": "{{current}}/{{target}} седмици",
+      "level": "Ниво {{current}}/{{target}}"
+    },
+    "onStream": "Отключва се, когато се случи по време на излъчване",
+    "stats": {
+      "level": "Ниво",
+      "xp": "XP",
+      "hours": "Квалификационни часове",
+      "streams": "Квалифицирани потоци",
+      "longest": "Най - дълъг поток",
+      "streak": "Най - добра серия"
+    },
+    "hoursShort": "{{hours}} ч",
+    "weeksShort": "{{count}} седм."
+  },
   "passwordStrength": {
     "veryWeak": "Много слаба",
     "weak": "Слаба",

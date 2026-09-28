@@ -5931,6 +5931,28 @@
     "play": "Luaj",
     "pause": "Ndalo"
   },
+  "streamerShowcase": {
+    "cardOf": "Karta {{index}} e {{total}}",
+    "progress": "Ecuria jote",
+    "goal": {
+      "streams": "{{current}} / {{target}} streams",
+      "hours": "{{current}} / {{target}} orë",
+      "session": "{{current}} / {{target}} min në një transmetim",
+      "streak": "{{current}} / {{target}} javë",
+      "level": "Niveli {{current}} / {{target}}"
+    },
+    "onStream": "Zhbllokohet kur ndodh në transmetim",
+    "stats": {
+      "level": "Niveli",
+      "xp": "XP",
+      "hours": "Orari kualifikues",
+      "streams": "Rrjedhat kualifikuese",
+      "longest": "Rrjedha më e gjatë",
+      "streak": "Shiriti më i mirë"
+    },
+    "hoursShort": "{{hours}} h",
+    "weeksShort": "{{count}} wk"
+  },
   "passwordStrength": {
     "veryWeak": "Shumë i dobët",
     "weak": "I dobët",

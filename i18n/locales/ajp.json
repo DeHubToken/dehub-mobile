@@ -5931,6 +5931,28 @@
     "play": "تشغيل",
     "pause": "إيقاف"
   },
+  "streamerShowcase": {
+    "cardOf": "بطاقة {{index}} من {{total}}",
+    "progress": "تقدّمك",
+    "goal": {
+      "streams": "{{current}} / {{target}} بث",
+      "hours": "{{current}} / {{target}} ساعات",
+      "session": "{{current}} / {{target}} دقيقة في بث واحد",
+      "streak": "{{current}} / {{target}} أسابيع",
+      "level": "المستوى {{current}} من {{target}}"
+    },
+    "onStream": "يفتح لما يصير بالبث",
+    "stats": {
+      "level": "المستوى",
+      "xp": "نقطة خبرة",
+      "hours": "ساعات مؤهلة",
+      "streams": "بثوث مؤهلة",
+      "longest": "أطول بث",
+      "streak": "أحسن سلسلة"
+    },
+    "hoursShort": "{{hours}} س",
+    "weeksShort": "{{count}} أس"
+  },
   "passwordStrength": {
     "veryWeak": "ضعيف جداً",
     "weak": "ضعيف",

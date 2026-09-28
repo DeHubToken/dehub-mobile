@@ -5960,6 +5960,28 @@
     "play": "Αναπαραγωγή",
     "pause": "Παύση"
   },
+  "streamerShowcase": {
+    "cardOf": "Κάρτα {{index}} από {{total}}",
+    "progress": "Η πρόοδός σας",
+    "goal": {
+      "streams": "{{current}} / {{target}} ρεύματα",
+      "hours": "{{current}} / {{target}} ώρες",
+      "session": "{{current}} / {{target}} min σε μία ροή",
+      "streak": "{{current}} / {{target}} εβδομάδες",
+      "level": "Επίπεδο {{current}} / {{target}}"
+    },
+    "onStream": "Ξεκλειδώνει όταν συμβαίνει σε ροή",
+    "stats": {
+      "level": "Επίπεδο",
+      "xp": "XP",
+      "hours": "Προκριματικές ώρες",
+      "streams": "Επιλέξιμες ροές",
+      "longest": "Μεγαλύτερη ροή",
+      "streak": "Καλύτερο σερί"
+    },
+    "hoursShort": "{{hours}} ώ",
+    "weeksShort": "{{count}} εβδ."
+  },
   "passwordStrength": {
     "veryWeak": "Πολύ αδύναμος",
     "weak": "Αδύναμος",

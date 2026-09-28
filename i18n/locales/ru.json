@@ -5984,6 +5984,28 @@
     "play": "Играть",
     "pause": "Пауза"
   },
+  "streamerShowcase": {
+    "cardOf": "Карта {{index}} из {{total}}",
+    "progress": "Ваш прогресс",
+    "goal": {
+      "streams": "{{current}} / {{target}} стримов",
+      "hours": "{{current}} / {{target}} часов",
+      "session": "{{current}} / {{target}} мин одним потоком",
+      "streak": "{{current}} / {{target}} недель",
+      "level": "Уровень {{current}} / {{target}}"
+    },
+    "onStream": "Разблокируется, когда это происходит в потоке",
+    "stats": {
+      "level": "Уровень",
+      "xp": "XP",
+      "hours": "Квалификационные часы",
+      "streams": "Квалификационные потоки",
+      "longest": "Самый длинный поток",
+      "streak": "Лучшая серия"
+    },
+    "hoursShort": "{{hours}} ч",
+    "weeksShort": "{{count}} нед."
+  },
   "passwordStrength": {
     "veryWeak": "Очень слабый",
     "weak": "Слабый",

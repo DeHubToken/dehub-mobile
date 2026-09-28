@@ -6039,6 +6039,28 @@
     "play": "Prehrať",
     "pause": "Pozastaviť"
   },
+  "streamerShowcase": {
+    "cardOf": "Karta {{index}} z {{total}}",
+    "progress": "Váš pokrok",
+    "goal": {
+      "streams": "{{current}} / {{target}} streamy",
+      "hours": "{{current}} / {{target}} hodín",
+      "session": "{{current}} / {{target}} min v jednom prúde",
+      "streak": "{{current}} / {{target}} týždňov",
+      "level": "Úroveň {{current}} / {{target}}"
+    },
+    "onStream": "Odomkne sa, keď sa to stane v streame",
+    "stats": {
+      "level": "Úroveň",
+      "xp": "XP",
+      "hours": "Hodiny splnenia podmienok",
+      "streams": "Oprávnené streamy",
+      "longest": "Najdlhší prúd",
+      "streak": "Najlepšia séria"
+    },
+    "hoursShort": "{{hours}} h",
+    "weeksShort": "{{count}} týž."
+  },
   "passwordStrength": {
     "veryWeak": "Veľmi slabé",
     "weak": "Slabé",

@@ -5934,6 +5934,28 @@
     "play": "खेळ",
     "pause": "विराम द्या"
   },
+  "streamerShowcase": {
+    "cardOf": "कार्ड {{index}} चे {{total}}",
+    "progress": "तुमची प्रगती",
+    "goal": {
+      "streams": "{{current}} / {{target}} स्ट्रीम",
+      "hours": "{{current}} {{target}} तास",
+      "session": "{{current}} {{target}} मिनिट एका प्रवाहात",
+      "streak": "{{current}} {{target}} आठवडे",
+      "level": "लेव्हल {{current}}{{target}}"
+    },
+    "onStream": "जेव्हा हे प्रवाहात येते तेव्हा अनलॉक करते",
+    "stats": {
+      "level": "स्तर",
+      "xp": "XP",
+      "hours": "पात्रता तास",
+      "streams": "पात्रता प्रवाह",
+      "longest": "सर्वात लांब प्रवाह",
+      "streak": "सर्वोत्कृष्ट स्ट्रेक"
+    },
+    "hoursShort": "{{hours}} ह",
+    "weeksShort": "{{count}} आठ."
+  },
   "passwordStrength": {
     "veryWeak": "खूप कमकुवत",
     "weak": "कमकुवत",

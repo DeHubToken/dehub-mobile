@@ -5915,6 +5915,28 @@
     "play": "تشغيل",
     "pause": "إيقاف مؤقت"
   },
+  "streamerShowcase": {
+    "cardOf": "{{total}} में से कार्ड {{index}}",
+    "progress": "Your progress",
+    "goal": {
+      "streams": "{{current}} / {{target}} streams",
+      "hours": "{{current}} / {{target}} hours",
+      "session": "एक स्ट्रीम में {{current}} / {{target}} मिनट",
+      "streak": "{{current}} / {{target}} weeks",
+      "level": "Level {{current}} / {{target}}"
+    },
+    "onStream": "स्ट्रीम में होवेक से खुलेला",
+    "stats": {
+      "level": "Level",
+      "xp": "XP",
+      "hours": "Qualifying hours",
+      "streams": "Qualifying streams",
+      "longest": "Longest stream",
+      "streak": "Best streak"
+    },
+    "hoursShort": "{{hours}} h",
+    "weeksShort": "{{count}} wk"
+  },
   "passwordStrength": {
     "veryWeak": "زۆر لاواز",
     "weak": "لاواز",

@@ -5931,6 +5931,28 @@
     "play": "Նվագարկել",
     "pause": "Դադարեցնել"
   },
+  "streamerShowcase": {
+    "cardOf": "Քարտ {{index}}՝ {{total}}-ից",
+    "progress": "Ձեր առաջընթացը",
+    "goal": {
+      "streams": "{{current}}/{{target}} հոսքեր",
+      "hours": "{{current}}/{{target}} ժամ",
+      "session": "{{current}}/{{target}} րոպե մեկ հոսքում",
+      "streak": "{{current}}/{{target}} շաբաթ",
+      "level": "Մակարդակ {{current}}/{{target}}"
+    },
+    "onStream": "Արգելաբացում, երբ դա տեղի է ունենում հոսքի վրա",
+    "stats": {
+      "level": "Մակարդակ",
+      "xp": "XP",
+      "hours": "Համապատասխանության ժամեր",
+      "streams": "Համապատասխան հոսքեր",
+      "longest": "Ամենաերկար հոսքը",
+      "streak": "Լավագույն սթրիք"
+    },
+    "hoursShort": "{{hours}} h",
+    "weeksShort": "{{count}} wk"
+  },
   "passwordStrength": {
     "veryWeak": "Շատ թույլ",
     "weak": "Թույլ",

@@ -6073,6 +6073,28 @@
     "play": "চালান",
     "pause": "থামুন"
   },
+  "streamerShowcase": {
+    "cardOf": "{{total}}টার মাঝে কার্ড {{index}}",
+    "progress": "আফনার আগাইন্যা",
+    "goal": {
+      "streams": "{{current}} / {{target}} স্ট্রিম",
+      "hours": "{{current}} / {{target}} ঘণ্টা",
+      "session": "এক স্ট্রিমো {{current}} / {{target}} মিনিট",
+      "streak": "{{current}} / {{target}} হপ্তা",
+      "level": "লেভেল {{current}} / {{target}}"
+    },
+    "onStream": "স্ট্রিমো অইলে খুলে",
+    "stats": {
+      "level": "লেভেল",
+      "xp": "XP",
+      "hours": "গণা ঘণ্টা",
+      "streams": "গণা স্ট্রিম",
+      "longest": "হকলতাকি লম্বা স্ট্রিম",
+      "streak": "হকলতাকি বালা ধারা"
+    },
+    "hoursShort": "{{hours}} ঘণ্টা",
+    "weeksShort": "{{count}} হপ্তা"
+  },
   "passwordStrength": {
     "veryWeak": "খুব দুর্বল",
     "weak": "দুর্বল",

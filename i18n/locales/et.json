@@ -5931,6 +5931,28 @@
     "play": "Esita",
     "pause": "Peata"
   },
+  "streamerShowcase": {
+    "cardOf": "Kaart {{index}}/{{total}}",
+    "progress": "Sinu edusammud",
+    "goal": {
+      "streams": "{{current}} / {{target}} voogu",
+      "hours": "{{current}} / {{target}} tundi",
+      "session": "{{current}} / {{target}} minutit ühes voos",
+      "streak": "{{current}} / {{target}} nädalat",
+      "level": "Tase {{current}} / {{target}}"
+    },
+    "onStream": "Avab lukustuse, kui see toimub voos",
+    "stats": {
+      "level": "Tase",
+      "xp": "XP",
+      "hours": "Kvalifitseeruvad tunnid",
+      "streams": "Kvalifitseeruvad vood",
+      "longest": "Pikim voog",
+      "streak": "Parim triip"
+    },
+    "hoursShort": "{{hours}} h",
+    "weeksShort": "{{count}} nädal"
+  },
   "passwordStrength": {
     "veryWeak": "Väga nõrk",
     "weak": "Nõrk",

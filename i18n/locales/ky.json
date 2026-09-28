@@ -5931,6 +5931,28 @@
     "play": "Ойнотуу",
     "pause": "Пауза"
   },
+  "streamerShowcase": {
+    "cardOf": "Карта {{index}} of {{total}}",
+    "progress": "Сиздин прогресс",
+    "goal": {
+      "streams": "{{current}} /{{target}} агымдары",
+      "hours": "{{current}} /{{target}} саат",
+      "session": "{{current}}/{{target}} мин бир агымда",
+      "streak": "{{current}} /{{target}} жума",
+      "level": "Деңгээл {{current}} / {{target}}"
+    },
+    "onStream": "Агым учурунда кулпуну ачуу",
+    "stats": {
+      "level": "Деңгээл",
+      "xp": "XP",
+      "hours": "Квалификациялуу сааттар",
+      "streams": "Квалификациялуу агымдар",
+      "longest": "Эң узун агым",
+      "streak": "Best тилкеси"
+    },
+    "hoursShort": "{{hours}} h",
+    "weeksShort": "{{count}} wk"
+  },
   "passwordStrength": {
     "veryWeak": "Абдан алсыз",
     "weak": "Алсыз",

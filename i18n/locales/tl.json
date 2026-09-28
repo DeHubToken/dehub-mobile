@@ -5978,6 +5978,28 @@
     "play": "Maglaro",
     "pause": "I - pause"
   },
+  "streamerShowcase": {
+    "cardOf": "Card {{index}} ng {{total}}",
+    "progress": "Ang iyong progreso",
+    "goal": {
+      "streams": "{{current}}/ {{target}} mga stream",
+      "hours": "{{current}}/{{target}} oras",
+      "session": "{{current}}/ {{target}}min sa iisang stream",
+      "streak": "{{current}}/{{target}} weeks",
+      "level": "Level{{current}}/{{target}}"
+    },
+    "onStream": "Ina - unlock kapag nangyari ito sa stream",
+    "stats": {
+      "level": "Level",
+      "xp": "XP",
+      "hours": "Mga oras ng kwalipikasyon",
+      "streams": "Mga kwalipikadong stream",
+      "longest": "Pinakamahabang stream",
+      "streak": "Pinakamahusay na streak"
+    },
+    "hoursShort": "{{hours}}h",
+    "weeksShort": "{{count}}wk"
+  },
   "passwordStrength": {
     "veryWeak": "Napakahina",
     "weak": "Mahina",
