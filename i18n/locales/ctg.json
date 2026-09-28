@@ -4093,7 +4093,11 @@
     "transcriptLink": "লিঙ্ক: {{url}}",
     "roleStageSpeaker": "পর্যায় বক্তা",
     "leaveStage": "পর্যায় ত্যাগ করুন",
-    "inviteToSpeak": "কথা বলার জন্য আমন্ত্রণ জানান"
+    "inviteToSpeak": "কথা বলার জন্য আমন্ত্রণ জানান",
+    "autoEnd": {
+      "title": "নিষ্ক্রিয়তার কারণে অডিও রুম শেষ হয়েছে",
+      "description": "\"{{title}}\"-এ ৩০ মিনিট কেউ কথা বলেনি, তাই এটি বন্ধ করা হয়েছে।"
+    }
   },
   "signInSheet": {
     "continueAs": "এই পরিচয়ে চালাই যন"

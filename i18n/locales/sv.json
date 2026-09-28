@@ -3988,7 +3988,11 @@
     "listeners_other": "{{count}} lyssnare",
     "roleStageSpeaker": "Scenhögtalare",
     "leaveStage": "Lämna stadiet",
-    "inviteToSpeak": "Bjud in till tal"
+    "inviteToSpeak": "Bjud in till tal",
+    "autoEnd": {
+      "title": "Ljudrummet avslutades på grund av inaktivitet",
+      "description": "Ingen pratade i ”{{title}}” på 30 minuter, så det stängdes."
+    }
   },
   "signInSheet": {
     "continueAs": "Fortsätt som"

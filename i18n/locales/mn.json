@@ -3984,7 +3984,11 @@
     "noSegments": "Хуулбар олдсонгүй",
     "roleStageSpeaker": "Тайзны чанга яригч",
     "leaveStage": "Тайзыг орхих",
-    "inviteToSpeak": "Ярихыг урих"
+    "inviteToSpeak": "Ярихыг урих",
+    "autoEnd": {
+      "title": "Идэвхгүй байсан тул аудио өрөө хаагдлаа",
+      "description": "\"{{title}}\" өрөөнд 30 минут хэн ч ярьсангүй, тиймээс хаагдлаа."
+    }
   },
   "signInSheet": {
     "continueAs": "Дараах нэрээр үргэлжлүүлэх"

@@ -3988,7 +3988,11 @@
     "noSegments": "Ingen transskriptionssegmenter fundet",
     "roleStageSpeaker": "Scenhøjttaler",
     "leaveStage": "Forlad stadiet",
-    "inviteToSpeak": "Inviter til tale"
+    "inviteToSpeak": "Inviter til tale",
+    "autoEnd": {
+      "title": "Lydrummet blev afsluttet på grund af inaktivitet",
+      "description": "Ingen talte i \"{{title}}\" i 30 minutter, så det blev lukket."
+    }
   },
   "signInSheet": {
     "continueAs": "Fortsæt som"

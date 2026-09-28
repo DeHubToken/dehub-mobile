@@ -3984,7 +3984,11 @@
     "noSegments": "Nuk u gjetën segmente transkriptimi",
     "roleStageSpeaker": "Altoparlant skene",
     "leaveStage": "Largohu nga skena",
-    "inviteToSpeak": "Të ftojmë të flasësh"
+    "inviteToSpeak": "Të ftojmë të flasësh",
+    "autoEnd": {
+      "title": "Dhoma audio përfundoi për shkak të mosaktivitetit",
+      "description": "Askush nuk foli në „{{title}}“ për 30 minuta, prandaj u mbyll."
+    }
   },
   "signInSheet": {
     "continueAs": "Vazhdo si"

@@ -3984,7 +3984,11 @@
     "noSegments": "Transkript seqmentləri tapılmadı",
     "roleStageSpeaker": "Səhnə natiqi",
     "leaveStage": "Səhnəni tərk et",
-    "inviteToSpeak": "Danışmağa dəvət et"
+    "inviteToSpeak": "Danışmağa dəvət et",
+    "autoEnd": {
+      "title": "Səsli otaq fəaliyyətsizlik səbəbindən bağlandı",
+      "description": "\"{{title}}\" otağında 30 dəqiqə heç kim danışmadı, ona görə bağlandı."
+    }
   },
   "signInSheet": {
     "continueAs": "Belə davam et"

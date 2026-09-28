@@ -3997,7 +3997,11 @@
     "leaveStage": "Stage එකෙන් යන්න",
     "inviteToSpeak": "කතා කරන්න ආරාධනා කරන්න",
     "audioStage": "ශ් ‍ රව් ‍ ය අදියර",
-    "roleStageSpeaker": "වේදිකා කථානායක"
+    "roleStageSpeaker": "වේදිකා කථානායක",
+    "autoEnd": {
+      "title": "අක්‍රියතාව නිසා ශ්‍රව්‍ය කාමරය අවසන් විය",
+      "description": "\"{{title}}\" හි මිනිත්තු 30ක් කිසිවෙකු කතා නොකළ නිසා එය වසා දමන ලදී."
+    }
   },
   "signInSheet": {
     "continueAs": "ලෙස ඉදිරියට යන්න"

@@ -3866,7 +3866,11 @@
     "raisedHands": "Destên Bilindkirî ({{count}})",
     "roleStageSpeaker": "Axaftvanê sehneyê",
     "leaveStage": "Ji sehneyê derkeve",
-    "inviteToSpeak": "Vexwendin bo axaftinê"
+    "inviteToSpeak": "Vexwendin bo axaftinê",
+    "autoEnd": {
+      "title": "ژووری دەنگی بەهۆی بێچالاکییەوە کۆتایی هات",
+      "description": "بۆ ماوەی ٣٠ خولەک کەس لە «{{title}}» قسەی نەکرد، بۆیە داخرا."
+    }
   },
   "signInSheet": {
     "continueAs": "Wekî vê bidomîne"

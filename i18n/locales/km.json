@@ -3966,7 +3966,11 @@
     "leaveStage": "ចាកចេញពីវគ្គ",
     "inviteToSpeak": "អញ្ជើញឱ្យនិយាយ",
     "announcement": "🎙️ {{title}} — ផ្សាយផ្ទាល់នៅលើឆាក {{date}}, {{time}}",
-    "speakers_other": "វាគ្មិន {{count}}"
+    "speakers_other": "វាគ្មិន {{count}}",
+    "autoEnd": {
+      "title": "បន្ទប់សំឡេងបានបញ្ចប់ដោយសារគ្មានសកម្មភាព",
+      "description": "គ្មាននរណានិយាយនៅក្នុង \"{{title}}\" រយៈពេល 30 នាទី ដូច្នេះវាត្រូវបានបិទ។"
+    }
   },
   "signInSheet": {
     "continueAs": "បន្តជា"

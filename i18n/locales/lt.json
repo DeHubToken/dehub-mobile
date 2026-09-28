@@ -3984,7 +3984,11 @@
     "noSegments": "Transkripcijos segmentų nerasta",
     "roleStageSpeaker": "Scenos garsiakalbis",
     "leaveStage": "Išeiti iš etapo",
-    "inviteToSpeak": "Pakviesti pasisakyti"
+    "inviteToSpeak": "Pakviesti pasisakyti",
+    "autoEnd": {
+      "title": "Garso kambarys baigtas dėl neveiklumo",
+      "description": "Niekas nekalbėjo „{{title}}“ 30 minučių, todėl jis buvo uždarytas."
+    }
   },
   "signInSheet": {
     "continueAs": "Tęsti kaip"

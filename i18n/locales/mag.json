@@ -3984,7 +3984,11 @@
     "frontRowBooked": "{{count}} मिनट ला आगे के लाइन",
     "raisedHands": "उठल हाथ ({{count}})",
     "speakers_one": "{{count}} स्पीकर",
-    "speakers_other": "{{count}} स्पीकर"
+    "speakers_other": "{{count}} स्पीकर",
+    "autoEnd": {
+      "title": "निष्क्रियता के कारण ऑडियो रूम समाप्त हुआ",
+      "description": "\"{{title}}\" में 30 मिनट तक कोई नहीं बोला, इसलिए इसे बंद कर दिया गया।"
+    }
   },
   "signInSheet": {
     "continueAs": "ए रूप में जारी रखऽ"

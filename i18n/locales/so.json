@@ -3984,7 +3984,11 @@
     "roleStageSpeaker": "Afhayeenka marxaladda",
     "leaveStage": "Marxaladda ka tag",
     "inviteToSpeak": "Ku martiqaad inaad hadasho",
-    "announcement": "🎙️ {{title}} — toos ah Stages {{date}}, {{time}}"
+    "announcement": "🎙️ {{title}} — toos ah Stages {{date}}, {{time}}",
+    "autoEnd": {
+      "title": "Qolka codka waa la xiray firfircoonaan la'aan dartood",
+      "description": "Qofna kama hadlin \"{{title}}\" 30 daqiiqo, sidaas darteed waa la xiray."
+    }
   },
   "signInSheet": {
     "continueAs": "Sii wad ahaan"

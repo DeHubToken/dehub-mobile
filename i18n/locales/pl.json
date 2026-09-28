@@ -3984,7 +3984,11 @@
     "noSegments": "Nie znaleziono segmentów transkrypcji",
     "roleStageSpeaker": "Głośnik sceniczny",
     "leaveStage": "Opuść etap",
-    "inviteToSpeak": "Zaproś do zabrania głosu"
+    "inviteToSpeak": "Zaproś do zabrania głosu",
+    "autoEnd": {
+      "title": "Pokój audio zakończony z powodu braku aktywności",
+      "description": "Nikt nie mówił w „{{title}}” przez 30 minut, więc został zamknięty."
+    }
   },
   "signInSheet": {
     "continueAs": "Kontynuuj jako"

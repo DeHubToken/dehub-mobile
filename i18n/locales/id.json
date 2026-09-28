@@ -4033,7 +4033,11 @@
     "noSegments": "Tidak ada segmen transkrip yang ditemukan",
     "roleStageSpeaker": "Pembicara panggung",
     "leaveStage": "Keluar dari panggung",
-    "inviteToSpeak": "Undang untuk berbicara"
+    "inviteToSpeak": "Undang untuk berbicara",
+    "autoEnd": {
+      "title": "Ruang audio berakhir karena tidak ada aktivitas",
+      "description": "Tidak ada yang berbicara di \"{{title}}\" selama 30 menit, jadi ruang ini ditutup."
+    }
   },
   "signInSheet": {
     "continueAs": "Lanjutkan sebagai"
