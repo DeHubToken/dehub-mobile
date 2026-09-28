@@ -10,8 +10,10 @@ import {
   useWindowDimensions,
   BackHandler,
   Keyboard,
-  type ViewStyle,
+  Image as RNImage,
 } from "react-native";
+import { GRAIN, type ThemeSkin } from "../../theme/skins";
+import HudBrackets from "../theme/HudBrackets";
 import { Image } from "expo-image";
 import { CommonActions, useNavigation, useNavigationState } from "@react-navigation/native";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
@@ -183,15 +185,7 @@ const PINNED_KEYS = [
 const TEST_BADGE_KEYS = new Set(["nav.prompt", "screens.work", "screens.stores"]);
 
 /** What the themes layer hands us; null for system/minimal (dark glass). */
-interface SheetSkin {
-  page?: string;
-  card?: ViewStyle;
-  stripActive?: ViewStyle;
-  tabIcon?: string;
-  tabIconActive?: string;
-  glow?: string | null;
-  square?: boolean;
-}
+type SheetSkin = ThemeSkin;
 
 interface TileProps {
   label: string;
@@ -230,6 +224,14 @@ const Tile = memo<TileProps>(({ label, icon, iconUrl, width, active, disabled, t
         disabled ? { opacity: 0.45 } : null,
       ]}
     >
+      {skin?.grain ? (
+        <RNImage
+          source={GRAIN}
+          resizeMode="repeat"
+          style={[StyleSheet.absoluteFill, { borderRadius: skin.card.borderRadius }]}
+        />
+      ) : null}
+      {skin?.brackets ? <HudBrackets color={skin.brackets} length={8} width={1} /> : null}
       <View style={styles.tileIcon}>
         {iconUrl && !hud ? (
           <Image source={{ uri: iconUrl }} style={styles.tileImage} contentFit="contain" cachePolicy="disk" transition={120} />
@@ -264,7 +266,7 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
   const { signOut } = useAuthActions();
   const user = useUser();
   const { t } = useTranslation();
-  const appTheme = useAppTheme() as ReturnType<typeof useAppTheme> & { theme?: string; skin?: SheetSkin | null };
+  const appTheme = useAppTheme();
   const themeName: string = appTheme.theme ?? (appTheme.isMinimal ? "minimal" : "system");
   const skin = appTheme.skin ?? null;
   const hud = themeName === "war";
@@ -512,6 +514,11 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
           sheetStyle,
         ]}
       >
+        {/* Jungle's plank grain and War's HUD corners, as on the feed chrome. */}
+        {skin?.grain ? (
+          <RNImage source={GRAIN} resizeMode="repeat" style={StyleSheet.absoluteFill} />
+        ) : null}
+        {skin?.brackets ? <HudBrackets color={skin.brackets} length={18} /> : null}
         {/* Opaque on purpose: expo-blur paints a flat tint on Android rather
             than blurring, and the one method that does blur re-snapshots the
             root view every frame and crashes when the feed mutates mid-draw. */}
