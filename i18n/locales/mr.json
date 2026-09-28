@@ -5920,7 +5920,7 @@
       "fee": "प्लॅटफॉर्म शुल्क",
       "votes": "प्रशासनाची मतमोजणी",
       "reach": "प्रति दृश्य आणि प्रतिक्रिया वजन",
-      "feedPosts": "Home Tags एकदिवसीय",
+      "feedPosts": "दररोज होम फीड पोस्ट",
       "images": "प्रति पोस्ट प्रतिमा",
       "uploads": "दररोज अपलोड करण्याची मर्यादा",
       "storage": "संपादक संचयन",
@@ -5939,10 +5939,10 @@
     "progress": "तुमची प्रगती",
     "goal": {
       "streams": "{{current}} / {{target}} स्ट्रीम",
-      "hours": "{{current}} {{target}} तास",
-      "session": "{{current}} {{target}} मिनिट एका प्रवाहात",
-      "streak": "{{current}} {{target}} आठवडे",
-      "level": "लेव्हल {{current}}{{target}}"
+      "hours": "{{current}} / {{target}} तास",
+      "session": "एका स्ट्रीममध्ये {{current}} / {{target}} मिनिटे",
+      "streak": "{{current}} / {{target}} आठवडे",
+      "level": "लेव्हल {{current}} / {{target}}"
     },
     "onStream": "जेव्हा हे प्रवाहात येते तेव्हा अनलॉक करते",
     "stats": {

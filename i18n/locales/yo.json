@@ -5220,7 +5220,7 @@
           "hint": "Ni awọn eniyan mejilelaadọta ti n wo ni ẹẹkan."
         },
         "arena": {
-          "name": "Arena",
+          "name": "Pápá ìṣeré",
           "hint": "Ni awọn eniyan aadọta ti n wo ni ẹẹkan."
         },
         "headliner": {
@@ -5903,7 +5903,7 @@
     "holdNote": "Lọ́fẹ́ tí a bá ti ṣí àmì-ìdánilẹ́kọ̀ọ́ kan sílẹ̀, yóò jẹ́ tirẹ́ níwọ̀n ìgbà tí o bá ní àmì rẹ. Iye àmì tí a nílò láti ṣí àmì-ìdánilẹ́kọ̀ọ́ tuntun sílẹ̀ lè yí padà pẹ̀lú iye àmì."
   },
   "badgeShowcase": {
-    "dialogLabel": "{{tier}} badge",
+    "dialogLabel": "Àmì {{tier}}",
     "close": "Pa",
     "badges": "Àmì ọ̀pá àṣẹ ilẹ̀",
     "tierOf": "Tier {{index}} ti {{total}}",
@@ -5923,13 +5923,13 @@
       "uploads": "Ifilelẹ gbigbe lojoojumọ",
       "storage": "Ibi ìpamọ́ atọ́ka",
       "lending": "Àwọn ìkòkò ìfẹ̀yìntì badge",
-      "voice": "Ṣíṣe ìfipamọ́ ohùn",
+      "voice": "Ṣíṣe àdàkọ ohùn",
       "voiceFree": "FREE",
       "voiceLocked": "{{tier}} àti sókè"
     },
     "buyTokens": "Ra àwọn àmì",
     "details": "Ìparun kíkún",
-    "play": "Play",
+    "play": "Bẹ̀rẹ̀",
     "pause": "Duro"
   },
   "streamerShowcase": {
@@ -5949,7 +5949,7 @@
       "hours": "Awọn wakati ti o yẹ",
       "streams": "Awọn ṣiṣan ti o yẹ",
       "longest": "Odò tó gùn jùlọ",
-      "streak": "Ti o dara ju streak"
+      "streak": "Ìtẹ̀léra tó dára jù"
     },
     "hoursShort": "{{hours}} h",
     "weeksShort": "{{count}} wk"

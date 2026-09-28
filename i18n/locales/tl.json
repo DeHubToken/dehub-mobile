@@ -5218,7 +5218,7 @@
           "hint": "Tapusin ang isang stream sa pagitan ng hatinggabi at alas-singko ng umaga."
         },
         "regular": {
-          "name": "Regular",
+          "name": "Palagian",
           "hint": "Mag-stream sa apat na linggo nang sunud-sunod."
         },
         "iron-streak": {
@@ -5949,22 +5949,22 @@
     "holdNote": "Kapag na-unlock na ang isang badge, ito ay sa iyo hangga't hawak mo ang iyong mga token. Ang bilang ng mga token na kailangan upang ma-unlock ang isang bagong badge ay maaaring magbago kasama ang presyo ng token."
   },
   "badgeShowcase": {
-    "dialogLabel": "{{tier}} badge",
+    "dialogLabel": "Badge na {{tier}}",
     "close": "Isara",
     "badges": "Mga Badge",
     "tierOf": "Tier {{index}} ng {{total}}",
     "youHaveThis": "Mayroon kang badge na ito",
-    "toUnlock": "{{amount}} higit pang mga token para i - unlock ito",
-    "holdToUnlock": "I - hold ang hindi bababa sa maraming mga token ng DeHub na ito upang i - unlock ito",
+    "toUnlock": "{{amount}} pang token para ma-unlock ito",
+    "holdToUnlock": "Maghawak ng hindi bababa sa ganitong dami ng DeHub token para ma-unlock ito",
     "sliderLabel": "Mga token na hawak",
-    "sliderValue": "{{amount}}token ·{{tier}}",
+    "sliderValue": "{{amount}} token · {{tier}}",
     "you": "Ikaw",
-    "grants": "Ano ang ina - unlock nito",
+    "grants": "Ano ang na-a-unlock nito",
     "perks": {
       "fee": "Bayarin sa platform",
       "votes": "Mga boto sa pamamahala",
       "reach": "Timbang bawat view & reaksyon",
-      "feedPosts": "Home - feed post sa isang araw",
+      "feedPosts": "Home feed post bawat araw",
       "images": "Mga larawan bawat post",
       "uploads": "Araw - araw na limitasyon sa pag - upload",
       "storage": "Imbakan ng editor",
@@ -5979,23 +5979,23 @@
     "pause": "I - pause"
   },
   "streamerShowcase": {
-    "cardOf": "Card {{index}} ng {{total}}",
+    "cardOf": "Kard {{index}} ng {{total}}",
     "progress": "Ang iyong progreso",
     "goal": {
-      "streams": "{{current}}/ {{target}} mga stream",
-      "hours": "{{current}}/{{target}} oras",
-      "session": "{{current}}/ {{target}}min sa iisang stream",
-      "streak": "{{current}}/{{target}} weeks",
-      "level": "Level{{current}}/{{target}}"
+      "streams": "{{current}} / {{target}} stream",
+      "hours": "{{current}} / {{target}} oras",
+      "session": "{{current}} / {{target}} min sa iisang stream",
+      "streak": "{{current}} / {{target}} linggo",
+      "level": "Antas {{current}} / {{target}}"
     },
-    "onStream": "Ina - unlock kapag nangyari ito sa stream",
+    "onStream": "Naa-unlock kapag nangyari ito sa stream",
     "stats": {
-      "level": "Level",
+      "level": "Antas",
       "xp": "XP",
       "hours": "Mga oras ng kwalipikasyon",
       "streams": "Mga kwalipikadong stream",
       "longest": "Pinakamahabang stream",
-      "streak": "Pinakamahusay na streak"
+      "streak": "Pinakamahabang sunod-sunod"
     },
     "hoursShort": "{{hours}}h",
     "weeksShort": "{{count}}wk"

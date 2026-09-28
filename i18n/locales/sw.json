@@ -5933,7 +5933,7 @@
     "pause": "Sitisha"
   },
   "streamerShowcase": {
-    "cardOf": "Card {{index}} ya {{total}}",
+    "cardOf": "Kadi {{index}} ya {{total}}",
     "progress": "Maendeleo yako",
     "goal": {
       "streams": "{{current}} / {{target}} mito",
