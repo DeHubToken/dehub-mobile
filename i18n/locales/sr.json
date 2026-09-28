@@ -4675,7 +4675,20 @@
     "tokensSent": "Послато {{amount}} токена",
     "percentUsed": "Искоришћено {{percent}}%",
     "spentOfTotal": "{{spent}} од {{total}}",
-    "viewInWallet": "Погледај у новчанику"
+    "viewInWallet": "Погледај у новчанику",
+    "topUp": "Додај токене",
+    "topUpTitle": "Додај токене за претплату",
+    "topUpCustom": "Други износ (USD)",
+    "topUpYouSend": "Шаљете",
+    "topUpYouGet": "Додаје се на ваше стање",
+    "topUpConfirm": "Додај {{amount}}",
+    "topUpRange": "Унесите од {{min}} до {{max}}",
+    "topUpDone": "{{amount}} додато на ваше токене за претплату",
+    "topUpPending": "Ваша уплата се потврђује. Ускоро ће се појавити на стању.",
+    "topUpEmptyHint": "Допуните да бисте се претплатили на креаторе",
+    "topUpStageWallet": "Потврдите у новчанику…",
+    "topUpStageConfirming": "Чека се трансакција…",
+    "topUpStageCrediting": "Додавање на ваше стање…"
   },
   "live": {
     "notSet": "Није постављено",

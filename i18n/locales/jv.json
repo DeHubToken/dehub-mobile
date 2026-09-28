@@ -4835,7 +4835,20 @@
     "tokensSent": "{{amount}} token dikirim",
     "percentUsed": "{{percent}}% digunakake",
     "spentOfTotal": "{{spent}} saka {{total}}",
-    "viewInWallet": "Deleng ing dompet"
+    "viewInWallet": "Deleng ing dompet",
+    "topUp": "Tambahake token",
+    "topUpTitle": "Tambah token langganan",
+    "topUpCustom": "Jumlah liyane (USD)",
+    "topUpYouSend": "Sampeyan ngirim",
+    "topUpYouGet": "Ditrapake ing imbangan sampeyan",
+    "topUpConfirm": "Tambah {{amount}}",
+    "topUpRange": "Lebokake {{min}} menyang {{max}}",
+    "topUpDone": "{{amount}} ditambahake menyang token langganan sampeyan",
+    "topUpPending": "Isi ulang sampeyan lagi dikonfirmasi. Bakal katon ing imbangan sampeyan sanalika.",
+    "topUpEmptyHint": "Isi ulang kanggo langganan kreator",
+    "topUpStageWallet": "Konfirmasi ing dompet sampeyan…",
+    "topUpStageConfirming": "Ngenteni transaksi…",
+    "topUpStageCrediting": "Ditrapake ing imbangan sampeyan…"
   },
   "live": {
     "notSet": "Durung disetel",

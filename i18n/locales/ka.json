@@ -4823,7 +4823,20 @@
     "tokensSent": "{{amount}} სიმბოლოს გაგზავნა",
     "percentUsed": "{{percent}}% გამოყენებულია",
     "spentOfTotal": "{{spent}} / {{total}}",
-    "viewInWallet": "Საფულეში ნახვა"
+    "viewInWallet": "Საფულეში ნახვა",
+    "topUp": "Ტოკენების დამატება",
+    "topUpTitle": "Გამოწერის კოდების დამატება",
+    "topUpCustom": "Სხვა თანხა (აშშ დოლარი)",
+    "topUpYouSend": "Თქვენ აგზავნით",
+    "topUpYouGet": "Დაემატა თქვენს ბალანსს",
+    "topUpConfirm": "Დაამატეთ {{amount}}",
+    "topUpRange": "Შეიყვანეთ {{min}}-დან {{max}}-მდე",
+    "topUpDone": "{{amount}} დაემატა თქვენს გამოწერის კოდებს",
+    "topUpPending": "Თქვენი შევსება დამადასტურებელია. Ის მალე გამოჩნდება თქვენს ბალანსზე.",
+    "topUpEmptyHint": "Შეავსეთ განაცხადი, რომ გამოიწეროთ შემქმნელები",
+    "topUpStageWallet": "Დაადასტურეთ საფულეში...",
+    "topUpStageConfirming": "Ტრანსაქციის მოლოდინში…",
+    "topUpStageCrediting": "Ბალანსზე დამატება…"
   },
   "live": {
     "notSet": "არ არის მითითებული",

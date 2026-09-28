@@ -4835,7 +4835,20 @@
     "tokensSent": "{{amount}} توكەن ئەۋەتىلدى",
     "percentUsed": "{{percent}}% ئىشلىتىلىدۇ",
     "spentOfTotal": "{{spent}} of {{total}}",
-    "viewInWallet": "خەزىنە كۆرۈنۈشى"
+    "viewInWallet": "خەزىنە كۆرۈنۈشى",
+    "topUp": "توكنلەرنى قوشۇش",
+    "topUpTitle": "تىزىملىتىش توكېنلىرىنى قوشۇش پروگراممىسى",
+    "topUpCustom": "باشقا سومما (USD)",
+    "topUpYouSend": "ئەۋەتىسىز",
+    "topUpYouGet": "تارازىڭىزغا قوشۇلدى",
+    "topUpConfirm": "{{amount}} نى قوشۇڭ",
+    "topUpRange": "{{min}} دىن {{max}} گە كىرگۈزۈڭ",
+    "topUpDone": "{{amount}} تىزىملىتىش بەلگىلىرىگە قوشۇلدى",
+    "topUpPending": "ئۈستەلئۈستىڭىز تەستىقلاندى. ئۇ (يەنى ئېھسان قىلغۇچى ئادەم) (پەرۋەردىگارىنىڭ بەرگەن مۇكاپاتىدىن) چوقۇم رازى بولىدۇ",
+    "topUpEmptyHint": "ياراتقۇچىلارغا قوشۇلۇش ئۈچۈن ئۈستۈنلۈككە ئېرىشىش",
+    "topUpStageWallet": "يانچۇقىڭىزدا تەستىقلاڭ...",
+    "topUpStageConfirming": "مەشغۇلاتنى كۈتمەكتە...",
+    "topUpStageCrediting": "مۇۋاپىق مىقدارنى قوشۇش"
   },
   "live": {
     "notSet": "بەلگىلەنمىگەن",

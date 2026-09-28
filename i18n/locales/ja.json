@@ -4886,7 +4886,20 @@
     "tokensSent": "{{amount}}トークンが送信されました",
     "percentUsed": "{{percent}}%使用済み",
     "spentOfTotal": "{{total}}の{{spent}}",
-    "viewInWallet": "ウォレットで表示"
+    "viewInWallet": "ウォレットで表示",
+    "topUp": "トークンを追加",
+    "topUpTitle": "サブスクリプショントークンを追加",
+    "topUpCustom": "その他の金額（米ドル）",
+    "topUpYouSend": "あなたが送信します",
+    "topUpYouGet": "残高にを追加しました",
+    "topUpConfirm": "{{amount}}を追加",
+    "topUpRange": "{{max}}に{{min}}を入力",
+    "topUpDone": "サブスクリプショントークンに{{amount}}が追加されました",
+    "topUpPending": "チャージが確認されました。 まもなく残高に反映されます。",
+    "topUpEmptyHint": "チャージしてクリエイターをサブスクリプション登録",
+    "topUpStageWallet": "ウォレットで確認してください…",
+    "topUpStageConfirming": "トランザクションを待っています…",
+    "topUpStageCrediting": "残高に追加しています…"
   },
   "live": {
     "notSet": "未設定",

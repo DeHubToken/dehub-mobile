@@ -4839,7 +4839,20 @@
     "tokensSent": "{{amount}} टोकन पाठवले",
     "percentUsed": "{{percent}}% वापरलेले",
     "spentOfTotal": "{{spent}} चे {{total}}",
-    "viewInWallet": "वॉलेटमध्ये पहा"
+    "viewInWallet": "वॉलेटमध्ये पहा",
+    "topUp": "टोकन जोडा",
+    "topUpTitle": "सबस्क्रिप्शन टोकन जोडा",
+    "topUpCustom": "इतर रक्कम (USD)",
+    "topUpYouSend": "तुम्ही पाठवता",
+    "topUpYouGet": "तुमच्या शिलकीत जोडले",
+    "topUpConfirm": "{{amount}} जोडा",
+    "topUpRange": "{{min}} ते {{max}} प्रविष्ट करा",
+    "topUpDone": "{{amount}} आपल्या सदस्यता टोकनमध्ये जोडले",
+    "topUpPending": "तुमचे टॉप - अप पुष्टीकरण करत आहे. हे लवकरच तुमच्या शिल्लकमध्ये दिसेल.",
+    "topUpEmptyHint": "निर्मिकांची सदस्यता घेण्यासाठी टॉप अप",
+    "topUpStageWallet": "तुमच्या वॉलेटमध्ये पुष्टी करा...",
+    "topUpStageConfirming": "व्यवहाराची वाट पाहत आहे...",
+    "topUpStageCrediting": "तुमच्या शिल्लकमध्ये जोडत आहे..."
   },
   "live": {
     "notSet": "सेट केलेले नाही",

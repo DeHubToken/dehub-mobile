@@ -4833,7 +4833,20 @@
     "tokensSent": "{{amount}} टोकन भेजल गइल",
     "percentUsed": "{{percent}}% खर्चा भइल",
     "spentOfTotal": "{{total}} में से {{spent}}",
-    "viewInWallet": "वॉलेट में देखने के बिंदु"
+    "viewInWallet": "वॉलेट में देखने के बिंदु",
+    "topUp": "टोकन जोड़ीं",
+    "topUpTitle": "सब्सक्राइब करें टोकन बदलें",
+    "topUpCustom": "कुल आवंटन (USD)",
+    "topUpYouSend": "भेजे जा रहे हो",
+    "topUpYouGet": "अपने संतुलन में समायोजित करें",
+    "topUpConfirm": "{{amount}} जोड़ीं",
+    "topUpRange": "{{min}} से {{max}} लिखीं",
+    "topUpDone": "{{amount}} रउरा सब्सक्रिप्शन टोकन में जुड़ गइल",
+    "topUpPending": "आपके बात के पुष्टी कइल गइल बा । बहुत जल्द आ रहल बा आप लोग के बीच ।",
+    "topUpEmptyHint": "सब्सक्राइबर सब्सक्राइबर सब्सक्राइब करे",
+    "topUpStageWallet": "पुष्टि के बाद, हम समायोजित करेगा अपना डिब्बा_",
+    "topUpStageConfirming": "करार के वादे के खातिर...",
+    "topUpStageCrediting": "रउरा बैलेंस में जोड़ल जा रहल बा…"
   },
   "live": {
     "notSet": "सेट नइखे",

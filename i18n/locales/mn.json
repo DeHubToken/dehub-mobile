@@ -4835,7 +4835,20 @@
     "tokensSent": "{{amount}} токен илгээлээ",
     "percentUsed": "{{percent}}% ашигласан",
     "spentOfTotal": "{{total}}-аас {{spent}}",
-    "viewInWallet": "Түрийвчээр харах"
+    "viewInWallet": "Түрийвчээр харах",
+    "topUp": "Токен нэмэх",
+    "topUpTitle": "Хамрагдах үйлчилгээний токен нэмэх",
+    "topUpCustom": "Бусад хэмжээ (USD)",
+    "topUpYouSend": "Та илгээх",
+    "topUpYouGet": "Таны үлдэгдэл дээр нэмэгдсэн",
+    "topUpConfirm": "Нэмэх {{amount}}",
+    "topUpRange": "Оруулах {{min}} to {{max}}",
+    "topUpDone": "{{amount}} таны захиалгын токен дээр нэмэгдсэн",
+    "topUpPending": "Таны дээд цэгийг баталгаажуулж байна. Энэ нь таны үлдэгдэл удахгүй гарч ирнэ.",
+    "topUpEmptyHint": "Бүтээгчид бүртгүүлэх дээд",
+    "topUpStageWallet": "Түрийвч дээрээ баталгаажуулна уу...",
+    "topUpStageConfirming": "Гүйлгээг хүлээж байна...",
+    "topUpStageCrediting": "Таны үлдэгдэл дээр нэмэгдэж байна..."
   },
   "live": {
     "notSet": "Тохируулаагүй",

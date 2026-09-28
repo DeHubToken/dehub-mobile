@@ -4853,7 +4853,20 @@
     "tokensSent": "{{amount}} токен жіберілді",
     "percentUsed": "{{percent}}% пайдаланылды",
     "spentOfTotal": "{{total}} ішінен {{spent}}",
-    "viewInWallet": "Әмияндағы көрініс"
+    "viewInWallet": "Әмияндағы көрініс",
+    "topUp": "Токендерді қосу",
+    "topUpTitle": "Жазылым таңбашаларын қосу",
+    "topUpCustom": "Басқа сома (USD)",
+    "topUpYouSend": "Сіз жібересіз",
+    "topUpYouGet": "Балансыңызға қосылды",
+    "topUpConfirm": "{{amount}} қосыңыз",
+    "topUpRange": "{{min}}{{max}} енгізіңіз",
+    "topUpDone": "{{amount}} Жазылым белгішелеріне қосылды",
+    "topUpPending": "Жоғарғы жағы растайды. Ол көп ұзамай балансыңызда пайда болады.",
+    "topUpEmptyHint": "Жасаушыларға жазылу үшін жоғары",
+    "topUpStageWallet": "Әмияныңызда растаңыз...",
+    "topUpStageConfirming": "Транзакцияны күтуде...",
+    "topUpStageCrediting": "Балансыңызға қосу..."
   },
   "live": {
     "notSet": "Орнатылмаған",

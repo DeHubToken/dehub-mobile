@@ -4835,7 +4835,20 @@
     "tokensSent": "{{amount}} ٽوڪن موڪليا ويا",
     "percentUsed": "{{percent}}٪ استعمال ڪيو ويو",
     "spentOfTotal": "{{spent}} جي {{total}}",
-    "viewInWallet": "پرس ۾ ڏسو"
+    "viewInWallet": "پرس ۾ ڏسو",
+    "topUp": "ٽوڪن شامل ڪريو",
+    "topUpTitle": "سبسڪرپشن ٽوڪن شامل ڪريو",
+    "topUpCustom": "ٻي رقم (USD)",
+    "topUpYouSend": "تون موڪلائي",
+    "topUpYouGet": "توھان جي توازن ۾ شامل ڪيو ويو",
+    "topUpConfirm": "شامل ڪريو {{amount}}",
+    "topUpRange": "داخل ڪريو {{min}} کي {{max}}",
+    "topUpDone": "{{amount}} توهان جي سبسڪرپشن ٽوڪن ۾ شامل ڪيو ويو",
+    "topUpPending": "توھان جو مٿيون اپ تصديق ڪري رھيو آھي. اهو جلد ئي توهان جي توازن ۾ ظاهر ٿيندو.",
+    "topUpEmptyHint": "تخليقڪارن جي رڪنيت حاصل ڪرڻ لاءِ مٿي",
+    "topUpStageWallet": "پنهنجي پرس ۾ تصديق ڪريو...",
+    "topUpStageConfirming": "ٽرانزيڪشن جي منتظر...",
+    "topUpStageCrediting": "پنهنجي توازن ۾ اضافو ڪندي..."
   },
   "live": {
     "notSet": "مقرر ناهي",

@@ -4715,7 +4715,20 @@
     "tokensSent": "We don send {{amount}} tokens",
     "percentUsed": "{{percent}}% used",
     "spentOfTotal": "{{spent}} of {{total}}",
-    "viewInWallet": "View in wallet"
+    "viewInWallet": "View in wallet",
+    "topUp": "Add tokens",
+    "topUpTitle": "Add subscription tokens",
+    "topUpCustom": "Anoda amount (USD)",
+    "topUpYouSend": "Wetin you go send",
+    "topUpYouGet": "Wetin go enter your balance",
+    "topUpConfirm": "Add {{amount}}",
+    "topUpRange": "Put from {{min}} reach {{max}}",
+    "topUpDone": "We don add {{amount}} to your subscription tokens",
+    "topUpPending": "Your top-up dey confirm. E go show for your balance soon.",
+    "topUpEmptyHint": "Add tokens make you fit subscribe to creators",
+    "topUpStageWallet": "Confirm am for your wallet…",
+    "topUpStageConfirming": "We dey wait for di transaction…",
+    "topUpStageCrediting": "We dey add am to your balance…"
   },
   "live": {
     "notSet": "Dem never set am",

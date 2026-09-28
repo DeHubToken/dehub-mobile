@@ -4835,7 +4835,20 @@
     "tokensSent": "{{amount}} टोकन भेजल गेल",
     "percentUsed": "{{percent}}% खरच भेल",
     "spentOfTotal": "{{total}} में से {{spent}}",
-    "viewInWallet": "होल्ड होल्ड ऑन लियोन"
+    "viewInWallet": "होल्ड होल्ड ऑन लियोन",
+    "topUp": "टोकन जोड़ू",
+    "topUpTitle": "सब्सक्राइब करे और सब्सक्राइब करे",
+    "topUpCustom": "अपेक्षित दावा अनुपात ($)",
+    "topUpYouSend": "भेज दे चाहे",
+    "topUpYouGet": "अपन संतुलन जोड़ि लेलकै",
+    "topUpConfirm": "{{amount}} जोड़ू",
+    "topUpRange": "{{min}} से {{max}} लिखू",
+    "topUpDone": "{{amount}} अपने के सब्सक्रिप्शन टोकन में जुड़ गेल",
+    "topUpPending": "अपने के टॉप-अप के पुष्टि हो रहल हे। जल्दिए बैलेंस में देखाई देत।",
+    "topUpEmptyHint": "सब्सक्राइबर के साथ, सब्सक्राइबर सब्सक्राइबर सबमिट",
+    "topUpStageWallet": "अपन वॉलेट में पुष्टि करू…",
+    "topUpStageConfirming": "ऊ देहरी पर बैठ के इन्तजार करे लगल....",
+    "topUpStageCrediting": "बैलेंस में जोड़ल जा रहल हे…"
   },
   "live": {
     "notSet": "सेट नै अछि",

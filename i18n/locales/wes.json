@@ -4715,7 +4715,20 @@
     "tokensSent": "We don send {{amount}} tokens",
     "percentUsed": "{{percent}}% used",
     "spentOfTotal": "{{spent}} of {{total}}",
-    "viewInWallet": "View in wallet"
+    "viewInWallet": "View in wallet",
+    "topUp": "Add tokens",
+    "topUpTitle": "Add subscription tokens",
+    "topUpCustom": "Oda amount (USD)",
+    "topUpYouSend": "Weti you go send",
+    "topUpYouGet": "Weti go enter your balance",
+    "topUpConfirm": "Add {{amount}}",
+    "topUpRange": "Put from {{min}} reach {{max}}",
+    "topUpDone": "We don add {{amount}} for your subscription tokens",
+    "topUpPending": "Your top-up di confirm. E go show for your balance soon.",
+    "topUpEmptyHint": "Add tokens make you fit subscribe for creators",
+    "topUpStageWallet": "Confirm am for your wallet…",
+    "topUpStageConfirming": "We di wait for di transaction…",
+    "topUpStageCrediting": "We di add am for your balance…"
   },
   "live": {
     "notSet": "Dem never set am",

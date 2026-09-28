@@ -4835,7 +4835,20 @@
     "tokensSent": "{{amount}} ቶከንስ ተላኢኹ",
     "percentUsed": "{{percent}}% ተጠቐመ",
     "spentOfTotal": "{{spent}} ካብ {{total}}",
-    "viewInWallet": "ኣብ ቦርሳ ርአ"
+    "viewInWallet": "ኣብ ቦርሳ ርአ",
+    "topUp": "ምልክታት ኣክሊል",
+    "topUpTitle": "ናይ ኣባልነት ምልክታት ኣክሊል",
+    "topUpCustom": "ካልእ መጠን (USD)",
+    "topUpYouSend": "ትልእኮ",
+    "topUpYouGet": "ናብ ሚዛንካ ኣክሊልካ",
+    "topUpConfirm": "{{amount}} ወስኽ",
+    "topUpRange": "{{min}} ናብ {{max}}",
+    "topUpDone": "{{amount}} ኣብ ናይ ኣባልነት ምልክታትካ ተወሰኸ",
+    "topUpPending": "እቲ ዝለዓለ ደረጃኻ ኣረጋጊጹ ኣሎ ። እዚ ድማ ኣብ ቀረባ እዋን ኣብ ሚዛንካ ክርአ እዩ ።",
+    "topUpEmptyHint": "ንፈጣሪያት ንምምዝጋብ",
+    "topUpStageWallet": "ኣብ ቦርሳኻ ኣረጋጊጽካ...",
+    "topUpStageConfirming": "ነቲ ግብረ-ሰናይ ትጽበዮ ኣለኻ...",
+    "topUpStageCrediting": "ምስ ሚዛንካ ተሰማሚዕካ..."
   },
   "live": {
     "notSet": "ኣይተቐመጠን",

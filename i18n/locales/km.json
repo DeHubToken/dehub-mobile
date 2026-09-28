@@ -4815,7 +4815,20 @@
     "tokensSent": "{{amount}} ថូខឹនបានផ្ញើ",
     "percentUsed": "{{percent}}% បានប្រើ",
     "spentOfTotal": "{{spent}} នៃ {{total}}",
-    "viewInWallet": "មើលនៅក្នុងកាបូប"
+    "viewInWallet": "មើលនៅក្នុងកាបូប",
+    "topUp": "បន្ថែមថូខឹន",
+    "topUpTitle": "បន្ថែមថូខឹនជាវ",
+    "topUpCustom": "ចំនួនទឹកប្រាក់ផ្សេងទៀត (ដុល្លារអាមេរិក)",
+    "topUpYouSend": "អ្នកផ្ញើ",
+    "topUpYouGet": "បានបន្ថែមទៅក្នុងសមតុល្យរបស់អ្នក",
+    "topUpConfirm": "បន្ថែម {{amount}}",
+    "topUpRange": "បញ្ចូល {{min}} ទៅ {{max}}",
+    "topUpDone": "{{amount}} បានបន្ថែមទៅថូខឹនការជាវរបស់អ្នក",
+    "topUpPending": "ការបញ្ចូលទឹកប្រាក់របស់អ្នកកំពុងបញ្ជាក់ ។ វានឹងលេចឡើងនៅក្នុងតុល្យភាពរបស់អ្នកក្នុងពេលឆាប់ៗនេះ ។",
+    "topUpEmptyHint": "បញ្ចូលទឹកប្រាក់ដើម្បីជាវអ្នកបង្កើត",
+    "topUpStageWallet": "បញ្ជាក់នៅក្នុងកាបូបរបស់អ្នក...",
+    "topUpStageConfirming": "កំពុងរង់ចាំប្រតិបត្តិការ...",
+    "topUpStageCrediting": "កំពុងបន្ថែមសមតុល្យរបស់អ្នក..."
   },
   "live": {
     "notSet": "មិនទាន់កំណត់",

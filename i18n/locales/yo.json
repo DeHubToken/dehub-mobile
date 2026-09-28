@@ -4836,7 +4836,20 @@
     "tokensSent": "{{amount}} Awọn ami ti a firanṣẹ",
     "percentUsed": "{{percent}}% lo",
     "spentOfTotal": "{{spent}} ti {{total}}",
-    "viewInWallet": "Wò ó nínú àpamọ́"
+    "viewInWallet": "Wò ó nínú àpamọ́",
+    "topUp": "Ṣafikun awọn ami",
+    "topUpTitle": "Ṣafikun awọn ami ìforúkọsílẹ",
+    "topUpCustom": "Iye míràn (USD)",
+    "topUpYouSend": "O firanṣẹ",
+    "topUpYouGet": "Fi kun si iwontunwonsi rẹ",
+    "topUpConfirm": "Fi {{amount}} kun",
+    "topUpRange": "Wọ {{min}} si {{max}}",
+    "topUpDone": "{{amount}} fi kun si awọn ami ìforúkọsílẹ rẹ",
+    "topUpPending": "Top-up rẹ ń fìdí múlẹ̀. Yóò farahàn nínú ìdúróṣánṣán rẹ láìpẹ́.",
+    "topUpEmptyHint": "Top soke lati ṣe alabapin si awọn ẹlẹda",
+    "topUpStageWallet": "Jẹrisi ninu apamọwọ rẹ...",
+    "topUpStageConfirming": "Dúró fún ìdúnàádúrà náà...",
+    "topUpStageCrediting": "Fífi kún ìdúróṣánṣán rẹ..."
   },
   "live": {
     "notSet": "Kò tíì ṣètò",

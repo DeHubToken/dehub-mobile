@@ -4864,7 +4864,20 @@
     "tokensSent": "{{amount}}: Εστάλησαν μάρκες",
     "percentUsed": "{{percent}}% σε χρήση",
     "spentOfTotal": "{{spent}} από {{total}}",
-    "viewInWallet": "Προβολή στο πορτοφόλι"
+    "viewInWallet": "Προβολή στο πορτοφόλι",
+    "topUp": "Προσθήκη μαρκών",
+    "topUpTitle": "Προσθήκη διακριτικών συνδρομής",
+    "topUpCustom": "Άλλο ποσό (USD)",
+    "topUpYouSend": "Στέλνετε",
+    "topUpYouGet": "Προστέθηκε στο υπόλοιπό σας",
+    "topUpConfirm": "Προσθήκη {{amount}}",
+    "topUpRange": "Πληκτρολογήστε {{min}} έως {{max}}",
+    "topUpDone": "Οχρήστης {{amount}} πρόσθεσε τα διακριτικά της συνδρομής σας",
+    "topUpPending": "Η ανανέωση χρόνου ομιλίας επιβεβαιώνεται. Θα εμφανιστεί στο υπόλοιπό σας σύντομα.",
+    "topUpEmptyHint": "Ανανέωση χρόνου ομιλίας για εγγραφή σε δημιουργούς",
+    "topUpStageWallet": "Επιβεβαιώστε στο πορτοφόλι σας…",
+    "topUpStageConfirming": "Αναμονή για τη συναλλαγή…",
+    "topUpStageCrediting": "Προσθέτοντας στο υπόλοιπό σας..."
   },
   "live": {
     "notSet": "Δεν έχει οριστεί",

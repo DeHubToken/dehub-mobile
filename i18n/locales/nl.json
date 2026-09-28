@@ -5025,7 +5025,20 @@
     "tokensSent": "{{amount}} tokens verzonden",
     "percentUsed": "{{percent}}% gebruikt",
     "spentOfTotal": "{{spent}} van {{total}}",
-    "viewInWallet": "Bekijken in portefeuille"
+    "viewInWallet": "Bekijken in portefeuille",
+    "topUp": "Tokens toevoegen",
+    "topUpTitle": "Abonnementstokens toevoegen",
+    "topUpCustom": "Ander bedrag (USD)",
+    "topUpYouSend": "U verzendt",
+    "topUpYouGet": "Toegevoegd aan je saldo",
+    "topUpConfirm": "{{amount}} toevoegen",
+    "topUpRange": "Voer {{min}} in tot {{max}}",
+    "topUpDone": "{{amount}} toegevoegd aan je abonnementstokens",
+    "topUpPending": "Je opwaardering wordt bevestigd. Deze wordt binnenkort in je saldo weergegeven.",
+    "topUpEmptyHint": "Opwaarderen om je te abonneren op makers",
+    "topUpStageWallet": "Bevestig in je portemonnee...",
+    "topUpStageConfirming": "Wachten op de transactie...",
+    "topUpStageCrediting": "Toe te voegen aan uw saldo..."
   },
   "live": {
     "notSet": "Niet ingesteld",

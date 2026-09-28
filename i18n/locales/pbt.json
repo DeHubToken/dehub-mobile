@@ -4835,7 +4835,20 @@
     "tokensSent": "{{amount}} ټوکنونه ولېږل شول",
     "percentUsed": "{{percent}}% کارول شوی",
     "spentOfTotal": "له {{total}} څخه {{spent}}",
-    "viewInWallet": "په بسته بندۍ کې لیدونه"
+    "viewInWallet": "په بسته بندۍ کې لیدونه",
+    "topUp": "په توکیو کې اضافه کړئ",
+    "topUpTitle": "د انسټاګرام حسابونه اضافه کړئ",
+    "topUpCustom": "نورې پیسې (USD)",
+    "topUpYouSend": "تاسو ته لیږل کیږي",
+    "topUpYouGet": "خپل توازن ته وده ورکړئ",
+    "topUpConfirm": "{{amount}} زیات کړئ",
+    "topUpRange": "له {{min}} څخه تر {{max}} پورې ولیکئ",
+    "topUpDone": "{{amount}} ستاسو د ګډون ټوکنونو ته زیات شول",
+    "topUpPending": "ستاسو تبصره د تایید په حال کې ده. دا به ډیر ژر ستاسو په توازن کې څرګند شي.",
+    "topUpEmptyHint": "پورته شه چې خالق ته ورسیږې",
+    "topUpStageWallet": "په خپل جیب کې یې واچوئ...",
+    "topUpStageConfirming": "د معاملې لپاره انتظار وکړئ...",
+    "topUpStageCrediting": "په خپل توازن کې اضافه کړئ..."
   },
   "live": {
     "notSet": "نه دی ټاکل شوی",
