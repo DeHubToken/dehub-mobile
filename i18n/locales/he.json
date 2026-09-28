@@ -354,6 +354,8 @@
     "compactModeDesc": "הקטן ריווח להצגת יותר תוכן",
     "autoPlay": "הפעלה אוטומטית של סרטונים",
     "autoPlayDesc": "סרטונים מתחילים לפעול אוטומטית",
+    "autoPlayMuted": "הפעלה אוטומטית ללא קול",
+    "autoPlayMutedDesc": "סרטונים שמתנגנים מעצמם תמיד מתחילים עם הקול כבוי",
     "showAnimations": "הצג אנימציות",
     "showAnimationsDesc": "הפעל אפקטי מעבר",
     "coinPlacement": "מיקום מטבע",

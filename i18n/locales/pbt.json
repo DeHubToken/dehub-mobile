@@ -353,6 +353,8 @@
     "compactModeDesc": "د ډیرې منځپانګې لپاره فاصله کمه کړئ",
     "autoPlay": "آتومات ویډیو پلی",
     "autoPlayDesc": "په فیډ کې ویډیوګانې آتومات پلی کړئ",
+    "autoPlayMuted": "اتومات غږول بې غږه پيل کړئ",
+    "autoPlayMutedDesc": "هغه ویډیوګانې چې پخپله غږېږي تل بې غږه پيلېږي",
     "showAnimations": "انیمیشنونه ښکاره کړئ",
     "showAnimationsDesc": "نرمې لیږدونې او اغیزې فعالې کړئ",
     "coinPlacement": "د سکې ځای",

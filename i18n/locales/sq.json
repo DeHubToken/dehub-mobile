@@ -354,6 +354,8 @@
     "compactModeDesc": "Redukto hapësirën për më shumë përmbajtje",
     "autoPlay": "Luaj automatikisht Videot",
     "autoPlayDesc": "Luaj automatikisht videot në feed",
+    "autoPlayMuted": "Nis luajtjen automatike pa zë",
+    "autoPlayMutedDesc": "Videot që luhen vetë nisin gjithmonë me zërin të fikur",
     "showAnimations": "Shfaq Animacionet",
     "showAnimationsDesc": "Aktivizo kalime të buta dhe efekte",
     "coinPlacement": "Vendosja e Monedhës",

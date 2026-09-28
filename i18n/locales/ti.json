@@ -354,6 +354,8 @@
     "compactModeDesc": "ንዝያዳ ትሕዝቶ ሓፍታ ጸብብ",
     "autoPlay": "ቪድዮ ባዕሉ ጀምር",
     "autoPlayDesc": "ኣብ ፊድ ቪድዮ ብቐጥታ ጀምር",
+    "autoPlayMuted": "ባዕሉ ዝጻወት ድምጺ ብዘይብሉ ጀምር",
+    "autoPlayMutedDesc": "ባዕሎም ዝጻወቱ ቪድዮታት ኩሉ ግዜ ድምጺ ብዘይብሉ ይጅምሩ",
     "showAnimations": "ኣኒሜሽን ኣርኢ",
     "showAnimationsDesc": "ልስሉስ ምስግጋርን ኢፈክታትን ክፈት",
     "coinPlacement": "ኣቀማምጣ ቅርሺ",

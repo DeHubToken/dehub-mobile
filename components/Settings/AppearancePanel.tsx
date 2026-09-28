@@ -140,6 +140,18 @@ const AppearancePanel: React.FC = () => {
           value={prefs.autoplay}
           onValueChange={(v) => setAppPref('autoplay', v)}
         />
+        {prefs.autoplay && (
+          <>
+            <Divider />
+            <SettingsToggleRow
+              icon="VolumeX"
+              label={t('settings.autoPlayMuted')}
+              description={t('settings.autoPlayMutedDesc')}
+              value={prefs.autoplayMuted}
+              onValueChange={(v) => setAppPref('autoplayMuted', v)}
+            />
+          </>
+        )}
         <Divider />
         <SettingsToggleRow
           icon="Gauge"

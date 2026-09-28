@@ -354,6 +354,8 @@
     "compactModeDesc": "Pienennä välistystä enemmän sisältöä varten",
     "autoPlay": "Automaattinen toisto",
     "autoPlayDesc": "Toista videot automaattisesti",
+    "autoPlayMuted": "Aloita automaattinen toisto mykistettynä",
+    "autoPlayMutedDesc": "Itsestään alkavat videot alkavat aina ilman ääntä",
     "showAnimations": "Näytä animaatiot",
     "showAnimationsDesc": "Ota sulavasiirtymät käyttöön",
     "coinPlacement": "Kolikon sijainti",

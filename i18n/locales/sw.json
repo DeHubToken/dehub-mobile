@@ -354,6 +354,8 @@
     "compactModeDesc": "Punguza nafasi kwa maudhui zaidi",
     "autoPlay": "Cheza Video Kiotomatiki",
     "autoPlayDesc": "Cheza video kiotomatiki kwenye mlisho",
+    "autoPlayMuted": "Anza kucheza kiotomatiki bila sauti",
+    "autoPlayMutedDesc": "Video zinazocheza zenyewe huanza bila sauti kila wakati",
     "showAnimations": "Onyesha Michoro",
     "showAnimationsDesc": "Washa mipito laini na athari",
     "coinPlacement": "Uwekaji wa Sarafu",

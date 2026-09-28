@@ -354,6 +354,8 @@
     "compactModeDesc": "अधिक सामग्री के लिए स्पेसिंग कम करें",
     "autoPlay": "ऑटो-प्ले वीडियो",
     "autoPlayDesc": "फ़ीड में वीडियो स्वतः चलाएँ",
+    "autoPlayMuted": "ऑटोप्ले म्यूट करके शुरू करें",
+    "autoPlayMutedDesc": "अपने आप चलने वाले वीडियो हमेशा आवाज़ बंद करके शुरू होंगे",
     "showAnimations": "एनिमेशन दिखाएँ",
     "showAnimationsDesc": "स्मूथ ट्रांज़िशन सक्षम करें",
     "coinPlacement": "कॉइन प्लेसमेंट",

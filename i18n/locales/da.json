@@ -354,6 +354,8 @@
     "compactModeDesc": "Reducer afstand for at vise mere indhold",
     "autoPlay": "Automatisk afspilning af videoer",
     "autoPlayDesc": "Videoer afspilles automatisk",
+    "autoPlayMuted": "Start automatisk afspilning uden lyd",
+    "autoPlayMutedDesc": "Videoer, der afspilles af sig selv, starter altid med lyden slået fra",
     "showAnimations": "Vis animationer",
     "showAnimationsDesc": "Aktiver overgangseffekter",
     "coinPlacement": "Møntplacering",

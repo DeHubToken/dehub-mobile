@@ -354,6 +354,8 @@
     "compactModeDesc": "减少间距看更多内容",
     "autoPlay": "自动播放视频",
     "autoPlayDesc": "在信息流中自动播放视频",
+    "autoPlayMuted": "自動播放時靜音開始",
+    "autoPlayMutedDesc": "自家播放个視頻總是靜音開始",
     "showAnimations": "显示动画",
     "showAnimationsDesc": "开启平滑过渡和效果",
     "coinPlacement": "币图位置",

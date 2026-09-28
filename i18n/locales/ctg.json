@@ -358,6 +358,8 @@
     "compactModeDesc": "বেশি কন্টেন্ট দেখানোর জন্য স্পেসিং কমান",
     "autoPlay": "অটো-প্লে ভিডিও",
     "autoPlayDesc": "ফিডে ভিডিও অটোমেটিকভাবে প্লে করুন",
+    "autoPlayMuted": "অটোপ্লে মিউট গরি শুরু গরন",
+    "autoPlayMutedDesc": "নিজে নিজে চলা ভিডিও হামেশা আওয়াজ বন্ধ গরি শুরু অইব",
     "showAnimations": "অ্যানিমেশন দেখান",
     "showAnimationsDesc": "Smooth transition আর effects চালু কর",
     "coinPlacement": "টাকা রাখা",

@@ -46,7 +46,7 @@ import { createViewRecorder } from "../../services/view.service";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { getCachedMuted, setMutedState } from "../../libs/videoMutedState";
 import { useDataSaver } from "../../hooks/useDataSaver";
-import { useAppPrefs } from "../../hooks/useAppPrefs";
+import { getAppPrefs, useAppPrefs } from "../../hooks/useAppPrefs";
 import { useVideoSegments, segmentAt } from "../../hooks/useVideoSegments";
 import { useMediaAspect } from "../../hooks/useMediaAspect";
 import { useSettledAutoplay } from "../../hooks/useSettledAutoplay";
@@ -249,6 +249,15 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   const [captionPosMs, setCaptionPosMs] = useState(0);
   const [videoDuration, setVideoDuration] = useState(0);
   const [hasStartedAutoplay, setHasStartedAutoplay] = useState(false);
+  // True when the card started itself rather than from a tap. With
+  // "Start autoplay muted" on, those always start silent — the shared mute
+  // flag persists across launches, so otherwise opening the app somewhere
+  // quiet plays whatever sound was left on last time.
+  const autoStartRef = useRef(false);
+  const shouldStartMuted = useCallback(
+    () => getCachedMuted() || (autoStartRef.current && getAppPrefs().autoplayMuted),
+    [],
+  );
   const [isBuffering, setIsBuffering] = useState(false);
   // True from the instant a tap lands until this card's first frame is on
   // screen. Nothing used to mark that window: `isPlaying` stays false while the
@@ -544,7 +553,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     if (!playerRef.current || !canPlay) return;
     try { stopActivePreview(); } catch {}
     requestFeedVideoFocus(stopPlayback);
-    if (!getCachedMuted()) requestAudioFocus(stopPlayback);
+    if (!shouldStartMuted()) requestAudioFocus(stopPlayback);
     playbackAllowedRef.current = true;
     // The player is a native shared object that expo-video releases when the
     // card scrolls off-screen. A deferred call (autoplay timer) can land after
@@ -581,7 +590,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     pendingPlayRef.current = false;
     // Seed mute from the shared cache the same way the old direct path did.
     try {
-      const m = getCachedMuted();
+      const m = shouldStartMuted();
       p.muted = m;
       setIsMuted(m);
     } catch {}
@@ -676,6 +685,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     // sets hasStartedAutoplay, which re-runs this effect and clears the timer.
     autoplayTimerRef.current = setTimeout(() => {
       if (isPlayingRef.current || !canPlay) return;
+      autoStartRef.current = true;
       pendingPlayRef.current = true;
       setHasStartedAutoplay(true);
       setShowControls(false); // Controls hidden on autoplay
@@ -761,6 +771,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     // this attaches it and plays on readyToPlay, with the buffering spinner
     // covering the gap. On one already loaded, flushPendingPlay starts it in
     // this same tick.
+    autoStartRef.current = false;
     pendingPlayRef.current = true;
     setHasStartedAutoplay(true);
     setSourceRequested(true);

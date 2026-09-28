@@ -23,6 +23,9 @@ import { bootRevealed } from '../libs/bootReveal';
 const KEYS = {
   theme: 'dehub.theme',
   autoplay: 'autoplay-videos',
+  // Videos that start themselves always start silent, whatever the speaker
+  // was last left on. Web's key name.
+  autoplayMuted: 'autoplay-muted',
   animations: 'show-animations',
   shorts: 'shorts-enabled',
   dimLights: 'dehub.dimLights',
@@ -57,6 +60,7 @@ export type AppPrefKey = keyof typeof KEYS;
 export interface AppPrefs {
   theme: AppThemeName;
   autoplay: boolean;
+  autoplayMuted: boolean;
   animations: boolean;
   shorts: boolean;
   dimLights: boolean;
@@ -83,6 +87,7 @@ export const DEFAULT_APP_PREFS: AppPrefs = {
   // thing. Autoplay is one switch away in Settings → Appearance for anyone
   // who wants it; a crash is not a preference anyone chose.
   autoplay: false,
+  autoplayMuted: false,
   animations: true,
   shorts: true,
   dimLights: false,
@@ -149,6 +154,7 @@ function init() {
       cache = {
         theme,
         autoplay: parseBool(get('autoplay'), DEFAULT_APP_PREFS.autoplay),
+        autoplayMuted: parseBool(get('autoplayMuted'), DEFAULT_APP_PREFS.autoplayMuted),
         animations: parseBool(get('animations'), DEFAULT_APP_PREFS.animations),
         shorts: parseBool(get('shorts'), DEFAULT_APP_PREFS.shorts),
         dimLights: parseBool(get('dimLights'), DEFAULT_APP_PREFS.dimLights),

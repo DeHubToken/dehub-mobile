@@ -358,6 +358,8 @@
     "compactModeDesc": "Zmenšiť medzery pre viac obsahu",
     "autoPlay": "Automatické prehrávanie",
     "autoPlayDesc": "Automaticky prehrávať videá",
+    "autoPlayMuted": "Spúšťať automatické prehrávanie stlmene",
+    "autoPlayMutedDesc": "Videá, ktoré sa prehrajú samé, vždy začnú bez zvuku",
     "showAnimations": "Zobraziť animácie",
     "showAnimationsDesc": "Povoliť plynulé prechody a efekty",
     "coinPlacement": "Umiestnenie mince",
