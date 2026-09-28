@@ -166,6 +166,9 @@ export default function ShowcaseShell({ entries, originIndex, anchor, onClose, d
   const toBox = useSharedValue<Box>({ x: W / 2, y: H / 2, size: 1 });
   const homeward = useSharedValue(0);
   const startedRef = useRef(false);
+  // Set the moment a close starts, so a landing already queued on the UI
+  // thread cannot reopen the showcase or yank the badge mid-flight home.
+  const closingRef = useRef(false);
   const restTilt = entries[originIndex].tilt * 0.5;
 
   const land = useCallback(() => setPhase("open"), []);
@@ -194,6 +197,7 @@ export default function ShowcaseShell({ entries, originIndex, anchor, onClose, d
   // The ceremony's new badge sits exactly where the flyer ends a flight, so the
   // flyer takes over there and the sticker wakes up the usual way.
   const landCeremony = useCallback(() => {
+    if (closingRef.current) return;
     flight.value = 1;
     flyerOpacity.value = 1;
     setCeremony((c) => (c ? { ...c, landed: true } : c));
@@ -238,6 +242,7 @@ export default function ShowcaseShell({ entries, originIndex, anchor, onClose, d
 
   const requestClose = useCallback(() => {
     if (phase === "exit") return;
+    closingRef.current = true;
     // Closing mid-promotion cancels it; the new badge still flies home.
     const midCeremony = !!ceremony && !ceremony.landed;
     setCeremony(null);
