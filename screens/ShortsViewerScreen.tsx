@@ -21,7 +21,8 @@
  * comment; the navigator already sits inside a SafeAreaView.
  *
  * Two gestures clear and restore the chrome, both ported from web: swipe down
- * over the bottom stack to clear it, tap the middle band to bring it back.
+ * over the bottom stack to clear it, swipe up in that area to bring it back.
+ * A tap in the middle band also restores it; other video taps pause/play.
  * Holding the middle of the frame still hides it for a screenshot for as long
  * as the finger is down. See HIDE_SWIPE_MIN / RESTORE_ZONE_TOP.
  *
@@ -158,10 +159,8 @@ const formatRate = (rate: number) => `${rate}x`;
  */
 
 /**
- * Swipe down over the bottom stack to clear the chrome, then tap the middle
- * band to bring it back — the same two gestures web runs (ShortsViewer.tsx
- * `handleOverlayGestureTouch*` / `handleRestoreTouch*`), with web's own
- * thresholds.
+ * Swipe down over the bottom stack to clear the chrome, then swipe up in the
+ * lower area to bring it back. Both directions use the same 40px threshold.
  *
  * RN and the DOM differ in the one way that matters here. On web the overlay
  * is `pointer-events-auto` above the carousel's drag layer, so a drag that
@@ -483,6 +482,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, isNearby, active
   const chromeOpacity = useRef(new Animated.Value(1)).current;
   /** Touch origin for the swipe-down, read on the UI thread by hidePan. */
   const panStart = useSharedValue({ x: 0, y: 0 });
+  const restorePanStart = useSharedValue({ x: 0, y: 0 });
 
   // Keep the playback clock out of layout and Fabric commits while paging.
   const progress = useRef(new Animated.Value(0)).current;
@@ -1045,6 +1045,47 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, isNearby, active
     [panStart, pagerGesture],
   );
 
+  // Arbitrate before the native pager claims the upward flick. This remains
+  // on the video while the caption is hidden, so there is always a way back.
+  const restorePan = useMemo(() => Gesture.Pan()
+    .enabled(isActive && !showComments && !screenshotMode && (overlaysHidden || autoHidden))
+    .manualActivation(true)
+    .onTouchesDown((e, state) => {
+      "worklet";
+      const touch = e.allTouches[0];
+      if (e.numberOfTouches !== 1 || !touch || touch.y <= itemHeight * RESTORE_ZONE_TOP) {
+        state.fail();
+        return;
+      }
+      restorePanStart.value = { x: touch.x, y: touch.y };
+    })
+    .onTouchesMove((e, state) => {
+      "worklet";
+      const touch = e.allTouches[0];
+      if (!touch || e.numberOfTouches !== 1) {
+        state.fail();
+        return;
+      }
+      const dy = touch.y - restorePanStart.value.y;
+      const dx = Math.abs(touch.x - restorePanStart.value.x);
+      if (dy > DRAG_RELEASE_MIN || dx > Math.abs(dy) + DRAG_RELEASE_MIN) {
+        state.fail();
+        return;
+      }
+      if (dy < -DRAG_CLAIM_MIN && -dy > dx) state.activate();
+    })
+    .onEnd((e, success) => {
+      "worklet";
+      if (success && e.translationY < -HIDE_SWIPE_MIN && -e.translationY > Math.abs(e.translationX)) {
+        runOnJS(setOverlaysHidden)(false);
+        runOnJS(setAutoHidden)(false);
+        runOnJS(resetTapSequence)();
+      }
+    })
+    .blocksExternalGesture(pagerGesture),
+  [isActive, showComments, screenshotMode, overlaysHidden, autoHidden, itemHeight,
+    restorePanStart, pagerGesture, resetTapSequence]);
+
   // Resolve the complete tap gesture before casting: double = Like, triple = Love.
   const handleScreenTap = useCallback((pageX: number, pageY: number) => {
     if (longPressActiveRef.current) return;
@@ -1054,20 +1095,14 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, isNearby, active
       setOpenTray(null);
       return;
     }
-    // Tap the middle band to bring cleared chrome back — web's
-    // `handleRestoreTouchEnd`. It restores on a tap rather than an upward
-    // swipe because an upward flick is exactly the gesture that pages to the
-    // next short, and the two fought; and the band stops short of the bottom
-    // 15% so a restore tap never lands on the action row. Returning here is
-    // what keeps the same tap from also toggling playback — web suppresses
-    // the follow-on tap for 400ms for the same reason.
-    if (overlaysHidden) {
-      if (
-        pageY > SCREEN_HEIGHT * RESTORE_ZONE_TOP &&
-        pageY < SCREEN_HEIGHT * RESTORE_ZONE_BOTTOM
-      ) {
-        setOverlaysHidden(false);
-      }
+    // A restore tap changes only the panel. Outside this band, hidden chrome
+    // must not swallow video playback or multi-tap reactions.
+    if (overlaysHidden &&
+      pageY > SCREEN_HEIGHT * RESTORE_ZONE_TOP &&
+      pageY < SCREEN_HEIGHT * RESTORE_ZONE_BOTTOM
+    ) {
+      setOverlaysHidden(false);
+      setAutoHidden(false);
       resetTapSequence();
       return;
     }
@@ -1182,8 +1217,8 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, isNearby, active
       .runOnJS(true)
       .onStart((event) => handleLongPressIn(event.x))
       .onFinalize(() => handleLongPressOut());
-    return Gesture.Race(hold, tap);
-  }, [handleLongPressIn, handleLongPressOut, handleScreenTap, pagerGesture]);
+    return Gesture.Race(restorePan, hold, tap);
+  }, [handleLongPressIn, handleLongPressOut, handleScreenTap, pagerGesture, restorePan]);
 
   const chromeVisible = !showComments && !screenshotMode && !overlaysHidden && !autoHidden;
 
@@ -1384,7 +1419,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, isNearby, active
         </View>
       )}
 
-      {isActive && isPausedByUser && chromeVisible && (
+      {isActive && isPausedByUser && !showComments && !screenshotMode && (
         <View style={styles.pauseOverlay} pointerEvents="none">
           <Icon name="Play" size={64} color="rgba(255,255,255,0.7)" />
         </View>
