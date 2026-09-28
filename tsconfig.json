@@ -11,6 +11,8 @@
   "exclude": [
     "components/messages/**",
     "dehub-stream-backend",
-    "cosmic-echo-hero"
+    "cosmic-echo-hero",
+    // Built against a dehubweb checkout, not this app — see its build.js.
+    "scripts/theme-backdrop/**"
   ]
 }

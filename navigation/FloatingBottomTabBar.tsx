@@ -10,7 +10,11 @@ import {
   Platform,
   InteractionManager,
   useWindowDimensions,
+  Image,
+  type ViewStyle,
 } from "react-native";
+import { GRAIN } from "../theme/skins";
+import HudBrackets from "../components/theme/HudBrackets";
 import Reanimated, {
   useSharedValue,
   useAnimatedStyle,
@@ -201,6 +205,25 @@ const KIDS_MODE_SCREENS = new Set([
 ]);
 
 const AnimatedPressable = Reanimated.createAnimatedComponent(Pressable);
+
+// A canvas theme's coloured halo (War cyan, Osaka pink) on the active tab and
+// the centre button — web's drop-shadow glow. One object per colour.
+const glowCache = new Map<string, ViewStyle>();
+function glowStyle(color: string): ViewStyle {
+  let s = glowCache.get(color);
+  if (!s) {
+    s = {
+      shadowColor: color,
+      shadowOffset: { width: 0, height: 0 },
+      shadowOpacity: 0.7,
+      shadowRadius: 8,
+      // Android draws a coloured shadow only behind a non-transparent fill.
+      ...(Platform.OS === "android" ? { backgroundColor: "rgba(255,255,255,0.01)", elevation: 0 } : null),
+    };
+    glowCache.set(color, s);
+  }
+  return s;
+}
 const NativeAnimatedPressable = NativeAnimated.createAnimatedComponent(Pressable);
 
 // `routeName` + a stable `onPress`, rather than an `onPress` closure built at
@@ -220,7 +243,7 @@ const NavButton = memo<{
   animProgress: SharedValue<number>;
   badgeCount?: number;
 }>(({ icon, label, isActive, isCenter, routeName, onPress, index, tabW, animProgress, badgeCount = 0 }) => {
-  const { colors, isLight, isMinimal } = useAppTheme();
+  const { colors, isLight, isMinimal, skin } = useAppTheme();
   const scale = useSharedValue(1);
 
   const handlePress = useCallback(() => onPress(routeName), [onPress, routeName]);
@@ -264,6 +287,25 @@ const NavButton = memo<{
       >
         <View style={styles.minimalCenterIcon}>
           <Icon name={icon} size={20} color={MINIMAL_TAB_TEXT_ACTIVE} strokeWidth={2} />
+        </View>
+      </AnimatedPressable>
+    );
+  }
+
+  if (isCenter && skin) {
+    // A canvas theme's centre button (theme/skins.ts): its own outlined tile,
+    // glowing in War's cyan or Osaka's pink.
+    return (
+      <AnimatedPressable
+        accessibilityRole="button"
+        accessibilityLabel={label}
+        onPress={handlePress}
+        onPressIn={handlePressIn}
+        onPressOut={handlePressOut}
+        style={[styles.centerButton, animatedStyle]}
+      >
+        <View style={[styles.skinCenterIcon, skin.glow ? glowStyle(skin.glow) : null, skin.centre]}>
+          <Icon name={icon} size={20} color={skin.centreIcon} strokeWidth={2} />
         </View>
       </AnimatedPressable>
     );
@@ -325,14 +367,22 @@ const NavButton = memo<{
       style={[styles.tabButton, { width: tabW }, animatedStyle]}
     >
       {/* Minimal shows the active tab by colour alone — no glow. */}
-      <View style={isActive && !isLight && !isMinimal ? styles.activeGlow : undefined}>
+      <View
+        style={
+          isActive && !isLight && !isMinimal
+            ? skin?.glow ? glowStyle(skin.glow) : styles.activeGlow
+            : undefined
+        }
+      >
         <Icon
           name={icon}
           size={20}
           color={
             isMinimal
               ? isActive ? MINIMAL_TAB_TEXT_ACTIVE : MINIMAL_TAB_TEXT
-              : isActive ? colors.foreground : isLight ? "rgba(26, 26, 26, 0.66)" : "rgba(255, 255, 255, 0.72)"
+              : skin
+                ? isActive ? skin.barIconActive : skin.barIcon
+                : isActive ? colors.foreground : isLight ? "rgba(26, 26, 26, 0.66)" : "rgba(255, 255, 255, 0.72)"
           }
           strokeWidth={isActive ? 2 : 1.75}
         />
@@ -357,7 +407,7 @@ const ScrollNavButton = memo<{
   badgeCount?: number;
 }>(
   ({ icon, label, item, onPress, tabW, badgeCount = 0 }) => {
-    const { colors, isLight, isMinimal } = useAppTheme();
+    const { colors, isLight, isMinimal, skin } = useAppTheme();
     const scale = useRef(new NativeAnimated.Value(1)).current;
     useEffect(() => () => scale.stopAnimation(), [scale]);
 
@@ -401,7 +451,7 @@ const ScrollNavButton = memo<{
         <Icon
           name={icon}
           size={20}
-          color={isMinimal ? MINIMAL_TAB_TEXT : isLight ? "rgba(26, 26, 26, 0.66)" : "rgba(255, 255, 255, 0.72)"}
+          color={isMinimal ? MINIMAL_TAB_TEXT : skin ? skin.barIcon : isLight ? "rgba(26, 26, 26, 0.66)" : "rgba(255, 255, 255, 0.72)"}
           strokeWidth={1.75}
         />
         {badgeCount > 0 && (
@@ -418,7 +468,7 @@ const ScrollNavButton = memo<{
 
 const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }) => {
   const { t } = useTranslation();
-  const { colors, isLight, isMinimal } = useAppTheme();
+  const { colors, isLight, isMinimal, skin } = useAppTheme();
   const insets = useSafeAreaInsets();
   // Live, not a module constant — see tabWidthFor.
   const { width: screenW } = useWindowDimensions();
@@ -632,7 +682,13 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
       pointerEvents="box-none"
     >
       <Reanimated.View style={[styles.dock, entranceStyle]}>
-      <View style={[styles.navContainer, { width: pillWidth }]}>
+      <View
+        style={[
+          styles.navContainer,
+          { width: pillWidth },
+          skin ? { borderRadius: skin.barBorder.borderRadius } : null,
+        ]}
+      >
         {/* The pill is a solid surface, not glass. It used to be a blur under a
             near-transparent wash, which meant its appearance was a function of
             whatever happened to be behind it — fine over the dark feed, clear
@@ -647,15 +703,21 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
             styles.pillFill,
             isLight && { backgroundColor: colors.background },
             isMinimal && { backgroundColor: "#000" },
+            skin && skin.barFill,
           ]}
         />
+        {skin?.grain ? (
+          <Image source={GRAIN} resizeMode="repeat" style={StyleSheet.absoluteFill} />
+        ) : null}
         <View
           style={[
             styles.pillBorder,
             isLight && { borderColor: 'rgba(0, 0, 0, 0.12)' },
             isMinimal && { borderColor: MINIMAL_HAIRLINE },
+            skin && skin.barBorder,
           ]}
         />
+        {skin?.brackets ? <HudBrackets color={skin.brackets} /> : null}
         <ScrollView
           ref={scrollRef}
           horizontal
@@ -744,6 +806,13 @@ const styles = StyleSheet.create({
       },
       android: {},
     }),
+  },
+  // A canvas theme's centre tile; its fill, outline and radius come from the skin.
+  skinCenterIcon: {
+    width: 36,
+    height: 36,
+    alignItems: "center",
+    justifyContent: "center",
   },
   // Plain outlined square in place of the glass stack — deliberately not built
   // on centerIconWrap, so none of its drop shadow or elevation comes along.
