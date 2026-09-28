@@ -1,5 +1,6 @@
-import React, { useCallback, useMemo } from "react";
-import { View, Text, TouchableOpacity, ActivityIndicator, StyleSheet } from "react-native";
+import React, { useCallback, useMemo, useRef } from "react";
+import { View, Text, TouchableOpacity, Pressable, ActivityIndicator, StyleSheet } from "react-native";
+import { openBadgeShowcase } from "../../libs/badgeShowcase";
 import SmartImage from "../common/SmartImage";
 import { LinearGradient } from "expo-linear-gradient";
 import { SvgXml } from "react-native-svg";
@@ -141,6 +142,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
 }) => {
   const { t } = useI18n();
   const { isMinimal } = useAppTheme();
+  const badgeRef = useRef<View>(null);
   // Bios go through the shared hook rather than a private translateText call,
   // which is what gets them auto-translation, the persisted cache and — the
   // reason the old code was wrong — the reader's CHOSEN language. It targeted
@@ -334,7 +336,9 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
             <View className="flex-row items-center gap-1.5 flex-1 mr-2">
               <Text className="text-white text-xl font-bold" numberOfLines={1} style={{ flexShrink: 1 }}>{displayName}</Text>
               {badge && badgeImage && (
-                <SmartImage source={badgeImage} style={[getBadgeOpticalStyle(badgeImage, 20), { marginLeft: 0 }]} contentFit="contain" />
+                <Pressable ref={badgeRef} hitSlop={8} onPress={() => openBadgeShowcase(badge, badgeRef.current)}>
+                  <SmartImage source={badgeImage} style={[getBadgeOpticalStyle(badgeImage, 20), { marginLeft: 0 }]} contentFit="contain" />
+                </Pressable>
               )}
             </View>
             {socialItems.length > 0 && (

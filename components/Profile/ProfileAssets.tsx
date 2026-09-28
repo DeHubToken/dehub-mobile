@@ -28,10 +28,7 @@ import { useTranslation } from "react-i18next";
 import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
 import {
   getSubscriptionEarnings,
-  getSubscriptionCredits,
-  outstandingEarnings,
   withdrawSubscriptionEarnings,
-  type SubscriptionCreditBalance,
   type SubscriptionEarnings,
 } from "../../services/subscription.service";
 
@@ -55,7 +52,6 @@ const ProfileAssets = () => {
   const [showInfo, setShowInfo] = useState(false);
   const [subscriptionEarnings, setSubscriptionEarnings] = useState<SubscriptionEarnings | null>(null);
   const [withdrawingSubscriptions, setWithdrawingSubscriptions] = useState(false);
-  const [subscriptionCredits, setSubscriptionCredits] = useState<SubscriptionCreditBalance | null>(null);
 
   const mountedRef = React.useRef(true);
   React.useEffect(() => {
@@ -66,9 +62,6 @@ const ProfileAssets = () => {
     getSubscriptionEarnings()
       .then((value) => { if (mountedRef.current) setSubscriptionEarnings(value); })
       .catch(() => { /* the on-chain wallet still renders if this private read is unavailable */ });
-    getSubscriptionCredits(user?.address)
-      .then((value) => { if (mountedRef.current) setSubscriptionCredits(value); })
-      .catch(() => {});
   }, [user?.address, user?.walletAddress]);
 
   React.useEffect(() => {
@@ -185,7 +178,7 @@ const ProfileAssets = () => {
     try {
       const result = await withdrawSubscriptionEarnings();
       setSubscriptionEarnings(result.status);
-      toastSuccess(t("subscriptions.tokensSent", { amount: (result.amountTokens ?? result.amountUsdt).toLocaleString(undefined, { maximumFractionDigits: 2 }) }));
+      toastSuccess(t("assets.usdtSent", { amount: result.amountUsdt.toLocaleString() }));
     } catch (error) {
       toastError(error, t("assets.withdrawableSoon"));
     } finally {
@@ -354,65 +347,22 @@ const ProfileAssets = () => {
           </TouchableOpacity>
         </View>
       )}
-      {/* Subscription tokens count like tokens but are locked at the dollar
-          value they were added at and only spend on subscriptions, so every
-          way out says so. */}
-      {subscriptionCredits && subscriptionCredits.tokens > 0 && (
-        <View className="mb-1">
-          <View className="flex-row items-center justify-between py-2">
-            <View className="flex-row items-center flex-1">
-              <View className="mr-3">
-                <Image source={dhbIcon} className="w-8 h-8 rounded-full" />
-                <View className="absolute -bottom-0.5 -right-0.5 w-4 h-4 rounded-full bg-black items-center justify-center">
-                  <Ionicons name="lock-closed" size={9} color="#FFFFFF" />
-                </View>
-              </View>
-              <View className="flex-1">
-                <Text className="text-lg text-white">{t("subscriptions.subscriptionTokens")}</Text>
-                <Text className="text-[11px] text-white/50">
-                  {t("subscriptions.earningsWorth", {
-                    amount: subscriptionCredits.usd.toLocaleString(undefined, { style: "currency", currency: "USD" }),
-                  })}
-                </Text>
-              </View>
-            </View>
-            <Text className="text-lg text-gray-300">{formatCompactNumber(subscriptionCredits.tokens)}</Text>
-          </View>
-          <View className="ml-9 mt-1 mb-2 flex-row">
-            {(["send", "trade", "withdraw"] as const).map((key) => (
-              <TouchableOpacity
-                key={key}
-                className="py-2 px-3 rounded-xl flex-1 mx-1 bg-theme-neutrals-700"
-                onPress={() => toastInfo(t("subscriptions.untradableTokens"))}
-              >
-                <Text className="text-xs text-white text-center">
-                  {key === "send" ? t("assets.send") : key === "trade" ? t("subscriptions.trade") : t("subscriptions.withdraw")}
-                </Text>
-              </TouchableOpacity>
-            ))}
-          </View>
-        </View>
-      )}
-      {subscriptionEarnings && outstandingEarnings(subscriptionEarnings).usd > 0 && (
+      {subscriptionEarnings && (subscriptionEarnings.pendingUsdt + subscriptionEarnings.processingUsdt) > 0 && (
         <View className="mt-2 pt-3 border-t border-white/10">
           <View className="flex-row items-center justify-between">
             <View className="flex-row items-center flex-1">
-              <Image source={dhbIcon} className="w-8 h-8 rounded-full mr-3" />
+              <Image source={usdtIcon} className="w-8 h-8 rounded-full mr-3" />
               <View className="flex-1">
                 <Text className="text-sm text-white font-semibold">{t("assets.subscriptionEarnings")}</Text>
                 <Text className="text-[11px] text-white/50">
-                  {t("subscriptions.earningsWorth", {
-                    amount: outstandingEarnings(subscriptionEarnings).usd.toLocaleString(undefined, { style: "currency", currency: "USD" }),
-                  })}
-                  {" · "}
                   {subscriptionEarnings.withdrawalAvailable
-                    ? t("subscriptions.earningsPaidInTokens")
-                    : t("subscriptions.earningsPendingReserve")}
+                    ? t("assets.withdrawableOnBase")
+                    : t("assets.pendingTreasury")}
                 </Text>
               </View>
             </View>
             <Text className="text-base text-gray-300">
-              {formatCompactNumber(outstandingEarnings(subscriptionEarnings).tokens)}
+              {(subscriptionEarnings.pendingUsdt + subscriptionEarnings.processingUsdt).toLocaleString()} USDT
             </Text>
           </View>
           <TouchableOpacity
