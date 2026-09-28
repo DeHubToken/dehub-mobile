@@ -161,6 +161,16 @@
             {
               "scheme": "https",
               "host": "dehub.io",
+              "path": "/connect"
+            },
+            {
+              "scheme": "https",
+              "host": "dehub.io",
+              "pathPrefix": "/connect/"
+            },
+            {
+              "scheme": "https",
+              "host": "dehub.io",
               "path": "/arcade/kings-gambit/online"
             },
             {
