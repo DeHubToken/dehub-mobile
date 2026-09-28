@@ -1,6 +1,7 @@
 import { getSigningProvider } from "./provider.registry";
 import { getAuthUser, setAuthUser } from "./auth.utils";
-import { prepareWalletRelay } from './wallet-relay';
+import { prepareWalletRelay, waitForWalletSignature } from './wallet-relay';
+import { utils } from 'ethers';
 
 export interface StoredSignatureMeta {
   address: string;
@@ -68,6 +69,7 @@ export async function getOrCreateAuthSignature(
 
   const timestamp = Math.floor(Date.now() / 1000);
   const message = generateSignMessage(address, timestamp, true);
+  const encodedMessage = utils.hexlify(utils.toUtf8Bytes(message));
   // Prefer an injected EIP-1193 provider if available
   const injected = provider || getSigningProvider();
   if (!injected || typeof injected.request !== "function") {
@@ -78,18 +80,18 @@ export async function getOrCreateAuthSignature(
   await prepareWalletRelay(injected);
   try {
     try {
-      signature = await injected.request({
+      signature = await waitForWalletSignature<string>(() => injected.request({
         method: "personal_sign",
-        params: [message, address],
-      });
+        params: [encodedMessage, address],
+      }));
     } catch (error: any) {
       // Changing parameter order only fixes an invalid-params response. A
       // cancellation or broken WalletConnect transport must not prompt twice.
       if (error?.code !== -32602 && !/invalid params|invalid parameters/i.test(error?.message ?? '')) throw error;
-      signature = await injected.request({
+      signature = await waitForWalletSignature<string>(() => injected.request({
         method: "personal_sign",
-        params: [address, message],
-      });
+        params: [address, encodedMessage],
+      }));
     }
   } catch (e: any) {
     throw new Error(e?.message || "Signing message failed");

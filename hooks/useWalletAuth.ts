@@ -98,7 +98,7 @@ export const useWalletAuth = () => {
         authenticatedKeyRef.current = `${address.toLowerCase()}-${chainId}`;
       } catch (error) {
         log.error("authenticate:error", error);
-        if (isWalletRelayPublishError(error)) {
+        if (isWalletRelayPublishError(error) || (error as Error)?.message === 'Wallet signature timed out') {
           reconnectRequiredRef.current = true;
           toastError(null, 'Wallet connection interrupted. Tap Connect Wallet to reconnect.');
         } else if (!reportWalletSignupBlocked(error)) {

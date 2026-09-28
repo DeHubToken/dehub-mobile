@@ -1,9 +1,11 @@
 import { getOrCreateAuthSignature } from '../../libs/web3.auth.sign';
+import { utils, Wallet } from 'ethers';
 jest.unmock('../../libs/web3.auth.sign');
 jest.mock('../../libs/auth.utils', () => ({ getAuthUser: jest.fn().mockResolvedValue(null), setAuthUser: jest.fn() }));
 jest.mock('../../libs/provider.registry', () => ({ getSigningProvider: jest.fn() }));
 
 describe('external wallet signing recovery', () => {
+  afterEach(() => jest.useRealTimers());
   const address = '0x1111111111111111111111111111111111111111';
   it('does not ask again after cancellation or a broken connection', async () => {
     for (const error of [{ code: 4001, message: 'User rejected' }, new TypeError('Network request failed')]) {
@@ -26,5 +28,30 @@ describe('external wallet signing recovery', () => {
     })).rejects.toThrow('Failed to publish payload');
     expect(events).toEqual(['ready', 'sign']);
     expect(request).toHaveBeenCalledTimes(1);
+  });
+  it('encodes personal_sign data while preserving the signed login text', async () => {
+    const wallet = Wallet.createRandom();
+    let text = '';
+    const request = jest.fn(async ({ params }) => {
+      expect(params[0]).toMatch(/^0x[0-9a-f]+$/);
+      text = utils.toUtf8String(params[0]);
+      return wallet.signMessage(utils.arrayify(params[0]));
+    });
+    const result = await getOrCreateAuthSignature(wallet.address, { request });
+    expect(text).toContain(`Your wallet address is ${wallet.address.toLowerCase()}.`);
+    expect(utils.verifyMessage(text, result.signature)).toBe(wallet.address);
+  });
+  it('releases a wallet that never answers and ignores a late signature', async () => {
+    jest.useFakeTimers();
+    let finish!: (value: string) => void;
+    const request = jest.fn(() => new Promise<string>(resolve => { finish = resolve; }));
+    const pending = getOrCreateAuthSignature(address, { request });
+    const check = expect(pending).rejects.toThrow('Wallet signature timed out');
+    await jest.advanceTimersByTimeAsync(120_000);
+    await check;
+    finish('0xvalidsignature');
+    await Promise.resolve();
+    expect(request).toHaveBeenCalledTimes(1);
+    expect(jest.getTimerCount()).toBe(0);
   });
 });
