@@ -354,6 +354,8 @@
     "compactModeDesc": "Bawasan ang espasyo para sa mas maraming nilalaman",
     "autoPlay": "Awtomatikong Pag-play ng Mga Video",
     "autoPlayDesc": "Awtomatikong i-play ang mga video sa feed",
+    "autoPlayMuted": "Simulan ang autoplay nang naka-mute",
+    "autoPlayMutedDesc": "Laging nagsisimulang walang tunog ang mga video na kusang nagpe-play",
     "showAnimations": "Magpakita ng Mga Animasyon",
     "showAnimationsDesc": "Paganahin ang makinis na mga transition at epekto",
     "coinPlacement": "Paglalagay ng Barya",

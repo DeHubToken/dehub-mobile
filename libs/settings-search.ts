@@ -53,6 +53,7 @@ export const SETTINGS_SEARCH_INDEX: SettingsSearchEntry[] = [
   { tab: 'appearance', anchor: 'language', label: 'Language', labelKey: 'settings.language', keywords: 'translate locale english' },
   { tab: 'appearance', anchor: 'media', label: 'Media', labelKey: 'settings.media', keywords: 'video images playback' },
   { tab: 'appearance', anchor: 'media', label: 'Auto-play', labelKey: 'settings.autoPlay', keywords: 'autoplay play automatically' },
+  { tab: 'appearance', anchor: 'media', label: 'Start autoplay muted', labelKey: 'settings.autoPlayMuted', keywords: 'autoplay mute muted sound audio silent quiet volume' },
   { tab: 'appearance', anchor: 'media', label: 'Data Saver', labelKey: 'settings.dataSaver', keywords: 'bandwidth mobile data quality' },
   { tab: 'appearance', anchor: 'media', label: 'High quality images', labelKey: 'settings.highQualityImages', keywords: 'resolution sharp' },
   { tab: 'appearance', anchor: 'media', label: 'Playback Speed Per Channel', labelKey: 'settings.channelSpeed', keywords: 'speed rate' },

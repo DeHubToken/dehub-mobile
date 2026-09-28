@@ -354,6 +354,8 @@
     "compactModeDesc": "Kurangkan jarak untuk lebih banyak kandungan",
     "autoPlay": "Main Auto Video",
     "autoPlayDesc": "Mainkan video secara automatik dalam suapan",
+    "autoPlayMuted": "Mulakan main automatik tanpa bunyi",
+    "autoPlayMutedDesc": "Video yang dimainkan sendiri sentiasa bermula dengan bunyi dimatikan",
     "showAnimations": "Tunjukkan Animasi",
     "showAnimationsDesc": "Dayakan peralihan dan kesan yang lancar",
     "coinPlacement": "Penempatan Syiling",

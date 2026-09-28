@@ -354,6 +354,8 @@
     "compactModeDesc": "Weniger Abstand für mehr Inhalt",
     "autoPlay": "Automatische Wiedergabe",
     "autoPlayDesc": "Videos automatisch abspielen",
+    "autoPlayMuted": "Autoplay stumm starten",
+    "autoPlayMutedDesc": "Videos, die von selbst abspielen, starten immer ohne Ton",
     "showAnimations": "Animationen anzeigen",
     "showAnimationsDesc": "Sanfte Übergänge aktivieren",
     "coinPlacement": "Münzplatzierung",

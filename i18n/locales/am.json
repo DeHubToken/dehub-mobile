@@ -354,6 +354,8 @@
     "compactModeDesc": "ለተጨማሪ ይዘት ክፍተት ቀንስ",
     "autoPlay": "ቪዲዮዎችን ራስ-ሰር አጫውት",
     "autoPlayDesc": "በፊድ ውስጥ ቪዲዮዎችን ራስ-ሰር አጫውት",
+    "autoPlayMuted": "ራስ-አጫውትን ድምፅ አጥፍቶ ጀምር",
+    "autoPlayMutedDesc": "በራሳቸው የሚጫወቱ ቪዲዮዎች ሁልጊዜ ድምፅ ጠፍቶ ይጀምራሉ",
     "showAnimations": "አኒሜሽኖችን አሳይ",
     "showAnimationsDesc": "ለስላሳ ሽግግሮችንና ውጤቶችን አንቃ",
     "coinPlacement": "የሳንቲም ቦታ",

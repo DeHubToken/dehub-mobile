@@ -354,6 +354,8 @@
     "compactModeDesc": "Csökkentse a térközt több tartalom megjelenítéséhez",
     "autoPlay": "Videók automatikus lejátszása",
     "autoPlayDesc": "Videók automatikusan lejátszódnak",
+    "autoPlayMuted": "Automatikus lejátszás némítva",
+    "autoPlayMutedDesc": "A maguktól induló videók mindig hang nélkül kezdődnek",
     "showAnimations": "Animációk megjelenítése",
     "showAnimationsDesc": "Átmeneti effektek bekapcsolása",
     "coinPlacement": "Érme elhelyezése",

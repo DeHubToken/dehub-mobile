@@ -354,6 +354,8 @@
     "compactModeDesc": "Dhimi kala fogaanshada oo nuxur badan",
     "autoPlay": "Iskii u ciyaar Fiidiyowyada",
     "autoPlayDesc": "Si toos ah u ciyaar fiidiyowyada bogga",
+    "autoPlayMuted": "Ku bilow ciyaarista tooska ah cod la'aan",
+    "autoPlayMutedDesc": "Fiidiyowyada is-ciyaara had iyo jeer waxay ku bilaabmaan cod la'aan",
     "showAnimations": "Muuji Dhaqdhaqaaqyada",
     "showAnimationsDesc": "Shid wareegga iyo saameynta fidsan",
     "coinPlacement": "Goobta Lacagta",

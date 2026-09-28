@@ -354,6 +354,8 @@
     "compactModeDesc": "Weniger Abstand für meh Inhalt",
     "autoPlay": "Videos automatisch abspile",
     "autoPlayDesc": "Videos im Feed automatisch abspile",
+    "autoPlayMuted": "Autoplay stumm starte",
+    "autoPlayMutedDesc": "Videos, wo vo sälber laufe, fanged immer ohni Ton aa",
     "showAnimations": "Animatione aazeige",
     "showAnimationsDesc": "Smooti Übergang und Effäkt aktiviere",
     "coinPlacement": "Münz-Platzierig",

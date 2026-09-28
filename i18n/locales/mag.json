@@ -353,6 +353,8 @@
     "compactModeDesc": "ज्यादा कंटेंट खातिर जगह कम करो",
     "autoPlay": "ऑटो-प्ले वीडियो",
     "autoPlayDesc": "फीड में वीडियो अपने आप चलाओ",
+    "autoPlayMuted": "ऑटोप्ले बिना आवाज के सुरू करूँ",
+    "autoPlayMutedDesc": "अपने से चले वला वीडियो हमेसा बिना आवाज के सुरू होतो",
     "showAnimations": "एनिमेशन दिखाओ",
     "showAnimationsDesc": "चिकना ट्रांजिशन आ इफेक्ट चालू करो",
     "coinPlacement": "कॉइन प्लेसमेंट",

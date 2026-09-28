@@ -354,6 +354,8 @@
     "compactModeDesc": "Sumažinti tarpą daugiau turiniui",
     "autoPlay": "Automatinis vaizdo įrašų paleidimas",
     "autoPlayDesc": "Automatiškai paleisti vaizdo įrašus sraute",
+    "autoPlayMuted": "Automatinį paleidimą pradėti be garso",
+    "autoPlayMutedDesc": "Savaime paleidžiami vaizdo įrašai visada prasideda be garso",
     "showAnimations": "Rodyti animacijas",
     "showAnimationsDesc": "Įjungti sklandžius perėjimus ir efektus",
     "coinPlacement": "Monetos vieta",

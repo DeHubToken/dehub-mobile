@@ -354,6 +354,8 @@
     "compactModeDesc": "Nciphisa isikhala sokuqukethwe okuningi",
     "autoPlay": "Dlala Amavidiyo Ngokuzenzakalelayo",
     "autoPlayDesc": "Dlala amavidiyo ngokuzenzakalelayo efidini",
+    "autoPlayMuted": "Qala ukudlala okuzenzakalelayo ngaphandle komsindo",
+    "autoPlayMutedDesc": "Amavidiyo azidlalelayo ahlala eqala umsindo uvaliwe",
     "showAnimations": "Bonisa Ama-animation",
     "showAnimationsDesc": "Vula ukuguquka okubushelelezi nemiphumela",
     "coinPlacement": "Ukubekwa Kwemali",
