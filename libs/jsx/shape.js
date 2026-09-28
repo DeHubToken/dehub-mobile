@@ -108,6 +108,8 @@ function overrideFor(style) {
 let cache = new WeakMap();
 
 function squareStyle(style) {
+  // Pressable's `({ pressed }) => style`: square whatever it returns.
+  if (typeof style === "function") return (state) => squareStyle(style(state));
   if (!style || typeof style !== "object") return style;
   if (!Array.isArray(style)) {
     const hit = cache.get(style);
@@ -133,4 +135,17 @@ function squareProps(props) {
   return next;
 }
 
-module.exports = { setSquaring, setThemePass, isSquaring, squareStyle, squareProps, SQUARE };
+/**
+ * Keeps Pressable's `style={({ pressed }) => ...}` working. NativeWind's
+ * runtime (react-native-css-interop) rebuilds `style` from the objects it can
+ * read, and a function reads as an empty object, so the element rendered with
+ * no style at all: no size, padding, radius or background. With no className
+ * there is nothing for it to translate, so those elements go around it.
+ */
+function routeProps(props) {
+  if (!props || typeof props !== "object" || typeof props.style !== "function") return props;
+  if (props.className !== undefined || props.cssInterop !== undefined) return props;
+  return { ...props, cssInterop: false };
+}
+
+module.exports = { setSquaring, setThemePass, isSquaring, squareStyle, squareProps, routeProps, SQUARE };

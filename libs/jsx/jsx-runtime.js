@@ -5,11 +5,11 @@
  * jest.config.js.
  */
 const base = require("nativewind/jsx-runtime");
-const { squareProps } = require("./shape");
+const { squareProps, routeProps } = require("./shape");
 
 function wrap(fn) {
   return function (type, props, ...rest) {
-    return fn(type, squareProps(props), ...rest);
+    return fn(type, routeProps(squareProps(props)), ...rest);
   };
 }
 
