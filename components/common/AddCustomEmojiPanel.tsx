@@ -175,7 +175,7 @@ export default function AddCustomEmojiPanel({ onDone, onLeave }: { onDone: () =>
     busy || !target.ready || (mode === "single" ? !name || (!file && !source) : !pack.trim());
 
   return (
-    <ScrollView keyboardShouldPersistTaps="handled" contentContainerStyle={{ padding: 10, gap: 8 }}>
+    <ScrollView keyboardShouldPersistTaps="handled" contentContainerStyle={{ paddingHorizontal: 14, paddingVertical: 10, gap: 8 }}>
       <View className="flex-row items-center" style={{ gap: 8 }}>
         <Pressable
           onPress={onDone}
@@ -186,16 +186,16 @@ export default function AddCustomEmojiPanel({ onDone, onLeave }: { onDone: () =>
         >
           <Icon name="ArrowLeft" size={18} color="#D4D4D8" />
         </Pressable>
-        <View className="flex-row rounded-lg bg-white/5 p-0.5">
+        <View className="flex-1 min-w-0 flex-row rounded-lg bg-white/5 p-0.5">
           {(["single", "pack"] as const).map((m) => (
             <Pressable
               key={m}
               onPress={() => setMode(m)}
               accessibilityRole="tab"
               accessibilityState={{ selected: mode === m }}
-              className={`px-3 py-1.5 rounded-md ${mode === m ? "bg-white/15" : ""}`}
+              className={`flex-1 min-w-0 items-center px-2 py-1.5 rounded-md ${mode === m ? "bg-white/15" : ""}`}
             >
-              <Text className={`text-xs ${mode === m ? "text-white" : "text-theme-neutrals-400"}`}>
+              <Text numberOfLines={1} className={`text-xs ${mode === m ? "text-white" : "text-theme-neutrals-400"}`}>
                 {t(m === "single" ? "emojiPicker.modeSingle" : "emojiPicker.modePack")}
               </Text>
             </Pressable>
@@ -254,7 +254,7 @@ export default function AddCustomEmojiPanel({ onDone, onLeave }: { onDone: () =>
                   placeholderTextColor="#71717A"
                   autoCapitalize="none"
                   autoCorrect={false}
-                  className={`flex-1 ${INPUT_CLASS}`}
+                  className={`flex-1 min-w-0 ${INPUT_CLASS}`}
                   style={{ paddingVertical: 0 }}
                 />
                 <Text className="text-theme-neutrals-500">:</Text>
