@@ -1,13 +1,6 @@
-import React, { memo, useCallback, useState } from "react";
+import React, { memo, useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { View, Pressable, Text } from "react-native";
-import Animated, {
-  useSharedValue,
-  useAnimatedStyle,
-  withSpring,
-  withSequence,
-  withTiming,
-} from "react-native-reanimated";
+import { Animated, View, Pressable, Text } from "react-native";
 import Icon from "../ui/Icon";
 import { formatCompactNumber } from "../../libs/numbers.util";
 import ReactionPicker from "./ReactionPicker";
@@ -95,17 +88,28 @@ const AnimatedActionButton: React.FC<{
   glyphAnimated?: boolean;
   accessibilityLabel?: string;
 }> = ({ onPress, onPressIn, onLongPress, iconName, iconNameActive, active, activeColor, activeFill, activeStrokeWidth, inactiveColor, iconSize = 20, count, countColor, formatCount, glyph, glyphAnimated, accessibilityLabel }) => {
-  const scale = useSharedValue(1);
-
-  const animatedStyle = useAnimatedStyle(() => ({
-    transform: [{ scale: scale.value }],
-  }));
+  const scale = useRef(new Animated.Value(1)).current;
+  useEffect(() => () => scale.stopAnimation(), [scale]);
+  // Seven buttons per retained card only animate when tapped. Native-driver
+  // transforms avoid registering idle icons in every Reanimated props commit.
+  const animatedStyle = { transform: [{ scale }] };
 
   const handlePress = useCallback(() => {
-    scale.value = withSequence(
-      withTiming(1.3, { duration: 100 }),
-      withSpring(1, BOUNCE_CONFIG),
-    );
+    scale.stopAnimation();
+    Animated.sequence([
+      Animated.timing(scale, {
+        toValue: 1.3,
+        duration: 100,
+        useNativeDriver: true,
+        isInteraction: false,
+      }),
+      Animated.spring(scale, {
+        ...BOUNCE_CONFIG,
+        toValue: 1,
+        useNativeDriver: true,
+        isInteraction: false,
+      }),
+    ]).start();
     haptic.tap();
     onPress();
   }, [onPress, scale]);
