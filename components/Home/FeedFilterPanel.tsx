@@ -177,6 +177,7 @@ const FadeEdgeRow: React.FC<{ children: React.ReactNode }> = memo(({ children })
       horizontal
       showsHorizontalScrollIndicator={false}
       keyboardShouldPersistTaps="handled"
+      style={mask ? undefined : sectionStyles.bleed}
       contentContainerStyle={sectionStyles.rowContent}
       onLayout={handleLayout}
       onContentSizeChange={handleContentSizeChange}
@@ -191,6 +192,7 @@ const FadeEdgeRow: React.FC<{ children: React.ReactNode }> = memo(({ children })
 
   return (
     <MaskedView
+      style={sectionStyles.bleed}
       maskElement={
         <LinearGradient
           colors={mask.colors as [string, string, ...string[]]}
@@ -230,9 +232,12 @@ const sectionStyles = StyleSheet.create({
     letterSpacing: 1.5,
     fontWeight: "600",
   },
+  // The row bleeds through the panel padding to the card edge, so pills scroll
+  // out under the card border rather than stopping 12pt inside it.
+  bleed: { marginHorizontal: -12 },
   rowContent: {
-    paddingLeft: 4,
-    paddingRight: 24,
+    paddingLeft: 16,
+    paddingRight: 32,
     paddingVertical: 4,
   },
 });

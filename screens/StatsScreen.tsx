@@ -136,7 +136,7 @@ export default function StatsScreen() {
           contentContainerStyle={styles.content}
           refreshControl={<DeHubRefreshControl refreshing={query.isFetching} onRefresh={() => query.refetch()} tintColor="#F4F4F5" />}
         >
-          <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.filters}>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ marginHorizontal: -12 }} contentContainerStyle={styles.filters}>
             {RANGE_OPTIONS.map((item) => (
               <Pressable key={item.key} onPress={() => setRange(item.key)} style={[styles.filter, range === item.key && styles.filterActive]}>
                 <Text style={[styles.filterText, range === item.key && styles.filterTextActive]}>{t(item.labelKey)}</Text>
@@ -190,7 +190,7 @@ const styles = StyleSheet.create({
   root: { flex: 1, backgroundColor: "#010305" },
   center: { flex: 1, alignItems: "center", justifyContent: "center", gap: 14 },
   content: { padding: 12, paddingBottom: 40, gap: 12 },
-  filters: { gap: 8, paddingVertical: 2 },
+  filters: { gap: 8, paddingVertical: 2, paddingHorizontal: 12 },
   filter: { paddingHorizontal: 15, paddingVertical: 9, borderRadius: 999, borderWidth: 1, borderColor: "#383A3D", backgroundColor: "#1C1C1C" },
   filterActive: { backgroundColor: "#F4F4F5", borderColor: "#F4F4F5" },
   filterText: { color: "#A6A9AC", fontSize: 13, fontWeight: "600" },

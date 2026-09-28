@@ -291,10 +291,13 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation, route }) => {
           </TouchableOpacity>
         </View>
         <SettingsSearchBar onSelect={handleSearchSelect} />
+        {/* Bleeds through the bento's padding so the icons that overflow
+            scroll out under the bento edge rather than being cut 16px in. */}
         <ScrollView
           horizontal
           showsHorizontalScrollIndicator={false}
-          contentContainerStyle={{ gap: 6, paddingRight: 4 }}
+          style={{ marginHorizontal: -16 }}
+          contentContainerStyle={{ gap: 6, paddingHorizontal: 16 }}
         >
           {TABS.map((tab) => {
             const active = activeTab === tab.key;
