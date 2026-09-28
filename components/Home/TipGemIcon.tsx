@@ -1,9 +1,11 @@
 /**
- * The tip button's gem. Plain outline until this viewer tips the post, then it
- * turns into a filled diamond that swirls once and throws a ring of sparkles —
+ * The tip button's gem. Plain outline until this viewer tips, then the moving
+ * Noto 💎 (the same animated emoji a reaction you cast plays), which swirls in
+ * and throws a ring of sparkles on each fresh tip —
  * the same acknowledgement a reaction gets, so a tip never lands silently.
  */
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { Image } from "expo-image";
 import { AccessibilityInfo, Animated, Easing, View } from "react-native";
 import Icon from "../ui/Icon";
 
@@ -19,6 +21,9 @@ const SPARKLES = [0, 60, 120, 180, 240, 300].map((angle, i) => {
 export function TipGemIcon({ tipped, burstKey, size, color }: { tipped: boolean; burstKey: number; size: number; color: string }) {
   const spin = useRef(new Animated.Value(1)).current;
   const burst = useRef(new Animated.Value(1)).current;
+  const [failed, setFailed] = useState(false);
+  const [reduceMotion, setReduceMotion] = useState(false);
+  useEffect(() => { AccessibilityInfo.isReduceMotionEnabled().then(setReduceMotion); }, []);
 
   useEffect(() => {
     if (!burstKey) return;
@@ -43,7 +48,19 @@ export function TipGemIcon({ tipped, burstKey, size, color }: { tipped: boolean;
   return (
     <View style={{ width: size, height: size, alignItems: "center", justifyContent: "center" }}>
       <Animated.View style={{ transform: [{ rotate }, { scale }] }}>
-        <Icon name="Gem" size={size} color={GEM_STROKE} fill={GEM_FILL} strokeWidth={1.8} />
+        {reduceMotion || failed ? (
+          <Icon name="Gem" size={size} color={GEM_STROKE} fill={GEM_FILL} strokeWidth={1.8} />
+        ) : (
+          // The same moving Noto emoji a reaction you cast plays (ReactionEmoji).
+          <Image
+            source={require("../../assets/emoji/animated/gem.webp")}
+            style={{ width: size + 4, height: size + 4 }}
+            contentFit="contain"
+            autoplay
+            accessible={false}
+            onError={() => setFailed(true)}
+          />
+        )}
       </Animated.View>
       {SPARKLES.map((s, i) => (
         <Animated.View
