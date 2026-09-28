@@ -7,6 +7,7 @@ import AppDrawer from '../../components/Home/AppDrawer';
 
 const mockDispatch = jest.fn();
 let mockSignedIn = true;
+let mockBalance = 500;
 const mockOpenLink = jest.fn();
 const mockRequestTab = jest.fn();
 jest.mock('react-native-css-interop/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
@@ -53,7 +54,7 @@ jest.mock('../../config/storefront', () => ({ DIGITAL_PURCHASES_ENABLED: true })
 jest.mock('../../context/AuthContext', () => ({
   useAuthState: () => ({ isSignedIn: mockSignedIn }),
   useAuthActions: () => ({ signOut: jest.fn() }),
-  useUser: () => mockSignedIn ? { username: 'member', address: '0xmember', followers: 3, followings: 2 } : null,
+  useUser: () => mockSignedIn ? { username: 'member', address: '0xmember', followers: 3, followings: 2, ownBadgeBalance: mockBalance } : null,
 }));
 jest.mock('../../libs/misc', () => ({ getAvatarUrl: () => '' }));
 jest.mock('../../libs', () => ({ toastError: jest.fn(), toastInfo: jest.fn() }));
@@ -75,7 +76,7 @@ const destinations = [
   ['nav.connectAi', 'Connect'],
 ] as const;
 
-beforeEach(() => { jest.clearAllMocks(); mockSignedIn = true; });
+beforeEach(() => { jest.clearAllMocks(); mockSignedIn = true; mockBalance = 500; });
 
 it.each(destinations)('%s immediately closes and targets its registered nested screen', (label, screen, tab = false, params = undefined) => {
   const close = jest.fn();
@@ -95,10 +96,16 @@ it('routes the profile header, balance chip, and Post through App', () => {
   const view = render(<AppDrawer visible onClose={jest.fn()} />);
   fireEvent.press(view.getByText('member'));
   expect(mockDispatch).toHaveBeenLastCalledWith({ type: 'NAVIGATE', payload: { name: 'App', params: { screen: 'Profile', params: undefined } } });
-  fireEvent.press(view.getByLabelText('nav.wallet 0'));
+  fireEvent.press(view.getByLabelText('nav.wallet 500'));
   expect(mockDispatch).toHaveBeenLastCalledWith({ type: 'NAVIGATE', payload: { name: 'App', params: { screen: 'Dpay', params: { initialTab: 'buy' } } } });
   fireEvent.press(view.getByLabelText('sidebar.post'));
   expect(mockDispatch).toHaveBeenLastCalledWith({ type: 'NAVIGATE', payload: { name: 'App', params: { screen: 'Upload', params: undefined } } });
+});
+
+it('hides the balance chip when the wallet holds no DHB', () => {
+  mockBalance = 0;
+  const view = render(<AppDrawer visible onClose={jest.fn()} />);
+  expect(view.queryByLabelText('nav.wallet 0')).toBeNull();
 });
 
 it('routes sign-in through App and hides protected entries when signed out', () => {
