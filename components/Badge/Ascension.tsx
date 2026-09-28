@@ -17,7 +17,7 @@
  * white with a pastel holo tint — so the ceremony and the sticker read as
  * one thing. Per-tier sizing comes from `badgeMotion`.
  */
-import React, { useCallback, useEffect, useMemo } from "react";
+import React, { useCallback, useEffect, useMemo, type ReactNode } from "react";
 import { Pressable, StyleSheet, View, useWindowDimensions } from "react-native";
 import Animated, {
   Easing,
@@ -29,13 +29,21 @@ import Animated, {
   type SharedValue,
 } from "react-native-reanimated";
 import { LinearGradient } from "expo-linear-gradient";
-import type { StickerArt } from "./BadgeSticker";
 import { EMBER_COUNT, SPARKS_PER_BURST, type BadgeMotion } from "../../libs/badgeMotion";
 import { haptic } from "../../libs/haptics";
 import { optionalSkia } from "../../libs/skia";
 
 // Null on builds without Skia; see libs/skia.
 const SkiaGlitter = optionalSkia(() => require("./SkiaGlitter").default as typeof import("./SkiaGlitter").default);
+
+/** A badge as the ceremony draws it: the artwork, and a solid silhouette of it for the glow. Both fill their parent. */
+export interface StickerArt {
+  key: string;
+  /** The artwork as a bundled image, for anything that draws it itself (the Skia shatter). */
+  source?: number;
+  renderArt: () => ReactNode;
+  renderPlate: (color: string, blur?: number) => ReactNode;
+}
 
 export interface AscensionBox {
   x: number;

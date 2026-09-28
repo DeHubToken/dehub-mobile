@@ -69,20 +69,6 @@ function frameFor(index: number, theme: string): string {
     ][index % 5];
 }
 
-/**
- * A card's silhouette in one flat colour, reaching as far as its stroke and
- * drop shadow. The badge showcase cuts its sticker paper, shadow and foil
- * masks from it.
- */
-export function streamerBadgePlateSvg(id: StreamerBadgeId, theme: string, color: string): string {
-  const index = STREAMER_BADGE_IDS.indexOf(id);
-  if (index < 0) return '';
-  const frame = frameFor(index, theme);
-  return '<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120">'
-    + '<path d="' + frame + '" transform="translate(0 1)" fill="' + color + '" stroke="' + color
-    + '" stroke-width="6" stroke-linejoin="round"/></svg>';
-}
-
 /** Pure SVG, supported by browser SVG and react-native-svg; no image downloads or filters. */
 export function streamerBadgeSvg(id: StreamerBadgeId, theme: string, earned: boolean, instance = 'badge'): string {
   const index = STREAMER_BADGE_IDS.indexOf(id);

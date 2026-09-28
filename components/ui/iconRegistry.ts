@@ -40,7 +40,6 @@ import BotIcon from "lucide-react-native/dist/esm/icons/bot";
 import BriefcaseIcon from "lucide-react-native/dist/esm/icons/briefcase";
 import BugIcon from "lucide-react-native/dist/esm/icons/bug";
 import CalendarIcon from "lucide-react-native/dist/esm/icons/calendar";
-import CalendarCheckIcon from "lucide-react-native/dist/esm/icons/calendar-check";
 import CalendarClockIcon from "lucide-react-native/dist/esm/icons/calendar-clock";
 import CalendarDaysIcon from "lucide-react-native/dist/esm/icons/calendar-days";
 import CameraIcon from "lucide-react-native/dist/esm/icons/camera";
@@ -125,7 +124,6 @@ import HeartHandshakeIcon from "lucide-react-native/dist/esm/icons/heart-handsha
 import HeartOffIcon from "lucide-react-native/dist/esm/icons/heart-off";
 import HexagonIcon from "lucide-react-native/dist/esm/icons/hexagon";
 import HistoryIcon from "lucide-react-native/dist/esm/icons/history";
-import HourglassIcon from "lucide-react-native/dist/esm/icons/hourglass";
 import HouseIcon from "lucide-react-native/dist/esm/icons/house";
 import IdCardIcon from "lucide-react-native/dist/esm/icons/id-card";
 import ImageIcon from "lucide-react-native/dist/esm/icons/image";
@@ -185,6 +183,7 @@ import MusicIcon from "lucide-react-native/dist/esm/icons/music";
 import Music2Icon from "lucide-react-native/dist/esm/icons/music-2";
 import NavigationIcon from "lucide-react-native/dist/esm/icons/navigation";
 import NetworkIcon from "lucide-react-native/dist/esm/icons/network";
+import NewspaperIcon from "lucide-react-native/dist/esm/icons/newspaper";
 import PackageIcon from "lucide-react-native/dist/esm/icons/package";
 import PaintBucketIcon from "lucide-react-native/dist/esm/icons/paint-bucket";
 import PaletteIcon from "lucide-react-native/dist/esm/icons/palette";
@@ -193,6 +192,7 @@ import PauseIcon from "lucide-react-native/dist/esm/icons/pause";
 import PawPrintIcon from "lucide-react-native/dist/esm/icons/paw-print";
 import PenLineIcon from "lucide-react-native/dist/esm/icons/pen-line";
 import PencilIcon from "lucide-react-native/dist/esm/icons/pencil";
+import PercentIcon from "lucide-react-native/dist/esm/icons/percent";
 import PhoneIcon from "lucide-react-native/dist/esm/icons/phone";
 import PhoneOffIcon from "lucide-react-native/dist/esm/icons/phone-off";
 import PictureInPicture2Icon from "lucide-react-native/dist/esm/icons/picture-in-picture-2";
@@ -220,7 +220,6 @@ import SaveIcon from "lucide-react-native/dist/esm/icons/save";
 import ScaleIcon from "lucide-react-native/dist/esm/icons/scale";
 import ScanLineIcon from "lucide-react-native/dist/esm/icons/scan-line";
 import ScissorsIcon from "lucide-react-native/dist/esm/icons/scissors";
-import ScreenShareIcon from "lucide-react-native/dist/esm/icons/screen-share";
 import ScrollIcon from "lucide-react-native/dist/esm/icons/scroll";
 import SearchIcon from "lucide-react-native/dist/esm/icons/search";
 import SendIcon from "lucide-react-native/dist/esm/icons/send";
@@ -248,7 +247,6 @@ import StampIcon from "lucide-react-native/dist/esm/icons/stamp";
 import StarIcon from "lucide-react-native/dist/esm/icons/star";
 import StoreIcon from "lucide-react-native/dist/esm/icons/store";
 import SunIcon from "lucide-react-native/dist/esm/icons/sun";
-import SunriseIcon from "lucide-react-native/dist/esm/icons/sunrise";
 import TagIcon from "lucide-react-native/dist/esm/icons/tag";
 import TargetIcon from "lucide-react-native/dist/esm/icons/target";
 import TextIcon from "lucide-react-native/dist/esm/icons/text";
@@ -334,7 +332,6 @@ export const iconRegistry = {
   Briefcase: BriefcaseIcon,
   Bug: BugIcon,
   Calendar: CalendarIcon,
-  CalendarCheck: CalendarCheckIcon,
   CalendarClock: CalendarClockIcon,
   CalendarDays: CalendarDaysIcon,
   Camera: CameraIcon,
@@ -419,7 +416,6 @@ export const iconRegistry = {
   HeartOff: HeartOffIcon,
   Hexagon: HexagonIcon,
   History: HistoryIcon,
-  Hourglass: HourglassIcon,
   House: HouseIcon,
   IdCard: IdCardIcon,
   Image: ImageIcon,
@@ -479,6 +475,7 @@ export const iconRegistry = {
   Music2: Music2Icon,
   Navigation: NavigationIcon,
   Network: NetworkIcon,
+  Newspaper: NewspaperIcon,
   Package: PackageIcon,
   PaintBucket: PaintBucketIcon,
   Palette: PaletteIcon,
@@ -487,6 +484,7 @@ export const iconRegistry = {
   PawPrint: PawPrintIcon,
   PenLine: PenLineIcon,
   Pencil: PencilIcon,
+  Percent: PercentIcon,
   Phone: PhoneIcon,
   PhoneOff: PhoneOffIcon,
   PictureInPicture2: PictureInPicture2Icon,
@@ -514,7 +512,6 @@ export const iconRegistry = {
   Scale: ScaleIcon,
   ScanLine: ScanLineIcon,
   Scissors: ScissorsIcon,
-  ScreenShare: ScreenShareIcon,
   Scroll: ScrollIcon,
   Search: SearchIcon,
   Send: SendIcon,
@@ -542,7 +539,6 @@ export const iconRegistry = {
   Star: StarIcon,
   Store: StoreIcon,
   Sun: SunIcon,
-  Sunrise: SunriseIcon,
   Tag: TagIcon,
   Target: TargetIcon,
   Text: TextIcon,

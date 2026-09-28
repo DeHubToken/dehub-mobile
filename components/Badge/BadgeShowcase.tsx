@@ -4,18 +4,21 @@
  * ShowcaseShell does the flight, the sticker and the dock; this is the
  * details column for a staking tier: what it costs, a token slider that says
  * what an amount buys, and what the tier grants. Web's twin lives at
- * dehubweb `src/components/app/badge-showcase/BadgeShowcase.tsx`.
+ * dehubweb `src/components/app/badge-showcase/BadgeShowcase.tsx`, and every
+ * size, colour and gap here is its Tailwind class.
  */
-import React, { useEffect, useMemo, useRef, useState } from "react";
-import { Image, Pressable, Text, View, useWindowDimensions } from "react-native";
-import Animated, { FadeInDown, FadeOutUp } from "react-native-reanimated";
-import Slider from "@react-native-community/slider";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { Image, StyleSheet, Text, View, useWindowDimensions, type ImageSourcePropType } from "react-native";
+import Animated from "react-native-reanimated";
+import { Gesture, GestureDetector } from "react-native-gesture-handler";
+import { LinearGradient } from "expo-linear-gradient";
 import { useTranslation } from "react-i18next";
 import Icon, { type IconName } from "../ui/Icon";
 import { DhbCoin } from "../common/DhbCoin";
 import ShowcaseShell, { type ShowcaseApi, type ShowcaseEntry, type ShowcaseIntro } from "./ShowcaseShell";
-import type { StickerArt } from "./BadgeSticker";
-import { tiltAt, tileWidthFor, ui } from "./showcaseUi";
+import { assetDataUrl, type StickerFinish } from "./StickerStage";
+import type { StickerArt } from "./Ascension";
+import { GlassButton, TITLE_IN, TITLE_OUT, VALUE_IN, VALUE_OUT, tiltAt, tileWidthFor, ui } from "./showcaseUi";
 import { useUser } from "../../context/AuthContext";
 import { useBadgeLadderPrice, useBadgeScale } from "../../hooks/useBadgeScale";
 import {
@@ -51,6 +54,10 @@ interface Props {
 const SLIDER_STEPS = 1000;
 /** Slider positions this close to a threshold snap onto it. */
 const SNAP = 12;
+const FILL = { width: "100%", height: "100%" } as const;
+
+/** Finishes get fancier up the ladder. */
+const finishFor = (i: number): StickerFinish => (i < 4 ? "glitter" : i < 8 ? "holo" : "foil");
 
 /** Three significant figures, so a dragged amount reads as a price. */
 function roundAmount(value: number): number {
@@ -66,16 +73,21 @@ function formatUsd(value: number): string {
   return `$${Math.round(value)}`;
 }
 
-/** A holder tier as sticker art: the light export, cut from its plate. */
+/** A tier's art filling its parent, drawn at once rather than faded in. */
+function badgeArt(source: ImageSourcePropType | undefined) {
+  return () => <Image source={source} resizeMode="contain" resizeMethod="scale" fadeDuration={0} style={FILL} />;
+}
+
+/** A holder tier as the promotion draws it: the light export, and its plate for the glow. */
 function holderArt(tier: string): StickerArt {
   const source = badgeImage(tier, "light") ?? badgeImage(tier);
   const plate = BADGE_PLATES[tier];
   return {
     key: tier,
     source,
-    renderArt: () => <Image source={source} resizeMode="contain" style={{ width: "100%", height: "100%" }} />,
+    renderArt: badgeArt(source),
     renderPlate: (color, blur) => (
-      <Image source={plate} blurRadius={blur} resizeMode="contain" style={{ width: "100%", height: "100%", tintColor: color }} />
+      <Image source={plate} blurRadius={blur} resizeMode="contain" fadeDuration={0} style={[FILL, { tintColor: color }]} />
     ),
   };
 }
@@ -101,8 +113,22 @@ export default function BadgeShowcase({ tier, promotedFrom, anchor, onClose }: P
     return clicked >= 0 ? clicked : Math.max(0, standing?.index ?? 0);
   });
 
+  // The sticker and the flying copy are the tier's 256px light export, as on
+  // web; the dock shows the everyday badge.
   const entries = useMemo<ShowcaseEntry[]>(
-    () => BADGE_ORDER.map((name, i) => ({ key: name, label: name, tilt: tiltAt(i), art: holderArt(name) })),
+    () =>
+      BADGE_ORDER.map((name, i) => {
+        const art = badgeImage(name, "light") ?? badgeImage(name);
+        return {
+          key: name,
+          label: name,
+          finish: finishFor(i),
+          tilt: tiltAt(i),
+          sticker: () => (art === undefined ? Promise.reject(new Error(`no art for ${name}`)) : assetDataUrl(art)),
+          renderArt: badgeArt(art),
+          renderThumb: badgeArt(badgeImage(name)),
+        };
+      }),
     [],
   );
 
@@ -113,7 +139,7 @@ export default function BadgeShowcase({ tier, promotedFrom, anchor, onClose }: P
     const motion = badgeMotion(BADGE_ORDER[originIndex]);
     if (!motion) return undefined;
     const from = canonicalTierName(promotedFrom);
-    return { fromArt: from ? holderArt(from) : null, motion };
+    return { fromArt: from ? holderArt(from) : null, toArt: holderArt(BADGE_ORDER[originIndex]), motion };
   }, [promotedFrom, originIndex]);
 
   return (
@@ -124,6 +150,7 @@ export default function BadgeShowcase({ tier, promotedFrom, anchor, onClose }: P
       onClose={onClose}
       intro={intro}
       dialogLabel={(i) => t("badgeShowcase.dialogLabel", { tier: BADGE_ORDER[i] })}
+      dockLabel={t("badgeShowcase.badges")}
       owned={owned}
     >
       {(api) => (
@@ -170,7 +197,15 @@ function HolderDetails({
   // The slider can land between thresholds; everything else snaps the amount
   // back to the tier's own price.
   const [amount, setAmount] = useState(() => ladder[index].min);
-  const [sliderPos, setSliderPos] = useState<number | null>(null);
+  const [clonePrice, setClonePrice] = useState<number | null>(null);
+  useEffect(() => {
+    let live = true;
+    void fetchVoiceClonePrice().then((p) => live && setClonePrice(p));
+    return () => {
+      live = false;
+    };
+  }, []);
+
   const slid = useRef(false);
   useEffect(() => {
     if (slid.current) {
@@ -178,7 +213,6 @@ function HolderDetails({
       return;
     }
     setAmount(ladder[index].min);
-    setSliderPos(null);
   }, [index, ladder]);
 
   const lnMin = Math.log(ladder[0].min);
@@ -221,22 +255,16 @@ function HolderDetails({
   const remaining = standing ? Math.max(0, threshold - standing.balance) : 0;
   const nf = useMemo(() => new Intl.NumberFormat(i18n.language), [i18n.language]);
   const tileWidth = tileWidthFor(W);
-
-  const [clonePrice, setClonePrice] = useState<number | null>(null);
-  useEffect(() => {
-    let live = true;
-    void fetchVoiceClonePrice().then((p) => live && setClonePrice(p));
-    return () => {
-      live = false;
-    };
-  }, []);
+  const youPos =
+    standing && standing.balance > 0 ? Math.min(100, (toPos(standing.balance) / SLIDER_STEPS) * 100) : null;
+  const [markRowW, setMarkRowW] = useState(0);
 
   // Nine tiles, so the three-column grid never ends on a ragged row.
   const perkRows: { key: string; icon: IconName; label: string; value: string; up: boolean; coin?: boolean }[] = [
-    { key: "fee", icon: "Receipt", label: t("badgeShowcase.perks.fee"), value: `${perks.platformFee}%`, up: perks.platformFee < below.platformFee },
+    { key: "fee", icon: "Percent", label: t("badgeShowcase.perks.fee"), value: `${perks.platformFee}%`, up: perks.platformFee < below.platformFee },
     { key: "votes", icon: "Landmark", label: t("badgeShowcase.perks.votes"), value: `×${perks.voteWeight}`, up: perks.voteWeight > below.voteWeight },
     { key: "reach", icon: "Eye", label: t("badgeShowcase.perks.reach"), value: `×${perks.reach}`, up: perks.reach > below.reach },
-    { key: "feedPosts", icon: "Megaphone", label: t("badgeShowcase.perks.feedPosts"), value: nf.format(perks.feedPostsPerDay), up: perks.feedPostsPerDay > below.feedPostsPerDay },
+    { key: "feedPosts", icon: "Newspaper", label: t("badgeShowcase.perks.feedPosts"), value: nf.format(perks.feedPostsPerDay), up: perks.feedPostsPerDay > below.feedPostsPerDay },
     { key: "images", icon: "Images", label: t("badgeShowcase.perks.images"), value: nf.format(perks.imagesPerPost), up: perks.imagesPerPost > below.imagesPerPost },
     { key: "uploads", icon: "Upload", label: t("badgeShowcase.perks.uploads"), value: formatBytes(perks.uploadBytesPerDay), up: perks.uploadBytesPerDay > below.uploadBytesPerDay },
     { key: "storage", icon: "HardDrive", label: t("badgeShowcase.perks.storage"), value: formatBytes(perks.editorStorageBytes), up: perks.editorStorageBytes > below.editorStorageBytes },
@@ -256,42 +284,26 @@ function HolderDetails({
       if (navigationRef.isReady()) (navigationRef.navigate as (s: string, p?: object) => void)(screen, params);
     });
 
-  const sliderValue = sliderPos ?? toPos(amount);
-  const youPos = standing && standing.balance > 0 ? Math.min(100, (toPos(standing.balance) / SLIDER_STEPS) * 100) : null;
-  const [markRowW, setMarkRowW] = useState(0);
-
   return (
     <>
       <View style={{ alignItems: "center", gap: 6 }}>
-        {lineKey ? (
-          <Text
-            style={{
-              color: "#6ee7b7",
-              fontSize: 10,
-              lineHeight: 12,
-              fontWeight: "700",
-              letterSpacing: 1.4,
-              textTransform: "uppercase",
-              textAlign: "center",
-              textShadowColor: "rgba(110,231,183,0.45)",
-              textShadowRadius: 14,
-            }}
-          >
-            {t(lineKey)}
-          </Text>
-        ) : null}
+        {lineKey ? <Text style={styles.cheer}>{t(lineKey)}</Text> : null}
         <View style={ui.titleRow}>
-          <Animated.Text key={name} entering={FadeInDown.duration(260)} exiting={FadeOutUp.duration(180)} style={ui.title}>
+          <Animated.Text key={name} entering={TITLE_IN} exiting={TITLE_OUT} style={ui.title}>
             {SHORT_NAMES[name] ?? name}
           </Animated.Text>
           <View style={ui.chip}>
             <DhbCoin size={16} />
             <Text style={ui.chipText}>{shortDhb(threshold)}</Text>
             <View style={ui.chipDivider} />
-            <Icon name={owned(index) ? "Check" : "Lock"} size={12} color={owned(index) ? "#fff" : "rgba(255,255,255,0.6)"} />
+            {owned(index) ? (
+              <Icon name="Check" size={12} strokeWidth={3} color="#fff" />
+            ) : (
+              <Icon name="Lock" size={12} strokeWidth={2.5} color="rgba(255,255,255,0.6)" />
+            )}
           </View>
         </View>
-        <Text style={ui.muted} numberOfLines={1}>
+        <Text style={ui.muted}>
           {celebrating
             ? t("badgeAscension.reached", { tier: name })
             : standing
@@ -303,116 +315,69 @@ function HolderDetails({
         </Text>
       </View>
 
+      {/* Token slider */}
       <View style={ui.card}>
         <View style={ui.cardHead}>
           <Text style={[ui.label, { flexShrink: 1 }]} numberOfLines={1}>
             {t("badgeShowcase.sliderLabel")}
           </Text>
-          <View style={{ flexDirection: "row", alignItems: "center", gap: 5, flexShrink: 0 }}>
+          <View style={{ flexDirection: "row", alignItems: "center", gap: 6, flexShrink: 0 }}>
             <Text style={ui.amount} numberOfLines={1}>
               {nf.format(amount)}
             </Text>
-            <DhbCoin size={15} />
-            {price && W >= 380 ? <Text style={[ui.muted, { fontSize: 12 }]}>≈ {formatUsd(amount * price)}</Text> : null}
+            <DhbCoin size={14} />
+            {price && W >= 380 ? <Text style={styles.usd}>≈ {formatUsd(amount * price)}</Text> : null}
           </View>
         </View>
-        <View style={{ marginTop: 8 }}>
-          {youPos !== null ? (
-            <View
-              pointerEvents="none"
-              style={{
-                position: "absolute",
-                top: 12,
-                left: `${youPos}%`,
-                marginLeft: -6,
-                width: 12,
-                height: 12,
-                borderRadius: 6,
-                borderWidth: 2,
-                borderColor: "#6ee7b7",
-                backgroundColor: "#000",
-              }}
-            />
-          ) : null}
-          <Slider
-            style={{ marginHorizontal: -6, height: 36 }}
-            minimumValue={0}
-            maximumValue={SLIDER_STEPS}
-            step={1}
-            value={sliderValue}
-            onSlidingStart={() => setSliderPos(toPos(amount))}
-            onValueChange={onSlide}
-            onSlidingComplete={() => setSliderPos(null)}
-            minimumTrackTintColor="#ffffff"
-            maximumTrackTintColor="rgba(255,255,255,0.2)"
-            thumbTintColor="#ffffff"
-            accessibilityLabel={t("badgeShowcase.sliderLabel")}
-            accessibilityValue={{ text: t("badgeShowcase.sliderValue", { amount: nf.format(amount), tier: name }) }}
-          />
-        </View>
+        <TokenSlider
+          pos={toPos(amount)}
+          ticks={ladder.map((rung) => toPos(rung.min))}
+          index={index}
+          youPos={youPos}
+          thumb={badgeImage(name)}
+          onSlide={onSlide}
+          onStep={(dir) => onSlide(toPos(ladder[Math.min(count - 1, Math.max(0, index + dir))].min))}
+          label={t("badgeShowcase.sliderLabel")}
+          valueText={t("badgeShowcase.sliderValue", { amount: nf.format(amount), tier: name })}
+        />
         {/* "You" hangs directly under the green dot, like a you-are-here pin.
-            The label clamps inside the card; the pointer never does. */}
-        <View
-          style={{ flexDirection: "row", justifyContent: "space-between" }}
-          onLayout={(e) => setMarkRowW(e.nativeEvent.layout.width)}
-        >
+            The label clamps inside the card; the pointer never does, so it
+            always touches the dot. End labels step aside when it gets near. */}
+        <View style={ui.tinyRow} onLayout={(e) => setMarkRowW(e.nativeEvent.layout.width)}>
           <Text style={[ui.tiny, youPos !== null && youPos < 18 && { opacity: 0 }]}>{shortDhb(ladder[0].min)}</Text>
           <Text style={[ui.tiny, youPos !== null && youPos > 82 && { opacity: 0 }]}>{shortDhb(ladder[count - 1].min)}</Text>
           {youPos !== null && standing && markRowW > 0 ? (
             <>
+              <View pointerEvents="none" style={[styles.youPointer, { left: (youPos / 100) * markRowW - 4 }]} />
               <View
                 pointerEvents="none"
-                style={{
-                  position: "absolute",
-                  top: -4,
-                  left: (youPos / 100) * markRowW - 4,
-                  width: 0,
-                  height: 0,
-                  borderLeftWidth: 4,
-                  borderRightWidth: 4,
-                  borderBottomWidth: 4,
-                  borderLeftColor: "transparent",
-                  borderRightColor: "transparent",
-                  borderBottomColor: "#6ee7b7",
-                }}
-              />
-              <Text
-                numberOfLines={1}
-                style={[
-                  ui.tiny,
-                  {
-                    position: "absolute",
-                    top: 0,
-                    width: 96,
-                    textAlign: "center",
-                    color: "#6ee7b7",
-                    fontWeight: "600",
-                    left: Math.min(Math.max(0, (youPos / 100) * markRowW - 48), markRowW - 96),
-                  },
-                ]}
+                style={[styles.youLabel, { left: Math.min(Math.max(30, (youPos / 100) * markRowW), markRowW - 30) - YOU_LABEL / 2 }]}
               >
-                {t("badgeShowcase.you")} · {shortDhb(standing.balance)}
-              </Text>
+                <Text numberOfLines={1} style={[ui.tiny, styles.youText]}>
+                  {t("badgeShowcase.you")} {shortDhb(standing.balance)}
+                </Text>
+              </View>
             </>
           ) : null}
         </View>
       </View>
 
+      {/* What it grants */}
       <View style={ui.grid}>
         {perkRows.map((row) => (
           // Fixed geometry: the label always gets two lines and the value
-          // one, so a one-line label never shifts its tile out of step.
+          // one, so no tile drifts out of line with the next.
           <View key={row.key} style={[ui.tile, { width: tileWidth }, row.up && ui.tileLit]}>
             <View style={ui.tileHead}>
               <View style={ui.tileIcon}>
-                <Icon name={row.icon} size={13} color="rgba(255,255,255,0.5)" />
+                <Icon name={row.icon} size={12} color="rgba(255,255,255,0.5)" />
               </View>
               <Text style={ui.tileLabel} numberOfLines={2}>
                 {row.label}
               </Text>
             </View>
             <View style={[ui.tileFoot, { justifyContent: "flex-end" }]}>
-              <Animated.Text key={row.value} entering={FadeInDown.duration(220)} numberOfLines={1} style={ui.tileValue}>
+              <Animated.Text key={row.value} entering={VALUE_IN} exiting={VALUE_OUT} numberOfLines={1} style={ui.tileValue}>
                 {row.value}
               </Animated.Text>
               {row.coin ? <DhbCoin size={14} /> : null}
@@ -423,25 +388,172 @@ function HolderDetails({
       </View>
 
       <View style={ui.actions}>
-        <Pressable
-          accessibilityRole="button"
-          style={({ pressed }) => [ui.button, ui.glassPrimary, pressed && { opacity: 0.8 }]}
-          onPress={() => goToScreen(ScreenNames.Dpay, { initialTab: "buy" })}
-        >
-          <Text style={ui.glassPrimaryText} numberOfLines={1}>
-            {t("badgeShowcase.buyTokens")}
-          </Text>
-        </Pressable>
-        <Pressable
-          accessibilityRole="button"
-          style={({ pressed }) => [ui.button, ui.glass, pressed && { opacity: 0.8 }]}
-          onPress={() => goToScreen(ScreenNames.Glossary)}
-        >
-          <Text style={ui.glassText} numberOfLines={1}>
-            {t("badgeShowcase.details")}
-          </Text>
-        </Pressable>
+        <GlassButton active label={t("badgeShowcase.buyTokens")} onPress={() => goToScreen(ScreenNames.Dpay, { initialTab: "buy" })} />
+        <GlassButton label={t("badgeShowcase.details")} onPress={() => goToScreen(ScreenNames.Glossary)} />
       </View>
     </>
   );
 }
+
+const THUMB = 20;
+/** Room for "You 25m" centred on its pin. */
+const YOU_LABEL = 96;
+
+/**
+ * Web's Radix slider, drawn the same way: a 6px track whose range runs from
+ * half white to white, a tick per tier, an emerald ring where you are, and a
+ * thumb carrying the tier's badge that stays inside the track at both ends.
+ */
+function TokenSlider({
+  pos,
+  ticks,
+  index,
+  youPos,
+  thumb,
+  onSlide,
+  onStep,
+  label,
+  valueText,
+}: {
+  pos: number;
+  ticks: number[];
+  index: number;
+  youPos: number | null;
+  thumb: ImageSourcePropType | undefined;
+  onSlide: (pos: number) => void;
+  onStep: (direction: 1 | -1) => void;
+  label: string;
+  valueText: string;
+}) {
+  const [width, setWidth] = useState(0);
+  const widthRef = useRef(0);
+  const slideRef = useRef(onSlide);
+  slideRef.current = onSlide;
+
+  const move = useCallback((x: number) => {
+    const w = widthRef.current;
+    if (w > 0) slideRef.current(Math.round(Math.min(1, Math.max(0, x / w)) * SLIDER_STEPS));
+  }, []);
+
+  const gesture = useMemo(
+    () =>
+      Gesture.Pan()
+        .runOnJS(true)
+        .minDistance(0)
+        .hitSlop({ vertical: 12 })
+        .onStart((e) => move(e.x))
+        .onUpdate((e) => move(e.x)),
+    [move],
+  );
+
+  const percent = (pos / SLIDER_STEPS) * 100;
+  // Radix keeps the thumb inside the track: its centre runs from half a thumb
+  // in at the start to half a thumb in at the end.
+  const thumbCentre = (percent / 100) * width + (THUMB / 2) * (1 - percent / 50);
+
+  return (
+    <GestureDetector gesture={gesture}>
+      <View
+        style={styles.slider}
+        onLayout={(e) => {
+          widthRef.current = e.nativeEvent.layout.width;
+          setWidth(e.nativeEvent.layout.width);
+        }}
+        accessible
+        accessibilityRole="adjustable"
+        accessibilityLabel={label}
+        accessibilityValue={{ text: valueText }}
+        accessibilityActions={[{ name: "increment" }, { name: "decrement" }]}
+        onAccessibilityAction={(e) => onStep(e.nativeEvent.actionName === "increment" ? 1 : -1)}
+      >
+        <View style={styles.track}>
+          <LinearGradient
+            colors={["rgba(255,255,255,0.5)", "#ffffff"]}
+            start={{ x: 0, y: 0.5 }}
+            end={{ x: 1, y: 0.5 }}
+            style={[styles.range, { width: `${percent}%` }]}
+          />
+        </View>
+        {width > 0
+          ? ticks.map((tick, i) => (
+              <View
+                key={i}
+                pointerEvents="none"
+                style={[
+                  styles.tick,
+                  { left: (tick / SLIDER_STEPS) * width - 1, backgroundColor: i <= index ? "rgba(0,0,0,0.4)" : "rgba(255,255,255,0.25)" },
+                ]}
+              />
+            ))
+          : null}
+        {width > 0 && youPos !== null ? <View pointerEvents="none" style={[styles.you, { left: (youPos / 100) * width - 6 }]} /> : null}
+        {width > 0 ? (
+          <>
+            <View pointerEvents="none" style={[styles.thumbRing, { left: thumbCentre - THUMB / 2 - 4 }]} />
+            <View pointerEvents="none" style={[styles.thumb, { left: thumbCentre - THUMB / 2 }]}>
+              {thumb ? <Image source={thumb} resizeMode="contain" fadeDuration={0} style={styles.thumbArt} /> : null}
+            </View>
+          </>
+        ) : null}
+      </View>
+    </GestureDetector>
+  );
+}
+
+const styles = StyleSheet.create({
+  cheer: {
+    color: "#6ee7b7",
+    fontSize: 10,
+    lineHeight: 12,
+    fontWeight: "700",
+    letterSpacing: 1.4,
+    textTransform: "uppercase",
+    textAlign: "center",
+    textShadowColor: "rgba(110,231,183,0.45)",
+    textShadowRadius: 14,
+  },
+  youPointer: {
+    position: "absolute",
+    top: -5,
+    width: 0,
+    height: 0,
+    borderLeftWidth: 4,
+    borderRightWidth: 4,
+    borderBottomWidth: 4,
+    borderLeftColor: "transparent",
+    borderRightColor: "transparent",
+    borderBottomColor: "#6ee7b7",
+  },
+  youLabel: { position: "absolute", top: 0, width: YOU_LABEL, alignItems: "center" },
+  youText: { color: "#6ee7b7", fontWeight: "600", textAlign: "center" },
+  usd: { color: "rgba(255,255,255,0.4)", fontSize: 11, fontWeight: "500" },
+  slider: { marginTop: 10, height: 20, justifyContent: "center" },
+  track: { height: 6, borderRadius: 3, overflow: "hidden", backgroundColor: "rgba(255,255,255,0.1)" },
+  range: { position: "absolute", left: 0, top: 0, bottom: 0, borderRadius: 3 },
+  tick: { position: "absolute", top: 5, width: 2, height: 10, borderRadius: 1 },
+  you: {
+    position: "absolute",
+    top: 4,
+    width: 12,
+    height: 12,
+    borderRadius: 6,
+    borderWidth: 2,
+    borderColor: "#6ee7b7",
+    backgroundColor: "#000",
+  },
+  thumbRing: { position: "absolute", top: -4, width: THUMB + 8, height: THUMB + 8, borderRadius: (THUMB + 8) / 2, backgroundColor: "rgba(255,255,255,0.12)" },
+  thumb: {
+    position: "absolute",
+    top: 0,
+    width: THUMB,
+    height: THUMB,
+    borderRadius: THUMB / 2,
+    borderWidth: 2,
+    borderColor: "#fff",
+    backgroundColor: "#000",
+    overflow: "hidden",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  thumbArt: { width: 14, height: 14 },
+});

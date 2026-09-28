@@ -4,27 +4,23 @@
  * ShowcaseShell does the flight, the sticker and the dock; this is the
  * details column for a collectible streamer card: how it is earned, how far
  * along its owner is, the streamer's numbers, and "use badge" for an earned
- * card on your own ladder. The card art is the generated SVG, cut into a
- * sticker from its own silhouette. Web's twin is dehubweb
- * `src/components/app/badge-showcase/StreamerShowcase.tsx`.
+ * card on your own ladder. The card art is the generated SVG, handed to the
+ * sticker as a data URL so it rasterises sharp at any size. Web's twin is
+ * dehubweb `src/components/app/badge-showcase/StreamerShowcase.tsx`.
  */
-import React, { useMemo, useState } from "react";
-import { Text, View, useWindowDimensions } from "react-native";
-import Animated, { FadeInDown, FadeOutUp } from "react-native-reanimated";
+import React, { useEffect, useMemo, useState } from "react";
+import { StyleSheet, Text, View, useWindowDimensions } from "react-native";
+import Animated, { Easing, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
+import { LinearGradient } from "expo-linear-gradient";
 import { SvgXml } from "react-native-svg";
 import { useTranslation } from "react-i18next";
 import Icon, { type IconName } from "../ui/Icon";
 import ShowcaseShell, { type ShowcaseApi, type ShowcaseEntry } from "./ShowcaseShell";
-import type { StickerArt } from "./BadgeSticker";
-import { Chrome, tiltAt, tileWidthFor, ui } from "./showcaseUi";
+import type { StickerFinish } from "./StickerStage";
+import { Chrome, TITLE_IN, TITLE_OUT, tiltAt, tileWidthFor, ui } from "./showcaseUi";
 import { useAppTheme } from "../../context/ThemeContext";
 import { useSelectStreamerBadge, useStreamerProgress } from "../../hooks/useStreamerProgress";
-import {
-  STREAMER_BADGE_IDS,
-  streamerBadgePlateSvg,
-  streamerBadgeSvg,
-  type StreamerBadgeId,
-} from "../../libs/streamer-badge-art";
+import { STREAMER_BADGE_IDS, streamerBadgeSvg, type StreamerBadgeId } from "../../libs/streamer-badge-art";
 import { streamerCardProgress, type StreamerCardMetric } from "../../libs/streamerCardGoals";
 import type { MeasurableAnchor } from "../../libs/badgeShowcase";
 import type { StreamerProgress } from "../../services/live.service";
@@ -38,6 +34,11 @@ interface Props {
   anchor: MeasurableAnchor | null;
   onClose: () => void;
 }
+
+/** The cards come in four rows of five; the finish steps up a row at a time. */
+const FINISH_BY_ROW: StickerFinish[] = ["gloss", "glitter", "holo", "foil"];
+
+const svgUrl = (svg: string) => `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
 
 /** Whole hours from ten up, one decimal below, so "0.5" reads as half an hour. */
 function formatHours(minutes: number): string {
@@ -57,31 +58,30 @@ function formatDate(iso: string | null | undefined, locale: string): string {
   }
 }
 
-/** A streamer card as sticker art: always the earned face, cut from its outline. */
-function streamerArt(id: StreamerBadgeId, theme: string): StickerArt {
-  const xml = streamerBadgeSvg(id, theme, true, "showcase");
-  return {
-    key: id,
-    renderArt: () => <SvgXml xml={xml} width="100%" height="100%" />,
-    renderPlate: (color) => <SvgXml xml={streamerBadgePlateSvg(id, theme, color)} width="100%" height="100%" />,
-  };
-}
-
 export default function StreamerShowcase({ badgeId, address, canSelect, anchor, onClose }: Props) {
   const { t, i18n } = useTranslation();
   const { theme } = useAppTheme();
   const { data: progress } = useStreamerProgress(address);
   const [originIndex] = useState(() => Math.max(0, STREAMER_BADGE_IDS.indexOf(badgeId)));
 
-  // Stable across progress loads, so the stage is never rebuilt under the viewer.
+  // Always the earned art: the sticker is the card at its best, and locked
+  // state lives in the details column. Stable across progress loads, so the
+  // stage is never rebuilt under the viewer.
   const entries = useMemo<ShowcaseEntry[]>(
     () =>
-      STREAMER_BADGE_IDS.map((id, i) => ({
-        key: id,
-        label: t(`live.progress.card.${id}.name`),
-        tilt: tiltAt(i),
-        art: streamerArt(id, theme),
-      })),
+      STREAMER_BADGE_IDS.map((id, i) => {
+        const xml = streamerBadgeSvg(id, theme, true, "showcase");
+        const art = () => <SvgXml xml={xml} width="100%" height="100%" />;
+        return {
+          key: id,
+          label: t(`live.progress.card.${id}.name`),
+          finish: FINISH_BY_ROW[Math.floor(i / 5)] ?? "foil",
+          tilt: tiltAt(i),
+          sticker: () => Promise.resolve(svgUrl(xml)),
+          renderArt: art,
+          renderThumb: art,
+        };
+      }),
     // t follows the language; theme changes the metal.
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [theme, i18n.language],
@@ -96,6 +96,7 @@ export default function StreamerShowcase({ badgeId, address, canSelect, anchor, 
       anchor={anchor}
       onClose={onClose}
       dialogLabel={(i) => t("badgeShowcase.dialogLabel", { tier: t(`live.progress.card.${STREAMER_BADGE_IDS[i]}.name`) })}
+      dockLabel={t("live.progress.cardsTitle")}
       owned={(i) => !!earnedAt(i)}
     >
       {(api) => <StreamerDetails api={api} progress={progress} address={address} canSelect={canSelect} />}
@@ -137,6 +138,13 @@ function StreamerDetails({
   const selected = progress?.selectedBadgeId === id;
   const name = t(`live.progress.card.${id}.name`);
 
+  // The bar eases to each card's progress, as web's does.
+  const fill = useSharedValue(fraction);
+  useEffect(() => {
+    fill.value = withTiming(fraction, { duration: 600, easing: Easing.bezier(0.22, 1, 0.36, 1) });
+  }, [fraction, fill]);
+  const fillStyle = useAnimatedStyle(() => ({ width: `${Math.round(fill.value * 1000) / 10}%` }));
+
   const stats: { key: string; icon: IconName; label: string; value: string; metric?: StreamerCardMetric }[] = [
     { key: "level", icon: "Radio", label: t("streamerShowcase.stats.level"), value: progress ? nf.format(progress.level) : "-", metric: "level" },
     { key: "xp", icon: "Zap", label: t("streamerShowcase.stats.xp"), value: progress ? nf.format(progress.xp) : "-" },
@@ -168,17 +176,19 @@ function StreamerDetails({
       <View style={{ alignItems: "center", gap: 6 }}>
         <Text style={ui.overline}>{t("streamerShowcase.cardOf", { index: api.index + 1, total })}</Text>
         <View style={ui.titleRow}>
-          <Animated.Text key={id} entering={FadeInDown.duration(260)} exiting={FadeOutUp.duration(180)} style={ui.title}>
+          <Animated.Text key={id} entering={TITLE_IN} exiting={TITLE_OUT} style={ui.title}>
             {name}
           </Animated.Text>
-          <View style={[ui.chip, { paddingLeft: 10 }]}>
-            <Icon name={earned ? "Check" : "Lock"} size={12} color={earned ? "#fff" : "rgba(255,255,255,0.6)"} />
-            <Text style={ui.chipText}>{earned ? formatDate(card?.earnedAt, i18n.language) : t("live.progress.locked")}</Text>
+          <View style={[ui.chip, styles.chip]}>
+            {earned ? (
+              <Icon name="Check" size={12} strokeWidth={3} color="#fff" />
+            ) : (
+              <Icon name="Lock" size={12} strokeWidth={2.5} color="rgba(255,255,255,0.6)" />
+            )}
+            <Text style={[ui.chipText, { fontSize: 12 }]}>{earned ? formatDate(card?.earnedAt, i18n.language) : t("live.progress.locked")}</Text>
           </View>
         </View>
-        <Text style={ui.muted} numberOfLines={1}>
-          {t(`live.progress.card.${id}.hint`)}
-        </Text>
+        <Text style={ui.muted}>{t(`live.progress.card.${id}.hint`)}</Text>
       </View>
 
       {/* Progress toward this card: same shape as the holder slider panel. */}
@@ -187,16 +197,23 @@ function StreamerDetails({
           <Text style={[ui.label, { flexShrink: 1 }]} numberOfLines={1}>
             {t("streamerShowcase.progress")}
           </Text>
-          <Text style={[ui.amount, { fontSize: 14, flexShrink: 0 }]} numberOfLines={1}>
+          <Text style={[ui.amount, { fontSize: 13, flexShrink: 0 }]} numberOfLines={1}>
             {goalText}
           </Text>
         </View>
-        <View style={{ height: 36, justifyContent: "center", marginTop: 8 }}>
-          <View style={ui.bar}>
-            <View style={[ui.barFill, { width: `${Math.round(fraction * 100)}%` }]} />
+        <View style={styles.barRow}>
+          <View style={[ui.bar, { width: "100%" }]}>
+            <Animated.View style={[styles.barFill, fillStyle]}>
+              <LinearGradient
+                colors={["rgba(255,255,255,0.5)", "#ffffff"]}
+                start={{ x: 0, y: 0.5 }}
+                end={{ x: 1, y: 0.5 }}
+                style={StyleSheet.absoluteFill}
+              />
+            </Animated.View>
           </View>
         </View>
-        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+        <View style={ui.tinyRow}>
           <Text style={ui.tiny}>{Math.round(fraction * 100)}%</Text>
           {progress ? <Text style={ui.tiny}>{t("live.progress.level", { level: progress.level })}</Text> : null}
         </View>
@@ -210,7 +227,7 @@ function StreamerDetails({
             <View key={stat.key} style={[ui.tile, { width: tileWidth }, lit && ui.tileLit]}>
               <View style={ui.tileHead}>
                 <View style={ui.tileIcon}>
-                  <Icon name={stat.icon} size={13} color="rgba(255,255,255,0.5)" />
+                  <Icon name={stat.icon} size={12} color="rgba(255,255,255,0.5)" />
                 </View>
                 <Text style={ui.tileLabel} numberOfLines={2}>
                   {stat.label}
@@ -229,7 +246,12 @@ function StreamerDetails({
       <View style={ui.actions}>
         {canSelect ? (
           <Chrome style={ui.button} onPress={useBadge} disabled={!earned || selected || selection.isPending}>
-            <Text style={ui.chromeText} numberOfLines={1}>
+            {!earned ? (
+              <Icon name="Lock" size={14} strokeWidth={2.5} color="#0b0c0e" />
+            ) : selected ? (
+              <Icon name="Check" size={14} strokeWidth={3} color="#0b0c0e" />
+            ) : null}
+            <Text style={[ui.chromeText, { flexShrink: 1 }]} numberOfLines={1}>
               {!earned
                 ? t("live.progress.locked")
                 : selection.isPending
@@ -246,9 +268,14 @@ function StreamerDetails({
           </Text>
         </Chrome>
       </View>
-      {selection.isError ? (
-        <Text style={[ui.muted, { textAlign: "center", marginTop: 8 }]}>{t("live.progress.saveBadgeError")}</Text>
-      ) : null}
+      {selection.isError ? <Text style={styles.error}>{t("live.progress.saveBadgeError")}</Text> : null}
     </>
   );
 }
+
+const styles = StyleSheet.create({
+  chip: { paddingLeft: 10, paddingRight: 10 },
+  barRow: { marginTop: 10, height: 20, justifyContent: "center" },
+  barFill: { position: "absolute", left: 0, top: 0, bottom: 0, borderRadius: 3, overflow: "hidden" },
+  error: { marginTop: 8, textAlign: "center", fontSize: 12, color: "rgba(255,255,255,0.7)" },
+});

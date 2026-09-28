@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import { render } from '@testing-library/react-native';
-import { setSquaring, setThemePass, squareStyle, squareProps, SQUARE } from '../../libs/jsx/shape';
+import { setSquaring, setThemePass, squareStyle, squareProps, routeProps, SQUARE } from '../../libs/jsx/shape';
 
 // Same stub the other render tests use: the real styling runtime needs a
 // device. What is under test is the pass in front of it.
@@ -82,5 +82,31 @@ describe('minimal theme shape pass', () => {
     const flat = Object.assign({}, ...([] as any[]).concat(getByTestId('box').props.style).flat(3));
     expect(flat.borderRadius).toBe(0);
     expect(flat.width).toBe(10);
+  });
+
+  it('squares what a pressed-state style function returns', () => {
+    setSquaring(true);
+    const pressable = ({ pressed }: { pressed: boolean }) => ({ borderRadius: 18, opacity: pressed ? 0.8 : 1 });
+    const squared = squareProps({ style: pressable }).style as typeof pressable;
+    expect(squared({ pressed: true })).toEqual([{ borderRadius: 18, opacity: 0.8 }, SQUARE]);
+  });
+});
+
+describe('style functions and the NativeWind runtime', () => {
+  it('sends a Pressable style function around css-interop, which would drop it', () => {
+    const style = ({ pressed }: { pressed: boolean }) => ({ width: 36, opacity: pressed ? 0.8 : 1 });
+    const routed = routeProps({ style, onPress: () => {} });
+    expect(routed.cssInterop).toBe(false);
+    expect(routed.style).toBe(style);
+  });
+
+  it('leaves object styles, className elements and explicit opt-ins alone', () => {
+    const plain = { style: { width: 36 } };
+    expect(routeProps(plain)).toBe(plain);
+    const classed = { className: 'w-9', style: () => ({ width: 36 }) };
+    expect(routeProps(classed)).toBe(classed);
+    const explicit = { cssInterop: true, style: () => ({ width: 36 }) };
+    expect(routeProps(explicit)).toBe(explicit);
+    expect(routeProps(null)).toBe(null);
   });
 });
