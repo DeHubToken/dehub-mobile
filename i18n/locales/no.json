@@ -8326,5 +8326,20 @@
     "subscriptionTokensOnly": "Kun for AI-generering",
     "subscriptionTokensValueNote": "Abonnementstokener beholder sin dollarverdi. Hvis tokenprisen endrer seg før du bruker dem, vil du se flere eller færre tokener, men de kjøper alltid den samme mengden AI-generering. De kan ikke tas ut, sendes eller omsettes.",
     "topUpEmptyHint": "Legg til tokens for å generere med AI"
+  },
+  "accountDeletion": {
+    "title": "Slett konto",
+    "description": "Slett kontoen og personopplysningene dine permanent",
+    "warning": "Dette sletter DeHub-profilen din, innlegg, kommentarer, meldinger og lagret lommeboksikkerhetskopi permanent. Lagre gjenopprettingsdetaljene for lommeboken din og flytt eventuelle ressurser først. Offentlige blokkjedetransaksjoner og lovpålagte betalingsposter kan ikke slettes. Profilen din skjules umiddelbart; slettingen fullføres innen 30 dager. Dette kan ikke angres.",
+    "cancel": "Avbryt",
+    "confirm": "Slett kontoen min permanent",
+    "busy": "Sender inn forespørsel om sletting …",
+    "accepted": "Kontosletting forespurt",
+    "receipt": "Slettingsforespørselen din er lagret. Profilen din er skjult, og kontoen din vil bli permanent slettet innen 30 dager. Du kan ikke avbryte denne forespørselen selv om du logger på.",
+    "done": "Ferdig",
+    "error": "Kunne ikke sende inn forespørselen om sletting. Kontoen din er ikke bekreftet for sletting. Prøv på nytt.",
+    "back": "Tilbake til innstillinger",
+    "signIn": "Logg inn for å slette kontoen din",
+    "acknowledge": "Jeg har lagret gjenopprettingsdetaljene for lommeboken min og forstår at slettingen er permanent."
   }
 }

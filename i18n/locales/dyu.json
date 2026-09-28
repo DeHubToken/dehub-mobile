@@ -8136,5 +8136,20 @@
     "subscriptionTokensOnly": "AI baara dɔrɔn kama",
     "subscriptionTokensValueNote": "Abonman token bɛ u ka dolari sɔngɔ mara. Ni token sɔngɔ yɛlɛmana sani i k'u baara, i bɛna token caman walima dɔɔnin ye, nka u bɛ AI baara hakɛ kelen sɔrɔ tuma bɛɛ. U tɛ se ka bɔ, ka ci walima ka feere.",
     "topUpEmptyHint": "Token fara a kan walasa ka baara kɛ ni AI ye"
+  },
+  "accountDeletion": {
+    "title": "Ka kunnafoniw bɔ",
+    "description": "I ka kunnafoniw ani i ka kunnafoniw bɛɛ bɔ kɛnɛ kan",
+    "warning": "O be i ka DeHub kunnafoniw, i ka lɛtɛrɛw, i ka kumadenw, i ka lɛtɛrɛw ani i ka warifaniw bɛɛ ban pewu. I ka wari sɔrɔli kunnafoniw mara ani i ka wari bɛɛ ta fɔlɔ. O kama, a ka ɲi ka to ka kuma ni mɔgɔ wɛrɛw ye. I ka kunnafoniw be dogo joona joona. I ka kunnafoniw be tunu tile 30 kɔnɔ. O tɛ se ka ban.",
+    "cancel": "Kanali",
+    "confirm": "Ka n ka wari di n ma tuma bɛɛ",
+    "busy": "O kama, n' tun b'a fɛ ka min fɔ, n' tun b'o le fɔra.",
+    "accepted": "N'i ye mɔgɔ dɔ weele ka na i ka banki la",
+    "receipt": "I ka deliliw kisira. I ka kunnafoniw dogonin lo ani i ka kunnafoniw bena tunu pewu tile 30 kɔnɔ. Aw kana siginidenw bali ka sɛbɛ nin ci.",
+    "done": "Mun lo kɛra?",
+    "error": "Aw kana siginidenw bali ka sɛbɛ nin ci. I ka ladɛrɛsi ma kɛ ka ban. N'i b'a fɛ ka dɔ fara a kan, i ka segi k'a ɲini.",
+    "back": "An ka segi an ka ladɛrɛsiw kan",
+    "signIn": "N'i ye mɔgɔ dɔ weele ka na i ka site web kan",
+    "acknowledge": "Ne ye n ka wari sɔrɔli kunnafoniw mara ani n' y'a faamu ko n' ka wari bɔli ye kudayi ye."
   }
 }

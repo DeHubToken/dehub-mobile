@@ -8414,5 +8414,20 @@
     "subscriptionTokensOnly": "Chỉ dành cho thế hệ AI",
     "subscriptionTokensValueNote": "Mã thông báo đăng ký giữ giá trị bằng đô la của chúng. Nếu giá mã thông báo di chuyển trước khi bạn sử dụng chúng, bạn sẽ thấy nhiều hoặc ít mã thông báo hơn, nhưng chúng luôn mua cùng một lượng thế hệ AI. Chúng không thể được rút, gửi hoặc giao dịch.",
     "topUpEmptyHint": "Thêm mã thông báo để tạo bằng AI"
+  },
+  "accountDeletion": {
+    "title": "Xoá tài khoản",
+    "description": "Xóa vĩnh viễn tài khoản và dữ liệu cá nhân của bạn",
+    "warning": "Thao tác này sẽ xóa vĩnh viễn hồ sơ DeHub, bài đăng, bình luận, tin nhắn và bản sao lưu ví được lưu trữ của bạn. Lưu chi tiết khôi phục ví của bạn và di chuyển bất kỳ tài sản nào trước. Không thể xóa các giao dịch blockchain công khai và hồ sơ thanh toán bắt buộc về mặt pháp lý. Hồ sơ của bạn bị ẩn ngay lập tức; việc xóa hoàn tất trong vòng 30 ngày. Không thể hoàn tác thao tác này.",
+    "cancel": "Hủy",
+    "confirm": "Xóa vĩnh viễn tài khoản",
+    "busy": "Đang gửi yêu cầu xóa…",
+    "accepted": "Đã yêu cầu xóa tài khoản",
+    "receipt": "Yêu cầu xóa của bạn đã được lưu. Hồ sơ của bạn bị ẩn và tài khoản của bạn sẽ bị xóa vĩnh viễn trong vòng 30 ngày. Việc đăng nhập không thể hủy yêu cầu này.",
+    "done": "Hoàn thành",
+    "error": "Không thể gửi yêu cầu xóa của bạn. Tài khoản của bạn chưa được xác nhận xóa. Vui lòng thử lại.",
+    "back": "Quay lại Cài đặt",
+    "signIn": "ĐĂNG NHẬP VÀO TÀI KHOẢN CỦA BẠN",
+    "acknowledge": "Tôi đã lưu chi tiết khôi phục ví của mình và hiểu rằng việc xóa là vĩnh viễn."
   }
 }

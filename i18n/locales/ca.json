@@ -8326,5 +8326,20 @@
     "subscriptionTokensOnly": "Només per a la generació d'IA",
     "subscriptionTokensValueNote": "Les fitxes de subscripció mantenen el seu valor en dòlars. Si el preu del token es mou abans que els facis servir, veuràs més o menys tokens, però sempre compren la mateixa quantitat de generació d'IA. No es poden retirar, enviar ni comercialitzar.",
     "topUpEmptyHint": "Afegeix fitxes per generar amb IA"
+  },
+  "accountDeletion": {
+    "title": "Eliminar compte",
+    "description": "Suprimeix el teu compte i les teves dades personals de forma permanent",
+    "warning": "Això elimina de forma permanent el teu perfil de DeHub, les publicacions, els comentaris, els missatges i la còpia de seguretat de la cartera emmagatzemada. Desa les dades de recuperació de la teva cartera i primer mou els teus actius. Les transaccions de blockchain públiques i els registres de pagament legalment obligatoris no es poden eliminar. El teu perfil s'amaga immediatament; l'eliminació es completa en un termini de 30 dies. Això no es pot desfer.",
+    "cancel": "Cancel·la",
+    "confirm": "Suprimeix el meu compte de forma permanent",
+    "busy": "Enviant sol·licitud d'eliminació...",
+    "accepted": "S'ha sol·licitat l'eliminació del comp",
+    "receipt": "S'ha desat la sol·licitud d'eliminació. El teu perfil s'ha amagat i el teu compte s'eliminarà definitivament en un termini de 30 dies. L'inici de sessió no pot cancel·lar aquesta sol·licitud.",
+    "done": "Fet",
+    "error": "No s'ha pogut enviar la sol·licitud d'eliminació. No s'ha confirmat l'eliminació del teu compte. Torna-ho a provar.",
+    "back": "Torna a la configuració",
+    "signIn": "Inicia sessió per eliminar el teu compte",
+    "acknowledge": "He desat les dades de recuperació de la meva cartera i entenc que l'eliminació és permanent."
   }
 }

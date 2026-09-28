@@ -8326,5 +8326,20 @@
     "subscriptionTokensOnly": "Nur für die KI-Generierung",
     "subscriptionTokensValueNote": "Abonnement-Token behalten ihren Dollar-Wert. Wenn sich der Token-Preis bewegt, bevor Sie sie verwenden, werden Sie mehr oder weniger Token sehen, aber sie kaufen immer die gleiche Menge an KI-Generierung. Sie können nicht abgehoben, gesendet oder gehandelt werden.",
     "topUpEmptyHint": "Tokens zum Generieren mit KI hinzufügen"
+  },
+  "accountDeletion": {
+    "title": "Konto löschen",
+    "description": "Löschen Sie Ihr Konto und Ihre persönlichen Daten dauerhaft",
+    "warning": "Dadurch werden dein DeHub-Profil, Posts, Kommentare, Nachrichten und das gespeicherte Wallet-Backup dauerhaft gelöscht. Speichern Sie Ihre Wallet-Wiederherstellungsdetails und verschieben Sie zuerst alle Assets. Öffentliche Blockchain-Transaktionen und gesetzlich vorgeschriebene Zahlungsaufzeichnungen können nicht gelöscht werden. Ihr Profil wird sofort ausgeblendet; die Löschung ist innerhalb von 30 Tagen abgeschlossen. Dies kann nicht rückgängig gemacht werden.",
+    "cancel": "Abbrechen",
+    "confirm": "Konto löschen",
+    "busy": "Löschanfrage wird gesendet...",
+    "accepted": "Kontolöschung angefordert",
+    "receipt": "Ihre Löschanfrage wurde gespeichert. Dein Profil ist ausgeblendet und dein Konto wird innerhalb von 30 Tagen endgültig gelöscht. Die Anmeldung kann diese Anfrage nicht stornieren.",
+    "done": "Erledigt",
+    "error": "Ihre Löschanfrage konnte nicht gesendet werden. Ihr Konto wurde nicht zum Löschen bestätigt. Bitte versuchen Sie es erneut.",
+    "back": "Zurück zu den Einstellungen",
+    "signIn": "Melden Sie sich bei Ihrem Konto an",
+    "acknowledge": "Ich habe meine Daten zur Wiederherstellung der Brieftasche gespeichert und verstehe, dass die Löschung dauerhaft ist."
   }
 }

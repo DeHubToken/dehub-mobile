@@ -8326,5 +8326,20 @@
     "subscriptionTokensOnly": "Mung kanggo nggawe nganggo AI",
     "subscriptionTokensValueNote": "Token langganan nyekel nilai dolare. Yen rega token owah sadurunge sampeyan nggunakake, sampeyan bakal weruh luwih akeh utawa luwih sithik token, nanging mesthi bakal tuku jumlah generasi AI sing padha. Dheweke ora bisa ditarik, dikirim utawa didagang.",
     "topUpEmptyHint": "Tambahake token kanggo digawe karo AI"
+  },
+  "accountDeletion": {
+    "title": "Mbusak akun",
+    "description": "Mbusak akun lan data pribadi sampeyan kanthi permanen",
+    "warning": "Iki bakal mbusak profil DeHub, kiriman, komentar, pesen, lan cadangan dompet sing disimpen kanthi permanen. Simpen rincian pemulihan dompet sampeyan lan pindhahake aset apa wae dhisik. Transaksi blockchain publik lan cathetan pembayaran sing dibutuhake sacara hukum ora bisa dibusak. Profil sampeyan bakal didhelikake langsung; proses mbusak bakal rampung sajrone 30 dina. Iki ora bisa dibalekake.",
+    "cancel": "Batal",
+    "confirm": "Mbusak akunku kanthi permanen",
+    "busy": "Ngirim panjaluk mbusak…",
+    "accepted": "Panjaluk mbusak akun wis dikirim",
+    "receipt": "Panjaluk mbusak sampeyan wis disimpen. Profil sampeyan wis didhelikake lan akun sampeyan bakal dibusak sacara permanen sajrone 30 dina. Mlebu ora bisa mbatalake panjaluk iki.",
+    "done": "Rampung",
+    "error": "Ora bisa ngirim panjaluk mbusak sampeyan. Akun sampeyan durung dikonfirmasi kanggo dibusak. Mangga coba maneh.",
+    "back": "Balik menyang Setelan",
+    "signIn": "Mlebu kanggo mbusak akun sampeyan",
+    "acknowledge": "Aku wis nyimpen rincian pemulihan dompetku lan ngerti yen mbusak iku permanen."
   }
 }

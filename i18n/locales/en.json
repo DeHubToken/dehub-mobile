@@ -8319,5 +8319,20 @@
     "subscriptionTokensOnly": "For AI generation only",
     "subscriptionTokensValueNote": "Subscription tokens hold their dollar value. If the token price moves before you use them you will see more or fewer tokens, but they always buy the same amount of AI generation. They cannot be withdrawn, sent or traded.",
     "topUpEmptyHint": "Add tokens to generate with AI"
+  },
+  "accountDeletion": {
+    "title": "Delete account",
+    "description": "Permanently delete your account and personal data",
+    "warning": "This permanently deletes your DeHub profile, posts, comments, messages and stored wallet backup. Save your wallet recovery details and move any assets first. Public blockchain transactions and legally required payment records cannot be deleted. Your profile is hidden immediately; deletion completes within 30 days. This cannot be undone.",
+    "cancel": "Cancel",
+    "confirm": "Permanently delete my account",
+    "busy": "Submitting deletion request…",
+    "accepted": "Account deletion requested",
+    "receipt": "Your deletion request has been saved. Your profile is hidden and your account will be permanently deleted within 30 days. Signing in cannot cancel this request.",
+    "done": "Done",
+    "error": "Could not submit your deletion request. Your account has not been confirmed for deletion. Please try again.",
+    "back": "Back to Settings",
+    "signIn": "Sign in to delete your account",
+    "acknowledge": "I have saved my wallet recovery details and understand that deletion is permanent."
   }
 }

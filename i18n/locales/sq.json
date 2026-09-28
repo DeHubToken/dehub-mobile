@@ -8326,5 +8326,20 @@
     "subscriptionTokensOnly": "Vetëm për gjeneratën AI",
     "subscriptionTokensValueNote": "Shenjat e abonimit mbajnë vlerën e tyre në dollarë. Nëse çmimi i shenjës lëviz para se t 'i përdorni ato, do të shihni më shumë ose më pak shenja, por ata gjithmonë blejnë të njëjtën sasi të gjenerimit të AI. Ato nuk mund të tërhiqen, dërgohen ose tregtohen.",
     "topUpEmptyHint": "Shto shenja për t 'u gjeneruar me AI"
+  },
+  "accountDeletion": {
+    "title": "Fshije Llogarinë",
+    "description": "Fshi përgjithmonë llogarinë dhe të dhënat personale",
+    "warning": "Kjo fshin përgjithmonë profilin tënd në DeHub, postimet, komentet, mesazhet dhe kopjet rezervë të portofolit të ruajtur. Ruaj detajet e rimëkëmbjes së portofolit dhe lëviz më parë çdo pasuri. Transaksionet publike blockchain dhe regjistrat e pagesave të kërkuara ligjërisht nuk mund të fshihen. Profili yt fshihet menjëherë; fshirja përfundon brenda 30 ditësh. Kjo nuk mund të zhbëhet.",
+    "cancel": "Anulo",
+    "confirm": "Fshije përgjithmonë llogarinë time",
+    "busy": "Duke dërguar kërkesën për fshirje...",
+    "accepted": "Kërkohet fshirja e llogarisë",
+    "receipt": "Kërkesa jote për fshirje u ruajt. Profili yt është i fshehur dhe llogaria jote do të fshihet përgjithmonë brenda 30 ditësh. Hyrja nuk mund ta anulojë këtë kërkesë.",
+    "done": "Sukses",
+    "error": "Kërkesa për fshirje nuk u dërgua dot. Llogaria jote nuk është konfirmuar për fshirje. Provo përsëri.",
+    "back": "Kthehu te Cilësimet",
+    "signIn": "Hyr në llogarinë tënde",
+    "acknowledge": "Kam ruajtur detajet e rimëkëmbjes së portofolit dhe e kuptoj se fshirja është e përhershme."
   }
 }

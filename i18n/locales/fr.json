@@ -8330,5 +8330,20 @@
     "subscriptionTokensOnly": "Pour la génération d'IA uniquement",
     "subscriptionTokensValueNote": "Les jetons d'abonnement conservent leur valeur en dollars. Si le prix du jeton évolue avant que vous ne l'utilisiez, vous verrez plus ou moins de jetons, mais ils achètent toujours la même quantité de génération d'IA. Ils ne peuvent pas être retirés, envoyés ou échangés.",
     "topUpEmptyHint": "Ajouter des jetons à générer avec l'IA"
+  },
+  "accountDeletion": {
+    "title": "Supprimer votre compte",
+    "description": "Supprimer définitivement votre compte et vos données personnelles",
+    "warning": "Cela supprime définitivement votre profil DeHub, vos publications, vos commentaires, vos messages et votre sauvegarde de portefeuille stockée. Enregistrez les détails de récupération de votre portefeuille et déplacez d'abord tous les actifs. Les transactions blockchain publiques et les enregistrements de paiement légalement requis ne peuvent pas être supprimés. Votre profil est masqué immédiatement ; la suppression se termine dans les 30 jours. Cela ne peut pas être annulé.",
+    "cancel": "Annuler",
+    "confirm": "Supprimer définitivement mon compte",
+    "busy": "Envoi de la demande de suppression…",
+    "accepted": "Suppression de compte demandée",
+    "receipt": "Votre demande de suppression a été enregistrée. Votre profil est masqué et votre compte sera définitivement supprimé dans les 30 jours. La connexion ne peut pas annuler cette demande.",
+    "done": "Effectué",
+    "error": "Impossible d'envoyer votre demande de suppression. La suppression de votre compte n'a pas été confirmée. Veuillez réessayer.",
+    "back": "Revenir aux paramètres par défaut",
+    "signIn": "Connectez-vous pour supprimer votre compte",
+    "acknowledge": "J'ai enregistré les détails de récupération de mon portefeuille et je comprends que la suppression est permanente."
   }
 }

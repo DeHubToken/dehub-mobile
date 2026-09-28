@@ -8586,5 +8586,20 @@
     "subscriptionTokensOnly": "Untuk penjanaan AI sahaja",
     "subscriptionTokensValueNote": "Token langganan memegang nilai dolar mereka. Jika harga token bergerak sebelum anda menggunakannya, anda akan melihat lebih banyak atau lebih sedikit token, tetapi mereka sentiasa membeli jumlah penjanaan AI yang sama. Ia tidak boleh ditarik balik, dihantar atau didagangkan.",
     "topUpEmptyHint": "Tambah token untuk dijana dengan AI"
+  },
+  "accountDeletion": {
+    "title": "Padam akaun",
+    "description": "Padam secara kekal akaun dan data peribadi anda",
+    "warning": "Ini akan memadam secara kekal profil DeHub anda, siaran, komen, mesej dan sandaran dompet yang disimpan. Simpan butiran pemulihan dompet anda dan pindahkan sebarang aset terlebih dahulu. Transaksi blockchain awam dan rekod pembayaran yang diwajibkan oleh undang-undang tidak dapat dipadam. Profil anda akan disembunyikan serta-merta; pemadaman selesai dalam masa 30 hari. Ini tidak boleh dipulihkan.",
+    "cancel": "Batal",
+    "confirm": "Padam akaun saya secara kekal",
+    "busy": "Menghantar permintaan pemadaman…",
+    "accepted": "Permintaan pemadaman akaun dihantar",
+    "receipt": "Permintaan pemadaman anda telah disimpan. Profil anda disembunyikan dan akaun anda akan dipadam secara kekal dalam masa 30 hari. Log masuk tidak dapat membatalkan permintaan ini.",
+    "done": "Selesai",
+    "error": "Tidak dapat menghantar permintaan pemadaman anda. Akaun anda belum disahkan untuk dipadam. Sila cuba lagi.",
+    "back": "Kembali ke Tetapan",
+    "signIn": "Log masuk untuk memadam akaun anda",
+    "acknowledge": "Saya telah menyimpan butiran pemulihan dompet saya dan faham bahawa pemadaman adalah kekal."
   }
 }

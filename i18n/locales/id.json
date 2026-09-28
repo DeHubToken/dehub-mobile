@@ -8326,5 +8326,20 @@
     "subscriptionTokensOnly": "Hanya untuk pembuatan AI",
     "subscriptionTokensValueNote": "Token langganan mempertahankan nilai dolarnya. Jika harga token bergerak sebelum Anda menggunakannya, Anda akan melihat lebih banyak atau lebih sedikit token, tetapi mereka selalu membeli jumlah generasi AI yang sama. Mereka tidak dapat ditarik, dikirim, atau diperdagangkan.",
     "topUpEmptyHint": "Tambahkan token untuk dibuat dengan AI"
+  },
+  "accountDeletion": {
+    "title": "Hapus akun",
+    "description": "Hapus akun dan data pribadi Anda secara permanen",
+    "warning": "Tindakan ini akan menghapus profil, postingan, komentar, pesan, dan cadangan dompet tersimpan DeHub Anda secara permanen. Simpan detail pemulihan dompet Anda dan pindahkan aset apa pun terlebih dahulu. Transaksi blockchain publik dan catatan pembayaran yang diwajibkan secara hukum tidak dapat dihapus. Profil Anda segera disembunyikan; penghapusan selesai dalam 30 hari. Ini tidak dapat diurungkan.",
+    "cancel": "Batal",
+    "confirm": "Hapus Akun secara Permanen",
+    "busy": "Mengirimkan permohonan penghapusan…",
+    "accepted": "Penghapusan akun diminta",
+    "receipt": "Permohonan penghapusan Anda telah disimpan. Profil Anda disembunyikan dan akun Anda akan dihapus secara permanen dalam 30 hari. Masuk tidak dapat membatalkan permohonan ini.",
+    "done": "Selesai",
+    "error": "Tidak dapat mengirimkan permohonan penghapusan Anda. Akun Anda belum dikonfirmasi untuk dihapus. Silakan coba lagi.",
+    "back": "Kembali ke Pengaturan",
+    "signIn": "Masuk Akun Anda",
+    "acknowledge": "Saya telah menyimpan detail pemulihan dompet saya dan memahami bahwa penghapusan bersifat permanen."
   }
 }

@@ -8326,5 +8326,20 @@
     "subscriptionTokensOnly": "Kwa kizazi cha AI pekee",
     "subscriptionTokensValueNote": "Alama za usajili zinashikilia thamani yake ya dola. Ikiwa bei ya tokeni itasonga mbele kabla ya kuitumia utaona tokeni zaidi au chache, lakini kila wakati hununua kiasi sawa cha kizazi cha AI. Haiwezi kuondolewa, kutumwa au kufanyiwa biashara.",
     "topUpEmptyHint": "Ongeza ishara za kuzalisha kwa kutumia AI"
+  },
+  "accountDeletion": {
+    "title": "Futa akaunti",
+    "description": "Futa kabisa akaunti yako na data binafsi",
+    "warning": "Hii hufuta kabisa wasifu wako wa DeHub, machapisho, maoni, ujumbe na chelezo ya pochi iliyohifadhiwa. Hifadhi maelezo yako ya kurejesha mkoba na uhamishe mali yoyote kwanza. Miamala ya blockchain ya umma na rekodi za malipo zinazohitajika kisheria haziwezi kufutwa. Wasifu wako umefichwa mara moja; kufutwa kunakamilika ndani ya siku 30. Hii haiwezi kutenduliwa.",
+    "cancel": "Sitisha",
+    "confirm": "Kwa Ujumla ifute Akaunti",
+    "busy": "Inawasilisha ombi la kufuta...",
+    "accepted": "Ufutaji wa akaunti umeombwa",
+    "receipt": "Ombi lako la kufuta limehifadhiwa. Wasifu wako umefichwa na akaunti yako itafutwa kabisa ndani ya siku 30. Kuingia katika akaunti hakuwezi kughairi ombi hili.",
+    "done": "Imefanyika",
+    "error": "Imeshindwa kuwasilisha ombi lako la kufuta. Akaunti yako haijathibitishwa kufutwa. Tafadhali jaribu tena.",
+    "back": "Rudi kwenye Mipangilio",
+    "signIn": "Ingia ili kufuta akaunti yako",
+    "acknowledge": "Nimehifadhi maelezo yangu ya kurejesha pochi na ninaelewa kuwa kufutwa ni kwa kudumu."
   }
 }
