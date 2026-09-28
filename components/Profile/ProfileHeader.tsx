@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useCallback, useRef } from "react";
+import React, { useState, useMemo, useCallback, useEffect, useRef } from "react";
 import { View, Text, TouchableOpacity, Pressable, ActivityIndicator, useWindowDimensions } from "react-native";
 import SmartImage from "../common/SmartImage";
 import Avatar from "../common/Avatar";
@@ -6,7 +6,7 @@ import { Ionicons } from "@expo/vector-icons";
 import LiquidGlass from "../ui/LiquidGlass";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../../navigation/ScreenNames";
-import { openBadgeShowcase } from "../../libs/badgeShowcase";
+import { openBadgePromotion, openBadgeShowcase } from "../../libs/badgeShowcase";
 import { useTranslation } from "react-i18next";
 
 import { copyToClipboard } from "../../libs";
@@ -22,7 +22,6 @@ import {
   resolveBadgeLock,
   resolveBadgeUsername,
 } from "../../libs/misc";
-import BadgeAscension, { type BadgeSlot } from "./BadgeAscension";
 import StreamerLevelCard from "../Live/StreamerLevelCard";
 import { useBadgeCeremony } from "../../hooks/useBadgeCeremony";
 import { openExternalLink } from "../../libs/links.utils";
@@ -116,22 +115,22 @@ const ProfileHeader = () => {
   const badge = getBadgeName(badgeVal, badgeCtx);
   const badgeImage = getBadgeUrl(badgeVal, badgeCtx);
 
-  // Badge ascension. This header only ever draws the signed-in user, so the
-  // ceremony is always looking at its own holder. The slot is measured on
-  // layout because the animation flies the badge out of it and back into it.
+  // Badge promotion. This header only ever draws the signed-in user, so the
+  // ceremony is always looking at its own holder. It opens the badge showcase
+  // with the ceremony as its opening, flying out of the badge beside the name
+  // exactly as a tap on it would.
   const badgeSlotRef = useRef<View>(null);
-  const [badgeSlot, setBadgeSlot] = useState<BadgeSlot | null>(null);
   const { ceremony, dismiss } = useBadgeCeremony({
     enabled: true,
     address,
     tier: badge,
   });
-  const measureBadgeSlot = useCallback(() => {
-    badgeSlotRef.current?.measureInWindow((x, y, width, height) => {
-      if (!width) return;
-      setBadgeSlot({ x: x + width / 2, y: y + height / 2, size: width });
-    });
-  }, []);
+  useEffect(() => {
+    if (!ceremony) return;
+    openBadgePromotion(ceremony.from, ceremony.to, badgeSlotRef.current);
+    // Marked seen as it starts: the showcase owns it from here.
+    dismiss();
+  }, [ceremony, dismiss]);
 
   // account_info returns followers/followings as arrays of addresses (or a
   // plain number elsewhere) — resolveCount normalises both to a count.
@@ -286,15 +285,6 @@ const ProfileHeader = () => {
 
   return (
     <View className="w-full">
-      {ceremony && (
-        <BadgeAscension
-          from={ceremony.from}
-          to={ceremony.to}
-          slot={badgeSlot}
-          balance={typeof badgeVal === "string" ? Number(badgeVal) : badgeVal}
-          onDone={dismiss}
-        />
-      )}
       {/* Cover */}
       <TouchableOpacity
         activeOpacity={0.9}
@@ -431,7 +421,6 @@ const ProfileHeader = () => {
               {badge && badgeImage && (
                 <Pressable
                   ref={badgeSlotRef}
-                  onLayout={measureBadgeSlot}
                   collapsable={false}
                   hitSlop={8}
                   onPress={() => openBadgeShowcase(badge, badgeSlotRef.current)}

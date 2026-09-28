@@ -2,12 +2,15 @@
  * ShowcaseShell — the stage every badge showcase shares.
  *
  * The badge lifts out of where it was tapped and flies to the middle of a
- * darkened screen (the same shared-element move BadgeAscension makes), then
- * wakes up as a holographic sticker you can tilt. A dock plays through the
- * whole set like a sticker pack. What a badge means (tokens and perks for a
- * holder tier, a milestone for a streamer card) is the caller's details
- * column, rendered through `children`. Web's twin is dehubweb
- * `src/components/app/badge-showcase/ShowcaseShell.tsx`.
+ * darkened screen, then wakes up as a holographic sticker you can tilt. A
+ * dock plays through the whole set like a sticker pack. What a badge means
+ * (tokens and perks for a holder tier, a milestone for a streamer card) is
+ * the caller's details column, rendered through `children`. Web's twin is
+ * dehubweb `src/components/app/badge-showcase/ShowcaseShell.tsx`.
+ *
+ * With an `intro` the opening is a promotion instead: the old badge flies
+ * out, bursts into glitter and comes back together as the new one before the
+ * sticker takes over (see `Ascension`).
  */
 import React, { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
 import {
@@ -24,6 +27,7 @@ import Animated, {
   cancelAnimation,
   runOnJS,
   useAnimatedStyle,
+  useReducedMotion,
   useSharedValue,
   withTiming,
   type SharedValue,
@@ -35,8 +39,10 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useTranslation } from "react-i18next";
 import Icon from "../ui/Icon";
 import BadgeSticker, { ART_SHARE, type StickerArt } from "./BadgeSticker";
+import Ascension from "./Ascension";
 import { Chrome } from "./showcaseUi";
 import type { MeasurableAnchor } from "../../libs/badgeShowcase";
+import type { BadgeMotion } from "../../libs/badgeMotion";
 import { haptic } from "../../libs/haptics";
 
 export interface ShowcaseEntry {
@@ -46,6 +52,14 @@ export interface ShowcaseEntry {
   /** Resting tilt in degrees. */
   tilt: number;
   art: StickerArt;
+}
+
+/** Opens the showcase with a promotion rather than a plain flight. */
+export interface ShowcaseIntro {
+  /** Art of the badge being left behind; null for a first badge. */
+  fromArt: StickerArt | null;
+  /** Sizing for the tier being reached. */
+  motion: BadgeMotion;
 }
 
 export interface ShowcaseApi {
@@ -69,6 +83,7 @@ interface Props {
   /** Marks an entry in the dock as held or earned. */
   owned: (index: number) => boolean;
   children: (api: ShowcaseApi) => ReactNode;
+  intro?: ShowcaseIntro;
 }
 
 interface Box {
@@ -111,17 +126,22 @@ function measure(anchor: MeasurableAnchor | null): Promise<Box | null> {
   });
 }
 
-export default function ShowcaseShell({ entries, originIndex, anchor, onClose, dialogLabel, owned, children }: Props) {
+export default function ShowcaseShell({ entries, originIndex, anchor, onClose, dialogLabel, owned, children, intro }: Props) {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const { width: W, height: H } = useWindowDimensions();
   const count = entries.length;
+  const reduceMotion = useReducedMotion();
+  const promote = !!intro && !reduceMotion;
 
   const [index, setIndex] = useState(originIndex);
-  const [playing, setPlaying] = useState(true);
+  // A promotion holds on the badge just earned rather than playing on.
+  const [playing, setPlaying] = useState(!reduceMotion && !intro);
   const [phase, setPhase] = useState<"enter" | "open" | "exit">("enter");
   const [stage, setStage] = useState<{ y: number; w: number; h: number } | null>(null);
   const [changed, setChanged] = useState(false);
+  /** The promotion while it plays: where the old badge flew out of, and whether the new one has landed. */
+  const [ceremony, setCeremony] = useState<{ from: Box | null; landed: boolean } | null>(null);
 
   /* ---------- geometry ---------- */
 
@@ -140,11 +160,15 @@ export default function ShowcaseShell({ entries, originIndex, anchor, onClose, d
   const backdrop = useSharedValue(0);
   const chrome = useSharedValue(0);
   const flight = useSharedValue(0);
-  const flyerOpacity = useSharedValue(1);
+  // A promotion keeps the flyer hidden until the new badge lands on the hero.
+  const flyerOpacity = useSharedValue(promote ? 0 : 1);
   const fromBox = useSharedValue<Box>({ x: W / 2 - 11, y: H * 0.22, size: 22 });
   const toBox = useSharedValue<Box>({ x: W / 2, y: H / 2, size: 1 });
   const homeward = useSharedValue(0);
   const startedRef = useRef(false);
+  // Set the moment a close starts, so a landing already queued on the UI
+  // thread cannot reopen the showcase or yank the badge mid-flight home.
+  const closingRef = useRef(false);
   const restTilt = entries[originIndex].tilt * 0.5;
 
   const land = useCallback(() => setPhase("open"), []);
@@ -156,6 +180,10 @@ export default function ShowcaseShell({ entries, originIndex, anchor, onClose, d
     haptic.tap();
     backdrop.value = withTiming(1, { duration: 380 });
     measure(anchor).then((from) => {
+      if (promote) {
+        setCeremony({ from, landed: false });
+        return;
+      }
       if (from) fromBox.value = from;
       else fromBox.value = { x: hero.x + hero.size * 0.35, y: hero.y + hero.size * 0.35, size: hero.size * 0.3 };
       flight.value = withTiming(1, { duration: FLY_OUT_MS, easing: Easing.linear }, (done) => {
@@ -165,6 +193,17 @@ export default function ShowcaseShell({ entries, originIndex, anchor, onClose, d
     // The flight starts once, from wherever the tap happened.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hero?.size]);
+
+  // The ceremony's new badge sits exactly where the flyer ends a flight, so the
+  // flyer takes over there and the sticker wakes up the usual way.
+  const landCeremony = useCallback(() => {
+    if (closingRef.current) return;
+    flight.value = 1;
+    flyerOpacity.value = 1;
+    setCeremony((c) => (c ? { ...c, landed: true } : c));
+    land();
+  }, [flight, flyerOpacity, land]);
+  const endCeremony = useCallback(() => setCeremony(null), []);
 
   useEffect(() => {
     if (phase !== "open") return;
@@ -203,6 +242,10 @@ export default function ShowcaseShell({ entries, originIndex, anchor, onClose, d
 
   const requestClose = useCallback(() => {
     if (phase === "exit") return;
+    closingRef.current = true;
+    // Closing mid-promotion cancels it; the new badge still flies home.
+    const midCeremony = !!ceremony && !ceremony.landed;
+    setCeremony(null);
     setPhase("exit");
     setPlaying(false);
     chrome.value = withTiming(0, { duration: 200 });
@@ -222,11 +265,12 @@ export default function ShowcaseShell({ entries, originIndex, anchor, onClose, d
       toBox.value = hero;
       homeward.value = 1;
       flyerOpacity.value = 1;
+      if (midCeremony) flight.value = 1;
       flight.value = withTiming(0, { duration: FLY_HOME_MS, easing: Easing.linear }, (done) => {
         if (done) runOnJS(onClose)();
       });
     });
-  }, [phase, index, originIndex, hero, anchor, onClose, chrome, backdrop, flyerOpacity, fromBox, toBox, homeward, flight]);
+  }, [phase, ceremony, index, originIndex, hero, anchor, onClose, chrome, backdrop, flyerOpacity, fromBox, toBox, homeward, flight]);
 
   /* ---------- navigation ---------- */
 
@@ -413,6 +457,22 @@ export default function ShowcaseShell({ entries, originIndex, anchor, onClose, d
         <Animated.View pointerEvents="none" style={[{ position: "absolute", left: 0, top: 0 }, flyerStyle]}>
           {entries[originIndex].art.renderArt()}
         </Animated.View>
+
+        {/* The promotion. Catches taps while it plays, so a tap skips to the
+            new badge instead of closing the showcase. */}
+        {ceremony && intro && hero ? (
+          <Ascension
+            from={ceremony.from}
+            hero={hero}
+            fromArt={intro.fromArt}
+            toArt={entries[originIndex].art}
+            restTilt={restTilt}
+            motion={intro.motion}
+            landed={ceremony.landed}
+            onLanded={landCeremony}
+            onFinished={endCeremony}
+          />
+        ) : null}
       </GestureHandlerRootView>
     </Modal>
   );
