@@ -37,7 +37,7 @@ describe('DM contact identity enrichment', () => {
         display_name: 'Alice',
         avatar_url: '/alice.jpg',
         badge_balance: 25000,
-        badge_lock: { tier: 'Lobster', requirement: 25000 },
+        badge_lock: { tier: 'Ghost Lobster', requirement: 25000 },
       },
     );
 
@@ -45,7 +45,7 @@ describe('DM contact identity enrichment', () => {
       displayName: 'Alice',
       avatarImageUrl: '/alice.jpg',
       badgeBalance: 25000,
-      badgeLock: { tier: 'Lobster', requirement: 25000 },
+      badgeLock: { tier: 'Ghost Lobster', requirement: 25000 },
     });
   });
 

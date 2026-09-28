@@ -22,7 +22,7 @@ describe("engagementWeightForBadge", () => {
 
   it("counts the entry tier twice and adds one a rung after that", () => {
     expect(engagementWeightForBadge("Crab")).toBe(2);
-    expect(engagementWeightForBadge("Lobster")).toBe(3);
+    expect(engagementWeightForBadge("Ghost Lobster")).toBe(3);
     expect(engagementWeightForBadge("Piranha")).toBe(4);
   });
 

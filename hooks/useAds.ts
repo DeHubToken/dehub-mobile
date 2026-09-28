@@ -1,3 +1,4 @@
+import { canonicalTierName } from '../libs/misc';
 /**
  * POVR ads data layer
  * ===================
@@ -132,7 +133,7 @@ export interface PovrTierInfo { name: string; min: number; cpmUsd: number }
 
 export const POVR_TIERS: PovrTierInfo[] = [
   { name: "Crab", min: 10_000, cpmUsd: 100 },
-  { name: "Lobster", min: 25_000, cpmUsd: 180 },
+  { name: "Ghost Lobster", min: 25_000, cpmUsd: 180 },
   { name: "Piranha", min: 50_000, cpmUsd: 285 },
   { name: "Giant Tortoise", min: 100_000, cpmUsd: 450 },
   { name: "King Cobra", min: 250_000, cpmUsd: 800 },
@@ -149,12 +150,12 @@ export const POVR_TIERS: PovrTierInfo[] = [
 export const NO_BADGE_TIER = { name: "none", label: "No Badge", cpmUsd: 10 };
 
 export function tierLabel(name: string): string {
-  return name === "none" ? NO_BADGE_TIER.label : name;
+  return name === "none" ? NO_BADGE_TIER.label : canonicalTierName(name);
 }
 
 export function tierCpmUsd(name: string): number {
   if (name === "none") return NO_BADGE_TIER.cpmUsd;
-  return POVR_TIERS.find((t) => t.name === name)?.cpmUsd ?? NO_BADGE_TIER.cpmUsd;
+  return POVR_TIERS.find((t) => t.name === canonicalTierName(name))?.cpmUsd ?? NO_BADGE_TIER.cpmUsd;
 }
 
 /** Blended CPM across a tier selection; empty selection = all tiers. */

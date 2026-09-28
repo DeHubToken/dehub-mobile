@@ -2,7 +2,7 @@
 // dark system palette; light surfaces can select these without changing tiers.
 export const LIGHT_BADGE_IMAGES: Record<string, number> = {
   "Crab": require("../assets/badges/light/Crab.png"),
-  "Lobster": require("../assets/badges/light/Lobster.png"),
+  "Ghost Lobster": require("../assets/badges/light/Ghost Lobster.png"),
   "Piranha": require("../assets/badges/light/Piranha.png"),
   "Giant Tortoise": require("../assets/badges/light/Giant Tortoise.png"),
   "King Cobra": require("../assets/badges/light/King Cobra.png"),
