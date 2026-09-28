@@ -8436,5 +8436,31 @@
     "faqAccountQ": "Potrebujem účet DeHub?",
     "chatgptFaqAccount": "Na čítanie verejného obsahu prostredníctvom konektora nie je potrebný žiadny účet. Účet DeHub je potrebný iba v prípade, že chcete publikovať, dávať tipy alebo držať tokeny DeHub.",
     "claudeFaqAccount": "Nie. Čítanie verejného obsahu funguje bez účtu. Účet DeHub potrebujete iba na publikovanie, dávanie tipov alebo držanie tokenov DeHub."
+  },
+  "credits": {
+    "percentUsed": "{{percent}}% použité",
+    "spentOfTotal": "{{spent}} z {{total}}",
+    "subscriptionTokens": "Žetóny predplatného",
+    "topUp": "Pridať tokeny",
+    "topUpTitle": "Pridať tokeny predplatného",
+    "topUpCustom": "Iná suma (USD)",
+    "topUpYouSend": "Odosielate",
+    "topUpYouGet": "Pridané k zostatku",
+    "topUpConfirm": "Pridať {{amount}}",
+    "topUpRange": "Zadajte {{min}} až {{max}}",
+    "topUpDone": "{{amount}} pridané do vašich tokenov predplatného",
+    "topUpPending": "Vaše dobitie sa potvrdzuje. Čoskoro sa objaví na tvojom zostatku.",
+    "topUpFailed": "Nepodarilo sa pridať tokeny predplatného",
+    "topUpStageFunding": "Získavanie tokenov...",
+    "topUpStageWallet": "Potvrďte v peňaženke...",
+    "topUpStageConfirming": "Čaká sa na transakciu...",
+    "topUpStageCrediting": "Pridáva sa k zostatku...",
+    "untradableTokens": "Toto sú neobchodovateľné tokeny predplatného",
+    "withdraw": "Vybrať",
+    "close": "Zavrieť",
+    "tokenAmount": "{{amount}} tokenov",
+    "subscriptionTokensOnly": "Len pre generáciu AI",
+    "subscriptionTokensValueNote": "Tokeny predplatného si zachovávajú svoju hodnotu v dolároch. Ak sa cena tokenu pohne pred ich použitím, uvidíte viac alebo menej tokenov, ale vždy si kúpia rovnaké množstvo AI generácie. Nemôžu byť stiahnuté, odoslané alebo obchodované.",
+    "topUpEmptyHint": "Pridajte tokeny, ktoré chcete vygenerovať pomocou AI"
   }
 }

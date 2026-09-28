@@ -8299,5 +8299,31 @@
     "faqAccountQ": "የDeHub መለያ ያስፈልገኛል?",
     "chatgptFaqAccount": "በአገናኙ በኩል የህዝብ ይዘትን ለማንበብ ምንም መለያ አያስፈልግም። የDeHub ቶከኖችን ለመለጠፍ፣ ለመጠቆም ወይም ለመያዝ ከፈለጉ ብቻ የDeHub መለያ ያስፈልጋል።",
     "claudeFaqAccount": "አይደለም። የህዝብ ይዘትን ማንበብ ያለ መለያ ይሰራል:: የDeHub ቶከኖችን ለመለጠፍ፣ ለመጠቆም ወይም ለመያዝ የDeHub መለያ ብቻ ያስፈልግዎታል።"
+  },
+  "credits": {
+    "percentUsed": "{{percent}}% ጥቅም ላይ ውሏል",
+    "spentOfTotal": "{{spent}} ከ {{total}}",
+    "subscriptionTokens": "የደንበኝነት ምዝገባ ቶከኖች",
+    "topUp": "ምልክቶችን ያክሉ",
+    "topUpTitle": "የደንበኝነት ምዝገባ ምልክቶችን ያክሉ",
+    "topUpCustom": "ሌላ መጠን (ዶላር)",
+    "topUpYouSend": "አንተ መላክ",
+    "topUpYouGet": "ወደ ሚዛናዊነትዎ ታክሏል",
+    "topUpConfirm": "ያክሉ {{amount}}",
+    "topUpRange": "ያስገቡ {{min}} ወደ {{max}}",
+    "topUpDone": "{{amount}} በደንበኝነት ምዝገባ ምልክቶችዎ ላይ ታክሏል",
+    "topUpPending": "የእርስዎ ከፍተኛ-ላይ ያረጋግጣል. በአጭር ጊዜ ውስጥ በእርስዎ ሚዛን ውስጥ ይታያል.",
+    "topUpFailed": "የደንበኝነት ምዝገባ ምልክቶችን ማከል አልተቻለም",
+    "topUpStageFunding": "ምልክቶችን ማግኘት...",
+    "topUpStageWallet": "በኪስ ቦርሳዎ ውስጥ ያረጋግጡ…",
+    "topUpStageConfirming": "ግብይቱን በመጠባበቅ ላይ…",
+    "topUpStageCrediting": "ወደ ሚዛናዊነትዎ ማከል...",
+    "untradableTokens": "እነዚህ የማይበጁ የደንበኝነት ምዝገባ ምልክቶች ናቸው",
+    "withdraw": "ማውጣት",
+    "close": "ዝጋ",
+    "tokenAmount": "{{amount}} ቶከኖች",
+    "subscriptionTokensOnly": "ለአይ ትውልድ ብቻ",
+    "subscriptionTokensValueNote": "የደንበኝነት ምዝገባ ምልክቶች የዶላር እሴታቸውን ይይዛሉ ። ከመጠቀምዎ በፊት ምልክት የተደረገባቸው ዋጋዎች የሚንቀሳቀሱ ከሆነ ብዙ ወይም ያነሰ ምልክቶችን ያያሉ ፣ ግን ሁልጊዜ ተመሳሳይ መጠን ያለው የአይአይ ትውልድ ይገዛሉ ። ሊሰረዙ ፣ ሊላኩ ወይም ሊሸጡ አይችሉም ።",
+    "topUpEmptyHint": "ከአይ ጋር ለማመንጨት ምልክቶችን ያክሉ"
   }
 }

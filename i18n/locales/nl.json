@@ -8525,5 +8525,31 @@
     "faqAccountQ": "Heb ik een DeHub-account nodig?",
     "chatgptFaqAccount": "Er is geen account vereist om openbare inhoud te lezen via de connector. Een DeHub-account is alleen nodig als je DeHub-tokens wilt posten, tippen of vasthouden.",
     "claudeFaqAccount": "Nee. Het lezen van openbare inhoud werkt zonder account. Je hebt alleen een DeHub-account nodig om DeHub-tokens te posten, tippen of vasthouden."
+  },
+  "credits": {
+    "percentUsed": "{{percent}}% gebruikt",
+    "spentOfTotal": "{{spent}} van {{total}}",
+    "subscriptionTokens": "Abonnementstokens",
+    "topUp": "Tokens toevoegen",
+    "topUpTitle": "Abonnementstokens toevoegen",
+    "topUpCustom": "Ander bedrag (USD)",
+    "topUpYouSend": "U verzendt",
+    "topUpYouGet": "Toegevoegd aan je saldo",
+    "topUpConfirm": "{{amount}} toevoegen",
+    "topUpRange": "Voer {{min}} in tot {{max}}",
+    "topUpDone": "{{amount}} toegevoegd aan je abonnementstokens",
+    "topUpPending": "Je opwaardering wordt bevestigd. Deze wordt binnenkort in je saldo weergegeven.",
+    "topUpFailed": "Kan abonnementstokens niet toevoegen",
+    "topUpStageFunding": "Tokens krijgen...",
+    "topUpStageWallet": "Bevestig in je portemonnee...",
+    "topUpStageConfirming": "Wachten op de transactie...",
+    "topUpStageCrediting": "Toe te voegen aan uw saldo...",
+    "untradableTokens": "Dit zijn niet-verhandelbare abonnementstokens",
+    "withdraw": "Opnemen",
+    "close": "Sluiten",
+    "tokenAmount": "{{amount}} tokens",
+    "subscriptionTokensOnly": "Alleen voor AI-generatie",
+    "subscriptionTokensValueNote": "Abonnementstokens hebben hun dollarwaarde. Als de tokenprijs beweegt voordat je ze gebruikt, zie je meer of minder tokens, maar ze kopen altijd dezelfde hoeveelheid AI-generatie. Ze kunnen niet worden ingetrokken, verzonden of verhandeld.",
+    "topUpEmptyHint": "Voeg tokens toe om te genereren met AI"
   }
 }

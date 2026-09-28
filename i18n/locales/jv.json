@@ -8271,5 +8271,31 @@
     "faqAccountQ": "Apa aku butuh akun DeHub?",
     "chatgptFaqAccount": "Ora perlu akun kanggo maca konten umum liwat konektor. Akun DeHub mung perlu yen sampeyan pengin posting, menehi tip, utawa nyimpen token DeHub.",
     "claudeFaqAccount": "Ora. Maca konten umum bisa tanpa akun. Sampeyan mung perlu akun DeHub kanggo posting, menehi tip, utawa nyimpen token DeHub."
+  },
+  "credits": {
+    "percentUsed": "{{percent}}% digunakake",
+    "spentOfTotal": "{{spent}} saka {{total}}",
+    "subscriptionTokens": "Token Langganan",
+    "topUp": "Tambahake token",
+    "topUpTitle": "Tambah token langganan",
+    "topUpCustom": "Jumlah liyane (USD)",
+    "topUpYouSend": "Sampeyan ngirim",
+    "topUpYouGet": "Ditrapake ing imbangan sampeyan",
+    "topUpConfirm": "Tambah {{amount}}",
+    "topUpRange": "Lebokake {{min}} menyang {{max}}",
+    "topUpDone": "{{amount}} ditambahake menyang token langganan sampeyan",
+    "topUpPending": "Isi ulang sampeyan lagi dikonfirmasi. Bakal katon ing imbangan sampeyan sanalika.",
+    "topUpFailed": "Ora bisa nambah token langganan",
+    "topUpStageFunding": "Njaluk token…",
+    "topUpStageWallet": "Konfirmasi ing dompet sampeyan…",
+    "topUpStageConfirming": "Ngenteni transaksi…",
+    "topUpStageCrediting": "Ditrapake ing imbangan sampeyan…",
+    "untradableTokens": "Iki token langganan sing ora bisa diperdagangkan",
+    "withdraw": "Tarik",
+    "close": "Close",
+    "tokenAmount": "{{amount}} token",
+    "subscriptionTokensOnly": "Mung kanggo nggawe nganggo AI",
+    "subscriptionTokensValueNote": "Token langganan nyekel nilai dolare. Yen rega token owah sadurunge sampeyan nggunakake, sampeyan bakal weruh luwih akeh utawa luwih sithik token, nanging mesthi bakal tuku jumlah generasi AI sing padha. Dheweke ora bisa ditarik, dikirim utawa didagang.",
+    "topUpEmptyHint": "Tambahake token kanggo digawe karo AI"
   }
 }

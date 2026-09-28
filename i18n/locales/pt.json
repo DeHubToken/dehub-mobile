@@ -8275,5 +8275,31 @@
     "faqAccountQ": "Preciso de uma conta no DeHub?",
     "chatgptFaqAccount": "Nenhuma conta é necessária para ler conteúdo público através do conector. Uma conta DeHub é necessária apenas se você quiser postar, dar gorjetas ou manter tokens DeHub.",
     "claudeFaqAccount": "Não. Ler conteúdo público funciona sem uma conta. Você só precisa de uma conta DeHub para postar, dar gorjetas ou manter tokens DeHub."
+  },
+  "credits": {
+    "percentUsed": "{{percent}}% usado",
+    "spentOfTotal": "{{spent}} de {{total}}",
+    "subscriptionTokens": "Tokens de subscrição",
+    "topUp": "Adicionar tokens",
+    "topUpTitle": "Adicionar tokens de subscrição",
+    "topUpCustom": "Outro valor (USD)",
+    "topUpYouSend": "Você envia",
+    "topUpYouGet": "Adicionado ao seu saldo",
+    "topUpConfirm": "Adicionar {{amount}}",
+    "topUpRange": "Introduza {{min}} para {{max}}",
+    "topUpDone": "{{amount}} adicionado aos seus tokens de subscrição",
+    "topUpPending": "O seu carregamento está a confirmar. Aparecerá no seu saldo em breve.",
+    "topUpFailed": "Não foi possível adicionar tokens de subscrição",
+    "topUpStageFunding": "Obtendo tokens...",
+    "topUpStageWallet": "Confirme na sua carteira...",
+    "topUpStageConfirming": "A aguardar a transação...",
+    "topUpStageCrediting": "A adicionar ao seu saldo...",
+    "untradableTokens": "Estes são tokens de assinatura não negociáveis",
+    "withdraw": "Levantar",
+    "close": "Fechar",
+    "tokenAmount": "{{amount}} tokens",
+    "subscriptionTokensOnly": "Apenas para geração de IA",
+    "subscriptionTokensValueNote": "Os tokens de subscrição mantêm o seu valor em dólares. Se o preço do token se mover antes de usá-los, você verá mais ou menos tokens, mas eles sempre compram a mesma quantidade de geração de IA. Eles não podem ser retirados, enviados ou negociados.",
+    "topUpEmptyHint": "Adicione tokens para gerar com IA"
   }
 }

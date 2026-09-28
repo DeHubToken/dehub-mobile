@@ -8264,5 +8264,31 @@
     "faqAccountQ": "Do I need a DeHub account?",
     "chatgptFaqAccount": "No account is required to read public content through the connector. A DeHub account is only needed if you want to post, tip or hold DeHub tokens.",
     "claudeFaqAccount": "No. Reading public content works without an account. You only need a DeHub account to post, tip or hold DeHub tokens."
+  },
+  "credits": {
+    "percentUsed": "{{percent}}% used",
+    "spentOfTotal": "{{spent}} of {{total}}",
+    "subscriptionTokens": "Subscription tokens",
+    "topUp": "Add tokens",
+    "topUpTitle": "Add subscription tokens",
+    "topUpCustom": "Other amount (USD)",
+    "topUpYouSend": "You send",
+    "topUpYouGet": "Added to your balance",
+    "topUpConfirm": "Add {{amount}}",
+    "topUpRange": "Enter {{min}} to {{max}}",
+    "topUpDone": "{{amount}} added to your subscription tokens",
+    "topUpPending": "Your top-up is confirming. It will appear in your balance shortly.",
+    "topUpFailed": "Could not add subscription tokens",
+    "topUpStageFunding": "Getting tokens…",
+    "topUpStageWallet": "Confirm in your wallet…",
+    "topUpStageConfirming": "Waiting for the transaction…",
+    "topUpStageCrediting": "Adding to your balance…",
+    "untradableTokens": "These are untradable subscription tokens",
+    "withdraw": "Withdraw",
+    "close": "Close",
+    "tokenAmount": "{{amount}} tokens",
+    "subscriptionTokensOnly": "For AI generation only",
+    "subscriptionTokensValueNote": "Subscription tokens hold their dollar value. If the token price moves before you use them you will see more or fewer tokens, but they always buy the same amount of AI generation. They cannot be withdrawn, sent or traded.",
+    "topUpEmptyHint": "Add tokens to generate with AI"
   }
 }

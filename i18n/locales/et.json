@@ -8266,5 +8266,31 @@
     "faqAccountQ": "Kas mul on vaja DeHubi kontot?",
     "chatgptFaqAccount": "Avaliku sisu lugemiseks pole ühenduslüüsi kaudu kontot vaja. DeHub konto on vajalik ainult siis, kui soovite postitada, jootraha anda või DeHub žetoone hoida.",
     "claudeFaqAccount": "Ei. Avaliku sisu lugemine töötab ilma kontota. DeHub konto on vajalik ainult postitamiseks, jootraha andmiseks või DeHub žetoonide hoidmiseks."
+  },
+  "credits": {
+    "percentUsed": "{{percent}}% kasutatud",
+    "spentOfTotal": "{{spent}}/{{total}}",
+    "subscriptionTokens": "Tellimuse märgid",
+    "topUp": "Lisa märgid",
+    "topUpTitle": "Lisa tellimuse märgid",
+    "topUpCustom": "Muu summa (USD)",
+    "topUpYouSend": "Saatsid",
+    "topUpYouGet": "Sinu jäägile lisatud",
+    "topUpConfirm": "Lisa {{amount}}",
+    "topUpRange": "Sisesta {{min}} kuni {{max}}",
+    "topUpDone": "{{amount}} lisati sinu tellimustõenditele",
+    "topUpPending": "Sinu lisamine on kinnitamisel. See ilmub peagi Sinu jäägile.",
+    "topUpFailed": "Tellimusmärke ei saanud lisada",
+    "topUpStageFunding": "Žetoonide hankimine…",
+    "topUpStageWallet": "Kinnita oma rahakotis…",
+    "topUpStageConfirming": "Tehingu ootel...",
+    "topUpStageCrediting": "Sinu jäägile lisamine…",
+    "untradableTokens": "Need on kättesaamatud märkimismärgid",
+    "withdraw": "Väljamakse",
+    "close": "Sulge",
+    "tokenAmount": "{{amount}} märk",
+    "subscriptionTokensOnly": "Ainult tehisintellekti loomiseks",
+    "subscriptionTokensValueNote": "Tellimuse märgid hoiavad oma väärtust dollarites. Kui sümboolne hind liigub enne nende kasutamist, näete rohkem või vähem sümboleid, kuid nad ostavad alati sama koguse tehisintellekti põlvkonda. Neid ei saa tagasi võtta, saata ega vahetada.",
+    "topUpEmptyHint": "Tehisintellekti abil genereerimiseks lisa žetoonid"
   }
 }

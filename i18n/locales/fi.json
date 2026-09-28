@@ -8271,5 +8271,31 @@
     "faqAccountQ": "Tarvitsenko DeHub-tilin?",
     "chatgptFaqAccount": "Julkisen sisällön lukemiseen liittimen kautta ei vaadita tiliä. DeHub-tiliä tarvitaan vain, jos haluat julkaista, antaa tippiä tai pitää DeHub-tokeneita.",
     "claudeFaqAccount": "Ei. Julkisen sisällön lukeminen onnistuu ilman tiliä. DeHub-tiliä tarvitaan vain, jos haluat julkaista, antaa tippiä tai pitää DeHub-tokeneita."
+  },
+  "credits": {
+    "percentUsed": "{{percent}}% käytetty",
+    "spentOfTotal": "{{spent}}/{{total}}",
+    "subscriptionTokens": "Tilaustunnukset",
+    "topUp": "Lisää tunnuksia",
+    "topUpTitle": "Lisää tilaustunnukset",
+    "topUpCustom": "Muu summa (USD)",
+    "topUpYouSend": "Lähetät",
+    "topUpYouGet": "Lisätty saldoosi",
+    "topUpConfirm": "Lisää {{amount}}",
+    "topUpRange": "Syötä {{min}} - {{max}}",
+    "topUpDone": "{{amount}} lisättiin tilaustunnuksiisi",
+    "topUpPending": "Täytteesi on vahvistamassa. Se näkyy pian saldossasi.",
+    "topUpFailed": "Tilaustunnuksia ei voitu lisätä",
+    "topUpStageFunding": "Haetaan poletteja...",
+    "topUpStageWallet": "Vahvista lompakossasi…",
+    "topUpStageConfirming": "Odotetaan tapahtumaa...",
+    "topUpStageCrediting": "Lisätään saldoosi…",
+    "untradableTokens": "Näitä tilaustunnuksia ei voi vaihtaa",
+    "withdraw": "Nosta",
+    "close": "Sulje",
+    "tokenAmount": "{{amount}} tokenia",
+    "subscriptionTokensOnly": "Vain tekoälyn tuottamiseen",
+    "subscriptionTokensValueNote": "Tilaustunnukset säilyttävät dollarimääräisen arvonsa. Jos tunnuksen hinta siirtyy ennen niiden käyttöä, näet enemmän tai vähemmän tunnuksia, mutta he ostavat aina saman määrän tekoälysukupolvea. Niitä ei voi peruuttaa, lähettää tai vaihtaa.",
+    "topUpEmptyHint": "Lisää poletteja luodaksesi tekoälyn avulla"
   }
 }

@@ -8107,5 +8107,31 @@
     "faqAccountQ": "ຂ້ອຍຕ້ອງມີບັນຊີ DeHub ບໍ?",
     "chatgptFaqAccount": "ບໍ່ຈໍາເປັນຕ້ອງມີບັນຊີເພື່ອອ່ານເນື້ອຫາສາທາລະນະຜ່ານ connector. ບັນຊີ DeHub ຕ້ອງການພຽງແຕ່ເມື່ອທ່ານຕ້ອງການໂພສ, ໃຫ້ tip, ຫຼືຖື DeHub tokens.",
     "claudeFaqAccount": "ບໍ່. ການອ່ານເນື້ອຫາສາທາລະນະເຮັດວຽກໂດຍບໍ່ມີບັນຊີ. ທ່ານຕ້ອງການບັນຊີ DeHub ເທົ່ານັ້ນເພື່ອໂພສ, ໃຫ້ tip, ຫຼືຖື DeHub tokens."
+  },
+  "credits": {
+    "percentUsed": "{{percent}}% ໃຊ້ແລ້ວ",
+    "spentOfTotal": "{{spent}} ຂອງ {{total}}",
+    "subscriptionTokens": "Token ການສະໝັກ",
+    "topUp": "ເພີ່ມໂທເຄນ",
+    "topUpTitle": "ເພີ່ມໂທເຄນການຈອງ",
+    "topUpCustom": "ຈໍາ ນວນເງິນອື່ນໆ (USD)",
+    "topUpYouSend": "ທ່ານສົ່ງ",
+    "topUpYouGet": "ເພີ່ມເຂົ້າໃນການດຸ່ນດ່ຽງຂອງທ່ານ",
+    "topUpConfirm": "ເພີ່ມ {{amount}}",
+    "topUpRange": "ໃສ່ {{min}} ເຖິງ {{max}}",
+    "topUpDone": "ເພີ່ມ {{amount}} ເຂົ້າໃນໂທເຄັນສະມາຊິກຂອງທ່ານແລ້ວ",
+    "topUpPending": "ການເຕີມເງິນຂອງເຈົ້າກຳລັງຢືນຢັນ. ມັນຈະປາກົດຢູ່ໃນຄວາມສົມດຸນຂອງທ່ານໃນໄວໆນີ້.",
+    "topUpFailed": "ບໍ່ສາມາດເພີ່ມໂທເຄນສະໝັກສະມາຊິກໄດ້",
+    "topUpStageFunding": "ກຳລັງກຳລັງເອົາໂທເຄນ...",
+    "topUpStageWallet": "ຢືນຢັນໃນກະເປົາເງິນຂອງທ່ານ...",
+    "topUpStageConfirming": "ລໍຖ້າການເຮັດທຸລະກໍາ...",
+    "topUpStageCrediting": "ເພື່ອຮັກສາຄວາມສົມດຸນ...",
+    "untradableTokens": "ເຫຼົ່ານີ້ແມ່ນ token ການສະໝັກທີ່ບໍ່ສາມາດຊ່ວຍແລກປ່ຽນ",
+    "withdraw": "ຖອນເງິນ",
+    "close": "ປິດ",
+    "tokenAmount": "{{amount}} ໂທເຄັນ",
+    "subscriptionTokensOnly": "ສໍາລັບຄົນໃນຍຸກ AI ເທົ່ານັ້ນ",
+    "subscriptionTokensValueNote": "ໂທເຄັນສະມາຊິກຮັກສາມູນຄ່າເປັນໂດລາ. ຖ້າລາຄາໂທເຄັນປ່ຽນກ່ອນທ່ານໃຊ້, ທ່ານຈະເຫັນໂທເຄັນຫຼາຍຂຶ້ນ ຫຼື ໜ້ອຍລົງ, ແຕ່ມັນຈະຊື້ການສ້າງດ້ວຍ AI ໄດ້ເທົ່າເດີມສະເໝີ. ບໍ່ສາມາດຖອນ, ສົ່ງ ຫຼື ຊື້ຂາຍໄດ້.",
+    "topUpEmptyHint": "ເພີ່ມໂທເຄັນເພື່ອສ້າງດ້ວຍ AI"
   }
 }

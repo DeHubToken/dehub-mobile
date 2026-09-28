@@ -7529,5 +7529,31 @@
     "faqAccountQ": "کیا مجھے DeHub اکاؤنٹ کی ضرورت ہے؟",
     "chatgptFaqAccount": "کنیکٹر کے ذریعے عوامی مواد پڑھنے کے لیے کسی اکاؤنٹ کی ضرورت نہیں ہے۔ اگر آپ DeHub ٹوکنز پوسٹ کرنا، ٹپ کرنا یا رکھنا چاہتے ہیں تو صرف DeHub اکاؤنٹ کی ضرورت ہے۔",
     "claudeFaqAccount": "نہیں عوامی مواد پڑھنا اکاؤنٹ کے بغیر کام کرتا ہے۔ آپ کو صرف پوسٹ کرنے، ٹپ کرنے یا DeHub ٹوکنز رکھنے کے لیے DeHub اکاؤنٹ کی ضرورت ہے۔"
+  },
+  "credits": {
+    "percentUsed": "{{percent}}% استعمال ہوا",
+    "spentOfTotal": "{{spent}} کا {{total}}",
+    "subscriptionTokens": "سبسکرپشن ٹوکنز",
+    "topUp": "ٹوکنز جوڑو",
+    "topUpTitle": "سبسکرپشن ٹوکنز جوڑو",
+    "topUpCustom": "دوسری رقم (USD)",
+    "topUpYouSend": "آپ بھیجتے",
+    "topUpYouGet": "آپ کے بیلنس میں جڑتا",
+    "topUpConfirm": "{{amount}} جوڑو",
+    "topUpRange": "{{min}} سے {{max}} تک لکھو",
+    "topUpDone": "{{amount}} آپ کے سبسکرپشن ٹوکنز میں جڑ گئے",
+    "topUpPending": "آپ کا ٹاپ اپ تصدیق ہو رہا۔ تھوڑی دیر میں بیلنس میں دکھتا۔",
+    "topUpFailed": "سبسکرپشن ٹوکنز نئیں جڑ سکے",
+    "topUpStageFunding": "ٹوکنز لا رئیں…",
+    "topUpStageWallet": "اپنے والٹ میں تصدیق کرو…",
+    "topUpStageConfirming": "ٹرانزیکشن کا انتظار…",
+    "topUpStageCrediting": "بیلنس میں جوڑ رئیں…",
+    "untradableTokens": "یو ٹریڈ نئیں ہونے والے سبسکرپشن ٹوکنز ہیں",
+    "withdraw": "نکالو",
+    "close": "بند کریں",
+    "tokenAmount": "{{amount}} ٹوکنز",
+    "subscriptionTokensOnly": "صرف AI جنریشن کے واسطے",
+    "subscriptionTokensValueNote": "سبسکرپشن ٹوکنز اپنی ڈالر قیمت رکھتے۔ استعمال سے پہلے ٹوکن کی قیمت بدلے تو زیادہ یا کم ٹوکنز دکھتے، مگر ہمیشہ اتنی ہی AI جنریشن ملتی۔ یو نکالے، بھیجے یا ٹریڈ نئیں کیے جاسکتے۔",
+    "topUpEmptyHint": "AI سے بنانے کے واسطے ٹوکنز جوڑو"
   }
 }

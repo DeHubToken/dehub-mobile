@@ -8321,5 +8321,31 @@
     "faqAccountQ": "Herrega DeHub na barbaachisaa?",
     "chatgptFaqAccount": "Qabiyyee ummataa karaa walqabsiisaa dubbisuuf herregni kamiyyuu hin barbaachisu. Akkaawuntii DeHub kan barbaachisu yoo mallattoo DeHub maxxansuu, gorsa kennuu ykn qabachuu barbaadde qofa.",
     "claudeFaqAccount": "Lakki Qabiyyee ummataa dubbisuun akkaawuntii malee hojjeta. Tookiin DeHub maxxansuuf, gorsa kennuuf ykn qabachuuf akkaawuntii DeHub qofa si barbaachisa."
+  },
+  "credits": {
+    "percentUsed": "{{percent}}% fayyadameera",
+    "spentOfTotal": "{{spent}} kan {{total}}",
+    "subscriptionTokens": "Tokenii galmee",
+    "topUp": "Tokens itti dabali",
+    "topUpTitle": "Mallattoo maallaqa galchuu dabali",
+    "topUpCustom": "Maallaqa biroo (USD) .",
+    "topUpYouSend": "Ati ergita",
+    "topUpYouGet": "Hafnaan keessan irratti dabalameera",
+    "topUpConfirm": "{{amount}} itti dabali.",
+    "topUpRange": "{{min}} gara {{max}} tti galchaa.",
+    "topUpDone": "{{amount}} mallattoo maallaqa galchuu keessan irratti dabalameera",
+    "topUpPending": "Top-up keessan mirkaneessaa jira. Yeroo gabaabaa keessatti madaallii keessan keessatti ni mul&#39;ata.",
+    "topUpFailed": "Mallattoo maallaqa galchuu dabaluu hin dandeenye",
+    "topUpStageFunding": "Tookiin argachuu...",
+    "topUpStageWallet": "Borsaa keessan keessatti mirkaneessaa...",
+    "topUpStageConfirming": "Daldala kana eegaa...",
+    "topUpStageCrediting": "Madaallii keessanitti dabaluudhaan...",
+    "untradableTokens": "Kunniin mallattoo maallaqa maallaqaan bitamuu kan hin daldalamneedha",
+    "withdraw": "Gidduutti dhaabuu",
+    "close": "Cufuu",
+    "tokenAmount": "{{amount}} mallattoolee",
+    "subscriptionTokensOnly": "Dhaloota AI qofaaf",
+    "subscriptionTokensValueNote": "Tookoonni maallaqa galchuu gatii doolaara isaanii qabatu. Yoo gatiin token osoo hin fayyadamin socho&#39;e token baay&#39;ee ykn xiqqaa argita, garuu yeroo hunda dhaloota AI hamma walfakkaatu bitatu. Isaanis baafamuu, ergamuu fi daldalamuu hin danda’an.",
+    "topUpEmptyHint": "AI waliin maddisiisuudhaaf tokens itti dabali"
   }
 }

@@ -8275,5 +8275,31 @@
     "faqAccountQ": "האם אני צריך חשבון DeHub?",
     "chatgptFaqAccount": "אין צורך בחשבון כדי לקרוא תוכן ציבורי דרך המחבר. חשבון DeHub נדרש רק אם ברצונך לפרסם, לתת טיפים או להחזיק טוקני DeHub.",
     "claudeFaqAccount": "לא. קריאת תוכן ציבורי עובדת ללא חשבון. אתה צריך רק חשבון DeHub כדי לפרסם, לתת טיפים או להחזיק טוקני DeHub."
+  },
+  "credits": {
+    "percentUsed": "%{{percent}} בשימוש",
+    "spentOfTotal": "{{spent}} מתוך {{total}}",
+    "subscriptionTokens": "אסימוני מינוי",
+    "topUp": "הוספת אסימונים",
+    "topUpTitle": "הוספת אסימוני מינוי",
+    "topUpCustom": "סכום אחר (USD)",
+    "topUpYouSend": "אתם שולחים",
+    "topUpYouGet": "נוסף ליתרה שלך",
+    "topUpConfirm": "הוספה של {{amount}}",
+    "topUpRange": "יש להזין {{min}} אל {{max}}",
+    "topUpDone": "{{amount}} נוספו לאסימוני המינוי שלך",
+    "topUpPending": "התוספת שלך מאשרת. הוא יופיע ביתרה שלך בקרוב.",
+    "topUpFailed": "לא ניתן להוסיף אסימוני מנוי",
+    "topUpStageFunding": "מקבל אסימונים...",
+    "topUpStageWallet": "אשר בארנק שלך…",
+    "topUpStageConfirming": "בהמתנה לעסקה…",
+    "topUpStageCrediting": "מוסיף ליתרה שלך...",
+    "untradableTokens": "אלה אסימוני מנוי בלתי סחירים",
+    "withdraw": "משיכה",
+    "close": "סגור",
+    "tokenAmount": "{{amount}} אסימונים",
+    "subscriptionTokensOnly": "לדור הבינה המלאכותית בלבד",
+    "subscriptionTokensValueNote": "אסימוני מנוי מחזיקים בערך הדולרי שלהם. אם מחיר האסימון נע לפני השימוש בהם תראו יותר או פחות אסימונים, אבל הם תמיד קונים את אותה כמות של יצירת בינה מלאכותית. לא ניתן למשוך, לשלוח או לסחור בהם.",
+    "topUpEmptyHint": "הוסף אסימונים כדי ליצור באמצעות בינה מלאכותית"
   }
 }

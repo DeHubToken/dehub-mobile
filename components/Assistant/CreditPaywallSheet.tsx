@@ -41,7 +41,7 @@ import { Gesture, GestureDetector, GestureHandlerRootView } from 'react-native-g
 import { useNavigation } from '@react-navigation/native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Icon, { type IconName } from '../ui/Icon';
-import { useJobQuote, useJobPayment, useFreeImages } from '../../hooks/useAiPayment';
+import { useJobQuote, useJobPayment, useFreeImages, creditsCoverPrice } from '../../hooks/useAiPayment';
 import { useYieldToWalletUnlock } from '../../hooks/useYieldToWalletUnlock';
 import { formatDhb, indicativeDhb, withMarkup } from '../../config/ai-models.constants';
 import type { AiJobKind } from '../../services/ai.service';
@@ -145,10 +145,15 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
   // screen opened.
   const {
     walletDhb,
+    creditsUsd,
     isLoading: isWalletLoading,
-    unsupportedChain,
+    unsupportedChain: chainProblem,
     payForJob,
   } = useJobPayment(visible);
+  // Subscription tokens pay without a transfer, so the connected chain only
+  // matters when they fall short.
+  const paidByCredits = creditsCoverPrice(creditsUsd, priceDhb);
+  const unsupportedChain = paidByCredits ? null : chainProblem;
 
   const unitCostUsd = model ? withMarkup(model.baseCostUsd) : 0;
   const costUsd = unitCostUsd * quantity;
@@ -156,7 +161,7 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
   // Offering a payment somebody cannot make would only fail at the signature,
   // so a wallet short of the price is sent to buy instead.
   const needsTokens =
-    !isWalletLoading && !unsupportedChain && priceDhb > 0 && walletDhb < priceDhb;
+    !isWalletLoading && !unsupportedChain && !paidByCredits && priceDhb > 0 && walletDhb < priceDhb;
 
   /* ── Sheet animation ─────────────────────────────────────────────────── */
   const translateY = useSharedValue(sheetHeight);

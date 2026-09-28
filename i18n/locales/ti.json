@@ -8261,5 +8261,31 @@
     "faqAccountQ": "ናይ DeHub ሕሳብ የድልየኒ ዶ?",
     "chatgptFaqAccount": "ብማእከላይ ኣቢሉ ህዝባዊ ትሕዝቶ ንምንባብ ዝኾነ ሕሳብ ኣየድልዮን እዩ ። ናይ DeHub መለያ እንተድኣ ናይ DeHub ምልክታት ክትለኣኽ ፡ ክትመኽረካ ወይ ክትሕዝ እንተ ደሊኻ ጥራይ እዩ ዝድለ ።",
     "claudeFaqAccount": "ኣይፋል ፡ ህዝባዊ ትሕዝቶ ምንባብ ብዘይ ሕሳብ ይሰርሕ ። ናይ DeHub መለያ ጥራይ ኢኻ እትደሊ ፡ ናይ DeHub ምልክታት ክትለኣኽ ፡ ክትመኽረካ ወይ ክትሕዝ ።"
+  },
+  "credits": {
+    "percentUsed": "{{percent}}% ተጠቐመ",
+    "spentOfTotal": "{{spent}} ካብ {{total}}",
+    "subscriptionTokens": "ናይ ምዝገባ ቶክን",
+    "topUp": "ምልክታት ኣክሊል",
+    "topUpTitle": "ናይ ኣባልነት ምልክታት ኣክሊል",
+    "topUpCustom": "ካልእ መጠን (USD)",
+    "topUpYouSend": "ትልእኮ",
+    "topUpYouGet": "ናብ ሚዛንካ ኣክሊልካ",
+    "topUpConfirm": "{{amount}} ወስኽ",
+    "topUpRange": "{{min}} ናብ {{max}}",
+    "topUpDone": "{{amount}} ኣብ ናይ ኣባልነት ምልክታትካ ተወሰኸ",
+    "topUpPending": "እቲ ዝለዓለ ደረጃኻ ኣረጋጊጹ ኣሎ ። እዚ ድማ ኣብ ቀረባ እዋን ኣብ ሚዛንካ ክርአ እዩ ።",
+    "topUpFailed": "ናይ ኣባልነት ምልክታት ክውስኽ ኣይከኣለን ።",
+    "topUpStageFunding": "ኣቃውማታት...",
+    "topUpStageWallet": "ኣብ ቦርሳኻ ኣረጋጊጽካ...",
+    "topUpStageConfirming": "ነቲ ግብረ-ሰናይ ትጽበዮ ኣለኻ...",
+    "topUpStageCrediting": "ምስ ሚዛንካ ተሰማሚዕካ...",
+    "untradableTokens": "እዚ ድማ ዘይንቡር ናይ ኣባልነት ምልክታት እዩ ።",
+    "withdraw": "ምስሕሓብ",
+    "close": "ፍለጥ",
+    "tokenAmount": "{{amount}} ቶክን",
+    "subscriptionTokensOnly": "ንወለዲ ጥራይ",
+    "subscriptionTokensValueNote": "ናይ ምዝገባ ምልክታት ንዶላር ዋጋኦም ይሕዝዎ ። እቲ ናይ ምልክት ዋጋ ቅድሚ ምጥቃምካ እንተተንቀሳቐሰ ፡ ዝያዳ ወይ ትሑት ምልክታት ክትርኢ ኢኻ ፡ ግን ወትሩ ሓደ ዓይነት መጠን ናይ AI ወለዶ ይዕድጉ እዮም ። ክስረዙ ፡ ክልእኩ ወይ ክነግዱ ኣይክእሉን እዮም ።",
+    "topUpEmptyHint": "ምስ AI ንምፍጣር ምልክታት ኣክሊልካ"
   }
 }
