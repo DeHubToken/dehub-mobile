@@ -1704,7 +1704,7 @@
     "walletImported": "Wallet don import",
     "importWallet": "Import wallet",
     "privateKeyPlaceholder": "Enta yua private key",
-    "importExternalWallet": "Import outside wallet",
+    "importExternalWallet": "Import keys",
     "migrateAccount": "Carry account come",
     "migrateAccountBody": "Yu bin get DeHub account bifo? Sign in wit di same email, phone, Google or Apple login weh yu bin use dat time. If e match wan ol account, we go ask yu if yu wan carry ya wallet, username an balance come.",
     "migrateAccountNote": "Wan-time sign-in wit di ol login go bring ya wallet key fine-fine fo dis device. E no dey ever touch we servers.",

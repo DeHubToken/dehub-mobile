@@ -1746,7 +1746,7 @@
     "walletImported": "Đã nhập ví",
     "importWallet": "Nhập ví",
     "privateKeyPlaceholder": "Nhập khóa riêng của bạn",
-    "importExternalWallet": "Nhập ví bên ngoài",
+    "importExternalWallet": "Nhập khóa",
     "migrateAccount": "Di chuyển tài khoản",
     "migrateAccountBody": "Bạn đã từng có tài khoản DeHub trước đây? Đăng nhập bằng cùng thông tin đăng nhập email, điện thoại, Google hoặc Apple mà bạn đã sử dụng trước đó. Nếu nó khớp với tài khoản trước đó, bạn sẽ được đề nghị mang theo ví, tên người dùng và số dư của nó.",
     "migrateAccountNote": "Đăng nhập một lần với thông tin đăng nhập cũ sẽ lấy khóa ví của bạn một cách an toàn trên thiết bị này. Nó không bao giờ chạm vào máy chủ của chúng tôi.",
@@ -4837,9 +4837,9 @@
     "noUsableBackup": "Tài khoản này có địa chỉ ví được lưu trữ, nhưng không có bản sao lưu nào điện thoại này có thể sử dụng — hoặc nó được bảo vệ bằng <em>sinh trắc học hoặc khóa truy cập trên web</em> (khóa mở đó vẫn ở trong trình duyệt và không đồng bộ hóa ở đây), hoặc một lần đăng ký trước đó trên điện thoại này đã bị gián đoạn trước khi hoàn tất.",
     "addPasswordOnWeb": "Nếu bạn đã từng sử dụng dehub.io trước đây, hãy mở nó trên máy tính của bạn, đăng nhập theo cách tương tự và bằng cùng một tài khoản, sau đó <em>thêm mật khẩu ví</em> — điều đó sẽ lưu một bản sao lưu được mã hóa vào đám mây. Sau đó quay lại đây và thử lại.",
     "walletAddress": "Ví: {{address}}",
-    "biometricKeepsFailing": "{{error}} Nếu việc này tiếp tục thất bại, hãy sử dụng mật khẩu ví của bạn bên dưới hoặc \"Nhập ví bên ngoài\".",
+    "biometricKeepsFailing": "{{error}} Nếu việc này tiếp tục thất bại, hãy sử dụng mật khẩu ví của bạn bên dưới hoặc \"Nhập khóa\".",
     "deviceBoundKey": "Ví này được mở khóa bằng <em>dữ liệu sinh trắc học trên một thiết bị cụ thể</em> — điện thoại hoặc trình duyệt mà bạn đã thiết lập nó. Điện thoại này không có khóa đó, và dehub.io cũng vậy: khóa không bao giờ rời khỏi thiết bị đã tạo ra nó.",
-    "unlockPasskeyOnly": "Ví này được bảo mật bằng khóa truy cập trên web và chưa có bản sao lưu mật khẩu trên đám mây. Nếu bạn đặt mật khẩu ví trên dehub.io, hãy nhập nó vào đây — nếu không, hãy sử dụng Nhập ví bên ngoài bên dưới.",
+    "unlockPasskeyOnly": "Ví này được bảo mật bằng khóa truy cập trên web và chưa có bản sao lưu mật khẩu trên đám mây. Nếu bạn đặt mật khẩu ví trên dehub.io, hãy nhập nó vào đây — nếu không, hãy sử dụng Nhập khóa bên dưới.",
     "unlockWithPasswordExplainer": "Tài khoản này đã có ví, được bảo vệ bằng mật khẩu. Nhập mật khẩu để khôi phục ví của bạn trên thiết bị này."
   },
   "transcript": {

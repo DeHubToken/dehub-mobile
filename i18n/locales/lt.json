@@ -1733,7 +1733,7 @@
     "walletImported": "Piniginė importuota",
     "importWallet": "Importuoti piniginę",
     "privateKeyPlaceholder": "Įveskite savo privatų raktą",
-    "importExternalWallet": "Importuoti išorinę piniginę",
+    "importExternalWallet": "Importuoti raktus",
     "migrateAccount": "Perkelti paskyrą",
     "migrateAccountBody": "Turėjote DeHub paskyrą anksčiau? Prisijunkite naudodami tą patį el. pašto adresą, telefoną, „Google“ arba „Apple“ prisijungimo vardą, kurį naudojote tuo metu. Jei jis sutampa su ankstesne paskyra, jums bus pasiūlyta atsinešti jos piniginę, naudotojo vardą ir likutį.",
     "migrateAccountNote": "Vienkartinis prisijungimas su senu prisijungimu saugiai nuskaito jūsų piniginės raktą šiame įrenginyje. Jis niekada nepaliečia mūsų serverių.",
@@ -4824,9 +4824,9 @@
     "noUsableBackup": "Šioje paskyroje yra saugomas piniginės adresas, tačiau šis telefonas negali naudoti atsarginės kopijos – arba ji buvo apsaugota <em>biometriniais duomenimis arba slaptažodžiu žiniatinklyje</em> (tas atrakinimas lieka naršyklėje ir nesinchronizuojamas čia), arba ankstesnis prisijungimas šiame telefone buvo nutrauktas prieš jį užbaigiant.",
     "addPasswordOnWeb": "Jei anksčiau naudojote dehub.io, atidarykite jį savo kompiuteryje, prisijunkite tuo pačiu būdu ir su ta pačia paskyra, ir <em>pridėkite piniginės slaptažodį</em> – tai išsaugo užšifruotą atsarginę kopiją į debesį. Tada grįžkite čia ir bandykite dar kartą.",
     "walletAddress": "Piniginė: {{address}}",
-    "biometricKeepsFailing": "{{error}} Jei tai ir toliau nepavyks, naudokite savo piniginės slaptažodį toliau arba „Importuoti išorinę piniginę“.",
+    "biometricKeepsFailing": "{{error}} Jei tai ir toliau nepavyks, naudokite savo piniginės slaptažodį toliau arba „Importuoti raktus“.",
     "deviceBoundKey": "Ši piniginė atrakinama su <em>biometriniais duomenimis, saugomais konkrečiame įrenginyje</em> – telefone ar naršyklėje, kurioje ji buvo nustatyta. Šiame telefone nėra to rakto, kaip ir dehub.io: raktas niekada nepalieka įrenginio, kuriame jis buvo sukurtas.",
-    "unlockPasskeyOnly": "Ši piniginė buvo apsaugota slaptažodžiu žiniatinklyje ir dar neturi slaptažodžio atsarginės kopijos debesyje. Jei nustatėte piniginės slaptažodį dehub.io, įveskite jį čia – kitu atveju naudokite „Importuoti išorinę piniginę“ toliau.",
+    "unlockPasskeyOnly": "Ši piniginė buvo apsaugota slaptažodžiu žiniatinklyje ir dar neturi slaptažodžio atsarginės kopijos debesyje. Jei nustatėte piniginės slaptažodį dehub.io, įveskite jį čia – kitu atveju naudokite „Importuoti raktus“ toliau.",
     "unlockWithPasswordExplainer": "Ši paskyra jau turi piniginę, apsaugotą slaptažodžiu. Įveskite jį, kad atkurtumėte savo piniginę šiame įrenginyje."
   },
   "transcript": {

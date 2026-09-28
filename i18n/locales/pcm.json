@@ -1705,7 +1705,7 @@
     "walletImported": "Wallet don import",
     "importWallet": "Import wallet",
     "privateKeyPlaceholder": "Put your private key",
-    "importExternalWallet": "Import outside wallet",
+    "importExternalWallet": "Import keys",
     "migrateAccount": "Carry account come",
     "migrateAccountBody": "You get DeHub account before? Sign in with di same email, phone, Google or Apple login wey you use dat time. If e match one old account, we go ask you if you wan carry im wallet, username and balance come here.",
     "migrateAccountNote": "One-time sign-in with di old login go collect your wallet key safe safe for dis device. E no dey touch our servers at all.",

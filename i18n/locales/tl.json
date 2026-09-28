@@ -1780,7 +1780,7 @@
     "walletImported": "Na-import ang wallet",
     "importWallet": "Mag-import ng wallet",
     "privateKeyPlaceholder": "Ilagay ang iyong private key",
-    "importExternalWallet": "Mag-import ng external wallet",
+    "importExternalWallet": "Mag-import ng keys",
     "migrateAccount": "I - migrate ang account",
     "migrateAccountBody": "Mayroon ka bang DeHub account dati? Mag - sign in gamit ang parehong email, telepono, Google o Apple login na ginamit mo noon. Kung tumutugma ito sa isang naunang account, bibigyan ka ng alok na dalhin ang wallet, username at balanse nito.",
     "migrateAccountNote": "Ligtas na kinukuha ng isang beses na pag - sign - in gamit ang lumang pag - login ang iyong wallet key sa device na ito. Hindi ito kailanman hawakan ang aming mga server.",

@@ -1733,7 +1733,7 @@
     "walletImported": "Portfel zaimportowany",
     "importWallet": "Importuj portfel",
     "privateKeyPlaceholder": "Wprowadź swój klucz prywatny",
-    "importExternalWallet": "Importuj zewnętrzny portfel",
+    "importExternalWallet": "Importuj klucze",
     "migrateAccount": "Przenieś konto",
     "migrateAccountBody": "Czy miałeś wcześniej konto DeHub? Zaloguj się za pomocą tego samego adresu e-mail, telefonu, loginu Google lub Apple, którego używałeś wtedy. Jeśli pasuje do wcześniejszego konta, otrzymasz propozycję przyniesienia portfela, nazwy użytkownika i salda.",
     "migrateAccountNote": "Jednorazowe logowanie za pomocą starego loginu bezpiecznie pobiera klucz portfela na tym urządzeniu. Nigdy nie dotyka naszych serwerów.",
@@ -4824,9 +4824,9 @@
     "noUsableBackup": "To konto ma zapisany adres portfela, ale żaden backup nie może być użyty przez ten telefon — albo został zabezpieczony <em>biometrią lub kluczem dostępu w sieci</em> (to odblokowanie pozostaje w przeglądarce i nie synchronizuje się tutaj), albo wcześniejsze logowanie na tym telefonie zostało przerwane przed zakończeniem.",
     "addPasswordOnWeb": "Jeśli wcześniej korzystałeś z dehub.io, otwórz go na swoim komputerze, zaloguj się w ten sam sposób i tym samym kontem, a następnie <em>dodaj hasło do portfela</em> — to zapisze zaszyfrowany backup w chmurze. Następnie wróć tutaj i spróbuj ponownie.",
     "walletAddress": "Portfel: {{address}}",
-    "biometricKeepsFailing": "{{error}} Jeśli to nadal nie działa, użyj poniżej hasła do swojego portfela lub opcji \"Importuj zewnętrzny portfel\".",
+    "biometricKeepsFailing": "{{error}} Jeśli to nadal nie działa, użyj poniżej hasła do swojego portfela lub opcji \"Importuj klucze\".",
     "deviceBoundKey": "Ten portfel odblokowuje się za pomocą <em>danych biometrycznych zapisanych na konkretnym urządzeniu</em> — telefonie lub przeglądarce, na której został skonfigurowany. Ten telefon nie posiada tego klucza, tak samo jak dehub.io: klucz nigdy nie opuszcza urządzenia, które go utworzyło.",
-    "unlockPasskeyOnly": "Ten portfel został zabezpieczony kluczem dostępu w sieci i nie posiada jeszcze kopii zapasowej hasła w chmurze. Jeśli ustawiłeś hasło do portfela na dehub.io, wprowadź je tutaj — w przeciwnym razie użyj poniższej opcji \"Importuj zewnętrzny portfel\".",
+    "unlockPasskeyOnly": "Ten portfel został zabezpieczony kluczem dostępu w sieci i nie posiada jeszcze kopii zapasowej hasła w chmurze. Jeśli ustawiłeś hasło do portfela na dehub.io, wprowadź je tutaj — w przeciwnym razie użyj poniższej opcji \"Importuj klucze\".",
     "unlockWithPasswordExplainer": "To konto ma już portfel, zabezpieczony hasłem. Wprowadź je, aby odzyskać swój portfel na tym urządzeniu."
   },
   "transcript": {

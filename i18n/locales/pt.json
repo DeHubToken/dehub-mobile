@@ -1733,7 +1733,7 @@
     "walletImported": "Carteira importada",
     "importWallet": "Importar carteira",
     "privateKeyPlaceholder": "Introduza a sua chave privada",
-    "importExternalWallet": "Importar carteira externa",
+    "importExternalWallet": "Importar chaves",
     "migrateAccount": "Migrar conta",
     "migrateAccountBody": "Já teve uma conta DeHub antes? Inicie sessão com o mesmo e-mail, telefone, login do Google ou Apple que usou anteriormente. Se corresponder a uma conta anterior, ser-lhe-á oferecido trazer a sua carteira, nome de utilizador e saldo.",
     "migrateAccountNote": "Uma única sessão com o login antigo recupera a sua chave de carteira de forma segura neste dispositivo. Nunca toca nos nossos servidores.",
@@ -4877,9 +4877,9 @@
     "noUsableBackup": "Esta conta tem um endereço de carteira registrado, mas nenhum backup que este telefone possa usar — ou foi protegido com <em>biometria ou uma chave de acesso na web</em> (esse desbloqueio permanece no navegador e não sincroniza aqui), ou um cadastro anterior neste telefone foi interrompido antes de ser concluído.",
     "addPasswordOnWeb": "Se você já usou o dehub.io antes, abra-o em seu computador, faça login da mesma forma e com a mesma conta, e <em>adicione uma senha de carteira</em> — isso salva um backup criptografado na nuvem. Em seguida, volte aqui e tente novamente.",
     "walletAddress": "Carteira: {{address}}",
-    "biometricKeepsFailing": "{{error}} Se isso continuar falhando, use a senha da sua carteira abaixo ou \"Importar carteira externa\".",
+    "biometricKeepsFailing": "{{error}} Se isso continuar falhando, use a senha da sua carteira abaixo ou \"Importar chaves\".",
     "deviceBoundKey": "Esta carteira é desbloqueada com <em>biometria armazenada em um dispositivo específico</em> — o telefone ou navegador em que foi configurada. Este telefone não possui essa chave, e nem o dehub.io: a chave nunca sai do dispositivo que a criou.",
-    "unlockPasskeyOnly": "Esta carteira foi protegida com uma passkey na web e ainda não possui backup de senha na nuvem. Se você definiu uma senha de carteira no dehub.io, insira-a aqui — caso contrário, use Importar carteira externa abaixo.",
+    "unlockPasskeyOnly": "Esta carteira foi protegida com uma passkey na web e ainda não possui backup de senha na nuvem. Se você definiu uma senha de carteira no dehub.io, insira-a aqui — caso contrário, use Importar chaves abaixo.",
     "unlockWithPasswordExplainer": "Esta conta já possui uma carteira, protegida por senha. Insira-a para recuperar sua carteira neste dispositivo."
   },
   "transcript": {

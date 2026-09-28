@@ -1733,7 +1733,7 @@
     "walletImported": "钱包已导入",
     "importWallet": "导入钱包",
     "privateKeyPlaceholder": "输入你的私钥",
-    "importExternalWallet": "导入外部钱包",
+    "importExternalWallet": "导入密钥",
     "migrateAccount": "迁移账户",
     "migrateAccountBody": "以前有过 DeHub 账户？用以前用的同一个邮箱、电话、Google 或 Apple 登录。如果和之前的账户匹配，系统会提示你带回你的钱包、用户名和余额。",
     "migrateAccountNote": "用旧的登录方式进行一次性登录，会在本设备上安全地检索你的钱包密钥。这个过程不会触及我们的服务器。",
@@ -4824,9 +4824,9 @@
     "noUsableBackup": "呢个户头有钱包地址记录，但是呢个手机没法用个备份——要么是勒网上用 <em>生物识别或者通行密匙保护个</em>（呢个解锁保留勒浏览器浪，不会同步到呢度），要么是勒呢个手机浪个早期注册过程没完成就中断脱了。",
     "addPasswordOnWeb": "如果你之前用过 dehub.io，勒你电脑浪打开伊，用一样个方法，一样个户头登入，然后 <em>加一个钱包密码</em>——呢样会把加密备份存到云浪。然后回来再试一次。",
     "walletAddress": "钱包：{{address}}",
-    "biometricKeepsFailing": "{{error}} 如果一直失败，请使用下方的钱包密码或“导入外部钱包”。",
+    "biometricKeepsFailing": "{{error}} 如果一直失败，请使用下方的钱包密码或“导入密钥”。",
     "deviceBoundKey": "此钱包使用您在特定设备上存储的<em>生物识别信息</em>解锁——也就是设置钱包时所用的手机或浏览器。此手机没有该密钥，dehub.io 也没有：密钥永远不会离开创建它的设备。",
-    "unlockPasskeyOnly": "此钱包已在网上通过通行密钥保护，目前云端没有密码备份。如果您在 dehub.io 上设置了钱包密码，请在此处输入——否则请使用下方的“导入外部钱包”。",
+    "unlockPasskeyOnly": "此钱包已在网上通过通行密钥保护，目前云端没有密码备份。如果您在 dehub.io 上设置了钱包密码，请在此处输入——否则请使用下方的“导入密钥”。",
     "unlockWithPasswordExplainer": "此账户已有钱包，受密码保护。输入密码即可在此设备上恢复您的钱包。"
   },
   "transcript": {

@@ -1733,7 +1733,7 @@
     "walletImported": "Lompakko tuotu",
     "importWallet": "Tuo lompakko",
     "privateKeyPlaceholder": "Syötä yksityinen avaimesi",
-    "importExternalWallet": "Tuo ulkoinen lompakko",
+    "importExternalWallet": "Tuo avaimet",
     "migrateAccount": "Siirrä tili",
     "migrateAccountBody": "Onko sinulla aiemmin ollut DeHub-tili? Kirjaudu sisään samalla sähköpostiosoitteella, puhelimella, Google- tai Apple-kirjautumistunnuksella, jota käytit silloin. Jos se vastaa aiempaa tiliä, sinulle tarjotaan mahdollisuus tuoda sen lompakko, käyttäjänimi ja saldo.",
     "migrateAccountNote": "Kertakirjautuminen vanhalla kirjautumistunnuksella palauttaa lompakkoavaimesi turvallisesti tälle laitteelle. Se ei koskaan kosketa palvelimiamme.",
@@ -4824,9 +4824,9 @@
     "noUsableBackup": "Tällä tilillä on tallennettuna lompakko-osoite, mutta ei varmuuskopiota, jota tämä puhelin voisi käyttää – joko se suojattiin <em>biometriikalla tai verkon passkeyllä</em> (joka kirjautuu selaimessa eikä synkronoidu tänne), tai aiempi tämän puhelimen rekisteröityminen keskeytyi ennen sen valmistumista.",
     "addPasswordOnWeb": "Jos olet käyttänyt dehub.io:ta aiemmin, avaa se tietokoneellasi, kirjaudu sisään samalla tavalla ja samalla tilillä, ja <em>lisää lompakon salasana</em> – se tallentaa salatun varmuuskopion pilveen. Palaa sitten tänne ja yritä uudelleen.",
     "walletAddress": "Lompakko: {{address}}",
-    "biometricKeepsFailing": "{{error}} Jos tämä jatkuu, käytä alla olevaa lompakkosi salasanaa tai \"Tuo ulkoinen lompakko\".",
+    "biometricKeepsFailing": "{{error}} Jos tämä jatkuu, käytä alla olevaa lompakkosi salasanaa tai \"Tuo avaimet\".",
     "deviceBoundKey": "Tämä lompakko avautuu <em>yhdellä laitteella olevilla biometrisillä tiedoilla</em> – puhelimella tai selaimella, jolla se on luotu. Tässä puhelimessa ei ole kyseistä avainta, eikä dehub.io:ssakaan: avain ei koskaan poistu laitteesta, jolla se luotiin.",
-    "unlockPasskeyOnly": "Tämä lompakko suojattiin verkkoselaimessa passkeyllä, eikä pilvessä ole vielä salasanan varmuuskopiota. Jos asetit lompakkosalasana dehub.io:ssa, syötä se tähän – muuten käytä alla olevaa Tuo ulkoinen lompakko.",
+    "unlockPasskeyOnly": "Tämä lompakko suojattiin verkkoselaimessa passkeyllä, eikä pilvessä ole vielä salasanan varmuuskopiota. Jos asetit lompakkosalasana dehub.io:ssa, syötä se tähän – muuten käytä alla olevaa Tuo avaimet.",
     "unlockWithPasswordExplainer": "Tällä tilillä on jo lompakko, joka on suojattu salasanalla. Syötä se palauttaaksesi lompakkosi tälle laitteelle."
   },
   "transcript": {
