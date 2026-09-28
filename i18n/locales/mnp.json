@@ -8521,5 +8521,36 @@
       "emptyTitle": "😕 尚未有應用列出喔！",
       "emptyBody": "🔥 先頭幾個 App 正在審核中！你也快點做一個，可能就會出來囉！"
     }
+  },
+  "aiStyles": {
+    "normal": "普通",
+    "old-english": "古英语",
+    "cockney": "伦敦腔",
+    "celtic": "凯尔特",
+    "scouse": "利物浦腔",
+    "wild-west": "狂野西部",
+    "asian-uncle": "亚洲大叔",
+    "russian-mafia": "俄罗斯黑手党",
+    "pirate": "海盗",
+    "alien": "外星人",
+    "e-girl": "E-Girl",
+    "chad": "猛男",
+    "hopeless-romantic": "无可救药的浪漫派",
+    "daddy": "老爸",
+    "mommy": "老妈",
+    "big-brother": "大哥",
+    "lil-bro": "小弟",
+    "big-sister": "大姐",
+    "little-sister": "小妹",
+    "conservative": "保守派",
+    "liberal": "自由派",
+    "antifa": "反法西斯",
+    "capitalist": "资本家",
+    "socialist": "社会主义者",
+    "neocon": "新保守派",
+    "feminist": "女权主义者",
+    "progressive": "进步派",
+    "nationalist": "民族主义者",
+    "communist": "共产主义者"
   }
 }

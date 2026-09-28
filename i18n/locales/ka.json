@@ -8538,5 +8538,36 @@
       "emptyTitle": "არ არის აპების სია",
       "emptyBody": "პირველი აპები რევიზიაშია. შექმნით ერთი და ის შესაძლოა აქ იყოს."
     }
+  },
+  "aiStyles": {
+    "normal": "ჩვეულებრივი",
+    "old-english": "ძველი ინგლისური",
+    "cockney": "კოკნი",
+    "celtic": "კელტური",
+    "scouse": "სკაუსი",
+    "wild-west": "ველური დასავლეთი",
+    "asian-uncle": "აზიელი ბიძა",
+    "russian-mafia": "რუსული მაფია",
+    "pirate": "მეკობრე",
+    "alien": "უცხოპლანეტელი",
+    "e-girl": "ი-გერლი",
+    "chad": "ჩადი",
+    "hopeless-romantic": "უიმედო რომანტიკოსი",
+    "daddy": "მამიკო",
+    "mommy": "დედიკო",
+    "big-brother": "უფროსი ძმა",
+    "lil-bro": "უმცროსი ძმა",
+    "big-sister": "უფროსი და",
+    "little-sister": "უმცროსი და",
+    "conservative": "კონსერვატორი",
+    "liberal": "ლიბერალი",
+    "antifa": "ანტიფა",
+    "capitalist": "კაპიტალისტი",
+    "socialist": "სოციალისტი",
+    "neocon": "ნეოკონი",
+    "feminist": "ფემინისტი",
+    "progressive": "პროგრესისტი",
+    "nationalist": "ნაციონალისტი",
+    "communist": "კომუნისტი"
   }
 }

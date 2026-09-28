@@ -8582,5 +8582,36 @@
       "emptyTitle": "Tsy misy apps voatanisa",
       "emptyBody": "Mbola eo am-pandinihana ny rindrambaikon'ny solosaina voalohany. Afaka mahazo ity volo ity ianao ary afaka mipetraka eto."
     }
+  },
+  "aiStyles": {
+    "normal": "Mahazatra",
+    "old-english": "Anglisy taloha",
+    "cockney": "Cockney",
+    "celtic": "Kelta",
+    "scouse": "Scouse",
+    "wild-west": "Andrefana Dia",
+    "asian-uncle": "Dadatoa Aziatika",
+    "russian-mafia": "Mafia Rosiana",
+    "pirate": "Piraty",
+    "alien": "Vahiny avy any ivelany",
+    "e-girl": "E-Girl",
+    "chad": "Chad",
+    "hopeless-romantic": "Romantika tsy manam-panantenana",
+    "daddy": "Dada",
+    "mommy": "Neny",
+    "big-brother": "Zoky lahy",
+    "lil-bro": "Zandry lahy",
+    "big-sister": "Zoky vavy",
+    "little-sister": "Zandry vavy",
+    "conservative": "Mpandala ny nentin-drazana",
+    "liberal": "Liberaly",
+    "antifa": "ANTIFA",
+    "capitalist": "Kapitalista",
+    "socialist": "Sosialista",
+    "neocon": "Neocon",
+    "feminist": "Feminista",
+    "progressive": "Mpandroso",
+    "nationalist": "Nasionalista",
+    "communist": "Kominista"
   }
 }

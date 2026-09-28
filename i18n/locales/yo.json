@@ -8484,5 +8484,36 @@
       "emptyTitle": "Ko si awọn ohun elo ti a ṣe akojọ sibẹ",
       "emptyBody": "Àwọn ohun èlò àkọ́kọ́ wà nínú àtúnyẹ̀wò. Kọ́ ọ̀kan ó sì lè wà níbí."
     }
+  },
+  "aiStyles": {
+    "normal": "Déédéé",
+    "old-english": "Gẹ̀ẹ́sì àtijọ́",
+    "cockney": "Cockney",
+    "celtic": "Celtic",
+    "scouse": "Scouse",
+    "wild-west": "Ìwọ̀ Oòrùn Ìgbẹ́",
+    "asian-uncle": "Àbúrò bàbá Éṣíà",
+    "russian-mafia": "Mafia Rọ́ṣíà",
+    "pirate": "Ajínigbé omi",
+    "alien": "Ẹ̀dá àjèjì",
+    "e-girl": "E-Girl",
+    "chad": "Chad",
+    "hopeless-romantic": "Olùfẹ́ aláìnírètí",
+    "daddy": "Bàbá",
+    "mommy": "Màmá",
+    "big-brother": "Ẹ̀gbọ́n ọkùnrin",
+    "lil-bro": "Àbúrò ọkùnrin",
+    "big-sister": "Ẹ̀gbọ́n obìnrin",
+    "little-sister": "Àbúrò obìnrin",
+    "conservative": "Alátìlẹ́yìn àṣà",
+    "liberal": "Olómìnira",
+    "antifa": "ANTIFA",
+    "capitalist": "Onígbàgbọ́ olówó",
+    "socialist": "Onígbàgbọ́ àjùmọ̀ní",
+    "neocon": "Neocon",
+    "feminist": "Alágbàwí obìnrin",
+    "progressive": "Onítẹ̀síwájú",
+    "nationalist": "Onífẹ̀ẹ́ orílẹ̀-èdè",
+    "communist": "Kọ́múníìsì"
   }
 }

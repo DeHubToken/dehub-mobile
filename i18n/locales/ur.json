@@ -8487,5 +8487,36 @@
       "emptyTitle": "ابھی تک کوئی ایپس درج نہیں ہیں",
       "emptyBody": "پہلی ایپس کا جائزہ لیا جا رہا ہے ۔ ایک بنائیں اور یہ یہاں ہو سکتا ہے ۔"
     }
+  },
+  "aiStyles": {
+    "normal": "عام",
+    "old-english": "پرانی انگریزی",
+    "cockney": "کاکنی",
+    "celtic": "کیلٹک",
+    "scouse": "اسکاؤس",
+    "wild-west": "وائلڈ ویسٹ",
+    "asian-uncle": "ایشیائی چچا",
+    "russian-mafia": "روسی مافیا",
+    "pirate": "بحری قزاق",
+    "alien": "خلائی مخلوق",
+    "e-girl": "ای-گرل",
+    "chad": "چیڈ",
+    "hopeless-romantic": "ناامید رومانوی",
+    "daddy": "ابو",
+    "mommy": "امی",
+    "big-brother": "بڑا بھائی",
+    "lil-bro": "چھوٹا بھائی",
+    "big-sister": "بڑی بہن",
+    "little-sister": "چھوٹی بہن",
+    "conservative": "قدامت پسند",
+    "liberal": "لبرل",
+    "antifa": "اینٹیفا",
+    "capitalist": "سرمایہ دار",
+    "socialist": "سوشلسٹ",
+    "neocon": "نیوکون",
+    "feminist": "فیمنسٹ",
+    "progressive": "ترقی پسند",
+    "nationalist": "قوم پرست",
+    "communist": "کمیونسٹ"
   }
 }

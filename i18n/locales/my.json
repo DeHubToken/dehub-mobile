@@ -8521,5 +8521,36 @@
       "emptyTitle": "စာရင်းမသွင်းရသေးသော အက်ပ်များ မရှိပါ",
       "emptyBody": "ပထမဦးဆုံး Apps ကပပြန်လည်ဆန်းစစ်ခြင်း 1 ကို Install လုပ္ၿပီး ဒီေနရာမွာ ေဒါင္းႏိုင္ပါတယ္ ။"
     }
+  },
+  "aiStyles": {
+    "normal": "ပုံမှန်",
+    "old-english": "ရှေးအင်္ဂလိပ်",
+    "cockney": "ကော့ခ်နီ",
+    "celtic": "ကဲလ်တစ်",
+    "scouse": "စကောက်စ်",
+    "wild-west": "အနောက်တောရိုင်း",
+    "asian-uncle": "အာရှဦးလေး",
+    "russian-mafia": "ရုရှားမာဖီးယား",
+    "pirate": "ပင်လယ်ဓားပြ",
+    "alien": "ဂြိုဟ်သား",
+    "e-girl": "အီး-ဂဲလ်",
+    "chad": "ချဒ်",
+    "hopeless-romantic": "မျှော်လင့်ချက်မဲ့ ရိုမန်းတစ်",
+    "daddy": "အဖေ",
+    "mommy": "အမေ",
+    "big-brother": "အစ်ကို",
+    "lil-bro": "ညီလေး",
+    "big-sister": "အစ်မ",
+    "little-sister": "ညီမလေး",
+    "conservative": "ရှေးရိုးစွဲ",
+    "liberal": "လစ်ဘရယ်",
+    "antifa": "အန်တီဖာ",
+    "capitalist": "အရင်းရှင်",
+    "socialist": "ဆိုရှယ်လစ်",
+    "neocon": "နီယိုကွန်",
+    "feminist": "အမျိုးသမီးရေးဝါဒီ",
+    "progressive": "တိုးတက်ရေးဝါဒီ",
+    "nationalist": "အမျိုးသားရေးဝါဒီ",
+    "communist": "ကွန်မြူနစ်"
   }
 }

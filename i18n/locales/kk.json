@@ -8533,5 +8533,36 @@
       "emptyTitle": "Қолданбалар әлі тізімделмеген",
       "emptyBody": "Алғашқы қолданбалар қаралып жатыр. Бірін жасаңыз, ол осында болуы мүмкін."
     }
+  },
+  "aiStyles": {
+    "normal": "Қалыпты",
+    "old-english": "Көне ағылшын",
+    "cockney": "Кокни",
+    "celtic": "Кельт",
+    "scouse": "Скаус",
+    "wild-west": "Жабайы Батыс",
+    "asian-uncle": "Азиялық аға",
+    "russian-mafia": "Орыс мафиясы",
+    "pirate": "Қарақшы",
+    "alien": "Бөгде ғаламшарлық",
+    "e-girl": "И-гёрл",
+    "chad": "Чад",
+    "hopeless-romantic": "Үмітсіз романтик",
+    "daddy": "Әке",
+    "mommy": "Ана",
+    "big-brother": "Аға",
+    "lil-bro": "Іні",
+    "big-sister": "Әпке",
+    "little-sister": "Сіңлі",
+    "conservative": "Консерватор",
+    "liberal": "Либерал",
+    "antifa": "АНТИФА",
+    "capitalist": "Капиталист",
+    "socialist": "Социалист",
+    "neocon": "Неокон",
+    "feminist": "Феминист",
+    "progressive": "Прогрессист",
+    "nationalist": "Ұлтшыл",
+    "communist": "Коммунист"
   }
 }

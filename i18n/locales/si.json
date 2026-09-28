@@ -8521,5 +8521,36 @@
       "emptyTitle": "තවම යෙදුම් ලැයිස්තුගත කර නැත",
       "emptyBody": "පලමු ඇප් එක නැවත පරීක්ෂා කර බැලිය යුතුයි. එකක් හදලා මෙතන දාන්න පුළුවන්."
     }
+  },
+  "aiStyles": {
+    "normal": "සාමාන්‍ය",
+    "old-english": "පැරණි ඉංග්‍රීසි",
+    "cockney": "කොක්නි",
+    "celtic": "කෙල්ටික්",
+    "scouse": "ස්කවුස්",
+    "wild-west": "වල් බටහිර",
+    "asian-uncle": "ආසියානු මාමා",
+    "russian-mafia": "රුසියානු මාෆියාව",
+    "pirate": "මුහුදු කොල්ලකරු",
+    "alien": "පිටසක්වල",
+    "e-girl": "ඊ-ගර්ල්",
+    "chad": "චැඩ්",
+    "hopeless-romantic": "බලාපොරොත්තු රහිත ප්‍රේමවන්තයා",
+    "daddy": "තාත්තා",
+    "mommy": "අම්මා",
+    "big-brother": "අයියා",
+    "lil-bro": "මල්ලී",
+    "big-sister": "අක්කා",
+    "little-sister": "නංගී",
+    "conservative": "ගතානුගතික",
+    "liberal": "ලිබරල්",
+    "antifa": "ඇන්ටිෆා",
+    "capitalist": "ධනවාදී",
+    "socialist": "සමාජවාදී",
+    "neocon": "නියෝකොන්",
+    "feminist": "ස්ත්‍රීවාදී",
+    "progressive": "ප්‍රගතිශීලී",
+    "nationalist": "ජාතිකවාදී",
+    "communist": "කොමියුනිස්ට්"
   }
 }

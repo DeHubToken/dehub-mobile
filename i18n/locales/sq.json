@@ -8482,5 +8482,36 @@
       "emptyTitle": "Nuk janë listuar aplikacionet ende",
       "emptyBody": "Aplikacionet e para janë në procesin e revizimit. Bëj një tjetër dhe ai mund të përfshijë këtu."
     }
+  },
+  "aiStyles": {
+    "normal": "Normal",
+    "old-english": "Anglishtja e vjetër",
+    "cockney": "Cockney",
+    "celtic": "Kelt",
+    "scouse": "Scouse",
+    "wild-west": "Perëndimi i Egër",
+    "asian-uncle": "Xhaxhi aziatik",
+    "russian-mafia": "Mafia ruse",
+    "pirate": "Pirat",
+    "alien": "Alien",
+    "e-girl": "E-Girl",
+    "chad": "Chad",
+    "hopeless-romantic": "Romantik i pashpresë",
+    "daddy": "Babi",
+    "mommy": "Mami",
+    "big-brother": "Vëllai i madh",
+    "lil-bro": "Vëllai i vogël",
+    "big-sister": "Motra e madhe",
+    "little-sister": "Motra e vogël",
+    "conservative": "Konservator",
+    "liberal": "Liberal",
+    "antifa": "ANTIFA",
+    "capitalist": "Kapitalist",
+    "socialist": "Socialist",
+    "neocon": "Neokon",
+    "feminist": "Feministe",
+    "progressive": "Progresist",
+    "nationalist": "Nacionalist",
+    "communist": "Komunist"
   }
 }

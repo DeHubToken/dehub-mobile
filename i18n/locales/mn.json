@@ -8482,5 +8482,36 @@
       "emptyTitle": "Апп-ууд одоогоор бүртгэгдээгүй байна",
       "emptyBody": "Эхний програмууд хянагдаж байна. Нэгийг бүтээгээд энд байж болно."
     }
+  },
+  "aiStyles": {
+    "normal": "Энгийн",
+    "old-english": "Эртний англи",
+    "cockney": "Кокни",
+    "celtic": "Кельт",
+    "scouse": "Скаус",
+    "wild-west": "Зэрлэг Баруун",
+    "asian-uncle": "Ази авга",
+    "russian-mafia": "Оросын мафи",
+    "pirate": "Далайн дээрэмчин",
+    "alien": "Харь гарагийнхан",
+    "e-girl": "И-гёрл",
+    "chad": "Чад",
+    "hopeless-romantic": "Найдваргүй романтик",
+    "daddy": "Аав",
+    "mommy": "Ээж",
+    "big-brother": "Ах",
+    "lil-bro": "Дүү хүү",
+    "big-sister": "Эгч",
+    "little-sister": "Дүү охин",
+    "conservative": "Консерватив",
+    "liberal": "Либерал",
+    "antifa": "АНТИФА",
+    "capitalist": "Капиталист",
+    "socialist": "Социалист",
+    "neocon": "Неокон",
+    "feminist": "Феминист",
+    "progressive": "Дэвшилт",
+    "nationalist": "Үндсэрхэг",
+    "communist": "Коммунист"
   }
 }

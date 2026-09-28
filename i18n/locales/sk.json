@@ -8648,5 +8648,36 @@
       "emptyTitle": "Žiadne aplikácie zatiaľ neboly zverejnené",
       "emptyBody": "Prvé aplikácie sú v prehliadke. Vytvorte jednu a môže sa tu objaviť."
     }
+  },
+  "aiStyles": {
+    "normal": "Normálny",
+    "old-english": "Stará angličtina",
+    "cockney": "Cockney",
+    "celtic": "Keltský",
+    "scouse": "Scouse",
+    "wild-west": "Divoký západ",
+    "asian-uncle": "Ázijský strýko",
+    "russian-mafia": "Ruská mafia",
+    "pirate": "Pirát",
+    "alien": "Mimozemšťan",
+    "e-girl": "E-Girl",
+    "chad": "Chad",
+    "hopeless-romantic": "Beznádejný romantik",
+    "daddy": "Ocko",
+    "mommy": "Mamka",
+    "big-brother": "Starší brat",
+    "lil-bro": "Malý brat",
+    "big-sister": "Staršia sestra",
+    "little-sister": "Malá sestra",
+    "conservative": "Konzervatívec",
+    "liberal": "Liberál",
+    "antifa": "ANTIFA",
+    "capitalist": "Kapitalista",
+    "socialist": "Socialista",
+    "neocon": "Neokon",
+    "feminist": "Feministka",
+    "progressive": "Progresívny",
+    "nationalist": "Nacionalista",
+    "communist": "Komunista"
   }
 }

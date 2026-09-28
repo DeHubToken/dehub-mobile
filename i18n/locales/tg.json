@@ -8473,5 +8473,36 @@
       "emptyTitle": "Ягон барномаҳо ҳанӯз номбар нашудаанд",
       "emptyBody": "Ang unang mga aplikasyon ay nakalista. Сохтани як ва он метавонад дар ин ҷо бошад."
     }
+  },
+  "aiStyles": {
+    "normal": "Муқаррарӣ",
+    "old-english": "Англисии қадим",
+    "cockney": "Кокни",
+    "celtic": "Келтӣ",
+    "scouse": "Скаус",
+    "wild-west": "Ғарби ваҳшӣ",
+    "asian-uncle": "Амаки осиёӣ",
+    "russian-mafia": "Мафияи рус",
+    "pirate": "Роҳзани баҳрӣ",
+    "alien": "Бегонасайёра",
+    "e-girl": "И-гёрл",
+    "chad": "Чад",
+    "hopeless-romantic": "Ошиқи ноумед",
+    "daddy": "Падар",
+    "mommy": "Модар",
+    "big-brother": "Бародари калон",
+    "lil-bro": "Бародари хурд",
+    "big-sister": "Хоҳари калон",
+    "little-sister": "Хоҳари хурд",
+    "conservative": "Муҳофизакор",
+    "liberal": "Либерал",
+    "antifa": "АНТИФА",
+    "capitalist": "Сармоядор",
+    "socialist": "Сотсиалист",
+    "neocon": "Неокон",
+    "feminist": "Феминист",
+    "progressive": "Пешрав",
+    "nationalist": "Миллатгаро",
+    "communist": "Коммунист"
   }
 }
