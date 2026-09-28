@@ -11,6 +11,7 @@ import {
   Platform,
   ActivityIndicator,
   BackHandler,
+  FlatList,
 } from "react-native";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { DeHubLoader } from "../components/DeHubLoader";
@@ -46,11 +47,12 @@ import {
   type UnifiedFeedResponse,
   type FeedPostType,
 } from "../services/feed.unified.service";
-import { useNavigation, useRoute } from "@react-navigation/native";
+import { useIsFocused, useNavigation, useRoute } from "@react-navigation/native";
 import ScreenHeader, { SCREEN_HEADER_HEIGHT } from "../components/ScreenHeader";
 import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
 import { useCollapsibleHeader } from "../hooks/useCollapsibleHeader";
 import { useFeedCardVisibility } from "../hooks/useFeedCardVisibility";
+import { createFeedVisibilityStore, useRowVisibility, type FeedVisibilityStore } from "../libs/feedVisibility";
 import FeedCard from "../components/Home/FeedCard";
 import { resolveViewCount } from "../libs/numbers.util";
 import SearchAccountCard from "../components/Search/SearchAccountCard";
@@ -73,6 +75,25 @@ import {
 } from "../theme/minimal";
 
 type TabKey = "all" | "accounts" | "posts" | "images" | "videos" | "voice" | "live";
+
+const VisibleExploreCard = React.memo(function VisibleExploreCard({ item, rowKey, store, autoplay = false }: {
+  item: UnifiedFeedItem;
+  rowKey: string;
+  store: FeedVisibilityStore;
+  autoplay?: boolean;
+}) {
+  const { isVisible, isAutoplay } = useRowVisibility(store, rowKey);
+  return <View className="px-4"><FeedCard item={item} isVisible={isVisible} isAutoplayActive={autoplay && isAutoplay} /></View>;
+});
+
+const VisibleSearchCard = React.memo(function VisibleSearchCard({ item, rowKey, store }: {
+  item: SearchContentResult;
+  rowKey: string;
+  store: FeedVisibilityStore;
+}) {
+  const feedItem = useMemo(() => toFeedItem(item), [item]);
+  return <VisibleExploreCard item={feedItem} rowKey={rowKey} store={store} autoplay />;
+});
 
 interface Tab {
   key: TabKey;
@@ -490,7 +511,7 @@ const SearchScreen: React.FC = () => {
   // and the param is cleared only once it is done: clearing it first would
   // re-run this effect and tear the timer down before it ever fired.
   const newMembersLayout = useRef<{ y: number; height: number } | null>(null);
-  const idleListRef = useRef<Animated.ScrollView>(null);
+  const idleListRef = useRef<FlatList<UnifiedFeedItem>>(null);
   const settleTimer = useRef<ReturnType<typeof setInterval> | null>(null);
   useEffect(() => () => { if (settleTimer.current) clearInterval(settleTimer.current); }, []);
   useEffect(() => {
@@ -514,7 +535,7 @@ const SearchScreen: React.FC = () => {
       const rail = newMembersLayout.current;
       const list = idleListRef.current;
       const settled = !!rail && rail.height > 0 && !!list;
-      if (settled) list.scrollTo({ y: Math.max(0, rail.y - headerHeight), animated: true });
+      if (settled) list.scrollToOffset({ offset: Math.max(0, rail.y - headerHeight), animated: true });
       if (settled || ++attempts >= 20) {
         if (settleTimer.current) clearInterval(settleTimer.current);
         settleTimer.current = null;
@@ -649,31 +670,42 @@ const SearchScreen: React.FC = () => {
     [],
   );
 
+  const focused = useIsFocused();
+  const contentVisibility = useMemo(() => createFeedVisibilityStore(false), []);
+  const trendingVisibility = useMemo(() => createFeedVisibilityStore(false), []);
+  useEffect(() => {
+    contentVisibility.setLive(focused && hasSearched);
+    trendingVisibility.setLive(focused && !hasSearched && !inputFocused);
+  }, [focused, hasSearched, inputFocused, contentVisibility, trendingVisibility]);
+  const trendingKeyExtractor = useCallback(
+    (item: UnifiedFeedItem, index: number) => `trending-${item.tokenId ?? item.id}-${index}`,
+    [],
+  );
+  const trendingViewability = useFeedCardVisibility(
+    trendingKeyExtractor as (item: unknown, index: number) => string,
+    trendingVisibility,
+  );
+  const renderTrendingItem = useCallback(
+    ({ item, index }: { item: UnifiedFeedItem; index: number }) => (
+      <VisibleExploreCard item={item} rowKey={trendingKeyExtractor(item, index)} store={trendingVisibility} />
+    ),
+    [trendingKeyExtractor, trendingVisibility],
+  );
+
   // Only rows in view may hold a native player, and only one autoplays.
   // Without this FeedCard defaults to visible + autoplay for every row, so
   // every live card streamed and every video played at once.
   const {
     viewabilityConfig,
     onViewableItemsChanged,
-    isItemVisible,
-    isItemAutoplayActive,
-  } = useFeedCardVisibility(contentKeyExtractor as (item: unknown, index: number) => string);
+  } = useFeedCardVisibility(contentKeyExtractor as (item: unknown, index: number) => string, contentVisibility);
 
   const renderContentItem = useCallback(
     ({ item, index }: { item: SearchContentResult; index: number }) => {
-      const feedItem = toFeedItem(item);
       const key = contentKeyExtractor(item, index);
-      return (
-        <View className="px-4">
-          <FeedCard
-            item={feedItem}
-            isVisible={isItemVisible(key)}
-            isAutoplayActive={isItemAutoplayActive(key)}
-          />
-        </View>
-      );
+      return <VisibleSearchCard item={item} rowKey={key} store={contentVisibility} />;
     },
-    [contentKeyExtractor, isItemVisible, isItemAutoplayActive],
+    [contentKeyExtractor, contentVisibility],
   );
 
   const renderAccountItem = useCallback(
@@ -747,20 +779,6 @@ const SearchScreen: React.FC = () => {
 
     return null;
   }, [loadingMore, activeTab, accountsPagination, contentPagination, accounts.length, content.length]);
-
-  const renderTrendingItem = useCallback(
-    ({ item }: { item: UnifiedFeedItem }) => (
-      <View className="px-4">
-        <FeedCard item={item} />
-      </View>
-    ),
-    [],
-  );
-
-  const trendingKeyExtractor = useCallback(
-    (item: UnifiedFeedItem, index: number) => `trending-${item.tokenId ?? item.id}-${index}`,
-    [],
-  );
 
   const renderContent = () => {
     // Loading
@@ -844,6 +862,10 @@ const SearchScreen: React.FC = () => {
       return (
         <Animated.FlatList
           data={visibleContent}
+          initialNumToRender={2}
+          maxToRenderPerBatch={1}
+          windowSize={7}
+          removeClippedSubviews={false}
           renderItem={renderContentItem}
           keyExtractor={contentKeyExtractor}
           viewabilityConfig={viewabilityConfig}
@@ -951,15 +973,24 @@ const SearchScreen: React.FC = () => {
 
     // Not typing / not focused → new members, then trending
     return (
-      <Animated.ScrollView
+      <Animated.FlatList
         ref={idleListRef}
+        data={trendingLoading ? [] : trendingVideos}
+        renderItem={renderTrendingItem}
+        keyExtractor={trendingKeyExtractor}
+        viewabilityConfig={trendingViewability.viewabilityConfig}
+        onViewableItemsChanged={trendingViewability.onViewableItemsChanged}
+        initialNumToRender={2}
+        maxToRenderPerBatch={1}
+        windowSize={7}
+        removeClippedSubviews={false}
         style={{ flex: 1 }}
         showsVerticalScrollIndicator={false}
         onScroll={scrollHandler}
         scrollEventThrottle={16}
         scrollIndicatorInsets={{ top: headerHeight }}
         contentContainerStyle={{ paddingTop: headerHeight, paddingBottom: insets.bottom + 80 }}
-      >
+        ListHeaderComponent={<>
         {/* Above trending on purpose: this is the screen people already open to
             find other people, and a welcome is worth less the longer it waits.
             Renders nothing when nobody joined recently. The wrapper reports
@@ -976,24 +1007,13 @@ const SearchScreen: React.FC = () => {
         {activeTab === "all" && (
           <TrendingTopicsList onTopicPress={handleTopicPress} />
         )}
-        {trendingLoading ? (
+        {!trendingLoading && trendingVideos.length > 0 && <View className="px-4 pt-3 pb-2">
+          <Text className="text-white text-base font-bold">{t(TRENDING_LABEL[activeTab] || "search.trendingThisWeek")}</Text>
+        </View>}
+        </>}
+        ListEmptyComponent={trendingLoading ? (
           <View className="px-2 pt-2">
             <FeedCardSkeleton count={3} />
-          </View>
-        ) : trendingVideos.length > 0 ? (
-          <View>
-            <View className="px-4 pt-3 pb-2">
-              <Text className="text-white text-base font-bold">
-                {t(TRENDING_LABEL[activeTab] || "search.trendingThisWeek")}
-              </Text>
-            </View>
-            {trendingVideos.map((item, index) => (
-              <View key={`trending-${item.tokenId ?? item.id}-${index}`} className="px-4">
-                {/* A plain map inside a ScrollView has no viewability, so no
-                    row may autoplay or stream here; tap to play. */}
-                <FeedCard item={item} isAutoplayActive={false} />
-              </View>
-            ))}
           </View>
         ) : (
           <View className="flex-1 items-center justify-center px-6 pt-20">
@@ -1003,7 +1023,7 @@ const SearchScreen: React.FC = () => {
             </Text>
           </View>
         )}
-      </Animated.ScrollView>
+      />
     );
   };
 
