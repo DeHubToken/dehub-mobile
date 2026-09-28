@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, render } from '@testing-library/react-native';
+import { act, fireEvent, render } from '@testing-library/react-native';
 import LiveFeedPreview from '../../components/common/LiveFeedPreview';
 
 jest.mock('react-native-css-interop/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
@@ -24,10 +24,13 @@ jest.mock('../../components/common/SmartImage', () => () => null);
 jest.mock('../../components/ui/Icon', () => () => null);
 
 describe('live preview loading feedback', () => {
-  beforeEach(() => { mockStatus = 'loading'; });
+  beforeEach(() => { jest.useFakeTimers(); mockStatus = 'loading'; });
+  afterEach(() => jest.useRealTimers());
 
   it('waits for a rendered frame, returns on buffering, and clears on error', () => {
     const view = render(<LiveFeedPreview url="https://example.com/live.m3u8" active />);
+    expect(view.queryByTestId('live-video')).toBeNull();
+    act(() => jest.advanceTimersByTime(400));
     expect(view.getByTestId('live-loader')).toBeTruthy();
     mockStatus = 'readyToPlay';
     fireEvent(view.getByTestId('live-video'), 'firstFrameRender');
@@ -44,5 +47,17 @@ describe('live preview loading feedback', () => {
     const view = render(<LiveFeedPreview url="https://example.com/live.m3u8" active={false} />);
     expect(view.queryByTestId('live-video')).toBeNull();
     expect(view.queryByTestId('live-loader')).toBeNull();
+  });
+
+  it('does not allocate for a live row passed during a fling', () => {
+    const view = render(<LiveFeedPreview url="https://example.com/live.m3u8" active />);
+    act(() => jest.advanceTimersByTime(200));
+    view.rerender(<LiveFeedPreview url="https://example.com/live.m3u8" active={false} />);
+    act(() => jest.advanceTimersByTime(1000));
+    expect(view.queryByTestId('live-video')).toBeNull();
+    expect(view.queryByTestId('live-loader')).toBeNull();
+    view.rerender(<LiveFeedPreview url="https://example.com/live.m3u8" active />);
+    act(() => jest.advanceTimersByTime(400));
+    expect(view.getByTestId('live-video')).toBeTruthy();
   });
 });
