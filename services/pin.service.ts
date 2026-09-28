@@ -1,5 +1,5 @@
 /**
- * Pinning a post to your own profile.
+ * Pinning a post to your own profile, and who else pinned it.
  *
  * The Pinned tab already reads `/pins` (see components/Profile/PinnedRoute),
  * but nothing on mobile could put a post there — pinning was a web-only action
@@ -32,4 +32,32 @@ export async function getPinnedTokenIds(address: string, limit = 100): Promise<s
     params: { address, page: 1, limit },
   });
   return (res?.result || []).map((pin: any) => String(pin?.tokenId ?? pin?.post?.tokenId));
+}
+
+export interface PinUser {
+  user: {
+    address: string;
+    username?: string;
+    displayName?: string;
+    avatarImageUrl?: string;
+  };
+  pinnedAt: string;
+}
+
+/** How many accounts have pinned this post. */
+export async function getPinCount(tokenId: number): Promise<number> {
+  const res = await apiClient.get<{ count?: number }>("/pin/count", { params: { tokenId } });
+  return res?.count || 0;
+}
+
+/** Who pinned this post, newest first, one page at a time. */
+export async function getPinners(
+  tokenId: number,
+  page = 1,
+  limit = 20,
+): Promise<{ items: PinUser[]; pagination?: any }> {
+  const res = await apiClient.get<{ result?: PinUser[]; pagination?: any }>("/pin/users", {
+    params: { tokenId, page, limit },
+  });
+  return { items: res?.result || [], pagination: res?.pagination };
 }
