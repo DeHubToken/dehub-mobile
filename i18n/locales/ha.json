@@ -5145,8 +5145,8 @@
       "xp": "{{xp}} XP",
       "toNext": "{{minutes}} ƙarin mintuna masu cancanta don kaiwa mataki {{level}}",
       "rule": "Waɗannan kawai shirye-shiryen da suka kai mintuna goma ko fiye da haka tare da aƙalla mai kallo ɗaya ne ke ƙididdigewa don matakin ku.",
-      "streak": "{{count}} mako streak",
-      "bestStreak": "Mafi kyawun streak {{count}} makonni",
+      "streak": "Jerin makonni {{count}}",
+      "bestStreak": "Mafi tsawon jeri makonni {{count}}",
       "hours": "{{hours}} awanni masu cancanta",
       "minutes": "{{count}} mintuna",
       "viewers": "{{count}} masu kallo",
@@ -5910,7 +5910,7 @@
     "toUnlock": "{{amount}} karin alamomi don buɗe shi",
     "holdToUnlock": "Riƙe akalla wannan alamun DeHub da yawa don buɗe shi",
     "sliderLabel": "Tokens da aka gudanar",
-    "sliderValue": "{{amount}}tokens · {{tier}}",
+    "sliderValue": "{{amount}} tokens · {{tier}}",
     "you": "Kai",
     "grants": "Abin da yake buše",
     "perks": {
@@ -5918,7 +5918,7 @@
       "votes": "Gwamnati ta kada kuri'u",
       "reach": "Nauyin kowane ra'ayi & amsawa",
       "feedPosts": "Gida-feed posts a rana",
-      "images": "Images da Post",
+      "images": "Hotuna a kowane rubutu",
       "uploads": "Iyakar loda yau da kullum",
       "storage": "Edita ajiya",
       "lending": "Baje bashi ramummuka",
@@ -5948,7 +5948,7 @@
       "hours": "Sa'o 'i masu cancanta",
       "streams": "Koguna masu cancanta",
       "longest": "Mafi tsawo rafi",
-      "streak": "Mafi kyawun streak"
+      "streak": "Mafi tsawon jeri"
     },
     "hoursShort": "{{hours}} h",
     "weeksShort": "{{count}} wk"

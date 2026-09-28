@@ -5258,7 +5258,7 @@
           "hint": "Mifanaraha amin’ny ora 250 amin’ny efijery."
         },
         "icon": {
-          "name": "Sary masina",
+          "name": "Olo-malaza",
           "hint": "Mifanaraha amin’ny ambaratonga 20."
         }
       },
@@ -5929,7 +5929,7 @@
     "close": "Hidio",
     "badges": "Mari-pahaizana",
     "tierOf": "Ambaratonga {{index}} amin'ny {{total}}",
-    "youHaveThis": "Manana ity mari-pahaizana ity ianao",
+    "youHaveThis": "Manana ity marika ity ianao",
     "toUnlock": "{{amount}} famantarana hafa mba hamohana azy",
     "holdToUnlock": "Hazonina, fara fahakeliny, izany maro DeHub famantarana mba hamoha azy",
     "sliderLabel": "Famantarana notazonina",
@@ -5958,11 +5958,11 @@
     "cardOf": "TAPAKA {{index}} {{total}}",
     "progress": "Ny fivoaranao",
     "goal": {
-      "streams": "{{current}}{{target}} streams",
-      "hours": "{{current}} {{target}} hours",
-      "session": "{{current}} {{target}} min ho an'ny tosaka iray monja",
-      "streak": "{{current}} /{{target}} herinandro",
-      "level": "Ambaratonga {{current}} {{target}}"
+      "streams": "{{current}} / {{target}} fandefasana",
+      "hours": "{{current}} / {{target}} ora",
+      "session": "{{current}} / {{target}} min amin’ny fandefasana iray",
+      "streak": "{{current}} / {{target}} herinandro",
+      "level": "Ambaratonga {{current}} / {{target}}"
     },
     "onStream": "Manafaka ilay rojom-panalahidy raha toa ka mihatra amin'ilay tosaka izany",
     "stats": {

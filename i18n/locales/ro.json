@@ -5146,7 +5146,7 @@
       "toNext": "{{minutes}} minute calificate în plus pentru a ajunge la nivelul {{level}}",
       "rule": "Doar streamurile care durează cel puțin zece minute și au cel puțin un spectator contribuie la nivelul tău.",
       "streak": "{{count}} săptămâni consecutive",
-      "bestStreak": "Cel mai bun streak {{count}} săptămâni",
+      "bestStreak": "Cea mai lungă serie: {{count}} săptămâni",
       "hours": "{{hours}} ore calificate",
       "minutes": "{{count}} minute",
       "viewers": "{{count}} spectatori",
@@ -5172,11 +5172,11 @@
         },
         "regular": {
           "name": "Regulat",
-          "hint": "Stream în patru săptămâni consecutive."
+          "hint": "Transmite live patru săptămâni consecutive."
         },
         "iron-streak": {
           "name": "Streak de fier",
-          "hint": "Stream în douăsprezece săptămâni consecutive."
+          "hint": "Transmite live douăsprezece săptămâni consecutive."
         },
         "crowd": {
           "name": "Mulțime",

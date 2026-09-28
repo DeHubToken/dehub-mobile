@@ -5936,10 +5936,10 @@
     "progress": "Таны ахиц дэвшил",
     "goal": {
       "streams": "{{current}} / {{target}} дамжуулалт",
-      "hours": "{{current}} {{target}} цаг",
-      "session": "{{current}}{{target}} мин нэг урсгалд",
-      "streak": "{{current}} {{target}} долоо хоног",
-      "level": "Түвшин {{current}} {{target}}"
+      "hours": "{{current}} / {{target}} цаг",
+      "session": "Нэг дамжуулалтад {{current}} / {{target}} мин",
+      "streak": "{{current}} / {{target}} долоо хоног",
+      "level": "Түвшин {{current}} / {{target}}"
     },
     "onStream": "Урсгалан дээр тохиолдох үед нээгдэнэ",
     "stats": {
@@ -5948,7 +5948,7 @@
       "hours": "Мэргэшсэн цагууд",
       "streams": "ЧАНАРТАХ ГАЛУУД",
       "longest": "Хамгийн урт урсгал",
-      "streak": "ШИЛДЭГ STREAK"
+      "streak": "Шилдэг цуврал"
     },
     "hoursShort": "{{hours}} ц",
     "weeksShort": "{{count}} долоо хоног"

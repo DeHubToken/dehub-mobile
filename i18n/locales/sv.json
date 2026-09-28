@@ -5216,7 +5216,7 @@
         },
         "enduring": {
           "name": "Uthållig",
-          "hint": "Ström för fyra kvalificerade timmar i en session."
+          "hint": "Sänd i fyra kvalificerade timmar i en och samma session."
         },
         "circle": {
           "name": "Inre krets",
@@ -5939,9 +5939,9 @@
     "cardOf": "Kort {{index}} av {{total}}",
     "progress": "Dina framsteg",
     "goal": {
-      "streams": "{{current}} / {{target}} strömmar",
+      "streams": "{{current}} / {{target}} sändningar",
       "hours": "{{current}} / {{target}} timmar",
-      "session": "{{current}} / {{target}} min i en ström",
+      "session": "{{current}} / {{target}} min i en sändning",
       "streak": "{{current}} / {{target}} veckor",
       "level": "Nivå {{current}} / {{target}}"
     },

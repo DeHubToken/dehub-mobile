@@ -5158,7 +5158,7 @@
         },
         "legend": {
           "name": "କିମ୍ବଦନ୍ତୀ",
-          "hint": "କିନ୍ତୁ ସେ କହିଲେ yemiti huye 1st 1st."
+          "hint": "ସ୍ତର ଦଶରେ ପହଞ୍ଚନ୍ତୁ।"
         },
         "ignition": {
           "name": "ଇଗ୍ନିସନ୍",
@@ -5871,7 +5871,7 @@
     "holdNote": "ଥରେ ଏକ ବ୍ୟାଜ୍ ଅନଲକ୍ ହୋଇଗଲେ, ଆପଣଙ୍କ ଟୋକେନ୍ ଧରିବା ପର୍ଯ୍ୟନ୍ତ ତାହା ଆପଣଙ୍କର ହୋଇ ରହିବ। ଏକ ନୂତନ ବ୍ୟାଜ୍ ଅନଲକ୍ କରିବା ପାଇଁ ଆବଶ୍ୟକ ଟୋକେନ୍ ସଂଖ୍ୟା ଟୋକେନ୍ ମୂଲ୍ୟ ସହିତ ପରିବର୍ତ୍ତନ ହୋଇପାରେ।"
   },
   "badgeShowcase": {
-    "dialogLabel": "{{tier}} badge",
+    "dialogLabel": "{{tier}} ବ୍ୟାଜ୍",
     "close": "ବନ୍ଦ କରନ୍ତୁ",
     "badges": "ବ୍ୟାଜଗୁଡ଼ିକ",
     "tierOf": "{{total}} ମଧ୍ୟରୁ ସ୍ତର {{index}}",
@@ -5879,7 +5879,7 @@
     "toUnlock": "ଅନଲକ୍ କରିବାକୁ ଆଉ {{amount}} ଟୋକେନ୍",
     "holdToUnlock": "ଏହାକୁ ଖୋଲିବା ପାଇଁ ଅତି କମରେ ଏହି ଅନେକ DeHub ଟୋକନକୁ ଧାରଣ କରନ୍ତୁ",
     "sliderLabel": "ଟୋକନ ଧାରଣ କରାଯାଇଛି",
-    "sliderValue": "{{amount}} tokens · {{tier}}",
+    "sliderValue": "{{amount}} ଟୋକେନ୍ · {{tier}}",
     "you": "ଆପଣ",
     "grants": "କ 'ଣ ଖୋଲା ଅଛି",
     "perks": {
@@ -5906,9 +5906,9 @@
     "goal": {
       "streams": "{{current}} / {{target}} ଷ୍ଟ୍ରିମ୍",
       "hours": "{{current}} / {{target}} ଘଣ୍ଟା",
-      "session": "{{current}} {{target}} min in one stream",
+      "session": "ଗୋଟିଏ ଷ୍ଟ୍ରିମ୍‌ରେ {{current}} / {{target}} ମିନିଟ୍",
       "streak": "{{current}} / {{target}} ସପ୍ତାହ",
-      "level": "ସ୍ତର {{current}} {{target}}"
+      "level": "ସ୍ତର {{current}} / {{target}}"
     },
     "onStream": "ଯେତେବେଳେ ଏହା ପ୍ରବାହରେ ଘଟେ ସେତେବେଳେ ଏହାକୁ ଖୋଲନ୍ତୁ",
     "stats": {

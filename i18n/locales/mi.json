@@ -5902,15 +5902,15 @@
     "holdNote": "Ka oti ana tētahi tohu, kei a koe taua tohu kia mau tonu koe ki ō tohu. Ka taea te whakarerekē te maha o ngā tohu e hiahiatia ana hei whakatuwhera i tētahi tohu hou i te wā e huri ana te utu o te tohu."
   },
   "badgeShowcase": {
-    "dialogLabel": "{{tier}} badge",
+    "dialogLabel": "Tohu {{tier}}",
     "close": "Tata",
-    "badges": "Ngā pātene",
-    "tierOf": "Tier {{index}} {{total}}",
-    "youHaveThis": "Kei a koe tenei potae",
-    "toUnlock": "{{amount}} Ētahi atu tohu ki te whakatuwhera i te reira",
-    "holdToUnlock": "Kia mau ki te iti rawa tenei maha tohu DeHub ki te whakatuwhera i te reira",
-    "sliderLabel": "Tokens pupuri",
-    "sliderValue": "{{amount}} tokens · {{tier}}",
+    "badges": "Ngā tohu",
+    "tierOf": "Taumata {{index}} o {{total}}",
+    "youHaveThis": "Kei a koe tēnei tohu",
+    "toUnlock": "Kia {{amount}} atu anō ngā tokena hei whakatuwhera",
+    "holdToUnlock": "Puritia kia rite ki tēnei te maha o ngā tokena DeHub hei whakatuwhera",
+    "sliderLabel": "Ngā tokena e puritia ana",
+    "sliderValue": "{{amount}} tokena · {{tier}}",
     "you": "Ko koe",
     "grants": "He aha te mea e whakatuwhera ana",
     "perks": {
@@ -5921,24 +5921,24 @@
       "images": "Whakaahua mo ia pou",
       "uploads": "Te rohe tuku i ia ra",
       "storage": "Te rokiroki o te kaituhi",
-      "lending": "Badge i 'ai nama",
+      "lending": "Ngā wāhi tuku tohu",
       "voice": "Kohikohinga reo",
-      "voiceFree": "Free",
+      "voiceFree": "Kore utu",
       "voiceLocked": "{{tier}} me runga ake"
     },
-    "buyTokens": "Hokona nga tohu",
+    "buyTokens": "Hokona ngā tokena",
     "details": "Te wehenga katoa",
-    "play": "Play",
-    "pause": "Pause"
+    "play": "Whakatangihia",
+    "pause": "Tatari"
   },
   "streamerShowcase": {
     "cardOf": "Kāri {{index}} {{total}}",
     "progress": "Ko tō whakatutukitanga",
     "goal": {
-      "streams": "{{current}} {{target}} awa",
-      "hours": "{{current}} {{target}} haora",
-      "session": "{{current}} {{target}} min i roto i te awa kotahi",
-      "streak": "{{current}} {{target}} wiki",
+      "streams": "{{current}} / {{target}} pāho",
+      "hours": "{{current}} / {{target}} hāora",
+      "session": "{{current}} / {{target}} meneti i te pāho kotahi",
+      "streak": "{{current}} / {{target}} wiki",
       "level": "Taumata {{current}} / {{target}}"
     },
     "onStream": "Whakatuwhera i te wa e tupu ana i runga i te awa",
@@ -5948,7 +5948,7 @@
       "hours": "Nga haora e tika ana",
       "streams": "Nga awa e tika ana",
       "longest": "Te awa roa rawa atu",
-      "streak": "Best streak"
+      "streak": "Raupapa pai rawa"
     },
     "hoursShort": "{{hours}} h",
     "weeksShort": "{{count}} wk"

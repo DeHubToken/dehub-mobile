@@ -5898,20 +5898,20 @@
   "badgeShowcase": {
     "dialogLabel": "{{tier}} बैज",
     "close": "बन्द करव",
-    "badges": "बैजConstellation name (",
+    "badges": "बैज",
     "tierOf": "{{total}} म ले स्तर {{index}}",
-    "youHaveThis": "तुमन ए बटुआ ल पाय हव",
+    "youHaveThis": "ए बैज तोर करा हे",
     "toUnlock": "खोले बर {{amount}} अउ टोकन",
     "holdToUnlock": "एला अनलॉक करे बर कम से कम ए बहुत डेहब टोकन मन ल रखव",
     "sliderLabel": "रखे गए टोकन",
     "sliderValue": "{{amount}} टोकन · {{tier}}",
     "you": "आप",
-    "grants": "जो खुलता हे",
+    "grants": "एखर ले का खुलथे",
     "perks": {
       "fee": "प्लेटफार्म फीस",
-      "votes": "वोट करे सरकार",
+      "votes": "गवर्नेंस वोट",
       "reach": "प्रति दृस्य अउ प्रतिक्रिया के भार",
-      "feedPosts": "Home Tags हर दिन हर पल",
+      "feedPosts": "रोज के होम फीड पोस्ट",
       "images": "प्रति पोस्ट फोटू",
       "uploads": "दैनिक अपलोड सीमा",
       "storage": "संपादक भंडारन",
@@ -5931,7 +5931,7 @@
     "goal": {
       "streams": "{{current}} / {{target}} स्ट्रीम",
       "hours": "{{current}} / {{target}} घंटा",
-      "session": "{{current}} {{target}} min एक स्ट्रीम में",
+      "session": "एक स्ट्रीम म {{current}} / {{target}} मिनट",
       "streak": "{{current}} / {{target}} हफ्ता",
       "level": "स्तर {{current}} / {{target}}"
     },
@@ -5942,7 +5942,7 @@
       "hours": "योग्यता समय",
       "streams": "प्रवाह के योग्यता",
       "longest": "सबसे लंबा स्ट्रीम",
-      "streak": "बेस्ट स्ट्रीकConstellation name"
+      "streak": "सबले बढ़िया सिलसिला"
     },
     "hoursShort": "{{hours}} घं",
     "weeksShort": "{{count}} हफ्ता"

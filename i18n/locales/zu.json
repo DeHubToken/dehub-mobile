@@ -5936,7 +5936,7 @@
     "dialogLabel": "{{tier}} ibheji",
     "close": "Vala",
     "badges": "Amabheji",
-    "tierOf": "Ibanga {{index}} of {{total}}",
+    "tierOf": "Izinga {{index}} / {{total}}",
     "youHaveThis": "Unaleli bheji",
     "toUnlock": "{{amount}} amathokheni engeziwe ukuze uyivule",
     "holdToUnlock": "Bamba okungenani la mathokheni amaningi e-DeHub ukuze uyivule",
@@ -5963,7 +5963,7 @@
     "pause": "Misa okwesikhashana"
   },
   "streamerShowcase": {
-    "cardOf": "Ikhadi {{index}} of {{total}}",
+    "cardOf": "Ikhadi {{index}} / {{total}}",
     "progress": "Inqubekela-phambili yakho",
     "goal": {
       "streams": "{{current}} / {{target}} streams",
@@ -5979,7 +5979,7 @@
       "hours": "Amahora okufanelekela",
       "streams": "Ukusakaza okufanelekayo",
       "longest": "Ukusakaza okude kunakho konke",
-      "streak": "I-streak ehamba phambili"
+      "streak": "Uchungechunge oluhle kakhulu"
     },
     "hoursShort": "{{hours}} h",
     "weeksShort": "{{count}} wk"

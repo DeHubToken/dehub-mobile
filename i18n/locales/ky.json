@@ -5948,7 +5948,7 @@
       "hours": "Квалификациялуу сааттар",
       "streams": "Квалификациялуу агымдар",
       "longest": "Эң узун агым",
-      "streak": "Best тилкеси"
+      "streak": "Эң мыкты катар"
     },
     "hoursShort": "{{hours}} h",
     "weeksShort": "{{count}} wk"
