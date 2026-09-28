@@ -139,11 +139,11 @@ const ShortsGridCardComponent: React.FC<ShortsGridCardProps> = ({ item, index, i
   // Prefer the poster/thumbnail returned by the API, fall back to the derived path.
   const thumbnailUri = useMemo(() => {
     return (
-      resolveCdn(item.imageUrl || item.thumbnailUrl) ||
+      resolveCdn(item.imageUrls?.[0] || item.imageUrl || item.thumbnailUrl) ||
       getShortsThumbnailUrl(tokenId, CARD_WIDTH) ||
       ""
     );
-  }, [item.imageUrl, item.thumbnailUrl, tokenId, CARD_WIDTH]);
+  }, [item.imageUrls, item.imageUrl, item.thumbnailUrl, tokenId, CARD_WIDTH]);
 
   const avatarUri = useMemo(
     () => getAvatarUrl(item.minterUser?.avatarImageUrl || item.minterAvatarUrl),
@@ -154,11 +154,11 @@ const ShortsGridCardComponent: React.FC<ShortsGridCardProps> = ({ item, index, i
   // Only use item.previewUrl if the API actually returns one; the derived
   // previews/{id}.mp4 path does NOT exist on the CDN, so never fall back to it.
   const previewUrl = useMemo(
-    () =>
+    () => item.postType === "feed-images" ? undefined :
       resolveCdn(item.previewUrl) ||
       resolveCdn(item.videoUrl) ||
       getVideoUrl(tokenId),
-    [item.previewUrl, item.videoUrl, tokenId],
+    [item.postType, item.previewUrl, item.videoUrl, tokenId],
   );
   const previewSettled = useSettledAutoplay(isVisible, previewUrl, 400);
 
@@ -203,6 +203,9 @@ const ShortsGridCardComponent: React.FC<ShortsGridCardProps> = ({ item, index, i
           a source is attached, so a player per mounted cell (20+ in this grid)
           was a player object graph per cell regardless of the null source. */}
       {previewSettled && previewUrl && <CellPreview previewUrl={previewUrl} />}
+      {item.postType === 'feed-images' && <Text style={{ position: 'absolute', top: 8, right: 8, color: '#fff', backgroundColor: 'rgba(0,0,0,0.6)', paddingHorizontal: 8, paddingVertical: 4, borderRadius: 12 }}>
+        ♫{(item.imageUrls?.length || 0) > 1 ? ` · ${item.imageUrls!.length}` : ''}
+      </Text>}
 
       {/* Bottom gradient + info overlay */}
       <View style={styles.overlay} pointerEvents="none" />
