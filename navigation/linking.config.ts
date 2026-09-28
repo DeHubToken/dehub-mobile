@@ -204,6 +204,9 @@ export const DeepLinkPaths = {
   // such game" panel, which offers the grid. That is the right end state for a
   // link to a game a phone cannot play: it says so, in the app, instead of
   // opening a world the player cannot move in.
+  // King's Gambit's online lobby. Before ARCADE_GAME, which would otherwise
+  // leave the trailing /online unmatched and drop the link.
+  ARCADE_CHESS_ONLINE: 'arcade/kings-gambit/online',
   ARCADE_GAME: 'arcade/:slug',
   ARCADE: 'arcade',
 } as const;
@@ -308,6 +311,8 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
           [ScreenNames.Fractions]: DeepLinkPaths.FRACTIONS,
 
           [ScreenNames.Events]: DeepLinkPaths.EVENT,
+
+          [ScreenNames.ArcadeChessOnline]: DeepLinkPaths.ARCADE_CHESS_ONLINE,
 
           [ScreenNames.ArcadeGame]: {
             path: DeepLinkPaths.ARCADE_GAME,
@@ -597,6 +602,8 @@ export const ShareLinks = {
   arcade: () => `${SHARE_BASE}/arcade`,
   /** One game — dehub.io/arcade/:slug */
   arcadeGame: (slug: string) => `${SHARE_BASE}/arcade/${encodeURIComponent(slug)}`,
+  /** King's Gambit online lobby — dehub.io/arcade/kings-gambit/online */
+  arcadeChessOnline: () => `${SHARE_BASE}/arcade/kings-gambit/online`,
 };
 
 /**
@@ -670,6 +677,9 @@ export const parseDeepLink = (url: string): { type: string; params: Record<strin
     // /arcade/:slug and /arcade — checked before the single-segment profile
     // branch below, which would otherwise report the grid as the user @arcade.
     if (pathParts[0] === 'arcade') {
+      if (pathParts[1] === 'kings-gambit' && pathParts[2] === 'online') {
+        return { type: 'arcadeChessOnline', params: qp };
+      }
       return pathParts[1]
         ? { type: 'arcadeGame', params: { slug: pathParts[1], ...qp } }
         : { type: 'arcade', params: qp };

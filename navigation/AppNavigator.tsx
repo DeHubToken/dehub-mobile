@@ -143,6 +143,12 @@ function AppNavigatorContent() {
           name={ScreenNames.ArcadeGame}
           getComponent={() => require("../screens/ArcadeGameScreen").default}
         />
+        {/* King's Gambit's online lobby, which becomes the live board once a
+            match is up. Its own entry so /arcade/kings-gambit/online can open it. */}
+        <Stack.Screen
+          name={ScreenNames.ArcadeChessOnline}
+          getComponent={() => require("../screens/ArcadeChessOnlineScreen").default}
+        />
         <Stack.Screen
           name={ScreenNames.Events}
           getComponent={() => require("../screens/EventsScreen").default}
