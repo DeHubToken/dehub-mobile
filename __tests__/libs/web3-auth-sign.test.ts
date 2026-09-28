@@ -17,4 +17,14 @@ describe('external wallet signing recovery', () => {
     await expect(getOrCreateAuthSignature(address, { request })).resolves.toMatchObject({ signature: '0xvalidsignature' });
     expect(request.mock.calls[1][0].params[0]).toBe(address);
   });
+  it('reconnects before sending a signature and keeps a failed publish to one request', async () => {
+    const events: string[] = [];
+    const restartTransport = jest.fn(async () => { events.push('ready'); });
+    const request = jest.fn(async () => { events.push('sign'); throw new Error('Failed to publish payload'); });
+    await expect(getOrCreateAuthSignature(address, {
+      request, signer: { client: { core: { relayer: { connected: true, restartTransport } } } },
+    })).rejects.toThrow('Failed to publish payload');
+    expect(events).toEqual(['ready', 'sign']);
+    expect(request).toHaveBeenCalledTimes(1);
+  });
 });

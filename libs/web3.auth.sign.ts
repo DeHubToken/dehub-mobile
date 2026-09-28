@@ -1,5 +1,6 @@
 import { getSigningProvider } from "./provider.registry";
 import { getAuthUser, setAuthUser } from "./auth.utils";
+import { prepareWalletRelay } from './wallet-relay';
 
 export interface StoredSignatureMeta {
   address: string;
@@ -74,6 +75,7 @@ export async function getOrCreateAuthSignature(
   }
 
   let signature: string;
+  await prepareWalletRelay(injected);
   try {
     try {
       signature = await injected.request({
