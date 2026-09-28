@@ -20,6 +20,7 @@ import { getPreferredChainId as getStoredPreferredChainId } from "../libs/auth.u
 import { setSigningProvider, clearSigningProvider } from "../libs/provider.registry";
 import { getAppKitInstance } from "../config/reown.config";
 import { createLogger } from "../libs/logger";
+import { isWalletRelayPublishError } from '../libs/wallet-relay';
 
 const log = createLogger("useWalletAuth");
 
@@ -55,6 +56,7 @@ export const useWalletAuth = () => {
   // as a connection settles, and each render is not a new "the user connected".
   const authenticatedKeyRef = useRef<string | null>(null);
   const authenticatingRef = useRef(false);
+  const reconnectRequiredRef = useRef(false);
 
   // True only while THIS mount is actively waiting on a connection the user
   // just asked for via handleWalletConnect()'s open() call. AppKit persists
@@ -96,7 +98,10 @@ export const useWalletAuth = () => {
         authenticatedKeyRef.current = `${address.toLowerCase()}-${chainId}`;
       } catch (error) {
         log.error("authenticate:error", error);
-        if (!reportWalletSignupBlocked(error)) {
+        if (isWalletRelayPublishError(error)) {
+          reconnectRequiredRef.current = true;
+          toastError(null, 'Wallet connection interrupted. Tap Connect Wallet to reconnect.');
+        } else if (!reportWalletSignupBlocked(error)) {
           toastError(error, "Wallet authentication failed. Please try again.");
         }
       } finally {
@@ -109,6 +114,26 @@ export const useWalletAuth = () => {
   );
 
   const handleWalletConnect = useCallback(async () => {
+    if (authenticatingRef.current) return;
+    if (reconnectRequiredRef.current) {
+      authenticatingRef.current = true;
+      setIsWalletLoading(true);
+      try {
+        await getAppKitInstance()?.disconnect();
+        authenticatedKeyRef.current = null;
+        reconnectRequiredRef.current = false;
+        awaitingUserInitiatedConnectRef.current = true;
+        await open();
+      } catch (error) {
+        awaitingUserInitiatedConnectRef.current = false;
+        reconnectRequiredRef.current = true;
+        toastError(error, 'Wallet reconnection failed. Please try again.');
+      } finally {
+        authenticatingRef.current = false;
+        setIsWalletLoading(false);
+      }
+      return;
+    }
     // Already connected — authenticate immediately instead of reopening the
     // connect sheet. This is still an explicit tap, so mark it as
     // user-initiated too.
