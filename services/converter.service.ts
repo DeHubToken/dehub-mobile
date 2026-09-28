@@ -116,3 +116,55 @@ export async function listConverterImports(): Promise<ConverterImport[]> {
   const res = await apiClient.get<{ imports: ConverterImport[] }>('/youtube_import');
   return res?.imports ?? [];
 }
+
+/* ─── Podcast import ───────────────────────────────────────────────────────
+ * Same importer, different intake: an RSS/Atom feed instead of a link. Each
+ * picked episode lands as a `feed-audio` post through the same pipeline. */
+
+export interface PodcastEpisode {
+  guid: string;
+  title: string;
+  description: string;
+  publishedAt: string | null;
+  durationSec: number | null;
+  audioUrl: string;
+  mimeType: string | null;
+  sizeBytes: number | null;
+  image: string | null;
+  alreadyImported: boolean;
+}
+
+export interface PodcastPreview {
+  show: {
+    title: string;
+    description: string;
+    author: string;
+    image: string | null;
+    episodeCount: number;
+  };
+  episodes: PodcastEpisode[];
+}
+
+export interface PodcastImportParams {
+  feedUrl: string;
+  guids: string[];
+  ownershipConfirmed: boolean;
+  chainId?: number;
+}
+
+export interface PodcastImportQueuedResponse {
+  queued: true;
+  jobs: { guid: string; jobId: string | number | null }[];
+}
+
+/** Reads a feed without importing anything. */
+export async function previewPodcastFeed(feedUrl: string): Promise<PodcastPreview> {
+  return apiClient.post<PodcastPreview>('/podcast_import/preview', { feedUrl });
+}
+
+/** Queues the picked episodes. A null `jobId` means that episode was skipped. */
+export async function importFromPodcast(
+  params: PodcastImportParams,
+): Promise<PodcastImportQueuedResponse> {
+  return apiClient.post<PodcastImportQueuedResponse>('/podcast_import', params);
+}

@@ -3931,7 +3931,23 @@
     "errorUnsupported": "We no fit import from that link. Try one of these: {{sources}}",
     "errorNeedRights": "Abeg confirm say you get the rights to this content",
     "errorClipboard": "We no fit read the clipboard — paste am yourself",
-    "errorQueueFailed": "We no fit queue that import"
+    "errorQueueFailed": "We no fit queue that import",
+    "podcast": {
+      "tab": "Podcast",
+      "feedUrlLabel": "Podcast RSS feed link",
+      "fetchFeed": "Bring the feed",
+      "fetching": "We dey bring the feed…",
+      "showBy": "From {{author}}",
+      "episodes": "{{n}} episode dem",
+      "selectAll": "Pick all",
+      "alreadyImported": "E don already enter",
+      "importSelected": "Bring {{n}} episode dem enter",
+      "importing": "E dey enter…",
+      "done": "E don join line",
+      "emptyFeed": "We no see any episode for that feed.",
+      "badFeed": "That link no resemble podcast feed.",
+      "tooMany": "Bring reach 20 episode dem at once."
+    }
   },
   "earnings": {
     "filter24h": "24h",

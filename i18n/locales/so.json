@@ -4031,7 +4031,23 @@
     "reviewDescriptionPlaceholder": "Wax ka sheeg qoraalkan (optional)",
     "reviewLiveWarning": "Xidhiidhkaas waa durdur nool. Sug ilaa ay dhammaato oo soo dejiso duubista halkii.",
     "reviewCancel": "Jooji",
-    "reviewConfirm": "Soo dejiso"
+    "reviewConfirm": "Soo dejiso",
+    "podcast": {
+      "tab": "Podcast",
+      "feedUrlLabel": "URL quudinta Podcast RSS",
+      "fetchFeed": "Cuntada Fetch",
+      "fetching": "Cuntada Fetching...",
+      "showBy": "Waxaa qoray {{author}}",
+      "episodes": "{{n}} qaybood",
+      "selectAll": "Xulo dhammaan",
+      "alreadyImported": "Hore loo soo dejiyay",
+      "importSelected": "Soo dejiso {{n}} episodes",
+      "importing": "Soo dejinta…",
+      "done": "Safka ayaa la geliyay",
+      "emptyFeed": "Ma heli karno qayb ka mid ah cuntadaas.",
+      "badFeed": "Link Tani uma muuqato sida quudinta podcast ah.",
+      "tooMany": "Soo dejiso ilaa 20 qaybood hal mar."
+    }
   },
   "earnings": {
     "filter24h": "24s",

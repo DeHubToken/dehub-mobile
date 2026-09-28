@@ -4031,7 +4031,23 @@
     "reviewCancel": "रद्दम्",
     "reviewConfirm": "आयात्यताम्",
     "toastImported": "{{source}} कडून आयात केले!",
-    "errorUnsupported": "आम्ही त्या लिंकवरून आयात करू शकत नाही. यापैकी एक वापरून पहा: {{sources}}"
+    "errorUnsupported": "आम्ही त्या लिंकवरून आयात करू शकत नाही. यापैकी एक वापरून पहा: {{sources}}",
+    "podcast": {
+      "tab": "पॉडकास्टः",
+      "feedUrlLabel": "फलकम्ःRSS feed URL",
+      "fetchFeed": "अन्नं प्राप्तम्",
+      "fetching": "अन्नं प्राप्यते...",
+      "showBy": "{{author}} द्वारा",
+      "episodes": "{{n}} प्रकरणानि",
+      "selectAll": "सर्वे निवसन्तु",
+      "alreadyImported": "इदानीं आयातितम्",
+      "importSelected": "इम्पोर्ट {{n}} episodes",
+      "importing": "आयातम्...",
+      "done": "पङ्क्तिबद्धम्",
+      "emptyFeed": "अन्नदानं न शक्यमस्माभिर्भवेत् ।",
+      "badFeed": "अयं वर्गः खाद्यपदार्थानां विषये विद्यते न वा ।",
+      "tooMany": "20 एकवारं चित्राणि पश्यन्तु ।"
+    }
   },
   "earnings": {
     "filter24h": "24घ",

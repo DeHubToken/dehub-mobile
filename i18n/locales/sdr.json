@@ -4015,7 +4015,23 @@
     "reviewDescriptionPlaceholder": "इस पोस्ट के बारे में कुछ कहें (वैकल्पिक)",
     "reviewLiveWarning": "वह लिंक एक लाइव स्ट्रीम है। इसके समाप्त होने का इंतजार करें और इसके बजाय रिकॉर्डिंग आयात करें।",
     "reviewCancel": "रद्द करें",
-    "reviewConfirm": "आयात करें"
+    "reviewConfirm": "आयात करें",
+    "podcast": {
+      "tab": "پادکست",
+      "feedUrlLabel": "پوڈکاسٹ RSS فیڈ کر URL",
+      "fetchFeed": "فیڈ لانا",
+      "fetching": "فیڈ لاوت ہی…",
+      "showBy": "{{author}} کر",
+      "episodes": "{{n}} ایپیسوڈ",
+      "selectAll": "سب چُنا",
+      "alreadyImported": "پہلے سے امپورٹ ہو گیلک",
+      "importSelected": "{{n}} ایپیسوڈ امپورٹ کرا",
+      "importing": "امپورٹ ہوت ہی…",
+      "done": "قطار میں ہے",
+      "emptyFeed": "اُ فیڈ میں کونو ایپیسوڈ نی مِلک۔",
+      "badFeed": "ای لنک پوڈکاسٹ فیڈ جیسن نی لاگت ہے۔",
+      "tooMany": "ایک بار میں 20 ایپیسوڈ تک امپورٹ کرا۔"
+    }
   },
   "earnings": {
     "filter24h": "২৪ঘ",

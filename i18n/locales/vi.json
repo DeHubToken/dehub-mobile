@@ -4044,7 +4044,23 @@
     "reviewDescriptionPlaceholder": "Nói điều gì đó về bài đăng này (không bắt buộc)",
     "reviewLiveWarning": "Liên kết đó là một phát trực tuyến. Thay vào đó, hãy đợi cho đến khi kết thúc và nhập bản ghi.",
     "reviewCancel": "Hủy",
-    "reviewConfirm": "Nhập"
+    "reviewConfirm": "Nhập",
+    "podcast": {
+      "tab": "Podcast",
+      "feedUrlLabel": "URL nguồn cấp dữ liệu RSS Podcast",
+      "fetchFeed": "Tìm nạp nguồn cấp dữ liệu",
+      "fetching": "Đang tìm nạp nguồn cấp dữ liệu...",
+      "showBy": "Bởi {{author}}",
+      "episodes": "{{n}} tập",
+      "selectAll": "Chọn tất cả",
+      "alreadyImported": "Đã nhập",
+      "importSelected": "Nhập {{n}} tập",
+      "importing": "Đang nhập…",
+      "done": "Đã xếp hàng",
+      "emptyFeed": "Chúng tôi không thể tìm thấy bất kỳ tập nào trong nguồn cấp dữ liệu đó.",
+      "badFeed": "Liên kết đó không giống như nguồn cấp dữ liệu podcast.",
+      "tooMany": "Nhập tối đa 20 tập mỗi lần."
+    }
   },
   "earnings": {
     "filter24h": "24g",

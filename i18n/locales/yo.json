@@ -4032,7 +4032,23 @@
     "reviewDescriptionPlaceholder": "Sọ ohun kan nípa iṣẹ́ yìí (bí ó bá wù ú)",
     "reviewLiveWarning": "Ìsopọ̀ yẹn jẹ́ àtẹ̀jísẹ́ tí ó wà láàyè. Dúró títí yóò fi parí kí o sì ṣe àmúlò àfihàn náà dípò ìyẹn.",
     "reviewCancel": "Fagilé",
-    "reviewConfirm": "Ṣàgbéwọlé"
+    "reviewConfirm": "Ṣàgbéwọlé",
+    "podcast": {
+      "tab": "Adarọ ese",
+      "feedUrlLabel": "URL ìfúnni RSS ti podcast",
+      "fetchFeed": "Fetch ifunni",
+      "fetching": "Gbigba ifunni...",
+      "showBy": "Nipasẹ {{author}}",
+      "episodes": "{{n}} awọn iṣẹlẹ",
+      "selectAll": "Yan gbogbo",
+      "alreadyImported": "Tẹlẹ gbe wọle",
+      "importSelected": "Wọle {{n}} awọn iṣẹlẹ",
+      "importing": "Gbigba wọle...",
+      "done": "Ó ti wà nínú ìlà",
+      "emptyFeed": "A kò rí àwọn àyọkà kankan nínú oúnjẹ yẹn.",
+      "badFeed": "Ìsopọ̀ yẹn kò jọ oúnjẹ adarọ-ese.",
+      "tooMany": "Wọlé àwọn eré tó tó ogún lẹ́ẹ̀kan."
+    }
   },
   "earnings": {
     "filter24h": "24w",

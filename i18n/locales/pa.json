@@ -3977,7 +3977,23 @@
     "reviewDescriptionPlaceholder": "ਇਸ ਪੋਸਟ ਬਾਰੇ ਕੁਝ ਕਹੋ (ਵਿਕਲਪਿਕ)",
     "reviewLiveWarning": "ਉਹ ਲਿੰਕ ਇੱਕ ਲਾਈਵ ਸਟ੍ਰੀਮ ਹੈ. ਇੰਤਜ਼ਾਰ ਕਰੋ ਜਦੋਂ ਤੱਕ ਇਹ ਖਤਮ ਨਹੀਂ ਹੁੰਦਾ ਅਤੇ ਇਸ ਦੀ ਬਜਾਏ ਰਿਕਾਰਡਿੰਗ ਨੂੰ ਇੰਪੋਰਟ ਕਰੋ.",
     "reviewCancel": "ਰੱਦ ਕਰੋ",
-    "reviewConfirm": "ਇੰਪੋਰਟ"
+    "reviewConfirm": "ਇੰਪੋਰਟ",
+    "podcast": {
+      "tab": "ਪੋਡਕਾਸਟ",
+      "feedUrlLabel": "ਪੋਡਕਾਸਟ RSS ਫੀਡ URL",
+      "fetchFeed": "ਫੀਡ ਲਵੋ",
+      "fetching": "ਫੀਡ ਲਈ ਜਾ ਰਹੀ ਹੈ...",
+      "showBy": "{{author}} ਦੁਆਰਾ",
+      "episodes": "{{n}} ਐਪੀਸੋਡ",
+      "selectAll": "ਸਭ ਚੁਣੋ",
+      "alreadyImported": "ਪਹਿਲਾਂ ਹੀ ਇੰਪੋਰਟ ਕੀਤਾ",
+      "importSelected": "ਇੰਪੋਰਟ {{n}} ਐਪੀਸੋਡ",
+      "importing": "ਇੰਪੋਰਟ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ...",
+      "done": "ਕਤਾਰ ਵਿੱਚ",
+      "emptyFeed": "ਸਾਨੂੰ ਉਸ ਫੀਡ ਵਿੱਚ ਕੋਈ ਐਪੀਸੋਡ ਨਹੀਂ ਮਿਲਿਆ.",
+      "badFeed": "ਉਹ ਲਿੰਕ ਪੋਡਕਾਸਟ ਫੀਡ ਵਰਗਾ ਨਹੀਂ ਲੱਗਦਾ.",
+      "tooMany": "ਇੱਕ ਸਮੇਂ 20 ਐਪੀਸੋਡ ਤੱਕ ਆਯਾਤ ਕਰੋ."
+    }
   },
   "earnings": {
     "filter24h": "24ਘੰ",

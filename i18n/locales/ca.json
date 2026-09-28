@@ -4031,7 +4031,23 @@
     "reviewDescriptionPlaceholder": "Explica alguna cosa sobre aquesta publicació (opcional)",
     "reviewLiveWarning": "Aquest enllaç és una transmissió en directe. Espera fins que acabi i importa l'enregistrament.",
     "reviewCancel": "Cancel·la",
-    "reviewConfirm": "Importar"
+    "reviewConfirm": "Importar",
+    "podcast": {
+      "tab": "Podcast",
+      "feedUrlLabel": "URL del canal RSS del podcast",
+      "fetchFeed": "Obtén el canal d'informació",
+      "fetching": "S'està obtenint el feed...",
+      "showBy": "Per {{author}}",
+      "episodes": "{{n}} episodis",
+      "selectAll": "Selecciona-ho tot",
+      "alreadyImported": "Ja s'ha importat",
+      "importSelected": "Importa {{n}} episodis",
+      "importing": "S'està important...",
+      "done": "En cua",
+      "emptyFeed": "No hem pogut trobar cap episodi en aquest canal.",
+      "badFeed": "Aquest enllaç no sembla un canal de podcast.",
+      "tooMany": "Importa fins a 20 episodis a la vegada."
+    }
   },
   "earnings": {
     "filter24h": "24h",

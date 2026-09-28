@@ -4064,7 +4064,23 @@
     "reviewDescriptionPlaceholder": "Sê iets oor hierdie artikel (opsioneel)",
     "reviewLiveWarning": "Die verbinding is 'n lewende stroom. Wag totdat dit eindig en voer die opname plaas.",
     "reviewCancel": "Kanselleer",
-    "reviewConfirm": "Voer in"
+    "reviewConfirm": "Voer in",
+    "podcast": {
+      "tab": "Podsending",
+      "feedUrlLabel": "Podcast RSS-voer-URL",
+      "fetchFeed": "Haal voer",
+      "fetching": "Haal voer...",
+      "showBy": "Deur {{author}}",
+      "episodes": "{{n}} episodes",
+      "selectAll": "Kies almal",
+      "alreadyImported": "Reeds ingevoer",
+      "importSelected": "In voer {{n}} episodes",
+      "importing": "Voer tans in...",
+      "done": "Wagtou",
+      "emptyFeed": "Ons kon geen episodes in daardie voer vind nie.",
+      "badFeed": "Hierdie skakel lyk nie soos 'n podcast-feed nie.",
+      "tooMany": "Voer tot 20 episodes op 'n slag in."
+    }
   },
   "earnings": {
     "filter24h": "24u",

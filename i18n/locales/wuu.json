@@ -4031,7 +4031,23 @@
     "import": "导入",
     "untitled": "视频",
     "statusRateLimited": "速率限制",
-    "statusProcessing": "处理中"
+    "statusProcessing": "处理中",
+    "podcast": {
+      "tab": "播客",
+      "feedUrlLabel": "播客 RSS feed 网址",
+      "fetchFeed": "获取 feed",
+      "fetching": "正在获取 feed…",
+      "showBy": "作者：{{author}}",
+      "episodes": "{{n}} 集",
+      "selectAll": "全选",
+      "alreadyImported": "已导入",
+      "importSelected": "导入 {{n}} 集",
+      "importing": "正在导入…",
+      "done": "已排队",
+      "emptyFeed": "在该 feed 中未找到任何播客。",
+      "badFeed": "该链接看起来不像播客 feed。",
+      "tooMany": "一次最多导入 20 集。"
+    }
   },
   "earnings": {
     "filter24h": "24小时",

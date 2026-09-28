@@ -4031,7 +4031,23 @@
     "reviewDescriptionPlaceholder": "1) Birinjiden, App Find (Bu Step TV üçin)",
     "reviewLiveWarning": "Bu baglanyşyk direlýän akymy. Bu iş tamamlanýança garaşyň we onuň ýerine ýazgysyny import ediň.",
     "reviewCancel": "Gaýd Et",
-    "reviewConfirm": "Çyk"
+    "reviewConfirm": "Çyk",
+    "podcast": {
+      "tab": "Podkastlar",
+      "feedUrlLabel": "Podcast RSS Feed URL-i",
+      "fetchFeed": "Iýmitlenmek",
+      "fetching": "Öýlenmek üçin...",
+      "showBy": "{{author}}",
+      "episodes": "{{n}} epizodlar",
+      "selectAll": "Ehlisini Saýla",
+      "alreadyImported": "Öňden äkidilen",
+      "importSelected": "{{n}}bölümleri äkid",
+      "importing": "Çykyş...",
+      "done": "Saýlan",
+      "emptyFeed": "Biz şol iýmitde hiç hili bölüm tapyp bilmedik.",
+      "badFeed": "Men muny podcast formatynda barmygyny barlamady.",
+      "tooMany": "Bir gezekde 20 bölümden gowrak import edilýär."
+    }
   },
   "earnings": {
     "filter24h": "24s",

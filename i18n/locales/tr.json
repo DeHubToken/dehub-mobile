@@ -4080,7 +4080,23 @@
     "reviewDescriptionPlaceholder": "Bu gönderi hakkında bir şeyler söyle (isteğe bağlı)",
     "reviewLiveWarning": "Bu bağlantı canlı bir akış. Bitene kadar bekleyin ve bunun yerine kaydı içe aktarın.",
     "reviewCancel": "İptal",
-    "reviewConfirm": "İçe Aktar"
+    "reviewConfirm": "İçe Aktar",
+    "podcast": {
+      "tab": "Podcast",
+      "feedUrlLabel": "Podcast RSS yayın URL'si",
+      "fetchFeed": "Beslemeyi getir",
+      "fetching": "Akış getiriliyor…",
+      "showBy": "Gönderen:{{author}}",
+      "episodes": "{{n}} bölüm",
+      "selectAll": "Tümünü seç",
+      "alreadyImported": "Zaten içe aktarıldı",
+      "importSelected": "{{n}} bölüm içe aktar",
+      "importing": "İçe aktarılıyor...",
+      "done": "Sıraya alındı",
+      "emptyFeed": "Bu akışta herhangi bir bölüm bulamadık.",
+      "badFeed": "Bu bağlantı bir podcast akışına benzemiyor.",
+      "tooMany": "Bir seferde 20 bölüme kadar içe aktarın."
+    }
   },
   "earnings": {
     "filter24h": "24s",

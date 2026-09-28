@@ -4035,7 +4035,23 @@
     "reviewDescriptionPlaceholder": "אפשר לכתוב משהו על הפוסט הזה (אופציונלי)",
     "reviewLiveWarning": "הקישור הזה הוא שידור חי. המתן עד שיסתיים וייבא את ההקלטה במקום זאת.",
     "reviewCancel": "ביטול",
-    "reviewConfirm": "ייבוא"
+    "reviewConfirm": "ייבוא",
+    "podcast": {
+      "tab": "פודקאסט",
+      "feedUrlLabel": "כתובת אתר להזנת RSS של פודקאסט",
+      "fetchFeed": "עדכן את הפיד",
+      "fetching": "מעדכן את הפיד...",
+      "showBy": "מאת {{author}}",
+      "episodes": "{{n}} פרקים",
+      "selectAll": "בחירה בכל הנכסים",
+      "alreadyImported": "כבר יובא",
+      "importSelected": "ייבוא {{n}} פרקים",
+      "importing": "מייבא…",
+      "done": "בתור",
+      "emptyFeed": "לא הצלחנו למצוא פרקים בפיד הזה.",
+      "badFeed": "הקישור הזה לא נראה כמו הזנת פודקאסט.",
+      "tooMany": "ייבא עד 20 פרקים בכל פעם."
+    }
   },
   "earnings": {
     "filter24h": "24ש",

@@ -4013,7 +4013,23 @@
     "reviewDescriptionPlaceholder": "1) ដំបូង ត្រូវ ធ្វើ App Find (វា សម្រាប់ Step TV)",
     "reviewLiveWarning": "ការភ្ជាប់នេះ គឺជាការផ្សាយបន្តផ្ទាល់ ។ រង់ចាំរហូតដល់វាបញ្ចប់ ហើយនាំចូលការថតជំនួសវិញ ។",
     "reviewCancel": "បោះបង់",
-    "reviewConfirm": "នាំចូល"
+    "reviewConfirm": "នាំចូល",
+    "podcast": {
+      "tab": "ផតខាស់",
+      "feedUrlLabel": "URL មតិព័ត៌មាន RSS ផតខាស់",
+      "fetchFeed": "ទៅ យក មតិ ព័ត៌មាន",
+      "fetching": "កំពុង ទៅ យក មតិ ព័ត៌មាន…",
+      "showBy": "ដោយ {{author}}",
+      "episodes": "{{n}} វគ្គ",
+      "selectAll": "ជ្រើសរើសទាំងអស់",
+      "alreadyImported": "បាននាំចូលរួចហើយ",
+      "importSelected": "នាំចូល {{n}} episodes",
+      "importing": "កំពុងនាំចូល...",
+      "done": "បានដាក់ជាជួរ",
+      "emptyFeed": "យើងមិនអាចរកឃើញវគ្គណាមួយនៅក្នុងចំណីអាហារនោះទេ ។",
+      "badFeed": "ខ្ញុំ មិន បាន ពិនិត្យ មើល ថា តើ វា មាន ក្នុង រូបភាព Podcast ទេ",
+      "tooMany": "នាំចូលរហូតដល់ 20 រឿងក្នុងមួយពេល ។"
+    }
   },
   "earnings": {
     "filter24h": "24ម",

@@ -4044,7 +4044,23 @@
     "reviewConfirm": "ආයාත කරන්න",
     "ownership": "මට මෙම අන්තර්ගතය තිබේ, නැතහොත් එය ඩෙහබ් හි ප් රකාශයට පත් කිරීමට අයිතිකරුගේ අවසරය ඇත.",
     "statusFailed": "අසමත් විය",
-    "statusRateLimited": "සීමිත අගයන්න"
+    "statusRateLimited": "සීමිත අගයන්න",
+    "podcast": {
+      "tab": "පොඩ්කාස්ට්",
+      "feedUrlLabel": "පොඩ්කාස්ට් RSS සංග් ‍ රහ URL",
+      "fetchFeed": "සංග් ‍ රහ ලබා ගන්න",
+      "fetching": "සංග් ‍ රහය ලබා ගනිමින්...",
+      "showBy": "විසින් {{author}}",
+      "episodes": "{{n}} එපිසෝඩ්ස්",
+      "selectAll": "සියල්ල තෝරන්න",
+      "alreadyImported": "දැනටමත් ආයාත කර ඇත",
+      "importSelected": "{{n}} කථාංග ආයාත කරන්න",
+      "importing": "ආයාත කරමින්...",
+      "done": "පෝලිමේ",
+      "emptyFeed": "අපිට ඒ ආහාරයේ කිසිම සිද්ධියක් හොයාගන්න බැරි වුණා.",
+      "badFeed": "මේ ලින්ක් එක පේන්නේ Podcast Feed එකක් විදියට නෙවෙයි.",
+      "tooMany": "එක පාර Episode 20ක් විතර දාන්න."
+    }
   },
   "earnings": {
     "filter24h": "24පැ",

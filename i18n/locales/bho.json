@@ -4029,7 +4029,23 @@
     "reviewCancel": "रद्द करे",
     "reviewConfirm": "आयातित करें",
     "toastImported": "{{source}} से आयातित!",
-    "errorUnsupported": "हम उस लिंक से आयात नहीं कर सकते। इनमें से एक आज़माएँ: {{sources}}"
+    "errorUnsupported": "हम उस लिंक से आयात नहीं कर सकते। इनमें से एक आज़माएँ: {{sources}}",
+    "podcast": {
+      "tab": "पॉडकास्ट, पॉडकास्ट,",
+      "feedUrlLabel": "पन्ना जेवन \"आरएसएस फ़ीड यूआरएल\" से जुड़ल बा",
+      "fetchFeed": "भोजन समायोजित करें",
+      "fetching": "करेला खाने के फायदे-",
+      "showBy": "{{author}} के ओर से",
+      "episodes": "{{n}} गो एपिसोड",
+      "selectAll": "सब कुछ चुनें",
+      "alreadyImported": "आयात कइल गइल",
+      "importSelected": "{{n}} गो एपिसोड इंपोर्ट करीं",
+      "importing": "आयात कइल गइल...",
+      "done": "क्वारंटीन कइल गइल",
+      "emptyFeed": "हमहन के एह फूड में कुछुवो ना लउकत रहे ।",
+      "badFeed": "ई श्रेणी अइसन आधार लेख कुल खातिर बाटे जेवन टेम्पलेटःCountry data Podcast से संबंधित होखें ।",
+      "tooMany": "एक ही समय में 20 फाइलें बदलें ।"
+    }
   },
   "earnings": {
     "filter24h": "24घं",

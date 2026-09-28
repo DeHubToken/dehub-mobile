@@ -4080,7 +4080,23 @@
     "reviewDescriptionPlaceholder": "Sagen Sie etwas über diesen Beitrag (optional)",
     "reviewLiveWarning": "Dieser Link ist ein Live-Stream. Warten Sie, bis es endet, und importieren Sie stattdessen die Aufnahme.",
     "reviewCancel": "Abbrechen",
-    "reviewConfirm": "Import"
+    "reviewConfirm": "Import",
+    "podcast": {
+      "tab": "Podcast",
+      "feedUrlLabel": "Podcast-RSS-Feed-URL",
+      "fetchFeed": "Feed abrufen",
+      "fetching": "Feed wird abgerufen...",
+      "showBy": "Von {{author}}",
+      "episodes": "{{n}} Episoden",
+      "selectAll": "Alle auswählen",
+      "alreadyImported": "Bereits importiert",
+      "importSelected": "{{n}} Episoden importieren",
+      "importing": "Wird importiert...",
+      "done": "In Warteschlange",
+      "emptyFeed": "Wir konnten keine Episoden in diesem Feed finden.",
+      "badFeed": "Dieser Link sieht nicht wie ein Podcast-Feed aus.",
+      "tooMany": "Importieren Sie bis zu 20 Episoden gleichzeitig."
+    }
   },
   "earnings": {
     "filter24h": "24h",

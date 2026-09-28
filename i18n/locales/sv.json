@@ -4035,7 +4035,23 @@
     "reviewDescriptionPlaceholder": "Säg något om det här inlägget (valfritt)",
     "reviewLiveWarning": "Den länken är en livestream. Vänta tills det slutar och importera inspelningen istället.",
     "reviewCancel": "Avbryt",
-    "reviewConfirm": "Importera"
+    "reviewConfirm": "Importera",
+    "podcast": {
+      "tab": "Podcast",
+      "feedUrlLabel": "Podcast RSS-feed-URL",
+      "fetchFeed": "Hämta flöde",
+      "fetching": "Hämtar flöde...",
+      "showBy": "Av {{author}}",
+      "episodes": "{{n}} episoder",
+      "selectAll": "Välj alla",
+      "alreadyImported": "Redan importerad",
+      "importSelected": "Importera {{n}} avsnitt",
+      "importing": "Importerar...",
+      "done": "Köad",
+      "emptyFeed": "Vi kunde inte hitta några episoder i det flödet.",
+      "badFeed": "Den länken ser inte ut som ett podcastflöde.",
+      "tooMany": "Importera upp till 20 avsnitt åt gången."
+    }
   },
   "earnings": {
     "filter24h": "24h",

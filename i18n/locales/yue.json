@@ -4031,7 +4031,23 @@
     "reviewDescriptionPlaceholder": "講啲關於呢個帖子嘅嘢（可選）",
     "reviewLiveWarning": "嗰個連結係一個直播。等到佢完結，然後轉入錄音。",
     "reviewCancel": "取消",
-    "reviewConfirm": "進口"
+    "reviewConfirm": "進口",
+    "podcast": {
+      "tab": "網路廣播",
+      "feedUrlLabel": "播客 RSS 資訊提供網址",
+      "fetchFeed": "攞資訊提供",
+      "fetching": "攞緊資訊提供 …",
+      "showBy": "由 {{author}}",
+      "episodes": "{{n}} 劇集",
+      "selectAll": "揀晒",
+      "alreadyImported": "已經匯入咗",
+      "importSelected": "匯入 {{n}} 集數",
+      "importing": "匯入緊 …",
+      "done": "排隊喇",
+      "emptyFeed": "我哋喺嗰個資訊提供入面搵唔到任何劇集。",
+      "badFeed": "嗰個連結唔似播客資訊提供。",
+      "tooMany": "一次最多匯入20集。"
+    }
   },
   "earnings": {
     "filter24h": "24小時",

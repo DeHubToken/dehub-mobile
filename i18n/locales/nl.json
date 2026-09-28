@@ -4221,7 +4221,23 @@
     "reviewDescriptionPlaceholder": "Zeg iets over deze post (optioneel)",
     "reviewLiveWarning": "Die link is een livestream. Wacht tot het eindigt en importeer in plaats daarvan de opname.",
     "reviewCancel": "Annuleren",
-    "reviewConfirm": "Importeren"
+    "reviewConfirm": "Importeren",
+    "podcast": {
+      "tab": "Podcast",
+      "feedUrlLabel": "Podcast RSS-feed URL",
+      "fetchFeed": "Feed ophalen",
+      "fetching": "Feed wordt opgehaald...",
+      "showBy": "Door {{author}}",
+      "episodes": "{{n}} afleveringen",
+      "selectAll": "Alles selecteren",
+      "alreadyImported": "Reeds geïmporteerd",
+      "importSelected": "Importeer {{n}} afleveringen",
+      "importing": "Importeren...",
+      "done": "In wachtrij",
+      "emptyFeed": "We konden geen afleveringen in die feed vinden.",
+      "badFeed": "Die link ziet er niet uit als een podcastfeed.",
+      "tooMany": "Importeer maximaal 20 afleveringen per keer."
+    }
   },
   "earnings": {
     "filter24h": "24u",

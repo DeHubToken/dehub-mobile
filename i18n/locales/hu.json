@@ -4035,7 +4035,23 @@
     "reviewDescriptionPlaceholder": "Mondj valamit erről a bejegyzésről (nem kötelező)",
     "reviewLiveWarning": "Ez a link élő közvetítés. Várja meg, amíg véget ér, és importálja a felvételt.",
     "reviewCancel": "Mégse",
-    "reviewConfirm": "Importálás"
+    "reviewConfirm": "Importálás",
+    "podcast": {
+      "tab": "Podcasting",
+      "feedUrlLabel": "Podcast RSS-hírcsatorna URL-címe",
+      "fetchFeed": "Hírcsatorna letöltése",
+      "fetching": "Hírcsatorna letöltése…",
+      "showBy": "Szerző:{{author}}",
+      "episodes": "{{n}} epizód",
+      "selectAll": "Összes kijelölése",
+      "alreadyImported": "Már importálva",
+      "importSelected": "{{n}} epizód importálása",
+      "importing": "Importálás…",
+      "done": "Várólistán",
+      "emptyFeed": "Nem találtunk egyetlen epizódot sem a feedben.",
+      "badFeed": "Ez a link nem néz ki podcast-hírcsatornának.",
+      "tooMany": "Egyszerre legfeljebb 20 epizódot importálhat."
+    }
   },
   "earnings": {
     "filter24h": "24ó",

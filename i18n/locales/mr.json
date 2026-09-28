@@ -4035,7 +4035,23 @@
     "reviewDescriptionPlaceholder": "या पोस्टबद्दल काहीतरी सांगा (ऐच्छिक)",
     "reviewLiveWarning": "या संप्रेषण एक लाइव्ह प्रवाह आहे. तो समाप्त होईपर्यंत प्रतीक्षा करा आणि ऐवजी रेकॉर्डिंग आयात.",
     "reviewCancel": "रद्द करा",
-    "reviewConfirm": "आयात करा"
+    "reviewConfirm": "आयात करा",
+    "podcast": {
+      "tab": "पॉडकास्ट",
+      "feedUrlLabel": "पॉडकास्ट आरएसएस फीड URL",
+      "fetchFeed": "फीड मिळवा",
+      "fetching": "फीड प्राप्त करत आहे...",
+      "showBy": "{{author}} द्वारे",
+      "episodes": "{{n}} एपिसोड्स",
+      "selectAll": "सर्व निवडा",
+      "alreadyImported": "आधीच आयात केले",
+      "importSelected": "{{n}} एपिसोड्स आयात करा",
+      "importing": "आयात करत आहे...",
+      "done": "रांगेत आहे",
+      "emptyFeed": "आम्हाला त्या फीडमध्ये कोणतेही एपिसोड सापडले नाहीत.",
+      "badFeed": "पण ही लिंक फूड पॉडकास्टसारखी वाटत नाही.",
+      "tooMany": "एका वेळी 20 एपिसोड्स पर्यंत आयात करा."
+    }
   },
   "earnings": {
     "filter24h": "24ता",

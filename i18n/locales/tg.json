@@ -4031,7 +4031,23 @@
     "reviewDescriptionPlaceholder": "Дар бораи ин пост чизе бигӯед (ихтиёрӣ)",
     "reviewLiveWarning": "Ang link na ito ay isang live stream. Интизор шавед, то он ба итмом расад ва сабтро ба ҷои он ворид кунед.",
     "reviewCancel": "Бекор кардан",
-    "reviewConfirm": "Воридот"
+    "reviewConfirm": "Воридот",
+    "podcast": {
+      "tab": "Podcast",
+      "feedUrlLabel": "URL-и лентаи RSS-и подкаст",
+      "fetchFeed": "Гирифтани лента",
+      "fetching": "Кушодани ахборот...",
+      "showBy": "{{author}}",
+      "episodes": "{{n}} info: whatsthis",
+      "selectAll": "Pumili ng lahat",
+      "alreadyImported": "Hindi nai-import",
+      "importSelected": "Ворид кардани {{n}} қисм",
+      "importing": "Воридот...",
+      "done": "Дар навбат",
+      "emptyFeed": "Hindi namin mahanap ang anumang mga episodes sa feed na ito.",
+      "badFeed": "Ang link na ito ay hindi tulad ng feed ng podcast.",
+      "tooMany": "Mag-import ng hanggang 20 na mga episod sa isang oras."
+    }
   },
   "earnings": {
     "filter24h": "24с",

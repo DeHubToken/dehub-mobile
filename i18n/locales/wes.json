@@ -3930,7 +3930,23 @@
     "detailRateLimited": "{{source}} di slow us down. E go run again by imself — you no need paste anything again.",
     "detailDuplicate": "That video don already dey your profile.",
     "toastQueued": "E don enter queue — e go publish for your profile when e finish.",
-    "toastRateLimited": "Dem slow us down, but your upload di queue and we go process am quick quick. You no need try the same link again, but you fit queue more as you like"
+    "toastRateLimited": "Dem slow us down, but your upload di queue and we go process am quick quick. You no need try the same link again, but you fit queue more as you like",
+    "podcast": {
+      "tab": "Podcast",
+      "feedUrlLabel": "Podcast RSS feed link",
+      "fetchFeed": "Bring the feed",
+      "fetching": "We di bring the feed…",
+      "showBy": "From {{author}}",
+      "episodes": "{{n}} episode dem",
+      "selectAll": "Choose all",
+      "alreadyImported": "E don already enter",
+      "importSelected": "Bring {{n}} episode dem enter",
+      "importing": "E di enter…",
+      "done": "E don join line",
+      "emptyFeed": "We no see any episode for that feed.",
+      "badFeed": "That link no resemble podcast feed.",
+      "tooMany": "Bring reach 20 episode dem one time."
+    }
   },
   "earnings": {
     "filter24h": "24h",

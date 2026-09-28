@@ -4031,7 +4031,23 @@
     "reviewDescriptionPlaceholder": "Энэ нийтлэлийн талаар ямар нэг зүйл хэлээрэй (заавал биш)",
     "reviewLiveWarning": "Энэ холбоос бол шууд дамжуулалт юм. Үүний оронд бичлэгийг дуусч импортлох хүртэл хүлээнэ үү.",
     "reviewCancel": "Цуцлах",
-    "reviewConfirm": "Импортлох"
+    "reviewConfirm": "Импортлох",
+    "podcast": {
+      "tab": "Подкаст",
+      "feedUrlLabel": "Подкаст RSS тэжээлийн URL",
+      "fetchFeed": "Сувгийг татах",
+      "fetching": "Тэжээлийг авч байна…",
+      "showBy": "{{author}} ээр",
+      "episodes": "{{n}} анги",
+      "selectAll": "Бүгдийг сонгох",
+      "alreadyImported": "Импортлогдсон байна",
+      "importSelected": "{{n}}episodes импорт",
+      "importing": "Импортолж байна...",
+      "done": "Дараалал",
+      "emptyFeed": "Тэжээлийн аль нэг хэсгийг олж чадсангүй.",
+      "badFeed": "Энэ холбоос нь подкастийн тэжээл шиг биш юм.",
+      "tooMany": "Нэг дор 20 хүртэлх хэсгийг импортлох."
+    }
   },
   "earnings": {
     "filter24h": "24ц",

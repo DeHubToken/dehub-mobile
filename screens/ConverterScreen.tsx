@@ -51,6 +51,7 @@ import {
   type ConverterImport,
 } from '../services/converter.service';
 import GlassModal from '../components/ui/GlassModal';
+import PodcastImportSection from '../components/Converter/PodcastImportSection';
 
 /** Tiles a creator has waved off, per install. Finished and failed imports
  * stay on the server for a day and a week respectively — long enough to be
@@ -97,6 +98,8 @@ export default function ConverterScreen() {
   const navigation = useNavigation<any>();
   const insets = useSafeAreaInsets();
 
+  /** Which intake is showing: a link from another platform, or a podcast feed. */
+  const [intake, setIntake] = useState<'link' | 'podcast'>('link');
   const [url, setUrl] = useState('');
   const [ownershipConfirmed, setOwnershipConfirmed] = useState(false);
   /** What the creator picked, or null while they have not. Null means "follow
@@ -488,6 +491,29 @@ export default function ConverterScreen() {
     <View className="gap-4 pb-4">
       <Text className="text-theme-neutrals-400 text-sm">{t('converter.subtitle')}</Text>
 
+      <View className="flex-row items-center gap-1.5">
+        {(['link', 'podcast'] as const).map(key => {
+          const active = intake === key;
+          return (
+            <Pressable
+              key={key}
+              onPress={() => setIntake(key)}
+              accessibilityRole="button"
+              accessibilityState={{ selected: active }}
+              className="rounded-lg px-3 py-1.5"
+              style={{ backgroundColor: active ? '#ffffff' : 'rgba(255,255,255,0.05)' }}
+            >
+              <Text className="text-sm font-medium" style={{ color: active ? '#000000' : '#d4d4d8' }}>
+                {key === 'link' ? t('converter.title') : t('converter.podcast.tab')}
+              </Text>
+            </Pressable>
+          );
+        })}
+      </View>
+
+      {intake === 'podcast' ? (
+        <PodcastImportSection />
+      ) : (
       <View className="rounded-2xl p-4 gap-4" style={{ backgroundColor: 'rgba(255,255,255,0.05)' }}>
         <View className="flex-row items-center rounded-xl bg-theme-neutrals-900 px-3">
           <Icon name="Link2" size={16} color="#71717a" />
@@ -614,6 +640,7 @@ export default function ConverterScreen() {
           </Text>
         </Pressable>
       </View>
+      )}
 
       {visible.length > 0 && (
         <View className="flex-row items-baseline justify-between">

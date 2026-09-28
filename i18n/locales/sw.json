@@ -4032,7 +4032,23 @@
     "reviewDescriptionPlaceholder": "Sema kitu kuhusu chapisho hili (hiari)",
     "reviewLiveWarning": "Kiunganishi hicho ni mkondo wa moja kwa moja. Subiri hadi iishe na uingize rekodi badala yake.",
     "reviewCancel": "Ghairi",
-    "reviewConfirm": "Ingiza"
+    "reviewConfirm": "Ingiza",
+    "podcast": {
+      "tab": "Podikasti",
+      "feedUrlLabel": "URL ya malisho ya RSS ya podcast",
+      "fetchFeed": "Chukua malisho",
+      "fetching": "Inakusanya malisho...",
+      "showBy": "Na {{author}}",
+      "episodes": "{{n}} vipindi",
+      "selectAll": "Chagua zote",
+      "alreadyImported": "Tayari imeingizwa",
+      "importSelected": "Ingiza {{n}} vipindi",
+      "importing": "Inaingiza...",
+      "done": "Imepigwa foleni",
+      "emptyFeed": "Hatukuweza kupata vipindi vyovyote katika malisho hayo.",
+      "badFeed": "Kiunganishi hicho hakionekani kama mpasho wa podikasti.",
+      "tooMany": "Ingiza hadi vipindi 20 kwa wakati mmoja."
+    }
   },
   "earnings": {
     "filter24h": "24s",

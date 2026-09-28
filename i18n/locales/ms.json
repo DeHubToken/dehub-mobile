@@ -4292,7 +4292,23 @@
     "reviewDescriptionPlaceholder": "Katakan sesuatu tentang hantaran ini (pilihan)",
     "reviewLiveWarning": "Pautan itu adalah strim langsung. Tunggu sehingga ia berakhir dan import rakaman.",
     "reviewCancel": "Batal",
-    "reviewConfirm": "Import"
+    "reviewConfirm": "Import",
+    "podcast": {
+      "tab": "Podcast",
+      "feedUrlLabel": "URL suapan RSS Podcast",
+      "fetchFeed": "Mengambil suapan",
+      "fetching": "Mengambil suapan...",
+      "showBy": "Oleh {{author}}",
+      "episodes": "{{n}} episod",
+      "selectAll": "Pilih semua",
+      "alreadyImported": "Sudah diimport",
+      "importSelected": "Import {{n}} episod",
+      "importing": "Mengimport...",
+      "done": "Dibaris gilir",
+      "emptyFeed": "Kami tidak dapat menemui sebarang episod dalam suapan itu.",
+      "badFeed": "Pautan itu tidak kelihatan seperti suapan audio siar.",
+      "tooMany": "Import sehingga 20 episod pada satu masa."
+    }
   },
   "earnings": {
     "filter24h": "24j",

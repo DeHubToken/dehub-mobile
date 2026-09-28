@@ -4031,7 +4031,23 @@
     "reviewDescriptionPlaceholder": "Gwa ihe banyere nke a post (nhọrọ)",
     "reviewLiveWarning": "Njikọ ahụ bụ iyi ndụ. Chere ruo mgbe ọ ga-agwụ ma bubata ndekọ ahụ kama.",
     "reviewCancel": "Kagbuo",
-    "reviewConfirm": "Bubata"
+    "reviewConfirm": "Bubata",
+    "podcast": {
+      "tab": "Podcast",
+      "feedUrlLabel": "Podcast RSS ndepụta URL",
+      "fetchFeed": "Fetch ndepụta",
+      "fetching": "Na-ewepụta ndepụta...",
+      "showBy": "Site na {{author}}",
+      "episodes": "{{n}} ngosipụta",
+      "selectAll": "Họrọ niile",
+      "alreadyImported": "Mbubataworị",
+      "importSelected": "Mbubata {{n}} Episodes",
+      "importing": "Bubata",
+      "done": "Kwụ n 'ahịrị",
+      "emptyFeed": "Anyị enweghị ike ịchọta ngosipụta ọ bụla na ndepụta ahụ.",
+      "badFeed": "Njikọ ahụ adịghị ka nri Podcast.",
+      "tooMany": "E nwere ihe 30 ihe maka Sporting ihe."
+    }
   },
   "earnings": {
     "filter24h": "24a",

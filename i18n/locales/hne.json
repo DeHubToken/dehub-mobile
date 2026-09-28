@@ -4031,7 +4031,23 @@
     "reviewDescriptionPlaceholder": "1) पहिली, App Find करे (ये Step TV बर हे)",
     "reviewLiveWarning": "ए लिंक एक लाइव स्ट्रीम हवय । समाप्त होए तक प्रतीक्षा करे अउ एखर बजाय रिकॉर्डिंग आयात करे ।",
     "reviewCancel": "खारिज करव",
-    "reviewConfirm": "आयात"
+    "reviewConfirm": "आयात",
+    "podcast": {
+      "tab": "पॉडकास्ट",
+      "feedUrlLabel": "पॉडकास्ट आरएसएस फीड यूआरएल",
+      "fetchFeed": "फीड लाव",
+      "fetching": "भोजन करे बर...",
+      "showBy": "द्वारा {{author}}",
+      "episodes": "{{n}} ठन एपिसोड",
+      "selectAll": "सब्बो चुनव",
+      "alreadyImported": "पहिले से ही आयात करे गे हे",
+      "importSelected": "आयात {{n}} epizodes",
+      "importing": "आयात करत हे...",
+      "done": "कतार मं हे",
+      "emptyFeed": "हमन ओ फीड म कोनो एपिसोड नी पा सकेन ।",
+      "badFeed": "मैं हर जांच नी करिस कि क्या यह एक पॉडकास्ट प्रारूप म उपलब्ध हवय ।",
+      "tooMany": "एक बार म 20 एपिसोड तक आयात करे ।"
+    }
   },
   "earnings": {
     "filter24h": "24घं",

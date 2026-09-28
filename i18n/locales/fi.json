@@ -4031,7 +4031,23 @@
     "reviewDescriptionPlaceholder": "Sano jotain tästä julkaisusta (valinnainen)",
     "reviewLiveWarning": "Tämä linkki on live-suoratoisto. Odota, kunnes se päättyy, ja tuo sen sijaan tallenne.",
     "reviewCancel": "Peruuta",
-    "reviewConfirm": "Tuo"
+    "reviewConfirm": "Tuo",
+    "podcast": {
+      "tab": "Podcast",
+      "feedUrlLabel": "Podcastin RSS-syötteen URL-osoite",
+      "fetchFeed": "Nouda syöte",
+      "fetching": "Noudetaan syötettä...",
+      "showBy": "Tekijä:{{author}}",
+      "episodes": "{{n}} jaksoa",
+      "selectAll": "Valitse kaikki",
+      "alreadyImported": "Jo tuotu",
+      "importSelected": "Tuo {{n}} jaksoa",
+      "importing": "Tuodaan…",
+      "done": "Jonossa",
+      "emptyFeed": "Syötteestä ei löytynyt jaksoja.",
+      "badFeed": "Linkki ei näytä podcast-syötteeltä.",
+      "tooMany": "Tuo enintään 20 jaksoa kerrallaan."
+    }
   },
   "earnings": {
     "filter24h": "24h",

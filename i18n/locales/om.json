@@ -4044,7 +4044,23 @@
     "reviewDescriptionPlaceholder": "Waa'ee barreeffama kanaa waa jedhi (optional) .",
     "reviewLiveWarning": "Link sun live stream dha. Hanga xumuramutti eegaa bakka isaa waraabbii galchi.",
     "reviewCancel": "Haquu",
-    "reviewConfirm": "Biyya alaatii galchuu"
+    "reviewConfirm": "Biyya alaatii galchuu",
+    "podcast": {
+      "tab": "Poodkaastii",
+      "feedUrlLabel": "URL nyaata RSS podcast",
+      "fetchFeed": "Nyaata fidi",
+      "fetching": "Nyaata fiduu...",
+      "showBy": "{{author}} tiin.",
+      "episodes": "{{n}} kutaalee",
+      "selectAll": "Hundaa filadhu",
+      "alreadyImported": "Duraanis kan galfame",
+      "importSelected": "Kutaalee {{n}} galchi",
+      "importing": "Galchuu...",
+      "done": "Tarree keessa jira",
+      "emptyFeed": "Feed sana keessaa kutaa tokkollee argachuu hin dandeenye.",
+      "badFeed": "Link sun nyaata podcast hin fakkaatu.",
+      "tooMany": "Yeroo tokkotti hanga kutaalee 20 galchuu."
+    }
   },
   "earnings": {
     "filter24h": "24s",

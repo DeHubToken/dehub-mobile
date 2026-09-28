@@ -4061,7 +4061,23 @@
     "reviewDescriptionPlaceholder": "Säg öppis über dä Poscht (optional)",
     "reviewLiveWarning": "De Link isch e Live-Stream. Warte, bis er fertig isch, und importiere de Mitschnitt statt däm.",
     "reviewCancel": "Abbräche",
-    "reviewConfirm": "Importiere"
+    "reviewConfirm": "Importiere",
+    "podcast": {
+      "tab": "Podcast",
+      "feedUrlLabel": "Podcast RSS-Feed URL",
+      "fetchFeed": "Feed abrufe",
+      "fetching": "Feed wird abgruefet…",
+      "showBy": "Vo {{author}}",
+      "episodes": "{{n}} Episöde",
+      "selectAll": "Alli uswähle",
+      "alreadyImported": "Schu abigleit",
+      "importSelected": "{{n}} Episöde abliifere",
+      "importing": "Wird abglefert…",
+      "done": "In Warteschlang",
+      "emptyFeed": "Mir hend kei Episöde i dem Feed gfunde.",
+      "badFeed": "Das Link gseht nöd us wie en Podcast-Feed.",
+      "tooMany": "Bis zu 20 Episöde glichziitig abliifere."
+    }
   },
   "earnings": {
     "filter24h": "24h",

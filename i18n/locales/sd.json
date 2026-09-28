@@ -4031,7 +4031,23 @@
     "reviewDescriptionPlaceholder": "هن پوسٽ بابت ڪجهه چئو (اختياري)",
     "reviewLiveWarning": "اهو لنڪ هڪ زنده وهڪرو آهي. انتظار ڪريو جيستائين اهو ختم نه ٿئي ۽ بدران رڪارڊ درآمد ڪريو.",
     "reviewCancel": "منسوخ ڪريو",
-    "reviewConfirm": "درآمد ڪريو"
+    "reviewConfirm": "درآمد ڪريو",
+    "podcast": {
+      "tab": "پوڊ ڪاسٽ",
+      "feedUrlLabel": "پوڊ ڪاسٽ آر ايس ايس فيڊ URL",
+      "fetchFeed": "کاڌ خوراڪ حاصل ڪريو",
+      "fetching": "کاڌ خوراڪ حاصل ڪئي پئي وڃي...",
+      "showBy": "جي جي {{author}}",
+      "episodes": "{{n}} قسطون ههههه",
+      "selectAll": "سڀ چونڊيو",
+      "alreadyImported": "اڳ ۾ ئي درآمد ٿيل آهي",
+      "importSelected": "درآمد ڪريو {{n}} قسطون",
+      "importing": "درآمد ڪندي...",
+      "done": "قطار ڪئي",
+      "emptyFeed": "اسان ان فيڊ ۾ ڪا به قسط ڳولي نه سگهياسين.",
+      "badFeed": "اهو لنڪ پوڊ ڪاسٽ فيڊ وانگر نظر نٿو اچي.",
+      "tooMany": "20 Off آف ھڪڙي وقت ۾ ھڪڙي شيءِ ان اسٽور ۾."
+    }
   },
   "earnings": {
     "filter24h": "24ڪ",

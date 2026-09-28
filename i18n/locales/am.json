@@ -4061,7 +4061,23 @@
     "queueRunning": "{{n}} በመጠባበቅ ላይ — ይህንን ትር መዝጋት ደህና ነው፣ ይቀጥላሉ።",
     "statusImported": "አስመጣ",
     "detailFailed": "ያንን ቪዲዮ ማስገባት አልተቻለም።",
-    "detailRateLimited": "{{source}} ገደብ እያደረገብን ነው። ይህ በራሱ እንደገና ይጀምራል — ምንም ነገር እንደገና መለጠፍ የለብዎትም።"
+    "detailRateLimited": "{{source}} ገደብ እያደረገብን ነው። ይህ በራሱ እንደገና ይጀምራል — ምንም ነገር እንደገና መለጠፍ የለብዎትም።",
+    "podcast": {
+      "tab": "ፖድካስት",
+      "feedUrlLabel": "ፖድካስት RSS ምግብ ዩአርኤል",
+      "fetchFeed": "Fetch ምግብ",
+      "fetching": "የምግብ አዘገጃጀት...",
+      "showBy": "በ {{author}}",
+      "episodes": "{{n}} ክፍሎች",
+      "selectAll": "ሁሉንም ይምረጡ",
+      "alreadyImported": "ቀድሞውኑ አስመጪ",
+      "importSelected": "አስመጣ {{n}} episodes",
+      "importing": "በማስመጣት ላይ...",
+      "done": "ተሰልፏል",
+      "emptyFeed": "በዚያ ምግብ ውስጥ ምንም ክፍሎችን ማግኘት አልቻልንም ።",
+      "badFeed": "ያ አገናኝ የፖድካስት ምግብ አይመስልም ።",
+      "tooMany": "በአንድ ጊዜ እስከ 20 ክፍሎች ያስመጡ ።"
+    }
   },
   "earnings": {
     "filter24h": "24ሰ",

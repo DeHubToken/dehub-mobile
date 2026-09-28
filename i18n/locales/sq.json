@@ -4031,7 +4031,23 @@
     "reviewDescriptionPlaceholder": "Thuaj diçka për këtë postim (me zgjedhje)",
     "reviewLiveWarning": "Ky link është transmetim i drejtpërdrejtë. Prisni derisa të përfundojë dhe importoni regjistrimin në vend të tij.",
     "reviewCancel": "Anulo",
-    "reviewConfirm": "Importo"
+    "reviewConfirm": "Importo",
+    "podcast": {
+      "tab": "Podcast",
+      "feedUrlLabel": "URL-ja e burimit RSS të podkastit",
+      "fetchFeed": "Merr burimin",
+      "fetching": "Duke marrë burimin...",
+      "showBy": "Nga {{author}}",
+      "episodes": "{{n}} episode",
+      "selectAll": "Zgjidhi të gjitha",
+      "alreadyImported": "Importuar tashmë",
+      "importSelected": "Importo {{n}} episode",
+      "importing": "Duke importuar...",
+      "done": "Në radhë",
+      "emptyFeed": "Nuk gjetëm asnjë episod në atë ushqim.",
+      "badFeed": "Ky link nuk duket si një burim podkastesh.",
+      "tooMany": "Importo deri në 20 episode njëherësh."
+    }
   },
   "earnings": {
     "filter24h": "24o",

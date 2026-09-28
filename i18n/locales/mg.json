@@ -4054,7 +4054,23 @@
     "reviewLiveWarning": "Mivantana izany ny serasera. Andraso mandra-pahatapitry ny naoty.",
     "reviewCancel": "Ajanona",
     "reviewConfirm": "Hampiditra",
-    "toastImported": "Nampidirina avy amin'ny {{source}}!"
+    "toastImported": "Nampidirina avy amin'ny {{source}}!",
+    "podcast": {
+      "tab": "Rakipeo",
+      "feedUrlLabel": "Podcast URL fahana RSS",
+      "fetchFeed": "RAHARAHAM-PIRENENA",
+      "fetching": "Manome sakafo...",
+      "showBy": "Nataon'i {{author}}",
+      "episodes": "Fizarana {{n}}",
+      "selectAll": "Farito izy_rehetra",
+      "alreadyImported": "Efa nohafarana",
+      "importSelected": "Fanafarana {{n}} episodes",
+      "importing": "Mamoaka...",
+      "done": "Hiditra",
+      "emptyFeed": "Tsy mahita marika fampihorohoroana mihitsy ao anatin'izany",
+      "badFeed": "Ity endrika tatoazy ity dia tsy mitovy amin'ny podcast feed.",
+      "tooMany": "Antoko manodidina ny 20 no handray anjara amin'izany."
+    }
   },
   "earnings": {
     "filter24h": "24o",
