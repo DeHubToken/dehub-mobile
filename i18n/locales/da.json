@@ -8275,5 +8275,31 @@
     "faqAccountQ": "Skal jeg have en DeHub-konto?",
     "chatgptFaqAccount": "Ingen konto er påkrævet for at læse offentligt indhold via connectoren. En DeHub-konto er kun nødvendig, hvis du vil poste, give drikkepenge eller holde DeHub-tokens.",
     "claudeFaqAccount": "Nej. Læsning af offentligt indhold fungerer uden en konto. Du behøver kun en DeHub-konto for at poste, give drikkepenge eller holde DeHub-tokens."
+  },
+  "credits": {
+    "percentUsed": "{{percent}} % brugt",
+    "spentOfTotal": "{{spent}} af {{total}}",
+    "subscriptionTokens": "Abonnementstokens",
+    "topUp": "Tilføj tokens",
+    "topUpTitle": "Tilføj abonnementstokens",
+    "topUpCustom": "Andet beløb (USD)",
+    "topUpYouSend": "Du sender",
+    "topUpYouGet": "Føjet til din saldo",
+    "topUpConfirm": "Tilføj {{amount}}",
+    "topUpRange": "Indtast {{min}} til {{max}}",
+    "topUpDone": "{{amount}} føjet til dine abonnementstokens",
+    "topUpPending": "Din påfyldning bekræftes. Det vil snart fremgå af din saldo.",
+    "topUpFailed": "Kunne ikke tilføje abonnementstokens",
+    "topUpStageFunding": "Henter tokens...",
+    "topUpStageWallet": "Bekræft i din tegnebog...",
+    "topUpStageConfirming": "Venter på transaktionen...",
+    "topUpStageCrediting": "Tilføjer til din saldo...",
+    "untradableTokens": "Disse er abonnementstokens, der ikke kan handles",
+    "withdraw": "Udbetal",
+    "close": "Luk",
+    "tokenAmount": "{{amount}} tokens",
+    "subscriptionTokensOnly": "Kun til AI-generering",
+    "subscriptionTokensValueNote": "Abonnementstokens holder deres dollarværdi. Hvis tokenprisen bevæger sig, før du bruger dem, vil du se flere eller færre tokens, men de køber altid den samme mængde AI-generering. De kan ikke trækkes tilbage, sendes eller handles.",
+    "topUpEmptyHint": "Tilføj tokens til at generere med AI"
   }
 }

@@ -8273,5 +8273,31 @@
     "faqAccountQ": "DeHubのアカウントは必要ですか？",
     "chatgptFaqAccount": "コネクタを介して公開コンテンツを読むのにアカウントは必要ありません。DeHubアカウントは、DeHubトークンを投稿、チップ、または保持したい場合にのみ必要です。",
     "claudeFaqAccount": "いいえ。公開コンテンツの閲覧はアカウントなしで機能します。DeHubトークンを投稿、チップ、または保持するには、DeHubアカウントのみが必要です。"
+  },
+  "credits": {
+    "percentUsed": "{{percent}}%使用済み",
+    "spentOfTotal": "{{total}}の{{spent}}",
+    "subscriptionTokens": "サブスクリプショントークン",
+    "topUp": "トークンを追加",
+    "topUpTitle": "サブスクリプショントークンを追加",
+    "topUpCustom": "その他の金額（米ドル）",
+    "topUpYouSend": "あなたが送信します",
+    "topUpYouGet": "残高にを追加しました",
+    "topUpConfirm": "{{amount}}を追加",
+    "topUpRange": "{{max}}に{{min}}を入力",
+    "topUpDone": "サブスクリプショントークンに{{amount}}が追加されました",
+    "topUpPending": "チャージが確認されました。 まもなく残高に反映されます。",
+    "topUpFailed": "サブスクリプショントークンを追加できませんでした",
+    "topUpStageFunding": "トークンを取得しています…",
+    "topUpStageWallet": "ウォレットで確認してください…",
+    "topUpStageConfirming": "トランザクションを待っています…",
+    "topUpStageCrediting": "残高に追加しています…",
+    "untradableTokens": "これらは取引不可能なサブスクリプショントークンです",
+    "withdraw": "出金",
+    "close": "閉じる",
+    "tokenAmount": "{{amount}} トークン",
+    "subscriptionTokensOnly": "AI生成専用",
+    "subscriptionTokensValueNote": "サブスクリプショントークンは、そのドル価値を保持します。トークンを使用する前にトークンの価格が変動すると、トークンが多かれ少なかれ表示されますが、常に同じ量のAI生成を購入します。それらは引き出し、送信、または取引することはできません。",
+    "topUpEmptyHint": "トークンを追加してAIで生成"
   }
 }

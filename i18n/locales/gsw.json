@@ -8301,5 +8301,31 @@
     "faqAccountQ": "Brauche ich ein DeHub-Konto?",
     "chatgptFaqAccount": "Zum öffentliche Inhaalt über de Connector z'lese, bruchsch kei Account. E DeHub Account bruchsch nur, wenn du wotsch poste, tip-ge oder DeHub Token halte.",
     "claudeFaqAccount": "Nei. Öffentliche Inhaalt z'lese funktioniert ohni Account. Du bruchsch nur e DeHub Account, wenn du wotsch poste, tip-ge oder DeHub Token halte."
+  },
+  "credits": {
+    "percentUsed": "{{percent}}% used",
+    "spentOfTotal": "{{spent}} of {{total}}",
+    "subscriptionTokens": "Abonnement-Tokens",
+    "topUp": "Tokens dezuefüüge",
+    "topUpTitle": "Abo-Tokens auflade",
+    "topUpCustom": "Andere Betrag (USD)",
+    "topUpYouSend": "Du sendisch",
+    "topUpYouGet": "Din Balance wird g'ufg'füllt",
+    "topUpConfirm": "{{amount}} auflade",
+    "topUpRange": "Gib {{min}} i für {{max}}",
+    "topUpDone": "{{amount}} sind zu dinne Abo-Tokens dazug'choume",
+    "topUpPending": "Dini Aufladige wird bestätiget. Si wird bald uf dim Balance erschtoume.",
+    "topUpFailed": "Konnt kei Abo-Tokens auflade",
+    "topUpStageFunding": "Tokens laade...",
+    "topUpStageWallet": "Im Wallet bestätige...",
+    "topUpStageConfirming": "Warte uf Transaktion...",
+    "topUpStageCrediting": "Wird zum Balance dazug'füeget...",
+    "untradableTokens": "Das sind nicht handelbare Abonnement-Token",
+    "withdraw": "Abheben",
+    "close": "Schliesse",
+    "tokenAmount": "{{amount}} Tokens",
+    "subscriptionTokensOnly": "Nur für KI-Generierig",
+    "subscriptionTokensValueNote": "Abonnemente-Token behalte ihr Dollar-Wert. Wenn de Token-Preis sich ändert, bevor du sie bruuchsch, gsehsch meh oder weniger Token, aber sie chöi immer di gliichi Menge AI-Generatio kaufe. Sie chöi nöd abhebe, gschickt oder gehandlet werde.",
+    "topUpEmptyHint": "Füeg Token zum generiere mit AI hinzu"
   }
 }

@@ -8001,5 +8001,31 @@
     "faqAccountQ": "Ma hewcedariya min bi hesabekî DeHub heye?",
     "chatgptFaqAccount": "Ji bo xwendina naveroka giştî bi rêya girêderê hesab ne hewce ye. Hesabekî DeHub tenê hewce ye heke tu bixwazî biweşînî, bexşîşê bidî an tokenên DeHub bigirî.",
     "claudeFaqAccount": "Na. Xwendina naveroka giştî bê hesab dixebite. Tenê ji bo weşandin, dayîna bexşîşê an girtina tokenên DeHub hesabekî DeHub hewce ye."
+  },
+  "credits": {
+    "percentUsed": "{{percent}}% بەکارهاتووە",
+    "spentOfTotal": "{{spent}} لە {{total}}",
+    "subscriptionTokens": "توکنی سەبسیبشن",
+    "topUp": "تۆکن زیاد بکە",
+    "topUpTitle": "تۆکنی بەشداریکردن زیاد بکە",
+    "topUpCustom": "بڕێکی تر (USD)",
+    "topUpYouSend": "دەینێریت",
+    "topUpYouGet": "بۆ باڵانسەکەت زیاد دەکرێت",
+    "topUpConfirm": "{{amount}} زیاد بکە",
+    "topUpRange": "لە {{min}} تا {{max}} بنووسە",
+    "topUpDone": "{{amount}} بۆ تۆکنەکانی بەشداریکردنت زیاد کرا",
+    "topUpPending": "پارەدانەکەت پشتڕاست دەکرێتەوە. بەم زووانە لە باڵانسەکەت دەردەکەوێت.",
+    "topUpFailed": "نەتوانرا تۆکنی بەشداریکردن زیاد بکرێت",
+    "topUpStageFunding": "وەرگرتنی تۆکن…",
+    "topUpStageWallet": "لە جزدانەکەت پشتڕاستی بکەرەوە…",
+    "topUpStageConfirming": "چاوەڕوانی مامەڵەکە…",
+    "topUpStageCrediting": "زیادکردن بۆ باڵانسەکەت…",
+    "untradableTokens": "ئەمە توکنی سەبسیبشنە ناتوانراوەیە",
+    "withdraw": "دەرهێنان",
+    "close": "داخستن",
+    "tokenAmount": "{{amount}} توکن",
+    "subscriptionTokensOnly": "تەنها بۆ دروستکردن بە AI",
+    "subscriptionTokensValueNote": "تۆکنەکانی بەشداریکردن بەهای دۆلارییان دەپارێزن. ئەگەر نرخی تۆکن پێش بەکارهێنانیان بگۆڕێت، تۆکنی زیاتر یان کەمتر دەبینیت، بەڵام هەمیشە هەمان ئەندازە دروستکردن بە AI دەکڕن. ناتوانرێت بکێشرێنەوە، بنێردرێن یان بازرگانییان پێوە بکرێت.",
+    "topUpEmptyHint": "تۆکن زیاد بکە بۆ دروستکردن بە AI"
   }
 }

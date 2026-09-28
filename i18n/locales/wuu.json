@@ -8271,5 +8271,31 @@
     "faqAccountQ": "我需要 DeHub 账号吗？",
     "chatgptFaqAccount": "无需账户即可通过连接器阅读公开内容。只有当您想发布、打赏或持有 DeHub 代币时，才需要 DeHub 账户。",
     "claudeFaqAccount": "不。阅读公开内容无需账户。只有当您想发布、打赏或持有 DeHub 代币时，才需要 DeHub 账户。"
+  },
+  "credits": {
+    "percentUsed": "用脱 {{percent}}%",
+    "spentOfTotal": "{{spent}} / {{total}}",
+    "subscriptionTokens": "订阅代币",
+    "topUp": "加代币",
+    "topUpTitle": "添加订阅代币",
+    "topUpCustom": "其他金额 (美元)",
+    "topUpYouSend": "您发送",
+    "topUpYouGet": "已添加到您的余额",
+    "topUpConfirm": "添加 {{amount}}",
+    "topUpRange": "输入 {{min}} 到 {{max}}",
+    "topUpDone": "{{amount}} 已添加到您的订阅代币",
+    "topUpPending": "您的充值正在确认中。将很快显示在您的余额中。",
+    "topUpFailed": "无法添加订阅代币",
+    "topUpStageFunding": "正在获取代币…",
+    "topUpStageWallet": "在您的钱包中确认…",
+    "topUpStageConfirming": "等待交易…",
+    "topUpStageCrediting": "正在添加到您的余额…",
+    "untradableTokens": "迭些是弗得交易个订阅代币",
+    "withdraw": "提现",
+    "close": "关闭",
+    "tokenAmount": "{{amount}} 隻代幣",
+    "subscriptionTokensOnly": "为AI生成专用",
+    "subscriptionTokensValueNote": "订购代币保值。如果代币价格在你使用前变动，你会看到代币数量增多或减少，但它们始终能购买等量的AI生成服务。代币不可提取、发送或交易。",
+    "topUpEmptyHint": "加点代币用AI生成"
   }
 }

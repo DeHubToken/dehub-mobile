@@ -8271,5 +8271,31 @@
     "faqAccountQ": "Trebam li DeHub račun?",
     "chatgptFaqAccount": "Za čitanje javnog sadržaja putem konektora nije potreban račun. DeHub račun je potreban samo ako želite objavljivati, davati napojnice ili držati DeHub tokene.",
     "claudeFaqAccount": "Ne. Čitanje javnog sadržaja radi bez računa. Trebate DeHub račun samo za objavljivanje, davanje napojnica ili držanje DeHub tokena."
+  },
+  "credits": {
+    "percentUsed": "{{percent}}% iskorišteno",
+    "spentOfTotal": "{{spent}} od {{total}}",
+    "subscriptionTokens": "Pretplatnički tokeni",
+    "topUp": "Dodaj tokene",
+    "topUpTitle": "Dodaj žetone za pretplatu",
+    "topUpCustom": "Drugi iznos (USD)",
+    "topUpYouSend": "Vi šaljete",
+    "topUpYouGet": "Dodano na tvoj saldo",
+    "topUpConfirm": "Dodaj {{amount}}",
+    "topUpRange": "Unesite {{min}} do {{max}}",
+    "topUpDone": "{{amount}} je dodano u vaše pretplatničke žetone",
+    "topUpPending": "Nadoplata se potvrđuje. Uskoro će se pojaviti na tvom saldu.",
+    "topUpFailed": "Dodavanje tokena pretplate nije uspjelo",
+    "topUpStageFunding": "Dohvaćanje tokena…",
+    "topUpStageWallet": "Potvrdi u novčaniku…",
+    "topUpStageConfirming": "Čeka se transakcija...",
+    "topUpStageCrediting": "Kako povećati saldo...",
+    "untradableTokens": "To su nemjerljivi pretplatnički tokeni",
+    "withdraw": "Povuci",
+    "close": "Zatvori",
+    "tokenAmount": "{{amount}} tokena",
+    "subscriptionTokensOnly": "Samo za generiranje umjetne inteligencije",
+    "subscriptionTokensValueNote": "Pretplatnički tokeni zadržavaju svoju vrijednost u dolarima. Ako se cijena tokena promijeni prije nego što ih upotrijebite, vidjet ćete više ili manje tokena, ali oni uvijek kupuju istu količinu umjetne inteligencije. Ne mogu se povući, poslati ili trgovati.",
+    "topUpEmptyHint": "Dodajte tokene za generiranje pomoću umjetne inteligencije"
   }
 }

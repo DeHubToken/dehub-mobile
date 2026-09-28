@@ -8326,5 +8326,31 @@
     "faqAccountQ": "Menga DeHub hisobi kerakmi?",
     "chatgptFaqAccount": "Konektor orqali ommaviy kontentni o'qish uchun hisob talab qilinmaydi. Faqat DeHub tokenlarini joylashtirish, maslahat berish yoki saqlashni istasangiz, DeHub hisobi kerak bo'ladi.",
     "claudeFaqAccount": "Yo'q. Ommaviy kontentni o'qish hisob qaydnomasisiz ishlaydi. Faqat DeHub tokenlarini joylashtirish, maslahat berish yoki saqlash uchun DeHub hisobi kerak."
+  },
+  "credits": {
+    "percentUsed": "{{percent}}% ishlatilgan",
+    "spentOfTotal": "{{spent}} ning {{total}}",
+    "subscriptionTokens": "Obuna tokenlari",
+    "topUp": "Tokenlarni qo&#39;shish",
+    "topUpTitle": "Obuna tokenlarini qo&#39;shish",
+    "topUpCustom": "Boshqa miqdor (AQSh dollari)",
+    "topUpYouSend": "Siz yuborasiz",
+    "topUpYouGet": "Balansingizga qo&#39;shildi",
+    "topUpConfirm": "{{amount}} qo&#39;shing",
+    "topUpRange": "{{min}} dan {{max}} gacha kiriting",
+    "topUpDone": "Obuna tokenlaringizga {{amount}} qo&#39;shildi",
+    "topUpPending": "Hisobingizni to&#39;ldirish tasdiqlanmoqda. Tez orada hisobingizda paydo bo&#39;ladi.",
+    "topUpFailed": "Obuna tokenlarini qo&#39;shib bo&#39;lmadi",
+    "topUpStageFunding": "Tokenlar olinmoqda…",
+    "topUpStageWallet": "Hamyoningizda tasdiqlang…",
+    "topUpStageConfirming": "Tranzaksiya kutilmoqda…",
+    "topUpStageCrediting": "Balansingizga qoʻshilmoqda…",
+    "untradableTokens": "Bular savdo qilib bo&#39;lmaydigan obuna tokenlari",
+    "withdraw": "Yechib olish",
+    "close": "Yopish",
+    "tokenAmount": "{{amount}} token",
+    "subscriptionTokensOnly": "Faqat AI yaratish uchun",
+    "subscriptionTokensValueNote": "Obuna tokenlari o&#39;zlarining dollar qiymatini saqlab qoladi. Agar token narxi siz ulardan foydalanishdan oldin o&#39;zgarsa, siz ko&#39;proq yoki kamroq tokenlarni ko&#39;rasiz, lekin ular har doim bir xil miqdorda sun&#39;iy intellekt ishlab chiqarishni sotib olishadi. Ularni qaytarib olish, yuborish yoki sotish mumkin emas.",
+    "topUpEmptyHint": "Sun&#39;iy intellekt yordamida yaratish uchun tokenlarni qo&#39;shing"
   }
 }

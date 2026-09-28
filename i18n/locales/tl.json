@@ -8452,5 +8452,31 @@
     "faqAccountQ": "Kailangan ko ba ng DeHub account?",
     "chatgptFaqAccount": "Hindi kailangan ng account para basahin ang pampublikong nilalaman sa pamamagitan ng connector. Kailangan lang ng DeHub account kung gusto mong mag-post, mag-tip, o mag-hold ng DeHub token.",
     "claudeFaqAccount": "Hindi. Gumagana ang pagbabasa ng pampublikong nilalaman nang walang account. Kailangan mo lang ng DeHub account para mag-post, mag-tip, o mag-hold ng DeHub token."
+  },
+  "credits": {
+    "percentUsed": "{{percent}}% ang nagamit",
+    "spentOfTotal": "{{spent}} ng {{total}}",
+    "subscriptionTokens": "Mga token ng subscription",
+    "topUp": "Magdagdag ng mga token",
+    "topUpTitle": "Magdagdag ng mga token ng subscription",
+    "topUpCustom": "Iba pang mga halaga (USD)",
+    "topUpYouSend": "Ipapadala mo",
+    "topUpYouGet": "Idinagdag sa iyong balanse",
+    "topUpConfirm": "Magdagdag ng {{amount}}",
+    "topUpRange": "Ilagay ang {{min}} papuntang {{max}}",
+    "topUpDone": "Idinagdag sa iyong mga token ng subscription ang {{amount}}",
+    "topUpPending": "Kinukumpirma ang iyong top - up. Ito ay lilitaw sa iyong balanse sa ilang sandali.",
+    "topUpFailed": "Hindi makapagdagdag ng mga token ng subscription",
+    "topUpStageFunding": "Pagkuha ng mga token...",
+    "topUpStageWallet": "Kumpirmahin sa iyong wallet...",
+    "topUpStageConfirming": "Naghihintay para sa transaksyon...",
+    "topUpStageCrediting": "Pagdagdag sa iyong balanse...",
+    "untradableTokens": "Ang mga ito ay untradable token subscription",
+    "withdraw": "Mag - withdraw",
+    "close": "Isara",
+    "tokenAmount": "{{amount}} tokens",
+    "subscriptionTokensOnly": "Para sa henerasyon ng AI lamang",
+    "subscriptionTokensValueNote": "Ang mga token ng subscription ay may hawak na halaga ng dolyar. Kung gumagalaw ang presyo ng token bago mo gamitin ang mga ito makikita mo ang higit pa o mas kaunting mga token, ngunit palagi silang bumili ng parehong halaga ng henerasyon ng AI. Hindi sila maaaring bawiin, ipadala o ipagpalit.",
+    "topUpEmptyHint": "Magdagdag ng mga token na bubuo gamit ang AI"
   }
 }

@@ -8275,5 +8275,31 @@
     "faqAccountQ": "Behöver jag ett DeHub-konto?",
     "chatgptFaqAccount": "Ingen konto krävs för att läsa offentligt innehåll via anslutningen. Ett DeHub-konto behövs endast om du vill posta, ge dricks eller hålla DeHub-tokens.",
     "claudeFaqAccount": "Nej. Att läsa offentligt innehåll fungerar utan konto. Du behöver bara ett DeHub-konto för att posta, ge dricks eller hålla DeHub-tokens."
+  },
+  "credits": {
+    "percentUsed": "{{percent}}% används",
+    "spentOfTotal": "{{spent}} av {{total}}",
+    "subscriptionTokens": "Prenumerationstoken",
+    "topUp": "Lägg till polletter",
+    "topUpTitle": "Lägg till prenumerationstoken",
+    "topUpCustom": "Annat belopp (USD)",
+    "topUpYouSend": "Du skickar",
+    "topUpYouGet": "Tillagt i ditt saldo",
+    "topUpConfirm": "Lägg till {{amount}}",
+    "topUpRange": "Ange {{min}} till {{max}}",
+    "topUpDone": "{{amount}} har lagts till i dina prenumerationstokens",
+    "topUpPending": "Din påfyllning bekräftas. Det kommer att visas i ditt saldo inom kort.",
+    "topUpFailed": "Det gick inte att lägga till prenumerationstoken",
+    "topUpStageFunding": "Hämtar tokens...",
+    "topUpStageWallet": "Bekräfta i din portfölj...",
+    "topUpStageConfirming": "Väntar på transaktionen...",
+    "topUpStageCrediting": "Lägger till ditt saldo...",
+    "untradableTokens": "Dessa är oomsättningsbara prenumerationstoken",
+    "withdraw": "Ta ut",
+    "close": "Stäng",
+    "tokenAmount": "{{amount}} tokens",
+    "subscriptionTokensOnly": "Endast för AI-generering",
+    "subscriptionTokensValueNote": "Prenumerationstoken har sitt dollarvärde. Om tokenpriset rör sig innan du använder dem kommer du att se fler eller färre tokens, men de köper alltid samma mängd AI-generering. De kan inte tas ut, skickas eller handlas.",
+    "topUpEmptyHint": "Lägg till tokens för att generera med AI"
   }
 }

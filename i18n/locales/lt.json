@@ -8271,5 +8271,31 @@
     "faqAccountQ": "Ar man reikia DeHub paskyros?",
     "chatgptFaqAccount": "Norint skaityti viešą turinį per jungtį, nereikia paskyros. „DeHub“ paskyra reikalinga tik norint skelbti, duoti ar laikyti „DeHub“ žetonus.",
     "claudeFaqAccount": "Ne. Viešojo turinio skaitymas veikia be paskyros. Jums reikia „DeHub“ paskyros tik norint skelbti, duoti ar laikyti „DeHub“ žetonus."
+  },
+  "credits": {
+    "percentUsed": "{{percent}}% naudota",
+    "spentOfTotal": "{{spent}} iš {{total}}",
+    "subscriptionTokens": "Prenumeratos prieigos raktai",
+    "topUp": "Pridėti žetonų",
+    "topUpTitle": "Pridėti prenumeratos žetonus",
+    "topUpCustom": "Kita suma (USD)",
+    "topUpYouSend": "Siunčiate",
+    "topUpYouGet": "Pridėta prie jūsų likučio",
+    "topUpConfirm": "Pridėti {{amount}}",
+    "topUpRange": "Įveskite {{min}} į {{max}}",
+    "topUpDone": "{{amount}} pridėta prie jūsų prenumeratos žetonų",
+    "topUpPending": "Papildymas bus patvirtintas. Netrukus jis bus rodomas jūsų balanse.",
+    "topUpFailed": "Nepavyko pridėti prenumeratos žetonų",
+    "topUpStageFunding": "Gaunami žetonai...",
+    "topUpStageWallet": "Patvirtinkite savo piniginėje...",
+    "topUpStageConfirming": "Laukiama operacijos...",
+    "topUpStageCrediting": "Pridedama prie jūsų likučio...",
+    "untradableTokens": "Tai yra neprekybiniai prenumeratos žetonai",
+    "withdraw": "Atsiimti",
+    "close": "Uždaryti",
+    "tokenAmount": "{{amount}} žetonų",
+    "subscriptionTokensOnly": "Tik DI generavimui",
+    "subscriptionTokensValueNote": "Prenumeratos žetonai turi savo dolerio vertę. Jei žetono kaina pasikeis prieš juos panaudojant, pamatysite daugiau ar mažiau žetonų, tačiau jie visada perka tą patį AI generavimo kiekį. Jų negalima atsiimti, išsiųsti ar parduoti.",
+    "topUpEmptyHint": "Pridėk žetonų, kuriuos galėtum sugeneruoti dirb"
   }
 }

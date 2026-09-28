@@ -8275,5 +8275,31 @@
     "faqAccountQ": "Kell DeHub-fiók?",
     "chatgptFaqAccount": "Nincs szükség fiókra a nyilvános tartalom olvasásához a csatlakozón keresztül. DeHub fiók csak akkor szükséges, ha szeretnél posztolni, borravalót adni vagy DeHub tokeneket tartani.",
     "claudeFaqAccount": "Nem. A nyilvános tartalom olvasása fiók nélkül is működik. DeHub fiókra csak akkor van szükséged, ha posztolni, borravalót adni vagy DeHub tokeneket tartani szeretnél."
+  },
+  "credits": {
+    "percentUsed": "{{percent}}% felhasználva",
+    "spentOfTotal": "{{total}}/{{spent}}",
+    "subscriptionTokens": "Előfizetési tokenek",
+    "topUp": "Token hozzáadása",
+    "topUpTitle": "Előfizetési tokenek hozzáadása",
+    "topUpCustom": "Egyéb összeg (USD)",
+    "topUpYouSend": "Ön küldi",
+    "topUpYouGet": "Hozzáadva az egyenlegedhez",
+    "topUpConfirm": "{{amount}} hozzáadása",
+    "topUpRange": "{{min}} és {{max}} között",
+    "topUpDone": "{{amount}} hozzáadva az előfizetési tokenjeidhez",
+    "topUpPending": "A feltöltés megerősítése folyamatban van. Hamarosan megjelenik az egyenlegeden.",
+    "topUpFailed": "Nem sikerült előfizetési tokeneket hozzáadni",
+    "topUpStageFunding": "Zsetonok beszerzése…",
+    "topUpStageWallet": "Megerősítés a pénztárcádban…",
+    "topUpStageConfirming": "Várakozás a tranzakcióra...",
+    "topUpStageCrediting": "Hozzáadás az egyenlegedhez…",
+    "untradableTokens": "Ezek nem forgalomképes előfizetési tokenek",
+    "withdraw": "Kifizetés",
+    "close": "Bezárás",
+    "tokenAmount": "{{amount}} token",
+    "subscriptionTokensOnly": "Csak MI-generáláshoz",
+    "subscriptionTokensValueNote": "Az előfizetési tokenek megtartják dollárértéküket. Ha a token ára a használat előtt mozog, akkor több vagy kevesebb tokent fog látni, de mindig ugyanannyi AI generációt vásárolnak. Nem lehet visszavonni, elküldeni vagy kereskedni velük.",
+    "topUpEmptyHint": "Adjon hozzá tokeneket az AI-vel történő generáláshoz"
   }
 }

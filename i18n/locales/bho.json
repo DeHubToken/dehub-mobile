@@ -8266,5 +8266,31 @@
     "faqAccountQ": "क्या मुझे DeHub खाते की ज़रूरत है?",
     "chatgptFaqAccount": "कनेक्टर के माध्यम से पब्लिक कंटेंट पढ़े खातिर कवनो अकाउंट के जरूरत ना बा. DeHub अकाउंट के जरूरत तs तब होई जब तउहार पोस्ट करे, टिप देवे या DeHub टोकन रखे के मन होखे.",
     "claudeFaqAccount": "ना. पब्लिक कंटेंट पढ़े खातिर कवनो अकाउंट के जरूरत ना बा. DeHub टोकन पोस्ट करे, टिप देवे या रखे खातिर तs DeHub अकाउंट के जरूरत बा."
+  },
+  "credits": {
+    "percentUsed": "{{percent}}% खर्चा भइल",
+    "spentOfTotal": "{{total}} में से {{spent}}",
+    "subscriptionTokens": "सदस्यता टोकन",
+    "topUp": "टोकन जोड़ीं",
+    "topUpTitle": "सब्सक्राइब करें टोकन बदलें",
+    "topUpCustom": "कुल आवंटन (USD)",
+    "topUpYouSend": "भेजे जा रहे हो",
+    "topUpYouGet": "अपने संतुलन में समायोजित करें",
+    "topUpConfirm": "{{amount}} जोड़ीं",
+    "topUpRange": "{{min}} से {{max}} लिखीं",
+    "topUpDone": "{{amount}} रउरा सब्सक्रिप्शन टोकन में जुड़ गइल",
+    "topUpPending": "आपके बात के पुष्टी कइल गइल बा । बहुत जल्द आ रहल बा आप लोग के बीच ।",
+    "topUpFailed": "Txt फ़ाइलें नहीं खोजेंगे.",
+    "topUpStageFunding": "टोकन बनावे जा रहल बानी-",
+    "topUpStageWallet": "पुष्टि के बाद, हम समायोजित करेगा अपना डिब्बा_",
+    "topUpStageConfirming": "करार के वादे के खातिर...",
+    "topUpStageCrediting": "रउरा बैलेंस में जोड़ल जा रहल बा…",
+    "untradableTokens": "ई सभ पन्ना सम्बन्धित बा टेम्पलेटःCountry data Uncategorized",
+    "withdraw": "हटावे खातिर",
+    "close": "बंद करीं",
+    "tokenAmount": "{{amount}} टोकन",
+    "subscriptionTokensOnly": "सिर्फ एक पीढ़ी के खातिर",
+    "subscriptionTokensValueNote": "डालर के नयका भाव उनकर खर्चा उठावेला । अगर आपके उपयोग से पहले टोकन मूल्य चलता है, तो आप कम या ज्यादा टोकन देखेंगे, लेकिन वे हमेशा एआई पीढ़ी के समान मात्रा में खरीदें । ना बदले जा सकें, ना भेज सकें, ना बदल सकें,",
+    "topUpEmptyHint": "एआई के साथ टोकन समायोजित करें"
   }
 }

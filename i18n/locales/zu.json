@@ -8302,5 +8302,31 @@
     "faqAccountQ": "Ingabe ngidinga i-akhawunti ye-DeHub?",
     "chatgptFaqAccount": "Ayikho i-akhawunti edingekayo ukuze ufunde okusunguliwe komphakathi ngesixhumi. I-akhawunti ye-DeHub iyadingeka kuphela uma ufuna ukuphosta, ukusikisela noma ukubamba amathokheni e-DeHub.",
     "claudeFaqAccount": "Cha. Ukufunda okusunguliwe komphakathi kusebenza ngaphandle kwe-akhawunti. Udinga kuphela i-akhawunti ye-DeHub ukuze uphoste, ucebise noma ubambe amathokheni e-DeHub."
+  },
+  "credits": {
+    "percentUsed": "{{percent}}% isetshenzisiwe",
+    "spentOfTotal": "{{spent}} of {{total}}",
+    "subscriptionTokens": "Amathokheni okubhalisa",
+    "topUp": "Faka amathokheni",
+    "topUpTitle": "Faka amathokheni okubhalisa",
+    "topUpCustom": "Elinye inani (USD)",
+    "topUpYouSend": "Uyathumela",
+    "topUpYouGet": "Kufakwe kubhalansi yakho",
+    "topUpConfirm": "Faka {{amount}}",
+    "topUpRange": "Faka {{min}} ku {{max}}",
+    "topUpDone": "{{amount}} kufakwe kumathokheni akho okubhalisa",
+    "topUpPending": "Okuthe xaxa kwakho kuyaqinisekisa. Izovela kubhalansi yakho maduzane.",
+    "topUpFailed": "Ayikwazanga ukufaka amathokheni okubhalisa",
+    "topUpStageFunding": "Ukuthola amathokheni...",
+    "topUpStageWallet": "Qinisekisa esikhwameni sakho semali...",
+    "topUpStageConfirming": "Ilinde ukuthengiselana...",
+    "topUpStageCrediting": "Kufakwa kubhalansi yakho...",
+    "untradableTokens": "Lawa amathokheni okubhalisa angenakudluliswa",
+    "withdraw": "Hoxisa",
+    "close": "Vala",
+    "tokenAmount": "{{amount}} amathuluzi",
+    "subscriptionTokensOnly": "Okwesizukulwane se-AI kuphela",
+    "subscriptionTokensValueNote": "Amathokheni okubhalisa anenani lawo lamadola. Uma inani lethokheni lihamba ngaphambi kokulisebenzisa uzobona amathokheni amaningi noma ambalwa, kodwa ngaso sonke isikhathi bathenga inani elifanayo lesizukulwane se-AI. Awukwazi ukuhoxiswa, ukuthunyelwa noma ukudayiswa.",
+    "topUpEmptyHint": "Faka amathokheni ukuze ukhiqize nge-AI"
   }
 }
