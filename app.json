@@ -207,6 +207,16 @@
               "scheme": "https",
               "host": "dehub.io",
               "pathPrefix": "/creator/flow/"
+            },
+            {
+              "scheme": "https",
+              "host": "dehub.io",
+              "path": "/work/history"
+            },
+            {
+              "scheme": "https",
+              "host": "dehub.io",
+              "path": "/work/disputes"
             }
           ],
           "category": [
