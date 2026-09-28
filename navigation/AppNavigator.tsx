@@ -132,6 +132,18 @@ function AppNavigatorContent() {
           getComponent={() => require("../screens/GuideScreen").default}
         />
         <Stack.Screen
+          name={ScreenNames.Connect}
+          getComponent={() => require("../screens/ConnectScreen").default}
+        />
+        <Stack.Screen
+          name={ScreenNames.ConnectChatGPT}
+          getComponent={() => require("../screens/ConnectGuideScreen").default}
+        />
+        <Stack.Screen
+          name={ScreenNames.ConnectClaude}
+          getComponent={() => require("../screens/ConnectGuideScreen").default}
+        />
+        <Stack.Screen
           name={ScreenNames.Arcade}
           getComponent={() => require("../screens/ArcadeScreen").default}
         />

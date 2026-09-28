@@ -254,8 +254,8 @@ export default function AgentsScreen() {
       <ScrollView contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
         <Text style={styles.intro}>{t("agents.description")}</Text>
         <View style={styles.links}>
-          <Pressable onPress={() => openInApp(`${WEBSITE_LINK}/connect`)} style={styles.link} accessibilityRole="link">
-            <Icon name="ExternalLink" size={14} color="#fff" />
+          <Pressable onPress={() => navigation.navigate(ScreenNames.Connect)} style={styles.link} accessibilityRole="link">
+            <Icon name="Plug" size={14} color="#fff" />
             <Text style={styles.linkText}>{t("nav.connectAi")}</Text>
           </Pressable>
           <Pressable onPress={() => openInApp(`${WEBSITE_LINK}/skill.md`)} style={styles.link} accessibilityRole="link">

@@ -108,6 +108,15 @@ describe('getStateFromPath — one-segment paths', () => {
     expect(parseDeepLink('https://dehub.io/agents')).toEqual({ type: 'agents', params: {} });
   });
 
+  it('routes /connect and its two guides to the Connect AI screens', () => {
+    for (const path of ['/connect', '/connect/chatgpt', '/connect/claude']) resolve(path);
+    expect(emitProfile).not.toHaveBeenCalled();
+    const screens = (linkingConfig.config as any).screens.App.screens;
+    expect(screens.Connect).toBe('connect');
+    expect(screens.ConnectChatGPT).toBe('connect/chatgpt');
+    expect(screens.ConnectClaude).toBe('connect/claude');
+  });
+
   it('leaves multi-segment paths to the route table', () => {
     resolve('/app/post/123');
     expect(emitProfile).not.toHaveBeenCalled();

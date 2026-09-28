@@ -69,6 +69,7 @@ const destinations = [
   ['nav.affiliate', 'Affiliate'], ['nav.careers', 'Careers'], ['screens.stores', 'Stores'], ['screens.usernames', 'Usernames'], ['nav.fractions', 'Fractions'], ['screens.accounts', 'Accounts'],
   ['nav.agents', 'Agents'], ['nav.ads', 'Ads'], ['nav.tv', 'TV'], ['nav.arcade', 'Arcade'],
   ['nav.converter', 'Converter'], ['nav.migrate', 'Migrate'], ['nav.glossary', 'Glossary'], ['nav.guide', 'Guide'],
+  ['nav.connectAi', 'Connect'],
 ] as const;
 
 beforeEach(() => { jest.clearAllMocks(); mockSignedIn = true; });

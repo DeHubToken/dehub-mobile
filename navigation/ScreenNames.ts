@@ -70,6 +70,11 @@ export enum ScreenNames {
   Migrate = 'Migrate',
   Glossary = 'Glossary',
   Guide = 'Guide',
+  // Connect AI — the hub (/connect) and one guide per assistant. The two
+  // guides share a component; the route name says which assistant.
+  Connect = 'Connect',
+  ConnectChatGPT = 'ConnectChatGPT',
+  ConnectClaude = 'ConnectClaude',
   Arcade = 'Arcade',
   ArcadeGame = 'ArcadeGame',
   ArcadeChessOnline = 'ArcadeChessOnline',
