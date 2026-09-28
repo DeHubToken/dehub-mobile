@@ -80,6 +80,8 @@ export enum ScreenNames {
   ArcadeChessOnline = 'ArcadeChessOnline',
   Events = 'Events',
   Careers = 'Careers',
+  // Prize draws explainer — dehub.io/raffle.
+  Raffle = 'Raffle',
   // Where to watch any film or series — dehub.io/cinema[/film|series/:id].
   Cinema = 'Cinema',
   // The creator application form — dehub.io/creators.

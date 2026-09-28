@@ -175,6 +175,11 @@ function AppNavigatorContent() {
           name={ScreenNames.Careers}
           getComponent={() => require("../screens/CareersScreen").default}
         />
+        {/* Public: explains prize draws; reads no live draw state. */}
+        <Stack.Screen
+          name={ScreenNames.Raffle}
+          getComponent={() => require("../screens/RaffleScreen").default}
+        />
         {/* Public: browsing is open, reviewing signs in. */}
         <Stack.Screen
           name={ScreenNames.Cinema}
