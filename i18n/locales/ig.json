@@ -8338,5 +8338,32 @@
     "back": "Laghachi na ntọala",
     "signIn": "Banye ka ihichapụ akaụntụ gị",
     "acknowledge": "Echekwala m nkọwa mgbake obere akpa m ma ghọta na nhichapụ na-adịgide adịgide."
+  },
+  "miniApps": {
+    "badge": {
+      "verified": "Nyochaa",
+      "unreviewed": "Enyochaghị",
+      "dev": "🔧 **Nwoke a nwoke nwoke** 🔧"
+    },
+    "host": {
+      "close": "Mechie ngwa",
+      "backToStore": "Laghachi na Apps",
+      "notFound": "Ngwa a adịghị na DeHub App Store, ma ọ bụ ewepụla ya.",
+      "badUrl": "Enweghị ike imepe adreesị ahụ dịka obere ngwa. Ọ ga-amalite na https://, ma ọ bụ bụrụ adreesị localhost na ọnọdụ onye nrụpụta.",
+      "readyTimeout": "Ngwa a akpọghị dehub.ready (), ya mere e zoro ihuenyo ahụ mgbe sekọnd 8 gachara."
+    },
+    "signIn": {
+      "title": "Banye na {{name}}?",
+      "body": "Ngwa a ga-enweta adreesị akpa DeHub gị na akara ntinye aka nke na-arụ ọrụ naanị maka ngwa a. Ọ gaghị enwe ike ịnweta obere akpa gị, ego gị ma ọ bụ akaụntụ DeHub gị.",
+      "cancel": "Ọ bụghị ugbu a",
+      "confirm": "Nbanye"
+    },
+    "store": {
+      "title": "Ngwa",
+      "intro": "Obere ngwa ndị e wuru maka DeHub site n 'aka onye ọ bụla. Ha na-emeghe n' ime DeHub, ị banyela, ma ngwa ọ bụla na-egosi ezigbo adreesị weebụ ya.",
+      "buildCta": "Mepụta ngwa",
+      "emptyTitle": "Enweghị usoroiheomume edepụtara ma",
+      "emptyBody": "A na-enyocha ngwa ndị mbụ ahụ. Mepụta otu ma ọ nwere ike ịdị ebe a."
+    }
   }
 }

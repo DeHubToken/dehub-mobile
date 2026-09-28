@@ -223,6 +223,11 @@ export const DeepLinkPaths = {
   // King's Gambit's online lobby. Before ARCADE_GAME, which would otherwise
   // leave the trailing /online unmatched and drop the link.
   ARCADE_CHESS_ONLINE: 'arcade/kings-gambit/online',
+  // Mini apps. The dev runner before the player, which would otherwise read
+  // "dev" as a slug and drop the /run.
+  MINI_APP_DEV: 'apps/dev/run',
+  MINI_APP: 'apps/:slug',
+  APPS: 'apps',
   ARCADE_GAME: 'arcade/:slug',
   ARCADE: 'arcade',
 
@@ -383,6 +388,16 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
           },
 
           [ScreenNames.Arcade]: DeepLinkPaths.ARCADE,
+
+          [ScreenNames.MiniAppDev]: {
+            path: DeepLinkPaths.MINI_APP_DEV,
+            parse: { url: (url: string) => url, name: (name: string) => name },
+          },
+          [ScreenNames.MiniApp]: {
+            path: DeepLinkPaths.MINI_APP,
+            parse: { slug: (slug: string) => slug, from: (from: string) => from },
+          },
+          [ScreenNames.Apps]: DeepLinkPaths.APPS,
 
           [ScreenNames.ConnectChatGPT]: DeepLinkPaths.CONNECT_CHATGPT,
           [ScreenNames.ConnectClaude]: DeepLinkPaths.CONNECT_CLAUDE,

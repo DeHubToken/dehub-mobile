@@ -8593,5 +8593,32 @@
     "back": "Terug naar instellingen",
     "signIn": "Log in bij uw account",
     "acknowledge": "Ik heb de herstelgegevens van mijn portemonnee opgeslagen en begrijp dat het verwijderen permanent is."
+  },
+  "miniApps": {
+    "badge": {
+      "verified": "Verified",
+      "unreviewed": "Onbeoordeeld",
+      "dev": "Ontwikkelaarsvoorhoede"
+    },
+    "host": {
+      "close": "Sluit app",
+      "backToStore": "Terug naar Apps",
+      "notFound": "Deze app staat niet in de DeHub App Store, of deze is verwijderd.",
+      "badUrl": "Die adres kan niet geopend worden als mini-app. Het moet beginnen met https://, of een localhost-adres zijn in ontwikkelaarsmodus.",
+      "readyTimeout": "Deze app heeft nooit dehub.ready() aangeroepen, dus werd de splashscherm na 8 seconden verborgen."
+    },
+    "signIn": {
+      "title": "Inloggen bij {{name}}?",
+      "body": "Deze app zal je DeHub-walletadres en een inlogtoken krijgen dat alleen voor deze app geldt. Het zal geen toegang krijgen tot je wallet, je fondsen of je DeHub-account.",
+      "cancel": "Niet nu",
+      "confirm": "Inloggen"
+    },
+    "store": {
+      "title": "Apps",
+      "intro": "Mini-apps gebouwd voor DeHub door iedereen. Ze openen binnen DeHub, je bent al ingelogd, en elke app toont zijn echte webadres.",
+      "buildCta": "Een app bouwen",
+      "emptyTitle": "Geen apps gelijst",
+      "emptyBody": "De eerste apps zijn in review. Bouw er een en die kan hier staan."
+    }
   }
 }

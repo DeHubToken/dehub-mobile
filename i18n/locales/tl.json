@@ -8520,5 +8520,32 @@
     "back": "Bumalik sa Mga Setting",
     "signIn": "Mag - sign in para tanggalin ang iyong account",
     "acknowledge": "Na - save ko ang aking mga detalye sa pagbawi ng wallet at nauunawaan ko na ang pagtanggal ay permanente."
+  },
+  "miniApps": {
+    "badge": {
+      "verified": "Veripikado",
+      "unreviewed": "Hindi pinag-aralan",
+      "dev": "Pag-aaral ng tagagawa"
+    },
+    "host": {
+      "close": "I-close ang app",
+      "backToStore": "Bumalik sa mga App",
+      "notFound": "Ang app na ito ay hindi sa DeHub App Store, o ito ay inalis na.",
+      "badUrl": "Ang address na ito ay hindi maaaring buksan bilang isang mini app. Dapat itong simula sa **https://**, o isang localhost address sa mode ng tagagawa.",
+      "readyTimeout": "Ang app na ito ay hindi nagkita ng **dehub.ready()**, kaya itinago ang splash screen pagkatapos ng 8 segundo."
+    },
+    "signIn": {
+      "title": "Mag-sign in sa {{name}}?",
+      "body": "Ang app na ito ay magkakaroon ng iyong address ng DeHub wallet at isang token ng sign-in na lamang gumagana para sa app na ito. Hindi ito magkakaroon ng access sa iyong wallet, iyong pera, o iyong account sa DeHub.",
+      "cancel": "Hindi ngayon",
+      "confirm": "Mag-sign in"
+    },
+    "store": {
+      "title": "Mga App",
+      "intro": "Mga mini app na ginawa para sa DeHub ng sinuman. Silang lahat ay bukas sa loob ng DeHub, na may sign-in na nakapagtatagumpay, at bawat app ay nagpapakita ng tunay na web address nito.",
+      "buildCta": "Gumawa ng app",
+      "emptyTitle": "Walang mga app na nakalista pa.",
+      "emptyBody": "Ang unang mga app ay nasa pag-aaral. Gumawa ng isang app at maaari itong makita rito."
+    }
   }
 }

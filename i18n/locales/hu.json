@@ -8343,5 +8343,32 @@
     "back": "Vissza a beállításokhoz",
     "signIn": "Jelentkezzen be a fiókjába",
     "acknowledge": "Elmentettem a pénztárcám helyreállítási adatait, és tudomásul veszem, hogy a törlés végleges."
+  },
+  "miniApps": {
+    "badge": {
+      "verified": "Igazolt",
+      "unreviewed": "Nem felülvizsgált",
+      "dev": "Fejlesztői előnézet"
+    },
+    "host": {
+      "close": "Alkalmazás bezárása",
+      "backToStore": "Vissza az alkalmazásokhoz",
+      "notFound": "Ez az alkalmazás nincs a DeHub App Store-ban, vagy eltávolították.",
+      "badUrl": "Ez a cím nem nyitható meg minialkalmazásként. https://kezdetűnek kell lennie, vagy fejlesztői módban helyi házigazdai címnek kell lennie.",
+      "readyTimeout": "Ez az alkalmazás soha nem hívta a dehub.ready () fájlt, így a nyitókép 8 másodperc után el lett rejtve."
+    },
+    "signIn": {
+      "title": "Bejelentkezel ide: {{name}}?",
+      "body": "Ez az alkalmazás megkapja a DeHub pénztárca címét és egy bejelentkezési tokent, amely csak ehhez az alkalmazáshoz működik. Nem fog hozzáférni a pénztárcádhoz, a pénzedhez vagy a DeHub-fiókodhoz.",
+      "cancel": "Most nem",
+      "confirm": "Bejelentkezés"
+    },
+    "store": {
+      "title": "Alkalmazások",
+      "intro": "Bárki által a DeHub számára készített minialkalmazások. Megnyílnak a DeHubon belül, Ön már be van jelentkezve, és minden alkalmazás a valódi webcímét mutatja.",
+      "buildCta": "Alkalmazás készítése",
+      "emptyTitle": "Még nincsenek alkalmazások a listában",
+      "emptyBody": "Az első alkalmazások áttekintése folyamatban van. Építs egyet, és itt lehet."
+    }
   }
 }

@@ -169,6 +169,21 @@ function AppNavigatorContent() {
           name={ScreenNames.ArcadeChessOnline}
           getComponent={() => require("../screens/ArcadeChessOnlineScreen").default}
         />
+        {/* The mini app store and player. The player is its own entry, like the
+            arcade's, so the WebView is torn down on the way out. MiniAppDev is
+            the same screen in developer mode. */}
+        <Stack.Screen
+          name={ScreenNames.Apps}
+          getComponent={() => require("../screens/AppsScreen").default}
+        />
+        <Stack.Screen
+          name={ScreenNames.MiniApp}
+          getComponent={() => require("../screens/MiniAppScreen").default}
+        />
+        <Stack.Screen
+          name={ScreenNames.MiniAppDev}
+          getComponent={() => require("../screens/MiniAppScreen").default}
+        />
         <Stack.Screen
           name={ScreenNames.Events}
           getComponent={() => require("../screens/EventsScreen").default}

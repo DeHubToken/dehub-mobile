@@ -8339,5 +8339,32 @@
     "back": "Tilbake til innstillinger",
     "signIn": "Logg inn for å slette kontoen din",
     "acknowledge": "Jeg har lagret gjenopprettingsdetaljene for lommeboken min og forstår at slettingen er permanent."
+  },
+  "miniApps": {
+    "badge": {
+      "verified": "Verifisert",
+      "unreviewed": "Uvurdert",
+      "dev": "Utviklerforhåndsvisning"
+    },
+    "host": {
+      "close": "Lukk app",
+      "backToStore": "Tilbake til Apps",
+      "notFound": "Denne appen finnes ikke i DeHub App Store, eller den er fjernet.",
+      "badUrl": "Denne adressen kan ikke åpnes som en mini-app. Den må starte med https://, eller være en localhost-adresse i utviklermodus.",
+      "readyTimeout": "Denne appen kalte aldri dehub.ready(), så startskjermen ble skjult etter 8 sekunder."
+    },
+    "signIn": {
+      "title": "Logg inn på {{name}}?",
+      "body": "Denne appen vil få din DeHub-lommebokadresse og en innloggingstoken som bare gjelder for denne appen. Den vil ikke få tilgang til din lommebok, dine midler eller din DeHub-konto.",
+      "cancel": "Ikke nå",
+      "confirm": "Logg inn"
+    },
+    "store": {
+      "title": "Apps",
+      "intro": "Mini-apper bygget for DeHub av alle. De åpnes inne i DeHub, du er allerede logget inn, og hver app viser sin sanne nettadresse.",
+      "buildCta": "Bygg en app",
+      "emptyTitle": "Ingen apps listet ennå",
+      "emptyBody": "De første appene er under vurdering. Bygg en og den kan være her."
+    }
   }
 }

@@ -8343,5 +8343,32 @@
     "back": "Tillbaka till inställningar",
     "signIn": "Logga in på ditt konto",
     "acknowledge": "Jag har sparat mina återställningsuppgifter för plånboken och förstår att raderingen är permanent."
+  },
+  "miniApps": {
+    "badge": {
+      "verified": "Verifierad",
+      "unreviewed": "Ogranskad",
+      "dev": "Utvecklarförhandsvisning"
+    },
+    "host": {
+      "close": "Stäng app",
+      "backToStore": "Tillbaka till Appar",
+      "notFound": "Denna app finns inte i DeHub App Store, eller den har tagits bort.",
+      "badUrl": "Den här adressen kan inte öppnas som en mini-app. Den måste börja med https://, eller vara en localhost-adress i utvecklarläget.",
+      "readyTimeout": "Denna app har aldrig anropat dehub.ready(), så startskärmen dök upp efter 8 sekunder."
+    },
+    "signIn": {
+      "title": "Logga in på {{name}}?",
+      "body": "Denna app kommer att få din DeHub-plånboksadress och ett inloggningstoken som endast fungerar för denna app. Den kommer inte att få tillgång till din plånbok, dina medel eller din DeHub-konto.",
+      "cancel": "Inte nu",
+      "confirm": "Logga in"
+    },
+    "store": {
+      "title": "Appar",
+      "intro": "Mini-appar byggda för DeHub av vem som helst. De öppnas inom DeHub, du är redan inloggad, och varje app visar sin riktiga webbadress.",
+      "buildCta": "Bygg en app",
+      "emptyTitle": "Inga appar listade ännu",
+      "emptyBody": "De första apparna är under granskning. Bygg en och den kan vara här."
+    }
   }
 }

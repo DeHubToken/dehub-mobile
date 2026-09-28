@@ -8339,5 +8339,32 @@
     "back": "Ayarlara Dön",
     "signIn": "Hesabınızda oturum açın",
     "acknowledge": "Cüzdan kurtarma bilgilerimi kaydettim ve silmenin kalıcı olduğunu anladım."
+  },
+  "miniApps": {
+    "badge": {
+      "verified": "Doğrulandı",
+      "unreviewed": "İncelenmemiş",
+      "dev": "Geliştirici önizlemesi"
+    },
+    "host": {
+      "close": "Uygulamayı kapat",
+      "backToStore": "Uygulamalara geri dön",
+      "notFound": "Bu uygulama DeHub App Store'da yok veya kaldırılmış.",
+      "badUrl": "Bu adres mini uygulama olarak açılamaz. Https :// ile başlamalı veya geliştirici modunda yerel ana bilgisayar adresi olmalıdır.",
+      "readyTimeout": "Bu uygulama hiçbir zaman dehub.ready() olarak adlandırılmadı, bu nedenle açılış ekranı 8 saniye sonra gizlendi."
+    },
+    "signIn": {
+      "title": "Giriş yapın {{name}}?",
+      "body": "Bu uygulama, DeHub cüzdan adresinizi ve yalnızca bu uygulama için çalışan bir oturum açma jetonunu alacaktır. Cüzdanınıza, paranıza veya DeHub hesabınıza erişemez.",
+      "cancel": "Şimdi değil",
+      "confirm": "Oturum aç"
+    },
+    "store": {
+      "title": "Uygulamalar",
+      "intro": "Herkes tarafından DeHub için oluşturulmuş mini uygulamalar. DeHub'da açılırlar, zaten oturum açmışsınızdır ve her uygulama gerçek web adresini gösterir.",
+      "buildCta": "Bir uygulama oluşturun",
+      "emptyTitle": "Henüz listelenen uygulama yok",
+      "emptyBody": "İlk uygulamalar inceleniyor. Bir tane inşa edersen burada olabilir."
+    }
   }
 }

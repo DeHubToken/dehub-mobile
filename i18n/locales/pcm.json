@@ -7780,5 +7780,30 @@
     "accepted": "Account deletion requested",
     "done": "Done",
     "back": "Back to Settings"
+  },
+  "miniApps": {
+    "badge": {
+      "verified": "Verified",
+      "unreviewed": "Unreviewed",
+      "dev": "Developer preview"
+    },
+    "host": {
+      "close": "Close app",
+      "backToStore": "Back to Apps",
+      "notFound": "Dis app no dey in DeHub App Store, or dem remove it for now.",
+      "readyTimeout": "Dis app no call **\"dehub.ready()\"** for wey, for dat reason, splash screen go hide after 8 seconds."
+    },
+    "signIn": {
+      "title": "Sign in to {{name}}?",
+      "cancel": "Not now",
+      "confirm": "Sign in"
+    },
+    "store": {
+      "title": "Apps",
+      "intro": "Mini apps wey people build for DeHub. Dem open inside DeHub, you no need to sign in again, and every app show its real website address.",
+      "buildCta": "Build an app",
+      "emptyTitle": "No app wey fit for display yet 😕",
+      "emptyBody": "🚀 **First apps dey for review now.** Build one, maybe you get one here soon. 💻🔥"
+    }
   }
 }

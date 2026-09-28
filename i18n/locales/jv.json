@@ -8339,5 +8339,32 @@
     "back": "Balik menyang Setelan",
     "signIn": "Mlebu kanggo mbusak akun sampeyan",
     "acknowledge": "Aku wis nyimpen rincian pemulihan dompetku lan ngerti yen mbusak iku permanen."
+  },
+  "miniApps": {
+    "badge": {
+      "verified": "Verified",
+      "unreviewed": "Unreviewed",
+      "dev": "Prawojogono"
+    },
+    "host": {
+      "close": "Tutup aplikasian",
+      "backToStore": "Kembali ke Aplikasi",
+      "notFound": "Aplikasi ini ga ada di DeHub App Store, atau udah dihilangkan.",
+      "badUrl": "Alamat ini ga bisa dibuka sebagai mini aplikasian, harusan diawali dengan **https://**, atau alamat localhost di modus pengembang.",
+      "readyTimeout": "Aplikasi ini ga pernah panggil **dehub.ready()**, jadi layar splash ga ditutup sampai 8 detik."
+    },
+    "signIn": {
+      "title": "Masuk ke {{name}}?",
+      "body": "Aplikasi ini bakal ambil alamat dompet DeHubmu dan token masuk yang cuma bisa dipake buat aplikasian ini. Ga bakal ambil akses ke dompetmu, uangmu, atau akun DeHubmu.",
+      "cancel": "Nggak sekarang",
+      "confirm": "Masuk"
+    },
+    "store": {
+      "title": "Aplikasi",
+      "intro": "Mini aplikasian yang dibangun buat DeHub oleh siapa saja. Mereka buka di dalam DeHub, kamu udah masuk, dan setiap aplikasian nampilin alamat web aslinya.",
+      "buildCta": "Buat aplikasian",
+      "emptyTitle": "Ga ada aplikasian yang terdaftar sekarang",
+      "emptyBody": "Aplikasi pertama masih di review. Buat satu dan bisa nampilin di sini."
+    }
   }
 }

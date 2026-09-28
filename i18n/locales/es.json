@@ -8339,5 +8339,32 @@
     "back": "Volver a Ajustes",
     "signIn": "Inicia sesión para eliminar tu cuenta",
     "acknowledge": "He guardado los datos de recuperación de mi monedero y entiendo que la eliminación es permanente."
+  },
+  "miniApps": {
+    "badge": {
+      "verified": "Verificado",
+      "unreviewed": "Sin revisar",
+      "dev": "Vista previa del desarrollador"
+    },
+    "host": {
+      "close": "Cerrar aplicación",
+      "backToStore": "Volver a Aplicaciones",
+      "notFound": "Esta aplicación no está en la App Store de DeHub o se ha retirado.",
+      "badUrl": "Esa dirección no se puede abrir como una mini aplicación. Debe comenzar con https://, o ser una dirección de localhost en modo desarrollador.",
+      "readyTimeout": "Esta aplicación nunca llamó a dehub.ready(), por lo que la pantalla de bienvenida se ocultó después de 8 segundos."
+    },
+    "signIn": {
+      "title": "¿Quieres iniciar sesión en {{name}}?",
+      "body": "Esta aplicación obtendrá la dirección de su billetera DeHub y un token de inicio de sesión que solo funciona para esta aplicación. No tendrá acceso a tu monedero, tus fondos o tu cuenta de DeHub.",
+      "cancel": "Ahora no",
+      "confirm": "Iniciar sesión"
+    },
+    "store": {
+      "title": "Aplicaciones",
+      "intro": "Mini aplicaciones creadas para DeHub por cualquier persona. Se abren dentro de DeHub, ya has iniciado sesión y cada aplicación muestra su dirección web real.",
+      "buildCta": "Crea una aplicación",
+      "emptyTitle": "Todavía no hay aplicaciones en la lista",
+      "emptyBody": "Las primeras aplicaciones están en revisión. Construye uno y podría estar aquí."
+    }
   }
 }

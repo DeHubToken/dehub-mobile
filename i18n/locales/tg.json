@@ -8335,5 +8335,32 @@
     "back": "Bumalik sa Mga Setting",
     "signIn": "Mag-sign in upang tanggalin ang iyong account",
     "acknowledge": "Ман маълумоти барқароркунии ҳамёнро захира кардам ва мефаҳмам, ки несткунӣ доимӣ аст."
+  },
+  "miniApps": {
+    "badge": {
+      "verified": "Тафтишшуда",
+      "unreviewed": "Бетағйир",
+      "dev": "Пешнамоиши таҳиягар"
+    },
+    "host": {
+      "close": "Yopish app",
+      "backToStore": "Bumalik sa Mga App",
+      "notFound": "Ang app na ito ay hindi sa DeHub App Store, o ito ay nakababa.",
+      "badUrl": "Ang address na iyon ay hindi maaaring buksan bilang mini app. Kailangan ito mula sa https://, o isang localhost address sa mode ng developer.",
+      "readyTimeout": "Ин барнома ҳеҷ гоҳ даъват dehub.ready (), Пас экрани splash пас аз 8 сония пинҳон шуд."
+    },
+    "signIn": {
+      "title": "{{name}}?",
+      "body": "Ang app na ito ay makakuha ng iyong address sa wallet ng DeHub at isang sign-in veşartî na gumagana lamang para sa app na ito. Hindi makakuha ng access sa iyong wallet, iyong mga fondo o iyong DeHub account.",
+      "cancel": "Ҳоло не",
+      "confirm": "Mag-sign in"
+    },
+    "store": {
+      "title": "Барномаҳо",
+      "intro": "Барномаҳои хурд барои DeHub аз ҷониби касе сохта шудаанд. Онҳо дар дохили DeHub кушода мешаванд, шумо аллакай ворид шудаед ва ҳар як барнома суроғаи воқеии вебро нишон медиҳад.",
+      "buildCta": "Сохтани барнома",
+      "emptyTitle": "Ягон барномаҳо ҳанӯз номбар нашудаанд",
+      "emptyBody": "Ang unang mga aplikasyon ay nakalista. Сохтани як ва он метавонад дар ин ҷо бошад."
+    }
   }
 }

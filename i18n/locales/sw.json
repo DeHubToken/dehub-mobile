@@ -8339,5 +8339,32 @@
     "back": "Rudi kwenye Mipangilio",
     "signIn": "Ingia ili kufuta akaunti yako",
     "acknowledge": "Nimehifadhi maelezo yangu ya kurejesha pochi na ninaelewa kuwa kufutwa ni kwa kudumu."
+  },
+  "miniApps": {
+    "badge": {
+      "verified": "Verified",
+      "unreviewed": "Unreviewed",
+      "dev": "Kutoka kwa Mwongozaji"
+    },
+    "host": {
+      "close": "Kua App",
+      "backToStore": "Kua Apps",
+      "notFound": "App hii si katika DeHub App Store, au imeondolewa.",
+      "badUrl": "Hiyo hawezi kufikika kama app ndogo. Lazo lakiwepo lakiwepo la https://, au lakiwepo la localhost katika modda ya mwongozaji.",
+      "readyTimeout": "App hii hakikufanya dehub.ready(), kwa hiyo, kura ya kwanza ilipatikana baada ya dakika 8."
+    },
+    "signIn": {
+      "title": "Kujisajiliwa katika {{name}}?",
+      "body": "App hii itapata barua ya fedha yako ya DeHub na token ya kujisajiliwa ambayo haikutokana na app hii tu. Hata hivyo, hatawezi kufika katika fedha yako, fedha zako au hesabu yako ya DeHub.",
+      "cancel": "Sasa siku",
+      "confirm": "Kujisajiliwa"
+    },
+    "store": {
+      "title": "Apps",
+      "intro": "Apps ndogo zilizojengwa kwa DeHub na kila mtu. Zinafungwa ndani ya DeHub, unaweza kujisajiliwa kabla, na kila app inajulikana na barua yake ya mtandao wa kawaida.",
+      "buildCta": "Jenga app",
+      "emptyTitle": "Hainajulikana app yoyote bado",
+      "emptyBody": "Apps ya kwanza zimekuwa katika ufuatiliaji. Jenga moja na hatawezi kuwa hapa."
+    }
   }
 }

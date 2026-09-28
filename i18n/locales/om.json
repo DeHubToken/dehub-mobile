@@ -8389,5 +8389,32 @@
     "back": "Gara Sajootti deebi&#39;aa",
     "signIn": "Akkaawuntii keessan haquuf seena",
     "acknowledge": "Bal&#39;ina boorsaa koo deebisuu save godheera, haquun dhaabbataa akka ta&#39;e hubadheera."
+  },
+  "miniApps": {
+    "badge": {
+      "verified": "Mirkanaa&#39;eera",
+      "unreviewed": "Hin ilaalamne",
+      "dev": "Durargii developer"
+    },
+    "host": {
+      "close": "App cufaa",
+      "backToStore": "Gara Apps tti deebi&#39;aa",
+      "notFound": "Appiin kun DeHub App Store keessa hin jiru, ykn gadi bu&#39;eera.",
+      "badUrl": "Teessoon sun akka appii xiqqaatti banamuu hin danda&#39;u. https:// irraa jalqabuu qaba, ykn haalata developer keessatti teessoo localhost ta&#39;uu qaba.",
+      "readyTimeout": "Appiin kun dehub.ready() jedhee waamee hin beeku, kanaaf splash screen sekondii 8 booda dhokate."
+    },
+    "signIn": {
+      "title": "{{name}} irratti galmaa&#39;aa?",
+      "body": "Appiin kun teessoo boorsaa DeHub keessanii fi mallattoo seensaa kan appii kanaaf qofa hojjetu ni argata. Borsaa keessan, maallaqa keessan ykn herrega DeHub keessan hin argatu.",
+      "cancel": "Amma miti",
+      "confirm": "🔒 **Qabdiin**"
+    },
+    "store": {
+      "title": "Appilikeeshiniiwwan",
+      "intro": "Mini apps nama kamiinuu DeHub&#39;f ijaarame. DeHub keessaa banamu, ati duraan galtee jirta, appiin hundi teessoo weeb isaa isa dhugaa agarsiisa.",
+      "buildCta": "Appii ijaaraa",
+      "emptyTitle": "Appilikeeshiniiwwan hanga ammaatti hin tarreeffamne",
+      "emptyBody": "Appilikeeshiniiwwan jalqabaa gamaaggama irra jiru. Tokko ijaaraa asitti ta&#39;uu danda&#39;a."
+    }
   }
 }

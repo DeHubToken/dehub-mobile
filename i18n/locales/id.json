@@ -8339,5 +8339,32 @@
     "back": "Kembali ke Pengaturan",
     "signIn": "Masuk Akun Anda",
     "acknowledge": "Saya telah menyimpan detail pemulihan dompet saya dan memahami bahwa penghapusan bersifat permanen."
+  },
+  "miniApps": {
+    "badge": {
+      "verified": "Verified",
+      "unreviewed": "Tidak direview",
+      "dev": "Pra-rilis untuk pengembang"
+    },
+    "host": {
+      "close": "Tutup aplikasi",
+      "backToStore": "Kembali ke Aplikasi",
+      "notFound": "Aplikasi ini tidak ada di DeHub App Store, atau telah dihapus.",
+      "badUrl": "Alamat ini tidak dapat dibuka sebagai mini aplikasi. Harus diawali dengan https://, atau merupakan alamat localhost dalam mode pengembang.",
+      "readyTimeout": "Aplikasi ini tidak pernah memanggil dehub.ready(), sehingga layar pembukaannya tersembunyi setelah 8 detik."
+    },
+    "signIn": {
+      "title": "Masuk ke {{name}}?",
+      "body": "Aplikasi ini akan mendapatkan alamat dompet DeHub Anda dan token masuk yang hanya berlaku untuk aplikasi ini. Tidak akan mendapatkan akses ke dompet, dana, atau akun DeHub Anda.",
+      "cancel": "Bukan sekarang",
+      "confirm": "Masuk"
+    },
+    "store": {
+      "title": "Aplikasi",
+      "intro": "Mini aplikasi yang dibangun untuk DeHub oleh siapa saja. Mereka dibuka di dalam DeHub, Anda sudah masuk, dan setiap aplikasi menampilkan alamat web aslinya.",
+      "buildCta": "Bangun aplikasi",
+      "emptyTitle": "Tidak ada aplikasi yang terdaftar saat ini",
+      "emptyBody": "Aplikasi pertama sedang dalam proses review. Bangun satu dan mungkin akan ada di sini."
+    }
   }
 }

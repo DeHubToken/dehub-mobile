@@ -8343,5 +8343,32 @@
     "back": "Zpět na nastavení",
     "signIn": "Přihlašte se do svého účtu",
     "acknowledge": "Uložil (a) jsem si podrobnosti o obnovení peněženky a chápu, že smazání je trvalé."
+  },
+  "miniApps": {
+    "badge": {
+      "verified": "Verifikováno",
+      "unreviewed": "Neprozkoumané",
+      "dev": "Vývojářská předběžná verze"
+    },
+    "host": {
+      "close": "Zavřít aplikaci",
+      "backToStore": "Zpět na Aplikace",
+      "notFound": "Tato aplikace není v DeHub App Store, nebo byla odstraněna.",
+      "badUrl": "Tuto adresu nelze otevřít jako mini aplikaci. Musí začínat https://, nebo být lokální adresa v režimu vývojáře.",
+      "readyTimeout": "Tato aplikace nikdy nevolala dehub.ready(), takže obrazovka načítání byla skryta po 8 sekundách."
+    },
+    "signIn": {
+      "title": "Přihlásit se k {{name}}?",
+      "body": "Tato aplikace získá adresu vašeho DeHub peněženky a přihlašovací token, který platí pouze pro tuto aplikaci. Nebude mít přístup k vaší peněžence, vašim fondům ani vašemu účtu DeHub.",
+      "cancel": "Nyní ne",
+      "confirm": "Přihlásit se"
+    },
+    "store": {
+      "title": "Aplikace",
+      "intro": "Mini aplikace vytvořené pro DeHub kýmkoli. Otevírají se uvnitř DeHub, už jste přihlášen, a každá aplikace zobrazí svůj skutečný webový adresář.",
+      "buildCta": "Vytvořit aplikaci",
+      "emptyTitle": "Žádné aplikace zatím nejsou zobrazeny",
+      "emptyBody": "První aplikace jsou v recenzi. Vytvořte jednu a mohla by být zde."
+    }
   }
 }
