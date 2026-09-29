@@ -38,7 +38,7 @@ import { useTranslation } from "react-i18next";
 import { useAppTheme } from "../../context/ThemeContext";
 
 // The menu is a bottom sheet: grab handle, who is signed in, the search field,
-// then a three-column grid of the same glossy 3D icons the web menu uses. It
+// then a four-column grid of the same glossy 3D icons the web menu uses. It
 // rises from the bottom in every locale, so there is no RTL mirroring to get
 // wrong the way the old side drawer had to.
 
@@ -51,9 +51,10 @@ const POSITION_THRESHOLD = 0.3;
 // Web caps its sheet at 85dvh; same here.
 const SHEET_HEIGHT_RATIO = 0.85;
 
-const GRID_GAP = 10;
+const GRID_GAP = 8;
 const GRID_PADDING = 16;
-const ICON_SIZE = 52;
+const GRID_COLUMNS = 4;
+const ICON_SIZE = 44;
 
 // Per-theme 3D artwork is served by the website (public/theme-icons/<theme>/),
 // the same files the web menu draws, so both stay on one set. expo-image keeps
@@ -179,12 +180,6 @@ const ICON_KEYS: Record<string, string> = {
   "nav.blog": "email", "nav.premium": "boost", "nav.pricing": "buy",
 };
 
-// The curated first screen, in order. Every other
-// destination follows under a hairline.
-const PINNED_KEYS = [
-  "nav.messages", "nav.notifications", "nav.bookmarks", "screens.stores", "nav.staking", "nav.profile", "nav.settings",
-];
-
 /** What the themes layer hands us; null for system/minimal (dark glass). */
 type SheetSkin = ThemeSkin;
 
@@ -246,7 +241,7 @@ const Tile = memo<TileProps>(({ label, icon, iconUrl, width, active, disabled, s
             onError={() => setArtFailed(true)}
           />
         ) : (
-          <Icon name={icon} size={30} color={glyphColor} strokeWidth={1.6} />
+          <Icon name={icon} size={26} color={glyphColor} strokeWidth={1.6} />
         )}
       </View>
       <Text
@@ -282,7 +277,7 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
   // off-screen position instead of keeping the size from app start.
   const { width: screenWidth, height: screenHeight } = useWindowDimensions();
   const SHEET_HEIGHT = screenHeight * SHEET_HEIGHT_RATIO;
-  const tileWidth = Math.floor((screenWidth - GRID_PADDING * 2 - GRID_GAP * 2) / 3);
+  const tileWidth = Math.floor((screenWidth - GRID_PADDING * 2 - GRID_GAP * (GRID_COLUMNS - 1)) / GRID_COLUMNS);
 
   // Current route name, so the matching tile highlights like the web menu.
   // Tab screens live nested under Root — descend into it to find them.
@@ -396,15 +391,6 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
   }, [isSignedIn, menuQuery, t]);
 
   const searching = menuQuery.trim().length > 0;
-
-  // Resting order: the pinned rows, then the rest.
-  const { pinned, rest } = useMemo(() => {
-    if (searching) return { pinned: [] as DrawerItem[], rest: visibleItems };
-    const byKey = new Map(visibleItems.map((item) => [item.labelKey, item]));
-    const pinnedItems = PINNED_KEYS.map((key) => byKey.get(key)).filter((item): item is DrawerItem => !!item);
-    const taken = new Set<DrawerItem>(pinnedItems);
-    return { pinned: pinnedItems, rest: visibleItems.filter((item) => !taken.has(item)) };
-  }, [searching, visibleItems]);
 
   // Never reopen the sheet mid-filter.
   useEffect(() => {
@@ -600,15 +586,10 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
           keyboardShouldPersistTaps="handled"
           contentContainerStyle={{ paddingHorizontal: GRID_PADDING, paddingBottom: 16 }}
         >
-          {!searching && (
+          {/* Same order as the web menu, one continuous grid. */}
+          {visibleItems.length > 0 && (
             <View style={styles.grid}>
-              {pinned.map(renderItem)}
-            </View>
-          )}
-
-          {rest.length > 0 && (
-            <View style={[styles.grid, !searching && [styles.restGrid, { borderTopColor: hairline }]]}>
-              {rest.map(renderItem)}
+              {visibleItems.map(renderItem)}
             </View>
           )}
 
@@ -770,17 +751,13 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     gap: GRID_GAP,
   },
-  restGrid: {
-    marginTop: GRID_GAP,
-    paddingTop: GRID_GAP,
-    borderTopWidth: 1,
-  },
   tile: {
     alignItems: "center",
     justifyContent: "center",
-    gap: 8,
-    padding: 12,
-    minHeight: 100,
+    gap: 6,
+    paddingHorizontal: 4,
+    paddingVertical: 10,
+    minHeight: 84,
     borderRadius: 14,
     backgroundColor: "rgba(255, 255, 255, 0.04)",
     borderWidth: 1,
@@ -802,7 +779,7 @@ const styles = StyleSheet.create({
   },
   tileLabel: {
     color: "rgba(255, 255, 255, 0.9)",
-    fontSize: 12.5,
+    fontSize: 11.5,
     fontWeight: "500",
     textAlign: "center",
     alignSelf: "stretch",
