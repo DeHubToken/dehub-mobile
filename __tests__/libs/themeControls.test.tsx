@@ -48,6 +48,7 @@ it('preserves bare actions, progress fills and semantic coloured actions', () =>
   for (const props of [
     { onPress: jest.fn(), style: { backgroundColor: 'transparent' } },
     { onPress: jest.fn(), style: { backgroundColor: '#EF4444' } },
+    { onPress: jest.fn(), style: () => ({ backgroundColor: '#EF4444' }) },
     { style: { backgroundColor: '#FFFFFF', width: 100 } },
     { onPress: jest.fn(), className: 'hover:bg-white/10' },
   ]) {

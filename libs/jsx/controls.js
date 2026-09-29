@@ -70,7 +70,8 @@ function paintLabel(child) {
 function controlProps(props) {
   if (!material || !props || (typeof props.onPress !== 'function' && props.accessibilityRole !== 'button')) return props;
   // Empty colour swatches and aspect-ratio preview tiles carry content colours.
-  const flat = flatten(props.style);
+  const flat = flatten(typeof props.style === 'function'
+    ? props.style({ pressed: false, hovered: false, focused: false }) : props.style);
   if (React.Children.count(props.children) === 0 || flat.aspectRatio !== undefined) return props;
   const fill = flat.backgroundColor;
   const ownMaterial = fill === material.surface.backgroundColor && flat.borderColor === material.surface.borderColor;
@@ -78,7 +79,7 @@ function controlProps(props) {
     && fill === surface.backgroundColor && flat.borderColor === surface.borderColor);
   if (ownsSurface && !ownMaterial) return props;
   const classFill = fill === undefined && typeof props.className === 'string' && NEUTRAL_FILL.test(props.className);
-  if (!classFill && !ownMaterial && typeof props.style !== 'function' && !neutral(fill)) return props;
+  if (!classFill && !ownMaterial && !neutral(fill)) return props;
   const style = classFill ? [props.style, material.surface] : paintStyle(props.style);
   return { ...props, style, children: React.Children.map(props.children, paintLabel) };
 }
