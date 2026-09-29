@@ -1,12 +1,12 @@
 /**
- * Whether the screen that shows the live theme backdrop is in front.
+ * Whether the live theme backdrop can be seen.
  *
- * Only the home feed is see-through to it (see components/theme/ThemeBackdrop);
- * every other screen paints the theme's solid page colour over it. So the
- * backdrop's render loop runs while home is focused and pauses the rest of the
- * time, instead of drawing frames nobody can see.
+ * Under a canvas theme every screen is see-through to it, as on web: page
+ * fills become a tinted veil over the scene (libs/jsx/shape.js). So it runs
+ * whenever the app is in front; a screen that covers it completely can switch
+ * it off here while that screen is focused.
  */
-let visible = false;
+let visible = true;
 const listeners = new Set<() => void>();
 const HOLD_MS = 1500;
 let held = false;

@@ -12,7 +12,7 @@ import { getThemeSkin, type ThemeSkin } from '../theme/skins';
 // Plain JS shared with the JSX runtime, which loads before any of this.
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { setThemePass } = require('../libs/jsx/shape') as {
-  setThemePass: (square: boolean, page: string | null) => void;
+  setThemePass: (square: boolean, page: string | null, classes?: boolean) => void;
 };
 
 type AppThemeContextValue = {
@@ -79,6 +79,17 @@ function hexTriplet(hex: string): string {
 }
 
 /**
+ * What a page fill becomes under a canvas theme: its page colour, part
+ * see-through, so the live backdrop shows behind every screen as it does on
+ * web. A panel inside a page stacks a second veil and lands near web's glass
+ * bento (~0.82).
+ */
+const PAGE_VEIL_ALPHA = 0.6;
+export function pageVeil(hex: string): string {
+  return `rgba(${hexTriplet(hex).split(' ').join(',')},${PAGE_VEIL_ALPHA})`;
+}
+
+/**
  * A canvas theme's variables: its page colour on the background tokens, and
  * War's square corners. Same keys as SYSTEM_ROOT_VARS, for the reason above.
  */
@@ -116,7 +127,7 @@ export const AppThemeProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   // Inline StyleSheet radii and near-black page fills (see libs/jsx/shape.js).
   // Set during render so the children rendered below this already see it.
   if (theme === 'minimal') setThemePass(true, '#000');
-  else if (skin) setThemePass(skin.square, skin.page);
+  else if (skin) setThemePass(skin.square, pageVeil(skin.page), true);
   else setThemePass(false, null);
 
   useEffect(() => {

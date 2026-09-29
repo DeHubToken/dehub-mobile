@@ -85,8 +85,10 @@ function AppNavigatorContent() {
           headerShown: false,
           // An options object, not a JSX style prop, so the app-wide
           // near-black pass (minimal's #000, a canvas theme's page colour)
-          // never sees it; branch here.
-          contentStyle: { backgroundColor: isMinimal ? '#000' : skin ? skin.page : '#010305' },
+          // never sees it; branch here. A canvas theme's live backdrop
+          // (ThemeBackdrop at the root) shows through every screen, as on web;
+          // each page's own fill is the veil over it.
+          contentStyle: { backgroundColor: isMinimal ? '#000' : skin ? 'transparent' : '#010305' },
           // A screen you have navigated away from keeps rendering otherwise —
           // this stack holds sixty-odd of them, so Home -> Profile -> Community
           // -> Post left four live at once, all re-rendering together on every
@@ -98,10 +100,6 @@ function AppNavigatorContent() {
       <Stack.Screen
         name={ScreenNames.Root}
         component={BottomTabNavigator}
-        // The tabs sit over a canvas theme's live backdrop (ThemeBackdrop at
-        // the root), which the home feed shows through. Pushed screens keep
-        // the solid page colour above, so nothing shows through them.
-        options={skin ? { contentStyle: { backgroundColor: 'transparent' } } : undefined}
       />
 
       <Stack.Group>
