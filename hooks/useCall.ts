@@ -103,8 +103,6 @@ export function useCall(): UseCallReturn {
   const setCallMessageHandler = useCallback((handler: ((content: string) => void) | null) => {
     callMessageHandlerRef.current = handler;
   }, []);
-  const realtimeChannelRef = useRef<ReturnType<typeof supabase.channel> | null>(null);
-  const watchChannelRef = useRef<ReturnType<typeof supabase.channel> | null>(null);
 
   // Canvas configs for RtcSurfaceView. Both are memoised because they feed the
   // memoised return object below — a fresh literal here would give that object
@@ -268,128 +266,111 @@ export function useCall(): UseCallReturn {
   useEffect(() => { isIncomingRef.current = isIncoming; }, [isIncoming]);
   useEffect(() => { isConnectingRef.current = isConnecting; }, [isConnecting]);
 
-  // ── Realtime subscriptions ─────────────────────────────────────────────────
+  // ── Incoming calls ─────────────────────────────────────────────────────────
 
-  const subscribeIncomingCalls = useCallback(() => {
+  /**
+   * Surface the newest ringing call for this wallet unless one is already on
+   * screen. The call ping, the join re-check and the foreground poll all come
+   * through here, so a ring is only ever shown behind one set of guards.
+   */
+  const checkForRing = useCallback(async () => {
     if (!userAddress) return;
-    if (realtimeChannelRef.current) return; // already subscribed
+    // A second call must never replace the one already ringing or live.
+    if (currentCallRef.current || isCallActiveRef.current || isIncomingRef.current || isConnectingRef.current) return;
+    const { data } = await supabase
+      .from("call_sessions")
+      .select("*")
+      .eq("recipient_address", userAddress)
+      .eq("status", "ringing")
+      .order("created_at", { ascending: false })
+      .limit(1)
+      .single();
+    if (!data) return;
+    // Another path may have surfaced this call while the request was in flight;
+    // showing it twice would leave a stray dismiss timer that ends it later.
+    if (currentCallRef.current || isCallActiveRef.current || isIncomingRef.current || isConnectingRef.current) return;
+    const age = Date.now() - new Date(data.created_at).getTime();
+    if (age > 45_000) return;
+    const call = data as CallSession;
+    setCurrentCall(call);
+    currentCallRef.current = call;
+    setIsIncoming(true);
+    // Auto-dismiss once the ring window is over
+    if (callTimeoutRef.current) clearTimeout(callTimeoutRef.current);
+    callTimeoutRef.current = setTimeout(() => {
+      setIsIncoming(false);
+      setCurrentCall(null);
+    }, 45_000 - age);
+  }, [userAddress]);
 
+  // A trigger on call_sessions pings the private `call:<wallet>` topic with
+  // { id, status, created_at }: the callee on every new call, both sides on
+  // every status change. call_sessions is deliberately not in the realtime
+  // publication — that would make every open app a postgres_changes subscriber
+  // and keep Realtime's change poller querying the database around the clock.
+  // The ping names nobody, so a ring is read back through checkForRing.
+  // Broadcast keeps no backlog; every (re)join checks once as well.
+  useEffect(() => {
+    if (!userAddress) return;
     const channel = supabase
-      .channel("incoming-calls")
-      .on(
-        "postgres_changes",
-        { event: "INSERT", schema: "public", table: "call_sessions", filter: `recipient_address=eq.${userAddress}` },
-        (payload: any) => {
-          const call = payload.new as CallSession;
-          if (call.status !== "ringing") return;
-          // A second call must never replace the one already ringing or live.
-          if (isCallActiveRef.current || isIncomingRef.current || isConnectingRef.current) return;
-          const age = Date.now() - new Date(call.created_at).getTime();
-          if (age > 45_000) return;
-          setCurrentCall(call);
-          currentCallRef.current = call;
-          setIsIncoming(true);
-          // Auto-dismiss once the ring window is over
-          if (callTimeoutRef.current) clearTimeout(callTimeoutRef.current);
-          callTimeoutRef.current = setTimeout(() => {
-            setIsIncoming(false);
-            setCurrentCall(null);
-          }, 45_000 - age);
-        },
-      )
-      .on(
-        "postgres_changes",
-        { event: "UPDATE", schema: "public", table: "call_sessions", filter: `recipient_address=eq.${userAddress}` },
-        (payload: any) => {
-          const call = payload.new as CallSession;
-          // Only the call on screen may end it: another caller's unanswered
-          // ring timing out must not tear down the call in progress.
-          if (call.status !== "ended" || call.id !== currentCallRef.current?.id) return;
-          if (callTimeoutRef.current) {
-            clearTimeout(callTimeoutRef.current);
-            callTimeoutRef.current = null;
-          }
-          setIsIncoming(false);
-          setCurrentCall(null);
-          currentCallRef.current = null;
-          cleanupEngine();
-        },
-      )
-      .subscribe();
-
-    realtimeChannelRef.current = channel;
-  }, [userAddress, cleanupEngine]);
-
-  const unsubscribeIncomingCalls = useCallback(() => {
-    if (realtimeChannelRef.current) {
-      supabase.removeChannel(realtimeChannelRef.current);
-      realtimeChannelRef.current = null;
-    }
-  }, []);
-
-  useEffect(() => {
-    subscribeIncomingCalls();
+      .channel(`call:${userAddress}`, { config: { private: true } })
+      .on("broadcast", { event: "call" }, (message) => {
+        const ping = message.payload as Pick<CallSession, "id" | "status"> | undefined;
+        if (!ping?.id) return;
+        if (ping.status === "ringing") {
+          void checkForRing();
+          return;
+        }
+        // Only the call on screen may end it: another caller's unanswered
+        // ring timing out must not tear down the call in progress. Covers both
+        // sides — the callee hanging up or declining ends the caller's too.
+        if (ping.status !== "ended" || ping.id !== currentCallRef.current?.id) return;
+        if (callTimeoutRef.current) {
+          clearTimeout(callTimeoutRef.current);
+          callTimeoutRef.current = null;
+        }
+        setIsIncoming(false);
+        setIsConnecting(false);
+        setCurrentCall(null);
+        currentCallRef.current = null;
+        void cleanupEngine();
+      })
+      .subscribe((status) => {
+        if (status === "SUBSCRIBED") void checkForRing();
+      });
     return () => {
-      unsubscribeIncomingCalls();
+      supabase.removeChannel(channel);
       if (callTimeoutRef.current) clearTimeout(callTimeoutRef.current);
-      if (watchChannelRef.current) {
-        supabase.removeChannel(watchChannelRef.current);
-        watchChannelRef.current = null;
-      }
     };
-  }, [subscribeIncomingCalls, unsubscribeIncomingCalls]);
+  }, [userAddress, checkForRing, cleanupEngine]);
 
-  // ── Polling fallback (every 60s) in case realtime misses the event ─────────
+  // ── Polling fallback (every 60s) in case a ping is missed ──────────────────
 
   useEffect(() => {
     if (!userAddress) return;
 
-    const poll = async () => {
-      if (isCallActiveRef.current || isIncomingRef.current || isConnectingRef.current) return;
-      // CallProvider wraps the whole navigator, so this interval lives for the
-      // entire app session. Without this guard it keeps hitting Supabase every
-      // minute while backgrounded. Realtime (subscribeIncomingCalls) plus push are
-      // the backgrounded path; this is only the foreground fallback. Mirrors
-      // hooks/useProviderLifecycle.ts:407.
+    // CallProvider wraps the whole navigator, so this interval lives for the
+    // entire app session. Without the AppState guard it keeps hitting Supabase
+    // every minute while backgrounded. The call ping plus push are the
+    // backgrounded path; this is only the foreground fallback. Mirrors
+    // hooks/useProviderLifecycle.ts:407.
+    const poll = () => {
       if (AppState.currentState !== "active") return;
-      const { data } = await supabase
-        .from("call_sessions")
-        .select("*")
-        .eq("recipient_address", userAddress)
-        .eq("status", "ringing")
-        .order("created_at", { ascending: false })
-        .limit(1)
-        .single();
-      if (!data) return;
-      // Realtime may have surfaced this call while the request was in flight;
-      // showing it twice would leave a stray dismiss timer that ends it later.
-      if (currentCallRef.current || isCallActiveRef.current || isIncomingRef.current || isConnectingRef.current) return;
-      const age = Date.now() - new Date(data.created_at).getTime();
-      if (age > 45_000) return;
-      const call = data as CallSession;
-      setCurrentCall(call);
-      currentCallRef.current = call;
-      setIsIncoming(true);
-      if (callTimeoutRef.current) clearTimeout(callTimeoutRef.current);
-      callTimeoutRef.current = setTimeout(() => {
-        setIsIncoming(false);
-        setCurrentCall(null);
-      }, 45_000 - age);
+      void checkForRing();
     };
 
-    void poll();
-    // Realtime and push are the primary path; this only catches a missed event.
+    poll();
     const interval = setInterval(poll, 60_000);
     // Poll immediately on foreground so a call that started while the app was
     // backgrounded is picked up at once rather than up to a minute later.
     const sub = AppState.addEventListener("change", (s) => {
-      if (s === "active") void poll();
+      if (s === "active") void checkForRing();
     });
     return () => {
       clearInterval(interval);
       sub.remove();
     };
-  }, [userAddress]);
+  }, [userAddress, checkForRing]);
 
   // ── Actions ────────────────────────────────────────────────────────────────
 
@@ -451,31 +432,8 @@ export function useCall(): UseCallReturn {
           await cleanupEngine();
         }
       }, 30_000);
-
-      const cleanupWatchChannel = () => {
-        if (watchChannelRef.current) {
-          supabase.removeChannel(watchChannelRef.current);
-          watchChannelRef.current = null;
-        }
-      };
-
-      // Watch for recipient accept/reject
-      watchChannelRef.current = supabase
-        .channel(`call-${session.id}-watch`)
-        .on(
-          "postgres_changes",
-          { event: "UPDATE", schema: "public", table: "call_sessions", filter: `id=eq.${session.id}` },
-          async (payload: any) => {
-            const updated = payload.new as CallSession;
-            if (updated.status === "ended") {
-              setIsConnecting(false);
-              setCurrentCall(null);
-              cleanupWatchChannel();
-              await cleanupEngine();
-            }
-          },
-        )
-        .subscribe();
+      // The callee declining or hanging up arrives as an `ended` call ping on
+      // this wallet's own topic (see the ping listener above).
     } catch (err) {
       log.error("Failed to start call:", err);
       setIsConnecting(false);
@@ -494,10 +452,6 @@ export function useCall(): UseCallReturn {
     if (callTimeoutRef.current) {
       clearTimeout(callTimeoutRef.current);
       callTimeoutRef.current = null;
-    }
-    if (watchChannelRef.current) {
-      supabase.removeChannel(watchChannelRef.current);
-      watchChannelRef.current = null;
     }
     // Notify DM chat if call was connected (has duration)
     if (call?.status === "connected") {
