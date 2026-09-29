@@ -13,7 +13,9 @@ import {
   Alert,
   KeyboardAvoidingView,
   Platform,
+  BackHandler,
 } from "react-native";
+import { useFocusEffect } from "@react-navigation/native";
 import { DeHubLoader } from "../components/DeHubLoader";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import LoadErrorState from "../components/ui/LoadErrorState";
@@ -105,6 +107,20 @@ const SavedPostsScreen: React.FC = () => {
       fetchFoldersList();
     }
   }, [activeTab, selectedFolder, fetchFoldersList]);
+
+  // Android back leaves the open collection first, the same way the header
+  // arrow does. Scoped to focus so it never catches back on a post opened from
+  // the collection. The effect above refetches the list once this clears.
+  useFocusEffect(
+    useCallback(() => {
+      if (!selectedFolder) return;
+      const sub = BackHandler.addEventListener("hardwareBackPress", () => {
+        setSelectedFolder(null);
+        return true;
+      });
+      return () => sub.remove();
+    }, [selectedFolder])
+  );
 
   const handleCreateFolder = async () => {
     if (!folderName.trim() || submitting) return;
