@@ -55,6 +55,8 @@ export type AppStackParamList = {
     images?: { uri: string; width: number; height: number; mimeType?: string }[];
     /** A video to open the composer with, e.g. an export from the editor. Duration in ms, like the picker's. */
     video?: { uri: string; width: number; height: number; duration?: number; mimeType?: string; fileName?: string };
+    /** Open on Livestream, e.g. from the + button while the home feed is on Live. */
+    live?: boolean;
   } | undefined;
   [ScreenNames.VideoPlayer]: {
     videoId?: string;
