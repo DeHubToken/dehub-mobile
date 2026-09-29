@@ -2,8 +2,9 @@
  * StagesCarousel — live stages on the Music feed
  * ==============================================
  * Port of web's `components/app/music/StagesCarousel`. Reads the live list
- * from StageProvider's single fetch rather than querying `audio_spaces` again,
- * and opens the Stages modal, which is what a stage *is* on native.
+ * from StageProvider's single fetch rather than querying `audio_spaces` again.
+ * A card joins that room and opens the live stage, the same way the Stages
+ * screen does; See all and the empty state open the Stages hub.
  *
  * Kept in its own memoised component on purpose: the stage context value churns
  * on every floating reaction and participant update, and the Music feed is one
@@ -12,7 +13,7 @@
  * @module components/Music/StagesCarousel
  */
 
-import React, { useCallback } from "react";
+import React, { useCallback, useRef } from "react";
 import { FlatList, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { GestureDetector } from "react-native-gesture-handler";
 import { useTranslation } from "react-i18next";
@@ -73,16 +74,40 @@ const StageCard: React.FC<{ space: AudioSpace; onPress: () => void }> = ({ space
 
 const StagesCarousel: React.FC = () => {
   const { t } = useTranslation();
-  const { liveSpaces, openModal } = useStages();
+  const { liveSpaces, openModal, joinSpace, guestListenSpace, currentSpace } = useStages();
   const scrollGuard = useHorizontalScrollGuard();
 
   const openStages = useCallback(() => openModal("browse"), [openModal]);
+
+  // Mirrors StagesScreen.handleOpenLive. Joining the room you are already in
+  // would restart a host's recording and re-mute everyone, so just show it.
+  const joiningRef = useRef(false);
+  const currentId = currentSpace?.id;
+  const openStage = useCallback(
+    async (id: string) => {
+      if (currentId === id) {
+        openModal("live");
+        return;
+      }
+      if (joiningRef.current) return;
+      joiningRef.current = true;
+      try {
+        // joinSpace refuses signed-out users and ended rooms silently; a room
+        // nobody can open falls back to the hub, as the card did before.
+        if ((await joinSpace(id)) || (await guestListenSpace(id))) openModal("live");
+        else openModal("browse");
+      } finally {
+        joiningRef.current = false;
+      }
+    },
+    [currentId, joinSpace, guestListenSpace, openModal],
+  );
 
   const list = (
     <FlatList
       data={liveSpaces}
       keyExtractor={(item) => item.id}
-      renderItem={({ item }) => <StageCard space={item} onPress={openStages} />}
+      renderItem={({ item }) => <StageCard space={item} onPress={() => { void openStage(item.id); }} />}
       horizontal
       showsHorizontalScrollIndicator={false}
       nestedScrollEnabled
