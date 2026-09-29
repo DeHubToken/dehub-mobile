@@ -4313,5 +4313,11 @@
     "connectSolana": "Connect Solana wallet",
     "balanceUnknown": "Balance unavailable",
     "balanceAmount": "Available: {{amount}} {{symbol}}"
+  },
+  "updateGate": {
+    "title": "Oppdater DeHub",
+    "recommendedBody": "En nyere versjon av DeHub med viktige sikkerhetsrettelser er tilgjengelig. Oppdater for å holde kontoen din beskyttet.",
+    "requiredBody": "Denne versjonen av DeHub støttes ikke lenger. Oppdater for å fortsette å bruke kontoen din.",
+    "update": "Oppdater nå"
   }
 }

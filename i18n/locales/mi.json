@@ -4313,5 +4313,11 @@
     "connectSolana": "Connect Solana wallet",
     "balanceUnknown": "Balance unavailable",
     "balanceAmount": "Available: {{amount}} {{symbol}}"
+  },
+  "updateGate": {
+    "title": "Whakahōutia a DeHub",
+    "recommendedBody": "He putanga hou ake o DeHub kei te wātea, me ngā whakatika haumaru nui. Whakahōutia kia noho haumaru tō pūkete.",
+    "requiredBody": "Kua kore e tautokona tēnei putanga o DeHub. Whakahōutia kia haere tonu tō whakamahi i tō pūkete.",
+    "update": "Whakahōu ināianei"
   }
 }

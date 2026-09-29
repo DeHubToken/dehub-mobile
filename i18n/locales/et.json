@@ -4327,5 +4327,11 @@
     "connectSolana": "Connect Solana wallet",
     "balanceUnknown": "Balance unavailable",
     "balanceAmount": "Available: {{amount}} {{symbol}}"
+  },
+  "updateGate": {
+    "title": "Uuenda DeHubi",
+    "recommendedBody": "Saadaval on DeHubi uuem versioon oluliste turvaparandustega. Uuenda, et su konto püsiks kaitstud.",
+    "requiredBody": "Seda DeHubi versiooni enam ei toetata. Uuenda, et oma kontot edasi kasutada.",
+    "update": "Uuenda kohe"
   }
 }

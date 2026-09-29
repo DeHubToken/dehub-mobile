@@ -4305,5 +4305,11 @@
     "connectSolana": "Connect Solana wallet",
     "balanceUnknown": "Balance unavailable",
     "balanceAmount": "Available: {{amount}} {{symbol}}"
+  },
+  "updateGate": {
+    "title": "Melite DeHub",
+    "recommendedBody": "Ụdị DeHub ọhụrụ dị, nwere ndozi nchekwa dị mkpa. Melite ka akaụntụ gị nọrọ na nchekwa.",
+    "requiredBody": "A naghịzi akwado ụdị DeHub a. Melite ka ị gaa n'ihu iji akaụntụ gị.",
+    "update": "Melite ugbu a"
   }
 }

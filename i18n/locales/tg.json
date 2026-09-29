@@ -4305,5 +4305,11 @@
     "connectSolana": "Connect Solana wallet",
     "balanceUnknown": "Balance unavailable",
     "balanceAmount": "Available: {{amount}} {{symbol}}"
+  },
+  "updateGate": {
+    "title": "DeHub-ро навсозӣ кунед",
+    "recommendedBody": "Версияи навтари DeHub бо ислоҳоти муҳими амниятӣ дастрас аст. Барои ҳифзи ҳисобатон навсозӣ кунед.",
+    "requiredBody": "Ин версияи DeHub дигар дастгирӣ намешавад. Барои идомаи истифодаи ҳисобатон навсозӣ кунед.",
+    "update": "Ҳозир навсозӣ кунед"
   }
 }

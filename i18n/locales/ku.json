@@ -3976,5 +3976,11 @@
     "connectSolana": "Connect Solana wallet",
     "balanceUnknown": "Balance unavailable",
     "balanceAmount": "Available: {{amount}} {{symbol}}"
+  },
+  "updateGate": {
+    "title": "DeHub nû bike",
+    "recommendedBody": "Guhertoyeke nûtir a DeHub bi çareseriyên ewlehiyê yên girîng heye. Nû bike da ku hesabê te parastî bimîne.",
+    "requiredBody": "Ev guhertoya DeHub êdî nayê piştgirîkirin. Nû bike da ku bikaranîna hesabê xwe bidomînî.",
+    "update": "Niha nû bike"
   }
 }

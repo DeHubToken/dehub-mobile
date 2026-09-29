@@ -4404,5 +4404,11 @@
     "connectSolana": "Connect Solana wallet",
     "balanceUnknown": "Balance unavailable",
     "balanceAmount": "Available: {{amount}} {{symbol}}"
+  },
+  "updateGate": {
+    "title": "Havaozy ny DeHub",
+    "recommendedBody": "Misy dikan-teny vaovao amin'ny DeHub misy fanitsiana fiarovana manan-danja. Havaozy mba hijanonan'ny kaontinao ho voaaro.",
+    "requiredBody": "Tsy tohanana intsony ity dikan-tenin'ny DeHub ity. Havaozy mba hanohizanao ny fampiasana ny kaontinao.",
+    "update": "Havaozy izao"
   }
 }

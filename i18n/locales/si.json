@@ -4296,5 +4296,11 @@
     "connectSolana": "Connect Solana wallet",
     "balanceUnknown": "Balance unavailable",
     "balanceAmount": "Available: {{amount}} {{symbol}}"
+  },
+  "updateGate": {
+    "title": "DeHub යාවත්කාලීන කරන්න",
+    "recommendedBody": "වැදගත් ආරක්ෂක නිවැරදි කිරීම් සහිත DeHub හි නව අනුවාදයක් ඇත. ඔබේ ගිණුම ආරක්ෂිතව තබා ගැනීමට යාවත්කාලීන කරන්න.",
+    "requiredBody": "DeHub හි මෙම අනුවාදයට තවදුරටත් සහය නොදක්වයි. ඔබේ ගිණුම දිගටම භාවිත කිරීමට යාවත්කාලීන කරන්න.",
+    "update": "දැන් යාවත්කාලීන කරන්න"
   }
 }
