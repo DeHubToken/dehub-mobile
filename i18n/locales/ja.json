@@ -8564,7 +8564,10 @@
       "search": "アプリを検索",
       "all": "すべて",
       "fromDehub": "DeHubから",
-      "noMatch": "その検索に一致するアプリはありません。"
+      "noMatch": "その検索に一致するアプリはありません。",
+      "yourApps": "あなたのアプリ",
+      "notificationsOn": "通知の設定",
+      "removed": "削除されました。もう通知はありません。"
     },
     "card": {
       "open": "開く"
@@ -8583,6 +8586,14 @@
       "developer-tools": "デベロッパーツール",
       "entertainment": "エンターテインメント",
       "art-creativity": "アート＆クリエイティビティ"
+    },
+    "pay": {
+      "body": "DHBはアプリのウォレットに直接振り込まれる、{{wallet}}。支払いは取り消せません。",
+      "confirm": "支払い {{amount}} DHB",
+      "sent": "支払い {{amount}} DHB を {{name}} に。"
+    },
+    "add": {
+      "body": "アプリ一覧に表示され、通知を送信することができます。いつでもアプリページから削除することができます。"
     }
   },
   "aiStyles": {

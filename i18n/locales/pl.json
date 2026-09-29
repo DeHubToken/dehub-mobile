@@ -8631,7 +8631,11 @@
       "search": "Wyszukaj aplikacje",
       "all": "Wszystkie",
       "fromDehub": "Z DeHub",
-      "noMatch": "Brak dopasowanych aplikacji do tego wyszukiwania."
+      "noMatch": "Brak dopasowanych aplikacji do tego wyszukiwania.",
+      "yourApps": "Two aplikacje",
+      "notificationsOn": "Powiadomienia włączone",
+      "remove": "Usuń",
+      "removed": "Usunięto. Już nie powiadomi Cię o tym ponownie."
     },
     "card": {
       "open": "Otwórz"
@@ -8650,6 +8654,17 @@
       "developer-tools": "Narzędzia dla developerów",
       "entertainment": "Rozrywka",
       "art-creativity": "Sztuka & kreatywność"
+    },
+    "pay": {
+      "title": "Płać {{name}}?",
+      "body": "DHB trafia bezpośrednio do portfela aplikacji, {{wallet}}. Płatności nie mogą być cofnięte.",
+      "confirm": "Płać {{amount}} DHB",
+      "sent": "Zapłacono {{amount}} DHB do {{name}}."
+    },
+    "add": {
+      "title": "Dodaj {{name}}?",
+      "body": "Będzie widoczna pod Twoimi aplikacjami i może wysyłać do Ciebie powiadomienia. Możesz ją usunąć w dowolnej chwili z strony Aplikacje.",
+      "confirm": "Dodaj aplikację"
     }
   },
   "aiStyles": {

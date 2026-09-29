@@ -8617,7 +8617,10 @@
       "search": "Ilovalarni qidirish",
       "all": "Hammasi",
       "fromDehub": "DeHub&#39;dan",
-      "noMatch": "Bu qidiruvga hech qanday ilova mos kelmadi."
+      "noMatch": "Bu qidiruvga hech qanday ilova mos kelmadi.",
+      "yourApps": "Ilovalaringiz",
+      "remove": "Olib tashlash",
+      "removed": "Oʻchirilgan. Sizga yana xabar yuborilmaydi."
     },
     "card": {
       "open": "Ochiq"
@@ -8636,6 +8639,15 @@
       "developer-tools": "Dasturchi vositalari",
       "entertainment": "Ko&#39;ngilochar",
       "art-creativity": "San&#39;at va ijodkorlik"
+    },
+    "pay": {
+      "body": "DHB toʻgʻridan-toʻgʻri ilovaning pul xazinasi (wallet) ga yetadi, {{wallet}}. Toʻlovlar qaytarib olinmaydi.",
+      "sent": "Tozalanmagan {{amount}} DHB ni {{name}}ga sotib oldim."
+    },
+    "add": {
+      "title": "{{name}}?",
+      "body": "Sizning Ilovalaringizda paydo boʻladi va xabarlar yuborishi mumkin. Ilovalar sahifasidan har qanday vaqtda uni olib tashlash mumkin.",
+      "confirm": "Ushbu ilovani qo'shing"
     }
   },
   "aiStyles": {

@@ -8563,7 +8563,11 @@
       "search": "Cari aplikasi",
       "all": "Semua",
       "fromDehub": "Dari DeHub",
-      "noMatch": "Tidak ada aplikasi yang cocok dengan pencarian itu."
+      "noMatch": "Tidak ada aplikasi yang cocok dengan pencarian itu.",
+      "yourApps": "Aplikasi Anda",
+      "notificationsOn": "Notifikasi",
+      "remove": "Mati",
+      "removed": "Hapus"
     },
     "card": {
       "open": "Buka"
@@ -8582,6 +8586,17 @@
       "developer-tools": "Alat pengembang",
       "entertainment": "Hiburan",
       "art-creativity": "Seni & kreativitas"
+    },
+    "pay": {
+      "title": "Bayar {{name}}?",
+      "body": "Bayar {{wallet}}?",
+      "confirm": "DHB langsung pergi ke dompet aplikasi, {{amount}}. Pembayaran tidak dapat dibatalkan.",
+      "sent": "Bayar {{amount}} DHB ke {{name}}."
+    },
+    "add": {
+      "title": "Tambahkan {{name}}?",
+      "body": "Aplikasi ini akan muncul di bawah Your apps dan dapat mengirimkan notifikasi. Anda dapat menghapusnya kapan saja dari halaman Apps.",
+      "confirm": "Aplikasi ini akan muncul di bawah \"Aplikasi Anda\" dan dapat mengirimkan notifikasi. Anda dapat menghapusnya kapan saja dari halaman Aplikasi."
     }
   },
   "aiStyles": {

@@ -8613,7 +8613,9 @@
       "search": "Appilikeeshiniiwwan barbaadi",
       "all": "Hunda",
       "fromDehub": "DeHub irraa",
-      "noMatch": "Appilikeeshiniin barbaacha sanaan walsimu hin jiru."
+      "noMatch": "Appilikeeshiniin barbaacha sanaan walsimu hin jiru.",
+      "yourApps": "Appilikeeshiniiwwan keessan",
+      "remove": "Irraa kaasuu"
     },
     "card": {
       "open": "Banaa"
@@ -8632,6 +8634,13 @@
       "developer-tools": "Meeshaalee developer",
       "entertainment": "Bohaaruu",
       "art-creativity": "Aartii & kalaqa"
+    },
+    "pay": {
+      "title": "Baasi {{name}}?"
+    },
+    "add": {
+      "body": "Gummaa *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa*",
+      "confirm": "App itti dabali"
     }
   },
   "aiStyles": {

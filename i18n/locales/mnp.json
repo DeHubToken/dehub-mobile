@@ -8606,6 +8606,17 @@
       "shopping": "買東西 / 逛街",
       "developer-tools": "開發工具",
       "entertainment": "娛樂"
+    },
+    "pay": {
+      "title": "付{{name}}?",
+      "body": "DHB直接存到應用的錢包裡，{{wallet}}。付款無法退款。",
+      "confirm": "付{{amount}} DHB",
+      "sent": "已付{{amount}} DHB給{{name}}。"
+    },
+    "add": {
+      "title": "要加{{name}}?",
+      "body": "它會出現在「你的應用」裡，可以發送通知給你。你隨時可以從「應用」頁面移除它。",
+      "confirm": "加應用"
     }
   },
   "aiStyles": {

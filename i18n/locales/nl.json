@@ -8817,7 +8817,10 @@
       "search": "Apps zoeken",
       "all": "Alle",
       "fromDehub": "Van DeHub",
-      "noMatch": "Er komen geen apps overeen met die zoekopdracht."
+      "noMatch": "Er komen geen apps overeen met die zoekopdracht.",
+      "yourApps": "Uw apps",
+      "notificationsOn": "Berichtjes op",
+      "removed": "Verwijderd. Het zal je niet nogmaals melden."
     },
     "card": {
       "open": "Open"
@@ -8836,6 +8839,17 @@
       "developer-tools": "Tools voor ontwikkelaars",
       "entertainment": "Onderhouding",
       "art-creativity": "Kunst & creativiteit"
+    },
+    "pay": {
+      "title": "Betaal je {{name}}?",
+      "body": "De DHB gaat rechtstreeks naar de portemonnee van de app, {{wallet}}. Betalingen kunnen niet worden teruggedraaid.",
+      "confirm": "Betaal {{amount}} DHB",
+      "sent": "Betaald {{amount}} DHB aan {{name}}."
+    },
+    "add": {
+      "title": "Vul {{name}} toe?",
+      "body": "Het zal onder Je apps verschijnen en kan je notificaties sturen. Je kunt het op elk moment verwijderen vanaf de Apps-pagina.",
+      "confirm": "Voeg app toe"
     }
   },
   "aiStyles": {

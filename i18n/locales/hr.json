@@ -8563,7 +8563,11 @@
       "search": "Pretraživanje aplikacija",
       "all": "Sve",
       "fromDehub": "Od DeHuba",
-      "noMatch": "Nema aplikacija koje odgovaraju pretraživanju."
+      "noMatch": "Nema aplikacija koje odgovaraju pretraživanju.",
+      "yourApps": "Vaše aplikacije",
+      "notificationsOn": "Oznake uključene",
+      "remove": "Ukloni",
+      "removed": "Uklonjeno. Više nećete biti obaviješteni."
     },
     "card": {
       "open": "Otvori"
@@ -8582,6 +8586,17 @@
       "developer-tools": "Alati za razvoj",
       "entertainment": "Zabava",
       "art-creativity": "Umjetnost i kreativnost"
+    },
+    "pay": {
+      "title": "Plati {{name}}?",
+      "body": "DHB ide direktno u novčanik aplikacije, {{wallet}}. Plaćanja se ne mogu poništiti.",
+      "confirm": "Plati {{amount}} DHB",
+      "sent": "Uplaćeno {{amount}} DHB na {{name}}."
+    },
+    "add": {
+      "title": "Dodaj {{name}}?",
+      "body": "Bit će prikazana pod Vašim aplikacijama i može vam slati obavijesti. Možete je u svakom trenutku ukloniti s stranice Aplikacija.",
+      "confirm": "Dodaj aplikaciju"
     }
   },
   "aiStyles": {

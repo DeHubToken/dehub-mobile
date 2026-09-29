@@ -8563,7 +8563,8 @@
       "search": "Ieškoti programėlių",
       "all": "Visi",
       "fromDehub": "Iš DeHub",
-      "noMatch": "Nėra programėlių, atitinkančių šią paiešką."
+      "noMatch": "Nėra programėlių, atitinkančių šią paiešką.",
+      "yourApps": "Jūsų programos"
     },
     "card": {
       "open": "Atidaryti"
@@ -8582,6 +8583,17 @@
       "developer-tools": "Kūrėjo įrankiai",
       "entertainment": "Pramogos",
       "art-creativity": "Menas ir kūrybiškumas"
+    },
+    "pay": {
+      "title": "Mokėti {{name}}?",
+      "body": "DHB tiesiog eina į aplikacijos portmonę, {{wallet}}. Mokėjimai negali būti atšaukti.",
+      "confirm": "Mokėkite {{amount}} DHB",
+      "sent": "Mokėta {{amount}} DHB {{name}}."
+    },
+    "add": {
+      "title": "Pridėkite {{name}}?",
+      "body": "Jis pasirodys po Jūsų programos ir gali siųsti pranešimus. Jį galite bet kada pašalinti iš Programos puslapio.",
+      "confirm": "Pridėkite prietelį"
     }
   },
   "aiStyles": {

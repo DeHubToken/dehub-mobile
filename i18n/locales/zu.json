@@ -8594,7 +8594,9 @@
       "search": "Sesha ama-app",
       "all": "Konke",
       "fromDehub": "Kusuka ku-DeHub",
-      "noMatch": "Awekho ama-app afana nalokho kusesha."
+      "noMatch": "Awekho ama-app afana nalokho kusesha.",
+      "yourApps": "Ama-app akho",
+      "removed": "**Ukuqala ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuth"
     },
     "card": {
       "open": "Vula"
@@ -8613,6 +8615,14 @@
       "developer-tools": "Amathuluzi omthuthukisi",
       "entertainment": "Ezokuzijabulisa",
       "art-creativity": "Ubuciko nobuciko"
+    },
+    "pay": {
+      "title": "Khokha {{name}}?",
+      "confirm": "Pay **{{amount}}** **i-DHB**",
+      "sent": "Ngiyabonga kakhulu kwe{{amount}} DHB kwe{{name}}."
+    },
+    "add": {
+      "body": "Nginga yizwa ngokwesinye esinye kwenye **Your apps** kanye nge- **notifications** ngokwenza. Uhlangana ngokwenza kanye ngokwenza ngokwenza **Apps page** ngokwenza ngokwenza ngokwenza **ngokwenza**."
     }
   },
   "aiStyles": {

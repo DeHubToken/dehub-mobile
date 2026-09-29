@@ -8566,7 +8566,10 @@
       "search": "Keresőalkalmazások",
       "all": "Minden",
       "fromDehub": "DeHub-ból",
-      "noMatch": "Nincs olyan alkalmazás, amely megfelel a keresésnek."
+      "noMatch": "Nincs olyan alkalmazás, amely megfelel a keresésnek.",
+      "yourApps": "Aldodásod",
+      "notificationsOn": "Üzenetek a(z)",
+      "removed": "Tiltott. Nem fogja többé értesíteni."
     },
     "card": {
       "open": "Megnyitás"
@@ -8585,6 +8588,17 @@
       "developer-tools": "Fejlesztői eszközök",
       "entertainment": "Szórakozás",
       "art-creativity": "Művészet és kreativitás"
+    },
+    "pay": {
+      "title": "Fizet {{name}}?",
+      "body": "A DHB közvetlenül az alkalmazás pénztárcájába kerül, {{wallet}}. A fizetések visszavonhatatlanok.",
+      "confirm": "Fizess {{amount}} DHB-t",
+      "sent": "Fizetett {{amount}} DHB-t {{name}}-nak."
+    },
+    "add": {
+      "title": "Add {{name}}?",
+      "body": "A feliratkozás után a *Your apps* alatt fog megjelenni és értesítéseket küldhet neked. Bármikor eltávolíthatod az *Apps* oldalon.",
+      "confirm": "Add a programot"
     }
   },
   "aiStyles": {

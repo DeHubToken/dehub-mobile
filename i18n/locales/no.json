@@ -8563,7 +8563,11 @@
       "search": "Søk i apper",
       "all": "Alle",
       "fromDehub": "Fra DeHub",
-      "noMatch": "Ingen apper samsvarer med det søket."
+      "noMatch": "Ingen apper samsvarer med det søket.",
+      "yourApps": "Dine apps",
+      "notificationsOn": "Varsler på",
+      "remove": "Fjern",
+      "removed": "Fjernet. Det vil ikke varsle deg igjen."
     },
     "card": {
       "open": "Åpne"
@@ -8582,6 +8586,17 @@
       "developer-tools": "Utviklerverktøy",
       "entertainment": "Underholdning",
       "art-creativity": "Kunst og kreativitet"
+    },
+    "pay": {
+      "title": "Betale {{name}}?",
+      "body": "DHB-en går direkte til appens lommebok, {{wallet}}. Betalinger kan ikke trekkes tilbake.",
+      "confirm": "Betale {{amount}} DHB",
+      "sent": "Betalt {{amount}} DHB til {{name}}."
+    },
+    "add": {
+      "title": "Legg til {{name}}?",
+      "body": "Den vil dukke opp under Dine apps og kan sende deg varsler. Du kan fjerne den når som helst fra Apps-siden.",
+      "confirm": "Legg til app"
     }
   },
   "aiStyles": {

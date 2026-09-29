@@ -8561,7 +8561,10 @@
       "search": "Usoroiheomume nchọcha",
       "all": "Ha niile",
       "fromDehub": "Site na DeHub",
-      "noMatch": "Enweghị ngwa dabara na nchọcha ahụ."
+      "noMatch": "Enweghị ngwa dabara na nchọcha ahụ.",
+      "yourApps": "Usoroiheomume gị",
+      "notificationsOn": "Ịma Ọkwa na",
+      "removed": "Ewepụrụ ya. Ọ gaghị agwa gị ọzọ."
     },
     "card": {
       "open": "Mepee"
@@ -8579,6 +8582,13 @@
       "developer-tools": "Developer ngwaọrụ",
       "entertainment": "Ntụrụndụ",
       "art-creativity": "Ndị ụlọtị na ụlọtị ụlọtị"
+    },
+    "pay": {
+      "title": "Páa {{name}}?"
+    },
+    "add": {
+      "title": "{{name}}?",
+      "body": "Nwoke na-ahụrụ nke *Your apps* nke ọ dị mmadụ ọ dị ọ bụrụ ọrụ nke ọ bụrụ ọrụ. Nwoke na-ahụrụ nke ọ bụrụ ọrụ nke ọ bụrụ ọrụ, ọ bụrụ ọrụ nke ọ bụrụ ọrụ nke ọ bụrụ ọrụ nke *Apps* nke ọ bụrụ ọrụ nke ọ bụrụ ọrụ."
     }
   },
   "aiStyles": {
