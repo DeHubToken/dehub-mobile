@@ -1,18 +1,11 @@
 /**
- * "Is a feed currently being flung?" — a single flag outside React, so a leaf
- * that mounts mid-scroll can render something cheap and fill itself in once
- * the list settles.
+ * "Is a feed currently being flung?" — a single flag outside React, for work
+ * that should pause while a list moves (the theme backdrop).
  *
- * Why: a feed card is ~100 native views, and half of them are its icons — each
- * lucide icon is an SVG tree of four to six views. Traced on a Galaxy S24+,
- * every 2s stretch of a fling that created 600–1100 views was the stretch
- * with the slow frames; a card's mount ran 12–19ms, two frames at 120Hz.
- * Icons carry no layout information (their box is fixed by `size`), so they
- * are the one part of the card that can be mounted late without anything
- * shifting.
+ * Nothing a reader can see waits on this. Rows used to mount their buttons and
+ * icons only once the list settled, and a slow drag or a fling brought posts
+ * in with no action row at all.
  */
-import { useEffect, useState } from "react";
-
 // A drag with the finger held down can outlast any fling; nothing should stay
 // deferred forever because a settle event was missed (a list unmounting
 // mid-fling, for one). Longer than any real fling, shorter than a user notices.
@@ -67,24 +60,6 @@ export function subscribeFeedScrollStart(fn: () => void): () => void {
   return () => {
     startListeners.delete(fn);
   };
-}
-
-/**
- * True once this component may do its expensive render: immediately when it
- * mounts at rest, otherwise on the first settle after it mounted. Never goes
- * back to false — a mounted icon stays mounted.
- */
-export function useReadyAfterScroll(): boolean {
-  const [ready, setReady] = useState(() => !scrolling);
-  useEffect(() => {
-    if (ready) return;
-    if (!scrolling) {
-      setReady(true);
-      return;
-    }
-    return subscribeFeedSettled(() => setReady(true));
-  }, [ready]);
-  return ready;
 }
 
 export function __resetScrollActivityForTests(): void {
