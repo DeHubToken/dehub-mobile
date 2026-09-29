@@ -6,7 +6,7 @@ import { useRoute, useNavigation } from "@react-navigation/native";
 import ScreenHeader from "../components/ScreenHeader";
 import { getNFT, type Comment, likeComment, type LikeCommentResult, dislikeComment, type DislikeCommentResult, reactComment, type ReactCommentResult, postComment, editComment, deleteComment, pinComment, postImageComment, postGifComment, postAudioComment, recordCommentViews } from "../services/nft.service";
 import CommentLikersSheet from "../components/Comments/CommentLikersSheet";
-import FeedCard from "../components/Home/FeedCard";
+import FeedCard, { resolveContentType } from "../components/Home/FeedCard";
 import { CommentItem } from "../components/Comments";
 import CommentContextMenu from "../components/Comments/CommentContextMenu";
 import type { CommentLayout } from "../components/Comments/CommentContextMenu";
@@ -62,6 +62,10 @@ type ThreadedComment = Comment & { depth: number };
 // chain costs no width.
 /** How many replies a thread shows before it needs a tap to open up. */
 const REPLIES_SHOWN_COLLAPSED = 1;
+
+/** Post types that open immersive: media edge to edge at the top, no top bar.
+ *  Shared with image posts, which add "image" here. */
+const IMMERSIVE_TYPES = new Set<ReturnType<typeof resolveContentType>>(["video", "short"]);
 
 // Rows are px-8, the avatar is 32 wide and CommentItem pads it 10 from the top,
 // so the line runs at x = 32 + 16 and the avatar's centre sits at y = 26.
@@ -1198,10 +1202,23 @@ export default function FeedDetailScreen() {
   // load, and the message in the header is the whole page.
   const postUnavailable = !item && !loading && (loadError != null || privateError);
 
+  // Video posts open immersive, like YouTube and the web post page: no top
+  // bar, the clip edge to edge at the very top, and a floating back button.
+  const immersive = !!item && IMMERSIVE_TYPES.has(resolveContentType(item));
+
   const renderHeader = useCallback(() => (
     <View>
-      <ScreenHeader title={t("screens.post")} />
-      {item ? (
+      {!immersive && <ScreenHeader title={t("screens.post")} />}
+      {item && immersive ? (
+        <FeedCard
+          item={item}
+          fullContent
+          disablePress
+          prioritizeMedia
+          immersive
+          onCommentPress={focusCommentInput}
+        />
+      ) : item ? (
         <View className="px-4">
           <FeedCard 
             item={item} 
@@ -1319,7 +1336,7 @@ export default function FeedDetailScreen() {
         </View>
       )}
     </View>
-  ), [item, loading, privateError, loadError, postUnavailable, fetchData, navigation, comments.length, focusCommentInput, isMinimal, t]);
+  ), [item, immersive, loading, privateError, loadError, postUnavailable, fetchData, navigation, comments.length, focusCommentInput, isMinimal, t]);
 
   // The name sits in bold wherever the language puts it. The sentence is
   // translated whole and cut around the name, because a translated "Replying
@@ -1406,6 +1423,7 @@ export default function FeedDetailScreen() {
         onLayout={handleListLayout}
         onContentSizeChange={handleContentSize}
       />
+      {immersive && <ScreenHeader title={t("screens.post")} overlay />}
       {/* Nothing to comment on while the post is private, gone or failed to
           load. A saved draft stays in storage and comes back with the post. */}
       {!postUnavailable && (

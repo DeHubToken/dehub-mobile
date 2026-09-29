@@ -216,7 +216,14 @@ interface FeedCardProps {
   showRepostLabel?: boolean;
   /** Post-detail media is already on screen and must not wait behind feed images. */
   prioritizeMedia?: boolean;
+  /** Post page, immersive like the web: no bento, and the media sits first,
+   *  edge to edge across the screen, with the creator row and caption under
+   *  it. The screen drops its top bar for a floating back button. */
+  immersive?: boolean;
 }
+
+/** Side inset for the text of an immersive post; the media ignores it. */
+const IMMERSIVE_INSET = 16;
 
 const FeedCardComponent: React.FC<FeedCardProps> = ({
   item,
@@ -230,6 +237,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   onBeforeNavigate,
   showRepostLabel = false,
   prioritizeMedia = false,
+  immersive = false,
 }) => {
   const navigation = useNavigation<any>();
   const { t } = useCopy();
@@ -1349,6 +1357,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const renderVideoThumbnail = () => (
     <FeedVideoPlayer
       thumbnail={thumbnail}
+      postPage={fullContent}
       videoUrl={isActuallyGated ? undefined : (getVideoUrl(tokenId) || undefined)}
       transcodingStatus={item.transcodingStatus}
       isOwner={!!isOwnerPost}
@@ -1498,7 +1507,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   // Minimal: media runs edge to edge while the text keeps its inset. Only the
   // picture bleeds — an audio post's player stays in the column with the text.
   const bleed = (node: React.ReactNode) =>
-    isMinimal && node ? (
+    isMinimal && !immersive && node ? (
       <View style={{ marginHorizontal: -MINIMAL_TEXT_INSET }}>{node}</View>
     ) : node;
 
@@ -1575,8 +1584,11 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       // at all. The card steps out over the list's side padding to span the
       // screen, posts are split by one full-width hairline, and media bleeds
       // past the text inset to both edges.
-      onLayout={isMinimal ? handleMinimalLayout : undefined}
-      style={isMinimal ? {
+      onLayout={isMinimal && !immersive ? handleMinimalLayout : undefined}
+      style={immersive ? {
+        paddingHorizontal: IMMERSIVE_INSET,
+        paddingBottom: 12,
+      } : isMinimal ? {
         marginHorizontal: -minimalGutter,
         paddingTop: 14,
         paddingHorizontal: MINIMAL_TEXT_INSET,
@@ -1635,6 +1647,14 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           </TouchableOpacity>
         </View>
       )}
+      {/* Immersive: the media comes first, out past the text inset to both
+          screen edges. A post behind the mature warning keeps the warning in
+          its usual place instead. */}
+      {immersive && !matureGate.isGated && (
+        <View style={{ marginHorizontal: -IMMERSIVE_INSET, marginBottom: 12 }}>
+          {renderContent()}
+        </View>
+      )}
       {/* No wrapper row: the header is a full-width row of its own, and a
           card is ~100 native views, each one paid for at mount mid-fling. */}
       <FeedCardHeader
@@ -1663,7 +1683,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         <MatureContentGate onReveal={matureGate.reveal} />
       ) : (
         <>
-      {renderContent()}
+      {!immersive && renderContent()}
 
       {hasSoundtrack && !isActuallyGated && (
         <View className="mt-2">

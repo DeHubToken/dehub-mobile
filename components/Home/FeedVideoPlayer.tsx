@@ -48,7 +48,7 @@ import { getCachedMuted, setMutedState } from "../../libs/videoMutedState";
 import { useDataSaver } from "../../hooks/useDataSaver";
 import { getAppPrefs, useAppPrefs } from "../../hooks/useAppPrefs";
 import { useVideoSegments, segmentAt } from "../../hooks/useVideoSegments";
-import { useMediaAspect } from "../../hooks/useMediaAspect";
+import { useMediaAspect, THIN_MIN_RATIO } from "../../hooks/useMediaAspect";
 import { useSettledAutoplay } from "../../hooks/useSettledAutoplay";
 import { useCellState } from "../../hooks/useCellState";
 import { toastInfo } from "../../libs/toast";
@@ -76,6 +76,14 @@ const cardWidthFor = (screenWidth: number) => screenWidth - 40;
 const maxMediaHeightFor = (screenHeight: number) => Math.round(Math.min(600, screenHeight * 0.6));
 
 /**
+ * Post page cap: the clip is the page, so it grows to most of the screen, and
+ * at least as tall as a full-width 9:16 clip so a vertical video spans the
+ * whole width.
+ */
+const postPageMaxHeightFor = (screenHeight: number, boxWidth: number) =>
+  Math.round(Math.max(screenHeight * 0.8, (boxWidth * 16) / 9));
+
+/**
  * Width of the media box. Takes the live window size (useWindowDimensions) so
  * split-screen and unfolding resize the player instead of keeping the size
  * the app started with.
@@ -84,14 +92,19 @@ const mediaBoxWidth = (
   win: { width: number; height: number },
   isMinimal: boolean,
   mediaAspect: number,
-) =>
-  Math.min(
-    isMinimal ? win.width : cardWidthFor(win.width),
-    Math.round(maxMediaHeightFor(win.height) * mediaAspect),
-  );
+  postPage = false,
+) => {
+  // The post page runs its media edge to edge, whatever the theme.
+  const fullWidth = isMinimal || postPage ? win.width : cardWidthFor(win.width);
+  const maxHeight = postPage ? postPageMaxHeightFor(win.height, fullWidth) : maxMediaHeightFor(win.height);
+  return Math.min(fullWidth, Math.round(maxHeight * mediaAspect));
+};
 
 interface FeedVideoPlayerProps {
   thumbnail: string;
+  /** Post page: the clip fills the width or most of the screen height, at its
+   *  real shape even when thinner than 9:16, and sits centred. */
+  postPage?: boolean;
   videoUrl: string | undefined;
   /** Absent (older posts) or 'done' renders normally. 'pending'/'on' shows a
    *  processing spinner instead of attempting playback; 'failed' shows an
@@ -201,6 +214,7 @@ const LOVE_BLOOM = [
 
 const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   thumbnail,
+  postPage = false,
   videoUrl,
   transcodingStatus,
   isOwner,
@@ -462,8 +476,10 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   // Real shape of the clip, so a portrait video is shown portrait instead of
   // being cropped into a fixed 16:9 slot. Measured off the thumbnail, which is
   // extracted from the video itself; 16:9 until that resolves.
-  const mediaAspect = useMediaAspect(thumbnail, tokenId);
+  const mediaAspect = useMediaAspect(thumbnail, tokenId, postPage ? THIN_MIN_RATIO : undefined);
   const { isMinimal } = useAppTheme();
+  // Media that reaches the screen edges keeps its controls off them.
+  const edgeToEdge = isMinimal || postPage;
   const windowSize = useWindowDimensions();
 
   const hideControlsTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -1030,12 +1046,14 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
         {
           aspectRatio: mediaAspect,
           // Fills the card when the clip is wide enough; a portrait clip caps
-          // at the max media height and shrinks its own width, hugged to the left.
-          width: mediaBoxWidth(windowSize, isMinimal, mediaAspect),
+          // at the max media height and shrinks its own width, hugged to the
+          // left in the feed and centred on the post page.
+          width: mediaBoxWidth(windowSize, isMinimal, mediaAspect, postPage),
           maxWidth: "100%",
-          alignSelf: isMinimal ? "center" : "flex-start",
+          alignSelf: isMinimal || postPage ? "center" : "flex-start",
         },
-        isMinimal && MINIMAL_MEDIA,
+        (isMinimal || postPage) && MINIMAL_MEDIA,
+        postPage && POST_PAGE_MEDIA,
       ]}
     >
       {thumbnail ? (
@@ -1135,7 +1153,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
           accessibilityLabel={t("bounty.detailsLabel")}
           onPress={onBountyPress}
           activeOpacity={0.75}
-          style={[styles.bountyPill, isMinimal && { left: MINIMAL_EDGE }]}
+          style={[styles.bountyPill, edgeToEdge && { left: MINIMAL_EDGE }]}
         >
           <Image
             source={require("../../assets/web-icons/dehub-coin.png")}
@@ -1195,7 +1213,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
                 </View>
               </Pressable>
             )}
-            <View style={[styles.topControls, isMinimal && { paddingHorizontal: MINIMAL_EDGE }]}>
+            <View style={[styles.topControls, edgeToEdge && { paddingHorizontal: MINIMAL_EDGE }]}>
               <Pressable onPress={handleToggleSpeed} style={styles.glassButton}>
                 <View style={styles.glassOverlay} />
                 <Text style={{ color: "#fff", fontSize: 11, fontWeight: "bold" }}>{playbackRate}x</Text>
@@ -1233,7 +1251,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
               </Pressable>
             </View>
 
-            <View style={[styles.bottomControls, isMinimal && { paddingHorizontal: MINIMAL_EDGE }]}>
+            <View style={[styles.bottomControls, edgeToEdge && { paddingHorizontal: MINIMAL_EDGE }]}>
               <View style={styles.progressRow}>
                 <View style={styles.timePill}>
                   <Text style={styles.timeText}>{formatTime(currentTime)}</Text>
@@ -1370,13 +1388,13 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
       )}
 
       {!hideControls && !isContentGated && duration && !isPlaying && (
-        <View style={[styles.durationBadge, isMinimal && { right: MINIMAL_EDGE }]}>
+        <View style={[styles.durationBadge, edgeToEdge && { right: MINIMAL_EDGE }]}>
           <Text style={styles.durationText}>{duration}</Text>
         </View>
       )}
 
       {!hideControls && isContentGated && duration && (
-        <View style={[styles.durationBadge, isMinimal && { right: MINIMAL_EDGE }]}>
+        <View style={[styles.durationBadge, edgeToEdge && { right: MINIMAL_EDGE }]}>
           <Text style={styles.durationText}>{duration}</Text>
         </View>
       )}
@@ -1390,6 +1408,8 @@ const CONTROL_FILL = "#1D1F21";
 
 // Minimal theme: edge to edge, square, on the page's own black.
 const MINIMAL_MEDIA = { borderRadius: 0, backgroundColor: "#000" } as const;
+// Post page: the media is the top of the screen, so no gap above it.
+const POST_PAGE_MEDIA = { marginTop: 0 } as const;
 // Edge-to-edge media puts its controls on the screen edge, where Android's
 // back gesture lives. Web pushes them in the same way (index.css, minimal).
 const MINIMAL_EDGE = 16;
@@ -1688,10 +1708,11 @@ const FeedVideoPlayerActive = memo(FeedVideoPlayerComponent);
  * same box, the same thumbnail, the same duration badge, and no player at all.
  * The full component mounts the moment the row scrolls into view.
  */
-const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "tokenId" | "thumbnail" | "duration" | "hideControls" | "onPress">> = memo(
-  ({ tokenId, thumbnail, duration, hideControls, onPress }) => {
-    const mediaAspect = useMediaAspect(thumbnail, tokenId);
+const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "tokenId" | "thumbnail" | "duration" | "hideControls" | "onPress" | "postPage">> = memo(
+  ({ tokenId, thumbnail, duration, hideControls, onPress, postPage = false }) => {
+    const mediaAspect = useMediaAspect(thumbnail, tokenId, postPage ? THIN_MIN_RATIO : undefined);
     const { isMinimal } = useAppTheme();
+    const edgeToEdge = isMinimal || postPage;
     const windowSize = useWindowDimensions();
     const mediaTap = useTapOnlyPress(() => onPress());
     return (
@@ -1700,11 +1721,12 @@ const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "tokenId" | "thumbnai
           styles.container,
           {
             aspectRatio: mediaAspect,
-            width: mediaBoxWidth(windowSize, isMinimal, mediaAspect),
+            width: mediaBoxWidth(windowSize, isMinimal, mediaAspect, postPage),
             maxWidth: "100%",
-            alignSelf: isMinimal ? "center" : "flex-start",
+            alignSelf: isMinimal || postPage ? "center" : "flex-start",
           },
-          isMinimal && MINIMAL_MEDIA,
+          (isMinimal || postPage) && MINIMAL_MEDIA,
+          postPage && POST_PAGE_MEDIA,
         ]}
       >
         {thumbnail ? (
@@ -1731,7 +1753,7 @@ const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "tokenId" | "thumbnai
           </Pressable>
         )}
         {!hideControls && duration ? (
-          <View style={[styles.durationBadge, isMinimal && { right: MINIMAL_EDGE }]}>
+          <View style={[styles.durationBadge, edgeToEdge && { right: MINIMAL_EDGE }]}>
             <Text style={styles.durationText}>{duration}</Text>
           </View>
         ) : null}
@@ -1807,6 +1829,7 @@ const FeedVideoPlayer: React.FC<FeedVideoPlayerProps> = (props) => {
       thumbnail={props.thumbnail}
       duration={props.duration}
       hideControls={props.hideControls}
+      postPage={props.postPage}
       onPress={onPosterPress}
     />
   );
