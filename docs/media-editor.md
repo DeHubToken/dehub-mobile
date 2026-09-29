@@ -12,7 +12,8 @@ Entry: Creator screen → Editor (`ScreenNames.MediaEditor`, optional
 | --- | --- | --- |
 | Project format | `libs/editor/types.ts` | `src/lib/editor/types.ts` (identical copy) |
 | Edits (add, layer order, placement) | `libs/editor/project.ts` | `src/store/editorStore.ts` |
-| Drawing | `libs/editor/canvasHtml.ts` | `src/lib/editor/render.ts` + `animationPresets.ts` (line-for-line port) |
+| Drawing | `libs/editor/canvasHtml.ts` | `src/lib/editor/render.ts` + `animationPresets.ts` + `keyframes.ts` (line-for-line port) |
+| Keyframes | `libs/editor/keyframes.ts` | `src/lib/editor/keyframes.ts` (identical copy) |
 | Filters, fonts | `libs/editor/filterPresets.ts`, `fonts.ts` | `filterPresets.ts`, `googleFonts.ts` |
 | Storage | `libs/editor/storage.ts` (files under `documentDirectory/editor/`) | IndexedDB |
 | Canvas + gestures | `components/editor/EditorCanvas.tsx` | `components/editor/Preview/Compositor.tsx` |
@@ -43,6 +44,14 @@ within 7/255.
   reusing a free track only when nothing sits above it.
 - Text keeps its anchor in `x`/`y` and its size in `fontSize`; media keeps
   placement in `transform`. `placementPatch` does the split, as on the web.
+- Keyframes (`clip.keyframes`) animate x, y, scale, rotation and opacity; key
+  times are seconds from the clip's start and each key's `ease` shapes the run
+  to the next. `libs/editor/keyframes.ts` is a copy of the web's, and
+  `canvasHtml.ts` carries its own port of the easing and `resolveClipAt`, which
+  bakes a keyed clip into a plain one before drawing and before reporting its
+  box. Edits to placement go through `placementPatchAt` at the playhead, so a
+  keyed property gets a key there instead of a static value. Trimming the head
+  and splitting shift keys so the motion stays put in time.
 - New layers start at 0 and last `max(5s, timeline end)`, so a layer added to a
   web project with a timeline shows for the whole of it.
 - The still editor shows and exports the frame at `STILL_TIME` (1s), after the
@@ -90,6 +99,11 @@ within 7/255.
    written with the expo-file-system File handle. An export with no progress
    for 45 s is abandoned (the page pauses encoders when the app is in the
    background).
+   **Keyframes:** the Motion tool (`components/editor/MotionPanel.tsx`, the
+   web's MotionSection) has a stopwatch per property, previous/next key,
+   add/remove key, a bezier curve editor and 15 ease presets. The timeline
+   shows keys as diamonds on each block: tap to jump, drag to move, double-tap
+   to delete. The AI's `keyframes` op works the same as on the web.
 4. **Next:** captions and the AI's timing and audio ops on the phone, pages,
    multi-select.
 

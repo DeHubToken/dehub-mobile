@@ -15,7 +15,8 @@ import { useTranslation } from "react-i18next";
 import Icon, { type IconName } from "../ui/Icon";
 import { FILTER_PRESETS, matchPreset } from "../../libs/editor/filterPresets";
 import { EDITOR_FONTS, fontFamilyCss, nearestWeight, primaryFamily } from "../../libs/editor/fonts";
-import { getTransform, placementPatch, type Arrange, type ClipPatch } from "../../libs/editor/project";
+import { getTransform, placementPatch, placementPatchAt, type Arrange, type ClipPatch } from "../../libs/editor/project";
+import { resolveClipAt } from "../../libs/editor/keyframes";
 import type {
   AspectPreset,
   ClipShadow,
@@ -272,9 +273,11 @@ export function FitPanel({ clip, commit }: PanelProps<MediaClip>) {
 
 // ── any layer ──
 
-export function OpacityPanel({ clip, live, settle }: PanelProps<LayerClip>) {
+// Keyed layers show and edit their values at the playhead (`time`, timeline seconds).
+
+export function OpacityPanel({ clip, live, settle, time }: PanelProps<LayerClip> & { time: number }) {
   const { t } = useTranslation();
-  const tr = getTransform(clip);
+  const tr = getTransform(resolveClipAt(clip, time));
   const opacity = tr.opacity ?? 1;
   return (
     <Range
@@ -283,22 +286,31 @@ export function OpacityPanel({ clip, live, settle }: PanelProps<LayerClip>) {
       min={0}
       max={1}
       step={0.01}
-      onLive={(v) => live(placementPatch(clip, { opacity: v }))}
+      onLive={(v) => live(placementPatchAt(clip, { opacity: v }, time))}
       onDone={settle}
     />
   );
 }
 
-export function PositionPanel({ clip, live, commit, settle }: PanelProps<LayerClip>) {
+export function PositionPanel({ clip, live, commit, settle, time }: PanelProps<LayerClip> & { time: number }) {
   const { t } = useTranslation();
-  const tr = getTransform(clip);
+  const tr = getTransform(resolveClipAt(clip, time));
+  // Reset puts the layer back for good: the motion it resets goes too.
+  const reset = () => {
+    const { x: _x, y: _y, scale: _s, rotation: _r, ...keep } = clip.keyframes ?? {};
+    void _x; void _y; void _s; void _r;
+    commit({
+      ...placementPatch(clip, { x: 0.5, y: 0.5, scale: 1, rotation: 0 }),
+      keyframes: Object.keys(keep).length ? keep : undefined,
+    });
+  };
   return (
     <View>
       <ChipRow>
         <Chip icon="FlipHorizontal2" label={t("editor.menu.flipH")} active={!!tr.flipH} onPress={() => commit(placementPatch(clip, { flipH: !tr.flipH }))} />
         <Chip icon="FlipVertical2" label={t("editor.menu.flipV")} active={!!tr.flipV} onPress={() => commit(placementPatch(clip, { flipV: !tr.flipV }))} />
-        <Chip icon="Crosshair" label={t("editor.menu.centre")} onPress={() => commit(placementPatch(clip, { x: 0.5, y: 0.5 }))} />
-        <Chip icon="RotateCcw" label={t("editor.layer.resetPosition")} onPress={() => commit(placementPatch(clip, { x: 0.5, y: 0.5, scale: 1, rotation: 0 }))} />
+        <Chip icon="Crosshair" label={t("editor.menu.centre")} onPress={() => commit(placementPatchAt(clip, { x: 0.5, y: 0.5 }, time))} />
+        <Chip icon="RotateCcw" label={t("editor.layer.resetPosition")} onPress={reset} />
       </ChipRow>
       <View className="mt-2">
         <Range
@@ -307,7 +319,7 @@ export function PositionPanel({ clip, live, commit, settle }: PanelProps<LayerCl
           min={-180}
           max={180}
           step={1}
-          onLive={(v) => live(placementPatch(clip, { rotation: v }))}
+          onLive={(v) => live(placementPatchAt(clip, { rotation: v }, time))}
           onDone={settle}
         />
       </View>

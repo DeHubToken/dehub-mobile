@@ -7,6 +7,7 @@
  */
 import type { Clip, MediaClip, ProjectSnapshot, Track, TrackKind, Transition, TransitionKind } from "./types";
 import { newId, timelineEnd } from "./project";
+import { shiftKeys } from "./keyframes";
 
 /** Shortest a clip can be trimmed to, in seconds (web MIN_CLIP is 0.05; a finger needs more). */
 export const MIN_CLIP = 0.2;
@@ -183,7 +184,8 @@ export function trimClip(p: ProjectSnapshot, id: string, edge: "in" | "out", del
     }
     duration = Math.max(MIN_CLIP, newDur);
   }
-  const next = { ...clip, start, duration, trimIn } as Clip;
+  // Keys are clip-relative; trimming the head must not slide the motion along.
+  const next = { ...clip, start, duration, trimIn, keyframes: shiftKeys(clip.keyframes, clip.start - start) } as Clip;
   return { ...p, clips: p.clips.map((c) => (c.id === id ? next : c)) };
 }
 
@@ -232,6 +234,7 @@ export function splitClip(p: ProjectSnapshot, id: string, t: number): { project:
     duration: c.duration - local,
     trimIn: c.kind === "video" || c.kind === "audio" ? c.trimIn + local * speedOf(c) : c.trimIn,
     animateIn: undefined,
+    keyframes: shiftKeys(c.keyframes, -local),
   } as Clip;
   if (c.animateOut) (left as Clip).animateOut = undefined;
   const clips: Clip[] = [];

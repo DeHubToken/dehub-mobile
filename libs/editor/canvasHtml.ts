@@ -98,6 +98,103 @@ canvas{display:block;width:100%;height:100%;}
     return s;
   }
 
+  // ── keyframes.ts (easing and resolveClipAt; the editing helpers live in libs/editor/keyframes.ts) ──
+  var KEYFRAME_PROPS = ["x", "y", "scale", "rotation", "opacity"];
+  var BEZIERS = {
+    ease: [0.25, 0.1, 0.25, 1],
+    easeIn: [0.42, 0, 1, 1],
+    easeOut: [0, 0, 0.58, 1],
+    easeInOut: [0.42, 0, 0.58, 1],
+    easeInCubic: [0.32, 0, 0.67, 0],
+    easeOutCubic: [0.33, 1, 0.68, 1],
+    easeInOutCubic: [0.65, 0, 0.35, 1],
+    easeInExpo: [0.7, 0, 0.84, 0],
+    easeOutExpo: [0.16, 1, 0.3, 1],
+    easeInOutExpo: [0.87, 0, 0.13, 1],
+    easeInBack: [0.36, 0, 0.66, -0.56],
+    easeOutBack: [0.34, 1.56, 0.64, 1],
+    easeInOutBack: [0.68, -0.6, 0.32, 1.6],
+  };
+  function bezierOf(ease) {
+    var e = ease == null ? "ease" : ease;
+    if (Array.isArray(e)) return e;
+    if (e === "linear" || e === "hold") return null;
+    return BEZIERS[e] || BEZIERS.ease;
+  }
+  function cubicBezier(x1, y1, x2, y2, p) {
+    if (p <= 0) return 0;
+    if (p >= 1) return 1;
+    var cx = 3 * x1, bx = 3 * (x2 - x1) - cx, ax = 1 - cx - bx;
+    var cy = 3 * y1, by = 3 * (y2 - y1) - cy, ay = 1 - cy - by;
+    function sx(u) { return ((ax * u + bx) * u + cx) * u; }
+    function sy(u) { return ((ay * u + by) * u + cy) * u; }
+    function dx(u) { return (3 * ax * u + 2 * bx) * u + cx; }
+    // Newton first; it converges in a few steps for every sane curve.
+    var u = p;
+    var i;
+    for (i = 0; i < 8; i++) {
+      var err = sx(u) - p;
+      if (Math.abs(err) < 1e-6) return sy(u);
+      var d = dx(u);
+      if (Math.abs(d) < 1e-6) break;
+      u -= err / d;
+    }
+    // Bisection for the flat spots Newton cannot handle.
+    var lo = 0, hi = 1;
+    u = p;
+    for (i = 0; i < 30; i++) {
+      var x = sx(u);
+      if (Math.abs(x - p) < 1e-6) break;
+      if (x < p) lo = u; else hi = u;
+      u = (lo + hi) / 2;
+    }
+    return sy(u);
+  }
+  function applyEase(ease, p) {
+    if (ease === "hold") return 0;
+    var b = bezierOf(ease);
+    return b ? cubicBezier(b[0], b[1], b[2], b[3], p) : p;
+  }
+  function keysOf(clip, prop) { return (clip.keyframes && clip.keyframes[prop]) || []; }
+  function isAnimated(clip) {
+    var k = clip.keyframes;
+    if (!k) return false;
+    return KEYFRAME_PROPS.some(function (p) { return !!(k[p] && k[p].length); });
+  }
+  function valueAt(keys, t) {
+    if (keys.length === 1 || t <= keys[0].t) return keys[0].v;
+    var last = keys[keys.length - 1];
+    if (t >= last.t) return last.v;
+    for (var i = 0; i < keys.length - 1; i++) {
+      var a = keys[i];
+      var b = keys[i + 1];
+      if (t < b.t) {
+        var span = b.t - a.t;
+        if (span <= 0) return b.v;
+        return a.v + (b.v - a.v) * applyEase(a.ease, (t - a.t) / span);
+      }
+    }
+    return last.v;
+  }
+  // The clip as it stands at timeline time t, keyed values baked into its
+  // transform (and text anchor). Unanimated clips come back untouched.
+  function resolveClipAt(clip, t) {
+    if (!isAnimated(clip)) return clip;
+    var local = t - clip.start;
+    var tr = assign(DEFAULT_TRANSFORM, clip.transform || {});
+    var out = assign(clip, {});
+    KEYFRAME_PROPS.forEach(function (p) {
+      if (p === "scale" && clip.kind === "text") return;
+      var keys = keysOf(clip, p);
+      if (!keys.length) return;
+      var v = valueAt(keys, local);
+      tr[p] = v;
+      if (clip.kind === "text" && (p === "x" || p === "y")) out[p] = v;
+    });
+    out.transform = tr;
+    return out;
+  }
+
   // ── render.ts ──
   var DEFAULT_TRANSFORM = { x: 0.5, y: 0.5, scale: 1, rotation: 0 };
 
@@ -207,8 +304,10 @@ canvas{display:block;width:100%;height:100%;}
     c.closePath();
   }
 
-  function drawClip(c, W, H, clip, t) {
-    if (!isVisualClip(clip) || clip.hidden) return;
+  function drawClip(c, W, H, keyed, t) {
+    if (!isVisualClip(keyed) || keyed.hidden) return;
+    // Keyframed placement is baked in first; everything below sees a plain clip.
+    var clip = resolveClipAt(keyed, t);
     var box = clipBox(c, clip, W, H);
     if (!box) return;
     var tr = getTransform(clip);
@@ -1024,7 +1123,8 @@ canvas{display:block;width:100%;height:100%;}
       var layers = [];
       var missing = [];
       ops.forEach(function (op) {
-        var box = clipBox(ctx, op.clip, W, H);
+        // Boxes follow keyed motion, so selection and hit testing track the pixels.
+        var box = clipBox(ctx, resolveClipAt(op.clip, t), W, H);
         if (box) layers.push({ id: op.clip.id, cx: box.cx + (op.translateX || 0), cy: box.cy, w: box.w, h: box.h, rotation: box.rotation });
         else if (op.clip.mediaId && !images.has(op.clip.mediaId) && !videos.has(op.clip.mediaId)) missing.push(op.clip.mediaId);
       });
