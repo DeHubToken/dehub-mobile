@@ -14,6 +14,8 @@ import { getThemeSkin, type ThemeSkin } from '../theme/skins';
 const { setThemePass } = require('../libs/jsx/shape') as {
   setThemePass: (square: boolean, page: string | null, classes?: boolean) => void;
 };
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { setControlMaterial } = require('../libs/jsx/controls');
 
 type AppThemeContextValue = {
   theme: AppThemeName;
@@ -122,6 +124,12 @@ export const AppThemeProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   const theme = prefs.theme;
   const colors = getThemeColors(theme);
   const skin = getThemeSkin(theme);
+
+  const controlMaterial = useMemo(() => skin ? {
+    surface: skin.centre,
+    foreground: skin.centreIcon,
+  } : null, [skin]);
+  setControlMaterial(controlMaterial);
 
   setActiveTheme(theme);
   // Inline StyleSheet radii and near-black page fills (see libs/jsx/shape.js).

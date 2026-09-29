@@ -6,10 +6,11 @@
  */
 const base = require("nativewind/jsx-runtime");
 const { squareProps, routeProps } = require("./shape");
+const { controlProps } = require("./controls");
 
 function wrap(fn) {
   return function (type, props, ...rest) {
-    return fn(type, routeProps(squareProps(props)), ...rest);
+    return fn(type, routeProps(squareProps(controlProps(props))), ...rest);
   };
 }
 

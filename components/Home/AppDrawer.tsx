@@ -36,6 +36,7 @@ import { toastError, toastInfo } from "../../libs";
 import { openInApp } from "../../libs/links.utils";
 import { useTranslation } from "react-i18next";
 import { useAppTheme } from "../../context/ThemeContext";
+import { themeIconUrl } from "../../theme/icons";
 
 // The menu is a bottom sheet: grab handle, who is signed in, the search field,
 // then a four-column grid of the same glossy 3D icons the web menu uses. It
@@ -61,21 +62,6 @@ const ICON_SIZE = 44;
 // Per-theme 3D artwork is served by the website (public/theme-icons/<theme>/),
 // the same files the web menu draws, so both stay on one set. expo-image keeps
 // them in its disk cache after the first open.
-const RASTER_THEMES = new Set([
-  "system", "minimal", "light", "cosmic", "hazy", "swarms", "lavalamp", "winter", "osaka", "jungle",
-]);
-// Bump alongside web's ThemedIcon when a file is redrawn in place, or the disk
-// cache keeps serving the old art forever.
-const ICON_REVISIONS: Record<string, string> = {
-  dao: "?v=4",
-  accounts: "?v=5", tv: "?v=5", usernames: "?v=5", email: "?v=5",
-  staking: "?v=5", buy: "?v=5", bridge: "?v=5", fractions: "?v=4",
-  // Crop leftovers stripped from these in place.
-  audio: "?v=2", careers: "?v=2", communities: "?v=2", governance: "?v=2", home: "?v=2", live: "?v=2",
-  notifications: "?v=2", posts: "?v=2", stages: "?v=2", subscriptions: "?v=2", trophy: "?v=2",
-};
-const themeIconUrl = (theme: string, key: string) =>
-  `${WEBSITE_LINK}/theme-icons/${RASTER_THEMES.has(theme) ? theme : "system"}/${key}.webp${ICON_REVISIONS[key] ?? ""}`;
 
 interface DrawerItem {
   icon: IconName;
@@ -191,6 +177,7 @@ interface TileProps {
   label: string;
   icon: IconName;
   iconUrl?: string;
+  iconColor?: string;
   width: number;
   active?: boolean;
   disabled?: boolean;
@@ -202,10 +189,10 @@ interface TileProps {
   onPress: () => void;
 }
 
-const Tile = memo<TileProps>(({ label, icon, iconUrl, width, active, disabled, soonLabel, skin, hud, square, onPress }) => {
-  const glyphColor = hud
+const Tile = memo<TileProps>(({ label, icon, iconUrl, iconColor, width, active, disabled, soonLabel, skin, hud, square, onPress }) => {
+  const glyphColor = iconColor ?? (hud
     ? skin?.glow ?? "#22D3EE"
-    : active ? skin?.tabIconActive ?? "#FFFFFF" : skin?.tabIcon ?? "rgba(255,255,255,0.9)";
+    : active ? skin?.tabIconActive ?? "#FFFFFF" : skin?.tabIcon ?? "rgba(255,255,255,0.9)");
   // Offline or a failed download would otherwise leave an empty tile.
   const [artFailed, setArtFailed] = useState(false);
   useEffect(() => setArtFailed(false), [iconUrl]);
@@ -465,6 +452,7 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
         label={t(item.labelKey)}
         icon={item.icon}
         iconUrl={key ? themeIconUrl(themeName, key) : undefined}
+        iconColor={['hacker', 'island', 'horror'].includes(themeName) ? appTheme.colors.accent : undefined}
         width={tileWidth}
         active={!!item.screen && item.screen === activeRouteName && !item.params}
         disabled={item.disabled}
