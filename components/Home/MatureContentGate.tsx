@@ -5,30 +5,38 @@
  * The public feeds never carry mature posts unless the viewer opted in
  * server-side, so this covers the surfaces where one is served on purpose — a
  * creator's profile, the Following feed, a link somebody opened. Tapping
- * through is per-card and per-mount: it is a warning, not a lock.
+ * through is per post: it is a warning, not a lock.
  *
  * Unlike web this shows no preview of the media at all rather than a blurred
  * one. A blurred thumbnail is still often recognisable, and a BlurView over a
  * remote image costs a frame on Android for something nobody is meant to see.
  */
-import React, { useCallback, useState } from 'react';
+import React, { useCallback } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import Icon from '../ui/Icon';
 import { useMatureContent } from '../../hooks/useMatureContent';
 import { MATURE_CONTENT_ENABLED } from '../../config/storefront';
+import { useRecyclingState } from '../../hooks/useCellState';
 
 /**
  * Whether this post needs a warning, and the one-way switch that removes it.
  *
  * Safe to call on every card — the setting comes from the auth context that is
  * already mounted, so this costs one boolean read per post.
+ *
+ * `resetKey` names the post, for a list that reuses one card for another: the
+ * reveal goes back to hidden when it changes, so tapping through one mature
+ * post never uncovers the next.
  */
-export function useMatureGate(contentRating?: string) {
+export function useMatureGate(contentRating?: string, resetKey?: string) {
   const { showMatureContent } = useMatureContent();
-  const [revealed, setRevealed] = useState(false);
+  // Reset in the same render as the post changes. The reveal swaps the gate
+  // for the full post, which changes the row's height, so the list relayout
+  // its setter asks for is wanted here.
+  const [revealed, setRevealed] = useRecyclingState(false, [resetKey]);
 
-  const reveal = useCallback(() => setRevealed(true), []);
+  const reveal = useCallback(() => setRevealed(true), [setRevealed]);
 
   // The App Store build has no way through: the API withholds mature posts
   // from it, and should one arrive anyway (a stale cache, an older server)

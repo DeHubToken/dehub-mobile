@@ -3,11 +3,13 @@ import { Pressable, Text, View, type GestureResponderEvent, type StyleProp, type
 import { TAP_GESTURE_WINDOW_MS, TAP_REACTION_RESOLUTION_MS } from "../../libs/tap-gesture";
 
 /** Keep image navigation pending until a second tap can claim the gesture. */
-function PostTapSurface({ children, onPress, onReaction, style }: {
+function PostTapSurface({ children, onPress, onReaction, style, resetKey }: {
   children: React.ReactNode;
   onPress?: () => void;
   onReaction: (reaction: "like" | "love") => void;
   style?: StyleProp<ViewStyle>;
+  /** Which post this is, for a list that reuses one card for another. */
+  resetKey?: string;
 }) {
   const count = useRef(0);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -22,10 +24,14 @@ function PostTapSurface({ children, onPress, onReaction, style }: {
     timer.current = null;
     count.current = 0;
   };
+  // A tap still pending when the card is handed another post (or unmounts)
+  // is dropped, along with its emoji: the timer would otherwise open or react
+  // to whichever post the callbacks point at by then.
   useEffect(() => () => {
     reset();
     if (feedbackTimer.current) clearTimeout(feedbackTimer.current);
-  }, []);
+    setFeedback(null);
+  }, [resetKey]);
   const showFeedback = (reaction: "like" | "love") => {
     setFeedback(reaction);
     if (feedbackTimer.current) clearTimeout(feedbackTimer.current);

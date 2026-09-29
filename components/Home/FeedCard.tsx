@@ -72,6 +72,7 @@ import { parseSoundtrack } from "../../libs/parseSoundtrack";
 import { useTranslation } from "../../hooks/useTranslation";
 import { useTranslation as useCopy } from "react-i18next";
 import { useImageTranslation } from "../../hooks/useImageTranslation";
+import { useKeyedState } from "../../hooks/useItemState";
 import { speechAvailable } from "../../hooks/useVoiceDub";
 import { resolveViewCount } from "../../libs/numbers.util";
 import { seedViewerStats } from "../../libs/viewers.util";
@@ -100,7 +101,7 @@ import {
   isFailedResponse,
   useEngagement,
 } from "../../libs/engagementCache";
-import { isTokenUnlocked, markTokenUnlocked } from "../../libs/unlocked-tokens";
+import { markTokenUnlocked, useTokenUnlocked } from "../../libs/unlocked-tokens";
 import { secondsToHMMSS } from "../../libs/date.util";
 import { useStreamAccessInfo } from "../../libs/validators.util";
 import { voteOnNFT, reactToNFT, getPpvSalesCount, getNFT } from "../../services/nft.service";
@@ -145,7 +146,30 @@ const DEFAULT_LIST_GUTTER = 8;
 
 type PostContentType = "image" | "video" | "audio" | "live" | "short";
 
-function resolveContentType(item: UnifiedFeedItem): PostContentType {
+// What the owner changed from the options menu, laid over the post's own data
+// until the feed refetches. Held against the post it was made on (see
+// useKeyedState), so a card handed another post shows that post's fields.
+type PostEdits = {
+  name?: string;
+  description?: string;
+  articleBody?: string;
+  category?: string[];
+  commentsDisabled?: boolean;
+  contentRating?: string;
+  forKids?: boolean;
+  shopLinks?: ShopLink[];
+  shopListingCount?: number;
+  hidden?: boolean;
+};
+const NO_EDITS: PostEdits = {};
+// One shared empty list, so a post with no categories keeps FeedCaption's memo.
+const NO_CATEGORIES: string[] = [];
+// Votes in flight, per post. Shared by every mounted card for that post, so
+// the lists HomeScreen keeps over the same posts cannot send two at once, and
+// a vote still out on one post never blocks a tap on the next.
+const votesInFlight = new Set<string>();
+
+export function resolveContentType(item: UnifiedFeedItem): PostContentType {
   if (item.postType === "live") return "live";
   if (item.postType === "short") return "short";
   if (item.postType === "feed-audio" && !!item.audioUrl) return "audio";
@@ -234,6 +258,10 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const stream = (item as any).stream;
   const streamInfo = (item as any).streamInfo || stream?.streamInfo;
   const tokenId = item.tokenId ?? (item as any).id ?? stream?.tokenId;
+  // Which post this card is showing. Everything the card remembers about a
+  // post (open sheets, edits, a deletion) is held against this, so none of it
+  // can follow the card onto a different post.
+  const postKey = tokenId != null ? String(tokenId) : String((item as any).__listKey ?? (item as any)._id ?? "");
   const chainId = (item as any).chainId || 8453;
 
   const minterUser = item.minterUser;
@@ -247,6 +275,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     t("settings.unknown");
   const username = minterUser?.username || item.minterUsername || item.minter || "";
   const minterAddress = minterUser?.address || item.minter || item.owner || "";
+  // Following belongs to the creator, not the post, so a follow made from
+  // this card is held against the creator's address.
+  const followKey = minterAddress ? minterAddress.toLowerCase() : postKey;
   // URL building and the "untitled" check are per-item, not per-render; a card
   // re-renders many times over its life (engagement ticks, visibility).
   const avatarSource = minterUser?.avatarImageUrl || item.minterAvatarUrl || "";
@@ -435,11 +466,13 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     : streamInfo?.payPerViewChainIds;
 
   // PPV sales count — fetch once for owner's own PPV posts
-  const [ppvSalesCount, setPpvSalesCount] = useState<number | null>(null);
+  const [ppvSalesCount, setPpvSalesCount] = useKeyedState<number | null>(postKey, null);
   useEffect(() => {
     if (!isOwnerPost || !isPayPerView || !tokenId) return;
-    getPpvSalesCount(tokenId).then(r => setPpvSalesCount(r.salesCount)).catch(() => {});
-  }, [isOwnerPost, isPayPerView, tokenId]);
+    let cancelled = false;
+    getPpvSalesCount(tokenId).then(r => { if (!cancelled) setPpvSalesCount(r.salesCount); }).catch(() => {});
+    return () => { cancelled = true; };
+  }, [isOwnerPost, isPayPerView, tokenId, setPpvSalesCount]);
   const isLocked = isHoldGated(streamInfo?.isLockContent, streamInfo?.lockAmount ?? streamInfo?.lockContentAmount);
   const lockContentAmount = streamInfo?.lockAmount || streamInfo?.lockContentAmount || 0;
   const lockContentTokenSymbol = streamInfo?.lockContentTokenSymbol || "DHB";
@@ -470,7 +503,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const { emitAuthed: emitLiveReaction, isCoreConnected: isReactionSocketConnected } = useWebSocketApi();
   // The viewer's own floating reaction, played on tap rather than waiting on
   // the room echo — see LiveFeedReactionFlow's `self`.
-  const [selfLiveReaction, setSelfLiveReaction] = useState<SelfReaction | null>(null);
+  const [selfLiveReaction, setSelfLiveReaction] = useKeyedState<SelfReaction | null>(postKey, null);
   const selfLiveReactionNonce = useRef(0);
 
   // HLS ladder for the in-card preview. Derived from the playbackId the same
@@ -537,56 +570,63 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const linkCopyFloor = useLinkCopyFloor(tokenId);
   const shareCount = repostCount + Math.max(linkCopyCount, linkCopyFloor);
   const trackLinkCopy = useTrackPostLinkCopy();
-  const [showShareSheet, setShowShareSheet] = useState(false);
-  const [showComments, setShowComments] = useState(false);
-  const [showReactionInfo, setShowReactionInfo] = useState(false);
-  const [showOptionsMenu, setShowOptionsMenu] = useState(false);
-  const [showTipModal, setShowTipModal] = useState(false);
-  const [showPPVModal, setShowPPVModal] = useState(false);
-  const [showBountyModal, setShowBountyModal] = useState(false);
-  const [showAISheet, setShowAISheet] = useState(false);
-  const [showAddToFolder, setShowAddToFolder] = useState(false);
-  const [showShareToDm, setShowShareToDm] = useState(false);
-  const [showBoost, setShowBoost] = useState(false);
-  const [activeCashtag, setActiveCashtag] = useState<string | null>(null);
-  // Seeded from the session store so a card recycled out of the FlatList
-  // window does not re-lock a post the viewer just paid for.
-  const [ppvUnlocked, setPpvUnlocked] = useState(() => isTokenUnlocked(tokenId));
+  // Which sheet is open, held against the post it was opened for. Several of
+  // these open late (after a save resolves, after sign-in), and a card handed
+  // another post in the meantime must not open them there.
+  const [showShareSheet, setShowShareSheet] = useKeyedState(postKey, false);
+  const [showComments, setShowComments] = useKeyedState(postKey, false);
+  const [showReactionInfo, setShowReactionInfo] = useKeyedState(postKey, false);
+  const [showOptionsMenu, setShowOptionsMenu] = useKeyedState(postKey, false);
+  const [showTipModal, setShowTipModal] = useKeyedState(postKey, false);
+  const [showPPVModal, setShowPPVModal] = useKeyedState(postKey, false);
+  const [showBountyModal, setShowBountyModal] = useKeyedState(postKey, false);
+  const [showAISheet, setShowAISheet] = useKeyedState(postKey, false);
+  const [showAddToFolder, setShowAddToFolder] = useKeyedState(postKey, false);
+  const [showShareToDm, setShowShareToDm] = useKeyedState(postKey, false);
+  const [showBoost, setShowBoost] = useKeyedState(postKey, false);
+  const [activeCashtag, setActiveCashtag] = useKeyedState<string | null>(postKey, null);
+  // Read from the session store, never kept here: a card recycled out of the
+  // FlatList window does not re-lock a post the viewer just paid for, and a
+  // card handed another post never carries this one's unlock onto it.
+  const ppvUnlocked = useTokenUnlocked(tokenId);
   // Local unlock overrides server PPV state after successful payment
   const isActuallyLockedPPV = isServerLockedPPV && !ppvUnlocked;
   const isActuallyComboLocked = isActuallyLockedPPV && isActuallyLockedHoldings;
   const isActuallyGated = isActuallyLockedPPV || isActuallyLockedHoldings || isActuallySubGated;
-  // Held locally like the title and categories, so re-rating a post from its
-  // own options menu takes effect without waiting for the feed to refetch.
-  const [localContentRating, setLocalContentRating] = useState<string | undefined>(
-    (item as any).contentRating,
-  );
-  // Same pattern again for the Kids Mode marking, so taking it off from the
-  // options menu re-opens the comment box on this card without a refetch.
-  const [localForKids, setLocalForKids] = useState<boolean>(!!(item as any).forKids);
-  // Same pattern for the Shop board, so adding or clearing links from the
-  // options menu shows on this card immediately.
-  const [localShopLinks, setLocalShopLinks] = useState<ShopLink[] | undefined>(undefined);
-  const [localShopListingCount, setLocalShopListingCount] = useState<number | undefined>(undefined);
+  // The owner's edits from the options menu, laid over the post's own fields
+  // so a change shows on this card without waiting for the feed to refetch.
+  // Only the fields actually edited are held; everything else keeps reading
+  // the post, so a refetch still lands.
+  const [edits, setEdits] = useKeyedState<PostEdits>(postKey, NO_EDITS);
+  // Re-rating a post from its own options menu takes effect at once.
+  const localContentRating: string | undefined = edits.contentRating ?? (item as any).contentRating;
+  // Same for the Kids Mode marking, so taking it off re-opens the comment box
+  // on this card without a refetch.
+  const localForKids = edits.forKids ?? !!(item as any).forKids;
+  // Same for the Shop board, so adding or clearing links shows on this card
+  // immediately.
+  const localShopLinks = edits.shopLinks;
+  const localShopListingCount = edits.shopListingCount;
   // Independent of the monetisation gates above: a post can be both mature and
   // pay-per-view, and the creator's own post is warned about too — the warning
   // is for whoever is holding the phone.
-  const matureGate = useMatureGate(localContentRating);
-  const [isHidden, setIsHidden] = useState(!!((item as any).isHidden));
-  const [isFollowingCreator, setIsFollowingCreator] = useState(!!((item as any).isFollowing));
-  const [isFollowReqPending, setIsFollowReqPending] = useState(!!((item as any).isFollowRequestPending));
-  const [localTitle, setLocalTitle] = useState(title);
-  const [localDescription, setLocalDescription] = useState(description);
-  const [localArticleBody, setLocalArticleBody] = useState(item.articleBody);
-  const [localCommentsDisabled, setLocalCommentsDisabled] = useState<boolean>(!!(item as any).commentsDisabled);
-  const [localCategories, setLocalCategories] = useState<string[]>(item.category || []);
+  const matureGate = useMatureGate(localContentRating, postKey);
+  const isHidden = edits.hidden ?? !!(item as any).isHidden;
+  const [follow, setFollow] = useKeyedState<{ following: boolean; pending: boolean } | null>(followKey, null);
+  const isFollowingCreator = follow ? follow.following : !!(item as any).isFollowing;
+  const isFollowReqPending = follow ? follow.pending : !!(item as any).isFollowRequestPending;
+  const localTitle = edits.name ?? title;
+  const localDescription = edits.description ?? description;
+  const localArticleBody = edits.articleBody ?? item.articleBody;
+  const localCommentsDisabled = edits.commentsDisabled ?? !!(item as any).commentsDisabled;
+  const localCategories = edits.category ?? item.category ?? NO_CATEGORIES;
 
   const translationTexts = useMemo(() => ({
     title: localTitle || '',
     description: localDescription || '',
   }), [localTitle, localDescription]);
   const { isTranslated, translatedTexts, isLoading: translating, handleTranslate, handleShowOriginal, shouldShow: showTranslate, sourceLang: translationSourceLang } =
-    useTranslation(translationTexts, item.detectedLanguage, true, true);
+    useTranslation(translationTexts, item.detectedLanguage, true, true, postKey);
   // DeHub links in the caption become entity cards, and the URLs that became
   // cards come out of the text — the same contract the DM, comment and
   // community-chat surfaces already follow, and the same one web's PostCard
@@ -619,8 +659,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
 
   const { isLoading: imgTranslating, error: imgTranslateError, result: imgTranslateResult, translateImage, clearResult: clearImgResult } =
     useImageTranslation();
-  const [showImgTranslationSheet, setShowImgTranslationSheet] = useState(false);
-  const [isDeleted, setIsDeleted] = useState(false);
+  const [showImgTranslationSheet, setShowImgTranslationSheet] = useKeyedState(postKey, false);
+  const [isDeleted, setIsDeleted] = useKeyedState(postKey, false);
 
   // --- Handlers ---
   const handleUserPress = useCallback(() => {
@@ -639,8 +679,11 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
 
   // Stable handlers so the memo'd header, caption and action bar keep their
   // bail-outs; an inline arrow here re-rendered all three on every card render.
-  const handleBoostPress = useCallback(() => setShowBoost(true), []);
-  const handleShowReactionInfo = useCallback(() => setShowReactionInfo(true), []);
+  // The keyed setters change with the post, so every handler that calls one
+  // lists it; a stale one would write under the previous post's key and the
+  // sheet would never open on this one.
+  const handleBoostPress = useCallback(() => setShowBoost(true), [setShowBoost]);
+  const handleShowReactionInfo = useCallback(() => setShowReactionInfo(true), [setShowReactionInfo]);
   // Relative time moves by the minute at most; recomputing it on every render
   // parsed the date each time.
   const timeAgo = useMemo(() => formatShortTimeAgo(createdAt), [createdAt]);
@@ -693,7 +736,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     if (!imageUrl) return;
     setShowImgTranslationSheet(true);
     translateImage(imageUrl);
-  }, [galleryImages, translateImage]);
+  }, [galleryImages, translateImage, setShowImgTranslationSheet]);
 
   /**
    * Cast, switch or toggle off a reaction.
@@ -707,7 +750,6 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
    * reactionCounts. Getting that wrong would make a post's like count jump
    * every time somebody changed their mind.
    */
-  const voteInFlightRef = useRef(false);
   const handleReaction = useCallback((reaction: PostReaction) => {
     if (tokenId == null) return;
     if (isCurrentlyLive) {
@@ -726,11 +768,11 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     // One vote at a time: a double-tap otherwise reads the same stale
     // myReaction twice and fires two toggles that cancel server-side, leaving
     // the overlay asserting a reaction the server no longer holds.
-    if (voteInFlightRef.current) return;
+    if (votesInFlight.has(engagementKey)) return;
     requireAuth?.(() => {
       // Auth can defer callbacks; recheck when the authorized action runs.
-      if (voteInFlightRef.current) return;
-      voteInFlightRef.current = true;
+      if (votesInFlight.has(engagementKey)) return;
+      votesInFlight.add(engagementKey);
       const wasLiked = liked;
       const wasDisliked = disliked;
       const wasLikeCount = likeCount;
@@ -814,10 +856,10 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         })
         .catch(rollback)
         .finally(() => {
-          voteInFlightRef.current = false;
+          votesInFlight.delete(engagementKey);
         });
     });
-  }, [tokenId, liked, disliked, likeCount, dislikeCount, myReaction, reactionCounts, engagementKey, userAddress, requireAuth, voteWeight, isCurrentlyLive, liveReactionStreamId, isReactionSocketConnected, emitLiveReaction]);
+  }, [tokenId, liked, disliked, likeCount, dislikeCount, myReaction, reactionCounts, engagementKey, userAddress, requireAuth, voteWeight, isCurrentlyLive, liveReactionStreamId, isReactionSocketConnected, emitLiveReaction, setSelfLiveReaction]);
 
   /**
    * Tapping a thumb casts whichever reaction it is WEARING: a card leading with
@@ -863,7 +905,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           .catch(rollback);
       }
     });
-  }, [tokenId, userAddress, saved, engagementKey, requireAuth]);
+  }, [tokenId, userAddress, saved, engagementKey, requireAuth, setShowAddToFolder]);
 
   // An off-chain post shares as its own slug (/newpost/<n>), never as the
   // NFT-style /app/post/<tokenId> it hasn't earned. The slug survives minting
@@ -886,24 +928,24 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     requireAuth?.(() => {
       setShowTipModal(true);
     });
-  }, [minterAddress, requireAuth]);
+  }, [minterAddress, requireAuth, setShowTipModal]);
 
   const handlePPVPress = useCallback(() => {
     requireAuth?.(() => {
       setShowPPVModal(true);
     });
-  }, [requireAuth]);
+  }, [requireAuth, setShowPPVModal]);
 
+  // The store re-renders every card showing this post, this one included.
   const handlePPVSuccess = useCallback(() => {
     markTokenUnlocked(tokenId);
-    setPpvUnlocked(true);
   }, [tokenId]);
 
   const handleBountyBadgePress = useCallback(() => {
     requireAuth?.(() => {
       setShowBountyModal(true);
     });
-  }, [requireAuth]);
+  }, [requireAuth, setShowBountyModal]);
 
   const handleCommentPress = useCallback(() => {
     if (onCommentPressProp) {
@@ -915,7 +957,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     } else if (tokenId != null) {
       setShowComments(true);
     }
-  }, [tokenId, onCommentPressProp, isLive, handleCardPress]);
+  }, [tokenId, onCommentPressProp, isLive, handleCardPress, setShowComments]);
 
   // The sheet opens on release; its reads can start on touch-down.
   const queryClient = useQueryClient();
@@ -929,7 +971,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const handleOpenShare = useCallback(() => {
     if (tokenId == null) return;
     setShowShareSheet(true);
-  }, [tokenId]);
+  }, [tokenId, setShowShareSheet]);
 
   const handleCopyLink = useCallback(() => {
     if (tokenId == null) return;
@@ -1023,36 +1065,34 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
 
   const handleOpenOptions = useCallback(() => {
     setShowOptionsMenu(true);
-  }, []);
+  }, [setShowOptionsMenu]);
 
+  // The menu calls these after its request resolves. Each one writes under
+  // the key it was created with, so a result that arrives after the card has
+  // moved on lands on the post it was for, never the one now showing.
   const handleFollowChange = useCallback((following: boolean, pending?: boolean) => {
-    setIsFollowingCreator(following);
-    setIsFollowReqPending(!!pending);
-  }, []);
+    setFollow({ following, pending: !!pending });
+  }, [setFollow]);
 
   const handleVisibilityChange = useCallback((hidden: boolean) => {
-    setIsHidden(hidden);
-  }, []);
+    setEdits((prev) => ({ ...prev, hidden }));
+  }, [setEdits]);
 
-  const handleEditSuccess = useCallback((data: { name?: string; description?: string; articleBody?: string; category?: string[]; commentsDisabled?: boolean; contentRating?: string; forKids?: boolean; shopLinks?: ShopLink[]; shopListingCount?: number }) => {
-    if (data.name !== undefined) setLocalTitle(data.name);
-    if (data.description !== undefined) setLocalDescription(data.description);
-    if (data.articleBody !== undefined) setLocalArticleBody(data.articleBody);
-    if (data.category !== undefined) setLocalCategories(data.category);
-    // Without this the composer stays live until the feed refetches, so the
-    // creator would still see an input on a post they just closed.
-    if (data.commentsDisabled !== undefined) setLocalCommentsDisabled(data.commentsDisabled);
-    if (data.contentRating !== undefined) setLocalContentRating(data.contentRating);
-    if (data.forKids !== undefined) setLocalForKids(data.forKids);
-    // Same reason: the Shop button has to appear, change count or disappear on
-    // the card that is already on screen.
-    if (data.shopLinks !== undefined) setLocalShopLinks(data.shopLinks);
-    if (data.shopListingCount !== undefined) setLocalShopListingCount(data.shopListingCount);
-  }, []);
+  // Every field the menu sends is kept, and only those. That covers the
+  // comments switch (without it the composer stays live until the feed
+  // refetches, so the creator would still see an input on a post they just
+  // closed) and the Shop links (the button has to appear, change count or
+  // disappear on the card that is already on screen).
+  const handleEditSuccess = useCallback((data: Omit<PostEdits, "hidden">) => {
+    const defined = Object.fromEntries(
+      Object.entries(data).filter(([, value]) => value !== undefined),
+    ) as PostEdits;
+    setEdits((prev) => ({ ...prev, ...defined }));
+  }, [setEdits]);
 
   const handleDeleteSuccess = useCallback(() => {
     setIsDeleted(true);
-  }, []);
+  }, [setIsDeleted]);
 
   // The gallery width is the maximum width available to each image. Portrait
   // images hug their rendered bitmap width so the next image follows directly.
@@ -1074,7 +1114,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     requireAuth?.(() => {
       setShowAISheet(true);
     });
-  }, [requireAuth]);
+  }, [requireAuth, setShowAISheet]);
 
   const aiPostContext = useMemo<AIPostContext>(() => ({
     type: isVideo ? "video" : isLive ? "live" : isAudioPost ? "post" : "image",
@@ -1264,6 +1304,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     if (!hasMultipleImages) {
       return (
         <PostTapSurface
+          resetKey={postKey}
           onPress={() => handleImagePress(0)}
           onReaction={handleVideoTapReaction}
           style={{ alignSelf: "stretch", marginTop: 8 }}
@@ -1473,7 +1514,11 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           <>
             {bleed(renderImageContent())}
             {tokenId != null && (
+              // Keyed on the post: a fresh player per post rather than a
+              // reset of its progress, duration, style, mute, lock-screen
+              // claim, pending seek and recorded listen one by one.
               <AudioPostPlayer
+                key={postKey}
                 audioUrl={getAudioUrl(item.audioUrl!)}
                 duration={item.audioDuration || 0}
                 tokenId={tokenId}
@@ -1622,6 +1667,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       {hasSoundtrack && !isActuallyGated && (
         <View className="mt-2">
           <SoundtrackBadge
+            key={postKey}
             title={soundtrack.title}
             creator={soundtrack.creator}
             url={soundtrack.url}
@@ -1634,12 +1680,14 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           tap on the caption reached nobody: the card's own press never fired
           and the post did not open. */}
       <PostTapSurface
+        resetKey={postKey}
         onReaction={handleVideoTapReaction}
         onPress={disablePress ? undefined : handleCardPress}
       >
       {!!localArticleBody && <Text className="text-white/60 text-xs font-semibold uppercase mx-4 mb-1">{t("articles.label")}</Text>}
-      {!!localArticleBody && !!item.articleImageUrl && <SmartImage source={{ uri: buildFeedImageUrls([item.articleImageUrl], IMAGE_WIDTH)[0] }} style={{ width: '100%', aspectRatio: 16 / 9, marginBottom: 12 }} contentFit="cover" />}
+      {!!localArticleBody && !!item.articleImageUrl && <SmartImage source={{ uri: buildFeedImageUrls([item.articleImageUrl], IMAGE_WIDTH)[0] }} style={{ width: '100%', aspectRatio: 16 / 9, marginBottom: 12 }} contentFit="cover" recyclingKey={item.articleImageUrl} />}
       <FeedCaption
+        resetKey={postKey}
         title={(isTranslated ? translatedTexts.title : localTitle) || undefined}
         description={displayCaption || undefined}
         categories={localCategories}
@@ -1658,6 +1706,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
 
       {(item as any).isQuotePost && (
         <QuotedPostEmbed
+          key={postKey}
           quotedPost={(item as any).quotedPost}
           quotedTokenId={(item as any).quotedTokenId}
         />
@@ -1669,7 +1718,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
 
       {/* OG-style preview for the first outside link, when the caption didn't
           already earn one of the entity cards above. */}
-      <LinkPreviewCard text={captionText} />
+      <LinkPreviewCard key={postKey} text={captionText} />
 
       {/* Market cards — a contract address somebody pasted, or a $TICKER */}
       <AssetRefCards refs={assetRefs} />
@@ -1677,8 +1726,12 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       )}
 
 
+      {/* The poll, quote, link preview, soundtrack and shop pieces are keyed
+          on the post. Each holds per-post state of its own (a vote, a fetched
+          preview, an open board), and they are small enough that a fresh one
+          per post is simpler than resetting each. */}
       {tokenId != null && !isLive && !(item as any).isQuotePost && (
-        <PollCard tokenId={Number(tokenId)} pollOwnerAddress={minterAddress} />
+        <PollCard key={postKey} tokenId={Number(tokenId)} pollOwnerAddress={minterAddress} />
       )}
 
       {/* The creator's Shop board — affiliate links, opened in a sheet. The
@@ -1686,6 +1739,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           button, so a second one here would be the same board twice. */}
       {!isLive && (
         <ShopBoard
+          key={postKey}
           tokenId={tokenId}
           links={localShopLinks ?? (item as any).shopLinks}
           listingCount={localShopListingCount ?? (item as any).shopListingCount}
