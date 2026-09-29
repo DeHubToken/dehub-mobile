@@ -68,7 +68,7 @@ const KEY_BUDGET = Number(value('keys') || Infinity);
  * the wider backlog (and without a 2,000-key run per locale to get there).
  */
 const KEY_PREFIX = value('prefix') || '';
-/** --only a.b,c.d restricts the run to exactly these keys. */
+/** --only a.b,c.d restricts the run, --prune included, to exactly these keys. */
 const ONLY_KEYS = value('only') ? new Set(value('only').split(',').map((k) => k.trim()).filter(Boolean)) : null;
 
 /** The publishable key the browser bundle already ships — not a secret. */
@@ -570,6 +570,7 @@ if (flag('prune')) {
     let pruned = 0;
     for (const [k, v] of flat) {
       if (typeof v !== 'string') continue;
+      if (ONLY_KEYS && !ONLY_KEYS.has(k)) continue;
       const source = enFlat.get(k);
       if (typeof source === 'string' && isUntranslatedProse(source, v, locale)) {
         const parts = k.split('.');
