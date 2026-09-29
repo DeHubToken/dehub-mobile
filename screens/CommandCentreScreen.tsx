@@ -96,6 +96,24 @@ const RangeRow: React.FC<{
   </View>
 );
 
+/** A failed read, shown in place of the "nothing here" copy so it is not mistaken for no income. */
+const LoadError: React.FC<{ onRetry: () => void }> = ({ onRetry }) => {
+  const { t } = useTranslation();
+  return (
+    <View style={styles.loadError}>
+      <Text style={styles.dim}>{t("common.failedToLoad")}</Text>
+      <Pressable
+        onPress={onRetry}
+        hitSlop={8}
+        accessibilityRole="button"
+        style={styles.retryBtn}
+      >
+        <Text style={styles.retryText}>{t("common.retry")}</Text>
+      </Pressable>
+    </View>
+  );
+};
+
 // ── Income donut ────────────────────────────────────────────────────────────
 
 /**
@@ -307,6 +325,10 @@ export default function CommandCentreScreen() {
   }, [tips.data, ppv.data, incomeRange, t]);
 
   const incomeLoading = tips.isLoading || ppv.isLoading;
+  // Only when there is nothing to show: a failed refresh keeps the last good
+  // numbers on screen.
+  const incomeError = (tips.isError && !tips.data) || (ppv.isError && !ppv.data);
+  const activityError = activity.isError && !activity.data;
 
   const onRefresh = useCallback(() => {
     void tips.refetch();
@@ -370,7 +392,7 @@ export default function CommandCentreScreen() {
           <View style={styles.cardHead}>
             <View style={{ flex: 1 }}>
               <Text style={styles.cardTitle}>{t("commandCentre.income")}</Text>
-              {totalEarned > 0 && (
+              {totalEarned > 0 && !incomeError && (
                 <Text style={styles.incomeTotal}>{totalEarned.toLocaleString()} <DhbCoin /></Text>
               )}
             </View>
@@ -379,6 +401,13 @@ export default function CommandCentreScreen() {
 
           {incomeLoading ? (
             <ActivityIndicator color="#FFFFFF" style={{ marginVertical: 32 }} />
+          ) : incomeError ? (
+            <LoadError
+              onRetry={() => {
+                void tips.refetch();
+                void ppv.refetch();
+              }}
+            />
           ) : slices.length === 0 ? (
             <View style={styles.chartEmpty}>
               <Text style={styles.dim}>{t("commandCentre.noIncomeInPeriod")}</Text>
@@ -447,6 +476,8 @@ export default function CommandCentreScreen() {
           </View>
           {activity.isLoading ? (
             <ActivityIndicator color="#FFFFFF" style={{ marginVertical: 24 }} />
+          ) : activityError ? (
+            <LoadError onRetry={() => void activity.refetch()} />
           ) : (activity.data ?? []).length === 0 ? (
             <Text style={[styles.dim, { paddingVertical: 18, textAlign: "center" }]}>
               {t("commandCentre.noTransactionsYet")}
@@ -552,6 +583,14 @@ const styles = StyleSheet.create({
   rangeTextActive: { color: "#000000" },
 
   chartEmpty: { height: 120, alignItems: "center", justifyContent: "center" },
+  loadError: { minHeight: 96, alignItems: "center", justifyContent: "center", gap: 10, paddingVertical: 12 },
+  retryBtn: {
+    paddingHorizontal: 14,
+    paddingVertical: 7,
+    borderRadius: 8,
+    backgroundColor: "rgba(255,255,255,0.08)",
+  },
+  retryText: { color: "#FFFFFF", fontSize: 12, fontWeight: "700" },
 
   legend: { flexDirection: "row", flexWrap: "wrap", gap: 12, justifyContent: "center", marginTop: 12 },
   legendItem: { flexDirection: "row", alignItems: "center", gap: 6 },
