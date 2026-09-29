@@ -19,8 +19,6 @@ export interface ThemeSkin {
   page: string;
   /** Every corner square, as War draws it. */
   square: boolean;
-  /** The band behind the home header and feed tabs, over the backdrop. */
-  header: ViewStyle;
   /** Feed post bento. */
   card: ViewStyle;
   /** Feed tab strip, and the tile that slides under the active tab. */
@@ -52,7 +50,6 @@ export const MONO_TEXT = { fontFamily: 'monospace', letterSpacing: 1.2 } as cons
 const glass: Omit<ThemeSkin, 'page'> = {
   backdrop: true,
   square: false,
-  header: { backgroundColor: 'rgba(0,0,0,0.5)' },
   card: {
     backgroundColor: 'rgba(9,9,11,0.82)',
     borderWidth: 1,
@@ -109,7 +106,6 @@ const SKINS: Partial<Record<AppThemeName, ThemeSkin>> = {
     backdrop: true,
     page: '#000000',
     square: true,
-    header: { backgroundColor: 'rgba(0,0,0,0.6)' },
     card: {
       backgroundColor: 'rgba(0,8,3,0.86)',
       borderWidth: 1,
@@ -153,7 +149,6 @@ const SKINS: Partial<Record<AppThemeName, ThemeSkin>> = {
     backdrop: true,
     page: '#060A09',
     square: true,
-    header: { backgroundColor: 'rgba(6,10,9,0.6)' },
     card: {
       backgroundColor: 'rgba(14,20,18,0.8)',
       borderWidth: 1,
@@ -198,7 +193,6 @@ const SKINS: Partial<Record<AppThemeName, ThemeSkin>> = {
     backdrop: true,
     page: '#0A0812',
     square: false,
-    header: { backgroundColor: 'rgba(10,8,18,0.55)' },
     card: {
       backgroundColor: 'rgba(17,14,28,0.84)',
       borderWidth: 1,
@@ -249,11 +243,6 @@ const SKINS: Partial<Record<AppThemeName, ThemeSkin>> = {
     backdrop: true,
     page: '#16110C',
     square: false,
-    header: {
-      backgroundColor: 'rgba(38,28,19,0.94)',
-      borderBottomWidth: 1,
-      borderBottomColor: 'rgba(0,0,0,0.6)',
-    },
     card: {
       backgroundColor: 'rgba(38,28,19,0.86)',
       borderWidth: 1,
