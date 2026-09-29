@@ -8,7 +8,7 @@ permissions:
   contents: write
 
 env:
-  APPLY: '0'
+  APPLY: '1'
 
 jobs:
   prune:
