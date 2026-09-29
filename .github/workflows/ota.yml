@@ -90,25 +90,52 @@ jobs:
             exit 0
           fi
 
+          echo "branches=preview" >> "$GITHUB_OUTPUT"
+          skip() {
+            echo "$1"
+            echo "publish=false" >> "$GITHUB_OUTPUT"
+            echo "### OTA skipped - $1" >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          }
+
           # Scheduled runs publish the newest main commit whose CI passed on a
           # PUSH. That keeps the gates the old workflow_run trigger enforced:
           # CI green, a push rather than a pull_request run (so no fork or
           # unmerged PR code), and on main. Pushes only ever come from this repo.
-          SHA="$(gh run list --repo "$REPO" --workflow CI --branch main --event push \
-            --status success --limit 1 --json headSha,headBranch,event \
-            --jq '[.[] | select(.event == "push" and .headBranch == "main")][0].headSha // empty')"
-          echo "branches=preview" >> "$GITHUB_OUTPUT"
-          echo "sha=$SHA" >> "$GITHUB_OUTPUT"
-          if [ -z "$SHA" ]; then
-            echo "No green CI push run on main found; nothing to publish."
-            echo "publish=false" >> "$GITHUB_OUTPUT"
-          elif [ "$SHA" = "$LAST" ]; then
-            echo "Nothing new on main since the last publish ($SHA); skipping."
-            echo "publish=false" >> "$GITHUB_OUTPUT"
-            echo "### OTA skipped - no new commits since \`${SHA:0:7}\`" >> "$GITHUB_STEP_SUMMARY"
-          else
-            echo "publish=true" >> "$GITHUB_OUTPUT"
+          #
+          # Walk main newest-first and check each commit's own runs. Do not ask
+          # the run list for "the latest green run": filtered run listings are
+          # served from a search index, and on 2026-09-29 it answered with a
+          # 2026-09-09 run while newer green ones existed, so preview was
+          # republished with a three-week-old bundle.
+          COMMITS="$(gh api "repos/$REPO/commits?sha=main&per_page=50" --jq '.[].sha')"
+          SHA=""
+          for CANDIDATE in $COMMITS; do
+            # Reached what is already out: nothing newer has passed CI yet.
+            if [ "$CANDIDATE" = "$LAST" ]; then
+              skip "no green commit on main newer than \`${LAST:0:7}\`"
+            fi
+            GREEN="$(CANDIDATE="$CANDIDATE" gh api "repos/$REPO/actions/runs?head_sha=$CANDIDATE&event=push" --jq '
+              [.workflow_runs[] | select(.head_sha == $ENV.CANDIDATE and .event == "push"
+                and .head_branch == "main" and .path == ".github/workflows/ci.yml"
+                and .conclusion == "success")] | length' || echo 0)"
+            if [ "$GREEN" != "0" ]; then SHA="$CANDIDATE"; break; fi
+          done
+          [ -n "$SHA" ] || skip "no green CI push run in the last 50 commits on main"
+
+          # Never publish anything older than what preview already has. The
+          # walk stops at the tag, but the tag can sit outside that window or
+          # off main (a dispatch from another branch), so ask git directly:
+          # the pick must strictly descend from the last publish.
+          if [ -n "$LAST" ]; then
+            RELATION="$(gh api "repos/$REPO/compare/$LAST...$SHA" --jq .status 2>/dev/null || echo unknown)"
+            if [ "$RELATION" != "ahead" ]; then
+              echo "::warning::Refusing ${SHA:0:7}: it is $RELATION relative to the last publish ${LAST:0:7}."
+              skip "\`${SHA:0:7}\` is $RELATION relative to the last publish \`${LAST:0:7}\`"
+            fi
           fi
+          echo "sha=$SHA" >> "$GITHUB_OUTPUT"
+          echo "publish=true" >> "$GITHUB_OUTPUT"
 
   publish:
     name: Publish JS bundle
