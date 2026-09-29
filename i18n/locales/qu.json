@@ -4356,5 +4356,11 @@
     "connectSolana": "Connect Solana wallet",
     "balanceUnknown": "Balance unavailable",
     "balanceAmount": "Available: {{amount}} {{symbol}}"
+  },
+  "updateGate": {
+    "title": "DeHubta musuqchay",
+    "recommendedBody": "DeHubpa musuq versionnin kachkan, allin waqaychay allichaykunawan. Cuentayki waqaychasqa kananpaq musuqchay.",
+    "requiredBody": "Kay DeHub versionqa manaña yanapasqachu. Cuentaykita llamk'achinaykipaq musuqchay.",
+    "update": "Kunan musuqchay"
   }
 }

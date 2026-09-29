@@ -4444,5 +4444,11 @@
     "connectSolana": "Connect Solana wallet",
     "balanceUnknown": "Balance unavailable",
     "balanceAmount": "Available: {{amount}} {{symbol}}"
+  },
+  "updateGate": {
+    "title": "DeHub আপডেট করইন",
+    "recommendedBody": "দরকারি নিরাপত্তা ঠিকঠাকসহ DeHub-র নয়া ভার্সন আইছে। আপনার অ্যাকাউন্ট নিরাপদ রাখার লাগি আপডেট করইন।",
+    "requiredBody": "DeHub-র এই ভার্সন আর চলে না। আপনার অ্যাকাউন্ট চালাই যাওয়ার লাগি আপডেট করইন।",
+    "update": "অখন আপডেট করইন"
   }
 }

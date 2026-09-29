@@ -4268,5 +4268,11 @@
     "connectSolana": "Connect Solana wallet",
     "balanceUnknown": "Balance unavailable",
     "balanceAmount": "Available: {{amount}} {{symbol}}"
+  },
+  "updateGate": {
+    "title": "DeHub kuraya",
+    "recommendedBody": "DeHub ka version kura bɛ yen, lakanani fɛɛn nafama bɛ min na. I ka a kuraya walisa i ka jatebila ka to lakanani na.",
+    "requiredBody": "DeHub ka nin version tɛ dɛmɛ sɔrɔ tuguni. I ka a kuraya walisa ka to i ka jatebila baara la.",
+    "update": "Kuraya sisan"
   }
 }

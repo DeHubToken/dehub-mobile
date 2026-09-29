@@ -4272,5 +4272,11 @@
     "connectSolana": "Connect Solana wallet",
     "balanceUnknown": "Balance unavailable",
     "balanceAmount": "Available: {{amount}} {{symbol}}"
+  },
+  "updateGate": {
+    "title": "DeHub नवीकरोतु",
+    "recommendedBody": "महत्त्वपूर्णैः सुरक्षासंशोधनैः सह DeHub इत्यस्य नूतनं संस्करणम् उपलभ्यते। स्वखातं सुरक्षितं स्थापयितुं नवीकरोतु।",
+    "requiredBody": "DeHub इत्यस्य एतत् संस्करणम् इदानीं न समर्थ्यते। स्वखातस्य उपयोगं अनुवर्तयितुं नवीकरोतु।",
+    "update": "अधुना नवीकरोतु"
   }
 }

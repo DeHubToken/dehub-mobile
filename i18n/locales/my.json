@@ -4278,5 +4278,11 @@
     "connectSolana": "Connect Solana wallet",
     "balanceUnknown": "Balance unavailable",
     "balanceAmount": "Available: {{amount}} {{symbol}}"
+  },
+  "updateGate": {
+    "title": "DeHub ကို အပ်ဒိတ်လုပ်ပါ",
+    "recommendedBody": "အရေးကြီးသော လုံခြုံရေးပြင်ဆင်ချက်များပါသည့် DeHub ဗားရှင်းအသစ် ရနိုင်ပါပြီ။ သင့်အကောင့် လုံခြုံနေစေရန် အပ်ဒိတ်လုပ်ပါ။",
+    "requiredBody": "DeHub ၏ ဤဗားရှင်းကို မပံ့ပိုးတော့ပါ။ သင့်အကောင့်ကို ဆက်သုံးရန် အပ်ဒိတ်လုပ်ပါ။",
+    "update": "ယခု အပ်ဒိတ်လုပ်ပါ"
   }
 }

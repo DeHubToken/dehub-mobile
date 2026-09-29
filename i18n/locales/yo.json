@@ -4317,5 +4317,11 @@
     "connectSolana": "Connect Solana wallet",
     "balanceUnknown": "Balance unavailable",
     "balanceAmount": "Available: {{amount}} {{symbol}}"
+  },
+  "updateGate": {
+    "title": "Ṣe àtúnṣe DeHub",
+    "recommendedBody": "Ẹ̀yà DeHub tuntun wà pẹ̀lú àwọn àtúnṣe ààbò pàtàkì. Ṣe àtúnṣe kí àkáǹtì rẹ lè wà ní ààbò.",
+    "requiredBody": "A kò ṣe àtìlẹ́yìn fún ẹ̀yà DeHub yìí mọ́. Ṣe àtúnṣe láti máa lo àkáǹtì rẹ lọ.",
+    "update": "Ṣe àtúnṣe báyìí"
   }
 }

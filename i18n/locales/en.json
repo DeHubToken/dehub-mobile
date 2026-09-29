@@ -4509,5 +4509,11 @@
     "withdrawing": "Withdrawing…",
     "withdrawUsdc": "Withdraw USDC",
     "withdrawPosition": "Withdraw position"
+  },
+  "updateGate": {
+    "title": "Update DeHub",
+    "recommendedBody": "A newer version of DeHub is available with important security fixes. Update to keep your account protected.",
+    "requiredBody": "This version of DeHub is no longer supported. Update to keep using your account.",
+    "update": "Update now"
   }
 }
