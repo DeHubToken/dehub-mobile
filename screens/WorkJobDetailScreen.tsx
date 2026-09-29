@@ -28,7 +28,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation, useRoute, type RouteProp } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import Icon from "../components/ui/Icon";
-import ScreenHeader, { SCREEN_HEADER_HEIGHT } from "../components/ScreenHeader";
+import ScreenHeader from "../components/ScreenHeader";
 import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
 import { theme } from "../theme";
 import { openInApp } from "../libs/links.utils";
@@ -113,9 +113,9 @@ export default function WorkJobDetailScreen() {
   const { isMinimal } = useAppTheme();
   const rowStyle = [styles.row, isMinimal && styles.minimalRow];
   const insets = useSafeAreaInsets();
-  // ScreenHeader sits above the KeyboardAvoidingView, on top of the inset the
-  // root SafeAreaView already spent.
-  const keyboardOffset = useKeyboardOffset(SCREEN_HEADER_HEIGHT);
+  // The KeyboardAvoidingView measures itself from its parent, which already
+  // includes the ScreenHeader above it; only the status-bar inset is missing.
+  const keyboardOffset = useKeyboardOffset();
   const navigation = useNavigation<any>();
   const route = useRoute<RouteProp<AppStackParamList, ScreenNames.WorkJobDetail>>();
   const { jobId, job: seed } = route.params;
