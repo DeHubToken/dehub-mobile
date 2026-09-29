@@ -47,6 +47,8 @@ const SELECTED_BG = "#FFFFFF14";
 const COLUMNS = 4;
 const SHEET_PADDING = 16;
 const TILE_GAP = 8;
+// The sheet's 1px left and right borders sit inside its width.
+const SHEET_BORDER_X = 2;
 
 interface ReactionPickerProps {
   open: boolean;
@@ -144,7 +146,7 @@ const ReactionSheet: React.FC<ReactionPickerProps & { onClosed: () => void }> = 
 
   const sheetWidth = Math.min(screenWidth, 520);
   const tile = Math.floor(
-    (sheetWidth - SHEET_PADDING * 2 - TILE_GAP * (COLUMNS - 1)) / COLUMNS,
+    (sheetWidth - SHEET_BORDER_X - SHEET_PADDING * 2 - TILE_GAP * (COLUMNS - 1)) / COLUMNS,
   );
 
   return (

@@ -54,6 +54,8 @@ const SHEET_HEIGHT_RATIO = 0.85;
 const GRID_GAP = 8;
 const GRID_PADDING = 16;
 const GRID_COLUMNS = 4;
+// The sheet's 1px left and right borders sit inside the screen width.
+const SHEET_BORDER_X = 2;
 const ICON_SIZE = 44;
 
 // Per-theme 3D artwork is served by the website (public/theme-icons/<theme>/),
@@ -277,7 +279,7 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
   // off-screen position instead of keeping the size from app start.
   const { width: screenWidth, height: screenHeight } = useWindowDimensions();
   const SHEET_HEIGHT = screenHeight * SHEET_HEIGHT_RATIO;
-  const tileWidth = Math.floor((screenWidth - GRID_PADDING * 2 - GRID_GAP * (GRID_COLUMNS - 1)) / GRID_COLUMNS);
+  const tileWidth = Math.floor((screenWidth - SHEET_BORDER_X - GRID_PADDING * 2 - GRID_GAP * (GRID_COLUMNS - 1)) / GRID_COLUMNS);
 
   // Current route name, so the matching tile highlights like the web menu.
   // Tab screens live nested under Root — descend into it to find them.
