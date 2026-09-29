@@ -3731,6 +3731,7 @@
     "noPurchasesYet": "Oste pole veel",
     "listingRemoved": "Kuulutus eemaldatud",
     "noActiveListings": "Sellel poel pole aktiivseid kuulutusi",
+    "storeNotFound": "Kauplust ei leitud",
     "detail": {
       "listing": "Kuulutus",
       "unavailable": "See kuulutus pole enam saadaval",

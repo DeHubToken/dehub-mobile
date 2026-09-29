@@ -3731,6 +3731,7 @@
     "noPurchasesYet": "还没买过哩",
     "listingRemoved": "挂牌拿掉咾",
     "noActiveListings": "这个店没正挂着嘞牌",
+    "storeNotFound": "商店未找到",
     "detail": {
       "listing": "挂牌",
       "unavailable": "这个挂牌没咾",

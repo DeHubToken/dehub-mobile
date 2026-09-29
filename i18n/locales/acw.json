@@ -3729,6 +3729,7 @@
     "noPurchasesYet": "لسة ما فيه مشتريات",
     "listingRemoved": "الإعلان انشال",
     "noActiveListings": "هالمتجر ما عنده إعلانات شغالة",
+    "storeNotFound": "المتجر مو موجود",
     "detail": {
       "listing": "إعلان",
       "unavailable": "هالإعلان ما عاد متوفر",
@@ -8525,7 +8526,7 @@
       "verified": "مُؤكد"
     },
     "host": {
-      "close": "افصلي الوبر",
+      "close": "سكّر التطبيق",
       "backToStore": "رجوع لالتطبيقات",
       "notFound": "البرنامج ده مش موجود فى دى ستور ديهوب، أو قد تم إزالته.",
       "badUrl": "لش address ده مش ممكن تفتحها كmini app. لازم تبتدي ب\"https://\" أو تكون localhost في وضعية developer.",

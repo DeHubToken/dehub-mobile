@@ -3762,6 +3762,7 @@
     "noPurchasesYet": "Akukho okuthengiwe okwamanje",
     "listingRemoved": "Uhlu lususiwe",
     "noActiveListings": "Lesi sitolo asinazo izinhlu ezisebenzayo",
+    "storeNotFound": "Isitolo asitholakali",
     "detail": {
       "listing": "Uhlu",
       "unavailable": "Lolu hlu alusatholakali",

@@ -3839,6 +3839,7 @@
     "noPurchasesYet": "Zatiaľ žiadne nákupy",
     "listingRemoved": "Inzerát odstránený",
     "noActiveListings": "Tento obchod nemá žiadne aktívne inzeráty",
+    "storeNotFound": "Obchod sa nenašiel",
     "detail": {
       "listing": "Inzerát",
       "unavailable": "Tento inzerát už nie je dostupný",

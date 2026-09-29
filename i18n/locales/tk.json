@@ -3731,6 +3731,7 @@
     "noPurchasesYet": "Heniz satyn alyş ýok",
     "listingRemoved": "Bildiriş aýryldy",
     "noActiveListings": "Bu dükanyň işjeň bildirişleri ýok",
+    "storeNotFound": "Dükan tapylmady",
     "detail": {
       "listing": "Bildiriş",
       "unavailable": "Bu bildiriş indi elýeterli däl",
@@ -8529,9 +8530,9 @@
       "dev": "Geliştirici öňünden seret"
     },
     "host": {
-      "close": "Ulyjy ýap",
-      "backToStore": "Ulymalara dolanmak",
-      "notFound": "Bu ulag DeHub App Store-da ýok, ýa-da ýykyldy.",
+      "close": "Programmany ýap",
+      "backToStore": "Programmalara dolan",
+      "notFound": "Bu programma DeHub App Store-da ýok ýa-da aýryldy.",
       "badUrl": "Bu adres kiçijik ulag hökmünde açylmaýar. Bu https://bilen başlamaly ýa-da geliwci modunda ýerli host adresidir.",
       "readyTimeout": "Bu ulag hiç haçan dehub.ready() diýip atlandyrylmady, şonuň üçin ekran 8 saniýeden soň gizlendi."
     },

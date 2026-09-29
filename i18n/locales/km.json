@@ -3742,6 +3742,7 @@
     "noPurchasesYet": "មិនទាន់មានការទិញទេ",
     "listingRemoved": "បញ្ជីលក់ត្រូវបានដកចេញ",
     "noActiveListings": "ហាងនេះគ្មានបញ្ជីលក់សកម្មទេ",
+    "storeNotFound": "រកមិនឃើញមានហាង",
     "detail": {
       "listing": "បញ្ជីលក់",
       "unavailable": "បញ្ជីលក់នេះមិនអាចប្រើបានទៀតទេ",

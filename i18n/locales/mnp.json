@@ -3731,6 +3731,7 @@
     "noPurchasesYet": "还无买过",
     "listingRemoved": "挂牌提去",
     "noActiveListings": "只间店无正挂其牌",
+    "storeNotFound": "商店未找到",
     "detail": {
       "listing": "挂牌",
       "unavailable": "只个挂牌无去啊",
@@ -8574,7 +8575,7 @@
     "host": {
       "close": "關閉應用",
       "backToStore": "回到 App 囉",
-      "notFound": "這個 App 咱家 DeHub App Store 咱家有，或者已經被刪除咧！",
+      "notFound": "這個 App 不在 DeHub App Store 裡，或者已經被刪除咧。",
       "badUrl": "咱家這個地址無法開啟小程式，得是以 `https://` 開頭，或者開發模式下用本地地址。",
       "readyTimeout": "這個 app 好像都唔係用 `dehub.ready()` 咧，所以 splash screen 8 秒後就自動隱藏咧！"
     },

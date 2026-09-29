@@ -3735,6 +3735,7 @@
     "noPurchasesYet": "Ainda não há compras",
     "listingRemoved": "Anúncio removido",
     "noActiveListings": "Esta loja não tem anúncios ativos",
+    "storeNotFound": "Loja não encontrada",
     "detail": {
       "listing": "Anúncio",
       "unavailable": "Este anúncio já não está disponível",

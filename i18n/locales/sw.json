@@ -3732,6 +3732,7 @@
     "noPurchasesYet": "Bado hakuna ununuzi",
     "listingRemoved": "Tangazo limeondolewa",
     "noActiveListings": "Duka hili halina matangazo yanayotumika",
+    "storeNotFound": "Duka halipatikani",
     "detail": {
       "listing": "Tangazo",
       "unavailable": "Tangazo hili halipatikani tena",
@@ -8530,8 +8531,8 @@
       "dev": "Kutoka kwa Mwongozaji"
     },
     "host": {
-      "close": "Kua App",
-      "backToStore": "Kua Apps",
+      "close": "Funga programu",
+      "backToStore": "Rudi kwenye Programu",
       "notFound": "App hii si katika DeHub App Store, au imeondolewa.",
       "badUrl": "Hiyo hawezi kufikika kama app ndogo. Lazo lakiwepo lakiwepo la https://, au lakiwepo la localhost katika modda ya mwongozaji.",
       "readyTimeout": "App hii hakikufanya dehub.ready(), kwa hiyo, kura ya kwanza ilipatikana baada ya dakika 8."

@@ -3749,6 +3749,7 @@
     "noPurchasesYet": "Hozircha xaridlar yo'q",
     "listingRemoved": "E'lon o'chirildi",
     "noActiveListings": "Bu do'konda faol e'lonlar yo'q",
+    "storeNotFound": "Do'kon topilmadi",
     "detail": {
       "listing": "E'lon",
       "unavailable": "Bu e'lon endi mavjud emas",
@@ -8583,7 +8584,7 @@
       "dev": "Dasturchi uchun oldindan ko&#39;rish"
     },
     "host": {
-      "close": "Yoping uzatishni tugatish",
+      "close": "Ilovani yopish",
       "backToStore": "Ilovalarga qaytish",
       "notFound": "Bu ilova DeHub App Store’da yo‘q yoki olib tashlangan.",
       "badUrl": "Bu manzilni mini-ilova sifatida ochib bo&#39;lmaydi. U https:// bilan boshlanishi yoki dasturchi rejimida localhost manzili bo&#39;lishi kerak.",

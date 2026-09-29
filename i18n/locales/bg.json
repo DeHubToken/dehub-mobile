@@ -3735,6 +3735,7 @@
     "noPurchasesYet": "Все още няма покупки",
     "listingRemoved": "Обявата е премахната",
     "noActiveListings": "Този магазин няма активни обяви",
+    "storeNotFound": "Магазинът не е намерен",
     "detail": {
       "listing": "Обява",
       "unavailable": "Тази обява вече не е налична",

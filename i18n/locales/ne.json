@@ -3744,6 +3744,7 @@
     "noPurchasesYet": "अहिलेसम्म कुनै खरिद छैन",
     "listingRemoved": "सूची हटाइयो",
     "noActiveListings": "यो पसलमा कुनै सक्रिय सूची छैन",
+    "storeNotFound": "स्टोर फेला परेन",
     "detail": {
       "listing": "सूची",
       "unavailable": "यो सूची अब उपलब्ध छैन",

@@ -3737,6 +3737,7 @@
     "noPurchasesYet": "अभी कोई खरीद नहीं",
     "listingRemoved": "लिस्टिंग हटाई गई",
     "noActiveListings": "इस स्टोर में कोई सक्रिय लिस्टिंग नहीं है",
+    "storeNotFound": "स्टोर नहीं मिला",
     "detail": {
       "listing": "लिस्टिंग",
       "unavailable": "यह लिस्टिंग अब उपलब्ध नहीं है",

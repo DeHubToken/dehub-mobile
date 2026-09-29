@@ -3777,6 +3777,7 @@
     "noPurchasesYet": "Wala pang binili",
     "listingRemoved": "Inalis ang listing",
     "noActiveListings": "Walang aktibong listing ang tindahang ito",
+    "storeNotFound": "Hindi nahanap ang store",
     "detail": {
       "listing": "Listing",
       "unavailable": "Wala na ang listing na ito",

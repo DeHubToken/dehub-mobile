@@ -3731,6 +3731,7 @@
     "noPurchasesYet": "还呒没买过",
     "listingRemoved": "挂牌拿脱哉",
     "noActiveListings": "搿只店呒没勒进行个挂牌",
+    "storeNotFound": "寻勿着店铺",
     "detail": {
       "listing": "挂牌",
       "unavailable": "搿只挂牌已经呒没脱",
@@ -8527,9 +8528,10 @@
       "dev": "開發者預覽版"
     },
     "host": {
+      "close": "关脱应用",
       "backToStore": "回到應用程式",
-      "notFound": "這個 App 咱家 DeHub App Store 咱家 咱家，或者 咱家",
-      "badUrl": "咱家哋嘅地址𠀀𠀀𠀀𠀀𠀀𠀀𠀀𠀀𠀀𠀀𠀀𠀀𠀀𠀀𠀀𠀀𠀀𠀀𠀀𠀀𠀀𠀀𠀀𠀀𠀀𠀀𠀀𠀀𠀀𠀀𠀀𠀀𠀀𠀀𠀀𠀀𠀀𠀀𠀀𠀀𠀀𠀀𠀀𠀀𠀀𠀀𠀀𠀀𠀀",
+      "notFound": "搿个 App 勿勒 DeHub App Store 里向，或者已经下架了。",
+      "badUrl": "搿只地址勿好当小应用开。伊要用 https:// 开头，或者是开发者模式里向个 localhost 地址。",
       "readyTimeout": "這個 app 好像沒有呼叫 `dehub.ready()`，所以 splash screen 在 8 秒後就消失囉！"
     },
     "signIn": {

@@ -3731,6 +3731,7 @@
     "noPurchasesYet": "Hîn kirîn tune",
     "listingRemoved": "Lîste hate rakirin",
     "noActiveListings": "Ev dikan lîsteyên çalak tune",
+    "storeNotFound": "Dikan nehat dîtin",
     "detail": {
       "listing": "Lîste",
       "unavailable": "Ev lîste êdî ne berdest e",
@@ -8502,6 +8503,13 @@
   },
   "accountDeletion": {
     "title": "حیسابی بەکارهێنەر بسڕەوە"
+  },
+  "miniApps": {
+    "host": {
+      "close": "Sepanê bigire",
+      "backToStore": "Vegere Sepanan",
+      "notFound": "Ev sepan ne di DeHub App Store de ye, an jî hatiye rakirin."
+    }
   },
   "aiStyles": {
     "normal": "Asayî",

@@ -3731,6 +3731,7 @@
     "noPurchasesYet": "Henüz satın alım yok",
     "listingRemoved": "İlan kaldırıldı",
     "noActiveListings": "Bu mağazada aktif ilan yok",
+    "storeNotFound": "Mağaza bulunamadı",
     "detail": {
       "listing": "İlan",
       "unavailable": "Bu ilan artık mevcut değil",

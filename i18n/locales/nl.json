@@ -3921,6 +3921,7 @@
     "noPurchasesYet": "Nog geen aankopen",
     "listingRemoved": "Advertentie verwijderd",
     "noActiveListings": "Deze winkel heeft geen actieve advertenties",
+    "storeNotFound": "Winkel niet gevonden",
     "detail": {
       "listing": "Advertentie",
       "unavailable": "Deze advertentie is niet meer beschikbaar",
