@@ -760,6 +760,7 @@ export default function HomeScreen() {
 
   // The menu sheet's Videos / Images / Music / Live tiles land here.
   useEffect(() => homeTabEvents.onTabRequested(handleNavPostTypeChange), [handleNavPostTypeChange]);
+  useEffect(() => homeTabEvents.setVisibleTab(activeTabKey), [activeTabKey]);
 
   useEffect(() => {
     let mounted = true;
