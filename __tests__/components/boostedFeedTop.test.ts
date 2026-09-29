@@ -15,6 +15,11 @@ describe('boosted home-feed placement', () => {
   });
 
   it('does not pull a viewer back after they have left the top', () => {
-    expect(source).toContain('prevYRef.current > MAINTAIN_POSITION.autoscrollToTopThreshold');
+    // Home passes the header's worklet as onScroll, so the offset must come
+    // from a UI-thread handler beside it, not from the JS handleScroll.
+    expect(source).toContain('readOffset() > MAINTAIN_POSITION.autoscrollToTopThreshold');
+    expect(source).toContain('useComposedEventHandler([scrollHandler ?? null, trackOffset])');
+    expect(source).toContain('onScroll={scrollHandler ? composedScroll : handleScroll}');
+    expect(source).toContain('(scrollHandler ? scrollOffset.value : prevYRef.current)');
   });
 });
