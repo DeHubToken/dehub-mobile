@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useEffect, useRef, useState } from "react";
+import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Animated, View, Pressable, Text } from "react-native";
 import Icon from "../ui/Icon";
@@ -76,6 +76,13 @@ interface FeedActionBarProps {
 
 const BOUNCE_CONFIG = { damping: 12, stiffness: 300 };
 
+// The tap bounce rides the whole button, icon and count together, the way
+// web's ActionBar scales its button. Animated makes whatever it wraps a real
+// native view, so a separate Animated.View around the icon was one more view
+// per button, seven per card.
+const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
+const BUTTON_ROW = { flexDirection: "row", alignItems: "center", gap: 4 } as const;
+
 const AnimatedActionButton: React.FC<{
   onPress: () => void;
   onPressIn?: () => void;
@@ -103,7 +110,7 @@ const AnimatedActionButton: React.FC<{
   useEffect(() => () => scale.stopAnimation(), [scale]);
   // Seven buttons per retained card only animate when tapped. Native-driver
   // transforms avoid registering idle icons in every Reanimated props commit.
-  const animatedStyle = { transform: [{ scale }] };
+  const buttonStyle = useMemo(() => [BUTTON_ROW, { transform: [{ scale }] }], [scale]);
 
   const handlePress = useCallback(() => {
     scale.stopAnimation();
@@ -129,12 +136,14 @@ const AnimatedActionButton: React.FC<{
   const baseColor = inactiveColor || ICON_ACTIVE;
   const resolvedColor = active ? (activeColor || ICON_ACTIVE) : baseColor;
   const resolvedFill = active && activeFill ? activeFill : undefined;
-  const resolvedStrokeWidth = active && activeStrokeWidth ? activeStrokeWidth : 1.8;
+  // Lucide's own stroke, as on web. It is also what lets Android draw the icon
+  // as a font glyph instead of a software-rendered SVG.
+  const resolvedStrokeWidth = active && activeStrokeWidth ? activeStrokeWidth : 2;
   // War reads counts as monospace readouts (web war-theme.css).
   const mono = getThemeSkin(getActiveTheme())?.mono ? MONO_TEXT : null;
 
   return (
-    <Pressable
+    <AnimatedPressable
       onPress={handlePress}
       onPressIn={onPressIn}
       onLongPress={onLongPress ? () => { haptic.press(); onLongPress(); } : undefined}
@@ -157,26 +166,29 @@ const AnimatedActionButton: React.FC<{
       // justify-between with ~16pt gaps, so wider horizontal slop would make
       // neighbouring buttons' tap areas overlap and steal each other's taps.
       hitSlop={{ top: 13, bottom: 13, left: 6, right: 6 }}
-      style={{ flexDirection: "row", alignItems: "center", gap: 4 }}
+      style={buttonStyle}
     >
-      <Animated.View style={animatedStyle}>
-        {iconNode ? iconNode : glyph ? (
+      {iconNode ? iconNode : glyph ? (
+        // A fixed box, as on web: the emoji is taller than the icon it
+        // replaces, and a row that grew when the lead reaction changed moved
+        // every post below it.
+        <View style={{ width: iconSize, height: iconSize, alignItems: "center", justifyContent: "center" }}>
           <ReactionEmoji
             reaction={glyph}
             animate={glyphAnimated}
             size={iconSize + 2}
             textStyle={{ fontSize: iconSize - 2, lineHeight: iconSize + 4, width: iconSize, textAlign: "center" }}
           />
-        ) : (
-          <Icon name={resolvedIcon} size={iconSize} color={resolvedColor} strokeWidth={resolvedStrokeWidth} fill={resolvedFill} />
-        )}
-      </Animated.View>
+        </View>
+      ) : (
+        <Icon name={resolvedIcon} size={iconSize} color={resolvedColor} strokeWidth={resolvedStrokeWidth} fill={resolvedFill} />
+      )}
       {count !== undefined && (
         <Text style={[{ fontSize: 12, color: countColor || COUNT_COLOR }, mono]}>
           {formatCount ? formatCompactNumber(count) : count}
         </Text>
       )}
-    </Pressable>
+    </AnimatedPressable>
   );
 };
 
