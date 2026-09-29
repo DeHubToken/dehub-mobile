@@ -85,6 +85,11 @@ describe("formatEngagementWeight", () => {
 });
 
 describe("applyReactionDelta at weight", () => {
+  it("shows a badge holder's dislike as one while their like keeps its weight", () => {
+    expect(applyReactionDelta({}, null, "dislike", 14)).toEqual({ dislike: 1 });
+    expect(applyReactionDelta({ like: 14 }, "like", "dislike", 14)).toEqual({ like: 0, dislike: 1 });
+  });
+
   it("moves the per-reaction split by the weight, not by one", () => {
     expect(applyReactionDelta({}, null, "love", 3)).toEqual({ love: 3 });
     expect(applyReactionDelta({ like: 6, love: 3 }, "like", "love", 3)).toEqual({
