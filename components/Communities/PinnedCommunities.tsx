@@ -12,6 +12,7 @@ import {
 import { Image } from "expo-image";
 import { useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Icon from "../ui/Icon";
 import type { Community } from "../../types/community";
 import {
@@ -172,6 +173,7 @@ function PinPickerModal({
   onUpdated?: () => void;
 }) {
   const { t } = useTranslation();
+  const insets = useSafeAreaInsets();
   const [communities, setCommunities] = useState<Community[]>([]);
   const [loading, setLoading] = useState(false);
   const [busyId, setBusyId] = useState<string | null>(null);
@@ -218,7 +220,11 @@ function PinPickerModal({
   return (
     <Modal visible={visible} transparent animationType="slide" onRequestClose={onClose}>
       <Pressable style={styles.modalOverlay} onPress={onClose}>
-        <Pressable style={styles.modalSheet} onPress={(e) => e.stopPropagation()}>
+        {/* Edge-to-edge Modal: the last row has to clear the nav bar itself. */}
+        <Pressable
+          style={[styles.modalSheet, { paddingBottom: Math.max(32, insets.bottom + 16) }]}
+          onPress={(e) => e.stopPropagation()}
+        >
           <Text style={styles.modalTitle}>{t("communities.pinToProfile")}</Text>
           {loading ? (
             <ActivityIndicator color="#F4F4F5" style={{ marginVertical: 24 }} />

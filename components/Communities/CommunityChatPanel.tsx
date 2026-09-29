@@ -41,6 +41,7 @@ import {
 import SmartImage from "../common/SmartImage";
 import { Image } from "expo-image";
 import { useTranslation } from "react-i18next";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Icon from "../ui/Icon";
 import type { IconName } from "../ui/Icon";
 import Avatar from "../common/Avatar";
@@ -275,6 +276,9 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
    * to the root SafeAreaView in App.tsx.
    */
   const { lift: keyboardLift, isVisible: keyboardUp } = useKeyboardLift();
+  // The message actions sheet is a Modal, which is edge-to-edge and outside the
+  // root SafeAreaView, so it has to clear the nav bar on its own.
+  const insets = useSafeAreaInsets();
 
   const listRef = useRef<FlatList<CommunityChatMessage>>(null);
   const atBottomRef = useRef(true);
@@ -722,7 +726,10 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
         onRequestClose={() => setSheetFor(null)}
       >
         <Pressable style={styles.overlay} onPress={() => setSheetFor(null)}>
-          <Pressable style={styles.sheet} onPress={(e) => e.stopPropagation()}>
+          <Pressable
+            style={[styles.sheet, { paddingBottom: Math.max(28, insets.bottom + 16) }]}
+            onPress={(e) => e.stopPropagation()}
+          >
             {!!sheetFor && (
               <>
                 <Text style={styles.sheetPreview} numberOfLines={2}>
