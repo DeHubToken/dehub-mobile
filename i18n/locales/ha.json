@@ -8549,7 +8549,8 @@
       "emptyBody": "Aikace-aikacen farko suna cikin bita. Gina daya kuma zai iya zama a nan.",
       "search": "Aikace-aikacen bincike",
       "all": "Duka",
-      "noMatch": "Babu apps dace da cewa search."
+      "noMatch": "Babu apps dace da cewa search.",
+      "yourApps": "Aikace-aikacen ku"
     },
     "card": {
       "open": "Bude"

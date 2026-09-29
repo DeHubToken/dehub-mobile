@@ -8554,7 +8554,10 @@
       "search": "Pesquise aplicativos",
       "all": "Todos",
       "fromDehub": "De DeHub",
-      "noMatch": "Nenhum aplicativo corresponde à sua busca."
+      "noMatch": "Nenhum aplicativo corresponde à sua busca.",
+      "yourApps": "Seus apps",
+      "notificationsOn": "Notificações em",
+      "removed": "Removido. Não notificará mais você."
     },
     "card": {
       "open": "Abrir"
@@ -8573,6 +8576,16 @@
       "developer-tools": "Ferramentas do desenvolvedor",
       "entertainment": "Entretenimento",
       "art-creativity": "Arte e criatividade"
+    },
+    "pay": {
+      "title": "Pagar {{name}}?",
+      "body": "O DHB vai diretamente para a carteira do app, {{wallet}}. Pagamentos não podem ser reembolsados.",
+      "confirm": "Pagar {{amount}} DHB",
+      "sent": "Pago {{amount}} DHB a {{name}}."
+    },
+    "add": {
+      "title": "Adicione {{name}}?",
+      "body": "Poderá aparecer sob Seus apps e poderá enviar notificações para você. Você pode removê-lo a qualquer momento na página Apps."
     }
   },
   "aiStyles": {

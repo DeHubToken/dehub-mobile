@@ -8563,6 +8563,11 @@
       "developer-tools": "เครื่องมือสำหรับผู้พัฒนา",
       "entertainment": "บันเทิง",
       "art-creativity": "ศิลปะและความคิดสร้างสรรค์"
+    },
+    "pay": {
+      "title": "Pay {{name}}?",
+      "confirm": "จ่าย {{amount}} DHB",
+      "sent": "จ่ายเงิน {{amount}} สำหรับ {{name}}."
     }
   },
   "aiStyles": {

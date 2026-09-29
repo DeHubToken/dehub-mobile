@@ -8451,7 +8451,11 @@
       "search": "Search apps",
       "all": "All",
       "fromDehub": "From DeHub",
-      "noMatch": "Wetin app no fit match dis search?"
+      "noMatch": "Wetin app no fit match dis search?",
+      "yourApps": "Your apps",
+      "notificationsOn": "Notifications on",
+      "remove": "Remove",
+      "removed": "Remove wey, no go notify you again."
     },
     "card": {
       "open": "Open"
@@ -8470,6 +8474,17 @@
       "developer-tools": "Developa tuul",
       "entertainment": "Entertaenment",
       "art-creativity": "Art & kreativiti"
+    },
+    "pay": {
+      "title": "Pay {{name}}?",
+      "body": "DHB go straight go wallet wey app dey, {{wallet}}. Payment no go reverse.",
+      "confirm": "Pay {{amount}} DHB",
+      "sent": "Paiti {{amount}} DHB fo {{name}}."
+    },
+    "add": {
+      "title": "Add {{name}}?",
+      "body": "Na go appear wey you see under Your apps na, go send you notification weh weh. You go remove im any time from Apps page.",
+      "confirm": "Add app"
     }
   },
   "postQuota": {

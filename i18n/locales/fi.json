@@ -8550,7 +8550,11 @@
       "search": "Hae sovelluksia",
       "all": "Kaikki",
       "fromDehub": "DeHubilta",
-      "noMatch": "Mikään sovellus ei vastaa tätä hakua."
+      "noMatch": "Mikään sovellus ei vastaa tätä hakua.",
+      "yourApps": "Sovelluksesi",
+      "removed": "Poistettu. Se ei enää ilmoita sinulle uudelleen.",
+      "notificationsOn": "Ilmoitukset",
+      "remove": "Poista"
     },
     "card": {
       "open": "Avaa"
@@ -8569,6 +8573,17 @@
       "developer-tools": "Kehittäjän työkalut",
       "entertainment": "Viihde",
       "art-creativity": "Taide ja luovuus"
+    },
+    "pay": {
+      "title": "Maksaa {{name}}?",
+      "body": "DHB menee suoraan sovelluksen lompakkoon, {{wallet}}. Maksuja ei voida perua.",
+      "confirm": "Maksa {{amount}} DHB:lle",
+      "sent": "Maksattu {{amount}} DHB {{name}}:lle."
+    },
+    "add": {
+      "body": "Se näkyy omassa sovelluksesi osiossa ja voi lähettää sinulle ilmoituksia. Voit poistaa sen milloin tahansa Sovellukset-sivulta.",
+      "confirm": "Lisää sovellus",
+      "title": "Lisää {{name}}?"
     }
   },
   "aiStyles": {

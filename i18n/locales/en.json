@@ -8543,7 +8543,11 @@
       "search": "Search apps",
       "all": "All",
       "fromDehub": "From DeHub",
-      "noMatch": "No apps match that search."
+      "noMatch": "No apps match that search.",
+      "yourApps": "Your apps",
+      "notificationsOn": "Notifications on",
+      "remove": "Remove",
+      "removed": "Removed. It will not notify you again."
     },
     "card": {
       "open": "Open"
@@ -8562,6 +8566,17 @@
       "developer-tools": "Developer tools",
       "entertainment": "Entertainment",
       "art-creativity": "Art & creativity"
+    },
+    "pay": {
+      "title": "Pay {{name}}?",
+      "body": "The DHB goes straight to the app's wallet, {{wallet}}. Payments can't be reversed.",
+      "confirm": "Pay {{amount}} DHB",
+      "sent": "Paid {{amount}} DHB to {{name}}."
+    },
+    "add": {
+      "title": "Add {{name}}?",
+      "body": "It will appear under Your apps and can send you notifications. You can remove it any time from the Apps page.",
+      "confirm": "Add app"
     }
   },
   "aiStyles": {

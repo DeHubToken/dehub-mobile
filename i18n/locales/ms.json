@@ -8810,7 +8810,10 @@
       "search": "Aplikasi carian",
       "all": "Semua",
       "fromDehub": "Daripada DeHub",
-      "noMatch": "Tiada aplikasi yang sepadan dengan carian tersebut."
+      "noMatch": "Tiada aplikasi yang sepadan dengan carian tersebut.",
+      "yourApps": "Aplikasi anda",
+      "notificationsOn": "Pemberitahuan di",
+      "removed": "Dihapuskan. Ia tidak akan memberitahu anda lagi."
     },
     "card": {
       "open": "Buka"
@@ -8829,6 +8832,16 @@
       "developer-tools": "Alat pembangun",
       "entertainment": "Hiburan",
       "art-creativity": "Seni & kreativiti"
+    },
+    "pay": {
+      "title": "Bayar {{name}}?",
+      "body": "DHB langsung ke dompet aplikasi, {{wallet}}. Pembayaran tidak boleh dibatalkan.",
+      "confirm": "Bayar {{amount}} DHB",
+      "sent": "Bayar {{amount}} DHB kepada {{name}}."
+    },
+    "add": {
+      "title": "Tambah {{name}}?",
+      "body": "Ia akan muncul di bawah Aplikasi Anda dan boleh mengirimkan pemberitahuan kepada anda. Anda boleh menghapusnya sewaktu-waktu daripada halaman Aplikasi."
     }
   },
   "aiStyles": {

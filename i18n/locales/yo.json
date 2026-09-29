@@ -8551,7 +8551,8 @@
       "search": "Ṣawari awọn ohun elo",
       "all": "Gbogbo",
       "fromDehub": "Láti DeHub",
-      "noMatch": "Kò sí àwọn ohun èlò tí ó bá àwárí yẹn mu."
+      "noMatch": "Kò sí àwọn ohun èlò tí ó bá àwárí yẹn mu.",
+      "yourApps": "Àwọn ohun-èlò rẹ"
     },
     "card": {
       "open": "Ṣii"
@@ -8570,6 +8571,10 @@
       "developer-tools": "Awọn irinṣẹ Olùgbéejáde",
       "entertainment": "Idanilaraya",
       "art-creativity": "Art & àtinúdá"
+    },
+    "pay": {
+      "title": "Páàwón {{name}}?",
+      "body": "Dàgbàgbà DHB jẹ́ ni ẹ̀kọ́ àwọn ẹ̀kọ́ àpẹ́ẹ̀, {{wallet}}. Àwọn ẹ̀kọ́ ni ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti"
     }
   },
   "aiStyles": {

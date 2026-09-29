@@ -8730,7 +8730,11 @@
       "search": "Maghanap ng mga app",
       "all": "Lahat",
       "fromDehub": "Mula sa DeHub",
-      "noMatch": "Walang apps na tumutugma sa paghahanap na iyon."
+      "noMatch": "Walang apps na tumutugma sa paghahanap na iyon.",
+      "yourApps": "Ang iyong mga app",
+      "notificationsOn": "Notifications on",
+      "remove": "Alisin",
+      "removed": "Alisin na. Hindi na ito magbabanggit sa iyo muli."
     },
     "card": {
       "open": "Buksan"
@@ -8747,7 +8751,19 @@
       "education": "Edukasyon",
       "developer-tools": "Mga tool ng developer",
       "entertainment": "Libangan",
-      "art-creativity": "Sining at pagkamalikhain"
+      "art-creativity": "Sining at pagkamalikhain",
+      "utility": "Utility"
+    },
+    "pay": {
+      "title": "Bayaran ang {{name}}?",
+      "body": "Ang DHB ay direktang papunta sa wallet ng app, {{wallet}}. Hindi maaaring ibalik ang mga pagbabayad.",
+      "confirm": "Bayaran ang {{amount}} DHB",
+      "sent": "Nabayaran ang {{amount}} DHB sa {{name}}."
+    },
+    "add": {
+      "title": "Daragdagin ang {{name}}?",
+      "body": "Ito ay magiging nasa ilalim ng Ang iyong mga app at maaaring ipadala sa iyo ang mga babanggit. Maaari mong alisin ito sa anumang oras mula sa Apps page.",
+      "confirm": "Daragdagin ang app"
     }
   },
   "aiStyles": {

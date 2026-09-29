@@ -8549,7 +8549,12 @@
       "emptyBody": "Esimesed rakendused on kontrollimisel. Loo üks ja see võiks siia ilmuda.",
       "search": "Otsi rakendusi",
       "fromDehub": "DeHubilt",
-      "noMatch": "Sellele otsingule ei vasta ükski rakendus."
+      "noMatch": "Sellele otsingule ei vasta ükski rakendus.",
+      "all": "Kõik",
+      "yourApps": "Sinu rakendused",
+      "notificationsOn": "Häälestused sisse",
+      "remove": "Eemalda",
+      "removed": "Eemaldatud. See ei teata enam sinule."
     },
     "card": {
       "open": "Ava"
@@ -8568,6 +8573,17 @@
       "developer-tools": "Arendaja tööriistad",
       "entertainment": "Meelelahutus",
       "art-creativity": "Kunst ja loovus"
+    },
+    "pay": {
+      "title": "Maksta {{name}}?",
+      "body": "DHB läheb suora rakenduse raamatule, {{wallet}}. Makseid ei saa tagasi võtta.",
+      "confirm": "Maksta {{amount}} DHB",
+      "sent": "Maksis {{amount}} DHB {{name}}-le."
+    },
+    "add": {
+      "title": "Lisa {{name}}?",
+      "body": "See ilmub alla \"Sinu rakendused\" ja võib saadada sinule häälestusi. Saad seda igal ajal eemaldada Rakenduste leheküljest.",
+      "confirm": "Lisa rakendus"
     }
   },
   "aiStyles": {

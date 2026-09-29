@@ -8540,7 +8540,11 @@
       "search": "Ҷустуҷӯи барномаҳо",
       "all": "Lahat",
       "fromDehub": "Аз DeHub",
-      "noMatch": "Walang mga application na tumutugma sa paghahanap na"
+      "noMatch": "Walang mga application na tumutugma sa paghahanap na",
+      "yourApps": "Sozandegiyangon",
+      "notificationsOn": "Xabarlar roshan",
+      "remove": "Oʻchirish",
+      "removed": "Oʻchirildi. Sizga yana xabar yuborilmaydi."
     },
     "card": {
       "open": "Кушодан"
@@ -8559,6 +8563,17 @@
       "developer-tools": "Абзорҳои таҳиягар",
       "entertainment": "Вақтхушӣ",
       "art-creativity": "Санъат ва эҷодкорӣ"
+    },
+    "pay": {
+      "title": "{{name}}ga toʻlov qiling?",
+      "body": "DHB toʻgʻridan-toʻgʻri {{wallet}} ilovaning portfeliga boradi. Toʻlovlarni bekor qilish mumkin emas.",
+      "confirm": "{{amount}} DHBga toʻlov qiling",
+      "sent": "{{amount}} DHBni {{name}}ga toʻlov qilingan."
+    },
+    "add": {
+      "title": "{{name}}ni qoʻshish?",
+      "body": "U \"Sozandegiyangon\" ostida koʻrinadi va sizga xabar yuborishi mumkin. Siz har qanday vaqtda Apps sahifasidan uni olib tashlashga tayyor boʻlsaniz.",
+      "confirm": "Ilovani qoʻshish"
     }
   },
   "aiStyles": {

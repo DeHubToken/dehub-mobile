@@ -8549,7 +8549,9 @@
       "search": "搜尋應用程式",
       "all": "全部",
       "fromDehub": "嚟自 DeHub",
-      "noMatch": "冇應用程式同呢個搜尋相符。"
+      "noMatch": "冇應用程式同呢個搜尋相符。",
+      "yourApps": "你嘅應用程式",
+      "remove": "去除"
     },
     "card": {
       "open": "打開"
@@ -8568,6 +8570,14 @@
       "developer-tools": "開發人員工具",
       "entertainment": "娛樂",
       "art-creativity": "藝術同創意"
+    },
+    "pay": {
+      "confirm": "支付 {{amount}} DHB",
+      "sent": "已付 {{amount}} 衛生署 {{name}}。"
+    },
+    "add": {
+      "body": "你哋可以於「應用程式」下找到，並可發送通知。你哋可以隨時於「應用程式」頁面刪除它。",
+      "confirm": "加入應用程式"
     }
   },
   "aiStyles": {

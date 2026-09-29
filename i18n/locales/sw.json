@@ -8551,7 +8551,9 @@
       "search": "Tafuta programu",
       "all": "Zote",
       "fromDehub": "Kutoka DeHub",
-      "noMatch": "Hakuna programu zinazolingana na utafutaji huo."
+      "noMatch": "Hakuna programu zinazolingana na utafutaji huo.",
+      "yourApps": "Programu zako",
+      "removed": "Kulikaliwa. Hutumia wako hivi kwa mara moja tu."
     },
     "card": {
       "open": "Fungua"
@@ -8570,6 +8572,15 @@
       "developer-tools": "Zana za msanidi programu",
       "entertainment": "Mchezo",
       "art-creativity": "Sanaa na ubunifu"
+    },
+    "pay": {
+      "body": "DHB inatoka nyuma kwenda gharama za akiba ya appi, {{wallet}}. Malipo hayasahibiwa.",
+      "confirm": "Baada ya kufikia {{amount}} DHB",
+      "sent": "Bajaji {{amount}} DHB kwa {{name}}."
+    },
+    "add": {
+      "body": "Kutajwa chini ya Your apps na inaweza kusafiri habari zaidi. Unaweza kutumia kutangaza kila wakati kutoka kwa Apps page.",
+      "confirm": "Kujenga App"
     }
   },
   "aiStyles": {

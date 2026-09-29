@@ -30,6 +30,7 @@ const CAPABILITIES: MiniAppHostCapability[] = [
   "actions.viewProfile",
   "actions.viewCast",
   "actions.openMiniApp",
+  "actions.addMiniApp",
   "haptics.impactOccurred",
   "haptics.notificationOccurred",
   "haptics.selectionChanged",
@@ -46,6 +47,8 @@ export interface FarcasterHostOptions {
   onReady: () => void;
   onClose: () => void;
   onCompose: (text: string) => void;
+  /** DeHub's own add-app flow; absent for a developer preview. */
+  addApp?: () => Promise<{ added: boolean }>;
 }
 
 /** Returns the handler for Farcaster SDK messages from the WebView. */
@@ -57,8 +60,16 @@ export function useFarcasterHost(options: FarcasterHostOptions): (e: WebViewMess
 
   // Stable per app and per signed-in person: the adapter re-exposes whenever
   // this object changes, and the host library copies it once when it does.
+  const added = options.context.client.added;
   const sdk = useMemo(() => {
     const c = opts.current.context;
+    // Adding goes through DeHub's dialog and notifications; no Farcaster
+    // notificationDetails come back, since DeHub delivers them itself.
+    const addViaDehub = async () => {
+      const add = opts.current.addApp;
+      if (!add || !(await add()).added) throw new AddMiniApp.RejectedByUser();
+      return {};
+    };
     return {
       context: {
         user: c.user
@@ -69,7 +80,7 @@ export function useFarcasterHost(options: FarcasterHostOptions): (e: WebViewMess
               pfpUrl: c.user.avatarUrl ?? undefined,
             }
           : { fid: 0 },
-        client: { platformType: "mobile" as const, clientFid: 0, added: false, safeAreaInsets: c.client.safeAreaInsets },
+        client: { platformType: "mobile" as const, clientFid: 0, added: c.client.added, safeAreaInsets: c.client.safeAreaInsets },
         location: { type: "launcher" as const },
         features: { haptics: true, cameraAndMicrophoneAccess: false },
       },
@@ -97,12 +108,8 @@ export function useFarcasterHost(options: FarcasterHostOptions): (e: WebViewMess
       signIn: async () => {
         throw new SignIn.RejectedByUser();
       },
-      addFrame: async () => {
-        throw new AddMiniApp.RejectedByUser();
-      },
-      addMiniApp: async () => {
-        throw new AddMiniApp.RejectedByUser();
-      },
+      addFrame: addViaDehub,
+      addMiniApp: addViaDehub,
       impactOccurred: async () => void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium),
       notificationOccurred: async () => void Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success),
       selectionChanged: async () => void Haptics.selectionAsync(),
@@ -119,7 +126,7 @@ export function useFarcasterHost(options: FarcasterHostOptions): (e: WebViewMess
       requestCameraAndMicrophoneAccess: unsupported,
     } as unknown as Omit<MiniAppHost, "ethProviderRequestV2">;
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [host, who]);
+  }, [host, who, added]);
 
   // The adapter types its ref as never-null; it null-checks before every use.
   return useWebViewRpcAdapter({ webViewRef: options.webViewRef as RefObject<WebView>, domain: host, sdk }).onMessage;

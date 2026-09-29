@@ -8550,7 +8550,11 @@
       "search": "Cerca aplicacions",
       "all": "Totes",
       "fromDehub": "De DeHub",
-      "noMatch": "No hi ha aplicacions que coincidin amb la cerca."
+      "noMatch": "No hi ha aplicacions que coincidin amb la cerca.",
+      "yourApps": "Les teves apps",
+      "notificationsOn": "Notificacions activades",
+      "remove": "Treure",
+      "removed": "Treut. Ja no et notificarà més."
     },
     "card": {
       "open": "Obre"
@@ -8569,6 +8573,17 @@
       "developer-tools": "Eines per a desenvolupadors",
       "entertainment": "Oci",
       "art-creativity": "Art i creativitat"
+    },
+    "pay": {
+      "title": "Pagar {{name}}?",
+      "body": "El DHB va directament a la cartera de l'app, {{wallet}}. Els pagaments no es poden desfer.",
+      "confirm": "Pagar {{amount}} DHB",
+      "sent": "Pagat {{amount}} DHB a {{name}}."
+    },
+    "add": {
+      "title": "Afegir {{name}}?",
+      "body": "Apareixerà sota Les teves apps i podrà enviar-te notificacions. Pots treure-la en qualsevol moment des de la pàgina Apps.",
+      "confirm": "Afegir app"
     }
   },
   "aiStyles": {
