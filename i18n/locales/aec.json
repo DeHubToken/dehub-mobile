@@ -1900,6 +1900,7 @@
     "coverUpdated": "صورة الغلاف اتحدثت",
     "couldNotPickImage": "مش قادر اختار صورة",
     "changeCoverImage": "غير صورة الغلاف",
+    "viewCoverImage": "شوف صورة الغلاف",
     "changeAvatar": "غير الصورة الرمزية",
     "verifiedEnsName": "اسم ENS موثق {{name}}",
     "notFullyJoined": "المستخدم ده لسه ماكملش التسجيل. ما اختارش اسم مستخدم أو ماكملش إعدادات الملف الشخصي. لسه تقدر تشوف النشاط العام وتبعت إكراميات لو متاحة.",
@@ -5901,7 +5902,8 @@
     "recentSearches": "آخر عمليات بحث",
     "noTrendingThisWeek": "مفيش حاجة ماشية الأسبوع ده",
     "closeFilterOptions": "اقفل خيارات الفلتر",
-    "openFilterOptions": "افتح خيارات الفلتر"
+    "openFilterOptions": "افتح خيارات الفلتر",
+    "fillQuery": "حط \"{{query}}\" في خانة الدوّير"
   },
   "notifPrompt": {
     "stayInLoop": "ضل على اطلاع",

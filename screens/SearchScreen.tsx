@@ -965,6 +965,8 @@ const SearchScreen: React.FC = () => {
                   className="w-8 h-8 rounded-xl bg-theme-neutrals-700 items-center justify-center"
                   style={isMinimal ? styles.minimalOutlineBtn : undefined}
                   onPress={() => handleReplaceSearchBox(item)}
+                  accessibilityRole="button"
+                  accessibilityLabel={t("search.fillQuery", { query: item })}
                 >
                   <Icon name="ArrowUpLeft" size={16} color="#E5E7EB" />
                 </TouchableOpacity>
@@ -1109,6 +1111,8 @@ const SearchScreen: React.FC = () => {
                 className="w-9 h-9 rounded-xl bg-theme-neutrals-700 items-center justify-center"
                 onPress={handleSearch}
                 disabled={loading || !searchQuery.trim()}
+                accessibilityRole="button"
+                accessibilityLabel={t("common.search")}
               >
                 {loading ? (
                   <ActivityIndicator size="small" color="#E5E7EB" />

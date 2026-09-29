@@ -1900,6 +1900,7 @@
     "coverUpdated": "تم تحديث الغلاف",
     "couldNotPickImage": "تعذر اختيار الصورة",
     "changeCoverImage": "تغيير صورة الغلاف",
+    "viewCoverImage": "عرض صورة الغلاف",
     "changeAvatar": "تغيير الصورة الرمزية",
     "verifiedEnsName": "اسم ENS موثق {{name}}",
     "notFullyJoined": "لم ينضم هذا المستخدم بالكامل بعد. لم يطالب باسم مستخدم أو يكمل إعداد الملف الشخصي. لا يزال بإمكانك عرض النشاط العام وإرسال الإكراميات إذا كانت متاحة.",
@@ -5956,7 +5957,8 @@
     "recentSearches": "عمليات البحث الأخيرة",
     "noTrendingThisWeek": "لا يوجد محتوى رائج هذا الأسبوع",
     "closeFilterOptions": "إغلاق خيارات التصفية",
-    "openFilterOptions": "فتح خيارات التصفية"
+    "openFilterOptions": "فتح خيارات التصفية",
+    "fillQuery": "ضع \"{{query}}\" في مربع البحث"
   },
   "notifPrompt": {
     "stayInLoop": "ابقَ على اطلاع",

@@ -1900,6 +1900,7 @@
     "coverUpdated": "Titelbild aktualisiert",
     "couldNotPickImage": "Bild konnte nicht ausgewählt werden",
     "changeCoverImage": "Titelbild ändern",
+    "viewCoverImage": "Titelbild ansehen",
     "changeAvatar": "Avatar ändern",
     "verifiedEnsName": "Verifizierter ENS-Name {{name}}",
     "notFullyJoined": "Dieser Benutzer ist noch nicht vollständig beigetreten. Sie haben keinen Benutzernamen beansprucht oder die Profilerstellung nicht abgeschlossen. Sie können öffentliche Aktivitäten weiterhin einsehen und, falls verfügbar, Trinkgelder senden.",
@@ -5952,7 +5953,8 @@
     "recentSearches": "Kürzliche Suchen",
     "noTrendingThisWeek": "Diese Woche keine angesagten Inhalte",
     "closeFilterOptions": "Filteroptionen schließen",
-    "openFilterOptions": "Filteroptionen öffnen"
+    "openFilterOptions": "Filteroptionen öffnen",
+    "fillQuery": "\"{{query}}\" in die Suche übernehmen"
   },
   "notifPrompt": {
     "stayInLoop": "Bleib auf dem Laufenden",

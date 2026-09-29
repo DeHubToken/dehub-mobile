@@ -1910,6 +1910,7 @@
     "coverUpdated": "پوښ تازه شو",
     "couldNotPickImage": "عکس نشو اخیستل کیدای",
     "changeCoverImage": "د پوښ عکس بدل کړئ",
+    "viewCoverImage": "کور تصویر دیکھو",
     "changeAvatar": "اووتار بدل کړئ",
     "verifiedEnsName": "تایید شوی ENS نوم {{name}}",
     "notFullyJoined": "دا کارن لا تر اوسه په بشپړه توګه نه دی شامل شوی. دوی د کارن نوم نه دی اخیستی یا د پروفایل تنظیمات یې بشپړ نه دي. تاسو لاهم عام فعالیت لیدلی شئ او که شتون ولري نو لارښوونې لیږئ.",
@@ -5911,6 +5912,7 @@
     "recentSearches": "حالیہ تلاشیں",
     "closeFilterOptions": "فلٹر کے اختیارات بند کریں",
     "openFilterOptions": "فلٹر کے اختیارات کھولیں",
+    "fillQuery": "کھوج میں \"{{query}}\" بھرو",
     "trendingThisWeek": "باوترین ئەم هەفتەیە",
     "tryDifferentKeywords": "هەوڵ بدە وشەی جیاواز بەکاربهێنیت یان ڕێنووسی خۆت بپشکنە",
     "noTrendingThisWeek": "هیچ ناوەڕۆکی باو ئەم هەفتەیە نییە"

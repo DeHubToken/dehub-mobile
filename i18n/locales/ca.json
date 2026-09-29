@@ -1900,6 +1900,7 @@
     "coverUpdated": "Portada actualitzada",
     "couldNotPickImage": "No s'ha pogut seleccionar la imatge",
     "changeCoverImage": "Canviar imatge de portada",
+    "viewCoverImage": "Mostra la imatge de portada",
     "changeAvatar": "Canviar avatar",
     "verifiedEnsName": "Nom ENS verificat {{name}}",
     "notFullyJoined": "Aquest usuari encara no s'ha unit completament. No ha reclamat un nom d'usuari ni ha completat la configuració del perfil. Encara podeu veure l'activitat pública i enviar consells si estan disponibles.",
@@ -5903,7 +5904,8 @@
     "recentSearches": "Cercas recents",
     "noTrendingThisWeek": "No hi ha contingut de tendència aquesta setmana",
     "closeFilterOptions": "Tanca les opcions de filtre",
-    "openFilterOptions": "Obre les opcions de filtre"
+    "openFilterOptions": "Obre les opcions de filtre",
+    "fillQuery": "Omple la cerca amb \"{{query}}\""
   },
   "notifPrompt": {
     "stayInLoop": "Mantén-te al dia",
