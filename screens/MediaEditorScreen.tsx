@@ -14,7 +14,6 @@ import {
   FlatList,
   KeyboardAvoidingView,
   Modal,
-  Platform,
   Pressable,
   ScrollView,
   Text,
@@ -329,7 +328,6 @@ function useHistory(initial: ProjectSnapshot | null) {
 function Workspace({ initial, projectId, pickVideo, onClose }: { initial: ProjectSnapshot | null; projectId: string | null; pickVideo?: boolean; onClose: () => void }) {
   const { t } = useTranslation();
   const nav = useNavigation<Nav>();
-  const insets = useSafeAreaInsets();
   const { height: windowHeight } = useWindowDimensions();
   const h = useHistory(initial);
   const project = h.project;
@@ -1015,8 +1013,10 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
 
   const textClip = editingText ? getClip(project, editingText) : null;
 
+  // No inset padding here or on the toolbar: the root SafeAreaView in App.tsx
+  // already keeps this screen clear of the status and navigation bars.
   return (
-    <View className="flex-1 bg-black" style={{ paddingTop: insets.top }}>
+    <View className="flex-1 bg-black">
       {/* Top bar */}
       <View className="flex-row items-center px-2 py-2" style={{ gap: 4 }}>
         <IconButton icon="ChevronLeft" label={t("common.goBack")} onPress={() => { void close(); }} />
@@ -1135,7 +1135,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
       )}
 
       {/* Toolbar */}
-      <View className="bg-theme-neutrals-900 border-t border-white/10" style={{ paddingBottom: insets.bottom }}>
+      <View className="bg-theme-neutrals-900 border-t border-white/10">
         <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ paddingHorizontal: 8, paddingVertical: 8, gap: 4 }}>
           {tools.map((b) => {
             const on = tool === b.id;
@@ -1247,7 +1247,7 @@ function TextPrompt(props: {
   useEffect(() => { if (props.visible) setValue(props.initial); }, [props.visible, props.initial]);
   return (
     <Modal visible={props.visible} transparent animationType="fade" onRequestClose={props.onCancel}>
-      <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : undefined} className="flex-1 justify-center bg-black/70 px-6">
+      <KeyboardAvoidingView behavior="padding" className="flex-1 justify-center bg-black/70 px-6">
         <View className="rounded-2xl bg-theme-neutrals-800 p-4" style={{ gap: 12 }}>
           <Text className="text-white text-base font-semibold">{props.title}</Text>
           <TextInput
@@ -1283,6 +1283,7 @@ function ExportSheet(props: {
   onExportVideo: (quality: "720" | "1080", target: "photos" | "post") => void;
 }) {
   const { t } = useTranslation();
+  const insets = useSafeAreaInsets();
   const [format, setFormat] = useState<"png" | "jpeg" | "mp4">("png");
   const [quality, setQuality] = useState<"720" | "1080">("1080");
   const isVideo = !!props.video && format === "mp4";
@@ -1295,7 +1296,8 @@ function ExportSheet(props: {
   return (
     <Modal visible={props.visible} transparent animationType="slide" onRequestClose={props.onCancel}>
       <Pressable className="flex-1 bg-black/60" onPress={props.onCancel} accessibilityRole="button" accessibilityLabel={t("common.close")} />
-      <View className="rounded-t-3xl bg-theme-neutrals-800 p-5" style={{ gap: 14 }}>
+      {/* The modal draws behind the nav bar (edge-to-edge), so the sheet pays the inset itself. */}
+      <View className="rounded-t-3xl bg-theme-neutrals-800 p-5" style={{ gap: 14, paddingBottom: insets.bottom + 20 }}>
         <Text className="text-white text-lg font-semibold">{t("editor.app.export")}</Text>
         <View>
           <Text className="text-theme-neutrals-300 text-xs mb-2">{t("editor.export.format")}</Text>
