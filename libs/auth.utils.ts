@@ -124,6 +124,10 @@ const ESSENTIAL_USER_FIELDS = [
   'isVerified',
   'followersCount',
   'followingCount',
+  // The profile header reads these two. Leaving them out meant every app
+  // start showed 0 followers until the account refetch came back.
+  'followers',
+  'followings',
   'notificationCount',
   'socialLinks',
   'createdAt',
