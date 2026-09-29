@@ -26,6 +26,7 @@ import Icon from "../ui/Icon";
 import type { IconName } from "../ui/Icon";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useTranslation } from "react-i18next";
+import type { TFunction } from "i18next";
 import Avatar from "../common/Avatar";
 import VoiceNotePlayer from "./VoiceNotePlayer";
 import { getAvatarUrl } from "../../libs";
@@ -100,21 +101,25 @@ const resolveMediaUrl = (path: string): string => {
 const isMediaComment = (c: Comment | null): boolean =>
   !!(c?.imageUrl || c?.gifUrl || c?.audioUrl);
 
-/** Short-form timestamp (duplicated lite version to keep module self-contained) */
-const formatShortTime = (date: Date | string | undefined): string => {
+/**
+ * Short-form timestamp (duplicated lite version to keep module self-contained).
+ * Same locale units as the row it floats over, or the copy would say "3h"
+ * above a row that says it in the reader's language.
+ */
+const formatShortTime = (date: Date | string | undefined, t: TFunction): string => {
   if (!date) return "";
   const diff = Date.now() - new Date(date).getTime();
   const s = Math.floor(diff / 1000);
   const m = Math.floor(s / 60);
   const h = Math.floor(m / 60);
   const d = Math.floor(h / 24);
-  if (d >= 365) return `${Math.floor(d / 365)}y`;
-  if (d >= 30) return `${Math.floor(d / 30)}mo`;
-  if (d >= 7) return `${Math.floor(d / 7)}w`;
-  if (d > 0) return `${d}d`;
-  if (h > 0) return `${h}h`;
-  if (m > 0) return `${m}m`;
-  return `${Math.max(1, s)}s`;
+  if (d >= 365) return t("communities.time.years", { count: Math.floor(d / 365) });
+  if (d >= 30) return t("communities.time.months", { count: Math.floor(d / 30) });
+  if (d >= 7) return t("communities.time.weeks", { count: Math.floor(d / 7) });
+  if (d > 0) return t("communities.time.days", { count: d });
+  if (h > 0) return t("comments.timeHours", { count: h });
+  if (m > 0) return t("comments.timeMinutes", { count: m });
+  return t("comments.timeSeconds", { count: Math.max(1, s) });
 };
 
 
@@ -129,6 +134,7 @@ const ActionRow: React.FC<ActionRowProps> = ({ icon, label, onPress, destructive
   <TouchableOpacity
     onPress={onPress}
     activeOpacity={0.6}
+    accessibilityRole="button"
     className="flex-row items-center px-4 py-3"
   >
     <View className="w-8 items-center">
@@ -152,10 +158,11 @@ const FloatingComment: React.FC<{
   isReply?: boolean;
   liked?: boolean;
 }> = ({ comment, isReply, liked }) => {
+  const { t } = useTranslation();
   const user = comment.user;
-  const displayName = user?.displayName || user?.username || "Unknown";
+  const displayName = user?.displayName || user?.username || t("settings.unknown");
   const avatarUrl = getAvatarUrl(user?.avatarImageUrl || "");
-  const timeAgo = formatShortTime(comment.createdAt);
+  const timeAgo = formatShortTime(comment.createdAt, t);
 
   const parsedContent = useMemo(() => {
     const content = comment.content || "";
@@ -309,11 +316,11 @@ const CommentContextMenuComponent: React.FC<CommentContextMenuProps> = ({
       if (tokenId && comment) {
         shareUrl = `${WEBSITE_LINK}/app/post/${tokenId}?c=${comment.id}`;
       }
-      await Share.share({ message: `Check this out: ${shareUrl}`, url: shareUrl });
+      await Share.share({ message: t("comments.shareMessage", { url: shareUrl }), url: shareUrl });
     } catch (e) {
       console.error("Share error:", e);
     }
-  }, [onClose, tokenId, comment]);
+  }, [onClose, tokenId, comment, t]);
 
   const handleEdit = useCallback(() => {
     onClose();

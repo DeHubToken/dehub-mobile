@@ -32,10 +32,12 @@ const SHEET_FRACTION = 0.82;
 // in the reaction tray (ReactionInfoSheet) rather than in this public sheet.
 type SheetTab = "comments" | "quotes" | "reposts";
 
-const TAB_CONFIG: { key: SheetTab; icon: React.ComponentProps<typeof Icon>["name"]; label: string }[] = [
-  { key: "comments", icon: "MessageSquare", label: "Comments" },
-  { key: "quotes", icon: "Quote", label: "Quotes" },
-  { key: "reposts", icon: "Repeat2", label: "Reposts" },
+// Keys, not words: the tabs are icon-only, so this is the only thing a screen
+// reader has to announce, and it announced English in every language.
+const TAB_CONFIG: { key: SheetTab; icon: React.ComponentProps<typeof Icon>["name"]; labelKey: string }[] = [
+  { key: "comments", icon: "MessageSquare", labelKey: "postInfo.comments" },
+  { key: "quotes", icon: "Quote", labelKey: "screens.quotesTab" },
+  { key: "reposts", icon: "Repeat2", labelKey: "screens.repostsTab" },
 ];
 
 interface CommentBottomSheetProps {
@@ -245,7 +247,7 @@ const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
                       ]}
                       hitSlop={{ top: 4, bottom: 4, left: 2, right: 2 }}
                       accessibilityRole="tab"
-                      accessibilityLabel={tab.label}
+                      accessibilityLabel={t(tab.labelKey)}
                       accessibilityState={{ selected: isActive }}
                     >
                       <Icon
