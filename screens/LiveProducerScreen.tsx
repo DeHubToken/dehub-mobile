@@ -806,12 +806,13 @@ const LiveProducerScreen: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    if (!permission) return;
+    // An encoder stream never touches the camera, so it has nothing to ask for.
+    if (!permission || externalMode) return;
     if (!permission.granted && permission.canAskAgain) requestPermission();
     // Keyed on the values, not the object: the re-read below hands back a new
     // object with the same answer, which must not raise a second prompt.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [permission?.status, permission?.canAskAgain, requestPermission]);
+  }, [permission?.status, permission?.canAskAgain, requestPermission, externalMode]);
 
   // The hook only reads the permission on mount, so a grant made in system
   // settings would stay invisible until the screen was reopened.
@@ -1168,6 +1169,13 @@ const LiveProducerScreen: React.FC = () => {
     else Linking.openSettings().catch(() => {});
   }, [cameraCanAskAgain, requestPermission]);
 
+  // The permission overlay covers the header's close button, so it carries its
+  // own way out. Same rule as the header: never end a broadcast unconfirmed.
+  const closeFromPermission = useCallback(() => {
+    if (stage === "starting" || stage === "live" || stage === "ending") openEndConfirm();
+    else requestClose();
+  }, [stage, openEndConfirm, requestClose]);
+
   const onGlobalPress = useCallback(() => {
     bumpUiTimer();
   }, [bumpUiTimer]);
@@ -1228,8 +1236,8 @@ const LiveProducerScreen: React.FC = () => {
           </View>
         ) : null}
 
-        {/* Permission overlay */}
-        {!permission?.granted ? (
+        {/* Permission overlay (not in encoder mode, which needs no camera) */}
+        {!externalMode && !permission?.granted ? (
           <View className="absolute inset-0 dark-surface bg-black/80 items-center justify-center z-20">
             <Text className="text-zinc-400 mb-3 text-sm">
               {t("goLive.cameraPermissionRequired")}
@@ -1244,6 +1252,14 @@ const LiveProducerScreen: React.FC = () => {
                   ? t("goLive.grantPermission")
                   : t("player.openSettings")}
               </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={closeFromPermission}
+              className="mt-3 px-5 py-2.5"
+              activeOpacity={0.8}
+              accessibilityRole="button"
+            >
+              <Text className="text-zinc-400 text-xs">{t("common.goBack")}</Text>
             </TouchableOpacity>
           </View>
         ) : null}

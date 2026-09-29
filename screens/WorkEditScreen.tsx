@@ -23,7 +23,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation, useRoute, type RouteProp } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import Icon from "../components/ui/Icon";
-import ScreenHeader, { SCREEN_HEADER_HEIGHT } from "../components/ScreenHeader";
+import ScreenHeader from "../components/ScreenHeader";
 import LoadErrorState from "../components/ui/LoadErrorState";
 import { DeHubLoader } from "../components/DeHubLoader";
 import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
@@ -65,7 +65,7 @@ function budgetLockReasonKey(job: WorkJob): string {
 export default function WorkEditScreen() {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
-  const keyboardOffset = useKeyboardOffset(SCREEN_HEADER_HEIGHT);
+  const keyboardOffset = useKeyboardOffset();
   const navigation = useNavigation<any>();
   const route = useRoute<RouteProp<AppStackParamList, ScreenNames.WorkEdit>>();
   const { jobKey, job: seed } = route.params;
