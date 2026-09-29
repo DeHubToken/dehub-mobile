@@ -2235,7 +2235,9 @@
     "revealKey": "Asehoy ny lakile",
     "revealSignIn": "Midira indray mba hahitana ity lakile ity",
     "revealFailed": "Tsy afaka naseho ny lakile. Andramo indray.",
-    "signInAgain": "Midira indray"
+    "signInAgain": "Midira indray",
+    "createSignIn": "Midira indray mba hamorona agent",
+    "checkConnection": "Hamarino ny fifandraisanao ary andramo indray."
   },
   "hero": {
     "title": "Tongasoa Eto",

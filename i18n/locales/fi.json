@@ -2212,7 +2212,9 @@
     "revealKey": "Näytä avain",
     "revealSignIn": "Kirjaudu uudelleen nähdäksesi tämän avaimen",
     "revealFailed": "Avainta ei voitu näyttää. Yritä uudelleen.",
-    "signInAgain": "Kirjaudu uudelleen"
+    "signInAgain": "Kirjaudu uudelleen",
+    "createSignIn": "Kirjaudu uudelleen luodaksesi agentin",
+    "checkConnection": "Tarkista yhteytesi ja yritä uudelleen."
   },
   "hero": {
     "title": "Tervetuloa",

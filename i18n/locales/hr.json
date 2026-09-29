@@ -2212,7 +2212,9 @@
     "revealKey": "Prikaži ključ",
     "revealSignIn": "Ponovno se prijavite da biste vidjeli ovaj ključ",
     "revealFailed": "Ključ nije moguće prikazati. Pokušajte ponovno.",
-    "signInAgain": "Ponovno se prijavi"
+    "signInAgain": "Ponovno se prijavi",
+    "createSignIn": "Ponovno se prijavite da biste stvorili agenta",
+    "checkConnection": "Provjerite vezu i pokušajte ponovno."
   },
   "hero": {
     "title": "Dobrodošli U",

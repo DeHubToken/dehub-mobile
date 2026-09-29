@@ -2212,7 +2212,9 @@
     "revealKey": "Afficher la clé",
     "revealSignIn": "Reconnectez-vous pour voir cette clé",
     "revealFailed": "Impossible d'afficher la clé. Réessayez.",
-    "signInAgain": "Se reconnecter"
+    "signInAgain": "Se reconnecter",
+    "createSignIn": "Reconnectez-vous pour créer un agent",
+    "checkConnection": "Vérifiez votre connexion et réessayez."
   },
   "hero": {
     "title": "Bienvenue Dans",

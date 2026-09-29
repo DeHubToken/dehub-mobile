@@ -2212,7 +2212,9 @@
     "revealKey": "Tampilkan kunci",
     "revealSignIn": "Masuk lagi untuk melihat kunci ini",
     "revealFailed": "Tidak dapat menampilkan kunci. Coba lagi.",
-    "signInAgain": "Masuk lagi"
+    "signInAgain": "Masuk lagi",
+    "createSignIn": "Masuk lagi untuk membuat agen",
+    "checkConnection": "Periksa koneksi Anda lalu coba lagi."
   },
   "hero": {
     "title": "Selamat Datang",

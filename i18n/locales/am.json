@@ -2210,7 +2210,9 @@
     "revealKey": "ቁልፉን አሳይ",
     "revealSignIn": "ይህን ቁልፍ ለማየት እንደገና ይግቡ",
     "revealFailed": "ቁልፉን ማሳየት አልተቻለም። እንደገና ይሞክሩ።",
-    "signInAgain": "እንደገና ይግቡ"
+    "signInAgain": "እንደገና ይግቡ",
+    "createSignIn": "ወኪል ለመፍጠር እንደገና ይግቡ",
+    "checkConnection": "ግንኙነትዎን ያረጋግጡና እንደገና ይሞክሩ።"
   },
   "hero": {
     "title": "ወደ ዓለማችን",
