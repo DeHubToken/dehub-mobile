@@ -500,7 +500,6 @@
     "notifAnnouncementsDesc": "Ozi platform & mmelite atụmatụ",
     "quietHoursFrom": "Site na",
     "quietHoursTo": "To",
-    "quietHoursSilencedNote": "A ga-akwụsị ngwa ngwa ngwa n'oge awa ndị a.",
     "notifInApp": "N'ime ngwa",
     "notifPush": "Ngwa ngwa",
     "accountVisibility": "Ngwa Akaụntụ",
@@ -8590,7 +8589,6 @@
     },
     "category": {
       "games": "Egwuregwu",
-      "finance": "Nkììrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìr",
       "utility": "Utiwari",
       "productivity": "Arụpụtaghị",
       "health-fitness": "Ahụike & mma",
@@ -8607,7 +8605,6 @@
     },
     "add": {
       "title": "{{name}}?",
-      "body": "Nwoke na-ahụrụ nke *Your apps* nke ọ dị mmadụ ọ dị ọ bụrụ ọrụ nke ọ bụrụ ọrụ. Nwoke na-ahụrụ nke ọ bụrụ ọrụ nke ọ bụrụ ọrụ, ọ bụrụ ọrụ nke ọ bụrụ ọrụ nke ọ bụrụ ọrụ nke *Apps* nke ọ bụrụ ọrụ nke ọ bụrụ ọrụ.",
       "confirm": "Tinye ngwa"
     }
   },

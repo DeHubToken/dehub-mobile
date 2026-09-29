@@ -8701,7 +8701,6 @@
     },
     "add": {
       "body": "Nó sẽ xuất hiện trong danh sách Ứng dụng của bạn và có thể gửi thông báo cho bạn. Bạn có thể xóa nó bất kỳ lúc nào từ trang Ứng dụng.",
-      "confirm": "Nó sẽ xuất hiện dưới mục Các ứng dụng của bạn và có thể gửi thông báo cho bạn. Bạn có thể xóa nó bất kỳ lúc nào từ trang Ứng dụng.",
       "title": "Thêm {{name}}?"
     }
   },

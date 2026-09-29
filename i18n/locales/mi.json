@@ -3327,7 +3327,6 @@
       "slowModeOffHint": "Kua whakaputaina te rārangi ture",
       "defaultPermissions": "Ko ngā mema e taea ai te tuku kōrero i te wā kāore he whakamahere. Ko ngā kaiwhakahaere e whakamahere ana.",
       "defaultPermissionsHint": "Ko ngā ture kāore i whakaputaina",
-      "slowModeTitle": "Ko ngā mea katoa e taea ai e ngā mema ki tēnei rēhita, nā te kaiwhakahaere e whakaputaina ana.",
       "log": {
         "justNow": "Ko te rārangi whakamahere",
         "minutesAgo": "{{value}}m ago",

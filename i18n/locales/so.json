@@ -5613,7 +5613,6 @@
     "addTip": "Ku dar tip",
     "chooseGif": "Dooro GIF",
     "searchGifs": "Raadi GIF-yada",
-    "gifsLoadFailed": "Can 't load GIFs ah ah ah",
     "attachImage": "Lifaaq sawir",
     "attachVideo": "Lifaaq fiidyo",
     "attachFile": "Lifaaq fayl",
@@ -7214,7 +7213,6 @@
   },
   "support": {
     "title": "Taageer",
-    "subtitle": "Tigidhadahaaga iyo xaaladdooda. ah ah ah ah, no fee.",
     "newTicket": "Tigidh cusub",
     "newTicketHint": "Noo sheeg waxa dhacay iyo waxa aad filaysay halkii.",
     "backToTickets": "Ku noqo tikidhada",
@@ -8235,7 +8233,6 @@
     "byCreator": "by {{creator}}",
     "chartAfterFirstTrade": "Jaantusku wuxuu soo muuqan doonaa ka dib ganacsiga ugu horreeya.",
     "close": "Xir",
-    "coinLoadFailed": "Can 't load coin ah ah ah",
     "coinNotFound": "Qadaadiic lama helin.",
     "createCoin": "Samee qadaadiic",
     "createFailed": "Ku guuldareystay in la abuuro",
@@ -8608,12 +8605,10 @@
     },
     "pay": {
       "title": "Pay {{name}}?",
-      "body": "DHB ka soo jiraa walletka appi, {{wallet}}. Waxaa ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka",
       "confirm": "Pay {{amount}} DHB",
       "sent": "Baadidaa {{amount}} DHB ka soo badbaad {{name}}."
     },
     "add": {
-      "body": "Waad uu ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid",
       "title": "Add {{name}}?",
       "confirm": "Add app"
     }

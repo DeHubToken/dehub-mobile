@@ -8613,8 +8613,7 @@
     },
     "add": {
       "title": "Tambahkan {{name}}?",
-      "body": "Aplikasi ini akan muncul di bawah Your apps dan dapat mengirimkan notifikasi. Anda dapat menghapusnya kapan saja dari halaman Apps.",
-      "confirm": "Aplikasi ini akan muncul di bawah \"Aplikasi Anda\" dan dapat mengirimkan notifikasi. Anda dapat menghapusnya kapan saja dari halaman Aplikasi."
+      "body": "Aplikasi ini akan muncul di bawah Your apps dan dapat mengirimkan notifikasi. Anda dapat menghapusnya kapan saja dari halaman Apps."
     }
   },
   "aiStyles": {

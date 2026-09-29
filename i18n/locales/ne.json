@@ -4260,7 +4260,6 @@
     "unpinMessage": "सन्देश अनपिन गर्नुहोस्",
     "jumpToLatest": "भर्खरका सन्देशहरूमा जानुहोस्",
     "modBadge": "मोड",
-    "attachGif": "ग्राफिक्स इमेज फ़ाइल (Graphics Interchange Format)",
     "ban": "ब्यान गर्नुहोस्",
     "banConfirm": "तपाईं निश्चित हुनुहुन्छ कि तपाईं {{name}} लाई ब्यान गर्न चाहनुहुन्छ?",
     "banFailed": "प्रयोगकर्तालाई ब्यान गर्न असफल भयो"
@@ -4564,7 +4563,6 @@
     "filterAll": "सबै",
     "noData": "डेटा छैन",
     "tips": "टिप्स",
-    "ppv": "प्रायवेट व्यू पाइप (Private View Pay-Per-View)",
     "incomeBreakdown": "आम्दानी विवरण",
     "ppvSales": "PPV बिक्री",
     "total": "जम्मा",

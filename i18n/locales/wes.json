@@ -781,8 +781,6 @@
     "badgeDelegationEarn": "Stake DeHub tokens tok earn a badj, an im kom wit a slot for every tia yu klem.",
     "smsNotificationsLocked": "Unlock wi {{dhb}} token (${{usd}}) credit",
     "smsDialogIntro": "Massa message wey go cost money send, so dis channel go run on credit you go top up wey you buy from DeHub token.",
-    "smsUnlockPrice": "{{dhb}} tokens (${{usd}}) **dɔ́** **wɔ́k** **mɛ́sɛ́j** **ánd** **bɛ́kɔ́** **wɔ́n** **fɛ́s** **fɛ́s** **yɔ́ʊ** **fɛ́s** **bɛ́lɛ́ns**.",
-    "smsCodeSent": "Kode send. Na cost **{{price}}** token.",
     "exportReady": "{{count}} accounts, {{saved}} saved posts exported.",
     "importDone": "Followed {{followed}}, blocked {{blocked}}, {{folders}} folders created.",
     "importProgress": "Applai {{done}} of {{total}}…",
@@ -7781,7 +7779,6 @@
         "intro": "Yu go move yor DeHub tokens wey dey different blockchain tok use cross-chain bridj.",
         "steps": {
           "1": "Go find Bridge page from sidebar.",
-          "2": "Tok tok tok chain na where my tok dey.",
           "3": "Chain 1: Cameroon",
           "4": "Na 5 token.",
           "6": "Kam konfirm bridge transaction.",
