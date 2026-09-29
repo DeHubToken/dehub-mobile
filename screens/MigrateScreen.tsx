@@ -45,7 +45,6 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import ScreenHeader from '../components/ScreenHeader';
 import Icon from '../components/ui/Icon';
 import GlassModal from '../components/ui/GlassModal';
-import { useGateToHome } from '../hooks/useGateToHome';
 import { useAuthState } from '../context/AuthContext';
 import { toastError, toastSuccess } from '../libs';
 import { ScreenNames } from '../navigation/ScreenNames';
@@ -110,8 +109,9 @@ export default function MigrateScreen() {
   const { t } = useTranslation();
   const navigation = useNavigation<any>();
   const insets = useSafeAreaInsets();
-  const { isSignedIn, needsUsername } = useAuthState();
-  useGateToHome(isSignedIn && !needsUsername);
+  // Guests see the page too, as on web: the list button reads "Sign in to
+  // show my videos" and sends them to SignIn (handleList).
+  const { isSignedIn } = useAuthState();
 
   const [stage, setStage] = useState<Stage>('loading');
   const [profileUrl, setProfileUrl] = useState('');
@@ -719,7 +719,7 @@ export default function MigrateScreen() {
 
       {stage === 'done' && (
         <Pressable
-          onPress={() => navigation.navigate(ScreenNames.Root)}
+          onPress={() => navigation.navigate(ScreenNames.Root, { screen: ScreenNames.Home }, { pop: true })}
           className="rounded-xl h-11 items-center justify-center self-start px-5"
           style={{ backgroundColor: 'rgba(255,255,255,0.08)' }}
         >
