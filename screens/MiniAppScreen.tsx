@@ -33,12 +33,13 @@ import { useAuth } from "../context/AuthContext";
 import { useUserProfileSheet } from "../context/UserProfileSheetContext";
 import { getAuthToken } from "../libs/auth.utils";
 import { openInApp } from "../libs/links.utils";
-import { toastError } from "../libs";
+import { toastError, toastSuccess } from "../libs";
 import env from "../config/env";
 import {
   HOST_CAPABILITIES,
   cleanExternalUrl,
   cleanHandle,
+  cleanPayment,
   cleanPostId,
   composeText,
   launchUrl,
@@ -49,7 +50,14 @@ import {
   type LaunchSource,
   type MiniAppContext,
 } from "../libs/miniapp/protocol";
-import { fetchAppBySlug, mintMiniAppToken } from "../services/miniapps.service";
+import {
+  addMiniApp,
+  fetchAddedApps,
+  fetchAppBySlug,
+  mintMiniAppToken,
+  recordMiniAppPayment,
+} from "../services/miniapps.service";
+import { payPostQuota } from "../services/post-quota-payment";
 import { useFarcasterHost } from "../libs/miniapp/farcaster-host";
 
 /** How long the splash waits for ready() before stepping aside anyway. */
@@ -60,6 +68,10 @@ type Badge = "verified" | "unreviewed" | "dev" | null;
 
 interface HostedApp {
   url: URL;
+  /** Registered apps only; a developer preview cannot be added or paid. */
+  slug?: string;
+  /** Where payments go, when the domain's owner is verified. */
+  ownerWallet?: string | null;
   name: string;
   iconUrl: string | null;
   splashBackground: string;
@@ -101,6 +113,20 @@ export default function MiniAppScreen() {
   const [ready, setReady] = useState(false);
   const last = useRef<Record<string, number>>({});
   const signingIn = useRef(false);
+  // One confirmation at a time: a second pay while the first is in the wallet
+  // is the classic double charge.
+  const busy = useRef(false);
+  const [added, setAdded] = useState(false);
+  useEffect(() => {
+    let live = true;
+    if (!app?.slug) return;
+    fetchAddedApps(user?.walletAddress).then((rows) => {
+      if (live) setAdded(rows.some((r) => r.miniapp_apps?.slug === app.slug));
+    });
+    return () => {
+      live = false;
+    };
+  }, [app?.slug, user?.walletAddress]);
 
   useEffect(() => {
     let live = true;
@@ -120,6 +146,8 @@ export default function MiniAppScreen() {
         row && url
           ? {
               url,
+              slug: row.slug,
+              ownerWallet: row.owner_wallet,
               name: row.name,
               iconUrl: row.icon_url,
               splashBackground: /^#[0-9a-fA-F]{6}$/.test(row.splash_background_color ?? "")
@@ -159,12 +187,13 @@ export default function MiniAppScreen() {
       location: { type: launchSource(params.from, dev) },
       client: {
         platform: "mobile",
+        added,
         locale: i18n.language || "en",
         theme: "dark",
         safeAreaInsets: { top: 0, bottom: insets.bottom, left: insets.left, right: insets.right },
       },
     };
-  }, [user, params.from, dev, i18n.language, insets.bottom, insets.left, insets.right]);
+  }, [user, params.from, dev, i18n.language, insets.bottom, insets.left, insets.right, added]);
 
   const close = useCallback(() => {
     if (navigation.canGoBack()) navigation.goBack();
@@ -176,6 +205,34 @@ export default function MiniAppScreen() {
     (text: string) => navigation.navigate(ScreenNames.Upload, { initialText: text || undefined }),
     [navigation],
   );
+  const confirm = useCallback(
+    (title: string, body: string, confirmLabel: string) =>
+      new Promise<boolean>((resolve) => {
+        Alert.alert(
+          title,
+          body,
+          [
+            { text: t("miniApps.signIn.cancel"), style: "cancel", onPress: () => resolve(false) },
+            { text: confirmLabel, onPress: () => resolve(true) },
+          ],
+          { cancelable: true, onDismiss: () => resolve(false) },
+        );
+      }),
+    [t],
+  );
+
+  // Adding and paying both need an explicit tap on a dialog DeHub draws.
+  const addAppFlow = useCallback(async () => {
+    if (!app?.slug) return { added: false };
+    const ok = await confirm(t("miniApps.add.title", { name: app.name }), `${app.url.host}\n\n${t("miniApps.add.body")}`, t("miniApps.add.confirm"));
+    if (!ok) return { added: false };
+    const session = await getAuthToken();
+    if (!session) throw Object.assign(new Error("Sign in to DeHub first."), { code: "signin" });
+    await addMiniApp(session, env.SUPABASE_URL, app.slug);
+    setAdded(true);
+    return { added: true };
+  }, [app, confirm, t]);
+
   // Apps built for Farcaster speak its SDK instead; answer that too.
   const onFarcasterMessage = useFarcasterHost({
     webViewRef: webRef,
@@ -184,6 +241,7 @@ export default function MiniAppScreen() {
     onReady,
     onClose: close,
     onCompose,
+    addApp: app?.slug ? addAppFlow : undefined,
   });
 
   const askSignIn = useCallback(
@@ -284,6 +342,54 @@ export default function MiniAppScreen() {
           void openInApp(url);
           return ok();
         }
+        case "actions.addApp": {
+          if (!app.slug) return fail("unsupported", "Only registered apps can be added.");
+          if (!context.user) return fail("signin", "The user is not signed in to DeHub.");
+          if (busy.current) return fail("busy", "Another request is already open.");
+          busy.current = true;
+          try {
+            const result = await addAppFlow();
+            return result.added ? ok(result) : fail("rejected", "The user declined.");
+          } catch (error) {
+            return fail("failed", (error as Error).message);
+          } finally {
+            busy.current = false;
+          }
+        }
+        case "actions.pay": {
+          if (!app.slug || !app.ownerWallet) return fail("unsupported", "This app cannot take payments.");
+          if (!context.user) return fail("signin", "The user is not signed in to DeHub.");
+          const request = cleanPayment(req.params);
+          if (!request) return fail("invalid", "amount must be a positive number of DHB.");
+          if (busy.current) return fail("busy", "Another request is already open.");
+          busy.current = true;
+          try {
+            const wallet = `${app.ownerWallet.slice(0, 6)}…${app.ownerWallet.slice(-4)}`;
+            const confirmed = await confirm(
+              t("miniApps.pay.title", { name: app.name }),
+              `${request.amount.toLocaleString()} DHB${request.memo ? ` · ${request.memo}` : ""}\n\n${t("miniApps.pay.body", { wallet })}`,
+              t("miniApps.pay.confirm", { amount: request.amount.toLocaleString() }),
+            );
+            if (!confirmed) return fail("rejected", "The user declined to pay.");
+            const sent = await payPostQuota(request.amount, app.ownerWallet, app.name);
+            const session = await getAuthToken();
+            if (!session) return fail("signin", "Sign in to DeHub first.");
+            const recorded = await recordMiniAppPayment(session, env.SUPABASE_URL, {
+              slug: app.slug,
+              txHash: sent.txHash,
+              chainId: sent.chainId,
+              amount: request.amount,
+              memo: request.memo,
+            });
+            toastSuccess(t("miniApps.pay.sent", { amount: recorded.amount, name: app.name }));
+            return ok(recorded);
+          } catch (error) {
+            toastError((error as Error).message);
+            return fail("failed", (error as Error).message);
+          } finally {
+            busy.current = false;
+          }
+        }
         case "haptics.impact": {
           const style =
             req.params.style === "light"
@@ -298,7 +404,7 @@ export default function MiniAppScreen() {
           return fail("unsupported", `${req.method} is not supported here.`);
       }
     },
-    [app, context, close, askSignIn, navigation, showUserProfile, onFarcasterMessage],
+    [app, context, close, askSignIn, navigation, showUserProfile, onFarcasterMessage, addAppFlow, confirm, t],
   );
 
   /** Keep the WebView on the app's own host; everything else goes to the browser. */

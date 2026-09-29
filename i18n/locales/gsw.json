@@ -146,7 +146,9 @@
     "noMoreShorts": "Keini Shorts meh",
     "noShortsFound": "Keini Shorts gfunde",
     "newMembersHint": "Grad bi üs igstige – säg hallo",
-    "mostViewedThisMonth": "Am meischte agluegt dä Monet"
+    "scroll": "Scroll",
+    "noFilterMatches": "Kei Inhalt passt zu dine Filter.",
+    "clearFilters": "Filter lösche"
   },
   "explore": {
     "all": "Alli",
@@ -2671,7 +2673,31 @@
     "noneYetBeFirst": "No Kommentär. Sii de erst!",
     "turnedOff": "Kommentär sind für dä Post usgschaltet",
     "noQuotesYet": "No Zitotä.",
-    "noRepostsYet": "No Reposts."
+    "noRepostsYet": "No Reposts.",
+    "timeSeconds": "{{count}} Sek.",
+    "timeMinutes": "{{count}} Min.",
+    "timeHours": "{{count}} Std.",
+    "seeWhoLiked": "Luege, wem's gfallt",
+    "holdToReact": "{{reaction}} — druckt halte zum Reagiere",
+    "holdToChangeReaction": "{{reaction}} — druckt halte, zum dini Reaktion z ändere",
+    "viewCount_one": "{{count}} Aufruef",
+    "viewCount_other": "{{count}} Aufruef",
+    "shareMessage": "Lueg dir das aa: {{url}}",
+    "hideReplies": "Antworte usblände",
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
+    "rowA11yHint": "Fangt e Antwort uf dä Kommentar aa",
+    "editingComment": "Kommentar bearbeite",
+    "editPlaceholder": "Bearbeit din Kommentar...",
+    "replyPlaceholder": "Schrib e Antwort...",
+    "inputPlaceholder": "Do schriibe",
+    "cancelReply": "Antwort abbräche",
+    "cancelEdit": "Bearbeite abbräche",
+    "countLabel_one": "{{count}} Kommentar",
+    "countLabel_other": "{{count}} Kommentär",
+    "repostsLabel_one": "Repost",
+    "repostsLabel_other": "Reposts",
+    "quotesLabel_one": "Zitat",
+    "quotesLabel_other": "Zitat"
   },
   "postInfo": {
     "title": "Biitragsinformation",
@@ -5156,7 +5182,20 @@
     "removeUploadTitle": "Dä UPLOAD lösche?",
     "removeQueuedBody": "Er isch no nöd publiziert worde. Wenn du en löschsch, wird au de Post annulliert.",
     "quotaShortfall": "Dises Post koschtet {{cost}} Tokens und du hesch {{held}}.",
-    "shopAllowanceUsed": "{{allowance}} vo {{allowance}} bruucht. Staked meh DeHub Tokens für es höheres Badge und en andere Slot."
+    "shopAllowanceUsed": "{{allowance}} vo {{allowance}} bruucht. Staked meh DeHub Tokens für es höheres Badge und en andere Slot.",
+    "editFilters": "Bildfilter",
+    "cropRotate": "Schneiden & drehen",
+    "drawWrite": "Zeichne & schreibe",
+    "fade": "Färbung {{value}}%",
+    "grayscale": "Graustufen {{value}}%",
+    "resetEdits": "Zurücksetzen",
+    "clearDrawing": "Löschen",
+    "typeText": "Typ…",
+    "textSize": "Schriftgröße {{value}}",
+    "coverFrames": "Wähle ein Bildrahmen",
+    "coverFrame": "Benutze Bildrahmen {{index}} als Titelbild",
+    "uploadCover": "Lade ein Titelbild hoch",
+    "editFailed": "Konnte diese Änderung nicht anwenden. Versuche es noch einmal."
   },
   "bounty": {
     "claimed": "Iiglöst",
@@ -8556,7 +8595,11 @@
       "search": "Suche Apps",
       "all": "All",
       "fromDehub": "Von DeHub",
-      "noMatch": "Keini Apps passen zu deiner Suche."
+      "noMatch": "Keini Apps passen zu deiner Suche.",
+      "yourApps": "Deine Apps",
+      "notificationsOn": "Benachrichtigungen aktiviert",
+      "remove": "Entfernen",
+      "removed": "Entfernt. Es wird dich nicht mehr benachrichtigen."
     },
     "card": {
       "open": "Öffne"
@@ -8575,6 +8618,17 @@
       "developer-tools": "Entwickler-Tools",
       "entertainment": "Unterhaltungsindustrie",
       "art-creativity": "Kunst un Chreischtikait"
+    },
+    "pay": {
+      "title": "{{name}} bezahlen?",
+      "body": "Das DHB geht direkt in die Wallet der App, {{wallet}}. Zahlungen können nicht rückgängig gemacht werden.",
+      "confirm": "{{amount}} DHB bezahlen",
+      "sent": "{{amount}} DHB an {{name}} bezahlt."
+    },
+    "add": {
+      "title": "App {{name}} hinzufügen?",
+      "body": "Sie wird unter Deine Apps erscheinen und kann dir Benachrichtigungen senden. Du kannst sie jederzeit von der Apps-Seite entfernen.",
+      "confirm": "App hinzufügen"
     }
   },
   "aiStyles": {

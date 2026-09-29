@@ -146,7 +146,9 @@
     "noMoreShorts": "مزید شارٹس نہیں",
     "noShortsFound": "کوئی شارٹس نہیں ملے",
     "newMembersHint": "ابھی شامل ہوئے — ہیلو کہیں",
-    "mostViewedThisMonth": "اس مہینے سب سے زیادہ دیکھا"
+    "scroll": "Scroll",
+    "noFilterMatches": "تمارے فلٹراں سے کوئی مواد نئیں ملا۔",
+    "clearFilters": "فلٹر مٹاؤ"
   },
   "explore": {
     "all": "سب",
@@ -2641,7 +2643,31 @@
     "noneYetBeFirst": "ابھی تک کوئی تبصرہ نہیں۔ سب سے پہلے بنیں!",
     "turnedOff": "اس پوسٹ کے لیے تبصرے بند ہیں۔",
     "noQuotesYet": "ابھی تک کوئی اقتباس نہیں۔",
-    "noRepostsYet": "ابھی تک کوئی ری پوسٹ نہیں۔"
+    "noRepostsYet": "ابھی تک کوئی ری پوسٹ نہیں۔",
+    "timeSeconds": "{{count}} سیکنڈ",
+    "timeMinutes": "{{count}} منٹ",
+    "timeHours": "{{count}} گھنٹے",
+    "seeWhoLiked": "دیکھیں کس کس نے لائیک کیا",
+    "holdToReact": "{{reaction}} — ری ایکٹ کرنے کو دبا کے رکھیں",
+    "holdToChangeReaction": "{{reaction}} — اپنا ری ایکشن بدلنے کو دبا کے رکھیں",
+    "viewCount_one": "{{count}} نظارہ",
+    "viewCount_other": "{{count}} نظارے",
+    "shareMessage": "یہ دیکھیں: {{url}}",
+    "hideReplies": "جوابات چھپائیں",
+    "rowA11yLabel": "{{name}}، {{time}}: {{text}}",
+    "rowA11yHint": "اس تبصرے کا جواب لکھنا شروع کرتا",
+    "editingComment": "تبصرے میں ترمیم",
+    "editPlaceholder": "اپنے تبصرے میں ترمیم کریں...",
+    "replyPlaceholder": "جواب لکھیں...",
+    "inputPlaceholder": "یہاں ٹائپ کریں",
+    "cancelReply": "جواب منسوخ",
+    "cancelEdit": "ترمیم منسوخ",
+    "countLabel_one": "{{count}} تبصرہ",
+    "countLabel_other": "{{count}} تبصرے",
+    "repostsLabel_one": "ری پوسٹ",
+    "repostsLabel_other": "ری پوسٹس",
+    "quotesLabel_one": "اقتباس",
+    "quotesLabel_other": "اقتباسات"
   },
   "postInfo": {
     "title": "پوسٹ معلومات",
@@ -5101,7 +5127,20 @@
     "removeUploadTitle": "یہ اپ لوڈ ہٹائیں ؟",
     "removeQueuedBody": "اسے ابھی تک پوسٹ نہیں کیا گیا ہے ۔ اسے ہٹانے سے پوسٹ منسوخ ہو جاتی ہے ۔",
     "quotaShortfall": "اس پوسٹ کی قیمت {{cost}} ٹوکن ہے اور آپ کے پاس {{held}} ہے۔",
-    "shopAllowanceUsed": "{{allowance}} میں سے {{allowance}} استعمال ہوا۔ اعلیٰ بیج اور ایک اور سلاٹ کے لیے مزید ڈی ہب ٹوکن اسٹیک کریں۔"
+    "shopAllowanceUsed": "{{allowance}} میں سے {{allowance}} استعمال ہوا۔ اعلیٰ بیج اور ایک اور سلاٹ کے لیے مزید ڈی ہب ٹوکن اسٹیک کریں۔",
+    "editFilters": "ہیڈر فِلٹرز",
+    "cropRotate": "کاٹ اور پھیلا",
+    "drawWrite": "ڈرا اور لکھو",
+    "fade": "ڈھلوان {{value}}%",
+    "grayscale": "گرے سکلر {{value}}%",
+    "resetEdits": "ریسیٹ",
+    "clearDrawing": "کلیر",
+    "typeText": "ٹائپ...",
+    "textSize": "ٹیکسٹ سائز {{value}}",
+    "coverFrames": "ایک کور فرینمی چنو",
+    "coverFrame": "کور فرینمی {{index}} کو کور کے طور پر استعمال کریں",
+    "uploadCover": "کور انٹرنیٹ اپ لوڈ کریں",
+    "editFailed": "وہ ایڈٹ نہیں لگا سکے۔ دوبارہ کوشش کریں۔"
   },
   "bounty": {
     "claimed": "وصول ہو گیا",
@@ -7986,7 +8025,8 @@
       "emptyTitle": "अजूनपणे यापर्यंत कोणतीही ऐप्स नाही.",
       "title": "اےپز",
       "intro": "مینی اپس جو دےہوب پر کسی نے بنائے گئے ہیں۔ یہ دےہوب کے اندر کھولتے ہیں، آپ پہلے سے سائن ان کرے ہوئے ہیں، اور ہر اپ کا سچا ویب ایڈریس دکھایا جاتا ہے۔",
-      "emptyBody": "پہلے اپس کا ریویو ہو رہا ہے۔ ایک بنائیں تو یہاں ہو سکتا ہے۔"
+      "emptyBody": "پہلے اپس کا ریویو ہو رہا ہے۔ ایک بنائیں تو یہاں ہو سکتا ہے۔",
+      "removed": "ہٹا دیا گیا۔ اب آپ کو دوبارہ اطلاع نہیں دی جائے گی۔"
     },
     "host": {
       "close": "بند کر دیجئے اپ",
@@ -8016,6 +8056,13 @@
       "developer-tools": "ڈویلپر ٹولز",
       "entertainment": "انٹرٹینمنٹ",
       "art-creativity": "آرٹ اینڈ کرییٹیویٹی"
+    },
+    "pay": {
+      "body": "ڈھے بی (DHB) اےپ کی والٹ میں ڈھک جاتی ہے، {{wallet}}۔ پے منٹس بیک نہیں ہو سکتے۔"
+    },
+    "add": {
+      "title": "{{name}}؟",
+      "body": "یہ آپ کے اپس میں دکھائی دے گا اور آپ کو نوتیفیکیشنز بھیجے گا۔ آپ اسے کبھی بھی اپس پیج سے ہٹا سکتے ہیں۔"
     }
   },
   "postQuota": {

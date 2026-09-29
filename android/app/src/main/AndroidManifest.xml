@@ -107,6 +107,15 @@
         <data android:scheme="https" android:host="dehub.io" android:path="/pricing"/>
         <data android:scheme="https" android:host="dehub.io" android:path="/work/history"/>
         <data android:scheme="https" android:host="dehub.io" android:path="/work/disputes"/>
+        <data android:scheme="https" android:host="dehub.io" android:path="/apps"/>
+        <data android:scheme="https" android:host="dehub.io" android:pathPrefix="/apps/"/>
+        <data android:scheme="https" android:host="dehub.io" android:pathPrefix="/post/"/>
+        <data android:scheme="https" android:host="dehub.io" android:pathPrefix="/posts/"/>
+        <data android:scheme="https" android:host="dehub.io" android:pathPrefix="/bounty/"/>
+        <data android:scheme="https" android:host="dehub.io" android:pathPrefix="/communities/"/>
+        <data android:scheme="https" android:host="dehub.io" android:pathPrefix="/stores/"/>
+        <data android:scheme="https" android:host="dehub.io" android:pathPrefix="/events/"/>
+        <data android:scheme="https" android:host="dehub.io" android:pathPrefix="/@"/>
         <category android:name="android.intent.category.BROWSABLE"/>
         <category android:name="android.intent.category.DEFAULT"/>
       </intent-filter>

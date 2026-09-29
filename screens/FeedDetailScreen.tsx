@@ -22,6 +22,10 @@ import ReportModal from "../components/common/ReportModal";
 import Avatar from "../components/common/Avatar";
 import MentionSuggestions from "../components/common/MentionSuggestions";
 import CommentsSkeleton from "../components/Feed/CommentsSkeleton";
+import Icon from "../components/ui/Icon";
+import { BannedAccountNotice } from "../components/common/BannedAccountNotice";
+import { useBannedAccount } from "../hooks/useBannedAccount";
+import { useKidsMode } from "../hooks/useKidsMode";
 import { useUser, useAuthActions } from "../context/AuthContext";
 import { useKeyboardLift } from "../hooks/useKeyboardLayout";
 import { useMentions } from "../hooks/useMentions";
@@ -42,7 +46,7 @@ import { ScreenNames } from "../navigation/ScreenNames";
 import type { PostReaction } from "../libs/reactions";
 import PostDetailContinuation from "../components/Advertising/PostDetailContinuation";
 import { useAppTheme } from "../context/ThemeContext";
-import { MINIMAL_HAIRLINE, MINIMAL_INSET } from "../theme/minimal";
+import { MINIMAL_HAIRLINE, MINIMAL_INSET, MINIMAL_TAB_LINE } from "../theme/minimal";
 import { peekPostDetailSeed, takeWarmRequest } from "../libs/navPrefetch";
 import { useTransitionSettled } from "../hooks/useTransitionSettled";
 
@@ -96,8 +100,10 @@ export default function FeedDetailScreen() {
 
   const [loading, setLoading] = useState(true);
   const [privateError, setPrivateError] = useState(false);
-  // Why the last fetch failed, when it did and the account isn't private:
-  // a 404 or 410 means the post is gone, anything else is worth a retry.
+  // Why the last fetch failed, when it did and the account isn't private
+  // (that has its own notice): a 404 or 410 means the post is gone, anything
+  // else is worth a retry. Without this the list said "No comments yet" — a
+  // thread that failed to arrive read as one nobody had written in.
   const [loadError, setLoadError] = useState<"notFound" | "failed" | null>(null);
   // The card that was tapped, when there was one: the post paints on the first
   // frame and the fetch below only brings the comments and fresh counts.
@@ -184,6 +190,15 @@ export default function FeedDetailScreen() {
   // — see hooks/useKeyboardLayout.ts.
   const { lift: kbLift } = useKeyboardLift();
   const { showUserProfile } = useUserProfileSheet();
+
+  // The three states in which the composer is replaced by a notice, decided
+  // exactly as the comment sheet decides them (CommentSection). This box used
+  // to stay live through all three, so people wrote a comment and only learned
+  // on Send that the server was never going to take it.
+  const commentsDisabled = !!(item as any)?.commentsDisabled;
+  const { isKidsMode } = useKidsMode();
+  const kidsOnlyThread = !!(item as any)?.forKids && !isKidsMode;
+  const { isBanned: accountBanned } = useBannedAccount();
 
   // User avatar for comment input
   const userAvatarUrl = useMemo(() => 
@@ -322,7 +337,7 @@ export default function FeedDetailScreen() {
       // console.log("[FeedDetailScreen] fetched data", payload.comments);
       setPrivateError(false);
       setLoadError(null);
-
+      
       // Set the feed item
       setItem(payload as UnifiedFeedItem);
       
@@ -566,12 +581,15 @@ export default function FeedDetailScreen() {
     if (contextComment) handleReplyPress(contextComment);
   }, [contextComment, handleReplyPress]);
 
-  // Context menu action: report somebody else's comment
-  const handleContextReport = useCallback(() => {
-    if (!contextComment || !requireAuth) return;
-    const target = contextComment;
+  // Report somebody else's comment — from the menu or a screen-reader action.
+  const handleReportComment = useCallback((target: Comment) => {
+    if (!requireAuth) return;
     requireAuth(() => setReportTarget(target));
-  }, [contextComment, requireAuth]);
+  }, [requireAuth]);
+
+  const handleContextReport = useCallback(() => {
+    if (contextComment) handleReportComment(contextComment);
+  }, [contextComment, handleReportComment]);
 
   /** This thread is the viewer's own post, which is what a pin needs. */
   const isOwnThread = useMemo(() => {
@@ -586,10 +604,10 @@ export default function FeedDetailScreen() {
    * rather than only setting it here — otherwise the comment that held the pin
    * a moment ago keeps its badge until the refetch lands.
    */
-  const handleContextPin = useCallback(async () => {
-    const id = contextComment?.id;
+  const handlePinComment = useCallback(async (comment: Comment) => {
+    const id = comment.id;
     if (id == null) return;
-    const wasPinned = contextComment?.isPinned === true;
+    const wasPinned = comment.isPinned === true;
     setComments((prev) =>
       prev.map((c) => ({ ...c, isPinned: !wasPinned && Number(c.id) === Number(id) })),
     );
@@ -603,15 +621,22 @@ export default function FeedDetailScreen() {
     // order — the optimistic patch cleared the flag on every other row, so
     // there is nothing local left to undo a failure from.
     await fetchData();
-  }, [contextComment, fetchData, t]);
+  }, [fetchData, t]);
+
+  const handleContextPin = useCallback(() => {
+    if (contextComment) void handlePinComment(contextComment);
+  }, [contextComment, handlePinComment]);
+
+  const handleStartEdit = useCallback((comment: Comment) => {
+    setEditingComment(comment);
+    setReplyTo(null);
+    setInputText(comment.content || "");
+    inputRef.current?.focus();
+  }, []);
 
   const handleContextEdit = useCallback(() => {
-    if (!contextComment) return;
-    setEditingComment(contextComment);
-    setReplyTo(null);
-    setInputText(contextComment.content || "");
-    inputRef.current?.focus();
-  }, [contextComment]);
+    if (contextComment) handleStartEdit(contextComment);
+  }, [contextComment, handleStartEdit]);
 
   const handleContextLike = useCallback(async () => {
     if (!contextComment || !address) return;
@@ -685,9 +710,8 @@ export default function FeedDetailScreen() {
 
   // Asks first — permanent, and it takes every reply under the comment with
   // it, other people's included.
-  const handleContextDelete = useCallback(() => {
-    if (!contextComment) return;
-    const commentId = contextComment.id;
+  const handleDeleteComment = useCallback((comment: Comment) => {
+    const commentId = comment.id;
     Alert.alert(
       t("governance.discussion.deleteTitle"),
       t("governance.discussion.deleteDescription"),
@@ -696,7 +720,11 @@ export default function FeedDetailScreen() {
         { text: t("common.delete"), style: "destructive", onPress: () => void deleteNow(commentId) },
       ],
     );
-  }, [contextComment, deleteNow]);
+  }, [deleteNow, t]);
+
+  const handleContextDelete = useCallback(() => {
+    if (contextComment) handleDeleteComment(contextComment);
+  }, [contextComment, handleDeleteComment]);
 
   // Comment views. This screen is the second of the two live mobile comment
   // surfaces and the one that never sent them — CommentSection has had the
@@ -943,6 +971,11 @@ export default function FeedDetailScreen() {
             onDislike={handleDislikeComment}
             onReact={handleReactComment}
             onShowLikers={setLikersCommentId}
+            // Offered on the same terms as the long-press menu below.
+            onEdit={handleStartEdit}
+            onPin={isOwnThread ? handlePinComment : undefined}
+            onReport={address ? handleReportComment : undefined}
+            onDelete={handleDeleteComment}
             onLongPress={handleCommentLongPress}
             tokenId={tokenId}
             contentType="feed"
@@ -952,7 +985,7 @@ export default function FeedDetailScreen() {
         </View>
       );
     },
-    [handleReplyPress, handleUserPress, tipTotals, tipTippers, viewerWallet, handleLikeComment, handleDislikeComment, handleCommentLongPress, tokenId, highlightedCommentId, threadMeta, handleToggleThread, postCreator]
+    [handleReplyPress, handleUserPress, tipTotals, tipTippers, viewerWallet, handleLikeComment, handleDislikeComment, handleStartEdit, isOwnThread, handlePinComment, address, handleReportComment, handleDeleteComment, handleCommentLongPress, tokenId, highlightedCommentId, threadMeta, handleToggleThread, postCreator]
   );
 
   // Send media comment
@@ -973,7 +1006,7 @@ export default function FeedDetailScreen() {
         createdAt: now,
         user: {
           username: user?.username || "you",
-          displayName: user?.displayName || user?.username || "You",
+          displayName: user?.displayName || user?.username || t("dm.you"),
           avatarImageUrl: user?.avatarImageUrl || user?.avatarUrl || "",
           address: user?.address || user?.walletAddress || "",
         },
@@ -1023,7 +1056,7 @@ export default function FeedDetailScreen() {
         setMediaPosting(false);
       }
     });
-  }, [mediaAttachment, mediaPosting, requireAuth, tokenId, replyTo, user, insertThreaded]);
+  }, [mediaAttachment, mediaPosting, requireAuth, tokenId, replyTo, user, insertThreaded, t]);
 
   // Cancel reply or edit
   const cancelReplyOrEdit = useCallback(() => {
@@ -1076,7 +1109,7 @@ export default function FeedDetailScreen() {
           parentId: replyTo?.id,
           user: {
             username: user?.username || "you",
-            displayName: user?.displayName || user?.username || "You",
+            displayName: user?.displayName || user?.username || t("dm.you"),
             avatarImageUrl: user?.avatarImageUrl || user?.avatarUrl || "",
             address: user?.address || user?.walletAddress || "",
           },
@@ -1125,7 +1158,7 @@ export default function FeedDetailScreen() {
         setPosting(false);
       }
     });
-  }, [inputText, posting, requireAuth, tokenId, replyTo, editingComment, user, fetchData, insertThreaded]);
+  }, [inputText, posting, requireAuth, tokenId, replyTo, editingComment, user, fetchData, insertThreaded, t]);
 
   // No post to show and nothing to comment on: it is private, gone or failed to
   // load, and the message in the header is the whole page.
@@ -1220,7 +1253,7 @@ export default function FeedDetailScreen() {
               {formatCompactNumber(item.reposts ?? 0)}
             </Text>
             <Text className="text-theme-neutrals-400 text-sm ml-1">
-              {(item.reposts ?? 0) === 1 ? "Repost" : "Reposts"}
+              {t("comments.repostsLabel", { count: item.reposts ?? 0 })}
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
@@ -1239,7 +1272,7 @@ export default function FeedDetailScreen() {
               {formatCompactNumber(item.quotes ?? 0)}
             </Text>
             <Text className="text-theme-neutrals-400 text-sm ml-1">
-              {(item.quotes ?? 0) === 1 ? "Quote" : "Quotes"}
+              {t("comments.quotesLabel", { count: item.quotes ?? 0 })}
             </Text>
           </TouchableOpacity>
         </View>
@@ -1247,12 +1280,21 @@ export default function FeedDetailScreen() {
       {!postUnavailable && (
         <View className="px-4 pt-2 pb-1">
           <Text className="text-theme-neutrals-400 text-xs font-medium">
-            {comments.length > 0 ? `${comments.length} Comment${comments.length !== 1 ? "s" : ""}` : "Comments"}
+            {comments.length > 0 ? t("comments.countLabel", { count: comments.length }) : t("postInfo.comments")}
           </Text>
         </View>
       )}
     </View>
-  ), [item, loading, privateError, loadError, postUnavailable, fetchData, t, navigation, comments.length, focusCommentInput, isMinimal]);
+  ), [item, loading, privateError, loadError, postUnavailable, fetchData, navigation, comments.length, focusCommentInput, isMinimal, t]);
+
+  // The name sits in bold wherever the language puts it. The sentence is
+  // translated whole and cut around the name, because a translated "Replying
+  // to" with the name glued on after it only reads right in languages that put
+  // the name last.
+  const replyToName = replyTo?.user?.displayName || replyTo?.user?.username || t("dm.userFallback");
+  const [replyingToBefore, replyingToAfter = ""] = t("governance.discussion.replyingTo", {
+    name: "\u0000",
+  }).split("\u0000");
 
   return (
     <View className="flex-1 bg-theme-neutrals-900">
@@ -1285,17 +1327,17 @@ export default function FeedDetailScreen() {
         ) : !item ? null : loadError ? (
           // The post is up but its comments didn't come: say so, rather than
           // "no comments yet" on a post whose card counts some.
-          <View className="px-4 py-6 flex-row items-center gap-3">
+          <View className="px-4 py-6 items-start" style={{ gap: 12 }}>
             <Text className="text-theme-neutrals-400 text-sm">{t("comments.loadFailed")}</Text>
-            <TouchableOpacity
-              onPress={() => {
-                fetchData();
-              }}
-              activeOpacity={0.7}
+            <Pressable
+              onPress={() => { void fetchData(); }}
               accessibilityRole="button"
+              className={isMinimal ? "px-5 py-2 border" : "px-5 py-2 rounded-xl bg-theme-neutrals-700"}
+              // Minimal: outline only, no fill.
+              style={isMinimal ? { borderColor: MINIMAL_TAB_LINE } : undefined}
             >
-              <Text className="text-white text-sm font-semibold">{t("common.retry")}</Text>
-            </TouchableOpacity>
+              <Text className="text-theme-neutrals-50 font-medium">{t("common.retry")}</Text>
+            </Pressable>
           </View>
         ) : (
           <View className="px-4 py-6">
@@ -1331,17 +1373,21 @@ export default function FeedDetailScreen() {
             >
               <Text className="flex-1 text-xs text-theme-neutrals-400">
                 {editingComment ? (
-                  "Editing comment"
+                  t("comments.editingComment")
                 ) : (
                   <>
-                    Replying to{" "}
-                    <Text className="font-semibold">
-                      {replyTo?.user?.displayName || replyTo?.user?.username || "user"}
-                    </Text>
+                    {replyingToBefore}
+                    <Text className="font-semibold">{replyToName}</Text>
+                    {replyingToAfter}
                   </>
                 )}
               </Text>
-              <TouchableOpacity onPress={cancelReplyOrEdit} activeOpacity={0.7}>
+              <TouchableOpacity
+                onPress={cancelReplyOrEdit}
+                activeOpacity={0.7}
+                accessibilityRole="button"
+                accessibilityLabel={editingComment ? t("comments.cancelEdit") : t("comments.cancelReply")}
+              >
                 <Ionicons name="close" size={18} color={theme.colors.mutedForeground} />
               </TouchableOpacity>
             </View>
@@ -1355,8 +1401,34 @@ export default function FeedDetailScreen() {
             loading={mentions.loading}
           />
 
-          {/* Voice recorder overlay */}
-          {recorder.isRecording ? (
+          {/* The same three notices, in the same order, as the comment sheet.
+              A banned account reads every comment and writes none; the other two
+              leave the thread readable and say why it is not writable. */}
+          {accountBanned ? (
+            <View style={{ padding: COMPOSER.gutter }}>
+              <BannedAccountNotice variant="line" />
+            </View>
+          ) : commentsDisabled ? (
+            <View
+              className="flex-row items-center justify-center"
+              style={{ gap: COMPOSER.gap, padding: COMPOSER.gutter, minHeight: COMPOSER.control + COMPOSER.gutter * 2 }}
+            >
+              <Icon name="MessageSquare" size={16} color="#6F7174" />
+              <Text className="text-theme-neutrals-400 text-sm">
+                {t("comments.turnedOff")}
+              </Text>
+            </View>
+          ) : kidsOnlyThread ? (
+            <View
+              className="flex-row items-center justify-center"
+              style={{ gap: COMPOSER.gap, padding: COMPOSER.gutter, minHeight: COMPOSER.control + COMPOSER.gutter * 2 }}
+            >
+              <Icon name="Baby" size={16} color="#6F7174" />
+              <Text className="text-theme-neutrals-400 text-sm text-center">
+                {t("comments.kidsOnlyThread")}
+              </Text>
+            </View>
+          ) : recorder.isRecording ? (
             <VoiceNoteRecordingOverlay recorder={recorder} />
           ) : mediaAttachment ? (
             <CommentMediaPreview
@@ -1395,7 +1467,13 @@ export default function FeedDetailScreen() {
                   value={inputText}
                   onChangeText={mentions.handleChangeText}
                   onSelectionChange={mentions.handleSelectionChange}
-                  placeholder={editingComment ? "Edit your comment..." : replyTo ? "Write a reply..." : "Type here"}
+                  placeholder={
+                    editingComment
+                      ? t("comments.editPlaceholder")
+                      : replyTo
+                        ? t("comments.replyPlaceholder")
+                        : t("comments.inputPlaceholder")
+                  }
                   placeholderTextColor={theme.colors.mutedForeground}
                   className="flex-1 text-sm text-theme-neutrals-100"
                   style={{

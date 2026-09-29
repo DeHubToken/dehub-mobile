@@ -146,7 +146,9 @@
     "noMoreShorts": "आणखी शॉर्ट्स नाहीत",
     "noShortsFound": "कोणतेही शॉर्ट्स आढळले नाहीत",
     "newMembersHint": "आत्ताच सामील झाला — हॅलो म्हणा",
-    "mostViewedThisMonth": "या महिन्यात सर्वाधिक पाहिलेले"
+    "scroll": "Scroll",
+    "noFilterMatches": "तुमच्या फिल्टरशी जुळणारी कोणतीही सामग्री नाही.",
+    "clearFilters": "फिल्टर साफ करा"
   },
   "explore": {
     "all": "सर्व",
@@ -2645,7 +2647,31 @@
     "noneYetBeFirst": "अद्याप कोणत्याही टिप्पण्या नाहीत. प्रथम व्हा!",
     "turnedOff": "या पोस्टसाठी टिप्पण्या बंद केल्या आहेत",
     "noQuotesYet": "अद्याप कोणतेही कोट्स नाहीत.",
-    "noRepostsYet": "अद्याप रिसेप्शन नाही."
+    "noRepostsYet": "अद्याप रिसेप्शन नाही.",
+    "timeSeconds": "{{count}} से.",
+    "timeMinutes": "{{count}} मि.",
+    "timeHours": "{{count}} ता.",
+    "seeWhoLiked": "कोणाला आवडले ते पहा",
+    "holdToReact": "{{reaction}} — प्रतिक्रिया देण्यासाठी दाबून ठेवा",
+    "holdToChangeReaction": "{{reaction}} — तुमची प्रतिक्रिया बदलण्यासाठी दाबून ठेवा",
+    "viewCount_one": "{{count}} दृश्य",
+    "viewCount_other": "{{count}} दृश्ये",
+    "shareMessage": "हे पहा: {{url}}",
+    "hideReplies": "प्रत्युत्तरे लपवा",
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
+    "rowA11yHint": "या टिप्पणीला प्रत्युत्तर देणे सुरू करते",
+    "editingComment": "टिप्पणी संपादित करत आहे",
+    "editPlaceholder": "तुमची टिप्पणी संपादित करा...",
+    "replyPlaceholder": "प्रत्युत्तर लिहा...",
+    "inputPlaceholder": "येथे टाइप करा",
+    "cancelReply": "प्रत्युत्तर रद्द करा",
+    "cancelEdit": "संपादन रद्द करा",
+    "countLabel_one": "{{count}} टिप्पणी",
+    "countLabel_other": "{{count}} टिप्पण्या",
+    "repostsLabel_one": "रीपोस्ट",
+    "repostsLabel_other": "रीपोस्ट्स",
+    "quotesLabel_one": "कोट",
+    "quotesLabel_other": "कोट्स"
   },
   "postInfo": {
     "title": "पोस्ट माहिती",
@@ -5128,7 +5154,20 @@
     "removeUploadTitle": "हे अपलोड काढायचे आहे का?",
     "removeQueuedBody": "ते अजून पोस्ट केलेले नाही. ते काढल्यास पोस्ट रद्द होईल.",
     "quotaShortfall": "या पोस्टसाठी {{cost}} टोकन लागतील आणि तुमच्याकडे {{held}} आहेत.",
-    "shopAllowanceUsed": "{{allowance}} पैकी {{allowance}} वापरले. उच्च बॅज आणि आणखी एका स्लॉटसाठी अधिक DeHub टोकन स्टेक करा."
+    "shopAllowanceUsed": "{{allowance}} पैकी {{allowance}} वापरले. उच्च बॅज आणि आणखी एका स्लॉटसाठी अधिक DeHub टोकन स्टेक करा.",
+    "editFilters": "फिल्टर्स सुधारा",
+    "cropRotate": "फळी आणि पुनरावृत्ती",
+    "drawWrite": "कला करा आणि लिहा",
+    "fade": "फॅड {{value}}%",
+    "grayscale": "ग्रे स्केल {{value}}%",
+    "resetEdits": "निर्मिती",
+    "clearDrawing": "स्पष्ट",
+    "typeText": "म्हणजे",
+    "textSize": "टेक्स्ट साइज {{value}}",
+    "coverFrames": "कवच फ्रेम ची निवड करा",
+    "uploadCover": "पॅकेज को चढवा",
+    "editFailed": "मी सांगतो तुम्हाला की हे काही कारणांनी काम करण्यात येत नाही.",
+    "coverFrame": "फ्रेम {{index}} कव्हर म्हणून वापरा"
   },
   "bounty": {
     "claimed": "मिळवले",
@@ -8526,7 +8565,11 @@
       "search": "ॲप्स शोधा",
       "all": "सर्व",
       "fromDehub": "डेहब कडून",
-      "noMatch": "कोणतेही ॲप्स त्या शोधाशी जुळत नाहीत."
+      "noMatch": "कोणतेही ॲप्स त्या शोधाशी जुळत नाहीत.",
+      "yourApps": "तुमचे अॅप्स",
+      "removed": "हटवले गेले. ते पुन्हा कधीही सूचना देणार नाही.",
+      "notificationsOn": "नोटिफिकेशन वरून",
+      "remove": "हटवा"
     },
     "card": {
       "open": "उघडा"
@@ -8545,6 +8588,17 @@
       "developer-tools": "विकसक साधने",
       "entertainment": "मनोरंजन",
       "art-creativity": "कला आणि सर्जनशीलता"
+    },
+    "pay": {
+      "body": "धन हस्तांतरण (DHB) तुरंत अॅपच्या वॉलेटमध्ये जातो, {{wallet}}. भुगतान पुन्हा वापस घेण्यायोग्य नाही.",
+      "confirm": "पेय {{amount}} डीएचबी",
+      "title": "{{name}}ला भरा?",
+      "sent": "{{amount}} DHB {{name}}ला भरा गेला."
+    },
+    "add": {
+      "body": "ते तुमच्या ॲप्सच्या खाली दिसेल आणि तुम्हाला नोटिफिकेशन्स पाठवू शकेल. आपण अनुप्रयोग पृष्ठावरून कोणत्याही वेळी ते हटवू शकता.",
+      "title": "{{name}} जोडा?",
+      "confirm": "अॅप जोडा"
     }
   },
   "aiStyles": {

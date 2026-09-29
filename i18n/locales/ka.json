@@ -146,7 +146,9 @@
     "noMoreShorts": "მეტი შორტი არ არის",
     "noShortsFound": "შორტები არ არის ნაპოვნი",
     "newMembersHint": "ახლახან შემოუერთდა — მიესალმე",
-    "mostViewedThisMonth": "ამ თვეში ყველაზე ნანახი"
+    "scroll": "Scroll",
+    "noFilterMatches": "თქვენს ფილტრებს არცერთი შინაარსი არ ემთხვევა.",
+    "clearFilters": "ფილტრების გასუფთავება"
   },
   "explore": {
     "all": "ყველა",
@@ -2659,7 +2661,31 @@
     "noneYetBeFirst": "ჯერ არ არის კომენტარები. იყავი პირველი!",
     "turnedOff": "ამ პოსტისთვის კომენტარები გამორთულია",
     "noQuotesYet": "ჯერ არ არის ციტატები.",
-    "noRepostsYet": "ჯერ არ არის რეპოსტები."
+    "noRepostsYet": "ჯერ არ არის რეპოსტები.",
+    "timeSeconds": "{{count}} წმ",
+    "timeMinutes": "{{count}} წთ",
+    "timeHours": "{{count}} სთ",
+    "seeWhoLiked": "ნახეთ, ვის მოეწონა",
+    "holdToReact": "{{reaction}} — ხანგრძლივად დააჭირეთ რეაქციისთვის",
+    "holdToChangeReaction": "{{reaction}} — ხანგრძლივად დააჭირეთ რეაქციის შესაცვლელად",
+    "viewCount_one": "{{count}} ნახვა",
+    "viewCount_other": "{{count}} ნახვა",
+    "shareMessage": "ნახე ეს: {{url}}",
+    "hideReplies": "პასუხების დამალვა",
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
+    "rowA11yHint": "იწყებს პასუხს ამ კომენტარზე",
+    "editingComment": "კომენტარის რედაქტირება",
+    "editPlaceholder": "შეცვალეთ თქვენი კომენტარი...",
+    "replyPlaceholder": "დაწერეთ პასუხი...",
+    "inputPlaceholder": "დაბეჭდეთ აქ",
+    "cancelReply": "პასუხის გაუქმება",
+    "cancelEdit": "რედაქტირების გაუქმება",
+    "countLabel_one": "{{count}} კომენტარი",
+    "countLabel_other": "{{count}} კომენტარი",
+    "repostsLabel_one": "რეპოსტი",
+    "repostsLabel_other": "რეპოსტი",
+    "quotesLabel_one": "ციტატა",
+    "quotesLabel_other": "ციტატა"
   },
   "postInfo": {
     "title": "პოსტის ინფორმაცია",
@@ -5144,7 +5170,20 @@
     "removeUploadTitle": "გსურთ ამ ატვირთვის წაშლა?",
     "removeQueuedBody": "ის ჯერ არ გამოქვეყნებულა. მისი წაშლა აუქმებს პოსტს.",
     "quotaShortfall": "ეს პოსტი ღირს {{cost}} ტოკენი და თქვენ გაქვთ {{held}}.",
-    "shopAllowanceUsed": "გამოყენებულია {{allowance}} {{allowance}}-დან. ჩადეთ მეტი DeHub ტოკენი უფრო მაღალი ბეიჯისთვის და დამატებითი სლოტისთვის."
+    "shopAllowanceUsed": "გამოყენებულია {{allowance}} {{allowance}}-დან. ჩადეთ მეტი DeHub ტოკენი უფრო მაღალი ბეიჯისთვის და დამატებითი სლოტისთვის.",
+    "editFilters": "სარედაქტორი",
+    "cropRotate": "მონიშვნა და გადახახვა",
+    "drawWrite": "გამოსახულება და წერა",
+    "fade": "ფეიდი {{value}}%",
+    "grayscale": "შავ-თეთრი {{value}}%",
+    "resetEdits": "განუვითარება",
+    "clearDrawing": "გაუსუფთავებელი",
+    "typeText": "ტექსტი…",
+    "textSize": "ტექსტის ზომა {{value}}",
+    "coverFrames": "ფრამის არჩევა",
+    "coverFrame": "ფრამი {{index}} როგორც გარეკანი",
+    "uploadCover": "გარეკანის ატვირთვა",
+    "editFailed": "ედიტინგი ვერ მოაქვს. სცადე ხელახლა."
   },
   "bounty": {
     "claimed": "მიღებულია",
@@ -8581,7 +8620,11 @@
       "search": "აპების ძებნა",
       "all": "ყველა",
       "fromDehub": "დეჰაბიდან",
-      "noMatch": "არც ერთი აპი არ ემთხვევა ძიების შედეგებს."
+      "noMatch": "არც ერთი აპი არ ემთხვევა ძიების შედეგებს.",
+      "yourApps": "თქვენი აპები",
+      "notificationsOn": "გამოჩენები",
+      "removed": "წაშლილია. აღარ გააგზავნის შენსთვის შეტყობინებას.",
+      "remove": "გამოიღეთ"
     },
     "card": {
       "open": "გახსნა"
@@ -8600,6 +8643,17 @@
       "developer-tools": "დეველოპერის ხელსაწყოები",
       "entertainment": "გართობა",
       "art-creativity": "ხელოვნება და შემოქმედება"
+    },
+    "pay": {
+      "title": "გამოიცად {{name}}?",
+      "body": "დახარჯების ხარჯები უშუალოდ აპის პორტფელში გადადის, {{wallet}}. გადახდები არ შეიძლება გაუქმდეს.",
+      "confirm": "პეი {{amount}} DHB",
+      "sent": "გამოსახადავადი {{amount}}-ისთვის {{name}}-ზე გადახდა."
+    },
+    "add": {
+      "title": "დაემატება {{name}}?",
+      "body": "თქვენს აპლიკაციებს შორის გამოჩნდება და შეგიძლიათ მიიღოთ ამგვარი ცნობები. შეგიძლიათ ამოღოთ მას შემდეგ, როდესაც გსურთ, აპლიკაციების გვერდიდან.",
+      "confirm": "დამატეთ აპლიკაცია"
     }
   },
   "aiStyles": {

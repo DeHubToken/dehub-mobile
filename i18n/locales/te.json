@@ -146,7 +146,9 @@
     "noMoreShorts": "ఇంకా షార్ట్స్ లేవు",
     "noShortsFound": "షార్ట్స్ కనుగొనబడలేదు",
     "newMembersHint": "ఇప్పుడే చేరారు — హలో చెప్పండి",
-    "mostViewedThisMonth": "ఈ నెల ఎక్కువ చూసినవి"
+    "scroll": "Scroll",
+    "noFilterMatches": "మీ ఫిల్టర్‌లకు సరిపోయే కంటెంట్ ఏదీ లేదు.",
+    "clearFilters": "ఫిల్టర్‌లు తొలగించండి"
   },
   "explore": {
     "all": "అన్నీ",
@@ -2644,7 +2646,31 @@
     "noneYetBeFirst": "ఇంకా ఎలాంటి వ్యాఖ్యలు లేవు. మొదటివానిగా ఉండండి!",
     "turnedOff": "ఈ పోస్ట్ కోసం వ్యాఖ్యలు నిలిపివేయబడ్డాయి",
     "noQuotesYet": "ఇంకా కోట్స్ లేవు.",
-    "noRepostsYet": "ఇంకా రీపోస్ట్ ‌ లు లేవు."
+    "noRepostsYet": "ఇంకా రీపోస్ట్ ‌ లు లేవు.",
+    "timeSeconds": "{{count}} సె",
+    "timeMinutes": "{{count}} ని",
+    "timeHours": "{{count}} గం",
+    "seeWhoLiked": "ఎవరు లైక్ చేశారో చూడండి",
+    "holdToReact": "{{reaction}} — రియాక్ట్ చేయడానికి నొక్కి పట్టుకోండి",
+    "holdToChangeReaction": "{{reaction}} — మీ రియాక్షన్ మార్చడానికి నొక్కి పట్టుకోండి",
+    "viewCount_one": "{{count}} వీక్షణ",
+    "viewCount_other": "{{count}} వీక్షణలు",
+    "shareMessage": "ఇది చూడండి: {{url}}",
+    "hideReplies": "ప్రత్యుత్తరాలను దాచు",
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
+    "rowA11yHint": "ఈ వ్యాఖ్యకు ప్రత్యుత్తరం ప్రారంభిస్తుంది",
+    "editingComment": "వ్యాఖ్యను సవరిస్తున్నారు",
+    "editPlaceholder": "మీ వ్యాఖ్యను సవరించండి...",
+    "replyPlaceholder": "ప్రత్యుత్తరం రాయండి...",
+    "inputPlaceholder": "ఇక్కడ టైప్ చేయండి",
+    "cancelReply": "ప్రత్యుత్తరం రద్దు చేయి",
+    "cancelEdit": "సవరణ రద్దు చేయి",
+    "countLabel_one": "{{count}} వ్యాఖ్య",
+    "countLabel_other": "{{count}} వ్యాఖ్యలు",
+    "repostsLabel_one": "రీపోస్ట్",
+    "repostsLabel_other": "రీపోస్ట్‌లు",
+    "quotesLabel_one": "కోట్",
+    "quotesLabel_other": "కోట్స్"
   },
   "postInfo": {
     "title": "పోస్ట్ సమాచారం",
@@ -5129,7 +5155,20 @@
     "removeUploadTitle": "ఈ అప్ ‌ లోడ్ ‌ ను తీసివేయాలా?",
     "removeQueuedBody": "ఇది ఇంకా పోస్ట్ చేయబడలేదు. దానిని తీసివేయడం పోస్ట్ ‌ ను రద్దు చేస్తుంది.",
     "quotaShortfall": "ఈ పోస్ట్ ఖర్చు {{cost}} టోకెన్లు మరియు మీరు {{held}} కలిగి ఉన్నారు.",
-    "shopAllowanceUsed": "{{allowance}} లో {{allowance}} ఉపయోగించబడింది. అధిక బ్యాడ్జ్ మరియు మరొక స్లాట్ కోసం మరిన్ని DeHub టోకెన్‌లను స్టేక్ చేయండి."
+    "shopAllowanceUsed": "{{allowance}} లో {{allowance}} ఉపయోగించబడింది. అధిక బ్యాడ్జ్ మరియు మరొక స్లాట్ కోసం మరిన్ని DeHub టోకెన్‌లను స్టేక్ చేయండి.",
+    "editFilters": "ఎడిట్ ఫిల్టర్లు",
+    "cropRotate": "కాప్ మరియు తిప్పు",
+    "drawWrite": "గీయండి మరియు వ్రాయండి",
+    "fade": "ఫేడ్ {{value}}%",
+    "grayscale": "గ్రేస్కేల్ {{value}}%",
+    "resetEdits": "రిసెట్",
+    "clearDrawing": "క్లియర్",
+    "typeText": "టైప్...",
+    "textSize": "టెక్స్ట్ పరిమాణం {{value}}",
+    "coverFrames": "కవర్ ఫ్రేమ్ ని ఎంచుకోండి",
+    "coverFrame": "ఫ్రేమ్ {{index}}ని కవర్ ఫ్రేమ్‌గా ఉపయోగించు",
+    "uploadCover": "కవర్ ఇమేజ్ ను అప్‌లోడ్ చేయండి",
+    "editFailed": "ఆప్లై చేయడానికి సాధ్యం కాలేదు. మళ్లీ ప్రయత్నించండి."
   },
   "bounty": {
     "claimed": "పొందారు",
@@ -8529,7 +8568,11 @@
       "search": "యాప్ ‌ లను శోధించండి",
       "all": "అన్నీ",
       "fromDehub": "DeHub నుండి",
-      "noMatch": "ఆ శోధనకు యాప్ ‌ లు ఏవీ సరిపోలడం లేదు."
+      "noMatch": "ఆ శోధనకు యాప్ ‌ లు ఏవీ సరిపోలడం లేదు.",
+      "yourApps": "మీ అప్లికేషన్లు",
+      "notificationsOn": "నోటిఫికేషన్స్ ఆన్",
+      "remove": "రిమూవ్",
+      "removed": "రిమూవ్డ్. మీకు మరోసారి నోటిఫై చేయదు."
     },
     "card": {
       "open": "తెరువు"
@@ -8548,6 +8591,17 @@
       "developer-tools": "డెవలపర్ టూల్స్",
       "entertainment": "వినోదం",
       "art-creativity": "కళ & సృజనాత్మకత"
+    },
+    "pay": {
+      "title": "{{name}}కి పేమెంట్ ఇవ్వాలా?",
+      "body": "DHB నేరుగా అప్లికేషన్ వాలెట్‌కు వెళుతుంది, {{wallet}}. పేమెంట్స్ రివర్స్ చేయలేరు.",
+      "confirm": "{{amount}} DHBని పేమెంట్ ఇవ్వండి",
+      "sent": "{{amount}} DHBని {{name}}కు పేమెంట్ చేసారు."
+    },
+    "add": {
+      "title": "{{name}}ని జోడించాలా?",
+      "body": "ఇది మీ అప్లికేషన్ల క్రింద కనిపిస్తుంది, నోటిఫికేషన్స్ పంపించవచ్చు. మీరు ఎప్పుడైనా అప్స్ పేజీ నుండి దాన్ని తొలగించవచ్చు.",
+      "confirm": "అప్ జోడించండి"
     }
   },
   "aiStyles": {

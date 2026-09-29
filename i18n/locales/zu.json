@@ -146,7 +146,9 @@
     "noMoreShorts": "Awekho ama-shorts engeziwe",
     "noShortsFound": "Awekho ama-shorts atholiwe",
     "newMembersHint": "Usanda kujoyina — ngibingelele",
-    "mostViewedThisMonth": "Okubukwe kakhulu kule nyanga"
+    "scroll": "Scroll",
+    "noFilterMatches": "Akukho okuqukethwe okuhambisana nezihlungi zakho.",
+    "clearFilters": "Sula izihlungi"
   },
   "explore": {
     "all": "Konke",
@@ -2672,7 +2674,31 @@
     "noneYetBeFirst": "Azikho izimvo okwamanje. Yiba nguwe wokuqala!",
     "turnedOff": "Izimvo zivaliwe kule ncwadi",
     "noQuotesYet": "Azikho izingcaphuno okwamanje.",
-    "noRepostsYet": "Azikho iziphindaphinda okwamanje."
+    "noRepostsYet": "Azikho iziphindaphinda okwamanje.",
+    "timeSeconds": "{{count}} isekh.",
+    "timeMinutes": "{{count}} umz.",
+    "timeHours": "{{count}} ihora",
+    "seeWhoLiked": "Bona ukuthi ubani othandile",
+    "holdToReact": "{{reaction}} — cindezela futhi ubambe ukuze usabele",
+    "holdToChangeReaction": "{{reaction}} — cindezela futhi ubambe ukuze ushintshe ukusabela kwakho",
+    "viewCount_one": "ukubuka okungu-{{count}}",
+    "viewCount_other": "ukubuka okungu-{{count}}",
+    "shareMessage": "Bheka lokhu: {{url}}",
+    "hideReplies": "Fihla izimpendulo",
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
+    "rowA11yHint": "Iqala impendulo kuleli zwana",
+    "editingComment": "Uhlela izwana",
+    "editPlaceholder": "Hlela izwana lakho...",
+    "replyPlaceholder": "Bhala impendulo...",
+    "inputPlaceholder": "Bhala lapha",
+    "cancelReply": "Khansela impendulo",
+    "cancelEdit": "Khansela ukuhlela",
+    "countLabel_one": "Izwana elingu-{{count}}",
+    "countLabel_other": "Amazwana angu-{{count}}",
+    "repostsLabel_one": "Okuthunywe kabusha",
+    "repostsLabel_other": "Okuthunywe kabusha",
+    "quotesLabel_one": "Isicaphuno",
+    "quotesLabel_other": "Izingcaphuno"
   },
   "postInfo": {
     "title": "Ulwazi Lokuthunyelwe",
@@ -5157,7 +5183,20 @@
     "removeUploadTitle": "Susa lokhu kufaka?",
     "removeQueuedBody": "Ayikaphostwa okwamanje. Ukususa kukhansela iphosti.",
     "quotaShortfall": "Lotiposti libiza amathokheni angu-{{cost}} futhi uwaphethe angu-{{held}}.",
-    "shopAllowanceUsed": "{{allowance}} kuma-{{allowance}} asetshenzisiwe. Faka amathokheni engeziwe e-DeHub ukuze uthole ibheji eliphezulu nenye indawo."
+    "shopAllowanceUsed": "{{allowance}} kuma-{{allowance}} asetshenzisiwe. Faka amathokheni engeziwe e-DeHub ukuze uthole ibheji eliphezulu nenye indawo.",
+    "editFilters": "Ukubhala kwamagoli",
+    "cropRotate": "Kukhula & kuphila",
+    "drawWrite": "Kukhula & kuwumana",
+    "fade": "Fadwa {{value}}%",
+    "grayscale": "Isiyo ya njalo {{value}}%",
+    "resetEdits": "Kusinywa",
+    "clearDrawing": "Kuvala",
+    "typeText": "Izwi…",
+    "textSize": "Ukubhala kwa ukubwa {{value}}",
+    "coverFrames": "Kuphila isigodi",
+    "coverFrame": "Use isigodi {{index}} njengesigodi",
+    "uploadCover": "Ukubha isigodi",
+    "editFailed": "Hakuna kuphila. Bamba kushika."
   },
   "bounty": {
     "claimed": "Kuthathiwe",
@@ -8557,7 +8596,9 @@
       "search": "Sesha ama-app",
       "all": "Konke",
       "fromDehub": "Kusuka ku-DeHub",
-      "noMatch": "Awekho ama-app afana nalokho kusesha."
+      "noMatch": "Awekho ama-app afana nalokho kusesha.",
+      "yourApps": "Ama-app akho",
+      "removed": "**Ukuqala ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuth"
     },
     "card": {
       "open": "Vula"
@@ -8576,6 +8617,14 @@
       "developer-tools": "Amathuluzi omthuthukisi",
       "entertainment": "Ezokuzijabulisa",
       "art-creativity": "Ubuciko nobuciko"
+    },
+    "pay": {
+      "title": "Khokha {{name}}?",
+      "confirm": "Pay **{{amount}}** **i-DHB**",
+      "sent": "Ngiyabonga kakhulu kwe{{amount}} DHB kwe{{name}}."
+    },
+    "add": {
+      "body": "Nginga yizwa ngokwesinye esinye kwenye **Your apps** kanye nge- **notifications** ngokwenza. Uhlangana ngokwenza kanye ngokwenza ngokwenza **Apps page** ngokwenza ngokwenza ngokwenza **ngokwenza**."
     }
   },
   "aiStyles": {

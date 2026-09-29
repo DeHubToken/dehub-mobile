@@ -146,7 +146,9 @@
     "noMoreShorts": "Asnjë \"short\" më",
     "noShortsFound": "Asnjë \"short\" nuk u gjet",
     "newMembersHint": "Sapo u bashkuat — thuaj përshëndetje",
-    "mostViewedThisMonth": "Më të shikuarat këtë muaj"
+    "scroll": "Scroll",
+    "noFilterMatches": "Asnjë përmbajtje nuk përputhet me filtrat e tu.",
+    "clearFilters": "Pastro filtrat"
   },
   "explore": {
     "all": "Të gjitha",
@@ -2641,7 +2643,31 @@
     "noneYetBeFirst": "Asnjë koment akoma. Bëhu i pari!",
     "turnedOff": "Komentet janë çaktivizuar për këtë postim",
     "noQuotesYet": "Asnjë citim akoma.",
-    "noRepostsYet": "Asnjë ripostim akoma."
+    "noRepostsYet": "Asnjë ripostim akoma.",
+    "timeSeconds": "{{count}} sek.",
+    "timeMinutes": "{{count}} min.",
+    "timeHours": "{{count}} orë",
+    "seeWhoLiked": "Shiko kush e pëlqeu",
+    "holdToReact": "{{reaction}} — mbaje shtypur për të reaguar",
+    "holdToChangeReaction": "{{reaction}} — mbaje shtypur për të ndryshuar reagimin",
+    "viewCount_one": "{{count}} shikim",
+    "viewCount_other": "{{count}} shikime",
+    "shareMessage": "Shiko këtë: {{url}}",
+    "hideReplies": "Fshih përgjigjet",
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
+    "rowA11yHint": "Fillon një përgjigje për këtë koment",
+    "editingComment": "Duke redaktuar komentin",
+    "editPlaceholder": "Redakto komentin tënd...",
+    "replyPlaceholder": "Shkruaj një përgjigje...",
+    "inputPlaceholder": "Shkruaj këtu",
+    "cancelReply": "Anulo përgjigjen",
+    "cancelEdit": "Anulo redaktimin",
+    "countLabel_one": "{{count}} koment",
+    "countLabel_other": "{{count}} komente",
+    "repostsLabel_one": "Ripostim",
+    "repostsLabel_other": "Ripostime",
+    "quotesLabel_one": "Citim",
+    "quotesLabel_other": "Citime"
   },
   "postInfo": {
     "title": "Informacione për postimin",
@@ -5125,7 +5151,20 @@
     "removeUploadTitle": "Do ta heqësh këtë ngarkim?",
     "removeQueuedBody": "Nuk është postuar ende. Heqja e saj e anulon postimin.",
     "quotaShortfall": "Ky postim kushton {{cost}} tokena dhe ju mbani {{held}}.",
-    "shopAllowanceUsed": "{{allowance}} nga {{allowance}} të përdorura. Vendosni më shumë tokena DeHub për një stemë më të lartë dhe një vend tjetër."
+    "shopAllowanceUsed": "{{allowance}} nga {{allowance}} të përdorura. Vendosni më shumë tokena DeHub për një stemë më të lartë dhe një vend tjetër.",
+    "editFilters": "Redaktoj",
+    "cropRotate": "Kamë të shkurtuar dhe të rotulloj",
+    "drawWrite": "Shkruaj dhe shko",
+    "fade": "Mbyllje {{value}}%",
+    "grayscale": "Gjysmëtoni {{value}}%",
+    "resetEdits": "Rikthes",
+    "clearDrawing": "Shkruaj",
+    "typeText": "Shkruaj…",
+    "textSize": "Madhësia e tekstit {{value}}",
+    "coverFrames": "Zgjidh një çadrë për mbulojë",
+    "coverFrame": "Përdor çadrën {{index}} si mbulojë",
+    "uploadCover": "Shto një imazh për mbulojë",
+    "editFailed": "Nuk mund të aplikojmë këtë redaktim. Pritni një herë."
   },
   "bounty": {
     "claimed": "E marrë",
@@ -8525,7 +8564,11 @@
       "search": "Kërko appje",
       "all": "Të gjitha",
       "fromDehub": "Nën DeHub",
-      "noMatch": "Asnjë app nuk përputhet me kërkimin tuaj."
+      "noMatch": "Asnjë app nuk përputhet me kërkimin tuaj.",
+      "yourApps": "Apps tuaja.",
+      "notificationsOn": "Përthimatimet në",
+      "remove": "Ndërro",
+      "removed": "Ndërruar. Do të na lajmerosh më vonë."
     },
     "card": {
       "open": "Hap"
@@ -8544,6 +8587,17 @@
       "developer-tools": "Ereza për zhvilluesit",
       "entertainment": "Zhvillim i trimit",
       "art-creativity": "Art dhe kreativitet"
+    },
+    "pay": {
+      "body": "DHB drejtohet drejt portofelit të aplikacionit, {{wallet}}. Pagimet nuk mund të anulohen.",
+      "confirm": "Pagë {{amount}} DHB",
+      "sent": "Paguarë dhënien e dhjetëvjetëshe për {{amount}} nga {{name}}.",
+      "title": "Pagësoj {{name}}?"
+    },
+    "add": {
+      "body": "Ky do të shfaqet në Your apps dhe mund të dërgonë notifikime. Unë mund të e hiqni në çdo moment nga faqja Apps.",
+      "title": "Shfrytëzoj {{name}}?",
+      "confirm": "Shfrytësoj aplikacionin"
     }
   },
   "aiStyles": {

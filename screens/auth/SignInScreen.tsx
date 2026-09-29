@@ -4,7 +4,7 @@ import React, {
   useEffect,
   useRef,
 } from "react";
-import { View, Text, Image, ScrollView, Platform, type TextStyle } from "react-native";
+import { View, Text, Image, ScrollView, type TextStyle } from "react-native";
 import { toastError, toastInfo } from "../../libs";
 import { Trans, useTranslation } from "react-i18next";
 import { AuthButton, authColors, authText } from "../../components/auth/AuthControls";
@@ -753,8 +753,17 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
     if (isFirstTimeUser) {
       await skipAuth();
     }
+    if (!isMountedRef.current) return;
+    // Opened as the in-app sheet (the App stack, whose first route is Root):
+    // just close it so the page underneath survives. The Auth-stack SignIn
+    // shown at launch has no Root route and still resets into the app.
+    const inAppSheet = navigation.getState()?.routeNames?.includes(ScreenNames.Root);
+    if (inAppSheet && navigation.canGoBack()) {
+      navigation.goBack();
+      return;
+    }
     navigateToApp();
-  }, [isFirstTimeUser, skipAuth, navigateToApp]);
+  }, [isFirstTimeUser, skipAuth, navigateToApp, navigation]);
 
   const isLoading = authLoading || isLocalLoading || isWalletLoading;
   const showLoader = isLoading && !needsUsername;;
@@ -778,7 +787,7 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
           shrinks the hook can never see the field as clipped either. */}
       <KeyboardAvoidingView
         behavior="padding"
-        keyboardVerticalOffset={Platform.OS === "ios" ? keyboardOffset : 0}
+        keyboardVerticalOffset={keyboardOffset}
         style={{ flex: 1 }}
       >
         <ScrollView

@@ -146,7 +146,9 @@
     "noMoreShorts": "Басқа қысқа бейнелер жоқ",
     "noShortsFound": "Қысқа бейнелер табылмады",
     "newMembersHint": "Қосылдыңыз — сәлемдесіңіз",
-    "mostViewedThisMonth": "Осы айда ең көп қаралған"
+    "scroll": "Scroll",
+    "noFilterMatches": "Сүзгілеріңізге сәйкес мазмұн жоқ.",
+    "clearFilters": "Сүзгілерді тазарту"
   },
   "explore": {
     "all": "Барлығы",
@@ -2658,7 +2660,31 @@
     "noneYetBeFirst": "Әлі пікір жоқ. Бірінші болыңыз!",
     "turnedOff": "Бұл жазба үшін пікірлер өшірілген",
     "noQuotesYet": "Әлі дәйексөз жоқ.",
-    "noRepostsYet": "Әлі қайта жариялау жоқ."
+    "noRepostsYet": "Әлі қайта жариялау жоқ.",
+    "timeSeconds": "{{count}} с",
+    "timeMinutes": "{{count}} мин",
+    "timeHours": "{{count}} сағ",
+    "seeWhoLiked": "Кім ұнатқанын көру",
+    "holdToReact": "{{reaction}} — реакция білдіру үшін басып тұрыңыз",
+    "holdToChangeReaction": "{{reaction}} — реакцияны өзгерту үшін басып тұрыңыз",
+    "viewCount_one": "{{count}} қаралым",
+    "viewCount_other": "{{count}} қаралым",
+    "shareMessage": "Мынаны қараңыз: {{url}}",
+    "hideReplies": "Жауаптарды жасыру",
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
+    "rowA11yHint": "Осы пікірге жауап жазуды бастайды",
+    "editingComment": "Пікірді өңдеу",
+    "editPlaceholder": "Пікіріңізді өңдеңіз...",
+    "replyPlaceholder": "Жауап жазыңыз...",
+    "inputPlaceholder": "Мұнда теріңіз",
+    "cancelReply": "Жауапты болдырмау",
+    "cancelEdit": "Өңдеуді болдырмау",
+    "countLabel_one": "{{count}} пікір",
+    "countLabel_other": "{{count}} пікір",
+    "repostsLabel_one": "репост",
+    "repostsLabel_other": "репост",
+    "quotesLabel_one": "дәйексөз",
+    "quotesLabel_other": "дәйексөз"
   },
   "postInfo": {
     "title": "Жазба ақпараты",
@@ -5141,7 +5167,20 @@
     "removeUploadTitle": "Бұл жүктемені алып тастау керек пе?",
     "removeQueuedBody": "Ол әлі жарияланбаған. Оны алып тастау лауазымды жояды.",
     "quotaShortfall": "Бұл жазба {{cost}} токен тұрады және сізде {{held}} бар.",
-    "shopAllowanceUsed": "{{allowance}} ішінен {{allowance}} пайдаланылды. Жоғары белгі мен қосымша орын алу үшін көбірек DeHub токендерін стейкингке салыңыз."
+    "shopAllowanceUsed": "{{allowance}} ішінен {{allowance}} пайдаланылды. Жоғары белгі мен қосымша орын алу үшін көбірек DeHub токендерін стейкингке салыңыз.",
+    "editFilters": "Сүзгілерді өңдеу",
+    "cropRotate": "Егін жинау және бұру",
+    "drawWrite": "Сызу және жазу",
+    "fade": "{{value}}% өшіру",
+    "grayscale": "Сұр шкала {{value}}%",
+    "resetEdits": "Қалпына келтіру",
+    "clearDrawing": "Тазалау",
+    "typeText": "Түрі…",
+    "textSize": "Мәтін өлшемі {{value}}",
+    "coverFrames": "Қақпақ жақтауын таңдаңыз",
+    "coverFrame": "Қақпақ ретінде {{index}} кадрын пайдаланыңыз",
+    "uploadCover": "Қақпақ кескінін жүктеу",
+    "editFailed": "Бұл өңдеуді қолдану мүмкін болмады. Әрекетті қайталап көріңіз."
   },
   "bounty": {
     "claimed": "Алынды",
@@ -8565,7 +8604,8 @@
     "signIn": {
       "body": "Бұл қолданба DeHub әмиянының мекенжайын және тек осы қолданба үшін жұмыс істейтін кіру белгісін алады. Ол әмияныңызға, қорларыңызға немесе DeHub есептік жазбаңызға кіре алмайды.",
       "cancel": "Қазір емес",
-      "confirm": "Кіру"
+      "confirm": "Кіру",
+      "title": "Сынып кіруңіз {{name}}?"
     },
     "store": {
       "title": "Қолданбалар",
@@ -8576,7 +8616,11 @@
       "search": "Қолданбаларды іздеу",
       "all": "Барлығы",
       "fromDehub": "DeHub-тен",
-      "noMatch": "Қолданбалар бұл іздеуге сәйкес келмейді."
+      "noMatch": "Қолданбалар бұл іздеуге сәйкес келмейді.",
+      "yourApps": "Сіздің қолданбаларыңыз",
+      "notificationsOn": "Жаңаша хабарламалар",
+      "remove": "Жою",
+      "removed": "Жойылды. Сізге екінші рет хабарлама жібермейді."
     },
     "card": {
       "open": "Ашу"
@@ -8595,6 +8639,17 @@
       "developer-tools": "Әзірлеуші құралдары",
       "entertainment": "Көңіл көтеру",
       "art-creativity": "Өнер және шығармашылық"
+    },
+    "pay": {
+      "title": "{{name}}-ға төлем жіберу?",
+      "body": "DHB сіздің қолданбаңыздың қорына, {{wallet}}-ға жіберіледі. Төлемдер қайталанбайды.",
+      "confirm": "{{amount}} DHB-сын төлемдеу",
+      "sent": "{{amount}} DHB-сын {{name}}-ға төлемдеді."
+    },
+    "add": {
+      "title": "{{name}}-ды қосу?",
+      "body": "Ол «Сіздің қолданбаларыңыз» бөлімінде көрінеді және хабарламалар жіберуге мүмкіндік береді. Сіз бәрібір «Қолданбалар» бетінен оны кез келген уақытта жоюға болады.",
+      "confirm": "Қолданба қосу"
     }
   },
   "aiStyles": {

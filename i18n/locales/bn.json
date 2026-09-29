@@ -146,7 +146,9 @@
     "noMoreShorts": "আর কোনো শর্টস নেই",
     "noShortsFound": "কোনো শর্টস পাওয়া যায়নি",
     "newMembersHint": "এইমাত্র যোগদান করেছেন — শুভেচ্ছা জানান",
-    "mostViewedThisMonth": "এই মাসে সর্বাধিক দেখা"
+    "scroll": "Scroll",
+    "noFilterMatches": "আপনার ফিল্টারের সঙ্গে মেলে এমন কোনো বিষয়বস্তু নেই।",
+    "clearFilters": "ফিল্টার মুছুন"
   },
   "explore": {
     "all": "সব",
@@ -2641,7 +2643,31 @@
     "noneYetBeFirst": "এখনও কোনো মন্তব্য নেই। প্রথম হন!",
     "turnedOff": "এই পোস্টের জন্য মন্তব্য বন্ধ আছে",
     "noQuotesYet": "এখনও কোনো উদ্ধৃতি নেই।",
-    "noRepostsYet": "এখনও কোনো রিপোস্ট নেই।"
+    "noRepostsYet": "এখনও কোনো রিপোস্ট নেই।",
+    "timeSeconds": "{{count}} সে",
+    "timeMinutes": "{{count}} মি",
+    "timeHours": "{{count}} ঘ",
+    "seeWhoLiked": "কারা লাইক দিয়েছে দেখুন",
+    "holdToReact": "{{reaction}} — রিঅ্যাক্ট করতে চেপে ধরে রাখুন",
+    "holdToChangeReaction": "{{reaction}} — আপনার রিঅ্যাকশন বদলাতে চেপে ধরে রাখুন",
+    "viewCount_one": "{{count}} ভিউ",
+    "viewCount_other": "{{count}} ভিউ",
+    "shareMessage": "এটা দেখুন: {{url}}",
+    "hideReplies": "উত্তর লুকান",
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
+    "rowA11yHint": "এই মন্তব্যের উত্তর দেওয়া শুরু করে",
+    "editingComment": "মন্তব্য সম্পাদনা করা হচ্ছে",
+    "editPlaceholder": "আপনার মন্তব্য সম্পাদনা করুন...",
+    "replyPlaceholder": "একটি উত্তর লিখুন...",
+    "inputPlaceholder": "এখানে টাইপ করুন",
+    "cancelReply": "উত্তর বাতিল করুন",
+    "cancelEdit": "সম্পাদনা বাতিল করুন",
+    "countLabel_one": "{{count}}টি মন্তব্য",
+    "countLabel_other": "{{count}}টি মন্তব্য",
+    "repostsLabel_one": "রিপোস্ট",
+    "repostsLabel_other": "রিপোস্ট",
+    "quotesLabel_one": "উদ্ধৃতি",
+    "quotesLabel_other": "উদ্ধৃতি"
   },
   "postInfo": {
     "title": "পোস্টের তথ্য",
@@ -5126,7 +5152,20 @@
     "removeUploadTitle": "এই আপলোডটি সরাবেন?",
     "removeQueuedBody": "এটি এখনও পোস্ট করা হয়নি । এটি অপসারণ করলে পোস্টটি বাতিল হয়ে যাবে ।",
     "quotaShortfall": "এই পোস্টটির খরচ {{cost}} টোকেন এবং আপনার কাছে {{held}} আছে।",
-    "shopAllowanceUsed": "{{allowance}} এর মধ্যে {{allowance}} ব্যবহৃত হয়েছে। উচ্চতর ব্যাজ এবং অন্য স্লটের জন্য আরও DeHub টোকেন স্টেক করুন।"
+    "shopAllowanceUsed": "{{allowance}} এর মধ্যে {{allowance}} ব্যবহৃত হয়েছে। উচ্চতর ব্যাজ এবং অন্য স্লটের জন্য আরও DeHub টোকেন স্টেক করুন।",
+    "editFilters": "সম্পাদনা করুন",
+    "cropRotate": "ক্যাপ করুন এবং ঘূর্ণাই",
+    "drawWrite": "আঁকুন এবং লিখুন",
+    "fade": "ফেড আর্গানাইজেশন {{value}}%",
+    "grayscale": "গ্রে স্কেল {{value}}%",
+    "resetEdits": "রিসেট",
+    "clearDrawing": "মুছে ফেলুন",
+    "typeText": "টাইপ...",
+    "textSize": "টেক্সট আকার {{value}}",
+    "coverFrames": "একটি কভার ফ্রেম বেছে নিন",
+    "coverFrame": "কভার হিসাবে ব্যবহার করুন {{index}}",
+    "uploadCover": "একটি কভার ছবি আপলোড করুন",
+    "editFailed": "সেই সম্পাদনা প্রয়োগ করা যায়নি। আবার চেষ্টা করুন।"
   },
   "bounty": {
     "claimed": "সংগ্রহ করা হয়েছে",
@@ -8526,7 +8565,11 @@
       "search": "অ্যাপ সার্চ",
       "all": "সব",
       "fromDehub": "ডিহাব থেকে",
-      "noMatch": "কোন অ্যাপ খুঁজে পাওয়া যায় না।"
+      "noMatch": "কোন অ্যাপ খুঁজে পাওয়া যায় না।",
+      "yourApps": "আপনার অ্যাপস",
+      "notificationsOn": "অনুপ্রেরণাগুলি চালু আছে",
+      "remove": "হটিয়ে ফেলুন",
+      "removed": "হটিয়ে ফেলা হয়েছে। আর আরেকবার আপনাকে জানাবেনা।"
     },
     "card": {
       "open": "খোলুন"
@@ -8545,6 +8588,17 @@
       "developer-tools": "ডেভেলপার টুলস",
       "entertainment": "এন্টারটেইনমেন্ট",
       "art-creativity": "আর্ট এবং ক্রিয়েটিভিটি"
+    },
+    "pay": {
+      "title": "{{name}} থেকে ভুগতান নিন?",
+      "body": "DHB সরাসরি অ্যাপের ওয়ালেটে যাবে, {{wallet}}। ভুগতান ফিরিয়ে নেওয়া যাবে না।",
+      "confirm": "{{amount}} DHB দিয়ে ভুগতান করুন",
+      "sent": "{{amount}} DHB {{name}}-এ পাঠানো হয়েছে।"
+    },
+    "add": {
+      "title": "{{name}} যোগ করুন?",
+      "body": "এটি আপনার অ্যাপসের তালিকায় আসবে এবং নোটিফিকেশন পাঠাতে পারবে। আপনি কখনোই অ্যাপস পেজ থেকে এটি সরিয়ে ফেলতে পারবেন।",
+      "confirm": "অ্যাপ যোগ করুন"
     }
   },
   "aiStyles": {

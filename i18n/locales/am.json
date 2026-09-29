@@ -146,7 +146,9 @@
     "noMoreShorts": "ምንም ተጨማሪ አጫጭር ቪዲዮዎች የሉም",
     "noShortsFound": "አጫጭር ቪዲዮዎች አልተገኙም።",
     "newMembersHint": "አሁን ተቀላቅለዋል — ሰላም ይበሉ",
-    "mostViewedThisMonth": "በዚህ ወር ብዙ የታዩ"
+    "scroll": "Scroll",
+    "noFilterMatches": "ከማጣሪያዎችዎ ጋር የሚዛመድ ይዘት የለም።",
+    "clearFilters": "ማጣሪያዎችን አጽዳ"
   },
   "explore": {
     "all": "ሁሉም",
@@ -2671,7 +2673,31 @@
     "noneYetBeFirst": "ምንም አስተያየቶች የሉም። አንደኛውን ይሁኑ!",
     "turnedOff": "ለዚህ ልጥፍ አስተያየቶች ጠፍተዋል",
     "noQuotesYet": "ምንም ጥቅሶች የሉም።",
-    "noRepostsYet": "ምንም ዳግም ልጥፎች የሉም።"
+    "noRepostsYet": "ምንም ዳግም ልጥፎች የሉም።",
+    "timeSeconds": "{{count}} ሰከንድ",
+    "timeMinutes": "{{count}} ደቂቃ",
+    "timeHours": "{{count}} ሰዓት",
+    "seeWhoLiked": "ማን እንደወደደው ይመልከቱ",
+    "holdToReact": "{{reaction}} — ስሜትዎን ለመግለጽ ተጭነው ይያዙ",
+    "holdToChangeReaction": "{{reaction}} — ስሜትዎን ለመቀየር ተጭነው ይያዙ",
+    "viewCount_one": "{{count}} እይታ",
+    "viewCount_other": "{{count}} እይታዎች",
+    "shareMessage": "ይህንን ይመልከቱ፦ {{url}}",
+    "hideReplies": "ምላሾችን ደብቅ",
+    "rowA11yLabel": "{{name}}፣ {{time}}፦ {{text}}",
+    "rowA11yHint": "ለዚህ አስተያየት ምላሽ መጻፍ ይጀምራል",
+    "editingComment": "አስተያየትን በማርትዕ ላይ",
+    "editPlaceholder": "አስተያየትዎን ያርትዑ...",
+    "replyPlaceholder": "ምላሽ ይጻፉ...",
+    "inputPlaceholder": "እዚህ ይጻፉ",
+    "cancelReply": "ምላሽ ሰርዝ",
+    "cancelEdit": "ማርትዕ ሰርዝ",
+    "countLabel_one": "{{count}} አስተያየት",
+    "countLabel_other": "{{count}} አስተያየቶች",
+    "repostsLabel_one": "ዳግም ልጥፍ",
+    "repostsLabel_other": "ዳግም ልጥፎች",
+    "quotesLabel_one": "ጥቅስ",
+    "quotesLabel_other": "ጥቅሶች"
   },
   "postInfo": {
     "title": "የልጥፍ መረጃ",
@@ -5156,7 +5182,20 @@
     "removeUploadTitle": "ይህን ሰቀላ አስወግድ?",
     "removeQueuedBody": "እስካሁን አልተለጠፈም ። ማስወገድ ልጥፉን ይሰርዛል ።",
     "quotaShortfall": "ይህ ጽሑፍ {{cost}} ቶከኖች ያስከፍላል እና እርስዎ {{held}} ይይዛሉ።",
-    "shopAllowanceUsed": "{{allowance}} ከ {{allowance}} ጥቅም ላይ ውሏል። ለከፍተኛ ባጅ እና ለሌላ ቦታ ተጨማሪ የDeHub ቶከኖችን ይንከባከቡ።"
+    "shopAllowanceUsed": "{{allowance}} ከ {{allowance}} ጥቅም ላይ ውሏል። ለከፍተኛ ባጅ እና ለሌላ ቦታ ተጨማሪ የDeHub ቶከኖችን ይንከባከቡ።",
+    "editFilters": "ማጣሪያዎችን ያርትዑ",
+    "cropRotate": "አሳንስና አሽከርክር",
+    "drawWrite": "መሳልና መጻፍ",
+    "fade": "አደበዝዝ {{value}}%",
+    "grayscale": "ግራጫ {{value}}%",
+    "resetEdits": "አስጀምር",
+    "clearDrawing": "አጥፋ",
+    "typeText": "ይጻፍ…",
+    "textSize": "የጽሑፍ መጠን {{value}}",
+    "coverFrames": "የሽፋን ፍሬም ምረጥ",
+    "coverFrame": "ፍሬም {{index}}ን እንደ ሽፋን ተጠቀም",
+    "uploadCover": "የሽፋን ምስል ስቀል",
+    "editFailed": "ያንን ማረም አልተቻለም። እንደገና ሞክር።"
   },
   "bounty": {
     "claimed": "ተወስዷል",
@@ -8554,7 +8593,10 @@
       "search": "መተግበሪያዎችን ይፈልጉ",
       "all": "ሁሉም",
       "fromDehub": "ከ DeHub",
-      "noMatch": "ምንም መተግበሪያዎች ያንን ፍለጋ አይዛመዱም ።"
+      "noMatch": "ምንም መተግበሪያዎች ያንን ፍለጋ አይዛመዱም ።",
+      "yourApps": "የእርስዎ መተግበሪያዎች",
+      "notificationsOn": "አስተዋጽም ምንም እንዲሁም እንደሚያስብል ነው።",
+      "removed": "አስተዋጽልባል አስተዋጽለሁ። አስገድድር አስተዋጽለሁ።"
     },
     "card": {
       "open": "ክፈት"
@@ -8573,6 +8615,10 @@
       "developer-tools": "የገንቢ መሳሪያዎች",
       "entertainment": "መዝናኛ",
       "art-creativity": "አርት & የፈጠራ ችሎታ"
+    },
+    "add": {
+      "body": "አንቀጽን እንደ አንተ አስተዋጽን እንደሆኑ እንደሚያጠፋል እንደሚያለው ነው። አንተ አስተዋጽ አስር በሚሰጥበት ቀርታቸው እንዲሁም አንተ አስተዋጽ አስር በአንተ አስተዋጽ ቀርታቸው እንዲሁም አንተ አስተዋጽ አስር በእኛ አስተዋጽ ቀርታቸው እንዲሁም አንተ አስተዋጽ አስር አስራለው ነው።",
+      "confirm": "አብድ አባል አብድን አብድም አብድም።"
     }
   },
   "aiStyles": {

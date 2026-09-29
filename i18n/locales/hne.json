@@ -146,7 +146,9 @@
     "noMoreShorts": "अउ shorts नहीं",
     "noShortsFound": "कोई shorts नहीं मिलिस",
     "newMembersHint": "अभी जुड़िस — hello बोल",
-    "mostViewedThisMonth": "ये महीना सबले जादा देखे"
+    "scroll": "Scroll",
+    "noFilterMatches": "तुंहर फिल्टर ले कोनो सामग्री मेल नइ खावय।",
+    "clearFilters": "फिल्टर हटावव"
   },
   "explore": {
     "all": "सब",
@@ -2641,7 +2643,31 @@
     "turnedOff": "ए पोस्ट बर टिप्पणी बंद करे गे हवय",
     "noQuotesYet": "अतक ले कउनों उद्धरण नइ करे हवय।",
     "noRepostsYet": "अतक ले कउनों पोस्ट ला फेर नइ पोस्ट करे हवय।",
-    "notFound": "Comment मिल नहीं पावत हे"
+    "notFound": "Comment मिल नहीं पावत हे",
+    "timeSeconds": "{{count}} सेकंड",
+    "timeMinutes": "{{count}} मिनट",
+    "timeHours": "{{count}} घंटा",
+    "seeWhoLiked": "देखव कोन लाइक करिस",
+    "holdToReact": "{{reaction}} — रिएक्ट करे बर दबा के रखव",
+    "holdToChangeReaction": "{{reaction}} — अपन रिएक्सन बदले बर दबा के रखव",
+    "viewCount_one": "{{count}} बेर देखे गे",
+    "viewCount_other": "{{count}} बेर देखे गे",
+    "shareMessage": "एला देखव: {{url}}",
+    "hideReplies": "जवाब लुकाव",
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
+    "rowA11yHint": "ए टिप्पणी के जवाब देना सुरू करथे",
+    "editingComment": "टिप्पणी संपादित करत हव",
+    "editPlaceholder": "अपन टिप्पणी संपादित करव...",
+    "replyPlaceholder": "जवाब लिखव...",
+    "inputPlaceholder": "इहां टाइप करव",
+    "cancelReply": "जवाब रद्द करव",
+    "cancelEdit": "संपादन रद्द करव",
+    "countLabel_one": "{{count}} टिप्पणी",
+    "countLabel_other": "{{count}} टिप्पणी",
+    "repostsLabel_one": "रीपोस्ट",
+    "repostsLabel_other": "रीपोस्ट",
+    "quotesLabel_one": "उद्धरण",
+    "quotesLabel_other": "उद्धरण"
   },
   "postInfo": {
     "title": "पोस्ट जानकारी",
@@ -5126,7 +5152,20 @@
     "removeUploadTitle": "ये अपलोड ल मेटाव?",
     "removeQueuedBody": "अभी तक प्रकाशित नी करे गए हवय पोस्ट ल हटा दे ।",
     "shopAllowanceUsed": "{{allowance}} {{allowance}} उपयोग करे गए । ऊपरी बैज अउ एक अउ स्लॉट बर जादा डेहब टोकन रखव.",
-    "quotaShortfall": "यह पोस्ट {{cost}} टोकन की लागत है और आपके पास {{held}} है।"
+    "quotaShortfall": "यह पोस्ट {{cost}} टोकन की लागत है और आपके पास {{held}} है।",
+    "editFilters": "संपादन करें",
+    "cropRotate": "काटें और घुमाएँ",
+    "drawWrite": "चित्र बनाएँ और लिखें",
+    "fade": "गहराई {{value}}%",
+    "grayscale": "ग्रे स्केल {{value}}%",
+    "resetEdits": "रीसेट करें",
+    "clearDrawing": "साफ करें",
+    "typeText": "टाइप…",
+    "textSize": "टेक्स्ट का आकार {{value}}",
+    "coverFrames": "फ्रेम चुनें",
+    "coverFrame": "फ्रेम {{index}} को कवर के रूप में उपयोग करें",
+    "uploadCover": "कवर इमेज अपलोड करें",
+    "editFailed": "उस संपादन को लागू नहीं कर सके। फिर से प्रयास करें।"
   },
   "bounty": {
     "claimed": "मिल गे",
@@ -8553,7 +8592,8 @@
     "signIn": {
       "body": "ए एप ल आपके DeHub वॉलेट पता अउ एक साइन-इन टोकन मिलही जेहर केवल ए एप बर काम करत हवय । एहर आपके पर्स, आपके फंड या आपके DeHub खाता तक पहुंच नी पाही ।",
       "cancel": "अभी नइ",
-      "confirm": "दसखत करव"
+      "confirm": "दसखत करव",
+      "title": "क्या आप {{name}} में लॉग इन करना चाहते हैं?"
     },
     "store": {
       "title": "अनुपरयोग",
@@ -8564,7 +8604,11 @@
       "search": "अनुपरयोग खोजव",
       "all": "सब्बो",
       "fromDehub": "देहब ले",
-      "noMatch": "कोई अनुपरयोग ओ खोज के साथ मेल खाती नइ हे."
+      "noMatch": "कोई अनुपरयोग ओ खोज के साथ मेल खाती नइ हे.",
+      "yourApps": "आपके ऐप्स",
+      "notificationsOn": "अलर्ट ऑन",
+      "remove": "हटाना",
+      "removed": "हटाया गया। अब यह आपको और अलर्ट नहीं देगा।"
     },
     "card": {
       "open": "खोलव"
@@ -8583,6 +8627,17 @@
       "developer-tools": "बनइया औजार",
       "entertainment": "मनोरंजन",
       "art-creativity": "कला अउ रचनात्मकता"
+    },
+    "pay": {
+      "title": "{{name}} का भुगतान करना?",
+      "body": "DHB सीधे ऐप के वॉलेट {{wallet}} में जाता है। भुगतान वापस नहीं किए जा सकते।",
+      "confirm": "{{amount}} DHB का भुगतान करें",
+      "sent": "{{amount}} DHB {{name}} को भुगतान किया गया।"
+    },
+    "add": {
+      "title": "{{name}} जोड़ना?",
+      "body": "यह आपके ऐप्स के तले दिखाई देगा और आपको अलर्ट भेज सकता है। आप कभी भी ऐप्स पेज से इसे हटा सकते हैं।",
+      "confirm": "ऐप जोड़ें"
     }
   },
   "aiStyles": {

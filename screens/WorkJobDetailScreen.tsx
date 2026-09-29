@@ -126,9 +126,12 @@ export default function WorkJobDetailScreen() {
   const { showUserProfile } = useUserProfileSheet();
 
   const { data: job, isLoading, isError, refetch, isRefetching } = useWorkJob(jobId, seed);
-  const { data: applications = [] } = useJobApplications(jobId);
-  const { data: submissions = [] } = useJobSubmissions(jobId);
-  const { data: reviews = [] } = useJobReviews(jobId);
+  // A shared link (dehub.io/bounty/7) carries the job_number, but the child
+  // tables key on the job's uuid, so they wait for the job when given a number.
+  const jobUuid = /^\d+$/.test(jobId) ? job?.id : jobId;
+  const { data: applications = [] } = useJobApplications(jobUuid);
+  const { data: submissions = [] } = useJobSubmissions(jobUuid);
+  const { data: reviews = [] } = useJobReviews(jobUuid);
 
   const applyMutation = useApplyToJob();
   const awardMutation = useAwardApplicant();

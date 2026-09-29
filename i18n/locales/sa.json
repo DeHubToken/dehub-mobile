@@ -146,7 +146,9 @@
     "noMoreShorts": "आणखी शॉर्ट्स नाहीत",
     "noShortsFound": "शॉर्ट्स सापडले नाहीत",
     "newMembersHint": "आत्ताच सामील झाला — हॅलो म्हणा",
-    "mostViewedThisMonth": "अस्मिन् मासे सर्वाधिकदृष्टम्"
+    "scroll": "Scroll",
+    "noFilterMatches": "भवतः शोधकैः सह किमपि विषयवस्तु न मिलति।",
+    "clearFilters": "शोधकान् निष्कासयतु"
   },
   "explore": {
     "all": "सर्वम्",
@@ -2638,7 +2640,31 @@
     "noneYetBeFirst": "अभी तक कोई टिप्पणी नहीं। पहले बनें!",
     "turnedOff": "इस पोस्ट के लिए टिप्पणियाँ बंद हैं",
     "noQuotesYet": "अभी तक कोई उद्धरण नहीं।",
-    "noRepostsYet": "अभी तक कोई रीपोस्ट नहीं।"
+    "noRepostsYet": "अभी तक कोई रीपोस्ट नहीं।",
+    "timeSeconds": "{{count}} से.",
+    "timeMinutes": "{{count}} मि.",
+    "timeHours": "{{count}} घं.",
+    "seeWhoLiked": "केभ्यः रोचते इति पश्यतु",
+    "holdToReact": "{{reaction}} — प्रतिक्रियायै निपीड्य धारयतु",
+    "holdToChangeReaction": "{{reaction}} — स्वप्रतिक्रियां परिवर्तयितुं निपीड्य धारयतु",
+    "viewCount_one": "{{count}} दर्शनम्",
+    "viewCount_other": "{{count}} दर्शनानि",
+    "shareMessage": "एतत् पश्यतु: {{url}}",
+    "hideReplies": "प्रत्युत्तराणि गोपयतु",
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
+    "rowA11yHint": "अस्यां टिप्पण्यां प्रत्युत्तरम् आरभते",
+    "editingComment": "टिप्पणी सम्पाद्यते",
+    "editPlaceholder": "स्वटिप्पणीं सम्पादयतु...",
+    "replyPlaceholder": "प्रत्युत्तरं लिखतु...",
+    "inputPlaceholder": "अत्र लिखतु",
+    "cancelReply": "प्रत्युत्तरं निरस्यतु",
+    "cancelEdit": "सम्पादनं निरस्यतु",
+    "countLabel_one": "{{count}} टिप्पणी",
+    "countLabel_other": "{{count}} टिप्पण्यः",
+    "repostsLabel_one": "पुनःप्रकाशनम्",
+    "repostsLabel_other": "पुनःप्रकाशनानि",
+    "quotesLabel_one": "उद्धरणम्",
+    "quotesLabel_other": "उद्धरणानि"
   },
   "postInfo": {
     "title": "प्रकाशनस्य सूचना",
@@ -5117,7 +5143,20 @@
     "removeUploadTitle": "एतत् पदम् उपरि लिखत?",
     "removeQueuedBody": "इदानीमपि न प्रकाशितम् । अत एव पदं निरस्तम् ।",
     "quotaShortfall": "इस पोस्ट की लागत {{cost}} टोकन है और आपके पास {{held}} है।",
-    "shopAllowanceUsed": "{{allowance}} में से {{allowance}} का उपयोग किया गया। उच्च बैज और एक और स्लॉट के लिए अधिक DeHub टोकन स्टेक करें।"
+    "shopAllowanceUsed": "{{allowance}} में से {{allowance}} का उपयोग किया गया। उच्च बैज और एक और स्लॉट के लिए अधिक DeHub टोकन स्टेक करें।",
+    "editFilters": "अनुकूलनकर्त्रः",
+    "cropRotate": "कटते चित्रं परिवर्तयति",
+    "drawWrite": "चित्रित करो और लिखो",
+    "grayscale": "ग्रे स्केल {{value}}%",
+    "resetEdits": "पुनः स्थापना करें",
+    "clearDrawing": "स्पष्टम्",
+    "typeText": "लिखना",
+    "textSize": "अनुकूलता स्तर {{value}}",
+    "coverFrames": "अभयारण्यं चित्रं चयन करो",
+    "coverFrame": "{{index}} आवरणं भवतु",
+    "uploadCover": "अभिलेख प्रदर्शित करें",
+    "editFailed": "सम्पादनं लागू न शक्यते। पुनः प्रयत्नं कुरु।",
+    "fade": "म्लानता {{value}}%"
   },
   "bounty": {
     "claimed": "प्राप्तम्",
@@ -8502,7 +8541,8 @@
     "signIn": {
       "body": "इयं ऐप्लिकेशनम् भवतः DeHub वॉलेट पतां तथा साइन - इन टोकनम् प्राप्तं करिष्यति यत् केवलं एतत् ऐप्लिकेशनम् एव कार्यं करोति । भवतः ऐपि सङ्केतः अवरुद्धः यतः अयं कश्चन मुक्तप्रतिहस्तकः ।",
       "cancel": "इदानीं न",
-      "confirm": "प्रविश्यताम्"
+      "confirm": "प्रविश्यताम्",
+      "title": "क्या {{name}} में लॉग इन करें?"
     },
     "store": {
       "title": "अनुप्रयोगाः",
@@ -8513,7 +8553,11 @@
       "search": "अनुप्रयोगाः शोचतु",
       "all": "सर्वे",
       "fromDehub": "DeHub द्वारा टिप्पणियां",
-      "noMatch": "न कोई ऐप्प्स तुंहारे खोजे अनुसार मिले।"
+      "noMatch": "न कोई ऐप्प्स तुंहारे खोजे अनुसार मिले।",
+      "yourApps": "भवतः अनुप्रयोगः",
+      "notificationsOn": "अधिसूचनाः",
+      "remove": "निष्कास्यताम्",
+      "removed": "पुनः दध्ना भुक्त्वा धूमं न पिबेत् इति पृथक्तया धूमस्य उल्लेखः कृतः ।"
     },
     "card": {
       "open": "उद्घाट्यताम्"
@@ -8532,6 +8576,17 @@
       "developer-tools": "विकासकर्ता उपकरणम्",
       "entertainment": "मनोरञ्जनम्",
       "art-creativity": "कला एवं सृजनात्मकता"
+    },
+    "pay": {
+      "confirm": "वेतनमान {{amount}} DHB",
+      "sent": "पैसा {{amount}} DHB को {{name}} दे दिया गया।",
+      "title": "{{name}} का भुगतान करें?",
+      "body": "डीएचबी सीधे ऐप के वॉलेट में जाता है, {{wallet}}। भुगतान वापस नहीं किए जा सकते।"
+    },
+    "add": {
+      "title": "{{name}} क्या?",
+      "body": "भवतः ऐपि सङ्केतः अवरुद्धः यतः अयं कश्चन मुक्तप्रतिहस्तकः । जालकपृष्ठे पञ्जीकर्तुम् भवितुम् अर्हति ।",
+      "confirm": "अनुप्रयोगं योजयतु"
     }
   },
   "aiStyles": {
