@@ -122,7 +122,9 @@ export function useTranscript(
           qc.invalidateQueries({ queryKey: key });
         },
       )
-      .subscribe();
+      .subscribe((status) => {
+        if (status === "SUBSCRIBED") qc.invalidateQueries({ queryKey: key });
+      });
 
     return () => {
       supabase.removeChannel(channel);

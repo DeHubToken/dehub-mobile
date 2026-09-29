@@ -317,7 +317,12 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
           fetchTranslation();
         }
       )
-      .subscribe();
+      .subscribe((status) => {
+        if (status === "SUBSCRIBED") {
+          fetchTranscript();
+          fetchTranslation();
+        }
+      });
 
     return () => {
       supabase.removeChannel(transcriptChan);

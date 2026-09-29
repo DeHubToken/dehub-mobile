@@ -65,7 +65,9 @@ export function useLaunchpadTokens(filter: LaunchpadFilter, mineAddress?: string
           : { event: "*", schema: "public", table: "launchpad_tokens" },
         schedule,
       )
-      .subscribe();
+      .subscribe((status) => {
+        if (status === "SUBSCRIBED") void refetchRef.current();
+      });
     return () => {
       if (timer) clearTimeout(timer);
       supabase.removeChannel(ch);
@@ -105,7 +107,9 @@ export function useLaunchpadToken(id?: string) {
           );
         },
       )
-      .subscribe();
+      .subscribe((status) => {
+        if (status === "SUBSCRIBED") queryClient.invalidateQueries({ queryKey: launchpadKeys.token(id) });
+      });
     return () => {
       supabase.removeChannel(ch);
     };
@@ -148,7 +152,9 @@ export function useLaunchpadTrades(tokenId?: string, limit = 50) {
           if (tokenId) queryClient.invalidateQueries({ queryKey: launchpadKeys.token(tokenId) });
         },
       )
-      .subscribe();
+      .subscribe((status) => {
+        if (status === "SUBSCRIBED") queryClient.invalidateQueries({ queryKey: launchpadKeys.trades(scope) });
+      });
     return () => {
       supabase.removeChannel(ch);
     };

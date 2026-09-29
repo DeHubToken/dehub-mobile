@@ -1533,19 +1533,13 @@ const NotificationScreen = () => {
     };
 
     const unsubscribeSocket = onSocketEvent('notification', refreshLiveList);
+    // A content-free ping the database sends whenever this wallet's
+    // custom_notifications rows change; the list is re-read through the API.
+    // Broadcast keeps no backlog, so every join re-reads as well.
     const channel = supabase
-      .channel(`notification-list:${walletAddress.toLowerCase()}`)
-      .on(
-        'postgres_changes',
-        {
-          event: '*',
-          schema: 'public',
-          table: 'custom_notifications',
-          filter: `recipient_address=eq.${walletAddress.toLowerCase()}`,
-        },
-        refreshLiveList,
-      )
-      .subscribe();
+      .channel(`notif:${walletAddress.toLowerCase()}`, { config: { private: true } })
+      .on('broadcast', { event: 'ping' }, refreshLiveList)
+      .subscribe((status) => { if (status === 'SUBSCRIBED') refreshLiveList(); });
 
     return () => {
       if (refreshTimer) clearTimeout(refreshTimer);
