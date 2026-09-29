@@ -57,6 +57,11 @@ describe('App Links agree across app.json and the committed Android manifest', (
     }
   });
 
+  it('claims mini app links', () => {
+    expect(fromManifest).toContain('path /apps');
+    expect(fromManifest).toContain('pathPrefix /apps/');
+  });
+
   it('keeps iOS associated with dehub.io', () => {
     expect(read('ios', 'DeHub', 'DeHub.entitlements')).toContain('<string>applinks:dehub.io</string>');
   });

@@ -2,8 +2,9 @@
  * Mini app registry reads — the app side of dehubweb's src/lib/miniapp/registry.ts.
  *
  * `miniapp_apps` is public for live apps only (RLS), so these use the
- * publishable key. Both degrade to "nothing listed" rather than throwing:
- * an empty store beats an error screen.
+ * publishable key. The reads never throw. The store list comes back `null` on a
+ * failed read so the store can say so and offer a retry, instead of telling
+ * an offline user that no apps exist.
  */
 import { supabase } from "./supabase";
 import { withWalletHeader } from "../libs/supabase-wallet-client";
@@ -31,14 +32,15 @@ const COLUMNS =
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const db = supabase as any;
 
-export async function fetchListedApps(): Promise<MiniAppListing[]> {
+/** Listed and verified apps, or `null` when the read failed (offline, server error). */
+export async function fetchListedApps(): Promise<MiniAppListing[] | null> {
   const { data, error } = await db
     .from("miniapp_apps")
     .select(COLUMNS)
     .in("tier", ["listed", "verified"])
     .order("name", { ascending: true })
     .limit(200);
-  if (error) return [];
+  if (error) return null;
   return (data ?? []) as MiniAppListing[];
 }
 
