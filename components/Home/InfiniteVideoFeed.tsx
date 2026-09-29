@@ -19,7 +19,13 @@ import {
 } from "react-native";
 import { DeHubLoader } from "../DeHubLoader";
 import { feedRenderBudget } from "../../libs/feed-render-budget";
-import Animated, { useAnimatedStyle, type SharedValue } from "react-native-reanimated";
+import Animated, {
+  useAnimatedScrollHandler,
+  useAnimatedStyle,
+  useComposedEventHandler,
+  useSharedValue,
+  type SharedValue,
+} from "react-native-reanimated";
 import EmptyFeedState from "./EmptyFeedState";
 import FeedCard from "./FeedCard";
 import FeedCardSkeleton from "../Feed/FeedCardSkeleton";
@@ -211,6 +217,21 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   // top actually sees the new position-zero row.
   const pendingBoostRevealRef = useRef(false);
   const revealedBoostRef = useRef<string | undefined>(undefined);
+  // Where the list is scrolled. Home drives onScroll with the header's worklet,
+  // so handleScroll never ran there and prevYRef stayed 0: a boosted post that
+  // arrived after the reader had started scrolling threw them back to the top.
+  // This one runs beside the header's handler on the UI thread.
+  const scrollOffset = useSharedValue(0);
+  const trackOffset = useAnimatedScrollHandler({
+    onScroll: (event) => {
+      scrollOffset.value = event.contentOffset.y;
+    },
+  });
+  const composedScroll = useComposedEventHandler([scrollHandler ?? null, trackOffset]);
+  const readOffset = useCallback(
+    () => (scrollHandler ? scrollOffset.value : prevYRef.current),
+    [scrollHandler, scrollOffset],
+  );
   // Set for the life of a drag or fling. Count patches that would rewrite
   // cached pages mid-scroll — the live-count poll, the counts a fetched page
   // carries — wait on this and land from settleScroll().
@@ -575,24 +596,27 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     if (!boostedTokenId || !post || revealedBoostRef.current === String(boostedTokenId)) return;
 
     revealedBoostRef.current = String(boostedTokenId);
-    if (prevYRef.current > MAINTAIN_POSITION.autoscrollToTopThreshold) return;
+    if (readOffset() > MAINTAIN_POSITION.autoscrollToTopThreshold) return;
 
     pendingBoostRevealRef.current = true;
     const frame = requestAnimationFrame(() => {
       if (!pendingBoostRevealRef.current) return;
-      listRef.current?.scrollToOffset({ offset: 0, animated: false });
       pendingBoostRevealRef.current = false;
+      // The reader may have started scrolling since; leave them where they are.
+      if (readOffset() > MAINTAIN_POSITION.autoscrollToTopThreshold) return;
+      listRef.current?.scrollToOffset({ offset: 0, animated: false });
       prevYRef.current = 0;
     });
     return () => cancelAnimationFrame(frame);
-  }, [boostedPost, boostedTokenId]);
+  }, [boostedPost, boostedTokenId, readOffset]);
 
   const handleContentSizeChange = useCallback(() => {
     if (!pendingBoostRevealRef.current) return;
-    listRef.current?.scrollToOffset({ offset: 0, animated: false });
     pendingBoostRevealRef.current = false;
+    if (readOffset() > MAINTAIN_POSITION.autoscrollToTopThreshold) return;
+    listRef.current?.scrollToOffset({ offset: 0, animated: false });
     prevYRef.current = 0;
-  }, []);
+  }, [readOffset]);
 
   // A page lands in the list the moment it arrives, mid-fling or not, as on
   // web. Holding it until the scroll settled meant a continuous fling ran past
@@ -1031,7 +1055,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
         // Three viewports of runway, about web's 2400px prefetch margin: a
         // fling covers 1.5 viewports before a page can come back.
         onEndReachedThreshold={3}
-        onScroll={scrollHandler ?? handleScroll}
+        onScroll={scrollHandler ? composedScroll : handleScroll}
         onScrollBeginDrag={handleScrollBeginDrag}
         onScrollEndDrag={handleScrollEndDrag}
         onMomentumScrollBegin={handleMomentumScrollBegin}
