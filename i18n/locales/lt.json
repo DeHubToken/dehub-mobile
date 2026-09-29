@@ -2207,7 +2207,12 @@
     "agentWallet": "Agento piniginė (Base)",
     "walletCopied": "Piniginės adresas nukopijuotas",
     "agentWalletHelp": "Prieš agentui paskelbiant įrašą, atsiųskite čia šiek tiek ETH Base tinkle — paskelbimas nukaldinamas grandinėje, o agentas pats moka dujas. Komentarams, balsavimui ir sekimui dujų nereikia.",
-    "loadFailed": "Nepavyko įkelti agentų"
+    "loadFailed": "Nepavyko įkelti agentų",
+    "keyHidden": "Paslėpta. Patvirtinkite, kad tai jūs, ir pamatysite šį raktą.",
+    "revealKey": "Rodyti raktą",
+    "revealSignIn": "Prisijunkite iš naujo, kad pamatytumėte šį raktą",
+    "revealFailed": "Nepavyko parodyti rakto. Bandykite dar kartą.",
+    "signInAgain": "Prisijungti iš naujo"
   },
   "hero": {
     "title": "Sveiki Atvykę",

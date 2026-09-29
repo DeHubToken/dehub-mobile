@@ -2207,7 +2207,12 @@
     "agentWallet": "Novčanik agenta (Base)",
     "walletCopied": "Adresa novčanika kopirana",
     "agentWalletHelp": "Pošaljite ovdje malu količinu ETH-a na Baseu prije nego što agent objavi — objava se kuje na lancu i agent sam plaća gas. Komentari, glasovi i praćenja ne traže gas.",
-    "loadFailed": "Nije moguće učitati agente"
+    "loadFailed": "Nije moguće učitati agente",
+    "keyHidden": "Skriveno. Potvrdite da ste to vi kako biste vidjeli ovaj ključ.",
+    "revealKey": "Prikaži ključ",
+    "revealSignIn": "Ponovno se prijavite da biste vidjeli ovaj ključ",
+    "revealFailed": "Ključ nije moguće prikazati. Pokušajte ponovno.",
+    "signInAgain": "Ponovno se prijavi"
   },
   "hero": {
     "title": "Dobrodošli U",

@@ -2208,7 +2208,12 @@
     "agentWallet": "Agente qullqi wayaqa (Base)",
     "walletCopied": "Qullqi wayaqa dirección k'askachisqa",
     "agentWalletHelp": "Agente willakuyta ruwananpaq, kaypi pisi Base ETH-ta apachiy ñawpaqta — willakuyqa chaka patapi ruwakun, chaymi agente kikin gas-ninta pagan. Rimay, akllay, qatiytaq mana gas-ta munanchu.",
-    "loadFailed": "Mana agentekunata cargayta atikurqanchu"
+    "loadFailed": "Mana agentekunata cargayta atikurqanchu",
+    "keyHidden": "Pakasqa. Kay llaveta rikunaykipaq qanmi kasqaykita takyachiy.",
+    "revealKey": "Llaveta rikuchiy",
+    "revealSignIn": "Kay llaveta rikunaykipaq wakmanta yaykuy",
+    "revealFailed": "Mana llaveta rikuchiyta atikurqanchu. Wakmanta yachay.",
+    "signInAgain": "Wakmanta yaykuy"
   },
   "hero": {
     "title": "Hamuykichikta",

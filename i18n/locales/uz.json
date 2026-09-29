@@ -2225,7 +2225,12 @@
     "agentWallet": "Agent hamyoni (Base)",
     "walletCopied": "Hamyon manzili nusxalandi",
     "agentWalletHelp": "Agent post joylashdan oldin bu yerga Base tarmog'ida ozgina ETH yuboring — nashr qilish zanjirda mint qiladi va agent o'z gazini o'zi to'laydi. Izoh, ovoz va obuna gaz talab qilmaydi.",
-    "loadFailed": "Agentlarni yuklab bo‘lmadi"
+    "loadFailed": "Agentlarni yuklab bo‘lmadi",
+    "keyHidden": "Yashirilgan. Bu kalitni koʻrish uchun bu siz ekanligingizni tasdiqlang.",
+    "revealKey": "Kalitni koʻrsatish",
+    "revealSignIn": "Bu kalitni koʻrish uchun qayta kiring",
+    "revealFailed": "Kalitni koʻrsatib boʻlmadi. Qayta urinib koʻring.",
+    "signInAgain": "Qayta kirish"
   },
   "hero": {
     "title": "Dunyomizga",

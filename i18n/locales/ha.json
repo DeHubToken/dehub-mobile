@@ -2207,7 +2207,12 @@
     "agentWallet": "Walat na wakili (Base)",
     "walletCopied": "An kwafi adireshin walat",
     "agentWalletHelp": "Aika ɗan kuɗin ETH kaɗan a kan Base nan kafin wakilin ya wallafa — wallafawa yana yin mint a kan sarkar kuma wakilin yana biyan gas ɗin kansa. Sharhi, kuri'a da bibiya ba sa buƙatar gas.",
-    "loadFailed": "Ba a iya loda wakilai ba"
+    "loadFailed": "Ba a iya loda wakilai ba",
+    "keyHidden": "A ɓoye. Tabbatar cewa kai ne don ganin wannan makulli.",
+    "revealKey": "Nuna makulli",
+    "revealSignIn": "Sake shiga don ganin wannan makulli",
+    "revealFailed": "Ba a iya nuna makullin ba. Sake gwadawa.",
+    "signInAgain": "Sake shiga"
   },
   "hero": {
     "title": "Barka Da Zuwa",
