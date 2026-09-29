@@ -25,7 +25,6 @@ import { Image } from "expo-image";
 import * as Haptics from "expo-haptics";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation, useRoute } from "@react-navigation/native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useTranslation } from "react-i18next";
 import Icon from "../components/ui/Icon";
 import { ScreenNames } from "../navigation/ScreenNames";
@@ -105,7 +104,6 @@ export default function MiniAppScreen() {
   const route = useRoute<any>();
   const params = (route.params ?? {}) as Params;
   const dev = route.name === ScreenNames.MiniAppDev;
-  const insets = useSafeAreaInsets();
   const { user } = useAuth();
   const { showUserProfile } = useUserProfileSheet();
   const webRef = useRef<WebView>(null);
@@ -190,10 +188,13 @@ export default function MiniAppScreen() {
         added,
         locale: i18n.language || "en",
         theme: "dark",
-        safeAreaInsets: { top: 0, bottom: insets.bottom, left: insets.left, right: insets.right },
+        // All zero, as on web. The root SafeAreaView already keeps this screen
+        // clear of the status and nav bars, so an app that pads by these would
+        // leave a second, empty bar-height gap.
+        safeAreaInsets: { top: 0, bottom: 0, left: 0, right: 0 },
       },
     };
-  }, [user, params.from, dev, i18n.language, insets.bottom, insets.left, insets.right, added]);
+  }, [user, params.from, dev, i18n.language, added]);
 
   const close = useCallback(() => {
     if (navigation.canGoBack()) navigation.goBack();
@@ -434,19 +435,38 @@ export default function MiniAppScreen() {
   }
 
   if (app === null) {
+    // popTo returns to the store already underneath, or swaps this dead page
+    // for one (a cold link), so back never lands here again.
     return (
-      <View style={[styles.screen, styles.center, { paddingHorizontal: 24 }]}>
-        <Icon name="TriangleAlert" size={28} color="#52525B" />
-        <Text style={styles.missing}>{dev ? t("miniApps.host.badUrl") : t("miniApps.host.notFound")}</Text>
-        <Pressable onPress={() => navigation.navigate(ScreenNames.Apps)} style={styles.missingButton}>
-          <Text style={styles.missingButtonLabel}>{t("miniApps.host.backToStore")}</Text>
-        </Pressable>
+      <View style={styles.screen}>
+        <View style={styles.header}>
+          <Pressable
+            onPress={close}
+            accessibilityRole="button"
+            accessibilityLabel={t("miniApps.host.close")}
+            hitSlop={8}
+            style={styles.closeButton}
+          >
+            <Icon name="X" size={18} color="#D4D4D8" />
+          </Pressable>
+        </View>
+        <View style={[styles.body, styles.center, { paddingHorizontal: 24 }]}>
+          <Icon name="TriangleAlert" size={28} color="#52525B" />
+          <Text style={styles.missing}>{dev ? t("miniApps.host.badUrl") : t("miniApps.host.notFound")}</Text>
+          <Pressable
+            onPress={() => navigation.popTo(ScreenNames.Apps)}
+            accessibilityRole="button"
+            style={styles.missingButton}
+          >
+            <Text style={styles.missingButtonLabel}>{t("miniApps.host.backToStore")}</Text>
+          </Pressable>
+        </View>
       </View>
     );
   }
 
   return (
-    <View style={[styles.screen, { paddingTop: insets.top }]}>
+    <View style={styles.screen}>
       <StatusBar barStyle="light-content" />
       <View style={styles.header}>
         <Pressable
