@@ -18,6 +18,7 @@ import * as Application from "expo-application";
 import { Platform } from "react-native";
 import env from "../config/env";
 import { getAuthToken } from "./auth.utils";
+import { reportError } from "./errorReporter";
 import { tokenRefreshManager } from "./token-refresh";
 
 const STORAGE_KEY = "dehub_wallet_sessions";
@@ -27,9 +28,23 @@ const FIRST_WAIT_MS = 4000;
 
 interface Session { token: string; expiresAt: number }
 
+/**
+ * Why a wallet-scoped request went out without a session. Enforcement can only
+ * be switched on once almost nothing lands here, so the reasons have to be told
+ * apart: no_token is a sign-in problem, mint_error a server refusal or wallet
+ * mismatch, timeout a mint that was merely slow.
+ */
+type UnsignedReason = "no_token" | "mint_error" | "timeout";
+interface MintFailure { reason: UnsignedReason; detail: string }
+
+class MintError extends Error {
+  constructor(readonly reason: UnsignedReason, detail: string) { super(detail); }
+}
+
 const sessions = new Map<string, Session>();
 const inflight = new Map<string, Promise<Session | null>>();
 const failedAt = new Map<string, number>();
+const lastFailure = new Map<string, MintFailure>();
 let loaded: Promise<void> | null = null;
 
 function load(): Promise<void> {
@@ -58,7 +73,7 @@ function fresh(wallet: string): Session | null {
 async function mint(wallet: string, baseFetch: typeof fetch): Promise<Session | null> {
   await tokenRefreshManager.ensureFreshToken();
   const token = await getAuthToken();
-  if (!token) return null;
+  if (!token) throw new MintError("no_token", "no DeHub token stored");
   const res = await baseFetch(`${env.SUPABASE_URL}/functions/v1/wallet-session`, {
     method: "POST",
     headers: {
@@ -70,9 +85,16 @@ async function mint(wallet: string, baseFetch: typeof fetch): Promise<Session | 
     },
     body: JSON.stringify({ client: Platform.OS, appVersion: Application.nativeApplicationVersion ?? undefined }),
   });
-  if (!res.ok) return null;
   const data = await res.json().catch(() => null);
-  if (!data?.token || String(data.wallet).toLowerCase() !== wallet) return null;
+  if (!res.ok) {
+    // A 401 is the DeHub token itself being dead, not a server fault.
+    const detail = `${res.status} ${data?.error ?? ""}`.trim();
+    throw new MintError(res.status === 401 ? "no_token" : "mint_error", detail);
+  }
+  if (!data?.token) throw new MintError("mint_error", "response carried no session");
+  if (String(data.wallet).toLowerCase() !== wallet) {
+    throw new MintError("mint_error", "session minted for a different wallet");
+  }
   const session = { token: String(data.token), expiresAt: new Date(data.expiresAt).getTime() };
   sessions.set(wallet, session);
   save();
@@ -87,7 +109,12 @@ function ensure(wallet: string, baseFetch: typeof fetch): Promise<Session | null
   let pending = inflight.get(wallet);
   if (!pending) {
     pending = mint(wallet, baseFetch)
-      .catch(() => null)
+      .catch((e: unknown) => {
+        lastFailure.set(wallet, e instanceof MintError
+          ? { reason: e.reason, detail: e.message }
+          : { reason: "mint_error", detail: e instanceof Error ? e.message : String(e) });
+        return null;
+      })
       .then((s) => {
         if (!s) failedAt.set(wallet, Date.now());
         inflight.delete(wallet);
@@ -98,10 +125,30 @@ function ensure(wallet: string, baseFetch: typeof fetch): Promise<Session | null
   return pending;
 }
 
-function timeout<T>(p: Promise<T>, ms: number): Promise<T | null> {
+const TIMED_OUT = Symbol("timed out");
+
+function timeout<T>(p: Promise<T>, ms: number): Promise<T | typeof TIMED_OUT> {
   let timer: ReturnType<typeof setTimeout> | undefined;
-  const late = new Promise<null>((r) => { timer = setTimeout(() => r(null), ms); });
+  const late = new Promise<typeof TIMED_OUT>((r) => { timer = setTimeout(() => r(TIMED_OUT), ms); });
   return Promise.race([p, late]).finally(() => clearTimeout(timer));
+}
+
+let reportedUnsigned = false;
+
+/**
+ * One row per app launch, the first time a wallet-scoped request goes out
+ * unsigned. Enough to count the wallets affected and see why, without a
+ * signed-out phone writing a row for every query it makes.
+ */
+function reportUnsigned(wallet: string, url: string, why: MintFailure) {
+  if (reportedUnsigned) return;
+  reportedUnsigned = true;
+  // Not new URL(): React Native's URL has thrown on .pathname in the past.
+  const path = url.slice(env.SUPABASE_URL.length).split("?")[0];
+  reportError("WalletSession", [
+    `Unsigned wallet request (${why.reason})`,
+    { reason: why.reason, detail: why.detail.slice(0, 300), path, client: Platform.OS, wallet },
+  ]);
 }
 
 function readUrl(input: RequestInfo | URL): string {
@@ -124,7 +171,12 @@ export function createWalletSessionFetch(baseFetch: typeof fetch = fetch): typeo
     const usable = valid && valid.expiresAt - 30_000 > Date.now() ? valid : null;
     if (usable && !fresh(wallet)) void ensure(wallet, baseFetch);
     const session = usable ?? (await timeout(ensure(wallet, baseFetch), FIRST_WAIT_MS));
-    if (!session) return baseFetch(input, init);
+    if (!session || session === TIMED_OUT) {
+      reportUnsigned(wallet, url, session === TIMED_OUT
+        ? { reason: "timeout", detail: `no session within ${FIRST_WAIT_MS}ms` }
+        : lastFailure.get(wallet) ?? { reason: "mint_error", detail: "unknown" });
+      return baseFetch(input, init);
+    }
     headers.set("x-wallet-session", session.token);
     return baseFetch(input, { ...init, headers });
   };
