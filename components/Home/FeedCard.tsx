@@ -1349,6 +1349,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const renderVideoThumbnail = () => (
     <FeedVideoPlayer
       thumbnail={thumbnail}
+      postPage={fullContent}
       videoUrl={isActuallyGated ? undefined : (getVideoUrl(tokenId) || undefined)}
       transcodingStatus={item.transcodingStatus}
       isOwner={!!isOwnerPost}

@@ -48,7 +48,7 @@ import { getCachedMuted, setMutedState } from "../../libs/videoMutedState";
 import { useDataSaver } from "../../hooks/useDataSaver";
 import { getAppPrefs, useAppPrefs } from "../../hooks/useAppPrefs";
 import { useVideoSegments, segmentAt } from "../../hooks/useVideoSegments";
-import { useMediaAspect } from "../../hooks/useMediaAspect";
+import { useMediaAspect, THIN_MIN_RATIO } from "../../hooks/useMediaAspect";
 import { useSettledAutoplay } from "../../hooks/useSettledAutoplay";
 import { useCellState } from "../../hooks/useCellState";
 import { toastInfo } from "../../libs/toast";
@@ -73,7 +73,9 @@ const cardWidthFor = (screenWidth: number) => screenWidth - 40;
  * its own width instead, so a vertical video takes about a screen rather than
  * scrolling for three.
  */
-const maxMediaHeightFor = (screenHeight: number) => Math.round(Math.min(600, screenHeight * 0.6));
+const maxMediaHeightFor = (screenHeight: number, postPage = false) =>
+  // On the post page the clip is the page, so it grows to most of the screen.
+  postPage ? Math.round(screenHeight * 0.8) : Math.round(Math.min(600, screenHeight * 0.6));
 
 /**
  * Width of the media box. Takes the live window size (useWindowDimensions) so
@@ -84,14 +86,18 @@ const mediaBoxWidth = (
   win: { width: number; height: number },
   isMinimal: boolean,
   mediaAspect: number,
+  postPage = false,
 ) =>
   Math.min(
     isMinimal ? win.width : cardWidthFor(win.width),
-    Math.round(maxMediaHeightFor(win.height) * mediaAspect),
+    Math.round(maxMediaHeightFor(win.height, postPage) * mediaAspect),
   );
 
 interface FeedVideoPlayerProps {
   thumbnail: string;
+  /** Post page: the clip fills the width or most of the screen height, at its
+   *  real shape even when thinner than 9:16, and sits centred. */
+  postPage?: boolean;
   videoUrl: string | undefined;
   /** Absent (older posts) or 'done' renders normally. 'pending'/'on' shows a
    *  processing spinner instead of attempting playback; 'failed' shows an
@@ -201,6 +207,7 @@ const LOVE_BLOOM = [
 
 const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   thumbnail,
+  postPage = false,
   videoUrl,
   transcodingStatus,
   isOwner,
@@ -462,7 +469,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   // Real shape of the clip, so a portrait video is shown portrait instead of
   // being cropped into a fixed 16:9 slot. Measured off the thumbnail, which is
   // extracted from the video itself; 16:9 until that resolves.
-  const mediaAspect = useMediaAspect(thumbnail, tokenId);
+  const mediaAspect = useMediaAspect(thumbnail, tokenId, postPage ? THIN_MIN_RATIO : undefined);
   const { isMinimal } = useAppTheme();
   const windowSize = useWindowDimensions();
 
@@ -1030,10 +1037,11 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
         {
           aspectRatio: mediaAspect,
           // Fills the card when the clip is wide enough; a portrait clip caps
-          // at the max media height and shrinks its own width, hugged to the left.
-          width: mediaBoxWidth(windowSize, isMinimal, mediaAspect),
+          // at the max media height and shrinks its own width, hugged to the
+          // left in the feed and centred on the post page.
+          width: mediaBoxWidth(windowSize, isMinimal, mediaAspect, postPage),
           maxWidth: "100%",
-          alignSelf: isMinimal ? "center" : "flex-start",
+          alignSelf: isMinimal || postPage ? "center" : "flex-start",
         },
         isMinimal && MINIMAL_MEDIA,
       ]}
@@ -1688,9 +1696,9 @@ const FeedVideoPlayerActive = memo(FeedVideoPlayerComponent);
  * same box, the same thumbnail, the same duration badge, and no player at all.
  * The full component mounts the moment the row scrolls into view.
  */
-const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "tokenId" | "thumbnail" | "duration" | "hideControls" | "onPress">> = memo(
-  ({ tokenId, thumbnail, duration, hideControls, onPress }) => {
-    const mediaAspect = useMediaAspect(thumbnail, tokenId);
+const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "tokenId" | "thumbnail" | "duration" | "hideControls" | "onPress" | "postPage">> = memo(
+  ({ tokenId, thumbnail, duration, hideControls, onPress, postPage = false }) => {
+    const mediaAspect = useMediaAspect(thumbnail, tokenId, postPage ? THIN_MIN_RATIO : undefined);
     const { isMinimal } = useAppTheme();
     const windowSize = useWindowDimensions();
     const mediaTap = useTapOnlyPress(() => onPress());
@@ -1700,9 +1708,9 @@ const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "tokenId" | "thumbnai
           styles.container,
           {
             aspectRatio: mediaAspect,
-            width: mediaBoxWidth(windowSize, isMinimal, mediaAspect),
+            width: mediaBoxWidth(windowSize, isMinimal, mediaAspect, postPage),
             maxWidth: "100%",
-            alignSelf: isMinimal ? "center" : "flex-start",
+            alignSelf: isMinimal || postPage ? "center" : "flex-start",
           },
           isMinimal && MINIMAL_MEDIA,
         ]}
@@ -1807,6 +1815,7 @@ const FeedVideoPlayer: React.FC<FeedVideoPlayerProps> = (props) => {
       thumbnail={props.thumbnail}
       duration={props.duration}
       hideControls={props.hideControls}
+      postPage={props.postPage}
       onPress={onPosterPress}
     />
   );
