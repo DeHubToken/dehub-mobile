@@ -113,9 +113,11 @@ const ScreenHeader: React.FC<ScreenHeaderProps> = ({
     return (
       <TouchableOpacity
         onPress={handleBack}
-        className="items-center justify-center active:opacity-70"
+        className="active:opacity-70"
         style={{
           position: 'absolute',
+          alignItems: 'center',
+          justifyContent: 'center',
           top: 10,
           left: 10,
           zIndex: 20,
