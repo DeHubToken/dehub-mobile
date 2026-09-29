@@ -46,9 +46,6 @@ import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
 import { useAppTheme } from "../context/ThemeContext";
 import { MINIMAL_HAIRLINE, minimalRow } from "../theme/minimal";
 
-/** 8pt + 32pt back button + 8pt — see styles.header / styles.backBtn. */
-const PROMPT_HEADER_HEIGHT = 48;
-
 type Stage = "input" | "analysing" | "tune";
 
 /** Same nine orbit icons as web's ORBIT_ICONS, in the same order. */
@@ -125,9 +122,10 @@ function AnalysingOrbit() {
 }
 
 export default function PromptScreen() {
-  // This screen draws its own header rather than a ScreenHeader: a 32pt back
-  // button over 8pt of bottom padding.
-  const keyboardOffset = useKeyboardOffset(PROMPT_HEADER_HEIGHT);
+  // The header is a sibling of the KeyboardAvoidingView inside the root View,
+  // and the view measures itself from that parent, so the header is already
+  // counted. Adding its height here left a 48pt gap above the keyboard.
+  const keyboardOffset = useKeyboardOffset();
   // Minimal: the suggestion cards become a hairline-ruled list; the composer
   // and buttons keep their fill.
   const { isMinimal } = useAppTheme();
@@ -138,6 +136,9 @@ export default function PromptScreen() {
   const [text, setText] = useState("");
   const [weights, setWeights] = useState<CategoryWeight[]>([]);
   const [categories, setCategories] = useState<string[]>([]);
+  // True once a load has finished, found or not, so the tune step can tell
+  // "still loading" from "nothing came back".
+  const [categoriesLoaded, setCategoriesLoaded] = useState(false);
   const inputRef = useRef<TextInput>(null);
   const analysisTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -145,7 +146,7 @@ export default function PromptScreen() {
     if (analysisTimer.current) clearTimeout(analysisTimer.current);
     if (stage !== "input") setStage("input");
     else if (navigation.canGoBack()) navigation.goBack();
-    else navigation.navigate(ScreenNames.Root, { screen: ScreenNames.Home });
+    else navigation.navigate(ScreenNames.Root, { screen: ScreenNames.Home }, { pop: true });
     return true;
   }, [navigation, stage]);
 
@@ -163,18 +164,28 @@ export default function PromptScreen() {
   const categoriesRef = useRef(categories);
   categoriesRef.current = categories;
 
+  const mountedRef = useRef(true);
   useEffect(() => {
-    let mounted = true;
-    (async () => {
-      try {
-        const list = await getCategoriesCached();
-        if (mounted && Array.isArray(list)) {
-          setCategories(list.filter((c) => typeof c === "string" && c.trim().length > 0));
-        }
-      } catch {}
-    })();
-    return () => { mounted = false; };
+    mountedRef.current = true;
+    return () => { mountedRef.current = false; };
   }, []);
+
+  const loadCategories = useCallback(async (force?: boolean) => {
+    setCategoriesLoaded(false);
+    try {
+      const list = await getCategoriesCached(force ? { forceRefresh: true } : undefined);
+      if (mountedRef.current && Array.isArray(list)) {
+        setCategories(list.filter((c) => typeof c === "string" && c.trim().length > 0));
+      }
+    } catch {
+    } finally {
+      if (mountedRef.current) setCategoriesLoaded(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    loadCategories();
+  }, [loadCategories]);
 
   // If we reached `tune` before categories arrived (race), recompute on arrival.
   useEffect(() => {
@@ -213,7 +224,7 @@ export default function PromptScreen() {
     // mounted HomeScreen picks it up now.
     try { storage.set("dehub:defaultCategory", topCategory ?? ""); } catch {}
     promptFeedEvents.chooseCategory(topCategory);
-    navigation.navigate(ScreenNames.Root, { screen: ScreenNames.Home });
+    navigation.navigate(ScreenNames.Root, { screen: ScreenNames.Home }, { pop: true });
   }, [topCategory, navigation]);
 
   return (
@@ -295,7 +306,7 @@ export default function PromptScreen() {
 
               <Pressable
                 style={styles.skip}
-                onPress={() => navigation.navigate(ScreenNames.Root, { screen: ScreenNames.Home })}
+                onPress={() => navigation.navigate(ScreenNames.Root, { screen: ScreenNames.Home }, { pop: true })}
               >
                 <Text style={styles.skipText}>
                   {t("promptFeed.skip")}
@@ -321,7 +332,20 @@ export default function PromptScreen() {
               </Text>
 
               {weights.length === 0 ? (
-                <ActivityIndicator color="#FFFFFF" style={{ marginTop: 24 }} />
+                categoriesLoaded && categories.length === 0 ? (
+                  <View style={styles.loadFailed}>
+                    <Text style={styles.loadFailedText}>{t("common.failedToLoad")}</Text>
+                    <Pressable
+                      onPress={() => loadCategories(true)}
+                      accessibilityRole="button"
+                      style={styles.retryBtn}
+                    >
+                      <Text style={styles.retryText}>{t("common.retry")}</Text>
+                    </Pressable>
+                  </View>
+                ) : (
+                  <ActivityIndicator color="#FFFFFF" style={{ marginTop: 24 }} />
+                )
               ) : (
                 <View style={styles.sliders}>
                   {weights.map((w, idx) => (
@@ -349,7 +373,13 @@ export default function PromptScreen() {
                 </View>
               )}
 
-              <Pressable style={styles.saveBtn} onPress={handleSave}>
+              {/* With no weights Save would store "" and clear the home category. */}
+              <Pressable
+                style={[styles.saveBtn, weights.length === 0 && styles.saveBtnDisabled]}
+                onPress={handleSave}
+                disabled={weights.length === 0}
+                accessibilityState={{ disabled: weights.length === 0 }}
+              >
                 <Icon name="Check" size={17} color="#000000" />
                 <Text style={styles.saveText}>{t("promptFeed.save")}</Text>
               </Pressable>
@@ -482,6 +512,19 @@ const styles = StyleSheet.create({
   analysingText: { color: "rgba(255,255,255,0.6)", fontSize: 13.5 },
 
   tune: { width: "100%", alignItems: "center" },
+  loadFailed: { alignItems: "center", gap: 14, marginTop: 8 },
+  loadFailedText: { color: "#A1A1AA", fontSize: 13.5, lineHeight: 20, textAlign: "center" },
+  retryBtn: {
+    height: 40,
+    paddingHorizontal: 20,
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.2)",
+    backgroundColor: "rgba(255,255,255,0.06)",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  retryText: { color: "#FFFFFF", fontSize: 14, fontWeight: "600" },
   sliders: { width: "100%", gap: 14, marginTop: 4 },
   sliderRow: { flexDirection: "row", alignItems: "center", gap: 10 },
   sliderIcon: {
@@ -515,5 +558,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     gap: 8,
   },
+  saveBtnDisabled: { opacity: 0.35 },
   saveText: { color: "#000000", fontSize: 15, fontWeight: "700" },
 });
