@@ -847,7 +847,7 @@ export default function FeatureRequestsScreen() {
   // Minimal: the header bento and request cards become edge-to-edge hairline
   // groups, the Requests/Shipping/Shipped strip becomes file tabs. Search,
   // chips and buttons keep their fill.
-  const { isMinimal, theme } = useAppTheme();
+  const { isMinimal, theme: themeName } = useAppTheme();
   const insets = useSafeAreaInsets();
   const { width } = useWindowDimensions();
   const navigation = useNavigation<any>();
@@ -1041,7 +1041,7 @@ export default function FeatureRequestsScreen() {
             </View>
           ) : (
             <Image
-              source={themePageIcon(theme, 'features')}
+              source={themePageIcon(themeName, 'features')}
               style={styles.headerIcon}
               contentFit="contain"
               transition={150}
