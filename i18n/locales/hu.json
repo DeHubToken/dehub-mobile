@@ -146,7 +146,9 @@
     "noMoreShorts": "Nincsenek több rövid videók",
     "noShortsFound": "Nem található rövid videó",
     "newMembersHint": "Most csatlakoztál – köszönj el",
-    "mostViewedThisMonth": "A hónap legnézettebbjei"
+    "scroll": "Scroll",
+    "noFilterMatches": "Nincs a szűrőidnek megfelelő tartalom.",
+    "clearFilters": "Szűrők törlése"
   },
   "explore": {
     "all": "Összes",
@@ -2645,7 +2647,31 @@
     "noneYetBeFirst": "Még nincsenek hozzászólások. Légy az első!",
     "turnedOff": "A hozzászólások ki vannak kapcsolva ehhez a bejegyzéshez",
     "noQuotesYet": "Még nincsenek idézetek.",
-    "noRepostsYet": "Még nincsenek repostok."
+    "noRepostsYet": "Még nincsenek repostok.",
+    "timeSeconds": "{{count}} mp",
+    "timeMinutes": "{{count}} p",
+    "timeHours": "{{count}} ó",
+    "seeWhoLiked": "Nézd meg, kik kedvelték",
+    "holdToReact": "{{reaction}} — tartsd lenyomva a reagáláshoz",
+    "holdToChangeReaction": "{{reaction}} — tartsd lenyomva a reakció módosításához",
+    "viewCount_one": "{{count}} megtekintés",
+    "viewCount_other": "{{count}} megtekintés",
+    "shareMessage": "Ezt nézd meg: {{url}}",
+    "hideReplies": "Válaszok elrejtése",
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
+    "rowA11yHint": "Válasz indítása erre a hozzászólásra",
+    "editingComment": "Hozzászólás szerkesztése",
+    "editPlaceholder": "Szerkeszd a hozzászólásod...",
+    "replyPlaceholder": "Írj választ...",
+    "inputPlaceholder": "Írj ide",
+    "cancelReply": "Válasz megszakítása",
+    "cancelEdit": "Szerkesztés megszakítása",
+    "countLabel_one": "{{count}} hozzászólás",
+    "countLabel_other": "{{count}} hozzászólás",
+    "repostsLabel_one": "újraküldés",
+    "repostsLabel_other": "újraküldés",
+    "quotesLabel_one": "idézet",
+    "quotesLabel_other": "idézet"
   },
   "postInfo": {
     "title": "Bejegyzés infó",
@@ -5129,7 +5155,20 @@
     "removeUploadTitle": "Eltávolítod ezt a feltöltést?",
     "removeQueuedBody": "Még nincs közzétéve. Az eltávolítás törli a bejegyzést.",
     "quotaShortfall": "Ez a bejegyzés {{cost}} tokenbe kerül, és neked {{held}} van.",
-    "shopAllowanceUsed": "{{allowance}} a {{allowance}}-ból felhasználva. Stakeljen több DeHub tokent a magasabb jelvény és egy újabb hely érdekében."
+    "shopAllowanceUsed": "{{allowance}} a {{allowance}}-ból felhasználva. Stakeljen több DeHub tokent a magasabb jelvény és egy újabb hely érdekében.",
+    "editFilters": "Szerkesztési szabályok",
+    "cropRotate": "Vágás & forgatás",
+    "drawWrite": "Rajzolás & írás",
+    "fade": "Fehéredés {{value}}%",
+    "grayscale": "Grayscale {{value}}%",
+    "resetEdits": "Visszaállítás",
+    "clearDrawing": "Törlés",
+    "typeText": "Írjon be…",
+    "textSize": "Betűméret {{value}}",
+    "coverFrames": "Kiválasztson egy borító keretet",
+    "coverFrame": "Használja a borítóként a {{index}} keretet",
+    "uploadCover": "Töltse fel a borítóképet",
+    "editFailed": "Nem sikerült alkalmazni ezt a szerkesztést. Próbálja meg újra."
   },
   "bounty": {
     "claimed": "Igényelve",
@@ -8529,7 +8568,10 @@
       "search": "Keresőalkalmazások",
       "all": "Minden",
       "fromDehub": "DeHub-ból",
-      "noMatch": "Nincs olyan alkalmazás, amely megfelel a keresésnek."
+      "noMatch": "Nincs olyan alkalmazás, amely megfelel a keresésnek.",
+      "yourApps": "Aldodásod",
+      "notificationsOn": "Üzenetek a(z)",
+      "removed": "Tiltott. Nem fogja többé értesíteni."
     },
     "card": {
       "open": "Megnyitás"
@@ -8548,6 +8590,17 @@
       "developer-tools": "Fejlesztői eszközök",
       "entertainment": "Szórakozás",
       "art-creativity": "Művészet és kreativitás"
+    },
+    "pay": {
+      "title": "Fizet {{name}}?",
+      "body": "A DHB közvetlenül az alkalmazás pénztárcájába kerül, {{wallet}}. A fizetések visszavonhatatlanok.",
+      "confirm": "Fizess {{amount}} DHB-t",
+      "sent": "Fizetett {{amount}} DHB-t {{name}}-nak."
+    },
+    "add": {
+      "title": "Add {{name}}?",
+      "body": "A feliratkozás után a *Your apps* alatt fog megjelenni és értesítéseket küldhet neked. Bármikor eltávolíthatod az *Apps* oldalon.",
+      "confirm": "Add a programot"
     }
   },
   "aiStyles": {

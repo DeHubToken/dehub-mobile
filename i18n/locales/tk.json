@@ -146,7 +146,9 @@
     "noMoreShorts": "Beýleki gysga wideolary ýok",
     "noShortsFound": "Gysga wideolar tapylmady",
     "newMembersHint": "Goşuldyňyz — salam aýdyň",
-    "mostViewedThisMonth": "Bu aý iň köp görülen"
+    "scroll": "Scroll",
+    "noFilterMatches": "Süzgüçleriňize laýyk gelýän kontent ýok.",
+    "clearFilters": "Süzgüçleri arassala"
   },
   "explore": {
     "all": "Ählisi",
@@ -2641,7 +2643,31 @@
     "noneYetBeFirst": "Heniz teswir ýok. Ilkinji boluň!",
     "turnedOff": "Bu ýazgy üçin teswirler öçürildi",
     "noQuotesYet": "Heniz sitata ýok.",
-    "noRepostsYet": "Heniz täzeden ýazylan ýok."
+    "noRepostsYet": "Heniz täzeden ýazylan ýok.",
+    "timeSeconds": "{{count}} sek",
+    "timeMinutes": "{{count}} min",
+    "timeHours": "{{count}} sag",
+    "seeWhoLiked": "Kimiň halandygyny gör",
+    "holdToReact": "{{reaction}} — reaksiýa bildirmek üçin basyp saklaň",
+    "holdToChangeReaction": "{{reaction}} — reaksiýaňyzy üýtgetmek üçin basyp saklaň",
+    "viewCount_one": "{{count}} görme",
+    "viewCount_other": "{{count}} görme",
+    "shareMessage": "Muňa seret: {{url}}",
+    "hideReplies": "Jogaplary gizle",
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
+    "rowA11yHint": "Bu teswire jogap ýazyp başlaýar",
+    "editingComment": "Teswir redaktirlenýär",
+    "editPlaceholder": "Teswiriňizi redaktirläň...",
+    "replyPlaceholder": "Jogap ýazyň...",
+    "inputPlaceholder": "Şu ýere ýazyň",
+    "cancelReply": "Jogaby ýatyr",
+    "cancelEdit": "Redaktirlemäni ýatyr",
+    "countLabel_one": "{{count}} teswir",
+    "countLabel_other": "{{count}} teswir",
+    "repostsLabel_one": "Gaýtadan paýlaşym",
+    "repostsLabel_other": "Gaýtadan paýlaşym",
+    "quotesLabel_one": "Sitata",
+    "quotesLabel_other": "Sitata"
   },
   "postInfo": {
     "title": "Ýazgy maglumaty",
@@ -5126,7 +5152,20 @@
     "removeUploadTitle": "Bu ýüküni aýyrmak üçin näme etmeli?",
     "removeQueuedBody": "Emma heniz çap edilmedi. Men bu posty ýitirip bilerin.",
     "quotaShortfall": "Bu ýazgy {{cost}} token we sizde {{held}} bar.",
-    "shopAllowanceUsed": "{{allowance}} {{allowance}} ulanyldy. Ýokary nyşan we başga bir mümkinçilik almak üçin DeHub tokenlerini köpeldip goýuň."
+    "shopAllowanceUsed": "{{allowance}} {{allowance}} ulanyldy. Ýokary nyşan we başga bir mümkinçilik almak üçin DeHub tokenlerini köpeldip goýuň.",
+    "editFilters": "Redaktor filterleri",
+    "cropRotate": "Kesip çevir & döndür",
+    "drawWrite": "Çiz & yaz",
+    "fade": "Görünmez {{value}}%",
+    "grayscale": "Renk skalası {{value}}%",
+    "resetEdits": "Sıfırla",
+    "clearDrawing": "Temizle",
+    "typeText": "Yaz…",
+    "textSize": "Yazı ölçüsü {{value}}",
+    "coverFrames": "Kapak çerçevesini seç",
+    "coverFrame": "Kapak olarak {{index}} çerçevesini kullan",
+    "uploadCover": "Kapak resmi yükle",
+    "editFailed": "Oluşturulan editi uygulayamadı. Tekrar dene."
   },
   "bounty": {
     "claimed": "Alyndy",
@@ -8526,7 +8565,8 @@
       "search": "Ulymalary gözle",
       "all": "Ehli",
       "fromDehub": "Dehub şäheriniň",
-      "noMatch": "Men bu gözlegini görmedim."
+      "noMatch": "Men bu gözlegini görmedim.",
+      "yourApps": "Siziň ulaglaryňyz"
     },
     "card": {
       "open": "Aç"
@@ -8545,6 +8585,15 @@
       "developer-tools": "Geliştirici esbaplary",
       "entertainment": "Göwün açma",
       "art-creativity": "Sanat we kreativitet"
+    },
+    "pay": {
+      "title": "Pay {{name}}?",
+      "body": "\"DHB\" direkt appýň pul gýzýna gider, {{wallet}}. Öýünler geri alýňmaz.",
+      "confirm": "Pay {{amount}} DHB"
+    },
+    "add": {
+      "title": "{{name}}?",
+      "body": "Sizge \"Apps\" bölüginde görünecek ve bildirimler gönderir. Siz \"Apps\" saytasyndan her anýňý silip atabýlýrsýnýz."
     }
   },
   "aiStyles": {

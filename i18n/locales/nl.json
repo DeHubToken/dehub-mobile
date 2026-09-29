@@ -146,7 +146,9 @@
     "noMoreShorts": "Geen shorts meer",
     "noShortsFound": "Geen shorts gevonden",
     "newMembersHint": "Net lid geworden — zeg hallo",
-    "mostViewedThisMonth": "Meest bekeken deze maand"
+    "scroll": "Scroll",
+    "noFilterMatches": "Geen inhoud komt overeen met je filters.",
+    "clearFilters": "Filters wissen"
   },
   "explore": {
     "all": "Alles",
@@ -2831,7 +2833,31 @@
     "noneYetBeFirst": "Nog geen reacties. Wees de eerste!",
     "turnedOff": "Reacties zijn uitgeschakeld voor dit bericht",
     "noQuotesYet": "Nog geen citaten.",
-    "noRepostsYet": "Nog geen reposts."
+    "noRepostsYet": "Nog geen reposts.",
+    "timeSeconds": "{{count}} s",
+    "timeMinutes": "{{count}} min",
+    "timeHours": "{{count}} u",
+    "seeWhoLiked": "Bekijk wie het leuk vond",
+    "holdToReact": "{{reaction}} — houd ingedrukt om te reageren",
+    "holdToChangeReaction": "{{reaction}} — houd ingedrukt om je reactie te wijzigen",
+    "viewCount_one": "{{count}} weergave",
+    "viewCount_other": "{{count}} weergaven",
+    "shareMessage": "Bekijk dit eens: {{url}}",
+    "hideReplies": "Antwoorden verbergen",
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
+    "rowA11yHint": "Begint een antwoord op deze reactie",
+    "editingComment": "Reactie bewerken",
+    "editPlaceholder": "Bewerk je reactie...",
+    "replyPlaceholder": "Schrijf een antwoord...",
+    "inputPlaceholder": "Typ hier",
+    "cancelReply": "Antwoord annuleren",
+    "cancelEdit": "Bewerken annuleren",
+    "countLabel_one": "{{count}} reactie",
+    "countLabel_other": "{{count}} reacties",
+    "repostsLabel_one": "Repost",
+    "repostsLabel_other": "Reposts",
+    "quotesLabel_one": "Citaat",
+    "quotesLabel_other": "Citaten"
   },
   "postInfo": {
     "title": "Berichtinfo",
@@ -5316,7 +5342,20 @@
     "removeUploadTitle": "Deze upload verwijderen?",
     "removeQueuedBody": "Het is nog niet geplaatst. Als je het verwijdert, wordt de post geannuleerd.",
     "quotaShortfall": "Dit bericht kost {{cost}} tokens en je hebt {{held}}.",
-    "shopAllowanceUsed": "{{allowance}} van {{allowance}} gebruikt. Stake meer DeHub tokens voor een hogere badge en een extra slot."
+    "shopAllowanceUsed": "{{allowance}} van {{allowance}} gebruikt. Stake meer DeHub tokens voor een hogere badge en een extra slot.",
+    "editFilters": "Filters bewerken",
+    "cropRotate": "Bijsnijden en draaien",
+    "drawWrite": "Tekenen en schrijven",
+    "fade": "Vervagen {{value}}%",
+    "grayscale": "Grijstinten {{value}}%",
+    "resetEdits": "Herstellen",
+    "clearDrawing": "Wissen",
+    "typeText": "Typ…",
+    "textSize": "Tekstgrootte {{value}}",
+    "coverFrames": "Kies een coverframe",
+    "coverFrame": "Frame {{index}} als cover gebruiken",
+    "uploadCover": "Coverafbeelding uploaden",
+    "editFailed": "Kon de bewerking niet toepassen. Probeer het opnieuw."
   },
   "bounty": {
     "claimed": "Geclaimd",
@@ -8780,7 +8819,10 @@
       "search": "Apps zoeken",
       "all": "Alle",
       "fromDehub": "Van DeHub",
-      "noMatch": "Er komen geen apps overeen met die zoekopdracht."
+      "noMatch": "Er komen geen apps overeen met die zoekopdracht.",
+      "yourApps": "Uw apps",
+      "notificationsOn": "Berichtjes op",
+      "removed": "Verwijderd. Het zal je niet nogmaals melden."
     },
     "card": {
       "open": "Open"
@@ -8799,6 +8841,17 @@
       "developer-tools": "Tools voor ontwikkelaars",
       "entertainment": "Onderhouding",
       "art-creativity": "Kunst & creativiteit"
+    },
+    "pay": {
+      "title": "Betaal je {{name}}?",
+      "body": "De DHB gaat rechtstreeks naar de portemonnee van de app, {{wallet}}. Betalingen kunnen niet worden teruggedraaid.",
+      "confirm": "Betaal {{amount}} DHB",
+      "sent": "Betaald {{amount}} DHB aan {{name}}."
+    },
+    "add": {
+      "title": "Vul {{name}} toe?",
+      "body": "Het zal onder Je apps verschijnen en kan je notificaties sturen. Je kunt het op elk moment verwijderen vanaf de Apps-pagina.",
+      "confirm": "Voeg app toe"
     }
   },
   "aiStyles": {

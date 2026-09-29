@@ -146,7 +146,9 @@
     "noShortsFound": "କୌଣସି ସର୍ଟସ ମିଳିଲା ନାହିଁ",
     "newMembersHint": "କେବଳ ଯୋଗ ଦେଲେ — ନମସ୍କାର କୁହନ୍ତୁ",
     "allCaughtUp": "ଆପଣ ସବୁ କିଛି ଦେଖିସାରିଛନ୍ତି",
-    "mostViewedThisMonth": "ଏହି ମାସରେ ସବୁଠାରୁ ଅଧିକ ଦେଖାଯାଇଥିବା"
+    "scroll": "Scroll",
+    "noFilterMatches": "ଆପଣଙ୍କ ଫିଲ୍ଟର ସହ କୌଣସି ବିଷୟବସ୍ତୁ ମେଳ ଖାଉନାହିଁ।",
+    "clearFilters": "ଫିଲ୍ଟର ସଫା କରନ୍ତୁ"
   },
   "explore": {
     "all": "ସବୁ",
@@ -2640,7 +2642,31 @@
     "turnedOff": "ଏହି ପୋଷ୍ଟ ପାଇଁ କମେଣ୍ଟ ବନ୍ଦ ଅଛି",
     "noQuotesYet": "ଏପର୍ଯ୍ୟନ୍ତ କୌଣସି କୋଟ୍ ନାହିଁ।",
     "noRepostsYet": "ଏପର୍ଯ୍ୟନ୍ତ କୌଣସି ରିପୋଷ୍ଟ ନାହିଁ।",
-    "notFound": "ମନ୍ତବ୍ୟ ମିଳିଲାନାହିଁ"
+    "notFound": "ମନ୍ତବ୍ୟ ମିଳିଲାନାହିଁ",
+    "timeSeconds": "{{count}} ସେ.",
+    "timeMinutes": "{{count}} ମି.",
+    "timeHours": "{{count}} ଘ.",
+    "seeWhoLiked": "କିଏ ଲାଇକ୍ କଲେ ଦେଖନ୍ତୁ",
+    "holdToReact": "{{reaction}} — ପ୍ରତିକ୍ରିୟା ଦେବା ପାଇଁ ଦବାଇ ରଖନ୍ତୁ",
+    "holdToChangeReaction": "{{reaction}} — ଆପଣଙ୍କ ପ୍ରତିକ୍ରିୟା ବଦଳାଇବା ପାଇଁ ଦବାଇ ରଖନ୍ତୁ",
+    "viewCount_one": "{{count}} ଦର୍ଶନ",
+    "viewCount_other": "{{count}} ଦର୍ଶନ",
+    "shareMessage": "ଏହା ଦେଖନ୍ତୁ: {{url}}",
+    "hideReplies": "ଉତ୍ତରଗୁଡ଼ିକ ଲୁଚାନ୍ତୁ",
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
+    "rowA11yHint": "ଏହି ମନ୍ତବ୍ୟର ଉତ୍ତର ଦେବା ଆରମ୍ଭ କରେ",
+    "editingComment": "ମନ୍ତବ୍ୟ ସମ୍ପାଦନା କରୁଛନ୍ତି",
+    "editPlaceholder": "ଆପଣଙ୍କ ମନ୍ତବ୍ୟ ସମ୍ପାଦନା କରନ୍ତୁ...",
+    "replyPlaceholder": "ଏକ ଉତ୍ତର ଲେଖନ୍ତୁ...",
+    "inputPlaceholder": "ଏଠାରେ ଟାଇପ୍ କରନ୍ତୁ",
+    "cancelReply": "ଉତ୍ତର ବାତିଲ କରନ୍ତୁ",
+    "cancelEdit": "ସମ୍ପାଦନା ବାତିଲ କରନ୍ତୁ",
+    "countLabel_one": "{{count}} ମନ୍ତବ୍ୟ",
+    "countLabel_other": "{{count}} ମନ୍ତବ୍ୟ",
+    "repostsLabel_one": "ରିପୋଷ୍ଟ",
+    "repostsLabel_other": "ରିପୋଷ୍ଟ",
+    "quotesLabel_one": "କୋଟ୍",
+    "quotesLabel_other": "କୋଟ୍"
   },
   "postInfo": {
     "title": "ପୋଷ୍ଟ ସୂଚନା",
@@ -5122,7 +5148,20 @@
     "removeUploadTitle": "ଏହି ଅପଲୋଡକୁ ଅପସାରଣ କରିବେ କି?",
     "removeQueuedBody": "ଏହା ଏଯାଏଁ ପ୍ରକାଶ ପାଇନାହିଁ । ଏହାକୁ ହଟାଇବା ଦ୍ୱାରା ପୋଷ୍ଟକୁ ରଦ୍ଦ କରିଦିଆଯାଏ ।",
     "quotaShortfall": "ଏହି ପୋଷ୍ଟର ମୂଲ୍ୟ {{cost}} ଟୋକେନ୍ ଏବଂ ଆପଣଙ୍କ ପାଖରେ {{held}} ଅଛି।",
-    "shopAllowanceUsed": "{{allowance}} ରୁ {{allowance}} ବ୍ୟବହୃତ। ଉଚ୍ଚ ବ୍ୟାଜ୍ ଏବଂ ଅନ୍ୟ ଏକ ସ୍ଲଟ୍ ପାଇଁ ଅଧିକ DeHub ଟୋକେନ୍ ଷ୍ଟାକ୍ କରନ୍ତୁ।"
+    "shopAllowanceUsed": "{{allowance}} ରୁ {{allowance}} ବ୍ୟବହୃତ। ଉଚ୍ଚ ବ୍ୟାଜ୍ ଏବଂ ଅନ୍ୟ ଏକ ସ୍ଲଟ୍ ପାଇଁ ଅଧିକ DeHub ଟୋକେନ୍ ଷ୍ଟାକ୍ କରନ୍ତୁ।",
+    "clearDrawing": "ସଫା କରନ୍ତୁ",
+    "textSize": "ପାଠ୍ୟ ଆକାର {{value}}",
+    "editFilters": "ଫିଲ୍ଟର ସମ୍ପାଦନ କରନ୍ତୁ",
+    "cropRotate": "କାଟନ୍ତୁ ଓ ଘୁରାନ୍ତୁ",
+    "drawWrite": "ଆଙ୍କନ୍ତୁ ଓ ଲେଖନ୍ତୁ",
+    "fade": "ଫିକା {{value}}%",
+    "grayscale": "ଗ୍ରେସ୍କେଲ {{value}}%",
+    "resetEdits": "ରିସେଟ କରନ୍ତୁ",
+    "typeText": "ଲେଖନ୍ତୁ…",
+    "coverFrames": "କଭର ଫ୍ରେମ ବାଛନ୍ତୁ",
+    "coverFrame": "ଫ୍ରେମ {{index}} କୁ କଭର କରନ୍ତୁ",
+    "uploadCover": "କଭର ଛବି ଅପଲୋଡ କରନ୍ତୁ",
+    "editFailed": "ଏହି ସମ୍ପାଦନ ଲାଗୁ ହୋଇପାରିଲା ନାହିଁ। ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।"
   },
   "bounty": {
     "claimed": "ଗ୍ରହଣ କରାଯାଇଛି",
@@ -8521,7 +8560,11 @@
       "search": "ପ୍ରୟୋଗଗୁଡ଼ିକୁ ଖୋଜନ୍ତୁ",
       "all": "ସମସ୍ତ",
       "fromDehub": "DeHub ରୁ",
-      "noMatch": "କୌଣସି ପ୍ରୟୋଗ ସେହି ସନ୍ଧାନ ସହିତ ମେଳ ଖାଏ ନାହିଁ ।"
+      "noMatch": "କୌଣସି ପ୍ରୟୋଗ ସେହି ସନ୍ଧାନ ସହିତ ମେଳ ଖାଏ ନାହିଁ ।",
+      "yourApps": "ଆପଣଙ୍କର ଆପ୍ଲିକେସନଗୁଡ଼ିକ",
+      "remove": "ଅପସାରଣ କରନ୍ତୁ",
+      "notificationsOn": "ବିଜ୍ଞପ୍ତି",
+      "removed": "ଅପସାରଣ କରାଯାଇଛି । ଏହା ଆପଣଙ୍କୁ ପୁଣିଥରେ ସୂଚିତ କରିବ ନାହିଁ ।"
     },
     "card": {
       "open": "ଖୋଲନ୍ତୁ"
@@ -8540,6 +8583,16 @@
       "developer-tools": "ବିକାଶକାରୀ ସାଧନଗୁଡ଼ିକ",
       "entertainment": "ମନୋରଞ୍ଜନ",
       "art-creativity": "କଳା ଓ ସୃଜନଶୀଳତା"
+    },
+    "pay": {
+      "body": "ଡେଟା ହିଁଛି ଅପ୍ପର ଲିବର୍ଡାରେ ସ୍ରୀକ୍ଷତ କରିବାକୁ କରିଛି, {{wallet}}. ପାଇମନ୍ତୁ ପରିଗ୍ରହିବା ଶକ୍ତି ନାହିଁ.",
+      "title": "{{name}}?",
+      "confirm": "ଦେୟ {{amount}} DHB"
+    },
+    "add": {
+      "title": "{{name}} ଯୋଗ କରନ୍ତୁ",
+      "body": "ଏହା ଆପଣଙ୍କ ଆପ୍ ‌ ରେ ଦେଖାଯିବ ଏବଂ ଆପଣଙ୍କୁ ନୋଟିଫିକେସନ୍ ‌ ପଠାଇପାରିବ । ଏହାକୁ ଆପଣ ଆପ୍ଲିକେସନ ପେଜରୁ ଯେ କୌଣସି ସମୟରେ ହଟାଇ ପାରିବେ ।",
+      "confirm": "ଆପ୍ଲିକେସନ ଯୋଗ କରନ୍ତୁ"
     }
   },
   "aiStyles": {

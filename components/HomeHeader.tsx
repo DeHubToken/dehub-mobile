@@ -1,5 +1,6 @@
 import React, { useCallback, memo } from "react";
-import { View, TouchableOpacity, Text } from "react-native";
+import { View, TouchableOpacity, Text, I18nManager } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 import SmartImage from "./common/SmartImage";
 import Avatar from "./common/Avatar";
 import Icon from "./ui/Icon";
@@ -13,9 +14,13 @@ import { useAppTheme } from "../context/ThemeContext";
 interface HomeHeaderProps {
   onLogoPress?: () => void;
   onMenuPress?: () => void;
+  /** Pushed pages (Profile) pass this to get a back arrow before the avatar. */
+  onBackPress?: () => void;
+  /** Screen-reader hint for the logo; defaults to scrolling the feed to the top. */
+  logoHint?: string;
 }
 
-const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress }) => {
+const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress, onBackPress, logoHint }) => {
   const navigation = useNavigation<any>();
   const { isSignedIn } = useAuthState();
   const user = useUser();
@@ -34,23 +39,44 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress }) => 
     <View className="flex-row items-center justify-between px-4 h-11">
       {/* Profile — left. Matches web's MobileHeader, which puts the drawer
           trigger on the left, the mark in the middle and the bell on the
-          right. */}
-      <TouchableOpacity
-        onPress={onMenuPress}
-        hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-        activeOpacity={0.7}
-        accessibilityRole="button"
-        // Signed in this control is the user's own avatar, which is why the
-        // label says what it does rather than what it looks like.
-        accessibilityLabel={t("common.openMenu")}
-        className="w-8 h-8 items-center justify-center"
-      >
-        {isSignedIn ? (
-          <Avatar uri={avatarUrl} size={27} name={user?.displayName || user?.username} />
-        ) : (
-          <Icon name="Menu" size={31} color={colors.foreground} />
-        )}
-      </TouchableOpacity>
+          right. A pushed page adds a back arrow in front of it and keeps the
+          menu trigger. */}
+      <View className="flex-row items-center">
+        {onBackPress ? (
+          <TouchableOpacity
+            onPress={onBackPress}
+            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+            activeOpacity={0.7}
+            accessibilityRole="button"
+            accessibilityLabel={t("common.goBack")}
+            className="w-10 h-10 mr-1 items-center justify-center"
+          >
+            {/* Icons are not mirrored by the layout; back points right in RTL. */}
+            <Ionicons
+              name="arrow-back"
+              size={22}
+              color={colors.neutrals[100]}
+              style={I18nManager.isRTL ? { transform: [{ scaleX: -1 }] } : undefined}
+            />
+          </TouchableOpacity>
+        ) : null}
+        <TouchableOpacity
+          onPress={onMenuPress}
+          hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+          activeOpacity={0.7}
+          accessibilityRole="button"
+          // Signed in this control is the user's own avatar, which is why the
+          // label says what it does rather than what it looks like.
+          accessibilityLabel={t("common.openMenu")}
+          className="w-8 h-8 items-center justify-center"
+        >
+          {isSignedIn ? (
+            <Avatar uri={avatarUrl} size={27} name={user?.displayName || user?.username} />
+          ) : (
+            <Icon name="Menu" size={31} color={colors.foreground} />
+          )}
+        </TouchableOpacity>
+      </View>
 
       {/* dehub mark — centred on the bar itself rather than between the two
           side controls, so it stays put whether or not the bell is rendered
@@ -68,7 +94,7 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress }) => 
           activeOpacity={0.7}
           accessibilityRole="button"
           accessibilityLabel="DeHub"
-          accessibilityHint={t("common.scrollsFeedToTop")}
+          accessibilityHint={logoHint ?? t("common.scrollsFeedToTop")}
         >
           <SmartImage
             source={require("../assets/web-icons/dehub-logo-center.png")}

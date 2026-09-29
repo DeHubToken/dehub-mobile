@@ -146,7 +146,9 @@
     "noMoreShorts": "Inga fler shorts",
     "noShortsFound": "Inga shorts hittades",
     "newMembersHint": "Gick precis med — säg hej",
-    "mostViewedThisMonth": "Mest visade denna månad"
+    "scroll": "Scroll",
+    "noFilterMatches": "Inget innehåll matchar dina filter.",
+    "clearFilters": "Rensa filter"
   },
   "explore": {
     "all": "Alla",
@@ -2645,7 +2647,31 @@
     "noneYetBeFirst": "Inga kommentarer än. Var först!",
     "turnedOff": "Kommentarer är avstängda för det här inlägget",
     "noQuotesYet": "Inga citat än.",
-    "noRepostsYet": "Inga reposts än."
+    "noRepostsYet": "Inga reposts än.",
+    "timeSeconds": "{{count}} s",
+    "timeMinutes": "{{count}} min",
+    "timeHours": "{{count}} tim",
+    "seeWhoLiked": "Se vilka som gillade",
+    "holdToReact": "{{reaction}} — håll in för att reagera",
+    "holdToChangeReaction": "{{reaction}} — håll in för att ändra din reaktion",
+    "viewCount_one": "{{count}} visning",
+    "viewCount_other": "{{count}} visningar",
+    "shareMessage": "Kolla in det här: {{url}}",
+    "hideReplies": "Dölj svar",
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
+    "rowA11yHint": "Börjar ett svar på den här kommentaren",
+    "editingComment": "Redigerar kommentar",
+    "editPlaceholder": "Redigera din kommentar...",
+    "replyPlaceholder": "Skriv ett svar...",
+    "inputPlaceholder": "Skriv här",
+    "cancelReply": "Avbryt svar",
+    "cancelEdit": "Avbryt redigering",
+    "countLabel_one": "{{count}} kommentar",
+    "countLabel_other": "{{count}} kommentarer",
+    "repostsLabel_one": "Repost",
+    "repostsLabel_other": "Reposts",
+    "quotesLabel_one": "Citat",
+    "quotesLabel_other": "Citat"
   },
   "postInfo": {
     "title": "Inläggsinfo",
@@ -5130,7 +5156,20 @@
     "removeUploadTitle": "Ta bort denna uppladdning?",
     "removeQueuedBody": "Den har inte publicerats ännu. Om du tar bort den avbryts inlägget.",
     "quotaShortfall": "Det här inlägget kostar {{cost}} tokens och du har {{held}}.",
-    "shopAllowanceUsed": "{{allowance}} av {{allowance}} använda. Satsa fler DeHub-tokens för en högre badge och en plats till."
+    "shopAllowanceUsed": "{{allowance}} av {{allowance}} använda. Satsa fler DeHub-tokens för en högre badge och en plats till.",
+    "editFilters": "Redigera filter",
+    "cropRotate": "Beskär och rotera",
+    "drawWrite": "Rita och skriv",
+    "fade": "Blekning {{value}} %",
+    "grayscale": "Gråskala {{value}} %",
+    "resetEdits": "Återställ",
+    "clearDrawing": "Rensa",
+    "typeText": "Skriv…",
+    "textSize": "Textstorlek {{value}}",
+    "coverFrames": "Välj en bildruta som omslag",
+    "coverFrame": "Använd bildruta {{index}} som omslag",
+    "uploadCover": "Ladda upp en omslagsbild",
+    "editFailed": "Det gick inte att tillämpa ändringen. Försök igen."
   },
   "bounty": {
     "claimed": "Uttagen",
@@ -8530,7 +8569,11 @@
       "search": "Sök appar",
       "all": "Alla",
       "fromDehub": "Från DeHub",
-      "noMatch": "Inga appar matchar den här sökningen."
+      "noMatch": "Inga appar matchar den här sökningen.",
+      "yourApps": "Dina appar",
+      "notificationsOn": "Notifikationer på",
+      "remove": "Ta bort",
+      "removed": "Tagen bort. Det kommer inte att notifiera dig igen."
     },
     "card": {
       "open": "Öppna"
@@ -8549,6 +8592,17 @@
       "developer-tools": "Utvecklarverktyg",
       "entertainment": "Underhållning",
       "art-creativity": "Konst & kreativitet"
+    },
+    "pay": {
+      "title": "Betal {{name}}?",
+      "body": "DHB:n går direkt till appens plånbok, {{wallet}}. Betalningar kan inte återkallas.",
+      "confirm": "Betal {{amount}} DHB",
+      "sent": "Betalat {{amount}} DHB till {{name}}."
+    },
+    "add": {
+      "title": "Lägg till {{name}}?",
+      "body": "Den kommer att visas under Dina appar och kunna skicka notifikationer till dig. Du kan ta bort den när som helst från Apps-sidan.",
+      "confirm": "Lägg till app"
     }
   },
   "aiStyles": {

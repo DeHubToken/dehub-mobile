@@ -62,6 +62,7 @@ import AddToFolderSheet from "./AddToFolderSheet";
 import ShareToDmSheet from "../DM/ShareToDmSheet";
 import BoostSheet from "../common/BoostSheet";
 import { DIGITAL_PURCHASES_ENABLED } from "../../config/storefront";
+import { isPostHiddenByStorefront } from "../../libs/storefront-content";
 import { useSuperpowers } from "../../hooks/useSuperpowers";
 import ShareSheet from "./ShareSheet";
 import CashtagSheet from "./CashtagSheet";
@@ -1370,7 +1371,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       isSignedIn={isSignedIn}
       onPress={handleCardPress}
       onTapReaction={handleVideoTapReaction}
-      onPPVPress={handlePPVPress}
+      onPPVPress={DIGITAL_PURCHASES_ENABLED ? handlePPVPress : undefined}
       onLockPress={handleCardPress}
       onBountyPress={handleBountyBadgePress}
     />
@@ -1457,7 +1458,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           </Text>
         </View>
       )}
-      {isPayPerView && (
+      {DIGITAL_PURCHASES_ENABLED && isPayPerView && (
         <View
           className="absolute z-10 bg-blue-600"
           style={{
@@ -1552,10 +1553,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   // that nothing else read, so a like on the feed never reached the post.
   const showActionBar = true;
 
-  // The App Store build does not advertise or transact crypto-funded digital
-  // content. Omitting these entries also removes price, reward and unlock
-  // affordances without sending the reviewer to an external checkout.
-  if (!DIGITAL_PURCHASES_ENABLED && (isPayPerView || isBounty || isActuallySubGated)) {
+  // Owners and already-entitled viewers can still read their PPV content.
+  // Only unavailable purchases and reward entries are omitted on iOS.
+  if (isPostHiddenByStorefront(DIGITAL_PURCHASES_ENABLED, accessInfo, isBounty, ppvUnlocked)) {
     return null;
   }
 
@@ -1646,7 +1646,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         onMenuPress={handleOpenOptions}
         onAiPress={handleAiPress}
         onBoostPress={
-          DIGITAL_PURCHASES_ENABLED && isOwnerPost && isSignedIn && tokenId != null
+          isOwnerPost && isSignedIn && tokenId != null
             ? handleBoostPress
             : undefined
         }
@@ -1935,12 +1935,12 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           // The sheet is mounted below rather than inside the menu: the menu is
           // conditionally rendered, so onClose unmounts it and any state set in
           // the same handler goes with it.
-          // Neither row exists in the App Store build: a boost is a DHB unlock.
+          // Server-granted boost allowances also apply in the App Store build.
           onBoostPress={
-            DIGITAL_PURCHASES_ENABLED && isOwnerPost && isSignedIn ? () => setShowBoost(true) : undefined
+            isOwnerPost && isSignedIn ? () => setShowBoost(true) : undefined
           }
           onGiftBoostPress={
-            DIGITAL_PURCHASES_ENABLED && !isOwnerPost && isSignedIn && canGiftBoost
+            !isOwnerPost && isSignedIn && canGiftBoost
               ? () => setShowBoost(true)
               : undefined
           }

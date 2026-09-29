@@ -146,7 +146,9 @@
     "noMoreShorts": "Kana booda uffata gabaabaa hin jiru",
     "noShortsFound": "Gabaabduu hin argamne",
     "newMembersHint": "Reefu joined — nagaa jedhaa",
-    "mostViewedThisMonth": "Ji'a kana baay'ee ilaalame"
+    "scroll": "Scroll",
+    "noFilterMatches": "Qabiyyeen calallii kee waliin walsimu hin jiru.",
+    "clearFilters": "Gingilchaawwan haqi"
   },
   "explore": {
     "all": "Hundaa",
@@ -2654,7 +2656,31 @@
     "noneYetBeFirst": "Ammaaf comment hin jiru. Isuma duraa ta'i!",
     "turnedOff": "Commentiin barruu kanaaf banamuu dide",
     "noQuotesYet": "Ammaaf dubbii hin jiru.",
-    "noRepostsYet": "Ammaaf deebisni hin jiru."
+    "noRepostsYet": "Ammaaf deebisni hin jiru.",
+    "timeSeconds": "Sek {{count}}",
+    "timeMinutes": "Daq {{count}}",
+    "timeHours": "Sa'a {{count}}",
+    "seeWhoLiked": "Eenyu akka jaallate ilaali",
+    "holdToReact": "{{reaction}} — miira ibsuuf cuqaasii qabadhu",
+    "holdToChangeReaction": "{{reaction}} — miira kee jijjiiruuf cuqaasii qabadhu",
+    "viewCount_one": "Ilaalcha {{count}}",
+    "viewCount_other": "Ilaalcha {{count}}",
+    "shareMessage": "Kana ilaali: {{url}}",
+    "hideReplies": "Deebiiwwan dhoksi",
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
+    "rowA11yHint": "Yaada kanaaf deebii jalqaba",
+    "editingComment": "Yaada gulaalaa jira",
+    "editPlaceholder": "Yaada kee gulaali...",
+    "replyPlaceholder": "Deebii barreessi...",
+    "inputPlaceholder": "Asitti barreessi",
+    "cancelReply": "Deebii dhiisi",
+    "cancelEdit": "Gulaaluu dhiisi",
+    "countLabel_one": "Yaada {{count}}",
+    "countLabel_other": "Yaada {{count}}",
+    "repostsLabel_one": "Irra-deebii",
+    "repostsLabel_other": "Irra-deebii",
+    "quotesLabel_one": "Caqasa",
+    "quotesLabel_other": "Caqasa"
   },
   "postInfo": {
     "title": "Odeeffannoo maxxansaa",
@@ -5139,7 +5165,20 @@
     "removeUploadTitle": "Olkaa&#39;uu kana haqi?",
     "removeQueuedBody": "Hanga ammaatti hin maxxanfamne. Isa balleessuun maxxansa sana haqa.",
     "quotaShortfall": "Qophiin kun maarkii {{cost}} tokko siif mala, ati immoo {{held}} qabda.",
-    "shopAllowanceUsed": "{{allowance}} irraa {{allowance}} itti fayyadameera. Maarkii DeHub dabaluun daboo ol'aanaa fi iddoo biraa argadhu."
+    "shopAllowanceUsed": "{{allowance}} irraa {{allowance}} itti fayyadameera. Maarkii DeHub dabaluun daboo ol'aanaa fi iddoo biraa argadhu.",
+    "editFilters": "Furtuuwwan sirreessuu",
+    "cropRotate": "Madaaluu fi naanna’uu",
+    "drawWrite": "Kallattii fi barreessuu",
+    "fade": "Dhabamsiisuu {{value}}%",
+    "grayscale": "Biyya gurraacha {{value}}%",
+    "resetEdits": "Qubsuu",
+    "clearDrawing": "Balleessuu",
+    "typeText": "Mootummaa…",
+    "textSize": "Gudina caasala {{value}}",
+    "coverFrames": "Sa’a qabachuuf filadhu",
+    "coverFrame": "Sa’a {{index}} sa’a ol’aanaa fakkeenya godhi",
+    "uploadCover": "Sa’a ol’aanaa suuraa olkaa’i",
+    "editFailed": "Sirreessichi hin hojjetamne. Prubaadhu."
   },
   "bounty": {
     "claimed": "Fudhatame",
@@ -8576,7 +8615,9 @@
       "search": "Appilikeeshiniiwwan barbaadi",
       "all": "Hunda",
       "fromDehub": "DeHub irraa",
-      "noMatch": "Appilikeeshiniin barbaacha sanaan walsimu hin jiru."
+      "noMatch": "Appilikeeshiniin barbaacha sanaan walsimu hin jiru.",
+      "yourApps": "Appilikeeshiniiwwan keessan",
+      "remove": "Irraa kaasuu"
     },
     "card": {
       "open": "Banaa"
@@ -8595,6 +8636,13 @@
       "developer-tools": "Meeshaalee developer",
       "entertainment": "Bohaaruu",
       "art-creativity": "Aartii & kalaqa"
+    },
+    "pay": {
+      "title": "Baasi {{name}}?"
+    },
+    "add": {
+      "body": "Gummaa *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa*",
+      "confirm": "App itti dabali"
     }
   },
   "aiStyles": {

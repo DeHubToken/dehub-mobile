@@ -393,6 +393,7 @@ const SUPABASE_ROUTED_TYPES = new Set([
   'stage_live',
   'stage_reminder',
   'fraction_settled',
+  'miniapp',
 ]);
 
 const isNotificationClickable = (notification: NotificationItem): boolean => {
@@ -1204,6 +1205,18 @@ const NotificationScreen = () => {
       // A settled trade is informational and its reference is the post's token
       // id. The two rows that carry an obligation (fraction_sold /
       // fraction_delivered) keep their inline action and stay unrouted.
+      // A mini app's notification opens the app, at the page it named if any.
+      case 'miniapp': {
+        const item = notification as CustomNotificationItem;
+        if (!item.customReferenceId) break;
+        navigation.navigate(ScreenNames.MiniApp as never, {
+          slug: item.customReferenceId,
+          from: 'notification',
+          ...(item.customReferenceTitle ? { url: item.customReferenceTitle } : {}),
+        } as never);
+        break;
+      }
+
       case 'fraction_settled': {
         const settledToken = Number((notification as CustomNotificationItem).customReferenceId);
         if (Number.isFinite(settledToken)) navigateToFeed(settledToken, undefined, postType);

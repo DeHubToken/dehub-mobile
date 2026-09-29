@@ -146,7 +146,9 @@
     "noMoreShorts": "Tidak ada shorts lagi",
     "noShortsFound": "Tidak ada shorts yang ditemukan",
     "newMembersHint": "Baru bergabung — sapa",
-    "mostViewedThisMonth": "Paling banyak dilihat bulan ini"
+    "scroll": "Scroll",
+    "noFilterMatches": "Tidak ada konten yang cocok dengan filter Anda.",
+    "clearFilters": "Bersihkan filter"
   },
   "explore": {
     "all": "Semua",
@@ -2641,7 +2643,31 @@
     "noneYetBeFirst": "Belum ada komentar. Jadilah yang pertama!",
     "turnedOff": "Komentar dinonaktifkan untuk postingan ini",
     "noQuotesYet": "Belum ada kutipan.",
-    "noRepostsYet": "Belum ada repost."
+    "noRepostsYet": "Belum ada repost.",
+    "timeSeconds": "{{count}} dtk",
+    "timeMinutes": "{{count}} mnt",
+    "timeHours": "{{count}} jam",
+    "seeWhoLiked": "Lihat siapa yang suka",
+    "holdToReact": "{{reaction}} — tahan untuk bereaksi",
+    "holdToChangeReaction": "{{reaction}} — tahan untuk mengubah reaksimu",
+    "viewCount_one": "{{count}} tayangan",
+    "viewCount_other": "{{count}} tayangan",
+    "shareMessage": "Lihat ini: {{url}}",
+    "hideReplies": "Sembunyikan balasan",
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
+    "rowA11yHint": "Mulai membalas komentar ini",
+    "editingComment": "Mengedit komentar",
+    "editPlaceholder": "Edit komentarmu...",
+    "replyPlaceholder": "Tulis balasan...",
+    "inputPlaceholder": "Ketik di sini",
+    "cancelReply": "Batalkan balasan",
+    "cancelEdit": "Batalkan edit",
+    "countLabel_one": "{{count}} komentar",
+    "countLabel_other": "{{count}} komentar",
+    "repostsLabel_one": "repost",
+    "repostsLabel_other": "repost",
+    "quotesLabel_one": "kutipan",
+    "quotesLabel_other": "kutipan"
   },
   "postInfo": {
     "title": "Info Postingan",
@@ -5175,7 +5201,20 @@
     "removeUploadTitle": "Hapus unggahan ini?",
     "removeQueuedBody": "Belum diposting. Menghapusnya akan membatalkan postingan.",
     "quotaShortfall": "Postingan ini berharga {{cost}} token dan Anda memegang {{held}}.",
-    "shopAllowanceUsed": "{{allowance}} dari {{allowance}} digunakan. Pertaruhkan lebih banyak token DeHub untuk lencana yang lebih tinggi dan slot lainnya."
+    "shopAllowanceUsed": "{{allowance}} dari {{allowance}} digunakan. Pertaruhkan lebih banyak token DeHub untuk lencana yang lebih tinggi dan slot lainnya.",
+    "editFilters": "Edit filter",
+    "cropRotate": "Potong & putar",
+    "drawWrite": "Gambar & tulis",
+    "fade": "Pudar {{value}}%",
+    "grayscale": "Skala abu-abu {{value}}%",
+    "resetEdits": "Atur ulang",
+    "clearDrawing": "Hapus",
+    "typeText": "Ketik…",
+    "textSize": "Ukuran teks {{value}}",
+    "coverFrames": "Pilih bingkai sampul",
+    "coverFrame": "Gunakan bingkai {{index}} sebagai sampul",
+    "uploadCover": "Unggah gambar sampul",
+    "editFailed": "Tidak dapat menerapkan edit. Coba lagi."
   },
   "bounty": {
     "claimed": "Sudah diklaim",
@@ -8526,7 +8565,11 @@
       "search": "Cari aplikasi",
       "all": "Semua",
       "fromDehub": "Dari DeHub",
-      "noMatch": "Tidak ada aplikasi yang cocok dengan pencarian itu."
+      "noMatch": "Tidak ada aplikasi yang cocok dengan pencarian itu.",
+      "yourApps": "Aplikasi Anda",
+      "notificationsOn": "Notifikasi",
+      "remove": "Mati",
+      "removed": "Hapus"
     },
     "card": {
       "open": "Buka"
@@ -8545,6 +8588,17 @@
       "developer-tools": "Alat pengembang",
       "entertainment": "Hiburan",
       "art-creativity": "Seni & kreativitas"
+    },
+    "pay": {
+      "title": "Bayar {{name}}?",
+      "body": "Bayar {{wallet}}?",
+      "confirm": "DHB langsung pergi ke dompet aplikasi, {{amount}}. Pembayaran tidak dapat dibatalkan.",
+      "sent": "Bayar {{amount}} DHB ke {{name}}."
+    },
+    "add": {
+      "title": "Tambahkan {{name}}?",
+      "body": "Aplikasi ini akan muncul di bawah Your apps dan dapat mengirimkan notifikasi. Anda dapat menghapusnya kapan saja dari halaman Apps.",
+      "confirm": "Aplikasi ini akan muncul di bawah \"Aplikasi Anda\" dan dapat mengirimkan notifikasi. Anda dapat menghapusnya kapan saja dari halaman Aplikasi."
     }
   },
   "aiStyles": {

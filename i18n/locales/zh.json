@@ -146,7 +146,9 @@
     "noMoreShorts": "没有更多短视频了",
     "noShortsFound": "未找到短视频",
     "newMembersHint": "刚加入 — 打个招呼",
-    "mostViewedThisMonth": "本月最多观看"
+    "scroll": "Scroll",
+    "noFilterMatches": "没有符合筛选条件的内容。",
+    "clearFilters": "清除筛选"
   },
   "explore": {
     "all": "全部",
@@ -2645,7 +2647,31 @@
     "noneYetBeFirst": "还没有评论。成为第一个！",
     "turnedOff": "此帖评论已关闭",
     "noQuotesYet": "还没有引用。",
-    "noRepostsYet": "还没有转帖。"
+    "noRepostsYet": "还没有转帖。",
+    "timeSeconds": "{{count}} 秒",
+    "timeMinutes": "{{count}} 分钟",
+    "timeHours": "{{count}} 小时",
+    "seeWhoLiked": "查看谁点了赞",
+    "holdToReact": "{{reaction}} — 长按以回应",
+    "holdToChangeReaction": "{{reaction}} — 长按以更改你的回应",
+    "viewCount_one": "{{count}} 次浏览",
+    "viewCount_other": "{{count}} 次浏览",
+    "shareMessage": "看看这个：{{url}}",
+    "hideReplies": "收起回复",
+    "rowA11yLabel": "{{name}}，{{time}}：{{text}}",
+    "rowA11yHint": "开始回复这条评论",
+    "editingComment": "正在编辑评论",
+    "editPlaceholder": "编辑你的评论...",
+    "replyPlaceholder": "写下回复...",
+    "inputPlaceholder": "在此输入",
+    "cancelReply": "取消回复",
+    "cancelEdit": "取消编辑",
+    "countLabel_one": "{{count}} 条评论",
+    "countLabel_other": "{{count}} 条评论",
+    "repostsLabel_one": "转发",
+    "repostsLabel_other": "转发",
+    "quotesLabel_one": "引用",
+    "quotesLabel_other": "引用"
   },
   "postInfo": {
     "title": "帖子信息",
@@ -5178,7 +5204,20 @@
     "removeUploadTitle": "删除此上传？",
     "removeQueuedBody": "它尚未发布。 删除它将取消帖子。",
     "quotaShortfall": "此帖子需要 {{cost}} 个代币，您持有 {{held}} 个。",
-    "shopAllowanceUsed": "已使用 {{allowance}} 个 {{allowance}}。质押更多 DeHub 代币以获得更高的徽章和另一个插槽。"
+    "shopAllowanceUsed": "已使用 {{allowance}} 个 {{allowance}}。质押更多 DeHub 代币以获得更高的徽章和另一个插槽。",
+    "editFilters": "编辑滤镜",
+    "cropRotate": "裁剪和旋转",
+    "drawWrite": "绘画和书写",
+    "fade": "褪色 {{value}}%",
+    "grayscale": "灰度 {{value}}%",
+    "resetEdits": "重置",
+    "clearDrawing": "清除",
+    "typeText": "输入…",
+    "textSize": "文字大小 {{value}}",
+    "coverFrames": "选择封面帧",
+    "coverFrame": "使用第 {{index}} 帧作为封面",
+    "uploadCover": "上传封面图片",
+    "editFailed": "无法应用此编辑，请重试。"
   },
   "bounty": {
     "claimed": "已领取",
@@ -8529,7 +8568,11 @@
       "search": "搜索应用",
       "all": "全部",
       "fromDehub": "来自DeHub",
-      "noMatch": "没有与该搜索匹配的应用。"
+      "noMatch": "没有与该搜索匹配的应用。",
+      "yourApps": "您的应用",
+      "notificationsOn": "通知开启",
+      "remove": "移除",
+      "removed": "已移除。不会再通知您了。"
     },
     "card": {
       "open": "打开"
@@ -8548,6 +8591,17 @@
       "developer-tools": "开发者工具",
       "entertainment": "娱乐",
       "art-creativity": "艺术与创意"
+    },
+    "pay": {
+      "title": "支付 {{name}}？",
+      "body": "DHB 将直接发送到应用的钱包 {{wallet}}。付款无法撤销。",
+      "confirm": "支付 {{amount}} DHB",
+      "sent": "已支付 {{amount}} DHB 给 {{name}}。"
+    },
+    "add": {
+      "title": "添加 {{name}}？",
+      "body": "它将出现在“您的应用”中，并能向您发送通知。您可以随时从“应用”页面中移除它。",
+      "confirm": "添加应用"
     }
   },
   "aiStyles": {

@@ -146,7 +146,9 @@
     "noMoreShorts": "Tsy misy shorts intsony",
     "noShortsFound": "Tsy nahita shorts",
     "newMembersHint": "Vao tafiditra — miarahaba",
-    "mostViewedThisMonth": "Nahitana indrindra tamin'ity volana ity"
+    "scroll": "Scroll",
+    "noFilterMatches": "Tsy misy atiny mifanaraka amin'ny sivanao.",
+    "clearFilters": "Hamafa ny sivana"
   },
   "explore": {
     "all": "Rehetra",
@@ -2664,7 +2666,31 @@
     "noneYetBeFirst": "Mbola tsy misy fanehoan-kevitra. Azafady ho voalohany!",
     "turnedOff": "Voarara ny fanehoan-kevitra amin'ity lahatsoratra ity",
     "noQuotesYet": "Mbola tsy misy teny nalaina.",
-    "noRepostsYet": "Mbola tsy misy repost."
+    "noRepostsYet": "Mbola tsy misy repost.",
+    "timeSeconds": "{{count}} seg",
+    "timeMinutes": "{{count}} min",
+    "timeHours": "{{count}} ora",
+    "seeWhoLiked": "Jereo izay tia",
+    "holdToReact": "{{reaction}} — tsindrio ela mba haneho fihetseham-po",
+    "holdToChangeReaction": "{{reaction}} — tsindrio ela mba hanova ny fihetseham-ponao",
+    "viewCount_one": "{{count}} fijerena",
+    "viewCount_other": "{{count}} fijerena",
+    "shareMessage": "Jereo ity: {{url}}",
+    "hideReplies": "Afeno ny valiny",
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
+    "rowA11yHint": "Manomboka valiny amin'ity fanehoan-kevitra ity",
+    "editingComment": "Manova fanehoan-kevitra",
+    "editPlaceholder": "Ovay ny fanehoan-kevitrao...",
+    "replyPlaceholder": "Manorata valiny...",
+    "inputPlaceholder": "Soraty eto",
+    "cancelReply": "Hanafoana ny valiny",
+    "cancelEdit": "Hanafoana ny fanovana",
+    "countLabel_one": "{{count}} fanehoan-kevitra",
+    "countLabel_other": "{{count}} fanehoan-kevitra",
+    "repostsLabel_one": "Fametrahana indray",
+    "repostsLabel_other": "Fametrahana indray",
+    "quotesLabel_one": "Teny nalaina",
+    "quotesLabel_other": "Teny nalaina"
   },
   "postInfo": {
     "title": "Fampahalalana momba ny lahatsoratra",
@@ -5149,7 +5175,20 @@
     "removeUploadTitle": "Foanana ity fampakarana ity?",
     "removeQueuedBody": "Hatreto dia tsy mbola namoaka toy izany. Nofoanana ny taratasiny.",
     "quotaShortfall": "Ity lahatsoratra ity dia mitentina {{cost}} famantarana ary mitazona {{held}} ianao.",
-    "shopAllowanceUsed": "{{allowance}} amin'ny {{allowance}} no nampiasaina. Ampiharoinao bebe kokoa ny famantarana DeHub mba hahazoana mari-boninahitra ambony kokoa sy toerana hafa."
+    "shopAllowanceUsed": "{{allowance}} amin'ny {{allowance}} no nampiasaina. Ampiharoinao bebe kokoa ny famantarana DeHub mba hahazoana mari-boninahitra ambony kokoa sy toerana hafa.",
+    "editFilters": "Fametahana fanovana",
+    "cropRotate": "Hetezo & ahodina",
+    "drawWrite": "Sintona & soraty",
+    "fade": "Mihamangatsiaka {{value}}%",
+    "grayscale": "Mainty sy fotsy {{value}}%",
+    "resetEdits": "Averina amin'ny voalohany",
+    "clearDrawing": "Fafao",
+    "typeText": "Soraty…",
+    "textSize": "Haben'ny soratra {{value}}",
+    "coverFrames": "Mifidiana sary fonony",
+    "coverFrame": "Ampiasao ny sary {{index}} ho fonony",
+    "uploadCover": "Apetraho ny sary fonony",
+    "editFailed": "Tsy afaka nampiharina io fanovana io. Mba andramo indray."
   },
   "bounty": {
     "claimed": "Voaray",
@@ -8625,7 +8664,9 @@
       "search": "Karohy apps",
       "all": "Izy rehetra",
       "fromDehub": "Avy amin'i DeHub",
-      "noMatch": "Tsy misy itoviany amin'ny fitadiavana."
+      "noMatch": "Tsy misy itoviany amin'ny fitadiavana.",
+      "yourApps": "Ny apps",
+      "removed": "Ny ny fahasahana dia voalaza. Tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy ho anao fa tsy"
     },
     "card": {
       "open": "Hanokatra"
@@ -8644,6 +8685,15 @@
       "developer-tools": "Développeur fitaovana",
       "entertainment": "Fialamboly",
       "art-creativity": "Zavakanto sy famoronana"
+    },
+    "pay": {
+      "body": "Ny DHB dia manana fahefana mifanitsy amin'ny wallet ny mpampianatra ao amin'ny applikasyona, {{wallet}}. Tsy azo ampiasaina ny fampiasana ny fampianarana.",
+      "confirm": "Pay {{amount}} DHB",
+      "sent": "Mampanodina ny {{amount}} DHB ho {{name}}."
+    },
+    "add": {
+      "title": "Ampio ny {{name}}?",
+      "body": "Misy ny endriky ny amin'ny Your apps ary azo azoana ny fahasahana amin'ny Apps page izy io amin'ny alalan'ny fahasahana any amin'ny alalan'ny fahasahana. Azo azoana izy io amin'ny alalan'ny fahasahana amin'ny Apps page amin'ny alalan'ny fahasahana any amin'ny alalan'ny fahasahana."
     }
   },
   "aiStyles": {

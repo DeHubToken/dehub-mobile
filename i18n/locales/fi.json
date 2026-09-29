@@ -146,7 +146,9 @@
     "noMoreShorts": "Ei enempää lyhytvideoita",
     "noShortsFound": "Lyhytvideoita ei löytynyt",
     "newMembersHint": "Liityit juuri – sano hei",
-    "mostViewedThisMonth": "Katsotuimmat tässä kuussa"
+    "scroll": "Scroll",
+    "noFilterMatches": "Mikään sisältö ei vastaa suodattimiasi.",
+    "clearFilters": "Tyhjennä suodattimet"
   },
   "explore": {
     "all": "Kaikki",
@@ -2641,7 +2643,31 @@
     "noneYetBeFirst": "Ei vielä kommentteja. Ole ensimmäinen!",
     "turnedOff": "Kommentointi on poistettu käytöstä tässä julkaisussa",
     "noQuotesYet": "Ei vielä lainauksia.",
-    "noRepostsYet": "Ei vielä uudelleenjulkaisuja."
+    "noRepostsYet": "Ei vielä uudelleenjulkaisuja.",
+    "timeSeconds": "{{count}} s",
+    "timeMinutes": "{{count}} min",
+    "timeHours": "{{count}} t",
+    "seeWhoLiked": "Katso, ketkä tykkäsivät",
+    "holdToReact": "{{reaction}} — reagoi painamalla pitkään",
+    "holdToChangeReaction": "{{reaction}} — vaihda reaktiota painamalla pitkään",
+    "viewCount_one": "{{count}} katselukerta",
+    "viewCount_other": "{{count}} katselukertaa",
+    "shareMessage": "Katso tämä: {{url}}",
+    "hideReplies": "Piilota vastaukset",
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
+    "rowA11yHint": "Aloittaa vastauksen tähän kommenttiin",
+    "editingComment": "Kommentin muokkaus",
+    "editPlaceholder": "Muokkaa kommenttiasi...",
+    "replyPlaceholder": "Kirjoita vastaus...",
+    "inputPlaceholder": "Kirjoita tähän",
+    "cancelReply": "Peruuta vastaus",
+    "cancelEdit": "Peruuta muokkaus",
+    "countLabel_one": "{{count}} kommentti",
+    "countLabel_other": "{{count}} kommenttia",
+    "repostsLabel_one": "uudelleenjulkaisu",
+    "repostsLabel_other": "uudelleenjulkaisua",
+    "quotesLabel_one": "lainaus",
+    "quotesLabel_other": "lainausta"
   },
   "postInfo": {
     "title": "Julkaisun tiedot",
@@ -5126,7 +5152,20 @@
     "removeUploadTitle": "Poistetaanko tämä lataus?",
     "removeQueuedBody": "Sitä ei ole vielä julkaistu. Sen poistaminen peruuttaa julkaisun.",
     "quotaShortfall": "Tämä julkaisu maksaa {{cost}} tokenia ja sinulla on {{held}}.",
-    "shopAllowanceUsed": "{{allowance}} / {{allowance}} käytetty. Panosta lisää DeHub-tokeneita saadaksesi korkeamman merkin ja toisen paikan."
+    "shopAllowanceUsed": "{{allowance}} / {{allowance}} käytetty. Panosta lisää DeHub-tokeneita saadaksesi korkeamman merkin ja toisen paikan.",
+    "editFilters": "Muokkaa suodattimia",
+    "cropRotate": "Leikkaa & käännä",
+    "drawWrite": "Piirrä & kirjoita",
+    "fade": "Häivy {{value}}%",
+    "grayscale": "Väritön {{value}}%",
+    "resetEdits": "Palauta",
+    "clearDrawing": "Tyhjennä",
+    "typeText": "Kirjoita…",
+    "textSize": "Tekstikoko {{value}}",
+    "coverFrames": "Valitse kansiokuva",
+    "coverFrame": "Käytä kansiokuvana {{index}}",
+    "uploadCover": "Lataa kansiokuva",
+    "editFailed": "Ei voitu soveltaa muokkausta. Yritä uudelleen."
   },
   "bounty": {
     "claimed": "Lunastettu",
@@ -8526,7 +8565,11 @@
       "search": "Hae sovelluksia",
       "all": "Kaikki",
       "fromDehub": "DeHubilta",
-      "noMatch": "Mikään sovellus ei vastaa tätä hakua."
+      "noMatch": "Mikään sovellus ei vastaa tätä hakua.",
+      "yourApps": "Sovelluksesi",
+      "removed": "Poistettu. Se ei enää ilmoita sinulle uudelleen.",
+      "notificationsOn": "Ilmoitukset",
+      "remove": "Poista"
     },
     "card": {
       "open": "Avaa"
@@ -8545,6 +8588,17 @@
       "developer-tools": "Kehittäjän työkalut",
       "entertainment": "Viihde",
       "art-creativity": "Taide ja luovuus"
+    },
+    "pay": {
+      "title": "Maksaa {{name}}?",
+      "body": "DHB menee suoraan sovelluksen lompakkoon, {{wallet}}. Maksuja ei voida perua.",
+      "confirm": "Maksa {{amount}} DHB:lle",
+      "sent": "Maksattu {{amount}} DHB {{name}}:lle."
+    },
+    "add": {
+      "body": "Se näkyy omassa sovelluksesi osiossa ja voi lähettää sinulle ilmoituksia. Voit poistaa sen milloin tahansa Sovellukset-sivulta.",
+      "confirm": "Lisää sovellus",
+      "title": "Lisää {{name}}?"
     }
   },
   "aiStyles": {

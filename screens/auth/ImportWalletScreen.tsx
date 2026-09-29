@@ -44,6 +44,7 @@ import {
 import ScreenHeader from "../../components/ScreenHeader";
 import { useTranslation } from "react-i18next";
 import { useSecureScreen } from "../../hooks/useSecureScreen";
+import { useKeyboardOffset } from "../../hooks/useKeyboardLayout";
 
 // 3D wallet image
 const WALLET_3D_IMAGE = require("../../assets/onboarding/wallet-3d.png");
@@ -61,6 +62,9 @@ const ImportWalletScreen: React.FC<ImportWalletScreenProps> = ({
   const { isLoading: authLoading, needsUsername } = useAuthState();
   const { signInWithWallet } = useAuthActions();
   useSecureScreen(true, "import-wallet-screen");
+  // The KeyboardAvoidingView's own layout y already includes ScreenHeader, so
+  // the offset is only the root SafeAreaView's top inset, on both platforms.
+  const keyboardOffset = useKeyboardOffset();
 
   const [privateKey, setPrivateKey] = useState("");
   const [showPk, setShowPk] = useState(false);
@@ -246,7 +250,7 @@ const ImportWalletScreen: React.FC<ImportWalletScreenProps> = ({
       <ScreenHeader title={t("auth.importWallet")} onBackPress={handleGoBack} />
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
-        keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 0}
+        keyboardVerticalOffset={keyboardOffset}
         style={{ flex: 1 }}
       >
         <ScrollView
