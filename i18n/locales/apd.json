@@ -146,7 +146,9 @@
     "noMoreShorts": "ما في فيديوهات قصيرة تاني",
     "noShortsFound": "ما لقينا فيديوهات قصيرة",
     "newMembersHint": "لسا انضميت — قول مرحب",
-    "mostViewedThisMonth": "الأكثر مشاهدة الشهر دا"
+    "scroll": "Scroll",
+    "noFilterMatches": "مافي محتوى بطابق فلاترك.",
+    "clearFilters": "امسح الفلاتر"
   },
   "explore": {
     "all": "الكل",
@@ -2641,7 +2643,31 @@
     "noneYetBeFirst": "مافي تعليقات لسه. خليك الأول!",
     "turnedOff": "التعليقات مقفولة للمنشور دا",
     "noQuotesYet": "مافي اقتباسات لسه.",
-    "noRepostsYet": "مافي إعادة نشر لسه."
+    "noRepostsYet": "مافي إعادة نشر لسه.",
+    "timeSeconds": "{{count}} ث",
+    "timeMinutes": "{{count}} د",
+    "timeHours": "{{count}} س",
+    "seeWhoLiked": "شوف منو عجبه",
+    "holdToReact": "{{reaction}} — اضغط طويل عشان تتفاعل",
+    "holdToChangeReaction": "{{reaction}} — اضغط طويل عشان تغيّر تفاعلك",
+    "viewCount_one": "{{count}} مشاهدة",
+    "viewCount_other": "{{count}} مشاهدات",
+    "shareMessage": "شوف دا: {{url}}",
+    "hideReplies": "إخفاء الردود",
+    "rowA11yLabel": "{{name}}، {{time}}: {{text}}",
+    "rowA11yHint": "بيبدأ رد على التعليق دا",
+    "editingComment": "تعديل التعليق",
+    "editPlaceholder": "عدّل تعليقك...",
+    "replyPlaceholder": "اكتب رد...",
+    "inputPlaceholder": "اكتب هنا",
+    "cancelReply": "إلغاء الرد",
+    "cancelEdit": "إلغاء التعديل",
+    "countLabel_one": "{{count}} تعليق",
+    "countLabel_other": "{{count}} تعليقات",
+    "repostsLabel_one": "إعادة نشر",
+    "repostsLabel_other": "إعادة نشر",
+    "quotesLabel_one": "اقتباس",
+    "quotesLabel_other": "اقتباسات"
   },
   "postInfo": {
     "title": "معلومات المنشور",
@@ -5126,7 +5152,20 @@
     "removeUploadTitle": "تمسح التحميل ده؟",
     "removeQueuedBody": "لسه ما اتنشر. مسحه بيلغي النشر.",
     "quotaShortfall": "البوست ده بيكلف {{cost}} توكن وانت معاك {{held}}.",
-    "shopAllowanceUsed": "تم استخدام {{allowance}} من {{allowance}}. اعمل ستايك لتوكن DeHub أكتر عشان تاخد شارة أعلى وفتحة تانية."
+    "shopAllowanceUsed": "تم استخدام {{allowance}} من {{allowance}}. اعمل ستايك لتوكن DeHub أكتر عشان تاخد شارة أعلى وفتحة تانية.",
+    "editFilters": "تحرير الفلاتر",
+    "cropRotate": "قطع ودوّن",
+    "drawWrite": "رسم وكتابة",
+    "fade": "إخفاء {{value}}%",
+    "grayscale": "اللون الرمادي {{value}}%",
+    "resetEdits": "إعادة الضبط",
+    "clearDrawing": "مسح",
+    "typeText": "اكتب...",
+    "textSize": "حجم النص {{value}}",
+    "coverFrames": "اختر إطار الغلاف",
+    "coverFrame": "استخدم إطار {{index}} كغلاف",
+    "uploadCover": "تحميل صورة الغلاف",
+    "editFailed": "لم يتم تطبيق التعديل. حاول مرة أخرى."
   },
   "bounty": {
     "claimed": "اتسلم",
@@ -8532,7 +8571,20 @@
       "education": "تعليم",
       "developer-tools": "أدوات المطورين",
       "entertainment": "ترفيه",
-      "art-creativity": "فن و إبداع"
+      "art-creativity": "فن و إبداع",
+      "games": "العب",
+      "social": "اجتماعي"
+    },
+    "pay": {
+      "title": "دفع {{name}}؟",
+      "body": "الديه بيه (DHB) بتذهب مباشرة لوليت التطبيق، {{wallet}}. مش ممكن ترجع الدفعات.",
+      "confirm": "دفع {{amount}} ديه بيه (DHB)",
+      "sent": "دفعت {{amount}} ديه بيه (DHB) لـ {{name}}."
+    },
+    "add": {
+      "title": "تضيف {{name}}؟",
+      "body": "سيظهر تحت \"تطبيقاتك\" ويقدر يرسل لك إشعارات. ممكن تزلقه من صفحة التطبيقات وقت ما تشاء.",
+      "confirm": "أضف التطبيق"
     }
   },
   "aiStyles": {

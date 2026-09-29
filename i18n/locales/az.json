@@ -146,7 +146,9 @@
     "noMoreShorts": "Daha çox qısa video yoxdur",
     "noShortsFound": "Qısa video tapılmadı",
     "newMembersHint": "Yeni qoşuldunuz — salam deyin",
-    "mostViewedThisMonth": "Bu ay ən çox baxılan"
+    "scroll": "Scroll",
+    "noFilterMatches": "Filtrlərinə uyğun məzmun yoxdur.",
+    "clearFilters": "Filtrləri təmizlə"
   },
   "explore": {
     "all": "Hamısı",
@@ -2641,7 +2643,31 @@
     "noneYetBeFirst": "Hələ şərh yoxdur. İlk siz olun!",
     "turnedOff": "Bu yazı üçün şərhlər söndürülüb",
     "noQuotesYet": "Hələ sitat yoxdur.",
-    "noRepostsYet": "Hələ yenidən paylaşım yoxdur."
+    "noRepostsYet": "Hələ yenidən paylaşım yoxdur.",
+    "timeSeconds": "{{count}} san",
+    "timeMinutes": "{{count}} dəq",
+    "timeHours": "{{count}} saat",
+    "seeWhoLiked": "Kimin bəyəndiyinə bax",
+    "holdToReact": "{{reaction}} — reaksiya vermək üçün basıb saxlayın",
+    "holdToChangeReaction": "{{reaction}} — reaksiyanızı dəyişmək üçün basıb saxlayın",
+    "viewCount_one": "{{count}} baxış",
+    "viewCount_other": "{{count}} baxış",
+    "shareMessage": "Buna bax: {{url}}",
+    "hideReplies": "Cavabları gizlət",
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
+    "rowA11yHint": "Bu şərhə cavab yazmağa başlayır",
+    "editingComment": "Şərh redaktə olunur",
+    "editPlaceholder": "Şərhinizi redaktə edin...",
+    "replyPlaceholder": "Cavab yazın...",
+    "inputPlaceholder": "Buraya yazın",
+    "cancelReply": "Cavabı ləğv et",
+    "cancelEdit": "Redaktəni ləğv et",
+    "countLabel_one": "{{count}} şərh",
+    "countLabel_other": "{{count}} şərh",
+    "repostsLabel_one": "yenidən paylaşım",
+    "repostsLabel_other": "yenidən paylaşım",
+    "quotesLabel_one": "sitat",
+    "quotesLabel_other": "sitat"
   },
   "postInfo": {
     "title": "Paylaşım məlumatı",
@@ -5126,7 +5152,20 @@
     "removeUploadTitle": "Bu yüklənmə silinsin?",
     "removeQueuedBody": "Hələ dərc edilməyib. Onu silmək yazını ləğv edir.",
     "quotaShortfall": "Bu yazının dəyəri {{cost}} tokendir və siz {{held}} saxlayırsınız.",
-    "shopAllowanceUsed": "{{allowance}} / {{allowance}} istifadə edildi. Daha yüksək nişan və əlavə yer üçün daha çox DeHub tokeni steykinq edin."
+    "shopAllowanceUsed": "{{allowance}} / {{allowance}} istifadə edildi. Daha yüksək nişan və əlavə yer üçün daha çox DeHub tokeni steykinq edin.",
+    "editFilters": "Redaktələr",
+    "cropRotate": "Kəs və döndərmə",
+    "drawWrite": "Çək və yaz",
+    "fade": "Feydəcənliyini {{value}}%",
+    "grayscale": "Monokrromu {{value}}%",
+    "resetEdits": "Reset",
+    "clearDrawing": "Təmizləy",
+    "typeText": "Yazı…",
+    "textSize": "Yazı ölçüsü {{value}}",
+    "coverFrames": "Mətn çərçivəsi seçin",
+    "coverFrame": "Çərçivəni {{index}} kimi üz qabığı kimi istifadə edin",
+    "uploadCover": "Üz qabığıni yüklə",
+    "editFailed": "Bu redaktəni tətbiq etmək mümkünsüz oldu. Yenidən cəhd edin."
   },
   "bounty": {
     "claimed": "Alınıb",
@@ -8526,7 +8565,11 @@
       "search": "Araşdırma uygulamaları",
       "all": "Hər şey",
       "fromDehub": "DeHub-dən",
-      "noMatch": "Axtarışınızla uyğun gələn heç bir uygulamalar yoxdur."
+      "noMatch": "Axtarışınızla uyğun gələn heç bir uygulamalar yoxdur.",
+      "yourApps": "Sizin applarınız",
+      "notificationsOn": "Bildirimlər",
+      "remove": "Kaldır",
+      "removed": "Kaldırıldı. Artıq sizi daha bir bildirimləməyəcək."
     },
     "card": {
       "open": "Aç"
@@ -8545,6 +8588,17 @@
       "developer-tools": "Proqram təminatı alətləri",
       "entertainment": "Məzmun",
       "art-creativity": "Sənət və yaradıcılıq"
+    },
+    "pay": {
+      "title": "{{name}}-ni ödə?",
+      "body": "DHB doğrudan appların cibxaranına gedir, {{wallet}}. Ödənişlər geri qaytarıla bilməz.",
+      "confirm": "{{amount}} DHB ödə",
+      "sent": "{{amount}} DHB-ni {{name}}-ə ödədiniz."
+    },
+    "add": {
+      "title": "{{name}}-ni əlavə et?",
+      "body": "O, Sizin applarınız altında görünəcək və sizin üçün bildirimlər göndərə bilər. Anytime Apps səhifəsindən onu silə bilərsiniz.",
+      "confirm": "App əlavə et"
     }
   },
   "aiStyles": {

@@ -146,7 +146,9 @@
     "noMoreShorts": "Enweghị obere vidiyo ọzọ",
     "noShortsFound": "Achọtaghị obere vidiyo",
     "newMembersHint": "Ọhụrụ — kelee",
-    "mostViewedThisMonth": "Ahụtụkarịa n'ọnwa a"
+    "scroll": "Scroll",
+    "noFilterMatches": "Ọ dịghị ọdịnaya dabara na nzacha gị.",
+    "clearFilters": "Hichapụ ihe nzacha"
   },
   "explore": {
     "all": "Niile",
@@ -2641,7 +2643,31 @@
     "noneYetBeFirst": "Ọ dịghị nkọwa ọ bụla ugbu a. Bụrụ onye mbụ!",
     "turnedOff": "A gbanyụrụ nkọwa maka post a",
     "noQuotesYet": "Ọ dịghị okwu ọ bụla ugbu a.",
-    "noRepostsYet": "Ọ dịghị reposts ọ bụla ugbu a."
+    "noRepostsYet": "Ọ dịghị reposts ọ bụla ugbu a.",
+    "timeSeconds": "Sekọnd {{count}}",
+    "timeMinutes": "Nkeji {{count}}",
+    "timeHours": "Awa {{count}}",
+    "seeWhoLiked": "Lee ndị masịrị ya",
+    "holdToReact": "{{reaction}} — pịa ma jide ka ị meghachi omume",
+    "holdToChangeReaction": "{{reaction}} — pịa ma jide ka ịgbanwee mmeghachi omume gị",
+    "viewCount_one": "Nlele {{count}}",
+    "viewCount_other": "Nlele {{count}}",
+    "shareMessage": "Lee nke a: {{url}}",
+    "hideReplies": "Zoo nzaghachi",
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
+    "rowA11yHint": "Na-amalite nzaghachi na nkọwa a",
+    "editingComment": "Na-edezi nkọwa",
+    "editPlaceholder": "Dezie nkọwa gị...",
+    "replyPlaceholder": "Dee nzaghachi...",
+    "inputPlaceholder": "Dee ebe a",
+    "cancelReply": "Kagbuo nzaghachi",
+    "cancelEdit": "Kagbuo ndezi",
+    "countLabel_one": "Nkọwa {{count}}",
+    "countLabel_other": "Nkọwa {{count}}",
+    "repostsLabel_one": "ndepụta ọzọ",
+    "repostsLabel_other": "ndepụta ọzọ",
+    "quotesLabel_one": "nhota",
+    "quotesLabel_other": "nhota"
   },
   "postInfo": {
     "title": "Ozi banyere mbipụta",
@@ -5124,7 +5150,20 @@
     "removeUploadTitle": "Wepụ ebugo a?",
     "removeQueuedBody": "E bipụtabeghị ya. Iwepụ ya kagburu post ahụ.",
     "quotaShortfall": "Nke a post na-eri {{cost}} akara ma ị na-ejide {{held}}.",
-    "shopAllowanceUsed": "{{allowance}} nke {{allowance}} ejirila. Tinye akara DeHub karịa maka akara ngosi dị elu na oghere ọzọ."
+    "shopAllowanceUsed": "{{allowance}} nke {{allowance}} ejirila. Tinye akara DeHub karịa maka akara ngosi dị elu na oghere ọzọ.",
+    "editFilters": "Edit filters",
+    "cropRotate": "Crop & rotate",
+    "drawWrite": "Draw & write",
+    "fade": "Fade {{value}}%",
+    "grayscale": "Grayscale {{value}}%",
+    "resetEdits": "Reset",
+    "clearDrawing": "Clear",
+    "typeText": "Type…",
+    "textSize": "Text size {{value}}",
+    "coverFrames": "Nkọwa ihe n'okpuru ọrụ",
+    "coverFrame": "Jiri etiti {{index}} ka mkpuchi",
+    "uploadCover": "Nkọwa akwa akwa n'ime ihe n'ime",
+    "editFailed": "Igbo:"
   },
   "bounty": {
     "claimed": "Anatala",
@@ -8524,7 +8563,10 @@
       "search": "Usoroiheomume nchọcha",
       "all": "Ha niile",
       "fromDehub": "Site na DeHub",
-      "noMatch": "Enweghị ngwa dabara na nchọcha ahụ."
+      "noMatch": "Enweghị ngwa dabara na nchọcha ahụ.",
+      "yourApps": "Usoroiheomume gị",
+      "notificationsOn": "Ịma Ọkwa na",
+      "removed": "Ewepụrụ ya. Ọ gaghị agwa gị ọzọ."
     },
     "card": {
       "open": "Mepee"
@@ -8542,6 +8584,13 @@
       "developer-tools": "Developer ngwaọrụ",
       "entertainment": "Ntụrụndụ",
       "art-creativity": "Ndị ụlọtị na ụlọtị ụlọtị"
+    },
+    "pay": {
+      "title": "Páa {{name}}?"
+    },
+    "add": {
+      "title": "{{name}}?",
+      "body": "Nwoke na-ahụrụ nke *Your apps* nke ọ dị mmadụ ọ dị ọ bụrụ ọrụ nke ọ bụrụ ọrụ. Nwoke na-ahụrụ nke ọ bụrụ ọrụ nke ọ bụrụ ọrụ, ọ bụrụ ọrụ nke ọ bụrụ ọrụ nke ọ bụrụ ọrụ nke *Apps* nke ọ bụrụ ọrụ nke ọ bụrụ ọrụ."
     }
   },
   "aiStyles": {

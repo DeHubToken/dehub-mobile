@@ -146,7 +146,9 @@
     "noShortsFound": "Wi no fain eni shorts",
     "newMembersHint": "Dem jos join — tok hello",
     "allCaughtUp": "You don see everything finish",
-    "mostViewedThisMonth": "Weh dem view pass dis month"
+    "scroll": "Scroll",
+    "noFilterMatches": "No content match your filter dem.",
+    "clearFilters": "Clear filter dem"
   },
   "explore": {
     "all": "Ol",
@@ -2627,7 +2629,31 @@
     "anchorFailed": "We no fit hook dat comment for top",
     "assistantReplying": "DeHub Assistant di reply…",
     "noneYetBeFirst": "No comment yet. Mek you be di first!",
-    "turnedOff": "Dem don off comments for this post"
+    "turnedOff": "Dem don off comments for this post",
+    "timeSeconds": "{{count}} sek",
+    "timeMinutes": "{{count}} min",
+    "timeHours": "{{count}} awa",
+    "seeWhoLiked": "Si who like am",
+    "holdToReact": "{{reaction}} — press am hol for react",
+    "holdToChangeReaction": "{{reaction}} — press am hol for chenj yu reaction",
+    "viewCount_one": "{{count}} view",
+    "viewCount_other": "{{count}} view dem",
+    "shareMessage": "Check dis one: {{url}}",
+    "hideReplies": "Hide ansa dem",
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
+    "rowA11yHint": "E go start ansa for dis comment",
+    "editingComment": "Yu di chenj comment",
+    "editPlaceholder": "Chenj yu comment...",
+    "replyPlaceholder": "Rait ansa...",
+    "inputPlaceholder": "Rait for hia",
+    "cancelReply": "Kansel ansa",
+    "cancelEdit": "Kansel di chenj",
+    "countLabel_one": "{{count}} Comment",
+    "countLabel_other": "{{count}} Comment dem",
+    "repostsLabel_one": "Repost",
+    "repostsLabel_other": "Repost dem",
+    "quotesLabel_one": "Quote",
+    "quotesLabel_other": "Quote dem"
   },
   "postInfo": {
     "title": "Post Info",
@@ -5085,7 +5111,20 @@
     "removeQueuedBody": "E no post yet. If you remove am, the post go cancel.",
     "removeUploadTitle": "Remove dis upload?",
     "quotaShortfall": "Dis post dey cost {{cost}} tokens and you get {{held}}.",
-    "shopAllowanceUsed": "{{allowance}} of {{allowance}} use wey. Stake more DeHub token fo’ higher badge na slot tori."
+    "shopAllowanceUsed": "{{allowance}} of {{allowance}} use wey. Stake more DeHub token fo’ higher badge na slot tori.",
+    "editFilters": "Edit filter",
+    "cropRotate": "Kap krom & rotat",
+    "drawWrite": "Draw & write",
+    "fade": "Fade {{value}}%",
+    "grayscale": "Grayskay {{value}}%",
+    "resetEdits": "Reset",
+    "clearDrawing": "Klir",
+    "typeText": "Tip…",
+    "textSize": "Tekst saiz {{value}}",
+    "coverFrames": "Pik a kovr fram",
+    "coverFrame": "Usi fram {{index}} as kovr",
+    "uploadCover": "Uploa kovr piksai",
+    "editFailed": "Kan no apli dat edit. Try anoda."
   },
   "bounty": {
     "claimed": "Don claim",
@@ -8427,7 +8466,11 @@
       "search": "Search apps",
       "all": "All",
       "fromDehub": "From DeHub",
-      "noMatch": "Wetin app no fit match dis search?"
+      "noMatch": "Wetin app no fit match dis search?",
+      "yourApps": "Your apps",
+      "notificationsOn": "Notifications on",
+      "remove": "Remove",
+      "removed": "Remove wey, no go notify you again."
     },
     "card": {
       "open": "Open"
@@ -8446,6 +8489,17 @@
       "developer-tools": "Developa tuul",
       "entertainment": "Entertaenment",
       "art-creativity": "Art & kreativiti"
+    },
+    "pay": {
+      "title": "Pay {{name}}?",
+      "body": "DHB go straight go wallet wey app dey, {{wallet}}. Payment no go reverse.",
+      "confirm": "Pay {{amount}} DHB",
+      "sent": "Paiti {{amount}} DHB fo {{name}}."
+    },
+    "add": {
+      "title": "Add {{name}}?",
+      "body": "Na go appear wey you see under Your apps na, go send you notification weh weh. You go remove im any time from Apps page.",
+      "confirm": "Add app"
     }
   },
   "postQuota": {

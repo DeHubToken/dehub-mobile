@@ -9,7 +9,7 @@
  * (config/storefront). Everything else is read-only and stays.
  */
 import React, { useMemo, useState } from "react";
-import { View, Text, TextInput, Pressable, ScrollView, StyleSheet } from "react-native";
+import { View, Text, TextInput, Pressable, ScrollView, StyleSheet, KeyboardAvoidingView } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation, useRoute, type RouteProp } from "@react-navigation/native";
 import { useQueryClient } from "@tanstack/react-query";
@@ -37,6 +37,7 @@ import { toastError, toastSuccess } from "../libs/toast";
 import { ScreenNames } from "../navigation/ScreenNames";
 import type { AppStackParamList } from "../navigation/types";
 import { launchpadKeys, useLaunchpadToken, useLaunchpadTrades } from "../hooks/useLaunchpad";
+import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
 import { chainLabel, mockLaunchpadTrade, type LaunchpadToken } from "../services/launchpad.service";
 
 const QUICK_AMOUNTS = ["1", "10", "100", "1000"];
@@ -144,6 +145,7 @@ function Row({ k, v }: { k: string; v: string }) {
 export default function LaunchpadCoinScreen() {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
+  const keyboardOffset = useKeyboardOffset();
   const route = useRoute<RouteProp<AppStackParamList, ScreenNames.LaunchpadCoin>>();
   const mintId = route.params?.mintId;
   const tokenQuery = useLaunchpadToken(mintId);
@@ -281,14 +283,16 @@ export default function LaunchpadCoinScreen() {
   return (
     <View style={styles.root}>
       <ScreenHeader title={token ? `$${token.symbol}` : t("launchpad.title")} subtitle={token?.name} />
-      <ScrollView
-        contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 4, paddingBottom: insets.bottom + 32 }}
-        keyboardShouldPersistTaps="handled"
-        showsVerticalScrollIndicator={false}
-        refreshControl={<DeHubRefreshControl refreshing={refreshing} onRefresh={onRefresh} tintColor="#ffffff" />}
-      >
-        {body}
-      </ScrollView>
+      <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding" keyboardVerticalOffset={keyboardOffset}>
+        <ScrollView
+          contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 4, paddingBottom: insets.bottom + 32 }}
+          keyboardShouldPersistTaps="handled"
+          showsVerticalScrollIndicator={false}
+          refreshControl={<DeHubRefreshControl refreshing={refreshing} onRefresh={onRefresh} tintColor="#ffffff" />}
+        >
+          {body}
+        </ScrollView>
+      </KeyboardAvoidingView>
       <DeHubRefreshMark refreshing={refreshing} />
     </View>
   );

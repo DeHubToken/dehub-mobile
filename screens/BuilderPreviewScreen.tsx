@@ -6,7 +6,6 @@
  */
 import React, { useState } from "react";
 import { Pressable, Share, StyleSheet, View } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useRoute, type RouteProp } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import ScreenHeader from "../components/ScreenHeader";
@@ -19,7 +18,6 @@ import { builderShareUrl } from "../services/builder.service";
 
 export default function BuilderPreviewScreen() {
   const { t } = useTranslation();
-  const insets = useSafeAreaInsets();
   const { params } = useRoute<RouteProp<AppStackParamList, ScreenNames.BuilderPreview>>();
   const id = params.id;
   const [nonce, setNonce] = useState(0);
@@ -51,7 +49,8 @@ export default function BuilderPreviewScreen() {
           </View>
         }
       />
-      <View style={{ flex: 1, paddingBottom: insets.bottom }}>
+      {/* No insets.bottom here: the root SafeAreaView in App.tsx already pays it. */}
+      <View style={{ flex: 1 }}>
         <BuilderAppView projectId={id} nonce={nonce} />
       </View>
     </View>

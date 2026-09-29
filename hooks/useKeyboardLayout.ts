@@ -67,19 +67,22 @@ export function useKeyboardLift(): {
  * RN measures the view with `onLayout`, which is relative to its parent, then
  * compares it against the keyboard's absolute `screenY`. `keyboardVerticalOffset`
  * is the documented correction: the distance from the top of the window to the
- * top of the KeyboardAvoidingView. Inside this app that is always the device
- * inset the root SafeAreaView spent, plus whatever chrome the screen draws
- * above its own KeyboardAvoidingView — usually a `ScreenHeader`, hence
- * `SCREEN_HEADER_HEIGHT`.
+ * top of the KeyboardAvoidingView's *parent*. The view's own `onLayout` y
+ * already includes anything its parent draws above it, so a `ScreenHeader`
+ * rendered as a sibling above the view is already counted and must not be
+ * passed again — doing so left a header-tall blank band above the keyboard.
+ * Inside this app the answer is almost always just the device inset the root
+ * SafeAreaView spent.
  *
  * Hardcoding it (the old values were `64`, `insets.top + 44` and `0`) is wrong
  * on every device whose notch is not exactly that tall: too large lifts the
  * content clear of the keyboard and scrolls the top of the screen away, too
  * small leaves the focused field behind the keys.
  *
- * @param chromeAbove Height in points of anything the screen renders above its
- * KeyboardAvoidingView. Pass 0 when the KeyboardAvoidingView is the screen's
- * outermost element.
+ * @param chromeAbove Height in points of chrome above the KeyboardAvoidingView's
+ * parent, outside it. Never a header rendered inside the same parent. Leave it
+ * at 0 for the usual `<View>` + `<ScreenHeader>` + KeyboardAvoidingView layout,
+ * and when the KeyboardAvoidingView is the screen's outermost element.
  */
 export function useKeyboardOffset(chromeAbove: number = 0): number {
   const insets = useSafeAreaInsets();

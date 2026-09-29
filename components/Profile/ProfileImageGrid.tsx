@@ -5,6 +5,7 @@ import { Image } from "expo-image";
 import Icon from "../ui/Icon";
 import { getImageUrlApiSimple } from "../../libs/misc";
 import { useAppTheme } from "../../context/ThemeContext";
+import { TAB_BAR_CONTENT_INSET } from "../../navigation/tabBarLayout";
 
 // Tile sizes follow from the outer padding and the gap, so each theme gets its
 // own set: the system grid sits 8pt in from each edge with 2pt gutters; the
@@ -195,6 +196,9 @@ const ProfileImageGrid: React.FC<ProfileImageGridProps> = ({ images, listRef, on
             </View>
           </>
         }
+        // Same tail as the other profile tabs, so the last row clears the nav
+        // pill on Home and the system bar in the full-screen sheet.
+        contentContainerStyle={{ paddingBottom: TAB_BAR_CONTENT_INSET }}
         scrollEnabled={scrollEnabled}
         onScroll={onScroll}
         scrollEventThrottle={16}
@@ -211,7 +215,7 @@ const ProfileImageGrid: React.FC<ProfileImageGridProps> = ({ images, listRef, on
       // getItemLayout assumes a fixed row pattern with no header; skip it when a
       // (variable-height) header is present so scroll offsets stay correct.
       getItemLayout={ListHeaderComponent ? undefined : getItemLayout}
-      contentContainerStyle={{ paddingHorizontal: m.padding / 2 }}
+      contentContainerStyle={{ paddingHorizontal: m.padding / 2, paddingBottom: TAB_BAR_CONTENT_INSET }}
       showsVerticalScrollIndicator={false}
       initialNumToRender={6}
       maxToRenderPerBatch={6}

@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { View, Text, Pressable, Share, ActivityIndicator } from "react-native";
+import { View, Text, Pressable, Share, ActivityIndicator, type AccessibilityActionEvent } from "react-native";
 import SmartImage from "../common/SmartImage";
 import Animated, {
   useSharedValue,
@@ -12,6 +12,7 @@ import Icon from "../ui/Icon";
 import TranslateButton from "../ui/TranslateButton";
 import { useTranslation } from "../../hooks/useTranslation";
 import { useTranslation as useCopy } from "react-i18next";
+import type { TFunction } from "i18next";
 import Avatar from "../common/Avatar";
 import NewMemberChip from "../common/NewMemberChip";
 import VoiceNotePlayer from "./VoiceNotePlayer";
@@ -44,7 +45,6 @@ import {
   HAS_NEGATIVE_TRAY,
   isPositiveReaction,
   reactionForTap,
-  reactionMeta,
   resolveLeadReaction,
   resolveNegativeLeadReaction,
   type PostReaction,
@@ -71,7 +71,9 @@ function formatTipTotal(n: number): string {
   return String(Math.round(n));
 }
 
-function formatShortTime(date: Date | string | undefined): string {
+// The units come from the locale: "3h" and "2w" were typed into this function,
+// so every language read the age of a comment in English letters.
+function formatShortTime(date: Date | string | undefined, t: TFunction): string {
   if (!date) return "";
   const now = new Date();
   const then = new Date(date);
@@ -84,13 +86,13 @@ function formatShortTime(date: Date | string | undefined): string {
   const diffMonth = Math.floor(diffDay / 30);
   const diffYear = Math.floor(diffDay / 365);
 
-  if (diffYear > 0) return `${diffYear}y`;
-  if (diffMonth > 0) return `${diffMonth}mo`;
-  if (diffWeek > 0) return `${diffWeek}w`;
-  if (diffDay > 0) return `${diffDay}d`;
-  if (diffHour > 0) return `${diffHour}h`;
-  if (diffMin > 0) return `${diffMin}m`;
-  return `${Math.max(1, diffSec)}s`;
+  if (diffYear > 0) return t("communities.time.years", { count: diffYear });
+  if (diffMonth > 0) return t("communities.time.months", { count: diffMonth });
+  if (diffWeek > 0) return t("communities.time.weeks", { count: diffWeek });
+  if (diffDay > 0) return t("communities.time.days", { count: diffDay });
+  if (diffHour > 0) return t("comments.timeHours", { count: diffHour });
+  if (diffMin > 0) return t("comments.timeMinutes", { count: diffMin });
+  return t("comments.timeSeconds", { count: Math.max(1, diffSec) });
 }
 
 interface CommentItemProps {
@@ -115,6 +117,15 @@ interface CommentItemProps {
   onShowLikers?: (commentId: number) => void;
   onUserPress?: (userId: string) => void;
   onEdit?: (comment: Comment) => void;
+  /**
+   * The long-press menu's other rows, for the row's screen-reader actions.
+   * Each is passed only when the host's menu would offer it at all (a pin
+   * needs the viewer's own post, a report a signed-in viewer); the per-comment
+   * rules — own comment, top-level only — are applied here, as the menu does.
+   */
+  onPin?: (comment: Comment) => void;
+  onReport?: (comment: Comment) => void;
+  onDelete?: (comment: Comment) => void;
   onLongPress?: (comment: Comment, layout: CommentLayout, extra: { liked: boolean; disliked: boolean; isOwnComment: boolean; isReply: boolean }) => void;
   tokenId?: number | string;
   contentType?: "video" | "feed";
@@ -141,6 +152,9 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
   onShowLikers,
   onUserPress,
   onEdit,
+  onPin,
+  onReport,
+  onDelete,
   onLongPress,
   tokenId,
   contentType = "video",
@@ -151,6 +165,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
   loadingReplies = false,
   postCreator,
 }) => {
+  const { t } = useCopy();
   const { showUserProfile } = useUserProfileSheet();
   const { isMinimal } = useAppTheme();
   const currentUser = useUser();
@@ -226,7 +241,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
   }, [highlighted, highlightOpacity]);
 
   const user = comment.user;
-  const displayName = user?.displayName || user?.username || "Unknown";
+  const displayName = user?.displayName || user?.username || t("settings.unknown");
   const avatarUrl = getAvatarUrl(user?.avatarImageUrl || "");
   const userId = user?.username || user?.address || comment.address || "";
   // The badge rides the comment's account row, same as a feed card reads it off
@@ -276,8 +291,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
     [user?.address, user?.displayName, user?.username, comment.address, postCreator],
   );
 
-  const { t } = useCopy();
-  const timeAgo = formatShortTime(comment.createdAt);
+  const timeAgo = formatShortTime(comment.createdAt, t);
 
   const translationTexts = useMemo(() => ({ content: comment.content || '' }), [comment.content]);
   const { isTranslated, translatedTexts, isLoading: translating, handleTranslate, handleShowOriginal, shouldShow: showTranslate, sourceLang: translationSourceLang } =
@@ -460,11 +474,71 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
       const shareUrl = tokenId
         ? `${WEBSITE_LINK}/app/post/${tokenId}?c=${comment.id}`
         : WEBSITE_LINK;
-      await Share.share({ message: `Check this out: ${shareUrl}`, url: shareUrl });
+      await Share.share({ message: t("comments.shareMessage", { url: shareUrl }), url: shareUrl });
     } catch (e) {
       console.error("Share error:", e);
     }
-  }, [tokenId, comment.id]);
+  }, [tokenId, comment.id, t]);
+
+  const hasMedia = !!(comment.imageUrl || comment.gifUrl || comment.audioUrl);
+  const canTip = !!onTip && !!(comment.user?.address || comment.address);
+  const showRepliesToggle = !!onToggleReplies && (hiddenReplyCount > 0 || repliesExpanded);
+  const repliesToggleLabel = repliesExpanded
+    ? t("comments.hideReplies")
+    : t("governance.discussion.showMoreReplies", { count: hiddenReplyCount });
+
+  /**
+   * The long-press menu and the row's small icons, as screen-reader actions.
+   *
+   * The row is one accessibility element — tapping it replies — so a screen
+   * reader never reached the thumbs, the tip gem, share or the replies toggle
+   * inside it, and edit, pin, report and delete were behind a long-press with
+   * nothing to say it was there. Each action is listed under the same rule the
+   * menu uses to show its row, and runs the handler that row runs.
+   */
+  const a11yActions: { name: string; label: string }[] = [];
+  if (onReply) a11yActions.push({ name: "reply", label: t("communities.reply") });
+  if (isOwnComment) {
+    if (onShowLikers) a11yActions.push({ name: "likers", label: t("comments.whoLiked") });
+  } else {
+    a11yActions.push({
+      name: "like",
+      label: liked ? t("comments.unlike") : t(`reactionInfo.labels.${leadReaction ?? "like"}`),
+    });
+  }
+  if (onDislike || onReact) {
+    a11yActions.push({ name: "dislike", label: disliked ? t("comments.removeDislike") : t("comments.dislike") });
+  }
+  if (canTip) a11yActions.push({ name: "tip", label: t("comments.tip") });
+  a11yActions.push({ name: "share", label: t("postOptions.share") });
+  if (showRepliesToggle) a11yActions.push({ name: "toggleReplies", label: repliesToggleLabel });
+  if (isOwnComment && onEdit && !hasMedia) a11yActions.push({ name: "edit", label: t("common.edit") });
+  // Top-level only — a reply sits in a subtree nothing re-orders.
+  if (onPin && !isReply) {
+    a11yActions.push({
+      name: "pin",
+      label: comment.isPinned ? t("comments.unpinAction") : t("comments.pinAction"),
+    });
+  }
+  // Never on your own: the server refuses a self-report.
+  if (!isOwnComment && onReport) a11yActions.push({ name: "report", label: t("comments.reportComment") });
+  if (isOwnComment && onDelete) a11yActions.push({ name: "delete", label: t("common.delete") });
+
+  const handleAccessibilityAction = (event: AccessibilityActionEvent) => {
+    switch (event.nativeEvent.actionName) {
+      case "reply": handleReplyPress(); break;
+      case "likers": onShowLikers?.(comment.id); break;
+      case "like": void handleLikePress(); break;
+      case "dislike": void handleDislikePress(); break;
+      case "tip": onTip?.(comment); break;
+      case "share": void handleSharePress(); break;
+      case "toggleReplies": onToggleReplies?.(); break;
+      case "edit": onEdit?.(comment); break;
+      case "pin": onPin?.(comment); break;
+      case "report": onReport?.(comment); break;
+      case "delete": onDelete?.(comment); break;
+    }
+  };
 
   if (comment.notFound) {
     return (
@@ -488,6 +562,17 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
       onPress={handleReplyPress}
       onLongPress={handleLongPress}
       delayLongPress={300}
+      // Read as one sentence rather than every chip, count and icon in the row
+      // run together; the controls inside are the actions below.
+      accessibilityRole={onReply ? "button" : undefined}
+      accessibilityLabel={t("comments.rowA11yLabel", {
+        name: displayName,
+        time: timeAgo,
+        text: assetFreeContent || "",
+      })}
+      accessibilityHint={onReply ? t("comments.rowA11yHint") : undefined}
+      accessibilityActions={a11yActions}
+      onAccessibilityAction={handleAccessibilityAction}
     >
       <View ref={containerRef} style={{ flexDirection: "row", paddingVertical: 10 }}>
         <Pressable onPress={handleUserPress}>
@@ -607,7 +692,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
                 }}
               >
                 <Text style={{ fontSize: 10, fontWeight: "600", color: "rgba(255,255,255,0.75)" }}>
-                  AI
+                  {t("editor.rail.agent")}
                 </Text>
               </View>
             )}
@@ -706,8 +791,10 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
                 accessibilityRole="button"
                 accessibilityLabel={
                   isOwnComment
-                    ? "See who liked"
-                    : `${reactionMeta(leadReaction ?? "like").label} — hold to react`
+                    ? t("comments.seeWhoLiked")
+                    : t("comments.holdToReact", {
+                        reaction: t(`reactionInfo.labels.${leadReaction ?? "like"}`),
+                      })
                 }
                 accessibilityState={{ selected: liked }}
                 style={{ flexDirection: "row", alignItems: "center", gap: 4 }}
@@ -760,8 +847,10 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
                   accessibilityRole="button"
                   accessibilityLabel={
                     myNegativeReaction
-                      ? `${reactionMeta(myNegativeReaction).label} — hold to change your reaction`
-                      : "Dislike — hold to react"
+                      ? t("comments.holdToChangeReaction", {
+                          reaction: t(`reactionInfo.labels.${myNegativeReaction}`),
+                        })
+                      : t("comments.holdToReact", { reaction: t("reactionInfo.labels.dislike") })
                   }
                   accessibilityState={{ selected: disliked }}
                   style={{ flexDirection: "row", alignItems: "center", gap: 4 }}
@@ -851,7 +940,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
             {(comment.views ?? 0) > 0 && (
               <View
                 accessibilityRole="text"
-                accessibilityLabel={`${comment.views} views`}
+                accessibilityLabel={t("comments.viewCount", { count: comment.views })}
                 style={{ flexDirection: "row", alignItems: "center", gap: 4 }}
               >
                 <Icon name="Eye" size={14} color={ICON_MUTED} strokeWidth={1.8} />
@@ -864,9 +953,12 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
 
           {/* The thread's own control, on the last reply that is on screen.
               A collapsed thread shows one reply and hides the rest behind it. */}
-          {onToggleReplies && (hiddenReplyCount > 0 || repliesExpanded) && (
+          {showRepliesToggle && (
             <Pressable
               onPress={onToggleReplies}
+              accessibilityRole="button"
+              accessibilityLabel={repliesToggleLabel}
+              accessibilityState={{ expanded: repliesExpanded, busy: loadingReplies }}
               style={{
                 flexDirection: "row",
                 alignItems: "center",
@@ -878,11 +970,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
                 <ActivityIndicator size="small" color="#6F7174" style={{ marginRight: 6 }} />
               ) : null}
               <Text style={{ fontSize: 12, fontWeight: "600", color: "#A6A9AC" }}>
-                {repliesExpanded
-                  ? "Hide replies"
-                  : `Show ${hiddenReplyCount} more ${
-                      hiddenReplyCount === 1 ? "reply" : "replies"
-                    }`}
+                {repliesToggleLabel}
               </Text>
             </Pressable>
           )}

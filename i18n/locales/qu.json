@@ -146,7 +146,9 @@
     "noMoreShorts": "Mana kaqchu huk kaqpas",
     "noShortsFound": "Mana kaqchu huk kaqpas tarisqachu",
     "newMembersHint": "Hukllataña haykuy — rimaynapay",
-    "mostViewedThisMonth": "Kay killapi aswan rikuchisqa"
+    "scroll": "Scroll",
+    "noFilterMatches": "Manam ima contenidopas suysuykunaykiwan tupanchu.",
+    "clearFilters": "Suysuykunata pichay"
   },
   "explore": {
     "all": "Llapan",
@@ -2672,7 +2674,31 @@
     "noneYetBeFirst": "Mana willakuykuna kanchu. Qam ñawpaq kaq kachun!",
     "turnedOff": "Kay qillqapaqqa harkakusqa willakuykuna",
     "noQuotesYet": "Mana ni piqpas niqchu.",
-    "noRepostsYet": "Mana kutichikuykuna kanchu."
+    "noRepostsYet": "Mana kutichikuykuna kanchu.",
+    "timeSeconds": "{{count}} sikundu",
+    "timeMinutes": "{{count}} chikan",
+    "timeHours": "{{count}} ura",
+    "seeWhoLiked": "Pikuna munasqanta qhaway",
+    "holdToReact": "{{reaction}} — ñit'ispa hap'iy kutichinaykipaq",
+    "holdToChangeReaction": "{{reaction}} — ñit'ispa hap'iy kutichiyniykita t'ikranaykipaq",
+    "viewCount_one": "{{count}} rikuy",
+    "viewCount_other": "{{count}} rikuy",
+    "shareMessage": "Kayta qhawariy: {{url}}",
+    "hideReplies": "Kutichiykunata pakay",
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
+    "rowA11yHint": "Kay rimayman kutichiyta qallarin",
+    "editingComment": "Rimayta allichaspa",
+    "editPlaceholder": "Rimayniykita allichay...",
+    "replyPlaceholder": "Kutichiyta qillqay...",
+    "inputPlaceholder": "Kaypi qillqay",
+    "cancelReply": "Kutichiyta saqiy",
+    "cancelEdit": "Allichayta saqiy",
+    "countLabel_one": "{{count}} rimay",
+    "countLabel_other": "{{count}} rimaykuna",
+    "repostsLabel_one": "Musuqmanta churay",
+    "repostsLabel_other": "Musuqmanta churay",
+    "quotesLabel_one": "Cita",
+    "quotesLabel_other": "Citakuna"
   },
   "postInfo": {
     "title": "Post willay",
@@ -5157,7 +5183,20 @@
     "removeUploadTitle": "¿Kay kargata hurquy?",
     "removeQueuedBody": "Manaraqmi churasqachu. Chayta hurquspaqa chay qillqasqata chinkachin.",
     "quotaShortfall": "Kay willakuyqa {{cost}} tokenkunata gastanmi chaynataq {{held}} hapishanki.",
-    "shopAllowanceUsed": "{{allowance}}, {{allowance}} kaqmanta llamk'achisqa. Astawan DeHub tokenkunata churay hatun k'anchaypaq chaynataq huk tiyanapaq."
+    "shopAllowanceUsed": "{{allowance}}, {{allowance}} kaqmanta llamk'achisqa. Astawan DeHub tokenkunata churay hatun k'anchaypaq chaynataq huk tiyanapaq.",
+    "editFilters": "Qhawana llamk'anakuna",
+    "cropRotate": "Tiyay & muyuy",
+    "drawWrite": "Qillqay & k'anchay",
+    "fade": "Chinkachiy {{value}}%",
+    "grayscale": "Yana-yuraq {{value}}%",
+    "resetEdits": "Ñoqayman kutiy",
+    "clearDrawing": "Ch'illchiy",
+    "typeText": "Qillqay...",
+    "textSize": "Qillqa hatun kay {{value}}",
+    "coverFrames": "P'anqa akllay",
+    "coverFrame": "P'anqata llamk'achiy {{index}} ñoqaypaq",
+    "uploadCover": "P'anqa yuyayta churay",
+    "editFailed": "Mana atikurqanchu chay llamk'ayta. K'uychiy."
   },
   "bounty": {
     "claimed": "Chaskisqa",
@@ -8557,7 +8596,9 @@
       "search": "Maskay apps nisqakunata",
       "all": "Llapan",
       "fromDehub": "DeHub nisqamanta",
-      "noMatch": "Mana ima appkuna chay maskaywan tupanchu."
+      "noMatch": "Mana ima appkuna chay maskaywan tupanchu.",
+      "yourApps": "Apps nisqaykikuna",
+      "remove": "Qichuy"
     },
     "card": {
       "open": "Kichasqa"

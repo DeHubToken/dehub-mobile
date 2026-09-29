@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { ActivityIndicator, Alert, Linking, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, Alert, KeyboardAvoidingView, Linking, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { useIsFocused, useNavigation, useRoute } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
@@ -11,6 +11,7 @@ import DexPoolPicker, { DexPoolAvatar } from '../components/DexPoolPicker';
 import DexAddPoolSheet from '../components/DexAddPoolSheet';
 import { useUser } from '../context/AuthContext';
 import { useDexSigner } from '../hooks/useDexSigner';
+import { useKeyboardOffset } from '../hooks/useKeyboardLayout';
 import { ScreenNames } from '../navigation/ScreenNames';
 import { toastError, toastInfo, toastSuccess } from '../libs';
 import { runWithPermissions } from '../libs/permissions.util';
@@ -79,6 +80,7 @@ export default function DexPoolScreen() {
 function PoolTerminal({ pool }: { pool: DexPool }) {
   const { t } = useTranslation();
   const navigation = useNavigation<any>();
+  const keyboardOffset = useKeyboardOffset();
   const queryClient = useQueryClient();
   const user = useUser();
   const walletAddress = user?.walletAddress || user?.address || '';
@@ -399,7 +401,7 @@ function PoolTerminal({ pool }: { pool: DexPool }) {
 
   const stat = (label: string, value: string, color?: string) => <View><Text style={s.muted}>{label}</Text><Text style={[s.statValue, color ? { color } : null]}>{value}</Text></View>;
 
-  return <View style={s.root}><ScreenHeader title={t('dex.title')} onBackPress={() => navigation.goBack()} /><ScrollView contentContainerStyle={s.content} keyboardShouldPersistTaps="handled">
+  return <View style={s.root}><ScreenHeader title={t('dex.title')} onBackPress={() => navigation.goBack()} /><KeyboardAvoidingView style={{ flex: 1 }} behavior="padding" keyboardVerticalOffset={keyboardOffset}><ScrollView contentContainerStyle={s.content} keyboardShouldPersistTaps="handled">
     <View style={s.header}>
       <DexPoolPicker current={pool} />
       <TouchableOpacity disabled={busy} onPress={refreshAll}><Text style={s.link}>{t(statsFetching ? 'dex.updating' : 'dex.refresh')}</Text></TouchableOpacity>
@@ -476,7 +478,7 @@ function PoolTerminal({ pool }: { pool: DexPool }) {
       </View>; })}
       {PAGE_SIZE < shown.length && <View style={[s.header, { padding: 14 }]}><TouchableOpacity disabled={!page} onPress={() => setPage(page - 1)}><Text style={s.link}>{t('dex.previous')}</Text></TouchableOpacity><Text style={s.muted}>{page + 1} / {Math.ceil(shown.length / PAGE_SIZE)}</Text><TouchableOpacity disabled={(page + 1) * PAGE_SIZE >= shown.length} onPress={() => setPage(page + 1)}><Text style={s.link}>{t('dex.next')}</Text></TouchableOpacity></View>}
     </View>
-  </ScrollView></View>;
+  </ScrollView></KeyboardAvoidingView></View>;
 }
 
 const s = StyleSheet.create({

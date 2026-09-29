@@ -146,7 +146,9 @@
     "noMoreShorts": "وڌيڪ شارٽس ناهن",
     "noShortsFound": "ڪا به شارٽس نه ملي",
     "newMembersHint": "اڃا شامل ٿيو — سلام چئو",
-    "mostViewedThisMonth": "هن مهيني سڀ کان وڌيڪ ڏٺل"
+    "scroll": "Scroll",
+    "noFilterMatches": "توهان جي فلٽرن سان ڪو به مواد نٿو ملي.",
+    "clearFilters": "فلٽر صاف ڪريو"
   },
   "explore": {
     "all": "سڀ",
@@ -2641,7 +2643,31 @@
     "noneYetBeFirst": "اڃا تائين ڪا تبصرو نه آهي. پهرين بڻيو!",
     "turnedOff": "هن پوسٽ لاءِ تبصرا بند آهن",
     "noQuotesYet": "اڃا تائين ڪا اقتباس نه آهي.",
-    "noRepostsYet": "اڃا تائين ڪا ريپوسٽ نه آهي."
+    "noRepostsYet": "اڃا تائين ڪا ريپوسٽ نه آهي.",
+    "timeSeconds": "{{count}} سيڪنڊ",
+    "timeMinutes": "{{count}} منٽ",
+    "timeHours": "{{count}} ڪلاڪ",
+    "seeWhoLiked": "ڏسو ڪنهن لائيڪ ڪيو",
+    "holdToReact": "{{reaction}} — ردعمل لاءِ دٻائي رکو",
+    "holdToChangeReaction": "{{reaction}} — پنهنجو ردعمل بدلائڻ لاءِ دٻائي رکو",
+    "viewCount_one": "{{count}} ڏيک",
+    "viewCount_other": "{{count}} ڏيک",
+    "shareMessage": "هي ڏسو: {{url}}",
+    "hideReplies": "جواب لڪايو",
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
+    "rowA11yHint": "هن تبصري جو جواب شروع ڪري ٿو",
+    "editingComment": "تبصرو ايڊٽ ٿي رهيو آهي",
+    "editPlaceholder": "پنهنجو تبصرو ايڊٽ ڪريو...",
+    "replyPlaceholder": "جواب لکو...",
+    "inputPlaceholder": "هتي لکو",
+    "cancelReply": "جواب منسوخ ڪريو",
+    "cancelEdit": "ايڊٽ منسوخ ڪريو",
+    "countLabel_one": "{{count}} تبصرو",
+    "countLabel_other": "{{count}} تبصرا",
+    "repostsLabel_one": "ريپوسٽ",
+    "repostsLabel_other": "ريپوسٽ",
+    "quotesLabel_one": "اقتباس",
+    "quotesLabel_other": "اقتباس"
   },
   "postInfo": {
     "title": "پوسٽ معلومات",
@@ -5126,7 +5152,20 @@
     "removeUploadTitle": "ھي اپلوڊ ختم ڪريو ؟",
     "removeQueuedBody": "اهو اڃا تائين پوسٽ نه ڪيو ويو آهي. ان کي ختم ڪرڻ پوسٽ کي منسوخ ڪري ٿو.",
     "quotaShortfall": "هن پوسٽ جي قيمت {{cost}} ٽوڪن آهي ۽ توهان {{held}} رکو ٿا.",
-    "shopAllowanceUsed": "{{allowance}} مان {{allowance}} استعمال ٿيل. اعليٰ بيج ۽ ٻئي سلاٽ لاءِ وڌيڪ DeHub ٽوڪن اسٽيڪ ڪريو."
+    "shopAllowanceUsed": "{{allowance}} مان {{allowance}} استعمال ٿيل. اعليٰ بيج ۽ ٻئي سلاٽ لاءِ وڌيڪ DeHub ٽوڪن اسٽيڪ ڪريو.",
+    "editFilters": "ڪيترائي فِلٽرز ڪم ڪيا ويا آهن.",
+    "cropRotate": "ڪاٽ ۽ ڪاٽائڻ",
+    "drawWrite": "ڪتاب نويس ۽ مصور",
+    "grayscale": "گرېسكل سڪيل {{value}}%",
+    "resetEdits": "ڪيٽيگري رڇائيڪر",
+    "clearDrawing": "صاف",
+    "typeText": "ڪمپيوٽر ۾ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيڪ ٿيګ",
+    "textSize": "ڪارڪردگي سائيز {{value}}",
+    "coverFrames": "ڪورٽ فريم چاھيو؟",
+    "coverFrame": "فريم {{index}} کي ڪور طور استعمال ڪريو",
+    "uploadCover": "ڪورٽ ڪيڪ",
+    "editFailed": "ڪتابڪارن کي ڪتابن جو پيش ڪرڻ جو حق حاصل آهي، پر ڪتابن جو پيش ڪرڻ جو حق ڪتابڪارن کي ۾ ڪنهن به صورت ۾ حاصل ناهي.",
+    "fade": "هلڪو {{value}}%"
   },
   "bounty": {
     "claimed": "حاصل ٿيو",
@@ -8525,7 +8564,8 @@
       "search": "ايپس ڳوليو",
       "all": "سڀ",
       "fromDehub": "DeHub کان",
-      "noMatch": "ڪوبه ايپس انهي ڳولا سان ملندڙ ناهي."
+      "noMatch": "ڪوبه ايپس انهي ڳولا سان ملندڙ ناهي.",
+      "yourApps": "توھان جون ايپس"
     },
     "card": {
       "open": "کوليو"

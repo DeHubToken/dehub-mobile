@@ -146,7 +146,9 @@
     "noMoreShorts": "Brak dalszych filmów Shorts",
     "noShortsFound": "Nie znaleziono filmów Shorts",
     "newMembersHint": "Właśnie dołączyłeś — przywitaj się",
-    "mostViewedThisMonth": "Najczęściej oglądane w tym miesiącu"
+    "scroll": "Scroll",
+    "noFilterMatches": "Brak treści pasujących do filtrów.",
+    "clearFilters": "Wyczyść filtry"
   },
   "explore": {
     "all": "Wszystko",
@@ -2641,7 +2643,31 @@
     "noneYetBeFirst": "Brak komentarzy. Bądź pierwszy!",
     "turnedOff": "Komentarze są wyłączone dla tego posta",
     "noQuotesYet": "Brak cytatów.",
-    "noRepostsYet": "Brak repostów."
+    "noRepostsYet": "Brak repostów.",
+    "timeSeconds": "{{count}} s",
+    "timeMinutes": "{{count}} min",
+    "timeHours": "{{count}} godz.",
+    "seeWhoLiked": "Zobacz, kto polubił",
+    "holdToReact": "{{reaction}} — przytrzymaj, aby zareagować",
+    "holdToChangeReaction": "{{reaction}} — przytrzymaj, aby zmienić reakcję",
+    "viewCount_one": "{{count}} wyświetlenie",
+    "viewCount_other": "Wyświetlenia: {{count}}",
+    "shareMessage": "Zobacz to: {{url}}",
+    "hideReplies": "Ukryj odpowiedzi",
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
+    "rowA11yHint": "Rozpoczyna odpowiedź na ten komentarz",
+    "editingComment": "Edytowanie komentarza",
+    "editPlaceholder": "Edytuj komentarz...",
+    "replyPlaceholder": "Napisz odpowiedź...",
+    "inputPlaceholder": "Pisz tutaj",
+    "cancelReply": "Anuluj odpowiedź",
+    "cancelEdit": "Anuluj edycję",
+    "countLabel_one": "{{count}} komentarz",
+    "countLabel_other": "Komentarze: {{count}}",
+    "repostsLabel_one": "Repost",
+    "repostsLabel_other": "Reposty",
+    "quotesLabel_one": "Cytat",
+    "quotesLabel_other": "Cytaty"
   },
   "postInfo": {
     "title": "Informacje o poście",
@@ -5126,7 +5152,20 @@
     "removeUploadTitle": "Usunąć to przesłanie?",
     "removeQueuedBody": "Nie został jeszcze opublikowany. Usunięcie go anuluje post.",
     "quotaShortfall": "Ten post kosztuje {{cost}} tokenów, a Ty masz {{held}}.",
-    "shopAllowanceUsed": "Wykorzystano {{allowance}} z {{allowance}}. Postaw więcej tokenów DeHub, aby uzyskać wyższą odznakę i kolejne miejsce."
+    "shopAllowanceUsed": "Wykorzystano {{allowance}} z {{allowance}}. Postaw więcej tokenów DeHub, aby uzyskać wyższą odznakę i kolejne miejsce.",
+    "editFilters": "Edytuj filtry",
+    "cropRotate": "Przytnij i obróć",
+    "drawWrite": "Rysuj i pisz",
+    "fade": "Wyblaknięcie {{value}}%",
+    "grayscale": "Skala szarości {{value}}%",
+    "resetEdits": "Resetuj",
+    "clearDrawing": "Wyczyść",
+    "typeText": "Wpisz…",
+    "textSize": "Rozmiar tekstu {{value}}",
+    "coverFrames": "Wybierz klatkę na okładkę",
+    "coverFrame": "Użyj klatki {{index}} jako okładki",
+    "uploadCover": "Prześlij obraz okładki",
+    "editFailed": "Nie udało się zastosować zmiany. Spróbuj ponownie."
   },
   "bounty": {
     "claimed": "Odebrano",
@@ -8594,7 +8633,11 @@
       "search": "Wyszukaj aplikacje",
       "all": "Wszystkie",
       "fromDehub": "Z DeHub",
-      "noMatch": "Brak dopasowanych aplikacji do tego wyszukiwania."
+      "noMatch": "Brak dopasowanych aplikacji do tego wyszukiwania.",
+      "yourApps": "Two aplikacje",
+      "notificationsOn": "Powiadomienia włączone",
+      "remove": "Usuń",
+      "removed": "Usunięto. Już nie powiadomi Cię o tym ponownie."
     },
     "card": {
       "open": "Otwórz"
@@ -8613,6 +8656,17 @@
       "developer-tools": "Narzędzia dla developerów",
       "entertainment": "Rozrywka",
       "art-creativity": "Sztuka & kreatywność"
+    },
+    "pay": {
+      "title": "Płać {{name}}?",
+      "body": "DHB trafia bezpośrednio do portfela aplikacji, {{wallet}}. Płatności nie mogą być cofnięte.",
+      "confirm": "Płać {{amount}} DHB",
+      "sent": "Zapłacono {{amount}} DHB do {{name}}."
+    },
+    "add": {
+      "title": "Dodaj {{name}}?",
+      "body": "Będzie widoczna pod Twoimi aplikacjami i może wysyłać do Ciebie powiadomienia. Możesz ją usunąć w dowolnej chwili z strony Aplikacje.",
+      "confirm": "Dodaj aplikację"
     }
   },
   "aiStyles": {

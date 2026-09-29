@@ -49,7 +49,6 @@ jest.mock('react-native-reanimated', () => ({
 }));
 jest.mock('../../components/common/Avatar', () => 'Avatar');
 jest.mock('expo-image', () => ({ Image: 'Image' }));
-jest.mock('../../libs/eventBus', () => ({ homeTabEvents: { requestTab: jest.fn() } }));
 jest.mock('../../components/ui/Icon', () => 'Icon');
 jest.mock('../../config/storefront', () => ({ DIGITAL_PURCHASES_ENABLED: true }));
 jest.mock('../../context/AuthContext', () => ({

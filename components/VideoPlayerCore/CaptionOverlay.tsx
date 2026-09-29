@@ -22,6 +22,7 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import type { VideoPlayer } from 'expo-video';
 import {
   useTranscript,
@@ -71,6 +72,8 @@ const CaptionOverlay: React.FC<Props> = ({
   player = null,
 }) => {
   const { t, i18n } = useTranslation();
+  // Before the `!ref` early return below, so the hook order never changes.
+  const insets = useSafeAreaInsets();
   const ref = useMemo(() => {
     const n = typeof tokenId === 'string' ? parseInt(tokenId, 10) : tokenId ?? 0;
     return Number.isFinite(n) && n > 0 ? String(n) : null;
@@ -284,7 +287,8 @@ const CaptionOverlay: React.FC<Props> = ({
         onRequestClose={() => setPickerOpen(false)}
       >
         <Pressable style={styles.backdrop} onPress={() => setPickerOpen(false)} />
-        <View style={styles.sheet}>
+        {/* Edge-to-edge Modal: the last language row has to clear the nav bar. */}
+        <View style={[styles.sheet, { paddingBottom: Math.max(24, insets.bottom + 12) }]}>
           <View style={styles.sheetHeader}>
             <Text style={styles.sheetTitle}>{t('subtitles.title')}</Text>
             <Pressable

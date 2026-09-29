@@ -146,7 +146,9 @@
     "noMoreShorts": "Башка шорттор жок",
     "noShortsFound": "Шорттор табылган жок",
     "newMembersHint": "Жаңы эле кошулду — салам айтыңыз",
-    "mostViewedThisMonth": "Бул айда эң көп көрүлгөн"
+    "scroll": "Scroll",
+    "noFilterMatches": "Чыпкаларыңызга дал келген контент жок.",
+    "clearFilters": "Чыпкаларды тазалоо"
   },
   "explore": {
     "all": "Баары",
@@ -2641,7 +2643,31 @@
     "noneYetBeFirst": "Азырынча комментарийлер жок. Биринчи болуңуз!",
     "turnedOff": "Бул пост үчүн комментарийлер өчүрүлгөн",
     "noQuotesYet": "Азырынча цитаталар жок.",
-    "noRepostsYet": "Азырынча репосттор жок."
+    "noRepostsYet": "Азырынча репосттор жок.",
+    "timeSeconds": "{{count}} сек",
+    "timeMinutes": "{{count}} мүн",
+    "timeHours": "{{count}} саат",
+    "seeWhoLiked": "Ким жактырганын көрүү",
+    "holdToReact": "{{reaction}} — реакция үчүн басып туруңуз",
+    "holdToChangeReaction": "{{reaction}} — реакцияңызды өзгөртүү үчүн басып туруңуз",
+    "viewCount_one": "{{count}} көрүү",
+    "viewCount_other": "{{count}} көрүү",
+    "shareMessage": "Муну карап көр: {{url}}",
+    "hideReplies": "Жоопторду жашыруу",
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
+    "rowA11yHint": "Бул комментарийге жооп жазууну баштайт",
+    "editingComment": "Комментарий түзөтүлүүдө",
+    "editPlaceholder": "Комментарийиңизди түзөтүңүз...",
+    "replyPlaceholder": "Жооп жазыңыз...",
+    "inputPlaceholder": "Бул жерге жазыңыз",
+    "cancelReply": "Жоопту жокко чыгаруу",
+    "cancelEdit": "Түзөтүүнү жокко чыгаруу",
+    "countLabel_one": "{{count}} комментарий",
+    "countLabel_other": "{{count}} комментарий",
+    "repostsLabel_one": "Репост",
+    "repostsLabel_other": "Репост",
+    "quotesLabel_one": "Цитата",
+    "quotesLabel_other": "Цитата"
   },
   "postInfo": {
     "title": "Пост маалыматы",
@@ -5126,7 +5152,20 @@
     "removeUploadTitle": "Жүктөөнү өчүрүү керекпи?",
     "removeQueuedBody": "Ал азырынча жарыялана элек. Аны алып салуу постту жокко чыгарат.",
     "quotaShortfall": "Бул пост {{cost}} токен турат жана сиз {{held}} ээлик кыласыз.",
-    "shopAllowanceUsed": "{{allowance}} ичинен {{allowance}} колдонулду. Жогорку белги жана дагы бир орун алуу үчүн көбүрөөк DeHub токендерин коюңуз."
+    "shopAllowanceUsed": "{{allowance}} ичинен {{allowance}} колдонулду. Жогорку белги жана дагы бир орун алуу үчүн көбүрөөк DeHub токендерин коюңуз.",
+    "editFilters": "Түшүрүүлөрду өзгөртүү",
+    "cropRotate": "Түрүп алып таштоо & түрүп алып таштоо",
+    "drawWrite": "Түшүрүүлөрду чийүү & жазуу",
+    "fade": "Көрүүнү көчүрүү {{value}}%",
+    "grayscale": "Гарыш түрүп алып таштоо {{value}}%",
+    "resetEdits": "Сактоо",
+    "clearDrawing": "Тазалоо",
+    "typeText": "Түшүрүүлөрду жазуу…",
+    "textSize": "Тексттин көлөмү {{value}}",
+    "coverFrames": "Көрүүнүн көчүрүү түрүн танда",
+    "coverFrame": "Көрүүнүн көчүрүү түрү {{index}} көрүүнүн көчүрүү түрү",
+    "uploadCover": "Көрүүнүн көчүрүү түрүн жүктө",
+    "editFailed": "Көрүүнүн көчүрүү түрүн жүктөп көрүүгө болбой калды. Көрүүнүн көчүрүү түрүн кайра көрүңүз."
   },
   "bounty": {
     "claimed": "Алынды",
@@ -8525,7 +8564,10 @@
       "search": "Колдонмолорду издөө",
       "all": "Баарын",
       "fromDehub": "From DeHub",
-      "noMatch": "Колдонмолор бул издөөгө дал келбейт."
+      "noMatch": "Колдонмолор бул издөөгө дал келбейт.",
+      "yourApps": "Колдонмолоруңуз",
+      "remove": "Айтпаңыз, айтпаңыз, айтпаңыз.",
+      "removed": "Алдатылды. Алдын ала башкача хабарлабайт."
     },
     "card": {
       "open": "Ачуу"
@@ -8544,6 +8586,17 @@
       "developer-tools": "Иштеп чыгуучу куралдар",
       "entertainment": "Көңүл ачуу",
       "art-creativity": "Art & чыгармачылык"
+    },
+    "pay": {
+      "title": "Сактоо {{name}}?",
+      "body": "Айылдык баланска тууралуу DHB жакшыраак кирет, {{wallet}}. Өдөөлөргө кайтарылбайт.",
+      "confirm": "Сактоо {{amount}} ДХБ",
+      "sent": "Акыркы күнү {{amount}}га DHB сатылды {{name}}."
+    },
+    "add": {
+      "title": "{{name}}?",
+      "body": "Сизге баардык уюштурулган уйкумдарды көрсөтүүчү \"Your apps\" бөлүмүнө кошулат да, аныча берилген маалыматтарды жеткирет. Алдындагы \"Apps\" бөлүмүнөн аны аныктаган учурда алып салышыңызга болот.",
+      "confirm": "Колдонмону кошуу"
     }
   },
   "aiStyles": {

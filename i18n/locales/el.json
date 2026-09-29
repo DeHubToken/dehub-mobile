@@ -146,7 +146,9 @@
     "noMoreShorts": "Δεν υπάρχουν άλλα shorts",
     "noShortsFound": "Δεν βρέθηκαν shorts",
     "newMembersHint": "Μόλις εγγραφήκατε — πείτε γεια",
-    "mostViewedThisMonth": "Τα πιο δημοφιλή αυτόν τον μήνα"
+    "scroll": "Scroll",
+    "noFilterMatches": "Κανένα περιεχόμενο δεν ταιριάζει με τα φίλτρα σας.",
+    "clearFilters": "Καθαρισμός φίλτρων"
   },
   "explore": {
     "all": "Όλα",
@@ -2671,7 +2673,31 @@
     "noneYetBeFirst": "Δεν υπάρχουν ακόμη σχόλια. Γίνε ο πρώτος!",
     "turnedOff": "Τα σχόλια είναι απενεργοποιημένα για αυτήν την ανάρτηση",
     "noQuotesYet": "Δεν υπάρχουν ακόμη αποσπάσματα.",
-    "noRepostsYet": "Δεν υπάρχουν ακόμη επαναδημοσιεύσεις."
+    "noRepostsYet": "Δεν υπάρχουν ακόμη επαναδημοσιεύσεις.",
+    "timeSeconds": "{{count}} δευτ.",
+    "timeMinutes": "{{count}} λεπ.",
+    "timeHours": "{{count}} ώρ.",
+    "seeWhoLiked": "Δείτε σε ποιους αρέσει",
+    "holdToReact": "{{reaction}} — πατήστε παρατεταμένα για αντίδραση",
+    "holdToChangeReaction": "{{reaction}} — πατήστε παρατεταμένα για αλλαγή αντίδρασης",
+    "viewCount_one": "{{count}} προβολή",
+    "viewCount_other": "{{count}} προβολές",
+    "shareMessage": "Δες αυτό: {{url}}",
+    "hideReplies": "Απόκρυψη απαντήσεων",
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
+    "rowA11yHint": "Ξεκινά απάντηση σε αυτό το σχόλιο",
+    "editingComment": "Επεξεργασία σχολίου",
+    "editPlaceholder": "Επεξεργαστείτε το σχόλιό σας...",
+    "replyPlaceholder": "Γράψτε μια απάντηση...",
+    "inputPlaceholder": "Πληκτρολογήστε εδώ",
+    "cancelReply": "Ακύρωση απάντησης",
+    "cancelEdit": "Ακύρωση επεξεργασίας",
+    "countLabel_one": "{{count}} σχόλιο",
+    "countLabel_other": "{{count}} σχόλια",
+    "repostsLabel_one": "αναδημοσίευση",
+    "repostsLabel_other": "αναδημοσιεύσεις",
+    "quotesLabel_one": "παράθεση",
+    "quotesLabel_other": "παραθέσεις"
   },
   "postInfo": {
     "title": "Πληροφορίες ανάρτησης",
@@ -5156,7 +5182,20 @@
     "removeUploadTitle": "Κατάργηση αυτής της μεταφόρτωσης;",
     "removeQueuedBody": "Δεν έχει δημοσιευτεί ακόμα. Η αφαίρεσή του ακυρώνει την ανάρτηση.",
     "quotaShortfall": "Αυτή η ανάρτηση κοστίζει {{cost}} tokens και έχετε {{held}}.",
-    "shopAllowanceUsed": "{{allowance}} από {{allowance}} χρησιμοποιήθηκαν. Κάντε stake περισσότερα tokens DeHub για υψηλότερο σήμα και άλλη θέση."
+    "shopAllowanceUsed": "{{allowance}} από {{allowance}} χρησιμοποιήθηκαν. Κάντε stake περισσότερα tokens DeHub για υψηλότερο σήμα και άλλη θέση.",
+    "editFilters": "Επεξεργασία φίλτρου",
+    "cropRotate": "Κόψτε & περιστρέψτε",
+    "drawWrite": "Γράψτε & ζωγραφίστε",
+    "fade": "Φανοί {{value}}%",
+    "grayscale": "Αchromat {{value}}%",
+    "resetEdits": "Αποκαταστήστε",
+    "clearDrawing": "Καθαρίστε",
+    "typeText": "Γράψτε…",
+    "textSize": "Μέγεθος κειμένου {{value}}",
+    "coverFrames": "Επιλέξτε ένα πλαίσιο για την οθόνη",
+    "coverFrame": "Χρησιμοποιήστε το πλαίσιο {{index}} ως την οθόνη",
+    "uploadCover": "Ανέβαστε μια οθόνη",
+    "editFailed": "Δεν μπορέσαμε να εφαρμόσουμε αυτή την επεξεργασία. Δοκιμάστε ξανά."
   },
   "bounty": {
     "claimed": "Παραλήφθηκε",
@@ -8556,7 +8595,11 @@
       "search": "Αναζήτηση εφαρμογών",
       "all": "Όλα",
       "fromDehub": "Από το DeHub",
-      "noMatch": "Καμία εφαρμογή δεν ταιριάζει με αυτήν την αναζήτηση."
+      "noMatch": "Καμία εφαρμογή δεν ταιριάζει με αυτήν την αναζήτηση.",
+      "yourApps": "Τα προγράμματα σου",
+      "notificationsOn": "Ειδοποιήσεις ενεργοποιημένες",
+      "remove": "Αφαίρεση",
+      "removed": "Αφαίρεση. Δεν θα σε ειδοποιεί ξανά."
     },
     "card": {
       "open": "Άνοιγμα"
@@ -8575,6 +8618,17 @@
       "developer-tools": "Εργαλεία για προγραμματιστές",
       "entertainment": "Ψυχαγωγία",
       "art-creativity": "Τέχνη & δημιουργικότητα"
+    },
+    "pay": {
+      "title": "Πληρώστε {{name}}?",
+      "body": "Το DHB πηγαίνει απευθείας στο πορτοφόλι της εφαρμογής, {{wallet}}. Οι πληρωμές δεν μπορούν να ανακληθούν.",
+      "confirm": "Πληρώστε {{amount}} DHB",
+      "sent": "Πληρώσατε {{amount}} DHB στο {{name}}."
+    },
+    "add": {
+      "title": "Προσθέστε {{name}}?",
+      "body": "Θα εμφανιστεί κάτω από Τα προγράμματα σου και μπορεί να σας στείλει ειδοποιήσεις. Μπορείτε να το αφαιρέσετε οποιαδήποτε στιγμή από την σελίδα Apps.",
+      "confirm": "Προσθήκη εφαρμογής"
     }
   },
   "aiStyles": {

@@ -64,6 +64,7 @@ import {
   minimalTabStrip,
 } from "../theme/minimal";
 import { ScreenNames } from "../navigation/ScreenNames";
+import { useCanGoBack } from "../hooks/useCanGoBack";
 import { useTranslation } from "react-i18next";
 import type { TFunction } from "i18next";
 import {
@@ -852,6 +853,9 @@ export default function FeatureRequestsScreen() {
   const insets = useSafeAreaInsets();
   const { width } = useWindowDimensions();
   const navigation = useNavigation<any>();
+  // Opened from the menu, a render-time canGoBack() is still false; this
+  // follows the stack once the push is saved.
+  const canPop = useCanGoBack();
   const { isSignedIn, needsUsername } = useAuthState();
   const isAuthed = isSignedIn && !needsUsername;
 
@@ -1018,7 +1022,7 @@ export default function FeatureRequestsScreen() {
           back affordance in its own chrome; folding it into the title row here
           cost ~40pt and left "Feature Requests" one device width from
           truncating. */}
-      {navigation.canGoBack?.() && (
+      {canPop && (
         <Pressable
           onPress={() => navigation.goBack()}
           hitSlop={10}

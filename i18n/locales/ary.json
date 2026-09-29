@@ -146,7 +146,9 @@
     "noMoreShorts": "ما كاينينش فيديوهات قصيرة أخرى",
     "noShortsFound": "ما لقيتش فيديوهات قصيرة",
     "newMembersHint": "يلاه انضممت — سلم عليهم",
-    "mostViewedThisMonth": "الأكثر مشاهدة هاد الشهر"
+    "scroll": "Scroll",
+    "noFilterMatches": "ماكاينش محتوى كيطابق الفلاتر ديالك.",
+    "clearFilters": "مسح الفلاتر"
   },
   "explore": {
     "all": "كلشي",
@@ -2671,7 +2673,31 @@
     "noneYetBeFirst": "مازال ما كاينينش جيمونطيرات. كون الأول!",
     "turnedOff": "الجيمونطيرات مسدودين لهاد البوست",
     "noQuotesYet": "مازال ما كاينينش اقتباسات.",
-    "noRepostsYet": "مازال ما كاينينش إعادة نشر."
+    "noRepostsYet": "مازال ما كاينينش إعادة نشر.",
+    "timeSeconds": "{{count}} ث",
+    "timeMinutes": "{{count}} د",
+    "timeHours": "{{count}} س",
+    "seeWhoLiked": "شوف شكون عجبو",
+    "holdToReact": "{{reaction}} — ضغط مطوّل باش تفاعل",
+    "holdToChangeReaction": "{{reaction}} — ضغط مطوّل باش تبدّل التفاعل ديالك",
+    "viewCount_one": "{{count}} مشاهدة",
+    "viewCount_other": "{{count}} مشاهدات",
+    "shareMessage": "شوف هادي: {{url}}",
+    "hideReplies": "خبّي الردود",
+    "rowA11yLabel": "{{name}}، {{time}}: {{text}}",
+    "rowA11yHint": "كيبدا رد على هاد التعليق",
+    "editingComment": "تعديل التعليق",
+    "editPlaceholder": "عدّل التعليق ديالك...",
+    "replyPlaceholder": "كتب رد...",
+    "inputPlaceholder": "كتب هنا",
+    "cancelReply": "لغي الرد",
+    "cancelEdit": "لغي التعديل",
+    "countLabel_one": "{{count}} تعليق",
+    "countLabel_other": "{{count}} تعليقات",
+    "repostsLabel_one": "إعادة نشر",
+    "repostsLabel_other": "إعادة نشر",
+    "quotesLabel_one": "اقتباس",
+    "quotesLabel_other": "اقتباسات"
   },
   "postInfo": {
     "title": "معلومات المنشور",
@@ -5156,7 +5182,20 @@
     "removeUploadTitle": "هل تريد إزالة هذا التحميل ؟",
     "removeQueuedBody": "لم يتم نشره بعد. تؤدي إزالته إلى إلغاء المنشور.",
     "quotaShortfall": "هاد البوست فيه {{cost}} توكنز و نتا عندك {{held}}.",
-    "shopAllowanceUsed": "{{allowance}} من {{allowance}} مستعملة. ستيك توكنز ديال DeHub أكثر باش تاخد بادج أعلى و بلاصة أخرى."
+    "shopAllowanceUsed": "{{allowance}} من {{allowance}} مستعملة. ستيك توكنز ديال DeHub أكثر باش تاخد بادج أعلى و بلاصة أخرى.",
+    "editFilters": "تحرير الفلاتر",
+    "cropRotate": "قطع ودوّن",
+    "drawWrite": "رسم وكتابة",
+    "fade": "إخفاء {{value}}%",
+    "grayscale": "اللون الرمادي {{value}}%",
+    "resetEdits": "إعادة الضبط",
+    "clearDrawing": "مسح",
+    "typeText": "اكتب...",
+    "textSize": "حجم النص {{value}}",
+    "coverFrames": "اختر إطار الغلاف",
+    "coverFrame": "استخدم إطار {{index}} كغلاف",
+    "uploadCover": "تحميل صورة الغلاف",
+    "editFailed": "لم يتم تطبيق التعديل. حاول مرة أخرى."
   },
   "bounty": {
     "claimed": "تسلم",
@@ -8556,7 +8595,11 @@
       "search": "البحث في التطبيقات",
       "all": "الكل",
       "fromDehub": "من DeHub",
-      "noMatch": "لا توجد تطبيقات تطابق هذا البحث."
+      "noMatch": "لا توجد تطبيقات تطابق هذا البحث.",
+      "yourApps": "تفعيل الإشعارات",
+      "notificationsOn": "إشعاراتك مفعلة",
+      "remove": "إزالة",
+      "removed": "تم الإزالة. لن تنبهك مرة أخرى."
     },
     "card": {
       "open": "فتح"
@@ -8575,6 +8618,17 @@
       "developer-tools": "أدوات المطور",
       "entertainment": "الترفيه",
       "art-creativity": "الفن والإبداع"
+    },
+    "pay": {
+      "title": "تسلم {{name}} DHB؟",
+      "body": "الدينار المغربي يذهب مباشرة إلى موديل التطبيق، {{wallet}}. الدفعات لا يمكن إبطالها.",
+      "confirm": "تسلم {{amount}} DHB",
+      "sent": "تم الدفع بنجاح: {{amount}} DHB إلى {{name}}."
+    },
+    "add": {
+      "title": "إضافة {{name}}؟",
+      "body": "سيظهر تحت \"تطبيقاتك\" ويمكنه إرسال إشعارات لك. يمكنك إزالته في أي وقت من صفحة التطبيقات.",
+      "confirm": "إضافة التطبيق"
     }
   },
   "aiStyles": {

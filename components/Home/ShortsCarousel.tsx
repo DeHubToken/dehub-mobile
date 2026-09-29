@@ -1,5 +1,5 @@
 /**
- * ShortsCarousel – "Most viewed this month" rail in the home feed.
+ * ShortsCarousel – the "Scroll" rail in the home feed.
  *
  * Mirrors web's home Scroll carousel: this month's most-viewed videos
  * (long-form first) interleaved with this month's most-viewed photo posts
@@ -104,7 +104,7 @@ const ShortsCarousel: React.FC = () => {
         className="flex-row items-center px-2 mb-2.5"
         style={isMinimal ? { paddingHorizontal: MINIMAL_INSET } : undefined}
       >
-        <Text className="text-white text-sm font-semibold">{t("feed.mostViewedThisMonth")}</Text>
+        <Text className="text-white text-sm font-semibold">{t("feed.scroll")}</Text>
       </View>
       {scrollGuard ? <GestureDetector gesture={scrollGuard}>{list}</GestureDetector> : list}
     </View>

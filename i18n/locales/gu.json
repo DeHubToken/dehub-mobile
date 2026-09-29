@@ -146,7 +146,9 @@
     "noMoreShorts": "વધુ શોર્ટ્સ નથી",
     "noShortsFound": "કોઈ શોર્ટ્સ મળ્યા નથી",
     "newMembersHint": "હમણાં જ જોડાયા — હેલો કહો",
-    "mostViewedThisMonth": "આ મહિને સૌથી વધુ જોવાયેલ"
+    "scroll": "Scroll",
+    "noFilterMatches": "તમારા ફિલ્ટર્સ સાથે કોઈ સામગ્રી મેળ ખાતી નથી.",
+    "clearFilters": "ફિલ્ટર સાફ કરો"
   },
   "explore": {
     "all": "બધું",
@@ -2641,7 +2643,31 @@
     "noneYetBeFirst": "હજુ સુધી કોઈ ટિપ્પણી નથી. પ્રથમ બનો!",
     "turnedOff": "આ પોસ્ટ માટે ટિપ્પણીઓ બંધ છે",
     "noQuotesYet": "હજુ સુધી કોઈ અવતરણ નથી.",
-    "noRepostsYet": "હજુ સુધી કોઈ રિપોસ્ટ નથી."
+    "noRepostsYet": "હજુ સુધી કોઈ રિપોસ્ટ નથી.",
+    "timeSeconds": "{{count}} સેકન્ડ",
+    "timeMinutes": "{{count}} મિનિટ",
+    "timeHours": "{{count}} કલાક",
+    "seeWhoLiked": "કોને ગમ્યું તે જુઓ",
+    "holdToReact": "{{reaction}} — પ્રતિક્રિયા આપવા દબાવી રાખો",
+    "holdToChangeReaction": "{{reaction}} — તમારી પ્રતિક્રિયા બદલવા દબાવી રાખો",
+    "viewCount_one": "{{count}} વાર જોવાયું",
+    "viewCount_other": "{{count}} વાર જોવાયું",
+    "shareMessage": "આ જુઓ: {{url}}",
+    "hideReplies": "જવાબો છુપાવો",
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
+    "rowA11yHint": "આ ટિપ્પણીનો જવાબ લખવાનું શરૂ કરે છે",
+    "editingComment": "ટિપ્પણી સંપાદિત કરી રહ્યા છીએ",
+    "editPlaceholder": "તમારી ટિપ્પણી સંપાદિત કરો...",
+    "replyPlaceholder": "જવાબ લખો...",
+    "inputPlaceholder": "અહીં ટાઇપ કરો",
+    "cancelReply": "જવાબ રદ કરો",
+    "cancelEdit": "સંપાદન રદ કરો",
+    "countLabel_one": "{{count}} ટિપ્પણી",
+    "countLabel_other": "{{count}} ટિપ્પણીઓ",
+    "repostsLabel_one": "રિપોસ્ટ",
+    "repostsLabel_other": "રિપોસ્ટ્સ",
+    "quotesLabel_one": "ક્વોટ",
+    "quotesLabel_other": "ક્વોટ્સ"
   },
   "postInfo": {
     "title": "પોસ્ટ માહિતી",
@@ -5126,7 +5152,20 @@
     "removeUploadTitle": "આ અપલોડ દૂર કરો?",
     "removeQueuedBody": "તે હજી સુધી પોસ્ટ કરવામાં આવ્યું નથી. તેને દૂર કરવાથી પોસ્ટ રદ થઈ જાય છે.",
     "quotaShortfall": "આ પોસ્ટની કિંમત {{cost}} ટોકન્સ છે અને તમારી પાસે {{held}} છે.",
-    "shopAllowanceUsed": "{{allowance}} માંથી {{allowance}} નો ઉપયોગ થયો. ઉચ્ચ બેજ અને અન્ય સ્લોટ માટે વધુ DeHub ટોકન્સ સ્ટેક કરો."
+    "shopAllowanceUsed": "{{allowance}} માંથી {{allowance}} નો ઉપયોગ થયો. ઉચ્ચ બેજ અને અન્ય સ્લોટ માટે વધુ DeHub ટોકન્સ સ્ટેક કરો.",
+    "editFilters": "સારાંશ સાફ કરો",
+    "cropRotate": "કાપો અને રોટેટ",
+    "drawWrite": "આકારો અને લખો",
+    "fade": "ફેડ {{value}}%",
+    "grayscale": "ગ્રેસેલ કરો {{value}}%",
+    "resetEdits": "રિસેટ",
+    "clearDrawing": "સાફ કરો",
+    "typeText": "ટાઇપ...",
+    "textSize": "ટેક્સ્ટ સાઇઝ {{value}}",
+    "coverFrames": "કવર ફ્રેમ પસંદ કરો",
+    "coverFrame": "ફ્રેમ {{index}} ને કવર તરીકે વપરાવો",
+    "uploadCover": "કવર ચિત્ર ઉપલોડ કરો",
+    "editFailed": "એડિટ કરવામાં આવ્યું ન શક્યું. ફરીથી પ્રયાસ કરો."
   },
   "bounty": {
     "claimed": "મેળવ્યું",
@@ -8526,7 +8565,11 @@
       "search": "સર્ચ એપ્લિકેશનો",
       "all": "સમસ્ત",
       "fromDehub": "ડીહ્યુબ થી",
-      "noMatch": "કોઈ એપ્લિકેશન તમારા શોધના મુજબ મળ્યા નથી."
+      "noMatch": "કોઈ એપ્લિકેશન તમારા શોધના મુજબ મળ્યા નથી.",
+      "removed": "હટાવવામાં આવ્યું છે. તમને ફરીથી સૂચના મળશે નહીં.",
+      "yourApps": "તમારા એપ્સ",
+      "notificationsOn": "અપડેટ્સ (નોટિફિકેશન્સ) પર",
+      "remove": "હટાવો"
     },
     "card": {
       "open": "ઓપન"
@@ -8545,6 +8588,17 @@
       "developer-tools": "ડેવલપર ટૂલ્સ",
       "entertainment": "એન્ટરટેન્મેન્ટ",
       "art-creativity": "આર્ટ અને ક્રીએટિવિટી"
+    },
+    "pay": {
+      "body": "ધેબી (DHB) તરત જ એપની વૉલેટમાં જાય છે, {{wallet}}. પેયમેન્ટ્સને પાછા લેવા મંજૂર નથી.",
+      "confirm": "{{amount}} DHB ચૂકવો",
+      "sent": "પેય કરેલ {{amount}} DHB {{name}}.",
+      "title": "{{name}} માટે ભૂગોળ કરો?"
+    },
+    "add": {
+      "body": "તમેના *Your apps* હેઠળ તે દેખાશે અને તમને નોંધણીઓ પહોંચાડી શકે છે. તમે કોઇ પણ સમયે *Apps page* થી તેને હટાવી શકો છો.",
+      "confirm": "એપ્લિકેશન ઉમેરો",
+      "title": "{{name}} ઉમેરો?"
     }
   },
   "aiStyles": {

@@ -146,7 +146,9 @@
     "noMoreShorts": "और शॉर्ट्स नहीं",
     "noShortsFound": "कोई शॉर्ट्स नहीं मिला",
     "newMembersHint": "अभी जुड़े हैं — नमस्ते कहें",
-    "mostViewedThisMonth": "ई महीना सबसे ज्यादा देखल"
+    "scroll": "Scroll",
+    "noFilterMatches": "रउरा फिल्टर से कवनो सामग्री मेल ना खात बा।",
+    "clearFilters": "फिल्टर हटाईं"
   },
   "explore": {
     "all": "सभे",
@@ -2640,7 +2642,31 @@
     "noneYetBeFirst": "अभी कोई टिप्पणी नहीं है। सबसे पहले बनें!",
     "turnedOff": "इस पोस्ट के लिए टिप्पणियाँ बंद हैं",
     "noQuotesYet": "अभी कोई उद्धरण नहीं है।",
-    "noRepostsYet": "अभी कोई रीपोस्ट नहीं है।"
+    "noRepostsYet": "अभी कोई रीपोस्ट नहीं है।",
+    "timeSeconds": "{{count}} से",
+    "timeMinutes": "{{count}} मि",
+    "timeHours": "{{count}} घं",
+    "seeWhoLiked": "देखीं केकरा पसंद आइल",
+    "holdToReact": "{{reaction}} — रिएक्ट करे खातिर दबा के रखीं",
+    "holdToChangeReaction": "{{reaction}} — आपन रिएक्शन बदले खातिर दबा के रखीं",
+    "viewCount_one": "{{count}} व्यू",
+    "viewCount_other": "{{count}} व्यू",
+    "shareMessage": "ई देखीं: {{url}}",
+    "hideReplies": "जवाब छिपाईं",
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
+    "rowA11yHint": "एह टिप्पणी पर जवाब शुरू करेला",
+    "editingComment": "टिप्पणी संपादित हो रहल बा",
+    "editPlaceholder": "आपन टिप्पणी संपादित करीं...",
+    "replyPlaceholder": "जवाब लिखीं...",
+    "inputPlaceholder": "इहाँ टाइप करीं",
+    "cancelReply": "जवाब रद्द करीं",
+    "cancelEdit": "संपादन रद्द करीं",
+    "countLabel_one": "{{count}} टिप्पणी",
+    "countLabel_other": "{{count}} टिप्पणी",
+    "repostsLabel_one": "रीपोस्ट",
+    "repostsLabel_other": "रीपोस्ट",
+    "quotesLabel_one": "कोट",
+    "quotesLabel_other": "कोट"
   },
   "postInfo": {
     "title": "पोस्ट जानकारी",
@@ -5110,7 +5136,20 @@
     "removeUploadTitle": "का आप ई जानल चाहत बानी कि आप इहाँ योगदान कइसे कर",
     "removeQueuedBody": "अबहिन तक बात नाहीं हो पाइल बा कि कइसन बाटें. ई पोस्ट के हटावे के परेला ।",
     "quotaShortfall": "इस पोस्ट की लागत {{cost}} टोकन है और आपके पास {{held}} है।",
-    "shopAllowanceUsed": "{{allowance}} में से {{allowance}} का उपयोग किया गया। उच्च बैज और एक और स्लॉट के लिए अधिक DeHub टोकन स्टेक करें।"
+    "shopAllowanceUsed": "{{allowance}} में से {{allowance}} का उपयोग किया गया। उच्च बैज और एक और स्लॉट के लिए अधिक DeHub टोकन स्टेक करें।",
+    "cropRotate": "काटना आउर घुमाव",
+    "drawWrite": "कला करो",
+    "fade": "फ़ेड {{value}}%",
+    "grayscale": "ग्रे स्केल {{value}}%",
+    "resetEdits": "निरस्त करें",
+    "clearDrawing": "साफ़ करें",
+    "typeText": "टाइप…",
+    "textSize": "साइज़ {{value}}",
+    "coverFrames": "कवर फ्रेम चुनें",
+    "uploadCover": "भिडिअो कवर इमेज अपलोड करें",
+    "editFailed": "कृपया पुनः प्रयास करें ।",
+    "editFilters": "फ़िल्टर बदलीं",
+    "coverFrame": "फ़्रेम {{index}} के कवर बनाईं"
   },
   "bounty": {
     "claimed": "मिल गइल",
@@ -8506,7 +8545,11 @@
       "search": "एप्स खोज्नुहोस्",
       "all": "सब",
       "fromDehub": "DeHub मा से",
-      "noMatch": "कोई एप्स खोजमा मिल्दैन।"
+      "noMatch": "कोई एप्स खोजमा मिल्दैन।",
+      "removed": "हट गया है। अब तुको और कोई सूचना नही आएगी।",
+      "yourApps": "तेरे ऐप्स",
+      "notificationsOn": "नोटिफिकेशन ऑन",
+      "remove": "हटाओ"
     },
     "card": {
       "open": "खुल्नुहोस्"
@@ -8525,6 +8568,17 @@
       "developer-tools": "डेवलपर उपकरणहरू",
       "entertainment": "मनोरंजन कइल",
       "art-creativity": "कला अउरी रचनात्मकता"
+    },
+    "pay": {
+      "body": "DHB सीधे ऐप के वॉलेट में जाया करता है, {{wallet}}. भुगतान वापस नहीं किया जा सकता।",
+      "confirm": "पेय {{amount}} डीएचबी",
+      "sent": "पैसा {{amount}} को {{name}} दे दैया।",
+      "title": "{{name}} को पे करना?"
+    },
+    "add": {
+      "title": "{{name}} को जोड़ना?",
+      "body": "यह तेरे ऐप्स के तले दिखेगा और तेरे को नोटिफिकेशन भेज सकता है। कभी भी ऐप्स पेज से हटाया जा सकता है।",
+      "confirm": "ऐप जोड़ना"
     }
   },
   "aiStyles": {

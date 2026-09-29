@@ -12,8 +12,10 @@ import {
   View,
 } from "react-native";
 import { useTranslation } from "react-i18next";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Icon from "../ui/Icon";
 import { appealModerationDecision } from "../../services/moderation.service";
+import useKeyboard from "../../hooks/useKeyboard";
 
 /**
  * Appeal a moderation decision.
@@ -50,6 +52,10 @@ const AppealSheet: React.FC<AppealSheetProps> = ({
   const { t } = useTranslation();
   const [reason, setReason] = useState("");
   const [submitting, setSubmitting] = useState(false);
+  // The Modal runs under the nav bar (edge-to-edge), so the footnote needs the
+  // inset. Not while typing: the keyboard already lifts the sheet clear of it.
+  const insets = useSafeAreaInsets();
+  const { isVisible: kbUp } = useKeyboard();
 
   // A fresh sheet is a fresh appeal — a kept draft would be filed against
   // whichever decision was opened next.
@@ -99,6 +105,7 @@ const AppealSheet: React.FC<AppealSheetProps> = ({
             borderTopLeftRadius: 20,
             borderTopRightRadius: 20,
             padding: 20,
+            paddingBottom: kbUp ? 20 : Math.max(20, insets.bottom + 16),
             gap: 12,
           }}
         >

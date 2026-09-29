@@ -24,7 +24,11 @@ import { ScreenNames } from "../navigation/ScreenNames";
 import { WEBSITE_LINK } from "../config/links";
 import { openInApp } from "../libs/links.utils";
 import { colors } from "../theme/colors";
-import { fetchListedApps, type MiniAppListing } from "../services/miniapps.service";
+import { fetchAddedApps, fetchListedApps, removeMiniApp, type AddedApp, type MiniAppListing } from "../services/miniapps.service";
+import { useAuth } from "../context/AuthContext";
+import { getAuthToken } from "../libs/auth.utils";
+import { toastError, toastSuccess } from "../libs";
+import env from "../config/env";
 import { ARCADE_GAMES } from "../config/arcade-games";
 
 function AppRow({ app, onPress }: { app: MiniAppListing; onPress: (slug: string) => void }) {
@@ -62,6 +66,31 @@ export default function AppsScreen() {
   const [refreshing, setRefreshing] = useState(false);
   const mounted = useRef(true);
   const [query, setQuery] = useState("");
+  const { user } = useAuth();
+  const [added, setAdded] = useState<AddedApp[]>([]);
+  useEffect(() => {
+    let live = true;
+    fetchAddedApps(user?.walletAddress).then((rows) => {
+      if (live) setAdded(rows);
+    });
+    return () => {
+      live = false;
+    };
+  }, [user?.walletAddress]);
+  const remove = useCallback(
+    async (slug: string) => {
+      try {
+        const session = await getAuthToken();
+        if (!session) return;
+        await removeMiniApp(session, env.SUPABASE_URL, slug);
+        setAdded((rows) => rows.filter((r) => r.miniapp_apps?.slug !== slug));
+        toastSuccess(t("miniApps.store.removed"));
+      } catch (error) {
+        toastError((error as Error).message);
+      }
+    },
+    [t],
+  );
   const [category, setCategory] = useState("all");
   const categories = useMemo(
     () => [...new Set((apps ?? []).map((a) => a.category).filter((c): c is string => Boolean(c)))].sort(),
@@ -151,6 +180,43 @@ export default function AppsScreen() {
               </Pressable>
             ))}
           </ScrollView>
+        ) : null}
+
+        {!query && category === "all" && added.length > 0 ? (
+          <>
+            <Text style={styles.sectionTitle}>{t("miniApps.store.yourApps")}</Text>
+            {added.map((row) =>
+              row.miniapp_apps ? (
+                <View key={row.app_id} style={styles.row}>
+                  <Pressable
+                    accessibilityRole="button"
+                    accessibilityLabel={row.miniapp_apps.name}
+                    onPress={() => open(row.miniapp_apps!.slug)}
+                    style={styles.addedMain}
+                  >
+                    {row.miniapp_apps.icon_url ? (
+                      <Image source={{ uri: row.miniapp_apps.icon_url }} style={styles.icon} />
+                    ) : (
+                      <View style={[styles.icon, styles.iconFallback]} />
+                    )}
+                    <View style={styles.rowText}>
+                      <Text numberOfLines={1} style={styles.name}>{row.miniapp_apps.name}</Text>
+                      <Text numberOfLines={1} style={styles.subtitle}>
+                        {row.notifications_on ? t("miniApps.store.notificationsOn") : row.miniapp_apps.domain}
+                      </Text>
+                    </View>
+                  </Pressable>
+                  <Pressable
+                    accessibilityRole="button"
+                    onPress={() => void remove(row.miniapp_apps!.slug)}
+                    style={styles.removeButton}
+                  >
+                    <Text style={styles.removeLabel}>{t("miniApps.store.remove")}</Text>
+                  </Pressable>
+                </View>
+              ) : null,
+            )}
+          </>
         ) : null}
 
         {!query && category === "all" ? (
@@ -270,6 +336,9 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "rgba(255,255,255,0.06)",
   },
+  addedMain: { flex: 1, minWidth: 0, flexDirection: "row", alignItems: "center", gap: 12 },
+  removeButton: { borderRadius: 8, backgroundColor: "#27272A", paddingHorizontal: 12, paddingVertical: 6 },
+  removeLabel: { color: "#E4E4E7", fontSize: 12, fontWeight: "600" },
   searchInput: { flex: 1, height: 40, color: "#FFFFFF", fontSize: 14 },
   chips: { gap: 6, paddingVertical: 2 },
   chip: { borderRadius: 999, paddingHorizontal: 12, paddingVertical: 6, backgroundColor: "#18181B" },
