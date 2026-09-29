@@ -12,7 +12,7 @@ import { getThemeSkin, type ThemeSkin } from '../theme/skins';
 // Plain JS shared with the JSX runtime, which loads before any of this.
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { setThemePass } = require('../libs/jsx/shape') as {
-  setThemePass: (square: boolean, page: string | null, classes?: boolean) => void;
+  setThemePass: (square: boolean, page: string | null, classes?: boolean, surface?: string) => void;
 };
 
 type AppThemeContextValue = {
@@ -127,7 +127,9 @@ export const AppThemeProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   // Inline StyleSheet radii and near-black page fills (see libs/jsx/shape.js).
   // Set during render so the children rendered below this already see it.
   if (theme === 'minimal') setThemePass(true, '#000');
-  else if (skin) setThemePass(skin.square, pageVeil(skin.page), true);
+  // Pages are veiled over the backdrop; modals, sheets and pinned bars take
+  // the solid page colour so nothing shows through them (libs/jsx/surface.js).
+  else if (skin) setThemePass(skin.square, pageVeil(skin.page), true, skin.page);
   else setThemePass(false, null);
 
   useEffect(() => {
