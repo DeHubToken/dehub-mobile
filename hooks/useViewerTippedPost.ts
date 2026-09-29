@@ -49,14 +49,17 @@ export function useViewerTippedPost(tokenId?: number | string | null, walletAddr
   const wallet = walletAddress?.toLowerCase();
   const id = tokenId != null ? String(tokenId) : "";
   const key = `${wallet}:${id}`;
-  const [tipped, setTipped] = useState(() => cache.get(key) ?? false);
+  // The answer carries the key it was asked for, and is read straight from the
+  // cache otherwise. A card handed another post (or another wallet) shows that
+  // post's answer in its first render, with no stale gem and no extra render
+  // to correct it.
+  const [answer, setAnswer] = useState<{ key: string; tipped: boolean } | null>(null);
+  const tipped = answer?.key === key ? answer.tipped : cache.get(key) ?? false;
 
   useEffect(() => {
-    if (!wallet || !id) return;
-    const known = cache.get(key);
-    if (known !== undefined) { setTipped(known); return; }
+    if (!wallet || !id || cache.has(key)) return;
     let cancelled = false;
-    request(id, wallet).then((v) => { if (!cancelled) setTipped(v); });
+    request(id, wallet).then((v) => { if (!cancelled) setAnswer({ key, tipped: v }); });
     return () => { cancelled = true; };
   }, [wallet, id, key]);
 

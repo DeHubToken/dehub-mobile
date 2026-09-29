@@ -1,4 +1,4 @@
-import { useRef, useState, type Dispatch, type SetStateAction } from "react";
+import { useCallback, useRef, useState, type Dispatch, type SetStateAction } from "react";
 
 /**
  * `useState` for a list cell that gets recycled.
@@ -26,4 +26,33 @@ export function useItemState<T>(
     setState(typeof initial === "function" ? (initial as () => T)() : initial);
   }
   return [state, setState];
+}
+
+/**
+ * Per-post state written after an await or a deferred callback.
+ *
+ * Each write carries the key it was made under, and any other key reads
+ * `fallback`. So a recycled cell never shows the previous post's value, and a
+ * write that lands late for that post (a save resolving, a sign-in finishing)
+ * cannot open or change anything on the next one: the setter a handler
+ * captured at tap time still writes under the old key. There is no reset
+ * render and no effect.
+ *
+ * `fallback` must be a primitive or a module constant, because the setter
+ * changes identity with it.
+ */
+export function useKeyedState<T>(key: string, fallback: T): [T, (next: T | ((prev: T) => T)) => void] {
+  const [box, setBox] = useState<{ key: string; value: T } | null>(null);
+  const value = box !== null && box.key === key ? box.value : fallback;
+  const set = useCallback(
+    (next: T | ((prev: T) => T)) =>
+      setBox((prev) => {
+        const current = prev !== null && prev.key === key ? prev.value : fallback;
+        const v = typeof next === "function" ? (next as (p: T) => T)(current) : next;
+        // Nothing this key reads would change, so keep the box and skip the render.
+        return Object.is(v, current) ? prev : { key, value: v };
+      }),
+    [key, fallback],
+  );
+  return [value, set];
 }

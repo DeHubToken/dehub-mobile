@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import React, { memo, useCallback, useEffect, useMemo, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { Animated, View, Pressable, Text } from "react-native";
 import Icon from "../ui/Icon";
@@ -22,6 +22,7 @@ import { TipGemIcon } from "./TipGemIcon";
 import { getActiveTheme } from "../../theme/colors";
 import { getThemeSkin, MONO_TEXT } from "../../theme/skins";
 import { useViewerTippedPost } from "../../hooks/useViewerTippedPost";
+import { useCellState } from "../../hooks/useCellState";
 
 const ICON_MUTED = "#6F7174";
 const ICON_ACTIVE = "#F9FBFF";
@@ -234,8 +235,9 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
   // One tray per thumb: every positive face on the thumbs-up, the downvote on
   // the thumbs-down — which no longer opens a tray at all, holding one option.
   // Only ever one open either way: they sit inches apart on the same row, and
-  // two trays stacked over each other is unreadable.
-  const [openTray, setOpenTray] = useState<"positive" | "negative" | null>(null);
+  // two trays stacked over each other is unreadable. Closed again whenever the
+  // bar is handed another post, so a pick can never go to the wrong one.
+  const [openTray, setOpenTray] = useCellState<"positive" | "negative" | null>(null, [tokenId]);
 
   // The tray needs a handler to route to; without one this stays a plain
   // like/dislike bar (governance and other non-post surfaces).
@@ -243,17 +245,18 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
 
   const viewerTipped = useViewerTippedPost(tokenId, viewerAddress);
   // Bumps each time this viewer tips this post, replaying the gem's swirl.
-  const [tipBurst, setTipBurst] = useState(0);
+  // Per post: a tip on one post must not leave the gem lit on the next.
+  const [tipBurst, setTipBurst] = useCellState(0, [tokenId]);
   useEffect(() => {
     if (tokenId == null) return;
     const id = String(tokenId);
     return subscribePostTipped((tipped) => { if (tipped === id) setTipBurst((n) => n + 1); });
-  }, [tokenId]);
+  }, [tokenId, setTipBurst]);
 
   const handleSelect = useCallback((reaction: PostReaction) => {
     setOpenTray(null);
     onReact?.(reaction);
-  }, [onReact]);
+  }, [onReact, setOpenTray]);
 
   /**
    * The one glyph the thumb wears — the viewer's own positive reaction, else

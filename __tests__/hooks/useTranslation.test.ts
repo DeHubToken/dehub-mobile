@@ -274,4 +274,57 @@ describe('hooks/useTranslation', () => {
       expect(result.current.isTranslated).toBe(false);
     });
   });
+
+  describe('a card handed another post', () => {
+    const POST_A = { description: SPANISH_POST.description };
+    const POST_B = { description: 'Otra publicación completamente distinta sobre el tiempo de hoy en la ciudad.' };
+
+    it('starts over, and drops the answer still out for the previous post', async () => {
+      setAutoTranslateEnabled(false);
+      let answerA!: (value: unknown) => void;
+      mockTranslate.mockImplementationOnce(() => new Promise((resolve) => { answerA = resolve; }));
+      const { result, rerender } = renderHook(
+        ({ texts, postKey }: { texts: Record<string, string>; postKey: string }) =>
+          useTranslation(texts, 'es', true, true, postKey),
+        { initialProps: { texts: POST_A, postKey: 'a' } },
+      );
+
+      act(() => result.current.handleTranslate());
+      expect(result.current.isLoading).toBe(true);
+
+      rerender({ texts: POST_B, postKey: 'b' });
+      expect(result.current.isLoading).toBe(false);
+
+      await act(async () => {
+        answerA({ translatedText: 'çevrilmiş A', sourceLang: 'es', sameLanguage: false });
+      });
+      // A's translation never lands on B.
+      expect(result.current.isTranslated).toBe(false);
+      expect(result.current.translatedTexts).toEqual({});
+      expect(result.current.isLoading).toBe(false);
+
+      // And B is free to translate itself.
+      await act(async () => { result.current.handleTranslate(); });
+      expect(result.current.isTranslated).toBe(true);
+      expect(result.current.translatedTexts.description).toBe('çevrilmiş');
+    });
+
+    it('does not carry a translation onto the next post', async () => {
+      const { result, rerender } = renderHook(
+        ({ texts, postKey }: { texts: Record<string, string>; postKey: string }) =>
+          useTranslation(texts, 'es', true, true, postKey),
+        { initialProps: { texts: POST_A, postKey: 'a' } },
+      );
+      await runQueuedWork();
+      expect(result.current.isTranslated).toBe(true);
+
+      rerender({ texts: POST_B, postKey: 'b' });
+      expect(result.current.isTranslated).toBe(false);
+      expect(result.current.translatedTexts).toEqual({});
+
+      // B is auto-translated in its own right.
+      await runQueuedWork();
+      expect(result.current.isTranslated).toBe(true);
+    });
+  });
 });

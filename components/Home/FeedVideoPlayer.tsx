@@ -50,6 +50,7 @@ import { getAppPrefs, useAppPrefs } from "../../hooks/useAppPrefs";
 import { useVideoSegments, segmentAt } from "../../hooks/useVideoSegments";
 import { useMediaAspect } from "../../hooks/useMediaAspect";
 import { useSettledAutoplay } from "../../hooks/useSettledAutoplay";
+import { useCellState } from "../../hooks/useCellState";
 import { toastInfo } from "../../libs/toast";
 import { toastError, toastSuccess } from "../../libs/toast";
 import { retryTranscode } from "../../services/nft.service";
@@ -1753,8 +1754,12 @@ FeedVideoPoster.displayName = "FeedVideoPoster";
 const FeedVideoPlayer: React.FC<FeedVideoPlayerProps> = (props) => {
   const { autoplay: autoplayEnabled } = useAppPrefs();
   const { liteMode } = useDataSaver();
-  const [wanted, setWanted] = useState(false);
-  const [inPictureInPicture, setInPictureInPicture] = useState(false);
+  // Which post this wrapper is showing. A tap and picture-in-picture belong to
+  // one post: handed another, the wrapper forgets both in the same render, or
+  // the next post would mount a player and start by itself.
+  const postKey = String(props.tokenId ?? props.thumbnail ?? "");
+  const [wanted, setWanted] = useCellState(false, [postKey]);
+  const [inPictureInPicture, setInPictureInPicture] = useCellState(false, [postKey]);
 
   const { isVisible, isAutoplayActive = true, isContentGated, transcodingStatus, videoUrl, onPress } = props;
   const needsChrome =
@@ -1770,7 +1775,7 @@ const FeedVideoPlayer: React.FC<FeedVideoPlayerProps> = (props) => {
   // poster, the same as any other card.
   useEffect(() => {
     if (!isVisible) setWanted(false);
-  }, [isVisible]);
+  }, [isVisible, setWanted]);
 
   const onPosterPress = useCallback(() => {
     if (!videoUrl) {
@@ -1778,12 +1783,16 @@ const FeedVideoPlayer: React.FC<FeedVideoPlayerProps> = (props) => {
       return;
     }
     setWanted(true);
-  }, [videoUrl, onPress]);
+  }, [videoUrl, onPress, setWanted]);
 
-  const markWanted = useCallback(() => setWanted(true), []);
+  const markWanted = useCallback(() => setWanted(true), [setWanted]);
 
+  // Keyed on the post, so the player, its view recorder, speed and progress
+  // are never carried onto another one. It is only mounted for about two cards
+  // at a time, so a fresh one per post costs nothing while scrolling.
   return mountPlayer ? (
     <FeedVideoPlayerActive
+      key={postKey}
       {...props}
       isVisible={isVisible || inPictureInPicture}
       isAutoplayActive={isAutoplayActive || inPictureInPicture}

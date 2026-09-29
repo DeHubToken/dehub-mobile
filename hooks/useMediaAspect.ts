@@ -43,20 +43,15 @@ export function clampAspect(ratio: number): number {
  * @returns a clamped width/height ratio, never null: 16:9 until measured
  */
 export function useMediaAspect(uri?: string | null): number {
-  const [ratio, setRatio] = useState<number | null>(() =>
-    uri ? cache.get(uri) ?? null : null,
-  );
+  // A measurement carries the URL it was taken from, and is read straight from
+  // the cache otherwise. A card handed another clip is the right size in its
+  // first render, not after an effect has caught up, and a late measurement
+  // of the previous clip never resizes it.
+  const [measured, setMeasured] = useState<{ uri: string; ratio: number } | null>(null);
+  const ratio = uri ? (measured?.uri === uri ? measured.ratio : cache.get(uri) ?? null) : null;
 
   useEffect(() => {
-    if (!uri) {
-      setRatio(null);
-      return;
-    }
-    const cached = cache.get(uri);
-    if (cached !== undefined) {
-      setRatio(cached);
-      return;
-    }
+    if (!uri || cache.has(uri)) return;
 
     let cancelled = false;
     // Measured through expo-image, the same pipeline and cache that paints the
@@ -68,10 +63,12 @@ export function useMediaAspect(uri?: string | null): number {
       .then((ref) => {
         const { width: w, height: h } = ref;
         ref.release();
-        if (cancelled || !w || !h) return;
-        const measured = w / h;
-        cache.set(uri, measured);
-        setRatio(measured);
+        if (!w || !h) return;
+        // Cached even when this card has moved on: the next card to show this
+        // clip gets it for free.
+        const r = w / h;
+        cache.set(uri, r);
+        if (!cancelled) setMeasured({ uri, ratio: r });
       })
       // Unmeasurable thumbnail (offline, 404) just leaves the default frame.
       .catch(() => {});
