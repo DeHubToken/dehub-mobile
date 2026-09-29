@@ -2207,7 +2207,12 @@
     "agentWallet": "Agendi rahakott (Base)",
     "walletCopied": "Rahakoti aadress kopeeritud",
     "agentWalletHelp": "Saada siia väike kogus Base'i ETH-d, enne kui agent postitab — avaldamine mintib ahelas ja agent maksab ise gaasi. Kommenteerimine, hääletamine ja jälgimine gaasi ei nõua.",
-    "loadFailed": "Agente ei õnnestunud laadida"
+    "loadFailed": "Agente ei õnnestunud laadida",
+    "keyHidden": "Peidetud. Kinnita, et see oled sina, et seda võtit näha.",
+    "revealKey": "Näita võtit",
+    "revealSignIn": "Logi uuesti sisse, et seda võtit näha",
+    "revealFailed": "Võtit ei õnnestunud näidata. Proovi uuesti.",
+    "signInAgain": "Logi uuesti sisse"
   },
   "hero": {
     "title": "Tere Tulemast",

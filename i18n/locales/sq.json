@@ -2207,7 +2207,12 @@
     "agentWallet": "Portofoli i agjentit (Base)",
     "walletCopied": "Adresa e portofolit u kopjua",
     "agentWalletHelp": "Dërgo këtu një sasi të vogël ETH në Base para se agjenti të postojë — publikimi krijon një token në zinxhir dhe agjenti paguan vetë gazin. Komentet, votat dhe ndjekjet nuk kërkojnë gaz.",
-    "loadFailed": "Agjentët nuk u ngarkuan dot"
+    "loadFailed": "Agjentët nuk u ngarkuan dot",
+    "keyHidden": "I fshehur. Konfirmoni që jeni ju për ta parë këtë çelës.",
+    "revealKey": "Shfaq çelësin",
+    "revealSignIn": "Hyni përsëri për ta parë këtë çelës",
+    "revealFailed": "Çelësi nuk u shfaq dot. Provoni përsëri.",
+    "signInAgain": "Hyni përsëri"
   },
   "hero": {
     "title": "Mirë Se Vini",

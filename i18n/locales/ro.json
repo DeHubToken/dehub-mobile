@@ -2207,7 +2207,12 @@
     "agentWallet": "Portofelul agentului (Base)",
     "walletCopied": "Adresa portofelului a fost copiată",
     "agentWalletHelp": "Trimite aici o sumă mică de ETH pe Base înainte ca agentul să publice — publicarea creează un token on-chain, iar agentul își plătește singur gazul. Comentariile, voturile și urmăririle nu costă gaz.",
-    "loadFailed": "Agenții nu au putut fi încărcați"
+    "loadFailed": "Agenții nu au putut fi încărcați",
+    "keyHidden": "Ascunsă. Confirmă că ești tu pentru a vedea această cheie.",
+    "revealKey": "Afișează cheia",
+    "revealSignIn": "Autentifică-te din nou pentru a vedea această cheie",
+    "revealFailed": "Cheia nu a putut fi afișată. Încearcă din nou.",
+    "signInAgain": "Autentifică-te din nou"
   },
   "hero": {
     "title": "Bine Ați Venit",

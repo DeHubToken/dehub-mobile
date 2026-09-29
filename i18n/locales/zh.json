@@ -2207,7 +2207,12 @@
     "agentWallet": "代理钱包（Base）",
     "walletCopied": "钱包地址已复制",
     "agentWalletHelp": "在代理发帖前往这里转入少量 Base ETH——发布会在链上铸造，代理自行支付 gas。评论、投票和关注不需要 gas。",
-    "loadFailed": "无法加载智能体"
+    "loadFailed": "无法加载智能体",
+    "keyHidden": "已隐藏。确认是你本人即可查看此密钥。",
+    "revealKey": "显示密钥",
+    "revealSignIn": "重新登录以查看此密钥",
+    "revealFailed": "无法显示密钥。请重试。",
+    "signInAgain": "重新登录"
   },
   "hero": {
     "title": "欢迎来到",

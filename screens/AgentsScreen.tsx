@@ -32,6 +32,8 @@ import { DIGITAL_PURCHASES_ENABLED } from "../config/storefront";
 import { openInApp } from "../libs/links.utils";
 import { copyToClipboard } from "../libs/clipboard.utils";
 import { toastError, toastSuccess } from "../libs/toast";
+import { tokenRefreshManager } from "../libs/token-refresh";
+import { retryWalletSession } from "../libs/wallet-session";
 import {
   MCP_BASE,
   agentConnectorUrl,
@@ -96,6 +98,11 @@ export default function AgentsScreen() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [visibleKeys, setVisibleKeys] = useState<Set<string>>(new Set());
+  const [revealing, setRevealing] = useState(false);
+  // Keys registration just handed back. The list only carries a key for a
+  // signed request, so a new agent's key would otherwise vanish on refetch
+  // whenever this phone has no session yet. Kept for this visit only.
+  const [createdKeys, setCreatedKeys] = useState<Record<string, string>>({});
 
   const { data: agents, isLoading, isError, refetch } = useQuery({
     queryKey: ["ai-agents", walletAddress],
@@ -112,7 +119,9 @@ export default function AgentsScreen() {
       setDescription("");
       toastSuccess(t("agents.agentCreated"), { description: t("agents.saveApiKey") });
       const id = data?.agent?.id;
+      const key = data?.agent?.api_key;
       if (id) setVisibleKeys((prev) => new Set([...prev, id]));
+      if (id && key) setCreatedKeys((prev) => ({ ...prev, [id]: key }));
     },
     onError: (error: Error) =>
       toastError(t("agents.failedCreate"), t("agents.failedCreate"), { description: error?.message }),
@@ -126,6 +135,37 @@ export default function AgentsScreen() {
     },
     onError: () => toastError(t("agents.failedDelete"), t("agents.failedDelete")),
   });
+
+  /**
+   * A missing key means this phone could not prove the wallet just now. Try
+   * to prove it before asking anyone to sign in: mint a session, and if the
+   * DeHub token has lapsed, refresh it and mint again. Only when that fails is
+   * signing in again the answer.
+   */
+  const revealKeys = async () => {
+    if (!walletAddress || revealing) return;
+    setRevealing(true);
+    try {
+      let reason = await retryWalletSession(walletAddress);
+      if (reason === "no_token" && (await tokenRefreshManager.attemptRefresh())) {
+        reason = await retryWalletSession(walletAddress);
+      }
+      if (!reason) {
+        const { data } = await refetch();
+        if (data?.some((agent) => agent.api_key)) return;
+      }
+      if (reason === "no_token") {
+        Alert.alert(t("agents.revealSignIn"), undefined, [
+          { text: t("agents.cancel"), style: "cancel" },
+          { text: t("agents.signInAgain"), onPress: () => navigation.navigate(ScreenNames.SignIn) },
+        ]);
+      } else {
+        toastError(t("agents.revealFailed"), t("agents.revealFailed"));
+      }
+    } finally {
+      setRevealing(false);
+    }
+  };
 
   const toggleKey = (id: string) =>
     setVisibleKeys((prev) => {
@@ -168,6 +208,7 @@ export default function AgentsScreen() {
 
   const renderAgent = (agent: AIAgent) => {
     const visible = visibleKeys.has(agent.id);
+    const apiKey = agent.api_key ?? createdKeys[agent.id] ?? null;
     return (
       <LiquidGlass key={agent.id} className="rounded-2xl" style={styles.card}>
         <View style={styles.cardInner}>
@@ -188,28 +229,49 @@ export default function AgentsScreen() {
             </View>
           </View>
 
-          <SecretBlock
-            label={t("agents.apiKey")}
-            value={visible ? agent.api_key : maskApiKey(agent.api_key)}
-            actions={
-              <>
-                <IconButton icon={visible ? "EyeOff" : "Eye"} label={t("agents.apiKey")} onPress={() => toggleKey(agent.id)} />
-                <IconButton icon="Copy" label={t("common.copy")} onPress={() => copy(agent.api_key, t("agents.apiKeyCopied"))} />
-              </>
-            }
-          />
+          {apiKey ? (
+            <SecretBlock
+              label={t("agents.apiKey")}
+              value={visible ? apiKey : maskApiKey(apiKey)}
+              actions={
+                <>
+                  <IconButton icon={visible ? "EyeOff" : "Eye"} label={t("agents.apiKey")} onPress={() => toggleKey(agent.id)} />
+                  <IconButton icon="Copy" label={t("common.copy")} onPress={() => copy(apiKey, t("agents.apiKeyCopied"))} />
+                </>
+              }
+            />
+          ) : (
+            <SecretBlock
+              label={t("agents.apiKey")}
+              value={t("agents.keyHidden")}
+              actions={
+                <Pressable
+                  onPress={revealKeys}
+                  disabled={revealing}
+                  hitSlop={8}
+                  accessibilityRole="button"
+                  style={styles.revealBtn}
+                >
+                  {revealing ? <ActivityIndicator size="small" color={MUTED} /> : <Icon name="Eye" size={13} color={MUTED} />}
+                  <Text style={styles.revealText}>{t("agents.revealKey")}</Text>
+                </Pressable>
+              }
+            />
+          )}
 
           <SecretBlock
             icon="Link2"
             label={t("agents.connectorUrl")}
-            value={visible ? agentConnectorUrl(agent.api_key) : maskConnectorUrl(agent.api_key)}
+            value={!apiKey ? `${MCP_BASE}/k/${"•".repeat(16)}` : visible ? agentConnectorUrl(apiKey) : maskConnectorUrl(apiKey)}
             help={t("agents.connectorUrlHelp")}
             actions={
-              <IconButton
-                icon="Copy"
-                label={t("common.copy")}
-                onPress={() => copy(agentConnectorUrl(agent.api_key), t("agents.connectorUrlCopied"))}
-              />
+              apiKey ? (
+                <IconButton
+                  icon="Copy"
+                  label={t("common.copy")}
+                  onPress={() => copy(agentConnectorUrl(apiKey), t("agents.connectorUrlCopied"))}
+                />
+              ) : null
             }
           />
 
@@ -375,6 +437,8 @@ const styles = StyleSheet.create({
   blockLabel: { color: "rgba(255,255,255,0.45)", fontSize: 11 },
   blockActions: { flexDirection: "row", gap: 4 },
   iconBtn: { padding: 4 },
+  revealBtn: { flexDirection: "row", alignItems: "center", gap: 4, paddingHorizontal: 6, paddingVertical: 2 },
+  revealText: { color: MUTED, fontSize: 12, fontWeight: "600" },
   mono: { color: "rgba(255,255,255,0.85)", fontSize: 12, fontFamily: "monospace" },
   help: { color: "rgba(255,255,255,0.45)", fontSize: 11, lineHeight: 16, marginTop: 4 },
 

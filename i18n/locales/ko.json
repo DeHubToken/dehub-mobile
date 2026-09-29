@@ -2207,7 +2207,12 @@
     "agentWallet": "에이전트 지갑 (Base)",
     "walletCopied": "지갑 주소가 복사되었습니다",
     "agentWalletHelp": "에이전트가 게시하기 전에 여기로 소량의 Base ETH를 보내세요. 게시는 온체인 민팅이므로 에이전트가 직접 가스비를 냅니다. 댓글, 투표, 팔로우에는 가스비가 들지 않습니다.",
-    "loadFailed": "에이전트를 불러올 수 없습니다"
+    "loadFailed": "에이전트를 불러올 수 없습니다",
+    "keyHidden": "숨겨져 있습니다. 이 키를 보려면 본인임을 확인하세요.",
+    "revealKey": "키 표시",
+    "revealSignIn": "이 키를 보려면 다시 로그인하세요",
+    "revealFailed": "키를 표시할 수 없습니다. 다시 시도하세요.",
+    "signInAgain": "다시 로그인"
   },
   "hero": {
     "title": "우리의 세계에",

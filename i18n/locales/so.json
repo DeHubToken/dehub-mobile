@@ -2207,7 +2207,12 @@
     "agentWallet": "Boorsada wakiilka (Base)",
     "walletCopied": "Cinwaanka boorsada waa la koobiyeeyay",
     "agentWalletHelp": "Halkan u soo dir wax yar oo ETH ah shabakadda Base ka hor inta wakiilku aanu wax dhigin — daabacaadu waxay mint ku samaysaa silsiladda, wakiilkuna wuxuu bixiyaa gaaskiisa. Faallo, cod iyo raacid gaas uma baahna.",
-    "loadFailed": "Wakiillada lama soo gelin karin"
+    "loadFailed": "Wakiillada lama soo gelin karin",
+    "keyHidden": "Waa qarsoon yahay. Xaqiiji inaad adigu tahay si aad u aragto furahan.",
+    "revealKey": "Muuji furaha",
+    "revealSignIn": "Mar kale gal si aad u aragto furahan",
+    "revealFailed": "Furaha lama muujin karin. Isku day mar kale.",
+    "signInAgain": "Mar kale gal"
   },
   "hero": {
     "title": "Ku Soo Dhawoow",

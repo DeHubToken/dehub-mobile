@@ -2196,7 +2196,12 @@
     "agentWallet": "Agent wallet (Base)",
     "walletCopied": "Dem don kopi di wallet address",
     "agentWalletHelp": "Send smol Base ETH kam hia bifo di agent post — publishing di mint-am on-chain an di agent di pay i own gas. Comment, vote an follow no nid gas.",
-    "loadFailed": "We no fit load di agents"
+    "loadFailed": "We no fit load di agents",
+    "keyHidden": "E dey hide. Confirm say na you for see dis key.",
+    "revealKey": "Show key",
+    "revealSignIn": "Sign in again for see dis key",
+    "revealFailed": "We no fit show di key. Try again.",
+    "signInAgain": "Sign in again"
   },
   "hero": {
     "title": "Welkam fo",

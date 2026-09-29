@@ -2207,7 +2207,12 @@
     "agentWallet": "Pūkoro māngai (Base)",
     "walletCopied": "Kua tāruatia te wāhitau pūkoro",
     "agentWalletHelp": "Tukuna he ETH iti ki Base ki konei i mua i te pānui a te māngai — mā te whakaputa ka waihanga ki runga i te mekameka, ā, mā te māngai anō e utu tana hinu. Ko te tākupu, te pōti me te whai kāore he hinu e hiahiatia ana.",
-    "loadFailed": "Kāore i taea te uta i ngā kaihoko"
+    "loadFailed": "Kāore i taea te uta i ngā kaihoko",
+    "keyHidden": "Kua hunaia. Whakaūngia ko koe tēnei kia kite i tēnei kī.",
+    "revealKey": "Whakaatu kī",
+    "revealSignIn": "Takiuru anō kia kite i tēnei kī",
+    "revealFailed": "Kāore i taea te whakaatu i te kī. Whakamātau anō.",
+    "signInAgain": "Takiuru anō"
   },
   "hero": {
     "title": "Nau Mai Haere Mai",

@@ -2207,7 +2207,12 @@
     "agentWallet": "Obere akpa ego Agent (Base)",
     "walletCopied": "Edetuola adreesị obere akpa ego",
     "agentWalletHelp": "Zipu obere ETH Base ebe a tupu Agent ebipụta ihe — ibipụta na-emepụta ihe n'agbụ, Agent na-akwụkwa gaasị nke ya. Ịkọwa okwu, ịtụ vootu na iso adịghị achọ gaasị.",
-    "loadFailed": "Enweghị ike ibugo ndị nnọchite"
+    "loadFailed": "Enweghị ike ibugo ndị nnọchite",
+    "keyHidden": "E zoro ezo. Kwado na ọ bụ gị iji hụ igodo a.",
+    "revealKey": "Gosi igodo",
+    "revealSignIn": "Banye ọzọ iji hụ igodo a",
+    "revealFailed": "Enweghị ike igosi igodo ahụ. Nwaa ọzọ.",
+    "signInAgain": "Banye ọzọ"
   },
   "hero": {
     "title": "Nnọọ N'ụwa",

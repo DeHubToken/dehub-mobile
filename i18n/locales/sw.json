@@ -2208,7 +2208,12 @@
     "agentWallet": "Pochi la wakala (Base)",
     "walletCopied": "Anwani ya pochi imenakiliwa",
     "agentWalletHelp": "Tuma kiasi kidogo cha ETH kwenye Base hapa kabla wakala hajachapisha — kuchapisha hutengeneza rekodi kwenye mnyororo na wakala hulipa gesi yake mwenyewe. Kutoa maoni, kupiga kura na kufuata hakuhitaji gesi.",
-    "loadFailed": "Imeshindwa kupakia mawakala"
+    "loadFailed": "Imeshindwa kupakia mawakala",
+    "keyHidden": "Imefichwa. Thibitisha kuwa ni wewe ili kuona ufunguo huu.",
+    "revealKey": "Onyesha ufunguo",
+    "revealSignIn": "Ingia tena ili kuona ufunguo huu",
+    "revealFailed": "Imeshindwa kuonyesha ufunguo. Jaribu tena.",
+    "signInAgain": "Ingia tena"
   },
   "hero": {
     "title": "Karibu Katika",
