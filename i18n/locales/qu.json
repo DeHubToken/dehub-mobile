@@ -4004,7 +4004,8 @@
     "gamesRecord_other": "{{count}} pukllaykuna · {{wins}}A {{losses}}Q {{draws}}K",
     "kingsGambitBoardTitle": "Chaninchay",
     "kingsGambitBoardBlurb": "Elo llapa kawsay-ñiqpi pukllaykunapi. Llapanku 1200manta qallarinku; kallpasapa pukllaqta atipayqa pisi kallpayuqta atipaymanta aswan chaniyuq, chayrayku iskay kaq qullqi-wayaqawan ñiqita mana wicharichiy atikunchu.",
-    "kingsGambitBoardEmpty": "Manaraq ima kawsay-ñiqpi pukllaypas tukunchu. Huk atipanakuyta kichay."
+    "kingsGambitBoardEmpty": "Manaraq ima kawsay-ñiqpi pukllaypas tukunchu. Huk atipanakuyta kichay.",
+    "needsConnection": "Pukllayqa dehub.io kaqmanta sirwisqa chaymanta kichaptiyki uraykachisqa, chayrayku huk llamk'aq tinkiyta ñawpaq kuti necesitan. Qampa kaqniykita qhaway hinaspa hukmanta kallpachakuy."
   },
   "videoLooks": {
     "button": "Kamara rikchaykuna",
@@ -6561,7 +6562,8 @@
       "cancel": "Sayachiy...",
       "cancelled": "Pedido cancelasqa",
       "bought": "Rantisqa {{amount}} {{symbol}}",
-      "sold": "Vendido {{amount}} {{symbol}}"
+      "sold": "Vendido {{amount}} {{symbol}}",
+      "solanaLimitNote": "Fichasniykikuna huk orden cadena kaqpi qhipakunku chaninniykimanhina hunt'anankama utaq cancelanaykikama."
     },
     "chart": {
       "bookStarts": "Kaypim qillqaqa qallarin",
@@ -8611,7 +8613,9 @@
       "noMatch": "Mana ima appkuna chay maskaywan tupanchu.",
       "yourApps": "Apps nisqaykikuna",
       "remove": "Qichuy",
-      "rising": "Musuq hinaspa wichariq"
+      "rising": "Musuq hinaspa wichariq",
+      "notificationsOn": "Willakuykuna on",
+      "removed": "Qhatusqa. Manañam hukmanta willasunkichu."
     },
     "card": {
       "open": "Kichasqa"
@@ -8630,6 +8634,10 @@
       "developer-tools": "Paqarichiqpa yanapakuyninkuna",
       "entertainment": "Kusirikuy",
       "art-creativity": "Arte & creatividad nisqa"
+    },
+    "add": {
+      "body": "Chayqa rikurimunqa Apps nisqaykipi chaymanta willakuykunata apachisunkiman. Ima pachapas Apps nisqa p'anqamanta hurquyta atinki.",
+      "confirm": "App yapay"
     }
   },
   "aiStyles": {

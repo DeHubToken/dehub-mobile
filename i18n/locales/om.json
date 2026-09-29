@@ -1496,7 +1496,8 @@
       "back": "Tarreewwan tapha hunda",
       "noPosts": "Akaakayyuun kun guyyaa ammayyaa hin qabu.",
       "unavailable": "Akaakayyuun kunuunsaaf hin danda'amu.",
-      "loadMore": "Maxxansa dabalataa agarsiisi"
+      "loadMore": "Maxxansa dabalataa agarsiisi",
+      "emptyOwnerHint": "Galfata mallattoo (bookmark) uummataaf godhi asitti agarsiisuuf."
     }
   },
   "notifications": {
@@ -8456,7 +8457,8 @@
     "faqPayInDhbA": "Kaffaltii kaardii yeroo eebbaa. Token DeHub keessatti kaffaluun yeroo dhiyootti kan dhufu yoo ta&#39;u, hir&#39;ina gatii kan dabalatu ta&#39;a.",
     "checkoutNotice": "Checkout dehub.io bilbila kee irratti banama.  Kaffalti DeHub irraa dhufa, Google Play irraa miti.",
     "notAvailableHere": "Qabeenyi app kana keessatti biyya kee keessatti bitamuu hin danda’u.",
-    "checkoutUnavailable": "Checkout amma hin jiru.  Aduun booda irra deebi’i."
+    "checkoutUnavailable": "Checkout amma hin jiru.  Aduun booda irra deebi’i.",
+    "faqWhatIsAnAdA": "Feed kee keessatti maxxansaalee beeksisan, baanaroota fooyyessuu, fi iddoowwan ispoonsara ta'an Explore keessatti. Premium hunda isaanii ni balleessa."
   },
   "pricing": {
     "plansForEveryWorkflow": "Qabeenyi hojii hundaaf",
@@ -8660,7 +8662,8 @@
     },
     "add": {
       "confirm": "App itti dabali",
-      "title": "{{name}} itti dabalaa?"
+      "title": "{{name}} itti dabalaa?",
+      "body": "Your apps jalatti kan mul'atu yoo ta'u, beeksisa isiniif erguu danda'a. Fuula Apps irraa yeroo barbaaddanitti haquu dandeessu."
     }
   },
   "aiStyles": {

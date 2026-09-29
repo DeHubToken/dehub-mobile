@@ -7387,7 +7387,8 @@
     "doneList": "Dhaptar {{amount}} token ing ${{price}}",
     "aiPlaceholder": "Coba \"sade setengah tokenku kanthi 6 sen\"",
     "aiBuyOnly": "Perdagangan gampang ngedol token. Kanggo tuku token, bukak Bursa.",
-    "aiNeedAmount": "Pinten token ingkang badhe panjenengan sade?"
+    "aiNeedAmount": "Pinten token ingkang badhe panjenengan sade?",
+    "marketRateHint": "Jual sekarang sekitar ${{price}} per token, sekitar {{usdc}} USDC secara total."
   },
   "tipFunding": {
     "lowLiquidity": "Saiki likuiditas Uniswap ora cukup kanggo pambayaran sagedhe iki",
@@ -8572,7 +8573,8 @@
       "yourApps": "Gwé app gwé",
       "notificationsOn": "Notifikasi nyuwun",
       "remove": "Hapus",
-      "rising": "Kebeneran dhuwur dadi ngarso"
+      "rising": "Kebeneran dhuwur dadi ngarso",
+      "removed": "Dihapus. Tidak akan memberitahumu lagi."
     },
     "card": {
       "open": "Buka"
