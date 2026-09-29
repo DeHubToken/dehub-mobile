@@ -40,6 +40,7 @@
     "staking": "质押",
     "superpowers": "超能力",
     "governance": "治理",
+    "dao": "DAO",
     "careers": "招聘",
     "glossary": "术语表",
     "create": "创建",
@@ -3988,6 +3989,7 @@
     "warm": "暖色",
     "cool": "冷色",
     "vivid": "鲜艳",
+    "vhs": "VHS",
     "neon": "霓虹",
     "pixelate": "像素化"
   },
@@ -4245,6 +4247,7 @@
     "pinMessage": "置顶消息",
     "unpinMessage": "取消置顶消息",
     "jumpToLatest": "跳到最新消息",
+    "attachGif": "GIF",
     "ban": "禁言",
     "banConfirm": "倷确定要禁掉 {{name}} 伐？",
     "banFailed": "禁用用户失败"
@@ -6008,6 +6011,7 @@
     "paste": "粘贴",
     "progressDone": "已导入 {{imported}}。",
     "selectAll": "全选",
+    "placeholder": "youtube.com/@you, tiktok.com/@you, vimeo.com/you…",
     "costsNote": "用 DeHub 代币支付，一次，在批次开始前。徽章持有者支付更少 — 倷个折扣会应用到报价上。如果一个视频无法导入，其份额会退还到倷个下一个迁移。"
   },
   "calls": {
@@ -8310,8 +8314,8 @@
     "volume24h": "24小时成交量",
     "website": "网站",
     "telegram": "Telegram",
-    "title": "发射台",
-    "twitter": "X / 歪克"
+    "twitter": "X / 歪克",
+    "title": "发射台"
   },
   "premium": {
     "bestValue": "顶尖价值",

@@ -6014,6 +6014,7 @@
     "viewFeed": "Zobrazit zdroj",
     "yourChannel": "Váš kanál",
     "yourChannelHint": "Vložte adresu kanálu — rukojeť také funguje.",
+    "placeholder": "youtube.com/@you, tiktok.com/@you, vimeo.com/you…",
     "costsNote": "Zaplaceno v tokenech DeHub, jednou, před začátkem dávky. Držitelé odznaků platí méně — vaše sleva se projeví v nabídce. Pokud video nelze importovat, jeho podíl se připíše zpět k vaší další migraci."
   },
   "calls": {

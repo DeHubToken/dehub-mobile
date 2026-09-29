@@ -40,6 +40,7 @@
     "staking": "سٹیکنگ",
     "superpowers": "سپر پاورز",
     "governance": "حکمرانی",
+    "dao": "DAO",
     "careers": "نوکریاں",
     "glossary": "لغت",
     "create": "بݨاؤ",
@@ -3977,6 +3978,7 @@
     "warm": "گرم",
     "cool": "ٹھنڈا",
     "vivid": "شوخ",
+    "vhs": "VHS",
     "neon": "نیون",
     "pixelate": "پکسل"
   },
@@ -4233,6 +4235,7 @@
     "pinMessage": "میسج پن کرو",
     "unpinMessage": "میسج ان پن کرو",
     "jumpToLatest": "اڳوڻي پيغام ڏانهن وڃو",
+    "attachGif": "GIF",
     "ban": "بین کرو",
     "banConfirm": "کیہ تساں یقین نال {{name}} نوں بین کرݨا چاہندے او؟",
     "banFailed": "صارف بین تھیݨ وچ ناکام"

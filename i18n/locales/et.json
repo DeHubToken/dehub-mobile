@@ -6011,6 +6011,7 @@
     "viewFeed": "Vaata oma voogu",
     "yourChannel": "Sinu kanal",
     "yourChannelHint": "Kleebi oma kanali aadress — ka käepide ise töötab.",
+    "placeholder": "youtube.com/@you, tiktok.com/@you, vimeo.com/you…",
     "costsNote": "Makstud DeHub tokenitega, üks kord, enne kui partii algab. Badge'i omanikud maksavad vähem — sinu allahindlus rakendub hinnapakkumisele. Kui videot ei saa importida, krediteeritakse selle osa sinu järgmise migratsiooni eest tagasi."
   },
   "calls": {
