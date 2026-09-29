@@ -45,7 +45,9 @@ const ProfileScreen: React.FC = () => {
     const schedule = () => {
       interval = setTimeout(run, REFRESH_INTERVAL_MS);
     };
-    schedule();
+    // Refresh as soon as the profile opens, not a minute later, so the
+    // follower counts are current the moment you look at them.
+    void run();
     return () => {
       cancelled = true;
       if (interval) clearTimeout(interval);

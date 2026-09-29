@@ -210,8 +210,18 @@ export interface UserContentSearchParams {
  */
 export async function getAccount(usernameOrAddress: string) {
   const url = `/account_info/${encodeURIComponent(usernameOrAddress)}`;
-  const response = await apiClient.get<ApiResponse<AccountInfoResponse>>(url, { isAuthRequired: true });
-  return response;
+  try {
+    return await apiClient.get<ApiResponse<AccountInfoResponse>>(url, { isAuthRequired: true });
+  } catch (err) {
+    // The profile itself is public. If the signed request fails (token
+    // refresh, session hiccup) still return the counts and profile fields,
+    // just without the viewer relationship.
+    try {
+      return await apiClient.get<ApiResponse<AccountInfoResponse>>(url, { isAuthRequired: false });
+    } catch {
+      throw err;
+    }
+  }
 }
 
 export interface AccountSummary {
