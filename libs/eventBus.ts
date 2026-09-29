@@ -41,6 +41,7 @@ export const promptFeedEvents = {
 type HomeTabListener = (postType: "video" | "feed-images" | "feed-audio" | "live") => void;
 
 const homeTabListeners = new Set<HomeTabListener>();
+let visibleHomeTab = "all";
 
 /**
  * The menu sheet opens the home feed on a given tab (Videos, Images, Music,
@@ -55,5 +56,14 @@ export const homeTabEvents = {
 
   requestTab(postType: Parameters<HomeTabListener>[0]): void {
     homeTabListeners.forEach((fn) => fn(postType));
+  },
+
+  /** HomeScreen reports the tab on screen so the + button can open the composer on Livestream from Live. */
+  setVisibleTab(tab: string): void {
+    visibleHomeTab = tab;
+  },
+
+  visibleTab(): string {
+    return visibleHomeTab;
   },
 };

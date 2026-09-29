@@ -380,7 +380,7 @@ export default function UploadScreen() {
   const [quotedTokenId, setQuotedTokenId] = useState<number | string | undefined>(incomingQuotedTokenId);
   const [quotedPost, setQuotedPost] = useState<Record<string, any> | undefined>(incomingQuotedPost);
 
-  const [isLiveMode, setIsLiveMode] = useState(false);
+  const [isLiveMode, setIsLiveMode] = useState(!!route.params?.live);
   const [showLiveOptions, setShowLiveOptions] = useState(false);
   const [liveSettings, setLiveSettings] = useState<LiveSettingsState>(INITIAL_LIVE_SETTINGS);
   const [showLiveSettings, setShowLiveSettings] = useState(false);
