@@ -234,8 +234,9 @@ export type AppStackParamList = {
   /** `requestId` is a notification's deep link into one request, `commentId`
    *  the comment inside it the row was about. */
   [ScreenNames.FeatureRequests]: { requestId?: string; commentId?: string } | undefined;
-  /** `handle` is the shared-listing deep link (`dehub.io/usernames?handle=x`). */
-  [ScreenNames.Usernames]: { handle?: string } | undefined;
+  /** `handle` is the shared-listing deep link (`dehub.io/usernames?handle=x`);
+   *  `tab` opens a panel directly (an offer notification lands on `offers`). */
+  [ScreenNames.Usernames]: { handle?: string; tab?: "browse" | "mine" | "sell" | "offers" } | undefined;
   /** `handle` is the shared-listing deep link (`dehub.io/accounts?handle=x`). */
   [ScreenNames.Accounts]: { handle?: string } | undefined;
   [ScreenNames.Fractions]: undefined;

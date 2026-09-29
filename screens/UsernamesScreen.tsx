@@ -11,7 +11,7 @@
  */
 import { appLocale } from "../libs/date.util";
 import { DhbCoin } from "../components/common/DhbCoin";
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import {
   View,
   Text,
@@ -164,6 +164,16 @@ function shortAddress(address: string): string {
   return `${address.slice(0, 6)}…${address.slice(-4)}`;
 }
 
+type UsernamesTab = "browse" | "mine" | "sell" | "offers";
+
+// The tab param also arrives from deep-link query strings, so anything that is
+// not a real tab is ignored rather than rendering the Sell panel unhighlighted.
+function asUsernamesTab(value: unknown): UsernamesTab | null {
+  return value === "browse" || value === "mine" || value === "sell" || value === "offers"
+    ? value
+    : null;
+}
+
 export default function UsernamesScreen() {
   const { t } = useTranslation();
   // Minimal: the tab pill becomes file tabs and listings edge-to-edge hairline
@@ -175,7 +185,15 @@ export default function UsernamesScreen() {
   const { isSignedIn, needsUsername } = useAuthState();
   const isAuthed = isSignedIn && !needsUsername;
 
-  const [tab, setTab] = useState<"browse" | "mine" | "sell" | "offers">("browse");
+  const [tab, setTab] = useState<UsernamesTab>(() => asUsernamesTab(route.params?.tab) ?? "browse");
+  // navigate() reuses a Usernames screen that is already open, so the initial
+  // state above would keep its old tab. Keyed on the params object: each
+  // navigate hands over a fresh one, so this also fires for the same tab again.
+  const routeParams = route.params;
+  useEffect(() => {
+    const next = asUsernamesTab(routeParams?.tab);
+    if (next) setTab(next);
+  }, [routeParams]);
   // Which of your names the sell form should open on. The vault hands it over
   // when you press "sell" on a row.
   const [sellingUsername, setSellingUsername] = useState<string | null>(null);

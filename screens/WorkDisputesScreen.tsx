@@ -24,7 +24,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import Icon from "../components/ui/Icon";
-import ScreenHeader, { SCREEN_HEADER_HEIGHT } from "../components/ScreenHeader";
+import ScreenHeader from "../components/ScreenHeader";
 import WorkUser from "../components/Work/WorkUser";
 import LoadErrorState from "../components/ui/LoadErrorState";
 import { DeHubLoader } from "../components/DeHubLoader";
@@ -56,7 +56,7 @@ const Field: React.FC<{ label: string; children: React.ReactNode }> = ({ label, 
 export default function WorkDisputesScreen() {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
-  const keyboardOffset = useKeyboardOffset(SCREEN_HEADER_HEIGHT);
+  const keyboardOffset = useKeyboardOffset();
   const navigation = useNavigation<any>();
   const user = useUser() as any;
   const wallet: string | null = user?.walletAddress || user?.address || null;

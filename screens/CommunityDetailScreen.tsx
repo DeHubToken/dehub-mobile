@@ -8,6 +8,7 @@ import {
   StyleSheet,
   Share,
   FlatList,
+  KeyboardAvoidingView,
 } from "react-native";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { Image } from "expo-image";
@@ -49,6 +50,8 @@ import Avatar from "../components/common/Avatar";
 import { getAvatarUrl } from "../libs/misc";
 import { getAccountSummaries, type AccountSummary } from "../services/user.service";
 import { useUserProfileSheet } from "../context/UserProfileSheetContext";
+import LoadErrorState from "../components/ui/LoadErrorState";
+import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
 
 /** Members rendered (and profile-resolved) per page of the Members tab. */
 const MEMBERS_PAGE = 30;
@@ -75,6 +78,10 @@ const CommunityDetailScreen: React.FC = () => {
   const [actionLoading, setActionLoading] = useState(false);
   const [tab, setTab] = useState<Tab>("posts");
   const [manageOpen, setManageOpen] = useState(false);
+  const [loadError, setLoadError] = useState(false);
+  // Which slug the community on screen was loaded for, so a failed read can
+  // keep that page up without leaving it behind when the route has moved on.
+  const loadedSlugRef = useRef<string | null>(null);
 
   // Role alone no longer decides what a moderator may do — each control asks for
   // the right it needs, so a partially-privileged admin gets exactly the subset
@@ -91,22 +98,38 @@ const CommunityDetailScreen: React.FC = () => {
     if (!slug) return;
     try {
       const c = await getCommunityBySlug(slug);
-      setCommunity(c);
-      if (c) {
-        const [m, mem, pins] = await Promise.all([
-          // The roster read has to identify the caller: a private community's
-          // members are no longer world-readable, so an unheadered request comes
-          // back empty rather than failing.
-          getCommunityMembers(c.id, walletAddress || null),
-          walletAddress ? getCommunityMembership(c.id, walletAddress) : Promise.resolve(null),
-          walletAddress ? getPinnedCommunities(walletAddress) : Promise.resolve([]),
-        ]);
-        setMembers(m);
-        setMembership(mem);
-        setIsPinned(pins.some((p) => p.community_id === c.id));
+      if (!c) {
+        // The read worked and found no row: this one really is not found.
+        loadedSlugRef.current = slug;
+        setCommunity(null);
+        setLoadError(false);
+        return;
       }
+      const [m, mem, pins] = await Promise.all([
+        // The roster read has to identify the caller: a private community's
+        // members are no longer world-readable, so an unheadered request comes
+        // back empty rather than failing.
+        getCommunityMembers(c.id, walletAddress || null).catch(() => null),
+        // Membership decides Join/Leave/Owner, Manage and chat access, so a
+        // failure here still fails the load rather than showing a wrong role.
+        walletAddress ? getCommunityMembership(c.id, walletAddress) : Promise.resolve(null),
+        walletAddress
+          ? getPinnedCommunities(walletAddress).catch(() => null)
+          : Promise.resolve([]),
+      ]);
+      loadedSlugRef.current = slug;
+      setCommunity(c);
+      setMembership(mem);
+      // A failed roster or pin read keeps whatever was there before.
+      if (m) setMembers(m);
+      if (pins) setIsPinned(pins.some((p) => p.community_id === c.id));
+      setLoadError(false);
     } catch {
-      setCommunity(null);
+      // A failed read is not "not found". Keep a page that is already showing
+      // (a flaky pull-to-refresh or post-join reload), and let the empty state
+      // offer a retry instead.
+      if (loadedSlugRef.current !== slug) setCommunity(null);
+      setLoadError(true);
     } finally {
       setLoading(false);
     }
@@ -262,6 +285,10 @@ const CommunityDetailScreen: React.FC = () => {
     }
   };
 
+  // The About tab's KeyboardAvoidingView sits under ScreenHeader, and its
+  // onLayout y already counts that header, so only the root inset goes here.
+  const keyboardOffset = useKeyboardOffset();
+
   if (loading) {
     return (
       <View className="flex-1 bg-theme-neutrals-900">
@@ -274,13 +301,29 @@ const CommunityDetailScreen: React.FC = () => {
   }
 
   if (!community) {
+    if (loadError) {
+      return (
+        <View className="flex-1 bg-theme-neutrals-900">
+          <ScreenHeader title={t("communities.title")} />
+          <LoadErrorState
+            message={t("communities.loadFailed")}
+            onRetry={() => {
+              setLoading(true);
+              void load();
+            }}
+          />
+        </View>
+      );
+    }
     return (
       <View className="flex-1 bg-theme-neutrals-900">
-        <ScreenHeader title={t("communities.title")} canGoBack={false} />
+        <ScreenHeader title={t("communities.title")} />
         <View className="flex-1 items-center justify-center px-6">
           <Text className="text-zinc-400 mb-4">{t("communities.communityNotFound")}</Text>
           <TouchableOpacity
-            onPress={() => navigation.navigate(ScreenNames.Communities)}
+            // popTo returns to a Communities page already below this one, or
+            // replaces this dead page, so back never lands on it again.
+            onPress={() => navigation.popTo(ScreenNames.Communities)}
             className="px-4 py-2 rounded-xl border border-white/10"
           >
             <Text className="text-white">{t("communities.backButton")}</Text>
@@ -509,68 +552,77 @@ const CommunityDetailScreen: React.FC = () => {
           }}
         />
       ) : (
-        <ScrollView
-          className="flex-1"
-          contentContainerStyle={{ paddingBottom: 80 }}
-          keyboardShouldPersistTaps="handled"
-          refreshControl={refreshControl}
+        // Edge-to-edge Android no longer resizes the window for the keyboard,
+        // so the About editor's fields would sit behind it. Shrinking the
+        // ScrollView lets it scroll the focused field into view.
+        <KeyboardAvoidingView
+          style={{ flex: 1 }}
+          behavior="padding"
+          keyboardVerticalOffset={keyboardOffset}
         >
-          {HeaderBlock}
-          {tab === "about" && (
-            <View className="px-4 pt-2">
-              <Text className="text-zinc-400 text-xs uppercase mb-2">{t("communities.about")}</Text>
-              <Text className="text-white text-sm leading-6">
-                {community.description || t("communities.noDescription")}
-              </Text>
-
-              {abilities.can("change_info") ? (
-                <CommunityInfoEditor community={community} onSaved={load} />
-              ) : null}
-
-              {/*
-                Privacy is a governance setting, not a cosmetic edit — the RPC
-                requires rank on top of change_info, so a plain member holding
-                the "change info" member right must not see this switch.
-              */}
-              {abilities.canManageSettings ? (
-                <View style={styles.settingCard}>
-                  <View className="flex-row items-center justify-between gap-3">
-                    <View className="flex-1">
-                      <Text className="text-white text-sm font-medium">
-                        {community.is_private
-                          ? t("communities.privateLabel")
-                          : t("communities.publicLabel")}
-                      </Text>
-                      <Text className="text-zinc-500 text-xs mt-0.5">
-                        {community.is_private
-                          ? t("communities.privateHint", {
-                              defaultValue: "New members must be approved to join.",
-                            })
-                          : t("communities.publicHint", {
-                              defaultValue: "Anyone can join instantly.",
-                            })}
-                      </Text>
-                    </View>
-                    {privacySaving ? (
-                      <ActivityIndicator size="small" color="#fff" />
-                    ) : (
-                      <CustomSwitch
-                        value={community.is_private}
-                        onValueChange={handlePrivacyToggle}
-                      />
-                    )}
-                  </View>
-                </View>
-              ) : (
-                <Text className="text-zinc-500 text-xs mt-4">
-                  {community.is_private
-                    ? t("communities.privateLabel")
-                    : t("communities.publicLabel")}
+          <ScrollView
+            className="flex-1"
+            contentContainerStyle={{ paddingBottom: 80 }}
+            keyboardShouldPersistTaps="handled"
+            refreshControl={refreshControl}
+          >
+            {HeaderBlock}
+            {tab === "about" && (
+              <View className="px-4 pt-2">
+                <Text className="text-zinc-400 text-xs uppercase mb-2">{t("communities.about")}</Text>
+                <Text className="text-white text-sm leading-6">
+                  {community.description || t("communities.noDescription")}
                 </Text>
-              )}
-            </View>
-          )}
-        </ScrollView>
+
+                {abilities.can("change_info") ? (
+                  <CommunityInfoEditor community={community} onSaved={load} />
+                ) : null}
+
+                {/*
+                  Privacy is a governance setting, not a cosmetic edit — the RPC
+                  requires rank on top of change_info, so a plain member holding
+                  the "change info" member right must not see this switch.
+                */}
+                {abilities.canManageSettings ? (
+                  <View style={styles.settingCard}>
+                    <View className="flex-row items-center justify-between gap-3">
+                      <View className="flex-1">
+                        <Text className="text-white text-sm font-medium">
+                          {community.is_private
+                            ? t("communities.privateLabel")
+                            : t("communities.publicLabel")}
+                        </Text>
+                        <Text className="text-zinc-500 text-xs mt-0.5">
+                          {community.is_private
+                            ? t("communities.privateHint", {
+                                defaultValue: "New members must be approved to join.",
+                              })
+                            : t("communities.publicHint", {
+                                defaultValue: "Anyone can join instantly.",
+                              })}
+                        </Text>
+                      </View>
+                      {privacySaving ? (
+                        <ActivityIndicator size="small" color="#fff" />
+                      ) : (
+                        <CustomSwitch
+                          value={community.is_private}
+                          onValueChange={handlePrivacyToggle}
+                        />
+                      )}
+                    </View>
+                  </View>
+                ) : (
+                  <Text className="text-zinc-500 text-xs mt-4">
+                    {community.is_private
+                      ? t("communities.privateLabel")
+                      : t("communities.publicLabel")}
+                  </Text>
+                )}
+              </View>
+            )}
+          </ScrollView>
+        </KeyboardAvoidingView>
       )}
 
       {abilities.canManage && (

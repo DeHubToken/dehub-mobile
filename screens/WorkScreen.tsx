@@ -413,9 +413,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 
-  // A horizontal ScrollView defaults to flexGrow 1 and would split the free
-  // space with the list below when the board is short.
-  strip: { flexGrow: 0 },
+  // A horizontal ScrollView defaults to flexGrow 1 and flexShrink 1: it would
+  // split the free space with the list below when the board is short, and get
+  // squeezed (cutting the tab labels) when a long list or the keyboard leaves
+  // too little room.
+  strip: { flexGrow: 0, flexShrink: 0 },
   chipRow: { gap: 8, paddingHorizontal: 12, paddingVertical: 8, alignItems: "center" },
   tabChip: {
     flexDirection: "row",
@@ -509,7 +511,9 @@ const styles = StyleSheet.create({
   cardTitle: { color: "#FFFFFF", fontSize: 15, fontWeight: "600" },
   cardDesc: { color: "#A1A1AA", fontSize: 12.5, lineHeight: 18, marginTop: 4, marginBottom: 12 },
 
-  metaRow: { flexDirection: "row", alignItems: "center", gap: 14 },
+  // Wraps so a long count line drops the deadline onto a second line (its
+  // marginLeft auto keeps it right-aligned) instead of running past the card.
+  metaRow: { flexDirection: "row", flexWrap: "wrap", alignItems: "center", columnGap: 14, rowGap: 6 },
   metaItem: { flexDirection: "row", alignItems: "center", gap: 4 },
   metaText: { color: "#A1A1AA", fontSize: 12 },
 

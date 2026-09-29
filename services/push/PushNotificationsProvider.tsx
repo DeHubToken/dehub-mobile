@@ -171,6 +171,16 @@ function announcementUrl(data: NotificationData): string | null {
   return /^https?:\/\//i.test(url) ? url : null;
 }
 
+/**
+ * The in-app new_message row carries its conversation only as a `/dm/<id>`
+ * deep link, and the push payload can arrive the same way with no
+ * conversationId. Stops at `/`, `?` or `#` so a query is not read as the id.
+ */
+function conversationIdFromDeepLink(deepLink: unknown): string | undefined {
+  if (typeof deepLink !== 'string') return undefined;
+  return deepLink.match(/\/dm\/([^/?#]+)/)?.[1];
+}
+
 interface PushNotificationsProviderProps {
   children: React.ReactNode;
 }
@@ -426,26 +436,28 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
           }
           break;
 
-        case NotificationType.NEW_MESSAGE:
-          if (conversationId) {
-            navigation.navigate(ScreenNames.Chat, { conversationId });
+        case NotificationType.NEW_MESSAGE: {
+          const chatId = conversationId || conversationIdFromDeepLink(data.deepLink);
+          if (chatId) {
+            navigation.navigate(ScreenNames.Chat, { conversationId: chatId });
           } else {
-            // The DM list is mounted as ScreenNames.DM
-            // (navigation/BottomTabNavigator.tsx). A duplicate
-            // `DirectMessages` enum entry used to be used here; it was never
-            // registered on a navigator, so navigating to it threw and fell
-            // through to the catch below, dumping the user on Notifications
-            // instead of their DMs. That alias has since been removed.
-            navigation.navigate(ScreenNames.DM);
+            // The DM list is a tab inside Root (navigation/BottomTabNavigator.tsx),
+            // not an App-stack route. A bare navigate(DM) from a pushed page
+            // reached the App stack, matched nothing and was dropped silently,
+            // so the app came forward on the same page. Naming Root reaches the
+            // tab; `pop` goes back to the existing Root instead of stacking a
+            // second tab navigator on top of the current page.
+            navigation.navigate(ScreenNames.Root, { screen: ScreenNames.DM }, { pop: true });
           }
           break;
+        }
 
         // Badge lending. The delegation panel is the only place a loan can be
-        // seen or ended, so a tap lands there rather than on the bell.
+        // seen or ended, and it sits on the Assets tab of settings.
         case NotificationType.BADGE_DELEGATED:
         case NotificationType.BADGE_DELEGATION_ENDED:
         case NotificationType.BADGE_DELEGATION_CHANGED:
-          navigation.navigate(ScreenNames.AccountSettings);
+          navigation.navigate(ScreenNames.AccountSettings, { initialTab: 'assets' });
           break;
 
         default:

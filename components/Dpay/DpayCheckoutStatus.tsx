@@ -194,7 +194,9 @@ const DpayCheckoutStatus: React.FC<Props> = ({
 
   const goProfile = React.useCallback(() => {
     try {
-      navigation.navigate(ScreenNames.Root as any, { screen: ScreenNames.Profile });
+      // Profile is an App-stack screen, not a tab: nesting it under Root
+      // pushed a fresh Home instead.
+      navigation.navigate(ScreenNames.Profile);
     } catch {}
     onClose();
   }, [navigation, onClose]);

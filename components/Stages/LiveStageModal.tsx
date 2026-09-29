@@ -386,7 +386,7 @@ const LiveStageModal: React.FC = () => {
             <Text style={{ color: "#fff", fontWeight: "700", fontSize: 16 }} numberOfLines={1}>
               {currentSpace.title}
             </Text>
-            <View style={{ flexDirection: "row", alignItems: "center", marginTop: 3, gap: 8 }}>
+            <View style={{ flexDirection: "row", flexWrap: "wrap", alignItems: "center", marginTop: 3, columnGap: 8, rowGap: 4 }}>
               <View
                 style={{
                   flexDirection: "row",
@@ -776,10 +776,12 @@ const LiveStageModal: React.FC = () => {
           </View>
         )}
 
-        {/* Controls */}
+        {/* Controls. Wraps so a long guest sign-in label drops above Leave
+            instead of pushing both buttons off the screen edges. */}
         <View
           style={{
             flexDirection: "row",
+            flexWrap: "wrap",
             alignItems: "center",
             justifyContent: "center",
             paddingHorizontal: 24,
@@ -814,7 +816,8 @@ const LiveStageModal: React.FC = () => {
                 alignItems: "center",
                 gap: 8,
                 paddingHorizontal: 20,
-                height: 56,
+                minHeight: 56,
+                flexShrink: 1,
                 borderRadius: 16,
                 backgroundColor: "rgba(255,255,255,0.08)",
                 borderWidth: 1,
@@ -822,7 +825,10 @@ const LiveStageModal: React.FC = () => {
               }}
             >
               <Icon name="LogIn" size={18} color="rgba(255,255,255,0.85)" />
-              <Text style={{ color: "rgba(255,255,255,0.85)", fontWeight: "600", fontSize: 14 }}>
+              <Text
+                numberOfLines={2}
+                style={{ color: "rgba(255,255,255,0.85)", fontWeight: "600", fontSize: 14, flexShrink: 1, textAlign: "center" }}
+              >
                 {t("stages.signInToJoin")}
               </Text>
             </TouchableOpacity>

@@ -100,10 +100,11 @@ export default function FeedDetailScreen() {
 
   const [loading, setLoading] = useState(true);
   const [privateError, setPrivateError] = useState(false);
-  // The fetch failed for any reason but a private account, which has its own
-  // notice. Without this the list said "No comments yet" — a thread that failed
-  // to arrive read as one nobody had written in, with nothing to tap to retry.
-  const [commentsLoadError, setCommentsLoadError] = useState(false);
+  // Why the last fetch failed, when it did and the account isn't private
+  // (that has its own notice): a 404 or 410 means the post is gone, anything
+  // else is worth a retry. Without this the list said "No comments yet" — a
+  // thread that failed to arrive read as one nobody had written in.
+  const [loadError, setLoadError] = useState<"notFound" | "failed" | null>(null);
   // The card that was tapped, when there was one: the post paints on the first
   // frame and the fetch below only brings the comments and fresh counts.
   const [item, setItem] = useState<UnifiedFeedItem | null>(() =>
@@ -320,6 +321,7 @@ export default function FeedDetailScreen() {
   const fetchData = useCallback(async () => {
     if (tokenId == null) return;
     setLoading(true);
+    setLoadError(null);
     try {
       const options = {
         ...(commentIdParam ? { commentId: commentIdParam } : {}),
@@ -334,7 +336,7 @@ export default function FeedDetailScreen() {
       
       // console.log("[FeedDetailScreen] fetched data", payload.comments);
       setPrivateError(false);
-      setCommentsLoadError(false);
+      setLoadError(null);
       
       // Set the feed item
       setItem(payload as UnifiedFeedItem);
@@ -452,12 +454,15 @@ export default function FeedDetailScreen() {
       const isPrivate = msg.toLowerCase().includes('private account');
       if (isPrivate) {
         setPrivateError(true);
+      } else {
+        const status = e?.status;
+        setLoadError(status === 404 || status === 410 ? "notFound" : "failed");
       }
-      setCommentsLoadError(!isPrivate);
       // A post seeded from the feed stays up through a failed fetch; only a
-      // private account takes it down.
+      // private account takes it down. The same goes for comments already on
+      // screen: a failed refetch after a pin, edit or delete keeps the thread.
       setItem((prev) => (isPrivate ? null : prev));
-      setComments([]);
+      setComments((prev) => (isPrivate ? [] : prev));
     } finally {
       setLoading(false);
     }
@@ -1155,6 +1160,10 @@ export default function FeedDetailScreen() {
     });
   }, [inputText, posting, requireAuth, tokenId, replyTo, editingComment, user, fetchData, insertThreaded, t]);
 
+  // No post to show and nothing to comment on: it is private, gone or failed to
+  // load, and the message in the header is the whole page.
+  const postUnavailable = !item && !loading && (loadError != null || privateError);
+
   const renderHeader = useCallback(() => (
     <View>
       <ScreenHeader title={t("screens.post")} />
@@ -1198,6 +1207,31 @@ export default function FeedDetailScreen() {
           <Text className="text-gray-400 text-center text-sm leading-5">
             {t("feed.privateContentBody")}
           </Text>
+        </View>
+      ) : loadError ? (
+        <View className="items-center justify-center px-6 py-16">
+          <View className={isMinimal ? "mb-5" : "bg-theme-neutrals-800/50 rounded-2xl p-5 mb-5"}>
+            <Ionicons
+              name={loadError === "notFound" ? "document-text-outline" : "cloud-offline-outline"}
+              size={40}
+              color="#666"
+            />
+          </View>
+          <Text className="text-white text-lg font-bold text-center mb-2">
+            {t(loadError === "notFound" ? "common.postNotFound" : "common.failedToLoad")}
+          </Text>
+          {loadError === "failed" && (
+            <TouchableOpacity
+              onPress={() => {
+                fetchData();
+              }}
+              activeOpacity={0.7}
+              accessibilityRole="button"
+              className="mt-3 px-5 py-2.5 rounded-full bg-theme-neutrals-800"
+            >
+              <Text className="text-white text-sm font-semibold">{t("common.retry")}</Text>
+            </TouchableOpacity>
+          )}
         </View>
       ) : null}
       {/* Repost & Quote stats row */}
@@ -1243,13 +1277,15 @@ export default function FeedDetailScreen() {
           </TouchableOpacity>
         </View>
       )}
-      <View className="px-4 pt-2 pb-1">
-        <Text className="text-theme-neutrals-400 text-xs font-medium">
-          {comments.length > 0 ? t("comments.countLabel", { count: comments.length }) : t("postInfo.comments")}
-        </Text>
-      </View>
+      {!postUnavailable && (
+        <View className="px-4 pt-2 pb-1">
+          <Text className="text-theme-neutrals-400 text-xs font-medium">
+            {comments.length > 0 ? t("comments.countLabel", { count: comments.length }) : t("postInfo.comments")}
+          </Text>
+        </View>
+      )}
     </View>
-  ), [item, loading, privateError, navigation, comments.length, focusCommentInput, isMinimal, t]);
+  ), [item, loading, privateError, loadError, postUnavailable, fetchData, navigation, comments.length, focusCommentInput, isMinimal, t]);
 
   // The name sits in bold wherever the language puts it. The sentence is
   // translated whole and cut around the name, because a translated "Replying
@@ -1284,28 +1320,28 @@ export default function FeedDetailScreen() {
         // a post whose header is a video: land near it and let the next pass
         // finish the job rather than dropping the jump.
         onScrollToIndexFailed={handleScrollToIndexFailed}
-        ListEmptyComponent={!loading ? (
-          commentsLoadError ? (
-            <View className="px-4 py-6 items-start" style={{ gap: 12 }}>
-              <Text className="text-theme-neutrals-400 text-sm">{t("comments.loadFailed")}</Text>
-              <Pressable
-                onPress={() => { void fetchData(); }}
-                accessibilityRole="button"
-                className={isMinimal ? "px-5 py-2 border" : "px-5 py-2 rounded-xl bg-theme-neutrals-700"}
-                // Minimal: outline only, no fill.
-                style={isMinimal ? { borderColor: MINIMAL_TAB_LINE } : undefined}
-              >
-                <Text className="text-theme-neutrals-50 font-medium">{t("common.retry")}</Text>
-              </Pressable>
-            </View>
-          ) : (
-            <View className="px-4 py-6">
-              <Text className="text-theme-neutrals-400 text-sm">{t("comments.noneYetAddYours")}</Text>
-            </View>
-          )
-        ) : (
+        ListEmptyComponent={loading ? (
           <View className="px-4 py-3">
             <CommentsSkeleton />
+          </View>
+        ) : !item ? null : loadError ? (
+          // The post is up but its comments didn't come: say so, rather than
+          // "no comments yet" on a post whose card counts some.
+          <View className="px-4 py-6 items-start" style={{ gap: 12 }}>
+            <Text className="text-theme-neutrals-400 text-sm">{t("comments.loadFailed")}</Text>
+            <Pressable
+              onPress={() => { void fetchData(); }}
+              accessibilityRole="button"
+              className={isMinimal ? "px-5 py-2 border" : "px-5 py-2 rounded-xl bg-theme-neutrals-700"}
+              // Minimal: outline only, no fill.
+              style={isMinimal ? { borderColor: MINIMAL_TAB_LINE } : undefined}
+            >
+              <Text className="text-theme-neutrals-50 font-medium">{t("common.retry")}</Text>
+            </Pressable>
+          </View>
+        ) : (
+          <View className="px-4 py-6">
+            <Text className="text-theme-neutrals-400 text-sm">{t("comments.noneYetAddYours")}</Text>
           </View>
         )}
         renderItem={renderCommentItem}
@@ -1319,226 +1355,230 @@ export default function FeedDetailScreen() {
         viewabilityConfig={viewabilityConfig}
         onViewableItemsChanged={onViewableItemsChanged}
       />
-      <View
-        className="absolute left-0 right-0 bottom-0 border-t border-theme-neutrals-800 bg-theme-neutrals-900"
-        // Minimal: a black bar under one full-width hairline.
-        style={isMinimal
-          ? { marginBottom: inputLift, backgroundColor: "#000", borderTopColor: MINIMAL_HAIRLINE }
-          : { marginBottom: inputLift }}
-      >
-        {/* Replying / Editing indicator */}
-        {(replyTo || editingComment) && !recorder.isRecording && (
-          <View
-            className={isMinimal ? "flex-row items-center py-2" : "flex-row items-center py-2 bg-theme-neutrals-800/50"}
-            style={{ paddingHorizontal: COMPOSER.gutter }}
-          >
-            <Text className="flex-1 text-xs text-theme-neutrals-400">
-              {editingComment ? (
-                t("comments.editingComment")
-              ) : (
-                <>
-                  {replyingToBefore}
-                  <Text className="font-semibold">{replyToName}</Text>
-                  {replyingToAfter}
-                </>
-              )}
-            </Text>
-            <TouchableOpacity
-              onPress={cancelReplyOrEdit}
-              activeOpacity={0.7}
-              accessibilityRole="button"
-              accessibilityLabel={editingComment ? t("comments.cancelEdit") : t("comments.cancelReply")}
-            >
-              <Ionicons name="close" size={18} color={theme.colors.mutedForeground} />
-            </TouchableOpacity>
-          </View>
-        )}
-
-        {/* Mention suggestions */}
-        <MentionSuggestions
-          visible={mentions.showSuggestions}
-          suggestions={mentions.suggestions}
-          onSelect={mentions.selectMention}
-          loading={mentions.loading}
-        />
-
-        {/* The same three notices, in the same order, as the comment sheet.
-            A banned account reads every comment and writes none; the other two
-            leave the thread readable and say why it is not writable. */}
-        {accountBanned ? (
-          <View style={{ padding: COMPOSER.gutter }}>
-            <BannedAccountNotice variant="line" />
-          </View>
-        ) : commentsDisabled ? (
-          <View
-            className="flex-row items-center justify-center"
-            style={{ gap: COMPOSER.gap, padding: COMPOSER.gutter, minHeight: COMPOSER.control + COMPOSER.gutter * 2 }}
-          >
-            <Icon name="MessageSquare" size={16} color="#6F7174" />
-            <Text className="text-theme-neutrals-400 text-sm">
-              {t("comments.turnedOff")}
-            </Text>
-          </View>
-        ) : kidsOnlyThread ? (
-          <View
-            className="flex-row items-center justify-center"
-            style={{ gap: COMPOSER.gap, padding: COMPOSER.gutter, minHeight: COMPOSER.control + COMPOSER.gutter * 2 }}
-          >
-            <Icon name="Baby" size={16} color="#6F7174" />
-            <Text className="text-theme-neutrals-400 text-sm text-center">
-              {t("comments.kidsOnlyThread")}
-            </Text>
-          </View>
-        ) : recorder.isRecording ? (
-          <VoiceNoteRecordingOverlay recorder={recorder} />
-        ) : mediaAttachment ? (
-          <CommentMediaPreview
-            media={mediaAttachment}
-            onRemove={handleRemoveMedia}
-            onSend={handleSendMedia}
-            sending={mediaPosting}
-          />
-        ) : (
-          /* Standard input row */
-          <View
-            className="flex-row items-end"
-            style={{ gap: COMPOSER.gap, padding: COMPOSER.gutter }}
-          >
-            <Avatar
-              uri={userAvatar && userAvatar !== "default-avatar" ? userAvatar : undefined}
-              size={32}
-              name={user?.displayName || user?.username}
-              style={{ marginBottom: (COMPOSER.control - 32) / 2 }}
-            />
+      {/* Nothing to comment on while the post is private, gone or failed to
+          load. A saved draft stays in storage and comes back with the post. */}
+      {!postUnavailable && (
+        <View
+          className="absolute left-0 right-0 bottom-0 border-t border-theme-neutrals-800 bg-theme-neutrals-900"
+          // Minimal: a black bar under one full-width hairline.
+          style={isMinimal
+            ? { marginBottom: inputLift, backgroundColor: "#000", borderTopColor: MINIMAL_HAIRLINE }
+            : { marginBottom: inputLift }}
+        >
+          {/* Replying / Editing indicator */}
+          {(replyTo || editingComment) && !recorder.isRecording && (
             <View
-              className={isMinimal ? "flex-1 flex-row border" : "flex-1 flex-row bg-theme-neutrals-800/60 border border-theme-neutrals-700"}
-              style={{
-                ...(isMinimal ? { borderColor: MINIMAL_INPUT_LINE } : null),
-                // `center`, not `flex-end`: one line of 14px text is ~18 tall in a
-                // 40 box. Once the text wraps, the box grows and this is moot.
-                alignItems: "center",
-                borderRadius: COMPOSER.radius,
-                paddingHorizontal: 12,
-                paddingVertical: 8,
-                minHeight: COMPOSER.control,
-              }}
+              className={isMinimal ? "flex-row items-center py-2" : "flex-row items-center py-2 bg-theme-neutrals-800/50"}
+              style={{ paddingHorizontal: COMPOSER.gutter }}
             >
-              <TextInput
-                ref={inputRef}
-                value={inputText}
-                onChangeText={mentions.handleChangeText}
-                onSelectionChange={mentions.handleSelectionChange}
-                placeholder={
-                  editingComment
-                    ? t("comments.editPlaceholder")
-                    : replyTo
-                      ? t("comments.replyPlaceholder")
-                      : t("comments.inputPlaceholder")
-                }
-                placeholderTextColor={theme.colors.mutedForeground}
-                className="flex-1 text-sm text-theme-neutrals-100"
-                style={{
-                  // Seven lines of 14px text before it starts scrolling. The
-                  // send control is a sibling, not an overlay, so the box is
-                  // free to grow into the row.
-                  maxHeight: 140,
-                  paddingVertical: 0,
-                  // Android multiline inputs top-align regardless of the parent.
-                  textAlignVertical: "center",
-                }}
-                multiline
-                numberOfLines={inputText.length === 0 ? 1 : undefined}
-                // No returnKeyType="send"/onSubmitEditing here on purpose: on a
-                // multiline field that turns the keyboard's return key into a
-                // post button, so a reply cannot be written across two lines.
-                // Send is the button beside the field, as on the other surface.
-              />
-            </View>
-
-            {inputText.trim() || editingComment ? (
-              <View className="flex-row items-center" style={{ gap: COMPOSER.gap / 2 }}>
-              <Pressable
-                  onPress={handleEmojiPress}
-                  onTouchStart={handleEmojiTouchStart}
-                  accessibilityRole="button"
-                  accessibilityLabel={t("comments.addEmoji")}
-                  style={composerStyles.iconControl}
-                >
-                  <Text style={{ fontSize: 18 }}>🙂</Text>
-                </Pressable>
+              <Text className="flex-1 text-xs text-theme-neutrals-400">
+                {editingComment ? (
+                  t("comments.editingComment")
+                ) : (
+                  <>
+                    {replyingToBefore}
+                    <Text className="font-semibold">{replyToName}</Text>
+                    {replyingToAfter}
+                  </>
+                )}
+              </Text>
               <TouchableOpacity
-                onPress={handleSend}
-                disabled={posting || !inputText.trim()}
+                onPress={cancelReplyOrEdit}
                 activeOpacity={0.7}
                 accessibilityRole="button"
-                accessibilityLabel={t("comments.postComment")}
-                style={[
-                  composerStyles.iconControl,
-                  { backgroundColor: inputText.trim() ? "#F9FBFF" : "rgba(255,255,255,0.1)" },
-                ]}
+                accessibilityLabel={editingComment ? t("comments.cancelEdit") : t("comments.cancelReply")}
               >
-                {posting ? (
-                  <ActivityIndicator size="small" color="#010305" />
-                ) : (
-                  <Ionicons
-                    name="send"
-                    size={18}
-                    color={inputText.trim() ? "#010305" : theme.colors.mutedForeground}
-                  />
-                )}
+                <Ionicons name="close" size={18} color={theme.colors.mutedForeground} />
               </TouchableOpacity>
-              </View>
-            ) : (
-              <View className="flex-row items-center" style={{ gap: COMPOSER.gap / 2 }}>
-                <TouchableOpacity
-                  onPress={handlePickImage}
-                  activeOpacity={0.7}
-                  accessibilityRole="button"
-                  accessibilityLabel={t("comments.addImage")}
-                  style={composerStyles.iconControl}
-                >
-                  <Ionicons name="image-outline" size={20} color={theme.colors.mutedForeground} />
-                </TouchableOpacity>
-                <TouchableOpacity
-                  onPress={handleOpenGifPicker}
-                  activeOpacity={0.7}
-                  accessibilityRole="button"
-                  accessibilityLabel={t("comments.addGif")}
-                  style={composerStyles.iconControl}
-                >
-                  {/* A text glyph, not an icon — it only lines up with its neighbours
-                      because the box is sized explicitly rather than by padding. */}
-                  <Text className="text-xs font-bold text-theme-neutrals-400">GIF</Text>
-                </TouchableOpacity>
-                <Pressable
-                  onPress={handleEmojiPress}
-                  onTouchStart={handleEmojiTouchStart}
-                  accessibilityRole="button"
-                  accessibilityLabel={t("comments.addEmoji")}
-                  style={composerStyles.iconControl}
-                >
-                  {/* A text glyph, not an icon — same reasoning as GIF above: a
-                      thin line-art face reads smaller and washed-out next to a
-                      solid rectangle and a solid capsule in identical boxes. */}
-                  <Text style={{ fontSize: 18 }}>🙂</Text>
-                </Pressable>
-                <TouchableOpacity
-                  onPress={() => {
-                    Keyboard.dismiss();
-                    recorder.startRecording();
+            </View>
+          )}
+
+          {/* Mention suggestions */}
+          <MentionSuggestions
+            visible={mentions.showSuggestions}
+            suggestions={mentions.suggestions}
+            onSelect={mentions.selectMention}
+            loading={mentions.loading}
+          />
+
+          {/* The same three notices, in the same order, as the comment sheet.
+              A banned account reads every comment and writes none; the other two
+              leave the thread readable and say why it is not writable. */}
+          {accountBanned ? (
+            <View style={{ padding: COMPOSER.gutter }}>
+              <BannedAccountNotice variant="line" />
+            </View>
+          ) : commentsDisabled ? (
+            <View
+              className="flex-row items-center justify-center"
+              style={{ gap: COMPOSER.gap, padding: COMPOSER.gutter, minHeight: COMPOSER.control + COMPOSER.gutter * 2 }}
+            >
+              <Icon name="MessageSquare" size={16} color="#6F7174" />
+              <Text className="text-theme-neutrals-400 text-sm">
+                {t("comments.turnedOff")}
+              </Text>
+            </View>
+          ) : kidsOnlyThread ? (
+            <View
+              className="flex-row items-center justify-center"
+              style={{ gap: COMPOSER.gap, padding: COMPOSER.gutter, minHeight: COMPOSER.control + COMPOSER.gutter * 2 }}
+            >
+              <Icon name="Baby" size={16} color="#6F7174" />
+              <Text className="text-theme-neutrals-400 text-sm text-center">
+                {t("comments.kidsOnlyThread")}
+              </Text>
+            </View>
+          ) : recorder.isRecording ? (
+            <VoiceNoteRecordingOverlay recorder={recorder} />
+          ) : mediaAttachment ? (
+            <CommentMediaPreview
+              media={mediaAttachment}
+              onRemove={handleRemoveMedia}
+              onSend={handleSendMedia}
+              sending={mediaPosting}
+            />
+          ) : (
+            /* Standard input row */
+            <View
+              className="flex-row items-end"
+              style={{ gap: COMPOSER.gap, padding: COMPOSER.gutter }}
+            >
+              <Avatar
+                uri={userAvatar && userAvatar !== "default-avatar" ? userAvatar : undefined}
+                size={32}
+                name={user?.displayName || user?.username}
+                style={{ marginBottom: (COMPOSER.control - 32) / 2 }}
+              />
+              <View
+                className={isMinimal ? "flex-1 flex-row border" : "flex-1 flex-row bg-theme-neutrals-800/60 border border-theme-neutrals-700"}
+                style={{
+                  ...(isMinimal ? { borderColor: MINIMAL_INPUT_LINE } : null),
+                  // `center`, not `flex-end`: one line of 14px text is ~18 tall in a
+                  // 40 box. Once the text wraps, the box grows and this is moot.
+                  alignItems: "center",
+                  borderRadius: COMPOSER.radius,
+                  paddingHorizontal: 12,
+                  paddingVertical: 8,
+                  minHeight: COMPOSER.control,
+                }}
+              >
+                <TextInput
+                  ref={inputRef}
+                  value={inputText}
+                  onChangeText={mentions.handleChangeText}
+                  onSelectionChange={mentions.handleSelectionChange}
+                  placeholder={
+                    editingComment
+                      ? t("comments.editPlaceholder")
+                      : replyTo
+                        ? t("comments.replyPlaceholder")
+                        : t("comments.inputPlaceholder")
+                  }
+                  placeholderTextColor={theme.colors.mutedForeground}
+                  className="flex-1 text-sm text-theme-neutrals-100"
+                  style={{
+                    // Seven lines of 14px text before it starts scrolling. The
+                    // send control is a sibling, not an overlay, so the box is
+                    // free to grow into the row.
+                    maxHeight: 140,
+                    paddingVertical: 0,
+                    // Android multiline inputs top-align regardless of the parent.
+                    textAlignVertical: "center",
                   }}
+                  multiline
+                  numberOfLines={inputText.length === 0 ? 1 : undefined}
+                  // No returnKeyType="send"/onSubmitEditing here on purpose: on a
+                  // multiline field that turns the keyboard's return key into a
+                  // post button, so a reply cannot be written across two lines.
+                  // Send is the button beside the field, as on the other surface.
+                />
+              </View>
+
+              {inputText.trim() || editingComment ? (
+                <View className="flex-row items-center" style={{ gap: COMPOSER.gap / 2 }}>
+                <Pressable
+                    onPress={handleEmojiPress}
+                    onTouchStart={handleEmojiTouchStart}
+                    accessibilityRole="button"
+                    accessibilityLabel={t("comments.addEmoji")}
+                    style={composerStyles.iconControl}
+                  >
+                    <Text style={{ fontSize: 18 }}>🙂</Text>
+                  </Pressable>
+                <TouchableOpacity
+                  onPress={handleSend}
+                  disabled={posting || !inputText.trim()}
                   activeOpacity={0.7}
                   accessibilityRole="button"
-                  accessibilityLabel={t("comments.recordVoice")}
-                  style={composerStyles.iconControl}
+                  accessibilityLabel={t("comments.postComment")}
+                  style={[
+                    composerStyles.iconControl,
+                    { backgroundColor: inputText.trim() ? "#F9FBFF" : "rgba(255,255,255,0.1)" },
+                  ]}
                 >
-                  <Ionicons name="mic-outline" size={20} color={theme.colors.mutedForeground} />
+                  {posting ? (
+                    <ActivityIndicator size="small" color="#010305" />
+                  ) : (
+                    <Ionicons
+                      name="send"
+                      size={18}
+                      color={inputText.trim() ? "#010305" : theme.colors.mutedForeground}
+                    />
+                  )}
                 </TouchableOpacity>
-              </View>
-            )}
-          </View>
-        )}
-      </View>
+                </View>
+              ) : (
+                <View className="flex-row items-center" style={{ gap: COMPOSER.gap / 2 }}>
+                  <TouchableOpacity
+                    onPress={handlePickImage}
+                    activeOpacity={0.7}
+                    accessibilityRole="button"
+                    accessibilityLabel={t("comments.addImage")}
+                    style={composerStyles.iconControl}
+                  >
+                    <Ionicons name="image-outline" size={20} color={theme.colors.mutedForeground} />
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={handleOpenGifPicker}
+                    activeOpacity={0.7}
+                    accessibilityRole="button"
+                    accessibilityLabel={t("comments.addGif")}
+                    style={composerStyles.iconControl}
+                  >
+                    {/* A text glyph, not an icon — it only lines up with its neighbours
+                        because the box is sized explicitly rather than by padding. */}
+                    <Text className="text-xs font-bold text-theme-neutrals-400">GIF</Text>
+                  </TouchableOpacity>
+                  <Pressable
+                    onPress={handleEmojiPress}
+                    onTouchStart={handleEmojiTouchStart}
+                    accessibilityRole="button"
+                    accessibilityLabel={t("comments.addEmoji")}
+                    style={composerStyles.iconControl}
+                  >
+                    {/* A text glyph, not an icon — same reasoning as GIF above: a
+                        thin line-art face reads smaller and washed-out next to a
+                        solid rectangle and a solid capsule in identical boxes. */}
+                    <Text style={{ fontSize: 18 }}>🙂</Text>
+                  </Pressable>
+                  <TouchableOpacity
+                    onPress={() => {
+                      Keyboard.dismiss();
+                      recorder.startRecording();
+                    }}
+                    activeOpacity={0.7}
+                    accessibilityRole="button"
+                    accessibilityLabel={t("comments.recordVoice")}
+                    style={composerStyles.iconControl}
+                  >
+                    <Ionicons name="mic-outline" size={20} color={theme.colors.mutedForeground} />
+                  </TouchableOpacity>
+                </View>
+              )}
+            </View>
+          )}
+        </View>
+      )}
 
       {/* GIF picker modal */}
       <GifPicker
