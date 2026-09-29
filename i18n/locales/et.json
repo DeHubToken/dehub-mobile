@@ -8483,7 +8483,28 @@
       "intro": "Mini-rakendused, mis on loodud DeHubile kellegi poolt. Nad avanevad DeHubis, oled juba sisse logitud, ja iga rakendus näitab oma tõeliselt veebiaadressi.",
       "buildCta": "Loo rakendus",
       "emptyTitle": "Ei ole loetletud rakendusi veel",
-      "emptyBody": "Esimesed rakendused on kontrollimisel. Loo üks ja see võiks siia ilmuda."
+      "emptyBody": "Esimesed rakendused on kontrollimisel. Loo üks ja see võiks siia ilmuda.",
+      "search": "Otsi rakendusi",
+      "fromDehub": "DeHubilt",
+      "noMatch": "Sellele otsingule ei vasta ükski rakendus."
+    },
+    "card": {
+      "open": "Ava"
+    },
+    "category": {
+      "games": "Mängud",
+      "social": "Sotsiaalne",
+      "finance": "Rahandus",
+      "utility": "Utiliit",
+      "productivity": "Tootlikkus",
+      "health-fitness": "Tervis ja fitness",
+      "news-media": "Uudised ja meedia",
+      "music": "Muusika",
+      "shopping": "Ostlemine",
+      "education": "Haridus",
+      "developer-tools": "Arendaja tööriistad",
+      "entertainment": "Meelelahutus",
+      "art-creativity": "Kunst ja loovus"
     }
   },
   "aiStyles": {

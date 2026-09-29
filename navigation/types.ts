@@ -214,7 +214,7 @@ export type AppStackParamList = {
   [ScreenNames.ArcadeChessOnline]: undefined;
   [ScreenNames.Apps]: undefined;
   /** `slug` keys into miniapp_apps; `from` is the launch source the app sees. */
-  [ScreenNames.MiniApp]: { slug: string; from?: string };
+  [ScreenNames.MiniApp]: { slug: string; from?: string; url?: string; query?: string };
   [ScreenNames.MiniAppDev]: { url: string; name?: string };
   [ScreenNames.Events]: undefined;
   [ScreenNames.Stages]: undefined;

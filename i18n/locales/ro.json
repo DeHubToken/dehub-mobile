@@ -8497,7 +8497,28 @@
       "intro": "Mini-aplicații construite pentru DeHub de oricine. Acestea se deschid în cadrul DeHub, ești deja conectat (ă) și fiecare aplicație își afișează adresa web reală.",
       "buildCta": "Creează o aplicație",
       "emptyTitle": "Nicio aplicație listată încă",
-      "emptyBody": "Primele aplicații sunt în curs de examinare. Construiește una și ar putea fi aici."
+      "emptyBody": "Primele aplicații sunt în curs de examinare. Construiește una și ar putea fi aici.",
+      "search": "Aplicații de căutare",
+      "all": "Toate",
+      "fromDehub": "De la DeHub",
+      "noMatch": "Nicio aplicație nu se potrivește cu acea căutare."
+    },
+    "card": {
+      "open": "Deschide"
+    },
+    "category": {
+      "games": "Jocuri",
+      "finance": "Finanțe",
+      "utility": "Utilitate",
+      "productivity": "Productivitate",
+      "health-fitness": "Sănătate și fitness",
+      "news-media": "Știri și media",
+      "music": "Muzică",
+      "shopping": "Cumpărături",
+      "education": "Educație",
+      "developer-tools": "Instrumente pentru dezvoltatori",
+      "entertainment": "Divertisment",
+      "art-creativity": "Artă și creativitate"
     }
   },
   "aiStyles": {

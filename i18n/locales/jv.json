@@ -8459,8 +8459,8 @@
       "close": "Tutup aplikasian",
       "backToStore": "Kembali ke Aplikasi",
       "notFound": "Aplikasi ini ga ada di DeHub App Store, atau udah dihilangkan.",
-      "badUrl": "Alamat ini ga bisa dibuka sebagai mini aplikasian, harusan diawali dengan **https://**, atau alamat localhost di modus pengembang.",
-      "readyTimeout": "Aplikasi ini ga pernah panggil **dehub.ready()**, jadi layar splash ga ditutup sampai 8 detik."
+      "badUrl": "Alamat ini ga bisa dibuka sebagai mini aplikasian, harusan diawali dengan https://, atau alamat localhost di modus pengembang.",
+      "readyTimeout": "Aplikasi ini ga pernah panggil dehub.ready(), jadi layar splash ga ditutup sampai 8 detik."
     },
     "signIn": {
       "title": "Masuk ke {{name}}?",
@@ -8473,7 +8473,29 @@
       "intro": "Mini aplikasian yang dibangun buat DeHub oleh siapa saja. Mereka buka di dalam DeHub, kamu udah masuk, dan setiap aplikasian nampilin alamat web aslinya.",
       "buildCta": "Buat aplikasian",
       "emptyTitle": "Ga ada aplikasian yang terdaftar sekarang",
-      "emptyBody": "Aplikasi pertama masih di review. Buat satu dan bisa nampilin di sini."
+      "emptyBody": "Aplikasi pertama masih di review. Buat satu dan bisa nampilin di sini.",
+      "search": "Kariwisata apps",
+      "all": "Semua",
+      "fromDehub": "Kanggo DeHub",
+      "noMatch": "Gak ada aplikaséné nganti hasil pencarianmu."
+    },
+    "card": {
+      "open": "Buka"
+    },
+    "category": {
+      "games": "Géman",
+      "social": "Sosial",
+      "finance": "Keuangan",
+      "utility": "Kebérutinan",
+      "productivity": "Karyawisata",
+      "health-fitness": "Kesehatan & kebugaran",
+      "news-media": "Berita & media",
+      "music": "Musiḳ",
+      "shopping": "Belanja",
+      "education": "Pendidikan",
+      "developer-tools": "Alat pengembang",
+      "entertainment": "Kebangetan",
+      "art-creativity": "Kesenian & kreasi"
     }
   },
   "aiStyles": {

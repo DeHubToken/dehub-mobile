@@ -8483,7 +8483,29 @@
       "intro": "Mini app create per DeHub da chiunque. Si aprono all'interno di DeHub, hai già effettuato l'accesso e ogni app mostra il suo vero indirizzo web.",
       "buildCta": "Crea un'app",
       "emptyTitle": "Nessuna app ancora elencata",
-      "emptyBody": "Le prime app sono in fase di revisione. Costruiscine uno e potrebbe essere qui."
+      "emptyBody": "Le prime app sono in fase di revisione. Costruiscine uno e potrebbe essere qui.",
+      "search": "Cerca app",
+      "all": "Tutti",
+      "fromDehub": "Da DeHub",
+      "noMatch": "Nessuna app corrisponde alla ricerca."
+    },
+    "card": {
+      "open": "Apri"
+    },
+    "category": {
+      "games": "Giochi",
+      "social": "Social",
+      "finance": "Finanza",
+      "utility": "Utilità",
+      "productivity": "Produttività",
+      "health-fitness": "Salute e fitness",
+      "news-media": "Notizie e media",
+      "music": "Musica",
+      "shopping": "Shopping",
+      "education": "Istruzione",
+      "developer-tools": "Strumenti per sviluppatori",
+      "entertainment": "Divertimento",
+      "art-creativity": "Arte e creatività"
     }
   },
   "aiStyles": {

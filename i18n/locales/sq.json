@@ -8468,11 +8468,11 @@
       "close": "Mbyll aplikacion",
       "backToStore": "Kthehu tek Aplikacionet",
       "notFound": "Ky aplikacion nuk është në DeHub App Store, ose është fshirë.",
-      "badUrl": "Ky adresë nuk mund të hapet si një mini-aplikacion. Ai duhet të fillojë me **https://**, ose të jetë një adresë localhost në modin e zhvillimit.",
-      "readyTimeout": "Ky aplikacion nuk ka thirrur **dehub.ready()**, për këtë arsye ekrani i fillimit u fshi pas 8 sekondave."
+      "badUrl": "Ky adresë nuk mund të hapet si një mini-aplikacion. Ai duhet të fillojë me https://, ose të jetë një adresë localhost në modin e zhvillimit.",
+      "readyTimeout": "Ky aplikacion nuk ka thirrur dehub.ready(), për këtë arsye ekrani i fillimit u fshi pas 8 sekondave."
     },
     "signIn": {
-      "title": "Regjistrohu në **{{name}}**?",
+      "title": "Regjistrohu në {{name}}?",
       "body": "Ky aplikacion do të marrë adresën e portofolit të DeHub-të dhe një token për hyrje që vepron vetëm për këtë aplikacion. Ai nuk do të marrë akses në portofolin tuaj, fondet tuaja ose kontot tuaj në DeHub.",
       "cancel": "Jo tani",
       "confirm": "Regjistrohu"
@@ -8482,7 +8482,29 @@
       "intro": "Mini-aplikacionet ndërtuar për DeHub nga çdo person. Ata hapen brenda DeHub-it, ju jeni të regjistruar me sukses, dhe çdo aplikacion shfaq adresën e tij të vërtetë të web-it.",
       "buildCta": "Bëj një aplikacion",
       "emptyTitle": "Nuk janë listuar aplikacionet ende",
-      "emptyBody": "Aplikacionet e para janë në procesin e revizimit. Bëj një tjetër dhe ai mund të përfshijë këtu."
+      "emptyBody": "Aplikacionet e para janë në procesin e revizimit. Bëj një tjetër dhe ai mund të përfshijë këtu.",
+      "search": "Kërko appje",
+      "all": "Të gjitha",
+      "fromDehub": "Nën DeHub",
+      "noMatch": "Asnjë app nuk përputhet me kërkimin tuaj."
+    },
+    "card": {
+      "open": "Hap"
+    },
+    "category": {
+      "games": "Lojëra",
+      "social": "Social",
+      "finance": "Financë",
+      "utility": "Utilitet",
+      "productivity": "Përparim",
+      "health-fitness": "Shëndet dhe fitness",
+      "news-media": "Aktualitet dhe media",
+      "music": "Muzikë",
+      "shopping": "Shitje",
+      "education": "Arsim",
+      "developer-tools": "Ereza për zhvilluesit",
+      "entertainment": "Zhvillim i trimit",
+      "art-creativity": "Art dhe kreativitet"
     }
   },
   "aiStyles": {

@@ -8483,7 +8483,29 @@
       "intro": "Mini aplikasi yang dibangun untuk DeHub oleh siapa saja. Mereka dibuka di dalam DeHub, Anda sudah masuk, dan setiap aplikasi menampilkan alamat web aslinya.",
       "buildCta": "Bangun aplikasi",
       "emptyTitle": "Tidak ada aplikasi yang terdaftar saat ini",
-      "emptyBody": "Aplikasi pertama sedang dalam proses review. Bangun satu dan mungkin akan ada di sini."
+      "emptyBody": "Aplikasi pertama sedang dalam proses review. Bangun satu dan mungkin akan ada di sini.",
+      "search": "Cari aplikasi",
+      "all": "Semua",
+      "fromDehub": "Dari DeHub",
+      "noMatch": "Tidak ada aplikasi yang cocok dengan pencarian itu."
+    },
+    "card": {
+      "open": "Buka"
+    },
+    "category": {
+      "games": "Permainan",
+      "social": "Sosial",
+      "finance": "Keuangan",
+      "utility": "Utilitas",
+      "productivity": "Produktivitas",
+      "health-fitness": "Kesehatan & kebugaran",
+      "news-media": "Berita & media",
+      "music": "Musik",
+      "shopping": "Belanja",
+      "education": "Pendidikan",
+      "developer-tools": "Alat pengembang",
+      "entertainment": "Hiburan",
+      "art-creativity": "Seni & kreativitas"
     }
   },
   "aiStyles": {

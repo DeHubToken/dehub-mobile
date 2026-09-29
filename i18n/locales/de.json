@@ -8469,8 +8469,8 @@
       "close": "App schließen",
       "backToStore": "Zurück zu Apps",
       "notFound": "Diese App ist nicht im DeHub App Store verfügbar oder wurde entfernt.",
-      "badUrl": "Diese Adresse kann nicht als Mini-App geöffnet werden. Sie muss mit **https://** beginnen oder eine localhost-Adresse in der Entwicklermodus sein.",
-      "readyTimeout": "Diese App hat nie **dehub.ready()** aufgerufen, daher wurde der Splash-Screen nach 8 Sekunden versteckt."
+      "badUrl": "Diese Adresse kann nicht als Mini-App geöffnet werden. Sie muss mit https:// beginnen oder eine localhost-Adresse in der Entwicklermodus sein.",
+      "readyTimeout": "Diese App hat nie dehub.ready() aufgerufen, daher wurde der Splash-Screen nach 8 Sekunden versteckt."
     },
     "signIn": {
       "title": "Anmelden bei {{name}}?",
@@ -8483,7 +8483,29 @@
       "intro": "Mini-Apps, die für DeHub von jedem erstellt werden. Sie öffnen sich innerhalb von DeHub, du bist bereits angemeldet, und jede App zeigt ihre echte Webadresse an.",
       "buildCta": "Eine App erstellen",
       "emptyTitle": "Keine Apps aufgelistet",
-      "emptyBody": "Die ersten Apps werden geprüft. Erstelle eine und sie könnte hier erscheinen."
+      "emptyBody": "Die ersten Apps werden geprüft. Erstelle eine und sie könnte hier erscheinen.",
+      "search": "Apps suchen",
+      "all": "Alle",
+      "fromDehub": "Von DeHub",
+      "noMatch": "Keine Apps entsprechen dieser Suche."
+    },
+    "card": {
+      "open": "Offen"
+    },
+    "category": {
+      "games": "Spiele",
+      "social": "Sozial",
+      "finance": "Finanzen",
+      "utility": "Nützlichkeit",
+      "productivity": "Produktivität",
+      "health-fitness": "Gesundheit & Fitness",
+      "news-media": "Nachrichten & Medien",
+      "music": "Musik",
+      "shopping": "Einkaufen",
+      "education": "Ausbildung",
+      "developer-tools": "Entwicklertools",
+      "entertainment": "Unterhaltung",
+      "art-creativity": "Kunst & Kreativität"
     }
   },
   "aiStyles": {

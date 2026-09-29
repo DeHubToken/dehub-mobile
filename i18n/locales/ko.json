@@ -8487,7 +8487,29 @@
       "intro": "누구나 만들 수 있는 DeHub용 미니 앱. DeHub 내부에서 열리고 이미 로그인되어 있으며 모든 앱에 실제 웹 주소가 표시됩니다.",
       "buildCta": "앱을 개발하세요.",
       "emptyTitle": "아직 등록된 앱이 없습니다",
-      "emptyBody": "첫 번째 앱을 검토 중입니다. 하나를 만들면 여기에 있을 수 있습니다."
+      "emptyBody": "첫 번째 앱을 검토 중입니다. 하나를 만들면 여기에 있을 수 있습니다.",
+      "search": "앱 검색",
+      "all": "전체",
+      "fromDehub": "DeHub에서",
+      "noMatch": "검색 조건에 일치하는 앱이 없습니다."
+    },
+    "card": {
+      "open": "열기"
+    },
+    "category": {
+      "games": "게임",
+      "social": "소셜",
+      "finance": "재무",
+      "utility": "유틸리티",
+      "productivity": "생산성",
+      "health-fitness": "건강 및 피트니스",
+      "news-media": "뉴스 및 미디어",
+      "music": "음악",
+      "shopping": "쇼핑",
+      "education": "교육",
+      "developer-tools": "개발자 도구",
+      "entertainment": "엔터테인먼트",
+      "art-creativity": "예술과 창의성"
     }
   },
   "aiStyles": {

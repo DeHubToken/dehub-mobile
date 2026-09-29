@@ -8514,7 +8514,29 @@
       "intro": "Mini apps DeHubpaq pillapas ruwasqa. DeHub ukhupi kicharikunku, yaykusqaña kanki, chaymanta sapa app chiqa web direccionninta rikuchin.",
       "buildCta": "Huk app nisqa ruway",
       "emptyTitle": "Manaraqmi appkuna listasqachu kachkan",
-      "emptyBody": "Ñawpaq kaq appkuna qhawaypi kachkanku. Hukninta ruway hinaspa kaypi kanman."
+      "emptyBody": "Ñawpaq kaq appkuna qhawaypi kachkanku. Hukninta ruway hinaspa kaypi kanman.",
+      "search": "Maskay apps nisqakunata",
+      "all": "Llapan",
+      "fromDehub": "DeHub nisqamanta",
+      "noMatch": "Mana ima appkuna chay maskaywan tupanchu."
+    },
+    "card": {
+      "open": "Kichasqa"
+    },
+    "category": {
+      "games": "Pukllaykuna",
+      "social": "Llapa una",
+      "finance": "Wakiy",
+      "utility": "Utilidad",
+      "productivity": "Productividad nisqa",
+      "health-fitness": "Salud & fitness nisqa",
+      "news-media": "Willakuykuna & willay mast’ariqkuna",
+      "music": "Taki",
+      "shopping": "Rantiy",
+      "education": "Yachay",
+      "developer-tools": "Paqarichiqpa yanapakuyninkuna",
+      "entertainment": "Kusirikuy",
+      "art-creativity": "Arte & creatividad nisqa"
     }
   },
   "aiStyles": {

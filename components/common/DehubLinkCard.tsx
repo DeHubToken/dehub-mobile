@@ -26,6 +26,7 @@ import Icon, { type IconName } from '../ui/Icon';
 import SharedPostPreview from '../DM/SharedPostPreview';
 import { ScreenNames } from '../../navigation/ScreenNames';
 import { supabase } from '../../services/supabase';
+import { fetchAppBySlug } from '../../services/miniapps.service';
 import { getCommunityBySlug, previewCommunityInvite } from '../../services/communities.service';
 import { getAccount } from '../../services/user.service';
 import { useStoreById, useStoreListing } from '../../hooks/useStores';
@@ -426,6 +427,32 @@ const BOUNTY_STATUS_LABEL: Record<string, string> = {
   expired: 'Expired',
 };
 
+/** A mini app in the store: icon, name, subtitle or domain, opened in the app player. */
+const AppCardEmbed: React.FC<{ slug: string; onOpen: () => void; fallback: React.ReactElement }> = ({
+  slug,
+  onOpen,
+  fallback,
+}) => {
+  const { t } = useTranslation();
+  const { data: app, isLoading } = useQuery({
+    queryKey: ['miniapp-by-slug', slug],
+    queryFn: () => fetchAppBySlug(slug),
+    staleTime: 5 * 60_000,
+  });
+  if (isLoading) return <SkeletonCard />;
+  if (!app) return fallback;
+  return (
+    <RowCard
+      eyebrow={t('miniApps.store.title')}
+      title={app.name}
+      subtitle={app.subtitle ?? app.domain}
+      imageUri={app.icon_url}
+      fallbackIcon="LayoutGrid"
+      onPress={onOpen}
+    />
+  );
+};
+
 const BountyCardEmbed: React.FC<{ jobKey: string; onOpen: () => void; fallback: React.ReactElement }> = ({
   jobKey,
   onOpen,
@@ -641,6 +668,18 @@ export function useOpenDehubLink() {
           })();
           return;
         }
+        case 'app': {
+          // The link's own query is a deep link into the app; carry it through.
+          const query = link.path.includes('?') ? link.path.slice(link.path.indexOf('?') + 1) : '';
+          const room = new URLSearchParams(query);
+          room.delete('from');
+          navigation.navigate(ScreenNames.MiniApp, {
+            slug: link.appSlug,
+            from: 'feed',
+            ...(room.toString() ? { query: room.toString() } : {}),
+          });
+          return;
+        }
         case 'film':
           navigation.navigate(ScreenNames.Cinema, {
             filmType: link.filmObjectType === 'show' ? 'series' : 'film',
@@ -720,6 +759,9 @@ const DehubLinkCardComponent: React.FC<DehubLinkCardProps> = ({
           fallback={fallback}
         />
       );
+      break;
+    case 'app':
+      card = <AppCardEmbed slug={link.appSlug!} onOpen={open} fallback={fallback} />;
       break;
     case 'bounty':
       card = <BountyCardEmbed jobKey={link.bountyJobKey!} onOpen={open} fallback={fallback} />;

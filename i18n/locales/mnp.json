@@ -8505,23 +8505,31 @@
   },
   "miniApps": {
     "badge": {
-      "verified": "🔍 **確認過**",
+      "verified": "確認過",
       "dev": "開發者預覽版"
     },
     "host": {
-      "close": "🔌📱 **關閉應用**",
+      "close": "關閉應用",
       "backToStore": "回到 App 囉",
-      "notFound": "😢 這個 App 咱家 DeHub App Store 咱家有，或者已經被刪除咧！",
-      "badUrl": "🚫 咱家這個地址無法開啟小程式，得是以 `https://` 開頭，或者開發模式下用本地地址。",
-      "readyTimeout": "😅 這個 app 好像都唔係用 `dehub.ready()` 咧，所以 splash screen 8 秒後就自動隱藏咧！"
+      "notFound": "這個 App 咱家 DeHub App Store 咱家有，或者已經被刪除咧！",
+      "badUrl": "咱家這個地址無法開啟小程式，得是以 `https://` 開頭，或者開發模式下用本地地址。",
+      "readyTimeout": "這個 app 好像都唔係用 `dehub.ready()` 咧，所以 splash screen 8 秒後就自動隱藏咧！"
     },
     "signIn": {
       "title": "登入 {{name}} 嗎？",
       "confirm": "登入"
     },
     "store": {
-      "emptyTitle": "😕 尚未有應用列出喔！",
-      "emptyBody": "🔥 先頭幾個 App 正在審核中！你也快點做一個，可能就會出來囉！"
+      "emptyTitle": "尚未有應用列出喔！",
+      "emptyBody": "先頭幾個 App 正在審核中！你也快點做一個，可能就會出來囉！",
+      "search": "搜尋應用程式"
+    },
+    "category": {
+      "health-fitness": "健康跟運動",
+      "news-media": "新聞跟傳媒",
+      "shopping": "買東西 / 逛街",
+      "developer-tools": "開發工具",
+      "entertainment": "娛樂"
     }
   },
   "aiStyles": {
