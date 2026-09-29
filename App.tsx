@@ -83,6 +83,7 @@ import { markBootRevealed } from "./libs/bootReveal";
 import BadgeLadderSync from "./components/Badge/BadgeLadderSync";
 import { AppThemeProvider, useAppTheme, useThemeRootStyle } from "./context/ThemeContext";
 import ThemeBackdrop from "./components/theme/ThemeBackdrop";
+import { loadIconFont } from "./libs/iconFont";
 
 const logger = createLogger("App");
 
@@ -96,6 +97,11 @@ export const navigationRef = createNavigationContainerRef();
 ExpoSplashScreen.preventAutoHideAsync().catch(() => {
   // Ignore errors - splash screen might already be hidden
 });
+
+// Started before the first render so it runs alongside Exo and auth. The feed
+// waits on it (below) so its icons are glyphs from their first frame instead
+// of SVGs that swap once the font lands.
+const iconFontLoad = loadIconFont();
 
 export default function App() {
   const { hasInternet, isConnected, checkConnection } = useNetworkStatus();
@@ -112,6 +118,20 @@ export default function App() {
     Exo_700Bold,
   });
   const fontsSettled = fontsLoaded || !!fontError;
+  // Capped: a stuck load must never hold the splash. Icons just stay SVG.
+  const [iconFontSettled, setIconFontSettled] = useState(false);
+  useEffect(() => {
+    let live = true;
+    const settle = () => {
+      if (live) setIconFontSettled(true);
+    };
+    const cap = setTimeout(settle, 1000);
+    void iconFontLoad.then(settle);
+    return () => {
+      live = false;
+      clearTimeout(cap);
+    };
+  }, []);
 
   // Exo itself is installed over the JSX runtime from index.ts, before any
   // element exists; all that is left here is holding the splash until the TTFs
@@ -159,7 +179,7 @@ export default function App() {
   // and network resolve in parallel with the provider tree, which now mounts
   // immediately and does its boot work hidden behind the preloader instead of
   // serialised ahead of it.
-  const staged = fontsSettled && hasInternet !== null && isConnected !== null;
+  const staged = fontsSettled && iconFontSettled && hasInternet !== null && isConnected !== null;
 
   return (
     <AppThemeProvider>
