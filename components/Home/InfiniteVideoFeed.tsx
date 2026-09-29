@@ -1002,6 +1002,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
       )}
       <AnimatedFlatList
         ref={listRef}
+        showsVerticalScrollIndicator={false}
         data={listData}
         keyExtractor={keyExtractor}
         renderItem={renderItem}
