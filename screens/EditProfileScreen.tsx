@@ -27,7 +27,7 @@ import { openCroppedImagePicker, resizeAndCompress, createRNImageFile } from "..
 import { runWithPermissions } from "../libs/permissions.util";
 import { AuthService } from "../services/auth.service";
 import { toastError, toastSuccess } from "../libs/toast";
-import ScreenHeader, { SCREEN_HEADER_HEIGHT } from "../components/ScreenHeader";
+import ScreenHeader from "../components/ScreenHeader";
 import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
 import { useScrollFieldIntoView } from "../hooks/useScrollFieldIntoView";
 import { useDebounceCallback } from "../hooks/useDebounceCallback";
@@ -67,9 +67,10 @@ type SocialField = {
 
 const EditProfileScreen = () => {
   const { t } = useTranslation();
-  // ScreenHeader sits above the KeyboardAvoidingView, on top of the inset the
-  // root SafeAreaView already spent.
-  const keyboardOffset = useKeyboardOffset(SCREEN_HEADER_HEIGHT);
+  // The KeyboardAvoidingView's frame is measured from its parent, so the
+  // ScreenHeader above it is already counted. Only the status-bar inset is
+  // added, on both platforms.
+  const keyboardOffset = useKeyboardOffset();
   // The social-link rows are the last thing on a long form; focusing one
   // raised the keyboard straight over it. Each row (link + follower count) is
   // scrolled clear of the keyboard when either of its inputs takes focus.
@@ -401,7 +402,7 @@ const EditProfileScreen = () => {
       />
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
-        keyboardVerticalOffset={Platform.OS === "ios" ? keyboardOffset : 0}
+        keyboardVerticalOffset={keyboardOffset}
         style={{ flex: 1 }}
       >
         <ScrollView
