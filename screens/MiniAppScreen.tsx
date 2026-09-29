@@ -54,6 +54,7 @@ import {
   fetchAddedApps,
   fetchAppBySlug,
   mintMiniAppToken,
+  recordMiniAppOpen,
   recordMiniAppPayment,
 } from "../services/miniapps.service";
 import { payPostQuota } from "../services/post-quota-payment";
@@ -118,6 +119,12 @@ export default function MiniAppScreen() {
   useEffect(() => {
     let live = true;
     if (!app?.slug) return;
+    // One open per launch, for the ranking.
+    if (user?.walletAddress) {
+      void getAuthToken().then((session) => {
+        if (session && app.slug) recordMiniAppOpen(session, env.SUPABASE_URL, app.slug);
+      });
+    }
     fetchAddedApps(user?.walletAddress).then((rows) => {
       if (live) setAdded(rows.some((r) => r.miniapp_apps?.slug === app.slug));
     });

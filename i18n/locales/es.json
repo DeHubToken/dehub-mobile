@@ -8569,7 +8569,8 @@
       "noMatch": "Ninguna aplicación coincide con esa búsqueda.",
       "yourApps": "Tus aplicaciones",
       "notificationsOn": "Notificaciones en",
-      "removed": "Eliminado. No te notificará nuevamente."
+      "removed": "Eliminado. No te notificará nuevamente.",
+      "rising": "Nuevo y en ascenso"
     },
     "card": {
       "open": "Abierto"

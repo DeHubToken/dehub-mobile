@@ -8574,7 +8574,8 @@
       "yourApps": "Dine apps",
       "notificationsOn": "Bespøring på",
       "remove": "Fjern",
-      "removed": "Fjernet. Det vil ikke bespørge dig igen."
+      "removed": "Fjernet. Det vil ikke bespørge dig igen.",
+      "rising": "Ny og stigende"
     },
     "card": {
       "open": "Åbn"

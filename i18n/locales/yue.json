@@ -8567,7 +8567,11 @@
       "fromDehub": "嚟自 DeHub",
       "noMatch": "冇應用程式同呢個搜尋相符。",
       "yourApps": "你嘅應用程式",
-      "remove": "去除"
+      "remove": "去除",
+      "intro": "任何人為 DeHub 建立嘅迷你應用程式。佢哋會喺 DeHub 入面打開，你已經登入咗，而每個應用程式都會顯示佢嘅真實網址。",
+      "notificationsOn": "開緊嘅通知",
+      "removed": "移除咗。佢唔會再通知你。",
+      "rising": "新同上升緊"
     },
     "card": {
       "open": "打開"
@@ -8589,11 +8593,14 @@
     },
     "pay": {
       "confirm": "支付 {{amount}} DHB",
-      "sent": "已付 {{amount}} 衛生署 {{name}}。"
+      "sent": "已付 {{amount}} 衛生署 {{name}}。",
+      "title": "畀錢 {{name}} ？",
+      "body": "DHB 直接去 app 個銀包， {{wallet}} 。付款係逆轉唔到嘅。"
     },
     "add": {
       "body": "你哋可以於「應用程式」下找到，並可發送通知。你哋可以隨時於「應用程式」頁面刪除它。",
-      "confirm": "加入應用程式"
+      "confirm": "加入應用程式",
+      "title": "加 {{name}} ？"
     }
   },
   "aiStyles": {

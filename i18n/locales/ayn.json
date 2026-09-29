@@ -8570,11 +8570,16 @@
       "news-media": "خبرات و وسائل الإعلام",
       "music": "موزيك",
       "entertainment": "الترفيه",
-      "art-creativity": "الفن والخليقة"
+      "art-creativity": "الفن والخليقة",
+      "shopping": "شوفين",
+      "education": "تعليم",
+      "developer-tools": "أدوات مطور"
     },
     "pay": {
       "body": "الديه بيذهب مباشرة لوليت التطبيق، {{wallet}}. الميزانية مش ممكن ترجع.",
-      "sent": "دفعت {{amount}} ل{{name}} (د.ح.ب) بنجاح."
+      "sent": "دفعت {{amount}} ل{{name}} (د.ح.ب) بنجاح.",
+      "title": "دفع {{name}}؟",
+      "confirm": "دفع {{amount}} ريال"
     },
     "add": {
       "title": "إضافة {{name}}؟",

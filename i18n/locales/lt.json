@@ -8567,7 +8567,11 @@
       "all": "Visi",
       "fromDehub": "Iš DeHub",
       "noMatch": "Nėra programėlių, atitinkančių šią paiešką.",
-      "yourApps": "Jūsų programos"
+      "yourApps": "Jūsų programos",
+      "notificationsOn": "Pranešimai apie",
+      "remove": "Pašalinti",
+      "removed": "Pašalinta. Ji daugiau jums nepraneš.",
+      "rising": "Nauji ir kylantys"
     },
     "card": {
       "open": "Atidaryti"

@@ -8566,7 +8566,10 @@
       "fromDehub": "Mai i DeHub",
       "noMatch": "Kaore he taupānga e rite ana ki taua rapu.",
       "yourApps": "Ko o taupānga",
-      "remove": "Tangohia"
+      "remove": "Tangohia",
+      "notificationsOn": "Ngā kōrero mō",
+      "removed": "Whakakorea. e kore e whakamōhio atu ki a koutou ano.",
+      "rising": "Hou me te piki ake"
     },
     "card": {
       "open": "Whakatuwherahia"
@@ -8588,7 +8591,9 @@
     },
     "pay": {
       "title": "Tū mai ki te whakapā mai i te {{name}}?",
-      "sent": "Tūhono whakapā mai te {{amount}} DHB ki te {{name}}."
+      "sent": "Tūhono whakapā mai te {{amount}} DHB ki te {{name}}.",
+      "body": "Ka haere te DHB tika ki te putea o te taupānga, {{wallet}}. Kaore e taea te whakahoki mai i nga utu.",
+      "confirm": "Utu {{amount}} DHB"
     },
     "add": {
       "body": "Ka taea e ia te whakamahia i te whakapakari me te whakapūmau i ngā whakapūmau mō ngā whakapūmau, me te whakapūmau i ngā whakapūmau i te wā e whakamahia ana e koe i te whakapakari whakapūmau. Ka taea e koe te whakamahia i te whakapūmau i te wā e whakamahia ana e koe i te whakapakari whakapūmau, i te whakapakari whakapūmau.",

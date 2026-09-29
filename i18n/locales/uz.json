@@ -8623,7 +8623,9 @@
       "noMatch": "Bu qidiruvga hech qanday ilova mos kelmadi.",
       "yourApps": "Ilovalaringiz",
       "remove": "Olib tashlash",
-      "removed": "Oʻchirilgan. Sizga yana xabar yuborilmaydi."
+      "removed": "Oʻchirilgan. Sizga yana xabar yuborilmaydi.",
+      "notificationsOn": "Bildirishnomalar yoqilgan",
+      "rising": "Yangi va yuksalib borayotgan"
     },
     "card": {
       "open": "Ochiq"
@@ -8645,7 +8647,9 @@
     },
     "pay": {
       "body": "DHB toʻgʻridan-toʻgʻri ilovaning pul xazinasi (wallet) ga yetadi, {{wallet}}. Toʻlovlar qaytarib olinmaydi.",
-      "sent": "Tozalanmagan {{amount}} DHB ni {{name}}ga sotib oldim."
+      "sent": "Tozalanmagan {{amount}} DHB ni {{name}}ga sotib oldim.",
+      "title": "To&#39;lov {{name}}?",
+      "confirm": "To&#39;lov {{amount}} DHB"
     },
     "add": {
       "title": "{{name}}?",
