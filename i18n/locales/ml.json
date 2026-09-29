@@ -40,7 +40,6 @@
     "staking": "സ്റ്റേക്കിംഗ്",
     "superpowers": "സൂപ്പർ പവേഴ്സ്",
     "governance": "ഭരണം",
-    "dao": "ഡിസിഎം (Decentralized Autonomous Organization)",
     "careers": "ജോലികൾ",
     "glossary": "പദകോശം",
     "create": "സൃഷ്ടിക്കുക",
@@ -63,7 +62,8 @@
     "connectAi": "AI ബന്ധിപ്പിക്കുക",
     "bridge": "ബ്രിഡ്ജ്",
     "premium": "പ്രീമിയം",
-    "pricing": "വില"
+    "pricing": "വില",
+    "dao": "ഡിഎഒ"
   },
   "affiliate": {
     "subtitle": "നിങ്ങൾ ക്ഷണിക്കുന്ന എല്ലാവരിൽ നിന്നും സമ്പാദിക്കുക — എന്നെന്നേക്കുമായി",
@@ -2110,7 +2110,6 @@
     "impressions": "ഇംപ്രഷനുകൾ",
     "clicks": "ക്ലിക്കുകൾ",
     "spend": "ചെലവ്",
-    "ecpm": "ഇലക്ട്രോണിക് സിപിഎം (eCPM)",
     "campaigns": "കാമ്പെയ്നുകൾ",
     "noCampaigns": "ഇതുവരെ കാമ്പെയ്നുകളില്ല",
     "createCampaign": "കാമ്പെയ്ൻ ഉണ്ടാക്കുക",
@@ -8313,7 +8312,6 @@
     "mcapToGraduation": "{{current}} {{target}} mcap ബിരുദധാരിയാകാൻ",
     "sellSymbol": "{{symbol}} വിൽക്കുക",
     "stepOf": "സ്റ്റെപ്പ് {{step}} ൽ 3",
-    "twitter": "മനുഷ്യാവകാശങ്ങളുടെ ദിനം ആഘോഷിക്കുന്ന ദേശീയ ദിനമാണ് ഡിസംബർ 10. മനുഷ്യാവകാശങ്ങളുടെ ദിനം ആഘോഷിക്കുന്നതിനുള്ള പശ്ചാത്തലം ഇതാ.",
     "bought": "s",
     "graduatesAt": "S",
     "byCreator": "{{creator}} സൃഷ്ടിച്ചത്",

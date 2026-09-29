@@ -8547,11 +8547,11 @@
     "busy": "Kustutamistaotluse esitamine…",
     "accepted": "Konto kustutamine on taotletud",
     "receipt": "Sinu kustutamistaotlus on salvestatud. Sinu profiil on peidetud ja sinu konto kustutatakse jäädavalt 30 päeva jooksul. Sisselogimine ei saa seda taotlust tühistada.",
-    "done": "Skänni QR-kood, et kuvada",
     "error": "Kustutamistaotlust ei saanud esitada. Sinu konto ei ole kustutamiseks kinnitatud. Proovi uuesti.",
     "back": "Mine tagasi seadistuste juurde",
     "signIn": "Logi oma kontole sisse",
-    "acknowledge": "Salvestasin oma rahakoti taastamise üksikasjad ja mõistan, et kustutamine on lõplik."
+    "acknowledge": "Salvestasin oma rahakoti taastamise üksikasjad ja mõistan, et kustutamine on lõplik.",
+    "done": "Valmis"
   },
   "miniApps": {
     "badge": {

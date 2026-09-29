@@ -7238,8 +7238,8 @@
     "status": {
       "open": "Atvi-",
       "in_progress": "Vykdoma",
-      "resolved": "NustatytaThe role of the transaction, in past tense",
-      "closed": "Uždara"
+      "closed": "Uždara",
+      "resolved": "Išspręsta"
     },
     "severity": {
       "low": "Mažas",

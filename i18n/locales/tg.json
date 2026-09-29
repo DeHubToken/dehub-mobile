@@ -1950,7 +1950,6 @@
     "tipTo": "ба {{name}}",
     "tipForPost": "барои \"{{title}}\"",
     "reviewAndApprove": "Баррасӣ ва тасдиқ кунед",
-    "anon": "АнонCity name (optional, probably",
     "reply": "& Устоди зидди спам...",
     "liveChat": "Чат Live",
     "noMessages": "Ягон паём вуҷуд надорад — чизе бигӯед.",
@@ -8574,8 +8573,8 @@
       "noMatch": "Walang mga application na tumutugma sa paghahanap na",
       "yourApps": "Sozandegiyangon",
       "notificationsOn": "Xabarlar roshan",
-      "remove": "Oʻchirish",
-      "removed": "Oʻchirildi. Sizga yana xabar yuborilmaydi.",
+      "remove": "Тоза кардан",
+      "removed": "Тоза карда шуд. Дигар шуморо огоҳ намекунад.",
       "rising": "Нав ва бархоста"
     },
     "card": {
@@ -8605,7 +8604,7 @@
     "add": {
       "title": "{{name}}ni qoʻshish?",
       "body": "U \"Sozandegiyangon\" ostida koʻrinadi va sizga xabar yuborishi mumkin. Siz har qanday vaqtda Apps sahifasidan uni olib tashlashga tayyor boʻlsaniz.",
-      "confirm": "Ilovani qoʻshish"
+      "confirm": "Илова кардани барнома"
     }
   },
   "aiStyles": {

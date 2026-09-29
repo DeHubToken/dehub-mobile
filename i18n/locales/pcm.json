@@ -1000,7 +1000,7 @@
     "any": "Any",
     "resetFilters": "Reset filters",
     "updatingFeed": "Update feed",
-    "filters": "Wen yu dey filter, make sure yu no dey block am for sake of sake. Filter dey suppose help yu see wetin dey go on, no be to block am."
+    "filters": "Filters"
   },
   "drawers": {
     "ppvTitle": "Pay-Per-View Content",
@@ -2282,7 +2282,6 @@
     "continueEmail": "Continue with your Email",
     "continueSMS": "Continue with SMS.",
     "continueGoogle": "Continue with Google",
-    "continueApple": "Apple no go better, dem dey try to make am better. Dem dey work hard to make sure say Apple products no go fail. Dem dey make sure say Apple products dey work well, and dem dey make sure say dem dey safe.",
     "continueTelegram": "Continue with Telegram.",
     "continueX": "Continue with X",
     "continueDiscord": "Na Discord.",
@@ -8328,19 +8327,19 @@
       "open": "Open"
     },
     "category": {
-      "games": "Game (e.g., *Candy Crush*, *PUBG*)",
       "social": "Social (e.g., *Facebook*, *Twitter*)",
       "finance": "Finance (e.g., *Revolut*, *PayPal*)",
       "utility": "Utility (e.g., *Google Drive*, *Dropbox*)",
       "productivity": "Productivity (e.g., *Notion*, *Trello*)",
       "health-fitness": "Health & Fitness (e.g., *Nike Training Club*, *MyFitnessPal*)",
       "news-media": "News & Media (e.g., *BBC*, *CNN*)",
-      "music": "Music (e.g., *Spotify*, *SoundCloud*)",
       "shopping": "Shopping (e.g., *Jumia*, *Konga*)",
       "education": "Education (e.g., *Khan Academy*, *Coursera*)",
       "developer-tools": "Developer Tools (e.g., *VS Code*, *GitHub*)",
       "entertainment": "Entertainment (e.g., *Netflix*, *YouTube*)",
-      "art-creativity": "Art & Creativity (e.g., *Canva*, *Procreate*)"
+      "art-creativity": "Art & Creativity (e.g., *Canva*, *Procreate*)",
+      "games": "Games",
+      "music": "Music"
     },
     "pay": {
       "title": "Pay {{name}}?",

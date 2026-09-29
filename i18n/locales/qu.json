@@ -6696,7 +6696,6 @@
     "minutesAgo": "{{count}}m ñawpaqta",
     "hoursAgo": "{{count}}h ñawpaqta",
     "daysAgo": "{{count}}d ñawpaqta",
-    "typeVideo": "Kuyuq rikch'a waqaychana allwiya",
     "typeText": "Qillqa",
     "imageCount_one": "{{count}} rikch'ay",
     "imageCount_other": "{{count}} rikchakuna",
@@ -8640,6 +8639,9 @@
     "add": {
       "body": "Chayqa rikurimunqa Apps nisqaykipi chaymanta willakuykunata apachisunkiman. Ima pachapas Apps nisqa p'anqamanta hurquyta atinki.",
       "confirm": "App yapay"
+    },
+    "pay": {
+      "body": "DHBqa derechota rin apppa billeteranman, {{wallet}}. Pagokunataqa manam kutichiyta atikunmanchu."
     }
   },
   "aiStyles": {
