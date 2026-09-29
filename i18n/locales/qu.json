@@ -5181,7 +5181,20 @@
     "removeUploadTitle": "¿Kay kargata hurquy?",
     "removeQueuedBody": "Manaraqmi churasqachu. Chayta hurquspaqa chay qillqasqata chinkachin.",
     "quotaShortfall": "Kay willakuyqa {{cost}} tokenkunata gastanmi chaynataq {{held}} hapishanki.",
-    "shopAllowanceUsed": "{{allowance}}, {{allowance}} kaqmanta llamk'achisqa. Astawan DeHub tokenkunata churay hatun k'anchaypaq chaynataq huk tiyanapaq."
+    "shopAllowanceUsed": "{{allowance}}, {{allowance}} kaqmanta llamk'achisqa. Astawan DeHub tokenkunata churay hatun k'anchaypaq chaynataq huk tiyanapaq.",
+    "editFilters": "Qhawana llamk'anakuna",
+    "cropRotate": "Tiyay & muyuy",
+    "drawWrite": "Qillqay & k'anchay",
+    "fade": "Chinkachiy {{value}}%",
+    "grayscale": "Yana-yuraq {{value}}%",
+    "resetEdits": "Ñoqayman kutiy",
+    "clearDrawing": "Ch'illchiy",
+    "typeText": "Qillqay...",
+    "textSize": "Qillqa hatun kay {{value}}",
+    "coverFrames": "P'anqa akllay",
+    "coverFrame": "P'anqata llamk'achiy {{index}} ñoqaypaq",
+    "uploadCover": "P'anqa yuyayta churay",
+    "editFailed": "Mana atikurqanchu chay llamk'ayta. K'uychiy."
   },
   "bounty": {
     "claimed": "Chaskisqa",

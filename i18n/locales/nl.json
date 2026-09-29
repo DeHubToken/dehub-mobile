@@ -5340,7 +5340,20 @@
     "removeUploadTitle": "Deze upload verwijderen?",
     "removeQueuedBody": "Het is nog niet geplaatst. Als je het verwijdert, wordt de post geannuleerd.",
     "quotaShortfall": "Dit bericht kost {{cost}} tokens en je hebt {{held}}.",
-    "shopAllowanceUsed": "{{allowance}} van {{allowance}} gebruikt. Stake meer DeHub tokens voor een hogere badge en een extra slot."
+    "shopAllowanceUsed": "{{allowance}} van {{allowance}} gebruikt. Stake meer DeHub tokens voor een hogere badge en een extra slot.",
+    "editFilters": "Filters bewerken",
+    "cropRotate": "Bijsnijden en draaien",
+    "drawWrite": "Tekenen en schrijven",
+    "fade": "Vervagen {{value}}%",
+    "grayscale": "Grijstinten {{value}}%",
+    "resetEdits": "Herstellen",
+    "clearDrawing": "Wissen",
+    "typeText": "Typ…",
+    "textSize": "Tekstgrootte {{value}}",
+    "coverFrames": "Kies een coverframe",
+    "coverFrame": "Frame {{index}} als cover gebruiken",
+    "uploadCover": "Coverafbeelding uploaden",
+    "editFailed": "Kon de bewerking niet toepassen. Probeer het opnieuw."
   },
   "bounty": {
     "claimed": "Geclaimd",

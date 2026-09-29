@@ -5205,7 +5205,20 @@
     "removeUploadTitle": "यह अपलोड हटाएँ?",
     "removeQueuedBody": "इसे अभी तक पोस्ट नहीं किया गया है। इसे हटाने से पोस्ट कैंसिल हो जाती है।",
     "quotaShortfall": "इस पोस्ट की लागत {{cost}} टोकन है और आपके पास {{held}} है।",
-    "shopAllowanceUsed": "{{allowance}} में से {{allowance}} का उपयोग किया गया। उच्च बैज और एक और स्लॉट के लिए अधिक DeHub टोकन स्टेक करें।"
+    "shopAllowanceUsed": "{{allowance}} में से {{allowance}} का उपयोग किया गया। उच्च बैज और एक और स्लॉट के लिए अधिक DeHub टोकन स्टेक करें।",
+    "editFilters": "फ़िल्टर संपादित करें",
+    "cropRotate": "काटें और घुमाएँ",
+    "drawWrite": "बनाएँ और लिखें",
+    "fade": "फ़ेड {{value}}%",
+    "grayscale": "ग्रेस्केल {{value}}%",
+    "resetEdits": "रीसेट करें",
+    "clearDrawing": "साफ़ करें",
+    "typeText": "लिखें…",
+    "textSize": "टेक्स्ट का आकार {{value}}",
+    "coverFrames": "कवर फ़्रेम चुनें",
+    "uploadCover": "कवर इमेज अपलोड करें",
+    "editFailed": "यह बदलाव लागू नहीं हो सका। फिर से कोशिश करें।",
+    "coverFrame": "फ़्रेम {{index}} को कवर बनाएँ"
   },
   "bounty": {
     "claimed": "प्राप्त किया",

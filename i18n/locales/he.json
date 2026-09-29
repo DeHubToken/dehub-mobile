@@ -5154,7 +5154,20 @@
     "removeUploadTitle": "להסיר את ההעלאה הזו?",
     "removeQueuedBody": "הוא עדיין לא פורסם. הסרתו מבטלת את הפוסט.",
     "quotaShortfall": "פוסט זה עולה {{cost}} אסימונים ואתה מחזיק {{held}}.",
-    "shopAllowanceUsed": "{{allowance}} מתוך {{allowance}} בשימוש. הפקד יותר אסימוני DeHub עבור תג גבוה יותר וחריץ נוסף."
+    "shopAllowanceUsed": "{{allowance}} מתוך {{allowance}} בשימוש. הפקד יותר אסימוני DeHub עבור תג גבוה יותר וחריץ נוסף.",
+    "editFilters": "עריכה",
+    "cropRotate": "גיזור והסתובב",
+    "drawWrite": "צייר וכתוב",
+    "fade": "הצטלק {{value}}%",
+    "grayscale": "אפקט גראיסקי {{value}}%",
+    "resetEdits": "אפס",
+    "clearDrawing": "נקה",
+    "typeText": "כתוב...",
+    "textSize": "גודל הטקסט {{value}}",
+    "coverFrames": "בחר פרופיל",
+    "coverFrame": "שימוש בפרופיל {{index}} ככותרת",
+    "uploadCover": "העלה תמונת כותרת",
+    "editFailed": "לא ניתן ליישום את העריכה. נסה שוב."
   },
   "bounty": {
     "claimed": "נאסף",

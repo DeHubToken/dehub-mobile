@@ -5141,7 +5141,20 @@
     "removeUploadTitle": "एतत् पदम् उपरि लिखत?",
     "removeQueuedBody": "इदानीमपि न प्रकाशितम् । अत एव पदं निरस्तम् ।",
     "quotaShortfall": "इस पोस्ट की लागत {{cost}} टोकन है और आपके पास {{held}} है।",
-    "shopAllowanceUsed": "{{allowance}} में से {{allowance}} का उपयोग किया गया। उच्च बैज और एक और स्लॉट के लिए अधिक DeHub टोकन स्टेक करें।"
+    "shopAllowanceUsed": "{{allowance}} में से {{allowance}} का उपयोग किया गया। उच्च बैज और एक और स्लॉट के लिए अधिक DeHub टोकन स्टेक करें।",
+    "editFilters": "अनुकूलनकर्त्रः",
+    "cropRotate": "कटते चित्रं परिवर्तयति",
+    "drawWrite": "चित्रित करो और लिखो",
+    "grayscale": "ग्रे स्केल {{value}}%",
+    "resetEdits": "पुनः स्थापना करें",
+    "clearDrawing": "स्पष्टम्",
+    "typeText": "लिखना",
+    "textSize": "अनुकूलता स्तर {{value}}",
+    "coverFrames": "अभयारण्यं चित्रं चयन करो",
+    "coverFrame": "{{index}} आवरणं भवतु",
+    "uploadCover": "अभिलेख प्रदर्शित करें",
+    "editFailed": "सम्पादनं लागू न शक्यते। पुनः प्रयत्नं कुरु।",
+    "fade": "म्लानता {{value}}%"
   },
   "bounty": {
     "claimed": "प्राप्तम्",

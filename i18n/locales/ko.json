@@ -5203,7 +5203,20 @@
     "removeUploadTitle": "이 업로드를 삭제하시겠어요?",
     "removeQueuedBody": "아직 게시되지 않았습니다. 포스트를 삭제하면 포스트가 취소됩니다.",
     "quotaShortfall": "이 게시물은 {{cost}} 개의 토큰이 필요하며 보유량은 {{held}} 개입니다.",
-    "shopAllowanceUsed": "{{allowance}} / {{allowance}} 개 사용됨. 더 많은 DeHub 토큰을 스테이킹하여 더 높은 배지와 추가 슬롯을 확보하세요."
+    "shopAllowanceUsed": "{{allowance}} / {{allowance}} 개 사용됨. 더 많은 DeHub 토큰을 스테이킹하여 더 높은 배지와 추가 슬롯을 확보하세요.",
+    "editFilters": "필터 편집",
+    "cropRotate": "자르기 및 회전",
+    "drawWrite": "그리기 및 쓰기",
+    "fade": "페이드 {{value}}%",
+    "grayscale": "흑백 {{value}}%",
+    "resetEdits": "초기화",
+    "clearDrawing": "지우기",
+    "typeText": "입력…",
+    "textSize": "글자 크기 {{value}}",
+    "coverFrames": "커버 프레임 선택",
+    "coverFrame": "{{index}}번 프레임을 커버로 사용",
+    "uploadCover": "커버 이미지 업로드",
+    "editFailed": "편집을 적용하지 못했습니다. 다시 시도하세요."
   },
   "bounty": {
     "claimed": "수령 완료",

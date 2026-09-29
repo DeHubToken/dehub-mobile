@@ -5163,7 +5163,20 @@
     "removeUploadTitle": "Olkaa&#39;uu kana haqi?",
     "removeQueuedBody": "Hanga ammaatti hin maxxanfamne. Isa balleessuun maxxansa sana haqa.",
     "quotaShortfall": "Qophiin kun maarkii {{cost}} tokko siif mala, ati immoo {{held}} qabda.",
-    "shopAllowanceUsed": "{{allowance}} irraa {{allowance}} itti fayyadameera. Maarkii DeHub dabaluun daboo ol'aanaa fi iddoo biraa argadhu."
+    "shopAllowanceUsed": "{{allowance}} irraa {{allowance}} itti fayyadameera. Maarkii DeHub dabaluun daboo ol'aanaa fi iddoo biraa argadhu.",
+    "editFilters": "Furtuuwwan sirreessuu",
+    "cropRotate": "Madaaluu fi naanna’uu",
+    "drawWrite": "Kallattii fi barreessuu",
+    "fade": "Dhabamsiisuu {{value}}%",
+    "grayscale": "Biyya gurraacha {{value}}%",
+    "resetEdits": "Qubsuu",
+    "clearDrawing": "Balleessuu",
+    "typeText": "Mootummaa…",
+    "textSize": "Gudina caasala {{value}}",
+    "coverFrames": "Sa’a qabachuuf filadhu",
+    "coverFrame": "Sa’a {{index}} sa’a ol’aanaa fakkeenya godhi",
+    "uploadCover": "Sa’a ol’aanaa suuraa olkaa’i",
+    "editFailed": "Sirreessichi hin hojjetamne. Prubaadhu."
   },
   "bounty": {
     "claimed": "Fudhatame",

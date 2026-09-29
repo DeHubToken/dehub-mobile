@@ -5150,7 +5150,20 @@
     "removeUploadTitle": "要不要删脱搿个上传？",
     "removeQueuedBody": "搿个还没发出去。删脱了就发不出了。",
     "quotaShortfall": "此帖子花费 {{cost}} 代币，您持有 {{held}}。",
-    "shopAllowanceUsed": "已使用 {{allowance}} 的 {{allowance}}。质押更多 DeHub 代币以获得更高的徽章和另一个槽位。"
+    "shopAllowanceUsed": "已使用 {{allowance}} 的 {{allowance}}。质押更多 DeHub 代币以获得更高的徽章和另一个槽位。",
+    "cropRotate": "裁切與旋轉",
+    "drawWrite": "繪畫 & 寫作",
+    "grayscale": "灰階 {{value}}%",
+    "resetEdits": "重啟",
+    "typeText": "打字",
+    "coverFrame": "用框架 {{index}} 做封面",
+    "editFilters": "编辑滤镜",
+    "fade": "褪色 {{value}}%",
+    "clearDrawing": "清除",
+    "textSize": "字大小 {{value}}",
+    "coverFrames": "拣一帧做封面",
+    "uploadCover": "上传封面图片",
+    "editFailed": "搿个编辑用勿上，再试一趟。"
   },
   "bounty": {
     "claimed": "已领取",

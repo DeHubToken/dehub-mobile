@@ -5150,7 +5150,20 @@
     "removeUploadTitle": "આ અપલોડ દૂર કરો?",
     "removeQueuedBody": "તે હજી સુધી પોસ્ટ કરવામાં આવ્યું નથી. તેને દૂર કરવાથી પોસ્ટ રદ થઈ જાય છે.",
     "quotaShortfall": "આ પોસ્ટની કિંમત {{cost}} ટોકન્સ છે અને તમારી પાસે {{held}} છે.",
-    "shopAllowanceUsed": "{{allowance}} માંથી {{allowance}} નો ઉપયોગ થયો. ઉચ્ચ બેજ અને અન્ય સ્લોટ માટે વધુ DeHub ટોકન્સ સ્ટેક કરો."
+    "shopAllowanceUsed": "{{allowance}} માંથી {{allowance}} નો ઉપયોગ થયો. ઉચ્ચ બેજ અને અન્ય સ્લોટ માટે વધુ DeHub ટોકન્સ સ્ટેક કરો.",
+    "editFilters": "સારાંશ સાફ કરો",
+    "cropRotate": "કાપો અને રોટેટ",
+    "drawWrite": "આકારો અને લખો",
+    "fade": "ફેડ {{value}}%",
+    "grayscale": "ગ્રેસેલ કરો {{value}}%",
+    "resetEdits": "રિસેટ",
+    "clearDrawing": "સાફ કરો",
+    "typeText": "ટાઇપ...",
+    "textSize": "ટેક્સ્ટ સાઇઝ {{value}}",
+    "coverFrames": "કવર ફ્રેમ પસંદ કરો",
+    "coverFrame": "ફ્રેમ {{index}} ને કવર તરીકે વપરાવો",
+    "uploadCover": "કવર ચિત્ર ઉપલોડ કરો",
+    "editFailed": "એડિટ કરવામાં આવ્યું ન શક્યું. ફરીથી પ્રયાસ કરો."
   },
   "bounty": {
     "claimed": "મેળવ્યું",

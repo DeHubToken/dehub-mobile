@@ -5161,7 +5161,20 @@
     "removeUploadTitle": "យកការអាប់ឡូតនេះចេញឬ?",
     "removeQueuedBody": "ប៉ុន្តែ ឯកសារ មិន ទាន់ បាន ចេញ ផ្សាយ នៅ ឡើយ ទេ ។ លុបចោលការបង្ហោះ ។",
     "quotaShortfall": "ប្រកាសនេះមានតម្លៃ {{cost}} តូខឹន ហើយអ្នកកាន់ {{held}}។",
-    "shopAllowanceUsed": "ប្រើប្រាស់ {{allowance}} ក្នុងចំណោម {{allowance}}។ ដាក់តូខឹន DeHub បន្ថែមទៀតសម្រាប់ផ្លាកសញ្ញាខ្ពស់ជាង និងរន្ធមួយទៀត។"
+    "shopAllowanceUsed": "ប្រើប្រាស់ {{allowance}} ក្នុងចំណោម {{allowance}}។ ដាក់តូខឹន DeHub បន្ថែមទៀតសម្រាប់ផ្លាកសញ្ញាខ្ពស់ជាង និងរន្ធមួយទៀត។",
+    "editFilters": "ការកែប្រែ",
+    "cropRotate": "ការកាត់បន្ថយនិងការបញ្ចូលទិដ្ឋិ",
+    "drawWrite": "ការបង្កើតនិងសរសេរ",
+    "grayscale": "ការក្លាយទៅពណ៌ខាងក្រហម {{value}}%",
+    "resetEdits": "កំណត់បន្ថយ",
+    "clearDrawing": "បង្អាក់",
+    "typeText": "សរសេរ…",
+    "textSize": "ទំហំសរសេរ {{value}}",
+    "coverFrames": "ជ្រើសរើសរង្វល់បង្ហាញ",
+    "coverFrame": "ប្រើរង្វល់ {{index}} ជារង្វល់បង្ហាញ",
+    "uploadCover": "ដាក់រង្វល់បង្ហាញចូល",
+    "editFailed": "មិនអាចកែប្រែបាន បើកឡើងវិញទៀត",
+    "fade": "ស្រអាប់ {{value}}%"
   },
   "bounty": {
     "claimed": "បានទាមទារ",

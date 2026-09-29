@@ -5150,7 +5150,20 @@
     "removeUploadTitle": "ये अपलोड ल मेटाव?",
     "removeQueuedBody": "अभी तक प्रकाशित नी करे गए हवय पोस्ट ल हटा दे ।",
     "shopAllowanceUsed": "{{allowance}} {{allowance}} उपयोग करे गए । ऊपरी बैज अउ एक अउ स्लॉट बर जादा डेहब टोकन रखव.",
-    "quotaShortfall": "यह पोस्ट {{cost}} टोकन की लागत है और आपके पास {{held}} है।"
+    "quotaShortfall": "यह पोस्ट {{cost}} टोकन की लागत है और आपके पास {{held}} है।",
+    "editFilters": "संपादन करें",
+    "cropRotate": "काटें और घुमाएँ",
+    "drawWrite": "चित्र बनाएँ और लिखें",
+    "fade": "गहराई {{value}}%",
+    "grayscale": "ग्रे स्केल {{value}}%",
+    "resetEdits": "रीसेट करें",
+    "clearDrawing": "साफ करें",
+    "typeText": "टाइप…",
+    "textSize": "टेक्स्ट का आकार {{value}}",
+    "coverFrames": "फ्रेम चुनें",
+    "coverFrame": "फ्रेम {{index}} को कवर के रूप में उपयोग करें",
+    "uploadCover": "कवर इमेज अपलोड करें",
+    "editFailed": "उस संपादन को लागू नहीं कर सके। फिर से प्रयास करें।"
   },
   "bounty": {
     "claimed": "मिल गे",

@@ -5150,7 +5150,20 @@
     "removeUploadTitle": "Bu yüklənmə silinsin?",
     "removeQueuedBody": "Hələ dərc edilməyib. Onu silmək yazını ləğv edir.",
     "quotaShortfall": "Bu yazının dəyəri {{cost}} tokendir və siz {{held}} saxlayırsınız.",
-    "shopAllowanceUsed": "{{allowance}} / {{allowance}} istifadə edildi. Daha yüksək nişan və əlavə yer üçün daha çox DeHub tokeni steykinq edin."
+    "shopAllowanceUsed": "{{allowance}} / {{allowance}} istifadə edildi. Daha yüksək nişan və əlavə yer üçün daha çox DeHub tokeni steykinq edin.",
+    "editFilters": "Redaktələr",
+    "cropRotate": "Kəs və döndərmə",
+    "drawWrite": "Çək və yaz",
+    "fade": "Feydəcənliyini {{value}}%",
+    "grayscale": "Monokrromu {{value}}%",
+    "resetEdits": "Reset",
+    "clearDrawing": "Təmizləy",
+    "typeText": "Yazı…",
+    "textSize": "Yazı ölçüsü {{value}}",
+    "coverFrames": "Mətn çərçivəsi seçin",
+    "coverFrame": "Çərçivəni {{index}} kimi üz qabığı kimi istifadə edin",
+    "uploadCover": "Üz qabığıni yüklə",
+    "editFailed": "Bu redaktəni tətbiq etmək mümkünsüz oldu. Yenidən cəhd edin."
   },
   "bounty": {
     "claimed": "Alınıb",

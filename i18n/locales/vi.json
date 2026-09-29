@@ -5162,7 +5162,20 @@
     "removeUploadTitle": "Xóa nội dung tải lên này?",
     "removeQueuedBody": "Nó chưa được đăng. Xóa bài đăng sẽ hủy bài đăng.",
     "quotaShortfall": "Bài đăng này có giá {{cost}} token và bạn có {{held}}.",
-    "shopAllowanceUsed": "Đã sử dụng {{allowance}} trong số {{allowance}}. Hãy stake thêm token DeHub để có huy hiệu cao hơn và thêm một ô."
+    "shopAllowanceUsed": "Đã sử dụng {{allowance}} trong số {{allowance}}. Hãy stake thêm token DeHub để có huy hiệu cao hơn và thêm một ô.",
+    "editFilters": "Chỉnh bộ lọc",
+    "cropRotate": "Cắt & xoay",
+    "drawWrite": "Vẽ & viết",
+    "fade": "Làm mờ màu {{value}}%",
+    "grayscale": "Thang xám {{value}}%",
+    "resetEdits": "Đặt lại",
+    "clearDrawing": "Xóa",
+    "typeText": "Nhập…",
+    "textSize": "Cỡ chữ {{value}}",
+    "coverFrames": "Chọn khung hình làm ảnh bìa",
+    "coverFrame": "Dùng khung hình {{index}} làm ảnh bìa",
+    "uploadCover": "Tải ảnh bìa lên",
+    "editFailed": "Không thể áp dụng chỉnh sửa. Hãy thử lại."
   },
   "bounty": {
     "claimed": "Đã nhận",

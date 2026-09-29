@@ -5149,7 +5149,20 @@
     "removeQueuedBody": "Хараахан тусгагдаагүй байна. Нийтлэлийг цуцлах",
     "addThumbnail": "Дүрс нэмэх",
     "quotaShortfall": "Энэ нийтлэл нь {{cost}} токен бөгөөд та {{held}} эзэмшиж байна.",
-    "shopAllowanceUsed": "{{allowance}} -аас {{allowance}} ашигласан. Илүү өндөр тэмдэг болон нэмэлт орон зай авахын тулд DeHub токенээ илүү ихээр staking хийнэ үү."
+    "shopAllowanceUsed": "{{allowance}} -аас {{allowance}} ашигласан. Илүү өндөр тэмдэг болон нэмэлт орон зай авахын тулд DeHub токенээ илүү ихээр staking хийнэ үү.",
+    "editFilters": "Засах шүүлтүүд",
+    "cropRotate": "Таслах ба эргүүлэх",
+    "drawWrite": "Зурах ба бичих",
+    "fade": "Арилгах {{value}}%",
+    "grayscale": "Саарал {{value}}%",
+    "resetEdits": "Дахин тохируулах",
+    "clearDrawing": "Цэвэрлэх",
+    "typeText": "Бичих…",
+    "textSize": "Текстийн хэмжээ {{value}}",
+    "coverFrames": "Нүүр хуудсыг сонгох",
+    "coverFrame": "{{index}} рамкийг нүүр хуудас болгон ашиглах",
+    "uploadCover": "Нүүр хуудсын зураг байршуулах",
+    "editFailed": "Энэ засварыг хийж чадсангүй. Дахин оролдоно уу."
   },
   "bounty": {
     "claimed": "Авсан",

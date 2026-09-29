@@ -5258,7 +5258,20 @@
     "removeUploadTitle": "Odstrániť toto nahratie?",
     "removeQueuedBody": "Zatiaľ nebol zverejnený. Jeho odstránením sa príspevok zruší.",
     "quotaShortfall": "Tento príspevok stojí {{cost}} tokenov a vy držíte {{held}}.",
-    "shopAllowanceUsed": "Použité {{allowance}} z {{allowance}}. Vložte viac tokenov DeHub pre vyššiu odznak a ďalší slot."
+    "shopAllowanceUsed": "Použité {{allowance}} z {{allowance}}. Vložte viac tokenov DeHub pre vyššiu odznak a ďalší slot.",
+    "editFilters": "Upraviť filtre",
+    "cropRotate": "Orezať & otočiť",
+    "drawWrite": "Narýsať & napísať",
+    "fade": "Zmizniť {{value}}%",
+    "grayscale": "Šedý tón {{value}}%",
+    "resetEdits": "Resetovať",
+    "clearDrawing": "Vymazať",
+    "typeText": "Zadaj…",
+    "textSize": "Veľkosť textu {{value}}",
+    "coverFrames": "Vyber obálkový rám",
+    "coverFrame": "Použi rám {{index}} ako obálku",
+    "uploadCover": "Nahraj obrázok obálky",
+    "editFailed": "Nepodarilo sa aplikovať túto úpravu. Skús to znova."
   },
   "bounty": {
     "claimed": "Vyzdvihnuté",

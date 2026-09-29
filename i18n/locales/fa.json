@@ -5180,7 +5180,20 @@
     "removeUploadTitle": "این آپلود را حذف کنید؟",
     "removeQueuedBody": "هنوز پست نشده است. حذف آن، پست را لغو می‌کند.",
     "quotaShortfall": "این پست {{cost}} توکن هزینه دارد و شما {{held}} را در اختیار دارید.",
-    "shopAllowanceUsed": "{{allowance}} از {{allowance}} استفاده شد. توکن‌های DeHub بیشتری را استیک کنید تا نشان بالاتر و یک اسلات دیگر دریافت کنید."
+    "shopAllowanceUsed": "{{allowance}} از {{allowance}} استفاده شد. توکن‌های DeHub بیشتری را استیک کنید تا نشان بالاتر و یک اسلات دیگر دریافت کنید.",
+    "editFilters": "ویرایش فیلترها",
+    "cropRotate": "برش و چرخش",
+    "drawWrite": "کشیدن و نوشتن",
+    "fade": "کم‌رنگی {{value}}%",
+    "grayscale": "سیاه‌وسفید {{value}}%",
+    "resetEdits": "بازنشانی",
+    "clearDrawing": "پاک کردن",
+    "typeText": "بنویسید…",
+    "textSize": "اندازه متن {{value}}",
+    "coverFrames": "یک فریم برای کاور انتخاب کنید",
+    "coverFrame": "استفاده از فریم {{index}} به‌عنوان کاور",
+    "uploadCover": "بارگذاری تصویر کاور",
+    "editFailed": "اعمال ویرایش ممکن نشد. دوباره تلاش کنید."
   },
   "bounty": {
     "claimed": "دریافت‌شده",

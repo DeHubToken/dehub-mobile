@@ -5199,7 +5199,20 @@
     "removeUploadTitle": "Bu yükleme kaldırılsın mı?",
     "removeQueuedBody": "Henüz yayınlanmadı. Kaldırılması gönderiyi iptal eder.",
     "quotaShortfall": "Bu gönderinin maliyeti {{cost}} jeton ve siz {{held}} tutuyorsunuz.",
-    "shopAllowanceUsed": "{{allowance}} / {{allowance}} kullanıldı. Daha yüksek bir rozet ve başka bir yuva için daha fazla DeHub jetonu stake edin."
+    "shopAllowanceUsed": "{{allowance}} / {{allowance}} kullanıldı. Daha yüksek bir rozet ve başka bir yuva için daha fazla DeHub jetonu stake edin.",
+    "editFilters": "Filtreleri düzenle",
+    "cropRotate": "Kırp ve döndür",
+    "drawWrite": "Çiz ve yaz",
+    "fade": "Soldurma %{{value}}",
+    "grayscale": "Gri tonlama %{{value}}",
+    "resetEdits": "Sıfırla",
+    "clearDrawing": "Temizle",
+    "typeText": "Yazın…",
+    "textSize": "Metin boyutu {{value}}",
+    "coverFrames": "Kapak karesi seç",
+    "coverFrame": "{{index}}. kareyi kapak yap",
+    "uploadCover": "Kapak görseli yükle",
+    "editFailed": "Düzenleme uygulanamadı. Tekrar deneyin."
   },
   "bounty": {
     "claimed": "Alındı",

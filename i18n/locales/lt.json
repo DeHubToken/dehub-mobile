@@ -5150,7 +5150,20 @@
     "removeUploadTitle": "Pašalinti šį įkėlimą?",
     "removeQueuedBody": "Jis dar nepaskelbtas. Pašalinus įrašą, jis atšaukiamas.",
     "quotaShortfall": "Šis įrašas kainuoja {{cost}} žetonų, o jūs turite {{held}}.",
-    "shopAllowanceUsed": "Panaudota {{allowance}} iš {{allowance}}. Statykite daugiau DeHub žetonų, kad gautumėte aukštesnį ženklelį ir papildomą vietą."
+    "shopAllowanceUsed": "Panaudota {{allowance}} iš {{allowance}}. Statykite daugiau DeHub žetonų, kad gautumėte aukštesnį ženklelį ir papildomą vietą.",
+    "editFilters": "Redaguoti filtras",
+    "cropRotate": "Paprastinti ir apskriti",
+    "drawWrite": "Raižyti ir rašyti",
+    "fade": "Pabaisinti {{value}}%",
+    "grayscale": "Šviesmetražis {{value}}%",
+    "resetEdits": "Atstatyti",
+    "clearDrawing": "Išvalyti",
+    "typeText": "Rasyti…",
+    "textSize": "Teksto dydis {{value}}",
+    "coverFrames": "Pasirinkti viršelio rėžinį",
+    "coverFrame": "Naudojti viršelio rėžinį {{index}}",
+    "uploadCover": "Įkelti viršelio nuotrauką",
+    "editFailed": "Nepavyko pritaikyti šio redagavimo. Bandyk dar kartą."
   },
   "bounty": {
     "claimed": "Atsiimta",

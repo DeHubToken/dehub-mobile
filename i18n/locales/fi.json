@@ -5150,7 +5150,20 @@
     "removeUploadTitle": "Poistetaanko tämä lataus?",
     "removeQueuedBody": "Sitä ei ole vielä julkaistu. Sen poistaminen peruuttaa julkaisun.",
     "quotaShortfall": "Tämä julkaisu maksaa {{cost}} tokenia ja sinulla on {{held}}.",
-    "shopAllowanceUsed": "{{allowance}} / {{allowance}} käytetty. Panosta lisää DeHub-tokeneita saadaksesi korkeamman merkin ja toisen paikan."
+    "shopAllowanceUsed": "{{allowance}} / {{allowance}} käytetty. Panosta lisää DeHub-tokeneita saadaksesi korkeamman merkin ja toisen paikan.",
+    "editFilters": "Muokkaa suodattimia",
+    "cropRotate": "Leikkaa & käännä",
+    "drawWrite": "Piirrä & kirjoita",
+    "fade": "Häivy {{value}}%",
+    "grayscale": "Väritön {{value}}%",
+    "resetEdits": "Palauta",
+    "clearDrawing": "Tyhjennä",
+    "typeText": "Kirjoita…",
+    "textSize": "Tekstikoko {{value}}",
+    "coverFrames": "Valitse kansiokuva",
+    "coverFrame": "Käytä kansiokuvana {{index}}",
+    "uploadCover": "Lataa kansiokuva",
+    "editFailed": "Ei voitu soveltaa muokkausta. Yritä uudelleen."
   },
   "bounty": {
     "claimed": "Lunastettu",

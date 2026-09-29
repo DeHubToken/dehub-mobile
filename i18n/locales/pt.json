@@ -5203,7 +5203,20 @@
     "removeUploadTitle": "Remover este carregamento?",
     "removeQueuedBody": "Ainda não foi publicado. Removê-lo cancela o post.",
     "quotaShortfall": "Esta postagem custa {{cost}} tokens e você possui {{held}}.",
-    "shopAllowanceUsed": "{{allowance}} de {{allowance}} usados. Faça stake de mais tokens DeHub para um distintivo superior e outro slot."
+    "shopAllowanceUsed": "{{allowance}} de {{allowance}} usados. Faça stake de mais tokens DeHub para um distintivo superior e outro slot.",
+    "editFilters": "Editar filtros",
+    "cropRotate": "Cortar e girar",
+    "drawWrite": "Desenhar e escrever",
+    "fade": "Esmaecer {{value}}%",
+    "grayscale": "Escala de cinza {{value}}%",
+    "resetEdits": "Redefinir",
+    "clearDrawing": "Limpar",
+    "typeText": "Digite…",
+    "textSize": "Tamanho do texto {{value}}",
+    "coverFrames": "Escolha um quadro de capa",
+    "coverFrame": "Usar o quadro {{index}} como capa",
+    "uploadCover": "Enviar uma imagem de capa",
+    "editFailed": "Não foi possível aplicar a edição. Tente novamente."
   },
   "bounty": {
     "claimed": "Resgatado",

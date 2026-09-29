@@ -5150,7 +5150,20 @@
     "removeUploadTitle": "移除呢個上載？",
     "removeQueuedBody": "仲未發佈。移除佢會取消個帖子。",
     "quotaShortfall": "此帖子需要 {{cost}} 個代幣，您持有 {{held}} 個。",
-    "shopAllowanceUsed": "已使用 {{allowance}} 個中的 {{allowance}} 個。質押更多 DeHub 代幣以獲得更高的徽章和另一個插槽。"
+    "shopAllowanceUsed": "已使用 {{allowance}} 個中的 {{allowance}} 個。質押更多 DeHub 代幣以獲得更高的徽章和另一個插槽。",
+    "editFilters": "編輯濾鏡",
+    "cropRotate": "裁剪同旋轉",
+    "drawWrite": "畫圖同寫字",
+    "grayscale": "灰階 {{value}}%",
+    "resetEdits": "重設",
+    "clearDrawing": "清除",
+    "typeText": "輸入…",
+    "textSize": "文字大小 {{value}}",
+    "uploadCover": "上載封面圖片",
+    "fade": "褪色 {{value}}%",
+    "coverFrames": "揀封面畫格",
+    "coverFrame": "用第 {{index}} 格做封面",
+    "editFailed": "套用唔到呢個編輯，請再試。"
   },
   "bounty": {
     "claimed": "已領取",

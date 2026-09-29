@@ -5180,7 +5180,20 @@
     "removeUploadTitle": "Dä UPLOAD lösche?",
     "removeQueuedBody": "Er isch no nöd publiziert worde. Wenn du en löschsch, wird au de Post annulliert.",
     "quotaShortfall": "Dises Post koschtet {{cost}} Tokens und du hesch {{held}}.",
-    "shopAllowanceUsed": "{{allowance}} vo {{allowance}} bruucht. Staked meh DeHub Tokens für es höheres Badge und en andere Slot."
+    "shopAllowanceUsed": "{{allowance}} vo {{allowance}} bruucht. Staked meh DeHub Tokens für es höheres Badge und en andere Slot.",
+    "editFilters": "Bildfilter",
+    "cropRotate": "Schneiden & drehen",
+    "drawWrite": "Zeichne & schreibe",
+    "fade": "Färbung {{value}}%",
+    "grayscale": "Graustufen {{value}}%",
+    "resetEdits": "Zurücksetzen",
+    "clearDrawing": "Löschen",
+    "typeText": "Typ…",
+    "textSize": "Schriftgröße {{value}}",
+    "coverFrames": "Wähle ein Bildrahmen",
+    "coverFrame": "Benutze Bildrahmen {{index}} als Titelbild",
+    "uploadCover": "Lade ein Titelbild hoch",
+    "editFailed": "Konnte diese Änderung nicht anwenden. Versuche es noch einmal."
   },
   "bounty": {
     "claimed": "Iiglöst",

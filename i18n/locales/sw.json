@@ -5151,7 +5151,20 @@
     "removeUploadTitle": "Ondoa upakiaji huu?",
     "removeQueuedBody": "Bado haijachapishwa. Kuiondoa inaghairi chapisho.",
     "quotaShortfall": "Chapisho hili linagharimu tokeni {{cost}} na unashikilia {{held}}.",
-    "shopAllowanceUsed": "{{allowance}} kati ya {{allowance}} zilizotumiwa. Weka tokeni zaidi za DeHub kwa beji ya juu na nafasi nyingine."
+    "shopAllowanceUsed": "{{allowance}} kati ya {{allowance}} zilizotumiwa. Weka tokeni zaidi za DeHub kwa beji ya juu na nafasi nyingine.",
+    "editFilters": "Chaguo za kuchora",
+    "cropRotate": "Kuchora na kupindua",
+    "drawWrite": "Kuchora na kuandika",
+    "fade": "Kupiga kwa njia ya fade {{value}}%",
+    "grayscale": "Kupiga kwa njia ya asili {{value}}%",
+    "resetEdits": "Kurahisisha",
+    "clearDrawing": "Kurahisisha",
+    "typeText": "Chora…",
+    "textSize": "Urefu wa maandishi {{value}}",
+    "coverFrames": "Chagua kielelezo cha kufungua",
+    "coverFrame": "Kuweka kielelezo cha kufungua {{index}} kama kielelezo cha kufungua",
+    "uploadCover": "Unganisha picha ya kielelezo",
+    "editFailed": "Haikupatikana kuchukua kile hicho. Jaribu tena."
   },
   "bounty": {
     "claimed": "Imedaiwa",

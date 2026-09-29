@@ -5150,7 +5150,20 @@
     "removeUploadTitle": "Elimini această încărcare?",
     "removeQueuedBody": "Nu a fost încă postat. Eliminarea acesteia anulează postarea.",
     "quotaShortfall": "Această postare costă {{cost}} tokeni și tu deții {{held}}.",
-    "shopAllowanceUsed": "{{allowance}} din {{allowance}} folosiți. Mizează mai mulți tokeni DeHub pentru o insignă mai mare și un alt slot."
+    "shopAllowanceUsed": "{{allowance}} din {{allowance}} folosiți. Mizează mai mulți tokeni DeHub pentru o insignă mai mare și un alt slot.",
+    "editFilters": "Filtre de editare",
+    "cropRotate": "Tăiați și rotați",
+    "drawWrite": "Desenează & scrie",
+    "fade": "Fadă {{value}}%",
+    "resetEdits": "Resetează",
+    "clearDrawing": "Clar",
+    "typeText": "Tipărește…",
+    "textSize": "Dimensiunea textului {{value}}",
+    "coverFrames": "Alegeți un cadru de acoperire",
+    "coverFrame": "Folosește cadrul {{index}} ca și copertă",
+    "uploadCover": "Încărcați o imagine de copertă",
+    "editFailed": "Nu s-a putut aplica acea editare. Încearcă din nou.",
+    "grayscale": "Tonuri de gri {{value}}%"
   },
   "bounty": {
     "claimed": "Revendicat",

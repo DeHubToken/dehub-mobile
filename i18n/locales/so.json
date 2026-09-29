@@ -5150,7 +5150,20 @@
     "removeUploadTitle": "Ka saar gelitaankan?",
     "removeQueuedBody": "Ilaa iyo hadda lama soo bandhigin. Ka saarista waxay joojisaa boostada.",
     "quotaShortfall": "Qoraalkan waxa uu ku kacayaa {{cost}} token waxana aad haysataa {{held}}.",
-    "shopAllowanceUsed": "{{allowance}} oo ah {{allowance}} ayaa la isticmaalay. Ku kaydi DeHub token-ka dheeraad ah si aad u hesho darajo sare iyo meel kale."
+    "shopAllowanceUsed": "{{allowance}} oo ah {{allowance}} ayaa la isticmaalay. Ku kaydi DeHub token-ka dheeraad ah si aad u hesho darajo sare iyo meel kale.",
+    "editFilters": "Filtarada wax ka beddel",
+    "cropRotate": "Jar & rogo",
+    "drawWrite": "Sawir & qor",
+    "fade": "Dhim {{value}}%",
+    "grayscale": "Madow & caddaan {{value}}%",
+    "resetEdits": "Dib u habee",
+    "clearDrawing": "Tirtir",
+    "typeText": "Qor…",
+    "textSize": "Cabbirka qoraalka {{value}}",
+    "coverFrames": "Xulo qaab-dhismeedka daboolka",
+    "coverFrame": "Isticmaal qaab-dhismeedka {{index}} sidii dabool",
+    "uploadCover": "Soo rar sawir dabool ah",
+    "editFailed": "Ma awoodin inaan dalbado wax ka beddelkaas. Isku day mar kale."
   },
   "bounty": {
     "claimed": "La qaatay",

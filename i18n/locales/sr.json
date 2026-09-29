@@ -5123,7 +5123,20 @@
     "removeUploadTitle": "Уклонити ово отпремање?",
     "removeQueuedBody": "Још није објављено. Уклањањем ћете отказати објаву.",
     "quotaShortfall": "Ова објава кошта {{cost}} токена и ви држите {{held}}.",
-    "shopAllowanceUsed": "{{allowance}} од {{allowance}} искоришћено. Уложите више DeHub токена за вишу значку и још једно место."
+    "shopAllowanceUsed": "{{allowance}} од {{allowance}} искоришћено. Уложите више DeHub токена за вишу значку и још једно место.",
+    "editFilters": "Уређивање филтера",
+    "cropRotate": "Крои & ротира",
+    "drawWrite": "Нацртај & напиши",
+    "fade": "Сјенчање {{value}}%",
+    "grayscale": "Сивина {{value}}%",
+    "resetEdits": "Ресетирај",
+    "clearDrawing": "Избриши",
+    "typeText": "Упиши...",
+    "textSize": "Величина текста {{value}}",
+    "coverFrames": "Изабери оквир за насловну слику",
+    "coverFrame": "Употребите оквир {{index}} као насловну слику",
+    "uploadCover": "Учитај насловну слику",
+    "editFailed": "Није могуће применити ту едитацију. Покушај поново."
   },
   "bounty": {
     "claimed": "Преузето",

@@ -5199,7 +5199,20 @@
     "pillMinimize": "Minimize upload status",
     "uploadInProgressStay": "Your upload is still going. Stay on this screen until it finishes.",
     "removeUploadTitle": "Remove this upload?",
-    "removeQueuedBody": "It has not been posted yet. Removing it cancels the post."
+    "removeQueuedBody": "It has not been posted yet. Removing it cancels the post.",
+    "editFilters": "Edit filters",
+    "cropRotate": "Crop & rotate",
+    "drawWrite": "Draw & write",
+    "fade": "Fade {{value}}%",
+    "grayscale": "Grayscale {{value}}%",
+    "resetEdits": "Reset",
+    "clearDrawing": "Clear",
+    "typeText": "Type…",
+    "textSize": "Text size {{value}}",
+    "coverFrames": "Pick a cover frame",
+    "coverFrame": "Use frame {{index}} as the cover",
+    "uploadCover": "Upload a cover image",
+    "editFailed": "Couldn't apply that edit. Try again."
   },
   "bounty": {
     "claimed": "Claimed",

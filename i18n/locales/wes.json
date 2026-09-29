@@ -5109,7 +5109,20 @@
     "removeQueuedBody": "E no post yet. If you remove am, the post go cancel.",
     "removeUploadTitle": "Remove dis upload?",
     "quotaShortfall": "Dis post dey cost {{cost}} tokens and you get {{held}}.",
-    "shopAllowanceUsed": "{{allowance}} of {{allowance}} use wey. Stake more DeHub token fo’ higher badge na slot tori."
+    "shopAllowanceUsed": "{{allowance}} of {{allowance}} use wey. Stake more DeHub token fo’ higher badge na slot tori.",
+    "editFilters": "Edit filter",
+    "cropRotate": "Kap krom & rotat",
+    "drawWrite": "Draw & write",
+    "fade": "Fade {{value}}%",
+    "grayscale": "Grayskay {{value}}%",
+    "resetEdits": "Reset",
+    "clearDrawing": "Klir",
+    "typeText": "Tip…",
+    "textSize": "Tekst saiz {{value}}",
+    "coverFrames": "Pik a kovr fram",
+    "coverFrame": "Usi fram {{index}} as kovr",
+    "uploadCover": "Uploa kovr piksai",
+    "editFailed": "Kan no apli dat edit. Try anoda."
   },
   "bounty": {
     "claimed": "Don claim",
