@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 import { View, Text, TouchableOpacity, Platform, Keyboard, I18nManager } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
@@ -7,21 +7,23 @@ import { colors } from '../theme/colors';
 import AppTopBar, { APP_TOP_BAR_HEIGHT } from './AppTopBar';
 import { useAppTheme } from '../context/ThemeContext';
 import { MINIMAL_HAIRLINE } from '../theme/minimal';
+import { useCanGoBack } from '../hooks/useCanGoBack';
 
 /**
- * Height of this header in points. Exported because any screen that puts a
- * KeyboardAvoidingView *below* the header has to declare that chrome in its
- * `keyboardVerticalOffset` — see `hooks/useKeyboardLayout.ts`. Those screens
- * used to hardcode 44 or 64; reading it from here keeps them honest if the bar
- * ever changes height.
+ * Height of the title row in points, below the dehub mark bar.
  */
 export const SCREEN_HEADER_TITLE_HEIGHT = 64;
 
 /**
- * Total header height — the constant dehub mark bar plus the title row. Screens
- * feeding `keyboardVerticalOffset` read this, so they stay correct now that the
- * mark bar sits above the title row (as on web, where a fixed mark bar sits
- * above every page's own header).
+ * Total header height — the constant dehub mark bar plus the title row. For
+ * layout that has to clear the header (collapsing headers, overlays pinned
+ * under it).
+ *
+ * Do not add it to `keyboardVerticalOffset` when the KeyboardAvoidingView sits
+ * below this header in the same parent. The view measures its own position
+ * relative to that parent, so the header above it is already counted; adding
+ * the height again lifts the field that far above the keyboard. The offset is
+ * only where that parent starts on screen — see `hooks/useKeyboardLayout.ts`.
  */
 export const SCREEN_HEADER_HEIGHT = APP_TOP_BAR_HEIGHT + SCREEN_HEADER_TITLE_HEIGHT;
 
@@ -49,16 +51,12 @@ const ScreenHeader: React.FC<ScreenHeaderProps> = ({
   const { t } = useTranslation();
   const navigation = useNavigation();
   const { isMinimal } = useAppTheme();
-  // Read again once the screen has mounted and whenever it gains focus. On the
-  // first render of a freshly pushed screen the navigator can still report the
-  // stack without it, so a page that never re-renders (Careers) kept no arrow.
-  const [navCanGoBack, setNavCanGoBack] = useState(() => !!(navigation as any).canGoBack?.());
-  useEffect(() => {
-    const sync = () => setNavCanGoBack(!!(navigation as any).canGoBack?.());
-    sync();
-    return navigation.addListener('focus', sync);
-  }, [navigation]);
-  const showBack = canGoBack && (onBackPress || navCanGoBack);
+  // Not a one-off canGoBack() during render: a screen the menu opens renders
+  // before its stack has saved the push, and one that never re-renders
+  // (Careers) kept no arrow. The hook also reads the render-time stack and
+  // follows the navigator after mount.
+  const canPop = useCanGoBack();
+  const showBack = canGoBack && (onBackPress || canPop);
   const backLockRef = useRef(false);
   const backTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 

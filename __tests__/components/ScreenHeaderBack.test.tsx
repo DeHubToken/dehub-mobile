@@ -14,12 +14,13 @@ jest.mock('../../components/AppTopBar', () => ({ __esModule: true, default: 'App
 jest.mock('../../context/ThemeContext', () => ({ useAppTheme: () => ({ isMinimal: false }) }));
 jest.mock('react-i18next', () => ({ useTranslation: () => ({ t: (key: string) => key }) }));
 
-const focusListeners: Array<() => void> = [];
+const mockListeners: Record<string, Array<() => void>> = {};
 const mockNavigation = {
   canGoBack: jest.fn(),
+  getState: jest.fn(),
   goBack: jest.fn(),
   addListener: jest.fn((event: string, cb: () => void) => {
-    if (event === 'focus') focusListeners.push(cb);
+    (mockListeners[event] ??= []).push(cb);
     return () => {};
   }),
 };
@@ -30,9 +31,13 @@ import ScreenHeader from '../../components/ScreenHeader';
 const backButtons = (tree: ReactTestRenderer) =>
   tree.root.findAll((node) => node.props.accessibilityLabel === 'common.goBack' && typeof node.type === 'string');
 
+const emit = (event: string) => act(() => (mockListeners[event] ?? []).forEach((cb) => cb()));
+
 beforeEach(() => {
-  focusListeners.length = 0;
+  Object.keys(mockListeners).forEach((k) => delete mockListeners[k]);
   mockNavigation.canGoBack.mockReset();
+  mockNavigation.getState.mockReset();
+  mockNavigation.getState.mockReturnValue({ type: 'stack', index: 0 });
 });
 
 // A freshly pushed screen can read a stack that does not include it yet on its
@@ -46,14 +51,26 @@ it('shows the back arrow once the pushed screen is in the stack, even if it neve
   act(() => tree.unmount());
 });
 
-it('re-reads on focus and hides the arrow at the root', () => {
+it('counts the render-time stack when canGoBack() has not caught up yet', () => {
+  mockNavigation.canGoBack.mockReturnValue(false);
+  mockNavigation.getState.mockReturnValue({ type: 'stack', index: 1 });
+  let tree!: ReactTestRenderer;
+  act(() => { tree = create(<ScreenHeader title="Careers" />); });
+  expect(backButtons(tree)).toHaveLength(1);
+  act(() => tree.unmount());
+});
+
+it('re-reads on focus and on stack changes, and hides the arrow at the root', () => {
   mockNavigation.canGoBack.mockReturnValue(false);
   let tree!: ReactTestRenderer;
   act(() => { tree = create(<ScreenHeader title="Home" />); });
   expect(backButtons(tree)).toHaveLength(0);
   mockNavigation.canGoBack.mockReturnValue(true);
-  act(() => focusListeners.forEach((cb) => cb()));
+  emit('focus');
   expect(backButtons(tree)).toHaveLength(1);
+  mockNavigation.canGoBack.mockReturnValue(false);
+  emit('state');
+  expect(backButtons(tree)).toHaveLength(0);
   act(() => tree.unmount());
 });
 
