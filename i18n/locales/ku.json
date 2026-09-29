@@ -2212,7 +2212,9 @@
     "revealKey": "Mifteyê nîşan bide",
     "revealSignIn": "Ji bo dîtina vê mifteyê dîsa têkeve",
     "revealFailed": "Mifte nehat nîşandan. Dîsa biceribîne.",
-    "signInAgain": "Dîsa têkeve"
+    "signInAgain": "Dîsa têkeve",
+    "createSignIn": "Ji bo afirandina ajanekî dîsa têkeve",
+    "checkConnection": "Girêdana xwe kontrol bike û dîsa biceribîne."
   },
   "hero": {
     "title": "Bi Xêr Hatin",

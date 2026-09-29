@@ -2472,7 +2472,9 @@
     "revealKey": "Tunjukkan kunci",
     "revealSignIn": "Log masuk semula untuk melihat kunci ini",
     "revealFailed": "Tidak dapat menunjukkan kunci. Cuba lagi.",
-    "signInAgain": "Log masuk semula"
+    "signInAgain": "Log masuk semula",
+    "createSignIn": "Log masuk semula untuk mencipta ejen",
+    "checkConnection": "Semak sambungan anda dan cuba lagi."
   },
   "hero": {
     "title": "Selamat Datang",

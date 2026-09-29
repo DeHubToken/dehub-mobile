@@ -2211,7 +2211,9 @@
     "revealKey": "Tampilake kunci",
     "revealSignIn": "Mlebu maneh kanggo ndeleng kunci iki",
     "revealFailed": "Ora bisa nampilake kunci. Coba maneh.",
-    "signInAgain": "Mlebu maneh"
+    "signInAgain": "Mlebu maneh",
+    "createSignIn": "Mlebu maneh kanggo nggawe agen",
+    "checkConnection": "Priksa sambungan sampeyan banjur coba maneh."
   },
   "hero": {
     "title": "Sugeng Rawuh",

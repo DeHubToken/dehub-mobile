@@ -2212,7 +2212,9 @@
     "revealKey": "Mostrar chave",
     "revealSignIn": "Entre novamente para ver esta chave",
     "revealFailed": "Não foi possível mostrar a chave. Tente novamente.",
-    "signInAgain": "Entrar novamente"
+    "signInAgain": "Entrar novamente",
+    "createSignIn": "Entre novamente para criar um agente",
+    "checkConnection": "Verifique sua conexão e tente novamente."
   },
   "hero": {
     "title": "Bem-vindo Ao",

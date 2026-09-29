@@ -2294,7 +2294,9 @@
     "revealKey": "Zobraziť kľúč",
     "revealSignIn": "Na zobrazenie kľúča sa znova prihláste",
     "revealFailed": "Kľúč sa nepodarilo zobraziť. Skúste to znova.",
-    "signInAgain": "Znova sa prihlásiť"
+    "signInAgain": "Znova sa prihlásiť",
+    "createSignIn": "Na vytvorenie agenta sa znova prihláste",
+    "checkConnection": "Skontrolujte pripojenie a skúste to znova."
   },
   "hero": {
     "title": "Vitajte V",
