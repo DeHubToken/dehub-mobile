@@ -63,6 +63,17 @@ describe("useKeyedState", () => {
     expect(tree.toJSON()).toBe("b:mine");
   });
 
+  it("keeps B's value through a late write for A, and never shows that write when the card gets A back", () => {
+    const tree = mount("a");
+    const lateSetterForA = setters.a;
+    act(() => tree.update(createElement(Cell, { id: "b" })));
+    act(() => setters.b("mine"));
+    act(() => lateSetterForA("open"));
+    expect(tree.toJSON()).toBe("b:mine");
+    act(() => tree.update(createElement(Cell, { id: "a" })));
+    expect(tree.toJSON()).toBe("a:-");
+  });
+
   it("reads the fallback again for a key it has never been written under", () => {
     const tree = mount("a");
     act(() => setters.a("open"));

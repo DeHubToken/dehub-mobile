@@ -462,7 +462,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   // Real shape of the clip, so a portrait video is shown portrait instead of
   // being cropped into a fixed 16:9 slot. Measured off the thumbnail, which is
   // extracted from the video itself; 16:9 until that resolves.
-  const mediaAspect = useMediaAspect(thumbnail);
+  const mediaAspect = useMediaAspect(thumbnail, tokenId);
   const { isMinimal } = useAppTheme();
   const windowSize = useWindowDimensions();
 
@@ -1688,9 +1688,9 @@ const FeedVideoPlayerActive = memo(FeedVideoPlayerComponent);
  * same box, the same thumbnail, the same duration badge, and no player at all.
  * The full component mounts the moment the row scrolls into view.
  */
-const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "thumbnail" | "duration" | "hideControls" | "onPress">> = memo(
-  ({ thumbnail, duration, hideControls, onPress }) => {
-    const mediaAspect = useMediaAspect(thumbnail);
+const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "tokenId" | "thumbnail" | "duration" | "hideControls" | "onPress">> = memo(
+  ({ tokenId, thumbnail, duration, hideControls, onPress }) => {
+    const mediaAspect = useMediaAspect(thumbnail, tokenId);
     const { isMinimal } = useAppTheme();
     const windowSize = useWindowDimensions();
     const mediaTap = useTapOnlyPress(() => onPress());
@@ -1803,6 +1803,7 @@ const FeedVideoPlayer: React.FC<FeedVideoPlayerProps> = (props) => {
     />
   ) : (
     <FeedVideoPoster
+      tokenId={props.tokenId}
       thumbnail={props.thumbnail}
       duration={props.duration}
       hideControls={props.hideControls}
