@@ -8564,7 +8564,11 @@
       "search": "Aplicații de căutare",
       "all": "Toate",
       "fromDehub": "De la DeHub",
-      "noMatch": "Nicio aplicație nu se potrivește cu acea căutare."
+      "noMatch": "Nicio aplicație nu se potrivește cu acea căutare.",
+      "yourApps": "Aplicațiile dvs.",
+      "notificationsOn": "Notificări pe",
+      "removed": "Textul a fost șters. Nu vei primi niciun alt mesaj de notificare.",
+      "remove": "Notificare cheie"
     },
     "card": {
       "open": "Deschide"
@@ -8581,7 +8585,19 @@
       "education": "Educație",
       "developer-tools": "Instrumente pentru dezvoltatori",
       "entertainment": "Divertisment",
-      "art-creativity": "Artă și creativitate"
+      "art-creativity": "Artă și creativitate",
+      "social": "Social"
+    },
+    "pay": {
+      "title": "Plătesc {{name}}?",
+      "body": "DHB merge direct în portofelul aplicației, {{wallet}}. Plățile nu pot fi anulate.",
+      "confirm": "Plătește {{amount}} DHB",
+      "sent": "Plătit {{amount}} DHB către {{name}}."
+    },
+    "add": {
+      "title": "Adăugați {{name}}?",
+      "body": "Va apărea sub Your apps și poate trimite notificări. Poți șterge-o oricând din pagina Apps.",
+      "confirm": "Adaugă aplicație"
     }
   },
   "aiStyles": {

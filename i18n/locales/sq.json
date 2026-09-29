@@ -8549,7 +8549,11 @@
       "search": "Kërko appje",
       "all": "Të gjitha",
       "fromDehub": "Nën DeHub",
-      "noMatch": "Asnjë app nuk përputhet me kërkimin tuaj."
+      "noMatch": "Asnjë app nuk përputhet me kërkimin tuaj.",
+      "yourApps": "Apps tuaja.",
+      "notificationsOn": "Përthimatimet në",
+      "remove": "Ndërro",
+      "removed": "Ndërruar. Do të na lajmerosh më vonë."
     },
     "card": {
       "open": "Hap"
@@ -8568,6 +8572,17 @@
       "developer-tools": "Ereza për zhvilluesit",
       "entertainment": "Zhvillim i trimit",
       "art-creativity": "Art dhe kreativitet"
+    },
+    "pay": {
+      "body": "DHB drejtohet drejt portofelit të aplikacionit, {{wallet}}. Pagimet nuk mund të anulohen.",
+      "confirm": "Pagë {{amount}} DHB",
+      "sent": "Paguarë dhënien e dhjetëvjetëshe për {{amount}} nga {{name}}.",
+      "title": "Pagësoj {{name}}?"
+    },
+    "add": {
+      "body": "Ky do të shfaqet në Your apps dhe mund të dërgonë notifikime. Unë mund të e hiqni në çdo moment nga faqja Apps.",
+      "title": "Shfrytëzoj {{name}}?",
+      "confirm": "Shfrytësoj aplikacionin"
     }
   },
   "aiStyles": {

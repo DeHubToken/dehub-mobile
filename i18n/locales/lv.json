@@ -8550,7 +8550,11 @@
       "search": "Mājas meklētāji",
       "all": "Visi",
       "fromDehub": "No DeHub",
-      "noMatch": "Nav atbilstošu rezultātu meklēšanai."
+      "noMatch": "Nav atbilstošu rezultātu meklēšanai.",
+      "yourApps": "Tavas programmas",
+      "notificationsOn": "Paziņojumi ienāktā",
+      "remove": "Noņemt",
+      "removed": "Noņemts. Tā jums vairāk nepiezīmēs."
     },
     "card": {
       "open": "Atvērt"
@@ -8569,6 +8573,17 @@
       "developer-tools": "Rīku izstrādes",
       "entertainment": "Entertainment",
       "art-creativity": "Māksla un izdoma"
+    },
+    "pay": {
+      "title": "Maksāt {{name}}?",
+      "body": "DHB tieši nonāk programmas portmonējā, {{wallet}}. Maksas nevar atcelgt.",
+      "confirm": "Maksāt {{amount}} DHB",
+      "sent": "Maksājums {{amount}} DHB sūtīts uz {{name}}."
+    },
+    "add": {
+      "title": "Pievienot {{name}}?",
+      "body": "Tā parādīsies uzrindā \"Jūsu programmas\" un var sūtīt Jums paziņojumus. Šo var jebkad noņemt no \"Programmu\" lapas.",
+      "confirm": "Pievienot programmu"
     }
   },
   "aiStyles": {

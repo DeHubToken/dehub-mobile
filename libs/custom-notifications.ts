@@ -213,6 +213,10 @@ const composeReferenceContent = (row: CustomNotificationRow, actor: string): str
       return stageLiveSentence(actor, title);
     case "stage_reminder":
       return stageReminderSentence(title);
+    // An app's own words, under its name. reference_title is the page it
+    // opens, not a title, so it is never quoted.
+    case "miniapp":
+      return `${actor}: ${row.content}`;
     case "store_order":
       return quoted ? `${actor} purchased your listing ${quoted}` : `${actor} purchased your listing`;
     default:

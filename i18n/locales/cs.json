@@ -8553,7 +8553,10 @@
       "search": "Hledat aplikace",
       "all": "Vše",
       "fromDehub": "Od společnosti DeHub",
-      "noMatch": "Tomuto vyhledávání neodpovídají žádné aplikace."
+      "noMatch": "Tomuto vyhledávání neodpovídají žádné aplikace.",
+      "yourApps": "Vaše aplikace",
+      "notificationsOn": "Zprávy o",
+      "removed": "Odstraněno. Nebude vás o tom varovat znovu."
     },
     "card": {
       "open": "Otevřít"
@@ -8572,6 +8575,17 @@
       "developer-tools": "Nástroje pro vývojáře",
       "entertainment": "Zábava",
       "art-creativity": "Umění a kreativita"
+    },
+    "pay": {
+      "title": "Platit {{name}}?",
+      "body": "DHB příměří do peněženky aplikace, {{wallet}}. Platby nelze vrátit.",
+      "confirm": "Zaplatit {{amount}} DHB",
+      "sent": "Placené {{amount}} DHB za {{name}}."
+    },
+    "add": {
+      "title": "Přidejte {{name}}?",
+      "body": "Vyobrazí se pod Vašimi aplikacemi a může vám posílat notifikace. Můžete ho kdykoli odstranit z stránky Aplikace.",
+      "confirm": "Přidej aplikaci"
     }
   },
   "aiStyles": {

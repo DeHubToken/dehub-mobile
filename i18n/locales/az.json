@@ -8550,7 +8550,11 @@
       "search": "Araşdırma uygulamaları",
       "all": "Hər şey",
       "fromDehub": "DeHub-dən",
-      "noMatch": "Axtarışınızla uyğun gələn heç bir uygulamalar yoxdur."
+      "noMatch": "Axtarışınızla uyğun gələn heç bir uygulamalar yoxdur.",
+      "yourApps": "Sizin applarınız",
+      "notificationsOn": "Bildirimlər",
+      "remove": "Kaldır",
+      "removed": "Kaldırıldı. Artıq sizi daha bir bildirimləməyəcək."
     },
     "card": {
       "open": "Aç"
@@ -8569,6 +8573,17 @@
       "developer-tools": "Proqram təminatı alətləri",
       "entertainment": "Məzmun",
       "art-creativity": "Sənət və yaradıcılıq"
+    },
+    "pay": {
+      "title": "{{name}}-ni ödə?",
+      "body": "DHB doğrudan appların cibxaranına gedir, {{wallet}}. Ödənişlər geri qaytarıla bilməz.",
+      "confirm": "{{amount}} DHB ödə",
+      "sent": "{{amount}} DHB-ni {{name}}-ə ödədiniz."
+    },
+    "add": {
+      "title": "{{name}}-ni əlavə et?",
+      "body": "O, Sizin applarınız altında görünəcək və sizin üçün bildirimlər göndərə bilər. Anytime Apps səhifəsindən onu silə bilərsiniz.",
+      "confirm": "App əlavə et"
     }
   },
   "aiStyles": {

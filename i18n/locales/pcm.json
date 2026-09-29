@@ -8288,7 +8288,10 @@
       "search": "Search apps",
       "all": "All",
       "fromDehub": "From DeHub",
-      "noMatch": "No app fit dem search."
+      "noMatch": "No app fit dem search.",
+      "yourApps": "Your apps",
+      "notificationsOn": "Notifications on",
+      "remove": "Remove"
     },
     "card": {
       "open": "Open"
@@ -8307,6 +8310,15 @@
       "developer-tools": "Developer Tools (e.g., *VS Code*, *GitHub*)",
       "entertainment": "Entertainment (e.g., *Netflix*, *YouTube*)",
       "art-creativity": "Art & Creativity (e.g., *Canva*, *Procreate*)"
+    },
+    "pay": {
+      "title": "Pay {{name}}?",
+      "body": "DHB go direct to app's wallet, {{wallet}}. Payment no go reverse.",
+      "confirm": "Pay {{amount}} DHB"
+    },
+    "add": {
+      "title": "Add {{name}}?",
+      "confirm": "Add app"
     }
   },
   "aiStyles": {
