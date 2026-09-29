@@ -19,6 +19,7 @@ import {
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { DeHubLoader } from "../components/DeHubLoader";
 import { Image } from "expo-image";
+import { storageImageSource } from "../libs/cdnImage";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
@@ -74,7 +75,7 @@ const ListingCard: React.FC<{ listing: StoreListing; width: number; onPress: () 
     <Pressable style={[styles.card, { width }, isMinimal && minimalFlat]} onPress={onPress}>
       <View style={[styles.thumbWrap, { height: width }]}>
         {img ? (
-          <Image source={{ uri: img }} style={StyleSheet.absoluteFill} contentFit="cover" transition={200} />
+          <Image source={storageImageSource(img, width)} style={StyleSheet.absoluteFill} contentFit="cover" transition={200} />
         ) : (
           <View style={styles.thumbFallback}>
             <Icon name="Package" size={26} color="#3F3F46" />

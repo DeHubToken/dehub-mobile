@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useRef } from "react";
 import { Image, type ImageProps, type ImageContentFit } from "expo-image";
 import type { ImageStyle, StyleProp } from "react-native";
+import { withStorageImageHeaders } from "../../libs/cdnImage";
 
 type SmartImageProps = {
   source: ImageProps["source"];
@@ -83,7 +84,9 @@ export const SmartImage: React.FC<SmartImageProps> = ({
   return (
     <Image
       ref={imageRef}
-      source={source}
+      // A resized Supabase Storage URL only comes back as WebP when the request
+      // says it accepts WebP, which the native loaders do not say on their own.
+      source={withStorageImageHeaders(source)}
       contentFit={contentFit}
       cachePolicy={cachePolicy}
       transition={transition}

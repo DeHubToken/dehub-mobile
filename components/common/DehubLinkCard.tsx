@@ -20,6 +20,7 @@ import React, { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { View, Text, TouchableOpacity, StyleSheet, useWindowDimensions } from 'react-native';
 import { Image } from 'expo-image';
+import { storageImageSource } from '../../libs/cdnImage';
 import { useNavigation } from '@react-navigation/native';
 import { useQuery } from '@tanstack/react-query';
 import Icon, { type IconName } from '../ui/Icon';
@@ -83,6 +84,8 @@ const RowCard: React.FC<RowCardProps> = ({
   onLongPress,
 }) => {
   const { isMinimal } = useAppTheme();
+  // The banner spans the card, which is at most the window's width.
+  const { width: windowWidth } = useWindowDimensions();
   // Minimal: no box around the card. The banner spans the text column and the
   // row sits flush with the post text; only the thumb keeps a faint well.
   return (
@@ -98,7 +101,7 @@ const RowCard: React.FC<RowCardProps> = ({
           object-cover layer BEHIND the row, which reduced a full graphic to
           ~68px of its middle. */}
       {!!bannerUri && (
-        <Image source={{ uri: bannerUri }} style={styles.banner} contentFit="contain" />
+        <Image source={storageImageSource(bannerUri, windowWidth)} style={styles.banner} contentFit="contain" />
       )}
       <View style={[styles.row, isMinimal && styles.minimalRow]}>
         {/* With the banner showing the artwork in full, repeating it as a 48px
@@ -106,7 +109,7 @@ const RowCard: React.FC<RowCardProps> = ({
         {!bannerUri && (
           <View style={[styles.thumbWrap, isMinimal && styles.minimalThumbWrap]}>
             {imageUri ? (
-              <Image source={{ uri: imageUri }} style={styles.thumb} contentFit="cover" />
+              <Image source={storageImageSource(imageUri, 48)} style={styles.thumb} contentFit="cover" />
             ) : (
               <Icon name={fallbackIcon} size={20} color="#808089" />
             )}

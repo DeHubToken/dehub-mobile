@@ -40,6 +40,7 @@ import { useTranslation } from "react-i18next";
 import { View, Text, TouchableOpacity, Modal, ScrollView, Linking, ActivityIndicator } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import SmartImage from "./SmartImage";
+import { storageImage } from "../../libs/cdnImage";
 import Icon from "../ui/Icon";
 import { useStreamProducts, effectivePrice } from "../../hooks/useStreamShopping";
 import type { StreamProduct } from "../../hooks/useStreamShopping";
@@ -107,7 +108,7 @@ const ListingRow = memo(function ListingRow({
         className="bg-white/10 overflow-hidden items-center justify-center mr-3"
       >
         {image ? (
-          <SmartImage source={{ uri: image }} recyclingKey={image} style={{ width: 40, height: 40 }} contentFit="cover" />
+          <SmartImage source={{ uri: storageImage(image, 40) }} recyclingKey={image} style={{ width: 40, height: 40 }} contentFit="cover" />
         ) : (
           <Icon name="Package" size={16} color="#808089" />
         )}

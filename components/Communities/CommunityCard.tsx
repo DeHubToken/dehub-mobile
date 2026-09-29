@@ -1,6 +1,7 @@
 import React, { memo } from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet, useWindowDimensions } from "react-native";
 import { Image } from "expo-image";
+import { storageImageSource } from "../../libs/cdnImage";
 import Icon from "../ui/Icon";
 import type { Community } from "../../types/community";
 import { formatCompactNumber } from "../../libs/numbers.util";
@@ -29,13 +30,15 @@ const CommunityCard: React.FC<Props> = ({ community, role, onPress }) => {
   const { t } = useTranslation();
   const { isMinimal } = useAppTheme();
   const isOwner = role === "owner";
+  // The banner fills the full-width row behind the text.
+  const { width: rowWidth } = useWindowDimensions();
 
   return (
     <TouchableOpacity onPress={onPress} activeOpacity={0.75} style={[styles.card, isMinimal && styles.minimalCard]}>
       {!!community.banner_url && (
         <>
           <Image
-            source={{ uri: community.banner_url }}
+            source={storageImageSource(community.banner_url, rowWidth)}
             style={styles.bannerBg}
             contentFit="cover"
           />
@@ -44,7 +47,7 @@ const CommunityCard: React.FC<Props> = ({ community, role, onPress }) => {
       )}
       <View style={styles.avatarWrap}>
         {community.avatar_url ? (
-          <Image source={{ uri: community.avatar_url }} style={styles.avatar} contentFit="cover" />
+          <Image source={storageImageSource(community.avatar_url, 48)} style={styles.avatar} contentFit="cover" />
         ) : (
           <Icon name="Users" size={22} color="#808089" />
         )}

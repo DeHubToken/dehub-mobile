@@ -8,8 +8,10 @@ import {
   ActivityIndicator,
   StyleSheet,
   Pressable,
+  useWindowDimensions,
 } from "react-native";
 import { Image } from "expo-image";
+import { storageImageSource } from "../../libs/cdnImage";
 import { useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -45,6 +47,8 @@ interface Props {
 const PinnedCommunities: React.FC<Props> = ({ walletAddress, isOwnProfile, onNavigate }) => {
   const { t } = useTranslation();
   const { isMinimal } = useAppTheme();
+  // Pin banners fill the full-width row behind the text.
+  const { width: rowWidth } = useWindowDimensions();
   const navigation = useNavigation<any>();
   const currentUser = useUser() as any;
   const ownWallet = currentUser?.address || currentUser?.walletAddress || "";
@@ -98,13 +102,13 @@ const PinnedCommunities: React.FC<Props> = ({ walletAddress, isOwnProfile, onNav
         >
           {!!community.banner_url && (
             <>
-              <Image source={{ uri: community.banner_url }} style={styles.pinBanner} contentFit="cover" />
+              <Image source={storageImageSource(community.banner_url, rowWidth)} style={styles.pinBanner} contentFit="cover" />
               <View style={styles.pinScrim} />
             </>
           )}
           <View style={styles.pinAvatar}>
             {community.avatar_url ? (
-              <Image source={{ uri: community.avatar_url }} style={styles.pinAvatarImg} contentFit="cover" />
+              <Image source={storageImageSource(community.avatar_url, 48)} style={styles.pinAvatarImg} contentFit="cover" />
             ) : (
               <Icon name="Users" size={20} color="#808089" />
             )}
@@ -246,7 +250,7 @@ function PinPickerModal({
                   >
                     <View style={styles.pickerAvatar}>
                       {item.avatar_url ? (
-                        <Image source={{ uri: item.avatar_url }} style={styles.pickerAvatarImg} contentFit="cover" />
+                        <Image source={storageImageSource(item.avatar_url, 36)} style={styles.pickerAvatarImg} contentFit="cover" />
                       ) : (
                         <Icon name="Users" size={16} color="#808089" />
                       )}

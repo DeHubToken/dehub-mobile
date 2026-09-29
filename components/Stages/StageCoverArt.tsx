@@ -21,8 +21,9 @@
  */
 
 import React from "react";
-import { StyleSheet, View, type StyleProp, type ViewStyle } from "react-native";
+import { Dimensions, StyleSheet, View, type StyleProp, type ViewStyle } from "react-native";
 import { Image } from "expo-image";
+import { storageImageSource } from "../../libs/cdnImage";
 
 export interface StageCoverArtProps {
   uri: string;
@@ -34,7 +35,8 @@ export interface StageCoverArtProps {
 const StageCoverArt: React.FC<StageCoverArtProps> = ({ uri, title, style }) => (
   <View style={[styles.frame, style]}>
     <Image
-      source={{ uri }}
+      // Every placement is a full-width card, so the window bounds the frame.
+      source={storageImageSource(uri, Dimensions.get("window").width)}
       style={StyleSheet.absoluteFill}
       contentFit="contain"
       transition={180}
