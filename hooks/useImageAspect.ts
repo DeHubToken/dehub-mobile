@@ -5,6 +5,17 @@ import { FEED_IMAGE_FALLBACK_ASPECT } from "../libs/feed-image-layout";
 const aspectRatioCache = new Map<string, number>();
 const MAX_CACHE_ENTRIES = 1000;
 
+/**
+ * expo-image reports the size of the bitmap it decoded, and it decodes at the
+ * view's size. A 1600x958 photo in a 962px box comes back 962x576 one time and
+ * 961x576 the next, so a re-measure moved the box by a pixel, the resize made
+ * expo-image decode again at the new size, and that decode reported the other
+ * rounding: the card flipped between two heights about 30 times a second,
+ * reloading its image and redrawing the screen even at rest. A new reading
+ * within this of the one already held is that rounding, not a new image.
+ */
+const RATIO_TOLERANCE = 0.01;
+
 function cacheAspectRatio(uri: string, ratio: number) {
   if (aspectRatioCache.size >= MAX_CACHE_ENTRIES) {
     const oldest = aspectRatioCache.keys().next().value;
@@ -26,6 +37,13 @@ export function useImageAspect(uri: string) {
     const { width, height } = event.source;
     if (!Number.isFinite(width) || !Number.isFinite(height) || width <= 0 || height <= 0) return;
     const measured = width / height;
+    const known = aspectRatioCache.get(uri);
+    if (known !== undefined && Math.abs(measured - known) <= known * RATIO_TOLERANCE) {
+      if (currentUri.current === uri) {
+        setMeasurement((previous) => (previous?.uri === uri ? previous : { uri, ratio: known }));
+      }
+      return;
+    }
     cacheAspectRatio(uri, measured);
     // A recycled row may have moved on while the previous request completed.
     if (currentUri.current !== uri) return;
