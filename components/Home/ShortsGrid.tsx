@@ -325,7 +325,8 @@ const ShortsGrid: React.FC<ShortsGridProps> = ({
         onScrollEndDrag={endScroll}
         onMomentumScrollBegin={beginScroll}
         onMomentumScrollEnd={endScroll}
-        scrollEventThrottle={16}
+        // See InfiniteVideoFeed: 16 is below Android's 17ms throttle floor.
+        scrollEventThrottle={24}
         refreshControl={
           <DeHubRefreshControl
             refreshing={refreshing}

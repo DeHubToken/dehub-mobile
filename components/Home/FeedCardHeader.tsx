@@ -1,6 +1,5 @@
 import React, { memo, useRef } from "react";
-import { View, Text, Pressable } from "react-native";
-import SmartImage from "../common/SmartImage";
+import { View, Text, Pressable, Image } from "react-native";
 import Avatar from "../common/Avatar";
 import NewMemberChip from "../common/NewMemberChip";
 import Icon from "../ui/Icon";
@@ -95,13 +94,17 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
                 justifyContent: "center",
               }}
             >
-              <SmartImage
+              {/* A bundled 128px PNG: RN's Image is one native view sharing one
+                  decoded bitmap across every card, where expo-image is four
+                  views per card. No fade, which OTA assets would otherwise get. */}
+              <Image
                 source={badgeImage}
                 style={[
                   getBadgeOpticalStyle(badgeImage, HOLDER_BADGE_SIZE, 0, DISPLAY_NAME_LINE_HEIGHT),
                   { marginLeft: 0 },
                 ]}
-                contentFit="contain"
+                resizeMode="contain"
+                fadeDuration={0}
               />
             </Pressable>
           )}
@@ -112,7 +115,10 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
                 height: DISPLAY_NAME_LINE_HEIGHT,
                 marginLeft: 4,
                 justifyContent: "center",
-                transform: [{ translateY: -1 }],
+                // An offset rather than a transform: a layout-only wrapper is
+                // flattened away, and for everyone who is not new the chip
+                // renders nothing, so this cost every card a native view.
+                top: -1,
               }}
             >
               <NewMemberChip address={address} />

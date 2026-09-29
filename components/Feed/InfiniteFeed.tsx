@@ -456,7 +456,8 @@ const InfiniteFeedBase: React.FC<
         }
         scrollEnabled={scrollEnabled ?? true}
         onScroll={onScroll ?? (enableBackToTop ? handleScroll : undefined)}
-        scrollEventThrottle={16}
+        // See InfiniteVideoFeed: 16 is below Android's 17ms throttle floor.
+        scrollEventThrottle={24}
         nestedScrollEnabled
         onEndReached={endReached ? undefined : loadMore}
         // Keep multiple screens of runway. Fast flings can consume a single
