@@ -39,6 +39,7 @@ on:
     paths:
       - .github/workflows/i18n-fanout.yml
       - scripts/i18n-fanout.mjs
+      - scripts/i18n-guards.mjs
 
 permissions:
   contents: write
