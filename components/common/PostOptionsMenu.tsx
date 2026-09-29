@@ -155,6 +155,8 @@ export interface PostOptionsMenuProps {
   hideReportContent?: boolean;
   /** Hide the edit option (e.g., for livestreams) */
   hideEdit?: boolean;
+  /** An audio track: its title stays editable even when empty, so it can be renamed. */
+  isAudio?: boolean;
 }
 
 interface OptionRowProps {
@@ -230,7 +232,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
   isSaved = false,
   onToggleSave,
   onInfoPress,
-  hideReportContent = false,  hideEdit = false,}) => {
+  hideReportContent = false,  hideEdit = false,  isAudio = false,}) => {
   const user = useUser();
   const { requireAuth } = useAuthActions();
   const { t, i18n } = useTranslation();
@@ -762,6 +764,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
         initialContentRating={currentContentRating}
         initialForKids={currentForKids}
         canReplaceVideo={canReplaceVideo}
+        alwaysShowTitle={isAudio}
         onSuccess={handleEditDone}
       />
 
