@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { View, Modal, TouchableOpacity } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { useNavigation } from "@react-navigation/native";
+import { StackActions, useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import ScreenHeader from "../ScreenHeader";
 import Icon from "../ui/Icon";
@@ -10,6 +10,7 @@ import UserProfileSheetContent from "./UserProfileSheetContent";
 import UnfollowSheet from "./UnfollowSheet";
 import { useUserProfileData } from "../../hooks/useUserProfileData";
 import { ScreenNames } from "../../navigation/ScreenNames";
+import { TAB_BAR_CONTENT_INSET } from "../../navigation/tabBarLayout";
 
 interface UserProfileBottomSheetProps {
   visible: boolean;
@@ -47,6 +48,8 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
   const {
     loading,
     data,
+    error,
+    retry,
     profileData,
     isFollowing,
     isFollowRequestPending,
@@ -96,13 +99,17 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
     if (!profileData?.address) return;
     const initialTab = key === "following" ? "following" : "followers";
     onClose();
-    (navigation as any).navigate(ScreenNames.FollowList, {
-      address: profileData.address,
-      username: profileData.username,
-      initialTab,
-      hideFollowers: data?.hideFollowers,
-      isOwnProfile: false,
-    });
+    // Push, not navigate: from a follow list, navigate reuses that screen with
+    // its old tab and drops it from the back stack.
+    navigation.dispatch(
+      StackActions.push(ScreenNames.FollowList, {
+        address: profileData.address,
+        username: profileData.username,
+        initialTab,
+        hideFollowers: data?.hideFollowers,
+        isOwnProfile: false,
+      }),
+    );
   }, [navigation, profileData, data, onClose]);
 
   if (embedded) {
@@ -123,6 +130,9 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
         <UserProfileSheetContent
           loading={loading}
           data={data}
+          error={error}
+          onRetry={retry}
+          backToTopBottom={TAB_BAR_CONTENT_INSET}
           profileData={profileData}
           isFollowing={isFollowing}
           isFollowRequestPending={isFollowRequestPending}
@@ -204,6 +214,9 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
           <UserProfileSheetContent
             loading={loading}
             data={data}
+            error={error}
+            onRetry={retry}
+            backToTopBottom={insets.bottom + 24}
             profileData={profileData}
             isFollowing={isFollowing}
             isFollowRequestPending={isFollowRequestPending}
