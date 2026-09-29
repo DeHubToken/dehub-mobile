@@ -175,6 +175,33 @@ describe('services/nft.service', () => {
       expect(res).toEqual(['Gaming']);
       expect(mockGet).toHaveBeenCalledTimes(2);
     });
+
+    it('does not cache a failed load, so the next call fetches again', async () => {
+      // Fresh module so the cache starts empty, as it does on a cold start.
+      let fresh!: typeof import('../../services/nft.service');
+      let freshGet!: jest.Mock;
+      jest.isolateModules(() => {
+        fresh = require('../../services/nft.service');
+        freshGet = require('../../libs/api.client').apiClient.get;
+      });
+
+      freshGet.mockRejectedValueOnce(new Error('offline'));
+      expect(await fresh.getCategoriesCached()).toEqual([]);
+
+      freshGet.mockResolvedValueOnce(['Music']);
+      expect(await fresh.getCategoriesCached()).toEqual(['Music']);
+      expect(freshGet).toHaveBeenCalledTimes(2);
+    });
+
+    it('keeps the last good list when a forced refresh fails', async () => {
+      mockGet.mockResolvedValueOnce(['Music']);
+      await getCategoriesCached({ forceRefresh: true });
+
+      mockGet.mockRejectedValueOnce(new Error('offline'));
+      expect(await getCategoriesCached({ forceRefresh: true })).toEqual([]);
+      expect(await getCategoriesCached()).toEqual(['Music']);
+      expect(mockGet).toHaveBeenCalledTimes(2);
+    });
   });
 
   describe('recordView', () => {

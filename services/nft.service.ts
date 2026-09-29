@@ -255,7 +255,9 @@ export async function getCategoriesCached(options?: { ttlMs?: number; forceRefre
     return __categoriesCache.data;
   }
   const data = await getCategories();
-  __categoriesCache = { at: now, data };
+  // getCategories returns [] on any failure. Caching that would serve an empty
+  // list to every caller for the whole TTL, so only a real list is kept.
+  if (data.length > 0) __categoriesCache = { at: now, data };
   return data;
 }
 
