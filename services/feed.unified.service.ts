@@ -320,7 +320,6 @@ export interface ShortsFeedParams {
   category?: string;
   minter?: string;
   followingOnly?: boolean;
-  range?: FeedRange;
 }
 
 export interface ShortsFeedResponse {
@@ -342,7 +341,6 @@ async function getShortVideos(
     category: params?.category,
     minter: params?.minter,
     followingOnly: params?.followingOnly,
-    range: params?.range,
   });
 
   const query = objectToQueryString(queryParams);
@@ -380,14 +378,12 @@ async function getShortVideos(
 }
 
 export async function getShortsFeed(params?: ShortsFeedParams): Promise<ShortsFeedResponse> {
-  // All-time views would pin the same old clips on top forever; rank this month's.
-  if (params?.sortBy === "views" && !params.range) params = { ...params, range: "month" };
   const [videos, photos] = await Promise.all([
     getShortVideos(params),
     getUnifiedFeed({ page: params?.page, limit: params?.limit, postType: "feed-images",
       search: "soundtrack", sortBy: params?.sortBy === "random" ? "createdAt" : params?.sortBy,
       sortOrder: params?.sortOrder, category: params?.category, minter: params?.minter,
-      followingOnly: params?.followingOnly, range: params?.range, status: "all" }),
+      followingOnly: params?.followingOnly, status: "all" }),
   ]);
   return { ...videos,
     result: interleaveShorts(videos.result, photos.result.filter(isShortsPhoto)),
