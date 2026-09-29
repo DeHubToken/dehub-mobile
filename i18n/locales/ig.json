@@ -498,13 +498,11 @@
     "notifAccountAlertsDesc": "Nchedo & mmelite akaụntụ dị mkpa",
     "notifAnnouncements": "Mkpọsa",
     "notifAnnouncementsDesc": "Ozi platform & mmelite atụmatụ",
-    "quietHoursPauseDesc": "Kwụsị ngwa ngwa ngwa ngwa n'oge awa edobere",
     "quietHoursFrom": "Site na",
     "quietHoursTo": "To",
     "quietHoursSilencedNote": "A ga-akwụsị ngwa ngwa ngwa n'oge awa ndị a.",
     "notifInApp": "N'ime ngwa",
     "notifPush": "Ngwa ngwa",
-    "notifInfoNote": "Ngwa ngwa ngwa na-apụta n'ime ngwa. Ngwa ngwa na-eziga na ngwaọrụ gị ọbụlagodi mgbe ngwa ahụ mechiri.",
     "accountVisibility": "Ngwa Akaụntụ",
     "privateAccountOnlyFollowers": "Ndị na-eso ụzọ naanị nwere ike ịhụ ọdịnaya gị",
     "followerVisibilitySection": "Ngwa Ndị Na-eso Ụzọ",
@@ -790,7 +788,9 @@
     "exportReady": "{{count}} akaụntụ, {{saved}} posts echekwara ebugharịrị.",
     "importDone": "Egburu {{followed}}, kwụsịrị {{blocked}}, {{folders}} ndekọ e kere.",
     "importPartial": "{{count}} akaụntụ enweghị ike ịgbaso — gbaa ọsọ mbuputa ọzọ ka ị nwalee ha.",
-    "importProgress": "Na-eji {{done}} nke {{total}}…"
+    "importProgress": "Na-eji {{done}} nke {{total}}…",
+    "quietHoursPauseDesc": "Kwụsị ịkwanye ọkwa n 'oge awa setịpụrụ",
+    "notifInfoNote": "Ịma ọkwa n 'ime ngwa na-apụta n' ime ngwa ahụ. A na-eziga ọkwa ngwa ngwa na ngwaọrụ gị ọbụlagodi mgbe emechiri ngwa ahụ."
   },
   "common": {
     "mute": "Mechie ụda",
@@ -8605,7 +8605,8 @@
     },
     "add": {
       "title": "{{name}}?",
-      "body": "Nwoke na-ahụrụ nke *Your apps* nke ọ dị mmadụ ọ dị ọ bụrụ ọrụ nke ọ bụrụ ọrụ. Nwoke na-ahụrụ nke ọ bụrụ ọrụ nke ọ bụrụ ọrụ, ọ bụrụ ọrụ nke ọ bụrụ ọrụ nke ọ bụrụ ọrụ nke *Apps* nke ọ bụrụ ọrụ nke ọ bụrụ ọrụ."
+      "body": "Nwoke na-ahụrụ nke *Your apps* nke ọ dị mmadụ ọ dị ọ bụrụ ọrụ nke ọ bụrụ ọrụ. Nwoke na-ahụrụ nke ọ bụrụ ọrụ nke ọ bụrụ ọrụ, ọ bụrụ ọrụ nke ọ bụrụ ọrụ nke ọ bụrụ ọrụ nke *Apps* nke ọ bụrụ ọrụ nke ọ bụrụ ọrụ.",
+      "confirm": "Tinye ngwa"
     }
   },
   "aiStyles": {
