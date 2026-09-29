@@ -146,7 +146,9 @@
     "noMoreShorts": "باشقا قىسقا فىلىم يوق",
     "noShortsFound": "قىسقا فىلىم تېپىلمىدى",
     "newMembersHint": "تا ھازىرلا قوشۇلغان - سالام بېرىڭ",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "سۈزگۈچلىرىڭىزگە ماس كېلىدىغان مەزمۇن يوق.",
+    "clearFilters": "سۈزگۈچلەرنى تازىلاش"
   },
   "explore": {
     "all": "ھەممە",

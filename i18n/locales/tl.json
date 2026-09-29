@@ -146,7 +146,9 @@
     "noMoreShorts": "Wala nang mga shorts",
     "noShortsFound": "Walang nakitang shorts",
     "newMembersHint": "Kakagaling lang — bumati ka",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "Walang nilalamang tumutugma sa mga filter mo.",
+    "clearFilters": "I-clear ang mga filter"
   },
   "explore": {
     "all": "Lahat",

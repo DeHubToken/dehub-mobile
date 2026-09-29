@@ -146,7 +146,9 @@
     "noMoreShorts": "Няма повече кратки видеа",
     "noShortsFound": "Не са намерени кратки видеа",
     "newMembersHint": "Току-що се присъединихте — поздравете",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "Няма съдържание, отговарящо на филтрите ви.",
+    "clearFilters": "Изчистване на филтрите"
   },
   "explore": {
     "all": "Всички",

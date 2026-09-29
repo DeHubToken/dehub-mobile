@@ -146,7 +146,9 @@
     "noMoreShorts": "Kana booda uffata gabaabaa hin jiru",
     "noShortsFound": "Gabaabduu hin argamne",
     "newMembersHint": "Reefu joined — nagaa jedhaa",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "Qabiyyeen calallii kee waliin walsimu hin jiru.",
+    "clearFilters": "Gingilchaawwan haqi"
   },
   "explore": {
     "all": "Hundaa",

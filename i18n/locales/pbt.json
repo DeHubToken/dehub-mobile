@@ -146,7 +146,9 @@
     "noMoreShorts": "نور شارټس نشته",
     "noShortsFound": "هیڅ شارټس ونه موندل شو",
     "newMembersHint": "تازه ګډون کړی — سلام ووایه",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "هېڅ محتوا ستاسو له فلټرونو سره سمون نه لري.",
+    "clearFilters": "فلټرونه پاک کړئ"
   },
   "explore": {
     "all": "ټول",

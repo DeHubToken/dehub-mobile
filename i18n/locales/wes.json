@@ -146,7 +146,9 @@
     "noShortsFound": "Wi no fain eni shorts",
     "newMembersHint": "Dem jos join — tok hello",
     "allCaughtUp": "You don see everything finish",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "No content match your filter dem.",
+    "clearFilters": "Clear filter dem"
   },
   "explore": {
     "all": "Ol",

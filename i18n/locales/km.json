@@ -146,7 +146,9 @@
     "noMoreShorts": "គ្មានវីដេអូខ្លីៗទៀតទេ",
     "noShortsFound": "រកមិនឃើញវីដេអូខ្លីៗ",
     "newMembersHint": "ទើបតែចូលរួម — និយាយសួស្តី",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "គ្មានមាតិកាដែលត្រូវនឹងតម្រងរបស់អ្នកទេ។",
+    "clearFilters": "សម្អាតតម្រង"
   },
   "explore": {
     "all": "ទាំងអស់",

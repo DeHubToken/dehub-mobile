@@ -146,7 +146,9 @@
     "noMoreShorts": "Kò sí bàtà kéékèèké mọ́",
     "noShortsFound": "Ko si awọn kukuru kukuru ti a ri",
     "newMembersHint": "Kàn dara pọ̀ mọ́ra — sọ kíyèsí",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "Kò sí àkóónú tó bá àwọn àlẹ̀mọ́ rẹ mu.",
+    "clearFilters": "Pa àwọn àlẹ̀mọ́ rẹ́"
   },
   "explore": {
     "all": "Gbogbo",

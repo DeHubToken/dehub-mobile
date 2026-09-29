@@ -146,7 +146,9 @@
     "noMoreShorts": "Không còn video ngắn nào",
     "noShortsFound": "Không tìm thấy video ngắn nào",
     "newMembersHint": "Vừa tham gia — hãy chào hỏi",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "Không có nội dung nào khớp với bộ lọc của bạn.",
+    "clearFilters": "Xóa bộ lọc"
   },
   "explore": {
     "all": "Tất cả",

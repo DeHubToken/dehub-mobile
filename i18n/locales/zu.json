@@ -146,7 +146,9 @@
     "noMoreShorts": "Awekho ama-shorts engeziwe",
     "noShortsFound": "Awekho ama-shorts atholiwe",
     "newMembersHint": "Usanda kujoyina — ngibingelele",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "Akukho okuqukethwe okuhambisana nezihlungi zakho.",
+    "clearFilters": "Sula izihlungi"
   },
   "explore": {
     "all": "Konke",

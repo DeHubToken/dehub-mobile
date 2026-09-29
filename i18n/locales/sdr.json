@@ -146,7 +146,9 @@
     "noMoreShorts": "ہور شارٹس نہیں",
     "noShortsFound": "کوئی شارٹ نہیں ملی",
     "newMembersHint": "ہن شامل ہوئیا — سلام کر",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "तोहर फिल्टर से कोनो सामग्री नी मिलेला।",
+    "clearFilters": "چھننی مٹاؤ"
   },
   "explore": {
     "all": "سب",

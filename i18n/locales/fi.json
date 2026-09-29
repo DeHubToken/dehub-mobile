@@ -146,7 +146,9 @@
     "noMoreShorts": "Ei enempää lyhytvideoita",
     "noShortsFound": "Lyhytvideoita ei löytynyt",
     "newMembersHint": "Liityit juuri – sano hei",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "Mikään sisältö ei vastaa suodattimiasi.",
+    "clearFilters": "Tyhjennä suodattimet"
   },
   "explore": {
     "all": "Kaikki",

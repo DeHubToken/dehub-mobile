@@ -12,14 +12,18 @@ describe('boosted home-feed placement', () => {
     expect(source).toContain('pendingBoostRevealRef.current = true');
     expect(source).toContain('scrollToOffset({ offset: 0, animated: false })');
     expect(source).toContain('onContentSizeChange={handleContentSizeChange}');
+    // FlashList anchors on the first visible row. The header is row 0, so at
+    // the top the boost is inserted below the anchor instead of above it.
+    expect(source).toContain('const rows: FeedRow[] = [HEADER_ROW];');
   });
 
   it('does not pull a viewer back after they have left the top', () => {
-    // Home passes the header's worklet as onScroll, so the offset must come
-    // from a UI-thread handler beside it, not from the JS handleScroll.
+    // Home passes the header's worklet as onScroll, so the offset must not
+    // come from the JS handleScroll. It comes from the list itself, which
+    // tracks it through its own scroll listener whatever onScroll is.
     expect(source).toContain('readOffset() > MAINTAIN_POSITION.autoscrollToTopThreshold');
-    expect(source).toContain('useComposedEventHandler([scrollHandler ?? null, trackOffset])');
-    expect(source).toContain('onScroll={scrollHandler ? composedScroll : handleScroll}');
-    expect(source).toContain('(scrollHandler ? scrollOffset.value : prevYRef.current)');
+    expect(source).toContain('listRef.current?.getAbsoluteLastScrollOffset() ?? 0');
+    expect(source).toContain('onScroll={scrollHandler ?? handleScroll}');
+    expect(source).not.toMatch(/readOffset = useCallback\([^;]*prevYRef/);
   });
 });

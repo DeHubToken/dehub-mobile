@@ -146,7 +146,9 @@
     "noMoreShorts": "နောက်ထပ် Shorts များ မရှိတော့ပါ။",
     "noShortsFound": "Shorts များ မတွေ့ပါ။",
     "newMembersHint": "ယခုပင် ဝင်ရောက် — နှုတ်ဆက်ပါ။",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "သင့်စစ်ထုတ်မှုများနှင့် ကိုက်ညီသော အကြောင်းအရာ မရှိပါ။",
+    "clearFilters": "စစ်ထုတ်မှုများ ရှင်းရန်"
   },
   "explore": {
     "all": "အားလုံး",

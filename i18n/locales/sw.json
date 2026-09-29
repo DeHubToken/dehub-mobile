@@ -146,7 +146,9 @@
     "noMoreShorts": "Hakuna video fupi zaidi",
     "noShortsFound": "Hakuna video fupi zilizopatikana",
     "newMembersHint": "Nimejiunga tu — sema salamu",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "Hakuna maudhui yanayolingana na vichujio vyako.",
+    "clearFilters": "Futa vichujio"
   },
   "explore": {
     "all": "Zote",

@@ -146,7 +146,9 @@
     "noMoreShorts": "ಇನ್ನಷ್ಟು ಶಾರ್ಟ್ಸ್ ಇಲ್ಲ",
     "noShortsFound": "ಯಾವುದೇ ಶಾರ್ಟ್ಸ್ ಕಂಡುಬಂದಿಲ್ಲ",
     "newMembersHint": "ಇದೀಗ ಸೇರಿದ್ದೀರಿ — ಹಲೋ ಹೇಳಿ",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "ನಿಮ್ಮ ಫಿಲ್ಟರ್‌ಗಳಿಗೆ ಹೊಂದುವ ಯಾವುದೇ ವಿಷಯವಿಲ್ಲ.",
+    "clearFilters": "ಫಿಲ್ಟರ್‌ಗಳನ್ನು ತೆರವುಗೊಳಿಸಿ"
   },
   "explore": {
     "all": "ಎಲ್ಲಾ",

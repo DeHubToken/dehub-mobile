@@ -146,7 +146,9 @@
     "noMoreShorts": "ماكو مقاطع قصيرة بعد",
     "noShortsFound": "ماكو مقاطع قصيرة انلكت",
     "newMembersHint": "انضميت للتو — سلم عليهم",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "ماكو محتوى يطابق فلاترك.",
+    "clearFilters": "امحي الفلاتر"
   },
   "explore": {
     "all": "الكل",

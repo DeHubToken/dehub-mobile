@@ -146,7 +146,9 @@
     "noMoreShorts": "Beýleki gysga wideolary ýok",
     "noShortsFound": "Gysga wideolar tapylmady",
     "newMembersHint": "Goşuldyňyz — salam aýdyň",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "Süzgüçleriňize laýyk gelýän kontent ýok.",
+    "clearFilters": "Süzgüçleri arassala"
   },
   "explore": {
     "all": "Ählisi",

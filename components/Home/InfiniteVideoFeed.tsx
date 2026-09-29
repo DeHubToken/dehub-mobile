@@ -9,25 +9,18 @@ import React, {
 import { useIsFocused, useNavigation, useScrollToTop } from "@react-navigation/native";
 import {
   View,
-  FlatList,
-  ListRenderItem,
   Text,
   Pressable,
   NativeSyntheticEvent,
   NativeScrollEvent,
-  ViewToken,
+  useWindowDimensions,
 } from "react-native";
+import { FlashList, type FlashListRef, type ListRenderItem, type ViewToken } from "@shopify/flash-list";
 import { DeHubLoader } from "../DeHubLoader";
 import { feedRenderBudget } from "../../libs/feed-render-budget";
-import Animated, {
-  useAnimatedScrollHandler,
-  useAnimatedStyle,
-  useComposedEventHandler,
-  useSharedValue,
-  type SharedValue,
-} from "react-native-reanimated";
+import Animated, { useAnimatedStyle, type SharedValue } from "react-native-reanimated";
 import EmptyFeedState from "./EmptyFeedState";
-import FeedCard from "./FeedCard";
+import FeedCard, { resolveContentType } from "./FeedCard";
 import FeedCardSkeleton from "../Feed/FeedCardSkeleton";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../Feed/DeHubRefreshControl";
 import Icon from "../ui/Icon";
@@ -120,13 +113,15 @@ const FOOTER_SLOT = { height: 84 } as const;
 
 // Hoisted: a fresh object literal here would re-configure the native scroll
 // view on every render.
-// `autoscrollToTopThreshold` matters as much as the index here. Without it, a
-// row prepended while the viewer sits at the very top (the boost slot arrives
-// after the first page) is inserted ABOVE the anchor and the offset is raised
-// to hold position — so the boosted card lands scrolled off the top of the
-// screen and is never seen. The threshold keeps a viewer already at the top
-// pinned to the top.
-const MAINTAIN_POSITION = { minIndexForVisible: 1, autoscrollToTopThreshold: 100 } as const;
+// FlashList anchors on the first visible row's key, so a row prepended while
+// the viewer sits at the very top (the boost slot arrives after the first
+// page) would be inserted ABOVE the anchor and the offset raised to hold
+// position, leaving the boosted card scrolled off the top of the screen. The
+// header is data row 0 for that reason (see listData): at the top the anchor
+// is the header, and the boost lands below it. The threshold keeps a viewer
+// already at the top pinned to the top. There is no minIndexForVisible:
+// FlashList sets its own.
+const MAINTAIN_POSITION = { autoscrollToTopThreshold: 100 } as const;
 
 // Rows the capped list needs before it can scroll at all. Below this the feed
 // pulls another page rather than sitting on a screenful of nothing.
@@ -146,8 +141,55 @@ const SETTLE_AFTER_DRAG_MS = 120;
 const DEFAULT_BANNER = require("../../assets/default-banner.png");
 const DEFAULT_AVATAR = require("../../assets/default-avatar.png");
 
-// Animated wrapper so a worklet onScroll runs on the UI thread; cast keeps FlatList generics.
-const AnimatedFlatList = Animated.FlatList as unknown as typeof FlatList;
+type FeedRow = UnifiedFeedItem & { __listKey: string; __boosted?: boolean; __synthetic?: "header" | "suggested" | "shorts" };
+
+// Reanimated's wrapper, created once. It attaches the header worklet through
+// FlashList's getScrollableNode and gives FlashList a no-op onScroll; FlashList
+// still sees every scroll event through its own listener. Never
+// renderScrollComponent, and never created inside the component: the first
+// FlashList attempt (#925) remounted the list on every render and was reverted
+// in #930.
+const AnimatedFlashList = Animated.createAnimatedComponent(
+  FlashList as unknown as React.ComponentType<any>,
+) as unknown as typeof FlashList;
+
+// Cells kept for reuse, across all item types. The pool evicts the newest
+// cells first, so the header and suggested-accounts rows (the oldest) go last.
+const MAX_POOLED_CELLS = 10;
+
+// Index after which to insert the suggested-accounts carousel (after the 5th post).
+const SUGGEST_AFTER_INDEX = 4;
+// Home "all" tab only: the most-viewed shorts rail after the 2nd post, near the top like web.
+const SHORTS_AFTER_INDEX = 1;
+
+// The header and the suggested-accounts carousel are rows of their own, so a
+// recycled post cell is never asked to grow a carousel it did not have.
+const HEADER_ROW = { __listKey: "__feed-header", __synthetic: "header" } as FeedRow;
+const SUGGESTED_ROW = { __listKey: "__suggested-accounts", __synthetic: "suggested" } as FeedRow;
+const SHORTS_ROW = { __listKey: "__shorts-carousel", __synthetic: "shorts" } as FeedRow;
+
+const DEFAULT_CONTENT_STYLE = { paddingHorizontal: 8, paddingTop: 4, paddingBottom: TAB_BAR_CONTENT_INSET };
+
+// A cell is only reused for a row of the same type, so a video card is never
+// rebuilt into a gallery. Shorts render as videos in this list.
+function feedRowType(item: FeedRow): string {
+  if (item.__synthetic) return item.__synthetic;
+  const type = resolveContentType(item);
+  if (type === "short") return "video";
+  if (type !== "image") return type;
+  const it = item as any;
+  const n = Array.isArray(it.imageUrls) && it.imageUrls.length > 0 ? it.imageUrls.length : it.imageUrl || it.thumbnailUrl ? 1 : 0;
+  return n > 1 ? "gallery" : n === 1 ? "image" : "text";
+}
+
+// The id flattenFeedPages de-duplicates on, so it is unique. __listKey folds in
+// the page and index, so it renames on every page shift.
+function feedRowKey(item: FeedRow): string {
+  if (item.__synthetic || item.__boosted) return item.__listKey;
+  const it = item as any;
+  const id = it.tokenId ?? it.id ?? it.stream?.tokenId ?? it.streamKey ?? it.stream?.id;
+  return id != null ? `post-${id}` : item.__listKey;
+}
 
 // One row. Subscribes to its own visibility so a tick that moves another row
 // on or off screen never reaches this one. Whether the list as a whole is on
@@ -213,7 +255,9 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     [],
   );
   const visibleKeysRef = useRef<Set<string>>(new Set());
-  const listRef = useRef<FlatList<FeedItem>>(null);
+  const listRef = useRef<FlashListRef<FeedRow>>(null);
+  // Posts (not videos) currently reported to their view tracker, by list key.
+  const visibleTokensRef = useRef<Map<string, TokenId>>(new Map());
   const prevYRef = useRef(0);
   // Android's maintainVisibleContentPosition can preserve the old first row
   // when an async prepend lands, even with autoscrollToTopThreshold set. Keep
@@ -221,21 +265,13 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   // top actually sees the new position-zero row.
   const pendingBoostRevealRef = useRef(false);
   const revealedBoostRef = useRef<string | undefined>(undefined);
-  // Where the list is scrolled. Home drives onScroll with the header's worklet,
-  // so handleScroll never ran there and prevYRef stayed 0: a boosted post that
-  // arrived after the reader had started scrolling threw them back to the top.
-  // This one runs beside the header's handler on the UI thread.
-  const scrollOffset = useSharedValue(0);
-  const trackOffset = useAnimatedScrollHandler({
-    onScroll: (event) => {
-      scrollOffset.value = event.contentOffset.y;
-    },
-  });
-  const composedScroll = useComposedEventHandler([scrollHandler ?? null, trackOffset]);
-  const readOffset = useCallback(
-    () => (scrollHandler ? scrollOffset.value : prevYRef.current),
-    [scrollHandler, scrollOffset],
-  );
+  // Where the list is scrolled, for the boost reveal. Home drives onScroll with
+  // the header's worklet, so handleScroll never runs there and prevYRef stays
+  // 0; read from it, a boosted post that arrived after the reader had started
+  // scrolling threw them back to the top. FlashList tracks the offset through
+  // its own scroll listener whatever onScroll is, so no second worklet is
+  // needed beside the header's.
+  const readOffset = useCallback(() => listRef.current?.getAbsoluteLastScrollOffset() ?? 0, []);
   // Set for the life of a drag or fling. Count patches that would rewrite
   // cached pages mid-scroll — the live-count poll, the counts a fetched page
   // carries — wait on this and land from settleScroll().
@@ -276,8 +312,8 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   // View tracking: map of tokenId -> tracker (for feed posts only, not videos)
   const viewTrackersRef = useRef<Map<string, ReturnType<typeof createPostViewTracker>>>(new Map());
 
-  // FlatList refuses a changing onViewableItemsChanged, so that handler is
-  // frozen in a ref on first render — and it reaches getViewTracker, which
+  // The onViewableItemsChanged handler is frozen in a ref on first render
+  // (FlatList refused a changing one) — and it reaches getViewTracker, which
   // reads isSignedIn. Captured directly, that meant a session that signed in
   // without remounting the feed kept minting anonymous trackers for the rest of
   // its life. A ref is the only value the frozen handler can see change.
@@ -291,6 +327,9 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     viewTrackersRef.current.forEach((tracker) => tracker.cleanup());
     viewTrackersRef.current.clear();
     forceFlushBatchViews();
+    // Every visible post starts over under the new trackers.
+    visibleTokensRef.current = new Map();
+    try { listRef.current?.recomputeViewableItems(); } catch {}
   }, [isSignedIn]);
 
   // Cleanup view trackers and flush batch on unmount
@@ -326,28 +365,24 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   // minting view trackers and queueing views for posts nobody saw.
   const activeRef = useRef(active);
   activeRef.current = active;
-  // Ticks were skipped while hidden, so ask for one the moment the page is
-  // shown — otherwise nothing is "visible" until the user happens to scroll.
-  useEffect(() => {
-    if (active) listRef.current?.recordInteraction();
-  }, [active]);
 
-  // Handle viewable items change for view tracking (feed posts only)
-  const onViewableItemsChanged = useRef(({ viewableItems, changed }: {
-    viewableItems: ViewToken[];
-    changed: ViewToken[];
+  // Handle viewable items change for visibility and view tracking.
+  //
+  // FlashList compares viewability by index and never resets it when the data
+  // changes, so a row that replaced another at the same index is never
+  // reported as changed. Everything here is rebuilt from the full visible set
+  // on each tick instead of patched from `changed`, and the list is asked for
+  // a fresh tick whenever the rows change (see the recompute effect below).
+  const onViewableItemsChanged = useRef(({ viewableItems }: {
+    viewableItems: ViewToken<FeedRow>[];
+    changed: ViewToken<FeedRow>[];
   }) => {
     if (!activeRef.current) return;
 
-    // Track visible items for audio preloading/pausing (works for all users)
-    const prev = visibleKeysRef.current;
-    const next = new Set(prev);
-    for (const entry of changed) {
-      const key = (entry.item as FeedItem | undefined)?.__listKey;
-      if (!key) continue;
-      if (entry.isViewable) next.add(key);
-      else next.delete(key);
-    }
+    // Track visible posts for audio preloading/pausing (works for all users).
+    // The header and suggested-accounts rows are not posts.
+    const posts = viewableItems.filter(v => v.isViewable && !!v.item?.__listKey && !v.item.__synthetic);
+    const next = new Set(posts.map(v => v.item.__listKey));
     visibleKeysRef.current = next;
 
     // Only the topmost visible row that can hold a player should autoplay.
@@ -369,35 +404,35 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     const playable = viewableItems.filter(
       v =>
         v.isViewable &&
-        !!(v.item as FeedItem | undefined)?.__listKey &&
-        (isVideoItem(v.item as UnifiedFeedItem) || isLiveItem(v.item as UnifiedFeedItem)),
+        !!v.item?.__listKey &&
+        !v.item.__synthetic &&
+        (isVideoItem(v.item) || isLiveItem(v.item)),
     );
-    const byPosition = (a: ViewToken, b: ViewToken) => (a.index ?? 0) - (b.index ?? 0);
+    const byPosition = (a: ViewToken<FeedRow>, b: ViewToken<FeedRow>) => (a.index ?? 0) - (b.index ?? 0);
     const topVideo =
-      playable.filter(v => isLiveItem(v.item as UnifiedFeedItem)).sort(byPosition)[0] ??
+      playable.filter(v => isLiveItem(v.item)).sort(byPosition)[0] ??
       playable.sort(byPosition)[0];
-    visibilityStore.update(next, topVideo ? (topVideo.item as FeedItem).__listKey : null);
+    visibilityStore.update(next, topVideo ? topVideo.item.__listKey : null);
 
     // No auth gate: signed-out viewers count too, and the view service routes
     // their views to the anonymous view backend.
-    for (const entry of changed) {
-      const item = entry.item as FeedItem | undefined;
-      if (!item) continue;
-      
-      // Only track feed posts, not videos (videos have their own view tracking via playback)
-      if (isVideoItem(item)) continue;
-      
-      const tokenId = item.tokenId || (item as any).id;
-      if (!tokenId) continue;
-      
-      const tracker = getViewTracker(tokenId);
-      // When FlatList says item is viewable (50%+ visible), report 0.6 visibility
-      // When not viewable, report 0
-      tracker.onVisibilityChange(entry.isViewable ? 0.6 : 0);
+    //
+    // Only feed posts, not videos (videos have their own view tracking via
+    // playback). A post at 50%+ reports 0.6 visibility on the tick it arrives
+    // and 0 on the tick it leaves, diffed against the previous tick's set.
+    const nextTokens = new Map<string, TokenId>();
+    for (const v of posts) {
+      if (isVideoItem(v.item)) continue;
+      const id = v.item.tokenId || (v.item as any).id;
+      if (id) nextTokens.set(v.item.__listKey, id);
     }
+    const prevTokens = visibleTokensRef.current;
+    prevTokens.forEach((id, k) => { if (!nextTokens.has(k)) getViewTracker(id).onVisibilityChange(0); });
+    nextTokens.forEach((id, k) => { if (!prevTokens.has(k)) getViewTracker(id).onVisibilityChange(0.6); });
+    visibleTokensRef.current = nextTokens;
   }).current;
 
-  useScrollToTop(listRef);
+  useScrollToTop(listRef as any);
 
   // Cached + revalidated by react-query: switching tabs re-renders instantly
   // from cache (no skeleton flash) and refetches in the background when stale,
@@ -628,7 +663,41 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   // that content length, so nothing released the held rows until the list
   // stopped. Rows keep their wrapper across pages (libs/feed-pages), so an
   // append renders only the new cells.
-  const listData = feedItems;
+  //
+  // The header is row 0 and the suggested-accounts carousel a row after the
+  // fifth post. An empty feed has neither; ListHeaderComponent carries the
+  // header then, above the empty state.
+  const listData = useMemo<FeedRow[]>(() => {
+    if (feedItems.length === 0) return feedItems;
+    const rows: FeedRow[] = [HEADER_ROW];
+    feedItems.forEach((row, i) => {
+      rows.push(row);
+      if (showShortsCarousel && i === SHORTS_AFTER_INDEX) rows.push(SHORTS_ROW);
+      if (i === SUGGEST_AFTER_INDEX) rows.push(SUGGESTED_ROW);
+    });
+    return rows;
+  }, [feedItems, showShortsCarousel]);
+
+  // Ticks are skipped while hidden, and FlashList only reports rows whose
+  // index changed viewability, so a new page, a prepended boost or a filter
+  // swap can leave the wrong card playing. Ask for a full tick when the page
+  // is shown and whenever the rows change. Once its last report is cleared an
+  // empty list reports nothing at all, so the rows that were visible are let
+  // go here instead.
+  useEffect(() => {
+    if (!active) return;
+    if (listData.length === 0) {
+      onViewableItemsChanged({ viewableItems: [], changed: [] });
+      return;
+    }
+    try { listRef.current?.recomputeViewableItems(); } catch {}
+  }, [active, listData, onViewableItemsChanged]);
+
+  // How far ahead FlashList renders: 1.5 screens, or 1 for gallery-heavy feeds
+  // (bitmaps stay resident on the GPU while their row is mounted).
+  const { height: screenHeight } = useWindowDimensions();
+  const renderBudget = useMemo(() => feedRenderBudget(cappedItems), [cappedItems]);
+  const drawDistance = Math.round((screenHeight * (renderBudget.windowSize - 1)) / 4);
 
   const endReached = hasNextPage === false;
   const error = queryError ? (queryError as Error).message || "Failed to load" : null;
@@ -855,53 +924,10 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     };
   }, [feedRef, onRefresh]);
 
-  // Index after which to inject the suggested-accounts carousel (after the 5th post)
-  const SUGGEST_AFTER_INDEX = 4;
-  // Shorts rail after the 2nd post, near the top like web.
-  const SHORTS_AFTER_INDEX = 1;
-
-  const renderItem = useCallback<ListRenderItem<FeedItem>>(
-    ({ item, index }) => {
-      const card = (
-        <VisibleFeedCard
-          item={item}
-          store={visibilityStore}
-          onCategorySelect={onCategorySelect}
-        />
-      );
-
-      // Inject suggested accounts section after the 3rd feed item
-      if (showShortsCarousel && index === SHORTS_AFTER_INDEX) {
-        return (
-          <>
-            {card}
-            <ShortsCarousel />
-          </>
-        );
-      }
-
-      if (index === SUGGEST_AFTER_INDEX) {
-        return (
-          <>
-            {card}
-            <SuggestedAccountsSection />
-          </>
-        );
-      }
-
-      return <>{card}</>;
-    },
-    // Stable across a tab switch on purpose: `active` and focus reach the rows
-    // through the store (see setLive above), never through this callback.
-    [visibilityStore, onCategorySelect, showShortsCarousel],
-  );
-
-  const keyExtractor = useCallback((item: FeedItem) => item.__listKey, []);
-
   // Inline JSX here was a fresh element on every render — including the two
-  // renders per viewability change — so VirtualizedList re-rendered the header
-  // cell (and re-measured it, moving every row below) mid-fling.
-  const listHeader = useMemo(
+  // renders per viewability change — so the list re-rendered the header cell
+  // (and re-measured it, moving every row below) mid-fling.
+  const headerBlock = useMemo(
     () => (
       <View>
         <View style={topSpacerStyle} />
@@ -909,6 +935,24 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
       </View>
     ),
     [topSpacerStyle, headerComponent],
+  );
+
+  const renderItem = useCallback<ListRenderItem<FeedRow>>(
+    ({ item }) => {
+      if (item.__synthetic === "header") return headerBlock;
+      if (item.__synthetic === "suggested") return <SuggestedAccountsSection />;
+      if (item.__synthetic === "shorts") return <ShortsCarousel />;
+      return (
+        <VisibleFeedCard
+          item={item}
+          store={visibilityStore}
+          onCategorySelect={onCategorySelect}
+        />
+      );
+    },
+    // Stable across a tab switch on purpose: `active` and focus reach the rows
+    // through the store (see setLive above), never through this callback.
+    [visibilityStore, onCategorySelect, headerBlock],
   );
 
   // One fixed-height slot for all three footer states. Previously the footer
@@ -928,6 +972,32 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
       </View>
     ),
     [loadingMore, endReached, feedItems.length],
+  );
+
+  // Held stable so a render of this component is not a new prop on the list,
+  // which under FlashList re-measures every mounted cell.
+  const listContentStyle = contentContainerStyle || DEFAULT_CONTENT_STYLE;
+  const refreshControl = useMemo(
+    () => (
+      <DeHubRefreshControl
+        refreshing={refreshing}
+        onRefresh={onRefresh}
+        tintColor={theme.colors.accent}
+        progressViewOffset={headerInset}
+      />
+    ),
+    [refreshing, onRefresh, headerInset],
+  );
+  const listEmpty = useMemo(
+    () =>
+      !initialLoading && !error ? (
+        <EmptyFeedState
+          message={t("feed.noFilterMatches")}
+          onClear={onClearFilters}
+          clearLabel={t("feed.clearFilters")}
+        />
+      ) : null,
+    [initialLoading, error, onClearFilters, t],
   );
 
   // Handle scroll begin to close filter panel
@@ -1015,63 +1085,36 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
           </Pressable>
         </Animated.View>
       )}
-      <AnimatedFlatList
+      <AnimatedFlashList
         ref={listRef}
         showsVerticalScrollIndicator={false}
         data={listData}
-        keyExtractor={keyExtractor}
+        // The post's id, not __listKey: a cell and its measured height follow
+        // the post, and the scroll anchor below survives a page shift.
+        keyExtractor={feedRowKey}
+        getItemType={feedRowType}
         renderItem={renderItem}
-        ListHeaderComponent={listHeader}
+        ListHeaderComponent={listData.length === 0 ? headerBlock : null}
         // Anchors the scroll position to the first visible row, so anything that
         // changes size *above* the viewport adjusts contentOffset instead of
-        // shoving the user. Two things in this feed do exactly that:
-        // SuggestedAccountsSection renders null until its fetch resolves and
-        // then expands inside cell 4, and a card can measure differently once its
-        // thumbnail decodes. minIndexForVisible: 1 excludes the header cell, so
-        // scroll-to-top and pull-to-refresh still behave normally.
+        // shoving the user. Several things in this feed do exactly that: the
+        // suggested-accounts row renders null until its fetch resolves, the live
+        // stages bar in the header appears mid-feed, and a card can measure
+        // differently once its thumbnail decodes.
         maintainVisibleContentPosition={MAINTAIN_POSITION}
         onContentSizeChange={handleContentSizeChange}
-        initialNumToRender={feedRenderBudget(cappedItems).initialRows}
-        // One card per batch, mounted farther ahead. A screen recording of an
-        // upward fling on a Galaxy S24+ showed the content freezing for one to
-        // three frames at a time and then jumping on; every one of those UI
-        // thread frames over 16ms (29 of 29 in the trace) contained a Fabric
-        // mount of a batch of cards. Three cards in one commit is more than a
-        // frame's worth of native view creation. One card fits, and a wider
-        // window means the rows a reversed fling needs are usually there
-        // already. The GPU budget this used to cost was freed by hiding the
-        // far pager pages.
-        maxToRenderPerBatch={1}
-        // Ordinary feeds retain the reversal buffer. Gallery-heavy channels
-        // bound decoded bitmaps instead of retaining eleven screens of photos.
-        windowSize={feedRenderBudget(cappedItems).windowSize}
-        // Deliberately NOT removeClippedSubviews. It and
-        // maintainVisibleContentPosition cannot both be on: Android picks the
-        // MVCP anchor by walking the content view's ATTACHED children
-        // (getChildAt(i) from minIndexForVisible), and clipping is defined as
-        // detaching the children that are off-screen. Once the feed is
-        // scrolled at all, index 1 stops meaning "the row after the header"
-        // and starts meaning "whatever survived the last clipping pass",
-        // which changes every frame of a fling. The correction MVCP applies
-        // on the next mount is then measured against a different row than the
-        // one it measured before, so appending a page mid-fling walks the
-        // viewport backwards instead of holding it. Virtualisation still
-        // unmounts distant rows; only the native detach-in-place trick goes.
-        // Omitting the prop is NOT off: RN defaults it to true on Android.
-        removeClippedSubviews={false}
-        updateCellsBatchingPeriod={50}
-        contentContainerStyle={
-          contentContainerStyle || {
-            paddingHorizontal: 8,
-            paddingTop: 4,
-            paddingBottom: TAB_BAR_CONTENT_INSET,
-          }
-        }
+        // Replaces initialNumToRender/windowSize/maxToRenderPerBatch: FlashList
+        // renders this many pixels past each edge and reuses cells that leave.
+        // No removeClippedSubviews either: FlashList turns it off itself, which
+        // its MVCP needs for the same reason FlatList's did.
+        drawDistance={drawDistance}
+        maxItemsInRecyclePool={MAX_POOLED_CELLS}
+        contentContainerStyle={listContentStyle}
         onEndReached={endReached ? undefined : loadMore}
         // Three viewports of runway, about web's 2400px prefetch margin: a
         // fling covers 1.5 viewports before a page can come back.
         onEndReachedThreshold={3}
-        onScroll={scrollHandler ? composedScroll : handleScroll}
+        onScroll={scrollHandler ?? handleScroll}
         onScrollBeginDrag={handleScrollBeginDrag}
         onScrollEndDrag={handleScrollEndDrag}
         onMomentumScrollBegin={handleMomentumScrollBegin}
@@ -1080,27 +1123,12 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
         // frame (about 120 events a second at 120Hz) for list bookkeeping that
         // batches at 50ms anyway. Every third frame is plenty for the header.
         scrollEventThrottle={24}
-        // View tracking for feed posts (not videos)
+        // Visibility, autoplay and view tracking for feed posts
         viewabilityConfig={viewabilityConfig}
         onViewableItemsChanged={onViewableItemsChanged}
-        refreshControl={
-          <DeHubRefreshControl
-            refreshing={refreshing}
-            onRefresh={onRefresh}
-            tintColor={theme.colors.accent}
-            progressViewOffset={headerInset}
-          />
-        }
+        refreshControl={refreshControl}
         ListFooterComponent={listFooter}
-        ListEmptyComponent={
-          !initialLoading && !error ? (
-            <EmptyFeedState
-              message="No content matches your filters"
-              onClear={onClearFilters}
-              clearLabel="Clear Filters"
-            />
-          ) : null
-        }
+        ListEmptyComponent={listEmpty}
       />
       <DeHubRefreshMark refreshing={refreshing} topInset={headerInset} />
     </View>

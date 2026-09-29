@@ -146,7 +146,9 @@
     "noMoreShorts": "No hi ha més shorts",
     "noShortsFound": "No s'han trobat shorts",
     "newMembersHint": "Acabes d'entrar — saluda",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "Cap contingut no coincideix amb els teus filtres.",
+    "clearFilters": "Neteja els filtres"
   },
   "explore": {
     "all": "Tot",

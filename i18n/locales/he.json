@@ -146,7 +146,9 @@
     "noMoreShorts": "אין עוד סרטונים קצרים",
     "noShortsFound": "לא נמצאו סרטונים קצרים",
     "newMembersHint": "רק הצטרפת — אמור שלום",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "אין תוכן שתואם למסננים שלכם.",
+    "clearFilters": "ניקוי מסננים"
   },
   "explore": {
     "all": "הכל",
