@@ -94,7 +94,8 @@ const mediaBoxWidth = (
   mediaAspect: number,
   postPage = false,
 ) => {
-  const fullWidth = isMinimal ? win.width : cardWidthFor(win.width);
+  // The post page runs its media edge to edge, whatever the theme.
+  const fullWidth = isMinimal || postPage ? win.width : cardWidthFor(win.width);
   const maxHeight = postPage ? postPageMaxHeightFor(win.height, fullWidth) : maxMediaHeightFor(win.height);
   return Math.min(fullWidth, Math.round(maxHeight * mediaAspect));
 };
@@ -477,6 +478,8 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   // extracted from the video itself; 16:9 until that resolves.
   const mediaAspect = useMediaAspect(thumbnail, tokenId, postPage ? THIN_MIN_RATIO : undefined);
   const { isMinimal } = useAppTheme();
+  // Media that reaches the screen edges keeps its controls off them.
+  const edgeToEdge = isMinimal || postPage;
   const windowSize = useWindowDimensions();
 
   const hideControlsTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -1049,7 +1052,8 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
           maxWidth: "100%",
           alignSelf: isMinimal || postPage ? "center" : "flex-start",
         },
-        isMinimal && MINIMAL_MEDIA,
+        (isMinimal || postPage) && MINIMAL_MEDIA,
+        postPage && POST_PAGE_MEDIA,
       ]}
     >
       {thumbnail ? (
@@ -1149,7 +1153,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
           accessibilityLabel={t("bounty.detailsLabel")}
           onPress={onBountyPress}
           activeOpacity={0.75}
-          style={[styles.bountyPill, isMinimal && { left: MINIMAL_EDGE }]}
+          style={[styles.bountyPill, edgeToEdge && { left: MINIMAL_EDGE }]}
         >
           <Image
             source={require("../../assets/web-icons/dehub-coin.png")}
@@ -1209,7 +1213,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
                 </View>
               </Pressable>
             )}
-            <View style={[styles.topControls, isMinimal && { paddingHorizontal: MINIMAL_EDGE }]}>
+            <View style={[styles.topControls, edgeToEdge && { paddingHorizontal: MINIMAL_EDGE }]}>
               <Pressable onPress={handleToggleSpeed} style={styles.glassButton}>
                 <View style={styles.glassOverlay} />
                 <Text style={{ color: "#fff", fontSize: 11, fontWeight: "bold" }}>{playbackRate}x</Text>
@@ -1247,7 +1251,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
               </Pressable>
             </View>
 
-            <View style={[styles.bottomControls, isMinimal && { paddingHorizontal: MINIMAL_EDGE }]}>
+            <View style={[styles.bottomControls, edgeToEdge && { paddingHorizontal: MINIMAL_EDGE }]}>
               <View style={styles.progressRow}>
                 <View style={styles.timePill}>
                   <Text style={styles.timeText}>{formatTime(currentTime)}</Text>
@@ -1384,13 +1388,13 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
       )}
 
       {!hideControls && !isContentGated && duration && !isPlaying && (
-        <View style={[styles.durationBadge, isMinimal && { right: MINIMAL_EDGE }]}>
+        <View style={[styles.durationBadge, edgeToEdge && { right: MINIMAL_EDGE }]}>
           <Text style={styles.durationText}>{duration}</Text>
         </View>
       )}
 
       {!hideControls && isContentGated && duration && (
-        <View style={[styles.durationBadge, isMinimal && { right: MINIMAL_EDGE }]}>
+        <View style={[styles.durationBadge, edgeToEdge && { right: MINIMAL_EDGE }]}>
           <Text style={styles.durationText}>{duration}</Text>
         </View>
       )}
@@ -1404,6 +1408,8 @@ const CONTROL_FILL = "#1D1F21";
 
 // Minimal theme: edge to edge, square, on the page's own black.
 const MINIMAL_MEDIA = { borderRadius: 0, backgroundColor: "#000" } as const;
+// Post page: the media is the top of the screen, so no gap above it.
+const POST_PAGE_MEDIA = { marginTop: 0 } as const;
 // Edge-to-edge media puts its controls on the screen edge, where Android's
 // back gesture lives. Web pushes them in the same way (index.css, minimal).
 const MINIMAL_EDGE = 16;
@@ -1706,6 +1712,7 @@ const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "tokenId" | "thumbnai
   ({ tokenId, thumbnail, duration, hideControls, onPress, postPage = false }) => {
     const mediaAspect = useMediaAspect(thumbnail, tokenId, postPage ? THIN_MIN_RATIO : undefined);
     const { isMinimal } = useAppTheme();
+    const edgeToEdge = isMinimal || postPage;
     const windowSize = useWindowDimensions();
     const mediaTap = useTapOnlyPress(() => onPress());
     return (
@@ -1718,7 +1725,8 @@ const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "tokenId" | "thumbnai
             maxWidth: "100%",
             alignSelf: isMinimal || postPage ? "center" : "flex-start",
           },
-          isMinimal && MINIMAL_MEDIA,
+          (isMinimal || postPage) && MINIMAL_MEDIA,
+          postPage && POST_PAGE_MEDIA,
         ]}
       >
         {thumbnail ? (
@@ -1745,7 +1753,7 @@ const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "tokenId" | "thumbnai
           </Pressable>
         )}
         {!hideControls && duration ? (
-          <View style={[styles.durationBadge, isMinimal && { right: MINIMAL_EDGE }]}>
+          <View style={[styles.durationBadge, edgeToEdge && { right: MINIMAL_EDGE }]}>
             <Text style={styles.durationText}>{duration}</Text>
           </View>
         ) : null}
