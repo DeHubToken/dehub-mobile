@@ -41,6 +41,7 @@
  */
 import fs from 'node:fs';
 import path from 'node:path';
+import { garbled, outOfOrder, answersAnotherLine, MIN_BATCH_LINES } from './i18n-guards.mjs';
 
 const LOCALES_DIR = 'i18n/locales';
 const FN_URL = 'https://aigxuutjaqsywioxjefr.supabase.co/functions/v1/translate-text';
@@ -598,23 +599,13 @@ for (const locale of targets) {
 
   let written = 0;
   let dropped = 0;
+  let outOfStep = 0;
 
   for (let i = 0; i < todo.length; i += BATCH_LINES) {
     const keys = todo.slice(i, i + BATCH_LINES);
     const sources = keys.map((k) => enFlat.get(k));
     const prepared = sources.map(protect);
-
-    let out = await translateBatch(prepared.map((p) => p.masked), locale, key);
-
-    // A drifted batch is retried per line so one bad string cannot cost 29 good ones.
-    if (!out) {
-      out = [];
-      for (const p of prepared) {
-        const single = await translateBatch([p.masked], locale, key);
-        out.push(single ? single[0] : null);
-        await sleep(PAUSE_MS);
-      }
-    }
+    const masked = prepared.map((p) => p.masked);
 
     const accept = (j, line) => {
       if (line == null) return null;
@@ -623,6 +614,7 @@ for (const locale of targets) {
         candidate == null ||
         addsEmoji(candidate, sources[j]) ||
         loops(candidate, sources[j]) ||
+        garbled(sources[j], candidate) ||
         looksUnfinished(candidate, sources[j]) ||
         isUntranslatedProse(sources[j], candidate, locale) ||
         !placeholdersMatch(sources[j], candidate) ||
@@ -631,26 +623,50 @@ for (const locale of targets) {
       return candidate;
     };
 
-    for (let j = 0; j < keys.length; j++) {
-      let candidate = accept(j, out[j]);
+    /** Each line translated on its own, requested at most once per batch. */
+    const alone = new Map();
+    const single = async (j) => {
+      if (!alone.has(j)) {
+        const res = await translateBatch([masked[j]], locale, key);
+        alone.set(j, res ? res[0] : null);
+        await sleep(PAUSE_MS);
+      }
+      return alone.get(j);
+    };
+
+    // A batch that came back a different shape, or with its answers out of
+    // step with its lines, is unusable as a whole; one this small is not worth
+    // the risk. Those go line by line, so one bad string cannot cost 29 good ones.
+    let out = keys.length >= MIN_BATCH_LINES ? await translateBatch(masked, locale, key) : null;
+    if (out && outOfOrder(masked, out)) { out = null; outOfStep++; }
+
+    let chosen = [];
+    if (out) {
       // Inside a batch the provider often hands a whole block back in English
       // for the smaller locales (rkt, dcc, skr…) while translating the same line
       // correctly on its own. A lone retry is a different cache key, so it is
       // not just served the same English again.
-      if (candidate == null && out.length > 1) {
-        const single = await translateBatch([prepared[j].masked], locale, key);
-        candidate = accept(j, single ? single[0] : null);
-        await sleep(PAUSE_MS);
-      }
-      if (candidate == null) { dropped++; continue; }
+      for (let j = 0; j < keys.length; j++) chosen.push(accept(j, out[j]) ?? accept(j, await single(j)));
+      // A lone retry that matches a different line's batch answer shows the
+      // batch was out of step after all, so none of it is kept.
+      if ([...alone].some(([j, line]) => answersAnotherLine(j, line, masked, out))) { out = null; outOfStep++; }
+    }
+    if (!out) {
+      chosen = [];
+      for (let j = 0; j < keys.length; j++) chosen.push(accept(j, await single(j)));
+    }
+
+    chosen.forEach((candidate, j) => {
+      if (candidate == null) { dropped++; return; }
       setDeep(raw, keys[j], candidate);
       written++;
-    }
+    });
 
     await sleep(PAUSE_MS);
     process.stdout.write(`  ${Math.min(i + BATCH_LINES, todo.length)}/${todo.length}\r`);
   }
 
   writeLocale(locale, raw);
-  console.log(`\n${locale}: wrote ${written}, dropped ${dropped} (left in English on purpose)`);
+  const redone = outOfStep ? `; ${outOfStep} batch(es) came back out of step and were redone line by line` : '';
+  console.log(`\n${locale}: wrote ${written}, dropped ${dropped} (left in English on purpose)${redone}`);
 }
