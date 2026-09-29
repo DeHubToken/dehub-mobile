@@ -60,6 +60,8 @@ import { BlendPanel, BrandPanel, DrawPanel, LayersPanel, ShapeStylePanel, Shapes
 import AgentSheet, { type ChatEntry } from "../components/editor/AgentSheet";
 import Timeline from "../components/editor/Timeline";
 import { AnimatePanel, SoundPanel, SpeedPanel, TransitionPanel } from "../components/editor/VideoPanels";
+import { MotionPanel } from "../components/editor/MotionPanel";
+import { removeKeysAt, retimeKeys } from "../libs/editor/keyframes";
 import {
   addClip,
   deleteAndClose,
@@ -263,7 +265,7 @@ type Tool =
   | "font" | "colour" | "style" | "label" | "outline"
   | "shadow" | "opacity" | "position" | "arrange"
   | "shapes" | "draw" | "layers" | "shapeStyle" | "blend" | "brand"
-  | "speed" | "sound" | "transition" | "animate";
+  | "speed" | "sound" | "transition" | "animate" | "motion";
 
 interface ToolButton {
   id: Tool | "photo" | "text" | "edit" | "duplicate" | "delete" | "ai" | "removeBg" | "video" | "music" | "split";
@@ -395,6 +397,8 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
   const selected = project ? getClip(project, selectedId) : null;
   const showTimeline = !!project && (timelineOpen ?? isVideoProject(project));
   const duration = project ? projectDuration(project) : 0;
+  // The moment the page shows; keyed layers are edited as they stand here.
+  const canvasTime = showTimeline ? time : STILL_TIME;
 
   const videoIds = useMemo(
     () => (project ? [...new Set(project.clips.flatMap((c) => (c.kind === "video" ? [c.mediaId] : [])))].join("|") : ""),
@@ -646,13 +650,14 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     setChat((c) => [...c, { id: entryId(), role: "user", content: text }]);
     setChatBusy(true);
     try {
-      const { reply, ops } = await askAgent(history, describeScene(project, selectedId, hasBrand(brand) ? brand : null));
+      const { reply, ops } = await askAgent(history, describeScene(project, selectedId, hasBrand(brand) ? brand : null, canvasTime));
       const { project: next, report } = await applyOps(project, ops, {
         importStock: (q, o) => importStockPhoto(q, o),
         brand,
         applyBrand: (p) => applyBrand(p, brand),
         templateOps: (id) => templateOps(id, t),
         removeBackground: cutoutMedia,
+        time: canvasTime,
       });
       if (report.applied > 0) h.commit(next);
       if (report.selectedId) setSelectedId(report.selectedId);
@@ -724,6 +729,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
       ? [
           { id: "split", icon: "Scissors", label: t("editor.video.split") },
           { id: "animate", icon: "Wand", label: t("editor.video.animate") },
+          { id: "motion", icon: "Timer", label: t("editor.motion.title") },
         ]
       : [];
     if (selected.kind === "audio") {
@@ -746,6 +752,8 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
         { id: "crop", icon: "Crop", label: t("editor.layer.crop") },
         { id: "fit", icon: "Expand", label: t("editor.app.fit") },
         { id: "animate", icon: "Wand", label: t("editor.video.animate") },
+        // Keyframes need the playhead, so Motion shows with the timeline.
+        ...(showTimeline ? [{ id: "motion" as const, icon: "Timer" as IconName, label: t("editor.motion.title") }] : []),
         { id: "position", icon: "Move", label: t("editor.app.position") },
         { id: "opacity", icon: "Blend", label: t("editor.app.opacityTool") },
         { id: "duplicate", icon: "Copy", label: t("editor.menu.duplicate") },
@@ -874,11 +882,22 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     if (!selected || selected.kind === "audio") return null;
     const layer = selected as LayerClip;
     if (tool === "animate") return <AnimatePanel clip={layer} {...panelProps} />;
+    if (tool === "motion") {
+      return (
+        <MotionPanel
+          clip={layer}
+          time={canvasTime}
+          page={project.settings}
+          {...panelProps}
+          onSeek={(tt) => { setPlaying(false); setTime(tt); }}
+        />
+      );
+    }
     if (tool === "arrange") return <ArrangePanel onArrange={onArrange} />;
     if (tool === "blend") return <BlendPanel clip={layer} {...panelProps} />;
     if (tool === "shadow") return <ShadowPanel clip={layer} {...panelProps} />;
-    if (tool === "opacity") return <OpacityPanel clip={layer} {...panelProps} />;
-    if (tool === "position") return <PositionPanel clip={layer} {...panelProps} />;
+    if (tool === "opacity") return <OpacityPanel clip={layer} time={canvasTime} {...panelProps} />;
+    if (tool === "position") return <PositionPanel clip={layer} time={canvasTime} {...panelProps} />;
     if (selected.kind === "shape") {
       if (tool === "shapeStyle") return <ShapeStylePanel clip={selected} {...panelProps} />;
       return null;
@@ -1030,7 +1049,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
         <EditorCanvas
           ref={canvasRef}
           project={project}
-          time={showTimeline ? time : STILL_TIME}
+          time={canvasTime}
           playing={showTimeline && playing}
           onTime={setTime}
           onEnded={(end) => { setPlaying(false); setTime(end); }}
@@ -1094,6 +1113,14 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
           onToggleMute={(trackId) => {
             const tr = project.tracks.find((x) => x.id === trackId);
             if (tr) h.commit(setTrackMuted(project, trackId, !tr.muted));
+          }}
+          onKeyRetime={(id, from, to) => {
+            const c = getClip(project, id);
+            if (c) h.commit(updateClip(project, id, { keyframes: retimeKeys(c, from, to) }));
+          }}
+          onKeyDelete={(id, at) => {
+            const c = getClip(project, id);
+            if (c) h.commit(updateClip(project, id, { keyframes: removeKeysAt(c, at) }));
           }}
         />
       )}

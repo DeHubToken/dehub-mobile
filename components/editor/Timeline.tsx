@@ -2,7 +2,9 @@
  * The phone timeline: every layer, video and sound as a block in time, under
  * a fixed playhead in the middle. Drag the strip to scrub, pinch to zoom, tap
  * a block to select it, drag its ends to trim, hold and drag to move it, and
- * tap the join between two clips for a transition.
+ * tap the join between two clips for a transition. Keyframes show as diamonds
+ * along the bottom of a block: tap to jump to one, drag to move it,
+ * double-tap to delete it.
  *
  * It only reports what the finger did; the screen turns that into project
  * changes with libs/editor/timeline.ts, as live changes until the finger lifts.
@@ -15,6 +17,7 @@ import { useTranslation } from "react-i18next";
 import Icon from "../ui/Icon";
 import type { Clip, ProjectSnapshot, Track } from "../../libs/editor/types";
 import { findAdjacentNext, fmtTime, projectDuration, timelineRows } from "../../libs/editor/timeline";
+import { keyTimes } from "../../libs/editor/keyframes";
 
 const ROW_H = 44;
 const AUDIO_ROW_H = 34;
@@ -45,6 +48,10 @@ interface Props {
   onMove: (id: string, start: number, phase: "live" | "end") => void;
   onTransition: (clipId: string) => void;
   onToggleMute: (trackId: string) => void;
+  /** A keyframe diamond was dragged from one clip-local time to another. */
+  onKeyRetime: (clipId: string, from: number, to: number) => void;
+  /** A keyframe diamond was double-tapped. */
+  onKeyDelete: (clipId: string, at: number) => void;
 }
 
 function clipLabel(c: Clip, t: (k: string) => string): string {
@@ -142,6 +149,7 @@ export default function Timeline(props: Props) {
               onMove={props.onMove}
               onTransition={props.onTransition}
               onToggleMute={props.onToggleMute}
+              keys={{ onScrub: props.onScrub, onRetime: props.onKeyRetime, onDelete: props.onKeyDelete, label: t("editor.motion.timelineKey") }}
               muteLabel={track.muted ? t("editor.video.unmute") : t("editor.video.mute")}
             />
           ))}
@@ -174,6 +182,7 @@ function Row(props: {
   onMove: Props["onMove"];
   onTransition: (clipId: string) => void;
   onToggleMute: (trackId: string) => void;
+  keys: KeyHandlers;
   muteLabel: string;
 }) {
   const { track, project, pps, offset } = props;
@@ -196,6 +205,7 @@ function Row(props: {
             onSelect={props.onSelect}
             onTrim={props.onTrim}
             onMove={props.onMove}
+            keys={props.keys}
           />
         ))}
         {track.kind !== "audio" && clips.map((c) => {
@@ -240,8 +250,10 @@ function ClipBlock(props: {
   onSelect: (id: string | null) => void;
   onTrim: Props["onTrim"];
   onMove: Props["onMove"];
+  keys: KeyHandlers;
 }) {
   const { clip, pps, height, selected } = props;
+  const times = keyTimes(clip).filter((k) => k >= 0 && k <= clip.duration + 0.001);
   const live = useRef(props);
   live.current = props;
   const startAt = useRef(0);
@@ -293,6 +305,18 @@ function ClipBlock(props: {
           <Text numberOfLines={1} style={styles.label}>{props.label}</Text>
         </View>
       </GestureDetector>
+      {times.map((kt) => (
+        <KeyMark
+          key={kt}
+          clip={clip}
+          at={kt}
+          pps={pps}
+          selected={selected}
+          strip={props.strip}
+          onSelect={props.onSelect}
+          handlers={props.keys}
+        />
+      ))}
       {selected && (
         <>
           <GestureDetector gesture={gestures.inEdge}>
@@ -311,6 +335,82 @@ function ClipBlock(props: {
   );
 }
 
+interface KeyHandlers {
+  onScrub: (time: number) => void;
+  onRetime: (clipId: string, from: number, to: number) => void;
+  onDelete: (clipId: string, at: number) => void;
+  label: string;
+}
+
+const KEY_HIT = 26;
+
+/**
+ * A keyframe diamond along the bottom of a clip (web KeyframeMarks). Tap puts
+ * the playhead on it, drag moves it (all properties keyed at that moment move
+ * together), double-tap deletes it.
+ */
+function KeyMark(props: {
+  clip: Clip;
+  at: number;
+  pps: number;
+  selected: boolean;
+  strip: GestureType;
+  onSelect: (id: string | null) => void;
+  handlers: KeyHandlers;
+}) {
+  const live = useRef(props);
+  live.current = props;
+  // Where the finger has dragged it to, until it lifts.
+  const [drag, setDrag] = useState<number | null>(null);
+
+  const gesture = useMemo(() => {
+    const target = (dx: number) => {
+      const { clip, at, pps } = live.current;
+      return Math.round(Math.max(0, Math.min(clip.duration, at + dx / pps)) * 100) / 100;
+    };
+    const focus = () => {
+      const p = live.current;
+      if (!p.selected) p.onSelect(p.clip.id);
+    };
+    const tap = Gesture.Tap().runOnJS(true).blocksExternalGesture(props.strip).onEnd(() => {
+      focus();
+      live.current.handlers.onScrub(live.current.clip.start + live.current.at);
+    });
+    const doubleTap = Gesture.Tap().runOnJS(true).numberOfTaps(2).blocksExternalGesture(props.strip).onEnd(() => {
+      live.current.handlers.onDelete(live.current.clip.id, live.current.at);
+    });
+    const pan = Gesture.Pan()
+      .runOnJS(true)
+      .minDistance(4)
+      .blocksExternalGesture(props.strip)
+      .onStart(focus)
+      .onUpdate((e) => setDrag(target(e.translationX)))
+      .onEnd((e) => {
+        const p = live.current;
+        const to = target(e.translationX);
+        if (Math.abs(to - p.at) >= 0.005) p.handlers.onRetime(p.clip.id, p.at, to);
+        p.handlers.onScrub(p.clip.start + to);
+      })
+      .onFinalize(() => setDrag(null));
+    return Gesture.Race(pan, Gesture.Exclusive(doubleTap, tap));
+    // The strip gesture is created once by the timeline.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const x = (drag ?? props.at) * props.pps;
+  return (
+    <GestureDetector gesture={gesture}>
+      <View
+        style={[styles.keyHit, { left: x - KEY_HIT / 2 }]}
+        accessibilityRole="button"
+        accessibilityLabel={props.handlers.label}
+      >
+        <View style={[styles.key, drag !== null && { backgroundColor: "#7dd3fc" }]} />
+      </View>
+    </GestureDetector>
+  );
+}
+
 const styles = StyleSheet.create({
   tick: { position: "absolute", top: 0, fontSize: 9 },
   playhead: { position: "absolute", top: 0, bottom: 0, width: 2, backgroundColor: "#fff", borderRadius: 1 },
@@ -319,5 +419,7 @@ const styles = StyleSheet.create({
   handle: { position: "absolute", top: -2, bottom: -2, width: HANDLE_W, borderRadius: 6, backgroundColor: "#fff", alignItems: "center", justifyContent: "center" },
   grip: { width: 3, height: 14, borderRadius: 2, backgroundColor: "#111827" },
   join: { position: "absolute", width: 22, height: 22, borderRadius: 11, alignItems: "center", justifyContent: "center", borderWidth: 1, borderColor: "#fff" },
+  keyHit: { position: "absolute", bottom: -6, width: KEY_HIT, height: KEY_HIT, alignItems: "center", justifyContent: "center", zIndex: 2 },
+  key: { width: 10, height: 10, borderRadius: 1, transform: [{ rotate: "45deg" }], backgroundColor: "#fff", borderWidth: 1, borderColor: "rgba(0,0,0,0.5)" },
   mute: { position: "absolute", left: 6, width: 26, height: 26, borderRadius: 13, backgroundColor: "rgba(0,0,0,0.6)", alignItems: "center", justifyContent: "center" },
 });

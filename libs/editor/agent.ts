@@ -19,7 +19,7 @@ import {
   addImage,
   getClip,
   getTransform,
-  placementPatch,
+  placementPatchAt,
   removeClip,
   setAspect,
   setBackground,
@@ -28,6 +28,7 @@ import {
   type ClipPatch,
 } from "./project";
 import { applyFilterPreset } from "./filterPresets";
+import { cleanKeys, keyframeProps } from "./keyframes";
 import { EDITOR_FONTS, fontFamilyCss } from "./fonts";
 import {
   BLEND_MODES,
@@ -57,19 +58,20 @@ export interface AgentOp {
 
 const round = (n: number, d = 3) => Math.round(n * 10 ** d) / 10 ** d;
 
-export function describeScene(p: ProjectSnapshot, selectedId: string | null, brand: BrandKit | null) {
+export function describeScene(p: ProjectSnapshot, selectedId: string | null, brand: BrandKit | null, playhead = 0) {
   const z = new Map(p.tracks.map((t, i) => [t.id, i]));
   const layers = p.clips
     .filter((c) => c.kind !== "audio")
     .sort((a, b) => (z.get(a.trackId) ?? 0) - (z.get(b.trackId) ?? 0))
     .map((c) => {
       const tr = getTransform(c);
-      const base: Record<string, unknown> = { id: c.id, kind: c.kind, x: round(tr.x), y: round(tr.y) };
+      const base: Record<string, unknown> = { id: c.id, kind: c.kind, start: round(c.start, 2), duration: round(c.duration, 2), x: round(tr.x), y: round(tr.y) };
       if (tr.rotation) base.rotation = round(tr.rotation, 1);
       if ((tr.opacity ?? 1) !== 1) base.opacity = round(tr.opacity ?? 1, 2);
       if (c.blend && c.blend !== "normal") base.blend = c.blend;
       if (c.locked) base.locked = true;
       if (c.hidden) base.hiddenLayer = true;
+      if (c.keyframes) base.keys = c.keyframes;
       if (c.kind === "text") {
         return { ...base, text: c.text.slice(0, 200), font: c.fontFamily.split(",")[0].replace(/'/g, ""), fontSize: c.fontSize, fontWeight: c.fontWeight, color: c.color, align: c.align };
       }
@@ -93,7 +95,7 @@ export function describeScene(p: ProjectSnapshot, selectedId: string | null, bra
         }
       : undefined,
     page: { width: p.settings.width, height: p.settings.height, aspect: p.settings.aspectPreset, background: p.settings.background, duration: 5 },
-    playhead: 0,
+    playhead: round(playhead, 2),
     selected: selectedId ? [selectedId] : [],
     layers,
     // The phone keeps pictures per design; the agent adds new ones from stock.
@@ -230,6 +232,8 @@ export interface ApplyContext {
   templateOps?: (id: string) => AgentOp[] | null;
   /** Cut the subject out of a picture on the phone; resolves with the new media id. */
   removeBackground?: (mediaId: string) => Promise<string | null>;
+  /** The playhead; placing a keyframed layer writes a key here (web placementPatchAt). */
+  time?: number;
 }
 
 export interface ApplyReport {
@@ -263,7 +267,7 @@ export async function applyOps(start: ProjectSnapshot, ops: AgentOp[], ctx: Appl
       const v = bool(op[k]);
       if (v !== undefined) patch[k] = v;
     }
-    const out: Record<string, unknown> = Object.keys(patch).length ? { ...placementPatch(clip, patch) } : {};
+    const out: Record<string, unknown> = Object.keys(patch).length ? { ...placementPatchAt(clip, patch, ctx.time ?? 0) } : {};
     if ((op.fit === "cover" || op.fit === "contain") && (clip.kind === "image" || clip.kind === "video")) out.fit = op.fit;
     if (Object.keys(out).length) p = updateClip(p, clip.id, out as ClipPatch);
   };
@@ -360,6 +364,29 @@ export async function applyOps(start: ProjectSnapshot, ops: AgentOp[], ctx: Appl
         if (a !== undefined) patch.animateIn = a ?? undefined;
         if (b !== undefined) patch.animateOut = b ?? undefined;
         p = updateClip(p, clip.id, patch as ClipPatch);
+        return true;
+      }
+      case "keyframes": {
+        const clip = find(op.id);
+        if (!clip || clip.kind === "audio") return false;
+        const next = { ...(clip.keyframes ?? {}) };
+        let touched = false;
+        for (const k of keyframeProps(clip)) {
+          const raw = op[k];
+          if (raw === undefined) continue;
+          touched = true;
+          if (raw === "none" || (Array.isArray(raw) && !raw.length)) {
+            delete next[k];
+            continue;
+          }
+          const lim = k === "x" || k === "y" ? [-0.5, 1.5] : k === "scale" ? [0.02, 20] : k === "opacity" ? [0, 1] : [-3600, 3600];
+          const keys = cleanKeys(raw, (v) => clamp(v, lim[0], lim[1]))
+            .map((key) => ({ ...key, t: Math.min(key.t, clip.duration) }));
+          if (keys.length) next[k] = keys;
+          else delete next[k];
+        }
+        if (!touched) return false;
+        p = updateClip(p, clip.id, { keyframes: Object.keys(next).length ? next : undefined });
         return true;
       }
       case "order": {
