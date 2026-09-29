@@ -145,7 +145,8 @@
     "closeImages": "Zavrieť obrázky",
     "noMoreShorts": "Žiadne ďalšie krátke videá",
     "noShortsFound": "Nenašli sa žiadne krátke videá",
-    "newMembersHint": "Práve ste sa pripojili — pozdravte sa"
+    "newMembersHint": "Práve ste sa pripojili — pozdravte sa",
+    "mostViewedThisMonth": "Najsledovanejšie tento mesiac"
   },
   "explore": {
     "all": "Všetko",

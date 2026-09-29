@@ -145,7 +145,8 @@
     "closeImages": "Sulge pildid",
     "noMoreShorts": "Rohkem lühivideoid pole",
     "noShortsFound": "Lühivideoid ei leitud",
-    "newMembersHint": "Äsja liitus – ütle tere"
+    "newMembersHint": "Äsja liitus – ütle tere",
+    "mostViewedThisMonth": "Enim vaadatud sel kuul"
   },
   "explore": {
     "all": "Kõik",

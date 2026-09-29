@@ -145,7 +145,8 @@
     "closeImages": "Tanca les imatges",
     "noMoreShorts": "No hi ha més shorts",
     "noShortsFound": "No s'han trobat shorts",
-    "newMembersHint": "Acabes d'entrar — saluda"
+    "newMembersHint": "Acabes d'entrar — saluda",
+    "mostViewedThisMonth": "Més vist aquest mes"
   },
   "explore": {
     "all": "Tot",

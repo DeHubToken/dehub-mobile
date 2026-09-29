@@ -145,7 +145,8 @@
     "closeImages": "Rasmlarni yopish",
     "noMoreShorts": "Boshqa shorts yo'q",
     "noShortsFound": "Shorts topilmadi",
-    "newMembersHint": "Endi qo'shildi — salomlashib qo'ying"
+    "newMembersHint": "Endi qo'shildi — salomlashib qo'ying",
+    "mostViewedThisMonth": "Bu oy eng koʻp koʻrilgan"
   },
   "explore": {
     "all": "Hammasi",

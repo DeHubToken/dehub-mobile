@@ -145,7 +145,8 @@
     "closeImages": "Fermer les images",
     "noMoreShorts": "Plus de Shorts",
     "noShortsFound": "Aucun Short trouvé",
-    "newMembersHint": "vient de rejoindre — dites bonjour"
+    "newMembersHint": "vient de rejoindre — dites bonjour",
+    "mostViewedThisMonth": "Les plus vus ce mois-ci"
   },
   "explore": {
     "all": "Tout",

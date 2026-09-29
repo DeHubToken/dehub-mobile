@@ -145,7 +145,8 @@
     "closeImages": "ചിത്രങ്ങൾ അടയ്ക്കുക",
     "noMoreShorts": "കൂടുതൽ ഷോർട്ട്സുകളില്ല",
     "noShortsFound": "ഷോർട്ട്സുകളൊന്നും കണ്ടെത്തിയില്ല",
-    "newMembersHint": "ഇപ്പോൾ ചേർന്നു — ഹലോ പറയൂ"
+    "newMembersHint": "ഇപ്പോൾ ചേർന്നു — ഹലോ പറയൂ",
+    "mostViewedThisMonth": "ഈ മാസം ഏറ്റവും കൂടുതൽ കണ്ടത്"
   },
   "explore": {
     "all": "എല്ലാം",

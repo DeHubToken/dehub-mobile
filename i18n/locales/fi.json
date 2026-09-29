@@ -145,7 +145,8 @@
     "closeImages": "Sulje kuvat",
     "noMoreShorts": "Ei enempää lyhytvideoita",
     "noShortsFound": "Lyhytvideoita ei löytynyt",
-    "newMembersHint": "Liityit juuri – sano hei"
+    "newMembersHint": "Liityit juuri – sano hei",
+    "mostViewedThisMonth": "Katsotuimmat tässä kuussa"
   },
   "explore": {
     "all": "Kaikki",

@@ -145,7 +145,8 @@
     "closeImages": "סגור תמונות",
     "noMoreShorts": "אין עוד סרטונים קצרים",
     "noShortsFound": "לא נמצאו סרטונים קצרים",
-    "newMembersHint": "רק הצטרפת — אמור שלום"
+    "newMembersHint": "רק הצטרפת — אמור שלום",
+    "mostViewedThisMonth": "הנצפים ביותר החודש"
   },
   "explore": {
     "all": "הכל",

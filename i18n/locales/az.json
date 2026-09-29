@@ -145,7 +145,8 @@
     "closeImages": "Şəkilləri bağla",
     "noMoreShorts": "Daha çox qısa video yoxdur",
     "noShortsFound": "Qısa video tapılmadı",
-    "newMembersHint": "Yeni qoşuldunuz — salam deyin"
+    "newMembersHint": "Yeni qoşuldunuz — salam deyin",
+    "mostViewedThisMonth": "Bu ay ən çox baxılan"
   },
   "explore": {
     "all": "Hamısı",
