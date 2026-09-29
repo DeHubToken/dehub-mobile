@@ -13,9 +13,9 @@ import type { AppThemeName } from './colors';
  * border.
  */
 export interface ThemeSkin {
-  /** Web runs a live canvas behind this theme; the home feed shows it. */
+  /** Web runs a live canvas behind this theme; every screen shows it. */
   backdrop: true;
-  /** Solid page colour. Near-black screen fills become this (libs/jsx/shape.js). */
+  /** Page colour. Page fills become a see-through veil of it (libs/jsx/shape.js). */
   page: string;
   /** Every corner square, as War draws it. */
   square: boolean;
