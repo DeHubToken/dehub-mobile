@@ -127,6 +127,14 @@ const ESSENTIAL_USER_FIELDS = [
   'notificationCount',
   'socialLinks',
   'createdAt',
+  // The badge beside your name on your own profile reads these. Without them
+  // the badge vanished after every app start until the account refetch came
+  // back, and never came back if that refetch failed.
+  'badgeBalance',
+  'ownBadgeBalance',
+  'badgeLock',
+  'stakedDHB',
+  'hideBadgeAndBalance',
 ] as const;
 
 /**

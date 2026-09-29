@@ -21,6 +21,7 @@
 import React, { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
 import {
   Modal,
+  Platform,
   Pressable,
   ScrollView,
   StyleSheet,
@@ -781,7 +782,10 @@ const styles = StyleSheet.create({
   railContent: { gap: THUMB_GAP, paddingVertical: 4 },
   thumb: { width: THUMB, height: THUMB, padding: 4, borderRadius: 14 },
   thumbArt: { width: 32, height: 32 },
-  thumbIdle: { filter: [{ saturate: 0.35 }] },
+  // Android only: iOS draws a view filter it can't apply as a grey box over
+  // the view's whole bounds, which turned every idle badge into a square tile.
+  // The dimmed opacity alone reads as idle there.
+  thumbIdle: Platform.OS === "android" ? { filter: [{ saturate: 0.35 }] } : {},
   ownedDot: { position: "absolute", top: 4, right: 4, width: 6, height: 6, borderRadius: 3, backgroundColor: "#34d399" },
   progressTrack: {
     position: "absolute",
