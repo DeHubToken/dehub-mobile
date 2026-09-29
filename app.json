@@ -229,6 +229,41 @@
               "scheme": "https",
               "host": "dehub.io",
               "path": "/work/disputes"
+            },
+            {
+              "scheme": "https",
+              "host": "dehub.io",
+              "pathPrefix": "/post/"
+            },
+            {
+              "scheme": "https",
+              "host": "dehub.io",
+              "pathPrefix": "/posts/"
+            },
+            {
+              "scheme": "https",
+              "host": "dehub.io",
+              "pathPrefix": "/bounty/"
+            },
+            {
+              "scheme": "https",
+              "host": "dehub.io",
+              "pathPrefix": "/communities/"
+            },
+            {
+              "scheme": "https",
+              "host": "dehub.io",
+              "pathPrefix": "/stores/"
+            },
+            {
+              "scheme": "https",
+              "host": "dehub.io",
+              "pathPrefix": "/events/"
+            },
+            {
+              "scheme": "https",
+              "host": "dehub.io",
+              "pathPrefix": "/@"
             }
           ],
           "category": [
