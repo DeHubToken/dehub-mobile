@@ -24,6 +24,7 @@ import {
 } from "./useProfileContentFilters";
 import { useUser } from "../../context/AuthContext";
 import { useProfileContentCounts } from "./useProfileContentCounts";
+import { useTabBarScrollHide } from "../../hooks/useTabBarScrollHide";
 
 type ProfileRoute = { key: string; title: string; icon: IconName };
 
@@ -36,6 +37,8 @@ const ProfileTabs: React.FC = () => {
   );
   const counts = useProfileContentCounts(address);
   const [activeKey, setActiveKey] = useState("home");
+  // Bottom nav hides on scroll down and returns on scroll up, as on home.
+  const { onScroll } = useTabBarScrollHide();
 
   // Sort, search and filter over this creator's own posts — all server-side,
   // and shared with the other-user profile sheet so the two never drift.
@@ -111,25 +114,25 @@ const ProfileTabs: React.FC = () => {
   const renderScene = (key: string) => {
     switch (key) {
       case "home":
-        return <FeedRoute address={address} listHeader={listHeader} postType={homePostType} {...contentQuery} />;
+        return <FeedRoute address={address} listHeader={listHeader} onScroll={onScroll} postType={homePostType} {...contentQuery} />;
       case "posts":
-        return <PostsRoute address={address} listHeader={listHeader} />;
+        return <PostsRoute address={address} listHeader={listHeader} onScroll={onScroll} />;
       case "images":
-        return <ImagesRoute address={address} listHeader={listHeader} {...contentQuery} />;
+        return <ImagesRoute address={address} listHeader={listHeader} onScroll={onScroll} {...contentQuery} />;
       case "videos":
-        return <VideosRoute address={address} listHeader={listHeader} {...contentQuery} />;
+        return <VideosRoute address={address} listHeader={listHeader} onScroll={onScroll} {...contentQuery} />;
       case "subscribers":
-        return <SubscribersRoute address={address} isOwnProfile listHeader={listHeader} />;
+        return <SubscribersRoute address={address} isOwnProfile listHeader={listHeader} onScroll={onScroll} />;
       case "songs":
-        return <ProfileFeedTypeRoute address={address} postType="feed-audio" listHeader={listHeader} />;
+        return <ProfileFeedTypeRoute address={address} postType="feed-audio" listHeader={listHeader} onScroll={onScroll} />;
       case "live":
-        return <LivestreamsRoute address={address} listHeader={listHeader} />;
+        return <LivestreamsRoute address={address} listHeader={listHeader} onScroll={onScroll} />;
       case "fractions":
-        return <FractionsRoute address={address} isOwnProfile listHeader={listHeader} />;
+        return <FractionsRoute address={address} isOwnProfile listHeader={listHeader} onScroll={onScroll} />;
       case "pinned":
-        return <PinnedRoute address={address} listHeader={listHeader} />;
+        return <PinnedRoute address={address} listHeader={listHeader} onScroll={onScroll} />;
       case "playlists":
-        return <PlaylistsRoute address={address} listHeader={listHeader} isOwnProfile />;
+        return <PlaylistsRoute address={address} listHeader={listHeader} onScroll={onScroll} isOwnProfile />;
       default:
         return null;
     }
