@@ -146,7 +146,9 @@
     "noMoreShorts": "Wala nang mga shorts",
     "noShortsFound": "Walang nakitang shorts",
     "newMembersHint": "Kakagaling lang — bumati ka",
-    "mostViewedThisMonth": "Pinakapinanood ngayong buwan"
+    "scroll": "Scroll",
+    "noFilterMatches": "Walang nilalamang tumutugma sa mga filter mo.",
+    "clearFilters": "I-clear ang mga filter"
   },
   "explore": {
     "all": "Lahat",
@@ -2688,7 +2690,31 @@
     "noneYetBeFirst": "Wala pang mga komento. Maging una!",
     "turnedOff": "Naka-off ang mga komento para sa post na ito",
     "noQuotesYet": "Wala pang quotes.",
-    "noRepostsYet": "Wala pang reposts."
+    "noRepostsYet": "Wala pang reposts.",
+    "timeSeconds": "{{count}}s",
+    "timeMinutes": "{{count}}m",
+    "timeHours": "{{count}}o",
+    "seeWhoLiked": "Tingnan kung sino ang nag-like",
+    "holdToReact": "{{reaction}} — pindutin nang matagal para mag-react",
+    "holdToChangeReaction": "{{reaction}} — pindutin nang matagal para palitan ang reaksyon mo",
+    "viewCount_one": "{{count}} view",
+    "viewCount_other": "{{count}} view",
+    "shareMessage": "Tingnan mo ito: {{url}}",
+    "hideReplies": "Itago ang mga tugon",
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
+    "rowA11yHint": "Magsisimula ng tugon sa komentong ito",
+    "editingComment": "Ine-edit ang komento",
+    "editPlaceholder": "I-edit ang komento mo...",
+    "replyPlaceholder": "Sumulat ng tugon...",
+    "inputPlaceholder": "Mag-type dito",
+    "cancelReply": "Kanselahin ang tugon",
+    "cancelEdit": "Kanselahin ang pag-edit",
+    "countLabel_one": "{{count}} Komento",
+    "countLabel_other": "{{count}} Komento",
+    "repostsLabel_one": "Repost",
+    "repostsLabel_other": "Repost",
+    "quotesLabel_one": "Quote",
+    "quotesLabel_other": "Quote"
   },
   "postInfo": {
     "title": "Instagram",
@@ -5172,7 +5198,20 @@
     "removeUploadTitle": "Alisin ang upload na ito?",
     "removeQueuedBody": "Hindi pa ito nai - post. Ang pag - aalis nito ay nagkansela ng post.",
     "quotaShortfall": "Ang post na ito ay nagkakahalaga ng {{cost}} token at hawak mo ang {{held}}.",
-    "shopAllowanceUsed": "{{allowance}} sa {{allowance}} ang nagamit. Mag-stake ng mas maraming DeHub tokens para sa mas mataas na badge at isa pang slot."
+    "shopAllowanceUsed": "{{allowance}} sa {{allowance}} ang nagamit. Mag-stake ng mas maraming DeHub tokens para sa mas mataas na badge at isa pang slot.",
+    "editFilters": "Mga filter sa pag-edit",
+    "cropRotate": "Ang Crop & Rotate ay isang aplikasyon ng Adobe Photoshop na nag-aayos ng mga larawan.",
+    "drawWrite": "Gumuhit at magsulat",
+    "resetEdits": "Muling Isasailalim",
+    "clearDrawing": "Tama",
+    "typeText": "Iyakain",
+    "coverFrames": "Pumili ng frame ng cover",
+    "uploadCover": "Ipinakita ang isang cover image.",
+    "editFailed": "Ang mga tao ay nagtatanong kung paano magagawa ang mga bagong pagbabago sa mga patakaran ng pagpapalaya ng mga hayop sa loob ng mga lungsod.",
+    "fade": "Pagkupas {{value}}%",
+    "grayscale": "Grayscale {{value}}%",
+    "textSize": "Laki ng teksto {{value}}",
+    "coverFrame": "Gamitin ang frame {{index}} bilang cover"
   },
   "bounty": {
     "claimed": "Nakuha na",
@@ -8706,7 +8745,11 @@
       "search": "Maghanap ng mga app",
       "all": "Lahat",
       "fromDehub": "Mula sa DeHub",
-      "noMatch": "Walang apps na tumutugma sa paghahanap na iyon."
+      "noMatch": "Walang apps na tumutugma sa paghahanap na iyon.",
+      "yourApps": "Ang iyong mga app",
+      "notificationsOn": "Notifications on",
+      "remove": "Alisin",
+      "removed": "Alisin na. Hindi na ito magbabanggit sa iyo muli."
     },
     "card": {
       "open": "Buksan"
@@ -8723,7 +8766,19 @@
       "education": "Edukasyon",
       "developer-tools": "Mga tool ng developer",
       "entertainment": "Libangan",
-      "art-creativity": "Sining at pagkamalikhain"
+      "art-creativity": "Sining at pagkamalikhain",
+      "utility": "Utility"
+    },
+    "pay": {
+      "title": "Bayaran ang {{name}}?",
+      "body": "Ang DHB ay direktang papunta sa wallet ng app, {{wallet}}. Hindi maaaring ibalik ang mga pagbabayad.",
+      "confirm": "Bayaran ang {{amount}} DHB",
+      "sent": "Nabayaran ang {{amount}} DHB sa {{name}}."
+    },
+    "add": {
+      "title": "Daragdagin ang {{name}}?",
+      "body": "Ito ay magiging nasa ilalim ng Ang iyong mga app at maaaring ipadala sa iyo ang mga babanggit. Maaari mong alisin ito sa anumang oras mula sa Apps page.",
+      "confirm": "Daragdagin ang app"
     }
   },
   "aiStyles": {

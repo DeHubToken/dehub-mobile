@@ -146,7 +146,9 @@
     "noShortsFound": "কোনো শর্টস পাওয়া যায়নি",
     "newMembersHint": "নতুন জয়েন করলাম — হ্যালো বলুন",
     "allCaughtUp": "আপনি সব দেখে ফেলেছেন",
-    "mostViewedThisMonth": "ই মাসে সবচেয়ে বেশি দেখা"
+    "scroll": "Scroll",
+    "noFilterMatches": "আপনার ফিল্টারর লগে কোনো বিষয়বস্তু মিলে না।",
+    "clearFilters": "ফিল্টার মুছউক্কা"
   },
   "explore": {
     "all": "সব",
@@ -2811,7 +2813,31 @@
     "noneYetBeFirst": "এখনও কোনো মন্তব্য নেই। প্রথম হন!",
     "turnedOff": "এই পোস্টের জন্য মন্তব্য বন্ধ আছে",
     "noQuotesYet": "এখনও কোনো উদ্ধৃতি নেই।",
-    "noRepostsYet": "এখনও কোনো রিপোস্ট নেই।"
+    "noRepostsYet": "এখনও কোনো রিপোস্ট নেই।",
+    "timeSeconds": "{{count}} সে",
+    "timeMinutes": "{{count}} মি",
+    "timeHours": "{{count}} ঘ",
+    "seeWhoLiked": "কায় লাইক দিছইন দেখো",
+    "holdToReact": "{{reaction}} — রিঅ্যাক্ট করতে চাপি ধরি রাখো",
+    "holdToChangeReaction": "{{reaction}} — রিঅ্যাক্ট বদলাইতে চাপি ধরি রাখো",
+    "viewCount_one": "{{count}} ভিউ",
+    "viewCount_other": "{{count}} ভিউ",
+    "shareMessage": "ইটা দেখো: {{url}}",
+    "hideReplies": "উত্তর লুকাও",
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
+    "rowA11yHint": "ই মন্তব্যর উত্তর দেওয়া শুরু করে",
+    "editingComment": "মন্তব্য এডিট হচ্ছে",
+    "editPlaceholder": "আপনার মন্তব্য এডিট করো...",
+    "replyPlaceholder": "উত্তর লেখো...",
+    "inputPlaceholder": "ইখানো লেখো",
+    "cancelReply": "উত্তর বাতিল করো",
+    "cancelEdit": "এডিট বাতিল করো",
+    "countLabel_one": "{{count}} মন্তব্য",
+    "countLabel_other": "{{count}} মন্তব্য",
+    "repostsLabel_one": "রিপোস্ট",
+    "repostsLabel_other": "রিপোস্ট",
+    "quotesLabel_one": "উদ্ধৃতি",
+    "quotesLabel_other": "উদ্ধৃতি"
   },
   "postInfo": {
     "title": "পোস্ট তথ্য",
@@ -5295,7 +5321,20 @@
     "removeUploadTitle": "এই আপলোডটি সরাবেন?",
     "removeQueuedBody": "এটি এখনও পোস্ট করা হয়নি । এটি অপসারণ করলে পোস্টটি বাতিল হয়ে যাবে ।",
     "quotaShortfall": "এই পোস্টের খরচ {{cost}} টোকেন এবং আপনার কাছে {{held}} আছে।",
-    "shopAllowanceUsed": "{{allowance}} এর মধ্যে {{allowance}} ব্যবহৃত। উচ্চতর ব্যাজ এবং অন্য স্লটের জন্য আরও DeHub টোকেন স্টেক করুন।"
+    "shopAllowanceUsed": "{{allowance}} এর মধ্যে {{allowance}} ব্যবহৃত। উচ্চতর ব্যাজ এবং অন্য স্লটের জন্য আরও DeHub টোকেন স্টেক করুন।",
+    "editFilters": "সম্পাদনা করুন",
+    "cropRotate": "ক্যাপচার করুন এবং ঘূর্ণাই",
+    "drawWrite": "আঁকুন এবং লিখুন",
+    "fade": "ফেড {{value}}%",
+    "grayscale": "গ্রে স্কেল {{value}}%",
+    "resetEdits": "রিসেট",
+    "clearDrawing": "মুছুন",
+    "typeText": "টাইপ...",
+    "textSize": "টেক্সট আকার {{value}}",
+    "coverFrames": "একটি কভার ফ্রেম বেছে নিন",
+    "coverFrame": "ফ্রেম {{index}} কে কভার হিসেবে ব্যবহার করুন",
+    "uploadCover": "একটি কভার ছবি আপলোড করুন",
+    "editFailed": "এই সম্পাদনা প্রয়োগ করা যায়নি। আবার চেষ্টা করুন।"
   },
   "bounty": {
     "claimed": "লইলিছে",
@@ -8743,12 +8782,35 @@
     "store": {
       "title": "অ্যাপস",
       "emptyTitle": "এখনো কোন অ্যাপ লিস্ট করা হয়নি।",
-      "emptyBody": "প্রথম অ্যাপগুলো রিভিউতে আছে। একটা বানাইলে তো এখানে থাকতে পারে!"
+      "emptyBody": "প্রথম অ্যাপগুলো রিভিউতে আছে। একটা বানাইলে তো এখানে থাকতে পারে!",
+      "yourApps": "আপনার অ্যাপ্স",
+      "notificationsOn": "নোটিফিকেশন চালু"
     },
     "category": {
       "games": "গেমস",
       "shopping": "খুচা-বুচা / খরিদ্দারী",
-      "developer-tools": "ডেভেলপার টুলস"
+      "developer-tools": "ডেভেলপার টুলস",
+      "social": "সোশ্যাল",
+      "finance": "ফাইন্যান্স",
+      "utility": "ইউটিলিটি",
+      "productivity": "প্রডাক্টিভিটি",
+      "health-fitness": "হেলথ অ্যান্ড ফিটনেস",
+      "news-media": "নিউজ অ্যান্ড মিডিয়া",
+      "music": "মিউজিক",
+      "education": "ইডুকেশন",
+      "entertainment": "এন্টারটেইনমেন্ট",
+      "art-creativity": "আর্ট অ্যান্ড ক্রিয়েটিভিটি"
+    },
+    "pay": {
+      "title": "পে {{name}}?",
+      "body": "ডিএইচবি সরাসরি অ্যাপের ওয়ালেটে যায়, {{wallet}}। পেমেন্ট রিভার্স করা যাবে না।",
+      "confirm": "পে {{amount}} ডিএইচবি",
+      "sent": "{{name}}-এ {{amount}} ডিএইচবি পে করা হয়েছে।"
+    },
+    "add": {
+      "title": "{{name}} যোগ করবেন?",
+      "body": "এটি আপনার অ্যাপসের তালিকায় দেখাবে এবং নোটিফিকেশন পাঠাতে পারে। আপনি কখনোই অ্যাপস পেজ থেকে এটি সরিয়ে ফেলতে পারবেন।",
+      "confirm": "অ্যাপ যোগ করুন"
     }
   },
   "aiStyles": {

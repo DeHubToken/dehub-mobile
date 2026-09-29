@@ -146,7 +146,9 @@
     "noMoreShorts": "没有更多短视频了",
     "noShortsFound": "未找到短视频",
     "newMembersHint": "刚加入 — 打个招呼",
-    "mostViewedThisMonth": "搿个月看得最多"
+    "scroll": "Scroll",
+    "noFilterMatches": "呒没符合侬筛选条件个内容。",
+    "clearFilters": "清脱筛选"
   },
   "explore": {
     "all": "全部",
@@ -2641,7 +2643,31 @@
     "noneYetBeFirst": "还没评论。倷是第一个！",
     "turnedOff": "该帖子的评论已关闭",
     "noQuotesYet": "还没引用。",
-    "noRepostsYet": "还没转发。"
+    "noRepostsYet": "还没转发。",
+    "timeSeconds": "{{count}} 秒",
+    "timeMinutes": "{{count}} 分钟",
+    "timeHours": "{{count}} 钟头",
+    "seeWhoLiked": "看看啥人点了赞",
+    "holdToReact": "{{reaction}} — 长按来表态",
+    "holdToChangeReaction": "{{reaction}} — 长按来换侬个表态",
+    "viewCount_one": "{{count}} 次浏览",
+    "viewCount_other": "{{count}} 次浏览",
+    "shareMessage": "看看搿个：{{url}}",
+    "hideReplies": "收起回复",
+    "rowA11yLabel": "{{name}}，{{time}}：{{text}}",
+    "rowA11yHint": "开始回复搿条评论",
+    "editingComment": "编辑评论中",
+    "editPlaceholder": "编辑侬个评论...",
+    "replyPlaceholder": "写回复...",
+    "inputPlaceholder": "在此输入",
+    "cancelReply": "取消回复",
+    "cancelEdit": "取消编辑",
+    "countLabel_one": "{{count}} 条评论",
+    "countLabel_other": "{{count}} 条评论",
+    "repostsLabel_one": "转发",
+    "repostsLabel_other": "转发",
+    "quotesLabel_one": "引用",
+    "quotesLabel_other": "引用"
   },
   "postInfo": {
     "title": "帖子信息",
@@ -5126,7 +5152,20 @@
     "removeUploadTitle": "要不要删脱搿个上传？",
     "removeQueuedBody": "搿个还没发出去。删脱了就发不出了。",
     "quotaShortfall": "此帖子花费 {{cost}} 代币，您持有 {{held}}。",
-    "shopAllowanceUsed": "已使用 {{allowance}} 的 {{allowance}}。质押更多 DeHub 代币以获得更高的徽章和另一个槽位。"
+    "shopAllowanceUsed": "已使用 {{allowance}} 的 {{allowance}}。质押更多 DeHub 代币以获得更高的徽章和另一个槽位。",
+    "cropRotate": "裁切與旋轉",
+    "drawWrite": "繪畫 & 寫作",
+    "grayscale": "灰階 {{value}}%",
+    "resetEdits": "重啟",
+    "typeText": "打字",
+    "coverFrame": "用框架 {{index}} 做封面",
+    "editFilters": "编辑滤镜",
+    "fade": "褪色 {{value}}%",
+    "clearDrawing": "清除",
+    "textSize": "字大小 {{value}}",
+    "coverFrames": "拣一帧做封面",
+    "uploadCover": "上传封面图片",
+    "editFailed": "搿个编辑用勿上，再试一趟。"
   },
   "bounty": {
     "claimed": "已领取",
@@ -8530,7 +8569,22 @@
       "education": "教育",
       "developer-tools": "開發工具",
       "entertainment": "娛樂",
-      "art-creativity": "藝術與創意"
+      "art-creativity": "藝術與創意",
+      "games": "遊戲"
+    },
+    "pay": {
+      "title": "付 {{name}}?",
+      "body": "DHB 會直接送到 app 的錢包 {{wallet}}。付款無法撤銷。",
+      "confirm": "付 {{amount}} DHB",
+      "sent": "已付 {{amount}} DHB 給 {{name}}。"
+    },
+    "add": {
+      "title": "加入 {{name}}?",
+      "body": "它會出現在「你的 app」底下，並可以發送通知給你。你可以隨時從「app 頁面」移除它。",
+      "confirm": "加入 app"
+    },
+    "card": {
+      "open": "開啟"
     }
   },
   "aiStyles": {

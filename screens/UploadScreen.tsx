@@ -89,6 +89,11 @@ import { useDrafts, emptyMonetization } from "../hooks/useDrafts";
 import type { Draft } from "../hooks/useDrafts";
 import GlassModal from "../components/ui/GlassModal";
 import EnhanceSheet from "../components/Upload/EnhanceSheet";
+import VideoCoverFrames from "../components/Upload/VideoCoverFrames";
+import type { ImageEditMode, ImageEditResult } from "../components/Upload/ImageEditSheet";
+import type { FilterSettings } from "../libs/imageFilters";
+import { optionalSkia } from "../libs/skia";
+import ImageCropPicker from "react-native-image-crop-picker";
 import EmojiSheet from "../components/Upload/EmojiSheet";
 import type { UploadPayload, UploadStage, PickedAudio } from "../hooks/useUploadPost";
 import type { LiveUploadPayload } from "../hooks/useUploadLive";
@@ -193,7 +198,20 @@ const MAX_AUDIO_DURATION_MS = 60_000; // 60 seconds
 const AUDIO_MIME_TYPES = ["audio/mpeg", "audio/wav", "audio/aac", "audio/ogg", "audio/x-m4a", "audio/mp4", "audio/webm"];
 const CATEGORIES_MIN = 0;
 const CATEGORIES_MAX = 5;
-type PickedAsset = ImagePicker.ImagePickerAsset;
+type PickedAsset = ImagePicker.ImagePickerAsset & {
+  /** The picture a filter is drawn over, so filtering again never stacks on the last filter. */
+  editBaseUri?: string;
+  filter?: FilterSettings;
+  filterPresetId?: string;
+};
+
+const isGifAsset = (a: PickedAsset) =>
+  a.mimeType === "image/gif" || /.gif$/i.test((a.fileName || a.uri || "").split("?")[0]);
+
+/** Filters and Draw & write are drawn with Skia, which older installs lack. */
+const ImageEditSheet = optionalSkia(
+  () => require("../components/Upload/ImageEditSheet").default as typeof import("../components/Upload/ImageEditSheet").default,
+);
 type MediaMode = "none" | "images" | "video" | "audio";
 
 /**
@@ -330,6 +348,7 @@ export default function UploadScreen() {
   const [communityOpen, setCommunityOpen] = useState(false);
   const [userCommunities, setUserCommunities] = useState<Community[]>([]);
   const [pickedImages, setPickedImages] = useState<PickedAsset[]>([]);
+  const [imageEdit, setImageEdit] = useState<{ index: number; mode: ImageEditMode } | null>(null);
   const [photoGridWidth, setPhotoGridWidth] = useState(0);
   const [draggedPhoto, setDraggedPhoto] = useState<{ index: number; x: number; y: number } | null>(null);
   const movePhoto = useCallback((from: number, to: number) => {
@@ -1769,6 +1788,74 @@ export default function UploadScreen() {
     }
   }, []);
 
+  /**
+   * A filter keeps the pre-filter picture so it can be re-picked from scratch;
+   * a drawing or a crop is drawn over what the photo looks like now, filter
+   * included, so it becomes the new starting point — as on the web, where the
+   * annotator drops the stored filter settings.
+   */
+  const handleImageEdited = useCallback(
+    (result: ImageEditResult, filter?: { settings: FilterSettings; presetId?: string }) => {
+      const target = imageEdit;
+      setImageEdit(null);
+      if (!target) return;
+      setPickedImages((prev) => prev.map((img, i) => {
+        if (i !== target.index) return img;
+        const next: PickedAsset = {
+          ...img,
+          uri: result.uri,
+          width: result.width,
+          height: result.height,
+          mimeType: result.mimeType,
+          fileName: result.fileName,
+          fileSize: undefined,
+        };
+        return filter
+          ? { ...next, editBaseUri: img.editBaseUri ?? img.uri, filter: filter.settings, filterPresetId: filter.presetId }
+          : { ...next, editBaseUri: undefined, filter: undefined, filterPresetId: undefined };
+      }));
+    },
+    [imageEdit],
+  );
+
+  const handleCropImage = useCallback(async (index: number) => {
+    const img = pickedImages[index];
+    if (!img) return;
+    try {
+      const out = await ImageCropPicker.openCropper({
+        path: img.uri,
+        mediaType: "photo",
+        freeStyleCropEnabled: true,
+        // The frame starts on the whole picture and output is never upscaled.
+        ...(img.width && img.height ? { width: img.width, height: img.height } : {}),
+        compressImageQuality: 0.92,
+        forceJpg: img.mimeType !== "image/png",
+        cropperToolbarTitle: t("upload.cropRotate"),
+        cropperToolbarColor: "#000000",
+        cropperStatusBarLight: false,
+        cropperToolbarWidgetColor: "#ffffff",
+        cropperActiveWidgetColor: "#ffffff",
+        cropperRotateButtonsHidden: false,
+      });
+      setPickedImages((prev) => prev.map((im, i) => (i !== index ? im : {
+        ...im,
+        uri: out.path,
+        width: out.width,
+        height: out.height,
+        mimeType: out.mime,
+        fileName: getFileName(out.path, "image.jpg"),
+        fileSize: out.size,
+        editBaseUri: undefined,
+        filter: undefined,
+        filterPresetId: undefined,
+      })));
+    } catch (err: any) {
+      if (err?.code === "E_PICKER_CANCELLED") return;
+      console.warn("[UploadScreen] crop failed:", err);
+      toastError(t("upload.editFailed"));
+    }
+  }, [pickedImages]);
+
   const handleRemoveVideo = useCallback(() => {
     setPickedVideo(null);
     setIsMuted(true);
@@ -2410,8 +2497,46 @@ export default function UploadScreen() {
                         accessibilityRole="button"
                         accessibilityLabel={t("upload.changeImage", { index: idx + 1 })}
                       >
-                        <Icon name="Pencil" size={14} color="#fff" />
+                        <Icon name="Upload" size={14} color="#fff" />
                       </TouchableOpacity>
+                      {/* Filters, crop and draw — the web composer's photo tools, bottom right
+                          to leave the top row and the reorder handle clear. Any of them would
+                          flatten an animated GIF to one frame, so GIFs get none. */}
+                      {!isGifAsset(img) && (
+                      <View className="absolute bottom-2 right-2 flex-row">
+                        {ImageEditSheet && (
+                          <TouchableOpacity
+                            onPress={() => setImageEdit({ index: idx, mode: "filter" })}
+                            className={`w-7 h-7 rounded-lg items-center justify-center dark-surface mr-1.5 ${img.filter ? "bg-white/30 border border-white/60" : "bg-black/70"}`}
+                            hitSlop={{ top: 4, bottom: 4, left: 2, right: 2 }}
+                            accessibilityRole="button"
+                            accessibilityLabel={t("upload.editFilters")}
+                          >
+                            <Icon name="Palette" size={14} color="#fff" />
+                          </TouchableOpacity>
+                        )}
+                        <TouchableOpacity
+                          onPress={() => handleCropImage(idx)}
+                          className="w-7 h-7 rounded-lg items-center justify-center dark-surface bg-black/70 mr-1.5"
+                          hitSlop={{ top: 4, bottom: 4, left: 2, right: 2 }}
+                          accessibilityRole="button"
+                          accessibilityLabel={t("upload.cropRotate")}
+                        >
+                          <Icon name="Crop" size={14} color="#fff" />
+                        </TouchableOpacity>
+                        {ImageEditSheet && (
+                          <TouchableOpacity
+                            onPress={() => setImageEdit({ index: idx, mode: "draw" })}
+                            className="w-7 h-7 rounded-lg items-center justify-center dark-surface bg-black/70"
+                            hitSlop={{ top: 4, bottom: 4, left: 2, right: 2 }}
+                            accessibilityRole="button"
+                            accessibilityLabel={t("upload.drawWrite")}
+                          >
+                            <Icon name="Pencil" size={14} color="#fff" />
+                          </TouchableOpacity>
+                        )}
+                      </View>
+                      )}
                       {pickedImages.length > 1 && photoGridWidth > 0 && (
                         <PhotoOrderHandle index={idx} count={pickedImages.length} columnWidth={photoGridWidth / 2}
                           onMove={movePhoto} onDrag={onPhotoDrag} />
@@ -2535,6 +2660,20 @@ export default function UploadScreen() {
                   </View>
                 )}
               </View>
+            )}
+
+            {!isLiveMode && mediaMode === "video" && pickedVideo && (
+              <VideoCoverFrames
+                videoUri={pickedVideo.uri}
+                durationMs={pickedVideo.duration}
+                selectedUri={coverUri ? null : thumbnailUri}
+                onPickFrame={(uri) => {
+                  setThumbnailUri(uri);
+                  setCoverUri(null);
+                  setCoverHidden(false);
+                }}
+                onUpload={handlePickCoverImage}
+              />
             )}
 
             {!isLiveMode && mediaMode === "video" && coverHidden && (thumbnailUri || coverUri) && (
@@ -3567,6 +3706,22 @@ export default function UploadScreen() {
           </TouchableOpacity>
         </View>
       </Modal>
+
+      {ImageEditSheet && imageEdit && pickedImages[imageEdit.index] && (() => {
+        const img = pickedImages[imageEdit.index];
+        const isFilter = imageEdit.mode === "filter";
+        return (
+          <ImageEditSheet
+            mode={imageEdit.mode}
+            uri={isFilter ? img.editBaseUri ?? img.uri : img.uri}
+            mimeType={img.mimeType}
+            initialFilter={isFilter ? img.filter : undefined}
+            initialPresetId={isFilter ? img.filterPresetId : undefined}
+            onClose={() => setImageEdit(null)}
+            onApply={handleImageEdited}
+          />
+        );
+      })()}
     </View>
   );
 }

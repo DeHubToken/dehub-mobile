@@ -146,7 +146,9 @@
     "noMoreShorts": "Daugiau trumpų vaizdo įrašų nėra",
     "noShortsFound": "Trumpų vaizdo įrašų nerasta",
     "newMembersHint": "Ką tik prisijungėte – pasisveikinkite",
-    "mostViewedThisMonth": "Daugiausiai peržiūrėta šį mėnesį"
+    "scroll": "Scroll",
+    "noFilterMatches": "Jūsų filtrus atitinkančio turinio nėra.",
+    "clearFilters": "Išvalyti filtrus"
   },
   "explore": {
     "all": "Visi",
@@ -2641,7 +2643,31 @@
     "noneYetBeFirst": "Dar nėra komentarų. Būkite pirmas!",
     "turnedOff": "Komentarai išjungti šiam įrašui",
     "noQuotesYet": "Dar nėra citatų.",
-    "noRepostsYet": "Dar nėra perkūrimų."
+    "noRepostsYet": "Dar nėra perkūrimų.",
+    "timeSeconds": "{{count}} sek.",
+    "timeMinutes": "{{count}} min.",
+    "timeHours": "{{count}} val.",
+    "seeWhoLiked": "Žiūrėti, kam patiko",
+    "holdToReact": "{{reaction}} — palaikykite, kad sureaguotumėte",
+    "holdToChangeReaction": "{{reaction}} — palaikykite, kad pakeistumėte reakciją",
+    "viewCount_one": "{{count}} peržiūra",
+    "viewCount_other": "Peržiūros: {{count}}",
+    "shareMessage": "Pažiūrėk: {{url}}",
+    "hideReplies": "Slėpti atsakymus",
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
+    "rowA11yHint": "Pradeda atsakymą į šį komentarą",
+    "editingComment": "Komentaro redagavimas",
+    "editPlaceholder": "Redaguokite komentarą...",
+    "replyPlaceholder": "Rašykite atsakymą...",
+    "inputPlaceholder": "Rašykite čia",
+    "cancelReply": "Atšaukti atsakymą",
+    "cancelEdit": "Atšaukti redagavimą",
+    "countLabel_one": "{{count}} komentaras",
+    "countLabel_other": "Komentarai: {{count}}",
+    "repostsLabel_one": "Pakartotinis įrašas",
+    "repostsLabel_other": "Pakartotiniai įrašai",
+    "quotesLabel_one": "Citata",
+    "quotesLabel_other": "Citatos"
   },
   "postInfo": {
     "title": "Įrašo informacija",
@@ -5126,7 +5152,20 @@
     "removeUploadTitle": "Pašalinti šį įkėlimą?",
     "removeQueuedBody": "Jis dar nepaskelbtas. Pašalinus įrašą, jis atšaukiamas.",
     "quotaShortfall": "Šis įrašas kainuoja {{cost}} žetonų, o jūs turite {{held}}.",
-    "shopAllowanceUsed": "Panaudota {{allowance}} iš {{allowance}}. Statykite daugiau DeHub žetonų, kad gautumėte aukštesnį ženklelį ir papildomą vietą."
+    "shopAllowanceUsed": "Panaudota {{allowance}} iš {{allowance}}. Statykite daugiau DeHub žetonų, kad gautumėte aukštesnį ženklelį ir papildomą vietą.",
+    "editFilters": "Redaguoti filtras",
+    "cropRotate": "Paprastinti ir apskriti",
+    "drawWrite": "Raižyti ir rašyti",
+    "fade": "Pabaisinti {{value}}%",
+    "grayscale": "Šviesmetražis {{value}}%",
+    "resetEdits": "Atstatyti",
+    "clearDrawing": "Išvalyti",
+    "typeText": "Rasyti…",
+    "textSize": "Teksto dydis {{value}}",
+    "coverFrames": "Pasirinkti viršelio rėžinį",
+    "coverFrame": "Naudojti viršelio rėžinį {{index}}",
+    "uploadCover": "Įkelti viršelio nuotrauką",
+    "editFailed": "Nepavyko pritaikyti šio redagavimo. Bandyk dar kartą."
   },
   "bounty": {
     "claimed": "Atsiimta",
@@ -8526,7 +8565,8 @@
       "search": "Ieškoti programėlių",
       "all": "Visi",
       "fromDehub": "Iš DeHub",
-      "noMatch": "Nėra programėlių, atitinkančių šią paiešką."
+      "noMatch": "Nėra programėlių, atitinkančių šią paiešką.",
+      "yourApps": "Jūsų programos"
     },
     "card": {
       "open": "Atidaryti"
@@ -8545,6 +8585,17 @@
       "developer-tools": "Kūrėjo įrankiai",
       "entertainment": "Pramogos",
       "art-creativity": "Menas ir kūrybiškumas"
+    },
+    "pay": {
+      "title": "Mokėti {{name}}?",
+      "body": "DHB tiesiog eina į aplikacijos portmonę, {{wallet}}. Mokėjimai negali būti atšaukti.",
+      "confirm": "Mokėkite {{amount}} DHB",
+      "sent": "Mokėta {{amount}} DHB {{name}}."
+    },
+    "add": {
+      "title": "Pridėkite {{name}}?",
+      "body": "Jis pasirodys po Jūsų programos ir gali siųsti pranešimus. Jį galite bet kada pašalinti iš Programos puslapio.",
+      "confirm": "Pridėkite prietelį"
     }
   },
   "aiStyles": {

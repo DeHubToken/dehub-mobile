@@ -146,7 +146,9 @@
     "noMoreShorts": "थप सर्टहरू छैनन्",
     "noShortsFound": "कुनै सर्टहरू फेला परेनन्",
     "newMembersHint": "भर्खरै सामेल हुनुभयो — अभिवादन गर्नुहोस्",
-    "mostViewedThisMonth": "यो महिना सबैभन्दा धेरै हेरिएको"
+    "scroll": "Scroll",
+    "noFilterMatches": "तपाईंका फिल्टरहरूसँग मेल खाने कुनै सामग्री छैन।",
+    "clearFilters": "फिल्टर हटाउनुहोस्"
   },
   "explore": {
     "all": "सबै",
@@ -2654,7 +2656,31 @@
     "noneYetBeFirst": "अझै टिप्पणी छैन। पहिलो बन्नुहोस्!",
     "turnedOff": "यो पोस्टको लागि टिप्पणीहरू बन्द छन्",
     "noQuotesYet": "अझै उद्धरण छैन।",
-    "noRepostsYet": "अझै रिपोस्ट छैन।"
+    "noRepostsYet": "अझै रिपोस्ट छैन।",
+    "timeSeconds": "{{count}} से.",
+    "timeMinutes": "{{count}} मि.",
+    "timeHours": "{{count}} घं.",
+    "seeWhoLiked": "कसले मन पराए हेर्नुहोस्",
+    "holdToReact": "{{reaction}} — प्रतिक्रिया दिन थिचिराख्नुहोस्",
+    "holdToChangeReaction": "{{reaction}} — आफ्नो प्रतिक्रिया बदल्न थिचिराख्नुहोस्",
+    "viewCount_one": "{{count}} हेराइ",
+    "viewCount_other": "{{count}} हेराइ",
+    "shareMessage": "यो हेर्नुहोस्: {{url}}",
+    "hideReplies": "जवाफहरू लुकाउनुहोस्",
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
+    "rowA11yHint": "यो टिप्पणीमा जवाफ सुरु गर्छ",
+    "editingComment": "टिप्पणी सम्पादन गर्दै",
+    "editPlaceholder": "आफ्नो टिप्पणी सम्पादन गर्नुहोस्...",
+    "replyPlaceholder": "जवाफ लेख्नुहोस्...",
+    "inputPlaceholder": "यहाँ टाइप गर्नुहोस्",
+    "cancelReply": "जवाफ रद्द गर्नुहोस्",
+    "cancelEdit": "सम्पादन रद्द गर्नुहोस्",
+    "countLabel_one": "{{count}} टिप्पणी",
+    "countLabel_other": "{{count}} टिप्पणीहरू",
+    "repostsLabel_one": "रिपोस्ट",
+    "repostsLabel_other": "रिपोस्टहरू",
+    "quotesLabel_one": "उद्धरण",
+    "quotesLabel_other": "उद्धरणहरू"
   },
   "postInfo": {
     "title": "पोस्ट जानकारी",
@@ -5139,7 +5165,20 @@
     "removeUploadTitle": "यो अपलोड हटाउने हो?",
     "removeQueuedBody": "यो अझै पोस्ट गरिएको छैन । यसलाई हटाउँदा पोस्ट रद्द हुन्छ ।",
     "quotaShortfall": "यो पोस्टको लागत {{cost}} टोकन छ र तपाईंले {{held}} राख्नुभएको छ।",
-    "shopAllowanceUsed": "{{allowance}} मध्ये {{allowance}} प्रयोग गरियो। उच्च ब्याज र अर्को स्लटको लागि थप DeHub टोकनहरू स्टेक गर्नुहोस्।"
+    "shopAllowanceUsed": "{{allowance}} मध्ये {{allowance}} प्रयोग गरियो। उच्च ब्याज र अर्को स्लटको लागि थप DeHub टोकनहरू स्टेक गर्नुहोस्।",
+    "editFilters": "संशोधन फिल्टर",
+    "cropRotate": "काट्ने र घुमाउने",
+    "drawWrite": "लेख्ने र लेख्ने",
+    "fade": "फ्याड {{value}}%",
+    "grayscale": "ग्रे स्केल {{value}}%",
+    "resetEdits": "रीसेट",
+    "clearDrawing": "माफ",
+    "typeText": "टाइप…",
+    "textSize": "टेक्स्टको आकार {{value}}",
+    "coverFrames": "फ्रेम चुन्ने",
+    "coverFrame": "फ्रेम {{index}} को रूपमा कवर",
+    "uploadCover": "कवर छवि अपलोड गर्नुहोस्",
+    "editFailed": "त्यो संशोधन लाग्यो न सक्यो। पुनः प्रयास गर्नुहोस्।"
   },
   "bounty": {
     "claimed": "प्राप्त गरियो",
@@ -8566,7 +8605,11 @@
       "search": "अनुसन्धान गर्ने ऐपहरू",
       "all": "सबै",
       "fromDehub": "देहबबाट",
-      "noMatch": "कुनै ऐपले तपाईंको खोजा छैन।"
+      "noMatch": "कुनै ऐपले तपाईंको खोजा छैन।",
+      "yourApps": "युर अप्स",
+      "notificationsOn": "नोटिफिकेसन्स चालु",
+      "remove": "हटाउनुहोस्",
+      "removed": "हटाइएको छ। अब तपाईंलाई अर्को पटक सूचना दिइने छैन।"
     },
     "card": {
       "open": "खुल्नुहोस्"
@@ -8585,6 +8628,17 @@
       "developer-tools": "विकासको उपकरण",
       "entertainment": "मनोरञ्जन",
       "art-creativity": "कला र रचनात्मकता"
+    },
+    "pay": {
+      "title": "{{name}} भुक्तानी गर्नुहोस्?",
+      "body": "DHB सीधै {{wallet}}को अप्सको वॉलेटमा जान्छ। भुक्तानी फिर्ता लिन सकिँदैन।",
+      "confirm": "{{amount}} DHB भुक्तानी गर्नुहोस्",
+      "sent": "{{amount}} DHB {{name}}लाई भुक्तानी गरिएको छ।"
+    },
+    "add": {
+      "title": "{{name}} जोड्नुहोस्?",
+      "body": "यो तपाईंको अप्सहरूको तहत देखिन्छ र तपाईंलाई सूचना पठाउन सक्छ। तपाईं कुनै पनि समयमा अप्स पेजबाट यसलाई हटाउन सक्नुहुन्छ।",
+      "confirm": "अप्स जोड्नुहोस्"
     }
   },
   "aiStyles": {

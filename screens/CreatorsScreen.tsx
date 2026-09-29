@@ -22,7 +22,7 @@ import {
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useTranslation } from "react-i18next";
 import Icon from "../components/ui/Icon";
-import ScreenHeader, { SCREEN_HEADER_HEIGHT } from "../components/ScreenHeader";
+import ScreenHeader from "../components/ScreenHeader";
 import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
 import { supabase } from "../services/supabase";
 import { toastError, toastSuccess } from "../libs";
@@ -91,7 +91,7 @@ const Field = ({
 export default function CreatorsScreen() {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
-  const keyboardOffset = useKeyboardOffset(SCREEN_HEADER_HEIGHT);
+  const keyboardOffset = useKeyboardOffset();
   const [form, setForm] = useState<CreatorForm>(EMPTY_FORM);
   const [submitting, setSubmitting] = useState(false);
 

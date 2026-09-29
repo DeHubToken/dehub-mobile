@@ -77,6 +77,8 @@ interface UserProfileBottomContentTabsProps {
   /** One-shot tab request from the header (the Subscribe CTA). */
   pendingTab?: string | null;
   onPendingTabConsumed?: () => void;
+  /** Back-to-top button's distance from the bottom; the host knows what sits there. */
+  backToTopBottom?: number;
 }
 
 const STICKY_BAR_HEIGHT = 68;
@@ -135,6 +137,7 @@ const UserProfileBottomContentTabs: React.FC<
   blockedYou = false,
   pendingTab = null,
   onPendingTabConsumed,
+  backToTopBottom,
 }) => {
   const { t } = useTranslation();
   const { isMinimal } = useAppTheme();
@@ -657,8 +660,9 @@ const UserProfileBottomContentTabs: React.FC<
           onPress={scrollToTop}
           accessibilityRole="button"
           accessibilityLabel={t("profile.backToTop")}
-          className="absolute bottom-6 right-5 bg-theme-neutrals-800/90 rounded-xl p-3 active:opacity-80"
+          className="absolute right-5 bg-theme-neutrals-800/90 rounded-xl p-3 active:opacity-80"
           style={{
+            bottom: backToTopBottom ?? 24,
             zIndex: 20,
             elevation: 20,
             shadowColor: "#000",

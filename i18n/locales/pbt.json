@@ -146,7 +146,9 @@
     "noMoreShorts": "نور شارټس نشته",
     "noShortsFound": "هیڅ شارټس ونه موندل شو",
     "newMembersHint": "تازه ګډون کړی — سلام ووایه",
-    "mostViewedThisMonth": "دا میاشت ډیر لیدل شوي"
+    "scroll": "Scroll",
+    "noFilterMatches": "هېڅ محتوا ستاسو له فلټرونو سره سمون نه لري.",
+    "clearFilters": "فلټرونه پاک کړئ"
   },
   "explore": {
     "all": "ټول",
@@ -2640,7 +2642,31 @@
     "noneYetBeFirst": "تر اوسه هیڅ تبصره نشته. لومړی اوسئ!",
     "turnedOff": "د دې پوسټ لپاره تبصرې بندې دي",
     "noQuotesYet": "تر اوسه هیڅ اقتباس نشته.",
-    "noRepostsYet": "تر اوسه هیڅ بیا پوسټ نشته."
+    "noRepostsYet": "تر اوسه هیڅ بیا پوسټ نشته.",
+    "timeSeconds": "{{count}} ثانیې",
+    "timeMinutes": "{{count}} دقیقې",
+    "timeHours": "{{count}} ساعته",
+    "seeWhoLiked": "وګورئ چا خوښ کړی",
+    "holdToReact": "{{reaction}} — د غبرګون لپاره یې کېکاږئ او ونیسئ",
+    "holdToChangeReaction": "{{reaction}} — د خپل غبرګون بدلولو لپاره یې کېکاږئ او ونیسئ",
+    "viewCount_one": "{{count}} لیدنه",
+    "viewCount_other": "{{count}} لیدنې",
+    "shareMessage": "دا وګورئ: {{url}}",
+    "hideReplies": "ځوابونه پټ کړئ",
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
+    "rowA11yHint": "دې تبصرې ته ځواب پیلوي",
+    "editingComment": "تبصره سمول کېږي",
+    "editPlaceholder": "خپله تبصره سمه کړئ...",
+    "replyPlaceholder": "ځواب ولیکئ...",
+    "inputPlaceholder": "دلته ولیکئ",
+    "cancelReply": "ځواب لغوه کړئ",
+    "cancelEdit": "سمون لغوه کړئ",
+    "countLabel_one": "{{count}} تبصره",
+    "countLabel_other": "{{count}} تبصرې",
+    "repostsLabel_one": "بیا پوسټ",
+    "repostsLabel_other": "بیا پوسټونه",
+    "quotesLabel_one": "اقتباس",
+    "quotesLabel_other": "اقتباسونه"
   },
   "postInfo": {
     "title": "د پوسټ معلومات",
@@ -5125,7 +5151,20 @@
     "removeUploadTitle": "د دې پورته کولو لپاره لاړ شئ ؟",
     "removeQueuedBody": "دا لا تر اوسه نه ده خپره شوې. له دندې ګوښه کول مو له دندې ګوښه کوي.",
     "quotaShortfall": "دا پوسټ {{cost}} ټوکنونه لګښت لري او تاسو {{held}} لرئ.",
-    "shopAllowanceUsed": "{{allowance}} له {{allowance}} څخه کارول شوي. د لوړې درجې او بل سلاټ لپاره نور DeHub ټوکنونه سټیک کړئ."
+    "shopAllowanceUsed": "{{allowance}} له {{allowance}} څخه کارول شوي. د لوړې درجې او بل سلاټ لپاره نور DeHub ټوکنونه سټیک کړئ.",
+    "editFilters": "د فلټرونو بدلول",
+    "cropRotate": "د کرنې & Rotate",
+    "drawWrite": "ډایل کړئ او ولیکئ",
+    "fade": "ګرایډ {{value}}%",
+    "resetEdits": "د بیا رغونې",
+    "clearDrawing": "په واضح ډول",
+    "typeText": "د ډول ډول...",
+    "coverFrames": "د پوښښ چوکاټ غوره کړئ",
+    "coverFrame": "{{index}} د پوښ په توګه وکاروئ",
+    "uploadCover": "د پوښښ عکس پورته کړئ",
+    "editFailed": "تاسو نشئ کولی دا کیک جوړ کړئ، بیا هڅه وکړئ.",
+    "grayscale": "خړ رنګ {{value}}%",
+    "textSize": "د متن اندازه {{value}}"
   },
   "bounty": {
     "claimed": "ترلاسه شو",
@@ -8520,7 +8559,9 @@
       "search": "د اپلېکېشنونو پلټنه",
       "all": "همه چی همه چی",
       "fromDehub": "د DeHub په اړه",
-      "noMatch": "هیڅ اپلیټ د دې لټون سره مطابقت نلري."
+      "noMatch": "هیڅ اپلیټ د دې لټون سره مطابقت نلري.",
+      "yourApps": "ستاسو د اپلیکیشن په اړه",
+      "removed": "حذف شول. تاسې پکې بیا نوتېفېکېشن نه لېږل کېږي."
     },
     "card": {
       "open": "د پرانیستې"
@@ -8539,6 +8580,15 @@
       "developer-tools": "د پراختیا کونکي وسیلې",
       "entertainment": "د تفريح په اړه",
       "art-creativity": "هنر او خلاقیت"
+    },
+    "pay": {
+      "body": "دې DHB د اپلیکېشن د پورتې ته (والت) ورځي، {{wallet}}. دې پلټنې وړ نه دي.",
+      "confirm": "{{amount}} ته پېسې ورکړل شي؟"
+    },
+    "add": {
+      "body": "چېرې دې د Your apps په څېر ښکاري او ته ته د notification وړاندې کوي. ته دې هر وخت له Apps وړاندې څخه وړاندې کولای شي.",
+      "title": "{{name}} وړل شي؟",
+      "confirm": "اپلیکېېشن وړل"
     }
   },
   "aiStyles": {

@@ -41,7 +41,7 @@ import { useUser, useAuthActions } from "../../context/AuthContext";
 import { useKidsMode } from "../../hooks/useKidsMode";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import { useAppTheme } from "../../context/ThemeContext";
-import { MINIMAL_HAIRLINE } from "../../theme/minimal";
+import { MINIMAL_HAIRLINE, MINIMAL_TAB_LINE } from "../../theme/minimal";
 
 // Minimal composer field and chips: an outline says "control", no fill.
 const MINIMAL_INPUT_LINE = "rgba(255,255,255,0.10)";
@@ -452,6 +452,10 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
   // Bumped by every first-page load, so a slower earlier response can never
   // overwrite a newer one.
   const loadSeqRef = useRef(0);
+  // The first page never arrived. Without this the empty list said "No
+  // comments yet", so a thread that failed to load read as one nobody had
+  // written in — with no way to ask again short of closing the sheet.
+  const [loadError, setLoadError] = useState(false);
 
   /**
    * Load the first page.
@@ -481,6 +485,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           ? await takeWarmRequest(firstPageWarmKey(tokenId, userAddress), fetchPage)
           : await fetchPage();
       if (seq !== loadSeqRef.current) return;
+      setLoadError(false);
 
       const { items, hasMore } = res.result;
       const fresh = new Set(items.map((c) => Number(c.id)));
@@ -505,7 +510,9 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
       }
     } catch (e) {
       console.error("Failed to load comments:", e);
-      if (!isRefresh) toastError(t("comments.loadFailed"));
+      // Said in the list itself, with a retry, rather than in a toast over an
+      // empty sheet. A failed reload leaves what is on screen alone.
+      if (seq === loadSeqRef.current && !isRefresh) setLoadError(true);
     }
     // topTippedIds lands one tick after the first load on a thread that has
     // tipped comments — the Supabase read has to resolve first — so those
@@ -531,12 +538,20 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
       setLoading(true);
       setFlatComments([]);
       setNextPage(null);
+      setLoadError(false);
     }
     loadComments(isReload).finally(() => {
       loadedKeyRef.current = key;
       setLoading(false);
     });
   }, [loadComments, tokenId, userAddress, highlightCommentId]);
+
+  /** The retry under a failed first load: the same first load, spinner and all. */
+  const retryLoad = useCallback(() => {
+    setLoadError(false);
+    setLoading(true);
+    loadComments().finally(() => setLoading(false));
+  }, [loadComments]);
 
   /**
    * The next page, when the reader nears the end of the list.
@@ -1099,12 +1114,12 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
         // The server's own words when it has them: a refusal explains itself,
         // and a generic failure leaves the author guessing.
         const reason = e instanceof Error && e.message ? e.message : null;
-        toastError(reason || (editingComment ? "Failed to edit comment" : "Failed to post comment"));
+        toastError(reason || (editingComment ? t("comments.editFailed") : t("toasts.failed_to_post_comment")));
       } finally {
         setPosting(false);
       }
     });
-  }, [inputText, posting, requireAuth, tokenId, replyingTo, editingComment, loadComments, user, userAddress, armAssistantReply]);
+  }, [inputText, posting, requireAuth, tokenId, replyingTo, editingComment, loadComments, user, userAddress, armAssistantReply, t]);
 
   /**
    * What every Post control calls. On a Common Ground thread the first reply
@@ -1229,10 +1244,10 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
    * rather than only setting it here — otherwise the comment that held the pin
    * a moment ago keeps its badge until the reload lands.
    */
-  const handleContextPin = useCallback(async () => {
-    const id = contextComment?.id;
+  const handlePinComment = useCallback(async (comment: Comment) => {
+    const id = comment.id;
     if (id == null) return;
-    const wasPinned = contextComment?.isPinned === true;
+    const wasPinned = comment.isPinned === true;
     setFlatComments(prev =>
       prev.map(c => ({ ...c, isPinned: !wasPinned && Number(c.id) === Number(id) })),
     );
@@ -1247,7 +1262,11 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
       toastError(error?.message || t("comments.pinFailed"));
       await loadComments(true);
     }
-  }, [contextComment, loadComments, t]);
+  }, [loadComments, t]);
+
+  const handleContextPin = useCallback(() => {
+    if (contextComment) void handlePinComment(contextComment);
+  }, [contextComment, handlePinComment]);
 
   const closeContextMenu = useCallback(() => {
     setContextComment(null);
@@ -1265,12 +1284,15 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
     if (contextComment) handleStartEdit(contextComment);
   }, [contextComment, handleStartEdit]);
 
-  // Context menu action: report somebody else's comment
-  const handleContextReport = useCallback(() => {
-    if (!contextComment || !requireAuth) return;
-    const target = contextComment;
+  // Report somebody else's comment — from the menu or a screen-reader action.
+  const handleReportComment = useCallback((target: Comment) => {
+    if (!requireAuth) return;
     requireAuth(() => setReportTarget(target));
-  }, [contextComment, requireAuth]);
+  }, [requireAuth]);
+
+  const handleContextReport = useCallback(() => {
+    if (contextComment) handleReportComment(contextComment);
+  }, [contextComment, handleReportComment]);
 
   // Context menu action: like
   const handleContextLike = useCallback(async () => {
@@ -1336,9 +1358,8 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
   // Context menu action: delete. Asks first — it is permanent, and the server
   // takes every reply under the comment with it, other people's included, so
   // one mis-tap on the menu used to erase a whole conversation.
-  const handleContextDelete = useCallback(() => {
-    if (!contextComment) return;
-    const commentId = contextComment.id;
+  const handleDeleteComment = useCallback((comment: Comment) => {
+    const commentId = comment.id;
     Alert.alert(
       t("governance.discussion.deleteTitle"),
       t("governance.discussion.deleteDescription"),
@@ -1347,7 +1368,11 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
         { text: t("common.delete"), style: "destructive", onPress: () => void deleteNow(commentId) },
       ],
     );
-  }, [contextComment, deleteNow]);
+  }, [deleteNow, t]);
+
+  const handleContextDelete = useCallback(() => {
+    if (contextComment) handleDeleteComment(contextComment);
+  }, [contextComment, handleDeleteComment]);
 
   /**
    * The rows the list actually shows, plus what each one draws.
@@ -1462,6 +1487,10 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           onShowLikers={setLikersCommentId}
           onUserPress={handleUserPress}
           onEdit={handleStartEdit}
+          // Offered on the same terms as the long-press menu below.
+          onPin={isOwnThread ? handlePinComment : undefined}
+          onReport={userAddress ? handleReportComment : undefined}
+          onDelete={handleDeleteComment}
           onLongPress={handleCommentLongPress}
           tokenId={tokenId}
           contentType={contentType}
@@ -1485,6 +1514,10 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
     handleDislikeComment,
     handleUserPress,
     handleStartEdit,
+    isOwnThread,
+    handlePinComment,
+    handleReportComment,
+    handleDeleteComment,
     handleCommentLongPress,
     tokenId,
     contentType,
@@ -1572,11 +1605,28 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
             ) : null
           }
           ListEmptyComponent={
-            <View className="flex-1 items-center justify-center py-16">
-              <Text style={{ color: "#8B8D90", fontSize: 14 }}>
-                {t("comments.noneYetBeFirst")}
-              </Text>
-            </View>
+            loadError ? (
+              <View className="flex-1 items-center justify-center py-16" style={{ gap: 16 }}>
+                <Text style={{ color: "#8B8D90", fontSize: 14 }}>
+                  {t("comments.loadFailed")}
+                </Text>
+                <Pressable
+                  onPress={retryLoad}
+                  accessibilityRole="button"
+                  className={isMinimal ? "px-5 py-2 border" : "px-5 py-2 rounded-xl bg-theme-neutrals-700"}
+                  // Minimal: outline only, no fill.
+                  style={isMinimal ? { borderColor: MINIMAL_TAB_LINE } : undefined}
+                >
+                  <Text className="text-theme-neutrals-50 font-medium">{t("common.retry")}</Text>
+                </Pressable>
+              </View>
+            ) : (
+              <View className="flex-1 items-center justify-center py-16">
+                <Text style={{ color: "#8B8D90", fontSize: 14 }}>
+                  {t("comments.noneYetBeFirst")}
+                </Text>
+              </View>
+            )
           }
           onEndReached={loadMore}
           onEndReachedThreshold={0.5}
@@ -1614,9 +1664,18 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           >
             <Icon name="CornerDownLeft" size={14} color="#6F7174" />
             <Text style={{ flex: 1, fontSize: 12, color: "#A6A9AC", marginLeft: 6 }}>
-              {editingComment ? "Editing comment" : `Replying to @${replyingTo?.user?.displayName || replyingTo?.user?.username || "user"}`}
+              {editingComment
+                ? t("comments.editingComment")
+                : t("governance.discussion.replyingTo", {
+                    name: `@${replyingTo?.user?.displayName || replyingTo?.user?.username || t("dm.userFallback")}`,
+                  })}
             </Text>
-            <Pressable onPress={cancelReplyOrEdit} hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}>
+            <Pressable
+              onPress={cancelReplyOrEdit}
+              hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+              accessibilityRole="button"
+              accessibilityLabel={editingComment ? t("comments.cancelEdit") : t("comments.cancelReply")}
+            >
               <Icon name="X" size={16} color="#6F7174" />
             </Pressable>
           </View>
@@ -1772,7 +1831,13 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
                 value={inputText}
                 onChangeText={mentions.handleChangeText}
                 onSelectionChange={mentions.handleSelectionChange}
-                placeholder={editingComment ? "Edit your comment..." : replyingTo ? "Write a reply..." : "Type here"}
+                placeholder={
+                  editingComment
+                    ? t("comments.editPlaceholder")
+                    : replyingTo
+                      ? t("comments.replyPlaceholder")
+                      : t("comments.inputPlaceholder")
+                }
                 placeholderTextColor="#6F7174"
                 style={{
                   flex: 1,

@@ -146,7 +146,9 @@
     "noMoreShorts": "আর কোনো শর্টস নেই",
     "noShortsFound": "কোনো শর্টস পাওয়া যায়নি",
     "newMembersHint": "এইমাত্র যোগদান করেছেন — শুভেচ্ছা জানান",
-    "mostViewedThisMonth": "এই মাসে সবথাকি বেশি দেখা"
+    "scroll": "Scroll",
+    "noFilterMatches": "তোমার ফিল্টারের সাথে কোনো বিষয়বস্তু মিলে না।",
+    "clearFilters": "ফিল্টার মোছেন"
   },
   "explore": {
     "all": "সব",
@@ -2799,7 +2801,31 @@
     "noneYetBeFirst": "এখনও কোনো মন্তব্য নেই। প্রথম হন!",
     "turnedOff": "এই পোস্টের জন্য মন্তব্য বন্ধ আছে",
     "noQuotesYet": "এখনও কোনো উদ্ধৃতি নেই।",
-    "noRepostsYet": "এখনও কোনো রিপোস্ট নেই।"
+    "noRepostsYet": "এখনও কোনো রিপোস্ট নেই।",
+    "timeSeconds": "{{count}} সে.",
+    "timeMinutes": "{{count}} মি.",
+    "timeHours": "{{count}} ঘ.",
+    "seeWhoLiked": "দেখেন কায় লাইক দিছে",
+    "holdToReact": "{{reaction}} — প্রতিক্রিয়া দিবার জন্যে চাপি ধরি থাকেন",
+    "holdToChangeReaction": "{{reaction}} — আপনার প্রতিক্রিয়া বদলাবার জন্যে চাপি ধরি থাকেন",
+    "viewCount_one": "{{count}} বার দেখা হইছে",
+    "viewCount_other": "{{count}} বার দেখা হইছে",
+    "shareMessage": "এইটা দেখেন: {{url}}",
+    "hideReplies": "উত্তর লুকান",
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
+    "rowA11yHint": "এই মন্তব্যত উত্তর শুরু করে",
+    "editingComment": "মন্তব্য সম্পাদনা হওচে",
+    "editPlaceholder": "আপনার মন্তব্য সম্পাদনা করেন...",
+    "replyPlaceholder": "একটা উত্তর লেখেন...",
+    "inputPlaceholder": "এটে লেখেন",
+    "cancelReply": "উত্তর বাদ দেন",
+    "cancelEdit": "সম্পাদনা বাদ দেন",
+    "countLabel_one": "{{count}}টা মন্তব্য",
+    "countLabel_other": "{{count}}টা মন্তব্য",
+    "repostsLabel_one": "রিপোস্ট",
+    "repostsLabel_other": "রিপোস্ট",
+    "quotesLabel_one": "উদ্ধৃতি",
+    "quotesLabel_other": "উদ্ধৃতি"
   },
   "postInfo": {
     "title": "পোস্ট তথ্য",
@@ -5261,7 +5287,20 @@
     "removeUploadTitle": "এই আপলোডটি সরাবেন?",
     "removeQueuedBody": "এটি এখনও পোস্ট করা হয়নি । এটি অপসারণ করলে পোস্টটি বাতিল হয়ে যাবে ।",
     "quotaShortfall": "এই পোস্টটি {{cost}} টোকেন খরচ করে এবং আপনি {{held}} ধারণ করেন।",
-    "shopAllowanceUsed": "{{allowance}} টোকেন ব্যবহার করা হয়েছে {{allowance}}। আরও একটি স্লট এবং একটি উচ্চ প্রতীক পেতে DeHub টোকেন স্টেক করুন।"
+    "shopAllowanceUsed": "{{allowance}} টোকেন ব্যবহার করা হয়েছে {{allowance}}। আরও একটি স্লট এবং একটি উচ্চ প্রতীক পেতে DeHub টোকেন স্টেক করুন।",
+    "editFilters": "সম্পাদনা ফিল্টার",
+    "cropRotate": "ক্যাপ এবং ঘূর্ণায়মান",
+    "drawWrite": "আঁকুন এবং লিখুন",
+    "fade": "ফেড {{value}}%",
+    "grayscale": "গ্রে স্কেল {{value}}%",
+    "resetEdits": "রিসেট",
+    "clearDrawing": "মুছুন",
+    "typeText": "টাইপ...",
+    "textSize": "টেক্সট আকার {{value}}",
+    "coverFrames": "একটি কভার ফ্রেম বেছে নিন",
+    "coverFrame": "কভার হিসাবে ফ্রেম {{index}} ব্যবহার করুন",
+    "uploadCover": "একটি কভার ছবি আপলোড করুন",
+    "editFailed": "সেই সম্পাদনা প্রয়োগ করা যায়নি। আবার চেষ্টা করুন।"
   },
   "bounty": {
     "claimed": "নেওয়া হইছে",
@@ -8228,6 +8267,13 @@
       "developer-tools": "ডেভেলপার টুলস",
       "entertainment": "এন্টারটেইনমেন্ট",
       "art-creativity": "আর্ট অ্যান্ড ক্রিয়েটিভিটি"
+    },
+    "pay": {
+      "confirm": "পে {{amount}} ডিএইচবি",
+      "body": "ডিএইচবি সরাসরি অ্যাপের ওয়ালেটে যাবে, {{wallet}}. পেমেন্ট রিভার্স করা যাবে না।"
+    },
+    "add": {
+      "body": "তুমি আপনার অ্যাপস মেনুতে এটা দেখতে পাবে আর তুমি নোটিফিকেশন পাবো। কখনোই চাইলে তুমি অ্যাপস পেজ থেকে এটা মুছে ফেলতে পারো।"
     }
   },
   "postQuota": {

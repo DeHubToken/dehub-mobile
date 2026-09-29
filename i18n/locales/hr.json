@@ -146,7 +146,9 @@
     "noMoreShorts": "Nema više kratkih videa",
     "noShortsFound": "Nisu pronađeni kratki videozapisi",
     "newMembersHint": "Upravo ste se pridružili — pozdravite",
-    "mostViewedThisMonth": "Najgledanije ovaj mjesec"
+    "scroll": "Scroll",
+    "noFilterMatches": "Nema sadržaja koji odgovara tvojim filterima.",
+    "clearFilters": "Očisti filtre"
   },
   "explore": {
     "all": "Sve",
@@ -2641,7 +2643,31 @@
     "noneYetBeFirst": "Nema komentara. Budite prvi!",
     "turnedOff": "Komentari su isključeni za ovu objavu",
     "noQuotesYet": "Nema citata.",
-    "noRepostsYet": "Nema repostova."
+    "noRepostsYet": "Nema repostova.",
+    "timeSeconds": "{{count}} s",
+    "timeMinutes": "{{count}} min",
+    "timeHours": "{{count}} h",
+    "seeWhoLiked": "Pogledajte kome se sviđa",
+    "holdToReact": "{{reaction}} — zadržite za reakciju",
+    "holdToChangeReaction": "{{reaction}} — zadržite za promjenu reakcije",
+    "viewCount_one": "{{count}} pregled",
+    "viewCount_other": "{{count}} pregleda",
+    "shareMessage": "Pogledaj ovo: {{url}}",
+    "hideReplies": "Sakrij odgovore",
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
+    "rowA11yHint": "Započinje odgovor na ovaj komentar",
+    "editingComment": "Uređivanje komentara",
+    "editPlaceholder": "Uredite svoj komentar...",
+    "replyPlaceholder": "Napišite odgovor...",
+    "inputPlaceholder": "Upišite ovdje",
+    "cancelReply": "Otkaži odgovor",
+    "cancelEdit": "Otkaži uređivanje",
+    "countLabel_one": "{{count}} komentar",
+    "countLabel_other": "{{count}} komentara",
+    "repostsLabel_one": "ponovna objava",
+    "repostsLabel_other": "ponovnih objava",
+    "quotesLabel_one": "citat",
+    "quotesLabel_other": "citata"
   },
   "postInfo": {
     "title": "Informacije o objavi",
@@ -5126,7 +5152,20 @@
     "removeUploadTitle": "Želite li ukloniti ovaj prijenos?",
     "removeQueuedBody": "Još nije objavljen. Uklanjanjem se objava poništava.",
     "quotaShortfall": "Ovaj post košta {{cost}} tokena i vi posjedujete {{held}}.",
-    "shopAllowanceUsed": "Iskorišteno {{allowance}} od {{allowance}}. Uložite više DeHub tokena za viši status i još jedno mjesto."
+    "shopAllowanceUsed": "Iskorišteno {{allowance}} od {{allowance}}. Uložite više DeHub tokena za viši status i još jedno mjesto.",
+    "editFilters": "Uređivanje filtera",
+    "cropRotate": "Kupiranje & rotiranje",
+    "drawWrite": "Nacrtaj & napiši",
+    "fade": "Zamuži {{value}}%",
+    "grayscale": "Sivina {{value}}%",
+    "resetEdits": "Resetiraj",
+    "clearDrawing": "Izbriši",
+    "typeText": "Upiši...",
+    "textSize": "Veličina teksta {{value}}",
+    "coverFrames": "Odaberi okvir za naslovnicu",
+    "coverFrame": "Upotrijebi okvir {{index}} kao naslovnici",
+    "uploadCover": "Preuzmi sliku za naslovnici",
+    "editFailed": "Nije moguće primijeniti taj uređivač. Pokušaj ponovno."
   },
   "bounty": {
     "claimed": "Preuzeto",
@@ -8526,7 +8565,11 @@
       "search": "Pretraživanje aplikacija",
       "all": "Sve",
       "fromDehub": "Od DeHuba",
-      "noMatch": "Nema aplikacija koje odgovaraju pretraživanju."
+      "noMatch": "Nema aplikacija koje odgovaraju pretraživanju.",
+      "yourApps": "Vaše aplikacije",
+      "notificationsOn": "Oznake uključene",
+      "remove": "Ukloni",
+      "removed": "Uklonjeno. Više nećete biti obaviješteni."
     },
     "card": {
       "open": "Otvori"
@@ -8545,6 +8588,17 @@
       "developer-tools": "Alati za razvoj",
       "entertainment": "Zabava",
       "art-creativity": "Umjetnost i kreativnost"
+    },
+    "pay": {
+      "title": "Plati {{name}}?",
+      "body": "DHB ide direktno u novčanik aplikacije, {{wallet}}. Plaćanja se ne mogu poništiti.",
+      "confirm": "Plati {{amount}} DHB",
+      "sent": "Uplaćeno {{amount}} DHB na {{name}}."
+    },
+    "add": {
+      "title": "Dodaj {{name}}?",
+      "body": "Bit će prikazana pod Vašim aplikacijama i može vam slati obavijesti. Možete je u svakom trenutku ukloniti s stranice Aplikacija.",
+      "confirm": "Dodaj aplikaciju"
     }
   },
   "aiStyles": {

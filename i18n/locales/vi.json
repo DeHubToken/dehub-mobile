@@ -146,7 +146,9 @@
     "noMoreShorts": "Không còn video ngắn nào",
     "noShortsFound": "Không tìm thấy video ngắn nào",
     "newMembersHint": "Vừa tham gia — hãy chào hỏi",
-    "mostViewedThisMonth": "Xem nhiều nhất tháng này"
+    "scroll": "Scroll",
+    "noFilterMatches": "Không có nội dung nào khớp với bộ lọc của bạn.",
+    "clearFilters": "Xóa bộ lọc"
   },
   "explore": {
     "all": "Tất cả",
@@ -2653,7 +2655,31 @@
     "noneYetBeFirst": "Chưa có bình luận nào. Hãy là người đầu tiên!",
     "turnedOff": "Bình luận đã bị tắt cho bài đăng này",
     "noQuotesYet": "Chưa có trích dẫn nào.",
-    "noRepostsYet": "Chưa có đăng lại nào."
+    "noRepostsYet": "Chưa có đăng lại nào.",
+    "timeSeconds": "{{count}} giây",
+    "timeMinutes": "{{count}} phút",
+    "timeHours": "{{count}} giờ",
+    "seeWhoLiked": "Xem ai đã thích",
+    "holdToReact": "{{reaction}} — nhấn giữ để bày tỏ cảm xúc",
+    "holdToChangeReaction": "{{reaction}} — nhấn giữ để đổi cảm xúc của bạn",
+    "viewCount_one": "{{count}} lượt xem",
+    "viewCount_other": "{{count}} lượt xem",
+    "shareMessage": "Xem cái này nhé: {{url}}",
+    "hideReplies": "Ẩn câu trả lời",
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
+    "rowA11yHint": "Bắt đầu trả lời bình luận này",
+    "editingComment": "Đang chỉnh sửa bình luận",
+    "editPlaceholder": "Chỉnh sửa bình luận của bạn...",
+    "replyPlaceholder": "Viết câu trả lời...",
+    "inputPlaceholder": "Nhập tại đây",
+    "cancelReply": "Hủy trả lời",
+    "cancelEdit": "Hủy chỉnh sửa",
+    "countLabel_one": "{{count}} bình luận",
+    "countLabel_other": "{{count}} bình luận",
+    "repostsLabel_one": "Lượt đăng lại",
+    "repostsLabel_other": "Lượt đăng lại",
+    "quotesLabel_one": "Lượt trích dẫn",
+    "quotesLabel_other": "Lượt trích dẫn"
   },
   "postInfo": {
     "title": "Thông tin bài viết",
@@ -5138,7 +5164,20 @@
     "removeUploadTitle": "Xóa nội dung tải lên này?",
     "removeQueuedBody": "Nó chưa được đăng. Xóa bài đăng sẽ hủy bài đăng.",
     "quotaShortfall": "Bài đăng này có giá {{cost}} token và bạn có {{held}}.",
-    "shopAllowanceUsed": "Đã sử dụng {{allowance}} trong số {{allowance}}. Hãy stake thêm token DeHub để có huy hiệu cao hơn và thêm một ô."
+    "shopAllowanceUsed": "Đã sử dụng {{allowance}} trong số {{allowance}}. Hãy stake thêm token DeHub để có huy hiệu cao hơn và thêm một ô.",
+    "editFilters": "Chỉnh bộ lọc",
+    "cropRotate": "Cắt & xoay",
+    "drawWrite": "Vẽ & viết",
+    "fade": "Làm mờ màu {{value}}%",
+    "grayscale": "Thang xám {{value}}%",
+    "resetEdits": "Đặt lại",
+    "clearDrawing": "Xóa",
+    "typeText": "Nhập…",
+    "textSize": "Cỡ chữ {{value}}",
+    "coverFrames": "Chọn khung hình làm ảnh bìa",
+    "coverFrame": "Dùng khung hình {{index}} làm ảnh bìa",
+    "uploadCover": "Tải ảnh bìa lên",
+    "editFailed": "Không thể áp dụng chỉnh sửa. Hãy thử lại."
   },
   "bounty": {
     "claimed": "Đã nhận",
@@ -8613,7 +8652,11 @@
       "search": "Tìm kiếm ứng dụng",
       "all": "Tất cả",
       "fromDehub": "Từ DeHub",
-      "noMatch": "Không có ứng dụng nào phù hợp với kết quả tìm kiếm của bạn."
+      "noMatch": "Không có ứng dụng nào phù hợp với kết quả tìm kiếm của bạn.",
+      "yourApps": "Các ứng dụng của bạn",
+      "notificationsOn": "Thông báo về",
+      "remove": "Thông báo đã bật",
+      "removed": "Xóa"
     },
     "card": {
       "open": "Mở"
@@ -8632,6 +8675,16 @@
       "developer-tools": "Công cụ phát triển",
       "entertainment": "Giải trí",
       "art-creativity": "Nghệ thuật & sáng tạo"
+    },
+    "pay": {
+      "title": "Trả {{name}}?",
+      "body": "Thanh toán {{wallet}}?",
+      "confirm": "DHB sẽ được chuyển trực tiếp vào ví của ứng dụng, {{amount}}. Thanh toán không thể hoàn lại.",
+      "sent": "Đã thanh toán {{amount}} cho {{name}}."
+    },
+    "add": {
+      "body": "Nó sẽ xuất hiện trong danh sách Ứng dụng của bạn và có thể gửi thông báo cho bạn. Bạn có thể xóa nó bất kỳ lúc nào từ trang Ứng dụng.",
+      "confirm": "Nó sẽ xuất hiện dưới mục Các ứng dụng của bạn và có thể gửi thông báo cho bạn. Bạn có thể xóa nó bất kỳ lúc nào từ trang Ứng dụng."
     }
   },
   "aiStyles": {

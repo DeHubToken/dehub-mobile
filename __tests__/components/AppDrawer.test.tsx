@@ -8,8 +8,8 @@ import AppDrawer from '../../components/Home/AppDrawer';
 const mockDispatch = jest.fn();
 let mockSignedIn = true;
 let mockBalance = 500;
+let mockDigitalPurchasesEnabled = true;
 const mockOpenLink = jest.fn();
-const mockRequestTab = jest.fn();
 jest.mock('react-native-css-interop/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
 // The system theme, without the native modules the real provider loads.
 jest.mock('../../context/ThemeContext', () => ({
@@ -48,9 +48,8 @@ jest.mock('react-native-reanimated', () => ({
 }));
 jest.mock('../../components/common/Avatar', () => 'Avatar');
 jest.mock('expo-image', () => ({ Image: 'Image' }));
-jest.mock('../../libs/eventBus', () => ({ homeTabEvents: { requestTab: (postType: string) => mockRequestTab(postType) } }));
 jest.mock('../../components/ui/Icon', () => 'Icon');
-jest.mock('../../config/storefront', () => ({ DIGITAL_PURCHASES_ENABLED: true }));
+jest.mock('../../config/storefront', () => ({ get DIGITAL_PURCHASES_ENABLED() { return mockDigitalPurchasesEnabled; } }));
 jest.mock('../../context/AuthContext', () => ({
   useAuthState: () => ({ isSignedIn: mockSignedIn }),
   useAuthActions: () => ({ signOut: jest.fn() }),
@@ -62,7 +61,7 @@ jest.mock('../../libs/links.utils', () => ({ openInApp: (url: string) => mockOpe
 jest.mock('react-i18next', () => ({ useTranslation: () => ({ t: (key: string) => key }) }));
 
 const destinations = [
-  ['nav.home', 'Home', true], ['nav.profile', 'Profile'], ['nav.explore', 'Explore', true],
+  ['nav.profile', 'Profile'], ['nav.explore', 'Explore', true],
   ['nav.prompt', 'Prompt'], ['nav.notifications', 'Notifications'], ['nav.messages', 'DM', true],
   ['nav.communities', 'Communities'], ['nav.assistant', 'AIChat', true], ['nav.settings', 'AccountSettings'],
   ['nav.leaderboard', 'Leaderboard'], ['nav.stats', 'Stats'], ['nav.bookmarks', 'MyLibrary', false, { initialTab: 'saved' }],
@@ -76,7 +75,20 @@ const destinations = [
   ['nav.connectAi', 'Connect'],
 ] as const;
 
-beforeEach(() => { jest.clearAllMocks(); mockSignedIn = true; mockBalance = 500; });
+beforeEach(() => { jest.clearAllMocks(); mockSignedIn = true; mockBalance = 500; mockDigitalPurchasesEnabled = true; });
+
+it.each([['nav.superpowers', 'SuperPowers'], ['nav.arcade', 'Arcade'], ['nav.governance', 'Governance']])(
+  'keeps %s accessible with no token balance and iOS purchases disabled', (label, screen) => {
+    mockDigitalPurchasesEnabled = false;
+    mockBalance = 0;
+    const view = render(<AppDrawer visible onClose={jest.fn()} />);
+    expect(view.queryByLabelText('nav.wallet')).toBeNull();
+    fireEvent.press(view.getByLabelText(label));
+    expect(mockDispatch).toHaveBeenCalledWith({ type: 'NAVIGATE', payload: {
+      name: 'App', params: { screen, params: undefined },
+    } });
+  },
+);
 
 it.each(destinations)('%s immediately closes and targets its registered nested screen', (label, screen, tab = false, params = undefined) => {
   const close = jest.fn();
@@ -129,11 +141,10 @@ it('searches Explore with the menu query and opens documentation links', () => {
   }, pop: true } } });
 });
 
-it.each([['feed.videos', 'video'], ['feed.images', 'feed-images'], ['feed.music', 'feed-audio'], ['feed.live', 'live']])('%s opens Home on its feed tab', (label, postType) => {
-  const close = jest.fn();
-  const view = render(<AppDrawer visible onClose={close} />);
-  fireEvent.press(view.getByLabelText(label));
-  expect(close).toHaveBeenCalledTimes(1);
+it('leaves Home and the feed tabs off the resting menu but finds Home by search', () => {
+  const view = render(<AppDrawer visible onClose={jest.fn()} />);
+  for (const label of ['nav.home', 'feed.videos', 'feed.images', 'feed.music', 'feed.live']) expect(view.queryByLabelText(label)).toBeNull();
+  fireEvent.changeText(view.getByLabelText('sidebar.searchMenu'), 'nav.home');
+  fireEvent.press(view.getByLabelText('nav.home'));
   expect(mockDispatch).toHaveBeenCalledWith({ type: 'NAVIGATE', payload: { name: 'App', params: { screen: 'Root', params: { screen: 'Home', params: undefined }, pop: true } } });
-  expect(mockRequestTab).toHaveBeenCalledWith(postType);
 });

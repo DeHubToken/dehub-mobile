@@ -146,7 +146,9 @@
     "noMoreShorts": "Цааш богино видео байхгүй",
     "noShortsFound": "Богино видео олдсонгүй",
     "newMembersHint": "Сая элслээ — мэндчил",
-    "mostViewedThisMonth": "Энэ сард хамгийн их үзсэн"
+    "scroll": "Scroll",
+    "noFilterMatches": "Таны шүүлтүүрт тохирох контент алга.",
+    "clearFilters": "Шүүлтүүр цэвэрлэх"
   },
   "explore": {
     "all": "Бүгд",
@@ -2640,7 +2642,31 @@
     "noneYetBeFirst": "Одоогоор сэтгэгдэл байхгүй байна. Та эхэлж бичээрэй!",
     "turnedOff": "Энэ постонд сэтгэгдэл хаалттай байна",
     "noQuotesYet": "Одоогоор эшлэл байхгүй байна.",
-    "noRepostsYet": "Одоогоор дахин нийтлэл байхгүй байна."
+    "noRepostsYet": "Одоогоор дахин нийтлэл байхгүй байна.",
+    "timeSeconds": "{{count}} сек",
+    "timeMinutes": "{{count}} мин",
+    "timeHours": "{{count}} цаг",
+    "seeWhoLiked": "Хэн таалсныг харах",
+    "holdToReact": "{{reaction}} — хариу үйлдэл үзүүлэхийн тулд удаан дарна уу",
+    "holdToChangeReaction": "{{reaction}} — хариу үйлдлээ өөрчлөхийн тулд удаан дарна уу",
+    "viewCount_one": "{{count}} үзэлт",
+    "viewCount_other": "{{count}} үзэлт",
+    "shareMessage": "Үүнийг хараарай: {{url}}",
+    "hideReplies": "Хариултуудыг нуух",
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
+    "rowA11yHint": "Энэ сэтгэгдэлд хариулж эхэлнэ",
+    "editingComment": "Сэтгэгдэл засаж байна",
+    "editPlaceholder": "Сэтгэгдлээ засна уу...",
+    "replyPlaceholder": "Хариулт бичнэ үү...",
+    "inputPlaceholder": "Энд бичнэ үү",
+    "cancelReply": "Хариултыг цуцлах",
+    "cancelEdit": "Засварыг цуцлах",
+    "countLabel_one": "{{count}} сэтгэгдэл",
+    "countLabel_other": "{{count}} сэтгэгдэл",
+    "repostsLabel_one": "Дахин нийтлэл",
+    "repostsLabel_other": "Дахин нийтлэл",
+    "quotesLabel_one": "Эшлэл",
+    "quotesLabel_other": "Эшлэл"
   },
   "postInfo": {
     "title": "Нийтлэлийн мэдээлэл",
@@ -5125,7 +5151,20 @@
     "removeQueuedBody": "Хараахан тусгагдаагүй байна. Нийтлэлийг цуцлах",
     "addThumbnail": "Дүрс нэмэх",
     "quotaShortfall": "Энэ нийтлэл нь {{cost}} токен бөгөөд та {{held}} эзэмшиж байна.",
-    "shopAllowanceUsed": "{{allowance}} -аас {{allowance}} ашигласан. Илүү өндөр тэмдэг болон нэмэлт орон зай авахын тулд DeHub токенээ илүү ихээр staking хийнэ үү."
+    "shopAllowanceUsed": "{{allowance}} -аас {{allowance}} ашигласан. Илүү өндөр тэмдэг болон нэмэлт орон зай авахын тулд DeHub токенээ илүү ихээр staking хийнэ үү.",
+    "editFilters": "Засах шүүлтүүд",
+    "cropRotate": "Таслах ба эргүүлэх",
+    "drawWrite": "Зурах ба бичих",
+    "fade": "Арилгах {{value}}%",
+    "grayscale": "Саарал {{value}}%",
+    "resetEdits": "Дахин тохируулах",
+    "clearDrawing": "Цэвэрлэх",
+    "typeText": "Бичих…",
+    "textSize": "Текстийн хэмжээ {{value}}",
+    "coverFrames": "Нүүр хуудсыг сонгох",
+    "coverFrame": "{{index}} рамкийг нүүр хуудас болгон ашиглах",
+    "uploadCover": "Нүүр хуудсын зураг байршуулах",
+    "editFailed": "Энэ засварыг хийж чадсангүй. Дахин оролдоно уу."
   },
   "bounty": {
     "claimed": "Авсан",
@@ -8525,7 +8564,11 @@
       "search": "Аппликэйшн хайх",
       "all": "Бүгд",
       "fromDehub": "Дебнээс",
-      "noMatch": "Апп хайхад тохирохгүй байна."
+      "noMatch": "Апп хайхад тохирохгүй байна.",
+      "yourApps": "Эцсийн аппүүд",
+      "notificationsOn": "Хүлээнэ",
+      "remove": "Хасах",
+      "removed": "Хасагдсан. Таныг дахин мэдэгдэхгүй байна."
     },
     "card": {
       "open": "Нээлттэй"
@@ -8544,6 +8587,16 @@
       "developer-tools": "Хөгжүүлэгч хэрэгсэл",
       "entertainment": "Үзвэр үйлчилгээ",
       "art-creativity": "Урлаг ба бүтээлч байдал"
+    },
+    "pay": {
+      "title": "{{name}}-ийн төлбөр төлөх үү?",
+      "confirm": "{{amount}} DHB төлөх",
+      "sent": "{{amount}} DHB {{name}}-д төлөгдсөн."
+    },
+    "add": {
+      "title": "{{name}}-г нэмэх үү?",
+      "body": "Таны аппүүд дээр гарч, мэдэгдэхүүд илгээх болно. Таныг дахин мэдэгдэхгүй байна. Аппүүдийн талбарт үе үегээс хасах болно.",
+      "confirm": "Апп нэмэх"
     }
   },
   "aiStyles": {

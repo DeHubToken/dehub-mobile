@@ -146,7 +146,9 @@
     "noMoreShorts": "Žádné krátké videa",
     "noShortsFound": "Nebyly nalezeny žádné krátké videa",
     "newMembersHint": "Právě jste se připojili — pozdravte",
-    "mostViewedThisMonth": "Nejsledovanější tento měsíc"
+    "scroll": "Scroll",
+    "noFilterMatches": "Tvým filtrům neodpovídá žádný obsah.",
+    "clearFilters": "Vymazat filtry"
   },
   "explore": {
     "all": "Vše",
@@ -2645,7 +2647,31 @@
     "noneYetBeFirst": "Žádné komentáře ještě nejsou. Buďte první!",
     "turnedOff": "Komentáře jsou pro tento příspěvek vypnuty",
     "noQuotesYet": "Žádné citace ještě nejsou.",
-    "noRepostsYet": "Žádné přeposlání ještě nejsou."
+    "noRepostsYet": "Žádné přeposlání ještě nejsou.",
+    "timeSeconds": "{{count}} s",
+    "timeMinutes": "{{count}} min",
+    "timeHours": "{{count}} h",
+    "seeWhoLiked": "Zobrazit, komu se líbí",
+    "holdToReact": "{{reaction}} — podržením zareagujete",
+    "holdToChangeReaction": "{{reaction}} — podržením změníte reakci",
+    "viewCount_one": "{{count}} zobrazení",
+    "viewCount_other": "{{count}} zobrazení",
+    "shareMessage": "Podívejte se na tohle: {{url}}",
+    "hideReplies": "Skrýt odpovědi",
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
+    "rowA11yHint": "Zahájí odpověď na tento komentář",
+    "editingComment": "Úprava komentáře",
+    "editPlaceholder": "Upravte svůj komentář...",
+    "replyPlaceholder": "Napište odpověď...",
+    "inputPlaceholder": "Pište sem",
+    "cancelReply": "Zrušit odpověď",
+    "cancelEdit": "Zrušit úpravy",
+    "countLabel_one": "{{count}} komentář",
+    "countLabel_other": "{{count}} komentářů",
+    "repostsLabel_one": "repost",
+    "repostsLabel_other": "repostů",
+    "quotesLabel_one": "citace",
+    "quotesLabel_other": "citací"
   },
   "postInfo": {
     "title": "Informace o příspěvku",
@@ -5129,7 +5155,20 @@
     "removeUploadTitle": "Odebrat toto nahrávání?",
     "removeQueuedBody": "Dosud nebyl zveřejněn. Jeho odebráním zrušíte příspěvek.",
     "quotaShortfall": "Tento příspěvek stojí {{cost}} tokenů a vy držíte {{held}}.",
-    "shopAllowanceUsed": "Použito {{allowance}} z {{allowance}}. Vsaďte více tokenů DeHub pro vyšší odznak a další slot."
+    "shopAllowanceUsed": "Použito {{allowance}} z {{allowance}}. Vsaďte více tokenů DeHub pro vyšší odznak a další slot.",
+    "editFilters": "Upravit filtry",
+    "cropRotate": "Krokovat & otočit",
+    "drawWrite": "Nakreslit & napsat",
+    "fade": "Ztmavit {{value}}%",
+    "grayscale": "Šedivit {{value}}%",
+    "resetEdits": "Resetovat",
+    "clearDrawing": "Vymazat",
+    "typeText": "Napište…",
+    "textSize": "Velikost textu {{value}}",
+    "coverFrames": "Vyberte rámeček",
+    "coverFrame": "Použít rámeček {{index}} jako obálku",
+    "uploadCover": "Nahrát obrázek obálky",
+    "editFailed": "Nelze aplikovat editaci. Zkuste to znovu."
   },
   "bounty": {
     "claimed": "Vyzvednuto",
@@ -8529,7 +8568,10 @@
       "search": "Hledat aplikace",
       "all": "Vše",
       "fromDehub": "Od společnosti DeHub",
-      "noMatch": "Tomuto vyhledávání neodpovídají žádné aplikace."
+      "noMatch": "Tomuto vyhledávání neodpovídají žádné aplikace.",
+      "yourApps": "Vaše aplikace",
+      "notificationsOn": "Zprávy o",
+      "removed": "Odstraněno. Nebude vás o tom varovat znovu."
     },
     "card": {
       "open": "Otevřít"
@@ -8548,6 +8590,17 @@
       "developer-tools": "Nástroje pro vývojáře",
       "entertainment": "Zábava",
       "art-creativity": "Umění a kreativita"
+    },
+    "pay": {
+      "title": "Platit {{name}}?",
+      "body": "DHB příměří do peněženky aplikace, {{wallet}}. Platby nelze vrátit.",
+      "confirm": "Zaplatit {{amount}} DHB",
+      "sent": "Placené {{amount}} DHB za {{name}}."
+    },
+    "add": {
+      "title": "Přidejte {{name}}?",
+      "body": "Vyobrazí se pod Vašimi aplikacemi a může vám posílat notifikace. Můžete ho kdykoli odstranit z stránky Aplikace.",
+      "confirm": "Přidej aplikaci"
     }
   },
   "aiStyles": {

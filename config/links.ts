@@ -1,8 +1,8 @@
 import env from "./env"
 
 export const BUY_FROM_DEX_LINK="https://app.camelot.exchange/?outputCurrency=0x9caae40dcf950afea443119e51e821d6fe2437ca"
-export const TERMS_OF_SERVICE_LINK="https://docs.dhb.gg/docs/terms-of-service"
-export const PRIVACY_POLICY_LINK="https://docs.dhb.gg/docs/privacy"
+export const TERMS_OF_SERVICE_LINK="https://dehub.io/docs/terms-of-service"
+export const PRIVACY_POLICY_LINK="https://dehub.io/docs/privacy"
 export const DELETE_DATA_OR_ACCOUNT_LINK="https://dehub.io/delete-account"
 export const SUPPORT_MAIL="dev@dehub.io"
 export const DEV_MAIL="alhaji4megahit@gmail.com"

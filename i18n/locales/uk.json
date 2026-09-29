@@ -146,7 +146,9 @@
     "noMoreShorts": "Більше немає Shorts",
     "noShortsFound": "Shorts не знайдено",
     "newMembersHint": "Щойно приєдналися — привітайтеся",
-    "mostViewedThisMonth": "Найпопулярніше цього місяця"
+    "scroll": "Scroll",
+    "noFilterMatches": "Немає контенту, що відповідає вашим фільтрам.",
+    "clearFilters": "Скинути фільтри"
   },
   "explore": {
     "all": "Усі",
@@ -2998,7 +3000,31 @@
     "noneYetBeFirst": "Коментарів ще немає. Будьте першим!",
     "turnedOff": "Коментарі до цього допису вимкнено",
     "noQuotesYet": "Цитат ще немає.",
-    "noRepostsYet": "Репостів ще немає."
+    "noRepostsYet": "Репостів ще немає.",
+    "timeSeconds": "{{count}} с",
+    "timeMinutes": "{{count}} хв",
+    "timeHours": "{{count}} год",
+    "seeWhoLiked": "Переглянути, кому сподобалося",
+    "holdToReact": "{{reaction}} — утримуйте, щоб відреагувати",
+    "holdToChangeReaction": "{{reaction}} — утримуйте, щоб змінити реакцію",
+    "viewCount_one": "{{count}} перегляд",
+    "viewCount_other": "{{count}} переглядів",
+    "shareMessage": "Поглянь на це: {{url}}",
+    "hideReplies": "Сховати відповіді",
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
+    "rowA11yHint": "Починає відповідь на цей коментар",
+    "editingComment": "Редагування коментаря",
+    "editPlaceholder": "Відредагуйте свій коментар...",
+    "replyPlaceholder": "Напишіть відповідь...",
+    "inputPlaceholder": "Пишіть тут",
+    "cancelReply": "Скасувати відповідь",
+    "cancelEdit": "Скасувати редагування",
+    "countLabel_one": "{{count}} коментар",
+    "countLabel_other": "{{count}} коментарів",
+    "repostsLabel_one": "Репост",
+    "repostsLabel_other": "Репостів",
+    "quotesLabel_one": "Цитата",
+    "quotesLabel_other": "Цитат"
   },
   "postInfo": {
     "title": "Інформація про допис",
@@ -5483,7 +5509,20 @@
     "removeUploadTitle": "Видалити це завантаження?",
     "removeQueuedBody": "Його ще не опубліковано. Видалення допису скасовує його.",
     "quotaShortfall": "Цей допис коштує {{cost}} токенів, а у вас є {{held}}.",
-    "shopAllowanceUsed": "Використано {{allowance}} з {{allowance}}. Застейкайте більше токенів DeHub для вищого значка та додаткового слоту."
+    "shopAllowanceUsed": "Використано {{allowance}} з {{allowance}}. Застейкайте більше токенів DeHub для вищого значка та додаткового слоту.",
+    "editFilters": "Змінити фільтри",
+    "cropRotate": "Обрізати й повернути",
+    "drawWrite": "Малювати й писати",
+    "fade": "Вицвітання {{value}}%",
+    "grayscale": "Відтінки сірого {{value}}%",
+    "resetEdits": "Скинути",
+    "clearDrawing": "Очистити",
+    "typeText": "Введіть текст…",
+    "textSize": "Розмір тексту {{value}}",
+    "coverFrames": "Виберіть кадр для обкладинки",
+    "coverFrame": "Зробити кадр {{index}} обкладинкою",
+    "uploadCover": "Завантажити обкладинку",
+    "editFailed": "Не вдалося застосувати зміну. Спробуйте ще раз."
   },
   "bounty": {
     "claimed": "Отримано",
@@ -9008,7 +9047,10 @@
       "search": "Пошук застосунків",
       "all": "Усі",
       "fromDehub": "Від DeHub",
-      "noMatch": "Жодна програма не відповідає цьому пошуковому запиту."
+      "noMatch": "Жодна програма не відповідає цьому пошуковому запиту.",
+      "yourApps": "Ваші додатки",
+      "notificationsOn": "Оповіщення на",
+      "removed": "Видалено. Більше не сповіщуватимете."
     },
     "card": {
       "open": "Відкрити"
@@ -9027,6 +9069,17 @@
       "developer-tools": "Інструменти розробника",
       "entertainment": "Розваги",
       "art-creativity": "Мистецтво та творчість"
+    },
+    "pay": {
+      "title": "Сплатити {{name}}?",
+      "body": "ДХБ безпосередньо надходить до гаманця додатку, {{wallet}}. Платежі не підлягають поверненню.",
+      "confirm": "Сплатити {{amount}} ДХБ",
+      "sent": "Оплачено {{amount}} DHB до {{name}}."
+    },
+    "add": {
+      "title": "Додати {{name}}?",
+      "body": "Відобразиться у розділі *Ваші програми* та може надсилати вам сповіщення. Ви можете його будь-коли видалити з сторінки *Програми*.",
+      "confirm": "Додати додаток"
     }
   },
   "aiStyles": {

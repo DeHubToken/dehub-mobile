@@ -146,7 +146,9 @@
     "noMoreShorts": "אין עוד סרטונים קצרים",
     "noShortsFound": "לא נמצאו סרטונים קצרים",
     "newMembersHint": "רק הצטרפת — אמור שלום",
-    "mostViewedThisMonth": "הנצפים ביותר החודש"
+    "scroll": "Scroll",
+    "noFilterMatches": "אין תוכן שתואם למסננים שלכם.",
+    "clearFilters": "ניקוי מסננים"
   },
   "explore": {
     "all": "הכל",
@@ -2645,7 +2647,31 @@
     "noneYetBeFirst": "עדיין אין תגובות. היה הראשון!",
     "turnedOff": "תגובות כבויות לפוסט הזה",
     "noQuotesYet": "עדיין אין ציטוטים.",
-    "noRepostsYet": "עדיין אין ציוצים מחדש."
+    "noRepostsYet": "עדיין אין ציוצים מחדש.",
+    "timeSeconds": "{{count}} שנ׳",
+    "timeMinutes": "{{count}} דק׳",
+    "timeHours": "{{count}} שע׳",
+    "seeWhoLiked": "לראות מי עשה לייק",
+    "holdToReact": "{{reaction}} — לחיצה ארוכה כדי להגיב",
+    "holdToChangeReaction": "{{reaction}} — לחיצה ארוכה כדי לשנות את הריאקציה",
+    "viewCount_one": "{{count}} צפייה",
+    "viewCount_other": "{{count}} צפיות",
+    "shareMessage": "שווה לראות: {{url}}",
+    "hideReplies": "הסתרת תשובות",
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
+    "rowA11yHint": "מתחיל תשובה לתגובה הזו",
+    "editingComment": "עריכת תגובה",
+    "editPlaceholder": "ערוך את התגובה שלך...",
+    "replyPlaceholder": "כתוב תשובה...",
+    "inputPlaceholder": "הקלד פה",
+    "cancelReply": "ביטול תשובה",
+    "cancelEdit": "ביטול עריכה",
+    "countLabel_one": "{{count}} תגובה",
+    "countLabel_other": "{{count}} תגובות",
+    "repostsLabel_one": "פוסט מחדש",
+    "repostsLabel_other": "פוסטים מחדש",
+    "quotesLabel_one": "ציטוט",
+    "quotesLabel_other": "ציטוטים"
   },
   "postInfo": {
     "title": "מידע על הפוסט",
@@ -5130,7 +5156,20 @@
     "removeUploadTitle": "להסיר את ההעלאה הזו?",
     "removeQueuedBody": "הוא עדיין לא פורסם. הסרתו מבטלת את הפוסט.",
     "quotaShortfall": "פוסט זה עולה {{cost}} אסימונים ואתה מחזיק {{held}}.",
-    "shopAllowanceUsed": "{{allowance}} מתוך {{allowance}} בשימוש. הפקד יותר אסימוני DeHub עבור תג גבוה יותר וחריץ נוסף."
+    "shopAllowanceUsed": "{{allowance}} מתוך {{allowance}} בשימוש. הפקד יותר אסימוני DeHub עבור תג גבוה יותר וחריץ נוסף.",
+    "editFilters": "עריכה",
+    "cropRotate": "גיזור והסתובב",
+    "drawWrite": "צייר וכתוב",
+    "fade": "הצטלק {{value}}%",
+    "grayscale": "אפקט גראיסקי {{value}}%",
+    "resetEdits": "אפס",
+    "clearDrawing": "נקה",
+    "typeText": "כתוב...",
+    "textSize": "גודל הטקסט {{value}}",
+    "coverFrames": "בחר פרופיל",
+    "coverFrame": "שימוש בפרופיל {{index}} ככותרת",
+    "uploadCover": "העלה תמונת כותרת",
+    "editFailed": "לא ניתן ליישום את העריכה. נסה שוב."
   },
   "bounty": {
     "claimed": "נאסף",
@@ -8530,7 +8569,10 @@
       "search": "חיפוש אפליקציות",
       "all": "הכל",
       "fromDehub": "מדהאב",
-      "noMatch": "אין אפליקציות שתואמות לחיפוש הזה."
+      "noMatch": "אין אפליקציות שתואמות לחיפוש הזה.",
+      "yourApps": "האפליקציות שלכם",
+      "notificationsOn": "הודעות על",
+      "removed": "הסרתו. לא תזכיר זאת שוב."
     },
     "card": {
       "open": "פתיחה"
@@ -8549,6 +8591,16 @@
       "developer-tools": "כלים למפתחים",
       "entertainment": "בידור",
       "art-creativity": "אמנות ויצירתיות"
+    },
+    "pay": {
+      "title": "שלם ל-{{name}}?",
+      "confirm": "שלם ל-{{amount}} DHB",
+      "sent": "שילום ל-{{amount}} באמצעות DHB ל-{{name}}."
+    },
+    "add": {
+      "body": "זה יופיע תחת \"תוכנותיי\" ויכול לשלוח לכם הודעות. אתם יכולים להסיר אותו בכל עת מהדף \"תוכנות\".",
+      "confirm": "הוסף יישום",
+      "title": "הוסף ‏{{name}}‏?"
     }
   },
   "aiStyles": {

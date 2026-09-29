@@ -26,10 +26,13 @@ import {
   FlatList,
   Alert,
   I18nManager,
+  KeyboardAvoidingView,
 } from "react-native";
 import Constants from "expo-constants";
 import { useUser, useAuthState, useAuthActions } from "../context/AuthContext";
 import { useGateToHome } from "../hooks/useGateToHome";
+import { useCanGoBack } from "../hooks/useCanGoBack";
+import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { toastSuccess, toastError } from "../libs";
 import { requestAccountErasure } from "../services/accountErasure.service";
@@ -132,6 +135,13 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation, route }) => {
   const { t } = useTranslation();
   const { theme, skin } = useAppTheme();
   const bento = useSettingsBentoStyle();
+  // Opened from the menu, a render-time canGoBack() is still false; this
+  // follows the stack once the push is saved.
+  const canPop = useCanGoBack();
+  // The top bar and header bento sit above the panel in the same parent, so
+  // the panel's own position already counts them. The offset is only where
+  // that parent starts on screen.
+  const keyboardOffset = useKeyboardOffset();
   const allow = isSignedIn && !needsUsername;
   useGateToHome(allow);
 
@@ -245,7 +255,7 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation, route }) => {
       <View style={[bento, { padding: 16 }]}>
         <View className="flex-row items-center justify-between mb-4">
           <View className="flex-row items-center flex-1 mr-3" style={{ gap: 12 }}>
-            {navigation?.canGoBack?.() ? (
+            {canPop ? (
               <TouchableOpacity
                 onPress={() => navigation.goBack()}
                 activeOpacity={0.7}
@@ -494,7 +504,14 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation, route }) => {
       {headerBento}
 
       <SettingsPanelContext.Provider value={panelContext}>
-      <View className="flex-1">
+      {/* Edge-to-edge Android does not resize the window for the keyboard, so
+          without this the email, ENS, stream key, delegation and DM fee fields
+          open under it. */}
+      <KeyboardAvoidingView
+        style={{ flex: 1 }}
+        behavior="padding"
+        keyboardVerticalOffset={keyboardOffset}
+      >
         {activeTab === "profile" && profilePanel}
         {activeTab === "appearance" && <AppearancePanel />}
         {activeTab === "notifications" && (
@@ -519,7 +536,7 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation, route }) => {
         {activeTab === "assets" && <AssetsPanel navigation={navigation} />}
         {activeTab === "multipost" && <MultiPostPanel />}
         {activeTab === "support" && supportPanel}
-      </View>
+      </KeyboardAvoidingView>
       </SettingsPanelContext.Provider>
 
       <ReportBugModal
