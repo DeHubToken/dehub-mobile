@@ -1,4 +1,5 @@
 import React from 'react';
+const createElement = React.createElement;
 import { getThemeSkin } from '../../theme/skins';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { setControlMaterial, controlProps } = require('../../libs/jsx/controls');
@@ -16,7 +17,7 @@ it('themes inline neutral actions and their dark labels without changing the act
   const skin = useSkin('osaka');
   const action = jest.fn();
   const props = { onPress: action, style: { backgroundColor: '#F4F4F5', height: 44 },
-    children: React.createElement('Text', { style: { color: '#09090B', fontSize: 14 } }, 'Continue') };
+    children: createElement('Text', { style: { color: '#09090B', fontSize: 14 } }, 'Continue') };
   const result = controlProps(props);
   expect(flatten(result.style)).toMatchObject({ ...skin.centre, height: 44 });
   expect(result.onPress).toBe(action);
@@ -26,7 +27,7 @@ it('themes inline neutral actions and their dark labels without changing the act
 it('themes neutral utility fills and labels', () => {
   const skin = useSkin('hacker');
   const result = controlProps({ onPress: jest.fn(), className: 'h-10 bg-white rounded-xl',
-    children: React.createElement('Text', { className: 'text-black font-semibold' }, 'Save') });
+    children: createElement('Text', { className: 'text-black font-semibold' }, 'Save') });
   expect(flatten(result.style)).toMatchObject(skin.centre);
   expect(result.children[0].props.className).toContain('text-white');
   expect(result.children[0].props.className).toContain('font-semibold');
