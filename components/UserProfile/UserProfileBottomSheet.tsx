@@ -11,6 +11,8 @@ import UnfollowSheet from "./UnfollowSheet";
 import { useUserProfileData } from "../../hooks/useUserProfileData";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { TAB_BAR_CONTENT_INSET } from "../../navigation/tabBarLayout";
+import { TabBarHideProvider } from "../../context/TabBarHideContext";
+import StandaloneTabBar from "../../navigation/StandaloneTabBar";
 
 interface UserProfileBottomSheetProps {
   visible: boolean;
@@ -187,6 +189,9 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
       statusBarTranslucent
     >
       <GestureHandlerRootView style={{ flex: 1 }}>
+        {/* Its own nav state: a modal sits above the tabs, so the home bar is
+            out of sight and this one hides with this profile's scroll. */}
+        <TabBarHideProvider>
         <View
           className="flex-1 bg-theme-neutrals-900"
           style={{ paddingTop: insets.top }}
@@ -216,7 +221,7 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
             data={data}
             error={error}
             onRetry={retry}
-            backToTopBottom={insets.bottom + 24}
+            backToTopBottom={TAB_BAR_CONTENT_INSET}
             profileData={profileData}
             isFollowing={isFollowing}
             isFollowRequestPending={isFollowRequestPending}
@@ -250,7 +255,9 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
             onRemoveFollower={handleRemoveFollower}
             onRegisterMenuTrigger={handleRegisterMenuTrigger}
           />
+          <StandaloneTabBar onBeforeNavigate={onClose} />
         </View>
+        </TabBarHideProvider>
       </GestureHandlerRootView>
       <UnfollowSheet
         visible={showUnfollowSheet && (isFollowing || isFollowRequestPending)}
