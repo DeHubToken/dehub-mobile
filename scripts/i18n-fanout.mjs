@@ -413,6 +413,40 @@ function addsEmoji(candidate, source) {
   return (candidate.match(EMOJI) ?? []).some((e) => !had.has(e));
 }
 
+/**
+ * Free-tier models sometimes fall into a loop and hand back one word over and
+ * over, or run on far past the source. Scored against the source, so a string
+ * that repeats on purpose in English still goes through. Marks stay inside a
+ * word, or Devanagari and similar scripts would split at every vowel sign.
+ */
+// Malay, Indonesian and Javanese double a word for plurals and more
+// ("kanak-kanak", "kira-kira"). Counted as two words, two of those in one line
+// read as a loop, so a lone pair counts once; a chain of three is left as is.
+const DOUBLED = /(?<![-\p{L}\p{M}\p{N}])([\p{L}\p{M}\p{N}]+)-\1(?![-\p{L}\p{M}\p{N}])/gu;
+const wordsOf = (text) =>
+  text.toLowerCase().replace(DOUBLED, '$1').split(/[^\p{L}\p{M}\p{N}]+/u).filter(Boolean);
+/** Highest count of any 4+ letter word inside a sliding window of 8 words. */
+function maxRepeat(words) {
+  const span = Math.min(8, words.length);
+  let best = 0;
+  for (let i = 0; i + span <= words.length; i++) {
+    const counts = new Map();
+    for (const w of words.slice(i, i + span)) {
+      if ([...w].length < 4 || !/\p{L}/u.test(w)) continue;
+      const n = (counts.get(w) ?? 0) + 1;
+      counts.set(w, n);
+      if (n > best) best = n;
+    }
+  }
+  return best;
+}
+function loops(candidate, source) {
+  const out = wordsOf(candidate);
+  const src = wordsOf(source);
+  if (maxRepeat(out) >= 4 && maxRepeat(src) < 3) return true;
+  return src.length >= 5 && out.length > 3 * src.length;
+}
+
 /* ---------- network ---------- */
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -434,7 +468,9 @@ function decodeEntities(text) {
 }
 
 async function translateBatch(lines, targetLang, key) {
-  const body = JSON.stringify({ text: lines.join('\n'), targetLang, sourceLang: 'en' });
+  // The app's own UI copy is public, and `purpose` keeps tooling traffic apart
+  // from readers' translations on the server.
+  const body = JSON.stringify({ text: lines.join('\n'), targetLang, sourceLang: 'en', public: true, purpose: 'i18n' });
   for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
     try {
       const res = await fetch(FN_URL, {
@@ -585,6 +621,7 @@ for (const locale of targets) {
       if (
         candidate == null ||
         addsEmoji(candidate, sources[j]) ||
+        loops(candidate, sources[j]) ||
         looksUnfinished(candidate, sources[j]) ||
         isUntranslatedProse(sources[j], candidate, locale) ||
         !placeholdersMatch(sources[j], candidate) ||
