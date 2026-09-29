@@ -190,7 +190,11 @@ const FloatingComment: React.FC<{
       />
       <View className="flex-1 ml-3">
         <View className="flex-row items-center">
-          <Text className="text-sm font-semibold text-theme-neutrals-100">
+          <Text
+            className="text-sm font-semibold text-theme-neutrals-100"
+            numberOfLines={1}
+            style={{ flexShrink: 1 }}
+          >
             {displayName}
           </Text>
           <Text className="text-xs text-theme-neutrals-500 ml-2">{timeAgo}</Text>

@@ -66,7 +66,7 @@ const PersonRow: React.FC<{ item: CommentLiker; onPress: (address: string) => vo
         <Avatar uri={getAvatarUrl(item.avatarImageUrl || "")} size={38} name={displayName} />
         <View style={{ flex: 1, marginLeft: 12 }}>
           <View style={{ flexDirection: "row", alignItems: "center" }}>
-            <Text style={{ color: "#F9FBFF", fontWeight: "600", fontSize: 14 }} numberOfLines={1}>
+            <Text style={{ color: "#F9FBFF", fontWeight: "600", fontSize: 14, flexShrink: 1 }} numberOfLines={1}>
               {displayName}
             </Text>
             {badgeImg ? (

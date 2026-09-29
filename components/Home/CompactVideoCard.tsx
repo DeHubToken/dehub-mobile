@@ -248,6 +248,7 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
               <TouchableOpacity
                 activeOpacity={0.7}
                 onPress={handlePressCreator}
+                style={{ flexShrink: 1 }}
               >
                 <Text
                   className="text-theme-neutrals-300 text-sm flex-shrink"
