@@ -348,7 +348,7 @@ export default function PostInfoScreen() {
           >
             {!!myBalance && myBalance > 0 && (
               <View style={styles.rowBetween}>
-                <Text style={styles.value}>
+                <Text style={[styles.value, { flexShrink: 1 }]}>
                   {t("postInfo.yourFractions", { count: myBalance, total: TOTAL_FRACTIONS })}
                 </Text>
                 <Pressable
