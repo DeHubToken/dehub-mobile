@@ -74,6 +74,9 @@ function controlProps(props) {
   if (React.Children.count(props.children) === 0 || flat.aspectRatio !== undefined) return props;
   const fill = flat.backgroundColor;
   const ownMaterial = fill === material.surface.backgroundColor && flat.borderColor === material.surface.borderColor;
+  const ownsSurface = material.ownedSurfaces?.some((surface) => fill !== undefined
+    && fill === surface.backgroundColor && flat.borderColor === surface.borderColor);
+  if (ownsSurface && !ownMaterial) return props;
   const classFill = fill === undefined && typeof props.className === 'string' && NEUTRAL_FILL.test(props.className);
   if (!classFill && !ownMaterial && typeof props.style !== 'function' && !neutral(fill)) return props;
   const style = classFill ? [props.style, material.surface] : paintStyle(props.style);

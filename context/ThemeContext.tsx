@@ -128,6 +128,7 @@ export const AppThemeProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   const controlMaterial = useMemo(() => skin ? {
     surface: skin.centre,
     foreground: skin.centreIcon,
+    ownedSurfaces: [skin.card, skin.strip, skin.stripActive, skin.barFill, skin.barBorder],
   } : null, [skin]);
   setControlMaterial(controlMaterial);
 

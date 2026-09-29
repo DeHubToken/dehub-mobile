@@ -8,10 +8,20 @@ const flatten = (style: any): any => Array.isArray(style)
   ? Object.assign({}, ...style.map(flatten)) : style ?? {};
 const useSkin = (theme: Parameters<typeof getThemeSkin>[0]) => {
   const skin = getThemeSkin(theme)!;
-  setControlMaterial({ surface: skin.centre, foreground: skin.centreIcon });
+  setControlMaterial({ surface: skin.centre, foreground: skin.centreIcon,
+    ownedSurfaces: [skin.card, skin.strip, skin.stripActive, skin.barFill, skin.barBorder] });
   return skin;
 };
 afterEach(() => setControlMaterial(null));
+
+it('keeps existing theme cards and selected navigation surfaces intact', () => {
+  const skin = useSkin('hazy');
+  for (const surface of [skin.card, skin.strip, skin.stripActive]) {
+    const props = { onPress: jest.fn(), style: [surface, { width: 80 }],
+      children: createElement('Text', { style: { color: skin.tabIcon } }, 'Menu') };
+    expect(controlProps(props)).toBe(props);
+  }
+});
 
 it('themes inline neutral actions and their dark labels without changing the action', () => {
   const skin = useSkin('osaka');
