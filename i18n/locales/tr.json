@@ -146,7 +146,9 @@
     "noMoreShorts": "Daha fazla kısa video yok",
     "noShortsFound": "Kısa video bulunamadı",
     "newMembersHint": "Yeni katıldı — merhaba deyin",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "Filtrelerinizle eşleşen içerik yok.",
+    "clearFilters": "Filtreleri temizle"
   },
   "explore": {
     "all": "Tümü",

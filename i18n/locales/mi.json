@@ -146,7 +146,9 @@
     "noMoreShorts": "Kāore anō kia puta ngā poto",
     "noShortsFound": "Kāore he poto i kitea",
     "newMembersHint": "Katahi nei ka uru mai — korerotia",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "Kāore he ihirangi e hāngai ana ki ō tātari.",
+    "clearFilters": "Whakakore tātari"
   },
   "explore": {
     "all": "Katoa",

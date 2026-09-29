@@ -146,7 +146,9 @@
     "noMoreShorts": "Δεν υπάρχουν άλλα shorts",
     "noShortsFound": "Δεν βρέθηκαν shorts",
     "newMembersHint": "Μόλις εγγραφήκατε — πείτε γεια",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "Κανένα περιεχόμενο δεν ταιριάζει με τα φίλτρα σας.",
+    "clearFilters": "Καθαρισμός φίλτρων"
   },
   "explore": {
     "all": "Όλα",

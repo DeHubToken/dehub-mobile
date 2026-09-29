@@ -146,7 +146,9 @@
     "noMoreShorts": "Больш няма Shorts",
     "noShortsFound": "Shorts не знойдзены",
     "newMembersHint": "Толькі што далучыліся — скажыце прывітанне",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "Няма кантэнту, які адпавядае вашым фільтрам.",
+    "clearFilters": "Ачысціць фільтры"
   },
   "explore": {
     "all": "Усе",

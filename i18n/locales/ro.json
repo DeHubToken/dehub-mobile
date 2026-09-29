@@ -146,7 +146,9 @@
     "noMoreShorts": "Niciun scurtmetraj",
     "noShortsFound": "Nu s-au găsit scurtmetraje",
     "newMembersHint": "Tocmai te-ai alăturat — salută",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "Niciun conținut nu se potrivește cu filtrele tale.",
+    "clearFilters": "Șterge filtrele"
   },
   "explore": {
     "all": "Toate",

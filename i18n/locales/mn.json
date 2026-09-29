@@ -146,7 +146,9 @@
     "noMoreShorts": "Цааш богино видео байхгүй",
     "noShortsFound": "Богино видео олдсонгүй",
     "newMembersHint": "Сая элслээ — мэндчил",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "Таны шүүлтүүрт тохирох контент алга.",
+    "clearFilters": "Шүүлтүүр цэвэрлэх"
   },
   "explore": {
     "all": "Бүгд",

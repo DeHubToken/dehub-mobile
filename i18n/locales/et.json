@@ -146,7 +146,9 @@
     "noMoreShorts": "Rohkem lühivideoid pole",
     "noShortsFound": "Lühivideoid ei leitud",
     "newMembersHint": "Äsja liitus – ütle tere",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "Ükski sisu ei vasta sinu filtritele.",
+    "clearFilters": "Tühjenda filtrid"
   },
   "explore": {
     "all": "Kõik",

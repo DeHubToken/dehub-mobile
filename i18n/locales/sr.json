@@ -146,7 +146,9 @@
     "noMoreShorts": "Нема више кратких филмова",
     "noShortsFound": "Није пронађен ниједан кратки филм",
     "newMembersHint": "Управо сте се придружили — поздравите се",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "Ниједан садржај не одговара твојим филтерима.",
+    "clearFilters": "Обриши филтере"
   },
   "explore": {
     "all": "Све",

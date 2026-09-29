@@ -146,7 +146,9 @@
     "noMoreShorts": "Ingen flere shorts",
     "noShortsFound": "Ingen shorts funnet",
     "newMembersHint": "Nylig blitt med — si hei",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "Ikke noe innhold samsvarer med filtrene dine.",
+    "clearFilters": "Tøm filtre"
   },
   "explore": {
     "all": "Alle",

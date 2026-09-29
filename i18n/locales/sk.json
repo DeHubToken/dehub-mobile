@@ -146,7 +146,9 @@
     "noMoreShorts": "Žiadne ďalšie krátke videá",
     "noShortsFound": "Nenašli sa žiadne krátke videá",
     "newMembersHint": "Práve ste sa pripojili — pozdravte sa",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "Tvojim filtrom nezodpovedá žiadny obsah.",
+    "clearFilters": "Vymazať filtre"
   },
   "explore": {
     "all": "Všetko",

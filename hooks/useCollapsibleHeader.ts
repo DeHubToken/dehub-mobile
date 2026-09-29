@@ -120,12 +120,19 @@ export const useCollapsibleHeader = ({ collapseHeight }: { collapseHeight?: numb
     }
   };
 
-  const scrollHandler = useAnimatedScrollHandler({
-    onScroll: (event) => {
-      'worklet';
-      driveWorklet(event.contentOffset.y);
+  // Empty deps: the worklet reads only shared values and constants. Without
+  // them Reanimated rebuilds the handler on every render (its closure is new
+  // each time), which hands every list a new onScroll, defeats
+  // memo(InfiniteVideoFeed), and under FlashList re-measures every mounted cell.
+  const scrollHandler = useAnimatedScrollHandler(
+    {
+      onScroll: (event) => {
+        'worklet';
+        driveWorklet(event.contentOffset.y);
+      },
     },
-  });
+    [],
+  );
 
   const driveJS = useCallback(
     (scrollY: number) => {

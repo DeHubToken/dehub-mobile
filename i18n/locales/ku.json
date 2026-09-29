@@ -146,7 +146,9 @@
     "noMoreShorts": "Êdî şort tune ne",
     "noShortsFound": "Şort nehat dîtin",
     "newMembersHint": "Tenê tevlî bû - silav bike",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "Tu naverok bi parzûnên te re li hev nake.",
+    "clearFilters": "Fîltreyan pak bike"
   },
   "explore": {
     "all": "Hemû",

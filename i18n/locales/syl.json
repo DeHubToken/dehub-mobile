@@ -146,7 +146,9 @@
     "noShortsFound": "কোনো শর্টস পাওয়া যায়নি",
     "newMembersHint": "নতুন জয়েন করলাম — হ্যালো বলুন",
     "allCaughtUp": "আপনি সব দেখে ফেলেছেন",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "আপনার ফিল্টারর লগে কোনো বিষয়বস্তু মিলে না।",
+    "clearFilters": "ফিল্টার মুছউক্কা"
   },
   "explore": {
     "all": "সব",

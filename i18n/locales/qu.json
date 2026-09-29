@@ -146,7 +146,9 @@
     "noMoreShorts": "Mana kaqchu huk kaqpas",
     "noShortsFound": "Mana kaqchu huk kaqpas tarisqachu",
     "newMembersHint": "Hukllataña haykuy — rimaynapay",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "Manam ima contenidopas suysuykunaykiwan tupanchu.",
+    "clearFilters": "Suysuykunata pichay"
   },
   "explore": {
     "all": "Llapan",

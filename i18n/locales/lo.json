@@ -146,7 +146,9 @@
     "noMoreShorts": "ບໍ່ມີ Shorts ອີກຕໍ່ໄປ",
     "noShortsFound": "ບໍ່ພົບ Shorts",
     "newMembersHint": "ເຂົ້າຮ່ວມແລ້ວ — ທັກທາຍ",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "ບໍ່ມີເນື້ອໃນທີ່ກົງກັບຕົວກອງຂອງທ່ານ.",
+    "clearFilters": "ລ້າງຕົວກັ່ນຕອງ"
   },
   "explore": {
     "all": "ທັງໝົດ",

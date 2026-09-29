@@ -146,7 +146,9 @@
     "noMoreShorts": "Ora ana shorts maneh",
     "noShortsFound": "Ora ana shorts sing ditemokake",
     "newMembersHint": "Baru gabung — ucapake halo",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "Ora ana konten sing cocog karo saringanmu.",
+    "clearFilters": "Busak saringan"
   },
   "explore": {
     "all": "Kabeh",

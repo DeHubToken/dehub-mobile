@@ -146,7 +146,9 @@
     "noMoreShorts": "കൂടുതൽ ഷോർട്ട്സുകളില്ല",
     "noShortsFound": "ഷോർട്ട്സുകളൊന്നും കണ്ടെത്തിയില്ല",
     "newMembersHint": "ഇപ്പോൾ ചേർന്നു — ഹലോ പറയൂ",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "നിങ്ങളുടെ ഫിൽട്ടറുകളുമായി പൊരുത്തപ്പെടുന്ന ഉള്ളടക്കമൊന്നുമില്ല.",
+    "clearFilters": "ഫിൽട്ടറുകൾ മായ്ക്കുക"
   },
   "explore": {
     "all": "എല്ലാം",

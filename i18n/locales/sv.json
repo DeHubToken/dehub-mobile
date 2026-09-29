@@ -146,7 +146,9 @@
     "noMoreShorts": "Inga fler shorts",
     "noShortsFound": "Inga shorts hittades",
     "newMembersHint": "Gick precis med — säg hej",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "Inget innehåll matchar dina filter.",
+    "clearFilters": "Rensa filter"
   },
   "explore": {
     "all": "Alla",

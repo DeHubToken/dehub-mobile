@@ -146,7 +146,9 @@
     "noMoreShorts": "Babu ƙarin gajerun bidiyo",
     "noShortsFound": "Babu gajerun bidiyo da aka samu",
     "newMembersHint": "Yanzu ka shigo — ka gaisa",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "Babu abun ciki da ya dace da matattarar ku.",
+    "clearFilters": "Share matattara"
   },
   "explore": {
     "all": "Duka",

@@ -146,7 +146,9 @@
     "noMoreShorts": "ما كاينينش فيديوهات قصيرة أخرى",
     "noShortsFound": "ما لقيتش فيديوهات قصيرة",
     "newMembersHint": "يلاه انضممت — سلم عليهم",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "ماكاينش محتوى كيطابق الفلاتر ديالك.",
+    "clearFilters": "مسح الفلاتر"
   },
   "explore": {
     "all": "كلشي",

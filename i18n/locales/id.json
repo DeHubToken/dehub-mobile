@@ -146,7 +146,9 @@
     "noMoreShorts": "Tidak ada shorts lagi",
     "noShortsFound": "Tidak ada shorts yang ditemukan",
     "newMembersHint": "Baru bergabung — sapa",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "Tidak ada konten yang cocok dengan filter Anda.",
+    "clearFilters": "Bersihkan filter"
   },
   "explore": {
     "all": "Semua",

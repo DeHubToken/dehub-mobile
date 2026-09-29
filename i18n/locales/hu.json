@@ -146,7 +146,9 @@
     "noMoreShorts": "Nincsenek több rövid videók",
     "noShortsFound": "Nem található rövid videó",
     "newMembersHint": "Most csatlakoztál – köszönj el",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "Nincs a szűrőidnek megfelelő tartalom.",
+    "clearFilters": "Szűrők törlése"
   },
   "explore": {
     "all": "Összes",

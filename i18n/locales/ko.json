@@ -146,7 +146,9 @@
     "noMoreShorts": "더 이상 쇼츠가 없습니다",
     "noShortsFound": "쇼츠를 찾을 수 없습니다",
     "newMembersHint": "방금 가입 — 인사하세요",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "필터에 맞는 콘텐츠가 없습니다.",
+    "clearFilters": "필터 지우기"
   },
   "explore": {
     "all": "전체",
