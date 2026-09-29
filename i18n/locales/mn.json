@@ -3732,6 +3732,7 @@
     "noPurchasesYet": "Одоогоор худалдан авалт алга",
     "listingRemoved": "Зар устгагдлаа",
     "noActiveListings": "Энэ дэлгүүрт идэвхтэй зар алга",
+    "storeNotFound": "Дэлгүүр олдсонгүй",
     "detail": {
       "listing": "Зар",
       "unavailable": "Энэ зар цаашид боломжгүй",

@@ -3737,6 +3737,7 @@
     "noPurchasesYet": "Покупок пока нет",
     "listingRemoved": "Объявление удалено",
     "noActiveListings": "В этом магазине нет активных объявлений",
+    "storeNotFound": "Магазин не найден",
     "detail": {
       "listing": "Объявление",
       "unavailable": "Это объявление больше недоступно",

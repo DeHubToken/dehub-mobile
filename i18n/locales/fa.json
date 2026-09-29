@@ -3763,6 +3763,7 @@
     "noPurchasesYet": "هنوز خریدی نیست",
     "listingRemoved": "آگهی حذف شد",
     "noActiveListings": "این فروشگاه آگهی فعالی ندارد",
+    "storeNotFound": "فروشگاه یافت نشد",
     "detail": {
       "listing": "آگهی",
       "unavailable": "این آگهی دیگر در دسترس نیست",

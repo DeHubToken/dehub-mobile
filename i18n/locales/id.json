@@ -3733,6 +3733,7 @@
     "noPurchasesYet": "Belum ada pembelian",
     "listingRemoved": "Iklan dihapus",
     "noActiveListings": "Toko ini tidak punya iklan aktif",
+    "storeNotFound": "Toko tidak ditemukan",
     "detail": {
       "listing": "Iklan",
       "unavailable": "Iklan ini sudah tidak tersedia",

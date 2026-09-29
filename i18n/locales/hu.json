@@ -3736,6 +3736,7 @@
     "noPurchasesYet": "Még nincsenek vásárlások",
     "listingRemoved": "Hirdetés eltávolítva",
     "noActiveListings": "Ebben a boltban nincs aktív hirdetés",
+    "storeNotFound": "A bolt nem található",
     "detail": {
       "listing": "Hirdetés",
       "unavailable": "Ez a hirdetés már nem elérhető",

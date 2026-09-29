@@ -3743,6 +3743,7 @@
     "noPurchasesYet": "اب تک کوئی خریداری نہیں ہے",
     "listingRemoved": "اشتہار ہٹاول گیل",
     "noActiveListings": "ای دکان میں کوئی چالو اشتہار نہیں ہے",
+    "storeNotFound": "دکان نہیں ملی",
     "detail": {
       "listing": "اشتہار",
       "unavailable": "ای اشتہار اب نہیں ملے ہے",

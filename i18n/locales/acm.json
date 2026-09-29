@@ -3729,6 +3729,7 @@
     "noPurchasesYet": "بعد ماكو مشتريات",
     "listingRemoved": "الإعلان انشال",
     "noActiveListings": "هذا المتجر ماعنده إعلانات شغالة",
+    "storeNotFound": "المتجر مو موجود",
     "detail": {
       "listing": "إعلان",
       "unavailable": "هذا الإعلان ما عاد متوفر",

@@ -3736,6 +3736,7 @@
     "noPurchasesYet": "Zatím žádné nákupy",
     "listingRemoved": "Inzerát odstraněn",
     "noActiveListings": "Tento obchod nemá žádné aktivní inzeráty",
+    "storeNotFound": "Obchod nebyl nalezen",
     "detail": {
       "listing": "Inzerát",
       "unavailable": "Tento inzerát už není dostupný",

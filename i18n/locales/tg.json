@@ -3723,6 +3723,7 @@
     "noPurchasesYet": "Ҳанӯз харид нест",
     "listingRemoved": "Эълон хориҷ карда шуд",
     "noActiveListings": "Ин мағоза эълонҳои фаъол надорад",
+    "storeNotFound": "Мағоза ёфт нашуд",
     "detail": {
       "listing": "Эълон",
       "unavailable": "Ин эълон дигар дастрас нест",
@@ -8534,9 +8535,9 @@
       "dev": "Пешнамоиши таҳиягар"
     },
     "host": {
-      "close": "Yopish app",
-      "backToStore": "Bumalik sa Mga App",
-      "notFound": "Ang app na ito ay hindi sa DeHub App Store, o ito ay nakababa.",
+      "close": "Пӯшидани барнома",
+      "backToStore": "Бозгашт ба барномаҳо",
+      "notFound": "Ин барнома дар DeHub App Store нест ё хориҷ карда шудааст.",
       "badUrl": "Ang address na iyon ay hindi maaaring buksan bilang mini app. Kailangan ito mula sa https://, o isang localhost address sa mode ng developer.",
       "readyTimeout": "Ин барнома ҳеҷ гоҳ даъват dehub.ready (), Пас экрани splash пас аз 8 сония пинҳон шуд."
     },

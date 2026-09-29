@@ -3737,6 +3737,7 @@
     "noPurchasesYet": "Још нема куповина",
     "listingRemoved": "Оглас уклоњен",
     "noActiveListings": "Ова продавница нема активних огласа",
+    "storeNotFound": "Продавница није пронађена",
     "detail": {
       "listing": "Оглас",
       "unavailable": "Овај оглас више није доступан",

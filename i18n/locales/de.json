@@ -3733,6 +3733,7 @@
     "noPurchasesYet": "Noch keine Käufe",
     "listingRemoved": "Angebot entfernt",
     "noActiveListings": "Dieser Shop hat keine aktiven Angebote",
+    "storeNotFound": "Geschäft nicht gefunden",
     "detail": {
       "listing": "Angebot",
       "unavailable": "Dieses Angebot ist nicht mehr verfügbar",

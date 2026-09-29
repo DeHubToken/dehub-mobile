@@ -3732,6 +3732,7 @@
     "noPurchasesYet": "Kāore anō he hokonga",
     "listingRemoved": "Kua tangohia te rārangi",
     "noActiveListings": "Kāore he rārangi kaha i tēnei toa",
+    "storeNotFound": "Ko te toa kaore i kitea",
     "detail": {
       "listing": "Rārangi",
       "unavailable": "Kāore tēnei rārangi e wātea ana ināianei",

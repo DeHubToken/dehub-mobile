@@ -3733,6 +3733,7 @@
     "noPurchasesYet": "Vēl nav pirkumu",
     "listingRemoved": "Sludinājums noņemts",
     "noActiveListings": "Šim veikalam nav aktīvu sludinājumu",
+    "storeNotFound": "Veikals nav atrasts",
     "detail": {
       "listing": "Sludinājums",
       "unavailable": "Šis sludinājums vairs nav pieejams",

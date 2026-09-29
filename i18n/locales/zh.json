@@ -3736,6 +3736,7 @@
     "noPurchasesYet": "暂无购买记录",
     "listingRemoved": "商品已删除",
     "noActiveListings": "该店铺没有在售商品",
+    "storeNotFound": "未找到该商店",
     "detail": {
       "listing": "商品",
       "unavailable": "该商品已不再出售",

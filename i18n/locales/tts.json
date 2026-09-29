@@ -3727,6 +3727,7 @@
     "noPurchasesYet": "ยังบ่มีการซื้อเทื่อ",
     "listingRemoved": "รายการถืกเอาออกแล้ว",
     "noActiveListings": "ฮ้านนี้บ่มีรายการที่เฮ็ดอยู่",
+    "storeNotFound": "บ่พบฮ้าน",
     "detail": {
       "listing": "รายการ",
       "unavailable": "รายการนี้บ่มีแล้ว",

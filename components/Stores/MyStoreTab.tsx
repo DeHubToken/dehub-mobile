@@ -591,7 +591,13 @@ const MyStoreTab: React.FC<{ isAuthed: boolean; onSignIn: () => void }> = ({
   // edge-to-edge hairline rows. The banner header and buttons stay.
   const { isMinimal } = useAppTheme();
   const rowStyle = [styles.row, isMinimal && styles.minimalRow];
-  const { data: stores = [], isLoading: loadingStores } = useMyStores();
+  const {
+    data: stores = [],
+    isLoading: loadingStores,
+    isError: storesError,
+    refetch: refetchStores,
+    isRefetching: refetchingStores,
+  } = useMyStores();
   const { data: listings = [] } = useMyListings();
   const sellerOrders = useMyOrders("seller");
   const buyerOrders = useMyOrders("buyer");
@@ -673,10 +679,23 @@ const MyStoreTab: React.FC<{ isAuthed: boolean; onSignIn: () => void }> = ({
     );
   }
 
-  if (loadingStores) {
+  if (loadingStores || (storesError && stores.length === 0 && refetchingStores)) {
     return (
       <View style={styles.center}>
         <DeHubLoader size={56} />
+      </View>
+    );
+  }
+
+  // A failed read is not "no store": showing the setup flow here invites a
+  // seller to open a duplicate. Cached stores still win over a failed refresh.
+  if (storesError && stores.length === 0) {
+    return (
+      <View style={styles.center}>
+        <Text style={styles.dim}>{t("common.failedToLoad")}</Text>
+        <Pressable onPress={() => refetchStores()} style={[styles.primaryBtn, { marginTop: 14 }]}>
+          <Text style={styles.primaryBtnText}>{t("common.retry")}</Text>
+        </Pressable>
       </View>
     );
   }

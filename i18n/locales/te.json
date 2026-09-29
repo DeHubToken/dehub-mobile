@@ -3736,6 +3736,7 @@
     "noPurchasesYet": "ఇంకా కొనుగోళ్లు లేవు",
     "listingRemoved": "జాబితా తీసివేయబడింది",
     "noActiveListings": "ఈ స్టోర్‌లో క్రియాశీల జాబితాలు లేవు",
+    "storeNotFound": "స్టోర్ కనుగొనబడలేదు",
     "detail": {
       "listing": "జాబితా",
       "unavailable": "ఈ జాబితా ఇక అందుబాటులో లేదు",

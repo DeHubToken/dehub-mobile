@@ -3733,6 +3733,7 @@
     "noPurchasesYet": "Hələ alış yoxdur",
     "listingRemoved": "Elan silindi",
     "noActiveListings": "Bu mağazada aktiv elan yoxdur",
+    "storeNotFound": "Mağaza tapılmadı",
     "detail": {
       "listing": "Elan",
       "unavailable": "Bu elan artıq mövcud deyil",

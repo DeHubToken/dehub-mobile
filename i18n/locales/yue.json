@@ -3733,6 +3733,7 @@
     "noPurchasesYet": "仲未有購買",
     "listingRemoved": "刊登已移除",
     "noActiveListings": "呢間店冇進行中嘅刊登",
+    "storeNotFound": "搵唔到商店",
     "detail": {
       "listing": "刊登",
       "unavailable": "呢個刊登已經冇咗",

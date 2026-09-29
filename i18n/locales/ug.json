@@ -3733,6 +3733,7 @@
     "noPurchasesYet": "تېخى سېتىۋېلىش يوق",
     "listingRemoved": "تىزىملىك ئېلىۋېتىلدى",
     "noActiveListings": "بۇ دۇكاندا ئاكتىپ تىزىملىك يوق",
+    "storeNotFound": "دۇكان تېپىلمىدى",
     "detail": {
       "listing": "تىزىملىك",
       "unavailable": "بۇ تىزىملىك ئەمدى يوق",
@@ -8542,9 +8543,9 @@
       "dev": "Kelgizhkan yig'izhkan"
     },
     "host": {
-      "close": "Qurghun app",
-      "backToStore": "App'larga qayt",
-      "notFound": "Bu app DeHub App Store'ida yo'q, yoki uni olib tashlagan.",
+      "close": "ئەپنى ياپ",
+      "backToStore": "ئەپلەرگە قايت",
+      "notFound": "بۇ ئەپ DeHub App Store دا يوق، ياكى ئېلىۋېتىلگەن.",
       "badUrl": "Bu mini app manzili ochilmaydi. U https:// bilan boshlanishi kerak, yoki developer rejimida localhost manzili bo'lishi kerak.",
       "readyTimeout": "Bu app dehub.ready()ni chaqirmagan, shuning uchun splash ekrani 8 sekunddan keyin yashilandi."
     },

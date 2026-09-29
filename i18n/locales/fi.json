@@ -3733,6 +3733,7 @@
     "noPurchasesYet": "Ei vielä ostoksia",
     "listingRemoved": "Ilmoitus poistettu",
     "noActiveListings": "Tässä kaupassa ei ole aktiivisia ilmoituksia",
+    "storeNotFound": "Kauppaa ei löytynyt",
     "detail": {
       "listing": "Ilmoitus",
       "unavailable": "Tämä ilmoitus ei ole enää saatavilla",
