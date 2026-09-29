@@ -72,6 +72,12 @@ interface FeedActionBarProps {
    * API returns an empty one to anybody else.
    */
   onShowReactionInfo?: () => void;
+  /**
+   * The card is on screen. The viewer's own reaction plays as an animated
+   * emoji; on a retained card off screen it kept decoding frames and asking
+   * for redraws the whole time, which browsers never do for unseen images.
+   */
+  isVisible?: boolean;
 }
 
 const BOUNCE_CONFIG = { damping: 12, stiffness: 300 };
@@ -102,10 +108,12 @@ const AnimatedActionButton: React.FC<{
   glyph?: PostReaction;
   /** The glyph is the viewer's own reaction, so it plays its animation. */
   glyphAnimated?: boolean;
+  /** Its card is on screen; off screen the animation holds its frame. */
+  glyphPlaying?: boolean;
   /** Renders in place of the icon — a custom, self-animating one. */
   iconNode?: React.ReactNode;
   accessibilityLabel?: string;
-}> = ({ onPress, onPressIn, onLongPress, iconName, iconNameActive, active, activeColor, activeFill, activeStrokeWidth, inactiveColor, iconSize = 20, count, countColor, formatCount, glyph, glyphAnimated, iconNode, accessibilityLabel }) => {
+}> = ({ onPress, onPressIn, onLongPress, iconName, iconNameActive, active, activeColor, activeFill, activeStrokeWidth, inactiveColor, iconSize = 20, count, countColor, formatCount, glyph, glyphAnimated, glyphPlaying = true, iconNode, accessibilityLabel }) => {
   const scale = useRef(new Animated.Value(1)).current;
   useEffect(() => () => scale.stopAnimation(), [scale]);
   // Seven buttons per retained card only animate when tapped. Native-driver
@@ -176,6 +184,7 @@ const AnimatedActionButton: React.FC<{
           <ReactionEmoji
             reaction={glyph}
             animate={glyphAnimated}
+            playing={glyphPlaying}
             size={iconSize + 2}
             textStyle={{ fontSize: iconSize - 2, lineHeight: iconSize + 4, width: iconSize, textAlign: "center" }}
           />
@@ -217,6 +226,7 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
   reactionCounts = null,
   onReact,
   onShowReactionInfo,
+  isVisible = true,
 }) => {
   const { t } = useTranslation();
   // Left-handed mode mirrors the whole row so the thumb lands on the left.
@@ -302,6 +312,7 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
           iconName="ThumbsDown"
           glyph={negativeGlyph}
           glyphAnimated
+          glyphPlaying={isVisible}
           active={disliked}
           activeFill={ICON_ACTIVE}
           count={dislikeCount}
@@ -360,6 +371,7 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
           iconName="ThumbsUp"
           glyph={leadGlyph}
           glyphAnimated={!!leadGlyph && leadGlyph === myPositiveReaction}
+          glyphPlaying={isVisible}
           active={liked}
           activeFill={ICON_ACTIVE}
           count={likeCount}
