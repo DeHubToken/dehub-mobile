@@ -73,9 +73,15 @@ const cardWidthFor = (screenWidth: number) => screenWidth - 40;
  * its own width instead, so a vertical video takes about a screen rather than
  * scrolling for three.
  */
-const maxMediaHeightFor = (screenHeight: number, postPage = false) =>
-  // On the post page the clip is the page, so it grows to most of the screen.
-  postPage ? Math.round(screenHeight * 0.8) : Math.round(Math.min(600, screenHeight * 0.6));
+const maxMediaHeightFor = (screenHeight: number) => Math.round(Math.min(600, screenHeight * 0.6));
+
+/**
+ * Post page cap: the clip is the page, so it grows to most of the screen, and
+ * at least as tall as a full-width 9:16 clip so a vertical video spans the
+ * whole width.
+ */
+const postPageMaxHeightFor = (screenHeight: number, boxWidth: number) =>
+  Math.round(Math.max(screenHeight * 0.8, (boxWidth * 16) / 9));
 
 /**
  * Width of the media box. Takes the live window size (useWindowDimensions) so
@@ -87,11 +93,11 @@ const mediaBoxWidth = (
   isMinimal: boolean,
   mediaAspect: number,
   postPage = false,
-) =>
-  Math.min(
-    isMinimal ? win.width : cardWidthFor(win.width),
-    Math.round(maxMediaHeightFor(win.height, postPage) * mediaAspect),
-  );
+) => {
+  const fullWidth = isMinimal ? win.width : cardWidthFor(win.width);
+  const maxHeight = postPage ? postPageMaxHeightFor(win.height, fullWidth) : maxMediaHeightFor(win.height);
+  return Math.min(fullWidth, Math.round(maxHeight * mediaAspect));
+};
 
 interface FeedVideoPlayerProps {
   thumbnail: string;
