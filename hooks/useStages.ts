@@ -25,6 +25,7 @@ import env from "../config/env";
 import { getAuthToken } from "../libs/auth.utils";
 import { dehubAuthHeaders } from "../services/ai.service";
 import { withWalletHeader } from "../libs/supabase-wallet-client";
+import { deleteStageRecordings } from "../libs/stage-recording-delete";
 import { openStagesHub } from "../libs/openStagesHub";
 import { useFrontRow } from './useSuperpowers';
 
@@ -1251,25 +1252,22 @@ export function useStages(): UseStagesReturn {
 
   /**
    * Delete an ended stage's record, matching dehubweb's PastStagesList
-   * handleDelete: remove the storage recording first (if any), then the row.
-   * Host only -- callers gate the button on sameWallet(host_wallet_address),
-   * and the delete policy independently checks the same thing server-side
-   * against the x-wallet-address header.
+   * handleDelete: remove everything in the stage's recording folder first,
+   * then the row. Host only -- callers gate the button on
+   * sameWallet(host_wallet_address), and the row and bucket delete policies
+   * both check the same thing server-side against the wallet header.
    */
   const deleteEndedSpace = useCallback(async (space: AudioSpace): Promise<boolean> => {
     if (!userAddress) return false;
     try {
-      if (space.recording_url) {
-        const path = space.recording_url.split("/stage-recordings/")[1];
-        if (path) {
-          const { error: storageError } = await supabase.storage
-            .from("stage-recordings")
-            .remove([decodeURIComponent(path)]);
-          // Not fatal -- an orphaned recording file is a storage-quota
-          // problem, not a reason to leave the row (and its transcript,
-          // wrong listing) behind for the host to keep seeing.
-          if (storageError) log.warn("Failed to remove stage recording file:", storageError);
-        }
+      // The whole folder, not only the object recording_url names: finalising
+      // writes a seekable copy beside the original and repoints the URL at it.
+      const { error: storageError } = await deleteStageRecordings(space.id, userAddress);
+      if (storageError) {
+        // Stop rather than delete the row on top of files that are still
+        // there -- nothing would point at them and they could never be found.
+        log.warn("Failed to remove stage recording files:", storageError);
+        return false;
       }
       const { error } = await withWalletHeader(
         supabase.from("audio_spaces").delete().eq("id", space.id).eq("status", "ended"),
