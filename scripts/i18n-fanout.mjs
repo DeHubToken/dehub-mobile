@@ -419,7 +419,12 @@ function addsEmoji(candidate, source) {
  * that repeats on purpose in English still goes through. Marks stay inside a
  * word, or Devanagari and similar scripts would split at every vowel sign.
  */
-const wordsOf = (text) => text.toLowerCase().split(/[^\p{L}\p{M}\p{N}]+/u).filter(Boolean);
+// Malay, Indonesian and Javanese double a word for plurals and more
+// ("kanak-kanak", "kira-kira"). Counted as two words, two of those in one line
+// read as a loop, so a lone pair counts once; a chain of three is left as is.
+const DOUBLED = /(?<![-\p{L}\p{M}\p{N}])([\p{L}\p{M}\p{N}]+)-\1(?![-\p{L}\p{M}\p{N}])/gu;
+const wordsOf = (text) =>
+  text.toLowerCase().replace(DOUBLED, '$1').split(/[^\p{L}\p{M}\p{N}]+/u).filter(Boolean);
 /** Highest count of any 4+ letter word inside a sliding window of 8 words. */
 function maxRepeat(words) {
   const span = Math.min(8, words.length);

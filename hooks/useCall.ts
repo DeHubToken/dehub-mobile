@@ -361,12 +361,16 @@ export function useCall(): UseCallReturn {
         .limit(1)
         .single();
       if (!data) return;
+      // Realtime may have surfaced this call while the request was in flight;
+      // showing it twice would leave a stray dismiss timer that ends it later.
+      if (currentCallRef.current || isCallActiveRef.current || isIncomingRef.current || isConnectingRef.current) return;
       const age = Date.now() - new Date(data.created_at).getTime();
       if (age > 45_000) return;
       const call = data as CallSession;
       setCurrentCall(call);
       currentCallRef.current = call;
       setIsIncoming(true);
+      if (callTimeoutRef.current) clearTimeout(callTimeoutRef.current);
       callTimeoutRef.current = setTimeout(() => {
         setIsIncoming(false);
         setCurrentCall(null);
