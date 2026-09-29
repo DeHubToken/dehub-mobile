@@ -337,14 +337,18 @@ const styles = StyleSheet.create({
   filterRow: { flexDirection: "row", alignItems: "center", gap: 8, paddingRight: 4, paddingBottom: 4 },
   filterChip: {
     paddingHorizontal: 12,
-    paddingVertical: 10,
+    // A fixed height, not vertical padding: text-only chips in a centred
+    // horizontal ScrollView were measured into the strip's leftover height on
+    // Android and rendered with their labels cut through the middle.
+    height: 37,
+    justifyContent: "center",
     borderRadius: 8,
     backgroundColor: "rgba(255,255,255,0.06)",
     borderWidth: StyleSheet.hairlineWidth,
     borderColor: "rgba(255,255,255,0.1)",
   },
   filterChipActive: { backgroundColor: "#fff", borderColor: "#fff" },
-  filterText: { color: "#a1a1aa", fontSize: 12, fontWeight: "600" },
+  filterText: { color: "#a1a1aa", fontSize: 12, lineHeight: 16, fontWeight: "600" },
   filterTextActive: { color: "#000" },
   chip: {
     paddingHorizontal: 8,
