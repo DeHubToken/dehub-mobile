@@ -71,7 +71,7 @@ const glass: Omit<ThemeSkin, 'page'> = {
   },
   tabIcon: '#A1A1AA',
   tabIconActive: '#FFFFFF',
-  barFill: { backgroundColor: 'rgba(9,9,11,0.86)' },
+  barFill: { backgroundColor: 'rgb(9,9,11)' },
   barBorder: { borderWidth: 1, borderColor: 'rgba(255,255,255,0.10)', borderRadius: 16 },
   centre: {
     backgroundColor: 'rgba(255,255,255,0.14)',
@@ -127,7 +127,7 @@ const SKINS: Partial<Record<AppThemeName, ThemeSkin>> = {
     },
     tabIcon: 'rgb(120,200,150)',
     tabIconActive: RAIN,
-    barFill: { backgroundColor: 'rgba(0,8,3,0.9)' },
+    barFill: { backgroundColor: 'rgb(0,8,3)' },
     barBorder: { borderWidth: 1, borderColor: 'rgba(57,255,136,0.4)', borderRadius: 0 },
     centre: {
       backgroundColor: 'rgba(57,255,136,0.14)',
@@ -170,7 +170,7 @@ const SKINS: Partial<Record<AppThemeName, ThemeSkin>> = {
     },
     tabIcon: 'rgb(190,196,194)',
     tabIconActive: HUD,
-    barFill: { backgroundColor: 'rgba(14,20,18,0.9)' },
+    barFill: { backgroundColor: 'rgb(14,20,18)' },
     barBorder: { borderWidth: 1, borderColor: 'rgba(79,227,224,0.4)', borderRadius: 0 },
     centre: {
       backgroundColor: 'rgba(79,227,224,0.14)',
@@ -216,7 +216,7 @@ const SKINS: Partial<Record<AppThemeName, ThemeSkin>> = {
     },
     tabIcon: 'rgb(176,170,196)',
     tabIconActive: SAKURA,
-    barFill: { backgroundColor: 'rgba(17,14,28,0.88)' },
+    barFill: { backgroundColor: 'rgb(17,14,28)' },
     barBorder: {
       borderWidth: 1,
       borderColor: 'rgba(236,233,245,0.10)',
@@ -266,7 +266,7 @@ const SKINS: Partial<Record<AppThemeName, ThemeSkin>> = {
     },
     tabIcon: 'rgb(198,182,158)',
     tabIconActive: 'rgb(246,240,227)',
-    barFill: { backgroundColor: 'rgba(38,28,19,0.92)' },
+    barFill: { backgroundColor: 'rgb(38,28,19)' },
     barBorder: {
       borderWidth: 1,
       borderColor: 'rgba(0,0,0,0.5)',
