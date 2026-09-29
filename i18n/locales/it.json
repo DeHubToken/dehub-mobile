@@ -7059,6 +7059,12 @@
       "noCurve": "Porta la testina su un fotogramma chiave per modificarne la curva.",
       "applyAll": "Usa questa curva su tutti i fotogrammi chiave",
       "timelineKey": "Fotogramma chiave. Trascina per spostarlo, tocca due volte per eliminarlo.",
+      "record": "Registra",
+      "recordHint": "Registrazione: spostare, ridimensionare, ruotare o sfumare un livello sotto la testina aggiunge lì fotogrammi chiave.",
+      "recording": "Registrazione del movimento",
+      "lanes": "Fotogrammi chiave",
+      "scrub": "Trascina a sinistra o a destra per cambiare.",
+      "segment": "{{from}} → {{to}}",
       "ease": {
         "linear": "Lineare",
         "ease": "Morbida",

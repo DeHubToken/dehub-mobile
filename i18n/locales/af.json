@@ -7135,6 +7135,12 @@
       "noCurve": "Skuif die speelkop na ’n sleutelraam om sy kurwe te vorm.",
       "applyAll": "Gebruik hierdie kurwe op elke sleutelraam",
       "timelineKey": "Sleutelraam. Sleep om dit te skuif, dubbeltik om dit te skrap.",
+      "record": "Neem op",
+      "recordHint": "Opname: as jy ’n laag onder die speelkop skuif, skaal, draai of laat vervaag, word sleutelrame daar bygevoeg.",
+      "recording": "Beweging word opgeneem",
+      "lanes": "Sleutelrame",
+      "scrub": "Sleep links of regs om te verander.",
+      "segment": "{{from}} → {{to}}",
       "ease": {
         "linear": "Lineêr",
         "ease": "Sag",

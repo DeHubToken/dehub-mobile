@@ -24,8 +24,8 @@ import type {
 
 /** A partial update to any kind of clip. */
 export type ClipPatch = Partial<MediaClip> | Partial<TextClip> | Partial<ShapeClip>;
-import { aspectToDims, DEFAULT_SETTINGS, KEYFRAME_PROPS } from "./types";
-import { isAnimated, setKey } from "./keyframes";
+import { aspectToDims, DEFAULT_SETTINGS } from "./types";
+import { KEY_EPSILON, isAnimated, keyframeProps, setKey, staticValue } from "./keyframes";
 
 /** Seconds a new layer lasts, matching an image dropped on the web timeline. */
 export const LAYER_DURATION = 5;
@@ -253,15 +253,23 @@ export function placementPatch(clip: Clip, patch: Partial<ClipTransform>): ClipP
  * keyframed get a key at t (added or updated) instead of a new static value,
  * so dragging an animated layer on the canvas edits its motion rather than
  * being ignored.
+ *
+ * With `record`, a property that is not animated yet starts animating: a key
+ * holding its old value at the clip's start, and one with the new value at t.
+ * That is the whole gesture for a beginner: move the playhead, move the layer.
  */
-export function placementPatchAt(clip: Clip, patch: Partial<ClipTransform>, t: number): ClipPatch {
-  if (!isAnimated(clip)) return placementPatch(clip, patch);
+export function placementPatchAt(clip: Clip, patch: Partial<ClipTransform>, t: number, opts?: { record?: boolean }): ClipPatch {
   const local = t - clip.start;
+  const recording = !!opts?.record && local > KEY_EPSILON;
+  if (!isAnimated(clip) && !recording) return placementPatch(clip, patch);
+  const keyable = keyframeProps(clip);
   let keyframes = clip.keyframes;
   const rest: Partial<ClipTransform> = {};
   for (const [k, v] of Object.entries(patch)) {
     const prop = k as KeyframeProp;
-    if (typeof v === "number" && KEYFRAME_PROPS.includes(prop) && isAnimated(clip, prop)) {
+    const animated = isAnimated(clip, prop);
+    if (typeof v === "number" && keyable.includes(prop) && (animated || recording)) {
+      if (!animated) keyframes = setKey({ ...clip, keyframes } as Clip, prop, 0, staticValue(clip, prop));
       keyframes = setKey({ ...clip, keyframes } as Clip, prop, local, v);
     } else {
       (rest as Record<string, unknown>)[k] = v;

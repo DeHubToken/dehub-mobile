@@ -6,15 +6,21 @@
  * after each frame. Hit testing and the selection box read those boxes, so the
  * handles can never disagree with the pixels — the same rule the web editor
  * keeps by sharing clipBox between its compositor and its handles.
+ *
+ * A selected layer whose position is keyed shows its motion path: the page
+ * samples the layer's centre across the clip once per change (not per frame)
+ * and it is drawn here, over the page, with a diamond at each key.
  */
 import React, { forwardRef, useCallback, useEffect, useImperativeHandle, useMemo, useRef, useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { WebView, type WebViewMessageEvent } from "react-native-webview";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
-import Svg, { Polyline } from "react-native-svg";
+import Svg, { Polygon, Polyline } from "react-native-svg";
+import { useTranslation } from "react-i18next";
 import { EDITOR_CANVAS_HTML } from "../../libs/editor/canvasHtml";
 import { getClip, getTransform, mediaIds, placementPatchAt, updateClip } from "../../libs/editor/project";
-import { resolveClipAt } from "../../libs/editor/keyframes";
+import { isAnimated, keyTimes, resolveClipAt } from "../../libs/editor/keyframes";
+import { RecDot } from "./MotionPanel";
 import { getMedia, mediaDataUrl, openVideoExport, readMediaChunk } from "../../libs/editor/storage";
 import type { ProjectSnapshot, TextClip } from "../../libs/editor/types";
 
@@ -71,7 +77,13 @@ interface Props {
   onMediaReady?: (id: string, info: { duration?: number; width?: number; height?: number }) => void;
   /** Videos and sounds still on their way into the page. */
   onMediaLoading?: (count: number) => void;
+  /** Record mode: moving a layer keys it at the playhead (placementPatchAt record). */
+  recording?: boolean;
 }
+
+/** Points along a motion path, like the web's. */
+const PATH_SAMPLES = 64;
+const PATH_COLOUR = "#7dd3fc";
 
 /** Raw bytes per piece when handing a video to the page (base64 grows it by a third). */
 const MEDIA_CHUNK = 1024 * 1024;
@@ -110,6 +122,7 @@ interface Drag {
 }
 
 const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas(props, ref) {
+  const { t } = useTranslation();
   const { project, time, fontCss, selectedId } = props;
   const webRef = useRef<WebView>(null);
   const [ready, setReady] = useState(false);
@@ -134,6 +147,9 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
     out: ReturnType<typeof openVideoExport> | null;
   };
   const videoReqs = useRef(new Map<string, VideoReq>());
+  // The selected layer's motion path, in page pixels, and the request it answers.
+  const [path, setPath] = useState<{ id: string; pts: [number, number][]; keys: [number, number][] } | null>(null);
+  const pathReq = useRef<{ reqId: string; id: string } | null>(null);
 
   const W = project.settings.width;
   const H = project.settings.height;
@@ -280,6 +296,13 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
       case "frame":
         setLayers(Array.isArray(msg.layers) ? msg.layers : []);
         break;
+      case "path": {
+        const req = pathReq.current;
+        if (req && req.reqId === msg.reqId && Array.isArray(msg.pts)) {
+          setPath({ id: req.id, pts: msg.pts, keys: Array.isArray(msg.keys) ? msg.keys : [] });
+        }
+        break;
+      }
       case "exported":
         exports.current.get(msg.reqId)?.resolve(msg.dataUrl);
         exports.current.delete(msg.reqId);
@@ -312,6 +335,18 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
         break;
     }
   }, []);
+
+  // Motion path: only for a selected layer whose position is keyed. The clip
+  // object only changes when that layer is edited, so this is not per frame.
+  const selected = selectedId ? getClip(project, selectedId) : null;
+  const pathClip = selected && (isAnimated(selected, "x") || isAnimated(selected, "y")) ? selected : null;
+  useEffect(() => {
+    if (!ready || !pathClip) { pathReq.current = null; setPath(null); return; }
+    const reqId = `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+    pathReq.current = { reqId, id: pathClip.id };
+    const keys = keyTimes(pathClip).filter((kt) => kt <= pathClip.duration + 0.001);
+    post({ type: "path", reqId, clip: pathClip, keys, width: W, height: H, samples: PATH_SAMPLES });
+  }, [ready, pathClip, W, H, post]);
 
   // A killed renderer process leaves a blank page; start a fresh one.
   const restart = useCallback(() => {
@@ -427,7 +462,9 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
     if (!base) return;
     const { width: PW, height: PH } = d.before.settings;
     // Keyed layers start from where they are at the playhead, and write a key there.
+    // Record mode does the same for layers that are not keyed yet.
     const now = live.current.props.time;
+    const record = !!live.current.props.recording;
     const tr = getTransform(resolveClipAt(base, now));
     let dx = d.dx / scaleK;
     let dy = d.dy / scaleK;
@@ -448,10 +485,10 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
     if (d.rotation) place.rotation = rotation;
     let patch: Record<string, unknown>;
     if (base.kind === "text") {
-      patch = { ...placementPatchAt(base, place, now), fontSize: Math.max(6, Math.min(1000, Math.round((base as TextClip).fontSize * d.scale * 10) / 10)) };
+      patch = { ...placementPatchAt(base, place, now, { record }), fontSize: Math.max(6, Math.min(1000, Math.round((base as TextClip).fontSize * d.scale * 10) / 10)) };
     } else {
       if (d.scale !== 1) place.scale = Math.max(0.05, Math.min(20, tr.scale * d.scale));
-      patch = placementPatchAt(base, place, now);
+      patch = placementPatchAt(base, place, now, { record });
     }
     setGuides((g) => (g.v === v && g.h === h ? g : { v, h }));
     live.current.props.onLiveChange(updateClip(d.before, d.clipId, patch));
@@ -575,8 +612,8 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const selClip = selectedId ? getClip(project, selectedId) : null;
-  const sel = selectedId && !selClip?.locked && !props.pen ? layers.find((l) => l.id === selectedId) : null;
+  const sel = selectedId && !selected?.locked && !props.pen ? layers.find((l) => l.id === selectedId) : null;
+  const showPath = path && pathClip && path.id === pathClip.id && !props.pen ? path : null;
 
   return (
     <View
@@ -619,6 +656,26 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
                 />
               </Svg>
             )}
+            {showPath && (
+              <Svg pointerEvents="none" style={StyleSheet.absoluteFill} width={viewW} height={viewH}>
+                <Polyline
+                  points={showPath.pts.map(([x, y]) => `${x * k},${y * k}`).join(" ")}
+                  fill="none"
+                  stroke={PATH_COLOUR}
+                  strokeOpacity={0.85}
+                  strokeWidth={1.5}
+                  strokeDasharray="4 4"
+                />
+                {showPath.keys.map(([x, y], i) => (
+                  <Polygon
+                    key={i}
+                    points={`${x * k},${y * k - 5} ${x * k + 5},${y * k} ${x * k},${y * k + 5} ${x * k - 5},${y * k}`}
+                    fill={PATH_COLOUR}
+                    stroke="#0c4a6e"
+                  />
+                ))}
+              </Svg>
+            )}
             {guides.v && <View pointerEvents="none" style={[styles.guideV, { left: viewW / 2 - 0.5 }]} />}
             {guides.h && <View pointerEvents="none" style={[styles.guideH, { top: viewH / 2 - 0.5 }]} />}
             {sel && (
@@ -640,6 +697,15 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
                 <View style={[styles.corner, styles.bl]} />
                 <View style={[styles.corner, styles.br]} />
               </View>
+            )}
+            {props.recording && (
+              <>
+                <View pointerEvents="none" style={styles.recFrame} />
+                <View pointerEvents="none" style={styles.recPill}>
+                  <RecDot on colour="#fff" size={6} />
+                  <Text style={styles.recText}>{t("editor.motion.recording")}</Text>
+                </View>
+              </>
             )}
           </View>
         </GestureDetector>
@@ -671,4 +737,18 @@ const styles = StyleSheet.create({
   br: { right: -CORNER / 2, bottom: -CORNER / 2 },
   guideV: { position: "absolute", top: 0, bottom: 0, width: 1, backgroundColor: "#ff4fd8" },
   guideH: { position: "absolute", left: 0, right: 0, height: 1, backgroundColor: "#ff4fd8" },
+  recFrame: { ...StyleSheet.absoluteFillObject, borderWidth: 2, borderColor: "rgba(239,68,68,0.75)" },
+  recPill: {
+    position: "absolute",
+    left: 8,
+    top: 8,
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 6,
+    borderRadius: 999,
+    backgroundColor: "rgba(239,68,68,0.9)",
+    paddingHorizontal: 8,
+    paddingVertical: 3,
+  },
+  recText: { color: "#fff", fontSize: 11, fontWeight: "600" },
 });

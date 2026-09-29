@@ -7014,6 +7014,12 @@
       "noCurve": "Sæt afspilningshovedet på en keyframe for at forme dens kurve.",
       "applyAll": "Brug denne kurve på alle keyframes",
       "timelineKey": "Keyframe. Træk for at flytte den, dobbelttryk for at slette den.",
+      "record": "Optag",
+      "recordHint": "Optager: når du flytter, skalerer, drejer eller toner et lag under afspilningshovedet, tilføjes keyframes der.",
+      "recording": "Optager bevægelse",
+      "lanes": "Keyframes",
+      "scrub": "Træk til venstre eller højre for at ændre.",
+      "segment": "{{from}} → {{to}}",
       "ease": {
         "linear": "Lineær",
         "ease": "Blød",

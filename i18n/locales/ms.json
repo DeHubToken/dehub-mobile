@@ -7270,6 +7270,12 @@
       "noCurve": "Letakkan kepala main pada kerangka kunci untuk membentuk lengkungnya.",
       "applyAll": "Guna lengkung ini pada semua kerangka kunci",
       "timelineKey": "Kerangka kunci. Seret untuk mengalihkannya, ketik dua kali untuk memadamnya.",
+      "record": "Rakam",
+      "recordHint": "Merakam: mengalih, mengubah saiz, memutar atau memudarkan lapisan di bawah kepala main menambah kerangka kunci di situ.",
+      "recording": "Merakam gerakan",
+      "lanes": "Kerangka kunci",
+      "scrub": "Seret ke kiri atau kanan untuk menukar.",
+      "segment": "{{from}} → {{to}}",
       "ease": {
         "linear": "Linear",
         "ease": "Lembut",

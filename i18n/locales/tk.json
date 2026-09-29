@@ -7010,6 +7010,12 @@
       "noCurve": "Egrisini düzmek üçin oýnatma belligini açar kadryň üstüne goýuň.",
       "applyAll": "Bu egrini ähli açar kadrlarda ulan",
       "timelineKey": "Açar kadr. Süýşürmek üçin çekiň, pozmak üçin iki gezek basyň.",
+      "record": "Ýazga al",
+      "recordHint": "Ýazga alyş: oýnatma belliginiň aşagyndaky gatlagy süýşürmek, ölçegini üýtgetmek, aýlamak ýa-da solgunlatmak şol ýere açar kadr goşýar.",
+      "recording": "Hereket ýazga alynýar",
+      "lanes": "Açar kadrlar",
+      "scrub": "Üýtgetmek üçin çepe ýa-da saga çekiň.",
+      "segment": "{{from}} → {{to}}",
       "ease": {
         "linear": "Çyzykly",
         "ease": "Ýumşak",

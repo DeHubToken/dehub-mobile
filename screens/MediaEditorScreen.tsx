@@ -334,6 +334,9 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
   const canvasRef = useRef<EditorCanvasHandle>(null);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [tool, setTool] = useState<Tool | null>(null);
+  // Record mode (web editorUiStore recordMotion): placement edits with the
+  // playhead inside a layer key it there. Kept across selections, like the web.
+  const [recordMotion, setRecordMotion] = useState(false);
   const [missing, setMissing] = useState(false);
   const [editingText, setEditingText] = useState<string | null>(null);
   const [renaming, setRenaming] = useState(false);
@@ -397,6 +400,8 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
   const duration = project ? projectDuration(project) : 0;
   // The moment the page shows; keyed layers are edited as they stand here.
   const canvasTime = showTimeline ? time : STILL_TIME;
+  // Keys need the playhead, so recording only runs while the timeline shows.
+  const recording = recordMotion && showTimeline;
 
   const videoIds = useMemo(
     () => (project ? [...new Set(project.clips.flatMap((c) => (c.kind === "video" ? [c.mediaId] : [])))].join("|") : ""),
@@ -888,14 +893,16 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
           page={project.settings}
           {...panelProps}
           onSeek={(tt) => { setPlaying(false); setTime(tt); }}
+          recording={recording}
+          onRecord={setRecordMotion}
         />
       );
     }
     if (tool === "arrange") return <ArrangePanel onArrange={onArrange} />;
     if (tool === "blend") return <BlendPanel clip={layer} {...panelProps} />;
     if (tool === "shadow") return <ShadowPanel clip={layer} {...panelProps} />;
-    if (tool === "opacity") return <OpacityPanel clip={layer} time={canvasTime} {...panelProps} />;
-    if (tool === "position") return <PositionPanel clip={layer} time={canvasTime} {...panelProps} />;
+    if (tool === "opacity") return <OpacityPanel clip={layer} time={canvasTime} record={recording} {...panelProps} />;
+    if (tool === "position") return <PositionPanel clip={layer} time={canvasTime} record={recording} {...panelProps} />;
     if (selected.kind === "shape") {
       if (tool === "shapeStyle") return <ShapeStylePanel clip={selected} {...panelProps} />;
       return null;
@@ -1060,6 +1067,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
           onSelect={(id) => { setPlaying(false); select(id); }}
           onLiveChange={h.live}
           onGestureEnd={h.settle}
+          recording={recording}
           onEditText={setEditingText}
           onMissingMedia={(ids) => setMissing(ids.length > 0)}
           pen={pen}
@@ -1121,6 +1129,13 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
           onKeyDelete={(id, at) => {
             const c = getClip(project, id);
             if (c) h.commit(updateClip(project, id, { keyframes: removeKeysAt(c, at) }));
+          }}
+          onKeyOpen={(id) => {
+            // A keyframe is a motion thing: bring up Motion to work on it.
+            setPlaying(false);
+            setSelectedId(id);
+            setPen(null);
+            setTool("motion");
           }}
         />
       )}

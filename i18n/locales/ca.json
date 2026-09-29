@@ -7010,6 +7010,12 @@
       "noCurve": "Posa el capçal sobre un fotograma clau per ajustar-ne la corba.",
       "applyAll": "Fes servir aquesta corba a tots els fotogrames clau",
       "timelineKey": "Fotograma clau. Arrossega’l per moure’l, toca’l dues vegades per eliminar-lo.",
+      "record": "Enregistra",
+      "recordHint": "Enregistrant: moure, redimensionar, girar o esvair una capa sota el capçal hi afegeix fotogrames clau.",
+      "recording": "Enregistrant moviment",
+      "lanes": "Fotogrames clau",
+      "scrub": "Arrossega a l’esquerra o a la dreta per canviar-ho.",
+      "segment": "{{from}} → {{to}}",
       "ease": {
         "linear": "Lineal",
         "ease": "Suau",

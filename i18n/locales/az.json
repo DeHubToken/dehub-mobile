@@ -7010,6 +7010,12 @@
       "noCurve": "Əyrisini formalaşdırmaq üçün oynatma başlığını açar kadrın üzərinə gətirin.",
       "applyAll": "Bu əyrini bütün açar kadrlarda istifadə et",
       "timelineKey": "Açar kadr. Yerini dəyişmək üçün sürüşdürün, silmək üçün iki dəfə toxunun.",
+      "record": "Yaz",
+      "recordHint": "Yazma: oynatma başlığının altındakı təbəqəni yerini dəyişmək, ölçüsünü dəyişmək, fırlatmaq və ya solğunlaşdırmaq ora açar kadr əlavə edir.",
+      "recording": "Hərəkət yazılır",
+      "lanes": "Açar kadrlar",
+      "scrub": "Dəyişmək üçün sola və ya sağa sürüşdürün.",
+      "segment": "{{from}} → {{to}}",
       "ease": {
         "linear": "Xətti",
         "ease": "Yumşaq",

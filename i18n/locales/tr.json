@@ -7059,6 +7059,12 @@
       "noCurve": "Eğrisini şekillendirmek için oynatma kafasını bir anahtar karenin üzerine getirin.",
       "applyAll": "Bu eğriyi tüm anahtar karelerde kullan",
       "timelineKey": "Anahtar kare. Taşımak için sürükleyin, silmek için iki kez dokunun.",
+      "record": "Kaydet",
+      "recordHint": "Kayıt: oynatma kafasının altındaki bir katmanı taşımak, boyutlandırmak, döndürmek veya soldurmak oraya anahtar kare ekler.",
+      "recording": "Hareket kaydediliyor",
+      "lanes": "Anahtar kareler",
+      "scrub": "Değiştirmek için sola veya sağa sürükleyin.",
+      "segment": "{{from}} → {{to}}",
       "ease": {
         "linear": "Doğrusal",
         "ease": "Yumuşak",

@@ -7059,6 +7059,12 @@
       "noCurve": "Coloca el cabezal sobre un fotograma clave para ajustar su curva.",
       "applyAll": "Usar esta curva en todos los fotogramas clave",
       "timelineKey": "Fotograma clave. Arrástralo para moverlo, tócalo dos veces para eliminarlo.",
+      "record": "Grabar",
+      "recordHint": "Grabando: mover, redimensionar, girar o desvanecer una capa bajo el cabezal añade fotogramas clave ahí.",
+      "recording": "Grabando movimiento",
+      "lanes": "Fotogramas clave",
+      "scrub": "Arrastra a la izquierda o a la derecha para cambiarlo.",
+      "segment": "{{from}} → {{to}}",
       "ease": {
         "linear": "Lineal",
         "ease": "Suave",

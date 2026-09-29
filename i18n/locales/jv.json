@@ -7000,6 +7000,12 @@
       "noCurve": "Selehna playhead ing keyframe kanggo ngatur kurvané.",
       "applyAll": "Gunakaké kurva iki ing kabèh keyframe",
       "timelineKey": "Keyframe. Seret kanggo mindhah, tutul kaping pindho kanggo mbusak.",
+      "record": "Rekam",
+      "recordHint": "Ngrekam: mindhah, ngowahi ukuran, muter utawa ngalusaké lapisan ing sangisoré playhead nambah keyframe ing kono.",
+      "recording": "Ngrekam obah",
+      "lanes": "Keyframe",
+      "scrub": "Seret ngiwa utawa nengen kanggo ngowahi.",
+      "segment": "{{from}} → {{to}}",
       "ease": {
         "linear": "Linear",
         "ease": "Alus",
