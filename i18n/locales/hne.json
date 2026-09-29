@@ -40,7 +40,6 @@
     "staking": "स्टेकिंग",
     "superpowers": "सुपरपावर्स",
     "governance": "शासन",
-    "dao": "दावोCity name (optional, probably",
     "careers": "नौकरी",
     "glossary": "शब्दावली",
     "create": "बनाव",
@@ -63,7 +62,8 @@
     "connectAi": "AI जोड़व",
     "bridge": "ब्रिज",
     "premium": "प्रीमियम",
-    "pricing": "कीमत"
+    "pricing": "कीमत",
+    "dao": "डीएओ"
   },
   "affiliate": {
     "subtitle": "आप जिन्हें बुलाते हैं उन सबसे कमाएँ — हमेशा के लिए",
@@ -660,7 +660,6 @@
     "smsNotifications": "पाठ सूचना",
     "smsNotificationsDesc": "जऊन मन के महत्व हे, ओमन ला एक पाठ संदेश के रूप म प्राप्त करव",
     "smsNotificationsNeedsNumber": "शुरू करे बर एक फोन नंबर जोड़ें अउ सत्यापित करें",
-    "smsNotificationsEmpty": "आउट ऑफ क्रेडिट — टॉप टू टू टू टू टू टेक्स्ट",
     "smsUnavailable": "अभी हाल के मं पाठ अधिसूचना नइ मिलत हे",
     "smsUnlockExplainer": "क्रेडिट एक बार मं एक संदेस खर्च करथे, अउ सिरिफ ओ सूचना मन मं जऊन आप मन पहिली से चालू हो गे हे.",
     "smsPricesHeading": "हमन ला एक संदेश पठोय बर",
@@ -1951,7 +1950,6 @@
     "tipForPost": "“{{title}}” के लिए",
     "reviewAndApprove": "समीक्षा करें और approve करें",
     "nothingWaiting": "कुछु नइ राहय",
-    "anon": "एनोनCity name (optional, probably does",
     "reply": "जवाब",
     "liveChat": "लाइव चैट",
     "noMessages": "कुछु कहे के जरूरत नइए, कुछु कहे के जरूरत नइए ।",
@@ -4098,7 +4096,6 @@
       "drumroll": "ड्रम रोल",
       "baDumTish": "बाडम टिशCity name (optional, probably does not",
       "crickets": "क्रिकेट",
-      "spooky": "स्पूकीCity name (optional, probably does not",
       "magicSpell": "जादुई हिज्जा",
       "oohAhh": "ओह, ओह, ओह",
       "oohMan": "ओह (मनखे)",
@@ -8169,7 +8166,6 @@
     "step3Body": "हर कोई लिंक खोल सकता है । कोनो चीज ल बदलना बर चैट म जवाब दे ।"
   },
   "depin": {
-    "title": "डेपिनCity name (optional, probably does not",
     "noFixedRate": "कोनो तय दर, न्यूनतम वापसी, एपीवाई या आगे का अनुमान नहीं हेगे। योगदान रिकॉर्ड सिर्फ लेखांकन इनपुट हेगे, भुगतान के वादा नहीं। कउनो घलो भविष्य के टोकन निपटान बेस म होही अउ पात्रता, नेटवर्क नियम अउ लागू कानून के अधीन रही।",
     "dhbEarnedThisPeriod": "इस अवधि में अर्जित टोकन",
     "becomeANode": "नोड बनो",

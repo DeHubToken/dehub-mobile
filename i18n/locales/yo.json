@@ -2901,7 +2901,6 @@
     "failed_to_create_post": "Ikuna lati ṣẹda atẹjade",
     "notification_settings_updated": "A ṣe imudojuiwọn awọn eto iwifunni",
     "report_submitted": "Iroyin ti a fi silẹ",
-    "reported_for_moderation": "Ti ṣe ijabọ fun iwọntunwọnsi ti a ti sọ di mimọ nipasẹ awọn ti o ni ami-ami-ami-ami-ami-ami-ami-",
     "failed_to_report": "Ó kùnà láti ròyìn",
     "crosschain_deposit_completed": "Ìdókòwò àgbélébùú ti parí!",
     "proposal_submitted": "Àsọtẹ́lẹ̀ tí a gbé jáde!",
@@ -3954,7 +3953,6 @@
       "signInTitle": "Wọlé lati dojukọ oṣere miiran.",
       "signInBody": "Ibi iduro nilo lati mọ ẹniti aami rẹ n gbe.",
       "battleUnderway": "Ija rẹ pẹlu {{name}} n lọ lọwọ",
-      "challengeStillOpen": "Idojukọ rẹ ṣi ṣi ṣi",
       "returnToBoard": "Pada si tabili →",
       "openChallengeTitle": "Ṣii idojukọ",
       "minutes": "{{count}} iṣẹju",
@@ -3971,7 +3969,8 @@
       "accept": "Gba",
       "waiting": "N duro de oludije…",
       "backToLobby": "Pada si ibi iduro",
-      "serverDidNotAnswer": "Sọfitiwia idije ko dahun."
+      "serverDidNotAnswer": "Sọfitiwia idije ko dahun.",
+      "challengeStillOpen": "Ìṣòro rẹ ṣì ṣí sílẹ̀."
     },
     "gamesRecord_one": "eré {{count}} · {{wins}}B {{losses}}P {{draws}}D",
     "gamesRecord_other": "àwọn eré {{count}} · {{wins}}B {{losses}}P {{draws}}D",
@@ -5100,7 +5099,6 @@
     "noUploads": "Ko si awọn igbasilẹ",
     "uploadsAppearHere": "Awọn igbasilẹ rẹ yoo han nibi",
     "imagesTotalLimit": "Àwọn àwòrán nínú ìkòkò kan gbọ́dọ̀ ní àpapọ̀ 100 MB tàbí kí ó kéré jù bẹ́ẹ̀ lọ.",
-    "chooseDatabase": "Yan ibi ìpamọ́ ìpamọ́ ìpamọ́",
     "livestreamMode": "Ipo Liestream",
     "addThumbnail": "Ṣafikun eekanna atanpako",
     "showCover": "Fi ìbòjú hàn",
@@ -5300,8 +5298,7 @@
     "tokensUnit": "àmi-òwo",
     "atPreListingRate": "{{amount}} ní iye àkójọ",
     "paidToCreatorWallet": "Lọ taara si apamọwọ ẹlẹda.",
-    "creatorPaidDirectNote": "Ìpín olùṣẹ̀dá náà lọ tààrà sí àpamọ́ wọn ní àsìkò tí o bá ṣe ìforúkọsílẹ̀. DeHub máa ń san owó orí pẹpẹ kékeré.",
-    "creatorEarnsDirect": "Àwọn àmúyẹ fun gbígbọ́ orin ko le ṣiṣẹ lori ẹ̀rọ rẹ Àkọlé fídíò, ìwé àṣàrò kúkúrú, ìwé àṣàrò kúkúrú, ìwé àṣàrò kúkúrú. Àwọn ilẹ̀ ìpín rẹ nínú àpamọ́ rẹ ní àsìkò tí wọ́n bá ṣe ìforúkọsílẹ̀, dín owó pẹpẹ kù fún ìpele ìfipamọ́ rẹ."
+    "creatorPaidDirectNote": "Ìpín olùṣẹ̀dá náà lọ tààrà sí àpamọ́ wọn ní àsìkò tí o bá ṣe ìforúkọsílẹ̀. DeHub máa ń san owó orí pẹpẹ kékeré."
   },
   "live": {
     "notSet": "Kò tíì ṣètò",
@@ -7542,7 +7539,6 @@
       },
       "interacting-with-posts": {
         "title": "Ibaṣepọ pẹlu Awọn ifiweranṣẹ",
-        "intro": "Darapọ̀ pẹ̀lú ohun tí ó wà nínú rẹ̀ nípa ìbò, sísọ, sísọ, sísọ ìwé, pínpín, àti túmọ̀.",
         "steps": {
           "1": "Ṣe atilẹyin tabi kọ atẹjade kan nipa lilo awọn aami ọfà ni apa osi ti eyikeyi atẹjade.",
           "2": "Tẹ àmì àkíyèsí láti ṣí abala àkíyèsí kí o sì fi èsì sílẹ̀.",
@@ -7664,8 +7660,7 @@
           "2": "Wọ iye àwọn àmì tí o fẹ́ ṣe.",
           "3": "Yan ẹ̀wọ̀n tí o fẹ́ gbá lórí.",
           "4": "Jẹ́ kí o rí ìfowópamọ́ náà nínú àpò owó rẹ (àwọn àpò owó alátòkè) tàbí ó máa ń ṣe é fúnra rẹ̀ (ìwọ̀ sílẹ̀ pẹ̀lú àwọn àkọsílẹ̀ àwùjọ).",
-          "5": "Wo iye rẹ tí ó dúró àti èrè èyíkéyìí tí ó ń dúró dè é.",
-          "6": "Láti yọkuro, tẹ iye náà kí o sì fìdí ìṣòwò tí kò dúró múlẹ̀ múlẹ̀ múlẹ̀."
+          "5": "Wo iye rẹ tí ó dúró àti èrè èyíkéyìí tí ó ń dúró dè é."
         },
         "tips": {
           "1": "Ìgbekalẹ̀ pọ̀ sí iwọ̀n ìdìbò rẹ nínú àwọn ìgbìmọ̀ ìṣàkóso.",
@@ -8051,7 +8046,6 @@
     "packEmpty": "Kò sí nǹkankan nínú àpò yìí.",
     "errors": {
       "noBadge": "O nílò àmì ìfipamọ́ láti ṣẹ̀dá àwọn àkójọpọ̀.",
-      "packLimit": "O ti lo gbogbo àwọn ìgò ìgò ìgò ìgò tí ìgò ìgò rẹ gbà fún irú èyí.",
       "itemLimit": "Àkójọ yìí kún fún ìpele ìbánisọ̀rọ̀ rẹ.",
       "fileType": "Lo àwòrán PNG, GIF, WebP tàbí JPEG",
       "fileSize": "Àwọn fáìlì gbọ́dọ̀ jẹ́ {{mb}} MB tàbí kéékèèké",
@@ -8607,7 +8601,6 @@
     },
     "pay": {
       "title": "Páàwón {{name}}?",
-      "body": "Dàgbàgbà DHB jẹ́ ni ẹ̀kọ́ àwọn ẹ̀kọ́ àpẹ́ẹ̀, {{wallet}}. Àwọn ẹ̀kọ́ ni ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti",
       "confirm": "San {{amount}} DHB",
       "sent": "San {{amount}} DHB sí {{name}}."
     },

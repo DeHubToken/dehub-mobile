@@ -16,6 +16,7 @@
  *   node scripts/i18n-fanout.mjs --locale de --keys 200  # cap the work in one run
  *   node scripts/i18n-fanout.mjs --all --prefix calls.   # one namespace, every locale
  *   node scripts/i18n-fanout.mjs --all --only a.b,c.d    # exactly these keys
+ *   node scripts/i18n-fanout.mjs --prune --garbled       # delete what the answer guards reject
  *
  * Why this exists: extracting a page into `t()` calls makes it translatable, it
  * does not make it translated. A key that reaches only en.json renders English
@@ -563,27 +564,41 @@ function writeLocale(locale, raw) {
  * Strip keys whose value is the English source verbatim. Rendering does not
  * change — the key falls back to en.json either way — but the coverage report
  * stops counting them as translated, which is the whole point.
+ *
+ * `--prune --garbled` strips what the fill's answer guards now reject instead
+ * (scripts/i18n-guards.mjs: loops, a sentence for a label, markdown the English
+ * lacks), printing each key and why, so `--only` can refill exactly those.
+ * `--dry-run` prints without writing. A value the guards flag that is right as
+ * it stands — "FAQ" spelled out, Albanian "të të" — is listed by locale in
+ * scripts/i18n-garbled-keep.json and left alone.
  */
 if (flag('prune')) {
+  const GARBLED = flag('garbled');
+  const keepFile = 'scripts/i18n-garbled-keep.json';
+  const keep = GARBLED && fs.existsSync(keepFile) ? JSON.parse(fs.readFileSync(keepFile, 'utf8')) : {};
+  const clip = (v) => JSON.stringify([...v].length > 80 ? `${[...v].slice(0, 80).join('')}…` : v);
   for (const locale of targets) {
     const raw = JSON.parse(fs.readFileSync(path.join(LOCALES_DIR, `${locale}.json`), 'utf8'));
     const flat = flatten(raw);
-    let pruned = 0;
+    const kept = new Set(keep[locale] ?? []);
+    const pruned = [];
     for (const [k, v] of flat) {
       if (typeof v !== 'string') continue;
       if (ONLY_KEYS && !ONLY_KEYS.has(k)) continue;
       const source = enFlat.get(k);
-      if (typeof source === 'string' && isUntranslatedProse(source, v, locale)) {
-        const parts = k.split('.');
-        let node = raw;
-        for (const p of parts.slice(0, -1)) node = node?.[p];
-        if (node) { delete node[parts.at(-1)]; pruned++; }
-      }
+      if (typeof source !== 'string') continue;
+      const why = GARBLED ? !kept.has(k) && garbled(source, v) : isUntranslatedProse(source, v, locale);
+      if (!why) continue;
+      const parts = k.split('.');
+      let node = raw;
+      for (const p of parts.slice(0, -1)) node = node?.[p];
+      if (node) { delete node[parts.at(-1)]; pruned.push(`  ${k} (${why}) ${clip(v)}`); }
     }
-    if (pruned) {
+    if (pruned.length && !flag('dry-run')) {
       writeLocale(locale, raw);
     }
-    console.log(`${locale}: pruned ${pruned} English-verbatim value(s)`);
+    console.log(`${locale}: pruned ${pruned.length} ${GARBLED ? 'garbled' : 'English-verbatim'} value(s)`);
+    if (GARBLED) pruned.forEach((line) => console.log(line));
   }
   process.exit(0);
 }
