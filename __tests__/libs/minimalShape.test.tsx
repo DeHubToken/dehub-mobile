@@ -65,6 +65,23 @@ describe('minimal theme shape pass', () => {
     expect(squareProps({ style: rounded }).style).toBe(rounded);
   });
 
+  it('veils class-painted pages under a canvas theme, and leaves their own fills alone', () => {
+    const veil = 'rgba(4,4,7,0.6)';
+    setThemePass(false, veil, true);
+    expect(squareProps({ className: 'flex-1 bg-theme-neutrals-900' }).style).toEqual({ backgroundColor: veil });
+    const pad = { padding: 4 };
+    expect(squareProps({ className: 'bg-theme-background', style: pad }).style).toEqual([pad, { backgroundColor: veil }]);
+    const own = { backgroundColor: '#27272a' };
+    expect(squareProps({ className: 'bg-zinc-950', style: own }).style).toBe(own);
+    const tinted = { className: 'bg-theme-neutrals-900/60' };
+    expect(squareProps(tinted)).toBe(tinted);
+    // Without the class flag (minimal), classes keep their own colour.
+    setThemePass(false, '#000');
+    const minimal = { className: 'bg-theme-neutrals-900' };
+    expect(squareProps(minimal)).toBe(minimal);
+    setThemePass(false, null);
+  });
+
   it('squares and repaints together for War, and a theme switch drops cached results', () => {
     const style = { borderRadius: 12, backgroundColor: '#0c0c0e' };
     setSquaring(true);

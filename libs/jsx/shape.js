@@ -41,26 +41,40 @@ const NEAR_BLACK = new Set(["#010305", "#0c0c0e", "#09090b", "#0a0a0a", "#050505
 
 // What the pass does for the active theme. Minimal squares every corner and
 // takes near-blacks to #000; the canvas themes (theme/skins.ts) swap those
-// near-blacks for their own page colour, and War squares as well. System does
-// nothing, and then the whole pass is one boolean read.
+// near-blacks, and the NativeWind page classes, for a see-through veil of their
+// page colour so the live backdrop shows behind every screen; War squares as
+// well. System does nothing, and then the whole pass is one boolean read.
 let square = false;
 let page = null;
+let classes = false;
 let active = false;
 let PAGE = null;
 let SQUARE_PAGE = null;
 
-/** Configure the pass: square corners, and/or the colour near-black page fills become. */
-function setThemePass(nextSquare, nextPage) {
+// The NativeWind page fills. Their colour comes from a root variable with no
+// alpha, so a see-through page (a canvas theme's veil) is laid over them as an
+// inline style, which NativeWind lets win over the class. Opacity variants
+// (`bg-theme-neutrals-900/60`) are already see-through and left alone.
+const PAGE_CLASS = /(?:^|\s)(?:bg-theme-neutrals-900|bg-theme-background|bg-zinc-950)(?=\s|$)/;
+
+/**
+ * Configure the pass: square corners, and/or the colour near-black page fills
+ * become. With `nextClasses`, the NativeWind page classes take that colour too.
+ */
+function setThemePass(nextSquare, nextPage, nextClasses) {
   const s = !!nextSquare;
   const p = typeof nextPage === "string" && nextPage ? nextPage : null;
-  if (s === square && p === page) return;
+  const c = !!nextClasses && p !== null;
+  if (s === square && p === page && c === classes) return;
   square = s;
   page = p;
+  classes = c;
   active = square || page !== null;
   PAGE = page ? Object.freeze({ backgroundColor: page }) : null;
   SQUARE_PAGE = page ? Object.freeze({ ...SQUARE, backgroundColor: page }) : null;
   // Results depend on the pass, so a theme switch starts a fresh cache.
   cache = new WeakMap();
+  classCache = new WeakMap();
 }
 
 /** Minimal's pass on or off. Kept for the callers that predate the other themes. */
@@ -123,9 +137,26 @@ function squareStyle(style) {
   return override ? [style, override] : style;
 }
 
+// Same idea for class-painted pages: one output per input style object.
+let classCache = new WeakMap();
+
+/** `style` with the page colour laid over a page class, unless it sets its own background. */
+function classPageStyle(style) {
+  if (style === undefined || style === null) return PAGE;
+  if (typeof style !== "object") return style;
+  const hit = classCache.get(style);
+  if (hit !== undefined) return hit;
+  const out = scan(style, { radius: false, bg: undefined }).bg === undefined ? [style, PAGE] : style;
+  classCache.set(style, out);
+  return out;
+}
+
 /** Props with any radius in `style` / `imageStyle` squared off, or the same props. */
 function squareProps(props) {
   if (!active || !props || typeof props !== "object") return props;
+  if (classes && typeof props.className === "string" && typeof props.style !== "function" && PAGE_CLASS.test(props.className)) {
+    props = { ...props, style: classPageStyle(props.style) };
+  }
   const style = props.style !== undefined ? squareStyle(props.style) : undefined;
   const imageStyle = props.imageStyle !== undefined ? squareStyle(props.imageStyle) : undefined;
   if (style === props.style && imageStyle === props.imageStyle) return props;
