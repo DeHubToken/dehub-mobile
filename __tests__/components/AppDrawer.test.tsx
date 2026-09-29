@@ -98,7 +98,7 @@ it.each(destinations)('%s immediately closes and targets its registered nested s
   expect(Keyboard.dismiss).toHaveBeenCalledTimes(1);
   expect(mockDispatch).toHaveBeenCalledTimes(1);
   expect(mockDispatch).toHaveBeenCalledWith({ type: 'NAVIGATE', payload: {
-    name: 'App', params: tab ? { screen: 'Root', params: { screen, params } } : { screen, params },
+    name: 'App', params: tab ? { screen: 'Root', params: { screen, params }, pop: true } : { screen, params },
   } });
   const navigator = readFileSync(resolve(__dirname, '../../navigation', tab ? 'BottomTabNavigator.tsx' : 'AppNavigator.tsx'), 'utf8');
   expect(navigator).toContain(`name={ScreenNames.${screen}}`);
@@ -138,7 +138,7 @@ it('searches Explore with the menu query and opens documentation links', () => {
   fireEvent(view.getByLabelText('sidebar.searchMenu'), 'submitEditing');
   expect(mockDispatch).toHaveBeenCalledWith({ type: 'NAVIGATE', payload: { name: 'App', params: { screen: 'Root', params: {
     screen: 'Explore', params: { q: 'hello', ts: expect.any(Number) },
-  } } } });
+  }, pop: true } } });
 });
 
 it('leaves Home and the feed tabs off the resting menu but finds Home by search', () => {
@@ -146,5 +146,5 @@ it('leaves Home and the feed tabs off the resting menu but finds Home by search'
   for (const label of ['nav.home', 'feed.videos', 'feed.images', 'feed.music', 'feed.live']) expect(view.queryByLabelText(label)).toBeNull();
   fireEvent.changeText(view.getByLabelText('sidebar.searchMenu'), 'nav.home');
   fireEvent.press(view.getByLabelText('nav.home'));
-  expect(mockDispatch).toHaveBeenCalledWith({ type: 'NAVIGATE', payload: { name: 'App', params: { screen: 'Root', params: { screen: 'Home', params: undefined } } } });
+  expect(mockDispatch).toHaveBeenCalledWith({ type: 'NAVIGATE', payload: { name: 'App', params: { screen: 'Root', params: { screen: 'Home', params: undefined }, pop: true } } });
 });

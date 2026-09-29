@@ -62,6 +62,7 @@ import NewMembersRail from "../components/common/NewMembersRail";
 import type { FollowState } from "../components/Search/SearchAccountChip";
 import { useUser } from "../context/AuthContext";
 import { storage } from "../libs/storage";
+import { promptFeedEvents } from "../libs/eventBus";
 import { ScreenNames } from "../navigation/ScreenNames";
 import TrendingTopicsList from "../components/common/TrendingTopicsList";
 import { useAppTheme } from "../context/ThemeContext";
@@ -550,13 +551,16 @@ const SearchScreen: React.FC = () => {
    *
    * Writes the same key HomeScreen reads on mount rather than passing a param,
    * because the two have to agree on one source of truth — a route param would
-   * be overwritten by the stored value the next time Home mounted.
+   * be overwritten by the stored value the next time Home mounted. Home is
+   * already mounted and only reads that key on mount, so the category is also
+   * sent over the prompt channel to filter the open feed straight away.
    */
   const handleTopicPress = useCallback(
     (category: string) => {
       try {
         storage.set("dehub:defaultCategory", category);
       } catch {}
+      promptFeedEvents.chooseCategory(category);
       navigation.navigate(ScreenNames.Home as never);
     },
     [navigation],

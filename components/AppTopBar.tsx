@@ -48,7 +48,9 @@ const AppTopBar: React.FC<{
       onPress();
       return;
     }
-    navigation.navigate(ScreenNames.Root, { screen: ScreenNames.Home });
+    // pop: on a pushed page, go back to the Home already underneath instead
+    // of stacking a second tab navigator and feed on top of this one.
+    navigation.navigate(ScreenNames.Root, { screen: ScreenNames.Home }, { pop: true });
   }, [navigation, onPress]);
 
   return (
