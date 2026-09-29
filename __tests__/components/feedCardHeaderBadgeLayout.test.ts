@@ -36,7 +36,7 @@ describe("feed card badge layout", () => {
     expect(newMemberChipSource).toContain("const CHIP_HEIGHT = 16");
     expect(newMemberChipSource).toContain("const CHIP_TEXT_LINE_HEIGHT = 12");
     expect(newMemberChipSource).not.toContain("py-0.5");
-    expect(source).toContain("transform: [{ translateY: -1 }]");
+    expect(source).toContain("top: -1,");
   });
 
   it("renders the New chip as text only", () => {
