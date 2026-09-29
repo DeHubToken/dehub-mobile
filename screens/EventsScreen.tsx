@@ -5,10 +5,11 @@
  * Supabase with Upcoming / Past / Mine filters and going/interested RSVP.
  */
 import React, { useCallback, useMemo, useState } from "react";
-import { View, Text, StyleSheet, Pressable, FlatList } from "react-native";
+import { View, Text, StyleSheet, Pressable, FlatList, useWindowDimensions } from "react-native";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { DeHubLoader } from "../components/DeHubLoader";
 import { Image } from "expo-image";
+import { storageImageSource } from "../libs/cdnImage";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
@@ -53,12 +54,13 @@ interface EventCardProps {
 
 const EventCard: React.FC<EventCardProps> = ({ event, rsvp, onRsvp }) => {
   const { t } = useTranslation();
+  const { width: windowWidth } = useWindowDimensions();
   const going = rsvp === "going";
   const interested = rsvp === "interested";
   return (
     <View style={styles.card}>
       {event.cover_image_url ? (
-        <Image source={event.cover_image_url} style={styles.cover} contentFit="cover" transition={150} />
+        <Image source={storageImageSource(event.cover_image_url, windowWidth)} style={styles.cover} contentFit="cover" transition={150} />
       ) : (
         <View style={[styles.cover, styles.coverPlaceholder]}>
           <Icon name="CalendarDays" size={32} color="#3F3F46" />

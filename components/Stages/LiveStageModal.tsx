@@ -14,6 +14,7 @@ import {
   KeyboardAvoidingView,
 } from "react-native";
 import SmartImage from "../common/SmartImage";
+import { storageImage } from "../../libs/cdnImage";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
 import Icon from "../ui/Icon";
@@ -344,7 +345,8 @@ const LiveStageModal: React.FC = () => {
             style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0 }}
           >
             <SmartImage
-              source={{ uri: currentSpace.cover_image_url }}
+              // A 16:9 cover set to fill the screen's height is this wide.
+              source={{ uri: storageImage(currentSpace.cover_image_url, (windowHeight * 16) / 9) }}
               recyclingKey={currentSpace.cover_image_url}
               style={{ width: "100%", height: "100%", opacity: 0.22 }}
               contentFit="cover"

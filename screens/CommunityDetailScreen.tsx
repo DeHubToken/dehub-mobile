@@ -9,9 +9,11 @@ import {
   Share,
   FlatList,
   KeyboardAvoidingView,
+  useWindowDimensions,
 } from "react-native";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { Image } from "expo-image";
+import { storageImageSource } from "../libs/cdnImage";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import ScreenHeader from "../components/ScreenHeader";
@@ -60,6 +62,7 @@ type Tab = "posts" | "chat" | "members" | "about";
 
 const CommunityDetailScreen: React.FC = () => {
   const { t } = useTranslation();
+  const { width: windowWidth } = useWindowDimensions();
   const navigation = useNavigation<any>();
   const route = useRoute<any>();
   const slug: string = route.params?.slug || "";
@@ -379,14 +382,14 @@ const CommunityDetailScreen: React.FC = () => {
     <View>
       <View style={styles.bannerWrap}>
         {community.banner_url ? (
-          <Image source={{ uri: community.banner_url }} style={styles.banner} contentFit="cover" />
+          <Image source={storageImageSource(community.banner_url, windowWidth)} style={styles.banner} contentFit="cover" />
         ) : (
           <View style={[styles.banner, styles.bannerPlaceholder]} />
         )}
         <View style={styles.avatarOverlay}>
           <View style={styles.avatarBox}>
             {community.avatar_url ? (
-              <Image source={{ uri: community.avatar_url }} style={styles.avatar} contentFit="cover" />
+              <Image source={storageImageSource(community.avatar_url, 72)} style={styles.avatar} contentFit="cover" />
             ) : (
               <Icon name="Users" size={28} color="#808089" />
             )}

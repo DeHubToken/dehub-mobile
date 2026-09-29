@@ -16,8 +16,10 @@ import {
   ScrollView,
   ActivityIndicator,
   StyleSheet,
+  useWindowDimensions,
 } from "react-native";
 import { Image } from "expo-image";
+import { storageImageSource } from "../libs/cdnImage";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import ScreenHeader from "../components/ScreenHeader";
@@ -34,6 +36,7 @@ import type { CommunityInvitePreview } from "../types/community";
 
 const CommunityInviteScreen: React.FC = () => {
   const { t } = useTranslation();
+  const { width: windowWidth } = useWindowDimensions();
   const navigation = useNavigation<any>();
   const route = useRoute<any>();
   const code: string = route.params?.code || "";
@@ -196,7 +199,7 @@ const CommunityInviteScreen: React.FC = () => {
       <ScrollView className="flex-1" contentContainerStyle={{ paddingBottom: 48 }}>
         <View style={styles.bannerWrap}>
           {preview.banner_url ? (
-            <Image source={{ uri: preview.banner_url }} style={styles.banner} contentFit="cover" />
+            <Image source={storageImageSource(preview.banner_url, windowWidth)} style={styles.banner} contentFit="cover" />
           ) : (
             <View style={[styles.banner, styles.bannerPlaceholder]} />
           )}
@@ -204,7 +207,7 @@ const CommunityInviteScreen: React.FC = () => {
             <View style={styles.avatarBox}>
               {preview.avatar_url ? (
                 <Image
-                  source={{ uri: preview.avatar_url }}
+                  source={storageImageSource(preview.avatar_url, 72)}
                   style={styles.avatar}
                   contentFit="cover"
                 />

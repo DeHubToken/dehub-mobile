@@ -1,7 +1,8 @@
 import React, { useCallback, useMemo, useRef } from "react";
-import { View, Text, TouchableOpacity, Pressable, ActivityIndicator, StyleSheet } from "react-native";
+import { View, Text, TouchableOpacity, Pressable, ActivityIndicator, StyleSheet, useWindowDimensions } from "react-native";
 import { openBadgeShowcase } from "../../libs/badgeShowcase";
 import SmartImage from "../common/SmartImage";
+import { storageImage } from "../../libs/cdnImage";
 import { LinearGradient } from "expo-linear-gradient";
 import { SvgXml } from "react-native-svg";
 import Avatar from "../common/Avatar";
@@ -142,6 +143,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
 }) => {
   const { t } = useI18n();
   const { isMinimal } = useAppTheme();
+  const { width: windowWidth } = useWindowDimensions();
   const badgeRef = useRef<View>(null);
   // Bios go through the shared hook rather than a private translateText call,
   // which is what gets them auto-translation, the persisted cache and — the
@@ -291,9 +293,14 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
           style={{ height: 140 }}
         >
           {/* coverUrl is the unsized original (the viewer opens it too); expo-image
-              decodes it at banner size where ImageBackground decoded every pixel. */}
+              decodes it at banner size where ImageBackground decoded every pixel.
+              A cover in Supabase Storage is fetched at banner width as well. */}
           <SmartImage
-            source={coverUrl === "default-banner" ? FallbackBanner : { uri: coverUrl as string }}
+            source={
+              coverUrl === "default-banner"
+                ? FallbackBanner
+                : { uri: storageImage(coverUrl as string, windowWidth) }
+            }
             recyclingKey={coverUrl}
             style={[{ width: "100%", height: "100%" }, isMinimal ? null : { borderRadius: 12 }]}
             contentFit="cover"

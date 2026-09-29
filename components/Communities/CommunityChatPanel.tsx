@@ -40,6 +40,7 @@ import {
 } from "react-native";
 import SmartImage from "../common/SmartImage";
 import { Image } from "expo-image";
+import { storageImageSource } from "../../libs/cdnImage";
 import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Icon from "../ui/Icon";
@@ -204,7 +205,7 @@ const ChatRow: React.FC<{
 
         {!!message.image_url && (
           <Image
-            source={{ uri: message.image_url }}
+            source={storageImageSource(message.image_url, 180)}
             style={styles.messageImage}
             contentFit="cover"
           />

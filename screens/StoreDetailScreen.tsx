@@ -17,6 +17,7 @@ import {
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { DeHubLoader } from "../components/DeHubLoader";
 import { Image } from "expo-image";
+import { storageImageSource } from "../libs/cdnImage";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation, useRoute, type RouteProp } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
@@ -83,11 +84,11 @@ export default function StoreDetailScreen() {
   const header = (
     <View style={{ marginBottom: 14 }}>
       {!!store?.banner_url && (
-        <Image source={{ uri: store.banner_url }} style={styles.banner} contentFit="cover" />
+        <Image source={storageImageSource(store.banner_url, screenW)} style={styles.banner} contentFit="cover" />
       )}
       <View style={styles.identity}>
         <Avatar
-          uri={getAvatarUrl(store?.avatar_url)}
+          uri={getAvatarUrl(store?.avatar_url, 54)}
           size={54}
           name={store?.name || t("stores.store")}
         />
@@ -116,7 +117,7 @@ export default function StoreDetailScreen() {
       >
         <View style={[styles.thumbWrap, { height: cardWidth }]}>
           {img ? (
-            <Image source={{ uri: img }} style={StyleSheet.absoluteFill} contentFit="cover" transition={200} />
+            <Image source={storageImageSource(img, cardWidth)} style={StyleSheet.absoluteFill} contentFit="cover" transition={200} />
           ) : (
             <View style={styles.thumbFallback}>
               <Icon name="Package" size={24} color="#3F3F46" />
