@@ -277,7 +277,11 @@ export default function SpendPowerSheet({ power, address, onClose }: SpendPowerS
           </Pressable>
         </View>
 
-        <ScrollView style={{ flexShrink: 1 }} contentContainerClassName="gap-3">
+        <ScrollView
+          style={{ flexShrink: 1 }}
+          contentContainerClassName="gap-3"
+          keyboardShouldPersistTaps="handled"
+        >
           <Text className="text-[13px] leading-5 text-zinc-400">{power?.summary}</Text>
 
           {power?.key === "trend_jacker" ? (

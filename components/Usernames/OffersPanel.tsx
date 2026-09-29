@@ -352,6 +352,7 @@ const OffersPanel: React.FC<Props> = ({ isAuthed, onSignIn }) => {
       <ScrollView
         style={styles.flex}
         contentContainerStyle={[styles.scroll, { paddingBottom: insets.bottom + 96 }]}
+        keyboardShouldPersistTaps="handled"
       >
         <Text style={styles.sectionTitle}>{t("usernames.offersForYou")}</Text>
         {incoming.length === 0 ? (
