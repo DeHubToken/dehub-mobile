@@ -183,7 +183,7 @@ interface TileProps {
   disabled?: boolean;
   soonLabel: string;
   skin: SheetSkin | null;
-  /** War: glyphs in HUD cyan instead of raster art. */
+  /** War keeps its tactical HUD frame and offline fallback colour. */
   hud: boolean;
   square: boolean;
   onPress: () => void;
@@ -222,7 +222,7 @@ const Tile = memo<TileProps>(({ label, icon, iconUrl, iconColor, width, active, 
       ) : null}
       {skin?.brackets ? <HudBrackets color={skin.brackets} length={8} width={1} /> : null}
       <View style={styles.tileIcon}>
-        {iconUrl && !hud && !artFailed ? (
+        {iconUrl && !artFailed ? (
           <Image
             source={{ uri: iconUrl }}
             style={styles.tileImage}
