@@ -118,4 +118,19 @@ export function withScreenBoundary({ route, children }: ScreenLayoutArgs<any, an
   return <ScreenErrorBoundary name={String(route.name)}>{children}</ScreenErrorBoundary>;
 }
 
+// Plain JS shared with the JSX runtime (libs/jsx/surface.js).
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { SolidSurfaceScope } = require("../../libs/jsx/surface") as {
+  SolidSurfaceScope: React.FC<{ children: React.ReactNode }>;
+};
+
+/**
+ * withScreenBoundary for a screen presented over another (a modal or a
+ * drawer). It floats over that screen rather than the theme backdrop, so a
+ * canvas theme keeps its page fills solid instead of veiled.
+ */
+export function withSolidScreenBoundary(args: ScreenLayoutArgs<any, any, any, any>) {
+  return <SolidSurfaceScope>{withScreenBoundary(args)}</SolidSurfaceScope>;
+}
+
 export default ScreenErrorBoundary;
