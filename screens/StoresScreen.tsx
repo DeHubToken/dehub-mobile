@@ -207,9 +207,14 @@ export default function StoresScreen() {
             )}
           </View>
 
+          {/* The strip keeps its own height. As a flex item it was squeezed
+              between the search box and the listings, and Yoga measured each
+              chip's label into what was left, so the labels were clipped
+              through the middle. Same trap as AccountsScreen's chipScroll. */}
           <ScrollView
             horizontal
             showsHorizontalScrollIndicator={false}
+            style={styles.chipScroll}
             contentContainerStyle={styles.chipRow}
           >
             {STORE_CATEGORIES.map((c) => (
@@ -324,6 +329,7 @@ const styles = StyleSheet.create({
   },
   searchInput: { flex: 1, color: "#FFFFFF", fontSize: 14, padding: 0 },
 
+  chipScroll: { flexGrow: 0, flexShrink: 0 },
   chipRow: { gap: 8, paddingHorizontal: H_PADDING, paddingVertical: 10, alignItems: "center" },
   chip: {
     paddingHorizontal: 14,

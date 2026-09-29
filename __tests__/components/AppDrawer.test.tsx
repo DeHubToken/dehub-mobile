@@ -65,7 +65,7 @@ const destinations = [
   ['nav.home', 'Home', true], ['nav.profile', 'Profile'], ['nav.explore', 'Explore', true],
   ['nav.prompt', 'Prompt'], ['nav.notifications', 'Notifications'], ['nav.messages', 'DM', true],
   ['nav.communities', 'Communities'], ['nav.assistant', 'AIChat', true], ['nav.settings', 'AccountSettings'],
-  ['nav.leaderboard', 'Leaderboard'], ['nav.stats', 'Stats'], ['nav.bookmarks', 'MyLibrary'],
+  ['nav.leaderboard', 'Leaderboard'], ['nav.stats', 'Stats'], ['nav.bookmarks', 'MyLibrary', false, { initialTab: 'saved' }],
   ['nav.command', 'CommandCentre'], ['nav.wallet', 'Dpay', false, { initialTab: 'buy' }],
   ['nav.events', 'Events'], ['nav.stages', 'Stages'], ['nav.featureRequests', 'FeatureRequests'],
   ['nav.staking', 'Dpay', false, { initialTab: 'stake' }], ['nav.superpowers', 'SuperPowers'],
