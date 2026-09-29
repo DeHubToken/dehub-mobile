@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { View, Text, FlatList, Pressable, TextInput, TouchableOpacity, ActivityIndicator, Keyboard, Platform, StyleSheet, Alert } from "react-native";
+import { View, Text, FlatList, Pressable, TextInput, TouchableOpacity, ActivityIndicator, Keyboard, Platform, StyleSheet, Alert, Animated, type LayoutChangeEvent, type NativeScrollEvent, type NativeSyntheticEvent } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import ScreenHeader from "../components/ScreenHeader";
@@ -72,7 +72,7 @@ const threadLineStyles = StyleSheet.create({
 
 export default function FeedDetailScreen() {
   const { t } = useTranslation();
-  const { isMinimal } = useAppTheme();
+  const { isMinimal, skin } = useAppTheme();
   const route = useRoute<any>();
   const navigation = useNavigation<any>();
   
@@ -316,6 +316,40 @@ export default function FeedDetailScreen() {
     const base = 88;
     return base + inputLift;
   }, [inputLift]);
+
+  // The composer belongs to the post and its comments. Once the reader is down
+  // in "More posts" it slides away, and comes back when they scroll up again.
+  // Where that section starts is worked out from the end of the list: it is the
+  // last thing in the footer, above only the bottom padding.
+  const scrollGeom = useRef({ y: 0, viewport: 0, content: 0, continuation: 0 });
+  const [composerHeight, setComposerHeight] = useState(0);
+  const [pastComments, setPastComments] = useState(false);
+  const composerSlide = useRef(new Animated.Value(0)).current;
+  const updatePastComments = useCallback(() => {
+    const g = scrollGeom.current;
+    if (!g.continuation || !g.viewport) return;
+    const sectionTop = g.content - listBottomPadding - g.continuation;
+    // Past the comments once "More posts" fills the lower half of the screen.
+    // A short post that fits on one screen never scrolls, so never hides it.
+    const past = g.y > 40 && sectionTop < g.y + g.viewport * 0.5;
+    setPastComments((prev) => (prev === past ? prev : past));
+  }, [listBottomPadding]);
+  const handleListScroll = useCallback((e: NativeSyntheticEvent<NativeScrollEvent>) => {
+    scrollGeom.current.y = e.nativeEvent.contentOffset.y;
+    updatePastComments();
+  }, [updatePastComments]);
+  const handleListLayout = useCallback((e: LayoutChangeEvent) => {
+    scrollGeom.current.viewport = e.nativeEvent.layout.height;
+    updatePastComments();
+  }, [updatePastComments]);
+  const handleContentSize = useCallback((_w: number, h: number) => {
+    scrollGeom.current.content = h;
+    updatePastComments();
+  }, [updatePastComments]);
+  const handleContinuationLayout = useCallback((e: LayoutChangeEvent) => {
+    scrollGeom.current.continuation = e.nativeEvent.layout.height;
+    updatePastComments();
+  }, [updatePastComments]);
 
   // Fetch feed details and comments
   const fetchData = useCallback(async () => {
@@ -1291,6 +1325,17 @@ export default function FeedDetailScreen() {
   // translated whole and cut around the name, because a translated "Replying
   // to" with the name glued on after it only reads right in languages that put
   // the name last.
+  // Stays up whenever the reader is mid-comment, wherever they have scrolled.
+  const hideComposer = pastComments && inputLift === 0 && !replyTo && !editingComment
+    && !mediaAttachment && !recorder.isRecording;
+  useEffect(() => {
+    Animated.timing(composerSlide, {
+      toValue: hideComposer ? composerHeight + 8 : 0,
+      duration: 220,
+      useNativeDriver: true,
+    }).start();
+  }, [hideComposer, composerHeight, composerSlide]);
+
   const replyToName = replyTo?.user?.displayName || replyTo?.user?.username || t("dm.userFallback");
   const [replyingToBefore, replyingToAfter = ""] = t("governance.discussion.replyingTo", {
     name: "\u0000",
@@ -1312,7 +1357,9 @@ export default function FeedDetailScreen() {
           <View>
             {showAllCommentsRow}
             {item && tokenId != null && transitionSettled && (
-              <PostDetailContinuation currentPostId={String(tokenId)} />
+              <View onLayout={handleContinuationLayout}>
+                <PostDetailContinuation currentPostId={String(tokenId)} />
+              </View>
             )}
           </View>
         )}
@@ -1354,16 +1401,30 @@ export default function FeedDetailScreen() {
         keyboardShouldPersistTaps="handled"
         viewabilityConfig={viewabilityConfig}
         onViewableItemsChanged={onViewableItemsChanged}
+        onScroll={handleListScroll}
+        scrollEventThrottle={16}
+        onLayout={handleListLayout}
+        onContentSizeChange={handleContentSize}
       />
       {/* Nothing to comment on while the post is private, gone or failed to
           load. A saved draft stays in storage and comes back with the post. */}
       {!postUnavailable && (
+        <Animated.View
+          pointerEvents={hideComposer ? "none" : "auto"}
+          style={{ position: "absolute", left: 0, right: 0, bottom: 0, transform: [{ translateY: composerSlide }] }}
+          onLayout={(e) => setComposerHeight(e.nativeEvent.layout.height)}
+        >
         <View
-          className="absolute left-0 right-0 bottom-0 border-t border-theme-neutrals-800 bg-theme-neutrals-900"
+          className="border-t border-theme-neutrals-800 bg-theme-neutrals-900"
+          // Always solid. A canvas theme turns page fills into a see-through
+          // veil over its backdrop, so the bar sets its page colour itself
+          // (opaque) and the comments never show through it.
           // Minimal: a black bar under one full-width hairline.
           style={isMinimal
             ? { marginBottom: inputLift, backgroundColor: "#000", borderTopColor: MINIMAL_HAIRLINE }
-            : { marginBottom: inputLift }}
+            : skin
+              ? { marginBottom: inputLift, backgroundColor: skin.page }
+              : { marginBottom: inputLift }}
         >
           {/* Replying / Editing indicator */}
           {(replyTo || editingComment) && !recorder.isRecording && (
@@ -1578,6 +1639,7 @@ export default function FeedDetailScreen() {
             </View>
           )}
         </View>
+        </Animated.View>
       )}
 
       {/* GIF picker modal */}
