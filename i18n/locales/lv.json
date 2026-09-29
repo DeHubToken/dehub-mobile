@@ -7010,6 +7010,12 @@
       "noCurve": "Novieto atskaņošanas galviņu uz atslēgkadra, lai veidotu tā līkni.",
       "applyAll": "Izmantot šo līkni visiem atslēgkadriem",
       "timelineKey": "Atslēgkadrs. Velc, lai pārvietotu, pieskaries divreiz, lai dzēstu.",
+      "record": "Ierakstīt",
+      "recordHint": "Ierakstīšana: pārvietojot, mainot izmēru, pagriežot vai padarot caurspīdīgu slāni zem atskaņošanas galviņas, tur tiek pievienoti atslēgkadri.",
+      "recording": "Tiek ierakstīta kustība",
+      "lanes": "Atslēgkadri",
+      "scrub": "Velc pa kreisi vai pa labi, lai mainītu.",
+      "segment": "{{from}} → {{to}}",
       "ease": {
         "linear": "Lineāra",
         "ease": "Maiga",

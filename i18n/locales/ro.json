@@ -7024,6 +7024,12 @@
       "noCurve": "Pune capul de redare pe un cadru cheie pentru a-i modela curba.",
       "applyAll": "Folosește această curbă la toate cadrele cheie",
       "timelineKey": "Cadru cheie. Trage pentru a-l muta, atinge de două ori pentru a-l șterge.",
+      "record": "Înregistrează",
+      "recordHint": "Înregistrare: mutarea, redimensionarea, rotirea sau estomparea unui strat sub capul de redare adaugă acolo cadre cheie.",
+      "recording": "Se înregistrează mișcarea",
+      "lanes": "Cadre cheie",
+      "scrub": "Trage la stânga sau la dreapta pentru a modifica.",
+      "segment": "{{from}} → {{to}}",
       "ease": {
         "linear": "Liniară",
         "ease": "Lină",

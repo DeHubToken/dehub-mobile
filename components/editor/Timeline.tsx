@@ -3,8 +3,8 @@
  * a fixed playhead in the middle. Drag the strip to scrub, pinch to zoom, tap
  * a block to select it, drag its ends to trim, hold and drag to move it, and
  * tap the join between two clips for a transition. Keyframes show as diamonds
- * along the bottom of a block: tap to jump to one, drag to move it,
- * double-tap to delete it.
+ * along the bottom of a block: tap to jump to one (and open Motion), drag to
+ * move it, double-tap to delete it. The one under the playhead is lit.
  *
  * It only reports what the finger did; the screen turns that into project
  * changes with libs/editor/timeline.ts, as live changes until the finger lifts.
@@ -52,6 +52,8 @@ interface Props {
   onKeyRetime: (clipId: string, from: number, to: number) => void;
   /** A keyframe diamond was double-tapped. */
   onKeyDelete: (clipId: string, at: number) => void;
+  /** A keyframe diamond was touched: bring up the Motion tool for its clip. */
+  onKeyOpen?: (clipId: string) => void;
 }
 
 function clipLabel(c: Clip, t: (k: string) => string): string {
@@ -149,7 +151,8 @@ export default function Timeline(props: Props) {
               onMove={props.onMove}
               onTransition={props.onTransition}
               onToggleMute={props.onToggleMute}
-              keys={{ onScrub: props.onScrub, onRetime: props.onKeyRetime, onDelete: props.onKeyDelete, label: t("editor.motion.timelineKey") }}
+              keys={{ onScrub: props.onScrub, onRetime: props.onKeyRetime, onDelete: props.onKeyDelete, onOpen: props.onKeyOpen, label: t("editor.motion.timelineKey") }}
+              time={props.time}
               muteLabel={track.muted ? t("editor.video.unmute") : t("editor.video.mute")}
             />
           ))}
@@ -183,6 +186,7 @@ function Row(props: {
   onTransition: (clipId: string) => void;
   onToggleMute: (trackId: string) => void;
   keys: KeyHandlers;
+  time: number;
   muteLabel: string;
 }) {
   const { track, project, pps, offset } = props;
@@ -206,6 +210,7 @@ function Row(props: {
             onTrim={props.onTrim}
             onMove={props.onMove}
             keys={props.keys}
+            time={props.time}
           />
         ))}
         {track.kind !== "audio" && clips.map((c) => {
@@ -251,9 +256,12 @@ function ClipBlock(props: {
   onTrim: Props["onTrim"];
   onMove: Props["onMove"];
   keys: KeyHandlers;
+  /** The playhead, so the key under it can be lit. */
+  time: number;
 }) {
   const { clip, pps, height, selected } = props;
   const times = keyTimes(clip).filter((k) => k >= 0 && k <= clip.duration + 0.001);
+  const hereIdx = times.findIndex((k) => Math.abs(props.time - clip.start - k) < 1 / 60);
   const live = useRef(props);
   live.current = props;
   const startAt = useRef(0);
@@ -305,11 +313,12 @@ function ClipBlock(props: {
           <Text numberOfLines={1} style={styles.label}>{props.label}</Text>
         </View>
       </GestureDetector>
-      {times.map((kt) => (
+      {times.map((kt, i) => (
         <KeyMark
           key={kt}
           clip={clip}
           at={kt}
+          here={i === hereIdx}
           pps={pps}
           selected={selected}
           strip={props.strip}
@@ -339,10 +348,13 @@ interface KeyHandlers {
   onScrub: (time: number) => void;
   onRetime: (clipId: string, from: number, to: number) => void;
   onDelete: (clipId: string, at: number) => void;
+  onOpen?: (clipId: string) => void;
   label: string;
 }
 
 const KEY_HIT = 26;
+/** Diamonds keep this far (pt) inside the clip, clear of the trim handles and the block's rounded ends. */
+const KEY_EDGE = 8;
 
 /**
  * A keyframe diamond along the bottom of a clip (web KeyframeMarks). Tap puts
@@ -352,6 +364,8 @@ const KEY_HIT = 26;
 function KeyMark(props: {
   clip: Clip;
   at: number;
+  /** Under the playhead. */
+  here: boolean;
   pps: number;
   selected: boolean;
   strip: GestureType;
@@ -372,9 +386,13 @@ function KeyMark(props: {
       const p = live.current;
       if (!p.selected) p.onSelect(p.clip.id);
     };
+    // A keyframe is a motion thing: bring up Motion to work on it. After a drag,
+    // not at its start, so the panel opening does not shift the strip mid-drag.
+    const open = () => live.current.handlers.onOpen?.(live.current.clip.id);
     const tap = Gesture.Tap().runOnJS(true).blocksExternalGesture(props.strip).onEnd(() => {
       focus();
       live.current.handlers.onScrub(live.current.clip.start + live.current.at);
+      open();
     });
     const doubleTap = Gesture.Tap().runOnJS(true).numberOfTaps(2).blocksExternalGesture(props.strip).onEnd(() => {
       live.current.handlers.onDelete(live.current.clip.id, live.current.at);
@@ -390,6 +408,7 @@ function KeyMark(props: {
         const to = target(e.translationX);
         if (Math.abs(to - p.at) >= 0.005) p.handlers.onRetime(p.clip.id, p.at, to);
         p.handlers.onScrub(p.clip.start + to);
+        open();
       })
       .onFinalize(() => setDrag(null));
     return Gesture.Race(pan, Gesture.Exclusive(doubleTap, tap));
@@ -397,7 +416,9 @@ function KeyMark(props: {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const x = (drag ?? props.at) * props.pps;
+  const w = Math.max(6, props.clip.duration * props.pps);
+  const x = Math.max(KEY_EDGE, Math.min((drag ?? props.at) * props.pps, w - KEY_EDGE));
+  const lit = drag !== null || props.here;
   return (
     <GestureDetector gesture={gesture}>
       <View
@@ -405,7 +426,7 @@ function KeyMark(props: {
         accessibilityRole="button"
         accessibilityLabel={props.handlers.label}
       >
-        <View style={[styles.key, drag !== null && { backgroundColor: "#7dd3fc" }]} />
+        <View style={[styles.key, lit && styles.keyLit]} />
       </View>
     </GestureDetector>
   );
@@ -421,5 +442,6 @@ const styles = StyleSheet.create({
   join: { position: "absolute", width: 22, height: 22, borderRadius: 11, alignItems: "center", justifyContent: "center", borderWidth: 1, borderColor: "#fff" },
   keyHit: { position: "absolute", bottom: -6, width: KEY_HIT, height: KEY_HIT, alignItems: "center", justifyContent: "center", zIndex: 2 },
   key: { width: 10, height: 10, borderRadius: 1, transform: [{ rotate: "45deg" }], backgroundColor: "#fff", borderWidth: 1, borderColor: "rgba(0,0,0,0.5)" },
+  keyLit: { backgroundColor: "#7dd3fc", borderColor: "#e0f2fe" },
   mute: { position: "absolute", left: 6, width: 26, height: 26, borderRadius: 13, backgroundColor: "rgba(0,0,0,0.6)", alignItems: "center", justifyContent: "center" },
 });

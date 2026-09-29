@@ -7014,6 +7014,12 @@
       "noCurve": "Placera uppspelningshuvudet på en nyckelbild för att forma dess kurva.",
       "applyAll": "Använd den här kurvan på alla nyckelbilder",
       "timelineKey": "Nyckelbild. Dra för att flytta den, dubbeltryck för att ta bort den.",
+      "record": "Spela in",
+      "recordHint": "Inspelning: att flytta, skala, rotera eller tona ett lager under uppspelningshuvudet lägger till nyckelbilder där.",
+      "recording": "Spelar in rörelse",
+      "lanes": "Nyckelbilder",
+      "scrub": "Dra åt vänster eller höger för att ändra.",
+      "segment": "{{from}} → {{to}}",
       "ease": {
         "linear": "Linjär",
         "ease": "Mjuk",

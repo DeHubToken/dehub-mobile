@@ -50,8 +50,11 @@ within 7/255.
   `canvasHtml.ts` carries its own port of the easing and `resolveClipAt`, which
   bakes a keyed clip into a plain one before drawing and before reporting its
   box. Edits to placement go through `placementPatchAt` at the playhead, so a
-  keyed property gets a key there instead of a static value. Trimming the head
-  and splitting shift keys so the motion stays put in time.
+  keyed property gets a key there instead of a static value. With record on
+  (`{ record: true }`) and the playhead past a layer's first frame, a property
+  that is not keyed yet starts animating: a key at 0 holding its old value and
+  one with the new value at the playhead (text never keys scale). Trimming the
+  head and splitting shift keys so the motion stays put in time.
 - New layers start at 0 and last `max(5s, timeline end)`, so a layer added to a
   web project with a timeline shows for the whole of it.
 - The still editor shows and exports the frame at `STILL_TIME` (1s), after the
@@ -101,9 +104,19 @@ within 7/255.
    background).
    **Keyframes:** the Motion tool (`components/editor/MotionPanel.tsx`, the
    web's MotionSection) has a stopwatch per property, previous/next key,
-   add/remove key, a bezier curve editor and 15 ease presets. The timeline
-   shows keys as diamonds on each block: tap to jump, drag to move, double-tap
-   to delete. The AI's `keyframes` op works the same as on the web.
+   add key (`keyAllAt`: the animated properties, or all when none is), a
+   bezier curve editor and 15 ease presets. Record (the screen's
+   `recordMotion`, on only while the timeline shows) makes page gestures and
+   the Position, Opacity and Motion edits key the layer; the page gets a red
+   frame and a "Recording motion" pill. Drag a property's name sideways to
+   scrub it. Each animated property has a lane: tap to seek, drag a key to
+   retime that property (`retimeKey`), double-tap to delete. A selected layer
+   with keyed position shows its motion path: the page samples its centre 64
+   times over the clip (`path` message) whenever the clip changes, and
+   `EditorCanvas` draws it with react-native-svg. The timeline shows keys as
+   diamonds on each block (the one under the playhead lit): tap to jump and
+   open Motion, drag to move, double-tap to delete. The AI's `keyframes` op
+   works the same as on the web.
 4. **Next:** captions and the AI's timing and audio ops on the phone, pages,
    multi-select.
 

@@ -7010,6 +7010,12 @@
       "noCurve": "Madaxa ciyaarta dul dhig fareem muhiim ah si aad u qaabayso qaloociisa.",
       "applyAll": "Qaloocan u isticmaal dhammaan fareemyada muhiimka ah",
       "timelineKey": "Fareem muhiim ah. Jiid si aad u dhaqaajiso, laba jeer taabo si aad u tirtirto.",
+      "record": "Duub",
+      "recordHint": "Duubis: dhaqaajinta, beddelidda cabbirka, wareejinta ama qarinta lakab ka hooseeya madaxa ciyaarta waxay halkaas ku dartaa fareemyo muhiim ah.",
+      "recording": "Dhaqdhaqaaqa waa la duubayaa",
+      "lanes": "Fareemyada muhiimka ah",
+      "scrub": "Bidix ama midig u jiid si aad u beddesho.",
+      "segment": "{{from}} → {{to}}",
       "ease": {
         "linear": "Toosan",
         "ease": "Jilicsan",

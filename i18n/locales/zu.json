@@ -7041,6 +7041,12 @@
       "noCurve": "Beka ikhanda lokudlala efreyimini eyisihluthulelo ukuze ubumbe ijika layo.",
       "applyAll": "Sebenzisa leli jika kuwo wonke amafreyimu ayisihluthulelo",
       "timelineKey": "Ifreyimu eyisihluthulelo. Hudula ukuze uyihambise, thepha kabili ukuze uyisuse.",
+      "record": "Rekhoda",
+      "recordHint": "Iyarekhoda: ukuhambisa, ukushintsha usayizi, ukuzungezisa noma ukufiphalisa isendlalelo ngaphansi kwekhanda lokudlala kwengeza amafreyimu ayisihluthulelo lapho.",
+      "recording": "Irekhoda ukunyakaza",
+      "lanes": "Amafreyimu ayisihluthulelo",
+      "scrub": "Hudula kwesobunxele noma kwesokudla ukuze ushintshe.",
+      "segment": "{{from}} → {{to}}",
       "ease": {
         "linear": "Okuqondile",
         "ease": "Okuthambile",

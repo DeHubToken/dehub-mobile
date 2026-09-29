@@ -7013,6 +7013,12 @@
       "noCurve": "Vidd a lejátszófejet egy kulcskockára a görbéje alakításához.",
       "applyAll": "Ez a görbe minden kulcskockára",
       "timelineKey": "Kulcskocka. Húzd az áthelyezéshez, koppints duplán a törléshez.",
+      "record": "Rögzítés",
+      "recordHint": "Rögzítés: ha a lejátszófej alatt mozgatsz, méretezel, forgatsz vagy halványítasz egy réteget, ott kulcskockák jönnek létre.",
+      "recording": "Mozgás rögzítése",
+      "lanes": "Kulcskockák",
+      "scrub": "Húzd balra vagy jobbra a módosításhoz.",
+      "segment": "{{from}} → {{to}}",
       "ease": {
         "linear": "Lineáris",
         "ease": "Lágy",

@@ -7040,6 +7040,12 @@
       "noCurve": "Setz de Abspielkopf uf e Keyframe, zum sini Kurve forme.",
       "applyAll": "Die Kurve für alli Keyframes bruuche",
       "timelineKey": "Keyframe. Zieh zum Verschiebe, zweimal tippe zum Lösche.",
+      "record": "Ufnäh",
+      "recordHint": "Ufnahm: Wenn du e Ebeni unter em Abspielkopf verschiebsch, grösser machsch, drehsch oder usblendsch, chunnt det e Keyframe.",
+      "recording": "Bewegig wird ufgnoh",
+      "lanes": "Keyframes",
+      "scrub": "Nach links oder rechts zieh zum Ändere.",
+      "segment": "{{from}} → {{to}}",
       "ease": {
         "linear": "Linear",
         "ease": "Weich",

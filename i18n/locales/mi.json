@@ -7009,6 +7009,12 @@
       "noCurve": "Whakatūngia te upoko pūrei ki tētahi anga matua hei hanga i tōna ānau.",
       "applyAll": "Whakamahia tēnei ānau ki ia anga matua",
       "timelineKey": "Anga matua. Tōia hei neke, pātō rua hei muku.",
+      "record": "Hopu",
+      "recordHint": "E hopu ana: mā te neke, te huri rahi, te whakahuri, te whakamēneti rānei i tētahi paparanga i raro i te upoko pūrei ka tāpirihia he anga matua ki reira.",
+      "recording": "E hopu ana i te nekehanga",
+      "lanes": "Ngā anga matua",
+      "scrub": "Tōia ki mauī, ki matau rānei hei huri.",
+      "segment": "{{from}} → {{to}}",
       "ease": {
         "linear": "Rārangi",
         "ease": "Māmā",

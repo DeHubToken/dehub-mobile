@@ -7175,6 +7175,12 @@
       "noCurve": "Umiestnite prehrávaciu hlavu na kľúčový snímok a upravte jeho krivku.",
       "applyAll": "Použiť túto krivku na všetky kľúčové snímky",
       "timelineKey": "Kľúčový snímok. Ťahaním presuniete, dvojitým ťuknutím odstránite.",
+      "record": "Nahrávať",
+      "recordHint": "Nahrávanie: posunutie, zmena veľkosti, otočenie alebo zoslabenie vrstvy pod prehrávacou hlavou tam pridá kľúčové snímky.",
+      "recording": "Nahráva sa pohyb",
+      "lanes": "Kľúčové snímky",
+      "scrub": "Ťahajte doľava alebo doprava pre zmenu.",
+      "segment": "{{from}} → {{to}}",
       "ease": {
         "linear": "Lineárna",
         "ease": "Plynulá",

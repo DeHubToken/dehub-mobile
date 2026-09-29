@@ -7009,6 +7009,12 @@
       "noCurve": "Vendos kokën e luajtjes mbi një kornizë kyçe për të formuar kurbën e saj.",
       "applyAll": "Përdor këtë kurbë në të gjitha kornizat kyçe",
       "timelineKey": "Kornizë kyçe. Tërhiqe për ta lëvizur, prek dy herë për ta fshirë.",
+      "record": "Regjistro",
+      "recordHint": "Regjistrim: lëvizja, ndryshimi i madhësisë, rrotullimi ose zbehja e një shtrese nën kokën e luajtjes shton aty korniza kyçe.",
+      "recording": "Po regjistrohet lëvizja",
+      "lanes": "Korniza kyçe",
+      "scrub": "Tërhiq majtas ose djathtas për ta ndryshuar.",
+      "segment": "{{from}} → {{to}}",
       "ease": {
         "linear": "Lineare",
         "ease": "E butë",
