@@ -122,16 +122,16 @@ const ReportBugModal: React.FC<ReportBugModalProps> = ({
           </View>
         </View>
 
-        <View className="flex-row justify-end">
+        <View className="flex-row flex-wrap justify-end gap-2">
           <TouchableOpacity
             onPress={onClose}
-            className="h-11 px-4 rounded-xl items-center justify-center bg-theme-neutrals-700 mr-2"
+            className="h-11 px-4 rounded-xl items-center justify-center bg-theme-neutrals-700"
           >
             <Text className="text-white">{t("common.close")}</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={handleCopy}
-            className="h-11 px-4 rounded-xl items-center justify-center bg-white/10 border border-white/20 mr-2"
+            className="h-11 px-4 rounded-xl items-center justify-center bg-white/10 border border-white/20"
           >
             <Text className="text-white font-semibold">{t("settings.copyDetails")}</Text>
           </TouchableOpacity>
