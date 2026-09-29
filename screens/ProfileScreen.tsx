@@ -9,6 +9,8 @@ import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { useCanGoBack } from "../hooks/useCanGoBack";
 import { useTranslation } from "react-i18next";
+import { TabBarHideProvider } from "../context/TabBarHideContext";
+import StandaloneTabBar from "../navigation/StandaloneTabBar";
 
 
 const REFRESH_INTERVAL_MS = 60_000; // 1 min periodic refresh
@@ -66,11 +68,15 @@ const ProfileScreen: React.FC = () => {
           logoHint={t("common.goesToHomeFeed")}
         />
         <ProfileSignInPrompt />
+        <StandaloneTabBar />
       </View>
     );
   }
 
+  // Profile sits above the tabs on the root stack, so it brings its own copy
+  // of the home nav, hiding on scroll the same way.
   return (
+    <TabBarHideProvider>
     <View className="flex-1 bg-theme-neutrals-900">
       <HomeHeader
         onLogoPress={goHome}
@@ -81,7 +87,9 @@ const ProfileScreen: React.FC = () => {
       <View className="flex-1">
         <ProfileTabs />
       </View>
+      <StandaloneTabBar />
     </View>
+    </TabBarHideProvider>
   );
 };
 

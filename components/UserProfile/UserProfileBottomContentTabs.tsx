@@ -54,6 +54,7 @@ import { useProfileContentCounts } from "../Profile/useProfileContentCounts";
 import { getPlans, type SubscriptionPlan } from "../../services/subscription.service";
 import { useTranslation } from "react-i18next";
 import { useAppTheme } from "../../context/ThemeContext";
+import { useTabBarScrollHide } from "../../hooks/useTabBarScrollHide";
 
 interface UserProfileBottomContentTabsProps {
   address: string;
@@ -321,11 +322,14 @@ const UserProfileBottomContentTabs: React.FC<
   // UserProfileBottomSheet) has always been a no-op stub — there is nothing
   // real to forward here, so this drops the per-frame JS hop entirely rather
   // than paying it to call a function that does nothing.
+  const { drive: driveTabBar } = useTabBarScrollHide();
   const scrollHandler = useAnimatedScrollHandler({
     onScroll: (event) => {
       if (!isFullScreenShared.value) return;
 
       const y = event.contentOffset.y;
+      // Bottom nav hides on scroll down and returns on scroll up, as on home.
+      driveTabBar(y);
 
       const threshold = headerHeightShared.value;
       if (threshold > 0) {
