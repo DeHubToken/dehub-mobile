@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { View } from "react-native";
+import { useIsFocused } from "@react-navigation/native";
 import Animated, {
+  cancelAnimation,
   Easing,
   useAnimatedStyle,
   useSharedValue,
@@ -20,12 +22,20 @@ const GREEN = "#34d399";
 export default function OnlineDot({ address }: { address?: string | null }) {
   const { t } = useTranslation();
   const isOnline = useIsOnline(address);
+  // Messages is preloaded behind Home. An endless pulse there kept Android's
+  // UI thread committing a frame for a dot nobody could see, through every
+  // frame of a feed scroll; it runs only while its screen is in front.
+  const focused = useIsFocused();
   const pulse = useSharedValue(0);
 
   useEffect(() => {
-    if (!isOnline) return;
+    if (!isOnline || !focused) {
+      cancelAnimation(pulse);
+      pulse.value = 0;
+      return;
+    }
     pulse.value = withRepeat(withTiming(1, { duration: 1400, easing: Easing.out(Easing.ease) }), -1, false);
-  }, [isOnline, pulse]);
+  }, [isOnline, focused, pulse]);
 
   const halo = useAnimatedStyle(() => ({
     opacity: 0.6 * (1 - pulse.value),

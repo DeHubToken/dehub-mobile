@@ -1036,7 +1036,10 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
         onScrollEndDrag={handleScrollEndDrag}
         onMomentumScrollBegin={handleMomentumScrollBegin}
         onMomentumScrollEnd={handleMomentumScrollEnd}
-        scrollEventThrottle={16}
+        // 24, not 16: Android only throttles at 17ms or more, so 16 sent JS every
+        // frame (about 120 events a second at 120Hz) for list bookkeeping that
+        // batches at 50ms anyway. Every third frame is plenty for the header.
+        scrollEventThrottle={24}
         // View tracking for feed posts (not videos)
         viewabilityConfig={viewabilityConfig}
         onViewableItemsChanged={onViewableItemsChanged}

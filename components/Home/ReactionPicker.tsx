@@ -70,13 +70,27 @@ interface ReactionPickerProps {
   polarity?: "positive" | "negative";
 }
 
-const ReactionPickerComponent: React.FC<ReactionPickerProps> = ({
+/**
+ * Every feed card carries two of these, closed. The sheet's hooks (shared
+ * values, animated styles, a pan gesture, inset and window subscriptions) cost
+ * each card four Reanimated mappers on the UI thread even with nothing on
+ * screen, so they exist only from the long-press until the sheet has slid away.
+ */
+const ReactionPickerComponent: React.FC<ReactionPickerProps> = (props) => {
+  const [alive, setAlive] = useState(props.open);
+  if (props.open && !alive) setAlive(true);
+  const handleClosed = useCallback(() => setAlive(false), []);
+  return alive ? <ReactionSheet {...props} onClosed={handleClosed} /> : null;
+};
+
+const ReactionSheet: React.FC<ReactionPickerProps & { onClosed: () => void }> = ({
   open,
   current,
   onSelect,
   onClose,
   onShowInfo,
   polarity = "positive",
+  onClosed,
 }) => {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
@@ -85,6 +99,10 @@ const ReactionPickerComponent: React.FC<ReactionPickerProps> = ({
 
   // Stay mounted through the closing slide, then drop the Modal.
   const [mounted, setMounted] = useState(open);
+  const finishClose = useCallback(() => {
+    setMounted(false);
+    onClosed();
+  }, [onClosed]);
   const translateY = useSharedValue(screenHeight);
   const backdrop = useSharedValue(0);
 
@@ -99,7 +117,7 @@ const ReactionPickerComponent: React.FC<ReactionPickerProps> = ({
       translateY.value = withTiming(
         screenHeight,
         { duration: 200, easing: Easing.in(Easing.cubic) },
-        (done) => { if (done) runOnJS(setMounted)(false); },
+        (done) => { if (done) runOnJS(finishClose)(); },
       );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

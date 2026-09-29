@@ -560,7 +560,8 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
       onScroll={scrollHandler}
       onScrollBeginDrag={onScrollBegin}
       onMomentumScrollEnd={onScrollEnd}
-      scrollEventThrottle={16}
+      // See InfiniteVideoFeed: 16 is below Android's 17ms throttle floor.
+      scrollEventThrottle={24}
       refreshControl={
         <DeHubRefreshControl
           refreshing={refreshing}
