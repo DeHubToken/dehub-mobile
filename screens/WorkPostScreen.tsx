@@ -23,7 +23,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import Icon, { type IconName } from "../components/ui/Icon";
-import ScreenHeader, { SCREEN_HEADER_HEIGHT } from "../components/ScreenHeader";
+import ScreenHeader from "../components/ScreenHeader";
 import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
 import { useAuthState } from "../context/AuthContext";
 import { parseDateOnly } from "../libs/date.util";
@@ -71,9 +71,9 @@ function toISODate(d: Date): string {
 export default function WorkPostScreen() {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
-  // ScreenHeader sits above the KeyboardAvoidingView, on top of the inset the
-  // root SafeAreaView already spent.
-  const keyboardOffset = useKeyboardOffset(SCREEN_HEADER_HEIGHT);
+  // The KeyboardAvoidingView measures itself from its parent, which already
+  // includes the ScreenHeader above it; only the status-bar inset is missing.
+  const keyboardOffset = useKeyboardOffset();
   const navigation = useNavigation<any>();
   const { isSignedIn, needsUsername } = useAuthState();
   const isAuthed = isSignedIn && !needsUsername;
