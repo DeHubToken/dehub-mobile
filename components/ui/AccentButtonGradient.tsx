@@ -1,6 +1,7 @@
 import React from "react";
 import { LinearGradient } from "expo-linear-gradient";
-import { ViewStyle, StyleProp } from "react-native";
+import { View, ViewStyle, StyleProp } from "react-native";
+import { useAppTheme } from "../../context/ThemeContext";
 
 export const ACCENT_GRADIENT_COLORS = [
   "rgba(255,255,255,0.20)",
@@ -13,7 +14,12 @@ const AccentButtonGradient: React.FC<{
   children: React.ReactNode;
   style?: StyleProp<ViewStyle>;
   borderRadius?: number;
-}> = ({ children, style, borderRadius = 12 }) => (
+}> = ({ children, style, borderRadius = 12 }) => {
+  const { skin } = useAppTheme();
+  if (skin) {
+    return <View style={[{ borderRadius, overflow: "hidden" }, style, skin.centre]}>{children}</View>;
+  }
+  return (
   <LinearGradient
     colors={ACCENT_GRADIENT_COLORS}
     start={{ x: 0, y: 0 }}
@@ -30,6 +36,7 @@ const AccentButtonGradient: React.FC<{
   >
     {children}
   </LinearGradient>
-);
+  );
+};
 
 export default AccentButtonGradient;

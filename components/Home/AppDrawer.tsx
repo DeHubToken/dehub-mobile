@@ -68,8 +68,8 @@ const RASTER_THEMES = new Set([
 // cache keeps serving the old art forever.
 const ICON_REVISIONS: Record<string, string> = {
   dao: "?v=4",
-  // Redrawn in the System chrome finish so the monochrome menus match.
-  accounts: "?v=4", tv: "?v=4", usernames: "?v=4", staking: "?v=4", buy: "?v=4", fractions: "?v=4",
+  accounts: "?v=5", tv: "?v=5", usernames: "?v=5", email: "?v=5",
+  staking: "?v=5", buy: "?v=5", bridge: "?v=5", fractions: "?v=4",
   // Crop leftovers stripped from these in place.
   audio: "?v=2", careers: "?v=2", communities: "?v=2", governance: "?v=2", home: "?v=2", live: "?v=2",
   notifications: "?v=2", posts: "?v=2", stages: "?v=2", subscriptions: "?v=2", trophy: "?v=2",
