@@ -109,6 +109,9 @@ export const APP_SCHEME = 'dehub';
 // in three files, so the list has to.
 const RESERVED_PREFIXES = RESERVED_LINK_SEGMENTS;
 
+/** `@mal` (or `%40mal`, as a URL can carry it) → `mal`. */
+const stripHandleAt = (segment: string): string => segment.replace(/^(?:@|%40)/i, '');
+
 export const getDeepLinkPrefix = (): string[] => {
   const prefixes = [
     // Custom scheme
@@ -262,6 +265,9 @@ export const DeepLinkPaths = {
   WORK_HISTORY: 'work/history',
   WORK_DISPUTES: 'work/disputes',
   WORK_EDIT: 'bounty/:jobKey/edit',
+  // One bounty — dehub.io/bounty/:jobNumber, the form web shares and lists in
+  // its sitemap. The detail screen takes a job_number or a uuid.
+  BOUNTY: 'bounty/:jobId',
 } as const;
 
 /**
@@ -421,6 +427,10 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
             path: DeepLinkPaths.WORK_EDIT,
             parse: { jobKey: (jobKey: string) => jobKey },
           },
+          [ScreenNames.WorkJobDetail]: {
+            path: DeepLinkPaths.BOUNTY,
+            parse: { jobId: (jobId: string) => jobId },
+          },
 
           [ScreenNames.Root]: {
             screens: {
@@ -506,6 +516,17 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
       return getStateFromPath(newPath, options);
     }
 
+    // Web's short post URL: /posts/:tokenId, with /b for the author's thread
+    // and /b/:commentId for one entry in it. There is no thread view here, so
+    // all three open the post, the last one on that comment (?c=).
+    if (segments[0] === 'posts' && segments[1]) {
+      const commentId = segments[2] === 'b' ? segments[3] : undefined;
+      const query = [queryString, commentId ? `c=${commentId}` : ''].filter(Boolean).join('&');
+      const newPath = `/app/post/${segments[1]}${query ? `?${query}` : ''}`;
+      logger.info('Short post link rewritten', { from: path, to: newPath });
+      return getStateFromPath(newPath, options);
+    }
+
     // Stage invite links, both shapes the web app hands out. A link has to do
     // two things — land on the Stages hub and then join the room it names — and
     // only the first half is a route, so both go through the same event bus
@@ -546,8 +567,12 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
     // dehub.io/mal.eth is a real profile URL that web already serves. The
     // decoded segment goes straight through to account_info exactly as a
     // username does; that endpoint answers for either.
-    if (segments.length === 1 && couldBeProfileSegment(segments[0], RESERVED_PREFIXES)) {
-      const username = decodeURIComponent(segments[0]);
+    //
+    // dehub.io/@mal is the same profile as dehub.io/mal on web (its canonical
+    // is the bare form), so the @ comes off before either test.
+    const profileSegment = segments.length === 1 ? stripHandleAt(segments[0]) : '';
+    if (profileSegment && couldBeProfileSegment(profileSegment, RESERVED_PREFIXES)) {
+      const username = decodeURIComponent(profileSegment);
       logger.info('Profile deep link', { username, ens: isEnsHandle(username) });
       // Emit event so UserProfileSheetProvider can open the profile bottom sheet
       emitProfileDeepLink(username);
@@ -858,11 +883,24 @@ export const parseDeepLink = (url: string): { type: string; params: Record<strin
       return { type: 'feed', params: { postId: pathParts[1] } };
     }
 
-    // Profile: /:username or /:name.eth (single segment). Shares the reserved
-    // list and the dot rule with getStateFromPath above — this used to exclude
-    // 'app' and nothing else, so it reported /arcade as the user @arcade.
-    if (pathParts.length === 1 && couldBeProfileSegment(pathParts[0], RESERVED_PREFIXES)) {
-      return { type: 'profile', params: { username: pathParts[0] } };
+    // Short post URL: /posts/:tokenId, /posts/:tokenId/b/:commentId
+    if (pathParts[0] === 'posts' && pathParts[1]) {
+      const c = pathParts[2] === 'b' ? pathParts[3] : undefined;
+      return { type: 'post', params: { tokenId: pathParts[1], ...(c ? { c } : {}), ...qp } };
+    }
+
+    // /bounty/:jobNumber (the /edit form is the edit screen, not the bounty)
+    if (pathParts[0] === 'bounty' && pathParts[1] && !pathParts[2]) {
+      return { type: 'bounty', params: { jobId: pathParts[1], ...qp } };
+    }
+
+    // Profile: /:username, /@:username or /:name.eth (single segment). Shares
+    // the reserved list and the dot rule with getStateFromPath above — this
+    // used to exclude 'app' and nothing else, so it reported /arcade as the
+    // user @arcade.
+    const profileSegment = pathParts.length === 1 ? stripHandleAt(pathParts[0]) : '';
+    if (profileSegment && couldBeProfileSegment(profileSegment, RESERVED_PREFIXES)) {
+      return { type: 'profile', params: { username: profileSegment } };
     }
     
     // Fallback
