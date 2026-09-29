@@ -42,6 +42,20 @@ describe('useImageAspect', () => {
     expect(result.current.ratio).toBe(0.25);
   });
 
+  it('holds its ratio when a re-decode at the new size only rounds differently', () => {
+    const { result } = renderHook(() => useImageAspect('rounding-photo'));
+    act(() => result.current.onLoad(loaded(962, 576)));
+    const first = result.current.ratio;
+    // The box resizes to the measured ratio and expo-image decodes again at
+    // that size; flipping between these two readings was an endless loop.
+    for (const [width, height] of [[961, 576], [962, 577], [962, 576]]) {
+      act(() => result.current.onLoad(loaded(width, height)));
+      expect(result.current.ratio).toBe(first);
+    }
+    act(() => result.current.onLoad(loaded(900, 600)));
+    expect(result.current.ratio).toBe(1.5);
+  });
+
   it('keeps a usable layout when dimensions are invalid', () => {
     const { result } = renderHook(() => useImageAspect('invalid-photo'));
     for (const [width, height] of [[0, 10], [10, 0], [-1, 10], [Infinity, 10], [10, NaN]]) {
