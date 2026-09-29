@@ -135,6 +135,37 @@ describe('getStateFromPath — one-segment paths', () => {
     expect(emitProfile).not.toHaveBeenCalled();
     expect(fallback).toHaveBeenCalled();
   });
+
+  // The shapes the Android intent filter and the web's AASA claim for the
+  // app. A claimed link that resolves to nothing opens the app on nothing,
+  // which is worse than the browser it replaced.
+  it('opens a profile for the @ form web also serves', () => {
+    resolve('/@mal');
+    resolve('/%40mal.eth');
+    expect(emitProfile).toHaveBeenNthCalledWith(1, 'mal');
+    expect(emitProfile).toHaveBeenNthCalledWith(2, 'mal.eth');
+  });
+
+  it('never opens a profile for an @ in front of a product path', () => {
+    resolve('/@arcade');
+    expect(emitProfile).not.toHaveBeenCalled();
+  });
+
+  it('opens the post for every form of the short /posts URL', () => {
+    resolve('/posts/42');
+    expect(fallback).toHaveBeenLastCalledWith('/app/post/42', expect.anything());
+    resolve('/posts/42/b');
+    expect(fallback).toHaveBeenLastCalledWith('/app/post/42', expect.anything());
+    resolve('/posts/42/b/55');
+    expect(fallback).toHaveBeenLastCalledWith('/app/post/42?c=55', expect.anything());
+    expect(emitProfile).not.toHaveBeenCalled();
+  });
+
+  it('routes /bounty/:n to the bounty and /bounty/:n/edit to the edit form', () => {
+    const screens = (linkingConfig.config as any).screens.App.screens;
+    expect(screens.WorkJobDetail.path).toBe('bounty/:jobId');
+    expect(screens.WorkEdit.path).toBe('bounty/:jobKey/edit');
+  });
 });
 
 describe('parseDeepLink', () => {
@@ -202,6 +233,21 @@ describe('parseDeepLink', () => {
       params: {},
     });
     expect(parseDeepLink('https://dehub.io/mal')?.type).toBe('profile');
+  });
+
+  it('reads the short post, bounty and @ profile URLs', () => {
+    expect(parseDeepLink('https://dehub.io/posts/42/b/55')).toEqual({
+      type: 'post',
+      params: { tokenId: '42', c: '55' },
+    });
+    expect(parseDeepLink('https://dehub.io/bounty/7')).toEqual({
+      type: 'bounty',
+      params: { jobId: '7' },
+    });
+    expect(parseDeepLink('https://dehub.io/@mal')).toEqual({
+      type: 'profile',
+      params: { username: 'mal' },
+    });
   });
 });
 
