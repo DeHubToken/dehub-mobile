@@ -3735,6 +3735,7 @@
     "noPurchasesYet": "لا توجد مشتريات بعد",
     "listingRemoved": "تم حذف الإعلان",
     "noActiveListings": "لا توجد إعلانات نشطة في هذا المتجر",
+    "storeNotFound": "المتجر غير موجود",
     "detail": {
       "listing": "الإعلان",
       "unavailable": "هذا الإعلان لم يعد متاحًا",

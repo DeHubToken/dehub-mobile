@@ -3730,6 +3730,7 @@
     "noPurchasesYet": "Ende nuk ka blerje",
     "listingRemoved": "Njoftimi u hoq",
     "noActiveListings": "Ky dyqan nuk ka njoftime aktive",
+    "storeNotFound": "Dyqani nuk u gjet",
     "detail": {
       "listing": "Njoftim",
       "unavailable": "Ky njoftim nuk është më i disponueshëm",

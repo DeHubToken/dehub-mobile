@@ -3716,6 +3716,7 @@
     "noPurchasesYet": "Sanni si tɛ yen fɔlɔ",
     "listingRemoved": "Feereta bɔra",
     "noActiveListings": "Nin butiki ka feereta baaralenw tɛ yen",
+    "storeNotFound": "Butiki ma sɔrɔ",
     "detail": {
       "listing": "Feereta",
       "unavailable": "Nin feereta tɛ yen tuguni",
@@ -8504,8 +8505,8 @@
       "dev": "Developer preview"
     },
     "host": {
-      "close": "Close app",
-      "backToStore": "Back to Apps",
+      "close": "App datugu",
+      "backToStore": "Segin Apps ma",
       "notFound": "O app tɛ DeHub App Store kɔnɔ, wala a bɔra.",
       "badUrl": "O la, a ka ɲi ka tɛmɛ fɛɛrɛ dɔw fɛ k'a yira ko a ka di mɔgɔ ye ka baara kɛ n'a ye. O ka kan ka daminɛ ni https://, walima ka kɛ yɔrɔ labɛnbaga ka ladɛrɛsi ye.",
       "readyTimeout": "O app tun ma deli ka wele dehub. ready (), o la, a tun dogonin lo segindi 8 kɔnɔ."

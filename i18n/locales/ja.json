@@ -3732,6 +3732,7 @@
     "noPurchasesYet": "購入はまだありません",
     "listingRemoved": "出品を削除しました",
     "noActiveListings": "このストアに公開中の出品はありません",
+    "storeNotFound": "店舗が見つかりません",
     "detail": {
       "listing": "出品",
       "unavailable": "この出品はもう利用できません",

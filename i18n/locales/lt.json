@@ -3731,6 +3731,7 @@
     "noPurchasesYet": "Pirkinių kol kas nėra",
     "listingRemoved": "Skelbimas pašalintas",
     "noActiveListings": "Ši parduotuvė neturi aktyvių skelbimų",
+    "storeNotFound": "Parduotuvė nerasta",
     "detail": {
       "listing": "Skelbimas",
       "unavailable": "Šis skelbimas nebegalioja",
@@ -8529,9 +8530,9 @@
       "dev": "Kūrėjo apžiūra"
     },
     "host": {
-      "close": "Uždaryti prietaisą",
-      "backToStore": "Grįžti į Prietaisus",
-      "notFound": "Šis prietaisas nėra DeHub prietaisų sandūroje, arba buvo pašalintas.",
+      "close": "Uždaryti programėlę",
+      "backToStore": "Grįžti į programėles",
+      "notFound": "Šios programėlės nėra DeHub App Store arba ji buvo pašalinta.",
       "badUrl": "Ši adreso nuoroda negali būti atidaryta kaip mažas prietaisas. Ji turi prasidėti su https://, arba būti vietinėje vietoje (localhost) kūrėjo režime.",
       "readyTimeout": "Šis prietaisas niekada nešaukė dehub.ready(), todėl pradinė ekranų dėmė buvo paslėpta po 8 sekundžių."
     },

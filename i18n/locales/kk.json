@@ -3746,6 +3746,7 @@
     "noPurchasesYet": "Әзірге сатып алулар жоқ",
     "listingRemoved": "Хабарландыру жойылды",
     "noActiveListings": "Бұл дүкенде белсенді хабарландыру жоқ",
+    "storeNotFound": "Дүкен табылмады",
     "detail": {
       "listing": "Хабарландыру",
       "unavailable": "Бұл хабарландыру енді қолжетімсіз",

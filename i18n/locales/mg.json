@@ -3754,6 +3754,7 @@
     "noPurchasesYet": "Mbola tsy misy fividianana",
     "listingRemoved": "Nesorina ny tolotra",
     "noActiveListings": "Tsy manana tolotra mavitrika ity fivarotana ity",
+    "storeNotFound": "Tsy hita ny fivarotana",
     "detail": {
       "listing": "Tolotra",
       "unavailable": "Tsy misy intsony ity tolotra ity",

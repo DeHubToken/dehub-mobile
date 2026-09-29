@@ -3735,6 +3735,7 @@
     "noPurchasesYet": "ابھی کوئی خریداری نہیں",
     "listingRemoved": "اشتہار ہٹا دیا گیا",
     "noActiveListings": "اس اسٹور میں کوئی فعال اشتہار نہیں",
+    "storeNotFound": "اسٹور نہیں ملا",
     "detail": {
       "listing": "اشتہار",
       "unavailable": "یہ اشتہار اب دستیاب نہیں",

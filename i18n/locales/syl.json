@@ -3900,6 +3900,7 @@
     "noPurchasesYet": "এখনো কোনো কিনা নাই",
     "listingRemoved": "তালিকা সরানো অইছে",
     "noActiveListings": "এই দোকানো কোনো সক্রিয় তালিকা নাই",
+    "storeNotFound": "স্টোর পাওয়া যাই নাই",
     "detail": {
       "listing": "তালিকা",
       "unavailable": "এই তালিকা আর পাওয়া যাইরা না",

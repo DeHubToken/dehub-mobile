@@ -3731,6 +3731,7 @@
     "noPurchasesYet": "No purchases yet",
     "listingRemoved": "Listing removed",
     "noActiveListings": "This store has no active listings",
+    "storeNotFound": "Store not found",
     "detail": {
       "listing": "Listing",
       "unavailable": "This listing is no longer available",

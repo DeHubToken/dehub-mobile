@@ -3731,6 +3731,7 @@
     "noPurchasesYet": "Ancora nessun acquisto",
     "listingRemoved": "Annuncio rimosso",
     "noActiveListings": "Questo negozio non ha annunci attivi",
+    "storeNotFound": "Negozio non trovato",
     "detail": {
       "listing": "Annuncio",
       "unavailable": "Questo annuncio non è più disponibile",

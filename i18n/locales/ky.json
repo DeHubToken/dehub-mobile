@@ -3731,6 +3731,7 @@
     "noPurchasesYet": "Азырынча сатып алуулар жок",
     "listingRemoved": "Жарыя өчүрүлдү",
     "noActiveListings": "Бул дүкөндө активдүү жарыялар жок",
+    "storeNotFound": "Дүкөн табылган жок",
     "detail": {
       "listing": "Жарыя",
       "unavailable": "Бул жарыя эми жеткиликсиз",

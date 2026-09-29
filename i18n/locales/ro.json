@@ -3731,6 +3731,7 @@
     "noPurchasesYet": "Încă nu sunt achiziții",
     "listingRemoved": "Anunț eliminat",
     "noActiveListings": "Acest magazin nu are anunțuri active",
+    "storeNotFound": "Magazinul nu a fost găsit",
     "detail": {
       "listing": "Anunț",
       "unavailable": "Acest anunț nu mai este disponibil",

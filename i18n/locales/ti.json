@@ -3724,6 +3724,7 @@
     "noPurchasesYet": "ገና ዕድግታት የለዉን",
     "listingRemoved": "ዝርዝር ተኣልዩ",
     "noActiveListings": "እዚ ድኳን ንጡፋት ዝርዝራት የብሉን",
+    "storeNotFound": "ድኳን ኣይተረኽበን",
     "detail": {
       "listing": "ዝርዝር",
       "unavailable": "እዚ ዝርዝር ደጊም ኣይርከብን",
