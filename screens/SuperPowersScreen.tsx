@@ -58,7 +58,12 @@ function formatMinutes(total: number): string {
 
 export default function SuperPowersScreen() {
   const { t, i18n } = useTranslation();
-  const { data: status, isLoading: loadingStatus, refetch: refetchStatus } = useSuperpowers();
+  const {
+    data: status,
+    isLoading: loadingStatus,
+    isError: statusFailed,
+    refetch: refetchStatus,
+  } = useSuperpowers();
   const { data: ladder, isLoading: loadingLadder } = useSuperpowerLadder();
   const cancelBoost = useCancelBoost();
 
@@ -124,6 +129,19 @@ export default function SuperPowersScreen() {
               </Text>
             )}
           </>
+        ) : statusFailed && !status ? (
+          // A failed request is not "no badge". The panel below would show a
+          // holder a zero badge balance, and offer DHB where purchases are on.
+          <View style={styles.panel}>
+            <Text style={styles.body}>{t("superpowers.loadFailed")}</Text>
+            <Pressable
+              onPress={() => void refetchStatus()}
+              style={styles.cta}
+              accessibilityRole="button"
+            >
+              <Text style={styles.ctaText}>{t("common.tryAgain")}</Text>
+            </Pressable>
+          </View>
         ) : (
           // Team up is available without buying tokens or holding a badge.
           <View style={styles.panel}>
