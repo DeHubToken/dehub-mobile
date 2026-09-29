@@ -46,6 +46,10 @@ export default function SignInTvScreen() {
   const [target, setTarget] = useState<TvPairingTarget | null>(null);
   const [busy, setBusy] = useState(false);
   const [notFound, setNotFound] = useState(false);
+  // The lookup failed without an answer about the code (offline, timeout,
+  // server fault). Kept apart from notFound so a good code is not blamed.
+  const [lookupError, setLookupError] = useState(false);
+  const [retryKey, setRetryKey] = useState(0);
 
   const complete = isCompletePairingCode(code);
 
@@ -57,11 +61,14 @@ export default function SignInTvScreen() {
     let cancelled = false;
     setBusy(true);
     setNotFound(false);
+    setLookupError(false);
     (async () => {
       const found = await lookupPairing(code);
       if (cancelled) return;
       setBusy(false);
-      if (found) {
+      if (found === 'error') {
+        setLookupError(true);
+      } else if (found) {
         Keyboard.dismiss();
         setTarget(found);
         setPhase('confirm');
@@ -72,7 +79,7 @@ export default function SignInTvScreen() {
     return () => {
       cancelled = true;
     };
-  }, [code, complete, phase]);
+  }, [code, complete, phase, retryKey]);
 
   const answer = useCallback(
     async (approve: boolean) => {
@@ -115,6 +122,7 @@ export default function SignInTvScreen() {
               onChangeText={(v) => {
                 setCode(normalisePairingCode(v));
                 setNotFound(false);
+                setLookupError(false);
               }}
               placeholder="XXXX-XXXX"
               placeholderTextColor="#6F7174"
@@ -137,6 +145,24 @@ export default function SignInTvScreen() {
               <Text className="text-white/80 text-sm mt-4 text-center">
                 {t('tv.pairNotFound')}
               </Text>
+            )}
+
+            {lookupError && !busy && (
+              <View className="items-center mt-4">
+                <Text className="text-white/80 text-sm text-center">
+                  {t('common.somethingWentWrong')}
+                </Text>
+                <TouchableOpacity
+                  onPress={() => setRetryKey((k) => k + 1)}
+                  activeOpacity={0.7}
+                  accessibilityRole="button"
+                  className="mt-3 px-5 py-2 rounded-xl border border-theme-neutrals-700"
+                >
+                  <Text className="text-theme-neutrals-300 text-sm font-semibold">
+                    {t('common.retry')}
+                  </Text>
+                </TouchableOpacity>
+              </View>
             )}
           </View>
         )}
