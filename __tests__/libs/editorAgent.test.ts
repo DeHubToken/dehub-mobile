@@ -42,6 +42,24 @@ describe("editor agent on the phone (same ops as the web)", () => {
     expect(project.clips.find((c) => c.id === clipId)).toMatchObject({ mediaId: "photo1-cut" });
   });
 
+  it("keyframes a layer, and later placement keys it at the playhead", async () => {
+    const { project: base, clipId } = addImage(newProject("1:1", "t"), "photo1");
+    const { project, report } = await applyOps(base, [
+      { op: "keyframes", id: clipId, x: [{ t: 0, v: -2, ease: "easeOutBack" }, { t: 99, v: 0.5 }], scale: "none", rotation: [] },
+    ]);
+    expect(report).toMatchObject({ applied: 1, failed: 0 });
+    const keys = project.clips[0].keyframes;
+    expect(keys?.x).toEqual([{ t: 0, v: -0.5, ease: "easeOutBack" }, { t: 5, v: 0.5 }]);
+    expect(keys?.scale).toBeUndefined();
+    expect(describeScene(project, null, null).layers[0]).toMatchObject({ keys });
+    const moved = await applyOps(project, [{ op: "place", id: clipId, x: 0.2, y: 0.7 }], { time: 2 });
+    const c = moved.project.clips[0];
+    expect(c.keyframes?.x?.map((k) => [k.t, k.v])).toEqual([[0, -0.5], [2, 0.2], [5, 0.5]]);
+    expect(c.transform?.y).toBe(0.7);
+    const cleared = await applyOps(project, [{ op: "keyframes", id: clipId, x: "none" }]);
+    expect(cleared.project.clips[0].keyframes).toBeUndefined();
+  });
+
   it("describes the brand kit only when one is set", () => {
     const p = newProject("1:1", "t");
     expect(describeScene(p, null, EMPTY_BRAND).brand).toBeUndefined();
