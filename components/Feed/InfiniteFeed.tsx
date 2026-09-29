@@ -431,6 +431,7 @@ const InfiniteFeedBase: React.FC<
     <View className="flex-1">
       <Animated.FlatList
         ref={listRef}
+        showsVerticalScrollIndicator={false}
         data={items}
         keyExtractor={keyExtractor || _keyExtractor}
         renderItem={renderFeedItem}
