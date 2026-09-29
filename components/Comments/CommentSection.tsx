@@ -1637,6 +1637,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
               </View>
             ) : null
           }
+          showsVerticalScrollIndicator={false}
         />
       )}
 

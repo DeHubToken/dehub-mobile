@@ -287,6 +287,7 @@ const PostsInfiniteList: React.FC<PostsInfiniteListProps> = ({
         flexGrow: items.length === 0 && !loading ? 1 : undefined,
       }}
       ListEmptyComponent={ListEmpty}
+      showsVerticalScrollIndicator={false}
       />
       <DeHubRefreshMark refreshing={refreshing} />
     </View>

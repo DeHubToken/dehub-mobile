@@ -202,6 +202,7 @@ const ProfileImageGrid: React.FC<ProfileImageGridProps> = ({ images, listRef, on
         scrollEnabled={scrollEnabled}
         onScroll={onScroll}
         scrollEventThrottle={16}
+        showsVerticalScrollIndicator={false}
       />
     );
   }

@@ -1723,6 +1723,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
               onEndReachedThreshold={0.3}
               onScrollToIndexFailed={onScrollToIndexFailed}
               ListFooterComponent={listFooter}
+              showsVerticalScrollIndicator={false}
             />
           )}
 

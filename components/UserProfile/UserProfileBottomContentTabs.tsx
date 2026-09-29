@@ -523,12 +523,12 @@ const UserProfileBottomContentTabs: React.FC<
         return (
           <View style={{ flex: 1, marginTop: mt }}>
             {imagesLoading ? (
-              <Animated.ScrollView onScroll={scrollHandler} scrollEventThrottle={16} scrollEnabled={scrollEnabled}>
+              <Animated.ScrollView onScroll={scrollHandler} scrollEventThrottle={16} scrollEnabled={scrollEnabled} showsVerticalScrollIndicator={false}>
                 {isFullScreen && fullScreenListHeader}
                 <View style={{ alignItems: "center", paddingVertical: 40 }}><ActivityIndicator color="#fff" /></View>
               </Animated.ScrollView>
             ) : images.length === 0 ? (
-              <Animated.ScrollView onScroll={scrollHandler} scrollEventThrottle={16} scrollEnabled={scrollEnabled}>
+              <Animated.ScrollView onScroll={scrollHandler} scrollEventThrottle={16} scrollEnabled={scrollEnabled} showsVerticalScrollIndicator={false}>
                 {isFullScreen && fullScreenListHeader}
               <ProfileEmptyState
                 kind="images"
@@ -554,12 +554,12 @@ const UserProfileBottomContentTabs: React.FC<
         return (
           <View style={{ flex: 1, marginTop: mt }}>
             {plansLoading ? (
-              <Animated.ScrollView onScroll={scrollHandler} scrollEventThrottle={16} scrollEnabled={scrollEnabled}>
+              <Animated.ScrollView onScroll={scrollHandler} scrollEventThrottle={16} scrollEnabled={scrollEnabled} showsVerticalScrollIndicator={false}>
                 {isFullScreen && fullScreenListHeader}
                 <View style={{ alignItems: "center", paddingVertical: 40 }}><ActivityIndicator color="#fff" /></View>
               </Animated.ScrollView>
             ) : plans.length === 0 ? (
-              <Animated.ScrollView onScroll={scrollHandler} scrollEventThrottle={16} scrollEnabled={scrollEnabled}>
+              <Animated.ScrollView onScroll={scrollHandler} scrollEventThrottle={16} scrollEnabled={scrollEnabled} showsVerticalScrollIndicator={false}>
                 {isFullScreen && fullScreenListHeader}
               <ProfileEmptyState
                 kind="subscribers"
@@ -578,6 +578,7 @@ const UserProfileBottomContentTabs: React.FC<
                 onScroll={scrollHandler}
                 scrollEventThrottle={16}
                 contentContainerStyle={isFullScreen ? LIST_CONTENT_STYLE : LIST_CONTENT_STYLE_COLLAPSED}
+                showsVerticalScrollIndicator={false}
               />
             )}
           </View>

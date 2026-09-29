@@ -45,6 +45,7 @@ export function useCollapsibleScreen(options?: { bottomPadding?: number }) {
     (contentContainerStyle?: StyleProp<ViewStyle>) => ({
       onScroll: scrollHandler,
       scrollEventThrottle: 16,
+      showsVerticalScrollIndicator: false,
       scrollIndicatorInsets: { top: headerHeight },
       contentContainerStyle: [
         { paddingTop: headerHeight, paddingBottom: bottomPadding },

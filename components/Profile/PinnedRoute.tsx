@@ -72,7 +72,7 @@ const PinnedRoute: React.FC<PinnedRouteProps> = ({ address, listRef, onScroll, l
 
   if (loading) {
     return (
-      <Animated.ScrollView onScroll={onScroll} scrollEventThrottle={16}>
+      <Animated.ScrollView onScroll={onScroll} scrollEventThrottle={16} showsVerticalScrollIndicator={false}>
         {listHeader}
         <View style={{ alignItems: "center", justifyContent: "center", paddingVertical: 40 }}>
           <ActivityIndicator color="#fff" />
@@ -83,7 +83,7 @@ const PinnedRoute: React.FC<PinnedRouteProps> = ({ address, listRef, onScroll, l
 
   if (error) {
     return (
-      <Animated.ScrollView onScroll={onScroll} scrollEventThrottle={16}>
+      <Animated.ScrollView onScroll={onScroll} scrollEventThrottle={16} showsVerticalScrollIndicator={false}>
         {listHeader}
         <View style={{ alignItems: "center", justifyContent: "center", paddingVertical: 40, paddingHorizontal: 24, gap: 12 }}>
           <Icon name="WifiOff" size={48} color="#808089" />
@@ -102,7 +102,7 @@ const PinnedRoute: React.FC<PinnedRouteProps> = ({ address, listRef, onScroll, l
 
   if (items.length === 0) {
     return (
-      <Animated.ScrollView onScroll={onScroll} scrollEventThrottle={16}>
+      <Animated.ScrollView onScroll={onScroll} scrollEventThrottle={16} showsVerticalScrollIndicator={false}>
         {listHeader}
         <ProfileEmptyState
           kind="pinned"
@@ -134,6 +134,7 @@ const PinnedRoute: React.FC<PinnedRouteProps> = ({ address, listRef, onScroll, l
           </View>
         ) : null
       }
+      showsVerticalScrollIndicator={false}
     />
   );
 };

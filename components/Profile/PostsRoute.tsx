@@ -244,7 +244,7 @@ const PostsRoute: React.FC<PostsRouteProps> = ({
 
   if (loading) {
     return (
-      <Animated.ScrollView onScroll={onScroll} scrollEventThrottle={16}>
+      <Animated.ScrollView onScroll={onScroll} scrollEventThrottle={16} showsVerticalScrollIndicator={false}>
         {listHeader}
         <View className="items-center justify-center py-10">
           <ActivityIndicator color={theme.colors.accent} />
@@ -257,7 +257,7 @@ const PostsRoute: React.FC<PostsRouteProps> = ({
   // offer a retry, instead of "No posts or replies yet" with no way out.
   if (loadFailed && merged.length === 0) {
     return (
-      <Animated.ScrollView onScroll={onScroll} scrollEventThrottle={16}>
+      <Animated.ScrollView onScroll={onScroll} scrollEventThrottle={16} showsVerticalScrollIndicator={false}>
         {listHeader}
         <View style={{ alignItems: "center", justifyContent: "center", paddingVertical: 40, paddingHorizontal: 24, gap: 12 }}>
           <Icon name="WifiOff" size={48} color="#808089" />
@@ -277,7 +277,7 @@ const PostsRoute: React.FC<PostsRouteProps> = ({
 
   if (merged.length === 0) {
     return (
-      <Animated.ScrollView onScroll={onScroll} scrollEventThrottle={16}>
+      <Animated.ScrollView onScroll={onScroll} scrollEventThrottle={16} showsVerticalScrollIndicator={false}>
         {listHeader}
         <ProfileEmptyState
           kind="posts"
@@ -331,6 +331,7 @@ const PostsRoute: React.FC<PostsRouteProps> = ({
             </View>
           ) : null
         }
+        showsVerticalScrollIndicator={false}
       />
       <DeHubRefreshMark refreshing={refreshing} />
     </View>

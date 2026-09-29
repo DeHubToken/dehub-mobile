@@ -506,6 +506,7 @@ const SavedPostsScreen: React.FC = () => {
                   </View>
                 )
               }
+              showsVerticalScrollIndicator={false}
             />
           )}
           <DeHubRefreshMark refreshing={refreshingFolders} />
