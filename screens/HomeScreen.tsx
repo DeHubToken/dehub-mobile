@@ -752,8 +752,6 @@ export default function HomeScreen() {
     [beginFilterTransition],
   );
 
-  // The menu sheet's Videos / Images / Music / Live tiles land here.
-  useEffect(() => homeTabEvents.onTabRequested(handleNavPostTypeChange), [handleNavPostTypeChange]);
   useEffect(() => homeTabEvents.setVisibleTab(activeTabKey), [activeTabKey]);
 
   useEffect(() => {
