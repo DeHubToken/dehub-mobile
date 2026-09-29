@@ -146,7 +146,9 @@
     "noMoreShorts": "Daha fazla kısa video yok",
     "noShortsFound": "Kısa video bulunamadı",
     "newMembersHint": "Yeni katıldı — merhaba deyin",
-    "mostViewedThisMonth": "Bu ay en çok izlenen"
+    "scroll": "Scroll",
+    "noFilterMatches": "Filtrelerinizle eşleşen içerik yok.",
+    "clearFilters": "Filtreleri temizle"
   },
   "explore": {
     "all": "Tümü",
@@ -2641,7 +2643,31 @@
     "noneYetBeFirst": "Henüz yorum yok. İlk yorumu siz yapın!",
     "turnedOff": "Bu gönderi için yorumlar kapalı",
     "noQuotesYet": "Henüz alıntı yok.",
-    "noRepostsYet": "Henüz tekrar paylaşım yok."
+    "noRepostsYet": "Henüz tekrar paylaşım yok.",
+    "timeSeconds": "{{count}} sn",
+    "timeMinutes": "{{count}} dk",
+    "timeHours": "{{count}} sa",
+    "seeWhoLiked": "Kimlerin beğendiğini görün",
+    "holdToReact": "{{reaction}} — tepki vermek için basılı tutun",
+    "holdToChangeReaction": "{{reaction}} — tepkinizi değiştirmek için basılı tutun",
+    "viewCount_one": "{{count}} görüntülenme",
+    "viewCount_other": "{{count}} görüntülenme",
+    "shareMessage": "Şuna bir bak: {{url}}",
+    "hideReplies": "Yanıtları gizle",
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
+    "rowA11yHint": "Bu yoruma yanıt yazmayı başlatır",
+    "editingComment": "Yorum düzenleniyor",
+    "editPlaceholder": "Yorumunuzu düzenleyin...",
+    "replyPlaceholder": "Yanıt yazın...",
+    "inputPlaceholder": "Buraya yazın",
+    "cancelReply": "Yanıtı iptal et",
+    "cancelEdit": "Düzenlemeyi iptal et",
+    "countLabel_one": "{{count}} Yorum",
+    "countLabel_other": "{{count}} Yorum",
+    "repostsLabel_one": "Yeniden Paylaşım",
+    "repostsLabel_other": "Yeniden Paylaşım",
+    "quotesLabel_one": "Alıntı",
+    "quotesLabel_other": "Alıntı"
   },
   "postInfo": {
     "title": "Gönderi Bilgisi",
@@ -5175,7 +5201,20 @@
     "removeUploadTitle": "Bu yükleme kaldırılsın mı?",
     "removeQueuedBody": "Henüz yayınlanmadı. Kaldırılması gönderiyi iptal eder.",
     "quotaShortfall": "Bu gönderinin maliyeti {{cost}} jeton ve siz {{held}} tutuyorsunuz.",
-    "shopAllowanceUsed": "{{allowance}} / {{allowance}} kullanıldı. Daha yüksek bir rozet ve başka bir yuva için daha fazla DeHub jetonu stake edin."
+    "shopAllowanceUsed": "{{allowance}} / {{allowance}} kullanıldı. Daha yüksek bir rozet ve başka bir yuva için daha fazla DeHub jetonu stake edin.",
+    "editFilters": "Filtreleri düzenle",
+    "cropRotate": "Kırp ve döndür",
+    "drawWrite": "Çiz ve yaz",
+    "fade": "Soldurma %{{value}}",
+    "grayscale": "Gri tonlama %{{value}}",
+    "resetEdits": "Sıfırla",
+    "clearDrawing": "Temizle",
+    "typeText": "Yazın…",
+    "textSize": "Metin boyutu {{value}}",
+    "coverFrames": "Kapak karesi seç",
+    "coverFrame": "{{index}}. kareyi kapak yap",
+    "uploadCover": "Kapak görseli yükle",
+    "editFailed": "Düzenleme uygulanamadı. Tekrar deneyin."
   },
   "bounty": {
     "claimed": "Alındı",
@@ -8526,7 +8565,10 @@
       "search": "Uygulama ara",
       "all": "Tümü",
       "fromDehub": "DeHub'dan",
-      "noMatch": "Bu aramayla eşleşen uygulama yok."
+      "noMatch": "Bu aramayla eşleşen uygulama yok.",
+      "yourApps": "Uygulamalarınız",
+      "notificationsOn": "Bildirimler açık",
+      "removed": "Silindi. Artık tekrar bildirim yapmayacak."
     },
     "card": {
       "open": "Açık"
@@ -8545,6 +8587,14 @@
       "developer-tools": "Geliştirici araçları",
       "entertainment": "Eğlence",
       "art-creativity": "Sanat ve yaratıcılık"
+    },
+    "pay": {
+      "body": "DHB doğrudan uygulamanın cüzdanına gider, {{wallet}}. Ödemeler iptal edilemez.",
+      "confirm": "Pay {{amount}} DHB",
+      "sent": "Ödenmiş {{amount}} DHB'yi {{name}}."
+    },
+    "add": {
+      "body": "Yükleme sonrası \"Senin Uygulamaların\" altında görünecek ve size bildirimler göndermeye devam edecek. Herhangi bir zaman \"Uygulamalar\" sayfasından kaldırılabilir."
     }
   },
   "aiStyles": {

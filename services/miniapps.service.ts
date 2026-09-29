@@ -6,6 +6,7 @@
  * an empty store beats an error screen.
  */
 import { supabase } from "./supabase";
+import { withWalletHeader } from "../libs/supabase-wallet-client";
 
 export interface MiniAppListing {
   id: string;
@@ -19,10 +20,12 @@ export interface MiniAppListing {
   splash_background_color: string | null;
   category: string | null;
   tier: "unlisted" | "listed" | "verified";
+  /** Where payments go: the wallet that signed the domain's dehub.json. */
+  owner_wallet: string | null;
 }
 
 const COLUMNS =
-  "id, slug, domain, home_url, name, subtitle, description, icon_url, splash_background_color, category, tier";
+  "id, slug, domain, home_url, name, subtitle, description, icon_url, splash_background_color, category, tier, owner_wallet";
 
 // The generated Database types predate these tables.
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -71,4 +74,53 @@ export async function fetchAppByDomain(domain: string): Promise<MiniAppListing |
   const { data, error } = await db.from("miniapp_apps").select(COLUMNS).eq("domain", host).maybeSingle();
   if (error) return null;
   return (data as MiniAppListing | null) ?? null;
+}
+
+async function userCall<T>(sessionToken: string, functionsBase: string, body: Record<string, unknown>): Promise<T> {
+  const res = await fetch(`${functionsBase}/functions/v1/miniapp-user`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", "x-dehub-token": sessionToken },
+    body: JSON.stringify(body),
+  });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw Object.assign(new Error(data?.error || "The request failed."), { code: "failed" });
+  return data as T;
+}
+
+/** Add an app for the signed-in person; its notifications are on. */
+export function addMiniApp(sessionToken: string, functionsBase: string, slug: string) {
+  return userCall<{ added: true }>(sessionToken, functionsBase, { action: "add", slug });
+}
+
+export function removeMiniApp(sessionToken: string, functionsBase: string, slug: string) {
+  return userCall<{ removed: true }>(sessionToken, functionsBase, { action: "remove", slug });
+}
+
+/** Record a payment the app just sent, and get the signed receipt for the app's server. */
+export function recordMiniAppPayment(
+  sessionToken: string,
+  functionsBase: string,
+  input: { slug: string; txHash: string; chainId: number; amount: number; memo: string | null },
+) {
+  return userCall<{ txHash: string; chainId: number; amount: number; receipt: string }>(sessionToken, functionsBase, {
+    action: "payment",
+    ...input,
+  });
+}
+
+export interface AddedApp {
+  app_id: string;
+  notifications_on: boolean;
+  miniapp_apps: Pick<MiniAppListing, "slug" | "name" | "icon_url" | "subtitle" | "domain"> | null;
+}
+
+/** The apps this person has added. RLS scopes the rows to the signed-in wallet. */
+export async function fetchAddedApps(wallet: string | null | undefined): Promise<AddedApp[]> {
+  if (!wallet) return [];
+  const { data, error } = await withWalletHeader(
+    db.from("miniapp_installs").select("app_id, notifications_on, miniapp_apps(slug, name, icon_url, subtitle, domain)"),
+    wallet.toLowerCase(),
+  );
+  if (error) return [];
+  return (data ?? []) as AddedApp[];
 }

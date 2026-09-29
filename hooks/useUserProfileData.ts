@@ -51,6 +51,19 @@ export interface RemoteUser {
   isBlocked?: boolean;
 }
 
+/**
+ * Why a profile has no data to show. `notFound` is a 404 or an empty 200
+ * shell; `failed` is anything else (offline, timeout, 5xx) and can be retried.
+ */
+export type UserProfileLoadError = "notFound" | "failed";
+
+/**
+ * account_info answers 200 with an empty shell for an unknown account. Same
+ * check as web's use-dehub-profile: no id, address or username means nobody.
+ */
+const isEmptyProfileShell = (payload: any) =>
+  !payload?._id && !payload?.address && !payload?.wallet_address && !payload?.username;
+
 const PROFILE_CACHE_TTL = 60_000;
 const MAX_CACHE_SIZE = 50;
 const profileCache = new Map<string, { data: RemoteUser; ts: number }>();
@@ -84,6 +97,7 @@ export const useUserProfileData = (
 ) => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState<RemoteUser | null>(null);
+  const [error, setError] = useState<UserProfileLoadError | null>(null);
   const [isFollowing, setIsFollowing] = useState<boolean>(false);
   const [isFollowRequestPending, setIsFollowRequestPending] = useState<boolean>(false);
   const [followsYou, setFollowsYou] = useState<boolean>(false);
@@ -113,6 +127,7 @@ export const useUserProfileData = (
       if (!who) return;
       const key = (who || "").toLowerCase();
       lastRequestedRef.current = who;
+      setError(null);
 
       const cached = profileCache.get(key);
       const isCacheFresh = cached && Date.now() - cached.ts < PROFILE_CACHE_TTL;
@@ -155,6 +170,20 @@ export const useUserProfileData = (
         const payload = res?.data?.result || res?.result || res;
 
         if (
+          isEmptyProfileShell(payload) &&
+          isMountedRef.current &&
+          lastRequestedRef.current === who
+        ) {
+          setLoading(false);
+          // A fresh cached profile already on screen stays there.
+          if (!isCacheFresh) {
+            setData(null);
+            setError("notFound");
+          }
+          return;
+        }
+
+        if (
           payload &&
           isMountedRef.current &&
           lastRequestedRef.current === who
@@ -163,6 +192,7 @@ export const useUserProfileData = (
           pruneCache();
 
           setData(payload);
+          setError(null);
           setLoading(false);
 
           // Use isFollowing/followsYou from API response
@@ -190,11 +220,22 @@ export const useUserProfileData = (
         console.warn("[useUserProfileData] load error", e);
         if (isMountedRef.current && lastRequestedRef.current === who) {
           setLoading(false);
+          // A failed background refresh keeps a fresh cached profile on screen.
+          // Otherwise drop whatever was showing (it may be the previous
+          // person) so the sheet can say what went wrong.
+          if (!isCacheFresh) {
+            setData(null);
+            setError((e as any)?.status === 404 ? "notFound" : "failed");
+          }
         }
       }
     },
     []
   );
+
+  const retry = useCallback(() => {
+    if (usernameOrAddress) load(usernameOrAddress);
+  }, [usernameOrAddress, load]);
 
   useEffect(() => {
     if (visible && usernameOrAddress) {
@@ -205,6 +246,7 @@ export const useUserProfileData = (
   useEffect(() => {
     if (!visible) {
       setData(null);
+      setError(null);
       setLoading(false);
       setIsFollowing(false);
       setIsFollowRequestPending(false);
@@ -596,6 +638,8 @@ export const useUserProfileData = (
   return {
     loading,
     data,
+    error,
+    retry,
     profileData,
     isFollowing,
     isFollowRequestPending,

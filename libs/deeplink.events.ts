@@ -10,10 +10,23 @@
 type ProfileHandler = (username: string) => void;
 
 let _handler: ProfileHandler | null = null;
+/**
+ * A profile link that arrives before the sheet provider mounts. That is every
+ * cold start from a link: NavigationContainer resolves the initial URL before
+ * it renders its children, so the provider that registers the handler does not
+ * exist yet and the link used to be dropped — the app opened on Home and the
+ * profile never appeared. Parked and replayed, as stage links are below.
+ */
+let _pendingProfile: string | null = null;
 
 /** Called from a React context (UserProfileSheetProvider) to register a handler. */
 export function setProfileDeepLinkHandler(handler: ProfileHandler | null) {
   _handler = handler;
+  if (handler && _pendingProfile) {
+    const pending = _pendingProfile;
+    _pendingProfile = null;
+    setTimeout(() => handler(pending), 350);
+  }
 }
 
 /** Called from getStateFromPath (or subscribe) when a /:username link is detected. */
@@ -21,6 +34,8 @@ export function emitProfileDeepLink(username: string) {
   if (_handler) {
     // Slight delay so navigation state settles first
     setTimeout(() => _handler?.(username), 350);
+  } else {
+    _pendingProfile = username;
   }
 }
 

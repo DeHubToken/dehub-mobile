@@ -146,7 +146,9 @@
     "noMoreShorts": "Няма повече кратки видеа",
     "noShortsFound": "Не са намерени кратки видеа",
     "newMembersHint": "Току-що се присъединихте — поздравете",
-    "mostViewedThisMonth": "Най-гледани този месец"
+    "scroll": "Scroll",
+    "noFilterMatches": "Няма съдържание, отговарящо на филтрите ви.",
+    "clearFilters": "Изчистване на филтрите"
   },
   "explore": {
     "all": "Всички",
@@ -2645,7 +2647,31 @@
     "noneYetBeFirst": "Няма коментари все още. Бъдете първият!",
     "turnedOff": "Коментарите са изключени за тази публикация",
     "noQuotesYet": "Няма цитати все още.",
-    "noRepostsYet": "Няма репостове все още."
+    "noRepostsYet": "Няма репостове все още.",
+    "timeSeconds": "{{count}} сек",
+    "timeMinutes": "{{count}} мин",
+    "timeHours": "{{count}} ч",
+    "seeWhoLiked": "Виж кой хареса",
+    "holdToReact": "{{reaction}} — задръжте, за да реагирате",
+    "holdToChangeReaction": "{{reaction}} — задръжте, за да промените реакцията си",
+    "viewCount_one": "{{count}} преглеждане",
+    "viewCount_other": "{{count}} преглеждания",
+    "shareMessage": "Виж това: {{url}}",
+    "hideReplies": "Скрий отговорите",
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
+    "rowA11yHint": "Започва отговор на този коментар",
+    "editingComment": "Редактиране на коментар",
+    "editPlaceholder": "Редактирайте коментара си...",
+    "replyPlaceholder": "Напишете отговор...",
+    "inputPlaceholder": "Пишете тук",
+    "cancelReply": "Отмени отговора",
+    "cancelEdit": "Отмени редактирането",
+    "countLabel_one": "{{count}} коментар",
+    "countLabel_other": "{{count}} коментара",
+    "repostsLabel_one": "репост",
+    "repostsLabel_other": "репоста",
+    "quotesLabel_one": "цитат",
+    "quotesLabel_other": "цитата"
   },
   "postInfo": {
     "title": "Информация за публикацията",
@@ -5130,7 +5156,20 @@
     "removeUploadTitle": "Премахване на това качване?",
     "removeQueuedBody": "Тя все още не е публикувана. Премахването му отменя публикацията.",
     "quotaShortfall": "Тази публикация струва {{cost}} токена и вие държите {{held}}.",
-    "shopAllowanceUsed": "Използвани {{allowance}} от {{allowance}}. Заложете повече DeHub токени за по-висока значка и още едно място."
+    "shopAllowanceUsed": "Използвани {{allowance}} от {{allowance}}. Заложете повече DeHub токени за по-висока значка и още едно място.",
+    "editFilters": "Редактирай фильтри",
+    "cropRotate": "Клипай и върти",
+    "drawWrite": "Нарисвай и пиши",
+    "fade": "Замъкни {{value}}%",
+    "grayscale": "Сиви тонове {{value}}%",
+    "resetEdits": "Почисти",
+    "clearDrawing": "Изтрий",
+    "typeText": "Въведи текст…",
+    "textSize": "Размер на текста {{value}}",
+    "coverFrames": "Избереш обложка",
+    "coverFrame": "Използвай фрама {{index}} като обложка",
+    "uploadCover": "Качи обложка",
+    "editFailed": "Не можах да приложа тази редакция. Опитай отново."
   },
   "bounty": {
     "claimed": "Получено",
@@ -8530,7 +8569,11 @@
       "search": "Търсене в приложения",
       "all": "Всички",
       "fromDehub": "От DeHub",
-      "noMatch": "Никое приложение не отговаря на това търсене."
+      "noMatch": "Никое приложение не отговаря на това търсене.",
+      "yourApps": "Ваши приложения",
+      "notificationsOn": "Уведомления включени",
+      "remove": "Умаляне",
+      "removed": "Премахнато. Не ще ви уведомява повече."
     },
     "card": {
       "open": "Отваряне"
@@ -8549,6 +8592,17 @@
       "developer-tools": "Инструменти за разработчици",
       "entertainment": "Развлечения",
       "art-creativity": "Изкуство и творчество"
+    },
+    "pay": {
+      "title": "Плащате {{name}}?",
+      "body": "DHB се изпраща директно към портфейла на приложението, {{wallet}}. Плащанията не могат да бъдат отменени.",
+      "confirm": "Плащате {{amount}} DHB",
+      "sent": "Плати {{amount}} DHB на {{name}}."
+    },
+    "add": {
+      "title": "Добавяне на {{name}}?",
+      "body": "То ще се появи под Вашите приложения и може да ви изпраща уведомления. Можете да го премахнете всяко време от страницата с приложенията.",
+      "confirm": "Добавяне на приложение"
     }
   },
   "aiStyles": {

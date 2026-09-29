@@ -146,7 +146,9 @@
     "noMoreShorts": "Vairs nav īso video",
     "noShortsFound": "Īsie video nav atrasti",
     "newMembersHint": "Tikko pievienojies — pasaki sveiki",
-    "mostViewedThisMonth": "Visvairāk skatītie šomēnes"
+    "scroll": "Scroll",
+    "noFilterMatches": "Nav satura, kas atbilst taviem filtriem.",
+    "clearFilters": "Notīrīt filtrus"
   },
   "explore": {
     "all": "Visi",
@@ -2641,7 +2643,31 @@
     "noneYetBeFirst": "Vēl nav komentāru. Esi pirmais!",
     "turnedOff": "Šim ierakstam komentāri ir izslēgti",
     "noQuotesYet": "Vēl nav citātu.",
-    "noRepostsYet": "Vēl nav atkārtotu ierakstu."
+    "noRepostsYet": "Vēl nav atkārtotu ierakstu.",
+    "timeSeconds": "{{count}} s",
+    "timeMinutes": "{{count}} min",
+    "timeHours": "{{count}} st",
+    "seeWhoLiked": "Skatīt, kam patika",
+    "holdToReact": "{{reaction}} — turiet, lai reaģētu",
+    "holdToChangeReaction": "{{reaction}} — turiet, lai mainītu reakciju",
+    "viewCount_one": "{{count}} skatījums",
+    "viewCount_other": "{{count}} skatījumi",
+    "shareMessage": "Apskati šo: {{url}}",
+    "hideReplies": "Slēpt atbildes",
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
+    "rowA11yHint": "Sāk atbildi uz šo komentāru",
+    "editingComment": "Komentāra rediģēšana",
+    "editPlaceholder": "Rediģējiet komentāru...",
+    "replyPlaceholder": "Rakstiet atbildi...",
+    "inputPlaceholder": "Rakstiet šeit",
+    "cancelReply": "Atcelt atbildi",
+    "cancelEdit": "Atcelt rediģēšanu",
+    "countLabel_one": "{{count}} komentārs",
+    "countLabel_other": "{{count}} komentāri",
+    "repostsLabel_one": "Reposts",
+    "repostsLabel_other": "Reposti",
+    "quotesLabel_one": "Citāts",
+    "quotesLabel_other": "Citāti"
   },
   "postInfo": {
     "title": "Ieraksta informācija",
@@ -5126,7 +5152,20 @@
     "removeUploadTitle": "Vai noņemt šo augšupielādi?",
     "removeQueuedBody": "Tas vēl nav publicēts. Noņemot ziņu, tā tiek atcelta.",
     "quotaShortfall": "Šis ieraksts maksā {{cost}} žetonus, un jums ir {{held}}.",
-    "shopAllowanceUsed": "Izmantoti {{allowance}} no {{allowance}}. Iemaksājiet vairāk DeHub žetonu, lai iegūtu augstāku emblēmu un vēl vienu vietu."
+    "shopAllowanceUsed": "Izmantoti {{allowance}} no {{allowance}}. Iemaksājiet vairāk DeHub žetonu, lai iegūtu augstāku emblēmu un vēl vienu vietu.",
+    "editFilters": "Rediģētāji",
+    "cropRotate": "Izveidot un rotēt",
+    "drawWrite": "Zīmēt un rakstīt",
+    "fade": "Pārklājums {{value}}%",
+    "grayscale": "Monokrāts {{value}}%",
+    "resetEdits": "Atsaukt",
+    "clearDrawing": "Izdzēst",
+    "typeText": "Ievadiet tekstu...",
+    "textSize": "Teksta izmērs {{value}}",
+    "coverFrames": "Izvēlieties attēla kārtu",
+    "coverFrame": "Izmantiet kārtu {{index}} kā galveno attēlu",
+    "uploadCover": "Ievietot galveno attēlu",
+    "editFailed": "Nepieprasīja izmantot šo rediģētāju. Mēģiniet vēlreiz."
   },
   "bounty": {
     "claimed": "Saņemts",
@@ -8526,7 +8565,11 @@
       "search": "Mājas meklētāji",
       "all": "Visi",
       "fromDehub": "No DeHub",
-      "noMatch": "Nav atbilstošu rezultātu meklēšanai."
+      "noMatch": "Nav atbilstošu rezultātu meklēšanai.",
+      "yourApps": "Tavas programmas",
+      "notificationsOn": "Paziņojumi ienāktā",
+      "remove": "Noņemt",
+      "removed": "Noņemts. Tā jums vairāk nepiezīmēs."
     },
     "card": {
       "open": "Atvērt"
@@ -8545,6 +8588,17 @@
       "developer-tools": "Rīku izstrādes",
       "entertainment": "Entertainment",
       "art-creativity": "Māksla un izdoma"
+    },
+    "pay": {
+      "title": "Maksāt {{name}}?",
+      "body": "DHB tieši nonāk programmas portmonējā, {{wallet}}. Maksas nevar atcelgt.",
+      "confirm": "Maksāt {{amount}} DHB",
+      "sent": "Maksājums {{amount}} DHB sūtīts uz {{name}}."
+    },
+    "add": {
+      "title": "Pievienot {{name}}?",
+      "body": "Tā parādīsies uzrindā \"Jūsu programmas\" un var sūtīt Jums paziņojumus. Šo var jebkad noņemt no \"Programmu\" lapas.",
+      "confirm": "Pievienot programmu"
     }
   },
   "aiStyles": {

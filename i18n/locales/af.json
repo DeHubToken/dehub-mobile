@@ -146,7 +146,9 @@
     "noMoreShorts": "Nie meer kortbroeke nie",
     "noShortsFound": "Geen kortbroeke gevind nie",
     "newMembersHint": "Net aangesluit — sê hallo",
-    "mostViewedThisMonth": "Meeste kyke hierdie maand"
+    "scroll": "Scroll",
+    "noFilterMatches": "Geen inhoud pas by jou filters nie.",
+    "clearFilters": "Vee filters uit"
   },
   "explore": {
     "all": "Alles",
@@ -2674,7 +2676,31 @@
     "noneYetBeFirst": "Nog geen opmerkings nie. Wees die eerste!",
     "turnedOff": "Opmerkings is afgeskakel vir hierdie plasing",
     "noQuotesYet": "Nog geen aanhalings nie.",
-    "noRepostsYet": "Nog geen herplasings nie."
+    "noRepostsYet": "Nog geen herplasings nie.",
+    "timeSeconds": "{{count}} s",
+    "timeMinutes": "{{count}} m",
+    "timeHours": "{{count}} u",
+    "seeWhoLiked": "Sien wie het gehou",
+    "holdToReact": "{{reaction}} — hou in om te reageer",
+    "holdToChangeReaction": "{{reaction}} — hou in om jou reaksie te verander",
+    "viewCount_one": "{{count}} aansig",
+    "viewCount_other": "{{count}} aansigte",
+    "shareMessage": "Kyk hierna: {{url}}",
+    "hideReplies": "Versteek antwoorde",
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
+    "rowA11yHint": "Begin 'n antwoord op hierdie opmerking",
+    "editingComment": "Wysig opmerking",
+    "editPlaceholder": "Wysig jou opmerking...",
+    "replyPlaceholder": "Skryf 'n antwoord...",
+    "inputPlaceholder": "Tik hier",
+    "cancelReply": "Kanselleer antwoord",
+    "cancelEdit": "Kanselleer wysiging",
+    "countLabel_one": "{{count}} opmerking",
+    "countLabel_other": "{{count}} opmerkings",
+    "repostsLabel_one": "herplasing",
+    "repostsLabel_other": "herplasings",
+    "quotesLabel_one": "aanhaling",
+    "quotesLabel_other": "aanhalings"
   },
   "postInfo": {
     "title": "Plaas inligting",
@@ -5159,7 +5185,20 @@
     "removeUploadTitle": "Verwyder hierdie oplaai?",
     "removeQueuedBody": "Dit is nog nie gepubliseer nie. Die verwydering daarvan kanselleer die pos.",
     "quotaShortfall": "Hierdie plasing kos {{cost}} tokens en jy hou {{held}}.",
-    "shopAllowanceUsed": "{{allowance}} van {{allowance}} gebruik. Stake meer DeHub tokens vir 'n hoër kenteken en nog 'n gleuf."
+    "shopAllowanceUsed": "{{allowance}} van {{allowance}} gebruik. Stake meer DeHub tokens vir 'n hoër kenteken en nog 'n gleuf.",
+    "editFilters": "Redigeer filters",
+    "cropRotate": "Knip & draai",
+    "drawWrite": "Teek en skryf",
+    "fade": "Verduister {{value}}%",
+    "grayscale": "Grysgraad {{value}}%",
+    "resetEdits": "Herstel",
+    "clearDrawing": "Skraal",
+    "typeText": "Tipe…",
+    "textSize": "Tekstgrootte {{value}}",
+    "coverFrames": "Kies 'n omslagframe",
+    "coverFrame": "Gebruik frame {{index}} as die omslag",
+    "uploadCover": "Laai 'n omslagafbeelding",
+    "editFailed": "Kon dié redigeer nie toepas nie. Probeer weer."
   },
   "bounty": {
     "claimed": "Opgeëis",
@@ -8651,7 +8690,10 @@
       "search": "Soek programme",
       "all": "Alle",
       "fromDehub": "Van DeHub",
-      "noMatch": "Geen programme pas by daardie soektog nie."
+      "noMatch": "Geen programme pas by daardie soektog nie.",
+      "yourApps": "Jou programme",
+      "notificationsOn": "Berigte op",
+      "removed": "Verwyder. Dit sal jou nie weer waarsku nie."
     },
     "category": {
       "games": "Speletjies",
@@ -8667,6 +8709,16 @@
       "developer-tools": "Ontwikkelaar gereedskap",
       "entertainment": "Vermaak",
       "art-creativity": "Kuns en kreatiwiteit"
+    },
+    "pay": {
+      "title": "Betaal {{name}}?",
+      "body": "Die DHB gaan regstreeks na die app se portemonnee, {{wallet}}. Betalings kan nie teruggedraai word nie.",
+      "confirm": "Betaal {{amount}} DHB",
+      "sent": "Betaal {{amount}} DHB vir {{name}}."
+    },
+    "add": {
+      "title": "Vegt {{name}}?",
+      "body": "Daar sal dit onder U se toepassings verskyn en kan dit jou kennisgewings stuur. Jy kan dit op enige tyd uit die Toepassings-blad verwder."
     }
   },
   "aiStyles": {

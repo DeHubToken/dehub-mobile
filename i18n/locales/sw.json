@@ -146,7 +146,9 @@
     "noMoreShorts": "Hakuna video fupi zaidi",
     "noShortsFound": "Hakuna video fupi zilizopatikana",
     "newMembersHint": "Nimejiunga tu — sema salamu",
-    "mostViewedThisMonth": "Iliyotazamwa zaidi mwezi huu"
+    "scroll": "Scroll",
+    "noFilterMatches": "Hakuna maudhui yanayolingana na vichujio vyako.",
+    "clearFilters": "Futa vichujio"
   },
   "explore": {
     "all": "Zote",
@@ -2642,7 +2644,31 @@
     "noneYetBeFirst": "Hakuna maoni bado. Kuwa wa kwanza!",
     "turnedOff": "Maoni yamezimwa kwa chapisho hili",
     "noQuotesYet": "Hakuna nukuu bado.",
-    "noRepostsYet": "Hakuna chapisho tena."
+    "noRepostsYet": "Hakuna chapisho tena.",
+    "timeSeconds": "sek {{count}}",
+    "timeMinutes": "dak {{count}}",
+    "timeHours": "saa {{count}}",
+    "seeWhoLiked": "Ona waliopenda",
+    "holdToReact": "{{reaction}} — bonyeza na ushikilie ili kutoa hisia",
+    "holdToChangeReaction": "{{reaction}} — bonyeza na ushikilie ili kubadilisha hisia yako",
+    "viewCount_one": "mtazamo {{count}}",
+    "viewCount_other": "mitazamo {{count}}",
+    "shareMessage": "Angalia hii: {{url}}",
+    "hideReplies": "Ficha majibu",
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
+    "rowA11yHint": "Huanzisha jibu kwa maoni haya",
+    "editingComment": "Unahariri maoni",
+    "editPlaceholder": "Hariri maoni yako...",
+    "replyPlaceholder": "Andika jibu...",
+    "inputPlaceholder": "Andika hapa",
+    "cancelReply": "Ghairi jibu",
+    "cancelEdit": "Ghairi kuhariri",
+    "countLabel_one": "Maoni {{count}}",
+    "countLabel_other": "Maoni {{count}}",
+    "repostsLabel_one": "Chapisho upya",
+    "repostsLabel_other": "Machapisho upya",
+    "quotesLabel_one": "Nukuu",
+    "quotesLabel_other": "Nukuu"
   },
   "postInfo": {
     "title": "Taarifa ya chapisho",
@@ -5127,7 +5153,20 @@
     "removeUploadTitle": "Ondoa upakiaji huu?",
     "removeQueuedBody": "Bado haijachapishwa. Kuiondoa inaghairi chapisho.",
     "quotaShortfall": "Chapisho hili linagharimu tokeni {{cost}} na unashikilia {{held}}.",
-    "shopAllowanceUsed": "{{allowance}} kati ya {{allowance}} zilizotumiwa. Weka tokeni zaidi za DeHub kwa beji ya juu na nafasi nyingine."
+    "shopAllowanceUsed": "{{allowance}} kati ya {{allowance}} zilizotumiwa. Weka tokeni zaidi za DeHub kwa beji ya juu na nafasi nyingine.",
+    "editFilters": "Chaguo za kuchora",
+    "cropRotate": "Kuchora na kupindua",
+    "drawWrite": "Kuchora na kuandika",
+    "fade": "Kupiga kwa njia ya fade {{value}}%",
+    "grayscale": "Kupiga kwa njia ya asili {{value}}%",
+    "resetEdits": "Kurahisisha",
+    "clearDrawing": "Kurahisisha",
+    "typeText": "Chora…",
+    "textSize": "Urefu wa maandishi {{value}}",
+    "coverFrames": "Chagua kielelezo cha kufungua",
+    "coverFrame": "Kuweka kielelezo cha kufungua {{index}} kama kielelezo cha kufungua",
+    "uploadCover": "Unganisha picha ya kielelezo",
+    "editFailed": "Haikupatikana kuchukua kile hicho. Jaribu tena."
   },
   "bounty": {
     "claimed": "Imedaiwa",
@@ -8527,7 +8566,9 @@
       "search": "Tafuta programu",
       "all": "Zote",
       "fromDehub": "Kutoka DeHub",
-      "noMatch": "Hakuna programu zinazolingana na utafutaji huo."
+      "noMatch": "Hakuna programu zinazolingana na utafutaji huo.",
+      "yourApps": "Programu zako",
+      "removed": "Kulikaliwa. Hutumia wako hivi kwa mara moja tu."
     },
     "card": {
       "open": "Fungua"
@@ -8546,6 +8587,15 @@
       "developer-tools": "Zana za msanidi programu",
       "entertainment": "Mchezo",
       "art-creativity": "Sanaa na ubunifu"
+    },
+    "pay": {
+      "body": "DHB inatoka nyuma kwenda gharama za akiba ya appi, {{wallet}}. Malipo hayasahibiwa.",
+      "confirm": "Baada ya kufikia {{amount}} DHB",
+      "sent": "Bajaji {{amount}} DHB kwa {{name}}."
+    },
+    "add": {
+      "body": "Kutajwa chini ya Your apps na inaweza kusafiri habari zaidi. Unaweza kutumia kutangaza kila wakati kutoka kwa Apps page.",
+      "confirm": "Kujenga App"
     }
   },
   "aiStyles": {

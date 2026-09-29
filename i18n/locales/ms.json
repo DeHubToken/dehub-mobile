@@ -146,7 +146,9 @@
     "noMoreShorts": "Tiada lagi video pendek",
     "noShortsFound": "Tiada video pendek ditemui",
     "newMembersHint": "Baru sahaja menyertai — beri salam",
-    "mostViewedThisMonth": "Paling banyak ditonton bulan ini"
+    "scroll": "Scroll",
+    "noFilterMatches": "Tiada kandungan yang sepadan dengan penapis anda.",
+    "clearFilters": "Kosongkan penapis"
   },
   "explore": {
     "all": "Semua",
@@ -2901,7 +2903,31 @@
     "noneYetBeFirst": "Tiada komen lagi. Jadilah yang pertama!",
     "turnedOff": "Komen dimatikan untuk siaran ini",
     "noQuotesYet": "Tiada petikan lagi.",
-    "noRepostsYet": "Tiada siaran semula lagi."
+    "noRepostsYet": "Tiada siaran semula lagi.",
+    "timeSeconds": "{{count}} s",
+    "timeMinutes": "{{count}} min",
+    "timeHours": "{{count}} j",
+    "seeWhoLiked": "Lihat siapa yang suka",
+    "holdToReact": "{{reaction}} — tekan lama untuk bertindak balas",
+    "holdToChangeReaction": "{{reaction}} — tekan lama untuk menukar reaksi anda",
+    "viewCount_one": "{{count}} tontonan",
+    "viewCount_other": "{{count}} tontonan",
+    "shareMessage": "Tengok ni: {{url}}",
+    "hideReplies": "Sembunyikan balasan",
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
+    "rowA11yHint": "Mula membalas komen ini",
+    "editingComment": "Mengedit komen",
+    "editPlaceholder": "Edit komen anda...",
+    "replyPlaceholder": "Tulis balasan...",
+    "inputPlaceholder": "Taip di sini",
+    "cancelReply": "Batal balas",
+    "cancelEdit": "Batal edit",
+    "countLabel_one": "{{count}} Komen",
+    "countLabel_other": "{{count}} Komen",
+    "repostsLabel_one": "Siaran semula",
+    "repostsLabel_other": "Siaran semula",
+    "quotesLabel_one": "Petikan",
+    "quotesLabel_other": "Petikan"
   },
   "postInfo": {
     "title": "Info Pos",
@@ -5386,7 +5412,20 @@
     "removeUploadTitle": "Buang muat naik ini?",
     "removeQueuedBody": "Ia belum disiarkan lagi. Membuangnya membatalkan hantaran.",
     "quotaShortfall": "Catatan ini berharga {{cost}} token dan anda memegang {{held}}.",
-    "shopAllowanceUsed": "{{allowance}} daripada {{allowance}} digunakan. Tanam lebih banyak token DeHub untuk lencana yang lebih tinggi dan satu lagi slot."
+    "shopAllowanceUsed": "{{allowance}} daripada {{allowance}} digunakan. Tanam lebih banyak token DeHub untuk lencana yang lebih tinggi dan satu lagi slot.",
+    "editFilters": "Sunting filter",
+    "cropRotate": "Potong & putar",
+    "drawWrite": "Buat lukisan & tulis",
+    "fade": "Mengurangkan kecerahan {{value}}%",
+    "grayscale": "Abadikan keabu-abuan {{value}}%",
+    "resetEdits": "Reset",
+    "clearDrawing": "Kosongkan",
+    "typeText": "Tulis…",
+    "textSize": "Saiz teks {{value}}",
+    "coverFrames": "Pilih kerangka latar",
+    "coverFrame": "Gunakan kerangka {{index}} sebagai latar",
+    "uploadCover": "Muat imej latar",
+    "editFailed": "Tidak dapat menerapkan suntingan itu. Coba sekali lagi."
   },
   "bounty": {
     "claimed": "Telah dituntut",
@@ -8786,7 +8825,10 @@
       "search": "Aplikasi carian",
       "all": "Semua",
       "fromDehub": "Daripada DeHub",
-      "noMatch": "Tiada aplikasi yang sepadan dengan carian tersebut."
+      "noMatch": "Tiada aplikasi yang sepadan dengan carian tersebut.",
+      "yourApps": "Aplikasi anda",
+      "notificationsOn": "Pemberitahuan di",
+      "removed": "Dihapuskan. Ia tidak akan memberitahu anda lagi."
     },
     "card": {
       "open": "Buka"
@@ -8805,6 +8847,16 @@
       "developer-tools": "Alat pembangun",
       "entertainment": "Hiburan",
       "art-creativity": "Seni & kreativiti"
+    },
+    "pay": {
+      "title": "Bayar {{name}}?",
+      "body": "DHB langsung ke dompet aplikasi, {{wallet}}. Pembayaran tidak boleh dibatalkan.",
+      "confirm": "Bayar {{amount}} DHB",
+      "sent": "Bayar {{amount}} DHB kepada {{name}}."
+    },
+    "add": {
+      "title": "Tambah {{name}}?",
+      "body": "Ia akan muncul di bawah Aplikasi Anda dan boleh mengirimkan pemberitahuan kepada anda. Anda boleh menghapusnya sewaktu-waktu daripada halaman Aplikasi."
     }
   },
   "aiStyles": {

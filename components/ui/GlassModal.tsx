@@ -209,12 +209,12 @@ const GlassModal: React.FC<GlassModalProps> = ({
           {/* Keyboard handling lives here so every GlassModal sheet gets it:
               Android is edge-to-edge (SDK 54), where the window no longer
               resizes for the keyboard, so inputs in bottom sheets were
-              covered. */}
+              covered. No keyboardVerticalOffset: the modal window starts at
+              the top of the screen and this view's layout y already includes
+              the foreground's top padding, so an offset counts the status bar
+              twice and parks the sheet that far above the keys. */}
           <KeyboardAvoidingView
             behavior={Platform.OS === "ios" ? "padding" : "height"}
-            // This view starts below the foreground's safe-area padding;
-            // keyboard frames are measured from the top of the modal window.
-            keyboardVerticalOffset={insets.top}
             style={[
               styles.foregroundWrapper,
               {

@@ -191,12 +191,13 @@ const DpayScreen: React.FC = () => {
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
-      keyboardVerticalOffset={Platform.OS === "ios" ? keyboardOffset : 0}
+      keyboardVerticalOffset={keyboardOffset}
       className="flex-1 bg-theme-neutrals-900"
     >
       <ScreenHeader title={t("wallet.title")} subtitle={t("screens.walletSubtitle")} />
       <ScrollView
         className="flex-1 px-0"
+        keyboardShouldPersistTaps="handled"
         contentContainerStyle={{ paddingBottom: 40 }}
         refreshControl={<DeHubRefreshControl refreshing={refreshing} onRefresh={onRefresh} tintColor="#ffffff" />}
       >

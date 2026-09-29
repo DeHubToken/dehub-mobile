@@ -146,7 +146,9 @@
     "noMoreShorts": "لا مزيد من الفيديوهات القصيرة",
     "noShortsFound": "لم يتم العثور على فيديوهات قصيرة",
     "newMembersHint": "انضممت للتو — قل مرحباً",
-    "mostViewedThisMonth": "الأكتر مشاهدة الشهر ده"
+    "scroll": "Scroll",
+    "noFilterMatches": "مفيش محتوى مطابق للفلاتر بتاعتك.",
+    "clearFilters": "امسح الفلاتر"
   },
   "explore": {
     "all": "الكل",
@@ -2641,7 +2643,31 @@
     "noneYetBeFirst": "مفيش تعليقات لسه. كن أول واحد!",
     "turnedOff": "التعليقات متوقفة لهذا المنشور",
     "noQuotesYet": "مفيش اقتباسات لسه.",
-    "noRepostsYet": "مفيش إعادة نشر لسه."
+    "noRepostsYet": "مفيش إعادة نشر لسه.",
+    "timeSeconds": "{{count}} ث",
+    "timeMinutes": "{{count}} د",
+    "timeHours": "{{count}} س",
+    "seeWhoLiked": "شوف مين عجبه",
+    "holdToReact": "{{reaction}} — دوس مطوّل عشان تتفاعل",
+    "holdToChangeReaction": "{{reaction}} — دوس مطوّل عشان تغيّر تفاعلك",
+    "viewCount_one": "{{count}} مشاهدة",
+    "viewCount_other": "{{count}} مشاهدات",
+    "shareMessage": "شوف ده: {{url}}",
+    "hideReplies": "اخفي الردود",
+    "rowA11yLabel": "{{name}}، {{time}}: {{text}}",
+    "rowA11yHint": "بيبدأ رد على التعليق ده",
+    "editingComment": "تعديل التعليق",
+    "editPlaceholder": "عدّل تعليقك...",
+    "replyPlaceholder": "اكتب رد...",
+    "inputPlaceholder": "اكتب هنا",
+    "cancelReply": "إلغاء الرد",
+    "cancelEdit": "إلغاء التعديل",
+    "countLabel_one": "{{count}} تعليق",
+    "countLabel_other": "{{count}} تعليقات",
+    "repostsLabel_one": "إعادة نشر",
+    "repostsLabel_other": "إعادة نشر",
+    "quotesLabel_one": "اقتباس",
+    "quotesLabel_other": "اقتباسات"
   },
   "postInfo": {
     "title": "معلومات المنشور",
@@ -5126,7 +5152,20 @@
     "removeUploadTitle": "هل تريد إزالة هذا التحميل ؟",
     "removeQueuedBody": "لم يتم نشره بعد. تؤدي إزالته إلى إلغاء المنشور.",
     "quotaShortfall": "البوست ده بيكلف {{cost}} توكنز وأنت معاك {{held}}.",
-    "shopAllowanceUsed": "تم استخدام {{allowance}} من {{allowance}}. اعمل ستايك لتوكنز DeHub أكتر عشان تاخد شارة أعلى ومكان تاني."
+    "shopAllowanceUsed": "تم استخدام {{allowance}} من {{allowance}}. اعمل ستايك لتوكنز DeHub أكتر عشان تاخد شارة أعلى ومكان تاني.",
+    "editFilters": "تحرير الفلاتر",
+    "cropRotate": "قطع و دوران",
+    "drawWrite": "رسم و كتابة",
+    "fade": "التبديد {{value}}%",
+    "grayscale": "اللون الرمادي {{value}}%",
+    "resetEdits": "إعادة الضبط",
+    "clearDrawing": "الفراغ",
+    "typeText": "اكتب...",
+    "textSize": "حجم النص {{value}}",
+    "coverFrames": "اختر إطار الغلاف",
+    "coverFrame": "استخدم إطار {{index}} كغلاف",
+    "uploadCover": "تحميل صورة الغلاف",
+    "editFailed": "لم يتم تطبيق التعديل. حاول مرة أخرى."
   },
   "bounty": {
     "claimed": "اتسلم",
@@ -8526,7 +8565,11 @@
       "search": "البحث في التطبيقات",
       "all": "الكل",
       "fromDehub": "من DeHub",
-      "noMatch": "لا توجد تطبيقات تطابق هذا البحث."
+      "noMatch": "لا توجد تطبيقات تطابق هذا البحث.",
+      "yourApps": "تطبيقاتك",
+      "notificationsOn": "إشعاراتك على",
+      "remove": "إزالة",
+      "removed": "تم الإزالة. لن تنبهك مرة أخرى."
     },
     "card": {
       "open": "فتح"
@@ -8545,6 +8588,17 @@
       "developer-tools": "أدوات المطور",
       "entertainment": "الترفيه",
       "art-creativity": "الفن والإبداع"
+    },
+    "pay": {
+      "title": "دفع {{name}}؟",
+      "body": "الدولار DHB يذهب مباشرة إلى محفظة التطبيق، {{wallet}}. الدفعات لا يمكن استعادتها.",
+      "confirm": "دفع {{amount}} DHB",
+      "sent": "تم الدفع: {{amount}} DHB إلى {{name}}."
+    },
+    "add": {
+      "title": "إضافة {{name}}؟",
+      "body": "سيظهر تحت تطبيقاتك ويمكنه إرسال إشعارات لك. يمكنك إزالته في أي وقت من صفحة التطبيقات.",
+      "confirm": "إضافة تطبيق"
     }
   },
   "aiStyles": {

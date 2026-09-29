@@ -33,7 +33,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation, useRoute, type RouteProp } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import Icon from "../components/ui/Icon";
-import ScreenHeader, { SCREEN_HEADER_HEIGHT } from "../components/ScreenHeader";
+import ScreenHeader from "../components/ScreenHeader";
 import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
 import ShareLinkButton from "../components/common/ShareLinkButton";
 import { ShareLinks } from "../navigation/linking.config";
@@ -110,9 +110,9 @@ const ReviewRow: React.FC<{ review: StoreReview }> = ({ review }) => (
 export default function ListingDetailScreen() {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
-  // ScreenHeader sits above the KeyboardAvoidingView, on top of the inset the
-  // root SafeAreaView already spent.
-  const keyboardOffset = useKeyboardOffset(SCREEN_HEADER_HEIGHT);
+  // The KeyboardAvoidingView's frame is measured from its parent, so the
+  // ScreenHeader above it is already counted. Only the status-bar inset is added.
+  const keyboardOffset = useKeyboardOffset();
   const navigation = useNavigation<any>();
   const route = useRoute<RouteProp<AppStackParamList, ScreenNames.ListingDetail>>();
   const { listingId, listing: seed } = route.params;

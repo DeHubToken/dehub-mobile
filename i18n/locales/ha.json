@@ -146,7 +146,9 @@
     "noMoreShorts": "Babu ƙarin gajerun bidiyo",
     "noShortsFound": "Babu gajerun bidiyo da aka samu",
     "newMembersHint": "Yanzu ka shigo — ka gaisa",
-    "mostViewedThisMonth": "Mafi kallo a wannan wata"
+    "scroll": "Scroll",
+    "noFilterMatches": "Babu abun ciki da ya dace da matattarar ku.",
+    "clearFilters": "Share matattara"
   },
   "explore": {
     "all": "Duka",
@@ -2641,7 +2643,31 @@
     "noneYetBeFirst": "Babu comments tukuna. Ka zama na farko!",
     "turnedOff": "An kashe comments a wannan post ɗin",
     "noQuotesYet": "Babu quotes tukuna.",
-    "noRepostsYet": "Babu reposts tukuna."
+    "noRepostsYet": "Babu reposts tukuna.",
+    "timeSeconds": "Daƙiƙa {{count}}",
+    "timeMinutes": "Minti {{count}}",
+    "timeHours": "Awa {{count}}",
+    "seeWhoLiked": "Duba waɗanda suka so",
+    "holdToReact": "{{reaction}} — danna ka riƙe don mayar da martani",
+    "holdToChangeReaction": "{{reaction}} — danna ka riƙe don canza martaninka",
+    "viewCount_one": "Kallo {{count}}",
+    "viewCount_other": "Kallo {{count}}",
+    "shareMessage": "Duba wannan: {{url}}",
+    "hideReplies": "Ɓoye amsoshi",
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
+    "rowA11yHint": "Yana fara amsa wannan sharhi",
+    "editingComment": "Ana gyara sharhi",
+    "editPlaceholder": "Gyara sharhinka...",
+    "replyPlaceholder": "Rubuta amsa...",
+    "inputPlaceholder": "Rubuta a nan",
+    "cancelReply": "Soke amsa",
+    "cancelEdit": "Soke gyara",
+    "countLabel_one": "Sharhi {{count}}",
+    "countLabel_other": "Sharhi {{count}}",
+    "repostsLabel_one": "sake bugawa",
+    "repostsLabel_other": "sake bugawa",
+    "quotesLabel_one": "zance",
+    "quotesLabel_other": "zance"
   },
   "postInfo": {
     "title": "Bayanan bugu",
@@ -5126,7 +5152,20 @@
     "removeUploadTitle": "Cire wannan loda?",
     "removeQueuedBody": "Ba a sanya shi ba tukuna. Cire shi soke post.",
     "quotaShortfall": "Wannan sakon yana kashe {{cost}} token kuma kana riƙe {{held}}.",
-    "shopAllowanceUsed": "An yi amfani da {{allowance}} daga cikin {{allowance}}. Saka ƙarin token na DeHub don samun babbar lambar yabo da wani wuri."
+    "shopAllowanceUsed": "An yi amfani da {{allowance}} daga cikin {{allowance}}. Saka ƙarin token na DeHub don samun babbar lambar yabo da wani wuri.",
+    "editFilters": "Gyara tacewa",
+    "cropRotate": "Karkata & juya",
+    "drawWrite": "Zana & rubuta",
+    "fade": "Faduwa {{value}}%",
+    "grayscale": "Launuka masu duhu {{value}}%",
+    "resetEdits": "Sake saitawa",
+    "clearDrawing": "Goge",
+    "typeText": "Rubuta…",
+    "textSize": "Girman rubutu {{value}}",
+    "coverFrames": "Zaɓi firam ɗin murfi",
+    "coverFrame": "Yi amfani da firam {{index}} a matsayin murfi",
+    "uploadCover": "Saka hoton murfi",
+    "editFailed": "An kasa amfani da wannan gyaran. Gwada sake."
   },
   "bounty": {
     "claimed": "An karɓa",
@@ -8525,7 +8564,8 @@
       "emptyBody": "Aikace-aikacen farko suna cikin bita. Gina daya kuma zai iya zama a nan.",
       "search": "Aikace-aikacen bincike",
       "all": "Duka",
-      "noMatch": "Babu apps dace da cewa search."
+      "noMatch": "Babu apps dace da cewa search.",
+      "yourApps": "Aikace-aikacen ku"
     },
     "card": {
       "open": "Bude"

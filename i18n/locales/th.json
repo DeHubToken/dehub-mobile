@@ -146,7 +146,9 @@
     "noMoreShorts": "ไม่มี Shorts อีกต่อไป",
     "noShortsFound": "ไม่พบ Shorts",
     "newMembersHint": "เพิ่งเข้าร่วม — ทักทายหน่อย",
-    "mostViewedThisMonth": "ยอดดูสูงสุดเดือนนี้"
+    "scroll": "Scroll",
+    "noFilterMatches": "ไม่มีเนื้อหาที่ตรงกับตัวกรองของคุณ",
+    "clearFilters": "ล้างตัวกรอง"
   },
   "explore": {
     "all": "ทั้งหมด",
@@ -2665,7 +2667,31 @@
     "noneYetBeFirst": "ยังไม่มีความคิดเห็น เป็นคนแรกเลย!",
     "turnedOff": "ปิดความคิดเห็นสำหรับโพสต์นี้แล้ว",
     "noQuotesYet": "ยังไม่มีการอ้างอิง",
-    "noRepostsYet": "ยังไม่มีการรีโพสต์"
+    "noRepostsYet": "ยังไม่มีการรีโพสต์",
+    "timeSeconds": "{{count}} วิ",
+    "timeMinutes": "{{count}} นาที",
+    "timeHours": "{{count}} ชม.",
+    "seeWhoLiked": "ดูว่าใครกดถูกใจ",
+    "holdToReact": "{{reaction}} — กดค้างเพื่อแสดงความรู้สึก",
+    "holdToChangeReaction": "{{reaction}} — กดค้างเพื่อเปลี่ยนความรู้สึกของคุณ",
+    "viewCount_one": "ยอดชม {{count}} ครั้ง",
+    "viewCount_other": "ยอดชม {{count}} ครั้ง",
+    "shareMessage": "ดูนี่สิ: {{url}}",
+    "hideReplies": "ซ่อนการตอบกลับ",
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
+    "rowA11yHint": "เริ่มตอบกลับความคิดเห็นนี้",
+    "editingComment": "กำลังแก้ไขความคิดเห็น",
+    "editPlaceholder": "แก้ไขความคิดเห็นของคุณ...",
+    "replyPlaceholder": "เขียนการตอบกลับ...",
+    "inputPlaceholder": "พิมพ์ที่นี่",
+    "cancelReply": "ยกเลิกการตอบกลับ",
+    "cancelEdit": "ยกเลิกการแก้ไข",
+    "countLabel_one": "{{count}} ความคิดเห็น",
+    "countLabel_other": "{{count}} ความคิดเห็น",
+    "repostsLabel_one": "รีโพสต์",
+    "repostsLabel_other": "รีโพสต์",
+    "quotesLabel_one": "อ้างอิง",
+    "quotesLabel_other": "อ้างอิง"
   },
   "postInfo": {
     "title": "ข้อมูลโพสต์",
@@ -5150,7 +5176,20 @@
     "removeUploadTitle": "ลบการอัปโหลดนี้ใช่ไหม",
     "removeQueuedBody": "ยังไม่ได้โพสต์เลย การลบจะเป็นการยกเลิกโพสต์",
     "quotaShortfall": "โพสต์นี้มีค่าใช้จ่าย {{cost}} โทเค็น และคุณถือ {{held}}",
-    "shopAllowanceUsed": "ใช้ไป {{allowance}} จาก {{allowance}} วางเดิมพันโทเค็น DeHub เพิ่มเติมเพื่อรับป้ายที่สูงขึ้นและช่องเพิ่มเติม"
+    "shopAllowanceUsed": "ใช้ไป {{allowance}} จาก {{allowance}} วางเดิมพันโทเค็น DeHub เพิ่มเติมเพื่อรับป้ายที่สูงขึ้นและช่องเพิ่มเติม",
+    "editFilters": "แก้ไขฟิลเตอร์",
+    "cropRotate": "ครอปและหมุน",
+    "drawWrite": "วาดและเขียน",
+    "fade": "จางลง {{value}}%",
+    "grayscale": "ขาวดำ {{value}}%",
+    "resetEdits": "รีเซ็ต",
+    "clearDrawing": "ล้าง",
+    "typeText": "พิมพ์…",
+    "textSize": "ขนาดข้อความ {{value}}",
+    "coverFrames": "เลือกเฟรมสำหรับปก",
+    "coverFrame": "ใช้เฟรม {{index}} เป็นปก",
+    "uploadCover": "อัปโหลดรูปปก",
+    "editFailed": "ใช้การแก้ไขไม่ได้ ลองอีกครั้ง"
   },
   "bounty": {
     "claimed": "รับแล้ว",
@@ -8567,7 +8606,9 @@
       "search": "ค้นหาแอป",
       "all": "ทั้งหมด",
       "fromDehub": "จาก DeHub",
-      "noMatch": "ไม่มีแอปที่ตรงกับการค้นหานั้น"
+      "noMatch": "ไม่มีแอปที่ตรงกับการค้นหานั้น",
+      "yourApps": "แอปของคุณ",
+      "removed": "ถูกลบแล้ว ไม่จะแจ้งเตือนอีกต่อไป"
     },
     "card": {
       "open": "เปิด"
@@ -8586,6 +8627,15 @@
       "developer-tools": "เครื่องมือสำหรับนักพัฒนา",
       "entertainment": "ความบันเทิง",
       "art-creativity": "ศิลปะและความคิดสร้างสรรค์"
+    },
+    "pay": {
+      "title": "จ่าย {{name}} ไหม？",
+      "body": "ธนาคารของแอปพลิเคชัน (wallet) จะรับเงินโดยตรงจากคุณที่ {{wallet}} ได้ทันที ค่าธรรมเนียมไม่สามารถยกเลิกได้",
+      "confirm": "จ่าย {{amount}} DHB",
+      "sent": "จ่ายค่าบริการ {{amount}} สำหรับ {{name}}"
+    },
+    "add": {
+      "title": "เพิ่ม {{name}} ได้ไหม？"
     }
   },
   "aiStyles": {

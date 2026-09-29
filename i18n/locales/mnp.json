@@ -146,7 +146,9 @@
     "noMoreImages": "没有更多图片了",
     "noImagesFound": "未找到图片",
     "noShortsFound": "未找到短视频",
-    "mostViewedThisMonth": "这个月看最多"
+    "scroll": "Scroll",
+    "noFilterMatches": "無內容符合你的篩選條件。",
+    "clearFilters": "清去筛选"
   },
   "explore": {
     "all": "全部",
@@ -2641,7 +2643,31 @@
     "noLikesYet": "还没有点赞。",
     "anchorFailed": "无法置顶该评论",
     "noQuotesYet": "还没有引用。",
-    "noRepostsYet": "还没有转帖。"
+    "noRepostsYet": "还没有转帖。",
+    "timeSeconds": "{{count}} 秒",
+    "timeMinutes": "{{count}} 分钟",
+    "timeHours": "{{count}} 点钟",
+    "seeWhoLiked": "看谁点了赞",
+    "holdToReact": "{{reaction}} — 长按回应",
+    "holdToChangeReaction": "{{reaction}} — 长按改你的回应",
+    "viewCount_one": "{{count}} 次浏览",
+    "viewCount_other": "{{count}} 次浏览",
+    "shareMessage": "来看下这个：{{url}}",
+    "hideReplies": "收起回复",
+    "rowA11yLabel": "{{name}}，{{time}}：{{text}}",
+    "rowA11yHint": "开始回复这条评论",
+    "editingComment": "编辑评论中",
+    "editPlaceholder": "编辑你的评论...",
+    "replyPlaceholder": "写回复...",
+    "inputPlaceholder": "在这里输入",
+    "cancelReply": "取消回复",
+    "cancelEdit": "取消编辑",
+    "countLabel_one": "{{count}} 条评论",
+    "countLabel_other": "{{count}} 条评论",
+    "repostsLabel_one": "转发",
+    "repostsLabel_other": "转发",
+    "quotesLabel_one": "引用",
+    "quotesLabel_other": "引用"
   },
   "postInfo": {
     "title": "帖子信息",
@@ -5126,7 +5152,20 @@
     "createCategory": "创建“{{name}}”",
     "stageMinting": "正在铸造…",
     "quotaShortfall": "Dis 篇文要 {{cost}} 粒，汝有 {{held}} 粒。",
-    "shopAllowanceUsed": "用了 {{allowance}} 粒个 {{allowance}}。质押更多 DeHub 粒，得更高个徽章搭另个位。"
+    "shopAllowanceUsed": "用了 {{allowance}} 粒个 {{allowance}}。质押更多 DeHub 粒，得更高个徽章搭另个位。",
+    "editFilters": "编辑过滤器",
+    "cropRotate": "裁剪 & 旋转",
+    "drawWrite": "绘制 & 写",
+    "fade": "淡化 {{value}}%",
+    "grayscale": "灰度 {{value}}%",
+    "resetEdits": "重置",
+    "clearDrawing": "清除",
+    "typeText": "输入…",
+    "textSize": "文字大小 {{value}}",
+    "coverFrames": "选择封面框",
+    "coverFrame": "使用框 {{index}}作为封面",
+    "uploadCover": "上传封面图片",
+    "editFailed": "无法应用该编辑。请再试一次。"
   },
   "bounty": {
     "claimed": "已领取",
@@ -8569,6 +8608,17 @@
       "shopping": "買東西 / 逛街",
       "developer-tools": "開發工具",
       "entertainment": "娛樂"
+    },
+    "pay": {
+      "title": "付{{name}}?",
+      "body": "DHB直接存到應用的錢包裡，{{wallet}}。付款無法退款。",
+      "confirm": "付{{amount}} DHB",
+      "sent": "已付{{amount}} DHB給{{name}}。"
+    },
+    "add": {
+      "title": "要加{{name}}?",
+      "body": "它會出現在「你的應用」裡，可以發送通知給你。你隨時可以從「應用」頁面移除它。",
+      "confirm": "加應用"
     }
   },
   "aiStyles": {

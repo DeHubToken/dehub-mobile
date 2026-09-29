@@ -146,7 +146,9 @@
     "noMoreShorts": "ไม่มีชอร์ตอีกแล้ว",
     "noShortsFound": "ไม่พบชอร์ต",
     "newMembersHint": "เพิ่งเข้าร่วม — ทักทายหน่อย",
-    "mostViewedThisMonth": "เบิ่งหลายสุดเดือนนี้"
+    "scroll": "Scroll",
+    "noFilterMatches": "บ่มีเนื้อหาที่กงกับตัวกรองของเจ้า",
+    "clearFilters": "ล้างตัวกรอง"
   },
   "explore": {
     "all": "ทั้งหมด",
@@ -2641,7 +2643,31 @@
     "turnedOff": "ปิดความคิดเห็นสำหรับโพสต์นี้แล้ว",
     "noQuotesYet": "ยังไม่มีคำพูด",
     "noRepostsYet": "ยังไม่มีการรีโพสต์",
-    "notFound": "ไม่พบความคิดเห็น"
+    "notFound": "ไม่พบความคิดเห็น",
+    "timeSeconds": "{{count}} วิ",
+    "timeMinutes": "{{count}} นาที",
+    "timeHours": "{{count}} ชม.",
+    "seeWhoLiked": "เบิ่งว่าใผกดถูกใจ",
+    "holdToReact": "{{reaction}} — กดค้างไว้เพื่อแสดงความรู้สึก",
+    "holdToChangeReaction": "{{reaction}} — กดค้างไว้เพื่อเปลี่ยนความรู้สึกของเจ้า",
+    "viewCount_one": "เบิ่ง {{count}} เทื่อ",
+    "viewCount_other": "เบิ่ง {{count}} เทื่อ",
+    "shareMessage": "เบิ่งอันนี้แหน่: {{url}}",
+    "hideReplies": "เซื่องการตอบกลับ",
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
+    "rowA11yHint": "เริ่มตอบกลับความคิดเห็นนี้",
+    "editingComment": "กำลังแก้ไขความคิดเห็น",
+    "editPlaceholder": "แก้ไขความคิดเห็นของเจ้า...",
+    "replyPlaceholder": "เขียนคำตอบ...",
+    "inputPlaceholder": "พิมพ์อยู่นี่",
+    "cancelReply": "ยกเลิกการตอบกลับ",
+    "cancelEdit": "ยกเลิกการแก้ไข",
+    "countLabel_one": "{{count}} ความคิดเห็น",
+    "countLabel_other": "{{count}} ความคิดเห็น",
+    "repostsLabel_one": "รีโพสต์",
+    "repostsLabel_other": "รีโพสต์",
+    "quotesLabel_one": "อ้างอิง",
+    "quotesLabel_other": "อ้างอิง"
   },
   "postInfo": {
     "title": "ข้อมูลโพสต์",
@@ -5120,7 +5146,20 @@
     "removeUploadTitle": "ลบการอัปโหลดนี้หรือไม่?",
     "removeQueuedBody": "ยังไม่ได้โพสต์ การลบจะยกเลิกโพสต์",
     "quotaShortfall": "โพสต์นี้ใช้โทเคน {{cost}} และคุณมี {{held}}",
-    "shopAllowanceUsed": "ใช้ไป {{allowance}} จาก {{allowance}} แล้ว สเตคโทเคน DeHub เพิ่มเติมเพื่อรับตราสัญลักษณ์ที่สูงขึ้นและอีกสล็อตหนึ่ง"
+    "shopAllowanceUsed": "ใช้ไป {{allowance}} จาก {{allowance}} แล้ว สเตคโทเคน DeHub เพิ่มเติมเพื่อรับตราสัญลักษณ์ที่สูงขึ้นและอีกสล็อตหนึ่ง",
+    "editFilters": "แก้ไขฟิลเตอร์",
+    "cropRotate": "ตัดตัดเย็บ & หมุน",
+    "drawWrite": "วาด & เขียน",
+    "fade": "ลดความสว่าง {{value}}%",
+    "grayscale": "แปลงเป็นสีเทา {{value}}%",
+    "resetEdits": "เริ่มใหม่",
+    "clearDrawing": "ล้าง",
+    "typeText": "พิมพ์…",
+    "textSize": "ขนาดตัวอักษร {{value}}",
+    "coverFrames": "เลือกกรอบภาพปก",
+    "coverFrame": "ใช้กรอบภาพ {{index}} เป็นภาพปก",
+    "uploadCover": "อัปโหลดภาพปก",
+    "editFailed": "ไม่สามารถนำไปใช้ได้ ลองอีกครั้ง"
   },
   "bounty": {
     "claimed": "ฮับแล้ว",
@@ -8539,6 +8578,11 @@
       "developer-tools": "เครื่องมือสำหรับผู้พัฒนา",
       "entertainment": "บันเทิง",
       "art-creativity": "ศิลปะและความคิดสร้างสรรค์"
+    },
+    "pay": {
+      "title": "Pay {{name}}?",
+      "confirm": "จ่าย {{amount}} DHB",
+      "sent": "จ่ายเงิน {{amount}} สำหรับ {{name}}."
     }
   },
   "aiStyles": {

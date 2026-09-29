@@ -1,6 +1,8 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   View,
+  Text,
+  Pressable,
   ActivityIndicator,
   type NativeSyntheticEvent,
   type NativeScrollEvent,
@@ -22,6 +24,7 @@ import { useFeedCardVisibility } from "../../hooks/useFeedCardVisibility";
 import { TAB_BAR_CONTENT_INSET } from "../../navigation/tabBarLayout";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import ProfileEmptyState from "./ProfileEmptyState";
+import Icon from "../ui/Icon";
 
 const PAGE_SIZE = 20;
 const MAX_REPLY_PAGES = 10;
@@ -72,6 +75,7 @@ const PostsRoute: React.FC<PostsRouteProps> = ({
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
   const [loadingMore, setLoadingMore] = useState(false);
+  const [loadFailed, setLoadFailed] = useState(false);
   const postPageRef = useRef(0);
   const postEndRef = useRef(false);
 
@@ -133,17 +137,20 @@ const PostsRoute: React.FC<PostsRouteProps> = ({
         return;
       }
       if (!isRefresh) setLoading(true);
+      setLoadFailed(false);
       postEndRef.current = false;
       postPageRef.current = 0;
 
       const postsPromise = loadPostsPage(address, 0, false).catch((error) => {
         console.warn("[PostsRoute] posts load failed", error);
+        setLoadFailed(true);
         if (!isRefresh) setPosts([]);
       });
       const repliesPromise = loadReplies(address)
         .then(setReplies)
         .catch((error) => {
           console.warn("[PostsRoute] comments load failed", error);
+          setLoadFailed(true);
           if (!isRefresh) setReplies([]);
         });
       try {
@@ -241,6 +248,28 @@ const PostsRoute: React.FC<PostsRouteProps> = ({
         {listHeader}
         <View className="items-center justify-center py-10">
           <ActivityIndicator color={theme.colors.accent} />
+        </View>
+      </Animated.ScrollView>
+    );
+  }
+
+  // A failed load with nothing to show is not an empty profile: say so and
+  // offer a retry, instead of "No posts or replies yet" with no way out.
+  if (loadFailed && merged.length === 0) {
+    return (
+      <Animated.ScrollView onScroll={onScroll} scrollEventThrottle={16}>
+        {listHeader}
+        <View style={{ alignItems: "center", justifyContent: "center", paddingVertical: 40, paddingHorizontal: 24, gap: 12 }}>
+          <Icon name="WifiOff" size={48} color="#808089" />
+          <Text style={{ color: "#A6A9AC", fontSize: 14, textAlign: "center" }}>{t("common.failedToLoad")}</Text>
+          <Pressable
+            onPress={() => loadAll()}
+            hitSlop={8}
+            accessibilityRole="button"
+            style={{ height: 40, borderWidth: 1, borderColor: "rgba(255,255,255,0.30)", borderRadius: 12, paddingHorizontal: 16, justifyContent: "center", alignItems: "center" }}
+          >
+            <Text style={{ color: "#FFFFFF", fontSize: 14, fontWeight: "500" }}>{t("common.retry")}</Text>
+          </Pressable>
         </View>
       </Animated.ScrollView>
     );

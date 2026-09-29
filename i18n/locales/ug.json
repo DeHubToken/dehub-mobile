@@ -146,7 +146,9 @@
     "noMoreShorts": "باشقا قىسقا فىلىم يوق",
     "noShortsFound": "قىسقا فىلىم تېپىلمىدى",
     "newMembersHint": "تا ھازىرلا قوشۇلغان - سالام بېرىڭ",
-    "mostViewedThisMonth": "بۇ ئاي ئەڭ كۆپ كۆرۈلگەن"
+    "scroll": "Scroll",
+    "noFilterMatches": "سۈزگۈچلىرىڭىزگە ماس كېلىدىغان مەزمۇن يوق.",
+    "clearFilters": "سۈزگۈچلەرنى تازىلاش"
   },
   "explore": {
     "all": "ھەممە",
@@ -2641,7 +2643,31 @@
     "noneYetBeFirst": "ئىنكاس يوق، بىرىنچى بولۇڭ!",
     "turnedOff": "بۇ يازما ئۈچۈن ئىنكاسلار ئۆچۈرۈلدى",
     "noQuotesYet": "تېخى تىلغا ئېلىنمىدى.",
-    "noRepostsYet": "قايتا يوللانمايدۇ."
+    "noRepostsYet": "قايتا يوللانمايدۇ.",
+    "timeSeconds": "{{count}} سېكۇنت",
+    "timeMinutes": "{{count}} مىنۇت",
+    "timeHours": "{{count}} سائەت",
+    "seeWhoLiked": "كىملەرنىڭ ياقتۇرغانلىقىنى كۆرۈش",
+    "holdToReact": "{{reaction}} — ھېسسىيات بىلدۈرۈش ئۈچۈن بېسىپ تۇرۇڭ",
+    "holdToChangeReaction": "{{reaction}} — ھېسسىياتىڭىزنى ئۆزگەرتىش ئۈچۈن بېسىپ تۇرۇڭ",
+    "viewCount_one": "{{count}} قېتىم كۆرۈلدى",
+    "viewCount_other": "{{count}} قېتىم كۆرۈلدى",
+    "shareMessage": "بۇنى كۆرۈڭ: {{url}}",
+    "hideReplies": "جاۋابلارنى يوشۇرۇش",
+    "rowA11yLabel": "{{name}}، {{time}}: {{text}}",
+    "rowA11yHint": "بۇ ئىنكاسقا جاۋاب يېزىشنى باشلايدۇ",
+    "editingComment": "ئىنكاس تەھرىرلىنىۋاتىدۇ",
+    "editPlaceholder": "ئىنكاسىڭىزنى تەھرىرلەڭ...",
+    "replyPlaceholder": "جاۋاب يېزىڭ...",
+    "inputPlaceholder": "بۇ يەرگە يېزىڭ",
+    "cancelReply": "جاۋابنى بىكار قىلىش",
+    "cancelEdit": "تەھرىرلەشنى بىكار قىلىش",
+    "countLabel_one": "{{count}} ئىنكاس",
+    "countLabel_other": "{{count}} ئىنكاس",
+    "repostsLabel_one": "قايتا يوللانما",
+    "repostsLabel_other": "قايتا يوللانما",
+    "quotesLabel_one": "نەقىل",
+    "quotesLabel_other": "نەقىل"
   },
   "postInfo": {
     "title": "يوللىما ئۇچۇرى",
@@ -5126,7 +5152,20 @@
     "removeUploadTitle": "بۇ چۈشۈرۈشنى ئۆچۈرگىلى بولامدۇ ؟",
     "removeQueuedBody": "ئۇ تېخى ئېلان قىلىنمىدى. ئۇنىڭ ئۆچۈرۈلۈشى يازمىنى بىكار قىلىدۇ.",
     "quotaShortfall": "بۇ يازمىنىڭ باھاسى {{cost}} تېل، سىز {{held}} نى ساقلاۋاتىسىز.",
-    "shopAllowanceUsed": "{{allowance}} دىن {{allowance}} ئىشلىتىلدى. تېخىمۇ كۆپ DeHub تېللىرىنى مەبلەڭ قىلىپ، تېخىمۇ يۇقىرى نام ۋە يەنە بىر ئورۇنغا ئېرىشىڭ."
+    "shopAllowanceUsed": "{{allowance}} دىن {{allowance}} ئىشلىتىلدى. تېخىمۇ كۆپ DeHub تېللىرىنى مەبلەڭ قىلىپ، تېخىمۇ يۇقىرى نام ۋە يەنە بىر ئورۇنغا ئېرىشىڭ.",
+    "editFilters": "ئەسەس قويۇشچۇلار",
+    "cropRotate": "ئۆزەكى چىقىرىش & ئۆزەكى قايىملاشتۇرۇش",
+    "drawWrite": "Qalam qilish & yozish",
+    "grayscale": "Graysaylەر {{value}}%",
+    "resetEdits": "ئۆچكۇرلارنى قايتا قۇراشتۇرۇڭ",
+    "clearDrawing": "تازىلاش",
+    "typeText": "Tiplar…",
+    "coverFrame": "{{index}} نى مۇقاۋ قىلىڭ",
+    "uploadCover": "تۈرلۈك رېسالم",
+    "editFailed": "ئۇ تەھرىرلەشنى قوللىنىپ بولمايدۇ. قايتا سىناڭ.",
+    "fade": "سۇسلىشىش {{value}}%",
+    "textSize": "خەت چوڭلۇقى {{value}}",
+    "coverFrames": "مۇقاۋا كادىرى تاللاڭ"
   },
   "bounty": {
     "claimed": "تاپشۇرۇۋېلىندى",
@@ -8524,7 +8563,11 @@
       "search": "ئەپلەرنى ئىزدەش پروگراممىسى",
       "all": "ھەممىسى",
       "fromDehub": "DeHub دىن",
-      "noMatch": "بۇ ئىزدەشكە ماس كېلىدىغان ئەپلەر يوق."
+      "noMatch": "بۇ ئىزدەشكە ماس كېلىدىغان ئەپلەر يوق.",
+      "yourApps": "Sizning iltizarliklaringiz",
+      "notificationsOn": "Habarlar ochun",
+      "remove": "Och",
+      "removed": "Ochildi. Sizga yana habar berish mayqan."
     },
     "card": {
       "open": "ئېچىش"
@@ -8541,7 +8584,19 @@
       "education": "مائارىپ",
       "developer-tools": "دېتاللارنى ياساش پروگراممىسى",
       "entertainment": "Ehtirof",
-      "art-creativity": "سەنئەت ۋە ئىجادىيەت"
+      "art-creativity": "سەنئەت ۋە ئىجادىيەت",
+      "utility": "Yordamchi"
+    },
+    "pay": {
+      "title": "{{name}}ga to'lov berish?",
+      "body": "DHB bevosita iltizarlikning portfeliga boradi, {{wallet}}. To'lovlar qaytarib olinmaydi.",
+      "confirm": "{{amount}} DHBga to'lov bering",
+      "sent": "{{amount}} DHBni {{name}}ga to'lov qilingan."
+    },
+    "add": {
+      "title": "{{name}}ni qo'shing?",
+      "body": "U sizning iltizarliklaringiz ostida ko'rinishi mumkin va sizga habarlar yuborishi mumkin. Siz har qanday vaqtda Apps sahifasidan uni ochishga qoyishingiz mumkin.",
+      "confirm": "Iltizarlik qo'shing"
     }
   },
   "aiStyles": {

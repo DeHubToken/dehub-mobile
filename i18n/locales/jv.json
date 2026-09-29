@@ -146,7 +146,9 @@
     "noMoreShorts": "Ora ana shorts maneh",
     "noShortsFound": "Ora ana shorts sing ditemokake",
     "newMembersHint": "Baru gabung — ucapake halo",
-    "mostViewedThisMonth": "Paling akeh ditonton sasi iki"
+    "scroll": "Scroll",
+    "noFilterMatches": "Ora ana konten sing cocog karo saringanmu.",
+    "clearFilters": "Busak saringan"
   },
   "explore": {
     "all": "Kabeh",
@@ -2640,7 +2642,31 @@
     "noneYetBeFirst": "Durung ana komentar. Dadi sing pertama!",
     "turnedOff": "Komentar dipateni kanggo kiriman iki",
     "noQuotesYet": "Durung ana kutipan.",
-    "noRepostsYet": "Durung ana repost."
+    "noRepostsYet": "Durung ana repost.",
+    "timeSeconds": "{{count}} detik",
+    "timeMinutes": "{{count}} menit",
+    "timeHours": "{{count}} jam",
+    "seeWhoLiked": "Delengen sapa sing seneng",
+    "holdToReact": "{{reaction}} — tahan kanggo menehi reaksi",
+    "holdToChangeReaction": "{{reaction}} — tahan kanggo ngganti reaksimu",
+    "viewCount_one": "{{count}} tontonan",
+    "viewCount_other": "{{count}} tontonan",
+    "shareMessage": "Delengen iki: {{url}}",
+    "hideReplies": "Delikna wangsulan",
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
+    "rowA11yHint": "Miwiti wangsulan kanggo komentar iki",
+    "editingComment": "Nyunting komentar",
+    "editPlaceholder": "Sunting komentarmu...",
+    "replyPlaceholder": "Tulis wangsulan...",
+    "inputPlaceholder": "Ketik ing kene",
+    "cancelReply": "Batalake wangsulan",
+    "cancelEdit": "Batalake suntingan",
+    "countLabel_one": "{{count}} komentar",
+    "countLabel_other": "{{count}} komentar",
+    "repostsLabel_one": "kiriman ulang",
+    "repostsLabel_other": "kiriman ulang",
+    "quotesLabel_one": "kutipan",
+    "quotesLabel_other": "kutipan"
   },
   "postInfo": {
     "title": "Info Postingan",
@@ -5116,7 +5142,20 @@
     "removeUploadTitle": "Batalake unggahan iki?",
     "removeQueuedBody": "Durung dipos. Mbatalake bakal nggagalke pos.",
     "quotaShortfall": "Pos iki regane {{cost}} token lan sampeyan duwe {{held}}.",
-    "shopAllowanceUsed": "{{allowance}} saka {{allowance}} digunakake. Stake token DeHub luwih akeh kanggo lencana sing luwih dhuwur lan slot liyane."
+    "shopAllowanceUsed": "{{allowance}} saka {{allowance}} digunakake. Stake token DeHub luwih akeh kanggo lencana sing luwih dhuwur lan slot liyane.",
+    "editFilters": "Gawe filter",
+    "cropRotate": "Potong lan rotasi",
+    "drawWrite": "Tulis lan gambar",
+    "fade": "Menggawe abang {{value}}%",
+    "grayscale": "Abang {{value}}%",
+    "resetEdits": "Kembalike",
+    "clearDrawing": "Beresih",
+    "typeText": "Tulis…",
+    "textSize": "Suku teks {{value}}",
+    "coverFrames": "Pilih frame cover",
+    "coverFrame": "Gunakake frame {{index}} minangka cover",
+    "uploadCover": "Nambah cover gambar",
+    "editFailed": "Gawe filter iku ora bisa diaplikasake. Coba lagi."
   },
   "bounty": {
     "claimed": "Wis diklaim",
@@ -8516,7 +8555,11 @@
       "search": "Kariwisata apps",
       "all": "Semua",
       "fromDehub": "Kanggo DeHub",
-      "noMatch": "Gak ada aplikaséné nganti hasil pencarianmu."
+      "noMatch": "Gak ada aplikaséné nganti hasil pencarianmu.",
+      "removed": "Kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo nganggo, kanggo",
+      "yourApps": "Gwé app gwé",
+      "notificationsOn": "Notifikasi nyuwun",
+      "remove": "Hapus"
     },
     "card": {
       "open": "Buka"
@@ -8535,6 +8578,17 @@
       "developer-tools": "Alat pengembang",
       "entertainment": "Kebangetan",
       "art-creativity": "Kesenian & kreasi"
+    },
+    "pay": {
+      "body": "DHB langsung ke dompet aplikasi, {{wallet}}. Pembayaran ga bisa dibatalkan.",
+      "sent": "Bayar ke {{amount}} DHB untuk {{name}}.",
+      "title": "Bayar {{name}}?",
+      "confirm": "Bayar {{amount}} DHB"
+    },
+    "add": {
+      "title": "{{name}}?",
+      "body": "Kang bisa ngelihat di bawah Your apps lan bisa ngirim pesan ngedhongin. Kamisan bisa nganggo ngaruhin kanggo ngelanturin kapan-kapan di halaman Apps.",
+      "confirm": "Tambah app"
     }
   },
   "aiStyles": {

@@ -34,12 +34,11 @@ import { WEBSITE_LINK } from "../../config/links";
 import { getAvatarUrl } from "../../libs/misc";
 import { toastError, toastInfo } from "../../libs";
 import { openInApp } from "../../libs/links.utils";
-import { homeTabEvents } from "../../libs/eventBus";
 import { useTranslation } from "react-i18next";
 import { useAppTheme } from "../../context/ThemeContext";
 
 // The menu is a bottom sheet: grab handle, who is signed in, the search field,
-// then a three-column grid of the same glossy 3D icons the web menu uses. It
+// then a four-column grid of the same glossy 3D icons the web menu uses. It
 // rises from the bottom in every locale, so there is no RTL mirroring to get
 // wrong the way the old side drawer had to.
 
@@ -52,9 +51,10 @@ const POSITION_THRESHOLD = 0.3;
 // Web caps its sheet at 85dvh; same here.
 const SHEET_HEIGHT_RATIO = 0.85;
 
-const GRID_GAP = 10;
+const GRID_GAP = 8;
 const GRID_PADDING = 16;
-const ICON_SIZE = 52;
+const GRID_COLUMNS = 4;
+const ICON_SIZE = 44;
 
 // Per-theme 3D artwork is served by the website (public/theme-icons/<theme>/),
 // the same files the web menu draws, so both stay on one set. expo-image keeps
@@ -99,7 +99,8 @@ interface DrawerItem {
 // same order, labels and icons. Items with a native screen navigate in-app;
 // the rest open the corresponding page on the website.
 const NAV_ITEMS: DrawerItem[] = [
-  { icon: "House", labelKey: "nav.home", screen: ScreenNames.Home, tab: true },
+  // Search-only: Home and its feed tabs are already on the main screen twice.
+  { icon: "House", labelKey: "nav.home", screen: ScreenNames.Home, tab: true, searchOnly: true },
   { icon: "User", labelKey: "nav.profile", screen: ScreenNames.Profile, requiresAuth: true },
   { icon: "Search", labelKey: "nav.explore", screen: ScreenNames.Explore, tab: true },
   { icon: "Wand", labelKey: "nav.prompt", screen: ScreenNames.Prompt },
@@ -121,14 +122,12 @@ const NAV_ITEMS: DrawerItem[] = [
   // Staking lives as a tab inside the wallet (Dpay) screen rather than its own
   // route, so it deep-links there. Web has it as a separate sidebar entry.
   { icon: "Vault", labelKey: "nav.staking", screen: ScreenNames.Dpay, params: { initialTab: "stake" }, requiresAuth: true, storefrontHidden: true },
-  // Sits under Staking because it is what staking buys. No `requiresAuth`: the
-  // ladder is worth reading before you hold a badge, which is the whole point
-  // of the screen.
-  { icon: "Zap", labelKey: "nav.superpowers", screen: ScreenNames.SuperPowers, storefrontHidden: true },
+  // Badge grants and existing allowances are available on every platform.
+  { icon: "Zap", labelKey: "nav.superpowers", screen: ScreenNames.SuperPowers },
   // Emoji, sticker and GIF packs — creating one is a badge perk, so it sits with
   // the other things staking buys. Browsing and adding packs is open to all.
   { icon: "Smile", labelKey: "creatorPacks.title", screen: ScreenNames.Packs },
-  { icon: "ShieldCheck", labelKey: "nav.governance", screen: ScreenNames.Governance, storefrontHidden: true },
+  { icon: "ShieldCheck", labelKey: "nav.governance", screen: ScreenNames.Governance },
   { icon: "Landmark", labelKey: "nav.dao", screen: ScreenNames.Dao, storefrontHidden: true },
   { icon: "Briefcase", labelKey: "screens.work", screen: ScreenNames.Work, storefrontHidden: true },
   { icon: "Users", labelKey: "nav.affiliate", screen: ScreenNames.Affiliate, requiresAuth: true, storefrontHidden: true },
@@ -146,8 +145,8 @@ const NAV_ITEMS: DrawerItem[] = [
   { icon: "Tv", labelKey: "nav.tv", screen: ScreenNames.TV },
   // Sits between Stores and Glossary, as on the web sidebar. Only the games
   // that work on a touchscreen are listed — see config/arcade-games.
-  { icon: "Gamepad2", labelKey: "nav.arcade", screen: ScreenNames.Arcade, storefrontHidden: true },
-  // The mini app store. Third-party apps, so kept off the iOS storefront build like the arcade.
+  { icon: "Gamepad2", labelKey: "nav.arcade", screen: ScreenNames.Arcade },
+  // The third-party mini app store has its own storefront review pending.
   { icon: "LayoutGrid", labelKey: "miniApps.store.title", screen: ScreenNames.Apps, storefrontHidden: true },
   { icon: "ArrowDownToLine", labelKey: "nav.converter", screen: ScreenNames.Converter, requiresAuth: true },
   { icon: "FolderInput", labelKey: "nav.migrate", screen: ScreenNames.Migrate },
@@ -180,22 +179,6 @@ const ICON_KEYS: Record<string, string> = {
   "nav.migrate": "bridge", "nav.guide": "pinned", "nav.connectAi": "command", "nav.docs": "posts",
   "nav.blog": "email", "nav.premium": "boost", "nav.pricing": "buy",
 };
-
-type FeedPostType = "video" | "feed-images" | "feed-audio" | "live";
-
-// The home feed's tabs, reached from the sheet as if they were pages.
-const FEED_TILES: { labelKey: string; iconKey: string; icon: IconName; postType: FeedPostType }[] = [
-  { labelKey: "feed.videos", iconKey: "videos", icon: "Film", postType: "video" },
-  { labelKey: "feed.images", iconKey: "images", icon: "Image", postType: "feed-images" },
-  { labelKey: "feed.music", iconKey: "audio", icon: "Mic", postType: "feed-audio" },
-  { labelKey: "feed.live", iconKey: "live", icon: "Radio", postType: "live" },
-];
-
-// The curated first screen after Home and the feed tiles, in order. Every other
-// destination follows under a hairline.
-const PINNED_KEYS = [
-  "nav.messages", "nav.notifications", "nav.bookmarks", "screens.stores", "nav.staking", "nav.profile", "nav.settings",
-];
 
 /** What the themes layer hands us; null for system/minimal (dark glass). */
 type SheetSkin = ThemeSkin;
@@ -258,7 +241,7 @@ const Tile = memo<TileProps>(({ label, icon, iconUrl, width, active, disabled, s
             onError={() => setArtFailed(true)}
           />
         ) : (
-          <Icon name={icon} size={30} color={glyphColor} strokeWidth={1.6} />
+          <Icon name={icon} size={26} color={glyphColor} strokeWidth={1.6} />
         )}
       </View>
       <Text
@@ -294,7 +277,7 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
   // off-screen position instead of keeping the size from app start.
   const { width: screenWidth, height: screenHeight } = useWindowDimensions();
   const SHEET_HEIGHT = screenHeight * SHEET_HEIGHT_RATIO;
-  const tileWidth = Math.floor((screenWidth - GRID_PADDING * 2 - GRID_GAP * 2) / 3);
+  const tileWidth = Math.floor((screenWidth - GRID_PADDING * 2 - GRID_GAP * (GRID_COLUMNS - 1)) / GRID_COLUMNS);
 
   // Current route name, so the matching tile highlights like the web menu.
   // Tab screens live nested under Root — descend into it to find them.
@@ -412,17 +395,6 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
 
   const searching = menuQuery.trim().length > 0;
 
-  // Resting order: Home, the four feed tiles, the pinned rows, then the rest.
-  const { home, pinned, rest } = useMemo(() => {
-    if (searching) return { home: undefined, pinned: [] as DrawerItem[], rest: visibleItems };
-    const byKey = new Map(visibleItems.map((item) => [item.labelKey, item]));
-    const pinnedItems = PINNED_KEYS.map((key) => byKey.get(key)).filter((item): item is DrawerItem => !!item);
-    const taken = new Set<DrawerItem>(pinnedItems);
-    const homeItem = byKey.get("nav.home");
-    if (homeItem) taken.add(homeItem);
-    return { home: homeItem, pinned: pinnedItems, rest: visibleItems.filter((item) => !taken.has(item)) };
-  }, [searching, visibleItems]);
-
   // Never reopen the sheet mid-filter.
   useEffect(() => {
     if (!visible) setMenuQuery("");
@@ -452,14 +424,6 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
       }
     },
     [navigate, onClose, t],
-  );
-
-  const openFeedTab = useCallback(
-    (postType: FeedPostType) => {
-      navigate(ScreenNames.Home, undefined, true);
-      homeTabEvents.requestTab(postType);
-    },
-    [navigate],
   );
 
   const handleSignOut = useCallback(async () => {
@@ -625,30 +589,10 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
           keyboardShouldPersistTaps="handled"
           contentContainerStyle={{ paddingHorizontal: GRID_PADDING, paddingBottom: 16 }}
         >
-          {!searching && (
+          {/* Same order as the web menu, one continuous grid. */}
+          {visibleItems.length > 0 && (
             <View style={styles.grid}>
-              {home && renderItem(home)}
-              {FEED_TILES.map((tile) => (
-                <Tile
-                  key={tile.postType}
-                  label={t(tile.labelKey)}
-                  icon={tile.icon}
-                  iconUrl={themeIconUrl(themeName, tile.iconKey)}
-                  width={tileWidth}
-                  soonLabel={t("screens.soon")}
-                  skin={skin}
-                  hud={hud}
-                  square={square}
-                  onPress={() => openFeedTab(tile.postType)}
-                />
-              ))}
-              {pinned.map(renderItem)}
-            </View>
-          )}
-
-          {rest.length > 0 && (
-            <View style={[styles.grid, !searching && [styles.restGrid, { borderTopColor: hairline }]]}>
-              {rest.map(renderItem)}
+              {visibleItems.map(renderItem)}
             </View>
           )}
 
@@ -810,17 +754,13 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     gap: GRID_GAP,
   },
-  restGrid: {
-    marginTop: GRID_GAP,
-    paddingTop: GRID_GAP,
-    borderTopWidth: 1,
-  },
   tile: {
     alignItems: "center",
     justifyContent: "center",
-    gap: 8,
-    padding: 12,
-    minHeight: 100,
+    gap: 6,
+    paddingHorizontal: 4,
+    paddingVertical: 10,
+    minHeight: 84,
     borderRadius: 14,
     backgroundColor: "rgba(255, 255, 255, 0.04)",
     borderWidth: 1,
@@ -842,7 +782,7 @@ const styles = StyleSheet.create({
   },
   tileLabel: {
     color: "rgba(255, 255, 255, 0.9)",
-    fontSize: 12.5,
+    fontSize: 11.5,
     fontWeight: "500",
     textAlign: "center",
     alignSelf: "stretch",

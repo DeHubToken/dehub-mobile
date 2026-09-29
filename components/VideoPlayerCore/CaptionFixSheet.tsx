@@ -26,7 +26,9 @@ import {
   View,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useCorrectionActions } from "../../hooks/useTranscriptCorrections";
+import useKeyboard from "../../hooks/useKeyboard";
 
 const MAX_TEXT = 500;
 
@@ -50,6 +52,10 @@ const CaptionFixSheet: React.FC<CaptionFixSheetProps> = ({
   const { t } = useTranslation();
   const [text, setText] = useState(originalText);
   const { submit } = useCorrectionActions(transcriptId);
+  // The Modal runs under the nav bar (edge-to-edge), so Submit needs the inset.
+  // Not while typing: the keyboard already lifts the sheet clear of the bar.
+  const insets = useSafeAreaInsets();
+  const { isVisible: kbUp } = useKeyboard();
 
   // Each open starts from the line as it currently reads: a kept draft would
   // be filed against whichever line was open next.
@@ -80,7 +86,7 @@ const CaptionFixSheet: React.FC<CaptionFixSheetProps> = ({
         behavior="padding"
         style={styles.wrap}
       >
-        <View style={styles.sheet}>
+        <View style={[styles.sheet, { paddingBottom: kbUp ? 20 : Math.max(20, insets.bottom + 16) }]}>
           <ScrollView keyboardShouldPersistTaps="handled" contentContainerStyle={{ gap: 10 }}>
           <SheetDismissHandle onClose={onClose} style={styles.header}>
             <Text style={styles.title}>{t("transcript.fixThisLine")}</Text>

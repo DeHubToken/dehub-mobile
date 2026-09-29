@@ -146,7 +146,9 @@
     "noMoreShorts": "Plus de Shorts",
     "noShortsFound": "Aucun Short trouvé",
     "newMembersHint": "vient de rejoindre — dites bonjour",
-    "mostViewedThisMonth": "Les plus vus ce mois-ci"
+    "scroll": "Scroll",
+    "noFilterMatches": "Aucun contenu ne correspond à vos filtres.",
+    "clearFilters": "Effacer les filtres"
   },
   "explore": {
     "all": "Tout",
@@ -2645,7 +2647,31 @@
     "noneYetBeFirst": "Aucun commentaire pour l'instant. Soyez le premier !",
     "turnedOff": "Les commentaires sont désactivés pour cette publication",
     "noQuotesYet": "Aucune citation pour l'instant.",
-    "noRepostsYet": "Aucun repost pour l'instant."
+    "noRepostsYet": "Aucun repost pour l'instant.",
+    "timeSeconds": "{{count}} s",
+    "timeMinutes": "{{count}} min",
+    "timeHours": "{{count}} h",
+    "seeWhoLiked": "Voir qui a aimé",
+    "holdToReact": "{{reaction}} — maintenez pour réagir",
+    "holdToChangeReaction": "{{reaction}} — maintenez pour changer votre réaction",
+    "viewCount_one": "{{count}} vue",
+    "viewCount_other": "{{count}} vues",
+    "shareMessage": "Regarde ça : {{url}}",
+    "hideReplies": "Masquer les réponses",
+    "rowA11yLabel": "{{name}}, {{time}} : {{text}}",
+    "rowA11yHint": "Commence une réponse à ce commentaire",
+    "editingComment": "Modification du commentaire",
+    "editPlaceholder": "Modifiez votre commentaire...",
+    "replyPlaceholder": "Écrire une réponse...",
+    "inputPlaceholder": "Écrivez ici",
+    "cancelReply": "Annuler la réponse",
+    "cancelEdit": "Annuler la modification",
+    "countLabel_one": "{{count}} commentaire",
+    "countLabel_other": "{{count}} commentaires",
+    "repostsLabel_one": "republication",
+    "repostsLabel_other": "republications",
+    "quotesLabel_one": "citation",
+    "quotesLabel_other": "citations"
   },
   "postInfo": {
     "title": "Info du Post",
@@ -5179,7 +5205,20 @@
     "removeUploadTitle": "Supprimer ce téléversement ?",
     "removeQueuedBody": "Il n'a pas encore été publié. Si vous le supprimez, la publication est annulée.",
     "quotaShortfall": "Ce post coûte {{cost}} jetons et vous en détenez {{held}}.",
-    "shopAllowanceUsed": "{{allowance}} sur {{allowance}} utilisés. Mettez en jeu plus de jetons DeHub pour un badge supérieur et un emplacement supplémentaire."
+    "shopAllowanceUsed": "{{allowance}} sur {{allowance}} utilisés. Mettez en jeu plus de jetons DeHub pour un badge supérieur et un emplacement supplémentaire.",
+    "editFilters": "Modifier les filtres",
+    "cropRotate": "Recadrer et pivoter",
+    "drawWrite": "Dessiner et écrire",
+    "fade": "Fondu {{value}} %",
+    "grayscale": "Niveaux de gris {{value}} %",
+    "resetEdits": "Réinitialiser",
+    "clearDrawing": "Effacer",
+    "typeText": "Saisissez…",
+    "textSize": "Taille du texte {{value}}",
+    "coverFrames": "Choisir une image de couverture",
+    "coverFrame": "Utiliser l'image {{index}} comme couverture",
+    "uploadCover": "Importer une image de couverture",
+    "editFailed": "Impossible d'appliquer cette modification. Réessayez."
   },
   "bounty": {
     "claimed": "Réclamé",
@@ -8530,7 +8569,11 @@
       "search": "Recherche d'applications",
       "all": "Tout",
       "fromDehub": "De DeHub",
-      "noMatch": "Aucune application ne correspond à cette recherche."
+      "noMatch": "Aucune application ne correspond à cette recherche.",
+      "yourApps": "Vos applications",
+      "removed": "Supprimé. Vous ne serez plus averti à nouveau.",
+      "notificationsOn": "Notifications sur",
+      "remove": "Supprimer"
     },
     "card": {
       "open": "Ouvrir"
@@ -8549,6 +8592,17 @@
       "developer-tools": "Outils pour les développeurs",
       "entertainment": "Divertissement",
       "art-creativity": "Art et créativité"
+    },
+    "pay": {
+      "title": "Payez {{name}} ?",
+      "body": "Le DHB va directement dans le portefeuille de l'application, {{wallet}}. Les paiements ne peuvent pas être annulés.",
+      "confirm": "Payez {{amount}} DHB",
+      "sent": "Paiement {{amount}} DHB à {{name}}."
+    },
+    "add": {
+      "title": "Ajouter {{name}} ?",
+      "body": "Il apparaîtra sous Vos apps et pourra vous envoyer des notifications. Vous pouvez le supprimer à tout moment depuis la page Apps.",
+      "confirm": "Ajouter l'application"
     }
   },
   "aiStyles": {
