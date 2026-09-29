@@ -146,7 +146,9 @@
     "noMoreShorts": "Geen shorts meer",
     "noShortsFound": "Geen shorts gevonden",
     "newMembersHint": "Net lid geworden — zeg hallo",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "Geen inhoud komt overeen met je filters.",
+    "clearFilters": "Filters wissen"
   },
   "explore": {
     "all": "Alles",

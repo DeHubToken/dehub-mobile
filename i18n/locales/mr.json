@@ -146,7 +146,9 @@
     "noMoreShorts": "आणखी शॉर्ट्स नाहीत",
     "noShortsFound": "कोणतेही शॉर्ट्स आढळले नाहीत",
     "newMembersHint": "आत्ताच सामील झाला — हॅलो म्हणा",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "तुमच्या फिल्टरशी जुळणारी कोणतीही सामग्री नाही.",
+    "clearFilters": "फिल्टर साफ करा"
   },
   "explore": {
     "all": "सर्व",

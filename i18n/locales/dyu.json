@@ -146,7 +146,9 @@
     "noMoreShorts": "O tɛ se ka kɛ tugun",
     "noShortsFound": "Short si ma sɔrɔ",
     "newMembersHint": "O kɔ, a y'a fɔ ko: \"Aw ye foli di ne ma\"",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "Fɛn si tɛ bɛn i ka sɛgɛsɛgɛliw ma.",
+    "clearFilters": "Wolomaw jɔsi"
   },
   "explore": {
     "all": "Bɛɛ",

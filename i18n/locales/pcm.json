@@ -146,7 +146,9 @@
     "noShortsFound": "We no see any shorts",
     "newMembersHint": "Dem just join — greet dem",
     "allCaughtUp": "You don see everything finish",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "No content match your filter dem.",
+    "clearFilters": "Clear filters"
   },
   "explore": {
     "all": "All",

@@ -146,7 +146,9 @@
     "noMoreShorts": "沒有更多短片",
     "noShortsFound": "找不到短片",
     "newMembersHint": "剛加入 — 打個招呼",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "冇符合你篩選條件嘅內容。",
+    "clearFilters": "清除篩選"
   },
   "explore": {
     "all": "全部",

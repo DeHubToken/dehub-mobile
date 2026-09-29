@@ -146,7 +146,9 @@
     "noMoreShorts": "अउ shorts नहीं",
     "noShortsFound": "कोई shorts नहीं मिलिस",
     "newMembersHint": "अभी जुड़िस — hello बोल",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "तुंहर फिल्टर ले कोनो सामग्री मेल नइ खावय।",
+    "clearFilters": "फिल्टर हटावव"
   },
   "explore": {
     "all": "सब",

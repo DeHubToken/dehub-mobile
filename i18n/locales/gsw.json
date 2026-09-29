@@ -146,7 +146,9 @@
     "noMoreShorts": "Keini Shorts meh",
     "noShortsFound": "Keini Shorts gfunde",
     "newMembersHint": "Grad bi üs igstige – säg hallo",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "Kei Inhalt passt zu dine Filter.",
+    "clearFilters": "Filter lösche"
   },
   "explore": {
     "all": "Alli",

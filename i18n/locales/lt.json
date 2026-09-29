@@ -146,7 +146,9 @@
     "noMoreShorts": "Daugiau trumpų vaizdo įrašų nėra",
     "noShortsFound": "Trumpų vaizdo įrašų nerasta",
     "newMembersHint": "Ką tik prisijungėte – pasisveikinkite",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "Jūsų filtrus atitinkančio turinio nėra.",
+    "clearFilters": "Išvalyti filtrus"
   },
   "explore": {
     "all": "Visi",

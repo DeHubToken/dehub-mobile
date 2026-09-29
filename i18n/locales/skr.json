@@ -146,7 +146,9 @@
     "noMoreShorts": "شارٹس مزید نہیں",
     "noShortsFound": "کوئی شارٹ نہ لبھیا",
     "newMembersHint": "ہن وی شامل تھئے آں — سلام کرو",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "تہاڈے فلٹراں نال کوئی مواد نئیں ملدا۔",
+    "clearFilters": "فلٹر مٹاؤ"
   },
   "explore": {
     "all": "سارے",

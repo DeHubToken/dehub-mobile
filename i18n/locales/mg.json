@@ -146,7 +146,9 @@
     "noMoreShorts": "Tsy misy shorts intsony",
     "noShortsFound": "Tsy nahita shorts",
     "newMembersHint": "Vao tafiditra — miarahaba",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "Tsy misy atiny mifanaraka amin'ny sivanao.",
+    "clearFilters": "Hamafa ny sivana"
   },
   "explore": {
     "all": "Rehetra",

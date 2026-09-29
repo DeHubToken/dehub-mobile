@@ -146,7 +146,9 @@
     "noMoreShorts": "ไม่มีชอร์ตอีกแล้ว",
     "noShortsFound": "ไม่พบชอร์ต",
     "newMembersHint": "เพิ่งเข้าร่วม — ทักทายหน่อย",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "บ่มีเนื้อหาที่กงกับตัวกรองของเจ้า",
+    "clearFilters": "ล้างตัวกรอง"
   },
   "explore": {
     "all": "ทั้งหมด",

@@ -146,7 +146,9 @@
     "noMoreShorts": "Enweghị obere vidiyo ọzọ",
     "noShortsFound": "Achọtaghị obere vidiyo",
     "newMembersHint": "Ọhụrụ — kelee",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "Ọ dịghị ọdịnaya dabara na nzacha gị.",
+    "clearFilters": "Hichapụ ihe nzacha"
   },
   "explore": {
     "all": "Niile",

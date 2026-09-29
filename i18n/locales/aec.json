@@ -146,7 +146,9 @@
     "noMoreShorts": "مفيش فيديوهات قصيرة تاني",
     "noShortsFound": "مفيش فيديوهات قصيرة اتلاقت",
     "newMembersHint": "لسه داخل — سلم علينا",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "مافيش محتوى على قد فلاترك.",
+    "clearFilters": "امسح الفلاتر"
   },
   "explore": {
     "all": "الكل",
