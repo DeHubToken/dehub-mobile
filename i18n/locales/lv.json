@@ -2212,7 +2212,9 @@
     "revealKey": "Rādīt atslēgu",
     "revealSignIn": "Piesakieties vēlreiz, lai redzētu šo atslēgu",
     "revealFailed": "Neizdevās parādīt atslēgu. Mēģiniet vēlreiz.",
-    "signInAgain": "Pieteikties vēlreiz"
+    "signInAgain": "Pieteikties vēlreiz",
+    "createSignIn": "Piesakieties vēlreiz, lai izveidotu aģentu",
+    "checkConnection": "Pārbaudiet savienojumu un mēģiniet vēlreiz."
   },
   "hero": {
     "title": "Laipni Lūdzam",

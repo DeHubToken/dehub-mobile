@@ -2201,7 +2201,9 @@
     "revealKey": "Show key",
     "revealSignIn": "Sign in again for see dis key",
     "revealFailed": "We no fit show di key. Try again.",
-    "signInAgain": "Sign in again"
+    "signInAgain": "Sign in again",
+    "createSignIn": "Sign in again for create agent",
+    "checkConnection": "Check connection yu, den try again."
   },
   "hero": {
     "title": "Welkam fo",

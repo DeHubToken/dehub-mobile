@@ -2212,7 +2212,9 @@
     "revealKey": "Vis nøgle",
     "revealSignIn": "Log ind igen for at se denne nøgle",
     "revealFailed": "Nøglen kunne ikke vises. Prøv igen.",
-    "signInAgain": "Log ind igen"
+    "signInAgain": "Log ind igen",
+    "createSignIn": "Log ind igen for at oprette en agent",
+    "checkConnection": "Tjek din forbindelse, og prøv igen."
   },
   "hero": {
     "title": "Velkommen Til",

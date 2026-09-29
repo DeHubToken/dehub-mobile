@@ -2225,7 +2225,9 @@
     "revealKey": "Furtuu agarsiisi",
     "revealSignIn": "Furtuu kana arguuf irra deebi'ii seeni",
     "revealFailed": "Furtuu agarsiisuun hin danda'amne. Irra deebi'ii yaali.",
-    "signInAgain": "Irra deebi'ii seeni"
+    "signInAgain": "Irra deebi'ii seeni",
+    "createSignIn": "Eejentii uumuuf irra deebi'ii seeni",
+    "checkConnection": "Walqunnamtii kee mirkaneessi, irra deebi'ii yaali."
   },
   "hero": {
     "title": "Baga Nagaan",

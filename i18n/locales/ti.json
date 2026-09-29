@@ -2210,7 +2210,9 @@
     "revealKey": "መፍትሕ ኣርኢ",
     "revealSignIn": "ነዚ መፍትሕ ንምርኣይ ደጊምካ እቶ",
     "revealFailed": "መፍትሕ ከርኢ ኣይከኣለን። ደጊምካ ፈትን።",
-    "signInAgain": "ደጊምካ እቶ"
+    "signInAgain": "ደጊምካ እቶ",
+    "createSignIn": "ኤጀንት ንምፍጣር ደጊምካ እቶ",
+    "checkConnection": "ርክብካ ፈትሽ እሞ ደጊምካ ፈትን።"
   },
   "hero": {
     "title": "ናብ ዓለምና",

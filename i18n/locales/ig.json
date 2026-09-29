@@ -2212,7 +2212,9 @@
     "revealKey": "Gosi igodo",
     "revealSignIn": "Banye ọzọ iji hụ igodo a",
     "revealFailed": "Enweghị ike igosi igodo ahụ. Nwaa ọzọ.",
-    "signInAgain": "Banye ọzọ"
+    "signInAgain": "Banye ọzọ",
+    "createSignIn": "Banye ọzọ iji mepụta onye ọrụ",
+    "checkConnection": "Lelee njikọ gị ma nwaa ọzọ."
   },
   "hero": {
     "title": "Nnọọ N'ụwa",

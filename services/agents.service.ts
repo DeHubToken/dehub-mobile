@@ -10,11 +10,18 @@
  *
  * Creating goes through dehub-mcp's plain REST route. The function is a
  * Streamable HTTP MCP server, so a JSON-RPC envelope posted at its root comes
- * back 406 and no agent is created.
+ * back 406 and no agent is created. It needs the owner's DeHub token: the agent
+ * is filed under the wallet that token belongs to.
  */
 import env from "../config/env";
 import { supabase } from "./supabase";
 import { withWalletHeader } from "../libs/supabase-wallet-client";
+import { getAuthToken } from "../libs/auth.utils";
+import { tokenRefreshManager } from "../libs/token-refresh";
+
+/** Registration failures the screen words itself instead of showing the server's text. */
+export const AGENT_SIGN_IN_REQUIRED = "AGENT_SIGN_IN_REQUIRED";
+export const AGENT_AUTH_UNAVAILABLE = "AGENT_AUTH_UNAVAILABLE";
 
 export interface AIAgent {
   id: string;
@@ -51,15 +58,25 @@ export async function registerAgent(input: {
   description: string;
   walletAddress: string;
 }): Promise<{ agent?: { id: string; api_key?: string } }> {
+  // The endpoint used to take the owner wallet from the body on trust, so
+  // anyone could file agents under someone else's wallet. The wallet is still
+  // sent so a token for a different wallet than the one on screen is refused
+  // instead of filing the agent somewhere this list cannot see.
+  await tokenRefreshManager.ensureFreshToken();
+  const token = await getAuthToken();
+  if (!token) throw new Error(AGENT_SIGN_IN_REQUIRED);
+
   const response = await fetch(`${MCP_BASE}/register`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: { "Content-Type": "application/json", "x-dehub-token": token },
     body: JSON.stringify({
       name: input.name,
       description: input.description,
       owner_wallet_address: input.walletAddress,
     }),
   });
+  if (response.status === 401 || response.status === 403) throw new Error(AGENT_SIGN_IN_REQUIRED);
+  if (response.status === 503) throw new Error(AGENT_AUTH_UNAVAILABLE);
   const data = await response.json().catch(() => ({}));
   // The endpoint explains name clashes and per-wallet limits; passing that
   // through beats a generic failure the user cannot act on.

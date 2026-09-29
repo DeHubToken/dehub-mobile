@@ -2213,7 +2213,9 @@
     "revealKey": "Bonisa ukhiye",
     "revealSignIn": "Ngena futhi ukuze ubone lo khiye",
     "revealFailed": "Ayikwazanga ukubonisa ukhiye. Zama futhi.",
-    "signInAgain": "Ngena futhi"
+    "signInAgain": "Ngena futhi",
+    "createSignIn": "Ngena futhi ukuze udale i-ejensi",
+    "checkConnection": "Hlola ukuxhumana kwakho bese uzama futhi."
   },
   "hero": {
     "title": "Siyakwamukela",

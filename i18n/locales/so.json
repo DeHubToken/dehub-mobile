@@ -2212,7 +2212,9 @@
     "revealKey": "Muuji furaha",
     "revealSignIn": "Mar kale gal si aad u aragto furahan",
     "revealFailed": "Furaha lama muujin karin. Isku day mar kale.",
-    "signInAgain": "Mar kale gal"
+    "signInAgain": "Mar kale gal",
+    "createSignIn": "Mar kale gal si aad u abuurto wakiil",
+    "checkConnection": "Hubi xiriirkaaga oo isku day mar kale."
   },
   "hero": {
     "title": "Ku Soo Dhawoow",
