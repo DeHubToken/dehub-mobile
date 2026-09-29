@@ -6,7 +6,7 @@ const feed = readFileSync(
   'utf8',
 );
 
-// The held page, the buffered live counts and the poll merge all land from
+// The buffered live counts and the poll merge land from
 // settleScroll(). Landing them the moment the finger lifts put every one of
 // them into the first frame of a fling, which is why the feed only started
 // stuttering once a second page existed. These pins keep the settle off the
@@ -35,11 +35,12 @@ describe('home feed scroll settle timing', () => {
     expect(momentumEnd).toMatch(/settleScroll\(\)/);
   });
 
-  it('releases a held page before the list runs into its end', () => {
-    const loadMore = feed.match(/const loadMore = useCallback\(\(\) => \{([\s\S]*?)\}, \[/)?.[1] ?? '';
-    expect(loadMore).toMatch(/if \(holdPendingRef\.current\) \{\s*releaseAppendRef\.current = true;\s*setHoldRelease/);
-    // A render alone previously entered the same hold branch again.
-    expect(feed).toMatch(/isAppend && !releaseAppendRef\.current/);
+  it('lands an appended page at once instead of holding it until the list stops', () => {
+    // Held rows were only released on settle, so a continuous fling ran into
+    // the loading footer at every page boundary.
+    expect(feed).toMatch(/const listData = feedItems;/);
+    expect(feed).not.toMatch(/holdPendingRef|releaseAppendRef/);
+    expect(feed).toMatch(/onEndReachedThreshold=\{3\}/);
   });
 });
 

@@ -4,7 +4,6 @@ import SmartImage from "../common/SmartImage";
 import Avatar from "../common/Avatar";
 import NewMemberChip from "../common/NewMemberChip";
 import Icon from "../ui/Icon";
-import DeferredBlock from "../common/DeferredBlock";
 import { getBadgeOpticalStyle } from "../../libs/misc";
 import { openBadgeShowcase, tierForBadgeImage } from "../../libs/badgeShowcase";
 import { useTranslation } from "react-i18next";
@@ -132,11 +131,7 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
         ) : null}
       </Pressable>
 
-      {/* Mid-fling this is an empty box of the measured size for the same
-          set of buttons; the pressables mount on settle (DeferredBlock). */}
-      <DeferredBlock
-        cacheKey={`feed-header-icons:${isHidden ? 1 : 0}${onBoostPress ? 1 : 0}${onAiPress ? 1 : 0}${onMenuPress ? 1 : 0}`}
-        reserveWidth
+      <View
         style={{
           flexDirection: "row",
           alignItems: "center",
@@ -181,7 +176,7 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
             <Icon name="EllipsisVertical" size={HEADER_ICON_SIZE} color={ICON_MUTED} />
           </Pressable>
         )}
-      </DeferredBlock>
+      </View>
     </View>
   );
 };
