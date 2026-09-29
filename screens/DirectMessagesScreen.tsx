@@ -503,6 +503,7 @@ const DirectMessagesInner: React.FC = () => {
             )
           }
           ItemSeparatorComponent={itemSeparator}
+          showsVerticalScrollIndicator={false}
         />
 
         <DMSettingsMenu

@@ -67,7 +67,7 @@ const FractionsRoute: React.FC<FractionsRouteProps> = ({
 
   if (isLoading) {
     return (
-      <Animated.ScrollView onScroll={onScroll} scrollEventThrottle={16}>
+      <Animated.ScrollView onScroll={onScroll} scrollEventThrottle={16} showsVerticalScrollIndicator={false}>
         {listHeader}
         <View style={styles.center}>
           <DeHubLoader size={56} />
@@ -78,7 +78,7 @@ const FractionsRoute: React.FC<FractionsRouteProps> = ({
 
   if (isError) {
     return (
-      <Animated.ScrollView onScroll={onScroll} scrollEventThrottle={16}>
+      <Animated.ScrollView onScroll={onScroll} scrollEventThrottle={16} showsVerticalScrollIndicator={false}>
         {listHeader}
         <View style={styles.center}>
           <Icon name="CircleAlert" size={40} color="#4B5563" />
@@ -93,7 +93,7 @@ const FractionsRoute: React.FC<FractionsRouteProps> = ({
 
   if (!address || positions.length === 0) {
     return (
-      <Animated.ScrollView onScroll={onScroll} scrollEventThrottle={16}>
+      <Animated.ScrollView onScroll={onScroll} scrollEventThrottle={16} showsVerticalScrollIndicator={false}>
         {listHeader}
         <ProfileEmptyState
           kind="fractions"
@@ -135,6 +135,7 @@ const FractionsRoute: React.FC<FractionsRouteProps> = ({
           </>
         }
         refreshControl={<DeHubRefreshControl refreshing={isRefetching} onRefresh={refetch} tintColor="#fff" />}
+        showsVerticalScrollIndicator={false}
       />
       <DeHubRefreshMark refreshing={isRefetching} />
       {isOwnProfile && <SellFractionsSheet target={selling} onClose={() => setSelling(null)} />}

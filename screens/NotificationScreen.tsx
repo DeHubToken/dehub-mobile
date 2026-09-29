@@ -1847,6 +1847,7 @@ const NotificationScreen = () => {
           data={skeletonData}
           keyExtractor={(item) => item.key}
           renderItem={renderSkeleton}
+          showsVerticalScrollIndicator={false}
         />
       ) : (
         <FlatList
@@ -1875,6 +1876,7 @@ const NotificationScreen = () => {
           removeClippedSubviews={false}
           ListFooterComponent={ListFooter}
           ListEmptyComponent={ListEmpty}
+          showsVerticalScrollIndicator={false}
         />
       )}
       <DeHubRefreshMark refreshing={refreshing} />

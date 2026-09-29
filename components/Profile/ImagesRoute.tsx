@@ -120,7 +120,7 @@ const ImagesRoute: React.FC<ImagesRouteProps> = ({
 
   if (loading) {
     return (
-      <ScrollView onScroll={onScroll} scrollEventThrottle={16}>
+      <ScrollView onScroll={onScroll} scrollEventThrottle={16} showsVerticalScrollIndicator={false}>
         {listHeader}
         <View style={{ alignItems: "center", justifyContent: "center", paddingVertical: 40 }}>
           <ActivityIndicator color="#fff" />
@@ -131,7 +131,7 @@ const ImagesRoute: React.FC<ImagesRouteProps> = ({
 
   if (error) {
     return (
-      <ScrollView onScroll={onScroll} scrollEventThrottle={16}>
+      <ScrollView onScroll={onScroll} scrollEventThrottle={16} showsVerticalScrollIndicator={false}>
         {listHeader}
         <View style={{ alignItems: "center", justifyContent: "center", paddingVertical: 40, paddingHorizontal: 24, gap: 12 }}>
           <Icon name="WifiOff" size={48} color="#808089" />
@@ -150,7 +150,7 @@ const ImagesRoute: React.FC<ImagesRouteProps> = ({
 
   if (images.length === 0) {
     return (
-      <ScrollView onScroll={onScroll} scrollEventThrottle={16}>
+      <ScrollView onScroll={onScroll} scrollEventThrottle={16} showsVerticalScrollIndicator={false}>
         {listHeader}
         <ProfileEmptyState
           kind="images"

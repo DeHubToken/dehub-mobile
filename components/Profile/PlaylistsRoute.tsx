@@ -161,7 +161,7 @@ const PlaylistsRoute: React.FC<PlaylistsRouteProps> = ({ address, isOwnProfile =
 
     if (itemsLoading || itemsError || items.length === 0) {
       return (
-        <Animated.ScrollView onScroll={onScroll} scrollEventThrottle={16}>
+        <Animated.ScrollView onScroll={onScroll} scrollEventThrottle={16} showsVerticalScrollIndicator={false}>
           {header}
           {itemsLoading ? (
             <View style={styles.center}><ActivityIndicator color="#fff" /></View>
@@ -195,6 +195,7 @@ const PlaylistsRoute: React.FC<PlaylistsRouteProps> = ({ address, isOwnProfile =
             </View>
           ) : null
         }
+        showsVerticalScrollIndicator={false}
       />
     );
   }
@@ -202,7 +203,7 @@ const PlaylistsRoute: React.FC<PlaylistsRouteProps> = ({ address, isOwnProfile =
   // ── Playlist grid ──────────────────────────────────────────────────────
   if (loading) {
     return (
-      <Animated.ScrollView onScroll={onScroll} scrollEventThrottle={16}>
+      <Animated.ScrollView onScroll={onScroll} scrollEventThrottle={16} showsVerticalScrollIndicator={false}>
         {listHeader}
         <View style={styles.center}><ActivityIndicator color="#fff" /></View>
       </Animated.ScrollView>
@@ -211,7 +212,7 @@ const PlaylistsRoute: React.FC<PlaylistsRouteProps> = ({ address, isOwnProfile =
 
   if (error) {
     return (
-      <Animated.ScrollView onScroll={onScroll} scrollEventThrottle={16}>
+      <Animated.ScrollView onScroll={onScroll} scrollEventThrottle={16} showsVerticalScrollIndicator={false}>
         {listHeader}
         <View style={[styles.center, { paddingHorizontal: 24, gap: 12 }]}>
           <Icon name="WifiOff" size={48} color="#808089" />
@@ -226,7 +227,7 @@ const PlaylistsRoute: React.FC<PlaylistsRouteProps> = ({ address, isOwnProfile =
 
   if (playlists.length === 0) {
     return (
-      <Animated.ScrollView onScroll={onScroll} scrollEventThrottle={16}>
+      <Animated.ScrollView onScroll={onScroll} scrollEventThrottle={16} showsVerticalScrollIndicator={false}>
         {listHeader}
         <ProfileEmptyState
           kind="playlists"
@@ -264,6 +265,7 @@ const PlaylistsRoute: React.FC<PlaylistsRouteProps> = ({ address, isOwnProfile =
       contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 8, paddingBottom: 80 }}
       onScroll={onScroll}
       scrollEventThrottle={16}
+      showsVerticalScrollIndicator={false}
     />
   );
 };

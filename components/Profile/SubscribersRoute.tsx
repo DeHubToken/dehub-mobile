@@ -75,7 +75,7 @@ const SubscribersRoute: React.FC<SubscribersRouteProps> = ({ address, isOwnProfi
 
   if (loading) {
     return (
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         {listHeader}
         <View style={{ alignItems: "center", justifyContent: "center", paddingVertical: 40 }}>
           <ActivityIndicator color="#fff" />
@@ -86,7 +86,7 @@ const SubscribersRoute: React.FC<SubscribersRouteProps> = ({ address, isOwnProfi
 
   if (error) {
     return (
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         {listHeader}
         <View style={{ alignItems: "center", justifyContent: "center", paddingVertical: 40, paddingHorizontal: 24, gap: 12 }}>
           <Icon name="CircleAlert" size={40} color="#808089" />
