@@ -4346,7 +4346,8 @@
     "spend": "Ka tɛmɛ",
     "refillsShort": "a bɛ fa tuguni {{date}}",
     "holdToUnlock": "Ra awọn DeHub tokens lati ṣii aami ati SuperPowers rẹ. Olukọni aami eyikeyi ni wọn — staking ko nilo.",
-    "anyBadgeHolder": "Olukọni aami eyikeyi ni SuperPowers. Ra awọn DeHub tokens lati ṣii aami kan — staking ko nilo."
+    "anyBadgeHolder": "Olukọni aami eyikeyi ni SuperPowers. Ra awọn DeHub tokens lati ṣii aami kan — staking ko nilo.",
+    "homePost": "I yɛrɛ ka baara dɔ la, i ka wari bɔ o la. O kɔ, i ka wari bɔ o la."
   },
   "follow": {
     "followers": "O kɔ, u ye tugu u kɔ.",
@@ -4799,7 +4800,8 @@
     "updateFailed": "I tɛ se ka o fɔ tugun",
     "pooled": "{{amount}} tokens ti a ṣajọpọ",
     "teamMeta": "{{count}}/{{max}} jɛmɛns, {{tier}}, {{amount}} tɔkɛns",
-    "memberTokens": "{{amount}} tɔkɛns"
+    "memberTokens": "{{amount}} tɔkɛns",
+    "approveFailed": "Musow ka kan ka deliliw bila sira"
   },
   "addToFolder": {
     "title": "A mara dosiye kɔnɔ",
@@ -6313,7 +6315,8 @@
     "automaticStage": {
       "tokenApproval": "O ye baara kɛcogo dɔ ye min be se ka kɛ baara ye.",
       "permitApproval": "O kama, n' tun b'a fɛ ka baara kɛ n'o ye, n' tun b'a fɛ ka",
-      "submit": "Ka baara kɛ n'i ka site web ye i yɛrɛ ma..."
+      "submit": "Ka baara kɛ n'i ka site web ye i yɛrɛ ma...",
+      "swap": "I ka baara kɛ ka ban ani i ka baara kɛ ka ban."
     },
     "combined": "Fɛɛn min be se k'a to a be se ka baara kɛ ni fanga ye, o ye ka baara kɛ ni fanga ye",
     "reference": "O ye wari min ye, o ye wari min ye.",
@@ -7393,7 +7396,8 @@
   "postQuota": {
     "paidForPost": "{{amount}}tokens for this post",
     "sentUnconfirmed": "I ka tagamasiyɛnw cira, nka an ma se k'i ka wari di i ma. O kama, ne tɛ se k'a sara tugun.",
-    "transferIncomplete": "Aw ye to ka miiri, ko sariya sɛbɛbaga ma labɛn. U bena i ɲininga tugun sanni i ka baara nata ka kɛ."
+    "transferIncomplete": "Aw ye to ka miiri, ko sariya sɛbɛbaga ma labɛn. U bena i ɲininga tugun sanni i ka baara nata ka kɛ.",
+    "transferredConfirming": "I ka tagamasiɲɛw yɛlɛmana. An bena a fɔ ko an ye wari min sara, an bena o sara joona joona."
   },
   "emojiPicker": {
     "searchEmoji": "Emoji ɲini",
@@ -7855,7 +7859,8 @@
           "3": "Ajiye chain ni destination (ko ye a kɛnɛ kɛnɛ).",
           "4": "Ajiye token ni kɛnɛ kɛnɛ.",
           "5": "Ajiye bridge fee ni kɛnɛ kɛnɛ.",
-          "6": "Ajiye bridge transaction."
+          "6": "Ajiye bridge transaction.",
+          "7": "O la, a ka ɲi ka to ka kɔnɔni kɛ fɔɔ ka taga se a laban ma."
         },
         "tips": {
           "1": "Bridge fees kɛnɛ kɛnɛ.",
@@ -7875,8 +7880,10 @@
           "6": "Ajiye channels ni report button."
         },
         "tips": {
-          "1": "TV channels kɛnɛ kɛnɛ community-verified."
-        }
+          "1": "TV channels kɛnɛ kɛnɛ community-verified.",
+          "2": "I be se ka dɔnkili la n'i be baro kɛra ni kunnafoni wɛrɛw ye."
+        },
+        "intro": "I be se ka kunnafoniw sɔrɔ DeHub kɔnɔ — ka dɔnkilila lamɛn ani ka telewisɔn filɛ."
       },
       "post-info": {
         "title": "Post Info & Fractions",

@@ -8468,7 +8468,8 @@
     "soc2": "SOC 2 tsaro (mai zuwa ba da daɗewa ba)",
     "aiEducator": "AI Malami & Slack goyon baya",
     "lookingForPremium": "Neman membobin DeHub Extra maimakon?",
-    "seePremiumPlans": "Duba tsare-tsaren Premium"
+    "seePremiumPlans": "Duba tsare-tsaren Premium",
+    "priorityQueueFast": "Priority queue don sarrafa ayyuka da sauri"
   },
   "connect": {
     "title": "Haɗa DeHub da mataimakinka na AI",
@@ -8579,7 +8580,9 @@
       "all": "Duka",
       "noMatch": "Babu apps dace da cewa search.",
       "yourApps": "Aikace-aikacen ku",
-      "rising": "Sabuwa da tashi"
+      "rising": "Sabuwa da tashi",
+      "notificationsOn": "Sanarwa a kunne",
+      "removed": "An cire. Ba za ta sake sanar da ku ba."
     },
     "card": {
       "open": "Bude"
@@ -8596,6 +8599,10 @@
       "developer-tools": "Kayan aikin masu haɓakawa",
       "entertainment": "Nishaɗi",
       "art-creativity": "Art & kerawa"
+    },
+    "add": {
+      "body": "Za ta bayyana a ƙarƙashin Aikace-aikacenku kuma za ta iya aika muku da sanarwa. Kuna iya cire ta kowane lokaci daga shafin Aikace-aikace.",
+      "confirm": "Ƙara app"
     }
   },
   "aiStyles": {

@@ -4974,7 +4974,8 @@
     "biometricKeepsFailing": "{{error}} Tí èyí bá tún kùnà, lo àṣẹ ọ̀rọ̀ àpamọ́wó rẹ ní ìsàlẹ̀ tàbí \"Gbé àpamọ́wó alátòkè wọle\".",
     "deviceBoundKey": "Àpamọ́wó yìí máa ń ṣí pẹ̀lú <em> àwọn ohun tí ara máa ń gbà láti fi ẹ̀rí hàn tí wọ́n wà lórí ẹ̀rọ̀ kan pàtó</em> — fóònù tàbí àwòrán tí wọ́n ti fi kalẹ̀ sí. Fóònù yìí kò ní kókó náà, bẹ́ẹ̀ náà ni dehub.io kò ní: kókó náà kì í jáde kúrò ní ẹ̀rọ̀ tí ó ṣe é.",
     "unlockPasskeyOnly": "Àpamọ́wó yìí ni wọ́n fi àṣẹ́ ọ̀rọ̀ pamọ́ sí lórí ayélujára, kò sì tíì ní àtìlẹ́yìn àṣẹ́ ọ̀rọ̀ kan nínú àwọ̀kọ̀ títí. Tí o bá fi àṣẹ́ ọ̀rọ̀ àpamọ́wó kan sílẹ̀ lórí dehub.io, fi wọlé sí ibí yìí — bí kò bá rí bẹ́ẹ̀, lo Gbé àpamọ́wó alátòkè wọle ní ìsàlẹ̀.",
-    "unlockWithPasswordExplainer": "Ìwọ̀nyí ti ní àpamọ́wó kan, tí àṣẹ́ ọ̀rọ̀ dáàbò bo. Fi wọlé láti gba àpamọ́wó rẹ padà lórí ẹ̀rọ́ yìí."
+    "unlockWithPasswordExplainer": "Ìwọ̀nyí ti ní àpamọ́wó kan, tí àṣẹ́ ọ̀rọ̀ dáàbò bo. Fi wọlé láti gba àpamọ́wó rẹ padà lórí ẹ̀rọ́ yìí.",
+    "keepMessagesBody": "Ìjíròrò, ìkéde, àmì-ìwé, àwọn àtẹ̀jíṣẹ́ tí a fi pamọ́ àti wíwo ìtàn wá pẹ̀lú rẹ. Kò sí ohun tí a pa run àti pé kò sí ẹlòmíràn tí ó lè ka èyíkéyìí nínú rẹ̀."
   },
   "transcript": {
     "title": "Àkọsílẹ̀ ọ̀rọ̀",
@@ -7634,7 +7635,8 @@
         "tips": {
           "1": "Aami iwifunni fihan iye awọn iwifunni ti a ko ka.",
           "2": "Awọn iwifunni imọran fihan iye awọn ami ti o gba."
-        }
+        },
+        "intro": "Dúró ní ìmúdójúìwọ̀n pẹ̀lú àwọn ohun tí ó wù ọ́, àwọn àlàyé, àwọn àbá, àwọn ohun tí ó tẹ̀lé e, àti àwọn ìgbòkègbodò mìíràn lórí àkóónú rẹ."
       },
       "wallet": {
         "title": "Wallet",
@@ -7916,6 +7918,7 @@
         "steps": {
           "1": "Tẹ aami 'ⓘ' lori eyikeyi ifiweranṣẹ lati ṣii ojú-ìṣe Alaye Ifiweranṣẹ rẹ.",
           "2": "Ni oke iwọ yoo rii ID Ami (alailẹgbẹ lori-pq olutọsọna) ati hash iṣowo — tẹ hash lati wo ni oluwadi bulọọki.",
+          "3": "Ní ìsàlẹ̀ ìyẹn, ìṣirò ìfọwọ́sowọ́pọ̀ ṣe àfihàn gbogbo ohun tí ó wù ú, ohun tí kò wù ú, èrò, àlàyé, àti ìmọ̀ràn tí a gbà.",
           "4": "Apá Olùdààmú fihan àtòkọ ìlọ́wọ́ ìpín 1,000 tí olùdàkọ̀ ṣì ní, pẹ̀lú àtòkọ gbogbo àwọn tó ní ipín pẹ̀lú ìwọ̀n àti ìdáwọ́ mẹ́wàá wọn.",
           "5": "Ti ifiweranṣẹ ba jẹ san-fun-wiwo (PPV), iwọ yoo rii idiyele, owo, ati iye awọn olumulo ti o ti ra iraye si.",
           "6": "Awọn oniwun ifiweranṣẹ le yi hihan (Gbangba, A ko ṣe atokọ, tabi Aladani) ati ṣatunkọ akọle/apejuwe taara lati oju-iwe yii."

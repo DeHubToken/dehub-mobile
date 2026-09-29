@@ -5428,7 +5428,9 @@
     "coverFrames": "Pilih kerangka latar",
     "coverFrame": "Gunakan kerangka {{index}} sebagai latar",
     "uploadCover": "Muat imej latar",
-    "editFailed": "Tidak dapat menerapkan suntingan itu. Coba sekali lagi."
+    "editFailed": "Tidak dapat menerapkan suntingan itu. Coba sekali lagi.",
+    "madeForKidsConfirmAudience": "Anak-anak yang menggunakan Mod Keselamatan Kanak-kanak akan melihat pos ini sahaja. Tiada apa-apa lagi di DeHub yang akan mereka lihat.",
+    "madeForKidsOffDesc": "Tunjukkan pos ini kepada kanak-kanak menggunakan **Kids Mode**, dan keluarkan daripada aliran biasa."
   },
   "bounty": {
     "claimed": "Telah dituntut",
@@ -7653,7 +7655,8 @@
     "doneList": "Tersenarai {{amount}} token pada ${{price}}",
     "aiPlaceholder": "Cuba \"jual separuh token saya pada 6 sen\"",
     "aiBuyOnly": "Dagangan mudah menjual token. Untuk membeli token, buka Bursa.",
-    "aiNeedAmount": "Berapa banyak token yang anda mahu jual?"
+    "aiNeedAmount": "Berapa banyak token yang anda mahu jual?",
+    "marketRateHint": "Jual sekarang pada harga kira-kira ${{price}} setiap token, sekitar {{usdc}} USDC secara keseluruhan."
   },
   "tipFunding": {
     "lowLiquidity": "Kecairan Uniswap tidak mencukupi untuk pembayaran sebesar ini buat masa ini",

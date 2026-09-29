@@ -8592,7 +8592,8 @@
       "close": "Vala i-app",
       "backToStore": "Buyela kuma-App",
       "notFound": "Le app ayikho ku-DeHub App Store, noma ikhishiwe.",
-      "readyTimeout": "Le app ayikaze ibizwenge-dehub.ready (), ngakho isikrini sokushelela sasifihliwe ngemva kwemizuzwana engu-8."
+      "readyTimeout": "Le app ayikaze ibizwenge-dehub.ready (), ngakho isikrini sokushelela sasifihliwe ngemva kwemizuzwana engu-8.",
+      "badUrl": "Lelo kheli alikwazi ukuvulwa njenge-app encane. Kumelwe iqale nge-https://, noma ibe ikheli lombungazi wendawo kumodi yonjiniyela."
     },
     "signIn": {
       "title": "Ngena ngemvume ku- {{name}}?",
@@ -8613,7 +8614,8 @@
       "yourApps": "Ama-app akho",
       "notificationsOn": "Izaziso zivuliwe",
       "remove": "Khipha",
-      "rising": "Okusha nokunyukayo"
+      "rising": "Okusha nokunyukayo",
+      "removed": "Ikhishiwe. Ngeke iphinde ikutshele."
     },
     "card": {
       "open": "Vula"
@@ -8640,7 +8642,8 @@
       "body": "I-DHB iya ngqo esikhwameni se-app, {{wallet}}. Izinkokhelo azikwazi ukuhlehliswa."
     },
     "add": {
-      "confirm": "Faka i-app"
+      "confirm": "Faka i-app",
+      "body": "Izovela ngaphansi kwama-app Akho futhi ingakuthumela izaziso. Ungayisusa nganoma yisiphi isikhathi ekhasini le-Apps."
     }
   },
   "aiStyles": {
