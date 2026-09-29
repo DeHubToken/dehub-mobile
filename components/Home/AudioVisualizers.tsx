@@ -46,6 +46,8 @@ import {
 import Animated, {
   Easing,
   cancelAnimation,
+  runOnJS,
+  useAnimatedReaction,
   useAnimatedStyle,
   useSharedValue,
   withRepeat,
@@ -296,6 +298,18 @@ export const StaticWaveform: React.FC<StaticWaveformProps> = memo(
     const playedColor = hue === 0 ? "rgba(255,255,255,0.95)" : `hsla(${hue}, 78%, 72%, 0.95)`;
     const unplayedColor = "rgba(255,255,255,0.22)";
 
+    // The played copy of the bars is 80 more native views, and at position 0
+    // it is zero width. Feed audio cards mostly sit there, so it mounts on the
+    // first play or seek instead of with every card.
+    const [hasProgress, setHasProgress] = useState(false);
+    useAnimatedReaction(
+      () => position.value > 0,
+      (on, prev) => {
+        if (on && !prev) runOnJS(setHasProgress)(true);
+      },
+      [position],
+    );
+
     const playedLayerStyle = useAnimatedStyle(() => ({
       position: "absolute",
       left: 0,
@@ -329,9 +343,11 @@ export const StaticWaveform: React.FC<StaticWaveformProps> = memo(
         {/* Unplayed layer — static, never re-renders during seek */}
         <WaveformBars bars={bars} wHeight={wHeight} bw={bw} bg={bg} count={count} color={unplayedColor} />
         {/* Played layer — only clip width changes, bars never re-render */}
-        <Animated.View style={playedLayerStyle}>
-          <WaveformBars bars={bars} wHeight={wHeight} bw={bw} bg={bg} count={count} color={playedColor} />
-        </Animated.View>
+        {hasProgress && (
+          <Animated.View style={playedLayerStyle}>
+            <WaveformBars bars={bars} wHeight={wHeight} bw={bw} bg={bg} count={count} color={playedColor} />
+          </Animated.View>
+        )}
         {/* The chrome, as shadow rather than light.
             Web fills the bars with a bright metal ramp clipped to their shape.
             There is no clip here, so a bright overlay would wash the gaps

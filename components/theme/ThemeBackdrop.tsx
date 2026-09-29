@@ -94,11 +94,23 @@ const ThemeBackdrop: React.FC = () => {
     );
   }, []);
 
+  // Paused, the scene is one still frame, but Android still called into the
+  // WebView on every app frame to redraw it, fling frames included. Held in a
+  // hardware layer for the length of the scroll, it is drawn once and then
+  // composited as a texture until the scene runs again.
+  const [held, setHeld] = useState(isFeedScrolling);
+
   useEffect(() => {
     const appState = AppState.addEventListener("change", sync);
     const unsubscribe = subscribeThemeBackdrop(sync);
-    const unsubscribeStart = subscribeFeedScrollStart(sync);
-    const unsubscribeSettle = subscribeFeedSettled(sync);
+    const unsubscribeStart = subscribeFeedScrollStart(() => {
+      setHeld(true);
+      sync();
+    });
+    const unsubscribeSettle = subscribeFeedSettled(() => {
+      setHeld(false);
+      sync();
+    });
     return () => {
       appState.remove();
       unsubscribe();
@@ -139,8 +151,9 @@ const ThemeBackdrop: React.FC = () => {
           showsVerticalScrollIndicator={false}
           mediaPlaybackRequiresUserAction={false}
           allowsInlineMediaPlayback
-          // No offscreen layer: the scene redraws every frame, so a hardware
-          // layer only added a full-screen copy per frame on top of it.
+          // No offscreen layer while the scene runs: it redraws every frame, so
+          // a hardware layer would only add a full-screen copy per frame.
+          androidLayerType={held ? "hardware" : "none"}
           onLoadEnd={sync}
           onRenderProcessGone={onGone}
           onContentProcessDidTerminate={onGone}
