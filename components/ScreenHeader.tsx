@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { View, Text, TouchableOpacity, Platform, Keyboard, I18nManager } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
@@ -49,7 +49,16 @@ const ScreenHeader: React.FC<ScreenHeaderProps> = ({
   const { t } = useTranslation();
   const navigation = useNavigation();
   const { isMinimal } = useAppTheme();
-  const showBack = canGoBack && (onBackPress || (navigation as any).canGoBack?.());
+  // Read again once the screen has mounted and whenever it gains focus. On the
+  // first render of a freshly pushed screen the navigator can still report the
+  // stack without it, so a page that never re-renders (Careers) kept no arrow.
+  const [navCanGoBack, setNavCanGoBack] = useState(() => !!(navigation as any).canGoBack?.());
+  useEffect(() => {
+    const sync = () => setNavCanGoBack(!!(navigation as any).canGoBack?.());
+    sync();
+    return navigation.addListener('focus', sync);
+  }, [navigation]);
+  const showBack = canGoBack && (onBackPress || navCanGoBack);
   const backLockRef = useRef(false);
   const backTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
