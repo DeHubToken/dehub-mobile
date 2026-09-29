@@ -84,7 +84,7 @@ import {
   TEXT_SHADOW,
 } from "../components/common/ViewerChrome";
 import { CommentBottomSheet } from "../components/Comments";
-import { useUser, useAuthActions } from "../context/AuthContext";
+import { useUser, useAuthActions, useAuthState } from "../context/AuthContext";
 import { useEngagementWeight } from "../hooks/useEngagementWeight";
 import { appliedEngagementWeight } from "../libs/engagement-weight";
 import { useUserProfileSheet } from "../context/UserProfileSheetContext";
@@ -130,7 +130,9 @@ import {
 } from "../libs/link-copy-count";
 import { savePost } from "../services/feed.service";
 import { toggleRepost } from "../services/repost.service";
-import { getShortsFeed } from "../services/feed.unified.service";
+import { getShortsFeed, getUnifiedFeed } from "../services/feed.unified.service";
+import { getWatchHistory } from "../services/user.service";
+import { createBrainrotSource } from "../libs/brainrotFeed";
 import type { UnifiedFeedItem } from "../services/feed.unified.service";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { ShareLinks } from "../navigation/linking.config";
@@ -1770,6 +1772,25 @@ const ShortsViewerScreen = () => {
   // True until the first page resolves when the viewer opened without items.
   const [initialLoading, setInitialLoading] = useState(initialItems.length === 0);
 
+  // Opened by swiping up out of a fullscreen video: the feed is the brainrot
+  // mix (libs/brainrotFeed) rather than one sorted list. Created once, so the
+  // clips it has already dealt never move.
+  const { isSignedIn } = useAuthState();
+  const brainrotRef = useRef<ReturnType<typeof createBrainrotSource<UnifiedFeedItem>> | null>(null);
+  if (feedParams.brainrot && !brainrotRef.current) {
+    brainrotRef.current = createBrainrotSource<UnifiedFeedItem>({
+      seed: Date.now() % 2147483647,
+      fromId: feedParams.fromId,
+      fetchPage: getUnifiedFeed,
+      loadWatchedIds: isSignedIn
+        ? async () => {
+            const res = await getWatchHistory({ page: 0, unit: 100, postType: "video" });
+            return new Set((res?.result ?? []).map((item: any) => String(item?.tokenId)));
+          }
+        : undefined,
+    });
+  }
+
   // Viewer-level playback chrome — mute and speed persist across shorts, as on
   // web, rather than resetting with every slide.
   const [isMuted, setIsMuted] = useState(false);
@@ -1912,6 +1933,19 @@ const ShortsViewerScreen = () => {
     if (endReachedRef.current || fetchingRef.current) return;
     fetchingRef.current = true;
     try {
+      if (brainrotRef.current) {
+        const { items: next, done } = await brainrotRef.current.next();
+        if (done) {
+          endReachedRef.current = true;
+          setNoMoreShorts(true);
+        }
+        setItems((prev) => {
+          const existingIds = new Set(prev.map((i) => String(i.tokenId ?? i.id)));
+          const unique = next.filter((i) => !existingIds.has(String(i.tokenId ?? i.id)));
+          return unique.length ? [...prev, ...unique] : prev;
+        });
+        return;
+      }
       const nextPage = page + 1;
       const params = {
         page: nextPage,
@@ -1948,6 +1982,14 @@ const ShortsViewerScreen = () => {
       setInitialLoading(false);
     }
   }, [page, feedParams]);
+
+  // The brainrot feed opens empty: start dealing at once rather than waiting
+  // for the list to measure itself and ask.
+  useEffect(() => {
+    if (brainrotRef.current) loadMore();
+    // Once, on mount.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleBack = useCallback(() => {
     navigation.goBack();
