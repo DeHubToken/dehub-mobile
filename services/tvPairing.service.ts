@@ -41,8 +41,13 @@ export function isCompletePairingCode(code: string): boolean {
  * wrong" and "waited too long" — the server does not distinguish, and neither
  * should the screen, because saying which would tell an enumerator whether a
  * code exists.
+ *
+ * Returns 'error' when the lookup itself failed and says nothing about the
+ * code: no connection, a timeout, a server fault, or a session that could not
+ * be refreshed (all of which arrive without a status, or with a 5xx). Any other
+ * 4xx is still the server's answer about the code, so it stays null.
  */
-export async function lookupPairing(code: string): Promise<TvPairingTarget | null> {
+export async function lookupPairing(code: string): Promise<TvPairingTarget | null | "error"> {
   try {
     const res = await apiClient.get<any>("/tv/pair/lookup", {
       isAuthRequired: true,
@@ -52,7 +57,8 @@ export async function lookupPairing(code: string): Promise<TvPairingTarget | nul
     return { deviceName: res.deviceName, expiresAt: res.expiresAt };
   } catch (e) {
     log.warn("lookupPairing failed", e);
-    return null;
+    const status = (e as { status?: number } | null)?.status;
+    return !status || status >= 500 ? "error" : null;
   }
 }
 
