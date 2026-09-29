@@ -146,7 +146,9 @@
     "noMoreShorts": "No more shorts",
     "noShortsFound": "No shorts found",
     "newMembersHint": "Just joined — say hello",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "No content matches your filters",
+    "clearFilters": "Clear filters"
   },
   "explore": {
     "all": "All",

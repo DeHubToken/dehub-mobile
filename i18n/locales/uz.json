@@ -146,7 +146,9 @@
     "noMoreShorts": "Boshqa shorts yo'q",
     "noShortsFound": "Shorts topilmadi",
     "newMembersHint": "Endi qo'shildi — salomlashib qo'ying",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "Filtrlaringizga mos kontent yo‘q.",
+    "clearFilters": "Filtrlarni tozalash"
   },
   "explore": {
     "all": "Hammasi",

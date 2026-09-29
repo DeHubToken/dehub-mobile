@@ -38,7 +38,9 @@ describe('home feed scroll settle timing', () => {
   it('lands an appended page at once instead of holding it until the list stops', () => {
     // Held rows were only released on settle, so a continuous fling ran into
     // the loading footer at every page boundary.
-    expect(feed).toMatch(/const listData = feedItems;/);
+    // listData is feedItems plus the header and suggested rows, rebuilt the
+    // moment feedItems changes and from nothing else.
+    expect(feed).toMatch(/const listData = useMemo<FeedRow\[\]>\([\s\S]*?\}, \[feedItems\]\);/);
     expect(feed).not.toMatch(/holdPendingRef|releaseAppendRef/);
     expect(feed).toMatch(/onEndReachedThreshold=\{3\}/);
   });

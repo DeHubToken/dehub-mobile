@@ -146,7 +146,9 @@
     "noMoreShorts": "მეტი შორტი არ არის",
     "noShortsFound": "შორტები არ არის ნაპოვნი",
     "newMembersHint": "ახლახან შემოუერთდა — მიესალმე",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "თქვენს ფილტრებს არცერთი შინაარსი არ ემთხვევა.",
+    "clearFilters": "ფილტრების გასუფთავება"
   },
   "explore": {
     "all": "ყველა",

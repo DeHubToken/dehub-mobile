@@ -146,7 +146,9 @@
     "noMoreShorts": "Дигар шортсҳо нест",
     "noShortsFound": "Шортсҳо ёфт нашуд",
     "newMembersHint": "Ҳоло ҳамроҳ шуд — салом гӯед",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "Ягон мундариҷа ба филтрҳои шумо мувофиқ нест.",
+    "clearFilters": "Пок кардани филтрҳо"
   },
   "explore": {
     "all": "Ҳама",

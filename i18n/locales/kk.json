@@ -146,7 +146,9 @@
     "noMoreShorts": "Басқа қысқа бейнелер жоқ",
     "noShortsFound": "Қысқа бейнелер табылмады",
     "newMembersHint": "Қосылдыңыз — сәлемдесіңіз",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "Сүзгілеріңізге сәйкес мазмұн жоқ.",
+    "clearFilters": "Сүзгілерді тазарту"
   },
   "explore": {
     "all": "Барлығы",

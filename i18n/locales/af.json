@@ -146,7 +146,9 @@
     "noMoreShorts": "Nie meer kortbroeke nie",
     "noShortsFound": "Geen kortbroeke gevind nie",
     "newMembersHint": "Net aangesluit — sê hallo",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "Geen inhoud pas by jou filters nie.",
+    "clearFilters": "Vee filters uit"
   },
   "explore": {
     "all": "Alles",

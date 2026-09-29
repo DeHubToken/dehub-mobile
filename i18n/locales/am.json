@@ -146,7 +146,9 @@
     "noMoreShorts": "ምንም ተጨማሪ አጫጭር ቪዲዮዎች የሉም",
     "noShortsFound": "አጫጭር ቪዲዮዎች አልተገኙም።",
     "newMembersHint": "አሁን ተቀላቅለዋል — ሰላም ይበሉ",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "ከማጣሪያዎችዎ ጋር የሚዛመድ ይዘት የለም።",
+    "clearFilters": "ማጣሪያዎችን አጽዳ"
   },
   "explore": {
     "all": "ሁሉም",

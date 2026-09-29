@@ -146,7 +146,9 @@
     "noMoreShorts": "Այլևս կարճ տեսանյութեր չկան",
     "noShortsFound": "Կարճ տեսանյութեր չեն գտնվել",
     "newMembersHint": "Նոր եք միացել — ողջունեք",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "Ձեր զտիչներին համապատասխանող բովանդակություն չկա։",
+    "clearFilters": "Մաքրել զտիչները"
   },
   "explore": {
     "all": "Բոլորը",

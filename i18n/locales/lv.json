@@ -146,7 +146,9 @@
     "noMoreShorts": "Vairs nav īso video",
     "noShortsFound": "Īsie video nav atrasti",
     "newMembersHint": "Tikko pievienojies — pasaki sveiki",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "Nav satura, kas atbilst taviem filtriem.",
+    "clearFilters": "Notīrīt filtrus"
   },
   "explore": {
     "all": "Visi",

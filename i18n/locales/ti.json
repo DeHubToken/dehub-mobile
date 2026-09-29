@@ -146,7 +146,9 @@
     "noMoreShorts": "ሕጂ እውን ከይተረፈ ፡ ቀሊል ኣይኰነን ።",
     "noShortsFound": "ኣይረኸብኩን ።",
     "newMembersHint": "ሃሎ ሃሎ",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "ምስ መጻረዪታትካ ዝሰማማዕ ትሕዝቶ የለን።",
+    "clearFilters": "መጻረዪታት ኣጽሪ"
   },
   "explore": {
     "all": "ኩሉ",

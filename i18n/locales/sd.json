@@ -146,7 +146,9 @@
     "noMoreShorts": "وڌيڪ شارٽس ناهن",
     "noShortsFound": "ڪا به شارٽس نه ملي",
     "newMembersHint": "اڃا شامل ٿيو — سلام چئو",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "توهان جي فلٽرن سان ڪو به مواد نٿو ملي.",
+    "clearFilters": "فلٽر صاف ڪريو"
   },
   "explore": {
     "all": "سڀ",

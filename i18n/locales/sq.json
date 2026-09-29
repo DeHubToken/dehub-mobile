@@ -146,7 +146,9 @@
     "noMoreShorts": "Asnjë \"short\" më",
     "noShortsFound": "Asnjë \"short\" nuk u gjet",
     "newMembersHint": "Sapo u bashkuat — thuaj përshëndetje",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "Asnjë përmbajtje nuk përputhet me filtrat e tu.",
+    "clearFilters": "Pastro filtrat"
   },
   "explore": {
     "all": "Të gjitha",

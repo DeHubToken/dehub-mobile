@@ -146,7 +146,9 @@
     "noMoreShorts": "और शॉर्ट्स नहीं",
     "noShortsFound": "कोई शॉर्ट्स नहीं मिला",
     "newMembersHint": "अभी जुड़े हैं — नमस्ते कहें",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "रउरा फिल्टर से कवनो सामग्री मेल ना खात बा।",
+    "clearFilters": "फिल्टर हटाईं"
   },
   "explore": {
     "all": "सभे",

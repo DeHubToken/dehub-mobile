@@ -146,7 +146,9 @@
     "noMoreShorts": "مزید شارٹس نہیں",
     "noShortsFound": "کوئی شارٹس نہیں ملے",
     "newMembersHint": "ابھی شامل ہوئے — ہیلو کہیں",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "آپ کے فلٹرز سے مطابقت رکھنے والا کوئی مواد نہیں۔",
+    "clearFilters": "فلٹرز صاف کریں"
   },
   "explore": {
     "all": "سب",

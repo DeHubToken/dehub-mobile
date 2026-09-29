@@ -146,7 +146,9 @@
     "noShortsFound": "କୌଣସି ସର୍ଟସ ମିଳିଲା ନାହିଁ",
     "newMembersHint": "କେବଳ ଯୋଗ ଦେଲେ — ନମସ୍କାର କୁହନ୍ତୁ",
     "allCaughtUp": "ଆପଣ ସବୁ କିଛି ଦେଖିସାରିଛନ୍ତି",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "ଆପଣଙ୍କ ଫିଲ୍ଟର ସହ କୌଣସି ବିଷୟବସ୍ତୁ ମେଳ ଖାଉନାହିଁ।",
+    "clearFilters": "ଫିଲ୍ଟର ସଫା କରନ୍ତୁ"
   },
   "explore": {
     "all": "ସବୁ",

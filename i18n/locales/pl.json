@@ -146,7 +146,9 @@
     "noMoreShorts": "Brak dalszych filmów Shorts",
     "noShortsFound": "Nie znaleziono filmów Shorts",
     "newMembersHint": "Właśnie dołączyłeś — przywitaj się",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "Brak treści pasujących do filtrów.",
+    "clearFilters": "Wyczyść filtry"
   },
   "explore": {
     "all": "Wszystko",

@@ -146,7 +146,9 @@
     "noMoreShorts": "Больше нет Shorts",
     "noShortsFound": "Shorts не найдены",
     "newMembersHint": "Только что присоединились — поздоровайтесь",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "Нет контента по вашим фильтрам.",
+    "clearFilters": "Сбросить фильтры"
   },
   "explore": {
     "all": "Всё",

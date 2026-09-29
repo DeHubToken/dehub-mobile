@@ -146,7 +146,9 @@
     "noMoreShorts": "Башка шорттор жок",
     "noShortsFound": "Шорттор табылган жок",
     "newMembersHint": "Жаңы эле кошулду — салам айтыңыз",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "Чыпкаларыңызга дал келген контент жок.",
+    "clearFilters": "Чыпкаларды тазалоо"
   },
   "explore": {
     "all": "Баары",

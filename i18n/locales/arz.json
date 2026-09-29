@@ -146,7 +146,9 @@
     "noMoreShorts": "لا مزيد من الفيديوهات القصيرة",
     "noShortsFound": "لم يتم العثور على فيديوهات قصيرة",
     "newMembersHint": "انضممت للتو — قل مرحباً",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "مفيش محتوى مطابق للفلاتر بتاعتك.",
+    "clearFilters": "امسح الفلاتر"
   },
   "explore": {
     "all": "الكل",

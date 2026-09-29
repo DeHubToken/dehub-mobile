@@ -146,7 +146,9 @@
     "noMoreShorts": "තවත් කෙටි වීඩියෝ නැත",
     "noShortsFound": "කෙටි වීඩියෝ හමු නොවීය",
     "newMembersHint": "දැන්ම එක් විය — සුබ පැතුම්",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "ඔබේ පෙරහන් සමඟ ගැලපෙන අන්තර්ගතයක් නැත.",
+    "clearFilters": "පෙරහන් ඉවත් කරන්න"
   },
   "explore": {
     "all": "සියල්ල",

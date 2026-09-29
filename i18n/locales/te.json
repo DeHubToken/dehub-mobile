@@ -146,7 +146,9 @@
     "noMoreShorts": "ఇంకా షార్ట్స్ లేవు",
     "noShortsFound": "షార్ట్స్ కనుగొనబడలేదు",
     "newMembersHint": "ఇప్పుడే చేరారు — హలో చెప్పండి",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "noFilterMatches": "మీ ఫిల్టర్‌లకు సరిపోయే కంటెంట్ ఏదీ లేదు.",
+    "clearFilters": "ఫిల్టర్‌లు తొలగించండి"
   },
   "explore": {
     "all": "అన్నీ",
