@@ -60,9 +60,9 @@ import { TAB_BAR_CONTENT_INSET } from "../../navigation/tabBarLayout";
 import { tabPressIntentOf } from "../../navigation/tabPressIntent";
 import SuggestedAccountsSection from "./SuggestedAccountsSection";
 import ShortsCarousel from "./ShortsCarousel";
-import { useInfiniteQuery, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useInfiniteQuery, useQueries, useQuery, useQueryClient } from "@tanstack/react-query";
 import { getNFT } from "../../services/nft.service";
-import { useBoostSlot } from "../../hooks/useSuperpowers";
+import { useBoostQueue } from "../../hooks/useSuperpowers";
 import { useAppTheme } from "../../context/ThemeContext";
 import { MINIMAL_TAB_LINE } from "../../theme/minimal";
 
@@ -645,7 +645,37 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   //
   // It arrives after the first page, so the feed never waits on it and never
   // breaks without it.
-  const { data: boostSlot } = useBoostSlot(showBoostSlot);
+  // Boosts queue in the order they were booked: the oldest holds the top
+  // row, each later one sits three posts below the one before, and when the
+  // oldest ends everything moves up. A newer boost never pushes an older one out.
+  const { data: boostQueue } = useBoostQueue(showBoostSlot);
+  const boostSlot = showBoostSlot ? boostQueue?.[0] : undefined;
+  const queuedBoostIds = useMemo(
+    () => (showBoostSlot ? (boostQueue ?? []).slice(1).map(b => String(b.tokenId)) : []),
+    [showBoostSlot, boostQueue],
+  );
+  const queuedBoostQueries = useQueries({
+    queries: queuedBoostIds.map(id => ({
+      queryKey: ["boosted-post", id],
+      queryFn: () => getNFT(Number(id)),
+      staleTime: 5 * 60 * 1000,
+      retry: false,
+    })),
+  });
+  const queuedSignature = queuedBoostQueries.map(q => q.dataUpdatedAt).join(",");
+  const queuedBoostPosts = useMemo(
+    () =>
+      queuedBoostQueries
+        .map((q, i) => {
+          const post = (q.data as any)?.result;
+          return post
+            ? ({ ...post, __boosted: true, __listKey: `boost-${queuedBoostIds[i]}` } as FeedItem)
+            : null;
+        })
+        .filter(Boolean) as FeedItem[],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [queuedSignature, queuedBoostIds],
+  );
 
   // `showBoostSlot` gates the READ as well as the render. All three feed types
   // stay mounted at once and share one react-query key, so the Video and Live
@@ -671,13 +701,28 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     // boosted id out here regardless would DELETE the post from the organic
     // feed whenever its fetch failed — a transient 5xx and the creator's post
     // silently disappears from a feed it had legitimately ranked into.
-    if (!boostedTokenId || !post) return cappedItems;
+    // Boost N (after the top one) goes after N×3 posts.
+    const queuedIds = new Set(queuedBoostPosts.map(p => String((p as any).tokenId)));
+    const withQueued = (list: FeedItem[]) => {
+      if (!queuedBoostPosts.length) return list;
+      const organic = list.filter(it => !queuedIds.has(String((it as any).tokenId ?? (it as any).id ?? "")));
+      const out: FeedItem[] = [];
+      let next = 0;
+      organic.forEach((it, i) => {
+        out.push(it);
+        if ((i + 1) % 3 === 0 && next < queuedBoostPosts.length) out.push(queuedBoostPosts[next++]);
+      });
+      while (next < queuedBoostPosts.length) out.push(queuedBoostPosts[next++]);
+      return out;
+    };
+
+    if (!boostedTokenId || !post) return withQueued(cappedItems);
 
     // Filter so a post that is both boosted and in the page it would have
     // appeared in does not render twice.
-    const rest = cappedItems.filter(
+    const rest = withQueued(cappedItems.filter(
       it => String((it as any).tokenId ?? (it as any).id ?? "") !== String(boostedTokenId),
-    );
+    ));
 
     return [
       {
@@ -691,7 +736,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
       } as FeedItem,
       ...rest,
     ];
-  }, [cappedItems, boostedTokenId, boostedPost, boostSlot?.bookingId]);
+  }, [cappedItems, boostedTokenId, boostedPost, boostSlot?.bookingId, queuedBoostPosts]);
 
   // Runs once the list has laid out a change: on every content size change,
   // and a frame after a new boost.
