@@ -402,13 +402,13 @@ export function EnsHandleSection() {
                   </Text>
                 </ScrollView>
 
-                <View className="flex-row items-center mt-2">
+                <View className="flex-row flex-wrap items-center gap-2 mt-2">
                   {holderIsThisSession ? (
                     <TouchableOpacity
                       onPress={signHere}
                       disabled={busy}
                       activeOpacity={0.7}
-                      className={`mr-2 px-4 py-2.5 rounded-xl bg-white ${busy ? 'opacity-40' : ''}`}
+                      className={`px-4 py-2.5 rounded-xl bg-white ${busy ? 'opacity-40' : ''}`}
                     >
                       {busy ? (
                         <ActivityIndicator size="small" color="#09090B" />
