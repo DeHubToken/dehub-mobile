@@ -15,6 +15,7 @@ import { DeHubLoader } from '../components/DeHubLoader';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import ScreenHeader from '../components/ScreenHeader';
 import Icon from '../components/ui/Icon';
+import LoadErrorState from '../components/ui/LoadErrorState';
 import GlassIndicator, { GLASS_SHADOW } from '../components/ui/GlassIndicator';
 import { useGateToHome } from '../hooks/useGateToHome';
 import { useAuthState } from '../context/AuthContext';
@@ -159,12 +160,17 @@ export default function ActiveSessionsScreen() {
   const [refreshing, setRefreshing] = useState(false);
   const [revoking, setRevoking] = useState<string | null>(null);
   const [revokingAll, setRevokingAll] = useState(false);
+  // A failed fetch leaves `sessions` empty, and an empty list on this screen
+  // reads as "nothing is signed in", including the phone in your hand.
+  const [loadError, setLoadError] = useState(false);
 
   const load = useCallback(async () => {
     try {
       const data = await fetchSessions();
       setSessions(data);
+      setLoadError(false);
     } catch (e) {
+      setLoadError(true);
       toastError(e, t('sessions.loadFailed'));
     }
   }, []);
@@ -236,19 +242,23 @@ export default function ActiveSessionsScreen() {
 
   const keyExtractor = useCallback((item: Session) => item.deviceId, []);
 
-  const ListHeader = useCallback(() => (
-    <View className="mb-4">
-      <View className="flex-row items-center mb-1">
-        <Icon name="Shield" size={16} color="#6b7280" />
-        <Text className="text-theme-neutrals-400 text-xs ml-1.5">
-          {t('sessions.activeSessions', { count: sessions.length })}
+  const ListHeader = useCallback(() => {
+    // "0 active sessions" above the error panel would say the same wrong thing.
+    if (loadError && sessions.length === 0) return null;
+    return (
+      <View className="mb-4">
+        <View className="flex-row items-center mb-1">
+          <Icon name="Shield" size={16} color="#6b7280" />
+          <Text className="text-theme-neutrals-400 text-xs ml-1.5">
+            {t('sessions.activeSessions', { count: sessions.length })}
+          </Text>
+        </View>
+        <Text className="text-theme-neutrals-500 text-xs leading-5">
+          {t('sessions.explainer')}
         </Text>
       </View>
-      <Text className="text-theme-neutrals-500 text-xs leading-5">
-        {t('sessions.explainer')}
-      </Text>
-    </View>
-  ), [sessions.length]);
+    );
+  }, [loadError, sessions.length]);
 
   const ListFooter = useCallback(() => {
     if (otherCount === 0) return null;
@@ -297,10 +307,14 @@ export default function ActiveSessionsScreen() {
           ListHeaderComponent={ListHeader}
           ListFooterComponent={ListFooter}
           ListEmptyComponent={
-            <View className="items-center justify-center py-20">
-              <Icon name="ShieldCheck" size={40} color="#6b7280" />
-              <Text className="text-theme-neutrals-400 text-sm mt-3">{t("sessions.noActive")}</Text>
-            </View>
+            loadError ? (
+              <LoadErrorState message={t('sessions.loadFailed')} onRetry={handleRefresh} />
+            ) : (
+              <View className="items-center justify-center py-20">
+                <Icon name="ShieldCheck" size={40} color="#6b7280" />
+                <Text className="text-theme-neutrals-400 text-sm mt-3">{t("sessions.noActive")}</Text>
+              </View>
+            )
           }
           refreshControl={
             <DeHubRefreshControl
