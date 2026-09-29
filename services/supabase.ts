@@ -1,4 +1,4 @@
-import { createClient } from "@supabase/supabase-js";
+import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import env from "../config/env";
 // The token accessor directly, not services/ai.service's dehubAuthHeaders:
@@ -17,6 +17,33 @@ export const supabase = createClient(env.SUPABASE_URL, env.SUPABASE_PUBLISHABLE_
   // Signs wallet-scoped REST and storage requests; see libs/wallet-session.ts.
   global: { fetch: createWalletSessionFetch() },
 });
+
+const walletClients = new Map<string, SupabaseClient>();
+
+/**
+ * A client pinned to one wallet, for the Storage API (web's walletScopedClient).
+ *
+ * `withWalletHeader` calls `setHeader` on a postgrest builder; the Storage
+ * client has no such method, so a `storage.from(...).remove()` on the shared
+ * client reaches the bucket policy with no wallet at all. Storage requests from
+ * this client carry the wallet, so a bucket can check who is deleting.
+ *
+ * Not the shared client with a mutated header — that one serves every query in
+ * the app and a global wallet header would change the RLS they all run under.
+ * Same signing fetch, so it keeps working once bare headers stop being trusted.
+ */
+export function walletScopedClient(walletAddress: string): SupabaseClient {
+  const wallet = walletAddress.toLowerCase();
+  let client = walletClients.get(wallet);
+  if (!client) {
+    client = createClient(env.SUPABASE_URL, env.SUPABASE_PUBLISHABLE_KEY, {
+      auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false },
+      global: { headers: { "x-wallet-address": wallet }, fetch: createWalletSessionFetch() },
+    });
+    walletClients.set(wallet, client);
+  }
+  return client;
+}
 
 /**
  * Fetch an Agora RTC token from the Supabase edge function.

@@ -21,7 +21,7 @@ import { View, Text, ScrollView, TouchableOpacity, ActivityIndicator, Alert } fr
 import * as DocumentPicker from "expo-document-picker";
 import { useTranslation } from "react-i18next";
 import Icon from "../ui/Icon";
-import { supabase } from "../../services/supabase";
+import { supabase, walletScopedClient } from "../../services/supabase";
 import { uploadLocalFileToBucket } from "../../libs/storage-upload";
 import { useStages } from "../../context/StageContext";
 import { useAuth } from "../../context/AuthContext";
@@ -159,8 +159,12 @@ const StageSoundboard: React.FC = () => {
           text: t("common.delete"),
           style: "destructive",
           onPress: async () => {
-            const { error } = await supabase.storage.from(BUCKET).remove([sound.path]);
-            if (error) {
+            if (!folder) return;
+            // Storage has no per-call header, so the delete goes through a
+            // client pinned to this wallet for the bucket's delete policy.
+            // A refused delete comes back as an empty list, not an error.
+            const { data, error } = await walletScopedClient(folder).storage.from(BUCKET).remove([sound.path]);
+            if (error || !data?.length) {
               toastError(t("stages.deleteFailed"));
               return;
             }
@@ -169,7 +173,7 @@ const StageSoundboard: React.FC = () => {
         },
       ]);
     },
-    [t],
+    [folder, t],
   );
 
   const padStyle = (active: boolean) => ({
