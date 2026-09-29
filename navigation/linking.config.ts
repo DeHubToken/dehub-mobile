@@ -36,6 +36,60 @@ const homeState = () =>
     ],
   }) as any;
 
+/**
+ * Open a dehub.io page the app has no screen for in the in-app browser.
+ *
+ * Never Linking.openURL: the app is the verified handler for /app/*, so the OS
+ * would hand the URL straight back here and it would be dropped again, in a
+ * loop. Deferred a tick so the browser is not raised from inside the state
+ * lookup, which on a cold start runs while the navigation container renders.
+ * The browser module is loaded on first use, so the many files that import
+ * this one only for ShareLinks do not pull a native module in with it.
+ *
+ * One open per URL every few seconds: if a browser ever handed the link back
+ * to the app, that is what stops it bouncing between the two.
+ */
+let lastOpenOnWeb = { url: '', at: 0 };
+const openOnWeb = (url: string) => {
+  const now = Date.now();
+  if (url === lastOpenOnWeb.url && now - lastOpenOnWeb.at < 3000) {
+    logger.warn('Unrouted link came straight back; not reopening it', { url });
+    return;
+  }
+  lastOpenOnWeb = { url, at: now };
+  Promise.resolve()
+    .then(() => {
+      const WebBrowser: typeof import('expo-web-browser') = require('expo-web-browser');
+      return WebBrowser.openBrowserAsync(url, { enableBarCollapsing: true, dismissButtonStyle: 'done' });
+    })
+    .catch((error) => logger.warn('Could not open unrouted link in the browser', { url, error }));
+};
+
+/**
+ * Rename query keys to the param names a screen reads, leaving the rest alone.
+ *
+ * Query params reach a screen as route params under their own names. Web names
+ * them for its pages (?request=, ?comment=) while the screens here read
+ * requestId and commentId. When two spellings map to one name, the first wins,
+ * so the screen gets one id rather than an array.
+ */
+const renameQueryParams = (queryString: string, names: Record<string, string>): string => {
+  const claimed = new Set<string>();
+  return queryString
+    .split('&')
+    .filter(Boolean)
+    .flatMap((pair) => {
+      const eq = pair.indexOf('=');
+      const key = eq >= 0 ? pair.slice(0, eq) : pair;
+      if (!Object.prototype.hasOwnProperty.call(names, key)) return [pair];
+      const name = names[key];
+      if (claimed.has(name)) return [];
+      claimed.add(name);
+      return [`${name}${eq >= 0 ? pair.slice(eq) : ''}`];
+    })
+    .join('&');
+};
+
 /** 
  * Domains that should open in the app via Universal Links / App Links 
  * Add more domains as needed (e.g., 'dehub.io', 'app.dehub.io')
@@ -152,6 +206,18 @@ export const DeepLinkPaths = {
   LEADERBOARD: 'app/leaderboard',
   DAO: 'dao',
   MESSAGES: 'app/messages',
+
+  // Feature requests — dehub.io/app/features. The app's own Share button
+  // hands this out; getStateFromPath renames ?feature= / ?request= and
+  // ?comment= to the params the screen reads, and folds the bare /features in.
+  FEATURES: 'app/features',
+
+  // Governance — the board and one proposal, both public. The proposal path
+  // first, like the community invite.
+  GOVERNANCE_PROPOSAL: 'app/governance/:proposalId',
+  GOVERNANCE: 'app/governance',
+
+  SUPERPOWERS: 'app/superpowers',
 
   // Communities — the invite path has to be declared before the slug one, or
   // ':slug' swallows 'join' and the code is lost.
@@ -283,6 +349,11 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
     
     screens: {
       [ScreenNames.App]: {
+        // Home under whatever a link opens. A link that starts the app builds
+        // the whole stack from the URL, and without this the page it opens is
+        // alone: no back arrow, and Android back closes the app. A link that
+        // arrives while the app is open still pushes onto the live stack.
+        initialRouteName: ScreenNames.Root,
         // Nested screens within AppNavigator
         screens: {
           // Post resolver (detects video vs feed and redirects)
@@ -325,6 +396,16 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
 
           [ScreenNames.Leaderboard]: DeepLinkPaths.LEADERBOARD,
           [ScreenNames.Dao]: DeepLinkPaths.DAO,
+
+          [ScreenNames.FeatureRequests]: DeepLinkPaths.FEATURES,
+
+          [ScreenNames.GovernanceProposal]: {
+            path: DeepLinkPaths.GOVERNANCE_PROPOSAL,
+            parse: { proposalId: (proposalId: string) => proposalId },
+          },
+          [ScreenNames.Governance]: DeepLinkPaths.GOVERNANCE,
+
+          [ScreenNames.SuperPowers]: DeepLinkPaths.SUPERPOWERS,
 
           // An invite link shared from either client opens straight into the
           // join screen rather than bouncing through the website.
@@ -474,6 +555,42 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
     const queryString = parts[1] || '';
     const segments = pathOnly.split('/').filter(Boolean);
 
+    // The phone claims every dehub.io/app link, and React Navigation drops one
+    // that resolves to nothing: the app opens, or stays, on whatever page was
+    // showing. So an /app link no route matches never ends there. A bare /app
+    // is Home; anything else opens the web page in the in-app browser. That
+    // covers the signed-in-only pages (wallet, settings, bookmarks, profile)
+    // too, whose screens a signed-out navigator does not have.
+    const orOpenOnWeb = (state: ReturnType<typeof getStateFromPath>) => {
+      if (state || segments[0] !== 'app') return state;
+      if (segments.length === 1) return homeState();
+      const url = `https://${UNIVERSAL_LINK_DOMAINS[0]}/${pathOnly}${queryString ? `?${queryString}` : ''}`;
+      logger.info('Unrouted /app link opened on the web', { path, url });
+      openOnWeb(url);
+      return undefined;
+    };
+
+    // Feature requests, at /features or /app/features. The app's own Share
+    // button hands out ?feature=<id>, web's notifications ?request=<id> and
+    // &comment=<id>; the screen pins a request by requestId and opens its
+    // thread at commentId, so the names are translated on the way in.
+    const appSegs = segments[0] === 'app' ? segments.slice(1) : segments;
+    if (appSegs[0] === 'features' && appSegs.length === 1) {
+      const query = renameQueryParams(queryString, {
+        request: 'requestId',
+        feature: 'requestId',
+        comment: 'commentId',
+      });
+      return orOpenOnWeb(getStateFromPath(`/app/features${query ? `?${query}` : ''}`, options));
+    }
+
+    // Web's proposal notifications carry ?comment=<id>; the screen reads
+    // commentId.
+    if (segments[0] === 'app' && segments[1] === 'governance' && segments.length === 3 && queryString) {
+      const query = renameQueryParams(queryString, { comment: 'commentId' });
+      return orOpenOnWeb(getStateFromPath(`/${pathOnly}?${query}`, options));
+    }
+
     // Web answers every /app section at the bare path as well, canonicalises
     // onto it and shares it — a store link is handed out as dehub.io/stores/<id>
     // now, not dehub.io/app/stores/<id>. The routes below are declared with the
@@ -488,7 +605,23 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
     // redirects the old links, so do the same here.
     if (segments[0] === 'app' && segments[1] === 'builder') {
       const newPath = `/${segments.slice(1).join('/')}${queryString ? `?${queryString}` : ''}`;
-      return getStateFromPath(newPath, options);
+      return orOpenOnWeb(getStateFromPath(newPath, options));
+    }
+
+    // The same the other way round: these routes are declared at the bare path
+    // web canonicalises onto, so the /app spelling a link copied from the
+    // address bar can still carry is folded back onto them.
+    const BARE_ROUTED = new Set(['usernames', 'accounts', 'packs']);
+    if (segments[0] === 'app' && BARE_ROUTED.has(segments[1])) {
+      const newPath = `/${segments.slice(1).join('/')}${queryString ? `?${queryString}` : ''}`;
+      logger.info('/app section rewritten onto its bare route', { from: path, to: newPath });
+      return orOpenOnWeb(getStateFromPath(newPath, options));
+    }
+
+    // dehub.io/apps/dev is web's developer page, not an app; without this the
+    // mini app player reads "dev" as a slug and says there is no such app.
+    if (segments[0] === 'apps' && segments[1] === 'dev' && segments.length === 2) {
+      return getStateFromPath('/apps', options);
     }
 
     if (segments.length > 0 && APP_PREFIXED.has(segments[0])) {
@@ -503,11 +636,11 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
     if (workSegs[0] === 'work' && workSegs[1] && workSegs[2] === 'edit') {
       const newPath = `/bounty/${workSegs[1]}/edit`;
       logger.info('Legacy bounty edit link rewritten', { from: path, to: newPath });
-      return getStateFromPath(newPath, options);
+      return orOpenOnWeb(getStateFromPath(newPath, options));
     }
     if (workSegs !== segments) {
       const newPath = `/${workSegs.join('/')}${queryString ? `?${queryString}` : ''}`;
-      return getStateFromPath(newPath, options);
+      return orOpenOnWeb(getStateFromPath(newPath, options));
     }
 
     if (segments[0] === 'feeds' && segments[1]) {
@@ -592,7 +725,7 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
       logger.warn('Deep link could not be resolved', { path });
     }
     
-    return state;
+    return orOpenOnWeb(state);
   },
   
   /**
