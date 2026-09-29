@@ -1900,6 +1900,7 @@
     "coverUpdated": "Forsidebillede opdateret",
     "couldNotPickImage": "Kunne ikke vælge billede",
     "changeCoverImage": "Skift forsidebillede",
+    "viewCoverImage": "Se forsidebillede",
     "changeAvatar": "Skift avatar",
     "verifiedEnsName": "Bekræftet ENS-navn {{name}}",
     "notFullyJoined": "Denne bruger er endnu ikke fuldt tilmeldt. De har ikke valgt et brugernavn eller fuldført profilopsætningen. Du kan stadig se offentlig aktivitet og sende drikkepenge, hvis det er muligt.",
@@ -5907,7 +5908,8 @@
     "recentSearches": "Seneste søgninger",
     "noTrendingThisWeek": "Intet populært indhold i denne uge",
     "closeFilterOptions": "Luk filterindstillinger",
-    "openFilterOptions": "Åbn filterindstillinger"
+    "openFilterOptions": "Åbn filterindstillinger",
+    "fillQuery": "Indsæt \"{{query}}\" i søgefeltet"
   },
   "notifPrompt": {
     "stayInLoop": "Hold dig opdateret",

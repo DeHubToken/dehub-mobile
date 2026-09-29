@@ -1918,6 +1918,7 @@
     "coverUpdated": "Muqova yangilandi",
     "couldNotPickImage": "Tasvirni tanlab bo'lmadi",
     "changeCoverImage": "Muqova rasmini o'zgartirish",
+    "viewCoverImage": "Muqova rasmini ko'rish",
     "changeAvatar": "Avatarni o'zgartirish",
     "verifiedEnsName": "Tasdiqlangan ENS nomi {{name}}",
     "notFullyJoined": "Ushbu foydalanuvchi hali to'liq qo'shilmagan. U foydalanuvchi nomini tanlamagan yoki profilni sozlashni yakunlamagan. Siz hali ham ommaviy faoliyatni ko'rishingiz va mavjud bo'lsa, maslahatlar yuborishingiz mumkin.",
@@ -5921,7 +5922,8 @@
     "recentSearches": "So'nggi qidiruvlar",
     "noTrendingThisWeek": "Bu hafta trenddagi kontent yo'q",
     "closeFilterOptions": "Filtri variantlarini yopish",
-    "openFilterOptions": "Filtri variantlarini ochish"
+    "openFilterOptions": "Filtri variantlarini ochish",
+    "fillQuery": "Qidiruvga \"{{query}}\" ni kiritish"
   },
   "notifPrompt": {
     "stayInLoop": "Xabardor bo'ling",

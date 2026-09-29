@@ -1900,6 +1900,7 @@
     "coverUpdated": "תמונת הכיסוי עודכנה",
     "couldNotPickImage": "לא ניתן היה לבחור תמונה",
     "changeCoverImage": "שנה את תמונת הכיסוי",
+    "viewCoverImage": "הצג את תמונת הכיסוי",
     "changeAvatar": "שנה את התמונה האישית",
     "verifiedEnsName": "שם ENS מאומת {{name}}",
     "notFullyJoined": "משתמש זה עדיין לא הצטרף במלואו. הוא לא בחר שם משתמש או השלים את הגדרת הפרופיל. עדיין ניתן להציג פעילות ציבורית ולשלוח טיפים אם זמינים.",
@@ -5907,7 +5908,8 @@
     "recentSearches": "חיפושים אחרונים",
     "noTrendingThisWeek": "אין תוכן פופולרי השבוע",
     "closeFilterOptions": "סגור אפשרויות סינון",
-    "openFilterOptions": "פתח אפשרויות סינון"
+    "openFilterOptions": "פתח אפשרויות סינון",
+    "fillQuery": "הכנס את \"{{query}}\" לחיפוש"
   },
   "notifPrompt": {
     "stayInLoop": "הישארו מעודכנים",

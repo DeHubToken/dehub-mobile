@@ -1895,6 +1895,7 @@
     "coverUpdated": "कवर बदलल गइल",
     "couldNotPickImage": "फोटो नइखे चुनल जा सकल",
     "changeCoverImage": "कवर फोटो बदलीं",
+    "viewCoverImage": "कवर फोटो देखीं",
     "changeAvatar": "एवतार बदलीं",
     "verifiedEnsName": "सत्यापित ईएनएस नाम {{name}}",
     "notFullyJoined": "ई युजर अभी पूरा तरीका से जुड़ल नइखे। ऊ अपना युजरनाम के दावा नइखे कइले या प्रोफाइल के सेटअप पूरा नइखे कइले। तू अभी सार्वजनिक गतिविधि देख सकत बाड़ऽ आ अगर उपलब्ध होखे तऽ टिप भेज सकत बाड़ऽ।",
@@ -5882,7 +5883,8 @@
     "recentSearches": "हाल की खोजें",
     "noTrendingThisWeek": "इस हफ़्ते कोई ट्रेंडिंग सामग्री नहीं",
     "closeFilterOptions": "फ़िल्टर विकल्प बंद करें",
-    "openFilterOptions": "फ़िल्टर विकल्प खोलें"
+    "openFilterOptions": "फ़िल्टर विकल्प खोलें",
+    "fillQuery": "खोज में \"{{query}}\" भरीं"
   },
   "notifPrompt": {
     "stayInLoop": "अपडेट रहऽ",

@@ -1900,6 +1900,7 @@
     "coverUpdated": "Copertă actualizată",
     "couldNotPickImage": "Nu s-a putut selecta imaginea",
     "changeCoverImage": "Schimbă imaginea de copertă",
+    "viewCoverImage": "Vezi imaginea de copertă",
     "changeAvatar": "Schimbă avatarul",
     "verifiedEnsName": "Nume ENS verificat {{name}}",
     "notFullyJoined": "Acest utilizator nu s-a alăturat complet încă. Nu și-a revendicat un nume de utilizator și nu a finalizat configurarea profilului. Poți vizualiza în continuare activitatea publică și poți trimite sfaturi, dacă sunt disponibile.",
@@ -5903,7 +5904,8 @@
     "recentSearches": "Căutări recente",
     "noTrendingThisWeek": "Niciun conținut în trend săptămâna aceasta",
     "closeFilterOptions": "Închideți opțiunile de filtrare",
-    "openFilterOptions": "Deschideți opțiunile de filtrare"
+    "openFilterOptions": "Deschideți opțiunile de filtrare",
+    "fillQuery": "Completează căutarea cu „{{query}}”"
   },
   "notifPrompt": {
     "stayInLoop": "Rămâi la curent",

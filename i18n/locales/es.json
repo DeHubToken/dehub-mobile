@@ -1900,6 +1900,7 @@
     "coverUpdated": "Portada actualizada",
     "couldNotPickImage": "No se pudo seleccionar la imagen",
     "changeCoverImage": "Cambiar imagen de portada",
+    "viewCoverImage": "Ver imagen de portada",
     "changeAvatar": "Cambiar avatar",
     "verifiedEnsName": "Nombre ENS verificado {{name}}",
     "notFullyJoined": "Este usuario aún no se ha unido completamente. No ha reclamado un nombre de usuario ni ha completado la configuración del perfil. Aún puedes ver la actividad pública y enviar propinas si están disponibles.",
@@ -5952,7 +5953,8 @@
     "recentSearches": "Búsquedas recientes",
     "noTrendingThisWeek": "No hay contenido de tendencia esta semana",
     "closeFilterOptions": "Cerrar opciones de filtro",
-    "openFilterOptions": "Abrir opciones de filtro"
+    "openFilterOptions": "Abrir opciones de filtro",
+    "fillQuery": "Rellenar la búsqueda con \"{{query}}\""
   },
   "notifPrompt": {
     "stayInLoop": "Mantente al día",

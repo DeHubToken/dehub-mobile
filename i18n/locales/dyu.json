@@ -1898,6 +1898,7 @@
     "coverUpdated": "An ka kunnafoniw",
     "couldNotPickImage": "Ne tɛ se ka n ka fotogwɛlɛsi to yen",
     "changeCoverImage": "Fanga min be mɔgɔ la, o ye ka mɔgɔ lafili",
+    "viewCoverImage": "Ja sanfɛlama lajɛ",
     "changeAvatar": "Aw ye aw yɛrɛ kɔrɔsi",
     "verifiedEnsName": "ENS tɔgɔ lajɛlen {{name}}",
     "notFullyJoined": "O tigi ma sɔn ka jɛn ni mɔgɔ wɛrɛ ye fɔlɔ. U ma mɔgɔ tɔgɔ ɲini wala u ma mɔgɔ tɔgɔ sɛbɛ. I be se ka to ka jama ka baara filɛ ani ka ladiliw ci n'i b'a fɛ.",
@@ -5883,6 +5884,7 @@
     "recentSearches": "Ɲinini kɔsɛninw",
     "closeFilterOptions": "Sugandili fɛɛrɛw datugu",
     "openFilterOptions": "Sugandili fɛɛrɛw dayɛlɛ",
+    "fillQuery": "\"{{query}}\" sɛbɛn ɲinini kɔnɔ",
     "trendingThisWeek": "Lɔgɔkun hakilila-nyuma",
     "tryDifferentKeywords": "I be se ka sɛbɛri kɛ ni kumaden dɔw ye wala i be se ka sɛbɛri kɛ ni kumaden dɔw ye.",
     "noTrendingThisWeek": "O lɔgɔkun na, kunnafoniw tun tɛ yen."

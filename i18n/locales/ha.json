@@ -1900,6 +1900,7 @@
     "coverUpdated": "An sabunta cover",
     "couldNotPickImage": "An kasa zaɓan hoto",
     "changeCoverImage": "Canza hoton cover",
+    "viewCoverImage": "Duba hoton cover",
     "changeAvatar": "Canza avatar",
     "verifiedEnsName": "An tabbatar da sunan ENS {{name}}",
     "notFullyJoined": "Wannan mai amfani bai gama shiga ba tukuna. Bai karɓi sunan mai amfani ba ko kuma ya kammala saitin bayanan martaba. Har yanzu kuna iya duba ayyukan jama'a da aika kuɗi idan akwai.",
@@ -5903,7 +5904,8 @@
     "recentSearches": "Binciken Kwanan nan",
     "noTrendingThisWeek": "Babu abun ciki mai juyawa a wannan makon",
     "closeFilterOptions": "Rufe zaɓuɓɓukan tace",
-    "openFilterOptions": "Bude zaɓuɓɓukan tace"
+    "openFilterOptions": "Bude zaɓuɓɓukan tace",
+    "fillQuery": "Saka \"{{query}}\" a akwatin bincike"
   },
   "notifPrompt": {
     "stayInLoop": "Ka kasance da labari",

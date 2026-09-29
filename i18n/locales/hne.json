@@ -1900,6 +1900,7 @@
     "coverUpdated": "कवर बदल गे हे",
     "couldNotPickImage": "इमेज नइ चुन पाइस",
     "changeCoverImage": "कवर इमेज बदलव",
+    "viewCoverImage": "कवर इमेज देखव",
     "changeAvatar": "अवतार बदलव",
     "verifiedEnsName": "वेरिफाइड ENS नाम {{name}}",
     "notFullyJoined": "ये यूजर अभी पूरा नइ जुड़िस हे। ओखर कोनो यूजरनेम नइ हे या प्रोफाइल सेटअप पूरा नइ करिस हे। तू अभी पब्लिक एक्टिविटी देख सकत हाव अउ टिप भेज सकत हाव जऊन उपलब्ध होही।",
@@ -5900,7 +5901,8 @@
     "recentSearches": "हाल की खोजें",
     "noTrendingThisWeek": "इस हफ़्ते कोई ट्रेंडिंग कंटेंट नहीं",
     "closeFilterOptions": "फ़िल्टर विकल्प बंद करें",
-    "openFilterOptions": "फ़िल्टर विकल्प खोलें"
+    "openFilterOptions": "फ़िल्टर विकल्प खोलें",
+    "fillQuery": "खोज म \"{{query}}\" भरव"
   },
   "notifPrompt": {
     "stayInLoop": "अपडेट रहव",

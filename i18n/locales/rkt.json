@@ -2026,6 +2026,7 @@
     "coverUpdated": "কভার আপডেট করা হয়েছে",
     "couldNotPickImage": "ছবি নির্বাচন করা যায়নি",
     "changeCoverImage": "কভার ছবি পরিবর্তন করুন",
+    "viewCoverImage": "কভার ছবি দেখো",
     "changeAvatar": "অ্যাভাটার পরিবর্তন করুন",
     "verifiedEnsName": "যাচাইকৃত ENS নাম {{name}}",
     "notFullyJoined": "এই ব্যবহারকারী এখনও সম্পূর্ণরূপে যোগদান করেননি। তারা একটি ব্যবহারকারীর নাম দাবি করেননি বা প্রোফাইল সেটআপ সম্পন্ন করেননি। আপনি এখনও পাবলিক কার্যকলাপ দেখতে এবং উপলব্ধ থাকলে টিপস পাঠাতে পারেন।",
@@ -6036,7 +6037,8 @@
     "recentSearches": "সাম্প্রতিক অনুসন্ধান",
     "noTrendingThisWeek": "এই সপ্তাহে কোন ট্রেন্ডিং বিষয়বস্তু নেই",
     "closeFilterOptions": "ফিল্টার অপশন বন্ধ করুন",
-    "openFilterOptions": "ফিল্টার অপশন খুলুন"
+    "openFilterOptions": "ফিল্টার অপশন খুলুন",
+    "fillQuery": "খোঁজত \"{{query}}\" বসাও"
   },
   "notifPrompt": {
     "stayInLoop": "খবরত থাকেন",

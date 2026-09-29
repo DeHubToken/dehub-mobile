@@ -1900,6 +1900,7 @@
     "coverUpdated": "Şəkil yeniləndi",
     "couldNotPickImage": "Şəkili seçmək mümkün olmadı",
     "changeCoverImage": "Şəkilini dəyiş",
+    "viewCoverImage": "Üz qabığı şəklinə bax",
     "changeAvatar": "Avatarını dəyiş",
     "verifiedEnsName": "Təsdiqlənmiş ENS adı {{name}}",
     "notFullyJoined": "Bu istifadəçi hələ tam qoşulmayıb. İstifadəçi adı seçməyib və ya profil quruluşunu tamamlamayıb. Siz hələ də ictimai fəaliyyəti görə və əgər varsa, göstərişlər göndərə bilərsiniz.",
@@ -5903,7 +5904,8 @@
     "recentSearches": "Son Axtarışlar",
     "noTrendingThisWeek": "Bu həftə trenddə olan məzmun yoxdur",
     "closeFilterOptions": "Filtir seçimlərini bağlayın",
-    "openFilterOptions": "Filtir seçimlərini açın"
+    "openFilterOptions": "Filtir seçimlərini açın",
+    "fillQuery": "Axtarışa \"{{query}}\" yaz"
   },
   "notifPrompt": {
     "stayInLoop": "Xəbərdar olun",

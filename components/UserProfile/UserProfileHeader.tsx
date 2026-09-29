@@ -286,7 +286,12 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
 
   return (
     <View>
-      <TouchableOpacity activeOpacity={0.8} onPress={() => onOpenImage("cover")}>
+      <TouchableOpacity
+        activeOpacity={0.8}
+        onPress={() => onOpenImage("cover")}
+        accessibilityRole="button"
+        accessibilityLabel={t("profile.viewCoverImage")}
+      >
         {/* Minimal: media runs edge to edge, so the cover drops its inset. */}
         <View
           className={isMinimal ? "overflow-hidden" : "mx-4 rounded-xl overflow-hidden"}

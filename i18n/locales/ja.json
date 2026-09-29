@@ -1900,6 +1900,7 @@
     "coverUpdated": "カバーを更新しました",
     "couldNotPickImage": "画像を選択できませんでした",
     "changeCoverImage": "カバー画像を変更",
+    "viewCoverImage": "カバー画像を表示",
     "changeAvatar": "アバターを変更",
     "verifiedEnsName": "確認済みのENS名 {{name}}",
     "notFullyJoined": "このユーザーはまだ完全に参加していません。ユーザー名を取得するか、プロフィールの設定を完了していません。公開アクティビティを表示したり、利用可能な場合はヒントを送信したりできます。",
@@ -5953,7 +5954,8 @@
     "recentSearches": "最近の検索",
     "noTrendingThisWeek": "今週の人気コンテンツはありません",
     "closeFilterOptions": "フィルターオプションを閉じる",
-    "openFilterOptions": "フィルターオプションを開く"
+    "openFilterOptions": "フィルターオプションを開く",
+    "fillQuery": "\"{{query}}\"を検索欄に入力"
   },
   "notifPrompt": {
     "stayInLoop": "最新情報を受け取る",

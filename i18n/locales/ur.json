@@ -1900,6 +1900,7 @@
     "coverUpdated": "کور اپ ڈیٹ ہو گیا۔",
     "couldNotPickImage": "تصویر منتخب نہیں ہو سکی",
     "changeCoverImage": "کور امیج تبدیل کریں",
+    "viewCoverImage": "کور امیج دیکھیں",
     "changeAvatar": "اوتار تبدیل کریں",
     "verifiedEnsName": "تصدیق شدہ ENS نام {{name}}",
     "notFullyJoined": "یہ صارف ابھی تک مکمل طور پر شامل نہیں ہوا ہے۔ انہوں نے صارف نام کا دعویٰ نہیں کیا ہے یا پروفائل سیٹ اپ مکمل نہیں کیا ہے۔ آپ اب بھی عوامی سرگرمی دیکھ سکتے ہیں اور اگر دستیاب ہو تو ٹپس بھیج سکتے ہیں۔",
@@ -5907,7 +5908,8 @@
     "recentSearches": "حالیہ تلاشیں",
     "noTrendingThisWeek": "اس ہفتے کوئی ٹرینڈنگ مواد نہیں",
     "closeFilterOptions": "فلٹر کے اختیارات بند کریں",
-    "openFilterOptions": "فلٹر کے اختیارات کھولیں"
+    "openFilterOptions": "فلٹر کے اختیارات کھولیں",
+    "fillQuery": "تلاش میں \"{{query}}\" بھریں"
   },
   "notifPrompt": {
     "stayInLoop": "باخبر رہیں",

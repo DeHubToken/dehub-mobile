@@ -1900,6 +1900,7 @@
     "coverUpdated": "Cover aktualisiert",
     "couldNotPickImage": "Bild konnt nöd usgwählt werde",
     "changeCoverImage": "Coverbild ändere",
+    "viewCoverImage": "Coverbild aaluege",
     "changeAvatar": "Avatar ändere",
     "verifiedEnsName": "Verifizierte ENS Name {{name}}",
     "notFullyJoined": "Dä User isch no nöd vollstänndig debi. Er hät ke Name usgwählt oder Profil-Iistellige abgschlosse. Du chasch immer no öffentlichi Aktivitäte gseh und Trinkgeld geh, falls verfügbar.",
@@ -5933,7 +5934,8 @@
     "recentSearches": "Kürzliche Suchen",
     "noTrendingThisWeek": "Diese Woche keine aktuellen Inhalte",
     "closeFilterOptions": "Filteroptionen schliessen",
-    "openFilterOptions": "Filteroptionen öffnen"
+    "openFilterOptions": "Filteroptionen öffnen",
+    "fillQuery": "\"{{query}}\" i d Suechi übernäh"
   },
   "notifPrompt": {
     "stayInLoop": "Bliib uf em Laufende",

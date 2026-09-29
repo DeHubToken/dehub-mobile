@@ -1900,6 +1900,7 @@
     "coverUpdated": "Viršelio atnaujinimas",
     "couldNotPickImage": "Nepavyko pasirinkti paveikslėlio",
     "changeCoverImage": "Keisti viršelio paveikslėlį",
+    "viewCoverImage": "Peržiūrėti viršelio paveikslėlį",
     "changeAvatar": "Keisti avatarą",
     "verifiedEnsName": "Patvirtintas ENS vardas {{name}}",
     "notFullyJoined": "Šis vartotojas dar neprisijungė. Jis nepateikė vartotojo vardo arba neužbaigė profilio nustatymo. Vis tiek galite peržiūrėti viešą veiklą ir siųsti patarimus, jei jie pasiekiami.",
@@ -5903,7 +5904,8 @@
     "recentSearches": "Neseniai ieškota",
     "noTrendingThisWeek": "Šią savaitę populiaraus turinio nerasta",
     "closeFilterOptions": "Uždaryti filtro parinktis",
-    "openFilterOptions": "Atidaryti filtro parinktis"
+    "openFilterOptions": "Atidaryti filtro parinktis",
+    "fillQuery": "Įrašyti \"{{query}}\" į paiešką"
   },
   "notifPrompt": {
     "stayInLoop": "Būkite informuoti",

@@ -1900,6 +1900,7 @@
     "coverUpdated": "የሽፋን ሥዕል ተዘምኗል",
     "couldNotPickImage": "ሥዕል መምረጥ አልተቻለም",
     "changeCoverImage": "የሽፋን ሥዕል ቀይር",
+    "viewCoverImage": "የሽፋን ሥዕል ይመልከቱ",
     "changeAvatar": "የመገለጫ ሥዕል ቀይር",
     "verifiedEnsName": "የተረጋገጠ ENS ስም {{name}}",
     "notFullyJoined": "ይህ ተጠቃሚ ገና ሙሉ በሙሉ አልተቀላቀለም። የተጠቃሚ ስም አልጠየቀም ወይም የመገለጫ ማዋቀርን አልጨረሰም። አሁንም የህዝብ እንቅስቃሴን ማየት እና የሚገኙ ከሆነ ጠቃሚ ምክሮችን መላክ ይችላሉ።",
@@ -5933,7 +5934,8 @@
     "recentSearches": "የቅርብ ጊዜ ፍለጋዎች",
     "noTrendingThisWeek": "በዚህ ሳምንት ምንም ተወዳጅ ይዘት የለም።",
     "closeFilterOptions": "የማጣሪያ አማራጮችን ዝጋ",
-    "openFilterOptions": "የማጣሪያ አማራጮችን ክፈት"
+    "openFilterOptions": "የማጣሪያ አማራጮችን ክፈት",
+    "fillQuery": "\"{{query}}\"ን በፍለጋ ሳጥን ውስጥ አስገባ"
   },
   "notifPrompt": {
     "stayInLoop": "መረጃ ይከታተሉ",
