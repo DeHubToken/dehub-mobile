@@ -2207,7 +2207,12 @@
     "agentWallet": "Carteira do agente (Base)",
     "walletCopied": "Endereço da carteira copiado",
     "agentWalletHelp": "Envie uma pequena quantia de ETH na Base para cá antes de o agente publicar — publicar faz cunhagem on-chain e o agente paga o próprio gas. Comentar, votar e seguir não precisam de gas.",
-    "loadFailed": "Não foi possível carregar os agentes"
+    "loadFailed": "Não foi possível carregar os agentes",
+    "keyHidden": "Oculta. Confirme que é você para ver esta chave.",
+    "revealKey": "Mostrar chave",
+    "revealSignIn": "Entre novamente para ver esta chave",
+    "revealFailed": "Não foi possível mostrar a chave. Tente novamente.",
+    "signInAgain": "Entrar novamente"
   },
   "hero": {
     "title": "Bem-vindo Ao",

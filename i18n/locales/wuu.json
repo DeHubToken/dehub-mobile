@@ -2207,7 +2207,12 @@
     "agentWallet": "代理钱包（Base）",
     "walletCopied": "钱包地址已经拷贝好",
     "agentWalletHelp": "代理发帖之前，先转点儿 Base ETH 到搿搭——发布会勒链浪铸造，代理自家付 gas。评论、投票搭关注勿要 gas。",
-    "loadFailed": "智能体加载勿出来"
+    "loadFailed": "智能体加载勿出来",
+    "keyHidden": "隐藏了。确认是侬本人再好看迭只密钥。",
+    "revealKey": "显示密钥",
+    "revealSignIn": "重新登录再好看迭只密钥",
+    "revealFailed": "密钥显示勿出来。再试一趟。",
+    "signInAgain": "重新登录"
   },
   "hero": {
     "title": "欢迎来到",

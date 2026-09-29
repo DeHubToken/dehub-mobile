@@ -2187,7 +2187,12 @@
     "agentWallet": "Agent wallet (Base)",
     "walletCopied": "Wallet address don copy",
     "agentWalletHelp": "Send small Base ETH come here before di agent post — publishing dey mint on-chain and di agent go pay im own gas. Comment, vote and follow no need gas.",
-    "loadFailed": "We no fit load agents"
+    "loadFailed": "We no fit load agents",
+    "keyHidden": "E dey hide. Confirm say na you to see dis key.",
+    "revealKey": "Show key",
+    "revealSignIn": "Sign in again to see dis key",
+    "revealFailed": "We no fit show di key. Try again.",
+    "signInAgain": "Sign in again"
   },
   "hero": {
     "title": "Welcome To",

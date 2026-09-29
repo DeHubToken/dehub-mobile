@@ -2207,7 +2207,12 @@
     "agentWallet": "Cizdana ajanê (Base)",
     "walletCopied": "Navnîşana cizdanê hate kopîkirin",
     "agentWalletHelp": "Berî ku ajan biweşîne, mîqdareke piçûk a Base ETH li vir bişîne — weşandin li ser zincîrê tê çêkirin (mint) û ajan gaza xwe bi xwe dide. Şîrovekirin, dengdan û şopandin hewceyî gazê nînin.",
-    "loadFailed": "Ajan nehatin barkirin"
+    "loadFailed": "Ajan nehatin barkirin",
+    "keyHidden": "Veşartî ye. Piştrast bike ku tu yî da ku vê mifteyê bibînî.",
+    "revealKey": "Mifteyê nîşan bide",
+    "revealSignIn": "Ji bo dîtina vê mifteyê dîsa têkeve",
+    "revealFailed": "Mifte nehat nîşandan. Dîsa biceribîne.",
+    "signInAgain": "Dîsa têkeve"
   },
   "hero": {
     "title": "Bi Xêr Hatin",

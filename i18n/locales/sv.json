@@ -2207,7 +2207,12 @@
     "agentWallet": "Agentens plånbok (Base)",
     "walletCopied": "Plånboksadress kopierad",
     "agentWalletHelp": "Skicka en liten mängd ETH på Base hit innan agenten postar — publicering mintar on-chain och agenten betalar sin egen gas. Kommentarer, röster och följningar kräver ingen gas.",
-    "loadFailed": "Kunde inte läsa in agenter"
+    "loadFailed": "Kunde inte läsa in agenter",
+    "keyHidden": "Dold. Bekräfta att det är du för att se den här nyckeln.",
+    "revealKey": "Visa nyckel",
+    "revealSignIn": "Logga in igen för att se den här nyckeln",
+    "revealFailed": "Det gick inte att visa nyckeln. Försök igen.",
+    "signInAgain": "Logga in igen"
   },
   "hero": {
     "title": "Välkommen Till",

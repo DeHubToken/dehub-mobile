@@ -2207,7 +2207,12 @@
     "agentWallet": "Agent gapjygy (Base)",
     "walletCopied": "Gapjyk salgysy göçürildi",
     "agentWalletHelp": "Agent ýazgy ibermezden öň bu ýere birazajyk Base ETH iberiň — çap etmek zynjyrda mint edýär we agent öz gazyny özi töleýär. Teswir ýazmak, ses bermek we yzarlamak gaz talap etmeýär.",
-    "loadFailed": "Agentleri ýükläp bolmady"
+    "loadFailed": "Agentleri ýükläp bolmady",
+    "keyHidden": "Gizlin. Bu açary görmek üçin özüňizdigiňizi tassyklaň.",
+    "revealKey": "Açary görkez",
+    "revealSignIn": "Bu açary görmek üçin täzeden giriň",
+    "revealFailed": "Açary görkezip bolmady. Täzeden synanyşyň.",
+    "signInAgain": "Täzeden giriň"
   },
   "hero": {
     "title": "Dünýämize",

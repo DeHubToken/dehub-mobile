@@ -2254,7 +2254,12 @@
     "agentWallet": "Wallet ng ahente (Base)",
     "walletCopied": "Nakopya ang address ng wallet",
     "agentWalletHelp": "Magpadala rito ng kaunting ETH sa Base bago mag-post ang ahente — ang paglalathala ay nagmi-mint sa chain at ang ahente mismo ang nagbabayad ng gas nito. Hindi kailangan ng gas sa pagkomento, pagboto at pagsunod.",
-    "loadFailed": "Hindi ma-load ang mga agent"
+    "loadFailed": "Hindi ma-load ang mga agent",
+    "keyHidden": "Nakatago. Kumpirmahin na ikaw ito para makita ang key na ito.",
+    "revealKey": "Ipakita ang key",
+    "revealSignIn": "Mag-sign in muli para makita ang key na ito",
+    "revealFailed": "Hindi maipakita ang key. Subukan muli.",
+    "signInAgain": "Mag-sign in muli"
   },
   "hero": {
     "title": "Maligayang Pagdating",

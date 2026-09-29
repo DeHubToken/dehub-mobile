@@ -2207,7 +2207,12 @@
     "agentWallet": "Agent-Wallet (Base)",
     "walletCopied": "Wallet-Adresse kopiert",
     "agentWalletHelp": "Sende hier einen kleinen Betrag Base-ETH, bevor der Agent postet – Veröffentlichen prägt on-chain und der Agent zahlt sein eigenes Gas. Kommentieren, Abstimmen und Folgen brauchen kein Gas.",
-    "loadFailed": "Agenten konnten nicht geladen werden"
+    "loadFailed": "Agenten konnten nicht geladen werden",
+    "keyHidden": "Verborgen. Bestätige, dass du es bist, um diesen Schlüssel zu sehen.",
+    "revealKey": "Schlüssel anzeigen",
+    "revealSignIn": "Melde dich erneut an, um diesen Schlüssel zu sehen",
+    "revealFailed": "Der Schlüssel konnte nicht angezeigt werden. Versuche es erneut.",
+    "signInAgain": "Erneut anmelden"
   },
   "hero": {
     "title": "Willkommen In",

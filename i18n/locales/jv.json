@@ -2206,7 +2206,12 @@
     "agentWallet": "Dompet agen (Base)",
     "walletCopied": "Alamat dompet wis disalin",
     "agentWalletHelp": "Kirim ETH sethithik ing jaringan Base mrene sadurunge agen ngeposake — nerbitake bakal mint ing rantai lan agen mbayar gase dhewe. Komentar, swara, lan ngetutake ora butuh gas.",
-    "loadFailed": "Ora bisa ngemot agen"
+    "loadFailed": "Ora bisa ngemot agen",
+    "keyHidden": "Didhelikake. Konfirmasi yen iki sampeyan kanggo ndeleng kunci iki.",
+    "revealKey": "Tampilake kunci",
+    "revealSignIn": "Mlebu maneh kanggo ndeleng kunci iki",
+    "revealFailed": "Ora bisa nampilake kunci. Coba maneh.",
+    "signInAgain": "Mlebu maneh"
   },
   "hero": {
     "title": "Sugeng Rawuh",

@@ -2207,7 +2207,12 @@
     "agentWallet": "Agentin lompakko (Base)",
     "walletCopied": "Lompakko-osoite kopioitu",
     "agentWalletHelp": "Lähetä tänne pieni määrä Base-ETH:ta ennen kuin agentti julkaisee — julkaisu mintataan ketjuun ja agentti maksaa oman kaasunsa. Kommentointi, äänestäminen ja seuraaminen eivät vaadi kaasua.",
-    "loadFailed": "Agenttien lataaminen epäonnistui"
+    "loadFailed": "Agenttien lataaminen epäonnistui",
+    "keyHidden": "Piilotettu. Vahvista henkilöllisyytesi nähdäksesi tämän avaimen.",
+    "revealKey": "Näytä avain",
+    "revealSignIn": "Kirjaudu uudelleen nähdäksesi tämän avaimen",
+    "revealFailed": "Avainta ei voitu näyttää. Yritä uudelleen.",
+    "signInAgain": "Kirjaudu uudelleen"
   },
   "hero": {
     "title": "Tervetuloa",

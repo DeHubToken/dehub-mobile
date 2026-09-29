@@ -34,7 +34,7 @@ interface Session { token: string; expiresAt: number }
  * apart: no_token is a sign-in problem, mint_error a server refusal or wallet
  * mismatch, timeout a mint that was merely slow.
  */
-type UnsignedReason = "no_token" | "mint_error" | "timeout";
+export type UnsignedReason = "no_token" | "mint_error" | "timeout";
 interface MintFailure { reason: UnsignedReason; detail: string }
 
 class MintError extends Error {
@@ -123,6 +123,20 @@ function ensure(wallet: string, baseFetch: typeof fetch): Promise<Session | null
     inflight.set(wallet, pending);
   }
   return pending;
+}
+
+/**
+ * Ask for the wallet's session now, skipping the back-off after a failed
+ * mint. For a person pressing a button, not for background requests. Resolves
+ * to null once the wallet is signed, otherwise to why it could not be.
+ */
+export async function retryWalletSession(wallet: string): Promise<UnsignedReason | null> {
+  const w = wallet.toLowerCase();
+  await load();
+  failedAt.delete(w);
+  const session = await ensure(w, fetch);
+  if (session && session.expiresAt - 30_000 > Date.now()) return null;
+  return lastFailure.get(w)?.reason ?? "mint_error";
 }
 
 const TIMED_OUT = Symbol("timed out");

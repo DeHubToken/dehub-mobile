@@ -2289,7 +2289,12 @@
     "agentWallet": "Peňaženka agenta (Base)",
     "walletCopied": "Adresa peňaženky skopírovaná",
     "agentWalletHelp": "Pošli sem malé množstvo ETH na sieti Base skôr, než agent zverejní príspevok — publikovanie mintuje on-chain a agent si platí vlastný gas. Komentovanie, hlasovanie a sledovanie gas nepotrebujú.",
-    "loadFailed": "Agentov sa nepodarilo načítať"
+    "loadFailed": "Agentov sa nepodarilo načítať",
+    "keyHidden": "Skrytý. Potvrďte, že ste to vy, a kľúč sa zobrazí.",
+    "revealKey": "Zobraziť kľúč",
+    "revealSignIn": "Na zobrazenie kľúča sa znova prihláste",
+    "revealFailed": "Kľúč sa nepodarilo zobraziť. Skúste to znova.",
+    "signInAgain": "Znova sa prihlásiť"
   },
   "hero": {
     "title": "Vitajte V",

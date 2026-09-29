@@ -2207,7 +2207,12 @@
     "agentWallet": "Agent-Wallet (Base)",
     "walletCopied": "Wallet-Adrässe kopiert",
     "agentWalletHelp": "Schick da e chlyni Mengi Base ETH hin, bevor de Agent postet — s'Veröffentleche mintet on-chain und de Agent zahlt sis eigete Gas. Kommentiere, abstimme und folge bruucht kes Gas.",
-    "loadFailed": "Agänte händ nöd chöne glade wärde"
+    "loadFailed": "Agänte händ nöd chöne glade wärde",
+    "keyHidden": "Versteckt. Bestätig, dass du s bisch, zum dä Schlüssel gseh.",
+    "revealKey": "Schlüssel zeige",
+    "revealSignIn": "Mäld di nomal a, zum dä Schlüssel gseh",
+    "revealFailed": "Dr Schlüssel het nöd chöne zeigt wärde. Probier s nomal.",
+    "signInAgain": "Nomal amälde"
   },
   "hero": {
     "title": "E Neui Wält",

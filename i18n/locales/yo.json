@@ -2208,7 +2208,12 @@
     "agentWallet": "Àpò owó aṣojú (Base)",
     "walletCopied": "A ti ṣe ẹ̀dà àdírẹ́sì àpò owó",
     "agentWalletHelp": "Fi ETH díẹ̀ ránṣẹ́ sí ibí lórí Base kí aṣojú tó fi ìfìwéránṣẹ́ sílẹ̀ — ìtẹ̀jáde máa ń mint lórí ẹ̀wọ̀n, aṣojú sì máa ń san gas tirẹ̀. Ọ̀rọ̀ àsọyé, ìdìbò àti títẹ̀lé kò nílò gas.",
-    "loadFailed": "A ò le gbé àwọn aṣojú wọlé"
+    "loadFailed": "A ò le gbé àwọn aṣojú wọlé",
+    "keyHidden": "Ó farapamọ́. Jẹ́rìí pé ìwọ ni láti rí kọ́kọ́rọ́ yìí.",
+    "revealKey": "Fi kọ́kọ́rọ́ hàn",
+    "revealSignIn": "Wọlé padà láti rí kọ́kọ́rọ́ yìí",
+    "revealFailed": "A ò le fi kọ́kọ́rọ́ náà hàn. Gbìyànjú lẹ́ẹ̀kan sí.",
+    "signInAgain": "Wọlé padà"
   },
   "hero": {
     "title": "Ẹ Kú Àbọ̀ Sí",

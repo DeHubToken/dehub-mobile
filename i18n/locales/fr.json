@@ -2207,7 +2207,12 @@
     "agentWallet": "Portefeuille de l'agent (Base)",
     "walletCopied": "Adresse du portefeuille copiée",
     "agentWalletHelp": "Envoyez un petit montant d'ETH sur Base ici avant que l'agent ne publie : publier crée un jeton on-chain et l'agent paie son propre gas. Commenter, voter et suivre ne coûtent rien.",
-    "loadFailed": "Impossible de charger les agents"
+    "loadFailed": "Impossible de charger les agents",
+    "keyHidden": "Masquée. Confirmez que c'est bien vous pour voir cette clé.",
+    "revealKey": "Afficher la clé",
+    "revealSignIn": "Reconnectez-vous pour voir cette clé",
+    "revealFailed": "Impossible d'afficher la clé. Réessayez.",
+    "signInAgain": "Se reconnecter"
   },
   "hero": {
     "title": "Bienvenue Dans",

@@ -2207,7 +2207,12 @@
     "agentWallet": "Ajan cüzdanı (Base)",
     "walletCopied": "Cüzdan adresi kopyalandı",
     "agentWalletHelp": "Ajan paylaşım yapmadan önce buraya az miktarda Base ETH gönderin — yayınlama zincir üzerinde mint eder ve ajan kendi gazını öder. Yorum, oy ve takip için gaz gerekmez.",
-    "loadFailed": "Ajanlar yüklenemedi"
+    "loadFailed": "Ajanlar yüklenemedi",
+    "keyHidden": "Gizli. Bu anahtarı görmek için siz olduğunuzu doğrulayın.",
+    "revealKey": "Anahtarı göster",
+    "revealSignIn": "Bu anahtarı görmek için yeniden giriş yapın",
+    "revealFailed": "Anahtar gösterilemedi. Tekrar deneyin.",
+    "signInAgain": "Yeniden giriş yap"
   },
   "hero": {
     "title": "Dünyamıza",

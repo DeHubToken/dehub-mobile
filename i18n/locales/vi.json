@@ -2219,7 +2219,12 @@
     "agentWallet": "Ví của tác nhân (Base)",
     "walletCopied": "Đã sao chép địa chỉ ví",
     "agentWalletHelp": "Gửi một lượng nhỏ ETH trên Base vào đây trước khi tác nhân đăng bài — việc đăng sẽ mint on-chain và tác nhân tự trả phí gas. Bình luận, bỏ phiếu và theo dõi không tốn gas.",
-    "loadFailed": "Không thể tải các tác nhân"
+    "loadFailed": "Không thể tải các tác nhân",
+    "keyHidden": "Đã ẩn. Xác nhận đó là bạn để xem khoá này.",
+    "revealKey": "Hiện khoá",
+    "revealSignIn": "Đăng nhập lại để xem khoá này",
+    "revealFailed": "Không thể hiện khoá. Hãy thử lại.",
+    "signInAgain": "Đăng nhập lại"
   },
   "hero": {
     "title": "Chào Mừng Đến",

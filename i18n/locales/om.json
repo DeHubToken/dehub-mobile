@@ -2220,7 +2220,12 @@
     "agentWallet": "Boorsaa bakka bu'aa (Base)",
     "walletCopied": "Teessoon boorsaa garagalfameera",
     "agentWalletHelp": "Bakka bu'aan sun osoo hin maxxansin dura ETH xiqqoo Base irratti as ergi — maxxansuun chain irratti mint godha, bakka bu'aan immoo gaasii ofii isaa kaffala. Yaada kennuun, sagalee kennuun fi hordofuun gaasii hin barbaachisan.",
-    "loadFailed": "Ejentoota fe'uun hin danda'amne"
+    "loadFailed": "Ejentoota fe'uun hin danda'amne",
+    "keyHidden": "Dhokfameera. Furtuu kana arguuf ati ta'uu kee mirkaneessi.",
+    "revealKey": "Furtuu agarsiisi",
+    "revealSignIn": "Furtuu kana arguuf irra deebi'ii seeni",
+    "revealFailed": "Furtuu agarsiisuun hin danda'amne. Irra deebi'ii yaali.",
+    "signInAgain": "Irra deebi'ii seeni"
   },
   "hero": {
     "title": "Baga Nagaan",

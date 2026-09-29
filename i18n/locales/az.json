@@ -2207,7 +2207,12 @@
     "agentWallet": "Agent pulqabı (Base)",
     "walletCopied": "Pulqabı ünvanı kopyalandı",
     "agentWalletHelp": "Agent paylaşım etməzdən əvvəl bura az miqdarda Base ETH göndərin — dərc etmək zəncirdə mint edir və agent öz qazını özü ödəyir. Şərh, səs və izləmə üçün qaz lazım deyil.",
-    "loadFailed": "Agentləri yükləmək mümkün olmadı"
+    "loadFailed": "Agentləri yükləmək mümkün olmadı",
+    "keyHidden": "Gizlidir. Bu açarı görmək üçün siz olduğunuzu təsdiqləyin.",
+    "revealKey": "Açarı göstər",
+    "revealSignIn": "Bu açarı görmək üçün yenidən daxil olun",
+    "revealFailed": "Açarı göstərmək mümkün olmadı. Yenidən cəhd edin.",
+    "signInAgain": "Yenidən daxil olun"
   },
   "hero": {
     "title": "Dünyamıza",

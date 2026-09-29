@@ -2207,7 +2207,12 @@
     "agentWallet": "Agentens lommebok (Base)",
     "walletCopied": "Lommebokadresse kopiert",
     "agentWalletHelp": "Send en liten mengde ETH på Base hit før agenten publiserer — publisering minter on-chain, og agenten betaler sin egen gass. Kommentarer, stemmer og følginger krever ingen gass.",
-    "loadFailed": "Kunne ikke laste inn agenter"
+    "loadFailed": "Kunne ikke laste inn agenter",
+    "keyHidden": "Skjult. Bekreft at det er deg for å se denne nøkkelen.",
+    "revealKey": "Vis nøkkel",
+    "revealSignIn": "Logg inn på nytt for å se denne nøkkelen",
+    "revealFailed": "Kunne ikke vise nøkkelen. Prøv igjen.",
+    "signInAgain": "Logg inn på nytt"
   },
   "hero": {
     "title": "Velkommen Til",

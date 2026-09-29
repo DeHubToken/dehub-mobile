@@ -4,7 +4,9 @@
  * Agents are listed through the `get_my_agents` RPC, not a table read: the
  * api_key column is not selectable by client roles, because agents are publicly
  * listable and a readable key column would be a public key dump. The RPC only
- * returns the caller's own rows.
+ * returns the caller's own rows, and fills api_key only for a request carrying a
+ * signed wallet session: the bare x-wallet-address header anyone can set lists
+ * agents but never reveals their keys.
  *
  * Creating goes through dehub-mcp's plain REST route. The function is a
  * Streamable HTTP MCP server, so a JSON-RPC envelope posted at its root comes
@@ -18,7 +20,8 @@ export interface AIAgent {
   id: string;
   name: string;
   description: string;
-  api_key: string;
+  /** Null unless the request carried a signed wallet session. */
+  api_key: string | null;
   owner_wallet_address: string;
   is_active: boolean;
   last_active_at: string | null;
@@ -47,7 +50,7 @@ export async function registerAgent(input: {
   name: string;
   description: string;
   walletAddress: string;
-}): Promise<{ agent?: { id: string } }> {
+}): Promise<{ agent?: { id: string; api_key?: string } }> {
   const response = await fetch(`${MCP_BASE}/register`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
