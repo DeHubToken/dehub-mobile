@@ -1928,6 +1928,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           currentForKids={localForKids}
           hideReportContent={isLive}
           hideEdit={isLive}
+          isAudio={isAudioPost}
           onFollowChange={handleFollowChange}
           onVisibilityChange={handleVisibilityChange}
           onEditSuccess={handleEditSuccess}
