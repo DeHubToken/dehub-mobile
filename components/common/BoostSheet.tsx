@@ -192,7 +192,11 @@ export default function BoostSheet({
             </Pressable>}
           </View>
         ) : (
-          <ScrollView style={{ flexShrink: 1 }} contentContainerClassName="gap-4">
+          <ScrollView
+            style={{ flexShrink: 1 }}
+            contentContainerClassName="gap-4"
+            keyboardShouldPersistTaps="handled"
+          >
             {!!postTitle && (
               <Text numberOfLines={2} className="text-xs text-zinc-400">
                 {postTitle}
