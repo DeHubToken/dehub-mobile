@@ -145,7 +145,8 @@
     "closeImages": "Stäng bilder",
     "noMoreShorts": "Inga fler shorts",
     "noShortsFound": "Inga shorts hittades",
-    "newMembersHint": "Gick precis med — säg hej"
+    "newMembersHint": "Gick precis med — säg hej",
+    "mostViewedThisMonth": "Mest visade denna månad"
   },
   "explore": {
     "all": "Alla",

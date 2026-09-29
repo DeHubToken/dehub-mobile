@@ -145,7 +145,8 @@
     "closeImages": "Закрити зображення",
     "noMoreShorts": "Більше немає Shorts",
     "noShortsFound": "Shorts не знайдено",
-    "newMembersHint": "Щойно приєдналися — привітайтеся"
+    "newMembersHint": "Щойно приєдналися — привітайтеся",
+    "mostViewedThisMonth": "Найпопулярніше цього місяця"
   },
   "explore": {
     "all": "Усі",

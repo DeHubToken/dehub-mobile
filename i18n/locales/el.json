@@ -145,7 +145,8 @@
     "closeImages": "Κλείσιμο εικόνων",
     "noMoreShorts": "Δεν υπάρχουν άλλα shorts",
     "noShortsFound": "Δεν βρέθηκαν shorts",
-    "newMembersHint": "Μόλις εγγραφήκατε — πείτε γεια"
+    "newMembersHint": "Μόλις εγγραφήκατε — πείτε γεια",
+    "mostViewedThisMonth": "Τα πιο δημοφιλή αυτόν τον μήνα"
   },
   "explore": {
     "all": "Όλα",

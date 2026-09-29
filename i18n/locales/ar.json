@@ -145,7 +145,8 @@
     "closeImages": "إغلاق الصور",
     "noMoreShorts": "لا مزيد من الفيديوهات القصيرة",
     "noShortsFound": "لم يتم العثور على فيديوهات قصيرة",
-    "newMembersHint": "انضممت للتو — قل مرحباً"
+    "newMembersHint": "انضممت للتو — قل مرحباً",
+    "mostViewedThisMonth": "الأكثر مشاهدة هذا الشهر"
   },
   "explore": {
     "all": "الكل",

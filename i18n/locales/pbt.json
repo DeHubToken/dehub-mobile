@@ -145,7 +145,8 @@
     "closeImages": "عکسونه بند کړئ",
     "noMoreShorts": "نور شارټس نشته",
     "noShortsFound": "هیڅ شارټس ونه موندل شو",
-    "newMembersHint": "تازه ګډون کړی — سلام ووایه"
+    "newMembersHint": "تازه ګډون کړی — سلام ووایه",
+    "mostViewedThisMonth": "دا میاشت ډیر لیدل شوي"
   },
   "explore": {
     "all": "ټول",

@@ -145,7 +145,8 @@
     "noMoreShorts": "আর শর্টস না",
     "noShortsFound": "কোনো শর্টস পাওয়া যায়নি",
     "newMembersHint": "নতুন জয়েন করলাম — হ্যালো বলুন",
-    "allCaughtUp": "আপনি সব দেখে ফেলেছেন"
+    "allCaughtUp": "আপনি সব দেখে ফেলেছেন",
+    "mostViewedThisMonth": "ই মাসে সবচেয়ে বেশি দেখা"
   },
   "explore": {
     "all": "সব",

@@ -842,6 +842,7 @@ export default function HomeScreen() {
         feedRef={feedRefs.current[feedType]}
         active={isPlaybackActive}
         params={feedListParamsByType[feedType]}
+        showShortsCarousel={feedType === "all"}
         pageSize={20}
         headerInset={headerHeight}
         headerTranslateY={headerTranslateY}

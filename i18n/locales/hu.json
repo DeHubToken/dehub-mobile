@@ -145,7 +145,8 @@
     "closeImages": "Képek bezárása",
     "noMoreShorts": "Nincsenek több rövid videók",
     "noShortsFound": "Nem található rövid videó",
-    "newMembersHint": "Most csatlakoztál – köszönj el"
+    "newMembersHint": "Most csatlakoztál – köszönj el",
+    "mostViewedThisMonth": "A hónap legnézettebbjei"
   },
   "explore": {
     "all": "Összes",

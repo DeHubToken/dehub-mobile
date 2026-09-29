@@ -65,6 +65,7 @@ import { useLiveStreams } from "../../hooks/useLiveStreams";
 import { TAB_BAR_CONTENT_INSET } from "../../navigation/tabBarLayout";
 import { tabPressIntentOf } from "../../navigation/tabPressIntent";
 import SuggestedAccountsSection from "./SuggestedAccountsSection";
+import ShortsCarousel from "./ShortsCarousel";
 import { useInfiniteQuery, useQuery, useQueryClient } from "@tanstack/react-query";
 import { getNFT } from "../../services/nft.service";
 import { useBoostSlot } from "../../hooks/useSuperpowers";
@@ -100,6 +101,8 @@ interface InfiniteVideoFeedProps {
   onScrollBegin?: () => void;
   onCategorySelect?: (category: string) => void;
   feedRef?: React.MutableRefObject<InfiniteVideoFeedHandle | null>;
+  /** Home "all" tab only: the most-viewed-this-month shorts rail. */
+  showShortsCarousel?: boolean;
   /**
    * Show the SuperPowers boost slot at the top of this list.
    *
@@ -192,6 +195,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   onScrollBegin,
   onCategorySelect,
   feedRef,
+  showShortsCarousel = false,
   showBoostSlot = false,
 }) => {
   interface FeedItem extends UnifiedFeedItem {
@@ -853,6 +857,8 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
 
   // Index after which to inject the suggested-accounts carousel (after the 5th post)
   const SUGGEST_AFTER_INDEX = 4;
+  // Shorts rail after the 2nd post, near the top like web.
+  const SHORTS_AFTER_INDEX = 1;
 
   const renderItem = useCallback<ListRenderItem<FeedItem>>(
     ({ item, index }) => {
@@ -865,6 +871,15 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
       );
 
       // Inject suggested accounts section after the 3rd feed item
+      if (showShortsCarousel && index === SHORTS_AFTER_INDEX) {
+        return (
+          <>
+            {card}
+            <ShortsCarousel />
+          </>
+        );
+      }
+
       if (index === SUGGEST_AFTER_INDEX) {
         return (
           <>
@@ -878,7 +893,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     },
     // Stable across a tab switch on purpose: `active` and focus reach the rows
     // through the store (see setLive above), never through this callback.
-    [visibilityStore, onCategorySelect],
+    [visibilityStore, onCategorySelect, showShortsCarousel],
   );
 
   const keyExtractor = useCallback((item: FeedItem) => item.__listKey, []);
