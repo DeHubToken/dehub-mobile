@@ -491,6 +491,12 @@ export interface Comment {
    * above the tipped ones.
    */
   isPinned?: boolean;
+  /**
+   * A top-level comment the post's creator has replied to somewhere in its
+   * thread. The API sorts these under the pinned, anchored and tipped comments
+   * and puts the creator's reply on the same page. Absent otherwise.
+   */
+  creatorReplied?: boolean;
   notFound?: boolean;
   user?: CommentUser;
 }

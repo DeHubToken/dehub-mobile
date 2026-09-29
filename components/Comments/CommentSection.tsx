@@ -66,6 +66,7 @@ import useKeyboard from "../../hooks/useKeyboard";
 import { useMentions } from "../../hooks/useMentions";
 import { useAssistantPendingReply } from "../../hooks/useAssistantPendingReply";
 import { mentionsAssistant } from "../../libs/assistant";
+import { collapsedReplyIds } from "../../libs/comment-preview";
 import { useCommentTipTotals } from "../../hooks/useCommentTipTotals";
 import { useBookBoost, useSuperpowers } from "../../hooks/useSuperpowers";
 import { getNFT } from "../../services/nft.service";
@@ -1219,8 +1220,8 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
    * its first comment and its second, so the whole list read as one argument.
    * Expanding is per root thread and sticks until the reader collapses it.
    */
+  const threadCreator = threadAuthor || postCreator?.address;
   const { visibleComments, threadMeta } = useMemo(() => {
-    const shownPerRoot = new Map<number, number>();
     const totalPerRoot = new Map<number, number>();
 
     flatComments.forEach((c) => {
@@ -1229,16 +1230,22 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
       totalPerRoot.set(root, (totalPerRoot.get(root) ?? 0) + 1);
     });
 
+    // The creator's answer, when there is one, is the reply a collapsed thread
+    // shows — see collapsedReplyIds.
+    const preview = collapsedReplyIds(
+      flatComments,
+      (c) => (c.isReply ? String(c.rootParentId) : undefined),
+      threadCreator,
+      REPLIES_SHOWN_COLLAPSED,
+    );
+
     const visible = flatComments.filter((c) => {
       if (!c.isReply) return true;
       const root = Number(c.rootParentId);
       if (expandedCommentIds.has(root)) return true;
       // Arriving from a notification means the reply itself is the destination.
       if (highlightedId != null && Number(c.id) === highlightedId) return true;
-      const shown = shownPerRoot.get(root) ?? 0;
-      if (shown >= REPLIES_SHOWN_COLLAPSED) return false;
-      shownPerRoot.set(root, shown + 1);
-      return true;
+      return preview.get(String(root))?.has(String(c.id)) ?? false;
     });
 
     type Meta = {
@@ -1259,7 +1266,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
       const total = totalPerRoot.get(root) ?? 0;
       const shown = expandedCommentIds.has(root)
         ? total
-        : Math.min(total, REPLIES_SHOWN_COLLAPSED);
+        : Math.min(total, preview.get(String(root))?.size ?? 0);
       const hidden = total - shown;
       // The toggle belongs at the end of what is on screen, so it reads as the
       // continuation of the thread rather than as a note on its first line.
@@ -1277,7 +1284,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
     });
 
     return { visibleComments: visible, threadMeta: meta };
-  }, [flatComments, expandedCommentIds, highlightedId]);
+  }, [flatComments, expandedCommentIds, highlightedId, threadCreator]);
 
   const renderComment = useCallback(({ item }: { item: FlatComment }) => {
     const isHighlighted = highlightedId != null && Number(item.id) === highlightedId;
