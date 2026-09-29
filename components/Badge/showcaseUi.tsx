@@ -217,6 +217,8 @@ export const ui = StyleSheet.create({
   tileValue: { flexShrink: 1, color: "#fff", fontSize: 14, lineHeight: 18, fontWeight: "700", fontVariant: ["tabular-nums"] },
   up: { color: "#34d399", fontSize: 9, fontWeight: "700" },
   actions: { flexDirection: "row", gap: GAP, marginTop: GAP },
+  /** The same row as the shell's footer, which already spaces it from the dock. */
+  footerActions: { flexDirection: "row", gap: GAP },
   button: { flex: 1, height: 40, borderRadius: RADIUS, paddingHorizontal: PAD, flexDirection: "row", gap: 6 },
   chrome: { overflow: "hidden", alignItems: "center", justifyContent: "center", borderWidth: 1 },
   lipTop: { position: "absolute", top: 0, left: 0, right: 0, height: 1 },
