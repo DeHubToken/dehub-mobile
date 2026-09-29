@@ -7060,6 +7060,12 @@
       "noCurve": "Goophuu isaa bocuuf mataa taphataa kiifireemii irra kaa’i.",
       "applyAll": "Goophuu kana kiifireemii hunda irratti fayyadami",
       "timelineKey": "Kiifireemii. Sochoosuuf harkisi, haquuf si’a lama tuqi.",
+      "record": "Galmeessi",
+      "recordHint": "Galmeessuu: gabatee mataa taphataa jala jiru sochoosuun, guddina jijjiiruun, naannessuun ykn dhabamsiisuun achitti kiifireemii dabala.",
+      "recording": "Sochiin galmaa’aa jira",
+      "lanes": "Kiifireemota",
+      "scrub": "Jijjiiruuf gara bitaa ykn mirgaatti harkisi.",
+      "segment": "{{from}} → {{to}}",
       "ease": {
         "linear": "Sarara",
         "ease": "Laafaa",

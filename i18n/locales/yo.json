@@ -7011,6 +7011,12 @@
       "noCurve": "Gbé orí ìṣeré sórí fírẹ́mù pàtàkì kan láti ṣe ìtẹ̀ rẹ̀.",
       "applyAll": "Lo ìtẹ̀ yìí lórí gbogbo fírẹ́mù pàtàkì",
       "timelineKey": "Fírẹ́mù pàtàkì. Fà á láti gbé e, tẹ̀ ẹ́ lẹ́ẹ̀mejì láti pa á rẹ́.",
+      "record": "Gbà sílẹ̀",
+      "recordHint": "Ìgbàsílẹ̀: gbígbé, yíyí ìwọ̀n padà, yíyí tàbí dídín ìpele kan kù ní abẹ́ orí ìṣeré ń ṣàfikún fírẹ́mù pàtàkì síbẹ̀.",
+      "recording": "Ń gba ìṣípòpadà sílẹ̀",
+      "lanes": "Àwọn fírẹ́mù pàtàkì",
+      "scrub": "Fà sí òsì tàbí ọ̀tún láti yí i padà.",
+      "segment": "{{from}} → {{to}}",
       "ease": {
         "linear": "Tààrà",
         "ease": "Jẹ́jẹ́",

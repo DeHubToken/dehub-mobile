@@ -7010,6 +7010,12 @@
       "noCurve": "Siirrä toistopää avainruudun kohdalle muokataksesi sen käyrää.",
       "applyAll": "Käytä tätä käyrää kaikissa avainruuduissa",
       "timelineKey": "Avainruutu. Siirrä vetämällä, poista kaksoisnapautuksella.",
+      "record": "Tallenna",
+      "recordHint": "Tallennus: tason siirtäminen, skaalaus, kiertäminen tai häivytys toistopään kohdalla lisää sinne avainruutuja.",
+      "recording": "Liikettä tallennetaan",
+      "lanes": "Avainruudut",
+      "scrub": "Vedä vasemmalle tai oikealle muuttaaksesi.",
+      "segment": "{{from}} → {{to}}",
       "ease": {
         "linear": "Lineaarinen",
         "ease": "Pehmeä",

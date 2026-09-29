@@ -274,8 +274,9 @@ export function FitPanel({ clip, commit }: PanelProps<MediaClip>) {
 // ── any layer ──
 
 // Keyed layers show and edit their values at the playhead (`time`, timeline seconds).
+// With `record` on, an edit starts the property animating (see placementPatchAt).
 
-export function OpacityPanel({ clip, live, settle, time }: PanelProps<LayerClip> & { time: number }) {
+export function OpacityPanel({ clip, live, settle, time, record }: PanelProps<LayerClip> & { time: number; record?: boolean }) {
   const { t } = useTranslation();
   const tr = getTransform(resolveClipAt(clip, time));
   const opacity = tr.opacity ?? 1;
@@ -286,13 +287,13 @@ export function OpacityPanel({ clip, live, settle, time }: PanelProps<LayerClip>
       min={0}
       max={1}
       step={0.01}
-      onLive={(v) => live(placementPatchAt(clip, { opacity: v }, time))}
+      onLive={(v) => live(placementPatchAt(clip, { opacity: v }, time, { record }))}
       onDone={settle}
     />
   );
 }
 
-export function PositionPanel({ clip, live, commit, settle, time }: PanelProps<LayerClip> & { time: number }) {
+export function PositionPanel({ clip, live, commit, settle, time, record }: PanelProps<LayerClip> & { time: number; record?: boolean }) {
   const { t } = useTranslation();
   const tr = getTransform(resolveClipAt(clip, time));
   // Reset puts the layer back for good: the motion it resets goes too.
@@ -309,7 +310,7 @@ export function PositionPanel({ clip, live, commit, settle, time }: PanelProps<L
       <ChipRow>
         <Chip icon="FlipHorizontal2" label={t("editor.menu.flipH")} active={!!tr.flipH} onPress={() => commit(placementPatch(clip, { flipH: !tr.flipH }))} />
         <Chip icon="FlipVertical2" label={t("editor.menu.flipV")} active={!!tr.flipV} onPress={() => commit(placementPatch(clip, { flipV: !tr.flipV }))} />
-        <Chip icon="Crosshair" label={t("editor.menu.centre")} onPress={() => commit(placementPatchAt(clip, { x: 0.5, y: 0.5 }, time))} />
+        <Chip icon="Crosshair" label={t("editor.menu.centre")} onPress={() => commit(placementPatchAt(clip, { x: 0.5, y: 0.5 }, time, { record }))} />
         <Chip icon="RotateCcw" label={t("editor.layer.resetPosition")} onPress={reset} />
       </ChipRow>
       <View className="mt-2">
@@ -319,7 +320,7 @@ export function PositionPanel({ clip, live, commit, settle, time }: PanelProps<L
           min={-180}
           max={180}
           step={1}
-          onLive={(v) => live(placementPatchAt(clip, { rotation: v }, time))}
+          onLive={(v) => live(placementPatchAt(clip, { rotation: v }, time, { record }))}
           onDone={settle}
         />
       </View>

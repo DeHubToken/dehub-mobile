@@ -7059,6 +7059,12 @@
       "noCurve": "Letakkan playhead di sebuah keyframe untuk membentuk kurvanya.",
       "applyAll": "Gunakan kurva ini di semua keyframe",
       "timelineKey": "Keyframe. Seret untuk memindahkan, ketuk dua kali untuk menghapus.",
+      "record": "Rekam",
+      "recordHint": "Merekam: memindahkan, mengubah ukuran, memutar, atau memudarkan lapisan di bawah playhead menambahkan keyframe di sana.",
+      "recording": "Merekam gerakan",
+      "lanes": "Keyframe",
+      "scrub": "Seret ke kiri atau kanan untuk mengubah.",
+      "segment": "{{from}} → {{to}}",
       "ease": {
         "linear": "Linear",
         "ease": "Halus",

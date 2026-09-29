@@ -220,6 +220,30 @@ export function retimeKeys(clip: Clip, from: number, to: number): ClipKeyframes 
   return next;
 }
 
+/** Move one property's key at local time `from` to `to`. A key already at `to` is replaced. */
+export function retimeKey(clip: Clip, prop: KeyframeProp, from: number, to: number): ClipKeyframes | undefined {
+  const keys = keysOf(clip, prop);
+  const moving = keys.find((k) => Math.abs(k.t - from) < KEY_EPSILON);
+  if (!moving) return clip.keyframes;
+  const target = Math.max(0, to);
+  const rest = keys.filter((k) => k !== moving && Math.abs(k.t - target) >= KEY_EPSILON);
+  return withProp(clip, prop, [...rest, { ...moving, t: target }]);
+}
+
+/**
+ * "Add keyframe" at timeline time t, holding current values: on the
+ * properties already animated, or on every property when none is yet.
+ */
+export function keyAllAt(clip: Clip, t: number): ClipKeyframes | undefined {
+  const local = Math.max(0, t - clip.start);
+  const animated = keyframeProps(clip).filter((p) => isAnimated(clip, p));
+  let next: Clip = clip;
+  for (const p of animated.length ? animated : keyframeProps(clip)) {
+    next = { ...next, keyframes: setKey(next, p, local, propAt(clip, p, t)) } as Clip;
+  }
+  return next.keyframes;
+}
+
 /** Remove every key at local time t, on all properties. */
 export function removeKeysAt(clip: Clip, local: number): ClipKeyframes | undefined {
   if (!clip.keyframes) return undefined;

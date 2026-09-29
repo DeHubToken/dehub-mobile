@@ -6989,6 +6989,12 @@
       "noCurve": "Fɔli kunkolo bila kilé bisigi kan walasa ka a kuru labɛn.",
       "applyAll": "Nin kuru kɛ kilé bisigiw bɛɛ la",
       "timelineKey": "Kilé bisigi. A sama walasa ka a lawuli, a digi siɲɛ fila walasa ka a jɔsi.",
+      "record": "A sɛbɛn",
+      "recordHint": "A bɛ sɛbɛnni kɛ: ni i ye jɛ lawuli, a bonya yɛlɛma, a munumunu walima a jɛya dɔgɔya fɔli kunkolo jukɔrɔ, kilé bisigiw bɛ fara yen.",
+      "recording": "Taamaniya bɛ sɛbɛn",
+      "lanes": "Kilé bisigiw",
+      "scrub": "A sama numan fɛ walima kinin fɛ ka a yɛlɛma.",
+      "segment": "{{from}} → {{to}}",
       "ease": {
         "linear": "Tilennen",
         "ease": "Nɔgɔman",

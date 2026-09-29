@@ -7010,6 +7010,12 @@
       "noCurve": "Postavi glavu za reprodukciju na ključni kadar da oblikuješ njegovu krivulju.",
       "applyAll": "Koristi ovu krivulju na svim ključnim kadrovima",
       "timelineKey": "Ključni kadar. Povuci za pomicanje, dvostruki dodir za brisanje.",
+      "record": "Snimaj",
+      "recordHint": "Snimanje: pomicanje, promjena veličine, okretanje ili blijeđenje sloja ispod glave za reprodukciju tamo dodaje ključne kadrove.",
+      "recording": "Snima se pokret",
+      "lanes": "Ključni kadrovi",
+      "scrub": "Povuci lijevo ili desno za promjenu.",
+      "segment": "{{from}} → {{to}}",
       "ease": {
         "linear": "Linearno",
         "ease": "Glatko",

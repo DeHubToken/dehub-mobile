@@ -7010,6 +7010,12 @@
       "noCurve": "Perkelkite atkūrimo žymeklį ant pagrindinio kadro, kad keistumėte jo kreivę.",
       "applyAll": "Naudoti šią kreivę visiems pagrindiniams kadrams",
       "timelineKey": "Pagrindinis kadras. Tempkite, kad perkeltumėte, dukart bakstelėkite, kad ištrintumėte.",
+      "record": "Įrašyti",
+      "recordHint": "Įrašymas: perkeliant, keičiant dydį, sukant ar blukinant sluoksnį ties atkūrimo žymekliu ten pridedami pagrindiniai kadrai.",
+      "recording": "Įrašomas judėjimas",
+      "lanes": "Pagrindiniai kadrai",
+      "scrub": "Tempkite į kairę ar dešinę, kad pakeistumėte.",
+      "segment": "{{from}} → {{to}}",
       "ease": {
         "linear": "Tiesinė",
         "ease": "Švelni",

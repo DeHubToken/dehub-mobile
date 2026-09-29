@@ -7063,6 +7063,12 @@
       "noCurve": "Posicione o cursor de reprodução sobre um quadro-chave para ajustar a curva.",
       "applyAll": "Usar esta curva em todos os quadros-chave",
       "timelineKey": "Quadro-chave. Arraste para mover, toque duas vezes para excluir.",
+      "record": "Gravar",
+      "recordHint": "Gravando: mover, redimensionar, girar ou esmaecer uma camada sob o cursor de reprodução adiciona quadros-chave ali.",
+      "recording": "Gravando movimento",
+      "lanes": "Quadros-chave",
+      "scrub": "Arraste para a esquerda ou direita para alterar.",
+      "segment": "{{from}} → {{to}}",
       "ease": {
         "linear": "Linear",
         "ease": "Suave",

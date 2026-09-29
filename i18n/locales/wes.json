@@ -6963,6 +6963,12 @@
       "noCurve": "Put di playhead fo top one keyframe fo shape yi curve.",
       "applyAll": "Use dis curve fo all di keyframe dem",
       "timelineKey": "Keyframe. Drag am fo move am, tap am two taim fo komot am.",
+      "record": "Record",
+      "recordHint": "Recording: moving, resizing, rotating or fading a layer with the playhead inside it adds keyframes there.",
+      "recording": "Recording motion",
+      "lanes": "Keyframes",
+      "scrub": "Drag left or right to change.",
+      "segment": "{{from}} → {{to}}",
       "ease": {
         "linear": "Straight",
         "ease": "Smooth",

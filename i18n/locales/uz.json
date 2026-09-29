@@ -7065,6 +7065,12 @@
       "noCurve": "Egri chizig‘ini sozlash uchun ijro chizig‘ini kalit kadr ustiga qo‘ying.",
       "applyAll": "Bu egri chiziqni barcha kalit kadrlarda ishlatish",
       "timelineKey": "Kalit kadr. Surish uchun torting, o‘chirish uchun ikki marta bosing.",
+      "record": "Yozib olish",
+      "recordHint": "Yozib olish: ijro chizig‘i ostidagi qatlamni surish, o‘lchamini o‘zgartirish, aylantirish yoki xiralashtirish u yerga kalit kadr qo‘shadi.",
+      "recording": "Harakat yozib olinmoqda",
+      "lanes": "Kalit kadrlar",
+      "scrub": "O‘zgartirish uchun chapga yoki o‘ngga torting.",
+      "segment": "{{from}} → {{to}}",
       "ease": {
         "linear": "Chiziqli",
         "ease": "Yumshoq",

@@ -7013,6 +7013,12 @@
       "noCurve": "Umístěte přehrávací hlavu na klíčový snímek a upravte jeho křivku.",
       "applyAll": "Použít tuto křivku u všech klíčových snímků",
       "timelineKey": "Klíčový snímek. Tažením přesunete, dvojitým klepnutím smažete.",
+      "record": "Nahrávat",
+      "recordHint": "Nahrávání: posunutí, změna velikosti, otočení nebo zeslabení vrstvy pod přehrávací hlavou tam přidá klíčové snímky.",
+      "recording": "Nahrává se pohyb",
+      "lanes": "Klíčové snímky",
+      "scrub": "Táhněte doleva nebo doprava pro změnu.",
+      "segment": "{{from}} → {{to}}",
       "ease": {
         "linear": "Lineární",
         "ease": "Plynulá",
