@@ -450,6 +450,7 @@ export default function PostInfoScreen() {
           initialContentRating={post.contentRating}
           initialForKids={post.forKids}
           initialShopLinks={post.shopLinks}
+          alwaysShowTitle={post.postType === "feed-audio"}
           onSuccess={(edited) => {
             queryClient.setQueryData(["post-info", tokenId], (old: any) => (old ? { ...old, ...edited } : old));
           }}

@@ -52,6 +52,8 @@ interface EditPostModalProps {
   initialForKids?: boolean;
   /** Offer the "replace the file" row — creator, video post, not live. */
   canReplaceVideo?: boolean;
+  /** Offer the title even when the post has none — audio tracks can be named later. */
+  alwaysShowTitle?: boolean;
   onSuccess?: (data: {
     name?: string;
     description?: string;
@@ -78,6 +80,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
   initialContentRating,
   initialForKids,
   canReplaceVideo = false,
+  alwaysShowTitle = false,
   onSuccess,
 }) => {
   const { t } = useTranslation();
@@ -419,8 +422,8 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
 
         {visible && tokenId != null && <EditPostImages tokenId={tokenId} disabled={saving || replacing} onBusyChange={setReplacing} />}
         {visible && tokenId != null && canReplaceVideo && <EditPostCover tokenId={tokenId} disabled={saving || replacing} onBusyChange={setReplacing} />}
-        {/* Title — only shown if the post has a title */}
-        {initialTitle ? (
+        {/* Title — only shown if the post has a title, or is a track that can be named */}
+        {initialTitle || alwaysShowTitle ? (
           <>
             <Text className="text-theme-neutrals-300 text-xs font-semibold uppercase tracking-wider mb-1.5">
               {t("work.fields.title")}
