@@ -8650,5 +8650,11 @@
     "progressive": "진보주의자",
     "nationalist": "민족주의자",
     "communist": "공산주의자"
+  },
+  "updateGate": {
+    "title": "DeHub 업데이트",
+    "recommendedBody": "중요한 보안 수정이 포함된 새 버전의 DeHub가 있습니다. 계정을 안전하게 지키려면 업데이트하세요.",
+    "requiredBody": "이 버전의 DeHub는 더 이상 지원되지 않습니다. 계정을 계속 사용하려면 업데이트하세요.",
+    "update": "지금 업데이트"
   }
 }

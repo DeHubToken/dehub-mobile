@@ -8646,5 +8646,11 @@
     "progressive": "Progressiw",
     "nationalist": "Milletçi",
     "communist": "Kommunist"
+  },
+  "updateGate": {
+    "title": "DeHub-y täzeläň",
+    "recommendedBody": "DeHub-yň möhüm howpsuzlyk düzedişleri bolan täze wersiýasy elýeterli. Hasabyňyz goragly galar ýaly täzeläň.",
+    "requiredBody": "DeHub-yň bu wersiýasy indi goldanylmaýar. Hasabyňyzy ulanmagy dowam etmek üçin täzeläň.",
+    "update": "Häzir täzele"
   }
 }

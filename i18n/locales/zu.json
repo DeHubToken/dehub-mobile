@@ -8676,5 +8676,11 @@
     "progressive": "Oqhubekela phambili",
     "nationalist": "Owobuzwe",
     "communist": "UmKhomanisi"
+  },
+  "updateGate": {
+    "title": "Buyekeza i-DeHub",
+    "recommendedBody": "Kukhona inguqulo entsha ye-DeHub enokulungiswa okubalulekile kwezokuphepha. Buyekeza ukuze i-akhawunti yakho ihlale ivikelekile.",
+    "requiredBody": "Le nguqulo ye-DeHub ayisasekelwa. Buyekeza ukuze uqhubeke usebenzisa i-akhawunti yakho.",
+    "update": "Buyekeza manje"
   }
 }

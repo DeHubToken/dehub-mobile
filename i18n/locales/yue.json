@@ -8646,5 +8646,11 @@
     "progressive": "進步派",
     "nationalist": "民族主義者",
     "communist": "共產主義者"
+  },
+  "updateGate": {
+    "title": "更新 DeHub",
+    "recommendedBody": "DeHub 有新版本，包含重要嘅安全修正。更新咗先可以保護你嘅帳戶。",
+    "requiredBody": "呢個版本嘅 DeHub 已經唔再支援。更新咗先可以繼續用你嘅帳戶。",
+    "update": "即刻更新"
   }
 }

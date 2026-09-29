@@ -8646,5 +8646,11 @@
     "progressive": "Proqressiv",
     "nationalist": "Millətçi",
     "communist": "Kommunist"
+  },
+  "updateGate": {
+    "title": "DeHub-u yeniləyin",
+    "recommendedBody": "DeHub-un vacib təhlükəsizlik düzəlişləri olan daha yeni versiyası mövcuddur. Hesabınızı qorumaq üçün yeniləyin.",
+    "requiredBody": "DeHub-un bu versiyası artıq dəstəklənmir. Hesabınızdan istifadəyə davam etmək üçün yeniləyin.",
+    "update": "İndi yenilə"
   }
 }

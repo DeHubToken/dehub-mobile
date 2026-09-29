@@ -8649,5 +8649,11 @@
     "progressive": "Progresszív",
     "nationalist": "Nacionalista",
     "communist": "Kommunista"
+  },
+  "updateGate": {
+    "title": "Frissítse a DeHubot",
+    "recommendedBody": "Elérhető a DeHub újabb, fontos biztonsági javításokat tartalmazó verziója. Frissítsen, hogy fiókja védve maradjon.",
+    "requiredBody": "A DeHub ezen verziója már nem támogatott. Frissítsen, hogy tovább használhassa fiókját.",
+    "update": "Frissítés most"
   }
 }

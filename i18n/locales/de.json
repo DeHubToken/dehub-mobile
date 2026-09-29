@@ -8646,5 +8646,11 @@
     "progressive": "Progressiv",
     "nationalist": "Nationalist",
     "communist": "Kommunist"
+  },
+  "updateGate": {
+    "title": "DeHub aktualisieren",
+    "recommendedBody": "Eine neuere Version von DeHub mit wichtigen Sicherheitskorrekturen ist verfügbar. Aktualisiere, damit dein Konto geschützt bleibt.",
+    "requiredBody": "Diese Version von DeHub wird nicht mehr unterstützt. Aktualisiere, um dein Konto weiter zu nutzen.",
+    "update": "Jetzt aktualisieren"
   }
 }

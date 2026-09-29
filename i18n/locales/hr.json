@@ -8646,5 +8646,11 @@
     "progressive": "Progresivac",
     "nationalist": "Nacionalist",
     "communist": "Komunist"
+  },
+  "updateGate": {
+    "title": "Ažurirajte DeHub",
+    "recommendedBody": "Dostupna je novija verzija DeHuba s važnim sigurnosnim popravcima. Ažurirajte kako bi vaš račun ostao zaštićen.",
+    "requiredBody": "Ova verzija DeHuba više nije podržana. Ažurirajte kako biste nastavili koristiti svoj račun.",
+    "update": "Ažuriraj sada"
   }
 }

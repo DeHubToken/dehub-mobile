@@ -8646,5 +8646,11 @@
     "progressive": "Horumar-doon",
     "nationalist": "Waddani",
     "communist": "Shuuci"
+  },
+  "updateGate": {
+    "title": "Cusboonaysii DeHub",
+    "recommendedBody": "Nooc cusub oo DeHub ah ayaa diyaar ah oo leh hagaajinno amni oo muhiim ah. Cusboonaysii si akoonkaagu u ahaado mid la ilaaliyo.",
+    "requiredBody": "Noocan DeHub lama taageero mar dambe. Cusboonaysii si aad u sii isticmaasho akoonkaaga.",
+    "update": "Hadda cusboonaysii"
   }
 }

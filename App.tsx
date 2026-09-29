@@ -65,6 +65,7 @@ import { applyOtaUpdateIfReady, checkForOtaUpdate } from "./libs/otaUpdates";
 import { createLogger } from "./libs/logger";
 import { forceFlushBatchViews } from "./services/view.service";
 import PermissionModalProvider from "./components/ui/PermissionModal";
+import UpdateGate from "./components/UpdateGate";
 import DimLightsOverlay from "./components/ui/DimLightsOverlay";
 import { useUploadProcessor } from "./services/upload.processor";
 import UploadProgressPill from "./components/Upload/UploadProgressPill";
@@ -225,6 +226,9 @@ export default function App() {
             <BadgeLadderSync />
             <ThemedToaster />
             <PermissionModalProvider />
+            {/* Asks builds that no longer receive updates to get one from the
+                store; the policy is a database row, see UpdateGate. */}
+            <UpdateGate />
             {/* Only when createAppKit actually succeeded — see reown.config.
                 Rendering AppKit against a configuration that never initialised
                 is what a missing REOWN_PROJECT_ID now degrades to, instead of

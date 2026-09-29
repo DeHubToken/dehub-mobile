@@ -8636,5 +8636,11 @@
     "progressive": "Progresif",
     "nationalist": "Nasionalis",
     "communist": "Komunis"
+  },
+  "updateGate": {
+    "title": "Anyari DeHub",
+    "recommendedBody": "Ana versi DeHub sing luwih anyar kanthi ndandani keamanan sing penting. Anyari supaya akun sampeyan tetep aman.",
+    "requiredBody": "Versi DeHub iki wis ora didhukung maneh. Anyari supaya bisa terus nganggo akun sampeyan.",
+    "update": "Anyari saiki"
   }
 }

@@ -8629,5 +8629,11 @@
     "progressive": "Mai ci gaba",
     "nationalist": "Mai kishin ƙasa",
     "communist": "Ɗan kwaminisanci"
+  },
+  "updateGate": {
+    "title": "Sabunta DeHub",
+    "recommendedBody": "Akwai sabuwar sigar DeHub mai muhimman gyare-gyaren tsaro. Sabunta don asusunka ya kasance amintacce.",
+    "requiredBody": "Ba a ƙara tallafa wa wannan sigar DeHub ba. Sabunta don ci gaba da amfani da asusunka.",
+    "update": "Sabunta yanzu"
   }
 }

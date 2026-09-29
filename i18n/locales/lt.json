@@ -8646,5 +8646,11 @@
     "progressive": "Progresyvus",
     "nationalist": "Nacionalistas",
     "communist": "Komunistas"
+  },
+  "updateGate": {
+    "title": "Atnaujinkite DeHub",
+    "recommendedBody": "Yra naujesnė DeHub versija su svarbiais saugumo pataisymais. Atnaujinkite, kad jūsų paskyra liktų apsaugota.",
+    "requiredBody": "Ši DeHub versija nebepalaikoma. Atnaujinkite, kad galėtumėte toliau naudotis paskyra.",
+    "update": "Atnaujinti dabar"
   }
 }
