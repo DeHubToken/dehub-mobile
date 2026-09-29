@@ -7,6 +7,7 @@ import { useNavigation } from "@react-navigation/native";
 import Icon from "../ui/Icon";
 import FeedCard from "../Home/FeedCard";
 import type { UnifiedFeedItem } from "../../services/feed.unified.service";
+import { useFeedCardVisibility } from "../../hooks/useFeedCardVisibility";
 import ProfileEmptyState from "./ProfileEmptyState";
 import { getImageUrl } from "../../libs/misc";
 import { ScreenNames } from "../../navigation/ScreenNames";
@@ -104,6 +105,18 @@ const PlaylistsRoute: React.FC<PlaylistsRouteProps> = ({ address, isOwnProfile =
     setLoadingMore(false);
   }, [open, loadingMore, itemsLoading, fetchItems]);
 
+  const itemKeyExtractor = useCallback(
+    (item: UnifiedFeedItem, idx: number) => `${item.tokenId ?? idx}`,
+    [],
+  );
+  const {
+    viewabilityConfig,
+    onViewableItemsChanged,
+    isItemVisible,
+    isItemAutoplayActive,
+    visibilityExtraData,
+  } = useFeedCardVisibility(itemKeyExtractor as (item: unknown, index: number) => string);
+
   const renderPlaylistCard = ({ item }: { item: PublicPlaylist }) => {
     const cover = item.coverImageUrl ? getImageUrl(item.coverImageUrl, COVER_WIDTH) : "";
     return (
@@ -178,14 +191,31 @@ const PlaylistsRoute: React.FC<PlaylistsRouteProps> = ({ address, isOwnProfile =
 
     return (
       <Animated.FlatList
+        // Keyed so closing the playlist mounts the grid below as a new list.
+        // Reused in place, FlatList throws on the numColumns and
+        // onViewableItemsChanged props changing under it.
+        key={`playlist-${open.id}`}
         ref={listRef}
         data={items}
-        keyExtractor={(item, idx) => `${item.tokenId ?? idx}`}
-        renderItem={({ item }) => <FeedCard item={item} onBeforeNavigate={onBeforeNavigate} />}
+        keyExtractor={itemKeyExtractor}
+        renderItem={({ item, index }) => (
+          <FeedCard
+            item={item}
+            isVisible={isItemVisible(itemKeyExtractor(item, index))}
+            isAutoplayActive={isItemAutoplayActive(itemKeyExtractor(item, index))}
+            onBeforeNavigate={onBeforeNavigate}
+          />
+        )}
         ListHeaderComponent={header}
         contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 8, paddingBottom: 80 }}
+        windowSize={7}
+        maxToRenderPerBatch={4}
+        initialNumToRender={4}
         onScroll={onScroll}
         scrollEventThrottle={16}
+        viewabilityConfig={viewabilityConfig}
+        onViewableItemsChanged={onViewableItemsChanged}
+        extraData={visibilityExtraData}
         onEndReached={endRef.current ? undefined : handleLoadMore}
         onEndReachedThreshold={0.6}
         ListFooterComponent={

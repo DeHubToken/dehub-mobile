@@ -88,7 +88,7 @@ export default function PostDetailContinuation({ currentPostId }: PostDetailCont
                 <Text className="text-xs font-bold text-black">AD</Text>
               </View>
             </View>
-            <FeedCard item={houseAd} />
+            <FeedCard item={houseAd} isAutoplayActive={false} />
           </View>
         ) : servedAdLoading || houseAdLoading ? (
           <View
@@ -104,10 +104,13 @@ export default function PostDetailContinuation({ currentPostId }: PostDetailCont
         {t("ads.morePosts")}
       </Text>
 
+      {/* These render in the detail list's footer with no viewability tracking,
+          so none of them may autoplay: a video here would start below the fold
+          and take playback focus from the post being viewed. Tap to play. */}
       {posts.map((post) => (
         // Minimal: FeedCards draw their own hairline, so no vertical gap between them.
         <View key={String(post.tokenId ?? post.id)} className={isMinimal ? "px-4" : "px-4 py-2"}>
-          <FeedCard item={post} />
+          <FeedCard item={post} isAutoplayActive={false} />
         </View>
       ))}
 

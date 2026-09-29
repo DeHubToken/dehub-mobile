@@ -10,14 +10,24 @@ import { DeHubLoader } from "../DeHubLoader";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../Feed/DeHubRefreshControl";
 import { getQuotePosts } from "../../services/repost.service";
 import FeedCard from "../Home/FeedCard";
+import { useFeedCardVisibility } from "../../hooks/useFeedCardVisibility";
 
 const PAGE_LIMIT = 20;
 
 interface QuoteTabProps {
   tokenId: number | string;
+  /**
+   * The sheet is drawn inside a Shorts page rather than a Modal, so this list
+   * is nested in the Shorts pager FlatList. React Native then measures this
+   * list's viewport from the pager's offset, not its own scroll, so from the
+   * second Short on no card ever counts as on screen and a video quote could
+   * not even be tapped to play. Skip visibility tracking there: every card may
+   * hold a player, none autoplays over the Short, and a tap plays it.
+   */
+  nested?: boolean;
 }
 
-const QuoteTabComponent: React.FC<QuoteTabProps> = ({ tokenId }) => {
+const QuoteTabComponent: React.FC<QuoteTabProps> = ({ tokenId, nested = false }) => {
   const { t } = useTranslation();
   const [posts, setPosts] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
@@ -67,20 +77,33 @@ const QuoteTabComponent: React.FC<QuoteTabProps> = ({ tokenId }) => {
     }
   }, [loadingMore, hasMore, loading, page, fetchQuotes]);
 
-  const renderItem = useCallback(
-    ({ item }: { item: any }) => {
-      return (
-        <View style={{ paddingHorizontal: 16, marginBottom: 12 }}>
-          <FeedCard item={item} />
-        </View>
-      );
-    },
-    [],
-  );
-
   const keyExtractor = useCallback(
     (item: any) => String(item.tokenId || item.id || item._id),
     [],
+  );
+
+  const {
+    viewabilityConfig,
+    onViewableItemsChanged,
+    isItemVisible,
+    isItemAutoplayActive,
+    visibilityExtraData,
+  } = useFeedCardVisibility(keyExtractor);
+
+  const renderItem = useCallback(
+    ({ item }: { item: any }) => {
+      const key = keyExtractor(item);
+      return (
+        <View style={{ paddingHorizontal: 16, marginBottom: 12 }}>
+          <FeedCard
+            item={item}
+            isVisible={nested || isItemVisible(key)}
+            isAutoplayActive={!nested && isItemAutoplayActive(key)}
+          />
+        </View>
+      );
+    },
+    [nested, keyExtractor, isItemVisible, isItemAutoplayActive],
   );
 
   const footer = useMemo(() => {
@@ -108,6 +131,14 @@ const QuoteTabComponent: React.FC<QuoteTabProps> = ({ tokenId }) => {
       data={posts}
       renderItem={renderItem}
       keyExtractor={keyExtractor}
+      // Nested, the window is placed from the pager's offset too, so keep the
+      // default wide window there or rows further down render blank.
+      windowSize={nested ? undefined : 7}
+      maxToRenderPerBatch={nested ? undefined : 4}
+      initialNumToRender={nested ? undefined : 4}
+      viewabilityConfig={nested ? undefined : viewabilityConfig}
+      onViewableItemsChanged={nested ? undefined : onViewableItemsChanged}
+      extraData={visibilityExtraData}
       onEndReached={handleLoadMore}
       onEndReachedThreshold={0.3}
       refreshControl={
