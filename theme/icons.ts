@@ -1,7 +1,7 @@
 import { WEBSITE_LINK } from '../config/links';
 
 /** Shared artwork revision used by the website and the native disk cache. */
-export const THEME_ICON_REVISION = '6';
+export const THEME_ICON_REVISION = '7';
 const RASTER_THEMES = new Set([
   'system', 'minimal', 'light', 'cosmic', 'hazy', 'swarms', 'lavalamp', 'winter', 'osaka', 'jungle',
 ]);
