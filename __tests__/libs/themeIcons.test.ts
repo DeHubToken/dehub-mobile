@@ -7,15 +7,16 @@ it('uses the transparent power artwork in the same active theme pack', () => {
 });
 
 it('requests the active raster family with one shared cache revision', () => {
-  for (const theme of APP_THEMES.filter((name) => !['war', 'hacker', 'island', 'horror'].includes(name))) {
+  for (const theme of APP_THEMES) {
     for (const key of ['home', 'usernames', 'tv', 'accounts', 'arcade', 'fractions', 'staking', 'command', 'superpowers']) {
       expect(themeIconUrl(theme, key)).toContain(`/theme-icons/${theme}/${key}.webp?v=${THEME_ICON_REVISION}`);
     }
   }
 });
 
-it('never substitutes System silver artwork for a glyph theme', () => {
+it('uses each custom pack instead of System artwork or generic glyphs', () => {
   for (const theme of ['war', 'hacker', 'island', 'horror']) {
-    expect(themeIconUrl(theme, 'usernames')).toBeUndefined();
+    expect(themeIconUrl(theme, 'usernames')).toContain(`/theme-icons/${theme}/usernames.webp`);
   }
+  expect(themeIconUrl('unknown-theme', 'usernames')).toBeUndefined();
 });

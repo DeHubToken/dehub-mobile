@@ -129,7 +129,17 @@ export const AppThemeProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     surface: skin.centre,
     foreground: skin.centreIcon,
     ownedSurfaces: [skin.card, skin.strip, skin.stripActive, skin.barFill, skin.barBorder],
-  } : null, [skin]);
+  } : {
+    surface: {
+      backgroundColor: 'rgba(255,255,255,0.12)',
+      borderWidth: 1,
+      borderColor: 'rgba(255,255,255,0.30)',
+      borderTopColor: 'rgba(255,255,255,0.45)',
+      borderRadius: theme === 'minimal' ? 0 : 12,
+    },
+    foreground: '#FFFFFF',
+    ownedSurfaces: [],
+  }, [skin, theme]);
   setControlMaterial(controlMaterial);
 
   setActiveTheme(theme);
