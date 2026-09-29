@@ -36,6 +36,7 @@ import {
   ActivityIndicator,
 } from "react-native";
 import SmartImage from "../common/SmartImage";
+import { storageImage } from "../../libs/cdnImage";
 import GlassModal from "../ui/GlassModal";
 import Icon from "../ui/Icon";
 import { useMyListings } from "../../hooks/useStores";
@@ -181,7 +182,7 @@ export default function ShopSheet({
                 >
                   {listing.images?.[0] ? (
                     <SmartImage
-                      source={{ uri: listing.images[0] }}
+                      source={{ uri: storageImage(listing.images[0], 40) }}
                       recyclingKey={listing.images[0]}
                       style={{ width: 40, height: 40 }}
                       contentFit="cover"

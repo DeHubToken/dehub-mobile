@@ -24,9 +24,11 @@ import {
   KeyboardAvoidingView,
   Switch,
   Alert,
+  useWindowDimensions,
 } from "react-native";
 import { DeHubLoader } from "../DeHubLoader";
 import { Image } from "expo-image";
+import { storageImage, storageImageSource } from "../../libs/cdnImage";
 import * as ImagePicker from "expo-image-picker";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useTranslation } from "react-i18next";
@@ -102,6 +104,7 @@ const StoreForm: React.FC<{
   const [description, setDescription] = useState(existing?.description ?? "");
   const [avatarUrl, setAvatarUrl] = useState(existing?.avatar_url ?? "");
   const [bannerUrl, setBannerUrl] = useState(existing?.banner_url ?? "");
+  const { width: windowWidth } = useWindowDimensions();
   const [uploading, setUploading] = useState<"avatar" | "banner" | null>(null);
 
   // Re-seed when the sheet opens for a different store
@@ -182,7 +185,7 @@ const StoreForm: React.FC<{
                 accessibilityRole="button"
               >
                 {bannerUrl ? (
-                  <Image source={{ uri: bannerUrl }} style={StyleSheet.absoluteFill} contentFit="cover" />
+                  <Image source={storageImageSource(bannerUrl, windowWidth)} style={StyleSheet.absoluteFill} contentFit="cover" />
                 ) : null}
                 <View style={styles.pickOverlay}>
                   {uploading === "banner" ? (
@@ -204,7 +207,7 @@ const StoreForm: React.FC<{
                 accessibilityLabel={t("dex.pool.changeImage")}
               >
                 {avatarUrl ? (
-                  <Image source={{ uri: avatarUrl }} style={StyleSheet.absoluteFill} contentFit="cover" />
+                  <Image source={storageImageSource(avatarUrl, 64)} style={StyleSheet.absoluteFill} contentFit="cover" />
                 ) : null}
                 <View style={styles.pickOverlay}>
                   {uploading === "avatar" ? (
@@ -385,7 +388,7 @@ const ListingForm: React.FC<{
                 <View style={{ flexDirection: "row", gap: 8, paddingHorizontal: 18 }}>
                   {images.map((uri, i) => (
                     <View key={`${uri}-${i}`} style={styles.thumb}>
-                      <Image source={{ uri }} style={StyleSheet.absoluteFill} contentFit="cover" />
+                      <Image source={storageImageSource(uri, 76)} style={StyleSheet.absoluteFill} contentFit="cover" />
                       <Pressable
                         style={styles.thumbRemove}
                         onPress={() => setImages((prev) => prev.filter((_, idx) => idx !== i))}
@@ -590,6 +593,7 @@ const MyStoreTab: React.FC<{ isAuthed: boolean; onSignIn: () => void }> = ({
   // Minimal: sub-tabs become file tabs and the listing/order cards become
   // edge-to-edge hairline rows. The banner header and buttons stay.
   const { isMinimal } = useAppTheme();
+  const { width: windowWidth } = useWindowDimensions();
   const rowStyle = [styles.row, isMinimal && styles.minimalRow];
   const {
     data: stores = [],
@@ -738,7 +742,7 @@ const MyStoreTab: React.FC<{ isAuthed: boolean; onSignIn: () => void }> = ({
       <View style={styles.storeHeader}>
         {!!activeStore?.banner_url && (
           <Image
-            source={{ uri: activeStore.banner_url }}
+            source={storageImageSource(activeStore.banner_url, windowWidth)}
             style={StyleSheet.absoluteFill}
             contentFit="cover"
           />
@@ -746,7 +750,7 @@ const MyStoreTab: React.FC<{ isAuthed: boolean; onSignIn: () => void }> = ({
         <View style={styles.storeHeaderScrim} />
         <View style={styles.storeHeaderRow}>
           <Avatar
-            uri={activeStore?.avatar_url ?? undefined}
+            uri={storageImage(activeStore?.avatar_url, 48)}
             size={48}
             name={activeStore?.name || t("stores.store")}
           />
@@ -850,7 +854,7 @@ const MyStoreTab: React.FC<{ isAuthed: boolean; onSignIn: () => void }> = ({
               <View key={l.id} style={rowStyle}>
                 <View style={styles.rowThumb}>
                   {imgs[0] ? (
-                    <Image source={{ uri: imgs[0] }} style={StyleSheet.absoluteFill} contentFit="cover" />
+                    <Image source={storageImageSource(imgs[0], 44)} style={StyleSheet.absoluteFill} contentFit="cover" />
                   ) : (
                     <Icon name="Package" size={16} color="#3F3F46" />
                   )}
@@ -893,7 +897,7 @@ const MyStoreTab: React.FC<{ isAuthed: boolean; onSignIn: () => void }> = ({
             >
               <View style={styles.rowThumb}>
                 {img ? (
-                  <Image source={{ uri: img }} style={StyleSheet.absoluteFill} contentFit="cover" />
+                  <Image source={storageImageSource(img, 44)} style={StyleSheet.absoluteFill} contentFit="cover" />
                 ) : (
                   <Icon name="Package" size={16} color="#3F3F46" />
                 )}
