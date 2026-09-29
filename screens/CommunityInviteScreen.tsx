@@ -43,6 +43,11 @@ const CommunityInviteScreen: React.FC = () => {
   const [preview, setPreview] = useState<CommunityInvitePreview | null>(null);
   const [loading, setLoading] = useState(true);
   const [failed, setFailed] = useState(false);
+  // A real bad code comes back as data (is_valid: false), so a thrown preview
+  // read is always a network or server failure. That gets a retry, not
+  // "this invite link is not valid".
+  const [loadError, setLoadError] = useState(false);
+  const [reloadKey, setReloadKey] = useState(0);
   const [joining, setJoining] = useState(false);
 
   const walletRef = useRef(walletAddress);
@@ -61,11 +66,12 @@ const CommunityInviteScreen: React.FC = () => {
       }
       setLoading(true);
       setFailed(false);
+      setLoadError(false);
       try {
         const result = await previewCommunityInvite(code);
         if (!cancelled) setPreview(result);
       } catch {
-        if (!cancelled) setFailed(true);
+        if (!cancelled) setLoadError(true);
       } finally {
         if (!cancelled) setLoading(false);
       }
@@ -75,10 +81,12 @@ const CommunityInviteScreen: React.FC = () => {
     return () => {
       cancelled = true;
     };
-  }, [code]);
+  }, [code, reloadKey]);
 
+  // popTo returns to a Communities page already below this one, or replaces
+  // this page, so back does not land on the dead invite again.
   const goToCommunities = useCallback(() => {
-    navigation.navigate(ScreenNames.Communities);
+    navigation.popTo(ScreenNames.Communities);
   }, [navigation]);
 
   const handleJoin = useCallback(() => {
@@ -118,6 +126,32 @@ const CommunityInviteScreen: React.FC = () => {
         <ScreenHeader title={t("communities.title")} />
         <View className="flex-1 items-center justify-center">
           <ActivityIndicator color={theme.colors.accent} />
+        </View>
+      </View>
+    );
+  }
+
+  if (loadError) {
+    return (
+      <View className="flex-1 bg-theme-neutrals-900">
+        <ScreenHeader title={t("communities.title")} />
+        <View className="flex-1 items-center justify-center px-6">
+          <View style={styles.invalidCard}>
+            <Icon name="WifiOff" size={22} color="#808089" />
+            <Text className="text-white text-sm text-center mt-3">
+              {t("common.somethingWentWrong")}
+            </Text>
+            <TouchableOpacity
+              style={styles.actionBtn}
+              onPress={() => setReloadKey((k) => k + 1)}
+              accessibilityRole="button"
+            >
+              <Text style={styles.actionBtnText}>{t("common.retry")}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.secondaryBtn} onPress={goToCommunities}>
+              <Text style={styles.secondaryBtnText}>{t("communities.backButton")}</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     );
