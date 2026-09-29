@@ -74,8 +74,9 @@ export function useLivePostReactions({ tokenId, userAddress, requireAuth, onErro
         let nextDislikeCount = dislikeCount;
         if (wasPositive && !nextPositive) nextLikeCount = Math.max(0, nextLikeCount - voteWeight);
         if (!wasPositive && nextPositive) nextLikeCount += voteWeight;
-        if (wasNegative && !nextNegative) nextDislikeCount = Math.max(0, nextDislikeCount - voteWeight);
-        if (!wasNegative && nextNegative) nextDislikeCount += voteWeight;
+        // A dislike always shows as one, whatever badge cast it.
+        if (wasNegative && !nextNegative) nextDislikeCount = Math.max(0, nextDislikeCount - 1);
+        if (!wasNegative && nextNegative) nextDislikeCount += 1;
 
         applyEngagement(engagementKey, {
           isLiked: nextPositive,

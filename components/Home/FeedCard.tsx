@@ -798,8 +798,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         let nextDislikeCount = wasDislikeCount;
         if (wasPositive && !nextPositive) nextLikeCount = Math.max(0, nextLikeCount - weight);
         if (!wasPositive && nextPositive) nextLikeCount += weight;
-        if (wasNegative && !nextNegative) nextDislikeCount = Math.max(0, nextDislikeCount - weight);
-        if (!wasNegative && nextNegative) nextDislikeCount += weight;
+        // A dislike always shows as one, whatever badge cast it.
+        if (wasNegative && !nextNegative) nextDislikeCount = Math.max(0, nextDislikeCount - 1);
+        if (!wasNegative && nextNegative) nextDislikeCount += 1;
         return {
           isLiked: nextPositive,
           isDisliked: nextNegative,
