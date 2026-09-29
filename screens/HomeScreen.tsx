@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useCallback, useRef, useEffect, useDeferredValue } from "react";
-import { BackHandler, Image, View, StyleSheet, InteractionManager, useWindowDimensions, type LayoutChangeEvent } from "react-native";
+import { BackHandler, View, StyleSheet, InteractionManager, useWindowDimensions, type LayoutChangeEvent } from "react-native";
 import { useIsFocused, useNavigation } from "@react-navigation/native";
 import type { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
 import Animated, {
@@ -51,7 +51,6 @@ import UserProfileBottomSheet from "../components/UserProfile/UserProfileBottomS
 import GettingStartedCard from "../components/Onboarding/GettingStartedCard";
 import { pagerPageIntersectsViewport } from "../libs/pagerVisibility";
 import { useAppTheme } from "../context/ThemeContext";
-import { GRAIN } from "../theme/skins";
 import { holdThemeBackdrop } from "../libs/themeBackdrop";
 
 const FALLBACK_CATEGORIES: string[] = [];
@@ -863,12 +862,9 @@ export default function HomeScreen() {
   return (
     <View className="flex-1">
       <Animated.View
-        style={[styles.headerClip, skin ? skin.header : null, headerAnimatedStyle]}
+        style={[styles.headerClip, skin ? styles.headerClear : null, headerAnimatedStyle]}
         onLayout={onHeaderLayout}
       >
-        {skin?.grain ? (
-          <Image source={GRAIN} resizeMode="repeat" style={StyleSheet.absoluteFill} />
-        ) : null}
         <HomeHeader
           onLogoPress={handleLogoPress}
           onMenuPress={openDrawer}
@@ -1009,6 +1005,11 @@ const styles = StyleSheet.create({
     zIndex: 10,
     overflow: "hidden",
     backgroundColor: "#010305",
+  },
+  // Canvas themes draw no band behind the logo row and feed tabs: both float
+  // straight over the backdrop, as on web.
+  headerClear: {
+    backgroundColor: "transparent",
   },
   profileSurface: {
     position: "absolute",
