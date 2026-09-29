@@ -97,13 +97,13 @@ import {
   toImageDataUrl,
 } from '../libs/assistantMedia';
 import { getDeviceLanguage } from '../services/translation.service';
-import { supabase } from '../services/supabase';
 import { toastError, toastSuccess } from '../libs/toast';
 import { ScreenNames } from '../navigation/ScreenNames';
 import { createLogger } from '../libs/logger';
 import SignInGate from '../components/auth/SignInGate';
 
 const log = createLogger('AIChatScreen');
+const errorCodeOf = (err: unknown) => (err instanceof AIServiceError ? err.errorCode : undefined);
 const AI_AVATAR = require('../assets/web-icons/ai-assistant-avatar.png');
 const DEHUB_LOGO = require('../assets/web-icons/dehub-logo-white.png');
 
@@ -333,29 +333,6 @@ function AIChatScreenInner() {
 
   /* ── Diagnostics ─────────────────────────────────────────────────────── */
 
-  /**
-   * Mirror of web's failure logging. Both clients write to the same table, so a
-   * report that only reproduces on a phone is diagnosable from the same place.
-   */
-  const logAssistantError = useCallback(
-    (error: unknown, context: Record<string, unknown>) => {
-      const err = error instanceof Error ? error : new Error(String(error));
-      const code = error instanceof AIServiceError ? error.errorCode : undefined;
-      supabase
-        .from('client_error_logs')
-        .insert({
-          level: 'error',
-          message: `Assistant error [${code || 'UNKNOWN'}]: ${err.message}`,
-          component: 'AIChatScreen',
-          stack_trace: err.stack?.substring(0, 500) || null,
-          metadata: { ...context, errorCode: code },
-          user_address: walletAddress,
-        })
-        .then(undefined, (logErr) => log.error('failed to log assistant error:', logErr));
-    },
-    [walletAddress],
-  );
-
   const describeError = useCallback((error: unknown): string => {
     if (error instanceof AIServiceError) {
       switch (error.errorCode) {
@@ -435,10 +412,10 @@ function AIChatScreenInner() {
             setStreamingContent(null);
             setIsLoading(false);
             setActiveTools([]);
-            log.error('chat error:', err);
-            logAssistantError(err, {
-              userMessage: text.substring(0, 100),
+            log.error('chat error:', err, {
+              kind: 'chat',
               model: settings.chatModel,
+              errorCode: errorCodeOf(err),
             });
             commit(describeError(err), true);
             scrollToEnd();
@@ -454,7 +431,6 @@ function AIChatScreenInner() {
       walletAddress,
       saveMessage,
       scrollToEnd,
-      logAssistantError,
       describeError,
     ],
   );
@@ -532,8 +508,7 @@ function AIChatScreenInner() {
         }
         scrollToEnd();
       } catch (err) {
-        log.error('image generation failed:', err);
-        logAssistantError(err, { kind: 'image', model });
+        log.error('image generation failed:', err, { kind: 'image', model, errorCode: errorCodeOf(err) });
         await saveMessage([
           ...history,
           { role: 'assistant', content: describeError(err), isError: true },
@@ -543,7 +518,7 @@ function AIChatScreenInner() {
         setIsGeneratingImage(false);
       }
     },
-    [walletAddress, saveMessage, scrollToEnd, startNewConversation, logAssistantError, describeError],
+    [walletAddress, saveMessage, scrollToEnd, startNewConversation, describeError],
   );
 
   /* ── Video ───────────────────────────────────────────────────────────── */
@@ -729,8 +704,7 @@ function AIChatScreenInner() {
         startVideoPoll(pending);
         scrollToEnd();
       } catch (err) {
-        log.error('video generation failed:', err);
-        logAssistantError(err, { kind: 'video', model });
+        log.error('video generation failed:', err, { kind: 'video', model, errorCode: errorCodeOf(err) });
         await saveMessage([
           ...history,
           { role: 'assistant', content: describeError(err), isError: true },
@@ -739,7 +713,7 @@ function AIChatScreenInner() {
         setIsLoading(false);
       }
     },
-    [walletAddress, saveMessage, scrollToEnd, startVideoPoll, logAssistantError, describeError],
+    [walletAddress, saveMessage, scrollToEnd, startVideoPoll, describeError],
   );
 
   /* ── fal.ai tools ────────────────────────────────────────────────────── */
@@ -912,8 +886,7 @@ function AIChatScreenInner() {
         startToolPoll(pending);
         scrollToEnd();
       } catch (err) {
-        log.error('tool run failed:', err);
-        logAssistantError(err, { kind: 'tool', tool: toolId });
+        log.error('tool run failed:', err, { kind: 'tool', tool: toolId, errorCode: errorCodeOf(err) });
         await saveMessage([
           ...history,
           { role: 'assistant', content: describeError(err), isError: true },
@@ -922,7 +895,7 @@ function AIChatScreenInner() {
         setIsLoading(false);
       }
     },
-    [walletAddress, saveMessage, scrollToEnd, startToolPoll, logAssistantError, describeError],
+    [walletAddress, saveMessage, scrollToEnd, startToolPoll, describeError],
   );
 
   /* ── Resume work that outlived the app ───────────────────────────────── */
