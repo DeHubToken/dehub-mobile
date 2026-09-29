@@ -8484,7 +8484,29 @@
       "intro": "Àwọn ohun-èlò kéékèèké tí ẹnikẹ́ni kọ́ fún DeHub. Wọ́n ṣí inú DeHub, o ti wọlé tẹ́lẹ̀, gbogbo ohun èlò sì ń fi àdírẹ́sì ayélujára gidi hàn.",
       "buildCta": "Kọ ohun elo kan",
       "emptyTitle": "Ko si awọn ohun elo ti a ṣe akojọ sibẹ",
-      "emptyBody": "Àwọn ohun èlò àkọ́kọ́ wà nínú àtúnyẹ̀wò. Kọ́ ọ̀kan ó sì lè wà níbí."
+      "emptyBody": "Àwọn ohun èlò àkọ́kọ́ wà nínú àtúnyẹ̀wò. Kọ́ ọ̀kan ó sì lè wà níbí.",
+      "search": "Ṣawari awọn ohun elo",
+      "all": "Gbogbo",
+      "fromDehub": "Láti DeHub",
+      "noMatch": "Kò sí àwọn ohun èlò tí ó bá àwárí yẹn mu."
+    },
+    "card": {
+      "open": "Ṣii"
+    },
+    "category": {
+      "games": "Eré-ìdárayá",
+      "social": "Awujọ",
+      "finance": "Ìnáwó",
+      "utility": "IwUlO",
+      "productivity": "Ìṣẹ̀dá",
+      "health-fitness": "Ilera & amọdaju",
+      "news-media": "Awọn iroyin & Media",
+      "music": "Orin",
+      "shopping": "Ohun tí a rà",
+      "education": "Ẹ̀kọ́",
+      "developer-tools": "Awọn irinṣẹ Olùgbéejáde",
+      "entertainment": "Idanilaraya",
+      "art-creativity": "Art & àtinúdá"
     }
   },
   "aiStyles": {

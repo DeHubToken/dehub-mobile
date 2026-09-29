@@ -8487,7 +8487,29 @@
       "intro": "Miniaplicativos criados para o DeHub por qualquer pessoa. Eles abrem dentro do DeHub, você já está conectado e cada aplicativo mostra o seu endereço real da web.",
       "buildCta": "Criar uma aplicação",
       "emptyTitle": "Ainda não há aplicações listadas",
-      "emptyBody": "As primeiras aplicações estão em análise. Construa um e pode estar aqui."
+      "emptyBody": "As primeiras aplicações estão em análise. Construa um e pode estar aqui.",
+      "search": "Pesquise aplicativos",
+      "all": "Todos",
+      "fromDehub": "De DeHub",
+      "noMatch": "Nenhum aplicativo corresponde à sua busca."
+    },
+    "card": {
+      "open": "Abrir"
+    },
+    "category": {
+      "games": "Jogos",
+      "social": "Social",
+      "finance": "Financeiro",
+      "utility": "Utilitário",
+      "productivity": "Produtividade",
+      "health-fitness": "Saúde e fitness",
+      "news-media": "Notícias e mídia",
+      "music": "Música",
+      "shopping": "Compras",
+      "education": "Educação",
+      "developer-tools": "Ferramentas do desenvolvedor",
+      "entertainment": "Entretenimento",
+      "art-creativity": "Arte e criatividade"
     }
   },
   "aiStyles": {

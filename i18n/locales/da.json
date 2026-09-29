@@ -8487,7 +8487,29 @@
       "intro": "Mini-apps bygget til DeHub af enhver. De åbnes inde i DeHub, du er allerede logget ind, og hver app viser sin rigtige webadresse.",
       "buildCta": "Byg en app",
       "emptyTitle": "Ingen apps listet endnu",
-      "emptyBody": "De første apps er under gennemgang. Byg en og den kunne være her."
+      "emptyBody": "De første apps er under gennemgang. Byg en og den kunne være her.",
+      "search": "Søg apps",
+      "all": "Alle",
+      "fromDehub": "Fra DeHub",
+      "noMatch": "Ingen apps matcher din søgning."
+    },
+    "card": {
+      "open": "Åbn"
+    },
+    "category": {
+      "games": "Spil",
+      "social": "Sociale",
+      "finance": "Finans",
+      "utility": "Værktøj",
+      "productivity": "Produktivitet",
+      "health-fitness": "Sundhed & fitness",
+      "news-media": "Nyheder & medier",
+      "music": "Musik",
+      "shopping": "Indkøb",
+      "education": "Uddannelse",
+      "developer-tools": "Udviklerværktøjer",
+      "entertainment": "Underholdning",
+      "art-creativity": "Kunst & kreativitet"
     }
   },
   "aiStyles": {

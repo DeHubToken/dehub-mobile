@@ -8473,12 +8473,12 @@
       "close": "Fermer l'application",
       "backToStore": "Retour aux Applications",
       "notFound": "Cette application n'est pas dans le DeHub App Store, ou elle a été retirée.",
-      "badUrl": "Cette adresse ne peut pas être ouverte en tant qu'application mini. Elle doit commencer par **https://**, ou être une adresse localhost en mode développeur.",
-      "readyTimeout": "Cette application n'a jamais appelé **dehub.ready()**, donc l'écran de chargement a été masqué après 8 secondes."
+      "badUrl": "Cette adresse ne peut pas être ouverte en tant qu'application mini. Elle doit commencer par https://, ou être une adresse localhost en mode développeur.",
+      "readyTimeout": "Cette application n'a jamais appelé dehub.ready(), donc l'écran de chargement a été masqué après 8 secondes."
     },
     "signIn": {
       "title": "Se connecter à {{name}} ?",
-      "body": "Cette application récupérera votre adresse de portefeuille DeHub et un jeton de connexion qui ne fonctionne que pour cette application. Elle n'aura **pas accès** à votre portefeuille, à vos fonds ou à votre compte DeHub.",
+      "body": "Cette application récupérera votre adresse de portefeuille DeHub et un jeton de connexion qui ne fonctionne que pour cette application. Elle n'aura pas accès à votre portefeuille, à vos fonds ou à votre compte DeHub.",
       "cancel": "Pas maintenant",
       "confirm": "Se connecter"
     },
@@ -8487,7 +8487,29 @@
       "intro": "Mini-applications construites pour DeHub par n'importe qui. Elles s'ouvrent à l'intérieur de DeHub, vous êtes déjà connecté(e), et chaque application affiche son adresse web réelle.",
       "buildCta": "Créer une application",
       "emptyTitle": "Aucune application listée pour l'instant",
-      "emptyBody": "Les premières applications sont en cours d'examen. Construisez-en une et elle pourrait apparaître ici."
+      "emptyBody": "Les premières applications sont en cours d'examen. Construisez-en une et elle pourrait apparaître ici.",
+      "search": "Recherche d'applications",
+      "all": "Tout",
+      "fromDehub": "De DeHub",
+      "noMatch": "Aucune application ne correspond à cette recherche."
+    },
+    "card": {
+      "open": "Ouvrir"
+    },
+    "category": {
+      "games": "Jeux",
+      "social": "Social",
+      "finance": "Finance",
+      "utility": "Utilité",
+      "productivity": "Productivité",
+      "health-fitness": "Santé et bien-être",
+      "news-media": "Actualités et médias",
+      "music": "Musique",
+      "shopping": "Achats",
+      "education": "Éducation",
+      "developer-tools": "Outils pour les développeurs",
+      "entertainment": "Divertissement",
+      "art-creativity": "Art et créativité"
     }
   },
   "aiStyles": {

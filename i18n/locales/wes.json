@@ -8383,8 +8383,30 @@
     "store": {
       "title": "Apps",
       "buildCta": "Build an app",
-      "emptyTitle": "No apps wey go show yet 😕",
-      "emptyBody": "\"Foist app wey go review na. Build one, wey go dey here.\""
+      "emptyTitle": "No apps wey go show yet",
+      "emptyBody": "\"Foist app wey go review na. Build one, wey go dey here.\"",
+      "search": "Search apps",
+      "all": "All",
+      "fromDehub": "From DeHub",
+      "noMatch": "Wetin app no fit match dis search?"
+    },
+    "card": {
+      "open": "Open"
+    },
+    "category": {
+      "games": "Gam",
+      "social": "Soshal",
+      "finance": "Finans",
+      "utility": "Yutiliti",
+      "productivity": "Poduktiviti",
+      "health-fitness": "Hels & fitnes",
+      "news-media": "Nyuz & midia",
+      "music": "Muzik",
+      "shopping": "Shop",
+      "education": "Edukeisyon",
+      "developer-tools": "Developa tuul",
+      "entertainment": "Entertaenment",
+      "art-creativity": "Art & kreativiti"
     }
   },
   "postQuota": {

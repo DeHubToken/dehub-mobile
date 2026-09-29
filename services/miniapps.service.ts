@@ -63,3 +63,12 @@ export async function mintMiniAppToken(
   }
   return { token: body.token, expiresAt: Number(body.expiresAt) };
 }
+
+/** A live app registered for this domain, if any — how a plain link to an app's site opens the app. */
+export async function fetchAppByDomain(domain: string): Promise<MiniAppListing | null> {
+  const host = domain.toLowerCase();
+  if (!/^[a-z0-9.-]{3,253}$/.test(host)) return null;
+  const { data, error } = await db.from("miniapp_apps").select(COLUMNS).eq("domain", host).maybeSingle();
+  if (error) return null;
+  return (data as MiniAppListing | null) ?? null;
+}

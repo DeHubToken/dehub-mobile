@@ -8483,7 +8483,29 @@
       "intro": "Mini lietotnes, ko DeHub izveidojis ikviens. Tie tiek atvērti DeHub, jūs jau esat pierakstījies, un katrā lietotnē ir redzama tās īstā tīmekļa adrese.",
       "buildCta": "Izveidot aplikāciju",
       "emptyTitle": "Pagaidām sarakstā nav nevienas lietotnes",
-      "emptyBody": "Pirmās lietotnes tiek pārskatītas. Izveidojiet to, un tas varētu būt šeit."
+      "emptyBody": "Pirmās lietotnes tiek pārskatītas. Izveidojiet to, un tas varētu būt šeit.",
+      "search": "Mājas meklētāji",
+      "all": "Visi",
+      "fromDehub": "No DeHub",
+      "noMatch": "Nav atbilstošu rezultātu meklēšanai."
+    },
+    "card": {
+      "open": "Atvērt"
+    },
+    "category": {
+      "games": "Spēles",
+      "social": "Sociālās",
+      "finance": "Finanšu",
+      "utility": "Iekārtas",
+      "productivity": "Produktīvās",
+      "health-fitness": "Sveiksmes un fiziskās aktivitātes",
+      "news-media": "Jaunumi un media",
+      "music": "Mūzika",
+      "shopping": "Iepirkumi",
+      "education": "Izglītība",
+      "developer-tools": "Rīku izstrādes",
+      "entertainment": "Entertainment",
+      "art-creativity": "Māksla un izdoma"
     }
   },
   "aiStyles": {

@@ -8,7 +8,10 @@ import {
   ownershipMessage,
   parseAppUrl,
   parseRequest,
+  launchUrl,
+  syntheticFid,
 } from '../../libs/miniapp/protocol';
+import { parseDehubLink } from '../../libs/dehub-links';
 
 describe('parseAppUrl', () => {
   it('accepts https apps on their own domains', () => {
@@ -77,4 +80,37 @@ describe('request sanitising', () => {
 
 it('signs the same ownership message the registry checks', () => {
   expect(ownershipMessage('app.example.com')).toBe('dehub mini app ownership\napp.example.com');
+});
+
+describe('launchUrl', () => {
+  it('carries a shared link\'s query through to the app, but not ours', () => {
+    const url = launchUrl('https://app.example.com/play', new URLSearchParams('room=42&from=feed'));
+    expect(url?.toString()).toBe('https://app.example.com/play?room=42');
+  });
+
+  it('opens a deeper page only on the app\'s own host', () => {
+    const deep = new URLSearchParams({ url: 'https://app.example.com/r/7' });
+    expect(launchUrl('https://app.example.com', deep)?.pathname).toBe('/r/7');
+    const elsewhere = new URLSearchParams({ url: 'https://phish.example/r/7' });
+    expect(launchUrl('https://app.example.com', elsewhere)?.host).toBe('app.example.com');
+  });
+});
+
+describe('syntheticFid', () => {
+  it('is stable, negative and never a real Farcaster id', () => {
+    const wallet = '0xabcdef0123456789abcdef0123456789abcdef01';
+    expect(syntheticFid(wallet)).toBe(syntheticFid(wallet));
+    expect(syntheticFid(wallet)).toBeLessThan(0);
+    expect(syntheticFid(null)).toBe(0);
+  });
+});
+
+describe('dehub app links', () => {
+  it('cards dehub.io/apps/<slug>, keeps the deep link, and leaves /apps/dev alone', () => {
+    const link = parseDehubLink('https://dehub.io/apps/yoink?room=4');
+    expect(link?.kind).toBe('app');
+    expect(link?.appSlug).toBe('yoink');
+    expect(link?.path).toBe('/apps/yoink?room=4');
+    expect(parseDehubLink('https://dehub.io/apps/dev')?.kind).not.toBe('app');
+  });
 });

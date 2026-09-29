@@ -8582,7 +8582,29 @@
       "intro": "Mini fampiharana natao ho an'ny DeHub na iza na iza. Misokatra ao amin'ny DeHub izy ireo, efa nosoniavina ianao, ary ny fampiharana rehetra dia mampiseho ny adiresy Internet tena izy.",
       "buildCta": "Manaova fampiharana",
       "emptyTitle": "Tsy misy apps voatanisa",
-      "emptyBody": "Mbola eo am-pandinihana ny rindrambaikon'ny solosaina voalohany. Afaka mahazo ity volo ity ianao ary afaka mipetraka eto."
+      "emptyBody": "Mbola eo am-pandinihana ny rindrambaikon'ny solosaina voalohany. Afaka mahazo ity volo ity ianao ary afaka mipetraka eto.",
+      "search": "Karohy apps",
+      "all": "Izy rehetra",
+      "fromDehub": "Avy amin'i DeHub",
+      "noMatch": "Tsy misy itoviany amin'ny fitadiavana."
+    },
+    "card": {
+      "open": "Hanokatra"
+    },
+    "category": {
+      "games": "Kilalao",
+      "social": "Ara-tsosialy",
+      "finance": "Fitantanam-bola",
+      "utility": "Rindranasa",
+      "productivity": "Vokatra",
+      "health-fitness": "FAHASALAMANA & FITSARANA",
+      "news-media": "NEWS SY HAZO",
+      "music": "Hira",
+      "shopping": "Fiantsenana",
+      "education": "Fanabeazana",
+      "developer-tools": "Développeur fitaovana",
+      "entertainment": "Fialamboly",
+      "art-creativity": "Zavakanto sy famoronana"
     }
   },
   "aiStyles": {

@@ -8481,7 +8481,29 @@
       "intro": "Ko nga taupānga iti i hangaia mo DeHub e tetahi. Ka whakatuwhera ratou i roto i DeHub, kua hainatia koe, a ka whakaatu ia taupānga tona wāhitau tukutuku tūturu.",
       "buildCta": "Hangaia he taupānga",
       "emptyTitle": "Kaore ano nga taupānga kua whakarārangitia",
-      "emptyBody": "Kei te arotakehia nga taupānga tuatahi. Hangaia tetahi, a ka taea e te reira i konei."
+      "emptyBody": "Kei te arotakehia nga taupānga tuatahi. Hangaia tetahi, a ka taea e te reira i konei.",
+      "search": "Ngā taupānga rapu",
+      "all": "Katoa",
+      "fromDehub": "Mai i DeHub",
+      "noMatch": "Kaore he taupānga e rite ana ki taua rapu."
+    },
+    "card": {
+      "open": "Whakatuwherahia"
+    },
+    "category": {
+      "games": "Ngā kēmu",
+      "social": "Hapori",
+      "finance": "Pūtea",
+      "utility": "Te whakamahinga",
+      "productivity": "Te whakaputa",
+      "health-fitness": "Te hauora me te hauora",
+      "news-media": "Ngā kōrero me ngā pāpāho",
+      "music": "Waiata",
+      "shopping": "Hokona",
+      "education": "Mātauranga",
+      "developer-tools": "Nga taputapu kaiwhakawhanake",
+      "entertainment": "Te whakangahau",
+      "art-creativity": "Toi me te auaha"
     }
   },
   "aiStyles": {

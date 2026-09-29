@@ -8537,7 +8537,29 @@
       "intro": "DeHub uchun har kim tomonidan yaratilgan mini-ilovalar. Ular DeHub ichida ochiladi, siz allaqachon tizimga kirgansiz va har bir ilova o&#39;zining haqiqiy veb-manzilini ko&#39;rsatadi.",
       "buildCta": "Ilova yarating",
       "emptyTitle": "Hali hech qanday ilova ro&#39;yxatda yo&#39;q",
-      "emptyBody": "Birinchi ilovalar ko&#39;rib chiqilmoqda. Bittasini yarating, shunda u shu yerda bo&#39;lishi mumkin."
+      "emptyBody": "Birinchi ilovalar ko&#39;rib chiqilmoqda. Bittasini yarating, shunda u shu yerda bo&#39;lishi mumkin.",
+      "search": "Ilovalarni qidirish",
+      "all": "Hammasi",
+      "fromDehub": "DeHub&#39;dan",
+      "noMatch": "Bu qidiruvga hech qanday ilova mos kelmadi."
+    },
+    "card": {
+      "open": "Ochiq"
+    },
+    "category": {
+      "games": "O&#39;yinlar",
+      "social": "Ijtimoiy",
+      "finance": "Moliya",
+      "utility": "Kommunal xizmatlar",
+      "productivity": "Hosildorlik",
+      "health-fitness": "Salomatlik va fitnes",
+      "news-media": "Yangiliklar va ommaviy axborot vositalari",
+      "music": "Musiqa",
+      "shopping": "Xarid qilish",
+      "education": "Ta&#39;lim",
+      "developer-tools": "Dasturchi vositalari",
+      "entertainment": "Ko&#39;ngilochar",
+      "art-creativity": "San&#39;at va ijodkorlik"
     }
   },
   "aiStyles": {

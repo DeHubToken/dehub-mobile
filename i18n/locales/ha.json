@@ -8483,7 +8483,26 @@
       "intro": "Mini apps gina don DeHub da kowa. Suna buɗewa a ciki DeHub, kun riga kun sanya hannu a ciki, kuma kowane aikace-aikacen yana nuna ainihin adireshin yanar gizon sa.",
       "buildCta": "Gina wani app",
       "emptyTitle": "Babu apps da aka jera tukuna",
-      "emptyBody": "Aikace-aikacen farko suna cikin bita. Gina daya kuma zai iya zama a nan."
+      "emptyBody": "Aikace-aikacen farko suna cikin bita. Gina daya kuma zai iya zama a nan.",
+      "search": "Aikace-aikacen bincike",
+      "all": "Duka",
+      "noMatch": "Babu apps dace da cewa search."
+    },
+    "card": {
+      "open": "Bude"
+    },
+    "category": {
+      "games": "Wasanni",
+      "social": "Zamantakewa",
+      "productivity": "Yawan aiki",
+      "health-fitness": "Lafiya & dacewa",
+      "news-media": "Labarai & kafofin watsa labarai",
+      "music": "Waƙa",
+      "shopping": "Siyayya",
+      "education": "Ilimi",
+      "developer-tools": "Kayan aikin masu haɓakawa",
+      "entertainment": "Nishaɗi",
+      "art-creativity": "Art & kerawa"
     }
   },
   "aiStyles": {

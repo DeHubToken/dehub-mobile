@@ -8483,7 +8483,29 @@
       "intro": "Mini aplikacije koje su izgrađene za DeHub od strane bilo tko. Otvaraju se unutar DeHub-a, već ste prijavljeni, i svaka aplikacija prikazuje svoju stvarnu web adresu.",
       "buildCta": "Izgradi aplikaciju",
       "emptyTitle": "Nema aplikacija na popisu još.",
-      "emptyBody": "Prve aplikacije su u provjeri. Izgradi jednu i možda će se pojaviti ovdje."
+      "emptyBody": "Prve aplikacije su u provjeri. Izgradi jednu i možda će se pojaviti ovdje.",
+      "search": "Pretraživanje aplikacija",
+      "all": "Sve",
+      "fromDehub": "Od DeHuba",
+      "noMatch": "Nema aplikacija koje odgovaraju pretraživanju."
+    },
+    "card": {
+      "open": "Otvori"
+    },
+    "category": {
+      "games": "Igre",
+      "social": "Socijalni",
+      "finance": "Financije",
+      "utility": "Naravno",
+      "productivity": "Proizvodnost",
+      "health-fitness": "Zdravlje i fitness",
+      "news-media": "Vijesti i mediji",
+      "music": "Muzika",
+      "shopping": "Prodaja",
+      "education": "Obrazovanje",
+      "developer-tools": "Alati za razvoj",
+      "entertainment": "Zabava",
+      "art-creativity": "Umjetnost i kreativnost"
     }
   },
   "aiStyles": {

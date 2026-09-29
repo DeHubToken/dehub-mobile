@@ -8484,7 +8484,29 @@
       "intro": "誰でもDeHub用に構築されたミニアプリ。DeHub内で開き、すでにサインインしており、すべてのアプリに実際のWebアドレスが表示されます。",
       "buildCta": "アプリを構築する",
       "emptyTitle": "まだアプリがリストされていません",
-      "emptyBody": "最初のアプリは審査中です。1つ建てれば、ここにあるかもしれません。"
+      "emptyBody": "最初のアプリは審査中です。1つ建てれば、ここにあるかもしれません。",
+      "search": "アプリを検索",
+      "all": "すべて",
+      "fromDehub": "DeHubから",
+      "noMatch": "その検索に一致するアプリはありません。"
+    },
+    "card": {
+      "open": "開く"
+    },
+    "category": {
+      "games": "ゲーム",
+      "social": "ソーシャル",
+      "finance": "財務",
+      "utility": "ユーティリティ",
+      "productivity": "生産性",
+      "health-fitness": "健康とフィットネス",
+      "news-media": "ニュースとメディア",
+      "music": "音楽",
+      "shopping": "ショッピング",
+      "education": "教育",
+      "developer-tools": "デベロッパーツール",
+      "entertainment": "エンターテインメント",
+      "art-creativity": "アート＆クリエイティビティ"
     }
   },
   "aiStyles": {
