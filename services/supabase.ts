@@ -6,6 +6,7 @@ import env from "../config/env";
 // sibling service to reach a two-line helper is how import cycles start.
 import { getAuthToken } from "../libs/auth.utils";
 import { createWalletSessionFetch } from "../libs/wallet-session";
+import { createSupabaseRelayFetch } from "../libs/supabaseRelayFetch";
 
 export const supabase = createClient(env.SUPABASE_URL, env.SUPABASE_PUBLISHABLE_KEY, {
   auth: {
@@ -15,7 +16,9 @@ export const supabase = createClient(env.SUPABASE_URL, env.SUPABASE_PUBLISHABLE_
     detectSessionInUrl: false,
   },
   // Signs wallet-scoped REST and storage requests; see libs/wallet-session.ts.
-  global: { fetch: createWalletSessionFetch() },
+  // Underneath, falls back to the dehub.io relay when the project host is
+  // unreachable; see libs/supabaseRelayFetch.ts.
+  global: { fetch: createWalletSessionFetch(createSupabaseRelayFetch()) },
 });
 
 const walletClients = new Map<string, SupabaseClient>();
