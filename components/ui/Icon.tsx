@@ -19,7 +19,6 @@ import Animated, {
   runOnJS,
 } from "react-native-reanimated";
 import { colors } from "../../theme/colors";
-import { useReadyAfterScroll } from "../../libs/scrollActivity";
 import GlassIndicator, { GLASS_SHADOW } from "./GlassIndicator";
 // Not lucide's `icons` barrel: that bundles and evaluates every icon at boot.
 import { iconRegistry, type IconName } from "./iconRegistry";
@@ -68,9 +67,6 @@ const Icon: React.FC<IconProps> = ({
   const [tooltipVisible, setTooltipVisible] = useState(false);
   const [tooltipPos, setTooltipPos] = useState<{ x: number; y: number; w: number } | null>(null);
   const hideTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  // Mounted mid-fling, an icon is an empty box of its own size until the list
-  // settles — see libs/scrollActivity. The box keeps the layout identical.
-  const ready = useReadyAfterScroll();
 
   const showTooltip = useCallback(() => {
     if (!tooltip || !iconRef.current) return;
@@ -97,16 +93,11 @@ const Icon: React.FC<IconProps> = ({
     if (__DEV__) console.warn(`[Icon] "${name}" is not in iconRegistry; run \`npm run icons:write\``);
     return <View style={{ width: size, height: size }} />;
   }
-  // One merged path is three native views at most, cheap enough to mount in
-  // the middle of a fling, so it draws straight away instead of popping in
-  // once the list settles. A fill spreads over the merged outline the same as
-  // over one shape, so filled icons use it only when they are one shape.
+  // One merged path is three native views at most, instead of one per shape.
+  // A fill spreads over the merged outline the same as over one shape, so
+  // filled icons use it only when they are one shape.
   const merged = gradient && gradient.length >= 2 ? undefined : iconPaths[name];
   const single = merged && (!fill || fill === "none" || merged[1] === 1) ? merged[0] : null;
-  if (!ready && !single) {
-    const box = glass ? size + glassPadding * 2 : size;
-    return <View style={{ width: box, height: box }} />;
-  }
 
   const iconElement = single ? (
     <Svg width={size} height={size} viewBox="0 0 24 24">

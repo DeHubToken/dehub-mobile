@@ -211,9 +211,9 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   // top actually sees the new position-zero row.
   const pendingBoostRevealRef = useRef(false);
   const revealedBoostRef = useRef<string | undefined>(undefined);
-  // Set for the life of a drag or fling. Everything that would rewrite the
-  // list mid-scroll — the live-count poll, the counts a fetched page carries,
-  // the appended page itself — waits on this and lands from settleScroll().
+  // Set for the life of a drag or fling. Count patches that would rewrite
+  // cached pages mid-scroll — the live-count poll, the counts a fetched page
+  // carries — wait on this and land from settleScroll().
   const scrollingRef = useRef(false);
   // Counts carried by pages fetched while scrolling, merged once it settles.
   const pendingFetchedRowsRef = useRef<any[]>([]);
@@ -594,37 +594,13 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     prevYRef.current = 0;
   }, []);
 
-  // The rows the list is showing. A page that lands mid-fling is held here
-  // until the scroll settles: applying it meant parse → flatten → cap → every
-  // mounted cell re-rendered → a scroll-position correction, all while the
-  // finger was off the screen and the list was supposed to be coasting. The
-  // network request still goes out at the threshold, so the rows are ready the
-  // moment the list stops. Only a pure append is held — a refresh, a deletion
-  // or a re-sort is applied at once so the list never shows stale rows.
-  const heldRef = useRef<FeedItem[] | null>(null);
-  const holdPendingRef = useRef(false);
-  const releaseAppendRef = useRef(false);
-  const [holdRelease, setHoldRelease] = useState(0);
-  const listData = useMemo(() => {
-    const held = heldRef.current;
-    const isAppend =
-      held != null &&
-      held !== feedItems &&
-      feedItems.length > held.length &&
-      held.length > 0 &&
-      feedItems[0] === held[0] &&
-      feedItems[held.length - 1] === held[held.length - 1];
-    if (scrollingRef.current && isAppend && !releaseAppendRef.current) {
-      holdPendingRef.current = true;
-      return held;
-    }
-    holdPendingRef.current = false;
-    releaseAppendRef.current = false;
-    heldRef.current = feedItems;
-    return feedItems;
-    // holdRelease re-runs this once the scroll has settled.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [feedItems, holdRelease]);
+  // A page lands in the list the moment it arrives, mid-fling or not, as on
+  // web. Holding it until the scroll settled meant a continuous fling ran past
+  // the last row into the loading footer: onEndReached had already fired for
+  // that content length, so nothing released the held rows until the list
+  // stopped. Rows keep their wrapper across pages (libs/feed-pages), so an
+  // append renders only the new cells.
+  const listData = feedItems;
 
   const endReached = hasNextPage === false;
   const error = queryError ? (queryError as Error).message || "Failed to load" : null;
@@ -634,17 +610,6 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   }, [endReached, onEndReachedAll]);
 
   const loadMore = useCallback(() => {
-    // The next page is already here, held back while the list scrolls. The
-    // list is now within the threshold of the end of what it is showing, so a
-    // fling would run straight into the footer and stop dead — a hard wall at
-    // every page boundary. Landing the rows now costs one frame of work below
-    // the viewport instead; once they are in, the list re-measures and this
-    // fires again if the following page is really due.
-    if (holdPendingRef.current) {
-      releaseAppendRef.current = true;
-      setHoldRelease((v) => v + 1);
-      return;
-    }
     if (initialLoading || loadingMore || refreshing || !hasNextPage) return;
     fetchNextPage().catch(() => {});
   }, [initialLoading, loadingMore, refreshing, hasNextPage, fetchNextPage]);
@@ -819,15 +784,12 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
       pendingFetchedRowsRef.current = [];
       mergeLiveCounts(queryClient, fetched);
     }
-    if (holdPendingRef.current) setHoldRelease((v) => v + 1);
   }, [flushLiveCounts, queryClient]);
 
   // Settling straight from onScrollEndDrag was the fling stutter that only
   // showed up once a second page had loaded. The finger lifts, that event
-  // fires, and the held page, the buffered counts and the poll's merge all
-  // landed in the very frame the fling was starting — the list rebuilt every
-  // cell under a scroll it was supposed to be coasting through. Before page
-  // two nothing was held, so the first screenful felt fine. Now a lift only
+  // fires, and the buffered counts and the poll's merge both landed in the
+  // very frame the fling was starting. Now a lift only
   // schedules the settle; a fling's onMomentumScrollBegin cancels it and
   // onMomentumScrollEnd settles for real. A lift with no fling behind it
   // settles a few frames later, which nobody can see.
@@ -1066,10 +1028,9 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
           }
         }
         onEndReached={endReached ? undefined : loadMore}
-        // Was 2.5 viewports: that re-fired on every content-size change and
-        // pulled the next page almost as soon as the last one landed. The
-        // appended rows are held until the scroll settles anyway (listData).
-        onEndReachedThreshold={1.5}
+        // Three viewports of runway, about web's 2400px prefetch margin: a
+        // fling covers 1.5 viewports before a page can come back.
+        onEndReachedThreshold={3}
         onScroll={scrollHandler ?? handleScroll}
         onScrollBeginDrag={handleScrollBeginDrag}
         onScrollEndDrag={handleScrollEndDrag}

@@ -847,7 +847,7 @@ export default function HomeScreen() {
         feedRef={feedRefs.current[feedType]}
         active={isPlaybackActive}
         params={feedListParamsByType[feedType]}
-        pageSize={10}
+        pageSize={20}
         headerInset={headerHeight}
         headerTranslateY={headerTranslateY}
         onRefresh={handleRefresh}
