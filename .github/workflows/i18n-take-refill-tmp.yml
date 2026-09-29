@@ -1,0 +1,49 @@
+name: take refill (branch only)
+
+on:
+  push:
+    branches: [i18n-prune-garbled]
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  take:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: locale-*
+          merge-multiple: true
+          path: i18n/locales
+          run-id: 36578128471
+          github-token: ${{ github.token }}
+      - name: Transliterate the nav labels the refill could not replace
+        run: |
+          node -e '
+            const fs = require("fs");
+            for (const [l, v] of [["hne", "डीएओ"], ["ml", "ഡിഎഒ"]]) {
+              const f = `i18n/locales/${l}.json`;
+              const text = fs.readFileSync(f, "utf8");
+              const nl = text.includes("\r\n") ? "\r\n" : "\n";
+              const raw = JSON.parse(text);
+              if (typeof raw.nav?.dao === "string") continue;
+              raw.nav.dao = v;
+              fs.writeFileSync(f, JSON.stringify(raw, null, 2).split("\n").join(nl) + nl);
+              console.log(`${l}: nav.dao = ${v}`);
+            }'
+      - run: node scripts/i18n-fanout.mjs --prune --garbled --dry-run | grep '^  ' || echo "no garbled values left"
+      - run: |
+          git diff --shortstat
+          echo "files with added lines:"; git diff --numstat | awk '$1 > 0' | wc -l
+      - run: |
+          git config user.name maldoteth
+          git config user.email dev@dehub.io
+          git add i18n/locales/*.json
+          git commit -q -m "Refill the deleted strings"
+          git push origin HEAD:i18n-prune-garbled
