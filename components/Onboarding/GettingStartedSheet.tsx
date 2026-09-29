@@ -23,6 +23,12 @@ import {
   nextOnboardingStep,
   type OnboardingStepDef,
 } from "../../libs/onboarding-steps";
+import { ScreenNames } from "../../navigation/ScreenNames";
+
+// Home and Explore are tabs inside Root. From an App-stack screen such as
+// Settings a bare navigate to them is dropped, so they go through Root, with
+// pop so the Root already underneath is reused rather than stacked again.
+const TAB_DESTINATIONS = new Set<ScreenNames>([ScreenNames.Home, ScreenNames.Explore]);
 
 interface GettingStartedSheetProps {
   visible: boolean;
@@ -51,7 +57,11 @@ const GettingStartedSheet: React.FC<GettingStartedSheetProps> = ({ visible, onCl
   const go = (step: OnboardingStepDef) => {
     onboarding.recordView(step.id);
     onClose();
-    navigation.navigate(step.screen as never);
+    if (TAB_DESTINATIONS.has(step.screen)) {
+      navigation.navigate(ScreenNames.Root, { screen: step.screen }, { pop: true });
+    } else {
+      navigation.navigate(step.screen as never);
+    }
   };
 
   return (
@@ -102,7 +112,7 @@ const GettingStartedSheet: React.FC<GettingStartedSheetProps> = ({ visible, onCl
                     </Text>
 
                     {!settledStep ? (
-                      <View className="flex-row items-center mt-3" style={{ gap: 10 }}>
+                      <View className="flex-row items-center mt-3" style={{ gap: 10, flexWrap: "wrap" }}>
                         <TouchableOpacity
                           onPress={() => go(step)}
                           activeOpacity={0.8}
