@@ -2192,7 +2192,9 @@
     "revealKey": "Show key",
     "revealSignIn": "Sign in again to see dis key",
     "revealFailed": "We no fit show di key. Try again.",
-    "signInAgain": "Sign in again"
+    "signInAgain": "Sign in again",
+    "createSignIn": "Sign in again make you fit create agent",
+    "checkConnection": "Check your network, den try am again."
   },
   "hero": {
     "title": "Welcome To",

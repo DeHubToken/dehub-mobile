@@ -2213,7 +2213,9 @@
     "revealKey": "Llaveta rikuchiy",
     "revealSignIn": "Kay llaveta rikunaykipaq wakmanta yaykuy",
     "revealFailed": "Mana llaveta rikuchiyta atikurqanchu. Wakmanta yachay.",
-    "signInAgain": "Wakmanta yaykuy"
+    "signInAgain": "Wakmanta yaykuy",
+    "createSignIn": "Wakinta kamarinaykipaq wakmanta yaykuy",
+    "checkConnection": "Tinkisqaykita qhaway, hinaspa wakmanta yachay."
   },
   "hero": {
     "title": "Hamuykichikta",

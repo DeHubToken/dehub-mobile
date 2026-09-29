@@ -2209,7 +2209,9 @@
     "revealKey": "Kile yira",
     "revealSignIn": "I ka don tuguni walisa ka nin kile ye",
     "revealFailed": "Kile ma se ka yira. I ka a lajɛ tuguni.",
-    "signInAgain": "Don tuguni"
+    "signInAgain": "Don tuguni",
+    "createSignIn": "I ka don tuguni walisa ka ciden dɔ dilan",
+    "checkConnection": "I ka i ka ɛntɛrinɛti lajɛ, ka a lajɛ tuguni."
   },
   "hero": {
     "title": "I bisimila",

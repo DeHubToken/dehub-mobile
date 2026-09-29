@@ -2212,7 +2212,9 @@
     "revealKey": "Mostra la clau",
     "revealSignIn": "Torna a iniciar sessió per veure aquesta clau",
     "revealFailed": "No s'ha pogut mostrar la clau. Torna-ho a provar.",
-    "signInAgain": "Torna a iniciar sessió"
+    "signInAgain": "Torna a iniciar sessió",
+    "createSignIn": "Torna a iniciar sessió per crear un agent",
+    "checkConnection": "Comprova la connexió i torna-ho a provar."
   },
   "hero": {
     "title": "Benvinguts Al",

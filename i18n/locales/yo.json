@@ -2213,7 +2213,9 @@
     "revealKey": "Fi kọ́kọ́rọ́ hàn",
     "revealSignIn": "Wọlé padà láti rí kọ́kọ́rọ́ yìí",
     "revealFailed": "A ò le fi kọ́kọ́rọ́ náà hàn. Gbìyànjú lẹ́ẹ̀kan sí.",
-    "signInAgain": "Wọlé padà"
+    "signInAgain": "Wọlé padà",
+    "createSignIn": "Wọlé padà láti ṣẹ̀dá aṣojú",
+    "checkConnection": "Ṣàyẹ̀wò ìsopọ̀ rẹ kí o sì gbìyànjú lẹ́ẹ̀kan sí."
   },
   "hero": {
     "title": "Ẹ Kú Àbọ̀ Sí",

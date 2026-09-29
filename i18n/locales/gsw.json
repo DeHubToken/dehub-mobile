@@ -2212,7 +2212,9 @@
     "revealKey": "Schlüssel zeige",
     "revealSignIn": "Mäld di nomal a, zum dä Schlüssel gseh",
     "revealFailed": "Dr Schlüssel het nöd chöne zeigt wärde. Probier s nomal.",
-    "signInAgain": "Nomal amälde"
+    "signInAgain": "Nomal amälde",
+    "createSignIn": "Mäld di nomal a, zum en Agent erstelle",
+    "checkConnection": "Prüef dini Verbindig und probier s nomal."
   },
   "hero": {
     "title": "E Neui Wält",
