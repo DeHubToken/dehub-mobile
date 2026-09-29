@@ -1764,6 +1764,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           onShowReactionInfo={
             isOwnerPost && tokenId != null ? handleShowReactionInfo : undefined
           }
+          isVisible={isVisible}
         />
       )}
 
