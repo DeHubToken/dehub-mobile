@@ -183,7 +183,9 @@ export function useStreamProducts(
         },
         () => queryClient.invalidateQueries({ queryKey: ["stream-products", key] }),
       )
-      .subscribe();
+      .subscribe((status) => {
+        if (status === "SUBSCRIBED") queryClient.invalidateQueries({ queryKey: ["stream-products", key] });
+      });
     return () => {
       supabase.removeChannel(channel);
     };

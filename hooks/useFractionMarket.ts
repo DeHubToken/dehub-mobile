@@ -166,7 +166,9 @@ function useRealtimeInvalidate(
         { event: "*", schema: "public", table, ...(filter ? { filter } : {}) },
         () => queryClient.invalidateQueries({ queryKey: JSON.parse(serialisedKey) }),
       )
-      .subscribe();
+      .subscribe((status) => {
+        if (status === "SUBSCRIBED") queryClient.invalidateQueries({ queryKey: JSON.parse(serialisedKey) });
+      });
     return () => {
       supabase.removeChannel(sub);
     };

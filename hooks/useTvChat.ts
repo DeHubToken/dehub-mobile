@@ -119,7 +119,9 @@ export function useTvChat(channelId: string | undefined, enabled = true) {
           }
         }
       )
-      .subscribe();
+      .subscribe((status) => {
+        if (status === "SUBSCRIBED") void queryClient.invalidateQueries({ queryKey: [QUERY_KEY, channelId] });
+      });
 
     return () => {
       void supabase.removeChannel(chan);
