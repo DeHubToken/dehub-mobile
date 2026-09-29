@@ -5410,7 +5410,20 @@
     "removeUploadTitle": "Buang muat naik ini?",
     "removeQueuedBody": "Ia belum disiarkan lagi. Membuangnya membatalkan hantaran.",
     "quotaShortfall": "Catatan ini berharga {{cost}} token dan anda memegang {{held}}.",
-    "shopAllowanceUsed": "{{allowance}} daripada {{allowance}} digunakan. Tanam lebih banyak token DeHub untuk lencana yang lebih tinggi dan satu lagi slot."
+    "shopAllowanceUsed": "{{allowance}} daripada {{allowance}} digunakan. Tanam lebih banyak token DeHub untuk lencana yang lebih tinggi dan satu lagi slot.",
+    "editFilters": "Sunting filter",
+    "cropRotate": "Potong & putar",
+    "drawWrite": "Buat lukisan & tulis",
+    "fade": "Mengurangkan kecerahan {{value}}%",
+    "grayscale": "Abadikan keabu-abuan {{value}}%",
+    "resetEdits": "Reset",
+    "clearDrawing": "Kosongkan",
+    "typeText": "Tulis…",
+    "textSize": "Saiz teks {{value}}",
+    "coverFrames": "Pilih kerangka latar",
+    "coverFrame": "Gunakan kerangka {{index}} sebagai latar",
+    "uploadCover": "Muat imej latar",
+    "editFailed": "Tidak dapat menerapkan suntingan itu. Coba sekali lagi."
   },
   "bounty": {
     "claimed": "Telah dituntut",

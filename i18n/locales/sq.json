@@ -5149,7 +5149,20 @@
     "removeUploadTitle": "Do ta heqësh këtë ngarkim?",
     "removeQueuedBody": "Nuk është postuar ende. Heqja e saj e anulon postimin.",
     "quotaShortfall": "Ky postim kushton {{cost}} tokena dhe ju mbani {{held}}.",
-    "shopAllowanceUsed": "{{allowance}} nga {{allowance}} të përdorura. Vendosni më shumë tokena DeHub për një stemë më të lartë dhe një vend tjetër."
+    "shopAllowanceUsed": "{{allowance}} nga {{allowance}} të përdorura. Vendosni më shumë tokena DeHub për një stemë më të lartë dhe një vend tjetër.",
+    "editFilters": "Redaktoj",
+    "cropRotate": "Kamë të shkurtuar dhe të rotulloj",
+    "drawWrite": "Shkruaj dhe shko",
+    "fade": "Mbyllje {{value}}%",
+    "grayscale": "Gjysmëtoni {{value}}%",
+    "resetEdits": "Rikthes",
+    "clearDrawing": "Shkruaj",
+    "typeText": "Shkruaj…",
+    "textSize": "Madhësia e tekstit {{value}}",
+    "coverFrames": "Zgjidh një çadrë për mbulojë",
+    "coverFrame": "Përdor çadrën {{index}} si mbulojë",
+    "uploadCover": "Shto një imazh për mbulojë",
+    "editFailed": "Nuk mund të aplikojmë këtë redaktim. Pritni një herë."
   },
   "bounty": {
     "claimed": "E marrë",

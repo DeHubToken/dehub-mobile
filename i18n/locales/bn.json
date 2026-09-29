@@ -5150,7 +5150,20 @@
     "removeUploadTitle": "এই আপলোডটি সরাবেন?",
     "removeQueuedBody": "এটি এখনও পোস্ট করা হয়নি । এটি অপসারণ করলে পোস্টটি বাতিল হয়ে যাবে ।",
     "quotaShortfall": "এই পোস্টটির খরচ {{cost}} টোকেন এবং আপনার কাছে {{held}} আছে।",
-    "shopAllowanceUsed": "{{allowance}} এর মধ্যে {{allowance}} ব্যবহৃত হয়েছে। উচ্চতর ব্যাজ এবং অন্য স্লটের জন্য আরও DeHub টোকেন স্টেক করুন।"
+    "shopAllowanceUsed": "{{allowance}} এর মধ্যে {{allowance}} ব্যবহৃত হয়েছে। উচ্চতর ব্যাজ এবং অন্য স্লটের জন্য আরও DeHub টোকেন স্টেক করুন।",
+    "editFilters": "সম্পাদনা করুন",
+    "cropRotate": "ক্যাপ করুন এবং ঘূর্ণাই",
+    "drawWrite": "আঁকুন এবং লিখুন",
+    "fade": "ফেড আর্গানাইজেশন {{value}}%",
+    "grayscale": "গ্রে স্কেল {{value}}%",
+    "resetEdits": "রিসেট",
+    "clearDrawing": "মুছে ফেলুন",
+    "typeText": "টাইপ...",
+    "textSize": "টেক্সট আকার {{value}}",
+    "coverFrames": "একটি কভার ফ্রেম বেছে নিন",
+    "coverFrame": "কভার হিসাবে ব্যবহার করুন {{index}}",
+    "uploadCover": "একটি কভার ছবি আপলোড করুন",
+    "editFailed": "সেই সম্পাদনা প্রয়োগ করা যায়নি। আবার চেষ্টা করুন।"
   },
   "bounty": {
     "claimed": "সংগ্রহ করা হয়েছে",

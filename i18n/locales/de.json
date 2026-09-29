@@ -5199,7 +5199,20 @@
     "removeUploadTitle": "Diesen Upload entfernen?",
     "removeQueuedBody": "Es wurde noch nicht veröffentlicht. Wenn du ihn entfernst, wird der Beitrag storniert.",
     "quotaShortfall": "Dieser Beitrag kostet {{cost}} Token und Sie halten {{held}}.",
-    "shopAllowanceUsed": "{{allowance}} von {{allowance}} verwendet. Setzen Sie mehr DeHub-Token ein, um ein höheres Abzeichen und einen weiteren Slot zu erhalten."
+    "shopAllowanceUsed": "{{allowance}} von {{allowance}} verwendet. Setzen Sie mehr DeHub-Token ein, um ein höheres Abzeichen und einen weiteren Slot zu erhalten.",
+    "editFilters": "Filter bearbeiten",
+    "cropRotate": "Zuschneiden & drehen",
+    "drawWrite": "Zeichnen & schreiben",
+    "fade": "Verblassen {{value}}%",
+    "grayscale": "Graustufen {{value}}%",
+    "resetEdits": "Zurücksetzen",
+    "clearDrawing": "Löschen",
+    "typeText": "Text eingeben…",
+    "textSize": "Textgröße {{value}}",
+    "coverFrames": "Cover-Bild aus dem Video wählen",
+    "coverFrame": "Bild {{index}} als Cover verwenden",
+    "uploadCover": "Cover-Bild hochladen",
+    "editFailed": "Die Bearbeitung konnte nicht übernommen werden. Versuche es erneut."
   },
   "bounty": {
     "claimed": "Eingelöst",

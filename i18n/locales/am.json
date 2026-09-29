@@ -5180,7 +5180,20 @@
     "removeUploadTitle": "ይህን ሰቀላ አስወግድ?",
     "removeQueuedBody": "እስካሁን አልተለጠፈም ። ማስወገድ ልጥፉን ይሰርዛል ።",
     "quotaShortfall": "ይህ ጽሑፍ {{cost}} ቶከኖች ያስከፍላል እና እርስዎ {{held}} ይይዛሉ።",
-    "shopAllowanceUsed": "{{allowance}} ከ {{allowance}} ጥቅም ላይ ውሏል። ለከፍተኛ ባጅ እና ለሌላ ቦታ ተጨማሪ የDeHub ቶከኖችን ይንከባከቡ።"
+    "shopAllowanceUsed": "{{allowance}} ከ {{allowance}} ጥቅም ላይ ውሏል። ለከፍተኛ ባጅ እና ለሌላ ቦታ ተጨማሪ የDeHub ቶከኖችን ይንከባከቡ።",
+    "editFilters": "ማጣሪያዎችን ያርትዑ",
+    "cropRotate": "አሳንስና አሽከርክር",
+    "drawWrite": "መሳልና መጻፍ",
+    "fade": "አደበዝዝ {{value}}%",
+    "grayscale": "ግራጫ {{value}}%",
+    "resetEdits": "አስጀምር",
+    "clearDrawing": "አጥፋ",
+    "typeText": "ይጻፍ…",
+    "textSize": "የጽሑፍ መጠን {{value}}",
+    "coverFrames": "የሽፋን ፍሬም ምረጥ",
+    "coverFrame": "ፍሬም {{index}}ን እንደ ሽፋን ተጠቀም",
+    "uploadCover": "የሽፋን ምስል ስቀል",
+    "editFailed": "ያንን ማረም አልተቻለም። እንደገና ሞክር።"
   },
   "bounty": {
     "claimed": "ተወስዷል",

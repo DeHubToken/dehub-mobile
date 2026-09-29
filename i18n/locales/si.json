@@ -5162,7 +5162,20 @@
     "removeUploadTitle": "මෙම උඩුගත කිරීම ඉවත් කරන්නද?",
     "removeQueuedBody": "එය තවමත් ප් රකාශයට පත් කර නැත. පෝස්ට් එක ඩිලීට් කලාට කමක් නෑ.",
     "quotaShortfall": "මෙම පෝස්ටුවට {{cost}} ටෝකන වැය වන අතර ඔබට {{held}} ඇත.",
-    "shopAllowanceUsed": "{{allowance}} න් {{allowance}} භාවිතා කරන ලදී. ඉහළ ශ්‍රේණියක් සහ තවත් ස්ලොට් එකක් සඳහා වැඩි DeHub ටෝකන ස්ටේක් කරන්න."
+    "shopAllowanceUsed": "{{allowance}} න් {{allowance}} භාවිතා කරන ලදී. ඉහළ ශ්‍රේණියක් සහ තවත් ස්ලොට් එකක් සඳහා වැඩි DeHub ටෝකන ස්ටේක් කරන්න.",
+    "editFilters": "ප්‍රභාවන්",
+    "cropRotate": "බෝග & කරකවන්න",
+    "drawWrite": "ඇඳීම & ලිවීම",
+    "resetEdits": "ප්‍රතිස්ථාපනය කරන්න",
+    "clearDrawing": "සුද්ධ",
+    "typeText": "ප්‍රකාශනය කරන්න",
+    "textSize": "ප්‍රමාණය {{value}}",
+    "coverFrames": "ප්‍රතිමා ප්‍රතිමා ප්‍රතිමා",
+    "uploadCover": "ප්‍රවරණ චිත්‍රය එකතු කරන්න",
+    "editFailed": "එම සංස්කරණය යෙදවීමට නොහැකි විය. නැවත උත්සාහ කරන්න.",
+    "fade": "මැකීම {{value}}%",
+    "grayscale": "අළු පැහැය {{value}}%",
+    "coverFrame": "රාමුව {{index}} කවරය ලෙස භාවිත කරන්න"
   },
   "bounty": {
     "claimed": "ලබාගෙන ඇත",

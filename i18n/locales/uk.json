@@ -5507,7 +5507,20 @@
     "removeUploadTitle": "Видалити це завантаження?",
     "removeQueuedBody": "Його ще не опубліковано. Видалення допису скасовує його.",
     "quotaShortfall": "Цей допис коштує {{cost}} токенів, а у вас є {{held}}.",
-    "shopAllowanceUsed": "Використано {{allowance}} з {{allowance}}. Застейкайте більше токенів DeHub для вищого значка та додаткового слоту."
+    "shopAllowanceUsed": "Використано {{allowance}} з {{allowance}}. Застейкайте більше токенів DeHub для вищого значка та додаткового слоту.",
+    "editFilters": "Змінити фільтри",
+    "cropRotate": "Обрізати й повернути",
+    "drawWrite": "Малювати й писати",
+    "fade": "Вицвітання {{value}}%",
+    "grayscale": "Відтінки сірого {{value}}%",
+    "resetEdits": "Скинути",
+    "clearDrawing": "Очистити",
+    "typeText": "Введіть текст…",
+    "textSize": "Розмір тексту {{value}}",
+    "coverFrames": "Виберіть кадр для обкладинки",
+    "coverFrame": "Зробити кадр {{index}} обкладинкою",
+    "uploadCover": "Завантажити обкладинку",
+    "editFailed": "Не вдалося застосувати зміну. Спробуйте ще раз."
   },
   "bounty": {
     "claimed": "Отримано",

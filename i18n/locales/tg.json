@@ -5140,7 +5140,20 @@
     "removeUploadTitle": "Мафрух кардан?",
     "removeQueuedBody": "Ҳанӯз интишор нашудааст. Тоза кардани он постро бекор мекунад.",
     "quotaShortfall": "Ин пост {{cost}} токен арзиш дорад ва шумо {{held}} доред.",
-    "shopAllowanceUsed": "{{allowance}} аз {{allowance}} истифода шуд. Токенҳои бештари DeHub-ро барои нишони баландтар ва як ҷойи дигар саҳмгузорӣ кунед."
+    "shopAllowanceUsed": "{{allowance}} аз {{allowance}} истифода шуд. Токенҳои бештари DeHub-ро барои нишони баландтар ва як ҷойи дигар саҳмгузорӣ кунед.",
+    "editFilters": "Танзилот",
+    "cropRotate": "Каттиб ва тартиб",
+    "drawWrite": "Каттиб ва навиштан",
+    "fade": "Сурхтан {{value}}%",
+    "grayscale": "Сурхтан {{value}}%",
+    "resetEdits": "Танзилот",
+    "clearDrawing": "Очирон",
+    "typeText": "Навиштан…",
+    "textSize": "Онаи матни {{value}}",
+    "coverFrames": "Корбарии рамка",
+    "coverFrame": "Истеъмол барои рамка {{index}}",
+    "uploadCover": "Файлҳои корбарро наворгирон",
+    "editFailed": "Мумкин нест, кори навиштанро барҷой кардааст. Барҷой карда меравед."
   },
   "bounty": {
     "claimed": "Гирифта шуд",

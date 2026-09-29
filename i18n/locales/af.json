@@ -5183,7 +5183,20 @@
     "removeUploadTitle": "Verwyder hierdie oplaai?",
     "removeQueuedBody": "Dit is nog nie gepubliseer nie. Die verwydering daarvan kanselleer die pos.",
     "quotaShortfall": "Hierdie plasing kos {{cost}} tokens en jy hou {{held}}.",
-    "shopAllowanceUsed": "{{allowance}} van {{allowance}} gebruik. Stake meer DeHub tokens vir 'n hoër kenteken en nog 'n gleuf."
+    "shopAllowanceUsed": "{{allowance}} van {{allowance}} gebruik. Stake meer DeHub tokens vir 'n hoër kenteken en nog 'n gleuf.",
+    "editFilters": "Redigeer filters",
+    "cropRotate": "Knip & draai",
+    "drawWrite": "Teek en skryf",
+    "fade": "Verduister {{value}}%",
+    "grayscale": "Grysgraad {{value}}%",
+    "resetEdits": "Herstel",
+    "clearDrawing": "Skraal",
+    "typeText": "Tipe…",
+    "textSize": "Tekstgrootte {{value}}",
+    "coverFrames": "Kies 'n omslagframe",
+    "coverFrame": "Gebruik frame {{index}} as die omslag",
+    "uploadCover": "Laai 'n omslagafbeelding",
+    "editFailed": "Kon dié redigeer nie toepas nie. Probeer weer."
   },
   "bounty": {
     "claimed": "Opgeëis",

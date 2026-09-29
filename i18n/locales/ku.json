@@ -5136,7 +5136,20 @@
     "removeUploadTitle": "Vê barkirinê rake?",
     "removeQueuedBody": "Hîn nehatiye weşandin. Rakirina wê weşanê betal dike.",
     "quotaShortfall": "Hemîn wêne {{cost}} tokens û te dikele {{held}}.",
-    "shopAllowanceUsed": "{{allowance}} ji {{allowance}} hatiye bikaranîn."
+    "shopAllowanceUsed": "{{allowance}} ji {{allowance}} hatiye bikaranîn.",
+    "editFilters": "فیلته‌کان",
+    "cropRotate": "قه‌تاندن و سووڕاندنه‌وه‌",
+    "drawWrite": "ڕه‌سم کردن و نووسین",
+    "fade": "بڵاوبوونه‌وه‌ {{value}}%",
+    "grayscale": "ڕه‌نگی خۆڵه‌مێشی {{value}}%",
+    "resetEdits": "سڕینه‌وه‌",
+    "clearDrawing": "پاکی کردنه‌وه‌",
+    "typeText": "بنوسه‌...",
+    "textSize": "قه‌باره‌ی نووسین {{value}}",
+    "coverFrames": "وێنه‌ی به‌رگ هه‌ڵبژێره‌",
+    "coverFrame": "وێنه‌ی {{index}} وه‌ک به‌رگ به‌کاربهێنه‌",
+    "uploadCover": "وێنه‌ی به‌رگ باربکه‌",
+    "editFailed": "نه‌توانرا ئه‌م ویرایشه‌ جێبه‌جێ بکرێت. دووباره‌ تاقیبکه‌ره‌وه‌."
   },
   "bounty": {
     "claimed": "Hate wergirtin",

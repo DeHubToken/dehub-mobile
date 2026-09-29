@@ -5143,7 +5143,20 @@
     "removeUploadTitle": "ነዚ መእተዊ እዚ ኣወግዶ ።",
     "removeQueuedBody": "እቲ ክሲ ኣብ ጽሑፍካ ኣይተቐመጠን ። ነቲ ልኡኽ ኣወግዶ ።",
     "quotaShortfall": "እዚ ፖስት {{cost}} ቶክን እዩ ዝኸብርን ንስኻትኩም ድማ {{held}} ትሕዙ።",
-    "shopAllowanceUsed": "{{allowance}} ካብ {{allowance}} ተጠቒሙ። ንላዕሊ ባጅን ካልኣይቲ ቦታን ንምርካብ ዝያዳ DeHub ቶክን ስተክ ግበሩ።"
+    "shopAllowanceUsed": "{{allowance}} ካብ {{allowance}} ተጠቒሙ። ንላዕሊ ባጅን ካልኣይቲ ቦታን ንምርካብ ዝያዳ DeHub ቶክን ስተክ ግበሩ።",
+    "editFilters": "ኣስተካክሊ ጸረር",
+    "cropRotate": "ኣዕርፍን ኣመላጥን",
+    "drawWrite": "ስዕሊን ጽሕፍን",
+    "fade": "ኣህምም {{value}}%",
+    "grayscale": "ብጸሊት {{value}}%",
+    "resetEdits": "ኣህድእ",
+    "clearDrawing": "ኣጽርእ",
+    "typeText": "ጽሓፍ…",
+    "textSize": "ጽሕፈት መጠን {{value}}",
+    "coverFrames": "ኣብ ፎቶ ምረጽ",
+    "coverFrame": "ፎቶ {{index}} ከም ኣባይቲ ፎቶ ተጠቐም",
+    "uploadCover": "ፎቶ ኣባይቲ ፎቶ ኣስዕብ",
+    "editFailed": "እዚ ኣስተካክሊ ኣይተተግብረን። ደጊም ፈትን።"
   },
   "bounty": {
     "claimed": "ተወሲዱ",

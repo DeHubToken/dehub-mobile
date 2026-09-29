@@ -5203,7 +5203,20 @@
     "removeUploadTitle": "Supprimer ce téléversement ?",
     "removeQueuedBody": "Il n'a pas encore été publié. Si vous le supprimez, la publication est annulée.",
     "quotaShortfall": "Ce post coûte {{cost}} jetons et vous en détenez {{held}}.",
-    "shopAllowanceUsed": "{{allowance}} sur {{allowance}} utilisés. Mettez en jeu plus de jetons DeHub pour un badge supérieur et un emplacement supplémentaire."
+    "shopAllowanceUsed": "{{allowance}} sur {{allowance}} utilisés. Mettez en jeu plus de jetons DeHub pour un badge supérieur et un emplacement supplémentaire.",
+    "editFilters": "Modifier les filtres",
+    "cropRotate": "Recadrer et pivoter",
+    "drawWrite": "Dessiner et écrire",
+    "fade": "Fondu {{value}} %",
+    "grayscale": "Niveaux de gris {{value}} %",
+    "resetEdits": "Réinitialiser",
+    "clearDrawing": "Effacer",
+    "typeText": "Saisissez…",
+    "textSize": "Taille du texte {{value}}",
+    "coverFrames": "Choisir une image de couverture",
+    "coverFrame": "Utiliser l'image {{index}} comme couverture",
+    "uploadCover": "Importer une image de couverture",
+    "editFailed": "Impossible d'appliquer cette modification. Réessayez."
   },
   "bounty": {
     "claimed": "Réclamé",

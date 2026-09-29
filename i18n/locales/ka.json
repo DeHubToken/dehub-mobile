@@ -5168,7 +5168,20 @@
     "removeUploadTitle": "გსურთ ამ ატვირთვის წაშლა?",
     "removeQueuedBody": "ის ჯერ არ გამოქვეყნებულა. მისი წაშლა აუქმებს პოსტს.",
     "quotaShortfall": "ეს პოსტი ღირს {{cost}} ტოკენი და თქვენ გაქვთ {{held}}.",
-    "shopAllowanceUsed": "გამოყენებულია {{allowance}} {{allowance}}-დან. ჩადეთ მეტი DeHub ტოკენი უფრო მაღალი ბეიჯისთვის და დამატებითი სლოტისთვის."
+    "shopAllowanceUsed": "გამოყენებულია {{allowance}} {{allowance}}-დან. ჩადეთ მეტი DeHub ტოკენი უფრო მაღალი ბეიჯისთვის და დამატებითი სლოტისთვის.",
+    "editFilters": "სარედაქტორი",
+    "cropRotate": "მონიშვნა და გადახახვა",
+    "drawWrite": "გამოსახულება და წერა",
+    "fade": "ფეიდი {{value}}%",
+    "grayscale": "შავ-თეთრი {{value}}%",
+    "resetEdits": "განუვითარება",
+    "clearDrawing": "გაუსუფთავებელი",
+    "typeText": "ტექსტი…",
+    "textSize": "ტექსტის ზომა {{value}}",
+    "coverFrames": "ფრამის არჩევა",
+    "coverFrame": "ფრამი {{index}} როგორც გარეკანი",
+    "uploadCover": "გარეკანის ატვირთვა",
+    "editFailed": "ედიტინგი ვერ მოაქვს. სცადე ხელახლა."
   },
   "bounty": {
     "claimed": "მიღებულია",

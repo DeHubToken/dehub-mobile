@@ -5200,7 +5200,20 @@
     "removeUploadTitle": "このアップロードを削除しますか？",
     "removeQueuedBody": "まだ投稿されていません。 削除すると、投稿はキャンセルされます。",
     "quotaShortfall": "この投稿は {{cost}} トークンで、あなたは {{held}} を保持しています。",
-    "shopAllowanceUsed": "{{allowance}} / {{allowance}} 使用済み。より高いバッジと別のスロットを獲得するには、DeHub トークンをさらにステークしてください。"
+    "shopAllowanceUsed": "{{allowance}} / {{allowance}} 使用済み。より高いバッジと別のスロットを獲得するには、DeHub トークンをさらにステークしてください。",
+    "editFilters": "フィルターを編集",
+    "cropRotate": "切り抜き・回転",
+    "drawWrite": "描く・書く",
+    "fade": "フェード {{value}}%",
+    "grayscale": "グレースケール {{value}}%",
+    "resetEdits": "リセット",
+    "clearDrawing": "消去",
+    "typeText": "入力…",
+    "textSize": "文字サイズ {{value}}",
+    "coverFrames": "カバーにするフレームを選択",
+    "coverFrame": "フレーム {{index}} をカバーにする",
+    "uploadCover": "カバー画像をアップロード",
+    "editFailed": "編集を適用できませんでした。もう一度お試しください。"
   },
   "bounty": {
     "claimed": "受け取り済み",

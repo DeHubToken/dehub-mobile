@@ -5154,7 +5154,20 @@
     "removeUploadTitle": "Vil du fjerne denne upload?",
     "removeQueuedBody": "Det er ikke blevet slået op endnu. Hvis du fjerner det, annulleres indlægget.",
     "quotaShortfall": "Dette opslag koster {{cost}} tokens, og du har {{held}}.",
-    "shopAllowanceUsed": "{{allowance}} ud af {{allowance}} brugt. Stak flere DeHub tokens for et højere badge og en plads mere."
+    "shopAllowanceUsed": "{{allowance}} ud af {{allowance}} brugt. Stak flere DeHub tokens for et højere badge og en plads mere.",
+    "editFilters": "Rediger filtre",
+    "cropRotate": "Beskær og roter",
+    "drawWrite": "Tegn og skriv",
+    "fade": "Falmning {{value}} %",
+    "grayscale": "Gråtoner {{value}} %",
+    "resetEdits": "Nulstil",
+    "clearDrawing": "Ryd",
+    "typeText": "Skriv…",
+    "textSize": "Tekststørrelse {{value}}",
+    "coverFrames": "Vælg et billede som cover",
+    "coverFrame": "Brug billede {{index}} som cover",
+    "uploadCover": "Upload et coverbillede",
+    "editFailed": "Ændringen kunne ikke anvendes. Prøv igen."
   },
   "bounty": {
     "claimed": "Indløst",

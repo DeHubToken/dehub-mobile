@@ -5149,7 +5149,20 @@
     "removeUploadTitle": "د دې پورته کولو لپاره لاړ شئ ؟",
     "removeQueuedBody": "دا لا تر اوسه نه ده خپره شوې. له دندې ګوښه کول مو له دندې ګوښه کوي.",
     "quotaShortfall": "دا پوسټ {{cost}} ټوکنونه لګښت لري او تاسو {{held}} لرئ.",
-    "shopAllowanceUsed": "{{allowance}} له {{allowance}} څخه کارول شوي. د لوړې درجې او بل سلاټ لپاره نور DeHub ټوکنونه سټیک کړئ."
+    "shopAllowanceUsed": "{{allowance}} له {{allowance}} څخه کارول شوي. د لوړې درجې او بل سلاټ لپاره نور DeHub ټوکنونه سټیک کړئ.",
+    "editFilters": "د فلټرونو بدلول",
+    "cropRotate": "د کرنې & Rotate",
+    "drawWrite": "ډایل کړئ او ولیکئ",
+    "fade": "ګرایډ {{value}}%",
+    "resetEdits": "د بیا رغونې",
+    "clearDrawing": "په واضح ډول",
+    "typeText": "د ډول ډول...",
+    "coverFrames": "د پوښښ چوکاټ غوره کړئ",
+    "coverFrame": "{{index}} د پوښ په توګه وکاروئ",
+    "uploadCover": "د پوښښ عکس پورته کړئ",
+    "editFailed": "تاسو نشئ کولی دا کیک جوړ کړئ، بیا هڅه وکړئ.",
+    "grayscale": "خړ رنګ {{value}}%",
+    "textSize": "د متن اندازه {{value}}"
   },
   "bounty": {
     "claimed": "ترلاسه شو",

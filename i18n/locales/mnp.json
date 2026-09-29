@@ -5150,7 +5150,20 @@
     "createCategory": "创建“{{name}}”",
     "stageMinting": "正在铸造…",
     "quotaShortfall": "Dis 篇文要 {{cost}} 粒，汝有 {{held}} 粒。",
-    "shopAllowanceUsed": "用了 {{allowance}} 粒个 {{allowance}}。质押更多 DeHub 粒，得更高个徽章搭另个位。"
+    "shopAllowanceUsed": "用了 {{allowance}} 粒个 {{allowance}}。质押更多 DeHub 粒，得更高个徽章搭另个位。",
+    "editFilters": "编辑过滤器",
+    "cropRotate": "裁剪 & 旋转",
+    "drawWrite": "绘制 & 写",
+    "fade": "淡化 {{value}}%",
+    "grayscale": "灰度 {{value}}%",
+    "resetEdits": "重置",
+    "clearDrawing": "清除",
+    "typeText": "输入…",
+    "textSize": "文字大小 {{value}}",
+    "coverFrames": "选择封面框",
+    "coverFrame": "使用框 {{index}}作为封面",
+    "uploadCover": "上传封面图片",
+    "editFailed": "无法应用该编辑。请再试一次。"
   },
   "bounty": {
     "claimed": "已领取",

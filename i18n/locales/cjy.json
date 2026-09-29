@@ -5150,7 +5150,20 @@
     "removeUploadTitle": "移除此上传？",
     "removeQueuedBody": "它尚未发布。移除它将取消发布。",
     "quotaShortfall": "此帖子花费 {{cost}} 个代币，您持有 {{held}} 个。",
-    "shopAllowanceUsed": "已使用 {{allowance}} 个 {{allowance}}。质押更多 DeHub 代币以获得更高的徽章和另一个插槽。"
+    "shopAllowanceUsed": "已使用 {{allowance}} 个 {{allowance}}。质押更多 DeHub 代币以获得更高的徽章和另一个插槽。",
+    "editFilters": "编辑过滤器",
+    "cropRotate": "裁剪旋转",
+    "drawWrite": "绘制写入",
+    "fade": "淡化 {{value}}%",
+    "grayscale": "灰度 {{value}}%",
+    "resetEdits": "重置",
+    "clearDrawing": "清除",
+    "typeText": "输入…",
+    "textSize": "文字大小 {{value}}",
+    "coverFrames": "选择封面框",
+    "coverFrame": "使用框 {{index}} 作为封面",
+    "uploadCover": "上传封面图片",
+    "editFailed": "无法应用该编辑。再试一次。"
   },
   "bounty": {
     "claimed": "已领取",
