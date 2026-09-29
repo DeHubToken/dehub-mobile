@@ -34,7 +34,6 @@ import { WEBSITE_LINK } from "../../config/links";
 import { getAvatarUrl } from "../../libs/misc";
 import { toastError, toastInfo } from "../../libs";
 import { openInApp } from "../../libs/links.utils";
-import { homeTabEvents } from "../../libs/eventBus";
 import { useTranslation } from "react-i18next";
 import { useAppTheme } from "../../context/ThemeContext";
 
@@ -99,7 +98,8 @@ interface DrawerItem {
 // same order, labels and icons. Items with a native screen navigate in-app;
 // the rest open the corresponding page on the website.
 const NAV_ITEMS: DrawerItem[] = [
-  { icon: "House", labelKey: "nav.home", screen: ScreenNames.Home, tab: true },
+  // Search-only: Home and its feed tabs are already on the main screen twice.
+  { icon: "House", labelKey: "nav.home", screen: ScreenNames.Home, tab: true, searchOnly: true },
   { icon: "User", labelKey: "nav.profile", screen: ScreenNames.Profile, requiresAuth: true },
   { icon: "Search", labelKey: "nav.explore", screen: ScreenNames.Explore, tab: true },
   { icon: "Wand", labelKey: "nav.prompt", screen: ScreenNames.Prompt },
@@ -179,17 +179,7 @@ const ICON_KEYS: Record<string, string> = {
   "nav.blog": "email", "nav.premium": "boost", "nav.pricing": "buy",
 };
 
-type FeedPostType = "video" | "feed-images" | "feed-audio" | "live";
-
-// The home feed's tabs, reached from the sheet as if they were pages.
-const FEED_TILES: { labelKey: string; iconKey: string; icon: IconName; postType: FeedPostType }[] = [
-  { labelKey: "feed.videos", iconKey: "videos", icon: "Film", postType: "video" },
-  { labelKey: "feed.images", iconKey: "images", icon: "Image", postType: "feed-images" },
-  { labelKey: "feed.music", iconKey: "audio", icon: "Mic", postType: "feed-audio" },
-  { labelKey: "feed.live", iconKey: "live", icon: "Radio", postType: "live" },
-];
-
-// The curated first screen after Home and the feed tiles, in order. Every other
+// The curated first screen, in order. Every other
 // destination follows under a hairline.
 const PINNED_KEYS = [
   "nav.messages", "nav.notifications", "nav.bookmarks", "screens.stores", "nav.staking", "nav.profile", "nav.settings",
@@ -407,15 +397,13 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
 
   const searching = menuQuery.trim().length > 0;
 
-  // Resting order: Home, the four feed tiles, the pinned rows, then the rest.
-  const { home, pinned, rest } = useMemo(() => {
-    if (searching) return { home: undefined, pinned: [] as DrawerItem[], rest: visibleItems };
+  // Resting order: the pinned rows, then the rest.
+  const { pinned, rest } = useMemo(() => {
+    if (searching) return { pinned: [] as DrawerItem[], rest: visibleItems };
     const byKey = new Map(visibleItems.map((item) => [item.labelKey, item]));
     const pinnedItems = PINNED_KEYS.map((key) => byKey.get(key)).filter((item): item is DrawerItem => !!item);
     const taken = new Set<DrawerItem>(pinnedItems);
-    const homeItem = byKey.get("nav.home");
-    if (homeItem) taken.add(homeItem);
-    return { home: homeItem, pinned: pinnedItems, rest: visibleItems.filter((item) => !taken.has(item)) };
+    return { pinned: pinnedItems, rest: visibleItems.filter((item) => !taken.has(item)) };
   }, [searching, visibleItems]);
 
   // Never reopen the sheet mid-filter.
@@ -447,14 +435,6 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
       }
     },
     [navigate, onClose, t],
-  );
-
-  const openFeedTab = useCallback(
-    (postType: FeedPostType) => {
-      navigate(ScreenNames.Home, undefined, true);
-      homeTabEvents.requestTab(postType);
-    },
-    [navigate],
   );
 
   const handleSignOut = useCallback(async () => {
@@ -622,21 +602,6 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
         >
           {!searching && (
             <View style={styles.grid}>
-              {home && renderItem(home)}
-              {FEED_TILES.map((tile) => (
-                <Tile
-                  key={tile.postType}
-                  label={t(tile.labelKey)}
-                  icon={tile.icon}
-                  iconUrl={themeIconUrl(themeName, tile.iconKey)}
-                  width={tileWidth}
-                  soonLabel={t("screens.soon")}
-                  skin={skin}
-                  hud={hud}
-                  square={square}
-                  onPress={() => openFeedTab(tile.postType)}
-                />
-              ))}
               {pinned.map(renderItem)}
             </View>
           )}
