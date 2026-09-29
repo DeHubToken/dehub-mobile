@@ -8,6 +8,7 @@ import AppDrawer from '../../components/Home/AppDrawer';
 const mockDispatch = jest.fn();
 let mockSignedIn = true;
 let mockBalance = 500;
+let mockDigitalPurchasesEnabled = true;
 const mockOpenLink = jest.fn();
 const mockRequestTab = jest.fn();
 jest.mock('react-native-css-interop/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
@@ -50,7 +51,7 @@ jest.mock('../../components/common/Avatar', () => 'Avatar');
 jest.mock('expo-image', () => ({ Image: 'Image' }));
 jest.mock('../../libs/eventBus', () => ({ homeTabEvents: { requestTab: (postType: string) => mockRequestTab(postType) } }));
 jest.mock('../../components/ui/Icon', () => 'Icon');
-jest.mock('../../config/storefront', () => ({ DIGITAL_PURCHASES_ENABLED: true }));
+jest.mock('../../config/storefront', () => ({ get DIGITAL_PURCHASES_ENABLED() { return mockDigitalPurchasesEnabled; } }));
 jest.mock('../../context/AuthContext', () => ({
   useAuthState: () => ({ isSignedIn: mockSignedIn }),
   useAuthActions: () => ({ signOut: jest.fn() }),
@@ -76,7 +77,20 @@ const destinations = [
   ['nav.connectAi', 'Connect'],
 ] as const;
 
-beforeEach(() => { jest.clearAllMocks(); mockSignedIn = true; mockBalance = 500; });
+beforeEach(() => { jest.clearAllMocks(); mockSignedIn = true; mockBalance = 500; mockDigitalPurchasesEnabled = true; });
+
+it.each([['nav.superpowers', 'SuperPowers'], ['nav.arcade', 'Arcade'], ['nav.governance', 'Governance']])(
+  'keeps %s accessible with no token balance and iOS purchases disabled', (label, screen) => {
+    mockDigitalPurchasesEnabled = false;
+    mockBalance = 0;
+    const view = render(<AppDrawer visible onClose={jest.fn()} />);
+    expect(view.queryByLabelText('nav.wallet')).toBeNull();
+    fireEvent.press(view.getByLabelText(label));
+    expect(mockDispatch).toHaveBeenCalledWith({ type: 'NAVIGATE', payload: {
+      name: 'App', params: { screen, params: undefined },
+    } });
+  },
+);
 
 it.each(destinations)('%s immediately closes and targets its registered nested screen', (label, screen, tab = false, params = undefined) => {
   const close = jest.fn();
