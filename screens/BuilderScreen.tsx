@@ -15,7 +15,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
 import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useTranslation } from "react-i18next";
-import ScreenHeader, { SCREEN_HEADER_HEIGHT } from "../components/ScreenHeader";
+import ScreenHeader from "../components/ScreenHeader";
 import Icon, { type IconName } from "../components/ui/Icon";
 import LiquidGlass from "../components/ui/LiquidGlass";
 import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
@@ -36,7 +36,7 @@ const STEPS: Array<{ icon: IconName; title: string; body: string }> = [
 export default function BuilderScreen() {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
-  const keyboardOffset = useKeyboardOffset(SCREEN_HEADER_HEIGHT);
+  const keyboardOffset = useKeyboardOffset();
   const nav = useNavigation<NativeStackNavigationProp<AppStackParamList>>();
   const { requireAuth } = useAuthActions();
   const [prompt, setPrompt] = useState("");
@@ -149,7 +149,7 @@ export default function BuilderScreen() {
           {DIGITAL_PURCHASES_ENABLED && (
             <Pressable
               accessibilityRole="button"
-              onPress={() => nav.navigate(ScreenNames.Dpay, { initialTab: "stake" })}
+              onPress={() => requireAuth(() => nav.navigate(ScreenNames.Dpay, { initialTab: "stake" }))}
               style={{ alignSelf: "center", marginTop: 14, padding: 4 }}
             >
               <Text style={styles.footnote}>{t("builder.stakeForAllowance")}</Text>

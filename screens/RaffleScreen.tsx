@@ -23,6 +23,7 @@ import type { AppStackParamList } from "../navigation/types";
 import { DIGITAL_PURCHASES_ENABLED } from "../config/storefront";
 import { WEBSITE_LINK } from "../config/links";
 import { openInApp } from "../libs/links.utils";
+import { useAuthActions } from "../context/AuthContext";
 
 type Nav = NativeStackNavigationProp<AppStackParamList>;
 
@@ -34,6 +35,8 @@ interface Card {
   open?: (nav: Nav) => void;
   /** Paid, or leads somewhere the App Store build leaves out. */
   paid?: boolean;
+  /** Leads to a screen only signed-in users have, so a guest signs in first. */
+  auth?: boolean;
 }
 
 const STEPS: Card[] = [
@@ -51,6 +54,7 @@ const ENTRY_ROUTES: Card[] = [
     bodyKey: "raffle.stakeBody",
     open: (nav) => nav.navigate(ScreenNames.Dpay, { initialTab: "stake" }),
     paid: true,
+    auth: true,
   },
   { icon: "Gamepad2", titleKey: "raffle.arcadeTitle", bodyKey: "raffle.arcadeBody", open: (nav) => nav.navigate(ScreenNames.Arcade) },
   { icon: "Mic", titleKey: "raffle.stagesTitle", bodyKey: "raffle.stagesBody", open: (nav) => nav.navigate(ScreenNames.Stages) },
@@ -117,11 +121,12 @@ export default function RaffleScreen() {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const navigation = useNavigation<Nav>();
+  const { requireAuth } = useAuthActions();
   const scrollRef = useRef<ScrollView>(null);
   const howY = useRef(0);
 
   const goHome = useCallback(() => {
-    navigation.navigate(ScreenNames.Root, { screen: ScreenNames.Home });
+    navigation.navigate(ScreenNames.Root, { screen: ScreenNames.Home }, { pop: true });
   }, [navigation]);
 
   const entryRoutes = ENTRY_ROUTES.filter((card) => DIGITAL_PURCHASES_ENABLED || !card.paid);
@@ -182,7 +187,11 @@ export default function RaffleScreen() {
             key={card.titleKey}
             card={card}
             openLabel={t("raffle.open")}
-            onOpen={card.open && linkAllowed(card) ? () => card.open!(navigation) : undefined}
+            onOpen={
+              card.open && linkAllowed(card)
+                ? () => (card.auth ? requireAuth(() => card.open!(navigation)) : card.open!(navigation))
+                : undefined
+            }
           />
         ))}
 

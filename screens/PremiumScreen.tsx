@@ -30,6 +30,7 @@ import ScreenHeader from "../components/ScreenHeader";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { DIGITAL_PURCHASES_ENABLED } from "../config/storefront";
 import { useWebCheckout } from "../hooks/useWebCheckout";
+import { useAuthActions } from "../context/AuthContext";
 
 if (Platform.OS === "android" && UIManager.setLayoutAnimationEnabledExperimental) {
   UIManager.setLayoutAnimationEnabledExperimental(true);
@@ -175,10 +176,12 @@ export default function PremiumScreen() {
   const insets = useSafeAreaInsets();
   const navigation = useNavigation<any>();
   const { canBuy, checking, opening, openCheckout } = useWebCheckout();
+  const { requireAuth } = useAuthActions();
 
+  // The wallet only exists in the signed-in navigator, so a guest signs in first.
   const openStaking = useCallback(() => {
-    navigation.navigate(ScreenNames.Dpay, { initialTab: "stake" });
-  }, [navigation]);
+    requireAuth(() => navigation.navigate(ScreenNames.Dpay, { initialTab: "stake" }));
+  }, [navigation, requireAuth]);
 
   return (
     <View style={styles.root}>
