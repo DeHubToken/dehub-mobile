@@ -35,6 +35,7 @@ interface PostsInfiniteListProps {
 interface PostItem extends GetNFTsResult {}
 
 const DEFAULT_PAGE_SIZE = 20;
+const FOOTER_HEIGHT = 56;
 
 const PostsInfiniteList: React.FC<PostsInfiniteListProps> = ({
   variant,
@@ -52,6 +53,9 @@ const PostsInfiniteList: React.FC<PostsInfiniteListProps> = ({
   // empty — so a network error rendered "No posts yet", telling the user their
   // library was empty when the request had actually failed.
   const [error, setError] = useState(false);
+  // A failed later page. Stops onEndReached from retrying on its own and puts
+  // a Retry row in the footer instead of a spinner that never resolves.
+  const [pageError, setPageError] = useState(false);
   const loadingRef = useRef(false);
 
   const fetcher = useCallback(
@@ -80,6 +84,7 @@ const PostsInfiniteList: React.FC<PostsInfiniteListProps> = ({
     async (targetPage: number, replace = false) => {
       if (loadingRef.current) return;
       loadingRef.current = true;
+      setPageError(false);
       if (targetPage === 0 && !replace) setLoading(true);
       try {
         const res = await fetcher({ page: targetPage, unit: pageSize });
@@ -93,8 +98,10 @@ const PostsInfiniteList: React.FC<PostsInfiniteListProps> = ({
       } catch (e) {
         console.warn("[PostsInfiniteList] loadPage error", e);
         // Only surface the error UI when there is nothing to show. A failed
-        // page 2 keeps the already-rendered posts on screen.
+        // page 2 keeps the already-rendered posts on screen and offers a
+        // Retry row in the footer.
         if (targetPage === 0) setError(true);
+        else setPageError(true);
       } finally {
         loadingRef.current = false;
         setLoading(false);
@@ -108,10 +115,13 @@ const PostsInfiniteList: React.FC<PostsInfiniteListProps> = ({
     loadPage(0, true);
   }, [loadPage]);
 
+  // No items: a failed first page would otherwise fire this as the error view
+  // settles and load page 2 in its place, skipping the first 20 posts.
+  // pageError: the footer swap would otherwise re-fire it in a loop offline.
   const onEndReached = useCallback(() => {
-    if (!hasMore || loadingRef.current) return;
+    if (!hasMore || pageError || items.length === 0 || loadingRef.current) return;
     loadPage(page + 1);
-  }, [hasMore, page, loadPage]);
+  }, [hasMore, pageError, items.length, page, loadPage]);
 
   const onRefresh = useCallback(() => {
     setRefreshing(true);
@@ -149,14 +159,37 @@ const PostsInfiniteList: React.FC<PostsInfiniteListProps> = ({
     [isItemVisible, isItemAutoplayActive, keyExtractor]
   );
 
+  // Nothing under the skeleton, empty or first-page error views. The spinner
+  // and the Retry row share one fixed height so swapping them never changes
+  // the content length (which would re-fire onEndReached and jump the list).
   const ListFooter = useMemo(() => {
+    if (items.length === 0) return null;
+    if (pageError) {
+      return (
+        <Pressable
+          onPress={() => loadPage(page + 1)}
+          accessibilityRole="button"
+          className="flex-row items-center justify-center px-4 active:opacity-70"
+          style={{ height: FOOTER_HEIGHT, gap: 8 }}
+        >
+          <Text
+            className="text-theme-neutrals-400 text-sm"
+            style={{ flexShrink: 1 }}
+            numberOfLines={2}
+          >
+            {t("profile.couldNotLoadPosts")}
+          </Text>
+          <Text className="text-white text-sm font-medium">{t("common.retry")}</Text>
+        </Pressable>
+      );
+    }
     if (!hasMore) return null;
     return (
-      <View className="py-4 items-center">
+      <View className="items-center justify-center" style={{ height: FOOTER_HEIGHT }}>
         <ActivityIndicator color="#fff" />
       </View>
     );
-  }, [hasMore]);
+  }, [hasMore, pageError, items.length, page, loadPage, t]);
 
   const emptyMessage = useMemo(() => {
     switch (variant) {
@@ -194,7 +227,11 @@ const PostsInfiniteList: React.FC<PostsInfiniteListProps> = ({
             {t("profile.couldNotLoadPosts")}
           </Text>
           <Pressable
-            onPress={() => loadPage(0, true)}
+            // Show the skeleton while it retries; a replace load never sets it.
+            onPress={() => {
+              setLoading(true);
+              loadPage(0, true);
+            }}
             hitSlop={8}
             className="mt-4 rounded-xl px-4 justify-center items-center"
             style={{ height: 40, borderWidth: 1, borderColor: "rgba(255,255,255,0.30)" }}
