@@ -121,7 +121,9 @@ export function DangerZone({ community, membership, onClose }: DangerZoneProps) 
               const ok = await moderation.remove();
               if (ok) {
                 onClose();
-                navigation.navigate(ScreenNames.Communities);
+                // popTo drops the deleted community's page instead of leaving
+                // it under a new Communities page for back to return to.
+                navigation.popTo(ScreenNames.Communities);
               }
             })();
           },
