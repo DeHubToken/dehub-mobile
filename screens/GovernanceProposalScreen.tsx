@@ -27,7 +27,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import type { TFunction } from "i18next";
 import Icon from "../components/ui/Icon";
-import ScreenHeader, { SCREEN_HEADER_HEIGHT } from "../components/ScreenHeader";
+import ScreenHeader from "../components/ScreenHeader";
 import Avatar from "../components/common/Avatar";
 import { DeHubLoader } from "../components/DeHubLoader";
 import { theme } from "../theme";
@@ -146,7 +146,7 @@ export default function GovernanceProposalScreen() {
   const route = useRoute<any>();
   const proposalId: string | undefined = route.params?.proposalId;
   const focusedCommentId: string | undefined = route.params?.commentId;
-  const keyboardOffset = useKeyboardOffset(SCREEN_HEADER_HEIGHT);
+  const keyboardOffset = useKeyboardOffset();
 
   const user = useUser() as any;
   const { isSignedIn, needsUsername } = useAuthState();

@@ -21,7 +21,7 @@ import {
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Icon, { type IconName } from "../components/ui/Icon";
-import ScreenHeader, { SCREEN_HEADER_HEIGHT } from "../components/ScreenHeader";
+import ScreenHeader from "../components/ScreenHeader";
 import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
 import { supabase } from "../services/supabase";
 import { toastError, toastSuccess } from "../libs";
@@ -121,9 +121,9 @@ export default function CareersScreen() {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const navigation = useNavigation<NativeStackNavigationProp<AppStackParamList>>();
-  // ScreenHeader sits above the KeyboardAvoidingView, on top of the inset the
-  // root SafeAreaView already spent.
-  const keyboardOffset = useKeyboardOffset(SCREEN_HEADER_HEIGHT);
+  // The KeyboardAvoidingView's frame is measured from its parent, so the
+  // ScreenHeader above it is already counted. Only the status-bar inset is added.
+  const keyboardOffset = useKeyboardOffset();
   const [formOpen, setFormOpen] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [form, setForm] = useState<BDMForm>(EMPTY_FORM);
