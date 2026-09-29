@@ -52,7 +52,7 @@ import GettingStartedCard from "../components/Onboarding/GettingStartedCard";
 import { pagerPageIntersectsViewport } from "../libs/pagerVisibility";
 import { useAppTheme } from "../context/ThemeContext";
 import { GRAIN } from "../theme/skins";
-import { holdThemeBackdrop, setThemeBackdropVisible } from "../libs/themeBackdrop";
+import { holdThemeBackdrop } from "../libs/themeBackdrop";
 
 const FALLBACK_CATEGORIES: string[] = [];
 const SHUFFLE_SEED_EXPIRY_MS = 30 * 60 * 1000;
@@ -166,12 +166,6 @@ export default function HomeScreen() {
   const { width: pageWidth } = useWindowDimensions();
   const isFocused = useIsFocused();
   const { skin } = useAppTheme();
-  // A canvas theme's live backdrop shows through this screen only, so it runs
-  // while this screen is in front and pauses otherwise (libs/themeBackdrop).
-  useEffect(() => {
-    setThemeBackdropVisible(isFocused);
-  }, [isFocused]);
-  useEffect(() => () => setThemeBackdropVisible(false), []);
   const { hideUserProfile } = useUserProfileSheet();
   const {
     profileVisible,

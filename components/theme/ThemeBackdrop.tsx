@@ -20,9 +20,9 @@ const log = createLogger("ThemeBackdrop");
  * identical to the site and means a background changed on web is one rebuild
  * away here, not a port.
  *
- * It sits under the navigator at the root. The home feed is transparent over
- * it; every other screen paints the theme's page colour on top, so the loop is
- * paused unless home is in front (libs/themeBackdrop) and the app is active.
+ * It sits under the navigator at the root. Every screen is see-through to it,
+ * each page fill a veil of the theme's page colour (libs/jsx/shape.js), so it
+ * runs while the app is active (libs/themeBackdrop).
  *
  * The page loads with https://dehub.io/ as its base, the way the photo editor
  * loads its canvas, so Osaka's rain loop streams from the site as a
