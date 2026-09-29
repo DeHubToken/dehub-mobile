@@ -1,11 +1,12 @@
-/** Dev twin of ./jsx-runtime.js — same shape pass in front of NativeWind's jsxDEV. */
+/** Dev twin of ./jsx-runtime.js — same passes in front of NativeWind's jsxDEV. */
 const base = require("nativewind/jsx-dev-runtime");
-const { squareProps, routeProps } = require("./shape");
+const { prepare } = require("./surface");
 
 module.exports = {
   ...base,
   jsxDEV: function (type, props, ...rest) {
-    return base.jsxDEV(type, routeProps(squareProps(props)), ...rest);
+    const [t, p] = prepare(type, props);
+    return base.jsxDEV(t, p, ...rest);
   },
   Fragment: base.Fragment,
 };
