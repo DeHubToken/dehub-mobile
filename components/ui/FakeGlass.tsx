@@ -1,5 +1,6 @@
 import React from "react";
 import { View, StyleSheet, ViewStyle } from "react-native";
+import { useAppTheme } from "../../context/ThemeContext";
 
 interface FakeGlassProps {
   children: React.ReactNode;
@@ -17,6 +18,7 @@ const FakeGlass: React.FC<FakeGlassProps> = ({
   className = "",
   style,
 }) => {
+  const { skin } = useAppTheme();
   return (
     <View
       className={className}
@@ -27,6 +29,7 @@ const FakeGlass: React.FC<FakeGlassProps> = ({
           borderWidth: StyleSheet.hairlineWidth,
         },
         style,
+        skin?.centre,
       ]}
     >
       {children}
