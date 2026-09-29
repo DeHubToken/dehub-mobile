@@ -8573,7 +8573,8 @@
       "yourApps": "您的应用",
       "notificationsOn": "通知开启",
       "remove": "移除",
-      "removed": "已移除。不会再通知您了。"
+      "removed": "已移除。不会再通知您了。",
+      "rising": "新增和崛起"
     },
     "card": {
       "open": "打开"

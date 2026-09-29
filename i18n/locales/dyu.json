@@ -8544,7 +8544,9 @@
       "noMatch": "O kama, a tun man nɔgɔ ka baara kɛ ni mɔgɔ wɛrɛw ye.",
       "yourApps": "Your apps",
       "notificationsOn": "Notifications on",
-      "remove": "Remove"
+      "remove": "Remove",
+      "removed": "Ne tɛna o fɔ i ye tugun, ne tɛna o fɔ i ye tugun",
+      "rising": "O kɔ, a ye dɔ fara a ka fanga kan"
     },
     "card": {
       "open": "Open"
@@ -8566,7 +8568,9 @@
     },
     "pay": {
       "title": "Pay {{name}}?",
-      "confirm": "Pay {{amount}} DHB"
+      "confirm": "Pay {{amount}} DHB",
+      "body": "DHB be taga a ka baara kɛyɔrɔ la, {{wallet}}. O kama, wari tɛ sɔrɔ o baaraw la.",
+      "sent": "Ddddd {{amount}}DHB to {{name}}."
     },
     "add": {
       "title": "Add {{name}}?",

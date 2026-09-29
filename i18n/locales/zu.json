@@ -8599,7 +8599,10 @@
       "fromDehub": "Kusuka ku-DeHub",
       "noMatch": "Awekho ama-app afana nalokho kusesha.",
       "yourApps": "Ama-app akho",
-      "removed": "**Ukuqala ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuth"
+      "removed": "Ukuqala ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuth",
+      "notificationsOn": "Izaziso zivuliwe",
+      "remove": "Khipha",
+      "rising": "Okusha nokunyukayo"
     },
     "card": {
       "open": "Vula"
@@ -8621,11 +8624,13 @@
     },
     "pay": {
       "title": "Khokha {{name}}?",
-      "confirm": "Pay **{{amount}}** **i-DHB**",
-      "sent": "Ngiyabonga kakhulu kwe{{amount}} DHB kwe{{name}}."
+      "confirm": "Pay {{amount}} i-DHB",
+      "sent": "Ngiyabonga kakhulu kwe{{amount}} DHB kwe{{name}}.",
+      "body": "I-DHB iya ngqo esikhwameni se-app, {{wallet}}. Izinkokhelo azikwazi ukuhlehliswa."
     },
     "add": {
-      "body": "Nginga yizwa ngokwesinye esinye kwenye **Your apps** kanye nge- **notifications** ngokwenza. Uhlangana ngokwenza kanye ngokwenza ngokwenza **Apps page** ngokwenza ngokwenza ngokwenza **ngokwenza**."
+      "body": "Nginga yizwa ngokwesinye esinye kwenye Your apps kanye nge- notifications ngokwenza. Uhlangana ngokwenza kanye ngokwenza ngokwenza Apps page ngokwenza ngokwenza ngokwenza ngokwenza.",
+      "confirm": "Faka i-app"
     }
   },
   "aiStyles": {

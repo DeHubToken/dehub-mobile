@@ -8569,7 +8569,9 @@
       "noMatch": "Bu aramayla eşleşen uygulama yok.",
       "yourApps": "Uygulamalarınız",
       "notificationsOn": "Bildirimler açık",
-      "removed": "Silindi. Artık tekrar bildirim yapmayacak."
+      "removed": "Silindi. Artık tekrar bildirim yapmayacak.",
+      "remove": "Kaldır",
+      "rising": "Yeni ve Popüler"
     },
     "card": {
       "open": "Açık"
@@ -8595,7 +8597,8 @@
       "sent": "Ödenmiş {{amount}} DHB'yi {{name}}."
     },
     "add": {
-      "body": "Yükleme sonrası \"Senin Uygulamaların\" altında görünecek ve size bildirimler göndermeye devam edecek. Herhangi bir zaman \"Uygulamalar\" sayfasından kaldırılabilir."
+      "body": "Yükleme sonrası \"Senin Uygulamaların\" altında görünecek ve size bildirimler göndermeye devam edecek. Herhangi bir zaman \"Uygulamalar\" sayfasından kaldırılabilir.",
+      "confirm": "Uygulama ekle"
     }
   },
   "aiStyles": {

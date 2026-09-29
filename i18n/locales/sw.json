@@ -8569,7 +8569,10 @@
       "fromDehub": "Kutoka DeHub",
       "noMatch": "Hakuna programu zinazolingana na utafutaji huo.",
       "yourApps": "Programu zako",
-      "removed": "Kulikaliwa. Hutumia wako hivi kwa mara moja tu."
+      "removed": "Kulikaliwa. Hutumia wako hivi kwa mara moja tu.",
+      "notificationsOn": "Arifa zimewashwa",
+      "remove": "Ondoa",
+      "rising": "Mpya na inayoinuka"
     },
     "card": {
       "open": "Fungua"
@@ -8592,11 +8595,13 @@
     "pay": {
       "body": "DHB inatoka nyuma kwenda gharama za akiba ya appi, {{wallet}}. Malipo hayasahibiwa.",
       "confirm": "Baada ya kufikia {{amount}} DHB",
-      "sent": "Bajaji {{amount}} DHB kwa {{name}}."
+      "sent": "Bajaji {{amount}} DHB kwa {{name}}.",
+      "title": "Lipa {{name}}?"
     },
     "add": {
       "body": "Kutajwa chini ya Your apps na inaweza kusafiri habari zaidi. Unaweza kutumia kutangaza kila wakati kutoka kwa Apps page.",
-      "confirm": "Kujenga App"
+      "confirm": "Kujenga App",
+      "title": "Weka {{name}}?"
     }
   },
   "aiStyles": {
