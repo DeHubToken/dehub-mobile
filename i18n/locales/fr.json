@@ -7063,6 +7063,12 @@
       "noCurve": "Placez la tête de lecture sur une image clé pour modifier sa courbe.",
       "applyAll": "Appliquer cette courbe à toutes les images clés",
       "timelineKey": "Image clé. Faites-la glisser pour la déplacer, touchez-la deux fois pour la supprimer.",
+      "record": "Enregistrer",
+      "recordHint": "Enregistrement : déplacer, redimensionner, faire pivoter ou estomper un calque sous la tête de lecture y ajoute des images clés.",
+      "recording": "Enregistrement du mouvement",
+      "lanes": "Images clés",
+      "scrub": "Faites glisser à gauche ou à droite pour modifier.",
+      "segment": "{{from}} → {{to}}",
       "ease": {
         "linear": "Linéaire",
         "ease": "Douce",

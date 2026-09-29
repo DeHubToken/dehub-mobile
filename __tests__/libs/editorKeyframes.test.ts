@@ -1,6 +1,6 @@
 import { EDITOR_CANVAS_HTML } from "../../libs/editor/canvasHtml";
 import {
-  applyEase, cubicBezier, keyTimes, propAt, removeKeysAt, resolveClipAt, retimeKeys, setEaseAt, setKey, shiftKeys, stopAnimatingPatch,
+  applyEase, cubicBezier, keyAllAt, keyTimes, propAt, removeKeysAt, resolveClipAt, retimeKey, retimeKeys, setEaseAt, setKey, shiftKeys, stopAnimatingPatch,
 } from "../../libs/editor/keyframes";
 import { addText, newProject, placementPatchAt } from "../../libs/editor/project";
 import { splitClip, trimClip } from "../../libs/editor/timeline";
@@ -143,5 +143,42 @@ describe("canvas page parity", () => {
     const b = resolveClipAt(text, 0.4);
     expect(a.x).toBeCloseTo(b.x);
     expect(a.transform).toEqual(b.transform);
+  });
+});
+
+describe("record mode and quick keys (web keyframes.test.ts)", () => {
+  it("record starts a property animating from its old value", () => {
+    const c = shape({ transform: { x: 0.2, y: 0.5, scale: 1, rotation: 0 } });
+    const patch = placementPatchAt(c, { x: 0.8 }, 4, { record: true }) as Partial<ShapeClip>;
+    expect(patch.keyframes?.x?.map((k) => [k.t, k.v])).toEqual([[0, 0.2], [2, 0.8]]);
+    expect(patch.keyframes?.y).toBeUndefined();
+  });
+  it("record at the clip's first frame just sets the value", () => {
+    const patch = placementPatchAt(shape(), { x: 0.8 }, 2, { record: true }) as Partial<ShapeClip>;
+    expect(patch.keyframes).toBeUndefined();
+    expect(patch.transform?.x).toBe(0.8);
+  });
+  it("record never keys a text layer's scale", () => {
+    const text = {
+      id: "t2", trackId: "t", kind: "text", start: 0, duration: 2, trimIn: 0, text: "Hi", fontFamily: "Inter", fontSize: 80,
+      fontWeight: 700, color: "#fff", align: "centre", x: 0.5, y: 0.5,
+    } as TextClip;
+    expect(placementPatchAt(text, { scale: 2 }, 1, { record: true }).keyframes?.scale).toBeUndefined();
+  });
+  it("record off leaves an unanimated layer static", () => {
+    expect(placementPatchAt(shape(), { x: 0.8 }, 4, { record: false }).keyframes).toBeUndefined();
+  });
+  it("keyAllAt keys everything, then only what is already animated", () => {
+    const c = shape();
+    const first = keyAllAt(c, 3);
+    expect(Object.keys(first ?? {}).sort()).toEqual(["opacity", "rotation", "scale", "x", "y"]);
+    const onlyX = shape({ keyframes: { x: [{ t: 0, v: 0.1 }] } });
+    expect(Object.keys(keyAllAt(onlyX, 3) ?? {})).toEqual(["x"]);
+  });
+  it("retimeKey moves one property's key only", () => {
+    const c = shape({ keyframes: { x: [{ t: 1, v: 0 }], scale: [{ t: 1, v: 2 }] } });
+    const next = retimeKey(c, "x", 1, 1.5);
+    expect(next?.x?.[0].t).toBe(1.5);
+    expect(next?.scale?.[0].t).toBe(1);
   });
 });

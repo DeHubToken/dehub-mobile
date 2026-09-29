@@ -7010,6 +7010,12 @@
       "noCurve": "Sett avspillingshodet på et nøkkelbilde for å forme kurven.",
       "applyAll": "Bruk denne kurven på alle nøkkelbilder",
       "timelineKey": "Nøkkelbilde. Dra for å flytte det, dobbelttrykk for å slette det.",
+      "record": "Ta opp",
+      "recordHint": "Opptak: å flytte, skalere, rotere eller tone et lag under avspillingshodet legger til nøkkelbilder der.",
+      "recording": "Tar opp bevegelse",
+      "lanes": "Nøkkelbilder",
+      "scrub": "Dra til venstre eller høyre for å endre.",
+      "segment": "{{from}} → {{to}}",
       "ease": {
         "linear": "Lineær",
         "ease": "Myk",

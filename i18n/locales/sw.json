@@ -7011,6 +7011,12 @@
       "noCurve": "Weka kichwa cha kucheza kwenye fremu muhimu ili kuunda mkunjo wake.",
       "applyAll": "Tumia mkunjo huu kwenye kila fremu muhimu",
       "timelineKey": "Fremu muhimu. Buruta ili kuisogeza, gusa mara mbili ili kuifuta.",
+      "record": "Rekodi",
+      "recordHint": "Kurekodi: kusogeza, kubadilisha ukubwa, kuzungusha au kufifisha safu chini ya kichwa cha kucheza huongeza fremu muhimu hapo.",
+      "recording": "Inarekodi mwendo",
+      "lanes": "Fremu muhimu",
+      "scrub": "Buruta kushoto au kulia kubadilisha.",
+      "segment": "{{from}} → {{to}}",
       "ease": {
         "linear": "Mstari",
         "ease": "Laini",

@@ -6905,6 +6905,12 @@
       "noCurve": "Put di playhead for top one keyframe to shape im curve.",
       "applyAll": "Use dis curve for all di keyframes",
       "timelineKey": "Keyframe. Drag am to move am, tap am two times to delete am.",
+      "record": "Record",
+      "recordHint": "As e dey record, if you move, resize, turn or fade layer wey playhead dey inside, e go add keyframe for dat place.",
+      "recording": "E dey record movement",
+      "lanes": "Keyframes",
+      "scrub": "Drag am left or right to change am.",
+      "segment": "{{from}} → {{to}}",
       "ease": {
         "linear": "Straight",
         "ease": "Smooth",

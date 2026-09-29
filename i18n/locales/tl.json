@@ -7190,6 +7190,12 @@
       "noCurve": "Ilagay ang playhead sa isang keyframe para hubugin ang kurba nito.",
       "applyAll": "Gamitin ang kurbang ito sa bawat keyframe",
       "timelineKey": "Keyframe. I-drag para ilipat, i-double tap para burahin.",
+      "record": "I-record",
+      "recordHint": "Nagre-record: ang paglipat, pagpapalaki, pag-ikot o pagpapalabo ng layer sa ilalim ng playhead ay nagdadagdag ng keyframe doon.",
+      "recording": "Nire-record ang galaw",
+      "lanes": "Mga keyframe",
+      "scrub": "I-drag pakaliwa o pakanan para baguhin.",
+      "segment": "{{from}} → {{to}}",
       "ease": {
         "linear": "Linear",
         "ease": "Malumanay",

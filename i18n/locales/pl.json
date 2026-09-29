@@ -7078,6 +7078,12 @@
       "noCurve": "Ustaw głowicę na klatce kluczowej, aby zmienić jej krzywą.",
       "applyAll": "Użyj tej krzywej dla wszystkich klatek kluczowych",
       "timelineKey": "Klatka kluczowa. Przeciągnij, aby przesunąć, dotknij dwukrotnie, aby usunąć.",
+      "record": "Nagrywaj",
+      "recordHint": "Nagrywanie: przesunięcie, skalowanie, obrót lub wygaszenie warstwy pod głowicą dodaje tam klatki kluczowe.",
+      "recording": "Nagrywanie ruchu",
+      "lanes": "Klatki kluczowe",
+      "scrub": "Przeciągnij w lewo lub w prawo, aby zmienić.",
+      "segment": "{{from}} → {{to}}",
       "ease": {
         "linear": "Liniowa",
         "ease": "Płynna",

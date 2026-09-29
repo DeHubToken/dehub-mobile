@@ -7010,6 +7010,12 @@
       "noCurve": "Vii esitusjoon võtmekaadrile, et selle kõverat kujundada.",
       "applyAll": "Kasuta seda kõverat kõigil võtmekaadritel",
       "timelineKey": "Võtmekaader. Lohista liigutamiseks, topeltpuuduta kustutamiseks.",
+      "record": "Salvesta",
+      "recordHint": "Salvestamine: kihi liigutamine, suuruse muutmine, pööramine või hajutamine esitusjoone kohal lisab sinna võtmekaadreid.",
+      "recording": "Liikumist salvestatakse",
+      "lanes": "Võtmekaadrid",
+      "scrub": "Muutmiseks lohista vasakule või paremale.",
+      "segment": "{{from}} → {{to}}",
       "ease": {
         "linear": "Lineaarne",
         "ease": "Pehme",

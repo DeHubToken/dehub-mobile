@@ -7059,6 +7059,12 @@
       "noCurve": "Setze den Abspielkopf auf einen Keyframe, um seine Kurve zu formen.",
       "applyAll": "Diese Kurve für alle Keyframes verwenden",
       "timelineKey": "Keyframe. Ziehen zum Verschieben, zweimal tippen zum Löschen.",
+      "record": "Aufnehmen",
+      "recordHint": "Aufnahme: Verschieben, Skalieren, Drehen oder Ausblenden einer Ebene unter dem Abspielkopf setzt dort Keyframes.",
+      "recording": "Bewegung wird aufgenommen",
+      "lanes": "Keyframes",
+      "scrub": "Nach links oder rechts ziehen zum Ändern.",
+      "segment": "{{from}} → {{to}}",
       "ease": {
         "linear": "Linear",
         "ease": "Weich",

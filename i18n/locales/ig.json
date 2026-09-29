@@ -7008,6 +7008,12 @@
       "noCurve": "Tinye isi egwu n’okpokoro isi iji hazie ụzọ ya.",
       "applyAll": "Jiri ụzọ a mee okpokoro isi niile",
       "timelineKey": "Okpokoro isi. Dọrọ ya iji bugharịa, metụ ya ugboro abụọ iji hichapụ ya.",
+      "record": "Dekọọ",
+      "recordHint": "Na-edekọ: ibugharị, ịgbanwe nha, ịtụgharị ma ọ bụ ime ka akwa-ọkwa daa mbà n’okpuru isi egwu na-agbakwunye okpokoro isi n’ebe ahụ.",
+      "recording": "Na-edekọ mmegharị",
+      "lanes": "Okpokoro isi",
+      "scrub": "Dọrọ n’aka ekpe ma ọ bụ aka nri iji gbanwee.",
+      "segment": "{{from}} → {{to}}",
       "ease": {
         "linear": "Kwụ ọtọ",
         "ease": "Nwayọọ",

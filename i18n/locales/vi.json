@@ -7097,6 +7097,12 @@
       "noCurve": "Đặt đầu phát lên một khung hình chính để chỉnh đường cong của nó.",
       "applyAll": "Dùng đường cong này cho mọi khung hình chính",
       "timelineKey": "Khung hình chính. Kéo để di chuyển, chạm hai lần để xóa.",
+      "record": "Ghi",
+      "recordHint": "Đang ghi: di chuyển, đổi kích thước, xoay hoặc làm mờ một lớp tại đầu phát sẽ thêm khung hình chính ở đó.",
+      "recording": "Đang ghi chuyển động",
+      "lanes": "Khung hình chính",
+      "scrub": "Kéo sang trái hoặc phải để thay đổi.",
+      "segment": "{{from}} → {{to}}",
       "ease": {
         "linear": "Tuyến tính",
         "ease": "Mượt",

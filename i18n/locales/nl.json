@@ -7264,6 +7264,12 @@
       "noCurve": "Zet de afspeelkop op een keyframe om de curve aan te passen.",
       "applyAll": "Deze curve voor elke keyframe gebruiken",
       "timelineKey": "Keyframe. Sleep om te verplaatsen, dubbeltik om te verwijderen.",
+      "record": "Opnemen",
+      "recordHint": "Opname: een laag onder de afspeelkop verplaatsen, schalen, draaien of vervagen voegt daar keyframes toe.",
+      "recording": "Beweging wordt opgenomen",
+      "lanes": "Keyframes",
+      "scrub": "Sleep naar links of rechts om te wijzigen.",
+      "segment": "{{from}} → {{to}}",
       "ease": {
         "linear": "Lineair",
         "ease": "Vloeiend",

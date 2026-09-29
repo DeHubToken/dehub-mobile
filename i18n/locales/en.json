@@ -7052,6 +7052,12 @@
       "noCurve": "Move the playhead onto a keyframe to shape its curve.",
       "applyAll": "Use this curve on every keyframe",
       "timelineKey": "Keyframe. Drag to move it, double-tap to delete it.",
+      "record": "Record",
+      "recordHint": "Recording: moving, resizing, rotating or fading a layer with the playhead inside it adds keyframes there.",
+      "recording": "Recording motion",
+      "lanes": "Keyframes",
+      "scrub": "Drag left or right to change.",
+      "segment": "{{from}} → {{to}}",
       "ease": {
         "linear": "Linear",
         "ease": "Ease",

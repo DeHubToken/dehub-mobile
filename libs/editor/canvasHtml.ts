@@ -17,11 +17,13 @@
  *                      media {id, src} (pictures) · mediaBegin {id, kind, mime} · mediaChunk {id, b64} · mediaEnd {id}
  *                      export {reqId, format, quality} · exportVideo {reqId, width, height, bitrate} · videoAck {reqId} · exportAbort
  *                      stats {reqId, mediaId} · cutout {reqId, mediaId}
+ *                      path {reqId, clip, keys, width, height, samples} (a keyed layer's motion path)
  * Messages out (JSON): ready · frame {layers, missing} · exported {reqId, dataUrl} · exportFailed {reqId, error}
  *                      time {time} (while playing) · ended {time} · mediaAck {id} · mediaReady {id, duration, width, height}
  *                      videoProgress {reqId, progress} · videoChunk {reqId, b64, last, ext, done, total} · videoFailed {reqId, error}
  *                      stats {reqId, mean, std, sat} (Auto enhance; null fields when the picture is missing)
  *                      cutoutProgress {reqId, loaded, total} · cutout {reqId, dataUrl, width, height} · cutoutFailed {reqId, error}
+ *                      path {reqId, pts, keys} (page pixels)
  *
  * Written as plain ES2017 inside String.raw: no backticks and no "${" below.
  */
@@ -1309,6 +1311,20 @@ canvas{display:block;width:100%;height:100%;}
       post({ type: "stats", reqId: m.reqId, mean: mean, std: Math.sqrt(Math.max(0, sumSq / n - mean * mean)), sat: sat / n });
     } else if (m.type === "cutout") {
       cutout(m);
+    } else if (m.type === "path") {
+      // Where a keyed layer's centre travels over its clip (web Compositor
+      // motionPath): the same boxes the handles use, sampled across the clip.
+      var pc = m.clip, PW = m.width, PH = m.height, N = m.samples || 64;
+      var centreAt = function (tt) {
+        var rc = resolveClipAt(pc, tt);
+        var bx = clipBox(ctx, rc, PW, PH);
+        var ptr = getTransform(rc);
+        return bx ? [bx.cx, bx.cy] : [ptr.x * PW, ptr.y * PH];
+      };
+      var pts = [];
+      for (var si = 0; si <= N; si++) pts.push(centreAt(pc.start + (pc.duration * si) / N));
+      var kpts = (m.keys || []).map(function (kt) { return centreAt(pc.start + kt); });
+      post({ type: "path", reqId: m.reqId, pts: pts, keys: kpts });
     } else if (m.type === "export") {
       var done = function () {
         try {

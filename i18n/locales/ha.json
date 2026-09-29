@@ -7010,6 +7010,12 @@
       "noCurve": "Sanya alamar kunnawa kan firam mai mahimmanci don tsara lanƙwasarsa.",
       "applyAll": "Yi amfani da wannan lanƙwasa a kowane firam mai mahimmanci",
       "timelineKey": "Firam mai mahimmanci. Ja don matsar da shi, taɓa sau biyu don goge shi.",
+      "record": "Naɗa",
+      "recordHint": "Ana naɗawa: matsawa, canza girma, juyawa ko dusashe layi a ƙarƙashin alamar kunnawa yana ƙara firam masu mahimmanci a wurin.",
+      "recording": "Ana naɗa motsi",
+      "lanes": "Firam masu mahimmanci",
+      "scrub": "Ja hagu ko dama don canzawa.",
+      "segment": "{{from}} → {{to}}",
       "ease": {
         "linear": "Madaidaici",
         "ease": "Mai laushi",

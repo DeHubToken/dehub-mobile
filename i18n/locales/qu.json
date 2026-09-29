@@ -7041,6 +7041,12 @@
       "noCurve": "Reproducción umata llave fotograma hawapi churay k’umunta ruranaykipaq.",
       "applyAll": "Kay k’umuta llapan llave fotogramakunapi llamk’achiy",
       "timelineKey": "Llave fotograma. Aysay kuyuchinaykipaq, iskay kutita llamiy qichunaykipaq.",
+      "record": "Waqaychay",
+      "recordHint": "Waqaychaspa: reproducción uma urapi capata kuyuchispa, hatunyachispa, muyuchispa utaq pisiyachispa chaypi llave fotogramakunata yapan.",
+      "recording": "Kuyuyta waqaychachkan",
+      "lanes": "Llave fotogramakuna",
+      "scrub": "Lluq’iman utaq pañaman aysay tikranaykipaq.",
+      "segment": "{{from}} → {{to}}",
       "ease": {
         "linear": "Siq’i",
         "ease": "Llampu",
