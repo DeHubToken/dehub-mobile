@@ -479,7 +479,8 @@ const HomeImageGrid: React.FC<HomeImageGridProps> = ({
         onMomentumScrollEnd={endScroll}
         onViewableItemsChanged={onViewableItemsChanged}
         viewabilityConfig={viewabilityConfig}
-        scrollEventThrottle={16}
+        // See InfiniteVideoFeed: 16 is below Android's 17ms throttle floor.
+        scrollEventThrottle={24}
         refreshControl={
           <DeHubRefreshControl
             refreshing={refreshing}
