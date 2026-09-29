@@ -63,6 +63,25 @@ it('does not dismiss for a short drag or cancellation', () => {
   expect(close).not.toHaveBeenCalled();
 });
 
+// The modal window starts at the top of the screen and the keyboard view's layout
+// y already includes the foreground's top inset. An offset counts the status bar
+// twice and leaves a dimmed strip between every input sheet and the keys.
+it.each(['ios', 'android'])('lifts sheets flush onto the keyboard on %s', (os) => {
+  const platform = jest.requireMock('react-native').Platform;
+  platform.OS = os;
+  try {
+    for (const presentation of ['bottom', 'center'] as const) {
+      const screen = render(<GlassModal visible presentation={presentation} onClose={jest.fn()}><View /></GlassModal>);
+      const avoider = screen.UNSAFE_getByType('KeyboardAvoidingView' as any);
+      expect(avoider.props.keyboardVerticalOffset ?? 0).toBe(0);
+      expect(avoider.props.behavior).toBe(os === 'ios' ? 'padding' : 'height');
+      screen.unmount();
+    }
+  } finally {
+    platform.OS = 'ios';
+  }
+});
+
 it('preserves buttons and horizontal gestures in standalone sheet headers', () => {
   const close = jest.fn();
   render(<SheetDismissHandle onClose={close}><View /></SheetDismissHandle>);
