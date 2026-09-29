@@ -41,7 +41,11 @@ export interface CategoryCount {
 
 /** Dropped from the list on both clients. Keep in step with web's copy. */
 const EXCLUDED_CATEGORIES = new Set(["general", "", "-", "other"]);
-const TRENDING_CACHE_MS = 60_000;
+/**
+ * The category log is rebuilt once a day, and every count is a full-table
+ * GROUP BY, so refetching each period every minute bought nothing but load.
+ */
+const TRENDING_CACHE_MS = 30 * 60_000;
 
 function periodCutoff(period: TopicPeriod): string | null {
   if (period === "all") return null;
@@ -122,7 +126,7 @@ export function useTrendingCategories(period: TopicPeriod = "1w") {
     queryKey: ["trending-categories", period],
     queryFn: () => fetchTrendingCategories(period),
     staleTime: TRENDING_CACHE_MS,
-    gcTime: 30 * 60_000,
+    gcTime: 2 * TRENDING_CACHE_MS,
     refetchOnWindowFocus: false,
     // The screen renders perfectly well without it.
     retry: false,
