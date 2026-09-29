@@ -9,13 +9,14 @@
  */
 
 import React, { useState } from "react";
-import { ActivityIndicator, Alert, Pressable, ScrollView, Share, StyleSheet, Text, TextInput, View } from "react-native";
+import { ActivityIndicator, Alert, KeyboardAvoidingView, Pressable, ScrollView, Share, StyleSheet, Text, TextInput, View } from "react-native";
 import * as Clipboard from "expo-clipboard";
 import * as ImagePicker from "expo-image-picker";
 import { useRoute, type RouteProp } from "@react-navigation/native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useTranslation } from "react-i18next";
 import ScreenHeader from "../components/ScreenHeader";
+import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
 import SmartImage from "../components/common/SmartImage";
 import Icon from "../components/ui/Icon";
 import { useAuthActions } from "../context/AuthContext";
@@ -65,6 +66,10 @@ export default function PackScreen() {
   const slug = route.params?.slug ?? "";
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
+  // The KeyboardAvoidingView is the screen root and wraps the ScreenHeader, so
+  // only the root SafeAreaView's inset sits above it. Adding the header height
+  // would count it twice.
+  const keyboardOffset = useKeyboardOffset();
   const wallet = usePackWallet();
   const { requireAuth } = useAuthActions();
   const { openPacks } = usePacksNavigation();
@@ -251,7 +256,7 @@ export default function PackScreen() {
   };
 
   return (
-    <View style={styles.root}>
+    <KeyboardAvoidingView style={styles.root} behavior="padding" keyboardVerticalOffset={keyboardOffset}>
       <ScreenHeader title={t("creatorPacks.title")} />
       <ScrollView
         contentContainerStyle={{ paddingHorizontal: 12, paddingTop: 4, paddingBottom: insets.bottom + 24, gap: 14 }}
@@ -442,7 +447,7 @@ export default function PackScreen() {
           <Text style={[styles.muted, { textAlign: "center", paddingVertical: 24 }]}>{t("creatorPacks.packEmpty")}</Text>
         )}
       </ScrollView>
-    </View>
+    </KeyboardAvoidingView>
   );
 }
 
