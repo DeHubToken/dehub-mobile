@@ -40,6 +40,7 @@ import { toastError, toastPromise, toastSuccess } from "../../libs";
 import SuperPowerIcon from "./SuperPowerIcon";
 import { appLocale } from "../../libs/date.util";
 import BuyDhbSheet from "../Dpay/BuyDhbSheet";
+import { DIGITAL_PURCHASES_ENABLED } from "../../config/storefront";
 
 export interface BoostSheetProps {
   visible: boolean;
@@ -181,14 +182,14 @@ export default function BoostSheet({
           <View className="items-center gap-4 py-4">
             <Icon name="Lock" size={28} color="#808089" />
             <Text className="text-center text-sm text-white">
-              {t("superpowers.anyBadgeHolder")}
+              {t("superpowers.intro")}
             </Text>
-            <Pressable
+            {DIGITAL_PURCHASES_ENABLED && <Pressable
               onPress={() => setBuyOpen(true)}
               className="rounded-xl border border-white/20 px-5 py-3"
             >
               <Text className="text-sm text-white">{t("superpowers.getDhb")}</Text>
-            </Pressable>
+            </Pressable>}
           </View>
         ) : (
           <ScrollView style={{ flexShrink: 1 }} contentContainerClassName="gap-4">
@@ -330,7 +331,7 @@ export default function BoostSheet({
         )}
       </View>
     </GlassModal>
-    <BuyDhbSheet visible={visible && buyOpen} onClose={() => setBuyOpen(false)} />
+    {DIGITAL_PURCHASES_ENABLED && <BuyDhbSheet visible={visible && buyOpen} onClose={() => setBuyOpen(false)} />}
     </>
   );
 }

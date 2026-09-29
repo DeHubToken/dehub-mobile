@@ -46,6 +46,7 @@ import {
 } from "../services/superpower.service";
 import SuperPowerIcon from "../components/common/SuperPowerIcon";
 import BuyDhbSheet from "../components/Dpay/BuyDhbSheet";
+import { DIGITAL_PURCHASES_ENABLED } from "../config/storefront";
 
 /** Total slot minutes a tier holds per cycle — the number worth comparing. */
 function formatMinutes(total: number): string {
@@ -124,17 +125,16 @@ export default function SuperPowersScreen() {
             )}
           </>
         ) : (
-          // No badge — this screen's real audience. Say what it costs and where.
+          // Team up is available without buying tokens or holding a badge.
           <View style={styles.panel}>
-            <Text style={styles.body}>{t("superpowers.holdToUnlock")}</Text>
             <Text style={styles.muted}>{t("superpowers.teamUpOpenToAll")}</Text>
             <BadgeProgress balance={status?.badgeBalance ?? 0} compact />
-            <Pressable
+            {DIGITAL_PURCHASES_ENABLED && <Pressable
               onPress={() => setBuyOpen(true)}
               style={styles.cta}
             >
               <Text style={styles.ctaText}>{t("superpowers.getDhb")}</Text>
-            </Pressable>
+            </Pressable>}
           </View>
         )}
 
@@ -260,7 +260,7 @@ export default function SuperPowersScreen() {
         <Text style={styles.footnote}>{t("superpowers.rotationNote")}</Text>
       </ScrollView>
 
-      <BuyDhbSheet visible={buyOpen} onClose={() => setBuyOpen(false)} onDelivered={() => void refetchStatus()} />
+      {DIGITAL_PURCHASES_ENABLED && <BuyDhbSheet visible={buyOpen} onClose={() => setBuyOpen(false)} onDelivered={() => void refetchStatus()} />}
 
       <SpendPowerSheet
         power={spending}
