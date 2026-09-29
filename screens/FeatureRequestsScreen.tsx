@@ -55,6 +55,7 @@ import { formatCompactNumber } from "../libs";
 import { useUser, useAuthState } from "../context/AuthContext";
 import { useUserProfileSheet } from "../context/UserProfileSheetContext";
 import { useAppTheme } from "../context/ThemeContext";
+import { themePageIcon } from "../theme/pageIcons";
 import {
   MINIMAL_TAB_TEXT,
   MINIMAL_TAB_TEXT_ACTIVE,
@@ -98,9 +99,6 @@ const COMMENT_MAX = 500;
 const TITLE_MAX = 100;
 const DESC_MAX = 1000;
 const DEVICE_MAX = 300;
-
-/** Web's header lightbulb, served from the same place the site serves it. */
-const HEADER_ICON_URI = "https://dehub.io/theme-icons/system/features.webp";
 
 type PageTab = "requests" | "shipping" | "shipped";
 
@@ -849,7 +847,7 @@ export default function FeatureRequestsScreen() {
   // Minimal: the header bento and request cards become edge-to-edge hairline
   // groups, the Requests/Shipping/Shipped strip becomes file tabs. Search,
   // chips and buttons keep their fill.
-  const { isMinimal } = useAppTheme();
+  const { isMinimal, theme } = useAppTheme();
   const insets = useSafeAreaInsets();
   const { width } = useWindowDimensions();
   const navigation = useNavigation<any>();
@@ -1043,7 +1041,7 @@ export default function FeatureRequestsScreen() {
             </View>
           ) : (
             <Image
-              source={{ uri: HEADER_ICON_URI }}
+              source={themePageIcon(theme, 'features')}
               style={styles.headerIcon}
               contentFit="contain"
               transition={150}
