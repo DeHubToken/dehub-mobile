@@ -16,6 +16,7 @@ import React, { useCallback, useEffect, useMemo, useState } from "react";
 import {
   ActivityIndicator,
   FlatList,
+  KeyboardAvoidingView,
   Modal,
   Pressable,
   ScrollView,
@@ -32,6 +33,7 @@ import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import ScreenHeader from "../components/ScreenHeader";
+import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
 import Icon from "../components/ui/Icon";
 import TitleCard from "../components/Cinema/TitleCard";
 import OfferPanel from "../components/Cinema/OfferPanel";
@@ -121,6 +123,10 @@ function CountryPicker({
 export default function CinemaScreen() {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
+  // The KeyboardAvoidingView is the screen root and wraps the ScreenHeader, so
+  // only the root SafeAreaView's inset sits above it. Adding the header height
+  // would count it twice.
+  const keyboardOffset = useKeyboardOffset();
   const navigation = useNavigation<Nav>();
   const route = useRoute<RouteProp<AppStackParamList, ScreenNames.Cinema>>();
   const filmId = route.params?.filmId ? String(route.params.filmId) : undefined;
@@ -221,7 +227,7 @@ export default function CinemaScreen() {
   // ── One title ──
   if (filmId) {
     return (
-      <View style={styles.root}>
+      <KeyboardAvoidingView style={styles.root} behavior="padding" keyboardVerticalOffset={keyboardOffset}>
         <ScreenHeader
           title={openTitle?.title ?? t("cinema.title")}
           rightContent={
@@ -254,7 +260,7 @@ export default function CinemaScreen() {
           )}
         </ScrollView>
         {picker}
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 

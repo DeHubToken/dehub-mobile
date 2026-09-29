@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from "react";
 import {
   ActivityIndicator,
+  KeyboardAvoidingView,
   Pressable,
   ScrollView,
   StyleSheet,
@@ -15,6 +16,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigation } from "@react-navigation/native";
 import ScreenHeader from "../components/ScreenHeader";
 import FeedbackSection from "../components/Stats/FeedbackSection";
+import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
 import Icon from "../components/ui/Icon";
 import { ScreenNames } from "../navigation/ScreenNames";
 
@@ -115,6 +117,10 @@ export default function StatsScreen() {
   });
   const { t } = useTranslation();
   const navigation = useNavigation<any>();
+  // The KeyboardAvoidingView is the screen root and wraps the ScreenHeader, so
+  // only the root SafeAreaView's inset sits above it. Adding the header height
+  // would count it twice.
+  const keyboardOffset = useKeyboardOffset();
   const option = RANGE_OPTIONS.find((item) => item.key === range)!;
   const rows = useMemo(() => {
     const all = query.data?.history.days ?? [];
@@ -122,7 +128,7 @@ export default function StatsScreen() {
   }, [option.days, query.data]);
 
   return (
-    <View style={styles.root}>
+    <KeyboardAvoidingView style={styles.root} behavior="padding" keyboardVerticalOffset={keyboardOffset}>
       <ScreenHeader title={t("nav.stats")} subtitle={t("stats.subtitle")} />
       {query.isLoading ? (
         <View style={styles.center}><ActivityIndicator color="#F4F4F5" /></View>
@@ -134,6 +140,7 @@ export default function StatsScreen() {
       ) : (
         <ScrollView
           contentContainerStyle={styles.content}
+          keyboardShouldPersistTaps="handled"
           refreshControl={<DeHubRefreshControl refreshing={query.isFetching} onRefresh={() => query.refetch()} tintColor="#F4F4F5" />}
         >
           <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ marginHorizontal: -12 }} contentContainerStyle={styles.filters}>
@@ -153,9 +160,10 @@ export default function StatsScreen() {
           </View>
           {/* The heading opens the New members rail on Explore, which is
               otherwise only found by scrolling that tab. Explore is a bottom
-              tab, so the route goes through Root. */}
+              tab, so the route goes through Root; `pop` returns to the Root
+              already under this page instead of stacking a second one. */}
           <Pressable
-            onPress={() => navigation.navigate(ScreenNames.Root, { screen: ScreenNames.Explore, params: { section: "newMembers" } })}
+            onPress={() => navigation.navigate(ScreenNames.Root, { screen: ScreenNames.Explore, params: { section: "newMembers" } }, { pop: true })}
             accessibilityRole="link"
             accessibilityLabel={t("stats.community.openNewMembers")}
             hitSlop={8}
@@ -182,7 +190,7 @@ export default function StatsScreen() {
         </ScrollView>
       )}
       <DeHubRefreshMark refreshing={query.isFetching} />
-    </View>
+    </KeyboardAvoidingView>
   );
 }
 

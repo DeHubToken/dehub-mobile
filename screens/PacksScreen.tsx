@@ -8,10 +8,11 @@
  */
 
 import React, { useState } from "react";
-import { ActivityIndicator, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
+import { ActivityIndicator, KeyboardAvoidingView, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useTranslation } from "react-i18next";
 import ScreenHeader from "../components/ScreenHeader";
+import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
 import Icon from "../components/ui/Icon";
 import { useAuthActions, useAuthState } from "../context/AuthContext";
 import { toastError } from "../libs/toast";
@@ -103,6 +104,10 @@ function TierTable() {
 export default function PacksScreen() {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
+  // The KeyboardAvoidingView is the screen root and wraps the ScreenHeader, so
+  // only the root SafeAreaView's inset sits above it. Adding the header height
+  // would count it twice.
+  const keyboardOffset = useKeyboardOffset();
   const wallet = usePackWallet();
   const { isSignedIn } = useAuthState();
   const { requireAuth } = useAuthActions();
@@ -138,7 +143,7 @@ export default function PacksScreen() {
   };
 
   return (
-    <View style={styles.root}>
+    <KeyboardAvoidingView style={styles.root} behavior="padding" keyboardVerticalOffset={keyboardOffset}>
       <ScreenHeader title={t("creatorPacks.title")} />
       <ScrollView
         contentContainerStyle={{ paddingHorizontal: 12, paddingTop: 4, paddingBottom: insets.bottom + 24, gap: 14 }}
@@ -243,7 +248,7 @@ export default function PacksScreen() {
           )}
         </View>
       </ScrollView>
-    </View>
+    </KeyboardAvoidingView>
   );
 }
 
