@@ -1900,6 +1900,7 @@
     "coverUpdated": "封面已更新",
     "couldNotPickImage": "无法选择图片",
     "changeCoverImage": "更改封面图片",
+    "viewCoverImage": "查看封面图片",
     "changeAvatar": "更改头像",
     "verifiedEnsName": "已验证的 ENS 名称 {{name}}",
     "notFullyJoined": "该用户尚未完全加入。他们尚未领取用户名或完成个人资料设置。您仍然可以查看公开活动并发送提示（如果可用）。",
@@ -5955,7 +5956,8 @@
     "recentSearches": "最近搜索",
     "noTrendingThisWeek": "本周无热门内容",
     "closeFilterOptions": "关闭筛选选项",
-    "openFilterOptions": "打开筛选选项"
+    "openFilterOptions": "打开筛选选项",
+    "fillQuery": "将\"{{query}}\"填入搜索框"
   },
   "notifPrompt": {
     "stayInLoop": "保持关注",

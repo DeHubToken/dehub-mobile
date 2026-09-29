@@ -1923,6 +1923,7 @@
     "coverUpdated": "Nohavaozina ny sarin-dahy",
     "couldNotPickImage": "Tsy nahafaka naka sary",
     "changeCoverImage": "Ovay ny sarin-dahy",
+    "viewCoverImage": "Jereo ny sary fonony",
     "changeAvatar": "Ovay ny avatar",
     "verifiedEnsName": "Anarana ENS voamarina {{name}}",
     "notFullyJoined": "Mbola tsy tafiditra tanteraka ity mpampiasa ity. Tsy naka anarana mpampiasa izy na nahavita ny fametrahana ny mombamomba azy. Azonao jerena ihany ny hetsika ampahibemaso ary alefaso torohevitra raha misy.",
@@ -5926,7 +5927,8 @@
     "recentSearches": "Fikarohana Vao Haingana",
     "noTrendingThisWeek": "Tsy misy votoaty malaza amin'ity herinandro ity",
     "closeFilterOptions": "Akana ny safidy sivana",
-    "openFilterOptions": "Sokafy ny safidy sivana"
+    "openFilterOptions": "Sokafy ny safidy sivana",
+    "fillQuery": "Apetraho ao amin'ny fikarohana ny \"{{query}}\""
   },
   "notifPrompt": {
     "stayInLoop": "Mahafantatra hatrany",

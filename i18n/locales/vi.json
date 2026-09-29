@@ -1912,6 +1912,7 @@
     "coverUpdated": "Ảnh bìa đã được cập nhật",
     "couldNotPickImage": "Không thể chọn ảnh",
     "changeCoverImage": "Thay đổi ảnh bìa",
+    "viewCoverImage": "Xem ảnh bìa",
     "changeAvatar": "Thay đổi ảnh đại diện",
     "verifiedEnsName": "Tên ENS đã được xác minh {{name}}",
     "notFullyJoined": "Người dùng này chưa tham gia hoàn chỉnh. Họ chưa chọn tên người dùng hoặc hoàn tất thiết lập hồ sơ. Bạn vẫn có thể xem hoạt động công khai và gửi mẹo nếu có.",
@@ -5915,7 +5916,8 @@
     "recentSearches": "Tìm kiếm gần đây",
     "noTrendingThisWeek": "Không có nội dung thịnh hành trong tuần này",
     "closeFilterOptions": "Đóng tùy chọn bộ lọc",
-    "openFilterOptions": "Mở tùy chọn bộ lọc"
+    "openFilterOptions": "Mở tùy chọn bộ lọc",
+    "fillQuery": "Điền \"{{query}}\" vào ô tìm kiếm"
   },
   "notifPrompt": {
     "stayInLoop": "Không bỏ lỡ tin tức",

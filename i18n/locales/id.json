@@ -1900,6 +1900,7 @@
     "coverUpdated": "Sampul diperbarui",
     "couldNotPickImage": "Tidak dapat memilih gambar",
     "changeCoverImage": "Ubah gambar sampul",
+    "viewCoverImage": "Lihat gambar sampul",
     "changeAvatar": "Ubah avatar",
     "verifiedEnsName": "Nama ENS terverifikasi {{name}}",
     "notFullyJoined": "Pengguna ini belum sepenuhnya bergabung. Mereka belum mengklaim nama pengguna atau menyelesaikan penyiapan profil. Anda masih dapat melihat aktivitas publik dan mengirim tip jika tersedia.",
@@ -5952,7 +5953,8 @@
     "recentSearches": "Pencarian Terbaru",
     "noTrendingThisWeek": "Tidak ada konten tren minggu ini",
     "closeFilterOptions": "Tutup opsi filter",
-    "openFilterOptions": "Buka opsi filter"
+    "openFilterOptions": "Buka opsi filter",
+    "fillQuery": "Isi pencarian dengan \"{{query}}\""
   },
   "notifPrompt": {
     "stayInLoop": "Tetap update",

@@ -1900,6 +1900,7 @@
     "coverUpdated": "Cover-ka waa la cusboonaysiiyay",
     "couldNotPickImage": "Sawir lama dooran karo",
     "changeCoverImage": "Beddel sawirka cover-ka",
+    "viewCoverImage": "Eeg sawirka cover-ka",
     "changeAvatar": "Beddel avatar-ka",
     "verifiedEnsName": "Magaca ENS-ka ee la xaqiijiyay {{name}}",
     "notFullyJoined": "Isticmaalahani weli si buuxda uguma biirin. Ma aysan dalban magac isticmaale ama dhammaystirin habaynta profile-ka. Weli waad arki kartaa hawlaha dadweynaha oo waad soo diri kartaa talooyin haddii la heli karo.",
@@ -5903,7 +5904,8 @@
     "recentSearches": "Raadinnadii dhawaa",
     "noTrendingThisWeek": "Ma jiraan waxyaabo caan ah toddobaadkan",
     "closeFilterOptions": "Xir fursadaha filtarka",
-    "openFilterOptions": "Fur fursadaha filtarka"
+    "openFilterOptions": "Fur fursadaha filtarka",
+    "fillQuery": "Geli \"{{query}}\" sanduuqa raadinta"
   },
   "notifPrompt": {
     "stayInLoop": "Ku sii jir warka",

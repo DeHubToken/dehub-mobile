@@ -1900,6 +1900,7 @@
     "coverUpdated": "Omslagsbild uppdaterad",
     "couldNotPickImage": "Kunde inte välja bild",
     "changeCoverImage": "Ändra omslagsbild",
+    "viewCoverImage": "Visa omslagsbild",
     "changeAvatar": "Ändra avatar",
     "verifiedEnsName": "Verifierat ENS-namn {{name}}",
     "notFullyJoined": "Den här användaren har inte gått med helt än. De har inte valt ett användarnamn eller slutfört profilinställningarna. Du kan fortfarande se offentlig aktivitet och skicka dricks om det är tillgängligt.",
@@ -5907,7 +5908,8 @@
     "recentSearches": "Senaste sökningar",
     "noTrendingThisWeek": "Inget populärt innehåll denna vecka",
     "closeFilterOptions": "Stäng filteralternativ",
-    "openFilterOptions": "Öppna filteralternativ"
+    "openFilterOptions": "Öppna filteralternativ",
+    "fillQuery": "Fyll i sökningen med \"{{query}}\""
   },
   "notifPrompt": {
     "stayInLoop": "Håll dig uppdaterad",

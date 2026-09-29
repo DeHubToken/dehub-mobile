@@ -1899,6 +1899,7 @@
     "coverUpdated": "Sampul wis dianyari",
     "couldNotPickImage": "Ora bisa milih gambar",
     "changeCoverImage": "Ganti gambar sampul",
+    "viewCoverImage": "Deleng gambar sampul",
     "changeAvatar": "Ganti avatar",
     "verifiedEnsName": "Jeneng ENS wis diverifikasi {{name}}",
     "notFullyJoined": "Pangguna iki durung rampung gabung. Dheweke durung njupuk jeneng pangguna utawa ngrampungake persiyapan profil. Sampeyan isih bisa ndeleng aktivitas umum lan ngirim tip yen ana.",
@@ -5893,7 +5894,8 @@
     "recentSearches": "Panggolekan Paling Anyar",
     "noTrendingThisWeek": "Ora ana konten populer minggu iki",
     "closeFilterOptions": "Tutup pilihan filter",
-    "openFilterOptions": "Buka pilihan filter"
+    "openFilterOptions": "Buka pilihan filter",
+    "fillQuery": "Isi panelusuran nganggo \"{{query}}\""
   },
   "notifPrompt": {
     "stayInLoop": "Tetep ngerti kabar",

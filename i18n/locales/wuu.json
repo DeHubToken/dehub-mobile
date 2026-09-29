@@ -1900,6 +1900,7 @@
     "coverUpdated": "封（hong）面（miâ）改（gǎi）了（liâo）",
     "couldNotPickImage": "揀（gián）不（bū）出（chū）圖（thû）",
     "changeCoverImage": "改（gǎi）封（hong）面（miâ）圖（thû）",
+    "viewCoverImage": "看封面图片",
     "changeAvatar": "改（gǎi）頭（thau）像（xiàng）",
     "verifiedEnsName": "驗（yiam）證（zèng）了（liâo）的（dī）ENS名（miâ）字（zî） {{name}}",
     "notFullyJoined": "這（zhè）個（gè）用（iōng）戶（hû）還（hái）沒（mî）完（uân）全（chhiuân）加（ga）進（giâ）來（lâi）。伊（yī）還（hái）沒（mî）領（liâng）個（gè）用（iōng）戶（hû）名（miâ）字（zî）或（hō）是（sī）完（uân）成（chhiâ）簡（gián）介（jiè）設（sè）定（dîng）。你（nî）還（hái）能（nâi）看（khuâi）公（gōng）開（khai）活（huâi）動（dōng）和（hō）送（sòng）小（xiâo）費（hî）如（rû）果（gō）有（iû）。",
@@ -5903,7 +5904,8 @@
     "recentSearches": "最近搜索",
     "noTrendingThisWeek": "本周无热门内容",
     "closeFilterOptions": "关闭筛选选项",
-    "openFilterOptions": "打开筛选选项"
+    "openFilterOptions": "打开筛选选项",
+    "fillQuery": "拿「{{query}}」填进搜索框"
   },
   "notifPrompt": {
     "stayInLoop": "保持关注",

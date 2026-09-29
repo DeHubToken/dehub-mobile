@@ -1900,6 +1900,7 @@
     "coverUpdated": "Bakgrunn oppdatert",
     "couldNotPickImage": "Kunne ikke velge bilde",
     "changeCoverImage": "Endre bakgrunnsbilde",
+    "viewCoverImage": "Vis forsidebilde",
     "changeAvatar": "Endre avatar",
     "verifiedEnsName": "Verifisert ENS-navn {{name}}",
     "notFullyJoined": "Denne brukeren har ikke fullført registreringen ennå. De har ikke valgt et brukernavn eller fullført profilinnstillingene. Du kan fortsatt se offentlig aktivitet og sende tips hvis tilgjengelig.",
@@ -5903,7 +5904,8 @@
     "recentSearches": "Nylige søk",
     "noTrendingThisWeek": "Ingen populært innhold denne uken",
     "closeFilterOptions": "Lukk filteralternativer",
-    "openFilterOptions": "Åpne filteralternativer"
+    "openFilterOptions": "Åpne filteralternativer",
+    "fillQuery": "Fyll inn \"{{query}}\" i søket"
   },
   "notifPrompt": {
     "stayInLoop": "Hold deg oppdatert",

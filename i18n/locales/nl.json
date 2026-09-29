@@ -2090,6 +2090,7 @@
     "coverUpdated": "Omslag bijgewerkt",
     "couldNotPickImage": "Afbeelding kon niet worden gekozen",
     "changeCoverImage": "Omslagafbeelding wijzigen",
+    "viewCoverImage": "Omslagafbeelding bekijken",
     "changeAvatar": "Avatar wijzigen",
     "verifiedEnsName": "Geverifieerde ENS-naam {{name}}",
     "notFullyJoined": "Deze gebruiker is nog niet volledig lid. Ze hebben nog geen gebruikersnaam gekozen of hun profiel ingesteld. Je kunt nog steeds openbare activiteiten bekijken en tips sturen indien beschikbaar.",
@@ -6093,7 +6094,8 @@
     "recentSearches": "Recente zoekopdrachten",
     "noTrendingThisWeek": "Geen populaire inhoud deze week",
     "closeFilterOptions": "Filteropties sluiten",
-    "openFilterOptions": "Filteropties openen"
+    "openFilterOptions": "Filteropties openen",
+    "fillQuery": "Zoekopdracht invullen met \"{{query}}\""
   },
   "notifPrompt": {
     "stayInLoop": "Blijf op de hoogte",

@@ -1903,6 +1903,7 @@
     "coverUpdated": "Cover updated",
     "couldNotPickImage": "Could not pick image",
     "changeCoverImage": "Change cover image",
+    "viewCoverImage": "View cover image",
     "changeAvatar": "Change avatar",
     "verifiedEnsName": "Verified ENS name {{name}}",
     "notFullyJoined": "This user hasn't fully joined yet. They haven't claimed a username or completed profile setup. You can still view public activity and send tips if available.",
@@ -5952,7 +5953,8 @@
     "recentSearches": "Recent Searches",
     "noTrendingThisWeek": "No trending content this week",
     "closeFilterOptions": "Close filter options",
-    "openFilterOptions": "Open filter options"
+    "openFilterOptions": "Open filter options",
+    "fillQuery": "Fill search with \"{{query}}\""
   },
   "notifPrompt": {
     "stayInLoop": "Stay in the loop",

@@ -2160,6 +2160,7 @@
     "coverUpdated": "Penutup dikemas kini",
     "couldNotPickImage": "Tidak dapat memilih imej",
     "changeCoverImage": "Tukar imej penutup",
+    "viewCoverImage": "Lihat imej penutup",
     "changeAvatar": "Tukar avatar",
     "verifiedEnsName": "Nama ENS yang disahkan {{name}}",
     "notFullyJoined": "Pengguna ini belum menyertai sepenuhnya. Mereka belum menuntut nama pengguna atau melengkapkan persediaan profil. Anda masih boleh melihat aktiviti awam dan menghantar petua jika ada.",
@@ -6163,7 +6164,8 @@
     "recentSearches": "Carian Terkini",
     "noTrendingThisWeek": "Tiada kandungan trend minggu ini",
     "closeFilterOptions": "Tutup pilihan penapis",
-    "openFilterOptions": "Buka pilihan penapis"
+    "openFilterOptions": "Buka pilihan penapis",
+    "fillQuery": "Isi carian dengan \"{{query}}\""
   },
   "notifPrompt": {
     "stayInLoop": "Kekal dimaklumkan",

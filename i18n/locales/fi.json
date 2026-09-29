@@ -1900,6 +1900,7 @@
     "coverUpdated": "Kansikuva päivitetty",
     "couldNotPickImage": "Kuvan valinta epäonnistui",
     "changeCoverImage": "Vaihda kansikuva",
+    "viewCoverImage": "Näytä kansikuva",
     "changeAvatar": "Vaihda avatar",
     "verifiedEnsName": "Vahvistettu ENS-nimi {{name}}",
     "notFullyJoined": "Tämä käyttäjä ei ole vielä täysin liittynyt. Hän ei ole lunastanut käyttäjänimeä tai suorittanut profiilin asetuksia. Voit silti tarkastella julkista toimintaa ja lähettää vinkkejä, jos saatavilla.",
@@ -5903,7 +5904,8 @@
     "recentSearches": "Viimeaikaiset haut",
     "noTrendingThisWeek": "Ei trendaavaa sisältöä tällä viikolla",
     "closeFilterOptions": "Sulje suodatusvaihtoehdot",
-    "openFilterOptions": "Avaa suodatusvaihtoehdot"
+    "openFilterOptions": "Avaa suodatusvaihtoehdot",
+    "fillQuery": "Täytä hakuun \"{{query}}\""
   },
   "notifPrompt": {
     "stayInLoop": "Pysy ajan tasalla",

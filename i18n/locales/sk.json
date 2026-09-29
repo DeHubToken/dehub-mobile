@@ -1979,6 +1979,7 @@
     "coverUpdated": "Obal aktualizovaný",
     "couldNotPickImage": "Nepodarilo sa vybrať obrázok",
     "changeCoverImage": "Zmeniť obrázok obalu",
+    "viewCoverImage": "Zobraziť titulný obrázok",
     "changeAvatar": "Zmeniť avatara",
     "verifiedEnsName": "Overené ENS meno {{name}}",
     "notFullyJoined": "Tento používateľ sa ešte plne nezapojil. Nenárokoval si používateľské meno ani nedokončil nastavenie profilu. Stále si môžete pozrieť verejnú aktivitu a posielať tipy, ak sú k dispozícii.",
@@ -6011,7 +6012,8 @@
     "recentSearches": "Nedávne vyhľadávania",
     "noTrendingThisWeek": "Tento týždeň žiadny trendový obsah",
     "closeFilterOptions": "Zavrieť možnosti filtra",
-    "openFilterOptions": "Otvoriť možnosti filtra"
+    "openFilterOptions": "Otvoriť možnosti filtra",
+    "fillQuery": "Vložiť \"{{query}}\" do vyhľadávania"
   },
   "notifPrompt": {
     "stayInLoop": "Buďte v obraze",

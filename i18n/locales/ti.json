@@ -1898,6 +1898,7 @@
     "coverUpdated": "ዝዘመነ መሸፈኒ ኣፍንጫ",
     "couldNotPickImage": "ስእሊ ክሕዝ ኣይከኣለን ።",
     "changeCoverImage": "ናይ ሽፋን ስእሊ ቀይር",
+    "viewCoverImage": "ናይ ሽፋን ስእሊ ርአ",
     "changeAvatar": "ኣቫታር ቀይር",
     "verifiedEnsName": "ስም ENS ተረጋጊጹ {{name}}",
     "notFullyJoined": "እዚ ተጠቃሚ እዚ ገና ምሉእ ብምሉእ ኣይተቐመጠን ። ናይ ተጠቃሚ ስም ወይ ናይ መገለጺ ውጥን ኣይረኸቡን ። ህዝባዊ ንጥፈታት ክትርኢን እንተተረኽበ ምኽሪ ክትልእኽን ትኽእል ኢኻ ።",
@@ -5896,7 +5897,8 @@
     "recentSearches": "ኣብ ቀረባ እዋን እተገብረ መጽናዕቲ",
     "noTrendingThisWeek": "ኣብዚ ሰሙን እዚ ዝዝርግሕ ትሕዝቶ የለን ።",
     "closeFilterOptions": "ናይ ማጣሪያ ኣማራጺታት ምዕጻው",
-    "openFilterOptions": "ኣማራጺታት ፍሊተር ክፉት"
+    "openFilterOptions": "ኣማራጺታት ፍሊተር ክፉት",
+    "fillQuery": "\"{{query}}\" ኣብ መድለዪ ኣእቱ"
   },
   "notifPrompt": {
     "stayInLoop": "ሓበሬታ ሓዝ",

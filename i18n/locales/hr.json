@@ -1900,6 +1900,7 @@
     "coverUpdated": "Naslovnica je ažurirana",
     "couldNotPickImage": "Nije moguće odabrati sliku",
     "changeCoverImage": "Promijeni naslovnu sliku",
+    "viewCoverImage": "Prikaži naslovnu sliku",
     "changeAvatar": "Promijeni avatar",
     "verifiedEnsName": "Potvrđeno ENS ime {{name}}",
     "notFullyJoined": "Ovaj korisnik još nije u potpunosti pristupio. Nije preuzeo korisničko ime niti dovršio postavljanje profila. Još uvijek možete pregledavati javne aktivnosti i slati napojnice ako su dostupne.",
@@ -5903,7 +5904,8 @@
     "recentSearches": "Nedavne Pretrage",
     "noTrendingThisWeek": "Nema popularnog sadržaja ovaj tjedan",
     "closeFilterOptions": "Zatvori opcije filtriranja",
-    "openFilterOptions": "Otvori opcije filtriranja"
+    "openFilterOptions": "Otvori opcije filtriranja",
+    "fillQuery": "Upiši \"{{query}}\" u pretragu"
   },
   "notifPrompt": {
     "stayInLoop": "Ostanite u toku",

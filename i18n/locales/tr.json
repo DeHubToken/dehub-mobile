@@ -1900,6 +1900,7 @@
     "coverUpdated": "Kapak güncellendi",
     "couldNotPickImage": "Resim seçilemedi",
     "changeCoverImage": "Kapak resmini değiştir",
+    "viewCoverImage": "Kapak resmini görüntüle",
     "changeAvatar": "Avatar değiştir",
     "verifiedEnsName": "Doğrulanmış ENS adı {{name}}",
     "notFullyJoined": "Bu kullanıcı henüz tam olarak katılmadı. Bir kullanıcı adı seçmedi veya profil kurulumunu tamamlamadı. Yine de herkese açık etkinlikleri görüntüleyebilir ve mevcutsa bahşiş gönderebilirsiniz.",
@@ -5952,7 +5953,8 @@
     "recentSearches": "Son Aramalar",
     "noTrendingThisWeek": "Bu hafta trend içerik yok",
     "closeFilterOptions": "Filtre seçeneklerini kapat",
-    "openFilterOptions": "Filtre seçeneklerini aç"
+    "openFilterOptions": "Filtre seçeneklerini aç",
+    "fillQuery": "Aramaya \"{{query}}\" yaz"
   },
   "notifPrompt": {
     "stayInLoop": "Haberdar ol",

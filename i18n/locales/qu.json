@@ -1901,6 +1901,7 @@
     "coverUpdated": "Covermi musuqmanta churakusqa",
     "couldNotPickImage": "Mana atirqanchu rikch'ayta akllayta",
     "changeCoverImage": "Coverta musuqmanta churay",
+    "viewCoverImage": "Qatana rikchayta qhaway",
     "changeAvatar": "Avatarwan musuqmanta churay",
     "verifiedEnsName": "ENS sutinmi kachkan {{name}}",
     "notFullyJoined": "Kay llamk'aqqa manam tukurqanchu. Mana sutinta akllarqanchu ichaqa profiltapas hunt'achkanchu. Kikinpa ruwasqanta qhawariyta atikunki chaymanta imatapas apachiyta atikunki.",
@@ -5932,6 +5933,7 @@
     "recentSearches": "Kunan pacha Maskanakuna",
     "closeFilterOptions": "Filtro akllanakunata wichqay",
     "openFilterOptions": "Filtro akllanakunata kichay",
+    "fillQuery": "Maskanapi \"{{query}}\" churay",
     "trendingThisWeek": "Kay Simanapi Tendencia",
     "tryDifferentKeywords": "Huk niraq simikunata pruebay otaq ortografiaykita qhaway",
     "noTrendingThisWeek": "Mana kay semanapi contenido tendenciayuqchu"

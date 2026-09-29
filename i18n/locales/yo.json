@@ -1901,6 +1901,7 @@
     "coverUpdated": "A ti ṣàtúnṣe àwòrán àtẹlẹwò",
     "couldNotPickImage": "Kò ṣeé ṣe láti yan àwòrán",
     "changeCoverImage": "Ìyí àwòrán àtẹlẹwò",
+    "viewCoverImage": "Wo àwòrán ìbòrí",
     "changeAvatar": "Ìyí àwòrán olumúni",
     "verifiedEnsName": "Orúkọ ENS tí a fìrílẹ̀ mọ́ {{name}}",
     "notFullyJoined": "Olumúni yìí kò tíì parí ìdánilẹ́kọ̀ọ́ rẹ̀. Kò tíì yan orúkọ olumúni tàbí parí ìṣètò àlàyé rẹ̀. O ṣì lè wo àwọn ìgbésẹ̀ tí gbogbo ènìyàn lè rí àti fífi ẹ̀bùn ránṣẹ́ bí ó bá wà.",
@@ -5904,7 +5905,8 @@
     "recentSearches": "Awọn wiwa laipẹ",
     "noTrendingThisWeek": "Ko si akoonu gbajumọ ni ọsẹ yii",
     "closeFilterOptions": "Pa awọn aṣayan àlẹmọ",
-    "openFilterOptions": "Ṣii awọn aṣayan àlẹmọ"
+    "openFilterOptions": "Ṣii awọn aṣayan àlẹmọ",
+    "fillQuery": "Fi \"{{query}}\" sínú àpótí ìwádìí"
   },
   "notifPrompt": {
     "stayInLoop": "Máa gbọ́ ìròyìn",

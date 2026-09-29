@@ -1900,6 +1900,7 @@
     "coverUpdated": "کاور به‌روز شد",
     "couldNotPickImage": "انتخاب تصویر ممکن نبود",
     "changeCoverImage": "تغییر تصویر کاور",
+    "viewCoverImage": "مشاهده تصویر کاور",
     "changeAvatar": "تغییر آواتار",
     "verifiedEnsName": "نام تأیید شده ENS {{name}}",
     "notFullyJoined": "این کاربر هنوز به طور کامل ملحق نشده است. نام کاربری خود را انتخاب نکرده یا تنظیمات پروفایل را کامل نکرده است. همچنان می‌توانید فعالیت‌های عمومی را مشاهده کرده و در صورت امکان انعام ارسال کنید.",
@@ -5933,7 +5934,8 @@
     "recentSearches": "جستجوهای اخیر",
     "noTrendingThisWeek": "محتوای داغی این هفته وجود ندارد",
     "closeFilterOptions": "بستن گزینه‌های فیلتر",
-    "openFilterOptions": "باز کردن گزینه‌های فیلتر"
+    "openFilterOptions": "باز کردن گزینه‌های فیلتر",
+    "fillQuery": "قرار دادن \"{{query}}\" در جستجو"
   },
   "notifPrompt": {
     "stayInLoop": "در جریان باشید",
