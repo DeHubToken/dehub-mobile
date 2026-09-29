@@ -35,6 +35,8 @@ import { toastError, toastSuccess } from "../libs/toast";
 import { tokenRefreshManager } from "../libs/token-refresh";
 import { retryWalletSession } from "../libs/wallet-session";
 import {
+  AGENT_AUTH_UNAVAILABLE,
+  AGENT_SIGN_IN_REQUIRED,
   MCP_BASE,
   agentConnectorUrl,
   deleteAgent,
@@ -123,8 +125,17 @@ export default function AgentsScreen() {
       if (id) setVisibleKeys((prev) => new Set([...prev, id]));
       if (id && key) setCreatedKeys((prev) => ({ ...prev, [id]: key }));
     },
-    onError: (error: Error) =>
-      toastError(t("agents.failedCreate"), t("agents.failedCreate"), { description: error?.message }),
+    onError: (error: Error) => {
+      if (error?.message === AGENT_SIGN_IN_REQUIRED) {
+        Alert.alert(t("agents.createSignIn"), undefined, [
+          { text: t("agents.cancel"), style: "cancel" },
+          { text: t("agents.signInAgain"), onPress: () => navigation.navigate(ScreenNames.SignIn) },
+        ]);
+        return;
+      }
+      const description = error?.message === AGENT_AUTH_UNAVAILABLE ? t("agents.checkConnection") : error?.message;
+      toastError(t("agents.failedCreate"), t("agents.failedCreate"), { description });
+    },
   });
 
   const removeAgent = useMutation({

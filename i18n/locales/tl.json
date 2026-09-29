@@ -2259,7 +2259,9 @@
     "revealKey": "Ipakita ang key",
     "revealSignIn": "Mag-sign in muli para makita ang key na ito",
     "revealFailed": "Hindi maipakita ang key. Subukan muli.",
-    "signInAgain": "Mag-sign in muli"
+    "signInAgain": "Mag-sign in muli",
+    "createSignIn": "Mag-sign in muli para gumawa ng agent",
+    "checkConnection": "Suriin ang iyong koneksyon at subukan muli."
   },
   "hero": {
     "title": "Maligayang Pagdating",

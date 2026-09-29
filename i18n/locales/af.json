@@ -2241,7 +2241,9 @@
     "revealKey": "Wys sleutel",
     "revealSignIn": "Meld weer aan om hierdie sleutel te sien",
     "revealFailed": "Kon nie die sleutel wys nie. Probeer weer.",
-    "signInAgain": "Meld weer aan"
+    "signInAgain": "Meld weer aan",
+    "createSignIn": "Meld weer aan om 'n agent te skep",
+    "checkConnection": "Kontroleer jou verbinding en probeer weer."
   },
   "hero": {
     "title": "Welkom By",

@@ -2212,7 +2212,9 @@
     "revealKey": "Schlüssel anzeigen",
     "revealSignIn": "Melde dich erneut an, um diesen Schlüssel zu sehen",
     "revealFailed": "Der Schlüssel konnte nicht angezeigt werden. Versuche es erneut.",
-    "signInAgain": "Erneut anmelden"
+    "signInAgain": "Erneut anmelden",
+    "createSignIn": "Melde dich erneut an, um einen Agenten zu erstellen",
+    "checkConnection": "Überprüfe deine Verbindung und versuche es erneut."
   },
   "hero": {
     "title": "Willkommen In",

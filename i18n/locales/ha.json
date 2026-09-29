@@ -2212,7 +2212,9 @@
     "revealKey": "Nuna makulli",
     "revealSignIn": "Sake shiga don ganin wannan makulli",
     "revealFailed": "Ba a iya nuna makullin ba. Sake gwadawa.",
-    "signInAgain": "Sake shiga"
+    "signInAgain": "Sake shiga",
+    "createSignIn": "Sake shiga don ƙirƙirar wakili",
+    "checkConnection": "Duba haɗin ku kuma sake gwadawa."
   },
   "hero": {
     "title": "Barka Da Zuwa",

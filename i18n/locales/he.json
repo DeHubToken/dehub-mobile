@@ -2212,7 +2212,9 @@
     "revealKey": "הצג מפתח",
     "revealSignIn": "התחברו שוב כדי לראות את המפתח",
     "revealFailed": "לא ניתן להציג את המפתח. נסו שוב.",
-    "signInAgain": "התחברות מחדש"
+    "signInAgain": "התחברות מחדש",
+    "createSignIn": "התחברו שוב כדי ליצור סוכן",
+    "checkConnection": "בדקו את החיבור ונסו שוב."
   },
   "hero": {
     "title": "ברוכים הבאים",

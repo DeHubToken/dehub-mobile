@@ -2230,7 +2230,9 @@
     "revealKey": "Kalitni koʻrsatish",
     "revealSignIn": "Bu kalitni koʻrish uchun qayta kiring",
     "revealFailed": "Kalitni koʻrsatib boʻlmadi. Qayta urinib koʻring.",
-    "signInAgain": "Qayta kirish"
+    "signInAgain": "Qayta kirish",
+    "createSignIn": "Agent yaratish uchun qayta kiring",
+    "checkConnection": "Ulanishni tekshiring va qayta urinib koʻring."
   },
   "hero": {
     "title": "Dunyomizga",

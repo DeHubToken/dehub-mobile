@@ -2212,7 +2212,9 @@
     "revealKey": "Visa nyckel",
     "revealSignIn": "Logga in igen för att se den här nyckeln",
     "revealFailed": "Det gick inte att visa nyckeln. Försök igen.",
-    "signInAgain": "Logga in igen"
+    "signInAgain": "Logga in igen",
+    "createSignIn": "Logga in igen för att skapa en agent",
+    "checkConnection": "Kontrollera din anslutning och försök igen."
   },
   "hero": {
     "title": "Välkommen Till",

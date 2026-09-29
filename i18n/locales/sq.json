@@ -2212,7 +2212,9 @@
     "revealKey": "Shfaq çelësin",
     "revealSignIn": "Hyni përsëri për ta parë këtë çelës",
     "revealFailed": "Çelësi nuk u shfaq dot. Provoni përsëri.",
-    "signInAgain": "Hyni përsëri"
+    "signInAgain": "Hyni përsëri",
+    "createSignIn": "Hyni përsëri për të krijuar një agjent",
+    "checkConnection": "Kontrolloni lidhjen dhe provoni përsëri."
   },
   "hero": {
     "title": "Mirë Se Vini",

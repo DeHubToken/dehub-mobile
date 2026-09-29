@@ -2213,7 +2213,9 @@
     "revealKey": "Onyesha ufunguo",
     "revealSignIn": "Ingia tena ili kuona ufunguo huu",
     "revealFailed": "Imeshindwa kuonyesha ufunguo. Jaribu tena.",
-    "signInAgain": "Ingia tena"
+    "signInAgain": "Ingia tena",
+    "createSignIn": "Ingia tena ili kuunda wakala",
+    "checkConnection": "Angalia muunganisho wako kisha jaribu tena."
   },
   "hero": {
     "title": "Karibu Katika",

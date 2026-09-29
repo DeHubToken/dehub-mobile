@@ -2212,7 +2212,9 @@
     "revealKey": "Zobrazit klíč",
     "revealSignIn": "Pro zobrazení klíče se znovu přihlaste",
     "revealFailed": "Klíč se nepodařilo zobrazit. Zkuste to znovu.",
-    "signInAgain": "Znovu se přihlásit"
+    "signInAgain": "Znovu se přihlásit",
+    "createSignIn": "Pro vytvoření agenta se znovu přihlaste",
+    "checkConnection": "Zkontrolujte připojení a zkuste to znovu."
   },
   "hero": {
     "title": "Vítejte V",

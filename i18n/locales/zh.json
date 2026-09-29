@@ -2212,7 +2212,9 @@
     "revealKey": "显示密钥",
     "revealSignIn": "重新登录以查看此密钥",
     "revealFailed": "无法显示密钥。请重试。",
-    "signInAgain": "重新登录"
+    "signInAgain": "重新登录",
+    "createSignIn": "重新登录以创建代理",
+    "checkConnection": "请检查网络连接后重试。"
   },
   "hero": {
     "title": "欢迎来到",

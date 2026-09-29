@@ -2212,7 +2212,9 @@
     "revealKey": "Açary görkez",
     "revealSignIn": "Bu açary görmek üçin täzeden giriň",
     "revealFailed": "Açary görkezip bolmady. Täzeden synanyşyň.",
-    "signInAgain": "Täzeden giriň"
+    "signInAgain": "Täzeden giriň",
+    "createSignIn": "Agent döretmek üçin täzeden giriň",
+    "checkConnection": "Baglanyşygyňyzy barlaň we täzeden synanyşyň."
   },
   "hero": {
     "title": "Dünýämize",
