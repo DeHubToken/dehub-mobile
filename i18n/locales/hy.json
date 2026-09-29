@@ -8483,7 +8483,29 @@
       "intro": "Մինի հավելվածներ, որոնք ստեղծվել են DeHub-ի համար ցանկացած կողմից։ Նրանք բացվում են DeHub-ի ներսում, դու արդեն մուտք գործած ես, և յուրաքանչյուր հավելված ցուցադրում է իր իրական վեբ հասցեն։",
       "buildCta": "Ստեղծել հավելված",
       "emptyTitle": "Չկա հավելվածներ ցուցադրված դեռ։",
-      "emptyBody": "Առաջին հավելվածները վերահսկվում են։ Ստեղծել մեկը և այն կարող է այստեղ լինել։"
+      "emptyBody": "Առաջին հավելվածները վերահսկվում են։ Ստեղծել մեկը և այն կարող է այստեղ լինել։",
+      "search": "Search apps",
+      "all": "All",
+      "fromDehub": "From DeHub",
+      "noMatch": "Ոչ մի հավելված չի համապատասխանում որոնման արդյունքներին ։"
+    },
+    "card": {
+      "open": "Open"
+    },
+    "category": {
+      "games": "Games",
+      "social": "Social",
+      "finance": "Finance",
+      "utility": "Utility",
+      "productivity": "Productivity",
+      "health-fitness": "Health & fitness",
+      "news-media": "News & media",
+      "music": "Music",
+      "shopping": "Shopping",
+      "education": "Education",
+      "developer-tools": "Developer tools",
+      "entertainment": "Entertainment",
+      "art-creativity": "Art & creativity"
     }
   },
   "aiStyles": {

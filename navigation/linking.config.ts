@@ -395,7 +395,7 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
           },
           [ScreenNames.MiniApp]: {
             path: DeepLinkPaths.MINI_APP,
-            parse: { slug: (slug: string) => slug, from: (from: string) => from },
+            parse: { slug: (slug: string) => slug, from: (from: string) => from, url: (url: string) => url },
           },
           [ScreenNames.Apps]: DeepLinkPaths.APPS,
 

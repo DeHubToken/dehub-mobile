@@ -8594,8 +8594,8 @@
       "close": "Sluit app",
       "backToStore": "Terug na Apps",
       "notFound": "Hierdie app is nie in die DeHub App Store nie, of dit is afgeneem.",
-      "badUrl": "Hierdie adres kan nie geopen word as 'n mini-app nie. Dit moet begin met **https://**, of 'n localhost-adres wees in ontwikkelaarmodus.",
-      "readyTimeout": "Hierdie app het nooit **dehub.ready()** aangeroep nie, dus is die splash-skerm na 8 sekondes verberg."
+      "badUrl": "Hierdie adres kan nie geopen word as 'n mini-app nie. Dit moet begin met https://, of 'n localhost-adres wees in ontwikkelaarmodus.",
+      "readyTimeout": "Hierdie app het nooit dehub.ready() aangeroep nie, dus is die splash-skerm na 8 sekondes verberg."
     },
     "signIn": {
       "title": "Inlog by {{name}}?",
@@ -8608,7 +8608,26 @@
       "intro": "Mini-apps wat deur iemand vir DeHub gebou word. Hulle oop binne DeHub, jy is al ingelog, en elke app toon sy eie werklike webadres.",
       "buildCta": "Maak 'n app",
       "emptyTitle": "Geen apps gelys nie",
-      "emptyBody": "Die eerste apps is in voorskou. Bou een en dit kan hier wees."
+      "emptyBody": "Die eerste apps is in voorskou. Bou een en dit kan hier wees.",
+      "search": "Soek programme",
+      "all": "Alle",
+      "fromDehub": "Van DeHub",
+      "noMatch": "Geen programme pas by daardie soektog nie."
+    },
+    "category": {
+      "games": "Speletjies",
+      "social": "Sosiale",
+      "finance": "Finansies",
+      "utility": "Nutsmiddel",
+      "productivity": "Produktiwiteit",
+      "health-fitness": "Gesondheid en fiksheid",
+      "news-media": "NUUS & MEDIA",
+      "music": "Musiek",
+      "shopping": "Inkopies",
+      "education": "Onderwys",
+      "developer-tools": "Ontwikkelaar gereedskap",
+      "entertainment": "Vermaak",
+      "art-creativity": "Kuns en kreatiwiteit"
     }
   },
   "aiStyles": {

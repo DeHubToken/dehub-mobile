@@ -8483,7 +8483,29 @@
       "intro": "Barnaamijyada Mini ee loo dhisay DeHub qof kasta. Waxay u furan yihiin gudaha DeHub, horeyba waad u saxiixday, barnaamij kastana wuxuu muujinayaa cinwaankiisa dhabta ah ee webka.",
       "buildCta": "Samee app ah",
       "emptyTitle": "Ma jiro barnaamijyo weli la taxay",
-      "emptyBody": "Codsiyada ugu horreeya ayaa dib u eegis ku jira. Dhis mid ka mid ah iyo waxaa laga yaabaa in ay halkan."
+      "emptyBody": "Codsiyada ugu horreeya ayaa dib u eegis ku jira. Dhis mid ka mid ah iyo waxaa laga yaabaa in ay halkan.",
+      "search": "Barnaamijyada raadinta",
+      "all": "Dhammaan",
+      "fromDehub": "Laga soo bilaabo DeHub",
+      "noMatch": "Ma jiro barnaamijyo la jaan qaada raadintaas."
+    },
+    "card": {
+      "open": "Furan"
+    },
+    "category": {
+      "games": "Ciyaaraha",
+      "social": "Bulsho",
+      "finance": "Maaliyadda",
+      "utility": "Waxtarka",
+      "productivity": "Wax soo saarka",
+      "health-fitness": "Caafimaadka & jimicsiga",
+      "news-media": "Wararka & Warbaahinta",
+      "music": "Muusikada",
+      "shopping": "Dukaamaysiga",
+      "education": "Waxbarashada",
+      "developer-tools": "Qalabka horumariyaha",
+      "entertainment": "Madadaalada",
+      "art-creativity": "Farshaxanka & Hal-abuurka"
     }
   },
   "aiStyles": {

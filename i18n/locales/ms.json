@@ -8743,7 +8743,29 @@
       "intro": "Aplikasi mini yang dibina untuk DeHub oleh sesiapa sahaja. Ia dibuka di dalam DeHub, anda sudah log masuk, dan setiap aplikasi menunjukkan alamat web sebenar.",
       "buildCta": "Bina aplikasi",
       "emptyTitle": "Belum ada aplikasi yang disenaraikan",
-      "emptyBody": "Aplikasi pertama sedang disemak. Bina satu dan ia boleh berada di sini."
+      "emptyBody": "Aplikasi pertama sedang disemak. Bina satu dan ia boleh berada di sini.",
+      "search": "Aplikasi carian",
+      "all": "Semua",
+      "fromDehub": "Daripada DeHub",
+      "noMatch": "Tiada aplikasi yang sepadan dengan carian tersebut."
+    },
+    "card": {
+      "open": "Buka"
+    },
+    "category": {
+      "games": "Permainan",
+      "social": "Sosial",
+      "finance": "Kewangan",
+      "utility": "Utiliti",
+      "productivity": "Produktiviti",
+      "health-fitness": "Kesihatan & kecergasan",
+      "news-media": "Berita & media",
+      "music": "Muzik",
+      "shopping": "Membeli-belah",
+      "education": "Pendidikan",
+      "developer-tools": "Alat pembangun",
+      "entertainment": "Hiburan",
+      "art-creativity": "Seni & kreativiti"
     }
   },
   "aiStyles": {

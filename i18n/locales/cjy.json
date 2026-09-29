@@ -8527,7 +8527,29 @@
       "intro": "由任何人为 DeHub 开发的小程序。它们在 DeHub 内打开，你已经自动登录，每个应用都会显示其真实的网址。",
       "buildCta": "建立一个应用程序",
       "emptyTitle": "没有应用程序列表可供显示",
-      "emptyBody": "第一批应用正在审核中。你也可以建一个，或许它很快就会出现。"
+      "emptyBody": "第一批应用正在审核中。你也可以建一个，或许它很快就会出现。",
+      "search": "搜索应用",
+      "all": "所有",
+      "fromDehub": "從 DeHub",
+      "noMatch": "没有找到匹配的应用。"
+    },
+    "card": {
+      "open": "开放"
+    },
+    "category": {
+      "games": "游戏",
+      "social": "社会",
+      "finance": "金融",
+      "utility": "实用性",
+      "productivity": "生产力",
+      "health-fitness": "健康与健身",
+      "news-media": "新聞與媒體",
+      "music": "音乐",
+      "shopping": "购物",
+      "education": "教育",
+      "developer-tools": "开发者工具",
+      "entertainment": "娱乐",
+      "art-creativity": "艺术与创造力"
     }
   },
   "aiStyles": {

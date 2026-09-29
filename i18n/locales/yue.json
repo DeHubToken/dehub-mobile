@@ -8469,7 +8469,7 @@
       "close": "閂應用程式",
       "backToStore": "返去應用程式",
       "notFound": "呢個應用程式唔喺 DeHub 應用程式商店入面，或者佢已經被移除。",
-      "badUrl": "咁個地址無法開啟作爲小程式。必須以 **https://** 開頭，或在開發模式下爲本地地址。",
+      "badUrl": "咁個地址無法開啟作爲小程式。必須以 https:// 開頭，或在開發模式下爲本地地址。",
       "readyTimeout": "呢個應用程式從來都冇叫過 dehub . ready （），所以啟動畫面喺8秒之後就隱藏咗。"
     },
     "signIn": {
@@ -8482,7 +8482,29 @@
       "title": "應用程式",
       "buildCta": "建立一個應用程式",
       "emptyTitle": "仲未列出任何應用程式",
-      "emptyBody": "🚀 咁多個應用程式正在審核中。你造一個，就可能出現囉！"
+      "emptyBody": "咁多個應用程式正在審核中。你造一個，就可能出現囉！",
+      "search": "搜尋應用程式",
+      "all": "全部",
+      "fromDehub": "嚟自 DeHub",
+      "noMatch": "冇應用程式同呢個搜尋相符。"
+    },
+    "card": {
+      "open": "打開"
+    },
+    "category": {
+      "games": "遊戲",
+      "social": "社會",
+      "finance": "財務",
+      "utility": "公共設施",
+      "productivity": "生產力",
+      "health-fitness": "健康同健身",
+      "news-media": "新聞同媒體",
+      "music": "音樂",
+      "shopping": "購物",
+      "education": "教育",
+      "developer-tools": "開發人員工具",
+      "entertainment": "娛樂",
+      "art-creativity": "藝術同創意"
     }
   },
   "aiStyles": {

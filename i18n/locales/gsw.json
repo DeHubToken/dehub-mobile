@@ -8499,8 +8499,8 @@
       "close": "App schliessen",
       "backToStore": "Zurück zu Apps",
       "notFound": "Diese App ist nicht im DeHub App Store, oder sie wurde entfernt.",
-      "badUrl": "Diese Adresse kann nicht als Mini-App geöffnet werden. Sie muss mit **https://** beginnen oder eine localhost-Adresse in Entwicklermodus sein.",
-      "readyTimeout": "Diese App hat nie **dehub.ready()** aufgerufen, deshalb wurde der Splash-Screen nach 8 Sekunden versteckt."
+      "badUrl": "Diese Adresse kann nicht als Mini-App geöffnet werden. Sie muss mit https:// beginnen oder eine localhost-Adresse in Entwicklermodus sein.",
+      "readyTimeout": "Diese App hat nie dehub.ready() aufgerufen, deshalb wurde der Splash-Screen nach 8 Sekunden versteckt."
     },
     "signIn": {
       "title": "Anmelden bei {{name}}?",
@@ -8513,7 +8513,29 @@
       "intro": "Mini-Apps, die von jedermann für DeHub gebaut werden. Sie öffnen sich innerhalb von DeHub, du bist bereits angemeldet, und jede App zeigt ihre echte Web-Adresse an.",
       "buildCta": "Eine App erstellen",
       "emptyTitle": "Keine Apps aufgelistet",
-      "emptyBody": "Die ersten Apps werden geprüft. Baue eine und sie könnte hier erscheinen."
+      "emptyBody": "Die ersten Apps werden geprüft. Baue eine und sie könnte hier erscheinen.",
+      "search": "Suche Apps",
+      "all": "All",
+      "fromDehub": "Von DeHub",
+      "noMatch": "Keini Apps passen zu deiner Suche."
+    },
+    "card": {
+      "open": "Öffne"
+    },
+    "category": {
+      "games": "Spueli",
+      "social": "Gesellschaft",
+      "finance": "Finanzen",
+      "utility": "Werkzeug",
+      "productivity": "Produktivität",
+      "health-fitness": "Gesundheit & Fitness",
+      "news-media": "Nöie uusig & Medie",
+      "music": "Musik",
+      "shopping": "Einkaufen",
+      "education": "Bildung",
+      "developer-tools": "Entwickler-Tools",
+      "entertainment": "Unterhaltungsindustrie",
+      "art-creativity": "Kunst un Chreischtikait"
     }
   },
   "aiStyles": {

@@ -8483,7 +8483,29 @@
       "intro": "DeHub üçin hiç kimden ýasalan mini-ilgiler. Olar DeHub-da açylýar, siz eýýäm girýärsiňiz we her bir ulag öz web adresini görkezýär.",
       "buildCta": "Bir ulag ýaratmak",
       "emptyTitle": "Hiç hili habar berilmedi",
-      "emptyBody": "Birinji ulaglar seredilýär. Birini gurup, ol ýerde bolup biler."
+      "emptyBody": "Birinji ulaglar seredilýär. Birini gurup, ol ýerde bolup biler.",
+      "search": "Ulymalary gözle",
+      "all": "Ehli",
+      "fromDehub": "Dehub şäheriniň",
+      "noMatch": "Men bu gözlegini görmedim."
+    },
+    "card": {
+      "open": "Aç"
+    },
+    "category": {
+      "games": "Oýunlar",
+      "social": "Içki",
+      "finance": "Maliýet",
+      "utility": "Ulylyk",
+      "productivity": "Ürünlülük",
+      "health-fitness": "Saglyk we fitness",
+      "news-media": "Habar we habar beriş serişdeleriniň",
+      "music": "Musiği",
+      "shopping": "Satyn alyş",
+      "education": "Öwretmek",
+      "developer-tools": "Geliştirici esbaplary",
+      "entertainment": "Göwün açma",
+      "art-creativity": "Sanat we kreativitet"
     }
   },
   "aiStyles": {

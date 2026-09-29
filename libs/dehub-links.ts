@@ -32,7 +32,8 @@ export type DehubLinkKind =
   | 'event'
   | 'stage'
   | 'bounty'
-  | 'film';
+  | 'film'
+  | 'app';
 
 export interface DehubLinkMatch {
   kind: DehubLinkKind;
@@ -55,6 +56,8 @@ export interface DehubLinkMatch {
    * either shape, so the raw key is carried through rather than split in two.
    */
   bountyJobKey?: string;
+  /** `/apps/<slug>` — a mini app in the store. */
+  appSlug?: string;
   /** `/cinema/film/<id>` or `/cinema/series/<id>`: a JustWatch title id. */
   filmId?: string;
   /** The API's name for the URL's `film` / `series` segment. */
@@ -88,7 +91,7 @@ const ABSOLUTE_URL_RE = /(?:https?:\/\/)?(?:[a-z0-9-]+\.)+[a-z]{2,}(?::\d+)?\/[^
 // also admits the short share form, /stages/7. `bounty` and `work` are the
 // same story for bounty detail pages — /bounty/7 is canonical, /work/<uuid>
 // is the pre-numbering form still out in the wild.
-const BARE_PATH_RE = /\/(?:app|communities|stages?|bounty|work)\/[^\s<>"'`]*/gi;
+const BARE_PATH_RE = /\/(?:app|apps|communities|stages?|bounty|work)\/[^\s<>"'`]*/gi;
 const TRAILING_PUNCTUATION_RE = /[.,;:!?)\]}>"']+$/;
 
 function trimTrailingPunctuation(token: string): string {
@@ -234,6 +237,15 @@ export function parseDehubLink(input: string): DehubLinkMatch | null {
     return { ...base, kind: 'bounty', bountyJobKey: scoped[1] };
   }
 
+  // ── /apps/:slug — one mini app ──
+  //
+  // Top-level. `dev` is the developer page, not an app, so it stays a plain
+  // link; a query string (a deep link into the app) rides along in `path`.
+  if (segments[0] === 'apps' && segments[1] && segments[1] !== 'dev' && !segments[2]) {
+    if (!/^[a-z0-9][a-z0-9-]{1,39}$/.test(segments[1])) return null;
+    return { ...base, kind: 'app', appSlug: segments[1] };
+  }
+
   // ── /work/:uuid — the legacy bounty detail link, from before job numbers ──
   //
   // Bare /work (the board), /work/post, /work/history and /work/disputes are app pages, not
@@ -356,6 +368,7 @@ export function dehubLinkLabel(kind: DehubLinkKind): string {
     case 'event': return 'event';
     case 'stage': return 'stage';
     case 'bounty': return 'bounty';
+    case 'app': return 'app';
     case 'film': return 'title';
     default: return 'link';
   }

@@ -22,6 +22,10 @@ import { parseDehubLink } from '../../libs/dehub-links';
 import { fetchLinkPreview, extractUrlsFromText, type LinkPreviewData } from '../../libs/link-preview';
 import { useAppTheme } from '../../context/ThemeContext';
 import { minimalFlat } from '../../theme/minimal';
+import { useNavigation } from '@react-navigation/native';
+import { useTranslation } from 'react-i18next';
+import { ScreenNames } from '../../navigation/ScreenNames';
+import { fetchAppByDomain, type MiniAppListing } from '../../services/miniapps.service';
 
 /** The first URL in the text that isn't one of our own entity links. */
 function firstExternalUrl(text?: string | null): string | null {
@@ -57,6 +61,11 @@ const LinkPreviewCardComponent: React.FC<LinkPreviewCardProps> = ({ text, style 
   const [loading, setLoading] = useState(!!url);
   const fetchedFor = useRef<string | null>(null);
   const { isMinimal } = useAppTheme();
+  // A link to a registered mini app's own site opens the app, the way a
+  // shared link does on Farcaster, instead of leaving for the browser.
+  const [app, setApp] = useState<MiniAppListing | null>(null);
+  const navigation = useNavigation<any>();
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (!url) {
@@ -69,9 +78,19 @@ const LinkPreviewCardComponent: React.FC<LinkPreviewCardProps> = ({ text, style 
     let cancelled = false;
     setLoading(true);
     setPreview(null);
+    setApp(null);
     // Not while the feed is still moving: the fetch, its parse and the card
     // swap can all wait for the scroll to settle.
     const cancel = runWhenSettled(() => {
+      let host = '';
+      try {
+        host = new URL(url).hostname;
+      } catch {
+        /* unreadable host: no app lookup */
+      }
+      void fetchAppByDomain(host).then((row) => {
+        if (!cancelled) setApp(row);
+      });
       fetchLinkPreview(url).then((data) => {
         if (cancelled) return;
         setPreview(data);
@@ -94,16 +113,20 @@ const LinkPreviewCardComponent: React.FC<LinkPreviewCardProps> = ({ text, style 
     <TouchableOpacity
       activeOpacity={0.85}
       style={[styles.card, isMinimal && minimalFlat, style]}
-      onPress={() => openInApp(preview.url)}
+      onPress={() =>
+        app
+          ? navigation.navigate(ScreenNames.MiniApp, { slug: app.slug, from: 'feed', url: preview.url })
+          : openInApp(preview.url)
+      }
     >
       {!!preview.image && (
         <Image source={{ uri: preview.image }} style={[styles.image, isMinimal && styles.minimalImage]} contentFit="cover" />
       )}
       <View style={[styles.body, isMinimal && styles.minimalBody]}>
         <View style={styles.eyebrowRow}>
-          <Icon name="ExternalLink" size={11} color="#808089" />
+          <Icon name={app ? 'LayoutGrid' : 'ExternalLink'} size={11} color="#808089" />
           <Text style={styles.eyebrow} numberOfLines={1}>
-            {preview.siteName || domainOf(preview.url)}
+            {app ? `${app.name} · ${t('miniApps.card.open')}` : preview.siteName || domainOf(preview.url)}
           </Text>
         </View>
         {!!preview.title && (

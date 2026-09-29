@@ -8649,8 +8649,8 @@
       "close": "I-close ang app",
       "backToStore": "Bumalik sa mga App",
       "notFound": "Ang app na ito ay hindi sa DeHub App Store, o ito ay inalis na.",
-      "badUrl": "Ang address na ito ay hindi maaaring buksan bilang isang mini app. Dapat itong simula sa **https://**, o isang localhost address sa mode ng tagagawa.",
-      "readyTimeout": "Ang app na ito ay hindi nagkita ng **dehub.ready()**, kaya itinago ang splash screen pagkatapos ng 8 segundo."
+      "badUrl": "Ang address na ito ay hindi maaaring buksan bilang isang mini app. Dapat itong simula sa https://, o isang localhost address sa mode ng tagagawa.",
+      "readyTimeout": "Ang app na ito ay hindi nagkita ng dehub.ready(), kaya itinago ang splash screen pagkatapos ng 8 segundo."
     },
     "signIn": {
       "title": "Mag-sign in sa {{name}}?",
@@ -8663,7 +8663,28 @@
       "intro": "Mga mini app na ginawa para sa DeHub ng sinuman. Silang lahat ay bukas sa loob ng DeHub, na may sign-in na nakapagtatagumpay, at bawat app ay nagpapakita ng tunay na web address nito.",
       "buildCta": "Gumawa ng app",
       "emptyTitle": "Walang mga app na nakalista pa.",
-      "emptyBody": "Ang unang mga app ay nasa pag-aaral. Gumawa ng isang app at maaari itong makita rito."
+      "emptyBody": "Ang unang mga app ay nasa pag-aaral. Gumawa ng isang app at maaari itong makita rito.",
+      "search": "Maghanap ng mga app",
+      "all": "Lahat",
+      "fromDehub": "Mula sa DeHub",
+      "noMatch": "Walang apps na tumutugma sa paghahanap na iyon."
+    },
+    "card": {
+      "open": "Buksan"
+    },
+    "category": {
+      "games": "Mga Laro",
+      "social": "Panlipunan",
+      "finance": "Pananalapi",
+      "productivity": "Pagiging Produktibo",
+      "health-fitness": "Kalusugan at fitness",
+      "news-media": "Username or email address *",
+      "music": "Musika",
+      "shopping": "Pamimili",
+      "education": "Edukasyon",
+      "developer-tools": "Mga tool ng developer",
+      "entertainment": "Libangan",
+      "art-creativity": "Sining at pagkamalikhain"
     }
   },
   "aiStyles": {

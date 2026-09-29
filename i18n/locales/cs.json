@@ -8486,7 +8486,29 @@
       "intro": "Mini aplikace vytvořené pro DeHub kýmkoli. Otevírají se uvnitř DeHub, už jste přihlášen, a každá aplikace zobrazí svůj skutečný webový adresář.",
       "buildCta": "Vytvořit aplikaci",
       "emptyTitle": "Žádné aplikace zatím nejsou zobrazeny",
-      "emptyBody": "První aplikace jsou v recenzi. Vytvořte jednu a mohla by být zde."
+      "emptyBody": "První aplikace jsou v recenzi. Vytvořte jednu a mohla by být zde.",
+      "search": "Hledat aplikace",
+      "all": "Vše",
+      "fromDehub": "Od společnosti DeHub",
+      "noMatch": "Tomuto vyhledávání neodpovídají žádné aplikace."
+    },
+    "card": {
+      "open": "Otevřít"
+    },
+    "category": {
+      "games": "Hry",
+      "social": "Sociální",
+      "finance": "Finance",
+      "utility": "Užitek",
+      "productivity": "Produktivita",
+      "health-fitness": "Zdraví a fitness",
+      "news-media": "Zprávy a média",
+      "music": "Hudba",
+      "shopping": "Nákupy",
+      "education": "Vzdělání",
+      "developer-tools": "Nástroje pro vývojáře",
+      "entertainment": "Zábava",
+      "art-creativity": "Umění a kreativita"
     }
   },
   "aiStyles": {

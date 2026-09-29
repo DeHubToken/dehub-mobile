@@ -8737,7 +8737,29 @@
       "intro": "Mini-apps gebouwd voor DeHub door iedereen. Ze openen binnen DeHub, je bent al ingelogd, en elke app toont zijn echte webadres.",
       "buildCta": "Een app bouwen",
       "emptyTitle": "Geen apps gelijst",
-      "emptyBody": "De eerste apps zijn in review. Bouw er een en die kan hier staan."
+      "emptyBody": "De eerste apps zijn in review. Bouw er een en die kan hier staan.",
+      "search": "Apps zoeken",
+      "all": "Alle",
+      "fromDehub": "Van DeHub",
+      "noMatch": "Er komen geen apps overeen met die zoekopdracht."
+    },
+    "card": {
+      "open": "Open"
+    },
+    "category": {
+      "games": "Spellen",
+      "social": "Sociaal",
+      "finance": "Financiën",
+      "utility": "Nut",
+      "productivity": "Productiviteit",
+      "health-fitness": "Gezondheid en fitness",
+      "news-media": "Nieuws & media",
+      "music": "Muziek",
+      "shopping": "Winkelen",
+      "education": "Opleiding",
+      "developer-tools": "Tools voor ontwikkelaars",
+      "entertainment": "Onderhouding",
+      "art-creativity": "Kunst & creativiteit"
     }
   },
   "aiStyles": {

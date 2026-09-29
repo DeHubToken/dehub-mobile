@@ -8476,7 +8476,29 @@
       "intro": "Mini apps built for DeHub by anyone. They open inside DeHub, you're already signed in, and every app shows its real web address.",
       "buildCta": "Build an app",
       "emptyTitle": "No apps listed yet",
-      "emptyBody": "The first apps are in review. Build one and it could be here."
+      "emptyBody": "The first apps are in review. Build one and it could be here.",
+      "search": "Search apps",
+      "all": "All",
+      "fromDehub": "From DeHub",
+      "noMatch": "No apps match that search."
+    },
+    "card": {
+      "open": "Open"
+    },
+    "category": {
+      "games": "Games",
+      "social": "Social",
+      "finance": "Finance",
+      "utility": "Utility",
+      "productivity": "Productivity",
+      "health-fitness": "Health & fitness",
+      "news-media": "News & media",
+      "music": "Music",
+      "shopping": "Shopping",
+      "education": "Education",
+      "developer-tools": "Developer tools",
+      "entertainment": "Entertainment",
+      "art-creativity": "Art & creativity"
     }
   },
   "aiStyles": {

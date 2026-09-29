@@ -8526,14 +8526,36 @@
       "title": "{{name}} irratti galmaa&#39;aa?",
       "body": "Appiin kun teessoo boorsaa DeHub keessanii fi mallattoo seensaa kan appii kanaaf qofa hojjetu ni argata. Borsaa keessan, maallaqa keessan ykn herrega DeHub keessan hin argatu.",
       "cancel": "Amma miti",
-      "confirm": "🔒 **Qabdiin**"
+      "confirm": "Qabdiin"
     },
     "store": {
       "title": "Appilikeeshiniiwwan",
       "intro": "Mini apps nama kamiinuu DeHub&#39;f ijaarame. DeHub keessaa banamu, ati duraan galtee jirta, appiin hundi teessoo weeb isaa isa dhugaa agarsiisa.",
       "buildCta": "Appii ijaaraa",
       "emptyTitle": "Appilikeeshiniiwwan hanga ammaatti hin tarreeffamne",
-      "emptyBody": "Appilikeeshiniiwwan jalqabaa gamaaggama irra jiru. Tokko ijaaraa asitti ta&#39;uu danda&#39;a."
+      "emptyBody": "Appilikeeshiniiwwan jalqabaa gamaaggama irra jiru. Tokko ijaaraa asitti ta&#39;uu danda&#39;a.",
+      "search": "Appilikeeshiniiwwan barbaadi",
+      "all": "Hunda",
+      "fromDehub": "DeHub irraa",
+      "noMatch": "Appilikeeshiniin barbaacha sanaan walsimu hin jiru."
+    },
+    "card": {
+      "open": "Banaa"
+    },
+    "category": {
+      "games": "Taphoota",
+      "social": "Kan hawaasaa",
+      "finance": "Maallaqa",
+      "utility": "Tajaajila",
+      "productivity": "Oomishtummaa",
+      "health-fitness": "Fayyaa fi dandeettii qaamaa",
+      "news-media": "Oduu & miidiyaa",
+      "music": "Muuziqaa",
+      "shopping": "Bittaa",
+      "education": "Barumsa",
+      "developer-tools": "Meeshaalee developer",
+      "entertainment": "Bohaaruu",
+      "art-creativity": "Aartii & kalaqa"
     }
   },
   "aiStyles": {
