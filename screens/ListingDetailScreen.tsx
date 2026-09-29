@@ -28,6 +28,7 @@ import { podProviderLabel, parsePodUrl } from "../libs/pod-providers";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { DeHubLoader } from "../components/DeHubLoader";
 import { Image } from "expo-image";
+import { storageImageSource } from "../libs/cdnImage";
 import { ethers } from "ethers";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation, useRoute, type RouteProp } from "@react-navigation/native";
@@ -354,7 +355,7 @@ export default function ListingDetailScreen() {
                 {images.map((uri, i) => (
                   <Image
                     key={`${uri}-${i}`}
-                    source={{ uri }}
+                    source={storageImageSource(uri, screenW)}
                     style={{ width: screenW, height: heroH }}
                     contentFit="cover"
                     transition={200}
