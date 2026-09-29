@@ -248,6 +248,14 @@ export async function loadAffiliateStats(
     ) as unknown as Promise<{ data: Array<{ destination: string; clicks: number; unique_visitors: number }> | null }>,
   ]);
 
+  // A failed query resolves with `error` set instead of rejecting. When the
+  // code is missing too, the zeros below would be made up: throw so the caller
+  // keeps what it had and reports the failure.
+  const failed = (res: unknown) => !!(res as { error?: unknown } | null)?.error;
+  if (!codeRes && (failed(refRes) || failed(earnRes) || failed(viewRes))) {
+    throw new Error("affiliate stats unavailable");
+  }
+
   const l1List = mapReferralRows(refRes.data);
   const l2List = mapReferralRows(l2RefRes.data);
 
