@@ -175,7 +175,8 @@ export type AppStackParamList = {
    */
   [ScreenNames.Profile]: undefined;
   [ScreenNames.Earnings]: undefined;
-  [ScreenNames.MyLibrary]: undefined;
+  /** Menu entries deep-link to a tab: Bookmarks opens "saved". */
+  [ScreenNames.MyLibrary]: { initialTab?: "myPosts" | "liked" | "saved" | "unlocked" | "watched" } | undefined;
   [ScreenNames.FullscreenVideo]: {
     videoUrl: string;
     startTime?: number;
