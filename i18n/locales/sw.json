@@ -8484,7 +8484,29 @@
       "intro": "Apps ndogo zilizojengwa kwa DeHub na kila mtu. Zinafungwa ndani ya DeHub, unaweza kujisajiliwa kabla, na kila app inajulikana na barua yake ya mtandao wa kawaida.",
       "buildCta": "Jenga app",
       "emptyTitle": "Hainajulikana app yoyote bado",
-      "emptyBody": "Apps ya kwanza zimekuwa katika ufuatiliaji. Jenga moja na hatawezi kuwa hapa."
+      "emptyBody": "Apps ya kwanza zimekuwa katika ufuatiliaji. Jenga moja na hatawezi kuwa hapa.",
+      "search": "Tafuta programu",
+      "all": "Zote",
+      "fromDehub": "Kutoka DeHub",
+      "noMatch": "Hakuna programu zinazolingana na utafutaji huo."
+    },
+    "card": {
+      "open": "Fungua"
+    },
+    "category": {
+      "games": "Michezo",
+      "social": "Kijamii",
+      "finance": "Fedha",
+      "utility": "Matumizi",
+      "productivity": "Uzalishaji",
+      "health-fitness": "Afya na fitness",
+      "news-media": "Habari na habari na mawazo",
+      "music": "Muziki",
+      "shopping": "Ununuzi",
+      "education": "Elimu",
+      "developer-tools": "Zana za msanidi programu",
+      "entertainment": "Mchezo",
+      "art-creativity": "Sanaa na ubunifu"
     }
   },
   "aiStyles": {

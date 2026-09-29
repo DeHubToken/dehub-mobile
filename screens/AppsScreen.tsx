@@ -8,8 +8,8 @@
  * copy of it; the app side is where a build gets RUN, via
  * dehub.io/apps/dev/run?url=… links that open MiniAppScreen in developer mode.
  */
-import React, { useCallback, useEffect, useState } from "react";
-import { ActivityIndicator, Linking, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
+import { ActivityIndicator, Linking, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
 import { Image } from "expo-image";
 import { useNavigation } from "@react-navigation/native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -20,6 +20,7 @@ import { ScreenNames } from "../navigation/ScreenNames";
 import { WEBSITE_LINK } from "../config/links";
 import { colors } from "../theme/colors";
 import { fetchListedApps, type MiniAppListing } from "../services/miniapps.service";
+import { ARCADE_GAMES } from "../config/arcade-games";
 
 function AppRow({ app, onPress }: { app: MiniAppListing; onPress: (slug: string) => void }) {
   return (
@@ -52,6 +53,20 @@ export default function AppsScreen() {
   const navigation = useNavigation<any>();
   const insets = useSafeAreaInsets();
   const [apps, setApps] = useState<MiniAppListing[] | null>(null);
+  const [query, setQuery] = useState("");
+  const [category, setCategory] = useState("all");
+  const categories = useMemo(
+    () => [...new Set((apps ?? []).map((a) => a.category).filter((c): c is string => Boolean(c)))].sort(),
+    [apps],
+  );
+  const visible = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    return (apps ?? []).filter(
+      (a) =>
+        (category === "all" || a.category === category) &&
+        (!q || [a.name, a.subtitle, a.description, a.domain].some((v) => v?.toLowerCase().includes(q))),
+    );
+  }, [apps, query, category]);
 
   useEffect(() => {
     let live = true;
@@ -78,6 +93,63 @@ export default function AppsScreen() {
       >
         <Text style={styles.intro}>{t("miniApps.store.intro")}</Text>
 
+        <View style={styles.search}>
+          <Icon name="Search" size={16} color="#71717A" />
+          <TextInput
+            value={query}
+            onChangeText={setQuery}
+            placeholder={t("miniApps.store.search")}
+            placeholderTextColor="#71717A"
+            accessibilityLabel={t("miniApps.store.search")}
+            autoCapitalize="none"
+            autoCorrect={false}
+            style={styles.searchInput}
+          />
+        </View>
+
+        {categories.length > 0 ? (
+          <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.chips}>
+            {["all", ...categories].map((c) => (
+              <Pressable
+                key={c}
+                onPress={() => setCategory(c)}
+                accessibilityRole="button"
+                accessibilityState={{ selected: category === c }}
+                style={[styles.chip, category === c && styles.chipActive]}
+              >
+                <Text style={[styles.chipLabel, category === c && styles.chipLabelActive]}>
+                  {c === "all" ? t("miniApps.store.all") : t(`miniApps.category.${c}`)}
+                </Text>
+              </Pressable>
+            ))}
+          </ScrollView>
+        ) : null}
+
+        {!query && category === "all" ? (
+          <>
+            <Text style={styles.sectionTitle}>{t("miniApps.store.fromDehub")}</Text>
+            {ARCADE_GAMES.map((game) => (
+              <Pressable
+                key={game.slug}
+                accessibilityRole="button"
+                accessibilityLabel={game.title}
+                onPress={() => navigation.navigate(ScreenNames.ArcadeGame, { slug: game.slug })}
+                style={({ pressed }) => [styles.row, pressed && styles.pressed]}
+              >
+                <Image source={{ uri: game.art }} style={styles.icon} />
+                <View style={styles.rowText}>
+                  <Text numberOfLines={1} style={styles.name}>{game.title}</Text>
+                  <Text numberOfLines={1} style={styles.subtitle}>{game.tagline}</Text>
+                </View>
+              </Pressable>
+            ))}
+          </>
+        ) : null}
+
+        {apps !== null && apps.length > 0 && visible.length === 0 ? (
+          <Text style={styles.intro}>{t("miniApps.store.noMatch")}</Text>
+        ) : null}
+
         {apps === null ? (
           <ActivityIndicator color="#71717A" style={{ marginTop: 24 }} />
         ) : apps.length === 0 ? (
@@ -86,7 +158,7 @@ export default function AppsScreen() {
             <Text style={styles.emptyBody}>{t("miniApps.store.emptyBody")}</Text>
           </View>
         ) : (
-          apps.map((app) => <AppRow key={app.id} app={app} onPress={open} />)
+          visible.map((app) => <AppRow key={app.id} app={app} onPress={open} />)
         )}
 
         <Pressable
@@ -146,4 +218,29 @@ const styles = StyleSheet.create({
     borderColor: "rgba(255,255,255,0.15)",
   },
   buildLabel: { color: "#FFFFFF", fontSize: 13, fontWeight: "600" },
+  search: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 8,
+    paddingHorizontal: 12,
+    borderRadius: 12,
+    backgroundColor: "#18181B",
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.06)",
+  },
+  searchInput: { flex: 1, height: 40, color: "#FFFFFF", fontSize: 14 },
+  chips: { gap: 6, paddingVertical: 2 },
+  chip: { borderRadius: 999, paddingHorizontal: 12, paddingVertical: 6, backgroundColor: "#18181B" },
+  chipActive: { backgroundColor: "#FFFFFF" },
+  chipLabel: { color: "#D4D4D8", fontSize: 12, fontWeight: "500" },
+  chipLabelActive: { color: "#000000" },
+  sectionTitle: {
+    color: "#71717A",
+    fontSize: 11,
+    fontWeight: "600",
+    letterSpacing: 1,
+    textTransform: "uppercase",
+    marginTop: 6,
+    paddingHorizontal: 2,
+  },
 });

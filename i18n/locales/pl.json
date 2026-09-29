@@ -8551,7 +8551,29 @@
       "intro": "Miniaturowe aplikacje stworzone dla DeHub przez każdego. Otwierają się w DeHub, jesteś już zalogowany, a każda aplikacja pokazuje swój prawdziwy adres internetowy.",
       "buildCta": "Stwórz aplikację",
       "emptyTitle": "Brak aplikacji na liście",
-      "emptyBody": "Pierwsze aplikacje są sprawdzane. Zbuduj jeden i może być tutaj."
+      "emptyBody": "Pierwsze aplikacje są sprawdzane. Zbuduj jeden i może być tutaj.",
+      "search": "Wyszukaj aplikacje",
+      "all": "Wszystkie",
+      "fromDehub": "Z DeHub",
+      "noMatch": "Brak dopasowanych aplikacji do tego wyszukiwania."
+    },
+    "card": {
+      "open": "Otwórz"
+    },
+    "category": {
+      "games": "Gry",
+      "social": "Społecznościowe",
+      "finance": "Finanse",
+      "utility": "Użytecznościowe",
+      "productivity": "Produktywność",
+      "health-fitness": "Zdrowie & fitness",
+      "news-media": "Nauka & media",
+      "music": "Muzyka",
+      "shopping": "Sklepy",
+      "education": "Edukacja",
+      "developer-tools": "Narzędzia dla developerów",
+      "entertainment": "Rozrywka",
+      "art-creativity": "Sztuka & kreatywność"
     }
   },
   "aiStyles": {

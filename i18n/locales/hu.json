@@ -8486,7 +8486,29 @@
       "intro": "Bárki által a DeHub számára készített minialkalmazások. Megnyílnak a DeHubon belül, Ön már be van jelentkezve, és minden alkalmazás a valódi webcímét mutatja.",
       "buildCta": "Alkalmazás készítése",
       "emptyTitle": "Még nincsenek alkalmazások a listában",
-      "emptyBody": "Az első alkalmazások áttekintése folyamatban van. Építs egyet, és itt lehet."
+      "emptyBody": "Az első alkalmazások áttekintése folyamatban van. Építs egyet, és itt lehet.",
+      "search": "Keresőalkalmazások",
+      "all": "Minden",
+      "fromDehub": "DeHub-ból",
+      "noMatch": "Nincs olyan alkalmazás, amely megfelel a keresésnek."
+    },
+    "card": {
+      "open": "Megnyitás"
+    },
+    "category": {
+      "games": "Játékok",
+      "social": "Társas",
+      "finance": "Pénzügy",
+      "utility": "Hasznos programok",
+      "productivity": "Termelékenység",
+      "health-fitness": "Egészség és fitnesz",
+      "news-media": "Hírek és média",
+      "music": "Zene",
+      "shopping": "Vásárlás",
+      "education": "Oktatás",
+      "developer-tools": "Fejlesztői eszközök",
+      "entertainment": "Szórakozás",
+      "art-creativity": "Művészet és kreativitás"
     }
   },
   "aiStyles": {

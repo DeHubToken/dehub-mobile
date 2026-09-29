@@ -8483,7 +8483,29 @@
       "intro": "Miniaplicacions construïdes per a DeHub per qualsevol. S'obren dins de DeHub, ja estàs iniciat sessió, i cada aplicació mostra la seva adreça web real.",
       "buildCta": "Construeix una aplicació",
       "emptyTitle": "No hi ha aplicacions llistades encara",
-      "emptyBody": "Les primeres aplicacions estan en revisió. Construeix-ne una i podria estar aquí."
+      "emptyBody": "Les primeres aplicacions estan en revisió. Construeix-ne una i podria estar aquí.",
+      "search": "Cerca aplicacions",
+      "all": "Totes",
+      "fromDehub": "De DeHub",
+      "noMatch": "No hi ha aplicacions que coincidin amb la cerca."
+    },
+    "card": {
+      "open": "Obre"
+    },
+    "category": {
+      "games": "Jocs",
+      "social": "Social",
+      "finance": "Finances",
+      "utility": "Utilitat",
+      "productivity": "Productivitat",
+      "health-fitness": "Salut i fitness",
+      "news-media": "Notícies i mitjans",
+      "music": "Música",
+      "shopping": "Comprar",
+      "education": "Educació",
+      "developer-tools": "Eines per a desenvolupadors",
+      "entertainment": "Oci",
+      "art-creativity": "Art i creativitat"
     }
   },
   "aiStyles": {

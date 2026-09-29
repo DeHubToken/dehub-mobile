@@ -8469,8 +8469,8 @@
       "close": "Uždaryti prietaisą",
       "backToStore": "Grįžti į Prietaisus",
       "notFound": "Šis prietaisas nėra DeHub prietaisų sandūroje, arba buvo pašalintas.",
-      "badUrl": "Ši adreso nuoroda negali būti atidaryta kaip mažas prietaisas. Ji turi prasidėti su **https://**, arba būti vietinėje vietoje (localhost) kūrėjo režime.",
-      "readyTimeout": "Šis prietaisas niekada nešaukė **dehub.ready()**, todėl pradinė ekranų dėmė buvo paslėpta po 8 sekundžių."
+      "badUrl": "Ši adreso nuoroda negali būti atidaryta kaip mažas prietaisas. Ji turi prasidėti su https://, arba būti vietinėje vietoje (localhost) kūrėjo režime.",
+      "readyTimeout": "Šis prietaisas niekada nešaukė dehub.ready(), todėl pradinė ekranų dėmė buvo paslėpta po 8 sekundžių."
     },
     "signIn": {
       "title": "Prisijungti prie {{name}}?",
@@ -8483,7 +8483,29 @@
       "intro": "Maži prietaisai, sukurti DeHub naudotojams. Jie atidarysi DeHub viduje, jūs jau prisijungę, ir kiekvienas prietaisas rodo savo tikrąjį interneto adresą.",
       "buildCta": "Sukurkite prietaisą",
       "emptyTitle": "Nėra sąrašo prietaisų",
-      "emptyBody": "Pirmieji prietaisai yra recenzijai. Sukurkite vieną ir jis gali būti čia."
+      "emptyBody": "Pirmieji prietaisai yra recenzijai. Sukurkite vieną ir jis gali būti čia.",
+      "search": "Ieškoti programėlių",
+      "all": "Visi",
+      "fromDehub": "Iš DeHub",
+      "noMatch": "Nėra programėlių, atitinkančių šią paiešką."
+    },
+    "card": {
+      "open": "Atidaryti"
+    },
+    "category": {
+      "games": "Žaidimai",
+      "social": "Socialiniai tinklai",
+      "finance": "Finansai",
+      "utility": "Komunalinės paslaugos",
+      "productivity": "Produktyvumas",
+      "health-fitness": "Sveikata ir kūno rengyba",
+      "news-media": "Naujienos ir žiniasklaida",
+      "music": "Muzika",
+      "shopping": "Apsipirkimas",
+      "education": "Išsilavinimas",
+      "developer-tools": "Kūrėjo įrankiai",
+      "entertainment": "Pramogos",
+      "art-creativity": "Menas ir kūrybiškumas"
     }
   },
   "aiStyles": {

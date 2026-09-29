@@ -8209,7 +8209,7 @@
       "close": "Close app",
       "backToStore": "Back to Apps",
       "notFound": "Dis app no dey in DeHub App Store, or dem remove it for now.",
-      "readyTimeout": "Dis app no call **\"dehub.ready()\"** for wey, for dat reason, splash screen go hide after 8 seconds."
+      "readyTimeout": "Dis app no call \"dehub.ready()\" for wey, for dat reason, splash screen go hide after 8 seconds."
     },
     "signIn": {
       "title": "Sign in to {{name}}?",
@@ -8220,8 +8220,30 @@
       "title": "Apps",
       "intro": "Mini apps wey people build for DeHub. Dem open inside DeHub, you no need to sign in again, and every app show its real website address.",
       "buildCta": "Build an app",
-      "emptyTitle": "No app wey fit for display yet 😕",
-      "emptyBody": "🚀 **First apps dey for review now.** Build one, maybe you get one here soon. 💻🔥"
+      "emptyTitle": "No app wey fit for display yet",
+      "emptyBody": "First apps dey for review now. Build one, maybe you get one here soon.",
+      "search": "Search apps",
+      "all": "All",
+      "fromDehub": "From DeHub",
+      "noMatch": "No app fit dem search."
+    },
+    "card": {
+      "open": "Open"
+    },
+    "category": {
+      "games": "Game (e.g., *Candy Crush*, *PUBG*)",
+      "social": "Social (e.g., *Facebook*, *Twitter*)",
+      "finance": "Finance (e.g., *Revolut*, *PayPal*)",
+      "utility": "Utility (e.g., *Google Drive*, *Dropbox*)",
+      "productivity": "Productivity (e.g., *Notion*, *Trello*)",
+      "health-fitness": "Health & Fitness (e.g., *Nike Training Club*, *MyFitnessPal*)",
+      "news-media": "News & Media (e.g., *BBC*, *CNN*)",
+      "music": "Music (e.g., *Spotify*, *SoundCloud*)",
+      "shopping": "Shopping (e.g., *Jumia*, *Konga*)",
+      "education": "Education (e.g., *Khan Academy*, *Coursera*)",
+      "developer-tools": "Developer Tools (e.g., *VS Code*, *GitHub*)",
+      "entertainment": "Entertainment (e.g., *Netflix*, *YouTube*)",
+      "art-creativity": "Art & Creativity (e.g., *Canva*, *Procreate*)"
     }
   },
   "aiStyles": {

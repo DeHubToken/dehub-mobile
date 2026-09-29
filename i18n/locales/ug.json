@@ -8481,7 +8481,28 @@
       "intro": "DeHub uchun har qanday odam tomonidan qurilgan mini app'lardan. Ular DeHub ichida ochiladi, siz avvaldan kirish qilingan, va har bir appning haqiqiy web manzili ko'rsatiladi.",
       "buildCta": "App qur",
       "emptyTitle": "App'lardan yo'q",
-      "emptyBody": "App'lardan birinchi app'lardan tartibsiz. Birini qurib, u erda bo'lishi mumkin."
+      "emptyBody": "App'lardan birinchi app'lardan tartibsiz. Birini qurib, u erda bo'lishi mumkin.",
+      "search": "ئەپلەرنى ئىزدەش پروگراممىسى",
+      "all": "ھەممىسى",
+      "fromDehub": "DeHub دىن",
+      "noMatch": "بۇ ئىزدەشكە ماس كېلىدىغان ئەپلەر يوق."
+    },
+    "card": {
+      "open": "ئېچىش"
+    },
+    "category": {
+      "games": "ئويۇنلار",
+      "social": "ئىجتىمائىي",
+      "finance": "پۇل مۇئامىلە",
+      "productivity": "ھوسۇللۇق",
+      "health-fitness": "سالامەتلىك ۋە بەدەن چېنىقتۇرۇش",
+      "news-media": "خەۋەر ۋە ئاخبارات ۋاسىتىلىرى",
+      "music": "مۇزىكا",
+      "shopping": "سېتىۋېلىش",
+      "education": "مائارىپ",
+      "developer-tools": "دېتاللارنى ياساش پروگراممىسى",
+      "entertainment": "Ehtirof",
+      "art-creativity": "سەنئەت ۋە ئىجادىيەت"
     }
   },
   "aiStyles": {

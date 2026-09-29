@@ -8514,7 +8514,29 @@
       "intro": "Ama-app amancane akhelwe i-DeHub yinoma ubani. Ivuleka ngaphakathi kwe-DeHub, usuvele ungene ngemvume, futhi yonke i-app ibonisa ikheli layo lewebhu langempela.",
       "buildCta": "Yakha i-app",
       "emptyTitle": "Awekho ama-app afakiwe okwamanje",
-      "emptyBody": "Ama-app okuqala ayahlolwa. Yakha eyodwa futhi kungaba lapha."
+      "emptyBody": "Ama-app okuqala ayahlolwa. Yakha eyodwa futhi kungaba lapha.",
+      "search": "Sesha ama-app",
+      "all": "Konke",
+      "fromDehub": "Kusuka ku-DeHub",
+      "noMatch": "Awekho ama-app afana nalokho kusesha."
+    },
+    "card": {
+      "open": "Vula"
+    },
+    "category": {
+      "games": "Imidlalo",
+      "social": "Umphakathi",
+      "finance": "Ukuhlangana",
+      "utility": "Amasevisi",
+      "productivity": "Ukukhiqiza",
+      "health-fitness": "Ezempilo nokuzivocavoca umzimba",
+      "news-media": "Izindaba nabezindaba",
+      "music": "Umculo",
+      "shopping": "Ukuthenga",
+      "education": "Imfundo",
+      "developer-tools": "Amathuluzi omthuthukisi",
+      "entertainment": "Ezokuzijabulisa",
+      "art-creativity": "Ubuciko nobuciko"
     }
   },
   "aiStyles": {

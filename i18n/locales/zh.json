@@ -8486,7 +8486,29 @@
       "intro": "任何人都可以为DeHub构建迷你应用程序。它们在DeHub中打开，您已经登录，每个应用都会显示其真实网址。",
       "buildCta": "构建应用",
       "emptyTitle": "尚未列出任何应用程序",
-      "emptyBody": "首批应用正在审核中。建造一个，它可能就在这里。"
+      "emptyBody": "首批应用正在审核中。建造一个，它可能就在这里。",
+      "search": "搜索应用",
+      "all": "全部",
+      "fromDehub": "来自DeHub",
+      "noMatch": "没有与该搜索匹配的应用。"
+    },
+    "card": {
+      "open": "打开"
+    },
+    "category": {
+      "games": "游戏",
+      "social": "社交",
+      "finance": "财务",
+      "utility": "公用事业",
+      "productivity": "生产力",
+      "health-fitness": "健康与健身",
+      "news-media": "新闻与媒体",
+      "music": "音乐",
+      "shopping": "购物",
+      "education": "教育",
+      "developer-tools": "开发者工具",
+      "entertainment": "娱乐",
+      "art-creativity": "艺术与创意"
     }
   },
   "aiStyles": {

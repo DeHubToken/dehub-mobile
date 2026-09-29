@@ -169,3 +169,30 @@ export function composeText(params: Record<string, unknown>, appHost: string): s
 export function ownershipMessage(domain: string): string {
   return `dehub mini app ownership\n${domain}`;
 }
+
+/**
+ * Where a shared link should open the app. `dehub.io/apps/<slug>?room=42`
+ * carries the app's own query through to its home URL, and `?url=` names a
+ * deeper page on the app's own host (what a feed card's button points at).
+ * `from` is ours and stays ours.
+ */
+export function launchUrl(homeUrl: string, params: URLSearchParams): URL | null {
+  const home = parseAppUrl(homeUrl);
+  if (!home) return null;
+  const deep = params.get('url');
+  if (deep) {
+    const target = parseAppUrl(deep);
+    if (target && target.hostname === home.hostname) return target;
+  }
+  for (const [key, value] of params) {
+    if (key !== 'from' && key !== 'url') home.searchParams.set(key, value);
+  }
+  return home;
+}
+
+/** A stable negative stand-in for a Farcaster FID. 0 when signed out. */
+export function syntheticFid(wallet: string | null | undefined): number {
+  if (!wallet || !/^0x[0-9a-f]{40}$/i.test(wallet)) return 0;
+  const n = parseInt(wallet.slice(2, 10), 16) % 2_147_483_647;
+  return -(n || 1);
+}

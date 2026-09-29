@@ -8570,7 +8570,29 @@
       "intro": "Mini ứng dụng được xây dựng cho DeHub bởi bất kỳ ai. Chúng mở trong DeHub, bạn đã đăng nhập, và mỗi ứng dụng hiển thị địa chỉ web thực của nó.",
       "buildCta": "Xây dựng ứng dụng",
       "emptyTitle": "Không có ứng dụng nào được liệt kê hiện tại",
-      "emptyBody": "Các ứng dụng đầu tiên đang trong quá trình đánh giá. Xây dựng một ứng dụng và nó có thể xuất hiện ở đây."
+      "emptyBody": "Các ứng dụng đầu tiên đang trong quá trình đánh giá. Xây dựng một ứng dụng và nó có thể xuất hiện ở đây.",
+      "search": "Tìm kiếm ứng dụng",
+      "all": "Tất cả",
+      "fromDehub": "Từ DeHub",
+      "noMatch": "Không có ứng dụng nào phù hợp với kết quả tìm kiếm của bạn."
+    },
+    "card": {
+      "open": "Mở"
+    },
+    "category": {
+      "games": "Trò chơi",
+      "social": "Xã hội",
+      "finance": "Tài chính",
+      "utility": "Tiện ích",
+      "productivity": "Tăng cường năng suất",
+      "health-fitness": "Sức khỏe & thể hình",
+      "news-media": "Tin tức & truyền thông",
+      "music": "Âm nhạc",
+      "shopping": "Mua sắm",
+      "education": "Giáo dục",
+      "developer-tools": "Công cụ phát triển",
+      "entertainment": "Giải trí",
+      "art-creativity": "Nghệ thuật & sáng tạo"
     }
   },
   "aiStyles": {

@@ -8460,13 +8460,13 @@
   },
   "miniApps": {
     "badge": {
-      "verified": "🔍 **مُصَدَّق**"
+      "verified": "مُصَدَّق"
     },
     "host": {
       "close": "غلق التطبيق",
       "backToStore": "رجع للبرامج",
       "badUrl": "لما بتفتح هدا العنوان كمني أب، لازم يبدا ب-\"https://\" أو يكون عنوان محلي في وضعية التطوير.",
-      "readyTimeout": "لما كان البيب تفتكرش دى الفونكشن دي **dehub.ready()**، لما كده الشاشة الاولى (splash screen) اتخفيت بعد 8 ثواني."
+      "readyTimeout": "لما كان البيب تفتكرش دى الفونكشن دي dehub.ready()، لما كده الشاشة الاولى (splash screen) اتخفيت بعد 8 ثواني."
     },
     "signIn": {
       "title": "تسجيل دخول ل{{name}}؟",
@@ -8476,7 +8476,24 @@
     },
     "store": {
       "emptyTitle": "ما فدش عايزه تطبيقات دلوقتي",
-      "emptyBody": "البرامج الأولى بتتختبر حاليا. بنشوفها لو بنعملها ممكن تكون هنا."
+      "emptyBody": "البرامج الأولى بتتختبر حاليا. بنشوفها لو بنعملها ممكن تكون هنا.",
+      "fromDehub": "من DeHub",
+      "noMatch": "لا توجد تطبيقات تناسب هذا البحث."
+    },
+    "category": {
+      "games": "العاب",
+      "social": "سوشيال",
+      "finance": "مالية",
+      "utility": "خدمات",
+      "productivity": "إنتاجية",
+      "health-fitness": "صحة و اللياقة",
+      "news-media": "أخبار و ميديا",
+      "music": "موسيقى",
+      "shopping": "تسوق",
+      "education": "تعليم",
+      "developer-tools": "أدوات مطورين",
+      "entertainment": "ترفيه",
+      "art-creativity": "فن و إبداع"
     }
   },
   "aiStyles": {

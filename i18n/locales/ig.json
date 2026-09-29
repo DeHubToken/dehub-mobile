@@ -8461,7 +8461,7 @@
     "badge": {
       "verified": "Nyochaa",
       "unreviewed": "Enyochaghị",
-      "dev": "🔧 **Nwoke a nwoke nwoke** 🔧"
+      "dev": "Nwoke a nwoke nwoke"
     },
     "host": {
       "close": "Mechie ngwa",
@@ -8481,7 +8481,28 @@
       "intro": "Obere ngwa ndị e wuru maka DeHub site n 'aka onye ọ bụla. Ha na-emeghe n' ime DeHub, ị banyela, ma ngwa ọ bụla na-egosi ezigbo adreesị weebụ ya.",
       "buildCta": "Mepụta ngwa",
       "emptyTitle": "Enweghị usoroiheomume edepụtara ma",
-      "emptyBody": "A na-enyocha ngwa ndị mbụ ahụ. Mepụta otu ma ọ nwere ike ịdị ebe a."
+      "emptyBody": "A na-enyocha ngwa ndị mbụ ahụ. Mepụta otu ma ọ nwere ike ịdị ebe a.",
+      "search": "Usoroiheomume nchọcha",
+      "all": "Ha niile",
+      "fromDehub": "Site na DeHub",
+      "noMatch": "Enweghị ngwa dabara na nchọcha ahụ."
+    },
+    "card": {
+      "open": "Mepee"
+    },
+    "category": {
+      "games": "Egwuregwu",
+      "finance": "Nkììrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìrìr",
+      "utility": "Utiwari",
+      "productivity": "Arụpụtaghị",
+      "health-fitness": "Ahụike & mma",
+      "news-media": "News & mgbasa ozi",
+      "music": "Mùsìkì",
+      "shopping": "Ịzụ ahịa",
+      "education": "Educashia",
+      "developer-tools": "Developer ngwaọrụ",
+      "entertainment": "Ntụrụndụ",
+      "art-creativity": "Ndị ụlọtị na ụlọtị ụlọtị"
     }
   },
   "aiStyles": {

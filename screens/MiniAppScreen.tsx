@@ -41,6 +41,7 @@ import {
   cleanHandle,
   cleanPostId,
   composeText,
+  launchUrl,
   parseAppUrl,
   parseRequest,
   reply,
@@ -49,6 +50,7 @@ import {
   type MiniAppContext,
 } from "../libs/miniapp/protocol";
 import { fetchAppBySlug, mintMiniAppToken } from "../services/miniapps.service";
+import { useFarcasterHost } from "../libs/miniapp/farcaster-host";
 
 /** How long the splash waits for ready() before stepping aside anyway. */
 const READY_CAP_MS = 8000;
@@ -64,7 +66,21 @@ interface HostedApp {
   badge: Badge;
 }
 
-type Params = { slug?: string; url?: string; name?: string; from?: string };
+type Params = { slug?: string; url?: string; name?: string; from?: string; query?: string } & Record<string, unknown>;
+
+/**
+ * The app's own query for this launch: a feed card passes it whole as `query`,
+ * a deep link (dehub.io/apps/<slug>?room=4) arrives as loose params, and `url`
+ * names a deeper page on the app's host. launchUrl drops anything off-host.
+ */
+function appQuery(params: Params): URLSearchParams {
+  const out = new URLSearchParams(typeof params.query === "string" ? params.query : "");
+  for (const [key, value] of Object.entries(params)) {
+    if (["slug", "from", "name", "query"].includes(key)) continue;
+    if (typeof value === "string") out.set(key, value);
+  }
+  return out;
+}
 
 function launchSource(value: string | undefined, dev: boolean): LaunchSource {
   if (value === "store" || value === "feed" || value === "share") return value;
@@ -99,7 +115,7 @@ export default function MiniAppScreen() {
     }
     fetchAppBySlug(params.slug ?? "").then((row) => {
       if (!live) return;
-      const url = row ? parseAppUrl(row.home_url) : null;
+      const url = row ? launchUrl(row.home_url, appQuery(params)) : null;
       setApp(
         row && url
           ? {
@@ -117,7 +133,8 @@ export default function MiniAppScreen() {
     return () => {
       live = false;
     };
-  }, [dev, params.slug, params.url, params.name]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dev, params.slug, params.url, params.name, params.query]);
 
   useEffect(() => {
     if (!app || ready) return;
@@ -154,6 +171,21 @@ export default function MiniAppScreen() {
     else navigation.navigate(ScreenNames.Apps);
   }, [navigation]);
 
+  const onReady = useCallback(() => setReady(true), []);
+  const onCompose = useCallback(
+    (text: string) => navigation.navigate(ScreenNames.Upload, { initialText: text || undefined }),
+    [navigation],
+  );
+  // Apps built for Farcaster speak its SDK instead; answer that too.
+  const onFarcasterMessage = useFarcasterHost({
+    webViewRef: webRef,
+    host: app?.url.hostname ?? "",
+    context,
+    onReady,
+    onClose: close,
+    onCompose,
+  });
+
   const askSignIn = useCallback(
     (domain: string, name: string) =>
       new Promise<boolean>((resolve) => {
@@ -181,7 +213,7 @@ export default function MiniAppScreen() {
       }
       if (pageHost !== app.url.hostname) return;
       const req = parseRequest(e.nativeEvent.data);
-      if (!req) return;
+      if (!req) return onFarcasterMessage(e);
       const host = app.url.hostname;
 
       const send = (message: unknown) =>
@@ -266,7 +298,7 @@ export default function MiniAppScreen() {
           return fail("unsupported", `${req.method} is not supported here.`);
       }
     },
-    [app, context, close, askSignIn, navigation, showUserProfile],
+    [app, context, close, askSignIn, navigation, showUserProfile, onFarcasterMessage],
   );
 
   /** Keep the WebView on the app's own host; everything else goes to the browser. */

@@ -8483,7 +8483,29 @@
       "intro": "Herkes tarafından DeHub için oluşturulmuş mini uygulamalar. DeHub'da açılırlar, zaten oturum açmışsınızdır ve her uygulama gerçek web adresini gösterir.",
       "buildCta": "Bir uygulama oluşturun",
       "emptyTitle": "Henüz listelenen uygulama yok",
-      "emptyBody": "İlk uygulamalar inceleniyor. Bir tane inşa edersen burada olabilir."
+      "emptyBody": "İlk uygulamalar inceleniyor. Bir tane inşa edersen burada olabilir.",
+      "search": "Uygulama ara",
+      "all": "Tümü",
+      "fromDehub": "DeHub'dan",
+      "noMatch": "Bu aramayla eşleşen uygulama yok."
+    },
+    "card": {
+      "open": "Açık"
+    },
+    "category": {
+      "games": "Oyunlar",
+      "social": "Sosyal",
+      "finance": "Finans",
+      "utility": "İşlevsellik",
+      "productivity": "Verimlilik",
+      "health-fitness": "Sağlık ve fitness",
+      "news-media": "Haberler ve medya",
+      "music": "Müzik",
+      "shopping": "Alışveriş",
+      "education": "Eğitim",
+      "developer-tools": "Geliştirici araçları",
+      "entertainment": "Eğlence",
+      "art-creativity": "Sanat ve yaratıcılık"
     }
   },
   "aiStyles": {

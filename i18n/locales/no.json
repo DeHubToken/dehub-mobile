@@ -8483,7 +8483,29 @@
       "intro": "Mini-apper bygget for DeHub av alle. De åpnes inne i DeHub, du er allerede logget inn, og hver app viser sin sanne nettadresse.",
       "buildCta": "Bygg en app",
       "emptyTitle": "Ingen apps listet ennå",
-      "emptyBody": "De første appene er under vurdering. Bygg en og den kan være her."
+      "emptyBody": "De første appene er under vurdering. Bygg en og den kan være her.",
+      "search": "Søk i apper",
+      "all": "Alle",
+      "fromDehub": "Fra DeHub",
+      "noMatch": "Ingen apper samsvarer med det søket."
+    },
+    "card": {
+      "open": "Åpne"
+    },
+    "category": {
+      "games": "Spill",
+      "social": "Sosial",
+      "finance": "Finansiere",
+      "utility": "Nytte",
+      "productivity": "Produktivitet",
+      "health-fitness": "Helse og trening",
+      "news-media": "Nyheter og media",
+      "music": "Musikk",
+      "shopping": "Kjøp",
+      "education": "Utdannelse",
+      "developer-tools": "Utviklerverktøy",
+      "entertainment": "Underholdning",
+      "art-creativity": "Kunst og kreativitet"
     }
   },
   "aiStyles": {

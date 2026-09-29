@@ -8473,7 +8473,29 @@
       "intro": "Барномаҳои хурд барои DeHub аз ҷониби касе сохта шудаанд. Онҳо дар дохили DeHub кушода мешаванд, шумо аллакай ворид шудаед ва ҳар як барнома суроғаи воқеии вебро нишон медиҳад.",
       "buildCta": "Сохтани барнома",
       "emptyTitle": "Ягон барномаҳо ҳанӯз номбар нашудаанд",
-      "emptyBody": "Ang unang mga aplikasyon ay nakalista. Сохтани як ва он метавонад дар ин ҷо бошад."
+      "emptyBody": "Ang unang mga aplikasyon ay nakalista. Сохтани як ва он метавонад дар ин ҷо бошад.",
+      "search": "Ҷустуҷӯи барномаҳо",
+      "all": "Lahat",
+      "fromDehub": "Аз DeHub",
+      "noMatch": "Walang mga application na tumutugma sa paghahanap na"
+    },
+    "card": {
+      "open": "Кушодан"
+    },
+    "category": {
+      "games": "Бозиҳо",
+      "social": "Иҷтимоӣ",
+      "finance": "Молия",
+      "utility": "Хизматрасонӣ",
+      "productivity": "Производительность",
+      "health-fitness": "Саломатӣ ва фитнес",
+      "news-media": "Ахборот & медиа",
+      "music": "Мусиқӣ",
+      "shopping": "Харидорӣ",
+      "education": "Маориф",
+      "developer-tools": "Абзорҳои таҳиягар",
+      "entertainment": "Вақтхушӣ",
+      "art-creativity": "Санъат ва эҷодкорӣ"
     }
   },
   "aiStyles": {
