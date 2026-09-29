@@ -10,6 +10,7 @@ import {
   Platform,
   StyleSheet,
   ScrollView,
+  Alert,
 } from "react-native";
 import { DeHubLoader } from "../DeHubLoader";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../Feed/DeHubRefreshControl";
@@ -425,8 +426,45 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
     return flat;
   }, [highlightCommentId]);
 
-  // Load comments
-  const loadComments = useCallback(async (isRefresh = false) => {
+  /**
+   * Put a set of rows back into reading order, each comment once.
+   *
+   * Every change to the list goes through the same threading as the first
+   * load, so a reply fetched later, a later page or a comment still posting
+   * lands under its parent rather than wherever it was spliced in. Duplicates
+   * are dropped, first copy wins: the API appends a page's missing ancestors
+   * to it, so a comment routinely arrives on two pages.
+   */
+  const rethread = useCallback((rows: Comment[]) => {
+    const seen = new Set<number>();
+    return buildFlatComments(rows.filter((row) => {
+      const id = Number(row.id);
+      if (seen.has(id)) return false;
+      seen.add(id);
+      return true;
+    }));
+  }, [buildFlatComments]);
+
+  // The next page to ask for, or null when the server says there are no more.
+  const [nextPage, setNextPage] = useState<number | null>(null);
+  const [loadingMore, setLoadingMore] = useState(false);
+  const loadingMoreRef = useRef(false);
+  // Bumped by every first-page load, so a slower earlier response can never
+  // overwrite a newer one.
+  const loadSeqRef = useRef(0);
+
+  /**
+   * Load the first page.
+   *
+   * `isRefresh` is any load after the first. It keeps what is already on
+   * screen that the new first page does not carry — replies the reader opened,
+   * later pages, a comment still posting — because these reloads happen on
+   * their own (tip totals arriving, the assistant poll, a pin) and used to wipe
+   * all of that while the thread still said "Hide replies". `reset` is the
+   * reader pulling to refresh, which starts over from the first page.
+   */
+  const loadComments = useCallback(async (isRefresh = false, reset = false) => {
+    const seq = ++loadSeqRef.current;
     try {
       const fetchPage = () =>
         getCommentsForToken(tokenId, {
@@ -442,15 +480,25 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
         !isRefresh && highlightCommentId == null && topTippedIds.length === 0
           ? await takeWarmRequest(firstPageWarmKey(tokenId, userAddress), fetchPage)
           : await fetchPage();
+      if (seq !== loadSeqRef.current) return;
 
-      const { items } = res.result;
-      const flat = buildFlatComments(items);
-      setFlatComments(flat);
+      const { items, hasMore } = res.result;
+      const fresh = new Set(items.map((c) => Number(c.id)));
+      setFlatComments((prev) => rethread([
+        // Still posting: negative temporary ids, first so a new top-level
+        // comment stays at the top.
+        ...prev.filter((c) => Number(c.id) < 0),
+        ...items,
+        ...(isRefresh && !reset
+          ? prev.filter((c) => Number(c.id) >= 0 && !fresh.has(Number(c.id)))
+          : []),
+      ]));
+      if (!isRefresh || reset) setNextPage(hasMore ? 1 : null);
 
       // Set highlight on initial load if commentId matches
       if (!isRefresh && highlightCommentId != null) {
         const hlId = Number(highlightCommentId);
-        if (flat.some((c) => Number(c.id) === hlId)) {
+        if (items.some((c) => Number(c.id) === hlId)) {
           setHighlightedId(hlId);
           setTimeout(() => setHighlightedId(null), 4000);
         }
@@ -465,13 +513,64 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
     // nearly all of them, keep the empty list they started with and never
     // reload. The dep is the joined string, not the array, or a fresh array
     // identity on every render would reload forever.
-  }, [tokenId, userAddress, highlightCommentId, buildFlatComments, topTippedIds.join(",")]);
+  }, [tokenId, userAddress, highlightCommentId, rethread, topTippedIds.join(",")]);
 
-  // Initial load
+  /**
+   * First load, and the reload when tip totals arrive.
+   *
+   * Only a load for a new post, viewer or linked comment shows the spinner and
+   * starts clean. The tip reload used to do both, so every thread with a
+   * tipped comment opened, blanked to a spinner and came back in a different
+   * order.
+   */
+  const loadedKeyRef = useRef<string | null>(null);
   useEffect(() => {
-    setLoading(true);
-    loadComments().finally(() => setLoading(false));
-  }, [loadComments]);
+    const key = `${tokenId}|${userAddress ?? ""}|${highlightCommentId ?? ""}`;
+    const isReload = loadedKeyRef.current === key;
+    if (!isReload) {
+      setLoading(true);
+      setFlatComments([]);
+      setNextPage(null);
+    }
+    loadComments(isReload).finally(() => {
+      loadedKeyRef.current = key;
+      setLoading(false);
+    });
+  }, [loadComments, tokenId, userAddress, highlightCommentId]);
+
+  /**
+   * The next page, when the reader nears the end of the list.
+   *
+   * The sheet used to stop at the first fifty. On a busy post everything older
+   * was unreachable, and a reply whose parent sat past the cut showed as a
+   * top-level comment addressed to nobody. `topTipped` goes on every page: the
+   * API sorts by it, so a page asked for without it is cut from a different
+   * order and the rows at the seam are skipped or repeated.
+   */
+  const loadMore = useCallback(async () => {
+    if (nextPage == null || loadingMoreRef.current || loading) return;
+    loadingMoreRef.current = true;
+    setLoadingMore(true);
+    const seq = loadSeqRef.current;
+    try {
+      const res = await getCommentsForToken(tokenId, {
+        page: nextPage,
+        limit: PAGE_SIZE,
+        address: userAddress,
+        topTipped: topTippedIds,
+      });
+      // A first-page load started meanwhile and owns the list now.
+      if (seq !== loadSeqRef.current) return;
+      const { items, hasMore } = res.result;
+      setFlatComments((prev) => rethread([...prev, ...items]));
+      setNextPage(hasMore ? nextPage + 1 : null);
+    } catch (e) {
+      console.warn("[CommentSection] Failed to load more comments:", e);
+    } finally {
+      loadingMoreRef.current = false;
+      setLoadingMore(false);
+    }
+  }, [nextPage, loading, tokenId, userAddress, topTippedIds.join(","), rethread]);
 
   // Tagging @assistant produces a real comment, but only once the model has
   // answered — several seconds after the post returns. This keeps a placeholder
@@ -482,7 +581,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
   // Refresh
   const handleRefresh = useCallback(async () => {
     setRefreshing(true);
-    await loadComments(true);
+    await loadComments(true, true);
     setRefreshing(false);
   }, [loadComments]);
 
@@ -503,27 +602,12 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
       // Expand replies: fetch from server
       setLoadingRepliesMap((prev) => ({ ...prev, [commentId]: true }));
       try {
-        const parentIdx = flatComments.findIndex((c) => Number(c.id) === commentId);
-        if (parentIdx === -1) return;
-        const parentComment = flatComments[parentIdx];
-        const parentDepth = parentComment.depth ?? 0;
-        const rootParentId = parentComment.rootParentId ?? Number(parentComment.id);
+        if (!flatComments.some((c) => Number(c.id) === commentId)) return;
 
-        const res = await getCommentReplies(commentId, { limit: 100 });
+        // With the viewer's address, or every reply fetched here came back
+        // un-liked — including the ones the viewer had liked.
+        const res = await getCommentReplies(commentId, { limit: 100, address: userAddress });
         const replies = res.result?.items || [];
-
-        // The first page already inlines whatever replies came down with it, so
-        // only splice in the ones that aren't on screen yet — otherwise expanding
-        // shows every visible reply twice.
-        const onScreen = new Set(flatComments.map((c) => Number(c.id)));
-        const flatReplies: FlatComment[] = replies
-          .filter((r) => !onScreen.has(Number(r.id)))
-          .map((r) => ({
-            ...r,
-            isReply: true,
-            depth: parentDepth + 1,
-            rootParentId,
-          }));
 
         setExpandedCommentIds((prev) => {
           const next = new Set(prev);
@@ -531,14 +615,10 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           return next;
         });
 
-        setFlatComments((prev) => {
-          const idx = prev.findIndex((c) => Number(c.id) === commentId);
-          if (idx === -1) return prev;
-          
-          const nextList = [...prev];
-          nextList.splice(idx + 1, 0, ...flatReplies);
-          return nextList;
-        });
+        // Threaded in rather than spliced after the parent: a splice put the
+        // fetched replies above the ones that had come inline with the page,
+        // and the first page's copies of the same rows are kept (first wins).
+        setFlatComments((prev) => rethread([...prev, ...replies]));
       } catch (err) {
         console.warn("[CommentSection] Failed to load replies:", err);
         toastError(t("comments.loadRepliesFailed"));
@@ -546,34 +626,76 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
         setLoadingRepliesMap((prev) => ({ ...prev, [commentId]: false }));
       }
     }
-  }, [expandedCommentIds, flatComments]);
+  }, [expandedCommentIds, flatComments, userAddress, rethread]);
+
+  /**
+   * Write a vote's result back into the list.
+   *
+   * The row keeps its own copy for the instant feedback, but the list is what
+   * the long-press menu, a reload's merge and a re-render read. It used to keep
+   * the pre-tap state, so a Like from the menu after a Like on the thumb sent a
+   * second toggle and quietly took the like back off.
+   */
+  const recordVote = useCallback((commentId: number, result: any) => {
+    if (!result || typeof result !== "object") return;
+    setFlatComments((prev) => prev.map((c) => {
+      if (Number(c.id) !== commentId) return c;
+      // The plain like/dislike endpoints answer with one side only. The two
+      // are exclusive, so a like clears a dislike and the reverse.
+      let isLiked = typeof result.liked === "boolean" ? result.liked : !!c.isLiked;
+      let isDisliked = typeof result.disliked === "boolean" ? result.disliked : !!c.isDisliked;
+      if (result.liked === true) isDisliked = false;
+      if (result.disliked === true) isLiked = false;
+      const myReaction: PostReaction | null =
+        result.currentReaction !== undefined
+          ? result.currentReaction ?? null
+          : isLiked
+            ? (c.myReaction && c.myReaction !== "dislike" ? c.myReaction : "like")
+            : isDisliked ? "dislike" : null;
+      return {
+        ...c,
+        isLiked,
+        isDisliked,
+        myReaction,
+        ...(typeof result.likes === "number" && { likeCount: result.likes }),
+        ...(typeof result.dislikes === "number" && { dislikeCount: result.dislikes }),
+        ...(result.reactionCounts && { reactionCounts: result.reactionCounts }),
+      };
+    }));
+  }, []);
 
   // Like a comment - returns the result for optimistic sync
   const handleLikeComment = useCallback(async (commentId: number) => {
     if (!requireAuth) return;
 
     return await requireAuth(async () => {
-      return await likeComment({ commentId });
+      const result = await likeComment({ commentId });
+      recordVote(commentId, result);
+      return result;
     });
-  }, [requireAuth]);
+  }, [requireAuth, recordVote]);
 
   /** One of the nine, from a comment row's hold-open tray. */
   const handleReactComment = useCallback(async (commentId: number, reaction: PostReaction) => {
     if (!requireAuth) return;
 
     return await requireAuth(async () => {
-      return await reactComment({ commentId, reaction });
+      const result = await reactComment({ commentId, reaction });
+      recordVote(commentId, result);
+      return result;
     });
-  }, [requireAuth]);
+  }, [requireAuth, recordVote]);
 
   // Dislike a comment - returns the result for optimistic sync
   const handleDislikeComment = useCallback(async (commentId: number) => {
     if (!requireAuth) return;
 
     return await requireAuth(async () => {
-      return await dislikeComment({ commentId });
+      const result = await dislikeComment({ commentId });
+      recordVote(commentId, result);
+      return result;
     });
-  }, [requireAuth]);
+  }, [requireAuth, recordVote]);
 
   // Handle starting edit mode for a comment
   const handleStartEdit = useCallback((comment: Comment) => {
@@ -727,6 +849,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
       // Build optimistic comment
       const optimistic: FlatComment = {
         id: tempId,
+        parentId: replyingTo ? Number(replyingTo.id) : undefined,
         content: "",
         createdAt: now,
         user: {
@@ -878,6 +1001,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
 
           const optimisticComment: FlatComment = {
             id: tempId,
+            parentId: replyingTo ? Number(replyingTo.id) : undefined,
             content: text,
             createdAt: now,
             user: {
@@ -1187,10 +1311,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
     }
   }, [contextComment]);
 
-  // Context menu action: delete
-  const handleContextDelete = useCallback(async () => {
-    if (!contextComment) return;
-    const commentId = contextComment.id;
+  const deleteNow = useCallback(async (commentId: number) => {
     // Optimistic removal: remove the comment and all its descendants (depth > comment's depth)
     setFlatComments((prev) => {
       const idx = prev.findIndex((c) => c.id === commentId);
@@ -1210,7 +1331,23 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
       // Revert by reloading
       await loadComments(true);
     }
-  }, [contextComment, contextMeta, loadComments]);
+  }, [loadComments]);
+
+  // Context menu action: delete. Asks first — it is permanent, and the server
+  // takes every reply under the comment with it, other people's included, so
+  // one mis-tap on the menu used to erase a whole conversation.
+  const handleContextDelete = useCallback(() => {
+    if (!contextComment) return;
+    const commentId = contextComment.id;
+    Alert.alert(
+      t("governance.discussion.deleteTitle"),
+      t("governance.discussion.deleteDescription"),
+      [
+        { text: t("common.cancel"), style: "cancel" },
+        { text: t("common.delete"), style: "destructive", onPress: () => void deleteNow(commentId) },
+      ],
+    );
+  }, [contextComment, deleteNow]);
 
   /**
    * The rows the list actually shows, plus what each one draws.
@@ -1263,10 +1400,16 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
       const next = visible[i + 1];
       const nextIsSameThread = !!next && next.isReply && Number(next.rootParentId) === root;
       const isLastOfThread = !nextIsSameThread;
-      const total = totalPerRoot.get(root) ?? 0;
+      // A comment lifted to the top (pinned, tipped, answered by the creator)
+      // is often older than the page, so none of its replies came with it. Its
+      // own reply ids still say they exist, and without counting them the
+      // thread had no control at all — "12" on the icon and no way to read
+      // them. Opening it fetches them.
+      const loaded = totalPerRoot.get(root) ?? 0;
+      const total = loaded > 0 || c.isReply ? loaded : (c.replyIds?.length ?? 0);
       const shown = expandedCommentIds.has(root)
-        ? total
-        : Math.min(total, preview.get(String(root))?.size ?? 0);
+        ? loaded
+        : Math.min(loaded, preview.get(String(root))?.size ?? 0);
       const hidden = total - shown;
       // The toggle belongs at the end of what is on screen, so it reads as the
       // continuation of the thread rather than as a note on its first line.
@@ -1276,7 +1419,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
         lineAbove: !!c.isReply,
         // The toggle sits inside this row's own body, so a row that owns it
         // ends the line rather than carrying it past its bottom edge.
-        lineBelow: nextIsSameThread || (!c.isReply && total > 0),
+        lineBelow: nextIsSameThread || (!c.isReply && loaded > 0),
         toggleRootId: ownsToggle ? root : undefined,
         toggleExpanded: expandedCommentIds.has(root),
         hiddenCount: hidden,
@@ -1375,7 +1518,9 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
     for (const v of viewableItems) {
       const id = (v.item as FlatComment)?.id;
       const numericId = Number(id);
-      if (id == null || !Number.isFinite(numericId)) continue;
+      // A comment still posting carries a negative temporary id; counting it
+      // sent the server a view for a comment that does not exist.
+      if (id == null || !Number.isFinite(numericId) || numericId <= 0) continue;
       if (viewSentRef.current.has(numericId)) continue;
       viewSentRef.current.add(numericId);
       viewBatchRef.current.add(numericId);
@@ -1432,6 +1577,15 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
                 {t("comments.noneYetBeFirst")}
               </Text>
             </View>
+          }
+          onEndReached={loadMore}
+          onEndReachedThreshold={0.5}
+          ListFooterComponent={
+            loadingMore ? (
+              <View className="items-center py-4">
+                <ActivityIndicator size="small" color="#8B8D90" />
+              </View>
+            ) : null
           }
         />
       )}

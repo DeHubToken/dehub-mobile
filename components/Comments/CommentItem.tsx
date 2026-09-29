@@ -174,6 +174,26 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
     comment.myReaction ?? (comment.isLiked ? "like" : comment.isDisliked ? "dislike" : null),
   );
   const [reactionCounts, setReactionCounts] = useState<ReactionCounts>(comment.reactionCounts ?? {});
+  /**
+   * Follow the comment when newer data for it arrives.
+   *
+   * These were seeded once, so the row kept whatever it first rendered: a Like
+   * from the long-press menu never lit the thumb, a reload never corrected a
+   * count, and the next tap on the thumb undid the like instead of casting it.
+   * Skipped while this row's own vote is in flight, or the copy from before the
+   * tap would overwrite it.
+   */
+  const voteBusyRef = useRef(false);
+  voteBusyRef.current = isLiking || isDisliking;
+  useEffect(() => {
+    if (voteBusyRef.current) return;
+    setLiked(!!comment.isLiked);
+    setDisliked(!!comment.isDisliked);
+    setLikeCount(comment.likeCount || 0);
+    setDislikeCount(comment.dislikeCount || 0);
+    setMyReaction(comment.myReaction ?? (comment.isLiked ? "like" : comment.isDisliked ? "dislike" : null));
+    setReactionCounts(comment.reactionCounts ?? {});
+  }, [comment.isLiked, comment.isDisliked, comment.likeCount, comment.dislikeCount, comment.myReaction, comment.reactionCounts]);
   // One tray per thumb, only ever one open — see FeedActionBar for the same pair.
   const [openTray, setOpenTray] = useState<"positive" | "negative" | null>(null);
   const containerRef = useRef<View>(null);
@@ -217,9 +237,16 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
     [user],
   );
   const badgeRef = useRef<View>(null);
-  const isOwnComment = currentUser?.address === user?.address ||
-                       currentUser?.walletAddress === user?.address ||
-                       currentUser?.username === user?.username;
+  // Addresses compared case-insensitively, and only when both sides have one:
+  // `undefined === undefined` made every comment without a populated author
+  // row read as the viewer's own — and a signed-out viewer's own, at that.
+  const authorAddress = (user?.address ?? comment.address)?.toLowerCase();
+  const isOwnComment =
+    (!!authorAddress &&
+      [currentUser?.address, currentUser?.walletAddress].some(
+        (mine) => !!mine && mine.toLowerCase() === authorAddress,
+      )) ||
+    (!!currentUser?.username && currentUser.username === user?.username);
 
   // The trays need a handler to route to; a host that only knows the plain
   // pair keeps the plain pair, exactly as before reactions.
