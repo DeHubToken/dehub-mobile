@@ -169,7 +169,7 @@ export function GlassButton({ label, active, onPress }: { label: string; active?
 
 export const ui = StyleSheet.create({
   overline: { color: "rgba(255,255,255,0.4)", fontSize: 10, lineHeight: 12, fontWeight: "700", letterSpacing: 1.4, textTransform: "uppercase" },
-  title: { color: "#fff", fontSize: 22, lineHeight: 22, fontWeight: "900", textTransform: "uppercase", letterSpacing: -0.44 },
+  title: { color: "#fff", fontSize: 22, lineHeight: 30, fontWeight: "900", textTransform: "uppercase", letterSpacing: -0.44 },
   titleRow: { flexDirection: "row", flexWrap: "wrap", alignItems: "center", justifyContent: "center", columnGap: 10, rowGap: 6 },
   chip: {
     height: 28,
