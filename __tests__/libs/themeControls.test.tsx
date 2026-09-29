@@ -1,5 +1,4 @@
-import React from 'react';
-const createElement = React.createElement;
+const { createElement } = jest.requireActual('react') as typeof import('react');
 import { getThemeSkin } from '../../theme/skins';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { setControlMaterial, controlProps } = require('../../libs/jsx/controls');
