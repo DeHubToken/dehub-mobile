@@ -21,6 +21,7 @@ import {
   ScrollView,
   ActivityIndicator,
   TextInput,
+  KeyboardAvoidingView,
 } from "react-native";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { Image } from "expo-image";
@@ -33,6 +34,7 @@ import Avatar from "../components/common/Avatar";
 import { useUser, useAuthState } from "../context/AuthContext";
 import { useUserProfileSheet } from "../context/UserProfileSheetContext";
 import { useGateToHome } from "../hooks/useGateToHome";
+import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
 import { getAccountSummaries, type AccountSummary } from "../services/user.service";
 import { getAvatarUrl, shareProfile } from "../libs/misc";
 import { copyToClipboard } from "../libs/clipboard.utils";
@@ -175,6 +177,9 @@ const AffiliateRow: React.FC<{ entry: AffiliateReferralEntry; profile?: AccountS
 
 export default function AffiliateScreen() {
   const insets = useSafeAreaInsets();
+  // The KeyboardAvoidingView is the outermost element, so only the device
+  // inset sits above it; the header is inside and already in its layout.
+  const keyboardOffset = useKeyboardOffset();
   const { t } = useTranslation();
   const { isMinimal } = useAppTheme();
   // Minimal: section cards bleed to the screen edge as hairline-divided
@@ -296,8 +301,14 @@ export default function AffiliateScreen() {
     [shownProfiles],
   );
 
+  // No stats once loading has finished means the load failed: show a dash
+  // rather than a 0 that reads as a real number.
+  const statValue = (read: (s: AffiliateStats) => string): string | null =>
+    loading ? null : stats ? read(stats) : "—";
+  const statsMissing = !loading && !stats;
+
   return (
-    <View style={styles.root}>
+    <KeyboardAvoidingView style={styles.root} behavior="padding" keyboardVerticalOffset={keyboardOffset}>
       <ScreenHeader
         title={t("nav.affiliate", "Affiliate")}
         subtitle={t("affiliate.subtitle", "Earn from everyone you invite — forever")}
@@ -305,6 +316,7 @@ export default function AffiliateScreen() {
 
       <ScrollView
         contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: insets.bottom + 32, paddingTop: 4 }}
+        keyboardShouldPersistTaps="handled"
         showsVerticalScrollIndicator={false}
         refreshControl={
           <DeHubRefreshControl refreshing={refreshing} onRefresh={onRefresh} tintColor="#ffffff" />
@@ -321,10 +333,20 @@ export default function AffiliateScreen() {
               onLoadEnd={() => setImgLoaded(true)}
             />
           ) : null}
-          {(!stats?.code || !imgLoaded) && (
+          {(loading || (!!stats?.code && !imgLoaded)) && (
             <View style={styles.shareImagePlaceholder}>
               <ActivityIndicator color="#FFFFFF" />
             </View>
+          )}
+          {!loading && !stats?.code && (
+            <Pressable
+              style={styles.shareImagePlaceholder}
+              onPress={onRefresh}
+              disabled={refreshing}
+              accessibilityRole="button"
+            >
+              <Text style={[styles.cardSub, styles.shareImageMessage]}>{t("affiliate.noCode")}</Text>
+            </Pressable>
           )}
         </View>
 
@@ -348,37 +370,39 @@ export default function AffiliateScreen() {
           <StatCard
             icon="ExternalLink"
             label={t("affiliate.pageViews")}
-            value={loading ? null : String(stats?.totalViews ?? 0)}
-            hint={t("affiliate.inLast30Days", { count: stats?.views30d ?? 0 })}
+            value={statValue((s) => String(s.totalViews))}
+            hint={statsMissing ? undefined : t("affiliate.inLast30Days", { count: stats?.views30d ?? 0 })}
           />
           <StatCard
             icon="Users"
             label={t("affiliate.uniqueVisitors")}
-            value={loading ? null : String(stats?.uniqueVisitors ?? 0)}
+            value={statValue((s) => String(s.uniqueVisitors))}
             hint={
-              stats?.uniqueVisitors
-                ? t("affiliate.percentJoined", {
-                    pct: ((stats.referrals / stats.uniqueVisitors) * 100).toFixed(1),
-                  })
-                : t("affiliate.noVisits")
+              statsMissing
+                ? undefined
+                : stats?.uniqueVisitors
+                  ? t("affiliate.percentJoined", {
+                      pct: ((stats.referrals / stats.uniqueVisitors) * 100).toFixed(1),
+                    })
+                  : t("affiliate.noVisits")
             }
           />
           <StatCard
             icon="Users"
             label={t("affiliate.direct", "Direct")}
-            value={loading ? null : String(stats?.referrals ?? 0)}
+            value={statValue((s) => String(s.referrals))}
             hint={`${AFFILIATE_L1_COMMISSION_PCT}%`}
           />
           <StatCard
             icon="Users"
             label={t("affiliate.secondary", "Secondary")}
-            value={loading ? null : String(stats?.l2Referrals ?? 0)}
+            value={statValue((s) => String(s.l2Referrals))}
             hint={`${AFFILIATE_L2_COMMISSION_PCT}%`}
           />
           <StatCard
             icon="Wallet"
             label={t("affiliate.totalEarned", "Total earned")}
-            value={loading ? null : formatMoney(stats?.totalEarnedCents ?? 0, stats?.currency || "USD")}
+            value={statValue((s) => formatMoney(s.totalEarnedCents, s.currency || "USD"))}
             hint={
               loading || !stats
                 ? undefined
@@ -716,7 +740,7 @@ export default function AffiliateScreen() {
         ) : null}
       </ScrollView>
       <DeHubRefreshMark refreshing={refreshing} />
-    </View>
+    </KeyboardAvoidingView>
   );
 }
 
@@ -739,6 +763,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: "rgba(255,255,255,0.04)",
   },
+  shareImageMessage: { textAlign: "center", paddingHorizontal: 16, marginTop: 0 },
 
   headline: { color: "#FFFFFF", fontSize: 20, fontWeight: "700", lineHeight: 27 },
   intro: { color: "#A1A1AA", fontSize: 13, lineHeight: 19, marginTop: 6, marginBottom: 16 },
