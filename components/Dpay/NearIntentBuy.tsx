@@ -179,7 +179,7 @@ export default function NearIntentBuy({ active = false, initialDhbAmount = 50000
       <Text className="text-theme-neutrals-400 text-xs mb-2">{t(picker.loading ? 'nearBuy.checkingBalances' : picker.hasFunds ? 'nearBuy.walletBalances' : 'nearBuy.noWalletFunds')}</Text>
       <Action label={t('nearBuy.otherCurrencies')} onPress={() => { picker.showOther(); setSearch(''); }} />
       {picker.other && <TextInput value={search} onChangeText={setSearch} editable={busy !== 'create'} placeholder={t('nearBuy.search')} placeholderTextColor="#71717A" className={field} />}
-      <ScrollView nestedScrollEnabled style={{ maxHeight: 200 }}>
+      <ScrollView nestedScrollEnabled keyboardShouldPersistTaps="handled" style={{ maxHeight: 200 }}>
         {rows.map(asset => <TouchableOpacity key={asset.assetId} accessibilityRole="button" accessibilityState={{ selected: asset.assetId === flow.assetId }} disabled={busy === 'create'} onPress={() => { picker.choose(asset); setAgreed(false); }} className={`rounded-lg px-3 py-2 mb-1 ${asset.assetId === flow.assetId ? 'bg-white/20' : 'bg-theme-neutrals-900'}`}><Text className="text-white text-sm">{asset.symbol} · {paymentChainName(asset.blockchain)}</Text><Text className="text-theme-neutrals-400 text-xs">{t(picker.balances[asset.assetId] == null ? 'nearBuy.balanceUnknown' : 'nearBuy.balanceAmount', { amount: picker.balances[asset.assetId], symbol: asset.symbol })}</Text>{picker.other && asset.contractAddress && <Text className="text-theme-neutrals-400 text-[10px]">{asset.contractAddress}</Text>}</TouchableOpacity>)}
         {flow.loading && <Text className="text-theme-neutrals-400 text-sm">{t('nearBuy.loading')}</Text>}
         {!flow.loading && !flow.assetsFailed && !rows.length && <Text className="text-theme-neutrals-400 text-sm">{t('nearBuy.noMatches')}</Text>}
@@ -197,6 +197,6 @@ export default function NearIntentBuy({ active = false, initialDhbAmount = 50000
       </View>}
     </>}
     {!!flow.error && <Text accessibilityLiveRegion="polite" className="text-red-400 text-sm my-2">{flow.error}</Text>}
-    {flow.history.length > 0 && <View className="border-t border-white/10 pt-3 mt-3"><Text className="text-white text-sm mb-2">{t('nearBuy.history')}</Text><ScrollView nestedScrollEnabled style={{ maxHeight: 180 }}>{flow.history.map(row => <Action key={row.id} label={`${row.originSymbol || ''} · ${paymentChainName(row.originBlockchain || '')} · ${t(`nearBuy.phase_${purchasePhase(row, flow.now)}`)}${row.createdAt ? ` · ${new Date(row.createdAt).toLocaleString()}` : ''}`} onPress={() => { flow.setPurchase(row); flow.refresh(); }} />)}</ScrollView></View>}
+    {flow.history.length > 0 && <View className="border-t border-white/10 pt-3 mt-3"><Text className="text-white text-sm mb-2">{t('nearBuy.history')}</Text><ScrollView nestedScrollEnabled keyboardShouldPersistTaps="handled" style={{ maxHeight: 180 }}>{flow.history.map(row => <Action key={row.id} label={`${row.originSymbol || ''} · ${paymentChainName(row.originBlockchain || '')} · ${t(`nearBuy.phase_${purchasePhase(row, flow.now)}`)}${row.createdAt ? ` · ${new Date(row.createdAt).toLocaleString()}` : ''}`} onPress={() => { flow.setPurchase(row); flow.refresh(); }} />)}</ScrollView></View>}
   </View>;
 }
