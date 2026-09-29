@@ -14,6 +14,7 @@ import {
   NativeSyntheticEvent,
   NativeScrollEvent,
   useWindowDimensions,
+  type LayoutChangeEvent,
 } from "react-native";
 import { FlashList, type FlashListRef, type ListRenderItem, type ViewToken } from "@shopify/flash-list";
 import { DeHubLoader } from "../DeHubLoader";
@@ -44,7 +45,7 @@ import {
 } from "../../services/view.service";
 import { feedEvents } from "../../libs/eventBus";
 import { capFeedByAuthorAllowance } from "../../libs/postQuota";
-import { isPostDeletedSync, warmDeletedPosts } from "../../libs/deleted-posts-store";
+import { isPostDeletedSync, useDeletedPostsVersion, warmDeletedPosts } from "../../libs/deleted-posts-store";
 import { flattenFeedPages } from "../../libs/feed-pages";
 import { setFeedScrolling } from "../../libs/scrollActivity";
 import {
@@ -121,6 +122,10 @@ const FOOTER_SLOT = { height: 84 } as const;
 // is the header, and the boost lands below it. The threshold keeps a viewer
 // already at the top pinned to the top. There is no minIndexForVisible:
 // FlashList sets its own.
+//
+// The header stays the anchor for as long as any of it is on screen, not just
+// up to the threshold, so past it the post under the reader is held by hand
+// (see heldOffset).
 const MAINTAIN_POSITION = { autoscrollToTopThreshold: 100 } as const;
 
 // Rows the capped list needs before it can scroll at all. Below this the feed
@@ -189,6 +194,45 @@ function feedRowKey(item: FeedRow): string {
   const it = item as any;
   const id = it.tokenId ?? it.id ?? it.stream?.tokenId ?? it.streamKey ?? it.stream?.id;
   return id != null ? `post-${id}` : item.__listKey;
+}
+
+// What the list is handed while its page is off screen. HomeScreen hides
+// pages with display:none, and nothing under display:none is laid out, so
+// FlashList measures its window and every row it mounts there as 0x0. With
+// every row at y=0 each one counts as on screen: the list mounts the whole
+// page of cards, and the first swipe in draws them stacked at the top until
+// it has re-measured. FlatList stopped at initialNumToRender there instead.
+const NO_ROWS: FeedRow[] = [];
+
+// The page on screen gets the live rows. A page that has not been laid out
+// since the list mounted (the warm-up, or a filter change while it is off
+// screen) gets none until it is, and a page that has left the screen keeps
+// the rows it had rather than re-laying out on every patch of its cache.
+function rowsForList(shown: FeedRow[], live: FeedRow[], active: boolean, laidOut: boolean): FeedRow[] {
+  if (active) return live;
+  if (shown === NO_ROWS && laidOut) return live;
+  return shown;
+}
+
+// FlashList holds the first row on screen in place, and while any of the
+// header row is on screen that row is the header. So a change between the
+// header and the first post (the boost arriving, rotating or ending, the live
+// stages bar growing or shrinking) moves the post under the reader and
+// nothing moves it back. FlatList held the first post itself
+// (minIndexForVisible: 1). Returns the offset that puts it back, or null when
+// there is nothing to do: the post did not move, the header row was already
+// off screen (FlashList holds the post then), or the reader is at the top,
+// where a new boost is meant to show.
+function heldOffset(offset: number, headerBottom: number, moved: number): number | null {
+  if (Math.abs(moved) < 1) return null;
+  if (offset <= MAINTAIN_POSITION.autoscrollToTopThreshold || offset >= headerBottom) return null;
+  return Math.max(0, offset + moved);
+}
+
+// The first organic post: what the reader is looking at while the header row
+// is still on screen.
+function firstPostIndex(rows: readonly FeedRow[]): number {
+  return rows.findIndex(row => !row.__synthetic && !row.__boosted);
 }
 
 // One row. Subscribes to its own visibility so a tick that moves another row
@@ -265,6 +309,12 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   // top actually sees the new position-zero row.
   const pendingBoostRevealRef = useRef(false);
   const revealedBoostRef = useRef<string | undefined>(undefined);
+  // The first post and where it sat after the last layout, for heldOffset.
+  const firstPostRef = useRef<{ key: string; y: number; headerBottom: number } | null>(null);
+  // The rows the list was last handed (see rowsForList).
+  const listRowsRef = useRef<FeedRow[]>(NO_ROWS);
+  // Whether the list's view has been laid out on screen since it mounted.
+  const [laidOut, setLaidOut] = useState(false);
   // Where the list is scrolled, for the boost reveal. Home drives onScroll with
   // the header's worklet, so handleScroll never runs there and prevYRef stays
   // 0; read from it, a boosted post that arrived after the reader had started
@@ -379,9 +429,17 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   }) => {
     if (!activeRef.current) return;
 
+    // A card that renders nothing (a post deleted in place, or one the App
+    // Store build does not show) is a 0px row, and FlashList counts a 0px row
+    // inside the viewport as fully viewable where FlatList never did. Left in,
+    // it took the autoplay slot from the video under it and had a view
+    // recorded that nobody saw.
+    const hasHeight = (v: ViewToken<FeedRow>) =>
+      v.index == null || (listRef.current?.getLayout(v.index)?.height ?? 1) > 0;
+
     // Track visible posts for audio preloading/pausing (works for all users).
     // The header and suggested-accounts rows are not posts.
-    const posts = viewableItems.filter(v => v.isViewable && !!v.item?.__listKey && !v.item.__synthetic);
+    const posts = viewableItems.filter(v => v.isViewable && !!v.item?.__listKey && !v.item.__synthetic && hasHeight(v));
     const next = new Set(posts.map(v => v.item.__listKey));
     visibleKeysRef.current = next;
 
@@ -406,6 +464,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
         v.isViewable &&
         !!v.item?.__listKey &&
         !v.item.__synthetic &&
+        hasHeight(v) &&
         (isVideoItem(v.item) || isLiveItem(v.item)),
     );
     const byPosition = (a: ViewToken<FeedRow>, b: ViewToken<FeedRow>) => (a.index ?? 0) - (b.index ?? 0);
@@ -478,13 +537,17 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   useEffect(() => {
     warmDeletedPosts().then(() => setTombstonesReady(true)).catch(() => {});
   }, []);
+  // A post deleted from its card leaves the rows at once. The card only hides
+  // itself, and under FlashList that lasts until its cell is handed another
+  // post: the deleted post then came back further down the scroll.
+  const deletedVersion = useDeletedPostsVersion();
 
   // Pages repeat rows across the offset boundary; flattenFeedPages keeps the
   // first copy and drops tombstoned posts (see libs/feed-pages.ts).
   const rawItems = useMemo<FeedItem[]>(
     () => flattenFeedPages<FeedItem>(data?.pages ?? [], isPostDeletedSync),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [data, tombstonesReady],
+    [data, tombstonesReady, deletedVersion],
   );
 
   // Videos already played, dropped only when the reader asked for that in
@@ -630,32 +693,61 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     ];
   }, [cappedItems, boostedTokenId, boostedPost, boostSlot?.bookingId]);
 
+  // Runs once the list has laid out a change: on every content size change,
+  // and a frame after a new boost.
+  const handleContentSizeChange = useCallback(() => {
+    const list = listRef.current;
+    if (!list) return;
+
+    // A boost that arrived with the reader at the top: show it.
+    if (pendingBoostRevealRef.current) {
+      pendingBoostRevealRef.current = false;
+      // The reader may have started scrolling since; leave them where they are.
+      if (readOffset() <= MAINTAIN_POSITION.autoscrollToTopThreshold) {
+        list.scrollToOffset({ offset: 0, animated: false });
+        prevYRef.current = 0;
+      }
+    }
+
+    // Anywhere else in the header row's band, keep the post that was first
+    // where it was.
+    const rows = listRowsRef.current;
+    const before = firstPostRef.current;
+    firstPostRef.current = null;
+    const header = rows[0] === HEADER_ROW ? list.getLayout(0) : undefined;
+    if (!header) return;
+    if (before) {
+      const was = rows.findIndex(row => feedRowKey(row) === before.key);
+      const layout = was > 0 ? list.getLayout(was) : undefined;
+      const to = layout ? heldOffset(readOffset(), before.headerBottom, layout.y - before.y) : null;
+      if (to !== null) list.scrollToOffset({ offset: to, animated: false });
+    }
+    const index = firstPostIndex(rows);
+    const post = index > 0 ? list.getLayout(index) : undefined;
+    if (post) {
+      firstPostRef.current = {
+        key: feedRowKey(rows[index]),
+        y: post.y,
+        headerBottom: list.getFirstItemOffset() + header.y + header.height,
+      };
+    }
+  }, [readOffset]);
+
   useEffect(() => {
     const post = (boostedPost as any)?.result;
     if (!boostedTokenId || !post || revealedBoostRef.current === String(boostedTokenId)) return;
 
     revealedBoostRef.current = String(boostedTokenId);
-    if (readOffset() > MAINTAIN_POSITION.autoscrollToTopThreshold) return;
+    // At the top the boost should show. Further down, the post under the
+    // reader is held instead (heldOffset).
+    if (readOffset() <= MAINTAIN_POSITION.autoscrollToTopThreshold) pendingBoostRevealRef.current = true;
 
-    pendingBoostRevealRef.current = true;
-    const frame = requestAnimationFrame(() => {
-      if (!pendingBoostRevealRef.current) return;
-      pendingBoostRevealRef.current = false;
-      // The reader may have started scrolling since; leave them where they are.
-      if (readOffset() > MAINTAIN_POSITION.autoscrollToTopThreshold) return;
-      listRef.current?.scrollToOffset({ offset: 0, animated: false });
-      prevYRef.current = 0;
-    });
+    // Also a frame from now, because the content height can come out the same
+    // (a boost that replaces its own organic copy further down), and then no
+    // size change arrives.
+    const frame = requestAnimationFrame(() => handleContentSizeChange());
     return () => cancelAnimationFrame(frame);
-  }, [boostedPost, boostedTokenId, readOffset]);
-
-  const handleContentSizeChange = useCallback(() => {
-    if (!pendingBoostRevealRef.current) return;
-    pendingBoostRevealRef.current = false;
-    if (readOffset() > MAINTAIN_POSITION.autoscrollToTopThreshold) return;
-    listRef.current?.scrollToOffset({ offset: 0, animated: false });
-    prevYRef.current = 0;
-  }, [readOffset]);
+  }, [boostedPost, boostedTokenId, readOffset, handleContentSizeChange]);
 
   // A page lands in the list the moment it arrives, mid-fling or not, as on
   // web. Holding it until the scroll settled meant a continuous fling ran past
@@ -701,6 +793,24 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
 
   const endReached = hasNextPage === false;
   const error = queryError ? (queryError as Error).message || "Failed to load" : null;
+
+  // The rows the list is handed (see rowsForList).
+  const rows = rowsForList(listRowsRef.current, listData, active, laidOut);
+  listRowsRef.current = rows;
+  // Mirrors the early returns below: the skeleton and the error screen
+  // unmount the list, and the next one may mount off screen.
+  const listMounted = cappedItems.length > 0 || (!initialLoading && !error);
+  useEffect(() => {
+    if (listMounted) return;
+    listRowsRef.current = NO_ROWS;
+    firstPostRef.current = null;
+    setLaidOut(false);
+  }, [listMounted]);
+  // A hidden page is first laid out when a swipe reveals it. The page on
+  // screen has its rows already and needs no render for this.
+  const handleListLayout = useCallback((e: LayoutChangeEvent) => {
+    if (!activeRef.current && e.nativeEvent.layout.height > 0) setLaidOut(true);
+  }, []);
 
   useEffect(() => {
     if (endReached) onEndReachedAll?.();
@@ -999,6 +1109,11 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
       ) : null,
     [initialLoading, error, onClearFilters, t],
   );
+  // A list still waiting for its first layout draws nothing, not a header
+  // over an empty state that is not true. An empty feed has no header row, so
+  // the header rides ListHeaderComponent above the empty state.
+  const unshown = rows === NO_ROWS;
+  const listHeader = unshown || rows.length > 0 ? null : headerBlock;
 
   // Handle scroll begin to close filter panel
   const handleScrollBeginDrag = useCallback(() => {
@@ -1062,7 +1177,9 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   }
 
   return (
-    <View className="flex-1" onTouchStart={handleTouchStart}>
+    // Keyed apart from the skeleton and error views, so a list that mounts
+    // off screen gets a view of its own and its first layout is reported.
+    <View key="feed-list" className="flex-1" onTouchStart={handleTouchStart} onLayout={handleListLayout}>
       {newPostCount > 0 && (
         <Animated.View
           pointerEvents="box-none"
@@ -1088,19 +1205,21 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
       <AnimatedFlashList
         ref={listRef}
         showsVerticalScrollIndicator={false}
-        data={listData}
+        data={rows}
         // The post's id, not __listKey: a cell and its measured height follow
         // the post, and the scroll anchor below survives a page shift.
         keyExtractor={feedRowKey}
         getItemType={feedRowType}
         renderItem={renderItem}
-        ListHeaderComponent={listData.length === 0 ? headerBlock : null}
+        ListHeaderComponent={listHeader}
         // Anchors the scroll position to the first visible row, so anything that
         // changes size *above* the viewport adjusts contentOffset instead of
         // shoving the user. Several things in this feed do exactly that: the
         // suggested-accounts row renders null until its fetch resolves, the live
         // stages bar in the header appears mid-feed, and a card can measure
-        // differently once its thumbnail decodes.
+        // differently once its thumbnail decodes. While any of the header row is
+        // on screen the anchor is the header itself, so a change above the
+        // first post is held by handleContentSizeChange instead.
         maintainVisibleContentPosition={MAINTAIN_POSITION}
         onContentSizeChange={handleContentSizeChange}
         // Replaces initialNumToRender/windowSize/maxToRenderPerBatch: FlashList
@@ -1128,7 +1247,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
         onViewableItemsChanged={onViewableItemsChanged}
         refreshControl={refreshControl}
         ListFooterComponent={listFooter}
-        ListEmptyComponent={listEmpty}
+        ListEmptyComponent={unshown ? null : listEmpty}
       />
       <DeHubRefreshMark refreshing={refreshing} topInset={headerInset} />
     </View>
