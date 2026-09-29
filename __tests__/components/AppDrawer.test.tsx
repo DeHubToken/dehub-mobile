@@ -86,7 +86,7 @@ it.each(destinations)('%s immediately closes and targets its registered nested s
   expect(Keyboard.dismiss).toHaveBeenCalledTimes(1);
   expect(mockDispatch).toHaveBeenCalledTimes(1);
   expect(mockDispatch).toHaveBeenCalledWith({ type: 'NAVIGATE', payload: {
-    name: 'App', params: tab ? { screen: 'Root', params: { screen, params } } : { screen, params },
+    name: 'App', params: tab ? { screen: 'Root', params: { screen, params }, pop: true } : { screen, params },
   } });
   const navigator = readFileSync(resolve(__dirname, '../../navigation', tab ? 'BottomTabNavigator.tsx' : 'AppNavigator.tsx'), 'utf8');
   expect(navigator).toContain(`name={ScreenNames.${screen}}`);
@@ -126,7 +126,7 @@ it('searches Explore with the menu query and opens documentation links', () => {
   fireEvent(view.getByLabelText('sidebar.searchMenu'), 'submitEditing');
   expect(mockDispatch).toHaveBeenCalledWith({ type: 'NAVIGATE', payload: { name: 'App', params: { screen: 'Root', params: {
     screen: 'Explore', params: { q: 'hello', ts: expect.any(Number) },
-  } } } });
+  }, pop: true } } });
 });
 
 it.each([['feed.videos', 'video'], ['feed.images', 'feed-images'], ['feed.music', 'feed-audio'], ['feed.live', 'live']])('%s opens Home on its feed tab', (label, postType) => {
@@ -134,6 +134,6 @@ it.each([['feed.videos', 'video'], ['feed.images', 'feed-images'], ['feed.music'
   const view = render(<AppDrawer visible onClose={close} />);
   fireEvent.press(view.getByLabelText(label));
   expect(close).toHaveBeenCalledTimes(1);
-  expect(mockDispatch).toHaveBeenCalledWith({ type: 'NAVIGATE', payload: { name: 'App', params: { screen: 'Root', params: { screen: 'Home', params: undefined } } } });
+  expect(mockDispatch).toHaveBeenCalledWith({ type: 'NAVIGATE', payload: { name: 'App', params: { screen: 'Root', params: { screen: 'Home', params: undefined }, pop: true } } });
   expect(mockRequestTab).toHaveBeenCalledWith(postType);
 });

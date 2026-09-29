@@ -380,10 +380,13 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
       // This sheet is a sibling of AppNavigator's stack, so useNavigation
       // belongs to the outer App screen. Actions cannot navigate down into
       // that stack implicitly: include App, and Root for bottom-tab routes.
+      // pop sits next to Root, not in the tab params: the menu also opens
+      // from Profile, and there the App stack must go back to the Root
+      // underneath instead of pushing a second one.
       navigation.dispatch(CommonActions.navigate({
         name: ScreenNames.App,
         params: tab
-          ? { screen: ScreenNames.Root, params: { screen, params } }
+          ? { screen: ScreenNames.Root, params: { screen, params }, pop: true }
           : { screen, params },
       }));
     },
