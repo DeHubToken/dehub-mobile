@@ -6,6 +6,7 @@ import {
   ScrollView,
   TouchableOpacity,
   StyleSheet,
+  KeyboardAvoidingView,
 } from "react-native";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { DeHubLoader } from "../components/DeHubLoader";
@@ -18,6 +19,7 @@ import EarningsComparisonCard from "../components/Earnings/EarningsComparisonCar
 import { supabase } from "../services/supabase";
 import { useUser, useAuthState } from "../context/AuthContext";
 import { useGateToHome } from "../hooks/useGateToHome";
+import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
 import { appLocale } from "../libs/date.util";
 import { DhbCoin } from "../components/common/DhbCoin";
 
@@ -159,6 +161,9 @@ const EarningsScreen: React.FC = () => {
   useGateToHome(isSignedIn && !needsUsername);
   const user = useUser() as any;
   const insets = useSafeAreaInsets();
+  // The KeyboardAvoidingView is the screen's outermost element, so the header
+  // inside it is already measured: no SCREEN_HEADER_HEIGHT here.
+  const keyboardOffset = useKeyboardOffset();
 
   const address = useMemo(
     () => (user?.walletAddress || user?.address || "").toLowerCase(),
@@ -169,13 +174,14 @@ const EarningsScreen: React.FC = () => {
   const [ppv, setPpv] = useState<PpvRecord[]>([]);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
+  const [loadError, setLoadError] = useState(false);
   const [timeFilter, setTimeFilter] = useState<TimeFilter>("1m");
 
   const load = useCallback(async (silent = false) => {
     if (!address) { setLoading(false); return; }
     if (!silent) setLoading(true);
 
-    const [{ data: tipData }, { data: ppvData }] = await Promise.all([
+    const [{ data: tipData, error: tipErr }, { data: ppvData, error: ppvErr }] = await Promise.all([
       supabase
         .from("tip_records")
         .select("amount, created_at, sender_address, token_id")
@@ -190,8 +196,15 @@ const EarningsScreen: React.FC = () => {
         .limit(200),
     ]);
 
-    setTips((tipData as TipRecord[]) || []);
-    setPpv((ppvData as PpvRecord[]) || []);
+    // A failed read keeps whatever was on screen instead of replacing it with
+    // zero totals, which a creator would read as "never paid".
+    if (tipErr || ppvErr) {
+      setLoadError(true);
+    } else {
+      setLoadError(false);
+      setTips((tipData as TipRecord[]) || []);
+      setPpv((ppvData as PpvRecord[]) || []);
+    }
     setLoading(false);
     setRefreshing(false);
   }, [address]);
@@ -231,8 +244,16 @@ const EarningsScreen: React.FC = () => {
     return tx.slice(0, 50);
   }, [filteredTips, filteredPpv]);
 
+  // Earlier numbers stay up through a failed refresh; the failure card only
+  // replaces the chart when there is nothing to show.
+  const showLoadError = loadError && tips.length === 0 && ppv.length === 0;
+
   return (
-    <View style={{ flex: 1, backgroundColor: "#010305" }}>
+    <KeyboardAvoidingView
+      style={{ flex: 1, backgroundColor: "#010305" }}
+      behavior="padding"
+      keyboardVerticalOffset={keyboardOffset}
+    >
       <ScreenHeader title={t("settings.categoryEarnings")} canGoBack />
 
       {loading ? (
@@ -242,6 +263,7 @@ const EarningsScreen: React.FC = () => {
       ) : (
         <ScrollView
           contentContainerStyle={{ padding: 16, paddingBottom: insets.bottom + 80 }}
+          keyboardShouldPersistTaps="handled"
           refreshControl={<DeHubRefreshControl refreshing={refreshing} onRefresh={onRefresh} tintColor="#fff" />}
         >
           {/* Invite & earn */}
@@ -263,47 +285,63 @@ const EarningsScreen: React.FC = () => {
             ))}
           </View>
 
-          {/* Chart + summary */}
-          <View style={styles.card}>
-            <Text style={styles.cardTitle}>{t("earnings.incomeBreakdown")}</Text>
-            <View style={styles.chartRow}>
-              <PieChart tips={tipsTotal} ppv={ppvTotal} />
-              <View style={{ flex: 1, gap: 12 }}>
-                <View style={styles.legend}>
-                  <View style={[styles.dot, { backgroundColor: SOURCE_COLORS.tips }]} />
-                  <View>
-                    <Text style={styles.legendLabel}>{t("earnings.tips")}</Text>
-                    <Text style={styles.legendValue}>{fmtAmount(tipsTotal)} <DhbCoin size={14} /></Text>
+          {showLoadError ? (
+            <View style={[styles.card, styles.errorCard]}>
+              <Text style={styles.errorText}>{t("common.failedToLoad")}</Text>
+              <TouchableOpacity
+                onPress={() => load()}
+                style={styles.retryBtn}
+                activeOpacity={0.8}
+                accessibilityRole="button"
+              >
+                <Text style={styles.retryText}>{t("common.retry")}</Text>
+              </TouchableOpacity>
+            </View>
+          ) : (
+            <>
+              {/* Chart + summary */}
+              <View style={styles.card}>
+                <Text style={styles.cardTitle}>{t("earnings.incomeBreakdown")}</Text>
+                <View style={styles.chartRow}>
+                  <PieChart tips={tipsTotal} ppv={ppvTotal} />
+                  <View style={{ flex: 1, gap: 12 }}>
+                    <View style={styles.legend}>
+                      <View style={[styles.dot, { backgroundColor: SOURCE_COLORS.tips }]} />
+                      <View>
+                        <Text style={styles.legendLabel}>{t("earnings.tips")}</Text>
+                        <Text style={styles.legendValue}>{fmtAmount(tipsTotal)} <DhbCoin size={14} /></Text>
+                      </View>
+                    </View>
+                    <View style={styles.legend}>
+                      <View style={[styles.dot, { backgroundColor: SOURCE_COLORS.ppv }]} />
+                      <View>
+                        <Text style={styles.legendLabel}>{t("earnings.ppvSales")}</Text>
+                        <Text style={styles.legendValue}>{fmtAmount(ppvTotal)} <DhbCoin size={14} /></Text>
+                      </View>
+                    </View>
+                    <View style={styles.totalBox}>
+                      <Text style={styles.totalLabel}>{t("earnings.total")}</Text>
+                      <Text style={styles.totalValue}>{fmtAmount(totalEarned)} <DhbCoin size={16} /></Text>
+                    </View>
                   </View>
-                </View>
-                <View style={styles.legend}>
-                  <View style={[styles.dot, { backgroundColor: SOURCE_COLORS.ppv }]} />
-                  <View>
-                    <Text style={styles.legendLabel}>{t("earnings.ppvSales")}</Text>
-                    <Text style={styles.legendValue}>{fmtAmount(ppvTotal)} <DhbCoin size={14} /></Text>
-                  </View>
-                </View>
-                <View style={styles.totalBox}>
-                  <Text style={styles.totalLabel}>{t("earnings.total")}</Text>
-                  <Text style={styles.totalValue}>{fmtAmount(totalEarned)} <DhbCoin size={16} /></Text>
                 </View>
               </View>
-            </View>
-          </View>
 
-          {/* Stats row */}
-          <View style={styles.statsRow}>
-            <View style={styles.statBox}>
-              <Icon name="Gem" size={18} color="#F4F4F5" />
-              <Text style={styles.statNum}>{filteredTips.length}</Text>
-              <Text style={styles.statLabel}>{t("earnings.tipsReceived")}</Text>
-            </View>
-            <View style={styles.statBox}>
-              <Icon name="Ticket" size={18} color="#D4D4D8" />
-              <Text style={styles.statNum}>{filteredPpv.length}</Text>
-              <Text style={styles.statLabel}>{t("earnings.ppvUnlocks")}</Text>
-            </View>
-          </View>
+              {/* Stats row */}
+              <View style={styles.statsRow}>
+                <View style={styles.statBox}>
+                  <Icon name="Gem" size={18} color="#F4F4F5" />
+                  <Text style={styles.statNum}>{filteredTips.length}</Text>
+                  <Text style={styles.statLabel}>{t("earnings.tipsReceived")}</Text>
+                </View>
+                <View style={styles.statBox}>
+                  <Icon name="Ticket" size={18} color="#D4D4D8" />
+                  <Text style={styles.statNum}>{filteredPpv.length}</Text>
+                  <Text style={styles.statLabel}>{t("earnings.ppvUnlocks")}</Text>
+                </View>
+              </View>
+            </>
+          )}
 
           {/* Earnings vs other platforms */}
           <EarningsComparisonCard />
@@ -343,7 +381,7 @@ const EarningsScreen: React.FC = () => {
             </View>
           )}
 
-          {recentTx.length === 0 && !loading && (
+          {recentTx.length === 0 && !loading && !showLoadError && (
             <View style={styles.center}>
               <Icon name="TrendingUp" size={48} color="#3F3F46" />
               <Text style={styles.emptyTitle}>{t("earnings.noEarningsYet")}</Text>
@@ -355,7 +393,7 @@ const EarningsScreen: React.FC = () => {
         </ScrollView>
       )}
       <DeHubRefreshMark refreshing={refreshing} />
-    </View>
+    </KeyboardAvoidingView>
   );
 };
 
@@ -383,6 +421,15 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   cardTitle: { color: "#F9FBFF", fontSize: 15, fontWeight: "700", marginBottom: 14 },
+  errorCard: { alignItems: "center", gap: 12, paddingVertical: 24 },
+  errorText: { color: "#A6A9AC", fontSize: 13 },
+  retryBtn: {
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    borderRadius: 9,
+    backgroundColor: "rgba(255,255,255,0.08)",
+  },
+  retryText: { color: "#F9FBFF", fontSize: 13, fontWeight: "600" },
   chartRow: { flexDirection: "row", alignItems: "center", gap: 16 },
   legend: { flexDirection: "row", alignItems: "center", gap: 10 },
   dot: { width: 10, height: 10, borderRadius: 5 },
