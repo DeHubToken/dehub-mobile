@@ -33,7 +33,7 @@ import { useNavigation } from '@react-navigation/native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import ScreenHeader from '../components/ScreenHeader';
 import Icon from '../components/ui/Icon';
-import { useGateToHome } from '../hooks/useGateToHome';
+import { SignInPrompt } from '../components/auth/SignInGate';
 import { useAuthState } from '../context/AuthContext';
 import { toastError, toastInfo, toastSuccess } from '../libs';
 import { ScreenNames } from '../navigation/ScreenNames';
@@ -93,7 +93,6 @@ function sourceLabelFor(job: ConverterImport): string | null {
 export default function ConverterScreen() {
   const { t } = useTranslation();
   const { isSignedIn, needsUsername } = useAuthState();
-  useGateToHome(isSignedIn && !needsUsername);
 
   const navigation = useNavigation<any>();
   const insets = useSafeAreaInsets();
@@ -657,6 +656,17 @@ export default function ConverterScreen() {
       )}
     </View>
   );
+
+  // Guests get the header, with its back arrow, and a sign-in prompt instead
+  // of being bounced back to Home. Below every hook so hook order never changes.
+  if (!(isSignedIn && !needsUsername)) {
+    return (
+      <View className="flex-1">
+        <ScreenHeader title={t('converter.title')} />
+        <SignInPrompt />
+      </View>
+    );
+  }
 
   return (
     <View className="flex-1">
