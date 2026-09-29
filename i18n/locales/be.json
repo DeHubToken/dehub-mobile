@@ -5159,7 +5159,20 @@
     "removeUploadTitle": "Выдаліць гэтую загрузку?",
     "removeQueuedBody": "Яна яшчэ не была апублікаваная. Выдаленне яго адмяняе паведамленне.",
     "quotaShortfall": "Гэты пост каштуе {{cost}} токенаў, а ў вас ёсць {{held}}.",
-    "shopAllowanceUsed": "Выкарыстана {{allowance}} з {{allowance}}. Стаўце больш токенаў DeHub для больш высокага значка і дадатковага слота."
+    "shopAllowanceUsed": "Выкарыстана {{allowance}} з {{allowance}}. Стаўце больш токенаў DeHub для больш высокага значка і дадатковага слота.",
+    "editFilters": "Правілы рэдагавання",
+    "cropRotate": "Кароткаць & абарач",
+    "drawWrite": "Нарысіць & напісаць",
+    "fade": "Зніміць {{value}}%",
+    "grayscale": "Абніміць {{value}}%",
+    "resetEdits": "Скасаваць",
+    "clearDrawing": "Чистка",
+    "typeText": "Напісаць…",
+    "textSize": "Розмер шрыфта {{value}}",
+    "coverFrames": "Выберыце рамку",
+    "coverFrame": "Выкарыстоўваць рамку {{index}} як вокладку",
+    "uploadCover": "Заладзіць вокладку",
+    "editFailed": "Не ўдалося прымяніць гэтыя правілы. Папраўце."
   },
   "bounty": {
     "claimed": "Атрымана",

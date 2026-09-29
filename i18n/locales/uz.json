@@ -5168,7 +5168,20 @@
     "removeUploadTitle": "Ushbu yuklama olib tashlansinmi?",
     "removeQueuedBody": "U hali joylashtirilmagan. Uni olib tashlash postni bekor qiladi.",
     "quotaShortfall": "Ushbu post {{cost}} token turadi va sizda {{held}} bor.",
-    "shopAllowanceUsed": "{{allowance}} dan {{allowance}} ishlatilgan. Yuqoriroq nishon va yana bir oʻrin uchun koʻproq DeHub tokenlarini stavka qiling."
+    "shopAllowanceUsed": "{{allowance}} dan {{allowance}} ishlatilgan. Yuqoriroq nishon va yana bir oʻrin uchun koʻproq DeHub tokenlarini stavka qiling.",
+    "editFilters": "Tahrirlash filterlari",
+    "cropRotate": "Qirqish & qayta qurish",
+    "drawWrite": "Chizish & yozish",
+    "fade": "Kamaytir {{value}}%",
+    "grayscale": "Rangli tasvir {{value}}%",
+    "resetEdits": "Tozalash",
+    "clearDrawing": "Tozalash",
+    "typeText": "Matn...",
+    "textSize": "Matn o'lchami {{value}}",
+    "coverFrames": "Kabrani tanlang",
+    "coverFrame": "Kabrani {{index}} ni kabr sifatida qo'llang",
+    "uploadCover": "Kabr sifatida rasim yuklang",
+    "editFailed": "Buning amalga oshirishga urinib ko'rish mumkin emas. Qayta urinib ko'ring."
   },
   "bounty": {
     "claimed": "Olindi",

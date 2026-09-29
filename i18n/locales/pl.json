@@ -5150,7 +5150,20 @@
     "removeUploadTitle": "Usunąć to przesłanie?",
     "removeQueuedBody": "Nie został jeszcze opublikowany. Usunięcie go anuluje post.",
     "quotaShortfall": "Ten post kosztuje {{cost}} tokenów, a Ty masz {{held}}.",
-    "shopAllowanceUsed": "Wykorzystano {{allowance}} z {{allowance}}. Postaw więcej tokenów DeHub, aby uzyskać wyższą odznakę i kolejne miejsce."
+    "shopAllowanceUsed": "Wykorzystano {{allowance}} z {{allowance}}. Postaw więcej tokenów DeHub, aby uzyskać wyższą odznakę i kolejne miejsce.",
+    "editFilters": "Edytuj filtry",
+    "cropRotate": "Przytnij i obróć",
+    "drawWrite": "Rysuj i pisz",
+    "fade": "Wyblaknięcie {{value}}%",
+    "grayscale": "Skala szarości {{value}}%",
+    "resetEdits": "Resetuj",
+    "clearDrawing": "Wyczyść",
+    "typeText": "Wpisz…",
+    "textSize": "Rozmiar tekstu {{value}}",
+    "coverFrames": "Wybierz klatkę na okładkę",
+    "coverFrame": "Użyj klatki {{index}} jako okładki",
+    "uploadCover": "Prześlij obraz okładki",
+    "editFailed": "Nie udało się zastosować zmiany. Spróbuj ponownie."
   },
   "bounty": {
     "claimed": "Odebrano",

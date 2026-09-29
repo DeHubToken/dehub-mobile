@@ -5163,7 +5163,20 @@
     "removeUploadTitle": "यो अपलोड हटाउने हो?",
     "removeQueuedBody": "यो अझै पोस्ट गरिएको छैन । यसलाई हटाउँदा पोस्ट रद्द हुन्छ ।",
     "quotaShortfall": "यो पोस्टको लागत {{cost}} टोकन छ र तपाईंले {{held}} राख्नुभएको छ।",
-    "shopAllowanceUsed": "{{allowance}} मध्ये {{allowance}} प्रयोग गरियो। उच्च ब्याज र अर्को स्लटको लागि थप DeHub टोकनहरू स्टेक गर्नुहोस्।"
+    "shopAllowanceUsed": "{{allowance}} मध्ये {{allowance}} प्रयोग गरियो। उच्च ब्याज र अर्को स्लटको लागि थप DeHub टोकनहरू स्टेक गर्नुहोस्।",
+    "editFilters": "संशोधन फिल्टर",
+    "cropRotate": "काट्ने र घुमाउने",
+    "drawWrite": "लेख्ने र लेख्ने",
+    "fade": "फ्याड {{value}}%",
+    "grayscale": "ग्रे स्केल {{value}}%",
+    "resetEdits": "रीसेट",
+    "clearDrawing": "माफ",
+    "typeText": "टाइप…",
+    "textSize": "टेक्स्टको आकार {{value}}",
+    "coverFrames": "फ्रेम चुन्ने",
+    "coverFrame": "फ्रेम {{index}} को रूपमा कवर",
+    "uploadCover": "कवर छवि अपलोड गर्नुहोस्",
+    "editFailed": "त्यो संशोधन लाग्यो न सक्यो। पुनः प्रयास गर्नुहोस्।"
   },
   "bounty": {
     "claimed": "प्राप्त गरियो",

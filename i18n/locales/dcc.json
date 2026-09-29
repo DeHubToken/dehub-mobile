@@ -5125,7 +5125,20 @@
     "removeUploadTitle": "یہ اپ لوڈ ہٹائیں ؟",
     "removeQueuedBody": "اسے ابھی تک پوسٹ نہیں کیا گیا ہے ۔ اسے ہٹانے سے پوسٹ منسوخ ہو جاتی ہے ۔",
     "quotaShortfall": "اس پوسٹ کی قیمت {{cost}} ٹوکن ہے اور آپ کے پاس {{held}} ہے۔",
-    "shopAllowanceUsed": "{{allowance}} میں سے {{allowance}} استعمال ہوا۔ اعلیٰ بیج اور ایک اور سلاٹ کے لیے مزید ڈی ہب ٹوکن اسٹیک کریں۔"
+    "shopAllowanceUsed": "{{allowance}} میں سے {{allowance}} استعمال ہوا۔ اعلیٰ بیج اور ایک اور سلاٹ کے لیے مزید ڈی ہب ٹوکن اسٹیک کریں۔",
+    "editFilters": "ہیڈر فِلٹرز",
+    "cropRotate": "کاٹ اور پھیلا",
+    "drawWrite": "ڈرا اور لکھو",
+    "fade": "ڈھلوان {{value}}%",
+    "grayscale": "گرے سکلر {{value}}%",
+    "resetEdits": "ریسیٹ",
+    "clearDrawing": "کلیر",
+    "typeText": "ٹائپ...",
+    "textSize": "ٹیکسٹ سائز {{value}}",
+    "coverFrames": "ایک کور فرینمی چنو",
+    "coverFrame": "کور فرینمی {{index}} کو کور کے طور پر استعمال کریں",
+    "uploadCover": "کور انٹرنیٹ اپ لوڈ کریں",
+    "editFailed": "وہ ایڈٹ نہیں لگا سکے۔ دوبارہ کوشش کریں۔"
   },
   "bounty": {
     "claimed": "وصول ہو گیا",

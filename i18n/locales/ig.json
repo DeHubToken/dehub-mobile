@@ -5148,7 +5148,20 @@
     "removeUploadTitle": "Wepụ ebugo a?",
     "removeQueuedBody": "E bipụtabeghị ya. Iwepụ ya kagburu post ahụ.",
     "quotaShortfall": "Nke a post na-eri {{cost}} akara ma ị na-ejide {{held}}.",
-    "shopAllowanceUsed": "{{allowance}} nke {{allowance}} ejirila. Tinye akara DeHub karịa maka akara ngosi dị elu na oghere ọzọ."
+    "shopAllowanceUsed": "{{allowance}} nke {{allowance}} ejirila. Tinye akara DeHub karịa maka akara ngosi dị elu na oghere ọzọ.",
+    "editFilters": "Edit filters",
+    "cropRotate": "Crop & rotate",
+    "drawWrite": "Draw & write",
+    "fade": "Fade {{value}}%",
+    "grayscale": "Grayscale {{value}}%",
+    "resetEdits": "Reset",
+    "clearDrawing": "Clear",
+    "typeText": "Type…",
+    "textSize": "Text size {{value}}",
+    "coverFrames": "Nkọwa ihe n'okpuru ọrụ",
+    "coverFrame": "Jiri etiti {{index}} ka mkpuchi",
+    "uploadCover": "Nkọwa akwa akwa n'ime ihe n'ime",
+    "editFailed": "Igbo:"
   },
   "bounty": {
     "claimed": "Anatala",

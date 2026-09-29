@@ -5148,7 +5148,20 @@
     "removeUploadTitle": "ເອົາການອັບໂຫຼດນີ້ອອກບໍ?",
     "removeQueuedBody": "ແຕ່ມັນຍັງບໍ່ທັນຖືກເຜີຍແຜ່ເທື່ອ. ການລຶບມັນຍົກເລີກການໂພສ.",
     "quotaShortfall": "ໂພສນີ້ມີຄ່າໃຊ້ຈ່າຍ {{cost}} ໂຕເຄັນ ແລະທ່ານຖື {{held}}.",
-    "shopAllowanceUsed": "ໃຊ້ {{allowance}} ຂອງ {{allowance}} ແລ້ວ. Stake DeHub tokens ຫຼາຍຂຶ້ນເພື່ອໄດ້ badge ສູງຂຶ້ນ ແລະອີກໜຶ່ງ slot."
+    "shopAllowanceUsed": "ໃຊ້ {{allowance}} ຂອງ {{allowance}} ແລ້ວ. Stake DeHub tokens ຫຼາຍຂຶ້ນເພື່ອໄດ້ badge ສູງຂຶ້ນ ແລະອີກໜຶ່ງ slot.",
+    "editFilters": "ແກ້ໄຂຕົວເຟັltter",
+    "cropRotate": "ຕັດ & ໝຸນ",
+    "drawWrite": "ແຕ້ມ & ຂຽນ",
+    "fade": "ຈາງ {{value}}%",
+    "grayscale": "ສີຂາວດຳ {{value}}%",
+    "resetEdits": "ຕັ້ງຄ່າຄືນໃໝ່",
+    "clearDrawing": "ລຶບ",
+    "typeText": "ພິມ…",
+    "textSize": "ຂະໜາດຕົວອັກສອນ {{value}}",
+    "coverFrames": "ເລືອກກອບໜ້າປົກ",
+    "coverFrame": "ໃຊ້ກອບ {{index}} ເປັນໜ້າປົກ",
+    "uploadCover": "ອັບໂຫຼດຮູບໜ້າປົກ",
+    "editFailed": "ບໍ່ສາມາດໃຊ້ການແກ້ໄຂນັ້ນໄດ້. ລອງອີກຄັ້ງ."
   },
   "bounty": {
     "claimed": "ຮັບແລ້ວ",

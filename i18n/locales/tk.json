@@ -5150,7 +5150,20 @@
     "removeUploadTitle": "Bu ýüküni aýyrmak üçin näme etmeli?",
     "removeQueuedBody": "Emma heniz çap edilmedi. Men bu posty ýitirip bilerin.",
     "quotaShortfall": "Bu ýazgy {{cost}} token we sizde {{held}} bar.",
-    "shopAllowanceUsed": "{{allowance}} {{allowance}} ulanyldy. Ýokary nyşan we başga bir mümkinçilik almak üçin DeHub tokenlerini köpeldip goýuň."
+    "shopAllowanceUsed": "{{allowance}} {{allowance}} ulanyldy. Ýokary nyşan we başga bir mümkinçilik almak üçin DeHub tokenlerini köpeldip goýuň.",
+    "editFilters": "Redaktor filterleri",
+    "cropRotate": "Kesip çevir & döndür",
+    "drawWrite": "Çiz & yaz",
+    "fade": "Görünmez {{value}}%",
+    "grayscale": "Renk skalası {{value}}%",
+    "resetEdits": "Sıfırla",
+    "clearDrawing": "Temizle",
+    "typeText": "Yaz…",
+    "textSize": "Yazı ölçüsü {{value}}",
+    "coverFrames": "Kapak çerçevesini seç",
+    "coverFrame": "Kapak olarak {{index}} çerçevesini kullan",
+    "uploadCover": "Kapak resmi yükle",
+    "editFailed": "Oluşturulan editi uygulayamadı. Tekrar dene."
   },
   "bounty": {
     "claimed": "Alyndy",

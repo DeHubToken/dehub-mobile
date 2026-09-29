@@ -5144,7 +5144,20 @@
     "removeUploadTitle": "ลบการอัปโหลดนี้หรือไม่?",
     "removeQueuedBody": "ยังไม่ได้โพสต์ การลบจะยกเลิกโพสต์",
     "quotaShortfall": "โพสต์นี้ใช้โทเคน {{cost}} และคุณมี {{held}}",
-    "shopAllowanceUsed": "ใช้ไป {{allowance}} จาก {{allowance}} แล้ว สเตคโทเคน DeHub เพิ่มเติมเพื่อรับตราสัญลักษณ์ที่สูงขึ้นและอีกสล็อตหนึ่ง"
+    "shopAllowanceUsed": "ใช้ไป {{allowance}} จาก {{allowance}} แล้ว สเตคโทเคน DeHub เพิ่มเติมเพื่อรับตราสัญลักษณ์ที่สูงขึ้นและอีกสล็อตหนึ่ง",
+    "editFilters": "แก้ไขฟิลเตอร์",
+    "cropRotate": "ตัดตัดเย็บ & หมุน",
+    "drawWrite": "วาด & เขียน",
+    "fade": "ลดความสว่าง {{value}}%",
+    "grayscale": "แปลงเป็นสีเทา {{value}}%",
+    "resetEdits": "เริ่มใหม่",
+    "clearDrawing": "ล้าง",
+    "typeText": "พิมพ์…",
+    "textSize": "ขนาดตัวอักษร {{value}}",
+    "coverFrames": "เลือกกรอบภาพปก",
+    "coverFrame": "ใช้กรอบภาพ {{index}} เป็นภาพปก",
+    "uploadCover": "อัปโหลดภาพปก",
+    "editFailed": "ไม่สามารถนำไปใช้ได้ ลองอีกครั้ง"
   },
   "bounty": {
     "claimed": "ฮับแล้ว",

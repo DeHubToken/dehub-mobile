@@ -5150,7 +5150,20 @@
     "removeUploadTitle": "Želite li ukloniti ovaj prijenos?",
     "removeQueuedBody": "Još nije objavljen. Uklanjanjem se objava poništava.",
     "quotaShortfall": "Ovaj post košta {{cost}} tokena i vi posjedujete {{held}}.",
-    "shopAllowanceUsed": "Iskorišteno {{allowance}} od {{allowance}}. Uložite više DeHub tokena za viši status i još jedno mjesto."
+    "shopAllowanceUsed": "Iskorišteno {{allowance}} od {{allowance}}. Uložite više DeHub tokena za viši status i još jedno mjesto.",
+    "editFilters": "Uređivanje filtera",
+    "cropRotate": "Kupiranje & rotiranje",
+    "drawWrite": "Nacrtaj & napiši",
+    "fade": "Zamuži {{value}}%",
+    "grayscale": "Sivina {{value}}%",
+    "resetEdits": "Resetiraj",
+    "clearDrawing": "Izbriši",
+    "typeText": "Upiši...",
+    "textSize": "Veličina teksta {{value}}",
+    "coverFrames": "Odaberi okvir za naslovnicu",
+    "coverFrame": "Upotrijebi okvir {{index}} kao naslovnici",
+    "uploadCover": "Preuzmi sliku za naslovnici",
+    "editFailed": "Nije moguće primijeniti taj uređivač. Pokušaj ponovno."
   },
   "bounty": {
     "claimed": "Preuzeto",

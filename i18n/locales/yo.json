@@ -5151,7 +5151,20 @@
     "removeUploadTitle": "Yọ àkójọpọ̀ yìí kúrò?",
     "removeQueuedBody": "A kò tí ì gbé e jáde. Yíyọ kúrò yóò fagilé ìfiránṣẹ́ náà.",
     "quotaShortfall": "Ìgbàlòde yìí jẹ́ {{cost}} àmi-òwo tí o sì ní {{held}}.",
-    "shopAllowanceUsed": "{{allowance}} nínú {{allowance}} ni a lò. Fi àmi-òwo DeHub sílẹ̀ síi fún àmì-ìdánilóju tí ó ga ju àti ààyè mìíràn."
+    "shopAllowanceUsed": "{{allowance}} nínú {{allowance}} ni a lò. Fi àmi-òwo DeHub sílẹ̀ síi fún àmì-ìdánilóju tí ó ga ju àti ààyè mìíràn.",
+    "editFilters": "Ṣe àtúnṣe àwọn ohun ìgbàlódé",
+    "cropRotate": "Gige & yíyí",
+    "drawWrite": "Kọ̀ & kọ̀wé",
+    "fade": "Rẹ̀dánu {{value}}%",
+    "grayscale": "Àwòrán aláwọ̀-ò-ò-dá {{value}}%",
+    "resetEdits": "Túnbọ̀ṣe",
+    "clearDrawing": "Mú kúrò",
+    "typeText": "Kọ̀…",
+    "textSize": "Ìwọn ìwé àmì {{value}}",
+    "coverFrames": "Yan àwo àtẹsẹ kan",
+    "coverFrame": "Lo àwo àtẹsẹ {{index}} gẹ́gẹ́ bí àwo àtẹsẹ",
+    "uploadCover": "Gbé àwo àtẹsẹ kan sókè",
+    "editFailed": "Kò ṣeé ṣe láti fi ìgbésẹ̀ yìí sílẹ̀. Gbìyànjú lẹ́ẹ̀kan síi."
   },
   "bounty": {
     "claimed": "Ti gbà",

@@ -5154,7 +5154,20 @@
     "removeUploadTitle": "Ta bort denna uppladdning?",
     "removeQueuedBody": "Den har inte publicerats ännu. Om du tar bort den avbryts inlägget.",
     "quotaShortfall": "Det här inlägget kostar {{cost}} tokens och du har {{held}}.",
-    "shopAllowanceUsed": "{{allowance}} av {{allowance}} använda. Satsa fler DeHub-tokens för en högre badge och en plats till."
+    "shopAllowanceUsed": "{{allowance}} av {{allowance}} använda. Satsa fler DeHub-tokens för en högre badge och en plats till.",
+    "editFilters": "Redigera filter",
+    "cropRotate": "Beskär och rotera",
+    "drawWrite": "Rita och skriv",
+    "fade": "Blekning {{value}} %",
+    "grayscale": "Gråskala {{value}} %",
+    "resetEdits": "Återställ",
+    "clearDrawing": "Rensa",
+    "typeText": "Skriv…",
+    "textSize": "Textstorlek {{value}}",
+    "coverFrames": "Välj en bildruta som omslag",
+    "coverFrame": "Använd bildruta {{index}} som omslag",
+    "uploadCover": "Ladda upp en omslagsbild",
+    "editFailed": "Det gick inte att tillämpa ändringen. Försök igen."
   },
   "bounty": {
     "claimed": "Uttagen",

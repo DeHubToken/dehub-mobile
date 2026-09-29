@@ -5150,7 +5150,20 @@
     "removeUploadTitle": "Vai noņemt šo augšupielādi?",
     "removeQueuedBody": "Tas vēl nav publicēts. Noņemot ziņu, tā tiek atcelta.",
     "quotaShortfall": "Šis ieraksts maksā {{cost}} žetonus, un jums ir {{held}}.",
-    "shopAllowanceUsed": "Izmantoti {{allowance}} no {{allowance}}. Iemaksājiet vairāk DeHub žetonu, lai iegūtu augstāku emblēmu un vēl vienu vietu."
+    "shopAllowanceUsed": "Izmantoti {{allowance}} no {{allowance}}. Iemaksājiet vairāk DeHub žetonu, lai iegūtu augstāku emblēmu un vēl vienu vietu.",
+    "editFilters": "Rediģētāji",
+    "cropRotate": "Izveidot un rotēt",
+    "drawWrite": "Zīmēt un rakstīt",
+    "fade": "Pārklājums {{value}}%",
+    "grayscale": "Monokrāts {{value}}%",
+    "resetEdits": "Atsaukt",
+    "clearDrawing": "Izdzēst",
+    "typeText": "Ievadiet tekstu...",
+    "textSize": "Teksta izmērs {{value}}",
+    "coverFrames": "Izvēlieties attēla kārtu",
+    "coverFrame": "Izmantiet kārtu {{index}} kā galveno attēlu",
+    "uploadCover": "Ievietot galveno attēlu",
+    "editFailed": "Nepieprasīja izmantot šo rediģētāju. Mēģiniet vēlreiz."
   },
   "bounty": {
     "claimed": "Saņemts",

@@ -5153,7 +5153,20 @@
     "removeUploadTitle": "Odebrat toto nahrávání?",
     "removeQueuedBody": "Dosud nebyl zveřejněn. Jeho odebráním zrušíte příspěvek.",
     "quotaShortfall": "Tento příspěvek stojí {{cost}} tokenů a vy držíte {{held}}.",
-    "shopAllowanceUsed": "Použito {{allowance}} z {{allowance}}. Vsaďte více tokenů DeHub pro vyšší odznak a další slot."
+    "shopAllowanceUsed": "Použito {{allowance}} z {{allowance}}. Vsaďte více tokenů DeHub pro vyšší odznak a další slot.",
+    "editFilters": "Upravit filtry",
+    "cropRotate": "Krokovat & otočit",
+    "drawWrite": "Nakreslit & napsat",
+    "fade": "Ztmavit {{value}}%",
+    "grayscale": "Šedivit {{value}}%",
+    "resetEdits": "Resetovat",
+    "clearDrawing": "Vymazat",
+    "typeText": "Napište…",
+    "textSize": "Velikost textu {{value}}",
+    "coverFrames": "Vyberte rámeček",
+    "coverFrame": "Použít rámeček {{index}} jako obálku",
+    "uploadCover": "Nahrát obrázek obálky",
+    "editFailed": "Nelze aplikovat editaci. Zkuste to znovu."
   },
   "bounty": {
     "claimed": "Vyzvednuto",

@@ -5153,7 +5153,20 @@
     "removeUploadTitle": "Eltávolítod ezt a feltöltést?",
     "removeQueuedBody": "Még nincs közzétéve. Az eltávolítás törli a bejegyzést.",
     "quotaShortfall": "Ez a bejegyzés {{cost}} tokenbe kerül, és neked {{held}} van.",
-    "shopAllowanceUsed": "{{allowance}} a {{allowance}}-ból felhasználva. Stakeljen több DeHub tokent a magasabb jelvény és egy újabb hely érdekében."
+    "shopAllowanceUsed": "{{allowance}} a {{allowance}}-ból felhasználva. Stakeljen több DeHub tokent a magasabb jelvény és egy újabb hely érdekében.",
+    "editFilters": "Szerkesztési szabályok",
+    "cropRotate": "Vágás & forgatás",
+    "drawWrite": "Rajzolás & írás",
+    "fade": "Fehéredés {{value}}%",
+    "grayscale": "Grayscale {{value}}%",
+    "resetEdits": "Visszaállítás",
+    "clearDrawing": "Törlés",
+    "typeText": "Írjon be…",
+    "textSize": "Betűméret {{value}}",
+    "coverFrames": "Kiválasztson egy borító keretet",
+    "coverFrame": "Használja a borítóként a {{index}} keretet",
+    "uploadCover": "Töltse fel a borítóképet",
+    "editFailed": "Nem sikerült alkalmazni ezt a szerkesztést. Próbálja meg újra."
   },
   "bounty": {
     "claimed": "Igényelve",

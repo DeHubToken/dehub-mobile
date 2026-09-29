@@ -5134,7 +5134,20 @@
     "removeUploadTitle": "Yala i be se ka o yɛlɛkow bɛɛ bɔ yen wa?",
     "removeQueuedBody": "Nka, a ka sɛbɛri ma bɔ fɔlɔ. O kama, a tun man kan ka to ka to ka baara kɛ.",
     "quotaShortfall": "Dis pɔs kɔs {{cost}} tɔkɛns ɛn yɔ hɔl {{held}}.",
-    "shopAllowanceUsed": "{{allowance}} ɔf {{allowance}} yuz. Stɛk mɔ DeHub tɔkɛns fɔ haja bɛj ɛn anɔda slɔt."
+    "shopAllowanceUsed": "{{allowance}} ɔf {{allowance}} yuz. Stɛk mɔ DeHub tɔkɛns fɔ haja bɛj ɛn anɔda slɔt.",
+    "editFilters": "Filtres de modification",
+    "cropRotate": "Recadrer et faire pivoter",
+    "drawWrite": "Dessiner et écrire",
+    "fade": "Estomper {{value}}%",
+    "grayscale": "Niveaux de gris {{value}}%",
+    "resetEdits": "Réinitialiser",
+    "clearDrawing": "Effacer",
+    "typeText": "Taper…",
+    "textSize": "Taille du texte {{value}}",
+    "coverFrames": "Choisir une image de couverture",
+    "coverFrame": "Utiliser l'image {{index}} comme couverture",
+    "uploadCover": "Télécharger une image de couverture",
+    "editFailed": "Impossible d'appliquer cette modification. Réessayez."
   },
   "bounty": {
     "claimed": "A tara",

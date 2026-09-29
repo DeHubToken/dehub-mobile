@@ -5135,7 +5135,20 @@
     "removeUploadTitle": "ایہ اپ لوڈ ہٹاوو؟",
     "removeQueuedBody": "ایہ ہݨ تئیں پوسٹ کائنی تھیا۔ ایکوں ہٹاوݨ نال پوسٹ منسوخ تھی ویسی۔",
     "quotaShortfall": "ایں پوسٹ دی قیمت {{cost}} ٹوکن اے تے تہاڈے کول {{held}} ہن۔",
-    "shopAllowanceUsed": "{{allowance}} توں {{allowance}} استعمال تھی گئیا۔ ودھ ٹوکن سٹیک کرو ودھیا بیج تے اَتے اَک ٻیا سلاٹ واسطے۔"
+    "shopAllowanceUsed": "{{allowance}} توں {{allowance}} استعمال تھی گئیا۔ ودھ ٹوکن سٹیک کرو ودھیا بیج تے اَتے اَک ٻیا سلاٹ واسطے۔",
+    "editFilters": "ہیڈر",
+    "cropRotate": "ٹیپ & روٹیٹ",
+    "drawWrite": "ڈراؤ & لکھو",
+    "fade": "ڈھلوان {{value}}%",
+    "grayscale": "گریس سکل {{value}}%",
+    "resetEdits": "ریسٹ",
+    "clearDrawing": "کلیر",
+    "typeText": "ٹائپ...",
+    "textSize": "ٹیکسٹ سائز {{value}}",
+    "coverFrames": "ایک کور فرینمی چنیو",
+    "coverFrame": "کور فرینمی {{index}} کو کور کے طور پر استعمال کریں",
+    "uploadCover": "کور انٹیجری اپ لوڈ کریں",
+    "editFailed": "اس ایڈٹ کو لاگو نہیں کیا جا سکا۔ دوبارہ کوشش کریں۔"
   },
   "bounty": {
     "claimed": "حاصل تھی ڳیا",

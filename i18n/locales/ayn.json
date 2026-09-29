@@ -5149,7 +5149,20 @@
     "removeUploadTitle": "إزالة هذا التحميل؟",
     "removeQueuedBody": "لم يتم نشره بعد. إزالته تلغي المنشور.",
     "quotaShortfall": "هذا المنشور يكلف {{cost}} توكنز وأنت تحمل {{held}}.",
-    "shopAllowanceUsed": "تم استخدام {{allowance}} من {{allowance}}. قم بتخزين المزيد من توكنز DeHub للحصول على شارة أعلى وفتحة أخرى."
+    "shopAllowanceUsed": "تم استخدام {{allowance}} من {{allowance}}. قم بتخزين المزيد من توكنز DeHub للحصول على شارة أعلى وفتحة أخرى.",
+    "editFilters": "تحرير الفلاتر",
+    "cropRotate": "قطع و دوران",
+    "drawWrite": "رسم و كتابة",
+    "fade": "توهج {{value}}%",
+    "grayscale": "اللون الرمادي {{value}}%",
+    "resetEdits": "إعادة تعيين",
+    "clearDrawing": "مسح",
+    "typeText": "اكتب...",
+    "textSize": "حجم النص {{value}}",
+    "coverFrames": "اختر إطار الغلاف",
+    "coverFrame": "استخدم إطار {{index}} كغلاف",
+    "uploadCover": "تحميل صورة الغلاف",
+    "editFailed": "لم يتم تطبيق التعديل. حاول مرة أخرى."
   },
   "bounty": {
     "claimed": "متسلّم",

@@ -5063,7 +5063,20 @@
     "pillFailedNoRetries": "E fail · No retry remain",
     "uploadInProgressStay": "Your upload still dey go. Stay for dis screen until e finish.",
     "removeUploadTitle": "Remove dis upload?",
-    "removeQueuedBody": "Dem never post am yet. If you remove am, di post go cancel."
+    "removeQueuedBody": "Dem never post am yet. If you remove am, di post go cancel.",
+    "editFilters": "Edit filters",
+    "cropRotate": "Crop & rotate",
+    "drawWrite": "Draw & write",
+    "fade": "Fade {{value}}%",
+    "grayscale": "Grayscale {{value}}%",
+    "resetEdits": "Reset",
+    "clearDrawing": "Clear",
+    "typeText": "Type…",
+    "textSize": "Text size {{value}}",
+    "coverFrames": "Wepa cover frame!",
+    "uploadCover": "Uploading cover image",
+    "editFailed": "I no fit apply edit.",
+    "coverFrame": "Use frame {{index}} as di cover"
   },
   "bounty": {
     "claimed": "Don claim",
