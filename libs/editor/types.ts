@@ -52,7 +52,37 @@ interface BaseClip {
   locked?: boolean;
   /** Hidden layers are not drawn or exported. Per layer, unlike track hiding. */
   hidden?: boolean;
+  /**
+   * Keyframed placement. A property listed here ignores its static value and
+   * follows its keys instead. Key times are seconds from the clip's start, so
+   * moving the clip moves its motion with it.
+   */
+  keyframes?: ClipKeyframes;
 }
+
+/** Placement properties that can be keyframed. Text has no scale (its size is its font size). */
+export const KEYFRAME_PROPS = ["x", "y", "scale", "rotation", "opacity"] as const;
+export type KeyframeProp = (typeof KEYFRAME_PROPS)[number];
+
+export const EASE_PRESETS = [
+  "linear", "ease", "easeIn", "easeOut", "easeInOut",
+  "easeInCubic", "easeOutCubic", "easeInOutCubic",
+  "easeInExpo", "easeOutExpo", "easeInOutExpo",
+  "easeInBack", "easeOutBack", "easeInOutBack", "hold",
+] as const;
+export type EasePreset = (typeof EASE_PRESETS)[number];
+/** A named preset, or a custom cubic-bezier [x1, y1, x2, y2]. */
+export type Ease = EasePreset | [number, number, number, number];
+
+export interface Keyframe {
+  /** Seconds from the clip's start. */
+  t: number;
+  v: number;
+  /** Easing from this key to the next one. Default "ease". */
+  ease?: Ease;
+}
+
+export type ClipKeyframes = Partial<Record<KeyframeProp, Keyframe[]>>;
 
 export const BLEND_MODES = [
   "normal", "multiply", "screen", "overlay", "darken", "lighten", "color-dodge", "color-burn",

@@ -13,7 +13,8 @@ import { WebView, type WebViewMessageEvent } from "react-native-webview";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import Svg, { Polyline } from "react-native-svg";
 import { EDITOR_CANVAS_HTML } from "../../libs/editor/canvasHtml";
-import { getClip, getTransform, mediaIds, placementPatch, updateClip } from "../../libs/editor/project";
+import { getClip, getTransform, mediaIds, placementPatchAt, updateClip } from "../../libs/editor/project";
+import { resolveClipAt } from "../../libs/editor/keyframes";
 import { getMedia, mediaDataUrl, openVideoExport, readMediaChunk } from "../../libs/editor/storage";
 import type { ProjectSnapshot, TextClip } from "../../libs/editor/types";
 
@@ -425,7 +426,9 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
     const base = getClip(d.before, d.clipId);
     if (!base) return;
     const { width: PW, height: PH } = d.before.settings;
-    const tr = getTransform(base);
+    // Keyed layers start from where they are at the playhead, and write a key there.
+    const now = live.current.props.time;
+    const tr = getTransform(resolveClipAt(base, now));
     let dx = d.dx / scaleK;
     let dy = d.dy / scaleK;
     let v = false;
@@ -439,13 +442,16 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
     const nearest = Math.round(rotation / 45) * 45;
     if (d.rotation !== 0 && Math.abs(rotation - nearest) < SNAP_DEG) rotation = normaliseDeg(nearest);
 
-    const place: Record<string, number> = { x: tr.x + dx / PW, y: tr.y + dy / PH, rotation };
+    // Only what this gesture changed, so a drag does not also key rotation or size.
+    const place: Record<string, number> = {};
+    if (d.dx || d.dy) { place.x = tr.x + dx / PW; place.y = tr.y + dy / PH; }
+    if (d.rotation) place.rotation = rotation;
     let patch: Record<string, unknown>;
     if (base.kind === "text") {
-      patch = { ...placementPatch(base, place), fontSize: Math.max(6, Math.min(1000, Math.round((base as TextClip).fontSize * d.scale * 10) / 10)) };
+      patch = { ...placementPatchAt(base, place, now), fontSize: Math.max(6, Math.min(1000, Math.round((base as TextClip).fontSize * d.scale * 10) / 10)) };
     } else {
-      place.scale = Math.max(0.05, Math.min(20, tr.scale * d.scale));
-      patch = placementPatch(base, place);
+      if (d.scale !== 1) place.scale = Math.max(0.05, Math.min(20, tr.scale * d.scale));
+      patch = placementPatchAt(base, place, now);
     }
     setGuides((g) => (g.v === v && g.h === h ? g : { v, h }));
     live.current.props.onLiveChange(updateClip(d.before, d.clipId, patch));

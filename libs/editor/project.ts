@@ -12,6 +12,7 @@ import type {
   AspectPreset,
   Clip,
   ClipTransform,
+  KeyframeProp,
   MediaClip,
   ProjectSnapshot,
   ShapeClip,
@@ -23,7 +24,8 @@ import type {
 
 /** A partial update to any kind of clip. */
 export type ClipPatch = Partial<MediaClip> | Partial<TextClip> | Partial<ShapeClip>;
-import { aspectToDims, DEFAULT_SETTINGS } from "./types";
+import { aspectToDims, DEFAULT_SETTINGS, KEYFRAME_PROPS } from "./types";
+import { isAnimated, setKey } from "./keyframes";
 
 /** Seconds a new layer lasts, matching an image dropped on the web timeline. */
 export const LAYER_DURATION = 5;
@@ -244,6 +246,28 @@ export function placementPatch(clip: Clip, patch: Partial<ClipTransform>): ClipP
     return out;
   }
   return { transform: next };
+}
+
+/**
+ * placementPatch at timeline time t (web placementPatchAt). Properties that are
+ * keyframed get a key at t (added or updated) instead of a new static value,
+ * so dragging an animated layer on the canvas edits its motion rather than
+ * being ignored.
+ */
+export function placementPatchAt(clip: Clip, patch: Partial<ClipTransform>, t: number): ClipPatch {
+  if (!isAnimated(clip)) return placementPatch(clip, patch);
+  const local = t - clip.start;
+  let keyframes = clip.keyframes;
+  const rest: Partial<ClipTransform> = {};
+  for (const [k, v] of Object.entries(patch)) {
+    const prop = k as KeyframeProp;
+    if (typeof v === "number" && KEYFRAME_PROPS.includes(prop) && isAnimated(clip, prop)) {
+      keyframes = setKey({ ...clip, keyframes } as Clip, prop, local, v);
+    } else {
+      (rest as Record<string, unknown>)[k] = v;
+    }
+  }
+  return { ...(Object.keys(rest).length ? placementPatch(clip, rest) : {}), keyframes };
 }
 
 export function removeClip(p: ProjectSnapshot, id: string): ProjectSnapshot {
