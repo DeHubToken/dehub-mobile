@@ -225,6 +225,7 @@ const CompactVideoInfiniteList: React.FC<CompactVideoInfiniteListProps> = ({
           </View>
         )
       }
+      showsVerticalScrollIndicator={false}
       />
       <DeHubRefreshMark refreshing={refreshing} />
     </View>

@@ -553,6 +553,7 @@ const CommunityDetailScreen: React.FC = () => {
               </TouchableOpacity>
             );
           }}
+          showsVerticalScrollIndicator={false}
         />
       ) : (
         // Edge-to-edge Android no longer resizes the window for the keyboard,
@@ -568,6 +569,7 @@ const CommunityDetailScreen: React.FC = () => {
             contentContainerStyle={{ paddingBottom: 80 }}
             keyboardShouldPersistTaps="handled"
             refreshControl={refreshControl}
+            showsVerticalScrollIndicator={false}
           >
             {HeaderBlock}
             {tab === "about" && (
