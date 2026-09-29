@@ -289,7 +289,7 @@ const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
           )}
 
           {activeTab === "quotes" && (
-            <QuoteTab tokenId={tokenId} />
+            <QuoteTab tokenId={tokenId} nested={inline} />
           )}
 
           {activeTab === "reposts" && (

@@ -16,9 +16,18 @@ const PAGE_LIMIT = 20;
 
 interface QuoteTabProps {
   tokenId: number | string;
+  /**
+   * The sheet is drawn inside a Shorts page rather than a Modal, so this list
+   * is nested in the Shorts pager FlatList. React Native then measures this
+   * list's viewport from the pager's offset, not its own scroll, so from the
+   * second Short on no card ever counts as on screen and a video quote could
+   * not even be tapped to play. Skip visibility tracking there: every card may
+   * hold a player, none autoplays over the Short, and a tap plays it.
+   */
+  nested?: boolean;
 }
 
-const QuoteTabComponent: React.FC<QuoteTabProps> = ({ tokenId }) => {
+const QuoteTabComponent: React.FC<QuoteTabProps> = ({ tokenId, nested = false }) => {
   const { t } = useTranslation();
   const [posts, setPosts] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
@@ -88,13 +97,13 @@ const QuoteTabComponent: React.FC<QuoteTabProps> = ({ tokenId }) => {
         <View style={{ paddingHorizontal: 16, marginBottom: 12 }}>
           <FeedCard
             item={item}
-            isVisible={isItemVisible(key)}
-            isAutoplayActive={isItemAutoplayActive(key)}
+            isVisible={nested || isItemVisible(key)}
+            isAutoplayActive={!nested && isItemAutoplayActive(key)}
           />
         </View>
       );
     },
-    [keyExtractor, isItemVisible, isItemAutoplayActive],
+    [nested, keyExtractor, isItemVisible, isItemAutoplayActive],
   );
 
   const footer = useMemo(() => {
@@ -122,11 +131,13 @@ const QuoteTabComponent: React.FC<QuoteTabProps> = ({ tokenId }) => {
       data={posts}
       renderItem={renderItem}
       keyExtractor={keyExtractor}
-      windowSize={7}
-      maxToRenderPerBatch={4}
-      initialNumToRender={4}
-      viewabilityConfig={viewabilityConfig}
-      onViewableItemsChanged={onViewableItemsChanged}
+      // Nested, the window is placed from the pager's offset too, so keep the
+      // default wide window there or rows further down render blank.
+      windowSize={nested ? undefined : 7}
+      maxToRenderPerBatch={nested ? undefined : 4}
+      initialNumToRender={nested ? undefined : 4}
+      viewabilityConfig={nested ? undefined : viewabilityConfig}
+      onViewableItemsChanged={nested ? undefined : onViewableItemsChanged}
       extraData={visibilityExtraData}
       onEndReached={handleLoadMore}
       onEndReachedThreshold={0.3}
