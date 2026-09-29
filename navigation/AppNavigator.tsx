@@ -2,6 +2,7 @@ import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { ScreenNames } from "./ScreenNames";
 import type { AppStackParamList } from "./types";
+import { feedDetailRouteId } from "./feedDetailRouteId";
 import BottomTabNavigator from "./BottomTabNavigator";
 import { withScreenBoundary } from "../components/common/ScreenErrorFallback";
 import { useAuthState } from "../context/AuthContext";
@@ -385,6 +386,9 @@ function AppNavigatorContent() {
         <Stack.Screen
           name={ScreenNames.FeedDetail}
           getComponent={() => require("../screens/FeedDetailScreen").default}
+          // One route per post, so opening a post from a post pushes a page
+          // instead of swapping the open one's params.
+          getId={({ params }) => feedDetailRouteId(params)}
         />
         <Stack.Screen
           name={ScreenNames.PostInfo}
