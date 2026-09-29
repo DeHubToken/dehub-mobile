@@ -42,6 +42,7 @@ import {
 import { runWithPermissions } from "../../libs/permissions.util";
 import LanguageSelectModal from "../../components/Settings/LanguageSelectModal";
 import { SUPPORTED_LANGUAGES } from "../../i18n";
+import { useKeyboardOffset } from "../../hooks/useKeyboardLayout";
 
 const log = createLogger("SetProfileScreen");
 
@@ -57,6 +58,9 @@ const SetProfileScreen: React.FC<SetProfileScreenProps> = ({ navigation }) => {
   const { provisionalUser, needsUsername } = useAuthState();
   const { completeUsername, signOut } = useAuthActions();
   const { t, i18n } = useTranslation();
+  // The screen sits under the root SafeAreaView, so the keyboard offset is its
+  // top inset on both platforms.
+  const keyboardOffset = useKeyboardOffset();
 
   const [username, setUsername] = useState("");
   const [displayName, setDisplayName] = useState("");
@@ -263,7 +267,7 @@ const SetProfileScreen: React.FC<SetProfileScreenProps> = ({ navigation }) => {
     <SafeAreaView className="flex-1 bg-theme-background">
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
-        keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 0}
+        keyboardVerticalOffset={keyboardOffset}
         style={{ flex: 1 }}
       >
         <ScrollView
