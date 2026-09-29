@@ -146,7 +146,9 @@
     "noMoreShorts": "Нема више кратких филмова",
     "noShortsFound": "Није пронађен ниједан кратки филм",
     "newMembersHint": "Управо сте се придружили — поздравите се",
-    "mostViewedThisMonth": "Најгледаније овог месеца"
+    "scroll": "Scroll",
+    "noFilterMatches": "Ниједан садржај не одговара твојим филтерима.",
+    "clearFilters": "Обриши филтере"
   },
   "explore": {
     "all": "Све",
@@ -2645,7 +2647,31 @@
     "turnedOff": "Коментари су искључени за овај пост",
     "noQuotesYet": "Још нема цитата.",
     "noRepostsYet": "Још нема репостова.",
-    "notFound": "Коментар није пронађен"
+    "notFound": "Коментар није пронађен",
+    "timeSeconds": "{{count}} с",
+    "timeMinutes": "{{count}} мин",
+    "timeHours": "{{count}} ч",
+    "seeWhoLiked": "Погледајте коме се свиђа",
+    "holdToReact": "{{reaction}} — задржите да реагујете",
+    "holdToChangeReaction": "{{reaction}} — задржите да промените реакцију",
+    "viewCount_one": "{{count}} преглед",
+    "viewCount_other": "{{count}} прегледа",
+    "shareMessage": "Погледај ово: {{url}}",
+    "hideReplies": "Сакриј одговоре",
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
+    "rowA11yHint": "Започиње одговор на овај коментар",
+    "editingComment": "Уређивање коментара",
+    "editPlaceholder": "Уредите свој коментар...",
+    "replyPlaceholder": "Напишите одговор...",
+    "inputPlaceholder": "Пишите овде",
+    "cancelReply": "Откажи одговор",
+    "cancelEdit": "Откажи уређивање",
+    "countLabel_one": "{{count}} коментар",
+    "countLabel_other": "{{count}} коментара",
+    "repostsLabel_one": "Репост",
+    "repostsLabel_other": "Репостова",
+    "quotesLabel_one": "Цитат",
+    "quotesLabel_other": "Цитата"
   },
   "postInfo": {
     "title": "Информације о објави",
@@ -5099,7 +5125,20 @@
     "removeUploadTitle": "Уклонити ово отпремање?",
     "removeQueuedBody": "Још није објављено. Уклањањем ћете отказати објаву.",
     "quotaShortfall": "Ова објава кошта {{cost}} токена и ви држите {{held}}.",
-    "shopAllowanceUsed": "{{allowance}} од {{allowance}} искоришћено. Уложите више DeHub токена за вишу значку и још једно место."
+    "shopAllowanceUsed": "{{allowance}} од {{allowance}} искоришћено. Уложите више DeHub токена за вишу значку и још једно место.",
+    "editFilters": "Уређивање филтера",
+    "cropRotate": "Крои & ротира",
+    "drawWrite": "Нацртај & напиши",
+    "fade": "Сјенчање {{value}}%",
+    "grayscale": "Сивина {{value}}%",
+    "resetEdits": "Ресетирај",
+    "clearDrawing": "Избриши",
+    "typeText": "Упиши...",
+    "textSize": "Величина текста {{value}}",
+    "coverFrames": "Изабери оквир за насловну слику",
+    "coverFrame": "Употребите оквир {{index}} као насловну слику",
+    "uploadCover": "Учитај насловну слику",
+    "editFailed": "Није могуће применити ту едитацију. Покушај поново."
   },
   "bounty": {
     "claimed": "Преузето",
@@ -8501,7 +8540,11 @@
       "search": "Претраживање апликација",
       "all": "Све",
       "fromDehub": "Од DeHub",
-      "noMatch": "Нема апликација које одговарају овом претраживању."
+      "noMatch": "Нема апликација које одговарају овом претраживању.",
+      "yourApps": "Ваше апликације",
+      "notificationsOn": "Обавијести су укључени",
+      "remove": "Уклони",
+      "removed": "Уклоњено. Више неће вас обавијестити."
     },
     "card": {
       "open": "Отвори"
@@ -8520,6 +8563,17 @@
       "developer-tools": "Алати за развој",
       "entertainment": "Забава",
       "art-creativity": "Умјетност & креативност"
+    },
+    "pay": {
+      "title": "Плати {{name}}?",
+      "body": "DHB иде директно у новчаник апликације, {{wallet}}. Плаћања се не могу поништити.",
+      "confirm": "Плати {{amount}} DHB",
+      "sent": "Платили сте {{amount}} DHB {{name}}-у."
+    },
+    "add": {
+      "title": "Додај {{name}}?",
+      "body": "Бит ће приказана под Вашим апликацијама и може вам слати обавијести. Можете је у сваком тренутку уклонити са странице Апликација.",
+      "confirm": "Додај апликацију"
     }
   },
   "postQuota": {

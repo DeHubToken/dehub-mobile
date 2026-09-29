@@ -146,7 +146,9 @@
     "noMoreShorts": "Ingen flere shorts",
     "noShortsFound": "Ingen shorts funnet",
     "newMembersHint": "Nylig blitt med — si hei",
-    "mostViewedThisMonth": "Mest sett denne måneden"
+    "scroll": "Scroll",
+    "noFilterMatches": "Ikke noe innhold samsvarer med filtrene dine.",
+    "clearFilters": "Tøm filtre"
   },
   "explore": {
     "all": "Alle",
@@ -2641,7 +2643,31 @@
     "noneYetBeFirst": "Ingen kommentarer ennå. Vær den første!",
     "turnedOff": "Kommentarer er deaktivert for dette innlegget",
     "noQuotesYet": "Ingen sitater ennå.",
-    "noRepostsYet": "Ingen reposts ennå."
+    "noRepostsYet": "Ingen reposts ennå.",
+    "timeSeconds": "{{count}} s",
+    "timeMinutes": "{{count}} min",
+    "timeHours": "{{count}} t",
+    "seeWhoLiked": "Se hvem som likte",
+    "holdToReact": "{{reaction}} — hold inne for å reagere",
+    "holdToChangeReaction": "{{reaction}} — hold inne for å endre reaksjonen din",
+    "viewCount_one": "{{count}} visning",
+    "viewCount_other": "{{count}} visninger",
+    "shareMessage": "Sjekk dette: {{url}}",
+    "hideReplies": "Skjul svar",
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
+    "rowA11yHint": "Starter et svar på denne kommentaren",
+    "editingComment": "Redigerer kommentar",
+    "editPlaceholder": "Rediger kommentaren din...",
+    "replyPlaceholder": "Skriv et svar...",
+    "inputPlaceholder": "Skriv her",
+    "cancelReply": "Avbryt svar",
+    "cancelEdit": "Avbryt redigering",
+    "countLabel_one": "{{count}} kommentar",
+    "countLabel_other": "{{count}} kommentarer",
+    "repostsLabel_one": "Repost",
+    "repostsLabel_other": "Reposts",
+    "quotesLabel_one": "Sitat",
+    "quotesLabel_other": "Sitater"
   },
   "postInfo": {
     "title": "Innleggsinformasjon",
@@ -5126,7 +5152,20 @@
     "removeUploadTitle": "Fjerne denne opplastingen?",
     "removeQueuedBody": "Den har ikke blitt publisert ennå. Hvis du fjerner den, avbrytes innlegget.",
     "quotaShortfall": "Dette innlegget koster {{cost}} tokens og du har {{held}}.",
-    "shopAllowanceUsed": "{{allowance}} av {{allowance}} brukt. Stak mer DeHub-tokens for et høyere merke og en ny plass."
+    "shopAllowanceUsed": "{{allowance}} av {{allowance}} brukt. Stak mer DeHub-tokens for et høyere merke og en ny plass.",
+    "editFilters": "Rediger filtre",
+    "cropRotate": "Beskjær og roter",
+    "drawWrite": "Tegn og skriv",
+    "fade": "Falming {{value}} %",
+    "grayscale": "Gråtoner {{value}} %",
+    "resetEdits": "Tilbakestill",
+    "clearDrawing": "Tøm",
+    "typeText": "Skriv…",
+    "textSize": "Tekststørrelse {{value}}",
+    "coverFrames": "Velg et bilde som omslag",
+    "coverFrame": "Bruk bilde {{index}} som omslag",
+    "uploadCover": "Last opp et omslagsbilde",
+    "editFailed": "Kunne ikke bruke endringen. Prøv igjen."
   },
   "bounty": {
     "claimed": "Innløst",
@@ -8526,7 +8565,11 @@
       "search": "Søk i apper",
       "all": "Alle",
       "fromDehub": "Fra DeHub",
-      "noMatch": "Ingen apper samsvarer med det søket."
+      "noMatch": "Ingen apper samsvarer med det søket.",
+      "yourApps": "Dine apps",
+      "notificationsOn": "Varsler på",
+      "remove": "Fjern",
+      "removed": "Fjernet. Det vil ikke varsle deg igjen."
     },
     "card": {
       "open": "Åpne"
@@ -8545,6 +8588,17 @@
       "developer-tools": "Utviklerverktøy",
       "entertainment": "Underholdning",
       "art-creativity": "Kunst og kreativitet"
+    },
+    "pay": {
+      "title": "Betale {{name}}?",
+      "body": "DHB-en går direkte til appens lommebok, {{wallet}}. Betalinger kan ikke trekkes tilbake.",
+      "confirm": "Betale {{amount}} DHB",
+      "sent": "Betalt {{amount}} DHB til {{name}}."
+    },
+    "add": {
+      "title": "Legg til {{name}}?",
+      "body": "Den vil dukke opp under Dine apps og kan sende deg varsler. Du kan fjerne den når som helst fra Apps-siden.",
+      "confirm": "Legg til app"
     }
   },
   "aiStyles": {

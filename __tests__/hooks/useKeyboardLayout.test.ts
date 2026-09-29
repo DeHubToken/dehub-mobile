@@ -82,7 +82,7 @@ describe('useKeyboardLift', () => {
 });
 
 describe('useKeyboardOffset', () => {
-  it('is the top inset the root SafeAreaView spent plus the chrome above the view', () => {
+  it("is the top inset the root SafeAreaView spent plus any chrome above the view's parent", () => {
     mockInsets.top = 47;
 
     const { result } = renderHook(() => useKeyboardOffset(64));

@@ -146,7 +146,9 @@
     "noMoreShorts": "Kāore anō kia puta ngā poto",
     "noShortsFound": "Kāore he poto i kitea",
     "newMembersHint": "Katahi nei ka uru mai — korerotia",
-    "mostViewedThisMonth": "Maha rawa te kitea i tēnei marama"
+    "scroll": "Scroll",
+    "noFilterMatches": "Kāore he ihirangi e hāngai ana ki ō tātari.",
+    "clearFilters": "Whakakore tātari"
   },
   "explore": {
     "all": "Katoa",
@@ -2641,7 +2643,31 @@
     "noneYetBeFirst": "Kāore anō kia whai kōrero. Kia koe te tuatahi!",
     "turnedOff": "Kua whakaweto ngā kōrero mō tēnei pou",
     "noQuotesYet": "Kāore anō kia whai kōrero.",
-    "noRepostsYet": "Kāore anō kia whai repost."
+    "noRepostsYet": "Kāore anō kia whai repost.",
+    "timeSeconds": "{{count}} hēkona",
+    "timeMinutes": "{{count}} meneti",
+    "timeHours": "{{count}} hāora",
+    "seeWhoLiked": "Tirohia ko wai i pai",
+    "holdToReact": "{{reaction}} — pēhia roatia kia urupare",
+    "holdToChangeReaction": "{{reaction}} — pēhia roatia kia huri tō urupare",
+    "viewCount_one": "{{count}} tirohanga",
+    "viewCount_other": "{{count}} tirohanga",
+    "shareMessage": "Tirohia tēnei: {{url}}",
+    "hideReplies": "Hunaia ngā whakautu",
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
+    "rowA11yHint": "Ka tīmata he whakautu ki tēnei kōrero",
+    "editingComment": "E whakatika ana i te kōrero",
+    "editPlaceholder": "Whakatikahia tō kōrero...",
+    "replyPlaceholder": "Tuhia he whakautu...",
+    "inputPlaceholder": "Patohia ki konei",
+    "cancelReply": "Whakakorea te whakautu",
+    "cancelEdit": "Whakakorea te whakatika",
+    "countLabel_one": "{{count}} Kōrero",
+    "countLabel_other": "{{count}} Kōrero",
+    "repostsLabel_one": "Tukurua",
+    "repostsLabel_other": "Tukurua",
+    "quotesLabel_one": "Kōrero tau",
+    "quotesLabel_other": "Kōrero tau"
   },
   "postInfo": {
     "title": "Mōhiohio pou",
@@ -5125,7 +5151,20 @@
     "removeUploadTitle": "Tangohia tenei tuku?",
     "removeQueuedBody": "Kaore ano kia whakaputaina. Ka whakakorea e ia te pou.",
     "quotaShortfall": "E {{cost}} tohu te utu o tēnei pou, ā, kei a koe {{held}}.",
-    "shopAllowanceUsed": "{{allowance}} o {{allowance}} i whakamahia. Whakauruhia ētahi atu tohu DeHub mō tētahi tohu teitei ake me tētahi atu mokamoka."
+    "shopAllowanceUsed": "{{allowance}} o {{allowance}} i whakamahia. Whakauruhia ētahi atu tohu DeHub mō tētahi tohu teitei ake me tētahi atu mokamoka.",
+    "editFilters": "Kawe noa i te whakapātanga",
+    "cropRotate": "Kākau me whakapiri",
+    "drawWrite": "Tuhia & tuhi",
+    "grayscale": "Kupenga Pārerewa {{value}}%",
+    "resetEdits": "Whakamahere",
+    "clearDrawing": "He mārama",
+    "typeText": "Tuhia…",
+    "textSize": "Tiketia whakatau {{value}}",
+    "coverFrames": "Ko te whakapakari i te whakapakari",
+    "coverFrame": "Whakamahia te anga {{index}} hei taupoki",
+    "uploadCover": "Tuhia te whakaahua o te pukapuka",
+    "editFailed": "Kaore au e taea te whakamahia te kawenata whakapāpā.",
+    "fade": "Mimiti {{value}}%"
   },
   "bounty": {
     "claimed": "Kua tonoa",
@@ -8524,7 +8563,9 @@
       "search": "Ngā taupānga rapu",
       "all": "Katoa",
       "fromDehub": "Mai i DeHub",
-      "noMatch": "Kaore he taupānga e rite ana ki taua rapu."
+      "noMatch": "Kaore he taupānga e rite ana ki taua rapu.",
+      "yourApps": "Ko o taupānga",
+      "remove": "Tangohia"
     },
     "card": {
       "open": "Whakatuwherahia"
@@ -8543,6 +8584,14 @@
       "developer-tools": "Nga taputapu kaiwhakawhanake",
       "entertainment": "Te whakangahau",
       "art-creativity": "Toi me te auaha"
+    },
+    "pay": {
+      "title": "Tū mai ki te whakapā mai i te {{name}}?",
+      "sent": "Tūhono whakapā mai te {{amount}} DHB ki te {{name}}."
+    },
+    "add": {
+      "body": "Ka taea e ia te whakamahia i te whakapakari me te whakapūmau i ngā whakapūmau mō ngā whakapūmau, me te whakapūmau i ngā whakapūmau i te wā e whakamahia ana e koe i te whakapakari whakapūmau. Ka taea e koe te whakamahia i te whakapūmau i te wā e whakamahia ana e koe i te whakapakari whakapūmau, i te whakapakari whakapūmau.",
+      "confirm": "Tāpiri taupānga"
     }
   },
   "aiStyles": {

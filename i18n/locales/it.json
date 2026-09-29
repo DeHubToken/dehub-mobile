@@ -146,7 +146,9 @@
     "noMoreShorts": "Nessun altro short",
     "noShortsFound": "Nessuno short trovato",
     "newMembersHint": "Appena entrato — saluta",
-    "mostViewedThisMonth": "Più visti questo mese"
+    "scroll": "Scroll",
+    "noFilterMatches": "Nessun contenuto corrisponde ai tuoi filtri.",
+    "clearFilters": "Cancella filtri"
   },
   "explore": {
     "all": "Tutto",
@@ -2641,7 +2643,31 @@
     "noneYetBeFirst": "Nessun commento ancora. Sii il primo!",
     "turnedOff": "I commenti sono disattivati per questo post",
     "noQuotesYet": "Nessuna citazione ancora.",
-    "noRepostsYet": "Nessun repost ancora."
+    "noRepostsYet": "Nessun repost ancora.",
+    "timeSeconds": "{{count}} s",
+    "timeMinutes": "{{count}} min",
+    "timeHours": "{{count}} h",
+    "seeWhoLiked": "Vedi a chi piace",
+    "holdToReact": "{{reaction}} — tieni premuto per reagire",
+    "holdToChangeReaction": "{{reaction}} — tieni premuto per cambiare reazione",
+    "viewCount_one": "{{count}} visualizzazione",
+    "viewCount_other": "{{count}} visualizzazioni",
+    "shareMessage": "Guarda qui: {{url}}",
+    "hideReplies": "Nascondi risposte",
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
+    "rowA11yHint": "Inizia una risposta a questo commento",
+    "editingComment": "Modifica del commento",
+    "editPlaceholder": "Modifica il tuo commento...",
+    "replyPlaceholder": "Scrivi una risposta...",
+    "inputPlaceholder": "Scrivi qui",
+    "cancelReply": "Annulla risposta",
+    "cancelEdit": "Annulla modifica",
+    "countLabel_one": "{{count}} commento",
+    "countLabel_other": "{{count}} commenti",
+    "repostsLabel_one": "repost",
+    "repostsLabel_other": "repost",
+    "quotesLabel_one": "citazione",
+    "quotesLabel_other": "citazioni"
   },
   "postInfo": {
     "title": "Info Post",
@@ -5175,7 +5201,20 @@
     "removeUploadTitle": "Rimuovere questo caricamento?",
     "removeQueuedBody": "Non è stato ancora pubblicato. La rimozione annulla il post.",
     "quotaShortfall": "Questo post costa {{cost}} token e tu ne possiedi {{held}}.",
-    "shopAllowanceUsed": "{{allowance}} di {{allowance}} utilizzati. Metti in staking più token DeHub per un badge superiore e un altro slot."
+    "shopAllowanceUsed": "{{allowance}} di {{allowance}} utilizzati. Metti in staking più token DeHub per un badge superiore e un altro slot.",
+    "editFilters": "Modifica filtri",
+    "cropRotate": "Ritaglia e ruota",
+    "drawWrite": "Disegna e scrivi",
+    "fade": "Dissolvenza {{value}}%",
+    "grayscale": "Scala di grigi {{value}}%",
+    "resetEdits": "Ripristina",
+    "clearDrawing": "Cancella",
+    "typeText": "Scrivi…",
+    "textSize": "Dimensione testo {{value}}",
+    "coverFrames": "Scegli un fotogramma di copertina",
+    "coverFrame": "Usa il fotogramma {{index}} come copertina",
+    "uploadCover": "Carica un'immagine di copertina",
+    "editFailed": "Impossibile applicare la modifica. Riprova."
   },
   "bounty": {
     "claimed": "Riscosso",
@@ -8526,7 +8565,10 @@
       "search": "Cerca app",
       "all": "Tutti",
       "fromDehub": "Da DeHub",
-      "noMatch": "Nessuna app corrisponde alla ricerca."
+      "noMatch": "Nessuna app corrisponde alla ricerca.",
+      "yourApps": "Le tue app",
+      "notificationsOn": "Notifiche su",
+      "removed": "Rimosso. Non ti notificherà più."
     },
     "card": {
       "open": "Apri"
@@ -8545,6 +8587,17 @@
       "developer-tools": "Strumenti per sviluppatori",
       "entertainment": "Divertimento",
       "art-creativity": "Arte e creatività"
+    },
+    "pay": {
+      "title": "Paga {{name}}?",
+      "body": "Il DHB va direttamente al portafoglio dell'app, {{wallet}}. I pagamenti non possono essere annullati.",
+      "confirm": "Paga {{amount}} DHB",
+      "sent": "Pagato {{amount}} DHB a {{name}}."
+    },
+    "add": {
+      "title": "Aggiungi {{name}}?",
+      "body": "Verrà visualizzato sotto Le tue app e potrà inviarti notifiche. Puoi rimuoverlo in qualsiasi momento dalla pagina App.",
+      "confirm": "Aggiungi app"
     }
   },
   "aiStyles": {

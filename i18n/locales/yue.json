@@ -146,7 +146,9 @@
     "noMoreShorts": "沒有更多短片",
     "noShortsFound": "找不到短片",
     "newMembersHint": "剛加入 — 打個招呼",
-    "mostViewedThisMonth": "今個月最多人睇"
+    "scroll": "Scroll",
+    "noFilterMatches": "冇符合你篩選條件嘅內容。",
+    "clearFilters": "清除篩選"
   },
   "explore": {
     "all": "全部",
@@ -2641,7 +2643,31 @@
     "noneYetBeFirst": "暫時冇留言。做第一個！",
     "turnedOff": "此帖文已關閉留言",
     "noQuotesYet": "暫時冇引用。",
-    "noRepostsYet": "暫時冇轉發。"
+    "noRepostsYet": "暫時冇轉發。",
+    "timeSeconds": "{{count}} 秒",
+    "timeMinutes": "{{count}} 分鐘",
+    "timeHours": "{{count}} 小時",
+    "seeWhoLiked": "睇吓邊個讚好",
+    "holdToReact": "{{reaction}} — 長按嚟回應",
+    "holdToChangeReaction": "{{reaction}} — 長按嚟改你嘅回應",
+    "viewCount_one": "{{count}} 次瀏覽",
+    "viewCount_other": "{{count}} 次瀏覽",
+    "shareMessage": "睇吓呢個：{{url}}",
+    "hideReplies": "收埋回覆",
+    "rowA11yLabel": "{{name}}，{{time}}：{{text}}",
+    "rowA11yHint": "開始回覆呢則留言",
+    "editingComment": "編輯緊留言",
+    "editPlaceholder": "編輯你嘅留言...",
+    "replyPlaceholder": "寫個回覆...",
+    "inputPlaceholder": "喺度輸入",
+    "cancelReply": "取消回覆",
+    "cancelEdit": "取消編輯",
+    "countLabel_one": "{{count}} 則留言",
+    "countLabel_other": "{{count}} 則留言",
+    "repostsLabel_one": "轉發",
+    "repostsLabel_other": "轉發",
+    "quotesLabel_one": "引用",
+    "quotesLabel_other": "引用"
   },
   "postInfo": {
     "title": "帖子資訊",
@@ -5126,7 +5152,20 @@
     "removeUploadTitle": "移除呢個上載？",
     "removeQueuedBody": "仲未發佈。移除佢會取消個帖子。",
     "quotaShortfall": "此帖子需要 {{cost}} 個代幣，您持有 {{held}} 個。",
-    "shopAllowanceUsed": "已使用 {{allowance}} 個中的 {{allowance}} 個。質押更多 DeHub 代幣以獲得更高的徽章和另一個插槽。"
+    "shopAllowanceUsed": "已使用 {{allowance}} 個中的 {{allowance}} 個。質押更多 DeHub 代幣以獲得更高的徽章和另一個插槽。",
+    "editFilters": "編輯濾鏡",
+    "cropRotate": "裁剪同旋轉",
+    "drawWrite": "畫圖同寫字",
+    "grayscale": "灰階 {{value}}%",
+    "resetEdits": "重設",
+    "clearDrawing": "清除",
+    "typeText": "輸入…",
+    "textSize": "文字大小 {{value}}",
+    "uploadCover": "上載封面圖片",
+    "fade": "褪色 {{value}}%",
+    "coverFrames": "揀封面畫格",
+    "coverFrame": "用第 {{index}} 格做封面",
+    "editFailed": "套用唔到呢個編輯，請再試。"
   },
   "bounty": {
     "claimed": "已領取",
@@ -8525,7 +8564,9 @@
       "search": "搜尋應用程式",
       "all": "全部",
       "fromDehub": "嚟自 DeHub",
-      "noMatch": "冇應用程式同呢個搜尋相符。"
+      "noMatch": "冇應用程式同呢個搜尋相符。",
+      "yourApps": "你嘅應用程式",
+      "remove": "去除"
     },
     "card": {
       "open": "打開"
@@ -8544,6 +8585,14 @@
       "developer-tools": "開發人員工具",
       "entertainment": "娛樂",
       "art-creativity": "藝術同創意"
+    },
+    "pay": {
+      "confirm": "支付 {{amount}} DHB",
+      "sent": "已付 {{amount}} 衛生署 {{name}}。"
+    },
+    "add": {
+      "body": "你哋可以於「應用程式」下找到，並可發送通知。你哋可以隨時於「應用程式」頁面刪除它。",
+      "confirm": "加入應用程式"
     }
   },
   "aiStyles": {

@@ -146,7 +146,9 @@
     "noMoreShorts": "Žiadne ďalšie krátke videá",
     "noShortsFound": "Nenašli sa žiadne krátke videá",
     "newMembersHint": "Práve ste sa pripojili — pozdravte sa",
-    "mostViewedThisMonth": "Najsledovanejšie tento mesiac"
+    "scroll": "Scroll",
+    "noFilterMatches": "Tvojim filtrom nezodpovedá žiadny obsah.",
+    "clearFilters": "Vymazať filtre"
   },
   "explore": {
     "all": "Všetko",
@@ -2749,7 +2751,31 @@
     "noneYetBeFirst": "Zatiaľ žiadne komentáre. Buďte prvý!",
     "turnedOff": "Komentáre sú pre tento príspevok vypnuté",
     "noQuotesYet": "Zatiaľ žiadne citácie.",
-    "noRepostsYet": "Zatiaľ žiadne preposlania."
+    "noRepostsYet": "Zatiaľ žiadne preposlania.",
+    "timeSeconds": "{{count}} s",
+    "timeMinutes": "{{count}} min",
+    "timeHours": "{{count}} h",
+    "seeWhoLiked": "Zobraziť, komu sa páči",
+    "holdToReact": "{{reaction}} — reagujte podržaním",
+    "holdToChangeReaction": "{{reaction}} — podržaním zmeníte reakciu",
+    "viewCount_one": "{{count}} zobrazenie",
+    "viewCount_other": "{{count}} zobrazení",
+    "shareMessage": "Pozri si toto: {{url}}",
+    "hideReplies": "Skryť odpovede",
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
+    "rowA11yHint": "Začne odpoveď na tento komentár",
+    "editingComment": "Úprava komentára",
+    "editPlaceholder": "Upravte svoj komentár...",
+    "replyPlaceholder": "Napíšte odpoveď...",
+    "inputPlaceholder": "Píšte sem",
+    "cancelReply": "Zrušiť odpoveď",
+    "cancelEdit": "Zrušiť úpravy",
+    "countLabel_one": "{{count}} komentár",
+    "countLabel_other": "{{count}} komentárov",
+    "repostsLabel_one": "Preposlanie",
+    "repostsLabel_other": "Preposlaní",
+    "quotesLabel_one": "Citácia",
+    "quotesLabel_other": "Citácií"
   },
   "postInfo": {
     "title": "Informácie o príspevku",
@@ -5234,7 +5260,20 @@
     "removeUploadTitle": "Odstrániť toto nahratie?",
     "removeQueuedBody": "Zatiaľ nebol zverejnený. Jeho odstránením sa príspevok zruší.",
     "quotaShortfall": "Tento príspevok stojí {{cost}} tokenov a vy držíte {{held}}.",
-    "shopAllowanceUsed": "Použité {{allowance}} z {{allowance}}. Vložte viac tokenov DeHub pre vyššiu odznak a ďalší slot."
+    "shopAllowanceUsed": "Použité {{allowance}} z {{allowance}}. Vložte viac tokenov DeHub pre vyššiu odznak a ďalší slot.",
+    "editFilters": "Upraviť filtre",
+    "cropRotate": "Orezať & otočiť",
+    "drawWrite": "Narýsať & napísať",
+    "fade": "Zmizniť {{value}}%",
+    "grayscale": "Šedý tón {{value}}%",
+    "resetEdits": "Resetovať",
+    "clearDrawing": "Vymazať",
+    "typeText": "Zadaj…",
+    "textSize": "Veľkosť textu {{value}}",
+    "coverFrames": "Vyber obálkový rám",
+    "coverFrame": "Použi rám {{index}} ako obálku",
+    "uploadCover": "Nahraj obrázok obálky",
+    "editFailed": "Nepodarilo sa aplikovať túto úpravu. Skús to znova."
   },
   "bounty": {
     "claimed": "Vyzdvihnuté",
@@ -8691,7 +8730,11 @@
       "search": "Hľadať aplikácie",
       "all": "Všetko",
       "fromDehub": "Od DeHub",
-      "noMatch": "Žiadne aplikácie neodpovedajú tejto vyhľadávaniu."
+      "noMatch": "Žiadne aplikácie neodpovedajú tejto vyhľadávaniu.",
+      "yourApps": "Vaše aplikácie",
+      "notificationsOn": "Oznámenia na",
+      "removed": "Odstránené. Nebude sa vám o tom viac oznámiť.",
+      "remove": "Zabraňte"
     },
     "card": {
       "open": "Otvoriť"
@@ -8710,6 +8753,17 @@
       "developer-tools": "Nástroje pre vývojárov",
       "entertainment": "Zábava",
       "art-creativity": "Umelecká tvorba & kreativita"
+    },
+    "pay": {
+      "title": "Platiť {{name}}?",
+      "body": "DHB priamo odchádza do penenice aplikácie, {{wallet}}. Platby sa nedajú vrátiť.",
+      "confirm": "Platiť {{amount}} DHB",
+      "sent": "Platba {{amount}} DHB na {{name}}."
+    },
+    "add": {
+      "title": "Pridaj {{name}}?",
+      "body": "Bude sa objavi pod Vašimi aplikáciami a môže vám posielať oznámenia. Odstrániť ho môžete akokoľvek zo stránky Aplikácie.",
+      "confirm": "Pridať aplikáciu"
     }
   },
   "aiStyles": {

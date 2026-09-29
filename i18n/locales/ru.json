@@ -146,7 +146,9 @@
     "noMoreShorts": "Больше нет Shorts",
     "noShortsFound": "Shorts не найдены",
     "newMembersHint": "Только что присоединились — поздоровайтесь",
-    "mostViewedThisMonth": "Самое просматриваемое в этом месяце"
+    "scroll": "Scroll",
+    "noFilterMatches": "Нет контента по вашим фильтрам.",
+    "clearFilters": "Сбросить фильтры"
   },
   "explore": {
     "all": "Всё",
@@ -2645,7 +2647,31 @@
     "noneYetBeFirst": "Комментариев пока нет. Будьте первым!",
     "turnedOff": "Комментарии к этой публикации отключены",
     "noQuotesYet": "Цитат пока нет.",
-    "noRepostsYet": "Репостов пока нет."
+    "noRepostsYet": "Репостов пока нет.",
+    "timeSeconds": "{{count}} с",
+    "timeMinutes": "{{count}} мин",
+    "timeHours": "{{count}} ч",
+    "seeWhoLiked": "Посмотреть, кому понравилось",
+    "holdToReact": "{{reaction}} — удерживайте, чтобы отреагировать",
+    "holdToChangeReaction": "{{reaction}} — удерживайте, чтобы изменить реакцию",
+    "viewCount_one": "{{count}} просмотр",
+    "viewCount_other": "Просмотров: {{count}}",
+    "shareMessage": "Посмотри: {{url}}",
+    "hideReplies": "Скрыть ответы",
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
+    "rowA11yHint": "Начинает ответ на этот комментарий",
+    "editingComment": "Редактирование комментария",
+    "editPlaceholder": "Измените комментарий...",
+    "replyPlaceholder": "Напишите ответ...",
+    "inputPlaceholder": "Введите текст",
+    "cancelReply": "Отменить ответ",
+    "cancelEdit": "Отменить редактирование",
+    "countLabel_one": "{{count}} комментарий",
+    "countLabel_other": "Комментарии: {{count}}",
+    "repostsLabel_one": "Репост",
+    "repostsLabel_other": "Репосты",
+    "quotesLabel_one": "Цитата",
+    "quotesLabel_other": "Цитаты"
   },
   "postInfo": {
     "title": "Информация о посте",
@@ -5179,7 +5205,20 @@
     "removeUploadTitle": "Удалить эту загрузку?",
     "removeQueuedBody": "Он еще не опубликован. Удаление отменяет публикацию.",
     "quotaShortfall": "Этот пост стоит {{cost}} токенов, а у вас есть {{held}}.",
-    "shopAllowanceUsed": "Использовано {{allowance}} из {{allowance}}. Стейкайте больше токенов DeHub для получения более высокого значка и еще одного слота."
+    "shopAllowanceUsed": "Использовано {{allowance}} из {{allowance}}. Стейкайте больше токенов DeHub для получения более высокого значка и еще одного слота.",
+    "editFilters": "Изменить фильтры",
+    "cropRotate": "Обрезать и повернуть",
+    "drawWrite": "Рисовать и писать",
+    "fade": "Выцветание {{value}}%",
+    "grayscale": "Оттенки серого {{value}}%",
+    "resetEdits": "Сбросить",
+    "clearDrawing": "Очистить",
+    "typeText": "Введите текст…",
+    "textSize": "Размер текста {{value}}",
+    "coverFrames": "Выберите кадр для обложки",
+    "coverFrame": "Сделать кадр {{index}} обложкой",
+    "uploadCover": "Загрузить обложку",
+    "editFailed": "Не удалось применить изменение. Попробуйте ещё раз."
   },
   "bounty": {
     "claimed": "Получено",
@@ -8530,7 +8569,11 @@
       "search": "Поиск приложений",
       "all": "Все",
       "fromDehub": "От DeHub",
-      "noMatch": "Нет приложений, соответствующих этому поиску."
+      "noMatch": "Нет приложений, соответствующих этому поиску.",
+      "yourApps": "Ваши приложения",
+      "notificationsOn": "Уведомления включены",
+      "remove": "Удалить",
+      "removed": "Удалено. Больше не будет уведомлений."
     },
     "card": {
       "open": "Открыть"
@@ -8549,6 +8592,17 @@
       "developer-tools": "Инструменты разработчика",
       "entertainment": "Развлечения",
       "art-creativity": "Искусство и творчество"
+    },
+    "pay": {
+      "title": "Оплатить {{name}}?",
+      "body": "DHB поступает напрямую в кошелёк приложения, {{wallet}}. Платежи нельзя отменить.",
+      "confirm": "Оплатить {{amount}} DHB",
+      "sent": "Оплачено {{amount}} DHB на {{name}}."
+    },
+    "add": {
+      "title": "Добавить {{name}}?",
+      "body": "Оно появится в разделе Ваши приложения и сможет отправлять вам уведомления. Вы можете удалить его в любое время с страницы Приложений.",
+      "confirm": "Добавить приложение"
     }
   },
   "aiStyles": {

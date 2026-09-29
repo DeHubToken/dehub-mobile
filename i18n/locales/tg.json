@@ -146,7 +146,9 @@
     "noMoreShorts": "Дигар шортсҳо нест",
     "noShortsFound": "Шортсҳо ёфт нашуд",
     "newMembersHint": "Ҳоло ҳамроҳ шуд — салом гӯед",
-    "mostViewedThisMonth": "Бештар дидашуда дар ин моҳ"
+    "scroll": "Scroll",
+    "noFilterMatches": "Ягон мундариҷа ба филтрҳои шумо мувофиқ нест.",
+    "clearFilters": "Пок кардани филтрҳо"
   },
   "explore": {
     "all": "Ҳама",
@@ -2640,7 +2642,31 @@
     "noneYetBeFirst": "Ҳанӯз шарҳ нест. Аввалин бошед!",
     "turnedOff": "Шарҳҳо барои ин пост хомӯш карда шудаанд",
     "noQuotesYet": "Ҳанӯз иқтибос нест.",
-    "noRepostsYet": "Ҳанӯз такрори нашр нест."
+    "noRepostsYet": "Ҳанӯз такрори нашр нест.",
+    "timeSeconds": "{{count}} сон.",
+    "timeMinutes": "{{count}} дақ.",
+    "timeHours": "{{count}} соат",
+    "seeWhoLiked": "Бинед, кӣ писандид",
+    "holdToReact": "{{reaction}} — барои вокуниш пахш карда нигоҳ доред",
+    "holdToChangeReaction": "{{reaction}} — барои иваз кардани вокуниш пахш карда нигоҳ доред",
+    "viewCount_one": "{{count}} тамошо",
+    "viewCount_other": "{{count}} тамошо",
+    "shareMessage": "Инро бинед: {{url}}",
+    "hideReplies": "Пинҳон кардани ҷавобҳо",
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
+    "rowA11yHint": "Ба ин шарҳ ҷавоб навиштанро оғоз мекунад",
+    "editingComment": "Таҳрири шарҳ",
+    "editPlaceholder": "Шарҳи худро таҳрир кунед...",
+    "replyPlaceholder": "Ҷавоб нависед...",
+    "inputPlaceholder": "Ин ҷо нависед",
+    "cancelReply": "Бекор кардани ҷавоб",
+    "cancelEdit": "Бекор кардани таҳрир",
+    "countLabel_one": "{{count}} шарҳ",
+    "countLabel_other": "{{count}} шарҳ",
+    "repostsLabel_one": "Бознашр",
+    "repostsLabel_other": "Бознашр",
+    "quotesLabel_one": "Иқтибос",
+    "quotesLabel_other": "Иқтибос"
   },
   "postInfo": {
     "title": "Маълумоти пост",
@@ -5116,7 +5142,20 @@
     "removeUploadTitle": "Мафрух кардан?",
     "removeQueuedBody": "Ҳанӯз интишор нашудааст. Тоза кардани он постро бекор мекунад.",
     "quotaShortfall": "Ин пост {{cost}} токен арзиш дорад ва шумо {{held}} доред.",
-    "shopAllowanceUsed": "{{allowance}} аз {{allowance}} истифода шуд. Токенҳои бештари DeHub-ро барои нишони баландтар ва як ҷойи дигар саҳмгузорӣ кунед."
+    "shopAllowanceUsed": "{{allowance}} аз {{allowance}} истифода шуд. Токенҳои бештари DeHub-ро барои нишони баландтар ва як ҷойи дигар саҳмгузорӣ кунед.",
+    "editFilters": "Танзилот",
+    "cropRotate": "Каттиб ва тартиб",
+    "drawWrite": "Каттиб ва навиштан",
+    "fade": "Сурхтан {{value}}%",
+    "grayscale": "Сурхтан {{value}}%",
+    "resetEdits": "Танзилот",
+    "clearDrawing": "Очирон",
+    "typeText": "Навиштан…",
+    "textSize": "Онаи матни {{value}}",
+    "coverFrames": "Корбарии рамка",
+    "coverFrame": "Истеъмол барои рамка {{index}}",
+    "uploadCover": "Файлҳои корбарро наворгирон",
+    "editFailed": "Мумкин нест, кори навиштанро барҷой кардааст. Барҷой карда меравед."
   },
   "bounty": {
     "claimed": "Гирифта шуд",
@@ -8516,7 +8555,11 @@
       "search": "Ҷустуҷӯи барномаҳо",
       "all": "Lahat",
       "fromDehub": "Аз DeHub",
-      "noMatch": "Walang mga application na tumutugma sa paghahanap na"
+      "noMatch": "Walang mga application na tumutugma sa paghahanap na",
+      "yourApps": "Sozandegiyangon",
+      "notificationsOn": "Xabarlar roshan",
+      "remove": "Oʻchirish",
+      "removed": "Oʻchirildi. Sizga yana xabar yuborilmaydi."
     },
     "card": {
       "open": "Кушодан"
@@ -8535,6 +8578,17 @@
       "developer-tools": "Абзорҳои таҳиягар",
       "entertainment": "Вақтхушӣ",
       "art-creativity": "Санъат ва эҷодкорӣ"
+    },
+    "pay": {
+      "title": "{{name}}ga toʻlov qiling?",
+      "body": "DHB toʻgʻridan-toʻgʻri {{wallet}} ilovaning portfeliga boradi. Toʻlovlarni bekor qilish mumkin emas.",
+      "confirm": "{{amount}} DHBga toʻlov qiling",
+      "sent": "{{amount}} DHBni {{name}}ga toʻlov qilingan."
+    },
+    "add": {
+      "title": "{{name}}ni qoʻshish?",
+      "body": "U \"Sozandegiyangon\" ostida koʻrinadi va sizga xabar yuborishi mumkin. Siz har qanday vaqtda Apps sahifasidan uni olib tashlashga tayyor boʻlsaniz.",
+      "confirm": "Ilovani qoʻshish"
     }
   },
   "aiStyles": {

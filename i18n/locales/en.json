@@ -146,7 +146,9 @@
     "noMoreShorts": "No more shorts",
     "noShortsFound": "No shorts found",
     "newMembersHint": "Just joined — say hello",
-    "mostViewedThisMonth": "Most viewed this month"
+    "scroll": "Scroll",
+    "noFilterMatches": "No content matches your filters",
+    "clearFilters": "Clear filters"
   },
   "explore": {
     "all": "All",
@@ -2641,7 +2643,31 @@
     "noneYetBeFirst": "No comments yet. Be the first!",
     "turnedOff": "Comments are turned off for this post",
     "noQuotesYet": "No quotes yet.",
-    "noRepostsYet": "No reposts yet."
+    "noRepostsYet": "No reposts yet.",
+    "timeSeconds": "{{count}}s",
+    "timeMinutes": "{{count}}m",
+    "timeHours": "{{count}}h",
+    "seeWhoLiked": "See who liked",
+    "holdToReact": "{{reaction}} — hold to react",
+    "holdToChangeReaction": "{{reaction}} — hold to change your reaction",
+    "viewCount_one": "{{count}} view",
+    "viewCount_other": "{{count}} views",
+    "shareMessage": "Check this out: {{url}}",
+    "hideReplies": "Hide replies",
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
+    "rowA11yHint": "Starts a reply to this comment",
+    "editingComment": "Editing comment",
+    "editPlaceholder": "Edit your comment...",
+    "replyPlaceholder": "Write a reply...",
+    "inputPlaceholder": "Type here",
+    "cancelReply": "Cancel reply",
+    "cancelEdit": "Cancel editing",
+    "countLabel_one": "{{count}} Comment",
+    "countLabel_other": "{{count}} Comments",
+    "repostsLabel_one": "Repost",
+    "repostsLabel_other": "Reposts",
+    "quotesLabel_one": "Quote",
+    "quotesLabel_other": "Quotes"
   },
   "postInfo": {
     "title": "Post Info",
@@ -5175,7 +5201,20 @@
     "pillMinimize": "Minimize upload status",
     "uploadInProgressStay": "Your upload is still going. Stay on this screen until it finishes.",
     "removeUploadTitle": "Remove this upload?",
-    "removeQueuedBody": "It has not been posted yet. Removing it cancels the post."
+    "removeQueuedBody": "It has not been posted yet. Removing it cancels the post.",
+    "editFilters": "Edit filters",
+    "cropRotate": "Crop & rotate",
+    "drawWrite": "Draw & write",
+    "fade": "Fade {{value}}%",
+    "grayscale": "Grayscale {{value}}%",
+    "resetEdits": "Reset",
+    "clearDrawing": "Clear",
+    "typeText": "Type…",
+    "textSize": "Text size {{value}}",
+    "coverFrames": "Pick a cover frame",
+    "coverFrame": "Use frame {{index}} as the cover",
+    "uploadCover": "Upload a cover image",
+    "editFailed": "Couldn't apply that edit. Try again."
   },
   "bounty": {
     "claimed": "Claimed",
@@ -8519,7 +8558,11 @@
       "search": "Search apps",
       "all": "All",
       "fromDehub": "From DeHub",
-      "noMatch": "No apps match that search."
+      "noMatch": "No apps match that search.",
+      "yourApps": "Your apps",
+      "notificationsOn": "Notifications on",
+      "remove": "Remove",
+      "removed": "Removed. It will not notify you again."
     },
     "card": {
       "open": "Open"
@@ -8538,6 +8581,17 @@
       "developer-tools": "Developer tools",
       "entertainment": "Entertainment",
       "art-creativity": "Art & creativity"
+    },
+    "pay": {
+      "title": "Pay {{name}}?",
+      "body": "The DHB goes straight to the app's wallet, {{wallet}}. Payments can't be reversed.",
+      "confirm": "Pay {{amount}} DHB",
+      "sent": "Paid {{amount}} DHB to {{name}}."
+    },
+    "add": {
+      "title": "Add {{name}}?",
+      "body": "It will appear under Your apps and can send you notifications. You can remove it any time from the Apps page.",
+      "confirm": "Add app"
     }
   },
   "aiStyles": {

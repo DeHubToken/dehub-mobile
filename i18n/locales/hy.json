@@ -146,7 +146,9 @@
     "noMoreShorts": "Այլևս կարճ տեսանյութեր չկան",
     "noShortsFound": "Կարճ տեսանյութեր չեն գտնվել",
     "newMembersHint": "Նոր եք միացել — ողջունեք",
-    "mostViewedThisMonth": "Այս ամսվա ամենադիտվածները"
+    "scroll": "Scroll",
+    "noFilterMatches": "Ձեր զտիչներին համապատասխանող բովանդակություն չկա։",
+    "clearFilters": "Մաքրել զտիչները"
   },
   "explore": {
     "all": "Բոլորը",
@@ -2641,7 +2643,31 @@
     "noneYetBeFirst": "Դեռ մեկնաբանություններ չկան։ Լինի՛ առաջինը։",
     "turnedOff": "Այս գրառման համար մեկնաբանությունները անջատված են",
     "noQuotesYet": "Դեռ մեջբերումներ չկան։",
-    "noRepostsYet": "Դեռ վերաբեռնումներ չկան։"
+    "noRepostsYet": "Դեռ վերաբեռնումներ չկան։",
+    "timeSeconds": "{{count}} վրկ",
+    "timeMinutes": "{{count}} ր",
+    "timeHours": "{{count}} ժ",
+    "seeWhoLiked": "Տեսնել, թե ով է հավանել",
+    "holdToReact": "{{reaction}} — սեղմած պահեք՝ արձագանքելու համար",
+    "holdToChangeReaction": "{{reaction}} — սեղմած պահեք՝ արձագանքը փոխելու համար",
+    "viewCount_one": "{{count}} դիտում",
+    "viewCount_other": "{{count}} դիտում",
+    "shareMessage": "Տես սա: {{url}}",
+    "hideReplies": "Թաքցնել պատասխանները",
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
+    "rowA11yHint": "Սկսում է պատասխանը այս մեկնաբանությանը",
+    "editingComment": "Մեկնաբանության խմբագրում",
+    "editPlaceholder": "Խմբագրեք ձեր մեկնաբանությունը...",
+    "replyPlaceholder": "Գրեք պատասխան...",
+    "inputPlaceholder": "Մուտքագրեք այստեղ",
+    "cancelReply": "Չեղարկել պատասխանը",
+    "cancelEdit": "Չեղարկել խմբագրումը",
+    "countLabel_one": "{{count}} մեկնաբանություն",
+    "countLabel_other": "{{count}} մեկնաբանություն",
+    "repostsLabel_one": "վերահրապարակում",
+    "repostsLabel_other": "վերահրապարակում",
+    "quotesLabel_one": "մեջբերում",
+    "quotesLabel_other": "մեջբերում"
   },
   "postInfo": {
     "title": "Գdelaysայթի տdelaysdelays",
@@ -5126,7 +5152,20 @@
     "removeUploadTitle": "Հեռացնե ՞ լ այս վերբեռնումը:",
     "removeQueuedBody": "Այն դեռ չի հրապարակվել ։ Հեռացնելը չեղարկում է գրառումը ։",
     "quotaShortfall": "Այս գրառումն արժենում է {{cost}} թոքեն, և դուք ունեք {{held}}։",
-    "shopAllowanceUsed": "Օգտագործվել է {{allowance}}-ից {{allowance}}։ Ստեյք արեք ավելի շատ DeHub թոքեններ՝ ավելի բարձր կրծքանշան և ևս մեկ տեղ ստանալու համար։"
+    "shopAllowanceUsed": "Օգտագործվել է {{allowance}}-ից {{allowance}}։ Ստեյք արեք ավելի շատ DeHub թոքեններ՝ ավելի բարձր կրծքանշան և ևս մեկ տեղ ստանալու համար։",
+    "editFilters": "Մանրակրտսնել",
+    "cropRotate": "Մոտեցնել և դուրս տանել",
+    "drawWrite": "Նկարել և գրել",
+    "fade": "Մութեցնել {{value}}%",
+    "grayscale": "Սև գույն {{value}}%",
+    "resetEdits": "Մաքրել",
+    "clearDrawing": "Մաքրել",
+    "typeText": "Տեքստ…",
+    "textSize": "Տեքստի չափը {{value}}",
+    "coverFrames": "Նշանակել ծածկագրի շրջանակ",
+    "coverFrame": "Օգտագործել ծածկագրի շրջանակ {{index}} որպես ծածկագիր",
+    "uploadCover": "Պատկեր ներբեռնել",
+    "editFailed": "Չկարողացա կիրառել այդ մշակումը։ Ստուգեք նորից։"
   },
   "bounty": {
     "claimed": "Ստացված",
@@ -8526,7 +8565,11 @@
       "search": "Search apps",
       "all": "All",
       "fromDehub": "From DeHub",
-      "noMatch": "Ոչ մի հավելված չի համապատասխանում որոնման արդյունքներին ։"
+      "noMatch": "Ոչ մի հավելված չի համապատասխանում որոնման արդյունքներին ։",
+      "notificationsOn": "Նոտիֆիկացիաներ՝",
+      "removed": "Հեռացվել է։ Այն այլևս չի հայտնաբերում ձեզ։",
+      "yourApps": "Յուրաքանչյուր հավելված",
+      "remove": "Հեռացրու"
     },
     "card": {
       "open": "Open"
@@ -8545,6 +8588,17 @@
       "developer-tools": "Developer tools",
       "entertainment": "Entertainment",
       "art-creativity": "Art & creativity"
+    },
+    "pay": {
+      "title": "Պայ {{name}}-ին։",
+      "body": "ԴՀԲ-ը անմիջապես անցնում է հավելվածի դրամապանակ՝ {{wallet}}։ Աճուրդները վերադարձնելու հնարավորություն չկա։",
+      "confirm": "Պայ {{amount}} DHB",
+      "sent": "Փայլել {{amount}} DHB-ին {{name}}-ին։"
+    },
+    "add": {
+      "body": "Դուք կարող եք այն տեսնել «Ձեր հավելվածները» բաժնում և ստանալ հուշումներ։ Այն ցանկացած պահի կարող եք հեռացնել «Հավելվածները» էջից։",
+      "confirm": "Ավելացրեք հավելվածը։",
+      "title": "Ավելացրու {{name}}?"
     }
   },
   "aiStyles": {

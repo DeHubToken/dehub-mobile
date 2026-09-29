@@ -146,7 +146,9 @@
     "noMoreShorts": "Больш няма Shorts",
     "noShortsFound": "Shorts не знойдзены",
     "newMembersHint": "Толькі што далучыліся — скажыце прывітанне",
-    "mostViewedThisMonth": "Найбольш праглянутыя ў гэтым месяцы"
+    "scroll": "Scroll",
+    "noFilterMatches": "Няма кантэнту, які адпавядае вашым фільтрам.",
+    "clearFilters": "Ачысціць фільтры"
   },
   "explore": {
     "all": "Усе",
@@ -2654,7 +2656,31 @@
     "noneYetBeFirst": "Пакуль няма каментарыяў. Будзьце першымі!",
     "turnedOff": "Каментарыі для гэтага паста адключаны",
     "noQuotesYet": "Пакуль няма цытат.",
-    "noRepostsYet": "Пакуль няма рэпостаў."
+    "noRepostsYet": "Пакуль няма рэпостаў.",
+    "timeSeconds": "{{count}} с",
+    "timeMinutes": "{{count}} хв",
+    "timeHours": "{{count}} гадз",
+    "seeWhoLiked": "Паглядзець, каму спадабалася",
+    "holdToReact": "{{reaction}} — утрымлівайце, каб адрэагаваць",
+    "holdToChangeReaction": "{{reaction}} — утрымлівайце, каб змяніць рэакцыю",
+    "viewCount_one": "{{count}} прагляд",
+    "viewCount_other": "Прагляды: {{count}}",
+    "shareMessage": "Паглядзі: {{url}}",
+    "hideReplies": "Схаваць адказы",
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
+    "rowA11yHint": "Пачынае адказ на гэты каментарый",
+    "editingComment": "Рэдагаванне каментарыя",
+    "editPlaceholder": "Адрэдагуйце каментарый...",
+    "replyPlaceholder": "Напішыце адказ...",
+    "inputPlaceholder": "Пішыце тут",
+    "cancelReply": "Адмяніць адказ",
+    "cancelEdit": "Адмяніць рэдагаванне",
+    "countLabel_one": "{{count}} каментарый",
+    "countLabel_other": "Каментарыі: {{count}}",
+    "repostsLabel_one": "рэпост",
+    "repostsLabel_other": "рэпостаў",
+    "quotesLabel_one": "цытата",
+    "quotesLabel_other": "цытат"
   },
   "postInfo": {
     "title": "Інфармацыя пра пост",
@@ -5135,7 +5161,20 @@
     "removeUploadTitle": "Выдаліць гэтую загрузку?",
     "removeQueuedBody": "Яна яшчэ не была апублікаваная. Выдаленне яго адмяняе паведамленне.",
     "quotaShortfall": "Гэты пост каштуе {{cost}} токенаў, а ў вас ёсць {{held}}.",
-    "shopAllowanceUsed": "Выкарыстана {{allowance}} з {{allowance}}. Стаўце больш токенаў DeHub для больш высокага значка і дадатковага слота."
+    "shopAllowanceUsed": "Выкарыстана {{allowance}} з {{allowance}}. Стаўце больш токенаў DeHub для больш высокага значка і дадатковага слота.",
+    "editFilters": "Правілы рэдагавання",
+    "cropRotate": "Кароткаць & абарач",
+    "drawWrite": "Нарысіць & напісаць",
+    "fade": "Зніміць {{value}}%",
+    "grayscale": "Абніміць {{value}}%",
+    "resetEdits": "Скасаваць",
+    "clearDrawing": "Чистка",
+    "typeText": "Напісаць…",
+    "textSize": "Розмер шрыфта {{value}}",
+    "coverFrames": "Выберыце рамку",
+    "coverFrame": "Выкарыстоўваць рамку {{index}} як вокладку",
+    "uploadCover": "Заладзіць вокладку",
+    "editFailed": "Не ўдалося прымяніць гэтыя правілы. Папраўце."
   },
   "bounty": {
     "claimed": "Атрымана",
@@ -8562,7 +8601,10 @@
       "search": "Пошук праграм",
       "all": "Усе",
       "fromDehub": "З DeHub",
-      "noMatch": "Ніякія праграмы не адпавядаюць гэтаму пошуку."
+      "noMatch": "Ніякія праграмы не адпавядаюць гэтаму пошуку.",
+      "yourApps": "Вашы праграмы",
+      "notificationsOn": "Аповешчэнні на",
+      "removed": "Удалена. Будзе не паведамляць больш."
     },
     "card": {
       "open": "Адкрыць"
@@ -8581,6 +8623,17 @@
       "developer-tools": "Інструменты распрацоўшчыка",
       "entertainment": "Забавы",
       "art-creativity": "Мастацтва і творчасць"
+    },
+    "pay": {
+      "title": "Адплаціць за {{name}}?",
+      "body": "ДХБ адразу ж трапляецца ў гашэўнік прыложэння, {{wallet}}. Аплат не можна адмяніць.",
+      "confirm": "Адплаціць за {{amount}} DHB",
+      "sent": "Аплаціраваны {{amount}} DHB за {{name}}."
+    },
+    "add": {
+      "title": "Дадавай {{name}}?",
+      "body": "Яно з’явіцца пад Вашымі прыложэннямі і можа адпраўляць вам паведамленні. Вы можаце зняць яго ў любы час з старонкі Прыложэнні.",
+      "confirm": "Додай прыкладжанне"
     }
   },
   "aiStyles": {

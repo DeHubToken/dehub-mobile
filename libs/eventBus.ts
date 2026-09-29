@@ -38,26 +38,10 @@ export const promptFeedEvents = {
   },
 };
 
-type HomeTabListener = (postType: "video" | "feed-images" | "feed-audio" | "live") => void;
-
-const homeTabListeners = new Set<HomeTabListener>();
 let visibleHomeTab = "all";
 
-/**
- * The menu sheet opens the home feed on a given tab (Videos, Images, Music,
- * Live). HomeScreen owns the pager state and stays mounted under the tab
- * navigator, so the request reaches it here rather than through route params.
- */
+/** HomeScreen stays mounted under the tab navigator and reports which feed tab is on screen. */
 export const homeTabEvents = {
-  onTabRequested(listener: HomeTabListener): () => void {
-    homeTabListeners.add(listener);
-    return () => { homeTabListeners.delete(listener); };
-  },
-
-  requestTab(postType: Parameters<HomeTabListener>[0]): void {
-    homeTabListeners.forEach((fn) => fn(postType));
-  },
-
   /** HomeScreen reports the tab on screen so the + button can open the composer on Livestream from Live. */
   setVisibleTab(tab: string): void {
     visibleHomeTab = tab;

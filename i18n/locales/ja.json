@@ -146,7 +146,9 @@
     "noMoreShorts": "ショート動画はありません",
     "noShortsFound": "ショート動画は見つかりませんでした",
     "newMembersHint": "参加しました — こんにちは",
-    "mostViewedThisMonth": "今月の最多視聴"
+    "scroll": "Scroll",
+    "noFilterMatches": "フィルターに一致するコンテンツはありません。",
+    "clearFilters": "フィルターをクリア"
   },
   "explore": {
     "all": "すべて",
@@ -2643,7 +2645,31 @@
     "noneYetBeFirst": "まだコメントはありません。最初のコメントを投稿しましょう！",
     "turnedOff": "この投稿ではコメントが無効になっています",
     "noQuotesYet": "引用がまだありません。",
-    "noRepostsYet": "リポストがまだありません。"
+    "noRepostsYet": "リポストがまだありません。",
+    "timeSeconds": "{{count}}秒",
+    "timeMinutes": "{{count}}分",
+    "timeHours": "{{count}}時間",
+    "seeWhoLiked": "いいねした人を見る",
+    "holdToReact": "{{reaction}} — 長押しでリアクション",
+    "holdToChangeReaction": "{{reaction}} — 長押しでリアクションを変更",
+    "viewCount_one": "{{count}}回表示",
+    "viewCount_other": "{{count}}回表示",
+    "shareMessage": "これを見て：{{url}}",
+    "hideReplies": "返信を非表示",
+    "rowA11yLabel": "{{name}}、{{time}}：{{text}}",
+    "rowA11yHint": "このコメントへの返信を開始します",
+    "editingComment": "コメントを編集中",
+    "editPlaceholder": "コメントを編集...",
+    "replyPlaceholder": "返信を書く...",
+    "inputPlaceholder": "ここに入力",
+    "cancelReply": "返信をキャンセル",
+    "cancelEdit": "編集をキャンセル",
+    "countLabel_one": "{{count}}件のコメント",
+    "countLabel_other": "{{count}}件のコメント",
+    "repostsLabel_one": "リポスト",
+    "repostsLabel_other": "リポスト",
+    "quotesLabel_one": "引用",
+    "quotesLabel_other": "引用"
   },
   "postInfo": {
     "title": "投稿情報",
@@ -5176,7 +5202,20 @@
     "removeUploadTitle": "このアップロードを削除しますか？",
     "removeQueuedBody": "まだ投稿されていません。 削除すると、投稿はキャンセルされます。",
     "quotaShortfall": "この投稿は {{cost}} トークンで、あなたは {{held}} を保持しています。",
-    "shopAllowanceUsed": "{{allowance}} / {{allowance}} 使用済み。より高いバッジと別のスロットを獲得するには、DeHub トークンをさらにステークしてください。"
+    "shopAllowanceUsed": "{{allowance}} / {{allowance}} 使用済み。より高いバッジと別のスロットを獲得するには、DeHub トークンをさらにステークしてください。",
+    "editFilters": "フィルターを編集",
+    "cropRotate": "切り抜き・回転",
+    "drawWrite": "描く・書く",
+    "fade": "フェード {{value}}%",
+    "grayscale": "グレースケール {{value}}%",
+    "resetEdits": "リセット",
+    "clearDrawing": "消去",
+    "typeText": "入力…",
+    "textSize": "文字サイズ {{value}}",
+    "coverFrames": "カバーにするフレームを選択",
+    "coverFrame": "フレーム {{index}} をカバーにする",
+    "uploadCover": "カバー画像をアップロード",
+    "editFailed": "編集を適用できませんでした。もう一度お試しください。"
   },
   "bounty": {
     "claimed": "受け取り済み",
@@ -8527,7 +8566,10 @@
       "search": "アプリを検索",
       "all": "すべて",
       "fromDehub": "DeHubから",
-      "noMatch": "その検索に一致するアプリはありません。"
+      "noMatch": "その検索に一致するアプリはありません。",
+      "yourApps": "あなたのアプリ",
+      "notificationsOn": "通知の設定",
+      "removed": "削除されました。もう通知はありません。"
     },
     "card": {
       "open": "開く"
@@ -8546,6 +8588,14 @@
       "developer-tools": "デベロッパーツール",
       "entertainment": "エンターテインメント",
       "art-creativity": "アート＆クリエイティビティ"
+    },
+    "pay": {
+      "body": "DHBはアプリのウォレットに直接振り込まれる、{{wallet}}。支払いは取り消せません。",
+      "confirm": "支払い {{amount}} DHB",
+      "sent": "支払い {{amount}} DHB を {{name}} に。"
+    },
+    "add": {
+      "body": "アプリ一覧に表示され、通知を送信することができます。いつでもアプリページから削除することができます。"
     }
   },
   "aiStyles": {

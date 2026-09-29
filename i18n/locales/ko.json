@@ -146,7 +146,9 @@
     "noMoreShorts": "더 이상 쇼츠가 없습니다",
     "noShortsFound": "쇼츠를 찾을 수 없습니다",
     "newMembersHint": "방금 가입 — 인사하세요",
-    "mostViewedThisMonth": "이번 달 조회수 순"
+    "scroll": "Scroll",
+    "noFilterMatches": "필터에 맞는 콘텐츠가 없습니다.",
+    "clearFilters": "필터 지우기"
   },
   "explore": {
     "all": "전체",
@@ -2645,7 +2647,31 @@
     "noneYetBeFirst": "아직 댓글이 없습니다. 첫 번째가 되어보세요!",
     "turnedOff": "이 게시물에 대한 댓글이 비활성화되었습니다.",
     "noQuotesYet": "아직 인용이 없습니다.",
-    "noRepostsYet": "아직 리포스트가 없습니다."
+    "noRepostsYet": "아직 리포스트가 없습니다.",
+    "timeSeconds": "{{count}}초",
+    "timeMinutes": "{{count}}분",
+    "timeHours": "{{count}}시간",
+    "seeWhoLiked": "좋아요 누른 사람 보기",
+    "holdToReact": "{{reaction}} — 길게 눌러 반응하기",
+    "holdToChangeReaction": "{{reaction}} — 길게 눌러 반응 변경",
+    "viewCount_one": "조회수 {{count}}회",
+    "viewCount_other": "조회수 {{count}}회",
+    "shareMessage": "이거 확인해 보세요: {{url}}",
+    "hideReplies": "답글 숨기기",
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
+    "rowA11yHint": "이 댓글에 답글을 작성합니다",
+    "editingComment": "댓글 수정 중",
+    "editPlaceholder": "댓글 수정...",
+    "replyPlaceholder": "답글 작성...",
+    "inputPlaceholder": "여기에 입력",
+    "cancelReply": "답글 취소",
+    "cancelEdit": "수정 취소",
+    "countLabel_one": "댓글 {{count}}개",
+    "countLabel_other": "댓글 {{count}}개",
+    "repostsLabel_one": "리포스트",
+    "repostsLabel_other": "리포스트",
+    "quotesLabel_one": "인용",
+    "quotesLabel_other": "인용"
   },
   "postInfo": {
     "title": "게시물 정보",
@@ -5179,7 +5205,20 @@
     "removeUploadTitle": "이 업로드를 삭제하시겠어요?",
     "removeQueuedBody": "아직 게시되지 않았습니다. 포스트를 삭제하면 포스트가 취소됩니다.",
     "quotaShortfall": "이 게시물은 {{cost}} 개의 토큰이 필요하며 보유량은 {{held}} 개입니다.",
-    "shopAllowanceUsed": "{{allowance}} / {{allowance}} 개 사용됨. 더 많은 DeHub 토큰을 스테이킹하여 더 높은 배지와 추가 슬롯을 확보하세요."
+    "shopAllowanceUsed": "{{allowance}} / {{allowance}} 개 사용됨. 더 많은 DeHub 토큰을 스테이킹하여 더 높은 배지와 추가 슬롯을 확보하세요.",
+    "editFilters": "필터 편집",
+    "cropRotate": "자르기 및 회전",
+    "drawWrite": "그리기 및 쓰기",
+    "fade": "페이드 {{value}}%",
+    "grayscale": "흑백 {{value}}%",
+    "resetEdits": "초기화",
+    "clearDrawing": "지우기",
+    "typeText": "입력…",
+    "textSize": "글자 크기 {{value}}",
+    "coverFrames": "커버 프레임 선택",
+    "coverFrame": "{{index}}번 프레임을 커버로 사용",
+    "uploadCover": "커버 이미지 업로드",
+    "editFailed": "편집을 적용하지 못했습니다. 다시 시도하세요."
   },
   "bounty": {
     "claimed": "수령 완료",
@@ -8530,7 +8569,11 @@
       "search": "앱 검색",
       "all": "전체",
       "fromDehub": "DeHub에서",
-      "noMatch": "검색 조건에 일치하는 앱이 없습니다."
+      "noMatch": "검색 조건에 일치하는 앱이 없습니다.",
+      "yourApps": "내 앱",
+      "removed": "제거되었습니다. 다시 알리지 않습니다.",
+      "notificationsOn": "알림을 받으려면",
+      "remove": "제거"
     },
     "card": {
       "open": "열기"
@@ -8549,6 +8592,17 @@
       "developer-tools": "개발자 도구",
       "entertainment": "엔터테인먼트",
       "art-creativity": "예술과 창의성"
+    },
+    "pay": {
+      "body": "DHB는 바로 앱의 지갑으로 직행합니다. {{wallet}}. 결제는 취소할 수 없습니다.",
+      "confirm": "지불 {{amount}} DHB",
+      "sent": "지불된 {{amount}} DHB를 {{name}}로 이체했습니다.",
+      "title": "{{name}}로 지불?"
+    },
+    "add": {
+      "title": "{{name}}을(를) 추가하시겠습니까?",
+      "body": "앱 목록에 추가됩니다. 알림을 보낼 수 있으며 언제든지 앱 페이지에서 제거할 수 있습니다.",
+      "confirm": "앱 추가"
     }
   },
   "aiStyles": {

@@ -10,7 +10,7 @@
  * Store build; balances and history stay readable.
  */
 import React, { useCallback, useState } from "react";
-import { View, Text, ScrollView, Pressable, StyleSheet, KeyboardAvoidingView, Platform } from "react-native";
+import { View, Text, ScrollView, Pressable, StyleSheet, KeyboardAvoidingView } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
 import { useQueryClient } from "@tanstack/react-query";
@@ -44,7 +44,7 @@ export default function BridgeScreen() {
   return (
     <KeyboardAvoidingView
       style={styles.root}
-      behavior={Platform.OS === "ios" ? "padding" : undefined}
+      behavior="padding"
       keyboardVerticalOffset={keyboardOffset}
     >
       <ScreenHeader title={t("nav.bridge")} subtitle={t("bridge.subtitle")} />

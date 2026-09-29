@@ -23,6 +23,8 @@ export const HOST_CAPABILITIES = [
   'actions.viewProfile',
   'actions.viewPost',
   'actions.openUrl',
+  'actions.addApp',
+  'actions.pay',
   'haptics.impact',
 ] as const;
 
@@ -34,7 +36,7 @@ export interface MiniAppRequest {
   params: Record<string, unknown>;
 }
 
-export type LaunchSource = 'store' | 'feed' | 'share' | 'dev' | 'direct';
+export type LaunchSource = 'store' | 'feed' | 'share' | 'notification' | 'dev' | 'direct';
 
 export interface MiniAppContext {
   user: {
@@ -46,6 +48,8 @@ export interface MiniAppContext {
   location: { type: LaunchSource };
   client: {
     platform: 'web' | 'mobile';
+    /** Whether this person has added the app (and so can be notified). */
+    added: boolean;
     locale: string;
     theme: 'dark' | 'light';
     safeAreaInsets: { top: number; bottom: number; left: number; right: number };
@@ -195,4 +199,16 @@ export function syntheticFid(wallet: string | null | undefined): number {
   if (!wallet || !/^0x[0-9a-f]{40}$/i.test(wallet)) return 0;
   const n = parseInt(wallet.slice(2, 10), 16) % 2_147_483_647;
   return -(n || 1);
+}
+
+/** The most one payment request may ask for, in DHB. The sheet shows every one. */
+export const PAY_MAX_DHB = 1_000_000;
+
+/** A payment request from an app: a positive DHB amount and an optional memo, or null. */
+export function cleanPayment(params: Record<string, unknown>): { amount: number; memo: string | null } | null {
+  const amount = typeof params.amount === 'number' ? params.amount : Number(params.amount);
+  if (!Number.isFinite(amount) || amount <= 0 || amount > PAY_MAX_DHB) return null;
+  const memo = typeof params.memo === 'string' ? cleanComposeText(params.memo).slice(0, 140) || null : null;
+  // payDhb sends whole DHB, rounded up; say so before the sheet does.
+  return { amount: Math.ceil(amount), memo };
 }

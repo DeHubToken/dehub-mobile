@@ -146,7 +146,9 @@
     "noMoreShorts": "شورت بیشتری وجود ندارد",
     "noShortsFound": "شورت پیدا نشد",
     "newMembersHint": "تازه پیوسته — سلام کن",
-    "mostViewedThisMonth": "پربازدیدترین‌های این ماه"
+    "scroll": "Scroll",
+    "noFilterMatches": "هیچ محتوایی با فیلترهای شما مطابقت ندارد.",
+    "clearFilters": "پاک کردن فیلترها"
   },
   "explore": {
     "all": "همه",
@@ -2671,7 +2673,31 @@
     "noneYetBeFirst": "هنوز هیچ نظری وجود ندارد. اولین نفر باشید!",
     "turnedOff": "نظرات برای این پست غیرفعال شده است",
     "noQuotesYet": "هنوز نقل قولی وجود ندارد.",
-    "noRepostsYet": "هنوز بازنشر نشده است."
+    "noRepostsYet": "هنوز بازنشر نشده است.",
+    "timeSeconds": "{{count}} ثانیه",
+    "timeMinutes": "{{count}} دقیقه",
+    "timeHours": "{{count}} ساعت",
+    "seeWhoLiked": "ببینید چه کسانی پسندیدند",
+    "holdToReact": "{{reaction}} — برای واکنش نگه دارید",
+    "holdToChangeReaction": "{{reaction}} — برای تغییر واکنش نگه دارید",
+    "viewCount_one": "{{count}} بازدید",
+    "viewCount_other": "{{count}} بازدید",
+    "shareMessage": "این را ببین: {{url}}",
+    "hideReplies": "پنهان کردن پاسخ‌ها",
+    "rowA11yLabel": "{{name}}، {{time}}: {{text}}",
+    "rowA11yHint": "پاسخ به این نظر را شروع می‌کند",
+    "editingComment": "در حال ویرایش نظر",
+    "editPlaceholder": "نظر خود را ویرایش کنید...",
+    "replyPlaceholder": "پاسخی بنویسید...",
+    "inputPlaceholder": "اینجا تایپ کنید",
+    "cancelReply": "لغو پاسخ",
+    "cancelEdit": "لغو ویرایش",
+    "countLabel_one": "{{count}} نظر",
+    "countLabel_other": "{{count}} نظر",
+    "repostsLabel_one": "بازنشر",
+    "repostsLabel_other": "بازنشر",
+    "quotesLabel_one": "نقل‌قول",
+    "quotesLabel_other": "نقل‌قول"
   },
   "postInfo": {
     "title": "اطلاعات پست",
@@ -5156,7 +5182,20 @@
     "removeUploadTitle": "این آپلود را حذف کنید؟",
     "removeQueuedBody": "هنوز پست نشده است. حذف آن، پست را لغو می‌کند.",
     "quotaShortfall": "این پست {{cost}} توکن هزینه دارد و شما {{held}} را در اختیار دارید.",
-    "shopAllowanceUsed": "{{allowance}} از {{allowance}} استفاده شد. توکن‌های DeHub بیشتری را استیک کنید تا نشان بالاتر و یک اسلات دیگر دریافت کنید."
+    "shopAllowanceUsed": "{{allowance}} از {{allowance}} استفاده شد. توکن‌های DeHub بیشتری را استیک کنید تا نشان بالاتر و یک اسلات دیگر دریافت کنید.",
+    "editFilters": "ویرایش فیلترها",
+    "cropRotate": "برش و چرخش",
+    "drawWrite": "کشیدن و نوشتن",
+    "fade": "کم‌رنگی {{value}}%",
+    "grayscale": "سیاه‌وسفید {{value}}%",
+    "resetEdits": "بازنشانی",
+    "clearDrawing": "پاک کردن",
+    "typeText": "بنویسید…",
+    "textSize": "اندازه متن {{value}}",
+    "coverFrames": "یک فریم برای کاور انتخاب کنید",
+    "coverFrame": "استفاده از فریم {{index}} به‌عنوان کاور",
+    "uploadCover": "بارگذاری تصویر کاور",
+    "editFailed": "اعمال ویرایش ممکن نشد. دوباره تلاش کنید."
   },
   "bounty": {
     "claimed": "دریافت‌شده",
@@ -8556,7 +8595,11 @@
       "search": "جستجوی برنامه‌ها",
       "all": "همه",
       "fromDehub": "از دی‌هاب",
-      "noMatch": "هیچ برنامه‌ای با آن جستجو مطابقت ندارد."
+      "noMatch": "هیچ برنامه‌ای با آن جستجو مطابقت ندارد.",
+      "yourApps": "آپلیکیشن‌های شما",
+      "notificationsOn": "آلارم‌ها فعال است",
+      "remove": "حذف",
+      "removed": "حذف شد. دیگر به شما اطلاع نمی‌دهد."
     },
     "card": {
       "open": "باز"
@@ -8575,6 +8618,17 @@
       "developer-tools": "ابزارهای توسعه‌دهندگان",
       "entertainment": "سرگرمی",
       "art-creativity": "هنر و خلاقیت"
+    },
+    "pay": {
+      "title": "پرداخت {{name}}؟",
+      "body": "DHB مستقیم به کیف پول اپلیکیشن {{wallet}} می‌رود. پرداخت‌ها قابل برگشت نیستند.",
+      "confirm": "پرداخت {{amount}} DHB",
+      "sent": "{{amount}} DHB به {{name}} پرداخت شد."
+    },
+    "add": {
+      "title": "{{name}} را اضافه کنید؟",
+      "body": "این در زیر «آپلیکیشن‌های شما» ظاهر خواهد شد و می‌تواند به شما اطلاع‌رسانی کند. می‌توانید هر زمان که می‌خواهید آن را از صفحه «اپلیکیشن‌ها» حذف کنید.",
+      "confirm": "اپلیکیشن را اضافه کنید"
     }
   },
   "aiStyles": {

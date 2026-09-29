@@ -146,7 +146,9 @@
     "noMoreShorts": "Niciun scurtmetraj",
     "noShortsFound": "Nu s-au găsit scurtmetraje",
     "newMembersHint": "Tocmai te-ai alăturat — salută",
-    "mostViewedThisMonth": "Cele mai vizionate luna aceasta"
+    "scroll": "Scroll",
+    "noFilterMatches": "Niciun conținut nu se potrivește cu filtrele tale.",
+    "clearFilters": "Șterge filtrele"
   },
   "explore": {
     "all": "Toate",
@@ -2641,7 +2643,31 @@
     "noneYetBeFirst": "Încă nu există comentarii. Fii primul!",
     "turnedOff": "Nu se permit comentarii pentru acest articol",
     "noQuotesYet": "Încă nu există oferte.",
-    "noRepostsYet": "Încă nu există repostări."
+    "noRepostsYet": "Încă nu există repostări.",
+    "timeSeconds": "{{count}} s",
+    "timeMinutes": "{{count}} min",
+    "timeHours": "{{count}} h",
+    "seeWhoLiked": "Vezi cine a apreciat",
+    "holdToReact": "{{reaction}} — ține apăsat pentru a reacționa",
+    "holdToChangeReaction": "{{reaction}} — ține apăsat pentru a-ți schimba reacția",
+    "viewCount_one": "{{count}} vizualizare",
+    "viewCount_other": "{{count}} vizualizări",
+    "shareMessage": "Uită-te la asta: {{url}}",
+    "hideReplies": "Ascunde răspunsurile",
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
+    "rowA11yHint": "Începe un răspuns la acest comentariu",
+    "editingComment": "Editezi comentariul",
+    "editPlaceholder": "Editează comentariul...",
+    "replyPlaceholder": "Scrie un răspuns...",
+    "inputPlaceholder": "Scrie aici",
+    "cancelReply": "Anulează răspunsul",
+    "cancelEdit": "Anulează editarea",
+    "countLabel_one": "{{count}} comentariu",
+    "countLabel_other": "{{count}} comentarii",
+    "repostsLabel_one": "Repostare",
+    "repostsLabel_other": "Repostări",
+    "quotesLabel_one": "Citat",
+    "quotesLabel_other": "Citate"
   },
   "postInfo": {
     "title": "Postare informații",
@@ -5126,7 +5152,20 @@
     "removeUploadTitle": "Elimini această încărcare?",
     "removeQueuedBody": "Nu a fost încă postat. Eliminarea acesteia anulează postarea.",
     "quotaShortfall": "Această postare costă {{cost}} tokeni și tu deții {{held}}.",
-    "shopAllowanceUsed": "{{allowance}} din {{allowance}} folosiți. Mizează mai mulți tokeni DeHub pentru o insignă mai mare și un alt slot."
+    "shopAllowanceUsed": "{{allowance}} din {{allowance}} folosiți. Mizează mai mulți tokeni DeHub pentru o insignă mai mare și un alt slot.",
+    "editFilters": "Filtre de editare",
+    "cropRotate": "Tăiați și rotați",
+    "drawWrite": "Desenează & scrie",
+    "fade": "Fadă {{value}}%",
+    "resetEdits": "Resetează",
+    "clearDrawing": "Clar",
+    "typeText": "Tipărește…",
+    "textSize": "Dimensiunea textului {{value}}",
+    "coverFrames": "Alegeți un cadru de acoperire",
+    "coverFrame": "Folosește cadrul {{index}} ca și copertă",
+    "uploadCover": "Încărcați o imagine de copertă",
+    "editFailed": "Nu s-a putut aplica acea editare. Încearcă din nou.",
+    "grayscale": "Tonuri de gri {{value}}%"
   },
   "bounty": {
     "claimed": "Revendicat",
@@ -8540,7 +8579,11 @@
       "search": "Aplicații de căutare",
       "all": "Toate",
       "fromDehub": "De la DeHub",
-      "noMatch": "Nicio aplicație nu se potrivește cu acea căutare."
+      "noMatch": "Nicio aplicație nu se potrivește cu acea căutare.",
+      "yourApps": "Aplicațiile dvs.",
+      "notificationsOn": "Notificări pe",
+      "removed": "Textul a fost șters. Nu vei primi niciun alt mesaj de notificare.",
+      "remove": "Notificare cheie"
     },
     "card": {
       "open": "Deschide"
@@ -8557,7 +8600,19 @@
       "education": "Educație",
       "developer-tools": "Instrumente pentru dezvoltatori",
       "entertainment": "Divertisment",
-      "art-creativity": "Artă și creativitate"
+      "art-creativity": "Artă și creativitate",
+      "social": "Social"
+    },
+    "pay": {
+      "title": "Plătesc {{name}}?",
+      "body": "DHB merge direct în portofelul aplicației, {{wallet}}. Plățile nu pot fi anulate.",
+      "confirm": "Plătește {{amount}} DHB",
+      "sent": "Plătit {{amount}} DHB către {{name}}."
+    },
+    "add": {
+      "title": "Adăugați {{name}}?",
+      "body": "Va apărea sub Your apps și poate trimite notificări. Poți șterge-o oricând din pagina Apps.",
+      "confirm": "Adaugă aplicație"
     }
   },
   "aiStyles": {

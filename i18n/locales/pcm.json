@@ -146,7 +146,9 @@
     "noShortsFound": "We no see any shorts",
     "newMembersHint": "Dem just join — greet dem",
     "allCaughtUp": "You don see everything finish",
-    "mostViewedThisMonth": "Wetin pipo watch pass dis month"
+    "scroll": "Scroll",
+    "noFilterMatches": "No content match your filter dem.",
+    "clearFilters": "Clear filters"
   },
   "explore": {
     "all": "All",
@@ -2616,7 +2618,31 @@
     "anchorFailed": "We no fit hook that comment for top",
     "assistantReplying": "DeHub Assistant dey reply…",
     "noneYetBeFirst": "No comment dey yet. Make you be the first!",
-    "turnedOff": "Dem don off comments for this post"
+    "turnedOff": "Dem don off comments for this post",
+    "timeSeconds": "{{count}}s",
+    "timeMinutes": "{{count}}m",
+    "timeHours": "{{count}}h",
+    "seeWhoLiked": "See who like am",
+    "holdToReact": "{{reaction}} — hold am make you react",
+    "holdToChangeReaction": "{{reaction}} — hold am make you change your reaction",
+    "viewCount_one": "{{count}} view",
+    "viewCount_other": "{{count}} views",
+    "shareMessage": "Check dis one: {{url}}",
+    "hideReplies": "Hide di replies",
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
+    "rowA11yHint": "E go start reply to dis comment",
+    "editingComment": "You dey edit comment",
+    "editPlaceholder": "Edit your comment...",
+    "replyPlaceholder": "Write reply...",
+    "inputPlaceholder": "Type am here",
+    "cancelReply": "Cancel reply",
+    "cancelEdit": "Cancel edit",
+    "countLabel_one": "{{count}} Comment",
+    "countLabel_other": "{{count}} Comments",
+    "repostsLabel_one": "Repost",
+    "repostsLabel_other": "Reposts",
+    "quotesLabel_one": "Quote",
+    "quotesLabel_other": "Quotes"
   },
   "postInfo": {
     "title": "Post Info",
@@ -5039,7 +5065,20 @@
     "pillFailedNoRetries": "E fail · No retry remain",
     "uploadInProgressStay": "Your upload still dey go. Stay for dis screen until e finish.",
     "removeUploadTitle": "Remove dis upload?",
-    "removeQueuedBody": "Dem never post am yet. If you remove am, di post go cancel."
+    "removeQueuedBody": "Dem never post am yet. If you remove am, di post go cancel.",
+    "editFilters": "Edit filters",
+    "cropRotate": "Crop & rotate",
+    "drawWrite": "Draw & write",
+    "fade": "Fade {{value}}%",
+    "grayscale": "Grayscale {{value}}%",
+    "resetEdits": "Reset",
+    "clearDrawing": "Clear",
+    "typeText": "Type…",
+    "textSize": "Text size {{value}}",
+    "coverFrames": "Wepa cover frame!",
+    "uploadCover": "Uploading cover image",
+    "editFailed": "I no fit apply edit.",
+    "coverFrame": "Use frame {{index}} as di cover"
   },
   "bounty": {
     "claimed": "Don claim",
@@ -8264,7 +8303,10 @@
       "search": "Search apps",
       "all": "All",
       "fromDehub": "From DeHub",
-      "noMatch": "No app fit dem search."
+      "noMatch": "No app fit dem search.",
+      "yourApps": "Your apps",
+      "notificationsOn": "Notifications on",
+      "remove": "Remove"
     },
     "card": {
       "open": "Open"
@@ -8283,6 +8325,15 @@
       "developer-tools": "Developer Tools (e.g., *VS Code*, *GitHub*)",
       "entertainment": "Entertainment (e.g., *Netflix*, *YouTube*)",
       "art-creativity": "Art & Creativity (e.g., *Canva*, *Procreate*)"
+    },
+    "pay": {
+      "title": "Pay {{name}}?",
+      "body": "DHB go direct to app's wallet, {{wallet}}. Payment no go reverse.",
+      "confirm": "Pay {{amount}} DHB"
+    },
+    "add": {
+      "title": "Add {{name}}?",
+      "confirm": "Add app"
     }
   },
   "aiStyles": {
