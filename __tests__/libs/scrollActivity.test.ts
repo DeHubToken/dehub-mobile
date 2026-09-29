@@ -48,13 +48,16 @@ describe("feed scroll activity", () => {
   });
 });
 
-describe("icons defer their SVG tree while the feed flings", () => {
+describe("feed rows never wait for the scroll to settle", () => {
   const icon = readFileSync(resolve(__dirname, "../../components/ui/Icon.tsx"), "utf8");
+  const card = readFileSync(resolve(__dirname, "../../components/Home/FeedCard.tsx"), "utf8");
+  const header = readFileSync(resolve(__dirname, "../../components/Home/FeedCardHeader.tsx"), "utf8");
   const feed = readFileSync(resolve(__dirname, "../../components/Home/InfiniteVideoFeed.tsx"), "utf8");
 
-  it("renders a same-sized box until ready, unless it is one merged path", () => {
-    expect(icon).toMatch(/const ready = useReadyAfterScroll\(\);/);
-    expect(icon).toMatch(/if \(!ready && !single\) \{\s*const box = glass \? size \+ glassPadding \* 2 : size;\s*return <View style=\{\{ width: box, height: box \}\} \/>;/);
+  it("draws icons, the action row and header buttons at once", () => {
+    expect(icon).not.toMatch(/useReadyAfterScroll|scrollActivity/);
+    expect(card).not.toMatch(/DeferredBlock/);
+    expect(header).not.toMatch(/DeferredBlock/);
   });
 
   it("is armed by the feed's drag and momentum and released by settle", () => {

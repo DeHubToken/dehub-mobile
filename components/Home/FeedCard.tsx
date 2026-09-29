@@ -66,7 +66,6 @@ import { useSuperpowers } from "../../hooks/useSuperpowers";
 import ShareSheet from "./ShareSheet";
 import CashtagSheet from "./CashtagSheet";
 import Icon from "../ui/Icon";
-import DeferredBlock from "../common/DeferredBlock";
 import TranslateButton from "../ui/TranslateButton";
 import SoundtrackBadge from "../Post/SoundtrackBadge";
 import { parseSoundtrack } from "../../libs/parseSoundtrack";
@@ -1737,10 +1736,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         )}
       </View>
 
-      {/* Mid-fling the action row is an empty box of its measured height and
-          mounts on settle — see components/common/DeferredBlock. */}
       {showActionBar && (
-        <DeferredBlock cacheKey="feed-action-bar">
         <FeedActionBar
           liked={liked}
           disliked={disliked}
@@ -1769,7 +1765,6 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             isOwnerPost && tokenId != null ? handleShowReactionInfo : undefined
           }
         />
-        </DeferredBlock>
       )}
 
       {showComments && tokenId != null && (
