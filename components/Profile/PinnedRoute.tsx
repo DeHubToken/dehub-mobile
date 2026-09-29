@@ -6,6 +6,7 @@ import Icon from "../ui/Icon";
 import { apiClient } from "../../libs";
 import FeedCard from "../Home/FeedCard";
 import type { UnifiedFeedItem } from "../../services/feed.unified.service";
+import { useFeedCardVisibility } from "../../hooks/useFeedCardVisibility";
 import ProfileEmptyState from "./ProfileEmptyState";
 
 interface PinnedRouteProps {
@@ -70,6 +71,18 @@ const PinnedRoute: React.FC<PinnedRouteProps> = ({ address, listRef, onScroll, l
     setLoadingMore(false);
   }, [loadingMore, loading, fetchPins]);
 
+  const keyExtractor = useCallback(
+    (item: UnifiedFeedItem, idx: number) => `${item.tokenId ?? idx}`,
+    [],
+  );
+  const {
+    viewabilityConfig,
+    onViewableItemsChanged,
+    isItemVisible,
+    isItemAutoplayActive,
+    visibilityExtraData,
+  } = useFeedCardVisibility(keyExtractor as (item: unknown, index: number) => string);
+
   if (loading) {
     return (
       <Animated.ScrollView onScroll={onScroll} scrollEventThrottle={16} showsVerticalScrollIndicator={false}>
@@ -117,14 +130,25 @@ const PinnedRoute: React.FC<PinnedRouteProps> = ({ address, listRef, onScroll, l
     <Animated.FlatList
       ref={listRef}
       data={items}
-      keyExtractor={(item, idx) => `${item.tokenId ?? idx}`}
-      renderItem={({ item }) => (
-        <FeedCard item={item} onBeforeNavigate={onBeforeNavigate} />
+      keyExtractor={keyExtractor}
+      renderItem={({ item, index }) => (
+        <FeedCard
+          item={item}
+          isVisible={isItemVisible(keyExtractor(item, index))}
+          isAutoplayActive={isItemAutoplayActive(keyExtractor(item, index))}
+          onBeforeNavigate={onBeforeNavigate}
+        />
       )}
       ListHeaderComponent={listHeader}
       contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 8, paddingBottom: 80 }}
+      windowSize={7}
+      maxToRenderPerBatch={4}
+      initialNumToRender={4}
       onScroll={onScroll}
       scrollEventThrottle={16}
+      viewabilityConfig={viewabilityConfig}
+      onViewableItemsChanged={onViewableItemsChanged}
+      extraData={visibilityExtraData}
       onEndReached={endRef.current ? undefined : handleLoadMore}
       onEndReachedThreshold={0.6}
       ListFooterComponent={

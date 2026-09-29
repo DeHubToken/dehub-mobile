@@ -23,6 +23,7 @@ import { formatCompactNumber } from "../libs/numbers.util";
 import Avatar from "../components/common/Avatar";
 import ScreenHeader from "../components/ScreenHeader";
 import FeedCard from "../components/Home/FeedCard";
+import { useFeedCardVisibility } from "../hooks/useFeedCardVisibility";
 import { ScreenNames } from "../navigation/ScreenNames";
 
 
@@ -232,17 +233,6 @@ const RepostQuoteListScreen: React.FC = () => {
     [handleUserPress]
   );
 
-  const renderQuoteItem = useCallback(
-    ({ item }: { item: any }) => {
-      return (
-        <View className="px-4 mb-3">
-          <FeedCard item={item} />
-        </View>
-      );
-    },
-    []
-  );
-
   const repostKeyExtractor = useCallback(
     (item: RepostUser) => item.address,
     []
@@ -251,6 +241,30 @@ const RepostQuoteListScreen: React.FC = () => {
   const quoteKeyExtractor = useCallback(
     (item: any) => String(item.tokenId || item.id || item._id),
     []
+  );
+
+  const {
+    viewabilityConfig,
+    onViewableItemsChanged,
+    isItemVisible,
+    isItemAutoplayActive,
+    visibilityExtraData,
+  } = useFeedCardVisibility(quoteKeyExtractor);
+
+  const renderQuoteItem = useCallback(
+    ({ item }: { item: any }) => {
+      const key = quoteKeyExtractor(item);
+      return (
+        <View className="px-4 mb-3">
+          <FeedCard
+            item={item}
+            isVisible={isItemVisible(key)}
+            isAutoplayActive={isItemAutoplayActive(key)}
+          />
+        </View>
+      );
+    },
+    [quoteKeyExtractor, isItemVisible, isItemAutoplayActive]
   );
 
   const ItemSeparator = useCallback(
@@ -383,7 +397,10 @@ const RepostQuoteListScreen: React.FC = () => {
           <DeHubLoader size={56} />
         </View>
       ) : activeTab === "reposts" ? (
+        // Each tab keys its own list. Reused in place across a tab switch,
+        // FlatList throws on onViewableItemsChanged appearing or going away.
         <FlatList
+          key="reposts"
           data={repostUsers}
           renderItem={renderRepostItem}
           keyExtractor={repostKeyExtractor}
@@ -405,9 +422,16 @@ const RepostQuoteListScreen: React.FC = () => {
         />
       ) : (
         <FlatList
+          key="quotes"
           data={quotePosts}
           renderItem={renderQuoteItem}
           keyExtractor={quoteKeyExtractor}
+          windowSize={7}
+          maxToRenderPerBatch={4}
+          initialNumToRender={4}
+          viewabilityConfig={viewabilityConfig}
+          onViewableItemsChanged={onViewableItemsChanged}
+          extraData={visibilityExtraData}
           onEndReached={handleLoadMore}
           onEndReachedThreshold={0.3}
           refreshControl={
