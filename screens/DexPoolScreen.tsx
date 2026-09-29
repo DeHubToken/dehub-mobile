@@ -177,7 +177,7 @@ function PoolTerminal({ pool }: { pool: DexPool }) {
     const channel = supabase.channel(`dex-pool-${pool.id}`)
       .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'dex_pool_orders', filter: `pool_id=eq.${pool.id}` }, () => { void refetchRows(); })
       .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'dex_pool_trades', filter: `pool_id=eq.${pool.id}` }, () => { void refetchTrades(); })
-      .subscribe();
+      .subscribe((status) => { if (status === 'SUBSCRIBED') { void refetchRows(); void refetchTrades(); } });
     return () => { void supabase.removeChannel(channel); };
   }, [pool.id, refetchRows, refetchTrades]);
 

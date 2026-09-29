@@ -454,7 +454,12 @@ const ArcadeChessOnlineScreen = () => {
         if (payload.eventType === "UPDATE" && row?.status === "finished") recordsDirty = true;
         if (!timer) timer = setTimeout(flush, 1000);
       })
-      .subscribe();
+      .subscribe((status) => {
+        if (status !== "SUBSCRIBED") return;
+        if (timer) clearTimeout(timer);
+        recordsDirty = true;
+        flush();
+      });
     return () => {
       if (timer) clearTimeout(timer);
       void supabase.removeChannel(channel);

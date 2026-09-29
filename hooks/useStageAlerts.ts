@@ -19,14 +19,13 @@
  * reminder" are both readable without it. Web's useStageAlerts made the same
  * choice for the same reason.
  *
- * ── Detecting the transition without OLD.status ──
+ * ── Detecting the transition ──
  *
- * `audio_spaces` has REPLICA IDENTITY DEFAULT, so an UPDATE payload's `old`
- * carries the primary key and nothing else — scheduled → live is
- * indistinguishable from a listener_count bump by comparing statuses. What is
- * reliable is `started_at`, which startScheduledSpace stamps at the moment of
- * the flip, so "live AND started seconds ago AND not already announced"
- * identifies it and survives the duplicate events a reconnect replays.
+ * The `stages` broadcast carries the previous status in `old`, so an update
+ * to a stage that was already live — a listener_count bump — is dropped
+ * straight away. `started_at`, which startScheduledSpace stamps at the moment
+ * of the flip, still has to be seconds old: "live AND started seconds ago AND
+ * not already announced" is what identifies a start.
  *
  * ── What this does NOT do ──
  *
@@ -45,6 +44,7 @@ import { toastInfo, toastSuccess } from "../libs/toast";
 import { stageLiveSentence, stageReminderSentence } from "../libs/stage-notifications";
 import { createLogger } from "../libs/logger";
 import type { AudioSpace } from "./useStages";
+import { watchStages, type StageChange } from "../libs/stage-broadcast";
 
 const log = createLogger("useStageAlerts");
 
@@ -146,35 +146,19 @@ export function useStageAlerts() {
       });
     };
 
-    const channel = supabase
-      .channel(`stage_alerts:${walletAddress}`)
-      .on(
-        "postgres_changes",
-        {
-          event: "UPDATE",
-          schema: "public",
-          table: "audio_spaces",
-          // Realtime filters match the NEW row, so this drops every update that
-          // lands a stage on scheduled or ended before it reaches the client.
-          filter: "status=eq.live",
-        },
-        (payload: any) => {
-          const space = payload.new as AudioSpace;
-          // old carries status only under REPLICA IDENTITY FULL. When it does,
-          // an update that was already live is a headcount tick, not a start.
-          if (payload.old?.status === "live") return;
-          if (!space?.id || seenLiveRef.current.has(space.id)) return;
-          seenLiveRef.current.add(space.id);
-          void announce(space).catch((err) =>
-            log.error("Stage live alert failed:", err),
-          );
-        },
-      )
-      .subscribe();
-
-    return () => {
-      void supabase.removeChannel(channel);
-    };
+    // Shares the app-wide `stages` broadcast with the stage lists.
+    return watchStages((payload: StageChange) => {
+      // Only an update that lands a stage on live can be a start.
+      if (payload.eventType !== "UPDATE" || payload.new?.status !== "live") return;
+      const space = payload.new;
+      // An update to a stage that was already live is a headcount tick.
+      if (payload.old?.status === "live") return;
+      if (!space?.id || seenLiveRef.current.has(space.id)) return;
+      seenLiveRef.current.add(space.id);
+      void announce(space).catch((err) =>
+        log.error("Stage live alert failed:", err),
+      );
+    });
   }, [walletAddress, holdsReminder, raise]);
 
   // ── A stage I am waiting on is about to start ─────────────────────────────

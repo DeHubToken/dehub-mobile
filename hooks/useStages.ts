@@ -27,6 +27,7 @@ import { dehubAuthHeaders } from "../services/ai.service";
 import { withWalletHeader } from "../libs/supabase-wallet-client";
 import { deleteStageRecordings } from "../libs/stage-recording-delete";
 import { openStagesHub } from "../libs/openStagesHub";
+import { watchStages, type StageChange } from "../libs/stage-broadcast";
 import { useFrontRow } from './useSuperpowers';
 
 const log = createLogger("useStages");
@@ -937,17 +938,23 @@ export function useStages(): UseStagesReturn {
     if (!currentSpace) return;
     const spaceId = currentSpace.id;
 
-    // Initial participant fetch (active only — left_at IS NULL)
-    supabase.from("space_participants").select("*")
-      .eq("space_id", spaceId).is("left_at", null)
-      .then(({ data }) => { if (data) setParticipants(data as SpaceParticipant[]); });
+    // Participants (active only — left_at IS NULL)
+    const loadParticipants = () => {
+      supabase.from("space_participants").select("*")
+        .eq("space_id", spaceId).is("left_at", null)
+        .then(({ data }) => { if (data) setParticipants(data as SpaceParticipant[]); });
+    };
 
-    // Initial hand requests fetch (host only)
-    if (myRoleRef.current === "host") {
+    // Hand requests (host only)
+    const loadHandRequests = () => {
+      if (myRoleRef.current !== "host") return;
       supabase.from("raise_hand_requests").select("*")
         .eq("space_id", spaceId).eq("status", "pending")
         .then(({ data }) => { if (data) setHandRequests(data as RaiseHandRequest[]); });
-    }
+    };
+
+    loadParticipants();
+    loadHandRequests();
 
     // Participants channel — incremental updates from payload
     const pChan = supabase
@@ -975,7 +982,9 @@ export function useStages(): UseStagesReturn {
             setParticipants(prev => prev.filter(x => x.id !== p.id));
           }
         })
-      .subscribe();
+      // Re-read on every join: Realtime's change feed starts cold when nobody
+      // else is subscribed, and a rejoin after a dropped socket replays nothing.
+      .subscribe((status) => { if (status === "SUBSCRIBED") loadParticipants(); });
 
     // Hand requests channel — incremental updates
     const hChan = supabase
@@ -998,7 +1007,7 @@ export function useStages(): UseStagesReturn {
             setHandRequests(prev => prev.filter(x => x.id !== r.id));
           }
         })
-      .subscribe();
+      .subscribe((status) => { if (status === "SUBSCRIBED") loadHandRequests(); });
 
     // Stage status channel — detect when host ends the stage
     const sChan = supabase
@@ -1739,30 +1748,30 @@ export function useStages(): UseStagesReturn {
       setPastSpaces(apply);
     };
 
-    const listChan = supabase
-      .channel("live-spaces-list")
-      .on("postgres_changes", { event: "*", schema: "public", table: "audio_spaces" }, (payload: any) => {
-        if (payload?.eventType === "UPDATE") {
-          const next = payload.new as (Partial<AudioSpace> & { id?: string }) | undefined;
-          const id = next?.id;
-          // old carries status only under REPLICA IDENTITY FULL; otherwise
-          // fall back to the status the lists last saw for this row.
-          const before = (payload.old as Partial<AudioSpace> | undefined)?.status
-            ?? (id ? knownStatusRef.current.get(id) : undefined);
-          if (id && next?.status && before === next.status) {
-            patch(next as Partial<AudioSpace> & { id: string });
-            return;
-          }
-          // A non-status update to a row none of the lists hold.
-          if (id && next?.status && before === undefined && next.status === "ended") return;
+    // Re-read on every join as well: a broadcast sent while the app was not
+    // joined is simply gone, so a stage that started during a dropped socket
+    // would otherwise never reach the lists.
+    const stopWatching = watchStages((payload: StageChange) => {
+      if (payload.eventType === "UPDATE") {
+        const next = payload.new;
+        const id = next?.id;
+        // The broadcast always carries the previous status; the lists' own
+        // memory of it is only a fallback.
+        const before = payload.old?.status
+          ?? (id ? knownStatusRef.current.get(id) : undefined);
+        if (id && next?.status && before === next.status) {
+          patch(next);
+          return;
         }
-        scheduleRefresh();
-      })
-      .subscribe();
+        // A non-status update to a row none of the lists hold.
+        if (id && next?.status && before === undefined && next.status === "ended") return;
+      }
+      scheduleRefresh();
+    }, scheduleRefresh);
 
     return () => {
       if (timer) clearTimeout(timer);
-      supabase.removeChannel(listChan);
+      stopWatching();
     };
   }, [refreshSpaces]);
 
