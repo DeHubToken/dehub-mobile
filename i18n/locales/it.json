@@ -8569,7 +8569,9 @@
       "noMatch": "Nessuna app corrisponde alla ricerca.",
       "yourApps": "Le tue app",
       "notificationsOn": "Notifiche su",
-      "removed": "Rimosso. Non ti notificherà più."
+      "removed": "Rimosso. Non ti notificherà più.",
+      "remove": "Rimuovi",
+      "rising": "Nuovo e nascente"
     },
     "card": {
       "open": "Apri"

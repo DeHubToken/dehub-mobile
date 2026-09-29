@@ -8574,7 +8574,8 @@
       "yourApps": "Dina appar",
       "notificationsOn": "Notifikationer på",
       "remove": "Ta bort",
-      "removed": "Tagen bort. Det kommer inte att notifiera dig igen."
+      "removed": "Tagen bort. Det kommer inte att notifiera dig igen.",
+      "rising": "Nya och populära"
     },
     "card": {
       "open": "Öppna"

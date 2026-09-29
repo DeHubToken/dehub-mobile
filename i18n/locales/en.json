@@ -8563,7 +8563,8 @@
       "yourApps": "Your apps",
       "notificationsOn": "Notifications on",
       "remove": "Remove",
-      "removed": "Removed. It will not notify you again."
+      "removed": "Removed. It will not notify you again.",
+      "rising": "New and rising"
     },
     "card": {
       "open": "Open"

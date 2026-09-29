@@ -8572,7 +8572,9 @@
       "noMatch": "Tomuto vyhledávání neodpovídají žádné aplikace.",
       "yourApps": "Vaše aplikace",
       "notificationsOn": "Zprávy o",
-      "removed": "Odstraněno. Nebude vás o tom varovat znovu."
+      "removed": "Odstraněno. Nebude vás o tom varovat znovu.",
+      "remove": "Odstranit",
+      "rising": "Nové a vzkvétající"
     },
     "card": {
       "open": "Otevřít"

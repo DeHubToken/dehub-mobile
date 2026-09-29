@@ -8570,7 +8570,8 @@
       "yourApps": "Sizin applarınız",
       "notificationsOn": "Bildirimlər",
       "remove": "Kaldır",
-      "removed": "Kaldırıldı. Artıq sizi daha bir bildirimləməyəcək."
+      "removed": "Kaldırıldı. Artıq sizi daha bir bildirimləməyəcək.",
+      "rising": "Yeni və yüksələn"
     },
     "card": {
       "open": "Aç"

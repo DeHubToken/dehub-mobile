@@ -24,7 +24,15 @@ import { ScreenNames } from "../navigation/ScreenNames";
 import { WEBSITE_LINK } from "../config/links";
 import { openInApp } from "../libs/links.utils";
 import { colors } from "../theme/colors";
-import { fetchAddedApps, fetchListedApps, removeMiniApp, type AddedApp, type MiniAppListing } from "../services/miniapps.service";
+import {
+  fetchAddedApps,
+  fetchLatestScores,
+  fetchListedApps,
+  removeMiniApp,
+  type AddedApp,
+  type AppScore,
+  type MiniAppListing,
+} from "../services/miniapps.service";
 import { useAuth } from "../context/AuthContext";
 import { getAuthToken } from "../libs/auth.utils";
 import { toastError, toastSuccess } from "../libs";
@@ -96,14 +104,29 @@ export default function AppsScreen() {
     () => [...new Set((apps ?? []).map((a) => a.category).filter((c): c is string => Boolean(c)))].sort(),
     [apps],
   );
+  const [scores, setScores] = useState<Map<string, AppScore>>(new Map());
+  useEffect(() => {
+    let live = true;
+    fetchLatestScores().then((map) => {
+      if (live) setScores(map);
+    });
+    return () => {
+      live = false;
+    };
+  }, []);
   const visible = useMemo(() => {
     const q = query.trim().toLowerCase();
-    return (apps ?? []).filter(
-      (a) =>
-        (category === "all" || a.category === category) &&
-        (!q || [a.name, a.subtitle, a.description, a.domain].some((v) => v?.toLowerCase().includes(q))),
-    );
-  }, [apps, query, category]);
+    // Ranked by the published nightly score; unscored (new) apps follow by name.
+    const rankOf = (id: string) => scores.get(id)?.rank ?? Number.MAX_SAFE_INTEGER;
+    return (apps ?? [])
+      .filter(
+        (a) =>
+          (category === "all" || a.category === category) &&
+          (!q || [a.name, a.subtitle, a.description, a.domain].some((v) => v?.toLowerCase().includes(q))),
+      )
+      .sort((a, b) => rankOf(a.id) - rankOf(b.id) || a.name.localeCompare(b.name));
+  }, [apps, query, category, scores]);
+  const rising = useMemo(() => (apps ?? []).filter((a) => scores.get(a.id)?.is_new), [apps, scores]);
 
   // A failed read keeps whatever is already listed; only an empty store turns
   // into the failed state, so a bad refresh never blanks the list.
@@ -236,6 +259,15 @@ export default function AppsScreen() {
                   <Text numberOfLines={1} style={styles.subtitle}>{game.tagline}</Text>
                 </View>
               </Pressable>
+            ))}
+          </>
+        ) : null}
+
+        {!query && category === "all" && rising.length > 0 ? (
+          <>
+            <Text style={styles.sectionTitle}>{t("miniApps.store.rising")}</Text>
+            {rising.map((app) => (
+              <AppRow key={`rising-${app.id}`} app={app} onPress={open} />
             ))}
           </>
         ) : null}

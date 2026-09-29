@@ -8570,7 +8570,8 @@
       "yourApps": "Dine apps",
       "notificationsOn": "Varsler på",
       "remove": "Fjern",
-      "removed": "Fjernet. Det vil ikke varsle deg igjen."
+      "removed": "Fjernet. Det vil ikke varsle deg igjen.",
+      "rising": "Nytt og stigende"
     },
     "card": {
       "open": "Åpne"
