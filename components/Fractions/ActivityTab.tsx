@@ -30,7 +30,7 @@ interface Props {
 const ActivityTab: React.FC<Props> = ({ onOpenPost }) => {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
-  const { data: trades = [], isLoading, refetch, isRefetching } = useRecentTrades(40);
+  const { data: trades = [], isLoading, isError, isFetching, refetch, isRefetching } = useRecentTrades(40);
   const { data: prices } = useTokenPrices();
   const dhbUsd = prices?.DHB ?? 0;
 
@@ -111,10 +111,25 @@ const ActivityTab: React.FC<Props> = ({ onOpenPost }) => {
       contentContainerStyle={[styles.content, { paddingBottom: insets.bottom + 96 }]}
       showsVerticalScrollIndicator={false}
       refreshControl={<DeHubRefreshControl refreshing={isRefetching} onRefresh={refetch} tintColor="#fff" />}
+      // Only shown while the list is empty, so a failed refetch never hides
+      // trades that are already cached.
       ListEmptyComponent={
         <View style={styles.center}>
           {isLoading ? (
             <DeHubLoader size={56} />
+          ) : isError ? (
+            <>
+              <Icon name="Activity" size={40} color="#3F3F46" />
+              <Text style={styles.emptyText}>{t("fractions.loadFailed")}</Text>
+              <Pressable
+                onPress={() => refetch()}
+                disabled={isFetching}
+                style={[styles.retry, isFetching && styles.retryBusy]}
+                accessibilityRole="button"
+              >
+                <Text style={styles.retryText}>{t("common.retry")}</Text>
+              </Pressable>
+            </>
           ) : (
             <>
               <Icon name="Activity" size={40} color="#3F3F46" />
@@ -163,6 +178,9 @@ const styles = StyleSheet.create({
   status: { fontSize: 10.5, fontWeight: "500" },
   center: { alignItems: "center", justifyContent: "center", paddingVertical: 56, gap: 10 },
   emptyText: { color: "#A1A1AA", fontSize: 13, textAlign: "center" },
+  retry: { paddingHorizontal: 16, paddingVertical: 8, borderRadius: 10, backgroundColor: "rgba(255,255,255,0.08)" },
+  retryBusy: { opacity: 0.5 },
+  retryText: { color: "#F4F4F5", fontSize: 13, fontWeight: "600" },
 });
 
 export default ActivityTab;

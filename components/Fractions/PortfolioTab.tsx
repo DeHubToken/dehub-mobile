@@ -135,6 +135,21 @@ const PortfolioTab: React.FC<Props> = ({ onSignIn, onSell, onOpenPost }) => {
           <View style={styles.loader}>
             <DeHubLoader size={48} />
           </View>
+        ) : portfolio.isError && positions.length === 0 ? (
+          // A failed lookup is not "you hold nothing". Gated on an empty list so
+          // a failed background refetch keeps the cached holdings on screen.
+          <View style={styles.emptyBox}>
+            <Icon name="WifiOff" size={30} color="#3F3F46" />
+            <Text style={styles.emptyText}>{t("fractions.loadFailed")}</Text>
+            <Pressable
+              onPress={() => portfolio.refetch()}
+              disabled={portfolio.isFetching}
+              style={[styles.retry, portfolio.isFetching && styles.retryBusy]}
+              accessibilityRole="button"
+            >
+              <Text style={styles.retryText}>{t("common.retry")}</Text>
+            </Pressable>
+          </View>
         ) : positions.length === 0 ? (
           <View style={styles.emptyBox}>
             <Icon name="Image" size={30} color="#3F3F46" />
@@ -252,6 +267,9 @@ const styles = StyleSheet.create({
   emptyHint: { color: "#808089", fontSize: 12, textAlign: "center" },
   signIn: { paddingHorizontal: 18, paddingVertical: 9, borderRadius: 12, backgroundColor: "#F4F4F5" },
   signInText: { color: "#09090B", fontSize: 13, fontWeight: "700" },
+  retry: { marginTop: 6, paddingHorizontal: 16, paddingVertical: 8, borderRadius: 10, backgroundColor: "rgba(255,255,255,0.08)" },
+  retryBusy: { opacity: 0.5 },
+  retryText: { color: "#F4F4F5", fontSize: 13, fontWeight: "600" },
 
   order: {
     flexDirection: "row",

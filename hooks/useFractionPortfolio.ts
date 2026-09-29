@@ -73,10 +73,17 @@ export function useFractionBalance(tokenId: string | undefined, chainId?: number
   });
 }
 
-/** Read balances a few at a time — sixty positions should not open sixty sockets. */
+/**
+ * Read balances a few at a time — sixty positions should not open sixty sockets.
+ *
+ * One failed read is skipped so a single bad token does not blank the list. If
+ * every read failed, nothing here is known, and returning [] would tell a holder
+ * they own nothing (and overwrite their cached holdings), so it throws instead.
+ */
 async function resolveBalances(candidates: Candidate[], address: string): Promise<PortfolioPosition[]> {
   const positions: PortfolioPosition[] = [];
   const BATCH = 8;
+  let failed = 0;
   for (let i = 0; i < candidates.length; i += BATCH) {
     const batch = candidates.slice(i, i + BATCH);
     const balances = await Promise.all(
@@ -84,9 +91,13 @@ async function resolveBalances(candidates: Candidate[], address: string): Promis
     );
     batch.forEach((c, idx) => {
       const balance = balances[idx];
+      if (balance === null) failed += 1;
       if (!balance || balance <= 0) return;
       positions.push({ ...c, balance, percentage: (balance / TOTAL_FRACTIONS) * 100 });
     });
+  }
+  if (candidates.length > 0 && failed === candidates.length) {
+    throw new Error("Fraction balance reads failed");
   }
   return positions.sort((a, b) => b.balance - a.balance);
 }
@@ -136,6 +147,11 @@ export function useFractionPortfolio(address: string | null | undefined) {
           .select("token_id, chain_id, post_title, post_image_url, post_type")
           .limit(200),
       ]);
+
+      // The client returns errors rather than throwing them. With both position
+      // sources down there is nothing to go on, and an empty success would read
+      // as "you hold nothing". `listings` only adds titles, so it stays optional.
+      if (trades.error && ownListings.error) throw trades.error;
 
       // Listings carry the post snapshot, so a bought-into position gets a
       // title and thumbnail without a /feed call.
