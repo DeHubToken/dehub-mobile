@@ -5,10 +5,12 @@
  * and applies the result as one undo step.
  */
 import React, { useEffect, useRef, useState } from "react";
-import { KeyboardAvoidingView, Modal, Platform, Pressable, ScrollView, Text, TextInput, View } from "react-native";
+import { KeyboardAvoidingView, Modal, Pressable, ScrollView, Text, TextInput, View } from "react-native";
 import { useTranslation } from "react-i18next";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Icon from "../ui/Icon";
 import { DeHubLoader } from "../DeHubLoader";
+import { useKeyboard } from "../../hooks/useKeyboard";
 
 export interface ChatEntry {
   id: string;
@@ -30,6 +32,8 @@ interface Props {
 
 export default function AgentSheet({ visible, entries, busy, onSend, onUndo, onClose, onClear }: Props) {
   const { t } = useTranslation();
+  const insets = useSafeAreaInsets();
+  const { isVisible: kbUp } = useKeyboard();
   const [draft, setDraft] = useState("");
   const scroll = useRef<ScrollView>(null);
 
@@ -54,9 +58,13 @@ export default function AgentSheet({ visible, entries, busy, onSend, onUndo, onC
 
   return (
     <Modal visible={visible} transparent animationType="slide" onRequestClose={onClose}>
-      <Pressable className="flex-1 bg-black/40" onPress={onClose} accessibilityRole="button" accessibilityLabel={t("common.close")} />
-      <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : undefined}>
-        <View className="rounded-t-3xl bg-theme-neutrals-800 px-4 pt-4" style={{ maxHeight: 560 }}>
+      {/* The modal window is edge-to-edge, so Android neither resizes it for
+          the keyboard nor keeps it off the nav bar. The keyboard view fills the
+          modal so its size never changes, and the sheet and its list shrink
+          to keep the input above the keys. */}
+      <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
+        <Pressable className="flex-1 bg-black/40" onPress={onClose} accessibilityRole="button" accessibilityLabel={t("common.close")} />
+        <View className="rounded-t-3xl bg-theme-neutrals-800 px-4 pt-4" style={{ maxHeight: 560, flexShrink: 1, paddingBottom: kbUp ? 0 : insets.bottom }}>
           <View className="flex-row items-center mb-3" style={{ gap: 8 }}>
             <Icon name="Sparkles" size={18} color="#fff" />
             <Text className="flex-1 text-white text-base font-semibold">{t("editor.agent.introTitle")}</Text>
@@ -67,7 +75,7 @@ export default function AgentSheet({ visible, entries, busy, onSend, onUndo, onC
             )}
           </View>
 
-          <ScrollView ref={scroll} style={{ maxHeight: 360 }} contentContainerStyle={{ gap: 8, paddingBottom: 8 }} keyboardShouldPersistTaps="handled">
+          <ScrollView ref={scroll} style={{ maxHeight: 360, flexShrink: 1 }} contentContainerStyle={{ gap: 8, paddingBottom: 8 }} keyboardShouldPersistTaps="handled">
             {entries.length === 0 && (
               <>
                 <Text className="text-theme-neutrals-300 text-sm">{t("editor.agent.introBody")}</Text>
