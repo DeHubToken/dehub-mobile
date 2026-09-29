@@ -18,4 +18,3 @@ const PAGE_ICONS: Record<string, { settings: number; features: number }> = {
 export function themePageIcon(theme: string, key: 'settings' | 'features'): number {
   return (PAGE_ICONS[theme] ?? PAGE_ICONS.system)[key];
 }
-
