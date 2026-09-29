@@ -8592,7 +8592,6 @@
       "close": "Vala i-app",
       "backToStore": "Buyela kuma-App",
       "notFound": "Le app ayikho ku-DeHub App Store, noma ikhishiwe.",
-      "badUrl": "Ngokwe nge-inkomo yethu yethu, i-inkomo yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yethu yeth",
       "readyTimeout": "Le app ayikaze ibizwenge-dehub.ready (), ngakho isikrini sokushelela sasifihliwe ngemva kwemizuzwana engu-8."
     },
     "signIn": {
@@ -8612,7 +8611,6 @@
       "fromDehub": "Kusuka ku-DeHub",
       "noMatch": "Awekho ama-app afana nalokho kusesha.",
       "yourApps": "Ama-app akho",
-      "removed": "Ukuqala ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuthi ukuth",
       "notificationsOn": "Izaziso zivuliwe",
       "remove": "Khipha",
       "rising": "Okusha nokunyukayo"
@@ -8642,7 +8640,6 @@
       "body": "I-DHB iya ngqo esikhwameni se-app, {{wallet}}. Izinkokhelo azikwazi ukuhlehliswa."
     },
     "add": {
-      "body": "Nginga yizwa ngokwesinye esinye kwenye Your apps kanye nge- notifications ngokwenza. Uhlangana ngokwenza kanye ngokwenza ngokwenza Apps page ngokwenza ngokwenza ngokwenza ngokwenza.",
       "confirm": "Faka i-app"
     }
   },

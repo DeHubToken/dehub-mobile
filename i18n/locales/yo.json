@@ -4959,7 +4959,6 @@
     "keepAccountHead": "Àkọọ́lẹ̀ rẹ, bí ó ti rí.",
     "keepAccountBody": "Orúkọ olumúlò, àwòrán ìfihàn, àwọn ìfìwé, àwọn àlàyé, àwọn tó ń tẹ̀lé, àwọn àmì-ìdánimọ̀ àti ìtàn gbogbo ni yóò gbé lọ sí àpòọ̀wọ̀ tuntun. Ó jẹ́ àkọọ́lẹ̀ kan náà — kò sí ẹnikẹ́ni tó ní láti wá ọ mọ̀ lẹ́ẹ̀kan sí.",
     "keepMessagesHead": "Àwọn ìránṣẹ́ rẹ àti àpò ìránṣẹ́ rẹ.",
-    "keepMessagesBody": "Àwọn ìfọ̀rọ̀wánilẹ́nuwò, àwọn ìfitónilétí, àwọn àmì-ìwé, àwọn ìfìwé tí a fipamọ́ àti ìtàn ìwò kí o wá pẹ̀lú rẹ. Kò sí ohun tí a fò nù àti pé kò sí ẹnikẹ́ni mìíràn tó lè kà á.",
     "keepSignInHead": "Báwo ni o ṣe ń wọlé.",
     "keepSignInBody": "Bákan náà fonùnúmbà, àdírẹ́ẹ̀ì ì-méèẹ̀lì tàbí àkọọ́lẹ̀ Google, bákan náà tẹ́ kan kan. Àpòọ̀wọ̀ tí ó wà lẹ́yìn ìgbàlọ́ọ̀kọ̀ ni a yí padà, kì í ṣe ìgbàlọ́ọ̀kọ̀ náà.",
     "checkDeviceHead": "Ṣàyẹ̀wò ẹ̀rọ̀ tí o fi sílẹ̀.",
@@ -7625,7 +7624,6 @@
       },
       "notifications": {
         "title": "Awọn iwifunni",
-        "intro": "Wa ni imudojuiwọn pẹlu awọn fẹran, awọn asọye, awọn imọran, awọn atẹle, ati awọn iṣẹ miiran lori akoonu rẹ.",
         "steps": {
           "1": "Tẹ aami agogo tabi 'Awọn iwifunni' ninu àgbàlagbà.",
           "2": "Wo gbogbo awọn iwifunni ni atokọ chronological.",
@@ -7875,8 +7873,7 @@
         },
         "tips": {
           "1": "Ìfaradà slippage tó ga = ó ṣeéṣe láti ṣe, ṣùgbọ́n ó ṣeéṣe fún iye owó tí ó burú jù.",
-          "2": "Máa ṣe àyẹ̀wò iye owó pàṣípààrọ̀ kí o tó jẹ́rìí.",
-          "3": "O lè ṣe àtúntò àtúntò àtúntò nínú pánẹ́ẹ̀lì àtúntò."
+          "2": "Máa ṣe àyẹ̀wò iye owó pàṣípààrọ̀ kí o tó jẹ́rìí."
         }
       },
       "bridge": {
@@ -7919,7 +7916,6 @@
         "steps": {
           "1": "Tẹ aami 'ⓘ' lori eyikeyi ifiweranṣẹ lati ṣii ojú-ìṣe Alaye Ifiweranṣẹ rẹ.",
           "2": "Ni oke iwọ yoo rii ID Ami (alailẹgbẹ lori-pq olutọsọna) ati hash iṣowo — tẹ hash lati wo ni oluwadi bulọọki.",
-          "3": "Ni isalẹ iyẹn, awọn iṣiro ifaramọ fihan lapapọ awọn ifẹ, awọn aiṣe-fẹ, awọn iwoye, awọn asọye, ati awọn imọran ti a gba.",
           "4": "Apá Olùdààmú fihan àtòkọ ìlọ́wọ́ ìpín 1,000 tí olùdàkọ̀ ṣì ní, pẹ̀lú àtòkọ gbogbo àwọn tó ní ipín pẹ̀lú ìwọ̀n àti ìdáwọ́ mẹ́wàá wọn.",
           "5": "Ti ifiweranṣẹ ba jẹ san-fun-wiwo (PPV), iwọ yoo rii idiyele, owo, ati iye awọn olumulo ti o ti ra iraye si.",
           "6": "Awọn oniwun ifiweranṣẹ le yi hihan (Gbangba, A ko ṣe atokọ, tabi Aladani) ati ṣatunkọ akọle/apejuwe taara lati oju-iwe yii."
@@ -8360,7 +8356,6 @@
     "profileInsightsLabel": "Awọn oye profaili",
     "profileInsightsDetail": "Wo tani ṣabẹwo si profaili rẹ ati nigbawo",
     "followerInsightsLabel": "Awọn oye ifaramọ ọmọlẹhin",
-    "followerInsightsDetail": "Wo awọn ọmọlẹhin wo ni o nifẹ si ọ julọ ati bii — awọn fẹran, awọn atunṣe, awọn asọye, awọn imọran",
     "sneakPeeksLabel": "10 awọn iwoye ti o yanilenu / mo",
     "sneakPeeksDetail": "Wo sinu awọn ifunni akoonu ti a tiiṣi ti o ko ni",
     "boostLabel": "Igbelaruge akoko",
