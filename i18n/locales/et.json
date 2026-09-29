@@ -1900,6 +1900,7 @@
     "coverUpdated": "Taustapildi värskendatud",
     "couldNotPickImage": "Ei õnnestunud pilti valida",
     "changeCoverImage": "Muuda taustapilti",
+    "viewCoverImage": "Vaata kaanepilti",
     "changeAvatar": "Muuda avatari",
     "verifiedEnsName": "Verifitseeritud ENS-i nimi {{name}}",
     "notFullyJoined": "See kasutaja pole veel täielikult liitunud. Nad pole kasutajanime nõudnud ega profiili seadistamist lõpetanud. Saate siiski vaadata avalikku tegevust ja saata näpunäiteid, kui need on saadaval.",
@@ -5903,7 +5904,8 @@
     "recentSearches": "Hiljutised otsingud",
     "noTrendingThisWeek": "Sel nädalal pole populaarset sisu",
     "closeFilterOptions": "Sulge filtrid",
-    "openFilterOptions": "Ava filtrid"
+    "openFilterOptions": "Ava filtrid",
+    "fillQuery": "Sisesta \"{{query}}\" otsingusse"
   },
   "notifPrompt": {
     "stayInLoop": "Ole kursis",

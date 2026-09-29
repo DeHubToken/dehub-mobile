@@ -1901,6 +1901,7 @@
     "coverUpdated": "Jalada limesasishwa",
     "couldNotPickImage": "Imeshindwa kuchagua picha",
     "changeCoverImage": "Badilisha picha ya jalada",
+    "viewCoverImage": "Tazama picha ya jalada",
     "changeAvatar": "Badilisha avatar",
     "verifiedEnsName": "Jina la ENS lililothibitishwa {{name}}",
     "notFullyJoined": "Mtumiaji huyu hajajiunga kikamilifu bado. Hajadai jina la mtumiaji au kukamilisha usanidi wa wasifu. Bado unaweza kuona shughuli za umma na kutuma vidokezo ikiwa zinapatikana.",
@@ -5904,7 +5905,8 @@
     "recentSearches": "Tafuti za Hivi Karibuni",
     "noTrendingThisWeek": "Hakuna maudhui yanayovuma wiki hii",
     "closeFilterOptions": "Funga chaguo za kichujio",
-    "openFilterOptions": "Fungua chaguo za kichujio"
+    "openFilterOptions": "Fungua chaguo za kichujio",
+    "fillQuery": "Jaza utafutaji kwa \"{{query}}\""
   },
   "notifPrompt": {
     "stayInLoop": "Endelea kufahamu",

@@ -1900,6 +1900,7 @@
     "coverUpdated": "E dechara mkpuchi",
     "couldNotPickImage": "E nweghị ike ịhọrọ onyonyo",
     "changeCoverImage": "Gbanwee onyonyo mkpuchi",
+    "viewCoverImage": "Lee onyonyo mkpuchi",
     "changeAvatar": "Gbanwee avatar",
     "verifiedEnsName": "Aha ENS enyochara {{name}}",
     "notFullyJoined": "Onye ọrụ a abanyebeghị nke ọma. Ha ekwughị aha njirimara ma ọ bụ mezue nhazi profaịlụ. Ị ka nwere ike ilele ọrụ ọha na eze ma zipụ ndụmọdụ ma ọ bụrụ na ọ dị.",
@@ -5901,7 +5902,8 @@
     "recentSearches": "Nchọgharị ndị na-adịbeghị anya",
     "noTrendingThisWeek": "Enweghị ọdịnaya na-ewu ewu n'izu a",
     "closeFilterOptions": "Mechie nhọrọ nzacha",
-    "openFilterOptions": "Mepee nhọrọ nzacha"
+    "openFilterOptions": "Mepee nhọrọ nzacha",
+    "fillQuery": "Tinye \"{{query}}\" n'igbe ọchụchọ"
   },
   "notifPrompt": {
     "stayInLoop": "Nọrọ na-amata",

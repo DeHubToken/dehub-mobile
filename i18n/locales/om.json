@@ -1913,6 +1913,7 @@
     "coverUpdated": "Fuulli gubbaa irratti jijjiirama godhameera",
     "couldNotPickImage": "Sa'la fudhachuu hin danda'amne",
     "changeCoverImage": "Fuula gubbaa jijjiiru",
+    "viewCoverImage": "Suuraa fuula duraa ilaali",
     "changeAvatar": "Awaata jijjiiru",
     "verifiedEnsName": "Maqaa ENS mirkanaa'e {{name}}",
     "notFullyJoined": "Tajaajila kana hin xumure. Maqaa barreessaa hin filanne yookiin qindaa'ina isaa hin xumurre. Haa ta'u malee, tajaajila ifa godhamuu ilaaluu fi yoo jiraate gargaarsa erguu dandeessan.",
@@ -5916,7 +5917,8 @@
     "recentSearches": "Barbaacha Dhiheenyaa",
     "noTrendingThisWeek": "Torban kana qabiyyee trending hin jiru",
     "closeFilterOptions": "Filannoowwan calaqqee cufi",
-    "openFilterOptions": "Filannoowwan calaqqee banaa"
+    "openFilterOptions": "Filannoowwan calaqqee banaa",
+    "fillQuery": "Barbaacha keessatti \"{{query}}\" galchi"
   },
   "notifPrompt": {
     "stayInLoop": "Odeeffannoo argadhu",

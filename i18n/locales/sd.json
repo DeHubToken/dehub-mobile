@@ -1900,6 +1900,7 @@
     "coverUpdated": "ڪور اپڊيٽ ڪيو ويو",
     "couldNotPickImage": "تصوير نه چونڊي سگهي",
     "changeCoverImage": "ڪور تصوير تبديل ڪريو",
+    "viewCoverImage": "ڪور تصوير ڏسو",
     "changeAvatar": "اواتار تبديل ڪريو",
     "verifiedEnsName": "تصديق ٿيل ENS نالو {{name}}",
     "notFullyJoined": "هي صارف اڃا مڪمل طور تي شامل نه ٿيو آهي. هنن يوزر نالو نه چونڊيو آهي يا پروفائل سيٽ اپ مڪمل نه ڪيو آهي. توهان اڃا به عوامي سرگرمي ڏسي سگهو ٿا ۽ جيڪڏهن دستياب هجي ته ٽپ موڪلي سگهو ٿا.",
@@ -5903,7 +5904,8 @@
     "recentSearches": "حاليہ ڳولھيون",
     "noTrendingThisWeek": "هن هفتي ڪو به رجحان مواد نه آهي",
     "closeFilterOptions": "فلٽر جا اختيار بند ڪريو",
-    "openFilterOptions": "فلٽر جا اختيار کوليو"
+    "openFilterOptions": "فلٽر جا اختيار کوليو",
+    "fillQuery": "ڳولا ۾ \"{{query}}\" وجهو"
   },
   "notifPrompt": {
     "stayInLoop": "باخبر رهو",

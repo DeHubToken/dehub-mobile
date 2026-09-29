@@ -1884,6 +1884,7 @@
     "coverUpdated": "Cover don change",
     "couldNotPickImage": "We no fit pick di picture",
     "changeCoverImage": "Change di cover picture",
+    "viewCoverImage": "See di cover picture",
     "changeAvatar": "Change di avatar",
     "verifiedEnsName": "ENS name wey dem don verify: {{name}}",
     "notFullyJoined": "Dis user never join finish. Dem never claim username or finish profile setup. You fit still see dia public activity and send tips if e dey available.",
@@ -5808,6 +5809,7 @@
     "recentSearches": "Recent Searches",
     "closeFilterOptions": "Close di filter options",
     "openFilterOptions": "Open di filter options",
+    "fillQuery": "Put \"{{query}}\" for search box",
     "trendingThisWeek": "Wetin Dey Trend Dis Week",
     "tryDifferentKeywords": "Try another keywords or check your spelling",
     "noTrendingThisWeek": "Nothing dey trend dis week"

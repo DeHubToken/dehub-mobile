@@ -1893,6 +1893,7 @@
     "coverUpdated": "Berg hate nûvekirin",
     "couldNotPickImage": "Nekarî wêneyê hilbijêre",
     "changeCoverImage": "Wêneya bergê biguherîne",
+    "viewCoverImage": "Wêneya bergê bibîne",
     "changeAvatar": "Avatarê biguherîne",
     "verifiedEnsName": "Navê ENS-ê yê piştrastkirî {{name}}",
     "notFullyJoined": "Ev bikarhêner hîn bi tevahî beşdar nebûye. Wan navê bikarhêner îdîa nekiriye an jî sazkirina profîlê temam nekiriye. Hûn hîn jî dikarin çalakiyên giştî bibînin û heke hebin, serişteyan bişînin.",
@@ -5889,7 +5890,8 @@
     "recentSearches": "Lêgerînên Dawî",
     "noTrendingThisWeek": "Vê hefteyê naveroka trend tune",
     "closeFilterOptions": "Vebijarkên fîlterê bigire",
-    "openFilterOptions": "Vebijarkên fîlterê veke"
+    "openFilterOptions": "Vebijarkên fîlterê veke",
+    "fillQuery": "\"{{query}}\" têxe lêgerînê"
   },
   "notifPrompt": {
     "stayInLoop": "Agahdar bimîne",

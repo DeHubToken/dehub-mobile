@@ -1900,6 +1900,7 @@
     "coverUpdated": "Vāks atjaunināts",
     "couldNotPickImage": "Nevarēja izvēlēties attēlu",
     "changeCoverImage": "Mainīt vāka attēlu",
+    "viewCoverImage": "Skatīt vāka attēlu",
     "changeAvatar": "Mainīt avatāru",
     "verifiedEnsName": "Verificēts ENS vārds {{name}}",
     "notFullyJoined": "Šis lietotājs vēl nav pilnībā pievienojies. Viņš nav pieprasījis lietotājvārdu vai pabeidzis profila iestatīšanu. Jūs joprojām varat skatīt publisko darbību un nosūtīt dzeramnaudu, ja tā ir pieejama.",
@@ -5903,7 +5904,8 @@
     "recentSearches": "Nesenie meklējumi",
     "noTrendingThisWeek": "Šonedēļ nav populāra satura",
     "closeFilterOptions": "Aizvērt filtrēšanas opcijas",
-    "openFilterOptions": "Atvērt filtrēšanas opcijas"
+    "openFilterOptions": "Atvērt filtrēšanas opcijas",
+    "fillQuery": "Ievietot \"{{query}}\" meklēšanā"
   },
   "notifPrompt": {
     "stayInLoop": "Esiet lietas kursā",

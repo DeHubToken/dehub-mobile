@@ -1900,6 +1900,7 @@
     "coverUpdated": "Kua whakahoutia te taupoki",
     "couldNotPickImage": "Kāore i taea te kōwhiri whakaahua",
     "changeCoverImage": "Hurihia te whakaahua taupoki",
+    "viewCoverImage": "Tirohia te whakaahua taupoki",
     "changeAvatar": "Hurihia te avatar",
     "verifiedEnsName": "Kua whakamanatia te ingoa ENS {{name}}",
     "notFullyJoined": "Kāore anō kia oti te uru mai o tēnei kaiwhakamahi. Kāore anō kia kōwhiria he ingoa kaiwhakamahi, kia oti rānei te whakarite kōtaha. Ka taea tonu e koe te tiro i ngā mahi a te iwi me te tuku tohutohu ki te wātea ana.",
@@ -5902,7 +5903,8 @@
     "recentSearches": "Ngā Rapunga Hou",
     "noTrendingThisWeek": "Kāore he ihirangi tūāhua o tēnei wiki",
     "closeFilterOptions": "Katia ngā kōwhiringa tātari",
-    "openFilterOptions": "Whakatuwheratia ngā kōwhiringa tātari"
+    "openFilterOptions": "Whakatuwheratia ngā kōwhiringa tātari",
+    "fillQuery": "Whakakīia te rapu ki \"{{query}}\""
   },
   "notifPrompt": {
     "stayInLoop": "Kia mōhio tonu",

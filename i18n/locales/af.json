@@ -1929,6 +1929,7 @@
     "coverUpdated": "Omslag opgedateer",
     "couldNotPickImage": "Kon nie beeld kies nie",
     "changeCoverImage": "Verander omslagbeeld",
+    "viewCoverImage": "Bekyk omslagbeeld",
     "changeAvatar": "Verander avatar",
     "verifiedEnsName": "Geverifieerde ENS naam {{name}}",
     "notFullyJoined": "Hierdie gebruiker het nog nie heeltemal aangesluit nie. Hulle het nie 'n gebruikersnaam of voltooide profielopstelling geëis nie. Jy kan nog steeds openbare aktiwiteite besigtig en wenke stuur indien beskikbaar.",
@@ -5936,7 +5937,8 @@
     "recentSearches": "Onlangse soektogte",
     "noTrendingThisWeek": "Geen gewilde inhoud hierdie week nie",
     "closeFilterOptions": "Sluit filteropsies",
-    "openFilterOptions": "Maak filteropsies oop"
+    "openFilterOptions": "Maak filteropsies oop",
+    "fillQuery": "Vul soektog in met \"{{query}}\""
   },
   "notifPrompt": {
     "stayInLoop": "Bly op hoogte",

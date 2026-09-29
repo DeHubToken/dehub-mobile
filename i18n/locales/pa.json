@@ -1900,6 +1900,7 @@
     "coverUpdated": "ਕਵਰ ਅੱਪਡੇਟ ਕੀਤਾ ਗਿਆ",
     "couldNotPickImage": "ਚਿੱਤਰ ਚੁਣਨ ਵਿੱਚ ਅਸਮਰੱਥ",
     "changeCoverImage": "ਕਵਰ ਚਿੱਤਰ ਬਦਲੋ",
+    "viewCoverImage": "ਕਵਰ ਚਿੱਤਰ ਵੇਖੋ",
     "changeAvatar": "ਅਵਤਾਰ ਬਦਲੋ",
     "verifiedEnsName": "ਪ੍ਰਮਾਣਿਤ ENS ਨਾਮ {{name}}",
     "notFullyJoined": "ਇਹ ਉਪਭੋਗਤਾ ਅਜੇ ਪੂਰੀ ਤਰ੍ਹਾਂ ਸ਼ਾਮਲ ਨਹੀਂ ਹੋਇਆ ਹੈ। ਉਨ੍ਹਾਂ ਨੇ ਉਪਭੋਗਤਾ ਨਾਮ ਦਾ ਦਾਅਵਾ ਨਹੀਂ ਕੀਤਾ ਹੈ ਜਾਂ ਪ੍ਰੋਫਾਈਲ ਸੈੱਟਅੱਪ ਪੂਰਾ ਨਹੀਂ ਕੀਤਾ ਹੈ। ਤੁਸੀਂ ਅਜੇ ਵੀ ਜਨਤਕ ਗਤੀਵਿਧੀ ਦੇਖ ਸਕਦੇ ਹੋ ਅਤੇ ਜੇਕਰ ਉਪਲਬਧ ਹੋਵੇ ਤਾਂ ਟਿਪਸ ਭੇਜ ਸਕਦੇ ਹੋ।",
@@ -5906,7 +5907,8 @@
     "recentSearches": "ਹਾਲੀਆ ਖੋਜਾਂ",
     "noTrendingThisWeek": "ਇਸ ਹਫ਼ਤੇ ਕੋਈ ਟ੍ਰੈਂਡਿੰਗ ਸਮੱਗਰੀ ਨਹੀਂ",
     "closeFilterOptions": "ਫਿਲਟਰ ਵਿਕਲਪ ਬੰਦ ਕਰੋ",
-    "openFilterOptions": "ਫਿਲਟਰ ਵਿਕਲਪ ਖੋਲ੍ਹੋ"
+    "openFilterOptions": "ਫਿਲਟਰ ਵਿਕਲਪ ਖੋਲ੍ਹੋ",
+    "fillQuery": "ਖੋਜ ਵਿੱਚ \"{{query}}\" ਭਰੋ"
   },
   "notifPrompt": {
     "stayInLoop": "ਜਾਣੂ ਰਹੋ",

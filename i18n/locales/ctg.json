@@ -1991,6 +1991,7 @@
     "coverUpdated": "কভার বদলাইসে",
     "couldNotPickImage": "ছবি তুলবার পারসুনাই",
     "changeCoverImage": "কভার ছবি বদলান",
+    "viewCoverImage": "কভার ছবি চাও",
     "changeAvatar": "আভাটার বদলান",
     "verifiedEnsName": "ভেরিফাইড ENS নাম {{name}}",
     "notFullyJoined": "এই ইউজার এখনো পুরাপুরি জয়েন করিসেনাই। উনারা ইউজারনেম ক্লেইম করিসেনাই বা প্রোফাইল সেটআপ শেষ করিসেনাই। আপনেরা পাবলিক অ্যাক্টিভিটি দেখবার পারিবেন আর টিপস পাঠাইবার পারিবেন যদি থাকে।",
@@ -6011,7 +6012,8 @@
     "recentSearches": "সাম্প্রতিক সার্চ",
     "noTrendingThisWeek": "এই সপ্তাহে কোন ট্রেন্ডিং কন্টেন্ট নেই",
     "closeFilterOptions": "ফিল্টার অপশন বন্ধ করুন",
-    "openFilterOptions": "ফিল্টার অপশন খুলুন"
+    "openFilterOptions": "ফিল্টার অপশন খুলুন",
+    "fillQuery": "খোজত \"{{query}}\" বসাও"
   },
   "notifPrompt": {
     "stayInLoop": "খবরত থাকন",

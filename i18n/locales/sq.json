@@ -1900,6 +1900,7 @@
     "coverUpdated": "Cover-i u përditësua",
     "couldNotPickImage": "Nuk mund të zgjidhej imazhi",
     "changeCoverImage": "Ndrysho imazhin e cover-it",
+    "viewCoverImage": "Shiko imazhin e kopertinës",
     "changeAvatar": "Ndrysho avatar-in",
     "verifiedEnsName": "Emri i verifikuar ENS {{name}}",
     "notFullyJoined": "Ky përdorues nuk është bashkuar plotësisht ende. Nuk ka kërkuar një emër përdoruesi ose nuk ka përfunduar konfigurimin e profilit. Ju ende mund të shikoni aktivitetin publik dhe të dërgoni këshilla nëse janë të disponueshme.",
@@ -5902,7 +5903,8 @@
     "recentSearches": "Kërkime të Fundit",
     "noTrendingThisWeek": "Asnjë përmbajtje e popullarizuar këtë javë",
     "closeFilterOptions": "Mbyllni opsionet e filtrit",
-    "openFilterOptions": "Hapni opsionet e filtrit"
+    "openFilterOptions": "Hapni opsionet e filtrit",
+    "fillQuery": "Plotëso kërkimin me \"{{query}}\""
   },
   "notifPrompt": {
     "stayInLoop": "Qëndro i informuar",

@@ -1906,6 +1906,7 @@
     "coverUpdated": "कवर अपडेट किया गया",
     "couldNotPickImage": "छवि नहीं चुन सका",
     "changeCoverImage": "कवर छवि बदलें",
+    "viewCoverImage": "कवर छवि देखें",
     "changeAvatar": "अवतार बदलें",
     "verifiedEnsName": "सत्यापित ENS नाम {{name}}",
     "notFullyJoined": "यह उपयोगकर्ता अभी पूरी तरह से शामिल नहीं हुआ है। उन्होंने उपयोगकर्ता नाम का दावा नहीं किया है या प्रोफ़ाइल सेटअप पूरा नहीं किया है। आप अभी भी सार्वजनिक गतिविधि देख सकते हैं और यदि उपलब्ध हो तो टिप भेज सकते हैं।",
@@ -5958,7 +5959,8 @@
     "recentSearches": "हाल की खोजें",
     "noTrendingThisWeek": "इस सप्ताह कोई ट्रेंडिंग सामग्री नहीं",
     "closeFilterOptions": "फ़िल्टर विकल्प बंद करें",
-    "openFilterOptions": "फ़िल्टर विकल्प खोलें"
+    "openFilterOptions": "फ़िल्टर विकल्प खोलें",
+    "fillQuery": "खोज में \"{{query}}\" भरें"
   },
   "notifPrompt": {
     "stayInLoop": "अपडेट रहें",

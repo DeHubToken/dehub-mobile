@@ -1900,6 +1900,7 @@
     "coverUpdated": "Sahypa täzelendi",
     "couldNotPickImage": "Surat saýlap bolmady",
     "changeCoverImage": "Sahypa suraty üýtget",
+    "viewCoverImage": "Örtük suratyny gör",
     "changeAvatar": "Awatary üýtget",
     "verifiedEnsName": "Tassyklaýan ENS ady {{name}}",
     "notFullyJoined": "Bu ulanyjy heniz doly goşulmady. Ol özüniň ulanyjy adyny saýlamady ýa-da profiliň sazlamalaryny tamamlamady. Siz entegem jemgyýetçilik işjeňligini görüp we elýeterli bolsa, sowgat iberip bilersiňiz.",
@@ -5903,7 +5904,8 @@
     "recentSearches": "Soňky gözlegler",
     "noTrendingThisWeek": "Bu hepdede meşhur kontent ýok",
     "closeFilterOptions": "Süzgüç opsiýalaryny ýapyň",
-    "openFilterOptions": "Süzgüç opsiýalaryny açyň"
+    "openFilterOptions": "Süzgüç opsiýalaryny açyň",
+    "fillQuery": "Gözlege \"{{query}}\" goş"
   },
   "notifPrompt": {
     "stayInLoop": "Habarly boluň",

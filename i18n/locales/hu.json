@@ -1900,6 +1900,7 @@
     "coverUpdated": "Borító frissítve",
     "couldNotPickImage": "Nem sikerült képet kiválasztani",
     "changeCoverImage": "Borítóképet módosítása",
+    "viewCoverImage": "Borítókép megtekintése",
     "changeAvatar": "Avatart módosítása",
     "verifiedEnsName": "Hitelesített ENS név {{name}}",
     "notFullyJoined": "Ez a felhasználó még nem csatlakozott teljesen. Nem választott felhasználónevet, és nem fejezte be a profilbeállítást. Továbbra is megtekintheti a nyilvános tevékenységeket, és tippeket küldhet, ha elérhető.",
@@ -5906,7 +5907,8 @@
     "recentSearches": "Legutóbbi keresések",
     "noTrendingThisWeek": "Nincs felkapott tartalom ezen a héten",
     "closeFilterOptions": "Szűrőbeállítások bezárása",
-    "openFilterOptions": "Szűrőbeállítások megnyitása"
+    "openFilterOptions": "Szűrőbeállítások megnyitása",
+    "fillQuery": "\"{{query}}\" beírása a keresőbe"
   },
   "notifPrompt": {
     "stayInLoop": "Maradj naprakész",

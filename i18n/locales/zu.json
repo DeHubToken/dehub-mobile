@@ -1901,6 +1901,7 @@
     "coverUpdated": "Ikhava ibuyekeziwe",
     "couldNotPickImage": "Kuhlulekile ukukhetha isithombe",
     "changeCoverImage": "Shintsha isithombe sekhava",
+    "viewCoverImage": "Buka isithombe sekhava",
     "changeAvatar": "Shintsha i-avatar",
     "verifiedEnsName": "Igama le-ENS eliqinisekisiwe {{name}}",
     "notFullyJoined": "Lo msebenzisi akakajoyini ngokugcwele. Akakakhethi igama lomsebenzisi noma aqedele ukusethwa kwephrofayela. Ungabuka umsebenzi womphakathi futhi uthumele amathiphu uma etholakala.",
@@ -5934,7 +5935,8 @@
     "recentSearches": "Ukwesekwa Kwakamuva",
     "noTrendingThisWeek": "Awekho okuqukethwe okuthrendayo ngalesi sikhathi",
     "closeFilterOptions": "Vala izinketho zokuhlunga",
-    "openFilterOptions": "Vula izinketho zokuhlunga"
+    "openFilterOptions": "Vula izinketho zokuhlunga",
+    "fillQuery": "Faka \"{{query}}\" ebhokisini lokusesha"
   },
   "notifPrompt": {
     "stayInLoop": "Hlala wazi",

@@ -1900,6 +1900,7 @@
     "coverUpdated": "کور اپ ڈیٹ تھی ڳیا",
     "couldNotPickImage": "تصویر چاھنڑ نا تھی سڳی",
     "changeCoverImage": "کور تصویر بدلو",
+    "viewCoverImage": "کور تصویر ݙیکھو",
     "changeAvatar": "اوتار بدلو",
     "verifiedEnsName": "تصدیق شدہ ENS ناں {{name}}",
     "notFullyJoined": "ایں صارف دا مکمل طور تے شمولیت نا تھی ڳئی۔ اِیہاں اپݨا ناں منتخب نا کیتا یا پروفائل سیٹ اپ مکمل نا کیتا۔ تساں ہن تئیں عوامی سرگرمیاں ڈیکھ سڳدے او اتے دستیاب ہوسن تاں ٹِپ بھیڄ سڳدے او۔",
@@ -5888,7 +5889,8 @@
     "recentSearches": "حالیہ تلاشاں",
     "noTrendingThisWeek": "اِس ہفتے کوئی رجحان مواد نہ اے",
     "closeFilterOptions": "فلٹر دے اختیارات بند کرو",
-    "openFilterOptions": "فلٹر دے اختیارات کھولھو"
+    "openFilterOptions": "فلٹر دے اختیارات کھولھو",
+    "fillQuery": "ڳولݨ وچ \"{{query}}\" پاؤ"
   },
   "notifPrompt": {
     "stayInLoop": "باخبر رہو",

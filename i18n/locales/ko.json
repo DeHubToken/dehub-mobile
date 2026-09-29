@@ -1900,6 +1900,7 @@
     "coverUpdated": "커버가 업데이트되었습니다",
     "couldNotPickImage": "이미지를 선택할 수 없습니다",
     "changeCoverImage": "커버 이미지 변경",
+    "viewCoverImage": "커버 이미지 보기",
     "changeAvatar": "아바타 변경",
     "verifiedEnsName": "인증된 ENS 이름 {{name}}",
     "notFullyJoined": "이 사용자는 아직 완전히 참여하지 않았습니다. 사용자 이름을 선택하거나 프로필 설정을 완료하지 않았습니다. 공개 활동을 보거나 팁을 보낼 수 있습니다.",
@@ -5956,7 +5957,8 @@
     "recentSearches": "최근 검색어",
     "noTrendingThisWeek": "이번 주 인기 콘텐츠 없음",
     "closeFilterOptions": "필터 옵션 닫기",
-    "openFilterOptions": "필터 옵션 열기"
+    "openFilterOptions": "필터 옵션 열기",
+    "fillQuery": "검색창에 \"{{query}}\" 입력"
   },
   "notifPrompt": {
     "stayInLoop": "소식을 놓치지 마세요",

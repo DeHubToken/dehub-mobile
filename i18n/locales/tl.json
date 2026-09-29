@@ -1947,6 +1947,7 @@
     "coverUpdated": "Na-update ang cover",
     "couldNotPickImage": "Hindi mapili ang larawan",
     "changeCoverImage": "Baguhin ang cover image",
+    "viewCoverImage": "Tingnan ang cover image",
     "changeAvatar": "Baguhin ang avatar",
     "verifiedEnsName": "Beripikadong ENS name {{name}}",
     "notFullyJoined": "Hindi pa ganap na nakasali ang user na ito. Hindi pa sila nakakapili ng username o nakukumpleto ang pag-setup ng profile. Maaari mo pa ring tingnan ang pampublikong aktibidad at magpadala ng mga tip kung available.",
@@ -5949,7 +5950,8 @@
     "recentSearches": "Mga Kamakailang Paghahanap",
     "noTrendingThisWeek": "Walang trending na nilalaman ngayong linggo",
     "closeFilterOptions": "Isara ang mga opsyon sa filter",
-    "openFilterOptions": "Buksan ang mga opsyon sa filter"
+    "openFilterOptions": "Buksan ang mga opsyon sa filter",
+    "fillQuery": "Punan ang paghahanap ng \"{{query}}\""
   },
   "notifPrompt": {
     "stayInLoop": "Manatiling updated",
