@@ -361,14 +361,18 @@ const styles = StyleSheet.create({
   chipRow: { gap: 8, paddingHorizontal: 12, paddingVertical: 8, alignItems: "center" },
   chip: {
     paddingHorizontal: 12,
-    paddingVertical: 6,
+    // A fixed height, not vertical padding: text-only chips in a centred
+    // horizontal ScrollView were measured into the strip's leftover height on
+    // Android and rendered with their labels cut through the middle.
+    height: 32,
+    justifyContent: "center",
     borderRadius: 8,
     backgroundColor: "rgba(255,255,255,0.06)",
     borderWidth: 1,
     borderColor: "rgba(255,255,255,0.08)",
   },
   chipActive: { backgroundColor: "#FFFFFF", borderColor: "#FFFFFF" },
-  chipText: { color: "#A1A1AA", fontSize: 13, fontWeight: "600" },
+  chipText: { color: "#A1A1AA", fontSize: 13, lineHeight: 18, fontWeight: "600" },
   chipTextActive: { color: "#000000" },
 
   card: {

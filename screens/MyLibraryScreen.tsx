@@ -1,4 +1,5 @@
-import React, { useCallback, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import { useRoute, type RouteProp } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import { View, Pressable, Text, StyleSheet, ScrollView, Alert } from "react-native";
 import Animated, {
@@ -15,6 +16,8 @@ import { useGateToHome } from "../hooks/useGateToHome";
 import type { IconName } from "../components/ui/Icon";
 import Icon from "../components/ui/Icon";
 import { clearWatchHistory } from "../services/user.service";
+import type { AppStackParamList } from "../navigation/types";
+import type { ScreenNames } from "../navigation/ScreenNames";
 
 type LibraryTab = "myPosts" | "liked" | "saved" | "unlocked" | "watched";
 
@@ -42,7 +45,10 @@ const MyLibraryScreen: React.FC = () => {
   const allow = isSignedIn && !needsUsername;
   useGateToHome(allow);
 
-  const [activeTab, setActiveTab] = useState<LibraryTab>("myPosts");
+  // The menu's Bookmarks entry asks for the "saved" tab; without it the
+  // screen opened on My Posts and the reader had to find Bookmarks again.
+  const route = useRoute<RouteProp<AppStackParamList, ScreenNames.MyLibrary>>();
+  const [activeTab, setActiveTab] = useState<LibraryTab>(route.params?.initialTab ?? "myPosts");
   const [historyKey, setHistoryKey] = useState(0);
 
   const handleClearHistory = useCallback(() => {
@@ -93,6 +99,14 @@ const MyLibraryScreen: React.FC = () => {
     },
     [indicatorX, indicatorW],
   );
+
+  // Arriving again while the screen is still mounted (React Navigation reuses
+  // it) moves to the requested tab. Keyed on the params object, as DpayScreen
+  // does, so a repeat tap still lands after the reader switched tabs by hand.
+  const routeParams = route.params;
+  useEffect(() => {
+    if (routeParams?.initialTab) handleTabChange(routeParams.initialTab);
+  }, [routeParams, handleTabChange]);
 
   const indicatorStyle = useAnimatedStyle(() => ({
     position: "absolute" as const,

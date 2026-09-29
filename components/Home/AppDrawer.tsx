@@ -105,7 +105,7 @@ const NAV_ITEMS: DrawerItem[] = [
   { icon: "Settings", labelKey: "nav.settings", screen: ScreenNames.AccountSettings, requiresAuth: true },
   { icon: "Trophy", labelKey: "nav.leaderboard", screen: ScreenNames.Leaderboard },
   { icon: "ChartNoAxesCombined", labelKey: "nav.stats", screen: ScreenNames.Stats },
-  { icon: "Bookmark", labelKey: "nav.bookmarks", screen: ScreenNames.MyLibrary, requiresAuth: true },
+  { icon: "Bookmark", labelKey: "nav.bookmarks", screen: ScreenNames.MyLibrary, params: { initialTab: "saved" }, requiresAuth: true },
   { icon: "LayoutDashboard", labelKey: "nav.command", screen: ScreenNames.CommandCentre, requiresAuth: true, storefrontHidden: true },
   // Passes initialTab explicitly so returning here from the Staking entry
   // (same screen, different tab) resets to Buy instead of keeping Stake.
