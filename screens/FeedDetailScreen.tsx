@@ -37,6 +37,7 @@ import {
 } from "../libs/comment-draft-cache";
 import { theme } from "../theme";
 import { formatCompactNumber } from "../libs/numbers.util";
+import { collapsedReplyIds } from "../libs/comment-preview";
 import { ScreenNames } from "../navigation/ScreenNames";
 import type { PostReaction } from "../libs/reactions";
 import PostDetailContinuation from "../components/Advertising/PostDetailContinuation";
@@ -722,6 +723,7 @@ export default function FeedDetailScreen() {
    * The list is already in reading order with roots at depth 0, so the root of
    * any reply is simply the last depth-0 row above it.
    */
+  const threadCreator: string | undefined = item?.minter || (item as any)?.minterUser?.address;
   const { visibleComments, threadMeta, focusRoot, focusOnly } = useMemo(() => {
     const rootOf = new Map<string, string>();
     const totalPerRoot = new Map<string, number>();
@@ -745,7 +747,14 @@ export default function FeedDetailScreen() {
     const focusRoot = focusCommentId ? rootOf.get(focusCommentId) : undefined;
     const focusOnly = !!focusRoot && !showAllThreads;
 
-    const shownPerRoot = new Map<string, number>();
+    // The creator's answer, when there is one, is the reply a collapsed thread
+    // shows — see collapsedReplyIds.
+    const preview = collapsedReplyIds(
+      comments,
+      (c) => (c.depth > 0 ? rootOf.get(String(c.id)) : undefined),
+      threadCreator,
+      REPLIES_SHOWN_COLLAPSED,
+    );
     const visible = comments.filter((c) => {
       const root = c.depth === 0 ? String(c.id) : rootOf.get(String(c.id)) ?? "";
       if (focusOnly && root !== focusRoot) return false;
@@ -755,10 +764,7 @@ export default function FeedDetailScreen() {
       // Keyed on the route param, not on the four-second ring — when that
       // cleared, a linked reply inside a collapsed thread disappeared.
       if (focusCommentId && String(c.id) === focusCommentId) return true;
-      const shown = shownPerRoot.get(root) ?? 0;
-      if (shown >= REPLIES_SHOWN_COLLAPSED) return false;
-      shownPerRoot.set(root, shown + 1);
-      return true;
+      return preview.get(root)?.has(String(c.id)) ?? false;
     });
 
     type Meta = {
@@ -777,7 +783,7 @@ export default function FeedDetailScreen() {
       const nextIsSameThread = !!next && next.depth > 0 && (rootOf.get(String(next.id)) ?? "") === root;
       const total = totalPerRoot.get(root) ?? 0;
       const isExpanded = expandedThreads.has(root);
-      const hidden = isExpanded ? 0 : Math.max(0, total - REPLIES_SHOWN_COLLAPSED);
+      const hidden = isExpanded ? 0 : Math.max(0, total - (preview.get(root)?.size ?? 0));
       // The toggle belongs at the end of what is on screen, so it reads as the
       // continuation of the thread rather than as a note on its first line.
       const ownsToggle = !nextIsSameThread && total > 0 && (hidden > 0 || isExpanded);
@@ -794,7 +800,7 @@ export default function FeedDetailScreen() {
     });
 
     return { visibleComments: visible, threadMeta: meta, focusRoot, focusOnly };
-  }, [comments, expandedThreads, focusCommentId, showAllThreads]);
+  }, [comments, expandedThreads, focusCommentId, showAllThreads, threadCreator]);
 
   // Open the thread the linked comment sits in, so the reader lands on the
   // conversation rather than on one line of it with the rest hidden.
