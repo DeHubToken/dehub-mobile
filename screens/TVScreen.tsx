@@ -21,6 +21,7 @@ import {
   ScrollView,
   TextInput,
   Modal,
+  Platform,
   useWindowDimensions,
 } from "react-native";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
@@ -162,12 +163,16 @@ const ChannelPlayer: React.FC<{ channel: TVChannel | null; onClose: () => void }
         {/* Live chat fills the space under the 16:9 box. Mounted only while a
             channel is open so the realtime subscription follows the modal.
             expo-video's native fullscreen presents its own view controller, so
-            this is portrait-only by construction. */}
+            this is portrait-only by construction.
+            The modal runs edge to edge, and on Android the keyboard height
+            leaves out the nav bar, so the composer keeps its nav-bar padding
+            while typing. iOS counts the home indicator in the keyboard height,
+            so only there is the padding dropped. */}
         {!!channel && (
           <TVChatPanel
             channelId={channel.id}
             enabled={!!channel}
-            bottomInset={kbVisible ? 0 : insets.bottom}
+            bottomInset={kbVisible && Platform.OS === "ios" ? 0 : insets.bottom}
             onClosePlayer={onClose}
           />
         )}
@@ -294,10 +299,14 @@ export default function TVScreen() {
         )}
       </View>
 
+      {/* flexGrow/flexShrink 0, as StoresScreen's chipScroll: RN gives horizontal
+          scrollers flexGrow 1, so the strip would otherwise take height from the
+          loader and the channel grid. The chips carry a fixed height (styles.chip). */}
       {!debounced.trim() && (
         <ScrollView
           horizontal
           showsHorizontalScrollIndicator={false}
+          style={styles.chipScroll}
           contentContainerStyle={styles.chipRow}
         >
           {countryPills.map((c) => (
@@ -389,6 +398,7 @@ const styles = StyleSheet.create({
   },
   searchInput: { flex: 1, color: "#FFFFFF", fontSize: 14, padding: 0 },
 
+  chipScroll: { flexGrow: 0, flexShrink: 0 },
   chipRow: { gap: 8, paddingHorizontal: H_PADDING, paddingVertical: 10, alignItems: "center" },
   chip: {
     paddingHorizontal: 13,
