@@ -41,6 +41,9 @@ import {
 import { createViewRecorder } from "../services/view.service";
 import { getCachedMuted, setMutedState } from "../libs/videoMutedState";
 import { PLAYER_CONSTANTS } from "../components/VideoPlayerCore/utils";
+import { isBrainrotSwipe } from "../libs/brainrotFeed";
+import { useAppPrefs } from "../hooks/useAppPrefs";
+import { ScreenNames } from "../navigation/ScreenNames";
 
 const DISMISS_THRESHOLD = 150;
 const CONTROLS_TIMEOUT = PLAYER_CONSTANTS.HIDE_CONTROLS_DELAY;
@@ -281,18 +284,42 @@ const FullscreenVideoScreen = () => {
 
   const progressPercent = videoDuration > 0 ? (currentTime / videoDuration) * 100 : 0;
 
+  // Swiping UP is "scroll down" — on to the next video, as in every
+  // short-video app: this one closes into the brainrot shorts feed
+  // (libs/brainrotFeed). Replaced rather than pushed, so Back from the shorts
+  // lands where the video was opened from. Off for anyone who hid Shorts.
+  const shortsEnabled = useAppPrefs().shorts;
+  const openShorts = useCallback(() => {
+    try { player?.pause(); } catch {}
+    navigation.replace(ScreenNames.ShortsViewer, {
+      feedParams: { brainrot: true, fromId: tokenId },
+    });
+  }, [player, navigation, tokenId]);
+
   const panGesture = Gesture.Pan()
-    .activeOffsetY(15)
+    .activeOffsetY(shortsEnabled ? [-15, 15] : 15)
     .failOffsetX([-10, 10])
     .enabled(!isLandscape)
     .onUpdate((e) => {
       if (isDismissing.current) return;
-      const dy = Math.max(0, e.translationY);
+      if (e.translationY < 0) {
+        // Follows the finger up with some resistance, as a hint of what's next.
+        translateY.value = shortsEnabled ? e.translationY * 0.35 : 0;
+        return;
+      }
+      const dy = e.translationY;
       translateY.value = dy;
       opacity.value = interpolate(dy, [0, DISMISS_THRESHOLD * 2], [1, 0.3], Extrapolation.CLAMP);
     })
     .onEnd((e) => {
       if (isDismissing.current) return;
+      if (shortsEnabled && isBrainrotSwipe(e.translationY, e.velocityY)) {
+        isDismissing.current = true;
+        translateY.value = withTiming(-screenH, { duration: 200 }, () => {
+          runOnJS(openShorts)();
+        });
+        return;
+      }
       if (e.translationY > DISMISS_THRESHOLD) {
         isDismissing.current = true;
         translateY.value = withTiming(screenH, { duration: 200 });
