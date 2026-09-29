@@ -17,6 +17,7 @@ import { shareProfile } from "../../libs/misc";
 import { useMutualFollowers } from "../../hooks/useMutualFollowers";
 import { WEBSITE_LINK } from "../../config/links";
 import { useCreatorPlans } from "../../hooks/useCreatorPlans";
+import type { UserProfileLoadError } from "../../hooks/useUserProfileData";
 
 const FallbackAvatar = require("../../assets/default-avatar.png");
 
@@ -56,6 +57,11 @@ interface UserProfileSheetContentProps {
   onRemoveFollower?: () => void;
   /** Callback to register menu trigger handler */
   onRegisterMenuTrigger?: (trigger: () => void) => void;
+  /** Why the profile could not be loaded, when it could not. */
+  error?: UserProfileLoadError | null;
+  onRetry?: () => void;
+  /** Distance of the back-to-top button from the bottom, clear of the host's chrome. */
+  backToTopBottom?: number;
 }
 
 const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
@@ -93,6 +99,9 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
   onUnblock,
   onRemoveFollower,
   onRegisterMenuTrigger,
+  error = null,
+  onRetry,
+  backToTopBottom,
 }) => {
   const { t } = useTranslation();
   const [showProfileMenu, setShowProfileMenu] = useState(false);
@@ -329,6 +338,34 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
     handleSubscribePress,
   ]);
 
+  // Without this a failed or empty lookup left the skeleton up for good.
+  if (!data && error) {
+    const failed = error === "failed";
+    return (
+      <View className="flex-1 items-center justify-center py-20 px-8">
+        <View className="w-16 h-16 rounded-2xl bg-theme-neutrals-800 items-center justify-center mb-4">
+          <Icon name={failed ? "WifiOff" : "UserRound"} size={32} color="#A1A1AA" />
+        </View>
+        <Text className="text-white text-lg font-semibold text-center mb-2">
+          {t("profile.notFound")}
+        </Text>
+        <Text className="text-theme-neutrals-400 text-sm text-center leading-5">
+          {failed ? t("profile.unableToLoad") : t("profile.doesNotExist")}
+        </Text>
+        {failed && onRetry ? (
+          <TouchableOpacity
+            onPress={onRetry}
+            accessibilityRole="button"
+            activeOpacity={0.8}
+            className="mt-5 px-5 py-2 rounded-xl bg-theme-neutrals-800"
+          >
+            <Text className="text-theme-neutrals-100 text-sm font-medium">{t("common.tryAgain")}</Text>
+          </TouchableOpacity>
+        ) : null}
+      </View>
+    );
+  }
+
   if (loading || !data) {
     return (
       <View className="flex-1 p-2">
@@ -367,6 +404,7 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
         blockedYou={blockedYou}
         pendingTab={pendingTab}
         onPendingTabConsumed={handlePendingTabConsumed}
+        backToTopBottom={backToTopBottom}
       />
       {!isFullScreen && <View style={{ height: 40 }} />}
 
