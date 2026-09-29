@@ -64,7 +64,12 @@ const RASTER_THEMES = new Set([
 ]);
 // Bump alongside web's ThemedIcon when a file is redrawn in place, or the disk
 // cache keeps serving the old art forever.
-const ICON_REVISIONS: Record<string, string> = { dao: "?v=3" };
+const ICON_REVISIONS: Record<string, string> = {
+  dao: "?v=3",
+  // Crop leftovers stripped from these in place.
+  audio: "?v=2", careers: "?v=2", communities: "?v=2", governance: "?v=2", home: "?v=2", live: "?v=2",
+  notifications: "?v=2", posts: "?v=2", stages: "?v=2", subscriptions: "?v=2", trophy: "?v=2",
+};
 const themeIconUrl = (theme: string, key: string) =>
   `${WEBSITE_LINK}/theme-icons/${RASTER_THEMES.has(theme) ? theme : "system"}/${key}.webp${ICON_REVISIONS[key] ?? ""}`;
 
