@@ -103,6 +103,8 @@
         <data android:scheme="https" android:host="dehub.io" android:path="/connect"/>
         <data android:scheme="https" android:host="dehub.io" android:pathPrefix="/connect/"/>
         <data android:scheme="https" android:host="dehub.io" android:path="/arcade/kings-gambit/online"/>
+        <data android:scheme="https" android:host="dehub.io" android:path="/apps"/>
+        <data android:scheme="https" android:host="dehub.io" android:pathPrefix="/apps/"/>
         <data android:scheme="https" android:host="dehub.io" android:path="/premium"/>
         <data android:scheme="https" android:host="dehub.io" android:path="/pricing"/>
         <data android:scheme="https" android:host="dehub.io" android:path="/work/history"/>

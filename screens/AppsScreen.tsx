@@ -7,17 +7,22 @@
  * job, so "Build an app" opens the web developer page rather than a native
  * copy of it; the app side is where a build gets RUN, via
  * dehub.io/apps/dev/run?url=… links that open MiniAppScreen in developer mode.
+ * That page opens in a browser tab, not through Linking.openURL: the app
+ * claims dehub.io/apps/ links, so openURL would route it straight back here
+ * as an app called "dev".
  */
-import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { ActivityIndicator, Linking, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { ActivityIndicator, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
 import { Image } from "expo-image";
 import { useNavigation } from "@react-navigation/native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useTranslation } from "react-i18next";
 import Icon from "../components/ui/Icon";
 import ScreenHeader from "../components/ScreenHeader";
+import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { WEBSITE_LINK } from "../config/links";
+import { openInApp } from "../libs/links.utils";
 import { colors } from "../theme/colors";
 import { fetchListedApps, type MiniAppListing } from "../services/miniapps.service";
 import { ARCADE_GAMES } from "../config/arcade-games";
@@ -53,6 +58,9 @@ export default function AppsScreen() {
   const navigation = useNavigation<any>();
   const insets = useSafeAreaInsets();
   const [apps, setApps] = useState<MiniAppListing[] | null>(null);
+  const [failed, setFailed] = useState(false);
+  const [refreshing, setRefreshing] = useState(false);
+  const mounted = useRef(true);
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("all");
   const categories = useMemo(
@@ -68,21 +76,40 @@ export default function AppsScreen() {
     );
   }, [apps, query, category]);
 
-  useEffect(() => {
-    let live = true;
-    fetchListedApps().then((rows) => {
-      if (live) setApps(rows);
-    });
-    return () => {
-      live = false;
-    };
+  // A failed read keeps whatever is already listed; only an empty store turns
+  // into the failed state, so a bad refresh never blanks the list.
+  const load = useCallback(async (isRefresh = false) => {
+    if (isRefresh) setRefreshing(true);
+    const rows = await fetchListedApps().catch(() => null);
+    if (!mounted.current) return;
+    if (rows) {
+      setApps(rows);
+      setFailed(false);
+    } else {
+      setFailed(true);
+      setApps((prev) => prev ?? []);
+    }
+    setRefreshing(false);
   }, []);
+
+  useEffect(() => {
+    mounted.current = true;
+    void load();
+    return () => {
+      mounted.current = false;
+    };
+  }, [load]);
+
+  const retry = () => {
+    setApps(null);
+    void load();
+  };
 
   const open = useCallback(
     (slug: string) => navigation.navigate(ScreenNames.MiniApp, { slug, from: "store" }),
     [navigation],
   );
-  const build = () => Linking.openURL(`${WEBSITE_LINK}/apps/dev`);
+  const build = () => openInApp(`${WEBSITE_LINK}/apps/dev`);
 
   return (
     <View style={styles.screen}>
@@ -90,6 +117,7 @@ export default function AppsScreen() {
       <ScrollView
         contentContainerStyle={[styles.content, { paddingBottom: insets.bottom + 24 }]}
         showsVerticalScrollIndicator={false}
+        refreshControl={<DeHubRefreshControl refreshing={refreshing} onRefresh={() => load(true)} tintColor="#ffffff" />}
       >
         <Text style={styles.intro}>{t("miniApps.store.intro")}</Text>
 
@@ -152,6 +180,17 @@ export default function AppsScreen() {
 
         {apps === null ? (
           <ActivityIndicator color="#71717A" style={{ marginTop: 24 }} />
+        ) : apps.length === 0 && failed ? (
+          <View style={styles.empty}>
+            <Text style={styles.emptyTitle}>{t("common.failedToLoad")}</Text>
+            <Pressable
+              accessibilityRole="button"
+              onPress={retry}
+              style={({ pressed }) => [styles.retryButton, pressed && styles.pressed]}
+            >
+              <Text style={styles.retryLabel}>{t("common.retry")}</Text>
+            </Pressable>
+          </View>
         ) : apps.length === 0 ? (
           <View style={styles.empty}>
             <Text style={styles.emptyTitle}>{t("miniApps.store.emptyTitle")}</Text>
@@ -170,6 +209,7 @@ export default function AppsScreen() {
           <Icon name="ArrowUpRight" size={14} color="#FFFFFF" />
         </Pressable>
       </ScrollView>
+      <DeHubRefreshMark refreshing={refreshing} />
     </View>
   );
 }
@@ -206,6 +246,8 @@ const styles = StyleSheet.create({
   },
   emptyTitle: { color: "#FFFFFF", fontSize: 14, fontWeight: "600" },
   emptyBody: { color: "#A1A1AA", fontSize: 12, textAlign: "center" },
+  retryButton: { marginTop: 8, borderRadius: 999, backgroundColor: "#FFFFFF", paddingHorizontal: 16, paddingVertical: 8 },
+  retryLabel: { color: "#000", fontSize: 12, fontWeight: "600" },
   buildCard: {
     flexDirection: "row",
     alignItems: "center",
