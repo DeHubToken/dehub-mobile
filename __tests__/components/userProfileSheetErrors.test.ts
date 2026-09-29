@@ -37,9 +37,9 @@ describe("profile sheet follow list", () => {
 });
 
 describe("profile sheet clears the nav pill", () => {
-  it("lifts back-to-top above the pill on Home and the system bar in the modal", () => {
-    expect(sheet).toContain("backToTopBottom={TAB_BAR_CONTENT_INSET}");
-    expect(sheet).toContain("backToTopBottom={insets.bottom + 24}");
+  it("lifts back-to-top above the pill on Home and in the modal, which has its own", () => {
+    expect(sheet.match(/backToTopBottom=\{TAB_BAR_CONTENT_INSET\}/g)).toHaveLength(2);
+    expect(sheet).not.toContain("backToTopBottom={insets.bottom + 24}");
     expect(content).toContain("backToTopBottom={backToTopBottom}");
     expect(tabs).not.toContain("bottom-6");
     expect(tabs).toContain("bottom: backToTopBottom ?? 24");
