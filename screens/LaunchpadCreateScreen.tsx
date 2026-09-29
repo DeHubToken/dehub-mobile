@@ -9,7 +9,7 @@
  * (config/storefront).
  */
 import React, { useState } from "react";
-import { View, Text, TextInput, Pressable, ScrollView, StyleSheet, KeyboardAvoidingView, Platform } from "react-native";
+import { View, Text, TextInput, Pressable, ScrollView, StyleSheet, KeyboardAvoidingView } from "react-native";
 import { Image } from "expo-image";
 import * as ImagePicker from "expo-image-picker";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -158,7 +158,7 @@ export default function LaunchpadCreateScreen() {
   return (
     <KeyboardAvoidingView
       style={styles.root}
-      behavior={Platform.OS === "ios" ? "padding" : undefined}
+      behavior="padding"
       keyboardVerticalOffset={keyboardOffset}
     >
       <ScreenHeader title={t("launchpad.createTitle")} subtitle={t("launchpad.stepOf", { step })} />
