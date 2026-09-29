@@ -1174,8 +1174,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       return (
         <Pressable
           onPress={handlePPVPress}
-          className="mt-2 rounded-xl overflow-hidden"
-          style={{ height: IMAGE_WIDTH * 0.75 }}
+          className={immersive ? "overflow-hidden" : "mt-2 rounded-xl overflow-hidden"}
+          style={{ height: (immersive ? SCREEN_WIDTH : IMAGE_WIDTH) * 0.75 }}
         >
           <SmartImage
             source={{ uri: lockedPreviewUri }}
@@ -1221,8 +1221,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       return (
         <Pressable
           onPress={handlePPVPress}
-          className="mt-2 rounded-xl overflow-hidden"
-          style={{ height: IMAGE_WIDTH * 0.75 }}
+          className={immersive ? "overflow-hidden" : "mt-2 rounded-xl overflow-hidden"}
+          style={{ height: (immersive ? SCREEN_WIDTH : IMAGE_WIDTH) * 0.75 }}
         >
           <SmartImage
             source={{ uri: lockedPreviewUri }}
@@ -1256,8 +1256,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       return (
         <Pressable
           onPress={handleSubscribePress}
-          className="mt-2 rounded-xl overflow-hidden"
-          style={{ height: IMAGE_WIDTH * 0.75 }}
+          className={immersive ? "overflow-hidden" : "mt-2 rounded-xl overflow-hidden"}
+          style={{ height: (immersive ? SCREEN_WIDTH : IMAGE_WIDTH) * 0.75 }}
         >
           <SmartImage
             source={{ uri: lockedPreviewUri }}
@@ -1282,8 +1282,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       return (
         <Pressable
           onPress={handleCardPress}
-          className="mt-2 rounded-xl overflow-hidden"
-          style={{ height: IMAGE_WIDTH * 0.75 }}
+          className={immersive ? "overflow-hidden" : "mt-2 rounded-xl overflow-hidden"}
+          style={{ height: (immersive ? SCREEN_WIDTH : IMAGE_WIDTH) * 0.75 }}
         >
           <SmartImage
             source={{ uri: lockedPreviewUri }}
@@ -1317,14 +1317,15 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           resetKey={postKey}
           onPress={() => handleImagePress(0)}
           onReaction={handleVideoTapReaction}
-          style={{ alignSelf: "stretch", marginTop: 8 }}
+          style={{ alignSelf: "stretch", marginTop: immersive ? 0 : 8 }}
         >
           <ContainedFeedImage
             active={isVisible}
             uri={galleryImages[0]}
-            width={isMinimal ? SCREEN_WIDTH : SINGLE_IMAGE_WIDTH}
-            fallbackWidth={isMinimal ? SCREEN_WIDTH : SINGLE_IMAGE_WIDTH}
+            width={isMinimal || immersive ? SCREEN_WIDTH : SINGLE_IMAGE_WIDTH}
+            fallbackWidth={isMinimal || immersive ? SCREEN_WIDTH : SINGLE_IMAGE_WIDTH}
             priority={prioritizeMedia ? "high" : "normal"}
+            postPage={immersive}
           />
         </PostTapSurface>
       );
@@ -1340,11 +1341,12 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         onLayout={handleGalleryLayout}
         onImagePress={handleImagePress}
         onReaction={handleVideoTapReaction}
+        postPage={immersive}
       />
     );
 
     return (
-      <View className="mt-2">
+      <View className={immersive ? undefined : "mt-2"}>
         {/* Inside Home's swipe pager, paging through this gallery has to win
             over the page turn — without the guard the pager's pan clears its
             threshold first and cancels the gallery scroll mid-drag. Elsewhere
