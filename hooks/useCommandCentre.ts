@@ -76,9 +76,11 @@ export function useTipsReceived() {
         .select("amount, created_at, tx_hash")
         .eq("receiver_address", wallet!.toLowerCase())
         .order("created_at", { ascending: false });
+      // Throw rather than return []: an empty list reads as "no income", and a
+      // failed refetch would replace income that was already on screen.
       if (error) {
         log.warn("tip_records error:", error);
-        return [] as TipRecord[];
+        throw error;
       }
       return (data || []) as TipRecord[];
     },
@@ -100,7 +102,7 @@ export function usePpvSales() {
         .order("created_at", { ascending: false });
       if (error) {
         log.warn("ppv_purchases error:", error);
-        return [] as PpvPurchase[];
+        throw error;
       }
       return (data || []) as PpvPurchase[];
     },
@@ -154,6 +156,13 @@ export function useRecentActivity() {
           return null;
         }),
       ]);
+
+      // A list missing its tips or its PPV half would look complete, so either
+      // read failing fails the whole query.
+      if (tips.error || ppv.error) {
+        log.warn("recent activity error:", tips.error ?? ppv.error);
+        throw tips.error ?? ppv.error;
+      }
 
       for (const t of (tips.data || []) as any[]) {
         const incoming = t.receiver_address?.toLowerCase() === addr;
