@@ -259,6 +259,15 @@ export function useCall(): UseCallReturn {
     }
   }, [initEngine]);
 
+  // Mirrors of the call-state flags, read by the realtime handlers and the poll
+  // so neither surfaces a second call on top of one already in progress.
+  const isCallActiveRef = useRef(isCallActive);
+  const isIncomingRef = useRef(isIncoming);
+  const isConnectingRef = useRef(isConnecting);
+  useEffect(() => { isCallActiveRef.current = isCallActive; }, [isCallActive]);
+  useEffect(() => { isIncomingRef.current = isIncoming; }, [isIncoming]);
+  useEffect(() => { isConnectingRef.current = isConnecting; }, [isConnecting]);
+
   // ── Realtime subscriptions ─────────────────────────────────────────────────
 
   const subscribeIncomingCalls = useCallback(() => {
@@ -272,15 +281,20 @@ export function useCall(): UseCallReturn {
         { event: "INSERT", schema: "public", table: "call_sessions", filter: `recipient_address=eq.${userAddress}` },
         (payload: any) => {
           const call = payload.new as CallSession;
-          if (call.status === "ringing") {
-            setCurrentCall(call);
-            setIsIncoming(true);
-            // Auto-dismiss after 45s
-            callTimeoutRef.current = setTimeout(() => {
-              setIsIncoming(false);
-              setCurrentCall(null);
-            }, 45_000);
-          }
+          if (call.status !== "ringing") return;
+          // A second call must never replace the one already ringing or live.
+          if (isCallActiveRef.current || isIncomingRef.current || isConnectingRef.current) return;
+          const age = Date.now() - new Date(call.created_at).getTime();
+          if (age > 45_000) return;
+          setCurrentCall(call);
+          currentCallRef.current = call;
+          setIsIncoming(true);
+          // Auto-dismiss once the ring window is over
+          if (callTimeoutRef.current) clearTimeout(callTimeoutRef.current);
+          callTimeoutRef.current = setTimeout(() => {
+            setIsIncoming(false);
+            setCurrentCall(null);
+          }, 45_000 - age);
         },
       )
       .on(
@@ -288,11 +302,17 @@ export function useCall(): UseCallReturn {
         { event: "UPDATE", schema: "public", table: "call_sessions", filter: `recipient_address=eq.${userAddress}` },
         (payload: any) => {
           const call = payload.new as CallSession;
-          if (call.status === "ended") {
-            setIsIncoming(false);
-            setCurrentCall(null);
-            cleanupEngine();
+          // Only the call on screen may end it: another caller's unanswered
+          // ring timing out must not tear down the call in progress.
+          if (call.status !== "ended" || call.id !== currentCallRef.current?.id) return;
+          if (callTimeoutRef.current) {
+            clearTimeout(callTimeoutRef.current);
+            callTimeoutRef.current = null;
           }
+          setIsIncoming(false);
+          setCurrentCall(null);
+          currentCallRef.current = null;
+          cleanupEngine();
         },
       )
       .subscribe();
@@ -321,13 +341,6 @@ export function useCall(): UseCallReturn {
 
   // ── Polling fallback (every 60s) in case realtime misses the event ─────────
 
-  const isCallActiveRef = useRef(isCallActive);
-  const isIncomingRef = useRef(isIncoming);
-  const isConnectingRef = useRef(isConnecting);
-  useEffect(() => { isCallActiveRef.current = isCallActive; }, [isCallActive]);
-  useEffect(() => { isIncomingRef.current = isIncoming; }, [isIncoming]);
-  useEffect(() => { isConnectingRef.current = isConnecting; }, [isConnecting]);
-
   useEffect(() => {
     if (!userAddress) return;
 
@@ -348,12 +361,16 @@ export function useCall(): UseCallReturn {
         .limit(1)
         .single();
       if (!data) return;
+      // Realtime may have surfaced this call while the request was in flight;
+      // showing it twice would leave a stray dismiss timer that ends it later.
+      if (currentCallRef.current || isCallActiveRef.current || isIncomingRef.current || isConnectingRef.current) return;
       const age = Date.now() - new Date(data.created_at).getTime();
       if (age > 45_000) return;
       const call = data as CallSession;
       setCurrentCall(call);
       currentCallRef.current = call;
       setIsIncoming(true);
+      if (callTimeoutRef.current) clearTimeout(callTimeoutRef.current);
       callTimeoutRef.current = setTimeout(() => {
         setIsIncoming(false);
         setCurrentCall(null);

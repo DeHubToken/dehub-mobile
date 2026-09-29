@@ -16,6 +16,7 @@ import { useUser, useProvider, useAuthActions } from "../../context/AuthContext"
 import { useFocusedInterval } from "../../hooks/useFocusedInterval";
 import { getSigningProvider } from "../../libs/provider.registry";
 import { supabase } from "../../services/supabase";
+import { withWalletHeader } from "../../libs/supabase-wallet-client";
 import { toastError, toastInfo, toastSuccess } from "../../libs/toast";
 import { refreshStakingPosition } from "../../services/staking.service";
 import { getAccount } from "../../services/user.service";
@@ -556,13 +557,16 @@ const StakingTab: React.FC = () => {
       // Recorded so the withdrawal shows in history on web too. The real hash
       // is what marks it settled — see isPendingQueueRow above.
       try {
-        await supabase.from("staking_records").insert({
-          wallet_address: walletAddress.toLowerCase(),
-          amount: amt,
-          chain: "BNB",
-          action: "unstake",
-          tx_hash: txHash,
-        });
+        await withWalletHeader(
+          supabase.from("staking_records").insert({
+            wallet_address: walletAddress.toLowerCase(),
+            amount: amt,
+            chain: "BNB",
+            action: "unstake",
+            tx_hash: txHash,
+          }),
+          walletAddress,
+        );
       } catch (dbErr) {
         console.warn("[StakingTab] failed to record withdrawal:", dbErr);
       }
