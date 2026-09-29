@@ -412,6 +412,10 @@ const isNotificationClickable = (notification: NotificationItem): boolean => {
     return !!(notification as CustomNotificationItem).customReferenceId;
   }
 
+  // DAO rows open the DAO screen, as web's /dao does for a row with no id.
+  // Mobile has no proposal view to take the id to yet.
+  if (String(typeStr).startsWith('dao_')) return true;
+
   // Every other Supabase-backed row. They carry no tokenId, so the default at
   // the bottom of this function passed them on the strength of having an actor
   // — the row looked tappable and the switch below then navigated to a post
@@ -1272,11 +1276,11 @@ const NotificationScreen = () => {
         break;
 
       // The delegation panel is the only surface a loan can be seen or ended
-      // on, and it lives in settings on both clients.
+      // on, and it lives on the Assets tab of settings on both clients.
       case NotificationType.BADGE_DELEGATED:
       case NotificationType.BADGE_DELEGATION_ENDED:
       case NotificationType.BADGE_DELEGATION_CHANGED:
-        navigation.navigate(ScreenNames.AccountSettings as never);
+        navigation.navigate(ScreenNames.AccountSettings, { initialTab: 'assets' });
         break;
 
       // The ladder lives on the staking tab, with the next rung and its price
@@ -1286,7 +1290,7 @@ const NotificationScreen = () => {
       case NotificationType.USERNAME_OFFER:
       case NotificationType.USERNAME_OFFER_ACCEPTED:
       case NotificationType.USERNAME_OFFER_DECLINED:
-        navigation.navigate(ScreenNames.Usernames as never);
+        navigation.navigate(ScreenNames.Usernames, { tab: 'offers' });
         break;
 
       case NotificationType.BADGE_TIER_UP:
@@ -1308,6 +1312,11 @@ const NotificationScreen = () => {
         break;
 
       default:
+        // A case label cannot match a prefix, so every dao_* type lands here.
+        if (String(type).startsWith('dao_')) {
+          navigation.navigate(ScreenNames.Dao);
+          break;
+        }
         if (tokenId) navigateToFeed(tokenId, undefined, postType);
         break;
     }
