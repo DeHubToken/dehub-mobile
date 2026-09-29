@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { View, Text, FlatList, Pressable, TextInput, TouchableOpacity, ActivityIndicator, Keyboard, Platform, StyleSheet } from "react-native";
+import { View, Text, FlatList, Pressable, TextInput, TouchableOpacity, ActivityIndicator, Keyboard, Platform, StyleSheet, Alert } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import ScreenHeader from "../components/ScreenHeader";
@@ -640,24 +640,30 @@ export default function FeedDetailScreen() {
     }
   }, [contextComment, address]);
 
-  const handleContextDelete = useCallback(async () => {
-    if (!contextComment) return;
-    const commentId = contextComment.id;
+  const deleteNow = useCallback(async (commentId: number) => {
     // Optimistic removal. The server deletes a comment's whole subtree, so drop
     // every following row that sits deeper than this one — its descendants,
     // at any depth.
-    setComments((prev) => {
-      const idx = prev.findIndex((c) => c.id === commentId);
-      if (idx === -1) return prev;
-      const depth = prev[idx].depth;
+    const idx = comments.findIndex((c) => c.id === commentId);
+    let removed = 0;
+    if (idx !== -1) {
       let endIdx = idx + 1;
+      while (endIdx < comments.length && comments[endIdx].depth > comments[idx].depth) endIdx++;
+      removed = endIdx - idx;
+    }
+    setComments((prev) => {
+      const at = prev.findIndex((c) => c.id === commentId);
+      if (at === -1) return prev;
+      const depth = prev[at].depth;
+      let endIdx = at + 1;
       while (endIdx < prev.length && prev[endIdx].depth > depth) endIdx++;
       const next = [...prev];
-      next.splice(idx, endIdx - idx);
+      next.splice(at, endIdx - at);
       return next;
     });
-    // Decrement comment count
-    setItem((prev) => prev ? { ...prev, commentCount: Math.max(0, (prev.commentCount ?? 0) - 1) } : prev);
+    // The count goes down by every row that went, not by one: deleting a
+    // comment with four replies left the post saying four comments too many.
+    setItem((prev) => prev ? { ...prev, commentCount: Math.max(0, (prev.commentCount ?? 0) - Math.max(1, removed)) } : prev);
     try {
       await deleteComment({ commentId });
     } catch (e) {
@@ -666,7 +672,22 @@ export default function FeedDetailScreen() {
       // Revert by reloading
       await fetchData();
     }
-  }, [contextComment, fetchData]);
+  }, [comments, fetchData]);
+
+  // Asks first — permanent, and it takes every reply under the comment with
+  // it, other people's included.
+  const handleContextDelete = useCallback(() => {
+    if (!contextComment) return;
+    const commentId = contextComment.id;
+    Alert.alert(
+      t("governance.discussion.deleteTitle"),
+      t("governance.discussion.deleteDescription"),
+      [
+        { text: t("common.cancel"), style: "cancel" },
+        { text: t("common.delete"), style: "destructive", onPress: () => void deleteNow(commentId) },
+      ],
+    );
+  }, [contextComment, deleteNow]);
 
   // Comment views. This screen is the second of the two live mobile comment
   // surfaces and the one that never sent them — CommentSection has had the
