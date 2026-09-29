@@ -3742,6 +3742,7 @@
     "noPurchasesYet": "Пакуль няма пакупак",
     "listingRemoved": "Аб'ява выдаленая",
     "noActiveListings": "У гэтай краме няма актыўных аб'яў",
+    "storeNotFound": "Крама не знойдзена",
     "detail": {
       "listing": "Аб'ява",
       "unavailable": "Гэтая аб'ява больш недаступная",

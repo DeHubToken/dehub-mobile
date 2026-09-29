@@ -3745,6 +3745,7 @@
     "noPurchasesYet": "Chưa có lần mua nào",
     "listingRemoved": "Đã xóa tin đăng",
     "noActiveListings": "Cửa hàng này không có tin đăng nào đang hoạt động",
+    "storeNotFound": "Không tìm thấy cửa hàng",
     "detail": {
       "listing": "Tin đăng",
       "unavailable": "Tin đăng này không còn nữa",

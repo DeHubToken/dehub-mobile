@@ -3733,6 +3733,7 @@
     "noPurchasesYet": "Encara no hi ha compres",
     "listingRemoved": "Anunci eliminat",
     "noActiveListings": "Aquesta botiga no té anuncis actius",
+    "storeNotFound": "No s'ha trobat la botiga",
     "detail": {
       "listing": "Anunci",
       "unavailable": "Aquest anunci ja no està disponible",

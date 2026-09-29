@@ -3763,6 +3763,7 @@
     "noPurchasesYet": "مازال ماكايناش مشتريات",
     "listingRemoved": "الإعلان تحيّد",
     "noActiveListings": "هاد الحانوت ماعندوش إعلانات خدّامة",
+    "storeNotFound": "لم يتم العثور على المتجر",
     "detail": {
       "listing": "إعلان",
       "unavailable": "هاد الإعلان مابقاش متوفر",

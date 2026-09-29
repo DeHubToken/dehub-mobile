@@ -3723,6 +3723,7 @@
     "noPurchasesYet": "Durung ana tuku",
     "listingRemoved": "Daftar dibusak",
     "noActiveListings": "Toko iki ora duwe daftar aktif",
+    "storeNotFound": "Toko ga ditemukene",
     "detail": {
       "listing": "Daftar",
       "unavailable": "Daftar iki wis ora kasedhiya",

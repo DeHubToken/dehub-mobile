@@ -3737,6 +3737,7 @@
     "noPurchasesYet": "Ingen køb endnu",
     "listingRemoved": "Annoncen fjernet",
     "noActiveListings": "Denne butik har ingen aktive annoncer",
+    "storeNotFound": "Butikken blev ikke fundet",
     "detail": {
       "listing": "Annonce",
       "unavailable": "Denne annonce findes ikke længere",

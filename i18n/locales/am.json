@@ -3763,6 +3763,7 @@
     "noPurchasesYet": "እስካሁን ግዢዎች የሉም",
     "listingRemoved": "ዝርዝሩ ተወግዷል",
     "noActiveListings": "ይህ መደብር ንቁ ዝርዝሮች የሉትም",
+    "storeNotFound": "መደብር አልተገኘም",
     "detail": {
       "listing": "ዝርዝር",
       "unavailable": "ይህ ዝርዝር ከእንግዲህ አይገኝም",

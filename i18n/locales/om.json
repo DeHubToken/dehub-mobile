@@ -3746,6 +3746,7 @@
     "noPurchasesYet": "Ammatti bittaan hin jiru",
     "listingRemoved": "Tarreeffamni haqameera",
     "noActiveListings": "Suuqiin kun tarreeffamoota ka'aa hin qabu",
+    "storeNotFound": "Suuqiin hin argamne",
     "detail": {
       "listing": "Tarreeffama",
       "unavailable": "Tarreeffamni kun siʼachi hin jiru",
@@ -8595,8 +8596,8 @@
     },
     "host": {
       "close": "App cufaa",
-      "backToStore": "Gara Apps tti deebi&#39;aa",
-      "notFound": "Appiin kun DeHub App Store keessa hin jiru, ykn gadi bu&#39;eera.",
+      "backToStore": "Gara Apps tti deebi'aa",
+      "notFound": "Appiin kun DeHub App Store keessa hin jiru, ykn gadi bu'eera.",
       "badUrl": "Teessoon sun akka appii xiqqaatti banamuu hin danda&#39;u. https:// irraa jalqabuu qaba, ykn haalata developer keessatti teessoo localhost ta&#39;uu qaba.",
       "readyTimeout": "Appiin kun dehub.ready() jedhee waamee hin beeku, kanaaf splash screen sekondii 8 booda dhokate."
     },

@@ -3733,6 +3733,7 @@
     "noPurchasesYet": "لسه مفيش مشتريات",
     "listingRemoved": "الإعلان اتشال",
     "noActiveListings": "المتجر ده مفيهوش إعلانات شغالة",
+    "storeNotFound": "لم يتم العثور على المتجر",
     "detail": {
       "listing": "إعلان",
       "unavailable": "الإعلان ده مبقاش متاح",

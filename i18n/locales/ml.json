@@ -3732,6 +3732,7 @@
     "noPurchasesYet": "ഇതുവരെ വാങ്ങലുകളില്ല",
     "listingRemoved": "ലിസ്റ്റിംഗ് നീക്കം ചെയ്തു",
     "noActiveListings": "ഈ സ്റ്റോറിൽ സജീവ ലിസ്റ്റിംഗുകളില്ല",
+    "storeNotFound": "സ്റ്റോർ കണ്ടെത്തിയില്ല",
     "detail": {
       "listing": "ലിസ്റ്റിംഗ്",
       "unavailable": "ഈ ലിസ്റ്റിംഗ് ഇനി ലഭ്യമല്ല",

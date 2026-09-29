@@ -3733,6 +3733,7 @@
     "noPurchasesYet": "Brak zakupów",
     "listingRemoved": "Ogłoszenie usunięte",
     "noActiveListings": "Ten sklep nie ma aktywnych ogłoszeń",
+    "storeNotFound": "Nie znaleziono sklepu",
     "detail": {
       "listing": "Ogłoszenie",
       "unavailable": "To ogłoszenie nie jest już dostępne",

@@ -4090,6 +4090,7 @@
     "noPurchasesYet": "Покупок ще немає",
     "listingRemoved": "Оголошення видалено",
     "noActiveListings": "У цьому магазині немає активних оголошень",
+    "storeNotFound": "Магазин не знайдено",
     "detail": {
       "listing": "Оголошення",
       "unavailable": "Це оголошення більше недоступне",

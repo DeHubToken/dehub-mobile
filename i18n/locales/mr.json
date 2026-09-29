@@ -3735,6 +3735,7 @@
     "noPurchasesYet": "अद्याप खरेदी नाहीत",
     "listingRemoved": "सूची काढून टाकली",
     "noActiveListings": "या दुकानात सक्रिय सूची नाहीत",
+    "storeNotFound": "स्टोअर आढळले नाही",
     "detail": {
       "listing": "सूची",
       "unavailable": "ही सूची यापुढे उपलब्ध नाही",

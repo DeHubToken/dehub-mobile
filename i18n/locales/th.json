@@ -3757,6 +3757,7 @@
     "noPurchasesYet": "ยังไม่มีการซื้อ",
     "listingRemoved": "ลบประกาศแล้ว",
     "noActiveListings": "ร้านนี้ไม่มีประกาศที่ใช้งานอยู่",
+    "storeNotFound": "ไม่พบร้านค้า",
     "detail": {
       "listing": "ประกาศขาย",
       "unavailable": "ประกาศนี้ไม่มีอยู่แล้ว",

@@ -3737,6 +3737,7 @@
     "noPurchasesYet": "אין עדיין רכישות",
     "listingRemoved": "המודעה הוסרה",
     "noActiveListings": "לחנות הזו אין מודעות פעילות",
+    "storeNotFound": "בית העסק לא נמצא",
     "detail": {
       "listing": "מודעה",
       "unavailable": "המודעה הזו כבר לא זמינה",

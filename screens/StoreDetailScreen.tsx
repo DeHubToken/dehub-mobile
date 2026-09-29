@@ -48,8 +48,24 @@ export default function StoreDetailScreen() {
   const { storeId, listing: linkedListingId } = route.params;
   const { width: screenW } = useWindowDimensions();
 
-  const { data: store, isLoading: storeLoading } = useStoreById(storeId);
-  const { data: listings = [], isLoading, refetch, isRefetching } = useStoreListings(storeId);
+  const {
+    data: store,
+    isLoading: storeLoading,
+    isError: storeError,
+    refetch: refetchStore,
+    isRefetching: storeRefetching,
+  } = useStoreById(storeId);
+  const {
+    data: listings = [],
+    isLoading,
+    isError: listingsError,
+    refetch,
+    isRefetching,
+  } = useStoreListings(storeId);
+  const refreshing = isRefetching || storeRefetching;
+  const onRefresh = () => Promise.all([refetchStore(), refetch()]);
+  const leave = () =>
+    navigation.canGoBack() ? navigation.goBack() : navigation.navigate(ScreenNames.Stores);
 
   // A shared item link is `/app/stores/<id>?listing=<id>` — the same URL the
   // web app uses, where the query opens the item's drawer over the store. Here
@@ -140,9 +156,24 @@ export default function StoreDetailScreen() {
         }
       />
 
-      {storeLoading && isLoading ? (
+      {storeLoading || (isLoading && listings.length === 0) ? (
         <View style={styles.center}>
           <DeHubLoader size={56} />
+        </View>
+      ) : storeError && !store ? (
+        <View style={styles.center}>
+          <Text style={styles.emptyText}>{t("common.somethingWentWrong")}</Text>
+          <Pressable onPress={onRefresh} style={styles.retryBtn}>
+            <Text style={styles.retryText}>{t("common.retry")}</Text>
+          </Pressable>
+        </View>
+      ) : store === null ? (
+        <View style={styles.center}>
+          <Icon name="Package" size={40} color="#3F3F46" />
+          <Text style={styles.emptyText}>{t("stores.storeNotFound")}</Text>
+          <Pressable onPress={leave} style={styles.retryBtn}>
+            <Text style={styles.retryText}>{t("common.goBack")}</Text>
+          </Pressable>
         </View>
       ) : (
         <FlatList
@@ -160,20 +191,29 @@ export default function StoreDetailScreen() {
           showsVerticalScrollIndicator={false}
           refreshControl={
             <DeHubRefreshControl
-              refreshing={isRefetching}
-              onRefresh={refetch}
+              refreshing={refreshing}
+              onRefresh={onRefresh}
               tintColor={theme.colors.accent}
             />
           }
           ListEmptyComponent={
-            <View style={styles.center}>
-              <Icon name="Package" size={40} color="#3F3F46" />
-              <Text style={styles.emptyText}>{t("stores.noActiveListings")}</Text>
-            </View>
+            listingsError ? (
+              <View style={styles.center}>
+                <Text style={styles.emptyText}>{t("stores.loadFailed")}</Text>
+                <Pressable onPress={() => refetch()} style={styles.retryBtn}>
+                  <Text style={styles.retryText}>{t("common.retry")}</Text>
+                </Pressable>
+              </View>
+            ) : (
+              <View style={styles.center}>
+                <Icon name="Package" size={40} color="#3F3F46" />
+                <Text style={styles.emptyText}>{t("stores.noActiveListings")}</Text>
+              </View>
+            )
           }
         />
       )}
-      <DeHubRefreshMark refreshing={isRefetching} />
+      <DeHubRefreshMark refreshing={refreshing} />
     </View>
   );
 }
@@ -224,4 +264,12 @@ const styles = StyleSheet.create({
   cardPrice: { color: "#FFFFFF", fontSize: 14, fontWeight: "700", marginTop: 5 },
 
   emptyText: { color: "#A1A1AA", fontSize: 13, marginTop: 12, textAlign: "center" },
+  retryBtn: {
+    marginTop: 14,
+    paddingHorizontal: 20,
+    paddingVertical: 8,
+    borderRadius: 12,
+    backgroundColor: "#27272A",
+  },
+  retryText: { color: "#FAFAFA", fontSize: 13, fontWeight: "600" },
 });

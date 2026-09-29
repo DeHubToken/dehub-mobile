@@ -3993,6 +3993,7 @@
     "noPurchasesYet": "Belum ada pembelian",
     "listingRemoved": "Iklan dibuang",
     "noActiveListings": "Kedai ini tiada iklan aktif",
+    "storeNotFound": "Kedai tidak ditemui",
     "detail": {
       "listing": "Iklan",
       "unavailable": "Iklan ini sudah tiada",

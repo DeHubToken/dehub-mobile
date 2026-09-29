@@ -3733,6 +3733,7 @@
     "noPurchasesYet": "Još nema kupnji",
     "listingRemoved": "Oglas uklonjen",
     "noActiveListings": "Ova trgovina nema aktivnih oglasa",
+    "storeNotFound": "Trgovina nije pronađena",
     "detail": {
       "listing": "Oglas",
       "unavailable": "Ovaj oglas više nije dostupan",

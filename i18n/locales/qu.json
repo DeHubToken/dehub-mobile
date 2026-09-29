@@ -3764,6 +3764,7 @@
     "noPurchasesYet": "Manaraq rantiykuna kanchu",
     "listingRemoved": "Qatuy hurqusqa",
     "noActiveListings": "Kay qatu wasipi mana purichkaq qatuykuna kanchu",
+    "storeNotFound": "Qatu wasi mana tarisqachu",
     "detail": {
       "listing": "Qatuy",
       "unavailable": "Kay qatuyqa manaña kanchu",

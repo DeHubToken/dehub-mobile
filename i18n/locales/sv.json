@@ -3737,6 +3737,7 @@
     "noPurchasesYet": "Inga köp ännu",
     "listingRemoved": "Annonsen borttagen",
     "noActiveListings": "Den här butiken har inga aktiva annonser",
+    "storeNotFound": "Butiken hittades inte",
     "detail": {
       "listing": "Annons",
       "unavailable": "Den här annonsen finns inte längre",

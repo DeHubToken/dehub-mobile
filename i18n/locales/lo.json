@@ -3731,6 +3731,7 @@
     "noPurchasesYet": "ຍັງບໍ່ມີການຊື້",
     "listingRemoved": "ລາຍການຖືກລຶບອອກແລ້ວ",
     "noActiveListings": "ຮ້ານນີ້ບໍ່ມີລາຍການທີ່ໃຊ້ງານຢູ່",
+    "storeNotFound": "ບໍ່ພົບຮ້ານ",
     "detail": {
       "listing": "ລາຍການ",
       "unavailable": "ລາຍການນີ້ບໍ່ມີໃຫ້ອີກຕໍ່ໄປ",

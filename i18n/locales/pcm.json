@@ -3682,6 +3682,7 @@
     "noPurchasesYet": "No purchase dey yet",
     "listingRemoved": "Dem don remove di listing",
     "noActiveListings": "Dis store no get active listing",
+    "storeNotFound": "We no see di store",
     "detail": {
       "listing": "Listing",
       "unavailable": "Dis listing no dey available again",
@@ -8284,8 +8285,8 @@
       "dev": "Developer preview"
     },
     "host": {
-      "close": "Close app",
-      "backToStore": "Back to Apps",
+      "close": "Close di app",
+      "backToStore": "Go back to Apps",
       "notFound": "Dis app no dey in DeHub App Store, or dem remove it for now.",
       "readyTimeout": "Dis app no call \"dehub.ready()\" for wey, for dat reason, splash screen go hide after 8 seconds."
     },
