@@ -8823,7 +8823,9 @@
       "noMatch": "Er komen geen apps overeen met die zoekopdracht.",
       "yourApps": "Uw apps",
       "notificationsOn": "Berichtjes op",
-      "removed": "Verwijderd. Het zal je niet nogmaals melden."
+      "removed": "Verwijderd. Het zal je niet nogmaals melden.",
+      "remove": "Verwijderen",
+      "rising": "Nieuw en gewild"
     },
     "card": {
       "open": "Open"

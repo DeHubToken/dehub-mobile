@@ -8572,7 +8572,9 @@
       "noMatch": "Nincs olyan alkalmazás, amely megfelel a keresésnek.",
       "yourApps": "Aldodásod",
       "notificationsOn": "Üzenetek a(z)",
-      "removed": "Tiltott. Nem fogja többé értesíteni."
+      "removed": "Tiltott. Nem fogja többé értesíteni.",
+      "remove": "bőrkeményedés",
+      "rising": "Új és növekvő"
     },
     "card": {
       "open": "Megnyitás"

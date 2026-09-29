@@ -8601,14 +8601,23 @@
     "store": {
       "emptyTitle": "尚未有應用列出喔！",
       "emptyBody": "先頭幾個 App 正在審核中！你也快點做一個，可能就會出來囉！",
-      "search": "搜尋應用程式"
+      "search": "搜尋應用程式",
+      "rising": "新興的、崛起的"
     },
     "category": {
       "health-fitness": "健康跟運動",
       "news-media": "新聞跟傳媒",
       "shopping": "買東西 / 逛街",
       "developer-tools": "開發工具",
-      "entertainment": "娛樂"
+      "entertainment": "娛樂",
+      "games": "遊戲",
+      "social": "社交",
+      "finance": "金融",
+      "utility": "實用",
+      "productivity": "效率",
+      "music": "音樂",
+      "education": "教育",
+      "art-creativity": "藝術與創意"
     },
     "pay": {
       "title": "付{{name}}?",

@@ -126,3 +126,24 @@ export async function fetchAddedApps(wallet: string | null | undefined): Promise
   if (error) return [];
   return (data ?? []) as AddedApp[];
 }
+
+/** Count today's open for the store's ranking. Fire-and-forget. */
+export function recordMiniAppOpen(sessionToken: string, functionsBase: string, slug: string): void {
+  void userCall(sessionToken, functionsBase, { action: "open", slug }).catch(() => {});
+}
+
+export interface AppScore {
+  app_id: string;
+  rank: number | null;
+  is_new: boolean;
+}
+
+/** The latest nightly ranking, keyed by app id. Empty until the first run. */
+export async function fetchLatestScores(): Promise<Map<string, AppScore>> {
+  const { data: latest } = await db.from("miniapp_scores").select("day").order("day", { ascending: false }).limit(1);
+  const day = latest?.[0]?.day;
+  if (!day) return new Map();
+  const { data, error } = await db.from("miniapp_scores").select("app_id, rank, is_new").eq("day", day);
+  if (error) return new Map();
+  return new Map((data as AppScore[]).map((row) => [row.app_id, row]));
+}

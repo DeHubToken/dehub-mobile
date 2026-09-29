@@ -8618,7 +8618,10 @@
       "fromDehub": "DeHub irraa",
       "noMatch": "Appilikeeshiniin barbaacha sanaan walsimu hin jiru.",
       "yourApps": "Appilikeeshiniiwwan keessan",
-      "remove": "Irraa kaasuu"
+      "remove": "Irraa kaasuu",
+      "notificationsOn": "Beeksisa irratti",
+      "removed": "Buqqifame. Ammas isin hin beeksisu.",
+      "rising": "Haaraa fi ka&#39;aa jiru"
     },
     "card": {
       "open": "Banaa"
@@ -8639,11 +8642,15 @@
       "art-creativity": "Aartii & kalaqa"
     },
     "pay": {
-      "title": "Baasi {{name}}?"
+      "title": "Baasi {{name}}?",
+      "body": "DHB kallattiin gara boorsaa appii kanaa {{wallet}} tti deema. Kaffaltiin duubatti deebi&#39;uu hin danda&#39;u.",
+      "confirm": "{{amount}} DHB kaffalaa",
+      "sent": "Kaffaltii {{amount}} DHB gara {{name}} tti."
     },
     "add": {
       "body": "Gummaa *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa* *Gummaa*",
-      "confirm": "App itti dabali"
+      "confirm": "App itti dabali",
+      "title": "{{name}} itti dabalaa?"
     }
   },
   "aiStyles": {

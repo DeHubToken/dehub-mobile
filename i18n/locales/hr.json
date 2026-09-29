@@ -8570,7 +8570,8 @@
       "yourApps": "Vaše aplikacije",
       "notificationsOn": "Oznake uključene",
       "remove": "Ukloni",
-      "removed": "Uklonjeno. Više nećete biti obaviješteni."
+      "removed": "Uklonjeno. Više nećete biti obaviješteni.",
+      "rising": "Nove i popularne"
     },
     "card": {
       "open": "Otvori"

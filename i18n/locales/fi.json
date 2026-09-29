@@ -8570,7 +8570,8 @@
       "yourApps": "Sovelluksesi",
       "removed": "Poistettu. Se ei enää ilmoita sinulle uudelleen.",
       "notificationsOn": "Ilmoitukset",
-      "remove": "Poista"
+      "remove": "Poista",
+      "rising": "Uusi ja nouseva"
     },
     "card": {
       "open": "Avaa"

@@ -8568,7 +8568,11 @@
       "all": "Gbogbo",
       "fromDehub": "Láti DeHub",
       "noMatch": "Kò sí àwọn ohun èlò tí ó bá àwárí yẹn mu.",
-      "yourApps": "Àwọn ohun-èlò rẹ"
+      "yourApps": "Àwọn ohun-èlò rẹ",
+      "notificationsOn": "Àwọn ìfitonilétí ti wà ní títàn",
+      "remove": "Yọ kúrò",
+      "removed": "Yíyọ. Kò ní jẹ́ kí o mọ̀ mọ́.",
+      "rising": "Tuntun ati dide"
     },
     "card": {
       "open": "Ṣii"
@@ -8590,7 +8594,14 @@
     },
     "pay": {
       "title": "Páàwón {{name}}?",
-      "body": "Dàgbàgbà DHB jẹ́ ni ẹ̀kọ́ àwọn ẹ̀kọ́ àpẹ́ẹ̀, {{wallet}}. Àwọn ẹ̀kọ́ ni ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti"
+      "body": "Dàgbàgbà DHB jẹ́ ni ẹ̀kọ́ àwọn ẹ̀kọ́ àpẹ́ẹ̀, {{wallet}}. Àwọn ẹ̀kọ́ ni ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti ti wá ni ti",
+      "confirm": "San {{amount}} DHB",
+      "sent": "San {{amount}} DHB sí {{name}}."
+    },
+    "add": {
+      "title": "Fi {{name}} kún un?",
+      "body": "Yóò farahàn lábẹ́ àwọn ohun-èlò rẹ ó sì lè fi ìkìlọ̀ ránṣẹ́ sí ọ. O lè yọ ọ́ kúrò ní ojú-ìwé Apps nígbàkigbà.",
+      "confirm": "Ṣàfikún áàpù"
     }
   },
   "aiStyles": {

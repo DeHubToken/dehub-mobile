@@ -8567,7 +8567,11 @@
       "all": "Ehli",
       "fromDehub": "Dehub şäheriniň",
       "noMatch": "Men bu gözlegini görmedim.",
-      "yourApps": "Siziň ulaglaryňyz"
+      "yourApps": "Siziň ulaglaryňyz",
+      "notificationsOn": "Hoş habarlar",
+      "remove": "_Çykar",
+      "removed": "Çykaryldy. Ol size ýene-de habar bermez.",
+      "rising": "Täze we ösüp barýan"
     },
     "card": {
       "open": "Aç"
@@ -8590,11 +8594,13 @@
     "pay": {
       "title": "Pay {{name}}?",
       "body": "\"DHB\" direkt appýň pul gýzýna gider, {{wallet}}. Öýünler geri alýňmaz.",
-      "confirm": "Pay {{amount}} DHB"
+      "confirm": "Pay {{amount}} DHB",
+      "sent": "{{amount}} DHB {{name}} üçin tölenýär."
     },
     "add": {
       "title": "{{name}}?",
-      "body": "Sizge \"Apps\" bölüginde görünecek ve bildirimler gönderir. Siz \"Apps\" saytasyndan her anýňý silip atabýlýrsýnýz."
+      "body": "Sizge \"Apps\" bölüginde görünecek ve bildirimler gönderir. Siz \"Apps\" saytasyndan her anýňý silip atabýlýrsýnýz.",
+      "confirm": "Ulyma goş"
     }
   },
   "aiStyles": {
