@@ -6,7 +6,7 @@ import PostTapSurface from './PostTapSurface';
 type Frame = { x: number; width: number };
 
 /** Keep slide geometry mounted while drawing only the horizontal viewport. */
-function FeedImageGallery({ images, width, fallbackWidth, active, prioritizeMedia, onLayout, onImagePress, onReaction }: {
+function FeedImageGallery({ images, width, fallbackWidth, active, prioritizeMedia, onLayout, onImagePress, onReaction, postPage = false }: {
   images: string[];
   width: number;
   fallbackWidth: number;
@@ -15,6 +15,8 @@ function FeedImageGallery({ images, width, fallbackWidth, active, prioritizeMedi
   onLayout: (event: LayoutChangeEvent) => void;
   onImagePress: (index: number) => void;
   onReaction: (reaction: 'like' | 'love') => void;
+  /** Post page: square corners and the taller 80%-of-screen cap. */
+  postPage?: boolean;
 }) {
   const frames = useRef(new Map<number, Frame>());
   const viewport = useRef({ x: 0, width: fallbackWidth });
@@ -67,6 +69,7 @@ function FeedImageGallery({ images, width, fallbackWidth, active, prioritizeMedi
               uri={uri}
               width={width}
               compact
+              postPage={postPage}
               fallbackWidth={fallbackWidth}
               priority={prioritizeMedia && index === 0 ? 'high' : 'normal'}
             />

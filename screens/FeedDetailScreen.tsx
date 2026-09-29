@@ -63,9 +63,8 @@ type ThreadedComment = Comment & { depth: number };
 /** How many replies a thread shows before it needs a tap to open up. */
 const REPLIES_SHOWN_COLLAPSED = 1;
 
-/** Post types that open immersive: media edge to edge at the top, no top bar.
- *  Shared with image posts, which add "image" here. */
-const IMMERSIVE_TYPES = new Set<ReturnType<typeof resolveContentType>>(["video", "short"]);
+/** Post types that open immersive: media edge to edge at the top, no top bar. */
+const IMMERSIVE_TYPES = new Set<ReturnType<typeof resolveContentType>>(["video", "short", "image"]);
 
 // Rows are px-8, the avatar is 32 wide and CommentItem pads it 10 from the top,
 // so the line runs at x = 32 + 16 and the avatar's centre sits at y = 26.
@@ -1202,9 +1201,13 @@ export default function FeedDetailScreen() {
   // load, and the message in the header is the whole page.
   const postUnavailable = !item && !loading && (loadError != null || privateError);
 
-  // Video posts open immersive, like YouTube and the web post page: no top
-  // bar, the clip edge to edge at the very top, and a floating back button.
-  const immersive = !!item && IMMERSIVE_TYPES.has(resolveContentType(item));
+  // Video and image posts open immersive, like YouTube and the web post page:
+  // no top bar, the media edge to edge at the very top, and a floating back
+  // button.
+  // A text post also resolves to "image"; only one that carries a photo goes
+  // immersive, or the back button would float over the caption.
+  const immersive = !!item && IMMERSIVE_TYPES.has(resolveContentType(item)) &&
+    (resolveContentType(item) !== "image" || (Array.isArray(item.imageUrls) && item.imageUrls.length > 0) || !!item.imageUrl || !!item.thumbnailUrl);
 
   const renderHeader = useCallback(() => (
     <View>
