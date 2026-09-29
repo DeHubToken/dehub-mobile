@@ -41,7 +41,7 @@ const DmFeeBannerComponent: React.FC<DmFeeBannerProps> = ({
             {dmFee.fee} <DhbCoin /> {t("dm.perMessage")}
           </Text>
           {peerDisplayName ? (
-            <Text className="text-[11px] text-theme-neutrals-500 ml-1">
+            <Text className="shrink text-[11px] text-theme-neutrals-500 ml-1" numberOfLines={1}>
               {t("dm.feeSetBy", { name: peerDisplayName })}
             </Text>
           ) : null}

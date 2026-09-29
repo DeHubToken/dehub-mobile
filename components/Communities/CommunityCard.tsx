@@ -42,10 +42,6 @@ const CommunityCard: React.FC<Props> = ({ community, role, onPress }) => {
           <View style={styles.bannerScrim} />
         </>
       )}
-      <View style={styles.timeBadge}>
-        <Icon name="Clock" size={11} color="#a1a1aa" />
-        <Text style={styles.timeText}>{formatRelativeTime(community.created_at, t)}</Text>
-      </View>
       <View style={styles.avatarWrap}>
         {community.avatar_url ? (
           <Image source={{ uri: community.avatar_url }} style={styles.avatar} contentFit="cover" />
@@ -64,6 +60,12 @@ const CommunityCard: React.FC<Props> = ({ community, role, onPress }) => {
               <Text style={styles.ownerText}>{t("communities.owner")}</Text>
             </View>
           )}
+          <View style={styles.timeBadge}>
+            <Icon name="Clock" size={11} color="#a1a1aa" />
+            <Text style={styles.timeText} numberOfLines={1}>
+              {formatRelativeTime(community.created_at, t)}
+            </Text>
+          </View>
         </View>
         <Text style={styles.desc} numberOfLines={1}>
           {community.description || t("communities.noDescription")}
@@ -82,7 +84,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 12,
     padding: 12,
-    paddingRight: 56,
     borderRadius: 14,
     backgroundColor: "rgba(255,255,255,0.04)",
     borderWidth: StyleSheet.hairlineWidth,
@@ -106,10 +107,11 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
     backgroundColor: "rgba(0,0,0,0.45)",
   },
+  // Last item in the title row, pushed to the right edge. It never shrinks,
+  // so a long name ellipsizes before it instead of running underneath.
   timeBadge: {
-    position: "absolute",
-    top: 8,
-    right: 8,
+    marginLeft: "auto",
+    flexShrink: 0,
     flexDirection: "row",
     alignItems: "center",
     gap: 4,
@@ -119,7 +121,6 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(0,0,0,0.5)",
     borderWidth: StyleSheet.hairlineWidth,
     borderColor: "rgba(255,255,255,0.1)",
-    zIndex: 2,
   },
   timeText: { color: "#d4d4d8", fontSize: 12, fontWeight: "600" },
   avatarWrap: {
