@@ -662,6 +662,7 @@ const FeedScreen = () => {
         <View className="flex-1 px-4">
           <Animated.FlatList
             ref={feedListRef}
+            showsVerticalScrollIndicator={false}
             data={feedData}
             keyExtractor={feedKeyExtractor}
             renderItem={renderFeedItem}

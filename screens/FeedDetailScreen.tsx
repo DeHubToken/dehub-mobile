@@ -1218,6 +1218,7 @@ export default function FeedDetailScreen() {
     <View className="flex-1 bg-theme-neutrals-900">
       <FlatList
         ref={listRef}
+        showsVerticalScrollIndicator={false}
         data={visibleComments}
         keyExtractor={(c) => String(c.id)}
         // An element, not the function: FlatList treats a function as a
