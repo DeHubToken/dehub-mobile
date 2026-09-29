@@ -100,7 +100,11 @@ const SearchAccountCard: FC<SearchAccountCardProps> = ({ account, onFollowChange
       <Avatar uri={displayAvatar} size={48} name={displayName} />
       <View className="flex-1 ml-3 mr-2">
         <View className="flex-row items-center">
-          <Text className="text-white font-semibold text-sm" numberOfLines={1}>
+          <Text
+            className="text-white font-semibold text-sm"
+            style={{ flexShrink: 1, minWidth: 0 }}
+            numberOfLines={1}
+          >
             {displayName}
           </Text>
           {badgeImg ? (

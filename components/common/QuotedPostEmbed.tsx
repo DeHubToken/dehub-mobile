@@ -204,7 +204,7 @@ const QuotedPostEmbed: React.FC<QuotedPostEmbedProps> = memo(
           {/* Creator row */}
           <View className="flex-row items-center gap-2 mb-1.5">
             <Avatar uri={avatarUrl} size={18} name={displayName} />
-            <Text className="text-white font-semibold text-xs" numberOfLines={1}>
+            <Text className="text-white font-semibold text-xs shrink" numberOfLines={1}>
               {displayName}
             </Text>
             {!!badgeImage && (
@@ -215,7 +215,7 @@ const QuotedPostEmbed: React.FC<QuotedPostEmbedProps> = memo(
               />
             )}
             {username && (
-              <Text className="text-theme-neutrals-500 text-xs" numberOfLines={1}>
+              <Text className="text-theme-neutrals-500 text-xs shrink" numberOfLines={1}>
                 @{username}
               </Text>
             )}
