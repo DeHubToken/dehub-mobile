@@ -1,0 +1,35 @@
+name: prune garbled (branch only)
+
+on:
+  push:
+    branches: [i18n-prune-garbled]
+
+permissions:
+  contents: write
+
+env:
+  APPLY: '0'
+
+jobs:
+  prune:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: node scripts/i18n-fanout.mjs --prune --garbled | tee prune-app.log
+      - run: |
+          git diff --shortstat
+          echo "files with added lines:"; git diff --numstat | awk '$1 > 0'
+      - uses: actions/upload-artifact@v4
+        with:
+          name: prune-logs
+          path: prune-*.log
+      - if: env.APPLY == '1'
+        run: |
+          git config user.name maldoteth
+          git config user.email dev@dehub.io
+          git add i18n/locales/*.json
+          git commit -q -m "Delete locale values the translation guards reject"
+          git push origin HEAD:i18n-prune-garbled
