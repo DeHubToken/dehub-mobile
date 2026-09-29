@@ -145,7 +145,8 @@
     "closeImages": "بستن تصاویر",
     "noMoreShorts": "شورت بیشتری وجود ندارد",
     "noShortsFound": "شورت پیدا نشد",
-    "newMembersHint": "تازه پیوسته — سلام کن"
+    "newMembersHint": "تازه پیوسته — سلام کن",
+    "mostViewedThisMonth": "پربازدیدترین‌های این ماه"
   },
   "explore": {
     "all": "همه",

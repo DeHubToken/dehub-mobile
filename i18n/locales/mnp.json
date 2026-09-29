@@ -145,7 +145,8 @@
     "newMembersHint": "新加入——打个招呼",
     "noMoreImages": "没有更多图片了",
     "noImagesFound": "未找到图片",
-    "noShortsFound": "未找到短视频"
+    "noShortsFound": "未找到短视频",
+    "mostViewedThisMonth": "这个月看最多"
   },
   "explore": {
     "all": "全部",

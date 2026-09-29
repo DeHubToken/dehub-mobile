@@ -145,7 +145,8 @@
     "closeImages": "關閉圖片",
     "noMoreShorts": "沒有更多短片",
     "noShortsFound": "找不到短片",
-    "newMembersHint": "剛加入 — 打個招呼"
+    "newMembersHint": "剛加入 — 打個招呼",
+    "mostViewedThisMonth": "今個月最多人睇"
   },
   "explore": {
     "all": "全部",

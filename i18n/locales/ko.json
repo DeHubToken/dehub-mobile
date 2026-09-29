@@ -145,7 +145,8 @@
     "closeImages": "이미지 닫기",
     "noMoreShorts": "더 이상 쇼츠가 없습니다",
     "noShortsFound": "쇼츠를 찾을 수 없습니다",
-    "newMembersHint": "방금 가입 — 인사하세요"
+    "newMembersHint": "방금 가입 — 인사하세요",
+    "mostViewedThisMonth": "이번 달 조회수 순"
   },
   "explore": {
     "all": "전체",

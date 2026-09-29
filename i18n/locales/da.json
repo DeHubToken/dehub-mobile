@@ -145,7 +145,8 @@
     "closeImages": "Luk billeder",
     "noMoreShorts": "Ikke flere shorts",
     "noShortsFound": "Ingen shorts fundet",
-    "newMembersHint": "Lige tilmeldt — sig hej"
+    "newMembersHint": "Lige tilmeldt — sig hej",
+    "mostViewedThisMonth": "Mest sete denne måned"
   },
   "explore": {
     "all": "Alle",

@@ -145,7 +145,8 @@
     "closeImages": "Bilder schließen",
     "noMoreShorts": "Keine Shorts",
     "noShortsFound": "Keine Shorts gefunden",
-    "newMembersHint": "Gerade beigetreten – sag Hallo"
+    "newMembersHint": "Gerade beigetreten – sag Hallo",
+    "mostViewedThisMonth": "Meistgesehen diesen Monat"
   },
   "explore": {
     "all": "Alles",

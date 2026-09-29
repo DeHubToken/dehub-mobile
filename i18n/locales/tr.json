@@ -145,7 +145,8 @@
     "closeImages": "Resimleri kapat",
     "noMoreShorts": "Daha fazla kısa video yok",
     "noShortsFound": "Kısa video bulunamadı",
-    "newMembersHint": "Yeni katıldı — merhaba deyin"
+    "newMembersHint": "Yeni katıldı — merhaba deyin",
+    "mostViewedThisMonth": "Bu ay en çok izlenen"
   },
   "explore": {
     "all": "Tümü",

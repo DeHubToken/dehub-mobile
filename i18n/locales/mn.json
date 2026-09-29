@@ -145,7 +145,8 @@
     "closeImages": "Зургийг хаах",
     "noMoreShorts": "Цааш богино видео байхгүй",
     "noShortsFound": "Богино видео олдсонгүй",
-    "newMembersHint": "Сая элслээ — мэндчил"
+    "newMembersHint": "Сая элслээ — мэндчил",
+    "mostViewedThisMonth": "Энэ сард хамгийн их үзсэн"
   },
   "explore": {
     "all": "Бүгд",

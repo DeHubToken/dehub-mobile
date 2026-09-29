@@ -145,7 +145,8 @@
     "closeImages": "Zatvori slike",
     "noMoreShorts": "Nema više kratkih videa",
     "noShortsFound": "Nisu pronađeni kratki videozapisi",
-    "newMembersHint": "Upravo ste se pridružili — pozdravite"
+    "newMembersHint": "Upravo ste se pridružili — pozdravite",
+    "mostViewedThisMonth": "Najgledanije ovaj mjesec"
   },
   "explore": {
     "all": "Sve",

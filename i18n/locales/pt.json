@@ -145,7 +145,8 @@
     "closeImages": "Fechar imagens",
     "noMoreShorts": "Não há mais shorts",
     "noShortsFound": "Nenhum short encontrado",
-    "newMembersHint": "Acabou de entrar — diga olá"
+    "newMembersHint": "Acabou de entrar — diga olá",
+    "mostViewedThisMonth": "Mais vistos este mês"
   },
   "explore": {
     "all": "Tudo",

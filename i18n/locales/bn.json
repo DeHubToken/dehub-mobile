@@ -145,7 +145,8 @@
     "closeImages": "ছবি বন্ধ করুন",
     "noMoreShorts": "আর কোনো শর্টস নেই",
     "noShortsFound": "কোনো শর্টস পাওয়া যায়নি",
-    "newMembersHint": "এইমাত্র যোগদান করেছেন — শুভেচ্ছা জানান"
+    "newMembersHint": "এইমাত্র যোগদান করেছেন — শুভেচ্ছা জানান",
+    "mostViewedThisMonth": "এই মাসে সর্বাধিক দেখা"
   },
   "explore": {
     "all": "সব",

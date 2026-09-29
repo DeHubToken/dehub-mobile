@@ -145,7 +145,8 @@
     "closeImages": "关闭图片",
     "noMoreShorts": "没有更多短视频了",
     "noShortsFound": "未找到短视频",
-    "newMembersHint": "刚加入 — 打个招呼"
+    "newMembersHint": "刚加入 — 打个招呼",
+    "mostViewedThisMonth": "本月看得最多"
   },
   "explore": {
     "all": "全部",

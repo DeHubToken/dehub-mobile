@@ -145,7 +145,8 @@
     "closeImages": "ปิดรูปภาพ",
     "noMoreShorts": "ไม่มี Shorts อีกต่อไป",
     "noShortsFound": "ไม่พบ Shorts",
-    "newMembersHint": "เพิ่งเข้าร่วม — ทักทายหน่อย"
+    "newMembersHint": "เพิ่งเข้าร่วม — ทักทายหน่อย",
+    "mostViewedThisMonth": "ยอดดูสูงสุดเดือนนี้"
   },
   "explore": {
     "all": "ทั้งหมด",

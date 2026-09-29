@@ -145,7 +145,8 @@
     "closeImages": "Փակել պատկերները",
     "noMoreShorts": "Այլևս կարճ տեսանյութեր չկան",
     "noShortsFound": "Կարճ տեսանյութեր չեն գտնվել",
-    "newMembersHint": "Նոր եք միացել — ողջունեք"
+    "newMembersHint": "Նոր եք միացել — ողջունեք",
+    "mostViewedThisMonth": "Այս ամսվա ամենադիտվածները"
   },
   "explore": {
     "all": "Բոլորը",

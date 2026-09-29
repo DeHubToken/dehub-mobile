@@ -145,7 +145,8 @@
     "closeImages": "Zamknij obrazy",
     "noMoreShorts": "Brak dalszych filmów Shorts",
     "noShortsFound": "Nie znaleziono filmów Shorts",
-    "newMembersHint": "Właśnie dołączyłeś — przywitaj się"
+    "newMembersHint": "Właśnie dołączyłeś — przywitaj się",
+    "mostViewedThisMonth": "Najczęściej oglądane w tym miesiącu"
   },
   "explore": {
     "all": "Wszystko",

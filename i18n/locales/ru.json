@@ -145,7 +145,8 @@
     "closeImages": "Закрыть изображения",
     "noMoreShorts": "Больше нет Shorts",
     "noShortsFound": "Shorts не найдены",
-    "newMembersHint": "Только что присоединились — поздоровайтесь"
+    "newMembersHint": "Только что присоединились — поздоровайтесь",
+    "mostViewedThisMonth": "Самое просматриваемое в этом месяце"
   },
   "explore": {
     "all": "Всё",

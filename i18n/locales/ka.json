@@ -145,7 +145,8 @@
     "closeImages": "დახურე სურათები",
     "noMoreShorts": "მეტი შორტი არ არის",
     "noShortsFound": "შორტები არ არის ნაპოვნი",
-    "newMembersHint": "ახლახან შემოუერთდა — მიესალმე"
+    "newMembersHint": "ახლახან შემოუერთდა — მიესალმე",
+    "mostViewedThisMonth": "ამ თვეში ყველაზე ნანახი"
   },
   "explore": {
     "all": "ყველა",

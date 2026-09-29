@@ -4,7 +4,7 @@ import { Image } from "expo-image";
 import { VideoView, useVideoPlayer } from "expo-video";
 import { GRID_PREVIEW_BUFFER_OPTIONS } from "../../libs/videoBuffering";
 import Icon from "../ui/Icon";
-import { getShortsThumbnailUrl, getVideoUrl, getAvatarUrl, buildCdnPath } from "../../libs/misc";
+import { getShortsThumbnailUrl, getVideoUrl, getAvatarUrl, buildCdnPath, buildFeedImageUrls } from "../../libs/misc";
 import { formatCompactNumber } from "../../libs/numbers.util";
 import { cdnImage } from "../../libs/cdnImage";
 import type { UnifiedFeedItem } from "../../services/feed.unified.service";
@@ -33,6 +33,8 @@ interface ShortsGridCardProps {
   onPress: (index: number) => void;
   /** Called when the card has no loadable media (broken/missing upload) so the grid can drop it. */
   onUnavailable?: (key: string) => void;
+  /** Fixed card width (a carousel tile); defaults to the two-column grid size. */
+  width?: number;
 }
 
 /**
@@ -122,11 +124,13 @@ const CellPreview: React.FC<{ previewUrl: string }> = ({ previewUrl }) => {
   );
 };
 
-const ShortsGridCardComponent: React.FC<ShortsGridCardProps> = ({ item, index, isVisible = false, onPress, onUnavailable }) => {
+const ShortsGridCardComponent: React.FC<ShortsGridCardProps> = ({ item, index, isVisible = false, onPress, onUnavailable, width }) => {
   const tokenId = item.tokenId ?? item.id;
   const mediaKey = String(tokenId);
   const { isMinimal } = useAppTheme();
-  const { width: CARD_WIDTH, height: CARD_HEIGHT } = useShortsCardSize();
+  const gridSize = useShortsCardSize();
+  const CARD_WIDTH = width ?? gridSize.width;
+  const CARD_HEIGHT = width ? width * (16 / 9) : gridSize.height;
 
   // Resolve a raw API path (e.g. "shorts/123.jpg") or full URL to a CDN URL,
   // sized to the card rather than fetched at full resolution — this is a poster
@@ -138,12 +142,14 @@ const ShortsGridCardComponent: React.FC<ShortsGridCardProps> = ({ item, index, i
 
   // Prefer the poster/thumbnail returned by the API, fall back to the derived path.
   const thumbnailUri = useMemo(() => {
+    // Photo files live under feed-images/{filename}; the API path 403s.
+    if (item.postType === "feed-images") return buildFeedImageUrls(item.imageUrls?.length ? item.imageUrls : [item.imageUrl || ""], CARD_WIDTH)[0] || "";
     return (
       resolveCdn(item.imageUrls?.[0] || item.imageUrl || item.thumbnailUrl) ||
       getShortsThumbnailUrl(tokenId, CARD_WIDTH) ||
       ""
     );
-  }, [item.imageUrls, item.imageUrl, item.thumbnailUrl, tokenId, CARD_WIDTH]);
+  }, [item.postType, item.imageUrls, item.imageUrl, item.thumbnailUrl, tokenId, CARD_WIDTH]);
 
   const avatarUri = useMemo(
     () => getAvatarUrl(item.minterUser?.avatarImageUrl || item.minterAvatarUrl),
@@ -250,6 +256,7 @@ const ShortsGridCard = memo(ShortsGridCardComponent, (prev, next) =>
   // re-rendered, so the grid held a stale count until something else changed.
   resolveViewCount(prev.item) === resolveViewCount(next.item) &&
   prev.index === next.index &&
+  prev.width === next.width &&
   prev.isVisible === next.isVisible,
 );
 
