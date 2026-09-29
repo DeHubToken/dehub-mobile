@@ -19,6 +19,11 @@ export type FullScreenVideoPlayerProps = {
 const FullScreenVideoPlayer: React.FC<FullScreenVideoPlayerProps> = ({ visible, uri, onClose }) => {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
+  // The Modal is edge-to-edge, so the controls pay the nav bar themselves.
+  // After Rotate the 3-button bar moves to a side edge; taking the larger side
+  // inset on both sides keeps it clear whichever way round it lands (and in RTL,
+  // where left/right swap).
+  const sideInset = Math.max(insets.left, insets.right);
   const sourceUrl = useMemo(() => (uri ? String(uri) : null), [uri]);
   const [isPlaying, setIsPlaying] = useState<boolean>(true);
   const [position, setPosition] = useState<number>(0);
@@ -161,7 +166,7 @@ const FullScreenVideoPlayer: React.FC<FullScreenVideoPlayerProps> = ({ visible, 
     <Modal visible={visible} animationType="fade" onRequestClose={handleClose}>
       <View className="flex-1 dark-surface bg-black">
         {/* Close button */}
-        <View className="absolute left-4 z-50" style={{ top: insets.top + 8 }}>
+        <View className="absolute z-50" style={{ top: insets.top + 8, left: sideInset + 16 }}>
           <TouchableOpacity
             onPress={handleClose}
             className="bg-zinc-900/60 p-2.5 rounded-xl"
@@ -191,7 +196,10 @@ const FullScreenVideoPlayer: React.FC<FullScreenVideoPlayerProps> = ({ visible, 
         )}
 
         {/* Controls */}
-        <View className="absolute left-0 right-0 bottom-0 pb-6 pt-3 px-4">
+        <View
+          className="absolute left-0 right-0 bottom-0 pt-3"
+          style={{ paddingBottom: insets.bottom + 24, paddingHorizontal: sideInset + 16 }}
+        >
           <View className="dark-surface bg-black/50 rounded-xl px-3 py-2">
             <View className="flex-row items-center gap-3">
               <Text className="text-white text-xs w-10 text-center">{formatTime(position)}</Text>

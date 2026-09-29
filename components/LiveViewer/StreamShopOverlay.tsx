@@ -31,6 +31,7 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import SmartImage from "../common/SmartImage";
 import ShoppingBag from "lucide-react-native/dist/esm/icons/shopping-bag";
 import X from "lucide-react-native/dist/esm/icons/x";
@@ -44,6 +45,7 @@ import {
 import type { StreamProduct, LiveQuote } from "../../hooks/useStreamShopping";
 import { useERC20Contract } from "../../hooks/use-web3";
 import { useYieldToWalletUnlock } from "../../hooks/useYieldToWalletUnlock";
+import useKeyboard from "../../hooks/useKeyboard";
 import { writeContractAA } from "../../libs/aa.write";
 import { DHB_ADDRESSESS, ChainId } from "../../config/constants";
 import { useUser } from "../../context/AuthContext";
@@ -133,6 +135,10 @@ export function CheckoutSheet({
 }) {
   const { t } = useTranslation();
   const yielded = useYieldToWalletUnlock(visible);
+  // Both sheets are edge-to-edge Modals, so Buy now has to clear the nav bar
+  // itself. Not while typing an address: the keyboard already lifts it clear.
+  const insets = useSafeAreaInsets();
+  const { isVisible: kbUp } = useKeyboard();
   const user = useUser() as any;
   const wallet = (user?.walletAddress || user?.address || null) as string | null;
   const dhbAddress = DHB_ADDRESSESS[ChainId.BASE_MAINNET];
@@ -235,7 +241,10 @@ export function CheckoutSheet({
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         className="flex-1 justify-end dark-surface bg-black/60"
       >
-        <View className="bg-zinc-900 rounded-t-3xl border-t border-white/10 px-4 pt-4 pb-8">
+        <View
+          className="bg-zinc-900 rounded-t-3xl border-t border-white/10 px-4 pt-4"
+          style={{ paddingBottom: kbUp ? 32 : Math.max(32, insets.bottom + 16) }}
+        >
           <View className="flex-row items-center justify-between mb-4">
             <Text className="text-white font-semibold text-base flex-1 mr-3" numberOfLines={1}>
               {listing.title}
@@ -368,10 +377,14 @@ function ProductSheet({
   onSelect: (p: StreamProduct) => void;
 }) {
   const { t } = useTranslation();
+  const insets = useSafeAreaInsets();
   return (
     <Modal visible={visible} transparent animationType="slide" onRequestClose={onClose}>
       <View className="flex-1 justify-end dark-surface bg-black/60">
-        <View className="bg-zinc-900 rounded-t-3xl border-t border-white/10 px-4 pt-4 pb-8 max-h-[70%]">
+        <View
+          className="bg-zinc-900 rounded-t-3xl border-t border-white/10 px-4 pt-4 max-h-[70%]"
+          style={{ paddingBottom: Math.max(32, insets.bottom + 16) }}
+        >
           <View className="flex-row items-center justify-between mb-4">
             <Text className="text-white font-semibold text-base">{t("liveShop.title")}</Text>
             <TouchableOpacity onPress={onClose} hitSlop={10}>

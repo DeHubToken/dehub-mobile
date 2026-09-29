@@ -38,6 +38,7 @@
 import React, { memo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { View, Text, TouchableOpacity, Modal, ScrollView, Linking, ActivityIndicator } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import SmartImage from "./SmartImage";
 import Icon from "../ui/Icon";
 import { useStreamProducts, effectivePrice } from "../../hooks/useStreamShopping";
@@ -140,6 +141,8 @@ export default memo(function ShopBoard({
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   const [checkout, setCheckout] = useState<StreamProduct | null>(null);
+  // Before the early return below, so the hook order never changes.
+  const insets = useSafeAreaInsets();
 
   const linkRows = links ?? [];
   const claimedListings = Math.max(0, listingCount ?? 0);
@@ -187,7 +190,12 @@ export default memo(function ShopBoard({
               </TouchableOpacity>
             </View>
 
-            <ScrollView className="px-3 pb-6">
+            {/* The Modal is edge-to-edge. The inset goes on the content, not the
+                ScrollView, so a long board still ends clear of the nav bar. */}
+            <ScrollView
+              className="px-3"
+              contentContainerStyle={{ paddingBottom: Math.max(24, insets.bottom + 16) }}
+            >
               {claimedListings > 0 && isLoading ? (
                 <View className="py-4 items-center">
                   <ActivityIndicator color="#808089" />
