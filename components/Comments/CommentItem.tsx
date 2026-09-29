@@ -590,7 +590,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
                 the chips that follow. */}
             <View style={{ flexDirection: "row", alignItems: "center", flexShrink: 1, minWidth: 0 }}>
               <Text
-                style={{ fontSize: 16, lineHeight: 20, fontWeight: "600", color: ICON_ACTIVE }}
+                style={{ flexShrink: 1, minWidth: 0, fontSize: 16, lineHeight: 20, fontWeight: "600", color: ICON_ACTIVE }}
                 onPress={handleUserPress}
                 numberOfLines={1}
               >
