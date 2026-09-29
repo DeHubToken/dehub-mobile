@@ -8650,7 +8650,11 @@
       "search": "Tìm kiếm ứng dụng",
       "all": "Tất cả",
       "fromDehub": "Từ DeHub",
-      "noMatch": "Không có ứng dụng nào phù hợp với kết quả tìm kiếm của bạn."
+      "noMatch": "Không có ứng dụng nào phù hợp với kết quả tìm kiếm của bạn.",
+      "yourApps": "Các ứng dụng của bạn",
+      "notificationsOn": "Thông báo về",
+      "remove": "Thông báo đã bật",
+      "removed": "Xóa"
     },
     "card": {
       "open": "Mở"
@@ -8669,6 +8673,16 @@
       "developer-tools": "Công cụ phát triển",
       "entertainment": "Giải trí",
       "art-creativity": "Nghệ thuật & sáng tạo"
+    },
+    "pay": {
+      "title": "Trả {{name}}?",
+      "body": "Thanh toán {{wallet}}?",
+      "confirm": "DHB sẽ được chuyển trực tiếp vào ví của ứng dụng, {{amount}}. Thanh toán không thể hoàn lại.",
+      "sent": "Đã thanh toán {{amount}} cho {{name}}."
+    },
+    "add": {
+      "body": "Nó sẽ xuất hiện trong danh sách Ứng dụng của bạn và có thể gửi thông báo cho bạn. Bạn có thể xóa nó bất kỳ lúc nào từ trang Ứng dụng.",
+      "confirm": "Nó sẽ xuất hiện dưới mục Các ứng dụng của bạn và có thể gửi thông báo cho bạn. Bạn có thể xóa nó bất kỳ lúc nào từ trang Ứng dụng."
     }
   },
   "aiStyles": {

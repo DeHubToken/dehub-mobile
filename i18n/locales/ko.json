@@ -8567,7 +8567,11 @@
       "search": "앱 검색",
       "all": "전체",
       "fromDehub": "DeHub에서",
-      "noMatch": "검색 조건에 일치하는 앱이 없습니다."
+      "noMatch": "검색 조건에 일치하는 앱이 없습니다.",
+      "yourApps": "내 앱",
+      "removed": "제거되었습니다. 다시 알리지 않습니다.",
+      "notificationsOn": "알림을 받으려면",
+      "remove": "제거"
     },
     "card": {
       "open": "열기"
@@ -8586,6 +8590,17 @@
       "developer-tools": "개발자 도구",
       "entertainment": "엔터테인먼트",
       "art-creativity": "예술과 창의성"
+    },
+    "pay": {
+      "body": "DHB는 바로 앱의 지갑으로 직행합니다. {{wallet}}. 결제는 취소할 수 없습니다.",
+      "confirm": "지불 {{amount}} DHB",
+      "sent": "지불된 {{amount}} DHB를 {{name}}로 이체했습니다.",
+      "title": "{{name}}로 지불?"
+    },
+    "add": {
+      "title": "{{name}}을(를) 추가하시겠습니까?",
+      "body": "앱 목록에 추가됩니다. 알림을 보낼 수 있으며 언제든지 앱 페이지에서 제거할 수 있습니다.",
+      "confirm": "앱 추가"
     }
   },
   "aiStyles": {

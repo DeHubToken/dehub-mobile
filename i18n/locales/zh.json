@@ -8566,7 +8566,11 @@
       "search": "搜索应用",
       "all": "全部",
       "fromDehub": "来自DeHub",
-      "noMatch": "没有与该搜索匹配的应用。"
+      "noMatch": "没有与该搜索匹配的应用。",
+      "yourApps": "您的应用",
+      "notificationsOn": "通知开启",
+      "remove": "移除",
+      "removed": "已移除。不会再通知您了。"
     },
     "card": {
       "open": "打开"
@@ -8585,6 +8589,17 @@
       "developer-tools": "开发者工具",
       "entertainment": "娱乐",
       "art-creativity": "艺术与创意"
+    },
+    "pay": {
+      "title": "支付 {{name}}？",
+      "body": "DHB 将直接发送到应用的钱包 {{wallet}}。付款无法撤销。",
+      "confirm": "支付 {{amount}} DHB",
+      "sent": "已支付 {{amount}} DHB 给 {{name}}。"
+    },
+    "add": {
+      "title": "添加 {{name}}？",
+      "body": "它将出现在“您的应用”中，并能向您发送通知。您可以随时从“应用”页面中移除它。",
+      "confirm": "添加应用"
     }
   },
   "aiStyles": {

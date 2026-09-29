@@ -8563,7 +8563,10 @@
       "search": "Uygulama ara",
       "all": "Tümü",
       "fromDehub": "DeHub'dan",
-      "noMatch": "Bu aramayla eşleşen uygulama yok."
+      "noMatch": "Bu aramayla eşleşen uygulama yok.",
+      "yourApps": "Uygulamalarınız",
+      "notificationsOn": "Bildirimler açık",
+      "removed": "Silindi. Artık tekrar bildirim yapmayacak."
     },
     "card": {
       "open": "Açık"
@@ -8582,6 +8585,14 @@
       "developer-tools": "Geliştirici araçları",
       "entertainment": "Eğlence",
       "art-creativity": "Sanat ve yaratıcılık"
+    },
+    "pay": {
+      "body": "DHB doğrudan uygulamanın cüzdanına gider, {{wallet}}. Ödemeler iptal edilemez.",
+      "confirm": "Pay {{amount}} DHB",
+      "sent": "Ödenmiş {{amount}} DHB'yi {{name}}."
+    },
+    "add": {
+      "body": "Yükleme sonrası \"Senin Uygulamaların\" altında görünecek ve size bildirimler göndermeye devam edecek. Herhangi bir zaman \"Uygulamalar\" sayfasından kaldırılabilir."
     }
   },
   "aiStyles": {

@@ -8563,7 +8563,11 @@
       "search": "Barnaamijyada raadinta",
       "all": "Dhammaan",
       "fromDehub": "Laga soo bilaabo DeHub",
-      "noMatch": "Ma jiro barnaamijyo la jaan qaada raadintaas."
+      "noMatch": "Ma jiro barnaamijyo la jaan qaada raadintaas.",
+      "yourApps": "Barnaamijyadaada",
+      "removed": "Waayad ka mid ka mid, iyo maanta maantaad ka mid ka mid.",
+      "notificationsOn": "Wacayntaadka",
+      "remove": "Xiriira"
     },
     "card": {
       "open": "Furan"
@@ -8582,6 +8586,17 @@
       "developer-tools": "Qalabka horumariyaha",
       "entertainment": "Madadaalada",
       "art-creativity": "Farshaxanka & Hal-abuurka"
+    },
+    "pay": {
+      "title": "Pay {{name}}?",
+      "body": "DHB ka soo jiraa walletka appi, {{wallet}}. Waxaa ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka",
+      "confirm": "Pay {{amount}} DHB",
+      "sent": "Baadidaa {{amount}} DHB ka soo badbaad {{name}}."
+    },
+    "add": {
+      "body": "Waad uu ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid ka mid",
+      "title": "Add {{name}}?",
+      "confirm": "Add app"
     }
   },
   "aiStyles": {

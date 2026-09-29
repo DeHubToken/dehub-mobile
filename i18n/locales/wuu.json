@@ -8567,7 +8567,22 @@
       "education": "教育",
       "developer-tools": "開發工具",
       "entertainment": "娛樂",
-      "art-creativity": "藝術與創意"
+      "art-creativity": "藝術與創意",
+      "games": "遊戲"
+    },
+    "pay": {
+      "title": "付 {{name}}?",
+      "body": "DHB 會直接送到 app 的錢包 {{wallet}}。付款無法撤銷。",
+      "confirm": "付 {{amount}} DHB",
+      "sent": "已付 {{amount}} DHB 給 {{name}}。"
+    },
+    "add": {
+      "title": "加入 {{name}}?",
+      "body": "它會出現在「你的 app」底下，並可以發送通知給你。你可以隨時從「app 頁面」移除它。",
+      "confirm": "加入 app"
+    },
+    "card": {
+      "open": "開啟"
     }
   },
   "aiStyles": {

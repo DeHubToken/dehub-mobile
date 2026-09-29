@@ -9,6 +9,7 @@ import {
   parseAppUrl,
   parseRequest,
   launchUrl,
+  cleanPayment,
   syntheticFid,
 } from '../../libs/miniapp/protocol';
 import { parseDehubLink } from '../../libs/dehub-links';
@@ -112,5 +113,19 @@ describe('dehub app links', () => {
     expect(link?.appSlug).toBe('yoink');
     expect(link?.path).toBe('/apps/yoink?room=4');
     expect(parseDehubLink('https://dehub.io/apps/dev')?.kind).not.toBe('app');
+  });
+});
+
+describe('cleanPayment', () => {
+  it('takes a positive DHB amount, rounded up to whole DHB as payDhb sends it', () => {
+    expect(cleanPayment({ amount: 49.2, memo: 'Extra life' })).toEqual({ amount: 50, memo: 'Extra life' });
+    expect(cleanPayment({ amount: '10' })).toEqual({ amount: 10, memo: null });
+  });
+
+  it('refuses nothing, negatives, junk and anything over the cap', () => {
+    expect(cleanPayment({ amount: 0 })).toBeNull();
+    expect(cleanPayment({ amount: -5 })).toBeNull();
+    expect(cleanPayment({ amount: 'lots' })).toBeNull();
+    expect(cleanPayment({ amount: 2_000_000 })).toBeNull();
   });
 });

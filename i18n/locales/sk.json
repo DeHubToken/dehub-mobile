@@ -8728,7 +8728,11 @@
       "search": "Hľadať aplikácie",
       "all": "Všetko",
       "fromDehub": "Od DeHub",
-      "noMatch": "Žiadne aplikácie neodpovedajú tejto vyhľadávaniu."
+      "noMatch": "Žiadne aplikácie neodpovedajú tejto vyhľadávaniu.",
+      "yourApps": "Vaše aplikácie",
+      "notificationsOn": "Oznámenia na",
+      "removed": "Odstránené. Nebude sa vám o tom viac oznámiť.",
+      "remove": "Zabraňte"
     },
     "card": {
       "open": "Otvoriť"
@@ -8747,6 +8751,17 @@
       "developer-tools": "Nástroje pre vývojárov",
       "entertainment": "Zábava",
       "art-creativity": "Umelecká tvorba & kreativita"
+    },
+    "pay": {
+      "title": "Platiť {{name}}?",
+      "body": "DHB priamo odchádza do penenice aplikácie, {{wallet}}. Platby sa nedajú vrátiť.",
+      "confirm": "Platiť {{amount}} DHB",
+      "sent": "Platba {{amount}} DHB na {{name}}."
+    },
+    "add": {
+      "title": "Pridaj {{name}}?",
+      "body": "Bude sa objavi pod Vašimi aplikáciami a môže vám posielať oznámenia. Odstrániť ho môžete akokoľvek zo stránky Aplikácie.",
+      "confirm": "Pridať aplikáciu"
     }
   },
   "aiStyles": {

@@ -8594,7 +8594,9 @@
       "search": "Maskay apps nisqakunata",
       "all": "Llapan",
       "fromDehub": "DeHub nisqamanta",
-      "noMatch": "Mana ima appkuna chay maskaywan tupanchu."
+      "noMatch": "Mana ima appkuna chay maskaywan tupanchu.",
+      "yourApps": "Apps nisqaykikuna",
+      "remove": "Qichuy"
     },
     "card": {
       "open": "Kichasqa"

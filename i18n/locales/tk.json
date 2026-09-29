@@ -8563,7 +8563,8 @@
       "search": "Ulymalary gözle",
       "all": "Ehli",
       "fromDehub": "Dehub şäheriniň",
-      "noMatch": "Men bu gözlegini görmedim."
+      "noMatch": "Men bu gözlegini görmedim.",
+      "yourApps": "Siziň ulaglaryňyz"
     },
     "card": {
       "open": "Aç"
@@ -8582,6 +8583,15 @@
       "developer-tools": "Geliştirici esbaplary",
       "entertainment": "Göwün açma",
       "art-creativity": "Sanat we kreativitet"
+    },
+    "pay": {
+      "title": "Pay {{name}}?",
+      "body": "\"DHB\" direkt appýň pul gýzýna gider, {{wallet}}. Öýünler geri alýňmaz.",
+      "confirm": "Pay {{amount}} DHB"
+    },
+    "add": {
+      "title": "{{name}}?",
+      "body": "Sizge \"Apps\" bölüginde görünecek ve bildirimler gönderir. Siz \"Apps\" saytasyndan her anýňý silip atabýlýrsýnýz."
     }
   },
   "aiStyles": {

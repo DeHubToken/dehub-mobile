@@ -8593,7 +8593,11 @@
       "search": "Suche Apps",
       "all": "All",
       "fromDehub": "Von DeHub",
-      "noMatch": "Keini Apps passen zu deiner Suche."
+      "noMatch": "Keini Apps passen zu deiner Suche.",
+      "yourApps": "Deine Apps",
+      "notificationsOn": "Benachrichtigungen aktiviert",
+      "remove": "Entfernen",
+      "removed": "Entfernt. Es wird dich nicht mehr benachrichtigen."
     },
     "card": {
       "open": "Öffne"
@@ -8612,6 +8616,17 @@
       "developer-tools": "Entwickler-Tools",
       "entertainment": "Unterhaltungsindustrie",
       "art-creativity": "Kunst un Chreischtikait"
+    },
+    "pay": {
+      "title": "{{name}} bezahlen?",
+      "body": "Das DHB geht direkt in die Wallet der App, {{wallet}}. Zahlungen können nicht rückgängig gemacht werden.",
+      "confirm": "{{amount}} DHB bezahlen",
+      "sent": "{{amount}} DHB an {{name}} bezahlt."
+    },
+    "add": {
+      "title": "App {{name}} hinzufügen?",
+      "body": "Sie wird unter Deine Apps erscheinen und kann dir Benachrichtigungen senden. Du kannst sie jederzeit von der Apps-Seite entfernen.",
+      "confirm": "App hinzufügen"
     }
   },
   "aiStyles": {

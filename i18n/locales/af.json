@@ -8688,7 +8688,10 @@
       "search": "Soek programme",
       "all": "Alle",
       "fromDehub": "Van DeHub",
-      "noMatch": "Geen programme pas by daardie soektog nie."
+      "noMatch": "Geen programme pas by daardie soektog nie.",
+      "yourApps": "Jou programme",
+      "notificationsOn": "Berigte op",
+      "removed": "Verwyder. Dit sal jou nie weer waarsku nie."
     },
     "category": {
       "games": "Speletjies",
@@ -8704,6 +8707,16 @@
       "developer-tools": "Ontwikkelaar gereedskap",
       "entertainment": "Vermaak",
       "art-creativity": "Kuns en kreatiwiteit"
+    },
+    "pay": {
+      "title": "Betaal {{name}}?",
+      "body": "Die DHB gaan regstreeks na die app se portemonnee, {{wallet}}. Betalings kan nie teruggedraai word nie.",
+      "confirm": "Betaal {{amount}} DHB",
+      "sent": "Betaal {{amount}} DHB vir {{name}}."
+    },
+    "add": {
+      "title": "Vegt {{name}}?",
+      "body": "Daar sal dit onder U se toepassings verskyn en kan dit jou kennisgewings stuur. Jy kan dit op enige tyd uit die Toepassings-blad verwder."
     }
   },
   "aiStyles": {
