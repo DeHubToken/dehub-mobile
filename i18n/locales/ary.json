@@ -5180,7 +5180,20 @@
     "removeUploadTitle": "هل تريد إزالة هذا التحميل ؟",
     "removeQueuedBody": "لم يتم نشره بعد. تؤدي إزالته إلى إلغاء المنشور.",
     "quotaShortfall": "هاد البوست فيه {{cost}} توكنز و نتا عندك {{held}}.",
-    "shopAllowanceUsed": "{{allowance}} من {{allowance}} مستعملة. ستيك توكنز ديال DeHub أكثر باش تاخد بادج أعلى و بلاصة أخرى."
+    "shopAllowanceUsed": "{{allowance}} من {{allowance}} مستعملة. ستيك توكنز ديال DeHub أكثر باش تاخد بادج أعلى و بلاصة أخرى.",
+    "editFilters": "تحرير الفلاتر",
+    "cropRotate": "قطع ودوّن",
+    "drawWrite": "رسم وكتابة",
+    "fade": "إخفاء {{value}}%",
+    "grayscale": "اللون الرمادي {{value}}%",
+    "resetEdits": "إعادة الضبط",
+    "clearDrawing": "مسح",
+    "typeText": "اكتب...",
+    "textSize": "حجم النص {{value}}",
+    "coverFrames": "اختر إطار الغلاف",
+    "coverFrame": "استخدم إطار {{index}} كغلاف",
+    "uploadCover": "تحميل صورة الغلاف",
+    "editFailed": "لم يتم تطبيق التعديل. حاول مرة أخرى."
   },
   "bounty": {
     "claimed": "تسلم",

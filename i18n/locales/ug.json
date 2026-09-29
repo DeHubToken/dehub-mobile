@@ -5150,7 +5150,20 @@
     "removeUploadTitle": "بۇ چۈشۈرۈشنى ئۆچۈرگىلى بولامدۇ ؟",
     "removeQueuedBody": "ئۇ تېخى ئېلان قىلىنمىدى. ئۇنىڭ ئۆچۈرۈلۈشى يازمىنى بىكار قىلىدۇ.",
     "quotaShortfall": "بۇ يازمىنىڭ باھاسى {{cost}} تېل، سىز {{held}} نى ساقلاۋاتىسىز.",
-    "shopAllowanceUsed": "{{allowance}} دىن {{allowance}} ئىشلىتىلدى. تېخىمۇ كۆپ DeHub تېللىرىنى مەبلەڭ قىلىپ، تېخىمۇ يۇقىرى نام ۋە يەنە بىر ئورۇنغا ئېرىشىڭ."
+    "shopAllowanceUsed": "{{allowance}} دىن {{allowance}} ئىشلىتىلدى. تېخىمۇ كۆپ DeHub تېللىرىنى مەبلەڭ قىلىپ، تېخىمۇ يۇقىرى نام ۋە يەنە بىر ئورۇنغا ئېرىشىڭ.",
+    "editFilters": "ئەسەس قويۇشچۇلار",
+    "cropRotate": "ئۆزەكى چىقىرىش & ئۆزەكى قايىملاشتۇرۇش",
+    "drawWrite": "Qalam qilish & yozish",
+    "grayscale": "Graysaylەر {{value}}%",
+    "resetEdits": "ئۆچكۇرلارنى قايتا قۇراشتۇرۇڭ",
+    "clearDrawing": "تازىلاش",
+    "typeText": "Tiplar…",
+    "coverFrame": "{{index}} نى مۇقاۋ قىلىڭ",
+    "uploadCover": "تۈرلۈك رېسالم",
+    "editFailed": "ئۇ تەھرىرلەشنى قوللىنىپ بولمايدۇ. قايتا سىناڭ.",
+    "fade": "سۇسلىشىش {{value}}%",
+    "textSize": "خەت چوڭلۇقى {{value}}",
+    "coverFrames": "مۇقاۋا كادىرى تاللاڭ"
   },
   "bounty": {
     "claimed": "تاپشۇرۇۋېلىندى",

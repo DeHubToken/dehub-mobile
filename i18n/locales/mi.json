@@ -5149,7 +5149,20 @@
     "removeUploadTitle": "Tangohia tenei tuku?",
     "removeQueuedBody": "Kaore ano kia whakaputaina. Ka whakakorea e ia te pou.",
     "quotaShortfall": "E {{cost}} tohu te utu o tēnei pou, ā, kei a koe {{held}}.",
-    "shopAllowanceUsed": "{{allowance}} o {{allowance}} i whakamahia. Whakauruhia ētahi atu tohu DeHub mō tētahi tohu teitei ake me tētahi atu mokamoka."
+    "shopAllowanceUsed": "{{allowance}} o {{allowance}} i whakamahia. Whakauruhia ētahi atu tohu DeHub mō tētahi tohu teitei ake me tētahi atu mokamoka.",
+    "editFilters": "Kawe noa i te whakapātanga",
+    "cropRotate": "Kākau me whakapiri",
+    "drawWrite": "Tuhia & tuhi",
+    "grayscale": "Kupenga Pārerewa {{value}}%",
+    "resetEdits": "Whakamahere",
+    "clearDrawing": "He mārama",
+    "typeText": "Tuhia…",
+    "textSize": "Tiketia whakatau {{value}}",
+    "coverFrames": "Ko te whakapakari i te whakapakari",
+    "coverFrame": "Whakamahia te anga {{index}} hei taupoki",
+    "uploadCover": "Tuhia te whakaahua o te pukapuka",
+    "editFailed": "Kaore au e taea te whakamahia te kawenata whakapāpā.",
+    "fade": "Mimiti {{value}}%"
   },
   "bounty": {
     "claimed": "Kua tonoa",

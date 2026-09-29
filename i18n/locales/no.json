@@ -5150,7 +5150,20 @@
     "removeUploadTitle": "Fjerne denne opplastingen?",
     "removeQueuedBody": "Den har ikke blitt publisert ennå. Hvis du fjerner den, avbrytes innlegget.",
     "quotaShortfall": "Dette innlegget koster {{cost}} tokens og du har {{held}}.",
-    "shopAllowanceUsed": "{{allowance}} av {{allowance}} brukt. Stak mer DeHub-tokens for et høyere merke og en ny plass."
+    "shopAllowanceUsed": "{{allowance}} av {{allowance}} brukt. Stak mer DeHub-tokens for et høyere merke og en ny plass.",
+    "editFilters": "Rediger filtre",
+    "cropRotate": "Beskjær og roter",
+    "drawWrite": "Tegn og skriv",
+    "fade": "Falming {{value}} %",
+    "grayscale": "Gråtoner {{value}} %",
+    "resetEdits": "Tilbakestill",
+    "clearDrawing": "Tøm",
+    "typeText": "Skriv…",
+    "textSize": "Tekststørrelse {{value}}",
+    "coverFrames": "Velg et bilde som omslag",
+    "coverFrame": "Bruk bilde {{index}} som omslag",
+    "uploadCover": "Last opp et omslagsbilde",
+    "editFailed": "Kunne ikke bruke endringen. Prøv igjen."
   },
   "bounty": {
     "claimed": "Innløst",

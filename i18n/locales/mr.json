@@ -5152,7 +5152,20 @@
     "removeUploadTitle": "हे अपलोड काढायचे आहे का?",
     "removeQueuedBody": "ते अजून पोस्ट केलेले नाही. ते काढल्यास पोस्ट रद्द होईल.",
     "quotaShortfall": "या पोस्टसाठी {{cost}} टोकन लागतील आणि तुमच्याकडे {{held}} आहेत.",
-    "shopAllowanceUsed": "{{allowance}} पैकी {{allowance}} वापरले. उच्च बॅज आणि आणखी एका स्लॉटसाठी अधिक DeHub टोकन स्टेक करा."
+    "shopAllowanceUsed": "{{allowance}} पैकी {{allowance}} वापरले. उच्च बॅज आणि आणखी एका स्लॉटसाठी अधिक DeHub टोकन स्टेक करा.",
+    "editFilters": "फिल्टर्स सुधारा",
+    "cropRotate": "फळी आणि पुनरावृत्ती",
+    "drawWrite": "कला करा आणि लिहा",
+    "fade": "फॅड {{value}}%",
+    "grayscale": "ग्रे स्केल {{value}}%",
+    "resetEdits": "निर्मिती",
+    "clearDrawing": "स्पष्ट",
+    "typeText": "म्हणजे",
+    "textSize": "टेक्स्ट साइज {{value}}",
+    "coverFrames": "कवच फ्रेम ची निवड करा",
+    "uploadCover": "पॅकेज को चढवा",
+    "editFailed": "मी सांगतो तुम्हाला की हे काही कारणांनी काम करण्यात येत नाही.",
+    "coverFrame": "फ्रेम {{index}} कव्हर म्हणून वापरा"
   },
   "bounty": {
     "claimed": "मिळवले",

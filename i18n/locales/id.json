@@ -5199,7 +5199,20 @@
     "removeUploadTitle": "Hapus unggahan ini?",
     "removeQueuedBody": "Belum diposting. Menghapusnya akan membatalkan postingan.",
     "quotaShortfall": "Postingan ini berharga {{cost}} token dan Anda memegang {{held}}.",
-    "shopAllowanceUsed": "{{allowance}} dari {{allowance}} digunakan. Pertaruhkan lebih banyak token DeHub untuk lencana yang lebih tinggi dan slot lainnya."
+    "shopAllowanceUsed": "{{allowance}} dari {{allowance}} digunakan. Pertaruhkan lebih banyak token DeHub untuk lencana yang lebih tinggi dan slot lainnya.",
+    "editFilters": "Edit filter",
+    "cropRotate": "Potong & putar",
+    "drawWrite": "Gambar & tulis",
+    "fade": "Pudar {{value}}%",
+    "grayscale": "Skala abu-abu {{value}}%",
+    "resetEdits": "Atur ulang",
+    "clearDrawing": "Hapus",
+    "typeText": "Ketik…",
+    "textSize": "Ukuran teks {{value}}",
+    "coverFrames": "Pilih bingkai sampul",
+    "coverFrame": "Gunakan bingkai {{index}} sebagai sampul",
+    "uploadCover": "Unggah gambar sampul",
+    "editFailed": "Tidak dapat menerapkan edit. Coba lagi."
   },
   "bounty": {
     "claimed": "Sudah diklaim",

@@ -5180,7 +5180,20 @@
     "removeUploadTitle": "Κατάργηση αυτής της μεταφόρτωσης;",
     "removeQueuedBody": "Δεν έχει δημοσιευτεί ακόμα. Η αφαίρεσή του ακυρώνει την ανάρτηση.",
     "quotaShortfall": "Αυτή η ανάρτηση κοστίζει {{cost}} tokens και έχετε {{held}}.",
-    "shopAllowanceUsed": "{{allowance}} από {{allowance}} χρησιμοποιήθηκαν. Κάντε stake περισσότερα tokens DeHub για υψηλότερο σήμα και άλλη θέση."
+    "shopAllowanceUsed": "{{allowance}} από {{allowance}} χρησιμοποιήθηκαν. Κάντε stake περισσότερα tokens DeHub για υψηλότερο σήμα και άλλη θέση.",
+    "editFilters": "Επεξεργασία φίλτρου",
+    "cropRotate": "Κόψτε & περιστρέψτε",
+    "drawWrite": "Γράψτε & ζωγραφίστε",
+    "fade": "Φανοί {{value}}%",
+    "grayscale": "Αchromat {{value}}%",
+    "resetEdits": "Αποκαταστήστε",
+    "clearDrawing": "Καθαρίστε",
+    "typeText": "Γράψτε…",
+    "textSize": "Μέγεθος κειμένου {{value}}",
+    "coverFrames": "Επιλέξτε ένα πλαίσιο για την οθόνη",
+    "coverFrame": "Χρησιμοποιήστε το πλαίσιο {{index}} ως την οθόνη",
+    "uploadCover": "Ανέβαστε μια οθόνη",
+    "editFailed": "Δεν μπορέσαμε να εφαρμόσουμε αυτή την επεξεργασία. Δοκιμάστε ξανά."
   },
   "bounty": {
     "claimed": "Παραλήφθηκε",

@@ -5146,7 +5146,20 @@
     "removeUploadTitle": "ଏହି ଅପଲୋଡକୁ ଅପସାରଣ କରିବେ କି?",
     "removeQueuedBody": "ଏହା ଏଯାଏଁ ପ୍ରକାଶ ପାଇନାହିଁ । ଏହାକୁ ହଟାଇବା ଦ୍ୱାରା ପୋଷ୍ଟକୁ ରଦ୍ଦ କରିଦିଆଯାଏ ।",
     "quotaShortfall": "ଏହି ପୋଷ୍ଟର ମୂଲ୍ୟ {{cost}} ଟୋକେନ୍ ଏବଂ ଆପଣଙ୍କ ପାଖରେ {{held}} ଅଛି।",
-    "shopAllowanceUsed": "{{allowance}} ରୁ {{allowance}} ବ୍ୟବହୃତ। ଉଚ୍ଚ ବ୍ୟାଜ୍ ଏବଂ ଅନ୍ୟ ଏକ ସ୍ଲଟ୍ ପାଇଁ ଅଧିକ DeHub ଟୋକେନ୍ ଷ୍ଟାକ୍ କରନ୍ତୁ।"
+    "shopAllowanceUsed": "{{allowance}} ରୁ {{allowance}} ବ୍ୟବହୃତ। ଉଚ୍ଚ ବ୍ୟାଜ୍ ଏବଂ ଅନ୍ୟ ଏକ ସ୍ଲଟ୍ ପାଇଁ ଅଧିକ DeHub ଟୋକେନ୍ ଷ୍ଟାକ୍ କରନ୍ତୁ।",
+    "clearDrawing": "ସଫା କରନ୍ତୁ",
+    "textSize": "ପାଠ୍ୟ ଆକାର {{value}}",
+    "editFilters": "ଫିଲ୍ଟର ସମ୍ପାଦନ କରନ୍ତୁ",
+    "cropRotate": "କାଟନ୍ତୁ ଓ ଘୁରାନ୍ତୁ",
+    "drawWrite": "ଆଙ୍କନ୍ତୁ ଓ ଲେଖନ୍ତୁ",
+    "fade": "ଫିକା {{value}}%",
+    "grayscale": "ଗ୍ରେସ୍କେଲ {{value}}%",
+    "resetEdits": "ରିସେଟ କରନ୍ତୁ",
+    "typeText": "ଲେଖନ୍ତୁ…",
+    "coverFrames": "କଭର ଫ୍ରେମ ବାଛନ୍ତୁ",
+    "coverFrame": "ଫ୍ରେମ {{index}} କୁ କଭର କରନ୍ତୁ",
+    "uploadCover": "କଭର ଛବି ଅପଲୋଡ କରନ୍ତୁ",
+    "editFailed": "ଏହି ସମ୍ପାଦନ ଲାଗୁ ହୋଇପାରିଲା ନାହିଁ। ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।"
   },
   "bounty": {
     "claimed": "ଗ୍ରହଣ କରାଯାଇଛି",

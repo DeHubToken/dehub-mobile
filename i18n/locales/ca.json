@@ -5150,7 +5150,20 @@
     "removeUploadTitle": "Vols eliminar aquesta càrrega?",
     "removeQueuedBody": "Encara no s'ha publicat. Si l'elimines, es cancel·la la publicació.",
     "quotaShortfall": "Aquesta publicació costa {{cost}} jetons i tu en tens {{held}}.",
-    "shopAllowanceUsed": "S'han utilitzat {{allowance}} de {{allowance}}. Invertiu més jetons DeHub per a una insígnia més alta i una altra ranura."
+    "shopAllowanceUsed": "S'han utilitzat {{allowance}} de {{allowance}}. Invertiu més jetons DeHub per a una insígnia més alta i una altra ranura.",
+    "editFilters": "Edit filters",
+    "cropRotate": "Cortar i rotar",
+    "drawWrite": "Dibuixar i escriure",
+    "fade": "Desenfocar {{value}}%",
+    "grayscale": "Grisos {{value}}%",
+    "resetEdits": "Reiniciar",
+    "clearDrawing": "Netejar",
+    "typeText": "Tipus…",
+    "textSize": "Tamany de text {{value}}",
+    "coverFrames": "Escollir una capçalera",
+    "coverFrame": "Utilitzar la capçalera {{index}} com a capçalera",
+    "uploadCover": "Carregar una imatge de capçalera",
+    "editFailed": "No s'ha pogut aplicar aquesta edició. Prova-ho de nou."
   },
   "bounty": {
     "claimed": "Reclamat",

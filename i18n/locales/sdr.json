@@ -5160,7 +5160,20 @@
     "removeUploadTitle": "ई अपलोड के हटाबा?",
     "removeQueuedBody": "ई अभी तक पोस्ट नि होय हे। हटाले पोस्ट रद्द होय जाई।",
     "quotaShortfall": "اس پوسٹ کی قیمت {{cost}} ٹوکن ہے اور آپ کے پاس {{held}} ہے۔",
-    "shopAllowanceUsed": "{{allowance}} میں سے {{allowance}} استعمال ہوا۔ اعلیٰ بیج اور ایک اور سلاٹ کے لیے مزید DeHub ٹوکن اسٹیک کریں۔"
+    "shopAllowanceUsed": "{{allowance}} میں سے {{allowance}} استعمال ہوا۔ اعلیٰ بیج اور ایک اور سلاٹ کے لیے مزید DeHub ٹوکن اسٹیک کریں۔",
+    "editFilters": "فیلترها را ویرایش کنید",
+    "fade": "Fade {{value}}%",
+    "resetEdits": "ڕێکخستن",
+    "typeText": "ٹائپ",
+    "coverFrame": "Frame {{index}} ke cover banao",
+    "editFailed": "assistant error",
+    "cropRotate": "काटू आउर घुमाऊ",
+    "drawWrite": "बनाऊ आउर लिखू",
+    "grayscale": "ग्रेस्केल {{value}}%",
+    "clearDrawing": "साफ करू",
+    "textSize": "लिखा कर साइज {{value}}",
+    "coverFrames": "कवर फ्रेम चुनू",
+    "uploadCover": "कवर फोटो अपलोड करू"
   },
   "bounty": {
     "claimed": "নেওয়া হইছে",

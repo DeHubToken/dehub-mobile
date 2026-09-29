@@ -5134,7 +5134,20 @@
     "removeUploadTitle": "का आप ई जानल चाहत बानी कि आप इहाँ योगदान कइसे कर",
     "removeQueuedBody": "अबहिन तक बात नाहीं हो पाइल बा कि कइसन बाटें. ई पोस्ट के हटावे के परेला ।",
     "quotaShortfall": "इस पोस्ट की लागत {{cost}} टोकन है और आपके पास {{held}} है।",
-    "shopAllowanceUsed": "{{allowance}} में से {{allowance}} का उपयोग किया गया। उच्च बैज और एक और स्लॉट के लिए अधिक DeHub टोकन स्टेक करें।"
+    "shopAllowanceUsed": "{{allowance}} में से {{allowance}} का उपयोग किया गया। उच्च बैज और एक और स्लॉट के लिए अधिक DeHub टोकन स्टेक करें।",
+    "cropRotate": "काटना आउर घुमाव",
+    "drawWrite": "कला करो",
+    "fade": "फ़ेड {{value}}%",
+    "grayscale": "ग्रे स्केल {{value}}%",
+    "resetEdits": "निरस्त करें",
+    "clearDrawing": "साफ़ करें",
+    "typeText": "टाइप…",
+    "textSize": "साइज़ {{value}}",
+    "coverFrames": "कवर फ्रेम चुनें",
+    "uploadCover": "भिडिअो कवर इमेज अपलोड करें",
+    "editFailed": "कृपया पुनः प्रयास करें ।",
+    "editFilters": "फ़िल्टर बदलीं",
+    "coverFrame": "फ़्रेम {{index}} के कवर बनाईं"
   },
   "bounty": {
     "claimed": "मिल गइल",

@@ -5173,7 +5173,20 @@
     "removeUploadTitle": "Foanana ity fampakarana ity?",
     "removeQueuedBody": "Hatreto dia tsy mbola namoaka toy izany. Nofoanana ny taratasiny.",
     "quotaShortfall": "Ity lahatsoratra ity dia mitentina {{cost}} famantarana ary mitazona {{held}} ianao.",
-    "shopAllowanceUsed": "{{allowance}} amin'ny {{allowance}} no nampiasaina. Ampiharoinao bebe kokoa ny famantarana DeHub mba hahazoana mari-boninahitra ambony kokoa sy toerana hafa."
+    "shopAllowanceUsed": "{{allowance}} amin'ny {{allowance}} no nampiasaina. Ampiharoinao bebe kokoa ny famantarana DeHub mba hahazoana mari-boninahitra ambony kokoa sy toerana hafa.",
+    "editFilters": "Fametahana fanovana",
+    "cropRotate": "Hetezo & ahodina",
+    "drawWrite": "Sintona & soraty",
+    "fade": "Mihamangatsiaka {{value}}%",
+    "grayscale": "Mainty sy fotsy {{value}}%",
+    "resetEdits": "Averina amin'ny voalohany",
+    "clearDrawing": "Fafao",
+    "typeText": "Soraty…",
+    "textSize": "Haben'ny soratra {{value}}",
+    "coverFrames": "Mifidiana sary fonony",
+    "coverFrame": "Ampiasao ny sary {{index}} ho fonony",
+    "uploadCover": "Apetraho ny sary fonony",
+    "editFailed": "Tsy afaka nampiharina io fanovana io. Mba andramo indray."
   },
   "bounty": {
     "claimed": "Voaray",

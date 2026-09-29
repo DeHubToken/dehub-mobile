@@ -5150,7 +5150,20 @@
     "removeUploadTitle": "Kas eemaldada see üleslaadimine?",
     "removeQueuedBody": "Seda pole veel postitatud. Selle eemaldamine tühistab postituse.",
     "quotaShortfall": "See postitus maksab {{cost}} žetooni ja teil on {{held}}.",
-    "shopAllowanceUsed": "Kasutatud {{allowance}} / {{allowance}}-st. Panustage rohkem DeHub žetoone, et saada kõrgem märk ja veel üks koht."
+    "shopAllowanceUsed": "Kasutatud {{allowance}} / {{allowance}}-st. Panustage rohkem DeHub žetoone, et saada kõrgem märk ja veel üks koht.",
+    "editFilters": "Redigeerimisfiltrid",
+    "cropRotate": "Kipp & pööra",
+    "drawWrite": "Joonista & kirjuta",
+    "fade": "Hävitse {{value}}%",
+    "grayscale": "Grayskale {{value}}%",
+    "resetEdits": "Tühjenda",
+    "clearDrawing": "Kustuta",
+    "typeText": "Kirjuta...",
+    "textSize": "Teksti suurus {{value}}",
+    "coverFrames": "Vali kaanepilt",
+    "coverFrame": "Kasuta kaanepilti {{index}}",
+    "uploadCover": "Lae üles kaanepilt",
+    "editFailed": "Sai edasi teha seda redigeerimist. Proovi uuesti."
   },
   "bounty": {
     "claimed": "Lunastatud",

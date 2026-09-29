@@ -5150,7 +5150,20 @@
     "removeUploadTitle": "Cire wannan loda?",
     "removeQueuedBody": "Ba a sanya shi ba tukuna. Cire shi soke post.",
     "quotaShortfall": "Wannan sakon yana kashe {{cost}} token kuma kana riƙe {{held}}.",
-    "shopAllowanceUsed": "An yi amfani da {{allowance}} daga cikin {{allowance}}. Saka ƙarin token na DeHub don samun babbar lambar yabo da wani wuri."
+    "shopAllowanceUsed": "An yi amfani da {{allowance}} daga cikin {{allowance}}. Saka ƙarin token na DeHub don samun babbar lambar yabo da wani wuri.",
+    "editFilters": "Gyara tacewa",
+    "cropRotate": "Karkata & juya",
+    "drawWrite": "Zana & rubuta",
+    "fade": "Faduwa {{value}}%",
+    "grayscale": "Launuka masu duhu {{value}}%",
+    "resetEdits": "Sake saitawa",
+    "clearDrawing": "Goge",
+    "typeText": "Rubuta…",
+    "textSize": "Girman rubutu {{value}}",
+    "coverFrames": "Zaɓi firam ɗin murfi",
+    "coverFrame": "Yi amfani da firam {{index}} a matsayin murfi",
+    "uploadCover": "Saka hoton murfi",
+    "editFailed": "An kasa amfani da wannan gyaran. Gwada sake."
   },
   "bounty": {
     "claimed": "An karɓa",

@@ -5140,7 +5140,20 @@
     "removeUploadTitle": "Batalake unggahan iki?",
     "removeQueuedBody": "Durung dipos. Mbatalake bakal nggagalke pos.",
     "quotaShortfall": "Pos iki regane {{cost}} token lan sampeyan duwe {{held}}.",
-    "shopAllowanceUsed": "{{allowance}} saka {{allowance}} digunakake. Stake token DeHub luwih akeh kanggo lencana sing luwih dhuwur lan slot liyane."
+    "shopAllowanceUsed": "{{allowance}} saka {{allowance}} digunakake. Stake token DeHub luwih akeh kanggo lencana sing luwih dhuwur lan slot liyane.",
+    "editFilters": "Gawe filter",
+    "cropRotate": "Potong lan rotasi",
+    "drawWrite": "Tulis lan gambar",
+    "fade": "Menggawe abang {{value}}%",
+    "grayscale": "Abang {{value}}%",
+    "resetEdits": "Kembalike",
+    "clearDrawing": "Beresih",
+    "typeText": "Tulis…",
+    "textSize": "Suku teks {{value}}",
+    "coverFrames": "Pilih frame cover",
+    "coverFrame": "Gunakake frame {{index}} minangka cover",
+    "uploadCover": "Nambah cover gambar",
+    "editFailed": "Gawe filter iku ora bisa diaplikasake. Coba lagi."
   },
   "bounty": {
     "claimed": "Wis diklaim",

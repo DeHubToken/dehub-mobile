@@ -5196,7 +5196,20 @@
     "removeUploadTitle": "Alisin ang upload na ito?",
     "removeQueuedBody": "Hindi pa ito nai - post. Ang pag - aalis nito ay nagkansela ng post.",
     "quotaShortfall": "Ang post na ito ay nagkakahalaga ng {{cost}} token at hawak mo ang {{held}}.",
-    "shopAllowanceUsed": "{{allowance}} sa {{allowance}} ang nagamit. Mag-stake ng mas maraming DeHub tokens para sa mas mataas na badge at isa pang slot."
+    "shopAllowanceUsed": "{{allowance}} sa {{allowance}} ang nagamit. Mag-stake ng mas maraming DeHub tokens para sa mas mataas na badge at isa pang slot.",
+    "editFilters": "Mga filter sa pag-edit",
+    "cropRotate": "Ang Crop & Rotate ay isang aplikasyon ng Adobe Photoshop na nag-aayos ng mga larawan.",
+    "drawWrite": "Gumuhit at magsulat",
+    "resetEdits": "Muling Isasailalim",
+    "clearDrawing": "Tama",
+    "typeText": "Iyakain",
+    "coverFrames": "Pumili ng frame ng cover",
+    "uploadCover": "Ipinakita ang isang cover image.",
+    "editFailed": "Ang mga tao ay nagtatanong kung paano magagawa ang mga bagong pagbabago sa mga patakaran ng pagpapalaya ng mga hayop sa loob ng mga lungsod.",
+    "fade": "Pagkupas {{value}}%",
+    "grayscale": "Grayscale {{value}}%",
+    "textSize": "Laki ng teksto {{value}}",
+    "coverFrame": "Gamitin ang frame {{index}} bilang cover"
   },
   "bounty": {
     "claimed": "Nakuha na",
