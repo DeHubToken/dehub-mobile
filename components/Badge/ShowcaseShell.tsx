@@ -106,6 +106,8 @@ interface Props {
   /** Marks an entry in the dock as held or earned. */
   owned: (index: number) => boolean;
   children: (api: ShowcaseApi) => ReactNode;
+  /** The action row, drawn under the dock as the last thing on screen. */
+  footer?: (api: ShowcaseApi) => ReactNode;
   intro?: ShowcaseIntro;
 }
 
@@ -124,6 +126,8 @@ const LOADER_DELAY_MS = 350;
 /** A dock thumbnail: 32px of art in 4px of padding, 2px apart. */
 const THUMB = 40;
 const THUMB_GAP = 2;
+/** Between the details, the dock, the actions and the bottom edge. */
+const SECTION_GAP = 12;
 
 // CSS's curves, for the transitions web writes as Tailwind classes.
 const EASE = Easing.bezier(0.25, 0.1, 0.25, 1);
@@ -180,10 +184,12 @@ export default function ShowcaseShell({
   dockLabel,
   owned,
   children,
+  footer,
   intro,
 }: Props) {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
+  const bottomGap = insets.bottom + SECTION_GAP;
   const { height: H } = useWindowDimensions();
   const reduceMotion = useReducedMotion();
   const count = entries.length;
@@ -602,8 +608,11 @@ export default function ShowcaseShell({
               </ScrollView>
             </Animated.View>
 
-            {/* Same 480px column and 16px gutters as the details, so the edges line up. */}
-            <View style={[styles.dockWrap, { marginBottom: Math.max(insets.bottom, 10) }]} pointerEvents="box-none">
+            {/* Same 480px column and 16px gutters as the details, so the edges line up.
+                The dock sits between the details and the actions; the three are
+                one even gap apart, and the last one keeps the same gap to the
+                bottom edge above any system bar. */}
+            <View style={[styles.dockWrap, !footer && { marginBottom: bottomGap }]} pointerEvents="box-none">
               <Animated.View
                 style={[styles.dock, dockStyle]}
                 pointerEvents={panelIn ? "auto" : "none"}
@@ -642,6 +651,15 @@ export default function ShowcaseShell({
                 </Chrome>
               </Animated.View>
             </View>
+
+            {footer ? (
+              <Animated.View
+                style={[styles.footerWrap, { marginBottom: bottomGap }, dockStyle]}
+                pointerEvents={panelIn ? "auto" : "none"}
+              >
+                <View style={styles.column}>{footer(api)}</View>
+              </Animated.View>
+            ) : null}
           </View>
 
           {/* The loader holds the badge's place while the sticker finishes loading. */}
@@ -741,9 +759,10 @@ function DockThumb({
 const styles = StyleSheet.create({
   backdrop: { backgroundColor: "#000" },
   stage: { flex: 1, minHeight: 160 },
-  details: { paddingHorizontal: 16, paddingBottom: 12 },
+  details: { paddingHorizontal: 16 },
   column: { width: "100%", maxWidth: 480, alignSelf: "center" },
-  dockWrap: { marginTop: 8, paddingHorizontal: 16 },
+  dockWrap: { marginTop: SECTION_GAP, paddingHorizontal: 16 },
+  footerWrap: { marginTop: SECTION_GAP, paddingHorizontal: 16 },
   dock: {
     width: "100%",
     maxWidth: 480,

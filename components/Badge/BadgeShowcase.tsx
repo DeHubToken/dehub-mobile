@@ -38,6 +38,11 @@ import { fetchVoiceClonePrice } from "../../libs/voiceClonePrice";
 import type { MeasurableAnchor } from "../../libs/badgeShowcase";
 import { navigationRef } from "../../App";
 import { ScreenNames } from "../../navigation/ScreenNames";
+import { WEBSITE_LINK } from "../../config/links";
+import { openInApp } from "../../libs/links.utils";
+
+/** The badges chapter of the docs: every tier, its threshold and what it grants. */
+const BADGE_DOCS_URL = `${WEBSITE_LINK}/docs/dapps#badges`;
 
 interface Props {
   tier: string | null;
@@ -151,6 +156,7 @@ export default function BadgeShowcase({ tier, promotedFrom, anchor, onClose }: P
       dialogLabel={(i) => t("badgeShowcase.dialogLabel", { tier: BADGE_ORDER[i] })}
       dockLabel={t("badgeShowcase.badges")}
       owned={owned}
+      footer={(api) => <HolderActions api={api} />}
     >
       {(api) => (
         <HolderDetails
@@ -278,11 +284,6 @@ function HolderDetails({
     },
   ];
 
-  const goToScreen = (screen: ScreenNames, params?: object) =>
-    api.close(() => {
-      if (navigationRef.isReady()) (navigationRef.navigate as (s: string, p?: object) => void)(screen, params);
-    });
-
   return (
     <>
       <View style={{ alignItems: "center", gap: 6 }}>
@@ -381,12 +382,22 @@ function HolderDetails({
           </View>
         ))}
       </View>
-
-      <View style={ui.actions}>
-        <GlassButton active label={t("badgeShowcase.buyTokens")} onPress={() => goToScreen(ScreenNames.Dpay, { initialTab: "buy" })} />
-        <GlassButton label={t("badgeShowcase.details")} onPress={() => goToScreen(ScreenNames.Glossary)} />
-      </View>
     </>
+  );
+}
+
+/** Buy and the full breakdown, under the dock. */
+function HolderActions({ api }: { api: ShowcaseApi }) {
+  const { t } = useTranslation();
+  const buy = () =>
+    api.close(() => {
+      if (navigationRef.isReady()) (navigationRef.navigate as (s: string, p?: object) => void)(ScreenNames.Dpay, { initialTab: "buy" });
+    });
+  return (
+    <View style={ui.footerActions}>
+      <GlassButton active label={t("badgeShowcase.buyTokens")} onPress={buy} />
+      <GlassButton label={t("badgeShowcase.details")} onPress={() => api.close(() => void openInApp(BADGE_DOCS_URL))} />
+    </View>
   );
 }
 
