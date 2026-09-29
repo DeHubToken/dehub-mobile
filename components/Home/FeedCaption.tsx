@@ -4,7 +4,7 @@
  * Shows title, description (max 2 lines with "see more"), and clickable category hashtags.
  * Detects URLs in text and renders them as blue, tappable links opened in-app.
  */
-import React, { memo, useState, useCallback, useMemo } from "react";
+import React, { memo, useCallback, useMemo } from "react";
 import { View, Text, TouchableOpacity, NativeSyntheticEvent, TextLayoutEventData } from "react-native";
 import { openInApp } from "../../libs/links.utils";
 import { hasValidTLD } from "../../libs/tlds";
@@ -14,6 +14,7 @@ import { openCategoryFeed } from "../../libs/openCategoryFeed";
 import { expandEmojiTokens } from "../common/EmojiText";
 import { getActiveTheme } from "../../theme/colors";
 import { getThemeSkin, MONO_TEXT } from "../../theme/skins";
+import { useRecyclingState } from "../../hooks/useCellState";
 
 type Segment =
   | { type: "text"; value: string }
@@ -96,6 +97,8 @@ interface FeedCaptionProps {
   showCategories?: boolean;
   /** Community Alert tripped on this post — border the link like a highlighter instead of plain blue text. */
   flagged?: boolean;
+  /** Which post this is, for a list that reuses one card for another: "see more" starts over when it changes. */
+  resetKey?: string;
 }
 
 // Measured "see more" verdicts, keyed on the caption content. The verdict
@@ -120,11 +123,18 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
   fullContent = false,
   showCategories = true,
   flagged = false,
+  resetKey,
 }) => {
-  const [expanded, setExpanded] = useState(fullContent);
   const verdictKey = `${maxLines}|${description ?? ""}`;
-  const [showSeeMore, setShowSeeMore] = useState(
+  // Both start over, in the same render, when the card is handed another
+  // post, so an expanded caption or a "see more" never carries onto it. A
+  // change of text on the same post (a translation arriving, an edit) keeps
+  // them as they are, as before. Their setters let the list relayout, since
+  // both change the caption's height.
+  const [expanded, setExpanded] = useRecyclingState(fullContent, [resetKey, fullContent]);
+  const [showSeeMore, setShowSeeMore] = useRecyclingState(
     () => !fullContent && (seeMoreVerdicts.get(verdictKey) ?? false),
+    [resetKey, fullContent],
   );
   const { showUserProfile } = useUserProfileSheet();
 
@@ -139,11 +149,11 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
         setShowSeeMore(true);
       }
     }
-  }, [expanded, maxLines, fullContent, verdictKey]);
+  }, [expanded, maxLines, fullContent, verdictKey, setShowSeeMore]);
 
   const toggleExpanded = useCallback(() => {
     setExpanded((prev) => !prev);
-  }, []);
+  }, [setExpanded]);
 
   const handleCategoryPress = useCallback((cat: string) => {
     onCategoryPress?.(cat);

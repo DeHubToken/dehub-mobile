@@ -9,8 +9,10 @@ module.exports = {
   transform: {
     '^.+\\.(js|jsx|ts|tsx)$': 'babel-jest',
   },
+  // @shopify/flash-list ships its dist/ as ES modules, and hooks/useCellState
+  // imports from it, so it has to go through babel like the rest.
   transformIgnorePatterns: [
-    'node_modules/(?!(react-native|@react-native|expo-.*|@expo/.*|nativewind|lucide-react-native|sonner-native|@react-navigation|@react-native-community|@react-native-async-storage|valtio|socket\\.io-client)/)',
+    'node_modules/(?!(react-native|@react-native|expo-.*|@expo/.*|nativewind|lucide-react-native|sonner-native|@react-navigation|@react-native-community|@react-native-async-storage|@shopify/flash-list|valtio|socket\\.io-client)/)',
   ],
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json'],
   moduleNameMapper: {

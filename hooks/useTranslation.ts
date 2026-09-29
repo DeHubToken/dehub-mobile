@@ -1,9 +1,10 @@
-import { useState, useCallback, useRef, useMemo, useEffect } from 'react';
+import { useCallback, useRef, useMemo, useEffect } from 'react';
 import { useTranslation as useI18n } from 'react-i18next';
 import { translateText, getUserLanguage } from '../services/translation.service';
 import { autoTranslateEnabled } from '../libs/auto-translate-setting';
 import { queueAutoTranslate } from '../libs/auto-translate-queue';
 import { toastLoading, toastSuccess, toastError, dismissToast } from '../libs';
+import { useRecyclingState } from './useCellState';
 
 interface UseTranslationResult {
   isTranslated: boolean;
@@ -27,6 +28,9 @@ const MIN_TRANSLATABLE_LENGTH = 1;
 // letters; "gm", "ok" and "lol" stay as written.
 const MIN_AUTO_LETTERS = 30;
 const MIN_CHAT_AUTO_LETTERS = 4;
+
+// One shared empty result, so a reset hands back the same object every time.
+const NO_TEXTS: Record<string, string> = {};
 
 const EMOJI_REGEX = /[\p{Emoji_Presentation}\p{Extended_Pictographic}\u200d\ufe0f]/gu;
 function stripEmojis(text: string): string {
@@ -59,6 +63,11 @@ function baseLang(lang: string): string {
  *   bio). Only then may the request reach providers that train on their input;
  *   left false, the edge function keeps it away from them.
  *
+ * @param resetKey - Which post the texts belong to, for a list that reuses one
+ *   card for another post. When it changes, everything this hook holds starts
+ *   over, and an answer still out for the previous post is dropped. Callers
+ *   that never swap posts leave it out.
+ *
  * Pass auto='chat' for public live chat, where lines are too short for the
  * post length floor.
  */
@@ -67,15 +76,8 @@ export function useTranslation(
   detectedLanguage?: string | null,
   auto: boolean | 'chat' = true,
   isPublic: boolean = false,
+  resetKey?: string,
 ): UseTranslationResult {
-  const [isTranslated, setIsTranslated] = useState(false);
-  const [translatedTexts, setTranslatedTexts] = useState<Record<string, string>>({});
-  const [isLoading, setIsLoading] = useState(false);
-  // The source language as the server reported it, for posts the backend never
-  // labelled. Without this an auto-translated legacy post would show no control
-  // at all, leaving the reader no way back to the original.
-  const [resolvedLang, setResolvedLang] = useState<string | null>(null);
-
   // Whether a request is out, tracked in a ref rather than read off `isLoading`.
   // The state value is a snapshot of the render the callback was created in, so
   // guarding on it would reject any second call made before React re-renders —
@@ -83,14 +85,31 @@ export function useTranslation(
   // a beat after mount.
   const inFlightRef = useRef(false);
   const isTranslatedRef = useRef(false);
+  // The (text, language) auto-translate last ran for; see the effect below.
+  const autoDoneRef = useRef<string | null>(null);
 
-  // Guards a late response against a card the FlatList has already recycled.
-  const mountedRef = useRef(true);
-  useEffect(() => {
-    mountedRef.current = true;
-    return () => {
-      mountedRef.current = false;
-    };
+  // Bumped whenever an answer stops belonging to this text: a card handed
+  // another post, or unmount. A request remembers the value it started under
+  // and writes nothing once it has moved on. A mounted flag is not enough, as
+  // a recycled card stays mounted while it shows the next post.
+  const genRef = useRef(0);
+  const onReset = () => {
+    genRef.current += 1;
+    inFlightRef.current = false;
+    isTranslatedRef.current = false;
+    autoDoneRef.current = null;
+  };
+  // Reset in the same render as resetKey changes, so the next post never
+  // paints with this one's translation.
+  const [isTranslated, setIsTranslated] = useRecyclingState(false, [resetKey], onReset);
+  const [translatedTexts, setTranslatedTexts] = useRecyclingState<Record<string, string>>(NO_TEXTS, [resetKey]);
+  const [isLoading, setIsLoading] = useRecyclingState(false, [resetKey]);
+  // The source language as the server reported it, for posts the backend never
+  // labelled. Without this an auto-translated legacy post would show no control
+  // at all, leaving the reader no way back to the original.
+  const [resolvedLang, setResolvedLang] = useRecyclingState<string | null>(null, [resetKey]);
+  useEffect(() => () => {
+    genRef.current += 1;
   }, []);
 
   // Subscribing to i18n re-runs this hook when the user switches language in
@@ -128,6 +147,8 @@ export function useTranslation(
   const runTranslate = useCallback(
     async (silent: boolean) => {
       if (inFlightRef.current || isTranslatedRef.current) return;
+      const gen = genRef.current;
+      const current = () => gen === genRef.current;
       inFlightRef.current = true;
       if (!silent) setIsLoading(true);
 
@@ -160,10 +181,11 @@ export function useTranslation(
         const changedSomething = results.some(([, result]) => !result.sameLanguage);
         const detected = results.find(([, result]) => result.sourceLang)?.[1].sourceLang ?? null;
 
-        // The mount check guards the state writes only. Resolving the toast has
-        // to happen either way: a reader who scrolls on while the request is out
-        // would otherwise be left with a "Translating…" toast that never clears.
-        if (detected && mountedRef.current) setResolvedLang(detected);
+        // The generation check guards the state writes only. Resolving the
+        // toast has to happen either way: a reader who scrolls on while the
+        // request is out would otherwise be left with a "Translating…" toast
+        // that never clears.
+        if (detected && current()) setResolvedLang(detected);
 
         if (!changedSomething) {
           // A settled answer, not a failure. Nothing to show and nothing to
@@ -177,7 +199,7 @@ export function useTranslation(
           return;
         }
 
-        if (mountedRef.current) {
+        if (current()) {
           setTranslatedTexts(translations);
           isTranslatedRef.current = true;
           setIsTranslated(true);
@@ -193,8 +215,11 @@ export function useTranslation(
           toastError('Translation failed. Please try again.');
         }
       } finally {
-        inFlightRef.current = false;
-        if (mountedRef.current && !silent) setIsLoading(false);
+        // After a reset the flag already belongs to the next post's request.
+        if (current()) {
+          inFlightRef.current = false;
+          if (!silent) setIsLoading(false);
+        }
       }
     },
     [texts, reliableBackendLang, targetLang, isPublic],
@@ -220,7 +245,6 @@ export function useTranslation(
   // has pressed "show original" is not overridden — autoDone is set before the
   // work is queued, so the manual controls stay exactly as they were.
   const combinedText = useMemo(() => Object.values(texts).join(' '), [texts]);
-  const autoDoneRef = useRef<string | null>(null);
   const runRef = useRef(runTranslate);
   useEffect(() => {
     runRef.current = runTranslate;
@@ -243,7 +267,7 @@ export function useTranslation(
     autoDoneRef.current = key;
 
     return queueAutoTranslate(() => runRef.current(true));
-  }, [combinedText, targetLang, hasEnoughText, auto, reliableBackendLang, combinedProse]);
+  }, [combinedText, targetLang, hasEnoughText, auto, reliableBackendLang, combinedProse, resetKey]);
 
   return { isTranslated, translatedTexts, isLoading, handleTranslate, handleShowOriginal, shouldShow, sourceLang: combinedProse.length >= 60 ? knownLang || null : null };
 }

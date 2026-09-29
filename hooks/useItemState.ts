@@ -1,4 +1,4 @@
-import { useRef, useState, type Dispatch, type SetStateAction } from "react";
+import { useCallback, useRef, useState, type Dispatch, type SetStateAction } from "react";
 
 /**
  * `useState` for a list cell that gets recycled.
@@ -26,4 +26,42 @@ export function useItemState<T>(
     setState(typeof initial === "function" ? (initial as () => T)() : initial);
   }
   return [state, setState];
+}
+
+/**
+ * Per-post state written after an await or a deferred callback.
+ *
+ * Each write carries the key it was made under, and any other key reads
+ * `fallback`. So a recycled cell never shows the previous post's value, and a
+ * write that lands late for that post (a save resolving, a sign-in finishing)
+ * cannot open or change anything on the next one. The setter a handler
+ * captured at tap time still carries the old key, and a write under a key the
+ * card is no longer showing is dropped. There is no reset render and no
+ * effect.
+ *
+ * `fallback` must be a primitive or a module constant, because the setter
+ * changes identity with it.
+ */
+export function useKeyedState<T>(key: string, fallback: T): [T, (next: T | ((prev: T) => T)) => void] {
+  const [box, setBox] = useState<{ key: string; value: T } | null>(null);
+  // The post the card is showing now, read by the setter. A write for any
+  // other post is dropped: storing it would replace the value of the post on
+  // screen, and bring it back unasked (a sheet opening with no tap) once the
+  // card is handed that post again.
+  const shownKey = useRef(key);
+  shownKey.current = key;
+  const value = box !== null && box.key === key ? box.value : fallback;
+  const set = useCallback(
+    (next: T | ((prev: T) => T)) => {
+      if (shownKey.current !== key) return;
+      setBox((prev) => {
+        const current = prev !== null && prev.key === key ? prev.value : fallback;
+        const v = typeof next === "function" ? (next as (p: T) => T)(current) : next;
+        // Nothing this key reads would change, so keep the box and skip the render.
+        return Object.is(v, current) ? prev : { key, value: v };
+      });
+    },
+    [key, fallback],
+  );
+  return [value, set];
 }
