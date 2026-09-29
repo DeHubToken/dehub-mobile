@@ -8700,5 +8700,11 @@
     "progressive": "Progressiv",
     "nationalist": "Millatchi",
     "communist": "Kommunist"
+  },
+  "updateGate": {
+    "title": "DeHub-ni yangilang",
+    "recommendedBody": "DeHub-ning muhim xavfsizlik tuzatishlari bor yangi versiyasi chiqdi. Hisobingiz himoyalangan qolishi uchun yangilang.",
+    "requiredBody": "DeHub-ning bu versiyasi endi qoʻllab-quvvatlanmaydi. Hisobingizdan foydalanishda davom etish uchun yangilang.",
+    "update": "Hozir yangilash"
   }
 }

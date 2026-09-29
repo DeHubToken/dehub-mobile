@@ -8660,5 +8660,11 @@
     "progressive": "Progresist",
     "nationalist": "Naționalist",
     "communist": "Comunist"
+  },
+  "updateGate": {
+    "title": "Actualizează DeHub",
+    "recommendedBody": "Este disponibilă o versiune mai nouă DeHub, cu remedieri de securitate importante. Actualizează pentru a-ți păstra contul protejat.",
+    "requiredBody": "Această versiune DeHub nu mai este acceptată. Actualizează pentru a-ți folosi în continuare contul.",
+    "update": "Actualizează acum"
   }
 }

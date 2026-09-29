@@ -8625,5 +8625,11 @@
     "progressive": "تقدمي",
     "nationalist": "قومي",
     "communist": "شيوعي"
+  },
+  "updateGate": {
+    "title": "حدّث DeHub",
+    "recommendedBody": "أكو نسخة أحدث من DeHub بيها إصلاحات أمان مهمة. حدّث حتى يبقى حسابك محمي.",
+    "requiredBody": "هاي النسخة من DeHub ما عاد مدعومة. حدّث حتى تكمل تستخدم حسابك.",
+    "update": "حدّث هسه"
   }
 }

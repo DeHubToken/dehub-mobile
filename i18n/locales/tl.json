@@ -8826,5 +8826,11 @@
     "progressive": "Progresibo",
     "nationalist": "Nasyonalista",
     "communist": "Komunista"
+  },
+  "updateGate": {
+    "title": "I-update ang DeHub",
+    "recommendedBody": "May mas bagong bersyon ng DeHub na may mahahalagang security fix. Mag-update para manatiling protektado ang iyong account.",
+    "requiredBody": "Hindi na suportado ang bersyong ito ng DeHub. Mag-update para patuloy na magamit ang iyong account.",
+    "update": "I-update ngayon"
   }
 }

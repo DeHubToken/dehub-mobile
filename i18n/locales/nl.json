@@ -8900,5 +8900,11 @@
     "progressive": "Progressief",
     "nationalist": "Nationalist",
     "communist": "Communist"
+  },
+  "updateGate": {
+    "title": "Werk DeHub bij",
+    "recommendedBody": "Er is een nieuwere versie van DeHub met belangrijke beveiligingsoplossingen. Werk bij om je account beschermd te houden.",
+    "requiredBody": "Deze versie van DeHub wordt niet meer ondersteund. Werk bij om je account te blijven gebruiken.",
+    "update": "Nu bijwerken"
   }
 }

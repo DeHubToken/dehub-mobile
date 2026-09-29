@@ -8664,5 +8664,11 @@
     "progressive": "Progresista",
     "nationalist": "Nacionalista",
     "communist": "Comunista"
+  },
+  "updateGate": {
+    "title": "DeHubta musuqchay",
+    "recommendedBody": "DeHubpa musuq versionnin kachkan, allin waqaychay allichaykunawan. Cuentayki waqaychasqa kananpaq musuqchay.",
+    "requiredBody": "Kay DeHub versionqa manaña yanapasqachu. Cuentaykita llamk'achinaykipaq musuqchay.",
+    "update": "Kunan musuqchay"
   }
 }

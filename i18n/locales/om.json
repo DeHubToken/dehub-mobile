@@ -8696,5 +8696,11 @@
     "progressive": "Guddinaaf Hojjetaa",
     "nationalist": "Biyyaaf Qabdu",
     "communist": "Komunistii"
+  },
+  "updateGate": {
+    "title": "DeHub haaromsi",
+    "recommendedBody": "Gosni DeHub haaraan sirreeffama nageenyaa barbaachisoo qabu jira. Herreegni kee eegamee akka turuuf haaromsi.",
+    "requiredBody": "Gosni DeHub kun deeggarsa hin qabu. Herreega kee itti fufuun fayyadamuuf haaromsi.",
+    "update": "Amma haaromsi"
   }
 }
