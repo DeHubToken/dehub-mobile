@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { View } from "react-native";
 import ProfileTabs from "../components/Profile/ProfileTabs";
 import { useUser, useAuthState, useAuthActions } from "../context/AuthContext";
@@ -7,6 +7,8 @@ import HomeHeader from "../components/HomeHeader";
 import { useDrawer } from "../context/DrawerContext";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../navigation/ScreenNames";
+import { useCanGoBack } from "../hooks/useCanGoBack";
+import { useTranslation } from "react-i18next";
 
 
 const REFRESH_INTERVAL_MS = 60_000; // 1 min periodic refresh
@@ -18,6 +20,16 @@ const ProfileScreen: React.FC = () => {
   const user = useUser();
 
   const { refreshUser } = useAuthActions();
+  const { t } = useTranslation();
+  const canPop = useCanGoBack();
+
+  // Profile is pushed above the tabs, and this stack has no "Home" route, so
+  // navigate(Home) went unhandled and the logo did nothing. Pop back to the
+  // tabs that are already there instead of pushing a second copy of them.
+  const goHome = useCallback(() => {
+    navigation.popTo(ScreenNames.Root, { screen: ScreenNames.Home });
+  }, [navigation]);
+  const goBack = useCallback(() => navigation.goBack(), [navigation]);
 
   // Periodic background refresh of account info
   useEffect(() => {
@@ -46,8 +58,10 @@ const ProfileScreen: React.FC = () => {
     return (
       <View className="flex-1 bg-theme-neutrals-900">
         <HomeHeader
-          onLogoPress={() => navigation.navigate(ScreenNames.Home)}
+          onLogoPress={goHome}
           onMenuPress={openDrawer}
+          onBackPress={canPop ? goBack : undefined}
+          logoHint={t("common.goesToHomeFeed")}
         />
         <ProfileSignInPrompt />
       </View>
@@ -57,8 +71,10 @@ const ProfileScreen: React.FC = () => {
   return (
     <View className="flex-1 bg-theme-neutrals-900">
       <HomeHeader
-        onLogoPress={() => navigation.navigate(ScreenNames.Home)}
+        onLogoPress={goHome}
         onMenuPress={openDrawer}
+        onBackPress={canPop ? goBack : undefined}
+        logoHint={t("common.goesToHomeFeed")}
       />
       <View className="flex-1">
         <ProfileTabs />
