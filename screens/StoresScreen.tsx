@@ -207,9 +207,13 @@ export default function StoresScreen() {
             )}
           </View>
 
+          {/* flexGrow: 0, as AccountsScreen's chipScroll: RN gives horizontal
+              scrollers flexGrow 1, so the strip would otherwise take height
+              from the listings. The chips carry a fixed height (styles.chip). */}
           <ScrollView
             horizontal
             showsHorizontalScrollIndicator={false}
+            style={styles.chipScroll}
             contentContainerStyle={styles.chipRow}
           >
             {STORE_CATEGORIES.map((c) => (
@@ -324,17 +328,22 @@ const styles = StyleSheet.create({
   },
   searchInput: { flex: 1, color: "#FFFFFF", fontSize: 14, padding: 0 },
 
+  chipScroll: { flexGrow: 0, flexShrink: 0 },
   chipRow: { gap: 8, paddingHorizontal: H_PADDING, paddingVertical: 10, alignItems: "center" },
   chip: {
     paddingHorizontal: 14,
-    paddingVertical: 6,
+    // A fixed height, not vertical padding: text-only chips in a centred
+    // horizontal ScrollView were measured into the strip's leftover height on
+    // Android and rendered with their labels cut through the middle.
+    height: 30,
+    justifyContent: "center",
     borderRadius: 8,
     backgroundColor: "rgba(255,255,255,0.06)",
     borderWidth: 1,
     borderColor: "rgba(255,255,255,0.08)",
   },
   chipActive: { backgroundColor: "#FFFFFF", borderColor: "#FFFFFF" },
-  chipText: { color: "#A1A1AA", fontSize: 12, fontWeight: "600" },
+  chipText: { color: "#A1A1AA", fontSize: 12, lineHeight: 16, fontWeight: "600" },
   chipTextActive: { color: "#000000" },
   chipDivider: {
     width: 1,
