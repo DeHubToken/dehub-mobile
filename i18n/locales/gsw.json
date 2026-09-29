@@ -8676,5 +8676,11 @@
     "progressive": "Progressiv",
     "nationalist": "Nationalist",
     "communist": "Kommunist"
+  },
+  "updateGate": {
+    "title": "DeHub aktualisiere",
+    "recommendedBody": "Es git e neueri Version vo DeHub mit wichtige Sicherheitskorrekture. Aktualisier, dass din Account gschützt blibt.",
+    "requiredBody": "Die Version vo DeHub wird nümme understützt. Aktualisier, zum din Account wiiter bruuche.",
+    "update": "Jetz aktualisiere"
   }
 }

@@ -8642,5 +8642,11 @@
     "progressive": "Progresista",
     "nationalist": "Nacionalista",
     "communist": "Comunista"
+  },
+  "updateGate": {
+    "title": "Actualiza DeHub",
+    "recommendedBody": "Hay una versión más reciente de DeHub con correcciones de seguridad importantes. Actualiza para mantener tu cuenta protegida.",
+    "requiredBody": "Esta versión de DeHub ya no es compatible. Actualiza para seguir usando tu cuenta.",
+    "update": "Actualizar ahora"
   }
 }

@@ -8638,5 +8638,11 @@
     "progressive": "ተራማዲ",
     "nationalist": "ሃገራዊ",
     "communist": "ኮሚኒስት"
+  },
+  "updateGate": {
+    "title": "DeHub ኣሐድስ",
+    "recommendedBody": "ኣገደስቲ ናይ ድሕንነት መዐረይታት ዘለዎ ሓድሽ ስሪት DeHub ኣሎ። ሕሳብካ ውሑስ ንኽጸንሕ ኣሐድስ።",
+    "requiredBody": "እዚ ስሪት DeHub ድሕሪ ሕጂ ኣይድገፍን እዩ። ሕሳብካ ምጥቃም ንምቕጻል ኣሐድስ።",
+    "update": "ሕጂ ኣሐድስ"
   }
 }

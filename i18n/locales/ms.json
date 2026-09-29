@@ -8904,5 +8904,11 @@
     "progressive": "Progresif",
     "nationalist": "Nasionalis",
     "communist": "Komunis"
+  },
+  "updateGate": {
+    "title": "Kemas kini DeHub",
+    "recommendedBody": "Versi DeHub yang lebih baharu tersedia dengan pembaikan keselamatan penting. Kemas kini supaya akaun anda kekal dilindungi.",
+    "requiredBody": "Versi DeHub ini tidak lagi disokong. Kemas kini untuk terus menggunakan akaun anda.",
+    "update": "Kemas kini sekarang"
   }
 }

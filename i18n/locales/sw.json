@@ -8647,5 +8647,11 @@
     "progressive": "Mwendelezaji",
     "nationalist": "Mzalendo",
     "communist": "Mkomunisti"
+  },
+  "updateGate": {
+    "title": "Sasisha DeHub",
+    "recommendedBody": "Toleo jipya la DeHub lenye marekebisho muhimu ya usalama linapatikana. Sasisha ili akaunti yako ibaki salama.",
+    "requiredBody": "Toleo hili la DeHub halitumiki tena. Sasisha ili uendelee kutumia akaunti yako.",
+    "update": "Sasisha sasa"
   }
 }
