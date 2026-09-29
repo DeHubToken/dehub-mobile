@@ -101,8 +101,10 @@ const VideoArea: React.FC<VideoAreaProps> = ({
     return ppvChainIds.map(toLabel).join(" or ");
   }, [ppvChainIds]);
 
+  // The active-chain switch lives on the Assets tab; Settings otherwise opens
+  // on Profile.
   const goToSettings = useCallback(() => {
-    navigation.navigate(ScreenNames.AccountSettings as any);
+    navigation.navigate(ScreenNames.AccountSettings, { initialTab: "assets" });
   }, [navigation]);
 
   // openInApp centralized in libs/links.utils
