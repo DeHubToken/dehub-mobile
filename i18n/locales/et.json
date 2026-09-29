@@ -6011,7 +6011,6 @@
     "viewFeed": "Vaata oma voogu",
     "yourChannel": "Sinu kanal",
     "yourChannelHint": "Kleebi oma kanali aadress — ka käepide ise töötab.",
-    "placeholder": "youtube.com/@you, tiktok.com/@you, vimeo.com/you…",
     "costsNote": "Makstud DeHub tokenitega, üks kord, enne kui partii algab. Badge'i omanikud maksavad vähem — sinu allahindlus rakendub hinnapakkumisele. Kui videot ei saa importida, krediteeritakse selle osa sinu järgmise migratsiooni eest tagasi."
   },
   "calls": {
@@ -8550,7 +8549,8 @@
     "error": "Kustutamistaotlust ei saanud esitada. Sinu konto ei ole kustutamiseks kinnitatud. Proovi uuesti.",
     "back": "Mine tagasi seadistuste juurde",
     "signIn": "Logi oma kontole sisse",
-    "acknowledge": "Salvestasin oma rahakoti taastamise üksikasjad ja mõistan, et kustutamine on lõplik."
+    "acknowledge": "Salvestasin oma rahakoti taastamise üksikasjad ja mõistan, et kustutamine on lõplik.",
+    "done": "Valmis"
   },
   "miniApps": {
     "badge": {

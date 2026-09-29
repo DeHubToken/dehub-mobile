@@ -40,7 +40,6 @@
     "staking": "质押",
     "superpowers": "超级力量",
     "governance": "治理",
-    "dao": "DAO",
     "careers": "工作",
     "glossary": "术语表",
     "create": "创建",
@@ -1431,8 +1430,7 @@
     "solanaAddressHint": "仅限 SOL 和 SPL 代币",
     "solanaAddressCopied": "Solana 地址已复制",
     "chooseNetwork": "選網絡",
-    "solanaAddressLabel": "索拉纳",
-    "evmAddressLabel": "EVM"
+    "solanaAddressLabel": "索拉纳"
   },
   "bookmarks": {
     "title": "你其书签",
@@ -1616,7 +1614,6 @@
     "category": "分类",
     "contentType": "内容类型",
     "bounty": "赏金",
-    "ppv": "PPV",
     "gated": "门槛",
     "datePosted": "发布日期",
     "engagement": "互动",
@@ -1960,7 +1957,8 @@
     "typeHere": "在此处键入...",
     "send": "发送",
     "signInToChat": "登录聊天",
-    "sentAmount": "已发送 {{amount}} 枚代币"
+    "sentAmount": "已发送 {{amount}} 枚代币",
+    "pairIntro": "開啓你電視上的DeHub，輸入屏幕上顯示的代碼。"
   },
   "cinema": {
     "title": "电影",
@@ -3987,7 +3985,6 @@
     "warm": "暖色",
     "cool": "冷色",
     "vivid": "鲜艳",
-    "vhs": "VHS",
     "neon": "霓虹",
     "pixelate": "像素化"
   },
@@ -4245,7 +4242,6 @@
     "pinMessage": "置顶消息",
     "unpinMessage": "取消置顶消息",
     "jumpToLatest": "跳到最新消息",
-    "attachGif": "GIF",
     "ban": "封禁",
     "banConfirm": "您确定要封禁 {{name}} 吗？",
     "banFailed": "封禁用户失败"
@@ -8355,7 +8351,6 @@
     "volume24h": "24小时成交量",
     "website": "网站",
     "telegram": "Telegram",
-    "twitter": "X / Twitter",
     "title": "发射台"
   },
   "premium": {

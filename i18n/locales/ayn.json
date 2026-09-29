@@ -4245,7 +4245,6 @@
     "pinMessage": "تثبيت الرسالة",
     "unpinMessage": "إلغاء تثبيت الرسالة",
     "jumpToLatest": "ارجع لآخر الرسائل",
-    "attachGif": "GIF",
     "ban": "حظر",
     "banConfirm": "هل أنت متأكد أنك تريد حظر {{name}}؟",
     "banFailed": "فشل حظر المستخدم"

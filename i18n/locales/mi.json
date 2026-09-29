@@ -3345,7 +3345,8 @@
         "restricted": "Ko ngā kaiwhakahaere anake e taea ai te kite i te pūrongo whakahaere.",
         "empty": "Kāore he kōrero i tēnei rēhita. Ka kitea ngā kōrero whakahaere hei tāpae.",
         "showMore": "Koia te kōrero ({{value}})"
-      }
+      },
+      "slowModeTitle": "Aratau puhoi"
     },
     "chooseAvatar": "Tīpakohia te avatar",
     "loadFailed": "Kaore e taea te whakauru i nga hapori",

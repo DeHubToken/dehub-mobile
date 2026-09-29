@@ -3969,7 +3969,8 @@
       "accept": "Gba",
       "waiting": "N duro de oludije…",
       "backToLobby": "Pada si ibi iduro",
-      "serverDidNotAnswer": "Sọfitiwia idije ko dahun."
+      "serverDidNotAnswer": "Sọfitiwia idije ko dahun.",
+      "challengeStillOpen": "Ìṣòro rẹ ṣì ṣí sílẹ̀."
     },
     "gamesRecord_one": "eré {{count}} · {{wins}}B {{losses}}P {{draws}}D",
     "gamesRecord_other": "àwọn eré {{count}} · {{wins}}B {{losses}}P {{draws}}D",
@@ -6008,7 +6009,6 @@
     "viewFeed": "Wo oúnjẹ rẹ",
     "yourChannel": "Ikanni rẹ",
     "yourChannelHint": "Fún àdírẹ̀sì ikanni rẹ — àmúlò lórí àwọn iṣẹ́ tirẹ̀ náà.",
-    "placeholder": "youtube.com/@you, tiktok.com/@you, vimeo.com/you…",
     "costsNote": "San pẹlu àmì DeHub, lẹ̀ẹ̀kan, ṣaaju kí ìpele náà tó bẹ̀rẹ̀. Àwọn tó ní àmì-ìdánilẹ́kọ̀ọ́ san díẹ̀ - ìdáwọ́là rẹ ni a fi sí ìwọ̀n náà. Tí a kò bá lè fi fídíò kan wọlé, ìpín rẹ̀ ni a ó fi padà sí ìṣíwọ̀ tókù rẹ."
   },
   "calls": {

@@ -8451,7 +8451,8 @@
     "busy": "Submitting deletion request…",
     "accepted": "Account deletion requested",
     "done": "Done",
-    "back": "Back to Settings"
+    "back": "Back to Settings",
+    "warning": "\"Dis wey fo' long long, dis a go delete yu DeHub profile, yu posts, comments, messages, na yu wallet backup wey yu save. Save yu wallet recovery details na move any asset wey yu have first. Transaction wey go on blockchain na record wey law say must keep, dem cannot delete. Yu profile go hide straight away; deletion go finish inside 30 days. Dis cannot reverse."
   },
   "miniApps": {
     "badge": {

@@ -5803,7 +5803,8 @@
     "paymentSentWith": "Naipadala na may {{amount}}",
     "planRestricted": "Kailangan ng user na ito ng subscription para makatanggap ng mga mensahe.",
     "planTypeNotAllowed": "Hindi pinapayagan ng plano ng creator na ito ang ganitong uri ng mensahe.",
-    "planMinTip": "Ang tip para sa creator na ito ay dapat hindi bababa sa {{amount}} DHB."
+    "planMinTip": "Ang tip para sa creator na ito ay dapat hindi bababa sa {{amount}} DHB.",
+    "userFallback": "user"
   },
   "editPost": {
     "mediaPermission": "Kailangan ng pahintulot sa media library",

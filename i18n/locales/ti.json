@@ -1004,7 +1004,6 @@
     "audio": "ድምጺ",
     "text": "ጽሑፍ",
     "live": "ቀጥታ",
-    "ppv": "PPV",
     "bounty": "ሽልማት",
     "locked": "ዝተዓገተ",
     "any": "ዝኾነ",
@@ -1613,7 +1612,6 @@
     "category": "ምድብ",
     "contentType": "ዓይነት ትሕዝቶ",
     "bounty": "ባውንቲ",
-    "ppv": "PPV",
     "gated": "ዝተዓገተ",
     "datePosted": "ዕለት ምጽሓፍ",
     "engagement": "ምስታፍ",
@@ -4543,7 +4541,6 @@
     "filterAll": "ኩሉ",
     "noData": "ዳታ የለን",
     "tips": "ጉርሻ",
-    "ppv": "PPV",
     "incomeBreakdown": "ዝርዝር ኣታዊ",
     "ppvSales": "መሸጣ PPV",
     "total": "ጠቕላላ",
@@ -6003,7 +6000,6 @@
     "how3": "ንሕና ንውርድን ንፕሮፋይልካ ኣብ ጀርባ ንሕትሞን። እቲ ጽሕፈት ስዓሞ — ምስ ዝውድእ ሓበሬታ ክትረክብ ኢኻ።",
     "progressRunning": "ኣብ ምግዓዝ — እዚ ኣብ ጀርባ ይሰርሕ፣ እዚ ጽሕፈት ስዓሞ። ምስ ዝውድእ ሓበሬታ ክንህበካ ኢና።",
     "paste": "ተለዊጥካ",
-    "placeholder": "youtube.com/@you, tiktok.com/@you, vimeo.com/you…",
     "costsNote": "ብ DeHub ቶክን ተኸፊሉ፣ ሓደ ግዜ፣ ቅድሚ እቲ ጕጅለ ምጅማሩ። እቶም ባጅ ዝሓዙ ይቕረብ እዮም — እቲ ቅትለትካ ንዕኡ እዩ ዝውዕል። ቪድዮ እንተዘይተመሓላለፈ፣ እቲ ድርሻኡ ናብ ዝመጽእ ናይ ምፍልላይ ናይ ባጀትካ ይምለስ።"
   },
   "calls": {

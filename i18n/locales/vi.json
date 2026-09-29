@@ -6023,7 +6023,6 @@
     "viewFeed": "Xem nguồn cấp dữ liệu của bạn",
     "yourChannel": "Kênh của bạn",
     "yourChannelHint": "Dán địa chỉ kênh của bạn — tay cầm trên các tác phẩm của riêng nó.",
-    "placeholder": "youtube.com/@you, tiktok.com/@you, vimeo.com/you…",
     "costsNote": "Đã thanh toán bằng token DeHub, một lần, trước khi lô bắt đầu. Người giữ huy hiệu được giảm giá — chiết khấu của bạn được áp dụng cho báo giá. Nếu một video không thể nhập, phần chia sẻ của nó sẽ được ghi có lại cho lần di chuyển tiếp theo của bạn."
   },
   "calls": {
@@ -8701,7 +8700,8 @@
     },
     "add": {
       "body": "Nó sẽ xuất hiện trong danh sách Ứng dụng của bạn và có thể gửi thông báo cho bạn. Bạn có thể xóa nó bất kỳ lúc nào từ trang Ứng dụng.",
-      "title": "Thêm {{name}}?"
+      "title": "Thêm {{name}}?",
+      "confirm": "Thêm ứng dụng"
     }
   },
   "aiStyles": {

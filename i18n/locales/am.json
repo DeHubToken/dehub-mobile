@@ -4274,7 +4274,6 @@
     "pinMessage": "PIN መልዕክት",
     "unpinMessage": "Unpin መልዕክት",
     "jumpToLatest": "ወደ የቅርብ ጊዜ መልዕክቶች ዝለል",
-    "attachGif": "GIF",
     "ban": "አግድ",
     "banConfirm": "{{name}}ን ማገድ እንደሚፈልጉ እርግጠኛ ነዎት?",
     "banFailed": "ተጠቃሚውን ማገድ አልተቻለም"
@@ -6037,7 +6036,6 @@
     "yourChannel": "የእርስዎ ሰርጥ",
     "yourChannelHint": "የሰርጥ አድራሻዎን ይለጥፉ — እጀታው በራሱ ሥራዎች ላይም እንዲሁ ።",
     "pickCount": "{{selected}} በ{{total}} ተመርጧል። በገለጻዎ ላይ ያለው ማንኛውም ነገር ይዘለላል እና በፍፁም ሁለት ጊዜ አይከፍልም።",
-    "placeholder": "youtube.com/@you, tiktok.com/@you, vimeo.com/you…",
     "costsNote": "በDeHub ማስመሰያዎች ተከፍሏል፣ አንድ ጊዜ፣ ከመጀመሩ በፊት። የባጅ ባለቤቶች ይቀንሳሉ — ቅናሽዎ በቀጠሮው ላይ ይተገበራል። ቪዲዮ ማስመጣት ካልቻለ፣ ድርሻው ወደ ቀጣዩ ፍልሰትዎ ይመለሳል።"
   },
   "calls": {

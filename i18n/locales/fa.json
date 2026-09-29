@@ -2607,7 +2607,8 @@
     "tabRejected": "رد شده",
     "weeksAgo": "{{count}} هفته پیش",
     "holdTokensToVote": "برای رأی دادن، توکن‌های DeHub را نگه دارید",
-    "mustHoldTokens": "برای رأی دادن به پیشنهادات حاکمیتی، باید توکن‌های DeHub را نگه دارید."
+    "mustHoldTokens": "برای رأی دادن به پیشنهادات حاکمیتی، باید توکن‌های DeHub را نگه دارید.",
+    "forLabel": "برای"
   },
   "sidebar": {
     "talkOfTheTown": "حرف شهر",

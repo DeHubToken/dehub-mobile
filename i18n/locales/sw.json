@@ -7480,7 +7480,8 @@
       "packEmpty": "Hakuna emoji iliyopatikana kwenye anwani hiyo",
       "shortcodeTaken": "{{name}} tayari imechukuliwa",
       "shortcodeStandard": "{{name}} tayari ni emoji ya kawaida"
-    }
+    },
+    "namePlaceholder": "jina"
   },
   "guide": {
     "sections": {

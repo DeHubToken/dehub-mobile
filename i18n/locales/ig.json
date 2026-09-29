@@ -789,7 +789,8 @@
     "importPartial": "{{count}} akaụntụ enweghị ike ịgbaso — gbaa ọsọ mbuputa ọzọ ka ị nwalee ha.",
     "importProgress": "Na-eji {{done}} nke {{total}}…",
     "quietHoursPauseDesc": "Kwụsị ịkwanye ọkwa n 'oge awa setịpụrụ",
-    "notifInfoNote": "Ịma ọkwa n 'ime ngwa na-apụta n' ime ngwa ahụ. A na-eziga ọkwa ngwa ngwa na ngwaọrụ gị ọbụlagodi mgbe emechiri ngwa ahụ."
+    "notifInfoNote": "Ịma ọkwa n 'ime ngwa na-apụta n' ime ngwa ahụ. A na-eziga ọkwa ngwa ngwa na ngwaọrụ gị ọbụlagodi mgbe emechiri ngwa ahụ.",
+    "quietHoursSilencedNote": "A ga-agbachi nkịtị n 'oge awa ndị a."
   },
   "common": {
     "mute": "Mechie ụda",
@@ -6008,7 +6009,6 @@
     "viewFeed": "Lelee ndepụta gị",
     "yourChannel": "Gị ọwa",
     "yourChannelHint": "Tapawa adreesị ọwa gị — aka ahụ n 'ọrụ nke ya kwa.",
-    "placeholder": "youtube.com/@you, tiktok.com/@you, vimeo.com/you…",
     "costsNote": "Akara DeHub, otu ugbo, tupu nnukwu ihe amalite. Ndị ji akara na-akwụ obere ego — a na-etinye ego ị na-enweta na nkwupụta ahụ. Ọ bụrụ na enweghị ike ibubata vidiyo, a na-eweghachi òkè ya na njem ọzọ gị."
   },
   "calls": {
@@ -8582,7 +8582,8 @@
       "yourApps": "Usoroiheomume gị",
       "notificationsOn": "Ịma Ọkwa na",
       "removed": "Ewepụrụ ya. Ọ gaghị agwa gị ọzọ.",
-      "rising": "New na-ebili"
+      "rising": "New na-ebili",
+      "remove": "Wepụ"
     },
     "card": {
       "open": "Mepee"
@@ -8598,14 +8599,17 @@
       "education": "Educashia",
       "developer-tools": "Developer ngwaọrụ",
       "entertainment": "Ntụrụndụ",
-      "art-creativity": "Ndị ụlọtị na ụlọtị ụlọtị"
+      "art-creativity": "Ndị ụlọtị na ụlọtị ụlọtị",
+      "finance": "Finance"
     },
     "pay": {
-      "title": "Páa {{name}}?"
+      "title": "Páa {{name}}?",
+      "body": "DHB na-aga ozugbo na ngwa si wallet, {{wallet}}. Enweghị ike ịghaghachi ụgwọ."
     },
     "add": {
       "title": "{{name}}?",
-      "confirm": "Tinye ngwa"
+      "confirm": "Tinye ngwa",
+      "body": "Ọ ga-apụta n 'okpuru ngwa gị ma nwee ike iziga gị ọkwa. I nwere ike iwepu ya oge ọbụla site na ibe Apps."
     }
   },
   "aiStyles": {

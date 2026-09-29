@@ -721,7 +721,8 @@
       "rotateFailed": "Ne ma se ka n ka konnɛgɛ sɔrɔ",
       "unavailable": "I ka ladɛrɛsi tɛ sɔrɔ i ka ladɛrɛsi la sisan.",
       "serverCopied": "Kopiw",
-      "keyCopied": "Riviera Maison Key Copy"
+      "keyCopied": "Riviera Maison Key Copy",
+      "hide": "Hide stream key"
     },
     "aiScraping": {
       "section": "Kalan",
@@ -1426,7 +1427,8 @@
     "solanaAddressLabel": "Solana ka koo",
     "solanaAddressHint": "Tile ni SPL tagamasiyɛnw dɔrɔn lo",
     "solanaAddressCopied": "Adresɛ min sɛbɛra ka ɲɛ",
-    "chooseNetwork": "Aw ka kan ka tɛmɛ o kan"
+    "chooseNetwork": "Aw ka kan ka tɛmɛ o kan",
+    "evmAddressLabel": "EVM"
   },
   "bookmarks": {
     "title": "I kɛ kɔrɔbɔ",
@@ -1560,7 +1562,8 @@
     "badgeTakenBack": "{{name}} ye a ka {{tier}} badge juru dili dabila i ma",
     "badgeLoanDropped": "I tɛ se ka i ka {{tier}} badge juru di {{name}} ma tun",
     "badgeLoanRetiered": "{{name}} bɛ {{tier}} badge juru di i ma sisan",
-    "tokenAmount": "{{amount}} tokens"
+    "tokenAmount": "{{amount}} tokens",
+    "badgeGenericTier": "badge"
   },
   "leaderboard": {
     "title": "Kɛlɛya",
@@ -1908,7 +1911,9 @@
     "tabVideos": "Videos",
     "tabAudio": "Audio",
     "tabLive": "Live",
-    "tabPinned": "Pinned"
+    "tabPinned": "Pinned",
+    "emptyUnlocked": "O tɛ se ka kɛ halibi.",
+    "emptyWatched": "O tɛ se ka kɛ halibi."
   },
   "tv": {
     "title": "TV",
@@ -2050,7 +2055,9 @@
       "SG": "Singapour",
       "PH": "Filipine jamana",
       "AE": "Arabu ka Emiratiw ka tɔnbolo"
-    }
+    },
+    "free": "Free",
+    "rent": "Rent"
   },
   "top100": {
     "title": "Sanfɛ 100",
@@ -3321,7 +3328,8 @@
         "restricted": "Mɔgɔ minw be se k'o kɛ, olu dɔrɔn lo be se k'o kɛ.",
         "empty": "O kama, an ka ɲi k'an yɛrɛ tanga o ma.",
         "showMore": "Ka dɔ fara a kan ({{value}})"
-      }
+      },
+      "muteEffect": "U tora u ka jɛnkulu kɔnɔ, nka u tɛ se ka to yen fɔɔ u ka kuma ka ban."
     },
     "chooseAvatar": "Choisir un avatar",
     "loadFailed": "U tun tɛ se ka jɛnkuluw sigi",
@@ -3938,7 +3946,8 @@
       "accept": "I ka sɔn",
       "waiting": "Ka mɔgɔ jugu dɔ kunbɛn...",
       "backToLobby": "An ka kɔsegi an ka soo",
-      "serverDidNotAnswer": "O kama, u tun tɛ se k'u yɛrɛ tanga o ma."
+      "serverDidNotAnswer": "O kama, u tun tɛ se k'u yɛrɛ tanga o ma.",
+      "kingsGambitOpening": "King's Gambit opening"
     },
     "gamesRecord_one": "tulon {{count}} · {{wins}}S {{losses}}B {{draws}}K",
     "gamesRecord_other": "tulon {{count}} · {{wins}}S {{losses}}B {{draws}}K",
@@ -4073,7 +4082,9 @@
       "shhh": "O ye n ka miiriya ye.",
       "oohAhh": "O ye n ka miiriya ye.",
       "oohMan": "O ye (man)",
-      "ohhGirl": "O ye n ka muso ye."
+      "ohhGirl": "O ye n ka muso ye.",
+      "lol": "LOL",
+      "spooky": "Spooky"
     },
     "playFailed": "Ne tun tɛ se ka o kɛ.",
     "maxSounds": "Mankan kɛrɛnkɛrɛnnen {{max}} dɔrɔn — kelen jɔsi fɔlɔ",
@@ -4330,7 +4341,9 @@
     "refillsShort": "a bɛ fa tuguni {{date}}",
     "holdToUnlock": "Ra awọn DeHub tokens lati ṣii aami ati SuperPowers rẹ. Olukọni aami eyikeyi ni wọn — staking ko nilo.",
     "anyBadgeHolder": "Olukọni aami eyikeyi ni SuperPowers. Ra awọn DeHub tokens lati ṣii aami kan — staking ko nilo.",
-    "homePost": "I yɛrɛ ka baara dɔ la, i ka wari bɔ o la. O kɔ, i ka wari bɔ o la."
+    "homePost": "I yɛrɛ ka baara dɔ la, i ka wari bɔ o la. O kɔ, i ka wari bɔ o la.",
+    "homeGift": "I ka wari di mɔgɔ wɛrɛ ma — i ka wari di a ma, o kɔ, i ka wari di a ma.",
+    "homePage": "A be sanfɛ, a be sanfɛ."
   },
   "follow": {
     "followers": "O kɔ, u ye tugu u kɔ.",
@@ -4388,7 +4401,9 @@
       "hundred": "100",
       "sad": "O ye dusukasiko ye dɛ",
       "cry": "A kasira kosɔbɛ.",
-      "dislike": "A ma diya a ye"
+      "dislike": "A ma diya a ye",
+      "lol": "LOL",
+      "poo": "Poo"
     },
     "mediaSource": "Kalanfaw ka kan ka bɔ yɔrɔ min na",
     "photoLibrary": "Fotow ka kalanso",
@@ -4502,7 +4517,9 @@
       "emptyFeed": "An tun tɛ se ka dumuni kɛ o cogo la.",
       "badFeed": "N' ma a sɛgɛsɛgɛ k'a filɛ n'o be se ka kɛ podcast ye.",
       "tooMany": "Aw ka se ka koo 20 kɛ ɲɔgɔn fɛ."
-    }
+    },
+    "addToQueue": "Add to queue",
+    "tryAgain": "Try again"
   },
   "earnings": {
     "filter24h": "24l",
@@ -4641,7 +4658,16 @@
       "placeholder": "I ka kɔ kɔnɔ…",
       "submit": "Kɔ kɔ",
       "sending": "Kɔ kɔ…",
-      "anonymous": "DeHub kɔ"
+      "anonymous": "DeHub kɔ",
+      "intro": "Yala a tun be se ka kɛ ko a tun be se ka kɛ cogo min na wa? N'i b'a fɛ k'a fɔ an ye an ka koo bena kɛ cogo di? A ka ɲi, a man ɲi, a ka ɲi — o bɛɛ be kalan. N'i b'a fɛ an ka kuma i fɛ, i ka sɛbɛnin kɛ o kan ani an be se k'a kɛ i ka lɛtɛrɛw, videwow wala i ka site web kan.",
+      "timeUsingPlaceholder": "I be yan kabi tuma juman? (I tɛ se k'o kɛ)",
+      "consentPromo": "Ne b'a to DeHub ka kuma o koo la sannifeere ni waleɲumanlɔn gafew kɔnɔ.",
+      "consentName": "I be se k'a yira n' tɔgɔ la a gɛrɛfɛ. O kama, a ka ɲi ka kuma ni mɔgɔ dɔ ye min ma deli ka kuma n'a ye.",
+      "thanks": "N'a sɔrɔ, n' ka fɔtaw bɛɛ la, n' b'a waleɲuman lɔn! I ye fɛɛn o fɛɛn saniya ka ɲɛsin waleɲumanlɔn ma, mɔgɔ dɔ bena o sɛgɛsɛgɛ sanni a ka ye yɔrɔ si.",
+      "again": "Ka fara o kan, a ye kuma caaman fɔ",
+      "toastFailed": "I tɛ se ka o kɛ tugun",
+      "wallTitle": "I ka mɔgɔw b'a fɔ min ye",
+      "wallNote": "6. Ni n' ka sira di, n' ka sɛbɛ"
     },
     "subtitle": "Jamana ka jateden kuraw",
     "range7d": "Tile 7",
@@ -5781,7 +5807,9 @@
       "intro": "Fanga min be mɔgɔ la, o ye ka mɔgɔ lafili",
       "outro": "Fanga min be mɔgɔ la, o ye ka mɔgɔ lafili.",
       "selfpromo": "K'i yɛrɛ tanga",
-      "interaction": "I ka kan ka min kɛ, o ye ka to ka to ka o kɛ"
+      "interaction": "I ka kan ka min kɛ, o ye ka to ka to ka o kɛ",
+      "sponsor": "Sponsor skipped",
+      "filler": "Filler skipped"
     },
     "undo": "O ye tiɲɛ ye.",
     "progress": "Videow ka ɲɛtaga",
@@ -5812,7 +5840,8 @@
     "rotate": "Putar",
     "holdAtLeast": "Hakɛto, {{amount}} {{symbol}} mara a dɔgɔmanba la walasa ka a dayɛlɛ.",
     "unlockPpvWith": "PPV stream dayɛlɛ ni {{amount}} {{symbol}} ye",
-    "yourDhbBalance": "I ka tagamasiɲɛ tagamasiɲɛ: {{amount}}"
+    "yourDhbBalance": "I ka tagamasiɲɛ tagamasiɲɛ: {{amount}}",
+    "retry": "Try again"
   },
   "liveViewer": {
     "loadingStream": "Stream bɛ lajɛ...",
@@ -5949,7 +5978,9 @@
     "doneAllOne": "Video {{n}} yɛlɛmana!",
     "firstFree": "Video {{n}} fɔlɔw",
     "getPriceMany": "Video {{n}} sɔngɔ sɔrɔ",
-    "costsNote": "O kɔ, a ye wari di a ma. Mɔgɔ minw be batɛmu ta, olu be wari dɔɔni sara — i ka musakaw be se ka kɛ u ka musakaw ye. N'i tɛ se ka videwo dɔ ladon, i bena a yira ko i ye min kɛ, o ye i ka yɛlɛmani nata lo ye."
+    "costsNote": "O kɔ, a ye wari di a ma. Mɔgɔ minw be batɛmu ta, olu be wari dɔɔni sara — i ka musakaw be se ka kɛ u ka musakaw ye. N'i tɛ se ka videwo dɔ ladon, i bena a yira ko i ye min kɛ, o ye i ka yɛlɛmani nata lo ye.",
+    "free": "Free",
+    "how2": "I ka ɲi ka min ta, o sugandi ani i ka wari bɛɛ sara siɲɛ kelen. Fɛɛn o fɛɛn donna jamana wɛrɛ la, o bɛɛ banna ani a ma deli ka juru sara siɲɛ fila."
   },
   "calls": {
     "voiceCall": "O ye kumakanw ye.",
@@ -6582,7 +6613,8 @@
         "ad_hominem": "Ka mɔgɔ faga",
         "straw_man": "U be fili u ka miiriya la",
         "false_dilemma": "O la, a tun be se ka kɛ ko a tun ye mɔgɔ ye.",
-        "hostile_tone": "Tɔɔrɔ min be mɔgɔ kan"
+        "hostile_tone": "Tɔɔrɔ min be mɔgɔ kan",
+        "overgeneralisation": "Sweeping claim"
       },
       "aiMenu": "AI baarakɛminanw",
       "changeVibe": "Kuma cogo yɛlɛma",
@@ -7243,7 +7275,8 @@
       "violence": "Fanga be mɔgɔ la",
       "scam_or_fraud": "Fanga min be mɔgɔ la, o ye ka mɔgɔ lafili",
       "violent_content": "Fanga min be mɔgɔ la ka kɛ mɔgɔ ye, o ye ka kɛ mɔgɔ ye.",
-      "harmful_dangerous": "Koo farimanw ni faratibaw"
+      "harmful_dangerous": "Koo farimanw ni faratibaw",
+      "spam": "Spam"
     },
     "whyVideo": "Mun na an be se k'o videwo yira?",
     "whyUser": "Mun na i be kunnafoni di o tigi ma?",
@@ -8017,7 +8050,8 @@
     "approve": "N'i sɔnna",
     "farcasterNote": "Farcaster b'a ɲini i fɛ i ka dehub labato Farcaster ka porogramu kɔnɔ.",
     "skippedScheduleToast": "Skipped {{platforms}}: yɔrɔ minw labɛnna, u ma dɛmɛ sɔrɔ yen fɔlɔ.",
-    "skippedOtherToast": "Skipped {{platforms}}: u ma se ka nin ciɲɛ ta."
+    "skippedOtherToast": "Skipped {{platforms}}: u ma se ka nin ciɲɛ ta.",
+    "platformNotes": "YouTube mako be videwo la. Instagram, TikTok, Pinterest ani Snapchat mako be foto wala videwo la. I ka Instagram ka kan ka kɛ i ka jagoyɔrɔ wala i ka danbaga ka kunnafoni ye. TikTok ka sitew be bɔ kɛnɛ kan ni kumaden dɔw ye, u be mɔgɔ weele ka na u ka sitew la ani u be mɔgɔ weele ka na u ka sitew la."
   },
   "builder": {
     "stakeForAllowance": "I ka DeHub jɛtɔn kɛ stake la walasa ka i ka don o don jɔyɔrɔ ka bon",
@@ -8524,7 +8558,8 @@
     },
     "add": {
       "title": "Add {{name}}?",
-      "confirm": "Add app"
+      "confirm": "Add app",
+      "body": "O bena kɛ i ka appw jukɔrɔ ani a be se ka kunnafoniw ci i ma. I be se k'a bɔ app ɲɛɛ kan tuma o tuma."
     }
   },
   "aiStyles": {

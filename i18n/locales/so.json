@@ -6010,7 +6010,6 @@
     "viewFeed": "Eeg cuntadaada",
     "yourChannel": "Kanaalkaaga",
     "yourChannelHint": "Ku dheji cinwaankaaga kanaalka — qabashada shaqooyinkeeda sidoo kale.",
-    "placeholder": "youtube.com/@you, tiktok.com/@you, vimeo.com/you…",
     "costsNote": "Waxaa lagu bixiyay calaamado DeHub, hal mar, ka hor inta aan la bilaabin. Kuwa haysta dallacaadda ayaa bixinaya wax yar — dallacaaddaada waxaa lagu dabaqayaa xigashada. Haddii aan la soo dejin karin muuqaal, saamigiisa waxaa lagu soo celinayaa soo guuritaankaaga xiga."
   },
   "calls": {
@@ -8606,11 +8605,13 @@
     "pay": {
       "title": "Pay {{name}}?",
       "confirm": "Pay {{amount}} DHB",
-      "sent": "Baadidaa {{amount}} DHB ka soo badbaad {{name}}."
+      "sent": "Baadidaa {{amount}} DHB ka soo badbaad {{name}}.",
+      "body": "DB wuxuu si toos ah ugu socdaa boorsada APP, {{wallet}}. Lacagta dib looma celin karo."
     },
     "add": {
       "title": "Add {{name}}?",
-      "confirm": "Add app"
+      "confirm": "Add app",
+      "body": "Waxay ka muuqan doontaa barnaamijyadaada waxayna kuu soo diri kartaa ogeysiisyo. Waad ka saari kartaa wakhti kasta bogga Apps."
     }
   },
   "aiStyles": {

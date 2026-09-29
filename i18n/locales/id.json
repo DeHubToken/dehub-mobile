@@ -6059,7 +6059,6 @@
     "viewFeed": "Lihat umpan Anda",
     "yourChannel": "Saluran Anda",
     "yourChannelHint": "Tempel alamat saluran Anda — pegangannya juga berfungsi.",
-    "placeholder": "youtube.com/@you, tiktok.com/@you, vimeo.com/you…",
     "costsNote": "Dibayar dalam token DeHub, sekali, sebelum batch dimulai. Pemegang lencana membayar lebih sedikit — diskon Anda diterapkan pada kutipan. Jika video tidak dapat diimpor, bagiannya akan dikreditkan kembali ke migrasi Anda berikutnya."
   },
   "calls": {
@@ -8613,7 +8612,8 @@
     },
     "add": {
       "title": "Tambahkan {{name}}?",
-      "body": "Aplikasi ini akan muncul di bawah Your apps dan dapat mengirimkan notifikasi. Anda dapat menghapusnya kapan saja dari halaman Apps."
+      "body": "Aplikasi ini akan muncul di bawah Your apps dan dapat mengirimkan notifikasi. Anda dapat menghapusnya kapan saja dari halaman Apps.",
+      "confirm": "Tambahkan aplikasi"
     }
   },
   "aiStyles": {

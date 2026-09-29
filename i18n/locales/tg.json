@@ -8552,12 +8552,10 @@
       "close": "Пӯшидани барнома",
       "backToStore": "Бозгашт ба барномаҳо",
       "notFound": "Ин барнома дар DeHub App Store нест ё хориҷ карда шудааст.",
-      "badUrl": "Ang address na iyon ay hindi maaaring buksan bilang mini app. Kailangan ito mula sa https://, o isang localhost address sa mode ng developer.",
       "readyTimeout": "Ин барнома ҳеҷ гоҳ даъват dehub.ready (), Пас экрани splash пас аз 8 сония пинҳон шуд."
     },
     "signIn": {
       "title": "{{name}}?",
-      "body": "Ang app na ito ay makakuha ng iyong address sa wallet ng DeHub at isang sign-in veşartî na gumagana lamang para sa app na ito. Hindi makakuha ng access sa iyong wallet, iyong mga fondo o iyong DeHub account.",
       "cancel": "Ҳоло не",
       "confirm": "Mag-sign in"
     },
@@ -8573,9 +8571,9 @@
       "noMatch": "Walang mga application na tumutugma sa paghahanap na",
       "yourApps": "Sozandegiyangon",
       "notificationsOn": "Xabarlar roshan",
-      "remove": "Oʻchirish",
-      "removed": "Oʻchirildi. Sizga yana xabar yuborilmaydi.",
-      "rising": "Нав ва бархоста"
+      "rising": "Нав ва бархоста",
+      "remove": "Тоза кардан",
+      "removed": "Тоза карда шуд. Дигар шуморо огоҳ намекунад."
     },
     "card": {
       "open": "Кушодан"
@@ -8597,14 +8595,12 @@
     },
     "pay": {
       "title": "{{name}}ga toʻlov qiling?",
-      "body": "DHB toʻgʻridan-toʻgʻri {{wallet}} ilovaning portfeliga boradi. Toʻlovlarni bekor qilish mumkin emas.",
       "confirm": "{{amount}} DHBga toʻlov qiling",
       "sent": "{{amount}} DHBni {{name}}ga toʻlov qilingan."
     },
     "add": {
       "title": "{{name}}ni qoʻshish?",
-      "body": "U \"Sozandegiyangon\" ostida koʻrinadi va sizga xabar yuborishi mumkin. Siz har qanday vaqtda Apps sahifasidan uni olib tashlashga tayyor boʻlsaniz.",
-      "confirm": "Ilovani qoʻshish"
+      "confirm": "Илова кардани барнома"
     }
   },
   "aiStyles": {

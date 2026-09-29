@@ -6011,7 +6011,6 @@
     "viewFeed": "Peržiūrėti sklaidos kanalą",
     "yourChannel": "Jūsų kanalas",
     "yourChannelHint": "Įklijuokite savo kanalo adresą — rankena taip pat veikia pati.",
-    "placeholder": "youtube.com/@you, tiktok.com/@you, vimeo.com/you…",
     "costsNote": "Sumokėta DeHub žetonais, vieną kartą, prieš prasidedant partijai. Ženkliukų turėtojai moka mažiau – jūsų nuolaida taikoma kainai. Jei vaizdo įrašo nepavyksta importuoti, jo dalis grąžinama į jūsų kitą migraciją."
   },
   "calls": {
@@ -7238,7 +7237,8 @@
     "status": {
       "open": "Atvi-",
       "in_progress": "Vykdoma",
-      "closed": "Uždara"
+      "closed": "Uždara",
+      "resolved": "Išspręsta"
     },
     "severity": {
       "low": "Mažas",

@@ -682,7 +682,8 @@
     "smsBand": {
       "domestic": "Royaume-Uni",
       "europe": "Europe",
-      "premium": "Partout ailleurs"
+      "premium": "Partout ailleurs",
+      "global": "La plupart des autres pays"
     },
     "smsDepositPaying": "Confirmez dans votre portefeuille…",
     "smsDepositConfirming": "En attente de la chaîne…",

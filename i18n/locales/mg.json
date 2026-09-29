@@ -6033,7 +6033,6 @@
     "yourChannelHint": "Apetaho ny adiresin'ny fantsona — ny famolahana amin'ny asa manokana ihany koa.",
     "costsIntro": "Ny horonan-tsary tsirairay dia mora kokoa noho ny teo alohany — mihena ny tahan'ny rehefa mitombo ny andiany, ka ny vidiny etsy ambany dia izay azon'io horonan-tsary maro io amin'ny ankapobeny.",
     "costsIntroShort": "Ny horonan-tsary tsirairay dia mora kokoa noho ny teo alohany — mihena ny tahan'ny rehefa mitombo ny andiany. Ny vidiny marina dia aseho alohan'ny handoavanao.",
-    "placeholder": "youtube.com/@you, tiktok.com/@you, vimeo.com/you…",
     "costsNote": "Nalefa tamin'ny marika DeHub, indray mandeha, alohan'ny hanombohan'ny batch. Ny mpihazona badge dia mandoa vola kely kokoa — ny fihenam-bidy nomena anao dia ampiharina amin'ny teny nalaina. Raha tsy azo ampidirina ny video, ny anjarany dia averina ho an'ny fifindranao manaraka."
   },
   "calls": {
@@ -8681,7 +8680,9 @@
       "fromDehub": "Avy amin'i DeHub",
       "noMatch": "Tsy misy itoviany amin'ny fitadiavana.",
       "yourApps": "Ny apps",
-      "rising": "Ny iohimbine"
+      "rising": "Ny iohimbine",
+      "remove": "Esory",
+      "removed": "Efa nesorina. Tsy hampandre anao intsony izany."
     },
     "card": {
       "open": "Hanokatra"
@@ -8708,7 +8709,8 @@
     },
     "add": {
       "title": "Ampio ny {{name}}?",
-      "body": "Misy ny endriky ny amin'ny Your apps ary azo azoana ny fahasahana amin'ny Apps page izy io amin'ny alalan'ny fahasahana any amin'ny alalan'ny fahasahana. Azo azoana izy io amin'ny alalan'ny fahasahana amin'ny Apps page amin'ny alalan'ny fahasahana any amin'ny alalan'ny fahasahana."
+      "body": "Misy ny endriky ny amin'ny Your apps ary azo azoana ny fahasahana amin'ny Apps page izy io amin'ny alalan'ny fahasahana any amin'ny alalan'ny fahasahana. Azo azoana izy io amin'ny alalan'ny fahasahana amin'ny Apps page amin'ny alalan'ny fahasahana any amin'ny alalan'ny fahasahana.",
+      "confirm": "Add APP"
     }
   },
   "aiStyles": {

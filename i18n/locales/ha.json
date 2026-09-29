@@ -8283,7 +8283,12 @@
     "vol24h": "24h Vol",
     "volume24h": "kundin 24h",
     "website": "Yanar Gizo",
-    "twitter": "X / Twitter"
+    "twitter": "X / Twitter",
+    "curveFair": "Gaskiya",
+    "curveStandard": "Na Al'ada",
+    "curveStealth": "Boye",
+    "feeStakers": "Masu Saka",
+    "trendingHint": "Top 20 · Zuba jari & ayyukan al'umma"
   },
   "premium": {
     "bestValue": "Mafi kyawun darajar",
@@ -8549,7 +8554,8 @@
       "yourApps": "Aikace-aikacen ku",
       "rising": "Sabuwa da tashi",
       "notificationsOn": "Sanarwa a kunne",
-      "removed": "An cire. Ba za ta sake sanar da ku ba."
+      "removed": "An cire. Ba za ta sake sanar da ku ba.",
+      "remove": "Cire"
     },
     "card": {
       "open": "Bude"
@@ -8565,11 +8571,15 @@
       "education": "Ilimi",
       "developer-tools": "Kayan aikin masu haɓakawa",
       "entertainment": "Nishaɗi",
-      "art-creativity": "Art & kerawa"
+      "art-creativity": "Art & kerawa",
+      "finance": "Kudi"
     },
     "add": {
       "body": "Za ta bayyana a ƙarƙashin Aikace-aikacenku kuma za ta iya aika muku da sanarwa. Kuna iya cire ta kowane lokaci daga shafin Aikace-aikace.",
       "confirm": "Ƙara app"
+    },
+    "pay": {
+      "body": "DHB yana zuwa kai tsaye zuwa aljihun kudi na app, {{wallet}}. Ba za a iya janye biyan kuɗi ba."
     }
   },
   "aiStyles": {

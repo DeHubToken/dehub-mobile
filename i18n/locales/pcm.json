@@ -999,7 +999,8 @@
     "locked": "Gated",
     "any": "Any",
     "resetFilters": "Reset filters",
-    "updatingFeed": "Update feed"
+    "updatingFeed": "Update feed",
+    "filters": "Filters"
   },
   "drawers": {
     "ppvTitle": "Pay-Per-View Content",
@@ -5910,7 +5911,6 @@
     "ownership": "This na my channel, or the person wey get the rights don allow me publish im videos for DeHub.",
     "pickCount": "{{selected}} out of {{total}} don select. Anything wey don already dey your profile, we go skip am and we no go charge you two times.",
     "pickTitle": "Choose wetin you wan bring come",
-    "placeholder": "youtube.com/@you, tiktok.com/@you, vimeo.com/you…",
     "progressRunning": "E dey move — e dey run for background, you fit close this tab. We go tell you when e finish.",
     "reading": "We dey read your channel…",
     "signInToShow": "Sign in to see my videos",
@@ -8336,7 +8336,9 @@
       "education": "Education (e.g., *Khan Academy*, *Coursera*)",
       "developer-tools": "Developer Tools (e.g., *VS Code*, *GitHub*)",
       "entertainment": "Entertainment (e.g., *Netflix*, *YouTube*)",
-      "art-creativity": "Art & Creativity (e.g., *Canva*, *Procreate*)"
+      "art-creativity": "Art & Creativity (e.g., *Canva*, *Procreate*)",
+      "games": "Games",
+      "music": "Music"
     },
     "pay": {
       "title": "Pay {{name}}?",
