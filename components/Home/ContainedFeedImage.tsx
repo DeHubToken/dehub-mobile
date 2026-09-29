@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useMemo, useState } from "react";
-import { View, type LayoutChangeEvent } from "react-native";
+import { View, useWindowDimensions, type LayoutChangeEvent } from "react-native";
 import { FEED_BENTO_RADIUS, fitFeedImageWithin } from "../../libs/feed-image-layout";
 import { useImageAspect } from "../../hooks/useImageAspect";
 import SmartImage from "../common/SmartImage";
@@ -16,7 +16,13 @@ interface ContainedFeedImageProps {
   priority?: "low" | "normal" | "high";
   active?: boolean;
   drawBitmap?: boolean;
+  /** Post page: square corners, centred, and up to 80% of the screen tall,
+   *  the same rule the post page video follows. */
+  postPage?: boolean;
 }
+
+/** Tallest a photo gets on the post page, as a share of the screen height. */
+const POST_PAGE_MAX_HEIGHT_SHARE = 0.8;
 
 /** Natural-ratio feed image with the same 600-unit height cap as the web app. */
 const ContainedFeedImage: React.FC<ContainedFeedImageProps> = ({
@@ -27,15 +33,21 @@ const ContainedFeedImage: React.FC<ContainedFeedImageProps> = ({
   priority,
   active = true,
   drawBitmap = true,
+  postPage = false,
 }) => {
+  const { height: screenHeight } = useWindowDimensions();
   const animate = useSettledAutoplay(active, uri, 400);
   const { ratio: aspectRatio, onLoad } = useImageAspect(uri);
   const { isMinimal } = useAppTheme();
   const [measuredWidth, setMeasuredWidth] = useState(fallbackWidth);
   const availableWidth = width ?? measuredWidth;
   const dimensions = useMemo(
-    () => fitFeedImageWithin(availableWidth, aspectRatio),
-    [availableWidth, aspectRatio],
+    () => fitFeedImageWithin(
+      availableWidth,
+      aspectRatio,
+      postPage ? Math.round(screenHeight * POST_PAGE_MAX_HEIGHT_SHARE) : undefined,
+    ),
+    [availableWidth, aspectRatio, postPage, screenHeight],
   );
 
   const handleLayout = useCallback((event: LayoutChangeEvent) => {
@@ -54,7 +66,7 @@ const ContainedFeedImage: React.FC<ContainedFeedImageProps> = ({
         height: dimensions.height,
         // Minimal runs the column edge to edge, so a portrait image that stops
         // short of the width sits centred rather than hugging one side.
-        alignItems: isMinimal && !compact ? "center" : "flex-start",
+        alignItems: (isMinimal || postPage) && !compact ? "center" : "flex-start",
       }}
     >
       {/* Android does not consistently clip expo-image's native surface when
@@ -65,7 +77,7 @@ const ContainedFeedImage: React.FC<ContainedFeedImageProps> = ({
         style={{
           width: dimensions.width,
           height: dimensions.height,
-          borderRadius: isMinimal ? 0 : FEED_BENTO_RADIUS,
+          borderRadius: isMinimal || postPage ? 0 : FEED_BENTO_RADIUS,
           overflow: "hidden",
         }}
       >

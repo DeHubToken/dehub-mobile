@@ -36,7 +36,7 @@ describe('post media presentation', () => {
 
     expect(card).toContain('borderRadius: FEED_BENTO_RADIUS');
     // Square in the minimal theme, where the bento it matches is gone too.
-    expect(containedImage).toContain('borderRadius: isMinimal ? 0 : FEED_BENTO_RADIUS');
+    expect(containedImage).toContain('borderRadius: isMinimal || postPage ? 0 : FEED_BENTO_RADIUS');
     expect(containedImage).toContain('overflow: "hidden"');
     expect(containedImage).toContain('style={{ width: "100%", height: "100%" }}');
   });
