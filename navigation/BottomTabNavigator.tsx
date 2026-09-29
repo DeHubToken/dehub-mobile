@@ -8,6 +8,7 @@ import type { BottomTabParamList, AppStackNavigationProp } from "./types";
 import { useNavigation } from "@react-navigation/native";
 import { useAuthState } from "../context/AuthContext";
 import { TabBarHideProvider } from "../context/TabBarHideContext";
+import { homeTabEvents } from "../libs/eventBus";
 
 const Tab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -50,16 +51,20 @@ function BottomTabNavigator() {
         <Tab.Screen
           name={ScreenNames.UploadTab}
           getComponent={() => require("../screens/UploadScreen").default}
-          listeners={{
+          listeners={({ navigation: tabNav }) => ({
             tabPress: (e) => {
               e.preventDefault();
               if (!isAuthed) {
                 navigation.navigate(ScreenNames.SignIn);
                 return;
               }
-              navigation.navigate(ScreenNames.Upload);
+              // From the Live feed, + opens the composer ready to go live.
+              const tabs = tabNav.getState();
+              const onLiveFeed =
+                tabs.routes[tabs.index]?.name === ScreenNames.Home && homeTabEvents.visibleTab() === "live";
+              navigation.navigate(ScreenNames.Upload, onLiveFeed ? { live: true } : undefined);
             },
-          }}
+          })}
         />
         <Tab.Screen
           name={ScreenNames.AIChat}
