@@ -1,4 +1,5 @@
 import { parseSoundtrack } from './parseSoundtrack';
+import { buildFeedImageUrls } from './misc';
 
 type PhotoPost = {
   postType?: string; description?: string; imageUrls?: string[]; imageUrl?: string;
@@ -11,14 +12,10 @@ export function shortsPhotoMedia(post: PhotoPost) {
   if (post.postType !== 'feed-images') return undefined;
   const parsed = parseSoundtrack(post.description);
   const sound = { soundtrackUrl: parsed?.url, soundtrackTitle: parsed?.title, soundtrackCreator: parsed?.creator };
-  const imageUrls = (post.imageUrls?.length ? post.imageUrls : [post.imageUrl])
-    .filter((url): url is string => typeof url === 'string' && !!url.trim())
-    .flatMap(path => {
-      try {
-        const url = new URL(path, 'https://dehubcdn.ams3.cdn.digitaloceanspaces.com/');
-        return /^https?:$/.test(url.protocol) ? [url.href] : [];
-      } catch { return []; }
-    });
+  // Photo files live under feed-images/{filename}; the API's nfts/images/... path 403s on the CDN.
+  const imageUrls = buildFeedImageUrls((post.imageUrls?.length ? post.imageUrls : [post.imageUrl])
+    .filter((url): url is string => typeof url === 'string' && !!url.trim() &&
+      (/^https?:/i.test(url) || !/^[a-z][a-z\d+.-]*:/i.test(url))));
   if (!sound.soundtrackUrl || !imageUrls.length) return undefined;
   return { ...sound, imageUrls, videoUrl: '', thumbnail: imageUrls[0],
     transcodingStatus: undefined,
