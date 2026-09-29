@@ -8,6 +8,7 @@ jest.mock('react-native', () => ({
   StyleSheet: { flatten: (style: unknown) => style },
   Animated: {
     View: 'View',
+    createAnimatedComponent: (component: unknown) => component,
     Value: class { stopAnimation = jest.fn(); },
     timing: jest.fn(() => ({ start: jest.fn() })),
     spring: jest.fn(() => ({ start: jest.fn() })),

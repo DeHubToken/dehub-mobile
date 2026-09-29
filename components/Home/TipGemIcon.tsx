@@ -40,7 +40,7 @@ export function TipGemIcon({ tipped, burstKey, size, color }: { tipped: boolean;
     return () => { cancelled = true; };
   }, [burstKey, spin, burst]);
 
-  if (!tipped) return <Icon name="Gem" size={size} color={color} strokeWidth={1.8} />;
+  if (!tipped) return <Icon name="Gem" size={size} color={color} />;
 
   const rotate = spin.interpolate({ inputRange: [0, 1], outputRange: ["-200deg", "0deg"] });
   const scale = spin.interpolate({ inputRange: [0, 1], outputRange: [0.4, 1] });
@@ -62,7 +62,9 @@ export function TipGemIcon({ tipped, burstKey, size, color }: { tipped: boolean;
           />
         )}
       </Animated.View>
-      {SPARKLES.map((s, i) => (
+      {/* Only while the swirl plays, as on web: at rest they sat invisible on
+          every tipped post, six filled SVGs each. */}
+      {burstKey > 0 && !reduceMotion && SPARKLES.map((s, i) => (
         <Animated.View
           key={i}
           pointerEvents="none"
