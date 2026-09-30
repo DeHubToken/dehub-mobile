@@ -1789,7 +1789,9 @@
     "exploreWithoutSignInA11y": "DeHub ohni Aaldegäld erkunde",
     "continueExploringA11y": "Wyter erforschi DeHub",
     "importWalletRecommended": "Social Logins werded empfähle.",
-    "importWalletPurpose": "Das Tool isch zum Importiere vo vorhandene Kontene vo DeHub.io."
+    "importWalletPurpose": "Das Tool isch zum Importiere vo vorhandene Kontene vo DeHub.io.",
+    "importSecretPlaceholder": "12 oder 24 Wörter, oder ein privates Schlüssel",
+    "invalidImportSecret": "Das isch kei gültigi 12/24-Wort-Phrase oder privati Schlüssel."
   },
   "messages": {
     "smartRepliesOff": "Antwortvorschläg abgschaltet",
@@ -6027,7 +6029,6 @@
     "viewFeed": "Lueg dini Feed",
     "yourChannel": "Dii Kanal",
     "yourChannelHint": "Füeg dini Kanal-Adrässe ii — de Handle funktioniert au allei.",
-    "placeholder": "youtube.com/@you, tiktok.com/@you, vimeo.com/you…",
     "costsNote": "Bezahlt mit DeHub Tokens, einisch, bevors Batch aafangt. Badge-Halter zahled weniger — din Rabatt wird uf d Offerte agwendet. Wenn es Video nöd cha importiert werde, wird sini Anteil zrugg uf din nächsti Migratiion guetgsproche."
   },
   "calls": {
@@ -8669,5 +8670,33 @@
     "recommendedBody": "Es git e neueri Version vo DeHub mit wichtige Sicherheitskorrekture. Aktualisier, dass din Account gschützt blibt.",
     "requiredBody": "Die Version vo DeHub wird nümme understützt. Aktualisier, zum din Account wiiter bruuche.",
     "update": "Jetz aktualisiere"
+  },
+  "walletBackup": {
+    "title": "Wallet backup",
+    "rowDesc": "Lueg dini 12 Wörter oder private Schlüssel",
+    "backedUpOn": "Backup gmacht {{date}}",
+    "offerBody": "12 Wörter, die din Portemonnaie zruggbringe, wenn du din Handy oder Passwort verlürsch. Dauert 30 Sekunde.",
+    "offerBodyDeviceOnly": "De Geldbeutel lebt nur auf disem Handy. Ohne disi Wörter, dann isch ein verlorenes Handy gleich ein verlorener Geldbeutel.",
+    "saveNow": "Speichere jetzt",
+    "skipForNow": "Skip fürs Moment.",
+    "wordsTitle": "Dini 12 Wort",
+    "tapToReveal": "Tippe zum Uffdeckä",
+    "copied": "Kopiert",
+    "wroteThemDown": "Ich ha sie ufgschriebe",
+    "checkTitle": "Kurzcheck",
+    "checkPrompt": "Tap word #{{n}}",
+    "checkWrong": "Nöd das eini. Lueg wieder uf s Wort #{{n}} wieder.",
+    "skipCheck": "Check überspringen",
+    "signingIn": "Signing you in…",
+    "warnOwns": "Jeder, wo die Wort hät, hät din Portemonnaie.",
+    "warnNeverAsk": "DeHub wird nie nach ihnen fragen.",
+    "warnPaper": "Schreibe sie uf Papier, nid in eme Screenshot oder Notiz-App.",
+    "tabWords": "12 Wörter",
+    "tabPrivateKey": "Privatschlüssel",
+    "advanced": "Fortgeschritten",
+    "passwordToShowWords": "Gib dis Wallet-Passwort ii, zum dini 12 Wörter azeige.",
+    "showWords": "Schau Wörter.",
+    "reminderBody": "Sichere din Wallet – 12 Wörter, wo dä zruggbringe, wänn du dis Handy verlürsch.",
+    "notNow": "Nöchtli no."
   }
 }

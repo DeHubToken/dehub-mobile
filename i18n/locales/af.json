@@ -1437,7 +1437,8 @@
     "disconnectWallet": "Ontkoppel beursie",
     "balance": "Saldo",
     "transactions": "Transaksies",
-    "chooseNetwork": "Kies netwerk"
+    "chooseNetwork": "Kies netwerk",
+    "cashOutComingSoon": "Kasuitkom binnekort!"
   },
   "bookmarks": {
     "title": "Jou Boekmerke",
@@ -1811,7 +1812,9 @@
     "exploreWithoutSignInA11y": "Verken DeHub sonder om aan te meld",
     "continueExploringA11y": "Gaan voort met die verkenning van DeHub",
     "importWalletRecommended": "Sosiale logboeke word aanbeveel.",
-    "importWalletPurpose": "Hierdie instrument is vir die invoer van bestaande rekeninge vanaf DeHub.io."
+    "importWalletPurpose": "Hierdie instrument is vir die invoer van bestaande rekeninge vanaf DeHub.io.",
+    "importSecretPlaceholder": "12 of 24 woorde, of ’n privaat sleutel",
+    "invalidImportSecret": "Dit is nie ’n geldige 12/24-woordfrase of privaat sleutel nie"
   },
   "messages": {
     "smartRepliesOff": "Voorgestelde antwoorde afgeskakel",
@@ -8696,7 +8699,8 @@
       "yourApps": "Jou programme",
       "notificationsOn": "Berigte op",
       "removed": "Verwyder. Dit sal jou nie weer waarsku nie.",
-      "rising": "Nuwe en groeiende"
+      "rising": "Nuwe en groeiende",
+      "remove": "Verwyder"
     },
     "category": {
       "games": "Speletjies",
@@ -8721,7 +8725,11 @@
     },
     "add": {
       "title": "Vegt {{name}}?",
-      "body": "Daar sal dit onder U se toepassings verskyn en kan dit jou kennisgewings stuur. Jy kan dit op enige tyd uit die Toepassings-blad verwder."
+      "body": "Daar sal dit onder U se toepassings verskyn en kan dit jou kennisgewings stuur. Jy kan dit op enige tyd uit die Toepassings-blad verwder.",
+      "confirm": "Voeg app toe"
+    },
+    "card": {
+      "open": "Open"
     }
   },
   "aiStyles": {
@@ -8760,5 +8768,36 @@
     "recommendedBody": "'n Nuwer weergawe van DeHub is beskikbaar met belangrike sekuriteitsoplossings. Dateer op om jou rekening beskerm te hou.",
     "requiredBody": "Hierdie weergawe van DeHub word nie meer ondersteun nie. Dateer op om jou rekening te bly gebruik.",
     "update": "Dateer nou op"
+  },
+  "walletBackup": {
+    "title": "Maak ’n kopie van jou portemonnee",
+    "rowDesc": "Sien jou 12 woorde of privaat sleutel",
+    "backedUpOn": "Gekopieer {{date}}",
+    "offerTitle": "Maak ’n kopie van jou portemonnee?",
+    "offerBody": "12 woorde wat jou portemonnee kan herstel as jy jou telefoon of wachtwoord verloor. Duur 30 sekondes.",
+    "offerBodyDeviceOnly": "Jou portemonnee leef net op hierdie telefoon. Sonder hierdie woorde beteken ’n verloorde telefoon ’n verloorde portemonnee.",
+    "saveNow": "Spoor dit nou op",
+    "skipForNow": "Spoor later op",
+    "wordsTitle": "Jou 12 woorde",
+    "tapToReveal": "Tap om te onthul",
+    "hideWords": "Verberg woorde",
+    "copied": "Gekopieer",
+    "wroteThemDown": "Ek het dit opgeskryf",
+    "checkTitle": "Snelkontrole",
+    "checkPrompt": "Tap op woord #{{n}}",
+    "checkWrong": "Nie dié een nie. Kyk na woord #{{n}} weer.",
+    "skipCheck": "Spoor kontrole oor",
+    "signingIn": "Jy word ingelog…",
+    "warnOwns": "Iemand met hierdie woorde eien jou portemonnee.",
+    "warnNeverAsk": "DeHub sal nooit na hulle vra.",
+    "warnPaper": "Skryf dit op papier, nie in ’n skermopname of aantekeningsapp nie.",
+    "tabWords": "12 woorde",
+    "tabPrivateKey": "Privaat sleutel",
+    "advanced": "Geavanceerd",
+    "passwordToShowWords": "Voer jou portemonnee-wachtwoord in om jou 12 woorde te toon.",
+    "showWords": "Toon woorde",
+    "reminderBody": "Maak ’n kopie van jou portemonnee – 12 woorde wat dit kan herstel as jy jou telefoon verloor.",
+    "backUp": "Rugsteun",
+    "notNow": "Nie nou nie"
   }
 }

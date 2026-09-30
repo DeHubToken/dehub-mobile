@@ -146,9 +146,9 @@
     "noMoreShorts": "ما فيه مقاطع قصيرة زيادة",
     "noShortsFound": "ما لقينا مقاطع قصيرة",
     "newMembersHint": "انضميت للتو — سلّم عليهم",
-    "scroll": "Scroll",
     "noFilterMatches": "مافي محتوى يطابق فلاترك.",
-    "clearFilters": "امسح الفلاتر"
+    "clearFilters": "امسح الفلاتر",
+    "scroll": "سكروول"
   },
   "explore": {
     "all": "الكل",
@@ -1428,8 +1428,7 @@
     "solanaAddressLabel": "سولانا",
     "solanaAddressHint": "رموز SOL و SPL فقط",
     "solanaAddressCopied": "تم نسخ عنوان Solana",
-    "chooseNetwork": "اختر الشبكة",
-    "evmAddressLabel": "EVM"
+    "chooseNetwork": "اختر الشبكة"
   },
   "bookmarks": {
     "title": "علاماتك المرجعية",
@@ -1789,7 +1788,9 @@
     "exploreWithoutSignInA11y": "استكشف ديهب بدون تسجيل دخول",
     "continueExploringA11y": "كمل استكشاف ديهاب",
     "importWalletRecommended": "تسجيل الدخول عبر الشبكات الاجتماعية موصى به.",
-    "importWalletPurpose": "هذه الأداة لاستيراد الحسابات الموجودة من DeHub.io."
+    "importWalletPurpose": "هذه الأداة لاستيراد الحسابات الموجودة من DeHub.io.",
+    "importSecretPlaceholder": "12 أو 24 كلمة، أو مفتاح خاص",
+    "invalidImportSecret": "ما ده كلمه 12/24 أو مفتاح خاص صالح"
   },
   "messages": {
     "smartRepliesOff": "تم إقفال الردود المقترحة",
@@ -3229,12 +3230,10 @@
       "purgeBody": "سيتم حذف كل رسالة أرسلها {{name}} في هذا المجتمع.",
       "kickBody": "سيتم إزالة {{name}} من المجتمع. يمكنهم الانضمام مرة أخرى لاحقًا.",
       "bannedUntil": "محظور حتى {{date}}",
-      "restrictionWithReason": "{{state}} — {{reason}}",
       "mutedUntil": "مكتوم حتى {{date}}",
       "bannedUntilShort": "حتى {{date}}",
       "muteTitle": "إسكات {{name}}",
       "banTitle": "حظر {{name}}",
-      "reasonCounter": "{{len}}/200",
       "rulesCount": "{{used}} من {{max}}",
       "moveRuleUp": "نقل القاعدة للأعلى",
       "moveRuleDown": "نقل القاعدة للأسفل",
@@ -3289,7 +3288,8 @@
         "deleteHeading": "حذف المجتمع",
         "deleteHint": "كل عضو ورسالة وموعد وربط الدعوة يتم حذفها بشكل دائم. لا يوجد طريقة للعودة.",
         "deleteAction": "لا أستطيع مساعدتك في ذلك.",
-        "transferBody": "{{name}} يصبح مالك هذا المجتمع. أنت تنزل إلى مدير مع كل الحقوق، وهذا لا يمكن التراجع عنه."
+        "transferBody": "{{name}} يصبح مالك هذا المجتمع. أنت تنزل إلى مدير مع كل الحقوق، وهذا لا يمكن التراجع عنه.",
+        "deleteConfirm": "حذف"
       },
       "inviteRevoked": "منقوص",
       "inviteExhausted": "حسناً",
@@ -3339,7 +3339,8 @@
         "forDays": "لـ {{value}}d",
         "forWeeks": "لـ {{value}}w"
       },
-      "inviteExpired": "منتهي الصلاحية"
+      "inviteExpired": "منتهي الصلاحية",
+      "createInviteLink": "إنشاء رابط دعوة"
     },
     "chooseAvatar": "اختر صورة رمزية",
     "loadFailed": "ما قدرنا نحمل المجتمعات",
@@ -3677,7 +3678,6 @@
     "podBadge": "طباعة عند الطلب",
     "podBuyOn": "اشترِ من {{provider}}",
     "podNote": "يُطبع ويُشحن عند الطلب بواسطة {{provider}}. يتم الدفع على موقعهم.",
-    "podUrlPlaceholder": "https://…",
     "subtitle": "اكتشف منتجات من مجتمع DeHub",
     "browse": "تصفح",
     "myStore": "متجري",
@@ -4509,7 +4509,6 @@
     "kindVideo": "فيديو",
     "kindAudio": "صوت",
     "kindImage": "صور",
-    "tileSourceKind": "{{source}} · {{kind}}",
     "reviewTitle": "راجع قبل ما تنشر",
     "reviewSubtitle": "من {{source}}، كـ {{kind}}. عدّل اللي تبيه — اترك العنوان فاضي عشان تحافظ على الأصلي.",
     "reviewName": "العنوان",
@@ -6226,7 +6225,6 @@
   "nearBuy": {
     "otherCurrencies": "عملات أخرى",
     "search": "ابحث عن رمز أو شبكة أو عقد",
-    "onChain": "on {{chain}}",
     "refundAddress": "عنوان استرداد المبلغ على {{chain}}",
     "refundPlaceholder": "العنوان على شبكة الدفع",
     "refundHint": "تأكد أن هذا عنوان محفظة تتحكم بها على شبكة الدفع. تجنب عناوين البورصات التي تتطلب مذكرة أو وسم. أي استرداد من مقدم الخدمة يعود هنا.",
@@ -6309,7 +6307,8 @@
     "phase_gasPending": "تم تسليم الرموز · الغاز قيد الانتظار",
     "detail_gasPending": "تم تأكيد تحويل الرمز الخاص بك. لا يزال تحويل غاز ETH المنفصل قيد الانتظار أو يعاد محاولته.",
     "detail_delivered": "تم تسليم رموز DeHub الخاصة بك إلى محفظة Base الخاصة بك.",
-    "directTiming": "يتم تسليم الرموز بمجرد تأكيد دفعتك."
+    "directTiming": "يتم تسليم الرموز بمجرد تأكيد دفعتك.",
+    "onChain": "على {{chain}}"
   },
   "dex": {
     "lowestPrice": "أدنى سعر · USD",
@@ -6664,7 +6663,6 @@
       "newDesign": "تصميم جديد",
       "yourDesigns": "تصاميمك",
       "noDesigns": "التصاميم اللي تسويها تنحفظ في هذا الجوال وتطلع هنا.",
-      "dimensions": "{{width}} × {{height}}",
       "aspectStory": "قصة",
       "aspectPost": "منشور",
       "aspectSquare": "مربع",
@@ -6946,7 +6944,6 @@
       "split": "تقسيم",
       "splitHint": "حرّك مؤشر التشغيل داخل المقطع عشان تقسمه.",
       "speed": "السرعة",
-      "speedValue": "{{value}}×",
       "volumeTool": "مستوى الصوت",
       "volume": "مستوى الصوت {{value}}%",
       "fadeIn": "ظهور تدريجي {{value}} ث",
@@ -7009,7 +7006,6 @@
       "recording": "جارٍ تسجيل الحركة",
       "lanes": "الإطارات الرئيسية",
       "scrub": "اسحب يمينًا أو يسارًا للتغيير.",
-      "segment": "{{from}} → {{to}}",
       "ease": {
         "linear": "خطي",
         "ease": "سلس",
@@ -8639,5 +8635,36 @@
     "recommendedBody": "فيه نسخة أحدث من DeHub فيها إصلاحات أمان مهمة. حدّث عشان يظل حسابك محمي.",
     "requiredBody": "هذي النسخة من DeHub ما عادت مدعومة. حدّث عشان تكمل تستخدم حسابك.",
     "update": "حدّث الحين"
+  },
+  "walletBackup": {
+    "title": "نسخ احتياطي المحفظة",
+    "rowDesc": "رؤيت 12 كلمه أو مفتاحك الخاص",
+    "backedUpOn": "تم النسخ الاحتياطي لـ {{date}}",
+    "offerTitle": "هل تريد النسخ الاحتياطي للمحفظة؟",
+    "offerBody": "12 كلمه بتحمي محفظتك لو فقدت هاتفك أو كلمة السر. اتاخد 30 ثانية.",
+    "offerBodyDeviceOnly": "محفظتك بتعيش على هاتفك ده. لو ما بتحفظ هده الكلمات، هاتف مفقود = محفظة مفقودة.",
+    "saveNow": "حفظ الآن",
+    "skipForNow": "تأجيل للوقت ده",
+    "wordsTitle": "كلماتك 12",
+    "tapToReveal": "ضغط لظهور",
+    "hideWords": "إخفاء الكلمات",
+    "copied": "نسخت",
+    "wroteThemDown": "كتبتها على الورق",
+    "checkTitle": "فحص سريع",
+    "checkPrompt": "ضغط على كلمه رقم {{n}}",
+    "checkWrong": "ما ده هده. انظري كلمه رقم {{n}} تاني",
+    "skipCheck": "تأجيل الفحص",
+    "signingIn": "تسجيل دخولك…",
+    "warnOwns": "كل من عنده هده الكلمات بيملك محفظتك.",
+    "warnNeverAsk": "DeHub ما بيطلبش منهاش.",
+    "warnPaper": "اكتبهم على ورقة، مو في لقطة شاشة أو تطبيق ملاحظات.",
+    "tabWords": "12 كلمة",
+    "tabPrivateKey": "المفتاح الخاص",
+    "advanced": "متقدم",
+    "passwordToShowWords": "أدخل كلمة مرور المحفظة لعرض كلماتك الـ12.",
+    "showWords": "أظهر الكلمات",
+    "reminderBody": "احتفظ بمحفظتك — 12 كلمة تعيدها إذا فقدت هاتفك.",
+    "backUp": "احتفظ",
+    "notNow": "ليس الآن"
   }
 }

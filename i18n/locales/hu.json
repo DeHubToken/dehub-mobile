@@ -1789,7 +1789,9 @@
     "exploreWithoutSignInA11y": "Fedezd fel a DeHubot bejelentkezés nélkül",
     "continueExploringA11y": "Folytasd a DeHub felfedezését",
     "importWalletRecommended": "Közösségi bejelentkezések javasoltak.",
-    "importWalletPurpose": "Ez az eszköz a DeHub.io meglévő fiókjainak importálására szolgál."
+    "importWalletPurpose": "Ez az eszköz a DeHub.io meglévő fiókjainak importálására szolgál.",
+    "importSecretPlaceholder": "12 vagy 24 szó, vagy egy privát kulcs",
+    "invalidImportSecret": "Ez nem érvényes 12/24 szavas kifejezés vagy privát kulcs"
   },
   "messages": {
     "smartRepliesOff": "A javasolt válaszok ki vannak kapcsolva",
@@ -3344,7 +3346,8 @@
         "restricted": "Csak a moderátorok láthatják a moderációs naplót.",
         "empty": "Még nincs itt semmi. A moderálási műveletek akkor jelennek meg, amikor megtörténnek.",
         "showMore": "Továbbiak megjelenítése ({{value}})"
-      }
+      },
+      "inviteLimit": "limit {{n}}"
     },
     "chooseAvatar": "Válassz avatart",
     "loadFailed": "Nem sikerült betölteni a közösségeket",
@@ -6001,7 +6004,6 @@
     "viewFeed": "A hírcsatornád megtekintése",
     "yourChannel": "A csatornád",
     "yourChannelHint": "Illessze be a csatorna címét — a fogantyú önmagában is működik.",
-    "placeholder": "youtube.com/@you, tiktok.com/@you, vimeo.com/you…",
     "costsNote": "DeHub tokenekben fizetve, egyszer, a köteg indulása előtt. A badge birtokosok kevesebbet fizetnek — a kedvezményed a megadott árhoz igazodik. Ha egy videó nem importálható, annak megosztása jóváíródik a következő migrációdhoz."
   },
   "calls": {
@@ -8644,5 +8646,36 @@
     "recommendedBody": "Elérhető a DeHub újabb, fontos biztonsági javításokat tartalmazó verziója. Frissítsen, hogy fiókja védve maradjon.",
     "requiredBody": "A DeHub ezen verziója már nem támogatott. Frissítsen, hogy tovább használhassa fiókját.",
     "update": "Frissítés most"
+  },
+  "walletBackup": {
+    "title": "Tárca mentése",
+    "rowDesc": "Lásd a 12 szavadat vagy a privát kulcsot",
+    "backedUpOn": "Mentve {{date}}",
+    "offerTitle": "Mented a tárcádat?",
+    "offerBody": "12 szó, ami visszahozza a tárcádat, ha elveszíted a telefonod vagy a jelszavadat. 30 másodperc.",
+    "offerBodyDeviceOnly": "A tárcád csak ezen a telefonon él. Ezek a szavak nélkül egy elveszett telefon elveszett tárcát jelent.",
+    "saveNow": "Mentés most",
+    "skipForNow": "Kihagyás most",
+    "wordsTitle": "A 12 szavad",
+    "tapToReveal": "Érintés a felfedéshez",
+    "hideWords": "Szavak elrejtése",
+    "copied": "Másolva",
+    "wroteThemDown": "Leírtam őket",
+    "checkTitle": "Gyors ellenőrzés",
+    "checkPrompt": "Érintsd meg a #{{n}} szót",
+    "checkWrong": "Nem ez. Nézd meg újra a #{{n}} szót.",
+    "skipCheck": "Ellenőrzés kihagyása",
+    "signingIn": "Bejelentkezés…",
+    "warnOwns": "Akinek ezek a szavak, annak a tárca.",
+    "warnNeverAsk": "A DeHub soha nem kérdezi ezeket.",
+    "warnPaper": "Írd papírra, ne képernyőképen vagy jegyzetalkalmazásban.",
+    "tabWords": "12 szó",
+    "tabPrivateKey": "Privát kulcs",
+    "advanced": "Haladó",
+    "passwordToShowWords": "Add meg a tárca jelszavát a 12 szó megjelenítéséhez.",
+    "showWords": "Szavak megjelenítése",
+    "reminderBody": "Tárca mentése — 12 szó, ami visszahozza, ha elveszíted a telefonod.",
+    "backUp": "Biztonsági mentés",
+    "notNow": "Most nem"
   }
 }

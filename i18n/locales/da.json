@@ -1789,7 +1789,9 @@
     "exploreWithoutSignInA11y": "Udforsk DeHub uden at logge ind",
     "continueExploringA11y": "Fortsæt med at udforske DeHub",
     "importWalletRecommended": "Sociale logins anbefales.",
-    "importWalletPurpose": "Dette værktøj er til import af eksisterende konti fra DeHub.io."
+    "importWalletPurpose": "Dette værktøj er til import af eksisterende konti fra DeHub.io.",
+    "importSecretPlaceholder": "12 eller 24 ord, eller en privat nøgle",
+    "invalidImportSecret": "Det er ikke en gyldig 12/24-ords sætning eller privat nøgle"
   },
   "messages": {
     "smartRepliesOff": "Foreslåede svar er slået fra",
@@ -8645,5 +8647,36 @@
     "recommendedBody": "En nyere version af DeHub med vigtige sikkerhedsrettelser er klar. Opdater for at holde din konto beskyttet.",
     "requiredBody": "Denne version af DeHub understøttes ikke længere. Opdater for at blive ved med at bruge din konto.",
     "update": "Opdater nu"
+  },
+  "walletBackup": {
+    "title": "Sikkerhedskopier wallet",
+    "rowDesc": "Se dine 12 ord eller privat nøgle",
+    "backedUpOn": "Sikkerhedskopieret {{date}}",
+    "offerTitle": "Sikkerhedskopier din wallet?",
+    "offerBody": "12 ord der bringer din wallet tilbage, hvis du mister din telefon eller adgangskode. Tager 30 sekunder.",
+    "offerBodyDeviceOnly": "Din wallet findes kun på denne telefon. Uden disse ord betyder en mistet telefon en mistet wallet.",
+    "saveNow": "Gem nu",
+    "skipForNow": "Spring over for nu",
+    "wordsTitle": "Dine 12 ord",
+    "tapToReveal": "Tryk for at afsløre",
+    "hideWords": "Skjul ord",
+    "copied": "Kopieret",
+    "wroteThemDown": "Jeg har skrevet dem ned",
+    "checkTitle": "Hurtig kontrol",
+    "checkPrompt": "Tryk på ord #{{n}}",
+    "checkWrong": "Ikke det ord. Se på ord #{{n}} igen.",
+    "skipCheck": "Spring kontrol over",
+    "signingIn": "Logger dig ind…",
+    "warnOwns": "Alle med disse ord ejer din wallet.",
+    "warnNeverAsk": "DeHub vil aldrig bede om dem.",
+    "warnPaper": "Skriv dem på papir, ikke i et screenshot eller notesapp.",
+    "tabWords": "12 ord",
+    "tabPrivateKey": "Privat nøgle",
+    "advanced": "Avanceret",
+    "passwordToShowWords": "Indtast din wallet-adgangskode for at vise dine 12 ord.",
+    "showWords": "Vis ord",
+    "reminderBody": "Sikkerhedskopier din wallet — 12 ord der bringer den tilbage, hvis du mister din telefon.",
+    "backUp": "Sikkerhedskopier",
+    "notNow": "Ikke nu"
   }
 }

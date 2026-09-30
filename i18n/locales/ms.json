@@ -2049,7 +2049,9 @@
     "exploreWithoutSignInA11y": "Terokai DeHub tanpa log masuk",
     "continueExploringA11y": "Teruskan meneroka DeHub",
     "importWalletRecommended": "Log masuk sosial disyorkan.",
-    "importWalletPurpose": "Alat ini adalah untuk mengimport akaun sedia ada daripada DeHub.io."
+    "importWalletPurpose": "Alat ini adalah untuk mengimport akaun sedia ada daripada DeHub.io.",
+    "importSecretPlaceholder": "12 atau 24 perkataan, atau kunci peribadi",
+    "invalidImportSecret": "Itu bukan frasa atau kunci persendirian 12/24 perkataan yang sah"
   },
   "messages": {
     "smartRepliesOff": "Balasan yang dicadangkan dimatikan",
@@ -8896,5 +8898,36 @@
     "recommendedBody": "Versi DeHub yang lebih baharu tersedia dengan pembaikan keselamatan penting. Kemas kini supaya akaun anda kekal dilindungi.",
     "requiredBody": "Versi DeHub ini tidak lagi disokong. Kemas kini untuk terus menggunakan akaun anda.",
     "update": "Kemas kini sekarang"
+  },
+  "walletBackup": {
+    "title": "Sandarkan dompet",
+    "rowDesc": "Lihat 12 perkataan atau kunci peribadi anda",
+    "backedUpOn": "Disandarkan {{date}}",
+    "offerTitle": "Sandarkan dompet anda?",
+    "offerBody": "12 perkataan yang mengembalikan dompet anda jika anda kehilangan telefon atau kata laluan anda. Mengambil masa 30 saat.",
+    "offerBodyDeviceOnly": "Dompet anda hanya ada pada telefon ini. Tanpa kata-kata ini, telefon yang hilang bermakna dompet yang hilang.",
+    "saveNow": "Jimat sekarang",
+    "skipForNow": "Langkau buat masa ini",
+    "wordsTitle": "12 perkataan anda",
+    "tapToReveal": "Ketik untuk mendedahkan",
+    "hideWords": "Sembunyikan perkataan",
+    "copied": "Disalin",
+    "wroteThemDown": "Saya telah menulisnya",
+    "checkTitle": "Pemeriksaan pantas",
+    "checkPrompt": "Ketik perkataan # {{n}}",
+    "checkWrong": "Bukan yang itu. Lihat perkataan #{{n}} sekali lagi.",
+    "skipCheck": "Langkau pemeriksaan",
+    "signingIn": "Mendaftar masuk anda...",
+    "warnOwns": "Sesiapa sahaja dengan perkataan ini memiliki dompet anda.",
+    "warnNeverAsk": "DeHub tidak akan meminta mereka.",
+    "warnPaper": "Tuliskannya di atas kertas, bukan dalam tangkapan skrin atau aplikasi nota.",
+    "tabWords": "12 patah perkataan",
+    "tabPrivateKey": "Kunci peribadi",
+    "advanced": "Lanjutan",
+    "passwordToShowWords": "Masukkan kata laluan dompet anda untuk menunjukkan 12 perkataan anda.",
+    "showWords": "Tunjukkan perkataan",
+    "reminderBody": "Sandarkan dompet anda — 12 perkataan yang membawanya kembali jika anda kehilangan telefon anda.",
+    "backUp": "Sandarkan",
+    "notNow": "Bukan sekarang"
   }
 }

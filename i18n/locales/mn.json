@@ -146,9 +146,9 @@
     "noMoreShorts": "Цааш богино видео байхгүй",
     "noShortsFound": "Богино видео олдсонгүй",
     "newMembersHint": "Сая элслээ — мэндчил",
-    "scroll": "Scroll",
     "noFilterMatches": "Таны шүүлтүүрт тохирох контент алга.",
-    "clearFilters": "Шүүлтүүр цэвэрлэх"
+    "clearFilters": "Шүүлтүүр цэвэрлэх",
+    "scroll": "Гүйлгэх"
   },
   "explore": {
     "all": "Бүгд",
@@ -572,7 +572,6 @@
     "failedUpdateDmPrefs": "DM тохиргоог шинэчилж чадсангүй",
     "editProfile": "Профайл засах",
     "editProfileDesc": "Нэр, хэрэглэгчийн нэр, танилцуулга, аватар, ковер",
-    "socialLinksDesc": "X, Instagram, TikTok, YouTube, Discord, Telegram",
     "yourContent": "Таны контент",
     "yourVideos": "Таны видеонууд",
     "savedPosts": "Хадгалсан нийтлэлүүд",
@@ -1003,7 +1002,6 @@
     "audio": "Аудио",
     "text": "Текст",
     "live": "Шууд",
-    "ppv": "PPV",
     "bounty": "Шагнал",
     "locked": "Хаалттай",
     "any": "Аль ч",
@@ -1332,7 +1330,6 @@
     "crossChainDesc": "BTC, SOL, ETH, USDC болон бусад бүх сүлжээнээс",
     "depositFromAnyChain": "Ямар ч сүлжээнээс хадгаламж хийх",
     "sendCryptoToReceive": "Ямар ч сүлжээнээс крипто илгээ → {{dest}} хүлээн авна",
-    "tokenOnChainTo": "{{symbol}} on {{chain}} → {{dest}}",
     "tokenAmount": "{{symbol}} Хэмжээ",
     "estimatedReceived": "Таамагласан {{symbol}} хүлээн авна",
     "getDepositAddress": "Хадгаламжийн хаягийг авах",
@@ -1612,7 +1609,6 @@
     "category": "Ангилал",
     "contentType": "Агуулгын төрөл",
     "bounty": "Шагнал",
-    "ppv": "PPV",
     "gated": "Хаалттай",
     "datePosted": "Нийтэлсэн огноо",
     "engagement": "Оролцоо",
@@ -1788,7 +1784,9 @@
     "exploreWithoutSignInA11y": "Нэвтрэхгүйгээр DeHub-г үзэх",
     "continueExploringA11y": "Дебетийг үргэлжлүүлэн судлах",
     "importWalletRecommended": "Нийгмийн нэвтрэхийг зөвлөж байна.",
-    "importWalletPurpose": "Энэ хэрэгсэл нь DeHub.io -аас одоо байгаа дансуудыг импортлоход юм."
+    "importWalletPurpose": "Энэ хэрэгсэл нь DeHub.io -аас одоо байгаа дансуудыг импортлоход юм.",
+    "importSecretPlaceholder": "12 эсвэл 24 үг, эсвэл хувийн түлхүүр",
+    "invalidImportSecret": "Энэ нь хүчин төгөлдөр 12/24 үгний хэллэг эсвэл хувийн түлхүүр биш байна"
   },
   "messages": {
     "smartRepliesOff": "Санал болгосон хариултуудыг унтраалаа",
@@ -2383,7 +2381,6 @@
     "telegram": "Телеграм",
     "xTwitter": "X (Твиттер)",
     "instagram": "Инстаграм",
-    "linkedin": "LinkedIn",
     "otherSocials": "Бусад сошиал",
     "otherSocialsPlaceholder": "TikTok, YouTube, Discord гэх мэт.",
     "pastExperience": "Өмнөх туршлага",
@@ -2655,7 +2652,6 @@
     "viewCount_other": "{{count}} үзэлт",
     "shareMessage": "Үүнийг хараарай: {{url}}",
     "hideReplies": "Хариултуудыг нуух",
-    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
     "rowA11yHint": "Энэ сэтгэгдэлд хариулж эхэлнэ",
     "editingComment": "Сэтгэгдэл засаж байна",
     "editPlaceholder": "Сэтгэгдлээ засна уу...",
@@ -3228,12 +3224,10 @@
       "purgeBody": "{{name}}-ын илгээсэн бүх мессеж энэ группээс устгагдана.",
       "kickBody": "{{name}}-ыг группээс хасна. Тэд дараа нь дахин нэгдэх боломжтой.",
       "bannedUntil": "{{date}} хүртэл хориглох",
-      "restrictionWithReason": "{{state}} — {{reason}}",
       "mutedUntil": "{{date}} хүртэл дуугүй болгох",
       "bannedUntilShort": "{{date}} хүртэл",
       "muteTitle": "{{name}}-ыг дуугүй болгох",
       "banTitle": "{{name}}-ыг хориглох",
-      "reasonCounter": "{{len}}/200",
       "rulesCount": "{{used}} -аас {{max}}",
       "moveRuleUp": "Дүрмийг дээшлүүлэх",
       "moveRuleDown": "Дүрмийг доошлуулах",
@@ -3678,7 +3672,6 @@
     "podBadge": "Захиалгаар хэвлэх",
     "podBuyOn": "{{provider}}-с худалдан авах",
     "podNote": "{{provider}} захиалгаар хэвлэж илгээнэ. Төлбөр тэдний сайт дээр хийгдэнэ.",
-    "podUrlPlaceholder": "https://…",
     "subtitle": "DeHub нийгэмлэгийн бүтээгдэхүүнийг олж мэд",
     "browse": "Үзэх",
     "myStore": "Миний дэлгүүр",
@@ -4510,7 +4503,6 @@
     "kindVideo": "Видео",
     "kindAudio": "Аудио",
     "kindImage": "Зураг",
-    "tileSourceKind": "{{source}} · {{kind}}",
     "reviewTitle": "Тусгахаас өмнө тоймлон үзэх",
     "reviewSubtitle": "{{source}}, {{kind}} -с эхлэн. Таалагдсан зүйлээ засах — эхийг нь хадгалахын тулд гарчигийг хоосон орхино уу.",
     "reviewName": "Гарчиг",
@@ -4544,7 +4536,6 @@
     "filterAll": "Бүгд",
     "noData": "Өгөгдөл алга",
     "tips": "Цайны мөнгө",
-    "ppv": "PPV",
     "incomeBreakdown": "Орлогын задаргаа",
     "ppvSales": "PPV борлуулалт",
     "total": "Нийт",
@@ -5997,7 +5988,6 @@
     "progressDone": "{{imported}} импортлогдсон.",
     "videoCountMany": "{{n}} видео",
     "videosCount": "{{videos}} видео",
-    "placeholder": "youtube.com/@you, tiktok.com/@you, vimeo.com/you…",
     "costsNote": "Багц эхлэхээс өмнө DeHub токеноор нэг удаа төлнө. Багц эзэмшигчид бага төлдөг — таны хөнгөлөлт үнийн саналд хамаарна. Хэрэв видео импортлох боломжгүй бол түүний хувь нь дараагийн нүүдлийн төлбөрт шилжинэ."
   },
   "calls": {
@@ -6227,7 +6217,6 @@
   "nearBuy": {
     "otherCurrencies": "Бусад валютууд",
     "search": "Зоос, сүлжээ эсвэл гэрээг хайх",
-    "onChain": "on {{chain}}",
     "refundAddress": "{{chain}} дээр буцаан олгох хаяг",
     "refundPlaceholder": "Төлбөрийн сүлжээ дээрх хаяг",
     "refundHint": "Энэ нь таны хяналтандаа байдаг төлбөрийн сүлжээний түрийвч болохыг шалгана уу. Мемо эсвэл шошго шаарддаг биржийн хаягаас зайлсхий. Аливаа ханган нийлүүлэгчийн буцаан олголт энд буцаж ирнэ.",
@@ -6315,7 +6304,6 @@
   "dex": {
     "lowestPrice": "Хамгийн бага үнэ · USD",
     "lpDhb": "ЛП · ДХБ",
-    "lpUsd": "LP · USD",
     "totalLiquidity": "Нийт хөрвөх чадвар · USD",
     "lowestSell": "Хамгийн бага борлуулалт · USDC",
     "liveChartHint": "Хамгийн бага борлуулалт · USDC · шалгахын тулд чирнэ үү",
@@ -6665,7 +6653,6 @@
       "newDesign": "Шинэ загвар",
       "yourDesigns": "Таны загварууд",
       "noDesigns": "Таны хийсэн загварууд энэ утсанд хадгалагдаж, энд харагдана.",
-      "dimensions": "{{width}} × {{height}}",
       "aspectStory": "Стори",
       "aspectPost": "Нийтлэл",
       "aspectSquare": "Дөрвөлжин",
@@ -6947,7 +6934,6 @@
       "split": "Хуваах",
       "splitHint": "Клипийг хуваахын тулд тоглуулах цэгийг түүн дотор шилжүүлнэ үү.",
       "speed": "Хурд",
-      "speedValue": "{{value}}×",
       "volumeTool": "Дууны түвшин",
       "volume": "Дууны түвшин {{value}}%",
       "fadeIn": "Аажим эхлэх {{value}} сек",
@@ -7010,7 +6996,6 @@
       "recording": "Хөдөлгөөн бичиж байна",
       "lanes": "Түлхүүр кадрууд",
       "scrub": "Өөрчлөхийн тулд зүүн эсвэл баруун тийш чирнэ үү.",
-      "segment": "{{from}} → {{to}}",
       "ease": {
         "linear": "Шугаман",
         "ease": "Зөөлөн",
@@ -7972,8 +7957,7 @@
     "tabStickers": "Наалт",
     "tab": {
       "emoji": "Эможи",
-      "sticker": "Наалт",
-      "gif": "GIF"
+      "sticker": "Наалт"
     },
     "kind": {
       "emoji": "Эможи багц",
@@ -8298,13 +8282,13 @@
     "volume24h": "24цагны эзэлхүүн",
     "website": "Вэбсайт",
     "twitter": "Х/Твиттер",
-    "uploadImage": "ᠵᠢᠷᠤᠭ",
     "vol24h": "24 цагийн эргэлт",
     "ago": "{{age}}-ийн өмнө",
     "boughtMock": "{{symbol}} худалдаж авлаа (туршилт)",
     "byCreator": "{{creator}}-ийн",
     "stepOf": "Алхам {{step}} / 3",
-    "title": "Эхлүүлэх талбар"
+    "title": "Эхлүүлэх талбар",
+    "uploadImage": "Зургийн дүрс оруулна"
   },
   "premium": {
     "bestValue": "Хамгийн сайн үнэ",
@@ -8640,5 +8624,36 @@
     "recommendedBody": "Аюулгүй байдлын чухал засвартай DeHub-ийн шинэ хувилбар гарсан. Бүртгэлээ хамгаалагдсан байлгахын тулд шинэчилнэ үү.",
     "requiredBody": "DeHub-ийн энэ хувилбарыг дэмжихээ больсон. Бүртгэлээ үргэлжлүүлэн ашиглахын тулд шинэчилнэ үү.",
     "update": "Одоо шинэчлэх"
+  },
+  "walletBackup": {
+    "title": "Түрийвчийг нөөцлөх",
+    "rowDesc": "12 үг эсвэл хувийн түлхүүрээ харна уу",
+    "backedUpOn": "Дээшээ {{date}}",
+    "offerTitle": "Түрийвчээ буцаана уу?",
+    "offerBody": "Хэрэв та утас, нууц үгээ мартсан бол таны түрийвчийг буцааж авчирдаг 12 үг. 30 секунд үргэлжилнэ.",
+    "offerBodyDeviceOnly": "Таны түрийвч зөвхөн энэ утсаар амьдардаг. Энэ үг байхгүй бол төөрсөн утас гэдэг нь түрийвчээ алдана гэсэн үг юм.",
+    "saveNow": "Одоо хадгал",
+    "skipForNow": "Өнөөдрийг алгасах",
+    "wordsTitle": "Таны 12 үг",
+    "tapToReveal": "Илчлэхийн тулд дарна уу",
+    "hideWords": "Нууц үг",
+    "copied": "Хуулсан",
+    "wroteThemDown": "Би тэдгээрийг бичиж байна",
+    "checkTitle": "Шуурхай шалгах",
+    "checkPrompt": "Үг # {{n}} товшино уу",
+    "checkWrong": "Биднийгээс харахгүй байхгүй. #{{n}} үгээсээсээ дахин харна уу.",
+    "skipCheck": "Шалгаруулахыг хориглох",
+    "signingIn": "Ингэж нэвтрүүлж байна...",
+    "warnOwns": "Энэ үгүүдтэй байх хүмүүс таны хөрвүүлэгчийн хаягийг эзэмшиж чадна.",
+    "warnNeverAsk": "DeHub бидэнд энэ үгүүдийг ашиглахгүй байна.",
+    "warnPaper": "Бичигдсэн харьяа, сүртгэл, мэдээлэл зэрэгт бичээгүй байх шаардлагатай.",
+    "tabWords": "12 үг",
+    "tabPrivateKey": "Хаягийн нэгтгэгч",
+    "advanced": "Хувьсаан",
+    "passwordToShowWords": "Таны хөрвүүлэгчийн нэрснүүдээсээ 12 үгээ нэвтрүүлж үзэхээр нэрснүүдээсээ бичигдсэн үгээ оруулна уу.",
+    "showWords": "Үгүүдийг харуулна",
+    "reminderBody": "Таны хөрвүүлэгчээ сахиулах: бие даасан үгүүдээсээ хөрвүүлэгчээсээ сэргээхэд хэрэглэх 12 үг.",
+    "backUp": "Сахиулах",
+    "notNow": "Хойд"
   }
 }

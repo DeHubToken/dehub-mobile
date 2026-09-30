@@ -146,9 +146,9 @@
     "noMoreShorts": "ما في فيديوهات قصيرة زيادة",
     "noShortsFound": "ما انوجدت فيديوهات قصيرة",
     "newMembersHint": "انضميت هلأ — سلّم عليهم",
-    "scroll": "Scroll",
     "noFilterMatches": "ما في محتوى بيطابق فلاترك.",
-    "clearFilters": "امسح الفلاتر"
+    "clearFilters": "امسح الفلاتر",
+    "scroll": "اسحب"
   },
   "explore": {
     "all": "الكل",
@@ -1789,7 +1789,9 @@
     "exploreWithoutSignInA11y": "استكشف DeHub بدون تسجيل دخول",
     "continueExploringA11y": "كمل استكشاف DeHub",
     "importWalletRecommended": "تسجيل الدخول عبر الشبكات الاجتماعية موصى به.",
-    "importWalletPurpose": "هذه الأداة لاستيراد الحسابات الموجودة من DeHub.io."
+    "importWalletPurpose": "هذه الأداة لاستيراد الحسابات الموجودة من DeHub.io.",
+    "importSecretPlaceholder": "12 أو 24 كلمة، أو مفتاح خاص",
+    "invalidImportSecret": "ما هو عبارة صحيحة بـ12/24 كلمة أو مفتاح خاص"
   },
   "messages": {
     "smartRepliesOff": "انطفت الردود المقترحة",
@@ -3229,12 +3231,10 @@
       "purgeBody": "كل رسالة بعتها {{name}} بهالمجتمع رح تنحذف.",
       "kickBody": "رح ينشال {{name}} من المجتمع. بيقدر ينضم مرة تانية بعدين.",
       "bannedUntil": "محظور حتى {{date}}",
-      "restrictionWithReason": "{{state}} — {{reason}}",
       "mutedUntil": "مكتوم حتى {{date}}",
       "bannedUntilShort": "حتى {{date}}",
       "muteTitle": "اخرس {{name}}",
       "banTitle": "احظر {{name}}",
-      "reasonCounter": "{{len}}/200",
       "rulesCount": "{{used}} من {{max}}",
       "moveRuleUp": "تحريك القاعدة للأعلى",
       "moveRuleDown": "تحريك القاعدة للأسفل",
@@ -3340,7 +3340,8 @@
         "forMinutes": "لمدة {{value}} دقيقة",
         "forHours": "لمدة {{value}} ساعة",
         "forWeeks": "لمدة {{value}} يوم"
-      }
+      },
+      "createInviteLink": "إنشاء رابط دعوة"
     },
     "chooseAvatar": "اختر صورة رمزية",
     "loadFailed": "ما قدرنا نحمّل المجتمعات",
@@ -3678,7 +3679,6 @@
     "podBadge": "طباعة عند الطلب",
     "podBuyOn": "اشترِ من {{provider}}",
     "podNote": "يُطبع ويُشحن عند الطلب بواسطة {{provider}}. يتم الدفع على موقعهم.",
-    "podUrlPlaceholder": "https://…",
     "subtitle": "اكتشف منتجات من مجتمع DeHub",
     "browse": "تصفح",
     "myStore": "متجري",
@@ -3982,7 +3982,6 @@
     "warm": "دافي",
     "cool": "بارد",
     "vivid": "زاهي",
-    "vhs": "VHS",
     "neon": "نيون",
     "pixelate": "بكسلة"
   },
@@ -4240,7 +4239,6 @@
     "pinMessage": "تثبيت الرسالة",
     "unpinMessage": "إلغاء تثبيت الرسالة",
     "jumpToLatest": "انتقل لآخر الرسائل",
-    "attachGif": "GIF",
     "ban": "حظر",
     "banConfirm": "هل أنت متأكد أنك تريد حظر {{name}}؟",
     "banFailed": "فشل حظر المستخدم"
@@ -4510,7 +4508,6 @@
     "kindVideo": "فيديو",
     "kindAudio": "صوت",
     "kindImage": "صور",
-    "tileSourceKind": "{{source}} · {{kind}}",
     "reviewTitle": "راجع قبل ما تنشر",
     "reviewSubtitle": "من {{source}}، كـ {{kind}}. عدّل أي شي بتحب — اترك العنوان فاضي عشان تحافظ على العنوان الأصلي.",
     "reviewName": "العنوان",
@@ -4544,7 +4541,6 @@
     "filterAll": "الكل",
     "noData": "ما في بيانات",
     "tips": "إكراميات",
-    "ppv": "PPV",
     "incomeBreakdown": "تفصيل الدخل",
     "ppvSales": "مبيعات PPV",
     "total": "المجموع",
@@ -5997,7 +5993,6 @@
     "paste": "لصق",
     "progressDone": "{{imported}} مستورد.",
     "selectAll": "تحديد الكل",
-    "placeholder": "youtube.com/@you, tiktok.com/@you, vimeo.com/you…",
     "costsNote": "تم الدفع بتوكنز DeHub، مرة واحدة، قبل ما تبدأ الدفعة. حاملي الشارات بيدفعوا أقل — خصمك مطبق على السعر. إذا ما تم استيراد فيديو، حصته بترجع لرصيدك للهجرة الجاية."
   },
   "calls": {
@@ -6665,7 +6660,6 @@
       "newDesign": "تصميم جديد",
       "yourDesigns": "تصاميمك",
       "noDesigns": "التصاميم اللي بتعملها بتنحفظ على هالتلفون وبتطلع هون.",
-      "dimensions": "{{width}} × {{height}}",
       "aspectStory": "قصة",
       "aspectPost": "منشور",
       "aspectSquare": "مربع",
@@ -6947,7 +6941,6 @@
       "split": "تقسيم",
       "splitHint": "حرّك مؤشر التشغيل جوّا المقطع لتقسمه.",
       "speed": "السرعة",
-      "speedValue": "{{value}}×",
       "volumeTool": "مستوى الصوت",
       "volume": "مستوى الصوت {{value}}%",
       "fadeIn": "ظهور تدريجي {{value}} ث",
@@ -7010,7 +7003,6 @@
       "recording": "جارٍ تسجيل الحركة",
       "lanes": "الإطارات الرئيسية",
       "scrub": "اسحب يمينًا أو يسارًا للتغيير.",
-      "segment": "{{from}} → {{to}}",
       "ease": {
         "linear": "خطي",
         "ease": "سلس",
@@ -8561,7 +8553,8 @@
       "emptyBody": "البرامج الأولى بتتختبر حاليا. بنشوفها لو بنعملها ممكن تكون هنا.",
       "fromDehub": "من DeHub",
       "noMatch": "لا توجد تطبيقات تناسب هذا البحث.",
-      "removed": "مُحذوف. ما بيشوفكش تاني."
+      "removed": "مُحذوف. ما بيشوفكش تاني.",
+      "title": "تطبيقات"
     },
     "category": {
       "games": "العاب",
@@ -8624,5 +8617,30 @@
     "recommendedBody": "في نسخة أحدث من DeHub فيها إصلاحات أمان مهمة. حدّث لحتى يضل حسابك محمي.",
     "requiredBody": "هالنسخة من DeHub ما عادت مدعومة. حدّث لحتى تكمّل تستعمل حسابك.",
     "update": "حدّث هلق"
+  },
+  "walletBackup": {
+    "title": "نسخ احتياطي للمحفظة",
+    "rowDesc": "شوف كلماتك الـ12 أو المفتاح الخاص",
+    "backedUpOn": "نسخ احتياطي لـ{{date}}",
+    "offerTitle": "هل تريد نسخ احتياطي لمحفظتك؟",
+    "offerBody": "12 كلمة تُعيد محفظتك إذا فقدت هاتفك أو كلمة المرور. ياخذ 30 ثانية.",
+    "offerBodyDeviceOnly": "محفظتك عايشة بس على هالهواتف. بدون هالكلمات، فقدان الهاتف يعني فقدان المحفظة.",
+    "saveNow": "احفظ الآن",
+    "skipForNow": "تخطى الآن",
+    "wordsTitle": "كلماتك الـ12",
+    "tapToReveal": "اضغط لتكشف",
+    "hideWords": "أخف الكلمات",
+    "copied": "تم النسخ",
+    "wroteThemDown": "كتبتها",
+    "checkTitle": "فحص سريع",
+    "checkPrompt": "اضغط كلمة #{{n}}",
+    "checkWrong": "ما هي هيدي. شوف كلمة #{{n}} مرة تانية.",
+    "skipCheck": "تخطى الفحص",
+    "signingIn": "بتسجلك…",
+    "warnOwns": "أي شخص عنده هالكلمات يملك محفظتك.",
+    "tabWords": "12 كلمة",
+    "tabPrivateKey": "مفتاح خاص",
+    "reminderBody": "خزن كودك - 12 كلمة بتخليك تعيدها لو فقدت هاتفك",
+    "notNow": "شوف بعدين"
   }
 }

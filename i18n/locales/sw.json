@@ -1790,7 +1790,9 @@
     "exploreWithoutSignInA11y": "Chunguza DeHub bila kuingia",
     "continueExploringA11y": "Endelea kuchunguza DeHub",
     "importWalletRecommended": "Kuingia kwenye mitandao ya kijamii kunapendekezwa.",
-    "importWalletPurpose": "Nyenzo hii ni ya kuagiza akaunti zilizopo kutoka DeHub.io."
+    "importWalletPurpose": "Nyenzo hii ni ya kuagiza akaunti zilizopo kutoka DeHub.io.",
+    "importSecretPlaceholder": "Maneno 12 au 24, au ufunguo wa faragha",
+    "invalidImportSecret": "Huo sio usemi halali wa maneno 12/24 au ufunguo wa faragha"
   },
   "messages": {
     "smartRepliesOff": "Majibu yanayopendekezwa yamezimwa",
@@ -8642,5 +8644,36 @@
     "recommendedBody": "Toleo jipya la DeHub lenye marekebisho muhimu ya usalama linapatikana. Sasisha ili akaunti yako ibaki salama.",
     "requiredBody": "Toleo hili la DeHub halitumiki tena. Sasisha ili uendelee kutumia akaunti yako.",
     "update": "Sasisha sasa"
+  },
+  "walletBackup": {
+    "title": "Rejesha pochi",
+    "rowDesc": "Angalia maneno yako 12 au ufunguo wa faragha",
+    "backedUpOn": "Imehifadhiwa {{date}}",
+    "offerTitle": "Ungependa kurejesha pochi yako?",
+    "offerBody": "Maneno 12 ambayo yanarudisha pochi yako ikiwa utapoteza simu yako au nenosiri. Inachukua sekunde 30.",
+    "offerBodyDeviceOnly": "Mkoba wako unaishi tu kwenye simu hii. Bila maneno haya, simu iliyopotea inamaanisha pochi iliyopotea.",
+    "saveNow": "Hifadhi sasa",
+    "skipForNow": "Ruka kwa sasa",
+    "wordsTitle": "Maneno yako 12",
+    "tapToReveal": "Bofya ili ufunue",
+    "hideWords": "Ficha maneno",
+    "copied": "Imenakiliwa",
+    "wroteThemDown": "Nimeziandika",
+    "checkTitle": "Ukaguzi wa haraka",
+    "checkPrompt": "Bofya neno # {{n}}",
+    "checkWrong": "Sio hiyo. Angalia neno #{{n}} tena.",
+    "skipCheck": "Ruka ukaguzi",
+    "signingIn": "Inakuandikisha...",
+    "warnOwns": "Mtu yeyote aliye na maneno haya anamiliki pochi yako.",
+    "warnNeverAsk": "DeHub kamwe hatawaomba.",
+    "warnPaper": "Ziandike kwenye karatasi, si kwenye picha ya skrini au programu ya madokezo.",
+    "tabWords": "Maneno 12",
+    "tabPrivateKey": "Ufunguo wa kujitegemea",
+    "advanced": "Ngazi YA juu",
+    "passwordToShowWords": "Weka nenosiri lako la mkoba ili kuonyesha maneno yako 12.",
+    "showWords": "Onyesha maneno",
+    "reminderBody": "Rejesha pochi yako — maneno 12 yanayoirudisha ikiwa utapoteza simu yako.",
+    "backUp": "Rudisha nyuma",
+    "notNow": "Si sasa"
   }
 }

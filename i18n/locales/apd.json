@@ -146,9 +146,9 @@
     "noMoreShorts": "ما في فيديوهات قصيرة تاني",
     "noShortsFound": "ما لقينا فيديوهات قصيرة",
     "newMembersHint": "لسا انضميت — قول مرحب",
-    "scroll": "Scroll",
     "noFilterMatches": "مافي محتوى بطابق فلاترك.",
-    "clearFilters": "امسح الفلاتر"
+    "clearFilters": "امسح الفلاتر",
+    "scroll": "سكرول"
   },
   "explore": {
     "all": "الكل",
@@ -1789,7 +1789,9 @@
     "exploreWithoutSignInA11y": "استكشف ديهب بدون تسجيل دخول",
     "continueExploringA11y": "واصل استكشاف DeHub",
     "importWalletRecommended": "تسجيل الدخول عبر السوشيال ميديا موصى به.",
-    "importWalletPurpose": "الأداة دي عشان تستورد الحسابات القديمة من DeHub.io."
+    "importWalletPurpose": "الأداة دي عشان تستورد الحسابات القديمة من DeHub.io.",
+    "importSecretPlaceholder": "12 أو 24 كلمة، أو مفتاح خاص",
+    "invalidImportSecret": "ما ده مش عبارة صحيحة من 12/24 كلمة أو مفتاح خاص"
   },
   "messages": {
     "smartRepliesOff": "اتقفلت الردود المقترحة",
@@ -2382,7 +2384,6 @@
     "fullName": "الاسم الكامل",
     "email": "الإيميل",
     "telegram": "تيليجرام",
-    "xTwitter": "X (Twitter)",
     "instagram": "إنسكرام",
     "linkedin": "لينكد إن",
     "otherSocials": "سوشيال تانية",
@@ -2396,7 +2397,8 @@
     "nameEmailRequired": "الاسم والإيميل مطلوبين",
     "applicationSuccess": "الطلب اتقدّم بنجاح! حنتواصل معاك.",
     "applicationFailed": "ما قدرنا نقدّم. حاول تاني.",
-    "namePlaceholder": "جين سميث"
+    "namePlaceholder": "جين سميث",
+    "xTwitter": "X (تويتر)"
   },
   "raffle": {
     "title": "سحوبات الجوائز",
@@ -3229,12 +3231,10 @@
       "purgeBody": "كل رسالة {{name}} أرسلها في المجتمع ده حتتمسح.",
       "kickBody": "{{name}} حتتمسح من المجتمع. ممكن يرجع تاني بعدين.",
       "bannedUntil": "محظور لحد {{date}}",
-      "restrictionWithReason": "{{state}} — {{reason}}",
       "mutedUntil": "مكتوم لحد {{date}}",
       "bannedUntilShort": "لحد {{date}}",
       "muteTitle": "اكتم {{name}}",
       "banTitle": "احظر {{name}}",
-      "reasonCounter": "{{len}}/200",
       "rulesCount": "{{used}} من {{max}}",
       "moveRuleUp": "تحريك القاعدة لفوق",
       "moveRuleDown": "تحريك القاعدة لتحت",
@@ -3679,7 +3679,6 @@
     "podBadge": "طباعة عند الطلب",
     "podBuyOn": "اشترِ من {{provider}}",
     "podNote": "يُطبع ويُشحن عند الطلب بواسطة {{provider}}. يتم الدفع على موقعهم.",
-    "podUrlPlaceholder": "https://…",
     "subtitle": "اكتشف منتجات من مجتمع DeHub",
     "browse": "تصفح",
     "myStore": "متجري",
@@ -4511,7 +4510,6 @@
     "kindVideo": "فيديو",
     "kindAudio": "صوت",
     "kindImage": "صور",
-    "tileSourceKind": "{{source}} · {{kind}}",
     "reviewTitle": "شوف قبل ما تنشر",
     "reviewSubtitle": "من {{source}}، بتاع {{kind}}. عدّل أي حاجة تحتاج — اترك العنوان فاضي عشان تحافظ على العنوان الأصلي.",
     "reviewName": "العنوان",
@@ -5998,7 +5996,6 @@
     "viewFeed": "شوف فيدك",
     "yourChannel": "قناتك",
     "yourChannelHint": "الصق عنوان قناتك — الهاندل وحدو يشتغل كمان.",
-    "placeholder": "youtube.com/@you, tiktok.com/@you, vimeo.com/you…",
     "costsNote": "تم الدفع بتوكنز DeHub، مرة واحدة، قبل ما الدفعة تبدأ. حاملي الشارات بيدفعوا أقل — الخصم بتاعك اتطبق على السعر. لو فيديو ما قدرناش نستورده، حصته بترجعلك تاني في الهجرة الجاية."
   },
   "calls": {
@@ -6666,7 +6663,6 @@
       "newDesign": "تصميم جديد",
       "yourDesigns": "تصاميمك",
       "noDesigns": "التصاميم البتعملها بتتحفظ في التلفون ده وبتظهر هنا.",
-      "dimensions": "{{width}} × {{height}}",
       "aspectStory": "قصة",
       "aspectPost": "منشور",
       "aspectSquare": "مربع",
@@ -6948,7 +6944,6 @@
       "split": "تقسيم",
       "splitHint": "حرّك مؤشر التشغيل جوّه المقطع عشان تقسمه.",
       "speed": "السرعة",
-      "speedValue": "{{value}}×",
       "volumeTool": "مستوى الصوت",
       "volume": "مستوى الصوت {{value}}%",
       "fadeIn": "ظهور تدريجي {{value}} ث",
@@ -7011,7 +7006,6 @@
       "recording": "جارٍ تسجيل الحركة",
       "lanes": "الإطارات الرئيسية",
       "scrub": "اسحب يمينًا أو يسارًا للتغيير.",
-      "segment": "{{from}} → {{to}}",
       "ease": {
         "linear": "خطي",
         "ease": "سلس",
@@ -8626,5 +8620,33 @@
     "recommendedBody": "في نسخة أحدث من DeHub فيها إصلاحات أمان مهمة. حدّث عشان حسابك يفضل محمي.",
     "requiredBody": "النسخة دي من DeHub ما بقت مدعومة. حدّث عشان تواصل تستخدم حسابك.",
     "update": "حدّث هسي"
+  },
+  "walletBackup": {
+    "title": "حفظ المحفظة",
+    "rowDesc": "شوف 12 كلمة أو مفتاحك الخاص",
+    "backedUpOn": "حفظت {{date}}",
+    "offerTitle": "تريد تحفظ محفظتك؟",
+    "offerBody": "12 كلمة بتخليك تعيد محفظتك لو فقدت هاتفك أو كلمة السر. اتاخد 30 ثانية.",
+    "offerBodyDeviceOnly": "محفظتك بتتواجد فقط على هاتفك ده. لو ما عندك هذه الكلمات، هاتف مفقود = محفظة مفقودة.",
+    "saveNow": "حفظ الآن",
+    "skipForNow": "تخليها الآن",
+    "wordsTitle": "كلماتك 12",
+    "tapToReveal": "ضغط لظهورها",
+    "hideWords": "اخفِ الكلمات",
+    "copied": "نسخت",
+    "wroteThemDown": "كتبتها على الورق",
+    "checkTitle": "فحص سريع",
+    "checkPrompt": "ضغط على كلمة رقم {{n}}",
+    "checkWrong": "ما ده ده. شوف كلمة رقم {{n}} تاني",
+    "skipCheck": "تخلي الفحص",
+    "signingIn": "تسجيل دخولك…",
+    "warnOwns": "كل من عندهم هذه الكلمات بيملك محفظتك.",
+    "warnNeverAsk": "ديهوب ما بيطلبش منهاش.",
+    "warnPaper": "اكتبها على الورق، ما تكتبش على صورة أو تطبيق ملاحظات.",
+    "tabWords": "12 كلمة",
+    "tabPrivateKey": "الكلاس الخاص",
+    "advanced": "متقدم",
+    "showWords": "أظهر الكلمات",
+    "reminderBody": "يخزنوا كيسكوا - 12 كلمة تيجي تاخدها لو تفتري هاتفك"
   }
 }

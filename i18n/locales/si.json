@@ -146,9 +146,9 @@
     "noMoreShorts": "තවත් කෙටි වීඩියෝ නැත",
     "noShortsFound": "කෙටි වීඩියෝ හමු නොවීය",
     "newMembersHint": "දැන්ම එක් විය — සුබ පැතුම්",
-    "scroll": "Scroll",
     "noFilterMatches": "ඔබේ පෙරහන් සමඟ ගැලපෙන අන්තර්ගතයක් නැත.",
-    "clearFilters": "පෙරහන් ඉවත් කරන්න"
+    "clearFilters": "පෙරහන් ඉවත් කරන්න",
+    "scroll": "අනුචලනය කරන්න"
   },
   "explore": {
     "all": "සියල්ල",
@@ -572,7 +572,6 @@
     "failedUpdateDmPrefs": "DM මනාප යාවත්කාලීන කිරීමට අසමත් විය",
     "editProfile": "පැතිකඩ සංස්කරණය",
     "editProfileDesc": "නම, පරිශීලක නම, කෙටි විස්තරය, අවතාරය සහ කවරය",
-    "socialLinksDesc": "X, Instagram, TikTok, YouTube, Discord, Telegram",
     "yourContent": "ඔබේ අන්තර්ගතය",
     "yourVideos": "ඔබේ වීඩියෝ",
     "savedPosts": "සුරකින ලද පළ කිරීම්",
@@ -1003,7 +1002,6 @@
     "audio": "ශ් ‍ රව් ‍ ය",
     "text": "පෙළ",
     "live": "සජීවී",
-    "ppv": "PPV",
     "bounty": "- තෑගි?",
     "locked": "දොරටු",
     "any": "ඕනෑම",
@@ -1332,7 +1330,6 @@
     "crossChainDesc": "BTC, SOL, ETH, USDC & ඕනෑම දාමයකින් තවත්",
     "depositFromAnyChain": "ඕනෑම දාමයකින් තැන්පත් කරන්න",
     "sendCryptoToReceive": "ඕනෑම දාමයකින් ක්‍රිප්ටෝ යවන්න → {{dest}} ලබා ගන්න",
-    "tokenOnChainTo": "{{symbol}} on {{chain}} → {{dest}}",
     "tokenAmount": "{{symbol}} ප්‍රමාණය",
     "estimatedReceived": "තැන්පත් කර ඇති {{symbol}} ඇස්තමේන්තුගතයි",
     "getDepositAddress": "තැන්පත් කිරීමේ ලිපිනය ලබා ගන්න",
@@ -1625,7 +1622,6 @@
     "category": "වර්ගය",
     "contentType": "අන්තර්ගත වර්ගය",
     "bounty": "තෑග්ග",
-    "ppv": "PPV",
     "gated": "අගුළු දමා ඇත",
     "datePosted": "පළ කළ දිනය",
     "engagement": "සම්බන්ධතාවය",
@@ -1801,7 +1797,9 @@
     "exploreWithoutSignInA11y": "පිවිසුමක් නොමැතිව DeHub ගවේෂණය කරන්න",
     "continueExploringA11y": "DeHub ගවේෂණය කිරීම දිගටම කරගෙන යන්න",
     "importWalletRecommended": "DeHub.io වෙතින් පවතින ගිණුම් ආනයනය කිරීමට මෙම මෙවලම භාවිතා කරයි.",
-    "importWalletPurpose": "සමාජ පිවිසුම් නිර්දේශ කෙරේ."
+    "importWalletPurpose": "සමාජ පිවිසුම් නිර්දේශ කෙරේ.",
+    "importSecretPlaceholder": "12 හෝ 24 වචන, හෝ පෞද්ගලික යතුරක්",
+    "invalidImportSecret": "එය වලංගු 12/24 වාක් ය ඛණ්ඩයක් හෝ පුද්ගලික යතුරක් නොවේ"
   },
   "messages": {
     "smartRepliesOff": "යෝජිත පිළිතුරු අක්‍රිය කෙරිණි",
@@ -2117,7 +2115,6 @@
     "impressions": "දර්ශන",
     "clicks": "ක්ලික්",
     "spend": "වියදම",
-    "ecpm": "eCPM",
     "campaigns": "ව්‍යාපාර",
     "noCampaigns": "තවම ව්‍යාපාර නැත",
     "createCampaign": "ව්‍යාපාරයක් සාදන්න",
@@ -2295,7 +2292,6 @@
     "newFlowOnCanvas": "කැන්වසය මත නව ප්‍රවාහයක්",
     "noFlows": "ඔබගේ ගිණුමේ තවමත් ප්‍රවාහයන් නොමැත.",
     "node": "නෝඩ්",
-    "nodeCount_one": "{{count}} node",
     "nodeCount_other": "නෝඩ් {{count}}",
     "nowPrivate": "ප්‍රවාහය දැන් පුද්ගලිකයි",
     "nowPublic": "ප්‍රවාහය දැන් පොදුයි",
@@ -2395,8 +2391,6 @@
     "email": "විද්‍යුත් තැපෑල",
     "telegram": "ටෙලිග් ‍ රෑම්",
     "xTwitter": "X (ට්විටර්)",
-    "instagram": "Instagram",
-    "linkedin": "LinkedIn",
     "otherSocials": "වෙනත් සමාජ ජාල",
     "otherSocialsPlaceholder": "TikTok, YouTube, Discord, ආදිය.",
     "pastExperience": "පෙර අත්දැකීම්",
@@ -2668,7 +2662,6 @@
     "viewCount_other": "නැරඹුම් {{count}}",
     "shareMessage": "මෙය බලන්න: {{url}}",
     "hideReplies": "පිළිතුරු සඟවන්න",
-    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
     "rowA11yHint": "මෙම අදහසට පිළිතුරක් ආරම්භ කරයි",
     "editingComment": "අදහස සංස්කරණය කරමින්",
     "editPlaceholder": "ඔබේ අදහස සංස්කරණය කරන්න...",
@@ -3241,12 +3234,10 @@
       "purgeBody": "{{name}} විසින් මෙම ප්‍රජාවට යවා ඇති සෑම පණිවිඩයක්ම ඉවත් කරනු ලැබේ.",
       "kickBody": "{{name}} ප්‍රජාවෙන් ඉවත් කරනු ලැබේ. ඔවුන්ට පසුව නැවත සම්බන්ධ විය හැකිය.",
       "bannedUntil": "{{date}} දක්වා තහනම්",
-      "restrictionWithReason": "{{state}} — {{reason}}",
       "mutedUntil": "{{date}} දක්වා නිහඬ කරන්න",
       "bannedUntilShort": "{{date}} දක්වා",
       "muteTitle": "{{name}} නිහඬ කරන්න",
       "banTitle": "{{name}} තහනම් කරන්න",
-      "reasonCounter": "{{len}}/200",
       "rulesCount": "{{max}} න් {{used}}",
       "moveRuleUp": "නීතිය ඉහළට ගෙන යන්න",
       "moveRuleDown": "නීතිය පහළට ගෙන යන්න",
@@ -3691,7 +3682,6 @@
     "podBadge": "ඉල්ලුම මත මුද්‍රණය",
     "podBuyOn": "{{provider}} හි මිලදී ගන්න",
     "podNote": "{{provider}} විසින් ඉල්ලුම මත මුද්‍රණය කර යවයි. ගෙවීම ඔවුන්ගේ අඩවියේ සිදු වේ.",
-    "podUrlPlaceholder": "https://…",
     "subtitle": "DeHub ප්‍රජාවේ නිෂ්පාදන සොයා ගන්න",
     "browse": "පිරික්සන්න",
     "myStore": "මගේ වෙළඳසැල",
@@ -3995,7 +3985,6 @@
     "warm": "උණුසුම්",
     "cool": "සිසිල්",
     "vivid": "දීප්ත",
-    "vhs": "VHS",
     "neon": "නියෝන්",
     "pixelate": "පික්සල්"
   },
@@ -4252,7 +4241,6 @@
     "unpinMessage": "පණිවිඩය Unpin කරන්න",
     "anon": "අඥාත",
     "jumpToLatest": "නවතම පණිවිඩ වෙත යන්න",
-    "attachGif": "GIF",
     "modBadge": "මොඩ්",
     "ban": "තහනම් කරන්න",
     "banFailed": "පරිශීලකයා තහනම් කිරීමට අසමත් විය",
@@ -4557,7 +4545,6 @@
     "filterAll": "සියල්ල",
     "noData": "දත්ත නැත",
     "tips": "ටිප්ස්",
-    "ppv": "PPV",
     "incomeBreakdown": "ආදායම් බෙදීම",
     "ppvSales": "PPV විකුණුම්",
     "total": "එකතුව",
@@ -6239,7 +6226,6 @@
   "nearBuy": {
     "otherCurrencies": "වෙනත් මුදල්",
     "search": "ටෝකනය, ජාලය හෝ කොන්ත්‍රාත්තුව සොයන්න",
-    "onChain": "on {{chain}}",
     "refundAddress": "{{chain}} හි ආපසු ගෙවීමේ ලිපිනය",
     "refundPlaceholder": "ගෙවීම් ජාලයේ ලිපිනය",
     "refundHint": "ගෙවීම් ජාලයේ ඔබ පාලනය කරන පසුම්බියක් බවට වග බලා ගන්න. සිහි කැඳවීමක් හෝ ටැගයක් අවශ්‍ය වන හුවමාරු ලිපිනයන් මඟ හරින්න. ඕනෑම සපයන්නෙකුගේ ආපසු ගෙවීම මෙහි පැමිණේ.",
@@ -6322,7 +6308,8 @@
     "phase_gasPending": "ටෝකන භාර දුන්නා · ගෑස් බලාපොරොත්තුවෙන්",
     "detail_gasPending": "ඔබේ ටෝකන මාරු කිරීම තහවුරු කර ඇත. වෙනම ETH ගෑස් මාරු කිරීම තවමත් බලාපොරොත්තුවෙන් හෝ නැවත උත්සාහ කරයි.",
     "detail_delivered": "ඔබේ DeHub ටෝකන ඔබේ Base පසුම්බියට භාර දී ඇත.",
-    "directTiming": "ඔබේ ගෙවීම තහවුරු වූ පසු ටෝකන භාර දෙනු ලැබේ."
+    "directTiming": "ඔබේ ගෙවීම තහවුරු වූ පසු ටෝකන භාර දෙනු ලැබේ.",
+    "onChain": "{{chain}} හි"
   },
   "dex": {
     "lowestPrice": "අඩුම මිල · USD",
@@ -6704,7 +6691,6 @@
       "newDesign": "නව නිර්මාණය",
       "yourDesigns": "ඔබේ නිර්මාණ",
       "noDesigns": "ඔබ සාදන නිර්මාණ මෙම දුරකථනයේ සුරැකෙන අතර මෙහි පෙන්වයි.",
-      "dimensions": "{{width}} × {{height}}",
       "aspectStory": "ස්ටෝරි",
       "aspectPost": "පළ කිරීම",
       "aspectSquare": "සමචතුරස්‍රය",
@@ -6986,7 +6972,6 @@
       "split": "බෙදන්න",
       "splitHint": "ක්ලිපය බෙදීමට ප්ලේහෙඩ් එක ක්ලිපය ඇතුළට ගෙන යන්න.",
       "speed": "වේගය",
-      "speedValue": "{{value}}×",
       "volumeTool": "ශබ්ද මට්ටම",
       "volume": "ශබ්ද මට්ටම {{value}}%",
       "fadeIn": "ක්‍රමයෙන් ඇතුළු වීම තත්පර {{value}}",
@@ -7049,7 +7034,6 @@
       "recording": "චලනය පටිගත වෙමින්",
       "lanes": "කීෆ්‍රේම්",
       "scrub": "වෙනස් කිරීමට වමට හෝ දකුණට අදින්න.",
-      "segment": "{{from}} → {{to}}",
       "ease": {
         "linear": "රේඛීය",
         "ease": "සුමට",
@@ -8011,8 +7995,7 @@
     "tabStickers": "ස්ටිකර්",
     "tab": {
       "emoji": "ඉමෝජි",
-      "sticker": "ස්ටිකර්",
-      "gif": "GIF"
+      "sticker": "ස්ටිකර්"
     },
     "kind": {
       "emoji": "ඉමෝජි පැක්",
@@ -8037,8 +8020,7 @@
       "tier": "ශ්‍රේණිය",
       "packs": "පැක්ස්",
       "emoji": "ඉමෝජි",
-      "stickers": "ස්ටිකර්",
-      "gifs": "GIF"
+      "stickers": "ස්ටිකර්"
     },
     "signInToCreate": "පැක්ස් සෑදීමට පිවිසෙන්න",
     "signInToAdd": "එකතු කිරීමට පිවිසෙන්න",
@@ -8155,7 +8137,6 @@
     "step3Body": "ඕන කෙනෙකුට ලින්ක් එක දාන්න පුළුවන්. ඕනෑම දෙයක් වෙනස් කිරීමට චැට් තුළ පිළිතුරු දෙන්න."
   },
   "depin": {
-    "title": "DePin",
     "becomeANode": "නෝඩයක් බවට පත් වන්න",
     "ctaBody": "ප්‍රභව ફોલબેક, සංකේතනය කළ ආරක්ෂිත මාධ්‍ය සහ සත්‍යාපිත කාර්යය මහජන නෝඩ් ත්‍යාගවලට පෙර පැමිණේ.",
     "ctaTitle": "අසාර්ථක වීම ආරක්ෂිත වූ විට පමණක් දියත් කරන්න.",
@@ -8339,8 +8320,6 @@
     "uploadFailed": "උඩුගත කිරීම අසාර්ථක විය",
     "uploadImage": "රූපය උඩුගත කරන්න",
     "website": "වෙබ් අඩවිය",
-    "twitter": "X / Twitter",
-    "feeStakers": "City in Ontario Canada",
     "fieldTicker": "ටිකර්",
     "graduatesAtValue": "$42,000 වෙළෙඳපොළ ප්‍රාග්ධනීකරණය",
     "title": "ලෝන්ච්පෑඩ්"
@@ -8636,7 +8615,10 @@
       "confirm": "යෙදුම එක් කරන්න"
     },
     "pay": {
-      "body": "DHB කෙලින්ම යෙදුමේ පසුම්බිය වෙත යයි, {{wallet}}. ගෙවීම් ආපසු හැරවිය නොහැක."
+      "body": "DHB කෙලින්ම යෙදුමේ පසුම්බිය වෙත යයි, {{wallet}}. ගෙවීම් ආපසු හැරවිය නොහැක.",
+      "title": "{{name}} ගෙවන්න?",
+      "confirm": "{{amount}} DHB ගෙවන්න",
+      "sent": "{{amount}} DHB ගෙවා ඇත {{name}} වෙත."
     }
   },
   "aiStyles": {
@@ -8675,5 +8657,36 @@
     "recommendedBody": "වැදගත් ආරක්ෂක නිවැරදි කිරීම් සහිත DeHub හි නව අනුවාදයක් ඇත. ඔබේ ගිණුම ආරක්ෂිතව තබා ගැනීමට යාවත්කාලීන කරන්න.",
     "requiredBody": "DeHub හි මෙම අනුවාදයට තවදුරටත් සහය නොදක්වයි. ඔබේ ගිණුම දිගටම භාවිත කිරීමට යාවත්කාලීන කරන්න.",
     "update": "දැන් යාවත්කාලීන කරන්න"
+  },
+  "walletBackup": {
+    "title": "පසුම්බිය උපස්ථ කරන්න",
+    "rowDesc": "ඔබේ 12 වචන හෝ පුද්ගලික යතුර බලන්න",
+    "backedUpOn": "උපස්ථ {{date}}",
+    "offerTitle": "පසුම්බිය උස්සන්නද?",
+    "offerBody": "ඔබේ දුරකථනය හෝ මුරපදය නැති වුවහොත් ඔබේ මුදල් පසුම්බිය නැවත ගෙන එන වචන 12 ක් තප්පර 30ක් ගතවෙනවා.",
+    "offerBodyDeviceOnly": "ඔබේ මුදල් පසුම්බිය ජීවත් වන්නේ මෙම දුරකථනයෙන් පමණි. නැතිවූ දුරකථනයක් යනු නැතිවූ මුදල් පසුම්බියකි.",
+    "saveNow": "දැන්ම ඉතිරි කරන්න",
+    "skipForNow": "දැනට මඟ හරින්න",
+    "wordsTitle": "ඔබේ වචන 12",
+    "tapToReveal": "හෙළි කිරීමට ටැප් කරන්න",
+    "hideWords": "වචන සඟවන්න",
+    "copied": "පිටපත් කර ඇත",
+    "wroteThemDown": "මම ඒවා ලියා ඇත",
+    "checkTitle": "ඉක්මන් පරීක්ෂාව",
+    "checkPrompt": "වචනය තට්ටු කරන්න #{{n}}",
+    "checkWrong": "එය නොවේ. වචනය #{{n}} නැවත බලන්න.",
+    "skipCheck": "පරීක්ෂාව මඟහරින්න",
+    "signingIn": "ඔබට ලොග් වෙමින්…",
+    "warnOwns": "මෙම වචන ඇති ඕනෑම පුද්ගලයෙකු ඔබේ පසුම්බිය අයිති කරගනී.",
+    "warnNeverAsk": "DeHub කිසිවිටෙකත් ඒවා ඉල්ලා නොගනී.",
+    "warnPaper": "වචන කාඩ්පතේ ලියන්න, තිර රූපයක් හෝ සටහන් යෙදුමක නොව.",
+    "tabWords": "12 වචන",
+    "tabPrivateKey": "පුද්ගලික යතුර",
+    "advanced": "උත්සාහී",
+    "passwordToShowWords": "ඔබේ පසුම්බි මුරපදය ඇතුළත් කර 12 වචන පෙන්වන්න.",
+    "showWords": "වචන පෙන්වන්න",
+    "reminderBody": "ඔබේ පසුම්බිය පිටපත් කර ගන්න — ඔබේ දුරකථනය අහිමි වූ විට එය ආපසු ගෙන එන 12 වචන.",
+    "backUp": "පිටපත් කර ගන්න",
+    "notNow": "දැන් නොවේ"
   }
 }

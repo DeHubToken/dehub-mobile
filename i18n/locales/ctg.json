@@ -146,7 +146,6 @@
     "noMoreShorts": "আর কোনো শর্টস নেই",
     "noShortsFound": "কোনো শর্টস পাওয়া যায়নি",
     "newMembersHint": "এইমাত্র যোগদান করেছেন — শুভেচ্ছা জানান",
-    "scroll": "Scroll",
     "noFilterMatches": "অনর ফিল্টারর লগে কুনো বিষয়বস্তু ন মিলে।",
     "clearFilters": "ফিল্টার মুছন"
   },
@@ -169,7 +168,6 @@
   },
   "settings": {
     "showOnline": "আমার অনলাইন থাকলে দেখাও",
-    "showOnlineDesc": "People you message see a green dot next to your name while you're using DeHub",
     "smartReplies": "পরামর্শ দেওয়া জবাব",
     "smartRepliesDesc": "চ্যাটত টিপ মারিবার লাই দুইটা জবাব বানায়। পরামর্শর উপরর × ইতা বন্ধ গরি দেয়।",
     "signIn": "সাইন-ইন",
@@ -1859,7 +1857,9 @@
     "continueExploringA11y": "DeHub-র আরো অন্বেষণ করুন",
     "importWalletRecommended": "সামাজিক লগইন করার পরামর্শ দেওয়া হয় ।",
     "importWalletPurpose": "এই টুলটি DeHub.io থেকে বিদ্যমান অ্যাকাউন্টগুলি আমদানি করার জন্য ।",
-    "couldNotSendCodeRetry": "কোড পাঠানো যায়নি । অনুগ্রহ করে আবার চেষ্টা করুন ।"
+    "couldNotSendCodeRetry": "কোড পাঠানো যায়নি । অনুগ্রহ করে আবার চেষ্টা করুন ।",
+    "importSecretPlaceholder": "১২ বা ২৪ শব্দ, বা একটি প্রাইভেট কী",
+    "invalidImportSecret": "এটা বৈধ 12/24-শব্দের বাক্য বা প্রাইভেট কী নয়"
   },
   "messages": {
     "smartRepliesOff": "পরামর্শ দেওয়া জবাব বন্ধ গরা অইছে",
@@ -2477,7 +2477,6 @@
     "fullName": "পুরো নাম",
     "email": "ইমেইল",
     "telegram": "টেলিগ্রাম",
-    "xTwitter": "X (Twitter)",
     "instagram": "ইন্সটাগ্রাম",
     "linkedin": "লিঙ্কডইন",
     "otherSocials": "অন্যান্য সোশ্যাল মিডিয়া",
@@ -2764,7 +2763,6 @@
     "viewCount_other": "{{count}} বার দেখছে",
     "shareMessage": "ইয়ান দেখো: {{url}}",
     "hideReplies": "জবাব লুকাও",
-    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
     "rowA11yHint": "এই কমেন্টর জবাব দেওন শুরু গরে",
     "editingComment": "কমেন্ট সম্পাদনা",
     "editPlaceholder": "তোঁয়ার কমেন্ট সম্পাদনা গর...",
@@ -3093,7 +3091,6 @@
     "noRecentUnstakeEvents": "কোন উইথড্র পেন্ডিং নাই",
     "wallet": "ওয়ালেট",
     "amount": "পরিমাণ",
-    "chain": "Chain",
     "when": "কখন",
     "multiChainNotice": "আপনার BNB এবং Base দুই চেইনেই টোকেন আছে। ডিপোজিট একবারে একটি চেইনে প্রসেস হবে — অন্যটি ডিপোজিট করতে পরে আবার আসুন।",
     "whyStake": "কেন ডিপোজিট করবেন?",
@@ -3337,7 +3334,6 @@
       "purgeBody": "এই কমিউনিটিতে {{name}} যত মেসেজ পাঠাইছে সব ডিলিট অই যাইব।",
       "kickBody": "{{name}}-রে কমিউনিটি থাইক্কা সরাই দেওয়া অইব। পরে আবার জয়েন করতা পারিবো।",
       "bannedUntil": "{{date}} পর্যন্ত ব্যান",
-      "restrictionWithReason": "{{state}} — {{reason}}",
       "mutedUntil": "{{date}} পর্যন্ত মিউট",
       "bannedUntilShort": "{{date}} পর্যন্ত",
       "muteTitle": "{{name}}-রে মিউট কর",
@@ -3787,7 +3783,6 @@
     "podBadge": "প্রিন্ট অন ডিমান্ড",
     "podBuyOn": "{{provider}}-এ কিনুন",
     "podNote": "{{provider}} চাহিদা অনুযায়ী ছাপে ও পাঠায়। পেমেন্ট তাদের সাইটে হয়।",
-    "podUrlPlaceholder": "https://…",
     "subtitle": "DeHub সম্প্রদায়র পণ্য হইজন",
     "browse": "চান",
     "myStore": "আঁর দোকান",
@@ -4619,7 +4614,6 @@
     "kindVideo": "ভিডিও",
     "kindAudio": "অডিও",
     "kindImage": "ছবি",
-    "tileSourceKind": "{{source}} · {{kind}}",
     "reviewTitle": "পোস্ট করার আগে রিভিউ করুন",
     "reviewSubtitle": "{{source}} থেকে, {{kind}} হিসেবে। যেকোনো কিছু এডিট করুন — শিরোনাম খালি রাখুন মূল শিরোনাম রাখতে।",
     "reviewName": "শিরোনাম",
@@ -6336,7 +6330,6 @@
   "nearBuy": {
     "otherCurrencies": "অন্যান্য কারেন্সি",
     "search": "টোকেন, নেটওয়ার্ক বা কন্ট্রাক্ট সার্চ করুন",
-    "onChain": "on {{chain}}",
     "refundAddress": "{{chain}} তে রিফান্ড অ্যাড্রেস",
     "refundPlaceholder": "পেমেন্ট নেটওয়ার্কে অ্যাড্রেস",
     "refundHint": "চেক করুন যে এইটা আপনার কন্ট্রোলে থাকা ওয়ালেট, পেমেন্ট নেটওয়ার্কে। এক্সচেঞ্জ অ্যাড্রেস এড়াইয়েন যেগুলাতে মেমো বা ট্যাগ লাগে। যেকোনো প্রোভাইডার রিফান্ড এখানে আইবো।",
@@ -6830,7 +6823,6 @@
       "newDesign": "নয়া ডিজাইন",
       "yourDesigns": "তোঁয়ার ডিজাইন",
       "noDesigns": "তুঁই যে ডিজাইন বানাও, এই ফোনত সেভ থাকে আর ইয়ানত দেহা যায়।",
-      "dimensions": "{{width}} × {{height}}",
       "aspectStory": "স্টোরি",
       "aspectPost": "পোস্ট",
       "aspectSquare": "চাইরকোনা",
@@ -7112,7 +7104,6 @@
       "split": "ভাগ গরো",
       "splitHint": "ক্লিপ ভাগ গরিবার লাই প্লেহেড ক্লিপর ভিতরে লই যাও।",
       "speed": "স্পিড",
-      "speedValue": "{{value}}×",
       "volumeTool": "ভলিউম",
       "volume": "ভলিউম {{value}}%",
       "fadeIn": "ফেড ইন {{value}} সে.",
@@ -7175,7 +7166,6 @@
       "recording": "গতি রেকর্ড হচ্ছে",
       "lanes": "কীফ্রেম",
       "scrub": "বদলাতে বাঁয়ে বা ডানে টানুন।",
-      "segment": "{{from}} → {{to}}",
       "ease": {
         "linear": "রৈখিক",
         "ease": "মসৃণ",
@@ -8162,8 +8152,7 @@
       "tier": "টিয়ার",
       "packs": "প্যাক",
       "emoji": "ইমোজি",
-      "stickers": "স্টিকার",
-      "gifs": "GIF"
+      "stickers": "স্টিকার"
     },
     "signInToCreate": "প্যাক বানানির লাই Login কর",
     "signInToAdd": "যোগ করির লাই Login কর",
@@ -8789,5 +8778,24 @@
     "recommendedBody": "দরকারি নিরাপত্তা ঠিকঠাকসহ DeHub-র নয়া ভার্সন আইস্যে। আঁনর অ্যাকাউন্ট নিরাপদ রাখিবার লাই আপডেট গরন।",
     "requiredBody": "DeHub-র এই ভার্সন আর চলে না। আঁনর অ্যাকাউন্ট চালাই যাইবার লাই আপডেট গরন।",
     "update": "এহন আপডেট গরন"
+  },
+  "walletBackup": {
+    "rowDesc": "আপনার ১২ শব্দ বা প্রাইভেট কী দেখুন",
+    "backedUpOn": "ব্যাক আপ হইছে {{date}}",
+    "offerBody": "আপনার ফোন বা পাসওয়ার্ড হারালে আপনার ওয়ালেট ফিরে পেতে 12টি শব্দ। ৩০ সেকেন্ড সময় লাগে।",
+    "offerBodyDeviceOnly": "তুমার ওয়ালেট কেবল এই ফোনে থাইকা থাকে। এই শব্দগুলাই না থাকলে, হারায়া গেলা ফোন মানে হারায়া গেলা ওয়ালেট।",
+    "saveNow": "এখন সেভ করো",
+    "wordsTitle": "আমার ১২ শব্দ।",
+    "tapToReveal": "ট্যাপ করো উন্মোচন করবার লাইগা",
+    "wroteThemDown": "আঁই ওগো লিখা দিছি",
+    "checkTitle": "দ্রুত চেক",
+    "checkPrompt": "ট্যাপ শব্দ #{{n}}",
+    "warnOwns": "এই শব্দগুলো থাকা যেকোনো ব্যক্তি তোমার ওয়ালেটের মালিক।",
+    "warnNeverAsk": "DeHub কখনোই তাদের চাহিব না।",
+    "warnPaper": "কাগজে লিখো, স্ক্রিনশট বা নোটস অ্যাপে না।",
+    "advanced": "অ্যাডভান্সড",
+    "passwordToShowWords": "আপনার ওয়ালেট পাসওয়ার্ড দিন আপনার ১২টি শব্দ দেখানোর জন্য।",
+    "reminderBody": "আপনের ওয়ালেট ব্যাক আপ করুন — ১২ টা শব্দ যেগুলা হারাইলে ফোন হারাইলেও ফিরাইয়া দেয়।",
+    "backUp": "ব্যাক আপ"
   }
 }

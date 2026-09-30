@@ -1789,7 +1789,9 @@
     "exploreWithoutSignInA11y": "Prozkoumejte DeHub bez přihlášení",
     "continueExploringA11y": "Pokračujte v prozkoumávání DeHubu",
     "importWalletRecommended": "Doporučujeme přihlašovací údaje do sociálních sítí.",
-    "importWalletPurpose": "Tento nástroj slouží k importu stávajících účtů z DeHub.io."
+    "importWalletPurpose": "Tento nástroj slouží k importu stávajících účtů z DeHub.io.",
+    "importSecretPlaceholder": "12 nebo 24 slov, nebo soukromý klíč",
+    "invalidImportSecret": "To není platná 12/24-slovní fráze nebo soukromý klíč"
   },
   "messages": {
     "smartRepliesOff": "Navrhované odpovědi jsou vypnuté",
@@ -6001,7 +6003,6 @@
     "viewFeed": "Zobrazit zdroj",
     "yourChannel": "Váš kanál",
     "yourChannelHint": "Vložte adresu kanálu — rukojeť také funguje.",
-    "placeholder": "youtube.com/@you, tiktok.com/@you, vimeo.com/you…",
     "costsNote": "Zaplaceno v tokenech DeHub, jednou, před začátkem dávky. Držitelé odznaků platí méně — vaše sleva se projeví v nabídce. Pokud video nelze importovat, jeho podíl se připíše zpět k vaší další migraci."
   },
   "calls": {
@@ -8644,5 +8645,36 @@
     "recommendedBody": "Je k dispozici novější verze DeHub s důležitými bezpečnostními opravami. Aktualizujte, aby byl váš účet chráněný.",
     "requiredBody": "Tato verze DeHub už není podporována. Aktualizujte, abyste mohli dál používat svůj účet.",
     "update": "Aktualizovat"
+  },
+  "walletBackup": {
+    "title": "Zálohovat peněženku",
+    "rowDesc": "Podívej se na svých 12 slov nebo soukromý klíč",
+    "backedUpOn": "Zálohováno {{date}}",
+    "offerTitle": "Zálohovat peněženku?",
+    "offerBody": "12 slov, které vám vrátí peněženku, pokud ztratíte telefon nebo heslo. Trvá 30 sekund.",
+    "offerBodyDeviceOnly": "Vaše peněženka žije pouze v tomto telefonu. Bez těchto slov znamená ztracený telefon ztracenou peněženku.",
+    "saveNow": "Ušetřete nyní",
+    "skipForNow": "Prozatím přeskočit",
+    "wordsTitle": "Tvých 12 slov",
+    "tapToReveal": "Klepnutím ji odhalíš",
+    "hideWords": "Skrýt slova",
+    "copied": "Zkopírováno",
+    "wroteThemDown": "Napsal/a jsem si je",
+    "checkTitle": "Rychlá kontrola",
+    "checkPrompt": "Klepni na slovo # {{n}}",
+    "checkWrong": "Tenhle ne. Podívej se znovu na slovo #{{n}}.",
+    "skipCheck": "Přeskočit kontrolu",
+    "signingIn": "Přihlašujeme tě…",
+    "warnOwns": "Kdokoliv s těmito slovy vlastní vaši peněženku.",
+    "warnNeverAsk": "Společnost DeHub o ně nikdy nepožádá.",
+    "warnPaper": "Napiš je na papír, ne do screenshotu nebo aplikace pro psaní poznámek.",
+    "tabWords": "12 slov",
+    "tabPrivateKey": "Soukromý klíč",
+    "advanced": "Pokročilé",
+    "passwordToShowWords": "Zadejte heslo do peněženky a ukažte svých 12 slov.",
+    "showWords": "Zobrazit slova",
+    "reminderBody": "Zálohujte si peněženku — 12 slov, která vám ji vrátí, pokud ztratíte telefon.",
+    "backUp": "Zálohovat",
+    "notNow": "Teď ne"
   }
 }

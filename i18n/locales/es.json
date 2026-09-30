@@ -6080,7 +6080,6 @@
     "viewFeed": "Ver tu feed",
     "yourChannel": "Tu canal",
     "yourChannelHint": "Pega la dirección de tu canal, el identificador también funciona por sí solo.",
-    "placeholder": "youtube.com/@you, tiktok.com/@you, vimeo.com/you…",
     "costsNote": "Pagado en tokens de DeHub, una vez, antes de que comience el lote. Los poseedores de insignias pagan menos; tu descuento se aplica a la cotización. Si un video no se puede importar, su parte se acredita a tu próxima migración."
   },
   "calls": {
@@ -8605,7 +8604,8 @@
       "yourApps": "Tus aplicaciones",
       "notificationsOn": "Notificaciones en",
       "removed": "Eliminado. No te notificará nuevamente.",
-      "rising": "Nuevo y en ascenso"
+      "rising": "Nuevo y en ascenso",
+      "remove": "Eliminar"
     },
     "card": {
       "open": "Abierto"
@@ -8622,7 +8622,8 @@
       "education": "Educación",
       "developer-tools": "Herramientas para desarrolladores",
       "entertainment": "Entretenimiento",
-      "art-creativity": "Arte y creatividad"
+      "art-creativity": "Arte y creatividad",
+      "social": "Social"
     },
     "pay": {
       "title": "Pagar {{name}}?",
@@ -8631,7 +8632,9 @@
       "sent": "Pagado {{amount}} DHB a {{name}}."
     },
     "add": {
-      "body": "Aparecerá bajo Tus apps y podrá enviarte notificaciones. Puedes eliminarlo en cualquier momento desde la página Apps."
+      "body": "Aparecerá bajo Tus apps y podrá enviarte notificaciones. Puedes eliminarlo en cualquier momento desde la página Apps.",
+      "title": "¿Añadir {{name}}?",
+      "confirm": "Añadir aplicación"
     }
   },
   "aiStyles": {

@@ -1789,7 +1789,9 @@
     "exploreWithoutSignInA11y": "Explora DeHub sense iniciar sessió",
     "continueExploringA11y": "Continua explorant DeHub",
     "importWalletRecommended": "Es recomana iniciar sessió a les xarxes socials.",
-    "importWalletPurpose": "Aquesta eina és per importar comptes existents des de DeHub.io."
+    "importWalletPurpose": "Aquesta eina és per importar comptes existents des de DeHub.io.",
+    "importSecretPlaceholder": "12 o 24 paraules, o una clau privada",
+    "invalidImportSecret": "Això no és una frase de 12/24 paraules ni una clau privada vàlida"
   },
   "messages": {
     "smartRepliesOff": "Respostes suggerides desactivades",
@@ -8641,5 +8643,36 @@
     "recommendedBody": "Hi ha una versió més nova de DeHub amb correccions de seguretat importants. Actualitza-la per mantenir el teu compte protegit.",
     "requiredBody": "Aquesta versió de DeHub ja no és compatible. Actualitza-la per continuar fent servir el teu compte.",
     "update": "Actualitza ara"
+  },
+  "walletBackup": {
+    "title": "Fes una còpia de seguretat del moneder",
+    "rowDesc": "Veure les teves 12 paraules o clau privada",
+    "backedUpOn": "Còpia de seguretat {{date}}",
+    "offerTitle": "Fes una còpia de seguretat del teu moneder?",
+    "offerBody": "12 paraules que et tornen el moneder si perds el teu telèfon o contrasenya. Triga 30 segons.",
+    "offerBodyDeviceOnly": "El teu moneder només viu en aquest telèfon. Sense aquestes paraules, un telèfon perdut significa un moneder perdut.",
+    "saveNow": "Desa ara",
+    "skipForNow": "Omet ara",
+    "wordsTitle": "Les teves 12 paraules",
+    "tapToReveal": "Toca per revelar",
+    "hideWords": "Amaga les paraules",
+    "copied": "Copiat",
+    "wroteThemDown": "Les he anotat",
+    "checkTitle": "Comprovació ràpida",
+    "checkPrompt": "Toca la paraula #{{n}}",
+    "checkWrong": "No és aquesta. Mira la paraula #{{n}} de nou.",
+    "skipCheck": "Omet la comprovació",
+    "signingIn": "Iniciant la sessió…",
+    "warnOwns": "Qualsevol que tingui aquestes paraules és el propietari del teu moneder.",
+    "warnNeverAsk": "DeHub mai no els demanarà.",
+    "warnPaper": "Escriu-les en paper, no en una captura de pantalla o app d'anotes.",
+    "tabWords": "12 paraules",
+    "tabPrivateKey": "Clau privada",
+    "advanced": "Avançat",
+    "passwordToShowWords": "Introdueix la contrasenya del teu moneder per mostrar les teves 12 paraules.",
+    "showWords": "Mostra les paraules",
+    "reminderBody": "Fes una còpia de seguretat del teu moneder — 12 paraules que et tornen el moneder si perds el teu telèfon.",
+    "backUp": "Fes una còpia de seguretat",
+    "notNow": "Ara no"
   }
 }

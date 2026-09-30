@@ -146,9 +146,9 @@
     "noMoreShorts": "Дигар шортсҳо нест",
     "noShortsFound": "Шортсҳо ёфт нашуд",
     "newMembersHint": "Ҳоло ҳамроҳ шуд — салом гӯед",
-    "scroll": "Scroll",
     "noFilterMatches": "Ягон мундариҷа ба филтрҳои шумо мувофиқ нест.",
-    "clearFilters": "Пок кардани филтрҳо"
+    "clearFilters": "Пок кардани филтрҳо",
+    "scroll": "Ҳаракат кардан"
   },
   "explore": {
     "all": "Ҳама",
@@ -337,10 +337,8 @@
     "hazy": "Шабҳои туманӣ",
     "swarms": "Тӯдаҳо",
     "lavalamp": "Таърих Бознигарии Давомнокии",
-    "winter": "Winter Drops",
     "war": "Ҷанг",
     "osaka": "ОсакаCity name (optional,",
-    "jungle": "Jungle",
     "themeDesc": "Намуди барномаро интихоб кунед",
     "themeMinimalDesc": "Сиёҳи ҳамвор, канораҳои рост, тасвирҳо ва видеоҳо дар тамоми паҳно",
     "christmas": "Солинавӣ",
@@ -1788,7 +1786,8 @@
     "exploreWithoutSignInA11y": "Ҷустуҷӯи DeHub бе воридшавӣ",
     "continueExploringA11y": "Таҳқиқоти DeHub-ро идома диҳед",
     "importWalletRecommended": "Логинҳои иҷтимоӣ тавсия дода мешаванд.",
-    "importWalletPurpose": "Ин асбоб барои ворид кардани ҳисобҳои мавҷуда аз DeHub.io аст."
+    "importWalletPurpose": "Ин асбоб барои ворид кардани ҳисобҳои мавҷуда аз DeHub.io аст.",
+    "importSecretPlaceholder": "12 ё 24 калима, ё калиди хусусӣ"
   },
   "messages": {
     "smartRepliesOff": "Ҷавобҳои пешниҳодшуда хомӯш карда шуданд",
@@ -2018,7 +2017,6 @@
     "reviewRemoved": "Шарҳи тоза карда шуд",
     "reviewSaveFailed": "Натавонистам баррасии шуморо захира кунам",
     "reviewRemoveFailed": "Натавонистам баррасии шуморо тоза кунам",
-    "signInToReview": "Mag-sign in upang rate at review.",
     "beFirst": "Аввалин шуда онро аз назар гузаронед.",
     "countries": {
       "US": "Иёлоти Муттаҳидаи Амрико",
@@ -2034,7 +2032,6 @@
       "CH": "Швейтсария",
       "FR": "Франсия",
       "BE": "Белгия",
-      "ES": "Espanya",
       "MX": "Мексика",
       "AR": "Аргентина",
       "CO": "Колумбия",
@@ -2142,7 +2139,6 @@
     "youReceive": "Шумо мегиред (тахминан)",
     "paymentMethod": "Усули пардохт",
     "cardBank": "Корт / Бонк",
-    "cardBankDesc": "Visa, Mastercard, Apple Pay",
     "fiatOnramp": "Рампаи фиат",
     "fiatOnrampDesc": "Бевосита бо фиат крипто харидан",
     "buy": "Харидани {{symbol}}",
@@ -2286,8 +2282,7 @@
     "nowPrivate": "Ҷараён ҳоло хусусӣ аст",
     "nowPublic": "Ҷараён ҳоло оммавӣ аст",
     "openCanvas": "Кушодани канвас",
-    "playVideo": "Пахш кардани видео",
-    "signInToSee": "Mag-sign in upang makita ang mga flow sa iyong account."
+    "playVideo": "Пахш кардани видео"
   },
   "loginModal": {
     "title": "Ворид шудан",
@@ -2380,9 +2375,7 @@
     "fullName": "Номи пурра",
     "email": "Почтаи электронӣ",
     "telegram": "Телеграмма",
-    "xTwitter": "X (Twitter)",
     "instagram": "Инстаграм",
-    "linkedin": "LinkedIn",
     "otherSocials": "Шабакаҳои иҷтимоии дигар",
     "otherSocialsPlaceholder": "TikTok, YouTube, Discord ва ғ.",
     "pastExperience": "Таҷрибаи қаблӣ",
@@ -2468,7 +2461,6 @@
     "faq6A": "Ягон ҷадвалбандии муқаррарӣ вуҷуд надорад. Ang mga draw ay naka-ugnay sa mga launches, mga mahalaga at mga kampanya sa partner, at bawat isa ay ipapalala sa app kapag ito.",
     "ctaTitle": "Нақшаҳо дар дохили DeHub иҷро мешаванд",
     "ctaBody": "Акнун он чӣ зинда аст, дар таъоми шумо ошкор хоҳад шуд. I-on ang mga abiso upang hindi nagpasok ka ng susunod.",
-    "goToFeed": "Pumunta sa iyong feed",
     "readAboutTokens": "Дар бораи токенҳои DeHub хонед",
     "legal": "Расмҳои мукофотӣ таблиғотӣ мебошанд ва барои дорандагони ҳисобҳои DeHub, ки синнашон аз 18 боло аст, беэътиборанд, ки дар он ҷо қонунҳои маҳаллӣ онҳоро манъ мекунанд. Кормандони DeHub, пудратчиён ва хонаводаҳои онҳо ҳуқуқ надоранд. Мукофотҳо бо пули нақд иваз карда намешаванд, агар онҳо гуфта нашаванд ва эълони ҳар як расм шартҳои пурраи худро дорад."
   },
@@ -2654,7 +2646,6 @@
     "viewCount_other": "{{count}} тамошо",
     "shareMessage": "Инро бинед: {{url}}",
     "hideReplies": "Пинҳон кардани ҷавобҳо",
-    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
     "rowA11yHint": "Ба ин шарҳ ҷавоб навиштанро оғоз мекунад",
     "editingComment": "Таҳрири шарҳ",
     "editPlaceholder": "Шарҳи худро таҳрир кунед...",
@@ -3227,12 +3218,10 @@
       "purgeBody": "Ҳар як паёми фиристодаи {{name}} дар ин ҷомеа нест карда мешавад.",
       "kickBody": "{{name}} аз ҷомеа хориҷ карда мешавад. Онҳо метавонанд баъдтар дубора ҳамроҳ шаванд.",
       "bannedUntil": "То {{date}} мамнӯъ аст",
-      "restrictionWithReason": "{{state}} — {{reason}}",
       "mutedUntil": "То {{date}} хомӯш карда шуд",
       "bannedUntilShort": "То {{date}}",
       "muteTitle": "{{name}}-ро хомӯш кунед",
       "banTitle": "{{name}}-ро манъ кунед",
-      "reasonCounter": "{{len}}/200",
       "rulesCount": "{{used}} аз {{max}}",
       "moveRuleUp": "Боло бурдани қоида",
       "moveRuleDown": "Поён бурдани қоида",
@@ -3668,7 +3657,6 @@
     "podBadge": "Чоп бо фармоиш",
     "podBuyOn": "Дар {{provider}} харед",
     "podNote": "{{provider}} бо фармоиш чоп ва ирсол мекунад. Пардохт дар сайти онҳо.",
-    "podUrlPlaceholder": "https://…",
     "subtitle": "Маҳсулоти ҷамъияти DeHub-ро кашф кунед",
     "browse": "Дидан",
     "myStore": "Мағозаи ман",
@@ -3747,7 +3735,6 @@
       "purchaseFailed": "Харид ноком шуд",
       "transactionCancelled": "Амалиёт бекор карда шуд.",
       "pickRating": "Аввал баҳои ситораро интихоб кунед.",
-      "confirmTitle": "Kumpirmahin ang pagbili",
       "buyFor": "Барои {{amount}} токенҳо харед",
       "paymentHint": "Пардохт дар токенҳои DeHub дар Base, бевосита ба ҳамёни фурӯшанда.",
       "priceUnavailable": "Нархи токен дастрас нест — пас аз лаҳзае дубора кӯшиш кунед.",
@@ -4500,7 +4487,6 @@
     "kindVideo": "Видео",
     "kindAudio": "Аудио",
     "kindImage": "Тасвирҳо",
-    "tileSourceKind": "{{source}} · {{kind}}",
     "reviewTitle": "Шарҳи пеш аз фиристодан",
     "reviewSubtitle": "Аз {{source}}, ҳамчун {{kind}}. Ҳар чизеро хоҳед, таҳрир кунед — барои нигоҳ доштани сарлавҳаи аслӣ онро холӣ гузоред.",
     "reviewName": "Сарлавҳа",
@@ -4515,16 +4501,15 @@
       "feedUrlLabel": "URL-и лентаи RSS-и подкаст",
       "fetchFeed": "Гирифтани лента",
       "fetching": "Кушодани ахборот...",
-      "showBy": "{{author}}",
-      "episodes": "{{n}} info: whatsthis",
-      "selectAll": "Pumili ng lahat",
-      "alreadyImported": "Hindi nai-import",
       "importSelected": "Ворид кардани {{n}} қисм",
       "importing": "Воридот...",
       "done": "Дар навбат",
-      "emptyFeed": "Hindi namin mahanap ang anumang mga episodes sa feed na ito.",
-      "badFeed": "Ang link na ito ay hindi tulad ng feed ng podcast.",
-      "tooMany": "Меъёр ба 20 серияи дар ҷумла ба ҳар вақт."
+      "tooMany": "Меъёр ба 20 серияи дар ҷумла ба ҳар вақт.",
+      "episodes": "{{n}} эпизодҳо",
+      "selectAll": "Ҳамаинро интихоб кунед",
+      "alreadyImported": "Аллакай ворид шудааст",
+      "emptyFeed": "Мо наметавонистем эпизоде дар ин фид пайдо кунем.",
+      "badFeed": "Ин пайванд мисли фидҳои подкаст намебинед."
     }
   },
   "earnings": {
@@ -6055,7 +6040,6 @@
     "toUnlock": "Барои кушодан боз {{amount}} токен",
     "holdToUnlock": "Ҳадди аққал ин бисёр нишонаҳои DeHub-ро барои кушодани он нигоҳ доред",
     "sliderLabel": "Манотиқи қайд карда шудааст",
-    "sliderValue": "{{amount}} tokens {{tier}}",
     "you": "Шумо",
     "grants": "Он чӣ кушода мешавад",
     "perks": {
@@ -6655,7 +6639,6 @@
       "newDesign": "Тарҳи нав",
       "yourDesigns": "Тарҳҳои шумо",
       "noDesigns": "Тарҳҳое, ки месозед, дар ҳамин телефон нигоҳ дошта мешаванд ва дар ин ҷо пайдо мешаванд.",
-      "dimensions": "{{width}} × {{height}}",
       "aspectStory": "Ҳикоя",
       "aspectPost": "Пост",
       "aspectSquare": "Мураббаъ",
@@ -6937,7 +6920,6 @@
       "split": "Ҷудо кардан",
       "splitHint": "Барои ҷудо кардан нишондиҳандаи пахшро ба дохили клип баред.",
       "speed": "Суръат",
-      "speedValue": "{{value}}×",
       "volumeTool": "Баландии садо",
       "volume": "Баландии садо {{value}}%",
       "fadeIn": "Оғози ҳамвор {{value}} с",
@@ -7000,7 +6982,6 @@
       "recording": "Ҳаракат сабт мешавад",
       "lanes": "Кадрҳои калидӣ",
       "scrub": "Барои тағйир ба чап ё рост кашед.",
-      "segment": "{{from}} → {{to}}",
       "ease": {
         "linear": "Хаттӣ",
         "ease": "Ҳамвор",
@@ -8437,7 +8418,6 @@
     "basicAnalytics": "Таҳлили асосӣ",
     "detailedAnalytics": "Таҳлили муфассал",
     "prioritySupport": "Пуштибонии афзалиятнок",
-    "sso": "SSO",
     "adminSpendControl": "Идоракунии хароҷотҳои администратор",
     "priorityQueue": "Навбати афзалият",
     "priorityQueueFast": "Сатри афзалият барои коркарди тезтари вазифа",
@@ -8516,17 +8496,11 @@
   },
   "accountDeletion": {
     "title": "& Ҳузфи қайдоти баҳисобгирӣ",
-    "description": "Pagtatanggal ng iyong account at personal na data",
     "warning": "Ин доимо профили DeHub, постҳо, шарҳҳо, паёмҳо ва нусхаи эҳтиётии ҳамёнро нест мекунад. I-save ang iyong mga detalye sa pagkakaroon ng wallet at ilipat ang anumang mga halaga bago. Амалиётҳои blockchain ҷамъиятӣ ва сабтҳои пардохти қонунӣ талаб карда намешавад. Ang iyong profile ay naglalaman; tinatanggap ang pagtatanggap sa loob ng 30 araw. Ин наметавонад барҳам дода шавад.",
     "cancel": "Бекор кардан",
-    "confirm": "Pagtatanggal ng aking account",
     "busy": "Фиристодани дархости несткунӣ...",
     "accepted": "Тоза кардани ҳисоб талаб карда шуд",
-    "receipt": "Ang iyong kahilingan sa pagtanggal ay nai-save. Ang iyong profile ay nakikita at ang iyong account ay mahalagang tanggalin sa loob ng 30 araw Hindi maaaring kanselahin ang pag-sign in na ito.",
     "done": "Тайёр",
-    "error": "Hindi maipadala ang iyong kahilingan sa pagtanggal. Hindi nakatumpirma ang iyong account para sa pagtanggal. Mangyaring subukan muli.",
-    "back": "Bumalik sa Mga Setting",
-    "signIn": "Mag-sign in upang tanggalin ang iyong account",
     "acknowledge": "Ман маълумоти барқароркунии ҳамёнро захира кардам ва мефаҳмам, ки несткунӣ доимӣ аст."
   },
   "miniApps": {
@@ -8539,14 +8513,10 @@
       "close": "Пӯшидани барнома",
       "backToStore": "Бозгашт ба барномаҳо",
       "notFound": "Ин барнома дар DeHub App Store нест ё хориҷ карда шудааст.",
-      "badUrl": "Ang address na iyon ay hindi maaaring buksan bilang mini app. Kailangan ito mula sa https://, o isang localhost address sa mode ng developer.",
       "readyTimeout": "Ин барнома ҳеҷ гоҳ даъват dehub.ready (), Пас экрани splash пас аз 8 сония пинҳон шуд."
     },
     "signIn": {
-      "title": "{{name}}?",
-      "body": "Ang app na ito ay makakuha ng iyong address sa wallet ng DeHub at isang sign-in veşartî na gumagana lamang para sa app na ito. Hindi makakuha ng access sa iyong wallet, iyong mga fondo o iyong DeHub account.",
-      "cancel": "Ҳоло не",
-      "confirm": "Mag-sign in"
+      "cancel": "Ҳоло не"
     },
     "store": {
       "title": "Барномаҳо",
@@ -8555,11 +8525,7 @@
       "emptyTitle": "Ягон барномаҳо ҳанӯз номбар нашудаанд",
       "emptyBody": "Ang unang mga aplikasyon ay nakalista. Сохтани як ва он метавонад дар ин ҷо бошад.",
       "search": "Ҷустуҷӯи барномаҳо",
-      "all": "Lahat",
       "fromDehub": "Аз DeHub",
-      "noMatch": "Walang mga application na tumutugma sa paghahanap na",
-      "yourApps": "Sozandegiyangon",
-      "notificationsOn": "Xabarlar roshan",
       "remove": "Тоза кардан",
       "removed": "Тоза карда шуд. Дигар шуморо огоҳ намекунад.",
       "rising": "Нав ва бархоста"
@@ -8583,15 +8549,12 @@
       "art-creativity": "Санъат ва эҷодкорӣ"
     },
     "pay": {
-      "title": "{{name}}ga toʻlov qiling?",
-      "body": "DHB toʻgʻridan-toʻgʻri {{wallet}} ilovaning portfeliga boradi. Toʻlovlarni bekor qilish mumkin emas.",
-      "confirm": "{{amount}} DHBga toʻlov qiling",
-      "sent": "{{amount}} DHBni {{name}}ga toʻlov qilingan."
+      "title": "Пардохт {{name}}?",
+      "confirm": "Пардохт {{amount}} DHB"
     },
     "add": {
-      "title": "{{name}}ni qoʻshish?",
-      "body": "U \"Sozandegiyangon\" ostida koʻrinadi va sizga xabar yuborishi mumkin. Siz har qanday vaqtda Apps sahifasidan uni olib tashlashga tayyor boʻlsaniz.",
-      "confirm": "Илова кардани барнома"
+      "confirm": "Илова кардани барнома",
+      "title": "Афзудани & {{name}}?"
     }
   },
   "aiStyles": {
@@ -8630,5 +8593,36 @@
     "recommendedBody": "Версияи навтари DeHub бо ислоҳоти муҳими амниятӣ дастрас аст. Барои ҳифзи ҳисобатон навсозӣ кунед.",
     "requiredBody": "Ин версияи DeHub дигар дастгирӣ намешавад. Барои идомаи истифодаи ҳисобатон навсозӣ кунед.",
     "update": "Ҳозир навсозӣ кунед"
+  },
+  "walletBackup": {
+    "title": "Бекор кардани кашфи",
+    "rowDesc": "Намоиш диҳед 12 калима ё калиди хусусии худ",
+    "backedUpOn": "Бекор карда шуд {{date}}",
+    "offerTitle": "Бекор кардани кашфи худ?",
+    "offerBody": "12 калима, ки агар телефон ё паролро гум кунед, кашфи худро барқарор мекунанд. 30 сония мегирад.",
+    "offerBodyDeviceOnly": "Кашфи шумо танҳо дар ин телефон зиндагӣ мекунад. Бигрӣ ба ин калимаҳо, телефон гумшуда кашфи гумшуда маъно дорад.",
+    "saveNow": "Ҳоло захира кунед",
+    "skipForNow": "Ҳоло гузаред",
+    "wordsTitle": "12 калимаи шумо",
+    "tapToReveal": "Тасниҳ кунед",
+    "hideWords": "Пинҳон кардани калимаҳо",
+    "copied": "Нусха бардошт",
+    "wroteThemDown": "Ман онҳоро навиштаам",
+    "checkTitle": "Тасдиқи зуд",
+    "checkPrompt": "Тасниҳ кунед калима #{{n}}",
+    "checkWrong": "Ин намебинед. Интихоб кунед калима #{{n}} боз.",
+    "skipCheck": "Гузариш",
+    "signingIn": "Сигнатурингро идома медиҳем…",
+    "warnOwns": "Ҳар кас, ки ин калимаҳоро дорад, кашфи худро эҷод мекунад.",
+    "warnNeverAsk": "DeHub ҳеҷ гоҳ онҳоро дархост намекунад.",
+    "warnPaper": "Инҳоро дар қоғоз нависед, на дар скриншот ё барномаи нотҳо.",
+    "tabWords": "12 калима",
+    "tabPrivateKey": "Калиди хусусӣ",
+    "advanced": "Таъсири пешрафта",
+    "passwordToShowWords": "Пароли кашфи худро ворид кунед, то 12 калимаи худро намоиш диҳед.",
+    "showWords": "Намоиши калима",
+    "reminderBody": "Нусха бардоштани ҳамён — 12 калима, ки онро бармегардонад, агар шумо телефони худро гум кунед.",
+    "backUp": "Нусха бардоштан",
+    "notNow": "Ҳоло не"
   }
 }
