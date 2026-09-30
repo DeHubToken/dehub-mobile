@@ -1,3 +1,4 @@
+import { useSheetClosed } from '../../hooks/useSheetClosed';
 /**
  * The assistant's settings sheet.
  * ===============================
@@ -110,7 +111,7 @@ const AssistantSettingsSheetComponent: React.FC<AssistantSettingsSheetProps> = (
   const sheetHeight = windowHeight * 0.85;
   const translateY = useSharedValue(sheetHeight);
   const backdropOpacity = useSharedValue(0);
-  const [isFullyClosed, setIsFullyClosed] = useState(!visible);
+  const [isFullyClosed, setIsFullyClosed] = useSheetClosed(visible);
 
   useEffect(() => {
     if (visible) {

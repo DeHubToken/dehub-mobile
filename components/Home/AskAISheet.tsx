@@ -1,3 +1,4 @@
+import { useSheetClosed } from '../../hooks/useSheetClosed';
 import { isHoldGated } from "../../libs/content-gate";
 import React, {
   memo,
@@ -207,7 +208,7 @@ const AskAISheetComponent: React.FC<AskAISheetProps> = ({
   const flatListRef = useRef<FlatList<AIChatMessage>>(null);
   const translateY = useSharedValue(SHEET_HEIGHT);
   const backdropOpacity = useSharedValue(0);
-  const [isFullyClosed, setIsFullyClosed] = useState(!visible);
+  const [isFullyClosed, setIsFullyClosed] = useSheetClosed(visible);
 
   const userAddress = user?.walletAddress || user?.address || "anon";
   const cacheKey = String(postId);

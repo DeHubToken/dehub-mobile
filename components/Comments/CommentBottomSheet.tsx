@@ -1,3 +1,4 @@
+import { useSheetClosed } from '../../hooks/useSheetClosed';
 import React, { memo, useCallback, useEffect, useState } from "react";
 import { View, Text, Modal, Pressable, useWindowDimensions, StyleSheet, Keyboard, BackHandler } from "react-native";
 import { useTranslation } from "react-i18next";
@@ -77,7 +78,7 @@ const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
   const SHEET_HEIGHT = inlineHeight ?? screenHeight * SHEET_FRACTION;
   const translateY = useSharedValue(SHEET_HEIGHT);
   const backdropOpacity = useSharedValue(0);
-  const [isFullyClosed, setIsFullyClosed] = useState(!visible);
+  const [isFullyClosed, setIsFullyClosed] = useSheetClosed(visible);
   const [activeTab, setActiveTab] = useState<SheetTab>("comments");
   /** Something unsent in the composer — CommentSection tells us. */
   const [hasUnsent, setHasUnsent] = useState(false);

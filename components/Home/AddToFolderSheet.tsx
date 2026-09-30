@@ -1,3 +1,4 @@
+import { useSheetClosed } from '../../hooks/useSheetClosed';
 import React, { memo, useCallback, useEffect, useState } from "react";
 import {
   View,
@@ -66,7 +67,7 @@ const AddToFolderSheetComponent: React.FC<AddToFolderSheetProps> = ({
   const hiddenOffset = windowHeight + insets.bottom;
   const translateY = useSharedValue(hiddenOffset);
   const backdropOpacity = useSharedValue(0);
-  const [isFullyClosed, setIsFullyClosed] = useState(!visible);
+  const [isFullyClosed, setIsFullyClosed] = useSheetClosed(visible);
 
   const [folders, setFolders] = useState<FolderWithContainment[]>([]);
   const [loading, setLoading] = useState(false);

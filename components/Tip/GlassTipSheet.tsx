@@ -1,3 +1,4 @@
+import { useSheetClosed } from '../../hooks/useSheetClosed';
 /**
  * GlassTipSheet — bottom sheet for sending on-chain DHB tips.
  *
@@ -190,7 +191,7 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
   // ── Animation ────────────────────────────────────────────────────────────
   const translateY = useSharedValue(SHEET_MAX_HEIGHT);
   const backdropOpacity = useSharedValue(0);
-  const [isFullyClosed, setIsFullyClosed] = useState(!visible);
+  const [isFullyClosed, setIsFullyClosed] = useSheetClosed(visible);
 
   useEffect(() => {
     if (visible) {
