@@ -5,7 +5,7 @@ beforeEach(() => jest.useFakeTimers());
 afterEach(() => jest.useRealTimers());
 
 it('releases a dismissed modal when its animation never completes', () => {
-  const { result, rerender } = renderHook(({ visible }) => useSheetClosed(visible), {
+  const { result, rerender } = renderHook(({ visible }: { visible: boolean }) => useSheetClosed(visible), {
     initialProps: { visible: true },
   });
   rerender({ visible: false });
@@ -15,7 +15,7 @@ it('releases a dismissed modal when its animation never completes', () => {
 });
 
 it('ignores a stale close callback and timeout after reopening', () => {
-  const { result, rerender } = renderHook(({ visible }) => useSheetClosed(visible), {
+  const { result, rerender } = renderHook(({ visible }: { visible: boolean }) => useSheetClosed(visible), {
     initialProps: { visible: true },
   });
   rerender({ visible: false });
@@ -27,7 +27,7 @@ it('ignores a stale close callback and timeout after reopening', () => {
 });
 
 it('allows a completed exit to release before the deadline', () => {
-  const { result, rerender, unmount } = renderHook(({ visible }) => useSheetClosed(visible), {
+  const { result, rerender, unmount } = renderHook(({ visible }: { visible: boolean }) => useSheetClosed(visible), {
     initialProps: { visible: true },
   });
   rerender({ visible: false });
