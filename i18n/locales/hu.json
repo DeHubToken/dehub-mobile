@@ -2675,7 +2675,17 @@
     "repostsLabel_one": "újraküldés",
     "repostsLabel_other": "újraküldés",
     "quotesLabel_one": "idézet",
-    "quotesLabel_other": "idézet"
+    "quotesLabel_other": "idézet",
+    "sortRecent": "Új",
+    "sortOldest": "Régi",
+    "sortLiked": "Népszerű",
+    "sortedByRecent": "Legújabbak szerint rendezve",
+    "sortedByOldest": "Legrégebbiek szerint rendezve",
+    "sortedByLiked": "Legkedveltebbek szerint rendezve",
+    "tabReplies": "Válaszok",
+    "tabQuotes": "Idézetek",
+    "tabReposts": "Újraküldések",
+    "tabSearch": "Keresés"
   },
   "postInfo": {
     "title": "Bejegyzés infó",

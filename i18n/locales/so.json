@@ -2671,7 +2671,17 @@
     "repostsLabel_one": "Dib-u-daabacaad",
     "repostsLabel_other": "Dib-u-daabacaad",
     "quotesLabel_one": "Xigasho",
-    "quotesLabel_other": "Xigasho"
+    "quotesLabel_other": "Xigasho",
+    "sortRecent": "Cusub",
+    "sortOldest": "Hore",
+    "sortLiked": "La jecel",
+    "sortedByRecent": "Loo kala soocay kuwa ugu cusub",
+    "sortedByOldest": "Loo kala soocay kuwa ugu horreeya",
+    "sortedByLiked": "Loo kala soocay kuwa ugu jecelka badan",
+    "tabReplies": "Jawaabaha",
+    "tabQuotes": "Xigashooyinka",
+    "tabReposts": "Dib-u-daabacaadaha",
+    "tabSearch": "Raadi"
   },
   "postInfo": {
     "title": "Macluumaadka qoraalka",

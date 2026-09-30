@@ -2669,7 +2669,17 @@
     "repostsLabel_one": "Gaýtadan paýlaşym",
     "repostsLabel_other": "Gaýtadan paýlaşym",
     "quotesLabel_one": "Sitata",
-    "quotesLabel_other": "Sitata"
+    "quotesLabel_other": "Sitata",
+    "sortRecent": "Täze",
+    "sortOldest": "Köne",
+    "sortLiked": "Halanan",
+    "sortedByRecent": "Iň täzesi boýunça tertiplenen",
+    "sortedByOldest": "Iň könesi boýunça tertiplenen",
+    "sortedByLiked": "Iň köp halanany boýunça tertiplenen",
+    "tabReplies": "Jogaplar",
+    "tabQuotes": "Sitatalar",
+    "tabReposts": "Gaýtadan paýlaşymlar",
+    "tabSearch": "Gözle"
   },
   "postInfo": {
     "title": "Ýazgy maglumaty",

@@ -2694,7 +2694,17 @@
     "repostsLabel_one": "รีโพสต์",
     "repostsLabel_other": "รีโพสต์",
     "quotesLabel_one": "อ้างอิง",
-    "quotesLabel_other": "อ้างอิง"
+    "quotesLabel_other": "อ้างอิง",
+    "sortRecent": "ล่าสุด",
+    "sortOldest": "เก่าสุด",
+    "sortLiked": "ถูกใจ",
+    "sortedByRecent": "เรียงตามล่าสุด",
+    "sortedByOldest": "เรียงตามเก่าที่สุด",
+    "sortedByLiked": "เรียงตามถูกใจมากที่สุด",
+    "tabReplies": "การตอบกลับ",
+    "tabQuotes": "การอ้างอิง",
+    "tabReposts": "รีโพสต์",
+    "tabSearch": "ค้นหา"
   },
   "postInfo": {
     "title": "ข้อมูลโพสต์",

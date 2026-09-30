@@ -2667,7 +2667,17 @@
     "repostsLabel_one": "રિપોસ્ટ",
     "repostsLabel_other": "રિપોસ્ટ્સ",
     "quotesLabel_one": "ક્વોટ",
-    "quotesLabel_other": "ક્વોટ્સ"
+    "quotesLabel_other": "ક્વોટ્સ",
+    "sortRecent": "નવા",
+    "sortOldest": "જૂના",
+    "sortLiked": "લોકપ્રિય",
+    "sortedByRecent": "સૌથી નવા પ્રમાણે ગોઠવેલ",
+    "sortedByOldest": "સૌથી જૂના પ્રમાણે ગોઠવેલ",
+    "sortedByLiked": "સૌથી વધુ લાઇક પ્રમાણે ગોઠવેલ",
+    "tabReplies": "જવાબો",
+    "tabQuotes": "ક્વોટ્સ",
+    "tabReposts": "રિપોસ્ટ્સ",
+    "tabSearch": "શોધો"
   },
   "postInfo": {
     "title": "પોસ્ટ માહિતી",

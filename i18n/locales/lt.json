@@ -2671,7 +2671,17 @@
     "repostsLabel_one": "Pakartotinis įrašas",
     "repostsLabel_other": "Pakartotiniai įrašai",
     "quotesLabel_one": "Citata",
-    "quotesLabel_other": "Citatos"
+    "quotesLabel_other": "Citatos",
+    "sortRecent": "Naujausi",
+    "sortOldest": "Seniausi",
+    "sortLiked": "Populiarūs",
+    "sortedByRecent": "Rūšiuota: naujausi",
+    "sortedByOldest": "Rūšiuota: seniausi",
+    "sortedByLiked": "Rūšiuota: labiausiai patikę",
+    "tabReplies": "Atsakymai",
+    "tabQuotes": "Citatos",
+    "tabReposts": "Pakartotiniai įrašai",
+    "tabSearch": "Paieška"
   },
   "postInfo": {
     "title": "Įrašo informacija",

@@ -2674,7 +2674,17 @@
     "repostsLabel_one": "නැවත පළ කිරීම",
     "repostsLabel_other": "නැවත පළ කිරීම්",
     "quotesLabel_one": "උපුටා ගැනීම",
-    "quotesLabel_other": "උපුටා ගැනීම්"
+    "quotesLabel_other": "උපුටා ගැනීම්",
+    "sortRecent": "මෑත",
+    "sortOldest": "පැරණිම",
+    "sortLiked": "කැමතිම",
+    "sortedByRecent": "වඩාත් මෑත අනුව පෙළගස්වා ඇත",
+    "sortedByOldest": "පැරණිම අනුව පෙළගස්වා ඇත",
+    "sortedByLiked": "වැඩිපුරම කැමති අනුව පෙළගස්වා ඇත",
+    "tabReplies": "පිළිතුරු",
+    "tabQuotes": "උපුටා ගැනීම්",
+    "tabReposts": "නැවත පළ කිරීම්",
+    "tabSearch": "සොයන්න"
   },
   "postInfo": {
     "title": "පළ කිරීමේ තොරතුරු",

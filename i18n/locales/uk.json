@@ -3028,7 +3028,17 @@
     "repostsLabel_one": "Репост",
     "repostsLabel_other": "Репостів",
     "quotesLabel_one": "Цитата",
-    "quotesLabel_other": "Цитат"
+    "quotesLabel_other": "Цитат",
+    "sortRecent": "Нові",
+    "sortOldest": "Старі",
+    "sortLiked": "Вподобані",
+    "sortedByRecent": "Сортування: найновіші",
+    "sortedByOldest": "Сортування: найстаріші",
+    "sortedByLiked": "Сортування: найбільше вподобань",
+    "tabReplies": "Відповіді",
+    "tabQuotes": "Цитати",
+    "tabReposts": "Репости",
+    "tabSearch": "Пошук"
   },
   "postInfo": {
     "title": "Інформація про допис",

@@ -2702,7 +2702,17 @@
     "repostsLabel_one": "Okuthunywe kabusha",
     "repostsLabel_other": "Okuthunywe kabusha",
     "quotesLabel_one": "Isicaphuno",
-    "quotesLabel_other": "Izingcaphuno"
+    "quotesLabel_other": "Izingcaphuno",
+    "sortRecent": "Kwamuva",
+    "sortOldest": "Endala",
+    "sortLiked": "Othandwayo",
+    "sortedByRecent": "Kuhlelwe ngokwakamuva kakhulu",
+    "sortedByOldest": "Kuhlelwe ngokudala kakhulu",
+    "sortedByLiked": "Kuhlelwe ngokuthandwa kakhulu",
+    "tabReplies": "Izimpendulo",
+    "tabQuotes": "Izingcaphuno",
+    "tabReposts": "Okuthunywe kabusha",
+    "tabSearch": "Sesha"
   },
   "postInfo": {
     "title": "Ulwazi Lokuthunyelwe",

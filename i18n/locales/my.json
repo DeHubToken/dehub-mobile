@@ -2682,7 +2682,17 @@
     "repostsLabel_one": "ပြန်တင်မှု",
     "repostsLabel_other": "ပြန်တင်မှု",
     "quotesLabel_one": "ကိုးကားချက်",
-    "quotesLabel_other": "ကိုးကားချက်"
+    "quotesLabel_other": "ကိုးကားချက်",
+    "sortRecent": "အသစ်",
+    "sortOldest": "အဟောင်း",
+    "sortLiked": "လူကြိုက်",
+    "sortedByRecent": "အသစ်ဆုံးအလိုက် စီထားသည်",
+    "sortedByOldest": "အဟောင်းဆုံးအလိုက် စီထားသည်",
+    "sortedByLiked": "အကြိုက်အများဆုံးအလိုက် စီထားသည်",
+    "tabReplies": "ပြန်စာများ",
+    "tabQuotes": "ကိုးကားချက်များ",
+    "tabReposts": "ပြန်တင်မှုများ",
+    "tabSearch": "ရှာဖွေရန်"
   },
   "postInfo": {
     "title": "ပို့စ်အချက်အလက်",

@@ -2672,7 +2672,17 @@
     "repostsLabel_one": "மறுபதிவு",
     "repostsLabel_other": "மறுபதிவுகள்",
     "quotesLabel_one": "மேற்கோள்",
-    "quotesLabel_other": "மேற்கோள்கள்"
+    "quotesLabel_other": "மேற்கோள்கள்",
+    "sortRecent": "புதியவை",
+    "sortOldest": "பழையவை",
+    "sortLiked": "விருப்பம்",
+    "sortedByRecent": "மிகச் சமீபத்தியவை முதலில்",
+    "sortedByOldest": "பழையவை முதலில்",
+    "sortedByLiked": "அதிகம் விரும்பப்பட்டவை முதலில்",
+    "tabReplies": "பதில்கள்",
+    "tabQuotes": "மேற்கோள்கள்",
+    "tabReposts": "மறுபதிவுகள்",
+    "tabSearch": "தேடு"
   },
   "postInfo": {
     "title": "பதிவு தகவல்",

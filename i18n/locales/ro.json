@@ -2671,7 +2671,17 @@
     "repostsLabel_one": "Repostare",
     "repostsLabel_other": "Repostări",
     "quotesLabel_one": "Citat",
-    "quotesLabel_other": "Citate"
+    "quotesLabel_other": "Citate",
+    "sortRecent": "Recente",
+    "sortOldest": "Vechi",
+    "sortLiked": "Populare",
+    "sortedByRecent": "Sortate după cele mai recente",
+    "sortedByOldest": "Sortate după cele mai vechi",
+    "sortedByLiked": "Sortate după cele mai apreciate",
+    "tabReplies": "Răspunsuri",
+    "tabQuotes": "Citate",
+    "tabReposts": "Repostări",
+    "tabSearch": "Căutare"
   },
   "postInfo": {
     "title": "Postare informații",

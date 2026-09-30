@@ -2652,7 +2652,17 @@
     "repostsLabel_one": "Repost",
     "repostsLabel_other": "Repost dem",
     "quotesLabel_one": "Quote",
-    "quotesLabel_other": "Quote dem"
+    "quotesLabel_other": "Quote dem",
+    "sortRecent": "New",
+    "sortOldest": "Old",
+    "sortLiked": "Like",
+    "sortedByRecent": "Arrange by di newest",
+    "sortedByOldest": "Arrange by di oldest",
+    "sortedByLiked": "Arrange by di one weh dem like pass",
+    "tabReplies": "Ansa dem",
+    "tabQuotes": "Quote dem",
+    "tabReposts": "Repost dem",
+    "tabSearch": "Find"
   },
   "postInfo": {
     "title": "Post Info",
