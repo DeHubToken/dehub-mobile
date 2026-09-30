@@ -4442,7 +4442,8 @@
     "restrictedBody": "Dä User hät Interaktione mit dim Account igschränkt.",
     "requestPendingBody": "Dini Folge-Uufdrag isch gschickt worde. Du chasch ihre Posts gseh, sobald sie din Uufdrag bestätige.",
     "followToSeePosts": "Folge däm Account zum ihre Posts gseh.",
-    "loadFailed": "Die List hend nöd chönne glade werde"
+    "loadFailed": "Die List hend nöd chönne glade werde",
+    "new": "Neu"
   },
   "reactionInfo": {
     "title": "Reaktione",

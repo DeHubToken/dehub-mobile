@@ -4425,7 +4425,8 @@
     "restrictedBody": "Người dùng này đã hạn chế tương tác với tài khoản của bạn.",
     "requestPendingBody": "Yêu cầu theo dõi của bạn đã được gửi. Bạn sẽ có thể xem bài đăng của họ sau khi họ phê duyệt yêu cầu của bạn.",
     "followToSeePosts": "Theo dõi tài khoản này để xem bài đăng của họ.",
-    "loadFailed": "Không thể tải danh sách này"
+    "loadFailed": "Không thể tải danh sách này",
+    "new": "Mới"
   },
   "reactionInfo": {
     "title": "Phản ứng",

@@ -39,7 +39,7 @@ import AccentButtonGradient from "../components/ui/AccentButtonGradient";
 import GlassModal from "../components/ui/GlassModal";
 import { FIELD_TEXT } from "../theme/inputs";
 import { useAppTheme } from "../context/ThemeContext";
-import { MINIMAL_HAIRLINE } from "../theme/minimal";
+import { MINIMAL_HAIRLINE, MINIMAL_WASH } from "../theme/minimal";
 import LoadErrorState from "../components/ui/LoadErrorState";
 
 type RouteParams = {
@@ -49,6 +49,10 @@ type RouteParams = {
     initialTab?: "followers" | "following" | "requests";
     hideFollowers?: boolean;
     isOwnProfile?: boolean;
+    /** Opened from a grouped follow notification: how many followers are new. */
+    newCount?: number;
+    /** Usernames the notification named, so they are marked wherever they sort. */
+    newUsernames?: string[];
   };
 };
 
@@ -91,11 +95,14 @@ interface FollowUserRowProps {
   onLongPress?: (address: string) => void;
   /** Offer "Unfollow" on the row's left swipe (your own following list). */
   allowSwipeUnfollow?: boolean;
+  /** One of the new followers a grouped notification was about. */
+  isNew?: boolean;
 }
 
 const FollowUserRow: React.FC<FollowUserRowProps> = React.memo(
-  ({ item, relationship, isSelf, busy, showFollowButton, onPress, onToggleFollow, onLongPress, allowSwipeUnfollow }) => {
+  ({ item, relationship, isSelf, busy, showFollowButton, onPress, onToggleFollow, onLongPress, allowSwipeUnfollow, isNew }) => {
     const { t } = useTranslation();
+    const { isMinimal } = useAppTheme();
     const user = item.user;
     const displayName = user.displayName || user.username || truncate(user.address, 12, "..");
     const avatarUrl = getAvatarUrl(user.avatarImageUrl);
@@ -153,6 +160,7 @@ const FollowUserRow: React.FC<FollowUserRowProps> = React.memo(
         delayLongPress={350}
         activeOpacity={0.6}
         className="flex-row items-center px-4 py-3"
+        style={isNew ? { backgroundColor: isMinimal ? MINIMAL_WASH : 'rgba(255,255,255,0.08)' } : undefined}
       >
         {/* Rounded square, the same shape avatars take everywhere else in both
             apps. This row used to wrap it in a circular ring, which left a
@@ -170,6 +178,16 @@ const FollowUserRow: React.FC<FollowUserRowProps> = React.memo(
             </Text>
           )}
           <View className="flex-row items-center flex-wrap mt-1">
+            {isNew && (
+              <View
+                className="rounded px-1.5 py-0.5 mr-2"
+                style={{ borderWidth: 1, borderColor: "rgba(255,255,255,0.6)" }}
+              >
+                <Text className="text-white text-[10px] font-semibold">
+                  {t("follow.new")}
+                </Text>
+              </View>
+            )}
             {relationship?.followsYou && !isSelf && (
               <View className="bg-theme-neutrals-800 rounded px-1.5 py-0.5 mr-2">
                 <Text className="text-theme-neutrals-300 text-[10px] font-medium">
@@ -301,6 +319,8 @@ const FollowListScreen: React.FC = () => {
     initialTab = "followers",
     hideFollowers = false,
     isOwnProfile = false,
+    newCount = 0,
+    newUsernames,
   } = route.params;
 
   const viewerAddress = authUser?.address;
@@ -887,9 +907,23 @@ const FollowListScreen: React.FC = () => {
     setShowSortPicker(false);
   }, []);
 
+  // Followers a grouped notification was about. The list is newest first by
+  // default, so the top rows are the new ones; named usernames are marked
+  // wherever a search or another sort puts them.
+  const newUsernameSet = useMemo(
+    () => new Set((newUsernames || []).map((name) => lower(name))),
+    [newUsernames]
+  );
+  const marksNew = isOwnFollowersList && (newCount > 0 || newUsernameSet.size > 0);
+  const topRowsAreNew = marksNew && sortOption === "recent" && !debouncedSearch;
+
   const renderItem = useCallback(
-    ({ item }: { item: FollowListItem }) => {
+    ({ item, index }: { item: FollowListItem; index: number }) => {
       const key = lower(item.user.address);
+      const isNew = marksNew && (
+        newUsernameSet.has(lower(item.user.username)) ||
+        (topRowsAreNew && index < newCount)
+      );
       return (
         <FollowUserRow
           item={item}
@@ -901,10 +935,15 @@ const FollowListScreen: React.FC = () => {
           onToggleFollow={handleToggleFollow}
           onLongPress={isOwnFollowersList ? handleRemoveFollower : undefined}
           allowSwipeUnfollow={isOwner && activeTab === "following"}
+          isNew={isNew}
         />
       );
     },
     [
+      marksNew,
+      newUsernameSet,
+      topRowsAreNew,
+      newCount,
       handleUserPress,
       handleToggleFollow,
       handleRemoveFollower,

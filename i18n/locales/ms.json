@@ -4672,7 +4672,8 @@
     "restrictedBody": "Pengguna ini telah mengehadkan interaksi dengan akaun anda.",
     "requestPendingBody": "Permintaan ikut anda telah dihantar. Anda akan dapat melihat siaran mereka setelah mereka meluluskan permintaan anda.",
     "followToSeePosts": "Ikuti akaun ini untuk melihat siaran mereka.",
-    "loadFailed": "Tidak dapat memuatkan senarai ini"
+    "loadFailed": "Tidak dapat memuatkan senarai ini",
+    "new": "Baharu"
   },
   "reactionInfo": {
     "title": "Tindak balas",

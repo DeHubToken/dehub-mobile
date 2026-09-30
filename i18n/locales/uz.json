@@ -4431,7 +4431,8 @@
     "restrictedBody": "Ushbu foydalanuvchi sizning profilingiz bilan oʻzaro aloqalarni cheklab qoʻygan.",
     "requestPendingBody": "Sizning kuzatuv soʻrovingiz yuborildi. Ular soʻrovingizni tasdiqlagandan soʻng siz ularning postlarini koʻra olasiz.",
     "followToSeePosts": "Uning postlarini koʻrish uchun ushbu akkauntga obuna boʻling.",
-    "loadFailed": "Bu ro'yxatni yuklab bo'lmadi"
+    "loadFailed": "Bu ro'yxatni yuklab bo'lmadi",
+    "new": "Yangi"
   },
   "reactionInfo": {
     "title": "Reaksiyalar",

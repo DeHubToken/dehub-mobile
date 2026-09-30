@@ -4413,7 +4413,8 @@
     "restrictedBody": "Isticmaalahani waxa uu xaddiday isdhexgalka koontadaada.",
     "requestPendingBody": "Codsigaaga raacida waa la soo diray. Waxaad awoodi doontaa inaad aragto qoraaladooda marka ay ansixiyaan codsigaaga.",
     "followToSeePosts": "Raac koontadan si aad u aragto qoraaladooda.",
-    "loadFailed": "Ma buuxin karo liiskan"
+    "loadFailed": "Ma buuxin karo liiskan",
+    "new": "Cusub"
   },
   "reactionInfo": {
     "title": "Falcelinta",

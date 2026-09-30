@@ -4397,7 +4397,8 @@
     "noMatches": "ኣይተረኽበን \"{{query}}\"",
     "privateBody": "{{name}} ንተከታተልቱን ዝተኸተሎምን ሓበሬታ ብሕቡእ ንኽገብሮም መሪጹ ኣሎ።",
     "removeFollowerBody": "{{name}} ካብቶም ተከታተልትኻ ከም ዝተወስድካ ኣይፍለጦን።",
-    "loadFailed": "ነዚ ዝርዝር እዚ ክጭፍልቕ ኣይከኣልኩን ።"
+    "loadFailed": "ነዚ ዝርዝር እዚ ክጭፍልቕ ኣይከኣልኩን ።",
+    "new": "ሓድሽ"
   },
   "reactionInfo": {
     "title": "ግብረ መልሲ",

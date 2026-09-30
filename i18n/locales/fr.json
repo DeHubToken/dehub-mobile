@@ -4466,7 +4466,8 @@
     "restrictedBody": "Cet utilisateur a restreint les interactions avec votre compte.",
     "requestPendingBody": "Votre demande de suivi a été envoyée. Vous pourrez voir ses publications une fois qu'il aura approuvé votre demande.",
     "followToSeePosts": "Suivez ce compte pour voir ses publications.",
-    "loadFailed": "Impossible de charger cette liste"
+    "loadFailed": "Impossible de charger cette liste",
+    "new": "Nouveau"
   },
   "reactionInfo": {
     "title": "Réactions",

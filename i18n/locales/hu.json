@@ -4417,7 +4417,8 @@
     "restrictedBody": "Ez a felhasználó korlátozta az interakciókat a fiókoddal.",
     "requestPendingBody": "A követési kérelem el lett küldve. Akkor láthatod a bejegyzéseit, ha jóváhagyja a kérésedet.",
     "followToSeePosts": "Kövesd ezt a fiókot, hogy lásd a bejegyzéseit.",
-    "loadFailed": "Nem sikerült betölteni ezt az albumot"
+    "loadFailed": "Nem sikerült betölteni ezt az albumot",
+    "new": "Új"
   },
   "reactionInfo": {
     "title": "Reakciók",

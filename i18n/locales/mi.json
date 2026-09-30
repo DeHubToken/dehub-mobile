@@ -4412,7 +4412,8 @@
     "restrictedBody": "Kua herea e tēnei kaiwhakamahi ngā taunekeneke ki tō pūkete.",
     "requestPendingBody": "Kua tukuna tō tono whai. Ka taea e koe te kite i ā rātou whakairinga i te wā e whakaae ai rātou ki tō tono.",
     "followToSeePosts": "Whai i tēnei pūkete kia kite i ā rātou whakairinga.",
-    "loadFailed": "Kaore e taea te whakauru i tenei raarangi"
+    "loadFailed": "Kaore e taea te whakauru i tenei raarangi",
+    "new": "Hou"
   },
   "reactionInfo": {
     "title": "Ngā urupare",

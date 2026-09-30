@@ -4395,7 +4395,8 @@
     "restrictedBody": "Nin mɔgɔ ye i ka jatebɔsɛbɛ ka ɲɔgɔndan dan.",
     "requestPendingBody": "I ka tuguli ɲinini cira. Ni u sɔnna i ka ɲinini ma, i bɛna se ka u ka postw ye.",
     "followToSeePosts": "Nin jatebɔsɛbɛ tugu walasa ka a ka postw ye.",
-    "loadFailed": "I tɛ se ka o sɛbɛnin ta"
+    "loadFailed": "I tɛ se ka o sɛbɛnin ta",
+    "new": "Kura"
   },
   "reactionInfo": {
     "title": "O kama, a ka ɲi ka kɛ ni",
