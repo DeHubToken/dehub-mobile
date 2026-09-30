@@ -96,7 +96,7 @@ export const RecoveryPhraseGrid: React.FC<{
           style={styles.phraseCard}
         >
           {words.map((word, i) => (
-            <View key={`${i}-${word}`} style={styles.phraseWord}>
+            <View key={`${i}-${word}`} style={[styles.phraseWord, !revealed && styles.phraseWordHidden]}>
               <Text style={styles.phraseIndex}>{i + 1}</Text>
               <Text style={[styles.phraseText, !revealed && styles.phraseMasked]}>
                 {revealed ? word : "•••••"}
@@ -219,6 +219,11 @@ const styles = StyleSheet.create({
     color: authColors.label,
     fontSize: 15,
     fontWeight: "600",
+  },
+  // Kept in the layout so the card doesn't jump on reveal, but invisible so
+  // the "Tap to reveal" label isn't drawn over the placeholder rows.
+  phraseWordHidden: {
+    opacity: 0,
   },
   phraseMasked: {
     color: authColors.subtle,
