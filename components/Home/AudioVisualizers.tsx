@@ -55,11 +55,22 @@ import Animated, {
   type SharedValue,
 } from "react-native-reanimated";
 import { LinearGradient } from "expo-linear-gradient";
+import { Canvas, Picture, createPicture, type SkPicture } from "@shopify/react-native-skia";
+import { useAppTheme } from "../../context/ThemeContext";
+import {
+  AudioListener,
+  EXTRA_STYLES,
+  drawExtra,
+  isExtraStyle,
+  makePalette,
+  type ExtraStyle,
+} from "./visualizer-extra";
+import { SkiaCtx2D } from "./skia-ctx2d";
 
 /* ─── Style list ────────────────────────────────────────────────────────── */
 
-/** Same keys and same order as web's `VisualizerStyle`. */
-export type VisualizerStyle =
+/** Same keys and same order as web's style list. */
+export type BaseVisualizerStyle =
   | "static"
   | "bars"
   | "waveform"
@@ -70,6 +81,8 @@ export type VisualizerStyle =
   | "pulse"
   | "terrain"
   | "orb";
+
+export type VisualizerStyle = BaseVisualizerStyle | ExtraStyle;
 
 export const VISUALIZER_STYLES: { value: VisualizerStyle; label: string }[] = [
   { value: "static", label: "Default" },
@@ -82,6 +95,7 @@ export const VISUALIZER_STYLES: { value: VisualizerStyle; label: string }[] = [
   { value: "pulse", label: "Pulse" },
   { value: "terrain", label: "Terrain" },
   { value: "orb", label: "Orb" },
+  ...EXTRA_STYLES,
 ];
 
 /* ─── Shared constants and helpers ──────────────────────────────────────── */
@@ -115,8 +129,15 @@ export const styleBandHeight = (style: VisualizerStyle): number => {
     case "terrain":
     case "orb":
       return 150;
+    case "liquid":
+    case "glint":
+    case "led":
+    case "bounce":
+    case "braid":
+    case "ribbon":
+      return 110;
     default:
-      return WAVEFORM_HEIGHT;
+      return isExtraStyle(style) ? 150 : WAVEFORM_HEIGHT;
   }
 };
 
@@ -1484,6 +1505,87 @@ const OrbVisualizer: React.FC<BandProps> = memo(
   },
 );
 
+/* ─── Extra styles (Skia, shared painters) ──────────────────────────────── */
+
+/**
+ * The forty-two styles that come from `visualizer-extra`, the painters web
+ * uses too. Each frame is recorded as a Skia picture on the JS thread at
+ * ~30fps while playing; paused, one frame is drawn and held. There is no
+ * analyser behind the app's player, so the sound is the same synthesised
+ * groove the other app styles move to.
+ */
+const EXTRA_FRAME_MS = 31;
+
+const ExtraVisualizer: React.FC<{
+  style: ExtraStyle;
+  seed: string;
+  isPlaying: boolean;
+  hue: number;
+  position: SharedValue<number>;
+  height: number;
+  onLayout?: (e: LayoutChangeEvent) => void;
+}> = memo(({ style, seed, isPlaying, hue, position, height, onLayout }) => {
+  const { theme } = useAppTheme();
+  const { width, handleLayout } = useBandWidth(onLayout);
+  const [picture, setPicture] = useState<SkPicture | null>(null);
+  const listenerRef = React.useRef<AudioListener | null>(null);
+  const stateRef = React.useRef<Record<string, unknown>>({});
+  const peaks = useMemo(() => generateBars(seed, BAR_COUNT), [seed]);
+
+  useEffect(() => {
+    stateRef.current = {};
+  }, [style, width, height]);
+
+  useEffect(() => {
+    if (!width || !height) return;
+    const listener = (listenerRef.current ||= new AudioListener());
+    const palette = makePalette(hue, false, theme);
+    const paint = (now: number) => {
+      const t = now / 1000;
+      const progress = Math.max(0, Math.min(1, position.value || 0));
+      if (isPlaying) listener.fromSynth(t, progress, peaks);
+      else listener.hold(t, progress, peaks);
+      setPicture(
+        createPicture(
+          (canvas) => drawExtra(style, new SkiaCtx2D(canvas), width, height, listener.frame, palette, stateRef.current),
+          { width, height },
+        ),
+      );
+    };
+    if (!isPlaying) {
+      paint(performance.now());
+      return;
+    }
+    let alive = true;
+    let raf = 0;
+    let last = 0;
+    const loop = (now: number) => {
+      if (!alive) return;
+      if (now - last >= EXTRA_FRAME_MS) {
+        last = now;
+        paint(now);
+      }
+      raf = requestAnimationFrame(loop);
+    };
+    raf = requestAnimationFrame(loop);
+    return () => {
+      alive = false;
+      cancelAnimationFrame(raf);
+    };
+  }, [isPlaying, width, height, style, hue, theme, peaks, position]);
+
+  return (
+    <View style={{ height, width: "100%" }} onLayout={handleLayout} pointerEvents="none">
+      {picture && width > 0 ? (
+        <Canvas style={{ width, height }}>
+          <Picture picture={picture} />
+        </Canvas>
+      ) : null}
+    </View>
+  );
+});
+ExtraVisualizer.displayName = "ExtraVisualizer";
+
 /* ─── Dispatcher ────────────────────────────────────────────────────────── */
 
 export interface AudioVisualizerProps {
@@ -1502,6 +1604,10 @@ export const AudioVisualizer: React.FC<AudioVisualizerProps> = memo((props) => {
   const { style, seed, isPlaying, hue, position, onLayout } = props;
   const height = props.height ?? styleBandHeight(style);
   const band = { seed, isPlaying, hue, height, onLayout };
+
+  if (isExtraStyle(style)) {
+    return <ExtraVisualizer style={style} seed={seed} isPlaying={isPlaying} hue={hue} position={position} height={height} onLayout={onLayout} />;
+  }
 
   switch (style) {
     case "waveform":

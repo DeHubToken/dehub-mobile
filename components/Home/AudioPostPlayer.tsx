@@ -28,6 +28,8 @@ import type { EventSubscription } from "expo-modules-core";
 import { LinearGradient } from "expo-linear-gradient";
 import { useIsFocused } from "@react-navigation/native";
 import Icon from "../ui/Icon";
+import { useAppTheme } from "../../context/ThemeContext";
+import { defaultStyleForTheme } from "./visualizer-extra";
 import { requestAudioFocus, releaseAudioFocus } from "../../libs/audioFocus";
 import { configureForBackgroundPlayback } from "../../libs/audioSession";
 import { claimLockScreen, releaseLockScreen } from "../../libs/lockScreen";
@@ -221,9 +223,22 @@ interface StylePickerProps {
   onStyleChange: (s: VisualizerStyle) => void;
 }
 
-const StylePicker: React.FC<StylePickerProps> = memo(({ style: activeStyle, onStyleChange }) => (
+const StylePicker: React.FC<StylePickerProps> = memo(({ style: activeStyle, onStyleChange }) => {
+  // Fifty-odd styles: slide the strip so the active one (often the theme's
+  // own default, far down the list) is in view.
+  const scrollRef = useRef<ScrollView>(null);
+  const chipX = useRef<Record<string, { x: number; w: number }>>({});
+  const stripW = useRef(0);
+  const reveal = useCallback(() => {
+    const c = chipX.current[activeStyle];
+    if (c && stripW.current) scrollRef.current?.scrollTo({ x: Math.max(0, c.x - (stripW.current - c.w) / 2), animated: false });
+  }, [activeStyle]);
+  useEffect(reveal, [reveal]);
+  return (
   <PagerSafe>
   <ScrollView
+    ref={scrollRef}
+    onLayout={(e) => { stripW.current = e.nativeEvent.layout.width; reveal(); }}
     horizontal
     showsHorizontalScrollIndicator={false}
     keyboardShouldPersistTaps="handled"
@@ -234,6 +249,10 @@ const StylePicker: React.FC<StylePickerProps> = memo(({ style: activeStyle, onSt
       return (
         <Pressable
           key={s.value}
+          onLayout={(e) => {
+            chipX.current[s.value] = { x: e.nativeEvent.layout.x, w: e.nativeEvent.layout.width };
+            if (isActive) reveal();
+          }}
           onPress={() => onStyleChange(s.value)}
           hitSlop={{ top: 6, bottom: 6, left: 2, right: 2 }}
           style={{
@@ -259,7 +278,8 @@ const StylePicker: React.FC<StylePickerProps> = memo(({ style: activeStyle, onSt
     })}
   </ScrollView>
   </PagerSafe>
-));
+  );
+});
 
 /* ─── Color Hue Slider ──────────────────────────────────────── */
 interface HueSliderProps {
@@ -369,7 +389,10 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
   const [currentTime, setCurrentTime] = useState(0);
   const [totalDuration, setTotalDuration] = useState(duration);
   const [hue, setHue] = useState(() => getCachedHue());
-  const [vizStyle, setVizStyle] = useState<VisualizerStyle>("static");
+  // An untouched card plays its theme's own style; a pick sticks for this card.
+  const { theme } = useAppTheme();
+  const [pickedStyle, setVizStyle] = useState<VisualizerStyle | null>(null);
+  const vizStyle = pickedStyle ?? (defaultStyleForTheme(theme) as VisualizerStyle);
   const [volume, setVolume] = useState(1);
   const [selfMuted, setSelfMuted] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
