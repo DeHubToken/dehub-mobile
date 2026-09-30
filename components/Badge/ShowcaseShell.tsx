@@ -59,6 +59,7 @@ import type { BadgeMotion } from "../../libs/badgeMotion";
 import { haptic } from "../../libs/haptics";
 import { useAppTheme } from "../../context/ThemeContext";
 import { badgeAnimationStyle } from "../../libs/badgeAnimationStyle";
+import { badgeWorld } from "../../libs/badgeWorld";
 
 export interface ShowcaseEntry {
   key: string;
@@ -193,6 +194,8 @@ export default function ShowcaseShell({
   const { t } = useTranslation();
   const { theme } = useAppTheme();
   const [metallic] = useState(() => badgeAnimationStyle(theme) === "metallic");
+  const [world] = useState(() => badgeWorld(theme));
+  const cinematic = metallic || !!world;
   const insets = useSafeAreaInsets();
   const bottomGap = insets.bottom + SECTION_GAP;
   const { height: H } = useWindowDimensions();
@@ -291,7 +294,7 @@ export default function ShowcaseShell({
     toBox.value = hero;
     measureOnScreen(anchor, H).then(async (from) => {
       if (!mounted.current || closing.current) return;
-      if (metallic) {
+      if (cinematic) {
         let fromArt: string | null = null;
         try {
           const previous = intro?.fromArt;
@@ -323,14 +326,14 @@ export default function ShowcaseShell({
   }, [hero]);
 
   useEffect(() => {
-    if (!metallic || !stickerReady || !metalOpening || metalStarted.current || closing.current || glFailed) return;
+    if (!cinematic || !stickerReady || !metalOpening || metalStarted.current || closing.current || glFailed) return;
     metalStarted.current = true;
     setStickerOn(true);
     stageRef.current?.open(metalOpening.from, metalOpening.fromArt, !!intro);
-  }, [metallic, stickerReady, metalOpening, intro, glFailed]);
+  }, [cinematic, stickerReady, metalOpening, intro, glFailed]);
 
   useEffect(() => {
-    if (!metallic || !glFailed || !hero || closing.current) return;
+    if (!cinematic || !glFailed || !hero || closing.current) return;
     frame.value = hero.size;
     setFrameSize(hero.size);
     fromBox.value = toBox.value = hero;
@@ -339,7 +342,7 @@ export default function ShowcaseShell({
     setStickerReady(false);
     setFlying(true);
     setLanded(true);
-  }, [metallic, glFailed, hero, frame, fromBox, toBox, flight]);
+  }, [cinematic, glFailed, hero, frame, fromBox, toBox, flight]);
 
   // The ceremony's new badge lands exactly where a flight ends, so the copy
   // takes over there and the sticker wakes up the usual way.
@@ -470,11 +473,11 @@ export default function ShowcaseShell({
     measureOnScreen(anchor, H).then((home) => {
       if (!mounted.current) return;
       if (!home) return fade();
-      if (metallic && !glFailed && stickerReady) {
+      if (cinematic && !glFailed && stickerReady) {
         stageRef.current?.close(home);
         return;
       }
-      if (metallic && !glFailed) return fade();
+      if (cinematic && !glFailed) return fade();
       flight.value = 0;
       homeward.value = 1;
       fromBox.value = from;
@@ -485,7 +488,7 @@ export default function ShowcaseShell({
         if (done) runOnJS(onClose)();
       });
     });
-  }, [anchor, H, reduceMotion, index, originIndex, onClose, flight, homeward, fromBox, toBox, metallic, glFailed, stickerReady]);
+  }, [anchor, H, reduceMotion, index, originIndex, onClose, flight, homeward, fromBox, toBox, cinematic, glFailed, stickerReady]);
 
   /* ---------- autoplay ---------- */
 
@@ -604,10 +607,10 @@ export default function ShowcaseShell({
           <Animated.View style={[StyleSheet.absoluteFill, styles.backdrop, backdropStyle]} />
           <Pressable style={StyleSheet.absoluteFill} onPress={requestClose} accessible={false} />
 
-          {metallic && items && hero && !glFailed ? (
+          {cinematic && items && hero && !glFailed ? (
             <View style={StyleSheet.absoluteFill}>
               <StickerStage
-                ref={stageRef} items={items} origin={originIndex} metallic hero={hero} reducedMotion={reduceMotion}
+                ref={stageRef} items={items} origin={originIndex} metallic={metallic} world={world} hero={hero} reducedMotion={reduceMotion}
                 onReady={(ok) => { if (closing.current) { if (!ok) onClose(); return; } if (ok) setStickerReady(true); else { setGlFailed(true); setStickerOn(false); } }}
                 onLanded={() => { if (!closing.current) setLanded(true); }}
                 onClosed={onClose} onTap={() => goTo(index + 1)} onMiss={requestClose} onInteract={pause}
@@ -629,7 +632,7 @@ export default function ShowcaseShell({
                   <Rect width="100%" height="100%" fill="url(#badge-showcase-glow)" />
                 </Svg>
               </Animated.View>
-              {!metallic && items && !glFailed ? (
+              {!cinematic && items && !glFailed ? (
                 <Animated.View style={[StyleSheet.absoluteFill, stickerStyle]} pointerEvents={stickerOn ? "auto" : "none"}>
                   <StickerStage
                     ref={stageRef}
