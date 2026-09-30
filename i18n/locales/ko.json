@@ -13,7 +13,36 @@
     "placeholder": "여기에 기사를 작성하세요. 단락 사이에 빈 줄을 사용하세요.",
     "lengthHint": "{{length}}/20,000 · 최소 100자. 위 텍스트는 요약입니다.",
     "dehubArticle": "DeHub 기사",
-    "dehubPost": "DeHub 게시물"
+    "dehubPost": "DeHub 게시물",
+    "minRead_one": "{{count}} 분 읽기",
+    "minRead_other": "{{count}} 분 읽기",
+    "wordCount_other": "{{count}} 단어",
+    "needBody_one": "{{count}} 자 남음",
+    "needBody_other": "{{count}} 자 남음",
+    "textSize": "텍스트 크기",
+    "changeCover": "커버 사진 변경",
+    "removeCover": "커버 제거",
+    "addCover": "커버 사진 추가하기",
+    "coverHint": "기사 상단에 있으며 공유할 때 사람들이 보는 사진입니다.",
+    "titlePlaceholder": "제목",
+    "titleLabel": "글 제목",
+    "preview": "미리보기",
+    "previewEmpty": "아직 미리 볼 것이 없습니다.",
+    "bodyPlaceholder": "이야기를 들려주세요. 텍스트를 선택하고 머리글, 굵게, 따옴표 및 목록에 위의 막대를 사용하세요.",
+    "summaryLabel": "요약 · 피드 및 링크 미리 보기에 표시",
+    "summaryPlaceholder": "게시글에 대한 한두 문장",
+    "sharePreview": "공유 시 화면",
+    "noCoverShare": "아직 커버가 없습니다. 링크는 이미지 없이 표시됩니다.",
+    "format": {
+      "heading": "제목",
+      "subheading": "부제목",
+      "bold": "굵게",
+      "italic": "기울임꼴",
+      "quote": "인용",
+      "bullets": "글머리 기호 목록",
+      "numbers": "번호 매기기 목록",
+      "link": "링크"
+    }
   },
   "storefront": {
     "unavailable": "이 버전의 앱에서는 사용할 수 없습니다"

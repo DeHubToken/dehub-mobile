@@ -13,7 +13,37 @@
     "placeholder": "اكتب مقالك هنا. استخدم أسطرًا فارغة بين الفقرات.",
     "lengthHint": "{{length}}/20,000 · 100 حرف كحد أدنى. النص أعلاه هو الملخص.",
     "dehubArticle": "مقال DeHub",
-    "dehubPost": "منشور DeHub"
+    "dehubPost": "منشور DeHub",
+    "minRead_one": "{{count}} دقيقة للقراءة",
+    "minRead_other": "{{count}} دقيقة للقراءة",
+    "wordCount_one": "{{count}} كلمة",
+    "wordCount_other": "{{count}} كلمات",
+    "needBody_one": "{{count}} حرف للاضافة",
+    "needBody_other": "{{count}} حروف للاضافة",
+    "textSize": "حجم النص",
+    "changeCover": "تغيير الغلاف",
+    "removeCover": "إزالة الغلاف",
+    "addCover": "إضافة غلاف",
+    "coverHint": "يقع على أعلى مقالك ويظهر للناس عندما يتم مشاركته",
+    "titlePlaceholder": "العنوان",
+    "titleLabel": "عنوان المقال",
+    "edit": "تعديل",
+    "preview": "مشاهدة المقال",
+    "previewEmpty": "لا يوجد شيء للعرض بعد.",
+    "summaryLabel": "الخلاصة · يظهر في feed وملخصات الروابط",
+    "summaryPlaceholder": "جملة أو اثنتان عن مقالك",
+    "sharePreview": "كيف يظهر عندما يتم مشاركته",
+    "noCoverShare": "لا يوجد غلاف بعد. سيظهر الروابط بدون صورة.",
+    "format": {
+      "heading": "الرأس",
+      "subheading": "الرأس الفرعي",
+      "bold": "الخط العريض",
+      "italic": "الخط المائل",
+      "quote": "الاقتباس",
+      "bullets": "قائمة نقطية",
+      "numbers": "قائمة مرقمة",
+      "link": "الرابط"
+    }
   },
   "storefront": {
     "unavailable": "مش متاح بهالنسخة من التطبيق"

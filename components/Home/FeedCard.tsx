@@ -41,7 +41,9 @@ import { findAssetRefs, stripAssetRefs } from "../../libs/asset-refs";
 import SmartImage from "../common/SmartImage";
 import { useAppTheme } from "../../context/ThemeContext";
 import { MINIMAL_HAIRLINE } from "../../theme/colors";
-import MarkdownText from "../ui/MarkdownText";
+import ArticleCover from "../article/ArticleCover";
+import ArticleReaderBody from "../article/ArticleReaderBody";
+import { articleLook, articleReadingMinutes } from "../../libs/article";
 import ContainedFeedImage from "./ContainedFeedImage";
 import FeedImageGallery from "./FeedImageGallery";
 import PostTapSurface from "./PostTapSurface";
@@ -339,7 +341,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     userAddress && minterAddress && userAddress.toLowerCase() === minterAddress.toLowerCase()
   );
 
-  const { isMinimal, skin } = useAppTheme();
+  const { isMinimal, skin, theme } = useAppTheme();
+  const articleUi = useMemo(() => articleLook(theme), [theme]);
   // How far this card has to step out to span the screen. Worked out from the
   // width the list actually gives it, so a list with other padding still
   // lands edge to edge. The applied margin is added back before comparing, or
@@ -1717,11 +1720,21 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         onReaction={handleVideoTapReaction}
         onPress={disablePress ? undefined : handleCardPress}
       >
-      {!!localArticleBody && <Text className="text-white/60 text-xs font-semibold uppercase mx-4 mb-1">{t("articles.label")}</Text>}
-      {!!localArticleBody && !!item.articleImageUrl && <SmartImage source={{ uri: buildFeedImageUrls([item.articleImageUrl], IMAGE_WIDTH)[0] }} style={{ width: '100%', aspectRatio: 16 / 9, marginBottom: 12 }} contentFit="cover" recyclingKey={item.articleImageUrl} />}
+      {!!localArticleBody && (
+        <View className="mx-4 mb-3">
+          <ArticleCover
+            look={articleUi}
+            label={fullContent ? t("articles.label") : `${t("articles.label")} · ${t("articles.minRead", { count: articleReadingMinutes(localArticleBody) })}`}
+            title={(isTranslated ? translatedTexts.title : localTitle) || undefined}
+            coverUri={item.articleImageUrl ? buildFeedImageUrls([item.articleImageUrl], IMAGE_WIDTH)[0] : undefined}
+            meta={fullContent ? [createdAt ? new Date(createdAt).toLocaleDateString(undefined, { month: "short", day: "numeric" }) : null, t("articles.minRead", { count: articleReadingMinutes(localArticleBody) })].filter(Boolean).join(" · ") : undefined}
+            hero={fullContent}
+          />
+        </View>
+      )}
       <FeedCaption
         resetKey={postKey}
-        title={(isTranslated ? translatedTexts.title : localTitle) || undefined}
+        title={localArticleBody ? undefined : (isTranslated ? translatedTexts.title : localTitle) || undefined}
         description={displayCaption || undefined}
         categories={localCategories}
         onCategoryPress={onCategorySelect}
@@ -1731,9 +1744,14 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         flagged={item.communityAlertStatus === "pending"}
       />
       {!!localArticleBody && (fullContent && (isOwnerPost || (!isLocked && (!streamInfo?.isPayPerView || ppvUnlocked) && !isActuallySubGated)) ? (
-        <View className="mx-4 mt-4"><MarkdownText content={localArticleBody} style={{ fontSize: 16 }} /></View>
+        <View className="mx-4 mt-4"><ArticleReaderBody body={localArticleBody} look={articleUi} /></View>
       ) : (
-        <Text className="text-white font-semibold text-sm mx-4 mt-3">{t("articles.read")} →</Text>
+        <View className="mx-4 mt-3 flex-row">
+          <View style={{ flexDirection: "row", alignItems: "center", gap: 6, borderWidth: 1, borderColor: articleUi.line, borderRadius: articleUi.radius ? 999 : 0, paddingHorizontal: 12, paddingVertical: 6 }}>
+            <Icon name="BookOpen" size={15} color={articleUi.ink2} />
+            <Text style={{ color: articleUi.ink2, fontSize: 13 }}>{t("articles.read")}</Text>
+          </View>
+        </View>
       ))}
       </PostTapSurface>
 

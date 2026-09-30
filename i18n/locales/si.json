@@ -13,7 +13,36 @@
     "placeholder": "ඔබේ ලිපිය මෙහි ලියන්න. ඡේද අතර හිස් රේඛා භාවිතා කරන්න.",
     "lengthHint": "{{length}}/20,000 · අවම අක්ෂර 100. ඉහත පාඨය සාරාංශයයි.",
     "dehubArticle": "DeHub ලිපිය",
-    "dehubPost": "DeHub පෝස්ට් එක"
+    "dehubPost": "DeHub පෝස්ට් එක",
+    "wordCount_one": "{{count}} වචනය",
+    "wordCount_other": "{{count}} වචන",
+    "needBody_one": "{{count}} තව චරිතයක් යන්න ඕනේ",
+    "needBody_other": "{{count}} තවත් අක්ෂර",
+    "textSize": "පෙළ ප් ‍ රමාණය",
+    "changeCover": "කවරය වෙනස් කරන්න",
+    "removeCover": "ආවරණය ඉවත් කරන්න",
+    "addCover": "ආවරණයක් එක් කරන්න",
+    "coverHint": "එය ඔබේ ලිපියේ ඉහළින් ඇති අතර එය බෙදාගත් විට මිනිසුන් දකින පින්තූරය එයයි",
+    "titlePlaceholder": "මාතෘකාව",
+    "titleLabel": "ලිපියේ මාතෘකාව",
+    "edit": "සංස්කරණය කරන්න",
+    "preview": "පෙරදසුන",
+    "previewEmpty": "තාම preview කරන්න බෑ.",
+    "bodyPlaceholder": "ඔබේ කතාව කියන්න. පෙළ තෝරා ශීර්ෂ සඳහා ඉහත තීරුව භාවිතා, නිර්භීත, මිල කැඳවීම් සහ ලැයිස්තු.",
+    "summaryLabel": "සාරාංශය · පෝෂණය සහ සබැඳි පෙරදසුනෙහි පෙන්වයි",
+    "summaryPlaceholder": "ඔබේ ලිපිය ගැන වාක් ‍ යයක් හෝ දෙකක්",
+    "sharePreview": "බෙදාගත් විට එය පෙනෙන්නේ කෙසේද",
+    "noCoverShare": "තවම ආවරණයක් නැහැ. රූපයක් නොමැතිව සබැඳි පෙන්වනු ඇත.",
+    "format": {
+      "heading": "ශීර්ෂ පාඨය",
+      "subheading": "උප සිරස්තල",
+      "bold": "නිර්භීත",
+      "italic": "ඉතාලි",
+      "quote": "උපුටා දැක්වීම",
+      "bullets": "උණ්ඩ ලැයිස්තුව",
+      "numbers": "අංකිත ලැයිස්තුව",
+      "link": "සබැඳිය"
+    }
   },
   "storefront": {
     "unavailable": "යෙදුමේ මෙම අනුවාදයේ නොමැත"
