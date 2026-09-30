@@ -13,7 +13,34 @@
     "placeholder": "Rait ya atikul fo hia. Lif empti lain bitwin paragraf dem.",
     "lengthHint": "{{length}}/20,000 · at least 100 leta. Di tok fo op na di short summary.",
     "dehubArticle": "Atikul fo DeHub",
-    "dehubPost": "Post fo DeHub"
+    "dehubPost": "Post fo DeHub",
+    "minRead_one": "{{count}} min read",
+    "minRead_other": "{{count}} min read",
+    "wordCount_one": "{{count}} word",
+    "wordCount_other": "{{count}} words",
+    "textSize": "Text size",
+    "changeCover": "Change cover",
+    "removeCover": "Remove cover",
+    "addCover": "Add a cover",
+    "titlePlaceholder": "Title",
+    "titleLabel": "Article title",
+    "edit": "Edit",
+    "preview": "Preview",
+    "previewEmpty": "No tin for preview yet.",
+    "summaryLabel": "Sumari · wok done for feed na link ples.",
+    "summaryPlaceholder": "Dis article go dey talk about di impact of climate change on di environment.",
+    "sharePreview": "Wen yu share somtin, e go dey show like dis:",
+    "noCoverShare": "No kapa yet. Link go show without picha.",
+    "format": {
+      "heading": "Heading",
+      "subheading": "Subheading",
+      "bold": "Bold",
+      "italic": "Italic",
+      "quote": "Quote",
+      "bullets": "Bullet list",
+      "numbers": "Numbered list",
+      "link": "Link"
+    }
   },
   "storefront": {
     "unavailable": "E no dey for dis version of di app"

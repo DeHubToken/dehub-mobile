@@ -13,7 +13,37 @@
     "placeholder": "Kọ àpilẹkọ rẹ nibi. Lo awọn ila ti o ṣofo laarin awọn paragirafi.",
     "lengthHint": "{{length}}/20,000 · o kere ju awọn ohun kikọ 100. Ọrọ ti o wa loke ni akopọ.",
     "dehubArticle": "Àpilẹkọ DeHub",
-    "dehubPost": "Ifiweranṣẹ DeHub"
+    "dehubPost": "Ifiweranṣẹ DeHub",
+    "minRead_one": "{{count}} min ka",
+    "minRead_other": "{{count}} min ka",
+    "wordCount_one": "{{count}} ọrọ",
+    "wordCount_other": "{{count}} àwọn ọ̀rọ̀",
+    "needBody_one": "{{count}} ohun kikọ diẹ sii lati lọ",
+    "textSize": "Iwọn ọrọ",
+    "changeCover": "Yi ideri pada",
+    "removeCover": "Yọ ideri kuro",
+    "addCover": "Ṣafikun ideri kan",
+    "coverHint": "Ó jókòó sí orí àkọlé rẹ ó sì jẹ́ àwòrán tí àwọn ènìyàn máa ń rí nígbà tí wọ́n bá pín in.",
+    "titlePlaceholder": "Akọle",
+    "titleLabel": "Àkọlé àpilẹ̀kọ",
+    "edit": "Ṣatunkọ",
+    "preview": "Awotẹlẹ",
+    "previewEmpty": "Kò sí nǹkankan láti ṣe àfihàn rẹ̀ síbẹ̀.",
+    "bodyPlaceholder": "Sọ ìtàn rẹ. Yan àyọkà kí o sì lo àpáàdì tí ó wà lókè fún àwọn àkọlé, ìgboyà, àwọn àyọkà àti àwọn àtòjọ.",
+    "summaryLabel": "Akopọ · han ninu ifunni ati awọn awotẹlẹ ọna asopọ",
+    "summaryPlaceholder": "Gbolohun kan tabi meji nipa nkan rẹ",
+    "sharePreview": "Bí ó ṣe rí nígbà tí wọ́n bá pín in",
+    "noCoverShare": "Kò sí ìbòjú mọ́. Àwọn ìjápọ yóò hàn láìní àwòrán.",
+    "format": {
+      "heading": "Orí",
+      "subheading": "Àkọsílẹ",
+      "bold": "Ọ̀rọ̀ ẹ̀ẹ̀ẹ̀",
+      "italic": "*Ọ̀rọ̀*",
+      "quote": "Àsọtẹ́lẹ̀",
+      "bullets": "Atokọ Bullet",
+      "numbers": "Àtòjọ àwọn nọ́mbà",
+      "link": "Ìsopọ̀"
+    }
   },
   "storefront": {
     "unavailable": "Kò sí nínú ẹ̀yà app yìí"
