@@ -164,7 +164,7 @@ export default function HomeScreen() {
   const [selectedCategory, setSelectedCategory] = useState<string | undefined>(undefined);
   const { width: pageWidth } = useWindowDimensions();
   const isFocused = useIsFocused();
-  const { skin, theme } = useAppTheme();
+  const { skin, theme, colors } = useAppTheme();
   // System floats its glass pill over the feed like the canvas themes do, so
   // it gets the same clear header and the same cut around the pill.
   const glassNav = !!skin || theme === "system";
@@ -470,8 +470,13 @@ export default function HomeScreen() {
   // viewport slides down to the pill's top and its content slides back up by
   // the same amount: two transforms on the UI thread, no layout per frame.
   const navPillTop = useSharedValue(0);
+  const [pillTopInHeader, setPillTopInHeader] = useState(0);
   const onNavLayout = useCallback((e: LayoutChangeEvent) => {
-    navPillTop.value = e.nativeEvent.layout.y + NAV_PILL_TOP_INSET;
+    setPillTopInHeader(e.nativeEvent.layout.y + NAV_PILL_TOP_INSET + 1);
+    // One point below the pill's top edge, so rounding between the measured
+    // layout and the transform can never leave a hairline of feed showing
+    // above the pill; the pill's rim covers that point.
+    navPillTop.value = e.nativeEvent.layout.y + NAV_PILL_TOP_INSET + 1;
   }, [navPillTop]);
   const clipOn = glassNav;
   // The cut follows the pill's silhouette, as on web: the viewport is inset to
@@ -882,6 +887,16 @@ export default function HomeScreen() {
         style={[styles.headerClip, glassNav ? styles.headerClear : null, headerAnimatedStyle]}
         onLayout={onHeaderLayout}
       >
+        {/* System's page is one flat colour, so the header also carries a band
+            of it down to the pill's top edge. It moves in the same view as the
+            pill, so when the header slides back in on a quick flick the feed
+            can't peek above the pill for the frames the viewport cut trails. */}
+        {theme === "system" && !skin && pillTopInHeader > 0 ? (
+          <View
+            pointerEvents="none"
+            style={[styles.headerCover, { height: pillTopInHeader, backgroundColor: colors.background }]}
+          />
+        ) : null}
         <HomeHeader
           onLogoPress={handleLogoPress}
           onMenuPress={openDrawer}
@@ -1027,6 +1042,12 @@ const styles = StyleSheet.create({
   // straight over the backdrop, as on web.
   headerClear: {
     backgroundColor: "transparent",
+  },
+  headerCover: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
   },
   profileSurface: {
     position: "absolute",
