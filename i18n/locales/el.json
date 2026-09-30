@@ -2696,7 +2696,17 @@
     "repostsLabel_one": "αναδημοσίευση",
     "repostsLabel_other": "αναδημοσιεύσεις",
     "quotesLabel_one": "παράθεση",
-    "quotesLabel_other": "παραθέσεις"
+    "quotesLabel_other": "παραθέσεις",
+    "sortRecent": "Νέα",
+    "sortOldest": "Παλιά",
+    "sortLiked": "Δημοφιλή",
+    "sortedByRecent": "Ταξινόμηση κατά πιο πρόσφατα",
+    "sortedByOldest": "Ταξινόμηση κατά παλαιότερα",
+    "sortedByLiked": "Ταξινόμηση κατά πιο δημοφιλή",
+    "tabReplies": "Απαντήσεις",
+    "tabQuotes": "Παραθέσεις",
+    "tabReposts": "Αναδημοσιεύσεις",
+    "tabSearch": "Αναζήτηση"
   },
   "postInfo": {
     "title": "Πληροφορίες ανάρτησης",

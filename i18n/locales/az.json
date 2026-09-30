@@ -2671,7 +2671,17 @@
     "repostsLabel_one": "yenidən paylaşım",
     "repostsLabel_other": "yenidən paylaşım",
     "quotesLabel_one": "sitat",
-    "quotesLabel_other": "sitat"
+    "quotesLabel_other": "sitat",
+    "sortRecent": "Yeni",
+    "sortOldest": "Köhnə",
+    "sortLiked": "Populyar",
+    "sortedByRecent": "Ən yeniyə görə sıralanıb",
+    "sortedByOldest": "Ən köhnəyə görə sıralanıb",
+    "sortedByLiked": "Ən çox bəyənilənə görə sıralanıb",
+    "tabReplies": "Cavablar",
+    "tabQuotes": "Sitatlar",
+    "tabReposts": "Yenidən paylaşımlar",
+    "tabSearch": "Axtarış"
   },
   "postInfo": {
     "title": "Paylaşım məlumatı",

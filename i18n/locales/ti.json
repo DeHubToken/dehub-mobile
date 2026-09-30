@@ -2663,7 +2663,17 @@
     "repostsLabel_one": "ዳግማይ ጽሑፍ",
     "repostsLabel_other": "ዳግማይ ጽሑፋት",
     "quotesLabel_one": "ጥቕሲ",
-    "quotesLabel_other": "ጥቕስታት"
+    "quotesLabel_other": "ጥቕስታት",
+    "sortRecent": "ሓደሽቲ",
+    "sortOldest": "ዝኣረጉ",
+    "sortLiked": "ዝተፈተዉ",
+    "sortedByRecent": "ብዝሓደሹ ተሰሪዑ",
+    "sortedByOldest": "ብዝኣረጉ ተሰሪዑ",
+    "sortedByLiked": "ብዝበዝሐ ዝተፈተዉ ተሰሪዑ",
+    "tabReplies": "መልሲታት",
+    "tabQuotes": "ጥቕስታት",
+    "tabReposts": "ዳግማይ ጽሑፋት",
+    "tabSearch": "ድለ"
   },
   "postInfo": {
     "title": "ሓበሬታ ጽሑፍ",

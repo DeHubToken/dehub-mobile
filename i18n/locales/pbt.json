@@ -2668,7 +2668,17 @@
     "repostsLabel_other": "بیا پوسټونه",
     "quotesLabel_one": "اقتباس",
     "quotesLabel_other": "اقتباسونه",
-    "rowA11yLabel": "{{name}}، {{time}}: {{text}}"
+    "rowA11yLabel": "{{name}}، {{time}}: {{text}}",
+    "sortRecent": "نوي",
+    "sortOldest": "زاړه",
+    "sortLiked": "مشهور",
+    "sortedByRecent": "د نویو له مخې ترتیب شوي",
+    "sortedByOldest": "د زړو له مخې ترتیب شوي",
+    "sortedByLiked": "د ډېرو خوښو له مخې ترتیب شوي",
+    "tabReplies": "ځوابونه",
+    "tabQuotes": "اقتباسونه",
+    "tabReposts": "بیا پوسټونه",
+    "tabSearch": "لټون"
   },
   "postInfo": {
     "title": "د پوسټ معلومات",

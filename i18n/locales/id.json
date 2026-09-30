@@ -2671,7 +2671,17 @@
     "repostsLabel_one": "repost",
     "repostsLabel_other": "repost",
     "quotesLabel_one": "kutipan",
-    "quotesLabel_other": "kutipan"
+    "quotesLabel_other": "kutipan",
+    "sortRecent": "Terbaru",
+    "sortOldest": "Terlama",
+    "sortLiked": "Populer",
+    "sortedByRecent": "Diurutkan dari terbaru",
+    "sortedByOldest": "Diurutkan dari terlama",
+    "sortedByLiked": "Diurutkan dari paling disukai",
+    "tabReplies": "Balasan",
+    "tabQuotes": "Kutipan",
+    "tabReposts": "Repost",
+    "tabSearch": "Cari"
   },
   "postInfo": {
     "title": "Info Postingan",

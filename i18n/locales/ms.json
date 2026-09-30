@@ -2930,7 +2930,17 @@
     "repostsLabel_one": "Siaran semula",
     "repostsLabel_other": "Siaran semula",
     "quotesLabel_one": "Petikan",
-    "quotesLabel_other": "Petikan"
+    "quotesLabel_other": "Petikan",
+    "sortRecent": "Terkini",
+    "sortOldest": "Terlama",
+    "sortLiked": "Popular",
+    "sortedByRecent": "Diisih mengikut Terkini",
+    "sortedByOldest": "Diisih mengikut Terlama",
+    "sortedByLiked": "Diisih mengikut Paling Disukai",
+    "tabReplies": "Balasan",
+    "tabQuotes": "Petikan",
+    "tabReposts": "Siaran semula",
+    "tabSearch": "Cari"
   },
   "postInfo": {
     "title": "Info Pos",

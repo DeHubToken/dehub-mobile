@@ -2861,7 +2861,17 @@
     "repostsLabel_one": "Repost",
     "repostsLabel_other": "Reposts",
     "quotesLabel_one": "Citaat",
-    "quotesLabel_other": "Citaten"
+    "quotesLabel_other": "Citaten",
+    "sortRecent": "Nieuwst",
+    "sortOldest": "Oudst",
+    "sortLiked": "Populair",
+    "sortedByRecent": "Gesorteerd op nieuwste",
+    "sortedByOldest": "Gesorteerd op oudste",
+    "sortedByLiked": "Gesorteerd op meest geliket",
+    "tabReplies": "Antwoorden",
+    "tabQuotes": "Citaten",
+    "tabReposts": "Reposts",
+    "tabSearch": "Zoeken"
   },
   "postInfo": {
     "title": "Berichtinfo",

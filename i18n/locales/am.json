@@ -2698,7 +2698,17 @@
     "repostsLabel_one": "ዳግም ልጥፍ",
     "repostsLabel_other": "ዳግም ልጥፎች",
     "quotesLabel_one": "ጥቅስ",
-    "quotesLabel_other": "ጥቅሶች"
+    "quotesLabel_other": "ጥቅሶች",
+    "sortRecent": "አዳዲስ",
+    "sortOldest": "የቆዩ",
+    "sortLiked": "ተወዳጅ",
+    "sortedByRecent": "በአዳዲስ ቅደም ተከተል",
+    "sortedByOldest": "በቆዩ ቅደም ተከተል",
+    "sortedByLiked": "በብዙ መውደዶች ቅደም ተከተል",
+    "tabReplies": "ምላሾች",
+    "tabQuotes": "ጥቅሶች",
+    "tabReposts": "ዳግም ልጥፎች",
+    "tabSearch": "ፍለጋ"
   },
   "postInfo": {
     "title": "የልጥፍ መረጃ",

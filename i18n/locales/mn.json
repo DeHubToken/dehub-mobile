@@ -2664,7 +2664,17 @@
     "repostsLabel_one": "Дахин нийтлэл",
     "repostsLabel_other": "Дахин нийтлэл",
     "quotesLabel_one": "Эшлэл",
-    "quotesLabel_other": "Эшлэл"
+    "quotesLabel_other": "Эшлэл",
+    "sortRecent": "Шинэ",
+    "sortOldest": "Хуучин",
+    "sortLiked": "Алдартай",
+    "sortedByRecent": "Хамгийн шинээр эрэмбэлсэн",
+    "sortedByOldest": "Хамгийн хуучнаар эрэмбэлсэн",
+    "sortedByLiked": "Хамгийн их таалагдсанаар эрэмбэлсэн",
+    "tabReplies": "Хариултууд",
+    "tabQuotes": "Эшлэлүүд",
+    "tabReposts": "Дахин нийтлэлүүд",
+    "tabSearch": "Хайх"
   },
   "postInfo": {
     "title": "Нийтлэлийн мэдээлэл",

@@ -2701,7 +2701,17 @@
     "repostsLabel_one": "بازنشر",
     "repostsLabel_other": "بازنشر",
     "quotesLabel_one": "نقل‌قول",
-    "quotesLabel_other": "نقل‌قول"
+    "quotesLabel_other": "نقل‌قول",
+    "sortRecent": "جدید",
+    "sortOldest": "قدیمی",
+    "sortLiked": "محبوب",
+    "sortedByRecent": "مرتب‌شده بر اساس جدیدترین",
+    "sortedByOldest": "مرتب‌شده بر اساس قدیمی‌ترین",
+    "sortedByLiked": "مرتب‌شده بر اساس بیشترین لایک",
+    "tabReplies": "پاسخ‌ها",
+    "tabQuotes": "نقل‌قول‌ها",
+    "tabReposts": "بازنشرها",
+    "tabSearch": "جستجو"
   },
   "postInfo": {
     "title": "اطلاعات پست",

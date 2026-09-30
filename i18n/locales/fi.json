@@ -2671,7 +2671,17 @@
     "repostsLabel_one": "uudelleenjulkaisu",
     "repostsLabel_other": "uudelleenjulkaisua",
     "quotesLabel_one": "lainaus",
-    "quotesLabel_other": "lainausta"
+    "quotesLabel_other": "lainausta",
+    "sortRecent": "Uudet",
+    "sortOldest": "Vanhat",
+    "sortLiked": "Suositut",
+    "sortedByRecent": "Järjestetty uusimmasta",
+    "sortedByOldest": "Järjestetty vanhimmasta",
+    "sortedByLiked": "Järjestetty tykätyimmästä",
+    "tabReplies": "Vastaukset",
+    "tabQuotes": "Lainaukset",
+    "tabReposts": "Uudelleenjulkaisut",
+    "tabSearch": "Haku"
   },
   "postInfo": {
     "title": "Julkaisun tiedot",

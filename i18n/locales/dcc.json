@@ -2671,7 +2671,17 @@
     "repostsLabel_one": "ری پوسٹ",
     "repostsLabel_other": "ری پوسٹس",
     "quotesLabel_one": "اقتباس",
-    "quotesLabel_other": "اقتباسات"
+    "quotesLabel_other": "اقتباسات",
+    "sortRecent": "نئے",
+    "sortOldest": "پرانے",
+    "sortLiked": "مقبول",
+    "sortedByRecent": "سب سے نئے کے حساب سے ترتیب",
+    "sortedByOldest": "سب سے پرانے کے حساب سے ترتیب",
+    "sortedByLiked": "سب سے زیادہ لائک کے حساب سے ترتیب",
+    "tabReplies": "جوابات",
+    "tabQuotes": "اقتباسات",
+    "tabReposts": "ری پوسٹس",
+    "tabSearch": "ڈھونڈو"
   },
   "postInfo": {
     "title": "پوسٹ معلومات",

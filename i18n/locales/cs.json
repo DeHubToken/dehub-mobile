@@ -2675,7 +2675,17 @@
     "repostsLabel_one": "repost",
     "repostsLabel_other": "repostů",
     "quotesLabel_one": "citace",
-    "quotesLabel_other": "citací"
+    "quotesLabel_other": "citací",
+    "sortRecent": "Nové",
+    "sortOldest": "Staré",
+    "sortLiked": "Oblíbené",
+    "sortedByRecent": "Řazeno od nejnovějších",
+    "sortedByOldest": "Řazeno od nejstarších",
+    "sortedByLiked": "Řazeno podle počtu lajků",
+    "tabReplies": "Odpovědi",
+    "tabQuotes": "Citace",
+    "tabReposts": "Reposty",
+    "tabSearch": "Hledat"
   },
   "postInfo": {
     "title": "Informace o příspěvku",

@@ -2689,7 +2689,17 @@
     "repostsLabel_one": "Repost",
     "repostsLabel_other": "Repost",
     "quotesLabel_one": "Iqtibos",
-    "quotesLabel_other": "Iqtibos"
+    "quotesLabel_other": "Iqtibos",
+    "sortRecent": "Yangi",
+    "sortOldest": "Eski",
+    "sortLiked": "Yoqqan",
+    "sortedByRecent": "Eng yangilari boʻyicha saralangan",
+    "sortedByOldest": "Eng eskilari boʻyicha saralangan",
+    "sortedByLiked": "Eng koʻp yoqtirilganlar boʻyicha saralangan",
+    "tabReplies": "Javoblar",
+    "tabQuotes": "Iqtiboslar",
+    "tabReposts": "Repostlar",
+    "tabSearch": "Qidirish"
   },
   "postInfo": {
     "title": "Post ma'lumoti",

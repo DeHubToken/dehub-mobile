@@ -2671,7 +2671,17 @@
     "repostsLabel_one": "ndepụta ọzọ",
     "repostsLabel_other": "ndepụta ọzọ",
     "quotesLabel_one": "nhota",
-    "quotesLabel_other": "nhota"
+    "quotesLabel_other": "nhota",
+    "sortRecent": "Ọhụrụ",
+    "sortOldest": "Ochie",
+    "sortLiked": "Kacha masị",
+    "sortedByRecent": "Ahazịrị site na nke kacha ọhụrụ",
+    "sortedByOldest": "Ahazịrị site na nke kacha ochie",
+    "sortedByLiked": "Ahazịrị site na nke kacha masị",
+    "tabReplies": "Nzaghachi",
+    "tabQuotes": "Nhota",
+    "tabReposts": "Ndepụta ọzọ",
+    "tabSearch": "Chọọ"
   },
   "postInfo": {
     "title": "Ozi banyere mbipụta",

@@ -2670,7 +2670,17 @@
     "repostsLabel_one": "ريپوسٽ",
     "repostsLabel_other": "ريپوسٽ",
     "quotesLabel_one": "اقتباس",
-    "quotesLabel_other": "اقتباس"
+    "quotesLabel_other": "اقتباس",
+    "sortRecent": "نوان",
+    "sortOldest": "پراڻا",
+    "sortLiked": "مقبول",
+    "sortedByRecent": "نون مطابق ترتيب ڏنل",
+    "sortedByOldest": "پراڻن مطابق ترتيب ڏنل",
+    "sortedByLiked": "سڀ کان وڌيڪ پسند مطابق ترتيب ڏنل",
+    "tabReplies": "جواب",
+    "tabQuotes": "اقتباس",
+    "tabReposts": "ريپوسٽ",
+    "tabSearch": "ڳولا"
   },
   "postInfo": {
     "title": "پوسٽ معلومات",

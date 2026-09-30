@@ -2675,7 +2675,17 @@
     "repostsLabel_one": "Repost",
     "repostsLabel_other": "Reposts",
     "quotesLabel_one": "Citação",
-    "quotesLabel_other": "Citações"
+    "quotesLabel_other": "Citações",
+    "sortRecent": "Recentes",
+    "sortOldest": "Antigos",
+    "sortLiked": "Curtidos",
+    "sortedByRecent": "Ordenado por mais recentes",
+    "sortedByOldest": "Ordenado por mais antigos",
+    "sortedByLiked": "Ordenado por mais curtidos",
+    "tabReplies": "Respostas",
+    "tabQuotes": "Citações",
+    "tabReposts": "Reposts",
+    "tabSearch": "Buscar"
   },
   "postInfo": {
     "title": "Info do Post",

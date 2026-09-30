@@ -2671,7 +2671,17 @@
     "repostsLabel_one": "Ripostim",
     "repostsLabel_other": "Ripostime",
     "quotesLabel_one": "Citim",
-    "quotesLabel_other": "Citime"
+    "quotesLabel_other": "Citime",
+    "sortRecent": "Të fundit",
+    "sortOldest": "Më të vjetrat",
+    "sortLiked": "Të pëlqyerat",
+    "sortedByRecent": "Renditur sipas më të rejave",
+    "sortedByOldest": "Renditur sipas më të vjetrave",
+    "sortedByLiked": "Renditur sipas më të pëlqyerave",
+    "tabReplies": "Përgjigjet",
+    "tabQuotes": "Citimet",
+    "tabReposts": "Ripostimet",
+    "tabSearch": "Kërko"
   },
   "postInfo": {
     "title": "Informacione për postimin",

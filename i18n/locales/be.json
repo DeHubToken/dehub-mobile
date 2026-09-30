@@ -2679,7 +2679,17 @@
     "repostsLabel_one": "рэпост",
     "repostsLabel_other": "рэпостаў",
     "quotesLabel_one": "цытата",
-    "quotesLabel_other": "цытат"
+    "quotesLabel_other": "цытат",
+    "sortRecent": "Новыя",
+    "sortOldest": "Старыя",
+    "sortLiked": "Папулярныя",
+    "sortedByRecent": "Спачатку новыя",
+    "sortedByOldest": "Спачатку старыя",
+    "sortedByLiked": "Спачатку папулярныя",
+    "tabReplies": "Адказы",
+    "tabQuotes": "Цытаты",
+    "tabReposts": "Рэпосты",
+    "tabSearch": "Пошук"
   },
   "postInfo": {
     "title": "Інфармацыя пра пост",

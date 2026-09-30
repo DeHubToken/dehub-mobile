@@ -11,6 +11,7 @@ import { CommentItem } from "../components/Comments";
 import CommentContextMenu from "../components/Comments/CommentContextMenu";
 import type { CommentLayout } from "../components/Comments/CommentContextMenu";
 import CommentMediaPreview from "../components/Comments/CommentMediaPreview";
+import CommentTabRow, { type CommentSort } from "../components/Comments/CommentTabRow";
 import { COMPOSER, composerStyles } from "../components/Comments/composerLayout";
 import type { MediaAttachment } from "../components/Comments/CommentMediaPreview";
 import { useVoiceRecorder, VoiceNoteRecordingOverlay } from "../components/Comments/VoiceNoteRecorder";
@@ -40,7 +41,6 @@ import {
   clearCommentDraft,
 } from "../libs/comment-draft-cache";
 import { theme } from "../theme";
-import { formatCompactNumber } from "../libs/numbers.util";
 import { collapsedReplyIds } from "../libs/comment-preview";
 import { ScreenNames } from "../navigation/ScreenNames";
 import type { PostReaction } from "../libs/reactions";
@@ -55,6 +55,38 @@ const MINIMAL_INPUT_LINE = "rgba(255,255,255,0.10)";
 
 /** A comment plus how deep it sits in the thread (0 = top-level, 1 = direct reply, …). */
 type ThreadedComment = Comment & { depth: number };
+
+
+/**
+ * Reorders whole threads (a root and every reply under it) and, with a query,
+ * keeps only the threads where some row matches. Recent is the order the
+ * server sent — pins, anchors, tips and creator answers already on top — so
+ * it is left alone; Oldest and Liked re-sort the rest under the pinned root,
+ * which holds the top whichever way the reader sorts, as on web.
+ */
+function orderThreads(rows: ThreadedComment[], sort: CommentSort, query: string): ThreadedComment[] {
+  const q = query.trim().toLowerCase();
+  if (sort === "recent" && !q) return rows;
+  const threads: ThreadedComment[][] = [];
+  rows.forEach((c) => {
+    if (c.depth === 0 || !threads.length) threads.push([c]);
+    else threads[threads.length - 1].push(c);
+  });
+  const matches = (c: ThreadedComment) => {
+    const u = c.user;
+    return [c.content, u?.username, u?.displayName].some((v) => typeof v === "string" && v.toLowerCase().includes(q));
+  };
+  const kept = q ? threads.filter((t) => t.some(matches)) : threads;
+  if (sort !== "recent") {
+    const time = (c: ThreadedComment) => new Date(c.createdAt).getTime() || 0;
+    kept.sort((a, b) => {
+      const pinned = Number(!!b[0].isPinned) - Number(!!a[0].isPinned);
+      if (pinned) return pinned;
+      return sort === "liked" ? (b[0].likeCount ?? 0) - (a[0].likeCount ?? 0) : time(a[0]) - time(b[0]);
+    });
+  }
+  return kept.flat();
+}
 
 // Threading is unbounded — the server accepts a reply to a reply at any depth.
 // Nesting is NOT drawn as indentation: every reply sits flush with its parent
@@ -140,6 +172,11 @@ export default function FeedDetailScreen() {
   const [highlightedCommentId, setHighlightedCommentId] = useState<number | null>(null);
   /** Root comment ids whose full reply thread the reader has opened. */
   const [expandedThreads, setExpandedThreads] = useState<Set<string>>(() => new Set());
+  // The comment tab row, laid out the way web's post page has it: replies,
+  // quotes, reposts, search and a sort that cycles Recent, Oldest and Liked.
+  const [commentSort, setCommentSort] = useState<CommentSort>("recent");
+  const [commentSearchOpen, setCommentSearchOpen] = useState(false);
+  const [commentQuery, setCommentQuery] = useState("");
   /**
    * Arriving from a notification shows the linked thread on its own until the
    * reader asks for the rest. A post with two hundred comments has none of them
@@ -325,6 +362,11 @@ export default function FeedDetailScreen() {
   // Where that section starts is worked out from the end of the list: it is the
   // last thing in the footer, above only the bottom padding.
   const scrollGeom = useRef({ y: 0, viewport: 0, content: 0, continuation: 0 });
+  // Where the tab row sits in the list, and whether it has scrolled under the
+  // top of the screen — then a pinned copy stands in for it, the way web's
+  // post page keeps its tab row stuck under the chrome.
+  const tabRowY = useRef(0);
+  const [pinTabs, setPinTabs] = useState(false);
   const [composerHeight, setComposerHeight] = useState(0);
   const [pastComments, setPastComments] = useState(false);
   const composerSlide = useRef(new Animated.Value(0)).current;
@@ -340,6 +382,8 @@ export default function FeedDetailScreen() {
   const handleListScroll = useCallback((e: NativeSyntheticEvent<NativeScrollEvent>) => {
     scrollGeom.current.y = e.nativeEvent.contentOffset.y;
     updatePastComments();
+    const pin = tabRowY.current > 0 && e.nativeEvent.contentOffset.y > tabRowY.current;
+    setPinTabs((prev) => (prev === pin ? prev : pin));
   }, [updatePastComments]);
   const handleListLayout = useCallback((e: LayoutChangeEvent) => {
     scrollGeom.current.viewport = e.nativeEvent.layout.height;
@@ -819,7 +863,12 @@ export default function FeedDetailScreen() {
    * any reply is simply the last depth-0 row above it.
    */
   const threadCreator: string | undefined = item?.minter || (item as any)?.minterUser?.address;
+  const orderedComments = useMemo(
+    () => orderThreads(comments, commentSort, commentSearchOpen ? commentQuery : ""),
+    [comments, commentSort, commentSearchOpen, commentQuery],
+  );
   const { visibleComments, threadMeta, focusRoot, focusOnly } = useMemo(() => {
+    const comments = orderedComments;
     const rootOf = new Map<string, string>();
     const totalPerRoot = new Map<string, number>();
     let currentRoot = "";
@@ -895,7 +944,7 @@ export default function FeedDetailScreen() {
     });
 
     return { visibleComments: visible, threadMeta: meta, focusRoot, focusOnly };
-  }, [comments, expandedThreads, focusCommentId, showAllThreads, threadCreator]);
+  }, [orderedComments, expandedThreads, focusCommentId, showAllThreads, threadCreator]);
 
   // Open the thread the linked comment sits in, so the reader lands on the
   // conversation rather than on one line of it with the rest hidden.
@@ -1209,6 +1258,41 @@ export default function FeedDetailScreen() {
   const immersive = !!item && IMMERSIVE_TYPES.has(resolveContentType(item)) &&
     (resolveContentType(item) !== "image" || (Array.isArray(item.imageUrls) && item.imageUrls.length > 0) || !!item.imageUrl || !!item.thumbnailUrl);
 
+  const handleTabRowLayout = useCallback((e: LayoutChangeEvent) => {
+    tabRowY.current = e.nativeEvent.layout.y;
+  }, []);
+
+  const openRepostQuoteList = useCallback((initialTab: "reposts" | "quotes") => {
+    if (!item) return;
+    navigation.navigate(ScreenNames.RepostQuoteList as never, {
+      tokenId: item.tokenId ?? item.id,
+      initialTab,
+      repostCount: item.reposts ?? 0,
+      quoteCount: item.quotes ?? 0,
+    } as never);
+  }, [item, navigation]);
+
+  const closeCommentSearch = useCallback(() => {
+    setCommentSearchOpen(false);
+    setCommentQuery("");
+  }, []);
+  const openCommentSearch = useCallback(() => setCommentSearchOpen(true), []);
+  const openQuotes = useCallback(() => openRepostQuoteList("quotes"), [openRepostQuoteList]);
+  const openReposts = useCallback(() => openRepostQuoteList("reposts"), [openRepostQuoteList]);
+  const renderCommentTabs = useCallback(() => (
+    <CommentTabRow
+      sort={commentSort}
+      onSortChange={setCommentSort}
+      searchOpen={commentSearchOpen}
+      query={commentQuery}
+      onQueryChange={setCommentQuery}
+      onReplies={closeCommentSearch}
+      onSearch={openCommentSearch}
+      onQuotes={openQuotes}
+      onReposts={openReposts}
+    />
+  ), [commentSort, commentSearchOpen, commentQuery, closeCommentSearch, openCommentSearch, openQuotes, openReposts]);
+
   const renderHeader = useCallback(() => (
     <View>
       {!immersive && <ScreenHeader title={t("screens.post")} />}
@@ -1288,58 +1372,15 @@ export default function FeedDetailScreen() {
           )}
         </View>
       ) : null}
-      {/* Repost & Quote stats row */}
-      {item && (
-        <View className="flex-row items-center px-4 pt-3 pb-1 gap-4">
-          <TouchableOpacity
-            onPress={() =>
-              navigation.navigate(ScreenNames.RepostQuoteList as never, {
-                tokenId: item.tokenId ?? item.id,
-                initialTab: "reposts",
-                repostCount: item.reposts ?? 0,
-                quoteCount: item.quotes ?? 0,
-              } as never)
-            }
-            activeOpacity={0.7}
-            className="flex-row items-center"
-          >
-            <Text className="text-white font-semibold text-sm">
-              {formatCompactNumber(item.reposts ?? 0)}
-            </Text>
-            <Text className="text-theme-neutrals-400 text-sm ml-1">
-              {t("comments.repostsLabel", { count: item.reposts ?? 0 })}
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() =>
-              navigation.navigate(ScreenNames.RepostQuoteList as never, {
-                tokenId: item.tokenId ?? item.id,
-                initialTab: "quotes",
-                repostCount: item.reposts ?? 0,
-                quoteCount: item.quotes ?? 0,
-              } as never)
-            }
-            activeOpacity={0.7}
-            className="flex-row items-center"
-          >
-            <Text className="text-white font-semibold text-sm">
-              {formatCompactNumber(item.quotes ?? 0)}
-            </Text>
-            <Text className="text-theme-neutrals-400 text-sm ml-1">
-              {t("comments.quotesLabel", { count: item.quotes ?? 0 })}
-            </Text>
-          </TouchableOpacity>
-        </View>
-      )}
+      {/* The comment tab row. Measured so the pinned copy can take over once
+          it scrolls under the top of the screen. */}
       {!postUnavailable && (
-        <View className="px-4 pt-2 pb-1">
-          <Text className="text-theme-neutrals-400 text-xs font-medium">
-            {comments.length > 0 ? t("comments.countLabel", { count: comments.length }) : t("postInfo.comments")}
-          </Text>
+        <View onLayout={handleTabRowLayout}>
+          {renderCommentTabs()}
         </View>
       )}
     </View>
-  ), [item, immersive, loading, privateError, loadError, postUnavailable, fetchData, navigation, comments.length, focusCommentInput, isMinimal, t]);
+  ), [item, immersive, loading, privateError, loadError, postUnavailable, fetchData, focusCommentInput, isMinimal, t, renderCommentTabs, handleTabRowLayout]);
 
   // The name sits in bold wherever the language puts it. The sentence is
   // translated whole and cut around the name, because a translated "Replying
@@ -1426,6 +1467,23 @@ export default function FeedDetailScreen() {
         onLayout={handleListLayout}
         onContentSizeChange={handleContentSize}
       />
+      {/* The tab row, pinned to the top once the one in the list scrolls
+          under it. Solid in the page colour so comments never read through.
+          Drawn before the immersive back button so that stays on top. */}
+      {pinTabs && !postUnavailable && (
+        <View
+          className="bg-theme-neutrals-900"
+          style={[
+            { position: "absolute", top: 0, left: 0, right: 0 },
+            isMinimal ? { backgroundColor: "#000" } : skin ? { backgroundColor: skin.page } : null,
+            // The immersive page keeps its floating back button over this bar
+            // (top 10, 36 tall): the tabs start clear of it, level with it.
+            immersive && { paddingLeft: 48, paddingTop: 5 },
+          ]}
+        >
+          {renderCommentTabs()}
+        </View>
+      )}
       {immersive && <ScreenHeader title={t("screens.post")} overlay />}
       {/* Nothing to comment on while the post is private, gone or failed to
           load. A saved draft stays in storage and comes back with the post. */}

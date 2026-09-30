@@ -2675,7 +2675,17 @@
     "repostsLabel_one": "리포스트",
     "repostsLabel_other": "리포스트",
     "quotesLabel_one": "인용",
-    "quotesLabel_other": "인용"
+    "quotesLabel_other": "인용",
+    "sortRecent": "최신",
+    "sortOldest": "오래된",
+    "sortLiked": "인기",
+    "sortedByRecent": "최신순 정렬",
+    "sortedByOldest": "오래된순 정렬",
+    "sortedByLiked": "좋아요순 정렬",
+    "tabReplies": "답글",
+    "tabQuotes": "인용",
+    "tabReposts": "리포스트",
+    "tabSearch": "검색"
   },
   "postInfo": {
     "title": "게시물 정보",

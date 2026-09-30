@@ -2671,7 +2671,17 @@
     "repostsLabel_one": "sake bugawa",
     "repostsLabel_other": "sake bugawa",
     "quotesLabel_one": "zance",
-    "quotesLabel_other": "zance"
+    "quotesLabel_other": "zance",
+    "sortRecent": "Sababbi",
+    "sortOldest": "Tsofaffi",
+    "sortLiked": "Mafi so",
+    "sortedByRecent": "An jera daga sababbi",
+    "sortedByOldest": "An jera daga tsofaffi",
+    "sortedByLiked": "An jera daga mafi so",
+    "tabReplies": "Amsoshi",
+    "tabQuotes": "Zance",
+    "tabReposts": "Sake bugawa",
+    "tabSearch": "Bincika"
   },
   "postInfo": {
     "title": "Bayanan bugu",

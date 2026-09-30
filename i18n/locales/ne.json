@@ -2683,7 +2683,17 @@
     "repostsLabel_one": "रिपोस्ट",
     "repostsLabel_other": "रिपोस्टहरू",
     "quotesLabel_one": "उद्धरण",
-    "quotesLabel_other": "उद्धरणहरू"
+    "quotesLabel_other": "उद्धरणहरू",
+    "sortRecent": "नयाँ",
+    "sortOldest": "पुरानो",
+    "sortLiked": "लोकप्रिय",
+    "sortedByRecent": "सबैभन्दा नयाँ अनुसार क्रमबद्ध",
+    "sortedByOldest": "सबैभन्दा पुरानो अनुसार क्रमबद्ध",
+    "sortedByLiked": "सबैभन्दा धेरै मन पराइएको अनुसार क्रमबद्ध",
+    "tabReplies": "जवाफहरू",
+    "tabQuotes": "उद्धरणहरू",
+    "tabReposts": "रिपोस्टहरू",
+    "tabSearch": "खोज"
   },
   "postInfo": {
     "title": "पोस्ट जानकारी",

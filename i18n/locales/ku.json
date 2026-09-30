@@ -2671,7 +2671,17 @@
     "repostsLabel_one": "Dûbarekirin",
     "repostsLabel_other": "Dûbarekirin",
     "quotesLabel_one": "Gotin",
-    "quotesLabel_other": "Gotin"
+    "quotesLabel_other": "Gotin",
+    "sortRecent": "Nû",
+    "sortOldest": "Kevn",
+    "sortLiked": "Ecibandî",
+    "sortedByRecent": "Li gorî yên herî nû hatiye rêzkirin",
+    "sortedByOldest": "Li gorî yên herî kevn hatiye rêzkirin",
+    "sortedByLiked": "Li gorî yên herî ecibandî hatiye rêzkirin",
+    "tabReplies": "Bersiv",
+    "tabQuotes": "Gotin",
+    "tabReposts": "Dûbarekirin",
+    "tabSearch": "Lêgerîn"
   },
   "postInfo": {
     "title": "Agahiya postê",

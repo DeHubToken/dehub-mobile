@@ -2671,7 +2671,17 @@
     "repostsLabel_one": "republicació",
     "repostsLabel_other": "republicacions",
     "quotesLabel_one": "cita",
-    "quotesLabel_other": "cites"
+    "quotesLabel_other": "cites",
+    "sortRecent": "Recents",
+    "sortOldest": "Antics",
+    "sortLiked": "Populars",
+    "sortedByRecent": "Ordenat per més recents",
+    "sortedByOldest": "Ordenat per més antics",
+    "sortedByLiked": "Ordenat per més m'agrada",
+    "tabReplies": "Respostes",
+    "tabQuotes": "Cites",
+    "tabReposts": "Republicacions",
+    "tabSearch": "Cerca"
   },
   "postInfo": {
     "title": "Informació de la publicació",

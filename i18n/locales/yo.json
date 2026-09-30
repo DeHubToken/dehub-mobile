@@ -2672,7 +2672,17 @@
     "repostsLabel_one": "Àtúnkọ",
     "repostsLabel_other": "Àtúnkọ",
     "quotesLabel_one": "Àyọlò",
-    "quotesLabel_other": "Àyọlò"
+    "quotesLabel_other": "Àyọlò",
+    "sortRecent": "Tuntun",
+    "sortOldest": "Àtijọ́",
+    "sortLiked": "Ìfẹ́ràn",
+    "sortedByRecent": "A tò ó láti tuntun jù",
+    "sortedByOldest": "A tò ó láti àtijọ́ jù",
+    "sortedByLiked": "A tò ó láti èyí tí a fẹ́ràn jù",
+    "tabReplies": "Àwọn ìdáhùn",
+    "tabQuotes": "Àwọn àyọlò",
+    "tabReposts": "Àwọn àtúnkọ",
+    "tabSearch": "Wá"
   },
   "postInfo": {
     "title": "Ìwífún nípa àkọsílẹ̀",
