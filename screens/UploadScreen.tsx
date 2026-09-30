@@ -61,7 +61,8 @@ import { useMentions } from "../hooks/useMentions";
 import { getAvatarUrl } from "../libs/misc";
 import { getPostImageBytesForBadge, getPostImageLimitForBadge, MAX_IMAGE_UPLOAD_BYTES, MAX_REQUEST_IMAGE_BYTES } from "../libs/post-image-allowance";
 import Avatar from "../components/common/Avatar";
-import MarkdownText from "../components/ui/MarkdownText";
+import ArticleEditor from "../components/article/ArticleEditor";
+import { ARTICLE_BODY_MIN, articleLook, articleSummaryFromBody } from "../libs/article";
 import MentionSuggestions from "../components/common/MentionSuggestions";
 import AssetSuggestions from "../components/common/AssetSuggestions";
 import { useAssetPicker } from "../hooks/useAssetPicker";
@@ -224,7 +225,8 @@ const isVideoAsset = (asset: PickedAsset): boolean =>
 export default function UploadScreen() {
   // Minimal: the recorder, audio and poll panels dissolve into the page
   // (padding kept); media frames, pickers and menus stay as they are.
-  const { isMinimal } = useAppTheme();
+  const { isMinimal, theme } = useAppTheme();
+  const articleUi = useMemo(() => articleLook(theme), [theme]);
   const queryClient = useQueryClient();
   const nav = useNavigation<any>();
   const route = useRoute<RouteProp<AppStackParamList, typeof ScreenNames.Upload>>();
@@ -649,8 +651,8 @@ export default function UploadScreen() {
   // live mode (the stream title); otherwise it follows the user's toggle.
   const showTitleInput = showTitle || hasVideoOrAudio || isLiveMode;
   const pollIsValid = pollEnabled && pollQuestion.trim().length > 0 && pollOptions.filter(o => o.trim()).length >= 2;
-  const canPost = !isLiveMode && (bodyText.trim().length > 0 || hasMedia || isQuoteMode || pollIsValid) &&
-    (!articleMode || (!!titleText.trim() && !!bodyText.trim() && articleBody.trim().length >= 100 && !hasMedia));
+  const canPost = !isLiveMode && (bodyText.trim().length > 0 || hasMedia || isQuoteMode || pollIsValid || articleMode) &&
+    (!articleMode || (!!titleText.trim() && articleBody.trim().length >= ARTICLE_BODY_MIN && !hasMedia));
   const canGoLive = isLiveMode && titleText.trim().length > 0 && !!(liveThumbnailUri || coverUri);
 
   // The post options are rendered unconditionally, as web's PostAccessToggles is.
@@ -1010,7 +1012,9 @@ export default function UploadScreen() {
     const isVideoOrAudio = !!pickedVideo || !!pickedAudio;
     const soundTag = attachedSound ? buildSoundtrackTag(attachedSound) : "";
     let name = "";
-    let desc = bodyText;
+    // An article with no summary typed takes its first paragraph, as web's
+    // publish step prefills it.
+    let desc = articleMode && !bodyText.trim() ? articleSummaryFromBody(articleBody) : bodyText;
     if (isVideoOrAudio) {
       if (titleText.trim()) {
         name = titleText.trim();
@@ -2278,7 +2282,7 @@ export default function UploadScreen() {
           )}
 
           <View className="mt-3">
-            {showTitleInput && (
+            {showTitleInput && !articleMode && (
               <TextInput
                 ref={titleRef}
                 value={titleText}
@@ -2291,7 +2295,7 @@ export default function UploadScreen() {
                 className="text-white text-lg font-medium mb-1"
               />
             )}
-            <TextInput
+            {!articleMode && <TextInput
               value={bodyText}
               onChangeText={handleBodyChange}
               onSelectionChange={(e) => {
@@ -2315,45 +2319,27 @@ export default function UploadScreen() {
               style={{ textAlignVertical: "top" }}
               autoFocus
               scrollEnabled={false}
-            />
+            />}
             {articleMode && (
-              <View className="mt-4">
-                <Text className="text-white/70 text-sm mb-2">{t("articles.socialImage")}</Text>
-                <TouchableOpacity accessibilityRole="button" onPress={pickArticleImage} className="overflow-hidden rounded-xl border border-white/20 bg-white/5">
-                  {articleShareImageUri ? (
-                    <View>
-                      <SmartImage source={{ uri: articleShareImageUri }} style={{ width: "100%", aspectRatio: 1.91 }} contentFit="cover" />
-                      <View className="p-3">
-                        <Text className="text-white text-sm font-semibold" numberOfLines={1}>{titleText.trim() || "Your article title"}</Text>
-                        <Text className="text-white/60 text-xs mt-1" numberOfLines={2}>{bodyText.trim() || "Your article summary will appear here when this is shared."}</Text>
-                      </View>
-                    </View>
-                  ) : (
-                    <View className="items-center justify-center px-4" style={{ aspectRatio: 1.91 }}>
-                      <Text className="text-white/60 text-xs text-center">{t("articles.socialImage")}</Text>
-                    </View>
-                  )}
-                </TouchableOpacity>
-                {articleShareImageUri && <TouchableOpacity accessibilityRole="button" onPress={() => { setArticleImageUri(null); setSocialImageUri(null); }} className="mt-2 mb-2"><Text className="text-white/60 text-xs">{t("articles.removeImage")}</Text></TouchableOpacity>}
-                <Text className="text-white/70 text-sm mb-2">{t("articles.body")}</Text>
-                <View className="flex-row flex-wrap items-center mb-2">
-                  {([
-                    ["Large", "# ", "", "Heading", true], ["Heading", "## ", "", "Heading", true],
-                    ["Bold", "**", "**", "bold text", false], ["Italic", "*", "*", "italic text", false],
-                    ["Quote", "> ", "", "Quote", true], ["Bullets", "- ", "", "List item", true],
-                    ["Numbers", "1. ", "", "List item", true], ["Link", "[", "](https://example.com)", "link text", false],
-                  ] as const).map(([label, before, after, placeholder, block]) => (
-                    <TouchableOpacity key={label} accessibilityRole="button" onPress={() => formatArticle(before, after, placeholder, block)} className="px-2 py-2"><Text className="text-white/70 text-xs">{label}</Text></TouchableOpacity>
-                  ))}
-                  <TouchableOpacity accessibilityRole="button" onPress={() => setArticlePreview(!articlePreview)} className="px-2 py-2"><Text className="text-white text-xs">{articlePreview ? "Edit" : "Preview"}</Text></TouchableOpacity>
-                </View>
-                {articlePreview ? <View className="rounded-xl border border-white/20 p-4 min-h-60"><MarkdownText content={articleBody} style={{ fontSize: 16 }} /></View> : <TextInput value={articleBody} onChangeText={setArticleBody} maxLength={20000} multiline
-                  selection={articleSelection} onSelectionChange={e => setArticleSelection(e.nativeEvent.selection)}
-                  placeholder={t("articles.placeholder")}
-                  placeholderTextColor="#6F7174" className="text-white text-base rounded-xl border border-white/20 p-4"
-                  style={{ minHeight: 240, textAlignVertical: "top" }} />}
-                <Text className="text-white/50 text-xs mt-2">{t("articles.lengthHint", { length: articleBody.length })}</Text>
-              </View>
+              <ArticleEditor
+                look={articleUi}
+                title={titleText}
+                onTitleChange={setTitleText}
+                titleMax={TITLE_MAX}
+                body={articleBody}
+                onBodyChange={setArticleBody}
+                selection={articleSelection}
+                onSelectionChange={setArticleSelection}
+                onFormat={formatArticle}
+                preview={articlePreview}
+                onTogglePreview={() => setArticlePreview(v => !v)}
+                summary={bodyText}
+                onSummaryChange={setBodyText}
+                summaryMax={DESCRIPTION_MAX}
+                coverUri={articleShareImageUri}
+                onPickCover={pickArticleImage}
+                onRemoveCover={() => { setArticleImageUri(null); setSocialImageUri(null); }}
+              />
             )}
 
             <MentionSuggestions
@@ -2376,7 +2362,7 @@ export default function UploadScreen() {
             {/* Character count alone, right-aligned, as web ends this row.
                 Enhance moved down to the action bar beside Post, where web
                 keeps it. */}
-            <View className="flex-row items-center justify-end mt-1">
+            {!articleMode && <View className="flex-row items-center justify-end mt-1">
               <Text
                 className={`text-xs ${
                   bodyText.length >= DESCRIPTION_MAX
@@ -2386,7 +2372,7 @@ export default function UploadScreen() {
               >
                 {formatCharCount(bodyText.length)}/{formatCharCount(DESCRIPTION_MAX)}
               </Text>
-            </View>
+            </View>}
 
             {isLiveMode && (
               <View className="mt-2 flex-row items-center">

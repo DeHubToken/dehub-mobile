@@ -23,6 +23,8 @@ interface MarkdownTextProps {
   /** Base text style. Sizes for headings and code derive from this. */
   style?: TextStyle;
   color?: string;
+  /** Colours quote rules and list markers (articles use the theme's accent). */
+  accent?: string;
 }
 
 const LINK_RE = /^(.*?)\[([^\]]+)\]\(([^)]+)\)(.*)$/s;
@@ -39,7 +41,7 @@ function trimUrl(url: string): { url: string; trailing: string } {
   return { url: url.slice(0, -match[0].length), trailing: match[0] };
 }
 
-const MarkdownText: React.FC<MarkdownTextProps> = ({ content, style, color = '#F9FBFF' }) => {
+const MarkdownText: React.FC<MarkdownTextProps> = ({ content, style, color = '#F9FBFF', accent }) => {
   const openUrl = useCallback((url: string) => {
     Linking.openURL(url).catch(() => {
       // A malformed link from a model is not worth an error toast.
@@ -181,7 +183,7 @@ const MarkdownText: React.FC<MarkdownTextProps> = ({ content, style, color = '#F
       <View key={`list-${atIndex}`} style={s.list}>
         {items.map((item) => (
           <View key={item.key} style={s.listRow}>
-            <Text style={[baseStyle, s.listMarker]}>{item.marker}</Text>
+            <Text style={[baseStyle, s.listMarker, accent ? { color: accent } : null]}>{item.marker}</Text>
             <Text style={[baseStyle, s.listText]}>{renderInline(item.text, item.key)}</Text>
           </View>
         ))}
@@ -211,7 +213,7 @@ const MarkdownText: React.FC<MarkdownTextProps> = ({ content, style, color = '#F
 
     const quoteMatch = line.match(/^>\s+(.+)$/);
     if (quoteMatch) {
-      blocks.push(<View key={`q-${index}`} style={s.quote}><Text style={baseStyle}>{renderInline(quoteMatch[1], `q-${index}`)}</Text></View>);
+      blocks.push(<View key={`q-${index}`} style={[s.quote, accent ? { borderLeftColor: accent, borderLeftWidth: 3 } : null]}><Text style={[baseStyle, accent ? { fontStyle: 'italic' } : null]}>{renderInline(quoteMatch[1], `q-${index}`)}</Text></View>);
       return;
     }
 
