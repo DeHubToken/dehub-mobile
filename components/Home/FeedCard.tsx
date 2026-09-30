@@ -220,6 +220,9 @@ interface FeedCardProps {
    *  edge to edge across the screen, with the creator row and caption under
    *  it. The screen drops its top bar for a floating back button. */
   immersive?: boolean;
+  /** Post page for a post with no media on top (text, audio, quotes): no
+   *  bento, full width, the text on the same inset as an immersive post. */
+  flat?: boolean;
 }
 
 /** Side inset for the text of an immersive post; the media ignores it. */
@@ -238,6 +241,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   showRepostLabel = false,
   prioritizeMedia = false,
   immersive = false,
+  flat = false,
 }) => {
   const navigation = useNavigation<any>();
   const { t } = useCopy();
@@ -1509,7 +1513,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   // Minimal: media runs edge to edge while the text keeps its inset. Only the
   // picture bleeds — an audio post's player stays in the column with the text.
   const bleed = (node: React.ReactNode) =>
-    isMinimal && !immersive && node ? (
+    isMinimal && !immersive && !flat && node ? (
       <View style={{ marginHorizontal: -MINIMAL_TEXT_INSET }}>{node}</View>
     ) : node;
 
@@ -1586,8 +1590,14 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       // at all. The card steps out over the list's side padding to span the
       // screen, posts are split by one full-width hairline, and media bleeds
       // past the text inset to both edges.
-      onLayout={isMinimal && !immersive ? handleMinimalLayout : undefined}
+      onLayout={isMinimal && !immersive && !flat ? handleMinimalLayout : undefined}
       style={immersive ? {
+        paddingHorizontal: IMMERSIVE_INSET,
+        paddingBottom: 12,
+      } : flat ? {
+        // Post page, no media on top: the same flat full-width sheet as an
+        // immersive post, minus the media. Matches the web post page.
+        paddingTop: 12,
         paddingHorizontal: IMMERSIVE_INSET,
         paddingBottom: 12,
       } : isMinimal ? {
@@ -1613,7 +1623,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         marginVertical: 6,
       }}
     >
-      {skin?.grain ? (
+      {skin?.grain && !flat ? (
         <Image
           source={GRAIN}
           resizeMode="repeat"
