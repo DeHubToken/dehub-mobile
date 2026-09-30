@@ -40,6 +40,7 @@ import AppTopBar from "../components/AppTopBar";
 import { Ionicons } from "@expo/vector-icons";
 import { Image } from "expo-image";
 import { useAppTheme } from "../context/ThemeContext";
+import { themePageIcon } from "../theme/pageIcons";
 import LiquidGlass from "../components/ui/LiquidGlass";
 import FullScreenLoader from "../components/FullScreenLoader";
 import ReportBugModal from "../components/Settings/ReportBugModal";
@@ -86,23 +87,6 @@ import {
 } from "../libs/settings-search";
 
 const APP_VERSION = Constants.expoConfig?.version ?? "1.0.0";
-
-/**
- * Web heads the settings page with its themed 3D settings icon
- * (public/theme-icons/<theme>/settings.webp). War draws its own HUD glyph on
- * web, which the app has no counterpart for, so it keeps the system one.
- */
-const SETTINGS_ICONS: Record<string, number> = {
-  system: require("../assets/theme-icons/settings-system.webp"),
-  minimal: require("../assets/theme-icons/settings-minimal.webp"),
-  cosmic: require("../assets/theme-icons/settings-cosmic.webp"),
-  hazy: require("../assets/theme-icons/settings-hazy.webp"),
-  swarms: require("../assets/theme-icons/settings-swarms.webp"),
-  lavalamp: require("../assets/theme-icons/settings-lavalamp.webp"),
-  winter: require("../assets/theme-icons/settings-winter.webp"),
-  osaka: require("../assets/theme-icons/settings-osaka.webp"),
-  jungle: require("../assets/theme-icons/settings-jungle.webp"),
-};
 
 /** Web's small header control: `h-10 rounded-xl bg-white/5 border border-white/10`. */
 const HEADER_CONTROL = "h-10 w-10 rounded-xl bg-white/5 border border-white/10 items-center justify-center flex-row";
@@ -272,7 +256,7 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation, route }) => {
               </TouchableOpacity>
             ) : null}
             <Image
-              source={SETTINGS_ICONS[theme] ?? SETTINGS_ICONS.system}
+              source={themePageIcon(theme, 'settings')}
               style={{ width: 40, height: 40 }}
               contentFit="contain"
             />

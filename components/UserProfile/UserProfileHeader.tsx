@@ -119,7 +119,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
   onSubscribe,
 }) => {
   const { t } = useI18n();
-  const { isMinimal } = useAppTheme();
+  const { isMinimal, skin } = useAppTheme();
   const { width: windowWidth } = useWindowDimensions();
   const badgeRef = useRef<View>(null);
   // Bios go through the shared hook rather than a private translateText call,
@@ -153,14 +153,16 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
   // The glass fill every header button is painted with. Minimal drops it for a
   // 1px outline (s.minimalBtn), and grows the box to 44pt so the tap target
   // does not shrink with the slab.
-  const glassLayers = isMinimal ? null : (
+  const glassLayers = isMinimal ? null : skin ? (
+    <View style={[StyleSheet.absoluteFill, skin.centre]} />
+  ) : (
     <>
       <View style={[StyleSheet.absoluteFill, { borderRadius: BTN_RADIUS, backgroundColor: "#18181B" }]} />
       <LinearGradient colors={GLASS_GRADIENT} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={[StyleSheet.absoluteFill, { borderRadius: BTN_RADIUS }]} />
       <View style={[StyleSheet.absoluteFill, s.glassOverlay]} />
     </>
   );
-  const btn = isMinimal ? [s.glassBtn, s.minimalBtn] : s.glassBtn;
+  const btn = isMinimal ? [s.glassBtn, s.minimalBtn] : [s.glassBtn, skin?.centre];
 
   const followingItem = stats?.find((s) => s.key === "following");
   const followersItem = stats?.find((s) => s.key === "followers");

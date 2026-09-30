@@ -5,11 +5,12 @@
  * resolved to this folder by metro.config.js and jest.config.js.
  */
 const base = require("nativewind/jsx-runtime");
+const { controlProps } = require("./controls");
 const { prepare } = require("./surface");
 
 function wrap(fn) {
   return function (type, props, ...rest) {
-    const [t, p] = prepare(type, props);
+    const [t, p] = prepare(type, controlProps(props));
     return fn(t, p, ...rest);
   };
 }

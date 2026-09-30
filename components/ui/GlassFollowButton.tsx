@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { View, Text, TouchableOpacity, ActivityIndicator, ViewStyle, StyleSheet } from "react-native";
 import Icon from "./Icon";
 import { colors } from "../../theme/colors";
+import { useAppTheme } from "../../context/ThemeContext";
 
 interface GlassFollowButtonProps {
   isFollowing: boolean;
@@ -27,6 +28,7 @@ const GlassFollowButton: FC<GlassFollowButtonProps> = ({
   style,
 }) => {
   const { t } = useTranslation();
+  const { skin } = useAppTheme();
 
   if (isLoading) {
     return (
@@ -37,16 +39,16 @@ const GlassFollowButton: FC<GlassFollowButtonProps> = ({
   }
 
   let label = followsYou ? t("follow.followBack") : t("follow.follow");
-  let labelColor = "#fff";
+  let labelColor = skin?.centreIcon ?? "#fff";
   let iconNode: React.ReactNode = null;
 
   if (isPending) {
     label = t("follow.requested");
-    labelColor = colors.neutrals[400];
-    iconNode = <Icon name="Clock" size={12} color={colors.neutrals[400]} />;
+    labelColor = skin?.tabIcon ?? colors.neutrals[400];
+    iconNode = <Icon name="Clock" size={12} color={labelColor} />;
   } else if (isFollowing) {
     label = t("follow.following");
-    labelColor = colors.neutrals[300];
+    labelColor = skin?.tabIcon ?? colors.neutrals[300];
   }
 
   return (
@@ -54,7 +56,7 @@ const GlassFollowButton: FC<GlassFollowButtonProps> = ({
       activeOpacity={0.85}
       onPress={onPress}
       className={className}
-      style={[btnStyles.wrapper, style]}
+      style={[btnStyles.wrapper, style, skin?.centre]}
       hitSlop={{ top: 6, bottom: 6 }}
     >
       <View style={btnStyles.content}>
