@@ -1,6 +1,5 @@
 import React, { memo, useCallback, useState, useRef, useMemo } from "react";
 import { View, Pressable, StyleSheet, Platform, Image } from "react-native";
-import { BlurView } from "expo-blur";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import Reanimated, {
   useSharedValue,
@@ -17,6 +16,7 @@ import type { PostTypeOption } from "./FeedFilterPanel";
 import { useAppTheme } from "../../context/ThemeContext";
 import { MINIMAL_TAB_LINE } from "../../theme/colors";
 import { GRAIN, glassTint } from "../../theme/skins";
+import IosGlassPill from "../ui/IosGlassPill";
 import HudBrackets from "../theme/HudBrackets";
 
 interface NavItem {
@@ -253,15 +253,16 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
             // blur, so posts blur through like the web's liquid glass.
             <>
               {Platform.OS === "ios" ? (
-                <BlurView intensity={80} tint="dark" style={StyleSheet.absoluteFill} />
+                <IosGlassPill
+                  tint={glassTint(String(skin.strip.backgroundColor), 0.22)}
+                  borderRadius={Number(skin.strip.borderRadius ?? 0)}
+                />
               ) : null}
               <View
                 style={[
                   StyleSheet.absoluteFill,
                   skin.strip,
-                  Platform.OS === "ios"
-                    ? { backgroundColor: glassTint(String(skin.strip.backgroundColor), 0.55) }
-                    : null,
+                  Platform.OS === "ios" ? { backgroundColor: "transparent" } : null,
                 ]}
                 pointerEvents="none"
               />
@@ -276,11 +277,13 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
                   pre-draw snapshot — real blur is iOS-only, Android gets a
                   translucent glass-tinted fallback. */}
               {Platform.OS === "ios" ? (
-                <BlurView intensity={80} tint="dark" style={StyleSheet.absoluteFill} />
+                <IosGlassPill tint="rgba(20, 20, 24, 0.18)" borderRadius={NAV_PILL_RADIUS} />
               ) : (
-                <View style={styles.androidBlurFallback} />
+                <>
+                  <View style={styles.androidBlurFallback} />
+                  <View style={styles.glassOverlay} pointerEvents="none" />
+                </>
               )}
-              <View style={styles.glassOverlay} pointerEvents="none" />
             </>
           )}
 

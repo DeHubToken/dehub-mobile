@@ -14,8 +14,8 @@ import {
   Image,
   type ViewStyle,
 } from "react-native";
-import { BlurView } from "expo-blur";
 import { GRAIN, glassTint } from "../theme/skins";
+import IosGlassPill from "../components/ui/IosGlassPill";
 import HudBrackets from "../components/theme/HudBrackets";
 import Reanimated, {
   useSharedValue,
@@ -643,20 +643,21 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
             there the pill is a thin tint of the same colour over a system
             blur. Android keeps the solid fill (no safe blur there). */}
         {iosGlass ? (
-          <BlurView intensity={80} tint="dark" style={StyleSheet.absoluteFill} />
-        ) : null}
-        <View
-          style={[
-            StyleSheet.absoluteFill,
-            styles.pillFill,
-            isLight && { backgroundColor: colors.background },
-            isMinimal && { backgroundColor: "#000" },
-            skin && skin.barFill,
-            iosGlass && {
-              backgroundColor: glassTint(String((skin?.barFill.backgroundColor) ?? styles.pillFill.backgroundColor), 0.55),
-            },
-          ]}
-        />
+          <IosGlassPill
+            tint={glassTint(String((skin?.barFill.backgroundColor) ?? styles.pillFill.backgroundColor), 0.22)}
+            borderRadius={Number(skin?.barBorder.borderRadius ?? styles.pillBorder.borderRadius ?? 0)}
+          />
+        ) : (
+          <View
+            style={[
+              StyleSheet.absoluteFill,
+              styles.pillFill,
+              isLight && { backgroundColor: colors.background },
+              isMinimal && { backgroundColor: "#000" },
+              skin && skin.barFill,
+            ]}
+          />
+        )}
         {skin?.grain ? (
           <Image source={GRAIN} resizeMode="repeat" style={StyleSheet.absoluteFill} />
         ) : null}
