@@ -68,6 +68,7 @@ import { MINIMAL_TAB_LINE } from "../../theme/minimal";
 
 export interface InfiniteVideoFeedHandle {
   scrollToTopAndRefresh: () => void;
+  scrollToTop: () => void;
 }
 
 interface InfiniteVideoFeedProps {
@@ -75,9 +76,23 @@ interface InfiniteVideoFeedProps {
   pageSize?: number;
   /** False when this list is a hidden (kept-mounted) tab — pauses videos and tab-press refresh. */
   active?: boolean;
+  /**
+   * Whether a press on the bottom tab scrolls this list up and refreshes it.
+   * Home passes false for its Videos and Live feeds: a press there goes back
+   * to the Home feed instead (HomeScreen).
+   */
+  answersTabPress?: boolean;
   contentContainerStyle?: any;
   headerComponent?: React.ReactNode;
   headerInset?: number;
+  /**
+   * Chrome that floats over the top of the list without a spacer of its own
+   * (the system theme's capsule). The list starts flush with the top and the
+   * first row makes this much room itself: the live stages row when it shows,
+   * the first post otherwise (a video still runs under the capsule; only its
+   * author and buttons move down).
+   */
+  firstRowInset?: number;
   /**
    * The collapsing header's translateY. The "new posts" pill sits just under
    * the header and rides this so it follows the header off-screen instead of
@@ -174,6 +189,7 @@ const SUGGESTED_ROW = { __listKey: "__suggested-accounts", __synthetic: "suggest
 const SHORTS_ROW = { __listKey: "__shorts-carousel", __synthetic: "shorts" } as FeedRow;
 
 const DEFAULT_CONTENT_STYLE = { paddingHorizontal: 8, paddingTop: 4, paddingBottom: TAB_BAR_CONTENT_INSET };
+const FLUSH_CONTENT_STYLE = { ...DEFAULT_CONTENT_STYLE, paddingTop: 0 };
 
 // A cell is only reused for a row of the same type, so a video card is never
 // rebuilt into a gallery. Shorts render as videos in this list.
@@ -243,10 +259,14 @@ const VisibleFeedCard = memo(function VisibleFeedCard({
   item,
   store,
   onCategorySelect,
+  topChromeInset,
+  hideDivider,
 }: {
   item: UnifiedFeedItem & { __listKey: string };
   store: FeedVisibilityStore;
   onCategorySelect?: (category: string) => void;
+  topChromeInset?: number;
+  hideDivider?: boolean;
 }) {
   const { isVisible, isAutoplay } = useRowVisibility(store, item.__listKey);
   return (
@@ -259,6 +279,10 @@ const VisibleFeedCard = memo(function VisibleFeedCard({
       isVisible={isVisible}
       isAutoplayActive={isAutoplay}
       enablePreview
+      // Home's own feed: under the system theme its posts go cinematic.
+      cinematic
+      topChromeInset={topChromeInset}
+      hideDivider={hideDivider}
     />
   );
 });
@@ -267,9 +291,11 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   params,
   pageSize = 10,
   active = true,
+  answersTabPress = true,
   contentContainerStyle,
   headerComponent,
   headerInset = 0,
+  firstRowInset = 0,
   headerTranslateY = null,
   onEndReachedAll,
   scrollHandler,
@@ -343,6 +369,21 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   // and useCollapsibleHeader only hides it once scrollY has passed
   // `headerInset`, which keeps this spacer off-screen whenever it is gone.
   const topSpacerStyle = useMemo(() => ({ height: headerInset }), [headerInset]);
+  // How far down anything pinned to the top of the list (the refresh mark,
+  // the new-posts pill, the skeleton) has to sit to clear the header.
+  const chromeInset = headerInset + firstRowInset;
+  const skeletonSpacerStyle = useMemo(() => ({ height: chromeInset }), [chromeInset]);
+  // Whether the header row drew anything, so the room under floating chrome
+  // goes to it rather than to the first post.
+  const [headerFilled, setHeaderFilled] = useState(false);
+  const handleHeaderContentLayout = useCallback((e: LayoutChangeEvent) => {
+    setHeaderFilled(e.nativeEvent.layout.height > 0);
+  }, []);
+  const headerContentStyle = useMemo(
+    () => (firstRowInset && headerFilled ? { paddingTop: firstRowInset } : null),
+    [firstRowInset, headerFilled],
+  );
+  const firstCardInset = firstRowInset && !headerFilled ? firstRowInset : undefined;
 
   const navigation = useNavigation<any>();
   const isFocused = useIsFocused();
@@ -936,7 +977,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
 
   useEffect(() => {
     const unsubscribe = navigation.addListener("tabPress", (event) => {
-      if (!isFocused || !active) return;
+      if (!answersTabPress || !isFocused || !active) return;
       listRef.current?.scrollToOffset({ offset: 0, animated: true });
       // First press on the focused tab is the cheap one — return to the top and
       // stop there. Only a repeat press refetches; see navigation/tabPressIntent.
@@ -944,7 +985,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
       onRefresh();
     });
     return unsubscribe;
-  }, [navigation, isFocused, active, onRefresh]);
+  }, [navigation, answersTabPress, isFocused, active, onRefresh]);
 
   // Listen for feed refresh requests (e.g., after a new post is uploaded)
   useEffect(() => {
@@ -1076,6 +1117,9 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
         onRefresh();
         listRef.current?.scrollToOffset({ offset: 0, animated: true });
       },
+      scrollToTop: () => {
+        listRef.current?.scrollToOffset({ offset: 0, animated: true });
+      },
     };
   }, [feedRef, onRefresh]);
 
@@ -1086,12 +1130,22 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     () => (
       <View>
         <View style={topSpacerStyle} />
-        {headerComponent as any}
+        <View style={headerContentStyle}>
+          <View onLayout={firstRowInset ? handleHeaderContentLayout : undefined}>
+            {headerComponent as any}
+          </View>
+        </View>
       </View>
     ),
-    [topSpacerStyle, headerComponent],
+    [topSpacerStyle, headerContentStyle, firstRowInset, handleHeaderContentLayout, headerComponent],
   );
 
+  // The post straight under the header row, which makes room for floating
+  // chrome (firstRowInset).
+  const firstRowKey = feedItems[0]?.__listKey;
+  // The post straight above the who-to-follow row, which carries the one
+  // hairline there (under itself), so the post drops its own.
+  const beforeSuggestedKey = feedItems[SUGGEST_AFTER_INDEX]?.__listKey;
   const renderItem = useCallback<ListRenderItem<FeedRow>>(
     ({ item }) => {
       if (item.__synthetic === "header") return headerBlock;
@@ -1102,12 +1156,14 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
           item={item}
           store={visibilityStore}
           onCategorySelect={onCategorySelect}
+          topChromeInset={item.__listKey === firstRowKey ? firstCardInset : undefined}
+          hideDivider={item.__listKey === beforeSuggestedKey}
         />
       );
     },
     // Stable across a tab switch on purpose: `active` and focus reach the rows
     // through the store (see setLive above), never through this callback.
-    [visibilityStore, onCategorySelect, headerBlock],
+    [visibilityStore, onCategorySelect, headerBlock, firstCardInset, firstRowKey, beforeSuggestedKey],
   );
 
   // One fixed-height slot for all three footer states. Previously the footer
@@ -1131,17 +1187,17 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
 
   // Held stable so a render of this component is not a new prop on the list,
   // which under FlashList re-measures every mounted cell.
-  const listContentStyle = contentContainerStyle || DEFAULT_CONTENT_STYLE;
+  const listContentStyle = contentContainerStyle || (firstRowInset ? FLUSH_CONTENT_STYLE : DEFAULT_CONTENT_STYLE);
   const refreshControl = useMemo(
     () => (
       <DeHubRefreshControl
         refreshing={refreshing}
         onRefresh={onRefresh}
         tintColor={theme.colors.accent}
-        progressViewOffset={headerInset}
+        progressViewOffset={chromeInset}
       />
     ),
-    [refreshing, onRefresh, headerInset],
+    [refreshing, onRefresh, chromeInset],
   );
   const listEmpty = useMemo(
     () =>
@@ -1199,7 +1255,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
             list's ListHeaderComponent, which is where the header spacer lives —
             without this the skeleton starts at y=0 and its first cards render
             behind the header, so the wait looks broken as well as slow. */}
-        <View style={topSpacerStyle} />
+        <View style={skeletonSpacerStyle} />
         <FeedCardSkeleton count={4} />
       </View>
     );
@@ -1229,7 +1285,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
         <Animated.View
           pointerEvents="box-none"
           style={[
-            { position: "absolute", top: headerInset + 8, left: 0, right: 0, alignItems: "center", zIndex: 20 },
+            { position: "absolute", top: chromeInset + 8, left: 0, right: 0, alignItems: "center", zIndex: 20 },
             newPostsPillStyle,
           ]}
         >
@@ -1294,7 +1350,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
         ListFooterComponent={listFooter}
         ListEmptyComponent={unshown ? null : listEmpty}
       />
-      <DeHubRefreshMark refreshing={refreshing} topInset={headerInset} />
+      <DeHubRefreshMark refreshing={refreshing} topInset={chromeInset} />
     </View>
   );
 };

@@ -1018,7 +1018,8 @@
     "boostPostDesc": "Lägg det överst i startflödet",
     "mintPostDesc": "Publicera det här inlägget on-chain",
     "giftBoost": "Ge bort en boost",
-    "giftBoostDesc": "Använd en av dina på det här inlägget"
+    "giftBoostDesc": "Använd en av dina på det här inlägget",
+    "askAi": "Fråga AI"
   },
   "filters": {
     "sort": "Sortera",

@@ -1017,7 +1017,8 @@
     "postPinned": "Profile تے Pinned",
     "postUnpinned": "Profile توں Unpinned",
     "pinFailed": "ایہہ post pin یا unpin نئی کر سکے",
-    "bookmark": "بُک مارک"
+    "bookmark": "بُک مارک",
+    "askAi": "AI کنوں پچھو"
   },
   "filters": {
     "sort": "ترتیب",

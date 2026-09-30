@@ -1018,7 +1018,8 @@
     "boostPostDesc": "Postavite je na vrh početnog feeda",
     "mintPostDesc": "Objavite ovu objavu on-chain",
     "giftBoost": "Pokloni boost",
-    "giftBoostDesc": "Potrošite jedan od svojih na ovu objavu"
+    "giftBoostDesc": "Potrošite jedan od svojih na ovu objavu",
+    "askAi": "Pitaj AI"
   },
   "filters": {
     "sort": "Sortiraj",

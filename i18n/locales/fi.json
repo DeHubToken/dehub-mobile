@@ -1018,7 +1018,8 @@
     "boostPostDesc": "Nosta se etusivun syötteen kärkeen",
     "mintPostDesc": "Julkaise tämä julkaisu ketjussa",
     "giftBoost": "Lahjoita tehoste",
-    "giftBoostDesc": "Käytä yksi omistasi tähän julkaisuun"
+    "giftBoostDesc": "Käytä yksi omistasi tähän julkaisuun",
+    "askAi": "Kysy tekoälyltä"
   },
   "filters": {
     "sort": "Lajittele",

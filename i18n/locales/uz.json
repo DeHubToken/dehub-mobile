@@ -1018,7 +1018,8 @@
     "boostPostDesc": "Uni asosiy lentaning tepasiga qo'ying",
     "mintPostDesc": "Bu postni zanjirda chop eting",
     "giftBoost": "Boost sovg'a qilish",
-    "giftBoostDesc": "O'zingiznikidan birini shu postga sarflang"
+    "giftBoostDesc": "O'zingiznikidan birini shu postga sarflang",
+    "askAi": "Sun'iy intellektdan so'rash"
   },
   "filters": {
     "sort": "Saralash",

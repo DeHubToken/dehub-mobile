@@ -1018,7 +1018,8 @@
     "boostPostDesc": "Mettilo in cima al feed principale",
     "mintPostDesc": "Pubblica questo post on-chain",
     "giftBoost": "Regala un boost",
-    "giftBoostDesc": "Usa uno dei tuoi su questo post"
+    "giftBoostDesc": "Usa uno dei tuoi su questo post",
+    "askAi": "Chiedi all'IA"
   },
   "filters": {
     "sort": "Ordina",

@@ -1018,7 +1018,8 @@
     "boostPostDesc": "Ponla arriba del todo en el inicio",
     "mintPostDesc": "Publica esta publicación en la cadena",
     "giftBoost": "Regala un impulso",
-    "giftBoostDesc": "Gasta uno de los tuyos en esta publicación"
+    "giftBoostDesc": "Gasta uno de los tuyos en esta publicación",
+    "askAi": "Preguntar a la IA"
   },
   "filters": {
     "sort": "Ordenar",

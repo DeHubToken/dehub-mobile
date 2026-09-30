@@ -1060,7 +1060,8 @@
     "boostPostDesc": "Ilagay ito sa itaas ng home feed",
     "mintPostDesc": "I-publish ang post na ito on-chain",
     "giftBoost": "Magregalo ng boost",
-    "giftBoostDesc": "Gamitin ang isa sa iyo para sa post na ito"
+    "giftBoostDesc": "Gamitin ang isa sa iyo para sa post na ito",
+    "askAi": "Tanungin ang AI"
   },
   "filters": {
     "sort": "Ayusin",

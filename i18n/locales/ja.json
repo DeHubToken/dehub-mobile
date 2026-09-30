@@ -1017,7 +1017,8 @@
     "boostPostDesc": "ホームフィードの先頭に表示します",
     "mintPostDesc": "この投稿をオンチェーンで公開します",
     "giftBoost": "ブーストを贈る",
-    "giftBoostDesc": "自分のブーストをこの投稿に使います"
+    "giftBoostDesc": "自分のブーストをこの投稿に使います",
+    "askAi": "AIに質問"
   },
   "filters": {
     "sort": "並べ替え",

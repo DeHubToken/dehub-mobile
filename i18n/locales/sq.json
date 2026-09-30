@@ -1018,7 +1018,8 @@
     "boostPostDesc": "Vendose në krye të feed-it kryesor",
     "mintPostDesc": "Publiko këtë postim on-chain",
     "giftBoost": "Dhuro një boost",
-    "giftBoostDesc": "Shpenzo një nga të tutë për këtë postim"
+    "giftBoostDesc": "Shpenzo një nga të tutë për këtë postim",
+    "askAi": "Pyet AI"
   },
   "filters": {
     "sort": "Rendit",

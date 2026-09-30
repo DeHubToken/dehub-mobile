@@ -1018,7 +1018,8 @@
     "boostPostDesc": "Onu ana lentin başına qoy",
     "mintPostDesc": "Bu paylaşımı zəncirdə dərc et",
     "giftBoost": "Gücləndirmə hədiyyə et",
-    "giftBoostDesc": "Öz gücləndirmələrindən birini bu paylaşıma xərclə"
+    "giftBoostDesc": "Öz gücləndirmələrindən birini bu paylaşıma xərclə",
+    "askAi": "Süni intellektdən soruş"
   },
   "filters": {
     "sort": "Sırala",

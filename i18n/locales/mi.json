@@ -1018,7 +1018,8 @@
     "boostPostDesc": "Whakanohia ki runga o te kaupapa kāinga",
     "mintPostDesc": "Whakaputaina tēnei pou ki runga mekameka",
     "giftBoost": "Koha he whakapiki",
-    "giftBoostDesc": "Whakapaua tētahi o āu ki tēnei pou"
+    "giftBoostDesc": "Whakapaua tētahi o āu ki tēnei pou",
+    "askAi": "Pātai ki te AI"
   },
   "filters": {
     "sort": "Raupapa",

@@ -1018,7 +1018,8 @@
     "boostPostDesc": "Posa-la a dalt del canal d'inici",
     "mintPostDesc": "Publica aquesta publicació a la cadena",
     "giftBoost": "Regala un impuls",
-    "giftBoostDesc": "Gasta un dels teus en aquesta publicació"
+    "giftBoostDesc": "Gasta un dels teus en aquesta publicació",
+    "askAi": "Pregunta a la IA"
   },
   "filters": {
     "sort": "Ordenar",

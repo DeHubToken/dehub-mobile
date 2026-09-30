@@ -1208,7 +1208,8 @@
     "boostPostDesc": "Zet het bovenaan de startfeed",
     "mintPostDesc": "Publiceer dit bericht on-chain",
     "giftBoost": "Een boost cadeau doen",
-    "giftBoostDesc": "Geef er een van jezelf uit aan dit bericht"
+    "giftBoostDesc": "Geef er een van jezelf uit aan dit bericht",
+    "askAi": "Vraag het AI"
   },
   "filters": {
     "sort": "Sorteren",

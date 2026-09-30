@@ -1018,7 +1018,8 @@
     "boostPostDesc": "Weka juu ya mlisho wa nyumbani",
     "mintPostDesc": "Chapisha chapisho hili kwenye mnyororo",
     "giftBoost": "Toa kiboreshaji kama zawadi",
-    "giftBoostDesc": "Tumia kimoja chako kwenye chapisho hili"
+    "giftBoostDesc": "Tumia kimoja chako kwenye chapisho hili",
+    "askAi": "Uliza AI"
   },
   "filters": {
     "sort": "Panga",

@@ -1,5 +1,6 @@
 import React, { useState, useMemo, useCallback, useRef, useEffect, useDeferredValue } from "react";
-import { BackHandler, View, StyleSheet, InteractionManager, useWindowDimensions, type LayoutChangeEvent } from "react-native";
+import { BackHandler, Pressable, View, StyleSheet, InteractionManager, useWindowDimensions, type LayoutChangeEvent } from "react-native";
+import { useTranslation } from "react-i18next";
 import { useIsFocused, useNavigation } from "@react-navigation/native";
 import type { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
 import Animated, {
@@ -21,6 +22,7 @@ import ImageFeedDrawer, { type ImageFeedDrawerHandle } from "../components/Home/
 import ShortsGrid, { type ShortsGridHandle } from "../components/Home/ShortsGrid";
 import MusicFeed, { type MusicFeedHandle } from "../components/Music/MusicFeed";
 import HomeHeader from "../components/HomeHeader";
+import { IslandCapsule, IslandFeedMenu, ISLAND_BAR_HEIGHT } from "../components/Home/IslandTopBar";
 import FeedNavBar, { NAV_PILL_RADIUS, NAV_PILL_SIDE_INSET, NAV_PILL_TOP_INSET } from "../components/Home/FeedNavBar";
 import { useDrawer } from "../context/DrawerContext";
 import { useTabBarHide } from "../context/TabBarHideContext";
@@ -40,6 +42,7 @@ import type {
   UnifiedFeedItem,
 } from "../services/feed.unified.service";
 import { TAB_BAR_CONTENT_INSET } from "../navigation/tabBarLayout";
+import { tabPressIntentOf } from "../navigation/tabPressIntent";
 import { ScreenNames } from "../navigation/ScreenNames";
 import type { BottomTabParamList } from "../navigation/types";
 import { isKidsModeLocked } from "../libs/kids-mode-lock";
@@ -164,10 +167,18 @@ export default function HomeScreen() {
   const [selectedCategory, setSelectedCategory] = useState<string | undefined>(undefined);
   const { width: pageWidth } = useWindowDimensions();
   const isFocused = useIsFocused();
-  const { skin, theme, colors } = useAppTheme();
+  const { skin, theme } = useAppTheme();
+  const { t } = useTranslation();
   // System floats its glass pill over the feed like the canvas themes do, so
   // it gets the same clear header and the same cut around the pill.
   const glassNav = !!skin || theme === "system";
+  // System's island: the whole top bar is one small capsule, with nothing
+  // painted around it, that slides away on a scroll down and back on a
+  // scroll up like the old bar; the feed runs under it to the top
+  // of the screen. Its chevron opens a feed menu rather than the tab pill;
+  // the pill only comes back for a sub-view's back slot.
+  const island = theme === "system" && !skin;
+  const [islandMenuOpen, setIslandMenuOpen] = useState(false);
   const { hideUserProfile } = useUserProfileSheet();
   const {
     profileVisible,
@@ -470,15 +481,13 @@ export default function HomeScreen() {
   // viewport slides down to the pill's top and its content slides back up by
   // the same amount: two transforms on the UI thread, no layout per frame.
   const navPillTop = useSharedValue(0);
-  const [pillTopInHeader, setPillTopInHeader] = useState(0);
   const onNavLayout = useCallback((e: LayoutChangeEvent) => {
-    setPillTopInHeader(e.nativeEvent.layout.y + NAV_PILL_TOP_INSET + 1);
     // One point below the pill's top edge, so rounding between the measured
     // layout and the transform can never leave a hairline of feed showing
     // above the pill; the pill's rim covers that point.
     navPillTop.value = e.nativeEvent.layout.y + NAV_PILL_TOP_INSET + 1;
   }, [navPillTop]);
-  const clipOn = glassNav;
+  const clipOn = glassNav && !island;
   // The cut follows the pill's silhouette, as on web: the viewport is inset to
   // the pill's sides and rounded with the theme's own pill radius, so nothing
   // peeks out beside or above the pill's rounded corners. Its content is
@@ -499,6 +508,42 @@ export default function HomeScreen() {
   const feedUnclipStyle = useAnimatedStyle(() => ({
     transform: [{ translateY: clipOn ? -Math.max(0, navPillTop.value + headerTranslateY.value) : 0 }],
   }));
+
+  // Under the island nothing is reserved for the capsule: the home feed
+  // starts at the top of the screen and its first row makes room under the
+  // capsule itself (firstRowInset). The grids keep a plain inset so their
+  // first row of tiles is not hidden. The tab pill, when open, hangs over the
+  // feed rather than pushing it down, and the capsule slides away and back
+  // with the same scroll signal the old header used.
+  const feedInset = island ? ISLAND_BAR_HEIGHT : headerHeight;
+  const postFeedInset = island ? 0 : headerHeight;
+  const postFeedFirstRowInset = island ? ISLAND_BAR_HEIGHT : 0;
+  const showNavPill = !island || feedProfileVisible || !!imageFeed;
+  // A scroll that hides the capsule puts its menu away too (a touch on the
+  // feed already does, through handleScrollBegin).
+  useAnimatedReaction(
+    () => headerTranslateY.value < 0,
+    (hiding, was) => {
+      if (island && hiding && !was) runOnJS(setIslandMenuOpen)(false);
+    },
+    [island],
+  );
+  // The capsule's middle opens and closes the feed menu; opening it puts an
+  // open filter panel away.
+  const toggleIslandMenu = useCallback(() => {
+    setIslandMenuOpen((open) => !open);
+    setFilterPanelVisible(false);
+  }, []);
+  const closeIslandMenu = useCallback(() => setIslandMenuOpen(false), []);
+  // A pick switches feeds exactly as the pill's buttons did.
+  const handleIslandSelect = useCallback((index: number) => {
+    setIslandMenuOpen(false);
+    handleNavPostTypeChange(TAB_ORDER[index]);
+  }, [handleNavPostTypeChange]);
+  const handleIslandFilters = useCallback(() => {
+    setIslandMenuOpen(false);
+    setFilterPanelVisible(true);
+  }, []);
 
   const pagerStyle = useAnimatedStyle(() => ({
     transform: [{ translateX: -progress.value * pageWidth }],
@@ -687,6 +732,8 @@ export default function HomeScreen() {
 
   const handleScrollBegin = useCallback(() => {
     setFilterPanelVisible(false);
+    // Moving the feed puts the capsule's menu away.
+    setIslandMenuOpen(false);
     holdThemeBackdrop();
   }, []);
 
@@ -715,6 +762,23 @@ export default function HomeScreen() {
       feedRefs.current[activeTabKey as FeedListType]?.current?.scrollToTopAndRefresh();
     }
   }, [showHeader, activeTabKey]);
+
+  // The Home button in the bottom bar, pressed while Home is showing another
+  // feed (Shorts, Images, Videos, Music, Live): back to the Home feed, at its
+  // top. On the Home feed itself the list's own listener scrolls up and, on a
+  // second press, refreshes.
+  const activeIndexRef = useRef(activeIndex);
+  activeIndexRef.current = activeIndex;
+  useEffect(() => {
+    return tabNavigation.addListener("tabPress", (event) => {
+      if (tabPressIntentOf(event) === "navigate") return;
+      if (activeIndexRef.current === 0) return;
+      setIslandMenuOpen(false);
+      showHeader();
+      handleNavPostTypeChange("all");
+      feedRefs.current.all?.current?.scrollToTop();
+    });
+  }, [tabNavigation, showHeader, handleNavPostTypeChange]);
 
   const handleRetry = useCallback(async () => {
     setCategoriesLoading(true);
@@ -811,7 +875,7 @@ export default function HomeScreen() {
           gridRef={imageGridRef}
           params={feedParams}
           pageSize={20}
-          headerInset={headerHeight}
+          headerInset={feedInset}
           onRefresh={handleRefresh}
           onScrollBegin={handleScrollBegin}
           scrollHandler={scrollHandler}
@@ -830,7 +894,7 @@ export default function HomeScreen() {
         <MusicFeed
           active={isPlaybackActive}
           feedRef={musicFeedRef}
-          headerInset={headerHeight}
+          headerInset={feedInset}
           scrollHandler={scrollHandler}
           onScrollBegin={handleScrollBegin}
           onScrollEnd={handleScrollEnd}
@@ -846,7 +910,7 @@ export default function HomeScreen() {
           active={isPlaybackActive}
           params={feedParams}
           pageSize={20}
-          headerInset={headerHeight}
+          headerInset={feedInset}
           onRefresh={handleRefresh}
           onScrollBegin={handleScrollBegin}
           scrollHandler={scrollHandler}
@@ -862,8 +926,10 @@ export default function HomeScreen() {
         active={isPlaybackActive}
         params={feedListParamsByType[feedType]}
         showShortsCarousel={feedType === "all"}
+        answersTabPress={feedType === "all"}
         pageSize={20}
-        headerInset={headerHeight}
+        headerInset={postFeedInset}
+        firstRowInset={postFeedFirstRowInset}
         headerTranslateY={headerTranslateY}
         onRefresh={handleRefresh}
         onScrollBegin={handleScrollBegin}
@@ -883,25 +949,46 @@ export default function HomeScreen() {
 
   return (
     <View className="flex-1">
+      {island && islandMenuOpen ? (
+        // A tap anywhere outside the menu closes it, and does nothing else.
+        <Pressable
+          style={styles.menuScrim}
+          onPress={closeIslandMenu}
+          accessibilityRole="button"
+          accessibilityLabel={t("common.close")}
+        />
+      ) : null}
       <Animated.View
         style={[styles.headerClip, glassNav ? styles.headerClear : null, headerAnimatedStyle]}
+        // The island's header is mostly empty space around the capsule; taps
+        // there belong to the feed underneath.
+        pointerEvents={island ? "box-none" : "auto"}
         onLayout={onHeaderLayout}
       >
-        {/* System's page is one flat colour, so the header also carries a band
-            of it down to the pill's top edge. It moves in the same view as the
-            pill, so when the header slides back in on a quick flick the feed
-            can't peek above the pill for the frames the viewport cut trails. */}
-        {theme === "system" && !skin && pillTopInHeader > 0 ? (
-          <View
-            pointerEvents="none"
-            style={[styles.headerCover, { height: pillTopInHeader, backgroundColor: colors.background }]}
+        {island ? (
+          <IslandCapsule
+            activeIndex={activeIndex}
+            menuOpen={islandMenuOpen}
+            onToggleMenu={toggleIslandMenu}
+            onAvatarPress={openDrawer}
+            onLogoPress={handleLogoPress}
+          />
+        ) : (
+          <HomeHeader
+            onLogoPress={handleLogoPress}
+            onMenuPress={openDrawer}
+          />
+        )}
+
+        {island && islandMenuOpen ? (
+          <IslandFeedMenu
+            activeIndex={activeIndex}
+            onSelect={handleIslandSelect}
+            onFilters={handleIslandFilters}
           />
         ) : null}
-        <HomeHeader
-          onLogoPress={handleLogoPress}
-          onMenuPress={openDrawer}
-        />
 
+        {showNavPill ? (
         <View onLayout={onNavLayout}>
         <FeedNavBar
           activeIndex={activeIndex}
@@ -914,6 +1001,7 @@ export default function HomeScreen() {
           onBackPress={feedProfileVisible ? hideUserProfile : handleImageFeedBack}
         />
         </View>
+        ) : null}
 
 
         <FeedFilterPanel
@@ -968,7 +1056,7 @@ export default function HomeScreen() {
 
           {/* Covers the pager, never the header: the filter panel and nav bar
               stay live so the user can keep adjusting while this is up. */}
-          {filterLoaderActive && <FeedFilterLoader topInset={headerHeight} />}
+          {filterLoaderActive && <FeedFilterLoader topInset={feedInset} />}
           </Animated.View>
         </Animated.View>
       </GestureDetector>
@@ -1043,11 +1131,9 @@ const styles = StyleSheet.create({
   headerClear: {
     backgroundColor: "transparent",
   },
-  headerCover: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
+  menuScrim: {
+    ...StyleSheet.absoluteFillObject,
+    zIndex: 9,
   },
   profileSurface: {
     position: "absolute",

@@ -1018,7 +1018,8 @@
     "boostPostDesc": "Qallariy panqapa hanaqninman churay",
     "mintPostDesc": "Kay willayta chain ukhupi willay",
     "giftBoost": "Kallpachayta quy",
-    "giftBoostDesc": "Qampa hukninta kay willaypi gastay"
+    "giftBoostDesc": "Qampa hukninta kay willaypi gastay",
+    "askAi": "AI-ta tapuy"
   },
   "filters": {
     "sort": "Churay",

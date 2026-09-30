@@ -35,10 +35,77 @@ describe('post media presentation', () => {
     const containedImage = readSource('components', 'Home', 'ContainedFeedImage.tsx');
 
     expect(card).toContain('borderRadius: FEED_BENTO_RADIUS');
-    // Square in the minimal theme, where the bento it matches is gone too.
-    expect(containedImage).toContain('borderRadius: isMinimal || postPage ? 0 : FEED_BENTO_RADIUS');
+    // Square in the minimal theme and the cinematic system feed, where the
+    // bento it matches is gone too.
+    expect(containedImage).toContain('borderRadius: edgeToEdge || postPage ? 0 : FEED_BENTO_RADIUS');
+    expect(containedImage).toContain('const edgeToEdge = isMinimal || bleed;');
     expect(containedImage).toContain('overflow: "hidden"');
     expect(containedImage).toContain('style={{ width: "100%", height: "100%" }}');
+  });
+
+  it('runs home feed media edge to edge under the system theme only', () => {
+    const card = readSource('components', 'Home', 'FeedCard.tsx');
+    const list = readSource('components', 'Home', 'InfiniteVideoFeed.tsx');
+
+    expect(card).toContain('const cinematicFeed = cinematic && theme === "system" && !skin && !isMinimal && !immersive && !flat;');
+    expect(card).toContain('<FeedBleedContext.Provider value={feedBleed}>');
+    // Posts are split by a full-width hairline with 12pt either side.
+    expect(card).toContain('paddingVertical: 12,\n    borderBottomWidth: StyleSheet.hairlineWidth,');
+    expect(list).toContain('      cinematic\n');
+  });
+
+  it('starts the system home feed under the capsule with no band behind it', () => {
+    const home = readSource('screens', 'HomeScreen.tsx');
+    const list = readSource('components', 'Home', 'InfiniteVideoFeed.tsx');
+    const card = readSource('components', 'Home', 'FeedCard.tsx');
+
+    expect(home).toContain('const postFeedInset = island ? 0 : headerHeight;');
+    expect(home).toContain('firstRowInset={postFeedFirstRowInset}');
+    expect(list).toContain('topChromeInset={item.__listKey === firstRowKey ? firstCardInset : undefined}');
+    // A video keeps running to the top; its chip and buttons move to the
+    // bottom of the media, and the tools menu opens upward from there.
+    expect(card).toContain('const chipAtBottom = chipOverMedia && leadInset > 0;');
+    expect(card).toContain('fromBottom={chipAtBottom ? CINEMATIC_BOTTOM_BAND + 8 : undefined}');
+    expect(card).toContain('onAskAi={cinematicFeed ? handleAiPress : undefined}');
+  });
+
+  it('draws one hairline at the who-to-follow row, under it', () => {
+    const list = readSource('components', 'Home', 'InfiniteVideoFeed.tsx');
+    const suggested = readSource('components', 'Home', 'SuggestedAccountsSection.tsx');
+
+    expect(list).toContain('hideDivider={item.__listKey === beforeSuggestedKey}');
+    expect(suggested).toContain('borderBottomColor: CINEMATIC_HAIRLINE,');
+    expect(suggested).toContain('return cinematic ? <View style={styles.lineOnly} /> : null;');
+  });
+
+  it('opens a feed menu from the capsule instead of the tab pill', () => {
+    const home = readSource('screens', 'HomeScreen.tsx');
+    const island = readSource('components', 'Home', 'IslandTopBar.tsx');
+
+    expect(home).toContain('const showNavPill = !island || feedProfileVisible || !!imageFeed;');
+    expect(home).toContain('<IslandFeedMenu');
+    expect(island).toContain('export const IslandFeedMenu = memo(function IslandFeedMenu({');
+    expect(island).toContain('t("filters.filters")');
+  });
+
+  it('sends a Home tab press on another home feed back to the Home feed', () => {
+    const home = readSource('screens', 'HomeScreen.tsx');
+    const list = readSource('components', 'Home', 'InfiniteVideoFeed.tsx');
+
+    expect(home).toContain('answersTabPress={feedType === "all"}');
+    expect(home).toContain('if (activeIndexRef.current === 0) return;');
+    expect(home).toContain('handleNavPostTypeChange("all");');
+    expect(list).toContain('if (!answersTabPress || !isFocused || !active) return;');
+  });
+
+  it('fills the width with cinematic media, capped like the post page and cropped past it', () => {
+    const containedImage = readSource('components', 'Home', 'ContainedFeedImage.tsx');
+    const video = readSource('components', 'Home', 'FeedVideoPlayer.tsx');
+
+    expect(containedImage).toContain('postPageMaxHeightFor(screenHeight, availableWidth),\n          ),');
+    expect(containedImage).toContain('contentFit={bleed ? "cover" : "contain"}');
+    expect(video).toContain('Math.max(mediaAspect, win.width / postPageMaxHeightFor(win.height, win.width))');
+    expect(video).toContain('width: bleed ? windowSize.width : mediaBoxWidth(');
   });
 
   it('keeps post action controls evenly inset from every bento edge', () => {

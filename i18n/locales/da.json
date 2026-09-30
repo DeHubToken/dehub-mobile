@@ -1018,7 +1018,8 @@
     "boostPostDesc": "Læg det øverst i hjemmefeedet",
     "mintPostDesc": "Udgiv dette opslag on-chain",
     "giftBoost": "Giv et boost",
-    "giftBoostDesc": "Brug et af dine på dette opslag"
+    "giftBoostDesc": "Brug et af dine på dette opslag",
+    "askAi": "Spørg AI"
   },
   "filters": {
     "sort": "Sorter",

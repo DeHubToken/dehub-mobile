@@ -1018,7 +1018,8 @@
     "boostPostDesc": "Fuula jalqabaa irratti ol kaa'i",
     "mintPostDesc": "Barreeffama kana chain irratti maxxansi",
     "giftBoost": "Guddina kennaa godhi",
-    "giftBoostDesc": "Kan kee keessaa tokko barreeffama kana irratti baasi"
+    "giftBoostDesc": "Kan kee keessaa tokko barreeffama kana irratti baasi",
+    "askAi": "AI gaafadhu"
   },
   "filters": {
     "sort": "Tartiibsi",

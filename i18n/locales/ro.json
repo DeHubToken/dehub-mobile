@@ -1018,7 +1018,8 @@
     "boostPostDesc": "Pune-o în capul fluxului principal",
     "mintPostDesc": "Publică această postare on-chain",
     "giftBoost": "Oferă un boost",
-    "giftBoostDesc": "Folosește unul dintre ale tale pe această postare"
+    "giftBoostDesc": "Folosește unul dintre ale tale pe această postare",
+    "askAi": "Întreabă AI"
   },
   "filters": {
     "sort": "Sortează",

@@ -1012,7 +1012,8 @@
     "boostPostDesc": "دا د کور فیډ په سر کې کېږدئ",
     "mintPostDesc": "دا پوسټ په زنځیر کې خپور کړئ",
     "giftBoost": "یو بوسټ ډالۍ کړئ",
-    "giftBoostDesc": "خپل یو یې پر دې پوسټ ولګوئ"
+    "giftBoostDesc": "خپل یو یې پر دې پوسټ ولګوئ",
+    "askAi": "له AI څخه پوښتنه"
   },
   "filters": {
     "sort": "ترتیب",
