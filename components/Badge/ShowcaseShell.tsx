@@ -630,8 +630,8 @@ export default function ShowcaseShell({
           ) : null}
 
           <View style={{ flex: 1, paddingTop: insets.top }} pointerEvents="box-none">
-            {/* Stage: whatever height the details leave, never under 160. */}
-            <View style={styles.stage} onLayout={onStageLayout} pointerEvents="box-none">
+            {/* Reserve the badge's own space; the details scroll below it. */}
+            <View style={[styles.stage, { height: Math.min(360, Math.max(180, (H - insets.top - insets.bottom) * 0.32)) }]} onLayout={onStageLayout} pointerEvents="box-none">
               <Animated.View pointerEvents="none" style={[StyleSheet.absoluteFill, glowStyle]}>
                 <Svg width="100%" height="100%">
                   <Defs>
@@ -664,7 +664,7 @@ export default function ShowcaseShell({
             </View>
 
             {/* Details: one 8px gap, 16px radius and 12px padding throughout. */}
-            <Animated.View style={[{ flexShrink: 1 }, detailsStyle]} pointerEvents={panelIn ? "auto" : "none"}>
+            <Animated.View style={[{ flex: 1, minHeight: 0 }, detailsStyle]} pointerEvents={panelIn ? "auto" : "none"}>
               <ScrollView
                 contentContainerStyle={styles.details}
                 showsVerticalScrollIndicator={false}
@@ -825,7 +825,7 @@ function DockThumb({
 
 const styles = StyleSheet.create({
   backdrop: { backgroundColor: "#000" },
-  stage: { flex: 1, minHeight: 160 },
+  stage: { flexShrink: 0, marginBottom: 12 },
   details: { paddingHorizontal: 16 },
   column: { width: "100%", maxWidth: 480, alignSelf: "center" },
   dockWrap: { marginTop: SECTION_GAP, paddingHorizontal: 16 },
