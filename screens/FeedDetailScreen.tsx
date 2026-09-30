@@ -1306,15 +1306,16 @@ export default function FeedDetailScreen() {
           onCommentPress={focusCommentInput}
         />
       ) : item ? (
-        <View className="px-4">
-          <FeedCard 
-            item={item} 
-            fullContent 
-            disablePress
-            prioritizeMedia
-            onCommentPress={focusCommentInput}
-          />
-        </View>
+        // No bento: a text post lies flat and full width like the immersive
+        // ones, the same as the web post page.
+        <FeedCard
+          item={item}
+          fullContent
+          disablePress
+          prioritizeMedia
+          flat
+          onCommentPress={focusCommentInput}
+        />
       ) : loading ? (
         <View className="px-4 pt-4">
           {/* Minimal inline skeleton — just header + content placeholder */}
