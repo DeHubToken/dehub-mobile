@@ -21,6 +21,7 @@ import {
   bookBoost,
   cancelBoost,
   fetchBoostSlot,
+  fetchBoostQueue,
   fetchFrontRow,
   fetchMyTeamUp,
   fetchTeamUpTeams,
@@ -44,6 +45,7 @@ import { useUser } from '../context/AuthContext';
 
 export const SUPERPOWERS_KEY = ['superpowers', 'status'] as const;
 export const SUPERPOWERS_SLOT_KEY = ['superpowers', 'slot'] as const;
+export const SUPERPOWERS_QUEUE_KEY = ['superpowers', 'slots'] as const;
 export const SUPERPOWERS_TIERS_KEY = ['superpowers', 'tiers'] as const;
 export const TEAM_UP_KEY = ['superpowers', 'team-up'] as const;
 
@@ -90,6 +92,19 @@ export function useBoostSlot(enabled = true) {
     gcTime: SLOT_ROTATION_MS,
     refetchOnWindowFocus: false,
     // The feed must not wait on this, and must not break without it.
+    retry: false,
+  });
+}
+
+/** Every live boost, oldest first — the home feed's boost queue. */
+export function useBoostQueue(enabled = true) {
+  return useQuery({
+    queryKey: SUPERPOWERS_QUEUE_KEY,
+    queryFn: fetchBoostQueue,
+    enabled,
+    staleTime: 60 * 1000,
+    refetchInterval: enabled ? 60 * 1000 : false,
+    refetchOnWindowFocus: false,
     retry: false,
   });
 }
@@ -250,6 +265,7 @@ export function useBookBoost() {
       // So the holder can see their own boost land, rather than waiting out the
       // rotation window wondering whether it worked.
       queryClient.invalidateQueries({ queryKey: SUPERPOWERS_SLOT_KEY });
+      queryClient.invalidateQueries({ queryKey: SUPERPOWERS_QUEUE_KEY });
     },
   });
 }
@@ -263,6 +279,7 @@ export function useCancelBoost() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: SUPERPOWERS_KEY });
       queryClient.invalidateQueries({ queryKey: SUPERPOWERS_SLOT_KEY });
+      queryClient.invalidateQueries({ queryKey: SUPERPOWERS_QUEUE_KEY });
     },
   });
 }

@@ -2212,7 +2212,9 @@
     "revealKey": "Tampilkan kunci",
     "revealSignIn": "Masuk lagi untuk melihat kunci ini",
     "revealFailed": "Tidak dapat menampilkan kunci. Coba lagi.",
-    "signInAgain": "Masuk lagi"
+    "signInAgain": "Masuk lagi",
+    "createSignIn": "Masuk lagi untuk membuat agen",
+    "checkConnection": "Periksa koneksi Anda lalu coba lagi."
   },
   "hero": {
     "title": "Selamat Datang",
@@ -5126,13 +5128,10 @@
     "madeForKids": "Dibuat untuk anak-anak",
     "madeForKidsHint": "ditampilkan di Mode Anak-anak",
     "madeForKidsConfirmTitle": "Publikasikan ini untuk anak-anak?",
-    "madeForKidsConfirmAudience": "Anak-anak yang menggunakan Mode Anak-anak akan ditampilkan postingan ini. Tidak ada yang lain di DeHub yang menjangkau mereka.",
     "madeForKidsConfirmReach": "Ini juga keluar dari feed biasa — orang masih menemukannya di profil Anda, dalam pencarian dan melalui tautan yang Anda bagikan.",
     "madeForKidsConfirmComments": "Hanya Mode Anak-anak yang dapat mengomentari. Anda masih dapat membalas mereka sendiri.",
     "madeForKidsConfirmYes": "Ya, ini untuk anak-anak",
     "markMadeForKids": "Tandai sebagai dibuat untuk anak - anak",
-    "madeForKidsOnDesc": "Ditampilkan kepada anak-anak di Mode Anak-anak, dan keluar dari feed biasa. Hanya Mode Anak-anak yang dapat mengomentari.",
-    "madeForKidsOffDesc": "Menampilkan postingan ini kepada anak-anak yang menggunakan Mode Anak-anak, dan mengeluarkannya dari feed biasa.",
     "madeForKidsBlockedByMature": "Postingan yang ditandai dewasa tidak dapat juga dipublikasikan untuk anak-anak.",
     "encoderTitle": "OBS / encoder",
     "encoderHint": "Ambil detail RTMP",
@@ -5221,7 +5220,9 @@
     "coverFrames": "Pilih bingkai sampul",
     "coverFrame": "Gunakan bingkai {{index}} sebagai sampul",
     "uploadCover": "Unggah gambar sampul",
-    "editFailed": "Tidak dapat menerapkan edit. Coba lagi."
+    "editFailed": "Tidak dapat menerapkan edit. Coba lagi.",
+    "madeForKidsConfirmAudience": "Anak - anak yang menggunakan Mode Anak akan ditampilkan postingan ini. Tidak ada hal lain di DeHub yang menjangkau mereka.",
+    "madeForKidsOnDesc": "Ditampilkan untuk anak-anak di Mode Anak, dan tidak ada di linimasa biasa. Hanya Mode Anak yang dapat berkomentar."
   },
   "bounty": {
     "claimed": "Sudah diklaim",
@@ -8613,7 +8614,7 @@
     "add": {
       "title": "Tambahkan {{name}}?",
       "body": "Aplikasi ini akan muncul di bawah Your apps dan dapat mengirimkan notifikasi. Anda dapat menghapusnya kapan saja dari halaman Apps.",
-      "confirm": "Aplikasi ini akan muncul di bawah \"Aplikasi Anda\" dan dapat mengirimkan notifikasi. Anda dapat menghapusnya kapan saja dari halaman Aplikasi."
+      "confirm": "Tambahkan aplikasi"
     }
   },
   "aiStyles": {

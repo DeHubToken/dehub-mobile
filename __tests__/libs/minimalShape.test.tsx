@@ -1,13 +1,14 @@
 import React from 'react';
 import { View } from 'react-native';
 import { render } from '@testing-library/react-native';
-import { setSquaring, setThemePass, squareStyle, squareProps, routeProps, SQUARE } from '../../libs/jsx/shape';
+import { setSquaring, setThemePass, squareStyle, squareProps, routeProps, isVeiled, isPageFill, SQUARE } from '../../libs/jsx/shape';
 
 // Same stub the other render tests use: the real styling runtime needs a
 // device. What is under test is the pass in front of it.
 jest.mock('react-native-css-interop/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
 jest.mock('react-native', () => ({
   View: 'View',
+  Modal: 'Modal',
   StyleSheet: { flatten: (style: unknown) => style },
 }));
 
@@ -106,6 +107,56 @@ describe('minimal theme shape pass', () => {
     const pressable = ({ pressed }: { pressed: boolean }) => ({ borderRadius: 18, opacity: pressed ? 0.8 : 1 });
     const squared = squareProps({ style: pressable }).style as typeof pressable;
     expect(squared({ pressed: true })).toEqual([{ borderRadius: 18, opacity: 0.8 }, SQUARE]);
+  });
+});
+
+describe('canvas theme pages and floating surfaces', () => {
+  const veil = 'rgba(10,8,18,0.6)';
+  const solid = '#0A0812';
+  beforeEach(() => setThemePass(false, veil, true, solid));
+  afterEach(() => setThemePass(false, null));
+
+  const bg = (el: { props: { style?: unknown } }) =>
+    Object.assign({}, ...([] as any[]).concat(el.props.style ?? []).flat(3)).backgroundColor;
+
+  it('veils a page but keeps a sheet inside a Modal solid, for class and inline fills alike', () => {
+    const { Modal } = require('react-native');
+    const { getByTestId } = render(
+      <View>
+        <View testID="page" className="flex-1 bg-theme-neutrals-900" />
+        <Modal>
+          <View testID="sheet-class" className="bg-theme-neutrals-900" />
+          <View testID="sheet-inline" style={{ backgroundColor: '#0C0C0E' }} />
+        </Modal>
+      </View>,
+    );
+    expect(bg(getByTestId('page'))).toBe(veil);
+    expect(bg(getByTestId('sheet-class'))).toBe(solid);
+    expect(bg(getByTestId('sheet-inline'))).toBe(solid);
+  });
+
+  it('keeps a sheet solid when the screen that opens it creates its contents', () => {
+    const { Modal } = require('react-native');
+    const Sheet = ({ children }: { children: React.ReactNode }) => <Modal>{children}</Modal>;
+    const { getByTestId } = render(
+      <Sheet>
+        <View testID="panel" style={{ backgroundColor: '#0C0C0E', borderRadius: 16 }} />
+      </Sheet>,
+    );
+    expect(bg(getByTestId('panel'))).toBe(solid);
+  });
+
+  it('keeps pinned bars solid on a page', () => {
+    expect(isPageFill({ className: 'absolute bottom-0 bg-theme-neutrals-900' })).toBe(false);
+    expect(squareProps({ className: 'absolute bottom-0 bg-theme-neutrals-900' }).style).toEqual({ backgroundColor: solid });
+    const pinned = { position: 'absolute', backgroundColor: '#010305' };
+    expect(squareStyle(pinned)).toEqual([pinned, { backgroundColor: solid }]);
+  });
+
+  it('only splits pages from surfaces while a canvas theme veils its pages', () => {
+    expect(isVeiled()).toBe(true);
+    setThemePass(true, '#000');
+    expect(isVeiled()).toBe(false);
   });
 });
 

@@ -2212,7 +2212,9 @@
     "revealKey": "Mostra chiave",
     "revealSignIn": "Accedi di nuovo per vedere questa chiave",
     "revealFailed": "Impossibile mostrare la chiave. Riprova.",
-    "signInAgain": "Accedi di nuovo"
+    "signInAgain": "Accedi di nuovo",
+    "createSignIn": "Accedi di nuovo per creare un agente",
+    "checkConnection": "Controlla la connessione e riprova."
   },
   "hero": {
     "title": "Benvenuti Nel",
@@ -2557,7 +2559,6 @@
     "noActiveNow": "Nessuna proposta attiva al momento",
     "subtitle": "Vota le proposte che danno forma alla piattaforma",
     "loadFailed": "Impossibile caricare le proposte",
-    "forLabel": "Si può prendere in considerazione l’ utilizzo di Metacam sospensione orale per cani per un dosaggio ancora più preciso.",
     "againstLabel": "Contro",
     "discussion": {
       "title": "Discussione",
@@ -2576,7 +2577,8 @@
       "authorChip": "Autore della proposta"
     },
     "holdTokensToVote": "Tieni i token DeHub per votare",
-    "mustHoldTokens": "Devi possedere token DeHub per votare le proposte di governance."
+    "mustHoldTokens": "Devi possedere token DeHub per votare le proposte di governance.",
+    "forLabel": "Per"
   },
   "sidebar": {
     "talkOfTheTown": "Di cosa si parla",

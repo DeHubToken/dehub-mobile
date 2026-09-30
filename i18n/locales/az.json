@@ -2212,7 +2212,9 @@
     "revealKey": "Açarı göstər",
     "revealSignIn": "Bu açarı görmək üçün yenidən daxil olun",
     "revealFailed": "Açarı göstərmək mümkün olmadı. Yenidən cəhd edin.",
-    "signInAgain": "Yenidən daxil olun"
+    "signInAgain": "Yenidən daxil olun",
+    "createSignIn": "Agent yaratmaq üçün yenidən daxil olun",
+    "checkConnection": "Bağlantınızı yoxlayın və yenidən cəhd edin."
   },
   "hero": {
     "title": "Dünyamıza",

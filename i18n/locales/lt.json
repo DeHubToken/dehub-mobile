@@ -2212,7 +2212,9 @@
     "revealKey": "Rodyti raktą",
     "revealSignIn": "Prisijunkite iš naujo, kad pamatytumėte šį raktą",
     "revealFailed": "Nepavyko parodyti rakto. Bandykite dar kartą.",
-    "signInAgain": "Prisijungti iš naujo"
+    "signInAgain": "Prisijungti iš naujo",
+    "createSignIn": "Prisijunkite iš naujo, kad sukurtumėte agentą",
+    "checkConnection": "Patikrinkite ryšį ir bandykite dar kartą."
   },
   "hero": {
     "title": "Sveiki Atvykę",
@@ -7236,8 +7238,8 @@
     "status": {
       "open": "Atvi-",
       "in_progress": "Vykdoma",
-      "resolved": "NustatytaThe role of the transaction, in past tense",
-      "closed": "Uždara"
+      "closed": "Uždara",
+      "resolved": "Išspręsta"
     },
     "severity": {
       "low": "Mažas",

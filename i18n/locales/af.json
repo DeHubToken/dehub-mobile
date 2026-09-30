@@ -1429,7 +1429,6 @@
     "stake": "Stake",
     "cashOut": "Kontant Uit",
     "stakeComingSoon": "Storing Coming Soon!",
-    "cashOutComingSoon": "Cash out soon soon soon!",
     "chooseAddressNetwork": "Watter netwerk?",
     "evmAddressLabel": "EVM",
     "evmAddressHint": "Basis, BNB en Ethereum",
@@ -2241,7 +2240,9 @@
     "revealKey": "Wys sleutel",
     "revealSignIn": "Meld weer aan om hierdie sleutel te sien",
     "revealFailed": "Kon nie die sleutel wys nie. Probeer weer.",
-    "signInAgain": "Meld weer aan"
+    "signInAgain": "Meld weer aan",
+    "createSignIn": "Meld weer aan om 'n agent te skep",
+    "checkConnection": "Kontroleer jou verbinding en probeer weer."
   },
   "hero": {
     "title": "Welkom By",

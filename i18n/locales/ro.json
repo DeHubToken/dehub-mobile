@@ -2212,7 +2212,9 @@
     "revealKey": "Afișează cheia",
     "revealSignIn": "Autentifică-te din nou pentru a vedea această cheie",
     "revealFailed": "Cheia nu a putut fi afișată. Încearcă din nou.",
-    "signInAgain": "Autentifică-te din nou"
+    "signInAgain": "Autentifică-te din nou",
+    "createSignIn": "Autentifică-te din nou pentru a crea un agent",
+    "checkConnection": "Verifică conexiunea și încearcă din nou."
   },
   "hero": {
     "title": "Bine Ați Venit",
@@ -8597,8 +8599,7 @@
       "yourApps": "Aplicațiile dvs.",
       "notificationsOn": "Notificări pe",
       "removed": "Textul a fost șters. Nu vei primi niciun alt mesaj de notificare.",
-      "remove": "Notificare cheie",
-      "rising": "Textul este deja în limba engleză, fără conținut tradusbile. Nu există modificări necesare."
+      "remove": "Notificare cheie"
     },
     "card": {
       "open": "Deschide"

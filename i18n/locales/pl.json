@@ -2212,7 +2212,9 @@
     "revealKey": "Pokaż klucz",
     "revealSignIn": "Zaloguj się ponownie, aby zobaczyć ten klucz",
     "revealFailed": "Nie udało się pokazać klucza. Spróbuj ponownie.",
-    "signInAgain": "Zaloguj się ponownie"
+    "signInAgain": "Zaloguj się ponownie",
+    "createSignIn": "Zaloguj się ponownie, aby utworzyć agenta",
+    "checkConnection": "Sprawdź połączenie i spróbuj ponownie."
   },
   "hero": {
     "title": "Witaj W",

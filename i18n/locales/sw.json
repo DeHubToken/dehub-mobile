@@ -2213,7 +2213,9 @@
     "revealKey": "Onyesha ufunguo",
     "revealSignIn": "Ingia tena ili kuona ufunguo huu",
     "revealFailed": "Imeshindwa kuonyesha ufunguo. Jaribu tena.",
-    "signInAgain": "Ingia tena"
+    "signInAgain": "Ingia tena",
+    "createSignIn": "Ingia tena ili kuunda wakala",
+    "checkConnection": "Angalia muunganisho wako kisha jaribu tena."
   },
   "hero": {
     "title": "Karibu Katika",
@@ -7461,7 +7463,6 @@
     "modePack": "Ingiza pakiti",
     "upload": "Pakia picha",
     "linkPlaceholder": "…au ubandike kiunganishi au msimbo wa emoji wa Discord",
-    "namePlaceholder": "Jina.......................................",
     "singleHint": "PNG, GIF, WebP au JPEG hadi MB 2. Viunganishi kutoka Discord, Slack, 7TV, BetterTTV, FrankerFaceZ, emoji.gg au kazi yoyote ya picha pia.",
     "add": "Ongeza emoji",
     "addedName": "Imeongezwa {{name}}",
@@ -7479,7 +7480,8 @@
       "packEmpty": "Hakuna emoji iliyopatikana kwenye anwani hiyo",
       "shortcodeTaken": "{{name}} tayari imechukuliwa",
       "shortcodeStandard": "{{name}} tayari ni emoji ya kawaida"
-    }
+    },
+    "namePlaceholder": "jina"
   },
   "guide": {
     "sections": {

@@ -37,6 +37,10 @@ export interface ScreenHeaderProps {
   /** Small inline content right after the title text (e.g. an online dot). */
   titleAccessory?: React.ReactNode;
   onBackPress?: () => void;
+  /** Immersive pages (a post whose media runs edge to edge at the top): no
+   *  top bar and no title, just a round back button floating over the media,
+   *  the same one the web post page shows. */
+  overlay?: boolean;
 }
 
 const ScreenHeader: React.FC<ScreenHeaderProps> = ({
@@ -47,6 +51,7 @@ const ScreenHeader: React.FC<ScreenHeaderProps> = ({
   leftContent,
   titleAccessory,
   onBackPress,
+  overlay = false,
 }) => {
   const { t } = useTranslation();
   const navigation = useNavigation();
@@ -102,6 +107,40 @@ const ScreenHeader: React.FC<ScreenHeaderProps> = ({
       if (backTimerRef.current) clearTimeout(backTimerRef.current);
     };
   }, []);
+
+  if (overlay) {
+    if (!showBack) return null;
+    return (
+      <TouchableOpacity
+        onPress={handleBack}
+        className="active:opacity-70"
+        style={{
+          position: 'absolute',
+          alignItems: 'center',
+          justifyContent: 'center',
+          top: 10,
+          left: 10,
+          zIndex: 20,
+          width: 36,
+          height: 36,
+          borderRadius: 18,
+          backgroundColor: 'rgba(0,0,0,0.45)',
+          borderWidth: 1,
+          borderColor: 'rgba(255,255,255,0.18)',
+        }}
+        hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+        accessibilityRole="button"
+        accessibilityLabel={t("common.goBack")}
+      >
+        <Ionicons
+          name="arrow-back"
+          size={20}
+          color="#FFFFFF"
+          style={I18nManager.isRTL ? { transform: [{ scaleX: -1 }] } : undefined}
+        />
+      </TouchableOpacity>
+    );
+  }
 
   return (
     <View className="bg-theme-neutrals-900">

@@ -628,7 +628,6 @@
     "searchPlaceholder": "Nemo saituna",
     "noSearchResults": "Babu saitunan da suka dace",
     "badgeDelegation": "Ba da bajin aro",
-    "badgeDelegationAccept": "Оооооооооооооооооооооооооооооооооооооооооооооооооооооооовввввввввввввввввввввввв",
     "badgeDelegationAcceptHint": "Kashe wannan don ƙin alamun bashi. Duk wani alamar da kake sawa yanzu an mayar da ita.",
     "badgeDelegationAcceptOn": "Za ku iya sake ba da lamuni",
     "badgeDelegationAcceptOff": "Ba za ku ba da lamuni ba",
@@ -666,8 +665,6 @@
     "smsUnlockExplainer": "Babu wani abu da ya ƙare. Ana kashe bashi ɗaya sako a lokaci guda, kuma kawai a kan sanarwar da kuka riga kuka canza.",
     "smsPricesHeading": "Abin da sako ke biya",
     "smsBand": {
-      "domestic": "Оооооооооооооооооооооооооооооооооооооооооооооооооооооооовввввввввввввввввввввввв",
-      "europe": "Оооооооооооооооооооооооооооооооооооооооооооооооооооооооовввввввввввввввв",
       "global": "Yawancin sauran ƙasashe",
       "premium": "Duk wani wuri"
     },
@@ -679,7 +676,6 @@
     "smsWalletNotReady": "Walat ɗinku bai shirya ba tukuna — sake gwadawa a cikin ɗan lokaci.",
     "smsUnlocked": "Sanarwar rubutu ba a buɗe ba",
     "smsNumberLabel": "Lambar waya",
-    "smsSendCode": "Оооооооооооооооооооооооооооооооооооооооооооооооооооооооовввввввввввввввввввввввв",
     "smsCodeFailed": "Ba za mu iya aika wannan lambar ba.",
     "smsCodeLabel": "Lambar da muka aika zuwa {{phone}}",
     "smsVerify": "Tabbatar da lambar",
@@ -688,7 +684,6 @@
     "smsRemoveNumber": "Cire wannan lambar",
     "smsRemoveFailed": "Ba za mu iya cire wannan lambar ba.",
     "smsNumberRemoved": "Lambar da aka cire",
-    "smsCountryBlocked": "Оооооооооооооооооооооооооооооооооооооооооооооооооооооооовввввввввввввввввввввввв",
     "badgeDelegationNoteAny": "A Ramin bashi daya daga your unlocked badges zuwa wani lissafi. Ɗauki shi a duk lokacin da kake so — Ramin ya 'yantar da rana ɗaya daga baya.",
     "badgeDelegationRaisesOnlyTier": "Alamar da kuka ba da bashi dole ne ya kasance mafi girma fiye da wanda suka riga suka samu.",
     "badgeDelegationPickTier": "Badge don ba da bashi",
@@ -1426,7 +1421,6 @@
     "stakeComingSoon": "Staking yana zuwa nan ba da jimawa ba!",
     "cashOutComingSoon": "Cire kuɗi yana zuwa nan ba da jimawa ba!",
     "chooseAddressNetwork": "Wanne cibiyar sadarwa?",
-    "evmAddressLabel": "Ввввввввввввввввввввввввввввввввв",
     "evmAddressHint": "Base, BNB da Ethereum",
     "evmAddressCopied": "An kwafa adireshin EVM",
     "solanaAddressLabel": "Solana",
@@ -1835,8 +1829,7 @@
     "tryAnotherGenre": "Gwada wani nau'in.",
     "pauseStation": "Dakatar da tashar",
     "resumeStation": "Sake farawa tashar",
-    "stopRadio": "Dakatar da rediyo",
-    "radioStations": "Ввввввввввввввввввввввввввввввввв"
+    "stopRadio": "Dakatar da rediyo"
   },
   "notFound": {
     "title": "Ba a Sami Shafin Ba",
@@ -1960,7 +1953,6 @@
     "typeHere": "Rubuta a nan...",
     "send": "Aika",
     "signInToChat": "Shiga don hira",
-    "anon": "Оооооооооооооооооооооооооооооооооооооооооооооооооооооооовввввввввввввввввввввввв",
     "sentAmount": "An aika {{amount}} tokens"
   },
   "cinema": {
@@ -1994,7 +1986,6 @@
     "streamHint": "An haɗa shi da biyan kuɗi",
     "free": "Kyauta",
     "freeHint": "Kyauta don kallo, yawanci tare da tallace-tallace",
-    "rent": "Ввввввввввввввввввввввввввввввввв",
     "rentHint": "Lokacin da aka iyakance haya",
     "buy": "Sayi",
     "buyHint": "Ci gaba da shi har abada",
@@ -2029,17 +2020,11 @@
     "signInToReview": "Shiga don kimantawa da sake dubawa.",
     "beFirst": "Kasance na farko don sake duba wannan.",
     "countries": {
-      "US": "Оооооооооооооооооооооооооооооооооооооооооооооооооооооооовввввввввввввввввввввввв",
-      "GB": "Оооооооооооооооооооооооооооооооооооооооооооооооооооооооовввввввввввввввввввввввв",
-      "CA": "Ввввввввввввввввввввввввввввввввв",
       "AU": "Ostiraliya",
-      "IE": "Оооооооооооооооооооооооооооооооооооооооооооооооооооооооовввввввввввввввв",
       "IN": "India",
       "ZA": "Afirka ta Kudu",
-      "NZ": "Ввввввввввввввввввввввввввввввввв",
       "DE": "Jamus",
       "AT": "Austria",
-      "CH": "Оооооооооооооооооооооооооооооооооооооооооооооооооооооооовввввввввввввввв",
       "FR": "Faransa",
       "BE": "Belgium",
       "ES": "Spain",
@@ -2048,19 +2033,14 @@
       "CO": "Colombia",
       "IT": "Italiya",
       "BR": "Brazil",
-      "PT": "Оооооооооооооооооооооооооооооооооооооооооооооооооооооооовввввввввввввввв",
       "NL": "Netherlands",
       "SE": "Sweden",
       "DK": "Daniyar",
-      "NO": "Оооооооооооооооооооооооооооооооооооооооооооооооооооооооовввввввввввввввв",
       "FI": "Finland",
       "PL": "Poland",
       "TR": "Turkiyya",
-      "JP": "Оооооооооооооооооооооооооооооооооооооооооооооооооооооооовввввввввввввввв",
       "KR": "Koriya ta Kudu",
-      "SG": "Singapore",
-      "PH": "Оооооооооооооооооооооооооооооооооооооооооооооооооооооооовввввввввввввввв",
-      "AE": "Оооооооооооооооооооооооооооооооооооооооооооооооооооооооовввввввввввввввввввввввв"
+      "SG": "Singapore"
     }
   },
   "top100": {
@@ -2212,7 +2192,9 @@
     "revealKey": "Nuna makulli",
     "revealSignIn": "Sake shiga don ganin wannan makulli",
     "revealFailed": "Ba a iya nuna makullin ba. Sake gwadawa.",
-    "signInAgain": "Sake shiga"
+    "signInAgain": "Sake shiga",
+    "createSignIn": "Sake shiga don ƙirƙirar wakili",
+    "checkConnection": "Duba haɗin ku kuma sake gwadawa."
   },
   "hero": {
     "title": "Barka Da Zuwa",
@@ -2475,8 +2457,7 @@
     "ctaTitle": "Zane suna gudana a cikin DeHub",
     "ctaBody": "Duk abin da ke rayuwa yanzu an sanar da shi a cikin abincin ku. Kunna sanarwar don haka na gaba ba ya wuce ku.",
     "goToFeed": "Je zuwa abincin ku",
-    "readAboutTokens": "Karanta game da token na DeHub",
-    "legal": "Lambobin yabo suna gabatarwa kuma suna buɗewa ga masu riƙe da asusun DeHub masu shekaru 18 ko sama, babu inda dokar gida ta haramta su. оооооооооооооооооооооооооооооооооооооооооооооооооооооооовввввввввввввввввввввввв Kyaututtuka ba za a iya musanya su don tsabar kudi ba sai dai idan an bayyana su, kuma kowane sanarwar kansa ta zane yana ɗaukar cikakkun sharuɗɗansa."
+    "readAboutTokens": "Karanta game da token na DeHub"
   },
   "dao": {
     "title": "Gidan Kuɗi na DAO",
@@ -4104,10 +4085,7 @@
       "oohAhh": "Ohh Ahh",
       "oohMan": "Yah (Mutum)",
       "ohhGirl": "Ohh (Yarinyar)",
-      "airhorn": "Ввввввввввввввввввввввввввввввввв",
-      "drumroll": "Ввввввввввввввввввввввввввввввввв",
-      "lol": "Abin dariya....",
-      "crickets": "Ввввввввввввввввввввввввввввввввв"
+      "lol": "Abin dariya...."
     },
     "playFailed": "Ba za a iya kunna hakan a kan mataki ba",
     "maxSounds": "Max {{max}} sauti na musamman — share ɗaya da farko",
@@ -4194,7 +4172,6 @@
     "attach": "Add a photo, GIF ko emoji",
     "attachTitle": "Ƙara zuwa sakonka",
     "attachPhoto": "Hoto",
-    "attachGif": "Ввввввввввввввввввввввввввввввввв",
     "attachEmoji": "Emoji",
     "removeAttachment": "Cire haše-haše",
     "attachFailed": "Ba zan iya aika wannan hoton ba.",
@@ -4420,7 +4397,6 @@
       "respect": "Girmamawa",
       "hot": "Mai zafi",
       "hundred": "100",
-      "lol": "Оооооооооооооооооооооооооооооооооооооооооооооооооооооооовввввввввввввввввввввввв",
       "sad": "Bakin ciki",
       "cry": "Kuka",
       "poo": "Banza",
@@ -5737,7 +5713,6 @@
     "pinMessage": "Pin sakon",
     "forwardMessage": "Saƙon gaba",
     "pollSubmitVote": "Gabatar da kuri'a",
-    "feeMustBeNonNegative": "Оооооооооооооооооооооооооооооооооооооооооооооооооооооооовввввввввввввввввввввввв",
     "doNotDisturb": "Kada ku dame",
     "doNotDisturbOn": "Kada ku dame: A kan",
     "deleteConversationTitle": "Share tattaunawa?",
@@ -5888,9 +5863,7 @@
     "endedAgo": "An gama {{time}}",
     "startsIn": "Farawa {{time}}",
     "notStartedYet": "Mai gudana bai fara watsa shirye-shirye ba tukuna",
-    "leftStream": "bar da rafi",
-    "streamEnded": "Ввввввввввввввввввввввввввввввввв",
-    "upcomingStream": "Оооооооооооооооооооооооооооооооооооооооооооооооооооооооовввввввввввввввввввввввв"
+    "leftStream": "bar da rafi"
   },
   "search": {
     "endOfResults": "Ƙarshen sakamako",
@@ -7930,7 +7903,6 @@
         }
       },
       "trading-fractions": {
-        "title": "Ввввввввввввввввввввввввввввввввв",
         "intro": "Kasuwancin Fraction — jerin bincike, yin tayi, lissafin naku — yana rayuwa akan aikace-aikacen yanar gizo a dehub.io, akan kowane shafin Post Info.",
         "steps": {
           "1": "Bude dehub.io a cikin mai bincike kuma shiga tare da asusun iri ɗaya.",
@@ -8312,11 +8284,11 @@
     "volume24h": "kundin 24h",
     "website": "Yanar Gizo",
     "twitter": "X / Twitter",
-    "curveFair": "Ввввввввввввввввввввввввввввввввв",
-    "curveStandard": "Ввввввввввввввввввввввввввввввввв",
-    "curveStealth": "Ввввввввввввввввввввввввввввввввв",
-    "feeStakers": "Ввввввввввввввввввввввввввввввввв",
-    "trendingHint": "Оооооооооооооооооооооооооооооооооооооооооооооооооооооооовввввввввввввввввввввввв"
+    "curveFair": "Gaskiya",
+    "curveStandard": "Na Al'ada",
+    "curveStealth": "Boye",
+    "feeStakers": "Masu Saka",
+    "trendingHint": "Top 20 · Zuba jari & ayyukan al'umma"
   },
   "premium": {
     "bestValue": "Mafi kyawun darajar",
@@ -8462,14 +8434,14 @@
     "sso": "SSO",
     "adminSpendControl": "Admin kashe iko",
     "priorityQueue": "Madaidaiciya matsayin cewa.",
-    "priorityQueueFast": "Priority jere ga sauri aiki aiki aiki aiki aiki",
     "delegatedTopUp": "Damar ƙara kuɗi a madadin wani",
     "indemnification": "Ƙaddamarwa",
     "noTraining": "Babu horo akan bayananku",
     "soc2": "SOC 2 tsaro (mai zuwa ba da daɗewa ba)",
     "aiEducator": "AI Malami & Slack goyon baya",
     "lookingForPremium": "Neman membobin DeHub Extra maimakon?",
-    "seePremiumPlans": "Duba tsare-tsaren Premium"
+    "seePremiumPlans": "Duba tsare-tsaren Premium",
+    "priorityQueueFast": "Priority queue don sarrafa ayyuka da sauri"
   },
   "connect": {
     "title": "Haɗa DeHub da mataimakinka na AI",
@@ -8580,7 +8552,10 @@
       "all": "Duka",
       "noMatch": "Babu apps dace da cewa search.",
       "yourApps": "Aikace-aikacen ku",
-      "rising": "Sabuwa da tashi"
+      "rising": "Sabuwa da tashi",
+      "notificationsOn": "Sanarwa a kunne",
+      "removed": "An cire. Ba za ta sake sanar da ku ba.",
+      "remove": "Cire"
     },
     "card": {
       "open": "Bude"
@@ -8596,7 +8571,15 @@
       "education": "Ilimi",
       "developer-tools": "Kayan aikin masu haɓakawa",
       "entertainment": "Nishaɗi",
-      "art-creativity": "Art & kerawa"
+      "art-creativity": "Art & kerawa",
+      "finance": "Kudi"
+    },
+    "add": {
+      "body": "Za ta bayyana a ƙarƙashin Aikace-aikacenku kuma za ta iya aika muku da sanarwa. Kuna iya cire ta kowane lokaci daga shafin Aikace-aikace.",
+      "confirm": "Ƙara app"
+    },
+    "pay": {
+      "body": "DHB yana zuwa kai tsaye zuwa aljihun kudi na app, {{wallet}}. Ba za a iya janye biyan kuɗi ba."
     }
   },
   "aiStyles": {

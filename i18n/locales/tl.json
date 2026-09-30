@@ -1216,7 +1216,6 @@
     "messagePinned": "Naka-pin ang mensahe",
     "messageUnpinned": "Naalis sa pagka-pin ang mensahe",
     "createPoll": "Gumawa ng Poll",
-    "poll": "ano ang ibig sabihin ng poll",
     "pollCreated": "Nagawa na ang poll",
     "failedToCreatePoll": "Nabigong lumikha ng poll",
     "vote": "Bumoto",
@@ -2259,7 +2258,9 @@
     "revealKey": "Ipakita ang key",
     "revealSignIn": "Mag-sign in muli para makita ang key na ito",
     "revealFailed": "Hindi maipakita ang key. Subukan muli.",
-    "signInAgain": "Mag-sign in muli"
+    "signInAgain": "Mag-sign in muli",
+    "createSignIn": "Mag-sign in muli para gumawa ng agent",
+    "checkConnection": "Suriin ang iyong koneksyon at subukan muli."
   },
   "hero": {
     "title": "Maligayang Pagdating",
@@ -5207,7 +5208,6 @@
     "quotaShortfall": "Ang post na ito ay nagkakahalaga ng {{cost}} token at hawak mo ang {{held}}.",
     "shopAllowanceUsed": "{{allowance}} sa {{allowance}} ang nagamit. Mag-stake ng mas maraming DeHub tokens para sa mas mataas na badge at isa pang slot.",
     "editFilters": "Mga filter sa pag-edit",
-    "cropRotate": "Ang Crop & Rotate ay isang aplikasyon ng Adobe Photoshop na nag-aayos ng mga larawan.",
     "drawWrite": "Gumuhit at magsulat",
     "resetEdits": "Muling Isasailalim",
     "clearDrawing": "Tama",
@@ -5688,7 +5688,6 @@
     "failedToUpdateFreeAccess": "Nabigong i - update ang libreng access",
     "searchComingSoon": "Malapit na ang paghahanap",
     "tapToUnblock": "I - tap para i - unblock",
-    "userFallback": "dahil ginagamit ito sa kusina at pang putol ng kahoy",
     "failedToBlock": "Nabigong i - block",
     "failedToDeleteConversation": "Nabigong tanggalin ang pag - uusap",
     "newDm": "direct message",
@@ -5804,7 +5803,8 @@
     "paymentSentWith": "Naipadala na may {{amount}}",
     "planRestricted": "Kailangan ng user na ito ng subscription para makatanggap ng mga mensahe.",
     "planTypeNotAllowed": "Hindi pinapayagan ng plano ng creator na ito ang ganitong uri ng mensahe.",
-    "planMinTip": "Ang tip para sa creator na ito ay dapat hindi bababa sa {{amount}} DHB."
+    "planMinTip": "Ang tip para sa creator na ito ay dapat hindi bababa sa {{amount}} DHB.",
+    "userFallback": "user"
   },
   "editPost": {
     "mediaPermission": "Kailangan ng pahintulot sa media library",

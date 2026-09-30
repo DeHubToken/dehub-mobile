@@ -2402,7 +2402,9 @@
     "revealKey": "Sleutel tonen",
     "revealSignIn": "Log opnieuw in om deze sleutel te zien",
     "revealFailed": "Kan de sleutel niet tonen. Probeer het opnieuw.",
-    "signInAgain": "Opnieuw inloggen"
+    "signInAgain": "Opnieuw inloggen",
+    "createSignIn": "Log opnieuw in om een agent aan te maken",
+    "checkConnection": "Controleer je verbinding en probeer het opnieuw."
   },
   "hero": {
     "title": "Welkom In",

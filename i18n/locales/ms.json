@@ -2472,7 +2472,9 @@
     "revealKey": "Tunjukkan kunci",
     "revealSignIn": "Log masuk semula untuk melihat kunci ini",
     "revealFailed": "Tidak dapat menunjukkan kunci. Cuba lagi.",
-    "signInAgain": "Log masuk semula"
+    "signInAgain": "Log masuk semula",
+    "createSignIn": "Log masuk semula untuk mencipta ejen",
+    "checkConnection": "Semak sambungan anda dan cuba lagi."
   },
   "hero": {
     "title": "Selamat Datang",
@@ -2896,7 +2898,6 @@
     "pinnedToast": "Disematkan di bahagian atas siaran ini",
     "unpinnedToast": "Sematan dibuang",
     "pinFailed": "Komen itu tidak dapat disematkan",
-    "kidsOnlyThread": "Siaran ini untuk kanak-kanak. Hanya Mod Kanak-kanak boleh memberi komen mengenainya.",
     "editFailed": "Gagal mengedit komen",
     "notFound": "Komen tidak ditemui",
     "notCreatorBadge": "Bukan pencipta",
@@ -5337,13 +5338,10 @@
     "madeForKids": "Dibuat untuk kanak-kanak",
     "madeForKidsHint": "ditunjukkan dalam Mod Kanak-kanak",
     "madeForKidsConfirmTitle": "Siarkan ini untuk kanak-kanak?",
-    "madeForKidsConfirmAudience": "Kanak-kanak yang menggunakan Mod Kanak-kanak akan ditunjukkan siaran ini. Tiada apa-apa lagi di DeHub yang sampai kepada mereka.",
     "madeForKidsConfirmReach": "Ia juga datang daripada suapan biasa — orang masih menemuinya di profil anda, dalam carian dan melalui pautan yang anda kongsi.",
     "madeForKidsConfirmComments": "Hanya Mod Kanak-kanak boleh memberi komen mengenainya. Anda masih boleh membalasnya sendiri.",
     "madeForKidsConfirmYes": "Ya, ia untuk kanak-kanak",
     "markMadeForKids": "Tandakan sebagai dibuat untuk kanak-kanak",
-    "madeForKidsOnDesc": "Ditunjukkan kepada kanak-kanak dalam Mod Kanak-kanak, dan di luar suapan biasa. Hanya Mod Kanak-kanak boleh memberi komen.",
-    "madeForKidsOffDesc": "Menunjukkan siaran ini kepada kanak-kanak menggunakan Mod Kanak-kanak, dan mengeluarkannya daripada suapan biasa.",
     "madeForKidsBlockedByMature": "Hantaran bertanda matang juga tidak boleh disiarkan untuk kanak-kanak.",
     "encoderTitle": "OBS / Pengekod",
     "encoderHint": "Dapatkan butiran RTMP",
@@ -5432,7 +5430,8 @@
     "coverFrames": "Pilih kerangka latar",
     "coverFrame": "Gunakan kerangka {{index}} sebagai latar",
     "uploadCover": "Muat imej latar",
-    "editFailed": "Tidak dapat menerapkan suntingan itu. Coba sekali lagi."
+    "editFailed": "Tidak dapat menerapkan suntingan itu. Coba sekali lagi.",
+    "madeForKidsConfirmAudience": "Anak-anak yang menggunakan Mod Keselamatan Kanak-kanak akan melihat pos ini sahaja. Tiada apa-apa lagi di DeHub yang akan mereka lihat."
   },
   "bounty": {
     "claimed": "Telah dituntut",
@@ -7650,7 +7649,6 @@
     "sellTitle": "Berapa banyak token yang ingin anda jual?",
     "available": "Anda mempunyai {{amount}} token di Base",
     "noDhb": "Anda belum mempunyai token di Base untuk dijual.",
-    "marketRateHint": "Jual sekarang pada kira-kira ${{price}} setiap token, berjumlah kira-kira {{usdc}} USDC.",
     "myPriceHint": "Harga anda setiap token dalam USD",
     "routeList": "Di atas pasaran: token anda disenaraikan di bursa dan dijual secara automatik apabila harga mencapai ${{price}}.",
     "listNote": "Token anda kekal milik anda sehingga ia dijual. Anda boleh mengeluarkannya pada bila-bila masa dari Bursa. Gas rangkaian dikenakan.",
@@ -7658,7 +7656,8 @@
     "doneList": "Tersenarai {{amount}} token pada ${{price}}",
     "aiPlaceholder": "Cuba \"jual separuh token saya pada 6 sen\"",
     "aiBuyOnly": "Dagangan mudah menjual token. Untuk membeli token, buka Bursa.",
-    "aiNeedAmount": "Berapa banyak token yang anda mahu jual?"
+    "aiNeedAmount": "Berapa banyak token yang anda mahu jual?",
+    "marketRateHint": "Jual sekarang pada harga kira-kira ${{price}} setiap token, sekitar {{usdc}} USDC secara keseluruhan."
   },
   "tipFunding": {
     "lowLiquidity": "Kecairan Uniswap tidak mencukupi untuk pembayaran sebesar ini buat masa ini",

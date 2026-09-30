@@ -1,0 +1,154 @@
+name: i18n fan-out
+
+# Fills the locales that are behind en.json and opens one PR with the result,
+# against the branch it was run on. The twin of dehubweb's i18n-fanout.yml:
+# scripts/i18n-fanout.mjs does the work and keeps every guard (placeholders
+# must survive, English echoes, wrong scripts and loops are dropped, existing
+# values are never overwritten).
+#
+# One job per locale, up to 20 side by side. Each job only writes its own
+# locale file; a final job gathers them and opens the PR.
+#
+# No secret is needed. The translate function is called with the publishable
+# key the web bundle already ships in dehubweb's public client.ts; the mobile
+# copy lives in the untracked .env and in EAS, neither of which a runner has.
+#
+# A pull request that touches this file or the script only runs the report,
+# as a check that the script still reads every locale.
+
+on:
+  workflow_dispatch:
+    inputs:
+      locales:
+        description: 'Comma-separated locale codes (blank = the furthest behind)'
+        required: false
+        default: ''
+      count:
+        description: 'How many locales to fill when none are named'
+        required: false
+        default: '20'
+      keys:
+        description: 'Max keys per locale in one run (blank = all missing)'
+        required: false
+        default: ''
+      only:
+        description: 'Comma-separated keys to fill and nothing else (blank = every missing key)'
+        required: false
+        default: ''
+  pull_request:
+    paths:
+      - .github/workflows/i18n-fanout.yml
+      - scripts/i18n-fanout.mjs
+      - scripts/i18n-guards.mjs
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      locales: ${{ steps.pick.outputs.locales }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Report the gap before
+        run: node scripts/i18n-fanout.mjs --check | head -30
+      - id: pick
+        if: github.event_name == 'workflow_dispatch'
+        env:
+          LOCALES: ${{ inputs.locales }}
+          COUNT: ${{ inputs.count }}
+        run: |
+          if [ -n "$LOCALES" ]; then
+            LIST="$LOCALES"
+          else
+            LIST=$(node scripts/i18n-fanout.mjs --check | awk 'NF >= 2 && $NF+0 > 0 && $(NF-1) == "missing" {print $1}' | head -"$COUNT" | paste -sd, -)
+          fi
+          echo "locales=$(node -e 'console.log(JSON.stringify(process.argv[1].split(",").map(s=>s.trim()).filter(Boolean)))' "$LIST")" >> "$GITHUB_OUTPUT"
+
+  fill:
+    needs: plan
+    if: github.event_name == 'workflow_dispatch' && needs.plan.outputs.locales != '[]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix:
+        locale: ${{ fromJSON(needs.plan.outputs.locales) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Use the publishable key the web bundle ships
+        run: |
+          KEY=$(curl -fsSL https://raw.githubusercontent.com/DeHubToken/dehubweb/main/src/integrations/supabase/client.ts | grep -o '"ey[A-Za-z0-9._-]\{40,\}"' | head -1 | tr -d '"')
+          test -n "$KEY"
+          echo "SUPABASE_PUBLISHABLE_KEY=$KEY" >> "$GITHUB_ENV"
+
+      # Runs BEFORE the fill, not after. Pruning turns a padded English value
+      # into a missing key, and only the fill that follows can translate it.
+      - name: Drop values that came back as English
+        env:
+          ONLY: ${{ inputs.only }}
+        run: node scripts/i18n-fanout.mjs --prune --locale ${{ matrix.locale }} ${ONLY:+--only "$ONLY"}
+
+      - name: Fill
+        env:
+          ONLY: ${{ inputs.only }}
+          KEYS: ${{ inputs.keys }}
+        run: node scripts/i18n-fanout.mjs --locale ${{ matrix.locale }} ${KEYS:+--keys "$KEYS"} ${ONLY:+--only "$ONLY"}
+
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: locale-${{ matrix.locale }}
+          path: i18n/locales/${{ matrix.locale }}.json
+
+  pr:
+    needs: fill
+    # always(): a locale that timed out loses only itself, not the others.
+    if: always() && needs.fill.result != 'skipped'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: locale-*
+          merge-multiple: true
+          path: i18n/locales
+
+      - name: Report the gap after
+        run: |
+          node scripts/i18n-fanout.mjs --check | head -30
+          node scripts/i18n-coverage.js || true
+
+      - name: Open a pull request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          branch: i18n-fanout-${{ github.run_number }}
+          commit-message: 'Translate the outstanding keys into more locales'
+          title: 'Translate the outstanding keys into more locales'
+          body: |
+            Filled by `scripts/i18n-fanout.mjs`, one job per locale.
+
+            **Intent** — close the gap between what is translatable and what is
+            translated. Until a locale carries a key it renders English.
+
+            **Constraints** — an existing translation is never overwritten, and a
+            string whose placeholders do not survive the round trip is dropped
+            rather than written, so a bad translation falls back to English
+            instead of shipping literal `{{count}}` to a user.
+
+            **Result** — see the before/after coverage in the run log.
+          add-paths: |
+            i18n/locales/*.json
