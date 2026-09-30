@@ -42,7 +42,7 @@ import { provisionAndSignIn, markProvisionedIdentity } from "../../libs/provisio
 import { takeWalletSetupIntent } from "../../libs/wallet-setup-intent";
 import { decryptString, getPayloadKdf } from "../../libs/wallet-core/crypto";
 import { fetchWalletReliably } from "../../libs/wallet-core/store";
-import { deriveFromSecret, generateMnemonic12, isValidMnemonic } from "../../libs/wallet-core/derive";
+import { deriveFromSecret, isValidMnemonic } from "../../libs/wallet-core/derive";
 import { assertWalletAddress } from "../../libs/wallet-core/assert-wallet-address";
 import { createLocalEip1193ProviderForChain } from "../../services/localwallet.provider";
 import { setSigningProvider, setEoaSigningProvider, clearSigningProvider } from "../../libs/provider.registry";
@@ -88,12 +88,10 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
   const [inlineError, setInlineError] = useState<string | null>(null);
   const [passkeyError, setPasskeyError] = useState<string | null>(null);
   const [passkeySuggestCreate, setPasskeySuggestCreate] = useState(false);
-  // Secret from a create attempt that has not finished yet: either it saved to
-  // Supabase but failed at the DeHub sign-in step (reused on retry so the saved
-  // row isn't overwritten by a fresh mnemonic), or it is a biometric wallet
-  // generated but deliberately NOT yet saved, waiting on the user to
-  // acknowledge its recovery phrase. See handleWalletCreate /
-  // handleWalletCreateConfirmed.
+  // Secret from a create attempt that has not finished yet: it is saved to
+  // Supabase, and either the optional backup offer is still open or the DeHub
+  // sign-in step failed (reused on retry so the saved row isn't overwritten by
+  // a fresh mnemonic). See handleWalletCreate / handleWalletCreateConfirmed.
   const pendingCreateRef = useRef<{ supabaseUserId: string; secret: string } | null>(null);
   // Set when checkLegacyAccount finds a pre-migration Web3Auth account for
   // this identity's email — gates the create-wallet screen behind a warning
@@ -279,20 +277,6 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
           ? prior.secret
           : undefined;
 
-      // Generate but do NOT save a biometric wallet until its recovery phrase
-      // has been acknowledged — see SignInScreen.handleWalletCreate, which this
-      // mirrors; the two entry points must not drift.
-      if (protection.kind === "biometric") {
-        const secret = existingSecret ?? generateMnemonic12();
-        if (isValidMnemonic(secret)) {
-          pendingCreateRef.current = {
-            supabaseUserId: walletSetupRequest.supabaseUserId,
-            secret,
-          };
-          return { recoveryPhrase: secret };
-        }
-      }
-
       const created = await createAndSaveEvmWalletForIdentity(
         walletSetupRequest.supabaseUserId,
         protection,
@@ -303,6 +287,12 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
         supabaseUserId: walletSetupRequest.supabaseUserId,
         secret: created.secret,
       };
+      // Saved first, for password and biometric alike, so the optional backup
+      // offer can be skipped or abandoned without losing anything. Sign-in
+      // finishes in handleWalletCreateConfirmed once the offer is done.
+      if (isValidMnemonic(created.secret)) {
+        return { recoveryPhrase: created.secret, address: created.address };
+      }
       await finishWalletSetupSignIn(created.address, created.privateKey);
       pendingCreateRef.current = null;
       return undefined;
@@ -313,13 +303,9 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
   const handleWalletCreateConfirmed = useCallback(async () => {
     const pending = pendingCreateRef.current;
     if (!walletSetupRequest || walletSetupRequest.mode !== "create" || !pending) return;
-    const created = await createAndSaveEvmWalletForIdentity(
-      walletSetupRequest.supabaseUserId,
-      { kind: "biometric" },
-      pending.secret,
-      walletSetupRequest.replacing
-    );
-    await finishWalletSetupSignIn(created.address, created.privateKey);
+    // Already saved by handleWalletCreate; only the sign-in is left.
+    const saved = deriveFromSecret(pending.secret);
+    await finishWalletSetupSignIn(saved.ethAddress, saved.ethPrivateKey);
     pendingCreateRef.current = null;
   }, [walletSetupRequest, finishWalletSetupSignIn]);
 

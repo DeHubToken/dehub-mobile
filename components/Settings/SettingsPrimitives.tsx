@@ -146,9 +146,22 @@ const RowShell: React.FC<BaseRowProps & { right?: React.ReactNode }> = ({
 
 /** Tappable row that opens something else (modal, screen, external link). */
 export const SettingsLinkRow: React.FC<
-  BaseRowProps & { onPress: () => void; value?: string; external?: boolean }
-> = ({ onPress, value, external, ...rest }) => {
+  BaseRowProps & {
+    onPress: () => void;
+    value?: string;
+    external?: boolean;
+    /** Small attention dot beside the chevron (something here needs doing). */
+    dot?: boolean;
+  }
+> = ({ onPress, value, external, dot, ...rest }) => {
   const { colors } = useAppTheme();
+  const chevron = (
+    <Icon
+      name={external ? 'ExternalLink' : 'ChevronRight'}
+      size={18}
+      color={rest.destructive ? colors.foreground : colors.neutrals[500]}
+    />
+  );
   return (
     <TouchableOpacity onPress={onPress} disabled={rest.disabled} activeOpacity={0.7}>
       <RowShell
@@ -166,12 +179,17 @@ export const SettingsLinkRow: React.FC<
               </Text>
               <Icon name="ChevronDown" size={16} color={colors.neutrals[400]} />
             </View>
+          ) : dot ? (
+            <View className="flex-row items-center" style={{ gap: 8 }}>
+              <View
+                style={{ width: 8, height: 8, borderRadius: 4, backgroundColor: colors.accent }}
+                accessibilityElementsHidden
+                importantForAccessibility="no"
+              />
+              {chevron}
+            </View>
           ) : (
-            <Icon
-              name={external ? 'ExternalLink' : 'ChevronRight'}
-              size={18}
-              color={rest.destructive ? colors.foreground : colors.neutrals[500]}
-            />
+            chevron
           )
         }
       />

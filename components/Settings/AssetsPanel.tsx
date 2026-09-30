@@ -4,7 +4,7 @@
  * sponsorship, then the three ownership sections (Fractions, Usernames,
  * Offers) that are empty states on both clients today.
  *
- * Active chain and Export Private Key live here too — web keeps the chain
+ * Active chain and Back up wallet live here too — web keeps the chain
  * selector in the settings header and Export under Privacy → Account Security
  * (`WalletRecoveryTools`); on mobile both are wallet concerns and this is the
  * wallet tab.
@@ -14,7 +14,7 @@ import { View, Text, Image, TouchableOpacity, Alert } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import Icon from '../ui/Icon';
 import ChainSwitchModal from './ChainSwitchModal';
-import ExportPrivateKeyModal from './ExportPrivateKeyModal';
+import BackupWalletModal from './BackupWalletModal';
 import SwitchAccountModal from './SwitchAccountModal';
 import CopyAddressSheet from '../Wallet/CopyAddressSheet';
 import BadgeDelegationSection from './BadgeDelegationSection';
@@ -30,6 +30,9 @@ import { dhbPosition } from '../../libs/dhb-position';
 import { isChainAASupported } from '../../libs/wallet-core/smart-account';
 import { forgetLocalWalletForIdentity } from '../../libs/identity-wallet';
 import { getSupabaseUserId } from '../../services/auth/supabaseAuth.service';
+import { useWalletBackupStatus } from '../../hooks/useWalletBackupStatus';
+import { appLocale } from '../../libs/date.util';
+import { AuthButton, AuthTextButton, authText } from '../auth/AuthControls';
 
 const CHAIN_ICONS: Record<number, any> = {
   [ChainId.BASE_MAINNET]: require('../../assets/chains/base-icon.png'),
@@ -43,6 +46,26 @@ const EmptyOwnership: React.FC<{ icon: any; label: string }> = ({ icon, label })
   </View>
 );
 
+/**
+ * Gentle nudge for a wallet whose 12 words were never saved. When it shows is
+ * decided by shouldRemind (wallet-core/backup-status), shared with web.
+ */
+const BackupReminderBanner: React.FC<{ onBackUp: () => void; onDismiss: () => void }> = ({
+  onBackUp,
+  onDismiss,
+}) => {
+  const { t } = useTranslation();
+  return (
+    <View className="mx-4 mt-4 p-4 rounded-xl bg-theme-neutrals-800 border border-theme-neutrals-700">
+      <Text style={authText.body}>{t('walletBackup.reminderBody')}</Text>
+      <View className="flex-row items-center mt-3" style={{ gap: 12 }}>
+        <AuthButton variant="primary" size="compact" icon="shield-checkmark-outline" label={t('walletBackup.backUp')} onPress={onBackUp} />
+        <AuthTextButton label={t('walletBackup.notNow')} onPress={onDismiss} />
+      </View>
+    </View>
+  );
+};
+
 const AssetsPanel: React.FC<{ navigation: any }> = ({ navigation }) => {
   const { t } = useTranslation();
   const user = useUser();
@@ -55,6 +78,14 @@ const AssetsPanel: React.FC<{ navigation: any }> = ({ navigation }) => {
 
   const address = (user?.walletAddress || user?.address || '') as string;
   const isImported = authMethod === 'local';
+  const backup = useWalletBackupStatus(authMethod === 'local');
+  const backedUpDate = backup.status?.backedUpAt
+    ? new Date(backup.status.backedUpAt).toLocaleDateString(appLocale(), {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+      })
+    : null;
   // Gas is sponsored for any local wallet on a chain with Safe/Pimlico support (Base, BNB) --
   // "local" alone (used for the "Imported" label) no longer implies self-paid gas.
   const gasSponsored = authMethod === 'local' && isChainAASupported(chainId ?? ChainId.BASE_MAINNET);
@@ -122,6 +153,9 @@ const AssetsPanel: React.FC<{ navigation: any }> = ({ navigation }) => {
 
   return (
     <SettingsScrollView className="flex-1" contentContainerStyle={{ paddingBottom: 40 }}>
+      {backup.remind && (
+        <BackupReminderBanner onBackUp={() => setExportPkVisible(true)} onDismiss={backup.dismiss} />
+      )}
       <SettingsSection label={t('settings.assets')} icon="Wallet" className="mt-4" anchor="assets">
         <TouchableOpacity onPress={() => setCopyAddressVisible(true)} disabled={!address} activeOpacity={0.7}>
           <View className={`px-4 py-2 flex-row items-center ${address ? '' : 'opacity-40'}`}>
@@ -184,8 +218,13 @@ const AssetsPanel: React.FC<{ navigation: any }> = ({ navigation }) => {
         <Divider />
         <SettingsLinkRow
           icon="KeyRound"
-          label={t('settings.exportPrivateKey')}
-          description={t('settings.exportPrivateKeyDesc')}
+          label={t('walletBackup.title')}
+          description={
+            backedUpDate
+              ? t('walletBackup.backedUpOn', { date: backedUpDate })
+              : t('walletBackup.rowDesc')
+          }
+          dot={!!backup.status && !backup.status.backedUpAt}
           onPress={() => setExportPkVisible(true)}
         />
         {isImported && (
@@ -236,9 +275,10 @@ const AssetsPanel: React.FC<{ navigation: any }> = ({ navigation }) => {
         visible={chainModalVisible}
         onClose={() => setChainModalVisible(false)}
       />
-      <ExportPrivateKeyModal
+      <BackupWalletModal
         visible={exportPkVisible}
         onClose={() => setExportPkVisible(false)}
+        onBackedUp={backup.markLocal}
       />
       <SwitchAccountModal
         visible={switchAccountVisible}

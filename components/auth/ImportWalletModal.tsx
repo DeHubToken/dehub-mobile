@@ -12,6 +12,7 @@ import {
   authText,
 } from "./AuthControls";
 import { deriveAddressFromPrivateKey } from "../../libs/wallet.utils";
+import { importSecretKind, privateKeyFromImportSecret } from "../../libs/wallet-core/derive";
 import { listLocalAccounts, removeLocalAccount, LocalAccount, getPrivateKeyForAddress, upsertLocalAccount } from "../../libs/wallets.local";
 import { isWalletSignupBlocked, reportWalletSignupBlocked } from "../../libs/walletSignupGate";
 import { miniAddress } from "../../libs/strings.util";
@@ -41,7 +42,7 @@ const ImportWalletModal: React.FC<ImportWalletModalProps> = memo(
     const LIST_MAX_HEIGHT = Math.round(useWindowDimensions().height * 0.45);
     const { isLoading: authLoading, needsUsername } = useAuthState();
     const { signInWithWallet } = useAuthActions();
-    const [privateKey, setPrivateKey] = useState<string>("");
+    const [secretInput, setSecretInput] = useState<string>("");
     const [showPk, setShowPk] = useState<boolean>(false);
     useSecureScreen(visible, "import-wallet-modal");
     const [isImporting, setIsImporting] = useState<boolean>(false);
@@ -62,16 +63,14 @@ const ImportWalletModal: React.FC<ImportWalletModalProps> = memo(
       if (visible) refresh();
     }, [visible, refresh]);
 
-    const validatePk = useCallback((pk: string) => {
-      const v = pk.trim();
-      if (!v) return false;
-      const hex = v.startsWith("0x") ? v.slice(2) : v;
-      return /^[0-9a-fA-F]{64}$/.test(hex);
-    }, []);
+    // One field for either a 12/24-word recovery phrase or a private key.
+    // A phrase is turned into its key at import time and then goes down the
+    // exact same key path.
+    const validatePk = useCallback((secret: string) => importSecretKind(secret) !== null, []);
 
     const isPkValid = useMemo(
-      () => validatePk(privateKey),
-      [privateKey, validatePk]
+      () => validatePk(secretInput),
+      [secretInput, validatePk]
     );
 
     useEffect(() => {
@@ -99,12 +98,21 @@ const ImportWalletModal: React.FC<ImportWalletModalProps> = memo(
     }, [visible, validatePk]);
 
     const handleImport = useCallback(async () => {
-      if (!isPkValid) return;
+      if (!isPkValid) {
+        if (secretInput.trim()) setError(t("auth.invalidImportSecret"));
+        return;
+      }
       // Declared out here so the catch can roll back a persisted account.
       let address: string | undefined;
       try {
         setIsImporting(true);
         setError(null);
+        let privateKey: string;
+        try {
+          privateKey = privateKeyFromImportSecret(secretInput);
+        } catch {
+          throw new Error(t("auth.invalidImportSecret"));
+        }
         address = deriveAddressFromPrivateKey(privateKey)?.toLowerCase();
         if (!address) throw new Error(t("auth.invalidPrivateKey"));
         // Choose preferred chain (fallback to Base) for local EIP-1193 provider
@@ -122,7 +130,7 @@ const ImportWalletModal: React.FC<ImportWalletModalProps> = memo(
           await signInWithWallet(address, effectiveChainId, privateKey);
           // Local account persistence will occur centrally after username is available
           toastInfo(t("auth.walletImported"));
-          setPrivateKey("");
+          setSecretInput("");
           await refresh();
           onClose();
         } finally {
@@ -142,7 +150,7 @@ const ImportWalletModal: React.FC<ImportWalletModalProps> = memo(
       } finally {
         setIsImporting(false);
       }
-    }, [isPkValid, privateKey, refresh, signInWithWallet, onClose]);
+    }, [isPkValid, secretInput, refresh, signInWithWallet, onClose]);
 
     const handleUse = useCallback(
       async (address: string) => {
@@ -211,7 +219,7 @@ const ImportWalletModal: React.FC<ImportWalletModalProps> = memo(
         scrollable
       >
         <View style={styles.sheet}>
-          <Text style={authText.modalTitle}>{t("auth.importExternalWallet")}</Text>
+          <Text style={authText.modalTitle}>{t("auth.importWallet")}</Text>
           <Text style={[authText.caption, { marginTop: 8, marginBottom: 20 }]}>
             Social logins are recommended. This tool is for importing existing accounts from{" "}
             <Text style={styles.link} onPress={() => openInApp(WEBSITE_LINK)}>
@@ -221,10 +229,13 @@ const ImportWalletModal: React.FC<ImportWalletModalProps> = memo(
           </Text>
 
           <AuthField
-            label={t("auth.privateKey")}
-            value={privateKey}
-            onChangeText={setPrivateKey}
-            placeholder="0x… (64 hex)"
+            label={t("walletSetup.recoveryPhraseLabel")}
+            value={secretInput}
+            onChangeText={(v) => {
+              setSecretInput(v);
+              if (error) setError(null);
+            }}
+            placeholder={t("auth.importSecretPlaceholder")}
             autoCapitalize="none"
             autoCorrect={false}
             editable={!busy}
@@ -239,14 +250,14 @@ const ImportWalletModal: React.FC<ImportWalletModalProps> = memo(
               />
             }
           />
-          {clipboardPk && !privateKey ? (
+          {clipboardPk && !secretInput ? (
             <AuthTextButton
               label={t("auth.pasteFromClipboard")}
               onPress={async () => {
                 try {
                   const clip = (await Clipboard.getStringAsync())?.trim();
                   if (clip && validatePk(clip)) {
-                    setPrivateKey(clip.startsWith("0x") ? clip : `0x${clip}`);
+                    setSecretInput(importSecretKind(clip) === "key" && !clip.startsWith("0x") ? `0x${clip}` : clip);
                   } else {
                     setClipboardPk(null);
                   }
@@ -264,7 +275,7 @@ const ImportWalletModal: React.FC<ImportWalletModalProps> = memo(
             icon="key"
             label={t("wallet.import")}
             onPress={handleImport}
-            disabled={!isPkValid}
+            disabled={!secretInput.trim()}
             loading={busy}
             style={{ marginTop: 12 }}
           />

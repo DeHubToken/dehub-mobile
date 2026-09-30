@@ -54,7 +54,7 @@ import { provisionAndSignIn, markProvisionedIdentity } from "../../libs/provisio
 import { takeWalletSetupIntent } from "../../libs/wallet-setup-intent";
 import { decryptString, getPayloadKdf } from "../../libs/wallet-core/crypto";
 import { fetchWalletReliably } from "../../libs/wallet-core/store";
-import { deriveFromSecret, generateMnemonic12, isValidMnemonic } from "../../libs/wallet-core/derive";
+import { deriveFromSecret, isValidMnemonic } from "../../libs/wallet-core/derive";
 import { assertWalletAddress } from "../../libs/wallet-core/assert-wallet-address";
 import { createLocalEip1193ProviderForChain } from "../../services/localwallet.provider";
 import { setSigningProvider, setEoaSigningProvider, clearSigningProvider } from "../../libs/provider.registry";
@@ -96,12 +96,10 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
   // needs unlocking (password or biometric), or no wallet at all (needs setup
   // for a new one). Cleared once WalletSetupScreen succeeds or is cancelled.
   const [walletSetupRequest, setWalletSetupRequest] = useState<WalletSetupRequest | null>(null);
-  // Secret from a create attempt that has not finished yet: either it saved to
-  // Supabase but failed at the DeHub sign-in step (reused on retry so the saved
-  // row isn't overwritten by a fresh mnemonic), or it is a biometric wallet
-  // generated but deliberately NOT yet saved, waiting on the user to
-  // acknowledge its recovery phrase. See handleWalletCreate /
-  // handleWalletCreateConfirmed.
+  // Secret from a create attempt that has not finished yet: it is saved to
+  // Supabase, and either the optional backup offer is still open or the DeHub
+  // sign-in step failed (reused on retry so the saved row isn't overwritten by
+  // a fresh mnemonic). See handleWalletCreate / handleWalletCreateConfirmed.
   const pendingCreateRef = useRef<{ supabaseUserId: string; secret: string } | null>(null);
   // Set when checkLegacyAccount finds a pre-migration Web3Auth account for
   // this identity's email — gates the create-wallet screen behind a warning
@@ -383,25 +381,6 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
           ? prior.secret
           : undefined;
 
-      // A biometric wrap key exists only in this install's SecureStore, so the
-      // mnemonic is the wallet's only backup — and it has to be in the user's
-      // hands BEFORE anything is written. Generating it here and saving only
-      // once WalletSetupScreen reports the phrase acknowledged means an app
-      // kill on that screen leaves no wallet at all, rather than the
-      // never-backed-up biometric wallet this whole change exists to prevent.
-      // (A retry can carry a raw private key rather than a mnemonic — nothing
-      // to show there, so that falls through and saves inline as before.)
-      if (protection.kind === "biometric") {
-        const secret = existingSecret ?? generateMnemonic12();
-        if (isValidMnemonic(secret)) {
-          pendingCreateRef.current = {
-            supabaseUserId: walletSetupRequest.supabaseUserId,
-            secret,
-          };
-          return { recoveryPhrase: secret };
-        }
-      }
-
       const created = await createAndSaveEvmWalletForIdentity(
         walletSetupRequest.supabaseUserId,
         protection,
@@ -412,6 +391,12 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
         supabaseUserId: walletSetupRequest.supabaseUserId,
         secret: created.secret,
       };
+      // Saved first, for password and biometric alike, so the optional backup
+      // offer can be skipped or abandoned without losing anything. Sign-in
+      // finishes in handleWalletCreateConfirmed once the offer is done.
+      if (isValidMnemonic(created.secret)) {
+        return { recoveryPhrase: created.secret, address: created.address };
+      }
       await finishWalletSetupSignIn(created.address, created.privateKey);
       pendingCreateRef.current = null;
       return undefined;
@@ -422,13 +407,9 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
   const handleWalletCreateConfirmed = useCallback(async () => {
     const pending = pendingCreateRef.current;
     if (!walletSetupRequest || walletSetupRequest.mode !== "create" || !pending) return;
-    const created = await createAndSaveEvmWalletForIdentity(
-      walletSetupRequest.supabaseUserId,
-      { kind: "biometric" },
-      pending.secret,
-      walletSetupRequest.replacing
-    );
-    await finishWalletSetupSignIn(created.address, created.privateKey);
+    // Already saved by handleWalletCreate; only the sign-in is left.
+    const saved = deriveFromSecret(pending.secret);
+    await finishWalletSetupSignIn(saved.ethAddress, saved.ethPrivateKey);
     pendingCreateRef.current = null;
   }, [walletSetupRequest, finishWalletSetupSignIn]);
 

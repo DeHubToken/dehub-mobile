@@ -49,7 +49,7 @@ const ImportWallet: React.FC<ImportWalletProps> = memo(
 
           <AuthButton
             icon="key"
-            label={t("auth.importExternalWallet")}
+            label={t("wallet.import")}
             onPress={handlePress}
             disabled={isDisabled}
           />
