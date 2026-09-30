@@ -13,7 +13,34 @@
     "placeholder": "ኣብዚ ጽሑፍካ ጽሓፍ። ብመካከል ብዘይ ጽሑፍ መስመራት ተጠቐም።",
     "lengthHint": "{{length}}/20,000 · ቢያንስ 100 ፊደላት። እዚ ኣብ ላዕሊ ዘሎ ድማ ሓፈሻዊ ሓበሬታ እዩ።",
     "dehubArticle": "ጽሑፍ DeHub",
-    "dehubPost": "ፖስቲንግ DeHub"
+    "dehubPost": "ፖስቲንግ DeHub",
+    "wordCount_other": "{{count}} ቃላት",
+    "needBody_one": "{{count}} ዝያዳ ገጸ ባህሪ ክኸይድ",
+    "textSize": "መጠን ጽሑፍ",
+    "changeCover": "ሽፋን ቀይር",
+    "removeCover": "መሸፈኒ ኣፍንጫን ኣወግድ",
+    "addCover": "መሸፈኒ ኣፍን ኣፍንጫን ኣክ",
+    "coverHint": "ኣብ ርእሲ ጽሑፍካ ተቐሚጡ ፡ ሰባት ምስ ዚጋደሉ ዚርእይዎ ስእሊ እዩ ።",
+    "titlePlaceholder": "ኣርእስቲ",
+    "titleLabel": "ኣርእስቲ ጽሑፍ",
+    "edit": "ኣዐሪ",
+    "preview": "ቅድመ-እይታ",
+    "previewEmpty": "ቅድሚ ሕጂ ዝረኣየሉ ነገር የለን ።",
+    "bodyPlaceholder": "ታሪኽካ ንገሮ ። ጽሑፍ ምረጽ ፡ ነቲ ኣብ ላዕሊ ዘሎ ባር ድማ ንርዕስታት ፡ ትብዓት ፡ ጥቕስታት ፡ ከምኡውን ዝርዝር ተጠቐም ።",
+    "summaryLabel": "ሓጺር መግለጺ · ኣብ ቅድመ-እይታታት ምግቢን ምትእስሳርን ተራእዩ",
+    "summaryPlaceholder": "ብዛዕባ ጽሑፍካ ሓደ ወይ ክልተ ዓረፍቲ",
+    "sharePreview": "ምስ ተኻፈልካ ብኸመይ ከም እትመስል",
+    "noCoverShare": "ክሳብ ሕጂ ዝኾነ ሽፋን የለን ። ሊንክታት ብዘይ ስእሊ ክርእዩ እዮም ።",
+    "format": {
+      "heading": "ርእሲ",
+      "subheading": "ንኡስ ርእሲ",
+      "bold": "ቦልድ",
+      "italic": "ኢጣልያዊ",
+      "quote": "ጥቕሲ",
+      "bullets": "ዝርዝር ወረቐት",
+      "numbers": "ዝርዝር",
+      "link": "ሊንክ"
+    }
   },
   "storefront": {
     "unavailable": "ኣብዚ ስሪት ናይዚ መተግበሪ ኣይርከብን"

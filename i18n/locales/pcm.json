@@ -13,7 +13,33 @@
     "placeholder": "Write your article for here. Leave empty line between each paragraph.",
     "lengthHint": "{{length}}/20,000 · e must reach 100 characters. Di text wey dey up na di summary.",
     "dehubArticle": "DeHub article",
-    "dehubPost": "DeHub post"
+    "dehubPost": "DeHub post",
+    "minRead_one": "{{count}} min read",
+    "minRead_other": "{{count}} min read",
+    "wordCount_one": "{{count}} word",
+    "wordCount_other": "{{count}} words",
+    "textSize": "Text size",
+    "changeCover": "Change cover",
+    "removeCover": "Remove cover",
+    "addCover": "Add a cover",
+    "titlePlaceholder": "Title",
+    "titleLabel": "Article title",
+    "edit": "Edit",
+    "preview": "Preview",
+    "previewEmpty": "Na so be so.",
+    "summaryLabel": "Summary · show am for feed and link preview",
+    "summaryPlaceholder": "Wetin you dey look for?",
+    "sharePreview": "Wen yu share am.",
+    "format": {
+      "heading": "Heading",
+      "subheading": "Subheading",
+      "bold": "Bold",
+      "italic": "Italic",
+      "quote": "Quote",
+      "bullets": "Bullet list",
+      "numbers": "Numbered list",
+      "link": "Link"
+    }
   },
   "storefront": {
     "unavailable": "E no dey for dis version of di app"
