@@ -818,7 +818,17 @@
     "exportReady": "{{count}} ಖಾತೆಗಳು, {{saved}} ಸಂಗ್ರಹಿಸಿದ ಪೋಸ್ಟ್‌ಗಳು ರವಾನೆಯಾಗಿವೆ.",
     "importDone": "{{followed}} ಖಾತೆಗಳನ್ನು ಅನುಸರಿಸಿದರು, {{blocked}} ನಿಷೇಧಿಸಿದರು, {{folders}} ಫೋಲ್ಡರ್‌ಗಳು ರಚಿಸಲಾಗಿವೆ.",
     "importPartial": "{{count}} ಖಾತೆಗಳನ್ನು ಅನುಸರಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ — ಅವರನ್ನು ಮರುಪ್ರಯತ್ನಿಸಲು ಇಂಪೋರ್ಟ್ ಮಾಡಿ.",
-    "importProgress": "ಅನುಗುಣವಾಗಿ {{done}} ಆಫ್ {{total}}…"
+    "importProgress": "ಅನುಗುಣವಾಗಿ {{done}} ಆಫ್ {{total}}…",
+    "themeColor": "ಥೀಮ್ ಬಣ್ಣ",
+    "themeColorDesc": "ಈ ಥೀಮ್‌ಗಾಗಿ ಕಸ್ಟಮ್ ಬಣ್ಣ ಆಯ್ಕೆಮಾಡಿ",
+    "themeColorReset": "ಮರುಹೊಂದಿಸಿ",
+    "themeColorWhite": "ಬಿಳಿ",
+    "themeColorBlack": "ಕಪ್ಪು",
+    "themeColorRainbow": "ಕಾಮನಬಿಲ್ಲು",
+    "themeColorBrand": "ಬ್ರಾಂಡ್",
+    "themeColorBrandDesc": "ನಿಮ್ಮ ಪ್ರೊಫೈಲ್ ಚಿತ್ರದ ಬಣ್ಣಗಳನ್ನು ಬಳಸಿ",
+    "themeColorBrandNoAvatar": "ಬ್ರಾಂಡ್ ಬಣ್ಣಗಳನ್ನು ಬಳಸಲು ಪ್ರೊಫೈಲ್ ಚಿತ್ರ ಸೇರಿಸಿ",
+    "themeColorBrandFailed": "ನಿಮ್ಮ ಪ್ರೊಫೈಲ್ ಚಿತ್ರದಿಂದ ಬಣ್ಣಗಳನ್ನು ಓದಲಾಗಲಿಲ್ಲ"
   },
   "common": {
     "mute": "ಮ್ಯೂಟ್ ಮಾಡಿ",

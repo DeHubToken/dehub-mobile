@@ -818,7 +818,17 @@
     "exportReady": "{{count}} ھېسابات، {{saved}} ساقلانغان يازمىلار چىقىرىلدى.",
     "importDone": "{{followed}} نى ئەگىپ، {{blocked}} نى توسۇپ، {{folders}} ھۆججەتلەر قۇرۇلدى.",
     "importPartial": "{{count}} ھېساباتلارنى ئەگىشەلمىدى — قايتا كىرگۈزۈشنى قايتا سىناڭ.",
-    "importProgress": "{{done}} نى {{total}} نىڭ ىچىدە قوللىنىش…"
+    "importProgress": "{{done}} نى {{total}} نىڭ ىچىدە قوللىنىش…",
+    "themeColor": "ئۇسلۇب رەڭگى",
+    "themeColorDesc": "بۇ ئۇسلۇب ئۈچۈن ئىختىيارى رەڭ تاللاڭ",
+    "themeColorReset": "ئەسلىگە قايتۇرۇش",
+    "themeColorWhite": "ئاق",
+    "themeColorBlack": "قارا",
+    "themeColorRainbow": "ھەسەن-ھۆسەن",
+    "themeColorBrand": "ماركا",
+    "themeColorBrandDesc": "سەھىپە رەسىمىڭىزنىڭ رەڭلىرىنى ئىشلىتىش",
+    "themeColorBrandNoAvatar": "ماركا رەڭگىنى ئىشلىتىش ئۈچۈن سەھىپە رەسىمى قوشۇڭ",
+    "themeColorBrandFailed": "سەھىپە رەسىمىڭىزدىن رەڭ ئوقۇغىلى بولمىدى"
   },
   "common": {
     "mute": "ئاۋازنى ئېتىش",

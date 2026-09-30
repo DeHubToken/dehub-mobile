@@ -818,7 +818,17 @@
     "exportReady": "{{count}} खाती, {{saved}} जतन केलेल्या पोस्ट निर्यात केल्या.",
     "importDone": "{{followed}} फॉलो केले, {{blocked}} ब्लॉक केले, {{folders}} फोल्डर तयार केले.",
     "importPartial": "{{count}} खाती फॉलो केली जाऊ शकली नाहीत — त्यांना पुन्हा प्रयत्न करण्यासाठी इम्पोर्ट पुन्हा चालवा.",
-    "importProgress": "{{done}} पैकी {{total}} लागू करत आहे…"
+    "importProgress": "{{done}} पैकी {{total}} लागू करत आहे…",
+    "themeColor": "थीम रंग",
+    "themeColorDesc": "या थीमसाठी स्वतःचा रंग निवडा",
+    "themeColorReset": "रीसेट करा",
+    "themeColorWhite": "पांढरा",
+    "themeColorBlack": "काळा",
+    "themeColorRainbow": "इंद्रधनुष्य",
+    "themeColorBrand": "ब्रँड",
+    "themeColorBrandDesc": "तुमच्या प्रोफाइल चित्राचे रंग वापरा",
+    "themeColorBrandNoAvatar": "ब्रँड रंग वापरण्यासाठी प्रोफाइल चित्र जोडा",
+    "themeColorBrandFailed": "तुमच्या प्रोफाइल चित्रातून रंग वाचता आले नाहीत"
   },
   "common": {
     "mute": "म्यूट करा",

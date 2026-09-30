@@ -817,7 +817,17 @@
     "exportReady": "{{count}} اکاؤنٹس، {{saved}} سروسڈ پوسٹس ایکسپورٹ کئے گئے۔",
     "importDone": "فوللوڈ {{followed}}، بلاک {{blocked}}، {{folders}} folder بنائے گئے۔",
     "importPartial": "{{count}} اکاؤنٹس کو نہیں کیا جا سکا — انپورٹ کو دوبارہ چلانے کے لئے کوشش کریں۔",
-    "importProgress": "اپلائیڈنگ {{done}} of {{total}}…"
+    "importProgress": "اپلائیڈنگ {{done}} of {{total}}…",
+    "themeColor": "تھیم رنگ",
+    "themeColorDesc": "ایں تھیم کیتے اپݨا رنگ چݨو",
+    "themeColorReset": "ری سیٹ",
+    "themeColorWhite": "چٹا",
+    "themeColorBlack": "کالا",
+    "themeColorRainbow": "قوس قزح",
+    "themeColorBrand": "برانڈ",
+    "themeColorBrandDesc": "اپݨی پروفائل تصویر دے رنگ ورتو",
+    "themeColorBrandNoAvatar": "برانڈ رنگ ورتݨ کیتے پروفائل تصویر ولاؤ",
+    "themeColorBrandFailed": "اپݨی پروفائل تصویر کنوں رنگ پڑھے کائنی ڳئے"
   },
   "common": {
     "mute": "آواز بند کرو",

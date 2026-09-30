@@ -818,7 +818,17 @@
     "exportReady": "{{count}} अकाउंट, {{saved}} सेव की गई पोस्ट एक्सपोर्ट की गईं।",
     "importDone": "{{followed}} को फ़ॉलो किया गया, ब्लॉक किए गए {{blocked}},{{folders}} फ़ोल्डर बनाए गए।",
     "importPartial": "{{count}} खातों का पालन नहीं किया जा सका — उन्हें फिर से आज़माने के लिए इम्पोर्ट फिर से चलाएँ।",
-    "importProgress": "{{total}} में से {{done}} लागू किया जा रहा है..."
+    "importProgress": "{{total}} में से {{done}} लागू किया जा रहा है...",
+    "themeColor": "थीम रंग",
+    "themeColorDesc": "इस थीम के लिए मनचाहा रंग चुनें",
+    "themeColorReset": "रीसेट",
+    "themeColorWhite": "सफ़ेद",
+    "themeColorBlack": "काला",
+    "themeColorRainbow": "इंद्रधनुष",
+    "themeColorBrand": "ब्रांड",
+    "themeColorBrandDesc": "अपनी प्रोफ़ाइल तस्वीर के रंग इस्तेमाल करें",
+    "themeColorBrandNoAvatar": "ब्रांड रंग इस्तेमाल करने के लिए प्रोफ़ाइल तस्वीर जोड़ें",
+    "themeColorBrandFailed": "आपकी प्रोफ़ाइल तस्वीर से रंग नहीं पढ़े जा सके"
   },
   "common": {
     "mute": "म्यूट करें",

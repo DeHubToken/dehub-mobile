@@ -818,7 +818,17 @@
     "exportReady": "{{count}} ama-akhawunti, {{saved}} okuthunyelwe okugciniwe kuthunyelwe.",
     "importDone": "Kulandelwe {{followed}}, kuvinjelwe {{blocked}}, kwenziwe amafolda {{folders}}.",
     "importPartial": "Ama-akhawunti {{count}} awazange akwazi ukulandelwa — sebenzisa ukungenisa futhi ukuze uzame futhi.",
-    "importProgress": "Kufakwa {{done}} ye {{total}}…"
+    "importProgress": "Kufakwa {{done}} ye {{total}}…",
+    "themeColor": "Umbala wetimu",
+    "themeColorDesc": "Khetha umbala wakho kule timu",
+    "themeColorReset": "Setha kabusha",
+    "themeColorWhite": "Mhlophe",
+    "themeColorBlack": "Mnyama",
+    "themeColorRainbow": "Uthingo lwenkosikazi",
+    "themeColorBrand": "Umkhiqizo",
+    "themeColorBrandDesc": "Sebenzisa imibala yesithombe sakho sephrofayela",
+    "themeColorBrandNoAvatar": "Engeza isithombe sephrofayela ukuze usebenzise imibala yoMkhiqizo",
+    "themeColorBrandFailed": "Ayikwazanga ukufunda imibala esithombeni sakho sephrofayela"
   },
   "common": {
     "mute": "Thulisa",

@@ -818,7 +818,17 @@
     "exportReady": "{{count}} ଆକାଉଣ୍ଟ୍, {{saved}} ସଞ୍ଚିତ ପୋଷ୍ଟ୍ ରପ୍ତାନି ହୋଇଛି।",
     "importDone": "{{followed}} ଙ୍କୁ ଅନୁସରଣ କରାଯାଇଛି, {{blocked}} ଙ୍କୁ ଅବରୋଧ କରାଯାଇଛି, {{folders}} ଫୋଲ୍ଡର୍ ତିଆରି ହୋଇଛି।",
     "importPartial": "{{count}} ଆକାଉଣ୍ଟ୍‌ଗୁଡିକୁ ଅନୁସରଣ କରାଯାଇପାରିବ ନାହିଁ — ସେଗୁଡିକୁ ପୁନର୍ବାର ଚେଷ୍ଟା କରିବା ପାଇଁ ପୁଣି ଥରେ ଆମଦାନୀ କରନ୍ତୁ।",
-    "importProgress": "{{done}} ର {{total}} ପ୍ରୟୋଗ କରାଯାଉଛି…"
+    "importProgress": "{{done}} ର {{total}} ପ୍ରୟୋଗ କରାଯାଉଛି…",
+    "themeColor": "ଥିମ ରଙ୍ଗ",
+    "themeColorDesc": "ଏହି ଥିମ ପାଇଁ ଏକ କଷ୍ଟମ ରଙ୍ଗ ବାଛନ୍ତୁ",
+    "themeColorReset": "ରିସେଟ",
+    "themeColorWhite": "ଧଳା",
+    "themeColorBlack": "କଳା",
+    "themeColorRainbow": "ରେନବୋ",
+    "themeColorBrand": "ବ୍ରାଣ୍ଡ",
+    "themeColorBrandDesc": "ଆପଣଙ୍କ ପ୍ରୋଫାଇଲ ଛବିର ରଙ୍ଗ ବ୍ୟବହାର କରନ୍ତୁ",
+    "themeColorBrandNoAvatar": "Brand ରଙ୍ଗ ବ୍ୟବହାର କରିବାକୁ ଏକ ପ୍ରୋଫାଇଲ ଛବି ଯୋଡ଼ନ୍ତୁ",
+    "themeColorBrandFailed": "ଆପଣଙ୍କ ପ୍ରୋଫାଇଲ ଛବିରୁ ରଙ୍ଗ ପଢ଼ି ପାରିଲା ନାହିଁ"
   },
   "common": {
     "mute": "ମ୍ୟୁଟ୍ କରନ୍ତୁ",

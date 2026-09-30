@@ -823,7 +823,17 @@
     "exportReady": "{{count}} অ্যাকাউন্ট, {{saved}} সেভ করা পোস্ট এক্সপোর্ট করা হয়েছে",
     "importDone": "অনুসরণ করা {{followed}}, ব্লক করা {{blocked}}, {{folders}} ফোল্ডার তৈরি করা হয়েছে",
     "importPartial": "{{count}} অ্যাকাউন্ট অনুসরণ করা যায়নি — আবার আপনার আইম্পোর্ট চালান",
-    "importProgress": "আপলোড করা {{done}} অফ {{total}}…"
+    "importProgress": "আপলোড করা {{done}} অফ {{total}}…",
+    "themeColor": "থিম রঙ",
+    "themeColorDesc": "এই থিমের জইন্যে একটা কাস্টম রঙ বাছেন",
+    "themeColorReset": "রিসেট",
+    "themeColorWhite": "সাদা",
+    "themeColorBlack": "কালা",
+    "themeColorRainbow": "রংধনু",
+    "themeColorBrand": "ব্র্যান্ড",
+    "themeColorBrandDesc": "তোমার প্রোফাইল ছবির রঙ ব্যবহার করেন",
+    "themeColorBrandNoAvatar": "Brand রঙ ব্যবহার করার জইন্যে প্রোফাইল ছবি যোগ করেন",
+    "themeColorBrandFailed": "তোমার প্রোফাইল ছবি থাকি রঙ পড়া গেইল না"
   },
   "common": {
     "mute": "আওয়াজ বন্ধ করেন",

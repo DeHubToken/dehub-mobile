@@ -818,7 +818,17 @@
     "exportReady": "{{count}} kaonty, {{saved}} lahatsoratra voatahiry no nalefa.",
     "importDone": "Noharahana {{followed}}, nosakanana {{blocked}}, {{folders}} lahatahiry no noforonina.",
     "importPartial": "Tsy naharahana {{count}} kaonty — avereno ny fanafarana mba hamerenana azy ireo.",
-    "importProgress": "Ampiharina {{done}} amin'ny {{total}}…"
+    "importProgress": "Ampiharina {{done}} amin'ny {{total}}…",
+    "themeColor": "Lokon'ny lohahevitra",
+    "themeColorDesc": "Fidio loko manokana ho an'ity lohahevitra ity",
+    "themeColorReset": "Averina",
+    "themeColorWhite": "Fotsy",
+    "themeColorBlack": "Mainty",
+    "themeColorRainbow": "Avana",
+    "themeColorBrand": "Marika",
+    "themeColorBrandDesc": "Ampiasao ny lokon'ny sarinao",
+    "themeColorBrandNoAvatar": "Ampidiro sary mombamomba mba hampiasana ny lokon'ny Marika",
+    "themeColorBrandFailed": "Tsy afaka namaky loko avy amin'ny sarinao"
   },
   "common": {
     "mute": "Hampangina",

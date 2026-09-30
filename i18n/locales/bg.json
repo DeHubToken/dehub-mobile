@@ -818,7 +818,17 @@
     "exportReady": "{{count}} записи, {{saved}} запазени записи експортирани.",
     "importDone": "Пратили {{followed}}, блокирани {{blocked}}, {{folders}} папки създадени.",
     "importPartial": "{{count}} профили не могат да бъдат пратили — изпробвай импорта отново за да се опиташ.",
-    "importProgress": "Прилагане на {{done}} от {{total}}…"
+    "importProgress": "Прилагане на {{done}} от {{total}}…",
+    "themeColor": "Цвят на темата",
+    "themeColorDesc": "Изберете собствен цвят за тази тема",
+    "themeColorReset": "Нулиране",
+    "themeColorWhite": "Бяло",
+    "themeColorBlack": "Черно",
+    "themeColorRainbow": "Дъга",
+    "themeColorBrand": "Марка",
+    "themeColorBrandDesc": "Използване на цветовете от профилната ви снимка",
+    "themeColorBrandNoAvatar": "Добавете профилна снимка, за да използвате цветовете на марката",
+    "themeColorBrandFailed": "Цветовете от профилната ви снимка не можаха да бъдат прочетени"
   },
   "common": {
     "mute": "Без звук",

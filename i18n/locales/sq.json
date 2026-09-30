@@ -818,7 +818,17 @@
     "exportReady": "{{count}} llogaritë, {{saved}} postimet e ruajtura u eksportuan.",
     "importDone": "Dosjet e ndjekura {{followed}}, të bllokuara {{blocked}}, {{folders}} u krijuan.",
     "importPartial": "{{count}} llogaritë nuk mund të ndiqeshin — ekzekutoni importin përsëri për t 'i riprovuar ato.",
-    "importProgress": "Duke aplikuar {{done}} të {{total}}…"
+    "importProgress": "Duke aplikuar {{done}} të {{total}}…",
+    "themeColor": "Ngjyra e temës",
+    "themeColorDesc": "Zgjidh një ngjyrë të personalizuar për këtë temë",
+    "themeColorReset": "Rivendos",
+    "themeColorWhite": "E bardhë",
+    "themeColorBlack": "E zezë",
+    "themeColorRainbow": "Ylber",
+    "themeColorBrand": "Marka",
+    "themeColorBrandDesc": "Përdor ngjyrat e fotos sate të profilit",
+    "themeColorBrandNoAvatar": "Shto një foto profili për të përdorur ngjyrat e markës",
+    "themeColorBrandFailed": "Nuk u lexuan dot ngjyrat nga fotoja jote e profilit"
   },
   "common": {
     "mute": "Hiq zërin",

@@ -818,7 +818,17 @@
     "exportReady": "{{count}} հաշիվ(ներ), {{saved}} պահված գրառում(ներ) արտահանված։",
     "importDone": "Բաժանորդագրված {{followed}}, արգելափակված {{blocked}}, {{folders}} թղթապանակ(ներ) ստեղծված։",
     "importPartial": "{{count}} հաշիվ(ներ) չեն կարողացել բաժանորդագրվել — նորից գործարկեք ներմուծումը՝ դրանք նորից փորձելու համար։",
-    "importProgress": "Կիրառվում է {{done}}-ը {{total}}-ից…"
+    "importProgress": "Կիրառվում է {{done}}-ը {{total}}-ից…",
+    "themeColor": "Թեմայի գույն",
+    "themeColorDesc": "Ընտրեք սեփական գույն այս թեմայի համար",
+    "themeColorReset": "Վերականգնել",
+    "themeColorWhite": "Սպիտակ",
+    "themeColorBlack": "Սև",
+    "themeColorRainbow": "Ծիածան",
+    "themeColorBrand": "Բրենդ",
+    "themeColorBrandDesc": "Օգտագործել ձեր պրոֆիլի նկարի գույները",
+    "themeColorBrandNoAvatar": "Ավելացրեք պրոֆիլի նկար՝ բրենդի գույներն օգտագործելու համար",
+    "themeColorBrandFailed": "Չհաջողվեց կարդալ գույները ձեր պրոֆիլի նկարից"
   },
   "common": {
     "mute": "Անջատել ձայնը",

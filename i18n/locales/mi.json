@@ -818,7 +818,17 @@
     "exportReady": "Ngā pūkete {{count}}, ngā pouwhakaora {{saved}} kua kawea atu.",
     "importDone": "I whai atu ki {{followed}}, i poraka {{blocked}}, ngā kōpaki {{folders}} kua hangaia.",
     "importPartial": "Kāore i taea te whai atu ki ngā pūkete {{count}} — whakahaere anō i te kawemai kia whakamātau anō i aua mea.",
-    "importProgress": "E tono ana {{done}} o {{total}}…"
+    "importProgress": "E tono ana {{done}} o {{total}}…",
+    "themeColor": "Tae kaupapa",
+    "themeColorDesc": "Tīpakohia he tae whaiaro mō tēnei kaupapa",
+    "themeColorReset": "Tautuhi anō",
+    "themeColorWhite": "Mā",
+    "themeColorBlack": "Pango",
+    "themeColorRainbow": "Āniwaniwa",
+    "themeColorBrand": "Waitohu",
+    "themeColorBrandDesc": "Whakamahia ngā tae o tō whakaahua kōtaha",
+    "themeColorBrandNoAvatar": "Tāpirihia he whakaahua kōtaha kia whakamahi ai i ngā tae Waitohu",
+    "themeColorBrandFailed": "Kāore i taea te pānui i ngā tae mai i tō whakaahua kōtaha"
   },
   "common": {
     "mute": "Whakangū",

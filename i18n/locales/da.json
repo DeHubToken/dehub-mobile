@@ -818,7 +818,17 @@
     "exportReady": "{{count}} konti, {{saved}} gemte indlæg eksporteret.",
     "importDone": "Fulgte {{followed}}, blokerede{{blocked}}, {{folders}} mapper oprettet.",
     "importPartial": "{{count}}-konti kunne ikke følges — kør importen igen for at prøve dem igen.",
-    "importProgress": "Ansøger {{done}}fra{{total}}..."
+    "importProgress": "Ansøger {{done}}fra{{total}}...",
+    "themeColor": "Temafarve",
+    "themeColorDesc": "Vælg en egen farve til dette tema",
+    "themeColorReset": "Nulstil",
+    "themeColorWhite": "Hvid",
+    "themeColorBlack": "Sort",
+    "themeColorRainbow": "Regnbue",
+    "themeColorBrand": "Brand",
+    "themeColorBrandDesc": "Brug farverne fra dit profilbillede",
+    "themeColorBrandNoAvatar": "Tilføj et profilbillede for at bruge brandfarver",
+    "themeColorBrandFailed": "Kunne ikke læse farver fra dit profilbillede"
   },
   "common": {
     "mute": "Slå lyd fra",

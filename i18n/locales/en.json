@@ -818,7 +818,17 @@
     "exportReady": "{{count}} accounts, {{saved}} saved posts exported.",
     "importDone": "Followed {{followed}}, blocked {{blocked}}, {{folders}} folders created.",
     "importPartial": "{{count}} accounts could not be followed — run the import again to retry them.",
-    "importProgress": "Applying {{done}} of {{total}}…"
+    "importProgress": "Applying {{done}} of {{total}}…",
+    "themeColor": "Theme Color",
+    "themeColorDesc": "Pick a custom color for this theme",
+    "themeColorReset": "Reset",
+    "themeColorWhite": "White",
+    "themeColorBlack": "Black",
+    "themeColorRainbow": "Rainbow",
+    "themeColorBrand": "Brand",
+    "themeColorBrandDesc": "Use your profile picture colors",
+    "themeColorBrandNoAvatar": "Add a profile picture to use Brand colors",
+    "themeColorBrandFailed": "Couldn't read colors from your profile picture"
   },
   "common": {
     "mute": "Mute",

@@ -808,7 +808,17 @@
     "importDone": "Followed {{followed}}, blocked {{blocked}}, {{folders}} folders created.",
     "importProgress": "Applai {{done}} of {{total}}…",
     "channelSpeedCount": "{{count}} chanel dey dey play deir own speed.",
-    "importPartial": "{{count}} account no fit follow - run import again to try am."
+    "importPartial": "{{count}} account no fit follow - run import again to try am.",
+    "themeColor": "Theme Color",
+    "themeColorDesc": "Pick wan custom color fo dis theme",
+    "themeColorReset": "Reset",
+    "themeColorWhite": "White",
+    "themeColorBlack": "Black",
+    "themeColorRainbow": "Rainbow",
+    "themeColorBrand": "Brand",
+    "themeColorBrandDesc": "Yus yua profile picture color dem",
+    "themeColorBrandNoAvatar": "Add wan profile picture mek yu yus Brand color dem",
+    "themeColorBrandFailed": "I no fit read color dem from yua profile picture"
   },
   "common": {
     "mute": "Off di sound",

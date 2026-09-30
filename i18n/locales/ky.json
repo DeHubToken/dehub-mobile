@@ -816,7 +816,17 @@
     "exportReady": "{{count}} эсептер, {{saved}} билдирүүлөр экспорттолду.",
     "importDone": "Кийинки {{followed}}, бөгөттөлгөн {{blocked}}, {{folders}} папкалар түзүлгөн.",
     "importPartial": "{{count}} каттоо эсебин ээрчүү мүмкүн эмес — аларды кайра текшерүү үчүн импортту кайра иштетиңиз.",
-    "importProgress": "Колдонмо {{done}} of {{total}}…"
+    "importProgress": "Колдонмо {{done}} of {{total}}…",
+    "themeColor": "Тема түсү",
+    "themeColorDesc": "Бул тема үчүн өз түсүңүздү тандаңыз",
+    "themeColorReset": "Баштапкы абалга кайтаруу",
+    "themeColorWhite": "Ак",
+    "themeColorBlack": "Кара",
+    "themeColorRainbow": "Асан-үсөн",
+    "themeColorBrand": "Бренд",
+    "themeColorBrandDesc": "Профиль сүрөтүңүздүн түстөрүн колдонуу",
+    "themeColorBrandNoAvatar": "Бренд түстөрүн колдонуу үчүн профиль сүрөтүн кошуңуз",
+    "themeColorBrandFailed": "Профиль сүрөтүңүздөн түстөрдү окуу мүмкүн болбоду"
   },
   "common": {
     "mute": "Үнүн өчүрүү",

@@ -818,7 +818,17 @@
     "importProgress": "Na-eji {{done}} nke {{total}}…",
     "quietHoursPauseDesc": "Kwụsị ịkwanye ọkwa n 'oge awa setịpụrụ",
     "notifInfoNote": "Ịma ọkwa n 'ime ngwa na-apụta n' ime ngwa ahụ. A na-eziga ọkwa ngwa ngwa na ngwaọrụ gị ọbụlagodi mgbe emechiri ngwa ahụ.",
-    "quietHoursSilencedNote": "A ga-agbachi nkịtị n 'oge awa ndị a."
+    "quietHoursSilencedNote": "A ga-agbachi nkịtị n 'oge awa ndị a.",
+    "themeColor": "Agba Theme",
+    "themeColorDesc": "Họrọ agba nke gị maka theme a",
+    "themeColorReset": "Tọghata",
+    "themeColorWhite": "Ọcha",
+    "themeColorBlack": "Oji",
+    "themeColorRainbow": "Egwurugwu",
+    "themeColorBrand": "Brand",
+    "themeColorBrandDesc": "Jiri agba foto profaịlụ gị",
+    "themeColorBrandNoAvatar": "Tinye foto profaịlụ iji jiri agba Brand",
+    "themeColorBrandFailed": "Enweghị ike ịgụta agba site na foto profaịlụ gị"
   },
   "common": {
     "mute": "Mechie ụda",

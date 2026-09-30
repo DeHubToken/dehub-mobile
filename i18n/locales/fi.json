@@ -818,7 +818,17 @@
     "exportReady": "{{count}} tilin tiedot, {{saved}} säädettyjä postauksia vientiin.",
     "importDone": "Seurattu {{followed}}, estetty {{blocked}}, {{folders}} hakemistot luotu.",
     "importPartial": "{{count}} tilin seuraamiseen ei onnistunut — suorita importti uudelleen, jotta ne yrittää uudelleen.",
-    "importProgress": "Soveltaminen {{done}}:sta {{total}}…"
+    "importProgress": "Soveltaminen {{done}}:sta {{total}}…",
+    "themeColor": "Teeman väri",
+    "themeColorDesc": "Valitse tälle teemalle oma väri",
+    "themeColorReset": "Palauta",
+    "themeColorWhite": "Valkoinen",
+    "themeColorBlack": "Musta",
+    "themeColorRainbow": "Sateenkaari",
+    "themeColorBrand": "Brändi",
+    "themeColorBrandDesc": "Käytä profiilikuvasi värejä",
+    "themeColorBrandNoAvatar": "Lisää profiilikuva käyttääksesi brändivärejä",
+    "themeColorBrandFailed": "Profiilikuvastasi ei saatu luettua värejä"
   },
   "common": {
     "mute": "Mykistä",

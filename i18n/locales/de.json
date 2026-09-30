@@ -818,7 +818,17 @@
     "exportReady": "{{count}} Konten, {{saved}} gespeicherte Beiträge exportiert.",
     "importDone": "{{followed}} gefolgt, {{blocked}} blockiert, {{folders}} Ordner erstellt.",
     "importPartial": "{{count}} -Konten konnten nicht verfolgt werden — führen Sie den Import erneut aus, um es erneut zu versuchen.",
-    "importProgress": "{{done}} von {{total}} wird angewendet..."
+    "importProgress": "{{done}} von {{total}} wird angewendet...",
+    "themeColor": "Themenfarbe",
+    "themeColorDesc": "Wähle eine eigene Farbe für dieses Thema",
+    "themeColorReset": "Zurücksetzen",
+    "themeColorWhite": "Weiß",
+    "themeColorBlack": "Schwarz",
+    "themeColorRainbow": "Regenbogen",
+    "themeColorBrand": "Marke",
+    "themeColorBrandDesc": "Farben deines Profilbilds verwenden",
+    "themeColorBrandNoAvatar": "Füge ein Profilbild hinzu, um Markenfarben zu nutzen",
+    "themeColorBrandFailed": "Farben deines Profilbilds konnten nicht gelesen werden"
   },
   "common": {
     "mute": "Stumm schalten",

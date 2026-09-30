@@ -818,7 +818,17 @@
     "exportReady": "{{count}} fiókok, {{saved}} mentett bejegyzések exportálva.",
     "importDone": "{{followed}}-t követik, {{blocked}}-t blokkolják, {{folders}} mappákat hoztak létre.",
     "importPartial": "{{count}} fiókok nem követhetők — futtassák újra az importot, hogy megpróbálják őket.",
-    "importProgress": "Alkalmazva {{done}}-t a {{total}}-ból…"
+    "importProgress": "Alkalmazva {{done}}-t a {{total}}-ból…",
+    "themeColor": "Téma színe",
+    "themeColorDesc": "Válassz egyéni színt ehhez a témához",
+    "themeColorReset": "Visszaállítás",
+    "themeColorWhite": "Fehér",
+    "themeColorBlack": "Fekete",
+    "themeColorRainbow": "Szivárvány",
+    "themeColorBrand": "Márka",
+    "themeColorBrandDesc": "A profilképed színeinek használata",
+    "themeColorBrandNoAvatar": "Adj hozzá profilképet a márkaszínek használatához",
+    "themeColorBrandFailed": "Nem sikerült színeket kiolvasni a profilképedből"
   },
   "common": {
     "mute": "Némítás",
