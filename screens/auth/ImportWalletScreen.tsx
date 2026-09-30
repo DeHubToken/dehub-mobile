@@ -12,6 +12,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import * as Clipboard from "expo-clipboard";
 import { useAuthState, useAuthActions } from "../../context/AuthContext";
 import { deriveAddressFromPrivateKey } from "../../libs/wallet.utils";
+import { importSecretKind, privateKeyFromImportSecret } from "../../libs/wallet-core/derive";
 import {
   upsertLocalAccount,
   listLocalAccounts,
@@ -66,7 +67,8 @@ const ImportWalletScreen: React.FC<ImportWalletScreenProps> = ({
   // the offset is only the root SafeAreaView's top inset, on both platforms.
   const keyboardOffset = useKeyboardOffset();
 
-  const [privateKey, setPrivateKey] = useState("");
+  // A 12/24-word recovery phrase or a private key; see handleImport.
+  const [secretInput, setSecretInput] = useState("");
   const [showPk, setShowPk] = useState(false);
   const [isImporting, setIsImporting] = useState(false);
   const [accounts, setAccounts] = useState<LocalAccount[]>([]);
@@ -84,16 +86,11 @@ const ImportWalletScreen: React.FC<ImportWalletScreenProps> = ({
     refresh();
   }, [refresh]);
 
-  const validatePk = useCallback((pk: string) => {
-    const v = pk.trim();
-    if (!v) return false;
-    const hex = v.startsWith("0x") ? v.slice(2) : v;
-    return /^[0-9a-fA-F]{64}$/.test(hex);
-  }, []);
+  const validatePk = useCallback((secret: string) => importSecretKind(secret) !== null, []);
 
   const isPkValid = useMemo(
-    () => validatePk(privateKey),
-    [privateKey, validatePk]
+    () => validatePk(secretInput),
+    [secretInput, validatePk]
   );
 
   // Check clipboard for valid private key
@@ -120,7 +117,7 @@ const ImportWalletScreen: React.FC<ImportWalletScreenProps> = ({
     try {
       const clip = (await Clipboard.getStringAsync())?.trim();
       if (clip && validatePk(clip)) {
-        setPrivateKey(clip.startsWith("0x") ? clip : `0x${clip}`);
+        setSecretInput(importSecretKind(clip) === "key" && !clip.startsWith("0x") ? `0x${clip}` : clip);
       } else {
         setClipboardPk(null);
       }
@@ -130,9 +127,19 @@ const ImportWalletScreen: React.FC<ImportWalletScreenProps> = ({
   }, [validatePk]);
 
   const handleImport = useCallback(async () => {
-    if (!isPkValid) return;
+    if (!isPkValid) {
+      if (secretInput.trim()) toastError(t("auth.invalidImportSecret"));
+      return;
+    }
     try {
       setIsImporting(true);
+      // A phrase becomes its key here; everything after is the key path.
+      let privateKey: string;
+      try {
+        privateKey = privateKeyFromImportSecret(secretInput);
+      } catch {
+        throw new Error(t("auth.invalidImportSecret"));
+      }
       const address = deriveAddressFromPrivateKey(privateKey)?.toLowerCase();
       if (!address) throw new Error(t("auth.invalidPrivateKey"));
 
@@ -162,7 +169,7 @@ const ImportWalletScreen: React.FC<ImportWalletScreenProps> = ({
         await upsertLocalAccount({ address, privateKey });
         await signInWithWallet(address, effectiveChainId, privateKey);
         toastInfo(t("auth.walletImported"));
-        setPrivateKey("");
+        setSecretInput("");
         await refresh();
       } finally {
         clearSigningProvider();
@@ -172,7 +179,7 @@ const ImportWalletScreen: React.FC<ImportWalletScreenProps> = ({
     } finally {
       setIsImporting(false);
     }
-  }, [isPkValid, privateKey, signInWithWallet, refresh]);
+  }, [isPkValid, secretInput, signInWithWallet, refresh]);
 
   const handleUseAccount = useCallback(
     async (address: string) => {
@@ -277,17 +284,17 @@ const ImportWalletScreen: React.FC<ImportWalletScreenProps> = ({
             </Text>
           </View>
 
-          {/* Private Key Input */}
+          {/* Recovery phrase or private key */}
           <AuthField
-            label={t("auth.privateKey")}
-            value={privateKey}
-            onChangeText={setPrivateKey}
+            label={t("walletSetup.recoveryPhraseLabel")}
+            value={secretInput}
+            onChangeText={setSecretInput}
             autoCapitalize="none"
             autoCorrect={false}
             secureTextEntry={!showPk}
             importantForAutofill="no"
             autoComplete="off"
-            placeholder={t("auth.privateKeyPlaceholder")}
+            placeholder={t("auth.importSecretPlaceholder")}
             editable={!busy}
             trailing={
               <AuthIconButton
@@ -299,7 +306,7 @@ const ImportWalletScreen: React.FC<ImportWalletScreenProps> = ({
           />
 
           {/* Paste from clipboard */}
-          {clipboardPk && !privateKey && (
+          {clipboardPk && !secretInput && (
             <AuthTextButton
               label={t("auth.pasteFromClipboard")}
               onPress={handlePasteFromClipboard}
@@ -313,7 +320,7 @@ const ImportWalletScreen: React.FC<ImportWalletScreenProps> = ({
             variant="primary"
             label={t("auth.importWallet")}
             onPress={handleImport}
-            disabled={!isPkValid}
+            disabled={!secretInput.trim()}
             loading={busy}
             style={{ marginTop: 16 }}
           />

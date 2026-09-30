@@ -2,9 +2,10 @@ import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "
 import { View, Text, TouchableOpacity, ActivityIndicator, ScrollView, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { Trans, useTranslation } from "react-i18next";
-import { copySecretToClipboard } from "../../libs/clipboard.utils";
 import GlassModal from "../ui/GlassModal";
 import PasswordStrengthMeter from "./PasswordStrengthMeter";
+import { RecoveryPhraseCheck, RecoveryPhraseGrid, RecoveryPhraseWarnings } from "./RecoveryPhrase";
+import { markBackedUp } from "../../libs/wallet-core/backup-status";
 import {
   AUTH_RADIUS,
   AuthButton,
@@ -72,16 +73,15 @@ export type WalletSetupRequest =
 export type CreateProtection = { kind: "password"; password: string } | { kind: "biometric" };
 
 /**
- * What onCreate hands back. A biometric wallet returns its recovery phrase:
- * its wrap key never leaves this device, so the phrase is the ONLY thing that
- * can bring the wallet back after a reinstall, a lost handset, or an Android
- * backup restore that leaves the keystore behind. The screen refuses to finish
- * sign-in until the user has confirmed they've written it down.
+ * What onCreate hands back. A new wallet made from a fresh mnemonic returns
+ * that phrase and its address, already SAVED: the screen then offers an
+ * optional backup ("Save now" / "Skip for now") and calls onCreateConfirmed to
+ * finish sign-in either way, so skipping can never lose the wallet.
  *
- * A password wallet returns nothing — the password is already the backup, and
- * it re-derives the same seed from any device or from the website.
+ * Nothing comes back when there is no phrase to show (a retry carrying a raw
+ * private key) — sign-in has then already finished.
  */
-export type CreateResult = { recoveryPhrase?: string } | undefined;
+export type CreateResult = { recoveryPhrase?: string; address?: string } | undefined;
 
 export interface WalletSetupScreenProps {
   visible: boolean;
@@ -93,11 +93,11 @@ export interface WalletSetupScreenProps {
   onBiometricUnlock: () => Promise<void>;
   /**
    * create mode: generate + protect + save a brand-new wallet. When it returns
-   * a recovery phrase, it must NOT have completed sign-in — the screen calls
-   * onCreateConfirmed for that once the phrase has been acknowledged.
+   * a recovery phrase, the wallet is saved but sign-in is NOT finished — the
+   * screen calls onCreateConfirmed once the backup offer is done or skipped.
    */
   onCreate: (protection: CreateProtection) => Promise<CreateResult>;
-  /** create mode: finish sign-in after a returned recovery phrase is acknowledged. */
+  /** create mode: finish sign-in after the optional backup step. */
   onCreateConfirmed?: () => Promise<void>;
   /**
    * legacy-recovered and biometric-unlock modes: adopt `secret` (a BIP-39
@@ -434,10 +434,13 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
     // phrase box and two password fields — several hundred pixels below the
     // button that produced it, so pressing it looked like nothing happened.
     const [biometricError, setBiometricError] = useState<string | null>(null);
-    // Set between "wallet created with biometrics" and "user has confirmed
-    // they wrote the phrase down". Sign-in is deliberately parked until then.
+    // Set between "new wallet saved" and "backup offer done or skipped".
+    // Sign-in is parked until then; the wallet itself is already saved.
     const [recoveryPhrase, setRecoveryPhrase] = useState<string | null>(null);
-    const [phraseAcknowledged, setPhraseAcknowledged] = useState(false);
+    const [backupStage, setBackupStage] = useState<"offer" | "words" | "check">("offer");
+    // Biometric-only wallets get the sharper line: the phone is the only key.
+    const [phraseDeviceOnly, setPhraseDeviceOnly] = useState(false);
+    const [createdAddress, setCreatedAddress] = useState<string | null>(null);
     // biometric-unlock fallback: a phrase or private key typed in to recover a
     // wallet whose device wrap key is gone.
     const [restoreSecret, setRestoreSecret] = useState("");
@@ -486,7 +489,8 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
       reset();
       setDeviceWrapKeyReady(null);
       setRecoveryPhrase(null);
-      setPhraseAcknowledged(false);
+      setBackupStage("offer");
+      setCreatedAddress(null);
       setResetStage("hidden");
       setResetConfirmText("");
       setResetAcknowledged(false);
@@ -587,11 +591,61 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
       setLiveAssessment(password ? assessLocal(password) : null);
     }, [password, mode, protectionChoice]);
 
+    /**
+     * The backup offer is shown once a new wallet is saved. Whatever ends it —
+     * done, skipped, or the sheet swiped away — finishes sign-in; a completed
+     * backup is recorded first so the reminder never asks again.
+     */
+    const finishCreate = useCallback(
+      async (backedUp: boolean) => {
+        if (busy || !onCreateConfirmed) return;
+        setBusy(true);
+        setError(null);
+        try {
+          if (backedUp && createdAddress && request?.mode === "create") {
+            // Never throws; a failed write only means a later reminder.
+            await markBackedUp(request.supabaseUserId, createdAddress);
+          }
+          await onCreateConfirmed();
+          setRecoveryPhrase(null);
+          setBackupStage("offer");
+          setCreatedAddress(null);
+          reset();
+        } catch (e: any) {
+          setError(e?.message || t("walletSetup.couldNotFinishSignIn"));
+        } finally {
+          setBusy(false);
+        }
+      },
+      [busy, onCreateConfirmed, createdAddress, request, reset, t]
+    );
+
     const handleClose = useCallback(() => {
       if (busy) return;
+      // Closing the backup offer is a skip, not a cancel: the wallet is
+      // already saved. After a failed finish it closes for real, so a
+      // backend outage cannot trap the user here.
+      if (recoveryPhrase && onCreateConfirmed && !error) {
+        void finishCreate(false);
+        return;
+      }
       reset();
       onClose();
-    }, [busy, onClose, reset]);
+    }, [busy, onClose, reset, recoveryPhrase, onCreateConfirmed, error, finishCreate]);
+
+    /** Hand a freshly saved wallet's phrase to the backup offer. */
+    const offerBackup = useCallback(
+      (result: CreateResult, deviceOnly: boolean): boolean => {
+        const phrase = result?.recoveryPhrase;
+        if (!phrase || !onCreateConfirmed) return false;
+        setRecoveryPhrase(phrase);
+        setCreatedAddress(result?.address ?? null);
+        setPhraseDeviceOnly(deviceOnly);
+        setBackupStage("offer");
+        return true;
+      },
+      [onCreateConfirmed]
+    );
 
     const canSubmitPassword = useMemo(() => {
       if (password.length < MIN_PASSWORD_LENGTH) return false;
@@ -701,14 +755,15 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
           );
           return;
         }
-        await onCreate({ kind: "password", password });
+        const result = await onCreate({ kind: "password", password });
+        if (offerBackup(result, false)) return;
         reset();
       } catch (e: any) {
         setError(e?.message || t("walletSetup.couldNotSecure"));
       } finally {
         setBusy(false);
       }
-    }, [canSubmitPassword, busy, password, onCreate, reset]);
+    }, [canSubmitPassword, busy, password, onCreate, reset, offerBackup]);
 
     const handleCreateWithBiometric = useCallback(async () => {
       if (busy) return;
@@ -716,48 +771,14 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
       setError(null);
       try {
         const result = await onCreate({ kind: "biometric" });
-        const phrase = result?.recoveryPhrase;
-        // Sign-in is NOT finished yet when a phrase came back — the wallet is
-        // saved, but the only copy of its key that survives this install is
-        // the phrase, so it gets shown before anything else happens.
-        if (phrase && onCreateConfirmed) {
-          setRecoveryPhrase(phrase);
-          setPhraseAcknowledged(false);
-          return;
-        }
+        if (offerBackup(result, true)) return;
         reset();
       } catch (e: any) {
         setError(e?.message || t("walletSetup.couldNotSecure"));
       } finally {
         setBusy(false);
       }
-    }, [busy, onCreate, onCreateConfirmed, reset]);
-
-    const handlePhraseAcknowledged = useCallback(async () => {
-      if (busy || !phraseAcknowledged || !onCreateConfirmed) return;
-      setBusy(true);
-      setError(null);
-      try {
-        await onCreateConfirmed();
-        setRecoveryPhrase(null);
-        setPhraseAcknowledged(false);
-        reset();
-      } catch (e: any) {
-        setError(e?.message || t("walletSetup.couldNotFinishSignIn"));
-      } finally {
-        setBusy(false);
-      }
-    }, [busy, phraseAcknowledged, onCreateConfirmed, reset]);
-
-    const handleCopyPhrase = useCallback(async () => {
-      if (!recoveryPhrase) return;
-      try {
-        await copySecretToClipboard(recoveryPhrase);
-        setError(null);
-      } catch {
-        setError(t("walletSetup.couldNotCopy"));
-      }
-    }, [recoveryPhrase]);
+    }, [busy, onCreate, offerBackup, reset]);
 
     /**
      * A recovery phrase or a raw private key; deriveFromSecret takes either.
@@ -863,7 +884,11 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
 
     const title =
       recoveryPhrase
-        ? t("walletSetup.savePhraseTitle")
+        ? backupStage === "offer"
+          ? t("walletBackup.offerTitle")
+          : backupStage === "words"
+          ? t("walletBackup.wordsTitle")
+          : t("walletBackup.checkTitle")
         : resetStage === "review"
         ? t("walletSetup.startOverTitle")
         : mode === "create" && request?.mode === "create" && request.replacing
@@ -891,12 +916,8 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
         presentation="bottom"
         blurIntensity={50}
         maxHeight="92%"
-        // Dismissible throughout. The recovery-phrase step used to be sealed
-        // shut, because the wallet was already written by the time it showed
-        // and leaving would have stranded a key nobody had a copy of — but
-        // nothing is written until Continue now, so backing out simply means
-        // no wallet was created. Sealing it would only trap a user whose
-        // Continue keeps failing on a backend outage.
+        // Dismissible throughout. On the backup offer the wallet is already
+        // saved, and handleClose turns a dismiss into "Skip for now".
         dismissible={!busy}
       >
         <ScrollView
@@ -906,78 +927,65 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
         >
           <Text style={[authText.title, { marginBottom: 8 }]}>{title}</Text>
 
-          {/* Biometric protection wraps the seed with a key that exists only
-              in this install's SecureStore. Uninstall the app, lose the phone,
-              or restore an Android backup without the keystore and that key is
-              gone — and with it the wallet, the DeHub account behind it, and
-              anything either one holds. dehub.io cannot help: it never had the
-              key. So the phrase is shown before the wallet is written at all,
-              not buried in a settings screen the user may never open. Backing
-              out here creates nothing. */}
-          {recoveryPhrase && (
+          {/* The backup offer, shown once a new wallet is saved. Optional:
+              "Skip for now" finishes sign-in straight away. A biometric-only
+              wallet gets the blunter line, because its wrap key never leaves
+              this phone and the words are the only other way back in. */}
+          {recoveryPhrase && backupStage === "offer" && (
             <View>
-              <Text style={[authText.body, { marginBottom: 16 }]}>
-                <Trans
-                  i18nKey="walletSetup.phraseExplainer"
-                  components={{ em: <Text style={authText.emphasis} /> }}
-                />
+              <Text style={[authText.body, { marginBottom: 20 }]}>
+                {phraseDeviceOnly ? t("walletBackup.offerBodyDeviceOnly") : t("walletBackup.offerBody")}
               </Text>
-
-              <View style={styles.phraseCard}>
-                {recoveryPhrase.split(/\s+/).map((word, i) => (
-                  <View key={`${i}-${word}`} style={styles.phraseWord}>
-                    <Text style={styles.phraseIndex}>{i + 1}</Text>
-                    <Text style={styles.phraseText}>{word}</Text>
-                  </View>
-                ))}
-              </View>
-
-              <AuthButton
-                icon="copy-outline"
-                label={t("walletSetup.copyPhrase")}
-                onPress={handleCopyPhrase}
-                disabled={busy}
-                style={{ marginTop: 12 }}
-              />
-
-              <Text style={[authText.caption, { marginTop: 12 }]}>
-                {t("walletSetup.writeThemDown")}
-              </Text>
-
-              <TouchableOpacity
-                onPress={() => setPhraseAcknowledged((v) => !v)}
-                activeOpacity={0.7}
-                accessibilityRole="checkbox"
-                accessibilityState={{ checked: phraseAcknowledged }}
-                accessibilityLabel={t("walletSetup.savedPhraseA11y")}
-                style={styles.ackRow}
-              >
-                <Ionicons
-                  name={phraseAcknowledged ? "checkbox" : "square-outline"}
-                  size={22}
-                  color={phraseAcknowledged ? authColors.label : authColors.muted}
-                />
-                <Text style={[authText.body, { flex: 1, color: authColors.label }]}>
-                  {t("walletSetup.savedTwelveWords")}
-                </Text>
-              </TouchableOpacity>
-
-              <AuthErrorNotice message={error} style={{ marginTop: 12 }} />
-
+              <AuthErrorNotice message={error} style={{ marginBottom: 12 }} />
               <AuthButton
                 variant="primary"
-                label={t("walletSetup.createMyWallet")}
-                onPress={handlePhraseAcknowledged}
-                disabled={!phraseAcknowledged}
-                loading={busy}
-                style={{ marginTop: 16 }}
+                icon="shield-checkmark-outline"
+                label={t("walletBackup.saveNow")}
+                onPress={() => {
+                  setError(null);
+                  setBackupStage("words");
+                }}
+                disabled={busy}
               />
-              {busy && (
-                <Text style={[authText.caption, { marginTop: 12, textAlign: "center" }]}>
-                  {t("walletSetup.creatingWallet")}
-                </Text>
-              )}
+              <AuthTextButton
+                label={t("walletBackup.skipForNow")}
+                onPress={() => void finishCreate(false)}
+                disabled={busy}
+                style={{ marginTop: 8 }}
+              />
             </View>
+          )}
+
+          {recoveryPhrase && backupStage === "words" && (
+            <View>
+              <RecoveryPhraseGrid phrase={recoveryPhrase} disabled={busy} />
+              <RecoveryPhraseWarnings />
+              <AuthButton
+                variant="primary"
+                label={t("walletBackup.wroteThemDown")}
+                onPress={() => setBackupStage("check")}
+                disabled={busy}
+                style={{ marginTop: 20 }}
+              />
+            </View>
+          )}
+
+          {recoveryPhrase && backupStage === "check" && (
+            <View>
+              <RecoveryPhraseCheck
+                phrase={recoveryPhrase}
+                onPassed={() => void finishCreate(true)}
+                onSkip={() => void finishCreate(true)}
+                busy={busy}
+              />
+              <AuthErrorNotice message={error} style={{ marginTop: 12 }} />
+            </View>
+          )}
+
+          {recoveryPhrase && busy && (
+            <Text style={[authText.caption, { marginTop: 12, textAlign: "center" }]}>
+              {t("walletBackup.signingIn")}
+            </Text>
           )}
 
           {mode === "create" && !recoveryPhrase && biometricAvailable === null && (
@@ -1531,12 +1539,14 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
             </View>
           )}
 
-          <AuthTextButton
-            label={t("common.cancel")}
-            onPress={handleClose}
-            disabled={busy}
-            style={{ marginTop: 16 }}
-          />
+          {!recoveryPhrase && (
+            <AuthTextButton
+              label={t("common.cancel")}
+              onPress={handleClose}
+              disabled={busy}
+              style={{ marginTop: 16 }}
+            />
+          )}
         </ScrollView>
       </GlassModal>
     );
@@ -1581,37 +1591,6 @@ const styles = StyleSheet.create({
     backgroundColor: authColors.field,
     borderWidth: 1,
     borderColor: authColors.fieldBorder,
-  },
-  // Two columns of numbered words: numbering is what makes a phrase
-  // transcribable without losing your place, and what makes a wrong order
-  // obvious when it is typed back in.
-  phraseCard: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    padding: 12,
-    borderRadius: AUTH_RADIUS,
-    backgroundColor: authColors.field,
-    borderWidth: 1,
-    borderColor: authColors.fieldBorder,
-  },
-  phraseWord: {
-    width: "50%",
-    flexDirection: "row",
-    alignItems: "baseline",
-    gap: 8,
-    paddingVertical: 6,
-    paddingHorizontal: 4,
-  },
-  phraseIndex: {
-    color: authColors.subtle,
-    fontSize: 12,
-    minWidth: 16,
-    textAlign: "right",
-  },
-  phraseText: {
-    color: authColors.label,
-    fontSize: 15,
-    fontWeight: "600",
   },
   ackRow: {
     flexDirection: "row",

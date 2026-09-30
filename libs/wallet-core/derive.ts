@@ -68,3 +68,36 @@ export function deriveFromSecret(rawSecret: string): DerivedWallet {
   const wallet = ethers.Wallet.fromMnemonic(mnemonic, ETH_PATH);
   return { secret: mnemonic, ethAddress: wallet.address, ethPrivateKey: wallet.privateKey };
 }
+
+/**
+ * What the one Import field holds: a raw private key, a 12/24-word recovery
+ * phrase, or neither. The phrase check is ethers' wordlist + checksum test,
+ * which is cheap enough for every keystroke — isValidMnemonic derives a
+ * whole wallet to answer the same question.
+ */
+export function importSecretKind(input: string): "key" | "phrase" | null {
+  const value = (input ?? "").trim();
+  if (!value) return null;
+  if (isRawPrivateKey(value)) return "key";
+  const phrase = normalizePhrase(value);
+  const words = phrase.split(" ").length;
+  if ((words === 12 || words === 24) && ethers.utils.isValidMnemonic(phrase)) return "phrase";
+  return null;
+}
+
+/**
+ * The 0x private key an Import field's contents stand for. A phrase is
+ * derived on the same path as a DeHub-created wallet, so importing its words
+ * lands on the same address. Throws on anything else.
+ */
+export function privateKeyFromImportSecret(input: string): string {
+  const kind = importSecretKind(input);
+  if (kind === "key") {
+    const key = input.trim();
+    return key.startsWith("0x") ? key : `0x${key}`;
+  }
+  if (kind === "phrase" && isValidMnemonic(input)) {
+    return deriveFromSecret(input).ethPrivateKey;
+  }
+  throw new Error("Invalid recovery phrase or private key");
+}
