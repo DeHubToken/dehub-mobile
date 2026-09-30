@@ -259,14 +259,15 @@ const StylePicker: React.FC<StylePickerProps> = memo(({ style: activeStyle, onSt
             paddingHorizontal: 10,
             paddingVertical: 5,
             borderRadius: 8,
-            backgroundColor: isActive ? "rgba(255,255,255,0.12)" : "transparent",
+            // Faint dark backing so labels stay readable over white-heavy themes.
+            backgroundColor: isActive ? "rgba(255,255,255,0.18)" : "rgba(0,0,0,0.28)",
             borderWidth: isActive ? 1 : 0,
             borderColor: "rgba(255,255,255,0.15)",
           }}
         >
           <Text
             style={{
-              color: isActive ? "rgba(255,255,255,0.9)" : "rgba(255,255,255,0.4)",
+              color: isActive ? "rgba(255,255,255,0.95)" : "rgba(255,255,255,0.7)",
               fontSize: 10,
               fontWeight: isActive ? "600" : "400",
             }}
@@ -985,7 +986,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
     </ScrubSurface>
   );
 
-  /* Bounty stays at the top left; volume, pop-out and fullscreen sit on the
+  /* Bounty stays at the top left; colour, pop-out and fullscreen sit on the
      right, matching the web card. Everything here floats over the visualizer,
      and the wrappers are `box-none` so a touch that misses a control lands on
      the artwork underneath — a sideways drag scrubs, a flick scrolls the feed.
@@ -997,33 +998,10 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
       {topLeftAction}
       <View pointerEvents="box-none" className="flex-row items-center gap-2 ml-auto">
         <View
-          className="flex-row items-center gap-1.5 rounded-xl bg-white/10 px-2"
-          style={{ height: CONTROL_SIZE, borderWidth: 1, borderColor: "rgba(255,255,255,0.12)" }}
+          className="rounded-xl bg-white/10"
+          style={{ height: CONTROL_SIZE, justifyContent: "center", borderWidth: 1, borderColor: "rgba(255,255,255,0.12)" }}
         >
-          <TouchableOpacity
-            onPress={handleToggleMute}
-            activeOpacity={0.7}
-            hitSlop={{ top: 8, bottom: 8, left: 8, right: 4 }}
-            accessibilityRole="button"
-            accessibilityLabel={isEffectivelyMuted ? t("common.unmute") : t("common.mute")}
-          >
-            <Icon name={isEffectivelyMuted ? "VolumeX" : "Volume2"} size={14} color="rgba(255,255,255,0.85)" />
-          </TouchableOpacity>
-          <View style={{ width: 72, height: CONTROL_SIZE, justifyContent: "center" }}>
-            <PagerSafe>
-            <Slider
-              style={{ width: "100%" }}
-              minimumValue={0}
-              maximumValue={1}
-              step={0.01}
-              value={isEffectivelyMuted ? 0 : volume}
-              onValueChange={handleVolumeChange}
-              minimumTrackTintColor="rgba(255,255,255,0.85)"
-              maximumTrackTintColor="rgba(255,255,255,0.25)"
-              thumbTintColor="#ffffff"
-            />
-            </PagerSafe>
-          </View>
+          <HueSlider hue={hue} onHueChange={handleHueChange} />
         </View>
 
         <TouchableOpacity
@@ -1071,7 +1049,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
         </View>
       </View>
 
-      {/* Play sits with the colour and animation pickers rather than alone in
+      {/* Play sits with volume and the animation picker rather than alone in
           the middle of the card, so every control for the track is in one
           place along the bottom — and all three are CONTROL_SIZE tall, which
           they were not: 36 against 32 against 24 read as three sizes on a
@@ -1093,7 +1071,35 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
           )}
         </TouchableOpacity>
 
-        <HueSlider hue={hue} onHueChange={handleHueChange} />
+        <View
+          className="flex-row items-center gap-1.5 rounded-xl bg-white/10 px-2"
+          style={{ height: CONTROL_SIZE, borderWidth: 1, borderColor: "rgba(255,255,255,0.12)" }}
+        >
+          <TouchableOpacity
+            onPress={handleToggleMute}
+            activeOpacity={0.7}
+            hitSlop={{ top: 8, bottom: 8, left: 8, right: 4 }}
+            accessibilityRole="button"
+            accessibilityLabel={isEffectivelyMuted ? t("common.unmute") : t("common.mute")}
+          >
+            <Icon name={isEffectivelyMuted ? "VolumeX" : "Volume2"} size={14} color="rgba(255,255,255,0.85)" />
+          </TouchableOpacity>
+          <View style={{ width: 72, height: CONTROL_SIZE, justifyContent: "center" }}>
+            <PagerSafe>
+            <Slider
+              style={{ width: "100%" }}
+              minimumValue={0}
+              maximumValue={1}
+              step={0.01}
+              value={isEffectivelyMuted ? 0 : volume}
+              onValueChange={handleVolumeChange}
+              minimumTrackTintColor="rgba(255,255,255,0.85)"
+              maximumTrackTintColor="rgba(255,255,255,0.25)"
+              thumbTintColor="#ffffff"
+            />
+            </PagerSafe>
+          </View>
+        </View>
 
         <View className="flex-1">
           <StylePicker style={vizStyle} onStyleChange={handleStyleChange} />
