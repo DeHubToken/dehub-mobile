@@ -37,10 +37,10 @@ interface ProfileLinksPillProps {
 }
 
 /**
- * One "Links" pill in place of a row of social icons. The icons used to share
- * the name's row, so every link a creator added took width from the name and a
- * long display name was cut to one line beside them. The pill sits at the
- * bottom right of the header instead and opens the full list.
+ * A few bare social icons in the header's bottom right corner. The icons used
+ * to share the name's row, so every link a creator added took width from the
+ * name and a long display name was cut to one line beside them. Tapping them
+ * opens the full list.
  */
 const ProfileLinksPill: React.FC<ProfileLinksPillProps> = ({ source }) => {
   const { t } = useTranslation();
@@ -63,27 +63,20 @@ const ProfileLinksPill: React.FC<ProfileLinksPillProps> = ({ source }) => {
 
   return (
     <>
+      {/* Just the icons, no pill and no label, so it sits quietly in the
+          corner. Tapping still opens the full list. */}
       <TouchableOpacity
         onPress={() => setVisible(true)}
-        activeOpacity={0.7}
+        activeOpacity={0.6}
         accessibilityRole="button"
         accessibilityLabel={label}
-        hitSlop={{ top: 8, bottom: 8, left: 4, right: 4 }}
-        className="flex-row items-center rounded-full border border-white/15 bg-white/10"
-        style={{ height: 28, paddingLeft: 5, paddingRight: 11 }}
+        hitSlop={{ top: 10, bottom: 10, left: 8, right: 8 }}
+        className="flex-row items-center"
+        style={{ gap: 6 }}
       >
-        <View className="flex-row" style={{ marginRight: 6 }}>
-          {links.slice(0, 3).map((l, i) => (
-            <View
-              key={l.key}
-              className="items-center justify-center rounded-full bg-theme-neutrals-800"
-              style={{ width: 18, height: 18, marginLeft: i === 0 ? 0 : -5, borderWidth: 1.5, borderColor: "rgba(0,0,0,0.55)" }}
-            >
-              <SvgXml xml={tint(l.svg)} width={9} height={9} />
-            </View>
-          ))}
-        </View>
-        <Text className="text-white text-xs font-semibold">{label}</Text>
+        {links.slice(0, 3).map((l) => (
+          <SvgXml key={l.key} xml={tint(l.svg)} width={12} height={12} />
+        ))}
       </TouchableOpacity>
 
       <GlassModal visible={visible} onClose={() => setVisible(false)} presentation="bottom" scrollable>

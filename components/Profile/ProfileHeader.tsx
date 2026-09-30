@@ -514,7 +514,7 @@ const ProfileHeader = () => {
             {/* DeHub followers plus the creator's own figures for their linked
                 socials. Absent until a social carries a count. */}
             <TotalReachPill source={user} followers={followersCount} />
-            <View style={{ marginLeft: "auto" }}>
+            <View style={{ marginLeft: "auto", alignSelf: "flex-end" }}>
               <ProfileLinksPill source={user} />
             </View>
           </View>

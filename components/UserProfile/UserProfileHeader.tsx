@@ -402,7 +402,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
                   followers={followersItem.value}
                 />
               )}
-              <View style={{ marginLeft: "auto" }}>
+              <View style={{ marginLeft: "auto", alignSelf: "flex-end" }}>
                 <ProfileLinksPill source={socials as Record<string, unknown> | undefined} />
               </View>
             </View>
