@@ -58,6 +58,12 @@ export interface AIChatMessage {
   toolType?: string;
   /** Set on a failed turn so the bubble can offer a retry. */
   isError?: boolean;
+  /**
+   * Creator template this turn was sent under (`libs/creatorTemplates`).
+   * `content` holds only the subject the person typed; the scaffold is applied
+   * when the turn is routed, so a retry routes it the same way.
+   */
+  templateId?: string;
 }
 
 export interface AIPostContext {

@@ -26,6 +26,7 @@ import {
   Image,
   ActivityIndicator,
   StyleSheet,
+  TouchableOpacity,
 } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -41,6 +42,9 @@ import AssistantSettingsSheet, {
   type AssistantSettings,
 } from '../components/Assistant/AssistantSettingsSheet';
 import AssistantStyleSheet from '../components/Assistant/AssistantStyleSheet';
+import TemplatesSheet from '../components/Assistant/TemplatesSheet';
+import Icon from '../components/ui/Icon';
+import { applyTemplate, getTemplate, type CreatorTemplate } from '../libs/creatorTemplates';
 import MusicConfirmSheet, { type MusicParams } from '../components/Assistant/MusicConfirmSheet';
 import PosterConfigSheet, { type PosterConfig } from '../components/Assistant/PosterConfigSheet';
 import { ImageGenerationSkeleton } from '../components/Assistant/GenerationSkeleton';
@@ -79,6 +83,7 @@ import {
   DEHUB_BRAND_IMAGE_MODEL,
   IMAGE_MODEL_OPTIONS,
   VIDEO_MODELS,
+  type VideoModelKey,
   VIDEO_MODEL_OPTIONS,
   getToolsByCategory,
   imageModelSupportsEdit,
@@ -233,6 +238,10 @@ function AIChatScreenInner() {
   const [toolCategory, setToolCategory] = useState<AiToolCategory>('music');
   const [selectedToolId, setSelectedToolId] = useState<string>('minimax-music');
   const [imageModelOverride, setImageModelOverride] = useState<string | null>(null);
+  /** The creator template armed on the composer, if any. */
+  const [templateId, setTemplateId] = useState<string | null>(null);
+  const [templatesVisible, setTemplatesVisible] = useState(false);
+  const activeTemplate = getTemplate(templateId);
 
   /** Timers for in-flight polls, cleared on unmount. */
   const pollTimers = useRef<Record<string, ReturnType<typeof setInterval>>>({});
@@ -964,7 +973,36 @@ function AIChatScreenInner() {
       history: AIChatMessage[],
       sourceImage: string | undefined,
       hadAttachment: boolean,
+      turnTemplateId?: string,
     ) => {
+      /*
+       * A template decides the flow itself: its scaffold is written for one
+       * model, so it skips the keyword routing below and goes straight to that
+       * model's paywall.
+       */
+      const tpl = getTemplate(turnTemplateId);
+      if (tpl) {
+        if (tpl.requiresImage && !sourceImage) {
+          toastError(t('creator.presetNeedsImage', { name: t(tpl.nameKey) }));
+          return;
+        }
+        const prompt = applyTemplate(tpl, text);
+        setPendingPrompt(prompt);
+        setPendingSourceImage(sourceImage);
+        if (tpl.kind === 'video') {
+          if (tpl.model && tpl.model in VIDEO_MODELS) {
+            updateSettings({ videoModel: tpl.model as VideoModelKey });
+          }
+          setVideoPaywallVisible(true);
+        } else {
+          setPendingLogoImage(undefined);
+          setPendingPosterConfig(null);
+          setImageModelOverride(tpl.model ?? null);
+          setImagePaywallVisible(true);
+        }
+        return;
+      }
+
       /* Logo requests: show the bundled asset rather than paying to redraw it. */
       const wantsBrand = isDeHubBrandedImageRequest(text);
       const wantsLogo = wantsBrand || requiresLogoAsset(text);
@@ -1032,18 +1070,21 @@ function AIChatScreenInner() {
 
       await doSendChat(text, history);
     },
-    [saveMessage, scrollToEnd, settings.videoModel, doSendChat],
+    [saveMessage, scrollToEnd, settings.videoModel, doSendChat, updateSettings],
   );
 
   const handleSend = useCallback(async () => {
-    const text = input.trim();
-    if ((!text && !attachedImage) || isLoading) return;
+    const typed = input.trim();
+    if ((!typed && !attachedImage && !activeTemplate) || isLoading) return;
+    // An empty send under a template runs its example subject, like web's tile.
+    const text = typed || (activeTemplate && !attachedImage ? activeTemplate.sample : typed);
 
     mentions.reset();
     const userMessage: AIChatMessage = {
       role: 'user',
       content: text,
       ...(attachedImage ? { attachedImage } : {}),
+      ...(activeTemplate ? { templateId: activeTemplate.id } : {}),
     };
     const history = [...messages, userMessage];
     await saveMessage(history);
@@ -1063,8 +1104,8 @@ function AIChatScreenInner() {
     }
     setAttachedImage(null);
 
-    await routePrompt(text, history, sourceImage, hadAttachment);
-  }, [input, attachedImage, isLoading, messages, mentions, saveMessage, routePrompt]);
+    await routePrompt(text, history, sourceImage, hadAttachment, activeTemplate?.id);
+  }, [input, attachedImage, isLoading, messages, mentions, saveMessage, routePrompt, activeTemplate]);
 
   /** Drop the failed turn and re-run the last thing the user asked for. */
   const handleRetry = useCallback(async () => {
@@ -1082,7 +1123,13 @@ function AIChatScreenInner() {
         // Retry without it rather than refusing outright.
       }
     }
-    await routePrompt(lastUser.content, trimmed, sourceImage, !!lastUser.attachedImage);
+    await routePrompt(
+      lastUser.content,
+      trimmed,
+      sourceImage,
+      !!lastUser.attachedImage,
+      lastUser.templateId,
+    );
   }, [saveMessage, routePrompt]);
 
   /* ── Paywall confirmations ───────────────────────────────────────────── */
@@ -1302,6 +1349,9 @@ function AIChatScreenInner() {
         case 'edit-image':
           handleAttach();
           break;
+        case 'templates':
+          setTemplatesVisible(true);
+          break;
         case 'builder':
           // Web links to dehub.io/builder. There is no builder screen in this app
           // yet, so the composer seeds the request instead of dead-ending.
@@ -1310,6 +1360,17 @@ function AIChatScreenInner() {
       }
     },
     [handleAttach],
+  );
+
+  /** Arming a template also adopts the model it was tuned for, as on web. */
+  const handlePickTemplate = useCallback(
+    (tpl: CreatorTemplate) => {
+      setTemplateId(tpl.id);
+      if (tpl.kind === 'video' && tpl.model && tpl.model in VIDEO_MODELS) {
+        updateSettings({ videoModel: tpl.model as VideoModelKey });
+      }
+    },
+    [updateSettings],
   );
 
   const handleNewChat = useCallback(() => {
@@ -1475,6 +1536,24 @@ function AIChatScreenInner() {
           onSelect={mentions.selectMention}
           loading={mentions.loading}
         />
+        {activeTemplate && (
+          <View style={s.templatePill}>
+            <Text style={s.templatePillText} numberOfLines={2}>
+              {t('creator.presetPlaceholder', {
+                name: t(activeTemplate.nameKey),
+                sample: activeTemplate.sample,
+              })}
+            </Text>
+            <TouchableOpacity
+              onPress={() => setTemplateId(null)}
+              hitSlop={8}
+              accessibilityRole="button"
+              accessibilityLabel={t('creator.clearPreset')}
+            >
+              <Icon name="X" size={16} color="#A1A1AA" />
+            </TouchableOpacity>
+          </View>
+        )}
         <AssistantInputBar
           value={input}
           onChangeText={mentions.handleChangeText}
@@ -1510,6 +1589,13 @@ function AIChatScreenInner() {
         onClose={() => setSettingsVisible(false)}
         settings={settings}
         onChange={updateSettings}
+      />
+
+      <TemplatesSheet
+        visible={templatesVisible}
+        onClose={() => setTemplatesVisible(false)}
+        activeId={templateId}
+        onSelect={handlePickTemplate}
       />
 
       <AssistantStyleSheet
@@ -1587,6 +1673,20 @@ function AIChatScreenInner() {
 }
 
 const s = StyleSheet.create({
+  templatePill: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+    marginHorizontal: 16,
+    marginBottom: 8,
+    paddingHorizontal: 14,
+    paddingVertical: 10,
+    borderRadius: 14,
+    backgroundColor: 'rgba(255,255,255,0.08)',
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.14)',
+  },
+  templatePillText: { flex: 1, color: '#F4F4F5', fontSize: 13, lineHeight: 18 },
   root: {
     flex: 1,
     backgroundColor: '#010305',
