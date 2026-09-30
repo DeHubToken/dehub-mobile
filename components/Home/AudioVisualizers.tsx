@@ -69,10 +69,11 @@ import {
 
 // Older binaries still receive updates on this runtime. Neither Skia nor its
 // canvas adapter may be imported until the native module is known to exist.
-const skiaRenderer = optionalSkia(() => ({
-  ...require("@shopify/react-native-skia") as typeof import("@shopify/react-native-skia"),
-  SkiaCtx2D: (require("./skia-ctx2d") as typeof import("./skia-ctx2d")).SkiaCtx2D,
-}));
+const skiaRenderer = optionalSkia(() => {
+  const { Canvas, Picture, createPicture } = require("@shopify/react-native-skia") as typeof import("@shopify/react-native-skia");
+  const { SkiaCtx2D } = require("./skia-ctx2d") as typeof import("./skia-ctx2d");
+  return { Canvas, Picture, createPicture, SkiaCtx2D };
+});
 
 /* ─── Style list ────────────────────────────────────────────────────────── */
 
