@@ -30,20 +30,27 @@ const MEASURE_MAX_PX = 512;
 const MIN_RATIO = 9 / 16;
 const MAX_RATIO = 2.4;
 
+/**
+ * Floor for the post page, which shows a clip at its real shape however thin
+ * it is. Still bounded so a bad measurement can't collapse the player to a line.
+ */
+export const THIN_MIN_RATIO = 1 / 5;
+
 /** Every video falls back to this until something better is known. */
 export const DEFAULT_ASPECT = 16 / 9;
 
-export function clampAspect(ratio: number): number {
+export function clampAspect(ratio: number, minRatio: number = MIN_RATIO): number {
   if (!Number.isFinite(ratio) || ratio <= 0) return DEFAULT_ASPECT;
-  return Math.min(MAX_RATIO, Math.max(MIN_RATIO, ratio));
+  return Math.min(MAX_RATIO, Math.max(minRatio, ratio));
 }
 
 /**
  * @param uri thumbnail to measure — pass undefined to keep the default frame
  * @param key the post the thumbnail belongs to
+ * @param minRatio narrowest shape allowed; defaults to 9:16
  * @returns a clamped width/height ratio, never null: 16:9 until measured
  */
-export function useMediaAspect(uri?: string | null, key?: unknown): number {
+export function useMediaAspect(uri?: string | null, key?: unknown, minRatio: number = MIN_RATIO): number {
   // A measurement carries the URL it was taken from, and is read straight from
   // the cache otherwise. A card handed another clip is the right size in its
   // first render, not after an effect has caught up, and a late measurement
@@ -89,5 +96,5 @@ export function useMediaAspect(uri?: string | null, key?: unknown): number {
     };
   }, [uri]);
 
-  return ratio ? clampAspect(ratio) : DEFAULT_ASPECT;
+  return ratio ? clampAspect(ratio, minRatio) : DEFAULT_ASPECT;
 }

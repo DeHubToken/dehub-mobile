@@ -2212,7 +2212,9 @@
     "revealKey": "Kulcs megjelenítése",
     "revealSignIn": "Jelentkezzen be újra a kulcs megtekintéséhez",
     "revealFailed": "Nem sikerült megjeleníteni a kulcsot. Próbálja újra.",
-    "signInAgain": "Újra bejelentkezés"
+    "signInAgain": "Újra bejelentkezés",
+    "createSignIn": "Jelentkezzen be újra az ügynök létrehozásához",
+    "checkConnection": "Ellenőrizze a kapcsolatot, és próbálja újra."
   },
   "hero": {
     "title": "Üdvözöljük",

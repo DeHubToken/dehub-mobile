@@ -2212,7 +2212,9 @@
     "revealKey": "Reveal key",
     "revealSignIn": "Sign in again to see this key",
     "revealFailed": "Couldn't reveal the key. Try again.",
-    "signInAgain": "Sign in again"
+    "signInAgain": "Sign in again",
+    "createSignIn": "Sign in again to create an agent",
+    "checkConnection": "Check your connection and try again."
   },
   "hero": {
     "title": "Welcome To",

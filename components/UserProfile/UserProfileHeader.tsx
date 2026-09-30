@@ -4,16 +4,13 @@ import { openBadgeShowcase } from "../../libs/badgeShowcase";
 import SmartImage from "../common/SmartImage";
 import { storageImage } from "../../libs/cdnImage";
 import { LinearGradient } from "expo-linear-gradient";
-import { SvgXml } from "react-native-svg";
 import Avatar from "../common/Avatar";
 import Icon from "../ui/Icon";
 import { copyToClipboard, getBadgeOpticalStyle } from "../../libs";
 import { toastSuccess } from "../../libs/toast";
 import { ensProfileUrl } from "../../libs/ens-handle";
-import { getSocialLink, openExternalLink } from "../../libs/links.utils";
 import { useTranslation } from "../../hooks/useTranslation";
 import { TranslateButton } from "../ui/TranslateButton";
-import FakeGlass from "../ui/FakeGlass";
 import MutualFollowers from "./MutualFollowers";
 import StreamerLevelCard from "../Live/StreamerLevelCard";
 import BadgePatronChip from "../common/BadgePatronChip";
@@ -21,29 +18,9 @@ import { useTranslation as useI18n } from "react-i18next";
 import { formatCompactNumber } from "../../libs/numbers.util";
 import type { FollowListItem } from "../../services/user.service";
 import TotalReachPill from "../Profile/TotalReachPill";
+import ProfileLinksPill from "../Profile/ProfileLinksPill";
 import { useAppTheme } from "../../context/ThemeContext";
 import { MINIMAL_HAIRLINE } from "../../theme/minimal";
-
-const SOCIAL_SVGS: Record<string, string> = {
-  twitter: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"><path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"/></svg>`,
-  telegram: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>`,
-  instagram: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>`,
-  discord: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.618-1.25.077.077 0 0 0-.079-.037A19.74 19.74 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.058a.082.082 0 0 0 .031.056c2.053 1.508 4.041 2.423 5.993 3.03a.078.078 0 0 0 .084-.028c.462-.63.873-1.295 1.226-1.994a.076.076 0 0 0-.042-.106 13.11 13.11 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.009c.12.1.246.198.373.292a.077.077 0 0 1-.006.127 12.3 12.3 0 0 1-1.873.892.076.076 0 0 0-.041.107c.36.698.772 1.363 1.225 1.993a.076.076 0 0 0 .084.028c1.961-.607 3.95-1.522 6.002-3.029a.077.077 0 0 0 .032-.055c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.086-2.157-2.42 0-1.333.956-2.418 2.157-2.418 1.21 0 2.176 1.095 2.157 2.419 0 1.333-.956 2.419-2.157 2.419zm7.975 0c-1.183 0-2.157-1.086-2.157-2.42 0-1.333.955-2.418 2.157-2.418 1.21 0 2.176 1.095 2.157 2.419 0 1.333-.946 2.419-2.157 2.419z"/></svg>`,
-  youtube: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>`,
-  tiktok: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>`,
-  facebook: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>`,
-};
-
-const SOCIAL_HOSTS: Record<string, string> = {
-  twitter: "x.com",
-  telegram: "t.me",
-  instagram: "instagram.com",
-  discord: "discord.com",
-  youtube: "youtube.com",
-  tiktok: "tiktok.com",
-  facebook: "facebook.com",
-};
-const SOCIAL_ORDER = ["twitter", "instagram", "tiktok", "youtube", "discord", "telegram", "facebook"];
 
 const GLASS_GRADIENT: [string, string, string] = [
   "rgba(255,255,255,0.20)",
@@ -172,22 +149,6 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
     copyToClipboard(ensProfileUrl(ensName));
     toastSuccess(t("profile.ensUrlCopied"));
   }, [ensName]);
-
-  const socialItems = useMemo(() => {
-    if (!socials) return [];
-    const list: { key: string; url: string; svg: string }[] = [];
-    SOCIAL_ORDER.forEach((k) => {
-      const raw = (socials as any)[`${k}Link`] || (socials as any)[k];
-      if (!raw) return;
-      const host = SOCIAL_HOSTS[k];
-      const svg = SOCIAL_SVGS[k];
-      if (!host || !svg) return;
-      const url = getSocialLink(String(raw), host);
-      if (!url || url === "#") return;
-      list.push({ key: k, url, svg });
-    });
-    return list;
-  }, [socials]);
 
   // The glass fill every header button is painted with. Minimal drops it for a
   // 1px outline (s.minimalBtn), and grows the box to 44pt so the tap target
@@ -346,39 +307,15 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
         </View>
 
         <View className="mt-2">
-          <View className="flex-row items-center justify-between">
-            <View className="flex-row items-center gap-1.5 flex-1 mr-2">
-              <Text className="text-white text-xl font-bold" numberOfLines={1} style={{ flexShrink: 1 }}>{displayName}</Text>
-              {badge && badgeImage && (
-                <Pressable ref={badgeRef} hitSlop={8} onPress={() => openBadgeShowcase(badge, badgeRef.current)}>
-                  <SmartImage source={badgeImage} style={[getBadgeOpticalStyle(badgeImage, 20), { marginLeft: 0 }]} contentFit="contain" />
-                </Pressable>
-              )}
-            </View>
-            {socialItems.length > 0 && (
-              <View className="flex-row items-center gap-1">
-                {socialItems.map((si) => (
-                  <TouchableOpacity
-                    key={si.key}
-                    onPress={() => openExternalLink(si.url)}
-                    activeOpacity={0.7}
-                    hitSlop={{ top: 6, right: 6, bottom: 6, left: 6 }}
-                    accessibilityLabel={si.key}
-                  >
-                    {/* Minimal: bare icon, no glass chip; hitSlop already
-                        takes the 32pt box to a 44pt target. */}
-                    {isMinimal ? (
-                      <View style={{ width: 32, height: 32, alignItems: "center", justifyContent: "center" }}>
-                        <SvgXml xml={si.svg} width={14} height={14} color="#A1A1AA" />
-                      </View>
-                    ) : (
-                    <FakeGlass className="rounded-xl" style={{ width: 32, height: 32, alignItems: "center", justifyContent: "center" }}>
-                      <SvgXml xml={si.svg} width={14} height={14} color="#A1A1AA" />
-                    </FakeGlass>
-                    )}
-                  </TouchableOpacity>
-                ))}
-              </View>
+          {/* The name owns the full width and may take two lines. Social
+              links used to share this row and cut a long name to one line;
+              they now live in the Links pill at the bottom of the header. */}
+          <View className="flex-row items-center gap-1.5">
+            <Text className="text-white text-xl font-bold" numberOfLines={2} style={{ flexShrink: 1 }}>{displayName}</Text>
+            {badge && badgeImage && (
+              <Pressable ref={badgeRef} hitSlop={8} onPress={() => openBadgeShowcase(badge, badgeRef.current)}>
+                <SmartImage source={badgeImage} style={[getBadgeOpticalStyle(badgeImage, 20), { marginLeft: 0 }]} contentFit="contain" />
+              </Pressable>
             )}
           </View>
 
@@ -435,8 +372,8 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
             <Text className="text-zinc-400 text-sm mt-3">{t("profile.joined")} {joinedDate}</Text>
           )}
 
-          {(followingItem || followersItem) && (
-            <View className="flex-row items-center gap-4 mt-3">
+          {(followingItem || followersItem) ? (
+            <View className="flex-row flex-wrap items-center gap-4 mt-3">
               {followingItem && (
                 <TouchableOpacity
                   onPress={onStatPress ? () => onStatPress("following") : undefined}
@@ -467,6 +404,13 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
                   followers={followersItem.value}
                 />
               )}
+              <View style={{ marginLeft: "auto" }}>
+                <ProfileLinksPill source={socials as Record<string, unknown> | undefined} />
+              </View>
+            </View>
+          ) : (
+            <View className="flex-row justify-end mt-3">
+              <ProfileLinksPill source={socials as Record<string, unknown> | undefined} />
             </View>
           )}
         </View>

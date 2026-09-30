@@ -2212,7 +2212,9 @@
     "revealKey": "Whakaatu kī",
     "revealSignIn": "Takiuru anō kia kite i tēnei kī",
     "revealFailed": "Kāore i taea te whakaatu i te kī. Whakamātau anō.",
-    "signInAgain": "Takiuru anō"
+    "signInAgain": "Takiuru anō",
+    "createSignIn": "Takiuru anō kia hangaia he kaihautū",
+    "checkConnection": "Tirohia tō hononga, ka whakamātau anō."
   },
   "hero": {
     "title": "Nau Mai Haere Mai",
@@ -3325,7 +3327,6 @@
       "slowModeOffHint": "Kua whakaputaina te rārangi ture",
       "defaultPermissions": "Ko ngā mema e taea ai te tuku kōrero i te wā kāore he whakamahere. Ko ngā kaiwhakahaere e whakamahere ana.",
       "defaultPermissionsHint": "Ko ngā ture kāore i whakaputaina",
-      "slowModeTitle": "Ko ngā mea katoa e taea ai e ngā mema ki tēnei rēhita, nā te kaiwhakahaere e whakaputaina ana.",
       "log": {
         "justNow": "Ko te rārangi whakamahere",
         "minutesAgo": "{{value}}m ago",
@@ -3344,7 +3345,8 @@
         "restricted": "Ko ngā kaiwhakahaere anake e taea ai te kite i te pūrongo whakahaere.",
         "empty": "Kāore he kōrero i tēnei rēhita. Ka kitea ngā kōrero whakahaere hei tāpae.",
         "showMore": "Koia te kōrero ({{value}})"
-      }
+      },
+      "slowModeTitle": "Aratau puhoi"
     },
     "chooseAvatar": "Tīpakohia te avatar",
     "loadFailed": "Kaore e taea te whakauru i nga hapori",
@@ -3913,12 +3915,12 @@
     "walletSubtitle": "Whakahaerehia ō tohu DeHub",
     "glossaryTipDesc": "Tukua ngā tohu DeHub tika ki tētahi kaihanga ihirangi hei utu mō tō rātou ihirangi. Ka tuhia ngā tohutohu ki runga i te mekameka.",
     "glossaryPpvDesc": "Ihirangi moni e hiahiatia ana he utu ki ngā tohu DeHub hei whakatuwhera. Ka whakatauhia e ngā kaihanga te utu, ā, ka whiwhi moni mai i ia tirohanga.",
-    "glossaryDhbTokenDesc": "Ko te DHB te tohu tohu mō ngā tohu DeHub, te tohu whaihua taketake o DeHub. Ka whakamahia mō te tohutohu, te utu-mō-te-tirohanga ihirangi, te pooti whakahaere, me te raka.",
     "glossaryWalletDesc": "Tō pūkete i runga i te mekameka e pupuri ana i ō tohu DeHub me ētahi atu rawa crypto. Ka honoa mā te Web3Auth kia ngāwari te uru atu.",
     "glossaryStakingDesc": "Raka ō tohu DeHub kia whiwhi utu i te wā. Ka nui ake hoki te mana pooti o ngā tohu kua raka ki te whakahaere.",
     "glossaryGovernanceDesc": "Tukua me te pooti i ngā tono e whakatau ana i te papa. Ka whakatauhia tō mana pooti e te maha o ngā tohu DeHub kei a koe.",
     "glossaryStakingBadgesDesc": "Ngā tohu e whakaatuhia ana i te taha o tō ingoa kaiwhakamahi i runga i te tapeke o ō pupuranga tohu DeHub (pūkete + raka). E 13 ngā taumata — ka nui ake ngā tohu kei a koe, ka teitei ake tō taumata tohu. Ka nui ake te mana pooti whakahaere me te iti ake o ngā utu papa e ngā taumata teitei.",
-    "glossaryLeaderboardDesc": "Ka whakataungia ngā kaiwhakamahi mā te tapeke o te pauna tohu DeHub (pūkete + raka puta noa i ngā mekameka katoa). Ka whakahoutia ngā whakataunga i ngā wā katoa, ā, ka whai i ngā huringa 1-ra me te 1-wiki. Ka taea hoki e koe te tohu mā te tohutohu i tukua, tohutohu i riro mai, ngā kaiwhai, ngā pai, me ngā kaiohauru."
+    "glossaryLeaderboardDesc": "Ka whakataungia ngā kaiwhakamahi mā te tapeke o te pauna tohu DeHub (pūkete + raka puta noa i ngā mekameka katoa). Ka whakahoutia ngā whakataunga i ngā wā katoa, ā, ka whai i ngā huringa 1-ra me te 1-wiki. Ka taea hoki e koe te tohu mā te tohutohu i tukua, tohutohu i riro mai, ngā kaiwhai, ngā pai, me ngā kaiohauru.",
+    "glossaryDhbTokenDesc": "Ko te DHB te tohu ticker mo nga tohu DeHub, te tohu painga taketake o DeHub. Whakamahia mo te tipping, te ihirangi utu-ki-te-rangi, te pooti whakahaere, me te staking."
   },
   "arcade": {
     "submitAccessibility": "Tukua he kēmu ki te arcade",

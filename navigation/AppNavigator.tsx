@@ -4,7 +4,7 @@ import { ScreenNames } from "./ScreenNames";
 import type { AppStackParamList } from "./types";
 import { feedDetailRouteId } from "./feedDetailRouteId";
 import BottomTabNavigator from "./BottomTabNavigator";
-import { withScreenBoundary } from "../components/common/ScreenErrorFallback";
+import { withScreenBoundary, withSolidScreenBoundary } from "../components/common/ScreenErrorFallback";
 import { useAuthState } from "../context/AuthContext";
 import { DrawerProvider, useDrawer } from "../context/DrawerContext";
 import AppDrawer from "../components/Home/AppDrawer";
@@ -417,6 +417,7 @@ function AppNavigatorContent() {
         <Stack.Screen
           name={ScreenNames.ImageFeed}
           getComponent={() => require("../screens/ImageFeedScreen").default}
+          layout={withSolidScreenBoundary}
           options={{
             presentation: 'transparentModal',
             contentStyle: { backgroundColor: 'transparent' },
@@ -434,6 +435,7 @@ function AppNavigatorContent() {
       </Stack.Group>
 
       <Stack.Group
+        screenLayout={withSolidScreenBoundary}
         screenOptions={{
           presentation: 'modal',
           animation: 'slide_from_bottom',
@@ -561,6 +563,7 @@ function AppNavigatorContent() {
             <Stack.Screen
               name={ScreenNames.Upload}
               getComponent={() => require("../screens/UploadScreen").default}
+              layout={withSolidScreenBoundary}
               options={{
                 presentation: 'modal',
                 animation: 'slide_from_bottom',
@@ -583,6 +586,7 @@ function AppNavigatorContent() {
             <Stack.Screen
               name={ScreenNames.LiveProducer}
               getComponent={getLiveProducerScreen}
+              layout={withSolidScreenBoundary}
               options={{
                 presentation: 'modal',
                 animation: 'slide_from_bottom',

@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { View, Text, ScrollView, FlatList, ActivityIndicator, TouchableOpacity } from "react-native";
+import { View, Text, ScrollView, FlatList, ActivityIndicator, TouchableOpacity, type NativeSyntheticEvent, type NativeScrollEvent } from "react-native";
 import PlanCard from "../Subscription/PlanCard";
 import PlanFormSheet from "../Subscription/PlanFormSheet";
 import AccentButtonGradient from "../ui/AccentButtonGradient";
@@ -12,9 +12,10 @@ interface SubscribersRouteProps {
   address?: string;
   isOwnProfile?: boolean;
   listHeader?: React.ReactElement | null;
+  onScroll?: (e: NativeSyntheticEvent<NativeScrollEvent>) => void;
 }
 
-const SubscribersRoute: React.FC<SubscribersRouteProps> = ({ address, isOwnProfile, listHeader }) => {
+const SubscribersRoute: React.FC<SubscribersRouteProps> = ({ address, isOwnProfile, listHeader, onScroll }) => {
   const { t } = useTranslation();
   const [plans, setPlans] = useState<SubscriptionPlan[]>([]);
   const [loading, setLoading] = useState(true);
@@ -75,7 +76,7 @@ const SubscribersRoute: React.FC<SubscribersRouteProps> = ({ address, isOwnProfi
 
   if (loading) {
     return (
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <ScrollView onScroll={onScroll} scrollEventThrottle={16} showsVerticalScrollIndicator={false}>
         {listHeader}
         <View style={{ alignItems: "center", justifyContent: "center", paddingVertical: 40 }}>
           <ActivityIndicator color="#fff" />
@@ -86,7 +87,7 @@ const SubscribersRoute: React.FC<SubscribersRouteProps> = ({ address, isOwnProfi
 
   if (error) {
     return (
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <ScrollView onScroll={onScroll} scrollEventThrottle={16} showsVerticalScrollIndicator={false}>
         {listHeader}
         <View style={{ alignItems: "center", justifyContent: "center", paddingVertical: 40, paddingHorizontal: 24, gap: 12 }}>
           <Icon name="CircleAlert" size={40} color="#808089" />
@@ -110,6 +111,8 @@ const SubscribersRoute: React.FC<SubscribersRouteProps> = ({ address, isOwnProfi
         keyExtractor={(item) => String(item._id || item.id || Math.random())}
         renderItem={renderItem}
         contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 12, paddingBottom: 80 }}
+        onScroll={onScroll}
+        scrollEventThrottle={16}
         showsVerticalScrollIndicator={false}
         ListEmptyComponent={
           isOwnProfile ? (

@@ -21,7 +21,7 @@ import ImageFeedDrawer, { type ImageFeedDrawerHandle } from "../components/Home/
 import ShortsGrid, { type ShortsGridHandle } from "../components/Home/ShortsGrid";
 import MusicFeed, { type MusicFeedHandle } from "../components/Music/MusicFeed";
 import HomeHeader from "../components/HomeHeader";
-import FeedNavBar, { NAV_PILL_TOP_INSET } from "../components/Home/FeedNavBar";
+import FeedNavBar, { NAV_PILL_SIDE_INSET, NAV_PILL_TOP_INSET } from "../components/Home/FeedNavBar";
 import { useDrawer } from "../context/DrawerContext";
 import { useTabBarHide } from "../context/TabBarHideContext";
 import FeedFilterPanel, { FeedFilters, PostTypeOption } from "../components/Home/FeedFilterPanel";
@@ -471,6 +471,20 @@ export default function HomeScreen() {
     navPillTop.value = e.nativeEvent.layout.y + NAV_PILL_TOP_INSET;
   }, [navPillTop]);
   const clipOn = !!skin;
+  // The cut follows the pill's silhouette, as on web: the viewport is inset to
+  // the pill's sides and rounded with the theme's own pill radius, so nothing
+  // peeks out beside or above the pill's rounded corners. Its content is
+  // pushed back out by the same inset, so the feed keeps its full width — the
+  // lists already pad their cards 8pt in from each edge.
+  const pillRadius = skin ? Number(skin.strip.borderRadius ?? 0) : 0;
+  const viewportShape = clipOn
+    ? {
+        marginHorizontal: NAV_PILL_SIDE_INSET,
+        borderTopLeftRadius: pillRadius,
+        borderTopRightRadius: pillRadius,
+      }
+    : null;
+  const unclipShape = clipOn ? { marginHorizontal: -NAV_PILL_SIDE_INSET } : null;
   const feedClipStyle = useAnimatedStyle(() => ({
     transform: [{ translateY: clipOn ? Math.max(0, navPillTop.value + headerTranslateY.value) : 0 }],
   }));
@@ -896,8 +910,8 @@ export default function HomeScreen() {
       </Animated.View>
 
       <GestureDetector gesture={pagerGesture}>
-        <Animated.View style={[styles.pagerViewport, feedClipStyle]}>
-          <Animated.View style={[styles.feedUnclip, feedUnclipStyle]}>
+        <Animated.View style={[styles.pagerViewport, viewportShape, feedClipStyle]}>
+          <Animated.View style={[styles.feedUnclip, unclipShape, feedUnclipStyle]}>
           <PagerGestureProvider gestureRef={pagerGestureRef}>
             <Animated.View
               style={[styles.pagerRow, { width: pageWidth * TAB_ORDER.length }, pagerStyle]}

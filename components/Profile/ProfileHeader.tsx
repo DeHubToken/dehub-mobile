@@ -24,7 +24,6 @@ import {
 } from "../../libs/misc";
 import StreamerLevelCard from "../Live/StreamerLevelCard";
 import { useBadgeCeremony } from "../../hooks/useBadgeCeremony";
-import { openExternalLink } from "../../libs/links.utils";
 import { ensProfileUrl } from "../../libs/ens-handle";
 import { truncateAddress } from "../../libs/strings.util";
 import { formatJoinedDate } from "../../libs/date.util";
@@ -49,6 +48,7 @@ import { TranslateButton } from "../ui/TranslateButton";
 import NewMemberChip from "../common/NewMemberChip";
 import BadgePatronChip from "../common/BadgePatronChip";
 import TotalReachPill from "./TotalReachPill";
+import ProfileLinksPill from "./ProfileLinksPill";
 import { useAppTheme } from "../../context/ThemeContext";
 import { MINIMAL_HAIRLINE } from "../../theme/minimal";
 
@@ -60,9 +60,6 @@ const MINIMAL_OUTLINE_BUTTON = {
   borderColor: MINIMAL_HAIRLINE,
   backgroundColor: "transparent",
 } as const;
-// Social icons stay bare at 32pt (seven of them share one row) and reach 44pt
-// through hitSlop instead.
-const MINIMAL_SOCIAL_HIT_SLOP = { top: 6, right: 6, bottom: 6, left: 6 };
 
 const ProfileHeader = () => {
   const navigation = useNavigation<any>();
@@ -147,17 +144,6 @@ const ProfileHeader = () => {
     () => formatJoinedDate(user?.createdAt) || undefined,
     [user?.createdAt]
   );
-
-  const socials: { key: string; url?: string; icon: string; label: string }[] =
-    [
-      { key: "facebook", url: user?.facebookLink, icon: "logo-facebook", label: "Facebook" },
-      { key: "twitter", url: user?.twitterLink, icon: "logo-twitter", label: "Twitter" },
-      { key: "discord", url: user?.discordLink, icon: "logo-discord", label: "Discord" },
-      { key: "instagram", url: user?.instagramLink, icon: "logo-instagram", label: "Instagram" },
-      { key: "tiktok", url: user?.tiktokLink, icon: "musical-notes-outline", label: "TikTok" },
-      { key: "youtube", url: user?.youtubeLink, icon: "logo-youtube", label: "YouTube" },
-      { key: "telegram", url: user?.telegramLink, icon: "paper-plane-outline", label: "Telegram" },
-    ].filter((s) => !!s.url);
 
   const aboutText = (user?.aboutMe || "").trim();
 
@@ -411,59 +397,27 @@ const ProfileHeader = () => {
           )}
         </View>
 
-        {/* Name + badge + socials */}
+        {/* Name + badge. The name owns the full width and may take two
+            lines; social links moved to the Links pill at the bottom. */}
         <View className="mt-2">
-          <View className="flex-row items-center justify-between">
-            <View className="flex-row items-baseline gap-1.5 flex-1 mr-2">
-              <Text className="text-white font-bold" numberOfLines={1} style={{ flexShrink: 1, fontSize: 24, lineHeight: 30 }}>
-                {displayName}
-              </Text>
-              {badge && badgeImage && (
-                <Pressable
-                  ref={badgeSlotRef}
-                  collapsable={false}
-                  hitSlop={8}
-                  onPress={() => openBadgeShowcase(badge, badgeSlotRef.current)}
-                >
-                  <SmartImage
-                    source={badgeImage as any}
-                    contentFit="contain"
-                    cachePolicy="memory-disk"
-                    style={[getBadgeOpticalStyle(badgeImage as number, 20), { marginLeft: 0 }]}
-                  />
-                </Pressable>
-              )}
-            </View>
-            {socials.length > 0 && (
-              <View className="flex-row items-center gap-1">
-                {socials.map((sc) => (
-                  <TouchableOpacity
-                    key={sc.key}
-                    onPress={() => openExternalLink(sc.url)}
-                    activeOpacity={0.7}
-                    accessibilityLabel={sc.label}
-                    hitSlop={isMinimal ? MINIMAL_SOCIAL_HIT_SLOP : undefined}
-                  >
-                    {isMinimal ? (
-                      <View
-                        className="items-center justify-center"
-                        style={{ width: 32, height: 32 }}
-                      >
-                        <Ionicons name={sc.icon as any} size={14} color="#A1A1AA" />
-                      </View>
-                    ) : (
-                    <LiquidGlass className="rounded-xl" intensity={30} noBlur>
-                      <View
-                        className="items-center justify-center"
-                        style={{ width: 32, height: 32 }}
-                      >
-                        <Ionicons name={sc.icon as any} size={14} color="#A1A1AA" />
-                      </View>
-                    </LiquidGlass>
-                    )}
-                  </TouchableOpacity>
-                ))}
-              </View>
+          <View className="flex-row items-center gap-1.5">
+            <Text className="text-white font-bold" numberOfLines={2} style={{ flexShrink: 1, fontSize: 24, lineHeight: 30 }}>
+              {displayName}
+            </Text>
+            {badge && badgeImage && (
+              <Pressable
+                ref={badgeSlotRef}
+                collapsable={false}
+                hitSlop={8}
+                onPress={() => openBadgeShowcase(badge, badgeSlotRef.current)}
+              >
+                <SmartImage
+                  source={badgeImage as any}
+                  contentFit="contain"
+                  cachePolicy="memory-disk"
+                  style={[getBadgeOpticalStyle(badgeImage as number, 20), { marginLeft: 0 }]}
+                />
+              </Pressable>
             )}
           </View>
 
@@ -540,7 +494,7 @@ const ProfileHeader = () => {
           )}
 
           {/* Following / Followers */}
-          <View className="flex-row items-center gap-4 mt-3">
+          <View className="flex-row flex-wrap items-center gap-4 mt-3">
             <TouchableOpacity onPress={() => goToFollowList("following")} activeOpacity={0.7}>
               <Text className="text-sm">
                 <Text className="text-white font-bold">
@@ -560,6 +514,9 @@ const ProfileHeader = () => {
             {/* DeHub followers plus the creator's own figures for their linked
                 socials. Absent until a social carries a count. */}
             <TotalReachPill source={user} followers={followersCount} />
+            <View style={{ marginLeft: "auto" }}>
+              <ProfileLinksPill source={user} />
+            </View>
           </View>
 
           {/* The streamer ladder. Renders nothing until a stream has ended,

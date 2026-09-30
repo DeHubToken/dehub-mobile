@@ -2212,7 +2212,9 @@
     "revealKey": "キーを表示",
     "revealSignIn": "このキーを見るには再度サインインしてください",
     "revealFailed": "キーを表示できませんでした。もう一度お試しください。",
-    "signInAgain": "再度サインイン"
+    "signInAgain": "再度サインイン",
+    "createSignIn": "エージェントを作成するには再度サインインしてください",
+    "checkConnection": "接続を確認して、もう一度お試しください。"
   },
   "hero": {
     "title": "私たちの世界へ",
