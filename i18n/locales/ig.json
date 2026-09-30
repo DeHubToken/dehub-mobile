@@ -1789,7 +1789,9 @@
     "exploreWithoutSignInA11y": "Inyocha DeHub enweghị nbanye",
     "continueExploringA11y": "Gaa n 'ihu na-enyocha DeHub",
     "importWalletRecommended": "Social logins na-atụ aro.",
-    "importWalletPurpose": "Ngwaọrụ a bụ maka ibubata akaụntụ dị na DeHub.io."
+    "importWalletPurpose": "Ngwaọrụ a bụ maka ibubata akaụntụ dị na DeHub.io.",
+    "importSecretPlaceholder": "12 ma ọ bụ 24 okwu, ma ọ bụ a onwe igodo",
+    "invalidImportSecret": "Nke ahụ abụghị a nti 12/24-okwu nkebi ahịrịokwu ma ọ bụ onwe igodo"
   },
   "messages": {
     "smartRepliesOff": "Agbanyụọla nzaghachi atụrụ aro",
@@ -5996,7 +5998,6 @@
     "viewFeed": "Lelee ndepụta gị",
     "yourChannel": "Gị ọwa",
     "yourChannelHint": "Tapawa adreesị ọwa gị — aka ahụ n 'ọrụ nke ya kwa.",
-    "placeholder": "youtube.com/@you, tiktok.com/@you, vimeo.com/you…",
     "costsNote": "Akara DeHub, otu ugbo, tupu nnukwu ihe amalite. Ndị ji akara na-akwụ obere ego — a na-etinye ego ị na-enweta na nkwupụta ahụ. Ọ bụrụ na enweghị ike ibubata vidiyo, a na-eweghachi òkè ya na njem ọzọ gị."
   },
   "calls": {
@@ -8588,11 +8589,14 @@
       "developer-tools": "Developer ngwaọrụ",
       "entertainment": "Ntụrụndụ",
       "art-creativity": "Ndị ụlọtị na ụlọtị ụlọtị",
-      "finance": "Finance"
+      "finance": "Finance",
+      "social": "Social"
     },
     "pay": {
       "title": "Páa {{name}}?",
-      "body": "DHB na-aga ozugbo na ngwa si wallet, {{wallet}}. Enweghị ike ịghaghachi ụgwọ."
+      "body": "DHB na-aga ozugbo na ngwa si wallet, {{wallet}}. Enweghị ike ịghaghachi ụgwọ.",
+      "confirm": "Akwụ ụgwọ {{amount}} DHB",
+      "sent": "A kwụrụ ụgwọ {{amount}} DHB na {{name}}."
     },
     "add": {
       "title": "{{name}}?",
@@ -8636,5 +8640,36 @@
     "recommendedBody": "Ụdị DeHub ọhụrụ dị, nwere ndozi nchekwa dị mkpa. Melite ka akaụntụ gị nọrọ na nchekwa.",
     "requiredBody": "A naghịzi akwado ụdị DeHub a. Melite ka ị gaa n'ihu iji akaụntụ gị.",
     "update": "Melite ugbu a"
+  },
+  "walletBackup": {
+    "title": "Nchekwa akpa ego",
+    "rowDesc": "Lee gị 12 okwu ma ọ bụ onwe igodo",
+    "backedUpOn": "Kwadoo {{date}}",
+    "offerTitle": "Weghachite obere akpa gị?",
+    "offerBody": "12 okwu na-ewetara gị wallet azụ ma ọ bụrụ na ị hapụ ekwentị gị ma ọ bụ paswọọdụ. E nwere ihe 30 ihe maka Sporting ihe.",
+    "offerBodyDeviceOnly": "Akpa gị na-ebi naanị n 'ekwentị a. Na-enweghị okwu ndị a, ekwentị furu efu pụtara obere akpa furu efu.",
+    "saveNow": "Chekwaa ugbu a",
+    "skipForNow": "Kwụpụ maka UGBU A",
+    "wordsTitle": "Okwu 12 gị",
+    "tapToReveal": "Kpatụ iji kpughee",
+    "hideWords": "Zoo okwu",
+    "copied": "E depụtaghachiri",
+    "wroteThemDown": "Edeela m ha.",
+    "checkTitle": "Ndenye ego",
+    "checkPrompt": "Kpatụ okwu # {{n}}",
+    "checkWrong": "Ọ bụghị nke ahụ. Lee okwu #{{n}} ọzọ.",
+    "skipCheck": "Ihichapu ego",
+    "signingIn": "Ịbanye gị na...",
+    "warnOwns": "Onye ọbụla nwere okwu ndị a nwere obere akpa gị.",
+    "warnNeverAsk": "DeHub agaghị ajụ maka ha.",
+    "warnPaper": "Dee ha na akwụkwọ, ọ bụghị na nseta ihuenyo ma ọ bụ ngwa ndetu.",
+    "tabWords": "12 okwu",
+    "tabPrivateKey": "Kii nkeonwe",
+    "advanced": "Di elu",
+    "passwordToShowWords": "Tinye paswọọdụ obere akpa gị iji gosi okwu 12 gị.",
+    "showWords": "Gosi okwu",
+    "reminderBody": "Back elu gị wallet — 12 okwu na-eweghachi ya ma ọ bụrụ na ị hapụ ekwentị gị.",
+    "backUp": "Back up",
+    "notNow": "Ọ bụghị ugbu a"
   }
 }

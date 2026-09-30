@@ -1789,7 +1789,9 @@
     "exploreWithoutSignInA11y": "Explorează DeHub fără să te conectezi",
     "continueExploringA11y": "Continuă să explorezi DeHub",
     "importWalletRecommended": "Se recomandă conectări sociale.",
-    "importWalletPurpose": "Acest instrument este pentru importul conturilor existente din DeHub.io."
+    "importWalletPurpose": "Acest instrument este pentru importul conturilor existente din DeHub.io.",
+    "importSecretPlaceholder": "12 sau 24 de cuvinte sau o cheie privată",
+    "invalidImportSecret": "Aceasta nu este o expresie validă de 12/24 de cuvinte sau o cheie privată"
   },
   "messages": {
     "smartRepliesOff": "Răspunsurile sugerate au fost dezactivate",
@@ -8654,5 +8656,36 @@
     "recommendedBody": "Este disponibilă o versiune mai nouă DeHub, cu remedieri de securitate importante. Actualizează pentru a-ți păstra contul protejat.",
     "requiredBody": "Această versiune DeHub nu mai este acceptată. Actualizează pentru a-ți folosi în continuare contul.",
     "update": "Actualizează acum"
+  },
+  "walletBackup": {
+    "title": "Copie de rezervă portofel",
+    "rowDesc": "Vedeți cele 12 cuvinte sau cheia privată",
+    "backedUpOn": "Copiere de rezervă {{date}}",
+    "offerTitle": "Îți faci o copie de rezervă a portofelului?",
+    "offerBody": "12 cuvinte care îți aduc portofelul înapoi dacă îți pierzi telefonul sau parola. Durează 30 de secunde.",
+    "offerBodyDeviceOnly": "Portofelul tău stă doar pe acest telefon. Fără aceste cuvinte, un telefon pierdut înseamnă un portofel pierdut.",
+    "saveNow": "Economisește acum",
+    "skipForNow": "Ignoră deocamdată",
+    "wordsTitle": "Cele 12 cuvinte",
+    "tapToReveal": "Atingeți pentru a dezvălui",
+    "hideWords": "Ascundeți cuvintele",
+    "copied": "Copiat",
+    "wroteThemDown": "Le-am notat",
+    "checkTitle": "Verificare rapidă",
+    "checkPrompt": "Atinge cuvântul # {{n}}",
+    "checkWrong": "Nu acela. Uită-te din nou la cuvântul #{{n}}.",
+    "skipCheck": "Ignoră verificarea",
+    "signingIn": "Vă conectăm...",
+    "warnOwns": "Oricine are aceste cuvinte îți deține portofelul.",
+    "warnNeverAsk": "DeHub nu le va cere niciodată.",
+    "warnPaper": "Scrie-le pe hârtie, nu într-o captură de ecran sau într-o aplicație de notițe.",
+    "tabWords": "12 cuvinte",
+    "tabPrivateKey": "Cheie privată",
+    "advanced": "Avansat",
+    "passwordToShowWords": "Introduceți parola portofelului pentru a afișa cele 12 cuvinte.",
+    "showWords": "Afișează cuvintele",
+    "reminderBody": "Fă o copie de rezervă a portofelului — 12 cuvinte care îl aduc înapoi dacă îți pierzi telefonul.",
+    "backUp": "Copie de rezervă",
+    "notNow": "Nu acum"
   }
 }

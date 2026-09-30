@@ -146,9 +146,9 @@
     "noMoreShorts": "אין עוד סרטונים קצרים",
     "noShortsFound": "לא נמצאו סרטונים קצרים",
     "newMembersHint": "רק הצטרפת — אמור שלום",
-    "scroll": "Scroll",
     "noFilterMatches": "אין תוכן שתואם למסננים שלכם.",
-    "clearFilters": "ניקוי מסננים"
+    "clearFilters": "ניקוי מסננים",
+    "scroll": "סקרול"
   },
   "explore": {
     "all": "הכל",
@@ -572,7 +572,6 @@
     "failedUpdateDmPrefs": "נכשל עדכון העדפות הודעות פרטיות",
     "editProfile": "עריכת פרופיל",
     "editProfileDesc": "שם, שם משתמש, תיאור, תמונה ותמונת רקע",
-    "socialLinksDesc": "X, Instagram, TikTok, YouTube, Discord, Telegram",
     "yourContent": "התוכן שלכם",
     "yourVideos": "הסרטונים שלכם",
     "savedPosts": "פוסטים שמורים",
@@ -787,7 +786,8 @@
     "exportReady": "{{count}} חשבונות, {{saved}} פוסטים שמורים יוצאו.",
     "importDone": "{{followed}} במעקב, {{blocked}} חסום, {{folders}} תיקיות נוצרו.",
     "importPartial": "לא ניתן היה לעקוב אחר {{count}} חשבונות — יש להפעיל את הייבוא שוב כדי לנסות אותם שוב.",
-    "importProgress": "הגשת בקשה {{done}} מתוך {{total}}…"
+    "importProgress": "הגשת בקשה {{done}} מתוך {{total}}…",
+    "socialLinksDesc": "X, אינסטגרם, טיקטוק, יוטיוב, דיסקורד, טלגרם"
   },
   "common": {
     "mute": "השתק",
@@ -1004,7 +1004,6 @@
     "audio": "שמע",
     "text": "טקסט",
     "live": "שידור חי",
-    "ppv": "PPV",
     "bounty": "פרס",
     "locked": "מוגבל",
     "any": "הכל",
@@ -1428,8 +1427,7 @@
     "solanaAddressLabel": "סולאנה",
     "solanaAddressHint": "אסימוני SOL ו - SPL בלבד",
     "solanaAddressCopied": "כתובת Solana הועתקה",
-    "chooseNetwork": "בחר רשת",
-    "evmAddressLabel": "EVM"
+    "chooseNetwork": "בחר רשת"
   },
   "bookmarks": {
     "title": "סימניות",
@@ -1613,7 +1611,6 @@
     "category": "קטגוריה",
     "contentType": "סוג תוכן",
     "bounty": "פרס",
-    "ppv": "PPV",
     "gated": "מוגבל",
     "datePosted": "תאריך פרסום",
     "engagement": "מעורבות",
@@ -1789,7 +1786,9 @@
     "exploreWithoutSignInA11y": "גלה את DeHub מבלי להיכנס",
     "continueExploringA11y": "המשך לגלות את DeHub",
     "importWalletRecommended": "מומלץ להתחבר לרשתות החברתיות.",
-    "importWalletPurpose": "כלי זה מיועד לייבוא חשבונות קיימים מ - DeHub.io."
+    "importWalletPurpose": "כלי זה מיועד לייבוא חשבונות קיימים מ - DeHub.io.",
+    "importSecretPlaceholder": "12 או 24 מילים, או מפתח פרטי",
+    "invalidImportSecret": "זהו לא ביטוי של 12/24 מילים או מפתח פרטי תקין"
   },
   "messages": {
     "smartRepliesOff": "התשובות המוצעות כובו",
@@ -2660,7 +2659,6 @@
     "viewCount_other": "{{count}} צפיות",
     "shareMessage": "שווה לראות: {{url}}",
     "hideReplies": "הסתרת תשובות",
-    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
     "rowA11yHint": "מתחיל תשובה לתגובה הזו",
     "editingComment": "עריכת תגובה",
     "editPlaceholder": "ערוך את התגובה שלך...",
@@ -3233,12 +3231,10 @@
       "purgeBody": "כל הודעה ש-{{name}} שלח בקהילה זו תימחק.",
       "kickBody": "{{name}} יוסר מהקהילה. הם יוכלו להצטרף שוב מאוחר יותר.",
       "bannedUntil": "נחסם עד {{date}}",
-      "restrictionWithReason": "{{state}} — {{reason}}",
       "mutedUntil": "הושתק עד {{date}}",
       "bannedUntilShort": "עד {{date}}",
       "muteTitle": "השתק את {{name}}",
       "banTitle": "חסום את {{name}}",
-      "reasonCounter": "{{len}}/200",
       "rulesCount": "{{used}} מתוך {{max}}",
       "moveRuleUp": "הזז כלל למעלה",
       "moveRuleDown": "הזז כלל למטה",
@@ -3683,7 +3679,6 @@
     "podBadge": "הדפסה לפי דרישה",
     "podBuyOn": "קנייה ב-{{provider}}",
     "podNote": "מודפס ונשלח לפי דרישה על ידי {{provider}}. התשלום מתבצע באתר שלהם.",
-    "podUrlPlaceholder": "https://…",
     "subtitle": "גלו מוצרים מקהילת DeHub",
     "browse": "עיון",
     "myStore": "החנות שלי",
@@ -4515,7 +4510,6 @@
     "kindVideo": "ווידאו",
     "kindAudio": "אודיו",
     "kindImage": "תמונות",
-    "tileSourceKind": "{{source}} · {{kind}}",
     "reviewTitle": "בדיקה לפני הפרסום",
     "reviewSubtitle": "החל מ -{{source}}, בתור {{kind}}. ערכו כל מה שתרצו — השאירו את הכותרת ריקה כדי לשמור על המקור.",
     "reviewName": "כותרת",
@@ -4549,7 +4543,6 @@
     "filterAll": "הכל",
     "noData": "אין נתונים",
     "tips": "טיפים",
-    "ppv": "PPV",
     "incomeBreakdown": "פירוט הכנסות",
     "ppvSales": "מכירות PPV",
     "total": "סה\"כ",
@@ -6002,7 +5995,6 @@
     "viewFeed": "הצג את הפיד שלך",
     "yourChannel": "הערוץ שלך",
     "yourChannelHint": "הדבק את כתובת הערוץ שלך — גם הידית פועלת מעצמה.",
-    "placeholder": "youtube.com/@you, tiktok.com/@you, vimeo.com/you…",
     "costsNote": "שולם באסימוני DeHub, פעם אחת, לפני שהאצווה מתחילה. מחזיקי תגים משלמים פחות — ההנחה שלך מוחלת על הצעת המחיר. אם סרטון לא ניתן לייבוא, חלקו מזוכה בחזרה לקראת ההעברה הבאה שלך."
   },
   "calls": {
@@ -6319,8 +6311,6 @@
   },
   "dex": {
     "lowestPrice": "המחיר הנמוך ביותר · USD",
-    "lpDhb": "LP · DHB",
-    "lpUsd": "LP · USD",
     "totalLiquidity": "נזילות כוללת · USD",
     "lowestSell": "מכירה נמוכה ביותר · USDC",
     "liveChartHint": "מכירה נמוכה ביותר · USDC · גרור לבדיקה",
@@ -6670,7 +6660,6 @@
       "newDesign": "עיצוב חדש",
       "yourDesigns": "העיצובים שלך",
       "noDesigns": "העיצובים שתיצור נשמרים בטלפון הזה ומופיעים כאן.",
-      "dimensions": "{{width}} × {{height}}",
       "aspectStory": "סטורי",
       "aspectPost": "פוסט",
       "aspectSquare": "ריבוע",
@@ -6952,7 +6941,6 @@
       "split": "פיצול",
       "splitHint": "הזז את סמן ההפעלה לתוך הקליפ כדי לפצל אותו.",
       "speed": "מהירות",
-      "speedValue": "{{value}}×",
       "volumeTool": "עוצמת קול",
       "volume": "עוצמת קול {{value}}%",
       "fadeIn": "הופעה הדרגתית {{value}} שניות",
@@ -7015,7 +7003,6 @@
       "recording": "מקליט תנועה",
       "lanes": "פריימים מרכזיים",
       "scrub": "גררו שמאלה או ימינה כדי לשנות.",
-      "segment": "{{from}} → {{to}}",
       "ease": {
         "linear": "לינארי",
         "ease": "רך",
@@ -8121,7 +8108,6 @@
     "step3Body": "כל אחד יכול לפתוח את הקישור. השב בצ'אט כדי לשנות משהו."
   },
   "depin": {
-    "title": "DePin",
     "becomeANode": "הפוך לצומת",
     "ctaBody": "שחזור המקור, מדיה מוצפנת ומוגנת ועבודה מאומתת קודמים לתגמולים של צומת ציבורי.",
     "ctaTitle": "הפעל רק כאשר הכשל בטוח.",
@@ -8306,7 +8292,6 @@
     "review": "בדיקה",
     "telegram": "מברק",
     "trendingHint": "20 המובילים · נפח ופעילות קהילתית",
-    "twitter": "X / Twitter",
     "graduatesAtValue": "42,000 שווי שוק",
     "vol24h": "24 שעות נפח",
     "title": "משטח שיגור"
@@ -8452,7 +8437,6 @@
     "basicAnalytics": "ניתוח בסיסי",
     "detailedAnalytics": "ניתוח מפורט",
     "prioritySupport": "תמיכה בעדיפות",
-    "sso": "SSO",
     "adminSpendControl": "בקרת הוצאות למנהל",
     "priorityQueue": "תור בעדיפות",
     "priorityQueueFast": "תור בעדיפות לעיבוד משימות מהיר יותר",
@@ -8645,5 +8629,36 @@
     "recommendedBody": "גרסה חדשה יותר של DeHub זמינה עם תיקוני אבטחה חשובים. עדכנו כדי שהחשבון שלכם יישאר מוגן.",
     "requiredBody": "גרסה זו של DeHub אינה נתמכת עוד. עדכנו כדי להמשיך להשתמש בחשבון.",
     "update": "עדכון עכשיו"
+  },
+  "walletBackup": {
+    "title": "חזק את התיקייה שלך",
+    "rowDesc": "ראי את 12 המילים או המפתח הפרטי שלך",
+    "backedUpOn": "חזקת את התיקייה שלך: {{date}}",
+    "offerTitle": "לחזק את תיקייתך?",
+    "offerBody": "12 מילים שיאפשרו לך להחזיר את התיקייה אם אבדה הטלפון או הסיסמה שלך. לוקח 30 שניות.",
+    "offerBodyDeviceOnly": "התיקייה שלך קיימת רק בטלפון הזה. ללא מילים אלו, טלפון אבוד משמעו תיקייה אבודה.",
+    "saveNow": "שמור עכשיו",
+    "skipForNow": "התעלם עכשיו",
+    "wordsTitle": "12 המילים שלך",
+    "tapToReveal": "הטפ לחשוף",
+    "hideWords": "הסתר מילים",
+    "copied": "נעשה עותק",
+    "wroteThemDown": "כתבתי אותן",
+    "checkTitle": "בדיקה מהירה",
+    "checkPrompt": "הטפ על מילה #{{n}}",
+    "checkWrong": "לא זו. צפה במילה #{{n}} שוב",
+    "skipCheck": "התעלם מבדיקה",
+    "signingIn": "מכניס אותך...",
+    "warnOwns": "הארנק שלכם שייך לכל מי שיש לו את המילים האלה.",
+    "warnNeverAsk": "DeHub לעולם לא יבקש אותם.",
+    "warnPaper": "כתוב אותם על נייר, לא בצילום מסך או באפליקציית הערות.",
+    "tabWords": "12 מילים",
+    "tabPrivateKey": "מפתח פרטי",
+    "advanced": "מתקדם",
+    "passwordToShowWords": "יש להזין את סיסמת הארנק שלך כדי להציג את 12 המילים שלך.",
+    "showWords": "הצגת מילים",
+    "reminderBody": "גבה את הארנק שלך — 12 מילים שמחזירות אותו אם איבדת את הטלפון שלך.",
+    "backUp": "גיבוי",
+    "notNow": "לא עכשיו"
   }
 }

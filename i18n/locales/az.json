@@ -1789,7 +1789,9 @@
     "exploreWithoutSignInA11y": "Daxil olmadan DeHub-ı araşdırın",
     "continueExploringA11y": "DeHub-ı araşdırmağa davam edin",
     "importWalletRecommended": "Sosial girişlər tövsiyə olunur.",
-    "importWalletPurpose": "Bu alət DeHub.io-dan mövcud hesabları idxal etmək üçündür."
+    "importWalletPurpose": "Bu alət DeHub.io-dan mövcud hesabları idxal etmək üçündür.",
+    "importSecretPlaceholder": "12 və ya 24 söz, ya da özəl açar",
+    "invalidImportSecret": "Bu, etibarlı 12/24-söz ifadəsi və ya özəl açar deyil"
   },
   "messages": {
     "smartRepliesOff": "Təklif olunan cavablar söndürüldü",
@@ -5998,7 +6000,6 @@
     "viewFeed": "Yeminizə baxın",
     "yourChannel": "Kanalınız",
     "yourChannelHint": "Kanal ünvanınızı yapışdırın — dəstək də öz işindədir.",
-    "placeholder": "youtube.com/@you, tiktok.com/@you, vimeo.com/you…",
     "costsNote": "DeHub tokenləri ilə ödənilmişdir, bir dəfə, partiya başlamazdan əvvəl. Rozet sahibləri daha az ödəyirlər — sizin endiriminiz təklifə tətbiq olunur. Video idxal oluna bilmirsə, onun payı növbəti miqrasiyanız üçün geri kreditləşdirilir."
   },
   "calls": {
@@ -8641,5 +8642,36 @@
     "recommendedBody": "DeHub-un vacib təhlükəsizlik düzəlişləri olan daha yeni versiyası mövcuddur. Hesabınızı qorumaq üçün yeniləyin.",
     "requiredBody": "DeHub-un bu versiyası artıq dəstəklənmir. Hesabınızdan istifadəyə davam etmək üçün yeniləyin.",
     "update": "İndi yenilə"
+  },
+  "walletBackup": {
+    "title": "Cüzdanı ehtiyat nüsxə et",
+    "rowDesc": "12 sözünüzü və ya özəl açarınızı görün",
+    "backedUpOn": "Ehtiyat nüsxə alındı {{date}}",
+    "offerTitle": "Cüzdanınızı ehtiyat nüsxə alaq?",
+    "offerBody": "Telefonunuzu və ya şifrənizi itirəndə cüzdanınızı geri gətirən 12 söz. 30 saniyə çəkir.",
+    "offerBodyDeviceOnly": "Cüzdanınız yalnız bu telefonda yaşayır. Bu sözlər olmadan itirilmiş telefon itirilmiş cüzdan deməkdir.",
+    "saveNow": "İndi saxla",
+    "skipForNow": "İndi keç",
+    "wordsTitle": "12 sözünüz",
+    "tapToReveal": "Açmaq üçün toxunun",
+    "hideWords": "Sözləri gizlət",
+    "copied": "Kopyalandı",
+    "wroteThemDown": "Mən onları yazdım",
+    "checkTitle": "Tez yoxlama",
+    "checkPrompt": "Söz #{{n}}-a toxunun",
+    "checkWrong": "O deyil. Yenidən söz #{{n}}-a baxın.",
+    "skipCheck": "Yoxlamanı keç",
+    "signingIn": "Sizi daxil edirik…",
+    "warnOwns": "Bu sözlərə sahib olan hər kəs cüzdanınıza sahib olur.",
+    "warnNeverAsk": "DeHub onları heç vaxt istəməyəcək.",
+    "warnPaper": "Onları kağıza yazın, ekran görüntüsü və ya qeydlər tətbiqində saxlamayın.",
+    "tabWords": "12 söz",
+    "tabPrivateKey": "Özəl açar",
+    "advanced": "İrəli",
+    "passwordToShowWords": "12 sözünüzü göstərmək üçün cüzdan şifrənizi daxil edin.",
+    "showWords": "Sözləri göstər",
+    "reminderBody": "Cüzdanınızı ehtiyat nüsxə edin — telefonunuzu itirəndə onu geri gətirən 12 söz.",
+    "backUp": "Ehtiyat nüsxə al",
+    "notNow": "İndi yox"
   }
 }

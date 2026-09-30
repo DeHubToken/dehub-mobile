@@ -1846,7 +1846,9 @@
     "exploreWithoutSignInA11y": "Preskúmajte DeHub bez prihlásenia",
     "continueExploringA11y": "Pokračujte v skúmaní DeHub",
     "importWalletRecommended": "Odporúčajú sa prihlásenia do sociálnych sietí.",
-    "importWalletPurpose": "Tento nástroj slúži na import existujúcich účtov z DeHub.io."
+    "importWalletPurpose": "Tento nástroj slúži na import existujúcich účtov z DeHub.io.",
+    "importSecretPlaceholder": "12 alebo 24 slov, alebo súkromný kľúč",
+    "invalidImportSecret": "To nie je platná 12/24-slovná fráza alebo súkromný kľúč"
   },
   "messages": {
     "smartRepliesOff": "Navrhované odpovede sú vypnuté",
@@ -8806,5 +8808,36 @@
     "recommendedBody": "K dispozícii je novšia verzia DeHub s dôležitými bezpečnostnými opravami. Aktualizujte, aby váš účet zostal chránený.",
     "requiredBody": "Táto verzia DeHub už nie je podporovaná. Aktualizujte, aby ste mohli ďalej používať svoj účet.",
     "update": "Aktualizovať teraz"
+  },
+  "walletBackup": {
+    "title": "Zálohovať peňaženku",
+    "rowDesc": "Zobraziť svoje 12 slov alebo súkromný kľúč",
+    "backedUpOn": "Zálohované {{date}}",
+    "offerTitle": "Zálohovať vašu peňaženku?",
+    "offerBody": "12 slov, ktoré vráti vašu peňaženku, ak stratíte telefón alebo heslo. Trvá 30 sekúnd.",
+    "offerBodyDeviceOnly": "Vaša peňaženka existuje len na tomto telefóne. Bez týchto slov stratený telefón znamená stratenú peňaženku.",
+    "saveNow": "Uložiť teraz",
+    "skipForNow": "Preskočiť teraz",
+    "wordsTitle": "Vaše 12 slov",
+    "tapToReveal": "Ťuknutím odhalíte",
+    "hideWords": "Skryť slová",
+    "copied": "Skopírované",
+    "wroteThemDown": "Zapísal som si ich",
+    "checkTitle": "Rýchla kontrola",
+    "checkPrompt": "Ťuknite na slovo #{{n}}",
+    "checkWrong": "Nie to. Pozrite sa znova na slovo #{{n}}.",
+    "skipCheck": "Preskočiť kontrolu",
+    "signingIn": "Prihlasujem vás…",
+    "warnOwns": "Každý, kto má tieto slová, vlastní vašu peňaženku.",
+    "warnNeverAsk": "DeHub ich nikdy nepožiada.",
+    "warnPaper": "Zapíšte ich na papier, nie do snímku obrazovky alebo poznámok.",
+    "tabWords": "12 slov",
+    "tabPrivateKey": "Súkromný kľúč",
+    "advanced": "Pokročilé",
+    "passwordToShowWords": "Zadajte heslo svojej peňaženky, aby ste zobrazili svoje 12 slov.",
+    "showWords": "Zobraziť slová",
+    "reminderBody": "Zálohovať vašu peňaženku — 12 slov, ktoré ju vráti, ak stratíte telefón.",
+    "backUp": "Zálohovať",
+    "notNow": "Teraz nie"
   }
 }

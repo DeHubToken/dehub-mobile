@@ -40,7 +40,6 @@
     "staking": "ການວາງເດີມພັນ",
     "superpowers": "ຊຸບເປີພາວເວີ",
     "governance": "ການປົກຄອງ",
-    "dao": "DAO",
     "careers": "ອາຊີບ",
     "glossary": "ວັດຈະນານຸກົມ",
     "create": "ສ້າງ",
@@ -146,9 +145,9 @@
     "noMoreShorts": "ບໍ່ມີ Shorts ອີກຕໍ່ໄປ",
     "noShortsFound": "ບໍ່ພົບ Shorts",
     "newMembersHint": "ເຂົ້າຮ່ວມແລ້ວ — ທັກທາຍ",
-    "scroll": "Scroll",
     "noFilterMatches": "ບໍ່ມີເນື້ອໃນທີ່ກົງກັບຕົວກອງຂອງທ່ານ.",
-    "clearFilters": "ລ້າງຕົວກັ່ນຕອງ"
+    "clearFilters": "ລ້າງຕົວກັ່ນຕອງ",
+    "scroll": "ເລື່ອນ"
   },
   "explore": {
     "all": "ທັງໝົດ",
@@ -572,7 +571,6 @@
     "failedUpdateDmPrefs": "ອັບເດດການຕັ້ງຄ່າ DM ບໍ່ສຳເລັດ",
     "editProfile": "ແກ້ໄຂໂປຣໄຟລ໌",
     "editProfileDesc": "ຊື່, ຊື່ຜູ້ໃຊ້, ຂໍ້ມູນສ່ວນຕົວ, ຮູບຕົວແທນ ແລະ ໜ້າປົກ",
-    "socialLinksDesc": "X, Instagram, TikTok, YouTube, Discord, Telegram",
     "yourContent": "ເນື້ອຫາຂອງທ່ານ",
     "yourVideos": "ວິດີໂອຂອງທ່ານ",
     "savedPosts": "ໂພສທີ່ບັນທຶກໄວ້",
@@ -1002,7 +1000,6 @@
     "audio": "ສຽງ",
     "text": "ຂໍ້ຄວາມ",
     "live": "ສົດ",
-    "ppv": "PPV",
     "bounty": "ລາງວັນ",
     "locked": "ລັອກ",
     "any": "ໃດກໍໄດ້",
@@ -1425,9 +1422,7 @@
     "evmAddressCopied": "EVM ທີ່ຢູ່ສໍາເນົາ",
     "solanaAddressHint": "SOL ແລະ SPL tokens ພຽງແຕ່",
     "solanaAddressCopied": "Solana ທີ່ຢູ່ ສໍາ ເນົາ",
-    "chooseNetwork": "ເລືອກເຄືອຂ່າຍ",
-    "solanaAddressLabel": "Solana",
-    "evmAddressLabel": "EVM"
+    "chooseNetwork": "ເລືອກເຄືອຂ່າຍ"
   },
   "bookmarks": {
     "title": "ບຸກມາກຂອງທ່ານ",
@@ -1611,7 +1606,6 @@
     "category": "ໝວດໝູ່",
     "contentType": "ປະເພດເນື້ອຫາ",
     "bounty": "ລາງວັນ",
-    "ppv": "PPV",
     "gated": "ລັອກ",
     "datePosted": "ວັນທີໂພສ",
     "engagement": "ການມີສ່ວນຮ່ວມ",
@@ -1787,7 +1781,9 @@
     "exploreWithoutSignInA11y": "ຄົ້ນຫາ DeHub ໂດຍບໍ່ຕ້ອງເຂົ້າສູ່ລະບົບ",
     "continueExploringA11y": "ສືບຕໍ່ ສໍາ ຫຼວດ DeHub",
     "importWalletRecommended": "ການເຂົ້າສູ່ລະບົບທາງສັງຄົມແມ່ນແນະ ນໍາ.",
-    "importWalletPurpose": "ເຄື່ອງມືນີ້ແມ່ນສໍາລັບການນໍາເຂົ້າບັນຊີທີ່ມີຢູ່ແລ້ວຈາກ DeHub.io."
+    "importWalletPurpose": "ເຄື່ອງມືນີ້ແມ່ນສໍາລັບການນໍາເຂົ້າບັນຊີທີ່ມີຢູ່ແລ້ວຈາກ DeHub.io.",
+    "importSecretPlaceholder": "12 ຫຼື 24 ຄໍາ, ຫຼືປຸ່ມສ່ວນຕົວ",
+    "invalidImportSecret": "ມັນບໍ່ແມ່ນ ຄໍາ ເວົ້າທີ່ຖືກຕ້ອງ 12/24 ຄໍາ ຫຼືປຸ່ມສ່ວນຕົວ."
   },
   "messages": {
     "smartRepliesOff": "ປິດຄຳຕອບທີ່ແນະນຳແລ້ວ",
@@ -2142,7 +2138,6 @@
     "youReceive": "ທ່ານໄດ້ຮັບ (ປະມານ)",
     "paymentMethod": "ວິທີຊຳລະ",
     "cardBank": "ບັດ / ທະນາຄານ",
-    "cardBankDesc": "Visa, Mastercard, Apple Pay",
     "fiatOnramp": "ຊື້ດ້ວຍເງິນສົດ",
     "fiatOnrampDesc": "ຊື້ຄຣິບໂຕດ້ວຍເງິນສົດໂດຍກົງ",
     "buy": "ຊື້ {{symbol}}",
@@ -2379,10 +2374,6 @@
     "yourApplication": "ໃບສະໝັກຂອງທ່ານ",
     "fullName": "ຊື່ເຕັມ",
     "email": "ອີເມວ",
-    "telegram": "Telegram",
-    "xTwitter": "X (Twitter)",
-    "instagram": "Instagram",
-    "linkedin": "LinkedIn",
     "otherSocials": "ໂຊຊຽນອື່ນ",
     "otherSocialsPlaceholder": "TikTok, YouTube, Discord ແລະ ອື່ນໆ",
     "pastExperience": "ປະສົບການທີ່ຜ່ານມາ",
@@ -2654,7 +2645,6 @@
     "viewCount_other": "{{count}} ການເບິ່ງ",
     "shareMessage": "ລອງເບິ່ງອັນນີ້: {{url}}",
     "hideReplies": "ເຊື່ອງການຕອບ",
-    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
     "rowA11yHint": "ເລີ່ມຕອບຄຳເຫັນນີ້",
     "editingComment": "ກຳລັງແກ້ໄຂຄຳເຫັນ",
     "editPlaceholder": "ແກ້ໄຂຄຳເຫັນຂອງທ່ານ...",
@@ -3227,12 +3217,10 @@
       "purgeBody": "ທຸກຂໍ້ຄວາມທີ່ {{name}} ສົ່ງໃນຊຸມຊົນນີ້ຈະຖືກລຶບອອກ.",
       "kickBody": "{{name}} ຈະຖືກລຶບອອກຈາກຊຸມຊົນ. ພວກເຂົາສາມາດເຂົ້າຮ່ວມໄດ້ອີກຄັ້ງໃນພາຍຫຼັງ.",
       "bannedUntil": "ຖືກຫ້າມຈົນກວ່າ {{date}}",
-      "restrictionWithReason": "{{state}} — {{reason}}",
       "mutedUntil": "ຖືກປິດສຽງຈົນກວ່າ {{date}}",
       "bannedUntilShort": "ຈົນກວ່າ {{date}}",
       "muteTitle": "ປິດສຽງ {{name}}",
       "banTitle": "ຫ້າມ {{name}}",
-      "reasonCounter": "{{len}}/200",
       "rulesCount": "{{used}} ຂອງ {{max}}",
       "moveRuleUp": "ຍ້າຍກົດຂຶ້ນ",
       "moveRuleDown": "ຍ້າຍກົດລົງ",
@@ -3677,7 +3665,6 @@
     "podBadge": "ພິມຕາມສັ່ງ",
     "podBuyOn": "ຊື້ທີ່ {{provider}}",
     "podNote": "ພິມ ແລະ ສົ່ງຕາມສັ່ງໂດຍ {{provider}}. ການຈ່າຍເງິນເຮັດຢູ່ເວັບໄຊຂອງເຂົາເຈົ້າ.",
-    "podUrlPlaceholder": "https://…",
     "subtitle": "ຄົ້ນພົບຜະລິດຕະພັນຈາກຊຸມຊົນ DeHub",
     "browse": "ເບິ່ງ",
     "myStore": "ຮ້ານຂອງຂ້ອຍ",
@@ -3981,7 +3968,6 @@
     "warm": "ອຸ່ນ",
     "cool": "ເຢັນ",
     "vivid": "ສົດໃສ",
-    "vhs": "VHS",
     "neon": "ນີອອນ",
     "pixelate": "ພິກເຊວ"
   },
@@ -4238,7 +4224,6 @@
     "pinMessage": "ຂໍ້ຄວາມ PIN",
     "unpinMessage": "ຖອນການສຳເນົາຂໍ້ຄວາມ",
     "jumpToLatest": "ໂດດໄປທີ່ຂໍ້ຄວາມລ່າສຸດ",
-    "attachGif": "GIF",
     "modBadge": "ຜູ້ດູແລ",
     "ban": "ແບນ",
     "banConfirm": "ທ່ານແນ່ໃຈບໍ່ວ່າທ່ານຕ້ອງການແບນ {{name}}?",
@@ -4543,7 +4528,6 @@
     "filterAll": "ທັງໝົດ",
     "noData": "ບໍ່ມີຂໍ້ມູນ",
     "tips": "ທິບ",
-    "ppv": "PPV",
     "incomeBreakdown": "ລາຍລະອຽດລາຍຮັບ",
     "ppvSales": "ການຂາຍ PPV",
     "total": "ລວມ",
@@ -5996,7 +5980,6 @@
     "yourChannel": "ຊ່ອງທາງຂອງທ່ານ",
     "yourChannelHint": "ວາງທີ່ຢູ່ຊ່ອງທາງຂອງທ່ານ — ການຈັດການໃນວຽກງານຂອງຕົນເອງເຊັ່ນກັນ.",
     "howNote": "ວິດີໂອຈະຖືກເຜີຍແພ່ເປັນໂພສປົກກະຕິໂດຍບໍ່ມີການ minting, ເນື່ອງຈາກຊຸດບໍ່ສາມາດຢຸດເພື່ອຂໍໃຫ້ກະເປົາເງິນຂອງທ່ານເຊັນຊື່ແຕ່ລະອັນໄດ້.",
-    "placeholder": "youtube.com/@you, tiktok.com/@you, vimeo.com/you…",
     "costsNote": "ຈ່າຍເປັນໂຕເຄັນ DeHub, ຄັ້ງດຽວ, ກ່ອນການເລີ່ມຕົ້ນຂອງຊຸດ. ຜູ້ຖືປ້າຍຈ່າຍໜ້ອຍລົງ — ສ່ວນຫຼຸດຂອງທ່ານຈະຖືກນຳໃຊ້ກັບໃບສະເໜີລາຄາ. ຖ້າວິດີໂອບໍ່ສາມາດນຳເຂົ້າໄດ້, ສ່ວນແບ່ງຂອງມັນຈະຖືກສົ່ງຄືນໄປຫາການຍ້າຍຄັ້ງຕໍ່ໄປຂອງທ່ານ."
   },
   "calls": {
@@ -6664,7 +6647,6 @@
       "newDesign": "ການອອກແບບໃໝ່",
       "yourDesigns": "ການອອກແບບຂອງທ່ານ",
       "noDesigns": "ການອອກແບບທີ່ທ່ານສ້າງຈະຖືກບັນທຶກໄວ້ໃນໂທລະສັບນີ້ ແລະ ສະແດງຢູ່ບ່ອນນີ້.",
-      "dimensions": "{{width}} × {{height}}",
       "aspectStory": "ສະຕໍຣີ",
       "aspectPost": "ໂພສ",
       "aspectSquare": "ສີ່ຫຼ່ຽມຈັດຕຸລັດ",
@@ -6946,7 +6928,6 @@
       "split": "ແຍກ",
       "splitHint": "ຍ້າຍຫົວຫຼິ້ນເຂົ້າໄປໃນຄລິບເພື່ອແຍກມັນ.",
       "speed": "ຄວາມໄວ",
-      "speedValue": "{{value}}×",
       "volumeTool": "ລະດັບສຽງ",
       "volume": "ລະດັບສຽງ {{value}}%",
       "fadeIn": "ສຽງຄ່ອຍໆດັງ {{value}}s",
@@ -7009,7 +6990,6 @@
       "recording": "ກຳລັງບັນທຶກການເຄື່ອນໄຫວ",
       "lanes": "ຄີເຟຣມ",
       "scrub": "ລາກໄປຊ້າຍ ຫຼື ຂວາເພື່ອປ່ຽນ.",
-      "segment": "{{from}} → {{to}}",
       "ease": {
         "linear": "ເສັ້ນຊື່",
         "ease": "ນຸ່ມນວນ",
@@ -7971,8 +7951,7 @@
     "tabStickers": "ສະຕິກເກີ",
     "tab": {
       "emoji": "ອີໂມຈິ",
-      "sticker": "ສະຕິກເກີ",
-      "gif": "GIF"
+      "sticker": "ສະຕິກເກີ"
     },
     "kind": {
       "emoji": "ຊຸດອີໂມຈິ",
@@ -7997,8 +7976,7 @@
       "tier": "ລະດັບ",
       "packs": "ຊຸດ",
       "emoji": "ອີໂມຈິ",
-      "stickers": "ສະຕິກເກີ",
-      "gifs": "GIF"
+      "stickers": "ສະຕິກເກີ"
     },
     "signInToCreate": "ເຂົ້າສູ່ລະບົບເພື່ອສ້າງແພັກ",
     "signInToAdd": "ເຂົ້າສູ່ລະບົບເພື່ອເພີ່ມ",
@@ -8296,8 +8274,6 @@
     "volume24h": "ປະລິມານ 24h",
     "website": "ເວັບໄຊຕ໌",
     "mcapToGraduation": "{{current}} / {{target}} mcap ເຖິງການຈົບຊັ້ນ",
-    "telegram": "Telegram",
-    "twitter": "X / Twitter",
     "tickerHint": "2–8 ຕົວອັກສອນ, A–Z, 0–9",
     "vol24h": "24h ປະລິມານ",
     "fieldTicker": "ສັນຍາລັກ",
@@ -8446,7 +8422,6 @@
     "basicAnalytics": "ການວິເຄາະພື້ນຖານ",
     "detailedAnalytics": "ການວິເຄາະລະອຽດ",
     "prioritySupport": "ການສະໜັບສະໜູນບູລິມະສິດ",
-    "sso": "SSO",
     "adminSpendControl": "ການຄວບຄຸມການໃຊ້ຈ່າຍຂອງຜູ້ເບິ່ງແຍງລະບົບ",
     "priorityQueue": "ຄິວສຳຄັນ",
     "priorityQueueFast": "ຄິວສຳຄັນສຳລັບການປະມວນຜົນວຽກທີ່ໄວຂຶ້ນ",
@@ -8639,5 +8614,36 @@
     "recommendedBody": "ມີ DeHub ເວີຊັນໃໝ່ທີ່ມີການແກ້ໄຂຄວາມປອດໄພສຳຄັນ. ອັບເດດເພື່ອໃຫ້ບັນຊີຂອງທ່ານປອດໄພ.",
     "requiredBody": "DeHub ເວີຊັນນີ້ບໍ່ຮອງຮັບອີກແລ້ວ. ອັບເດດເພື່ອໃຊ້ບັນຊີຂອງທ່ານຕໍ່.",
     "update": "ອັບເດດດຽວນີ້"
+  },
+  "walletBackup": {
+    "title": "ສໍາຮອງກະເປົ໋າເງິນ",
+    "rowDesc": "ເບິ່ງ ຄໍາ ສັບ 12 ຄໍາ ຫຼື ຄໍາ ສໍາ ຄັນສ່ວນຕົວຂອງທ່ານ",
+    "backedUpOn": "ການສະ ຫນັບ ສະ ຫນູນ {{date}}",
+    "offerTitle": "ສະ ຫນັບ ສະ ຫນູນ ກະເປົາເງິນຂອງທ່ານບໍ?",
+    "offerBody": "12 ຄໍາ ທີ່ເຮັດໃຫ້ກະເປົາເງິນຂອງທ່ານກັບຄືນມາຖ້າທ່ານສູນເສຍໂທລະສັບຫຼືລະຫັດຜ່ານຂອງທ່ານ. ມັນໃຊ້ເວລາປະມານ 30 ນາທີ.",
+    "offerBodyDeviceOnly": "ພວກເຂົາມີໂທລະສັບມືຖືຫຼາຍ. ຖ້າບໍ່ມີ ຄໍາ ເວົ້າເຫຼົ່ານີ້, ໂທລະສັບທີ່ສູນເສຍ ຫມາຍ ເຖິງກະເປົາເງິນທີ່ສູນເສຍໄປ.",
+    "saveNow": "ບັນທຶກດຽວນີ້",
+    "skipForNow": "ຂ້າມ ສໍາ ລັບດຽວນີ້",
+    "wordsTitle": "ຄໍາ ເວົ້າ 12 ຂອງທ່ານ",
+    "tapToReveal": "ແລະ ເພື່ອເປີດເຜີຍ",
+    "hideWords": "ເຊື່ອງຄໍາສັບ",
+    "copied": "ສຳເນົາແລ້ວ",
+    "wroteThemDown": "ຂ້າພະເຈົ້າໄດ້ຂຽນລົງ",
+    "checkTitle": "ກວດສອບດ່ວນ",
+    "checkPrompt": "ແຕະໃສ່ ຄໍາ ສັບ # {{n}}",
+    "checkWrong": "ບໍ່ແມ່ນອັນນັ້ນ .ເບິ່ງ ຄໍາ ວ່າ #{{n}} ອີກເທື່ອ ຫນຶ່ງ.",
+    "skipCheck": "ຂ້າມການກວດສອບ",
+    "signingIn": "ລົງນາມໃນ...",
+    "warnOwns": "ທຸກໆຄົນທີ່ມີ ຄໍາ ເວົ້າເຫຼົ່ານີ້ເປັນເຈົ້າຂອງກະເປົາເງິນຂອງທ່ານ.",
+    "warnNeverAsk": "Dehub ຈະບໍ່ຂໍໃຫ້ເຂົາເຈົ້າ.",
+    "warnPaper": "ຂຽນມັນໃສ່ເຈ້ຍ, ບໍ່ແມ່ນໃນຮູບພາບ ຫນ້າ ຈໍຫລື ຄໍາ ຮ້ອງສະ ຫມັກ ບັນທຶກ.",
+    "tabWords": "12 ຄໍາເວົ້າ",
+    "tabPrivateKey": "ປຸ່ມສ່ວນຕົວ",
+    "advanced": "ຂັ້ນສູງ",
+    "passwordToShowWords": "ໃສ່ລະຫັດຜ່ານ wallet ຂອງທ່ານເພື່ອສະແດງຄໍາ 12 ຂອງທ່ານ.",
+    "showWords": "ສະແດງຄຳສັບ",
+    "reminderBody": "Backup ກະເປົາເງິນຂອງທ່ານ — 12 ຄໍາ ທີ່ເຮັດໃຫ້ມັນກັບມາເມື່ອທ່ານສູນເສຍໂທລະສັບຂອງທ່ານ.",
+    "backUp": "ສະໜັບສະໜູນ",
+    "notNow": "ບໍ່ແມ່ນຕອນນີ້"
   }
 }

@@ -1789,7 +1789,9 @@
     "exploreWithoutSignInA11y": "Tirohia te DeHub me te kore e haina i roto i",
     "continueExploringA11y": "Haere tonu ki te tirotiro i te DeHub",
     "importWalletRecommended": "Ka tūtohutia ngā pūkete pāpori.",
-    "importWalletPurpose": "Ko tenei taputapu mo te kawemai i nga kaute o mua mai i DeHub.io."
+    "importWalletPurpose": "Ko tenei taputapu mo te kawemai i nga kaute o mua mai i DeHub.io.",
+    "importSecretPlaceholder": "12 ranei 24 kupu, ranei te kī tūmataiti",
+    "invalidImportSecret": "Ehara i te kupu 12/24 kupu tika, i te kī tūmataiti rānei"
   },
   "messages": {
     "smartRepliesOff": "Kua whakawetohia ngā whakautu tūtohu",
@@ -8638,5 +8640,36 @@
     "recommendedBody": "He putanga hou ake o DeHub kei te wātea, me ngā whakatika haumaru nui. Whakahōutia kia noho haumaru tō pūkete.",
     "requiredBody": "Kua kore e tautokona tēnei putanga o DeHub. Whakahōutia kia haere tonu tō whakamahi i tō pūkete.",
     "update": "Whakahōu ināianei"
+  },
+  "walletBackup": {
+    "title": "Whakahokia te putea",
+    "rowDesc": "Tirohia tō 12 kupu, te kī tūmataiti rānei",
+    "backedUpOn": "Tautoko {{date}}",
+    "offerTitle": "Ka taea e koe te whakahoki mai i to putea?",
+    "offerBody": "12 kupu e whakahoki mai i to putea ki te ngaro koe i to waea, i to kupuhipa ranei. E 30 hēkona te roa.",
+    "offerBodyDeviceOnly": "Ko to putea anake e ora ana i runga i tenei waea. Ki te kore enei kupu, he waea ngaro te tikanga o te putea ngaro.",
+    "saveNow": "Whakaorangia inaianei",
+    "skipForNow": "Tikiake mo tenei wa",
+    "wordsTitle": "Ko au kupu 12",
+    "tapToReveal": "Tap ki te whakaatu",
+    "hideWords": "Kia mau ki nga kupu",
+    "copied": "Tārua",
+    "wroteThemDown": "Kua tuhituhia e ahau ki raro",
+    "checkTitle": "Tirohanga Tere",
+    "checkPrompt": "Tap kupu # {{n}}",
+    "checkWrong": "Ehara i te mea kotahi. Tirohia te kupu #{{n}} ano.",
+    "skipCheck": "Whakamātauria Skip",
+    "signingIn": "Ka haina ahau ki a koe i roto i...",
+    "warnOwns": "Ko te tangata e whai ana i enei kupu, e whai ana i to putea.",
+    "warnNeverAsk": "Kaore a DeHub e ui ki a raatau.",
+    "warnPaper": "Tuhia ki te pepa, kaua ki te pikitia, ki te taupānga pūkete ranei.",
+    "tabWords": "12 kupu",
+    "tabPrivateKey": "Kī tūmataiti",
+    "advanced": "He matatau",
+    "passwordToShowWords": "Whakauruhia tō kupuhipa putea hei whakaatu i ō kupu 12.",
+    "showWords": "Whakaatu kupu",
+    "reminderBody": "Whakahokia tō putea — 12 kupu e whakahoki mai ana mēnā ka ngaro tō waea.",
+    "backUp": "Hoki ki runga",
+    "notNow": "Ehara i te mea i tenei wa"
   }
 }

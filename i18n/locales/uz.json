@@ -1807,7 +1807,9 @@
     "exploreWithoutSignInA11y": "Tizimga kirmasdan DeHub’ni o‘rganing",
     "continueExploringA11y": "DeHub’ni o‘rganishda davom eting",
     "importWalletRecommended": "Ijtimoiy tarmoqlarga kirish tavsiya etiladi.",
-    "importWalletPurpose": "Ushbu vosita DeHub.io dan mavjud hisoblarni import qilish uchun mo'ljallangan."
+    "importWalletPurpose": "Ushbu vosita DeHub.io dan mavjud hisoblarni import qilish uchun mo'ljallangan.",
+    "importSecretPlaceholder": "12 yoki 24 so‘z, yoki maxfiy kalit",
+    "invalidImportSecret": "Bu yaroqli 12/24‑so‘zli ibora yoki maxfiy kalit emas"
   },
   "messages": {
     "smartRepliesOff": "Tavsiya etilgan javoblar o'chirildi",
@@ -6016,7 +6018,6 @@
     "videoCountMany": "{{n}} ta video",
     "videoCountOne": "{{n}} ta video",
     "videosCount": "{{videos}} ta video",
-    "placeholder": "youtube.com/@you, tiktok.com/@you, vimeo.com/you…",
     "costsNote": "DeHub tokenlarida to'langan, bir marta, partiya boshlanishidan oldin. Belgilangan foydalanuvchilar kamroq to'laydi — chegirmangiz keyingi migratsiyangiz uchun hisoblanadi. Agar video import qilinmasa, uning ulushi keyingi migratsiyangiz uchun qaytariladi."
   },
   "calls": {
@@ -8592,7 +8593,8 @@
     "error": "O&#39;chirish so&#39;rovingizni yuborib bo&#39;lmadi. Hisobingiz o&#39;chirish uchun tasdiqlanmadi. Iltimos, qaytadan urinib ko&#39;ring.",
     "back": "Sozlamalarga qaytish",
     "signIn": "Hisobingizni o&#39;chirish uchun tizimga kiring",
-    "acknowledge": "Men hamyonimni tiklash ma&#39;lumotlarini saqladim va o&#39;chirish doimiy ekanligini tushunaman."
+    "acknowledge": "Men hamyonimni tiklash ma&#39;lumotlarini saqladim va o&#39;chirish doimiy ekanligini tushunaman.",
+    "done": "Bajarildi"
   },
   "miniApps": {
     "badge": {
@@ -8695,5 +8697,36 @@
     "recommendedBody": "DeHub-ning muhim xavfsizlik tuzatishlari bor yangi versiyasi chiqdi. Hisobingiz himoyalangan qolishi uchun yangilang.",
     "requiredBody": "DeHub-ning bu versiyasi endi qoʻllab-quvvatlanmaydi. Hisobingizdan foydalanishda davom etish uchun yangilang.",
     "update": "Hozir yangilash"
+  },
+  "walletBackup": {
+    "title": "Hamyonni zaxiralash",
+    "rowDesc": "12 so‘zingizni yoki maxfiy kalitingizni ko‘ring",
+    "backedUpOn": "Zaxiralangan {{date}}",
+    "offerTitle": "Hamyoningizni zaxiralashni xohlaysizmi?",
+    "offerBody": "Telefon yoki parolingizni yo‘qotganingizda hamyoningizni qaytaradigan 12 so‘z. 30 soniya vaqt oladi.",
+    "offerBodyDeviceOnly": "Hamyoningiz faqat ushbu telefonda mavjud. Bu so‘zlarsiz, yo‘qolgan telefon hamyonni yo‘qotish demakdir.",
+    "saveNow": "Hozir saqlash",
+    "skipForNow": "Hozirda o'tkazib yuborish",
+    "wordsTitle": "Sizning 12 so‘zingiz",
+    "tapToReveal": "Ko‘rsatish uchun teging",
+    "hideWords": "So‘zlarni yashirish",
+    "copied": "Nusxa olindi",
+    "wroteThemDown": "Men ularni yozib qo‘ydim",
+    "checkTitle": "Tez tekshiruv",
+    "checkPrompt": "So‘z #{{n}} ga teging",
+    "checkWrong": "U shunday emas. #{{n}} so‘zini yana bir bor ko‘ring.",
+    "skipCheck": "Tekshiruvni o'tkazib yuborish",
+    "signingIn": "Kirish amalga oshirilmoqda…",
+    "warnOwns": "Ushbu so‘zlarga ega bo‘lgan har kim hamyoningizga egalik qiladi.",
+    "warnNeverAsk": "DeHub hech qachon ularni so‘ramaydi.",
+    "warnPaper": "Ularni qog‘ozga yozing, skrinshotda yoki eslatma ilovasida emas.",
+    "tabWords": "12 so‘z",
+    "tabPrivateKey": "Maxfiy kalit",
+    "advanced": "Kengaytirilgan",
+    "passwordToShowWords": "12 so‘zingizni ko‘rsatish uchun hamyon parolingizni kiriting.",
+    "showWords": "So‘zlarni ko‘rsatish",
+    "reminderBody": "Hamyoningizni zaxiralang — telefoningizni yo‘qotganingizda uni qaytaradigan 12 so‘z.",
+    "backUp": "Zaxiralash",
+    "notNow": "Hozir emas"
   }
 }

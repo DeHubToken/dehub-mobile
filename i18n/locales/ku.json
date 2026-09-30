@@ -1789,7 +1789,9 @@
     "exploreWithoutSignIn": "Bêyî têketinê bigerin",
     "continueExploring": "Berdewamiya lêgerînê",
     "exploreWithoutSignInA11y": "DeHub-ê bêyî têketinê bigerin",
-    "continueExploringA11y": "Berdewamiya keşifkirina DeHubê bike"
+    "continueExploringA11y": "Berdewamiya keşifkirina DeHubê bike",
+    "importSecretPlaceholder": "١٢ یان ٢٤ وشە، یان کلیلی تایبەتی",
+    "invalidImportSecret": "ئەوە وشەی ١٢/٢٤ یان کلیلی تایبەتی دروست نیە"
   },
   "messages": {
     "smartRepliesOff": "Bersivên pêşniyarkirî hatin girtin",
@@ -7380,7 +7382,8 @@
     "doneInstant": "Tokenên {{amount}} hatin firotin",
     "doneList": "Nîşaneyên {{amount}} li ${{price}} hatine navnîşkirin",
     "aiPlaceholder": "Biceribîne \"nîvê tokenên xwe bi 6 sentan bifroşim\"",
-    "aiBuyOnly": "Bazirganiya hêsan nîşanekan difiroşe. Ji bo kirîna nîşanekan, Exchange veke."
+    "aiBuyOnly": "Bazirganiya hêsan nîşanekan difiroşe. Ji bo kirîna nîşanekan, Exchange veke.",
+    "marketRateHint": "فروش بکە ئێستا لە سەردەمی ${{price}} بۆ هەر توکەنێک، لە کۆیەوە {{usdc}} USDC."
   },
   "tipFunding": {
     "lowLiquidity": "Niha ji bo dayîneke bi vê mezinahiyê têra xwe likîdîteya Uniswap tune ye",
@@ -8522,36 +8525,80 @@
     "title": "حیسابی بەکارهێنەر بسڕەوە",
     "warning": "Ev profîla we ya DeHub, post, şîrove, peyam û kopiya hilanînê ya berîka we bi awayekî mayînde jê dibe. Agahiyên vegerandina berîka xwe hilînin û pêşî her mal û milkê xwe veguhezînin. Muameleyên zincîra blokê yên giştî û tomarên dravdanê yên ku ji hêla qanûnî ve hewce ne nayên jêbirin. Profîla we tavilê tê veşartin; jêbirin di nav 30 rojan de qediya. Ev nayê vegerandin.",
     "cancel": "Betal bike",
-    "done": "Biqedîne"
+    "done": "Biqedîne",
+    "description": "هەموو هەژمار و زانیاری کەسییەکانت بە شێوەیەکی هەمیشەیی سڕینەوە",
+    "confirm": "هەژمارم بە شێوەیەکی هەمیشەیی سڕینەوە",
+    "busy": "پێشکەشکردنی داواکاری سڕینەوە…",
+    "accepted": "داواکاری سڕینەوەی هەژمار داواکرا",
+    "receipt": "داواکاری سڕینەوەی تۆ هەڵگیرا. پرۆفایلی تۆ شاراوە و هەژمارەکەت لە ماوەی 30 ڕۆژدا بە شێوەیەکی هەمیشەیی سڕدرێت. چوونەژوورەوە ناتوانێت ئەم داواکارییە هەڵبژاردن.",
+    "error": "ناتوانرا داواکاری سڕینەوەی تۆ پێشکەش بکرێت. هەژمارەکەت بۆ سڕینەوە پشتڕاست نەکراوە. تکایە دووبارە هەوڵبدە.",
+    "back": "گەڕانەوە بۆ ڕێکخستنەکان",
+    "signIn": "چوونەژوورەوە بۆ سڕینەوەی هەژمارەکەت",
+    "acknowledge": "من زانیارییەکانی گەڕاندنەوەی جیابەجێی خۆم هەڵگرتووە و تێگەیشتم کە سڕینەوە هەمیشەییە."
   },
   "miniApps": {
     "host": {
       "close": "Sepanê bigire",
       "backToStore": "Vegere Sepanan",
       "notFound": "Ev sepan ne di DeHub App Store de ye, an jî hatiye rakirin.",
-      "badUrl": "Ew navnîşan wekî mini app nayê vekirin. Divê bi https:// dest pê bike, an jî di moda pêşdebir de navnîşanek localhost be."
+      "badUrl": "Ew navnîşan wekî mini app nayê vekirin. Divê bi https:// dest pê bike, an jî di moda pêşdebir de navnîşanek localhost be.",
+      "readyTimeout": "ئەم بەرنامەیە هەرگیز dehub.ready() بانگ نەکرد، بۆیە شاشەی سەربەخۆ لە دوای 8 چرکەدا شاراوە."
     },
     "signIn": {
       "body": "Ev sepan dê navnîşana berîka we ya DeHub û nîşanek têketinê bistîne ku tenê ji bo vê sepanê dixebite. Ew ê bigihîje berîka we, fonên we an hesabê we yê DeHub.",
-      "cancel": "Nehatiye dîtin"
+      "cancel": "Nehatiye dîtin",
+      "title": "چوونەژوورەوە بۆ {{name}}؟",
+      "confirm": "چوونەژوورەوە"
     },
     "store": {
       "intro": "Minî sepanên ji bo DeHub ji hêla her kesî ve hatine çêkirin. Ew di hundurê DeHub de vedibin, hûn jixwe têketine, û her sepan navnîşana xwe ya rastîn a webê nîşan dide.",
       "remove": "سڕینەوە",
       "removed": "Rakirî. Ew ê careke din te agahdar neke.",
-      "rising": "Nû û bilind dibe"
+      "rising": "Nû û bilind dibe",
+      "title": "بەرنامەکان",
+      "buildCta": "بەرنامەیەک دروست بکە",
+      "emptyTitle": "هێشتا هیچ بەرنامەیەک لیست نەکراوە",
+      "emptyBody": "بەرنامەی سەرەتا لە پێداچوونەوەدا نییە. یەکێک دروست بکە و دەتوانێت لێرە بێت.",
+      "search": "گەڕان بۆ بەرنامەکان",
+      "all": "هەموو",
+      "fromDehub": "لە DeHub",
+      "noMatch": "هیچ بەرنامەیەک لەگەڵ ئەو گەڕانەدا ناگونجێت.",
+      "yourApps": "بەرنامەکانی تۆ",
+      "notificationsOn": "ئاگادارییەکان چالاکن"
     },
     "category": {
       "games": "Asamese",
       "finance": "Fînans",
-      "music": "Muzîk"
+      "music": "Muzîk",
+      "social": "کۆمەڵایەتی",
+      "utility": "ئامراز",
+      "productivity": "Baikarhatinî",
+      "health-fitness": "Tendurustî û werziş",
+      "news-media": "Nûçe û medyayê",
+      "shopping": "Kirrîn",
+      "education": "Zanyarî",
+      "developer-tools": "Amûrên pêşdebiran",
+      "entertainment": "Axaftin",
+      "art-creativity": "Huner û afirînerî"
     },
     "pay": {
-      "body": "DHB rasterast diçe berîka sepanê, {{wallet}}. Pere nayên vegerandin."
+      "body": "DHB rasterast diçe berîka sepanê, {{wallet}}. Pere nayên vegerandin.",
+      "title": "Bide {{name}}?",
+      "confirm": "Bide {{amount}} DHB",
+      "sent": "Bi rêya {{amount}} DHB bo {{name}} hatiye dayîn."
     },
     "add": {
       "body": "Ew ê di bin Serlêdanên we de xuya bibe û dikare agahdariyan ji we re bişîne. Hûn dikarin her dem wê ji rûpela Serlêdanan jê bibin.",
-      "confirm": "Sepanê lê zêde bike"
+      "confirm": "Sepanê lê zêde bike",
+      "title": "{{name}} lê zêde bike?"
+    },
+    "badge": {
+      "verified": "پشتڕاستکراو",
+      "unreviewed": "بێ سەردانی",
+      "dev": "پێشبینی گەشەپێدەر"
+    },
+    "card": {
+      "open": "کردنەوە"
     }
   },
   "aiStyles": {
@@ -8590,5 +8637,36 @@
     "recommendedBody": "Guhertoyeke nûtir a DeHub bi çareseriyên ewlehiyê yên girîng heye. Nû bike da ku hesabê te parastî bimîne.",
     "requiredBody": "Ev guhertoya DeHub êdî nayê piştgirîkirin. Nû bike da ku bikaranîna hesabê xwe bidomînî.",
     "update": "Niha nû bike"
+  },
+  "walletBackup": {
+    "title": "پشتیوانی بکە لە جێبەجێ",
+    "rowDesc": "١٢ وشە یان کلیلی تایبەتی خۆت ببینە",
+    "backedUpOn": "پشتیوانی کرا {{date}}",
+    "offerTitle": "پشتیوانی بکە لە جێبەجێ؟",
+    "offerBody": "١٢ وشەیەک کە جێبەجێی تۆ دەگەڕێنێت ئەگەر تەلەفۆن یان تێپەڕەوشەی خۆت لەدەست بدەیت. ٣٠ چرکە دەگرێت.",
+    "offerBodyDeviceOnly": "جێبەجێت تەنها لە ئەم تەلەفۆنەدا ژیانی هەیە. بێ ئەم وشانە، تەلەفۆنێکی لەدەستدراو واتە جێبەجێی لەدەستدراو.",
+    "saveNow": "ئێستا پاشەکەوت بکە",
+    "skipForNow": "هەنووکە بپەڕێنە",
+    "wordsTitle": "١٢ وشەی تۆ",
+    "tapToReveal": "بۆ نیشاندان لەسەر تێکە",
+    "hideWords": "وشەکان بشارەوە",
+    "copied": "لەبەرگیرا",
+    "wroteThemDown": "من نووسیوە",
+    "checkTitle": "پشکنینی خێرا",
+    "checkPrompt": "وشەی #{{n}} لەسەر تێکە",
+    "checkWrong": "ئەوە نییە. دووبارە وشەی #{{n}} سەیر بکە.",
+    "skipCheck": "پشکنین بپەڕێنە",
+    "signingIn": "چوونە ژوور…",
+    "warnOwns": "هەر کەسێک کە ئەم وشانە هەیە جێبەجێی تۆیە.",
+    "warnNeverAsk": "DeHub هەرگیز لەوانەی داوا ناکات.",
+    "warnPaper": "لەسەر کاغەز بنووسە، نا لە وێنەی سکرین یان بەرنامەی تێبینی.",
+    "tabWords": "١٢ وشە",
+    "tabPrivateKey": "کلیلی تایبەتی",
+    "advanced": "پێشکەوتوو",
+    "passwordToShowWords": "تێپەڕەوشەی جێبەجێت بنووسە بۆ نیشاندانی ١٢ وشەکەت.",
+    "showWords": "وشەکان نیشان بدە",
+    "reminderBody": "پشتیوانی بکە لە جێبەجێ — ١٢ وشەیەک کە ئەگەر تەلەفۆنەکەت لەدەست بدەیت جێبەجێی گەڕانەوە دەدات.",
+    "backUp": "پشتیوانی بکە",
+    "notNow": "نەک ئێستا"
   }
 }

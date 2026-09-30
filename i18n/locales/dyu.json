@@ -1329,7 +1329,6 @@
     "crossChainDesc": "BTC, SOL, ETH, USDC ani fɛɛn wɛrɛw chain o chain ma",
     "depositFromAnyChain": "Bila ka bɔ chain o chain ma",
     "sendCryptoToReceive": "Crypto ci ka bɔ chain o chain ma → {{dest}} sɔrɔ",
-    "tokenOnChainTo": "{{symbol}} on {{chain}} → {{dest}}",
     "tokenAmount": "{{symbol}} hakɛ",
     "estimatedReceived": "{{symbol}} sɔrɔta jateminɛnen",
     "getDepositAddress": "Bilali adiresi sɔrɔ",
@@ -1785,7 +1784,9 @@
     "exploreWithoutSignInA11y": "I ka kan ka min kɛ, o ye ka to ka to ka o kɛ",
     "continueExploringA11y": "O kɔ, a ye dɔ fara a ka baara kan.",
     "importWalletRecommended": "An b'a ɲini ka mɔgɔw weele ka na an ka lajɛnw na.",
-    "importWalletPurpose": "O baarakɛminan ye ka mɔgɔ dɔw ka ladɛrɛsiw don DeHub.io kɔnɔ."
+    "importWalletPurpose": "O baarakɛminan ye ka mɔgɔ dɔw ka ladɛrɛsiw don DeHub.io kɔnɔ.",
+    "importSecretPlaceholder": "Kuma 12 wala 24 wala jɔnjɔn dɔ",
+    "invalidImportSecret": "O tɛ kuma 12/24 ye wala mɔgɔ tɛ se ka min fɔ."
   },
   "messages": {
     "smartRepliesOff": "Jaabi fɔlenw fagara",
@@ -3321,9 +3322,15 @@
         "unknownActor": "Mɔgɔ dɔ",
         "restricted": "Mɔgɔ minw be se k'o kɛ, olu dɔrɔn lo be se k'o kɛ.",
         "empty": "O kama, an ka ɲi k'an yɛrɛ tanga o ma.",
-        "showMore": "Ka dɔ fara a kan ({{value}})"
+        "showMore": "Ka dɔ fara a kan ({{value}})",
+        "forDays": "for {{value}}d",
+        "reason": "Reason: {{value}}"
       },
-      "muteEffect": "U tora u ka jɛnkulu kɔnɔ, nka u tɛ se ka to yen fɔɔ u ka kuma ka ban."
+      "muteEffect": "U tora u ka jɛnkulu kɔnɔ, nka u tɛ se ka to yen fɔɔ u ka kuma ka ban.",
+      "inviteExpiresMinutes": "expires in {{n}} min",
+      "inviteExpiresHours": "expires in {{n}}h",
+      "inviteExpiresDays": "expires in {{n}}d",
+      "inviteLimit": "limit {{n}}"
     },
     "chooseAvatar": "Choisir un avatar",
     "loadFailed": "U tun tɛ se ka jɛnkuluw sigi",
@@ -8249,7 +8256,9 @@
     "mockTradeNote": "O la, a ka ɲi ka kɛ ni jagokow ye.",
     "amountIn": "Hakɛ {{symbol}} la",
     "boughtMock": "{{symbol}} sanna (misali)",
-    "stepOf": "Taabolo {{step}} ka bɔ 3 la"
+    "stepOf": "Taabolo {{step}} ka bɔ 3 la",
+    "sold": "sold",
+    "tradingClosed": "Trading closed"
   },
   "premium": {
     "bestValue": "Bɛtɛ valyu",
@@ -8585,5 +8594,35 @@
     "recommendedBody": "DeHub ka version kura bɛ yen, lakanani fɛɛn nafama bɛ min na. I ka a kuraya walisa i ka jatebila ka to lakanani na.",
     "requiredBody": "DeHub ka nin version tɛ dɛmɛ sɔrɔ tuguni. I ka a kuraya walisa ka to i ka jatebila baara la.",
     "update": "Kuraya sisan"
+  },
+  "walletBackup": {
+    "title": "Ka segi ka taga ni wari ye",
+    "rowDesc": "A filɛ i ka kumaden 12 wala i ka jɔnjɔn",
+    "backedUpOn": "Baa kɛ {{date}}",
+    "offerTitle": "Yala i b'a fɛ ka segi ka na n'i ye wa?",
+    "offerBody": "N'i ye i ka telefɔni wala i ka kumaɲɔgɔnya tiɲɛ, kuma 12 minw be se k'i ka wari cɛ O la, aw ka segi k'o kɛ seginɛ 30 kɔnɔ.",
+    "offerBodyDeviceOnly": "U caaman tun be wolo o jɛnkulu kɔnɔ ani u tun sara o jɛnkulu dɔ kɔnɔ. O kumaw tɛ yen, telefɔni min tununa, o kɔrɔ ko wari min tununa.",
+    "saveNow": "Sisan, an ka ɲi k'an yɛrɛ tanga",
+    "skipForNow": "O kɔ, a ye n' ka soow lɔ.",
+    "wordsTitle": "I ka kuma tan ni fila",
+    "tapToReveal": "tape kà",
+    "hideWords": "Kuma dogoninw",
+    "copied": "Ka kopi kɛ",
+    "wroteThemDown": "Ne ye n ka sɛbɛw ci u ma",
+    "checkTitle": "Kɔrɔbɔli min be se ka kɛ",
+    "checkWrong": "See word #{{n}} again again.",
+    "skipCheck": "Skip check ka koo",
+    "signingIn": "A y'a daa di ko a bena a ka...",
+    "warnOwns": "Mɔgɔ o mɔgɔ b'o kumaw fɔ, o tigi b'a ka wari mara.",
+    "warnNeverAsk": "Dauzat fɛ, tɔgɔ be fɔ yɔrɔ min na (mɔgɔ tɛ fɔ yɔrɔ min na).",
+    "warnPaper": "I ka sɛbɛri kɛ a kan, i kana a kɛ i ka filɛli kɛyɔrɔ wala i ka sɛbɛri kɛyɔrɔ la.",
+    "tabWords": "12 Kumaw",
+    "tabPrivateKey": "Fɛɛn min be mɔgɔ lasun ka koo dɔ kɛ",
+    "advanced": "Fanga be mɔgɔ minw na, olu",
+    "passwordToShowWords": "I ka tɛmɛsira don ka i ka kumaden 12 yira.",
+    "showWords": "Kumaw yira",
+    "reminderBody": "I ka wari cɛtigɛ — kuma 12 minw bena i dɛmɛ n'i ye i ka telefɔni to yen.",
+    "backUp": "O la, an bena segi ka na.",
+    "notNow": "O ma kɛ halibi."
   }
 }

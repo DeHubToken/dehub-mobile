@@ -146,9 +146,9 @@
     "noMoreShorts": "沒有更多短片",
     "noShortsFound": "找不到短片",
     "newMembersHint": "剛加入 — 打個招呼",
-    "scroll": "Scroll",
     "noFilterMatches": "冇符合你篩選條件嘅內容。",
-    "clearFilters": "清除篩選"
+    "clearFilters": "清除篩選",
+    "scroll": "捲動"
   },
   "explore": {
     "all": "全部",
@@ -1789,7 +1789,9 @@
     "exploreWithoutSignInA11y": "唔使登入就可以探索 DeHub",
     "continueExploringA11y": "繼續探索 DeHub",
     "importWalletRecommended": "建議用社交登入。",
-    "importWalletPurpose": "呢個工具係用嚟喺 DeHub.io 匯入現有帳戶。"
+    "importWalletPurpose": "呢個工具係用嚟喺 DeHub.io 匯入現有帳戶。",
+    "importSecretPlaceholder": "12或者24個字，或者係私鑰",
+    "invalidImportSecret": "呢個唔係有效嘅12/24字詞組或者私鑰"
   },
   "messages": {
     "smartRepliesOff": "已閂咗建議回覆",
@@ -2383,7 +2385,6 @@
     "email": "電郵",
     "telegram": "電報",
     "xTwitter": "X （推特）",
-    "instagram": "Instagram",
     "linkedin": "連登",
     "otherSocials": "其他社交",
     "otherSocialsPlaceholder": "TikTok、YouTube、Discord等",
@@ -2656,7 +2657,6 @@
     "viewCount_other": "{{count}} 次瀏覽",
     "shareMessage": "睇吓呢個：{{url}}",
     "hideReplies": "收埋回覆",
-    "rowA11yLabel": "{{name}}，{{time}}：{{text}}",
     "rowA11yHint": "開始回覆呢則留言",
     "editingComment": "編輯緊留言",
     "editPlaceholder": "編輯你嘅留言...",
@@ -3229,12 +3229,10 @@
       "purgeBody": "{{name}} 發送的每則訊息將會被移除。",
       "kickBody": "{{name}} 將會被移除社群。他們之後可以再次加入。",
       "bannedUntil": "封鎖至 {{date}}",
-      "restrictionWithReason": "{{state}} — {{reason}}",
       "mutedUntil": "禁言至 {{date}}",
       "bannedUntilShort": "直至 {{date}}",
       "muteTitle": "禁言 {{name}}",
       "banTitle": "封鎖 {{name}}",
-      "reasonCounter": "{{len}}/200",
       "rulesCount": "{{used}} 嘅 {{max}}",
       "moveRuleUp": "向上移動規則",
       "moveRuleDown": "向下移動規則",
@@ -3679,7 +3677,6 @@
     "podBadge": "按需印刷",
     "podBuyOn": "喺 {{provider}} 購買",
     "podNote": "由 {{provider}} 按需印刷同寄貨，喺佢哋網站結帳。",
-    "podUrlPlaceholder": "https://…",
     "subtitle": "發掘 DeHub 社群嘅產品",
     "browse": "瀏覽",
     "myStore": "我嘅商店",
@@ -3983,7 +3980,6 @@
     "warm": "暖色",
     "cool": "冷色",
     "vivid": "鮮艷",
-    "vhs": "VHS",
     "neon": "霓虹",
     "pixelate": "像素化"
   },
@@ -4240,7 +4236,6 @@
     "pinMessage": "固定訊息",
     "unpinMessage": "取消固定訊息",
     "jumpToLatest": "跳到最新嘅訊息",
-    "attachGif": "GIF",
     "modBadge": "管理員",
     "ban": "封鎖",
     "banConfirm": "確定要封鎖 {{name}} 嗎？",
@@ -6314,7 +6309,6 @@
   },
   "dex": {
     "lowestPrice": "最低價 · USD",
-    "lpDhb": "LP · DHB",
     "lpUsd": "LP · 美元",
     "totalLiquidity": "總流動性 · USD",
     "lowestSell": "最低賣出 · USDC",
@@ -6665,7 +6659,6 @@
       "newDesign": "新設計",
       "yourDesigns": "你嘅設計",
       "noDesigns": "你整嘅設計會儲存喺呢部手機，並喺度顯示。",
-      "dimensions": "{{width}} × {{height}}",
       "aspectStory": "限時動態",
       "aspectPost": "帖文",
       "aspectSquare": "正方形",
@@ -6947,7 +6940,6 @@
       "split": "分割",
       "splitHint": "將播放頭移入片段入面先可以分割。",
       "speed": "速度",
-      "speedValue": "{{value}}×",
       "volumeTool": "音量",
       "volume": "音量 {{value}}%",
       "fadeIn": "淡入 {{value}} 秒",
@@ -7010,7 +7002,6 @@
       "recording": "錄緊動態",
       "lanes": "關鍵影格",
       "scrub": "向左或者向右拖就可以改。",
-      "segment": "{{from}} → {{to}}",
       "ease": {
         "linear": "線性",
         "ease": "緩動",
@@ -7972,8 +7963,7 @@
     "tabStickers": "貼圖",
     "tab": {
       "emoji": "表情符號",
-      "sticker": "貼圖",
-      "gif": "GIF"
+      "sticker": "貼圖"
     },
     "kind": {
       "emoji": "表情符號 pack",
@@ -7998,8 +7988,7 @@
       "tier": "階級",
       "packs": "包",
       "emoji": "表情符號",
-      "stickers": "貼圖",
-      "gifs": "GIF"
+      "stickers": "貼圖"
     },
     "signInToCreate": "登入以建立套裝",
     "signInToAdd": "登入以新增",
@@ -8615,7 +8604,6 @@
     "russian-mafia": "俄羅斯黑手黨",
     "pirate": "海盜",
     "alien": "外星人",
-    "e-girl": "E-Girl",
     "chad": "型男",
     "hopeless-romantic": "無可救藥嘅浪漫派",
     "daddy": "老豆",
@@ -8633,12 +8621,44 @@
     "feminist": "女權主義者",
     "progressive": "進步派",
     "nationalist": "民族主義者",
-    "communist": "共產主義者"
+    "communist": "共產主義者",
+    "e-girl": "電子女仔"
   },
   "updateGate": {
     "title": "更新 DeHub",
     "recommendedBody": "DeHub 有新版本，包含重要嘅安全修正。更新咗先可以保護你嘅帳戶。",
     "requiredBody": "呢個版本嘅 DeHub 已經唔再支援。更新咗先可以繼續用你嘅帳戶。",
     "update": "即刻更新"
+  },
+  "walletBackup": {
+    "title": "備份銀包",
+    "rowDesc": "睇下你嘅12個字或者私鑰",
+    "backedUpOn": "備份咗 {{date}}",
+    "offerTitle": "備份你個銀包？",
+    "offerBody": "12個字，如果你唔見咗手機或者密碼，就可以令你嘅銀包返嚟。需要30秒。",
+    "offerBodyDeviceOnly": "你個銀包只喺呢部手機上面。如果冇呢啲字，手機遺失就係銀包遺失。",
+    "saveNow": "即刻儲存",
+    "skipForNow": "暫時跳過",
+    "wordsTitle": "你12個字",
+    "tapToReveal": "㩒一下就可以顯示",
+    "hideWords": "隱藏啲字",
+    "copied": "複製咗",
+    "wroteThemDown": "我寫低咗佢哋",
+    "checkTitle": "快速檢查",
+    "checkPrompt": "點一下字 # {{n}}",
+    "checkWrong": "唔係嗰個。再睇下 # {{n}} 呢個字。",
+    "skipCheck": "跳過檢查",
+    "signingIn": "簽你入去 …",
+    "warnOwns": "任何有呢啲字嘅人都係你個銀包嘅擁有者。",
+    "warnNeverAsk": "DeHub 永遠唔會要求佢哋。",
+    "warnPaper": "將佢哋寫喺紙上面，而唔係喺螢幕截圖或者筆記應用程式入面。",
+    "tabWords": "12個字",
+    "tabPrivateKey": "私人密鑰",
+    "advanced": "先進",
+    "passwordToShowWords": "輸入你嘅錢包密碼嚟顯示你嘅12個字。",
+    "showWords": "顯示字詞",
+    "reminderBody": "備份你嘅銀包 — 12個字，如果你唔見咗你部手機，就可以將佢帶返嚟。",
+    "backUp": "備份",
+    "notNow": "而家唔得"
   }
 }

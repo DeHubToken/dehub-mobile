@@ -1812,7 +1812,9 @@
     "exploreWithoutSignInA11y": "Fantaro ny DeHub tsy miditra",
     "continueExploringA11y": "Tohizo ny fikarohana DeHub",
     "importWalletRecommended": "Amporisihina ny fidirana ara-tsosialy.",
-    "importWalletPurpose": "Ity fitaovana ity dia manafatra ny kaonty efa misy ao amin'ny DeHub.io."
+    "importWalletPurpose": "Ity fitaovana ity dia manafatra ny kaonty efa misy ao amin'ny DeHub.io.",
+    "importSecretPlaceholder": "12 na 24 teny, na lakile manokana",
+    "invalidImportSecret": "Tsy teny 12/24 na lakile manokana mety io"
   },
   "messages": {
     "smartRepliesOff": "Novonoina ny valiny atolotra",
@@ -4007,7 +4009,8 @@
     "cool": "Mangatsiaka",
     "vivid": "Mamiratra",
     "vhs": "VHS",
-    "pixelate": "Piksely"
+    "pixelate": "Piksely",
+    "neon": "Neon"
   },
   "dub": {
     "audio": "Raki-peo",
@@ -6020,7 +6023,6 @@
     "yourChannelHint": "Apetaho ny adiresin'ny fantsona — ny famolahana amin'ny asa manokana ihany koa.",
     "costsIntro": "Ny horonan-tsary tsirairay dia mora kokoa noho ny teo alohany — mihena ny tahan'ny rehefa mitombo ny andiany, ka ny vidiny etsy ambany dia izay azon'io horonan-tsary maro io amin'ny ankapobeny.",
     "costsIntroShort": "Ny horonan-tsary tsirairay dia mora kokoa noho ny teo alohany — mihena ny tahan'ny rehefa mitombo ny andiany. Ny vidiny marina dia aseho alohan'ny handoavanao.",
-    "placeholder": "youtube.com/@you, tiktok.com/@you, vimeo.com/you…",
     "costsNote": "Nalefa tamin'ny marika DeHub, indray mandeha, alohan'ny hanombohan'ny batch. Ny mpihazona badge dia mandoa vola kely kokoa — ny fihenam-bidy nomena anao dia ampiharina amin'ny teny nalaina. Raha tsy azo ampidirina ny video, ny anjarany dia averina ho an'ny fifindranao manaraka."
   },
   "calls": {
@@ -8670,7 +8672,8 @@
       "yourApps": "Ny apps",
       "rising": "Ny iohimbine",
       "remove": "Esory",
-      "removed": "Efa nesorina. Tsy hampandre anao intsony izany."
+      "removed": "Efa nesorina. Tsy hampandre anao intsony izany.",
+      "notificationsOn": "Fampahafantarana momba"
     },
     "card": {
       "open": "Hanokatra"
@@ -8693,7 +8696,8 @@
     "pay": {
       "body": "Ny DHB dia manana fahefana mifanitsy amin'ny wallet ny mpampianatra ao amin'ny applikasyona, {{wallet}}. Tsy azo ampiasaina ny fampiasana ny fampianarana.",
       "confirm": "Pay {{amount}} DHB",
-      "sent": "Mampanodina ny {{amount}} DHB ho {{name}}."
+      "sent": "Mampanodina ny {{amount}} DHB ho {{name}}.",
+      "title": "Mandoa {{name}}?"
     },
     "add": {
       "title": "Ampio ny {{name}}?",
@@ -8737,5 +8741,36 @@
     "recommendedBody": "Misy dikan-teny vaovao amin'ny DeHub misy fanitsiana fiarovana manan-danja. Havaozy mba hijanonan'ny kaontinao ho voaaro.",
     "requiredBody": "Tsy tohanana intsony ity dikan-tenin'ny DeHub ity. Havaozy mba hanohizanao ny fampiasana ny kaontinao.",
     "update": "Havaozy izao"
+  },
+  "walletBackup": {
+    "title": "Mamerina tahiry ny kitapo",
+    "rowDesc": "Jereo ny teny 12 na lakile manokana",
+    "backedUpOn": "Naverina tahiry {{date}}",
+    "offerTitle": "Mamerina tahiry ny kitapo?",
+    "offerBody": "Teny 12 izay mamerina ny kitapo raha very finday na tenimiafina ianao. Maka 30 segondra.",
+    "offerBodyDeviceOnly": "Ny kitapo dia miaina amin'ity finday ity ihany. Raha tsy misy ireo teny ireo, dia midika ho very kitapo ny finday very.",
+    "saveNow": "Tehirizo izao",
+    "skipForNow": "Aza atao aloha",
+    "wordsTitle": "Ny teny 12 anao",
+    "tapToReveal": "Tsindrio hamantatra",
+    "hideWords": "Afeno ny teny",
+    "copied": "Nadika",
+    "wroteThemDown": "Nosoratako izy ireo",
+    "checkTitle": "Fanamarinana haingana",
+    "checkPrompt": "Tsindrio teny #{{n}}",
+    "checkWrong": "Tsy io ilay izy. Jereo indray ny teny #{{n}}.",
+    "skipCheck": "Aza atao fanamarinana",
+    "signingIn": "Manao sonia anao…",
+    "warnOwns": "Iza na iza manana ireo teny ireo dia tompon’ny kitapo.",
+    "warnNeverAsk": "DeHub tsy hangataka azy ireo mihitsy.",
+    "warnPaper": "Soraty amin’ny taratasy, fa tsy amin’ny sary na fampiharana fanamarihana.",
+    "tabWords": "Teny 12",
+    "tabPrivateKey": "Lakile manokana",
+    "advanced": "Mandroso",
+    "passwordToShowWords": "Ampidiro ny tenimiafinao amin’ny kitapo hampiseho ny teny 12.",
+    "showWords": "Asehoy ny teny",
+    "reminderBody": "Mamerina tahiry ny kitapo — teny 12 izay mamerina azy raha very finday ianao.",
+    "backUp": "Ambatondrazaka",
+    "notNow": "Tsy hita"
   }
 }
