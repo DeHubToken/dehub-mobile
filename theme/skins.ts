@@ -297,3 +297,20 @@ export function getThemeSkin(theme: AppThemeName): ThemeSkin | null {
 
 /** Jungle's wood fibre, tiled over its planks. */
 export const GRAIN = require('../assets/theme-backdrop/grain.png');
+
+/**
+ * iOS draws real liquid glass (a native UIVisualEffectView blur), so chrome
+ * that is solid on Android can be a thin tint over a blur there. This turns a
+ * skin's solid fill colour into that thin tint. Android keeps the solid fill:
+ * it has no safe blur (see components/ui/LiquidGlass.tsx).
+ */
+export function glassTint(color: string, alpha: number): string {
+  const m = color.match(/rgba?\(\s*([\d.]+)\s*,\s*([\d.]+)\s*,\s*([\d.]+)/i);
+  if (m) return `rgba(${m[1]},${m[2]},${m[3]},${alpha})`;
+  const hex = color.match(/^#([0-9a-f]{6})$/i);
+  if (hex) {
+    const n = parseInt(hex[1], 16);
+    return `rgba(${(n >> 16) & 255},${(n >> 8) & 255},${n & 255},${alpha})`;
+  }
+  return color;
+}
