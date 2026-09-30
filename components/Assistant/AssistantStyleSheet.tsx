@@ -1,3 +1,4 @@
+import { useSheetClosed } from '../../hooks/useSheetClosed';
 /**
  * The personality picker.
  * =======================
@@ -51,7 +52,7 @@ const AssistantStyleSheetComponent: React.FC<AssistantStyleSheetProps> = ({
   const sheetHeight = screenHeight * 0.7;
   const translateY = useSharedValue(sheetHeight);
   const backdropOpacity = useSharedValue(0);
-  const [isFullyClosed, setIsFullyClosed] = useState(!visible);
+  const [isFullyClosed, setIsFullyClosed] = useSheetClosed(visible);
 
   useEffect(() => {
     if (visible) {
