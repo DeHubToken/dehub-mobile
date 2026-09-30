@@ -199,7 +199,7 @@ const ThemeColorPicker: React.FC<{ theme: string }> = ({ theme }) => {
           autoCorrect={false}
           placeholder={special ? labels[value] : undefined}
           placeholderTextColor="#71717A"
-          accessibilityLabel="Hex color code"
+          accessibilityLabel={t('settings.themeColor')}
           onChangeText={(next) => {
             setHexDraft(next);
             const parsed = hexToHue(next);
