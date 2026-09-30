@@ -32,11 +32,10 @@ const ALLOWED = [
   "components/Comments/CommentContextMenu.tsx",
   "components/DM/ConversationContextMenu.tsx",
   "components/DM/MessageContextMenu.tsx",
-  "components/Home/FeedNavBar.tsx",
   "components/LiveChat/LiveChatContextMenu.tsx",
   "components/ui/GlassIndicator.tsx",
   "components/ui/GlassModal.tsx",
-  "navigation/FloatingBottomTabBar.tsx",
+  "components/ui/IosGlassPill.tsx",
 ];
 
 function walk(dir: string, out: string[] = []): string[] {
