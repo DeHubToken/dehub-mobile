@@ -33,7 +33,6 @@ const mockOnboarding = {
 };
 jest.mock('../../context/OnboardingChecklistContext', () => ({ useOnboarding: () => mockOnboarding }));
 
-import AppTopBar from '../../components/AppTopBar';
 import GettingStartedSheet from '../../components/Onboarding/GettingStartedSheet';
 import { openCategoryFeed } from '../../libs/openCategoryFeed';
 import { ONBOARDING_STEPS } from '../../libs/onboarding-steps';
@@ -65,14 +64,6 @@ describe('App stack router', () => {
       expect(names(next)).toEqual(['Root', 'Careers', 'Root']);
     }
   });
-});
-
-it('the dehub mark goes back to the Home already open', () => {
-  let tree!: ReactTestRenderer;
-  act(() => { tree = create(<AppTopBar />); });
-  act(() => tree.root.findByProps({ accessibilityLabel: 'DeHub' }).props.onPress());
-  expect(mockNavigate).toHaveBeenCalledWith('Root', { screen: 'Home' }, { pop: true });
-  act(() => tree.unmount());
 });
 
 it('a hashtag reaches Home through Root from any page, without stacking a second one', () => {

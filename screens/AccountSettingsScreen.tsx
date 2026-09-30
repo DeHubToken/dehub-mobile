@@ -36,7 +36,6 @@ import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { toastSuccess, toastError } from "../libs";
 import { requestAccountErasure } from "../services/accountErasure.service";
-import AppTopBar from "../components/AppTopBar";
 import { Ionicons } from "@expo/vector-icons";
 import { Image } from "expo-image";
 import { useAppTheme } from "../context/ThemeContext";
@@ -122,7 +121,7 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation, route }) => {
   // Opened from the menu, a render-time canGoBack() is still false; this
   // follows the stack once the push is saved.
   const canPop = useCanGoBack();
-  // The top bar and header bento sit above the panel in the same parent, so
+  // The header bento sits above the panel in the same parent, so
   // the panel's own position already counts them. The offset is only where
   // that parent starts on screen.
   const keyboardOffset = useKeyboardOffset();
@@ -483,8 +482,6 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation, route }) => {
   return (
     <View className="flex-1 bg-theme-neutrals-900">
       {signingOut && <FullScreenLoader message={t("settings.signingOut")} />}
-      <AppTopBar />
-
       {headerBento}
 
       <SettingsPanelContext.Provider value={panelContext}>

@@ -4,18 +4,18 @@ import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
 import { colors } from '../theme/colors';
-import AppTopBar, { APP_TOP_BAR_HEIGHT } from './AppTopBar';
 import { useAppTheme } from '../context/ThemeContext';
 import { MINIMAL_HAIRLINE } from '../theme/minimal';
 import { useCanGoBack } from '../hooks/useCanGoBack';
 
 /**
- * Height of the title row in points, below the dehub mark bar.
+ * Height of the title row in points. The dehub mark bar used to sit above it;
+ * that bar is on Home only now (HomeHeader), so this is the whole header.
  */
 export const SCREEN_HEADER_TITLE_HEIGHT = 64;
 
 /**
- * Total header height — the constant dehub mark bar plus the title row. For
+ * Total header height (the title row). For
  * layout that has to clear the header (collapsing headers, overlays pinned
  * under it).
  *
@@ -25,7 +25,7 @@ export const SCREEN_HEADER_TITLE_HEIGHT = 64;
  * the height again lifts the field that far above the keyboard. The offset is
  * only where that parent starts on screen — see `hooks/useKeyboardLayout.ts`.
  */
-export const SCREEN_HEADER_HEIGHT = APP_TOP_BAR_HEIGHT + SCREEN_HEADER_TITLE_HEIGHT;
+export const SCREEN_HEADER_HEIGHT = SCREEN_HEADER_TITLE_HEIGHT;
 
 export interface ScreenHeaderProps {
   title: string;
@@ -144,8 +144,6 @@ const ScreenHeader: React.FC<ScreenHeaderProps> = ({
 
   return (
     <View className="bg-theme-neutrals-900">
-    {/* Minimal: one hairline under the whole header, not one per bar. */}
-    <AppTopBar hairline={false} />
     <View
       className="flex-row items-center justify-between px-4 bg-theme-neutrals-900"
       style={{
