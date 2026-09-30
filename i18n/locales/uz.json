@@ -818,7 +818,17 @@
     "exportReady": "{{count}} akkauntlar, {{saved}} saqlangan postlar eksport qilindi.",
     "importDone": "{{followed}} ni kuzatib bordi, {{blocked}} ni blokladi, {{folders}} papkalar yaratildi.",
     "importPartial": "{{count}} hisoblarini kuzatib bo'lmadi — ularni qayta urinish uchun importni qayta ishga tushiring.",
-    "importProgress": "{{total}} dan {{done}} ni qo'llash…"
+    "importProgress": "{{total}} dan {{done}} ni qo'llash…",
+    "themeColor": "Mavzu rangi",
+    "themeColorDesc": "Bu mavzu uchun o'zingiz rang tanlang",
+    "themeColorReset": "Tiklash",
+    "themeColorWhite": "Oq",
+    "themeColorBlack": "Qora",
+    "themeColorRainbow": "Kamalak",
+    "themeColorBrand": "Brend",
+    "themeColorBrandDesc": "Profil rasmingiz ranglaridan foydalanish",
+    "themeColorBrandNoAvatar": "Brend ranglaridan foydalanish uchun profil rasmi qo'shing",
+    "themeColorBrandFailed": "Profil rasmingizdan ranglarni o'qib bo'lmadi"
   },
   "common": {
     "mute": "Ovozni o‘chirish",

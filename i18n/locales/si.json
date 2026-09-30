@@ -814,7 +814,17 @@
     "channelSpeedCount": "{{count}} channel(s) ප්‍රතිදීප්ත වේ.",
     "exportReady": "{{count}} අක්කෝරු, {{saved}} පස්තිය නිදහස් කරන ලදී.",
     "importDone": "Followed {{followed}}, blocked {{blocked}}, {{folders}} පොත් නිර්මාණය කර ඇත.",
-    "importPartial": "{{count}} අන්තර්ජාල සංකේත මාධ්‍ය අනුගත නොවීනම් — ඒ අන්තර්ජාල සංකේත මාධ්‍ය නැවත ප්‍රක්‍ෂේප කර බලන්න."
+    "importPartial": "{{count}} අන්තර්ජාල සංකේත මාධ්‍ය අනුගත නොවීනම් — ඒ අන්තර්ජාල සංකේත මාධ්‍ය නැවත ප්‍රක්‍ෂේප කර බලන්න.",
+    "themeColor": "තේමා වර්ණය",
+    "themeColorDesc": "මෙම තේමාව සඳහා අභිරුචි වර්ණයක් තෝරන්න",
+    "themeColorReset": "යළි සකසන්න",
+    "themeColorWhite": "සුදු",
+    "themeColorBlack": "කළු",
+    "themeColorRainbow": "දේදුන්න",
+    "themeColorBrand": "වෙළඳ නාමය",
+    "themeColorBrandDesc": "ඔබේ පැතිකඩ පින්තූරයේ වර්ණ භාවිත කරන්න",
+    "themeColorBrandNoAvatar": "වෙළඳ නාම වර්ණ භාවිත කිරීමට පැතිකඩ පින්තූරයක් එක් කරන්න",
+    "themeColorBrandFailed": "ඔබේ පැතිකඩ පින්තූරයෙන් වර්ණ කියවිය නොහැකි විය"
   },
   "common": {
     "mute": "නිහඬ කරන්න",

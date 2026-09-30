@@ -818,7 +818,17 @@
     "exportReady": "{{count}} الحسابات ، {{saved}} المنشورات المحفوظة مُستوردة.",
     "importDone": "تابع {{followed}} ، حجب {{blocked}} ، {{folders}} المجلدات مُنشأة.",
     "importPartial": "لا يمكن اتباع {{count}} الحسابات — تجرب مرة أخرى لتحاولهم.",
-    "importProgress": "تطبيق {{done}} من {{total}}…"
+    "importProgress": "تطبيق {{done}} من {{total}}…",
+    "themeColor": "لون الثيم",
+    "themeColorDesc": "اختر لون مخصص لذا الثيم",
+    "themeColorReset": "إعادة تعيين",
+    "themeColorWhite": "أبيض",
+    "themeColorBlack": "أسود",
+    "themeColorRainbow": "قوس قزح",
+    "themeColorBrand": "العلامة",
+    "themeColorBrandDesc": "استخدم ألوان صورة بروفايلك",
+    "themeColorBrandNoAvatar": "زد صورة بروفايل عشان تستخدم ألوان العلامة",
+    "themeColorBrandFailed": "ما قدرنا نقرا الألوان من صورة بروفايلك"
   },
   "common": {
     "mute": "اكتم الصوت",

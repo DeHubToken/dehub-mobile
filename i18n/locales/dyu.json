@@ -813,7 +813,17 @@
     "exportReady": "{{count}} accounts, {{saved}} saved posts exported.",
     "importDone": "Followed {{followed}}, blocked {{blocked}}, {{folders}} folders created.",
     "importPartial": "{{count}}kunnafoniw tɛ se ka tugu u kɔ — a to u ka segi ka don.",
-    "importProgress": "{{done}} {{total}}..."
+    "importProgress": "{{done}} {{total}}...",
+    "themeColor": "Taabolo kulɛri",
+    "themeColorDesc": "Kulɛri sugandi i yɛrɛ ma nin taabolo kama",
+    "themeColorReset": "Lasegin",
+    "themeColorWhite": "Jɛman",
+    "themeColorBlack": "Fin",
+    "themeColorRainbow": "Sankaba kulɛri",
+    "themeColorBrand": "Marki",
+    "themeColorBrandDesc": "I ka ja kulɛriw kɛ",
+    "themeColorBrandNoAvatar": "Ja fara walisa ka Marki kulɛriw kɛ",
+    "themeColorBrandFailed": "Kulɛriw ma se ka kalan i ka ja la"
   },
   "common": {
     "mute": "Kan bɔ",

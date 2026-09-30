@@ -817,7 +817,17 @@
     "exportReady": "{{count}} ანგარიში, {{saved}} შენახული პოსტი ექსპორტირებულია.",
     "importDone": "გამოწერილია {{followed}}, დაბლოკილია {{blocked}}, შექმნილია {{folders}} საქაღალდე.",
     "importPartial": "{{count}} ანგარიშის გამოწერა ვერ მოხერხდა — გაიმეორეთ იმპორტი მათ ხელახლა გასაგზავნად.",
-    "importProgress": "{{done}}-ის {{total}}-დან გამოყენება…"
+    "importProgress": "{{done}}-ის {{total}}-დან გამოყენება…",
+    "themeColor": "თემის ფერი",
+    "themeColorDesc": "აირჩიეთ საკუთარი ფერი ამ თემისთვის",
+    "themeColorReset": "გადატვირთვა",
+    "themeColorWhite": "თეთრი",
+    "themeColorBlack": "შავი",
+    "themeColorRainbow": "ცისარტყელა",
+    "themeColorBrand": "ბრენდი",
+    "themeColorBrandDesc": "თქვენი პროფილის სურათის ფერების გამოყენება",
+    "themeColorBrandNoAvatar": "ბრენდის ფერების გამოსაყენებლად დაამატეთ პროფილის სურათი",
+    "themeColorBrandFailed": "თქვენი პროფილის სურათიდან ფერების წაკითხვა ვერ მოხერხდა"
   },
   "common": {
     "mute": "დადუმება",

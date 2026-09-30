@@ -818,7 +818,17 @@
     "exportReady": "{{count}} એકાઉન્ટ્સ, {{saved}} સેવર્ડ પોસ્ટ્સ એક્સપોર્ટ કરવામાં આવ્યા.",
     "importDone": "ફોલોવેડ {{followed}}, બ્લોક્ડ {{blocked}}, {{folders}} ફોલ્ડરો બનાવવામાં આવ્યા.",
     "importPartial": "{{count}} એકાઉન્ટ્સ ફોલો કરી શકાતા ન હતા — આવા એકાઉન્ટ્સને ફરીથી ચેક કરો.",
-    "importProgress": "અપ્લાયિંગ {{done}} આઉટ ઑફ {{total}}…"
+    "importProgress": "અપ્લાયિંગ {{done}} આઉટ ઑફ {{total}}…",
+    "themeColor": "થીમ રંગ",
+    "themeColorDesc": "આ થીમ માટે કસ્ટમ રંગ પસંદ કરો",
+    "themeColorReset": "રીસેટ",
+    "themeColorWhite": "સફેદ",
+    "themeColorBlack": "કાળો",
+    "themeColorRainbow": "મેઘધનુષ",
+    "themeColorBrand": "બ્રાન્ડ",
+    "themeColorBrandDesc": "તમારા પ્રોફાઇલ ચિત્રના રંગો વાપરો",
+    "themeColorBrandNoAvatar": "બ્રાન્ડ રંગો વાપરવા માટે પ્રોફાઇલ ચિત્ર ઉમેરો",
+    "themeColorBrandFailed": "તમારા પ્રોફાઇલ ચિત્રમાંથી રંગો વાંચી શકાયા નહીં"
   },
   "common": {
     "mute": "મ્યૂટ કરો",

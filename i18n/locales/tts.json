@@ -818,7 +818,17 @@
     "exportReady": "{{count}} บัญชี {{saved}} ส่งออกโพสต์ที่บันทึกไว้",
     "importDone": "{{followed}} ที่ติดตาม {{blocked}} {{folders}} ไฟล์เก็บไว้",
     "importPartial": "{{count}} บัญชีไม่สามารถติดตามได้ — ทำการอัปเดตอีกครั้งเพื่อพยายามอีกครั้ง",
-    "importProgress": "นำ {{done}} ของ {{total}} ไปใช้"
+    "importProgress": "นำ {{done}} ของ {{total}} ไปใช้",
+    "themeColor": "สีธีม",
+    "themeColorDesc": "เลือกสีกำหนดเองสำหรับธีมนี้",
+    "themeColorReset": "ล้างค่า",
+    "themeColorWhite": "สีขาว",
+    "themeColorBlack": "สีดำ",
+    "themeColorRainbow": "สีรุ้ง",
+    "themeColorBrand": "แบรนด์",
+    "themeColorBrandDesc": "ใซ้สีจากฮูปโปรไฟล์ของเจ้า",
+    "themeColorBrandNoAvatar": "เพิ่มฮูปโปรไฟล์เพื่อใซ้สีแบรนด์",
+    "themeColorBrandFailed": "อ่านสีจากฮูปโปรไฟล์ของเจ้าบ่ได้"
   },
   "common": {
     "mute": "ปิดเสียง",

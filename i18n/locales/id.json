@@ -818,7 +818,17 @@
     "exportReady": "{{count}} akun, {{saved}} postingan yang disimpan diekspor.",
     "importDone": "Mengikuti {{followed}}, memblokir folder {{blocked}}, {{folders}} yang dibuat.",
     "importPartial": "Akun {{count}} tidak dapat diikuti — jalankan impor lagi untuk mencobanya kembali.",
-    "importProgress": "Mengajukan {{done}} dari {{total}}…"
+    "importProgress": "Mengajukan {{done}} dari {{total}}…",
+    "themeColor": "Warna Tema",
+    "themeColorDesc": "Pilih warna khusus untuk tema ini",
+    "themeColorReset": "Atur ulang",
+    "themeColorWhite": "Putih",
+    "themeColorBlack": "Hitam",
+    "themeColorRainbow": "Pelangi",
+    "themeColorBrand": "Merek",
+    "themeColorBrandDesc": "Gunakan warna foto profil Anda",
+    "themeColorBrandNoAvatar": "Tambahkan foto profil untuk memakai warna Merek",
+    "themeColorBrandFailed": "Tidak bisa membaca warna dari foto profil Anda"
   },
   "common": {
     "mute": "Bisukan",

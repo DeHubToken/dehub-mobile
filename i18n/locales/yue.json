@@ -818,7 +818,17 @@
     "exportReady": "{{count}} 帳戶， {{saved}} 儲存咗嘅帖子已經匯出。",
     "importDone": "追蹤咗 {{followed}} ，封鎖咗 {{blocked}} ， {{folders}} 資料夾建立。",
     "importPartial": "追蹤唔到 {{count}} 帳戶 — 再次執行匯入嚟重試佢哋。",
-    "importProgress": "應用緊 {{done}} 嘅 {{total}} …"
+    "importProgress": "應用緊 {{done}} 嘅 {{total}} …",
+    "themeColor": "主題顏色",
+    "themeColorDesc": "為呢個主題揀個自訂顏色",
+    "themeColorReset": "重設",
+    "themeColorWhite": "白色",
+    "themeColorBlack": "黑色",
+    "themeColorRainbow": "彩虹",
+    "themeColorBrand": "品牌",
+    "themeColorBrandDesc": "用你頭像嘅顏色",
+    "themeColorBrandNoAvatar": "加張頭像先可以用品牌配色",
+    "themeColorBrandFailed": "讀唔到你頭像嘅顏色"
   },
   "common": {
     "mute": "靜音",

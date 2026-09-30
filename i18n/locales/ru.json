@@ -818,7 +818,17 @@
     "exportReady": "{{count}} аккаунтов, {{saved}} сохраненных записей экспортировано.",
     "importDone": "Подписаны {{followed}}, заблокированы {{blocked}}, создано {{folders}} папок.",
     "importPartial": "Не удалось подписаться на учетные записи {{count}}. Запустите импорт еще раз, чтобы повторить попытку.",
-    "importProgress": "Применение {{done}} из {{total}}…"
+    "importProgress": "Применение {{done}} из {{total}}…",
+    "themeColor": "Цвет темы",
+    "themeColorDesc": "Выберите свой цвет для этой темы",
+    "themeColorReset": "Сбросить",
+    "themeColorWhite": "Белый",
+    "themeColorBlack": "Чёрный",
+    "themeColorRainbow": "Радуга",
+    "themeColorBrand": "Бренд",
+    "themeColorBrandDesc": "Использовать цвета вашего аватара",
+    "themeColorBrandNoAvatar": "Добавьте фото профиля, чтобы использовать цвета бренда",
+    "themeColorBrandFailed": "Не удалось считать цвета с вашего аватара"
   },
   "common": {
     "mute": "Выключить звук",

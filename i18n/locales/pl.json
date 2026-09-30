@@ -818,7 +818,17 @@
     "exportReady": "Konta: {{count}}, wyeksportowane posty: {{saved}}.",
     "importDone": "Obserwowane foldery: {{followed}}, zablokowane: {{blocked}}, {{folders}}.",
     "importPartial": "Nie można śledzić kont {{count}} — uruchom import ponownie, aby spróbować ponownie.",
-    "importProgress": "Stosowanie {{done}} z {{total}}…"
+    "importProgress": "Stosowanie {{done}} z {{total}}…",
+    "themeColor": "Kolor motywu",
+    "themeColorDesc": "Wybierz własny kolor dla tego motywu",
+    "themeColorReset": "Resetuj",
+    "themeColorWhite": "Biały",
+    "themeColorBlack": "Czarny",
+    "themeColorRainbow": "Tęcza",
+    "themeColorBrand": "Marka",
+    "themeColorBrandDesc": "Użyj kolorów ze zdjęcia profilowego",
+    "themeColorBrandNoAvatar": "Dodaj zdjęcie profilowe, aby użyć kolorów marki",
+    "themeColorBrandFailed": "Nie udało się odczytać kolorów ze zdjęcia profilowego"
   },
   "common": {
     "mute": "Wycisz",

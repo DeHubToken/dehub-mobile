@@ -817,7 +817,17 @@
     "exportReady": "{{count}} አካውንቶች፣ {{saved}} የተቀመጡ ልጥፎች ተልከዋል።",
     "importDone": "{{followed}} ተከታትሏል፣ {{blocked}} ታግዷል፣ {{folders}} አቃፊዎች ተፈጥረዋል።",
     "importPartial": "{{count}} አካውንቶች መከተል አልቻሉም — እንደገና ለመሞከር እንደገና አስመጣ።",
-    "importProgress": "{{done}} ከ {{total}} በማመልከት ላይ…"
+    "importProgress": "{{done}} ከ {{total}} በማመልከት ላይ…",
+    "themeColor": "የገጽታ ቀለም",
+    "themeColorDesc": "ለዚህ ገጽታ ብጁ ቀለም ይምረጡ",
+    "themeColorReset": "ዳግም አስጀምር",
+    "themeColorWhite": "ነጭ",
+    "themeColorBlack": "ጥቁር",
+    "themeColorRainbow": "ቀስተ ደመና",
+    "themeColorBrand": "የምርት ስም",
+    "themeColorBrandDesc": "የመገለጫ ስዕልዎን ቀለሞች ይጠቀሙ",
+    "themeColorBrandNoAvatar": "የምርት ስም ቀለሞችን ለመጠቀም የመገለጫ ስዕል ያክሉ",
+    "themeColorBrandFailed": "ከመገለጫ ስዕልዎ ቀለሞችን ማንበብ አልተቻለም"
   },
   "common": {
     "mute": "ድምፅ አጥፋ",

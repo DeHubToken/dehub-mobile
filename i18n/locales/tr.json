@@ -818,7 +818,17 @@
     "exportReady": "{{count}} hesap, {{saved}} kayıtlı gönderi dışa aktarıldı.",
     "importDone": "{{followed}} takip edildi, {{blocked}} engellendi, {{folders}} klasör oluşturuldu.",
     "importPartial": "{{count}} hesapları takip edilemedi — yeniden denemek için içe aktarmayı tekrar çalıştırın.",
-    "importProgress": "{{done}}/{{total}} uygulanıyor…"
+    "importProgress": "{{done}}/{{total}} uygulanıyor…",
+    "themeColor": "Tema Rengi",
+    "themeColorDesc": "Bu tema için özel bir renk seçin",
+    "themeColorReset": "Sıfırla",
+    "themeColorWhite": "Beyaz",
+    "themeColorBlack": "Siyah",
+    "themeColorRainbow": "Gökkuşağı",
+    "themeColorBrand": "Marka",
+    "themeColorBrandDesc": "Profil fotoğrafınızın renklerini kullan",
+    "themeColorBrandNoAvatar": "Marka renklerini kullanmak için bir profil fotoğrafı ekleyin",
+    "themeColorBrandFailed": "Profil fotoğrafınızdan renkler okunamadı"
   },
   "common": {
     "mute": "Sesi kapat",

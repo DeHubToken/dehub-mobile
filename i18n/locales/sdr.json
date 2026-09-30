@@ -818,7 +818,17 @@
     "importDone": "Followed {{followed}}, blocked {{blocked}}, {{folders}} folders created.",
     "importProgress": "{{done}}-i {{total}}-i",
     "smsNotificationsDescReady": "{{phone}} के लिए भेजा गया — प्रत्येक {{dhb}} टोकन, लगभग {{count}} बचा है",
-    "importPartial": "{{count}} حساب‌ها نمی‌توانستند دنبال شوند — بارگذاری مجدد را برای مجدد تلاش انجام دهید."
+    "importPartial": "{{count}} حساب‌ها نمی‌توانستند دنبال شوند — بارگذاری مجدد را برای مجدد تلاش انجام دهید.",
+    "themeColor": "تھیم کلر",
+    "themeColorDesc": "ای تھیم کے واسطے اپن رنگ چنو",
+    "themeColorReset": "ری سیٹ",
+    "themeColorWhite": "سفید",
+    "themeColorBlack": "کارا",
+    "themeColorRainbow": "قوس قزح",
+    "themeColorBrand": "برانڈ",
+    "themeColorBrandDesc": "تہار پروفائل تصویر کے رنگ استعمال کرو",
+    "themeColorBrandNoAvatar": "برانڈ رنگ استعمال کرے کے واسطے پروفائل تصویر جوڑو",
+    "themeColorBrandFailed": "تہار پروفائل تصویر سے رنگ پڑھل نہیں جا سکل"
   },
   "common": {
     "mute": "आवाज बंद करा",

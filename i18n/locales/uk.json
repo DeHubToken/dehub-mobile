@@ -818,7 +818,17 @@
     "exportReady": "{{count}} облікові записи, {{saved}} збережені публікації експортовані.",
     "importDone": "Підписалися на {{followed}}, заблоковані {{blocked}}, створені {{folders}} папки.",
     "importPartial": "{{count}} облікові записи не можуть бути підписані — виконайте імпорт знову, щоб спробувати знову.",
-    "importProgress": "Застосовується {{done}} із {{total}}…"
+    "importProgress": "Застосовується {{done}} із {{total}}…",
+    "themeColor": "Колір теми",
+    "themeColorDesc": "Виберіть власний колір для цієї теми",
+    "themeColorReset": "Скинути",
+    "themeColorWhite": "Білий",
+    "themeColorBlack": "Чорний",
+    "themeColorRainbow": "Веселка",
+    "themeColorBrand": "Бренд",
+    "themeColorBrandDesc": "Використати кольори вашого аватара",
+    "themeColorBrandNoAvatar": "Додайте фото профілю, щоб використати кольори бренду",
+    "themeColorBrandFailed": "Не вдалося зчитати кольори з вашого аватара"
   },
   "common": {
     "mute": "Вимкнути звук",

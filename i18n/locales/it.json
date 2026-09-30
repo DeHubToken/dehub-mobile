@@ -818,7 +818,17 @@
     "exportReady": "{{count}} account, {{saved}} post salvati esportati.",
     "importDone": "Seguito {{followed}}, bloccato {{blocked}}, {{folders}} cartelle create.",
     "importPartial": "Impossibile seguire gli account {{count}}: eseguire nuovamente l'importazione per riprovare.",
-    "importProgress": "Applicazione di {{done}} su {{total}}..."
+    "importProgress": "Applicazione di {{done}} su {{total}}...",
+    "themeColor": "Colore del tema",
+    "themeColorDesc": "Scegli un colore personalizzato per questo tema",
+    "themeColorReset": "Reimposta",
+    "themeColorWhite": "Bianco",
+    "themeColorBlack": "Nero",
+    "themeColorRainbow": "Arcobaleno",
+    "themeColorBrand": "Brand",
+    "themeColorBrandDesc": "Usa i colori della tua foto profilo",
+    "themeColorBrandNoAvatar": "Aggiungi una foto profilo per usare i colori Brand",
+    "themeColorBrandFailed": "Non è stato possibile leggere i colori della tua foto profilo"
   },
   "common": {
     "mute": "Disattiva audio",

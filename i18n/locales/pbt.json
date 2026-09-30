@@ -812,7 +812,17 @@
     "importPartial": "{{count}} پڼګړي د دوی سره پیغامونه نه کوي — د دوی سره پیغامونه د بله ځل دوی سره پیغامونه کړي.",
     "badgeDelegationAcceptOffEnded": "ټوکن بیرته ورکړل شو. تاسو ته به بل نه درکول کیږي.",
     "importDone": "تعقیب شو {{followed}}، بلاک شو {{blocked}}، {{folders}} فولډرونه جوړ شول.",
-    "importProgress": "د {{total}} څخه {{done}} پلي کېږي…"
+    "importProgress": "د {{total}} څخه {{done}} پلي کېږي…",
+    "themeColor": "د تیم رنګ",
+    "themeColorDesc": "د دې تیم لپاره یو دودیز رنګ وټاکئ",
+    "themeColorReset": "بیا تنظیم",
+    "themeColorWhite": "سپین",
+    "themeColorBlack": "تور",
+    "themeColorRainbow": "رنګین کمان",
+    "themeColorBrand": "برانډ",
+    "themeColorBrandDesc": "د خپل پروفایل انځور رنګونه وکاروئ",
+    "themeColorBrandNoAvatar": "د Brand رنګونو کارولو لپاره پروفایل انځور ورزیات کړئ",
+    "themeColorBrandFailed": "د ستاسو د پروفایل انځور څخه رنګونه ونشول لوستل"
   },
   "common": {
     "mute": "غږ بند کړئ",

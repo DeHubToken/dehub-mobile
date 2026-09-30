@@ -818,7 +818,17 @@
     "exportReady": "{{count}} comptes, {{saved}} publications enregistrées exportées.",
     "importDone": "Suivi des dossiers {{followed}}, bloqués {{blocked}}, {{folders}} créés.",
     "importPartial": "Les comptes {{count}} n'ont pas pu être suivis. Exécutez à nouveau l'importation pour les réessayer.",
-    "importProgress": "Application de {{done}} sur {{total}}…"
+    "importProgress": "Application de {{done}} sur {{total}}…",
+    "themeColor": "Couleur du thème",
+    "themeColorDesc": "Choisissez une couleur personnalisée pour ce thème",
+    "themeColorReset": "Réinitialiser",
+    "themeColorWhite": "Blanc",
+    "themeColorBlack": "Noir",
+    "themeColorRainbow": "Arc-en-ciel",
+    "themeColorBrand": "Marque",
+    "themeColorBrandDesc": "Utiliser les couleurs de votre photo de profil",
+    "themeColorBrandNoAvatar": "Ajoutez une photo de profil pour utiliser les couleurs de Marque",
+    "themeColorBrandFailed": "Impossible de lire les couleurs de votre photo de profil"
   },
   "common": {
     "mute": "Couper le son",

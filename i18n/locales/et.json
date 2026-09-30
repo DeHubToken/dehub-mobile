@@ -818,7 +818,17 @@
     "exportReady": "{{count}} kontod, {{saved}} salvestatud postid eksportitud.",
     "importDone": "Järginud {{followed}}, blokeeritud {{blocked}}, {{folders}} kaustu loodud.",
     "importPartial": "{{count}} kontod ei saanud järgida – käivita import uuesti, et katsta neid uuesti.",
-    "importProgress": "Töötleb {{done}} seast {{total}}…"
+    "importProgress": "Töötleb {{done}} seast {{total}}…",
+    "themeColor": "Teema värv",
+    "themeColorDesc": "Vali sellele teemale oma värv",
+    "themeColorReset": "Lähtesta",
+    "themeColorWhite": "Valge",
+    "themeColorBlack": "Must",
+    "themeColorRainbow": "Vikerkaar",
+    "themeColorBrand": "Bränd",
+    "themeColorBrandDesc": "Kasuta oma profiilipildi värve",
+    "themeColorBrandNoAvatar": "Lisa profiilipilt, et kasutada brändivärve",
+    "themeColorBrandFailed": "Sinu profiilipildilt ei õnnestunud värve lugeda"
   },
   "common": {
     "mute": "Vaigista",

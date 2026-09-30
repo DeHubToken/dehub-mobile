@@ -818,7 +818,17 @@
     "exportReady": "{{count}} الحسابات ، {{saved}} المنشورات المحفوظة يتم تصديرها.",
     "importDone": "تابع {{followed}} ، حجب {{blocked}} ، {{folders}} المجلدات تم إنشاؤها.",
     "importPartial": "{{count}} الحسابات لا يمكن تتبعها — قم بتشغيل الاستيراد مرة أخرى لمحاولة إعادة محاولةهم.",
-    "importProgress": "تطبيق {{done}} من {{total}}…"
+    "importProgress": "تطبيق {{done}} من {{total}}…",
+    "themeColor": "لون السمة",
+    "themeColorDesc": "اختر لونًا مخصصًا لهذه السمة",
+    "themeColorReset": "إعادة تعيين",
+    "themeColorWhite": "أبيض",
+    "themeColorBlack": "أسود",
+    "themeColorRainbow": "قوس قزح",
+    "themeColorBrand": "العلامة",
+    "themeColorBrandDesc": "استخدام ألوان صورتك الشخصية",
+    "themeColorBrandNoAvatar": "أضف صورة شخصية لاستخدام ألوان العلامة",
+    "themeColorBrandFailed": "تعذّرت قراءة الألوان من صورتك الشخصية"
   },
   "common": {
     "mute": "كتم الصوت",

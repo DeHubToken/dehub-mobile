@@ -818,7 +818,17 @@
     "exportReady": "{{count}} računi, {{saved}} spremljene objave izvezenute.",
     "importDone": "Pratili su {{followed}}, blokirali su {{blocked}}, {{folders}} folderi kreirani.",
     "importPartial": "{{count}} računi nisu mogli biti pratjeni — pokrenite import ponovno da biste pokušali ponovo.",
-    "importProgress": "Primjenjujem {{done}} od {{total}}…"
+    "importProgress": "Primjenjujem {{done}} od {{total}}…",
+    "themeColor": "Boja teme",
+    "themeColorDesc": "Odaberite prilagođenu boju za ovu temu",
+    "themeColorReset": "Poništi",
+    "themeColorWhite": "Bijela",
+    "themeColorBlack": "Crna",
+    "themeColorRainbow": "Duga",
+    "themeColorBrand": "Brend",
+    "themeColorBrandDesc": "Koristi boje tvoje profilne slike",
+    "themeColorBrandNoAvatar": "Dodajte profilnu sliku da biste koristili boje brenda",
+    "themeColorBrandFailed": "Nije bilo moguće očitati boje s vaše profilne slike"
   },
   "common": {
     "mute": "Isključi zvuk",

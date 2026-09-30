@@ -817,7 +817,17 @@
     "exportReady": "{{count}}账户，{{saved}}保存的帖子导出。",
     "importDone": "跟随{{followed}}，屏蔽{{blocked}}，{{folders}}文件夹创建。",
     "importPartial": "{{count}}账户无法跟随——重新运行导入以重试它们。",
-    "importProgress": "应用{{done}}中的{{total}}…"
+    "importProgress": "应用{{done}}中的{{total}}…",
+    "themeColor": "主题色",
+    "themeColorDesc": "给这个主题挑个自定义颜色",
+    "themeColorReset": "重置",
+    "themeColorWhite": "白",
+    "themeColorBlack": "黑",
+    "themeColorRainbow": "彩虹",
+    "themeColorBrand": "品牌",
+    "themeColorBrandDesc": "用你嘞头像颜色",
+    "themeColorBrandNoAvatar": "添个头像才能用品牌色",
+    "themeColorBrandFailed": "打你嘞头像读不出颜色"
   },
   "common": {
     "mute": "静音",

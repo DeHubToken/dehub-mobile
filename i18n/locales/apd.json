@@ -818,7 +818,17 @@
     "importDone": "تتبع {{followed}}, محظور {{blocked}}, تم إنشاء مجلد {{folders}}.",
     "importPartial": "حسابات {{count}} لا يمكن اتباعها — حاول تشغيل الاستيراد مرة أخرى لجربتها.",
     "importProgress": "تطبيق {{done}} من {{total}}",
-    "channelSpeedCount": "{{count}} يلعبون بسرعة خاصة بهم."
+    "channelSpeedCount": "{{count}} يلعبون بسرعة خاصة بهم.",
+    "themeColor": "لون الثيم",
+    "themeColorDesc": "اختار لون مخصص للثيم دا",
+    "themeColorReset": "ارجع للأصل",
+    "themeColorWhite": "أبيض",
+    "themeColorBlack": "أسود",
+    "themeColorRainbow": "قوس قزح",
+    "themeColorBrand": "البراند",
+    "themeColorBrandDesc": "استخدم ألوان صورة بروفايلك",
+    "themeColorBrandNoAvatar": "زيد صورة بروفايل عشان تستخدم ألوان البراند",
+    "themeColorBrandFailed": "ما قدرنا نقرا الألوان من صورة بروفايلك"
   },
   "common": {
     "mute": "اكتم الصوت",

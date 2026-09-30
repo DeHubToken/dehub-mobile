@@ -818,7 +818,17 @@
     "exportReady": "{{count}} hesabı, {{saved}} saxlanılan postlar export edilir.",
     "importDone": "{{followed}} hesabı izlənilir, {{blocked}} hesabı bloklanır, {{folders}} qrupa yaradılır.",
     "importPartial": "{{count}} hesabı izlənilə bilməyib — importu yenidən təkrar edin.",
-    "importProgress": "Tətbiq edirəm: {{done}}-dan {{total}}…"
+    "importProgress": "Tətbiq edirəm: {{done}}-dan {{total}}…",
+    "themeColor": "Mövzu rəngi",
+    "themeColorDesc": "Bu mövzu üçün fərdi rəng seçin",
+    "themeColorReset": "Sıfırla",
+    "themeColorWhite": "Ağ",
+    "themeColorBlack": "Qara",
+    "themeColorRainbow": "Göy qurşağı",
+    "themeColorBrand": "Brend",
+    "themeColorBrandDesc": "Profil şəklinizin rənglərini istifadə edin",
+    "themeColorBrandNoAvatar": "Brend rənglərini istifadə etmək üçün profil şəkli əlavə edin",
+    "themeColorBrandFailed": "Profil şəklinizdən rənglər oxuna bilmədi"
   },
   "common": {
     "mute": "Səssiz et",

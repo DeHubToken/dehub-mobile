@@ -818,7 +818,17 @@
     "exportReady": "{{count}} اکاؤنٹس، {{saved}} محفوظ شدہ پوسٹس برآمد ہوئیں۔",
     "importDone": "{{followed}} کو فالو کیا، {{blocked}} کو بلاک کیا، {{folders}} فولڈرز بنائے گئے۔",
     "importPartial": "{{count}} اکاؤنٹس کو فالو نہیں کیا جا سکا — دوبارہ درآمد چلائیں تاکہ انہیں دوبارہ کوشش کریں۔",
-    "importProgress": "{{done}} کا اطلاق ہو رہا ہے، کل {{total}}…"
+    "importProgress": "{{done}} کا اطلاق ہو رہا ہے، کل {{total}}…",
+    "themeColor": "تھیم کا رنگ",
+    "themeColorDesc": "اس تھیم کے لیے اپنی پسند کا رنگ چنیں",
+    "themeColorReset": "ری سیٹ",
+    "themeColorWhite": "سفید",
+    "themeColorBlack": "سیاہ",
+    "themeColorRainbow": "دھنک",
+    "themeColorBrand": "برانڈ",
+    "themeColorBrandDesc": "اپنی پروفائل تصویر کے رنگ استعمال کریں",
+    "themeColorBrandNoAvatar": "برانڈ رنگ استعمال کرنے کے لیے پروفائل تصویر شامل کریں",
+    "themeColorBrandFailed": "آپ کی پروفائل تصویر سے رنگ نہیں پڑھے جا سکے"
   },
   "common": {
     "mute": "آواز بند کریں",
