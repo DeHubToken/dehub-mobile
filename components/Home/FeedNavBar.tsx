@@ -16,7 +16,7 @@ import GlassIndicator, { GLASS_SHADOW } from "../ui/GlassIndicator";
 import type { PostTypeOption } from "./FeedFilterPanel";
 import { useAppTheme } from "../../context/ThemeContext";
 import { MINIMAL_TAB_LINE } from "../../theme/colors";
-import { GRAIN } from "../../theme/skins";
+import { GRAIN, glassTint } from "../../theme/skins";
 import HudBrackets from "../theme/HudBrackets";
 
 interface NavItem {
@@ -248,10 +248,23 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
           onLayout={(e) => setContainerWidth(e.nativeEvent.layout.width)}
         >
           {skin ? (
-            // A canvas theme's strip (theme/skins.ts): no blur — the backdrop
-            // moving behind it is the point — just the theme's own surface.
+            // A canvas theme's strip (theme/skins.ts). Android paints the
+            // theme's surface solid; iOS lays a thin tint of it over a native
+            // blur, so posts blur through like the web's liquid glass.
             <>
-              <View style={[StyleSheet.absoluteFill, skin.strip]} pointerEvents="none" />
+              {Platform.OS === "ios" ? (
+                <BlurView intensity={80} tint="dark" style={StyleSheet.absoluteFill} />
+              ) : null}
+              <View
+                style={[
+                  StyleSheet.absoluteFill,
+                  skin.strip,
+                  Platform.OS === "ios"
+                    ? { backgroundColor: glassTint(String(skin.strip.backgroundColor), 0.55) }
+                    : null,
+                ]}
+                pointerEvents="none"
+              />
               {skin.grain ? (
                 <Image source={GRAIN} resizeMode="repeat" style={StyleSheet.absoluteFill} />
               ) : null}
@@ -362,9 +375,9 @@ const styles = StyleSheet.create({
   },
   androidBlurFallback: {
     ...StyleSheet.absoluteFillObject,
-    // Translucent enough that content scrolling underneath faintly shows
-    // through, reading as glass even without a real blur.
-    backgroundColor: "rgba(16, 16, 20, 0.65)",
+    // Android has no safe blur, so its pill is solid: a translucent wash
+    // without a blur lets post text read through the tab labels.
+    backgroundColor: "rgb(16, 16, 20)",
     borderRadius: 12,
   },
   glassOverlay: {
