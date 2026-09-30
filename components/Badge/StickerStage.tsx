@@ -41,6 +41,7 @@ export interface BadgeBox { x: number; y: number; size: number }
 
 interface Props {
   metallic?: boolean;
+  world?: string | null;
   reducedMotion?: boolean;
   hero?: BadgeBox;
   onLanded?: () => void;
@@ -114,7 +115,7 @@ export function assetDataUrl(module: number): Promise<string> {
 }
 
 const StickerStage = forwardRef<StickerStageHandle, Props>(function StickerStage(
-  { items, origin, metallic, reducedMotion, hero, onLanded, onClosed, onReady, onTap, onMiss, onInteract },
+  { items, origin, metallic, world, reducedMotion, hero, onLanded, onClosed, onReady, onTap, onMiss, onInteract },
   ref,
 ) {
   const webRef = useRef<WebView>(null);
@@ -134,7 +135,7 @@ const StickerStage = forwardRef<StickerStageHandle, Props>(function StickerStage
   // Built once: the page keeps its entries for its whole life, as web's does.
   useEffect(() => {
     let live = true;
-    const boot = JSON.stringify({ items, origin, metallic, reducedMotion, hero }).replace(/<\//g, "<\\/");
+    const boot = JSON.stringify({ items, origin, metallic, world, reducedMotion, hero }).replace(/<\//g, "<\\/");
     loadPage()
       .then((page) => {
         if (live) setHtml(page.replace("<head>", `<head><script>window.__STICKER=${boot};</script>`));
@@ -165,8 +166,8 @@ const StickerStage = forwardRef<StickerStageHandle, Props>(function StickerStage
   );
 
   useEffect(() => {
-    if (metallic && hero) run(`geometry(${JSON.stringify(hero)})`);
-  }, [metallic, hero, run]);
+    if ((metallic || world) && hero) run(`geometry(${JSON.stringify(hero)})`);
+  }, [metallic, world, hero, run]);
 
   const onMessage = useCallback(
     (e: WebViewMessageEvent) => {
