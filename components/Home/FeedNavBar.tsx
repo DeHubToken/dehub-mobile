@@ -358,6 +358,8 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
 
 /** Gap between the top of FeedNavBar and the top edge of its pill. */
 export const NAV_PILL_TOP_INSET = 8;
+/** Corner radius of the default (system) pill; canvas themes use their skin's. */
+export const NAV_PILL_RADIUS = 12;
 /** Gap between each screen edge and the side of the pill. */
 export const NAV_PILL_SIDE_INSET = 8;
 
@@ -370,7 +372,7 @@ const styles = StyleSheet.create({
     paddingBottom: 2,
   },
   container: {
-    borderRadius: 12,
+    borderRadius: NAV_PILL_RADIUS,
     overflow: "hidden",
   },
   androidBlurFallback: {
