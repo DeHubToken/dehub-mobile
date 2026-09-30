@@ -13,7 +13,37 @@
     "placeholder": "Rubuta labarinka anan. Yi amfani da layuka marasa komai tsakanin sakin layi.",
     "lengthHint": "{{length}}/20,000 · mafi karancin haruffa 100. Rubutun da ke sama shine taƙaitaccen bayani.",
     "dehubArticle": "Labarin DeHub",
-    "dehubPost": "Sakon DeHub"
+    "dehubPost": "Sakon DeHub",
+    "minRead_one": "{{count}} min karanta",
+    "minRead_other": "{{count}} min karanta",
+    "wordCount_one": "{{count}} kalma",
+    "wordCount_other": "{{count}} kalmomin",
+    "needBody_one": "{{count}} karin hali don zuwa",
+    "needBody_other": "{{count}} karin haruffa don zuwa",
+    "textSize": "Girman rubutu",
+    "changeCover": "Canza murfin murfin",
+    "removeCover": "Cire murfin",
+    "addCover": "Ƙara murfin murfin",
+    "coverHint": "Yana zaune a saman labarinku kuma shine hoton da mutane ke gani lokacin da aka raba shi",
+    "titlePlaceholder": "Suna",
+    "titleLabel": "Taken Mataki",
+    "edit": "Gyara",
+    "preview": "Gabatarwa",
+    "previewEmpty": "Babu wani abu da za a samfoti tukuna.",
+    "bodyPlaceholder": "Faɗa labarinku. Zaɓi rubutu kuma yi amfani da sandar da ke sama don taken, ƙarfin hali, ambato da jerin.",
+    "summaryLabel": "Takaitaccen Bayani · wanda aka nuna a cikin abinci da kuma haɗi previews",
+    "summaryPlaceholder": "Jumla ko biyu game da labarin ku",
+    "sharePreview": "Ta yaya yake kama lokacin da aka raba",
+    "noCoverShare": "Babu murfin har yanzu. Links za su nuna ba tare da hoto ba.",
+    "format": {
+      "heading": "Kai",
+      "subheading": "Sub kai",
+      "italic": "Rubutun mai lankwasa",
+      "quote": "QShortcut",
+      "bullets": "Jerin bullet",
+      "numbers": "Lissafin Numbered",
+      "link": "Haɗin haɗi"
+    }
   },
   "storefront": {
     "unavailable": "Ba a samu a wannan sigar manhajar ba"
