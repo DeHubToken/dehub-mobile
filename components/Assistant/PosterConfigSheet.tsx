@@ -1,3 +1,4 @@
+import { useSheetClosed } from '../../hooks/useSheetClosed';
 import SheetDismissHandle from "../ui/SheetDismissHandle";
 /**
  * DeHub Poster Studio.
@@ -321,7 +322,7 @@ const PosterConfigSheetComponent: React.FC<PosterConfigSheetProps> = ({
 
   const translateY = useSharedValue(sheetHeight);
   const backdropOpacity = useSharedValue(0);
-  const [isFullyClosed, setIsFullyClosed] = useState(!visible);
+  const [isFullyClosed, setIsFullyClosed] = useSheetClosed(visible);
 
   useEffect(() => {
     if (visible) {
