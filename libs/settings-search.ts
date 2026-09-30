@@ -97,7 +97,7 @@ export const SETTINGS_SEARCH_INDEX: SettingsSearchEntry[] = [
   { tab: 'messages', anchor: 'quick-actions', label: 'Quick Actions', labelKey: 'settings.quickActions', keywords: 'archived export chats' },
 
   // Assets
-  { tab: 'assets', anchor: 'assets', label: 'Assets', labelKey: 'settings.assets', keywords: 'wallet address balance dhb gas earnings export private key' },
+  { tab: 'assets', anchor: 'assets', label: 'Assets', labelKey: 'settings.assets', keywords: 'wallet address balance dhb gas earnings export private key back up backup recovery phrase seed words' },
   { tab: 'assets', anchor: 'assets', label: 'Solana wallet', labelKey: 'settings.solanaWallet', keywords: 'solana sol phantom connect disconnect unlink tips payments' },
   { tab: 'assets', anchor: 'fractions', label: 'Fractions', labelKey: 'settings.fractionsOwn', keywords: 'shares owned' },
   { tab: 'assets', anchor: 'owned-usernames', label: 'Owned Usernames', labelKey: 'settings.usernamesOwn', keywords: 'handles marketplace' },
