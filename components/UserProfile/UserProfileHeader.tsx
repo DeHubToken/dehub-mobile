@@ -404,15 +404,8 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
                   followers={followersItem.value}
                 />
               )}
-              <View style={{ marginLeft: "auto", alignSelf: "flex-end" }}>
-                <ProfileLinksPill source={socials as Record<string, unknown> | undefined} />
-              </View>
             </View>
-          ) : (
-            <View className="flex-row justify-end mt-3">
-              <ProfileLinksPill source={socials as Record<string, unknown> | undefined} />
-            </View>
-          )}
+          ) : null}
         </View>
 
         {/* Both rows below reserve their real height the moment their query
@@ -422,11 +415,21 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
             reader as each one arrived; the placeholder keeps that height
             stable and only actually collapses if the answer turns out empty,
             which happens once, right after mount, not while reading. */}
-        {mutualsLoading && !mutuals?.length ? (
-          <View style={s.mutualsPlaceholder} />
-        ) : (
-          <MutualFollowers mutuals={mutuals || []} />
-        )}
+        {/* The bottom row: "Followed by …" on the left, the creator's social
+            icons tucked into the right-hand corner. Each side carries its own
+            top margin, so the row takes no space when both are empty. */}
+        <View className="flex-row items-center" style={{ gap: 12 }}>
+          <View className="flex-1" style={{ minWidth: 0 }}>
+            {mutualsLoading && !mutuals?.length ? (
+              <View style={s.mutualsPlaceholder} />
+            ) : (
+              <MutualFollowers mutuals={mutuals || []} />
+            )}
+          </View>
+          <View style={{ marginTop: 12 }}>
+            <ProfileLinksPill source={socials as Record<string, unknown> | undefined} />
+          </View>
+        </View>
 
         {/* The streamer ladder. Renders nothing until a stream has ended,
             so a non-streamer's profile is unchanged. */}
