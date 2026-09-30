@@ -1,7 +1,6 @@
 import React, { memo } from 'react';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import Icon from '../ui/Icon';
-import AppTopBar from '../AppTopBar';
 import { useNavigation } from '@react-navigation/native';
 import { ScreenNames } from '../../navigation/ScreenNames';
 import type { AppStackNavigationProp } from '../../navigation/types';
@@ -36,8 +35,6 @@ const AssistantHeader: React.FC<AssistantHeaderProps> = ({
   const navigation = useNavigation<AppStackNavigationProp<ScreenNames.Creator>>();
   return (
     <View className="bg-theme-neutrals-900">
-    {/* The dehub mark bar is constant chrome on every screen, as on web. */}
-    <AppTopBar />
     <View className="px-4 py-3 bg-theme-neutrals-900">
     <View className="flex-row items-center justify-between mb-2">
       <TouchableOpacity
