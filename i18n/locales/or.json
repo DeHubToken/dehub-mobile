@@ -2670,7 +2670,17 @@
     "repostsLabel_one": "ରିପୋଷ୍ଟ",
     "repostsLabel_other": "ରିପୋଷ୍ଟ",
     "quotesLabel_one": "କୋଟ୍",
-    "quotesLabel_other": "କୋଟ୍"
+    "quotesLabel_other": "କୋଟ୍",
+    "sortRecent": "ନୂଆ",
+    "sortOldest": "ପୁରୁଣା",
+    "sortLiked": "ଲୋକପ୍ରିୟ",
+    "sortedByRecent": "ସବୁଠାରୁ ନୂଆ ଅନୁସାରେ ସଜ୍ଜିତ",
+    "sortedByOldest": "ସବୁଠାରୁ ପୁରୁଣା ଅନୁସାରେ ସଜ୍ଜିତ",
+    "sortedByLiked": "ସବୁଠାରୁ ଅଧିକ ଲାଇକ ଅନୁସାରେ ସଜ୍ଜିତ",
+    "tabReplies": "ଉତ୍ତରଗୁଡ଼ିକ",
+    "tabQuotes": "କୋଟ୍",
+    "tabReposts": "ରିପୋଷ୍ଟ",
+    "tabSearch": "ଖୋଜନ୍ତୁ"
   },
   "postInfo": {
     "title": "ପୋଷ୍ଟ ସୂଚନା",

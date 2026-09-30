@@ -2667,7 +2667,17 @@
     "repostsLabel_one": "Репост",
     "repostsLabel_other": "Репост",
     "quotesLabel_one": "Цитата",
-    "quotesLabel_other": "Цитата"
+    "quotesLabel_other": "Цитата",
+    "sortRecent": "Жаңы",
+    "sortOldest": "Эски",
+    "sortLiked": "Популярдуу",
+    "sortedByRecent": "Эң жаңылары боюнча иреттелген",
+    "sortedByOldest": "Эң эскилери боюнча иреттелген",
+    "sortedByLiked": "Эң көп жактырылгандар боюнча иреттелген",
+    "tabReplies": "Жооптор",
+    "tabQuotes": "Цитаталар",
+    "tabReposts": "Репосттор",
+    "tabSearch": "Издөө"
   },
   "postInfo": {
     "title": "Пост маалыматы",

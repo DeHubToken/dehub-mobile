@@ -2674,7 +2674,17 @@
     "repostsLabel_one": "ਰੀਪੋਸਟ",
     "repostsLabel_other": "ਰੀਪੋਸਟ",
     "quotesLabel_one": "ਹਵਾਲਾ",
-    "quotesLabel_other": "ਹਵਾਲੇ"
+    "quotesLabel_other": "ਹਵਾਲੇ",
+    "sortRecent": "ਨਵੀਆਂ",
+    "sortOldest": "ਪੁਰਾਣੀਆਂ",
+    "sortLiked": "ਪ੍ਰਸਿੱਧ",
+    "sortedByRecent": "ਸਭ ਤੋਂ ਨਵੀਆਂ ਮੁਤਾਬਕ ਕ੍ਰਮਬੱਧ",
+    "sortedByOldest": "ਸਭ ਤੋਂ ਪੁਰਾਣੀਆਂ ਮੁਤਾਬਕ ਕ੍ਰਮਬੱਧ",
+    "sortedByLiked": "ਸਭ ਤੋਂ ਵੱਧ ਪਸੰਦ ਮੁਤਾਬਕ ਕ੍ਰਮਬੱਧ",
+    "tabReplies": "ਜਵਾਬ",
+    "tabQuotes": "ਹਵਾਲੇ",
+    "tabReposts": "ਰੀਪੋਸਟ",
+    "tabSearch": "ਖੋਜ"
   },
   "postInfo": {
     "title": "ਪੋਸਟ ਜਾਣਕਾਰੀ",

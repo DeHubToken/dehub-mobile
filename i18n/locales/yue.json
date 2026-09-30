@@ -2669,7 +2669,17 @@
     "repostsLabel_one": "轉發",
     "repostsLabel_other": "轉發",
     "quotesLabel_one": "引用",
-    "quotesLabel_other": "引用"
+    "quotesLabel_other": "引用",
+    "sortRecent": "最新",
+    "sortOldest": "最舊",
+    "sortLiked": "最多讚",
+    "sortedByRecent": "按最新排序",
+    "sortedByOldest": "按最舊排序",
+    "sortedByLiked": "按最多讚好排序",
+    "tabReplies": "回覆",
+    "tabQuotes": "引用",
+    "tabReposts": "轉發",
+    "tabSearch": "搜尋"
   },
   "postInfo": {
     "title": "帖子資訊",

@@ -2670,7 +2670,17 @@
     "repostsLabel_one": "ಮರುಪೋಸ್ಟ್",
     "repostsLabel_other": "ಮರುಪೋಸ್ಟ್‌ಗಳು",
     "quotesLabel_one": "ಉಲ್ಲೇಖ",
-    "quotesLabel_other": "ಉಲ್ಲೇಖಗಳು"
+    "quotesLabel_other": "ಉಲ್ಲೇಖಗಳು",
+    "sortRecent": "ಹೊಸ",
+    "sortOldest": "ಹಳೆಯ",
+    "sortLiked": "ಜನಪ್ರಿಯ",
+    "sortedByRecent": "ಇತ್ತೀಚಿನವುಗಳ ಪ್ರಕಾರ ವಿಂಗಡಿಸಲಾಗಿದೆ",
+    "sortedByOldest": "ಹಳೆಯವುಗಳ ಪ್ರಕಾರ ವಿಂಗಡಿಸಲಾಗಿದೆ",
+    "sortedByLiked": "ಹೆಚ್ಚು ಲೈಕ್‌ಗಳ ಪ್ರಕಾರ ವಿಂಗಡಿಸಲಾಗಿದೆ",
+    "tabReplies": "ಪ್ರತ್ಯುತ್ತರಗಳು",
+    "tabQuotes": "ಉಲ್ಲೇಖಗಳು",
+    "tabReposts": "ಮರುಪೋಸ್ಟ್‌ಗಳು",
+    "tabSearch": "ಹುಡುಕಿ"
   },
   "postInfo": {
     "title": "ಪೋಸ್ಟ್ ಮಾಹಿತಿ",

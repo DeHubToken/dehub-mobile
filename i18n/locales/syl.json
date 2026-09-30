@@ -2840,7 +2840,17 @@
     "repostsLabel_one": "রিপোস্ট",
     "repostsLabel_other": "রিপোস্ট",
     "quotesLabel_one": "উদ্ধৃতি",
-    "quotesLabel_other": "উদ্ধৃতি"
+    "quotesLabel_other": "উদ্ধৃতি",
+    "sortRecent": "নতুন",
+    "sortOldest": "পুরান",
+    "sortLiked": "লাইক",
+    "sortedByRecent": "সবচেয়ে নতুন অনুযায়ী সাজানো",
+    "sortedByOldest": "সবচেয়ে পুরান অনুযায়ী সাজানো",
+    "sortedByLiked": "সবচেয়ে বেশি লাইক অনুযায়ী সাজানো",
+    "tabReplies": "উত্তর",
+    "tabQuotes": "উদ্ধৃতি",
+    "tabReposts": "রিপোস্ট",
+    "tabSearch": "হুদো"
   },
   "postInfo": {
     "title": "পোস্ট তথ্য",

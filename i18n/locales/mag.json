@@ -2670,7 +2670,17 @@
     "repostsLabel_one": "रीपोस्ट",
     "repostsLabel_other": "रीपोस्ट",
     "quotesLabel_one": "उद्धरण",
-    "quotesLabel_other": "उद्धरण"
+    "quotesLabel_other": "उद्धरण",
+    "sortRecent": "नया",
+    "sortOldest": "पुराना",
+    "sortLiked": "पसंदीदा",
+    "sortedByRecent": "सबसे नया पहिले",
+    "sortedByOldest": "सबसे पुराना पहिले",
+    "sortedByLiked": "सबसे जादे पसंद वला पहिले",
+    "tabReplies": "जवाब",
+    "tabQuotes": "उद्धरण",
+    "tabReposts": "रीपोस्ट",
+    "tabSearch": "खोज"
   },
   "postInfo": {
     "title": "पोस्ट जानकारी",

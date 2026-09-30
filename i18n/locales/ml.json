@@ -2667,7 +2667,17 @@
     "repostsLabel_one": "റീപോസ്റ്റ്",
     "repostsLabel_other": "റീപോസ്റ്റുകൾ",
     "quotesLabel_one": "ഉദ്ധരണി",
-    "quotesLabel_other": "ഉദ്ധരണികൾ"
+    "quotesLabel_other": "ഉദ്ധരണികൾ",
+    "sortRecent": "പുതിയത്",
+    "sortOldest": "പഴയത്",
+    "sortLiked": "ജനപ്രിയം",
+    "sortedByRecent": "ഏറ്റവും പുതിയത് പ്രകാരം ക്രമീകരിച്ചു",
+    "sortedByOldest": "ഏറ്റവും പഴയത് പ്രകാരം ക്രമീകരിച്ചു",
+    "sortedByLiked": "ഏറ്റവും കൂടുതൽ ലൈക്ക് പ്രകാരം ക്രമീകരിച്ചു",
+    "tabReplies": "മറുപടികൾ",
+    "tabQuotes": "ഉദ്ധരണികൾ",
+    "tabReposts": "റീപോസ്റ്റുകൾ",
+    "tabSearch": "തിരയുക"
   },
   "postInfo": {
     "title": "പോസ്റ്റ് വിവരങ്ങൾ",

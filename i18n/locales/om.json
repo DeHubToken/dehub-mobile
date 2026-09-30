@@ -2684,7 +2684,17 @@
     "repostsLabel_one": "Irra-deebii",
     "repostsLabel_other": "Irra-deebii",
     "quotesLabel_one": "Caqasa",
-    "quotesLabel_other": "Caqasa"
+    "quotesLabel_other": "Caqasa",
+    "sortRecent": "Haaraa",
+    "sortOldest": "Durii",
+    "sortLiked": "Jaallatame",
+    "sortedByRecent": "Haaraa duraatiin tartiibeffame",
+    "sortedByOldest": "Durii duraatiin tartiibeffame",
+    "sortedByLiked": "Baay'ee jaallatameen tartiibeffame",
+    "tabReplies": "Deebiiwwan",
+    "tabQuotes": "Caqasa",
+    "tabReposts": "Irra-deebii",
+    "tabSearch": "Barbaadi"
   },
   "postInfo": {
     "title": "Odeeffannoo maxxansaa",

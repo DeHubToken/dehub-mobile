@@ -2684,7 +2684,17 @@
     "repostsLabel_one": "репост",
     "repostsLabel_other": "репост",
     "quotesLabel_one": "дәйексөз",
-    "quotesLabel_other": "дәйексөз"
+    "quotesLabel_other": "дәйексөз",
+    "sortRecent": "Жаңа",
+    "sortOldest": "Ескі",
+    "sortLiked": "Танымал",
+    "sortedByRecent": "Ең жаңасы бойынша сұрыпталды",
+    "sortedByOldest": "Ең ескісі бойынша сұрыпталды",
+    "sortedByLiked": "Ең көп ұнатылғаны бойынша сұрыпталды",
+    "tabReplies": "Жауаптар",
+    "tabQuotes": "Дәйексөздер",
+    "tabReposts": "Репосттар",
+    "tabSearch": "Іздеу"
   },
   "postInfo": {
     "title": "Жазба ақпараты",

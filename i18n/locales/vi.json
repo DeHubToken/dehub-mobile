@@ -2683,7 +2683,17 @@
     "repostsLabel_one": "Lượt đăng lại",
     "repostsLabel_other": "Lượt đăng lại",
     "quotesLabel_one": "Lượt trích dẫn",
-    "quotesLabel_other": "Lượt trích dẫn"
+    "quotesLabel_other": "Lượt trích dẫn",
+    "sortRecent": "Mới",
+    "sortOldest": "Cũ",
+    "sortLiked": "Thích",
+    "sortedByRecent": "Sắp xếp theo mới nhất",
+    "sortedByOldest": "Sắp xếp theo cũ nhất",
+    "sortedByLiked": "Sắp xếp theo nhiều lượt thích nhất",
+    "tabReplies": "Câu trả lời",
+    "tabQuotes": "Trích dẫn",
+    "tabReposts": "Đăng lại",
+    "tabSearch": "Tìm kiếm"
   },
   "postInfo": {
     "title": "Thông tin bài viết",

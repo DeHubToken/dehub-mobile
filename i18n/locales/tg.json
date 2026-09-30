@@ -2658,7 +2658,17 @@
     "repostsLabel_one": "Бознашр",
     "repostsLabel_other": "Бознашр",
     "quotesLabel_one": "Иқтибос",
-    "quotesLabel_other": "Иқтибос"
+    "quotesLabel_other": "Иқтибос",
+    "sortRecent": "Навтарин",
+    "sortOldest": "Кӯҳнатарин",
+    "sortLiked": "Писандҳо",
+    "sortedByRecent": "Аз рӯи навтарин мураттаб шуд",
+    "sortedByOldest": "Аз рӯи кӯҳнатарин мураттаб шуд",
+    "sortedByLiked": "Аз рӯи бештар писандшуда мураттаб шуд",
+    "tabReplies": "Ҷавобҳо",
+    "tabQuotes": "Иқтибосҳо",
+    "tabReposts": "Бознашрҳо",
+    "tabSearch": "Ҷустуҷӯ"
   },
   "postInfo": {
     "title": "Маълумоти пост",

@@ -2675,7 +2675,17 @@
     "repostsLabel_one": "genindlæg",
     "repostsLabel_other": "genindlæg",
     "quotesLabel_one": "citat",
-    "quotesLabel_other": "citater"
+    "quotesLabel_other": "citater",
+    "sortRecent": "Nyeste",
+    "sortOldest": "Ældste",
+    "sortLiked": "Populære",
+    "sortedByRecent": "Sorteret efter nyeste",
+    "sortedByOldest": "Sorteret efter ældste",
+    "sortedByLiked": "Sorteret efter mest likede",
+    "tabReplies": "Svar",
+    "tabQuotes": "Citater",
+    "tabReposts": "Genindlæg",
+    "tabSearch": "Søg"
   },
   "postInfo": {
     "title": "Opslags-info",

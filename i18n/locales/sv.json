@@ -2675,7 +2675,17 @@
     "repostsLabel_one": "Repost",
     "repostsLabel_other": "Reposts",
     "quotesLabel_one": "Citat",
-    "quotesLabel_other": "Citat"
+    "quotesLabel_other": "Citat",
+    "sortRecent": "Senaste",
+    "sortOldest": "Äldsta",
+    "sortLiked": "Gillade",
+    "sortedByRecent": "Sorterat efter senaste",
+    "sortedByOldest": "Sorterat efter äldsta",
+    "sortedByLiked": "Sorterat efter mest gillade",
+    "tabReplies": "Svar",
+    "tabQuotes": "Citat",
+    "tabReposts": "Reposts",
+    "tabSearch": "Sök"
   },
   "postInfo": {
     "title": "Inläggsinfo",

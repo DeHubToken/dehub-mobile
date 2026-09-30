@@ -2639,7 +2639,17 @@
     "repostsLabel_one": "Repost",
     "repostsLabel_other": "Reposts",
     "quotesLabel_one": "Quote",
-    "quotesLabel_other": "Quotes"
+    "quotesLabel_other": "Quotes",
+    "sortRecent": "New",
+    "sortOldest": "Old",
+    "sortLiked": "Top",
+    "sortedByRecent": "Arrange by di newest",
+    "sortedByOldest": "Arrange by di oldest",
+    "sortedByLiked": "Arrange by wetin pipo like pass",
+    "tabReplies": "Replies",
+    "tabQuotes": "Quotes",
+    "tabReposts": "Reposts",
+    "tabSearch": "Find Am"
   },
   "postInfo": {
     "title": "Post Info",

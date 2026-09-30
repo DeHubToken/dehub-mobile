@@ -2670,7 +2670,17 @@
     "repostsLabel_one": "ری پوسٹ",
     "repostsLabel_other": "ری پوسٹاں",
     "quotesLabel_one": "اقتباس",
-    "quotesLabel_other": "اقتباسات"
+    "quotesLabel_other": "اقتباسات",
+    "sortRecent": "تازہ",
+    "sortOldest": "پراݨا",
+    "sortLiked": "پسند",
+    "sortedByRecent": "ترتیب: سب توں تازہ",
+    "sortedByOldest": "ترتیب: سب توں پراݨا",
+    "sortedByLiked": "ترتیب: سب توں ودھ پسند",
+    "tabReplies": "جواب",
+    "tabQuotes": "اقتباسات",
+    "tabReposts": "ری پوسٹاں",
+    "tabSearch": "ڳولو"
   },
   "postInfo": {
     "title": "پوسٹ معلومات",

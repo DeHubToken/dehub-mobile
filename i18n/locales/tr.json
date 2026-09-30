@@ -2671,7 +2671,17 @@
     "repostsLabel_one": "Yeniden Paylaşım",
     "repostsLabel_other": "Yeniden Paylaşım",
     "quotesLabel_one": "Alıntı",
-    "quotesLabel_other": "Alıntı"
+    "quotesLabel_other": "Alıntı",
+    "sortRecent": "Yeni",
+    "sortOldest": "Eski",
+    "sortLiked": "Beğeni",
+    "sortedByRecent": "En yeniye göre sıralandı",
+    "sortedByOldest": "En eskiye göre sıralandı",
+    "sortedByLiked": "En çok beğenilene göre sıralandı",
+    "tabReplies": "Yanıtlar",
+    "tabQuotes": "Alıntılar",
+    "tabReposts": "Yeniden Paylaşımlar",
+    "tabSearch": "Ara"
   },
   "postInfo": {
     "title": "Gönderi Bilgisi",

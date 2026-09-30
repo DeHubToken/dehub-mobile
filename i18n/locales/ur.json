@@ -2675,7 +2675,17 @@
     "repostsLabel_one": "ری پوسٹ",
     "repostsLabel_other": "ری پوسٹس",
     "quotesLabel_one": "اقتباس",
-    "quotesLabel_other": "اقتباسات"
+    "quotesLabel_other": "اقتباسات",
+    "sortRecent": "حالیہ",
+    "sortOldest": "پرانے",
+    "sortLiked": "پسندیدہ",
+    "sortedByRecent": "ترتیب: سب سے حالیہ",
+    "sortedByOldest": "ترتیب: سب سے پرانے",
+    "sortedByLiked": "ترتیب: سب سے زیادہ پسند",
+    "tabReplies": "جوابات",
+    "tabQuotes": "اقتباسات",
+    "tabReposts": "ری پوسٹس",
+    "tabSearch": "تلاش"
   },
   "postInfo": {
     "title": "پوسٹ کی معلومات",

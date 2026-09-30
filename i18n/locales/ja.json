@@ -2667,7 +2667,17 @@
     "repostsLabel_one": "リポスト",
     "repostsLabel_other": "リポスト",
     "quotesLabel_one": "引用",
-    "quotesLabel_other": "引用"
+    "quotesLabel_other": "引用",
+    "sortRecent": "新着",
+    "sortOldest": "古い順",
+    "sortLiked": "人気",
+    "sortedByRecent": "並べ替え：新しい順",
+    "sortedByOldest": "並べ替え：古い順",
+    "sortedByLiked": "並べ替え：いいねが多い順",
+    "tabReplies": "返信",
+    "tabQuotes": "引用",
+    "tabReposts": "リポスト",
+    "tabSearch": "検索"
   },
   "postInfo": {
     "title": "投稿情報",

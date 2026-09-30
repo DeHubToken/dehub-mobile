@@ -2699,7 +2699,17 @@
     "repostsLabel_one": "إعادة نشر",
     "repostsLabel_other": "إعادة نشر",
     "quotesLabel_one": "اقتباس",
-    "quotesLabel_other": "اقتباسات"
+    "quotesLabel_other": "اقتباسات",
+    "sortRecent": "الأحدث",
+    "sortOldest": "الأقدم",
+    "sortLiked": "الأكثر لايك",
+    "sortedByRecent": "مرتبين حسب الأحدث",
+    "sortedByOldest": "مرتبين حسب الأقدم",
+    "sortedByLiked": "مرتبين حسب الأكثر لايك",
+    "tabReplies": "الردود",
+    "tabQuotes": "الاقتباسات",
+    "tabReposts": "إعادة النشر",
+    "tabSearch": "البحث"
   },
   "postInfo": {
     "title": "معلومات المنشور",
