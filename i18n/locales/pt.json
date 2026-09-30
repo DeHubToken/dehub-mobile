@@ -4466,7 +4466,8 @@
     "restrictedBody": "Este usuário restringiu as interações com sua conta.",
     "requestPendingBody": "Sua solicitação de seguir foi enviada. Você poderá ver as postagens deles assim que eles aprovarem sua solicitação.",
     "followToSeePosts": "Siga esta conta para ver as postagens dela.",
-    "loadFailed": "Não foi possível carregar esta lista"
+    "loadFailed": "Não foi possível carregar esta lista",
+    "new": "Novo"
   },
   "reactionInfo": {
     "title": "Reacções",

@@ -4413,7 +4413,8 @@
     "restrictedBody": "Wannan mai amfani ya taƙaita hulɗa da asusunka.",
     "requestPendingBody": "An aika buƙatar biyan ku. Za ku iya ganin bayanan su idan sun amince da buƙatar ku.",
     "followToSeePosts": "Bi wannan asusun don ganin bayanan su.",
-    "loadFailed": "Ba za a iya ɗora wannan jerin ba"
+    "loadFailed": "Ba za a iya ɗora wannan jerin ba",
+    "new": "Sabo"
   },
   "reactionInfo": {
     "title": "Ra'ayoyi",

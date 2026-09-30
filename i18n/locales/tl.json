@@ -4460,7 +4460,8 @@
     "restrictedBody": "Nilimitahan ng user na ito ang mga pakikipag-ugnayan sa iyong account.",
     "requestPendingBody": "Naipadala na ang iyong follow request. Makikita mo ang kanilang mga post kapag naaprubahan nila ang iyong kahilingan.",
     "followToSeePosts": "Sundin ang account na ito para makita ang kanilang mga post.",
-    "loadFailed": "Hindi ma - load ang listahang ito"
+    "loadFailed": "Hindi ma - load ang listahang ito",
+    "new": "Bago"
   },
   "reactionInfo": {
     "title": "Mga Reaksyon",

@@ -4413,7 +4413,8 @@
     "restrictedBody": "Acest utilizator a restricționat interacțiunile cu contul tău.",
     "requestPendingBody": "Cererea ta de urmărire a fost trimisă. Vei putea vedea postările lor odată ce aceștia îți aprobă cererea.",
     "followToSeePosts": "Urmărește acest cont pentru a vedea postările sale.",
-    "loadFailed": "Nu s-a putut încărca această listă"
+    "loadFailed": "Nu s-a putut încărca această listă",
+    "new": "Nou"
   },
   "reactionInfo": {
     "title": "Reacții",

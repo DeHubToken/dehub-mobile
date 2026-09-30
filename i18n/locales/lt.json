@@ -4413,7 +4413,8 @@
     "restrictedBody": "Šis vartotojas apribojo bendravimą su jūsų paskyra.",
     "requestPendingBody": "Jūsų sekimo užklausa išsiųsta. Jų įrašus galėsite matyti, kai jie patvirtins jūsų užklausą.",
     "followToSeePosts": "Sekite šią paskyrą, kad matytumėte jos įrašus.",
-    "loadFailed": "Nepavyko įkelti šio sąrašo"
+    "loadFailed": "Nepavyko įkelti šio sąrašo",
+    "new": "Nauja"
   },
   "reactionInfo": {
     "title": "Reakcijos",

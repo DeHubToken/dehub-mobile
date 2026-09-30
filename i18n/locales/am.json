@@ -4435,7 +4435,8 @@
     "restrictedBody": "ይህ ተጠቃሚ ከእርስዎ መለያ ጋር ያለውን መስተጋብር ገድቧል።",
     "requestPendingBody": "የመከተል ጥያቄዎ ተልኳል። ጥያቄያቸውን ከፀደቁ በኋላ ምርቶቻቸውን ማየት ይችላሉ።",
     "followToSeePosts": "ምርቶቻቸውን ለማየት ይህን መለያ ይከተሉ።",
-    "loadFailed": "ይህንን ዝርዝር መጫን አልተቻለም"
+    "loadFailed": "ይህንን ዝርዝር መጫን አልተቻለም",
+    "new": "አዲስ"
   },
   "reactionInfo": {
     "title": "ምላሾች",

@@ -4417,7 +4417,8 @@
     "restrictedBody": "Den här användaren har begränsat interaktioner med ditt konto.",
     "requestPendingBody": "Din följningsbegäran har skickats. Du kommer att kunna se deras inlägg när de godkänner din begäran.",
     "followToSeePosts": "Följ detta konto för att se deras inlägg.",
-    "loadFailed": "Det gick inte att ladda den här listan"
+    "loadFailed": "Det gick inte att ladda den här listan",
+    "new": "Ny"
   },
   "reactionInfo": {
     "title": "Reaktioner",

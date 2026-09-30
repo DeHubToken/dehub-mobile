@@ -4414,7 +4414,8 @@
     "restrictedBody": "Mtumiaji huyu amezuia mwingiliano na akaunti yako.",
     "requestPendingBody": "Ombi lako la kumfuata limetumwa. Utaweza kuona machapisho yao mara tu watakapokubali ombi lako.",
     "followToSeePosts": "Mfuatilie akaunti hii ili uone machapisho yao.",
-    "loadFailed": "Imeshindwa kupakia orodha hii"
+    "loadFailed": "Imeshindwa kupakia orodha hii",
+    "new": "Mpya"
   },
   "reactionInfo": {
     "title": "Miitikio",

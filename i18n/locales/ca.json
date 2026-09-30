@@ -4413,7 +4413,8 @@
     "restrictedBody": "Aquest usuari ha restringit les interaccions amb el teu compte.",
     "requestPendingBody": "La teva sol·licitud de seguir s'ha enviat. Podràs veure les seves publicacions un cop aprovin la teva sol·licitud.",
     "followToSeePosts": "Segueix aquest compte per veure les seves publicacions.",
-    "loadFailed": "No s'ha pogut carregar aquesta llista"
+    "loadFailed": "No s'ha pogut carregar aquesta llista",
+    "new": "Nou"
   },
   "reactionInfo": {
     "title": "Reaccions",

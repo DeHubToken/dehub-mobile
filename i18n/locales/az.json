@@ -4413,7 +4413,8 @@
     "restrictedBody": "Bu istifadəçi hesabınızla qarşılıqlı əlaqələri məhdudlaşdırıb.",
     "requestPendingBody": "İzləmə tələbiniz göndərildi. Tələbinizi təsdiqlədikdən sonra onun yazılarını görə biləcəksiniz.",
     "followToSeePosts": "Onun yazılarını görmək üçün bu hesaba abunə olun.",
-    "loadFailed": "Bu siyahını yükləmək mümkün olmadı"
+    "loadFailed": "Bu siyahını yükləmək mümkün olmadı",
+    "new": "Yeni"
   },
   "reactionInfo": {
     "title": "Reaksiyalar",
