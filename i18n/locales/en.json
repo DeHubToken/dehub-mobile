@@ -4944,7 +4944,7 @@
     "protectWallet": "To ensure only you can post or transact with this account, protect your wallet with your device's biometrics or a password.",
     "accountHasA": "This account has a",
     "ifYouUsedDehub": "If you have used dehub.io before, open it on your computer, sign in the same way and with the same account, and",
-    "biometricExplainer": "Unlock with your fingerprint or face — nothing to type or remember. The key stays on this phone, so we'll show you a 12-word recovery phrase to write down; it is the only way back in from another handset, from the website, or after reinstalling. Pick Password instead and the password itself does that job.",
+    "biometricExplainer": "Unlock with your fingerprint or face — nothing to type or remember. The key stays on this phone, so we'll offer you a 12-word backup to write down; it is the only way back in from another handset, from the website, or after reinstalling. Pick Password instead and the password itself does that job.",
     "biometricPrompt": "This wallet is protected by this device's biometrics. Confirm with fingerprint or face to continue.",
     "enterRecoveryPhrase": "Enter the 12-word recovery phrase you saved when you created this wallet (or its private key, if you exported one). It goes back to the same account, and the password you set below becomes a backup that works everywhere from now on.",
     "copyPhrase": "Copy phrase",
