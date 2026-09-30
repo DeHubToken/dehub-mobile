@@ -1,4 +1,5 @@
 import React, { memo, useCallback, useEffect, useState } from 'react';
+import { useSheetClosed } from '../../hooks/useSheetClosed';
 import { useTranslation } from 'react-i18next';
 import {
   View,
@@ -132,7 +133,7 @@ const ChatHistorySheetComponent: React.FC<ChatHistorySheetProps> = ({
   }, [visible]);
   const translateY = useSharedValue(sheetHeight);
   const backdropOpacity = useSharedValue(0);
-  const [isFullyClosed, setIsFullyClosed] = React.useState(!visible);
+  const [isFullyClosed, setIsFullyClosed] = useSheetClosed(visible);
 
   React.useEffect(() => {
     if (visible) {

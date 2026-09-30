@@ -1,3 +1,4 @@
+import { useSheetClosed } from '../../hooks/useSheetClosed';
 /**
  * Comment Likers Sheet
  * ====================
@@ -101,7 +102,7 @@ const CommentLikersSheetComponent: React.FC<CommentLikersSheetProps> = ({
   const SHEET_HEIGHT = screenHeight * SHEET_FRACTION;
   const translateY = useSharedValue(SHEET_HEIGHT);
   const backdropOpacity = useSharedValue(0);
-  const [isFullyClosed, setIsFullyClosed] = useState(!visible);
+  const [isFullyClosed, setIsFullyClosed] = useSheetClosed(visible);
 
   const [people, setPeople] = useState<CommentLiker[]>([]);
   const [totalCount, setTotalCount] = useState(0);
