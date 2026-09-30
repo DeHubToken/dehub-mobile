@@ -19,6 +19,7 @@ import * as FileSystem from "expo-file-system/legacy";
 export type StickerFinish = "holo" | "glitter" | "foil" | "gloss";
 
 export interface StickerItem {
+  label?: string;
   /** A data URL: the page reads the pixels to trace the cut, which a file or remote image would block. */
   src: string;
   finish: StickerFinish;
@@ -32,9 +33,18 @@ export interface StickerStageHandle {
   /** Swap to `index`; 1 sends the old one up, -1 down. */
   show: (index: number, direction: 1 | -1) => void;
   preload: (index: number) => void;
+  open: (from: BadgeBox | null, fromArt: string | null, promote: boolean) => void;
+  close: (home: BadgeBox) => void;
 }
 
+export interface BadgeBox { x: number; y: number; size: number }
+
 interface Props {
+  metallic?: boolean;
+  reducedMotion?: boolean;
+  hero?: BadgeBox;
+  onLanded?: () => void;
+  onClosed?: () => void;
   items: StickerItem[];
   origin: number;
   /** Once, when the opening sticker is on the canvas (true) or cannot be (false). */
@@ -104,13 +114,15 @@ export function assetDataUrl(module: number): Promise<string> {
 }
 
 const StickerStage = forwardRef<StickerStageHandle, Props>(function StickerStage(
-  { items, origin, onReady, onTap, onMiss, onInteract },
+  { items, origin, metallic, reducedMotion, hero, onLanded, onClosed, onReady, onTap, onMiss, onInteract },
   ref,
 ) {
   const webRef = useRef<WebView>(null);
+  const latestHero = useRef(hero);
+  latestHero.current = hero;
   const [html, setHtml] = useState<string | null>(null);
-  const handlers = useRef({ onReady, onTap, onMiss, onInteract });
-  handlers.current = { onReady, onTap, onMiss, onInteract };
+  const handlers = useRef({ onReady, onTap, onMiss, onInteract, onLanded, onClosed });
+  handlers.current = { onReady, onTap, onMiss, onInteract, onLanded, onClosed };
   const settled = useRef(false);
 
   const settle = useCallback((ok: boolean) => {
@@ -122,7 +134,7 @@ const StickerStage = forwardRef<StickerStageHandle, Props>(function StickerStage
   // Built once: the page keeps its entries for its whole life, as web's does.
   useEffect(() => {
     let live = true;
-    const boot = JSON.stringify({ items, origin }).replace(/<\//g, "<\\/");
+    const boot = JSON.stringify({ items, origin, metallic, reducedMotion, hero }).replace(/<\//g, "<\\/");
     loadPage()
       .then((page) => {
         if (live) setHtml(page.replace("<head>", `<head><script>window.__STICKER=${boot};</script>`));
@@ -146,9 +158,15 @@ const StickerStage = forwardRef<StickerStageHandle, Props>(function StickerStage
       reveal: () => run("reveal()"),
       show: (index, direction) => run(`show(${Math.trunc(index)},${direction === -1 ? -1 : 1})`),
       preload: (index) => run(`preload(${Math.trunc(index)})`),
+      open: (from, fromArt, promote) => run(`open(${JSON.stringify(from)},${JSON.stringify(fromArt)},${promote})`),
+      close: (home) => run(`close(${JSON.stringify(home)})`),
     }),
     [run],
   );
+
+  useEffect(() => {
+    if (metallic && hero) run(`geometry(${JSON.stringify(hero)})`);
+  }, [metallic, hero, run]);
 
   const onMessage = useCallback(
     (e: WebViewMessageEvent) => {
@@ -158,12 +176,18 @@ const StickerStage = forwardRef<StickerStageHandle, Props>(function StickerStage
       } catch {
         return;
       }
-      if (message.type === "ready") settle(!!message.ok);
+      if (message.type === "ready") {
+        if (metallic && latestHero.current) run(`geometry(${JSON.stringify(latestHero.current)})`);
+        settle(!!message.ok);
+      }
       else if (message.type === "tap") handlers.current.onTap();
       else if (message.type === "miss") handlers.current.onMiss();
       else if (message.type === "interact") handlers.current.onInteract();
+      else if (message.type === "landed") handlers.current.onLanded?.();
+      else if (message.type === "closed") handlers.current.onClosed?.();
+      else if (message.type === "failed") handlers.current.onReady(false);
     },
-    [settle],
+    [settle, metallic, run],
   );
 
   // The renderer can be killed under memory pressure; without a handler that
