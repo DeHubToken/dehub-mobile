@@ -415,7 +415,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
             reader as each one arrived; the placeholder keeps that height
             stable and only actually collapses if the answer turns out empty,
             which happens once, right after mount, not while reading. */}
-        {/* The bottom row: "Followed by …" on the left, the creator's social
+        {/* The bottom row: mutual followers on the left, the creator's social
             icons tucked into the right-hand corner. Each side carries its own
             top margin, so the row takes no space when both are empty. */}
         <View className="flex-row items-center" style={{ gap: 12 }}>
