@@ -817,7 +817,17 @@
     "exportReady": "{{count}}アカウント、{{saved}}保存された投稿をエクスポート。",
     "importDone": "フォローした{{followed}}、ブロックした{{blocked}}、{{folders}}フォルダを作成。",
     "importPartial": "{{count}}アカウントをフォローできませんでした — これらのアカウントを再試行するには、インポートを実行してください。",
-    "importProgress": "{{done}}の{{total}}を適用中…"
+    "importProgress": "{{done}}の{{total}}を適用中…",
+    "themeColor": "テーマカラー",
+    "themeColorDesc": "このテーマのカスタムカラーを選びます",
+    "themeColorReset": "リセット",
+    "themeColorWhite": "ホワイト",
+    "themeColorBlack": "ブラック",
+    "themeColorRainbow": "レインボー",
+    "themeColorBrand": "ブランド",
+    "themeColorBrandDesc": "プロフィール画像の色を使う",
+    "themeColorBrandNoAvatar": "ブランドカラーを使うにはプロフィール画像を追加してください",
+    "themeColorBrandFailed": "プロフィール画像から色を読み取れませんでした"
   },
   "common": {
     "mute": "ミュート",

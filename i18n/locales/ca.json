@@ -818,7 +818,17 @@
     "exportReady": "{{count}} comptes, {{saved}} s'han desat les publicacions exportades.",
     "importDone": "He seguit {{followed}}, he bloquejat {{blocked}}, s'han creat {{folders}} carpetes.",
     "importPartial": "No s'han pogut seguir els comptes {{count}}. Torna a executar la importació per tornar-los a intentar.",
-    "importProgress": "S'està aplicant {{done}} de {{total}}…"
+    "importProgress": "S'està aplicant {{done}} de {{total}}…",
+    "themeColor": "Color del tema",
+    "themeColorDesc": "Tria un color personalitzat per a aquest tema",
+    "themeColorReset": "Restableix",
+    "themeColorWhite": "Blanc",
+    "themeColorBlack": "Negre",
+    "themeColorRainbow": "Arc de Sant Martí",
+    "themeColorBrand": "Marca",
+    "themeColorBrandDesc": "Fes servir els colors de la teva foto de perfil",
+    "themeColorBrandNoAvatar": "Afegeix una foto de perfil per fer servir els colors de marca",
+    "themeColorBrandFailed": "No s'han pogut llegir els colors de la teva foto de perfil"
   },
   "common": {
     "mute": "Silencia",

@@ -818,7 +818,17 @@
     "exportReady": "{{count}} accounts, {{saved}} posts zilizohifadhiwa zimehamishwa.",
     "importDone": "Imefuata {{followed}}, imezuiwa {{blocked}}, {{folders}} folda zimeundwa.",
     "importPartial": "{{count}} akaunti hazikuweza kufuatwa — endesha uingizaji tena ili kuzijaribu tena.",
-    "importProgress": "Inatumika {{done}} ya {{total}}…"
+    "importProgress": "Inatumika {{done}} ya {{total}}…",
+    "themeColor": "Rangi ya Mandhari",
+    "themeColorDesc": "Chagua rangi maalum kwa mandhari haya",
+    "themeColorReset": "Weka upya",
+    "themeColorWhite": "Nyeupe",
+    "themeColorBlack": "Nyeusi",
+    "themeColorRainbow": "Upinde wa mvua",
+    "themeColorBrand": "Chapa",
+    "themeColorBrandDesc": "Tumia rangi za picha yako ya wasifu",
+    "themeColorBrandNoAvatar": "Ongeza picha ya wasifu ili kutumia rangi za Chapa",
+    "themeColorBrandFailed": "Haikuweza kusoma rangi kutoka picha yako ya wasifu"
   },
   "common": {
     "mute": "Nyamazisha",

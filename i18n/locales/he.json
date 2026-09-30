@@ -818,7 +818,17 @@
     "importDone": "{{followed}} במעקב, {{blocked}} חסום, {{folders}} תיקיות נוצרו.",
     "importPartial": "לא ניתן היה לעקוב אחר {{count}} חשבונות — יש להפעיל את הייבוא שוב כדי לנסות אותם שוב.",
     "importProgress": "הגשת בקשה {{done}} מתוך {{total}}…",
-    "socialLinksDesc": "X, אינסטגרם, טיקטוק, יוטיוב, דיסקורד, טלגרם"
+    "socialLinksDesc": "X, אינסטגרם, טיקטוק, יוטיוב, דיסקורד, טלגרם",
+    "themeColor": "צבע ערכת נושא",
+    "themeColorDesc": "בחרו צבע מותאם לערכת הנושא הזו",
+    "themeColorReset": "איפוס",
+    "themeColorWhite": "לבן",
+    "themeColorBlack": "שחור",
+    "themeColorRainbow": "קשת בענן",
+    "themeColorBrand": "מותג",
+    "themeColorBrandDesc": "שימוש בצבעי תמונת הפרופיל שלך",
+    "themeColorBrandNoAvatar": "הוסיפו תמונת פרופיל כדי להשתמש בצבעי המותג",
+    "themeColorBrandFailed": "לא הצלחנו לקרוא צבעים מתמונת הפרופיל שלך"
   },
   "common": {
     "mute": "השתק",

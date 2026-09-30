@@ -818,7 +818,17 @@
     "exportReady": "{{count}} konti, {{saved}} saglabātie ieraksti eksportēti.",
     "importDone": "Sekots {{followed}}, bloķēti {{blocked}}, izveidotas {{folders}} mapes.",
     "importPartial": "{{count}} kontiem nevarēja sekot — palaidiet importēšanu vēlreiz, lai mēģinātu vēlreiz.",
-    "importProgress": "Tiek lietots {{done}} no {{total}}…"
+    "importProgress": "Tiek lietots {{done}} no {{total}}…",
+    "themeColor": "Motīva krāsa",
+    "themeColorDesc": "Izvēlieties šim motīvam savu krāsu",
+    "themeColorReset": "Atiestatīt",
+    "themeColorWhite": "Balts",
+    "themeColorBlack": "Melns",
+    "themeColorRainbow": "Varavīksne",
+    "themeColorBrand": "Zīmols",
+    "themeColorBrandDesc": "Izmantot profila attēla krāsas",
+    "themeColorBrandNoAvatar": "Pievienojiet profila attēlu, lai izmantotu zīmola krāsas",
+    "themeColorBrandFailed": "Neizdevās nolasīt krāsas no jūsu profila attēla"
   },
   "common": {
     "mute": "Izslēgt skaņu",

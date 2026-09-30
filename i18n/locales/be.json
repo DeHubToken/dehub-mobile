@@ -817,7 +817,17 @@
     "exportReady": "{{count}} рахункі, {{saved}} збераганыя публікацыі экспартаваныя.",
     "importDone": "Падпісаны {{followed}}, заблякаваны {{blocked}}, {{folders}} папкі створаны.",
     "importPartial": "{{count}} рахункі не маглі быць падпісаныя — запусціце імпарт зноў, каб паўтарыць спробу.",
-    "importProgress": "Прымяненне {{done}} з {{total}}…"
+    "importProgress": "Прымяненне {{done}} з {{total}}…",
+    "themeColor": "Колер тэмы",
+    "themeColorDesc": "Выберыце ўласны колер для гэтай тэмы",
+    "themeColorReset": "Скінуць",
+    "themeColorWhite": "Белы",
+    "themeColorBlack": "Чорны",
+    "themeColorRainbow": "Вясёлка",
+    "themeColorBrand": "Брэнд",
+    "themeColorBrandDesc": "Выкарыстоўваць колеры вашага аватара",
+    "themeColorBrandNoAvatar": "Дадайце фота профілю, каб выкарыстоўваць колеры брэнда",
+    "themeColorBrandFailed": "Не ўдалося прачытаць колеры з вашага аватара"
   },
   "common": {
     "mute": "Выключыць гук",

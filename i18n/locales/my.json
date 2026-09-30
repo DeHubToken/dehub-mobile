@@ -817,7 +817,17 @@
     "channelSpeedCount": "{{count}} ကစားသည်အလုပ်အကိုကိုယ်စီလုပ်သည်။",
     "exportReady": "{{count}} အကောင့်များ ၊ {{saved}} သိမ်းဆည်းထားသောပို့စ်များကိုတင်ပို့ခဲ့သည် ။",
     "importPartial": "{{count}} ကိုကြိုးကိုက်မထားသောအကြောင်းအရာများ — အလုပ်အကိုကိုယ်စီလုပ်သည်ကိုပြန်လည်ကြိုးကိုက်မည်။",
-    "importProgress": "Applying {{done}} ကို {{total}} ပေါ်တွင်"
+    "importProgress": "Applying {{done}} ကို {{total}} ပေါ်တွင်",
+    "themeColor": "အပြင်အဆင် အရောင်",
+    "themeColorDesc": "ဤအပြင်အဆင်အတွက် စိတ်ကြိုက်အရောင် ရွေးပါ",
+    "themeColorReset": "ပြန်လည်သတ်မှတ်ရန်",
+    "themeColorWhite": "အဖြူရောင်",
+    "themeColorBlack": "အနက်ရောင်",
+    "themeColorRainbow": "သက်တံ",
+    "themeColorBrand": "ကုန်အမှတ်တံဆိပ်",
+    "themeColorBrandDesc": "သင့်ပရိုဖိုင်ပုံ၏ အရောင်များကို သုံးပါ",
+    "themeColorBrandNoAvatar": "Brand အရောင်များ သုံးရန် ပရိုဖိုင်ပုံ ထည့်ပါ",
+    "themeColorBrandFailed": "သင့်ပရိုဖိုင်ပုံမှ အရောင်များ မဖတ်နိုင်ပါ"
   },
   "common": {
     "mute": "အသံပိတ်ရန်",

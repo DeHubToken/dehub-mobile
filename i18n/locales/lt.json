@@ -818,7 +818,17 @@
     "exportReady": "{{count}} paskyros, {{saved}} išsaugoti įrašai eksportuoti.",
     "importDone": "Sekė {{followed}}, užblokavo {{blocked}}, {{folders}} aplankai sukurti.",
     "importPartial": "{{count}} paskyrų nepavyko sekti — paleiskite importą dar kartą, kad bandytumėte dar kartą.",
-    "importProgress": "Taikoma {{done}} iš {{total}}..."
+    "importProgress": "Taikoma {{done}} iš {{total}}...",
+    "themeColor": "Temos spalva",
+    "themeColorDesc": "Pasirinkite šiai temai savo spalvą",
+    "themeColorReset": "Atstatyti",
+    "themeColorWhite": "Balta",
+    "themeColorBlack": "Juoda",
+    "themeColorRainbow": "Vaivorykštė",
+    "themeColorBrand": "Prekės ženklas",
+    "themeColorBrandDesc": "Naudoti profilio nuotraukos spalvas",
+    "themeColorBrandNoAvatar": "Pridėkite profilio nuotrauką, kad naudotumėte prekės ženklo spalvas",
+    "themeColorBrandFailed": "Nepavyko nuskaityti spalvų iš jūsų profilio nuotraukos"
   },
   "common": {
     "mute": "Nutildyti",

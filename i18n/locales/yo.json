@@ -817,7 +817,17 @@
     "exportReady": "{{count}} àwọn ìwé ìròyìn, {{saved}} àwọn ìwé ìròyìn tí a fi pamọ́ ni a gbé jáde.",
     "importDone": "Tẹ̀lé {{followed}}, dènà {{blocked}}, a ṣẹ̀dá {{folders}} àwọn àwòrán.",
     "importPartial": "Àwọn ìwé ìròyìn {{count}} kò le è tẹ̀ lé — ṣàṣàrò ìgbéjáde láti tún wọ́n gbìyànjú.",
-    "importProgress": "A ń fi {{done}} nínú {{total}} sílẹ̀…"
+    "importProgress": "A ń fi {{done}} nínú {{total}} sílẹ̀…",
+    "themeColor": "Àwọ̀ àkòrí",
+    "themeColorDesc": "Yan àwọ̀ àkànṣe fún àkòrí yìí",
+    "themeColorReset": "Tún ṣe",
+    "themeColorWhite": "Funfun",
+    "themeColorBlack": "Dúdú",
+    "themeColorRainbow": "Òṣùmàrè",
+    "themeColorBrand": "Àmì-ọjà",
+    "themeColorBrandDesc": "Lo àwọn àwọ̀ àwòrán profáìlì rẹ",
+    "themeColorBrandNoAvatar": "Fi àwòrán profáìlì kún kí o lè lo àwọn àwọ̀ Àmì-ọjà",
+    "themeColorBrandFailed": "A kò lè ka àwọn àwọ̀ láti àwòrán profáìlì rẹ"
   },
   "common": {
     "mute": "Pa ohùn",

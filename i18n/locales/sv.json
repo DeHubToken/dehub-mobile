@@ -818,7 +818,17 @@
     "exportReady": "{{count}} konton, {{saved}} sparade inlägg exporterade.",
     "importDone": "Följde {{followed}}, blockerade {{blocked}}, {{folders}} mappar skapade.",
     "importPartial": "{{count}} -konton kunde inte följas — kör importen igen för att försöka igen.",
-    "importProgress": "Ansöker om {{done}} från {{total}}…"
+    "importProgress": "Ansöker om {{done}} från {{total}}…",
+    "themeColor": "Temafärg",
+    "themeColorDesc": "Välj en egen färg till det här temat",
+    "themeColorReset": "Återställ",
+    "themeColorWhite": "Vit",
+    "themeColorBlack": "Svart",
+    "themeColorRainbow": "Regnbåge",
+    "themeColorBrand": "Varumärke",
+    "themeColorBrandDesc": "Använd färgerna i din profilbild",
+    "themeColorBrandNoAvatar": "Lägg till en profilbild för att använda varumärkesfärger",
+    "themeColorBrandFailed": "Kunde inte läsa färger från din profilbild"
   },
   "common": {
     "mute": "Stäng av ljud",

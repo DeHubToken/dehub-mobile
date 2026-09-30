@@ -818,7 +818,17 @@
     "importDone": "Gfolgt {{followed}}, blockiert {{blocked}}, {{folders}} Ordner erstellt.",
     "importPartial": "{{count}} Konten chönne nüme gfolgt wärde — probiere d'Import wider.",
     "importProgress": "Aanwendunge vo {{done}} vo {{total}}…",
-    "channelSpeedCount": "{{count}} Kanäl spielt uf e chlii Gschwindigkeit."
+    "channelSpeedCount": "{{count}} Kanäl spielt uf e chlii Gschwindigkeit.",
+    "themeColor": "Theme-Farb",
+    "themeColorDesc": "Wähl e eigeti Farb für das Theme",
+    "themeColorReset": "Zruggsetze",
+    "themeColorWhite": "Wiiss",
+    "themeColorBlack": "Schwarz",
+    "themeColorRainbow": "Rägeboge",
+    "themeColorBrand": "Brand",
+    "themeColorBrandDesc": "Bruuch d'Farbe vo dim Profilbild",
+    "themeColorBrandNoAvatar": "Füeg es Profilbild dezue, zum d'Brand-Farbe z'bruuche",
+    "themeColorBrandFailed": "D'Farbe vo dim Profilbild hend nid chöne gläse wärde"
   },
   "common": {
     "mute": "Stumm schalte",

@@ -822,7 +822,17 @@
     "exportReady": "{{count}} účtov, {{saved}} uložené články exportované.",
     "importDone": "Prechádzali {{followed}}, blokovali {{blocked}}, {{folders}} foldery vytvorené.",
     "importPartial": "{{count}} účtov sa nepodarilo nasledovať — spustiť import znova, aby ste ich opätovne skúsili.",
-    "importProgress": "Používajú {{done}} z {{total}}…"
+    "importProgress": "Používajú {{done}} z {{total}}…",
+    "themeColor": "Farba témy",
+    "themeColorDesc": "Vyber vlastnú farbu pre túto tému",
+    "themeColorReset": "Obnoviť",
+    "themeColorWhite": "Biela",
+    "themeColorBlack": "Čierna",
+    "themeColorRainbow": "Dúha",
+    "themeColorBrand": "Značka",
+    "themeColorBrandDesc": "Použiť farby tvojej profilovej fotky",
+    "themeColorBrandNoAvatar": "Pridaj profilovú fotku, aby si mohol použiť farby značky",
+    "themeColorBrandFailed": "Nepodarilo sa načítať farby z tvojej profilovej fotky"
   },
   "common": {
     "mute": "Stlmiť",

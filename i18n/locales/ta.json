@@ -817,7 +817,17 @@
     "exportReady": "{{count}} கணக்குகள், {{saved}} சேமித்த பதிவுகள் ஏற்றுமதி செய்யப்பட்டன.",
     "importDone": "{{followed}}, தடுக்கப்பட்டது {{blocked}}, {{folders}} கோப்புறைகள் உருவாக்கப்பட்டது.",
     "importPartial": "{{count}} கணக்குகளைப் பின்பற்ற முடியவில்லை — அவற்றை மீண்டும் முயற்சிக்க இறக்குமதியை மீண்டும் இயக்கவும்.",
-    "importProgress": "{{done}} of {{total}}… ஐப் பயன்படுத்துகிறது."
+    "importProgress": "{{done}} of {{total}}… ஐப் பயன்படுத்துகிறது.",
+    "themeColor": "தீம் நிறம்",
+    "themeColorDesc": "இந்தத் தீமுக்கு விருப்ப நிறத்தைத் தேர்வுசெய்யவும்",
+    "themeColorReset": "மீட்டமை",
+    "themeColorWhite": "வெள்ளை",
+    "themeColorBlack": "கருப்பு",
+    "themeColorRainbow": "வானவில்",
+    "themeColorBrand": "பிராண்ட்",
+    "themeColorBrandDesc": "உங்கள் சுயவிவரப் படத்தின் நிறங்களைப் பயன்படுத்து",
+    "themeColorBrandNoAvatar": "பிராண்ட் நிறங்களைப் பயன்படுத்த சுயவிவரப் படம் சேர்க்கவும்",
+    "themeColorBrandFailed": "உங்கள் சுயவிவரப் படத்திலிருந்து நிறங்களைப் படிக்க முடியவில்லை"
   },
   "common": {
     "mute": "ஒலியடக்கு",

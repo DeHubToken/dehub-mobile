@@ -818,7 +818,17 @@
     "exportReady": "{{count}} ਅਕਾਊਂਟ, {{saved}} ਸੇਵੇਦ ਪੋਸਟ ਇਕਸਪੋਰਟ ਕੀਤੇ ਗਏ।",
     "importDone": "ਫੋਲੋਵਿੰਗ {{followed}}, ਬਲਾਕ ਕੀਤੇ {{blocked}}, {{folders}} ਫੋਲਡਰਾਂ ਬਣਾਏ ਗਏ।",
     "importPartial": "{{count}} ਅਕਾਊਂਟ ਫੋਲੋਅਰ ਨਹੀਂ ਕੀਤੇ ਗਏ — ਇਮਪੋਰਟ ਫੇਰ ਕਰੋ ਤਾਂਕਿ ਉਹਨਾਂ ਨੂੰ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।",
-    "importProgress": "ਅਪਲਾਈਂਗ {{done}} ਆਫ {{total}}…"
+    "importProgress": "ਅਪਲਾਈਂਗ {{done}} ਆਫ {{total}}…",
+    "themeColor": "ਥੀਮ ਰੰਗ",
+    "themeColorDesc": "ਇਸ ਥੀਮ ਲਈ ਇੱਕ ਕਸਟਮ ਰੰਗ ਚੁਣੋ",
+    "themeColorReset": "ਰੀਸੈੱਟ",
+    "themeColorWhite": "ਚਿੱਟਾ",
+    "themeColorBlack": "ਕਾਲਾ",
+    "themeColorRainbow": "ਰੇਨਬੋ",
+    "themeColorBrand": "ਬ੍ਰੈਂਡ",
+    "themeColorBrandDesc": "ਆਪਣੀ ਪ੍ਰੋਫਾਈਲ ਤਸਵੀਰ ਦੇ ਰੰਗ ਵਰਤੋ",
+    "themeColorBrandNoAvatar": "Brand ਰੰਗ ਵਰਤਣ ਲਈ ਪ੍ਰੋਫਾਈਲ ਤਸਵੀਰ ਸ਼ਾਮਲ ਕਰੋ",
+    "themeColorBrandFailed": "ਤੁਹਾਡੀ ਪ੍ਰੋਫਾਈਲ ਤਸਵੀਰ ਤੋਂ ਰੰਗ ਪੜ੍ਹੇ ਨਹੀਂ ਜਾ ਸਕੇ"
   },
   "common": {
     "mute": "ਮਿਊਟ ਕਰੋ",

@@ -818,7 +818,17 @@
     "channelSpeedCount": "{{count}} चैनल(स) अपन गति से चल रहल बा.",
     "exportReady": "{{count}} खाता, {{saved}} बचावल पोस्ट निर्यात कइल गइल.",
     "importPartial": "{{count}} खाता के फॉलो ना कइल जा सकल — इम्पोर्ट फेर से चलाके ओहनी के दुबारा कोशिश करीं.",
-    "importProgress": "{{done}} के {{total}} पर लागू कइल जा रहल बा…"
+    "importProgress": "{{done}} के {{total}} पर लागू कइल जा रहल बा…",
+    "themeColor": "थीम रंग",
+    "themeColorDesc": "ई थीम लेल कस्टम रंग चुनूँ",
+    "themeColorReset": "रीसेट",
+    "themeColorWhite": "सफेद",
+    "themeColorBlack": "काला",
+    "themeColorRainbow": "इंद्रधनुष",
+    "themeColorBrand": "ब्रांड",
+    "themeColorBrandDesc": "अपन प्रोफाइल फोटो के रंग इस्तेमाल करूँ",
+    "themeColorBrandNoAvatar": "ब्रांड रंग इस्तेमाल करे लेल प्रोफाइल फोटो जोड़ूँ",
+    "themeColorBrandFailed": "अहाँक प्रोफाइल फोटो स' रंग नै पढ़ल जा सकल"
   },
   "common": {
     "mute": "आवाज बंद करू",

@@ -818,7 +818,17 @@
     "exportReady": "{{count}} ఖాతాలు, {{saved}} సేవ్ చేసిన పోస్ట్ ‌ లు ఎగుమతి చేయబడ్డాయి.",
     "importDone": "{{followed}}, {{blocked}}, {{folders}} ఫోల్డర్ ‌ లు సృష్టించబడ్డాయి.",
     "importPartial": "{{count}} ఖాతాలను అనుసరించడం సాధ్యం కాలేదు — వాటిని మళ్లీ ప్రయత్నించడానికి దిగుమతిని మళ్లీ అమలు చేయండి.",
-    "importProgress": "{{done}} ను {{total}} లో అప్లై చేస్తోంది…"
+    "importProgress": "{{done}} ను {{total}} లో అప్లై చేస్తోంది…",
+    "themeColor": "థీమ్ రంగు",
+    "themeColorDesc": "ఈ థీమ్ కోసం మీ ఇష్టమైన రంగు ఎంచుకోండి",
+    "themeColorReset": "రీసెట్",
+    "themeColorWhite": "తెలుపు",
+    "themeColorBlack": "నలుపు",
+    "themeColorRainbow": "ఇంద్రధనుస్సు",
+    "themeColorBrand": "బ్రాండ్",
+    "themeColorBrandDesc": "మీ ప్రొఫైల్ చిత్రం రంగులు వాడండి",
+    "themeColorBrandNoAvatar": "బ్రాండ్ రంగులు వాడటానికి ప్రొఫైల్ చిత్రం జోడించండి",
+    "themeColorBrandFailed": "మీ ప్రొఫైల్ చిత్రం నుంచి రంగులు చదవలేకపోయాం"
   },
   "common": {
     "mute": "మ్యూట్ చేయి",

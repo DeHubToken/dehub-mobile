@@ -836,7 +836,17 @@
     "exportReady": "{{count}} অ্যাকাউন্ট, {{saved}} সেভ করা পোস্ট রিপোর্ট করা হয়েছে।",
     "importDone": "অনুসরণ করা হয়েছে {{followed}}, ব্লক করা হয়েছে {{blocked}}, {{folders}} ফোল্ডার তৈরি করা হয়েছে।",
     "importPartial": "{{count}} অ্যাকাউন্ট অনুসরণ করা যায়নি — আবার আবেদন করুন তাদের চেষ্টা করুন।",
-    "importProgress": "প্রয়োগ করা হচ্ছে {{done}} অফ {{total}}…"
+    "importProgress": "প্রয়োগ করা হচ্ছে {{done}} অফ {{total}}…",
+    "themeColor": "থিমর রঙ",
+    "themeColorDesc": "এই থিমর লাগি একটা নিজস্ব রঙ বাছউক্কা",
+    "themeColorReset": "রিসেট",
+    "themeColorWhite": "সাদা",
+    "themeColorBlack": "কালা",
+    "themeColorRainbow": "রংধনু",
+    "themeColorBrand": "ব্র্যান্ড",
+    "themeColorBrandDesc": "আপনার প্রোফাইল ছবির রঙ ব্যবহার করউক্কা",
+    "themeColorBrandNoAvatar": "Brand রঙ ব্যবহার করতে একটা প্রোফাইল ছবি যোগ করউক্কা",
+    "themeColorBrandFailed": "আপনার প্রোফাইল ছবি তুন রঙ পড়া গেছে না"
   },
   "common": {
     "mute": "আওয়াজ বন্ধ খরউকা",

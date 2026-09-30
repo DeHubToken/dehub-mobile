@@ -818,7 +818,17 @@
     "exportReady": "{{count}} اڪائونٽ، {{saved}} محفوظ ڪيل پوسٽون برآمد ڪيون ويون.",
     "importDone": "آڳواڻي {{followed}}, بلاڪ ڪيل {{blocked}}, {{folders}} folderز بنايون.",
     "importPartial": "{{count}} اڳواڻي ڏٺي نه سگھيون — پريميئر ڪري انهن کي ڪڍي ڇڪي.",
-    "importProgress": "اپلائينڪ {{done}} آف {{total}}…"
+    "importProgress": "اپلائينڪ {{done}} آف {{total}}…",
+    "themeColor": "ٿيم ڪلر",
+    "themeColorDesc": "هن ٿيم لاءِ ڪسٽم رنگ چونڊيو",
+    "themeColorReset": "ري سيٽ",
+    "themeColorWhite": "اڇو",
+    "themeColorBlack": "ڪارو",
+    "themeColorRainbow": "قوس قزح",
+    "themeColorBrand": "برانڊ",
+    "themeColorBrandDesc": "پنهنجي پروفائل تصوير جا رنگ استعمال ڪريو",
+    "themeColorBrandNoAvatar": "برانڊ رنگ استعمال ڪرڻ لاءِ پروفائل تصوير شامل ڪريو",
+    "themeColorBrandFailed": "پروفائل تصوير مان رنگ پڙهي نه سگهيا"
   },
   "common": {
     "mute": "آواز بند ڪريو",

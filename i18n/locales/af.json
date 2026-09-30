@@ -819,7 +819,17 @@
     "exportReady": "{{count}} rekening, {{saved}} gespaarde posse geëksport.",
     "importDone": "Gevolg van {{followed}}, geblokkeer {{blocked}}, {{folders}} mappen geskep.",
     "importPartial": "{{count}} rekening kon nie gevolg word nie – loop die impor weer om hulle te probeer.",
-    "importProgress": "Toepas {{done}} van {{total}}…"
+    "importProgress": "Toepas {{done}} van {{total}}…",
+    "themeColor": "Temakleur",
+    "themeColorDesc": "Kies 'n eie kleur vir hierdie tema",
+    "themeColorReset": "Herstel",
+    "themeColorWhite": "Wit",
+    "themeColorBlack": "Swart",
+    "themeColorRainbow": "Reënboog",
+    "themeColorBrand": "Handelsmerk",
+    "themeColorBrandDesc": "Gebruik die kleure van jou profielfoto",
+    "themeColorBrandNoAvatar": "Voeg 'n profielfoto by om handelsmerkkleure te gebruik",
+    "themeColorBrandFailed": "Kon nie kleure uit jou profielfoto lees nie"
   },
   "common": {
     "mute": "Demp",

@@ -817,7 +817,17 @@
     "exportReady": "{{count}} λογαριασμοί, {{saved}} αποθηκευμένες δημοσιεύσεις εξαγώγηθηκαν.",
     "importDone": "Ακολουθούν {{followed}}, αποκλείστηκαν {{blocked}}, {{folders}} φάκελοι δημιουργήθηκαν.",
     "importPartial": "{{count}} λογαριασμοί δεν μπορούσαν να ακολουθηθούν — εκτελέστε την εισαγωγή ξανά για να προσπαθήσετε να τα προσπαθήσετε.",
-    "importProgress": "Εφαρμόζοντας {{done}} από {{total}}…"
+    "importProgress": "Εφαρμόζοντας {{done}} από {{total}}…",
+    "themeColor": "Χρώμα θέματος",
+    "themeColorDesc": "Επιλέξτε ένα δικό σας χρώμα για αυτό το θέμα",
+    "themeColorReset": "Επαναφορά",
+    "themeColorWhite": "Λευκό",
+    "themeColorBlack": "Μαύρο",
+    "themeColorRainbow": "Ουράνιο τόξο",
+    "themeColorBrand": "Μάρκα",
+    "themeColorBrandDesc": "Χρήση των χρωμάτων της φωτογραφίας προφίλ σας",
+    "themeColorBrandNoAvatar": "Προσθέστε φωτογραφία προφίλ για να χρησιμοποιήσετε τα χρώματα της μάρκας",
+    "themeColorBrandFailed": "Δεν ήταν δυνατή η ανάγνωση χρωμάτων από τη φωτογραφία προφίλ σας"
   },
   "common": {
     "mute": "Σίγαση",

@@ -816,7 +816,17 @@
     "exportReady": "{{count}} គណនី, {{saved}} ប្រកាស​ដែល​បាន​រក្សា​ទុក​ត្រូវ​បាន​នាំចេញ។",
     "importDone": "បាន​តាមដាន {{followed}}, បាន​ប្លុក {{blocked}}, {{folders}} កម្មវិធី​បង្កើត​ឡើង។",
     "importPartial": "{{count}} គណនី​មិន​អាច​ត្រូវ​បាន​តាមដាន​ទេ — រត់​ការ​នាំចូល​ម្ដង​ទៀត​ដើម្បី​ព្យាយាម​ម្ដង​ទៀត។",
-    "importProgress": "កំពុង​អនុវត្ត {{done}} នៃ {{total}}…"
+    "importProgress": "កំពុង​អនុវត្ត {{done}} នៃ {{total}}…",
+    "themeColor": "ពណ៌ស្បែក",
+    "themeColorDesc": "ជ្រើសរើសពណ៌ផ្ទាល់ខ្លួនសម្រាប់ស្បែកនេះ",
+    "themeColorReset": "កំណត់ឡើងវិញ",
+    "themeColorWhite": "ស",
+    "themeColorBlack": "ខ្មៅ",
+    "themeColorRainbow": "ឥន្ទធនូ",
+    "themeColorBrand": "ម៉ាក",
+    "themeColorBrandDesc": "ប្រើពណ៌រូបភាពប្រវត្តិរូបរបស់អ្នក",
+    "themeColorBrandNoAvatar": "បន្ថែមរូបភាពប្រវត្តិរូបដើម្បីប្រើពណ៌ម៉ាក",
+    "themeColorBrandFailed": "មិនអាចអានពណ៌ពីរូបភាពប្រវត្តិរូបរបស់អ្នកបានទេ"
   },
   "common": {
     "mute": "បិទសំឡេង",

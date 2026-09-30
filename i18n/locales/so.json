@@ -818,7 +818,17 @@
     "exportReady": "{{count}} koonto(yo)da, {{saved}} qoraal(yo)da la keydiyay waa la dhoofiyay.",
     "importDone": "Waa la raacay {{followed}}, waa la xanibay {{blocked}}, {{folders}} faylal(yo)da waa la sameeyay.",
     "importPartial": "{{count}} koonto(yo)da lama raaci karo — mar kale orodka soo dejinta si aad isugu daydo.",
-    "importProgress": "La dabaqayo {{done}} oo ah {{total}}…"
+    "importProgress": "La dabaqayo {{done}} oo ah {{total}}…",
+    "themeColor": "Midabka mawduuca",
+    "themeColorDesc": "Dooro midab gaar ah mawduucan",
+    "themeColorReset": "Dib u deji",
+    "themeColorWhite": "Caddaan",
+    "themeColorBlack": "Madow",
+    "themeColorRainbow": "Qaanso roobaad",
+    "themeColorBrand": "Astaanta",
+    "themeColorBrandDesc": "Isticmaal midabada sawirka profilkaaga",
+    "themeColorBrandNoAvatar": "Ku dar sawir profile si aad u isticmaasho midabada Astaanta",
+    "themeColorBrandFailed": "Lagama akhrin karin midabada sawirka profilkaaga"
   },
   "common": {
     "mute": "Aamusi",

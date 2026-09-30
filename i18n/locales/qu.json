@@ -818,7 +818,17 @@
     "exportReady": "{{count}} yupaykuna, {{saved}} waqaychasqa qillqakuna hawaman apachisqa.",
     "importDone": "{{followed}} qatisqa, {{blocked}} hark'asqa, {{folders}} qillqana mayt'ukuna kamasqa.",
     "importPartial": "{{count}} yupaykunata mana qatiyta atirqankuchu — yapamanta apamuyta purichiy wakmanta kallpachakunaykipaq.",
-    "importProgress": "{{done}} nisqamanta {{total}} nisqamanta mañakuspa..."
+    "importProgress": "{{done}} nisqamanta {{total}} nisqamanta mañakuspa...",
+    "themeColor": "Unancha llimpi",
+    "themeColorDesc": "Kay unanchapaq kikin llimpita akllay",
+    "themeColorReset": "Kutichiy",
+    "themeColorWhite": "Yuraq",
+    "themeColorBlack": "Yana",
+    "themeColorRainbow": "K'uychi",
+    "themeColorBrand": "Marca",
+    "themeColorBrandDesc": "Uyachaykipa llimpinkunata apaykachay",
+    "themeColorBrandNoAvatar": "Marca llimpikunata apaykachanaykipaq, uyachaykita yapay",
+    "themeColorBrandFailed": "Uyachaykimanta llimpikunata mana ñawinchay atirqanchu"
   },
   "common": {
     "mute": "Upallachiy",

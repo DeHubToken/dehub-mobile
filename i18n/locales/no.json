@@ -818,7 +818,17 @@
     "exportReady": "{{count}} kontoer, {{saved}} lagrede innlegg eksportert.",
     "importDone": "Fulgte {{followed}}, blokkerte {{blocked}}, {{folders}} mapper opprettet.",
     "importPartial": "{{count}}-kontoene kunne ikke følges – kjør importen på nytt for å prøve dem på nytt.",
-    "importProgress": "Bruker {{done}} av {{total}}…"
+    "importProgress": "Bruker {{done}} av {{total}}…",
+    "themeColor": "Temafarge",
+    "themeColorDesc": "Velg en egen farge til dette temaet",
+    "themeColorReset": "Tilbakestill",
+    "themeColorWhite": "Hvit",
+    "themeColorBlack": "Svart",
+    "themeColorRainbow": "Regnbue",
+    "themeColorBrand": "Merkevare",
+    "themeColorBrandDesc": "Bruk fargene fra profilbildet ditt",
+    "themeColorBrandNoAvatar": "Legg til et profilbilde for å bruke merkevarefarger",
+    "themeColorBrandFailed": "Klarte ikke å lese farger fra profilbildet ditt"
   },
   "common": {
     "mute": "Demp",
