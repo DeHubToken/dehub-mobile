@@ -14,7 +14,8 @@ import {
   Image,
   type ViewStyle,
 } from "react-native";
-import { GRAIN } from "../theme/skins";
+import { BlurView } from "expo-blur";
+import { GRAIN, glassTint } from "../theme/skins";
 import HudBrackets from "../components/theme/HudBrackets";
 import Reanimated, {
   useSharedValue,
@@ -407,6 +408,8 @@ const ScrollNavButton = memo<{
 const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }) => {
   const { t } = useTranslation();
   const { colors, isLight, isMinimal, skin } = useAppTheme();
+  // Real liquid glass on iOS (dark themes); Android, Light and Minimal stay solid.
+  const iosGlass = Platform.OS === "ios" && !isLight && !isMinimal;
   const insets = useSafeAreaInsets();
   // Live, not a module constant — see tabWidthFor.
   const { width: screenW } = useWindowDimensions();
@@ -636,6 +639,12 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
             fill does the same job with no scrim, no per-platform blur library
             and no backdrop sampling on every scrolled frame. Minimal floats
             the same pill, flat black with its hairline border. */}
+        {/* iOS is the exception: it draws real liquid glass natively, so
+            there the pill is a thin tint of the same colour over a system
+            blur. Android keeps the solid fill (no safe blur there). */}
+        {iosGlass ? (
+          <BlurView intensity={80} tint="dark" style={StyleSheet.absoluteFill} />
+        ) : null}
         <View
           style={[
             StyleSheet.absoluteFill,
@@ -643,6 +652,9 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
             isLight && { backgroundColor: colors.background },
             isMinimal && { backgroundColor: "#000" },
             skin && skin.barFill,
+            iosGlass && {
+              backgroundColor: glassTint(String((skin?.barFill.backgroundColor) ?? styles.pillFill.backgroundColor), 0.55),
+            },
           ]}
         />
         {skin?.grain ? (
