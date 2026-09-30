@@ -1874,7 +1874,16 @@
     "tryAnotherGenre": "Coba genre lain.",
     "pauseStation": "Hentikan sementara stasiun",
     "resumeStation": "Lanjutkan stasiun",
-    "stopRadio": "Hentikan radio"
+    "stopRadio": "Hentikan radio",
+    "playsToday": "{{plays}} kali diputar hari ini",
+    "listen": "Dengarkan",
+    "top50": "Top 50",
+    "playAll": "Putar semua",
+    "nothingHereYet": "Belum ada apa-apa di sini.",
+    "likeStation": "Sukai stasiun",
+    "unlikeStation": "Batal sukai stasiun",
+    "shareStation": "Bagikan stasiun",
+    "listeningTo": "Mendengarkan {{name}} di DeHub"
   },
   "notFound": {
     "title": "Halaman Tidak Ditemukan",
@@ -5576,7 +5585,16 @@
     "preparingCamera": "Mempersiapkan kamera…",
     "reconnecting": "Menghubungkan kembali…",
     "connecting": "Menghubungkan…",
-    "shopPutOnAir": "Nyalakan"
+    "shopPutOnAir": "Nyalakan",
+    "streamCount_one": "{{count}} siaran",
+    "streamCount_other": "{{count}} siaran",
+    "noOneStreamingGame": "Tidak ada yang menyiarkan {{game}} saat ini.",
+    "seeAllStreams": "Lihat semua siaran",
+    "isLiveNow": "{{name}} sedang live",
+    "justChatting": "Sekadar ngobrol",
+    "noLiveStreams": "Tidak ada siaran langsung",
+    "noOneStreaming": "Tidak ada yang siaran saat ini. Kembali lagi nanti!",
+    "loadStreamsFailed": "Gagal memuat siaran. Coba lagi."
   },
   "liveShop": {
     "title": "Belanja dari siaran ini",

@@ -1874,7 +1874,16 @@
     "tryAnotherGenre": "Başqa janr cəhd edin.",
     "pauseStation": "Stansiyanı dayandır",
     "resumeStation": "Stansiyanı davam etdir",
-    "stopRadio": "Radiostansiyanı dayandır"
+    "stopRadio": "Radiostansiyanı dayandır",
+    "playsToday": "Bu gün {{plays}} dinlənmə",
+    "listen": "Dinlə",
+    "top50": "Top 50",
+    "playAll": "Hamısını oynat",
+    "nothingHereYet": "Burada hələ heç nə yoxdur.",
+    "likeStation": "Stansiyanı bəyən",
+    "unlikeStation": "Stansiyanı bəyənmə",
+    "shareStation": "Stansiyanı paylaş",
+    "listeningTo": "DeHub-da {{name}} dinləyirəm"
   },
   "notFound": {
     "title": "Səhifə Tapılmadı",
@@ -5497,7 +5506,16 @@
     "preparingCamera": "Kamera hazırlanır…",
     "reconnecting": "Yenidən qoşulur…",
     "connecting": "Qoşulur…",
-    "shopPutOnAir": "Havaya qoyun"
+    "shopPutOnAir": "Havaya qoyun",
+    "streamCount_one": "{{count}} yayım",
+    "streamCount_other": "{{count}} yayım",
+    "noOneStreamingGame": "Hazırda heç kim {{game}} yayımlamır.",
+    "seeAllStreams": "Bütün yayımlara bax",
+    "isLiveNow": "{{name}} canlı yayımdadır",
+    "justChatting": "Sadəcə söhbət",
+    "noLiveStreams": "Canlı yayım yoxdur",
+    "noOneStreaming": "Hazırda heç kim yayım etmir. Sonra yenidən baxın!",
+    "loadStreamsFailed": "Yayımlar yüklənmədi. Yenidən cəhd edin."
   },
   "liveShop": {
     "title": "Bu yayımdan alış-veriş edin",

@@ -1873,7 +1873,16 @@
     "tryAnotherGenre": "کوئی دوسرا جنر آزمائیں۔",
     "pauseStation": "اسٹیشن کو روکیں",
     "resumeStation": "اسٹیشن دوبارہ شروع کریں",
-    "stopRadio": "ریڈیو بند کریں"
+    "stopRadio": "ریڈیو بند کریں",
+    "playsToday": "آج {{plays}} بار سنا گیا",
+    "listen": "سنیں",
+    "top50": "ٹاپ 50",
+    "playAll": "سب چلائیں",
+    "nothingHereYet": "یہاں ابھی کچھ نہیں ہے۔",
+    "likeStation": "اسٹیشن پسند کریں",
+    "unlikeStation": "پسند ہٹائیں",
+    "shareStation": "اسٹیشن شیئر کریں",
+    "listeningTo": "DeHub پر {{name}} سن رہا ہوں"
   },
   "notFound": {
     "title": "صفحہ کائنی ملیا",
@@ -5488,7 +5497,16 @@
     "peak": "چوٹی {{count}}",
     "detailsPlaybackId": "پلے بیک آئی ڈی:",
     "detailsKey": "چابی:",
-    "detailsLivepeerId": "لائیو پیئر آئی ڈی:"
+    "detailsLivepeerId": "لائیو پیئر آئی ڈی:",
+    "streamCount_one": "{{count}} اسٹریم",
+    "streamCount_other": "{{count}} اسٹریمز",
+    "noOneStreamingGame": "ابھی کوئی {{game}} اسٹریم نہیں کر رہا۔",
+    "seeAllStreams": "تمام اسٹریمز دیکھیں",
+    "isLiveNow": "{{name}} لائیو ہیں",
+    "justChatting": "بس گپ شپ",
+    "noLiveStreams": "کوئی لائیو اسٹریم نہیں",
+    "noOneStreaming": "ابھی کوئی اسٹریم نہیں کر رہا۔ بعد میں دوبارہ دیکھیں!",
+    "loadStreamsFailed": "اسٹریمز لوڈ نہیں ہو سکیں۔ دوبارہ کوشش کریں۔"
   },
   "liveShop": {
     "title": "ایں سٹریم کنوں خریداری کرو",

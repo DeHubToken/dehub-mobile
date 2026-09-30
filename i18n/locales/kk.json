@@ -1891,7 +1891,16 @@
     "tryAnotherGenre": "Басқа жанрды қолданып көріңіз.",
     "pauseStation": "Станцияны тоқтату",
     "resumeStation": "Станцияны жалғастыру",
-    "stopRadio": "Радионы тоқтату"
+    "stopRadio": "Радионы тоқтату",
+    "playsToday": "Бүгін {{plays}} рет тыңдалды",
+    "listen": "Тыңдау",
+    "top50": "Топ 50",
+    "playAll": "Барлығын ойнату",
+    "nothingHereYet": "Мұнда әлі ештеңе жоқ.",
+    "likeStation": "Станцияны ұнату",
+    "unlikeStation": "Ұнатуды алып тастау",
+    "shareStation": "Станциямен бөлісу",
+    "listeningTo": "DeHub-та {{name}} тыңдап отырмын"
   },
   "notFound": {
     "title": "Бет табылмады",
@@ -5506,7 +5515,16 @@
     "preparingCamera": "Камера дайындалуда…",
     "reconnecting": "Қайта қосылуда…",
     "connecting": "Қосылуда…",
-    "shopPutOnAir": "Ауаға қойыңыз"
+    "shopPutOnAir": "Ауаға қойыңыз",
+    "streamCount_one": "{{count}} трансляция",
+    "streamCount_other": "{{count}} трансляция",
+    "noOneStreamingGame": "Қазір ешкім {{game}} таратып жатқан жоқ.",
+    "seeAllStreams": "Барлық трансляциялар",
+    "isLiveNow": "{{name}} тікелей эфирде",
+    "justChatting": "Жай әңгіме",
+    "noLiveStreams": "Тікелей трансляциялар жоқ",
+    "noOneStreaming": "Қазір ешкім таратып жатқан жоқ. Кейінірек қараңыз!",
+    "loadStreamsFailed": "Трансляцияларды жүктеу мүмкін болмады. Қайталап көріңіз."
   },
   "liveShop": {
     "title": "Осы эфирден сатып алыңыз",

@@ -21,6 +21,9 @@ import HomeImageGrid, { type HomeImageGridHandle } from "../components/Home/Home
 import ImageFeedDrawer, { type ImageFeedDrawerHandle } from "../components/Home/ImageFeedDrawer";
 import ShortsGrid, { type ShortsGridHandle } from "../components/Home/ShortsGrid";
 import MusicFeed, { type MusicFeedHandle } from "../components/Music/MusicFeed";
+import CinematicMusic from "../components/Music/CinematicMusic";
+import CinematicLive from "../components/Home/CinematicLive";
+import { useCinematicPhone } from "../hooks/useCinematicPhone";
 import HomeHeader from "../components/HomeHeader";
 import { IslandCapsule, IslandFeedMenu, ISLAND_BAR_HEIGHT } from "../components/Home/IslandTopBar";
 import FeedNavBar, { NAV_PILL_RADIUS, NAV_PILL_SIDE_INSET, NAV_PILL_TOP_INSET } from "../components/Home/FeedNavBar";
@@ -178,6 +181,8 @@ export default function HomeScreen() {
   // of the screen. Its chevron opens a feed menu rather than the tab pill;
   // the pill only comes back for a sub-view's back slot.
   const island = theme === "system" && !skin;
+  // Phones only (web's useCinematicPhone): the Music and Live tabs' own layouts.
+  const cinematicPhone = useCinematicPhone();
   const [islandMenuOpen, setIslandMenuOpen] = useState(false);
   const { hideUserProfile } = useUserProfileSheet();
   const {
@@ -890,6 +895,18 @@ export default function HomeScreen() {
     // recordings while web's Music tab carried shelves of videos, radio, audio
     // uploads and live stages.
     if (key === "feed-audio") {
+      // System theme on phones: web's radio hero and chart (CinematicMusic).
+      if (cinematicPhone) {
+        return (
+          <CinematicMusic
+            feedRef={musicFeedRef}
+            scrollHandler={scrollHandler}
+            onScrollBegin={handleScrollBegin}
+            onScrollEnd={handleScrollEnd}
+            onRefresh={handleRefresh}
+          />
+        );
+      }
       return (
         <MusicFeed
           active={isPlaybackActive}
@@ -920,6 +937,20 @@ export default function HomeScreen() {
     }
 
     const feedType = key as FeedListType;
+    // System theme on phones: who is live, the top games and a grid of
+    // streams (CinematicLive) instead of the list of live posts.
+    if (feedType === "live" && cinematicPhone) {
+      return (
+        <CinematicLive
+          feedRef={feedRefs.current.live}
+          active={isPlaybackActive}
+          scrollHandler={scrollHandler}
+          onScrollBegin={handleScrollBegin}
+          onScrollEnd={handleScrollEnd}
+          onRefresh={handleRefresh}
+        />
+      );
+    }
     return (
       <InfiniteVideoFeed
         feedRef={feedRefs.current[feedType]}

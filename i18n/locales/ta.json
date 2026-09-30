@@ -1872,7 +1872,16 @@
     "tryAnotherGenre": "வேறு வகையை முயற்சிக்கவும்.",
     "pauseStation": "நிலையத்தை இடைநிறுத்து",
     "resumeStation": "நிலையத்தைத் தொடரவும்",
-    "stopRadio": "வானொலியை நிறுத்து"
+    "stopRadio": "வானொலியை நிறுத்து",
+    "playsToday": "இன்று {{plays}} முறை கேட்கப்பட்டது",
+    "listen": "கேளுங்கள்",
+    "top50": "டாப் 50",
+    "playAll": "அனைத்தையும் இயக்கு",
+    "nothingHereYet": "இங்கே இன்னும் எதுவும் இல்லை.",
+    "likeStation": "நிலையத்தை விரும்பு",
+    "unlikeStation": "விருப்பத்தை நீக்கு",
+    "shareStation": "நிலையத்தைப் பகிர்",
+    "listeningTo": "DeHub-இல் {{name}} கேட்கிறேன்"
   },
   "notFound": {
     "title": "பக்கம் கிடைக்கவில்லை",
@@ -5492,7 +5501,16 @@
     "preparingCamera": "கேமராவைத் தயார் செய்கிறது…",
     "reconnecting": "மீண்டும் இணைக்கிறது…",
     "connecting": "இணைக்கிறது…",
-    "shopPutOnAir": "காற்றில் வைக்கவும்"
+    "shopPutOnAir": "காற்றில் வைக்கவும்",
+    "streamCount_one": "{{count}} ஸ்ட்ரீம்",
+    "streamCount_other": "{{count}} ஸ்ட்ரீம்கள்",
+    "noOneStreamingGame": "இப்போது யாரும் {{game}} ஸ்ட்ரீம் செய்யவில்லை.",
+    "seeAllStreams": "அனைத்து ஸ்ட்ரீம்களையும் காண்க",
+    "isLiveNow": "{{name}} நேரலையில் உள்ளார்",
+    "justChatting": "வெறும் அரட்டை",
+    "noLiveStreams": "நேரலை ஸ்ட்ரீம்கள் இல்லை",
+    "noOneStreaming": "இப்போது யாரும் ஸ்ட்ரீம் செய்யவில்லை. பிறகு பாருங்கள்!",
+    "loadStreamsFailed": "ஸ்ட்ரீம்களை ஏற்ற முடியவில்லை. மீண்டும் முயலவும்."
   },
   "liveShop": {
     "title": "இந்த ஒளிபரப்பிலிருந்து வாங்கு",

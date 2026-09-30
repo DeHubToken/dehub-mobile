@@ -2000,7 +2000,16 @@
     "tryAnotherGenre": "অন্য জেনার চেষ্টা করুন।",
     "pauseStation": "স্টেশন পজ করুন",
     "resumeStation": "স্টেশন আবার চালু করুন",
-    "stopRadio": "রেডিও বন্ধ করুন"
+    "stopRadio": "রেডিও বন্ধ করুন",
+    "playsToday": "আজ {{plays}} বার শোনা হয়েছে",
+    "listen": "শুনুন",
+    "top50": "সেরা ৫০",
+    "playAll": "সব চালান",
+    "nothingHereYet": "এখানে এখনও কিছু নেই।",
+    "likeStation": "স্টেশন পছন্দ করুন",
+    "unlikeStation": "স্টেশন অপছন্দ করুন",
+    "shareStation": "স্টেশন শেয়ার করুন",
+    "listeningTo": "DeHub-এ {{name}} শুনছি"
   },
   "notFound": {
     "title": "পেজ পাওয়া যায় নাই",
@@ -5663,7 +5672,16 @@
     "preparingCamera": "ক্যামেরা প্রস্তুত হচ্ছে…",
     "reconnecting": "পুনরায় সংযোগ হচ্ছে…",
     "connecting": "সংযোগ হচ্ছে…",
-    "shopPutOnAir": "এয়ারে লাগান"
+    "shopPutOnAir": "এয়ারে লাগান",
+    "streamCount_one": "{{count}}টি স্ট্রিম",
+    "streamCount_other": "{{count}}টি স্ট্রিম",
+    "noOneStreamingGame": "এখন কেউ {{game}} স্ট্রিম করছে না।",
+    "seeAllStreams": "সব স্ট্রিম দেখুন",
+    "isLiveNow": "{{name}} লাইভে আছেন",
+    "justChatting": "শুধু আড্ডা",
+    "noLiveStreams": "কোনো লাইভ স্ট্রিম নেই",
+    "noOneStreaming": "এখন কেউ স্ট্রিম করছে না। পরে আবার দেখুন!",
+    "loadStreamsFailed": "স্ট্রিম লোড করা যায়নি। আবার চেষ্টা করুন।"
   },
   "liveShop": {
     "title": "ইলা স্ট্রিম থাকি কিনউক্কা",

@@ -1874,7 +1874,16 @@
     "tryAnotherGenre": "Prova un altro genere.",
     "pauseStation": "Metti in pausa la stazione",
     "resumeStation": "Riprendi la stazione",
-    "stopRadio": "Ferma la radio"
+    "stopRadio": "Ferma la radio",
+    "playsToday": "{{plays}} ascolti oggi",
+    "listen": "Ascolta",
+    "top50": "Top 50",
+    "playAll": "Riproduci tutto",
+    "nothingHereYet": "Ancora niente qui.",
+    "likeStation": "Mi piace la stazione",
+    "unlikeStation": "Non mi piace più",
+    "shareStation": "Condividi la stazione",
+    "listeningTo": "Sto ascoltando {{name}} su DeHub"
   },
   "notFound": {
     "title": "Pagina non trovata",
@@ -5577,7 +5586,16 @@
     "preparingCamera": "Preparazione fotocamera…",
     "reconnecting": "Riconnessione in corso…",
     "connecting": "Connessione in corso…",
-    "shopPutOnAir": "Metti in onda"
+    "shopPutOnAir": "Metti in onda",
+    "streamCount_one": "{{count}} diretta",
+    "streamCount_other": "{{count}} dirette",
+    "noOneStreamingGame": "Nessuno sta trasmettendo {{game}} in questo momento.",
+    "seeAllStreams": "Vedi tutte le dirette",
+    "isLiveNow": "{{name}} è in diretta",
+    "justChatting": "Solo chiacchiere",
+    "noLiveStreams": "Nessuna diretta",
+    "noOneStreaming": "Nessuno sta trasmettendo ora. Torna più tardi!",
+    "loadStreamsFailed": "Impossibile caricare le dirette. Riprova."
   },
   "liveShop": {
     "title": "Acquista da questa diretta",

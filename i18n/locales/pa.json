@@ -1874,7 +1874,16 @@
     "tryAnotherGenre": "ਇੱਕ ਹੋਰ ਸ਼ੈਲੀ ਅਜ਼ਮਾਓ।",
     "pauseStation": "ਸਟੇਸ਼ਨ ਨੂੰ ਰੋਕੋ",
     "resumeStation": "ਸਟੇਸ਼ਨ ਨੂੰ ਮੁੜ ਸ਼ੁਰੂ ਕਰੋ",
-    "stopRadio": "ਰੇਡੀਓ ਬੰਦ ਕਰੋ"
+    "stopRadio": "ਰੇਡੀਓ ਬੰਦ ਕਰੋ",
+    "playsToday": "ਅੱਜ {{plays}} ਵਾਰ ਸੁਣਿਆ",
+    "listen": "ਸੁਣੋ",
+    "top50": "ਟਾਪ 50",
+    "playAll": "ਸਭ ਚਲਾਓ",
+    "nothingHereYet": "ਇੱਥੇ ਅਜੇ ਕੁਝ ਨਹੀਂ ਹੈ।",
+    "likeStation": "ਸਟੇਸ਼ਨ ਪਸੰਦ ਕਰੋ",
+    "unlikeStation": "ਪਸੰਦ ਹਟਾਓ",
+    "shareStation": "ਸਟੇਸ਼ਨ ਸਾਂਝਾ ਕਰੋ",
+    "listeningTo": "DeHub 'ਤੇ {{name}} ਸੁਣ ਰਿਹਾ ਹਾਂ"
   },
   "notFound": {
     "title": "ਪੰਨਾ ਨਹੀਂ ਮਿਲਿਆ",
@@ -5496,7 +5505,16 @@
     "preparingCamera": "ਕੈਮਰਾ ਤਿਆਰ ਕਰ ਰਿਹਾ ਹੈ…",
     "reconnecting": "ਦੁਬਾਰਾ ਜੁੜ ਰਿਹਾ ਹੈ…",
     "connecting": "ਜੁੜ ਰਿਹਾ ਹੈ…",
-    "shopPutOnAir": "ਹਵਾ 'ਤੇ ਪਾਓ"
+    "shopPutOnAir": "ਹਵਾ 'ਤੇ ਪਾਓ",
+    "streamCount_one": "{{count}} ਸਟ੍ਰੀਮ",
+    "streamCount_other": "{{count}} ਸਟ੍ਰੀਮਾਂ",
+    "noOneStreamingGame": "ਇਸ ਵੇਲੇ ਕੋਈ {{game}} ਸਟ੍ਰੀਮ ਨਹੀਂ ਕਰ ਰਿਹਾ।",
+    "seeAllStreams": "ਸਾਰੀਆਂ ਸਟ੍ਰੀਮਾਂ ਵੇਖੋ",
+    "isLiveNow": "{{name}} ਲਾਈਵ ਹੈ",
+    "justChatting": "ਬੱਸ ਗੱਲਬਾਤ",
+    "noLiveStreams": "ਕੋਈ ਲਾਈਵ ਸਟ੍ਰੀਮ ਨਹੀਂ",
+    "noOneStreaming": "ਇਸ ਵੇਲੇ ਕੋਈ ਸਟ੍ਰੀਮ ਨਹੀਂ ਕਰ ਰਿਹਾ। ਬਾਅਦ ਵਿੱਚ ਵੇਖੋ!",
+    "loadStreamsFailed": "ਸਟ੍ਰੀਮਾਂ ਲੋਡ ਨਹੀਂ ਹੋ ਸਕੀਆਂ। ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।"
   },
   "liveShop": {
     "title": "ਇਸ ਸਟ੍ਰੀਮ ਤੋਂ ਖਰੀਦੋ",
