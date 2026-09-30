@@ -10,7 +10,6 @@ jest.mock('react-native', () => ({
   I18nManager: { isRTL: false },
 }));
 jest.mock('@expo/vector-icons', () => ({ Ionicons: 'Ionicons' }));
-jest.mock('../../components/AppTopBar', () => ({ __esModule: true, default: 'AppTopBar', APP_TOP_BAR_HEIGHT: 48 }));
 jest.mock('../../context/ThemeContext', () => ({ useAppTheme: () => ({ isMinimal: false }) }));
 jest.mock('react-i18next', () => ({ useTranslation: () => ({ t: (key: string) => key }) }));
 

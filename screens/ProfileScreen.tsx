@@ -3,12 +3,9 @@ import { View } from "react-native";
 import ProfileTabs from "../components/Profile/ProfileTabs";
 import { useUser, useAuthState, useAuthActions } from "../context/AuthContext";
 import ProfileSignInPrompt from "../components/Profile/ProfileSignInPrompt";
-import HomeHeader from "../components/HomeHeader";
-import { useDrawer } from "../context/DrawerContext";
+import ScreenHeader from "../components/ScreenHeader";
 import { useNavigation } from "@react-navigation/native";
-import { ScreenNames } from "../navigation/ScreenNames";
 import { useCanGoBack } from "../hooks/useCanGoBack";
-import { useTranslation } from "react-i18next";
 import { TabBarHideProvider } from "../context/TabBarHideContext";
 import StandaloneTabBar from "../navigation/StandaloneTabBar";
 
@@ -17,20 +14,12 @@ const REFRESH_INTERVAL_MS = 60_000; // 1 min periodic refresh
 
 const ProfileScreen: React.FC = () => {
   const navigation = useNavigation<any>();
-  const { openDrawer } = useDrawer();
   const { isSignedIn } = useAuthState();
   const user = useUser();
 
   const { refreshUser } = useAuthActions();
-  const { t } = useTranslation();
   const canPop = useCanGoBack();
 
-  // Profile is pushed above the tabs, and this stack has no "Home" route, so
-  // navigate(Home) went unhandled and the logo did nothing. Pop back to the
-  // tabs that are already there instead of pushing a second copy of them.
-  const goHome = useCallback(() => {
-    navigation.popTo(ScreenNames.Root, { screen: ScreenNames.Home });
-  }, [navigation]);
   const goBack = useCallback(() => navigation.goBack(), [navigation]);
 
   // Periodic background refresh of account info
@@ -61,32 +50,24 @@ const ProfileScreen: React.FC = () => {
   if (!isSignedIn) {
     return (
       <View className="flex-1 bg-theme-neutrals-900">
-        <HomeHeader
-          onLogoPress={goHome}
-          onMenuPress={openDrawer}
-          onBackPress={canPop ? goBack : undefined}
-          logoHint={t("common.goesToHomeFeed")}
-        />
         <ProfileSignInPrompt />
+        <ScreenHeader overlay title="" canGoBack={canPop} onBackPress={goBack} />
         <StandaloneTabBar />
       </View>
     );
   }
 
   // Profile sits above the tabs on the root stack, so it brings its own copy
-  // of the home nav, hiding on scroll the same way.
+  // of the bottom nav, hiding on scroll the same way. No dehub mark bar on top:
+  // that bar is Home's only. A pushed profile gets the round back button
+  // floating over its cover, as post pages do.
   return (
     <TabBarHideProvider>
     <View className="flex-1 bg-theme-neutrals-900">
-      <HomeHeader
-        onLogoPress={goHome}
-        onMenuPress={openDrawer}
-        onBackPress={canPop ? goBack : undefined}
-        logoHint={t("common.goesToHomeFeed")}
-      />
       <View className="flex-1">
         <ProfileTabs />
       </View>
+      <ScreenHeader overlay title="" canGoBack={canPop} onBackPress={goBack} />
       <StandaloneTabBar />
     </View>
     </TabBarHideProvider>
