@@ -1,3 +1,4 @@
+import { useSheetClosed } from '../../hooks/useSheetClosed';
 /**
  * The template picker.
  * ====================
@@ -69,7 +70,7 @@ const TemplatesSheetComponent: React.FC<TemplatesSheetProps> = ({
   const sheetHeight = screenHeight * 0.8;
   const translateY = useSharedValue(sheetHeight);
   const backdropOpacity = useSharedValue(0);
-  const [isFullyClosed, setIsFullyClosed] = useState(!visible);
+  const [isFullyClosed, setIsFullyClosed] = useSheetClosed(visible);
   const [kind, setKind] = useState<TemplateKind>('video');
   const templates = useMemo(() => templatesFor(kind), [kind]);
 
