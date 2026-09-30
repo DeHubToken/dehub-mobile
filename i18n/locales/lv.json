@@ -1789,7 +1789,9 @@
     "exploreWithoutSignInA11y": "Izpētiet DeHub bez pierakstīšanās",
     "continueExploringA11y": "Turpināt DeHub izpēti",
     "importWalletRecommended": "Ieteicams pierakstīties sociālajos tīklos.",
-    "importWalletPurpose": "Šis rīks ir paredzēts esošu kontu importēšanai no DeHub.io."
+    "importWalletPurpose": "Šis rīks ir paredzēts esošu kontu importēšanai no DeHub.io.",
+    "importSecretPlaceholder": "12 vai 24 vārdi, vai privātā atslēga",
+    "invalidImportSecret": "Tas nav derīga 12/24 vārdu frāze vai privātā atslēga"
   },
   "messages": {
     "smartRepliesOff": "Ieteiktās atbildes izslēgtas",
@@ -5998,7 +6000,6 @@
     "viewFeed": "Skatiet savu plūsmu",
     "yourChannel": "Jūsu kanāls",
     "yourChannelHint": "Ielīmējiet savu kanāla adresi — rokturis darbojas arī pats.",
-    "placeholder": "youtube.com/@you, tiktok.com/@you, vimeo.com/you…",
     "costsNote": "Samaksāts DeHub žetonos, vienreiz, pirms sākas partija. Badge turētāji maksā mazāk — jūsu atlaide tiek piemērota piedāvājumam. Ja video nevar importēt, tā daļa tiek ieskaitīta atpakaļ jūsu nākamajai migrācijai."
   },
   "calls": {
@@ -8641,5 +8642,36 @@
     "recommendedBody": "Ir pieejama jaunāka DeHub versija ar svarīgiem drošības labojumiem. Atjauniniet, lai jūsu konts paliktu aizsargāts.",
     "requiredBody": "Šī DeHub versija vairs netiek atbalstīta. Atjauniniet, lai turpinātu lietot savu kontu.",
     "update": "Atjaunināt tagad"
+  },
+  "walletBackup": {
+    "title": "Dublēt maciņu",
+    "rowDesc": "Skatīt savus 12 vārdus vai privāto atslēgu",
+    "backedUpOn": "Dublēts {{date}}",
+    "offerTitle": "Dublēt savu maciņu?",
+    "offerBody": "12 vārdi, kas atgriež jūsu maciņu, ja pazaudējat telefonu vai paroli. Aizņem 30 sekundes.",
+    "offerBodyDeviceOnly": "Jūsu maciņš dzīvo tikai šajā telefonā. Bez šiem vārdiem pazaudēts telefons nozīmē pazaudētu maciņu.",
+    "saveNow": "Saglabāt tagad",
+    "skipForNow": "Izlaist uzreiz",
+    "wordsTitle": "Jūsu 12 vārdi",
+    "tapToReveal": "Pieskarieties, lai atklātu",
+    "hideWords": "Paslēpt vārdus",
+    "copied": "Kopēts",
+    "wroteThemDown": "Es esmu tos pierakstījis",
+    "checkTitle": "Ātra pārbaude",
+    "checkPrompt": "Pieskarieties vārdam #{{n}}",
+    "checkWrong": "Ne tas. Vēlreiz paskatieties uz vārdu #{{n}}.",
+    "skipCheck": "Izlaist pārbaudi",
+    "signingIn": "Pierakstās…",
+    "warnOwns": "Ikviens, kuram ir šie vārdi, pieder maciņam.",
+    "warnNeverAsk": "DeHub nekad nepiedāvās tos.",
+    "warnPaper": "Uzrakstiet tos uz papīra, nevis ekrānuzņēmumā vai piezīmju lietotnē.",
+    "tabWords": "12 vārdi",
+    "tabPrivateKey": "Privātā atslēga",
+    "advanced": "Papildu",
+    "passwordToShowWords": "Ievadiet sava maciņa paroli, lai parādītu savus 12 vārdus.",
+    "showWords": "Rādīt vārdus",
+    "reminderBody": "Dublējiet savu maciņu — 12 vārdi, kas atgriež to, ja pazaudējat telefonu.",
+    "backUp": "Dublēt",
+    "notNow": "Ne tagad"
   }
 }

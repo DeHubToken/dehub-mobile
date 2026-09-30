@@ -146,9 +146,9 @@
     "noMoreShorts": "আর কোনো শর্টস নেই",
     "noShortsFound": "কোনো শর্টস পাওয়া যায়নি",
     "newMembersHint": "এইমাত্র যোগদান করেছেন — শুভেচ্ছা জানান",
-    "scroll": "Scroll",
     "noFilterMatches": "তোমার ফিল্টারের সাথে কোনো বিষয়বস্তু মিলে না।",
-    "clearFilters": "ফিল্টার মোছেন"
+    "clearFilters": "ফিল্টার মোছেন",
+    "scroll": "স্ক্রোল করো"
   },
   "explore": {
     "all": "সব",
@@ -1891,7 +1891,8 @@
     "exploreWithoutSignIn": "সাইন ইন না করে অন্বেষণ করুন",
     "continueExploring": "অন্বেষণ চালিয়ে যান",
     "exploreWithoutSignInA11y": "সাইন ইন না করে DeHub এক্সপ্লোর করুন",
-    "continueExploringA11y": "DeHub অন্বেষণ চালিয়ে যান"
+    "continueExploringA11y": "DeHub অন্বেষণ চালিয়ে যান",
+    "invalidImportSecret": "এটা বৈধ 12/24-শব্দের বাক্য বা প্রাইভেট কী নয়"
   },
   "messages": {
     "smartRepliesOff": "পরামর্শ দেওয়া জবাব বন্ধ করা হইল",
@@ -2814,7 +2815,6 @@
     "viewCount_other": "{{count}} বার দেখা হইছে",
     "shareMessage": "এইটা দেখেন: {{url}}",
     "hideReplies": "উত্তর লুকান",
-    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
     "rowA11yHint": "এই মন্তব্যত উত্তর শুরু করে",
     "editingComment": "মন্তব্য সম্পাদনা হওচে",
     "editPlaceholder": "আপনার মন্তব্য সম্পাদনা করেন...",
@@ -3387,7 +3387,6 @@
       "purgeBody": "{{name}} দ্বারা পাঠানো প্রতিটি বার্তা এই কমিউনিটি থেকে মুছে ফেলা হবে।",
       "kickBody": "{{name}} কে কমিউনিটি থেকে সরিয়ে দেওয়া হবে। তারা পরে আবার যোগ দিতে পারবে।",
       "bannedUntil": "{{date}} পর্যন্ত নিষিদ্ধ",
-      "restrictionWithReason": "{{state}} — {{reason}}",
       "mutedUntil": "{{date}} পর্যন্ত মিউট করা হলো",
       "bannedUntilShort": "{{date}} পর্যন্ত",
       "muteTitle": "{{name}} কে মিউট করুন",
@@ -3825,7 +3824,6 @@
     "podBadge": "প্রিন্ট অন ডিমান্ড",
     "podBuyOn": "{{provider}}-এ কিনুন",
     "podNote": "{{provider}} চাহিদা অনুযায়ী ছাপে ও পাঠায়। পেমেন্ট তাদের সাইটে হয়।",
-    "podUrlPlaceholder": "https://…",
     "subtitle": "DeHub সম্প্রদায়ের পণ্য খোঁজেন",
     "browse": "দেখেন",
     "myStore": "মোর দোকান",
@@ -4645,7 +4643,6 @@
     "kindVideo": "ভিডিও",
     "kindAudio": "অডিও",
     "kindImage": "ছবি",
-    "tileSourceKind": "{{source}} · {{kind}}",
     "reviewTitle": "পোস্ট করার আগে পর্যালোচনা করুন",
     "reviewSubtitle": "{{source}} থেকে, {{kind}} হিসাবে। আপনি যা চান তা সম্পাদনা করুন — মূল শিরোনাম রাখতে শিরোনাম খালি রেখে দিন।",
     "reviewName": "শিরোনাম",
@@ -4679,7 +4676,6 @@
     "filterAll": "সব",
     "noData": "ডেটা নাই",
     "tips": "টিপস",
-    "ppv": "PPV",
     "incomeBreakdown": "আয়ের বিবরণ",
     "ppvSales": "PPV বিক্রি",
     "total": "মোট",
@@ -6447,7 +6443,6 @@
   },
   "dex": {
     "lowestPrice": "সবচেয়ে কম দাম · USD",
-    "lpDhb": "LP · DHB",
     "lpUsd": "লিপি · মার্কিন ডলার",
     "totalLiquidity": "মোট তারল্য · USD",
     "noBalance": "বেস বা BNB চেইনে কোনো লিকুইড DHB নেই",
@@ -6749,7 +6744,6 @@
       "newDesign": "নয়া ডিজাইন",
       "yourDesigns": "তোমার ডিজাইনগুলা",
       "noDesigns": "তোমার বানানো ডিজাইন এই ফোনোত সেভ হয় আর এটে দেখা যায়।",
-      "dimensions": "{{width}} × {{height}}",
       "aspectStory": "স্টোরি",
       "aspectPost": "পোস্ট",
       "aspectSquare": "চারকোনা",
@@ -7031,7 +7025,6 @@
       "split": "ভাগ করো",
       "splitHint": "ক্লিপটা ভাগ করির জন্যে প্লেহেডটা ক্লিপের ভিতরোত নিয়া যাও।",
       "speed": "গতি",
-      "speedValue": "{{value}}×",
       "volumeTool": "ভলিউম",
       "volume": "ভলিউম {{value}}%",
       "fadeIn": "ফেড ইন {{value}} সেকেন্ড",
@@ -7094,7 +7087,6 @@
       "recording": "গতি রেকর্ড হচ্ছে",
       "lanes": "কীফ্রেম",
       "scrub": "বদলাতে বাঁয়ে বা ডানে টানুন।",
-      "segment": "{{from}} → {{to}}",
       "ease": {
         "linear": "রৈখিক",
         "ease": "মসৃণ",
@@ -8257,7 +8249,8 @@
       "emptyTitle": "আইফোন/অ্যান্ড্রয়েডে এখনো কোন অ্যাপ লিস্ট করা হয়নি।",
       "emptyBody": "প্ৰথম অ্যাপস গ্ৰহণে প্ৰতিক্ৰিয়া প্ৰাপ্ত হৈছে। একটা বানাইয়ো, তাহা এখানে প্ৰাপ্ত হৈতে প্ৰয়াস কৰিবো।",
       "fromDehub": "ডেউহাব থেকা",
-      "rising": "নিউ আৰু উঠতোৱা"
+      "rising": "নিউ আৰু উঠতোৱা",
+      "search": "সার্চ অ্যাপস"
     },
     "category": {
       "games": "গেমস",
@@ -8822,5 +8815,21 @@
     "recommendedBody": "দরকারি নিরাপত্তা ঠিকঠাকসহ DeHub-এর নয়া ভার্সন আইচে। আপনার অ্যাকাউন্ট নিরাপদ রাখির জইন্যে আপডেট করেন।",
     "requiredBody": "DeHub-এর এই ভার্সন আর চলে না। আপনার অ্যাকাউন্ট চালে যাবার জইন্যে আপডেট করেন।",
     "update": "এলা আপডেট করেন"
+  },
+  "walletBackup": {
+    "title": "ব্যাক আপ ওয়ালেট",
+    "offerBodyDeviceOnly": "আপনার ওয়ালেট কেবল এই ফোনে থাকে। এই শব্দগুলো ছাড়া, হারিয়ে যাওয়া ফোন মানে হারিয়ে যাওয়া ওয়ালেট।",
+    "saveNow": "এখনই সংরক্ষণ কর",
+    "wordsTitle": "তোর ১২ শব্দ",
+    "wroteThemDown": "আমি ওগো লিখি লইছি",
+    "checkTitle": "দ্রুত চেক",
+    "checkPrompt": "ট্যাপ করো #{{n}}",
+    "warnNeverAsk": "DeHub কখনই তাদের জন্য জিজ্ঞাসা করবে না।",
+    "tabWords": "১২ শব্দ",
+    "tabPrivateKey": "প্ৰাইভেট কী",
+    "passwordToShowWords": "তোমার ওয়ালেট পাসওয়ার্ড লিখে দাও, তাহলে ১২টি শব্দ দেখাবো।",
+    "showWords": "শো শব্দ",
+    "reminderBody": "আপনার ওয়ালেটকে সুরক্ষিত রাখুন — ১২টি শব্দ যা আপনার ফোন হারালে তা পুনরুদ্ধার করতে সাহায্য করবে।",
+    "backUp": "পিছনে থাকো"
   }
 }

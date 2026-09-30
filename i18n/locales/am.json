@@ -146,9 +146,9 @@
     "noMoreShorts": "ምንም ተጨማሪ አጫጭር ቪዲዮዎች የሉም",
     "noShortsFound": "አጫጭር ቪዲዮዎች አልተገኙም።",
     "newMembersHint": "አሁን ተቀላቅለዋል — ሰላም ይበሉ",
-    "scroll": "Scroll",
     "noFilterMatches": "ከማጣሪያዎችዎ ጋር የሚዛመድ ይዘት የለም።",
-    "clearFilters": "ማጣሪያዎችን አጽዳ"
+    "clearFilters": "ማጣሪያዎችን አጽዳ",
+    "scroll": "ሸብልል"
   },
   "explore": {
     "all": "ሁሉም",
@@ -572,7 +572,6 @@
     "failedUpdateDmPrefs": "የዲኤም ምርጫዎችን ማዘመን አልተቻለም",
     "editProfile": "መገለጫ አርትዕ",
     "editProfileDesc": "ስም፣ የተጠቃሚ ስም፣ መግለጫ፣ አምሳያ እና ሽፋን",
-    "socialLinksDesc": "X, Instagram, TikTok, YouTube, Discord, Telegram",
     "yourContent": "የእርስዎ ይዘት",
     "yourVideos": "የእርስዎ ቪዲዮዎች",
     "savedPosts": "የተቀመጡ ልጥፎች",
@@ -1787,7 +1786,9 @@
     "exploreWithoutSignInA11y": "DeHub ን ሳይፈርሙ ያስሱ",
     "continueExploringA11y": "DeHub ን ማሰስዎን ይቀጥሉ",
     "importWalletRecommended": "ማህበራዊ መግቢያዎች ይመከራሉ።",
-    "importWalletPurpose": "ይህ መሳሪያ ከDeHub.io ነባር አካውንቶችን ለማስመጣት ነው።"
+    "importWalletPurpose": "ይህ መሳሪያ ከDeHub.io ነባር አካውንቶችን ለማስመጣት ነው።",
+    "importSecretPlaceholder": "12 ወይም 24 ቃላት, ወይም የግል ቁልፍ",
+    "invalidImportSecret": "ይህ ትክክለኛ የ 12/24-ቃል ሐረግ ወይም የግል ቁልፍ አይደለም"
   },
   "messages": {
     "smartRepliesOff": "የተጠቆሙ ምላሾች ጠፍተዋል",
@@ -3257,12 +3258,10 @@
       "purgeBody": "{{name}} የላከው እያንዳንዱ መልእክት ከማህበረሰቡ ይወገዳል።",
       "kickBody": "{{name}} ከማህበረሰቡ ይወገዳል። በኋላ ላይ እንደገና ሊቀላቀሉ ይችላሉ።",
       "bannedUntil": "እስከ {{date}} ድረስ ታግዷል",
-      "restrictionWithReason": "{{state}} — {{reason}}",
       "mutedUntil": "እስከ {{date}} ድረስ ጸጥ ተደርጓል",
       "bannedUntilShort": "እስከ {{date}} ድረስ",
       "muteTitle": "{{name}} ጸጥ አሰኝ",
       "banTitle": "{{name}} ን ከልክል",
-      "reasonCounter": "{{len}}/200",
       "rulesCount": "{{used}} ከ {{max}}",
       "moveRuleUp": "ደንቡን ወደ ላይ አንቀሳቅስ",
       "moveRuleDown": "ደንቡን ወደ ታች አንቀሳቅስ",
@@ -3707,7 +3706,6 @@
     "podBadge": "በፍላጎት ማተም",
     "podBuyOn": "በ{{provider}} ይግዙ",
     "podNote": "በ{{provider}} በፍላጎት ታትሞ ይላካል። ክፍያ በድረ-ገጻቸው ላይ ይፈጸማል።",
-    "podUrlPlaceholder": "https://…",
     "subtitle": "ከDeHub ማህበረሰብ ምርቶችን ያግኙ",
     "browse": "አስስ",
     "myStore": "የእኔ መደብር",
@@ -4268,7 +4266,6 @@
     "pinMessage": "PIN መልዕክት",
     "unpinMessage": "Unpin መልዕክት",
     "jumpToLatest": "ወደ የቅርብ ጊዜ መልዕክቶች ዝለል",
-    "attachGif": "GIF",
     "ban": "አግድ",
     "banConfirm": "{{name}}ን ማገድ እንደሚፈልጉ እርግጠኛ ነዎት?",
     "banFailed": "ተጠቃሚውን ማገድ አልተቻለም"
@@ -4528,7 +4525,6 @@
     "kindVideo": "፟ቪዲዮ",
     "kindAudio": "ኦዲዮ",
     "kindImage": "ሙዚቃ",
-    "tileSourceKind": "{{source}} · {{kind}}",
     "reviewTitle": "ከመለጠፍዎ በፊት ይገምግሙ",
     "reviewSubtitle": "ከ {{source}} ፣ እንደ {{kind}}} ። የሚወዱትን ማንኛውንም ነገር ያርትዑ — የመጀመሪያውን ለማቆየት ርዕሱን ባዶ ይተው ።",
     "reviewName": "ርዕስ",
@@ -6024,7 +6020,6 @@
     "yourChannel": "የእርስዎ ሰርጥ",
     "yourChannelHint": "የሰርጥ አድራሻዎን ይለጥፉ — እጀታው በራሱ ሥራዎች ላይም እንዲሁ ።",
     "pickCount": "{{selected}} በ{{total}} ተመርጧል። በገለጻዎ ላይ ያለው ማንኛውም ነገር ይዘለላል እና በፍፁም ሁለት ጊዜ አይከፍልም።",
-    "placeholder": "youtube.com/@you, tiktok.com/@you, vimeo.com/you…",
     "costsNote": "በDeHub ማስመሰያዎች ተከፍሏል፣ አንድ ጊዜ፣ ከመጀመሩ በፊት። የባጅ ባለቤቶች ይቀንሳሉ — ቅናሽዎ በቀጠሮው ላይ ይተገበራል። ቪዲዮ ማስመጣት ካልቻለ፣ ድርሻው ወደ ቀጣዩ ፍልሰትዎ ይመለሳል።"
   },
   "calls": {
@@ -6691,7 +6686,6 @@
       "newDesign": "አዲስ ንድፍ",
       "yourDesigns": "የእርስዎ ንድፎች",
       "noDesigns": "የሚሰሯቸው ንድፎች በዚህ ስልክ ላይ ይቀመጣሉ፤ እዚህም ይታያሉ።",
-      "dimensions": "{{width}} × {{height}}",
       "aspectStory": "ታሪክ",
       "aspectPost": "ልጥፍ",
       "aspectSquare": "ካሬ",
@@ -6973,7 +6967,6 @@
       "split": "ክፈል",
       "splitHint": "ክሊፑን ለመክፈል የማጫወቻ ጠቋሚውን ወደ ክሊፑ ውስጥ ያንቀሳቅሱ።",
       "speed": "ፍጥነት",
-      "speedValue": "{{value}}×",
       "volumeTool": "የድምፅ መጠን",
       "volume": "የድምፅ መጠን {{value}}%",
       "fadeIn": "ቀስ ብሎ መግባት {{value}} ሰ",
@@ -7036,7 +7029,6 @@
       "recording": "እንቅስቃሴ በመቅዳት ላይ",
       "lanes": "ቁልፍ ፍሬሞች",
       "scrub": "ለመቀየር ወደ ግራ ወይም ቀኝ ይጎትቱ።",
-      "segment": "{{from}} → {{to}}",
       "ease": {
         "linear": "ቀጥተኛ",
         "ease": "ለስላሳ",
@@ -7966,6 +7958,7 @@
           "2": "ጽሑፍዎን ይጻፉ፣ ሚዲያ (ምስሎች፣ ቪዲዮዎች፣ ድምጽ) ያያይዙ እና ምድቦችን ያክሉ።",
           "3": "ኦፍ-ቼይን ለማተም 'ልጥፍን ቀርጸው' ያጥፉት፣ ወይም በሚታተሙበት ጊዜ ለመቅረጽ ያብሩት።",
           "4": "ህትመት በሰንሰለት ላይ በጭራሽ አይጠብቅም: ልጥፉ በምግብ ውስጥ በማንኛውም መንገድ ይታያል ።",
+          "5": "በኋላ ለማስተናገድ ፕሮስት የ 'ⓘ' መረጃ ገጽ ክፍት አድርጉ እና ውድድር አስተዳደር ይጠቀሙ።",
           "6": "አንዴ ከተለጠፈ በኋላ ልጥፉ የቶከን መታወቂያ እና የግብይት ሃሽ ያገኛል በቻይን ላይ ማረጋገጥ ይችላሉ ፣ እና ሁሉንም 1,000 ቁርጥራጮችን ይይዛሉ ።"
         },
         "tips": {
@@ -8472,7 +8465,6 @@
     "basicAnalytics": "መሰረታዊ ትንታኔዎች",
     "detailedAnalytics": "ዝርዝር ትንታኔዎች",
     "prioritySupport": "ቅድሚያ ድጋፍ",
-    "sso": "SSO",
     "adminSpendControl": "አስተዳዳሪ ቁጥጥር ያሳልፋል",
     "priorityQueue": "ቅድሚያ ወረፋ",
     "priorityQueueFast": "ለፈጣን ተግባር ማቀነባበሪያ ቅድሚያ የሚሰጠው ወረፋ",
@@ -8664,5 +8656,36 @@
     "recommendedBody": "አስፈላጊ የደህንነት ጥገናዎች ያሉት አዲስ የDeHub ስሪት አለ። መለያዎ እንደተጠበቀ እንዲቆይ ያዘምኑ።",
     "requiredBody": "ይህ የDeHub ስሪት ከአሁን በኋላ አይደገፍም። መለያዎን መጠቀም ለመቀጠል ያዘምኑ።",
     "update": "አሁን ያዘምኑ"
+  },
+  "walletBackup": {
+    "title": "ምትኬ የኪስ ቦርሳ",
+    "rowDesc": "የእርስዎን 12 ቃላት ወይም የግል ቁልፍ ይመልከቱ",
+    "backedUpOn": "ምትኬ {{date}}",
+    "offerTitle": "የኪስ ቦርሳዎን ወደኋላ ይመልሱ?",
+    "offerBody": "ስልክዎን ወይም የይለፍ ቃልዎን ካጡ የኪስ ቦርሳዎን መልሰው የሚያመጡ 12 ቃላት ። 30 ሰከንዶች ይወስዳል.",
+    "offerBodyDeviceOnly": "የእርስዎ ቦርሳ በዚህ ስልክ ላይ ብቻ ነው የሚኖረው. ያለ እነዚህ ቃላት, የጠፋ ስልክ የጠፋ ቦርሳ ማለት ነው.",
+    "saveNow": "አሁን አስቀምጥ",
+    "skipForNow": "ለአሁኑ ይዝለሉ",
+    "wordsTitle": "የእርስዎ 12 ቃላት",
+    "tapToReveal": "ለመግለጥ መታ ያድርጉ",
+    "hideWords": "ቃላትን ደብቅ",
+    "copied": "ተገለበጠ",
+    "wroteThemDown": "እኔም ጽፌበታለሁኝ",
+    "checkTitle": "በፍጥነት ይመልከቱ",
+    "checkPrompt": "ቃል መታ # {{n}}",
+    "checkWrong": "ያ አይደለም ። ቃል #{{n}} እንደገና ይመልከቱ ።",
+    "skipCheck": "ቼክ ይዝለሉ",
+    "signingIn": "ይተኛል…",
+    "warnOwns": "እነዚህን ቃላት ያለው ማንኛውም የደንበኛው ወርቅ ይወስዳል።",
+    "warnNeverAsk": "DeHub አይጠይቅም።",
+    "warnPaper": "በፈልጋችሁ ወይም በማስታወሻ ተቋም ይጻፉ።",
+    "tabWords": "12 ቃላት",
+    "tabPrivateKey": "የግል ቁልፍ",
+    "advanced": "ደረጃ ያለው",
+    "passwordToShowWords": "የወርቅዎን የይለፍ ቃል ይግቡ የ12 ቃላትን ይታያል።",
+    "showWords": "ቃላትን ይታዩ",
+    "reminderBody": "የኪስ ቦርሳዎን ምትኬ — ስልክዎን ካጡ መልሰው የሚያመጡ 12 ቃላት ።",
+    "backUp": "ወደላይ ተመለስ",
+    "notNow": "አሁን አይደለም"
   }
 }

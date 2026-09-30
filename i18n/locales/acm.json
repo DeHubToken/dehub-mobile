@@ -146,9 +146,9 @@
     "noMoreShorts": "ماكو مقاطع قصيرة بعد",
     "noShortsFound": "ماكو مقاطع قصيرة انلكت",
     "newMembersHint": "انضميت للتو — سلم عليهم",
-    "scroll": "Scroll",
     "noFilterMatches": "ماكو محتوى يطابق فلاترك.",
-    "clearFilters": "امحي الفلاتر"
+    "clearFilters": "امحي الفلاتر",
+    "scroll": "تم التمرير"
   },
   "explore": {
     "all": "الكل",
@@ -1789,7 +1789,9 @@
     "exploreWithoutSignInA11y": "استكشف DeHub بدون تسجيل دخول",
     "continueExploringA11y": "استمر في استكشاف DeHub",
     "importWalletRecommended": "تسجيل الدخول عبر الشبكات الاجتماعية موصى به.",
-    "importWalletPurpose": "هذه الأداة لاستيراد الحسابات الموجودة من DeHub.io."
+    "importWalletPurpose": "هذه الأداة لاستيراد الحسابات الموجودة من DeHub.io.",
+    "importSecretPlaceholder": "12 أو 24 كلمة، أو مفتاح خاص",
+    "invalidImportSecret": "هذا ليس عبارة 12/24 كلمة صالحة أو مفتاح خاص"
   },
   "messages": {
     "smartRepliesOff": "انطفت الردود المقترحة",
@@ -3229,12 +3231,10 @@
       "purgeBody": "كل رسالة دزها {{name}} بهذا الكروب راح تنحذف.",
       "kickBody": "راح ينشال {{name}} من الكروب. ممكن يرجع ينضم بعدين.",
       "bannedUntil": "محظور لحد {{date}}",
-      "restrictionWithReason": "{{state}} — {{reason}}",
       "mutedUntil": "مكتوم لحد {{date}}",
       "bannedUntilShort": "لحد {{date}}",
       "muteTitle": "اسكت {{name}}",
       "banTitle": "حظر {{name}}",
-      "reasonCounter": "{{len}}/200",
       "rulesCount": "{{used}} من {{max}}",
       "moveRuleUp": "تحريك القاعدة فوك",
       "moveRuleDown": "تحريك القاعدة جوه",
@@ -3289,7 +3289,8 @@
         "transferAction": "المالك",
         "deleteHeading": "حذف المجتمع",
         "deleteHint": "تم حذف كل عضو ورسالة وحدث وربط الدعوة بشكل دائم. لا يوجد طريقة للعودة.",
-        "deleteAction": "لا أستطيع مساعدتك في ذلك."
+        "deleteAction": "لا أستطيع مساعدتك في ذلك.",
+        "transferHint": "اختر العضو الذي يجب أن يملك هذا المجتمع من هنا فصاعداً."
       },
       "inviteRevoked": "منقوص",
       "inviteExpired": "انتهى",
@@ -3337,7 +3338,10 @@
         "restricted": "يمكن فقط للمدققين رؤية سجل الإدارة.",
         "empty": "لا يوجد شيء هنا. سوف تظهر إجراءات الإدارة عندما تحدث.",
         "showMore": "عرض أكثر ({{value}})"
-      }
+      },
+      "inviteLimit": "حدّـ {{n}}",
+      "createInviteLink": "إنشاء رابط دعوة",
+      "createLink": "إنشاء رابط"
     },
     "chooseAvatar": "اختر صورة رمزية",
     "loadFailed": "ما كدرنا نحمل المجتمعات",
@@ -3675,7 +3679,6 @@
     "podBadge": "طباعة عند الطلب",
     "podBuyOn": "اشترِ من {{provider}}",
     "podNote": "يُطبع ويُشحن عند الطلب بواسطة {{provider}}. يتم الدفع على موقعهم.",
-    "podUrlPlaceholder": "https://…",
     "subtitle": "اكتشف منتجات من مجتمع DeHub",
     "browse": "تصفح",
     "myStore": "متجري",
@@ -3979,7 +3982,6 @@
     "warm": "دافي",
     "cool": "بارد",
     "vivid": "زاهي",
-    "vhs": "VHS",
     "neon": "نيون",
     "pixelate": "بكسلة"
   },
@@ -4507,7 +4509,6 @@
     "kindVideo": "فيديو",
     "kindAudio": "صوت",
     "kindImage": "صور",
-    "tileSourceKind": "{{source}} · {{kind}}",
     "reviewTitle": "تدقيق قبل النشر",
     "reviewSubtitle": "من {{source}}، بصفتي {{kind}}. عدّل أي شيء تريده — اترك العنوان فارغاً للاحتفاظ بالعنوان الأصلي.",
     "reviewName": "العنوان",
@@ -6662,7 +6663,6 @@
       "newDesign": "تصميم جديد",
       "yourDesigns": "تصاميمك",
       "noDesigns": "التصاميم اللي تسويها تنحفظ على هالتلفون وتطلع هنا.",
-      "dimensions": "{{width}} × {{height}}",
       "aspectStory": "قصة",
       "aspectPost": "منشور",
       "aspectSquare": "مربع",
@@ -6944,7 +6944,6 @@
       "split": "تقسيم",
       "splitHint": "حرّك مؤشر التشغيل جوّا المقطع حتى تقسمه.",
       "speed": "السرعة",
-      "speedValue": "{{value}}×",
       "volumeTool": "مستوى الصوت",
       "volume": "مستوى الصوت {{value}}%",
       "fadeIn": "ظهور تدريجي {{value}} ث",
@@ -7007,7 +7006,6 @@
       "recording": "جارٍ تسجيل الحركة",
       "lanes": "الإطارات الرئيسية",
       "scrub": "اسحب يمينًا أو يسارًا للتغيير.",
-      "segment": "{{from}} → {{to}}",
       "ease": {
         "linear": "خطي",
         "ease": "سلس",
@@ -8573,7 +8571,8 @@
       "finance": "المالية",
       "productivity": "المنتجية",
       "health-fitness": "الصحة واللياقة البدنية",
-      "art-creativity": "فُنّ و خَيالَة"
+      "art-creativity": "فُنّ و خَيالَة",
+      "entertainment": "ترفيه"
     },
     "pay": {
       "body": "الديه بيهب يروح مباشرة لوليت التطبيق، {{wallet}}. الميزانية مش ممكن ترجع.",
@@ -8620,5 +8619,31 @@
     "recommendedBody": "أكو نسخة أحدث من DeHub بيها إصلاحات أمان مهمة. حدّث حتى يبقى حسابك محمي.",
     "requiredBody": "هاي النسخة من DeHub ما عاد مدعومة. حدّث حتى تكمل تستخدم حسابك.",
     "update": "حدّث هسه"
+  },
+  "walletBackup": {
+    "title": "نسخ محفظتك احتياطيًا",
+    "rowDesc": "شاهد كلماتك الـ12 أو مفتاحك الخاص",
+    "backedUpOn": "تم النسخ الاحتياطي لـ {{date}}",
+    "offerTitle": "هل تريد نسخ محفظتك احتياطيًا؟",
+    "offerBody": "12 كلمة تعيد محفظتك إذا فقدت هاتفك أو كلمة المرور. يستغرق 30 ثانية.",
+    "offerBodyDeviceOnly": "محفظتك تعيش فقط على هذا الهاتف. بدون هذه الكلمات، يعني فقدان الهاتف فقدان المحفظة.",
+    "saveNow": "احفظ الآن",
+    "skipForNow": "تخطى الآن",
+    "wordsTitle": "كلماتك الـ12",
+    "tapToReveal": "انقر للكشف",
+    "hideWords": "أخف الكلمات",
+    "copied": "تم النسخ",
+    "wroteThemDown": "لقد كتبتها",
+    "checkTitle": "فحص سريع",
+    "checkPrompt": "انقر على الكلمة #{{n}}",
+    "checkWrong": "ليست تلك. انظر إلى الكلمة #{{n}} مرة أخرى.",
+    "skipCheck": "تخطى الفحص",
+    "signingIn": "تسجيل الدخول لك…",
+    "tabWords": "12 كَلِمات",
+    "tabPrivateKey": "المفتاح الخاص",
+    "passwordToShowWords": "دخّل كلمه السر بتاع كيسك ليه ليه كلمه 12 كلمه.",
+    "showWords": "إظهر الكلمات",
+    "reminderBody": "احفظ نسخة احتياطية من محفظتك — 12 كلمة ترجعها إذا ضيعت جوالك.",
+    "backUp": "رجّع"
   }
 }

@@ -1789,7 +1789,9 @@
     "exploreWithoutSignInA11y": "Utforska DeHub utan att logga in",
     "continueExploringA11y": "Fortsätt utforska DeHub",
     "importWalletRecommended": "Sociala inloggningar rekommenderas.",
-    "importWalletPurpose": "Det här verktyget är till för att importera befintliga konton från DeHub.io."
+    "importWalletPurpose": "Det här verktyget är till för att importera befintliga konton från DeHub.io.",
+    "importSecretPlaceholder": "12 eller 24 ord, eller en privat nyckel",
+    "invalidImportSecret": "Det är inte en giltig 12/24-ordsfras eller privat nyckel"
   },
   "messages": {
     "smartRepliesOff": "Föreslagna svar avstängda",
@@ -6002,7 +6004,6 @@
     "viewFeed": "Visa ditt flöde",
     "yourChannel": "Din kanal",
     "yourChannelHint": "Klistra in din kanaladress — handtaget fungerar också på egen hand.",
-    "placeholder": "youtube.com/@you, tiktok.com/@you, vimeo.com/you…",
     "costsNote": "Betalt i DeHub-tokens, en gång, innan batchen startar. Badge-innehavare betalar mindre — din rabatt tillämpas på offerten. Om en video inte kan importeras, krediteras dess andel tillbaka till din nästa migrering."
   },
   "calls": {
@@ -8645,5 +8646,36 @@
     "recommendedBody": "En nyare version av DeHub med viktiga säkerhetsfixar finns. Uppdatera för att hålla ditt konto skyddat.",
     "requiredBody": "Den här versionen av DeHub stöds inte längre. Uppdatera för att fortsätta använda ditt konto.",
     "update": "Uppdatera nu"
+  },
+  "walletBackup": {
+    "title": "Säkerhetskopiera plånbok",
+    "rowDesc": "Se dina 12 ord eller privata nyckel",
+    "backedUpOn": "Säkerhetskopierad {{date}}",
+    "offerTitle": "Säkerhetskopiera din plånbok?",
+    "offerBody": "12 ord som återställer din plånbok om du förlorar din telefon eller ditt lösenord. Tar 30 sekunder.",
+    "offerBodyDeviceOnly": "Din plånbok finns bara på den här telefonen. Utan dessa ord betyder en förlorad telefon en förlorad plånbok.",
+    "saveNow": "Spara nu",
+    "skipForNow": "Hoppa över för tillfället",
+    "wordsTitle": "Dina 12 ord",
+    "tapToReveal": "Tryck för att visa",
+    "hideWords": "Dölj ord",
+    "copied": "Kopierat",
+    "wroteThemDown": "Jag har skrivit ner dem",
+    "checkTitle": "Snabb kontroll",
+    "checkPrompt": "Tryck på ord #{{n}}",
+    "checkWrong": "Inte det där. Titta på ord #{{n}} igen.",
+    "skipCheck": "Hoppa över kontroll",
+    "signingIn": "Loggar in dig…",
+    "warnOwns": "Den som har dessa ord äger din plånbok.",
+    "warnNeverAsk": "DeHub kommer aldrig att be om dem.",
+    "warnPaper": "Skriv ner dem på papper, inte i en skärmdump eller anteckningsapp.",
+    "tabWords": "12 ord",
+    "tabPrivateKey": "Privat nyckel",
+    "advanced": "Avancerat",
+    "passwordToShowWords": "Ange ditt plånbokslösenord för att visa dina 12 ord.",
+    "showWords": "Visa ord",
+    "reminderBody": "Säkerhetskopiera din plånbok — 12 ord som återställer den om du förlorar din telefon.",
+    "backUp": "Säkerhetskopiera",
+    "notNow": "Inte nu"
   }
 }

@@ -1789,7 +1789,9 @@
     "exploreWithoutSignInA11y": "Naršyti DeHub neprisijungus",
     "continueExploringA11y": "Tęsti „DeHub“ paiešką",
     "importWalletRecommended": "Rekomenduojama prisijungti socialiniuose tinkluose.",
-    "importWalletPurpose": "Šis įrankis skirtas esamų paskyrų importui iš DeHub.io."
+    "importWalletPurpose": "Šis įrankis skirtas esamų paskyrų importui iš DeHub.io.",
+    "importSecretPlaceholder": "12 arba 24 žodžiai, arba privatus raktas",
+    "invalidImportSecret": "Tai nėra galiojanti 12/24 žodžių frazė ar privatus raktas"
   },
   "messages": {
     "smartRepliesOff": "Siūlomi atsakymai išjungti",
@@ -5998,7 +6000,6 @@
     "viewFeed": "Peržiūrėti sklaidos kanalą",
     "yourChannel": "Jūsų kanalas",
     "yourChannelHint": "Įklijuokite savo kanalo adresą — rankena taip pat veikia pati.",
-    "placeholder": "youtube.com/@you, tiktok.com/@you, vimeo.com/you…",
     "costsNote": "Sumokėta DeHub žetonais, vieną kartą, prieš prasidedant partijai. Ženkliukų turėtojai moka mažiau – jūsų nuolaida taikoma kainai. Jei vaizdo įrašo nepavyksta importuoti, jo dalis grąžinama į jūsų kitą migraciją."
   },
   "calls": {
@@ -8641,5 +8642,36 @@
     "recommendedBody": "Yra naujesnė DeHub versija su svarbiais saugumo pataisymais. Atnaujinkite, kad jūsų paskyra liktų apsaugota.",
     "requiredBody": "Ši DeHub versija nebepalaikoma. Atnaujinkite, kad galėtumėte toliau naudotis paskyra.",
     "update": "Atnaujinti dabar"
+  },
+  "walletBackup": {
+    "title": "Sukurk atsarginę kopiją piniginės",
+    "rowDesc": "Žiūrėk savo 12 žodžių arba privatus raktą",
+    "backedUpOn": "Atsarginė kopija {{date}}",
+    "offerTitle": "Sukurk atsarginę kopiją savo piniginės?",
+    "offerBody": "12 žodžių, kurie atgaivins tavo piniginę, jei praras savo telefoną ar slaptažodį. Trunka 30 sekundžių.",
+    "offerBodyDeviceOnly": "Tavo piniginė gyvena tik šiame telefone. Be šių žodžių, prarastas telefonas reiškia prarastą piniginę.",
+    "saveNow": "Išsaugoti dabar",
+    "skipForNow": "Praleisti dabar",
+    "wordsTitle": "Tavo 12 žodžių",
+    "tapToReveal": "Paspausk, kad atskleisti",
+    "hideWords": "Paslėpti žodžius",
+    "copied": "Nukopijuota",
+    "wroteThemDown": "Aš juos parašiau",
+    "checkTitle": "Greitas patikrinimas",
+    "checkPrompt": "Paspausk žodį #{{n}}",
+    "checkWrong": "Ne tas. Pažiūrėk į žodį #{{n}} dar kartą.",
+    "skipCheck": "Praleisti patikrinimą",
+    "signingIn": "Prisijungiama…",
+    "warnOwns": "Bet kuris, turintis šiuos žodžius, turi tavo piniginę.",
+    "warnNeverAsk": "DeHub niekada jų nepaklausys.",
+    "warnPaper": "Parašyk juos ant popieriaus, ne ekrano nuotrauką ar pastabų programą.",
+    "tabWords": "12 žodžių",
+    "tabPrivateKey": "Privatus raktas",
+    "advanced": "Išplėstiniai",
+    "passwordToShowWords": "Įvesk savo piniginės slaptažodį, kad parodyti savo 12 žodžių.",
+    "showWords": "Rodyti žodžius",
+    "reminderBody": "Sukurk atsarginę kopiją savo piniginės — 12 žodžių, kurie ją atgaivins, jei praras telefoną.",
+    "backUp": "Sukurk atsarginę kopiją",
+    "notNow": "Ne dabar"
   }
 }

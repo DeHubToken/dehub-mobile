@@ -146,9 +146,9 @@
     "noMoreShorts": "مفيش فيديوهات قصيرة تاني",
     "noShortsFound": "مفيش فيديوهات قصيرة اتلاقت",
     "newMembersHint": "لسه داخل — سلم علينا",
-    "scroll": "Scroll",
     "noFilterMatches": "مافيش محتوى على قد فلاترك.",
-    "clearFilters": "امسح الفلاتر"
+    "clearFilters": "امسح الفلاتر",
+    "scroll": "اسحب"
   },
   "explore": {
     "all": "الكل",
@@ -1789,7 +1789,9 @@
     "exploreWithoutSignInA11y": "استكشف ديهب من غير ما تسجل دخول",
     "continueExploringA11y": "كمل استكشاف ديهب",
     "importWalletRecommended": "تسجيل الدخول عن طريق السوشيال ميديا مُوصى بيه.",
-    "importWalletPurpose": "الأداة دي عشان تستورد الحسابات اللي موجودة من DeHub.io."
+    "importWalletPurpose": "الأداة دي عشان تستورد الحسابات اللي موجودة من DeHub.io.",
+    "importSecretPlaceholder": "12 أو 24 كلمة، أو مفتاح خاص",
+    "invalidImportSecret": "ده مش عبارة 12/24 كلمة صحيحة أو مفتاح خاص"
   },
   "messages": {
     "smartRepliesOff": "اتقفلت الردود المقترحة",
@@ -3229,12 +3231,10 @@
       "purgeBody": "كل رسالة {{name}} بعتها في المجتمع ده هتتمسح.",
       "kickBody": "{{name}} هيتمسح من المجتمع. ممكن ينضم تاني بعدين.",
       "bannedUntil": "محظور لحد {{date}}",
-      "restrictionWithReason": "{{state}} — {{reason}}",
       "mutedUntil": "محظور من الكلام لحد {{date}}",
       "bannedUntilShort": "لحد {{date}}",
       "muteTitle": "اسكت {{name}}",
       "banTitle": "احظر {{name}}",
-      "reasonCounter": "{{len}}/200",
       "rulesCount": "{{used}} من {{max}}",
       "moveRuleUp": "حرك القاعدة لفوق",
       "moveRuleDown": "حرك القاعدة لتحت",
@@ -3339,7 +3339,9 @@
         "monthsAgo": "منذ {{value}}",
         "forMinutes": "للمدة {{value}} دقيقة",
         "forWeeks": "للمدة {{value}} ساعة"
-      }
+      },
+      "createInviteLink": "اعمل رابط دعوة",
+      "createLink": "اعمل رابط"
     },
     "chooseAvatar": "اختار صورة شخصية",
     "loadFailed": "مَش عارِف أحَمِّل الكُوميونِتيز",
@@ -3677,7 +3679,6 @@
     "podBadge": "طباعة عند الطلب",
     "podBuyOn": "اشترِ من {{provider}}",
     "podNote": "يُطبع ويُشحن عند الطلب بواسطة {{provider}}. يتم الدفع على موقعهم.",
-    "podUrlPlaceholder": "https://…",
     "subtitle": "اكتشف منتجات من مجتمع DeHub",
     "browse": "تصفح",
     "myStore": "متجري",
@@ -4509,7 +4510,6 @@
     "kindVideo": "فيديو",
     "kindAudio": "صوت",
     "kindImage": "صور",
-    "tileSourceKind": "{{source}} · {{kind}}",
     "reviewTitle": "اتفرج قبل ما تنشر",
     "reviewSubtitle": "من {{source}}، بصفتك {{kind}}. عدّل اللي انت عايزه — اترك العنوان فاضي عشان تحافظ على العنوان الأصلي.",
     "reviewName": "العنوان",
@@ -6708,7 +6708,6 @@
       "newDesign": "تصميم جديد",
       "yourDesigns": "تصاميمك",
       "noDesigns": "التصاميم اللي بتعملها بتتحفظ على التليفون ده وبتظهر هنا.",
-      "dimensions": "{{width}} × {{height}}",
       "aspectStory": "قصة",
       "aspectPost": "منشور",
       "aspectSquare": "مربع",
@@ -6990,7 +6989,6 @@
       "split": "تقسيم",
       "splitHint": "حرّك مؤشر التشغيل جوّه المقطع علشان تقسمه.",
       "speed": "السرعة",
-      "speedValue": "{{value}}×",
       "volumeTool": "مستوى الصوت",
       "volume": "مستوى الصوت {{value}}%",
       "fadeIn": "ظهور تدريجي {{value}} ث",
@@ -7053,7 +7051,6 @@
       "recording": "جارٍ تسجيل الحركة",
       "lanes": "الإطارات الرئيسية",
       "scrub": "اسحب يمينًا أو يسارًا للتغيير.",
-      "segment": "{{from}} → {{to}}",
       "ease": {
         "linear": "خطي",
         "ease": "سلس",
@@ -8597,7 +8594,9 @@
     },
     "signIn": {
       "title": "تسجيل دخول ل{{name}}؟",
-      "confirm": "تسجيل دخول"
+      "confirm": "تسجيل دخول",
+      "body": "هالتطبيق هياخد عنوان محفظتك DeHub ورمز تسجيل الدخول اللي يشتغل بس للتطبيق ده. ما هياخدش صلاحية على محفظتك، أموالك أو حساب DeHub.",
+      "cancel": "مش دلوقتي"
     },
     "store": {
       "title": "أبليكيشنات",
@@ -8610,7 +8609,10 @@
       "fromDehub": "من DeHub",
       "noMatch": "لا توجد تطبيقات تناسب البحث.",
       "yourApps": "ياهايي Apps",
-      "removed": "مزول. ما بيخبركش تاني."
+      "removed": "مزول. ما بيخبركش تاني.",
+      "notificationsOn": "الإشعارات شغّالة",
+      "remove": "حذف",
+      "rising": "جديد ومتفجر"
     },
     "card": {
       "open": "فتح"
@@ -8632,11 +8634,14 @@
     },
     "pay": {
       "body": "الديه بيبعت مباشرة لوليت التطبيق، {{wallet}}. مش ممكن ترجع الدفعات.",
-      "sent": "بعتك ديه ب {{amount}} ل {{name}}."
+      "sent": "بعتك ديه ب {{amount}} ل {{name}}.",
+      "title": "هل تدفع {{name}}؟",
+      "confirm": "ادفع {{amount}} DHB"
     },
     "add": {
       "title": "{{name}}؟",
-      "body": "ياكلو تحت \"Apps\" و بيسلكلك إشعارات. بتمكنش تزلقه من صفحة \"Apps\" أي وقت تشاء."
+      "body": "ياكلو تحت \"Apps\" و بيسلكلك إشعارات. بتمكنش تزلقه من صفحة \"Apps\" أي وقت تشاء.",
+      "confirm": "أضف التطبيق"
     }
   },
   "aiStyles": {
@@ -8675,5 +8680,36 @@
     "recommendedBody": "فيه نسخة أحدث من DeHub فيها إصلاحات أمان مهمة. حدّث عشان حسابك يفضل محمي.",
     "requiredBody": "النسخة دي من DeHub مبقتش مدعومة. حدّث عشان تكمّل تستخدم حسابك.",
     "update": "حدّث دلوقتي"
+  },
+  "walletBackup": {
+    "title": "اعمل نسخة احتياطية للمحفظة",
+    "rowDesc": "شوف الـ12 كلمة أو المفتاح الخاص بتاعك",
+    "backedUpOn": "تم عمل نسخة احتياطية لـ{{date}}",
+    "offerTitle": "تعمل نسخة احتياطية للمحفظة؟",
+    "offerBody": "12 كلمة هترجعلك المحفظة لو ضيعت الموبايل أو الباسورد. هتاخد 30 ثانية.",
+    "offerBodyDeviceOnly": "محفظتك موجودة بس على الموبايل ده. من غير الكلمات دي، الموبايل الضايع يعني محفظة ضايعة.",
+    "saveNow": "احفظ دلوقتي",
+    "skipForNow": "تخطى دلوقتي",
+    "wordsTitle": "الـ12 كلمة بتوعك",
+    "tapToReveal": "اضغط عشان تظهر",
+    "hideWords": "اخفي الكلمات",
+    "copied": "تم النسخ",
+    "wroteThemDown": "أنا كتبتهم",
+    "checkTitle": "فحص سريع",
+    "checkPrompt": "اضغط على كلمة #{{n}}",
+    "checkWrong": "مش دي. بص على كلمة #{{n}} تاني.",
+    "skipCheck": "تخطى الفحص",
+    "signingIn": "بنسجلك الدخول…",
+    "warnOwns": "أي حد معاه الكلمات دي يملك محفظتك.",
+    "warnNeverAsk": "دي هوب مش هتسألك عنها أبداً.",
+    "warnPaper": "اكتبهم على ورقة، مش في سكرين شوت أو تطبيق ملاحظات.",
+    "tabWords": "12 كلمة",
+    "tabPrivateKey": "المفتاح السري",
+    "advanced": "متقدم",
+    "passwordToShowWords": "أدخل كلمة مرور المحفظة لعرض كلماتك الـ12.",
+    "showWords": "عرض الكلمات",
+    "reminderBody": "احتفظ بمحفظتك — 12 كلمة تعيدها لو فقدت هاتفك.",
+    "backUp": "احتفظ",
+    "notNow": "مش دلوقتي"
   }
 }

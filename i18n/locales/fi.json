@@ -1789,7 +1789,9 @@
     "exploreWithoutSignInA11y": "Tutustu DeHubiin kirjautumatta sisään",
     "continueExploringA11y": "Jatka DeHubin tutkimista",
     "importWalletRecommended": "Sosiaaliset kirjautumiset ovat suositeltavia.",
-    "importWalletPurpose": "Tämä työkalu on tarkoitettu olemassa olevien tilien tuomiseen DeHub.io: sta."
+    "importWalletPurpose": "Tämä työkalu on tarkoitettu olemassa olevien tilien tuomiseen DeHub.io: sta.",
+    "importSecretPlaceholder": "12 tai 24 sanaa tai yksityinen avain",
+    "invalidImportSecret": "Se ei ole kelvollinen 12/24 sanan ilmaus tai yksityinen avain"
   },
   "messages": {
     "smartRepliesOff": "Ehdotetut vastaukset poistettiin käytöstä",
@@ -5998,7 +6000,6 @@
     "viewFeed": "Tarkastele syötettäsi",
     "yourChannel": "Kanavasi",
     "yourChannelHint": "Liitä kanavan osoite — myös kahva toimii omalla tavallaan.",
-    "placeholder": "youtube.com/@you, tiktok.com/@you, vimeo.com/you…",
     "costsNote": "Maksettu DeHub-tokeneilla, kerran, ennen erän alkua. Merkin haltijat maksavat vähemmän – alennuksesi sovelletaan tarjoukseen. Jos videota ei voida tuoda, sen osuus hyvitetään takaisin seuraavaan siirtoosi."
   },
   "calls": {
@@ -8641,5 +8642,36 @@
     "recommendedBody": "DeHubista on saatavilla uudempi versio, jossa on tärkeitä tietoturvakorjauksia. Päivitä, jotta tilisi pysyy suojattuna.",
     "requiredBody": "Tätä DeHubin versiota ei enää tueta. Päivitä, jotta voit jatkaa tilisi käyttöä.",
     "update": "Päivitä nyt"
+  },
+  "walletBackup": {
+    "title": "Varmuuskopioi lompakko",
+    "rowDesc": "Katso 12 sanaasi tai yksityistä avaintasi",
+    "backedUpOn": "Varmuuskopioitu {{date}}",
+    "offerTitle": "Varmuuskopioitko lompakkosi?",
+    "offerBody": "12 sanaa, jotka palauttavat lompakkosi, jos kadotat puhelimesi tai salasanasi. Kestää 30 sekuntia.",
+    "offerBodyDeviceOnly": "Lompakkosi on vain tässä puhelimessa. Ilman näitä sanoja kadonnut puhelin tarkoittaa kadonnutta lompakkoa.",
+    "saveNow": "Säästä nyt",
+    "skipForNow": "Ohita tällä kertaa",
+    "wordsTitle": "12 sanaasi",
+    "tapToReveal": "Paljasta napauttamalla",
+    "hideWords": "Piilota sanat",
+    "copied": "Kopioitu",
+    "wroteThemDown": "Olen kirjoittanut ne ylös",
+    "checkTitle": "Pikatarkistus",
+    "checkPrompt": "Napauta sanaa # {{n}}",
+    "checkWrong": "Ei sitä. Katso sanaa #{{n}} uudelleen.",
+    "skipCheck": "Ohita tarkistus",
+    "signingIn": "Kirjaudutaan sisään...",
+    "warnOwns": "Jokainen, jolla on nämä sanat, omistaa lompakkosi.",
+    "warnNeverAsk": "DeHub ei koskaan pyydä niitä.",
+    "warnPaper": "Kirjoita ne paperille, älä kuvakaappaus- tai muistiinpanosovellukseen.",
+    "tabWords": "12 sanaa",
+    "tabPrivateKey": "Yksityinen avain",
+    "advanced": "Edistynyt",
+    "passwordToShowWords": "Anna lompakkosi salasana näyttääksesi 12 sanaasi.",
+    "showWords": "Näytä sanat",
+    "reminderBody": "Varmuuskopioi lompakkosi — 12 sanaa, jotka palauttavat sen, jos kadotat puhelimesi.",
+    "backUp": "Varmuuskopioi",
+    "notNow": "Ei nyt"
   }
 }

@@ -164,7 +164,6 @@
     "nothingTrending": "Nothing di trend for this window yet."
   },
   "settings": {
-    "showOnline": "Show when I'm online",
     "showOnlineDesc": "Di pipo wey you dey message go see smol green dot for your name when you dey use DeHub",
     "smartReplies": "Ansa dem weh wi propose",
     "smartRepliesDesc": "E di rait tu ansa weh yu fit tosh fo chat. Da × fo di propose dem di of-am.",
@@ -1776,7 +1775,8 @@
     "importWalletRecommended": "Na social login we recommend.",
     "importWalletPurpose": "Dis tool na for import old accounts from DeHub.io.",
     "exploreWithoutSignIn": "Waka around without sign in",
-    "exploreWithoutSignInA11y": "Waka around DeHub without sign in"
+    "exploreWithoutSignInA11y": "Waka around DeHub without sign in",
+    "invalidImportSecret": "Na dey no be valid phrase wey 12/24 word na or private key wey."
   },
   "messages": {
     "smartRepliesOff": "Dem don of di ansa dem weh wi propose",
@@ -2274,7 +2274,6 @@
     "nodeCount_other": "{{count}} nodes",
     "nowPrivate": "The flow don turn private",
     "nowPublic": "Flow don show",
-    "openCanvas": "Open the canvas",
     "playVideo": "Play video",
     "signInToSee": "Sign in fo see the flow dem weh dey your account."
   },
@@ -4550,7 +4549,6 @@
     "thisDevice": "Dis device",
     "logOutDeviceTitle": "Log out di device?",
     "logOut": "Log out",
-    "logOutAll": "Log out all",
     "logOutAllTitle": "Log out all di other devices?",
     "logOutDeviceBody": "Dis go log out \"{{device}}\". Dem go need to log in again.",
     "logOutAllBody_one": "Dis go log out {{count}} other device. Na only dis device go still dey logged in.",
@@ -5211,7 +5209,6 @@
     "loadPlansFailed": "Plans no gree load",
     "subscriberContent": "Content for subscribers",
     "subscriberContentSub": "Create plans make you fit give subscribers special content",
-    "createFirstPlan": "Create your first plan",
     "addNewPlan": "Na new plan go dey.",
     "durations": {
       "oneMonth": "1 Month time",
@@ -5568,7 +5565,6 @@
     "preferences": "DM settings",
     "enableDms": "Turn on DMs",
     "enableDmsSub": "Turn am off mek all message block.",
-    "allowNewDms": "Allow new DMs",
     "allowNewDmsOn": "If e off, na only pipol wey you don chat with fit message you.",
     "allowNewDmsOff": "Turn on DMs mek new message fit enta.",
     "perMessageFeeSub": "Charge pipol for each message. Put 0 mek DM free. You fit giv som users free access.",
@@ -6593,7 +6589,6 @@
         "hostile_tone": "Hostile tone"
       },
       "aiMenu": "AI tools dem",
-      "changeVibe": "Change the vibe",
       "fixSpelling": "Fix spelling an grammar",
       "rewriteFailed": "We no fit rewrite am. Try again."
     }
@@ -6903,7 +6898,6 @@
       "volumeTool": "Volume",
       "volume": "Volume {{value}}%",
       "fadeIn": "Fade in {{value}}s",
-      "fadeOut": "Fade out {{value}}s",
       "fadeHint": "You go hear di fade dem for di video weh you export.",
       "mute": "Off di track sound",
       "unmute": "On di track sound",
@@ -6958,10 +6952,8 @@
       "applyAll": "Use dis curve fo all di keyframe dem",
       "timelineKey": "Keyframe. Drag am fo move am, tap am two taim fo komot am.",
       "record": "Record",
-      "recordHint": "Recording: moving, resizing, rotating or fading a layer with the playhead inside it adds keyframes there.",
       "recording": "Recording motion",
       "lanes": "Keyframes",
-      "scrub": "Drag left or right to change.",
       "segment": "{{from}} → {{to}}",
       "ease": {
         "linear": "Straight",
@@ -6979,7 +6971,8 @@
         "easeOutBack": "Back fo end",
         "easeInOutBack": "Back fo start an end",
         "hold": "Hold am"
-      }
+      },
+      "recordHint": "Recording: wen yu move, resize, rotate or fade one layer wey di playhead dey inside, e go add keyframes for dat place."
     }
   },
   "creator": {
@@ -8279,7 +8272,6 @@
     "skyHighAiDetail": "5,000 Assistant messages, 1,500 images, 5 minutes of AI video every month",
     "unlimitedPeeksLabel": "Unlimited sneak peeks",
     "unlimitedPeeksDetail": "Peep inside every gated feed, no monthly limit",
-    "allThemesLabel": "All themes + early access",
     "allThemesDetail": "Every custom theme, you go first use di theme builder",
     "proProfileInsightsLabel": "Pro profile insights",
     "proProfileInsightsDetail": "Full history of visitors, where dem come from and trends",
@@ -8339,18 +8331,15 @@
     "groupSecurity": "Security & Compliance",
     "accessAllModels": "Access to all models and features",
     "accessAllFeatures": "Access to all features and models",
-    "accessAllSeedance": "Access to all Seedance models",
     "accessSeedance20": "Access to Seedance 2.0",
     "accessSupercomputer": "Access to Supercomputer",
     "parallelGenerations": "Generate plenty at once: up to {{videos}} videos, {{images}} images",
     "topUpAnyTime": "Top up anytime with your own DeHub tokens",
     "publishStraightToDehub": "Post straight to DeHub",
-    "earlyAccess": "Early access to advanced AI features",
     "unlimitedMarketplace": "Access to marketplace wey no get limit",
     "seedanceFullAccess": "{{model}} — Full access",
     "membersRange": "{{min}} reach {{max}} members for one shared workspace",
     "sharedDhbPool": "Shared token pool",
-    "sharedWorkspace": "Shared workspace for your team",
     "basicAnalytics": "Basic analytics",
     "detailedAnalytics": "Detailed analytics",
     "prioritySupport": "Priority support",
@@ -8439,7 +8428,9 @@
     "accepted": "Account deletion requested",
     "done": "Done",
     "back": "Back to Settings",
-    "warning": "\"Dis wey fo' long long, dis a go delete yu DeHub profile, yu posts, comments, messages, na yu wallet backup wey yu save. Save yu wallet recovery details na move any asset wey yu have first. Transaction wey go on blockchain na record wey law say must keep, dem cannot delete. Yu profile go hide straight away; deletion go finish inside 30 days. Dis cannot reverse."
+    "warning": "\"Dis wey fo' long long, dis a go delete yu DeHub profile, yu posts, comments, messages, na yu wallet backup wey yu save. Save yu wallet recovery details na move any asset wey yu have first. Transaction wey go on blockchain na record wey law say must keep, dem cannot delete. Yu profile go hide straight away; deletion go finish inside 30 days. Dis cannot reverse.",
+    "receipt": "Yas, your delete request wey you make, we save for you. Your profile now hide, and your account go delete for good after 30 days. Na no way you go sign in again, no cancel dis request.",
+    "acknowledge": "Mi save my wallet recovery details, and mi know dat delete go be permanent."
   },
   "miniApps": {
     "badge": {
@@ -8544,5 +8535,25 @@
     "recommendedBody": "New DeHub version don come wit important security fix. Update am for make your account dey safe.",
     "requiredBody": "Dis DeHub version no di get support again. Update am for continue use your account.",
     "update": "Update now"
+  },
+  "walletBackup": {
+    "title": "Back up wallet",
+    "rowDesc": "Wetin you see be your 12 words or private key, eh?",
+    "offerBodyDeviceOnly": "Yuo wole fit yuo wole fit on dis phone. Na if dis word no dey, phone lose mean wole lose.",
+    "saveNow": "Save now",
+    "wordsTitle": "Your 12 words",
+    "wroteThemDown": "I don write dem down",
+    "checkTitle": "Quick check",
+    "checkPrompt": "Tap word #{{n}}",
+    "skipCheck": "Skip di check",
+    "signingIn": "I dey sign you in…",
+    "warnOwns": "Anybody wey get dis words get your wallet.",
+    "warnNeverAsk": "DeHub no go ever ask for dem.",
+    "warnPaper": "Write dem for paper, no for screenshot or notes app.",
+    "tabWords": "12 words",
+    "tabPrivateKey": "Privet ki",
+    "showWords": "Show word dem",
+    "reminderBody": "Backup yuh wallet — 12 words wey go bring am back if yuh lose yuh phone.",
+    "notNow": "No now"
   }
 }

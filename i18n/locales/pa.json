@@ -146,9 +146,9 @@
     "noMoreShorts": "ਹੋਰ ਸ਼ਾਰਟਸ ਨਹੀਂ",
     "noShortsFound": "ਕੋਈ ਸ਼ਾਰਟਸ ਨਹੀਂ ਮਿਲਿਆ",
     "newMembersHint": "ਨਾਲੇ ਜੁੜੇ — ਹੈਲੋ ਕਹੋ",
-    "scroll": "Scroll",
     "noFilterMatches": "ਤੁਹਾਡੇ ਫ਼ਿਲਟਰਾਂ ਨਾਲ ਕੋਈ ਸਮੱਗਰੀ ਮੇਲ ਨਹੀਂ ਖਾਂਦੀ।",
-    "clearFilters": "ਫਿਲਟਰ ਸਾਫ਼ ਕਰੋ"
+    "clearFilters": "ਫਿਲਟਰ ਸਾਫ਼ ਕਰੋ",
+    "scroll": "ਸਕ੍ਰੋਲ"
   },
   "explore": {
     "all": "ਸਭ",
@@ -1789,7 +1789,9 @@
     "exploreWithoutSignInA11y": "ਬਿਨਾਂ ਸਾਈਨ ਇਨ ਕੀਤੇ DeHub ਦੀ ਪੜਚੋਲ ਕਰੋ",
     "continueExploringA11y": "DeHub ਦੀ ਪੜਚੋਲ ਜਾਰੀ ਰੱਖੋ",
     "importWalletRecommended": "ਸੋਸ਼ਲ ਲੌਗਇਨ ਦੀ ਸਿਫਾਰਸ਼ ਕੀਤੀ ਜਾਂਦੀ ਹੈ.",
-    "importWalletPurpose": "ਇਹ ਟੂਲ DeHub. io ਤੋਂ ਮੌਜੂਦਾ ਖਾਤਿਆਂ ਨੂੰ ਆਯਾਤ ਕਰਨ ਲਈ ਹੈ."
+    "importWalletPurpose": "ਇਹ ਟੂਲ DeHub. io ਤੋਂ ਮੌਜੂਦਾ ਖਾਤਿਆਂ ਨੂੰ ਆਯਾਤ ਕਰਨ ਲਈ ਹੈ.",
+    "importSecretPlaceholder": "12 ਜਾਂ 24 ਸ਼ਬਦ, ਜਾਂ ਇੱਕ ਪ੍ਰਾਈਵੇਟ ਕੀ",
+    "invalidImportSecret": "ਇਹ ਇੱਕ ਵੈਧ 12/24-ਸ਼ਬਦ ਫਰੇਜ਼ ਜਾਂ ਪ੍ਰਾਈਵੇਟ ਕੀ ਨਹੀਂ ਹੈ"
   },
   "messages": {
     "smartRepliesOff": "ਸੁਝਾਏ ਜਵਾਬ ਬੰਦ ਕਰ ਦਿੱਤੇ",
@@ -2660,7 +2662,6 @@
     "viewCount_other": "{{count}} ਵਾਰ ਦੇਖਿਆ",
     "shareMessage": "ਇਹ ਦੇਖੋ: {{url}}",
     "hideReplies": "ਜਵਾਬ ਲੁਕਾਓ",
-    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
     "rowA11yHint": "ਇਸ ਟਿੱਪਣੀ ਦਾ ਜਵਾਬ ਸ਼ੁਰੂ ਕਰਦਾ ਹੈ",
     "editingComment": "ਟਿੱਪਣੀ ਸੋਧੀ ਜਾ ਰਹੀ ਹੈ",
     "editPlaceholder": "ਆਪਣੀ ਟਿੱਪਣੀ ਸੋਧੋ...",
@@ -3233,12 +3234,10 @@
       "purgeBody": "{{name}} ਦੁਆਰਾ ਇਸ ਕਮਿਊਨਿਟੀ ਵਿੱਚ ਭੇਜਿਆ ਗਿਆ ਹਰ ਸੰਦੇਸ਼ ਹਟਾ ਦਿੱਤਾ ਜਾਵੇਗਾ।",
       "kickBody": "{{name}} ਨੂੰ ਕਮਿਊਨਿਟੀ ਤੋਂ ਹਟਾ ਦਿੱਤਾ ਜਾਵੇਗਾ। ਉਹ ਬਾਅਦ ਵਿੱਚ ਦੁਬਾਰਾ ਸ਼ਾਮਲ ਹੋ ਸਕਦੇ ਹਨ।",
       "bannedUntil": "{{date}} ਤੱਕ ਪਾਬੰਦੀ",
-      "restrictionWithReason": "{{state}} — {{reason}}",
       "mutedUntil": "{{date}} ਤੱਕ ਮਿਊਟ",
       "bannedUntilShort": "{{date}} ਤੱਕ",
       "muteTitle": "{{name}} ਨੂੰ ਮਿਊਟ ਕਰੋ",
       "banTitle": "{{name}} 'ਤੇ ਪਾਬੰਦੀ ਲਗਾਓ",
-      "reasonCounter": "{{len}}/200",
       "rulesCount": "{{max}} ਵਿੱਚੋਂ {{used}}",
       "moveRuleUp": "ਨਿਯਮ ਉੱਪਰ ਲਿਜਾਓ",
       "moveRuleDown": "ਨਿਯਮ ਹੇਠਾਂ ਲਿਜਾਓ",
@@ -3344,7 +3343,8 @@
         "restricted": "ਸਿਰਫ਼ ਮਾਡਰੇਟਰ ਹੀ ਇਸ ਮਾਡਰੇਸ਼ਨ ਲੋਗ ਨੂੰ ਵੇਖ ਸਕਦੇ ਹਨ।",
         "empty": "ਇੱਥੇ ਕੁਝ ਨਹੀਂ ਹੈ। ਮਾਡਰੇਸ਼ਨ ਐਕਸ਼ਨ ਇਸ ਤੋਂ ਬਾਅਦ ਦਿਖਾਈ ਦਿੱਤੇ ਜਾਣਗੇ।",
         "showMore": "ਵੱਧ ਕਰੋ ({{value}})"
-      }
+      },
+      "slowModeOnHint": "ਸਦੱਸ ਹਰ {{label}} 'ਤੇ ਇੱਕ ਸੁਨੇਹਾ ਭੇਜ ਸਕਦੇ ਹਨ। ਐਡਮਿਨਜ਼ ਨੂੰ ਛੂਟ ਹੈ।"
     },
     "chooseAvatar": "ਅਵਤਾਰ ਚੁਣੋ",
     "loadFailed": "ਭਾਈਚਾਰਿਆਂ ਨੂੰ ਲੋਡ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਿਆ",
@@ -3682,7 +3682,6 @@
     "podBadge": "ਮੰਗ 'ਤੇ ਛਪਾਈ",
     "podBuyOn": "{{provider}} 'ਤੇ ਖਰੀਦੋ",
     "podNote": "{{provider}} ਮੰਗ 'ਤੇ ਛਾਪ ਕੇ ਭੇਜਦਾ ਹੈ। ਭੁਗਤਾਨ ਉਨ੍ਹਾਂ ਦੀ ਸਾਈਟ 'ਤੇ ਹੁੰਦਾ ਹੈ।",
-    "podUrlPlaceholder": "https://…",
     "subtitle": "DeHub ਭਾਈਚਾਰੇ ਦੇ ਉਤਪਾਦ ਖੋਜੋ",
     "browse": "ਬ੍ਰਾਊਜ਼ ਕਰੋ",
     "myStore": "ਮੇਰੀ ਦੁਕਾਨ",
@@ -4514,7 +4513,6 @@
     "kindVideo": "ਵੀਡਿਓ",
     "kindAudio": "ਆਡੀਓ",
     "kindImage": "ਤਸਵੀਰ",
-    "tileSourceKind": "{{source}} · {{kind}}",
     "reviewTitle": "ਪੋਸਟ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਸਮੀਖਿਆ ਕਰੋ",
     "reviewSubtitle": "{{source}} ਤੋਂ, {{kind}} ਦੇ ਤੌਰ ਤੇ. ਕਿਸੇ ਵੀ ਚੀਜ਼ ਨੂੰ ਸੰਪਾਦਿਤ ਕਰੋ ਜੋ ਤੁਸੀਂ ਪਸੰਦ ਕਰਦੇ ਹੋ — ਅਸਲੀ ਰੱਖਣ ਲਈ ਸਿਰਲੇਖ ਨੂੰ ਖਾਲੀ ਛੱਡੋ.",
     "reviewName": "ਟਾਈਟਲ",
@@ -6669,7 +6667,6 @@
       "newDesign": "ਨਵਾਂ ਡਿਜ਼ਾਈਨ",
       "yourDesigns": "ਤੁਹਾਡੇ ਡਿਜ਼ਾਈਨ",
       "noDesigns": "ਤੁਹਾਡੇ ਬਣਾਏ ਡਿਜ਼ਾਈਨ ਇਸ ਫੋਨ 'ਤੇ ਸੇਵ ਹੁੰਦੇ ਹਨ ਅਤੇ ਇੱਥੇ ਦਿਖਾਈ ਦਿੰਦੇ ਹਨ।",
-      "dimensions": "{{width}} × {{height}}",
       "aspectStory": "ਸਟੋਰੀ",
       "aspectPost": "ਪੋਸਟ",
       "aspectSquare": "ਵਰਗ",
@@ -6951,7 +6948,6 @@
       "split": "ਵੰਡੋ",
       "splitHint": "ਕਲਿੱਪ ਨੂੰ ਵੰਡਣ ਲਈ ਪਲੇਹੈੱਡ ਨੂੰ ਕਲਿੱਪ ਦੇ ਅੰਦਰ ਲਿਜਾਓ।",
       "speed": "ਰਫ਼ਤਾਰ",
-      "speedValue": "{{value}}×",
       "volumeTool": "ਆਵਾਜ਼ ਪੱਧਰ",
       "volume": "ਆਵਾਜ਼ {{value}}%",
       "fadeIn": "ਫੇਡ ਇਨ {{value}} ਸਕਿੰਟ",
@@ -7014,7 +7010,6 @@
       "recording": "ਗਤੀ ਰਿਕਾਰਡ ਹੋ ਰਹੀ ਹੈ",
       "lanes": "ਕੀਫ੍ਰੇਮ",
       "scrub": "ਬਦਲਣ ਲਈ ਖੱਬੇ ਜਾਂ ਸੱਜੇ ਖਿੱਚੋ।",
-      "segment": "{{from}} → {{to}}",
       "ease": {
         "linear": "ਰੇਖਿਕ",
         "ease": "ਸਹਿਜ",
@@ -8451,7 +8446,6 @@
     "basicAnalytics": "ਬੁਨਿਆਦੀ ਵਿਸ਼ਲੇਸ਼ਣ",
     "detailedAnalytics": "ਵਿਸਤ੍ਰਿਤ ਵਿਸ਼ਲੇਸ਼ਣ",
     "prioritySupport": "ਤਰਜੀਹ ਸਹਾਇਤਾ",
-    "sso": "SSO",
     "adminSpendControl": "ਐਡਮਿਨ ਖਰਚ ਕੰਟਰੋਲ",
     "priorityQueue": "ਤਰਜੀਹੀ ਕਤਾਰ",
     "priorityQueueFast": "ਤੇਜ਼ ਟਾਸਕ ਪ੍ਰੋਸੈਸਿੰਗ ਲਈ ਤਰਜੀਹ ਕਤਾਰ",
@@ -8644,5 +8638,36 @@
     "recommendedBody": "ਜ਼ਰੂਰੀ ਸੁਰੱਖਿਆ ਸੁਧਾਰਾਂ ਨਾਲ DeHub ਦਾ ਨਵਾਂ ਵਰਜਨ ਉਪਲਬਧ ਹੈ। ਆਪਣਾ ਖਾਤਾ ਸੁਰੱਖਿਅਤ ਰੱਖਣ ਲਈ ਅੱਪਡੇਟ ਕਰੋ।",
     "requiredBody": "DeHub ਦਾ ਇਹ ਵਰਜਨ ਹੁਣ ਸਮਰਥਿਤ ਨਹੀਂ ਹੈ। ਆਪਣਾ ਖਾਤਾ ਵਰਤਦੇ ਰਹਿਣ ਲਈ ਅੱਪਡੇਟ ਕਰੋ।",
     "update": "ਹੁਣੇ ਅੱਪਡੇਟ ਕਰੋ"
+  },
+  "walletBackup": {
+    "title": "ਵਾਲਿਟ ਬੈਕਅਪ ਕਰੋ",
+    "rowDesc": "ਆਪਣੇ 12 ਸ਼ਬਦ ਜਾਂ ਪ੍ਰਾਈਵੇਟ ਕੀ ਵੇਖੋ",
+    "backedUpOn": "ਬੈਕਅਪ ਕੀਤਾ {{date}}",
+    "offerTitle": "ਆਪਣਾ ਵਾਲਿਟ ਬੈਕਅਪ ਕਰਨਾ ਹੈ?",
+    "offerBody": "12 ਸ਼ਬਦ ਜੋ ਤੁਹਾਡਾ ਵਾਲਿਟ ਵਾਪਸ ਲਿਆਉਂਦੇ ਹਨ ਜੇ ਤੁਸੀਂ ਆਪਣਾ ਫੋਨ ਜਾਂ ਪਾਸਵਰਡ ਗੁਆ ਲਓ। 30 ਸਕਿੰਟ ਲੱਗਦੇ ਹਨ।",
+    "offerBodyDeviceOnly": "ਤੁਹਾਡਾ ਵਾਲਿਟ ਸਿਰਫ਼ ਇਸ ਫੋਨ 'ਤੇ ਹੀ ਰਹਿੰਦਾ ਹੈ। ਇਨ੍ਹਾਂ ਸ਼ਬਦਾਂ ਬਿਨਾਂ, ਗੁੰਮ ਹੋਇਆ ਫੋਨ ਮਤਲਬ ਗੁੰਮ ਹੋਇਆ ਵਾਲਿਟ।",
+    "saveNow": "ਹੁਣ ਸੇਵ ਕਰੋ",
+    "skipForNow": "ਹੁਣ ਲਈ ਸਕਿਪ ਕਰੋ",
+    "wordsTitle": "ਤੁਹਾਡੇ 12 ਸ਼ਬਦ",
+    "tapToReveal": "ਦਿਖਾਉਣ ਲਈ ਟੈਪ ਕਰੋ",
+    "hideWords": "ਸ਼ਬਦ ਲੁਕਾਓ",
+    "copied": "ਕਾਪੀ ਕੀਤਾ",
+    "wroteThemDown": "ਮੈਂ ਉਨ੍ਹਾਂ ਨੂੰ ਲਿਖ ਲਿਆ ਹੈ",
+    "checkTitle": "ਤੇਜ਼ ਜਾਂਚ",
+    "checkPrompt": "ਸ਼ਬਦ #{{n}} 'ਤੇ ਟੈਪ ਕਰੋ",
+    "checkWrong": "ਉਹ ਨਹੀਂ। ਸ਼ਬਦ #{{n}} ਨੂੰ ਫਿਰ ਦੇਖੋ।",
+    "skipCheck": "ਜਾਂਚ ਸਕਿਪ ਕਰੋ",
+    "signingIn": "ਤੁਹਾਨੂੰ ਸਾਈਨ ਇਨ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ…",
+    "warnOwns": "ਇਨ੍ਹਾਂ ਸ਼ਬਦਾਂ ਵਾਲਾ ਕੋਈ ਵੀ ਤੁਹਾਡਾ ਵਾਲਿਟ ਮਾਲਕ ਹੁੰਦਾ ਹੈ।",
+    "warnNeverAsk": "DeHub ਕਦੇ ਵੀ ਉਨ੍ਹਾਂ ਲਈ ਨਹੀਂ ਪੁੱਛੇਗਾ।",
+    "warnPaper": "ਉਨ੍ਹਾਂ ਨੂੰ ਕਾਗਜ਼ 'ਤੇ ਲਿਖੋ, ਸਕਰੀਨਸ਼ਾਟ ਜਾਂ ਨੋਟਸ ਐਪ ਵਿੱਚ ਨਹੀਂ।",
+    "tabWords": "12 ਸ਼ਬਦ",
+    "tabPrivateKey": "ਪ੍ਰਾਈਵੇਟ ਕੁੰਜੀ",
+    "advanced": "ਤਕਨੀਕੀ",
+    "passwordToShowWords": "ਆਪਣੇ 12 ਸ਼ਬਦਾਂ ਨੂੰ ਦਿਖਾਉਣ ਲਈ ਆਪਣਾ ਵਾਲਟ ਪਾਸਵਰਡ ਦਰਜ ਕਰੋ.",
+    "showWords": "ਸ਼ਬਦ ਵੇਖਾਓ",
+    "reminderBody": "ਆਪਣੇ ਬਟੂਏ ਦਾ ਬੈਕਅਪ ਲਓ — 12 ਸ਼ਬਦ ਜੋ ਇਸ ਨੂੰ ਵਾਪਸ ਲਿਆਉਂਦੇ ਹਨ ਜੇ ਤੁਸੀਂ ਆਪਣਾ ਫੋਨ ਗੁਆ ਦਿੰਦੇ ਹੋ.",
+    "backUp": "ਬੈਕਅੱਪ",
+    "notNow": "ਹੁਣ ਨਹੀਂ"
   }
 }

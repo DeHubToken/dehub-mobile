@@ -146,9 +146,9 @@
     "noMoreShorts": "अउ shorts नहीं",
     "noShortsFound": "कोई shorts नहीं मिलिस",
     "newMembersHint": "अभी जुड़िस — hello बोल",
-    "scroll": "Scroll",
     "noFilterMatches": "तुंहर फिल्टर ले कोनो सामग्री मेल नइ खावय।",
-    "clearFilters": "फिल्टर हटावव"
+    "clearFilters": "फिल्टर हटावव",
+    "scroll": "स्क्राल"
   },
   "explore": {
     "all": "सब",
@@ -1788,7 +1788,9 @@
     "exploreWithoutSignInA11y": "बिना दसखत के डेहब खोजव",
     "continueExploringA11y": "DeHub ल खोजे बर जारी रखव",
     "importWalletRecommended": "सोशल लॉगिन के सिफ़ारिश करे जाथे।",
-    "importWalletPurpose": "ये टूल DeHub.io ले मौजूदा खाता आयात करे बर हे।"
+    "importWalletPurpose": "ये टूल DeHub.io ले मौजूदा खाता आयात करे बर हे।",
+    "importSecretPlaceholder": "12 या 24 शब्द, या एक निजी कुंजी",
+    "invalidImportSecret": "ए एक मान्य 12/24 शब्द वाक्यांश या निजी कुंजी नी हवय"
   },
   "messages": {
     "smartRepliesOff": "सुझाए गे जवाब बंद हो गे",
@@ -2654,7 +2656,6 @@
     "viewCount_other": "{{count}} बेर देखे गे",
     "shareMessage": "एला देखव: {{url}}",
     "hideReplies": "जवाब लुकाव",
-    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
     "rowA11yHint": "ए टिप्पणी के जवाब देना सुरू करथे",
     "editingComment": "टिप्पणी संपादित करत हव",
     "editPlaceholder": "अपन टिप्पणी संपादित करव...",
@@ -3227,12 +3228,10 @@
       "purgeBody": "{{name}} द्वारा इस समुदाय में भेजे गए हर संदेश को हटा दिया जाएगा।",
       "kickBody": "{{name}} को समुदाय से हटा दिया जाएगा। वे बाद में फिर से शामिल हो सकते हैं।",
       "bannedUntil": "{{date}} तक प्रतिबंधित",
-      "restrictionWithReason": "{{state}} — {{reason}}",
       "mutedUntil": "{{date}} तक म्यूट",
       "bannedUntilShort": "{{date}} तक",
       "muteTitle": "{{name}} को म्यूट करें",
       "banTitle": "{{name}} को प्रतिबंधित करें",
-      "reasonCounter": "{{len}}/200",
       "rulesCount": "{{max}} में से {{used}}",
       "moveRuleUp": "नियम ऊपर ले जाएं",
       "moveRuleDown": "नियम नीचे ले जाएं",
@@ -3677,7 +3676,6 @@
     "podBadge": "प्रिंट ऑन डिमांड",
     "podBuyOn": "{{provider}} पर खरीदें",
     "podNote": "{{provider}} द्वारा मांग पर छापा और भेजा जाता है। भुगतान उनकी साइट पर होता है।",
-    "podUrlPlaceholder": "https://…",
     "subtitle": "DeHub समुदाय के उत्पाद खोजव",
     "browse": "देखव",
     "myStore": "मोर दुकान",
@@ -5992,7 +5990,6 @@
     "videoCountMany": "{{n}} वीडियो",
     "videoCountOne": "{{n}} वीडियो",
     "videosCount": "{{videos}} वीडियो",
-    "placeholder": "youtube.com/@you, tiktok.com/@you, vimeo.com/you…",
     "costsNote": "बैच शुरू होने से पहले, डीहब टोकन में भुगतान किया गया। बैज धारक कम भुगतान करते हैं - आपकी छूट आपके कोट पर लागू होती है। यदि कोई वीडियो आयात नहीं किया जा सकता है, तो उसका हिस्सा आपके अगले माइग्रेशन के लिए वापस जमा कर दिया जाता है।"
   },
   "calls": {
@@ -6704,7 +6701,6 @@
       "newDesign": "नवा डिजाइन",
       "yourDesigns": "तोर डिजाइन",
       "noDesigns": "तैं जउन डिजाइन बनाथस, वो ए फोन म सेव होथे अउ इहाँ दिखथे।",
-      "dimensions": "{{width}} × {{height}}",
       "aspectStory": "स्टोरी",
       "aspectPost": "पोस्ट",
       "aspectSquare": "चौकोर",
@@ -6986,7 +6982,6 @@
       "split": "बाँटव",
       "splitHint": "क्लिप ल बाँटे बर प्लेहेड ल ओकर भीतर ले जावव।",
       "speed": "रफ्तार",
-      "speedValue": "{{value}}×",
       "volumeTool": "वॉल्यूम",
       "volume": "वॉल्यूम {{value}}%",
       "fadeIn": "फेड इन {{value}}s",
@@ -7049,7 +7044,6 @@
       "recording": "गति रिकॉर्ड हो रही है",
       "lanes": "कीफ़्रेम",
       "scrub": "बदलने के लिए बाएँ या दाएँ खींचें।",
-      "segment": "{{from}} → {{to}}",
       "ease": {
         "linear": "रैखिक",
         "ease": "सहज",
@@ -8676,5 +8670,36 @@
     "recommendedBody": "जरूरी सुरक्छा सुधार के संग DeHub के नवा संस्करन आय हे। अपन खाता ल सुरक्छित रखे बर अपडेट करव।",
     "requiredBody": "DeHub के ए संस्करन अब सपोर्ट नइ होवय। अपन खाता ल चलावत रहे बर अपडेट करव।",
     "update": "अभी अपडेट करव"
+  },
+  "walletBackup": {
+    "title": "बैक अप वालेट",
+    "rowDesc": "अपन 12 सब्द या निजी कुंजी ल देखव",
+    "backedUpOn": "बैकअप {{date}}",
+    "offerTitle": "का तेंह पक्का हवस कि तेंह खिड़की ल बंद करना चाहत हवस",
+    "offerBody": "12 शब्द जो आपके पर्स ल वापस लानत हंवय यदि आप अपन फोन या पासवर्ड ल खो देत हंवय । 30 सेकंड बर 3 सेट होल्डिंग तक दोहराएं ।",
+    "offerBodyDeviceOnly": "तोर पर्स केवल ए फोन म रहत हवय । ए सब्दमन के बिना, एक खोए फोन के मतलब एक खोए वॉलेट हवय ।",
+    "saveNow": "अभी सहेजव",
+    "skipForNow": "अभी बर जहाज",
+    "wordsTitle": "12 शब्द",
+    "tapToReveal": "एहर खुलासा करे के जरूरत हवय",
+    "hideWords": "सब्द लुकाव",
+    "copied": "नकल",
+    "wroteThemDown": "मेंह ओमन ला लिखत हंव",
+    "checkTitle": "क्विक जांच",
+    "checkPrompt": "सब्द टैप करव {{n}}",
+    "checkWrong": "ओ एक नइ. सब्द {{n}} फिर से देखव.",
+    "skipCheck": "जांच छोड़व",
+    "signingIn": "अपन हस्ताक्षर ल...",
+    "warnOwns": "ए सब्दमन के संग कोनो घलो मनखे अपन पर्स के मालिक हे ।",
+    "warnNeverAsk": "देवबती के कहे के मतलब का समारु नइ जाने ।",
+    "warnPaper": "कागज म लिखव, स्क्रीनशॉट या नोट ऐप म नी ।",
+    "tabWords": "12 शब्द",
+    "tabPrivateKey": "निजी कुंजी",
+    "advanced": "विस्तृत",
+    "passwordToShowWords": "अपन 12 शब्द ल दिखाय बर अपन पर्स पासवर्ड दर्ज करव ।",
+    "showWords": "सब्द देखाव",
+    "reminderBody": "अपन पर्स ल बैकअप ले — 12 शब्द जो आपके फोन ल खोए के बाद वापस लानत हवय ।",
+    "backUp": "बैक अप",
+    "notNow": "अभी नइ"
   }
 }

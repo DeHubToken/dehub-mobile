@@ -1789,7 +1789,9 @@
     "exploreWithoutSignInA11y": "Istražite DeHub bez prijave",
     "continueExploringA11y": "Nastavite istraživati DeHub",
     "importWalletRecommended": "Preporučuju se prijave na društvene mreže.",
-    "importWalletPurpose": "Ovaj alat služi za uvoz postojećih računa s DeHub.io."
+    "importWalletPurpose": "Ovaj alat služi za uvoz postojećih računa s DeHub.io.",
+    "importSecretPlaceholder": "12 ili 24 riječi, ili privatni ključ",
+    "invalidImportSecret": "To nije važeća 12/24‑riječna fraza ili privatni ključ"
   },
   "messages": {
     "smartRepliesOff": "Predloženi odgovori isključeni",
@@ -8641,5 +8643,36 @@
     "recommendedBody": "Dostupna je novija verzija DeHuba s važnim sigurnosnim popravcima. Ažurirajte kako bi vaš račun ostao zaštićen.",
     "requiredBody": "Ova verzija DeHuba više nije podržana. Ažurirajte kako biste nastavili koristiti svoj račun.",
     "update": "Ažuriraj sada"
+  },
+  "walletBackup": {
+    "title": "Rezerviraj novčanik",
+    "rowDesc": "Pogledaj svoje 12 riječi ili privatni ključ",
+    "backedUpOn": "Rezervirano {{date}}",
+    "offerTitle": "Rezerviraj svoj novčanik?",
+    "offerBody": "12 riječi koje vraćaju novčanik ako izgubiš telefon ili lozinku. Potrebno je 30 sekundi.",
+    "offerBodyDeviceOnly": "Tvoj novčanik postoji samo na ovom telefonu. Bez ovih riječi, izgubljeni telefon znači izgubljeni novčanik.",
+    "saveNow": "Spremi sada",
+    "skipForNow": "Preskoči za sada",
+    "wordsTitle": "Tvoje 12 riječi",
+    "tapToReveal": "Dodirni za otkrivanje",
+    "hideWords": "Sakrij riječi",
+    "copied": "Kopirano",
+    "wroteThemDown": "Zapisao sam ih",
+    "checkTitle": "Brza provjera",
+    "checkPrompt": "Dodirni riječ #{{n}}",
+    "checkWrong": "Nije ta. Pogledaj riječ #{{n}} ponovno.",
+    "skipCheck": "Preskoči provjeru",
+    "signingIn": "Prijavljujem te…",
+    "warnOwns": "Bilo tko s ovim riječima posjeduje tvoj novčanik.",
+    "warnNeverAsk": "DeHub nikada neće tražiti ih.",
+    "warnPaper": "Zapiši ih na papir, a ne u screenshot ili bilješku.",
+    "tabWords": "12 riječi",
+    "tabPrivateKey": "Privatni ključ",
+    "advanced": "Napredno",
+    "passwordToShowWords": "Unesi lozinku svog novčanika da prikažeš svoje 12 riječi.",
+    "showWords": "Prikaži riječi",
+    "reminderBody": "Rezerviraj svoj novčanik — 12 riječi koje ga vraćaju ako izgubiš telefon.",
+    "backUp": "Rezerviraj",
+    "notNow": "Ne sada"
   }
 }

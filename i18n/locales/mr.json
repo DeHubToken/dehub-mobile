@@ -146,9 +146,9 @@
     "noMoreShorts": "आणखी शॉर्ट्स नाहीत",
     "noShortsFound": "कोणतेही शॉर्ट्स आढळले नाहीत",
     "newMembersHint": "आत्ताच सामील झाला — हॅलो म्हणा",
-    "scroll": "Scroll",
     "noFilterMatches": "तुमच्या फिल्टरशी जुळणारी कोणतीही सामग्री नाही.",
-    "clearFilters": "फिल्टर साफ करा"
+    "clearFilters": "फिल्टर साफ करा",
+    "scroll": "स्क्रोल करा"
   },
   "explore": {
     "all": "सर्व",
@@ -1789,7 +1789,9 @@
     "exploreWithoutSignInA11y": "साइन इन न करता DeHub एक्सप्लोर करा",
     "continueExploringA11y": "DeHub चा शोध सुरू ठेवा",
     "importWalletRecommended": "या सामाजिक लॉगिनची शिफारस केली जाते.",
-    "importWalletPurpose": "DeHub. io वरून विद्यमान खाती आयात करण्यासाठी हे साधन आहे."
+    "importWalletPurpose": "DeHub. io वरून विद्यमान खाती आयात करण्यासाठी हे साधन आहे.",
+    "importSecretPlaceholder": "12 किंवा 24 शब्द, किंवा खाजगी की",
+    "invalidImportSecret": "तो एक वैध 12/24 शब्द वाक्यांश किंवा खाजगी की नाही"
   },
   "messages": {
     "smartRepliesOff": "सुचवलेली उत्तरे बंद केली",
@@ -2660,7 +2662,6 @@
     "viewCount_other": "{{count}} दृश्ये",
     "shareMessage": "हे पहा: {{url}}",
     "hideReplies": "प्रत्युत्तरे लपवा",
-    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
     "rowA11yHint": "या टिप्पणीला प्रत्युत्तर देणे सुरू करते",
     "editingComment": "टिप्पणी संपादित करत आहे",
     "editPlaceholder": "तुमची टिप्पणी संपादित करा...",
@@ -3233,12 +3234,10 @@
       "purgeBody": "{{name}} ने या समुदायात पाठवलेला प्रत्येक संदेश काढला जाईल.",
       "kickBody": "{{name}} ला समुदायातून काढून टाकले जाईल. ते नंतर पुन्हा सामील होऊ शकतात.",
       "bannedUntil": "{{date}} पर्यंत बंदी",
-      "restrictionWithReason": "{{state}} — {{reason}}",
       "mutedUntil": "{{date}} पर्यंत म्यूट",
       "bannedUntilShort": "{{date}} पर्यंत",
       "muteTitle": "{{name}} ला म्यूट करा",
       "banTitle": "{{name}} ला बॅन करा",
-      "reasonCounter": "{{len}}/200",
       "rulesCount": "{{max}} पैकी {{used}}",
       "moveRuleUp": "नियम वर हलवा",
       "moveRuleDown": "नियम खाली हलवा",
@@ -3681,7 +3680,6 @@
     "podBadge": "मागणीनुसार छपाई",
     "podBuyOn": "{{provider}} वर खरेदी करा",
     "podNote": "{{provider}} मागणीनुसार छापून पाठवते. पेमेंट त्यांच्या साइटवर होते.",
-    "podUrlPlaceholder": "https://…",
     "subtitle": "DeHub समुदायाची उत्पादने शोधा",
     "browse": "ब्राउझ करा",
     "myStore": "माझे दुकान",
@@ -4243,7 +4241,6 @@
     "pinMessage": "पिन संदेश",
     "unpinMessage": "संदेश अनपिन करा",
     "jumpToLatest": "नवीनतम मेसेजेसवर जा",
-    "attachGif": "GIF",
     "ban": "बॅन करा",
     "banConfirm": "तुम्हाला खात्री आहे की तुम्ही {{name}} ला बॅन करू इच्छिता?",
     "banFailed": "वापरकर्त्याला बॅन करण्यात अयशस्वी"
@@ -4513,7 +4510,6 @@
     "kindVideo": "व्हिडिओ",
     "kindAudio": "ऑडिओ",
     "kindImage": "चित्रे",
-    "tileSourceKind": "{{source}} · {{kind}}",
     "reviewTitle": "पोस्ट करण्यापूर्वी पुनरावलोकन करा",
     "reviewSubtitle": "{{source}} कडून, {{kind}} म्हणून. तुम्हाला जे काही आवडते ते संपादित करा — मूळ ठेवण्यासाठी शीर्षक रिकामे ठेवा.",
     "reviewName": "शीर्षक",
@@ -6316,7 +6312,6 @@
   },
   "dex": {
     "lowestPrice": "सर्वात कमी किंमत · USD",
-    "lpDhb": "LP · DHB",
     "lpUsd": "एलपी · डॉलर",
     "totalLiquidity": "एकूण तरलता · USD",
     "lowestSell": "सर्वात कमी विक्री · USDC",
@@ -6667,7 +6662,6 @@
       "newDesign": "नवीन डिझाइन",
       "yourDesigns": "तुमची डिझाइन्स",
       "noDesigns": "तुम्ही बनवलेली डिझाइन्स या फोनवर सेव्ह होतात आणि इथे दिसतात.",
-      "dimensions": "{{width}} × {{height}}",
       "aspectStory": "स्टोरी",
       "aspectPost": "पोस्ट",
       "aspectSquare": "चौरस",
@@ -6949,7 +6943,6 @@
       "split": "विभाजित करा",
       "splitHint": "क्लिप विभाजित करण्यासाठी प्लेहेड तिच्या आत हलवा.",
       "speed": "वेग",
-      "speedValue": "{{value}}×",
       "volumeTool": "व्हॉल्यूम",
       "volume": "व्हॉल्यूम {{value}}%",
       "fadeIn": "फेड इन {{value}}s",
@@ -7012,7 +7005,6 @@
       "recording": "गती रेकॉर्ड होत आहे",
       "lanes": "कीफ्रेम्स",
       "scrub": "बदलण्यासाठी डावीकडे किंवा उजवीकडे ओढा.",
-      "segment": "{{from}} → {{to}}",
       "ease": {
         "linear": "रेखीय",
         "ease": "सहज",
@@ -7999,8 +7991,7 @@
       "tier": "टियर",
       "packs": "पॅक्स",
       "emoji": "इमोजी",
-      "stickers": "स्टिकर्स",
-      "gifs": "GIF"
+      "stickers": "स्टिकर्स"
     },
     "signInToCreate": "पॅक तयार करण्यासाठी साइन इन करा",
     "signInToAdd": "जोडण्यासाठी साइन इन करा",
@@ -8641,5 +8632,36 @@
     "recommendedBody": "महत्त्वाच्या सुरक्षा सुधारणांसह DeHub ची नवीन आवृत्ती उपलब्ध आहे. तुमचे खाते सुरक्षित ठेवण्यासाठी अपडेट करा.",
     "requiredBody": "DeHub ची ही आवृत्ती आता समर्थित नाही. तुमचे खाते वापरत राहण्यासाठी अपडेट करा.",
     "update": "आता अपडेट करा"
+  },
+  "walletBackup": {
+    "title": "बॅकअप वॉलेट",
+    "rowDesc": "तुमचे 12 शब्द किंवा प्रायव्हेट की पहा",
+    "backedUpOn": "बॅकअप {{date}}",
+    "offerTitle": "तुमचे पाकीट बॅकअप करायचे?",
+    "offerBody": "आपला फोन किंवा संकेतशब्द गमावल्यास आपले वॉलेट परत आणणारे 12 शब्द यासाठी 30 सेकंदाचा वेळ लागतो.",
+    "offerBodyDeviceOnly": "तुमचे वॉलेट फक्त या फोनवरच राहते. या शब्दांशिवाय, हरवलेला फोन म्हणजे हरवलेली पाकीट.",
+    "saveNow": "आता सेव्ह करा",
+    "skipForNow": "आत्तासाठी वगळा",
+    "wordsTitle": "तुमचे 12 शब्द",
+    "tapToReveal": "प्रकट करण्यासाठी टॅप करा",
+    "hideWords": "शब्द लपवा",
+    "copied": "कॉपी केले",
+    "wroteThemDown": "मी त्यांना खाली",
+    "checkTitle": "त्वरित तपासणी",
+    "checkPrompt": "#{{n}} या शब्दावर टॅप करा",
+    "checkWrong": "ते नाही. #{{n}} पुन्हा शब्द पहा.",
+    "skipCheck": "चेक वगळा",
+    "signingIn": "तुम्हाला साइन इन करत आहे...",
+    "warnOwns": "ज्याच्याकडे हे शब्द आहेत, त्याच्याजवळच तुमची पाकीटं आहेत.",
+    "warnNeverAsk": "दीपिका कधीही चाहत्यांना डेट करणार नाही.",
+    "warnPaper": "ते कागदावर लिहा, स्क्रीनशॉट किंवा नोट्स अॅपमध्ये नाही.",
+    "tabWords": "12 शब्द",
+    "tabPrivateKey": "खाजगी की",
+    "advanced": "प्रगत",
+    "passwordToShowWords": "तुमचे 12 शब्द दर्शविण्यासाठी तुमचा वॉलेट पासवर्ड टाका.",
+    "showWords": "शब्द दर्शवा",
+    "reminderBody": "आपला फोन हरवला तर परत आणणार्या 12 शब्दांचा बॅकअप घ्या.",
+    "backUp": "बॅक अप",
+    "notNow": "आता नाही"
   }
 }

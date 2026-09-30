@@ -1790,7 +1790,9 @@
     "exploreWithoutSignInA11y": "Ṣàwárí DeHub láìṣe ìforúkọsílẹ̀",
     "continueExploringA11y": "Tesiwaju lati ṣawari DeHub",
     "importWalletRecommended": "A ròyìn ìforúkọsílẹ̀ àwùjọ.",
-    "importWalletPurpose": "Ọpa yìí jẹ́ fún gbígbé àkáǹtì tí ó wà láti DeHub.io wọlé."
+    "importWalletPurpose": "Ọpa yìí jẹ́ fún gbígbé àkáǹtì tí ó wà láti DeHub.io wọlé.",
+    "importSecretPlaceholder": "12 tabi 24 ọrọ, tabi bọtini ikọkọ",
+    "invalidImportSecret": "Kò ṣe àfihàn 12/24-ọrọ tó pé tàbí bọtini ikọkọ"
   },
   "messages": {
     "smartRepliesOff": "A ti pa àwọn èsì tí a dábàá",
@@ -2953,7 +2955,8 @@
     "dhb_found_on_both_chains": "Awọn ami ti a rii lori awọn pq mejeeji",
     "staking_dhb": "Awọn ami ti a fi sinu idogo...",
     "dhb_token_not_configured": "A ko ṣeto ami DeHub fun {{chain}}.",
-    "dhb_staked_on_chain": "{{amount}} ami ti a fi sinu idogo lori {{chain}}."
+    "dhb_staked_on_chain": "{{amount}} ami ti a fi sinu idogo lori {{chain}}.",
+    "reported_for_moderation": "Ìtànkálẹ̀ fún ìtẹ̀sí ìtẹ̀sí àìmọ̀lára nípasẹ̀ àwọn olùtajà àkọ́kọ́"
   },
   "staking": {
     "title": "Staking",
@@ -5160,7 +5163,8 @@
     "coverFrames": "Yan àwo àtẹsẹ kan",
     "coverFrame": "Lo àwo àtẹsẹ {{index}} gẹ́gẹ́ bí àwo àtẹsẹ",
     "uploadCover": "Gbé àwo àtẹsẹ kan sókè",
-    "editFailed": "Kò ṣeé ṣe láti fi ìgbésẹ̀ yìí sílẹ̀. Gbìyànjú lẹ́ẹ̀kan síi."
+    "editFailed": "Kò ṣeé ṣe láti fi ìgbésẹ̀ yìí sílẹ̀. Gbìyànjú lẹ́ẹ̀kan síi.",
+    "chooseDatabase": "Yan Ilé-ìkànsí Aláìlòpin"
   },
   "bounty": {
     "claimed": "Ti gbà",
@@ -5285,7 +5289,8 @@
     "tokensUnit": "àmi-òwo",
     "atPreListingRate": "{{amount}} ní iye àkójọ",
     "paidToCreatorWallet": "Lọ taara si apamọwọ ẹlẹda.",
-    "creatorPaidDirectNote": "Ìpín olùṣẹ̀dá náà lọ tààrà sí àpamọ́ wọn ní àsìkò tí o bá ṣe ìforúkọsílẹ̀. DeHub máa ń san owó orí pẹpẹ kékeré."
+    "creatorPaidDirectNote": "Ìpín olùṣẹ̀dá náà lọ tààrà sí àpamọ́ wọn ní àsìkò tí o bá ṣe ìforúkọsílẹ̀. DeHub máa ń san owó orí pẹpẹ kékeré.",
+    "creatorEarnsDirect": "Àwọn alábàáṣepọ̀ ń san ní àmi DeHub. Ìpín rẹ̀ ń wọ́ sínú apamọwọ rẹ̀ lẹ́sẹ̀kẹsẹ̀ tí wọ́n bá forúkọ sílẹ̀, lẹ́yìn fífi owó pẹpẹ̀kìkì fún ìpele àmi rẹ̀ kúrò."
   },
   "live": {
     "notSet": "Kò tíì ṣètò",
@@ -5996,7 +6001,6 @@
     "viewFeed": "Wo oúnjẹ rẹ",
     "yourChannel": "Ikanni rẹ",
     "yourChannelHint": "Fún àdírẹ̀sì ikanni rẹ — àmúlò lórí àwọn iṣẹ́ tirẹ̀ náà.",
-    "placeholder": "youtube.com/@you, tiktok.com/@you, vimeo.com/you…",
     "costsNote": "San pẹlu àmì DeHub, lẹ̀ẹ̀kan, ṣaaju kí ìpele náà tó bẹ̀rẹ̀. Àwọn tó ní àmì-ìdánilẹ́kọ̀ọ́ san díẹ̀ - ìdáwọ́là rẹ ni a fi sí ìwọ̀n náà. Tí a kò bá lè fi fídíò kan wọlé, ìpín rẹ̀ ni a ó fi padà sí ìṣíwọ̀ tókù rẹ."
   },
   "calls": {
@@ -7540,7 +7544,8 @@
           "1": "Awọn imọran lọ taara si apamọwọ ẹlẹda ni awọn ami DeHub.",
           "2": "O le ṣeto iye imọran nipasẹ awọn bọtini yiyan iyara tabi tẹ iye ti adani.",
           "3": "Awọn ifiweranṣẹ ti a ti bukun ni a le wọle si lati oju-iwe Awọn iwe ti a ti bukun ni apa osi."
-        }
+        },
+        "intro": "Ṣe ìbáṣepọ̀ pẹ̀lú akoonu nípa fífi ìbò, àlàyé, fífi owó tip, fifi sí àkọọlẹ, pín, àti túmọ̀."
       },
       "explore-search": {
         "title": "Ṣawari & Wa",
@@ -7647,7 +7652,8 @@
           "2": "Wọ iye àwọn àmì tí o fẹ́ ṣe.",
           "3": "Yan ẹ̀wọ̀n tí o fẹ́ gbá lórí.",
           "4": "Jẹ́ kí o rí ìfowópamọ́ náà nínú àpò owó rẹ (àwọn àpò owó alátòkè) tàbí ó máa ń ṣe é fúnra rẹ̀ (ìwọ̀ sílẹ̀ pẹ̀lú àwọn àkọsílẹ̀ àwùjọ).",
-          "5": "Wo iye rẹ tí ó dúró àti èrè èyíkéyìí tí ó ń dúró dè é."
+          "5": "Wo iye rẹ tí ó dúró àti èrè èyíkéyìí tí ó ń dúró dè é.",
+          "6": "Láti yọkúrò nínú ìdákẹ́jẹ́, tẹ iye náà sílẹ̀ kí o sì jẹ́rìí ìbáṣepọ̀ yọkúrò."
         },
         "tips": {
           "1": "Ìgbekalẹ̀ pọ̀ sí iwọ̀n ìdìbò rẹ nínú àwọn ìgbìmọ̀ ìṣàkóso.",
@@ -7859,7 +7865,8 @@
         },
         "tips": {
           "1": "Ìfaradà slippage tó ga = ó ṣeéṣe láti ṣe, ṣùgbọ́n ó ṣeéṣe fún iye owó tí ó burú jù.",
-          "2": "Máa ṣe àyẹ̀wò iye owó pàṣípààrọ̀ kí o tó jẹ́rìí."
+          "2": "Máa ṣe àyẹ̀wò iye owó pàṣípààrọ̀ kí o tó jẹ́rìí.",
+          "3": "O lè ṣètò ìfarapa àdáni nínú àpótí àtúnṣe."
         }
       },
       "bridge": {
@@ -8036,7 +8043,8 @@
       "itemLimit": "Àkójọ yìí kún fún ìpele ìbánisọ̀rọ̀ rẹ.",
       "fileType": "Lo àwòrán PNG, GIF, WebP tàbí JPEG",
       "fileSize": "Àwọn fáìlì gbọ́dọ̀ jẹ́ {{mb}} MB tàbí kéékèèké",
-      "generic": "Nǹkan kan kò lọ dáadáa. Gbìyànjú lẹ́ẹ̀kan síi."
+      "generic": "Nǹkan kan kò lọ dáadáa. Gbìyànjú lẹ́ẹ̀kan síi.",
+      "packLimit": "O ti lo gbogbo àyè àpò tí ìpele àmi rẹ̀ ń jẹ́ kí o ní fún irú yìí."
     }
   },
   "multiPost": {
@@ -8390,7 +8398,8 @@
     "faqPayInDhbA": "Awọn sisanwo kaadi ni ifilọlẹ. Sisanwo ni awọn ami DeHub n bọ laipẹ ati pe yoo pẹlu ẹdinwo.",
     "checkoutNotice": "Atokọ isanwo ṣiṣi dehub.io ni ẹrọ aṣawakiri rẹ. Isanwo ni DeHub ṣe, kii ṣe Google Play.",
     "notAvailableHere": "Awọn eto ko le ra ni app yii ni agbegbe rẹ.",
-    "checkoutUnavailable": "Atokọ isanwo ko si lọwọlọwọ. Jọwọ gbiyanju lẹẹkansi nigbamii."
+    "checkoutUnavailable": "Atokọ isanwo ko si lọwọlọwọ. Jọwọ gbiyanju lẹẹkansi nigbamii.",
+    "followerInsightsDetail": "Wo àwọn ọmọlẹ́yìn tó ń bá ọ̀ pọ̀ jùlọ àti bí wọ́n ṣe ń ṣe — ayanfẹ, àtúnṣe, àlàyé, tip"
   },
   "pricing": {
     "plansForEveryWorkflow": "Awọn eto fun gbogbo iṣẹ",
@@ -8589,7 +8598,8 @@
     "pay": {
       "title": "Páàwón {{name}}?",
       "confirm": "San {{amount}} DHB",
-      "sent": "San {{amount}} DHB sí {{name}}."
+      "sent": "San {{amount}} DHB sí {{name}}.",
+      "body": "DHB ń lọ taara sí apamọwọ ohun elo, {{wallet}}. Ìsanwó kò lè yípadà."
     },
     "add": {
       "title": "Fi {{name}} kún un?",
@@ -8633,5 +8643,36 @@
     "recommendedBody": "Ẹ̀yà DeHub tuntun wà pẹ̀lú àwọn àtúnṣe ààbò pàtàkì. Ṣe àtúnṣe kí àkáǹtì rẹ lè wà ní ààbò.",
     "requiredBody": "A kò ṣe àtìlẹ́yìn fún ẹ̀yà DeHub yìí mọ́. Ṣe àtúnṣe láti máa lo àkáǹtì rẹ lọ.",
     "update": "Ṣe àtúnṣe báyìí"
+  },
+  "walletBackup": {
+    "title": "Ṣe àtúnṣe àpamọ́",
+    "rowDesc": "Wo 12 ọrọ rẹ tàbí bọtini ikọkọ",
+    "backedUpOn": "Tún àtúnṣe {{date}}",
+    "offerTitle": "Ṣe àtúnṣe àpamọ́ rẹ?",
+    "offerBody": "12 ọrọ tó máa tún àpamọ́ rẹ padà bí o bá padanu foonu rẹ tàbí ọrọìwọlé. O gba iṣẹju 30.",
+    "offerBodyDeviceOnly": "Àpamọ́ rẹ máa wà lórí foonu yìí nikan. Bẹ́ẹ̀ni, bí o bá padanu foonu, àpamọ́ náà padanu.",
+    "saveNow": "Fipamọ́ báyìí",
+    "skipForNow": "Ṣe àìpẹ̀ fún báyìí",
+    "wordsTitle": "Ọ̀rọ̀ 12 rẹ",
+    "tapToReveal": "Tẹ̀ sílẹ̀ láti fi hàn",
+    "hideWords": "Pẹ̀lú àwọn ọrọ̀",
+    "copied": "Kópa",
+    "wroteThemDown": "Mo ti kọ́ wọn sílẹ̀",
+    "checkTitle": "Ìdánwò tó rọrùn",
+    "checkPrompt": "Tẹ̀ sílẹ̀ ọrọ̀ #{{n}}",
+    "checkWrong": "Kò ṣe àfihàn yẹn. Wo ọrọ̀ #{{n}} lẹ́ẹ̀kansi.",
+    "skipCheck": "Ṣe àìpẹ̀ ìdánwò",
+    "signingIn": "Ìwọ̀n àkọ́kọ́ rẹ…",
+    "warnOwns": "Ẹnikẹ́ni tó ní àwọn ọrọ̀ yìí ni àpamọ́ rẹ.",
+    "warnNeverAsk": "DeHub kò ní bẹ̀rẹ̀ fún wọn.",
+    "warnPaper": "Kọ́ wọn sí ìwé, kì í ṣe ní àwòrán àyíká tàbí ohun ìtẹ̀sí àkọ́kọ́.",
+    "tabWords": "12 ọrọ",
+    "tabPrivateKey": "Bọtini ikọkọ",
+    "advanced": "Àtúnṣe",
+    "passwordToShowWords": "Tẹ̀ ọrọìwọlé àpamọ́ rẹ láti fi hàn 12 ọrọ rẹ.",
+    "showWords": "Fi hàn àwọn ọrọ̀",
+    "reminderBody": "Ṣe àtúnṣe àpamọ́ rẹ — 12 ọrọ tó máa tún àpamọ́ rẹ padà bí o bá padanu foonu rẹ.",
+    "backUp": "Ṣe àtẹ̀yìnwá",
+    "notNow": "Kò ní báyìí"
   }
 }

@@ -1789,7 +1789,9 @@
     "exploreWithoutSignInA11y": "Utforsk DeHub uten å logge inn",
     "continueExploringA11y": "Fortsett å utforske DeHub",
     "importWalletRecommended": "Sosiale innlogginger anbefales.",
-    "importWalletPurpose": "Dette verktøyet er for å importere eksisterende kontoer fra DeHub.io."
+    "importWalletPurpose": "Dette verktøyet er for å importere eksisterende kontoer fra DeHub.io.",
+    "importSecretPlaceholder": "12 eller 24 ord, eller en privat nøkkel",
+    "invalidImportSecret": "Det er ikke en gyldig 12/24-ords fras eller privat nøkkel"
   },
   "messages": {
     "smartRepliesOff": "Foreslåtte svar er slått av",
@@ -5998,7 +6000,6 @@
     "videoCountMany": "{{n}} videoer",
     "videoCountOne": "{{n}} video",
     "videosCount": "{{videos}} videoer",
-    "placeholder": "youtube.com/@you, tiktok.com/@you, vimeo.com/you…",
     "costsNote": "Betalt i DeHub-tokens, én gang, før batchen starter. Badge-innehavere betaler mindre — rabatten din blir brukt på tilbudet. Hvis en video ikke kan importeres, blir dens andel kreditert tilbake mot din neste migrering."
   },
   "calls": {
@@ -6134,7 +6135,6 @@
     "originalSignInUnknown": "Opprinnelig innlogging ble ikke registrert",
     "useOriginalSignIn": "Bruk den opprinnelige innloggingen for profilen du vil ha. Før noe endres, matcher vi den gjenopprettede lommeboken mot en profil over.",
     "retrieving": "Henter gammel lommebok…",
-    "providerForUser": "{{provider}} for @{{name}}",
     "tryProvider": "Prøv {{provider}}",
     "recoverOldAccount": "Gjenopprett gammel {{provider}}-konto",
     "recoverOldNamed": "Gjenopprett gammel {{provider}}-konto @{{name}}",
@@ -8641,5 +8641,36 @@
     "recommendedBody": "En nyere versjon av DeHub med viktige sikkerhetsrettelser er tilgjengelig. Oppdater for å holde kontoen din beskyttet.",
     "requiredBody": "Denne versjonen av DeHub støttes ikke lenger. Oppdater for å fortsette å bruke kontoen din.",
     "update": "Oppdater nå"
+  },
+  "walletBackup": {
+    "title": "Sikkerhetskopier lommebok",
+    "rowDesc": "Se dine 12 ord eller private nøkkel",
+    "backedUpOn": "Sikkerhetskopiert {{date}}",
+    "offerTitle": "Sikkerhetskopier lommeboken din?",
+    "offerBody": "12 ord som bringer lommeboken din tilbake hvis du mister telefonen eller passordet. Tar 30 sekunder.",
+    "offerBodyDeviceOnly": "Lommeboken din lever bare på denne telefonen. Uten disse ordene betyr en tapt telefon en tapt lommebok.",
+    "saveNow": "Lagre nå",
+    "skipForNow": "Hopp over for nå",
+    "wordsTitle": "Dine 12 ord",
+    "tapToReveal": "Trykk for å vise",
+    "hideWords": "Skjul ord",
+    "copied": "Kopiert",
+    "wroteThemDown": "Jeg har skrevet dem ned",
+    "checkTitle": "Rask sjekk",
+    "checkPrompt": "Trykk ord #{{n}}",
+    "checkWrong": "Ikke det. Se på ord #{{n}} igjen.",
+    "skipCheck": "Hopp over sjekk",
+    "signingIn": "Logger deg inn…",
+    "warnOwns": "Alle som har disse ordene eier lommeboken din.",
+    "warnNeverAsk": "DeHub vil aldri be om dem.",
+    "warnPaper": "Skriv dem på papir, ikke i et skjermbilde eller notatapp.",
+    "tabWords": "12 ord",
+    "tabPrivateKey": "Privat nøkkel",
+    "advanced": "Avansert",
+    "passwordToShowWords": "Skriv inn lommebokpassordet ditt for å vise dine 12 ord.",
+    "showWords": "Vis ord",
+    "reminderBody": "Sikkerhetskopier lommeboken — 12 ord som bringer den tilbake hvis du mister telefonen.",
+    "backUp": "Sikkerhetskopier",
+    "notNow": "Ikke nå"
   }
 }

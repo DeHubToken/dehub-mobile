@@ -1789,7 +1789,9 @@
     "exploreWithoutSignInA11y": "Baadh DeHub adigoon saxiixin",
     "continueExploringA11y": "Sii wad sahaminta DeHub",
     "importWalletRecommended": "Calaamadaha bulshada waxaa lagula talinayaa.",
-    "importWalletPurpose": "Qalabkani waa soo dejinta xisaabaadka jira ee DeHub.io."
+    "importWalletPurpose": "Qalabkani waa soo dejinta xisaabaadka jira ee DeHub.io.",
+    "importSecretPlaceholder": "12 ama 24 eray, ama furaha gaarka ah",
+    "invalidImportSecret": "Taasi ma aha weedho sax ah 12/24 eray ama furaha gaarka ah"
   },
   "messages": {
     "smartRepliesOff": "Jawaabaha la soo jeediyay waa la damiyay",
@@ -5997,7 +5999,6 @@
     "viewFeed": "Eeg cuntadaada",
     "yourChannel": "Kanaalkaaga",
     "yourChannelHint": "Ku dheji cinwaankaaga kanaalka — qabashada shaqooyinkeeda sidoo kale.",
-    "placeholder": "youtube.com/@you, tiktok.com/@you, vimeo.com/you…",
     "costsNote": "Waxaa lagu bixiyay calaamado DeHub, hal mar, ka hor inta aan la bilaabin. Kuwa haysta dallacaadda ayaa bixinaya wax yar — dallacaaddaada waxaa lagu dabaqayaa xigashada. Haddii aan la soo dejin karin muuqaal, saamigiisa waxaa lagu soo celinayaa soo guuritaankaaga xiga."
   },
   "calls": {
@@ -8638,5 +8639,36 @@
     "recommendedBody": "Nooc cusub oo DeHub ah ayaa diyaar ah oo leh hagaajinno amni oo muhiim ah. Cusboonaysii si akoonkaagu u ahaado mid la ilaaliyo.",
     "requiredBody": "Noocan DeHub lama taageero mar dambe. Cusboonaysii si aad u sii isticmaasho akoonkaaga.",
     "update": "Hadda cusboonaysii"
+  },
+  "walletBackup": {
+    "title": "Dib u soo celi boorsada",
+    "rowDesc": "Eeg 12 erayadaada ama furahaaga gaarka ah",
+    "backedUpOn": "Badiyadka to{{date}}",
+    "offerTitle": "Dib u soo celi boorsadaada?",
+    "offerBody": "12 eray oo soo celiya boorsadaada haddii aad lumiso taleefankaaga ama lambarkaaga sirta ah. Waxay qaadataa 30 ilbiriqsi.",
+    "offerBodyDeviceOnly": "Boorsadaadu waxay ku nooshahay telefoonkan oo keliya. Erayadan la 'aantood, taleefanka lumay micnaheedu waa jeebka lumay.",
+    "saveNow": "Keydso hadda",
+    "skipForNow": "U bood hadda",
+    "wordsTitle": "12 Erayadaada",
+    "tapToReveal": "Taabo si aad u muujiso",
+    "hideWords": "Erayada qariya",
+    "copied": "La koobiyeeyay",
+    "wroteThemDown": "Waxaan iyaga ku qoray hoos.",
+    "checkTitle": "Si dhakhso ah u hubi",
+    "checkPrompt": "Taabo erayga # {{n}}",
+    "checkWrong": "Ma aha midaas. fiiri ereyga #{{n}} mar kale.",
+    "skipCheck": "Jeegga ka bood",
+    "signingIn": "Saxiixa adiga...",
+    "warnOwns": "Qof kasta oo erayadan leh wuxuu leeyahay boorsadaada.",
+    "warnNeverAsk": "DeHub waligeed ma weydiisan doono.",
+    "warnPaper": "Ku qor warqad, ha ku qorin shaashadda ama barnaamijka qoraallada.",
+    "tabWords": "12 ereyo",
+    "tabPrivateKey": "Furaha gaarka ah",
+    "advanced": "Hormarsan",
+    "passwordToShowWords": "Gali lambarkaaga sirta ah ee boorsada si aad u muujiso erayadaada 12.",
+    "showWords": "Muuji ereyada",
+    "reminderBody": "Dib u soo celi boorsadaada — 12 eray oo dib u soo celiya haddii aad lumiso taleefankaaga.",
+    "backUp": "Dib u soo celi",
+    "notNow": "Hadda ma ahan"
   }
 }

@@ -1790,7 +1790,9 @@
     "exploreWithoutSignInA11y": "Hlola i-DeHub ngaphandle kokungena ngemvume",
     "continueExploringA11y": "Qhubeka nokuhlola i-DeHub",
     "importWalletRecommended": "Ukungena ku-akhawunti komphakathi kuyatuswa.",
-    "importWalletPurpose": "Leli thuluzi lokungenisa ama-akhawunti akhona ku-DeHub.io."
+    "importWalletPurpose": "Leli thuluzi lokungenisa ama-akhawunti akhona ku-DeHub.io.",
+    "importSecretPlaceholder": "Amagama angu-12 noma angu-24, noma ukhiye wangasese",
+    "invalidImportSecret": "Lowo akuwona umusho wamagama angu-12/24 ovumelekile noma ukhiye wangasese"
   },
   "messages": {
     "smartRepliesOff": "Izimpendulo eziphakanyisiwe zivaliwe",
@@ -6029,7 +6031,6 @@
     "viewFeed": "Buka i-feed yakho",
     "yourChannel": "Isiteshi sakho",
     "yourChannelHint": "Namathisela ikheli lakho lesiteshi — isibambo emisebenzini yaso futhi.",
-    "placeholder": "youtube.com/@you, tiktok.com/@you, vimeo.com/you…",
     "costsNote": "Amathokheni we-DeHub, kanye, ngaphambi kokuba iqembu liqale. Abanikazi bamabheji bakhokha kancane - isaphulelo sakho sisetshenziswa ku-quote. Uma ividiyo ingalethwa, isabelo sayo sibuyiselwa ku-migration yakho elandelayo."
   },
   "calls": {
@@ -8671,5 +8672,36 @@
     "recommendedBody": "Kukhona inguqulo entsha ye-DeHub enokulungiswa okubalulekile kwezokuphepha. Buyekeza ukuze i-akhawunti yakho ihlale ivikelekile.",
     "requiredBody": "Le nguqulo ye-DeHub ayisasekelwa. Buyekeza ukuze uqhubeke usebenzisa i-akhawunti yakho.",
     "update": "Buyekeza manje"
+  },
+  "walletBackup": {
+    "title": "Buyela emuva esikhwameni semali",
+    "rowDesc": "Bona amagama akho angu-12 noma ukhiye wangasese",
+    "backedUpOn": "Isipele {{date}}",
+    "offerTitle": "Buyela emuva esikhwameni sakho semali?",
+    "offerBody": "Amagama angu-12 abuyisa isikhwama sakho semali uma ulahlekelwa ifoni noma iphasiwedi. Kuthatha imizuzwana engu-30.",
+    "offerBodyDeviceOnly": "Isikhwama sakho semali sihlala kuphela kule foni. Ngaphandle kwala mazwi, ucingo olulahlekile lusho isikhwama semali esilahlekile.",
+    "saveNow": "Gcina manje",
+    "skipForNow": "Yeqa okwamanje",
+    "wordsTitle": "Amagama akho angu-12",
+    "tapToReveal": "Thepha ukuze uveze",
+    "hideWords": "Fihla amagama",
+    "copied": "Kukopishiwe",
+    "wroteThemDown": "Ngizibhalile",
+    "checkTitle": "Ukuhlola okusheshayo",
+    "checkPrompt": "Thepha igama elithi # {{n}}",
+    "checkWrong": "Akuyona leyo. Bheka igama elithi #{{n}} futhi.",
+    "skipCheck": "Yeqa ukuhlola",
+    "signingIn": "Ukukungenisa ngemvume...",
+    "warnOwns": "Noma ubani onala mazwi ungumnikazi wesikhwama sakho semali.",
+    "warnNeverAsk": "I-DeHub ayisoze yabacela.",
+    "warnPaper": "Zibhale ephepheni, hhayi esithombeni seskrini noma ku-app yamanothi.",
+    "tabWords": "Amagama angu-12",
+    "tabPrivateKey": "Ukhiye wangasese",
+    "advanced": "Okuthuthukisiwe",
+    "passwordToShowWords": "Faka iphasiwedi yakho ye-wallet ukuze ubonise amagama akho angu-12.",
+    "showWords": "Bonisa amagama",
+    "reminderBody": "Buyela emuva esikhwameni sakho semali — amagama angu-12 ayibuyisayo uma ulahlekelwa ifoni yakho.",
+    "backUp": "Buyela emuva",
+    "notNow": "Hhayi manje"
   }
 }

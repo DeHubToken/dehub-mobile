@@ -1802,7 +1802,9 @@
     "exploreWithoutSignInA11y": "Osoo hin seenin DeHub qoradhu",
     "continueExploringA11y": "DeHub qorachuu itti fufaa",
     "importWalletRecommended": "Galmeen hawaasummaa ni gorfama.",
-    "importWalletPurpose": "Meeshaan kun herrega jiran DeHub.io irraa galchuuf."
+    "importWalletPurpose": "Meeshaan kun herrega jiran DeHub.io irraa galchuuf.",
+    "importSecretPlaceholder": "Jechoota 12 ykn 24, ykn furtuu dhuunfaa",
+    "invalidImportSecret": "Sun gaalee jechoota 12/24 ykn furtuu dhuunfaa sirrii miti"
   },
   "messages": {
     "smartRepliesOff": "Deebiiwwan yaadaman dhaamamaniiru",
@@ -8690,5 +8692,36 @@
     "recommendedBody": "Gosni DeHub haaraan sirreeffama nageenyaa barbaachisoo qabu jira. Herreegni kee eegamee akka turuuf haaromsi.",
     "requiredBody": "Gosni DeHub kun deeggarsa hin qabu. Herreega kee itti fufuun fayyadamuuf haaromsi.",
     "update": "Amma haaromsi"
+  },
+  "walletBackup": {
+    "title": "Boorsaa duubatti deebi'aa",
+    "rowDesc": "Jechoota 12 ykn furtuu dhuunfaa kee ilaali",
+    "backedUpOn": "Duubatti deebi'ee {{date}}",
+    "offerTitle": "Borsaa keessan duubatti deebisuu?",
+    "offerBody": "Jechoota 12 kan bilbila ykn password yoo dhabdan boorsaa keessan deebisan. Sekondii 30 fudhata.",
+    "offerBodyDeviceOnly": "Wallet keessan bilbila kana qofa irratti jiraata. Jechoota kana malee bilbilli bade jechuun boorsaa bade jechuudha.",
+    "saveNow": "Amma qusadhaa",
+    "skipForNow": "Ammaaf darbi",
+    "wordsTitle": "Jechoota kee 12",
+    "tapToReveal": "Mul'isuuf tuqi",
+    "hideWords": "Jecha dhoksi",
+    "copied": "Koppii godhame",
+    "wroteThemDown": "Isaan kana barreesseen jira",
+    "checkTitle": "Saffisaan sakatta'uu",
+    "checkPrompt": "Jecha #{{n}} jedhu tuqi.",
+    "checkWrong": "Isa sana miti. Ammas jecha #{{n}} ilaalaa.",
+    "skipCheck": "Cheekii darbuu",
+    "signingIn": "Isin galmaa'aa jira...",
+    "warnOwns": "Namni jechoota kana qabu kamiyyuu boorsaa keessan qaba.",
+    "warnNeverAsk": "DeHub gonkumaa isaan hin gaafatu.",
+    "warnPaper": "Waraqaa irratti barreessi malee appii screenshot ykn notes irratti hin barreessi.",
+    "tabWords": "jechoota 12",
+    "tabPrivateKey": "Furtuu dhuunfaa",
+    "advanced": "Hammayyaa'aa",
+    "passwordToShowWords": "Jechoota 12 keessan agarsiisuuf jecha icciitii boorsaa keessanii galchaa.",
+    "showWords": "Jechoota agarsiisi",
+    "reminderBody": "Boorsaa keessan duubatti deebi'aa — jechoota 12 kanneen yoo bilbila keessan dhabdan deebisan.",
+    "backUp": "Duubatti deebi'aa",
+    "notNow": "Amma miti"
   }
 }
