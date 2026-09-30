@@ -25,9 +25,10 @@ const MutualFollowers: React.FC<MutualFollowersProps> = ({ mutuals }) => {
   } else if (names.length === 2) {
     text = `Followed by ${names[0]} and ${names[1]}`;
   } else {
-    text = `Followed by ${names[0]}, ${names[1]} and ${names.slice(2).join(", ")}${
-      remaining > 0 ? ` and ${remaining} other${remaining > 1 ? "s" : ""}` : ""
-    }`;
+    text =
+      remaining > 0
+        ? `Followed by ${names.join(", ")} +${remaining}`
+        : `Followed by ${names[0]}, ${names[1]} and ${names[2]}`;
   }
 
   return (
