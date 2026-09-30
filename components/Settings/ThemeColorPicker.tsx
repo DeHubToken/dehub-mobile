@@ -12,7 +12,7 @@ import Slider from '@react-native-community/slider';
 import { useTranslation } from 'react-i18next';
 import Icon from '../ui/Icon';
 import { useAppTheme } from '../../context/ThemeContext';
-import { useAuthState } from '../../context/AuthContext';
+import { useUser } from '../../context/AuthContext';
 import { getAvatarUrl } from '../../libs/misc';
 import { extractBrandColors } from '../../libs/brandColors';
 import { toastError } from '../../libs/toast';
@@ -21,9 +21,9 @@ import { DEFAULT_THEME_HUES, THEME_COLOR, hexToHue, hueToHex } from '../../theme
 const RAINBOW = ['#ff0000', '#ff9900', '#33cc33', '#0099ff', '#cc33ff'];
 const METAL = ['#8a9099', '#dfe4ea', '#ffffff', '#aeb6c2', '#6b7280', '#c4ccd6', '#8a9099'];
 
-const Dot: React.FC<{ colors?: string[]; color?: string; size?: number; radius?: number; children?: React.ReactNode }> = ({
+const Dot: React.FC<{ colors?: string[]; fill?: string; size?: number; radius?: number; children?: React.ReactNode }> = ({
   colors,
-  color,
+  fill,
   size = 20,
   radius,
   children,
@@ -37,7 +37,7 @@ const Dot: React.FC<{ colors?: string[]; color?: string; size?: number; radius?:
     borderColor: 'rgba(255,255,255,0.25)',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: color,
+    backgroundColor: fill,
   };
   if (!colors) return <View style={style}>{children}</View>;
   const stops = colors.length === 1 ? [colors[0], colors[0]] : colors;
@@ -51,7 +51,7 @@ const Dot: React.FC<{ colors?: string[]; color?: string; size?: number; radius?:
 const ThemeColorPicker: React.FC<{ theme: string }> = ({ theme }) => {
   const { t } = useTranslation();
   const { themeHues, setThemeHue, brandColors, setBrandColors } = useAppTheme();
-  const { user } = useAuthState();
+  const user = useUser();
   const defaultValue = DEFAULT_THEME_HUES[theme] ?? 260;
   const value = themeHues[theme] ?? defaultValue;
   const special = value < 0;
@@ -61,19 +61,19 @@ const ThemeColorPicker: React.FC<{ theme: string }> = ({ theme }) => {
   const hexValue = hexDraft ?? (special ? '' : hueToHex(value));
 
   const labels: Record<number, string> = {
-    [THEME_COLOR.WHITE]: t('settings.themeColorWhite', 'White'),
-    [THEME_COLOR.BLACK]: t('settings.themeColorBlack', 'Black'),
-    [THEME_COLOR.RAINBOW]: t('settings.themeColorRainbow', 'Rainbow'),
-    [THEME_COLOR.BRAND]: t('settings.themeColorBrand', 'Brand'),
+    [THEME_COLOR.WHITE]: t('settings.themeColorWhite'),
+    [THEME_COLOR.BLACK]: t('settings.themeColorBlack'),
+    [THEME_COLOR.RAINBOW]: t('settings.themeColorRainbow'),
+    [THEME_COLOR.BRAND]: t('settings.themeColorBrand'),
   };
 
   const brandSwatch = brandColors.length > 0 ? brandColors : METAL;
   const preview =
-    value === THEME_COLOR.WHITE ? <Dot color="#ffffff" size={36} radius={8} />
-      : value === THEME_COLOR.BLACK ? <Dot color="#000000" size={36} radius={8} />
+    value === THEME_COLOR.WHITE ? <Dot fill="#ffffff" size={36} radius={8} />
+      : value === THEME_COLOR.BLACK ? <Dot fill="#000000" size={36} radius={8} />
         : value === THEME_COLOR.RAINBOW ? <Dot colors={RAINBOW} size={36} radius={8} />
           : value === THEME_COLOR.BRAND ? <Dot colors={brandSwatch} size={36} radius={8} />
-            : <Dot color={hueToHex(value)} size={36} radius={8} />;
+            : <Dot fill={hueToHex(value)} size={36} radius={8} />;
 
   // Re-read the picture on every tap, as web does, so the palette never lags
   // a new profile picture or an account switch.
@@ -102,8 +102,8 @@ const ThemeColorPicker: React.FC<{ theme: string }> = ({ theme }) => {
   };
 
   const presets: { mode: number; dot: React.ReactNode }[] = [
-    { mode: THEME_COLOR.WHITE, dot: <Dot color="#ffffff" /> },
-    { mode: THEME_COLOR.BLACK, dot: <Dot color="#000000" /> },
+    { mode: THEME_COLOR.WHITE, dot: <Dot fill="#ffffff" /> },
+    { mode: THEME_COLOR.BLACK, dot: <Dot fill="#000000" /> },
     { mode: THEME_COLOR.RAINBOW, dot: <Dot colors={RAINBOW} /> },
   ];
 
@@ -121,14 +121,14 @@ const ThemeColorPicker: React.FC<{ theme: string }> = ({ theme }) => {
   });
 
   return (
-    <View className="mt-4 mx-4 rounded-xl p-4" style={{ borderWidth: 1, borderColor: 'rgba(255,255,255,0.12)', backgroundColor: 'rgba(0,0,0,0.25)', gap: 16 }}>
-      <View className="flex-row items-start">
-        <View className="mr-3 w-5 h-5 items-center justify-center">
+    <View style={{ marginTop: 16, marginHorizontal: 16, borderRadius: 12, padding: 16, borderWidth: 1, borderColor: 'rgba(255,255,255,0.12)', backgroundColor: 'rgba(0,0,0,0.25)', gap: 16 }}>
+      <View style={{ flexDirection: 'row', alignItems: 'flex-start' }}>
+        <View style={{ marginRight: 12, width: 20, height: 20, alignItems: 'center', justifyContent: 'center' }}>
           <Icon name="Palette" size={20} color="#A1A1AA" />
         </View>
-        <View className="flex-1">
-          <Text className="text-white text-base font-medium">{t('settings.themeColor', 'Theme Color')}</Text>
-          <Text className="text-theme-neutrals-500 text-sm mt-0.5">
+        <View style={{ flex: 1 }}>
+          <Text style={{ color: '#ffffff', fontSize: 16, fontWeight: '500' }}>{t('settings.themeColor', 'Theme Color')}</Text>
+          <Text style={{ color: '#8B8D90', fontSize: 14, marginTop: 2 }}>
             {t('settings.themeColorDesc', 'Pick a custom color for this theme')}
           </Text>
         </View>
@@ -141,12 +141,12 @@ const ThemeColorPicker: React.FC<{ theme: string }> = ({ theme }) => {
             hitSlop={8}
             accessibilityRole="button"
           >
-            <Text className="text-theme-neutrals-400 text-sm">{t('settings.themeColorReset', 'Reset')}</Text>
+            <Text style={{ color: '#A6A9AC', fontSize: 14 }}>{t('settings.themeColorReset', 'Reset')}</Text>
           </Pressable>
         ) : null}
       </View>
 
-      <View className="flex-row flex-wrap" style={{ gap: 8 }}>
+      <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8 }}>
         {presets.map((p) => (
           <Pressable
             key={p.mode}
@@ -159,7 +159,7 @@ const ThemeColorPicker: React.FC<{ theme: string }> = ({ theme }) => {
             style={chip(value === p.mode)}
           >
             {p.dot}
-            <Text className="text-white text-sm">{labels[p.mode]}</Text>
+            <Text style={{ color: '#ffffff', fontSize: 14 }}>{labels[p.mode]}</Text>
           </Pressable>
         ))}
         <Pressable
@@ -171,11 +171,11 @@ const ThemeColorPicker: React.FC<{ theme: string }> = ({ theme }) => {
           style={[chip(value === THEME_COLOR.BRAND), brandLoading ? { opacity: 0.7 } : null]}
         >
           <Dot colors={brandSwatch}>{brandLoading ? <ActivityIndicator size="small" color="#fff" style={{ transform: [{ scale: 0.6 }] }} /> : null}</Dot>
-          <Text className="text-white text-sm">{labels[THEME_COLOR.BRAND]}</Text>
+          <Text style={{ color: '#ffffff', fontSize: 14 }}>{labels[THEME_COLOR.BRAND]}</Text>
         </Pressable>
       </View>
 
-      <View className="flex-row items-center" style={{ gap: 12 }}>
+      <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
         {preview}
         <Slider
           style={{ flex: 1 }}
