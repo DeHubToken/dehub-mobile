@@ -1,7 +1,7 @@
 import React, { createContext, useCallback, useContext, useEffect, useMemo } from 'react';
 import * as SystemUI from 'expo-system-ui';
 import { colorScheme, vars } from 'nativewind';
-import { setAppPref, useAppPrefs } from '../hooks/useAppPrefs';
+import { getAppPrefs, setAppPref, useAppPrefs } from '../hooks/useAppPrefs';
 import {
   getThemeColors,
   setActiveTheme,
@@ -9,6 +9,7 @@ import {
   type ThemeColors,
 } from '../theme/colors';
 import { getThemeSkin, type ThemeSkin } from '../theme/skins';
+import { themeAccent, tintSkin, type Rgb } from '../theme/themeColor';
 // Plain JS shared with the JSX runtime, which loads before any of this.
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { setThemePass } = require('../libs/jsx/shape') as {
@@ -26,6 +27,14 @@ type AppThemeContextValue = {
   /** A canvas theme's chrome (theme/skins.ts), or null for system and minimal. */
   skin: ThemeSkin | null;
   setTheme: (theme: AppThemeName) => void;
+  /** Theme Color per customisable theme (theme/themeColor.ts), and the Brand palette. */
+  themeHues: Record<string, number>;
+  brandColors: string[];
+  /** Set a theme's colour; null goes back to the theme's own. */
+  setThemeHue: (theme: string, value: number | null) => void;
+  setBrandColors: (colors: string[]) => void;
+  /** The colour the theme's glass is tinted with, following Theme Color. */
+  accent: Rgb;
 };
 
 const AppThemeContext = createContext<AppThemeContextValue | null>(null);
@@ -123,7 +132,16 @@ export const AppThemeProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   const prefs = useAppPrefs();
   const theme = prefs.theme;
   const colors = getThemeColors(theme);
-  const skin = getThemeSkin(theme);
+  const { themeHues, brandColors } = prefs;
+  const accent = useMemo(() => themeAccent(theme, themeHues, brandColors), [theme, themeHues, brandColors]);
+  const accentKey = accent.join(',');
+  const baseSkin = getThemeSkin(theme);
+  // Theme tint: the pills and cards take the theme's colour (web #2088). One
+  // object per theme + colour, so the surfaces setControlMaterial owns keep
+  // their identity between renders.
+  const skin = useMemo(() => (baseSkin ? tintSkin(baseSkin, accent) : null),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [baseSkin, accentKey]);
 
   const controlMaterial = useMemo(() => skin ? {
     surface: skin.centre,
@@ -160,9 +178,23 @@ export const AppThemeProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     setAppPref('theme', nextTheme);
   }, []);
 
+  const setThemeHue = useCallback((name: string, next: number | null) => {
+    const current = { ...getAppPrefs().themeHues };
+    if (next === null) delete current[name];
+    else current[name] = next < 0 ? Math.round(next) : ((Math.round(next) % 360) + 360) % 360;
+    setAppPref('themeHues', current);
+  }, []);
+
+  const setBrandColors = useCallback((next: string[]) => {
+    setAppPref('brandColors', next.filter((c) => /^#[0-9a-f]{6}$/i.test(c)).slice(0, 3));
+  }, []);
+
   const value = useMemo<AppThemeContextValue>(
-    () => ({ theme, isLight: false, isMinimal: theme === 'minimal', colors, skin, setTheme }),
-    [colors, setTheme, skin, theme],
+    () => ({
+      theme, isLight: false, isMinimal: theme === 'minimal', colors, skin, setTheme,
+      themeHues, brandColors, setThemeHue, setBrandColors, accent,
+    }),
+    [colors, setTheme, skin, theme, themeHues, brandColors, setThemeHue, setBrandColors, accent],
   );
 
   return <AppThemeContext.Provider value={value}>{children}</AppThemeContext.Provider>;

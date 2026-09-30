@@ -817,7 +817,17 @@
     "channelSpeedCount": "{{count}} kênh phát theo tốc độ của riêng họ.",
     "exportReady": "Đã xuất {{count}} tài khoản, {{saved}} bài đăng đã lưu.",
     "importDone": "Đã theo dõi {{followed}}, đã chặn các thư mục {{blocked}}, {{folders}} được tạo.",
-    "importProgress": "Đang áp dụng {{done}}/{{total}}…"
+    "importProgress": "Đang áp dụng {{done}}/{{total}}…",
+    "themeColor": "Màu chủ đề",
+    "themeColorDesc": "Chọn màu riêng cho chủ đề này",
+    "themeColorReset": "Đặt lại",
+    "themeColorWhite": "Trắng",
+    "themeColorBlack": "Đen",
+    "themeColorRainbow": "Cầu vồng",
+    "themeColorBrand": "Thương hiệu",
+    "themeColorBrandDesc": "Dùng màu từ ảnh đại diện của bạn",
+    "themeColorBrandNoAvatar": "Thêm ảnh đại diện để dùng màu Thương hiệu",
+    "themeColorBrandFailed": "Không đọc được màu từ ảnh đại diện của bạn"
   },
   "common": {
     "mute": "Tắt tiếng",

@@ -815,7 +815,17 @@
     "channelSpeedCount": "{{count}} канали сарфарозгаро дар ҳолати худи худ меоризад.",
     "exportReady": "{{count}} меъёриҳо, {{saved}} мақолаҳои савдодорӣ шудани.",
     "importPartial": "{{count}} меъёриҳои мутобиришавандаи меъёриро мутобири карда намешуд — барҷӯй мутобириҳои навро оғоз кунед.",
-    "importProgress": "Мутобири {{done}} аз {{total}}…"
+    "importProgress": "Мутобири {{done}} аз {{total}}…",
+    "themeColor": "Ранги мавзӯъ",
+    "themeColorDesc": "Барои ин мавзӯъ ранги фармоишӣ интихоб кунед",
+    "themeColorReset": "Барқарор кардан",
+    "themeColorWhite": "Сафед",
+    "themeColorBlack": "Сиёҳ",
+    "themeColorRainbow": "Рангинкамон",
+    "themeColorBrand": "Бренд",
+    "themeColorBrandDesc": "Рангҳои сурати профили худро истифода баред",
+    "themeColorBrandNoAvatar": "Барои истифодаи рангҳои Бренд, сурати профил илова кунед",
+    "themeColorBrandFailed": "Хондани рангҳо аз сурати профили шумо имконнопазир буд"
   },
   "common": {
     "mute": "Хомӯш кардани садо",

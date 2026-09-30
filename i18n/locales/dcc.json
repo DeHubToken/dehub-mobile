@@ -818,7 +818,17 @@
     "exportReady": "{{count}} खाते, {{saved}} सेव किए गए पोस्ट्स निर्यात किए गए।",
     "importDone": "{{followed}} ने {{blocked}} का अनुसरण किया, {{folders}} फोल्डर बनाए गए।",
     "importPartial": "{{count}} खाते अनुसरण नहीं किए जा सके — उन्हें फिर से प्रयास करने के लिए आयात करें।",
-    "importProgress": "{{done}} को {{total}} लागू कर रहा है…"
+    "importProgress": "{{done}} को {{total}} लागू कर रहा है…",
+    "themeColor": "تھیم کلر",
+    "themeColorDesc": "اس تھیم کو اپنی مرضی کا رنگ چنو",
+    "themeColorReset": "ری سیٹ",
+    "themeColorWhite": "سفید",
+    "themeColorBlack": "کالا",
+    "themeColorRainbow": "رینبو",
+    "themeColorBrand": "برانڈ",
+    "themeColorBrandDesc": "اپنی پروفائل تصویر کے رنگ استعمال کرو",
+    "themeColorBrandNoAvatar": "برانڈ رنگ استعمال کرنے کو پروفائل تصویر ڈالو",
+    "themeColorBrandFailed": "تمہاری پروفائل تصویر سے رنگ نکو پڑھ سکے"
   },
   "common": {
     "mute": "آواز بند کرو",

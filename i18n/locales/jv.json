@@ -818,7 +818,17 @@
     "importDone": "Kasus {{followed}}, diblokir {{blocked}}, folder {{folders}} dibangun.",
     "importPartial": "{{count}} akun ora bisa diikuti — run import manèh kanggo nyoba lagi.",
     "importProgress": "Ngawon {{done}} saka {{total}}…",
-    "channelSpeedCount": "{{count}} saluran diputer kanthi kecepatan dhewe."
+    "channelSpeedCount": "{{count}} saluran diputer kanthi kecepatan dhewe.",
+    "themeColor": "Warna tema",
+    "themeColorDesc": "Pilih warna dhewe kanggo tema iki",
+    "themeColorReset": "Balekake",
+    "themeColorWhite": "Putih",
+    "themeColorBlack": "Ireng",
+    "themeColorRainbow": "Kluwung",
+    "themeColorBrand": "Merek",
+    "themeColorBrandDesc": "Nganggo warna foto profilmu",
+    "themeColorBrandNoAvatar": "Tambah foto profil kanggo nganggo warna Merek",
+    "themeColorBrandFailed": "Ora bisa maca warna saka foto profilmu"
   },
   "common": {
     "mute": "Bisu",

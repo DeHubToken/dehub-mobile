@@ -818,7 +818,17 @@
     "exportReady": "{{count}} hasap, {{saved}} saklanan postlar eksport edildi.",
     "importDone": "{{followed}} yzarlanyldy, {{blocked}} bloklandy, {{folders}} papkalar döredildi.",
     "importPartial": "{{count}} hasap yzarlanyp bilinmedi — olary täzeden synanyşmak üçin importy täzeden işlediň.",
-    "importProgress": "{{done}}-dan {{total}}-i ulanyp..."
+    "importProgress": "{{done}}-dan {{total}}-i ulanyp...",
+    "themeColor": "Tema reňki",
+    "themeColorDesc": "Bu tema üçin özbaşdak reňk saýlaň",
+    "themeColorReset": "Arassala",
+    "themeColorWhite": "Ak",
+    "themeColorBlack": "Gara",
+    "themeColorRainbow": "Älemgoşar",
+    "themeColorBrand": "Marka",
+    "themeColorBrandDesc": "Profil suratyňyzyň reňklerini ulanyň",
+    "themeColorBrandNoAvatar": "Marka reňklerini ulanmak üçin profil suraty goşuň",
+    "themeColorBrandFailed": "Profil suratyňyzdan reňkleri okap bolmady"
   },
   "common": {
     "mute": "Sesi öçür",

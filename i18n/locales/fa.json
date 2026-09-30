@@ -818,7 +818,17 @@
     "exportReady": "{{count}} حساب کاربری، {{saved}} پست‌های ذخیره‌شده صادر شدند.",
     "importDone": "پوشه‌های {{followed}} فالو، {{blocked}} مسدود و {{folders}} ایجاد شدند.",
     "importPartial": "حساب‌های کاربری {{count}} قابل دنبال کردن نبودند — برای امتحان مجدد، دستور import را دوباره اجرا کنید.",
-    "importProgress": "اعمال {{done}} از {{total}}…"
+    "importProgress": "اعمال {{done}} از {{total}}…",
+    "themeColor": "رنگ پوسته",
+    "themeColorDesc": "یک رنگ دلخواه برای این پوسته انتخاب کنید",
+    "themeColorReset": "بازنشانی",
+    "themeColorWhite": "سفید",
+    "themeColorBlack": "سیاه",
+    "themeColorRainbow": "رنگین‌کمان",
+    "themeColorBrand": "برند",
+    "themeColorBrandDesc": "استفاده از رنگ‌های عکس نمایه شما",
+    "themeColorBrandNoAvatar": "برای استفاده از رنگ‌های برند، عکس نمایه اضافه کنید",
+    "themeColorBrandFailed": "نتوانستیم رنگ‌ها را از عکس نمایه شما بخوانیم"
   },
   "common": {
     "mute": "بی‌صدا",

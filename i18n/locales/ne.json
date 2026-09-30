@@ -818,7 +818,17 @@
     "exportReady": "{{count}} खाताहरू, {{saved}} बचत गरिएका पोष्टहरू निर्यात गरियो ।",
     "importDone": "फोल्लो गरिएका {{followed}}, ब्लॉक गरिएका {{blocked}}, {{folders}} फोल्डरहरू बनाएका छन्।",
     "importPartial": "{{count}} खाताहरू फोल्लो गर्न सकिएन — पुनः प्रयास गर्ने लागि आयात गर्ने पुनः प्रयास गर्नुहोस्।",
-    "importProgress": "आवेदन {{done}} {{total}}…"
+    "importProgress": "आवेदन {{done}} {{total}}…",
+    "themeColor": "थिम रङ",
+    "themeColorDesc": "यो थिमका लागि अनुकूल रङ छान्नुहोस्",
+    "themeColorReset": "रिसेट",
+    "themeColorWhite": "सेतो",
+    "themeColorBlack": "कालो",
+    "themeColorRainbow": "इन्द्रेणी",
+    "themeColorBrand": "ब्रान्ड",
+    "themeColorBrandDesc": "तपाईंको प्रोफाइल तस्बिरका रङहरू प्रयोग गर्नुहोस्",
+    "themeColorBrandNoAvatar": "ब्रान्ड रङहरू प्रयोग गर्न प्रोफाइल तस्बिर थप्नुहोस्",
+    "themeColorBrandFailed": "तपाईंको प्रोफाइल तस्बिरबाट रङहरू पढ्न सकिएन"
   },
   "common": {
     "mute": "म्युट गर्नुहोस्",

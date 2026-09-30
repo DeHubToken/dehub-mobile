@@ -818,7 +818,17 @@
     "importDone": "फॉलो किए {{followed}}, ब्लॉक किए {{blocked}}, {{folders}} फोल्डर बनाए गए।",
     "importPartial": "{{count}} अकाउंट्स को फॉलो नहीं किया जा सका — फिर से इम्पोर्ट करें ताकि उन्हें पुनः प्रयास कर सकें।",
     "importProgress": "एप्लाई कर रहे {{done}} में {{total}}…",
-    "channelSpeedCount": "{{count}} चैनल(स) अपना गति से चलावेला."
+    "channelSpeedCount": "{{count}} चैनल(स) अपना गति से चलावेला.",
+    "themeColor": "थीम रंग",
+    "themeColorDesc": "ई थीम खातिर कस्टम रंग चुनीं",
+    "themeColorReset": "रीसेट करीं",
+    "themeColorWhite": "सफेद",
+    "themeColorBlack": "काला",
+    "themeColorRainbow": "इंद्रधनुष",
+    "themeColorBrand": "ब्रांड",
+    "themeColorBrandDesc": "आपन प्रोफाइल फोटो के रंग इस्तेमाल करीं",
+    "themeColorBrandNoAvatar": "ब्रांड रंग इस्तेमाल करे खातिर प्रोफाइल फोटो जोड़ीं",
+    "themeColorBrandFailed": "आपन प्रोफाइल फोटो से रंग ना पढ़ल जा सकल"
   },
   "common": {
     "mute": "आवाज़ बंद करीं",

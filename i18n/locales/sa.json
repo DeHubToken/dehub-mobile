@@ -812,7 +812,17 @@
     "smsCodeSent": "कोड भेजा गया। इसमें {{price}} टोकन लगे।",
     "tokenBalanceAmount": "{{amount}} टोकन",
     "importDone": "अनुयायी {{followed}}, अवरुद्ध {{blocked}}, {{folders}} फ़ोल्डर बनाया ।",
-    "importProgress": "अनुप्रयोग {{done}} का {{total}}…"
+    "importProgress": "अनुप्रयोग {{done}} का {{total}}…",
+    "themeColor": "विषयवर्णः",
+    "themeColorDesc": "अस्मै विषयाय अनुकूलितं वर्णं चिनोतु",
+    "themeColorReset": "पुनःस्थापयतु",
+    "themeColorWhite": "श्वेतः",
+    "themeColorBlack": "कृष्णः",
+    "themeColorRainbow": "इन्द्रधनुः",
+    "themeColorBrand": "ब्रैण्ड्",
+    "themeColorBrandDesc": "भवतः प्रतिरूपचित्रस्य वर्णान् प्रयुङ्क्ष्व",
+    "themeColorBrandNoAvatar": "ब्रैण्ड्-वर्णान् प्रयोक्तुं प्रतिरूपचित्रं योजयतु",
+    "themeColorBrandFailed": "भवतः प्रतिरूपचित्रात् वर्णान् पठितुं न शक्तम्"
   },
   "common": {
     "mute": "ध्वनिं निरुध्यताम्",

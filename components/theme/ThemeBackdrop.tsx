@@ -50,7 +50,11 @@ function loadPage(): Promise<string> {
 }
 
 const ThemeBackdrop: React.FC = () => {
-  const { skin, theme } = useAppTheme();
+  const { skin, theme, themeHues, brandColors } = useAppTheme();
+  // Theme Color is read when the page loads, and pushed live after that
+  // (see the effect below), so changing it never reloads the scene.
+  const colorsRef = useRef({ themeHues, brandColors });
+  colorsRef.current = { themeHues, brandColors };
   const [html, setHtml] = useState<string | null>(null);
   const [failed, setFailed] = useState(false);
   const webRef = useRef<WebView>(null);
@@ -70,7 +74,8 @@ const ThemeBackdrop: React.FC = () => {
       loadPage()
         .then((page) => {
           if (cancelled) return;
-          const named = `<script>window.__BACKDROP_THEME=${JSON.stringify(theme)};</script>`;
+          const { themeHues: hues, brandColors: brand } = colorsRef.current;
+          const named = `<script>window.__BACKDROP_THEME=${JSON.stringify(theme)};window.__BACKDROP_HUES=${JSON.stringify(hues)};window.__BACKDROP_BRAND=${JSON.stringify(brand)};</script>`;
           setHtml(page.replace("<head>", `<head>${named}`));
         })
         .catch((e) => log.warn("Theme backdrop unavailable", e));
@@ -80,6 +85,12 @@ const ThemeBackdrop: React.FC = () => {
       clearTimeout(timer);
     };
   }, [skin, theme]);
+
+  useEffect(() => {
+    webRef.current?.injectJavaScript(
+      `window.dehubBackdrop&&window.dehubBackdrop.setColors(${JSON.stringify(themeHues)},${JSON.stringify(brandColors)});true;`,
+    );
+  }, [themeHues, brandColors]);
 
   // Web's own pause gate: stop drawing whenever nothing can see the frames.
   // Also held while the home feed is moving. The phone draws this WebView

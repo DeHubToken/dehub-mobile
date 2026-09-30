@@ -817,7 +817,17 @@
     "exportReady": "{{count}} тіркелгілері, {{saved}} сақталған хабарламалар экспортталды.",
     "importDone": "Келесі {{followed}}, бұғатталған {{blocked}}, {{folders}} Қапшықтар құрылды.",
     "importPartial": "{{count}} тіркелгілерін қадағалау мүмкін болмады — оларды қайта тексеру үшін импортты қайта іске қосыңыз.",
-    "importProgress": "{{done}}-ды {{total}}-ге қолдану…"
+    "importProgress": "{{done}}-ды {{total}}-ге қолдану…",
+    "themeColor": "Тема түсі",
+    "themeColorDesc": "Осы тема үшін таңдаулы түс таңдаңыз",
+    "themeColorReset": "Бастапқы қалпына келтіру",
+    "themeColorWhite": "Ақ",
+    "themeColorBlack": "Қара",
+    "themeColorRainbow": "Кемпірқосақ",
+    "themeColorBrand": "Бренд",
+    "themeColorBrandDesc": "Профиль суретіңіздің түстерін пайдалану",
+    "themeColorBrandNoAvatar": "Бренд түстерін пайдалану үшін профиль суретін қосыңыз",
+    "themeColorBrandFailed": "Профиль суретіңіздің түстерін оқу мүмкін болмады"
   },
   "common": {
     "mute": "Дыбысты өшіру",

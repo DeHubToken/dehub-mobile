@@ -818,7 +818,17 @@
     "exportReady": "{{count}} accounts, {{saved}} opgeslagen berichten geëxporteerd.",
     "importDone": "Gevolgd door {{followed}}, geblokkeerde {{blocked}}, {{folders}} mappen aangemaakt.",
     "importPartial": "{{count}} accounts konden niet worden gevolgd — voer de import opnieuw uit om ze opnieuw te proberen.",
-    "importProgress": "Solliciteren {{done}} van {{total}}…"
+    "importProgress": "Solliciteren {{done}} van {{total}}…",
+    "themeColor": "Themakleur",
+    "themeColorDesc": "Kies een eigen kleur voor dit thema",
+    "themeColorReset": "Herstellen",
+    "themeColorWhite": "Wit",
+    "themeColorBlack": "Zwart",
+    "themeColorRainbow": "Regenboog",
+    "themeColorBrand": "Merk",
+    "themeColorBrandDesc": "Kleuren van je profielfoto gebruiken",
+    "themeColorBrandNoAvatar": "Voeg een profielfoto toe om Merkkleuren te gebruiken",
+    "themeColorBrandFailed": "Kon de kleuren van je profielfoto niet lezen"
   },
   "common": {
     "mute": "Dempen",

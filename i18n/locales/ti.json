@@ -810,7 +810,17 @@
     "tokenBalanceAmount": "{{amount}} ቶክንስ",
     "channelSpeedCount": "{{count}} channel(ታት) ብገዛእ ፍጥነት ይጻወቱ ።",
     "exportReady": "{{count}}መለያታት ፣ {{saved}} ዝተድሓኑ ልኡኽታት ወፃኢ ።",
-    "importPartial": "{{count}} መለያታት ክኽተል ኣይከኣለን — ነቲ ኣታዊ ንምምላስ መሊስካ ስዓቦ ።"
+    "importPartial": "{{count}} መለያታት ክኽተል ኣይከኣለን — ነቲ ኣታዊ ንምምላስ መሊስካ ስዓቦ ።",
+    "themeColor": "ናይ ገጽ ሕብሪ",
+    "themeColorDesc": "ንዚ ገጽ እዚ ብሕታዊ ሕብሪ ምረጽ",
+    "themeColorReset": "ናብ ንቡር መልስ",
+    "themeColorWhite": "ጻዕዳ",
+    "themeColorBlack": "ጸሊም",
+    "themeColorRainbow": "ቀስተ ደመና",
+    "themeColorBrand": "ብራንድ",
+    "themeColorBrandDesc": "ሕብርታት ስእሊ መለለይኻ ተጠቀም",
+    "themeColorBrandNoAvatar": "ናይ ብራንድ ሕብርታት ንምጥቃም፡ ስእሊ መለለዪ ወስኽ",
+    "themeColorBrandFailed": "ካብ ስእሊ መለለይኻ ሕብርታት ከንብብ ኣይከኣለን"
   },
   "common": {
     "mute": "ድምጺ ኣጥፍእ",

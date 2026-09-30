@@ -818,7 +818,17 @@
     "exportReady": "Hesabên {{count}}, nivîsên tomarkirî yên {{saved}} hatin hinardekirin.",
     "importDone": "{{followed}} şopand, {{blocked}} asteng kir, peldankên {{folders}} hatin çêkirin.",
     "importPartial": "Pewandiye {{count}} tokên",
-    "importProgress": "Sepandina {{done}} ji {{total}}…"
+    "importProgress": "Sepandina {{done}} ji {{total}}…",
+    "themeColor": "Rengê Temayê",
+    "themeColorDesc": "Ji bo vê temayê rengekî taybet hilbijêre",
+    "themeColorReset": "Vegerîne",
+    "themeColorWhite": "Spî",
+    "themeColorBlack": "Reş",
+    "themeColorRainbow": "Keskesor",
+    "themeColorBrand": "Marka",
+    "themeColorBrandDesc": "Rengên wêneyê profîla xwe bikar bîne",
+    "themeColorBrandNoAvatar": "Ji bo bikaranîna rengên Marka wêneyekî profîlê zêde bike",
+    "themeColorBrandFailed": "Rengên ji wêneyê profîlê nehatin xwendin"
   },
   "common": {
     "mute": "Bêdeng bike",

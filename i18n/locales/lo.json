@@ -816,7 +816,17 @@
     "exportReady": "{{count}} ບັນຊີ, {{saved}} ຂໍ້ຄວາມທີ່ຖືກປະຫຍັດໄດ້ສົ່ງອອກ.",
     "importDone": "ຕິດຕາມ {{followed}}, ຖືກບລັອກ {{blocked}}, {{folders}} ໂຟນເດີທີ່ສ້າງຂື້ນ.",
     "importPartial": "{{count}} ບັນຊີບໍ່ສາມາດຕິດຕາມໄດ້ — ດໍາ ເນີນການ ນໍາ ເຂົ້າອີກຄັ້ງເພື່ອລອງ ໃຫມ່ ອີກຄັ້ງ.",
-    "importProgress": "ການສະໝັກ {{done}} ຂອງ {{total}}..."
+    "importProgress": "ການສະໝັກ {{done}} ຂອງ {{total}}...",
+    "themeColor": "ສີຂອງຮູບແບບ",
+    "themeColorDesc": "ເລືອກສີເອງສຳລັບຮູບແບບນີ້",
+    "themeColorReset": "ຣີເຊັດ",
+    "themeColorWhite": "ຂາວ",
+    "themeColorBlack": "ດຳ",
+    "themeColorRainbow": "ຮຸ້ງ",
+    "themeColorBrand": "ແບຣນ",
+    "themeColorBrandDesc": "ໃຊ້ສີຈາກຮູບໂປຣໄຟລ໌ຂອງເຈົ້າ",
+    "themeColorBrandNoAvatar": "ເພີ່ມຮູບໂປຣໄຟລ໌ເພື່ອໃຊ້ສີແບຣນ",
+    "themeColorBrandFailed": "ອ່ານສີຈາກຮູບໂປຣໄຟລ໌ຂອງເຈົ້າບໍ່ໄດ້"
   },
   "common": {
     "mute": "ປິດສຽງ",

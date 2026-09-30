@@ -818,7 +818,17 @@
     "exportReady": "{{count}} conturi, {{saved}} postări salvate exportate.",
     "importDone": "Urmăriți {{followed}}, blocat {{blocked}}, {{folders}} foldere create.",
     "importPartial": "{{count}} conturi nu au putut fi urmărite — rulați importul din nou pentru a încerca din nou.",
-    "importProgress": "Se aplică {{done}} din {{total}}…"
+    "importProgress": "Se aplică {{done}} din {{total}}…",
+    "themeColor": "Culoarea temei",
+    "themeColorDesc": "Alege o culoare personalizată pentru această temă",
+    "themeColorReset": "Resetează",
+    "themeColorWhite": "Alb",
+    "themeColorBlack": "Negru",
+    "themeColorRainbow": "Curcubeu",
+    "themeColorBrand": "Brand",
+    "themeColorBrandDesc": "Folosește culorile pozei tale de profil",
+    "themeColorBrandNoAvatar": "Adaugă o poză de profil ca să folosești culorile de brand",
+    "themeColorBrandFailed": "Nu am putut citi culorile din poza ta de profil"
   },
   "common": {
     "mute": "Dezactivează sunetul",

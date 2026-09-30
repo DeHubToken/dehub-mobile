@@ -818,7 +818,17 @@
     "exportReady": "{{count}} account, {{saved}} na na-save na mga post na na-export.",
     "importDone": "Sinundan ang {{followed}}, binlock ang {{blocked}}, {{folders}} na mga folder ang nilikha.",
     "importPartial": "Hindi masundan ang {{count}} na mga account — patakbuhin muli ang pag-import upang subukang muli ang mga ito.",
-    "importProgress": "Inilalapat ang {{done}} ng {{total}}…"
+    "importProgress": "Inilalapat ang {{done}} ng {{total}}…",
+    "themeColor": "Kulay ng tema",
+    "themeColorDesc": "Pumili ng sariling kulay para sa temang ito",
+    "themeColorReset": "I-reset",
+    "themeColorWhite": "Puti",
+    "themeColorBlack": "Itim",
+    "themeColorRainbow": "Bahaghari",
+    "themeColorBrand": "Brand",
+    "themeColorBrandDesc": "Gamitin ang mga kulay ng profile picture mo",
+    "themeColorBrandNoAvatar": "Magdagdag ng profile picture para magamit ang mga kulay ng Brand",
+    "themeColorBrandFailed": "Hindi mabasa ang mga kulay mula sa profile picture mo"
   },
   "common": {
     "mute": "I-mute",

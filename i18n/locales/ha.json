@@ -817,7 +817,17 @@
     "importProgress": "Ana amfani da {{done}} daga cikin {{total}}…",
     "badgeDelegationAccept": "Bari wasu su ba ni lambar su",
     "smsSendCode": "Aika mini da lambar sirri",
-    "smsCountryBlocked": "Ba za mu iya isar da saƙonni zuwa wannan ƙasa ba tukuna."
+    "smsCountryBlocked": "Ba za mu iya isar da saƙonni zuwa wannan ƙasa ba tukuna.",
+    "themeColor": "Launin jigo",
+    "themeColorDesc": "Zaɓi launi na musamman don wannan jigon",
+    "themeColorReset": "Sake saita",
+    "themeColorWhite": "Fari",
+    "themeColorBlack": "Baƙi",
+    "themeColorRainbow": "Bakan gizo",
+    "themeColorBrand": "Alama",
+    "themeColorBrandDesc": "Yi amfani da launukan hoton bayanan martabarka",
+    "themeColorBrandNoAvatar": "Ƙara hoton bayanan martaba don amfani da launukan Alama",
+    "themeColorBrandFailed": "Ba a iya karanta launuka daga hoton bayanan martabarka ba"
   },
   "common": {
     "mute": "Kashe sauti",

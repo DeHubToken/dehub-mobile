@@ -804,7 +804,17 @@
     "importProgress": "Appling {{done}} of {{total}}…",
     "dhbBalanceIncludesStaked": "Wallet and staked tokens combined.",
     "smsUnlockPrice": "{{dhb}} tokens (${{usd}}) go unlock text and become your first balance.",
-    "smsCodeSent": "Kòd yin don dey. Na {{price}} token."
+    "smsCodeSent": "Kòd yin don dey. Na {{price}} token.",
+    "themeColor": "Theme Colour",
+    "themeColorDesc": "Pick custom colour for dis theme",
+    "themeColorReset": "Reset",
+    "themeColorWhite": "White",
+    "themeColorBlack": "Black",
+    "themeColorRainbow": "Rainbow",
+    "themeColorBrand": "Brand",
+    "themeColorBrandDesc": "Use your profile picture colours",
+    "themeColorBrandNoAvatar": "Add profile picture before you fit use Brand colours",
+    "themeColorBrandFailed": "E no fit read colour from your profile picture"
   },
   "common": {
     "mute": "Off di sound",
