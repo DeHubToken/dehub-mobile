@@ -27,6 +27,11 @@ export interface PostQuotaStatus {
    * just the size it accepts. Optional: an older API does not send it.
    */
   imageBytes?: number;
+  /**
+   * Longest post text this tier may publish, in characters. Optional: an
+   * older API does not send it. See `libs/post-text-limit`.
+   */
+  textCharsPerPost?: number;
   dhbPerTextPost: number;
   dhbPerGb: number;
   discountRate: number;

@@ -23,6 +23,8 @@ import CategoryDrawer from "../Upload/CategoryDrawer";
 import * as ImagePicker from "expo-image-picker";
 import { ensureMediaLibraryPermission } from "../../libs/permissions.util";
 import { editPost, getCategoriesCached, replaceVideoFile, type ShopLink } from "../../services/nft.service";
+import { getPostQuota } from "../../services/post-quota.service";
+import { BASE_POST_TEXT_CHARS, formatCharCount, postTextLimit } from "../../libs/post-text-limit";
 import ShopSheet, { type ShopBoardDraft } from "../Upload/ShopSheet";
 import { useStreamProducts, useStreamProductActions } from "../../hooks/useStreamShopping";
 import { useShopLinkAllowance } from "../../hooks/useShopLinks";
@@ -122,6 +124,15 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
   const [title, setTitle] = useState(initialTitle);
   const [description, setDescription] = useState(initialDescription);
   const [articleBody, setArticleBody] = useState(initialArticleBody ?? "");
+  // Text cap scales with the badge tier; only read once the modal opens.
+  const [tierTextMax, setTierTextMax] = useState(BASE_POST_TEXT_CHARS);
+  useEffect(() => {
+    if (!visible || initialArticleBody !== undefined) return;
+    let cancelled = false;
+    getPostQuota().then((q) => { if (!cancelled) setTierTextMax(postTextLimit(q)); });
+    return () => { cancelled = true; };
+  }, [visible, initialArticleBody]);
+  const descriptionMax = initialArticleBody !== undefined ? BASE_POST_TEXT_CHARS : tierTextMax;
   const titleMentions = useMentions(title, setTitle);
   const descMentions = useMentions(description, setDescription);
   const [selectedCategories, setSelectedCategories] =
@@ -464,9 +475,9 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
             </Text>
             <TextInput
               value={description}
-              onChangeText={(t) => descMentions.handleChangeText(t.slice(0, 500))}
+              onChangeText={(t) => descMentions.handleChangeText(t.slice(0, descriptionMax))}
               onSelectionChange={descMentions.handleSelectionChange}
-              maxLength={500}
+              maxLength={descriptionMax}
               placeholder={t("editPost.descPlaceholder")}
               placeholderTextColor="#8B8D90"
               multiline
@@ -481,7 +492,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
               loading={descMentions.loading}
             />
             <Text className="text-theme-neutrals-500 text-xs text-right mb-3">
-              {description.length}/500
+              {formatCharCount(description.length)}/{formatCharCount(descriptionMax)}
             </Text>
           </>
         ) : null}

@@ -108,6 +108,7 @@ import type { EnhanceMode } from "../services/ai.service";
 import PlanFormSheet from "../components/Subscription/PlanFormSheet";
 import { useQueryClient } from "@tanstack/react-query";
 import { POST_TITLE_MAX, splitTitleFromText } from "../libs/post-title-split";
+import { BASE_POST_TEXT_CHARS, formatCharCount, postTextLimit } from "../libs/post-text-limit";
 import { haptic } from "../libs/haptics";
 import { useAppTheme } from "../context/ThemeContext";
 import { minimalFlat } from "../theme/minimal";
@@ -116,7 +117,6 @@ import { minimalFlat } from "../theme/minimal";
 const SHOULD_MINT_KEY = "post_should_mint";
 
 const TITLE_MAX = POST_TITLE_MAX;
-const DESCRIPTION_MAX = 500;
 
 /** The handle owns the pan, leaving image taps and the composer's scrolling alone. */
 function PhotoOrderHandle({ index, count, columnWidth, onMove, onDrag }: {
@@ -555,6 +555,8 @@ export default function UploadScreen() {
    * told they still owe for a post they have already paid for.
    */
   const [postQuota, setPostQuota] = useState<PostQuotaStatus | null>(null);
+  // Post text cap scales with the badge tier; article summaries stay at 500.
+  const DESCRIPTION_MAX = articleMode ? BASE_POST_TEXT_CHARS : postTextLimit(postQuota);
   const mediaUploadLimitBytes = postQuota?.mediaBytesPerDay ?? BASE_MEDIA_UPLOAD_SIZE_BYTES;
   const imageLimitBytes = Math.min(MAX_IMAGE_UPLOAD_BYTES, postQuota?.mediaBytesPerDay
     ?? getPostImageBytesForBadge(authUser?.badgeBalance, authUser?.username, authUser?.badgeLock));
@@ -879,7 +881,7 @@ export default function UploadScreen() {
         setIsEnhancing(false);
       }
     },
-    [bodyText, isEnhancing],
+    [bodyText, isEnhancing, DESCRIPTION_MAX],
   );
 
   /** "Generate Content" — hands off to the assistant, as web does. */
@@ -904,7 +906,7 @@ export default function UploadScreen() {
       bodySelectionRef.current = { start: caret, end: caret };
       return next;
     });
-  }, []);
+  }, [DESCRIPTION_MAX]);
 
   const handleBodyChange = useCallback((text: string) => {
     if (text.length > DESCRIPTION_MAX) return;
@@ -913,7 +915,7 @@ export default function UploadScreen() {
     // reads, so it goes second and sees what was accepted.
     bodyMentions.handleChangeText(text);
     bodyAssets.handleChangeText(text);
-  }, [bodyMentions, bodyAssets]);
+  }, [bodyMentions, bodyAssets, DESCRIPTION_MAX]);
 
   const {
     validate,
@@ -2382,7 +2384,7 @@ export default function UploadScreen() {
                     : "text-theme-neutrals-500"
                 }`}
               >
-                {bodyText.length}/{DESCRIPTION_MAX}
+                {formatCharCount(bodyText.length)}/{formatCharCount(DESCRIPTION_MAX)}
               </Text>
             </View>
 
