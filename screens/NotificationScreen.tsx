@@ -549,9 +549,12 @@ interface NotificationRowProps {
   onRejectFollowRequest: (item: NotificationItem) => void;
 }
 
+/** A row that stands for more than one person (likes, comments, follows...). */
+const isGrouped = (item: NotificationItem) => (item.aggregatedCount ?? 1) > 1;
+
 /** A follow row that stands for more than one new follower. */
 const isGroupedFollow = (item: NotificationItem) =>
-  (item.type as string) === NotificationType.FOLLOWING && (item.aggregatedCount ?? 1) > 1;
+  (item.type as string) === NotificationType.FOLLOWING && isGrouped(item);
 
 const NotificationRow: React.FC<NotificationRowProps> = React.memo(({
   item,
@@ -707,7 +710,7 @@ const NotificationRow: React.FC<NotificationRowProps> = React.memo(({
         <TouchableOpacity
           activeOpacity={0.7}
           disabled={!item.actorUsername && !item.actorAddress}
-          onPress={() => isGroupedFollow(item)
+          onPress={() => isGrouped(item) && clickable
             ? onPress(item)
             : onOpenProfile(item.actorAddress, item.actorUsername, item.actor)}
           style={{ position: 'relative' }}
