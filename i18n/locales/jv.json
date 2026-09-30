@@ -786,7 +786,8 @@
     "exportReady": "{{count}} akun, {{saved}} kiriman sing disimpen dieksport.",
     "importDone": "Kasus {{followed}}, diblokir {{blocked}}, folder {{folders}} dibangun.",
     "importPartial": "{{count}} akun ora bisa diikuti — run import manèh kanggo nyoba lagi.",
-    "importProgress": "Ngawon {{done}} saka {{total}}…"
+    "importProgress": "Ngawon {{done}} saka {{total}}…",
+    "channelSpeedCount": "{{count}} saluran diputer kanthi kecepatan dhewe."
   },
   "common": {
     "mute": "Bisu",
@@ -1788,7 +1789,9 @@
     "exploreWithoutSignInA11y": "Jelajahi DeHub tanpa mlebu",
     "continueExploringA11y": "Terus jelajahi DeHub",
     "importWalletRecommended": "Login sosial disaranake.",
-    "importWalletPurpose": "Piranti iki kanggo ngimpor akun sing wis ana saka DeHub.io."
+    "importWalletPurpose": "Piranti iki kanggo ngimpor akun sing wis ana saka DeHub.io.",
+    "importSecretPlaceholder": "12 utawa 24 tembung, utawa kunci pribadi",
+    "invalidImportSecret": "Iku dudu frasa 12/24 tembung utawa kunci pribadi sing sah"
   },
   "messages": {
     "smartRepliesOff": "Wangsulan sing disaranake dipateni",
@@ -3287,7 +3290,8 @@
         "transferAction": "Ganti pemilik",
         "deleteHeading": "Mangkat komunitas",
         "deleteHint": "Anggota, pesan, acara lan link undangan kabeh dihapus permanen. Tidak bisa dibalik.",
-        "deleteAction": "Mangkat komunitas iki"
+        "deleteAction": "Mangkat komunitas iki",
+        "transferBody": "{{name}} dadi pemilik komunitas iki. Sampeyan dadi admin kanthi kabeh hak, lan iki ora bisa dibatalake."
       },
       "inviteRevoked": "Dibatalkan",
       "inviteExpired": "Sudah kadaluwarsa",
@@ -3330,8 +3334,16 @@
         "unknownActor": "Sapa",
         "reason": "Alasan: {{value}}",
         "restricted": "Sajagane moderator-sajegane wong modhéré bisa ngliwati log moderasi.",
-        "empty": "Sedhengke kénéng ora ana isi. Aksi-aksi moderasi bakal nampilake ing wektu-wektu."
-      }
+        "empty": "Sedhengke kénéng ora ana isi. Aksi-aksi moderasi bakal nampilake ing wektu-wektu.",
+        "hoursAgo": "{{value}} jam kepungkur",
+        "forMinutes": "kanggo {{value}} menit",
+        "forHours": "kanggo {{value}} jam",
+        "forDays": "kanggo {{value}} dina",
+        "showMore": "Tampilake luwih akeh ({{value}})"
+      },
+      "searchTruncated": "Nuduhake {{limit}} pisanan — terus ngetik kanggo nyaring.",
+      "slowModeOnHint": "Anggota bisa ngirim siji pesen saben {{label}}. Admin dibebasake.",
+      "defaultPermissions": "Izin anggota standar"
     },
     "chooseAvatar": "Pilih avatar",
     "loadFailed": "Ora bisa mbukak komunitas",
@@ -8631,5 +8643,36 @@
     "recommendedBody": "Ana versi DeHub sing luwih anyar kanthi ndandani keamanan sing penting. Anyari supaya akun sampeyan tetep aman.",
     "requiredBody": "Versi DeHub iki wis ora didhukung maneh. Anyari supaya bisa terus nganggo akun sampeyan.",
     "update": "Anyari saiki"
+  },
+  "walletBackup": {
+    "title": "Cadangkan dompet",
+    "rowDesc": "Delengen 12 tembung utawa kunci pribadi sampeyan",
+    "backedUpOn": "Wis dicadangkan {{date}}",
+    "offerTitle": "Cadangkan dompet sampeyan?",
+    "offerBody": "12 tembung sing bakal mbalekake dompet sampeyan yen sampeyan kelangan ponsel utawa sandhi. Mbutuhake 30 detik.",
+    "offerBodyDeviceOnly": "Dompet sampeyan mung ana ing ponsel iki. Tanpa tembung iki, ponsel sing kelangan tegese dompet sing kelangan.",
+    "saveNow": "Simpen saiki",
+    "skipForNow": "Liwat saiki",
+    "wordsTitle": "12 tembung sampeyan",
+    "tapToReveal": "Ketok kanggo nampilake",
+    "hideWords": "Singkir tembung",
+    "copied": "Disalin",
+    "wroteThemDown": "Aku wis nulis mau",
+    "checkTitle": "Mriksa cepet",
+    "checkPrompt": "Ketok tembung #{{n}}",
+    "checkWrong": "Dudu tembung iku. Delengen tembung #{{n}} maneh.",
+    "skipCheck": "Liwat mriksa",
+    "signingIn": "Mlebu…",
+    "warnOwns": "Kanggo wong kanggo ngarani ing ngisor-ngisor ingkang kanggo, kanggo ngarani ing dompetmu.",
+    "warnNeverAsk": "DeHub gaweke nganti ngarsoke.",
+    "warnPaper": "Ketik aja di kertas, ngak di screenshot atau aplikasi catatan.",
+    "tabWords": "12 kata",
+    "tabPrivateKey": "Kunci swara pribadi",
+    "advanced": "Lanjutan",
+    "passwordToShowWords": "Masukkan sandhi dompet sampeyan kanggo nampilake tembung 12 sampeyan.",
+    "showWords": "Tampilake tembung",
+    "reminderBody": "Kembalikan dompetmu — 12 kata yang bisa ngembalikan dompetmu kalau lupa ponsel.",
+    "backUp": "Balik",
+    "notNow": "Gwé nggoje."
   }
 }

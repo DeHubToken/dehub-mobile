@@ -1789,7 +1789,9 @@
     "exploreWithoutSignInA11y": "Eksploro DeHub pa hyrë",
     "continueExploringA11y": "Vazhdo të eksplorosh DeHub",
     "importWalletRecommended": "Rekomandohen hyrje sociale.",
-    "importWalletPurpose": "Ky mjet është për importimin e llogarive ekzistuese nga DeHub.io."
+    "importWalletPurpose": "Ky mjet është për importimin e llogarive ekzistuese nga DeHub.io.",
+    "importSecretPlaceholder": "12 ose 24 fjalë, ose një çelës privat",
+    "invalidImportSecret": "Kjo nuk është një frazë e vlefshme 12/24-fjalësh ose çelës privat"
   },
   "messages": {
     "smartRepliesOff": "Përgjigjet e sugjeruara u çaktivizuan",
@@ -3339,7 +3341,8 @@
         "reason": "Arsyeja: {{value}}",
         "restricted": "Vetëm moderatorët mund të shohin regjistrin e moderimit.",
         "empty": "Asgjë këtu ende. Veprimet e moderimit do të shfaqen ashtu siç ndodhin.",
-        "showMore": "Shfaq më shumë ({{value}})"
+        "showMore": "Shfaq më shumë ({{value}})",
+        "daysAgo": "{{value}}d më parë"
       }
     },
     "chooseAvatar": "Zgjidh avatar",
@@ -5997,7 +6000,6 @@
     "viewFeed": "Shfaq burimin tënd",
     "yourChannel": "Kanali yt",
     "yourChannelHint": "Ngjite adresën e kanalit. Doreza gjithashtu funksionon vetë.",
-    "placeholder": "youtube.com/@you, tiktok.com/@you, vimeo.com/you…",
     "costsNote": "Paguar në tokenë DeHub, një herë, para se të fillojë grupi. Mbajtësit e shenjave paguajnë më pak — zbritja juaj aplikohet në ofertë. Nëse një video nuk mund të importohet, pjesa e saj kreditohet përsëri për migrimin tuaj të ardhshëm."
   },
   "calls": {
@@ -8640,5 +8642,36 @@
     "recommendedBody": "Është i disponueshëm një version më i ri i DeHub me rregullime të rëndësishme sigurie. Përditësoni që llogaria juaj të mbetet e mbrojtur.",
     "requiredBody": "Ky version i DeHub nuk mbështetet më. Përditësoni për të vazhduar përdorimin e llogarisë suaj.",
     "update": "Përditëso tani"
+  },
+  "walletBackup": {
+    "title": "Kopjo rezervën e portofolit",
+    "rowDesc": "Shiko 12 fjalët e tua ose çelësin privat",
+    "backedUpOn": "Rezervuar {{date}}",
+    "offerTitle": "Kopjon rezervën e portofolit tënd?",
+    "offerBody": "12 fjalë që e sjellin portofolin tënd nëse humb telefonin ose fjalëkalimin. Zakonisht zgjat 30 sekonda.",
+    "offerBodyDeviceOnly": "Portofoli yt jeton vetëm në këtë telefon. Pa këto fjalë, një telefon i humbur do të thotë një portofol i humbur.",
+    "saveNow": "Ruaj tani",
+    "skipForNow": "Anashkalo për tani",
+    "wordsTitle": "12 fjalët e tua",
+    "tapToReveal": "Trokit për të zbuluar",
+    "hideWords": "Fshih fjalët",
+    "copied": "Kopjuar",
+    "wroteThemDown": "I kam shkruar poshtë",
+    "checkTitle": "Kontroll i shpejtë",
+    "checkPrompt": "Trokit fjalën #{{n}}",
+    "checkWrong": "Jo ajo. Shiko përsëri fjalën #{{n}}.",
+    "skipCheck": "Anashkalo kontrollin",
+    "signingIn": "Po nënshkruaj…",
+    "warnOwns": "Kushdo që ka këto fjalë zotëron portofolin tënd.",
+    "warnNeverAsk": "DeHub kurrë s’do t’i kërkojë.",
+    "warnPaper": "Shkruaji në letër, jo në një foto ekrani ose aplikacion shënimesh.",
+    "tabWords": "12 fjalë",
+    "tabPrivateKey": "Çelës privat",
+    "advanced": "Avancuar",
+    "passwordToShowWords": "Fut fjalëkalimin e portofolit për të shfaqur 12 fjalët e tua.",
+    "showWords": "Shfaq fjalët",
+    "reminderBody": "Kopjo rezervën e portofolit — 12 fjalë që e sjellin nëse humb telefonin.",
+    "backUp": "Bëhu rezervë",
+    "notNow": "Jo tani"
   }
 }

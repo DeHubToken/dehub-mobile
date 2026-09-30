@@ -146,9 +146,9 @@
     "noMoreShorts": "ショート動画はありません",
     "noShortsFound": "ショート動画は見つかりませんでした",
     "newMembersHint": "参加しました — こんにちは",
-    "scroll": "Scroll",
     "noFilterMatches": "フィルターに一致するコンテンツはありません。",
-    "clearFilters": "フィルターをクリア"
+    "clearFilters": "フィルターをクリア",
+    "scroll": "スクロール"
   },
   "explore": {
     "all": "すべて",
@@ -572,7 +572,6 @@
     "failedUpdateDmPrefs": "DM設定の更新に失敗しました",
     "editProfile": "プロフィールを編集",
     "editProfileDesc": "名前、ユーザー名、自己紹介、アイコン、カバー",
-    "socialLinksDesc": "X、Instagram、TikTok、YouTube、Discord、Telegram",
     "yourContent": "あなたのコンテンツ",
     "yourVideos": "あなたの動画",
     "savedPosts": "保存した投稿",
@@ -1428,8 +1427,7 @@
     "solanaAddressLabel": "ソラナ",
     "solanaAddressHint": "SOLとSPLトークンのみ",
     "solanaAddressCopied": "Solanaの住所がコピーされました",
-    "chooseNetwork": "ネットワークを選択",
-    "evmAddressLabel": "EVM"
+    "chooseNetwork": "ネットワークを選択"
   },
   "bookmarks": {
     "title": "ブックマーク",
@@ -2107,7 +2105,6 @@
     "impressions": "インプレッション",
     "clicks": "クリック",
     "spend": "支出",
-    "ecpm": "eCPM",
     "campaigns": "キャンペーン",
     "noCampaigns": "キャンペーンはまだありません",
     "createCampaign": "キャンペーンを作成",
@@ -2146,7 +2143,6 @@
     "youReceive": "受取（推定）",
     "paymentMethod": "支払い方法",
     "cardBank": "カード / 銀行",
-    "cardBankDesc": "Visa、Mastercard、Apple Pay",
     "fiatOnramp": "法定通貨入金",
     "fiatOnrampDesc": "法定通貨で直接購入",
     "buy": "{{symbol}}を購入",
@@ -2386,7 +2382,6 @@
     "fullName": "氏名",
     "email": "メールアドレス",
     "telegram": "電報",
-    "xTwitter": "X (Twitter)",
     "instagram": "インスタグラム",
     "linkedin": "リンクトイン",
     "otherSocials": "その他のソーシャル",
@@ -2660,7 +2655,6 @@
     "viewCount_other": "{{count}}回表示",
     "shareMessage": "これを見て：{{url}}",
     "hideReplies": "返信を非表示",
-    "rowA11yLabel": "{{name}}、{{time}}：{{text}}",
     "rowA11yHint": "このコメントへの返信を開始します",
     "editingComment": "コメントを編集中",
     "editPlaceholder": "コメントを編集...",
@@ -3233,12 +3227,10 @@
       "purgeBody": "{{name}} がこのコミュニティに送信したすべてのメッセージは削除されます。",
       "kickBody": "{{name}} はコミュニティから削除されます。後で再参加できます。",
       "bannedUntil": "{{date}} まで禁止",
-      "restrictionWithReason": "{{state}} — {{reason}}",
       "mutedUntil": "{{date}} までミュート",
       "bannedUntilShort": "{{date}} まで",
       "muteTitle": "{{name}} をミュート",
       "banTitle": "{{name}} を禁止",
-      "reasonCounter": "{{len}}/200",
       "rulesCount": "{{max}} の {{used}}",
       "moveRuleUp": "ルールを上に移動",
       "moveRuleDown": "ルールを下に移動",
@@ -3682,7 +3674,6 @@
     "podBadge": "オンデマンド印刷",
     "podBuyOn": "{{provider}}で購入",
     "podNote": "{{provider}}が注文ごとに印刷・発送します。決済は相手のサイトで行われます。",
-    "podUrlPlaceholder": "https://…",
     "subtitle": "DeHub コミュニティの商品を見つけよう",
     "browse": "見る",
     "myStore": "マイストア",
@@ -4292,7 +4283,6 @@
     "pinMessage": "メッセージをピン留めする",
     "unpinMessage": "メッセージのピンを外す",
     "jumpToLatest": "最新のメッセージにジャンプ",
-    "attachGif": "GIF",
     "modBadge": "モデ",
     "ban": "禁止する",
     "banConfirm": "{{name}} を禁止しますか？",
@@ -5524,8 +5514,7 @@
     "preparingCamera": "カメラを準備中…",
     "reconnecting": "再接続中…",
     "connecting": "接続中…",
-    "shopPutOnAir": "放送を始める",
-    "detailsLivepeerId": "Livepeer ID:"
+    "shopPutOnAir": "放送を始める"
   },
   "liveShop": {
     "title": "この配信でショッピング",
@@ -6081,7 +6070,6 @@
     "viewFeed": "フィードを表示",
     "yourChannel": "あなたのチャンネル",
     "yourChannelHint": "チャンネルアドレスを貼り付けます。ハンドル自体も機能します。",
-    "placeholder": "youtube.com/@you, tiktok.com/@you, vimeo.com/you…",
     "costsNote": "DeHub トークンで支払い済み、バッチ開始前に一度だけ。バッジ保有者は割引が適用され、見積もり額が軽減されます。動画をインポートできない場合、そのシェアは次の移行時に返金されます。"
   },
   "calls": {
@@ -6620,8 +6608,6 @@
     "sellAmount": "売却量",
     "spend": "使用量",
     "withdrawFailed": "引き出しに失敗しました",
-    "title": "DHB / USD",
-    "heading": "DHB / USD",
     "buyWithBnbNote": "BNBチェーンの取引は終了しました。BNBをお持ちですか？BaseでDeHubトークンを購入するために使用してください。"
   },
   "onboarding": {
@@ -6749,7 +6735,6 @@
       "newDesign": "新しいデザイン",
       "yourDesigns": "マイデザイン",
       "noDesigns": "作成したデザインはこのスマホに保存され、ここに表示されます。",
-      "dimensions": "{{width}} × {{height}}",
       "aspectStory": "ストーリー",
       "aspectPost": "投稿",
       "aspectSquare": "正方形",
@@ -7031,7 +7016,6 @@
       "split": "分割",
       "splitHint": "クリップを分割するには、再生ヘッドをクリップ内に移動してください。",
       "speed": "速度",
-      "speedValue": "{{value}}×",
       "volumeTool": "音量",
       "volume": "音量 {{value}}%",
       "fadeIn": "フェードイン {{value}}秒",
@@ -7094,7 +7078,6 @@
       "recording": "モーションを記録中",
       "lanes": "キーフレーム",
       "scrub": "左右にドラッグして変更。",
-      "segment": "{{from}} → {{to}}",
       "ease": {
         "linear": "リニア",
         "ease": "イーズ",
@@ -8007,8 +7990,7 @@
     "tabStickers": "ステッカー",
     "tab": {
       "emoji": "絵文字",
-      "sticker": "ステッカー",
-      "gif": "GIF"
+      "sticker": "ステッカー"
     },
     "kind": {
       "emoji": "絵文字パック",
@@ -8033,8 +8015,7 @@
       "tier": "ティア",
       "packs": "パック",
       "emoji": "絵文字",
-      "stickers": "ステッカー",
-      "gifs": "GIF"
+      "stickers": "ステッカー"
     },
     "signInToCreate": "パックを作成するにはサインインしてください",
     "signInToAdd": "追加するにはサインインしてください",
@@ -8318,7 +8299,6 @@
     "tradingClosed": "取引は終了しました",
     "trending": "トレンド",
     "trendingHint": "トップ20・ボリューム＆コミュニティアクティビティ",
-    "twitter": "X/Twitter",
     "uploadFailed": "アップロードに失敗しました",
     "uploadImage": "画像をアップロード",
     "volume24h": "24時間ボリューム",
@@ -8338,7 +8318,6 @@
     "next": "次へ",
     "review": "レビュー",
     "vol24h": "24時間ボリューム",
-    "graduatesAtValue": "$ 42,000 mcap",
     "mcap": "時価総額"
   },
   "premium": {
@@ -8482,7 +8461,6 @@
     "basicAnalytics": "基本分析",
     "detailedAnalytics": "詳細分析",
     "prioritySupport": "優先サポート",
-    "sso": "SSO",
     "adminSpendControl": "管理者支出管理",
     "priorityQueue": "優先キュー",
     "priorityQueueFast": "優先キューでタスク処理を高速化",
@@ -8630,11 +8608,13 @@
     "pay": {
       "body": "DHBはアプリのウォレットに直接振り込まれる、{{wallet}}。支払いは取り消せません。",
       "confirm": "支払い {{amount}} DHB",
-      "sent": "支払い {{amount}} DHB を {{name}} に。"
+      "sent": "支払い {{amount}} DHB を {{name}} に。",
+      "title": "{{name}}を支払いますか？"
     },
     "add": {
       "body": "アプリ一覧に表示され、通知を送信することができます。いつでもアプリページから削除することができます。",
-      "confirm": "アプリを追加"
+      "confirm": "アプリを追加",
+      "title": "{{name}}を追加しますか？"
     }
   },
   "aiStyles": {
@@ -8648,7 +8628,6 @@
     "russian-mafia": "ロシアン・マフィア",
     "pirate": "海賊",
     "alien": "エイリアン",
-    "e-girl": "E-Girl",
     "chad": "チャド",
     "hopeless-romantic": "救いようのないロマンチスト",
     "daddy": "パパ",
@@ -8666,7 +8645,8 @@
     "feminist": "フェミニスト",
     "progressive": "進歩派",
     "nationalist": "ナショナリスト",
-    "communist": "共産主義者"
+    "communist": "共産主義者",
+    "e-girl": "イーガール"
   },
   "updateGate": {
     "title": "DeHub を更新してください",

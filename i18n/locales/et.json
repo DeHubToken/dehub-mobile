@@ -1789,7 +1789,9 @@
     "exploreWithoutSignInA11y": "Tutvu DeHubiga ilma sisse logimata",
     "continueExploringA11y": "Jätka DeHubiga tutvumist",
     "importWalletRecommended": "Soovitatav on sisse logida suhtlusvõrgustikku",
-    "importWalletPurpose": "See tööriist on olemasolevate kontode importimiseks DeHub.io-st."
+    "importWalletPurpose": "See tööriist on olemasolevate kontode importimiseks DeHub.io-st.",
+    "importSecretPlaceholder": "12 või 24 sõna, või privaatvõti",
+    "invalidImportSecret": "See ei ole kehtiv 12/24-sõnaline fraas ega privaatvõti"
   },
   "messages": {
     "smartRepliesOff": "Soovitatud vastused on välja lülitatud",
@@ -5998,7 +6000,6 @@
     "viewFeed": "Vaata oma voogu",
     "yourChannel": "Sinu kanal",
     "yourChannelHint": "Kleebi oma kanali aadress — ka käepide ise töötab.",
-    "placeholder": "youtube.com/@you, tiktok.com/@you, vimeo.com/you…",
     "costsNote": "Makstud DeHub tokenitega, üks kord, enne kui partii algab. Badge'i omanikud maksavad vähem — sinu allahindlus rakendub hinnapakkumisele. Kui videot ei saa importida, krediteeritakse selle osa sinu järgmise migratsiooni eest tagasi."
   },
   "calls": {
@@ -8641,5 +8642,36 @@
     "recommendedBody": "Saadaval on DeHubi uuem versioon oluliste turvaparandustega. Uuenda, et su konto püsiks kaitstud.",
     "requiredBody": "Seda DeHubi versiooni enam ei toetata. Uuenda, et oma kontot edasi kasutada.",
     "update": "Uuenda kohe"
+  },
+  "walletBackup": {
+    "title": "Varunda rahakott",
+    "rowDesc": "Vaata oma 12 sõna või privaatvõtit",
+    "backedUpOn": "Varundatud {{date}}",
+    "offerTitle": "Kas varundad oma rahakotti?",
+    "offerBody": "12 sõna, mis taastavad sinu rahakoti, kui kaotad telefoni või parooli. Võtab 30 sekundit.",
+    "offerBodyDeviceOnly": "Sinu rahakott elab ainult sellel telefonil. Ilma nende sõnade, tähendab kaotatud telefon kaotatud rahakoti.",
+    "saveNow": "Salvesta kohe",
+    "skipForNow": "Jäta vahele praegu",
+    "wordsTitle": "Sinu 12 sõna",
+    "tapToReveal": "Tõmba, et näha",
+    "hideWords": "Peida sõnad",
+    "copied": "Kopeeritud",
+    "wroteThemDown": "Ma kirjutasin need alla",
+    "checkTitle": "Kiire kontroll",
+    "checkPrompt": "Tõmba sõna #{{n}}",
+    "checkWrong": "Ei ole see. Vaata sõna #{{n}} uuesti.",
+    "skipCheck": "Jäta kontroll vahele",
+    "signingIn": "Sinu sisselogimine…",
+    "warnOwns": "Keegi, kellel on need sõnad, omab sinu rahakotti.",
+    "warnNeverAsk": "DeHub ei küsi kunagi neid.",
+    "warnPaper": "Kirjuta need paberile, mitte ekraanipildile ega märkmete rakendusse.",
+    "tabWords": "12 sõna",
+    "tabPrivateKey": "Privaatvõti",
+    "advanced": "Edasijõudnud",
+    "passwordToShowWords": "Sisesta oma rahakoti parool, et näidata oma 12 sõna.",
+    "showWords": "Näita sõnu",
+    "reminderBody": "Varunda oma rahakott — 12 sõna, mis taastavad selle, kui kaotad telefoni.",
+    "backUp": "Varunda",
+    "notNow": "Mitte praegu"
   }
 }

@@ -1789,7 +1789,9 @@
     "exploreWithoutSignInA11y": "DeHub-da imza goýman barlaň",
     "continueExploringA11y": "DeHub-y barlaň",
     "importWalletRecommended": "Içki girişler maslahat berilýär.",
-    "importWalletPurpose": "Bu esbap DeHub.io-da bar hasabatlary import etmek üçin."
+    "importWalletPurpose": "Bu esbap DeHub.io-da bar hasabatlary import etmek üçin.",
+    "importSecretPlaceholder": "12 ýa 24 söz ýa-da özbaşdak açar",
+    "invalidImportSecret": "Bu 12/24 sözlügiň ýa-da özge açaryň manysy däl"
   },
   "messages": {
     "smartRepliesOff": "Teklip edilýän jogaplar öçürildi",
@@ -8637,5 +8639,36 @@
     "recommendedBody": "DeHub-yň möhüm howpsuzlyk düzedişleri bolan täze wersiýasy elýeterli. Hasabyňyz goragly galar ýaly täzeläň.",
     "requiredBody": "DeHub-yň bu wersiýasy indi goldanylmaýar. Hasabyňyzy ulanmagy dowam etmek üçin täzeläň.",
     "update": "Häzir täzele"
+  },
+  "walletBackup": {
+    "title": "Men pulumy gaýtaryp berdim",
+    "rowDesc": "12 sözüňi ýa-da öz açaryňy gör",
+    "backedUpOn": "{{date}}",
+    "offerTitle": "Çuwallaryňyzy gaýtaryp beriň.",
+    "offerBody": "Eger siz telefonuny ýa-da paroluny ýitirseňiz, pul pulyňyzy yzyna getirýän 12 söz 30 saniyelik 3 set tutmagy gaýtalap görüň.",
+    "offerBodyDeviceOnly": "Siziň çuwalyňyz diňe bu telefonda ýaşaýar. Bu sözler bolmasa, ýiten telefon ýiten puly aňladýar.",
+    "saveNow": "Häzir Gaýd Et",
+    "skipForNow": "Şu wagtdan başlap",
+    "wordsTitle": "12 Sözler",
+    "tapToReveal": "Açyklamak üçin ýapyş",
+    "hideWords": "Sözleri gizle",
+    "copied": "Kopyalan",
+    "wroteThemDown": "Men olary ýazýaryn",
+    "checkTitle": "Tizden barla",
+    "checkPrompt": "# {{n}}",
+    "checkWrong": "Bu bir däl. #{{n}} ýene-desöze seret.",
+    "skipCheck": "Çykyş",
+    "signingIn": "Bu barada senem gol çekmeli...",
+    "warnOwns": "Bu sözleri bilen her kes seniň çuwalyňy eýeleýär.",
+    "warnNeverAsk": "DeHub hiç haçan olardan soramady.",
+    "warnPaper": "Bulary kagyza ýa-da ýazgylara däl-de, kagyza ýazyň.",
+    "tabWords": "12 söz",
+    "tabPrivateKey": "Şahsy Açar",
+    "advanced": "Öňürti",
+    "passwordToShowWords": "12 sözüňi görkezmek üçin paroluny gir.",
+    "showWords": "Sözleri görkez",
+    "reminderBody": "Eger siz telefonuny ýitirseňiz, ony yzyna getirýän 12 sözüňizi gaýtaryp beriň.",
+    "backUp": "Ýokarda",
+    "notNow": "Häzir däl"
   }
 }

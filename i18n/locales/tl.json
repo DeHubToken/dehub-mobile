@@ -1224,7 +1224,8 @@
     "failedToClosePoll": "Nabigong isara ang poll",
     "endsIn": "Nagtatapos {{time}}",
     "multipleChoice": "Pahintulutan ang maramihang sagot",
-    "online": "{{count}} online"
+    "online": "{{count}} online",
+    "poll": "Pundasyon"
   },
   "aiChat": {
     "title": "kasalungat katiwala",
@@ -1835,7 +1836,9 @@
     "exploreWithoutSignInA11y": "I - explore ang DeHub nang hindi nagsa - sign in",
     "continueExploringA11y": "Magpatuloy sa paggalugad ng DeHub",
     "importWalletRecommended": "Inirerekomenda ang mga social login.",
-    "importWalletPurpose": "Ang tool na ito ay para sa pag - import ng mga umiiral na account mula sa DeHub.io."
+    "importWalletPurpose": "Ang tool na ito ay para sa pag - import ng mga umiiral na account mula sa DeHub.io.",
+    "importSecretPlaceholder": "12 o 24 salita, o isang private key",
+    "invalidImportSecret": "Ito ay hindi isang validong 12/24-salitang pangungusap o private key"
   },
   "messages": {
     "smartRepliesOff": "Naka-off na ang mga iminungkahing sagot",
@@ -3386,7 +3389,8 @@
         "restricted": "Ang mga moderator lamang ang makakakita ng log ng pagpapanumbalik.",
         "empty": "Walang anuman pa dito. Ang mga aksyon ng pagpapanumbalik ay magpapakita sa pagkakataon na ito.",
         "showMore": "Tumalakay pa ({{value}})"
-      }
+      },
+      "inviteLimit": "limit {{n}}"
     },
     "chooseAvatar": "Pumili ng avatar",
     "loadFailed": "Hindi ma - load ang mga komunidad",
@@ -8819,5 +8823,36 @@
     "recommendedBody": "May mas bagong bersyon ng DeHub na may mahahalagang security fix. Mag-update para manatiling protektado ang iyong account.",
     "requiredBody": "Hindi na suportado ang bersyong ito ng DeHub. Mag-update para patuloy na magamit ang iyong account.",
     "update": "I-update ngayon"
+  },
+  "walletBackup": {
+    "title": "I-back up ang wallet mo",
+    "rowDesc": "Tingnan ang 12 salitang iyo o private key",
+    "backedUpOn": "I-back up na {{date}}",
+    "offerTitle": "I-back up ang wallet mo?",
+    "offerBody": "12 salita na magbabalik ng wallet mo kung mawala ang iyong telepono o password. Tumagal ng 30 segundo.",
+    "offerBodyDeviceOnly": "Ang iyong wallet ay nakatira lamang sa teleponong ito. Kung walang mga salitang ito, isang nawawalang telepono ay isang nawawalang wallet.",
+    "saveNow": "I-save na",
+    "skipForNow": "I-skip para sa ngayon",
+    "wordsTitle": "Ang 12 salitang iyo",
+    "tapToReveal": "Tap para magkaroon ng pagkakatuklas",
+    "hideWords": "I-hide ang mga salita",
+    "copied": "I-copied",
+    "wroteThemDown": "Nagulat na ako sa mga ito",
+    "checkTitle": "Mabilis na pagtingin",
+    "checkPrompt": "Tap sa salita #{{n}}",
+    "checkWrong": "Hindi ito. Tingnan ang salita #{{n}} muli.",
+    "skipCheck": "I-skip check",
+    "signingIn": "Nagpapakilala sa iyo…",
+    "warnOwns": "Ang sinumang mayroong mga salitang ito ay may-ari ng iyong wallet.",
+    "warnNeverAsk": "Ang DeHub ay hindi magtatangka para sa mga ito.",
+    "warnPaper": "Isulat ito sa kagila-gilalas, hindi sa screenshot o app ng mga notasyon.",
+    "tabWords": "12 salita",
+    "tabPrivateKey": "Private key",
+    "advanced": "Adbansado",
+    "passwordToShowWords": "I-enter ang password ng iyong wallet upang makita ang 12 salitang iyo.",
+    "showWords": "I-show ang mga salita",
+    "reminderBody": "I - back up ang iyong wallet — 12 mga salita na dalhin ito pabalik kung mawala mo ang iyong telepono.",
+    "backUp": "I - back up",
+    "notNow": "Hindi ngayon"
   }
 }

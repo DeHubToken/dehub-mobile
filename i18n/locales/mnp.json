@@ -19,6 +19,7 @@
     "unavailable": "这个版本的应用里没有"
   },
   "nav": {
+    "dao": "DAO",
     "fractions": "碎片",
     "home": "厝里",
     "explore": "探索",
@@ -40,7 +41,6 @@
     "staking": "质押",
     "superpowers": "超级力量",
     "governance": "治理",
-    "dao": "DAO",
     "careers": "工作",
     "glossary": "术语表",
     "create": "创建",
@@ -146,9 +146,9 @@
     "noMoreImages": "没有更多图片了",
     "noImagesFound": "未找到图片",
     "noShortsFound": "未找到短视频",
-    "scroll": "Scroll",
     "noFilterMatches": "無內容符合你的篩選條件。",
-    "clearFilters": "清去筛选"
+    "clearFilters": "清去筛选",
+    "scroll": "滚动"
   },
   "explore": {
     "all": "全部",
@@ -572,7 +572,6 @@
     "failedUpdateDmPrefs": "更新私信偏好失败",
     "editProfile": "编辑资料",
     "editProfileDesc": "名、用户名、简介、头像共封面",
-    "socialLinksDesc": "X、Instagram、TikTok、YouTube、Discord、Telegram",
     "yourContent": "汝其内容",
     "yourVideos": "汝其视频",
     "savedPosts": "存落其帖",
@@ -1428,8 +1427,7 @@
     "solanaAddressHint": "仅限 SOL 和 SPL 代币",
     "solanaAddressCopied": "Solana 地址已复制",
     "chooseNetwork": "選網絡",
-    "solanaAddressLabel": "索拉纳",
-    "evmAddressLabel": "EVM"
+    "solanaAddressLabel": "索拉纳"
   },
   "bookmarks": {
     "title": "你其书签",
@@ -1613,7 +1611,6 @@
     "category": "分类",
     "contentType": "内容类型",
     "bounty": "赏金",
-    "ppv": "PPV",
     "gated": "门槛",
     "datePosted": "发布日期",
     "engagement": "互动",
@@ -1789,7 +1786,9 @@
     "continueExploringA11y": "繼續探索DeHub",
     "importWalletRecommended": "建议使用社交登录。",
     "importWalletPurpose": "此工具用于从 DeHub.io 导入现有帐户。",
-    "couldNotSendCodeRetry": "无法发送代码。请重试。"
+    "couldNotSendCodeRetry": "无法发送代码。请重试。",
+    "importSecretPlaceholder": "12 或 24 个单词，或私钥",
+    "invalidImportSecret": "那不是有效的 12/24 词短语或私钥"
   },
   "messages": {
     "smartRepliesOff": "建议回复关掉了",
@@ -2054,7 +2053,8 @@
       "SG": "新加坡",
       "PH": "菲律宾",
       "AE": "阿拉伯联合酋长国"
-    }
+    },
+    "reviewSaveFailed": "无法保存您的评论"
   },
   "top100": {
     "title": "头 100",
@@ -2380,10 +2380,6 @@
     "yourApplication": "你其申请",
     "fullName": "全名",
     "email": "邮箱",
-    "telegram": "Telegram",
-    "xTwitter": "X (Twitter)",
-    "instagram": "Instagram",
-    "linkedin": "LinkedIn",
     "otherSocials": "其他社交",
     "otherSocialsPlaceholder": "TikTok、YouTube、Discord等",
     "pastExperience": "过往经验",
@@ -2655,7 +2651,6 @@
     "viewCount_other": "{{count}} 次浏览",
     "shareMessage": "来看下这个：{{url}}",
     "hideReplies": "收起回复",
-    "rowA11yLabel": "{{name}}，{{time}}：{{text}}",
     "rowA11yHint": "开始回复这条评论",
     "editingComment": "编辑评论中",
     "editPlaceholder": "编辑你的评论...",
@@ -3228,12 +3223,10 @@
       "purgeBody": "{{name}} 在此社区发送的每条消息都将被删除。",
       "kickBody": "{{name}} 将被移出社区。他们之后可以重新加入。",
       "bannedUntil": "封禁至 {{date}}",
-      "restrictionWithReason": "{{state}} — {{reason}}",
       "mutedUntil": "禁言至 {{date}}",
       "bannedUntilShort": "至 {{date}}",
       "muteTitle": "禁言 {{name}}",
       "banTitle": "封禁 {{name}}",
-      "reasonCounter": "{{len}}/200",
       "rulesCount": "{{max}}的{{used}}",
       "moveRuleUp": "向上移动规则",
       "moveRuleDown": "向下移动规则",
@@ -3678,7 +3671,6 @@
     "podBadge": "按需印刷",
     "podBuyOn": "在 {{provider}} 购买",
     "podNote": "由 {{provider}} 按需印刷并发货，在其网站结账。",
-    "podUrlPlaceholder": "https://…",
     "subtitle": "寻寻看 DeHub 社区其产品",
     "browse": "浏览",
     "myStore": "我其店",
@@ -3982,7 +3974,6 @@
     "warm": "暖色",
     "cool": "冷色",
     "vivid": "鲜艳",
-    "vhs": "VHS",
     "neon": "霓虹",
     "pixelate": "像素化"
   },
@@ -4240,7 +4231,6 @@
     "pinMessage": "置顶消息",
     "unpinMessage": "取消置顶消息",
     "jumpToLatest": "跳到最新消息",
-    "attachGif": "GIF",
     "ban": "封禁",
     "banConfirm": "您确定要封禁 {{name}} 吗？",
     "banFailed": "封禁用户失败"
@@ -4510,7 +4500,6 @@
     "kindVideo": "视频批注",
     "kindAudio": "音频",
     "kindImage": "圖片",
-    "tileSourceKind": "{{source}} · {{kind}}",
     "reviewTitle": "发布前审查",
     "reviewSubtitle": "从 {{source}}，作为 {{kind}}。编辑你喜欢的任何内容 — 留空标题以保留原始标题。",
     "reviewName": "标题",
@@ -4857,7 +4846,8 @@
     "tokenBalance": "Token 额度",
     "unlockedSuccess": "已成功解锁",
     "otherChain": "Dis 篇文落到另个链上，所以需要 DeHub 粒在汝个钱包里。",
-    "payHint": "用汝个钱包里个任何东西支付。伊会变成 DeHub 粒，即刻解锁。"
+    "payHint": "用汝个钱包里个任何东西支付。伊会变成 DeHub 粒，即刻解锁。",
+    "lowTopUp": "{{symbol}} 低？我们会在解锁前给您充值。"
   },
   "walletSetup": {
     "tryBiometricsHint": "如果你是在这部手机上设置的这个钱包，密钥应该已经在这里，就用这个",
@@ -5439,8 +5429,7 @@
     "preparingCamera": "正在准备摄像头…",
     "reconnecting": "正在重新连接…",
     "connecting": "連線中…",
-    "shopPutOnAir": "戴上空氣",
-    "detailsLivepeerId": "Livepeer ID:"
+    "shopPutOnAir": "戴上空氣"
   },
   "liveShop": {
     "title": "在本场直播购物",
@@ -6708,7 +6697,6 @@
       "newDesign": "新建设计",
       "yourDesigns": "你的设计",
       "noDesigns": "你制作的设计会保存在这部手机上，并显示在这里。",
-      "dimensions": "{{width}} × {{height}}",
       "aspectStory": "快拍",
       "aspectPost": "帖子",
       "aspectSquare": "方形",
@@ -6990,7 +6978,6 @@
       "split": "分割",
       "splitHint": "把播放头移到片段里面就能分割。",
       "speed": "速度",
-      "speedValue": "{{value}}×",
       "volumeTool": "音量",
       "volume": "音量 {{value}}%",
       "fadeIn": "淡入 {{value}}s",
@@ -7053,7 +7040,6 @@
       "recording": "正在录制动效",
       "lanes": "关键帧",
       "scrub": "左右拖动即可更改。",
-      "segment": "{{from}} → {{to}}",
       "ease": {
         "linear": "线性",
         "ease": "缓动",
@@ -7553,6 +7539,7 @@
         "intro": "创建文本帖子、分享图片、视频、语音笔记、GIF 等。使用标签、现金标签和提及来增加覆盖范围。",
         "steps": {
           "1": "點擊側邊欄的「發布」按鈕（桌面版）或「+」按鈕（手機版）。",
+          "2": "在撰寫區輸入你的文字。",
           "3": "要添加图片或视频，请点击媒体图标并选择文件。",
           "4": "要记录语音笔记，请点击麦克风图标。",
           "5": "要加GIF，按GIF图标，搜一个。",
@@ -7880,7 +7867,8 @@
           "1": "開 Creator Studio，講你想做啥。",
           "2": "伺服器會報價工作執行前，所以你花錢前就知道要花多少。",
           "3": "渲染会继续在共享队列中进行，同时你可以继续浏览应用。",
-          "4": "在 Canva 风格编辑器中排列结果，或者打开视频编辑器进行真实的时间线，进行剪辑、层叠和导出。"
+          "4": "在 Canva 风格编辑器中排列结果，或者打开视频编辑器进行真实的时间线，进行剪辑、层叠和导出。",
+          "5": "直接把完成的內容放進帖子、短文或商品列表裡。"
         },
         "tips": {
           "1": "一个免费的股票资产库与工作室并存，供您选择不自行生成的内容。",
@@ -7903,7 +7891,8 @@
         },
         "tips": {
           "1": "滑点容忍度越高 = 执行概率越大，但价格可能越差。",
-          "2": "始终在确认之前检查汇率。"
+          "2": "始终在确认之前检查汇率。",
+          "3": "你可以在設定面板設定自訂滑動費用。"
         }
       },
       "bridge": {
@@ -8012,8 +8001,7 @@
     "tabStickers": "贴纸",
     "tab": {
       "emoji": "表情符号",
-      "sticker": "贴纸",
-      "gif": "GIF"
+      "sticker": "贴纸"
     },
     "kind": {
       "emoji": "表情符号包",
@@ -8038,8 +8026,7 @@
       "tier": "等级",
       "packs": "包",
       "emoji": "表情符号",
-      "stickers": "贴纸",
-      "gifs": "GIF"
+      "stickers": "贴纸"
     },
     "signInToCreate": "登入創建包",
     "signInToAdd": "登入添加",
@@ -8342,8 +8329,6 @@
     "vol24h": "24小时成交量",
     "volume24h": "24小时成交量",
     "website": "网站",
-    "telegram": "Telegram",
-    "twitter": "X / Twitter",
     "title": "发射台"
   },
   "premium": {
@@ -8465,7 +8450,6 @@
     "ctaGet": "获取 {{plan}}",
     "ctaChangeCommitment": "更改承诺",
     "groupIncluded": "包含",
-    "groupSeedance20": "Seedance 2.0",
     "groupWorkspace": "工作区与协作",
     "groupAnalytics": "分析与支持",
     "groupAdmin": "管理与控制",
@@ -8487,7 +8471,6 @@
     "basicAnalytics": "基础分析",
     "detailedAnalytics": "详细分析",
     "prioritySupport": "优先支持",
-    "sso": "SSO",
     "adminSpendControl": "管理员支出控制",
     "priorityQueue": "优先队列",
     "priorityQueueFast": "优先队列以加快任务处理",
@@ -8582,7 +8565,8 @@
   "miniApps": {
     "badge": {
       "verified": "確認過",
-      "dev": "開發者預覽版"
+      "dev": "開發者預覽版",
+      "unreviewed": "未审核"
     },
     "host": {
       "close": "關閉應用",
@@ -8593,13 +8577,25 @@
     },
     "signIn": {
       "title": "登入 {{name}} 嗎？",
-      "confirm": "登入"
+      "confirm": "登入",
+      "body": "此应用将获取您的 DeHub 钱包地址和仅适用于此应用的登录令牌。它不会获取您的钱包、资金或 DeHub 账户的访问权限。",
+      "cancel": "现在不"
     },
     "store": {
       "emptyTitle": "尚未有應用列出喔！",
       "emptyBody": "先頭幾個 App 正在審核中！你也快點做一個，可能就會出來囉！",
       "search": "搜尋應用程式",
-      "rising": "新興的、崛起的"
+      "rising": "新興的、崛起的",
+      "title": "应用",
+      "intro": "由任何人为 DeHub 构建的迷你应用。它们在 DeHub 内打开，您已登录，每个应用都会显示其真实的网页地址。",
+      "buildCta": "创建应用",
+      "all": "全部",
+      "fromDehub": "来自 DeHub",
+      "noMatch": "没有匹配的应用",
+      "yourApps": "您的应用",
+      "notificationsOn": "通知开启",
+      "remove": "移除",
+      "removed": "已移除。将不再通知您。"
     },
     "category": {
       "health-fitness": "健康跟運動",
@@ -8626,6 +8622,9 @@
       "title": "要加{{name}}?",
       "body": "它會出現在「你的應用」裡，可以發送通知給你。你隨時可以從「應用」頁面移除它。",
       "confirm": "加應用"
+    },
+    "card": {
+      "open": "打开"
     }
   },
   "aiStyles": {
@@ -8639,7 +8638,6 @@
     "russian-mafia": "俄罗斯黑手党",
     "pirate": "海盗",
     "alien": "外星人",
-    "e-girl": "E-Girl",
     "chad": "猛男",
     "hopeless-romantic": "无可救药的浪漫派",
     "daddy": "老爸",
@@ -8664,5 +8662,35 @@
     "recommendedBody": "DeHub 有新版本了，帶重要其安全修復。更新一下，帳號正安全。",
     "requiredBody": "其個版本其 DeHub 不再支持了。更新以後正能接倒用你其帳號。",
     "update": "馬上更新"
+  },
+  "walletBackup": {
+    "title": "备份钱包",
+    "rowDesc": "查看您的 12 个单词或私钥",
+    "backedUpOn": "已备份 {{date}}",
+    "offerTitle": "备份您的钱包？",
+    "offerBody": "12 个单词，如果您丢失手机或密码，可以恢复您的钱包。需要 30 秒。",
+    "offerBodyDeviceOnly": "您的钱包只存在于此手机上。没有这些单词，丢失手机就等于丢失钱包。",
+    "saveNow": "立即保存",
+    "skipForNow": "先跳过",
+    "wordsTitle": "您的 12 个单词",
+    "tapToReveal": "点击显示",
+    "hideWords": "隐藏文字",
+    "wroteThemDown": "我已寫下來",
+    "checkTitle": "快速檢查",
+    "checkPrompt": "點擊字詞 #{{n}}",
+    "checkWrong": "不是這個。再看一下字詞 #{{n}}。",
+    "skipCheck": "跳過檢查",
+    "signingIn": "正在登入…",
+    "warnOwns": "任何知道這些字詞的人都能控制你的錢包。",
+    "warnNeverAsk": "DeHub絕不會要求這些字詞。",
+    "warnPaper": "把它們寫在紙上，不要用截圖或筆記軟體。",
+    "tabWords": "12個字詞",
+    "tabPrivateKey": "私鑰",
+    "advanced": "進階",
+    "passwordToShowWords": "輸入你的錢包密碼以顯示12個字詞。",
+    "showWords": "顯示字詞",
+    "reminderBody": "備份你的錢包 — 12個字詞，如果手機遺失，可以用它們恢復。",
+    "backUp": "備份",
+    "notNow": "暫時不備份"
   }
 }

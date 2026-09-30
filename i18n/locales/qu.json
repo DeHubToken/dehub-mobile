@@ -1790,7 +1790,9 @@
     "exploreWithoutSignInA11y": "DeHub nisqapi maskay mana yaykuchkaspa",
     "continueExploringA11y": "DeHub nisqapi maskaspallapuni puriy",
     "importWalletRecommended": "Social yaykuykunaqa allinmi.",
-    "importWalletPurpose": "Kay yanapakuyqa DeHub.io kaqmanta kunan kaq yupaykunata apamunapaqmi."
+    "importWalletPurpose": "Kay yanapakuyqa DeHub.io kaqmanta kunan kaq yupaykunata apamunapaqmi.",
+    "importSecretPlaceholder": "12 utaq 24 simikuna, utaq huk llave privada",
+    "invalidImportSecret": "Chayqa manam allin 12/24 simiyuq rimaychu nitaq sapalla llavechu"
   },
   "messages": {
     "smartRepliesOff": "Ñisqa kutichiykunaqa wañuchisqa",
@@ -6689,7 +6691,8 @@
     "emptyTitle": "Manaraqmi borradorkuna kanchu",
     "emptyDescription": "Huk qillqasqata borrador hina waqaychaspaykiqa kaypim rikurimunqa.",
     "saveTitle": "Borradorta waqaychay",
-    "savePrompt": "¿Kay qillqasqata borrador hina waqaychay tukunaykipaq hinaspa qipaman churanaykipaq?"
+    "savePrompt": "¿Kay qillqasqata borrador hina waqaychay tukunaykipaq hinaspa qipaman churanaykipaq?",
+    "typeVideo": "Video"
   },
   "editor": {
     "app": {
@@ -8625,10 +8628,14 @@
     },
     "add": {
       "body": "Chayqa rikurimunqa Apps nisqaykipi chaymanta willakuykunata apachisunkiman. Ima pachapas Apps nisqa p'anqamanta hurquyta atinki.",
-      "confirm": "App yapay"
+      "confirm": "App yapay",
+      "title": "Yanapay {{name}}?"
     },
     "pay": {
-      "body": "DHBqa derechota rin apppa billeteranman, {{wallet}}. Pagokunataqa manam kutichiyta atikunmanchu."
+      "body": "DHBqa derechota rin apppa billeteranman, {{wallet}}. Pagokunataqa manam kutichiyta atikunmanchu.",
+      "title": "¿{{name}} nisqamanta qullqita quy?",
+      "confirm": "Pagay {{amount}} DHB nisqaman",
+      "sent": "{{amount}} DHB nisqamanta {{name}} nisqaman pagasqa."
     }
   },
   "aiStyles": {
@@ -8667,5 +8674,36 @@
     "recommendedBody": "DeHubpa musuq versionnin kachkan, allin waqaychay allichaykunawan. Cuentayki waqaychasqa kananpaq musuqchay.",
     "requiredBody": "Kay DeHub versionqa manaña yanapasqachu. Cuentaykita llamk'achinaykipaq musuqchay.",
     "update": "Kunan musuqchay"
+  },
+  "walletBackup": {
+    "title": "Billetera de respaldo",
+    "rowDesc": "Qaway 12 simiykikunata utaq llave privadaykita",
+    "backedUpOn": "Yanapasqa {{date}}",
+    "offerTitle": "¿Billeteraykita copia de seguridadta ruwankichu?",
+    "offerBody": "12 simikuna billeteraykita kutichimun sichus telefonoykita otaq contraseñaykita chinkachinki. 30 segundos nisqapin ruwakun.",
+    "offerBodyDeviceOnly": "Kay telefonollapim billeteraykiqa kawsan. Mana kay simikuna kaptinqa, chinkasqa telefonoqa chinkasqa billetera niyta munan.",
+    "saveNow": "Kunanpacha waqaychay",
+    "skipForNow": "Kunankamaqa saltay",
+    "wordsTitle": "12 simiykikuna",
+    "tapToReveal": "Rikuchinaykipaq ñitiy",
+    "hideWords": "Simikunata pakay",
+    "copied": "Copiasqa",
+    "wroteThemDown": "Chaykunataqa qillqarqanim",
+    "checkTitle": "Utqaylla qhaway",
+    "checkPrompt": "#{{n}} simita ñit'iy.",
+    "checkWrong": "Mana chaychu. Hukmanta qhawariy #{{n}} simita.",
+    "skipCheck": "Salta chequeo",
+    "signingIn": "Yaykuchkaptiyki...",
+    "warnOwns": "Pipas kay simiyuq runaqa billeteraykipa dueñonmi.",
+    "warnNeverAsk": "DeHubqa manan hayk’aqpas chaykunataqa mañakunqachu.",
+    "warnPaper": "Chaykunataqa papelpi qillqay, manam pantallapichu nitaq notas nisqapichu.",
+    "tabWords": "12 simikuna",
+    "tabPrivateKey": "Llave privada nisqa",
+    "advanced": "Ñawparisqa",
+    "passwordToShowWords": "Billeteraykipi contraseña qillqay 12 simiykikunata qawachinaykipaq.",
+    "showWords": "Simikunata qawachiy",
+    "reminderBody": "Billeteraykimanta copia de seguridad ruway — 12 simikuna kutichimunku sichus telefonoykita chinkachinki.",
+    "backUp": "Kutichiy",
+    "notNow": "Kunan manam"
   }
 }

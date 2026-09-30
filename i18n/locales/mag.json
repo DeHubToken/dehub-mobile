@@ -146,9 +146,9 @@
     "noMoreShorts": "आउर शॉर्ट्स नईं",
     "noShortsFound": "कवनो शॉर्ट्स ना मिली",
     "newMembersHint": "अभी जुड़ल बानीं — नमस्ते बोलीं",
-    "scroll": "Scroll",
     "noFilterMatches": "तोहर फिल्टर से कोनो सामग्री मेल नइ खा हे।",
-    "clearFilters": "फिल्टर हटाबूँ"
+    "clearFilters": "फिल्टर हटाबूँ",
+    "scroll": "स्क्रॉल करे"
   },
   "explore": {
     "all": "सब",
@@ -783,7 +783,11 @@
     "smsTopUp": "{{dhb}} टोकन टॉप-अप करें",
     "smsCodeSent": "कोड भेजा गया। इसमें {{price}} टोकन लगे।",
     "tokenBalanceAmount": "{{amount}} टोकन",
-    "importDone": "अनुसरण कियो {{followed}}, ब्लाक कियो {{blocked}}, {{folders}} फोल्डर बनायो।"
+    "importDone": "अनुसरण कियो {{followed}}, ब्लाक कियो {{blocked}}, {{folders}} फोल्डर बनायो।",
+    "channelSpeedCount": "{{count}} चैनल(स) अपन गति से चल रहल बा.",
+    "exportReady": "{{count}} खाता, {{saved}} बचावल पोस्ट निर्यात कइल गइल.",
+    "importPartial": "{{count}} खाता के फॉलो ना कइल जा सकल — इम्पोर्ट फेर से चलाके ओहनी के दुबारा कोशिश करीं.",
+    "importProgress": "{{done}} के {{total}} पर लागू कइल जा रहल बा…"
   },
   "common": {
     "mute": "आवाज बंद करू",
@@ -1785,7 +1789,9 @@
     "exploreWithoutSignInA11y": "Dehub में बिना साइन अप के अन्वेषण करे",
     "continueExploringA11y": "होल्ड होल्ड अप होल्ड ऑन लियोन",
     "importWalletRecommended": "सोशल लॉगिन के सिफ़ारिश की जाती है।",
-    "importWalletPurpose": "यह टूल DeHub.io से मौजूदा खातों को आयात करने के लिए है।"
+    "importWalletPurpose": "यह टूल DeHub.io से मौजूदा खातों को आयात करने के लिए है।",
+    "importSecretPlaceholder": "12 या 24 शब्द, या एक निजी कुंजी",
+    "invalidImportSecret": "ई वैध 12/24-शब्द वाक्यांश या निजी कुंजी ना बा"
   },
   "messages": {
     "smartRepliesOff": "सुझावल जवाब बंद हो गेल",
@@ -1858,7 +1864,8 @@
     "reach": {
       "breakdownTitle": "हई कहाँ ले आईल बा लोग?",
       "dehubFollowers": "देसी अनुयायी हई",
-      "selfReported": "रचनाकार द्वारा सामाजिक अनुयायी के गिनती कैल जाई हई ।"
+      "selfReported": "रचनाकार द्वारा सामाजिक अनुयायी के गिनती कैल जाई हई ।",
+      "total": "कुल पहुँच"
     },
     "loginDescription": "अपना प्रोफाइल देखे आ मैनेज करे खातिर लॉग इन करो।",
     "ensUrlCopied": "ENS प्रोफाइल लिंक कॉपी भ गेल",
@@ -2651,7 +2658,6 @@
     "viewCount_other": "{{count}} बेर देखल",
     "shareMessage": "ई देखऽ: {{url}}",
     "hideReplies": "जवाब छिपावऽ",
-    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
     "rowA11yHint": "ई टिप्पणी पर जवाब सुरू करऽ हे",
     "editingComment": "टिप्पणी संपादित हो रहल हे",
     "editPlaceholder": "अपन टिप्पणी संपादित करऽ...",
@@ -3177,7 +3183,8 @@
         "invites": "आमंत्रित करे लगी",
         "rules": "नियम बनय वाला",
         "recentActions": "Latest संग्राहलय",
-        "danger": "खतरा के क्षेत्र, जोखिम के क्षेत्र"
+        "danger": "खतरा के क्षेत्र, जोखिम के क्षेत्र",
+        "admins": "प्रशासक"
       },
       "title": "प्रबंधित करे के लेल",
       "purgeTitle": "सभी डिलीट कैलक्यूलेटर?",
@@ -3223,12 +3230,10 @@
       "purgeBody": "{{name}} द्वारा इस समुदाय में भेजे गए हर संदेश को हटा दिया जाएगा।",
       "kickBody": "{{name}} को समुदाय से हटा दिया जाएगा। वे बाद में फिर से शामिल हो सकते हैं।",
       "bannedUntil": "{{date}} तक प्रतिबंधित",
-      "restrictionWithReason": "{{state}} — {{reason}}",
       "mutedUntil": "{{date}} तक म्यूट",
       "bannedUntilShort": "{{date}} तक",
       "muteTitle": "{{name}} को म्यूट करें",
       "banTitle": "{{name}} को प्रतिबंधित करें",
-      "reasonCounter": "{{len}}/200",
       "rulesCount": "{{used}} में से {{max}}",
       "moveRuleUp": "नियम ऊपर ले जाएँ",
       "moveRuleDown": "नियम नीचे ले जाएँ",
@@ -3280,7 +3285,9 @@
         "transferAction": "स्वामी बनावो त '",
         "deleteHeading": "समुदाय के लिए उपयोगी, विशेष रूप से",
         "deleteHint": "प्रत्येक सदस्य, संदेश, घटना और निमंत्रण लिंक को स्थायी रूप से हटा दिया जाता है । नहि देखलियै, पिछड़ि गेलहुं ।",
-        "deleteAction": "समुदाय के लिए उपयोगी, विशेष रूप से"
+        "deleteAction": "समुदाय के लिए उपयोगी, विशेष रूप से",
+        "transferBody": "{{name}} ई समुदाय के मालिक बन जाला. आप हर अधिकार के साथ प्रशासक बन जालें, आ ई उलट ना हो सके.",
+        "deleteBody": "{{name}} आ ओकरा भीतर सब कुछ स्थायी रूप से हट जाला: हर सदस्य, हर संदेश, हर कार्यक्रम आ हर निमंत्रण लिंक. ई उलट ना हो सके."
       },
       "inviteRevoked": "त्याग देल गेल",
       "inviteExpired": "समाप्त हो गई",
@@ -3318,8 +3325,22 @@
         "reason": "कारण: {{value}}",
         "restricted": "केवल मॉडरेटर ही देख सकते हैं मॉडरेशन लॉग।",
         "empty": "कुछ भी नहीं यहाँ। मॉडरेशन कार्रवाई को जैसे ही होगा वैसे ही दिखाई देगा।",
-        "showMore": "अधिक दिखाएं ({{value}})"
-      }
+        "showMore": "अधिक दिखाएं ({{value}})",
+        "minutesAgo": "{{value}} मिनट पहिले",
+        "hoursAgo": "{{value}} घंटे पहिले",
+        "daysAgo": "{{value}} दिन पहिले",
+        "weeksAgo": "{{value}} हप्ता पहिले",
+        "monthsAgo": "{{value}} महीना पहिले",
+        "yearsAgo": "{{value}} वर्ष पहिले"
+      },
+      "rightsSummary": "{{granted}} के {{total}} अधिकार",
+      "searchTruncated": "पहिला {{limit}} देखावल जा रहल बा — टाइप करत जाईं ताकि संकुचित हो सके.",
+      "inviteExpiresMinutes": "{{n}} मिनट में समाप्त हो जाई",
+      "inviteExpiresHours": "{{n}} घंटे में समाप्त हो जाई",
+      "inviteExpiresDays": "{{n}} दिन में समाप्त हो जाई",
+      "inviteLimit": "सीमा {{n}}",
+      "inviteUses": "{{n}} जुड़ल",
+      "slowModeOnHint": "सदस्य हर {{label}} पर एक संदेश भेज सकत बा. प्रशासक छूट बा."
     },
     "chooseAvatar": "अवतार चुनें",
     "loadFailed": "नइ निकलि सकलइ",
@@ -4513,7 +4534,8 @@
       "emptyFeed": "येई मामला में, समाधान सूचीबद्ध ना कैल जा सकई छलो ।",
       "badFeed": "ई लिंक पॉडकास्ट फ़ीड जैसन ना लगई छई ।",
       "tooMany": "एक से एक, एक सौ पाउंड तो, केवल रिश्तेदारों या परिचितों के साथ,"
-    }
+    },
+    "reviewSubtitle": "{{source}} से, {{kind}} के रूप में. जे चाहीं संपादित करीं — शीर्षक खाली छोड़ दीं ताकि मूल रहे."
   },
   "earnings": {
     "filter24h": "24घं",
@@ -6197,7 +6219,6 @@
   "nearBuy": {
     "otherCurrencies": "दोसर करेंसी",
     "search": "टोकन, नेटवर्क चाहे कॉन्ट्रैक्ट खोजऽ",
-    "onChain": "on {{chain}}",
     "refundAddress": "{{chain}} पर रिफंड पता",
     "refundPlaceholder": "भुगतान नेटवर्क पर पता",
     "refundHint": "जाँच लऽ कि ई भुगतान नेटवर्क पर तोहर अपन वॉलेट हे। अइसन एक्सचेंज पता से बचऽ जेकरा में मेमो चाहे टैग लगऽ हे। प्रोवाइडर के कोनो रिफंड हियें लौटतइ।",
@@ -6635,7 +6656,6 @@
       "newDesign": "नयका डिजाइन",
       "yourDesigns": "तोहर डिजाइन",
       "noDesigns": "जे डिजाइन तू बनावऽ हऽ, ऊ एही फोन पर सेव होवऽ हे आउ इहाँ देखाई पड़ऽ हे।",
-      "dimensions": "{{width}} × {{height}}",
       "aspectStory": "स्टोरी",
       "aspectPost": "पोस्ट",
       "aspectSquare": "चौकोर",
@@ -6917,7 +6937,6 @@
       "split": "काटीं",
       "splitHint": "क्लिप के बीच में प्लेहेड ले जाके ओकरा काटीं।",
       "speed": "रफ्तार",
-      "speedValue": "{{value}}×",
       "volumeTool": "वॉल्यूम",
       "volume": "वॉल्यूम {{value}}%",
       "fadeIn": "फेड इन {{value}}s",
@@ -6980,7 +6999,6 @@
       "recording": "गति रिकॉर्ड हो रही है",
       "lanes": "कीफ़्रेम",
       "scrub": "बदलने के लिए बाएँ या दाएँ खींचें।",
-      "segment": "{{from}} → {{to}}",
       "ease": {
         "linear": "रैखिक",
         "ease": "सहज",
@@ -7194,7 +7212,8 @@
     "severity": {
       "low": "हल्के से",
       "high": "ऊँच होवई के",
-      "urgent": "तत्काल, तत्काल, जरूरी"
+      "urgent": "तत्काल, तत्काल, जरूरी",
+      "normal": "सामान्य"
     },
     "category": {
       "account_access": "कैलकुलेटर एक्सेस",
@@ -8604,5 +8623,32 @@
     "recommendedBody": "जरूरी सुरक्षा सुधार के साथे DeHub के नया वर्जन आयल हइ। अपन खाता सुरक्षित रखे लागी अपडेट करऽ।",
     "requiredBody": "DeHub के ई वर्जन अब सपोर्ट न होवऽ हइ। अपन खाता चलावइत रहे लागी अपडेट करऽ।",
     "update": "अभी अपडेट करऽ"
+  },
+  "walletBackup": {
+    "rowDesc": "12 Words या प्राइवेट Key पर क्लिक करे",
+    "offerTitle": "अपन दरबज्जा?",
+    "offerBody": "12 शब्द जेकरा से अगर आप फोन या पासवर्ड खो दिहलें त आपका वॉलेट वापस मिल जाई। 30 सेकंड लगत बा।",
+    "offerBodyDeviceOnly": "एकरा अक्सर टेलीफोन नंबर के संदर्भ में ओह कहल जाई हई । ई शब्द के बिना, एगो खो गेल फोन के मतलब एगो खो गेल पर्स हई ।",
+    "saveNow": "Brand, अभी के अभी वापस आओ!",
+    "skipForNow": "अभी के लिए, हालांकि, श्रृंखला समाप्त हो गई है ।",
+    "wordsTitle": "12. उच्चारण रेकार्ड करे",
+    "tapToReveal": "दिखावे के लिए टैप करे",
+    "hideWords": "छुप छुप के करे बातो में,",
+    "copied": "कॉपी कैलक्यूलेटर",
+    "wroteThemDown": "लिखि देलकैक",
+    "checkTitle": "त्वरित जांच करे",
+    "skipCheck": "कैलक्यूलेटर",
+    "signingIn": "रिपोर्ट मैं जइसन बताये हव वैसन लिखे हे, कारवाही करे जाय",
+    "warnOwns": "ओकन्हीं अपन सब सम्पत्ति दे दे हइ ।",
+    "warnNeverAsk": "कुत्तो ओकरा नय पूछो हलय ।",
+    "warnPaper": "कैलकुलेटर पर नहीं, स्क्रीनशॉट पर नहीं",
+    "tabWords": "12 कलई = 1 मुहूर्त",
+    "tabPrivateKey": "प्राइवेट कुंजी कैलकुलेटर",
+    "advanced": "उन्नति करलकै",
+    "passwordToShowWords": "अपना Password enter करे और 12 Words के साथ अपना Password enter करे ।",
+    "showWords": "दिखावा शब्द, दिखावा",
+    "reminderBody": "Home/Whatsapp/अपना फोन खोए तो क्या करे — 12 Words",
+    "backUp": "चल गिर के उठ जा",
+    "notNow": "आज तलक होलइ नञ"
   }
 }

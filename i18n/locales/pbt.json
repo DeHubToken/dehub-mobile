@@ -146,9 +146,9 @@
     "noMoreShorts": "نور شارټس نشته",
     "noShortsFound": "هیڅ شارټس ونه موندل شو",
     "newMembersHint": "تازه ګډون کړی — سلام ووایه",
-    "scroll": "Scroll",
     "noFilterMatches": "هېڅ محتوا ستاسو له فلټرونو سره سمون نه لري.",
-    "clearFilters": "فلټرونه پاک کړئ"
+    "clearFilters": "فلټرونه پاک کړئ",
+    "scroll": "سکرول"
   },
   "explore": {
     "all": "ټول",
@@ -785,7 +785,9 @@
     "channelSpeedCount": "{{count}} پڼګړي د خپل ځانګړي ځواک سره کار کوي.",
     "exportReady": "{{count}} پڼګړي، {{saved}} ځانګړي پوډونه د خپل ځانګړي پڼګړي څخه استخراج شوي.",
     "importPartial": "{{count}} پڼګړي د دوی سره پیغامونه نه کوي — د دوی سره پیغامونه د بله ځل دوی سره پیغامونه کړي.",
-    "badgeDelegationAcceptOffEnded": "ټوکن بیرته ورکړل شو. تاسو ته به بل نه درکول کیږي."
+    "badgeDelegationAcceptOffEnded": "ټوکن بیرته ورکړل شو. تاسو ته به بل نه درکول کیږي.",
+    "importDone": "تعقیب شو {{followed}}، بلاک شو {{blocked}}، {{folders}} فولډرونه جوړ شول.",
+    "importProgress": "د {{total}} څخه {{done}} پلي کېږي…"
   },
   "common": {
     "mute": "غږ بند کړئ",
@@ -1784,7 +1786,9 @@
     "exploreWithoutSignInA11y": "په انسټاګرام کې د ننوتلو پرته د انسټاګرام کیسې ډاونلوډ کړئ",
     "continueExploringA11y": "د DeHub کشف کولو ته دوام ورکړئ",
     "importWalletRecommended": "ټولنیز ننوتل سپارښتنه کیږي.",
-    "importWalletPurpose": "دا وسیله د DeHub.io څخه د موجودو حسابونو واردولو لپاره ده."
+    "importWalletPurpose": "دا وسیله د DeHub.io څخه د موجودو حسابونو واردولو لپاره ده.",
+    "importSecretPlaceholder": "۱۲ یا ۲۴ کلمې، یا شخصي کلید",
+    "invalidImportSecret": "دا د ۱۲/۲۴-کلمو جملې یا شخصي کلید سم نه دی"
   },
   "messages": {
     "smartRepliesOff": "وړاندیز شوي ځوابونه بند شول",
@@ -2651,7 +2655,6 @@
     "viewCount_other": "{{count}} لیدنې",
     "shareMessage": "دا وګورئ: {{url}}",
     "hideReplies": "ځوابونه پټ کړئ",
-    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
     "rowA11yHint": "دې تبصرې ته ځواب پیلوي",
     "editingComment": "تبصره سمول کېږي",
     "editPlaceholder": "خپله تبصره سمه کړئ...",
@@ -2664,7 +2667,8 @@
     "repostsLabel_one": "بیا پوسټ",
     "repostsLabel_other": "بیا پوسټونه",
     "quotesLabel_one": "اقتباس",
-    "quotesLabel_other": "اقتباسونه"
+    "quotesLabel_other": "اقتباسونه",
+    "rowA11yLabel": "{{name}}، {{time}}: {{text}}"
   },
   "postInfo": {
     "title": "د پوسټ معلومات",
@@ -3223,12 +3227,10 @@
       "purgeBody": "هر پیامی که {{name}} در این انجمن ارسال کرده است حذف خواهد شد.",
       "kickBody": "{{name}} از انجمن حذف خواهد شد. آنها می توانند بعداً دوباره بپیوندند.",
       "bannedUntil": "تا {{date}} ممنوع شد",
-      "restrictionWithReason": "{{state}} — {{reason}}",
       "mutedUntil": "تا {{date}} صدا خاموش شد",
       "bannedUntilShort": "تا {{date}}",
       "muteTitle": "{{name}} را صدا خاموش کنید",
       "banTitle": "{{name}} را ممنوع کنید",
-      "reasonCounter": "{{len}}/200",
       "rulesCount": "{{used}} از {{max}}",
       "moveRuleUp": "قاعده را بالا ببرید",
       "moveRuleDown": "قاعده را پایین ببرید",
@@ -3335,7 +3337,8 @@
         "restricted": "یوازې مدیران د مدیریت لاګ لیدلی شي.",
         "empty": "دلته لا تر اوسه هیڅ نشته. د مدیریت کړنې به هغه وخت ښکاره شي کله چې دوی پیښیږي.",
         "showMore": "نور وښایاست ({{value}})"
-      }
+      },
+      "reasonCounter": "{{len}}/۲۰۰"
     },
     "chooseAvatar": "اوتار غوره کړئ",
     "loadFailed": "نه شو کولای چې ټولنې جوړې کړو",
@@ -3358,7 +3361,8 @@
       "notFound": "دا بلنه لینک معتبر نه دی.",
       "requestToJoin": "د شاملیدو غوښتنه",
       "approvalNote": "یو مدیر باید ستاسو غوښتنه تصویب کړي مخکې لدې چې تاسو شامل شئ."
-    }
+    },
+    "pin": "پین"
   },
   "work": {
     "title": "جایزې",
@@ -3538,7 +3542,8 @@
     "bountyUpdated": "انعام تازه شو",
     "updateFailed": "د انعام تازه کول ناکام شول",
     "disputeResolved": "شخړه حل شوه",
-    "resolveFailed": "د شخړې حل ناکام شو"
+    "resolveFailed": "د شخړې حل ناکام شو",
+    "jobLoadFailed": "دا جایزه نه شي لوډ کېدای"
   },
   "usernames": {
     "subtitle": "د پلورلو لپاره نومونه، بیه یې په USD کې",
@@ -3672,7 +3677,6 @@
     "podBadge": "د غوښتنې پر بنسټ چاپ",
     "podBuyOn": "په {{provider}} کې یې واخلئ",
     "podNote": "د {{provider}} لخوا د غوښتنې پر بنسټ چاپ او لیږل کیږي. تادیه د دوی په سایټ کې کیږي.",
-    "podUrlPlaceholder": "https://…",
     "subtitle": "د DeHub ټولنې محصولات ومومئ",
     "browse": "وګورئ",
     "myStore": "زما پلورنځی",
@@ -6035,7 +6039,8 @@
       "killerWhale": "د شاتو مچۍ پورته کړئ او تاسو د شاتو مچیو په لټه کې یاست",
       "blueWhale": "ترټولو لوی شی چې ما کله هم ژوند کړی دی. دا هغه څه دي چې تاسو یې یاست.",
       "megalodon": "ستاسو د پاچاهۍ په هیله — نن ټکی اسیا",
-      "piranha": "چټک، خو دې دېږي."
+      "piranha": "چټک، خو دې دېږي.",
+      "tigerShark": "اوبه یوازې خامخا شاوخوا شوې"
     },
     "continue": "ته وليږي تر څو د پوښتنې DeHub",
     "none": "هیڅ نه",
@@ -6218,7 +6223,6 @@
   "nearBuy": {
     "otherCurrencies": "نورې پیسې",
     "search": "توکن، شبکه یا قرارداد وپلټئ",
-    "onChain": "on {{chain}}",
     "refundAddress": "په {{chain}} کې بیرته ورکول پته",
     "refundPlaceholder": "د تادیې شبکې پته",
     "refundHint": "ډاډ ترلاسه کړئ چې دا یوه والټ ده چې تاسو یې په تادیه شبکه کې کنټرول کوئ. د تبادلې پتې له هغه څخه ډډه وکړئ چې یادښت یا ټګ ته اړتیا لري. کوم چمتو کونکي بیرته ورکول دلته راځي.",
@@ -6301,7 +6305,8 @@
     "phase_gasPending": "ټوکنونه واستول شول · ګاز په تمه دی",
     "detail_gasPending": "ستاسو د ټوکن لیږد تایید شو. جلا د ETH ګاز لیږد لاهم په تمه دی یا بیا هڅه کوي.",
     "detail_delivered": "ستاسو د ډی هب (DeHub) ټوکنونه ستاسو د بیس (Base) والټ ته واستول شول.",
-    "directTiming": "ټوکنونه د دې وروسته واستول کیږي چې ستاسو تادیه تایید شي."
+    "directTiming": "ټوکنونه د دې وروسته واستول کیږي چې ستاسو تادیه تایید شي.",
+    "onChain": "په {{chain}}"
   },
   "dex": {
     "lowestPrice": "ټیټه بیه · USD",
@@ -6656,7 +6661,6 @@
       "newDesign": "نوی ډیزاین",
       "yourDesigns": "ستاسو ډیزاینونه",
       "noDesigns": "هغه ډیزاینونه چې تاسو یې جوړوئ په دې تلیفون کې خوندي کیږي او دلته ښکاري.",
-      "dimensions": "{{width}} × {{height}}",
       "aspectStory": "سټوري",
       "aspectPost": "پوسټ",
       "aspectSquare": "مربع",
@@ -6938,7 +6942,6 @@
       "split": "وېشل",
       "splitHint": "د کلیپ د وېشلو لپاره پلې‌هېډ د کلیپ دننه یوسئ.",
       "speed": "سرعت",
-      "speedValue": "{{value}}×",
       "volumeTool": "د غږ کچه",
       "volume": "د غږ کچه {{value}}%",
       "fadeIn": "ورو راتګ {{value}} ثانیې",
@@ -7001,7 +7004,6 @@
       "recording": "حرکت ثبتیږي",
       "lanes": "کلیدي چوکاټونه",
       "scrub": "د بدلولو لپاره کیڼ یا ښي خوا ته کش کړئ.",
-      "segment": "{{from}} → {{to}}",
       "ease": {
         "linear": "مستقیم",
         "ease": "نرم",
@@ -7171,7 +7173,8 @@
     "offerSubmitted_other": "د {{count}} برخو لپاره وړاندیز ثبت شو په {{price}} ټوکنونو هره یوه",
     "yourOfferLabel": "ستاسو وړاندیز (ټوکنونه په هر برخه)",
     "listedToast_one": "{{count}} برخه په {{price}} ټوکنونو هره یوه لیست شوه",
-    "listedToast_other": "{{count}} برخې په {{price}} ټوکنونو هره یوه لیست شوې"
+    "listedToast_other": "{{count}} برخې په {{price}} ټوکنونو هره یوه لیست شوې",
+    "settlementNote": "ستاسو توکنونه مستقیم د پلورونکي ته ځي او موږ یې په چین کې تصدیق کوو. پلورونکی بیا د {{hours}} ساعتونو لري چې برخې واستوي — تاسو به سوداګري خپل پورټفولیو کې وګورئ تر څو دوی یې وکړي، او د دوی ریکارډ عام دی."
   },
   "moderation": {
     "appealDuplicate": "تاسو دمخه دا غوښتنه کړې",
@@ -7185,7 +7188,8 @@
     "appealRef": "حواله {{ref}}",
     "appealSubtitleSubject": "یو سړی به دا ولولي او بیا به {{subject}} ته وګوري.",
     "appealMore": "اوس هم اړین کرکټرونه: {{count}}",
-    "appeal": "د غوښتنې غوښتنه وکړئ"
+    "appeal": "د غوښتنې غوښتنه وکړئ",
+    "appealSentRef": "د اپیل لیږل شوی · {{ref}}"
   },
   "support": {
     "title": "ملاتړ",
@@ -7398,7 +7402,9 @@
   "postQuota": {
     "transferredConfirming": "ستاسو توکي لیږدول شوي دي. موږ به ژر تر ژره د پیسو تایید پای ته ورسوو.",
     "sentUnconfirmed": "ستاسو ټوکنونه لیږل شوي مګر موږ نشو کولی د تادیې تایید وکړو. یو ځل بیا پیسې مه ورکوئ.",
-    "transferIncomplete": "د ټپيانو روغتيايي حالت د ډاډ وړ نه دی. تاسو به د خپل راتلونکي تادیه شوي پوسټ څخه مخکې یو ځل بیا وپوښتل شئ."
+    "transferIncomplete": "د ټپيانو روغتيايي حالت د ډاډ وړ نه دی. تاسو به د خپل راتلونکي تادیه شوي پوسټ څخه مخکې یو ځل بیا وپوښتل شئ.",
+    "notEnoughTokens": "{{subject}} لګښتونه {{amount}} توکنونه دي او تاسو د {{held}} لرئ.",
+    "paidForPost": "د دې پوست لپاره د {{amount}} توکنونه ورکړل شول"
   },
   "emojiPicker": {
     "searchEmoji": "ایموجي ولټوئ",
@@ -8290,7 +8296,8 @@
     "byCreator": "د {{creator}} لخوا",
     "sellSymbol": "{{symbol}} وپلورئ",
     "soldMock": "{{symbol}} وپلورل شو (ازمایښتي)",
-    "stepOf": "ګام {{step}} له 3 څخه"
+    "stepOf": "ګام {{step}} له 3 څخه",
+    "searchPlaceholder": "د ټیکر، نوم، جوړونکي لټون"
   },
   "premium": {
     "bestValue": "غوره ارزښت",
@@ -8580,7 +8587,9 @@
     },
     "pay": {
       "body": "دې DHB د اپلیکېشن د پورتې ته (والت) ورځي، {{wallet}}. دې پلټنې وړ نه دي.",
-      "confirm": "{{amount}} ته پېسې ورکړل شي؟"
+      "confirm": "{{amount}} ته پېسې ورکړل شي؟",
+      "title": "د {{name}} پیسې؟",
+      "sent": "د {{amount}} DHB د {{name}} ته ورکړل شول"
     },
     "add": {
       "body": "چېرې دې د Your apps په څېر ښکاري او ته ته د notification وړاندې کوي. ته دې هر وخت له Apps وړاندې څخه وړاندې کولای شي.",
@@ -8624,5 +8633,36 @@
     "recommendedBody": "د DeHub نوې نسخه د امنیتي مهمو سمونونو سره شته. خپل حساب خوندي ساتلو لپاره یې تازه کړئ.",
     "requiredBody": "د DeHub دا نسخه نور نه ملاتړ کېږي. د خپل حساب کارولو ته د دوام لپاره یې تازه کړئ.",
     "update": "اوس تازه کړئ"
+  },
+  "walletBackup": {
+    "title": "والټ بیک اپ کړئ",
+    "rowDesc": "خپل ۱۲ کلمې یا شخصي کلید وګورئ",
+    "backedUpOn": "بیک اپ شو {{date}}",
+    "offerTitle": "خپل والټ بیک اپ کړئ؟",
+    "offerBody": "۱۲ کلمې چې که مو تلیفون یا پاسورډ له لاسه ورکړئ، والټ مو بیرته راولي. ۳۰ ثانیې وخت نیسي.",
+    "offerBodyDeviceOnly": "ستاسو والټ یوازې په دې تلیفون کې ژوند کوي. که دا کلمې ونه لرئ، له لاسه ورکړل شوی تلیفون د والټ له لاسه ورکولو معنی لري.",
+    "saveNow": "اوس خوندي کړئ",
+    "skipForNow": "اوس لپاره پریږدئ",
+    "wordsTitle": "ستاسو ۱۲ کلمې",
+    "tapToReveal": "د ښکاره کولو لپاره ټچ کړئ",
+    "hideWords": "کلمې پټ کړئ",
+    "copied": "کاپي شو",
+    "wroteThemDown": "ما یې ولیکل",
+    "checkTitle": "چټک چک",
+    "checkPrompt": "د کلمې #{{n}} ټچ کړئ",
+    "checkWrong": "نه هغه. وګورئ د کلمې #{{n}} بیا.",
+    "skipCheck": "د چک کولو له پامه غورځوئ",
+    "signingIn": "تاسو ته داخلېدل…",
+    "warnOwns": "هر څوک چې دا کلمې لري ستاسو بټۍ لري.",
+    "warnNeverAsk": "DeHub هیڅکله به یې نه غواړي.",
+    "warnPaper": "د کاغذ پر مخ ولیکئ، نه په سکرین شاټ یا یادښت اپ کې.",
+    "tabWords": "۱۲ کلمې",
+    "tabPrivateKey": "خصوصي کلید",
+    "advanced": "پرمختللی",
+    "passwordToShowWords": "د خپل بټۍ پاسورډ دننه کړئ ترڅو خپل ۱۲ کلمې ښکاره کړئ.",
+    "showWords": "کلمې ښکاره کړئ",
+    "reminderBody": "خپل بټۍ بیک اپ کړئ — ۱۲ کلمې چې که خپل تلیفون له لاسه ورکړئ بیا یې بیرته راوړي.",
+    "backUp": "بیک اپ",
+    "notNow": "اوس نه"
   }
 }
