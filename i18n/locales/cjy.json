@@ -19,6 +19,7 @@
     "unavailable": "这个版本的应用里没有"
   },
   "nav": {
+    "dao": "DAO",
     "fractions": "碎片",
     "home": "家",
     "explore": "找找看",
