@@ -4416,7 +4416,8 @@
     "restrictedBody": "Tento uživatel omezil interakce s vaším účtem.",
     "requestPendingBody": "Vaše žádost o sledování byla odeslána. Jejich příspěvky budete moci vidět, jakmile vaši žádost schválí.",
     "followToSeePosts": "Sledujte tento účet a uvidíte jeho příspěvky.",
-    "loadFailed": "Tento seznam se nepodařilo načíst"
+    "loadFailed": "Tento seznam se nepodařilo načíst",
+    "new": "Novinka"
   },
   "reactionInfo": {
     "title": "Reakce",

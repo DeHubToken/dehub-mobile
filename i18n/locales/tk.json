@@ -4411,7 +4411,8 @@
     "restrictedBody": "Bu ulanyjy siziň hasabyňyz bilen özara täsir etmegi çäklendirdi.",
     "requestPendingBody": "Siziň abuna ýazylmak haýyşyňyz ugradyldy. Olaryň postlaryny olaryň haýyşyňyzy tassyklandan soň görüp bilersiňiz.",
     "followToSeePosts": "Olaryň postlaryny görmek üçin bu hasaba abuna ýazylyň.",
-    "loadFailed": "Bu listany gaýd edip bolmady"
+    "loadFailed": "Bu listany gaýd edip bolmady",
+    "new": "Täze"
   },
   "reactionInfo": {
     "title": "Reaksiýalar",

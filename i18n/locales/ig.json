@@ -4411,7 +4411,8 @@
     "restrictedBody": "Onye ọrụ a egbochila mmekọrịta na akaụntụ gị.",
     "requestPendingBody": "E zigara arịrịọ ịgbaso gị. Ị ga-enwe ike ịhụ posts ha ozugbo ha kwadoro arịrịọ gị.",
     "followToSeePosts": "Soro akaụntụ a ka ịhụ posts ha.",
-    "loadFailed": "Agaghị ebubatagharị ndesịta a"
+    "loadFailed": "Agaghị ebubatagharị ndesịta a",
+    "new": "Ọhụrụ"
   },
   "reactionInfo": {
     "title": "Mmetụta",

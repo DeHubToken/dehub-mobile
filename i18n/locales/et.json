@@ -4413,7 +4413,8 @@
     "restrictedBody": "See kasutaja on piiranud interaktsioone teie kontoga.",
     "requestPendingBody": "Teie jälgimistaotlus on saadetud. Saate nende postitusi näha, kui nad teie taotluse heaks kiidavad.",
     "followToSeePosts": "Jälgi seda kontot, et näha nende postitusi.",
-    "loadFailed": "Seda loendit ei saanud laadida"
+    "loadFailed": "Seda loendit ei saanud laadida",
+    "new": "Uus"
   },
   "reactionInfo": {
     "title": "Reaktsioonid",

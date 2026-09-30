@@ -4413,7 +4413,8 @@
     "restrictedBody": "Tämä käyttäjä on rajoittanut vuorovaikutusta tilisi kanssa.",
     "requestPendingBody": "Seuraamispyyntösi on lähetetty. Näet heidän julkaisunsa, kun he hyväksyvät pyyntösi.",
     "followToSeePosts": "Seuraa tätä tiliä nähdäksesi heidän julkaisunsa.",
-    "loadFailed": "Tätä luetteloa ei voitu ladata"
+    "loadFailed": "Tätä luetteloa ei voitu ladata",
+    "new": "Uusi"
   },
   "reactionInfo": {
     "title": "Reaktiot",

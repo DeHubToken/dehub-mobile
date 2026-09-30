@@ -4413,7 +4413,8 @@
     "restrictedBody": "Pangguna iki wis mbatesi interaksi karo akun sampeyan.",
     "requestPendingBody": "Panjaluk tindakake wis dikirim. Sampeyan bakal bisa ndeleng kirimane sawise dheweke nyetujoni panjaluk sampeyan.",
     "followToSeePosts": "Tindakake akun iki kanggo ndeleng kirimane.",
-    "loadFailed": "Ora bisa mbukak dhaptar iki"
+    "loadFailed": "Ora bisa mbukak dhaptar iki",
+    "new": "Anyar"
   },
   "reactionInfo": {
     "title": "Reaksi",

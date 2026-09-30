@@ -4413,7 +4413,8 @@
     "restrictedBody": "Ky përdorues ka kufizuar bashkëveprimet me llogarinë tuaj.",
     "requestPendingBody": "Kërkesa juaj për ndjekje është dërguar. Do të mund t'i shihni postimet e tyre pasi ata të miratojnë kërkesën tuaj.",
     "followToSeePosts": "Ndiqni këtë llogari për të parë postimet e tyre.",
-    "loadFailed": "E pamundur ngarkimi i kësaj liste"
+    "loadFailed": "E pamundur ngarkimi i kësaj liste",
+    "new": "E re"
   },
   "reactionInfo": {
     "title": "Reagimet",

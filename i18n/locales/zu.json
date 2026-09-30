@@ -4444,7 +4444,8 @@
     "restrictedBody": "Lo msebenzisi uvinjelwe ukuxhumana ne-akhawunti yakho.",
     "requestPendingBody": "Isicelo sakho sokulandela sithunyelwe. Uzokwazi ukubona okuthunyelwe kwabo uma sebeqinisekisa isicelo sakho.",
     "followToSeePosts": "Landela le akhawunti ukuze ubone okuthunyelwe kwayo.",
-    "loadFailed": "Ayikwazanga ukufaka lolu hlu"
+    "loadFailed": "Ayikwazanga ukufaka lolu hlu",
+    "new": "Okusha"
   },
   "reactionInfo": {
     "title": "Ukusabela",

@@ -4413,7 +4413,8 @@
     "restrictedBody": "Denne brukeren har begrenset samhandling med kontoen din.",
     "requestPendingBody": "Følgespørringen din er sendt. Du vil kunne se innleggene deres når de godkjenner forespørselen din.",
     "followToSeePosts": "Følg denne kontoen for å se innleggene deres.",
-    "loadFailed": "Kunne ikke laste inn denne listen"
+    "loadFailed": "Kunne ikke laste inn denne listen",
+    "new": "Ny"
   },
   "reactionInfo": {
     "title": "Reaksjon",

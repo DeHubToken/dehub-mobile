@@ -4400,7 +4400,8 @@
     "restrictedBody": "此用户已限制与您帐户的互动。",
     "requestPendingBody": "您的关注请求已发送。一旦他们批准您的请求，您就可以看到他们的帖子。",
     "followToSeePosts": "关注此帐户以查看他们的帖子。",
-    "loadFailed": "无法加载此列表"
+    "loadFailed": "无法加载此列表",
+    "new": "新"
   },
   "reactionInfo": {
     "title": "反应",

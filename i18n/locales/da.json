@@ -4417,7 +4417,8 @@
     "restrictedBody": "Denne bruger har begrænset interaktion med din konto.",
     "requestPendingBody": "Din følges anmodning er sendt. Du vil kunne se deres opslag, når de godkender din anmodning.",
     "followToSeePosts": "Følg denne konto for at se deres opslag.",
-    "loadFailed": "Kunne ikke indlæse denne liste"
+    "loadFailed": "Kunne ikke indlæse denne liste",
+    "new": "Ny"
   },
   "reactionInfo": {
     "title": "Reaktioner",

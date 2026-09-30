@@ -4446,7 +4446,8 @@
     "restrictedBody": "Hierdie gebruiker het interaksies met jou rekening beperk.",
     "requestPendingBody": "Jou volgversoek is gestuur. Jy sal hul plasings kan sien sodra hulle jou versoek goedkeur.",
     "followToSeePosts": "Volg hierdie rekening om hul plasings te sien.",
-    "loadFailed": "Kon nie hierdie lys laai nie"
+    "loadFailed": "Kon nie hierdie lys laai nie",
+    "new": "Nuut"
   },
   "reactionInfo": {
     "title": "Reaksies",

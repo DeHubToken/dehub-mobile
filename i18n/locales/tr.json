@@ -4462,7 +4462,8 @@
     "restrictedBody": "Bu kullanıcı hesabınızla etkileşimleri kısıtladı.",
     "requestPendingBody": "Takip isteğiniz gönderildi. İsteğinizi onayladıklarında gönderilerini görebileceksiniz.",
     "followToSeePosts": "Gönderilerini görmek için bu hesabı takip edin.",
-    "loadFailed": "Bu liste yüklenemedi"
+    "loadFailed": "Bu liste yüklenemedi",
+    "new": "Yeni"
   },
   "reactionInfo": {
     "title": "Tepkiler",

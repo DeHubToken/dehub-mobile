@@ -4462,7 +4462,8 @@
     "restrictedBody": "Questo utente ha limitato le interazioni con il tuo account.",
     "requestPendingBody": "La tua richiesta di follow è stata inviata. Potrai vedere i loro post una volta approvata la tua richiesta.",
     "followToSeePosts": "Segui questo account per vedere i loro post.",
-    "loadFailed": "Impossibile caricare questo elenco"
+    "loadFailed": "Impossibile caricare questo elenco",
+    "new": "Novità"
   },
   "reactionInfo": {
     "title": "Reazioni",
