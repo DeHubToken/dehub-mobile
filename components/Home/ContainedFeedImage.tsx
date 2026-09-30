@@ -16,13 +16,19 @@ interface ContainedFeedImageProps {
   priority?: "low" | "normal" | "high";
   active?: boolean;
   drawBitmap?: boolean;
-  /** Post page: square corners, centred, and up to 80% of the screen tall,
-   *  the same rule the post page video follows. */
+  /** Post page: square corners, centred, and as tall as the post page video
+   *  may be: 80% of the screen, or a full-width 9:16 frame if that is taller. */
   postPage?: boolean;
 }
 
-/** Tallest a photo gets on the post page, as a share of the screen height. */
-const POST_PAGE_MAX_HEIGHT_SHARE = 0.8;
+/**
+ * Tallest a photo gets on the post page. Same rule as the post page video
+ * (FeedVideoPlayer, postPageMaxHeightFor): most of the screen, and never less
+ * than a full-width 9:16 frame, so a tall photo spans the whole width instead
+ * of stopping short of both edges.
+ */
+const postPageMaxHeightFor = (screenHeight: number, boxWidth: number) =>
+  Math.round(Math.max(screenHeight * 0.8, (boxWidth * 16) / 9));
 
 /** Natural-ratio feed image with the same 600-unit height cap as the web app. */
 const ContainedFeedImage: React.FC<ContainedFeedImageProps> = ({
@@ -45,7 +51,7 @@ const ContainedFeedImage: React.FC<ContainedFeedImageProps> = ({
     () => fitFeedImageWithin(
       availableWidth,
       aspectRatio,
-      postPage ? Math.round(screenHeight * POST_PAGE_MAX_HEIGHT_SHARE) : undefined,
+      postPage ? postPageMaxHeightFor(screenHeight, availableWidth) : undefined,
     ),
     [availableWidth, aspectRatio, postPage, screenHeight],
   );
