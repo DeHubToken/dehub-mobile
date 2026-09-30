@@ -21,14 +21,14 @@ const MutualFollowers: React.FC<MutualFollowersProps> = ({ mutuals }) => {
 
   let text: string;
   if (names.length === 1) {
-    text = `Followed by ${names[0]}`;
+    text = names[0];
   } else if (names.length === 2) {
-    text = `Followed by ${names[0]} and ${names[1]}`;
+    text = `${names[0]} and ${names[1]}`;
   } else {
     text =
       remaining > 0
-        ? `Followed by ${names.join(", ")} +${remaining}`
-        : `Followed by ${names[0]}, ${names[1]} and ${names[2]}`;
+        ? `${names.join(", ")} +${remaining}`
+        : `${names[0]}, ${names[1]} and ${names[2]}`;
   }
 
   return (
@@ -44,7 +44,8 @@ const MutualFollowers: React.FC<MutualFollowersProps> = ({ mutuals }) => {
           />
         ))}
       </View>
-      <Text className="text-zinc-400 text-xs flex-1" numberOfLines={1}>
+      {/* Shown without the words: the faces and names already say it. */}
+      <Text className="text-zinc-400 text-xs flex-1" numberOfLines={1} accessibilityLabel={`Followed by ${text}`}>
         {text}
       </Text>
     </View>
