@@ -13,7 +13,37 @@
     "placeholder": "I ka sɛbɛn sɛbɛn yan. Sira lankolon to dakun kelen kelen cɛ.",
     "lengthHint": "{{length}}/20,000 · sɛbɛnden 100 dɔgɔyali la. Sɛbɛn min bɛ sanfɛ, o ye kuma surun ye.",
     "dehubArticle": "DeHub sɛbɛn",
-    "dehubPost": "DeHub post"
+    "dehubPost": "DeHub post",
+    "minRead_one": "{{count}} min read",
+    "minRead_other": "{{count}} min read",
+    "wordCount_one": "{{count}} word",
+    "wordCount_other": "{{count}} words",
+    "needBody_one": "{{count}} ka tɛmɛ sanga ni wagati kan",
+    "needBody_other": "{{count}} ka tɛmɛ sanga ni wagati bɛɛ kan",
+    "textSize": "Text size",
+    "changeCover": "Change cover",
+    "removeCover": "Remove cover",
+    "addCover": "Add a cover",
+    "coverHint": "A siginin be i ka barokun sanfɛ ani mɔgɔw b'a ye tuma min na a be jɛnsɛn",
+    "titlePlaceholder": "Title",
+    "titleLabel": "Article title",
+    "edit": "Edit",
+    "preview": "Preview",
+    "previewEmpty": "O kama, a ka ɲi ka kɔn ka miiri o la.",
+    "summaryLabel": "An ka gafew lajɛ ka ɲɛsin o koo ma.",
+    "summaryPlaceholder": "I ka barokun kɔnɔ, kuma kelen wala fila",
+    "sharePreview": "A be cogo min na, a be o cogo kelen na",
+    "noCoverShare": "O kɔ, a ye mɔgɔ dɔ bila sira ka taga n'a ye.",
+    "format": {
+      "heading": "Heading",
+      "subheading": "Subheading",
+      "bold": "Bold",
+      "italic": "Italic",
+      "quote": "Quote",
+      "bullets": "Bullet list",
+      "numbers": "Numbered list",
+      "link": "Link"
+    }
   },
   "storefront": {
     "unavailable": "A tɛ sɔrɔ app nin cogo in na"
