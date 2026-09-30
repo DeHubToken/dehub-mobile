@@ -55,8 +55,9 @@ import Animated, {
   type SharedValue,
 } from "react-native-reanimated";
 import { LinearGradient } from "expo-linear-gradient";
-import { Canvas, Picture, createPicture, type SkPicture } from "@shopify/react-native-skia";
+import type { SkPicture } from "@shopify/react-native-skia";
 import { useAppTheme } from "../../context/ThemeContext";
+import { optionalSkia } from "../../libs/skia";
 import {
   AudioListener,
   EXTRA_STYLES,
@@ -65,7 +66,13 @@ import {
   makePalette,
   type ExtraStyle,
 } from "./visualizer-extra";
-import { SkiaCtx2D } from "./skia-ctx2d";
+
+// Older binaries still receive updates on this runtime. Neither Skia nor its
+// canvas adapter may be imported until the native module is known to exist.
+const skiaRenderer = optionalSkia(() => ({
+  ...require("@shopify/react-native-skia") as typeof import("@shopify/react-native-skia"),
+  SkiaCtx2D: (require("./skia-ctx2d") as typeof import("./skia-ctx2d")).SkiaCtx2D,
+}));
 
 /* ─── Style list ────────────────────────────────────────────────────────── */
 
@@ -1537,7 +1544,8 @@ const ExtraVisualizer: React.FC<{
   }, [style, width, height]);
 
   useEffect(() => {
-    if (!width || !height) return;
+    if (!width || !height || !skiaRenderer) return;
+    const { createPicture, SkiaCtx2D } = skiaRenderer;
     const listener = (listenerRef.current ||= new AudioListener());
     const palette = makePalette(hue, false, theme);
     const paint = (now: number) => {
@@ -1574,6 +1582,8 @@ const ExtraVisualizer: React.FC<{
     };
   }, [isPlaying, width, height, style, hue, theme, peaks, position]);
 
+  if (!skiaRenderer) return null;
+  const { Canvas, Picture } = skiaRenderer;
   return (
     <View style={{ height, width: "100%" }} onLayout={handleLayout} pointerEvents="none">
       {picture && width > 0 ? (
@@ -1606,7 +1616,11 @@ export const AudioVisualizer: React.FC<AudioVisualizerProps> = memo((props) => {
   const band = { seed, isPlaying, hue, height, onLayout };
 
   if (isExtraStyle(style)) {
-    return <ExtraVisualizer style={style} seed={seed} isPlaying={isPlaying} hue={hue} position={position} height={height} onLayout={onLayout} />;
+    return skiaRenderer ? (
+      <ExtraVisualizer style={style} seed={seed} isPlaying={isPlaying} hue={hue} position={position} height={height} onLayout={onLayout} />
+    ) : (
+      <StaticWaveform {...band} position={position} />
+    );
   }
 
   switch (style) {
