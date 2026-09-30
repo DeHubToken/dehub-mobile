@@ -1874,7 +1874,16 @@
     "tryAnotherGenre": "Zkuste jiný žánr.",
     "pauseStation": "Pozastavit stanici",
     "resumeStation": "Pokračovat ve stanici",
-    "stopRadio": "Zastavit rádio"
+    "stopRadio": "Zastavit rádio",
+    "playsToday": "Dnes {{plays}} přehrání",
+    "listen": "Poslouchat",
+    "top50": "Top 50",
+    "playAll": "Přehrát vše",
+    "nothingHereYet": "Zatím tu nic není.",
+    "likeStation": "Líbí se mi stanice",
+    "unlikeStation": "Už se mi stanice nelíbí",
+    "shareStation": "Sdílet stanici",
+    "listeningTo": "Poslouchám {{name}} na DeHub"
   },
   "notFound": {
     "title": "Stránka nenalezena",
@@ -5500,7 +5509,16 @@
     "preparingCamera": "Příprava kamery…",
     "reconnecting": "Znovu se připojuje…",
     "connecting": "Připojování…",
-    "shopPutOnAir": "Nasaďte vzduch"
+    "shopPutOnAir": "Nasaďte vzduch",
+    "streamCount_one": "{{count}} stream",
+    "streamCount_other": "Streamy: {{count}}",
+    "noOneStreamingGame": "Nikdo teď nestreamuje {{game}}.",
+    "seeAllStreams": "Zobrazit všechny streamy",
+    "isLiveNow": "{{name}} vysílá živě",
+    "justChatting": "Jen povídání",
+    "noLiveStreams": "Žádné živé streamy",
+    "noOneStreaming": "Nikdo teď nestreamuje. Zkuste to později!",
+    "loadStreamsFailed": "Streamy se nepodařilo načíst. Zkuste to znovu."
   },
   "liveShop": {
     "title": "Nakupujte z tohoto vysílání",

@@ -1874,7 +1874,16 @@
     "tryAnotherGenre": "Pabandykite kitą žanrą.",
     "pauseStation": "Pristabdyti stotį",
     "resumeStation": "Tęsti stotį",
-    "stopRadio": "Sustabdyti radiją"
+    "stopRadio": "Sustabdyti radiją",
+    "playsToday": "Šiandien {{plays}} klausymų",
+    "listen": "Klausytis",
+    "top50": "Top 50",
+    "playAll": "Leisti viską",
+    "nothingHereYet": "Čia dar nieko nėra.",
+    "likeStation": "Patinka stotis",
+    "unlikeStation": "Nebepatinka",
+    "shareStation": "Bendrinti stotį",
+    "listeningTo": "Klausausi {{name}} per DeHub"
   },
   "notFound": {
     "title": "Puslapis nerastas",
@@ -5497,7 +5506,16 @@
     "preparingCamera": "Kameros ruošimas…",
     "reconnecting": "Persijungiama…",
     "connecting": "Jungiamasi…",
-    "shopPutOnAir": "Įjunk orą"
+    "shopPutOnAir": "Įjunk orą",
+    "streamCount_one": "{{count}} transliacija",
+    "streamCount_other": "Transliacijų: {{count}}",
+    "noOneStreamingGame": "Šiuo metu niekas netransliuoja {{game}}.",
+    "seeAllStreams": "Visos transliacijos",
+    "isLiveNow": "{{name}} transliuoja tiesiogiai",
+    "justChatting": "Tiesiog pokalbiai",
+    "noLiveStreams": "Tiesioginių transliacijų nėra",
+    "noOneStreaming": "Šiuo metu niekas netransliuoja. Užsukite vėliau!",
+    "loadStreamsFailed": "Nepavyko įkelti transliacijų. Bandykite dar kartą."
   },
   "liveShop": {
     "title": "Pirkite iš šios transliacijos",

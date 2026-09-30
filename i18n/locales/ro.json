@@ -1874,7 +1874,16 @@
     "tryAnotherGenre": "Încearcă un alt gen.",
     "pauseStation": "Pauză postului",
     "resumeStation": "Continuă postul",
-    "stopRadio": "Oprește radioul"
+    "stopRadio": "Oprește radioul",
+    "playsToday": "{{plays}} ascultări azi",
+    "listen": "Ascultă",
+    "top50": "Top 50",
+    "playAll": "Redă tot",
+    "nothingHereYet": "Încă nu e nimic aici.",
+    "likeStation": "Apreciază postul",
+    "unlikeStation": "Nu mai aprecia",
+    "shareStation": "Distribuie postul",
+    "listeningTo": "Ascult {{name}} pe DeHub"
   },
   "notFound": {
     "title": "Pagina nu a fost găsită",
@@ -5497,7 +5506,16 @@
     "shopAllAttached": "Tot ce este activ în magazinul tău este deja pe acest stream.",
     "shopNoListings": "Nu ai încă nicio listare. Creează-le mai întâi pe magazinul web.",
     "shopEmpty": "Adaugă ceva din magazinul tău și spectatorii îl pot cumpăra fără a părăsi stream-ul.",
-    "shopPutOnAir": "Pune pe post"
+    "shopPutOnAir": "Pune pe post",
+    "streamCount_one": "{{count}} transmisiune",
+    "streamCount_other": "{{count}} transmisiuni",
+    "noOneStreamingGame": "Nimeni nu transmite {{game}} acum.",
+    "seeAllStreams": "Vezi toate transmisiunile",
+    "isLiveNow": "{{name}} este live",
+    "justChatting": "Doar discuții",
+    "noLiveStreams": "Nicio transmisiune live",
+    "noOneStreaming": "Nimeni nu transmite acum. Revino mai târziu!",
+    "loadStreamsFailed": "Transmisiunile nu s-au putut încărca. Încearcă din nou."
   },
   "liveShop": {
     "title": "Cumpără din această transmisiune",

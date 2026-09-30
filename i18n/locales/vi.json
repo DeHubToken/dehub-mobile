@@ -1886,7 +1886,16 @@
     "tryAnotherGenre": "Hãy thử một thể loại khác.",
     "pauseStation": "Tạm dừng đài",
     "resumeStation": "Tiếp tục đài",
-    "stopRadio": "Dừng đài phát thanh"
+    "stopRadio": "Dừng đài phát thanh",
+    "playsToday": "{{plays}} lượt nghe hôm nay",
+    "listen": "Nghe",
+    "top50": "Top 50",
+    "playAll": "Phát tất cả",
+    "nothingHereYet": "Chưa có gì ở đây.",
+    "likeStation": "Thích đài",
+    "unlikeStation": "Bỏ thích đài",
+    "shareStation": "Chia sẻ đài",
+    "listeningTo": "Đang nghe {{name}} trên DeHub"
   },
   "notFound": {
     "title": "Không tìm thấy trang",
@@ -5540,7 +5549,16 @@
     "preparingCamera": "Đang chuẩn bị máy ảnh…",
     "reconnecting": "Đang kết nối lại…",
     "connecting": "Đang kết nối…",
-    "shopPutOnAir": "Phát sóng trực tiếp"
+    "shopPutOnAir": "Phát sóng trực tiếp",
+    "streamCount_one": "{{count}} buổi phát",
+    "streamCount_other": "{{count}} buổi phát",
+    "noOneStreamingGame": "Hiện không ai phát {{game}}.",
+    "seeAllStreams": "Xem tất cả buổi phát",
+    "isLiveNow": "{{name}} đang phát trực tiếp",
+    "justChatting": "Trò chuyện",
+    "noLiveStreams": "Không có buổi phát trực tiếp",
+    "noOneStreaming": "Hiện không ai phát trực tiếp. Hãy quay lại sau!",
+    "loadStreamsFailed": "Không thể tải buổi phát. Vui lòng thử lại."
   },
   "liveShop": {
     "title": "Mua sắm từ buổi phát này",

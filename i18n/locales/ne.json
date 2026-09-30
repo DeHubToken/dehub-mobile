@@ -1887,7 +1887,16 @@
     "tryAnotherGenre": "अर्को विधा प्रयास गर्नुहोस्।",
     "pauseStation": "स्टेशन रोक्नुहोस्",
     "resumeStation": "स्टेशन पुनः सुरु गर्नुहोस्",
-    "stopRadio": "रेडियो रोक्नुहोस्"
+    "stopRadio": "रेडियो रोक्नुहोस्",
+    "playsToday": "आज {{plays}} पटक सुनियो",
+    "listen": "सुन्नुहोस्",
+    "top50": "शीर्ष ५०",
+    "playAll": "सबै बजाउनुहोस्",
+    "nothingHereYet": "यहाँ अझै केही छैन।",
+    "likeStation": "स्टेशन मन पराउनुहोस्",
+    "unlikeStation": "मन पराउन हटाउनुहोस्",
+    "shareStation": "स्टेशन सेयर गर्नुहोस्",
+    "listeningTo": "DeHub मा {{name}} सुन्दै"
   },
   "notFound": {
     "title": "पृष्ठ फेला परेन",
@@ -5504,7 +5513,16 @@
     "saySomething": "केही भन्नुहोस्...",
     "chatUnavailable": "कुराकानी उपलब्ध छैन",
     "tippedAmount": "टिप गरिएको {{amount}}",
-    "shopPutOnAir": "हावामा राख्नुहोस्"
+    "shopPutOnAir": "हावामा राख्नुहोस्",
+    "streamCount_one": "{{count}} स्ट्रिम",
+    "streamCount_other": "{{count}} स्ट्रिम",
+    "noOneStreamingGame": "अहिले कसैले {{game}} स्ट्रिम गरिरहेको छैन।",
+    "seeAllStreams": "सबै स्ट्रिम हेर्नुहोस्",
+    "isLiveNow": "{{name}} लाइभ हुनुहुन्छ",
+    "justChatting": "गफ मात्र",
+    "noLiveStreams": "कुनै लाइभ स्ट्रिम छैन",
+    "noOneStreaming": "अहिले कसैले स्ट्रिम गरिरहेको छैन। पछि फेरि हेर्नुहोस्!",
+    "loadStreamsFailed": "स्ट्रिम लोड गर्न सकिएन। फेरि प्रयास गर्नुहोस्।"
   },
   "liveShop": {
     "title": "यो स्ट्रिमबाट किन्नुहोस्",

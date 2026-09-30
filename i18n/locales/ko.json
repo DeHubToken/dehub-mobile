@@ -1872,7 +1872,16 @@
     "tryAnotherGenre": "다른 장르를 시도해 보세요.",
     "pauseStation": "방송국 일시 중지",
     "resumeStation": "방송국 다시 시작",
-    "stopRadio": "라디오 중지"
+    "stopRadio": "라디오 중지",
+    "playsToday": "오늘 {{plays}}회 재생",
+    "listen": "듣기",
+    "top50": "톱 50",
+    "playAll": "모두 재생",
+    "nothingHereYet": "아직 아무것도 없습니다.",
+    "likeStation": "스테이션 좋아요",
+    "unlikeStation": "좋아요 취소",
+    "shareStation": "스테이션 공유",
+    "listeningTo": "DeHub에서 {{name}} 듣는 중"
   },
   "notFound": {
     "title": "페이지를 찾을 수 없음",
@@ -5579,7 +5588,16 @@
     "reconnecting": "다시 연결 중…",
     "connecting": "연결 중…",
     "shopPutOnAir": "방송 출연",
-    "detailsLivepeerId": "라이브피어 ID:"
+    "detailsLivepeerId": "라이브피어 ID:",
+    "streamCount_one": "방송 {{count}}개",
+    "streamCount_other": "방송 {{count}}개",
+    "noOneStreamingGame": "지금 {{game}}을(를) 방송하는 사람이 없습니다.",
+    "seeAllStreams": "모든 방송 보기",
+    "isLiveNow": "{{name}} 님이 라이브 중",
+    "justChatting": "저스트 채팅",
+    "noLiveStreams": "라이브 방송이 없습니다",
+    "noOneStreaming": "지금 방송 중인 사람이 없습니다. 나중에 다시 확인하세요!",
+    "loadStreamsFailed": "방송을 불러오지 못했습니다. 다시 시도하세요."
   },
   "liveShop": {
     "title": "이 방송에서 쇼핑하기",

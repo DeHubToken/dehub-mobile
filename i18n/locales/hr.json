@@ -1874,7 +1874,16 @@
     "tryAnotherGenre": "Pokušajte s drugim žanrom.",
     "pauseStation": "Pauziraj stanicu",
     "resumeStation": "Nastavi stanicu",
-    "stopRadio": "Zaustavi radio"
+    "stopRadio": "Zaustavi radio",
+    "playsToday": "Danas {{plays}} slušanja",
+    "listen": "Slušaj",
+    "top50": "Top 50",
+    "playAll": "Reproduciraj sve",
+    "nothingHereYet": "Ovdje još nema ničega.",
+    "likeStation": "Sviđa mi se postaja",
+    "unlikeStation": "Ukloni sviđanje",
+    "shareStation": "Podijeli postaju",
+    "listeningTo": "Slušam {{name}} na DeHubu"
   },
   "notFound": {
     "title": "Stranica nije pronađena",
@@ -5497,7 +5506,16 @@
     "preparingCamera": "Priprema kamere…",
     "reconnecting": "Povezivanje…",
     "connecting": "Povezivanje…",
-    "shopPutOnAir": "Stavite na zrak"
+    "shopPutOnAir": "Stavite na zrak",
+    "streamCount_one": "{{count}} prijenos",
+    "streamCount_other": "Prijenosa: {{count}}",
+    "noOneStreamingGame": "Trenutačno nitko ne prenosi {{game}}.",
+    "seeAllStreams": "Prikaži sve prijenose",
+    "isLiveNow": "{{name}} je uživo",
+    "justChatting": "Samo čavrljanje",
+    "noLiveStreams": "Nema prijenosa uživo",
+    "noOneStreaming": "Trenutačno nitko ne prenosi. Svratite kasnije!",
+    "loadStreamsFailed": "Prijenosi se nisu mogli učitati. Pokušajte ponovno."
   },
   "liveShop": {
     "title": "Kupujte iz ovog prijenosa",

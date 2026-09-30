@@ -1874,7 +1874,16 @@
     "tryAnotherGenre": "Опитайте друг жанр.",
     "pauseStation": "Пауза на станцията",
     "resumeStation": "Възобновяване на станцията",
-    "stopRadio": "Спиране на радиото"
+    "stopRadio": "Спиране на радиото",
+    "playsToday": "{{plays}} слушания днес",
+    "listen": "Слушай",
+    "top50": "Топ 50",
+    "playAll": "Пусни всички",
+    "nothingHereYet": "Все още няма нищо тук.",
+    "likeStation": "Харесай станцията",
+    "unlikeStation": "Премахни харесването",
+    "shareStation": "Сподели станцията",
+    "listeningTo": "Слушам {{name}} в DeHub"
   },
   "notFound": {
     "title": "Страницата не е намерена",
@@ -5496,7 +5505,16 @@
     "reconnecting": "Свързване отново…",
     "connecting": "Свързване…",
     "detailsLivepeerId": "ИД на партньор на живо:",
-    "shopPutOnAir": "Пуснете в ефир"
+    "shopPutOnAir": "Пуснете в ефир",
+    "streamCount_one": "{{count}} излъчване",
+    "streamCount_other": "{{count}} излъчвания",
+    "noOneStreamingGame": "В момента никой не стриймва {{game}}.",
+    "seeAllStreams": "Виж всички излъчвания",
+    "isLiveNow": "{{name}} е на живо",
+    "justChatting": "Просто чат",
+    "noLiveStreams": "Няма излъчвания на живо",
+    "noOneStreaming": "В момента никой не стриймва. Провери по-късно!",
+    "loadStreamsFailed": "Излъчванията не се заредиха. Опитай отново."
   },
   "liveShop": {
     "title": "Пазарувай от този стрийм",

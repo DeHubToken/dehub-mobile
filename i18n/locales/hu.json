@@ -1874,7 +1874,16 @@
     "tryAnotherGenre": "Próbáljon meg más műfajt.",
     "pauseStation": "Szüneteltesse az állomást",
     "resumeStation": "Folytassa az állomást",
-    "stopRadio": "Állítsa le a rádiót"
+    "stopRadio": "Állítsa le a rádiót",
+    "playsToday": "Ma {{plays}} lejátszás",
+    "listen": "Hallgatás",
+    "top50": "Top 50",
+    "playAll": "Összes lejátszása",
+    "nothingHereYet": "Itt még nincs semmi.",
+    "likeStation": "Tetszik az állomás",
+    "unlikeStation": "Már nem tetszik",
+    "shareStation": "Állomás megosztása",
+    "listeningTo": "A(z) {{name}} állomást hallgatom a DeHubon"
   },
   "notFound": {
     "title": "Az oldal nem található",
@@ -5501,7 +5510,16 @@
     "preparingCamera": "Kamera előkészítése…",
     "reconnecting": "Újracsatlakozás…",
     "connecting": "Csatlakozás…",
-    "shopPutOnAir": "Levegőbe helyezés"
+    "shopPutOnAir": "Levegőbe helyezés",
+    "streamCount_one": "{{count}} stream",
+    "streamCount_other": "{{count}} stream",
+    "noOneStreamingGame": "Most senki sem streameli: {{game}}.",
+    "seeAllStreams": "Összes stream",
+    "isLiveNow": "{{name}} élőben van",
+    "justChatting": "Csak beszélgetés",
+    "noLiveStreams": "Nincsenek élő streamek",
+    "noOneStreaming": "Most senki sem streamel. Nézz vissza később!",
+    "loadStreamsFailed": "Nem sikerült betölteni a streameket. Próbáld újra."
   },
   "liveShop": {
     "title": "Vásárolj ebből az adásból",

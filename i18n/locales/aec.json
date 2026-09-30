@@ -1874,7 +1874,16 @@
     "tryAnotherGenre": "جرب نوع تاني.",
     "pauseStation": "وقف المحطة",
     "resumeStation": "كمل المحطة",
-    "stopRadio": "وقف الراديو"
+    "stopRadio": "وقف الراديو",
+    "playsToday": "{{plays}} تشغيل اليوم",
+    "listen": "استمع",
+    "top50": "أفضل 50",
+    "playAll": "تشغيل الكل",
+    "nothingHereYet": "لا يوجد شيء هنا بعد.",
+    "likeStation": "أعجبني المحطة",
+    "unlikeStation": "إلغاء الإعجاب بالمحطة",
+    "shareStation": "مشاركة المحطة",
+    "listeningTo": "أستمع إلى {{name}} على DeHub"
   },
   "notFound": {
     "title": "الصفحة مش موجودة",
@@ -5493,7 +5502,16 @@
     "preparingCamera": "جاري تجهيز الكاميرا…",
     "reconnecting": "جارٍ إعادة الاتصال…",
     "connecting": "جارٍ الاتصال…",
-    "shopPutOnAir": "ضَعْ عَلَى الهَوَاء"
+    "shopPutOnAir": "ضَعْ عَلَى الهَوَاء",
+    "streamCount_one": "{{count}} بث",
+    "streamCount_other": "{{count}} بث",
+    "noOneStreamingGame": "لا أحد يبث {{game}} الآن.",
+    "seeAllStreams": "عرض كل البثوث",
+    "isLiveNow": "{{name}} في بث مباشر",
+    "justChatting": "دردشة فقط",
+    "noLiveStreams": "لا توجد بثوث مباشرة",
+    "noOneStreaming": "لا أحد يبث الآن. عد لاحقًا!",
+    "loadStreamsFailed": "تعذر تحميل البثوث. حاول مرة أخرى."
   },
   "liveShop": {
     "title": "اتسوق من البث ده",

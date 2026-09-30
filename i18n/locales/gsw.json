@@ -1874,7 +1874,16 @@
     "tryAnotherGenre": "Versuech en andere Genre.",
     "pauseStation": "Sender pausiere",
     "resumeStation": "Sender wiider aafange",
-    "stopRadio": "Radio stoppe"
+    "stopRadio": "Radio stoppe",
+    "playsToday": "Heute {{plays}}-mal gehört",
+    "listen": "Anhören",
+    "top50": "Top 50",
+    "playAll": "Alle abspielen",
+    "nothingHereYet": "Hier ist noch nichts.",
+    "likeStation": "Sender liken",
+    "unlikeStation": "Sender nicht mehr liken",
+    "shareStation": "Sender teilen",
+    "listeningTo": "Ich höre {{name}} auf DeHub"
   },
   "notFound": {
     "title": "Siite nid gfunde",
@@ -5526,7 +5535,16 @@
     "preparingCamera": "Kamera wird vorbereitet…",
     "reconnecting": "Verbindig wird wiederstellt…",
     "connecting": "Verbinde…",
-    "shopPutOnAir": "Uf Sendig bringe"
+    "shopPutOnAir": "Uf Sendig bringe",
+    "streamCount_one": "{{count}} Stream",
+    "streamCount_other": "{{count}} Streams",
+    "noOneStreamingGame": "Gerade streamt niemand {{game}}.",
+    "seeAllStreams": "Alle Streams ansehen",
+    "isLiveNow": "{{name}} ist live",
+    "justChatting": "Just Chatting",
+    "noLiveStreams": "Keine Livestreams",
+    "noOneStreaming": "Gerade streamt niemand. Schau später wieder vorbei!",
+    "loadStreamsFailed": "Streams konnten nicht geladen werden. Bitte versuche es erneut."
   },
   "liveShop": {
     "title": "I dem Stream iichaufe",

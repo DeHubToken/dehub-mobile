@@ -1921,7 +1921,16 @@
     "tryAnotherGenre": "Subukan ang ibang genre.",
     "pauseStation": "I - pause ang istasyon",
     "resumeStation": "Ipagpatuloy ang istasyon",
-    "stopRadio": "Itigil ang radyo"
+    "stopRadio": "Itigil ang radyo",
+    "playsToday": "{{plays}} beses pinakinggan ngayon",
+    "listen": "Makinig",
+    "top50": "Top 50",
+    "playAll": "I-play lahat",
+    "nothingHereYet": "Wala pang laman dito.",
+    "likeStation": "I-like ang istasyon",
+    "unlikeStation": "I-unlike ang istasyon",
+    "shareStation": "Ibahagi ang istasyon",
+    "listeningTo": "Nakikinig sa {{name}} sa DeHub"
   },
   "notFound": {
     "title": "Hindi Natagpuan ang Page",
@@ -5543,7 +5552,16 @@
     "preparingCamera": "Inihahanda ang camera…",
     "reconnecting": "Kumokonekta muli…",
     "connecting": "Kumokonekta…",
-    "shopPutOnAir": "Maglagay ng air"
+    "shopPutOnAir": "Maglagay ng air",
+    "streamCount_one": "{{count}} stream",
+    "streamCount_other": "{{count}} na stream",
+    "noOneStreamingGame": "Walang nag-i-stream ng {{game}} ngayon.",
+    "seeAllStreams": "Tingnan lahat ng stream",
+    "isLiveNow": "Live si {{name}}",
+    "justChatting": "Kuwentuhan lang",
+    "noLiveStreams": "Walang live stream",
+    "noOneStreaming": "Walang nag-i-stream ngayon. Bumalik mamaya!",
+    "loadStreamsFailed": "Hindi ma-load ang mga stream. Subukang muli."
   },
   "liveShop": {
     "title": "Mamili mula sa stream na ito",

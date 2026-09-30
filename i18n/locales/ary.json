@@ -1872,7 +1872,16 @@
     "tryAnotherGenre": "جرب نوعًا آخر.",
     "pauseStation": "إيقاف المحطة مؤقتًا",
     "resumeStation": "استئناف المحطة",
-    "stopRadio": "أوقف الراديو"
+    "stopRadio": "أوقف الراديو",
+    "playsToday": "{{plays}} تشغيل اليوم",
+    "listen": "استمع",
+    "top50": "أفضل 50",
+    "playAll": "تشغيل الكل",
+    "nothingHereYet": "لا يوجد شيء هنا بعد.",
+    "likeStation": "أعجبني المحطة",
+    "unlikeStation": "إلغاء الإعجاب بالمحطة",
+    "shareStation": "مشاركة المحطة",
+    "listeningTo": "أستمع إلى {{name}} على DeHub"
   },
   "notFound": {
     "title": "الصفحة ما كايناش",
@@ -5520,7 +5529,16 @@
     "preparingCamera": "جاري تجهيز الكاميرا…",
     "reconnecting": "إعادة الاتصال…",
     "connecting": "جار الاتصال…",
-    "shopPutOnAir": "وضع على الهواء"
+    "shopPutOnAir": "وضع على الهواء",
+    "streamCount_one": "{{count}} بث",
+    "streamCount_other": "{{count}} بث",
+    "noOneStreamingGame": "لا أحد يبث {{game}} الآن.",
+    "seeAllStreams": "عرض كل البثوث",
+    "isLiveNow": "{{name}} في بث مباشر",
+    "justChatting": "دردشة فقط",
+    "noLiveStreams": "لا توجد بثوث مباشرة",
+    "noOneStreaming": "لا أحد يبث الآن. عد لاحقًا!",
+    "loadStreamsFailed": "تعذر تحميل البثوث. حاول مرة أخرى."
   },
   "liveShop": {
     "title": "تسوق من هاد البث",

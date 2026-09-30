@@ -1872,7 +1872,16 @@
     "tryAnotherGenre": "બીજી શૈલી અજમાવો.",
     "pauseStation": "સ્ટેશન થોભાવો",
     "resumeStation": "સ્ટેશન ફરી શરૂ કરો",
-    "stopRadio": "રેડિયો બંધ કરો"
+    "stopRadio": "રેડિયો બંધ કરો",
+    "playsToday": "આજે {{plays}} વાર સાંભળ્યું",
+    "listen": "સાંભળો",
+    "top50": "ટોપ 50",
+    "playAll": "બધું વગાડો",
+    "nothingHereYet": "અહીં હજી કંઈ નથી.",
+    "likeStation": "સ્ટેશન ગમ્યું",
+    "unlikeStation": "સ્ટેશન નાપસંદ કરો",
+    "shareStation": "સ્ટેશન શેર કરો",
+    "listeningTo": "DeHub પર {{name}} સાંભળી રહ્યો છું"
   },
   "notFound": {
     "title": "પૃષ્ઠ મળ્યું નથી",
@@ -5488,7 +5497,16 @@
     "preparingCamera": "કેમેરા તૈયાર થઈ રહ્યો છે…",
     "reconnecting": "ફરીથી કનેક્ટ થઈ રહ્યું છે…",
     "connecting": "કનેક્ટ થઈ રહ્યું છે…",
-    "shopPutOnAir": "હવા પર મૂકો"
+    "shopPutOnAir": "હવા પર મૂકો",
+    "streamCount_one": "{{count}} સ્ટ્રીમ",
+    "streamCount_other": "{{count}} સ્ટ્રીમ",
+    "noOneStreamingGame": "હમણાં કોઈ {{game}} સ્ટ્રીમ કરી રહ્યું નથી.",
+    "seeAllStreams": "બધી સ્ટ્રીમ જુઓ",
+    "isLiveNow": "{{name}} લાઇવ છે",
+    "justChatting": "ફક્ત વાતચીત",
+    "noLiveStreams": "કોઈ લાઇવ સ્ટ્રીમ નથી",
+    "noOneStreaming": "હમણાં કોઈ સ્ટ્રીમ કરી રહ્યું નથી. પછી ફરી જુઓ!",
+    "loadStreamsFailed": "સ્ટ્રીમ લોડ થઈ શકી નહીં. ફરી પ્રયાસ કરો."
   },
   "liveShop": {
     "title": "આ સ્ટ્રીમમાંથી ખરીદો",

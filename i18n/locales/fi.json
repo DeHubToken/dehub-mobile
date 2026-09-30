@@ -1874,7 +1874,16 @@
     "tryAnotherGenre": "Kokeile toista genreä.",
     "pauseStation": "Keskeytä asema",
     "resumeStation": "Jatka asemaa",
-    "stopRadio": "Pysäytä radio"
+    "stopRadio": "Pysäytä radio",
+    "playsToday": "{{plays}} kuuntelua tänään",
+    "listen": "Kuuntele",
+    "top50": "Top 50",
+    "playAll": "Toista kaikki",
+    "nothingHereYet": "Täällä ei ole vielä mitään.",
+    "likeStation": "Tykkää asemasta",
+    "unlikeStation": "Poista tykkäys",
+    "shareStation": "Jaa asema",
+    "listeningTo": "Kuuntelen {{name}} DeHubissa"
   },
   "notFound": {
     "title": "Sivua ei löytynyt",
@@ -5497,7 +5506,16 @@
     "preparingCamera": "Kameran valmistelu…",
     "reconnecting": "Yhdistetään uudelleen…",
     "connecting": "Yhdistetään…",
-    "shopPutOnAir": "Laita ilmaan"
+    "shopPutOnAir": "Laita ilmaan",
+    "streamCount_one": "{{count}} striimi",
+    "streamCount_other": "{{count}} striimiä",
+    "noOneStreamingGame": "Kukaan ei striimaa peliä {{game}} juuri nyt.",
+    "seeAllStreams": "Näytä kaikki striimit",
+    "isLiveNow": "{{name}} on livenä",
+    "justChatting": "Pelkkää juttelua",
+    "noLiveStreams": "Ei livestriimejä",
+    "noOneStreaming": "Kukaan ei striimaa juuri nyt. Palaa myöhemmin!",
+    "loadStreamsFailed": "Striimejä ei voitu ladata. Yritä uudelleen."
   },
   "liveShop": {
     "title": "Osta tästä lähetyksestä",

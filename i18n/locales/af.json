@@ -1897,7 +1897,16 @@
     "tryAnotherGenre": "Probeer 'n ander genre.",
     "pauseStation": "Pouse die stasie",
     "resumeStation": "Hervat die stasie",
-    "stopRadio": "Stop die radio"
+    "stopRadio": "Stop die radio",
+    "playsToday": "{{plays}} keer vandag gespeel",
+    "listen": "Luister",
+    "top50": "Top 50",
+    "playAll": "Speel alles",
+    "nothingHereYet": "Nog niks hier nie.",
+    "likeStation": "Hou van stasie",
+    "unlikeStation": "Hou nie meer van stasie nie",
+    "shareStation": "Deel stasie",
+    "listeningTo": "Luister na {{name}} op DeHub"
   },
   "notFound": {
     "title": "Bladsy nie gevind nie",
@@ -5530,7 +5539,16 @@
     "preparingCamera": "Kamera word voorberei…",
     "reconnecting": "Herkoppel…",
     "connecting": "Koppel…",
-    "shopPutOnAir": "Sit op die lug"
+    "shopPutOnAir": "Sit op die lug",
+    "streamCount_one": "{{count}} stroom",
+    "streamCount_other": "{{count}} strome",
+    "noOneStreamingGame": "Niemand stroom {{game}} nou nie.",
+    "seeAllStreams": "Sien alle strome",
+    "isLiveNow": "{{name}} is regstreeks",
+    "justChatting": "Net gesels",
+    "noLiveStreams": "Geen regstreekse strome nie",
+    "noOneStreaming": "Niemand stroom nou nie. Kom later terug!",
+    "loadStreamsFailed": "Kon nie strome laai nie. Probeer asseblief weer."
   },
   "liveShop": {
     "title": "Koop uit hierdie uitsending",

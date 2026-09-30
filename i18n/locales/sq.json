@@ -1874,7 +1874,16 @@
     "tryAnotherGenre": "Provoni një zhanër tjetër.",
     "pauseStation": "Vëre stacionin në pauzë",
     "resumeStation": "Vazhdo stacionin",
-    "stopRadio": "Ndale radion"
+    "stopRadio": "Ndale radion",
+    "playsToday": "{{plays}} dëgjime sot",
+    "listen": "Dëgjo",
+    "top50": "Top 50",
+    "playAll": "Luaj të gjitha",
+    "nothingHereYet": "Ende asgjë këtu.",
+    "likeStation": "Pëlqe stacionin",
+    "unlikeStation": "Hiq pëlqimin",
+    "shareStation": "Ndaj stacionin",
+    "listeningTo": "Po dëgjoj {{name}} në DeHub"
   },
   "notFound": {
     "title": "Faqja Nuk u Gjet",
@@ -5497,7 +5506,16 @@
     "preparingCamera": "Duke përgatitur kamerën…",
     "reconnecting": "Duke u rikonektuar…",
     "connecting": "Duke u lidhur…",
-    "shopPutOnAir": "Vëre në transmetim"
+    "shopPutOnAir": "Vëre në transmetim",
+    "streamCount_one": "{{count}} transmetim",
+    "streamCount_other": "{{count}} transmetime",
+    "noOneStreamingGame": "Askush nuk po transmeton {{game}} tani.",
+    "seeAllStreams": "Shiko të gjitha transmetimet",
+    "isLiveNow": "{{name}} është live",
+    "justChatting": "Thjesht bisedë",
+    "noLiveStreams": "Nuk ka transmetime live",
+    "noOneStreaming": "Askush nuk po transmeton tani. Kthehu më vonë!",
+    "loadStreamsFailed": "Transmetimet nuk u ngarkuan. Provo përsëri."
   },
   "liveShop": {
     "title": "Bli nga ky transmetim",
