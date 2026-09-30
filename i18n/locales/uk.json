@@ -2231,7 +2231,16 @@
     "tryAnotherGenre": "Спробуйте інший жанр.",
     "pauseStation": "Призупинити станцію",
     "resumeStation": "Відновити станцію",
-    "stopRadio": "Зупинити радіо"
+    "stopRadio": "Зупинити радіо",
+    "playsToday": "{{plays}} прослуховувань сьогодні",
+    "listen": "Слухати",
+    "top50": "Топ-50",
+    "playAll": "Відтворити все",
+    "nothingHereYet": "Тут поки нічого немає.",
+    "likeStation": "Подобається станція",
+    "unlikeStation": "Прибрати вподобання",
+    "shareStation": "Поділитися станцією",
+    "listeningTo": "Слухаю {{name}} у DeHub"
   },
   "notFound": {
     "title": "Сторінку не знайдено",
@@ -5885,7 +5894,16 @@
     "reconnecting": "Перепідключення…",
     "connecting": "Підключення…",
     "statusLive": "ПРЯМА ТРАНСЛЯЦІЯ",
-    "shopPutOnAir": "Ввімкнути повітря"
+    "shopPutOnAir": "Ввімкнути повітря",
+    "streamCount_one": "{{count}} трансляція",
+    "streamCount_other": "Трансляцій: {{count}}",
+    "noOneStreamingGame": "Зараз ніхто не транслює {{game}}.",
+    "seeAllStreams": "Усі трансляції",
+    "isLiveNow": "{{name}} в ефірі",
+    "justChatting": "Просто спілкування",
+    "noLiveStreams": "Немає трансляцій",
+    "noOneStreaming": "Зараз ніхто не транслює. Загляньте пізніше!",
+    "loadStreamsFailed": "Не вдалося завантажити трансляції. Спробуйте ще раз."
   },
   "liveShop": {
     "title": "Купуйте в цьому ефірі",

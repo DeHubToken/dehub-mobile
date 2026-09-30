@@ -1871,7 +1871,16 @@
     "tryAnotherGenre": "Δοκιμάστε ένα άλλο είδος.",
     "pauseStation": "Παύση του σταθμού",
     "resumeStation": "Συνέχεια του σταθμού",
-    "stopRadio": "Διακοπή του ραδιοφώνου"
+    "stopRadio": "Διακοπή του ραδιοφώνου",
+    "playsToday": "{{plays}} ακροάσεις σήμερα",
+    "listen": "Άκου",
+    "top50": "Top 50",
+    "playAll": "Αναπαραγωγή όλων",
+    "nothingHereYet": "Δεν υπάρχει τίποτα εδώ ακόμα.",
+    "likeStation": "Μου αρέσει ο σταθμός",
+    "unlikeStation": "Δεν μου αρέσει πια ο σταθμός",
+    "shareStation": "Κοινοποίηση σταθμού",
+    "listeningTo": "Ακούω {{name}} στο DeHub"
   },
   "notFound": {
     "title": "Η Σελίδα Δεν Βρέθηκε",
@@ -5517,7 +5526,16 @@
     "preparingCamera": "Προετοιμασία κάμερας…",
     "reconnecting": "Επανασύνδεση…",
     "connecting": "Σύνδεση…",
-    "shopPutOnAir": "Βγάλτε τον αέρα"
+    "shopPutOnAir": "Βγάλτε τον αέρα",
+    "streamCount_one": "{{count}} μετάδοση",
+    "streamCount_other": "{{count}} μεταδόσεις",
+    "noOneStreamingGame": "Κανείς δεν μεταδίδει {{game}} αυτή τη στιγμή.",
+    "seeAllStreams": "Όλες οι μεταδόσεις",
+    "isLiveNow": "Ο/Η {{name}} είναι σε ζωντανή μετάδοση",
+    "justChatting": "Απλή κουβέντα",
+    "noLiveStreams": "Δεν υπάρχουν ζωντανές μεταδόσεις",
+    "noOneStreaming": "Κανείς δεν μεταδίδει τώρα. Έλα ξανά αργότερα!",
+    "loadStreamsFailed": "Δεν ήταν δυνατή η φόρτωση των μεταδόσεων. Δοκίμασε ξανά."
   },
   "liveShop": {
     "title": "Ψώνισε από αυτή τη μετάδοση",

@@ -2064,7 +2064,16 @@
     "tryAnotherGenre": "Probeer een ander genre.",
     "pauseStation": "Pauzeer het station",
     "resumeStation": "Hervat het station",
-    "stopRadio": "De radio"
+    "stopRadio": "De radio",
+    "playsToday": "Vandaag {{plays}} keer beluisterd",
+    "listen": "Luisteren",
+    "top50": "Top 50",
+    "playAll": "Alles afspelen",
+    "nothingHereYet": "Hier is nog niets.",
+    "likeStation": "Zender liken",
+    "unlikeStation": "Zender niet meer liken",
+    "shareStation": "Zender delen",
+    "listeningTo": "Ik luister naar {{name}} op DeHub"
   },
   "notFound": {
     "title": "Pagina niet gevonden",
@@ -5718,7 +5727,16 @@
     "preparingCamera": "Camera voorbereiden…",
     "reconnecting": "Opnieuw verbinden…",
     "connecting": "Verbinden…",
-    "shopPutOnAir": "In de lucht zetten"
+    "shopPutOnAir": "In de lucht zetten",
+    "streamCount_one": "{{count}} stream",
+    "streamCount_other": "{{count}} streams",
+    "noOneStreamingGame": "Niemand streamt nu {{game}}.",
+    "seeAllStreams": "Alle streams bekijken",
+    "isLiveNow": "{{name}} is live",
+    "justChatting": "Gewoon kletsen",
+    "noLiveStreams": "Geen livestreams",
+    "noOneStreaming": "Niemand streamt op dit moment. Kom later terug!",
+    "loadStreamsFailed": "Streams konden niet worden geladen. Probeer het opnieuw."
   },
   "liveShop": {
     "title": "Shop in deze stream",

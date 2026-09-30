@@ -1874,7 +1874,16 @@
     "tryAnotherGenre": "Prøv en annen sjanger.",
     "pauseStation": "Pause stasjonen",
     "resumeStation": "Gjenoppta stasjonen",
-    "stopRadio": "Stopp radioen"
+    "stopRadio": "Stopp radioen",
+    "playsToday": "{{plays}} avspillinger i dag",
+    "listen": "Lytt",
+    "top50": "Topp 50",
+    "playAll": "Spill alle",
+    "nothingHereYet": "Ingenting her ennå.",
+    "likeStation": "Lik stasjonen",
+    "unlikeStation": "Fjern liker",
+    "shareStation": "Del stasjonen",
+    "listeningTo": "Lytter til {{name}} på DeHub"
   },
   "notFound": {
     "title": "Side ikke funnet",
@@ -5497,7 +5506,16 @@
     "preparingCamera": "Forbereder kamera…",
     "reconnecting": "Kobler til igjen…",
     "connecting": "Kobler til…",
-    "shopPutOnAir": "Sett på luft"
+    "shopPutOnAir": "Sett på luft",
+    "streamCount_one": "{{count}} strøm",
+    "streamCount_other": "{{count}} strømmer",
+    "noOneStreamingGame": "Ingen strømmer {{game}} akkurat nå.",
+    "seeAllStreams": "Se alle strømmer",
+    "isLiveNow": "{{name}} er live",
+    "justChatting": "Bare prat",
+    "noLiveStreams": "Ingen direktesendinger",
+    "noOneStreaming": "Ingen strømmer akkurat nå. Kom tilbake senere!",
+    "loadStreamsFailed": "Kunne ikke laste inn strømmer. Prøv igjen."
   },
   "liveShop": {
     "title": "Handle fra denne sendingen",

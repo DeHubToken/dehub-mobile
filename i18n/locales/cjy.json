@@ -1870,7 +1870,16 @@
     "tryAnotherGenre": "尝试其他类型。",
     "pauseStation": "暂停电台",
     "resumeStation": "恢复电台",
-    "stopRadio": "停止广播"
+    "stopRadio": "停止广播",
+    "playsToday": "今日播放 {{plays}} 次",
+    "listen": "收听",
+    "top50": "前 50",
+    "playAll": "全部播放",
+    "nothingHereYet": "这里还没有内容。",
+    "likeStation": "喜欢电台",
+    "unlikeStation": "取消喜欢",
+    "shareStation": "分享电台",
+    "listeningTo": "正在 DeHub 收听 {{name}}"
   },
   "notFound": {
     "title": "页面找不着",
@@ -5482,7 +5491,16 @@
     "preparingCamera": "正在准备摄像头…",
     "reconnecting": "正在重新连接…",
     "connecting": "正在连接…",
-    "shopPutOnAir": "上线"
+    "shopPutOnAir": "上线",
+    "streamCount_one": "{{count}} 场直播",
+    "streamCount_other": "{{count}} 场直播",
+    "noOneStreamingGame": "现在没有人在直播 {{game}}。",
+    "seeAllStreams": "查看全部直播",
+    "isLiveNow": "{{name}} 正在直播",
+    "justChatting": "闲聊",
+    "noLiveStreams": "没有直播",
+    "noOneStreaming": "现在没有人在直播，请稍后再来！",
+    "loadStreamsFailed": "无法加载直播，请重试。"
   },
   "liveShop": {
     "title": "在本场直播购物",

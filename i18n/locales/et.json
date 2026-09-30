@@ -1874,7 +1874,16 @@
     "tryAnotherGenre": "Proovi teist žanrit.",
     "pauseStation": "Pausi jaam",
     "resumeStation": "Jätka jaama",
-    "stopRadio": "Peata raadio"
+    "stopRadio": "Peata raadio",
+    "playsToday": "Täna {{plays}} kuulamist",
+    "listen": "Kuula",
+    "top50": "Top 50",
+    "playAll": "Esita kõik",
+    "nothingHereYet": "Siin pole veel midagi.",
+    "likeStation": "Meeldib jaam",
+    "unlikeStation": "Eemalda meeldimine",
+    "shareStation": "Jaga jaama",
+    "listeningTo": "Kuulan DeHubis {{name}}"
   },
   "notFound": {
     "title": "Lehte ei leitud",
@@ -5497,7 +5506,16 @@
     "preparingCamera": "Kaamera ettevalmistamine…",
     "reconnecting": "Uuesti ühendamine…",
     "connecting": "Ühendamine…",
-    "shopPutOnAir": "Pange õhk õhku"
+    "shopPutOnAir": "Pange õhk õhku",
+    "streamCount_one": "{{count}} ülekanne",
+    "streamCount_other": "{{count}} ülekannet",
+    "noOneStreamingGame": "Praegu ei kanna keegi {{game}} üle.",
+    "seeAllStreams": "Vaata kõiki ülekandeid",
+    "isLiveNow": "{{name}} on otse-eetris",
+    "justChatting": "Lihtsalt jutt",
+    "noLiveStreams": "Otseülekandeid pole",
+    "noOneStreaming": "Praegu ei kanna keegi üle. Vaata hiljem uuesti!",
+    "loadStreamsFailed": "Ülekandeid ei õnnestunud laadida. Proovi uuesti."
   },
   "liveShop": {
     "title": "Osta sellest voost",

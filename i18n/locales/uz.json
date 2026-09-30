@@ -1892,7 +1892,16 @@
     "tryAnotherGenre": "Boshqa janrni sinab ko'ring.",
     "pauseStation": "Stantsiyani pauza qiling",
     "resumeStation": "Stantsiyani davom ettiring",
-    "stopRadio": "Radiostantsiyani to'xtating"
+    "stopRadio": "Radiostantsiyani to'xtating",
+    "playsToday": "Bugun {{plays}} marta tinglandi",
+    "listen": "Tinglash",
+    "top50": "Top 50",
+    "playAll": "Hammasini ijro etish",
+    "nothingHereYet": "Bu yerda hali hech narsa yo‘q.",
+    "likeStation": "Stansiyani yoqtirish",
+    "unlikeStation": "Yoqtirishni bekor qilish",
+    "shareStation": "Stansiyani ulashish",
+    "listeningTo": "DeHub’da {{name}} tinglayapman"
   },
   "notFound": {
     "title": "Sahifa topilmadi",
@@ -5515,7 +5524,16 @@
     "preparingCamera": "Kamerani tayyorlash…",
     "reconnecting": "Qayta ulanish…",
     "connecting": "Ulanish…",
-    "shopPutOnAir": "Efirga qo'ying"
+    "shopPutOnAir": "Efirga qo'ying",
+    "streamCount_one": "{{count}} efir",
+    "streamCount_other": "{{count}} efir",
+    "noOneStreamingGame": "Hozir hech kim {{game}} efirga uzatmayapti.",
+    "seeAllStreams": "Barcha efirlar",
+    "isLiveNow": "{{name}} jonli efirda",
+    "justChatting": "Shunchaki suhbat",
+    "noLiveStreams": "Jonli efirlar yo‘q",
+    "noOneStreaming": "Hozir hech kim efirda emas. Keyinroq qayting!",
+    "loadStreamsFailed": "Efirlarni yuklab bo‘lmadi. Qayta urinib ko‘ring."
   },
   "liveShop": {
     "title": "Ushbu efirdan xarid qiling",

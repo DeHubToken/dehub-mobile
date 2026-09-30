@@ -1874,7 +1874,16 @@
     "tryAnotherGenre": "Mēģiniet citu žanru.",
     "pauseStation": "Apturēt staciju",
     "resumeStation": "Atsākt staciju",
-    "stopRadio": "Izslēgt radio"
+    "stopRadio": "Izslēgt radio",
+    "playsToday": "Šodien {{plays}} atskaņojumi",
+    "listen": "Klausīties",
+    "top50": "Top 50",
+    "playAll": "Atskaņot visu",
+    "nothingHereYet": "Šeit vēl nekā nav.",
+    "likeStation": "Patīk stacija",
+    "unlikeStation": "Vairs nepatīk",
+    "shareStation": "Kopīgot staciju",
+    "listeningTo": "Klausos {{name}} DeHub"
   },
   "notFound": {
     "title": "Lapa nav atrasta",
@@ -5497,7 +5506,16 @@
     "preparingCamera": "Kameras sagatavošana…",
     "reconnecting": "Atkārtoti savienojas…",
     "connecting": "Savienojas…",
-    "shopPutOnAir": "Uzvelciet gaisu"
+    "shopPutOnAir": "Uzvelciet gaisu",
+    "streamCount_one": "{{count}} tiešraide",
+    "streamCount_other": "Tiešraides: {{count}}",
+    "noOneStreamingGame": "Pašlaik neviens neraida {{game}}.",
+    "seeAllStreams": "Skatīt visas tiešraides",
+    "isLiveNow": "{{name}} ir tiešraidē",
+    "justChatting": "Tikai čats",
+    "noLiveStreams": "Nav tiešraižu",
+    "noOneStreaming": "Pašlaik neviens neraida. Ieskaties vēlāk!",
+    "loadStreamsFailed": "Neizdevās ielādēt tiešraides. Mēģini vēlreiz."
   },
   "liveShop": {
     "title": "Iepērcieties šajā tiešraidē",

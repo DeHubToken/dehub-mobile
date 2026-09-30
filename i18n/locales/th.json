@@ -1898,7 +1898,16 @@
     "tryAnotherGenre": "ลองประเภทอื่น",
     "pauseStation": "หยุดสถานีชั่วคราว",
     "resumeStation": "ดำเนินการต่อที่สถานี",
-    "stopRadio": "หยุดวิทยุ"
+    "stopRadio": "หยุดวิทยุ",
+    "playsToday": "วันนี้เล่น {{plays}} ครั้ง",
+    "listen": "ฟัง",
+    "top50": "ท็อป 50",
+    "playAll": "เล่นทั้งหมด",
+    "nothingHereYet": "ยังไม่มีอะไรที่นี่",
+    "likeStation": "ถูกใจสถานี",
+    "unlikeStation": "เลิกถูกใจสถานี",
+    "shareStation": "แชร์สถานี",
+    "listeningTo": "กำลังฟัง {{name}} บน DeHub"
   },
   "notFound": {
     "title": "ไม่พบหน้า",
@@ -5515,7 +5524,16 @@
     "detailsPlaybackId": "ID การเล่น:",
     "detailsKey": "คีย์:",
     "shopPutOnAir": "ใส่ในอากาศ",
-    "detailsLivepeerId": "ไลฟ์เพียร์ไอดี"
+    "detailsLivepeerId": "ไลฟ์เพียร์ไอดี",
+    "streamCount_one": "{{count}} สตรีม",
+    "streamCount_other": "{{count}} สตรีม",
+    "noOneStreamingGame": "ตอนนี้ไม่มีใครสตรีม {{game}}",
+    "seeAllStreams": "ดูสตรีมทั้งหมด",
+    "isLiveNow": "{{name}} กำลังไลฟ์",
+    "justChatting": "พูดคุยทั่วไป",
+    "noLiveStreams": "ไม่มีไลฟ์สตรีม",
+    "noOneStreaming": "ตอนนี้ไม่มีใครสตรีม กลับมาดูใหม่ภายหลัง!",
+    "loadStreamsFailed": "โหลดสตรีมไม่ได้ ลองอีกครั้ง"
   },
   "liveShop": {
     "title": "ช้อปจากไลฟ์นี้",

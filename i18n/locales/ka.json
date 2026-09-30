@@ -1890,7 +1890,16 @@
     "tryAnotherGenre": "სცადეთ სხვა ჟანრი.",
     "pauseStation": "სადგურის შეჩერება",
     "resumeStation": "განაახლეთ სადგური",
-    "stopRadio": "შეაჩერეთ რადიო"
+    "stopRadio": "შეაჩერეთ რადიო",
+    "playsToday": "დღეს {{plays}} მოსმენა",
+    "listen": "მოსმენა",
+    "top50": "ტოპ 50",
+    "playAll": "ყველას დაკვრა",
+    "nothingHereYet": "აქ ჯერ არაფერია.",
+    "likeStation": "სადგურის მოწონება",
+    "unlikeStation": "მოწონების გაუქმება",
+    "shareStation": "სადგურის გაზიარება",
+    "listeningTo": "ვუსმენ {{name}}-ს DeHub-ზე"
   },
   "notFound": {
     "title": "გვერდი ვერ მოიძებნა",
@@ -5507,7 +5516,16 @@
     "connecting": "დაკავშირება…",
     "statusLive": "პირდაპირ ეთერში",
     "detailsLivepeerId": "Livepeer-ის იდენტიფიკატორი:",
-    "shopPutOnAir": "ჩაიცვით ჰაერზე"
+    "shopPutOnAir": "ჩაიცვით ჰაერზე",
+    "streamCount_one": "{{count}} ტრანსლაცია",
+    "streamCount_other": "{{count}} ტრანსლაცია",
+    "noOneStreamingGame": "ახლა {{game}}-ს არავინ აშუქებს.",
+    "seeAllStreams": "ყველა ტრანსლაცია",
+    "isLiveNow": "{{name}} პირდაპირ ეთერშია",
+    "justChatting": "უბრალოდ საუბარი",
+    "noLiveStreams": "პირდაპირი ეთერები არ არის",
+    "noOneStreaming": "ახლა არავინ აშუქებს. მოგვიანებით შემოიარეთ!",
+    "loadStreamsFailed": "ტრანსლაციები ვერ ჩაიტვირთა. სცადეთ ხელახლა."
   },
   "liveShop": {
     "title": "იყიდეთ ამ ტრანსლაციიდან",

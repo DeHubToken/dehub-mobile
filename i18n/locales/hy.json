@@ -1874,7 +1874,16 @@
     "tryAnotherGenre": "Փորձեք մեկ այլ ժանր ։",
     "pauseStation": "Դադարեցնել կայարանը",
     "resumeStation": "Վերսկսել կայանը",
-    "stopRadio": "Կանգնեցնել ռադիոն"
+    "stopRadio": "Կանգնեցնել ռադիոն",
+    "playsToday": "Այսօր {{plays}} լսում",
+    "listen": "Լսել",
+    "top50": "Թոփ 50",
+    "playAll": "Նվագարկել բոլորը",
+    "nothingHereYet": "Այստեղ դեռ ոչինչ չկա։",
+    "likeStation": "Հավանել կայանը",
+    "unlikeStation": "Չեղարկել հավանումը",
+    "shareStation": "Կիսվել կայանով",
+    "listeningTo": "Լսում եմ {{name}}-ը DeHub-ում"
   },
   "notFound": {
     "title": "Էջը չի գտնվել",
@@ -5497,7 +5506,16 @@
     "shopAllAttached": "Ձեր խանութում ակտիվ ամեն ինչ արդեն այս հեռարձակման մեջ է։",
     "shopNoListings": "Դուք դեռ չունեք որևէ ցուցակ։ Ստեղծեք դրանք նախ՝ վեբ խանութում։",
     "shopEmpty": "Ավելացրեք ինչ-որ բան ձեր խանութից, և դիտողները կարող են գնել այն՝ չլքելով հեռարձակումը։",
-    "shopPutOnAir": "Միացնել եթեր"
+    "shopPutOnAir": "Միացնել եթեր",
+    "streamCount_one": "{{count}} հեռարձակում",
+    "streamCount_other": "{{count}} հեռարձակում",
+    "noOneStreamingGame": "Հիմա ոչ ոք չի հեռարձակում {{game}}։",
+    "seeAllStreams": "Տեսնել բոլոր հեռարձակումները",
+    "isLiveNow": "{{name}}-ը ուղիղ եթերում է",
+    "justChatting": "Պարզապես զրույց",
+    "noLiveStreams": "Ուղիղ հեռարձակումներ չկան",
+    "noOneStreaming": "Հիմա ոչ ոք չի հեռարձակում։ Այցելեք ավելի ուշ։",
+    "loadStreamsFailed": "Չհաջողվեց բեռնել հեռարձակումները։ Կրկին փորձեք։"
   },
   "liveShop": {
     "title": "Գնումներ կատարեք այս հեռարձակումից",

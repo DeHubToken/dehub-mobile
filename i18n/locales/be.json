@@ -1886,7 +1886,16 @@
     "tryAnotherGenre": "Паспрабуйце іншы жанр.",
     "pauseStation": "Прыпыніць станцыю",
     "resumeStation": "Працягнуць станцыю",
-    "stopRadio": "Спыніць радыё"
+    "stopRadio": "Спыніць радыё",
+    "playsToday": "{{plays}} праслухоўванняў сёння",
+    "listen": "Слухаць",
+    "top50": "Топ-50",
+    "playAll": "Прайграць усё",
+    "nothingHereYet": "Тут пакуль нічога няма.",
+    "likeStation": "Спадабалася станцыя",
+    "unlikeStation": "Прыбраць з упадабаных",
+    "shareStation": "Падзяліцца станцыяй",
+    "listeningTo": "Слухаю {{name}} у DeHub"
   },
   "notFound": {
     "title": "Старонка не знойдзена",
@@ -5497,7 +5506,16 @@
     "preparingCamera": "Падрыхтоўка камеры…",
     "reconnecting": "Перападключэнне…",
     "connecting": "Падключэнне…",
-    "shopPutOnAir": "Падаваць у эфір"
+    "shopPutOnAir": "Падаваць у эфір",
+    "streamCount_one": "{{count}} трансляцыя",
+    "streamCount_other": "{{count}} трансляцый",
+    "noOneStreamingGame": "Зараз ніхто не трансліруе {{game}}.",
+    "seeAllStreams": "Усе трансляцыі",
+    "isLiveNow": "{{name}} у эфіры",
+    "justChatting": "Проста размовы",
+    "noLiveStreams": "Няма трансляцый",
+    "noOneStreaming": "Зараз ніхто не трансліруе. Зазірніце пазней!",
+    "loadStreamsFailed": "Не ўдалося загрузіць трансляцыі. Паспрабуйце яшчэ раз."
   },
   "liveShop": {
     "title": "Купляйце з гэтага эфіру",

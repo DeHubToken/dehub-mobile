@@ -1874,7 +1874,16 @@
     "tryAnotherGenre": "Prova un altre gènere.",
     "pauseStation": "Posa en pausa l'emissora",
     "resumeStation": "Reprèn l'emissora",
-    "stopRadio": "Atura la ràdio"
+    "stopRadio": "Atura la ràdio",
+    "playsToday": "{{plays}} reproduccions avui",
+    "listen": "Escolta",
+    "top50": "Top 50",
+    "playAll": "Reprodueix-ho tot",
+    "nothingHereYet": "Encara no hi ha res aquí.",
+    "likeStation": "M'agrada l'emissora",
+    "unlikeStation": "Ja no m'agrada l'emissora",
+    "shareStation": "Comparteix l'emissora",
+    "listeningTo": "Escoltant {{name}} a DeHub"
   },
   "notFound": {
     "title": "Pàgina no trobada",
@@ -5497,7 +5506,16 @@
     "preparingCamera": "Preparant la càmera…",
     "reconnecting": "Reconectant…",
     "connecting": "Connectant…",
-    "shopPutOnAir": "Posa-hi aire"
+    "shopPutOnAir": "Posa-hi aire",
+    "streamCount_one": "{{count}} directe",
+    "streamCount_other": "{{count}} directes",
+    "noOneStreamingGame": "Ara ningú no emet {{game}}.",
+    "seeAllStreams": "Mostra tots els directes",
+    "isLiveNow": "{{name}} és en directe",
+    "justChatting": "Només xerrar",
+    "noLiveStreams": "No hi ha directes",
+    "noOneStreaming": "Ara ningú no emet. Torna-hi més tard!",
+    "loadStreamsFailed": "No s'han pogut carregar els directes. Torna-ho a provar."
   },
   "liveShop": {
     "title": "Compra en aquesta emissió",

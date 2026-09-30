@@ -1871,7 +1871,16 @@
     "tryAnotherGenre": "נסה ז'אנר אחר.",
     "pauseStation": "השהה את התחנה",
     "resumeStation": "המשך את התחנה",
-    "stopRadio": "עצור את הרדיו"
+    "stopRadio": "עצור את הרדיו",
+    "playsToday": "{{plays}} השמעות היום",
+    "listen": "האזנה",
+    "top50": "טופ 50",
+    "playAll": "נגן הכול",
+    "nothingHereYet": "אין כאן עדיין כלום.",
+    "likeStation": "אהבתי את התחנה",
+    "unlikeStation": "ביטול אהבתי",
+    "shareStation": "שיתוף התחנה",
+    "listeningTo": "מאזין/ה ל-{{name}} ב-DeHub"
   },
   "notFound": {
     "title": "הדף לא נמצא",
@@ -5492,7 +5501,16 @@
     "preparingCamera": "מכין מצלמה…",
     "reconnecting": "מתחבר מחדש…",
     "connecting": "מתחבר…",
-    "shopPutOnAir": "להעלות את האוויר לאוויר"
+    "shopPutOnAir": "להעלות את האוויר לאוויר",
+    "streamCount_one": "שידור אחד",
+    "streamCount_other": "{{count}} שידורים",
+    "noOneStreamingGame": "אף אחד לא משדר {{game}} כרגע.",
+    "seeAllStreams": "כל השידורים",
+    "isLiveNow": "{{name}} בשידור חי",
+    "justChatting": "סתם צ'אט",
+    "noLiveStreams": "אין שידורים חיים",
+    "noOneStreaming": "אף אחד לא משדר כרגע. כדאי לבדוק שוב אחר כך!",
+    "loadStreamsFailed": "לא ניתן לטעון שידורים. נסו שוב."
   },
   "liveShop": {
     "title": "קנו מהשידור הזה",

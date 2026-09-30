@@ -1874,7 +1874,16 @@
     "tryAnotherGenre": "Prova en annan genre.",
     "pauseStation": "Pausa stationen",
     "resumeStation": "Återuppta stationen",
-    "stopRadio": "Stoppa radion"
+    "stopRadio": "Stoppa radion",
+    "playsToday": "{{plays}} lyssningar i dag",
+    "listen": "Lyssna",
+    "top50": "Topp 50",
+    "playAll": "Spela alla",
+    "nothingHereYet": "Inget här än.",
+    "likeStation": "Gilla stationen",
+    "unlikeStation": "Sluta gilla stationen",
+    "shareStation": "Dela stationen",
+    "listeningTo": "Lyssnar på {{name}} på DeHub"
   },
   "notFound": {
     "title": "Sidan hittades inte",
@@ -5501,7 +5510,16 @@
     "preparingCamera": "Förbereder kamera…",
     "reconnecting": "Återansluter…",
     "connecting": "Ansluter…",
-    "shopPutOnAir": "Sätt på luft"
+    "shopPutOnAir": "Sätt på luft",
+    "streamCount_one": "{{count}} stream",
+    "streamCount_other": "{{count}} streams",
+    "noOneStreamingGame": "Ingen streamar {{game}} just nu.",
+    "seeAllStreams": "Se alla streams",
+    "isLiveNow": "{{name}} är live",
+    "justChatting": "Bara snack",
+    "noLiveStreams": "Inga livestreams",
+    "noOneStreaming": "Ingen streamar just nu. Kom tillbaka senare!",
+    "loadStreamsFailed": "Det gick inte att läsa in streams. Försök igen."
   },
   "liveShop": {
     "title": "Handla från den här sändningen",

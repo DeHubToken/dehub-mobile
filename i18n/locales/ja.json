@@ -1872,7 +1872,16 @@
     "tryAnotherGenre": "別のジャンルを試してください。",
     "pauseStation": "ステーションを一時停止",
     "resumeStation": "ステーションを再開",
-    "stopRadio": "ラジオを停止"
+    "stopRadio": "ラジオを停止",
+    "playsToday": "今日の再生 {{plays}} 回",
+    "listen": "聴く",
+    "top50": "トップ50",
+    "playAll": "すべて再生",
+    "nothingHereYet": "まだ何もありません。",
+    "likeStation": "ステーションにいいね",
+    "unlikeStation": "いいねを取り消す",
+    "shareStation": "ステーションを共有",
+    "listeningTo": "DeHubで{{name}}を聴いています"
   },
   "notFound": {
     "title": "ページが見つかりません",
@@ -5567,7 +5576,16 @@
     "preparingCamera": "カメラを準備中…",
     "reconnecting": "再接続中…",
     "connecting": "接続中…",
-    "shopPutOnAir": "放送を始める"
+    "shopPutOnAir": "放送を始める",
+    "streamCount_one": "{{count}}件の配信",
+    "streamCount_other": "{{count}}件の配信",
+    "noOneStreamingGame": "今{{game}}を配信している人はいません。",
+    "seeAllStreams": "すべての配信を見る",
+    "isLiveNow": "{{name}}が配信中",
+    "justChatting": "雑談",
+    "noLiveStreams": "ライブ配信はありません",
+    "noOneStreaming": "今は誰も配信していません。また後で見てください！",
+    "loadStreamsFailed": "配信を読み込めませんでした。もう一度お試しください。"
   },
   "liveShop": {
     "title": "この配信でショッピング",

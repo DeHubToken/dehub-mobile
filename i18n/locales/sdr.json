@@ -1873,7 +1873,16 @@
     "tryDifferentSearch": "جرب مصطلح بحث مختلف.",
     "pauseStation": "إيقاف المحطة مؤقتًا",
     "resumeStation": "استئناف المحطة",
-    "stopRadio": "إيقاف الراديو"
+    "stopRadio": "إيقاف الراديو",
+    "playsToday": "आज {{plays}} बार सुना गया",
+    "listen": "सुनें",
+    "top50": "टॉप 50",
+    "playAll": "सब चलाएँ",
+    "nothingHereYet": "यहाँ अभी कुछ नहीं है।",
+    "likeStation": "स्टेशन पसंद करें",
+    "unlikeStation": "स्टेशन नापसंद करें",
+    "shareStation": "स्टेशन शेयर करें",
+    "listeningTo": "DeHub पर {{name}} सुन रहा हूँ"
   },
   "notFound": {
     "title": "صفحہ نہیں ملا",
@@ -5510,7 +5519,16 @@
     "shopAllAttached": "كل ما هو نشط في متجرك موجود بالفعل في هذا البث.",
     "shopNoListings": "ليس لديك أي قوائم بعد. قم بإنشائها على متجر الويب أولاً.",
     "shopPutOnAir": "ہوا پر رکھیں",
-    "shopEmpty": "اپنے اسٹور سے کچھ شامل کریں اور ناظرین اسے اسٹریم چھوڑے بغیر خرید سکتے ہیں۔"
+    "shopEmpty": "اپنے اسٹور سے کچھ شامل کریں اور ناظرین اسے اسٹریم چھوڑے بغیر خرید سکتے ہیں۔",
+    "streamCount_one": "{{count}} स्ट्रीम",
+    "streamCount_other": "{{count}} स्ट्रीम",
+    "noOneStreamingGame": "अभी कोई {{game}} स्ट्रीम नहीं कर रहा है।",
+    "seeAllStreams": "सभी स्ट्रीम देखें",
+    "isLiveNow": "{{name}} लाइव हैं",
+    "justChatting": "बस बातचीत",
+    "noLiveStreams": "कोई लाइव स्ट्रीम नहीं",
+    "noOneStreaming": "अभी कोई स्ट्रीम नहीं कर रहा है। बाद में फिर देखें!",
+    "loadStreamsFailed": "स्ट्रीम लोड नहीं हो सकीं। फिर से कोशिश करें।"
   },
   "liveShop": {
     "title": "এই স্ট্রিম থাকি কিনেন",

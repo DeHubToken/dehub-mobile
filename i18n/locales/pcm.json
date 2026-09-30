@@ -1850,7 +1850,16 @@
     "tryDifferentSearch": "Try another search word.",
     "pauseStation": "Pause di station",
     "resumeStation": "Continue di station",
-    "stopRadio": "Stop di radio"
+    "stopRadio": "Stop di radio",
+    "playsToday": "{{plays}} plays today",
+    "listen": "Listen",
+    "top50": "Top 50",
+    "playAll": "Play all",
+    "nothingHereYet": "Nothing here yet.",
+    "likeStation": "Like station",
+    "unlikeStation": "Unlike station",
+    "shareStation": "Share station",
+    "listeningTo": "Listening to {{name}} on DeHub"
   },
   "notFound": {
     "title": "Page No Dey",
@@ -5392,7 +5401,16 @@
     "shopAddToStream": "Add am to dis stream",
     "shopAllAttached": "Everything wey dey active for your store don already dey dis stream.",
     "shopNoListings": "You never get any listing. Create dem for di web store first.",
-    "shopEmpty": "Add something from your store and viewers fit buy am without comot from di stream."
+    "shopEmpty": "Add something from your store and viewers fit buy am without comot from di stream.",
+    "streamCount_one": "{{count}} stream",
+    "streamCount_other": "{{count}} streams",
+    "noOneStreamingGame": "No one is streaming {{game}} right now.",
+    "seeAllStreams": "See all streams",
+    "isLiveNow": "{{name}} is live",
+    "justChatting": "Just Chatting",
+    "noLiveStreams": "No Live Streams",
+    "noOneStreaming": "No one is streaming right now. Check back later!",
+    "loadStreamsFailed": "Unable to load streams. Please try again."
   },
   "liveShop": {
     "title": "Shop for dis stream",

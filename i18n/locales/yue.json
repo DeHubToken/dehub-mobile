@@ -1874,7 +1874,16 @@
     "tryAnotherGenre": "嘗試另一種音樂類型。",
     "pauseStation": "暫停電台",
     "resumeStation": "繼續播放電台",
-    "stopRadio": "停止電台"
+    "stopRadio": "停止電台",
+    "playsToday": "今日播放 {{plays}} 次",
+    "listen": "收聽",
+    "top50": "頭 50",
+    "playAll": "全部播放",
+    "nothingHereYet": "呢度仲未有嘢。",
+    "likeStation": "鍾意電台",
+    "unlikeStation": "取消鍾意",
+    "shareStation": "分享電台",
+    "listeningTo": "喺 DeHub 收聽緊 {{name}}"
   },
   "notFound": {
     "title": "搵唔到頁面",
@@ -5490,7 +5499,16 @@
     "reconnecting": "正在重新連線…",
     "connecting": "正在連線…",
     "detailsLivepeerId": "現場同行 ID ：",
-    "shopPutOnAir": "放喺空氣度"
+    "shopPutOnAir": "放喺空氣度",
+    "streamCount_one": "{{count}} 場直播",
+    "streamCount_other": "{{count}} 場直播",
+    "noOneStreamingGame": "而家冇人直播 {{game}}。",
+    "seeAllStreams": "睇晒所有直播",
+    "isLiveNow": "{{name}} 直播緊",
+    "justChatting": "吹水",
+    "noLiveStreams": "冇直播",
+    "noOneStreaming": "而家冇人直播，遲啲再嚟睇下！",
+    "loadStreamsFailed": "載入唔到直播，請再試。"
   },
   "liveShop": {
     "title": "喺呢場直播購物",

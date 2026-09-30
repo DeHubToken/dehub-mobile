@@ -1872,7 +1872,16 @@
     "tryAnotherGenre": "മറ്റൊരു വിഭാഗം പരീക്ഷിക്കുക.",
     "pauseStation": "സ്റ്റേഷൻ താൽക്കാലികമായി നിർത്തുക",
     "resumeStation": "സ്റ്റേഷൻ പുനരാരംഭിക്കുക",
-    "stopRadio": "റേഡിയോ നിർത്തുക"
+    "stopRadio": "റേഡിയോ നിർത്തുക",
+    "playsToday": "ഇന്ന് {{plays}} തവണ കേട്ടു",
+    "listen": "കേൾക്കുക",
+    "top50": "ടോപ്പ് 50",
+    "playAll": "എല്ലാം പ്ലേ ചെയ്യുക",
+    "nothingHereYet": "ഇവിടെ ഇതുവരെ ഒന്നുമില്ല.",
+    "likeStation": "സ്റ്റേഷൻ ഇഷ്ടപ്പെടുക",
+    "unlikeStation": "ഇഷ്ടം നീക്കുക",
+    "shareStation": "സ്റ്റേഷൻ പങ്കിടുക",
+    "listeningTo": "DeHub-ൽ {{name}} കേൾക്കുന്നു"
   },
   "notFound": {
     "title": "പേജ് കണ്ടെത്തിയില്ല",
@@ -5489,7 +5498,16 @@
     "preparingCamera": "ക്യാമറ തയ്യാറാക്കുന്നു…",
     "reconnecting": "വീണ്ടും ബന്ധിപ്പിക്കുന്നു…",
     "connecting": "ബന്ധിപ്പിക്കുന്നു…",
-    "shopPutOnAir": "വായുവിൽ വയ്ക്കുക"
+    "shopPutOnAir": "വായുവിൽ വയ്ക്കുക",
+    "streamCount_one": "{{count}} സ്ട്രീം",
+    "streamCount_other": "{{count}} സ്ട്രീമുകൾ",
+    "noOneStreamingGame": "ഇപ്പോൾ ആരും {{game}} സ്ട്രീം ചെയ്യുന്നില്ല.",
+    "seeAllStreams": "എല്ലാ സ്ട്രീമുകളും കാണുക",
+    "isLiveNow": "{{name}} ലൈവിലാണ്",
+    "justChatting": "വെറും സംസാരം",
+    "noLiveStreams": "ലൈവ് സ്ട്രീമുകളില്ല",
+    "noOneStreaming": "ഇപ്പോൾ ആരും സ്ട്രീം ചെയ്യുന്നില്ല. പിന്നീട് വീണ്ടും നോക്കൂ!",
+    "loadStreamsFailed": "സ്ട്രീമുകൾ ലോഡ് ചെയ്യാനായില്ല. വീണ്ടും ശ്രമിക്കുക."
   },
   "liveShop": {
     "title": "ഈ സ്ട്രീമിൽ നിന്ന് വാങ്ങുക",

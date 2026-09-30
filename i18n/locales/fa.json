@@ -1874,7 +1874,16 @@
     "tryAnotherGenre": "یک ژانر دیگر را امتحان کنید.",
     "pauseStation": "ایستگاه را متوقف کنید",
     "resumeStation": "ایستگاه را از سر بگیرید",
-    "stopRadio": "رادیو را متوقف کنید"
+    "stopRadio": "رادیو را متوقف کنید",
+    "playsToday": "{{plays}} پخش امروز",
+    "listen": "گوش بده",
+    "top50": "۵۰ برتر",
+    "playAll": "پخش همه",
+    "nothingHereYet": "هنوز چیزی اینجا نیست.",
+    "likeStation": "پسندیدن ایستگاه",
+    "unlikeStation": "لغو پسند ایستگاه",
+    "shareStation": "اشتراک‌گذاری ایستگاه",
+    "listeningTo": "در حال گوش دادن به {{name}} در DeHub"
   },
   "notFound": {
     "title": "صفحه یافت نشد",
@@ -5525,7 +5534,16 @@
     "reconnecting": "در حال اتصال مجدد…",
     "connecting": "در حال اتصال…",
     "shopPutOnAir": "روی هوا قرار دهید",
-    "tippedAmount": "نوک {{amount}}"
+    "tippedAmount": "نوک {{amount}}",
+    "streamCount_one": "{{count}} پخش زنده",
+    "streamCount_other": "{{count}} پخش زنده",
+    "noOneStreamingGame": "الان کسی {{game}} را پخش نمی‌کند.",
+    "seeAllStreams": "دیدن همه پخش‌ها",
+    "isLiveNow": "{{name}} در حال پخش زنده است",
+    "justChatting": "فقط گفتگو",
+    "noLiveStreams": "پخش زنده‌ای نیست",
+    "noOneStreaming": "الان کسی پخش زنده ندارد. بعداً سر بزنید!",
+    "loadStreamsFailed": "بارگیری پخش‌ها ممکن نشد. دوباره تلاش کنید."
   },
   "liveShop": {
     "title": "از این پخش خرید کنید",

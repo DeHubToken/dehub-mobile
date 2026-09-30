@@ -1867,7 +1867,16 @@
     "tryAnotherGenre": "एक अउ शैली के कोशिश कर ।",
     "pauseStation": "स्टेशन ल रोक",
     "resumeStation": "स्टेशन ल फिर ले शुरू करे",
-    "stopRadio": "रेडियो बंद करे"
+    "stopRadio": "रेडियो बंद करे",
+    "playsToday": "आज {{plays}} बार सुना गया",
+    "listen": "सुनें",
+    "top50": "टॉप 50",
+    "playAll": "सब चलाएँ",
+    "nothingHereYet": "यहाँ अभी कुछ नहीं है।",
+    "likeStation": "स्टेशन पसंद करें",
+    "unlikeStation": "स्टेशन नापसंद करें",
+    "shareStation": "स्टेशन शेयर करें",
+    "listeningTo": "DeHub पर {{name}} सुन रहा हूँ"
   },
   "notFound": {
     "title": "पेज नइ मिलिस",
@@ -5483,7 +5492,16 @@
     "reconnecting": "फिर से जुड़त हे…",
     "connecting": "जुड़त हे…",
     "shopPutOnAir": "हवा ले ले",
-    "tippedAmount": "कॉर्डोबा {{amount}}"
+    "tippedAmount": "कॉर्डोबा {{amount}}",
+    "streamCount_one": "{{count}} स्ट्रीम",
+    "streamCount_other": "{{count}} स्ट्रीम",
+    "noOneStreamingGame": "अभी कोई {{game}} स्ट्रीम नहीं कर रहा है।",
+    "seeAllStreams": "सभी स्ट्रीम देखें",
+    "isLiveNow": "{{name}} लाइव हैं",
+    "justChatting": "बस बातचीत",
+    "noLiveStreams": "कोई लाइव स्ट्रीम नहीं",
+    "noOneStreaming": "अभी कोई स्ट्रीम नहीं कर रहा है। बाद में फिर देखें!",
+    "loadStreamsFailed": "स्ट्रीम लोड नहीं हो सकीं। फिर से कोशिश करें।"
   },
   "liveShop": {
     "title": "ये स्ट्रीम ले बिसाहव",

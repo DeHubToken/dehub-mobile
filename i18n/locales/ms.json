@@ -2134,7 +2134,16 @@
     "tryAnotherGenre": "Cuba genre lain.",
     "pauseStation": "Jeda stesen",
     "resumeStation": "Sambung semula stesen",
-    "stopRadio": "Hentikan radio"
+    "stopRadio": "Hentikan radio",
+    "playsToday": "{{plays}} kali dimainkan hari ini",
+    "listen": "Dengar",
+    "top50": "Top 50",
+    "playAll": "Main semua",
+    "nothingHereYet": "Belum ada apa-apa di sini.",
+    "likeStation": "Suka stesen",
+    "unlikeStation": "Batal suka stesen",
+    "shareStation": "Kongsi stesen",
+    "listeningTo": "Mendengar {{name}} di DeHub"
   },
   "notFound": {
     "title": "Halaman Tidak Ditemui",
@@ -5754,7 +5763,16 @@
     "preparingCamera": "Menyediakan kamera…",
     "reconnecting": "Menyambung semula…",
     "connecting": "Menyambung…",
-    "shopPutOnAir": "Siarkan"
+    "shopPutOnAir": "Siarkan",
+    "streamCount_one": "{{count}} strim",
+    "streamCount_other": "{{count}} strim",
+    "noOneStreamingGame": "Tiada sesiapa menstrim {{game}} sekarang.",
+    "seeAllStreams": "Lihat semua strim",
+    "isLiveNow": "{{name}} sedang live",
+    "justChatting": "Sembang sahaja",
+    "noLiveStreams": "Tiada strim langsung",
+    "noOneStreaming": "Tiada sesiapa menstrim sekarang. Kembali nanti!",
+    "loadStreamsFailed": "Gagal memuatkan strim. Cuba lagi."
   },
   "liveShop": {
     "title": "Beli-belah dari siaran ini",

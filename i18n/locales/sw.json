@@ -1875,7 +1875,16 @@
     "tryAnotherGenre": "Jaribu aina nyingine.",
     "pauseStation": "Sitisha kituo",
     "resumeStation": "Endeleza kituo",
-    "stopRadio": "Zima redio"
+    "stopRadio": "Zima redio",
+    "playsToday": "Imesikilizwa mara {{plays}} leo",
+    "listen": "Sikiliza",
+    "top50": "50 Bora",
+    "playAll": "Cheza zote",
+    "nothingHereYet": "Bado hakuna kitu hapa.",
+    "likeStation": "Penda stesheni",
+    "unlikeStation": "Acha kupenda stesheni",
+    "shareStation": "Shiriki stesheni",
+    "listeningTo": "Ninasikiliza {{name}} kwenye DeHub"
   },
   "notFound": {
     "title": "Ukurasa Haujapatikana",
@@ -5498,7 +5507,16 @@
     "preparingCamera": "Inaandaa kamera…",
     "reconnecting": "Inaunganisha tena…",
     "connecting": "Inaunganisha…",
-    "shopPutOnAir": "Anza kutumia hewa"
+    "shopPutOnAir": "Anza kutumia hewa",
+    "streamCount_one": "Mtiririko {{count}}",
+    "streamCount_other": "Mitiririko {{count}}",
+    "noOneStreamingGame": "Hakuna anayetiririsha {{game}} sasa hivi.",
+    "seeAllStreams": "Tazama mitiririko yote",
+    "isLiveNow": "{{name}} yuko hewani",
+    "justChatting": "Mazungumzo tu",
+    "noLiveStreams": "Hakuna mitiririko ya moja kwa moja",
+    "noOneStreaming": "Hakuna anayetiririsha sasa. Rudi baadaye!",
+    "loadStreamsFailed": "Imeshindwa kupakia mitiririko. Jaribu tena."
   },
   "liveShop": {
     "title": "Nunua kutoka matangazo haya",

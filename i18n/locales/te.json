@@ -1872,7 +1872,16 @@
     "tryAnotherGenre": "మరొక రకాన్ని ప్రయత్నించండి.",
     "pauseStation": "స్టేషన్ ‌ ను పాజ్ చేయండి",
     "resumeStation": "స్టేషన్ ‌ ను తిరిగి ప్రారంభించండి",
-    "stopRadio": "రేడియోను ఆపండి"
+    "stopRadio": "రేడియోను ఆపండి",
+    "playsToday": "ఈరోజు {{plays}} సార్లు విన్నారు",
+    "listen": "వినండి",
+    "top50": "టాప్ 50",
+    "playAll": "అన్నీ ప్లే చేయండి",
+    "nothingHereYet": "ఇక్కడ ఇంకా ఏమీ లేదు.",
+    "likeStation": "స్టేషన్ ఇష్టపడండి",
+    "unlikeStation": "ఇష్టం తీసివేయండి",
+    "shareStation": "స్టేషన్ షేర్ చేయండి",
+    "listeningTo": "DeHub లో {{name}} వింటున్నాను"
   },
   "notFound": {
     "title": "పేజీ కనుగొనబడలేదు",
@@ -5493,7 +5502,16 @@
     "preparingCamera": "కెమెరా సిద్ధం చేస్తోంది…",
     "reconnecting": "తిరిగి కనెక్ట్ అవుతోంది…",
     "connecting": "కనెక్ట్ అవుతోంది…",
-    "shopPutOnAir": "గాలిలో ఉంచండి"
+    "shopPutOnAir": "గాలిలో ఉంచండి",
+    "streamCount_one": "{{count}} స్ట్రీమ్",
+    "streamCount_other": "{{count}} స్ట్రీమ్‌లు",
+    "noOneStreamingGame": "ఇప్పుడు ఎవరూ {{game}} స్ట్రీమ్ చేయడం లేదు.",
+    "seeAllStreams": "అన్ని స్ట్రీమ్‌లు చూడండి",
+    "isLiveNow": "{{name}} లైవ్‌లో ఉన్నారు",
+    "justChatting": "కేవలం చాటింగ్",
+    "noLiveStreams": "లైవ్ స్ట్రీమ్‌లు లేవు",
+    "noOneStreaming": "ఇప్పుడు ఎవరూ స్ట్రీమ్ చేయడం లేదు. తర్వాత మళ్లీ చూడండి!",
+    "loadStreamsFailed": "స్ట్రీమ్‌లను లోడ్ చేయలేకపోయాము. మళ్లీ ప్రయత్నించండి."
   },
   "liveShop": {
     "title": "ఈ స్ట్రీమ్ నుండి కొనండి",

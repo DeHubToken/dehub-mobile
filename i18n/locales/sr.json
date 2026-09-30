@@ -1874,7 +1874,16 @@
     "tryAnotherGenre": "Покушајте други жанр.",
     "pauseStation": "Паузирајте станицу",
     "resumeStation": "Наставите станицу",
-    "stopRadio": "Зауставите радио"
+    "stopRadio": "Зауставите радио",
+    "playsToday": "Данас {{plays}} слушања",
+    "listen": "Слушај",
+    "top50": "Топ 50",
+    "playAll": "Пусти све",
+    "nothingHereYet": "Овде још нема ничега.",
+    "likeStation": "Свиђа ми се станица",
+    "unlikeStation": "Уклони свиђање",
+    "shareStation": "Подели станицу",
+    "listeningTo": "Слушам {{name}} на DeHub-у"
   },
   "notFound": {
     "title": "Страница није пронађена",
@@ -5465,7 +5474,16 @@
     "connecting": "Повезивање…",
     "shopPutOnAir": "Емитуј",
     "detailsStatus": "Статус:",
-    "detailsLivepeerId": "Ливепеер ID:"
+    "detailsLivepeerId": "Ливепеер ID:",
+    "streamCount_one": "{{count}} пренос",
+    "streamCount_other": "Преноса: {{count}}",
+    "noOneStreamingGame": "Тренутно нико не преноси {{game}}.",
+    "seeAllStreams": "Прикажи све преносе",
+    "isLiveNow": "{{name}} је уживо",
+    "justChatting": "Само ћаскање",
+    "noLiveStreams": "Нема преноса уживо",
+    "noOneStreaming": "Тренутно нико не преноси. Свратите касније!",
+    "loadStreamsFailed": "Преноси нису могли да се учитају. Покушајте поново."
   },
   "liveShop": {
     "title": "Куповина из овог преноса",
