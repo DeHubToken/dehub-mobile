@@ -1018,7 +1018,8 @@
     "boostPostDesc": "Pane see avavoo etteotsa",
     "mintPostDesc": "Avalda see postitus ahelas",
     "giftBoost": "Kingi võimendus",
-    "giftBoostDesc": "Kuluta üks omadest sellele postitusele"
+    "giftBoostDesc": "Kuluta üks omadest sellele postitusele",
+    "askAi": "Küsi tehisintellektilt"
   },
   "filters": {
     "sort": "Sorteeri",

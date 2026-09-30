@@ -1018,7 +1018,8 @@
     "boostPostDesc": "Ana akışın en üstüne koy",
     "mintPostDesc": "Bu gönderiyi zincir üzerinde yayınla",
     "giftBoost": "Bir güçlendirme hediye et",
-    "giftBoostDesc": "Kendi hakkından birini bu gönderiye harca"
+    "giftBoostDesc": "Kendi hakkından birini bu gönderiye harca",
+    "askAi": "Yapay zekâya sor"
   },
   "filters": {
     "sort": "Sırala",

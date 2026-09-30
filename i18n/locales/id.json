@@ -1018,7 +1018,8 @@
     "boostPostDesc": "Taruh di bagian atas beranda",
     "mintPostDesc": "Terbitkan postingan ini on-chain",
     "giftBoost": "Hadiahkan boost",
-    "giftBoostDesc": "Gunakan satu milik Anda untuk postingan ini"
+    "giftBoostDesc": "Gunakan satu milik Anda untuk postingan ini",
+    "askAi": "Tanya AI"
   },
   "filters": {
     "sort": "Urutkan",

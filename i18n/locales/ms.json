@@ -1278,7 +1278,8 @@
     "boostPostDesc": "Letakkan di bahagian atas suapan utama",
     "mintPostDesc": "Terbitkan siaran ini di rantaian",
     "giftBoost": "Hadiahkan boost",
-    "giftBoostDesc": "Gunakan satu milik anda pada siaran ini"
+    "giftBoostDesc": "Gunakan satu milik anda pada siaran ini",
+    "askAi": "Tanya AI"
   },
   "filters": {
     "sort": "Isih",

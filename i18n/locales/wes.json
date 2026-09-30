@@ -1004,7 +1004,8 @@
     "unpinPost": "Unpin am from your profile",
     "postPinned": "E don pin for your profile",
     "postUnpinned": "E don unpin from your profile",
-    "pinFailed": "We no fit pin or unpin this post"
+    "pinFailed": "We no fit pin or unpin this post",
+    "askAi": "Ask AI"
   },
   "filters": {
     "sort": "Arenj",

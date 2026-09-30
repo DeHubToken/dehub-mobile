@@ -1040,7 +1040,8 @@
     "boostPostDesc": "Umiestnite ho na vrch domovského kanála",
     "mintPostDesc": "Publikujte tento príspevok on-chain",
     "giftBoost": "Darovať boost",
-    "giftBoostDesc": "Miňte jeden zo svojich na tento príspevok"
+    "giftBoostDesc": "Miňte jeden zo svojich na tento príspevok",
+    "askAi": "Opýtať sa AI"
   },
   "filters": {
     "sort": "Zoradiť",

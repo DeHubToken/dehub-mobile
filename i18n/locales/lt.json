@@ -1018,7 +1018,8 @@
     "boostPostDesc": "Įkelkite jį į pagrindinio srauto viršų",
     "mintPostDesc": "Paskelbkite šį įrašą grandinėje",
     "giftBoost": "Padovanoti pastiprinimą",
-    "giftBoostDesc": "Išleiskite vieną savo šiam įrašui"
+    "giftBoostDesc": "Išleiskite vieną savo šiam įrašui",
+    "askAi": "Klausti DI"
   },
   "filters": {
     "sort": "Rūšiuoti",

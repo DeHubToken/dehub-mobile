@@ -1010,7 +1010,8 @@
     "boostPostDesc": "ኣብ ላዕሊ ናይ ገዛ ፊድ ኣቐምጦ",
     "mintPostDesc": "ነዚ ጽሑፍ ኣብ ሰንሰለት ኣውጽኦ",
     "giftBoost": "ምብርባር ከም ህያብ ሃብ",
-    "giftBoostDesc": "ካብ ናትካ ሓደ ኣብዚ ጽሑፍ ኣውጽእ"
+    "giftBoostDesc": "ካብ ናትካ ሓደ ኣብዚ ጽሑፍ ኣውጽእ",
+    "askAi": "AI ሕተት"
   },
   "filters": {
     "sort": "ደርድር",

@@ -1018,7 +1018,8 @@
     "boostPostDesc": "Umieść go na górze strony głównej",
     "mintPostDesc": "Opublikuj ten post on-chain",
     "giftBoost": "Podaruj boost",
-    "giftBoostDesc": "Wydaj jeden ze swoich na ten post"
+    "giftBoostDesc": "Wydaj jeden ze swoich na ten post",
+    "askAi": "Zapytaj AI"
   },
   "filters": {
     "sort": "Sortuj",

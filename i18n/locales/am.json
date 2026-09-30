@@ -1017,7 +1017,8 @@
     "boostPostDesc": "በዋናው ገጽ ላይ ከፍ ያድርጉት",
     "mintPostDesc": "ይህን ልጥፍ በሰንሰለቱ ላይ ያትሙ",
     "giftBoost": "ማበረታቻ በስጦታ ስጥ",
-    "giftBoostDesc": "ከእርስዎ አንዱን በዚህ ልጥፍ ላይ ያውጡ"
+    "giftBoostDesc": "ከእርስዎ አንዱን በዚህ ልጥፍ ላይ ያውጡ",
+    "askAi": "AIን ይጠይቁ"
   },
   "filters": {
     "sort": "ደርድር",

@@ -1018,7 +1018,8 @@
     "boostPostDesc": "Apetraho eo an-tampon'ny fandefasana fandraisana",
     "mintPostDesc": "Avoaka amin'ny rojo ity lahatsoratra ity",
     "giftBoost": "Manolotra boost",
-    "giftBoostDesc": "Lanio ny iray amin'ny anao amin'ity lahatsoratra ity"
+    "giftBoostDesc": "Lanio ny iray amin'ny anao amin'ity lahatsoratra ity",
+    "askAi": "Anontanio ny AI"
   },
   "filters": {
     "sort": "Alamino",

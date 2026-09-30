@@ -1018,7 +1018,8 @@
     "boostPostDesc": "Setze ihn an die Spitze des Home-Feeds",
     "mintPostDesc": "Diesen Beitrag on-chain veröffentlichen",
     "giftBoost": "Boost verschenken",
-    "giftBoostDesc": "Gib einen deiner Boosts für diesen Beitrag aus"
+    "giftBoostDesc": "Gib einen deiner Boosts für diesen Beitrag aus",
+    "askAi": "KI fragen"
   },
   "filters": {
     "sort": "Sortieren",

@@ -1018,7 +1018,8 @@
     "boostPostDesc": "Novietojiet to sākuma plūsmas augšgalā",
     "mintPostDesc": "Publicējiet šo ierakstu ķēdē",
     "giftBoost": "Uzdāvināt pastiprinājumu",
-    "giftBoostDesc": "Iztērējiet vienu no savējiem šim ierakstam"
+    "giftBoostDesc": "Iztērējiet vienu no savējiem šim ierakstam",
+    "askAi": "Jautāt MI"
   },
   "filters": {
     "sort": "Kārtot",
