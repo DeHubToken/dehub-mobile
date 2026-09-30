@@ -2704,7 +2704,17 @@
     "repostsLabel_one": "herplasing",
     "repostsLabel_other": "herplasings",
     "quotesLabel_one": "aanhaling",
-    "quotesLabel_other": "aanhalings"
+    "quotesLabel_other": "aanhalings",
+    "sortRecent": "Nuutste",
+    "sortOldest": "Oudste",
+    "sortLiked": "Gewildste",
+    "sortedByRecent": "Gesorteer volgens nuutste",
+    "sortedByOldest": "Gesorteer volgens oudste",
+    "sortedByLiked": "Gesorteer volgens meeste laaiks",
+    "tabReplies": "Antwoorde",
+    "tabQuotes": "Aanhalings",
+    "tabReposts": "Herplasings",
+    "tabSearch": "Soek"
   },
   "postInfo": {
     "title": "Plaas inligting",

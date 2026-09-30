@@ -2671,7 +2671,17 @@
     "repostsLabel_one": "قايتا يوللانما",
     "repostsLabel_other": "قايتا يوللانما",
     "quotesLabel_one": "نەقىل",
-    "quotesLabel_other": "نەقىل"
+    "quotesLabel_other": "نەقىل",
+    "sortRecent": "يېڭى",
+    "sortOldest": "كونا",
+    "sortLiked": "ياقتۇرۇلغان",
+    "sortedByRecent": "ئەڭ يېڭىسى بويىچە تىزىلدى",
+    "sortedByOldest": "ئەڭ كونىسى بويىچە تىزىلدى",
+    "sortedByLiked": "ئەڭ كۆپ ياقتۇرۇلغىنى بويىچە تىزىلدى",
+    "tabReplies": "جاۋابلار",
+    "tabQuotes": "نەقىللەر",
+    "tabReposts": "قايتا يوللانمىلار",
+    "tabSearch": "ئىزدەش"
   },
   "postInfo": {
     "title": "يوللىما ئۇچۇرى",

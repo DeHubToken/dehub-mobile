@@ -2671,7 +2671,17 @@
     "repostsLabel_one": "Reposts",
     "repostsLabel_other": "Reposti",
     "quotesLabel_one": "Citāts",
-    "quotesLabel_other": "Citāti"
+    "quotesLabel_other": "Citāti",
+    "sortRecent": "Jaunākie",
+    "sortOldest": "Vecākie",
+    "sortLiked": "Populārie",
+    "sortedByRecent": "Kārtots pēc jaunākajiem",
+    "sortedByOldest": "Kārtots pēc vecākajiem",
+    "sortedByLiked": "Kārtots pēc populārākajiem",
+    "tabReplies": "Atbildes",
+    "tabQuotes": "Citāti",
+    "tabReposts": "Reposti",
+    "tabSearch": "Meklēt"
   },
   "postInfo": {
     "title": "Ieraksta informācija",

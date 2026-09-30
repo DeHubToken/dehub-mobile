@@ -2670,7 +2670,17 @@
     "repostsLabel_one": "रीपोस्ट",
     "repostsLabel_other": "रीपोस्ट",
     "quotesLabel_one": "कोट",
-    "quotesLabel_other": "कोट"
+    "quotesLabel_other": "कोट",
+    "sortRecent": "नया",
+    "sortOldest": "पुरान",
+    "sortLiked": "पसंदीदा",
+    "sortedByRecent": "सबसे नया पहिले",
+    "sortedByOldest": "सबसे पुरान पहिले",
+    "sortedByLiked": "सबसे ज्यादा लाइक पहिले",
+    "tabReplies": "जवाब",
+    "tabQuotes": "कोट्स",
+    "tabReposts": "रीपोस्ट",
+    "tabSearch": "खोज"
   },
   "postInfo": {
     "title": "पोस्ट जानकारी",

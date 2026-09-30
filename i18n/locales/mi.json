@@ -2671,7 +2671,17 @@
     "repostsLabel_one": "Tukurua",
     "repostsLabel_other": "Tukurua",
     "quotesLabel_one": "Kōrero tau",
-    "quotesLabel_other": "Kōrero tau"
+    "quotesLabel_other": "Kōrero tau",
+    "sortRecent": "Hou",
+    "sortOldest": "Tawhito",
+    "sortLiked": "Rongonui",
+    "sortedByRecent": "Kua raupapatia mā te hou rawa",
+    "sortedByOldest": "Kua raupapatia mā te tawhito rawa",
+    "sortedByLiked": "Kua raupapatia mā te maha o ngā pai",
+    "tabReplies": "Ngā whakautu",
+    "tabQuotes": "Kōrero tau",
+    "tabReposts": "Tukurua",
+    "tabSearch": "Rapu"
   },
   "postInfo": {
     "title": "Mōhiohio pou",

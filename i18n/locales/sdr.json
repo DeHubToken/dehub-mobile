@@ -2684,7 +2684,17 @@
     "repostsLabel_one": "ری پوسٹ",
     "repostsLabel_other": "ری پوسٹ",
     "quotesLabel_one": "اقتباس",
-    "quotesLabel_other": "اقتباسات"
+    "quotesLabel_other": "اقتباسات",
+    "sortRecent": "تازہ",
+    "sortOldest": "پرانا",
+    "sortLiked": "پسند",
+    "sortedByRecent": "ترتیب: سب سے تازہ",
+    "sortedByOldest": "ترتیب: سب سے پرانا",
+    "sortedByLiked": "ترتیب: سب سے زیادہ پسند",
+    "tabReplies": "جواب",
+    "tabQuotes": "اقتباسات",
+    "tabReposts": "ری پوسٹ",
+    "tabSearch": "کھوجو"
   },
   "postInfo": {
     "title": "پوسٹ کی معلومات",

@@ -2779,7 +2779,17 @@
     "repostsLabel_one": "Preposlanie",
     "repostsLabel_other": "Preposlaní",
     "quotesLabel_one": "Citácia",
-    "quotesLabel_other": "Citácií"
+    "quotesLabel_other": "Citácií",
+    "sortRecent": "Najnovšie",
+    "sortOldest": "Najstaršie",
+    "sortLiked": "Lajky",
+    "sortedByRecent": "Zoradené od najnovších",
+    "sortedByOldest": "Zoradené od najstarších",
+    "sortedByLiked": "Zoradené podľa počtu lajkov",
+    "tabReplies": "Odpovede",
+    "tabQuotes": "Citácie",
+    "tabReposts": "Preposlania",
+    "tabSearch": "Hľadať"
   },
   "postInfo": {
     "title": "Informácie o príspevku",

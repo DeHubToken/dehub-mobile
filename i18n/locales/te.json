@@ -2672,7 +2672,17 @@
     "repostsLabel_one": "రీపోస్ట్",
     "repostsLabel_other": "రీపోస్ట్‌లు",
     "quotesLabel_one": "కోట్",
-    "quotesLabel_other": "కోట్స్"
+    "quotesLabel_other": "కోట్స్",
+    "sortRecent": "ఇటీవలి",
+    "sortOldest": "పాతవి",
+    "sortLiked": "లైక్‌లు",
+    "sortedByRecent": "అత్యంత ఇటీవలి ప్రకారం క్రమబద్ధీకరించబడింది",
+    "sortedByOldest": "పాతవాటి ప్రకారం క్రమబద్ధీకరించబడింది",
+    "sortedByLiked": "ఎక్కువ లైక్‌ల ప్రకారం క్రమబద్ధీకరించబడింది",
+    "tabReplies": "ప్రత్యుత్తరాలు",
+    "tabQuotes": "కోట్స్",
+    "tabReposts": "రీపోస్ట్‌లు",
+    "tabSearch": "వెతుకు"
   },
   "postInfo": {
     "title": "పోస్ట్ సమాచారం",

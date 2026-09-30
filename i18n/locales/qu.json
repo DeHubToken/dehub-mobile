@@ -2702,7 +2702,17 @@
     "repostsLabel_one": "Musuqmanta churay",
     "repostsLabel_other": "Musuqmanta churay",
     "quotesLabel_one": "Cita",
-    "quotesLabel_other": "Citakuna"
+    "quotesLabel_other": "Citakuna",
+    "sortRecent": "Musuq",
+    "sortOldest": "Mawk'a",
+    "sortLiked": "Munasqa",
+    "sortedByRecent": "Aswan musuqkama ñiqichasqa",
+    "sortedByOldest": "Aswan mawk'akama ñiqichasqa",
+    "sortedByLiked": "Aswan munasqakama ñiqichasqa",
+    "tabReplies": "Kutichiykuna",
+    "tabQuotes": "Citakuna",
+    "tabReposts": "Musuqmanta churay",
+    "tabSearch": "Maskay"
   },
   "postInfo": {
     "title": "Post willay",

@@ -2671,7 +2671,17 @@
     "repostsLabel_one": "repost",
     "repostsLabel_other": "reposti",
     "quotesLabel_one": "tsitaat",
-    "quotesLabel_other": "tsitaati"
+    "quotesLabel_other": "tsitaati",
+    "sortRecent": "Uued",
+    "sortOldest": "Vanad",
+    "sortLiked": "Meeldinud",
+    "sortedByRecent": "Sorditud uusimate järgi",
+    "sortedByOldest": "Sorditud vanimate järgi",
+    "sortedByLiked": "Sorditud meeldimiste järgi",
+    "tabReplies": "Vastused",
+    "tabQuotes": "Tsitaadid",
+    "tabReposts": "Repostid",
+    "tabSearch": "Otsi"
   },
   "postInfo": {
     "title": "Postituse info",

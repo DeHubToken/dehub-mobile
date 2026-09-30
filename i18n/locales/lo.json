@@ -2658,7 +2658,17 @@
     "repostsLabel_one": "ໂພສຄືນ",
     "repostsLabel_other": "ໂພສຄືນ",
     "quotesLabel_one": "ຄຳເວົ້າ",
-    "quotesLabel_other": "ຄຳເວົ້າ"
+    "quotesLabel_other": "ຄຳເວົ້າ",
+    "sortRecent": "ຫຼ້າສຸດ",
+    "sortOldest": "ເກົ່າສຸດ",
+    "sortLiked": "ມັກສຸດ",
+    "sortedByRecent": "ຮຽງຕາມຫຼ້າສຸດ",
+    "sortedByOldest": "ຮຽງຕາມເກົ່າສຸດ",
+    "sortedByLiked": "ຮຽງຕາມທີ່ມັກຫຼາຍສຸດ",
+    "tabReplies": "ການຕອບ",
+    "tabQuotes": "ຄຳເວົ້າ",
+    "tabReposts": "ໂພສຄືນ",
+    "tabSearch": "ຄົ້ນຫາ"
   },
   "postInfo": {
     "title": "ຂໍ້ມູນໂພສ",

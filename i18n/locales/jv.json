@@ -2671,7 +2671,17 @@
     "repostsLabel_one": "kiriman ulang",
     "repostsLabel_other": "kiriman ulang",
     "quotesLabel_one": "kutipan",
-    "quotesLabel_other": "kutipan"
+    "quotesLabel_other": "kutipan",
+    "sortRecent": "Anyar",
+    "sortOldest": "Lawas",
+    "sortLiked": "Populer",
+    "sortedByRecent": "Diurutake saka sing paling anyar",
+    "sortedByOldest": "Diurutake saka sing paling lawas",
+    "sortedByLiked": "Diurutake saka sing paling disenengi",
+    "tabReplies": "Wangsulan",
+    "tabQuotes": "Kutipan",
+    "tabReposts": "Kiriman ulang",
+    "tabSearch": "Goleki"
   },
   "postInfo": {
     "title": "Info Postingan",

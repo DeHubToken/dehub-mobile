@@ -2694,7 +2694,17 @@
     "repostsLabel_one": "Fametrahana indray",
     "repostsLabel_other": "Fametrahana indray",
     "quotesLabel_one": "Teny nalaina",
-    "quotesLabel_other": "Teny nalaina"
+    "quotesLabel_other": "Teny nalaina",
+    "sortRecent": "Vaovao",
+    "sortOldest": "Taloha",
+    "sortLiked": "Tiana",
+    "sortedByRecent": "Voalahatra: vaovao indrindra",
+    "sortedByOldest": "Voalahatra: taloha indrindra",
+    "sortedByLiked": "Voalahatra: tiana indrindra",
+    "tabReplies": "Valiny",
+    "tabQuotes": "Teny nalaina",
+    "tabReposts": "Fametrahana indray",
+    "tabSearch": "Fikarohana"
   },
   "postInfo": {
     "title": "Fampahalalana momba ny lahatsoratra",

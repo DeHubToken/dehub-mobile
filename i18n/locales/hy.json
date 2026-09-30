@@ -2671,7 +2671,17 @@
     "repostsLabel_one": "վերահրապարակում",
     "repostsLabel_other": "վերահրապարակում",
     "quotesLabel_one": "մեջբերում",
-    "quotesLabel_other": "մեջբերում"
+    "quotesLabel_other": "մեջբերում",
+    "sortRecent": "Նոր",
+    "sortOldest": "Հին",
+    "sortLiked": "Սիրված",
+    "sortedByRecent": "Դասավորված ըստ ամենանորերի",
+    "sortedByOldest": "Դասավորված ըստ ամենահների",
+    "sortedByLiked": "Դասավորված ըստ ամենահավանվածների",
+    "tabReplies": "Պատասխաններ",
+    "tabQuotes": "Մեջբերումներ",
+    "tabReposts": "Վերահրապարակումներ",
+    "tabSearch": "Որոնում"
   },
   "postInfo": {
     "title": "Գdelaysայթի տdelaysdelays",

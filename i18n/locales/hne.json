@@ -2668,7 +2668,17 @@
     "repostsLabel_one": "रीपोस्ट",
     "repostsLabel_other": "रीपोस्ट",
     "quotesLabel_one": "उद्धरण",
-    "quotesLabel_other": "उद्धरण"
+    "quotesLabel_other": "उद्धरण",
+    "sortRecent": "नवा",
+    "sortOldest": "जुन्ना",
+    "sortLiked": "पसंद",
+    "sortedByRecent": "सबले नवा के हिसाब ले जमाय गे",
+    "sortedByOldest": "सबले जुन्ना के हिसाब ले जमाय गे",
+    "sortedByLiked": "सबले जादा पसंद के हिसाब ले जमाय गे",
+    "tabReplies": "जवाब",
+    "tabQuotes": "उद्धरण",
+    "tabReposts": "रीपोस्ट",
+    "tabSearch": "खोजव"
   },
   "postInfo": {
     "title": "पोस्ट जानकारी",

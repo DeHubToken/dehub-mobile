@@ -2663,7 +2663,17 @@
     "repostsLabel_one": "पुनःप्रकाशनम्",
     "repostsLabel_other": "पुनःप्रकाशनानि",
     "quotesLabel_one": "उद्धरणम्",
-    "quotesLabel_other": "उद्धरणानि"
+    "quotesLabel_other": "उद्धरणानि",
+    "sortRecent": "नवीनम्",
+    "sortOldest": "पुरातनम्",
+    "sortLiked": "लोकप्रियम्",
+    "sortedByRecent": "नवीनतमक्रमेण व्यवस्थितम्",
+    "sortedByOldest": "पुरातनतमक्रमेण व्यवस्थितम्",
+    "sortedByLiked": "सर्वाधिकरुचिक्रमेण व्यवस्थितम्",
+    "tabReplies": "प्रत्युत्तराणि",
+    "tabQuotes": "उद्धरणानि",
+    "tabReposts": "पुनःप्रकाशनानि",
+    "tabSearch": "अन्वेषणम्"
   },
   "postInfo": {
     "title": "प्रकाशनस्य सूचना",

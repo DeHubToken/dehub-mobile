@@ -138,7 +138,13 @@ const _JSX_RUNTIMES = {
 	"dehub-jsx/jsx-dev-runtime": _path.resolve(__dirname, "libs/jsx/jsx-dev-runtime.js"),
 };
 
+const _WEB_STUB = /(react-native-agora|react-native-webrtc|codegenNativeComponent|react-native-quick-crypto|@react-native-firebase|react-native-vision-camera|@livepeer|react-native-iap|expo-av-native)/;
 config.resolver.resolveRequest = (context, moduleName, platform) => {
+	if (platform === 'web' && _WEB_STUB.test(moduleName)) return { type: 'sourceFile', filePath: _emptyModulePath };
+	if (platform === 'web') { try { return _inner(context, moduleName, platform); } catch (e) { console.log('[webstub]', moduleName); return { type: 'sourceFile', filePath: _emptyModulePath }; } }
+	return _inner(context, moduleName, platform);
+};
+const _inner = (context, moduleName, platform) => {
 	if (_JSX_RUNTIMES[moduleName]) {
 		return { type: "sourceFile", filePath: _JSX_RUNTIMES[moduleName] };
 	}

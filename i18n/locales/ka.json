@@ -2686,7 +2686,17 @@
     "repostsLabel_one": "რეპოსტი",
     "repostsLabel_other": "რეპოსტი",
     "quotesLabel_one": "ციტატა",
-    "quotesLabel_other": "ციტატა"
+    "quotesLabel_other": "ციტატა",
+    "sortRecent": "ახალი",
+    "sortOldest": "ძველი",
+    "sortLiked": "პოპულარული",
+    "sortedByRecent": "დალაგებულია: უახლესი",
+    "sortedByOldest": "დალაგებულია: უძველესი",
+    "sortedByLiked": "დალაგებულია: ყველაზე მოწონებული",
+    "tabReplies": "პასუხები",
+    "tabQuotes": "ციტატები",
+    "tabReposts": "რეპოსტები",
+    "tabSearch": "ძებნა"
   },
   "postInfo": {
     "title": "პოსტის ინფორმაცია",

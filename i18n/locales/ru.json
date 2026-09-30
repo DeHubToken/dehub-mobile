@@ -2675,7 +2675,17 @@
     "repostsLabel_one": "Репост",
     "repostsLabel_other": "Репосты",
     "quotesLabel_one": "Цитата",
-    "quotesLabel_other": "Цитаты"
+    "quotesLabel_other": "Цитаты",
+    "sortRecent": "Новые",
+    "sortOldest": "Старые",
+    "sortLiked": "Популярные",
+    "sortedByRecent": "Сначала новые",
+    "sortedByOldest": "Сначала старые",
+    "sortedByLiked": "Сначала популярные",
+    "tabReplies": "Ответы",
+    "tabQuotes": "Цитаты",
+    "tabReposts": "Репосты",
+    "tabSearch": "Поиск"
   },
   "postInfo": {
     "title": "Информация о посте",

@@ -2674,7 +2674,17 @@
     "repostsLabel_one": "Репост",
     "repostsLabel_other": "Репостова",
     "quotesLabel_one": "Цитат",
-    "quotesLabel_other": "Цитата"
+    "quotesLabel_other": "Цитата",
+    "sortRecent": "Најновије",
+    "sortOldest": "Најстарије",
+    "sortLiked": "Лајкови",
+    "sortedByRecent": "Сортирано од најновијих",
+    "sortedByOldest": "Сортирано од најстаријих",
+    "sortedByLiked": "Сортирано по броју лајкова",
+    "tabReplies": "Одговори",
+    "tabQuotes": "Цитати",
+    "tabReposts": "Репостови",
+    "tabSearch": "Претрага"
   },
   "postInfo": {
     "title": "Информације о објави",

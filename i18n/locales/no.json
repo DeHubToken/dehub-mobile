@@ -2671,7 +2671,17 @@
     "repostsLabel_one": "Repost",
     "repostsLabel_other": "Reposts",
     "quotesLabel_one": "Sitat",
-    "quotesLabel_other": "Sitater"
+    "quotesLabel_other": "Sitater",
+    "sortRecent": "Nyeste",
+    "sortOldest": "Eldste",
+    "sortLiked": "Populære",
+    "sortedByRecent": "Sortert etter nyeste",
+    "sortedByOldest": "Sortert etter eldste",
+    "sortedByLiked": "Sortert etter mest likt",
+    "tabReplies": "Svar",
+    "tabQuotes": "Sitater",
+    "tabReposts": "Reposts",
+    "tabSearch": "Søk"
   },
   "postInfo": {
     "title": "Innleggsinformasjon",

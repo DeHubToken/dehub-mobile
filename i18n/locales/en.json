@@ -2671,7 +2671,17 @@
     "repostsLabel_one": "Repost",
     "repostsLabel_other": "Reposts",
     "quotesLabel_one": "Quote",
-    "quotesLabel_other": "Quotes"
+    "quotesLabel_other": "Quotes",
+    "sortRecent": "Recent",
+    "sortOldest": "Oldest",
+    "sortLiked": "Liked",
+    "sortedByRecent": "Sorted by Most Recent",
+    "sortedByOldest": "Sorted by Oldest",
+    "sortedByLiked": "Sorted by Most Liked",
+    "tabReplies": "Replies",
+    "tabQuotes": "Quotes",
+    "tabReposts": "Reposts",
+    "tabSearch": "Search"
   },
   "postInfo": {
     "title": "Post Info",

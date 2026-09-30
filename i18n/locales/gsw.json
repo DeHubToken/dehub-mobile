@@ -2701,7 +2701,17 @@
     "repostsLabel_one": "Repost",
     "repostsLabel_other": "Reposts",
     "quotesLabel_one": "Zitat",
-    "quotesLabel_other": "Zitat"
+    "quotesLabel_other": "Zitat",
+    "sortRecent": "Neuschti",
+    "sortOldest": "Ältischti",
+    "sortLiked": "Beliebt",
+    "sortedByRecent": "Sortiert nach de Neuschte",
+    "sortedByOldest": "Sortiert nach de Ältischte",
+    "sortedByLiked": "Sortiert nach de meischte Likes",
+    "tabReplies": "Antworte",
+    "tabQuotes": "Zitat",
+    "tabReposts": "Reposts",
+    "tabSearch": "Sueche"
   },
   "postInfo": {
     "title": "Biitragsinformation",

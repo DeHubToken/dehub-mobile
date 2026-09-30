@@ -2674,7 +2674,17 @@
     "repostsLabel_one": "репост",
     "repostsLabel_other": "репоста",
     "quotesLabel_one": "цитат",
-    "quotesLabel_other": "цитата"
+    "quotesLabel_other": "цитата",
+    "sortRecent": "Нови",
+    "sortOldest": "Стари",
+    "sortLiked": "Популярни",
+    "sortedByRecent": "Подредени по най-нови",
+    "sortedByOldest": "Подредени по най-стари",
+    "sortedByLiked": "Подредени по най-харесвани",
+    "tabReplies": "Отговори",
+    "tabQuotes": "Цитати",
+    "tabReposts": "Репостове",
+    "tabSearch": "Търсене"
   },
   "postInfo": {
     "title": "Информация за публикацията",

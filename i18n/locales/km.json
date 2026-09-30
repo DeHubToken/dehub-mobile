@@ -2676,7 +2676,17 @@
     "repostsLabel_one": "ការបង្ហោះឡើងវិញ",
     "repostsLabel_other": "ការបង្ហោះឡើងវិញ",
     "quotesLabel_one": "សម្រង់",
-    "quotesLabel_other": "សម្រង់"
+    "quotesLabel_other": "សម្រង់",
+    "sortRecent": "ថ្មី",
+    "sortOldest": "ចាស់",
+    "sortLiked": "ពេញនិយម",
+    "sortedByRecent": "តម្រៀបតាមថ្មីបំផុត",
+    "sortedByOldest": "តម្រៀបតាមចាស់បំផុត",
+    "sortedByLiked": "តម្រៀបតាមការចូលចិត្តច្រើនបំផុត",
+    "tabReplies": "ការឆ្លើយតប",
+    "tabQuotes": "សម្រង់",
+    "tabReposts": "ការបង្ហោះឡើងវិញ",
+    "tabSearch": "ស្វែងរក"
   },
   "postInfo": {
     "title": "ព័ត៌មានប្រកាស",

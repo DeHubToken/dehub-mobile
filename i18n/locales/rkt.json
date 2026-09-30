@@ -2827,7 +2827,17 @@
     "repostsLabel_one": "রিপোস্ট",
     "repostsLabel_other": "রিপোস্ট",
     "quotesLabel_one": "উদ্ধৃতি",
-    "quotesLabel_other": "উদ্ধৃতি"
+    "quotesLabel_other": "উদ্ধৃতি",
+    "sortRecent": "নয়া",
+    "sortOldest": "পুরাতন",
+    "sortLiked": "জনপ্রিয়",
+    "sortedByRecent": "সবথাকি নয়া হিসাবে সাজানো",
+    "sortedByOldest": "সবথাকি পুরাতন হিসাবে সাজানো",
+    "sortedByLiked": "সবথাকি বেশি লাইক হিসাবে সাজানো",
+    "tabReplies": "উত্তর",
+    "tabQuotes": "উদ্ধৃতি",
+    "tabReposts": "রিপোস্ট",
+    "tabSearch": "খোঁজ"
   },
   "postInfo": {
     "title": "পোস্ট তথ্য",

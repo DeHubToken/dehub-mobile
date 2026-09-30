@@ -2674,7 +2674,17 @@
     "repostsLabel_one": "रीपोस्ट",
     "repostsLabel_other": "रीपोस्ट्स",
     "quotesLabel_one": "कोट",
-    "quotesLabel_other": "कोट्स"
+    "quotesLabel_other": "कोट्स",
+    "sortRecent": "नवीन",
+    "sortOldest": "जुने",
+    "sortLiked": "लोकप्रिय",
+    "sortedByRecent": "सर्वात नवीननुसार क्रमवारी",
+    "sortedByOldest": "सर्वात जुन्यानुसार क्रमवारी",
+    "sortedByLiked": "सर्वाधिक लाइकनुसार क्रमवारी",
+    "tabReplies": "प्रत्युत्तरे",
+    "tabQuotes": "कोट्स",
+    "tabReposts": "रीपोस्ट्स",
+    "tabSearch": "शोध"
   },
   "postInfo": {
     "title": "पोस्ट माहिती",

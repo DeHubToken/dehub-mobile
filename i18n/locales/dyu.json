@@ -2663,7 +2663,17 @@
     "repostsLabel_one": "Repost",
     "repostsLabel_other": "Repostw",
     "quotesLabel_one": "Kumasen",
-    "quotesLabel_other": "Kumasenw"
+    "quotesLabel_other": "Kumasenw",
+    "sortRecent": "Kuraw",
+    "sortOldest": "Kɔrɔw",
+    "sortLiked": "Diyanyew",
+    "sortedByRecent": "Kuraw bɛ ɲɛfɛ",
+    "sortedByOldest": "Kɔrɔw bɛ ɲɛfɛ",
+    "sortedByLiked": "Minw diyara kosɛbɛ bɛ ɲɛfɛ",
+    "tabReplies": "Jaabiw",
+    "tabQuotes": "Kumasenw",
+    "tabReposts": "Repostw",
+    "tabSearch": "Ɲini"
   },
   "postInfo": {
     "title": "Post kunnafoni",

@@ -2671,7 +2671,17 @@
     "repostsLabel_one": "פוסט מחדש",
     "repostsLabel_other": "פוסטים מחדש",
     "quotesLabel_one": "ציטוט",
-    "quotesLabel_other": "ציטוטים"
+    "quotesLabel_other": "ציטוטים",
+    "sortRecent": "חדשות",
+    "sortOldest": "ישנות",
+    "sortLiked": "אהובות",
+    "sortedByRecent": "ממוין לפי החדשות ביותר",
+    "sortedByOldest": "ממוין לפי הישנות ביותר",
+    "sortedByLiked": "ממוין לפי האהובות ביותר",
+    "tabReplies": "תשובות",
+    "tabQuotes": "ציטוטים",
+    "tabReposts": "פוסטים מחדש",
+    "tabSearch": "חיפוש"
   },
   "postInfo": {
     "title": "מידע על הפוסט",

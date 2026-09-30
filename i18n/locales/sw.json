@@ -2672,7 +2672,17 @@
     "repostsLabel_one": "Chapisho upya",
     "repostsLabel_other": "Machapisho upya",
     "quotesLabel_one": "Nukuu",
-    "quotesLabel_other": "Nukuu"
+    "quotesLabel_other": "Nukuu",
+    "sortRecent": "Mapya",
+    "sortOldest": "Za zamani",
+    "sortLiked": "Zilizopendwa",
+    "sortedByRecent": "Imepangwa kwa mapya zaidi",
+    "sortedByOldest": "Imepangwa kwa za zamani zaidi",
+    "sortedByLiked": "Imepangwa kwa zilizopendwa zaidi",
+    "tabReplies": "Majibu",
+    "tabQuotes": "Nukuu",
+    "tabReposts": "Machapisho upya",
+    "tabSearch": "Tafuta"
   },
   "postInfo": {
     "title": "Taarifa ya chapisho",

@@ -2671,7 +2671,17 @@
     "repostsLabel_one": "ponovna objava",
     "repostsLabel_other": "ponovnih objava",
     "quotesLabel_one": "citat",
-    "quotesLabel_other": "citata"
+    "quotesLabel_other": "citata",
+    "sortRecent": "Novi",
+    "sortOldest": "Stari",
+    "sortLiked": "Popularni",
+    "sortedByRecent": "Poredano od najnovijih",
+    "sortedByOldest": "Poredano od najstarijih",
+    "sortedByLiked": "Poredano po broju sviđanja",
+    "tabReplies": "Odgovori",
+    "tabQuotes": "Citati",
+    "tabReposts": "Ponovne objave",
+    "tabSearch": "Pretraži"
   },
   "postInfo": {
     "title": "Informacije o objavi",
