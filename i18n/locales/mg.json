@@ -4436,7 +4436,8 @@
     "restrictedBody": "Voafetra ny fifandraisana amin'ny kaontinao ity mpampiasa ity.",
     "requestPendingBody": "Voalefa ny fangatahanao fanarahana. Ho afaka hahita ny zavatra nosoratany ianao rehefa ankatoaviny ny fangatahanao.",
     "followToSeePosts": "Araho ity kaonty ity mba hahitana ny zavatra nosoratany.",
-    "loadFailed": "Tsy afaka naka ny rakitra “%s”: %s"
+    "loadFailed": "Tsy afaka naka ny rakitra “%s”: %s",
+    "new": "Vaovao"
   },
   "reactionInfo": {
     "title": "Fanehoan-kevitra",

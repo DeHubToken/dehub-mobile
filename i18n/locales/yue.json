@@ -4406,7 +4406,8 @@
     "restrictedBody": "此用戶已限制與您帳戶的互動。",
     "requestPendingBody": "您的追蹤請求已發送。一旦他們批准您的請求，您就能看到他們的帖子。",
     "followToSeePosts": "追蹤此帳戶以查看他們的帖子。",
-    "loadFailed": "載入唔到呢個清單"
+    "loadFailed": "載入唔到呢個清單",
+    "new": "新"
   },
   "reactionInfo": {
     "title": "反應",

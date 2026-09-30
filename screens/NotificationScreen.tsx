@@ -549,6 +549,13 @@ interface NotificationRowProps {
   onRejectFollowRequest: (item: NotificationItem) => void;
 }
 
+/** A row that stands for more than one person (likes, comments, follows...). */
+const isGrouped = (item: NotificationItem) => (item.aggregatedCount ?? 1) > 1;
+
+/** A follow row that stands for more than one new follower. */
+const isGroupedFollow = (item: NotificationItem) =>
+  (item.type as string) === NotificationType.FOLLOWING && isGrouped(item);
+
 const NotificationRow: React.FC<NotificationRowProps> = React.memo(({
   item,
   onPress,
@@ -703,7 +710,9 @@ const NotificationRow: React.FC<NotificationRowProps> = React.memo(({
         <TouchableOpacity
           activeOpacity={0.7}
           disabled={!item.actorUsername && !item.actorAddress}
-          onPress={() => onOpenProfile(item.actorAddress, item.actorUsername, item.actor)}
+          onPress={() => isGrouped(item) && clickable
+            ? onPress(item)
+            : onOpenProfile(item.actorAddress, item.actorUsername, item.actor)}
           style={{ position: 'relative' }}
         >
           {hasAvatar ? (
@@ -1227,7 +1236,23 @@ const NotificationScreen = () => {
         break;
       }
 
+      // Several new followers in one row open the followers list with the new
+      // ones marked, rather than one profile after another.
       case NotificationType.FOLLOWING:
+        if (isGroupedFollow(notification) && (user?.address || notification.address)) {
+          navigation.navigate(ScreenNames.FollowList, {
+            address: user?.address || notification.address,
+            username: user?.username,
+            initialTab: 'followers',
+            isOwnProfile: true,
+            newCount: notification.aggregatedCount,
+            newUsernames: notification.latestActorNames,
+          });
+          break;
+        }
+        openUserProfile(actorAddress, actorUsername, notification.actor);
+        break;
+
       case NotificationType.SUBSCRIPTION:
       case NotificationType.FOLLOW_REQUEST_ACCEPTED:
         openUserProfile(actorAddress, actorUsername, notification.actor);
@@ -1341,6 +1366,8 @@ const NotificationScreen = () => {
     markAsReadAsync,
     openBountyByNumber,
     navigation,
+    user?.address,
+    user?.username,
   ]);
 
   const pageRef = useRef(1);

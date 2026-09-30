@@ -4413,7 +4413,8 @@
     "restrictedBody": "Ten użytkownik ograniczył interakcje z Twoim kontem.",
     "requestPendingBody": "Twoja prośba o obserwowanie została wysłana. Będziesz mógł zobaczyć ich posty, gdy zatwierdzą Twoją prośbę.",
     "followToSeePosts": "Obserwuj to konto, aby zobaczyć ich posty.",
-    "loadFailed": "Nie można załadować tej listy"
+    "loadFailed": "Nie można załadować tej listy",
+    "new": "Nowość"
   },
   "reactionInfo": {
     "title": "Reakcje",

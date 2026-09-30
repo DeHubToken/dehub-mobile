@@ -4462,7 +4462,8 @@
     "restrictedBody": "Pengguna ini telah membatasi interaksi dengan akun Anda.",
     "requestPendingBody": "Permintaan ikuti Anda telah dikirim. Anda akan dapat melihat postingan mereka setelah mereka menyetujui permintaan Anda.",
     "followToSeePosts": "Ikuti akun ini untuk melihat postingan mereka.",
-    "loadFailed": "Tidak dapat memuat daftar ini"
+    "loadFailed": "Tidak dapat memuat daftar ini",
+    "new": "Baru"
   },
   "reactionInfo": {
     "title": "Reaksi",

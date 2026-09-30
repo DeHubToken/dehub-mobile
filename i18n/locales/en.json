@@ -4462,7 +4462,8 @@
     "restrictedBody": "This user has restricted interactions with your account.",
     "requestPendingBody": "Your follow request has been sent. You'll be able to see their posts once they approve your request.",
     "followToSeePosts": "Follow this account to see their posts.",
-    "loadFailed": "Couldn't load this list"
+    "loadFailed": "Couldn't load this list",
+    "new": "New"
   },
   "reactionInfo": {
     "title": "Reactions",

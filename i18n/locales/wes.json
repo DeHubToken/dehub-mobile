@@ -4388,7 +4388,8 @@
     "noRequests": "No follow request di wait",
     "removeFollowerBody": "We no go tell {{name}} sey you don remove dem from your followers.",
     "removeFollowerHint": "Press and hold follower to remove am.",
-    "loadFailed": "No fit load dis list"
+    "loadFailed": "No fit load dis list",
+    "new": "Nyu"
   },
   "reactionInfo": {
     "title": "Reactions",

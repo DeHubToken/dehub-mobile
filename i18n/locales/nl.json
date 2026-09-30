@@ -4603,7 +4603,8 @@
     "restrictedBody": "Deze gebruiker heeft interacties met je account beperkt.",
     "requestPendingBody": "Je volgverzoek is verzonden. Je kunt hun berichten zien zodra ze je verzoek goedkeuren.",
     "followToSeePosts": "Volg dit account om hun berichten te zien.",
-    "loadFailed": "Kan deze lijst niet laden"
+    "loadFailed": "Kan deze lijst niet laden",
+    "new": "Nieuw"
   },
   "reactionInfo": {
     "title": "Reacties",

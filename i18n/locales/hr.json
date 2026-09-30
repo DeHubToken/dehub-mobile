@@ -4413,7 +4413,8 @@
     "restrictedBody": "Ovaj korisnik je ograničio interakcije s vašim računom.",
     "requestPendingBody": "Vaš zahtjev za praćenje je poslan. Moći ćete vidjeti njihove objave nakon što odobre vaš zahtjev.",
     "followToSeePosts": "Pratite ovaj račun da biste vidjeli njihove objave.",
-    "loadFailed": "Učitavanje ovog popisa nije uspjelo"
+    "loadFailed": "Učitavanje ovog popisa nije uspjelo",
+    "new": "Novo"
   },
   "reactionInfo": {
     "title": "Reakcije",

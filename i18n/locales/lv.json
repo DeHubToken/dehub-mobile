@@ -4413,7 +4413,8 @@
     "restrictedBody": "Šis lietotājs ir ierobežojis mijiedarbību ar jūsu kontu.",
     "requestPendingBody": "Jūsu sekošanas pieprasījums ir nosūtīts. Jūs varēsit redzēt viņu ziņas, kad viņi apstiprinās jūsu pieprasījumu.",
     "followToSeePosts": "Seko šim kontam, lai redzētu viņu ziņas.",
-    "loadFailed": "Nevarēja ielādēt šo sarakstu"
+    "loadFailed": "Nevarēja ielādēt šo sarakstu",
+    "new": "Jauns"
   },
   "reactionInfo": {
     "title": "Reakcijas",

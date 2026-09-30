@@ -4444,7 +4444,8 @@
     "restrictedBody": "Kay runaqa hark'asqataqmi imaynachus llamk'achisunki.",
     "requestPendingBody": "Kamachisqaykiqa kachasqañam. Paykuna allinyachiptinkumanta rikunkichu paypa kaqnin.",
     "followToSeePosts": "Kamachiy kay p'anqata rikuy imanta kaqnin.",
-    "loadFailed": "Kay listataqa manam kargayta atirqanchu"
+    "loadFailed": "Kay listataqa manam kargayta atirqanchu",
+    "new": "Musuq"
   },
   "reactionInfo": {
     "title": "Reacciones nisqakuna",

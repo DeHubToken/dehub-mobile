@@ -319,6 +319,7 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
               address: userAddress,
               initialTab: 'followers',
               isOwnProfile: true,
+              newCount: data.aggregatedCount,
             });
           } else {
             navigation.navigate(ScreenNames.Notifications);
