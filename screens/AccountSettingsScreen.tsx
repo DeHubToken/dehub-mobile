@@ -3,7 +3,7 @@
  * (dehubweb src/pages/app/SettingsPage.tsx).
  *
  * Web's shape, reproduced here:
- *   • a page bento holding the title, the account actions (chain + log out)
+ *   • a page bento holding the title, the account actions (chain)
  *     and an icon-only tab row with a glass indicator on the active tab;
  *   • one panel per tab, each built from the shared row primitives in
  *     components/Settings/SettingsPrimitives.tsx.
@@ -107,7 +107,6 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation, route }) => {
   const { isSignedIn, needsUsername } = useAuthState();
   const { signOut } = useAuthActions();
   const [activeTab, setActiveTab] = useState<TabKey>((route?.params?.initialTab as TabKey) ?? "profile");
-  const [signingOut, setSigningOut] = useState(false);
   const [deletingAccount, setDeletingAccount] = useState(false);
   const [bugModalVisible, setBugModalVisible] = useState(false);
   const [reviewModalVisible, setReviewModalVisible] = useState(false);
@@ -171,20 +170,6 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation, route }) => {
       } },
     ]);
   };
-
-  const handleSignOut = useCallback(async () => {
-    if (signingOut) return;
-    setSigningOut(true);
-    try {
-      await signOut();
-      toastSuccess(t("settings.loggedOut"));
-    } catch (e) {
-      console.error("[AccountSettings] signOut error", e);
-      toastError(e, t("settings.signOutFailed"));
-    } finally {
-      setSigningOut(false);
-    }
-  }, [signingOut, signOut, t]);
 
   const loadFreeAccessList = useCallback(async () => {
     const address = (user as any)?.address || (user as any)?.walletAddress;
@@ -268,20 +253,6 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation, route }) => {
               </Text>
             </View>
           </View>
-          <TouchableOpacity
-            onPress={handleSignOut}
-            disabled={signingOut}
-            activeOpacity={0.7}
-            accessibilityRole="button"
-            accessibilityLabel={t("settings.logOut")}
-            className={`${HEADER_CONTROL} ${signingOut ? "opacity-60" : ""}`}
-          >
-            {signingOut ? (
-              <ActivityIndicator size="small" color="#F4F4F5" />
-            ) : (
-              <Icon name="LogOut" size={16} color="#F4F4F5" />
-            )}
-          </TouchableOpacity>
         </View>
         <SettingsSearchBar onSelect={handleSearchSelect} />
         {/* Bleeds through the bento's padding so the icons that overflow
@@ -481,7 +452,6 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation, route }) => {
 
   return (
     <View className="flex-1 bg-theme-neutrals-900">
-      {signingOut && <FullScreenLoader message={t("settings.signingOut")} />}
       {headerBento}
 
       <SettingsPanelContext.Provider value={panelContext}>
