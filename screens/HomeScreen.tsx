@@ -21,7 +21,7 @@ import ImageFeedDrawer, { type ImageFeedDrawerHandle } from "../components/Home/
 import ShortsGrid, { type ShortsGridHandle } from "../components/Home/ShortsGrid";
 import MusicFeed, { type MusicFeedHandle } from "../components/Music/MusicFeed";
 import HomeHeader from "../components/HomeHeader";
-import FeedNavBar, { NAV_PILL_SIDE_INSET, NAV_PILL_TOP_INSET } from "../components/Home/FeedNavBar";
+import FeedNavBar, { NAV_PILL_RADIUS, NAV_PILL_SIDE_INSET, NAV_PILL_TOP_INSET } from "../components/Home/FeedNavBar";
 import { useDrawer } from "../context/DrawerContext";
 import { useTabBarHide } from "../context/TabBarHideContext";
 import FeedFilterPanel, { FeedFilters, PostTypeOption } from "../components/Home/FeedFilterPanel";
@@ -164,7 +164,10 @@ export default function HomeScreen() {
   const [selectedCategory, setSelectedCategory] = useState<string | undefined>(undefined);
   const { width: pageWidth } = useWindowDimensions();
   const isFocused = useIsFocused();
-  const { skin } = useAppTheme();
+  const { skin, theme } = useAppTheme();
+  // System floats its glass pill over the feed like the canvas themes do, so
+  // it gets the same clear header and the same cut around the pill.
+  const glassNav = !!skin || theme === "system";
   const { hideUserProfile } = useUserProfileSheet();
   const {
     profileVisible,
@@ -470,13 +473,13 @@ export default function HomeScreen() {
   const onNavLayout = useCallback((e: LayoutChangeEvent) => {
     navPillTop.value = e.nativeEvent.layout.y + NAV_PILL_TOP_INSET;
   }, [navPillTop]);
-  const clipOn = !!skin;
+  const clipOn = glassNav;
   // The cut follows the pill's silhouette, as on web: the viewport is inset to
   // the pill's sides and rounded with the theme's own pill radius, so nothing
   // peeks out beside or above the pill's rounded corners. Its content is
   // pushed back out by the same inset, so the feed keeps its full width — the
   // lists already pad their cards 8pt in from each edge.
-  const pillRadius = skin ? Number(skin.strip.borderRadius ?? 0) : 0;
+  const pillRadius = skin ? Number(skin.strip.borderRadius ?? 0) : NAV_PILL_RADIUS;
   const viewportShape = clipOn
     ? {
         marginHorizontal: NAV_PILL_SIDE_INSET,
@@ -876,7 +879,7 @@ export default function HomeScreen() {
   return (
     <View className="flex-1">
       <Animated.View
-        style={[styles.headerClip, skin ? styles.headerClear : null, headerAnimatedStyle]}
+        style={[styles.headerClip, glassNav ? styles.headerClear : null, headerAnimatedStyle]}
         onLayout={onHeaderLayout}
       >
         <HomeHeader
