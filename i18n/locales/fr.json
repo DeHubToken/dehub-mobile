@@ -1018,7 +1018,8 @@
     "boostPostDesc": "Placez-la en haut du fil d'accueil",
     "mintPostDesc": "Publiez cette publication on-chain",
     "giftBoost": "Offrir un boost",
-    "giftBoostDesc": "Dépensez l'un des vôtres sur cette publication"
+    "giftBoostDesc": "Dépensez l'un des vôtres sur cette publication",
+    "askAi": "Demander à l'IA"
   },
   "filters": {
     "sort": "Trier",

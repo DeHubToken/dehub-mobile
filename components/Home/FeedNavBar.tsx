@@ -37,6 +37,10 @@ const NAV_ITEMS: NavItem[] = [
   { icon: "Radio", postType: "live", tooltip: "Live" },
 ];
 
+/** The tabs in pager order, for chrome that names the current one (the
+ *  system theme's collapsed island). */
+export const FEED_NAV_ITEMS: readonly NavItem[] = NAV_ITEMS;
+
 interface FeedNavBarProps {
   /** Settled tab index — drives the icon highlight. */
   activeIndex: number;

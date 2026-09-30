@@ -1030,7 +1030,8 @@
     "boostPostDesc": "Đưa lên đầu bảng tin chính",
     "mintPostDesc": "Đăng bài này lên chuỗi",
     "giftBoost": "Tặng một boost",
-    "giftBoostDesc": "Dùng một lượt của bạn cho bài này"
+    "giftBoostDesc": "Dùng một lượt của bạn cho bài này",
+    "askAi": "Hỏi AI"
   },
   "filters": {
     "sort": "Sắp xếp",

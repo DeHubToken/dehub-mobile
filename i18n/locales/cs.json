@@ -1018,7 +1018,8 @@
     "boostPostDesc": "Umístěte jej na začátek domovského feedu",
     "mintPostDesc": "Publikujte tento příspěvek on-chain",
     "giftBoost": "Darovat boost",
-    "giftBoostDesc": "Utraťte jeden ze svých na tento příspěvek"
+    "giftBoostDesc": "Utraťte jeden ze svých na tento příspěvek",
+    "askAi": "Zeptat se AI"
   },
   "filters": {
     "sort": "Řadit",

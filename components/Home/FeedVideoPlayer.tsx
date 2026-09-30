@@ -14,7 +14,7 @@ import {
   Animated,
   Easing,
 } from "react-native";
-import { VideoView, useVideoPlayer, VideoPlayer } from "expo-video";
+import { VideoView, useVideoPlayer, VideoPlayer, isPictureInPictureSupported } from "expo-video";
 import PictureInPictureButton from "../common/PictureInPictureButton";
 import { configureForBackgroundPlayback, releaseBackgroundPlayback } from "../../libs/audioSession";
 import { feedVolumeResponder } from "../../libs/feed-volume-responder";
@@ -29,6 +29,8 @@ import {
 } from "../../libs/video-preferences";
 import SmartImage from "../common/SmartImage";
 import { useAppTheme } from "../../context/ThemeContext";
+import { useFeedBleed, useMediaTools, type MediaTool } from "./feedBleed";
+import type { CaptionControls } from "../VideoPlayerCore/CaptionOverlay";
 import Spinner from "../common/Spinner";
 import { useNavigation } from "@react-navigation/native";
 import Icon from "../ui/Icon";
@@ -99,6 +101,25 @@ const mediaBoxWidth = (
   const maxHeight = postPage ? postPageMaxHeightFor(win.height, fullWidth) : maxMediaHeightFor(win.height);
   return Math.min(fullWidth, Math.round(maxHeight * mediaAspect));
 };
+
+/** Whether this device can pop a video out. Not every platform build of
+ *  expo-video carries the check, so a missing one reads as "no". */
+const pipSupported = () => {
+  try {
+    return typeof isPictureInPictureSupported === "function" && isPictureInPictureSupported();
+  } catch {
+    return false;
+  }
+};
+
+/**
+ * Cinematic feed (system theme, home): the box is always the full width, and
+ * as tall as the clip up to the post page cap. A clip thinner than that is
+ * cropped to the box rather than letterboxed; 9:16 always fits whole, since
+ * the cap is never below a full-width 9:16 frame.
+ */
+const bleedBoxAspect = (win: { width: number; height: number }, mediaAspect: number) =>
+  Math.max(mediaAspect, win.width / postPageMaxHeightFor(win.height, win.width));
 
 interface FeedVideoPlayerProps {
   thumbnail: string;
@@ -477,7 +498,11 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   // being cropped into a fixed 16:9 slot. Measured off the thumbnail, which is
   // extracted from the video itself; 16:9 until that resolves.
   const mediaAspect = useMediaAspect(thumbnail, tokenId, postPage ? THIN_MIN_RATIO : undefined);
-  const { isMinimal } = useAppTheme();
+  const { isMinimal: minimalTheme } = useAppTheme();
+  // The cinematic system feed runs media edge to edge exactly like minimal,
+  // with its own chrome over the top and bottom bands.
+  const bleed = useFeedBleed();
+  const isMinimal = minimalTheme || !!bleed;
   // Media that reaches the screen edges keeps its controls off them.
   const edgeToEdge = isMinimal || postPage;
   const windowSize = useWindowDimensions();
@@ -956,6 +981,36 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     } as never);
   }, [isMuted, videoUrl, thumbnail, tokenId, isSignedIn, stopPlayback, navigation]);
 
+  // Cinematic feed: the buttons that sit over the picture elsewhere go into
+  // the card's one tools menu instead.
+  const foldTools = !!bleed?.setTools;
+  const [captionControls, setCaptionControls] = useState<CaptionControls | null>(null);
+  const mediaTools = useMemo<MediaTool[] | null>(() => {
+    if (!foldTools) return null;
+    const tools: MediaTool[] = [
+      { key: "speed", icon: "Gauge", label: `${t("player.playbackSpeed")} · ${playbackRate}x`, onPress: handleToggleSpeed },
+      { key: "loop", icon: isLooping ? "Repeat" : "ArrowRight", label: t("player.toggleLoop"), onPress: handleToggleLoop, active: isLooping },
+      { key: "sound", icon: isMuted ? "VolumeX" : "Volume2", label: t(isMuted ? "common.unmute" : "common.mute"), onPress: handleToggleMute },
+    ];
+    if (captionControls) {
+      tools.push({ key: "subtitles", icon: "Captions", label: t("subtitles.title"), onPress: captionControls.toggle, active: captionControls.enabled });
+      tools.push({ key: "subtitle-language", icon: "Languages", label: t("settings.language"), onPress: captionControls.openLanguages });
+    }
+    if (pipSupported()) {
+      tools.push({
+        key: "pip",
+        icon: "PictureInPicture2",
+        label: t("player.pictureInPicture"),
+        onPress: () => {
+          videoViewRef.current?.startPictureInPicture().catch(() => toastInfo(t("player.pipUnavailable")));
+        },
+      });
+    }
+    tools.push({ key: "fullscreen", icon: "Maximize", label: t("common.fullscreen"), onPress: handleFullscreen });
+    return tools;
+  }, [foldTools, t, playbackRate, isLooping, isMuted, captionControls, handleToggleSpeed, handleToggleLoop, handleToggleMute, handleFullscreen]);
+  useMediaTools(mediaTools);
+
 
   const handleSeek = useCallback(
     (ratio: number) => {
@@ -1044,16 +1099,16 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
       style={[
         styles.container,
         {
-          aspectRatio: mediaAspect,
+          aspectRatio: bleed ? bleedBoxAspect(windowSize, mediaAspect) : mediaAspect,
           // Fills the card when the clip is wide enough; a portrait clip caps
           // at the max media height and shrinks its own width, hugged to the
           // left in the feed and centred on the post page.
-          width: mediaBoxWidth(windowSize, isMinimal, mediaAspect, postPage),
+          width: bleed ? windowSize.width : mediaBoxWidth(windowSize, isMinimal, mediaAspect, postPage),
           maxWidth: "100%",
           alignSelf: isMinimal || postPage ? "center" : "flex-start",
         },
         (isMinimal || postPage) && MINIMAL_MEDIA,
-        postPage && POST_PAGE_MEDIA,
+        (postPage || bleed) && POST_PAGE_MEDIA,
       ]}
     >
       {thumbnail ? (
@@ -1067,7 +1122,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
         <SmartImage
           source={{ uri: thumbnail }}
           style={styles.thumbnail}
-          contentFit="contain"
+          contentFit={bleed ? "cover" : "contain"}
           recyclingKey={thumbnail}
           transition={0}
         />
@@ -1082,7 +1137,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
           ref={videoViewRef}
           player={player}
           focusable={false}
-          contentFit="contain"
+          contentFit={bleed ? "cover" : "contain"}
           nativeControls={false}
           allowsPictureInPicture
           onPictureInPictureStart={() => onPictureInPictureChange?.(true)}
@@ -1153,7 +1208,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
           accessibilityLabel={t("bounty.detailsLabel")}
           onPress={onBountyPress}
           activeOpacity={0.75}
-          style={[styles.bountyPill, edgeToEdge && { left: MINIMAL_EDGE }]}
+          style={[styles.bountyPill, edgeToEdge && { left: MINIMAL_EDGE }, bleed && { top: bleed.topInset }]}
         >
           <Image
             source={require("../../assets/web-icons/dehub-coin.png")}
@@ -1213,7 +1268,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
                 </View>
               </Pressable>
             )}
-            <View style={[styles.topControls, edgeToEdge && { paddingHorizontal: MINIMAL_EDGE }]}>
+            {!foldTools && <View style={[styles.topControls, edgeToEdge && { paddingHorizontal: MINIMAL_EDGE }, bleed && { paddingTop: bleed.topInset }]}>
               <Pressable onPress={handleToggleSpeed} style={styles.glassButton}>
                 <View style={styles.glassOverlay} />
                 <Text style={{ color: "#fff", fontSize: 11, fontWeight: "bold" }}>{playbackRate}x</Text>
@@ -1249,9 +1304,11 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
                 <View style={styles.glassOverlay} />
                 <Icon name="Maximize" size={16} color="#fff" />
               </Pressable>
-            </View>
+            </View>}
 
-            <View style={[styles.bottomControls, edgeToEdge && { paddingHorizontal: MINIMAL_EDGE }]}>
+            {/* With the top row folded into the card's tools menu the scrubber
+                would ride up to the top; it stays at the bottom. */}
+            <View style={[styles.bottomControls, edgeToEdge && { paddingHorizontal: MINIMAL_EDGE }, bleed && { paddingBottom: 8 }, foldTools && styles.pinnedBottom]}>
               <View style={styles.progressRow}>
                 <View style={styles.timePill}>
                   <Text style={styles.timeText}>{formatTime(currentTime)}</Text>
@@ -1287,9 +1344,11 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
           tokenId={tokenId}
           positionMs={captionPosMs}
           controlsVisible={showControls || !isPlaying}
-          bottomOffset={showControls ? 56 : 16}
+          bottomOffset={(showControls ? 56 : 16) + (bleed?.bottomInset ?? 0)}
           player={player}
           isPlaying={isPlaying}
+          hideButton={foldTools}
+          onControls={foldTools ? setCaptionControls : undefined}
         />
       )}
 
@@ -1549,6 +1608,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
     paddingBottom: 8,
   },
+  pinnedBottom: { marginTop: "auto" },
   progressRow: {
     flexDirection: "row",
     alignItems: "center",
@@ -1711,7 +1771,9 @@ const FeedVideoPlayerActive = memo(FeedVideoPlayerComponent);
 const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "tokenId" | "thumbnail" | "duration" | "hideControls" | "onPress" | "postPage">> = memo(
   ({ tokenId, thumbnail, duration, hideControls, onPress, postPage = false }) => {
     const mediaAspect = useMediaAspect(thumbnail, tokenId, postPage ? THIN_MIN_RATIO : undefined);
-    const { isMinimal } = useAppTheme();
+    const { isMinimal: minimalTheme } = useAppTheme();
+    const bleed = useFeedBleed();
+    const isMinimal = minimalTheme || !!bleed;
     const edgeToEdge = isMinimal || postPage;
     const windowSize = useWindowDimensions();
     const mediaTap = useTapOnlyPress(() => onPress());
@@ -1720,20 +1782,20 @@ const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "tokenId" | "thumbnai
         style={[
           styles.container,
           {
-            aspectRatio: mediaAspect,
-            width: mediaBoxWidth(windowSize, isMinimal, mediaAspect, postPage),
+            aspectRatio: bleed ? bleedBoxAspect(windowSize, mediaAspect) : mediaAspect,
+            width: bleed ? windowSize.width : mediaBoxWidth(windowSize, isMinimal, mediaAspect, postPage),
             maxWidth: "100%",
             alignSelf: isMinimal || postPage ? "center" : "flex-start",
           },
           (isMinimal || postPage) && MINIMAL_MEDIA,
-          postPage && POST_PAGE_MEDIA,
+          (postPage || bleed) && POST_PAGE_MEDIA,
         ]}
       >
         {thumbnail ? (
           <SmartImage
             source={{ uri: thumbnail }}
             style={styles.thumbnail}
-            contentFit="contain"
+            contentFit={bleed ? "cover" : "contain"}
             recyclingKey={thumbnail}
             transition={0}
           />

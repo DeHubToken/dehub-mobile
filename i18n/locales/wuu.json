@@ -1017,7 +1017,8 @@
     "boostPostDesc": "把它放到首页信息流顶部",
     "mintPostDesc": "把这个帖子发布到链上",
     "giftBoost": "赠送一次助推",
-    "giftBoostDesc": "把你的一次助推花在这个帖子上"
+    "giftBoostDesc": "把你的一次助推花在这个帖子上",
+    "askAi": "问AI"
   },
   "filters": {
     "sort": "排序",

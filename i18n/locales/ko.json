@@ -1016,7 +1016,8 @@
     "boostPostDesc": "홈 피드 맨 위에 올립니다",
     "mintPostDesc": "이 게시물을 온체인에 게시합니다",
     "giftBoost": "부스트 선물하기",
-    "giftBoostDesc": "내 부스트 하나를 이 게시물에 씁니다"
+    "giftBoostDesc": "내 부스트 하나를 이 게시물에 씁니다",
+    "askAi": "AI에게 묻기"
   },
   "filters": {
     "sort": "정렬",

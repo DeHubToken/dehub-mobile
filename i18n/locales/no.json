@@ -1018,7 +1018,8 @@
     "boostPostDesc": "Legg det øverst i hjemfeeden",
     "mintPostDesc": "Publiser dette innlegget on-chain",
     "giftBoost": "Gi bort et boost",
-    "giftBoostDesc": "Bruk en av dine på dette innlegget"
+    "giftBoostDesc": "Bruk en av dine på dette innlegget",
+    "askAi": "Spør KI"
   },
   "filters": {
     "sort": "Sorter",

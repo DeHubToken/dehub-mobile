@@ -45,6 +45,17 @@ import ArticleCover from "../article/ArticleCover";
 import ArticleReaderBody from "../article/ArticleReaderBody";
 import { articleLook, articleReadingMinutes } from "../../libs/article";
 import ContainedFeedImage from "./ContainedFeedImage";
+import { FeedBleedContext, type FeedBleed, type MediaTool } from "./feedBleed";
+import {
+  CinematicAuthorChip,
+  CinematicIconButton,
+  CinematicToolsMenu,
+  CINEMATIC_EDGE,
+  CINEMATIC_TEXT_INSET,
+  CINEMATIC_TOP_BAND,
+  CINEMATIC_BOTTOM_BAND,
+  CINEMATIC_BOTTOM_LIFT,
+} from "./CinematicChrome";
 import FeedImageGallery from "./FeedImageGallery";
 import PostTapSurface from "./PostTapSurface";
 import LiveFeedPreview from "../common/LiveFeedPreview";
@@ -225,6 +236,16 @@ interface FeedCardProps {
   /** Post page for a post with no media on top (text, audio, quotes): no
    *  bento, full width, the text on the same inset as an immersive post. */
   flat?: boolean;
+  /** Home feed, system theme only: no bento, media edge to edge with the
+   *  author and caption laid over it, the actions underneath. Ignored under
+   *  every other theme. */
+  cinematic?: boolean;
+  /** Cinematic only: how far the top of the screen's chrome reaches into
+   *  this post. Set on the feed's first row, which starts under the floating
+   *  capsule; its author and buttons are pushed below it. */
+  topChromeInset?: number;
+  /** Cinematic only: no hairline under this post (the row after it draws its own). */
+  hideDivider?: boolean;
 }
 
 /** Side inset for the text of an immersive post; the media ignores it. */
@@ -244,6 +265,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   prioritizeMedia = false,
   immersive = false,
   flat = false,
+  cinematic = false,
+  topChromeInset = 0,
+  hideDivider = false,
 }) => {
   const navigation = useNavigation<any>();
   const { t } = useCopy();
@@ -1170,6 +1194,52 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     isCurrentlyLive, hasMultipleImages,
   ]);
 
+  // Cinematic (system theme, home feed): a post with a picture or a player
+  // runs it edge to edge with the author, buttons and caption over it. Posts
+  // without one (text, audio, articles, a post behind the mature warning)
+  // lose the bento too but keep the header above the text.
+  const cinematicFeed = cinematic && theme === "system" && !skin && !isMinimal && !immersive && !flat;
+  const cinematicMedia =
+    cinematicFeed &&
+    !matureGate.isGated &&
+    !localArticleBody &&
+    (contentType === "video" ||
+      contentType === "short" ||
+      contentType === "live" ||
+      (contentType === "image" && hasImages));
+  const overlayTitle = (isTranslated ? translatedTexts.title : localTitle) || "";
+  // Video and live carry the author and buttons over the picture; a photo
+  // gets a plain header row above it instead, and nothing over it.
+  const chipOverMedia = cinematicMedia && contentType !== "image";
+  // Under the capsule the first thing in the post moves down: the repost or
+  // boost labels when there are any, the author otherwise. A video still runs
+  // to the top of the screen; only its chip and buttons move.
+  const hasLabels = showRepostLabel || !!(item as any).__boosted;
+  const chromeInset = cinematicFeed ? topChromeInset : 0;
+  const leadInset = hasLabels ? 0 : chromeInset;
+  // The first post keeps the top of its picture clear under the capsule: its
+  // author and buttons move to the bottom of the media instead, and badges
+  // sit just under the capsule.
+  const chipAtBottom = chipOverMedia && leadInset > 0;
+  const mediaBand = chipAtBottom ? leadInset + 8 : CINEMATIC_TOP_BAND;
+  // The player's own buttons, folded into one tools menu on the card.
+  const [mediaTools, setMediaTools] = useState<MediaTool[] | null>(null);
+  const [toolsOpen, setToolsOpen] = useKeyedState(postKey, false);
+  const feedBleed = useMemo<FeedBleed | null>(
+    () => (cinematicMedia
+      ? {
+          topInset: chipOverMedia ? mediaBand : 0,
+          bottomInset: chipAtBottom ? CINEMATIC_BOTTOM_BAND : 0,
+          setTools: chipOverMedia ? setMediaTools : undefined,
+        }
+      : null),
+    [cinematicMedia, chipOverMedia, chipAtBottom, mediaBand],
+  );
+  // Media that already spans the screen: square, no top gap.
+  const edgeMedia = immersive || cinematicMedia;
+  // Badges a locked picture pins to its top-left corner start under the chip.
+  const lockBadgeTop = chipOverMedia ? { top: mediaBand } : undefined;
+
   if (isDeleted) return null;
 
   // --- Content renderers ---
@@ -1181,8 +1251,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       return (
         <Pressable
           onPress={handlePPVPress}
-          className={immersive ? "overflow-hidden" : "mt-2 rounded-xl overflow-hidden"}
-          style={{ height: (immersive ? SCREEN_WIDTH : IMAGE_WIDTH) * 0.75 }}
+          className={edgeMedia ? "overflow-hidden" : "mt-2 rounded-xl overflow-hidden"}
+          style={{ height: (edgeMedia ? SCREEN_WIDTH : IMAGE_WIDTH) * 0.75 }}
         >
           <SmartImage
             source={{ uri: lockedPreviewUri }}
@@ -1192,7 +1262,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             blurRadius={20}
           />
           <View className="absolute inset-0 dark-surface bg-black/30 items-center justify-center">
-            <View className="absolute top-3 left-3 flex-row gap-2">
+            <View className="absolute top-3 left-3 flex-row gap-2" style={lockBadgeTop}>
               <View className="flex-row items-center gap-1 dark-surface bg-black/60 rounded-full px-2.5 py-1">
                 <Icon name="Ticket" size={12} color="#fff" />
                 <Text className="text-white text-xs font-medium">
@@ -1228,8 +1298,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       return (
         <Pressable
           onPress={handlePPVPress}
-          className={immersive ? "overflow-hidden" : "mt-2 rounded-xl overflow-hidden"}
-          style={{ height: (immersive ? SCREEN_WIDTH : IMAGE_WIDTH) * 0.75 }}
+          className={edgeMedia ? "overflow-hidden" : "mt-2 rounded-xl overflow-hidden"}
+          style={{ height: (edgeMedia ? SCREEN_WIDTH : IMAGE_WIDTH) * 0.75 }}
         >
           <SmartImage
             source={{ uri: lockedPreviewUri }}
@@ -1239,7 +1309,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             blurRadius={20}
           />
           <View className="absolute inset-0 dark-surface bg-black/30 items-center justify-center">
-            <View className="absolute top-3 left-3 flex-row items-center gap-1 dark-surface bg-black/60 rounded-full px-2.5 py-1">
+            <View className="absolute top-3 left-3 flex-row items-center gap-1 dark-surface bg-black/60 rounded-full px-2.5 py-1" style={lockBadgeTop}>
               <Icon name="Ticket" size={12} color="#fff" />
               <Text className="text-white text-xs font-medium">
                 {formatCompactNumber(payPerViewAmount)} {payPerViewTokenSymbol}
@@ -1263,8 +1333,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       return (
         <Pressable
           onPress={handleSubscribePress}
-          className={immersive ? "overflow-hidden" : "mt-2 rounded-xl overflow-hidden"}
-          style={{ height: (immersive ? SCREEN_WIDTH : IMAGE_WIDTH) * 0.75 }}
+          className={edgeMedia ? "overflow-hidden" : "mt-2 rounded-xl overflow-hidden"}
+          style={{ height: (edgeMedia ? SCREEN_WIDTH : IMAGE_WIDTH) * 0.75 }}
         >
           <SmartImage
             source={{ uri: lockedPreviewUri }}
@@ -1289,8 +1359,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       return (
         <Pressable
           onPress={handleCardPress}
-          className={immersive ? "overflow-hidden" : "mt-2 rounded-xl overflow-hidden"}
-          style={{ height: (immersive ? SCREEN_WIDTH : IMAGE_WIDTH) * 0.75 }}
+          className={edgeMedia ? "overflow-hidden" : "mt-2 rounded-xl overflow-hidden"}
+          style={{ height: (edgeMedia ? SCREEN_WIDTH : IMAGE_WIDTH) * 0.75 }}
         >
           <SmartImage
             source={{ uri: lockedPreviewUri }}
@@ -1300,7 +1370,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             blurRadius={20}
           />
           <View className="absolute inset-0 dark-surface bg-black/30 items-center justify-center">
-            <View className="absolute top-3 left-3 flex-row items-center gap-1 dark-surface bg-black/60 rounded-full px-2.5 py-1">
+            <View className="absolute top-3 left-3 flex-row items-center gap-1 dark-surface bg-black/60 rounded-full px-2.5 py-1" style={lockBadgeTop}>
               <Icon name="Lock" size={12} color="#fff" />
               <Text className="text-white text-xs font-medium">
                 {formatCompactNumber(lockContentAmount)} {lockContentTokenSymbol}
@@ -1324,13 +1394,13 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           resetKey={postKey}
           onPress={() => handleImagePress(0)}
           onReaction={handleVideoTapReaction}
-          style={{ alignSelf: "stretch", marginTop: immersive ? 0 : 8 }}
+          style={{ alignSelf: "stretch", marginTop: edgeMedia ? 0 : 8 }}
         >
           <ContainedFeedImage
             active={isVisible}
             uri={galleryImages[0]}
-            width={isMinimal || immersive ? SCREEN_WIDTH : SINGLE_IMAGE_WIDTH}
-            fallbackWidth={isMinimal || immersive ? SCREEN_WIDTH : SINGLE_IMAGE_WIDTH}
+            width={isMinimal || edgeMedia ? SCREEN_WIDTH : SINGLE_IMAGE_WIDTH}
+            fallbackWidth={isMinimal || edgeMedia ? SCREEN_WIDTH : SINGLE_IMAGE_WIDTH}
             priority={prioritizeMedia ? "high" : "normal"}
             postPage={immersive}
           />
@@ -1353,7 +1423,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     );
 
     return (
-      <View className={immersive ? undefined : "mt-2"}>
+      <View className={edgeMedia ? undefined : "mt-2"}>
         {/* Inside Home's swipe pager, paging through this gallery has to win
             over the page turn — without the guard the pager's pan clears its
             threshold first and cancels the gallery scroll mid-drag. Elsewhere
@@ -1403,7 +1473,11 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     title || (isCurrentlyLive ? t("stages.liveNow") : t("feedCard.stream"));
 
   const renderLiveThumbnail = () => (
-    <Pressable onPress={handleCardPress} className="relative w-full h-48 bg-zinc-800 rounded-xl overflow-hidden mt-2">
+    <Pressable
+      onPress={handleCardPress}
+      className="relative w-full h-48 bg-zinc-800 rounded-xl overflow-hidden mt-2"
+      style={cinematicMedia ? { marginTop: 0, borderRadius: 0, height: Math.round((SCREEN_WIDTH * 9) / 16) } : undefined}
+    >
       {isCurrentlyLive && isVisible && (
         <View pointerEvents="none" style={[StyleSheet.absoluteFill, { zIndex: 2 }]}>
           <LiveFeedReactionFlow
@@ -1454,8 +1528,12 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           </Text>
         </View>
       )}
-      {status && <StatusBadge status={status} />}
-      {isHidden && (
+      {status && (chipOverMedia ? (
+        <View pointerEvents="none" style={[StyleSheet.absoluteFill, { top: mediaBand - 8, left: CINEMATIC_EDGE - 8 }]}>
+          <StatusBadge status={status} />
+        </View>
+      ) : <StatusBadge status={status} />)}
+      {isHidden && !chipOverMedia && (
         <View className="absolute top-2 right-2 flex-row items-center dark-surface bg-black/60 rounded-full px-2 py-1 z-20">
           <Icon name="EyeOff" size={12} color="#6F7174" />
           <Text style={{ color: "#8B8D90", fontSize: 10, marginLeft: 4 }}>{t("settings.hiddenOption")}</Text>
@@ -1576,6 +1654,500 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   // Only unavailable purchases and reward entries are omitted on iOS.
   if (isPostHiddenByStorefront(DIGITAL_PURCHASES_ENABLED, accessInfo, isBounty, ppvUnlocked)) {
     return null;
+  }
+
+  const actionBar = showActionBar ? (
+    <FeedActionBar
+      liked={liked}
+      disliked={disliked}
+      saved={saved}
+      reposted={reposted}
+      likeCount={likeCount}
+      dislikeCount={dislikeCount}
+      commentCount={commentCount}
+      repostCount={repostCount}
+      shareCount={shareCount}
+      tipCount={totalTips}
+      onLike={handleLikePress}
+      onDislike={handleDislikePress}
+      onReact={handleReaction}
+      myReaction={myReaction}
+      reactionCounts={reactionCounts}
+      onComment={handleCommentPress}
+      onCommentPressIn={handleCommentPressIn}
+      onShare={handleOpenShare}
+      onTip={DIGITAL_PURCHASES_ENABLED && !minterUser?.hideBadgeAndBalance ? handleTipPress : undefined}
+      tokenId={tokenId}
+      viewerAddress={userAddress}
+      onSave={handleSavePress}
+      onInfo={handleInfoPress}
+      onShowReactionInfo={
+        isOwnerPost && tokenId != null ? handleShowReactionInfo : undefined
+      }
+      isVisible={isVisible}
+    />
+  ) : null;
+
+  // Every sheet a card can open. They float over the screen, so where they
+  // sit in the card's tree does not matter; both layouts mount the same set.
+  const sheets = (
+    <>
+      {showComments && tokenId != null && (
+        <CommentBottomSheet
+          visible={showComments}
+          onClose={() => setShowComments(false)}
+          tokenId={tokenId}
+          commentsDisabled={localCommentsDisabled}
+          forKids={localForKids}
+          postCreator={{ address: minterAddress, displayName, username }}
+        />
+      )}
+
+      {showReactionInfo && tokenId != null && (
+        <ReactionInfoSheet
+          visible={showReactionInfo}
+          onClose={() => setShowReactionInfo(false)}
+          tokenId={tokenId}
+        />
+      )}
+
+      {DIGITAL_PURCHASES_ENABLED && showTipModal && minterAddress && !minterUser?.hideBadgeAndBalance ? (
+        <GlassTipSheet
+          visible={showTipModal}
+          onClose={() => setShowTipModal(false)}
+          toAddress={minterAddress}
+          tokenId={Number(tokenId) || 0}
+          recipientName={displayName}
+          tipContext="content"
+          paymentChainId={chainId}
+        />
+      ) : null}
+
+      {DIGITAL_PURCHASES_ENABLED && showPPVModal && isPayPerView && tokenId != null && minterAddress ? (
+        <PPVSheet
+          visible={showPPVModal}
+          onClose={() => setShowPPVModal(false)}
+          tokenId={tokenId}
+          toAddress={minterAddress}
+          amount={payPerViewAmount}
+          tokenSymbol={payPerViewTokenSymbol}
+          contentType={isVideo ? "video" : "image"}
+          paymentChainId={payPerViewChainId}
+          onSuccess={handlePPVSuccess}
+        />
+      ) : null}
+
+      {DIGITAL_PURCHASES_ENABLED && showBountyModal && isBounty && tokenId != null && (
+        <BountyInfoSheet
+          chainId={(item as any).chainId || streamInfo?.addBountyChainId || 56}
+          visible={showBountyModal}
+          onClose={() => setShowBountyModal(false)}
+          tokenId={tokenId}
+          minter={minterAddress}
+          bountyAmount={bountyAmount}
+          bountyTokenSymbol={bountyTokenSymbol}
+          firstXViewers={streamInfo?.addBountyFirstXViewers || 0}
+          firstXComments={streamInfo?.addBountyFirstXComments || 0}
+        />
+      )}
+
+      {showAISheet && tokenId != null && (
+        <AskAISheet
+          visible={showAISheet}
+          onClose={() => setShowAISheet(false)}
+          postId={tokenId}
+          postContext={aiPostContext}
+        />
+      )}
+
+      {showAddToFolder && tokenId != null && (
+        <AddToFolderSheet
+          visible={showAddToFolder}
+          onClose={() => setShowAddToFolder(false)}
+          tokenId={tokenId}
+        />
+      )}
+
+      {showOptionsMenu && (
+        <PostOptionsMenu
+          visible={showOptionsMenu}
+          onClose={() => setShowOptionsMenu(false)}
+          tokenId={tokenId}
+          isOwner={!!isOwnerPost}
+          canReplaceVideo={
+            !!isOwnerPost && !isLive && (contentType === "video" || contentType === "short")
+          }
+          // rawStatus doubles as the live-stream status on live posts, but a
+          // live post is never 'signed', so the Mint post row cannot show up
+          // on one by accident.
+          postStatus={rawStatus}
+          postChainId={(item as any).chainId}
+          isHidden={isHidden}
+          creatorDisplayName={displayName}
+          creatorIdentifier={minterAddress || username || ""}
+          isFollowing={isFollowingCreator}
+          isFollowRequestPending={isFollowReqPending}
+          currentTitle={localTitle}
+          currentDescription={localDescription}
+          currentArticleBody={localArticleBody}
+          currentCategories={localCategories}
+          currentCommentsDisabled={localCommentsDisabled}
+          currentShopLinks={localShopLinks ?? (item as any).shopLinks}
+          currentContentRating={localContentRating}
+          currentForKids={localForKids}
+          hideReportContent={isLive}
+          hideEdit={isLive}
+          isAudio={isAudioPost}
+          onFollowChange={handleFollowChange}
+          onVisibilityChange={handleVisibilityChange}
+          onEditSuccess={handleEditSuccess}
+          onDeleteSuccess={handleDeleteSuccess}
+          onSendToDm={isSignedIn ? () => setShowShareToDm(true) : undefined}
+          // The sheet is mounted below rather than inside the menu: the menu is
+          // conditionally rendered, so onClose unmounts it and any state set in
+          // the same handler goes with it.
+          // Server-granted boost allowances also apply in the App Store build.
+          onBoostPress={
+            isOwnerPost && isSignedIn ? () => setShowBoost(true) : undefined
+          }
+          onGiftBoostPress={
+            !isOwnerPost && isSignedIn && canGiftBoost
+              ? () => setShowBoost(true)
+              : undefined
+          }
+          onTranslatePress={handleTranslate}
+          onTranslateImagePress={hasImages ? handleTranslateImage : undefined}
+          canDub={isVideo && !isLive && !isActuallyGated && speechAvailable}
+          // Also on the action bar as icons. Both are wanted: the icon is for
+          // the thumb, the labelled row is for anyone who opens the menu
+          // looking for the action by name.
+          isSaved={saved}
+          onToggleSave={handleSavePress}
+          onInfoPress={handleInfoPress}
+          // The cinematic card carries no AI button; the menu has it instead.
+          onAskAi={cinematicFeed ? handleAiPress : undefined}
+        />
+      )}
+
+      {showShareToDm && tokenId != null && (
+        <ShareToDmSheet
+          visible={showShareToDm}
+          onClose={() => setShowShareToDm(false)}
+          tokenId={tokenId}
+          postTitle={localTitle || undefined}
+        />
+      )}
+
+      {showBoost && tokenId != null && (
+        <BoostSheet
+          visible={showBoost}
+          onClose={() => setShowBoost(false)}
+          tokenId={tokenId}
+          postTitle={localTitle || undefined}
+          // Decides which HALF of the ladder the sheet offers: a gift only
+          // lands on somebody else's post, everything else only on your own.
+          isOwnPost={!!isOwnerPost}
+        />
+      )}
+
+      {showShareSheet && tokenId != null && (
+        <ShareSheet
+          visible={showShareSheet}
+          onClose={() => setShowShareSheet(false)}
+          isReposted={reposted}
+          onRepost={handleConfirmRepost}
+          onUndoRepost={handleUndoRepost}
+          onQuote={handleQuotePress}
+          onCopyLink={handleCopyLink}
+          onSendToDm={isSignedIn ? () => setShowShareToDm(true) : undefined}
+          onShareAsImage={handleSharePress}
+        />
+      )}
+
+      {!!activeCashtag && (
+        <CashtagSheet
+          visible={!!activeCashtag}
+          symbol={activeCashtag || ""}
+          onClose={() => setActiveCashtag(null)}
+        />
+      )}
+
+      {showImgTranslationSheet && (
+        <ImageTranslationSheet
+          visible={showImgTranslationSheet}
+          onClose={() => { setShowImgTranslationSheet(false); clearImgResult(); }}
+          isLoading={imgTranslating}
+          error={imgTranslateError}
+          result={imgTranslateResult}
+        />
+      )}
+    </>
+  );
+
+  if (cinematicFeed) {
+    const viewsLabel = t("comments.viewCount", { count: views }).replace(
+      String(views),
+      formatCompactNumber(views),
+    );
+    const chipMeta = [timeAgo, viewsLabel].filter(Boolean).join(" · ");
+    const embeds = matureGate.isGated ? null : (
+      <>
+        {(item as any).isQuotePost && (
+          <QuotedPostEmbed
+            key={postKey}
+            quotedPost={(item as any).quotedPost}
+            quotedTokenId={(item as any).quotedTokenId}
+          />
+        )}
+        <DehubLinkCards links={dehubLinks} />
+        <LinkPreviewCard key={postKey} text={captionText} />
+        <AssetRefCards refs={assetRefs} />
+      </>
+    );
+    const translateButton = showTranslate ? (
+      <TranslateButton
+        isTranslated={isTranslated}
+        isLoading={translating}
+        detectedLanguage={translationSourceLang}
+        onTranslate={handleTranslate}
+        onShowOriginal={handleShowOriginal}
+        inline
+      />
+    ) : null;
+    const soundtrackBadge = hasSoundtrack && !isActuallyGated ? (
+      <View className="mt-2">
+        <SoundtrackBadge
+          key={postKey}
+          title={soundtrack.title}
+          creator={soundtrack.creator}
+          url={soundtrack.url}
+          isVisible={isVisible}
+        />
+      </View>
+    ) : null;
+    const labels = hasLabels ? (
+      <View style={{ paddingHorizontal: CINEMATIC_TEXT_INSET, paddingBottom: 8, paddingTop: chromeInset, gap: 6 }}>
+        {showRepostLabel && (
+          <View className="flex-row items-center gap-1.5">
+            <Icon name="Repeat2" size={14} color="#9CA3AF" />
+            <Text className="text-xs text-theme-neutrals-400">{t("feedCard.reposted")}</Text>
+          </View>
+        )}
+        {!!(item as any).__boosted && (
+          <TouchableOpacity
+            onPress={() => navigation.navigate(ScreenNames.SuperPowers)}
+            accessibilityRole="button"
+            accessibilityLabel={t("feedCard.openSuperPowers")}
+            hitSlop={6}
+            className="flex-row items-center gap-1.5"
+          >
+            <Icon name="Rocket" size={14} color="#9CA3AF" />
+            <Text className="text-xs uppercase tracking-wider text-theme-neutrals-400">
+              {t("work.boosted")}
+            </Text>
+          </TouchableOpacity>
+        )}
+      </View>
+    ) : null;
+
+    return (
+      <Pressable
+        onPress={disablePress ? undefined : handleCardPress}
+        disabled={disablePress}
+        // No bento: the post steps out over the list's side padding so its
+        // media spans the screen, and posts are split by a hairline across
+        // the whole width with 12pt of room either side of it.
+        onLayout={handleMinimalLayout}
+        // The first row starts flush with the top of the list, under the
+        // capsule; leadInset (or the labels) makes the room instead.
+        style={[styles.cinematicPost, { marginHorizontal: -minimalGutter }, chromeInset ? { paddingTop: 0 } : null, hideDivider ? { borderBottomWidth: 0 } : null]}
+      >
+        {labels}
+        {cinematicMedia && !chipOverMedia ? (
+          // A photo: the ordinary header row above it, the picture edge to edge.
+          <>
+            <View style={{ paddingHorizontal: CINEMATIC_TEXT_INSET, paddingTop: leadInset }}>
+              <FeedCardHeader
+                avatarUrl={avatar}
+                displayName={displayName}
+                username={username}
+                address={minterAddress}
+                badgeImage={badgeImg}
+                onUserPress={handleUserPress}
+                onMenuPress={handleOpenOptions}
+                onBoostPress={
+                  isOwnerPost && isSignedIn && tokenId != null
+                    ? handleBoostPress
+                    : undefined
+                }
+                isHidden={isHidden}
+              />
+            </View>
+            <View style={{ backgroundColor: "#000" }}>
+              <FeedBleedContext.Provider value={feedBleed}>
+                {renderContent()}
+              </FeedBleedContext.Provider>
+            </View>
+          </>
+        ) : cinematicMedia ? (
+          // Raised while the tools menu is open so it hangs over the caption.
+          <View style={{ backgroundColor: "#000", zIndex: toolsOpen ? 10 : 0 }}>
+            <FeedBleedContext.Provider value={feedBleed}>
+              {renderContent()}
+            </FeedBleedContext.Provider>
+            <View pointerEvents="box-none" style={[styles.cinematicChrome, chipAtBottom ? styles.cinematicBottom : styles.cinematicTop]}>
+              <CinematicAuthorChip
+                avatarUrl={avatar}
+                displayName={displayName}
+                username={username}
+                address={minterAddress}
+                badgeImage={badgeImg}
+                meta={chipMeta}
+                onPress={handleUserPress}
+              />
+              <View pointerEvents="box-none" style={styles.cinematicButtons}>
+                {isHidden && <CinematicIconButton icon="EyeOff" label={t("settings.hiddenOption")} />}
+                {isOwnerPost && isSignedIn && tokenId != null && (
+                  <CinematicIconButton icon="Rocket" label={t("feedCard.boostPost")} onPress={handleBoostPress} />
+                )}
+                {mediaTools && mediaTools.length > 0 && (
+                  <CinematicIconButton
+                    icon="Wrench"
+                    label={t("settings.title")}
+                    active={toolsOpen}
+                    onPress={() => setToolsOpen(!toolsOpen)}
+                  />
+                )}
+                <CinematicIconButton icon="EllipsisVertical" label={t("player.moreOptions")} onPress={handleOpenOptions} />
+              </View>
+            </View>
+            {toolsOpen && mediaTools && mediaTools.length > 0 && (
+              <CinematicToolsMenu
+                tools={mediaTools}
+                fromBottom={chipAtBottom ? CINEMATIC_BOTTOM_BAND + 8 : undefined}
+                onClose={() => setToolsOpen(false)}
+              />
+            )}
+          </View>
+        ) : (
+          <View style={{ paddingHorizontal: CINEMATIC_TEXT_INSET, paddingTop: leadInset }}>
+            <FeedCardHeader
+              avatarUrl={avatar}
+              displayName={displayName}
+              username={username}
+              address={minterAddress}
+              badgeImage={badgeImg}
+              onUserPress={handleUserPress}
+              onMenuPress={handleOpenOptions}
+              onBoostPress={
+                isOwnerPost && isSignedIn && tokenId != null
+                  ? handleBoostPress
+                  : undefined
+              }
+              isHidden={isHidden}
+            />
+            {matureGate.isGated ? (
+              <MatureContentGate onReveal={matureGate.reveal} />
+            ) : (
+              <>
+                {renderContent()}
+                {soundtrackBadge}
+                <PostTapSurface
+                  resetKey={postKey}
+                  onReaction={handleVideoTapReaction}
+                  onPress={disablePress ? undefined : handleCardPress}
+                >
+                  {!!localArticleBody && (
+                    <View className="mb-3">
+                      <ArticleCover
+                        look={articleUi}
+                        label={`${t("articles.label")} · ${t("articles.minRead", { count: articleReadingMinutes(localArticleBody) })}`}
+                        title={overlayTitle || undefined}
+                        coverUri={item.articleImageUrl ? buildFeedImageUrls([item.articleImageUrl], IMAGE_WIDTH)[0] : undefined}
+                      />
+                    </View>
+                  )}
+                  <FeedCaption
+                    resetKey={postKey}
+                    title={localArticleBody ? undefined : overlayTitle || undefined}
+                    description={displayCaption || undefined}
+                    categories={localCategories}
+                    onCategoryPress={onCategorySelect}
+                    onCashtagPress={setActiveCashtag}
+                    showCategories={false}
+                    flagged={item.communityAlertStatus === "pending"}
+                    variant={localArticleBody || isAudioPost ? "default" : "large"}
+                  />
+                  {!!localArticleBody && (
+                    <View className="mt-3 flex-row">
+                      <View style={{ flexDirection: "row", alignItems: "center", gap: 6, borderWidth: 1, borderColor: articleUi.line, borderRadius: articleUi.radius ? 999 : 0, paddingHorizontal: 12, paddingVertical: 6 }}>
+                        <Icon name="BookOpen" size={15} color={articleUi.ink2} />
+                        <Text style={{ color: articleUi.ink2, fontSize: 13 }}>{t("articles.read")}</Text>
+                      </View>
+                    </View>
+                  )}
+                </PostTapSurface>
+              </>
+            )}
+            <View className="flex-row items-center gap-2 pt-2">
+              <Text style={{ fontSize: 13, lineHeight: 18, color: "#8B8D90" }}>
+                {chipMeta}
+              </Text>
+              {translateButton && (
+                <>
+                  <Text style={{ fontSize: 13, lineHeight: 18, color: "#6F7174" }}>·</Text>
+                  {translateButton}
+                </>
+              )}
+            </View>
+          </View>
+        )}
+        <View style={{ paddingHorizontal: CINEMATIC_TEXT_INSET }}>
+          {cinematicMedia ? (
+            // The caption sits under the media, then the soundtrack.
+            <>
+              <PostTapSurface
+                resetKey={postKey}
+                onReaction={handleVideoTapReaction}
+                onPress={disablePress ? undefined : handleCardPress}
+              >
+                <View style={{ paddingTop: 10 }}>
+                  <FeedCaption
+                    resetKey={postKey}
+                    title={overlayTitle || undefined}
+                    description={displayCaption || undefined}
+                    variant="media"
+                    flagged={item.communityAlertStatus === "pending"}
+                  />
+                </View>
+              </PostTapSurface>
+              {soundtrackBadge}
+            </>
+          ) : null}
+          {embeds}
+          {tokenId != null && !isLive && !(item as any).isQuotePost && (
+            <PollCard key={postKey} tokenId={Number(tokenId)} pollOwnerAddress={minterAddress} />
+          )}
+          {!isLive && (
+            <ShopBoard
+              key={postKey}
+              tokenId={tokenId}
+              links={localShopLinks ?? (item as any).shopLinks}
+              listingCount={localShopListingCount ?? (item as any).shopListingCount}
+            />
+          )}
+          {cinematicMedia && translateButton ? (
+            // Time and views ride on the author chip; what is left of the
+            // meta row is the translate toggle, at the end of the post.
+            <View className="flex-row items-center justify-end pt-2">{translateButton}</View>
+          ) : null}
+        </View>
+        <View style={{ paddingHorizontal: CINEMATIC_TEXT_INSET, paddingTop: 4 }}>
+          {actionBar}
+        </View>
+        {sheets}
+      </Pressable>
+    );
   }
 
   return (
@@ -1841,228 +2413,31 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         )}
       </View>
 
-      {showActionBar && (
-        <FeedActionBar
-          liked={liked}
-          disliked={disliked}
-          saved={saved}
-          reposted={reposted}
-          likeCount={likeCount}
-          dislikeCount={dislikeCount}
-          commentCount={commentCount}
-          repostCount={repostCount}
-          shareCount={shareCount}
-          tipCount={totalTips}
-          onLike={handleLikePress}
-          onDislike={handleDislikePress}
-          onReact={handleReaction}
-          myReaction={myReaction}
-          reactionCounts={reactionCounts}
-          onComment={handleCommentPress}
-          onCommentPressIn={handleCommentPressIn}
-          onShare={handleOpenShare}
-          onTip={DIGITAL_PURCHASES_ENABLED && !minterUser?.hideBadgeAndBalance ? handleTipPress : undefined}
-          tokenId={tokenId}
-          viewerAddress={userAddress}
-          onSave={handleSavePress}
-          onInfo={handleInfoPress}
-          onShowReactionInfo={
-            isOwnerPost && tokenId != null ? handleShowReactionInfo : undefined
-          }
-          isVisible={isVisible}
-        />
-      )}
+      {actionBar}
 
-      {showComments && tokenId != null && (
-        <CommentBottomSheet
-          visible={showComments}
-          onClose={() => setShowComments(false)}
-          tokenId={tokenId}
-          commentsDisabled={localCommentsDisabled}
-          forKids={localForKids}
-          postCreator={{ address: minterAddress, displayName, username }}
-        />
-      )}
-
-      {showReactionInfo && tokenId != null && (
-        <ReactionInfoSheet
-          visible={showReactionInfo}
-          onClose={() => setShowReactionInfo(false)}
-          tokenId={tokenId}
-        />
-      )}
-
-      {DIGITAL_PURCHASES_ENABLED && showTipModal && minterAddress && !minterUser?.hideBadgeAndBalance ? (
-        <GlassTipSheet
-          visible={showTipModal}
-          onClose={() => setShowTipModal(false)}
-          toAddress={minterAddress}
-          tokenId={Number(tokenId) || 0}
-          recipientName={displayName}
-          tipContext="content"
-          paymentChainId={chainId}
-        />
-      ) : null}
-
-      {DIGITAL_PURCHASES_ENABLED && showPPVModal && isPayPerView && tokenId != null && minterAddress ? (
-        <PPVSheet
-          visible={showPPVModal}
-          onClose={() => setShowPPVModal(false)}
-          tokenId={tokenId}
-          toAddress={minterAddress}
-          amount={payPerViewAmount}
-          tokenSymbol={payPerViewTokenSymbol}
-          contentType={isVideo ? "video" : "image"}
-          paymentChainId={payPerViewChainId}
-          onSuccess={handlePPVSuccess}
-        />
-      ) : null}
-
-      {DIGITAL_PURCHASES_ENABLED && showBountyModal && isBounty && tokenId != null && (
-        <BountyInfoSheet
-          chainId={(item as any).chainId || streamInfo?.addBountyChainId || 56}
-          visible={showBountyModal}
-          onClose={() => setShowBountyModal(false)}
-          tokenId={tokenId}
-          minter={minterAddress}
-          bountyAmount={bountyAmount}
-          bountyTokenSymbol={bountyTokenSymbol}
-          firstXViewers={streamInfo?.addBountyFirstXViewers || 0}
-          firstXComments={streamInfo?.addBountyFirstXComments || 0}
-        />
-      )}
-
-      {showAISheet && tokenId != null && (
-        <AskAISheet
-          visible={showAISheet}
-          onClose={() => setShowAISheet(false)}
-          postId={tokenId}
-          postContext={aiPostContext}
-        />
-      )}
-
-      {showAddToFolder && tokenId != null && (
-        <AddToFolderSheet
-          visible={showAddToFolder}
-          onClose={() => setShowAddToFolder(false)}
-          tokenId={tokenId}
-        />
-      )}
-
-      {showOptionsMenu && (
-        <PostOptionsMenu
-          visible={showOptionsMenu}
-          onClose={() => setShowOptionsMenu(false)}
-          tokenId={tokenId}
-          isOwner={!!isOwnerPost}
-          canReplaceVideo={
-            !!isOwnerPost && !isLive && (contentType === "video" || contentType === "short")
-          }
-          // rawStatus doubles as the live-stream status on live posts, but a
-          // live post is never 'signed', so the Mint post row cannot show up
-          // on one by accident.
-          postStatus={rawStatus}
-          postChainId={(item as any).chainId}
-          isHidden={isHidden}
-          creatorDisplayName={displayName}
-          creatorIdentifier={minterAddress || username || ""}
-          isFollowing={isFollowingCreator}
-          isFollowRequestPending={isFollowReqPending}
-          currentTitle={localTitle}
-          currentDescription={localDescription}
-          currentArticleBody={localArticleBody}
-          currentCategories={localCategories}
-          currentCommentsDisabled={localCommentsDisabled}
-          currentShopLinks={localShopLinks ?? (item as any).shopLinks}
-          currentContentRating={localContentRating}
-          currentForKids={localForKids}
-          hideReportContent={isLive}
-          hideEdit={isLive}
-          isAudio={isAudioPost}
-          onFollowChange={handleFollowChange}
-          onVisibilityChange={handleVisibilityChange}
-          onEditSuccess={handleEditSuccess}
-          onDeleteSuccess={handleDeleteSuccess}
-          onSendToDm={isSignedIn ? () => setShowShareToDm(true) : undefined}
-          // The sheet is mounted below rather than inside the menu: the menu is
-          // conditionally rendered, so onClose unmounts it and any state set in
-          // the same handler goes with it.
-          // Server-granted boost allowances also apply in the App Store build.
-          onBoostPress={
-            isOwnerPost && isSignedIn ? () => setShowBoost(true) : undefined
-          }
-          onGiftBoostPress={
-            !isOwnerPost && isSignedIn && canGiftBoost
-              ? () => setShowBoost(true)
-              : undefined
-          }
-          onTranslatePress={handleTranslate}
-          onTranslateImagePress={hasImages ? handleTranslateImage : undefined}
-          canDub={isVideo && !isLive && !isActuallyGated && speechAvailable}
-          // Also on the action bar as icons. Both are wanted: the icon is for
-          // the thumb, the labelled row is for anyone who opens the menu
-          // looking for the action by name.
-          isSaved={saved}
-          onToggleSave={handleSavePress}
-          onInfoPress={handleInfoPress}
-        />
-      )}
-
-      {showShareToDm && tokenId != null && (
-        <ShareToDmSheet
-          visible={showShareToDm}
-          onClose={() => setShowShareToDm(false)}
-          tokenId={tokenId}
-          postTitle={localTitle || undefined}
-        />
-      )}
-
-      {showBoost && tokenId != null && (
-        <BoostSheet
-          visible={showBoost}
-          onClose={() => setShowBoost(false)}
-          tokenId={tokenId}
-          postTitle={localTitle || undefined}
-          // Decides which HALF of the ladder the sheet offers: a gift only
-          // lands on somebody else's post, everything else only on your own.
-          isOwnPost={!!isOwnerPost}
-        />
-      )}
-
-      {showShareSheet && tokenId != null && (
-        <ShareSheet
-          visible={showShareSheet}
-          onClose={() => setShowShareSheet(false)}
-          isReposted={reposted}
-          onRepost={handleConfirmRepost}
-          onUndoRepost={handleUndoRepost}
-          onQuote={handleQuotePress}
-          onCopyLink={handleCopyLink}
-          onSendToDm={isSignedIn ? () => setShowShareToDm(true) : undefined}
-          onShareAsImage={handleSharePress}
-        />
-      )}
-
-      {!!activeCashtag && (
-        <CashtagSheet
-          visible={!!activeCashtag}
-          symbol={activeCashtag || ""}
-          onClose={() => setActiveCashtag(null)}
-        />
-      )}
-
-      {showImgTranslationSheet && (
-        <ImageTranslationSheet
-          visible={showImgTranslationSheet}
-          onClose={() => { setShowImgTranslationSheet(false); clearImgResult(); }}
-          isLoading={imgTranslating}
-          error={imgTranslateError}
-          result={imgTranslateResult}
-        />
-      )}
+      {sheets}
     </Pressable>
   );
 };
+
+const styles = StyleSheet.create({
+  cinematicPost: {
+    paddingVertical: 12,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: "rgba(255,255,255,0.12)",
+  },
+  cinematicChrome: {
+    position: "absolute",
+    left: CINEMATIC_EDGE,
+    right: CINEMATIC_EDGE,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  cinematicTop: { top: CINEMATIC_EDGE },
+  cinematicBottom: { bottom: CINEMATIC_BOTTOM_LIFT },
+  cinematicButtons: { flexDirection: "row", alignItems: "center", gap: 8, marginLeft: 8 },
+});
 
 const FeedCard = memo(FeedCardComponent);
 

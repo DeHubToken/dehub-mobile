@@ -1018,7 +1018,8 @@
     "boostPostDesc": "放去首頁動態嘅最上面",
     "mintPostDesc": "將呢個帖子發佈上鏈",
     "giftBoost": "送一次加成",
-    "giftBoostDesc": "用你其中一次落呢個帖子"
+    "giftBoostDesc": "用你其中一次落呢個帖子",
+    "askAi": "問AI"
   },
   "filters": {
     "sort": "排序",

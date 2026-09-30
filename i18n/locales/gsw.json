@@ -1018,7 +1018,8 @@
     "boostPostDesc": "Setz ihn zoberscht im Home-Feed",
     "mintPostDesc": "Dä Biitrag on-chain veröffentliche",
     "giftBoost": "Boost verschänke",
-    "giftBoostDesc": "Gib eine vo dine Boosts für dä Biitrag us"
+    "giftBoostDesc": "Gib eine vo dine Boosts für dä Biitrag us",
+    "askAi": "KI frooge"
   },
   "filters": {
     "sort": "Sortiere",
