@@ -65,8 +65,26 @@ describe('post media presentation', () => {
     // A video keeps running to the top; its chip and buttons move to the
     // bottom of the media, and the tools menu opens upward from there.
     expect(card).toContain('const chipAtBottom = chipOverMedia && leadInset > 0;');
-    expect(card).toContain('fromBottom={chipAtBottom ? CINEMATIC_BOTTOM_BAND + 8 : undefined}');
+    expect(card).toContain('fromBottom={chipAtBottom ? bottomBand + 8 : undefined}');
     expect(card).toContain('onAskAi={cinematicFeed ? handleAiPress : undefined}');
+  });
+
+  it('puts the first post chrome in the bottom corners, lifting only over the player bar', () => {
+    const card = readSource('components', 'Home', 'FeedCard.tsx');
+    const player = readSource('components', 'Home', 'FeedVideoPlayer.tsx');
+    const chrome = readSource('components', 'Home', 'CinematicChrome.tsx');
+
+    expect(card).toContain('const bottomBand = mediaBarUp ? CINEMATIC_BOTTOM_BAND : CINEMATIC_BOTTOM_BAND_LOW;');
+    expect(card).toContain('setBarUp: chipAtBottom ? setMediaBarUp : undefined,');
+    expect(card).toContain('[styles.cinematicBottom, mediaBarUp && styles.cinematicBottomLifted]');
+    expect(card).toContain('cinematicBottom: { bottom: CINEMATIC_EDGE, right: 6, alignItems: "flex-end" },');
+    expect(card).toContain('bare={chipAtBottom}');
+    expect(player).toContain('const barUp = !hideControls && showControls;');
+    expect(player).toContain('setBarUp?.(barUp);');
+    // No backing behind the bare icons, and a 32pt tap area.
+    expect(chrome).toContain('style={bare ? styles.bareButton : styles.button}');
+    expect(chrome).toContain('const BARE_ICON = 22;');
+    expect(chrome).toContain('export const CINEMATIC_BARE_BUTTON = 32;');
   });
 
   it('draws one hairline at the who-to-follow row, under it', () => {

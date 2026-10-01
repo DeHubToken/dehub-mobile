@@ -22,11 +22,15 @@ export type MediaTool = {
  * `setTools` is how a player folds its own buttons (speed, loop, sound,
  * subtitles, picture in picture, full screen) into the card's single tools
  * menu instead of drawing them over the picture.
+ *
+ * `setBarUp` is how a player says its bottom bar (the scrubber and times) is
+ * on screen, so chrome sitting along the bottom can lift above it only then.
  */
 export type FeedBleed = {
   topInset: number;
   bottomInset?: number;
   setTools?: (tools: MediaTool[] | null) => void;
+  setBarUp?: (up: boolean) => void;
 };
 
 export const FeedBleedContext = createContext<FeedBleed | null>(null);
