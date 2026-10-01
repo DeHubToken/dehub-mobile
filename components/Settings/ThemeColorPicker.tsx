@@ -14,7 +14,7 @@ import Icon from '../ui/Icon';
 import { useAppTheme } from '../../context/ThemeContext';
 import { useUser } from '../../context/AuthContext';
 import { getAvatarUrl } from '../../libs/misc';
-import { extractBrandColors } from '../../libs/brandColors';
+import { CAN_EXTRACT_BRAND_COLORS, extractBrandColors } from '../../libs/brandColors';
 import { toastError } from '../../libs/toast';
 import { DEFAULT_THEME_HUES, THEME_COLOR, hexToHue, hueToHex } from '../../theme/themeColor';
 
@@ -162,7 +162,7 @@ const ThemeColorPicker: React.FC<{ theme: string }> = ({ theme }) => {
             <Text style={{ color: '#ffffff', fontSize: 14 }}>{labels[p.mode]}</Text>
           </Pressable>
         ))}
-        <Pressable
+        {CAN_EXTRACT_BRAND_COLORS ? <Pressable
           onPress={onBrand}
           disabled={brandLoading}
           accessibilityRole="button"
@@ -172,7 +172,7 @@ const ThemeColorPicker: React.FC<{ theme: string }> = ({ theme }) => {
         >
           <Dot colors={brandSwatch}>{brandLoading ? <ActivityIndicator size="small" color="#fff" style={{ transform: [{ scale: 0.6 }] }} /> : null}</Dot>
           <Text style={{ color: '#ffffff', fontSize: 14 }}>{labels[THEME_COLOR.BRAND]}</Text>
-        </Pressable>
+        </Pressable> : null}
       </View>
 
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
