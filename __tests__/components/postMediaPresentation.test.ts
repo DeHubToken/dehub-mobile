@@ -50,7 +50,7 @@ describe('post media presentation', () => {
     expect(card).toContain('const cinematicFeed = cinematic && theme === "system" && !skin && !isMinimal && !immersive && !flat;');
     expect(card).toContain('<FeedBleedContext.Provider value={feedBleed}>');
     // Posts are split by a full-width hairline with 12pt either side.
-    expect(card).toContain('paddingVertical: 12,\n    borderBottomWidth: StyleSheet.hairlineWidth,');
+    expect(card).toMatch(/paddingVertical: 12,\s+borderBottomWidth: StyleSheet\.hairlineWidth,/);
     expect(list).toContain('      cinematic\n');
   });
 
