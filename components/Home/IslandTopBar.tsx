@@ -1,5 +1,5 @@
-import React, { memo, useCallback, useState } from "react";
-import { Image, Pressable, StyleSheet, Text, View, useWindowDimensions, type LayoutChangeEvent } from "react-native";
+import React, { memo, useCallback } from "react";
+import { Image, Pressable, StyleSheet, Text, View, useWindowDimensions } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import Avatar from "../common/Avatar";
@@ -91,24 +91,15 @@ export const IslandCapsule = memo(function IslandCapsule({
   );
   const tab = FEED_NAV_ITEMS[activeIndex] ?? FEED_NAV_ITEMS[0];
   const label = t(TAB_LABEL_KEYS[tab.postType] ?? "feed.home");
-  // Each side reports its natural width and both columns take the wider one,
-  // so the capsule hugs its contents and the mark still lands dead centre.
-  const [sides, setSides] = useState({ left: 0, right: 0 });
-  const side = Math.max(sides.left, sides.right);
-  const onLeft = useCallback((e: LayoutChangeEvent) => {
-    const w = Math.ceil(e.nativeEvent.layout.width);
-    setSides((s) => (s.left === w ? s : { ...s, left: w }));
-  }, []);
-  const onRight = useCallback((e: LayoutChangeEvent) => {
-    const w = Math.ceil(e.nativeEvent.layout.width);
-    setSides((s) => (s.right === w ? s : { ...s, right: w }));
-  }, []);
+  // Both controls have a fixed 28pt box. Avoid feeding Android layout
+  // measurements back into their parent width on every layout pass.
+  const side = AVATAR_SIZE;
   return (
     <View pointerEvents="box-none" style={styles.wrap}>
       <View style={[styles.capsule, { maxWidth: screenWidth - 32, opacity: side ? 1 : 0 }]}>
         <ChromeSurface radius={CAPSULE_RADIUS} />
         <View style={[styles.left, { width: side || undefined }]}>
-          <View onLayout={onLeft} style={styles.sideInner}>
+          <View style={styles.sideInner}>
             <Pressable
               onPress={onLeftPress}
               hitSlop={HIT}
@@ -148,7 +139,7 @@ export const IslandCapsule = memo(function IslandCapsule({
           )}
         </Pressable>
         <View style={[styles.right, { width: side || undefined }]}>
-          <View onLayout={onRight} style={styles.sideInner}>
+          <View style={styles.sideInner}>
             <Pressable
               onPress={onBellPress}
               hitSlop={HIT}
@@ -156,7 +147,7 @@ export const IslandCapsule = memo(function IslandCapsule({
               accessibilityLabel={unread > 0 ? t("common.notificationsUnread", { unread }) : t("nav.notifications")}
               style={styles.bell}
             >
-              <Icon name="Bell" size={21} color="#FFFFFF" strokeWidth={1.9} />
+              <Icon name="Bell" size={26.9} color="#FFFFFF" strokeWidth={1.9} />
               <UnreadBadge count={unread} />
             </Pressable>
           </View>
@@ -228,7 +219,7 @@ const styles = StyleSheet.create({
     borderRadius: CAPSULE_RADIUS,
     flexDirection: "row",
     alignItems: "center",
-    paddingHorizontal: 10,
+    paddingHorizontal: 14,
     shadowColor: "#000",
     shadowOpacity: 0.35,
     shadowRadius: 10,
@@ -239,7 +230,7 @@ const styles = StyleSheet.create({
   sideInner: { flexDirection: "row", alignItems: "center", gap: 12 },
   avatarButton: { width: AVATAR_SIZE, height: AVATAR_SIZE, alignItems: "center", justifyContent: "center", flexShrink: 0 },
   avatar: { width: AVATAR_SIZE, height: AVATAR_SIZE, borderRadius: AVATAR_RADIUS, overflow: "hidden" },
-  mark: { paddingHorizontal: 20, height: ISLAND_CAPSULE_HEIGHT, flexShrink: 0, justifyContent: "center", alignItems: "center" },
+  mark: { paddingHorizontal: 24, height: ISLAND_CAPSULE_HEIGHT, flexShrink: 0, justifyContent: "center", alignItems: "center" },
   bell: { width: 28, height: 28, alignItems: "center", justifyContent: "center" },
   menuWrap: { alignItems: "center" },
   menu: {
@@ -262,7 +253,7 @@ const styles = StyleSheet.create({
   menuRowOn: { backgroundColor: "rgba(255,255,255,0.10)" },
   menuLabel: { flex: 1, color: "#FFFFFF", fontSize: 14, fontWeight: "500" },
   menuDivider: { height: 1, marginVertical: 6, marginHorizontal: 6, backgroundColor: "rgba(255,255,255,0.12)" },
-  // Off the glyph's top right corner (the glyph is 21pt in a 28pt box).
+  // Off the glyph's top right corner (the glyph is 26.9pt in a 28pt box).
   badge: {
     position: "absolute",
     top: 0,
