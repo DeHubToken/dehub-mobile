@@ -136,6 +136,16 @@ describe('minimised stage chip on pushed screens', () => {
     expect(chip).not.toBeNull();
     expect(chip.props.style).toMatchObject({ position: 'absolute', right: 16, bottom: 24 + 12 });
   });
+
+  it('waits for the navigator instead of asking a ref that is not ready', () => {
+    const getCurrentRoute = jest.fn(() => ({ name: 'Leaderboard' }));
+    const navigationRef = { isReady: () => false, getCurrentRoute, addListener: () => () => {} };
+    let tree!: ReactTestRenderer;
+    act(() => { tree = create(<StageNavFallback navigationRef={navigationRef} />); });
+    expect(tree.toJSON()).toBeNull();
+    expect(getCurrentRoute).not.toHaveBeenCalled();
+    act(() => tree.unmount());
+  });
 });
 
 describe('Go Live without camera permission', () => {
