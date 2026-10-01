@@ -6,7 +6,7 @@ import Avatar from "../common/Avatar";
 import Icon, { type IconName } from "../ui/Icon";
 import ChromeSurface from "../ui/ChromeSurface";
 import { ScreenNames } from "../../navigation/ScreenNames";
-import { useUser, useAuthState } from "../../context/AuthContext";
+import { useUser, useAuthState, useAuthActions } from "../../context/AuthContext";
 import { getAvatarUrl } from "../../libs/misc";
 import { FEED_NAV_ITEMS } from "./FeedNavBar";
 
@@ -56,9 +56,10 @@ function UnreadBadge({ count }: { count: number }) {
  * The system theme's home top bar: one centred capsule floating over the feed
  * with nothing painted around it (HomeScreen slides it away on a scroll down
  * and back on a scroll up). Laid out as a crest, three columns with the mark
- * dead centre: [bell] [mark] [avatar]. It hugs its contents, with both side
- * columns as wide as the wider one. The mark opens and closes the feed menu
- * under it (IslandFeedMenu); the avatar opens the drawer.
+ * dead centre: [avatar, or a burger when signed out] [mark] [bell]. It hugs
+ * its contents, with both side columns as wide as the wider one. The mark
+ * opens and closes the feed menu under it (IslandFeedMenu); the avatar opens
+ * the drawer; signed out, the bell asks you to log in.
  */
 export const IslandCapsule = memo(function IslandCapsule({
   activeIndex,
@@ -78,7 +79,12 @@ export const IslandCapsule = memo(function IslandCapsule({
   const navigation = useNavigation<any>();
   const { width: screenWidth } = useWindowDimensions();
   const unread = user?.notificationCount || 0;
-  const openNotifications = useCallback(() => navigation.navigate(ScreenNames.Notifications), [navigation]);
+  const { requireAuth } = useAuthActions();
+  // Signed out, the bell is still there and asks you to log in first.
+  const onBellPress = useCallback(
+    () => requireAuth(() => navigation.navigate(ScreenNames.Notifications)),
+    [navigation, requireAuth],
+  );
   const tab = FEED_NAV_ITEMS[activeIndex] ?? FEED_NAV_ITEMS[0];
   const label = t(TAB_LABEL_KEYS[tab.postType] ?? "feed.home");
   // Each side reports its natural width and both columns take the wider one,
@@ -99,18 +105,25 @@ export const IslandCapsule = memo(function IslandCapsule({
         <ChromeSurface radius={CAPSULE_RADIUS} />
         <View style={[styles.left, { width: side || undefined }]}>
           <View onLayout={onLeft} style={styles.sideInner}>
-            {isSignedIn ? (
-              <Pressable
-                onPress={openNotifications}
-                hitSlop={HIT}
-                accessibilityRole="button"
-                accessibilityLabel={unread > 0 ? t("common.notificationsUnread", { unread }) : t("nav.notifications")}
-                style={styles.bell}
-              >
-                <Icon name="Bell" size={21} color="#FFFFFF" strokeWidth={1.9} />
-                <UnreadBadge count={unread} />
-              </Pressable>
-            ) : null}
+            <Pressable
+              onPress={onAvatarPress}
+              hitSlop={HIT}
+              accessibilityRole="button"
+              accessibilityLabel={t("common.openMenu")}
+              style={styles.avatarButton}
+            >
+              {isSignedIn ? (
+                <View style={styles.avatar}>
+                  <Avatar
+                    uri={getAvatarUrl(user?.avatarImageUrl)}
+                    size={AVATAR_SIZE}
+                    name={user?.displayName || user?.username}
+                  />
+                </View>
+              ) : (
+                <Icon name="Menu" size={22} color="#FFFFFF" />
+              )}
+            </Pressable>
           </View>
         </View>
         <Pressable
@@ -133,23 +146,14 @@ export const IslandCapsule = memo(function IslandCapsule({
         <View style={[styles.right, { width: side || undefined }]}>
           <View onLayout={onRight} style={styles.sideInner}>
             <Pressable
-              onPress={onAvatarPress}
+              onPress={onBellPress}
               hitSlop={HIT}
               accessibilityRole="button"
-              accessibilityLabel={t("common.openMenu")}
-              style={styles.avatarButton}
+              accessibilityLabel={unread > 0 ? t("common.notificationsUnread", { unread }) : t("nav.notifications")}
+              style={styles.bell}
             >
-              {isSignedIn ? (
-                <View style={styles.avatar}>
-                  <Avatar
-                    uri={getAvatarUrl(user?.avatarImageUrl)}
-                    size={AVATAR_SIZE}
-                    name={user?.displayName || user?.username}
-                  />
-                </View>
-              ) : (
-                <Icon name="Menu" size={22} color="#FFFFFF" />
-              )}
+              <Icon name="Bell" size={21} color="#FFFFFF" strokeWidth={1.9} />
+              <UnreadBadge count={unread} />
             </Pressable>
           </View>
         </View>
