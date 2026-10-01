@@ -6,7 +6,14 @@
  * picked greedily so the palette is three different colours, not three shades
  * of the background. The picture is decoded and downscaled with Skia.
  */
-import { AlphaType, ColorType, Skia } from '@shopify/react-native-skia';
+import { HAS_SKIA, optionalSkia } from './skia';
+
+/**
+ * Whether this build can read a picture's colours. Decoding needs Skia, which
+ * older binaries on the same runtimeVersion do not have; importing it there is
+ * a fatal error, so it is only required inside `extractBrandColors`.
+ */
+export const CAN_EXTRACT_BRAND_COLORS = HAS_SKIA;
 
 const SAMPLE_SIZE = 64;
 const BUCKET_STEP = 16;
@@ -81,6 +88,9 @@ export function pickBrandColors(data: ArrayLike<number>, max = 3): string[] {
 
 /** Decode the picture at `uri`, downscale it and pick its brand colours. */
 export async function extractBrandColors(uri: string, max = 3): Promise<string[]> {
+  const skia = optionalSkia(() => require('@shopify/react-native-skia') as typeof import('@shopify/react-native-skia'));
+  if (!skia) throw new Error('This build cannot decode pictures');
+  const { AlphaType, ColorType, Skia } = skia;
   const encoded = await Skia.Data.fromURI(uri);
   const image = Skia.Image.MakeImageFromEncoded(encoded);
   if (!image) throw new Error('Could not decode the picture');

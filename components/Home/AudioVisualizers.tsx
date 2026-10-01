@@ -55,8 +55,9 @@ import Animated, {
   type SharedValue,
 } from "react-native-reanimated";
 import { LinearGradient } from "expo-linear-gradient";
-import { Canvas, Picture, createPicture, type SkPicture } from "@shopify/react-native-skia";
+import type { SkPicture } from "@shopify/react-native-skia";
 import { useAppTheme } from "../../context/ThemeContext";
+import { optionalSkia } from "../../libs/skia";
 import {
   AudioListener,
   EXTRA_STYLES,
@@ -65,7 +66,18 @@ import {
   makePalette,
   type ExtraStyle,
 } from "./visualizer-extra";
-import { SkiaCtx2D } from "./skia-ctx2d";
+
+/**
+ * Skia, only on binaries that ship it. Updates reach older APKs and iOS builds
+ * on the same runtimeVersion that have no Skia, and a value import of it there
+ * is a fatal error the first time a card draws one of the extra styles. Without
+ * it those styles play as the default waveform.
+ */
+const skia = optionalSkia(() => {
+  const s = require("@shopify/react-native-skia") as typeof import("@shopify/react-native-skia");
+  const { SkiaCtx2D } = require("./skia-ctx2d") as typeof import("./skia-ctx2d");
+  return { Canvas: s.Canvas, Picture: s.Picture, createPicture: s.createPicture, SkiaCtx2D };
+});
 
 /* ─── Style list ────────────────────────────────────────────────────────── */
 
@@ -110,6 +122,10 @@ export const COMPACT_BAR_WIDTH = 2;
 export const COMPACT_BAR_GAP = 1;
 export const COMPACT_WAVEFORM_HEIGHT = 28;
 
+/** The style actually drawn: the extra styles need Skia, so without it they play as the default. */
+export const drawnStyle = (style: VisualizerStyle): VisualizerStyle =>
+  !skia && isExtraStyle(style) ? "static" : style;
+
 /**
  * How tall the band is for a given style, when the caller has not fixed it.
  *
@@ -120,7 +136,8 @@ export const COMPACT_WAVEFORM_HEIGHT = 28;
  * square-ish band and the ones that draw a row of bars keep the short one. Two
  * heights, so switching styles is at most one jump.
  */
-export const styleBandHeight = (style: VisualizerStyle): number => {
+export const styleBandHeight = (requested: VisualizerStyle): number => {
+  const style = drawnStyle(requested);
   switch (style) {
     case "circular":
     case "spectrum":
@@ -1545,9 +1562,10 @@ const ExtraVisualizer: React.FC<{
       const progress = Math.max(0, Math.min(1, position.value || 0));
       if (isPlaying) listener.fromSynth(t, progress, peaks);
       else listener.hold(t, progress, peaks);
+      if (!skia) return;
       setPicture(
-        createPicture(
-          (canvas) => drawExtra(style, new SkiaCtx2D(canvas), width, height, listener.frame, palette, stateRef.current),
+        skia.createPicture(
+          (canvas) => drawExtra(style, new skia.SkiaCtx2D(canvas), width, height, listener.frame, palette, stateRef.current),
           { width, height },
         ),
       );
@@ -1576,10 +1594,10 @@ const ExtraVisualizer: React.FC<{
 
   return (
     <View style={{ height, width: "100%" }} onLayout={handleLayout} pointerEvents="none">
-      {picture && width > 0 ? (
-        <Canvas style={{ width, height }}>
-          <Picture picture={picture} />
-        </Canvas>
+      {skia && picture && width > 0 ? (
+        <skia.Canvas style={{ width, height }}>
+          <skia.Picture picture={picture} />
+        </skia.Canvas>
       ) : null}
     </View>
   );
@@ -1601,7 +1619,8 @@ export interface AudioVisualizerProps {
 }
 
 export const AudioVisualizer: React.FC<AudioVisualizerProps> = memo((props) => {
-  const { style, seed, isPlaying, hue, position, onLayout } = props;
+  const { seed, isPlaying, hue, position, onLayout } = props;
+  const style = drawnStyle(props.style);
   const height = props.height ?? styleBandHeight(style);
   const band = { seed, isPlaying, hue, height, onLayout };
 
