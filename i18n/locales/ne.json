@@ -818,7 +818,17 @@
     "exportReady": "{{count}} खाताहरू, {{saved}} बचत गरिएका पोष्टहरू निर्यात गरियो ।",
     "importDone": "फोल्लो गरिएका {{followed}}, ब्लॉक गरिएका {{blocked}}, {{folders}} फोल्डरहरू बनाएका छन्।",
     "importPartial": "{{count}} खाताहरू फोल्लो गर्न सकिएन — पुनः प्रयास गर्ने लागि आयात गर्ने पुनः प्रयास गर्नुहोस्।",
-    "importProgress": "आवेदन {{done}} {{total}}…"
+    "importProgress": "आवेदन {{done}} {{total}}…",
+    "themeColor": "थिम रङ",
+    "themeColorDesc": "यो थिमका लागि अनुकूल रङ छान्नुहोस्",
+    "themeColorReset": "रिसेट",
+    "themeColorWhite": "सेतो",
+    "themeColorBlack": "कालो",
+    "themeColorRainbow": "इन्द्रेणी",
+    "themeColorBrand": "ब्रान्ड",
+    "themeColorBrandDesc": "तपाईंको प्रोफाइल तस्बिरका रङहरू प्रयोग गर्नुहोस्",
+    "themeColorBrandNoAvatar": "ब्रान्ड रङहरू प्रयोग गर्न प्रोफाइल तस्बिर थप्नुहोस्",
+    "themeColorBrandFailed": "तपाईंको प्रोफाइल तस्बिरबाट रङहरू पढ्न सकिएन"
   },
   "common": {
     "mute": "म्युट गर्नुहोस्",
@@ -1008,7 +1018,8 @@
     "boostPostDesc": "यसलाई होम फिडको सबैभन्दा माथि राख्नुहोस्",
     "mintPostDesc": "यो पोस्ट अन-चेन प्रकाशित गर्नुहोस्",
     "giftBoost": "एउटा बुस्ट उपहार दिनुहोस्",
-    "giftBoostDesc": "आफ्नो एउटा यो पोस्टमा खर्च गर्नुहोस्"
+    "giftBoostDesc": "आफ्नो एउटा यो पोस्टमा खर्च गर्नुहोस्",
+    "askAi": "AI लाई सोध्नुहोस्"
   },
   "filters": {
     "sort": "क्रमबद्ध गर्नुहोस्",
@@ -1876,7 +1887,16 @@
     "tryAnotherGenre": "अर्को विधा प्रयास गर्नुहोस्।",
     "pauseStation": "स्टेशन रोक्नुहोस्",
     "resumeStation": "स्टेशन पुनः सुरु गर्नुहोस्",
-    "stopRadio": "रेडियो रोक्नुहोस्"
+    "stopRadio": "रेडियो रोक्नुहोस्",
+    "playsToday": "आज {{plays}} पटक सुनियो",
+    "listen": "सुन्नुहोस्",
+    "top50": "शीर्ष ५०",
+    "playAll": "सबै बजाउनुहोस्",
+    "nothingHereYet": "यहाँ अझै केही छैन।",
+    "likeStation": "स्टेशन मन पराउनुहोस्",
+    "unlikeStation": "मन पराउन हटाउनुहोस्",
+    "shareStation": "स्टेशन सेयर गर्नुहोस्",
+    "listeningTo": "DeHub मा {{name}} सुन्दै"
   },
   "notFound": {
     "title": "पृष्ठ फेला परेन",
@@ -5493,7 +5513,16 @@
     "saySomething": "केही भन्नुहोस्...",
     "chatUnavailable": "कुराकानी उपलब्ध छैन",
     "tippedAmount": "टिप गरिएको {{amount}}",
-    "shopPutOnAir": "हावामा राख्नुहोस्"
+    "shopPutOnAir": "हावामा राख्नुहोस्",
+    "streamCount_one": "{{count}} स्ट्रिम",
+    "streamCount_other": "{{count}} स्ट्रिम",
+    "noOneStreamingGame": "अहिले कसैले {{game}} स्ट्रिम गरिरहेको छैन।",
+    "seeAllStreams": "सबै स्ट्रिम हेर्नुहोस्",
+    "isLiveNow": "{{name}} लाइभ हुनुहुन्छ",
+    "justChatting": "गफ मात्र",
+    "noLiveStreams": "कुनै लाइभ स्ट्रिम छैन",
+    "noOneStreaming": "अहिले कसैले स्ट्रिम गरिरहेको छैन। पछि फेरि हेर्नुहोस्!",
+    "loadStreamsFailed": "स्ट्रिम लोड गर्न सकिएन। फेरि प्रयास गर्नुहोस्।"
   },
   "liveShop": {
     "title": "यो स्ट्रिमबाट किन्नुहोस्",
@@ -7249,7 +7278,25 @@
     "presetWhipPanHint": "तीव्र धुंदलो प्यानले रिवेल गर्ने",
     "presetWhipPanName": "व्हिप प्यान",
     "presetYtSplitHint": "कहानी बताउने विभाजन-चित्र थ्युम्ब्नेल",
-    "presetYtSplitName": "बिफोर/अफ्टर थ्युम्ब्नेल"
+    "presetYtSplitName": "बिफोर/अफ्टर थ्युम्ब्नेल",
+    "navAudio": "अडियो",
+    "navAgents": "एजेन्टहरू",
+    "heroTitle": "आज तपाईं के बनाउँदै हुनुहुन्छ?",
+    "heroSubtitle": "छविहरू, भिडियो, संगीत र 3D। प्रत्येक सिर्जनाको लागि DHB मा भुक्तानी गर्नुहोस्।",
+    "startCreating": "सिर्जना सुरु गर्नुहोस्",
+    "startCreatingSub": "स्टुडियो खोल्नुहोस्। प्रत्येक सिर्जनाले आफ्नो मूल्य DHB मा देखाउँछ।",
+    "pickMedium": "माध्यम छान्नुहोस्",
+    "moreTools": "थप उपकरणहरू",
+    "yourLibrary": "तपाईंको लाइब्रेरी",
+    "doorImageNote": "स्थिर तस्बिर, पोस्टर र सम्पादनहरू",
+    "doorVideoNote": "पाठ वा फोटोबाट क्लिपहरू",
+    "doorAudioNote": "आवाज उपकरणहरू निःशुल्क",
+    "door3d": "3D",
+    "door3dNote": "प्रम्प्ट वा फोटोबाट मोडेलहरू",
+    "doorAgentsNote": "च्याट निःशुल्क",
+    "editorNote": "टाइमलाइनमा काट्नुहोस्",
+    "flowNote": "क्यानभासमा चरणहरू जोड्नुहोस्",
+    "builderNote": "प्रम्प्टबाट एप बनाउनुहोस्"
   },
   "fractions": {
     "title": "हिस्सा",

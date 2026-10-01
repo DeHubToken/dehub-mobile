@@ -818,7 +818,17 @@
     "exportReady": "{{count}} računi, {{saved}} spremljene objave izvezenute.",
     "importDone": "Pratili su {{followed}}, blokirali su {{blocked}}, {{folders}} folderi kreirani.",
     "importPartial": "{{count}} računi nisu mogli biti pratjeni — pokrenite import ponovno da biste pokušali ponovo.",
-    "importProgress": "Primjenjujem {{done}} od {{total}}…"
+    "importProgress": "Primjenjujem {{done}} od {{total}}…",
+    "themeColor": "Boja teme",
+    "themeColorDesc": "Odaberite prilagođenu boju za ovu temu",
+    "themeColorReset": "Poništi",
+    "themeColorWhite": "Bijela",
+    "themeColorBlack": "Crna",
+    "themeColorRainbow": "Duga",
+    "themeColorBrand": "Brend",
+    "themeColorBrandDesc": "Koristi boje tvoje profilne slike",
+    "themeColorBrandNoAvatar": "Dodajte profilnu sliku da biste koristili boje brenda",
+    "themeColorBrandFailed": "Nije bilo moguće očitati boje s vaše profilne slike"
   },
   "common": {
     "mute": "Isključi zvuk",
@@ -1008,7 +1018,8 @@
     "boostPostDesc": "Postavite je na vrh početnog feeda",
     "mintPostDesc": "Objavite ovu objavu on-chain",
     "giftBoost": "Pokloni boost",
-    "giftBoostDesc": "Potrošite jedan od svojih na ovu objavu"
+    "giftBoostDesc": "Potrošite jedan od svojih na ovu objavu",
+    "askAi": "Pitaj AI"
   },
   "filters": {
     "sort": "Sortiraj",
@@ -1863,7 +1874,16 @@
     "tryAnotherGenre": "Pokušajte s drugim žanrom.",
     "pauseStation": "Pauziraj stanicu",
     "resumeStation": "Nastavi stanicu",
-    "stopRadio": "Zaustavi radio"
+    "stopRadio": "Zaustavi radio",
+    "playsToday": "Danas {{plays}} slušanja",
+    "listen": "Slušaj",
+    "top50": "Top 50",
+    "playAll": "Reproduciraj sve",
+    "nothingHereYet": "Ovdje još nema ničega.",
+    "likeStation": "Sviđa mi se postaja",
+    "unlikeStation": "Ukloni sviđanje",
+    "shareStation": "Podijeli postaju",
+    "listeningTo": "Slušam {{name}} na DeHubu"
   },
   "notFound": {
     "title": "Stranica nije pronađena",
@@ -5486,7 +5506,16 @@
     "preparingCamera": "Priprema kamere…",
     "reconnecting": "Povezivanje…",
     "connecting": "Povezivanje…",
-    "shopPutOnAir": "Stavite na zrak"
+    "shopPutOnAir": "Stavite na zrak",
+    "streamCount_one": "{{count}} prijenos",
+    "streamCount_other": "Prijenosa: {{count}}",
+    "noOneStreamingGame": "Trenutačno nitko ne prenosi {{game}}.",
+    "seeAllStreams": "Prikaži sve prijenose",
+    "isLiveNow": "{{name}} je uživo",
+    "justChatting": "Samo čavrljanje",
+    "noLiveStreams": "Nema prijenosa uživo",
+    "noOneStreaming": "Trenutačno nitko ne prenosi. Svratite kasnije!",
+    "loadStreamsFailed": "Prijenosi se nisu mogli učitati. Pokušajte ponovno."
   },
   "liveShop": {
     "title": "Kupujte iz ovog prijenosa",
@@ -7218,7 +7247,25 @@
     "presetWhipPanHint": "Brzo zamagljeno okretanje kamere do otkrivanja",
     "presetWhipPanName": "Whip Pan",
     "presetYtSplitHint": "Podijeljeni ekran miniaturica koja priča priču",
-    "presetYtSplitName": "Before / After Thumbnail"
+    "presetYtSplitName": "Before / After Thumbnail",
+    "navAudio": "Zvuk",
+    "navAgents": "Agenti",
+    "heroTitle": "Što danas stvaraš?",
+    "heroSubtitle": "Slike, video, glazba i 3D. Plaćaš po izradi u DHB.",
+    "startCreating": "Počni stvarati",
+    "startCreatingSub": "Otvori studio. Svaka izrada prikazuje cijenu u DHB.",
+    "pickMedium": "Odaberi medij",
+    "moreTools": "Više alata",
+    "yourLibrary": "Tvoja biblioteka",
+    "doorImageNote": "Slike, plakati i obrade",
+    "doorVideoNote": "Isječci iz teksta ili fotografije",
+    "doorAudioNote": "Glasovni alati besplatni",
+    "door3d": "3D",
+    "door3dNote": "Modeli iz upita ili fotografije",
+    "doorAgentsNote": "Chat besplatno",
+    "editorNote": "Izreži na vremenskoj crti",
+    "flowNote": "Poveži korake na platnu",
+    "builderNote": "Napravi aplikaciju iz upita"
   },
   "fractions": {
     "title": "Frakcije",

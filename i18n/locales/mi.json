@@ -818,7 +818,17 @@
     "exportReady": "Ngā pūkete {{count}}, ngā pouwhakaora {{saved}} kua kawea atu.",
     "importDone": "I whai atu ki {{followed}}, i poraka {{blocked}}, ngā kōpaki {{folders}} kua hangaia.",
     "importPartial": "Kāore i taea te whai atu ki ngā pūkete {{count}} — whakahaere anō i te kawemai kia whakamātau anō i aua mea.",
-    "importProgress": "E tono ana {{done}} o {{total}}…"
+    "importProgress": "E tono ana {{done}} o {{total}}…",
+    "themeColor": "Tae kaupapa",
+    "themeColorDesc": "Tīpakohia he tae whaiaro mō tēnei kaupapa",
+    "themeColorReset": "Tautuhi anō",
+    "themeColorWhite": "Mā",
+    "themeColorBlack": "Pango",
+    "themeColorRainbow": "Āniwaniwa",
+    "themeColorBrand": "Waitohu",
+    "themeColorBrandDesc": "Whakamahia ngā tae o tō whakaahua kōtaha",
+    "themeColorBrandNoAvatar": "Tāpirihia he whakaahua kōtaha kia whakamahi ai i ngā tae Waitohu",
+    "themeColorBrandFailed": "Kāore i taea te pānui i ngā tae mai i tō whakaahua kōtaha"
   },
   "common": {
     "mute": "Whakangū",
@@ -1008,7 +1018,8 @@
     "boostPostDesc": "Whakanohia ki runga o te kaupapa kāinga",
     "mintPostDesc": "Whakaputaina tēnei pou ki runga mekameka",
     "giftBoost": "Koha he whakapiki",
-    "giftBoostDesc": "Whakapaua tētahi o āu ki tēnei pou"
+    "giftBoostDesc": "Whakapaua tētahi o āu ki tēnei pou",
+    "askAi": "Pātai ki te AI"
   },
   "filters": {
     "sort": "Raupapa",
@@ -7217,7 +7228,25 @@
     "presetWhipPanHint": "Panuku tere i roto i te whakakitenga",
     "presetWhipPanName": "Whip Pan",
     "presetYtSplitHint": "Ko nga korero e whakaatu ana i tetahi korero",
-    "presetYtSplitName": "Before / After Thumbnail"
+    "presetYtSplitName": "Before / After Thumbnail",
+    "navAudio": "Oro",
+    "navAgents": "Kaihoko",
+    "heroTitle": "He aha tāu e hanga ana i tēnei rā?",
+    "heroSubtitle": "He whakaahua, he ataata, he puoro me te 3D. Utua ia hanganga ki te DHB.",
+    "startCreating": "Tīmata te waihanga",
+    "startCreatingSub": "Huakina te taiwhanga. Ka whakaatu ia Waihanga i tōna utu ki te DHB.",
+    "pickMedium": "Kōwhiria he momo",
+    "moreTools": "Ētahi atu utauta",
+    "yourLibrary": "Tō whare pukapuka",
+    "doorImageNote": "Whakaahua, pānui whakaahua me ngā whakatika",
+    "doorVideoNote": "Topenga mai i te kuputuhi, i te whakaahua rānei",
+    "doorAudioNote": "Utu kore ngā utauta reo",
+    "door3d": "3D",
+    "door3dNote": "Tauira mai i te tono, i te whakaahua rānei",
+    "doorAgentsNote": "Utu kore te kōrero",
+    "editorNote": "Tapahia i runga i te rārangi wā",
+    "flowNote": "Hononga hīkoi i runga i te kānawehi",
+    "builderNote": "Hangaia he taupānga mai i te tono"
   },
   "fractions": {
     "title": "Wāhanga",

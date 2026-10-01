@@ -30,7 +30,7 @@ it('themes inline neutral actions and their dark labels without changing the act
   const result = controlProps(props);
   expect(flatten(result.style)).toMatchObject({ ...skin.centre, height: 44 });
   expect(result.onPress).toBe(action);
-  expect(flatten(result.children[0].props.style).color).toBe(skin.centreIcon);
+  expect(flatten(result.children.props.style).color).toBe(skin.centreIcon);
 });
 
 it('themes neutral utility fills and labels', () => {
@@ -38,8 +38,8 @@ it('themes neutral utility fills and labels', () => {
   const result = controlProps({ onPress: jest.fn(), className: 'h-10 bg-white rounded-xl',
     children: createElement('Text', { className: 'text-black font-semibold' }, 'Save') });
   expect(flatten(result.style)).toMatchObject(skin.centre);
-  expect(result.children[0].props.className).toContain('text-white');
-  expect(result.children[0].props.className).toContain('font-semibold');
+  expect(result.children.props.className).toContain('text-white');
+  expect(result.children.props.className).toContain('font-semibold');
 });
 
 it('preserves bare actions, progress fills and semantic coloured actions', () => {
@@ -74,4 +74,27 @@ it('keeps colour swatches and content previews accurate', () => {
     { onPress: jest.fn(), accessibilityRole: 'button', style: { backgroundColor: '#FFFFFF', width: 30, height: 30 } },
     { onPress: jest.fn(), style: { backgroundColor: '#FFFFFF', aspectRatio: 1.4 }, children: 'Preview' },
   ]) expect(controlProps(props)).toBe(props);
+});
+
+it('keeps a single child single, so one-child wrappers still render', () => {
+  const React = jest.requireActual('react') as typeof import('react');
+  useSkin('hazy');
+  const gallery = createElement('View', { style: { backgroundColor: '#000' } });
+  const detector = createElement('GestureDetector', null, gallery);
+  const result = controlProps({ onPress: jest.fn(), style: { backgroundColor: '#000000' },
+    children: createElement('View', null, createElement('View', null, detector)) });
+  const outer = result.children;
+  expect(Array.isArray(outer)).toBe(false);
+  const painted = outer.props.children.props.children;
+  expect(painted.type).toBe('GestureDetector');
+  expect(() => React.Children.only(painted.props.children)).not.toThrow();
+});
+
+it('still paints every label in a row of children', () => {
+  const skin = useSkin('osaka');
+  const result = controlProps({ onPress: jest.fn(), style: { backgroundColor: '#F4F4F5' },
+    children: [createElement('Text', { key: 'a', style: { color: '#09090B' } }, 'A'),
+      createElement('Text', { key: 'b', style: { color: '#09090B' } }, 'B')] });
+  expect(result.children).toHaveLength(2);
+  for (const label of result.children) expect(flatten(label.props.style).color).toBe(skin.centreIcon);
 });

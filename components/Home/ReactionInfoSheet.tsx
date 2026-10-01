@@ -1,3 +1,4 @@
+import { useSheetClosed } from '../../hooks/useSheetClosed';
 /**
  * Reaction Info Sheet
  * ===================
@@ -120,7 +121,7 @@ const ReactionInfoSheetComponent: React.FC<ReactionInfoSheetProps> = ({
   const SHEET_HEIGHT = screenHeight * SHEET_FRACTION;
   const translateY = useSharedValue(SHEET_HEIGHT);
   const backdropOpacity = useSharedValue(0);
-  const [isFullyClosed, setIsFullyClosed] = useState(!visible);
+  const [isFullyClosed, setIsFullyClosed] = useSheetClosed(visible);
 
   const [people, setPeople] = useState<LikerUser[]>([]);
   const [counts, setCounts] = useState<Partial<Record<PostReaction, number>> | null>(null);

@@ -818,7 +818,17 @@
     "exportReady": "{{count}} հաշիվ(ներ), {{saved}} պահված գրառում(ներ) արտահանված։",
     "importDone": "Բաժանորդագրված {{followed}}, արգելափակված {{blocked}}, {{folders}} թղթապանակ(ներ) ստեղծված։",
     "importPartial": "{{count}} հաշիվ(ներ) չեն կարողացել բաժանորդագրվել — նորից գործարկեք ներմուծումը՝ դրանք նորից փորձելու համար։",
-    "importProgress": "Կիրառվում է {{done}}-ը {{total}}-ից…"
+    "importProgress": "Կիրառվում է {{done}}-ը {{total}}-ից…",
+    "themeColor": "Թեմայի գույն",
+    "themeColorDesc": "Ընտրեք սեփական գույն այս թեմայի համար",
+    "themeColorReset": "Վերականգնել",
+    "themeColorWhite": "Սպիտակ",
+    "themeColorBlack": "Սև",
+    "themeColorRainbow": "Ծիածան",
+    "themeColorBrand": "Բրենդ",
+    "themeColorBrandDesc": "Օգտագործել ձեր պրոֆիլի նկարի գույները",
+    "themeColorBrandNoAvatar": "Ավելացրեք պրոֆիլի նկար՝ բրենդի գույներն օգտագործելու համար",
+    "themeColorBrandFailed": "Չհաջողվեց կարդալ գույները ձեր պրոֆիլի նկարից"
   },
   "common": {
     "mute": "Անջատել ձայնը",
@@ -1008,7 +1018,8 @@
     "boostPostDesc": "Դրեք այն գլխավոր հոսքի վերևում",
     "mintPostDesc": "Հրապարակեք այս գրառումը շղթայում",
     "giftBoost": "Նվիրել ուժեղացում",
-    "giftBoostDesc": "Ծախսեք ձերոնցից մեկը այս գրառման վրա"
+    "giftBoostDesc": "Ծախսեք ձերոնցից մեկը այս գրառման վրա",
+    "askAi": "Հարցնել ԱԲ-ին"
   },
   "filters": {
     "sort": "Տեսակավորել",
@@ -1863,7 +1874,16 @@
     "tryAnotherGenre": "Փորձեք մեկ այլ ժանր ։",
     "pauseStation": "Դադարեցնել կայարանը",
     "resumeStation": "Վերսկսել կայանը",
-    "stopRadio": "Կանգնեցնել ռադիոն"
+    "stopRadio": "Կանգնեցնել ռադիոն",
+    "playsToday": "Այսօր {{plays}} լսում",
+    "listen": "Լսել",
+    "top50": "Թոփ 50",
+    "playAll": "Նվագարկել բոլորը",
+    "nothingHereYet": "Այստեղ դեռ ոչինչ չկա։",
+    "likeStation": "Հավանել կայանը",
+    "unlikeStation": "Չեղարկել հավանումը",
+    "shareStation": "Կիսվել կայանով",
+    "listeningTo": "Լսում եմ {{name}}-ը DeHub-ում"
   },
   "notFound": {
     "title": "Էջը չի գտնվել",
@@ -5486,7 +5506,16 @@
     "shopAllAttached": "Ձեր խանութում ակտիվ ամեն ինչ արդեն այս հեռարձակման մեջ է։",
     "shopNoListings": "Դուք դեռ չունեք որևէ ցուցակ։ Ստեղծեք դրանք նախ՝ վեբ խանութում։",
     "shopEmpty": "Ավելացրեք ինչ-որ բան ձեր խանութից, և դիտողները կարող են գնել այն՝ չլքելով հեռարձակումը։",
-    "shopPutOnAir": "Միացնել եթեր"
+    "shopPutOnAir": "Միացնել եթեր",
+    "streamCount_one": "{{count}} հեռարձակում",
+    "streamCount_other": "{{count}} հեռարձակում",
+    "noOneStreamingGame": "Հիմա ոչ ոք չի հեռարձակում {{game}}։",
+    "seeAllStreams": "Տեսնել բոլոր հեռարձակումները",
+    "isLiveNow": "{{name}}-ը ուղիղ եթերում է",
+    "justChatting": "Պարզապես զրույց",
+    "noLiveStreams": "Ուղիղ հեռարձակումներ չկան",
+    "noOneStreaming": "Հիմա ոչ ոք չի հեռարձակում։ Այցելեք ավելի ուշ։",
+    "loadStreamsFailed": "Չհաջողվեց բեռնել հեռարձակումները։ Կրկին փորձեք։"
   },
   "liveShop": {
     "title": "Գնումներ կատարեք այս հեռարձակումից",
@@ -7217,7 +7246,25 @@
     "presetWhipPanHint": "Շտապ մածկված պան, որը բացահայտում է",
     "presetWhipPanName": "Վիպ Պան",
     "presetYtSplitHint": "Շատրվանային թամբնեյլ, որը պատմում է պատմություն",
-    "presetYtSplitName": "Բեֆոր / Աֆթեր Թամբնեյլ"
+    "presetYtSplitName": "Բեֆոր / Աֆթեր Թամբնեյլ",
+    "navAudio": "Աուդիո",
+    "navAgents": "Գործակալներ",
+    "heroTitle": "Ի՞նչ եք ստեղծում այսօր",
+    "heroSubtitle": "Պատկերներ, տեսանյութ, երաժշտություն և 3D։ Վճարեք յուրաքանչյուր ստեղծման համար DHB-ով։",
+    "startCreating": "Սկսել ստեղծել",
+    "startCreatingSub": "Բացեք ստուդիան։ Յուրաքանչյուր ստեղծում ցույց է տալիս իր գինը DHB-ով։",
+    "pickMedium": "Ընտրեք միջավայրը",
+    "moreTools": "Այլ գործիքներ",
+    "yourLibrary": "Ձեր գրադարանը",
+    "doorImageNote": "Պատկերներ, պաստառներ և խմբագրումներ",
+    "doorVideoNote": "Տեսահատվածներ տեքստից կամ լուսանկարից",
+    "doorAudioNote": "Ձայնային գործիքներն անվճար են",
+    "door3d": "3D",
+    "door3dNote": "Մոդելներ հուշումից կամ լուսանկարից",
+    "doorAgentsNote": "Զրույցն անվճար է",
+    "editorNote": "Կտրեք ժամանակագծի վրա",
+    "flowNote": "Շղթայեք քայլերը կտավի վրա",
+    "builderNote": "Ստեղծեք հավելված հուշումից"
   },
   "fractions": {
     "title": "Կոտորակներ",

@@ -817,7 +817,17 @@
     "exportReady": "{{count}} àwọn ìwé ìròyìn, {{saved}} àwọn ìwé ìròyìn tí a fi pamọ́ ni a gbé jáde.",
     "importDone": "Tẹ̀lé {{followed}}, dènà {{blocked}}, a ṣẹ̀dá {{folders}} àwọn àwòrán.",
     "importPartial": "Àwọn ìwé ìròyìn {{count}} kò le è tẹ̀ lé — ṣàṣàrò ìgbéjáde láti tún wọ́n gbìyànjú.",
-    "importProgress": "A ń fi {{done}} nínú {{total}} sílẹ̀…"
+    "importProgress": "A ń fi {{done}} nínú {{total}} sílẹ̀…",
+    "themeColor": "Àwọ̀ àkòrí",
+    "themeColorDesc": "Yan àwọ̀ àkànṣe fún àkòrí yìí",
+    "themeColorReset": "Tún ṣe",
+    "themeColorWhite": "Funfun",
+    "themeColorBlack": "Dúdú",
+    "themeColorRainbow": "Òṣùmàrè",
+    "themeColorBrand": "Àmì-ọjà",
+    "themeColorBrandDesc": "Lo àwọn àwọ̀ àwòrán profáìlì rẹ",
+    "themeColorBrandNoAvatar": "Fi àwòrán profáìlì kún kí o lè lo àwọn àwọ̀ Àmì-ọjà",
+    "themeColorBrandFailed": "A kò lè ka àwọn àwọ̀ láti àwòrán profáìlì rẹ"
   },
   "common": {
     "mute": "Pa ohùn",
@@ -1007,7 +1017,8 @@
     "boostPostDesc": "Fi sí orí àkọ́kọ́ ti ìṣàn ilé",
     "mintPostDesc": "Tẹ ìfìwéránṣẹ́ yìí jáde lórí ẹ̀wọ̀n",
     "giftBoost": "Ta boost lọ́rẹ",
-    "giftBoostDesc": "Ná ọ̀kan nínú tìrẹ lórí ìfìwéránṣẹ́ yìí"
+    "giftBoostDesc": "Ná ọ̀kan nínú tìrẹ lórí ìfìwéránṣẹ́ yìí",
+    "askAi": "Béèrè lọ́wọ́ AI"
   },
   "filters": {
     "sort": "Tò",
@@ -7213,7 +7224,25 @@
     "presetWhipPanHint": "Àkàrà tí ó yára wọ inú ìfihàn náà",
     "presetWhipPanName": "Whip Pan",
     "presetYtSplitHint": "Àkọlé àwòrán tí ó pín sí ìtàgé tí ó ń sọ ìtàn kan",
-    "presetYtSplitName": "Before / After Thumbnail"
+    "presetYtSplitName": "Before / After Thumbnail",
+    "navAudio": "Ohùn",
+    "navAgents": "Àwọn aṣojú",
+    "heroTitle": "Kí ni ò ń ṣe lónìí?",
+    "heroSubtitle": "Àwòrán, fídíò, orin àti 3D. Sanwó fún ìṣẹ̀dá kọ̀ọ̀kan ní DHB.",
+    "startCreating": "Bẹ̀rẹ̀ ìṣẹ̀dá",
+    "startCreatingSub": "Ṣí ilé-iṣẹ́ náà. Ìṣẹ̀dá kọ̀ọ̀kan ń fi iye owó rẹ̀ hàn ní DHB.",
+    "pickMedium": "Yan irú rẹ̀",
+    "moreTools": "Irinṣẹ́ míràn",
+    "yourLibrary": "Ibi ìkówèsí rẹ",
+    "doorImageNote": "Àwòrán, pátákó ìpolówó àti àtúnṣe",
+    "doorVideoNote": "Agekuru láti inú ọ̀rọ̀ tàbí fọ́tò",
+    "doorAudioNote": "Irinṣẹ́ ohùn jẹ́ ọ̀fẹ́",
+    "door3d": "3D",
+    "door3dNote": "Àwòṣe láti inú ìtọ́sọ́nà tàbí fọ́tò",
+    "doorAgentsNote": "Ìbánisọ̀rọ̀ jẹ́ ọ̀fẹ́",
+    "editorNote": "Gé e lórí ìlà àkókò",
+    "flowNote": "So àwọn ìgbésẹ̀ pọ̀ lórí kanfasi",
+    "builderNote": "Ṣe áàpù láti inú ìtọ́sọ́nà"
   },
   "fractions": {
     "title": "Ìpín",

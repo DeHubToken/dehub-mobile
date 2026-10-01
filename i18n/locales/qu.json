@@ -818,7 +818,17 @@
     "exportReady": "{{count}} yupaykuna, {{saved}} waqaychasqa qillqakuna hawaman apachisqa.",
     "importDone": "{{followed}} qatisqa, {{blocked}} hark'asqa, {{folders}} qillqana mayt'ukuna kamasqa.",
     "importPartial": "{{count}} yupaykunata mana qatiyta atirqankuchu — yapamanta apamuyta purichiy wakmanta kallpachakunaykipaq.",
-    "importProgress": "{{done}} nisqamanta {{total}} nisqamanta mañakuspa..."
+    "importProgress": "{{done}} nisqamanta {{total}} nisqamanta mañakuspa...",
+    "themeColor": "Unancha llimpi",
+    "themeColorDesc": "Kay unanchapaq kikin llimpita akllay",
+    "themeColorReset": "Kutichiy",
+    "themeColorWhite": "Yuraq",
+    "themeColorBlack": "Yana",
+    "themeColorRainbow": "K'uychi",
+    "themeColorBrand": "Marca",
+    "themeColorBrandDesc": "Uyachaykipa llimpinkunata apaykachay",
+    "themeColorBrandNoAvatar": "Marca llimpikunata apaykachanaykipaq, uyachaykita yapay",
+    "themeColorBrandFailed": "Uyachaykimanta llimpikunata mana ñawinchay atirqanchu"
   },
   "common": {
     "mute": "Upallachiy",
@@ -1008,7 +1018,8 @@
     "boostPostDesc": "Qallariy panqapa hanaqninman churay",
     "mintPostDesc": "Kay willayta chain ukhupi willay",
     "giftBoost": "Kallpachayta quy",
-    "giftBoostDesc": "Qampa hukninta kay willaypi gastay"
+    "giftBoostDesc": "Qampa hukninta kay willaypi gastay",
+    "askAi": "AI-ta tapuy"
   },
   "filters": {
     "sort": "Churay",
@@ -7246,7 +7257,25 @@
     "presetWhipPanHint": "Utqaylla borrosa sartenman revelar",
     "presetWhipPanName": "Azote Pan",
     "presetYtSplitHint": "Huk willakuyta willaq pantalla rakisqa uchuy siq’i",
-    "presetYtSplitName": "Ñawpaq / Qhipa Huch&#39;uy siq&#39;i"
+    "presetYtSplitName": "Ñawpaq / Qhipa Huch&#39;uy siq&#39;i",
+    "navAudio": "Audio",
+    "navAgents": "Agentekuna",
+    "heroTitle": "¿Imatataq kunan ruwachkanki?",
+    "heroSubtitle": "Siq'ikuna, video, taki, 3D ima. Sapa ruwasqamanta DHBpi pagay.",
+    "startCreating": "Ruray qallariy",
+    "startCreatingSub": "Estudiota kichay. Sapa Ruray DHBpi chaninta rikuchin.",
+    "pickMedium": "Huk laya akllay",
+    "moreTools": "Aswan yanapakuqkuna",
+    "yourLibrary": "Bibliotecayki",
+    "doorImageNote": "Siq'ikuna, afichekuna, allichasqakuna",
+    "doorVideoNote": "Qillqamanta utaq fotomanta clipkuna",
+    "doorAudioNote": "Kunka yanapakuqkuna qhispi",
+    "door3d": "3D",
+    "door3dNote": "Promptmanta utaq fotomanta modelokuna",
+    "doorAgentsNote": "Rimanakuy qhispi",
+    "editorNote": "Timelinepi kuchuy",
+    "flowNote": "Canvaspi ruwaykunata t'inkiy",
+    "builderNote": "Promptmanta app ruway"
   },
   "fractions": {
     "title": "Rakikuna",

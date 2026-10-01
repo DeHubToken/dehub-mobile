@@ -818,7 +818,17 @@
     "exportReady": "{{count}} ଆକାଉଣ୍ଟ୍, {{saved}} ସଞ୍ଚିତ ପୋଷ୍ଟ୍ ରପ୍ତାନି ହୋଇଛି।",
     "importDone": "{{followed}} ଙ୍କୁ ଅନୁସରଣ କରାଯାଇଛି, {{blocked}} ଙ୍କୁ ଅବରୋଧ କରାଯାଇଛି, {{folders}} ଫୋଲ୍ଡର୍ ତିଆରି ହୋଇଛି।",
     "importPartial": "{{count}} ଆକାଉଣ୍ଟ୍‌ଗୁଡିକୁ ଅନୁସରଣ କରାଯାଇପାରିବ ନାହିଁ — ସେଗୁଡିକୁ ପୁନର୍ବାର ଚେଷ୍ଟା କରିବା ପାଇଁ ପୁଣି ଥରେ ଆମଦାନୀ କରନ୍ତୁ।",
-    "importProgress": "{{done}} ର {{total}} ପ୍ରୟୋଗ କରାଯାଉଛି…"
+    "importProgress": "{{done}} ର {{total}} ପ୍ରୟୋଗ କରାଯାଉଛି…",
+    "themeColor": "ଥିମ ରଙ୍ଗ",
+    "themeColorDesc": "ଏହି ଥିମ ପାଇଁ ଏକ କଷ୍ଟମ ରଙ୍ଗ ବାଛନ୍ତୁ",
+    "themeColorReset": "ରିସେଟ",
+    "themeColorWhite": "ଧଳା",
+    "themeColorBlack": "କଳା",
+    "themeColorRainbow": "ରେନବୋ",
+    "themeColorBrand": "ବ୍ରାଣ୍ଡ",
+    "themeColorBrandDesc": "ଆପଣଙ୍କ ପ୍ରୋଫାଇଲ ଛବିର ରଙ୍ଗ ବ୍ୟବହାର କରନ୍ତୁ",
+    "themeColorBrandNoAvatar": "Brand ରଙ୍ଗ ବ୍ୟବହାର କରିବାକୁ ଏକ ପ୍ରୋଫାଇଲ ଛବି ଯୋଡ଼ନ୍ତୁ",
+    "themeColorBrandFailed": "ଆପଣଙ୍କ ପ୍ରୋଫାଇଲ ଛବିରୁ ରଙ୍ଗ ପଢ଼ି ପାରିଲା ନାହିଁ"
   },
   "common": {
     "mute": "ମ୍ୟୁଟ୍ କରନ୍ତୁ",
@@ -1008,7 +1018,8 @@
     "boostPostDesc": "ଏହାକୁ ହୋମ ଫିଡର ଉପରେ ରଖନ୍ତୁ",
     "mintPostDesc": "ଏହି ପୋଷ୍ଟକୁ ଅନ-ଚେନ ପ୍ରକାଶ କରନ୍ତୁ",
     "giftBoost": "ଏକ ବୁଷ୍ଟ ଉପହାର ଦିଅନ୍ତୁ",
-    "giftBoostDesc": "ଆପଣଙ୍କର ଗୋଟିଏ ଏହି ପୋଷ୍ଟରେ ଖର୍ଚ୍ଚ କରନ୍ତୁ"
+    "giftBoostDesc": "ଆପଣଙ୍କର ଗୋଟିଏ ଏହି ପୋଷ୍ଟରେ ଖର୍ଚ୍ଚ କରନ୍ତୁ",
+    "askAi": "AI କୁ ପଚାରନ୍ତୁ"
   },
   "filters": {
     "sort": "କ୍ରମ",
@@ -7203,7 +7214,25 @@
     "presetVhsGlitchName": "VHS ଗ୍ଲିଚ",
     "presetWhipPanHint": "ପ୍ରକାଶରେ ଦ୍ରୁତ ଅସ୍ପଷ୍ଟ ପାନ୍",
     "presetYtSplitHint": "ଗୋଟିଏ କାହାଣୀକୁ ଦର୍ଶାଇଥିବା ପୃଥକ ପରଦା ସ୍ତମ୍ଭ",
-    "presetYtSplitName": "Thumbnail ପୂର୍ବରୁ / ପରେ"
+    "presetYtSplitName": "Thumbnail ପୂର୍ବରୁ / ପରେ",
+    "navAudio": "ଅଡିଓ",
+    "navAgents": "ଏଜେଣ୍ଟ",
+    "heroTitle": "ଆଜି ଆପଣ କଣ ତିଆରି କରୁଛନ୍ତି?",
+    "heroSubtitle": "ଛବି, ଭିଡିଓ, ସଙ୍ଗୀତ ଏବଂ 3D। ପ୍ରତି ସୃଷ୍ଟି ପାଇଁ DHB ରେ ପେମେଣ୍ଟ କରନ୍ତୁ।",
+    "startCreating": "ସୃଷ୍ଟି ଆରମ୍ଭ କରନ୍ତୁ",
+    "startCreatingSub": "ଷ୍ଟୁଡିଓ ଖୋଲନ୍ତୁ। ପ୍ରତ୍ୟେକ ସୃଷ୍ଟି ଏହାର ମୂଲ୍ୟ DHB ରେ ଦେଖାଏ।",
+    "pickMedium": "ଏକ ମାଧ୍ୟମ ବାଛନ୍ତୁ",
+    "moreTools": "ଅଧିକ ଟୁଲ୍",
+    "yourLibrary": "ଆପଣଙ୍କ ଲାଇବ୍ରେରୀ",
+    "doorImageNote": "ଛବି, ପୋଷ୍ଟର ଏବଂ ଏଡିଟ୍",
+    "doorVideoNote": "ଟେକ୍ସଟ୍ କିମ୍ବା ଫଟୋରୁ କ୍ଲିପ୍",
+    "doorAudioNote": "ଭଏସ୍ ଟୁଲ୍ ମାଗଣା",
+    "door3d": "3D",
+    "door3dNote": "ପ୍ରମ୍ପ୍ଟ କିମ୍ବା ଫଟୋରୁ ମଡେଲ୍",
+    "doorAgentsNote": "ଚାଟ୍ ମାଗଣା",
+    "editorNote": "ଟାଇମଲାଇନରେ କାଟନ୍ତୁ",
+    "flowNote": "କ୍ୟାନଭାସରେ ପଦକ୍ଷେପ ଯୋଡନ୍ତୁ",
+    "builderNote": "ପ୍ରମ୍ପ୍ଟରୁ ଏକ ଆପ୍ ତିଆରି କରନ୍ତୁ"
   },
   "fractions": {
     "title": "ଅଂଶ",

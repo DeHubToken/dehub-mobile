@@ -817,7 +817,17 @@
     "exportReady": "{{count}} አካውንቶች፣ {{saved}} የተቀመጡ ልጥፎች ተልከዋል።",
     "importDone": "{{followed}} ተከታትሏል፣ {{blocked}} ታግዷል፣ {{folders}} አቃፊዎች ተፈጥረዋል።",
     "importPartial": "{{count}} አካውንቶች መከተል አልቻሉም — እንደገና ለመሞከር እንደገና አስመጣ።",
-    "importProgress": "{{done}} ከ {{total}} በማመልከት ላይ…"
+    "importProgress": "{{done}} ከ {{total}} በማመልከት ላይ…",
+    "themeColor": "የገጽታ ቀለም",
+    "themeColorDesc": "ለዚህ ገጽታ ብጁ ቀለም ይምረጡ",
+    "themeColorReset": "ዳግም አስጀምር",
+    "themeColorWhite": "ነጭ",
+    "themeColorBlack": "ጥቁር",
+    "themeColorRainbow": "ቀስተ ደመና",
+    "themeColorBrand": "የምርት ስም",
+    "themeColorBrandDesc": "የመገለጫ ስዕልዎን ቀለሞች ይጠቀሙ",
+    "themeColorBrandNoAvatar": "የምርት ስም ቀለሞችን ለመጠቀም የመገለጫ ስዕል ያክሉ",
+    "themeColorBrandFailed": "ከመገለጫ ስዕልዎ ቀለሞችን ማንበብ አልተቻለም"
   },
   "common": {
     "mute": "ድምፅ አጥፋ",
@@ -1007,7 +1017,8 @@
     "boostPostDesc": "በዋናው ገጽ ላይ ከፍ ያድርጉት",
     "mintPostDesc": "ይህን ልጥፍ በሰንሰለቱ ላይ ያትሙ",
     "giftBoost": "ማበረታቻ በስጦታ ስጥ",
-    "giftBoostDesc": "ከእርስዎ አንዱን በዚህ ልጥፍ ላይ ያውጡ"
+    "giftBoostDesc": "ከእርስዎ አንዱን በዚህ ልጥፍ ላይ ያውጡ",
+    "askAi": "AIን ይጠይቁ"
   },
   "filters": {
     "sort": "ደርድር",
@@ -7231,7 +7242,25 @@
     "presetWhipPanHint": "ፈጣን የተደባለቀ ፓን ወደ መገለጫው",
     "presetWhipPanName": "የዊፕ ፓን",
     "presetYtSplitHint": "ታሪክን የሚናገር የተንሸራታች ማያ ጣት",
-    "presetYtSplitName": "በፊት / Thumbnail በኋላ"
+    "presetYtSplitName": "በፊት / Thumbnail በኋላ",
+    "navAudio": "ኦዲዮ",
+    "navAgents": "ወኪሎች",
+    "heroTitle": "ዛሬ ምን እየሠሩ ነው?",
+    "heroSubtitle": "ምስሎች፣ ቪዲዮ፣ ሙዚቃ እና 3D። ለእያንዳንዱ ፈጠራ በDHB ይክፈሉ።",
+    "startCreating": "መፍጠር ይጀምሩ",
+    "startCreatingSub": "ስቱዲዮውን ይክፈቱ። እያንዳንዱ ፈጠራ ዋጋውን በDHB ያሳያል።",
+    "pickMedium": "ሚዲያ ይምረጡ",
+    "moreTools": "ተጨማሪ መሣሪያዎች",
+    "yourLibrary": "ቤተ-መጽሐፍትዎ",
+    "doorImageNote": "ፎቶዎች፣ ፖስተሮች እና አርትዖቶች",
+    "doorVideoNote": "ከጽሑፍ ወይም ከፎቶ ክሊፖች",
+    "doorAudioNote": "የድምፅ መሣሪያዎች ነፃ",
+    "door3d": "3D",
+    "door3dNote": "ከጥያቄ ወይም ከፎቶ ሞዴሎች",
+    "doorAgentsNote": "ለመወያየት ነፃ",
+    "editorNote": "በጊዜ መስመር ላይ ይቁረጡት",
+    "flowNote": "ደረጃዎችን በሸራ ላይ ያገናኙ",
+    "builderNote": "ከጥያቄ መተግበሪያ ይሥሩ"
   },
   "fractions": {
     "title": "ክፍልፋዮች",

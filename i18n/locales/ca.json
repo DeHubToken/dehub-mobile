@@ -818,7 +818,17 @@
     "exportReady": "{{count}} comptes, {{saved}} s'han desat les publicacions exportades.",
     "importDone": "He seguit {{followed}}, he bloquejat {{blocked}}, s'han creat {{folders}} carpetes.",
     "importPartial": "No s'han pogut seguir els comptes {{count}}. Torna a executar la importació per tornar-los a intentar.",
-    "importProgress": "S'està aplicant {{done}} de {{total}}…"
+    "importProgress": "S'està aplicant {{done}} de {{total}}…",
+    "themeColor": "Color del tema",
+    "themeColorDesc": "Tria un color personalitzat per a aquest tema",
+    "themeColorReset": "Restableix",
+    "themeColorWhite": "Blanc",
+    "themeColorBlack": "Negre",
+    "themeColorRainbow": "Arc de Sant Martí",
+    "themeColorBrand": "Marca",
+    "themeColorBrandDesc": "Fes servir els colors de la teva foto de perfil",
+    "themeColorBrandNoAvatar": "Afegeix una foto de perfil per fer servir els colors de marca",
+    "themeColorBrandFailed": "No s'han pogut llegir els colors de la teva foto de perfil"
   },
   "common": {
     "mute": "Silencia",
@@ -1008,7 +1018,8 @@
     "boostPostDesc": "Posa-la a dalt del canal d'inici",
     "mintPostDesc": "Publica aquesta publicació a la cadena",
     "giftBoost": "Regala un impuls",
-    "giftBoostDesc": "Gasta un dels teus en aquesta publicació"
+    "giftBoostDesc": "Gasta un dels teus en aquesta publicació",
+    "askAi": "Pregunta a la IA"
   },
   "filters": {
     "sort": "Ordenar",
@@ -1863,7 +1874,16 @@
     "tryAnotherGenre": "Prova un altre gènere.",
     "pauseStation": "Posa en pausa l'emissora",
     "resumeStation": "Reprèn l'emissora",
-    "stopRadio": "Atura la ràdio"
+    "stopRadio": "Atura la ràdio",
+    "playsToday": "{{plays}} reproduccions avui",
+    "listen": "Escolta",
+    "top50": "Top 50",
+    "playAll": "Reprodueix-ho tot",
+    "nothingHereYet": "Encara no hi ha res aquí.",
+    "likeStation": "M'agrada l'emissora",
+    "unlikeStation": "Ja no m'agrada l'emissora",
+    "shareStation": "Comparteix l'emissora",
+    "listeningTo": "Escoltant {{name}} a DeHub"
   },
   "notFound": {
     "title": "Pàgina no trobada",
@@ -5486,7 +5506,16 @@
     "preparingCamera": "Preparant la càmera…",
     "reconnecting": "Reconectant…",
     "connecting": "Connectant…",
-    "shopPutOnAir": "Posa-hi aire"
+    "shopPutOnAir": "Posa-hi aire",
+    "streamCount_one": "{{count}} directe",
+    "streamCount_other": "{{count}} directes",
+    "noOneStreamingGame": "Ara ningú no emet {{game}}.",
+    "seeAllStreams": "Mostra tots els directes",
+    "isLiveNow": "{{name}} és en directe",
+    "justChatting": "Només xerrar",
+    "noLiveStreams": "No hi ha directes",
+    "noOneStreaming": "Ara ningú no emet. Torna-hi més tard!",
+    "loadStreamsFailed": "No s'han pogut carregar els directes. Torna-ho a provar."
   },
   "liveShop": {
     "title": "Compra en aquesta emissió",
@@ -7218,7 +7247,25 @@
     "presetWhipPanHint": "Panoràmica ràpida amb desfocus cap a la revelació",
     "presetWhipPanName": "Whip Pan",
     "presetYtSplitHint": "Miniatura de pantalla dividida que conta una història",
-    "presetYtSplitName": "Before / After Thumbnail"
+    "presetYtSplitName": "Before / After Thumbnail",
+    "navAudio": "Àudio",
+    "navAgents": "Agents",
+    "heroTitle": "Què crees avui?",
+    "heroSubtitle": "Imatges, vídeo, música i 3D. Paga per creació en DHB.",
+    "startCreating": "Comença a crear",
+    "startCreatingSub": "Obre l'estudi. Cada creació mostra el preu en DHB.",
+    "pickMedium": "Tria un format",
+    "moreTools": "Més eines",
+    "yourLibrary": "La teva biblioteca",
+    "doorImageNote": "Imatges, pòsters i edicions",
+    "doorVideoNote": "Clips a partir de text o una foto",
+    "doorAudioNote": "Eines de veu gratis",
+    "door3d": "3D",
+    "door3dNote": "Models a partir d'un prompt o una foto",
+    "doorAgentsNote": "Xat gratis",
+    "editorNote": "Munta-ho en una línia de temps",
+    "flowNote": "Encadena passos en un llenç",
+    "builderNote": "Crea una app a partir d'un prompt"
   },
   "fractions": {
     "title": "Fraccions",

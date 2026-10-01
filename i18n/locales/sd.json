@@ -818,7 +818,17 @@
     "exportReady": "{{count}} اڪائونٽ، {{saved}} محفوظ ڪيل پوسٽون برآمد ڪيون ويون.",
     "importDone": "آڳواڻي {{followed}}, بلاڪ ڪيل {{blocked}}, {{folders}} folderز بنايون.",
     "importPartial": "{{count}} اڳواڻي ڏٺي نه سگھيون — پريميئر ڪري انهن کي ڪڍي ڇڪي.",
-    "importProgress": "اپلائينڪ {{done}} آف {{total}}…"
+    "importProgress": "اپلائينڪ {{done}} آف {{total}}…",
+    "themeColor": "ٿيم ڪلر",
+    "themeColorDesc": "هن ٿيم لاءِ ڪسٽم رنگ چونڊيو",
+    "themeColorReset": "ري سيٽ",
+    "themeColorWhite": "اڇو",
+    "themeColorBlack": "ڪارو",
+    "themeColorRainbow": "قوس قزح",
+    "themeColorBrand": "برانڊ",
+    "themeColorBrandDesc": "پنهنجي پروفائل تصوير جا رنگ استعمال ڪريو",
+    "themeColorBrandNoAvatar": "برانڊ رنگ استعمال ڪرڻ لاءِ پروفائل تصوير شامل ڪريو",
+    "themeColorBrandFailed": "پروفائل تصوير مان رنگ پڙهي نه سگهيا"
   },
   "common": {
     "mute": "آواز بند ڪريو",
@@ -1008,7 +1018,8 @@
     "boostPostDesc": "ان کي هوم فيڊ جي مٿان رکو",
     "mintPostDesc": "هي پوسٽ آن چين شايع ڪريو",
     "giftBoost": "هڪ بوسٽ تحفو ڏيو",
-    "giftBoostDesc": "پنهنجو هڪ هن پوسٽ تي خرچ ڪريو"
+    "giftBoostDesc": "پنهنجو هڪ هن پوسٽ تي خرچ ڪريو",
+    "askAi": "AI کان پڇو"
   },
   "filters": {
     "sort": "ترتيب",
@@ -7209,7 +7220,25 @@
     "presetVhsGlitchName": "وي ايڇ ايس گليچ",
     "presetWhipPanHint": "فاسٽ بلاورڊ پين انڪشاف ۾",
     "presetWhipPanName": "وِپ پين",
-    "presetYtSplitName": "ٿمبنيل کان اڳ / بعد ۾"
+    "presetYtSplitName": "ٿمبنيل کان اڳ / بعد ۾",
+    "navAudio": "آڊيو",
+    "navAgents": "ايجنٽس",
+    "heroTitle": "اڄ ڇا ٺاهي رهيا آهيو؟",
+    "heroSubtitle": "تصويرون، وڊيو، موسيقي ۽ 3D. هر تخليق جي ادائيگي DHB ۾ ڪريو.",
+    "startCreating": "ٺاهڻ شروع ڪريو",
+    "startCreatingSub": "اسٽوڊيو کوليو. هر تخليق پنهنجي قيمت DHB ۾ ڏيکاري ٿي.",
+    "pickMedium": "ميڊيم چونڊيو",
+    "moreTools": "وڌيڪ اوزار",
+    "yourLibrary": "توهان جي لائبريري",
+    "doorImageNote": "تصويرون، پوسٽر ۽ ايڊٽس",
+    "doorVideoNote": "ٽيڪسٽ يا فوٽو مان ڪلپس",
+    "doorAudioNote": "آواز جا اوزار مفت",
+    "door3d": "3D",
+    "door3dNote": "پرامپٽ يا فوٽو مان ماڊل",
+    "doorAgentsNote": "چيٽ مفت",
+    "editorNote": "ٽائم لائن تي ڪٽيو",
+    "flowNote": "ڪئنوس تي مرحلا ڳنڍيو",
+    "builderNote": "پرامپٽ مان ايپ ٺاهيو"
   },
   "fractions": {
     "title": "حصا",

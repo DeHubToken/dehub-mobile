@@ -818,7 +818,17 @@
     "exportReady": "{{count}} ఖాతాలు, {{saved}} సేవ్ చేసిన పోస్ట్ ‌ లు ఎగుమతి చేయబడ్డాయి.",
     "importDone": "{{followed}}, {{blocked}}, {{folders}} ఫోల్డర్ ‌ లు సృష్టించబడ్డాయి.",
     "importPartial": "{{count}} ఖాతాలను అనుసరించడం సాధ్యం కాలేదు — వాటిని మళ్లీ ప్రయత్నించడానికి దిగుమతిని మళ్లీ అమలు చేయండి.",
-    "importProgress": "{{done}} ను {{total}} లో అప్లై చేస్తోంది…"
+    "importProgress": "{{done}} ను {{total}} లో అప్లై చేస్తోంది…",
+    "themeColor": "థీమ్ రంగు",
+    "themeColorDesc": "ఈ థీమ్ కోసం మీ ఇష్టమైన రంగు ఎంచుకోండి",
+    "themeColorReset": "రీసెట్",
+    "themeColorWhite": "తెలుపు",
+    "themeColorBlack": "నలుపు",
+    "themeColorRainbow": "ఇంద్రధనుస్సు",
+    "themeColorBrand": "బ్రాండ్",
+    "themeColorBrandDesc": "మీ ప్రొఫైల్ చిత్రం రంగులు వాడండి",
+    "themeColorBrandNoAvatar": "బ్రాండ్ రంగులు వాడటానికి ప్రొఫైల్ చిత్రం జోడించండి",
+    "themeColorBrandFailed": "మీ ప్రొఫైల్ చిత్రం నుంచి రంగులు చదవలేకపోయాం"
   },
   "common": {
     "mute": "మ్యూట్ చేయి",
@@ -1008,7 +1018,8 @@
     "boostPostDesc": "దీన్ని హోమ్ ఫీడ్ పైభాగంలో ఉంచండి",
     "mintPostDesc": "ఈ పోస్ట్‌ను ఆన్-చెయిన్ ప్రచురించండి",
     "giftBoost": "ఒక బూస్ట్ బహుమతిగా ఇవ్వండి",
-    "giftBoostDesc": "మీ వాటిలో ఒకటి ఈ పోస్ట్‌పై ఖర్చు చేయండి"
+    "giftBoostDesc": "మీ వాటిలో ఒకటి ఈ పోస్ట్‌పై ఖర్చు చేయండి",
+    "askAi": "AIని అడగండి"
   },
   "filters": {
     "sort": "సార్ట్",
@@ -1861,7 +1872,16 @@
     "tryAnotherGenre": "మరొక రకాన్ని ప్రయత్నించండి.",
     "pauseStation": "స్టేషన్ ‌ ను పాజ్ చేయండి",
     "resumeStation": "స్టేషన్ ‌ ను తిరిగి ప్రారంభించండి",
-    "stopRadio": "రేడియోను ఆపండి"
+    "stopRadio": "రేడియోను ఆపండి",
+    "playsToday": "ఈరోజు {{plays}} సార్లు విన్నారు",
+    "listen": "వినండి",
+    "top50": "టాప్ 50",
+    "playAll": "అన్నీ ప్లే చేయండి",
+    "nothingHereYet": "ఇక్కడ ఇంకా ఏమీ లేదు.",
+    "likeStation": "స్టేషన్ ఇష్టపడండి",
+    "unlikeStation": "ఇష్టం తీసివేయండి",
+    "shareStation": "స్టేషన్ షేర్ చేయండి",
+    "listeningTo": "DeHub లో {{name}} వింటున్నాను"
   },
   "notFound": {
     "title": "పేజీ కనుగొనబడలేదు",
@@ -5482,7 +5502,16 @@
     "preparingCamera": "కెమెరా సిద్ధం చేస్తోంది…",
     "reconnecting": "తిరిగి కనెక్ట్ అవుతోంది…",
     "connecting": "కనెక్ట్ అవుతోంది…",
-    "shopPutOnAir": "గాలిలో ఉంచండి"
+    "shopPutOnAir": "గాలిలో ఉంచండి",
+    "streamCount_one": "{{count}} స్ట్రీమ్",
+    "streamCount_other": "{{count}} స్ట్రీమ్‌లు",
+    "noOneStreamingGame": "ఇప్పుడు ఎవరూ {{game}} స్ట్రీమ్ చేయడం లేదు.",
+    "seeAllStreams": "అన్ని స్ట్రీమ్‌లు చూడండి",
+    "isLiveNow": "{{name}} లైవ్‌లో ఉన్నారు",
+    "justChatting": "కేవలం చాటింగ్",
+    "noLiveStreams": "లైవ్ స్ట్రీమ్‌లు లేవు",
+    "noOneStreaming": "ఇప్పుడు ఎవరూ స్ట్రీమ్ చేయడం లేదు. తర్వాత మళ్లీ చూడండి!",
+    "loadStreamsFailed": "స్ట్రీమ్‌లను లోడ్ చేయలేకపోయాము. మళ్లీ ప్రయత్నించండి."
   },
   "liveShop": {
     "title": "ఈ స్ట్రీమ్ నుండి కొనండి",
@@ -7211,7 +7240,25 @@
     "presetWhipPanHint": "ఫాస్ట్ బ్లర్డ్ పాన్ రివెల్ కిందికి",
     "presetWhipPanName": "విప్ పాన్",
     "presetYtSplitHint": "కథ చెప్పే విభజించబడిన థంబ్నెయిల్",
-    "presetYtSplitName": "బీఫోర్ / ఆఫ్టర్ థంబ్నెయిల్"
+    "presetYtSplitName": "బీఫోర్ / ఆఫ్టర్ థంబ్నెయిల్",
+    "navAudio": "ఆడియో",
+    "navAgents": "ఏజెంట్లు",
+    "heroTitle": "ఈరోజు మీరు ఏమి సృష్టిస్తున్నారు?",
+    "heroSubtitle": "చిత్రాలు, వీడియో, సంగీతం మరియు 3D. ప్రతి సృష్టికి DHBలో చెల్లించండి.",
+    "startCreating": "సృష్టించడం ప్రారంభించండి",
+    "startCreatingSub": "స్టూడియోను తెరవండి. ప్రతి సృష్టి దాని ధరను DHBలో చూపుతుంది.",
+    "pickMedium": "మాధ్యమాన్ని ఎంచుకోండి",
+    "moreTools": "మరిన్ని టూల్స్",
+    "yourLibrary": "మీ లైబ్రరీ",
+    "doorImageNote": "చిత్రాలు, పోస్టర్లు మరియు ఎడిట్‌లు",
+    "doorVideoNote": "టెక్స్ట్ లేదా ఫోటో నుండి క్లిప్‌లు",
+    "doorAudioNote": "వాయిస్ టూల్స్ ఉచితం",
+    "door3d": "3D",
+    "door3dNote": "ప్రాంప్ట్ లేదా ఫోటో నుండి మోడల్స్",
+    "doorAgentsNote": "చాట్ ఉచితం",
+    "editorNote": "టైమ్‌లైన్‌లో కట్ చేయండి",
+    "flowNote": "కాన్వాస్‌పై దశలను కలపండి",
+    "builderNote": "ప్రాంప్ట్ నుండి యాప్‌ను రూపొందించండి"
   },
   "fractions": {
     "title": "ఫ్రాక్షన్‌లు",

@@ -5,6 +5,7 @@ import { useImageAspect } from "../../hooks/useImageAspect";
 import SmartImage from "../common/SmartImage";
 import { useAppTheme } from "../../context/ThemeContext";
 import { useSettledAutoplay } from "../../hooks/useSettledAutoplay";
+import { useFeedBleed } from "./feedBleed";
 
 interface ContainedFeedImageProps {
   uri: string;
@@ -45,15 +46,29 @@ const ContainedFeedImage: React.FC<ContainedFeedImageProps> = ({
   const animate = useSettledAutoplay(active, uri, 400);
   const { ratio: aspectRatio, onLoad } = useImageAspect(uri);
   const { isMinimal } = useAppTheme();
+  // Minimal and the cinematic system feed both run the image edge to edge.
+  const bleed = !!useFeedBleed();
+  const edgeToEdge = isMinimal || bleed;
   const [measuredWidth, setMeasuredWidth] = useState(fallbackWidth);
   const availableWidth = width ?? measuredWidth;
   const dimensions = useMemo(
-    () => fitFeedImageWithin(
-      availableWidth,
-      aspectRatio,
-      postPage ? postPageMaxHeightFor(screenHeight, availableWidth) : undefined,
-    ),
-    [availableWidth, aspectRatio, postPage, screenHeight],
+    () => bleed
+      // Cinematic feed: always the full width, as tall as the photo up to
+      // the post page cap (the same cap as its videos), and a photo taller
+      // than that is cropped to the box rather than letterboxed.
+      ? {
+          width: availableWidth,
+          height: Math.min(
+            availableWidth / (aspectRatio > 0 ? aspectRatio : 1),
+            postPageMaxHeightFor(screenHeight, availableWidth),
+          ),
+        }
+      : fitFeedImageWithin(
+          availableWidth,
+          aspectRatio,
+          postPage ? postPageMaxHeightFor(screenHeight, availableWidth) : undefined,
+        ),
+    [availableWidth, aspectRatio, postPage, screenHeight, bleed],
   );
 
   const handleLayout = useCallback((event: LayoutChangeEvent) => {
@@ -72,7 +87,7 @@ const ContainedFeedImage: React.FC<ContainedFeedImageProps> = ({
         height: dimensions.height,
         // Minimal runs the column edge to edge, so a portrait image that stops
         // short of the width sits centred rather than hugging one side.
-        alignItems: (isMinimal || postPage) && !compact ? "center" : "flex-start",
+        alignItems: (edgeToEdge || postPage) && !compact ? "center" : "flex-start",
       }}
     >
       {/* Android does not consistently clip expo-image's native surface when
@@ -83,13 +98,13 @@ const ContainedFeedImage: React.FC<ContainedFeedImageProps> = ({
         style={{
           width: dimensions.width,
           height: dimensions.height,
-          borderRadius: isMinimal || postPage ? 0 : FEED_BENTO_RADIUS,
+          borderRadius: edgeToEdge || postPage ? 0 : FEED_BENTO_RADIUS,
           overflow: "hidden",
         }}
       >
         {drawBitmap && <SmartImage
           source={{ uri }}
-          contentFit="contain"
+          contentFit={bleed ? "cover" : "contain"}
           cachePolicy="memory-disk"
           style={{ width: "100%", height: "100%" }}
           recyclingKey={uri}

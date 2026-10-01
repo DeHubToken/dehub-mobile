@@ -818,7 +818,17 @@
     "exportReady": "{{count}} hesap, {{saved}} kayıtlı gönderi dışa aktarıldı.",
     "importDone": "{{followed}} takip edildi, {{blocked}} engellendi, {{folders}} klasör oluşturuldu.",
     "importPartial": "{{count}} hesapları takip edilemedi — yeniden denemek için içe aktarmayı tekrar çalıştırın.",
-    "importProgress": "{{done}}/{{total}} uygulanıyor…"
+    "importProgress": "{{done}}/{{total}} uygulanıyor…",
+    "themeColor": "Tema Rengi",
+    "themeColorDesc": "Bu tema için özel bir renk seçin",
+    "themeColorReset": "Sıfırla",
+    "themeColorWhite": "Beyaz",
+    "themeColorBlack": "Siyah",
+    "themeColorRainbow": "Gökkuşağı",
+    "themeColorBrand": "Marka",
+    "themeColorBrandDesc": "Profil fotoğrafınızın renklerini kullan",
+    "themeColorBrandNoAvatar": "Marka renklerini kullanmak için bir profil fotoğrafı ekleyin",
+    "themeColorBrandFailed": "Profil fotoğrafınızdan renkler okunamadı"
   },
   "common": {
     "mute": "Sesi kapat",
@@ -1008,7 +1018,8 @@
     "boostPostDesc": "Ana akışın en üstüne koy",
     "mintPostDesc": "Bu gönderiyi zincir üzerinde yayınla",
     "giftBoost": "Bir güçlendirme hediye et",
-    "giftBoostDesc": "Kendi hakkından birini bu gönderiye harca"
+    "giftBoostDesc": "Kendi hakkından birini bu gönderiye harca",
+    "askAi": "Yapay zekâya sor"
   },
   "filters": {
     "sort": "Sırala",
@@ -1863,7 +1874,16 @@
     "tryAnotherGenre": "Başka bir tür deneyin.",
     "pauseStation": "İstasyona ara ver",
     "resumeStation": "İstasyona devam et",
-    "stopRadio": "Radyoyu durdur"
+    "stopRadio": "Radyoyu durdur",
+    "playsToday": "Bugün {{plays}} dinlenme",
+    "listen": "Dinle",
+    "top50": "Top 50",
+    "playAll": "Tümünü oynat",
+    "nothingHereYet": "Burada henüz bir şey yok.",
+    "likeStation": "İstasyonu beğen",
+    "unlikeStation": "Beğeniyi kaldır",
+    "shareStation": "İstasyonu paylaş",
+    "listeningTo": "DeHub'da {{name}} dinliyorum"
   },
   "notFound": {
     "title": "Sayfa Bulunamadı",
@@ -5566,7 +5586,16 @@
     "preparingCamera": "Kamera hazırlanıyor…",
     "reconnecting": "Yeniden bağlanıyor…",
     "connecting": "Bağlanıyor…",
-    "shopPutOnAir": "Havalandırın"
+    "shopPutOnAir": "Havalandırın",
+    "streamCount_one": "{{count}} yayın",
+    "streamCount_other": "{{count}} yayın",
+    "noOneStreamingGame": "Şu anda kimse {{game}} yayını yapmıyor.",
+    "seeAllStreams": "Tüm yayınları gör",
+    "isLiveNow": "{{name}} canlı yayında",
+    "justChatting": "Sadece sohbet",
+    "noLiveStreams": "Canlı yayın yok",
+    "noOneStreaming": "Şu anda kimse yayın yapmıyor. Daha sonra tekrar bak!",
+    "loadStreamsFailed": "Yayınlar yüklenemedi. Lütfen tekrar dene."
   },
   "liveShop": {
     "title": "Bu yayından alışveriş yapın",
@@ -7297,7 +7326,25 @@
     "presetWhipPanHint": "Hızlı bir şekilde belirlenen pan ile açıklık",
     "presetWhipPanName": "Whip Pan",
     "presetYtSplitHint": "Bir hikaye anlatan çift ekran thumbnail",
-    "presetYtSplitName": "Önce / Sonra Thumbnail"
+    "presetYtSplitName": "Önce / Sonra Thumbnail",
+    "navAudio": "Ses",
+    "navAgents": "Ajanlar",
+    "heroTitle": "Bugün ne oluşturuyorsunuz?",
+    "heroSubtitle": "Görseller, video, müzik ve 3D. Her üretim için DHB ile ödeyin.",
+    "startCreating": "Oluşturmaya başla",
+    "startCreatingSub": "Stüdyoyu açın. Her oluşturma fiyatını DHB olarak gösterir.",
+    "pickMedium": "Bir medya seçin",
+    "moreTools": "Daha fazla araç",
+    "yourLibrary": "Kütüphaneniz",
+    "doorImageNote": "Görseller, posterler ve düzenlemeler",
+    "doorVideoNote": "Metinden veya fotoğraftan klipler",
+    "doorAudioNote": "Ses araçları ücretsiz",
+    "door3d": "3D",
+    "door3dNote": "İstemden veya fotoğraftan modeller",
+    "doorAgentsNote": "Sohbet ücretsiz",
+    "editorNote": "Zaman çizelgesinde kesin",
+    "flowNote": "Tuvalde adımları zincirleyin",
+    "builderNote": "İstemden uygulama yapın"
   },
   "fractions": {
     "title": "Paylar",

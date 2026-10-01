@@ -818,7 +818,17 @@
     "exportReady": "{{count}} บัญชี {{saved}} ส่งออกโพสต์ที่บันทึกไว้",
     "importDone": "{{followed}} ที่ติดตาม {{blocked}} {{folders}} ไฟล์เก็บไว้",
     "importPartial": "{{count}} บัญชีไม่สามารถติดตามได้ — ทำการอัปเดตอีกครั้งเพื่อพยายามอีกครั้ง",
-    "importProgress": "นำ {{done}} ของ {{total}} ไปใช้"
+    "importProgress": "นำ {{done}} ของ {{total}} ไปใช้",
+    "themeColor": "สีธีม",
+    "themeColorDesc": "เลือกสีกำหนดเองสำหรับธีมนี้",
+    "themeColorReset": "ล้างค่า",
+    "themeColorWhite": "สีขาว",
+    "themeColorBlack": "สีดำ",
+    "themeColorRainbow": "สีรุ้ง",
+    "themeColorBrand": "แบรนด์",
+    "themeColorBrandDesc": "ใซ้สีจากฮูปโปรไฟล์ของเจ้า",
+    "themeColorBrandNoAvatar": "เพิ่มฮูปโปรไฟล์เพื่อใซ้สีแบรนด์",
+    "themeColorBrandFailed": "อ่านสีจากฮูปโปรไฟล์ของเจ้าบ่ได้"
   },
   "common": {
     "mute": "ปิดเสียง",
@@ -1008,7 +1018,8 @@
     "boostPostDesc": "ดันขึ้นบนสุดของฟีดหน้าแฮก",
     "mintPostDesc": "เผยแผ่โพสต์นี้บนเจน",
     "giftBoost": "มอบบูสต์เป๋นของขวัญ",
-    "giftBoostDesc": "ใจ้ของต้านเตื้อนึ่งกับโพสต์นี้"
+    "giftBoostDesc": "ใจ้ของต้านเตื้อนึ่งกับโพสต์นี้",
+    "askAi": "ถาม AI"
   },
   "filters": {
     "sort": "เรียง",
@@ -1863,7 +1874,16 @@
     "tryAnotherGenre": "ลองแนวอื่นเบิ่ง",
     "pauseStation": "หยุดสถานี",
     "resumeStation": "กลับสถานี",
-    "stopRadio": "หยุดวิทยุ"
+    "stopRadio": "หยุดวิทยุ",
+    "playsToday": "วันนี้เล่น {{plays}} ครั้ง",
+    "listen": "ฟัง",
+    "top50": "ท็อป 50",
+    "playAll": "เล่นทั้งหมด",
+    "nothingHereYet": "ยังไม่มีอะไรที่นี่",
+    "likeStation": "ถูกใจสถานี",
+    "unlikeStation": "เลิกถูกใจสถานี",
+    "shareStation": "แชร์สถานี",
+    "listeningTo": "กำลังฟัง {{name}} บน DeHub"
   },
   "notFound": {
     "title": "บ่พบหน้า",
@@ -5486,7 +5506,16 @@
     "preparingCamera": "กำลังเตรียมกล้อง…",
     "reconnecting": "กำลังเชื่อมต่อใหม่…",
     "connecting": "กำลังเชื่อมต่อ…",
-    "shopPutOnAir": "ถ่ายทอดสด"
+    "shopPutOnAir": "ถ่ายทอดสด",
+    "streamCount_one": "{{count}} สตรีม",
+    "streamCount_other": "{{count}} สตรีม",
+    "noOneStreamingGame": "ตอนนี้ไม่มีใครสตรีม {{game}}",
+    "seeAllStreams": "ดูสตรีมทั้งหมด",
+    "isLiveNow": "{{name}} กำลังไลฟ์",
+    "justChatting": "พูดคุยทั่วไป",
+    "noLiveStreams": "ไม่มีไลฟ์สตรีม",
+    "noOneStreaming": "ตอนนี้ไม่มีใครสตรีม กลับมาดูใหม่ภายหลัง!",
+    "loadStreamsFailed": "โหลดสตรีมไม่ได้ ลองอีกครั้ง"
   },
   "liveShop": {
     "title": "ซื้อของจากไลฟ์นี้",
@@ -7211,7 +7240,25 @@
     "presetWhipPanHint": "การบันทึกภาพที่รวดเร็วและเบลอไปสู่การเปิดเผย",
     "presetWhipPanName": "วิป พัน",
     "presetYtSplitHint": "ภาพที่มีภาพสองช่องที่เล่าเรื่องราว",
-    "presetYtSplitName": "เบฟออฟเอฟเตอร์ ทัมไบน์"
+    "presetYtSplitName": "เบฟออฟเอฟเตอร์ ทัมไบน์",
+    "navAudio": "เสียง",
+    "navAgents": "เอเจนต์",
+    "heroTitle": "มื้อนี้เจ้าสิสร้างหยัง?",
+    "heroSubtitle": "ฮูบ วิดีโอ เพลง แล้วกะ 3D จ่ายเทื่อละการสร้างด้วย DHB",
+    "startCreating": "เริ่มสร้าง",
+    "startCreatingSub": "เปิดสตูดิโอ ทุกการสร้างสิสะแดงราคาเป็น DHB",
+    "pickMedium": "เลือกสื่อ",
+    "moreTools": "เครื่องมือเพิ่มเติม",
+    "yourLibrary": "คลังของเจ้า",
+    "doorImageNote": "ฮูบนิ่ง โปสเตอร์ แล้วกะงานแก้ไข",
+    "doorVideoNote": "คลิปจากข้อความหรือฮูบ",
+    "doorAudioNote": "เครื่องมือเสียงฟรี",
+    "door3d": "3D",
+    "door3dNote": "โมเดลจากพรอมต์หรือฮูบ",
+    "doorAgentsNote": "แชทฟรี",
+    "editorNote": "ตัดต่อในไทม์ไลน์",
+    "flowNote": "เชื่อมขั้นตอนในแคนวาส",
+    "builderNote": "สร้างแอปจากพรอมต์"
   },
   "fractions": {
     "title": "ส่วนแบ่ง",

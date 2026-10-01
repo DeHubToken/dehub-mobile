@@ -151,6 +151,8 @@ export interface PostOptionsMenuProps {
   onToggleSave?: () => void;
   /** Open the post's info page. Hosts that can navigate pass this. */
   onInfoPress?: () => void;
+  /** Open the AI sheet for this post, for hosts that carry no AI button of their own. */
+  onAskAi?: () => void;
   /** Hide the report content option (e.g., for livestreams) */
   hideReportContent?: boolean;
   /** Hide the edit option (e.g., for livestreams) */
@@ -232,6 +234,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
   isSaved = false,
   onToggleSave,
   onInfoPress,
+  onAskAi,
   hideReportContent = false,  hideEdit = false,  isAudio = false,}) => {
   const user = useUser();
   const { requireAuth } = useAuthActions();
@@ -545,6 +548,14 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
                 if (togglePinMutation.isPending) return;
                 togglePinMutation.mutate(numericTokenId);
               }}
+            />
+          )}
+
+          {!!onAskAi && (
+            <OptionRow
+              icon="sparkles-outline"
+              label={t("postOptions.askAi")}
+              onPress={() => { onClose(); onAskAi(); }}
             />
           )}
 

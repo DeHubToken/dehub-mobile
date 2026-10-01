@@ -818,7 +818,17 @@
     "exportReady": "{{count}} accounts, {{saved}} opgeslagen berichten geëxporteerd.",
     "importDone": "Gevolgd door {{followed}}, geblokkeerde {{blocked}}, {{folders}} mappen aangemaakt.",
     "importPartial": "{{count}} accounts konden niet worden gevolgd — voer de import opnieuw uit om ze opnieuw te proberen.",
-    "importProgress": "Solliciteren {{done}} van {{total}}…"
+    "importProgress": "Solliciteren {{done}} van {{total}}…",
+    "themeColor": "Themakleur",
+    "themeColorDesc": "Kies een eigen kleur voor dit thema",
+    "themeColorReset": "Herstellen",
+    "themeColorWhite": "Wit",
+    "themeColorBlack": "Zwart",
+    "themeColorRainbow": "Regenboog",
+    "themeColorBrand": "Merk",
+    "themeColorBrandDesc": "Kleuren van je profielfoto gebruiken",
+    "themeColorBrandNoAvatar": "Voeg een profielfoto toe om Merkkleuren te gebruiken",
+    "themeColorBrandFailed": "Kon de kleuren van je profielfoto niet lezen"
   },
   "common": {
     "mute": "Dempen",
@@ -1198,7 +1208,8 @@
     "boostPostDesc": "Zet het bovenaan de startfeed",
     "mintPostDesc": "Publiceer dit bericht on-chain",
     "giftBoost": "Een boost cadeau doen",
-    "giftBoostDesc": "Geef er een van jezelf uit aan dit bericht"
+    "giftBoostDesc": "Geef er een van jezelf uit aan dit bericht",
+    "askAi": "Vraag het AI"
   },
   "filters": {
     "sort": "Sorteren",
@@ -2053,7 +2064,16 @@
     "tryAnotherGenre": "Probeer een ander genre.",
     "pauseStation": "Pauzeer het station",
     "resumeStation": "Hervat het station",
-    "stopRadio": "De radio"
+    "stopRadio": "De radio",
+    "playsToday": "Vandaag {{plays}} keer beluisterd",
+    "listen": "Luisteren",
+    "top50": "Top 50",
+    "playAll": "Alles afspelen",
+    "nothingHereYet": "Hier is nog niets.",
+    "likeStation": "Zender liken",
+    "unlikeStation": "Zender niet meer liken",
+    "shareStation": "Zender delen",
+    "listeningTo": "Ik luister naar {{name}} op DeHub"
   },
   "notFound": {
     "title": "Pagina niet gevonden",
@@ -5707,7 +5727,16 @@
     "preparingCamera": "Camera voorbereiden…",
     "reconnecting": "Opnieuw verbinden…",
     "connecting": "Verbinden…",
-    "shopPutOnAir": "In de lucht zetten"
+    "shopPutOnAir": "In de lucht zetten",
+    "streamCount_one": "{{count}} stream",
+    "streamCount_other": "{{count}} streams",
+    "noOneStreamingGame": "Niemand streamt nu {{game}}.",
+    "seeAllStreams": "Alle streams bekijken",
+    "isLiveNow": "{{name}} is live",
+    "justChatting": "Gewoon kletsen",
+    "noLiveStreams": "Geen livestreams",
+    "noOneStreaming": "Niemand streamt op dit moment. Kom later terug!",
+    "loadStreamsFailed": "Streams konden niet worden geladen. Probeer het opnieuw."
   },
   "liveShop": {
     "title": "Shop in deze stream",
@@ -7503,7 +7532,25 @@
     "presetWhipPanHint": "Snel gefilterd pannen naar de onthulling",
     "presetWhipPanName": "Whip Pan",
     "presetYtSplitHint": "Gesplitste thumbnail die een verhaal vertelt",
-    "presetYtSplitName": "Vóór / Na Thumbnail"
+    "presetYtSplitName": "Vóór / Na Thumbnail",
+    "navAudio": "Audio",
+    "navAgents": "Agents",
+    "heroTitle": "Wat ga je vandaag maken?",
+    "heroSubtitle": "Afbeeldingen, video, muziek en 3D. Betaal per creatie in DHB.",
+    "startCreating": "Begin met maken",
+    "startCreatingSub": "Open de studio. Elke creatie toont de prijs in DHB.",
+    "pickMedium": "Kies een medium",
+    "moreTools": "Meer tools",
+    "yourLibrary": "Je bibliotheek",
+    "doorImageNote": "Stills, posters en bewerkingen",
+    "doorVideoNote": "Clips van tekst of een foto",
+    "doorAudioNote": "Spraaktools gratis",
+    "door3d": "3D",
+    "door3dNote": "Modellen van een prompt of foto",
+    "doorAgentsNote": "Gratis chatten",
+    "editorNote": "Knip het op een tijdlijn",
+    "flowNote": "Koppel stappen op een canvas",
+    "builderNote": "Maak een app van een prompt"
   },
   "fractions": {
     "title": "Fracties",

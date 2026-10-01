@@ -810,7 +810,17 @@
     "tokenBalanceAmount": "{{amount}} ቶክንስ",
     "channelSpeedCount": "{{count}} channel(ታት) ብገዛእ ፍጥነት ይጻወቱ ።",
     "exportReady": "{{count}}መለያታት ፣ {{saved}} ዝተድሓኑ ልኡኽታት ወፃኢ ።",
-    "importPartial": "{{count}} መለያታት ክኽተል ኣይከኣለን — ነቲ ኣታዊ ንምምላስ መሊስካ ስዓቦ ።"
+    "importPartial": "{{count}} መለያታት ክኽተል ኣይከኣለን — ነቲ ኣታዊ ንምምላስ መሊስካ ስዓቦ ።",
+    "themeColor": "ናይ ገጽ ሕብሪ",
+    "themeColorDesc": "ንዚ ገጽ እዚ ብሕታዊ ሕብሪ ምረጽ",
+    "themeColorReset": "ናብ ንቡር መልስ",
+    "themeColorWhite": "ጻዕዳ",
+    "themeColorBlack": "ጸሊም",
+    "themeColorRainbow": "ቀስተ ደመና",
+    "themeColorBrand": "ብራንድ",
+    "themeColorBrandDesc": "ሕብርታት ስእሊ መለለይኻ ተጠቀም",
+    "themeColorBrandNoAvatar": "ናይ ብራንድ ሕብርታት ንምጥቃም፡ ስእሊ መለለዪ ወስኽ",
+    "themeColorBrandFailed": "ካብ ስእሊ መለለይኻ ሕብርታት ከንብብ ኣይከኣለን"
   },
   "common": {
     "mute": "ድምጺ ኣጥፍእ",
@@ -1000,7 +1010,8 @@
     "boostPostDesc": "ኣብ ላዕሊ ናይ ገዛ ፊድ ኣቐምጦ",
     "mintPostDesc": "ነዚ ጽሑፍ ኣብ ሰንሰለት ኣውጽኦ",
     "giftBoost": "ምብርባር ከም ህያብ ሃብ",
-    "giftBoostDesc": "ካብ ናትካ ሓደ ኣብዚ ጽሑፍ ኣውጽእ"
+    "giftBoostDesc": "ካብ ናትካ ሓደ ኣብዚ ጽሑፍ ኣውጽእ",
+    "askAi": "AI ሕተት"
   },
   "filters": {
     "sort": "ደርድር",
@@ -7188,7 +7199,25 @@
     "presetVhsGlitchName": "ብልግልግ ተንኮሳር",
     "presetWhipPanHint": "ኣብ ናይ ምስሊ መግለጺ ናይ ምስሊ መግለጺ",
     "presetYtSplitHint": "ታሪኽ ዝገልጽ ናይ ምስሊ መግለጺ",
-    "presetYtSplitName": "ቅድሚ / ድሕሪ ቶምብኒል"
+    "presetYtSplitName": "ቅድሚ / ድሕሪ ቶምብኒል",
+    "navAudio": "ኦድዮ",
+    "navAgents": "ወከልቲ",
+    "heroTitle": "ሎሚ እንታይ ትፈጥር ኣለኻ?",
+    "heroSubtitle": "ስእልታት፣ ቪድዮ፣ ሙዚቃን 3Dን። ንነፍሲ ወከፍ ፍጥረት ብDHB ክፈል።",
+    "startCreating": "ምፍጣር ጀምር",
+    "startCreatingSub": "ስቱድዮ ክፈት። ነፍሲ ወከፍ ፍጥረት ዋጋኡ ብDHB የርኢ።",
+    "pickMedium": "ማዕከን ምረጽ",
+    "moreTools": "ተወሳኺ መሳርሒታት",
+    "yourLibrary": "ቤተ-መጻሕፍትኻ",
+    "doorImageNote": "ስእልታት፣ ፖስተራትን ምምሕያሻትን",
+    "doorVideoNote": "ክሊፓት ካብ ጽሑፍ ወይ ስእሊ",
+    "doorAudioNote": "መሳርሒታት ድምጺ ነጻ",
+    "door3d": "3D",
+    "door3dNote": "ሞዴላት ካብ መምርሒ ወይ ስእሊ",
+    "doorAgentsNote": "ዕላል ነጻ",
+    "editorNote": "ኣብ መስመር ግዜ ቑረጾ",
+    "flowNote": "ስጉምትታት ኣብ ሸራ ኣተኣሳስር",
+    "builderNote": "ካብ መምርሒ ኤፕ ስራሕ"
   },
   "fractions": {
     "title": "ክፍልታት",

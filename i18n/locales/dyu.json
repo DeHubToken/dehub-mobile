@@ -813,7 +813,17 @@
     "exportReady": "{{count}} accounts, {{saved}} saved posts exported.",
     "importDone": "Followed {{followed}}, blocked {{blocked}}, {{folders}} folders created.",
     "importPartial": "{{count}}kunnafoniw tɛ se ka tugu u kɔ — a to u ka segi ka don.",
-    "importProgress": "{{done}} {{total}}..."
+    "importProgress": "{{done}} {{total}}...",
+    "themeColor": "Taabolo kulɛri",
+    "themeColorDesc": "Kulɛri sugandi i yɛrɛ ma nin taabolo kama",
+    "themeColorReset": "Lasegin",
+    "themeColorWhite": "Jɛman",
+    "themeColorBlack": "Fin",
+    "themeColorRainbow": "Sankaba kulɛri",
+    "themeColorBrand": "Marki",
+    "themeColorBrandDesc": "I ka ja kulɛriw kɛ",
+    "themeColorBrandNoAvatar": "Ja fara walisa ka Marki kulɛriw kɛ",
+    "themeColorBrandFailed": "Kulɛriw ma se ka kalan i ka ja la"
   },
   "common": {
     "mute": "Kan bɔ",
@@ -1003,7 +1013,8 @@
     "boostPostDesc": "A bila so feed sanfɛ",
     "mintPostDesc": "Nin sɛbɛn bɔ kɛnɛ kan chain kan",
     "giftBoost": "Boost di ka kɛ nilifɛn ye",
-    "giftBoostDesc": "I ta kelen musaka nin sɛbɛn kan"
+    "giftBoostDesc": "I ta kelen musaka nin sɛbɛn kan",
+    "askAi": "AI ɲininka"
   },
   "filters": {
     "sort": "A bɛn",
@@ -7182,7 +7193,25 @@
     "presetWhipPanHint": "O kɔ, u ye dumuni kɛ ka ban.",
     "presetWhipPanName": "Pancorvo: Yo sé quién lo ha",
     "presetYtSplitHint": "O ye koo dɔ ye min tun be se ka kɛ.",
-    "presetYtSplitName": "O kɔ, a ye dɔ fara a ka fanga kan."
+    "presetYtSplitName": "O kɔ, a ye dɔ fara a ka fanga kan.",
+    "navAudio": "Kumakan",
+    "navAgents": "Baarakɛlaw",
+    "heroTitle": "I bɛ mun dilan bi?",
+    "heroSubtitle": "Jaw, videyow, donkili ani 3D. I ka dilanni kelen-kelen sara DHB la.",
+    "startCreating": "Dilanni daminɛ",
+    "startCreatingSub": "Sitidiyo da wuli. Dilanni bɛɛ bɛ a sɔngɔ jira DHB la.",
+    "pickMedium": "Fɛɛrɛ dɔ sugandi",
+    "moreTools": "Baarakɛminɛn wɛrɛw",
+    "yourLibrary": "I ka gafemarayɔrɔ",
+    "doorImageNote": "Jaw, pɔsitɛriw ani labɛnniw",
+    "doorVideoNote": "Videyo ka bɔ sɛbɛn walima ja la",
+    "doorAudioNote": "Kumakan baarakɛminɛnw ye fu ye",
+    "door3d": "3D",
+    "door3dNote": "Modɛliw ka bɔ prɔmpiti walima ja la",
+    "doorAgentsNote": "Baro ye fu ye",
+    "editorNote": "A tigɛ waati sira kan",
+    "flowNote": "Taabolow nɔrɔ ɲɔgɔn na kanvasi kan",
+    "builderNote": "Aplikasiyɔn dilan ka bɔ prɔmpiti la"
   },
   "fractions": {
     "title": "Tilaw",

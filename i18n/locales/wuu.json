@@ -817,7 +817,17 @@
     "exportReady": "{{count}}帳號，{{saved}}儲存的貼文匯出。",
     "importDone": "跟隨{{followed}}，封鎖{{blocked}}，{{folders}}資料夾建立。",
     "importPartial": "{{count}}帳號無法跟隨 — 再次執行匯入以重試。",
-    "importProgress": "套用{{done}}個{{total}}…"
+    "importProgress": "套用{{done}}個{{total}}…",
+    "themeColor": "主题颜色",
+    "themeColorDesc": "帮搿只主题拣只自定义颜色",
+    "themeColorReset": "重置",
+    "themeColorWhite": "白色",
+    "themeColorBlack": "黑色",
+    "themeColorRainbow": "彩虹",
+    "themeColorBrand": "品牌",
+    "themeColorBrandDesc": "用侬头像个颜色",
+    "themeColorBrandNoAvatar": "加张头像才好用品牌配色",
+    "themeColorBrandFailed": "读勿出侬头像个颜色"
   },
   "common": {
     "mute": "静音",
@@ -1007,7 +1017,8 @@
     "boostPostDesc": "把它放到首页信息流顶部",
     "mintPostDesc": "把这个帖子发布到链上",
     "giftBoost": "赠送一次助推",
-    "giftBoostDesc": "把你的一次助推花在这个帖子上"
+    "giftBoostDesc": "把你的一次助推花在这个帖子上",
+    "askAi": "问AI"
   },
   "filters": {
     "sort": "排序",
@@ -1862,7 +1873,16 @@
     "tryAnotherGenre": "尝试其他类型。",
     "pauseStation": "暂停电台",
     "resumeStation": "恢复电台",
-    "stopRadio": "停止电台"
+    "stopRadio": "停止电台",
+    "playsToday": "今日播放 {{plays}} 次",
+    "listen": "收听",
+    "top50": "前 50",
+    "playAll": "全部播放",
+    "nothingHereYet": "这里还没有内容。",
+    "likeStation": "喜欢电台",
+    "unlikeStation": "取消喜欢",
+    "shareStation": "分享电台",
+    "listeningTo": "正在 DeHub 收听 {{name}}"
   },
   "notFound": {
     "title": "搜弗到页面",
@@ -5474,7 +5494,16 @@
     "reconnecting": "正在重新连接…",
     "connecting": "正在连接…",
     "shopPutOnAir": "上线",
-    "detailsLivepeerId": "Livepeer 身份："
+    "detailsLivepeerId": "Livepeer 身份：",
+    "streamCount_one": "{{count}} 场直播",
+    "streamCount_other": "{{count}} 场直播",
+    "noOneStreamingGame": "现在没有人在直播 {{game}}。",
+    "seeAllStreams": "查看全部直播",
+    "isLiveNow": "{{name}} 正在直播",
+    "justChatting": "闲聊",
+    "noLiveStreams": "没有直播",
+    "noOneStreaming": "现在没有人在直播，请稍后再来！",
+    "loadStreamsFailed": "无法加载直播，请重试。"
   },
   "liveShop": {
     "title": "在本场直播购物",
@@ -7172,7 +7201,25 @@
     "presetVhsGlitchHint": "老式錄音帶扭曲和顏色渲染",
     "presetVhsGlitchName": "VHS 錄影帶故障",
     "presetWhipPanHint": "快速模糊的鏡頭拉近，揭露",
-    "presetWhipPanName": "鞭打"
+    "presetWhipPanName": "鞭打",
+    "navAudio": "音频",
+    "navAgents": "智能体",
+    "heroTitle": "侬今朝要做啥？",
+    "heroSubtitle": "图片、视频、音乐搭 3D。每趟创作用 DHB 付费。",
+    "startCreating": "开始创作",
+    "startCreatingSub": "打开工作室。每趟创作侪会显示 DHB 价钿。",
+    "pickMedium": "拣一种媒介",
+    "moreTools": "更多工具",
+    "yourLibrary": "侬个库",
+    "doorImageNote": "图片、海报搭剪辑",
+    "doorVideoNote": "用文字或者照片生成片段",
+    "doorAudioNote": "语音工具免费",
+    "door3d": "3D",
+    "door3dNote": "用提示词或者照片生成模型",
+    "doorAgentsNote": "聊天免费",
+    "editorNote": "辣时间线上剪",
+    "flowNote": "辣画布上串步骤",
+    "builderNote": "用提示词做一只应用"
   },
   "fractions": {
     "title": "碎片",

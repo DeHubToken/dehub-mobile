@@ -818,7 +818,17 @@
     "exportReady": "{{count}} comptes, {{saved}} publications enregistrées exportées.",
     "importDone": "Suivi des dossiers {{followed}}, bloqués {{blocked}}, {{folders}} créés.",
     "importPartial": "Les comptes {{count}} n'ont pas pu être suivis. Exécutez à nouveau l'importation pour les réessayer.",
-    "importProgress": "Application de {{done}} sur {{total}}…"
+    "importProgress": "Application de {{done}} sur {{total}}…",
+    "themeColor": "Couleur du thème",
+    "themeColorDesc": "Choisissez une couleur personnalisée pour ce thème",
+    "themeColorReset": "Réinitialiser",
+    "themeColorWhite": "Blanc",
+    "themeColorBlack": "Noir",
+    "themeColorRainbow": "Arc-en-ciel",
+    "themeColorBrand": "Marque",
+    "themeColorBrandDesc": "Utiliser les couleurs de votre photo de profil",
+    "themeColorBrandNoAvatar": "Ajoutez une photo de profil pour utiliser les couleurs de Marque",
+    "themeColorBrandFailed": "Impossible de lire les couleurs de votre photo de profil"
   },
   "common": {
     "mute": "Couper le son",
@@ -1008,7 +1018,8 @@
     "boostPostDesc": "Placez-la en haut du fil d'accueil",
     "mintPostDesc": "Publiez cette publication on-chain",
     "giftBoost": "Offrir un boost",
-    "giftBoostDesc": "Dépensez l'un des vôtres sur cette publication"
+    "giftBoostDesc": "Dépensez l'un des vôtres sur cette publication",
+    "askAi": "Demander à l'IA"
   },
   "filters": {
     "sort": "Trier",
@@ -1863,7 +1874,16 @@
     "tryAnotherGenre": "Essayez un autre genre.",
     "pauseStation": "Mettre la station en pause",
     "resumeStation": "Reprendre la station",
-    "stopRadio": "LA RADIO"
+    "stopRadio": "LA RADIO",
+    "playsToday": "{{plays}} écoutes aujourd'hui",
+    "listen": "Écouter",
+    "top50": "Top 50",
+    "playAll": "Tout lire",
+    "nothingHereYet": "Rien ici pour l'instant.",
+    "likeStation": "Aimer la station",
+    "unlikeStation": "Ne plus aimer la station",
+    "shareStation": "Partager la station",
+    "listeningTo": "J'écoute {{name}} sur DeHub"
   },
   "notFound": {
     "title": "Page non trouvée",
@@ -5570,7 +5590,16 @@
     "preparingCamera": "Préparation de la caméra…",
     "reconnecting": "Reconnexion…",
     "connecting": "Connexion…",
-    "shopPutOnAir": "Mettre à l'air"
+    "shopPutOnAir": "Mettre à l'air",
+    "streamCount_one": "{{count}} live",
+    "streamCount_other": "{{count}} lives",
+    "noOneStreamingGame": "Personne ne diffuse {{game}} en ce moment.",
+    "seeAllStreams": "Voir tous les lives",
+    "isLiveNow": "{{name}} est en live",
+    "justChatting": "Discussion",
+    "noLiveStreams": "Aucun live",
+    "noOneStreaming": "Personne ne diffuse en ce moment. Revenez plus tard !",
+    "loadStreamsFailed": "Impossible de charger les lives. Veuillez réessayer."
   },
   "liveShop": {
     "title": "Achetez dans ce direct",
@@ -7300,7 +7329,25 @@
     "presetWhipPanHint": "Panoramique flouté rapide pour la révélation",
     "presetWhipPanName": "Whip Pan",
     "presetYtSplitHint": "Miniature en split-screen qui raconte une histoire",
-    "presetYtSplitName": "Before / After Thumbnail"
+    "presetYtSplitName": "Before / After Thumbnail",
+    "navAudio": "Audio",
+    "navAgents": "Agents",
+    "heroTitle": "Que créez-vous aujourd’hui ?",
+    "heroSubtitle": "Images, vidéo, musique et 3D. Payez chaque création en DHB.",
+    "startCreating": "Commencer à créer",
+    "startCreatingSub": "Ouvrez le studio. Chaque création affiche son prix en DHB.",
+    "pickMedium": "Choisissez un support",
+    "moreTools": "Plus d’outils",
+    "yourLibrary": "Votre bibliothèque",
+    "doorImageNote": "Images, affiches et retouches",
+    "doorVideoNote": "Clips à partir d’un texte ou d’une photo",
+    "doorAudioNote": "Outils vocaux gratuits",
+    "door3d": "3D",
+    "door3dNote": "Modèles à partir d’un prompt ou d’une photo",
+    "doorAgentsNote": "Chat gratuit",
+    "editorNote": "Montez-le sur une timeline",
+    "flowNote": "Enchaînez des étapes sur un canevas",
+    "builderNote": "Créez une app à partir d’un prompt"
   },
   "fractions": {
     "title": "Fractions",

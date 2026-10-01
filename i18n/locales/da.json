@@ -818,7 +818,17 @@
     "exportReady": "{{count}} konti, {{saved}} gemte indlæg eksporteret.",
     "importDone": "Fulgte {{followed}}, blokerede{{blocked}}, {{folders}} mapper oprettet.",
     "importPartial": "{{count}}-konti kunne ikke følges — kør importen igen for at prøve dem igen.",
-    "importProgress": "Ansøger {{done}}fra{{total}}..."
+    "importProgress": "Ansøger {{done}}fra{{total}}...",
+    "themeColor": "Temafarve",
+    "themeColorDesc": "Vælg en egen farve til dette tema",
+    "themeColorReset": "Nulstil",
+    "themeColorWhite": "Hvid",
+    "themeColorBlack": "Sort",
+    "themeColorRainbow": "Regnbue",
+    "themeColorBrand": "Brand",
+    "themeColorBrandDesc": "Brug farverne fra dit profilbillede",
+    "themeColorBrandNoAvatar": "Tilføj et profilbillede for at bruge brandfarver",
+    "themeColorBrandFailed": "Kunne ikke læse farver fra dit profilbillede"
   },
   "common": {
     "mute": "Slå lyd fra",
@@ -1008,7 +1018,8 @@
     "boostPostDesc": "Læg det øverst i hjemmefeedet",
     "mintPostDesc": "Udgiv dette opslag on-chain",
     "giftBoost": "Giv et boost",
-    "giftBoostDesc": "Brug et af dine på dette opslag"
+    "giftBoostDesc": "Brug et af dine på dette opslag",
+    "askAi": "Spørg AI"
   },
   "filters": {
     "sort": "Sorter",
@@ -1863,7 +1874,16 @@
     "tryAnotherGenre": "Prøv en anden genre.",
     "pauseStation": "Sæt stationen på pause",
     "resumeStation": "Genoptag stationen",
-    "stopRadio": "Stop radioen"
+    "stopRadio": "Stop radioen",
+    "playsToday": "{{plays}} afspilninger i dag",
+    "listen": "Lyt",
+    "top50": "Top 50",
+    "playAll": "Afspil alle",
+    "nothingHereYet": "Intet her endnu.",
+    "likeStation": "Synes godt om stationen",
+    "unlikeStation": "Fjern synes godt om",
+    "shareStation": "Del stationen",
+    "listeningTo": "Lytter til {{name}} på DeHub"
   },
   "notFound": {
     "title": "Siden blev ikke fundet",
@@ -5490,7 +5510,16 @@
     "preparingCamera": "Forbereder kamera…",
     "reconnecting": "Genopretter forbindelse…",
     "connecting": "Forbinder…",
-    "shopPutOnAir": "Sæt luft på"
+    "shopPutOnAir": "Sæt luft på",
+    "streamCount_one": "{{count}} stream",
+    "streamCount_other": "{{count}} streams",
+    "noOneStreamingGame": "Ingen streamer {{game}} lige nu.",
+    "seeAllStreams": "Se alle streams",
+    "isLiveNow": "{{name}} er live",
+    "justChatting": "Bare snak",
+    "noLiveStreams": "Ingen livestreams",
+    "noOneStreaming": "Ingen streamer lige nu. Kig forbi senere!",
+    "loadStreamsFailed": "Kunne ikke indlæse streams. Prøv igen."
   },
   "liveShop": {
     "title": "Shop fra denne stream",
@@ -7219,7 +7248,25 @@
     "presetWhipPanHint": "Snabb sløret pan indtil afsløringen",
     "presetWhipPanName": "Whip Pan",
     "presetYtSplitHint": "Split-screen-thumbnail, der fortæller en historie",
-    "presetYtSplitName": "Before / After Thumbnail"
+    "presetYtSplitName": "Before / After Thumbnail",
+    "navAudio": "Lyd",
+    "navAgents": "Agenter",
+    "heroTitle": "Hvad laver du i dag?",
+    "heroSubtitle": "Billeder, video, musik og 3D. Betal pr. skabelse i DHB.",
+    "startCreating": "Begynd at skabe",
+    "startCreatingSub": "Åbn studiet. Hver skabelse viser sin pris i DHB.",
+    "pickMedium": "Vælg et medie",
+    "moreTools": "Flere værktøjer",
+    "yourLibrary": "Dit bibliotek",
+    "doorImageNote": "Stills, plakater og redigeringer",
+    "doorVideoNote": "Klip fra tekst eller et foto",
+    "doorAudioNote": "Stemmeværktøjer gratis",
+    "door3d": "3D",
+    "door3dNote": "Modeller fra en prompt eller et foto",
+    "doorAgentsNote": "Gratis at chatte",
+    "editorNote": "Klip det på en tidslinje",
+    "flowNote": "Kæd trin sammen på et lærred",
+    "builderNote": "Lav en app fra en prompt"
   },
   "fractions": {
     "title": "Fraktioner",

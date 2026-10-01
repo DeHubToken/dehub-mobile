@@ -818,7 +818,17 @@
     "exportReady": "{{count}} ਅਕਾਊਂਟ, {{saved}} ਸੇਵੇਦ ਪੋਸਟ ਇਕਸਪੋਰਟ ਕੀਤੇ ਗਏ।",
     "importDone": "ਫੋਲੋਵਿੰਗ {{followed}}, ਬਲਾਕ ਕੀਤੇ {{blocked}}, {{folders}} ਫੋਲਡਰਾਂ ਬਣਾਏ ਗਏ।",
     "importPartial": "{{count}} ਅਕਾਊਂਟ ਫੋਲੋਅਰ ਨਹੀਂ ਕੀਤੇ ਗਏ — ਇਮਪੋਰਟ ਫੇਰ ਕਰੋ ਤਾਂਕਿ ਉਹਨਾਂ ਨੂੰ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।",
-    "importProgress": "ਅਪਲਾਈਂਗ {{done}} ਆਫ {{total}}…"
+    "importProgress": "ਅਪਲਾਈਂਗ {{done}} ਆਫ {{total}}…",
+    "themeColor": "ਥੀਮ ਰੰਗ",
+    "themeColorDesc": "ਇਸ ਥੀਮ ਲਈ ਇੱਕ ਕਸਟਮ ਰੰਗ ਚੁਣੋ",
+    "themeColorReset": "ਰੀਸੈੱਟ",
+    "themeColorWhite": "ਚਿੱਟਾ",
+    "themeColorBlack": "ਕਾਲਾ",
+    "themeColorRainbow": "ਰੇਨਬੋ",
+    "themeColorBrand": "ਬ੍ਰੈਂਡ",
+    "themeColorBrandDesc": "ਆਪਣੀ ਪ੍ਰੋਫਾਈਲ ਤਸਵੀਰ ਦੇ ਰੰਗ ਵਰਤੋ",
+    "themeColorBrandNoAvatar": "Brand ਰੰਗ ਵਰਤਣ ਲਈ ਪ੍ਰੋਫਾਈਲ ਤਸਵੀਰ ਸ਼ਾਮਲ ਕਰੋ",
+    "themeColorBrandFailed": "ਤੁਹਾਡੀ ਪ੍ਰੋਫਾਈਲ ਤਸਵੀਰ ਤੋਂ ਰੰਗ ਪੜ੍ਹੇ ਨਹੀਂ ਜਾ ਸਕੇ"
   },
   "common": {
     "mute": "ਮਿਊਟ ਕਰੋ",
@@ -1008,7 +1018,8 @@
     "boostPostDesc": "ਇਸਨੂੰ ਹੋਮ ਫੀਡ ਦੇ ਸਭ ਤੋਂ ਉੱਪਰ ਰੱਖੋ",
     "mintPostDesc": "ਇਹ ਪੋਸਟ ਆਨ-ਚੇਨ ਪ੍ਰਕਾਸ਼ਿਤ ਕਰੋ",
     "giftBoost": "ਇੱਕ ਬੂਸਟ ਤੋਹਫ਼ੇ ਵਜੋਂ ਦਿਓ",
-    "giftBoostDesc": "ਆਪਣਾ ਇੱਕ ਇਸ ਪੋਸਟ ਉੱਤੇ ਖਰਚੋ"
+    "giftBoostDesc": "ਆਪਣਾ ਇੱਕ ਇਸ ਪੋਸਟ ਉੱਤੇ ਖਰਚੋ",
+    "askAi": "AI ਨੂੰ ਪੁੱਛੋ"
   },
   "filters": {
     "sort": "ਕ੍ਰਮ",
@@ -1863,7 +1874,16 @@
     "tryAnotherGenre": "ਇੱਕ ਹੋਰ ਸ਼ੈਲੀ ਅਜ਼ਮਾਓ।",
     "pauseStation": "ਸਟੇਸ਼ਨ ਨੂੰ ਰੋਕੋ",
     "resumeStation": "ਸਟੇਸ਼ਨ ਨੂੰ ਮੁੜ ਸ਼ੁਰੂ ਕਰੋ",
-    "stopRadio": "ਰੇਡੀਓ ਬੰਦ ਕਰੋ"
+    "stopRadio": "ਰੇਡੀਓ ਬੰਦ ਕਰੋ",
+    "playsToday": "ਅੱਜ {{plays}} ਵਾਰ ਸੁਣਿਆ",
+    "listen": "ਸੁਣੋ",
+    "top50": "ਟਾਪ 50",
+    "playAll": "ਸਭ ਚਲਾਓ",
+    "nothingHereYet": "ਇੱਥੇ ਅਜੇ ਕੁਝ ਨਹੀਂ ਹੈ।",
+    "likeStation": "ਸਟੇਸ਼ਨ ਪਸੰਦ ਕਰੋ",
+    "unlikeStation": "ਪਸੰਦ ਹਟਾਓ",
+    "shareStation": "ਸਟੇਸ਼ਨ ਸਾਂਝਾ ਕਰੋ",
+    "listeningTo": "DeHub 'ਤੇ {{name}} ਸੁਣ ਰਿਹਾ ਹਾਂ"
   },
   "notFound": {
     "title": "ਪੰਨਾ ਨਹੀਂ ਮਿਲਿਆ",
@@ -5485,7 +5505,16 @@
     "preparingCamera": "ਕੈਮਰਾ ਤਿਆਰ ਕਰ ਰਿਹਾ ਹੈ…",
     "reconnecting": "ਦੁਬਾਰਾ ਜੁੜ ਰਿਹਾ ਹੈ…",
     "connecting": "ਜੁੜ ਰਿਹਾ ਹੈ…",
-    "shopPutOnAir": "ਹਵਾ 'ਤੇ ਪਾਓ"
+    "shopPutOnAir": "ਹਵਾ 'ਤੇ ਪਾਓ",
+    "streamCount_one": "{{count}} ਸਟ੍ਰੀਮ",
+    "streamCount_other": "{{count}} ਸਟ੍ਰੀਮਾਂ",
+    "noOneStreamingGame": "ਇਸ ਵੇਲੇ ਕੋਈ {{game}} ਸਟ੍ਰੀਮ ਨਹੀਂ ਕਰ ਰਿਹਾ।",
+    "seeAllStreams": "ਸਾਰੀਆਂ ਸਟ੍ਰੀਮਾਂ ਵੇਖੋ",
+    "isLiveNow": "{{name}} ਲਾਈਵ ਹੈ",
+    "justChatting": "ਬੱਸ ਗੱਲਬਾਤ",
+    "noLiveStreams": "ਕੋਈ ਲਾਈਵ ਸਟ੍ਰੀਮ ਨਹੀਂ",
+    "noOneStreaming": "ਇਸ ਵੇਲੇ ਕੋਈ ਸਟ੍ਰੀਮ ਨਹੀਂ ਕਰ ਰਿਹਾ। ਬਾਅਦ ਵਿੱਚ ਵੇਖੋ!",
+    "loadStreamsFailed": "ਸਟ੍ਰੀਮਾਂ ਲੋਡ ਨਹੀਂ ਹੋ ਸਕੀਆਂ। ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।"
   },
   "liveShop": {
     "title": "ਇਸ ਸਟ੍ਰੀਮ ਤੋਂ ਖਰੀਦੋ",
@@ -7214,7 +7243,25 @@
     "presetWhipPanHint": "ਤੇਜ਼ ਭੁਰਾਇਆ ਗਿਆ ਪਾਨ ਰਿਵੇਲ ਵਿੱਚ",
     "presetWhipPanName": "ਵਿਪ ਪਾਨ",
     "presetYtSplitHint": "ਇੱਕ ਸਕ੍ਰੀਨ ਦੀ ਵਿਚ ਦੋ ਹਿੱਸਿਆਂ ਦੀ ਕਹਾਣੀ ਦੱਸਦਾ ਥੰਬਨੇਲ",
-    "presetYtSplitName": "ਬਫੋਰ / ਆਫ਼ਟਰ ਥੰਬਨੇਲ"
+    "presetYtSplitName": "ਬਫੋਰ / ਆਫ਼ਟਰ ਥੰਬਨੇਲ",
+    "navAudio": "ਆਡੀਓ",
+    "navAgents": "ਏਜੰਟ",
+    "heroTitle": "ਅੱਜ ਤੁਸੀਂ ਕੀ ਬਣਾ ਰਹੇ ਹੋ?",
+    "heroSubtitle": "ਤਸਵੀਰਾਂ, ਵੀਡੀਓ, ਸੰਗੀਤ ਅਤੇ 3D। ਹਰ ਰਚਨਾ ਲਈ DHB ਵਿੱਚ ਭੁਗਤਾਨ ਕਰੋ।",
+    "startCreating": "ਬਣਾਉਣਾ ਸ਼ੁਰੂ ਕਰੋ",
+    "startCreatingSub": "ਸਟੂਡੀਓ ਖੋਲ੍ਹੋ। ਹਰ ਰਚਨਾ ਆਪਣੀ ਕੀਮਤ DHB ਵਿੱਚ ਦਿਖਾਉਂਦੀ ਹੈ।",
+    "pickMedium": "ਮਾਧਿਅਮ ਚੁਣੋ",
+    "moreTools": "ਹੋਰ ਟੂਲ",
+    "yourLibrary": "ਤੁਹਾਡੀ ਲਾਇਬ੍ਰੇਰੀ",
+    "doorImageNote": "ਤਸਵੀਰਾਂ, ਪੋਸਟਰ ਅਤੇ ਐਡਿਟ",
+    "doorVideoNote": "ਟੈਕਸਟ ਜਾਂ ਫੋਟੋ ਤੋਂ ਕਲਿੱਪ",
+    "doorAudioNote": "ਵੌਇਸ ਟੂਲ ਮੁਫ਼ਤ",
+    "door3d": "3D",
+    "door3dNote": "ਪ੍ਰੋਂਪਟ ਜਾਂ ਫੋਟੋ ਤੋਂ ਮਾਡਲ",
+    "doorAgentsNote": "ਚੈਟ ਮੁਫ਼ਤ",
+    "editorNote": "ਟਾਈਮਲਾਈਨ 'ਤੇ ਕੱਟੋ",
+    "flowNote": "ਕੈਨਵਸ 'ਤੇ ਕਦਮ ਜੋੜੋ",
+    "builderNote": "ਪ੍ਰੋਂਪਟ ਤੋਂ ਐਪ ਬਣਾਓ"
   },
   "fractions": {
     "title": "ਹਿੱਸੇ",

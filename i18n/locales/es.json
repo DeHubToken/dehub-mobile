@@ -818,7 +818,17 @@
     "exportReady": "{{count}} cuentas, {{saved}} publicaciones guardadas exportadas.",
     "importDone": "Seguí {{followed}}, bloqueé {{blocked}}, {{folders}} carpetas creadas.",
     "importPartial": "No se han podido seguir las cuentas {{count}}. Vuelva a ejecutar la importación para volver a intentarlo.",
-    "importProgress": "Aplicando {{done}} de {{total}}…"
+    "importProgress": "Aplicando {{done}} de {{total}}…",
+    "themeColor": "Color del tema",
+    "themeColorDesc": "Elige un color personalizado para este tema",
+    "themeColorReset": "Restablecer",
+    "themeColorWhite": "Blanco",
+    "themeColorBlack": "Negro",
+    "themeColorRainbow": "Arcoíris",
+    "themeColorBrand": "Marca",
+    "themeColorBrandDesc": "Usar los colores de tu foto de perfil",
+    "themeColorBrandNoAvatar": "Añade una foto de perfil para usar los colores de Marca",
+    "themeColorBrandFailed": "No se pudieron leer los colores de tu foto de perfil"
   },
   "common": {
     "mute": "Silenciar",
@@ -1008,7 +1018,8 @@
     "boostPostDesc": "Ponla arriba del todo en el inicio",
     "mintPostDesc": "Publica esta publicación en la cadena",
     "giftBoost": "Regala un impulso",
-    "giftBoostDesc": "Gasta uno de los tuyos en esta publicación"
+    "giftBoostDesc": "Gasta uno de los tuyos en esta publicación",
+    "askAi": "Preguntar a la IA"
   },
   "filters": {
     "sort": "Ordenar",
@@ -1863,7 +1874,16 @@
     "tryAnotherGenre": "Intenta con otro género.",
     "pauseStation": "Pausar la estación",
     "resumeStation": "Reanudar la estación",
-    "stopRadio": "Detener la radio"
+    "stopRadio": "Detener la radio",
+    "playsToday": "{{plays}} reproducciones hoy",
+    "listen": "Escuchar",
+    "top50": "Top 50",
+    "playAll": "Reproducir todo",
+    "nothingHereYet": "Aún no hay nada aquí.",
+    "likeStation": "Me gusta la emisora",
+    "unlikeStation": "Ya no me gusta la emisora",
+    "shareStation": "Compartir emisora",
+    "listeningTo": "Escuchando {{name}} en DeHub"
   },
   "notFound": {
     "title": "Página no encontrada",
@@ -5566,7 +5586,16 @@
     "preparingCamera": "Preparando cámara…",
     "reconnecting": "Reconectando…",
     "connecting": "Conectando…",
-    "shopPutOnAir": "Poner en el aire"
+    "shopPutOnAir": "Poner en el aire",
+    "streamCount_one": "{{count}} directo",
+    "streamCount_other": "{{count}} directos",
+    "noOneStreamingGame": "Nadie está transmitiendo {{game}} ahora.",
+    "seeAllStreams": "Ver todos los directos",
+    "isLiveNow": "{{name}} está en directo",
+    "justChatting": "Solo charlando",
+    "noLiveStreams": "No hay directos",
+    "noOneStreaming": "Nadie está transmitiendo ahora. ¡Vuelve más tarde!",
+    "loadStreamsFailed": "No se pudieron cargar los directos. Inténtalo de nuevo."
   },
   "liveShop": {
     "title": "Compra en esta emisión",
@@ -7297,7 +7326,25 @@
     "presetWhipPanHint": "Panorámica rápida borrosa hacia el revelado",
     "presetWhipPanName": "Whip Pan",
     "presetYtSplitHint": "Miniatura de pantalla dividida que cuenta una historia",
-    "presetYtSplitName": "Miniatura Antes/Después"
+    "presetYtSplitName": "Miniatura Antes/Después",
+    "navAudio": "Audio",
+    "navAgents": "Agentes",
+    "heroTitle": "¿Qué vas a crear hoy?",
+    "heroSubtitle": "Imágenes, video, música y 3D. Paga por creación en DHB.",
+    "startCreating": "Empieza a crear",
+    "startCreatingSub": "Abre el estudio. Cada creación muestra su precio en DHB.",
+    "pickMedium": "Elige un formato",
+    "moreTools": "Más herramientas",
+    "yourLibrary": "Tu biblioteca",
+    "doorImageNote": "Imágenes, pósteres y ediciones",
+    "doorVideoNote": "Clips a partir de texto o una foto",
+    "doorAudioNote": "Herramientas de voz gratis",
+    "door3d": "3D",
+    "door3dNote": "Modelos a partir de un prompt o una foto",
+    "doorAgentsNote": "Chat gratis",
+    "editorNote": "Edítalo en una línea de tiempo",
+    "flowNote": "Encadena pasos en un lienzo",
+    "builderNote": "Crea una app a partir de un prompt"
   },
   "fractions": {
     "title": "Fracciones",

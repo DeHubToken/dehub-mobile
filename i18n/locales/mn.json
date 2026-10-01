@@ -814,7 +814,17 @@
     "channelSpeedCount": "{{count}} хуудас нь түүхэн хурдлаар ажилладаг.",
     "exportReady": "{{count}} хуудас, {{saved}} хуудасны бичиглэлүүдийг экспортировалагдсан.",
     "importDone": "{{followed}} хуудасуудыг дагаж байгаа, {{blocked}} хуудасуудыг хязруулсан, {{folders}} хуудасууд бүтээгдсэн.",
-    "importPartial": "{{count}} хуудасуудыг дагахаа хүсэх боломжгүй байсан — хуудасуудыг дагахаа хүсэхийг дахин оролдох."
+    "importPartial": "{{count}} хуудасуудыг дагахаа хүсэх боломжгүй байсан — хуудасуудыг дагахаа хүсэхийг дахин оролдох.",
+    "themeColor": "Загварын өнгө",
+    "themeColorDesc": "Энэ загварт зориулж өөрийн өнгө сонгоно уу",
+    "themeColorReset": "Дахин тохируулах",
+    "themeColorWhite": "Цагаан",
+    "themeColorBlack": "Хар",
+    "themeColorRainbow": "Солонго",
+    "themeColorBrand": "Брэнд",
+    "themeColorBrandDesc": "Профайлын зургийнхаа өнгийг ашиглах",
+    "themeColorBrandNoAvatar": "Брэндийн өнгө ашиглахын тулд профайлын зураг нэмнэ үү",
+    "themeColorBrandFailed": "Профайлын зургаас тань өнгийг уншиж чадсангүй"
   },
   "common": {
     "mute": "Дуугүй болгох",
@@ -1004,7 +1014,8 @@
     "boostPostDesc": "Үүнийг нүүр хуудсын өмнө тавь",
     "mintPostDesc": "Энэ нийтлэлийг гинжин дээр нийтэл",
     "giftBoost": "Буст бэлэглэх",
-    "giftBoostDesc": "Өөрийнхөө нэгийг энэ нийтлэлд зарцуул"
+    "giftBoostDesc": "Өөрийнхөө нэгийг энэ нийтлэлд зарцуул",
+    "askAi": "Хиймэл оюунаас асуух"
   },
   "filters": {
     "sort": "Эрэмбэлэх",
@@ -7198,7 +7209,25 @@
     "presetWhipPanHint": "Хурдан пан илчлэгдэх",
     "presetWhipPanName": "Вайп Пан",
     "presetYtSplitHint": "Түүхийг өгүүлдэг хуваах дэлгэцийн өнгөц зураг",
-    "presetYtSplitName": "Дүрслэхээс өмнө / дараа"
+    "presetYtSplitName": "Дүрслэхээс өмнө / дараа",
+    "navAudio": "Аудио",
+    "navAgents": "Агентууд",
+    "heroTitle": "Өнөөдөр юу бүтээх вэ?",
+    "heroSubtitle": "Зураг, видео, хөгжим болон 3D. Бүтээл бүрт DHB-ээр төлнө.",
+    "startCreating": "Бүтээж эхлэх",
+    "startCreatingSub": "Студийг нээнэ үү. Бүтээл бүр үнээ DHB-ээр харуулна.",
+    "pickMedium": "Төрөл сонгох",
+    "moreTools": "Бусад хэрэгсэл",
+    "yourLibrary": "Таны сан",
+    "doorImageNote": "Зураг, постер, засварууд",
+    "doorVideoNote": "Текст эсвэл зургаас клип",
+    "doorAudioNote": "Дуу хоолойн хэрэгсэл үнэгүй",
+    "door3d": "3D",
+    "door3dNote": "Хүсэлт эсвэл зургаас загвар",
+    "doorAgentsNote": "Чат үнэгүй",
+    "editorNote": "Цагийн шугам дээр тайрах",
+    "flowNote": "Зотон дээр алхмуудыг холбох",
+    "builderNote": "Хүсэлтээс апп бүтээх"
   },
   "fractions": {
     "title": "Хувьцаа",

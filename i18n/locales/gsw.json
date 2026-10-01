@@ -818,7 +818,17 @@
     "importDone": "Gfolgt {{followed}}, blockiert {{blocked}}, {{folders}} Ordner erstellt.",
     "importPartial": "{{count}} Konten chönne nüme gfolgt wärde — probiere d'Import wider.",
     "importProgress": "Aanwendunge vo {{done}} vo {{total}}…",
-    "channelSpeedCount": "{{count}} Kanäl spielt uf e chlii Gschwindigkeit."
+    "channelSpeedCount": "{{count}} Kanäl spielt uf e chlii Gschwindigkeit.",
+    "themeColor": "Theme-Farb",
+    "themeColorDesc": "Wähl e eigeti Farb für das Theme",
+    "themeColorReset": "Zruggsetze",
+    "themeColorWhite": "Wiiss",
+    "themeColorBlack": "Schwarz",
+    "themeColorRainbow": "Rägeboge",
+    "themeColorBrand": "Brand",
+    "themeColorBrandDesc": "Bruuch d'Farbe vo dim Profilbild",
+    "themeColorBrandNoAvatar": "Füeg es Profilbild dezue, zum d'Brand-Farbe z'bruuche",
+    "themeColorBrandFailed": "D'Farbe vo dim Profilbild hend nid chöne gläse wärde"
   },
   "common": {
     "mute": "Stumm schalte",
@@ -1008,7 +1018,8 @@
     "boostPostDesc": "Setz ihn zoberscht im Home-Feed",
     "mintPostDesc": "Dä Biitrag on-chain veröffentliche",
     "giftBoost": "Boost verschänke",
-    "giftBoostDesc": "Gib eine vo dine Boosts für dä Biitrag us"
+    "giftBoostDesc": "Gib eine vo dine Boosts für dä Biitrag us",
+    "askAi": "KI frooge"
   },
   "filters": {
     "sort": "Sortiere",
@@ -1863,7 +1874,16 @@
     "tryAnotherGenre": "Versuech en andere Genre.",
     "pauseStation": "Sender pausiere",
     "resumeStation": "Sender wiider aafange",
-    "stopRadio": "Radio stoppe"
+    "stopRadio": "Radio stoppe",
+    "playsToday": "Heute {{plays}}-mal gehört",
+    "listen": "Anhören",
+    "top50": "Top 50",
+    "playAll": "Alle abspielen",
+    "nothingHereYet": "Hier ist noch nichts.",
+    "likeStation": "Sender liken",
+    "unlikeStation": "Sender nicht mehr liken",
+    "shareStation": "Sender teilen",
+    "listeningTo": "Ich höre {{name}} auf DeHub"
   },
   "notFound": {
     "title": "Siite nid gfunde",
@@ -5515,7 +5535,16 @@
     "preparingCamera": "Kamera wird vorbereitet…",
     "reconnecting": "Verbindig wird wiederstellt…",
     "connecting": "Verbinde…",
-    "shopPutOnAir": "Uf Sendig bringe"
+    "shopPutOnAir": "Uf Sendig bringe",
+    "streamCount_one": "{{count}} Stream",
+    "streamCount_other": "{{count}} Streams",
+    "noOneStreamingGame": "Gerade streamt niemand {{game}}.",
+    "seeAllStreams": "Alle Streams ansehen",
+    "isLiveNow": "{{name}} ist live",
+    "justChatting": "Just Chatting",
+    "noLiveStreams": "Keine Livestreams",
+    "noOneStreaming": "Gerade streamt niemand. Schau später wieder vorbei!",
+    "loadStreamsFailed": "Streams konnten nicht geladen werden. Bitte versuche es erneut."
   },
   "liveShop": {
     "title": "I dem Stream iichaufe",
@@ -7240,7 +7269,25 @@
     "presetWhipPanHint": "Schnelle, verwischte Panoramabewegung bis zur Enthüllung",
     "presetWhipPanName": "Whip Pan",
     "presetYtSplitHint": "Split-Screen-Thumbnail, das eine Geschichte erzählt",
-    "presetYtSplitName": "Before / After Thumbnail"
+    "presetYtSplitName": "Before / After Thumbnail",
+    "navAudio": "Audio",
+    "navAgents": "Agente",
+    "heroTitle": "Was machsch hüt?",
+    "heroSubtitle": "Bilder, Video, Musig und 3D. Zahl pro Kreation in DHB.",
+    "startCreating": "Los go erstelle",
+    "startCreatingSub": "Öffne s Studio. Jedi Kreation zeigt ihre Priis in DHB.",
+    "pickMedium": "Wähl es Medium",
+    "moreTools": "Meh Tools",
+    "yourLibrary": "Dini Bibliothek",
+    "doorImageNote": "Bilder, Poster und Bearbeitige",
+    "doorVideoNote": "Clips us Text oder emne Foto",
+    "doorAudioNote": "Stimm-Tools gratis",
+    "door3d": "3D",
+    "door3dNote": "Modell us emne Prompt oder Foto",
+    "doorAgentsNote": "Chatte gratis",
+    "editorNote": "Schnid's uf ere Zitachse",
+    "flowNote": "Verchetti Schritt uf emne Canvas",
+    "builderNote": "Mach e App us emne Prompt"
   },
   "fractions": {
     "title": "Aateil",

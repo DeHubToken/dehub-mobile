@@ -818,7 +818,17 @@
     "importDone": "Kasus {{followed}}, diblokir {{blocked}}, folder {{folders}} dibangun.",
     "importPartial": "{{count}} akun ora bisa diikuti — run import manèh kanggo nyoba lagi.",
     "importProgress": "Ngawon {{done}} saka {{total}}…",
-    "channelSpeedCount": "{{count}} saluran diputer kanthi kecepatan dhewe."
+    "channelSpeedCount": "{{count}} saluran diputer kanthi kecepatan dhewe.",
+    "themeColor": "Warna tema",
+    "themeColorDesc": "Pilih warna dhewe kanggo tema iki",
+    "themeColorReset": "Balekake",
+    "themeColorWhite": "Putih",
+    "themeColorBlack": "Ireng",
+    "themeColorRainbow": "Kluwung",
+    "themeColorBrand": "Merek",
+    "themeColorBrandDesc": "Nganggo warna foto profilmu",
+    "themeColorBrandNoAvatar": "Tambah foto profil kanggo nganggo warna Merek",
+    "themeColorBrandFailed": "Ora bisa maca warna saka foto profilmu"
   },
   "common": {
     "mute": "Bisu",
@@ -1008,7 +1018,8 @@
     "boostPostDesc": "Sèlèhake ing ndhuwur feed omah",
     "mintPostDesc": "Terbitake kiriman iki ing chain",
     "giftBoost": "Menehi boost",
-    "giftBoostDesc": "Gunakake siji duwekmu kanggo kiriman iki"
+    "giftBoostDesc": "Gunakake siji duwekmu kanggo kiriman iki",
+    "askAi": "Takon AI"
   },
   "filters": {
     "sort": "Urutake",
@@ -7213,7 +7224,25 @@
     "presetWhipPanHint": "Pan cepet kabur saking penampilan",
     "presetWhipPanName": "Whip Pan",
     "presetYtSplitHint": "Thumbnail split-screen saking ngisor cerita",
-    "presetYtSplitName": "Before / After Thumbnail"
+    "presetYtSplitName": "Before / After Thumbnail",
+    "navAudio": "Audio",
+    "navAgents": "Agen",
+    "heroTitle": "Arep gawe apa dina iki?",
+    "heroSubtitle": "Gambar, video, musik lan 3D. Bayar saben gawean nganggo DHB.",
+    "startCreating": "Miwiti nggawe",
+    "startCreatingSub": "Bukak studio. Saben gawean nuduhake regane ing DHB.",
+    "pickMedium": "Pilih media",
+    "moreTools": "Piranti liyane",
+    "yourLibrary": "Perpustakaanmu",
+    "doorImageNote": "Gambar, poster lan suntingan",
+    "doorVideoNote": "Klip saka teks utawa foto",
+    "doorAudioNote": "Piranti swara gratis",
+    "door3d": "3D",
+    "door3dNote": "Model saka prompt utawa foto",
+    "doorAgentsNote": "Gratis kanggo ngobrol",
+    "editorNote": "Potong ing timeline",
+    "flowNote": "Rangkai langkah ing kanvas",
+    "builderNote": "Gawe aplikasi saka prompt"
   },
   "fractions": {
     "title": "Bagean",

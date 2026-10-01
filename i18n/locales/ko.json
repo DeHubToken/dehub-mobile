@@ -816,7 +816,17 @@
     "exportReady": "{{count}} 계정, {{saved}} 저장된 게시물이 내보내집니다.",
     "importDone": "{{followed}} 채널을 팔로우, {{blocked}} 채널을 차단, {{folders}} 폴더를 생성합니다.",
     "importPartial": "{{count}} 채널은 팔로우할 수 없습니다 — 다시 시도하려면 import를 실행하세요.",
-    "importProgress": "{{total}} 의 {{done}} 을 (를) 적용하는 중..."
+    "importProgress": "{{total}} 의 {{done}} 을 (를) 적용하는 중...",
+    "themeColor": "테마 색상",
+    "themeColorDesc": "이 테마에 사용할 색상을 직접 고르세요",
+    "themeColorReset": "초기화",
+    "themeColorWhite": "흰색",
+    "themeColorBlack": "검정",
+    "themeColorRainbow": "무지개",
+    "themeColorBrand": "브랜드",
+    "themeColorBrandDesc": "프로필 사진의 색상 사용",
+    "themeColorBrandNoAvatar": "브랜드 색상을 쓰려면 프로필 사진을 추가하세요",
+    "themeColorBrandFailed": "프로필 사진에서 색상을 읽을 수 없습니다"
   },
   "common": {
     "mute": "음소거",
@@ -1006,7 +1016,8 @@
     "boostPostDesc": "홈 피드 맨 위에 올립니다",
     "mintPostDesc": "이 게시물을 온체인에 게시합니다",
     "giftBoost": "부스트 선물하기",
-    "giftBoostDesc": "내 부스트 하나를 이 게시물에 씁니다"
+    "giftBoostDesc": "내 부스트 하나를 이 게시물에 씁니다",
+    "askAi": "AI에게 묻기"
   },
   "filters": {
     "sort": "정렬",
@@ -1861,7 +1872,16 @@
     "tryAnotherGenre": "다른 장르를 시도해 보세요.",
     "pauseStation": "방송국 일시 중지",
     "resumeStation": "방송국 다시 시작",
-    "stopRadio": "라디오 중지"
+    "stopRadio": "라디오 중지",
+    "playsToday": "오늘 {{plays}}회 재생",
+    "listen": "듣기",
+    "top50": "톱 50",
+    "playAll": "모두 재생",
+    "nothingHereYet": "아직 아무것도 없습니다.",
+    "likeStation": "스테이션 좋아요",
+    "unlikeStation": "좋아요 취소",
+    "shareStation": "스테이션 공유",
+    "listeningTo": "DeHub에서 {{name}} 듣는 중"
   },
   "notFound": {
     "title": "페이지를 찾을 수 없음",
@@ -5568,7 +5588,16 @@
     "reconnecting": "다시 연결 중…",
     "connecting": "연결 중…",
     "shopPutOnAir": "방송 출연",
-    "detailsLivepeerId": "라이브피어 ID:"
+    "detailsLivepeerId": "라이브피어 ID:",
+    "streamCount_one": "방송 {{count}}개",
+    "streamCount_other": "방송 {{count}}개",
+    "noOneStreamingGame": "지금 {{game}}을(를) 방송하는 사람이 없습니다.",
+    "seeAllStreams": "모든 방송 보기",
+    "isLiveNow": "{{name}} 님이 라이브 중",
+    "justChatting": "저스트 채팅",
+    "noLiveStreams": "라이브 방송이 없습니다",
+    "noOneStreaming": "지금 방송 중인 사람이 없습니다. 나중에 다시 확인하세요!",
+    "loadStreamsFailed": "방송을 불러오지 못했습니다. 다시 시도하세요."
   },
   "liveShop": {
     "title": "이 방송에서 쇼핑하기",
@@ -7297,7 +7326,25 @@
     "presetWhipPanHint": "빠르게 흐리게 처리된 팬을 노출부에 삽입합니다.",
     "presetWhipPanName": "채찍 팬",
     "presetYtSplitHint": "스토리를 담은 분할 화면 썸네일",
-    "presetYtSplitName": "썸네일 전/후"
+    "presetYtSplitName": "썸네일 전/후",
+    "navAudio": "오디오",
+    "navAgents": "에이전트",
+    "heroTitle": "오늘은 무엇을 만드시나요?",
+    "heroSubtitle": "이미지, 동영상, 음악, 3D. 생성할 때마다 DHB로 결제하세요.",
+    "startCreating": "만들기 시작",
+    "startCreatingSub": "스튜디오를 엽니다. 모든 생성에 DHB 가격이 표시됩니다.",
+    "pickMedium": "미디어 선택",
+    "moreTools": "더 많은 도구",
+    "yourLibrary": "내 라이브러리",
+    "doorImageNote": "스틸, 포스터, 편집",
+    "doorVideoNote": "텍스트나 사진으로 클립 만들기",
+    "doorAudioNote": "음성 도구 무료",
+    "door3d": "3D",
+    "door3dNote": "프롬프트나 사진으로 모델 만들기",
+    "doorAgentsNote": "채팅 무료",
+    "editorNote": "타임라인에서 편집",
+    "flowNote": "캔버스에서 단계 연결",
+    "builderNote": "프롬프트로 앱 만들기"
   },
   "fractions": {
     "title": "프랙션",

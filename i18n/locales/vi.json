@@ -817,7 +817,17 @@
     "channelSpeedCount": "{{count}} kênh phát theo tốc độ của riêng họ.",
     "exportReady": "Đã xuất {{count}} tài khoản, {{saved}} bài đăng đã lưu.",
     "importDone": "Đã theo dõi {{followed}}, đã chặn các thư mục {{blocked}}, {{folders}} được tạo.",
-    "importProgress": "Đang áp dụng {{done}}/{{total}}…"
+    "importProgress": "Đang áp dụng {{done}}/{{total}}…",
+    "themeColor": "Màu chủ đề",
+    "themeColorDesc": "Chọn màu riêng cho chủ đề này",
+    "themeColorReset": "Đặt lại",
+    "themeColorWhite": "Trắng",
+    "themeColorBlack": "Đen",
+    "themeColorRainbow": "Cầu vồng",
+    "themeColorBrand": "Thương hiệu",
+    "themeColorBrandDesc": "Dùng màu từ ảnh đại diện của bạn",
+    "themeColorBrandNoAvatar": "Thêm ảnh đại diện để dùng màu Thương hiệu",
+    "themeColorBrandFailed": "Không đọc được màu từ ảnh đại diện của bạn"
   },
   "common": {
     "mute": "Tắt tiếng",
@@ -1020,7 +1030,8 @@
     "boostPostDesc": "Đưa lên đầu bảng tin chính",
     "mintPostDesc": "Đăng bài này lên chuỗi",
     "giftBoost": "Tặng một boost",
-    "giftBoostDesc": "Dùng một lượt của bạn cho bài này"
+    "giftBoostDesc": "Dùng một lượt của bạn cho bài này",
+    "askAi": "Hỏi AI"
   },
   "filters": {
     "sort": "Sắp xếp",
@@ -1875,7 +1886,16 @@
     "tryAnotherGenre": "Hãy thử một thể loại khác.",
     "pauseStation": "Tạm dừng đài",
     "resumeStation": "Tiếp tục đài",
-    "stopRadio": "Dừng đài phát thanh"
+    "stopRadio": "Dừng đài phát thanh",
+    "playsToday": "{{plays}} lượt nghe hôm nay",
+    "listen": "Nghe",
+    "top50": "Top 50",
+    "playAll": "Phát tất cả",
+    "nothingHereYet": "Chưa có gì ở đây.",
+    "likeStation": "Thích đài",
+    "unlikeStation": "Bỏ thích đài",
+    "shareStation": "Chia sẻ đài",
+    "listeningTo": "Đang nghe {{name}} trên DeHub"
   },
   "notFound": {
     "title": "Không tìm thấy trang",
@@ -5529,7 +5549,16 @@
     "preparingCamera": "Đang chuẩn bị máy ảnh…",
     "reconnecting": "Đang kết nối lại…",
     "connecting": "Đang kết nối…",
-    "shopPutOnAir": "Phát sóng trực tiếp"
+    "shopPutOnAir": "Phát sóng trực tiếp",
+    "streamCount_one": "{{count}} buổi phát",
+    "streamCount_other": "{{count}} buổi phát",
+    "noOneStreamingGame": "Hiện không ai phát {{game}}.",
+    "seeAllStreams": "Xem tất cả buổi phát",
+    "isLiveNow": "{{name}} đang phát trực tiếp",
+    "justChatting": "Trò chuyện",
+    "noLiveStreams": "Không có buổi phát trực tiếp",
+    "noOneStreaming": "Hiện không ai phát trực tiếp. Hãy quay lại sau!",
+    "loadStreamsFailed": "Không thể tải buổi phát. Vui lòng thử lại."
   },
   "liveShop": {
     "title": "Mua sắm từ buổi phát này",
@@ -7335,7 +7364,25 @@
     "presetWhipPanHint": "Pan nhanh bị nhòe vào tiết lộ",
     "presetWhipPanName": "Whip Pan",
     "presetYtSplitHint": "Thumbnail chia đôi cho biết câu chuyện",
-    "presetYtSplitName": "Before / After Thumbnail"
+    "presetYtSplitName": "Before / After Thumbnail",
+    "navAudio": "Âm thanh",
+    "navAgents": "Tác tử",
+    "heroTitle": "Hôm nay bạn sáng tạo gì?",
+    "heroSubtitle": "Hình ảnh, video, âm nhạc và 3D. Trả phí theo từng lần tạo bằng DHB.",
+    "startCreating": "Bắt đầu sáng tạo",
+    "startCreatingSub": "Mở studio. Mỗi lần tạo đều hiển thị giá bằng DHB.",
+    "pickMedium": "Chọn loại nội dung",
+    "moreTools": "Thêm công cụ",
+    "yourLibrary": "Thư viện của bạn",
+    "doorImageNote": "Ảnh tĩnh, áp phích và bản chỉnh sửa",
+    "doorVideoNote": "Clip từ văn bản hoặc ảnh",
+    "doorAudioNote": "Công cụ giọng nói miễn phí",
+    "door3d": "3D",
+    "door3dNote": "Mô hình từ câu lệnh hoặc ảnh",
+    "doorAgentsNote": "Trò chuyện miễn phí",
+    "editorNote": "Cắt trên dòng thời gian",
+    "flowNote": "Nối các bước trên canvas",
+    "builderNote": "Tạo ứng dụng từ câu lệnh"
   },
   "fractions": {
     "title": "Phần sở hữu",

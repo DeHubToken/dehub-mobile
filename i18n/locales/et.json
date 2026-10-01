@@ -818,7 +818,17 @@
     "exportReady": "{{count}} kontod, {{saved}} salvestatud postid eksportitud.",
     "importDone": "Järginud {{followed}}, blokeeritud {{blocked}}, {{folders}} kaustu loodud.",
     "importPartial": "{{count}} kontod ei saanud järgida – käivita import uuesti, et katsta neid uuesti.",
-    "importProgress": "Töötleb {{done}} seast {{total}}…"
+    "importProgress": "Töötleb {{done}} seast {{total}}…",
+    "themeColor": "Teema värv",
+    "themeColorDesc": "Vali sellele teemale oma värv",
+    "themeColorReset": "Lähtesta",
+    "themeColorWhite": "Valge",
+    "themeColorBlack": "Must",
+    "themeColorRainbow": "Vikerkaar",
+    "themeColorBrand": "Bränd",
+    "themeColorBrandDesc": "Kasuta oma profiilipildi värve",
+    "themeColorBrandNoAvatar": "Lisa profiilipilt, et kasutada brändivärve",
+    "themeColorBrandFailed": "Sinu profiilipildilt ei õnnestunud värve lugeda"
   },
   "common": {
     "mute": "Vaigista",
@@ -1008,7 +1018,8 @@
     "boostPostDesc": "Pane see avavoo etteotsa",
     "mintPostDesc": "Avalda see postitus ahelas",
     "giftBoost": "Kingi võimendus",
-    "giftBoostDesc": "Kuluta üks omadest sellele postitusele"
+    "giftBoostDesc": "Kuluta üks omadest sellele postitusele",
+    "askAi": "Küsi tehisintellektilt"
   },
   "filters": {
     "sort": "Sorteeri",
@@ -1863,7 +1874,16 @@
     "tryAnotherGenre": "Proovi teist žanrit.",
     "pauseStation": "Pausi jaam",
     "resumeStation": "Jätka jaama",
-    "stopRadio": "Peata raadio"
+    "stopRadio": "Peata raadio",
+    "playsToday": "Täna {{plays}} kuulamist",
+    "listen": "Kuula",
+    "top50": "Top 50",
+    "playAll": "Esita kõik",
+    "nothingHereYet": "Siin pole veel midagi.",
+    "likeStation": "Meeldib jaam",
+    "unlikeStation": "Eemalda meeldimine",
+    "shareStation": "Jaga jaama",
+    "listeningTo": "Kuulan DeHubis {{name}}"
   },
   "notFound": {
     "title": "Lehte ei leitud",
@@ -5486,7 +5506,16 @@
     "preparingCamera": "Kaamera ettevalmistamine…",
     "reconnecting": "Uuesti ühendamine…",
     "connecting": "Ühendamine…",
-    "shopPutOnAir": "Pange õhk õhku"
+    "shopPutOnAir": "Pange õhk õhku",
+    "streamCount_one": "{{count}} ülekanne",
+    "streamCount_other": "{{count}} ülekannet",
+    "noOneStreamingGame": "Praegu ei kanna keegi {{game}} üle.",
+    "seeAllStreams": "Vaata kõiki ülekandeid",
+    "isLiveNow": "{{name}} on otse-eetris",
+    "justChatting": "Lihtsalt jutt",
+    "noLiveStreams": "Otseülekandeid pole",
+    "noOneStreaming": "Praegu ei kanna keegi üle. Vaata hiljem uuesti!",
+    "loadStreamsFailed": "Ülekandeid ei õnnestunud laadida. Proovi uuesti."
   },
   "liveShop": {
     "title": "Osta sellest voost",
@@ -7217,7 +7246,25 @@
     "presetWhipPanHint": "Kiiresti hägune pann paljastamiseks",
     "presetWhipPanName": "Piitsutuspann",
     "presetYtSplitHint": "Jagatud ekraani pisipilt, mis jutustab loo",
-    "presetYtSplitName": "Enne / pärast pisipilti"
+    "presetYtSplitName": "Enne / pärast pisipilti",
+    "navAudio": "Heli",
+    "navAgents": "Agendid",
+    "heroTitle": "Mida sa täna lood?",
+    "heroSubtitle": "Pildid, video, muusika ja 3D. Maksa iga loomingu eest DHB-s.",
+    "startCreating": "Alusta loomist",
+    "startCreatingSub": "Ava stuudio. Iga loomine näitab oma hinda DHB-s.",
+    "pickMedium": "Vali meedium",
+    "moreTools": "Rohkem tööriistu",
+    "yourLibrary": "Sinu kogu",
+    "doorImageNote": "Pildid, plakatid ja töötlused",
+    "doorVideoNote": "Klipid tekstist või fotost",
+    "doorAudioNote": "Hääletööriistad tasuta",
+    "door3d": "3D",
+    "door3dNote": "Mudelid viibast või fotost",
+    "doorAgentsNote": "Vestlus tasuta",
+    "editorNote": "Lõika ajateljel",
+    "flowNote": "Seo sammud lõuendil",
+    "builderNote": "Loo rakendus viibast"
   },
   "fractions": {
     "title": "Fraktsioonid",

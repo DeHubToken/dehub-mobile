@@ -823,7 +823,17 @@
     "exportReady": "{{count}} অ্যাকাউন্ট, {{saved}} সেভ করা পোস্ট এক্সপোর্ট করা হয়েছে",
     "importDone": "অনুসরণ করা {{followed}}, ব্লক করা {{blocked}}, {{folders}} ফোল্ডার তৈরি করা হয়েছে",
     "importPartial": "{{count}} অ্যাকাউন্ট অনুসরণ করা যায়নি — আবার আপনার আইম্পোর্ট চালান",
-    "importProgress": "আপলোড করা {{done}} অফ {{total}}…"
+    "importProgress": "আপলোড করা {{done}} অফ {{total}}…",
+    "themeColor": "থিম রঙ",
+    "themeColorDesc": "এই থিমের জইন্যে একটা কাস্টম রঙ বাছেন",
+    "themeColorReset": "রিসেট",
+    "themeColorWhite": "সাদা",
+    "themeColorBlack": "কালা",
+    "themeColorRainbow": "রংধনু",
+    "themeColorBrand": "ব্র্যান্ড",
+    "themeColorBrandDesc": "তোমার প্রোফাইল ছবির রঙ ব্যবহার করেন",
+    "themeColorBrandNoAvatar": "Brand রঙ ব্যবহার করার জইন্যে প্রোফাইল ছবি যোগ করেন",
+    "themeColorBrandFailed": "তোমার প্রোফাইল ছবি থাকি রঙ পড়া গেইল না"
   },
   "common": {
     "mute": "আওয়াজ বন্ধ করেন",
@@ -1035,7 +1045,8 @@
     "unpinPost": "আপনার প্রোফাইল থেকে আনপিন করুন",
     "postPinned": "আপনার প্রোফাইলে পিন করা হয়েছে",
     "postUnpinned": "আপনার প্রোফাইল থেকে আনপিন করা হয়েছে",
-    "pinFailed": "এই পোস্টটি পিন বা আনপিন করা যায়নি"
+    "pinFailed": "এই পোস্টটি পিন বা আনপিন করা যায়নি",
+    "askAi": "AI-রে জিগাও"
   },
   "filters": {
     "sort": "সাজান",
@@ -1970,7 +1981,16 @@
     "tryAnotherGenre": "অন্য একটি জেনার চেষ্টা করুন।",
     "pauseStation": "স্টেশনটি পজ করুন",
     "resumeStation": "স্টেশনটি আবার চালু করুন",
-    "stopRadio": "রেডিও বন্ধ করুন"
+    "stopRadio": "রেডিও বন্ধ করুন",
+    "playsToday": "আজ {{plays}} বার শোনা হয়েছে",
+    "listen": "শুনুন",
+    "top50": "সেরা ৫০",
+    "playAll": "সব চালান",
+    "nothingHereYet": "এখানে এখনও কিছু নেই।",
+    "likeStation": "স্টেশন পছন্দ করুন",
+    "unlikeStation": "স্টেশন অপছন্দ করুন",
+    "shareStation": "স্টেশন শেয়ার করুন",
+    "listeningTo": "DeHub-এ {{name}} শুনছি"
   },
   "notFound": {
     "title": "পেজ পাওয়া যায় নাই",
@@ -5603,7 +5623,16 @@
     "preparingCamera": "ক্যামেরা প্রস্তুত হচ্ছে…",
     "reconnecting": "পুনরায় সংযোগ করা হচ্ছে…",
     "connecting": "সংযোগ করা হচ্ছে…",
-    "shopPutOnAir": "বাতাসে রাখুন"
+    "shopPutOnAir": "বাতাসে রাখুন",
+    "streamCount_one": "{{count}}টি স্ট্রিম",
+    "streamCount_other": "{{count}}টি স্ট্রিম",
+    "noOneStreamingGame": "এখন কেউ {{game}} স্ট্রিম করছে না।",
+    "seeAllStreams": "সব স্ট্রিম দেখুন",
+    "isLiveNow": "{{name}} লাইভে আছেন",
+    "justChatting": "শুধু আড্ডা",
+    "noLiveStreams": "কোনো লাইভ স্ট্রিম নেই",
+    "noOneStreaming": "এখন কেউ স্ট্রিম করছে না। পরে আবার দেখুন!",
+    "loadStreamsFailed": "স্ট্রিম লোড করা যায়নি। আবার চেষ্টা করুন।"
   },
   "liveShop": {
     "title": "এই স্ট্রিম থাকি কিনেন",
@@ -7268,7 +7297,25 @@
     "presetWhipPanHint": "দ্রুত ব্লার প্যান প্রকাশ করুন",
     "presetWhipPanName": "হুইপ প্যান",
     "presetYtSplitHint": "একটি স্প্লিট-স্ক্রীন থাম্বনেল যা একটি গল্প বলে",
-    "presetYtSplitName": "বিফোর / আফটার থাম্বনেল"
+    "presetYtSplitName": "বিফোর / আফটার থাম্বনেল",
+    "navAudio": "অডিও",
+    "navAgents": "এজেন্ট",
+    "heroTitle": "আইজ কী বানাইতেছেন?",
+    "heroSubtitle": "ছবি, ভিডিও, গান আর 3D। প্রতিটা বানানির জন্যে DHB-ত দাম দেও।",
+    "startCreating": "বানাওয়া শুরু করো",
+    "startCreatingSub": "স্টুডিও খোলো। প্রতিটা বানানি DHB-ত দাম দেখায়।",
+    "pickMedium": "একটা মাধ্যম বাছো",
+    "moreTools": "আরো টুল",
+    "yourLibrary": "তোমার লাইব্রেরি",
+    "doorImageNote": "ছবি, পোস্টার আর এডিট",
+    "doorVideoNote": "লেখা বা ফটো থাকি ক্লিপ",
+    "doorAudioNote": "ভয়েস টুল ফ্রি",
+    "door3d": "3D",
+    "door3dNote": "প্রম্পট বা ফটো থাকি মডেল",
+    "doorAgentsNote": "চ্যাট ফ্রি",
+    "editorNote": "টাইমলাইনোত কাটো",
+    "flowNote": "ক্যানভাসোত ধাপ জোড়াও",
+    "builderNote": "প্রম্পট থাকি অ্যাপ বানাও"
   },
   "fractions": {
     "title": "ফ্র্যাকশন",

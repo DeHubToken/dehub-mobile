@@ -819,7 +819,17 @@
     "exportReady": "{{count}} rekening, {{saved}} gespaarde posse geëksport.",
     "importDone": "Gevolg van {{followed}}, geblokkeer {{blocked}}, {{folders}} mappen geskep.",
     "importPartial": "{{count}} rekening kon nie gevolg word nie – loop die impor weer om hulle te probeer.",
-    "importProgress": "Toepas {{done}} van {{total}}…"
+    "importProgress": "Toepas {{done}} van {{total}}…",
+    "themeColor": "Temakleur",
+    "themeColorDesc": "Kies 'n eie kleur vir hierdie tema",
+    "themeColorReset": "Herstel",
+    "themeColorWhite": "Wit",
+    "themeColorBlack": "Swart",
+    "themeColorRainbow": "Reënboog",
+    "themeColorBrand": "Handelsmerk",
+    "themeColorBrandDesc": "Gebruik die kleure van jou profielfoto",
+    "themeColorBrandNoAvatar": "Voeg 'n profielfoto by om handelsmerkkleure te gebruik",
+    "themeColorBrandFailed": "Kon nie kleure uit jou profielfoto lees nie"
   },
   "common": {
     "mute": "Demp",
@@ -1009,7 +1019,8 @@
     "boostPostDesc": "Sit dit boaan die tuisstroom",
     "mintPostDesc": "Publiseer hierdie plasing op die ketting",
     "giftBoost": "Skenk 'n hupstoot",
-    "giftBoostDesc": "Bestee een van joune op hierdie plasing"
+    "giftBoostDesc": "Bestee een van joune op hierdie plasing",
+    "askAi": "Vra KI"
   },
   "filters": {
     "sort": "Sorteer",
@@ -1886,7 +1897,16 @@
     "tryAnotherGenre": "Probeer 'n ander genre.",
     "pauseStation": "Pouse die stasie",
     "resumeStation": "Hervat die stasie",
-    "stopRadio": "Stop die radio"
+    "stopRadio": "Stop die radio",
+    "playsToday": "{{plays}} keer vandag gespeel",
+    "listen": "Luister",
+    "top50": "Top 50",
+    "playAll": "Speel alles",
+    "nothingHereYet": "Nog niks hier nie.",
+    "likeStation": "Hou van stasie",
+    "unlikeStation": "Hou nie meer van stasie nie",
+    "shareStation": "Deel stasie",
+    "listeningTo": "Luister na {{name}} op DeHub"
   },
   "notFound": {
     "title": "Bladsy nie gevind nie",
@@ -5519,7 +5539,16 @@
     "preparingCamera": "Kamera word voorberei…",
     "reconnecting": "Herkoppel…",
     "connecting": "Koppel…",
-    "shopPutOnAir": "Sit op die lug"
+    "shopPutOnAir": "Sit op die lug",
+    "streamCount_one": "{{count}} stroom",
+    "streamCount_other": "{{count}} strome",
+    "noOneStreamingGame": "Niemand stroom {{game}} nou nie.",
+    "seeAllStreams": "Sien alle strome",
+    "isLiveNow": "{{name}} is regstreeks",
+    "justChatting": "Net gesels",
+    "noLiveStreams": "Geen regstreekse strome nie",
+    "noOneStreaming": "Niemand stroom nou nie. Kom later terug!",
+    "loadStreamsFailed": "Kon nie strome laai nie. Probeer asseblief weer."
   },
   "liveShop": {
     "title": "Koop uit hierdie uitsending",
@@ -7343,7 +7372,25 @@
     "presetWhipPanHint": "Snel vervagpan na die onthulling",
     "presetWhipPanName": "Whip Pan",
     "presetYtSplitHint": "Gedeelde skerm thumbnail wat 'n storie vertel",
-    "presetYtSplitName": "Before / After Thumbnail"
+    "presetYtSplitName": "Before / After Thumbnail",
+    "navAudio": "Oudio",
+    "navAgents": "Agente",
+    "heroTitle": "Wat maak jy vandag?",
+    "heroSubtitle": "Beelde, video, musiek en 3D. Betaal per skepping in DHB.",
+    "startCreating": "Begin skep",
+    "startCreatingSub": "Maak die studio oop. Elke skepping wys sy prys in DHB.",
+    "pickMedium": "Kies 'n medium",
+    "moreTools": "Meer gereedskap",
+    "yourLibrary": "Jou biblioteek",
+    "doorImageNote": "Stilbeelde, plakkate en redigerings",
+    "doorVideoNote": "Snitte uit teks of 'n foto",
+    "doorAudioNote": "Stemgereedskap gratis",
+    "door3d": "3D",
+    "door3dNote": "Modelle uit 'n opdrag of foto",
+    "doorAgentsNote": "Gratis om te gesels",
+    "editorNote": "Sny dit op 'n tydlyn",
+    "flowNote": "Koppel stappe op 'n doek",
+    "builderNote": "Maak 'n app uit 'n opdrag"
   },
   "fractions": {
     "title": "Fraksies",

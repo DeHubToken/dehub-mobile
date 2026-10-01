@@ -1,3 +1,4 @@
+import { useSheetClosed } from '../../hooks/useSheetClosed';
 import React, {
   memo,
   useCallback,
@@ -94,7 +95,7 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
 
   const translateY = useSharedValue(SHEET_HIDE_OFFSET);
   const backdropOpacity = useSharedValue(0);
-  const [isFullyClosed, setIsFullyClosed] = useState(!visible);
+  const [isFullyClosed, setIsFullyClosed] = useSheetClosed(visible);
 
   const [phase, setPhase] = useState<
     "idle" | "approving" | "sending" | "sent" | "error"

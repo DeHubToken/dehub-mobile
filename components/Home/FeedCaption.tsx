@@ -99,6 +99,12 @@ interface FeedCaptionProps {
   flagged?: boolean;
   /** Which post this is, for a list that reuses one card for another: "see more" starts over when it changes. */
   resetKey?: string;
+  /**
+   * `media`: under edge-to-edge media in the cinematic feed — white, one run
+   * of text, two lines at most, nothing to expand.
+   * `large`: the body of a text-only post, set bigger since it is the post.
+   */
+  variant?: "default" | "media" | "large";
 }
 
 // Measured "see more" verdicts, keyed on the caption content. The verdict
@@ -124,6 +130,7 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
   showCategories = true,
   flagged = false,
   resetKey,
+  variant = "default",
 }) => {
   const verdictKey = `${maxLines}|${description ?? ""}`;
   // Both start over, in the same render, when the card is handed another
@@ -261,6 +268,21 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
     return null;
   }
 
+  if (variant === "media") {
+    if (!hasTitle && !hasDescription) return null;
+    return (
+      <Text style={[MEDIA_TEXT, mono]} numberOfLines={2} ellipsizeMode="tail">
+        {hasTitle && (
+          <Text style={{ fontWeight: "600" }}>{renderSegments(titleSegments, "t", 15)}</Text>
+        )}
+        {hasTitle && hasDescription ? " " : null}
+        {hasDescription && renderSegments(descSegments, "d", 15)}
+      </Text>
+    );
+  }
+
+  const large = variant === "large";
+
   return (
     <View className="mt-2">
       {/* Titles label the media; they should sit with the caption rather than
@@ -268,7 +290,7 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
       {hasTitle && (
         <Text
           className="text-theme-neutrals-100"
-          style={[{ fontSize: 16.8, lineHeight: 23.1 }, mono]}
+          style={[large ? LARGE_TEXT : { fontSize: 16.8, lineHeight: 23.1 }, mono]}
           numberOfLines={fullContent ? undefined : 2}
           ellipsizeMode="tail"
         >
@@ -282,13 +304,13 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
       {hasDescription && (
         <>
           <Text
-            className="text-theme-neutrals-300 mt-1"
-            style={[{ fontSize: 15.75, lineHeight: 23.1 }, mono]}
+            className={large ? "text-theme-neutrals-100 mt-1" : "text-theme-neutrals-300 mt-1"}
+            style={[large ? LARGE_TEXT : { fontSize: 15.75, lineHeight: 23.1 }, mono]}
             numberOfLines={fullContent || expanded ? undefined : maxLines}
             ellipsizeMode="tail"
             onTextLayout={handleTextLayout}
           >
-            {renderSegments(descSegments, "d", 15.75)}
+            {renderSegments(descSegments, "d", large ? 19 : 15.75)}
           </Text>
           {showSeeMore && !fullContent && (
             <TouchableOpacity onPress={toggleExpanded} activeOpacity={0.7}>
@@ -320,6 +342,9 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
     </View>
   );
 };
+
+const MEDIA_TEXT = { color: "#FFFFFF", fontSize: 15, lineHeight: 21 } as const;
+const LARGE_TEXT = { fontSize: 19, lineHeight: 26, fontWeight: "500" } as const;
 
 export const FeedCaption = memo(FeedCaptionComponent);
 export default FeedCaption;

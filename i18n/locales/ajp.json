@@ -818,7 +818,17 @@
     "exportReady": "{{count}} حسابات، {{saved}} منشورات محفوظة مِصدّرة.",
     "importDone": "متابع {{followed}}، حظر {{blocked}}، {{folders}} مجلدات مِنشأة.",
     "importPartial": "{{count}} حسابات ما قدرنا نتابعها — شغّل الاستيراد مرة تانية لتجربتها.",
-    "importProgress": "عم نطبّق {{done}} من {{total}}…"
+    "importProgress": "عم نطبّق {{done}} من {{total}}…",
+    "themeColor": "لون الثيم",
+    "themeColorDesc": "اختار لون مخصص لهاد الثيم",
+    "themeColorReset": "ارجع للأصل",
+    "themeColorWhite": "أبيض",
+    "themeColorBlack": "أسود",
+    "themeColorRainbow": "قوس قزح",
+    "themeColorBrand": "البراند",
+    "themeColorBrandDesc": "استخدم ألوان صورة بروفايلك",
+    "themeColorBrandNoAvatar": "ضيف صورة بروفايل عشان تستخدم ألوان البراند",
+    "themeColorBrandFailed": "ما قدرنا نقرا الألوان من صورة بروفايلك"
   },
   "common": {
     "mute": "اكتم الصوت",
@@ -1008,7 +1018,8 @@
     "boostPostDesc": "خليه بأعلى الصفحة الرئيسية",
     "mintPostDesc": "انشر هالمنشور عالسلسلة",
     "giftBoost": "اهدي دفعة",
-    "giftBoostDesc": "اصرف وحدة من تبعك عهالمنشور"
+    "giftBoostDesc": "اصرف وحدة من تبعك عهالمنشور",
+    "askAi": "اسأل الذكاء الاصطناعي"
   },
   "filters": {
     "sort": "ترتيب",
@@ -1863,7 +1874,16 @@
     "tryAnotherGenre": "جرّب نوع تاني.",
     "pauseStation": "وقف المحطة",
     "resumeStation": "استأنف المحطة",
-    "stopRadio": "وقّف الراديو"
+    "stopRadio": "وقّف الراديو",
+    "playsToday": "{{plays}} تشغيل اليوم",
+    "listen": "استمع",
+    "top50": "أفضل 50",
+    "playAll": "تشغيل الكل",
+    "nothingHereYet": "لا يوجد شيء هنا بعد.",
+    "likeStation": "أعجبني المحطة",
+    "unlikeStation": "إلغاء الإعجاب بالمحطة",
+    "shareStation": "مشاركة المحطة",
+    "listeningTo": "أستمع إلى {{name}} على DeHub"
   },
   "notFound": {
     "title": "الصفحة مش موجودة",
@@ -5479,7 +5499,16 @@
     "preparingCamera": "جاري تجهيز الكاميرا…",
     "reconnecting": "جارٍ إعادة الاتصال…",
     "connecting": "جارٍ الاتصال…",
-    "shopPutOnAir": "وضع على الهواء"
+    "shopPutOnAir": "وضع على الهواء",
+    "streamCount_one": "{{count}} بث",
+    "streamCount_other": "{{count}} بث",
+    "noOneStreamingGame": "لا أحد يبث {{game}} الآن.",
+    "seeAllStreams": "عرض كل البثوث",
+    "isLiveNow": "{{name}} في بث مباشر",
+    "justChatting": "دردشة فقط",
+    "noLiveStreams": "لا توجد بثوث مباشرة",
+    "noOneStreaming": "لا أحد يبث الآن. عد لاحقًا!",
+    "loadStreamsFailed": "تعذر تحميل البثوث. حاول مرة أخرى."
   },
   "liveShop": {
     "title": "تسوّق من هالبث",
@@ -7187,7 +7216,25 @@
     "presetWhipPanHint": "بان سريع مشوش للكشف",
     "presetWhipPanName": "ويب بان",
     "presetYtSplitHint": "شريحة مقسمة عم تحكي قصة",
-    "presetYtSplitName": "بفر / آفاير ثنبيل"
+    "presetYtSplitName": "بفر / آفاير ثنبيل",
+    "navAudio": "صوتيات",
+    "navAgents": "وكلاء",
+    "heroTitle": "شو عم تعمل اليوم؟",
+    "heroSubtitle": "صور وفيديو وموسيقى و3D. ادفع على كل إنشاء بـ DHB.",
+    "startCreating": "ابدأ الإنشاء",
+    "startCreatingSub": "افتح الاستوديو. كل إنشاء بيفرجيك سعره بـ DHB.",
+    "pickMedium": "اختار وسيط",
+    "moreTools": "أدوات أخرى",
+    "yourLibrary": "مكتبتك",
+    "doorImageNote": "صور ثابتة وملصقات وتعديلات",
+    "doorVideoNote": "مقاطع من نص أو صورة",
+    "doorAudioNote": "أدوات الصوت مجانية",
+    "door3d": "3D",
+    "door3dNote": "نماذج من وصف أو صورة",
+    "doorAgentsNote": "الدردشة مجانية",
+    "editorNote": "قصّه على خط زمني",
+    "flowNote": "اربط الخطوات على لوحة",
+    "builderNote": "اعمل تطبيق من وصف"
   },
   "fractions": {
     "title": "الأجزاء",

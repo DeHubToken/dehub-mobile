@@ -804,7 +804,17 @@
     "importProgress": "Appling {{done}} of {{total}}…",
     "dhbBalanceIncludesStaked": "Wallet and staked tokens combined.",
     "smsUnlockPrice": "{{dhb}} tokens (${{usd}}) go unlock text and become your first balance.",
-    "smsCodeSent": "Kòd yin don dey. Na {{price}} token."
+    "smsCodeSent": "Kòd yin don dey. Na {{price}} token.",
+    "themeColor": "Theme Colour",
+    "themeColorDesc": "Pick custom colour for dis theme",
+    "themeColorReset": "Reset",
+    "themeColorWhite": "White",
+    "themeColorBlack": "Black",
+    "themeColorRainbow": "Rainbow",
+    "themeColorBrand": "Brand",
+    "themeColorBrandDesc": "Use your profile picture colours",
+    "themeColorBrandNoAvatar": "Add profile picture before you fit use Brand colours",
+    "themeColorBrandFailed": "E no fit read colour from your profile picture"
   },
   "common": {
     "mute": "Off di sound",
@@ -989,7 +999,8 @@
     "unpinPost": "Unpin am from your profile",
     "postPinned": "E don pin for your profile",
     "postUnpinned": "E don unpin from your profile",
-    "pinFailed": "We no fit pin or unpin this post"
+    "pinFailed": "We no fit pin or unpin this post",
+    "askAi": "Ask AI"
   },
   "filters": {
     "sort": "Sort",
@@ -1839,7 +1850,16 @@
     "tryDifferentSearch": "Try another search word.",
     "pauseStation": "Pause di station",
     "resumeStation": "Continue di station",
-    "stopRadio": "Stop di radio"
+    "stopRadio": "Stop di radio",
+    "playsToday": "{{plays}} plays today",
+    "listen": "Listen",
+    "top50": "Top 50",
+    "playAll": "Play all",
+    "nothingHereYet": "Nothing here yet.",
+    "likeStation": "Like station",
+    "unlikeStation": "Unlike station",
+    "shareStation": "Share station",
+    "listeningTo": "Listening to {{name}} on DeHub"
   },
   "notFound": {
     "title": "Page No Dey",
@@ -5381,7 +5401,16 @@
     "shopAddToStream": "Add am to dis stream",
     "shopAllAttached": "Everything wey dey active for your store don already dey dis stream.",
     "shopNoListings": "You never get any listing. Create dem for di web store first.",
-    "shopEmpty": "Add something from your store and viewers fit buy am without comot from di stream."
+    "shopEmpty": "Add something from your store and viewers fit buy am without comot from di stream.",
+    "streamCount_one": "{{count}} stream",
+    "streamCount_other": "{{count}} streams",
+    "noOneStreamingGame": "No one is streaming {{game}} right now.",
+    "seeAllStreams": "See all streams",
+    "isLiveNow": "{{name}} is live",
+    "justChatting": "Just Chatting",
+    "noLiveStreams": "No Live Streams",
+    "noOneStreaming": "No one is streaming right now. Check back later!",
+    "loadStreamsFailed": "Unable to load streams. Please try again."
   },
   "liveShop": {
     "title": "Shop for dis stream",
@@ -7078,7 +7107,25 @@
     "presetVhsGlitchName": "VHS Glitch",
     "presetWhipPanName": "Whip Pan",
     "presetYtSplitHint": "Thumbnail wey dey split-screen, tell am story.",
-    "presetYtSplitName": "Before / After Thumbnail"
+    "presetYtSplitName": "Before / After Thumbnail",
+    "navAudio": "Audio",
+    "navAgents": "Agents",
+    "heroTitle": "Wetin you dey make today?",
+    "heroSubtitle": "Images, video, music and 3D. Pay for each creation with DHB.",
+    "startCreating": "Start to create",
+    "startCreatingSub": "Open the studio. Every Create go show im price for DHB.",
+    "pickMedium": "Choose medium",
+    "moreTools": "More tools",
+    "yourLibrary": "Your library",
+    "doorImageNote": "Stills, posters and edits",
+    "doorVideoNote": "Clips from text or photo",
+    "doorAudioNote": "Voice tools na free",
+    "door3d": "3D",
+    "door3dNote": "Models from prompt or photo",
+    "doorAgentsNote": "Chat na free",
+    "editorNote": "Cut am for timeline",
+    "flowNote": "Join steps together for canvas",
+    "builderNote": "Make app from prompt"
   },
   "fractions": {
     "title": "Fraction dem",

@@ -816,7 +816,17 @@
     "exportReady": "{{count}} គណនី, {{saved}} ប្រកាស​ដែល​បាន​រក្សា​ទុក​ត្រូវ​បាន​នាំចេញ។",
     "importDone": "បាន​តាមដាន {{followed}}, បាន​ប្លុក {{blocked}}, {{folders}} កម្មវិធី​បង្កើត​ឡើង។",
     "importPartial": "{{count}} គណនី​មិន​អាច​ត្រូវ​បាន​តាមដាន​ទេ — រត់​ការ​នាំចូល​ម្ដង​ទៀត​ដើម្បី​ព្យាយាម​ម្ដង​ទៀត។",
-    "importProgress": "កំពុង​អនុវត្ត {{done}} នៃ {{total}}…"
+    "importProgress": "កំពុង​អនុវត្ត {{done}} នៃ {{total}}…",
+    "themeColor": "ពណ៌ស្បែក",
+    "themeColorDesc": "ជ្រើសរើសពណ៌ផ្ទាល់ខ្លួនសម្រាប់ស្បែកនេះ",
+    "themeColorReset": "កំណត់ឡើងវិញ",
+    "themeColorWhite": "ស",
+    "themeColorBlack": "ខ្មៅ",
+    "themeColorRainbow": "ឥន្ទធនូ",
+    "themeColorBrand": "ម៉ាក",
+    "themeColorBrandDesc": "ប្រើពណ៌រូបភាពប្រវត្តិរូបរបស់អ្នក",
+    "themeColorBrandNoAvatar": "បន្ថែមរូបភាពប្រវត្តិរូបដើម្បីប្រើពណ៌ម៉ាក",
+    "themeColorBrandFailed": "មិនអាចអានពណ៌ពីរូបភាពប្រវត្តិរូបរបស់អ្នកបានទេ"
   },
   "common": {
     "mute": "បិទសំឡេង",
@@ -1005,7 +1015,8 @@
     "boostPostDesc": "ដាក់វានៅផ្នែកខាងលើនៃមតិព័ត៌មានដើម",
     "mintPostDesc": "បោះពុម្ពប្រកាសនេះនៅលើខ្សែសង្វាក់",
     "giftBoost": "ផ្តល់ការជំរុញជាអំណោយ",
-    "giftBoostDesc": "ចំណាយមួយក្នុងចំណោមរបស់អ្នកលើប្រកាសនេះ"
+    "giftBoostDesc": "ចំណាយមួយក្នុងចំណោមរបស់អ្នកលើប្រកាសនេះ",
+    "askAi": "សួរ AI"
   },
   "filters": {
     "sort": "តម្រៀប",
@@ -7239,7 +7250,25 @@
     "presetWhipPanHint": "ខ្ទះព្រិលលឿនចូលទៅក្នុងវិវរណៈ",
     "presetWhipPanName": "ខ្ទះខ្ទះ",
     "presetYtSplitHint": "រូបភាពតូចៗនៃអេក្រង់បំបែកដែលប្រាប់រឿងមួយ",
-    "presetYtSplitName": "មុន / ក្រោយ រូបភាព តូច"
+    "presetYtSplitName": "មុន / ក្រោយ រូបភាព តូច",
+    "navAudio": "សំឡេង",
+    "navAgents": "ភ្នាក់ងារ",
+    "heroTitle": "ថ្ងៃនេះអ្នកចង់បង្កើតអ្វី?",
+    "heroSubtitle": "រូបភាព វីដេអូ តន្ត្រី និង 3D។ បង់តាមការបង្កើតនីមួយៗជា DHB។",
+    "startCreating": "ចាប់ផ្ដើមបង្កើត",
+    "startCreatingSub": "បើកស្ទូឌីយោ។ ការបង្កើតនីមួយៗបង្ហាញតម្លៃជា DHB។",
+    "pickMedium": "ជ្រើសរើសប្រភេទមេឌៀ",
+    "moreTools": "ឧបករណ៍ច្រើនទៀត",
+    "yourLibrary": "បណ្ណាល័យរបស់អ្នក",
+    "doorImageNote": "រូបថត ផូស្ទ័រ និងការកែសម្រួល",
+    "doorVideoNote": "ឃ្លីបពីអត្ថបទ ឬរូបថត",
+    "doorAudioNote": "ឧបករណ៍សំឡេងឥតគិតថ្លៃ",
+    "door3d": "3D",
+    "door3dNote": "ម៉ូដែលពីប្រអប់បញ្ចូល ឬរូបថត",
+    "doorAgentsNote": "ជជែកឥតគិតថ្លៃ",
+    "editorNote": "កាត់លើបន្ទាត់ពេលវេលា",
+    "flowNote": "ភ្ជាប់ជំហាននៅលើផ្ទាំង",
+    "builderNote": "បង្កើតកម្មវិធីពីប្រអប់បញ្ចូល"
   },
   "fractions": {
     "title": "ភាគហ៊ុន",

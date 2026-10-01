@@ -13,8 +13,9 @@ import {
   PanResponder,
   Animated,
   Easing,
+  Platform,
 } from "react-native";
-import { VideoView, useVideoPlayer, VideoPlayer } from "expo-video";
+import { VideoView, useVideoPlayer, VideoPlayer, isPictureInPictureSupported } from "expo-video";
 import PictureInPictureButton from "../common/PictureInPictureButton";
 import { configureForBackgroundPlayback, releaseBackgroundPlayback } from "../../libs/audioSession";
 import { feedVolumeResponder } from "../../libs/feed-volume-responder";
@@ -29,9 +30,11 @@ import {
 } from "../../libs/video-preferences";
 import SmartImage from "../common/SmartImage";
 import { useAppTheme } from "../../context/ThemeContext";
+import { useFeedBleed } from "./feedBleed";
+import type { CaptionControls } from "../VideoPlayerCore/CaptionOverlay";
 import Spinner from "../common/Spinner";
 import { useNavigation } from "@react-navigation/native";
-import Icon from "../ui/Icon";
+import Icon, { type IconName } from "../ui/Icon";
 import { formatCompactNumber } from "../../libs/numbers.util";
 import {
   requestAudioFocus,
@@ -99,6 +102,25 @@ const mediaBoxWidth = (
   const maxHeight = postPage ? postPageMaxHeightFor(win.height, fullWidth) : maxMediaHeightFor(win.height);
   return Math.min(fullWidth, Math.round(maxHeight * mediaAspect));
 };
+
+/** Whether this device can pop a video out. Not every platform build of
+ *  expo-video carries the check, so a missing one reads as "no". */
+const pipSupported = () => {
+  try {
+    return typeof isPictureInPictureSupported === "function" && isPictureInPictureSupported();
+  } catch {
+    return false;
+  }
+};
+
+/**
+ * Cinematic feed (system theme, home): the box is always the full width, and
+ * as tall as the clip up to the post page cap. A clip thinner than that is
+ * cropped to the box rather than letterboxed; 9:16 always fits whole, since
+ * the cap is never below a full-width 9:16 frame.
+ */
+const bleedBoxAspect = (win: { width: number; height: number }, mediaAspect: number) =>
+  Math.max(mediaAspect, win.width / postPageMaxHeightFor(win.height, win.width));
 
 interface FeedVideoPlayerProps {
   thumbnail: string;
@@ -477,7 +499,11 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   // being cropped into a fixed 16:9 slot. Measured off the thumbnail, which is
   // extracted from the video itself; 16:9 until that resolves.
   const mediaAspect = useMediaAspect(thumbnail, tokenId, postPage ? THIN_MIN_RATIO : undefined);
-  const { isMinimal } = useAppTheme();
+  const { isMinimal: minimalTheme } = useAppTheme();
+  // The cinematic system feed runs media edge to edge exactly like minimal,
+  // with its own chrome over the top and bottom bands.
+  const bleed = useFeedBleed();
+  const isMinimal = minimalTheme || !!bleed;
   // Media that reaches the screen edges keeps its controls off them.
   const edgeToEdge = isMinimal || postPage;
   const windowSize = useWindowDimensions();
@@ -956,6 +982,29 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     } as never);
   }, [isMuted, videoUrl, thumbnail, tokenId, isSignedIn, stopPlayback, navigation]);
 
+  // Phone feeds: the player's buttons are bare icons with a soft shadow,
+  // subtitles, speed, loop and picture in picture top right with mute in the
+  // corner, and one time counter with fullscreen after it on the scrubber row.
+  // The post page and tablets keep the glass row.
+  const bareControls = !postPage && Math.min(windowSize.width, windowSize.height) < PHONE_MAX_SIDE;
+  // Level with the author chip over the picture; on the first post (its chip
+  // at the bottom) just under the capsule instead.
+  const bareTop = bleed ? (bleed.bottomInset ? bleed.topInset : BARE_ROW_TOP_BESIDE_CHIP) : 6;
+  // Tell a card with chrome along the bottom when the player bar is up, so
+  // that chrome lifts above it only then.
+  const setBarUp = bleed?.setBarUp;
+  const barUp = !hideControls && showControls;
+  useEffect(() => {
+    setBarUp?.(barUp);
+  }, [setBarUp, barUp]);
+  useEffect(() => {
+    if (!setBarUp) return;
+    return () => setBarUp(false);
+  }, [setBarUp]);
+  // That chrome takes the bottom-right corner the duration badge sat in.
+  const chromeAtBottom = !!bleed?.bottomInset;
+  const [captionControls, setCaptionControls] = useState<CaptionControls | null>(null);
+
 
   const handleSeek = useCallback(
     (ratio: number) => {
@@ -1018,12 +1067,15 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     if (icons.length === 0) return null;
 
     return (
-      <Pressable onPress={handleGatedOverlayPress} style={styles.gatedOverlay}>
+      <Pressable onPress={handleGatedOverlayPress} style={[styles.gatedOverlay, BARE_LAYER]}>
+        <MediaShade color={GATED_SHADE} />
         <View style={icons.length > 1 ? styles.gatedIconRow : undefined}>
           {icons.map((ic, i) => (
             <View key={i} style={icons.length > 1 ? styles.gatedIconBox : styles.gatedIconBoxLarge}>
               <View style={styles.gatedIconOverlay} />
-              <Icon name={ic.name as any} size={icons.length > 1 ? 24 : 28} color="#fff" />
+              <View>
+                <Icon name={ic.name as any} size={icons.length > 1 ? 24 : 28} color="#fff" />
+              </View>
             </View>
           ))}
         </View>
@@ -1044,16 +1096,16 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
       style={[
         styles.container,
         {
-          aspectRatio: mediaAspect,
+          aspectRatio: bleed ? bleedBoxAspect(windowSize, mediaAspect) : mediaAspect,
           // Fills the card when the clip is wide enough; a portrait clip caps
           // at the max media height and shrinks its own width, hugged to the
           // left in the feed and centred on the post page.
-          width: mediaBoxWidth(windowSize, isMinimal, mediaAspect, postPage),
+          width: bleed ? windowSize.width : mediaBoxWidth(windowSize, isMinimal, mediaAspect, postPage),
           maxWidth: "100%",
           alignSelf: isMinimal || postPage ? "center" : "flex-start",
         },
         (isMinimal || postPage) && MINIMAL_MEDIA,
-        postPage && POST_PAGE_MEDIA,
+        (postPage || bleed) && POST_PAGE_MEDIA,
       ]}
     >
       {thumbnail ? (
@@ -1067,7 +1119,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
         <SmartImage
           source={{ uri: thumbnail }}
           style={styles.thumbnail}
-          contentFit="contain"
+          contentFit={bleed ? "cover" : "contain"}
           recyclingKey={thumbnail}
           transition={0}
         />
@@ -1082,7 +1134,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
           ref={videoViewRef}
           player={player}
           focusable={false}
-          contentFit="contain"
+          contentFit={bleed ? "cover" : "contain"}
           nativeControls={false}
           allowsPictureInPicture
           onPictureInPictureStart={() => onPictureInPictureChange?.(true)}
@@ -1153,7 +1205,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
           accessibilityLabel={t("bounty.detailsLabel")}
           onPress={onBountyPress}
           activeOpacity={0.75}
-          style={[styles.bountyPill, edgeToEdge && { left: MINIMAL_EDGE }]}
+          style={[styles.bountyPill, edgeToEdge && { left: MINIMAL_EDGE }, bleed && { top: bleed.topInset }]}
         >
           <Image
             source={require("../../assets/web-icons/dehub-coin.png")}
@@ -1167,7 +1219,8 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
       )}
 
       {!hideControls && !isContentGated && !isPlaying && !isProcessing && !isFailed && (
-        <Pressable {...mediaTap} style={styles.playOverlay}>
+        <Pressable {...mediaTap} style={[styles.playOverlay, BARE_LAYER]}>
+          <MediaShade color={PLAY_SHADE} />
           <View style={styles.glassPlayButton}>
             <View style={styles.glassOverlay} />
             {isStarting ? (
@@ -1213,7 +1266,83 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
                 </View>
               </Pressable>
             )}
-            <View style={[styles.topControls, edgeToEdge && { paddingHorizontal: MINIMAL_EDGE }]}>
+            {bareControls ? (
+              <View pointerEvents="box-none" style={[styles.bareRow, { top: bareTop }]}>
+                {captionControls && (
+                  <Pressable
+                    onPress={captionControls.toggle}
+                    onLongPress={captionControls.openLanguages}
+                    hitSlop={4}
+                    accessibilityRole="button"
+                    accessibilityLabel={t("subtitles.title")}
+                    accessibilityState={{ selected: captionControls.enabled }}
+                    style={styles.bareButton}
+                  >
+                    {captionControls.loading ? (
+                      <Spinner size={16} />
+                    ) : (
+                      <BareIcon name="Captions" dim={!captionControls.enabled} />
+                    )}
+                  </Pressable>
+                )}
+                <Pressable
+                  onPress={handleToggleSpeed}
+                  hitSlop={4}
+                  accessibilityRole="button"
+                  accessibilityLabel={t("player.playbackSpeed")}
+                  style={styles.bareSpeed}
+                >
+                  <Text style={styles.bareSpeedText}>{playbackRate.toFixed(2)}x</Text>
+                </Pressable>
+                <Pressable
+                  onPress={handleToggleLoop}
+                  hitSlop={4}
+                  accessibilityRole="button"
+                  accessibilityLabel={t("player.toggleLoop")}
+                  accessibilityState={{ selected: isLooping }}
+                  style={styles.bareButton}
+                >
+                  <BareIcon name="Repeat" dim={!isLooping} />
+                </Pressable>
+                {pipSupported() && (
+                  <Pressable
+                    onPress={() => {
+                      videoViewRef.current?.startPictureInPicture().catch(() => toastInfo(t("player.pipUnavailable")));
+                    }}
+                    hitSlop={4}
+                    accessibilityRole="button"
+                    accessibilityLabel={t("player.pictureInPicture")}
+                    style={styles.bareButton}
+                  >
+                    <BareIcon name="PictureInPicture2" />
+                  </Pressable>
+                )}
+                {/* Tap to mute, drag up or down to set the volume. */}
+                <View>
+                  <View
+                    style={styles.bareButton}
+                    {...volumePanResponder.panHandlers}
+                    accessibilityRole="button"
+                    accessibilityLabel={t(isMuted ? "common.unmute" : "common.mute")}
+                  >
+                    <BareIcon name={isMuted ? "VolumeX" : "Volume2"} />
+                  </View>
+                  {volumeAdjusting && (
+                    <View style={[styles.volumeTrack, styles.bareVolumeTrack]} pointerEvents="none">
+                      <View style={styles.glassOverlay} />
+                      <View style={styles.volumeTrackInner}>
+                        <View
+                          style={[
+                            styles.volumeFill,
+                            { height: `${Math.round((isMuted ? 0 : volume) * 100)}%` },
+                          ]}
+                        />
+                      </View>
+                    </View>
+                  )}
+                </View>
+              </View>
+            ) : <View style={[styles.topControls, edgeToEdge && { paddingHorizontal: MINIMAL_EDGE }, bleed && { paddingTop: bleed.topInset }]}>
               <Pressable onPress={handleToggleSpeed} style={styles.glassButton}>
                 <View style={styles.glassOverlay} />
                 <Text style={{ color: "#fff", fontSize: 11, fontWeight: "bold" }}>{playbackRate}x</Text>
@@ -1249,9 +1378,51 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
                 <View style={styles.glassOverlay} />
                 <Icon name="Maximize" size={16} color="#fff" />
               </Pressable>
-            </View>
+            </View>}
 
-            <View style={[styles.bottomControls, edgeToEdge && { paddingHorizontal: MINIMAL_EDGE }]}>
+            {bareControls ? (
+              // Phone feeds: play/pause, the time and fullscreen as bare
+              // icons, over a thin line along the very bottom of the picture.
+              <View pointerEvents="box-none" style={styles.bareBottom}>
+                <View pointerEvents="box-none" style={[styles.bareBottomRow, edgeToEdge && { paddingHorizontal: MINIMAL_EDGE - 8 }]}>
+                  <Pressable
+                    onPress={() => handleVideoPress()}
+                    hitSlop={4}
+                    accessibilityRole="button"
+                    accessibilityLabel={t(isPlaying ? "audioPost.pause" : "audioPost.play")}
+                    style={styles.bareButton}
+                  >
+                    <BareIcon name={isPlaying ? "Pause" : "Play"} />
+                  </Pressable>
+                  <View style={{ flex: 1 }} />
+                  <Text style={[styles.timeText, styles.bareTime]}>{formatTime(videoDuration)}</Text>
+                  <Pressable
+                    onPress={handleFullscreen}
+                    hitSlop={4}
+                    accessibilityRole="button"
+                    accessibilityLabel={t("common.fullscreen")}
+                    style={styles.bareButton}
+                  >
+                    <BareIcon name="Maximize" />
+                  </Pressable>
+                </View>
+                {/* 3pt to see, 14pt to drag. */}
+                <GestureDetector gesture={seekGesture}>
+                  <View
+                    style={styles.bareScrubTouch}
+                    onLayout={onSeekTrackLayout}
+                    {...seekTouchGuard}
+                    accessibilityRole="adjustable"
+                    accessibilityLabel={t("player.progress")}
+                  >
+                    <View style={styles.bareScrubLine}>
+                      <View style={[styles.bareScrubPlayed, { width: `${progressPercent}%` }]} />
+                    </View>
+                  </View>
+                </GestureDetector>
+              </View>
+            ) : (
+            <View style={[styles.bottomControls, edgeToEdge && { paddingHorizontal: MINIMAL_EDGE }, bleed && { paddingBottom: 8 }]}>
               <View style={styles.progressRow}>
                 <View style={styles.timePill}>
                   <Text style={styles.timeText}>{formatTime(currentTime)}</Text>
@@ -1275,6 +1446,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
                 </View>
               </View>
             </View>
+            )}
           </View>
           )}
         </>
@@ -1287,9 +1459,11 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
           tokenId={tokenId}
           positionMs={captionPosMs}
           controlsVisible={showControls || !isPlaying}
-          bottomOffset={showControls ? 56 : 16}
+          bottomOffset={(showControls ? 56 : 16) + (bleed?.bottomInset ?? 0)}
           player={player}
           isPlaying={isPlaying}
+          hideButton={bareControls}
+          onControls={bareControls ? setCaptionControls : undefined}
         />
       )}
 
@@ -1387,13 +1561,15 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
         </View>
       )}
 
-      {!hideControls && !isContentGated && duration && !isPlaying && (
+      {/* The length before playback, on the post page only: in the feed the
+          scrubber shows it once the video plays. */}
+      {postPage && !hideControls && !isContentGated && duration && !isPlaying && (
         <View style={[styles.durationBadge, edgeToEdge && { right: MINIMAL_EDGE }]}>
           <Text style={styles.durationText}>{duration}</Text>
         </View>
       )}
 
-      {!hideControls && isContentGated && duration && (
+      {!hideControls && !chromeAtBottom && isContentGated && duration && (
         <View style={[styles.durationBadge, edgeToEdge && { right: MINIMAL_EDGE }]}>
           <Text style={styles.durationText}>{duration}</Text>
         </View>
@@ -1401,6 +1577,43 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     </View>
   );
 };
+
+// Tints for the layers that cover the whole picture.
+const PLAY_SHADE = "rgba(0,0,0,0.2)";
+const GATED_SHADE = "rgba(0,0,0,0.3)";
+
+// A layer that covers the whole picture draws its tint from a plain view under
+// it, not as the pressable's own fill: the theme pass that styles neutral
+// pressables as buttons (libs/jsx/controls.js) would otherwise give it the
+// theme's control frame, a rounded border inside the picture in every theme.
+const BARE_LAYER = { backgroundColor: "transparent" } as const;
+
+/** Phones, told from tablets by the shorter side (web's 768px breakpoint). */
+const PHONE_MAX_SIDE = 768;
+/** The bare row's top beside the author chip: 32pt buttons centred on the
+ *  38pt chip that starts 12pt down. */
+const BARE_ROW_TOP_BESIDE_CHIP = 15;
+const BARE_ICON = 18;
+
+/**
+ * A white glyph straight on the picture. The shadow is a dark, heavier copy
+ * of the glyph underneath, which reads on bright frames on every platform
+ * (Android draws no shadow for a view without a fill); iOS adds a soft one.
+ * Nothing here has a fill, so the theme's control paint leaves it alone.
+ */
+const BareIcon: React.FC<{ name: IconName; dim?: boolean }> = ({ name, dim = false }) => (
+  <View style={[styles.bareIcon, dim && styles.bareIconDim]}>
+    <View style={StyleSheet.absoluteFill}>
+      <Icon name={name} size={BARE_ICON} color="rgba(0,0,0,0.45)" strokeWidth={4} />
+    </View>
+    <View>
+      <Icon name={name} size={BARE_ICON} color="#FFFFFF" />
+    </View>
+  </View>
+);
+const MediaShade: React.FC<{ color: string }> = ({ color }) => (
+  <View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: color }]} />
+);
 
 // Player chips sit on top of the video: opaque, or the frame behind them
 // reads through the icons. expo-blur does not blur on Android at all.
@@ -1473,7 +1686,7 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "rgba(0,0,0,0.2)",
+    backgroundColor: PLAY_SHADE,
   },
   centreButton: {
     position: "absolute",
@@ -1504,6 +1717,77 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "rgba(255,255,255,0.1)",
   },
+  bareRow: {
+    position: "absolute",
+    right: 8,
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 4,
+  },
+  bareButton: {
+    width: 32,
+    height: 32,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  bareSpeed: {
+    minWidth: 40,
+    height: 32,
+    paddingHorizontal: 2,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  bareSpeedText: {
+    color: "#FFFFFF",
+    fontSize: 12,
+    fontWeight: "600",
+    fontVariant: ["tabular-nums"],
+    textShadowColor: "rgba(0,0,0,0.7)",
+    textShadowOffset: { width: 0, height: 1 },
+    textShadowRadius: 3,
+  },
+  bareIcon: {
+    width: BARE_ICON,
+    height: BARE_ICON,
+    ...Platform.select({
+      ios: { shadowColor: "#000", shadowOpacity: 0.6, shadowRadius: 3, shadowOffset: { width: 0, height: 1 } },
+      default: {},
+    }),
+  },
+  bareIconDim: { opacity: 0.55 },
+  bareTime: {
+    minWidth: 36,
+    fontSize: 12,
+    fontVariant: ["tabular-nums"],
+    textShadowColor: "rgba(0,0,0,0.6)",
+    textShadowOffset: { width: 0, height: 1 },
+    textShadowRadius: 2,
+  },
+  bareBottom: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    bottom: 0,
+  },
+  bareBottomRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingHorizontal: 2,
+    marginBottom: 0,
+  },
+  bareScrubTouch: {
+    height: 14,
+    justifyContent: "flex-end",
+  },
+  bareScrubLine: {
+    height: 3,
+    backgroundColor: "rgba(255,255,255,0.3)",
+  },
+  bareScrubPlayed: {
+    height: 3,
+    backgroundColor: "#FFFFFF",
+  },
+  bareVolumeTrack: { left: 0 },
   volumeTrack: {
     position: "absolute",
     top: 36,
@@ -1625,7 +1909,7 @@ const styles = StyleSheet.create({
   },
   gatedOverlay: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: "rgba(0,0,0,0.3)",
+    backgroundColor: GATED_SHADE,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -1711,7 +1995,9 @@ const FeedVideoPlayerActive = memo(FeedVideoPlayerComponent);
 const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "tokenId" | "thumbnail" | "duration" | "hideControls" | "onPress" | "postPage">> = memo(
   ({ tokenId, thumbnail, duration, hideControls, onPress, postPage = false }) => {
     const mediaAspect = useMediaAspect(thumbnail, tokenId, postPage ? THIN_MIN_RATIO : undefined);
-    const { isMinimal } = useAppTheme();
+    const { isMinimal: minimalTheme } = useAppTheme();
+    const bleed = useFeedBleed();
+    const isMinimal = minimalTheme || !!bleed;
     const edgeToEdge = isMinimal || postPage;
     const windowSize = useWindowDimensions();
     const mediaTap = useTapOnlyPress(() => onPress());
@@ -1720,20 +2006,20 @@ const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "tokenId" | "thumbnai
         style={[
           styles.container,
           {
-            aspectRatio: mediaAspect,
-            width: mediaBoxWidth(windowSize, isMinimal, mediaAspect, postPage),
+            aspectRatio: bleed ? bleedBoxAspect(windowSize, mediaAspect) : mediaAspect,
+            width: bleed ? windowSize.width : mediaBoxWidth(windowSize, isMinimal, mediaAspect, postPage),
             maxWidth: "100%",
             alignSelf: isMinimal || postPage ? "center" : "flex-start",
           },
           (isMinimal || postPage) && MINIMAL_MEDIA,
-          postPage && POST_PAGE_MEDIA,
+          (postPage || bleed) && POST_PAGE_MEDIA,
         ]}
       >
         {thumbnail ? (
           <SmartImage
             source={{ uri: thumbnail }}
             style={styles.thumbnail}
-            contentFit="contain"
+            contentFit={bleed ? "cover" : "contain"}
             recyclingKey={thumbnail}
             transition={0}
           />
@@ -1743,7 +2029,8 @@ const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "tokenId" | "thumbnai
           </View>
         )}
         {!hideControls && (
-          <Pressable {...mediaTap} style={styles.playOverlay}>
+          <Pressable {...mediaTap} style={[styles.playOverlay, BARE_LAYER]}>
+            <MediaShade color={PLAY_SHADE} />
             <View style={styles.glassPlayButton}>
               <View style={styles.glassOverlay} />
               <View style={{ marginLeft: 2 }}>
@@ -1752,7 +2039,7 @@ const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "tokenId" | "thumbnai
             </View>
           </Pressable>
         )}
-        {!hideControls && duration ? (
+        {postPage && !hideControls && duration ? (
           <View style={[styles.durationBadge, edgeToEdge && { right: MINIMAL_EDGE }]}>
             <Text style={styles.durationText}>{duration}</Text>
           </View>

@@ -818,7 +818,17 @@
     "exportReady": "{{count}} खाते, {{saved}} सेव किए गए पोस्ट्स निर्यात किए गए।",
     "importDone": "{{followed}} ने {{blocked}} का अनुसरण किया, {{folders}} फोल्डर बनाए गए।",
     "importPartial": "{{count}} खाते अनुसरण नहीं किए जा सके — उन्हें फिर से प्रयास करने के लिए आयात करें।",
-    "importProgress": "{{done}} को {{total}} लागू कर रहा है…"
+    "importProgress": "{{done}} को {{total}} लागू कर रहा है…",
+    "themeColor": "تھیم کلر",
+    "themeColorDesc": "اس تھیم کو اپنی مرضی کا رنگ چنو",
+    "themeColorReset": "ری سیٹ",
+    "themeColorWhite": "سفید",
+    "themeColorBlack": "کالا",
+    "themeColorRainbow": "رینبو",
+    "themeColorBrand": "برانڈ",
+    "themeColorBrandDesc": "اپنی پروفائل تصویر کے رنگ استعمال کرو",
+    "themeColorBrandNoAvatar": "برانڈ رنگ استعمال کرنے کو پروفائل تصویر ڈالو",
+    "themeColorBrandFailed": "تمہاری پروفائل تصویر سے رنگ نکو پڑھ سکے"
   },
   "common": {
     "mute": "آواز بند کرو",
@@ -1008,7 +1018,8 @@
     "unpinPost": "اپنی پروفائل سے ان پن کریں",
     "postPinned": "آپ کے پروفائل پر پن کر دیا گیا ہے",
     "postUnpinned": "آپ کے پروفائل سے انپنڈ",
-    "pinFailed": "اس پوسٹ کو پن یا ان پن نہیں کیا جا سکا"
+    "pinFailed": "اس پوسٹ کو پن یا ان پن نہیں کیا جا سکا",
+    "askAi": "AI से पूछो"
   },
   "filters": {
     "sort": "سارٹ",
@@ -1863,7 +1874,16 @@
     "tryAnotherGenre": "کوئی دوسرا جنر آزمائیں۔",
     "pauseStation": "اسٹیشن کو روکیں",
     "resumeStation": "اسٹیشن دوبارہ شروع کریں",
-    "stopRadio": "ریڈیو بند کریں"
+    "stopRadio": "ریڈیو بند کریں",
+    "playsToday": "آج {{plays}} بار سنا گیا",
+    "listen": "سنیں",
+    "top50": "ٹاپ 50",
+    "playAll": "سب چلائیں",
+    "nothingHereYet": "یہاں ابھی کچھ نہیں ہے۔",
+    "likeStation": "اسٹیشن پسند کریں",
+    "unlikeStation": "پسند ہٹائیں",
+    "shareStation": "اسٹیشن شیئر کریں",
+    "listeningTo": "DeHub پر {{name}} سن رہا ہوں"
   },
   "notFound": {
     "title": "صفحہ نئیں ملا",
@@ -5463,7 +5483,16 @@
     "preparingCamera": "کیمرہ تیار ہو رہا ہے…",
     "reconnecting": "دوبارہ منسلک ہو رہا ہے…",
     "connecting": "منسلک ہو رہا ہے…",
-    "shopPutOnAir": "ہوا پر رکھیں"
+    "shopPutOnAir": "ہوا پر رکھیں",
+    "streamCount_one": "{{count}} اسٹریم",
+    "streamCount_other": "{{count}} اسٹریمز",
+    "noOneStreamingGame": "ابھی کوئی {{game}} اسٹریم نہیں کر رہا۔",
+    "seeAllStreams": "تمام اسٹریمز دیکھیں",
+    "isLiveNow": "{{name}} لائیو ہیں",
+    "justChatting": "بس گپ شپ",
+    "noLiveStreams": "کوئی لائیو اسٹریم نہیں",
+    "noOneStreaming": "ابھی کوئی اسٹریم نہیں کر رہا۔ بعد میں دوبارہ دیکھیں!",
+    "loadStreamsFailed": "اسٹریمز لوڈ نہیں ہو سکیں۔ دوبارہ کوشش کریں۔"
   },
   "liveShop": {
     "title": "اس اسٹریم سے خریداری کریں",
@@ -6954,7 +6983,25 @@
     "presetWhipPanHint": "فاسٹ بلیرد پین انٹو دی ریوییل",
     "presetWhipPanName": "وِپ پین",
     "presetYtSplitHint": "اسپلٹ‑سکرین تھمب نیل جو کہ سٹوری بتاتا ہے",
-    "presetYtSplitName": "بِیفر / آفٹر تھمب نیل"
+    "presetYtSplitName": "بِیفر / آفٹر تھمب نیل",
+    "navAudio": "آڈیو",
+    "navAgents": "ایجنٹس",
+    "heroTitle": "آج کیا بنا رئیں؟",
+    "heroSubtitle": "تصویراں، ویڈیو، میوزک اور 3D۔ ہر تخلیق کے DHB میں پیسے دو۔",
+    "startCreating": "بنانا شروع کرو",
+    "startCreatingSub": "اسٹوڈیو کھولو۔ ہر تخلیق اپنی قیمت DHB میں دکھاتی۔",
+    "pickMedium": "میڈیم چنو",
+    "moreTools": "اور ٹولز",
+    "yourLibrary": "تمہاری لائبریری",
+    "doorImageNote": "اسٹلز، پوسٹرز اور ایڈٹس",
+    "doorVideoNote": "ٹیکسٹ یا فوٹو سے کلپاں",
+    "doorAudioNote": "آواز کے ٹولز مفت",
+    "door3d": "3D",
+    "door3dNote": "پرامپٹ یا فوٹو سے ماڈلز",
+    "doorAgentsNote": "چیٹ مفت",
+    "editorNote": "ٹائم لائن پو کاٹو",
+    "flowNote": "کینوس پو اسٹیپس جوڑو",
+    "builderNote": "پرامپٹ سے ایپ بناؤ"
   },
   "fractions": {
     "title": "फ़्रैक्शन",

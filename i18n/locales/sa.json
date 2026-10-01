@@ -812,7 +812,17 @@
     "smsCodeSent": "कोड भेजा गया। इसमें {{price}} टोकन लगे।",
     "tokenBalanceAmount": "{{amount}} टोकन",
     "importDone": "अनुयायी {{followed}}, अवरुद्ध {{blocked}}, {{folders}} फ़ोल्डर बनाया ।",
-    "importProgress": "अनुप्रयोग {{done}} का {{total}}…"
+    "importProgress": "अनुप्रयोग {{done}} का {{total}}…",
+    "themeColor": "विषयवर्णः",
+    "themeColorDesc": "अस्मै विषयाय अनुकूलितं वर्णं चिनोतु",
+    "themeColorReset": "पुनःस्थापयतु",
+    "themeColorWhite": "श्वेतः",
+    "themeColorBlack": "कृष्णः",
+    "themeColorRainbow": "इन्द्रधनुः",
+    "themeColorBrand": "ब्रैण्ड्",
+    "themeColorBrandDesc": "भवतः प्रतिरूपचित्रस्य वर्णान् प्रयुङ्क्ष्व",
+    "themeColorBrandNoAvatar": "ब्रैण्ड्-वर्णान् प्रयोक्तुं प्रतिरूपचित्रं योजयतु",
+    "themeColorBrandFailed": "भवतः प्रतिरूपचित्रात् वर्णान् पठितुं न शक्तम्"
   },
   "common": {
     "mute": "ध्वनिं निरुध्यताम्",
@@ -1002,7 +1012,8 @@
     "boostPostDesc": "एतत् मुखपृष्ठस्य उपरि स्थापयतु",
     "mintPostDesc": "इदं प्रकाशनं शृङ्खलायां प्रकाशयतु",
     "giftBoost": "वर्धनं उपायनं ददातु",
-    "giftBoostDesc": "स्वकीयेषु एकं अस्मिन् प्रकाशने व्ययतु"
+    "giftBoostDesc": "स्वकीयेषु एकं अस्मिन् प्रकाशने व्ययतु",
+    "askAi": "AI पृच्छतु"
   },
   "filters": {
     "sort": "क्रमयतु",
@@ -7183,7 +7194,25 @@
     "presetVhsGlitchHint": "वृद्ध वीडियो टेप क्षरण और रंग प्रवाह",
     "presetVhsGlitchName": "एससी/एसटी/एसटी",
     "presetWhipPanName": "फलकम्ःPan",
-    "presetYtSplitName": "तत्पूर्वम् / तत्पश्चात्"
+    "presetYtSplitName": "तत्पूर्वम् / तत्पश्चात्",
+    "navAudio": "श्रव्यम्",
+    "navAgents": "प्रतिनिधयः",
+    "heroTitle": "अद्य भवान् किं रचयति?",
+    "heroSubtitle": "चित्राणि, चलचित्रम्, सङ्गीतं 3D च। प्रत्येकसृष्टये DHB-द्वारा ददातु।",
+    "startCreating": "सृजनम् आरभताम्",
+    "startCreatingSub": "स्टूडियो उद्घाटयतु। प्रत्येकं सृजनं स्वमूल्यं DHB-मध्ये दर्शयति।",
+    "pickMedium": "माध्यमं चिनोतु",
+    "moreTools": "अधिकानि उपकरणानि",
+    "yourLibrary": "भवतः सङ्ग्रहः",
+    "doorImageNote": "चित्राणि, भित्तिपत्राणि, सम्पादनानि च",
+    "doorVideoNote": "पाठात् चित्रात् वा खण्डाः",
+    "doorAudioNote": "वाक्-उपकरणानि निःशुल्कानि",
+    "door3d": "3D",
+    "door3dNote": "सङ्केतात् चित्रात् वा प्रतिरूपाणि",
+    "doorAgentsNote": "संवादः निःशुल्कः",
+    "editorNote": "कालरेखायां कर्तयतु",
+    "flowNote": "पटले सोपानानि संयोजयतु",
+    "builderNote": "सङ्केतात् अनुप्रयोगं रचयतु"
   },
   "fractions": {
     "title": "अंशाः",

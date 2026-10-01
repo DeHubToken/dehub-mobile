@@ -14,7 +14,7 @@
  * Placed as a ListHeaderComponent inside InfiniteVideoFeed on the HomeScreen.
  */
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { View, Text, FlatList, TouchableOpacity, type ListRenderItem } from "react-native";
+import { StyleSheet, View, Text, FlatList, TouchableOpacity, type ListRenderItem } from "react-native";
 import { GestureDetector } from "react-native-gesture-handler";
 import { useHorizontalScrollGuard } from "../../context/PagerGestureContext";
 import { useTranslation } from "react-i18next";
@@ -32,6 +32,8 @@ import { MINIMAL_HAIRLINE, MINIMAL_INSET } from "../../theme/minimal";
  * DEFAULT_LIST_GUTTER makes, so its hairline meets the posts' at both edges.
  */
 const MINIMAL_LIST_GUTTER = 8;
+/** The hairline between posts on the system theme's home feed. */
+const CINEMATIC_HAIRLINE = "rgba(255,255,255,0.12)";
 
 /** Page size. Matches the web carousel so both rails page identically. */
 const BATCH_SIZE = 10;
@@ -45,7 +47,9 @@ const LOW_WATER_MARK = 3;
 const SuggestedAccountsSection: React.FC = () => {
   const user = useUser() as { address?: string } | null;
   const { t } = useTranslation();
-  const { isMinimal } = useAppTheme();
+  const { isMinimal, theme, skin } = useAppTheme();
+  // The system theme lays the home feed out as a cinematic list (FeedCard).
+  const cinematic = !isMinimal && theme === "system" && !skin;
   const [accounts, setAccounts] = useState<SuggestedAccount[]>([]);
   /** Addresses followed or dismissed this session — never shown again. */
   const [hiddenAddresses, setHiddenAddresses] = useState<Set<string>>(new Set());
@@ -177,8 +181,11 @@ const SuggestedAccountsSection: React.FC = () => {
     void loadNextPage();
   }, [loadNextPage]);
 
-  if (dismissed) return null;
-  if (visibleAccounts.length === 0) return null;
+  // With nothing to show, the cinematic feed still needs the line the post
+  // above left out for this row.
+  if (dismissed || visibleAccounts.length === 0) {
+    return cinematic ? <View style={styles.lineOnly} /> : null;
+  }
 
   const list = (
     <FlatList
@@ -197,20 +204,28 @@ const SuggestedAccountsSection: React.FC = () => {
   return (
     // Minimal: a feed row like the posts around it — no gap below, one
     // full-width hairline under it, and the header held at the 16pt text inset.
+    // System (the cinematic feed): the same, with the posts' 12pt rhythm and
+    // their hairline. The post above it drops its own, so there is one line.
     <View
-      className={isMinimal ? undefined : "mb-3"}
+      className={isMinimal || cinematic ? undefined : "mb-3"}
       style={isMinimal ? {
         marginHorizontal: -MINIMAL_LIST_GUTTER,
         paddingTop: 14,
         paddingBottom: 14,
         borderBottomWidth: 1,
         borderBottomColor: MINIMAL_HAIRLINE,
+      } : cinematic ? {
+        marginHorizontal: -MINIMAL_LIST_GUTTER,
+        paddingTop: 12,
+        paddingBottom: 12,
+        borderBottomWidth: StyleSheet.hairlineWidth,
+        borderBottomColor: CINEMATIC_HAIRLINE,
       } : undefined}
     >
       {/* Header row */}
       <View
         className="flex-row items-center justify-between px-2 mb-2.5"
-        style={isMinimal ? { paddingHorizontal: MINIMAL_INSET } : undefined}
+        style={isMinimal ? { paddingHorizontal: MINIMAL_INSET } : cinematic ? { paddingHorizontal: 14 } : undefined}
       >
         <Text className="text-white text-sm font-semibold">
           {t("profile.followSuggestions")}
@@ -231,3 +246,11 @@ const SuggestedAccountsSection: React.FC = () => {
 };
 
 export default React.memo(SuggestedAccountsSection);
+
+const styles = StyleSheet.create({
+  lineOnly: {
+    marginHorizontal: -MINIMAL_LIST_GUTTER,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: CINEMATIC_HAIRLINE,
+  },
+});

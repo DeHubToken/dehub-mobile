@@ -822,7 +822,17 @@
     "exportReady": "{{count}} účtov, {{saved}} uložené články exportované.",
     "importDone": "Prechádzali {{followed}}, blokovali {{blocked}}, {{folders}} foldery vytvorené.",
     "importPartial": "{{count}} účtov sa nepodarilo nasledovať — spustiť import znova, aby ste ich opätovne skúsili.",
-    "importProgress": "Používajú {{done}} z {{total}}…"
+    "importProgress": "Používajú {{done}} z {{total}}…",
+    "themeColor": "Farba témy",
+    "themeColorDesc": "Vyber vlastnú farbu pre túto tému",
+    "themeColorReset": "Obnoviť",
+    "themeColorWhite": "Biela",
+    "themeColorBlack": "Čierna",
+    "themeColorRainbow": "Dúha",
+    "themeColorBrand": "Značka",
+    "themeColorBrandDesc": "Použiť farby tvojej profilovej fotky",
+    "themeColorBrandNoAvatar": "Pridaj profilovú fotku, aby si mohol použiť farby značky",
+    "themeColorBrandFailed": "Nepodarilo sa načítať farby z tvojej profilovej fotky"
   },
   "common": {
     "mute": "Stlmiť",
@@ -1030,7 +1040,8 @@
     "boostPostDesc": "Umiestnite ho na vrch domovského kanála",
     "mintPostDesc": "Publikujte tento príspevok on-chain",
     "giftBoost": "Darovať boost",
-    "giftBoostDesc": "Miňte jeden zo svojich na tento príspevok"
+    "giftBoostDesc": "Miňte jeden zo svojich na tento príspevok",
+    "askAi": "Opýtať sa AI"
   },
   "filters": {
     "sort": "Zoradiť",
@@ -1928,7 +1939,16 @@
     "tryAnotherGenre": "Skúste inú kategóriu.",
     "pauseStation": "Pozastaviť stanicu",
     "resumeStation": "Pokračovať v stanici",
-    "stopRadio": "Zastaviť rádio"
+    "stopRadio": "Zastaviť rádio",
+    "playsToday": "Dnes {{plays}} prehratí",
+    "listen": "Počúvať",
+    "top50": "Top 50",
+    "playAll": "Prehrať všetko",
+    "nothingHereYet": "Zatiaľ tu nič nie je.",
+    "likeStation": "Páči sa mi stanica",
+    "unlikeStation": "Už sa mi nepáči",
+    "shareStation": "Zdieľať stanicu",
+    "listeningTo": "Počúvam {{name}} na DeHub"
   },
   "notFound": {
     "title": "Stránka nenájdená",
@@ -5594,7 +5614,16 @@
     "preparingCamera": "Príprava kamery…",
     "reconnecting": "Znovu sa pripája…",
     "connecting": "Pripája sa…",
-    "shopPutOnAir": "Zapnite vzduch"
+    "shopPutOnAir": "Zapnite vzduch",
+    "streamCount_one": "{{count}} stream",
+    "streamCount_other": "Streamy: {{count}}",
+    "noOneStreamingGame": "Nikto teraz nestreamuje {{game}}.",
+    "seeAllStreams": "Zobraziť všetky streamy",
+    "isLiveNow": "{{name}} vysiela naživo",
+    "justChatting": "Len rozhovor",
+    "noLiveStreams": "Žiadne živé streamy",
+    "noOneStreaming": "Nikto teraz nestreamuje. Pozrite sa neskôr!",
+    "loadStreamsFailed": "Streamy sa nepodarilo načítať. Skúste to znova."
   },
   "liveShop": {
     "title": "Nakupujte z tohto vysielania",
@@ -7383,7 +7412,25 @@
     "presetWhipPanHint": "Rýchly rozptyľovaný pan do odhalenia",
     "presetWhipPanName": "Whip Pan",
     "presetYtSplitHint": "Rozdvojený miniaturizovaný náhľad, ktorý vyprává príbeh",
-    "presetYtSplitName": "Before / After Thumbnail"
+    "presetYtSplitName": "Before / After Thumbnail",
+    "navAudio": "Zvuk",
+    "navAgents": "Agenti",
+    "heroTitle": "Čo dnes tvoríte?",
+    "heroSubtitle": "Obrázky, video, hudba a 3D. Platíte za každé dielo v DHB.",
+    "startCreating": "Začnite tvoriť",
+    "startCreatingSub": "Otvorte štúdio. Každé vytvorenie ukazuje cenu v DHB.",
+    "pickMedium": "Vyberte médium",
+    "moreTools": "Ďalšie nástroje",
+    "yourLibrary": "Vaša knižnica",
+    "doorImageNote": "Obrázky, plagáty a úpravy",
+    "doorVideoNote": "Klipy z textu alebo fotky",
+    "doorAudioNote": "Hlasové nástroje zadarmo",
+    "door3d": "3D",
+    "door3dNote": "Modely z promptu alebo fotky",
+    "doorAgentsNote": "Chat zadarmo",
+    "editorNote": "Strihajte na časovej osi",
+    "flowNote": "Spájajte kroky na plátne",
+    "builderNote": "Vytvorte aplikáciu z promptu"
   },
   "fractions": {
     "title": "Podiely",

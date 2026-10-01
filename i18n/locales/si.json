@@ -814,7 +814,17 @@
     "channelSpeedCount": "{{count}} channel(s) ප්‍රතිදීප්ත වේ.",
     "exportReady": "{{count}} අක්කෝරු, {{saved}} පස්තිය නිදහස් කරන ලදී.",
     "importDone": "Followed {{followed}}, blocked {{blocked}}, {{folders}} පොත් නිර්මාණය කර ඇත.",
-    "importPartial": "{{count}} අන්තර්ජාල සංකේත මාධ්‍ය අනුගත නොවීනම් — ඒ අන්තර්ජාල සංකේත මාධ්‍ය නැවත ප්‍රක්‍ෂේප කර බලන්න."
+    "importPartial": "{{count}} අන්තර්ජාල සංකේත මාධ්‍ය අනුගත නොවීනම් — ඒ අන්තර්ජාල සංකේත මාධ්‍ය නැවත ප්‍රක්‍ෂේප කර බලන්න.",
+    "themeColor": "තේමා වර්ණය",
+    "themeColorDesc": "මෙම තේමාව සඳහා අභිරුචි වර්ණයක් තෝරන්න",
+    "themeColorReset": "යළි සකසන්න",
+    "themeColorWhite": "සුදු",
+    "themeColorBlack": "කළු",
+    "themeColorRainbow": "දේදුන්න",
+    "themeColorBrand": "වෙළඳ නාමය",
+    "themeColorBrandDesc": "ඔබේ පැතිකඩ පින්තූරයේ වර්ණ භාවිත කරන්න",
+    "themeColorBrandNoAvatar": "වෙළඳ නාම වර්ණ භාවිත කිරීමට පැතිකඩ පින්තූරයක් එක් කරන්න",
+    "themeColorBrandFailed": "ඔබේ පැතිකඩ පින්තූරයෙන් වර්ණ කියවිය නොහැකි විය"
   },
   "common": {
     "mute": "නිහඬ කරන්න",
@@ -1004,7 +1014,8 @@
     "boostPostDesc": "එය මුල් පිටුවේ ඉහළින්ම තබන්න",
     "mintPostDesc": "මෙම පළකිරීම දාමය මත ප්‍රකාශ කරන්න",
     "giftBoost": "බූස්ට් එකක් තෑගි කරන්න",
-    "giftBoostDesc": "ඔබේ එකක් මෙම පළකිරීමට වියදම් කරන්න"
+    "giftBoostDesc": "ඔබේ එකක් මෙම පළකිරීමට වියදම් කරන්න",
+    "askAi": "AI ගෙන් අසන්න"
   },
   "filters": {
     "sort": "වර්ග කරන්න",
@@ -7231,7 +7242,25 @@
     "presetWhipPanHint": "වේගයෙන් බොඳ පෑන් හෙළිදරව් බවට",
     "presetWhipPanName": "විප් පෑන්",
     "presetYtSplitHint": "Split-screen සිඟිති රූපය කතාවක් කියයි",
-    "presetYtSplitName": "සිඟිති රූපයට පෙර / පසු"
+    "presetYtSplitName": "සිඟිති රූපයට පෙර / පසු",
+    "navAudio": "ශ්‍රව්‍ය",
+    "navAgents": "නියෝජිතයන්",
+    "heroTitle": "අද ඔබ සාදන්නේ කුමක්ද?",
+    "heroSubtitle": "රූප, වීඩියෝ, සංගීතය සහ 3D. එක් එක් නිර්මාණයට DHB වලින් ගෙවන්න.",
+    "startCreating": "නිර්මාණය අරඹන්න",
+    "startCreatingSub": "චිත්‍රාගාරය විවෘත කරන්න. සෑම නිර්මාණයක්ම එහි මිල DHB වලින් පෙන්වයි.",
+    "pickMedium": "මාධ්‍යයක් තෝරන්න",
+    "moreTools": "තවත් මෙවලම්",
+    "yourLibrary": "ඔබේ පුස්තකාලය",
+    "doorImageNote": "රූප, පෝස්ටර් සහ සංස්කරණ",
+    "doorVideoNote": "පෙළෙන් හෝ ඡායාරූපයකින් ක්ලිප්",
+    "doorAudioNote": "හඬ මෙවලම් නොමිලේ",
+    "door3d": "3D",
+    "door3dNote": "ප්‍රොම්ප්ට් හෝ ඡායාරූපයකින් මාදිලි",
+    "doorAgentsNote": "කතාබහ නොමිලේ",
+    "editorNote": "කාලරේඛාවේ කපන්න",
+    "flowNote": "කැන්වසයක පියවර සම්බන්ධ කරන්න",
+    "builderNote": "ප්‍රොම්ප්ට් එකකින් යෙදුමක් සාදන්න"
   },
   "fractions": {
     "title": "කොටස්",

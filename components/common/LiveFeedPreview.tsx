@@ -10,7 +10,7 @@
  * this app runs ExoPlayer out of memory.
  */
 
-import React, { memo, useContext, useEffect, useState } from "react";
+import React, { memo, useContext, useEffect, useMemo, useState } from "react";
 import { View, StyleSheet, Text, Pressable } from "react-native";
 import { useEvent } from "expo";
 import { useTranslation } from "react-i18next";
@@ -21,6 +21,7 @@ import SmartImage from "./SmartImage";
 import Icon from "../ui/Icon";
 import { sharedLivePlayerHolders, useSharedLivePlayer } from "../../libs/sharedLivePlayer";
 import { useSettledAutoplay } from "../../hooks/useSettledAutoplay";
+import { useFeedBleed, useMediaTools, type MediaTool } from "../Home/feedBleed";
 
 interface Props {
   /** HLS ladder for the stream. */
@@ -68,6 +69,24 @@ function LivePlayer({ url }: { url: string }) {
   const focused = useScreenFocused();
   const { status } = useEvent(player, 'statusChange', { status: player.status });
   const { isPlaying } = useEvent(player, "playingChange", { isPlaying: player.playing });
+  // Cinematic feed: play and sound live in the card's tools menu, not over
+  // the picture.
+  const foldTools = !!useFeedBleed()?.setTools;
+  const tools = useMemo<MediaTool[] | null>(() => foldTools ? [
+    {
+      key: "play",
+      icon: isPlaying ? "Pause" : "Play",
+      label: t(isPlaying ? "audioPost.pause" : "audioPost.play"),
+      onPress: () => { if (player.playing) player.pause(); else player.play(); },
+    },
+    {
+      key: "sound",
+      icon: muted ? "VolumeX" : "Volume2",
+      label: t(muted ? "common.unmute" : "common.mute"),
+      onPress: () => { player.muted = !muted; setMuted(!muted); },
+    },
+  ] : null, [foldTools, isPlaying, muted, player, t]);
+  useMediaTools(tools);
 
   useEffect(() => {
     if (!controlsVisible) return;
@@ -127,7 +146,7 @@ function LivePlayer({ url }: { url: string }) {
       {status !== 'error' && (!firstFrame || status === 'loading') && (
         <View pointerEvents="none" style={[StyleSheet.absoluteFill, { alignItems: 'center', justifyContent: 'center' }]}><DeHubLoader size={40} /></View>
       )}
-      {controlsVisible && <View style={styles.controls}>
+      {controlsVisible && !foldTools && <View style={styles.controls}>
         <Pressable accessibilityRole="button" accessibilityLabel={t(isPlaying ? "audioPost.pause" : "audioPost.play")} style={styles.control} onPress={(event) => {
           event.stopPropagation();
           if (player.playing) player.pause();

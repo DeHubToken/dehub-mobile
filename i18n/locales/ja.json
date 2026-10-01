@@ -817,7 +817,17 @@
     "exportReady": "{{count}}アカウント、{{saved}}保存された投稿をエクスポート。",
     "importDone": "フォローした{{followed}}、ブロックした{{blocked}}、{{folders}}フォルダを作成。",
     "importPartial": "{{count}}アカウントをフォローできませんでした — これらのアカウントを再試行するには、インポートを実行してください。",
-    "importProgress": "{{done}}の{{total}}を適用中…"
+    "importProgress": "{{done}}の{{total}}を適用中…",
+    "themeColor": "テーマカラー",
+    "themeColorDesc": "このテーマのカスタムカラーを選びます",
+    "themeColorReset": "リセット",
+    "themeColorWhite": "ホワイト",
+    "themeColorBlack": "ブラック",
+    "themeColorRainbow": "レインボー",
+    "themeColorBrand": "ブランド",
+    "themeColorBrandDesc": "プロフィール画像の色を使う",
+    "themeColorBrandNoAvatar": "ブランドカラーを使うにはプロフィール画像を追加してください",
+    "themeColorBrandFailed": "プロフィール画像から色を読み取れませんでした"
   },
   "common": {
     "mute": "ミュート",
@@ -1007,7 +1017,8 @@
     "boostPostDesc": "ホームフィードの先頭に表示します",
     "mintPostDesc": "この投稿をオンチェーンで公開します",
     "giftBoost": "ブーストを贈る",
-    "giftBoostDesc": "自分のブーストをこの投稿に使います"
+    "giftBoostDesc": "自分のブーストをこの投稿に使います",
+    "askAi": "AIに質問"
   },
   "filters": {
     "sort": "並べ替え",
@@ -1861,7 +1872,16 @@
     "tryAnotherGenre": "別のジャンルを試してください。",
     "pauseStation": "ステーションを一時停止",
     "resumeStation": "ステーションを再開",
-    "stopRadio": "ラジオを停止"
+    "stopRadio": "ラジオを停止",
+    "playsToday": "今日の再生 {{plays}} 回",
+    "listen": "聴く",
+    "top50": "トップ50",
+    "playAll": "すべて再生",
+    "nothingHereYet": "まだ何もありません。",
+    "likeStation": "ステーションにいいね",
+    "unlikeStation": "いいねを取り消す",
+    "shareStation": "ステーションを共有",
+    "listeningTo": "DeHubで{{name}}を聴いています"
   },
   "notFound": {
     "title": "ページが見つかりません",
@@ -5556,7 +5576,16 @@
     "preparingCamera": "カメラを準備中…",
     "reconnecting": "再接続中…",
     "connecting": "接続中…",
-    "shopPutOnAir": "放送を始める"
+    "shopPutOnAir": "放送を始める",
+    "streamCount_one": "{{count}}件の配信",
+    "streamCount_other": "{{count}}件の配信",
+    "noOneStreamingGame": "今{{game}}を配信している人はいません。",
+    "seeAllStreams": "すべての配信を見る",
+    "isLiveNow": "{{name}}が配信中",
+    "justChatting": "雑談",
+    "noLiveStreams": "ライブ配信はありません",
+    "noOneStreaming": "今は誰も配信していません。また後で見てください！",
+    "loadStreamsFailed": "配信を読み込めませんでした。もう一度お試しください。"
   },
   "liveShop": {
     "title": "この配信でショッピング",
@@ -7279,7 +7308,25 @@
     "presetWhipPanHint": "高速でぼかしながらリビールへパン",
     "presetWhipPanName": "ウィップパン",
     "presetYtSplitHint": "物語を語るスプリットスクリーンサムネイル",
-    "presetYtSplitName": "ビフォー / アフターサムネイル"
+    "presetYtSplitName": "ビフォー / アフターサムネイル",
+    "navAudio": "オーディオ",
+    "navAgents": "エージェント",
+    "heroTitle": "今日は何を作りますか？",
+    "heroSubtitle": "画像、動画、音楽、3D。作成ごとにDHBで支払い。",
+    "startCreating": "作成を始める",
+    "startCreatingSub": "スタジオを開きます。各作成の価格はDHBで表示されます。",
+    "pickMedium": "メディアを選択",
+    "moreTools": "その他のツール",
+    "yourLibrary": "ライブラリ",
+    "doorImageNote": "静止画、ポスター、編集",
+    "doorVideoNote": "テキストや写真からクリップ",
+    "doorAudioNote": "音声ツールは無料",
+    "door3d": "3D",
+    "door3dNote": "プロンプトや写真からモデル",
+    "doorAgentsNote": "チャットは無料",
+    "editorNote": "タイムラインでカット",
+    "flowNote": "キャンバスでステップをつなぐ",
+    "builderNote": "プロンプトからアプリを作成"
   },
   "fractions": {
     "title": "フラクション",
