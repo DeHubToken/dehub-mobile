@@ -347,6 +347,8 @@ export interface AudioPostPlayerProps {
   artist?: string;
   artworkUrl?: string;
   topLeftAction?: React.ReactNode;
+  /** Spans the screen like other media: square, no gap above. */
+  edgeToEdge?: boolean;
 }
 
 const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
@@ -360,6 +362,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
   artist,
   artworkUrl,
   topLeftAction,
+  edgeToEdge = false,
 }) => {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
@@ -1126,7 +1129,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
   };
 
   return (
-    <View style={styles.card}>
+    <View style={[styles.card, edgeToEdge && styles.cardEdge]}>
       {renderWindow("inline")}
 
       {/* An RN <Modal>, mounted here rather than routed to: a
@@ -1164,6 +1167,10 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     overflow: "hidden",
     backgroundColor: "rgba(0,0,0,0.65)",
+  },
+  cardEdge: {
+    marginTop: 8,
+    borderRadius: 0,
   },
   windowInline: {
     width: "100%",

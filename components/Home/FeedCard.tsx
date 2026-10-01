@@ -54,6 +54,7 @@ import {
   CINEMATIC_TEXT_INSET,
   CINEMATIC_TOP_BAND,
   CINEMATIC_BOTTOM_BAND,
+  CINEMATIC_BOTTOM_BAND_LOW,
   CINEMATIC_BOTTOM_LIFT,
 } from "./CinematicChrome";
 import FeedImageGallery from "./FeedImageGallery";
@@ -1225,15 +1226,20 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   // The player's own buttons, folded into one tools menu on the card.
   const [mediaTools, setMediaTools] = useState<MediaTool[] | null>(null);
   const [toolsOpen, setToolsOpen] = useKeyedState(postKey, false);
+  // The first post's chrome sits in the true bottom corners of the media and
+  // lifts above the player bar only while that bar is on screen.
+  const [mediaBarUp, setMediaBarUp] = useKeyedState(postKey, false);
+  const bottomBand = mediaBarUp ? CINEMATIC_BOTTOM_BAND : CINEMATIC_BOTTOM_BAND_LOW;
   const feedBleed = useMemo<FeedBleed | null>(
     () => (cinematicMedia
       ? {
           topInset: chipOverMedia ? mediaBand : 0,
-          bottomInset: chipAtBottom ? CINEMATIC_BOTTOM_BAND : 0,
+          bottomInset: chipAtBottom ? bottomBand : 0,
           setTools: chipOverMedia ? setMediaTools : undefined,
+          setBarUp: chipAtBottom ? setMediaBarUp : undefined,
         }
       : null),
-    [cinematicMedia, chipOverMedia, chipAtBottom, mediaBand],
+    [cinematicMedia, chipOverMedia, chipAtBottom, mediaBand, bottomBand, setMediaBarUp],
   );
   // Media that already spans the screen: square, no top gap.
   const edgeMedia = immersive || cinematicMedia;
@@ -1475,9 +1481,13 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const renderLiveThumbnail = () => (
     <Pressable
       onPress={handleCardPress}
-      className="relative w-full h-48 bg-zinc-800 rounded-xl overflow-hidden mt-2"
-      style={cinematicMedia ? { marginTop: 0, borderRadius: 0, height: Math.round((SCREEN_WIDTH * 9) / 16) } : undefined}
+      // The grey backing is a plain view inside: as the pressable's own fill,
+      // the theme pass that styles neutral pressables as buttons gave the
+      // whole screen the theme's control frame, a border around the picture.
+      className={cinematicMedia ? "relative w-full overflow-hidden" : "relative w-full h-48 rounded-xl overflow-hidden mt-2"}
+      style={cinematicMedia ? { height: Math.round((SCREEN_WIDTH * 9) / 16) } : undefined}
     >
+      <View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: "#27272a" }]} />
       {isCurrentlyLive && isVisible && (
         <View pointerEvents="none" style={[StyleSheet.absoluteFill, { zIndex: 2 }]}>
           <LiveFeedReactionFlow
@@ -1607,8 +1617,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       case "short":
       case "video":
         return bleed(renderVideoThumbnail());
-      case "audio":
-        return (
+      case "audio": {
+        const audio = (
           <>
             {bleed(renderImageContent())}
             {tokenId != null && (
@@ -1635,10 +1645,15 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
                     <Text className="text-white text-xs font-medium">{formatCompactNumber(bountyAmount)} {bountyTokenSymbol}</Text>
                   </TouchableOpacity>
                 ) : undefined}
+                edgeToEdge={cinematicFeed}
               />
             )}
           </>
         );
+        // The cinematic feed runs the player edge to edge like other media;
+        // the rest of the post keeps its text inset.
+        return cinematicFeed ? <View style={{ marginHorizontal: -CINEMATIC_TEXT_INSET }}>{audio}</View> : audio;
+      }
       case "image":
       default:
         return bleed(renderImageContent());
@@ -1993,7 +2008,15 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             <FeedBleedContext.Provider value={feedBleed}>
               {renderContent()}
             </FeedBleedContext.Provider>
-            <View pointerEvents="box-none" style={[styles.cinematicChrome, chipAtBottom ? styles.cinematicBottom : styles.cinematicTop]}>
+            <View
+              pointerEvents="box-none"
+              style={[
+                styles.cinematicChrome,
+                chipAtBottom
+                  ? [styles.cinematicBottom, mediaBarUp && styles.cinematicBottomLifted]
+                  : styles.cinematicTop,
+              ]}
+            >
               <CinematicAuthorChip
                 avatarUrl={avatar}
                 displayName={displayName}
@@ -2003,10 +2026,10 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
                 meta={chipMeta}
                 onPress={handleUserPress}
               />
-              <View pointerEvents="box-none" style={styles.cinematicButtons}>
-                {isHidden && <CinematicIconButton icon="EyeOff" label={t("settings.hiddenOption")} />}
+              <View pointerEvents="box-none" style={chipAtBottom ? styles.cinematicBareButtons : styles.cinematicButtons}>
+                {isHidden && <CinematicIconButton icon="EyeOff" label={t("settings.hiddenOption")} bare={chipAtBottom} />}
                 {isOwnerPost && isSignedIn && tokenId != null && (
-                  <CinematicIconButton icon="Rocket" label={t("feedCard.boostPost")} onPress={handleBoostPress} />
+                  <CinematicIconButton icon="Rocket" label={t("feedCard.boostPost")} onPress={handleBoostPress} bare={chipAtBottom} />
                 )}
                 {mediaTools && mediaTools.length > 0 && (
                   <CinematicIconButton
@@ -2014,15 +2037,15 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
                     label={t("settings.title")}
                     active={toolsOpen}
                     onPress={() => setToolsOpen(!toolsOpen)}
+                    bare={chipAtBottom}
                   />
                 )}
-                <CinematicIconButton icon="EllipsisVertical" label={t("player.moreOptions")} onPress={handleOpenOptions} />
               </View>
             </View>
             {toolsOpen && mediaTools && mediaTools.length > 0 && (
               <CinematicToolsMenu
                 tools={mediaTools}
-                fromBottom={chipAtBottom ? CINEMATIC_BOTTOM_BAND + 8 : undefined}
+                fromBottom={chipAtBottom ? bottomBand + 8 : undefined}
                 onClose={() => setToolsOpen(false)}
               />
             )}
@@ -2045,7 +2068,10 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
               isHidden={isHidden}
             />
             {matureGate.isGated ? (
-              <MatureContentGate onReveal={matureGate.reveal} />
+              // In place of the media, so edge to edge like the media.
+              <View style={{ marginHorizontal: -CINEMATIC_TEXT_INSET }}>
+                <MatureContentGate onReveal={matureGate.reveal} edgeToEdge />
+              </View>
             ) : (
               <>
                 {renderContent()}
@@ -2101,6 +2127,19 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           </View>
         )}
         <View style={{ paddingHorizontal: CINEMATIC_TEXT_INSET }}>
+          {chipOverMedia ? (
+            // Options sit off the picture, at the top right of the caption,
+            // inset from the edge like the text is on the left.
+            <Pressable
+              onPress={handleOpenOptions}
+              hitSlop={6}
+              accessibilityRole="button"
+              accessibilityLabel={t("player.moreOptions")}
+              style={styles.captionOptions}
+            >
+              <Icon name="EllipsisVertical" size={20} color="#FFFFFF" />
+            </Pressable>
+          ) : null}
           {cinematicMedia ? (
             // The caption sits under the media, then the soundtrack.
             <>
@@ -2109,7 +2148,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
                 onReaction={handleVideoTapReaction}
                 onPress={disablePress ? undefined : handleCardPress}
               >
-                <View style={{ paddingTop: 10 }}>
+                <View style={[{ paddingTop: 10 }, chipOverMedia && styles.captionBesideOptions]}>
                   <FeedCaption
                     resetKey={postKey}
                     title={overlayTitle || undefined}
@@ -2433,8 +2472,27 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   cinematicTop: { top: CINEMATIC_EDGE },
-  cinematicBottom: { bottom: CINEMATIC_BOTTOM_LIFT },
+  // The first post: the true bottom corners, the bare buttons' tap area
+  // reaching nearer the right edge so their icons line up with the name's.
+  cinematicBottom: { bottom: CINEMATIC_EDGE, right: 6, alignItems: "flex-end" },
+  cinematicBottomLifted: { bottom: CINEMATIC_BOTTOM_LIFT },
   cinematicButtons: { flexDirection: "row", alignItems: "center", gap: 8, marginLeft: 8 },
+  // 32pt tap area around a 20pt glyph: right -6 puts the glyph's edge on the
+  // text inset.
+  captionOptions: {
+    position: "absolute",
+    top: 4,
+    right: CINEMATIC_TEXT_INSET - 6,
+    zIndex: 2,
+    width: 32,
+    height: 32,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  // The caption stops short of the options button, and leaves it room when
+  // there is no caption at all.
+  captionBesideOptions: { paddingRight: 28, minHeight: 36 },
+  cinematicBareButtons: { flexDirection: "row", alignItems: "center", gap: 2, marginLeft: 8 },
 });
 
 const hideCard = () => null;
