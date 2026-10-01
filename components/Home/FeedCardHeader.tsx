@@ -17,7 +17,7 @@ const HEADER_ICON_PAD = 4;
 const DISPLAY_NAME_FONT_SIZE = 16;
 const DISPLAY_NAME_LINE_HEIGHT = 20;
 const HOLDER_BADGE_SIZE = 16;
-const HOLDER_BADGE_GAP = 2;
+const HOLDER_BADGE_GAP = 0;
 // A bare Text onPress is the least forgiving target on Android: a thin line of
 // 14pt type with no slop, cancelled by a few pixels of finger travel. Name,
 // handle and avatar are real Pressables with room around them.
@@ -101,7 +101,6 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
                 source={badgeImage}
                 style={[
                   getBadgeOpticalStyle(badgeImage, HOLDER_BADGE_SIZE, 0, DISPLAY_NAME_LINE_HEIGHT),
-                  { marginLeft: 0 },
                 ]}
                 resizeMode="contain"
                 fadeDuration={0}
