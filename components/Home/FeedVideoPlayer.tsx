@@ -1417,8 +1417,8 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
                   >
                     <BareIcon name={isPlaying ? "Pause" : "Play"} />
                   </Pressable>
+                  <Text style={[styles.timeText, styles.bareTime]}>{formatTime(Math.max(0, Math.ceil(videoDuration - currentTime)))}</Text>
                   <View style={{ flex: 1 }} />
-                  <Text style={[styles.timeText, styles.bareTime]}>{formatTime(videoDuration)}</Text>
                   <Pressable
                     onPress={handleFullscreen}
                     hitSlop={4}
