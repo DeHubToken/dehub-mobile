@@ -156,7 +156,7 @@ export const IslandCapsule = memo(function IslandCapsule({
               accessibilityLabel={unread > 0 ? t("common.notificationsUnread", { unread }) : t("nav.notifications")}
               style={styles.bell}
             >
-              <Icon name="Bell" size={21} color="#FFFFFF" strokeWidth={1.9} />
+              <Icon name="Bell" size={26} color="#FFFFFF" strokeWidth={1.9} />
               <UnreadBadge count={unread} />
             </Pressable>
           </View>
@@ -262,7 +262,7 @@ const styles = StyleSheet.create({
   menuRowOn: { backgroundColor: "rgba(255,255,255,0.10)" },
   menuLabel: { flex: 1, color: "#FFFFFF", fontSize: 14, fontWeight: "500" },
   menuDivider: { height: 1, marginVertical: 6, marginHorizontal: 6, backgroundColor: "rgba(255,255,255,0.12)" },
-  // Off the glyph's top right corner (the glyph is 21pt in a 28pt box).
+  // Off the glyph's top right corner (the glyph is 26pt in a 28pt box).
   badge: {
     position: "absolute",
     top: 0,
