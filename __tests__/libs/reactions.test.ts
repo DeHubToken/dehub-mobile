@@ -3,13 +3,13 @@ import {
   reactionForTap,
   reconcileReactionCounts,
   resolveLeadReaction,
-  resolveNegativeLeadReaction,
+  resolveThumbReaction,
   resolveReactionCounts,
-  HAS_NEGATIVE_TRAY,
   NEGATIVE_REACTION_LIST,
   POSITIVE_REACTION_LIST,
   POST_REACTIONS,
   REACTION_LIST,
+  TRAY_REACTION_LIST,
 } from "../../libs/reactions";
 
 describe("reaction taxonomy", () => {
@@ -45,7 +45,7 @@ describe("resolveLeadReaction", () => {
     expect(resolveLeadReaction({ love: 4, hot: 4 })).toBe("love");
   });
 
-  it("never wears a negative reaction — that is the thumbs-down's", () => {
+  it("never leads with a negative reaction", () => {
     expect(resolveLeadReaction({ like: 1, dislike: 9 })).toBeNull();
     expect(resolveLeadReaction({ love: 1, dislike: 9 })).toBe("love");
     expect(resolveLeadReaction({ hot: 3 }, "dislike")).toBe("hot");
@@ -81,14 +81,14 @@ describe("reactionForTap", () => {
     expect(reactionForTap(false, "dislike", {})).toBe("dislike");
   });
 
-  it("keeps the thumbs-down a plain dislike — it never wears a glyph", () => {
+  it("keeps an explicit downvote a plain dislike", () => {
     expect(reactionForTap(false, null, { hot: 40 })).toBe("dislike");
     expect(reactionForTap(false, "hot", { hot: 40 })).toBe("dislike");
   });
 
-  it("switches polarity to whatever the thumb shows", () => {
-    expect(reactionForTap(true, "dislike", { hot: 5 })).toBe("hot");
-    expect(reactionForTap(true, "dislike", { like: 5 })).toBe("like");
+  it("takes a held 👎 back off — the thumb is wearing it", () => {
+    expect(reactionForTap(true, "dislike", { hot: 5 })).toBe("dislike");
+    expect(reactionForTap(true, "dislike", { like: 5 })).toBe("dislike");
   });
 });
 
@@ -211,16 +211,12 @@ describe("resolveReactionCounts — object identity", () => {
   });
 });
 
-describe("the two trays", () => {
-  it("leaves the thumbs-down with the downvote and nothing else", () => {
+describe("the reaction tray", () => {
+  it("holds the downvote on the negative side and nothing else", () => {
     expect(NEGATIVE_REACTION_LIST.map((r) => r.key)).toEqual(["dislike"]);
   });
 
-  it("does not open a tray of one — a hold there would delay the downvote", () => {
-    expect(HAS_NEGATIVE_TRAY).toBe(false);
-  });
-
-  it("keeps every positive face on the thumbs-up", () => {
+  it("keeps every positive face before the divider", () => {
     expect(POSITIVE_REACTION_LIST.map((r) => r.key)).toEqual([
       "like",
       "love",
@@ -234,29 +230,26 @@ describe("the two trays", () => {
     ]);
   });
 
-  it("partitions the picker exactly — every reaction reachable from one thumb", () => {
-    expect([...POSITIVE_REACTION_LIST, ...NEGATIVE_REACTION_LIST]).toHaveLength(
-      REACTION_LIST.length,
-    );
-    for (const meta of REACTION_LIST) {
-      const tray = meta.positive ? POSITIVE_REACTION_LIST : NEGATIVE_REACTION_LIST;
-      expect(tray).toContain(meta);
-    }
+  it("lists every reaction once, positives first and 👎 last", () => {
+    expect(TRAY_REACTION_LIST).toHaveLength(REACTION_LIST.length);
+    expect(TRAY_REACTION_LIST.map((r) => r.key)).toEqual([...POST_REACTIONS]);
+    expect(TRAY_REACTION_LIST[TRAY_REACTION_LIST.length - 1].key).toBe("dislike");
   });
 });
 
-describe("resolveNegativeLeadReaction", () => {
-  it("draws the plain icon for a plain 👎, which is already that glyph", () => {
-    expect(resolveNegativeLeadReaction("dislike")).toBeNull();
+describe("resolveThumbReaction", () => {
+  it("wears the viewer's own 👎 so a downvote shows it landed", () => {
+    expect(resolveThumbReaction({ hot: 40 }, "dislike")).toBe("dislike");
   });
 
-  it("leaves the thumbs-down bare now that 💩 belongs to the other thumb", () => {
-    expect(resolveNegativeLeadReaction("poo")).toBeNull();
+  it("never wears the crowd's 👎", () => {
+    expect(resolveThumbReaction({ dislike: 90, like: 1 }, null)).toBeNull();
+    expect(resolveThumbReaction({ dislike: 90, hot: 1 }, null)).toBe("hot");
   });
 
-  it("never announces a positive reaction — that thumb is above it", () => {
-    expect(resolveNegativeLeadReaction("love")).toBeNull();
-    expect(resolveNegativeLeadReaction(null)).toBeNull();
-    expect(resolveNegativeLeadReaction(undefined)).toBeNull();
+  it("otherwise follows resolveLeadReaction", () => {
+    expect(resolveThumbReaction({ like: 40 }, "lol")).toBe("lol");
+    expect(resolveThumbReaction({ love: 4 }, null)).toBe("love");
+    expect(resolveThumbReaction(null, null)).toBeNull();
   });
 });

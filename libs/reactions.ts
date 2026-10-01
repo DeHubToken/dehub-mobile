@@ -36,14 +36,14 @@ export const POST_REACTIONS = [
 export type PostReaction = (typeof POST_REACTIONS)[number];
 
 /**
- * Reactions that land in `totalVotes.against` and light the thumbs-down.
+ * Reactions that land in `totalVotes.against` (👎, the last pick in the tray).
  *
  * Just the one, since 2026-09-07. 💩 was negative until then and is now an
  * ordinary positive reaction: it was always cast as a joke, but polarity is
  * not a joke — a negative reaction feeds `totalVotes.against` and
  * `totalVoters.against`, which is what the API's downvote-burial filter
  * measures, so two of them dropped a post out of public discovery. The
- * thumbs-DOWN is the one control that means "no".
+ * 👎 is the one reaction that means "no".
  */
 export const NEGATIVE_REACTIONS: readonly PostReaction[] = ["dislike"] as const;
 
@@ -76,28 +76,19 @@ export const REACTION_LIST: ReactionMeta[] = POST_REACTIONS.map((key) => META[ke
 /**
  * The picker's two halves.
  *
- * There is one tray per thumb, not one tray of everything hanging off the
- * thumbs-UP: the faces that count as a like belong to the button that already
- * counts them, and the thumbs-DOWN carries whatever counts against. A single
- * tray on the like button meant the only way to downvote through a face was
- * the button labelled "like".
+ * Both live in the one tray behind the thumbs-UP — there is no separate
+ * thumbs-down button any more. The tray lists every positive face first, a
+ * divider, then the negatives (just 👎), so "no" is still one deliberate pick
+ * away rather than a button sitting beside every post.
  *
  * Derived from POST_REACTIONS so both halves keep the canonical order and a
- * new reaction lands in the right tray without a second edit.
+ * new reaction lands on the right side of the divider without a second edit.
  */
 export const POSITIVE_REACTION_LIST: ReactionMeta[] = REACTION_LIST.filter((r) => r.positive);
 export const NEGATIVE_REACTION_LIST: ReactionMeta[] = REACTION_LIST.filter((r) => !r.positive);
 
-/**
- * Whether the thumbs-DOWN has a tray worth opening.
- *
- * It has held a single 👎 since poo crossed to the positive side, and a
- * long-press menu of one option is worse than no menu: the press opens a tray
- * the viewer then has to aim at to cast the downvote they had already asked
- * for. Surfaces pass this before opening `openTray: 'negative'`, so the tray
- * comes back on its own the day a second negative reaction is added.
- */
-export const HAS_NEGATIVE_TRAY = NEGATIVE_REACTION_LIST.length > 1;
+/** Tray order: every positive reaction, then every negative one (👎 last). */
+export const TRAY_REACTION_LIST: ReactionMeta[] = [...POSITIVE_REACTION_LIST, ...NEGATIVE_REACTION_LIST];
 
 /**
  * Past-tense verb phrase for notification copy ("Ada loved your post").
@@ -154,9 +145,8 @@ export type ReactionCounts = Partial<Record<PostReaction, number>>;
  * 1. **The viewer's own reaction wins.** Seeing your 😂 on the post you laughed
  *    at is what tells you the reaction registered; the crowd's pick is the
  *    fallback, not the override.
- * 2. **Negative reactions never lead.** They belong to the thumbs-DOWN button,
- *    and a 👎 drawn beside the *like* count reads as a rendering bug rather
- *    than as data.
+ * 2. **Negative reactions never lead.** Only the viewer's own 👎 is drawn on
+ *    the thumb (see `resolveThumbReaction`); the crowd's is anonymous.
  *
  * Null means "draw the plain thumbs-up icon" — returned both when no positive
  * reaction leads and when the leader is a plain like, since the icon is already
@@ -175,26 +165,22 @@ export function resolveLeadReaction(
 }
 
 /**
- * The one glyph the thumbs-DOWN wears — the viewer's own negative reaction,
- * else null for the plain icon.
+ * The glyph the single thumb wears, including a downvote.
  *
- * Currently always null, because 👎 is the only negative reaction left and the
- * button already draws that glyph. Kept rather than deleted: it is the rule,
- * not a special case, and the day a second negative reaction is added the
- * thumb wears it again with no change here.
+ * With the thumbs-down gone, the thumbs-up is the only place a viewer's 👎 can
+ * show that it landed — so their own negative reaction is drawn on it (and a
+ * tap takes it back off, see `reactionForTap`). The crowd's negatives still
+ * never lead: negative reactions are anonymous, and drawing one on every
+ * reader's copy of a post because somebody cast it would point at them.
  *
- * Deliberately NOT the mirror of `resolveLeadReaction`: it never leads with
- * the crowd's pick. Negative reactions are anonymous across the whole product
- * — they raise no notification and appear in no likers list — so drawing one
- * on every reader's copy of a post because some of them cast it would be the
- * one place the app pointed at them. Your own is different: you already know
- * what you cast, and the glyph is what proves it landed.
+ * Null means "draw the plain thumbs-up icon".
  */
-export function resolveNegativeLeadReaction(
-  myReaction: PostReaction | null | undefined,
+export function resolveThumbReaction(
+  counts: ReactionCounts | null | undefined,
+  myReaction?: PostReaction | null,
 ): PostReaction | null {
-  if (!myReaction || isPositiveReaction(myReaction)) return null;
-  return myReaction === DEFAULT_NEGATIVE_REACTION ? null : myReaction;
+  if (myReaction && !isPositiveReaction(myReaction)) return myReaction;
+  return resolveLeadReaction(counts, myReaction);
 }
 
 /** Most-used positive reaction, ties broken by picker order. */
@@ -224,11 +210,12 @@ function topPositiveReaction(counts: ReactionCounts | null | undefined): PostRea
  *
  * Re-sending the reaction the viewer already holds is what the server reads as
  * "remove it", so this doubles as the un-react path — tapping the thumb clears
- * a 🔥 the same way it clears a 👍, rather than downgrading it to a like.
+ * a 🔥 the same way it clears a 👍, rather than downgrading it to a like. That
+ * includes a held 👎: the thumb wears it, so a tap on the thumb takes it back.
  *
- * The thumbs-DOWN never wears a glyph — 👎 is the only reaction on that side
- * and the button is already drawing it — so a tap there is always a plain
- * dislike, cast or toggled off.
+ * `positive: false` is the explicit downvote (the comment menu's "Dislike"
+ * row, a screen-reader action): it always means a plain dislike, cast or
+ * toggled off.
  */
 export function reactionForTap(
   positive: boolean,
@@ -236,8 +223,8 @@ export function reactionForTap(
   counts?: ReactionCounts | null,
 ): PostReaction {
   const held = myReaction ?? null;
-  if (held && isPositiveReaction(held) === positive) return held;
   if (!positive) return DEFAULT_NEGATIVE_REACTION;
+  if (held) return held;
   return resolveLeadReaction(counts, held) ?? DEFAULT_POSITIVE_REACTION;
 }
 
