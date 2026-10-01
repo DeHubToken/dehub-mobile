@@ -7,6 +7,7 @@ module.exports = {
   // over babel in exchange. Type checking already runs separately as
   // `tsc --noEmit` (npm run typecheck, and the CI lint-typecheck job).
   transform: {
+    '\\.png$': '<rootDir>/__mocks__/assetTransformer.js',
     '^.+\\.(js|jsx|ts|tsx)$': 'babel-jest',
   },
   // @shopify/flash-list ships its dist/ as ES modules, and hooks/useCellState
@@ -19,7 +20,7 @@ module.exports = {
     '^@env$': '<rootDir>/__mocks__/@env.ts',
     // babel.config.js's jsxImportSource; a folder here, not a package.
     '^dehub-jsx/(.*)$': '<rootDir>/libs/jsx/$1',
-    '\\.(png|jpg|jpeg|gif|svg|wav|mp3|m4a|html|ttf)$': '<rootDir>/__mocks__/fileMock.js',
+    '\\.(jpg|jpeg|gif|svg|wav|mp3|m4a|html|ttf)$': '<rootDir>/__mocks__/fileMock.js',
     '\\.css$': '<rootDir>/__mocks__/styleMock.js',
   },
   setupFiles: ['<rootDir>/__mocks__/setup.ts'],
