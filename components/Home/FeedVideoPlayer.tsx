@@ -495,6 +495,12 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   );
 
   const [showControls, setShowControls] = useState(false);
+  const [showTools, setShowTools] = useState(false);
+  const showToolsRef = useRef(false);
+  showToolsRef.current = showTools;
+  useEffect(() => {
+    if (!showControls) setShowTools(false);
+  }, [showControls]);
   // Real shape of the clip, so a portrait video is shown portrait instead of
   // being cropped into a fixed 16:9 slot. Measured off the thumbnail, which is
   // extracted from the video itself; 16:9 until that resolves.
@@ -529,7 +535,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   const startHideTimer = useCallback(() => {
     clearHideTimer();
     hideControlsTimerRef.current = setTimeout(() => {
-      setShowControls(false);
+      if (!showToolsRef.current) setShowControls(false);
     }, 2000);
   }, [clearHideTimer]);
 
@@ -1268,6 +1274,45 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
             )}
             {bareControls ? (
               <View pointerEvents="box-none" style={[styles.bareRow, { top: bareTop }]}>
+                {/* Tap to mute, drag up or down to set the volume. */}
+                <View>
+                  <View
+                    style={styles.bareButton}
+                    {...volumePanResponder.panHandlers}
+                    accessibilityRole="button"
+                    accessibilityLabel={t(isMuted ? "common.unmute" : "common.mute")}
+                  >
+                    <BareIcon name={isMuted ? "VolumeX" : "Volume2"} />
+                  </View>
+                  {volumeAdjusting && (
+                    <View style={[styles.volumeTrack, styles.bareVolumeTrack]} pointerEvents="none">
+                      <View style={styles.glassOverlay} />
+                      <View style={styles.volumeTrackInner}>
+                        <View
+                          style={[
+                            styles.volumeFill,
+                            { height: `${Math.round((isMuted ? 0 : volume) * 100)}%` },
+                          ]}
+                        />
+                      </View>
+                    </View>
+                  )}
+                </View>
+                <Pressable
+                  onPress={() => {
+                    setShowTools((open) => !open);
+                    startHideTimer();
+                  }}
+                  hitSlop={4}
+                  accessibilityRole="button"
+                  accessibilityLabel={t("player.moreOptions")}
+                  accessibilityState={{ expanded: showTools }}
+                  style={styles.bareButton}
+                >
+                  <BareIcon name="Ellipsis" />
+                </Pressable>
+                {showTools && (
+                  <View style={styles.toolsMenu}>
                 {captionControls && (
                   <Pressable
                     onPress={captionControls.toggle}
@@ -1317,30 +1362,8 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
                     <BareIcon name="PictureInPicture2" />
                   </Pressable>
                 )}
-                {/* Tap to mute, drag up or down to set the volume. */}
-                <View>
-                  <View
-                    style={styles.bareButton}
-                    {...volumePanResponder.panHandlers}
-                    accessibilityRole="button"
-                    accessibilityLabel={t(isMuted ? "common.unmute" : "common.mute")}
-                  >
-                    <BareIcon name={isMuted ? "VolumeX" : "Volume2"} />
                   </View>
-                  {volumeAdjusting && (
-                    <View style={[styles.volumeTrack, styles.bareVolumeTrack]} pointerEvents="none">
-                      <View style={styles.glassOverlay} />
-                      <View style={styles.volumeTrackInner}>
-                        <View
-                          style={[
-                            styles.volumeFill,
-                            { height: `${Math.round((isMuted ? 0 : volume) * 100)}%` },
-                          ]}
-                        />
-                      </View>
-                    </View>
-                  )}
-                </View>
+                )}
               </View>
             ) : <View style={[styles.topControls, edgeToEdge && { paddingHorizontal: MINIMAL_EDGE }, bleed && { paddingTop: bleed.topInset }]}>
               <Pressable onPress={handleToggleSpeed} style={styles.glassButton}>
@@ -1394,8 +1417,8 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
                   >
                     <BareIcon name={isPlaying ? "Pause" : "Play"} />
                   </Pressable>
+                  <Text style={[styles.timeText, styles.bareTime]}>{formatTime(Math.max(0, Math.ceil(videoDuration - currentTime)))}</Text>
                   <View style={{ flex: 1 }} />
-                  <Text style={[styles.timeText, styles.bareTime]}>{formatTime(videoDuration)}</Text>
                   <Pressable
                     onPress={handleFullscreen}
                     hitSlop={4}
@@ -1723,6 +1746,16 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: 4,
+  },
+  toolsMenu: {
+    position: "absolute",
+    top: 38,
+    right: 0,
+    padding: 6,
+    gap: 4,
+    borderRadius: 12,
+    backgroundColor: "rgba(24,24,27,0.96)",
+    zIndex: 10,
   },
   bareButton: {
     width: 32,
