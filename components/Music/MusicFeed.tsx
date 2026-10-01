@@ -22,6 +22,7 @@
  * @module components/Music/MusicFeed
  */
 
+import { isVisibleInMusic } from "./music-curation";
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   ActivityIndicator,
@@ -206,7 +207,7 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
         sortMode: "popular",
         address,
       });
-      return res.result || [];
+      return (res.result || []).filter(isVisibleInMusic);
     },
     staleTime: 5 * 60_000,
   });
@@ -220,7 +221,7 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
         sortMode: "new",
         address,
       });
-      return res.result || [];
+      return (res.result || []).filter(isVisibleInMusic);
     },
     staleTime: 5 * 60_000,
   });
@@ -266,7 +267,7 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
   });
 
   const videoItems = useMemo(
-    () => musicVideos.data?.pages.flatMap((p) => p.items) ?? [],
+    () => musicVideos.data?.pages.flatMap((p) => p.items).filter(isVisibleInMusic) ?? [],
     [musicVideos.data],
   );
 
