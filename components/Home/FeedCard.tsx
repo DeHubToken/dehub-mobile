@@ -2023,7 +2023,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
                 username={username}
                 address={minterAddress}
                 badgeImage={badgeImg}
-                meta={isVideo ? undefined : chipMeta}
+                meta={username ? `@${username.replace(/^@/, "")}` : ""}
                 onPress={handleUserPress}
               />
               <View pointerEvents="box-none" style={chipAtBottom ? styles.cinematicBareButtons : styles.cinematicButtons}>
@@ -2179,7 +2179,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             <View className="flex-row items-center justify-end pt-2">{translateButton}</View>
           ) : null}
         </View>
-        {isVideo && (
+        {(
           <View style={{ paddingHorizontal: CINEMATIC_TEXT_INSET, paddingTop: 8, flexDirection: "row", alignItems: "center", gap: 6 }}>
             <Text style={{ fontSize: 13, lineHeight: 18, color: "#8B8D90" }}>{timeAgo}</Text>
             <Text style={{ color: "#6F7174" }}>·</Text>
@@ -2222,9 +2222,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         paddingBottom: 12,
       } : isMinimal ? {
         marginHorizontal: -minimalGutter,
-        paddingTop: 14,
+        paddingTop: 22,
         paddingHorizontal: MINIMAL_TEXT_INSET,
-        paddingBottom: 10,
+        paddingBottom: 18,
         borderBottomWidth: 1,
         borderBottomColor: MINIMAL_HAIRLINE,
       } : skin ? [

@@ -1,5 +1,5 @@
-import React, { memo, useCallback, useState } from "react";
-import { Image, Pressable, StyleSheet, Text, View, useWindowDimensions, type LayoutChangeEvent } from "react-native";
+import React, { memo, useCallback } from "react";
+import { Image, Pressable, StyleSheet, Text, View, useWindowDimensions } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import Avatar from "../common/Avatar";
@@ -91,24 +91,15 @@ export const IslandCapsule = memo(function IslandCapsule({
   );
   const tab = FEED_NAV_ITEMS[activeIndex] ?? FEED_NAV_ITEMS[0];
   const label = t(TAB_LABEL_KEYS[tab.postType] ?? "feed.home");
-  // Each side reports its natural width and both columns take the wider one,
-  // so the capsule hugs its contents and the mark still lands dead centre.
-  const [sides, setSides] = useState({ left: 0, right: 0 });
-  const side = Math.max(sides.left, sides.right);
-  const onLeft = useCallback((e: LayoutChangeEvent) => {
-    const w = Math.ceil(e.nativeEvent.layout.width);
-    setSides((s) => (s.left === w ? s : { ...s, left: w }));
-  }, []);
-  const onRight = useCallback((e: LayoutChangeEvent) => {
-    const w = Math.ceil(e.nativeEvent.layout.width);
-    setSides((s) => (s.right === w ? s : { ...s, right: w }));
-  }, []);
+  // Both controls have a fixed 28pt box. Avoid feeding Android layout
+  // measurements back into their parent width on every layout pass.
+  const side = AVATAR_SIZE;
   return (
     <View pointerEvents="box-none" style={styles.wrap}>
       <View style={[styles.capsule, { maxWidth: screenWidth - 32, opacity: side ? 1 : 0 }]}>
         <ChromeSurface radius={CAPSULE_RADIUS} />
         <View style={[styles.left, { width: side || undefined }]}>
-          <View onLayout={onLeft} style={styles.sideInner}>
+          <View style={styles.sideInner}>
             <Pressable
               onPress={onLeftPress}
               hitSlop={HIT}
@@ -148,7 +139,7 @@ export const IslandCapsule = memo(function IslandCapsule({
           )}
         </Pressable>
         <View style={[styles.right, { width: side || undefined }]}>
-          <View onLayout={onRight} style={styles.sideInner}>
+          <View style={styles.sideInner}>
             <Pressable
               onPress={onBellPress}
               hitSlop={HIT}
