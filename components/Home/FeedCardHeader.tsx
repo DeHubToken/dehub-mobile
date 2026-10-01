@@ -141,9 +141,9 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
           flexDirection: "row",
           alignItems: "center",
           gap: 8,
-          alignSelf: "flex-start",
+          alignSelf: "flex-end",
           marginLeft: "auto",
-          marginTop: -HEADER_ICON_PAD,
+          marginBottom: -HEADER_ICON_PAD,
           marginRight: -HEADER_ICON_PAD,
         }}
       >
