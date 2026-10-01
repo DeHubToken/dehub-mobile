@@ -58,6 +58,7 @@ import {
 } from "./CinematicChrome";
 import FeedImageGallery from "./FeedImageGallery";
 import PostTapSurface from "./PostTapSurface";
+import { ErrorBoundary } from "../ErrorBoundary";
 import LiveFeedPreview from "../common/LiveFeedPreview";
 import LiveFeedReactionFlow, { type SelfReaction } from "../LiveProducer/LiveFeedReactionFlow";
 import { useWebSocketApi } from "../../context/WebSocketContext";
@@ -2439,6 +2440,21 @@ const styles = StyleSheet.create({
   cinematicButtons: { flexDirection: "row", alignItems: "center", gap: 8, marginLeft: 8 },
 });
 
-const FeedCard = memo(FeedCardComponent);
+const hideCard = () => null;
+
+/**
+ * A post that throws while drawing hides itself instead of taking the feed
+ * with it. Without this the fault reached the screen's boundary, which swapped
+ * Home or Explore for the error page and restarted the app on the next one, so
+ * a single bad post (an audio style the binary could not draw, on 2026-09-30)
+ * made the whole feed unusable.
+ */
+const FeedCard = memo(function GuardedFeedCard(props: FeedCardProps) {
+  return (
+    <ErrorBoundary scope="feed-card" renderFallback={hideCard}>
+      <FeedCardComponent {...props} />
+    </ErrorBoundary>
+  );
+});
 
 export default FeedCard;
