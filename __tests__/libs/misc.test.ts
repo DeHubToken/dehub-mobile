@@ -394,17 +394,31 @@ describe('libs/misc', () => {
       expect(Number.isFinite(style.transform[0].translateY)).toBe(true);
     });
 
+    // Bounds measured from the shipped PNGs at alpha > 16.
     it.each([
-      'Crab', 'Ghost Lobster', 'Piranha', 'Giant Tortoise', 'King Cobra', 'Octopus',
-      'Crocodile', 'Dolphin', 'Tiger Shark', 'Great White Shark',
-      'Killer Whale', 'Blue Whale', 'Megalodon',
-    ])('keeps the %s artwork raised inside an explicit text line height', (tier) => {
-      const source = badgeImageFor(tier);
+      ["Crab", 9, 16, 120, 118],
+      ["Ghost Lobster", 16, 14, 112, 111],
+      ["Piranha", 7, 11, 120, 119],
+      ["Giant Tortoise", 8, 16, 119, 114],
+      ["King Cobra", 15, 8, 111, 119],
+      ["Octopus", 10, 14, 118, 120],
+      ["Crocodile", 8, 12, 121, 117],
+      ["Dolphin", 15, 12, 111, 120],
+      ["Tiger Shark", 8, 15, 120, 120],
+      ["Killer Whale", 19, 17, 109, 121],
+      ["Great White Shark", 8, 13, 121, 120],
+      ["Blue Whale", 7, 13, 119, 121],
+      ["Megalodon", 8, 15, 120, 117],
+    ])('fits %s to capital height and the name baseline', (tier, left, top, right, bottom) => {
+      const source = badgeImageFor(String(tier));
       expect(source).toBeDefined();
-
-      const style = getBadgeOpticalStyle(source!, 16, -1, 20);
-      expect(style.height + style.marginTop + style.marginBottom).toBeCloseTo(20);
-      expect(style.transform[0].translateY).toBeLessThan(0);
+      const style = getBadgeOpticalStyle(source!, 16, 0, 20);
+      const pixels = style.height - 2 * style.padding;
+      expect(pixels * (Number(bottom) - Number(top)) / 128).toBeCloseTo(16 * 0.72);
+      const artworkBottom = -style.height / 2 + style.padding + pixels * Number(bottom) / 128 + style.transform[0].translateY;
+      expect(artworkBottom).toBeCloseTo(16 * 0.34);
+      expect(style.marginLeft + style.padding + pixels * Number(left) / 128).toBeCloseTo(3);
+      expect(style.height + style.marginTop + style.marginBottom).toBeLessThanOrEqual(20);
     });
   });
 
