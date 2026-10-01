@@ -6,11 +6,10 @@
  * that carry a soundtrack. Renders nothing until data arrives.
  */
 import React, { useCallback, useMemo } from "react";
-import { View, Text, FlatList, type ListRenderItem } from "react-native";
+import { View, FlatList, type ListRenderItem } from "react-native";
 import { GestureDetector } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
 import { useQuery } from "@tanstack/react-query";
-import { useTranslation } from "react-i18next";
 import { useHorizontalScrollGuard } from "../../context/PagerGestureContext";
 import { useAppTheme } from "../../context/ThemeContext";
 import { MINIMAL_HAIRLINE, MINIMAL_INSET } from "../../theme/minimal";
@@ -41,7 +40,6 @@ async function fetchCarousel(): Promise<UnifiedFeedItem[]> {
 }
 
 const ShortsCarousel: React.FC = () => {
-  const { t } = useTranslation();
   const { isMinimal } = useAppTheme();
   const navigation = useNavigation<any>();
   const shortsEnabled = useAppPrefs().shorts;
@@ -100,12 +98,6 @@ const ShortsCarousel: React.FC = () => {
         borderBottomColor: MINIMAL_HAIRLINE,
       } : undefined}
     >
-      <View
-        className="flex-row items-center px-2 mb-2.5"
-        style={isMinimal ? { paddingHorizontal: MINIMAL_INSET } : undefined}
-      >
-        <Text className="text-white text-sm font-semibold">{t("feed.scroll")}</Text>
-      </View>
       {scrollGuard ? <GestureDetector gesture={scrollGuard}>{list}</GestureDetector> : list}
     </View>
   );

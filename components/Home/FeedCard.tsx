@@ -2023,7 +2023,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
                 username={username}
                 address={minterAddress}
                 badgeImage={badgeImg}
-                meta={chipMeta}
+                meta={username ? `@${username.replace(/^@/, "")}` : ""}
                 onPress={handleUserPress}
               />
               <View pointerEvents="box-none" style={chipAtBottom ? styles.cinematicBareButtons : styles.cinematicButtons}>
@@ -2179,6 +2179,14 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             <View className="flex-row items-center justify-end pt-2">{translateButton}</View>
           ) : null}
         </View>
+        {(
+          <View style={{ paddingHorizontal: CINEMATIC_TEXT_INSET, paddingTop: 8, flexDirection: "row", alignItems: "center", gap: 6 }}>
+            <Text style={{ fontSize: 13, lineHeight: 18, color: "#8B8D90" }}>{timeAgo}</Text>
+            <Text style={{ color: "#6F7174" }}>·</Text>
+            <Icon name="Eye" size={13} color="#6F7174" />
+            <Text style={{ fontSize: 13, lineHeight: 18, color: "#8B8D90" }}>{formatCompactNumber(views)}</Text>
+          </View>
+        )}
         <View style={{ paddingHorizontal: CINEMATIC_TEXT_INSET, paddingTop: 4 }}>
           {actionBar}
         </View>
@@ -2214,9 +2222,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         paddingBottom: 12,
       } : isMinimal ? {
         marginHorizontal: -minimalGutter,
-        paddingTop: 14,
+        paddingTop: 22,
         paddingHorizontal: MINIMAL_TEXT_INSET,
-        paddingBottom: 10,
+        paddingBottom: 18,
         borderBottomWidth: 1,
         borderBottomColor: MINIMAL_HAIRLINE,
       } : skin ? [
@@ -2459,7 +2467,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
 
 const styles = StyleSheet.create({
   cinematicPost: {
-    paddingVertical: 12,
+    paddingVertical: 20,
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: "rgba(255,255,255,0.12)",
   },

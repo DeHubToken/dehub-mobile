@@ -209,9 +209,7 @@ const ShortsGridCardComponent: React.FC<ShortsGridCardProps> = ({ item, index, i
           a source is attached, so a player per mounted cell (20+ in this grid)
           was a player object graph per cell regardless of the null source. */}
       {previewSettled && previewUrl && <CellPreview previewUrl={previewUrl} />}
-      {item.postType === 'feed-images' && <Text style={{ position: 'absolute', top: 8, right: 8, color: '#fff', backgroundColor: 'rgba(0,0,0,0.6)', paddingHorizontal: 8, paddingVertical: 4, borderRadius: 12 }}>
-        ♫{(item.imageUrls?.length || 0) > 1 ? ` · ${item.imageUrls!.length}` : ''}
-      </Text>}
+
 
       {/* Bottom gradient + info overlay */}
       <View style={styles.overlay} pointerEvents="none" />
