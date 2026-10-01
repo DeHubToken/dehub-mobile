@@ -77,11 +77,6 @@ export const CinematicAuthorChip = memo(function CinematicAuthorChip({
       <View style={styles.chipText}>
         <View style={styles.chipNameRow}>
           <View style={styles.chipNameWrap}>
-            {/* A wide, soft shadow under the tight one: RN draws one shadow
-                per Text, so the name is drawn twice. */}
-            <Text style={[styles.chipName, styles.chipNameGlow]} numberOfLines={1} aria-hidden>
-              {displayName}
-            </Text>
             <Text style={styles.chipName} numberOfLines={1}>
               {displayName}
             </Text>
@@ -215,7 +210,7 @@ const TEXT_SHADOW = {
 const styles = StyleSheet.create({
   chip: {
     flexDirection: "row",
-    alignItems: "center",
+    alignItems: "flex-end",
     flexShrink: 1,
     minWidth: 0,
     maxWidth: "72%",
@@ -230,17 +225,8 @@ const styles = StyleSheet.create({
   chipText: { marginLeft: 7, flexShrink: 1, minWidth: 0 },
   chipNameRow: { flexDirection: "row", alignItems: "center", minWidth: 0 },
   chipNameWrap: { flexShrink: 1, minWidth: 0 },
-  chipNameGlow: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    textShadowColor: "rgba(0,0,0,0.45)",
-    textShadowOffset: { width: 0, height: 2 },
-    textShadowRadius: 8,
-  },
-  chipName: { flexShrink: 1, color: "#FFFFFF", fontSize: 14, lineHeight: 17, fontWeight: "600", ...TEXT_SHADOW },
-  chipMeta: { color: "rgba(255,255,255,0.85)", fontSize: 11, lineHeight: 14, ...TEXT_SHADOW },
+  chipName: { flexShrink: 1, color: "#FFFFFF", fontSize: 14, lineHeight: 17, fontWeight: "600", includeFontPadding: false, ...TEXT_SHADOW },
+  chipMeta: { color: "rgba(255,255,255,0.85)", fontSize: 11, lineHeight: 14, includeFontPadding: false, ...TEXT_SHADOW },
   menu: {
     position: "absolute",
     right: CINEMATIC_EDGE,
