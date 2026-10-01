@@ -1481,13 +1481,13 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const renderLiveThumbnail = () => (
     <Pressable
       onPress={handleCardPress}
-      // Edge to edge the grey backing is a plain view inside: as the
-      // pressable's own fill, the theme pass that styles neutral pressables as
-      // buttons gave the whole screen a rounded frame and a border.
-      className={cinematicMedia ? "relative w-full overflow-hidden" : "relative w-full h-48 bg-zinc-800 rounded-xl overflow-hidden mt-2"}
+      // The grey backing is a plain view inside: as the pressable's own fill,
+      // the theme pass that styles neutral pressables as buttons gave the
+      // whole screen the theme's control frame, a border around the picture.
+      className={cinematicMedia ? "relative w-full overflow-hidden" : "relative w-full h-48 rounded-xl overflow-hidden mt-2"}
       style={cinematicMedia ? { height: Math.round((SCREEN_WIDTH * 9) / 16) } : undefined}
     >
-      {cinematicMedia && <View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: "#27272a" }]} />}
+      <View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: "#27272a" }]} />
       {isCurrentlyLive && isVisible && (
         <View pointerEvents="none" style={[StyleSheet.absoluteFill, { zIndex: 2 }]}>
           <LiveFeedReactionFlow

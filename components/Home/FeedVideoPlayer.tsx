@@ -1086,8 +1086,8 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     if (icons.length === 0) return null;
 
     return (
-      <Pressable onPress={handleGatedOverlayPress} style={[styles.gatedOverlay, bleed && BARE_LAYER]}>
-        {bleed && <MediaShade color={GATED_SHADE} />}
+      <Pressable onPress={handleGatedOverlayPress} style={[styles.gatedOverlay, BARE_LAYER]}>
+        <MediaShade color={GATED_SHADE} />
         <View style={icons.length > 1 ? styles.gatedIconRow : undefined}>
           {icons.map((ic, i) => (
             <View key={i} style={icons.length > 1 ? styles.gatedIconBox : styles.gatedIconBoxLarge}>
@@ -1238,8 +1238,8 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
       )}
 
       {!hideControls && !isContentGated && !isPlaying && !isProcessing && !isFailed && (
-        <Pressable {...mediaTap} style={[styles.playOverlay, bleed && BARE_LAYER]}>
-          {bleed && <MediaShade color={PLAY_SHADE} />}
+        <Pressable {...mediaTap} style={[styles.playOverlay, BARE_LAYER]}>
+          <MediaShade color={PLAY_SHADE} />
           <View style={styles.glassPlayButton}>
             <View style={styles.glassOverlay} />
             {isStarting ? (
@@ -1482,10 +1482,10 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
 const PLAY_SHADE = "rgba(0,0,0,0.2)";
 const GATED_SHADE = "rgba(0,0,0,0.3)";
 
-// Edge to edge (the system theme's home feed), a layer that covers the whole
-// picture draws its tint from a plain view under it, not as the pressable's
-// own fill: the theme pass that styles neutral pressables as buttons would
-// otherwise give it a rounded frame and a border inside the picture.
+// A layer that covers the whole picture draws its tint from a plain view under
+// it, not as the pressable's own fill: the theme pass that styles neutral
+// pressables as buttons (libs/jsx/controls.js) would otherwise give it the
+// theme's control frame, a rounded border inside the picture in every theme.
 const BARE_LAYER = { backgroundColor: "transparent" } as const;
 const MediaShade: React.FC<{ color: string }> = ({ color }) => (
   <View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: color }]} />
@@ -1835,8 +1835,8 @@ const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "tokenId" | "thumbnai
           </View>
         )}
         {!hideControls && (
-          <Pressable {...mediaTap} style={[styles.playOverlay, bleed && BARE_LAYER]}>
-            {bleed && <MediaShade color={PLAY_SHADE} />}
+          <Pressable {...mediaTap} style={[styles.playOverlay, BARE_LAYER]}>
+            <MediaShade color={PLAY_SHADE} />
             <View style={styles.glassPlayButton}>
               <View style={styles.glassOverlay} />
               <View style={{ marginLeft: 2 }}>
