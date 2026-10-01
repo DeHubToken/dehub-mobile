@@ -915,7 +915,6 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   }, [handleReaction, myReaction, reactionCounts]);
 
   const handleLikePress = useCallback(() => togglePolarity(true), [togglePolarity]);
-  const handleDislikePress = useCallback(() => togglePolarity(false), [togglePolarity]);
   const handleVideoTapReaction = useCallback((reaction: "like" | "love") => {
     // Media gestures only add or upgrade; they never toggle an existing vote
     // off when a deliberate play/pause tap happens to become a double tap.
@@ -1664,13 +1663,11 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       saved={saved}
       reposted={reposted}
       likeCount={likeCount}
-      dislikeCount={dislikeCount}
       commentCount={commentCount}
       repostCount={repostCount}
       shareCount={shareCount}
       tipCount={totalTips}
       onLike={handleLikePress}
-      onDislike={handleDislikePress}
       onReact={handleReaction}
       myReaction={myReaction}
       reactionCounts={reactionCounts}
