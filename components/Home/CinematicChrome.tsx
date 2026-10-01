@@ -210,7 +210,7 @@ const TEXT_SHADOW = {
 const styles = StyleSheet.create({
   chip: {
     flexDirection: "row",
-    alignItems: "flex-end",
+    alignItems: "center",
     flexShrink: 1,
     minWidth: 0,
     maxWidth: "72%",
