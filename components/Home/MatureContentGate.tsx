@@ -58,16 +58,23 @@ const MatureContentGate: React.FC<{
   canReveal?: boolean;
   /** Short copy under the heading. */
   description?: string;
+  /** Spans the screen in place of the media: square, no frame, 16:9. */
+  edgeToEdge?: boolean;
 }> = ({
   onReveal,
   canReveal = MATURE_CONTENT_ENABLED,
   description,
+  edgeToEdge = false,
 }) => {
   const { t } = useTranslation();
   return (
   <View
-    className="items-center justify-center rounded-xl mt-2"
-    style={{
+    className={edgeToEdge ? 'items-center justify-center mt-2' : 'items-center justify-center rounded-xl mt-2'}
+    style={edgeToEdge ? {
+      backgroundColor: 'rgba(255,255,255,0.04)',
+      aspectRatio: 16 / 9,
+      paddingHorizontal: 24,
+    } : {
       backgroundColor: 'rgba(255,255,255,0.04)',
       borderWidth: 1,
       borderColor: 'rgba(255,255,255,0.10)',

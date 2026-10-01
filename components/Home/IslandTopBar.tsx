@@ -1,12 +1,12 @@
-import React, { memo, useCallback } from "react";
-import { Image, Pressable, StyleSheet, Text, View } from "react-native";
+import React, { memo, useCallback, useState } from "react";
+import { Image, Pressable, StyleSheet, Text, View, useWindowDimensions, type LayoutChangeEvent } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import Avatar from "../common/Avatar";
 import Icon, { type IconName } from "../ui/Icon";
 import ChromeSurface from "../ui/ChromeSurface";
 import { ScreenNames } from "../../navigation/ScreenNames";
-import { useUser, useAuthState } from "../../context/AuthContext";
+import { useUser, useAuthState, useAuthActions } from "../../context/AuthContext";
 import { getAvatarUrl } from "../../libs/misc";
 import { FEED_NAV_ITEMS } from "./FeedNavBar";
 
@@ -14,7 +14,7 @@ import { FEED_NAV_ITEMS } from "./FeedNavBar";
 // the size drawn and its shape can never be squeezed by padding in the file.
 const MARK = require("../../assets/web-icons/dehub-mark.png");
 const MARK_ASPECT = 143 / 185;
-const MARK_HEIGHT = 23;
+const MARK_HEIGHT = 27.3;
 const HIT = { top: 8, bottom: 8, left: 8, right: 8 };
 // The brand name, spoken for the mark. Not translated.
 const BRAND_NAME = "DeHub";
@@ -30,15 +30,18 @@ const TAB_LABEL_KEYS: Record<string, string> = {
 };
 
 /** Height of the capsule. */
-const ISLAND_CAPSULE_HEIGHT = 40;
+const ISLAND_CAPSULE_HEIGHT = 44;
 /** Clear space above and below it. */
 const ISLAND_CAPSULE_GAP = 6;
 /** Room the capsule takes at the top of the screen; the first post clears it. */
 export const ISLAND_BAR_HEIGHT = ISLAND_CAPSULE_HEIGHT + ISLAND_CAPSULE_GAP * 2;
+/** The capsule's corner. */
+const CAPSULE_RADIUS = 15;
 /** DeHub's soft corner (the badge plate, the tab pill): not a full circle. */
 const RADIUS = 12;
 /** The avatar, and the rows of the feed menu. */
 const AVATAR_RADIUS = 8;
+const AVATAR_SIZE = 28;
 
 function UnreadBadge({ count }: { count: number }) {
   if (count <= 0) return null;
@@ -50,106 +53,114 @@ function UnreadBadge({ count }: { count: number }) {
 }
 
 /**
- * The system theme's home top bar: one small centred capsule floating over
- * the feed with nothing painted around it (HomeScreen slides it away on a
- * scroll down and back on a scroll up).
- * [avatar][mark] | [current tab + chevron] | [bell]. The middle opens and
- * closes the feed menu under it (IslandFeedMenu).
+ * The system theme's home top bar: one centred capsule floating over the feed
+ * with nothing painted around it (HomeScreen slides it away on a scroll down
+ * and back on a scroll up). Laid out as a crest, three columns with the mark
+ * dead centre: [avatar, or a burger when signed out] [mark] [bell]. It hugs
+ * its contents, with both side columns as wide as the wider one. The mark
+ * opens and closes the feed menu under it (IslandFeedMenu); the avatar opens
+ * the drawer; signed out, the burger and the bell ask you to log in.
  */
 export const IslandCapsule = memo(function IslandCapsule({
   activeIndex,
   menuOpen,
   onToggleMenu,
   onAvatarPress,
-  onLogoPress,
 }: {
   activeIndex: number;
   menuOpen: boolean;
   onToggleMenu: () => void;
   /** Avatar: opens the drawer. */
   onAvatarPress?: () => void;
-  /** Mark: scrolls the feed to the top and refreshes it. */
-  onLogoPress?: () => void;
 }) {
   const { t } = useTranslation();
   const { isSignedIn } = useAuthState();
   const user = useUser();
   const navigation = useNavigation<any>();
+  const { width: screenWidth } = useWindowDimensions();
   const unread = user?.notificationCount || 0;
-  const openNotifications = useCallback(() => navigation.navigate(ScreenNames.Notifications), [navigation]);
+  const { requireAuth } = useAuthActions();
+  // Signed out, the burger and the bell both ask you to log in first.
+  const onLeftPress = useCallback(
+    () => (isSignedIn ? onAvatarPress?.() : requireAuth(() => {})),
+    [isSignedIn, onAvatarPress, requireAuth],
+  );
+  const onBellPress = useCallback(
+    () => requireAuth(() => navigation.navigate(ScreenNames.Notifications)),
+    [navigation, requireAuth],
+  );
   const tab = FEED_NAV_ITEMS[activeIndex] ?? FEED_NAV_ITEMS[0];
   const label = t(TAB_LABEL_KEYS[tab.postType] ?? "feed.home");
+  // Each side reports its natural width and both columns take the wider one,
+  // so the capsule hugs its contents and the mark still lands dead centre.
+  const [sides, setSides] = useState({ left: 0, right: 0 });
+  const side = Math.max(sides.left, sides.right);
+  const onLeft = useCallback((e: LayoutChangeEvent) => {
+    const w = Math.ceil(e.nativeEvent.layout.width);
+    setSides((s) => (s.left === w ? s : { ...s, left: w }));
+  }, []);
+  const onRight = useCallback((e: LayoutChangeEvent) => {
+    const w = Math.ceil(e.nativeEvent.layout.width);
+    setSides((s) => (s.right === w ? s : { ...s, right: w }));
+  }, []);
   return (
     <View pointerEvents="box-none" style={styles.wrap}>
-      <View style={styles.capsule}>
-        <ChromeSurface radius={RADIUS} />
-        <Pressable
-          onPress={onAvatarPress}
-          hitSlop={HIT}
-          accessibilityRole="button"
-          accessibilityLabel={t("common.openMenu")}
-          style={styles.side}
-        >
-          {isSignedIn ? (
-            <View style={styles.avatar}>
-              <Avatar
-                uri={getAvatarUrl(user?.avatarImageUrl)}
-                size={26}
-                name={user?.displayName || user?.username}
-              />
-            </View>
-          ) : (
-            <Icon name="Menu" size={20} color="#FFFFFF" />
-          )}
-        </Pressable>
-        <Pressable
-          onPress={onLogoPress}
-          hitSlop={{ top: 8, bottom: 8, left: 2, right: 2 }}
-          accessibilityRole="button"
-          accessibilityLabel={BRAND_NAME}
-          accessibilityHint={t("common.scrollsFeedToTop")}
-          style={styles.mark}
-        >
-          <Image
-            source={MARK}
-            resizeMode="contain"
-            fadeDuration={0}
-            style={{ width: Math.round(MARK_HEIGHT * MARK_ASPECT), height: MARK_HEIGHT, tintColor: "#FFFFFF" }}
-          />
-        </Pressable>
-        <View style={styles.divider} />
+      <View style={[styles.capsule, { maxWidth: screenWidth - 32, opacity: side ? 1 : 0 }]}>
+        <ChromeSurface radius={CAPSULE_RADIUS} />
+        <View style={[styles.left, { width: side || undefined }]}>
+          <View onLayout={onLeft} style={styles.sideInner}>
+            <Pressable
+              onPress={onLeftPress}
+              hitSlop={HIT}
+              accessibilityRole="button"
+              accessibilityLabel={t("common.openMenu")}
+              style={styles.avatarButton}
+            >
+              {isSignedIn ? (
+                <View style={styles.avatar}>
+                  <Avatar
+                    uri={getAvatarUrl(user?.avatarImageUrl)}
+                    size={AVATAR_SIZE}
+                    name={user?.displayName || user?.username}
+                  />
+                </View>
+              ) : (
+                <Icon name="Menu" size={22} color="#FFFFFF" />
+              )}
+            </Pressable>
+          </View>
+        </View>
         <Pressable
           onPress={onToggleMenu}
+          hitSlop={{ top: 8, bottom: 8, left: 2, right: 2 }}
           accessibilityRole="button"
-          accessibilityLabel={label}
+          accessibilityLabel={`${BRAND_NAME}, ${label}`}
           accessibilityState={{ expanded: menuOpen }}
-          style={styles.tab}
+          style={styles.mark}
         >
           {({ pressed }) => (
-            <View style={[styles.tabInner, { opacity: pressed ? 0.6 : 1 }]}>
-              <Icon name={tab.icon as IconName} size={15} color="#FFFFFF" strokeWidth={2} />
-              <Text style={styles.label} numberOfLines={1}>{label}</Text>
-              <View style={menuOpen ? styles.chevronOpen : undefined}>
-                <Icon name="ChevronDown" size={14} color="rgba(255,255,255,0.7)" />
-              </View>
-            </View>
+            <Image
+              source={MARK}
+              resizeMode="contain"
+              fadeDuration={0}
+              style={{ width: Math.round(MARK_HEIGHT * MARK_ASPECT), height: MARK_HEIGHT, tintColor: "#FFFFFF", opacity: pressed ? 0.6 : 1 }}
+            />
           )}
         </Pressable>
-        {isSignedIn ? (
-          <>
-            <View style={styles.divider} />
+        <View style={[styles.right, { width: side || undefined }]}>
+          <View onLayout={onRight} style={styles.sideInner}>
             <Pressable
-              onPress={openNotifications}
+              onPress={onBellPress}
               hitSlop={HIT}
               accessibilityRole="button"
               accessibilityLabel={unread > 0 ? t("common.notificationsUnread", { unread }) : t("nav.notifications")}
-              style={styles.side}
+              style={styles.bell}
             >
-              <Icon name="Bell" size={19} color="#FFFFFF" />
+              <Icon name="Bell" size={21} color="#FFFFFF" strokeWidth={1.9} />
               <UnreadBadge count={unread} />
             </Pressable>
-          </>
-        ) : null}
+          </View>
+        </View>
       </View>
     </View>
   );
@@ -214,23 +225,22 @@ const styles = StyleSheet.create({
   },
   capsule: {
     height: ISLAND_CAPSULE_HEIGHT,
-    borderRadius: RADIUS,
+    borderRadius: CAPSULE_RADIUS,
     flexDirection: "row",
     alignItems: "center",
-    paddingHorizontal: 4,
+    paddingHorizontal: 10,
     shadowColor: "#000",
     shadowOpacity: 0.35,
     shadowRadius: 10,
     shadowOffset: { width: 0, height: 4 },
   },
-  side: { width: 36, height: 36, alignItems: "center", justifyContent: "center" },
-  avatar: { width: 26, height: 26, borderRadius: AVATAR_RADIUS, overflow: "hidden" },
-  mark: { paddingLeft: 2, paddingRight: 10, flexShrink: 0, justifyContent: "center" },
-  divider: { width: 1, height: 18, backgroundColor: "rgba(255,255,255,0.16)" },
-  tab: { height: ISLAND_CAPSULE_HEIGHT, justifyContent: "center", paddingHorizontal: 12 },
-  tabInner: { flexDirection: "row", alignItems: "center", gap: 6 },
-  label: { color: "#FFFFFF", fontSize: 13, fontWeight: "600", maxWidth: 110 },
-  chevronOpen: { transform: [{ rotate: "180deg" }] },
+  left: { minWidth: AVATAR_SIZE, flexDirection: "row", alignItems: "center", justifyContent: "flex-start" },
+  right: { minWidth: AVATAR_SIZE, flexDirection: "row", alignItems: "center", justifyContent: "flex-end" },
+  sideInner: { flexDirection: "row", alignItems: "center", gap: 12 },
+  avatarButton: { width: AVATAR_SIZE, height: AVATAR_SIZE, alignItems: "center", justifyContent: "center", flexShrink: 0 },
+  avatar: { width: AVATAR_SIZE, height: AVATAR_SIZE, borderRadius: AVATAR_RADIUS, overflow: "hidden" },
+  mark: { paddingHorizontal: 20, height: ISLAND_CAPSULE_HEIGHT, flexShrink: 0, justifyContent: "center", alignItems: "center" },
+  bell: { width: 28, height: 28, alignItems: "center", justifyContent: "center" },
   menuWrap: { alignItems: "center" },
   menu: {
     width: 220,
@@ -252,17 +262,18 @@ const styles = StyleSheet.create({
   menuRowOn: { backgroundColor: "rgba(255,255,255,0.10)" },
   menuLabel: { flex: 1, color: "#FFFFFF", fontSize: 14, fontWeight: "500" },
   menuDivider: { height: 1, marginVertical: 6, marginHorizontal: 6, backgroundColor: "rgba(255,255,255,0.12)" },
+  // Off the glyph's top right corner (the glyph is 21pt in a 28pt box).
   badge: {
     position: "absolute",
-    top: -2,
-    right: -6,
-    minWidth: 17,
-    height: 17,
-    paddingHorizontal: 4,
+    top: 0,
+    right: -3,
+    minWidth: 16,
+    height: 16,
+    paddingHorizontal: 3,
     backgroundColor: "#ef4444",
     borderRadius: 6,
     alignItems: "center",
     justifyContent: "center",
   },
-  badgeText: { color: "#fff", fontSize: 10, fontWeight: "700", lineHeight: 12, textAlign: "center" },
+  badgeText: { color: "#fff", fontSize: 9, fontWeight: "700", lineHeight: 11, textAlign: "center" },
 });

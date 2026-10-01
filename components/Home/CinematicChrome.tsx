@@ -1,5 +1,5 @@
 import React, { memo, useRef } from "react";
-import { Image, Pressable, StyleSheet, Text, View } from "react-native";
+import { Image, Platform, Pressable, StyleSheet, Text, View } from "react-native";
 import Avatar from "../common/Avatar";
 import NewMemberChip from "../common/NewMemberChip";
 import ChromeSurface from "../ui/ChromeSurface";
@@ -21,6 +21,11 @@ export const CINEMATIC_TEXT_INSET = 14;
 export const CINEMATIC_BOTTOM_LIFT = 44;
 /** The band that chrome then takes along the bottom of the media. */
 export const CINEMATIC_BOTTOM_BAND = CINEMATIC_BOTTOM_LIFT + CINEMATIC_BUTTON;
+/** Bare icon buttons (the first post): their tap area. */
+export const CINEMATIC_BARE_BUTTON = 32;
+/** That band while the chrome sits in the true bottom corners, the player
+ *  bar hidden. */
+export const CINEMATIC_BOTTOM_BAND_LOW = CINEMATIC_EDGE + CINEMATIC_BUTTON;
 
 const AVATAR = 30;
 // DeHub's soft corners (the badge plate, the tab pill) rather than circles.
@@ -28,6 +33,7 @@ const MENU_RADIUS = 12;
 const BUTTON_RADIUS = 10;
 const AVATAR_RADIUS = 8;
 const HIT = { top: 6, bottom: 6, left: 6, right: 6 };
+const BARE_ICON = 22;
 
 /**
  * The author, laid over the media's top-left corner: avatar and name straight
@@ -115,12 +121,15 @@ export const CinematicIconButton = memo(function CinematicIconButton({
   onPress,
   label,
   active = false,
+  bare = false,
 }: {
   icon: IconName;
   onPress?: () => void;
   label: string;
   /** Its menu is open. */
   active?: boolean;
+  /** Just the icon, with a soft shadow and no backing (the first post). */
+  bare?: boolean;
 }) {
   return (
     <Pressable
@@ -130,9 +139,21 @@ export const CinematicIconButton = memo(function CinematicIconButton({
       accessibilityRole={onPress ? "button" : undefined}
       accessibilityLabel={label}
       accessibilityState={onPress ? { expanded: active } : undefined}
-      style={styles.button}
+      style={bare ? styles.bareButton : styles.button}
     >
-      {({ pressed }) => (
+      {({ pressed }) => bare ? (
+        <View style={[styles.bareIcon, { opacity: pressed ? 0.6 : 1 }]}>
+          {/* The shadow: a dark, heavier copy of the glyph under it, which
+              reads the same on every platform (Android draws no shadow for
+              a view without a fill). iOS adds a soft one on top. */}
+          <View style={StyleSheet.absoluteFill}>
+            <Icon name={icon} size={BARE_ICON} color="rgba(0,0,0,0.45)" strokeWidth={4} />
+          </View>
+          <View>
+            <Icon name={icon} size={BARE_ICON} color="#FFFFFF" />
+          </View>
+        </View>
+      ) : (
         <>
           <ChromeSurface radius={BUTTON_RADIUS} tinted />
           <View style={{ opacity: pressed ? 0.6 : 1 }}>
@@ -242,5 +263,19 @@ const styles = StyleSheet.create({
     borderRadius: BUTTON_RADIUS,
     alignItems: "center",
     justifyContent: "center",
+  },
+  bareButton: {
+    width: CINEMATIC_BARE_BUTTON,
+    height: CINEMATIC_BARE_BUTTON,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  bareIcon: {
+    width: BARE_ICON,
+    height: BARE_ICON,
+    ...Platform.select({
+      ios: { shadowColor: "#000", shadowOpacity: 0.6, shadowRadius: 3, shadowOffset: { width: 0, height: 1 } },
+      default: {},
+    }),
   },
 });
