@@ -54,6 +54,7 @@ import {
   CINEMATIC_TEXT_INSET,
   CINEMATIC_TOP_BAND,
   CINEMATIC_BOTTOM_BAND,
+  CINEMATIC_BOTTOM_BAND_LOW,
   CINEMATIC_BOTTOM_LIFT,
 } from "./CinematicChrome";
 import FeedImageGallery from "./FeedImageGallery";
@@ -1225,15 +1226,20 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   // The player's own buttons, folded into one tools menu on the card.
   const [mediaTools, setMediaTools] = useState<MediaTool[] | null>(null);
   const [toolsOpen, setToolsOpen] = useKeyedState(postKey, false);
+  // The first post's chrome sits in the true bottom corners of the media and
+  // lifts above the player bar only while that bar is on screen.
+  const [mediaBarUp, setMediaBarUp] = useKeyedState(postKey, false);
+  const bottomBand = mediaBarUp ? CINEMATIC_BOTTOM_BAND : CINEMATIC_BOTTOM_BAND_LOW;
   const feedBleed = useMemo<FeedBleed | null>(
     () => (cinematicMedia
       ? {
           topInset: chipOverMedia ? mediaBand : 0,
-          bottomInset: chipAtBottom ? CINEMATIC_BOTTOM_BAND : 0,
+          bottomInset: chipAtBottom ? bottomBand : 0,
           setTools: chipOverMedia ? setMediaTools : undefined,
+          setBarUp: chipAtBottom ? setMediaBarUp : undefined,
         }
       : null),
-    [cinematicMedia, chipOverMedia, chipAtBottom, mediaBand],
+    [cinematicMedia, chipOverMedia, chipAtBottom, mediaBand, bottomBand, setMediaBarUp],
   );
   // Media that already spans the screen: square, no top gap.
   const edgeMedia = immersive || cinematicMedia;
@@ -2002,7 +2008,15 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             <FeedBleedContext.Provider value={feedBleed}>
               {renderContent()}
             </FeedBleedContext.Provider>
-            <View pointerEvents="box-none" style={[styles.cinematicChrome, chipAtBottom ? styles.cinematicBottom : styles.cinematicTop]}>
+            <View
+              pointerEvents="box-none"
+              style={[
+                styles.cinematicChrome,
+                chipAtBottom
+                  ? [styles.cinematicBottom, mediaBarUp && styles.cinematicBottomLifted]
+                  : styles.cinematicTop,
+              ]}
+            >
               <CinematicAuthorChip
                 avatarUrl={avatar}
                 displayName={displayName}
@@ -2012,10 +2026,10 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
                 meta={chipMeta}
                 onPress={handleUserPress}
               />
-              <View pointerEvents="box-none" style={styles.cinematicButtons}>
-                {isHidden && <CinematicIconButton icon="EyeOff" label={t("settings.hiddenOption")} />}
+              <View pointerEvents="box-none" style={chipAtBottom ? styles.cinematicBareButtons : styles.cinematicButtons}>
+                {isHidden && <CinematicIconButton icon="EyeOff" label={t("settings.hiddenOption")} bare={chipAtBottom} />}
                 {isOwnerPost && isSignedIn && tokenId != null && (
-                  <CinematicIconButton icon="Rocket" label={t("feedCard.boostPost")} onPress={handleBoostPress} />
+                  <CinematicIconButton icon="Rocket" label={t("feedCard.boostPost")} onPress={handleBoostPress} bare={chipAtBottom} />
                 )}
                 {mediaTools && mediaTools.length > 0 && (
                   <CinematicIconButton
@@ -2023,15 +2037,16 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
                     label={t("settings.title")}
                     active={toolsOpen}
                     onPress={() => setToolsOpen(!toolsOpen)}
+                    bare={chipAtBottom}
                   />
                 )}
-                <CinematicIconButton icon="EllipsisVertical" label={t("player.moreOptions")} onPress={handleOpenOptions} />
+                <CinematicIconButton icon="EllipsisVertical" label={t("player.moreOptions")} onPress={handleOpenOptions} bare={chipAtBottom} />
               </View>
             </View>
             {toolsOpen && mediaTools && mediaTools.length > 0 && (
               <CinematicToolsMenu
                 tools={mediaTools}
-                fromBottom={chipAtBottom ? CINEMATIC_BOTTOM_BAND + 8 : undefined}
+                fromBottom={chipAtBottom ? bottomBand + 8 : undefined}
                 onClose={() => setToolsOpen(false)}
               />
             )}
@@ -2445,8 +2460,12 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   cinematicTop: { top: CINEMATIC_EDGE },
-  cinematicBottom: { bottom: CINEMATIC_BOTTOM_LIFT },
+  // The first post: the true bottom corners, the bare buttons' tap area
+  // reaching nearer the right edge so their icons line up with the name's.
+  cinematicBottom: { bottom: CINEMATIC_EDGE, right: 6, alignItems: "flex-end" },
+  cinematicBottomLifted: { bottom: CINEMATIC_BOTTOM_LIFT },
   cinematicButtons: { flexDirection: "row", alignItems: "center", gap: 8, marginLeft: 8 },
+  cinematicBareButtons: { flexDirection: "row", alignItems: "center", gap: 2, marginLeft: 8 },
 });
 
 const hideCard = () => null;

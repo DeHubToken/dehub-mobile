@@ -984,6 +984,19 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   // Cinematic feed: the buttons that sit over the picture elsewhere go into
   // the card's one tools menu instead.
   const foldTools = !!bleed?.setTools;
+  // Tell a card with chrome along the bottom when the player bar is up, so
+  // that chrome lifts above it only then.
+  const setBarUp = bleed?.setBarUp;
+  const barUp = !hideControls && showControls;
+  useEffect(() => {
+    setBarUp?.(barUp);
+  }, [setBarUp, barUp]);
+  useEffect(() => {
+    if (!setBarUp) return;
+    return () => setBarUp(false);
+  }, [setBarUp]);
+  // That chrome takes the bottom-right corner the duration badge sat in.
+  const chromeAtBottom = !!bleed?.bottomInset;
   const [captionControls, setCaptionControls] = useState<CaptionControls | null>(null);
   const mediaTools = useMemo<MediaTool[] | null>(() => {
     if (!foldTools) return null;
@@ -1450,13 +1463,13 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
         </View>
       )}
 
-      {!hideControls && !isContentGated && duration && !isPlaying && (
+      {!hideControls && !chromeAtBottom && !isContentGated && duration && !isPlaying && (
         <View style={[styles.durationBadge, edgeToEdge && { right: MINIMAL_EDGE }]}>
           <Text style={styles.durationText}>{duration}</Text>
         </View>
       )}
 
-      {!hideControls && isContentGated && duration && (
+      {!hideControls && !chromeAtBottom && isContentGated && duration && (
         <View style={[styles.durationBadge, edgeToEdge && { right: MINIMAL_EDGE }]}>
           <Text style={styles.durationText}>{duration}</Text>
         </View>
@@ -1832,7 +1845,7 @@ const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "tokenId" | "thumbnai
             </View>
           </Pressable>
         )}
-        {!hideControls && duration ? (
+        {!hideControls && !bleed?.bottomInset && duration ? (
           <View style={[styles.durationBadge, edgeToEdge && { right: MINIMAL_EDGE }]}>
             <Text style={styles.durationText}>{duration}</Text>
           </View>
