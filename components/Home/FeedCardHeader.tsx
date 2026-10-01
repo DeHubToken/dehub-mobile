@@ -53,7 +53,7 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
   const { t } = useTranslation();
   const badgeRef = useRef<View>(null);
   return (
-    <View className="flex-row items-center pb-2">
+    <View className="flex-row items-end pb-2" style={{ minHeight: Math.max(avatarSize, username ? 40 : 20) + 8 }}>
       <Pressable onPress={onUserPress} style={{ flexShrink: 0 }} hitSlop={IDENTITY_HIT_SLOP}>
         <Avatar
           uri={avatarUrl && avatarUrl !== "default-avatar" ? avatarUrl : undefined}
@@ -76,7 +76,7 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
         <View style={{ flexDirection: "row", alignItems: "center", minWidth: 0, height: DISPLAY_NAME_LINE_HEIGHT }}>
           <Text
             className="font-semibold"
-            style={{ flexShrink: 1, minWidth: 0, color: "#F9FBFF", fontSize: DISPLAY_NAME_FONT_SIZE, lineHeight: DISPLAY_NAME_LINE_HEIGHT }}
+            style={{ flexShrink: 1, minWidth: 0, color: "#F9FBFF", fontSize: DISPLAY_NAME_FONT_SIZE, lineHeight: DISPLAY_NAME_LINE_HEIGHT, includeFontPadding: false }}
             numberOfLines={1}
             ellipsizeMode="tail"
           >
@@ -127,8 +127,7 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
         </View>
         {username ? (
           <Text
-            className="mt-0.5"
-            style={{ alignSelf: "flex-start", maxWidth: "100%", color: "#A6A9AC", fontSize: 14, lineHeight: 18 }}
+            style={{ alignSelf: "flex-start", maxWidth: "100%", color: "#A6A9AC", fontSize: 14, lineHeight: 16, includeFontPadding: false }}
             numberOfLines={1}
             ellipsizeMode="tail"
           >
@@ -142,9 +141,9 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
           flexDirection: "row",
           alignItems: "center",
           gap: 8,
-          alignSelf: "flex-start",
+          alignSelf: "flex-end",
           marginLeft: "auto",
-          marginTop: -HEADER_ICON_PAD,
+          marginBottom: -HEADER_ICON_PAD,
           marginRight: -HEADER_ICON_PAD,
         }}
       >
