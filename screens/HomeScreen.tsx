@@ -1002,7 +1002,6 @@ export default function HomeScreen() {
             menuOpen={islandMenuOpen}
             onToggleMenu={toggleIslandMenu}
             onAvatarPress={openDrawer}
-            onLogoPress={handleLogoPress}
           />
         ) : (
           <HomeHeader

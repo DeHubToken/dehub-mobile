@@ -56,24 +56,21 @@ function UnreadBadge({ count }: { count: number }) {
  * The system theme's home top bar: one centred capsule floating over the feed
  * with nothing painted around it (HomeScreen slides it away on a scroll down
  * and back on a scroll up). Laid out as a crest, three columns with the mark
- * dead centre: [feed name  chevron] [mark] [bell  avatar]. It hugs its
- * contents, with both side columns as wide as the wider one. The feed name
- * opens and closes the feed menu under it (IslandFeedMenu).
+ * dead centre: [bell] [mark] [avatar]. It hugs its contents, with both side
+ * columns as wide as the wider one. The mark opens and closes the feed menu
+ * under it (IslandFeedMenu); the avatar opens the drawer.
  */
 export const IslandCapsule = memo(function IslandCapsule({
   activeIndex,
   menuOpen,
   onToggleMenu,
   onAvatarPress,
-  onLogoPress,
 }: {
   activeIndex: number;
   menuOpen: boolean;
   onToggleMenu: () => void;
   /** Avatar: opens the drawer. */
   onAvatarPress?: () => void;
-  /** Mark: scrolls the feed to the top and refreshes it. */
-  onLogoPress?: () => void;
 }) {
   const { t } = useTranslation();
   const { isSignedIn } = useAuthState();
@@ -102,42 +99,6 @@ export const IslandCapsule = memo(function IslandCapsule({
         <ChromeSurface radius={CAPSULE_RADIUS} />
         <View style={[styles.left, { width: side || undefined }]}>
           <View onLayout={onLeft} style={styles.sideInner}>
-            <Pressable
-              onPress={onToggleMenu}
-              hitSlop={{ top: 8, bottom: 8, left: 8, right: 6 }}
-              accessibilityRole="button"
-              accessibilityLabel={label}
-              accessibilityState={{ expanded: menuOpen }}
-              style={styles.tab}
-            >
-              {({ pressed }) => (
-                <View style={[styles.tabInner, { opacity: pressed ? 0.6 : 1 }]}>
-                  <Text style={styles.label} numberOfLines={1}>{label}</Text>
-                  <View style={menuOpen ? styles.chevronOpen : undefined}>
-                    <Icon name="ChevronDown" size={15} color="rgba(255,255,255,0.75)" strokeWidth={2.4} />
-                  </View>
-                </View>
-              )}
-            </Pressable>
-          </View>
-        </View>
-        <Pressable
-          onPress={onLogoPress}
-          hitSlop={{ top: 8, bottom: 8, left: 2, right: 2 }}
-          accessibilityRole="button"
-          accessibilityLabel={BRAND_NAME}
-          accessibilityHint={t("common.scrollsFeedToTop")}
-          style={styles.mark}
-        >
-          <Image
-            source={MARK}
-            resizeMode="contain"
-            fadeDuration={0}
-            style={{ width: Math.round(MARK_HEIGHT * MARK_ASPECT), height: MARK_HEIGHT, tintColor: "#FFFFFF" }}
-          />
-        </Pressable>
-        <View style={[styles.right, { width: side || undefined }]}>
-          <View onLayout={onRight} style={styles.sideInner}>
             {isSignedIn ? (
               <Pressable
                 onPress={openNotifications}
@@ -150,6 +111,27 @@ export const IslandCapsule = memo(function IslandCapsule({
                 <UnreadBadge count={unread} />
               </Pressable>
             ) : null}
+          </View>
+        </View>
+        <Pressable
+          onPress={onToggleMenu}
+          hitSlop={{ top: 8, bottom: 8, left: 2, right: 2 }}
+          accessibilityRole="button"
+          accessibilityLabel={`${BRAND_NAME}, ${label}`}
+          accessibilityState={{ expanded: menuOpen }}
+          style={styles.mark}
+        >
+          {({ pressed }) => (
+            <Image
+              source={MARK}
+              resizeMode="contain"
+              fadeDuration={0}
+              style={{ width: Math.round(MARK_HEIGHT * MARK_ASPECT), height: MARK_HEIGHT, tintColor: "#FFFFFF", opacity: pressed ? 0.6 : 1 }}
+            />
+          )}
+        </Pressable>
+        <View style={[styles.right, { width: side || undefined }]}>
+          <View onLayout={onRight} style={styles.sideInner}>
             <Pressable
               onPress={onAvatarPress}
               hitSlop={HIT}
@@ -244,16 +226,12 @@ const styles = StyleSheet.create({
     shadowRadius: 10,
     shadowOffset: { width: 0, height: 4 },
   },
-  left: { flexDirection: "row", alignItems: "center", justifyContent: "flex-start" },
-  right: { flexDirection: "row", alignItems: "center", justifyContent: "flex-end" },
+  left: { minWidth: AVATAR_SIZE, flexDirection: "row", alignItems: "center", justifyContent: "flex-start" },
+  right: { minWidth: AVATAR_SIZE, flexDirection: "row", alignItems: "center", justifyContent: "flex-end" },
   sideInner: { flexDirection: "row", alignItems: "center", gap: 12 },
   avatarButton: { width: AVATAR_SIZE, height: AVATAR_SIZE, alignItems: "center", justifyContent: "center", flexShrink: 0 },
   avatar: { width: AVATAR_SIZE, height: AVATAR_SIZE, borderRadius: AVATAR_RADIUS, overflow: "hidden" },
-  mark: { paddingHorizontal: 12, flexShrink: 0, justifyContent: "center", alignItems: "center" },
-  tab: { height: ISLAND_CAPSULE_HEIGHT, justifyContent: "center", paddingLeft: 4 },
-  tabInner: { flexDirection: "row", alignItems: "center", gap: 4 },
-  label: { maxWidth: 96, color: "#FFFFFF", fontSize: 14, fontWeight: "600", letterSpacing: -0.14 },
-  chevronOpen: { transform: [{ rotate: "180deg" }] },
+  mark: { paddingHorizontal: 20, height: ISLAND_CAPSULE_HEIGHT, flexShrink: 0, justifyContent: "center", alignItems: "center" },
   bell: { width: 28, height: 28, alignItems: "center", justifyContent: "center" },
   menuWrap: { alignItems: "center" },
   menu: {
