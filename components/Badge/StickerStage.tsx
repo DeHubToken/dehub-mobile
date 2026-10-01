@@ -44,6 +44,7 @@ interface Props {
   world?: string | null;
   reducedMotion?: boolean;
   hero?: BadgeBox;
+  onStarted?: () => void;
   onLanded?: () => void;
   onClosed?: () => void;
   items: StickerItem[];
@@ -77,7 +78,7 @@ const READY_TIMEOUT_MS = 8000;
 const PAGE = require("../../assets/badge-sticker/index.html");
 
 let pageHtml: Promise<string> | null = null;
-function loadPage(): Promise<string> {
+export function loadBadgePage(): Promise<string> {
   if (!pageHtml) {
     pageHtml = (async () => {
       const asset = Asset.fromModule(PAGE);
@@ -115,15 +116,15 @@ export function assetDataUrl(module: number): Promise<string> {
 }
 
 const StickerStage = forwardRef<StickerStageHandle, Props>(function StickerStage(
-  { items, origin, metallic, world, reducedMotion, hero, onLanded, onClosed, onReady, onTap, onMiss, onInteract },
+  { items, origin, metallic, world, reducedMotion, hero, onStarted, onLanded, onClosed, onReady, onTap, onMiss, onInteract },
   ref,
 ) {
   const webRef = useRef<WebView>(null);
   const latestHero = useRef(hero);
   latestHero.current = hero;
   const [html, setHtml] = useState<string | null>(null);
-  const handlers = useRef({ onReady, onTap, onMiss, onInteract, onLanded, onClosed });
-  handlers.current = { onReady, onTap, onMiss, onInteract, onLanded, onClosed };
+  const handlers = useRef({ onReady, onTap, onMiss, onInteract, onStarted, onLanded, onClosed });
+  handlers.current = { onReady, onTap, onMiss, onInteract, onStarted, onLanded, onClosed };
   const settled = useRef(false);
 
   const settle = useCallback((ok: boolean) => {
@@ -136,7 +137,7 @@ const StickerStage = forwardRef<StickerStageHandle, Props>(function StickerStage
   useEffect(() => {
     let live = true;
     const boot = JSON.stringify({ items, origin, metallic, world, reducedMotion, hero }).replace(/<\//g, "<\\/");
-    loadPage()
+    loadBadgePage()
       .then((page) => {
         if (live) setHtml(page.replace("<head>", `<head><script>window.__STICKER=${boot};</script>`));
       })
@@ -152,6 +153,10 @@ const StickerStage = forwardRef<StickerStageHandle, Props>(function StickerStage
   const run = useCallback((call: string) => {
     webRef.current?.injectJavaScript(`window.dehubSticker&&window.dehubSticker.${call};true;`);
   }, []);
+
+  useEffect(() => {
+    if (settled.current && metallic) run(`items(${JSON.stringify(items)})`);
+  }, [items, metallic, run]);
 
   useImperativeHandle(
     ref,
@@ -184,6 +189,7 @@ const StickerStage = forwardRef<StickerStageHandle, Props>(function StickerStage
       else if (message.type === "tap") handlers.current.onTap();
       else if (message.type === "miss") handlers.current.onMiss();
       else if (message.type === "interact") handlers.current.onInteract();
+      else if (message.type === "started") handlers.current.onStarted?.();
       else if (message.type === "landed") handlers.current.onLanded?.();
       else if (message.type === "closed") handlers.current.onClosed?.();
       else if (message.type === "failed") handlers.current.onReady(false);

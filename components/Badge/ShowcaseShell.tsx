@@ -239,9 +239,9 @@ export default function ShowcaseShell({
     [],
   );
 
-  // The page gets every entry's art up front, as web's stage does.
+  // Metal opens with its own art; the rest of the dock waits until landing.
   useEffect(() => {
-    Promise.all(entries.map((entry) => entry.sticker()))
+    Promise.all(entries.map((entry, i) => !metallic || i === originIndex ? entry.sticker() : Promise.resolve("")))
       .then((srcs) => {
         if (!mounted.current) return;
         setItems(srcs.map((src, i) => ({ src, label: entries[i].label, finish: entries[i].finish, tilt: entries[i].tilt * 0.5 })));
@@ -252,6 +252,15 @@ export default function ShowcaseShell({
     // The entries the showcase opened with; the stage keeps them for its life.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    if (!metallic || phase !== "open") return;
+    let live = true;
+    void Promise.all(entries.map(entry => entry.sticker())).then(srcs => {
+      if (live && mounted.current) setItems(srcs.map((src, i) => ({ src, label: entries[i].label, finish: entries[i].finish, tilt: entries[i].tilt * 0.5 })));
+    }).catch(() => {});
+    return () => { live = false; };
+  }, [metallic, phase, entries]);
 
   /* ---------- geometry ---------- */
 
@@ -282,7 +291,7 @@ export default function ShowcaseShell({
   const flyerOpacity = useTransition(flyerVisible ? 1 : 0, 200, EASE);
 
   useEffect(() => {
-    setShown(true);
+    if (!metallic) setShown(true);
     haptic.tap();
   }, []);
 
@@ -334,6 +343,7 @@ export default function ShowcaseShell({
 
   useEffect(() => {
     if (!cinematic || !glFailed || !hero || closing.current) return;
+    setShown(true);
     frame.value = hero.size;
     setFrameSize(hero.size);
     fromBox.value = toBox.value = hero;
@@ -424,10 +434,10 @@ export default function ShowcaseShell({
   /* ---------- sticker stage ---------- */
 
   useEffect(() => {
-    if (!stickerOn) return;
+    if (!stickerOn || phase !== "open") return;
     stageRef.current?.preload((originIndex + 1) % count);
     stageRef.current?.preload((originIndex - 1 + count) % count);
-  }, [stickerOn, originIndex, count]);
+  }, [stickerOn, phase, items, originIndex, count]);
 
   useEffect(() => {
     const stage = stageRef.current;
@@ -612,6 +622,7 @@ export default function ShowcaseShell({
               <StickerStage
                 ref={stageRef} items={items} origin={originIndex} metallic={metallic} world={world} hero={hero} reducedMotion={reduceMotion}
                 onReady={(ok) => { if (closing.current) { if (!ok) onClose(); return; } if (ok) setStickerReady(true); else { setGlFailed(true); setStickerOn(false); } }}
+                onStarted={() => { if (!closing.current) setShown(true); }}
                 onLanded={() => { if (!closing.current) setLanded(true); }}
                 onClosed={onClose} onTap={() => goTo(index + 1)} onMiss={requestClose} onInteract={pause}
               />
@@ -619,8 +630,8 @@ export default function ShowcaseShell({
           ) : null}
 
           <View style={{ flex: 1, paddingTop: insets.top }} pointerEvents="box-none">
-            {/* Stage: whatever height the details leave, never under 160. */}
-            <View style={styles.stage} onLayout={onStageLayout} pointerEvents="box-none">
+            {/* Reserve the badge's own space; the details scroll below it. */}
+            <View style={[styles.stage, { height: Math.min(360, Math.max(180, (H - insets.top - insets.bottom) * 0.32)) }]} onLayout={onStageLayout} pointerEvents="box-none">
               <Animated.View pointerEvents="none" style={[StyleSheet.absoluteFill, glowStyle]}>
                 <Svg width="100%" height="100%">
                   <Defs>
@@ -653,7 +664,7 @@ export default function ShowcaseShell({
             </View>
 
             {/* Details: one 8px gap, 16px radius and 12px padding throughout. */}
-            <Animated.View style={[{ flexShrink: 1 }, detailsStyle]} pointerEvents={panelIn ? "auto" : "none"}>
+            <Animated.View style={[{ flex: 1, minHeight: 0 }, detailsStyle]} pointerEvents={panelIn ? "auto" : "none"}>
               <ScrollView
                 contentContainerStyle={styles.details}
                 showsVerticalScrollIndicator={false}
@@ -814,7 +825,7 @@ function DockThumb({
 
 const styles = StyleSheet.create({
   backdrop: { backgroundColor: "#000" },
-  stage: { flex: 1, minHeight: 160 },
+  stage: { flexShrink: 0, marginBottom: 12 },
   details: { paddingHorizontal: 16 },
   column: { width: "100%", maxWidth: 480, alignSelf: "center" },
   dockWrap: { marginTop: SECTION_GAP, paddingHorizontal: 16 },
