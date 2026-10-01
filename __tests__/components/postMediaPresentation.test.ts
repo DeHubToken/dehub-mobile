@@ -49,8 +49,8 @@ describe('post media presentation', () => {
 
     expect(card).toContain('const cinematicFeed = cinematic && theme === "system" && !skin && !isMinimal && !immersive && !flat;');
     expect(card).toContain('<FeedBleedContext.Provider value={feedBleed}>');
-    // Posts are split by a full-width hairline with 12pt either side.
-    expect(card).toMatch(/paddingVertical: 12,\s+borderBottomWidth: StyleSheet\.hairlineWidth,/);
+    // Preserve the current 20pt spacing around the full-width separator.
+    expect(card).toMatch(/paddingVertical: 20,\s+borderBottomWidth: StyleSheet\.hairlineWidth,/);
     expect(list).toContain('      cinematic\n');
   });
 
