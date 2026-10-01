@@ -105,8 +105,10 @@ export const RecoveryPhraseGrid: React.FC<{
           ))}
           {!revealed && (
             <View style={styles.revealOverlay} pointerEvents="none">
-              <Ionicons name="eye-outline" size={22} color={authColors.label} />
-              <Text style={styles.revealLabel}>{t("walletBackup.tapToReveal")}</Text>
+              <View style={styles.revealPill}>
+                <Ionicons name="eye-outline" size={18} color="#fff" />
+                <Text style={styles.revealLabel}>{t("walletBackup.tapToReveal")}</Text>
+              </View>
             </View>
           )}
         </TouchableOpacity>
@@ -220,10 +222,10 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: "600",
   },
-  // Kept in the layout so the card doesn't jump on reveal, but invisible so
-  // the "Tap to reveal" label isn't drawn over the placeholder rows.
+  // Dimmed placeholders show there are words under the "Tap to reveal" pill
+  // without competing with it.
   phraseWordHidden: {
-    opacity: 0,
+    opacity: 0.5,
   },
   phraseMasked: {
     color: authColors.subtle,
@@ -233,11 +235,22 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
     alignItems: "center",
     justifyContent: "center",
-    gap: 6,
-    backgroundColor: authColors.surface,
+    borderRadius: AUTH_RADIUS,
+    backgroundColor: "rgba(0,0,0,0.45)",
+  },
+  revealPill: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 8,
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    borderRadius: 999,
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.18)",
+    backgroundColor: "rgba(12,12,16,0.88)",
   },
   revealLabel: {
-    color: authColors.label,
+    color: "#fff",
     fontSize: 14,
     fontWeight: "600",
   },
