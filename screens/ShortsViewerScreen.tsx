@@ -3,8 +3,9 @@
  *
  * The chrome mirrors the web viewer (dehubweb
  * src/components/app/cards/ShortsViewer.tsx): a horizontal action row spread
- * across the bottom of the frame in feed-card order — views · tip · dislike ·
- * share · comments · like, with like at the far right for thumb reach — and the
+ * across the bottom of the frame in feed-card order — views · tip ·
+ * share · comments · like (👎 lives in its hold tray), with like at the far
+ * right for thumb reach — and the
  * creator row + caption stacked above it. Back sits top-left; playback speed,
  * mute and the options menu top-right. Bookmark and the moderation actions live
  * in that menu rather than on the row, as on web.
@@ -12,7 +13,7 @@
  * What web puts a fill behind is exactly the four top buttons, and nothing
  * else: the action row is bare icons with a text shadow over the bottom scrim.
  * This screen used to draw a glass slab under that row too, which is what made
- * it read as a different app. The action row's six cells are still equal flex
+ * it read as a different app. The action row's five cells are still equal flex
  * shares rather than `space-between` over content-sized children, so the icons
  * hold a fixed grid no matter how wide the counts under them get, with the two
  * end cells aligned outwards so the row still spans edge to edge.
@@ -107,12 +108,11 @@ import TranslateButton from "../components/ui/TranslateButton";
 import { useTranslation } from "../hooks/useTranslation";
 import {
   applyReactionDelta,
-  HAS_NEGATIVE_TRAY,
   isPositiveReaction,
   reactionForTap,
   reactionMeta,
   resolveLeadReaction,
-  resolveNegativeLeadReaction,
+  resolveThumbReaction,
   type PostReaction,
 } from "../libs/reactions";
 import { ReactionEmoji } from "../components/Home/ReactionEmoji";
@@ -445,7 +445,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, isNearby, active
   // One state rather than two booleans, so only one can be open, and
   // `pickerOpen` below keeps reading as "a tray is up" for the chrome
   // auto-hide, which does not care which.
-  const [openTray, setOpenTray] = useState<"positive" | "negative" | null>(null);
+  const [openTray, setOpenTray] = useState<"positive" | null>(null);
   const pickerOpen = openTray !== null;
   const [showReactionInfo, setShowReactionInfo] = useState(false);
   const [showComments, setShowComments] = useState(false);
@@ -879,17 +879,13 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, isNearby, active
   }, [handleReaction, myReaction, reactionCounts]);
 
   const handleLike = useCallback(() => togglePolarity(true), [togglePolarity]);
-  const handleDislike = useCallback(() => togglePolarity(false), [togglePolarity]);
 
-  /** The one glyph the thumb wears — and, on a tap, the reaction it casts. */
+  /**
+   * The one glyph the thumb wears — and, on a tap, the reaction it casts or
+   * takes back. Your own 👎 shows here: there is no thumbs-down any more.
+   */
   const leadReaction = resolveLeadReaction(reactionCounts, myReaction);
-  const leadGlyph = leadReaction ?? undefined;
-  /** A downvote belongs to the thumbs-DOWN; this button must not announce it. */
-  const myPositiveReaction = myReaction && isPositiveReaction(myReaction) ? myReaction : null;
-  /* …and that button would wear it, though 👎 is its own glyph already. */
-  const myNegativeReaction = myReaction && !isPositiveReaction(myReaction) ? myReaction : null;
-  const negativeLeadReaction = resolveNegativeLeadReaction(myReaction);
-  const negativeGlyph = negativeLeadReaction ?? undefined;
+  const thumbGlyph = resolveThumbReaction(reactionCounts, myReaction) ?? undefined;
 
   const handleTip = useCallback(() => {
     if (!minterAddress) return;
@@ -1565,7 +1561,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, isNearby, active
               {/* The way back to the original. Sits under the caption rather
                   than in the metadata row the feed card puts it in — this
                   overlay has no metadata row, and the action row below is a
-                  fixed six-cell grid with no spare cell to give it. */}
+                  fixed five-cell grid with no spare cell to give it. */}
               {showTranslate ? (
                 <View style={styles.captionTranslate}>
                   <TranslateButton
@@ -1607,37 +1603,6 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, isNearby, active
                 accessibilityLabel={t("comments.tip")}
               />
 
-              {/* Downvotes — one tap, no tray: 👎 is the only reaction on this
-                  side, and a hold-to-open menu of one would just get in the
-                  way of the press that already casts it. */}
-              <View style={styles.actionCell}>
-                <View style={{ position: "relative" }}>
-                  <ReactionPicker
-                    open={openTray === "negative"}
-                    polarity="negative"
-                    current={myReaction}
-                    onSelect={(reaction) => { setOpenTray(null); handleReaction(reaction); }}
-                    onClose={() => setOpenTray(null)}
-                    align="right"
-                  />
-                  <ActionButton
-                    style={styles.actionInline}
-                    icon="ThumbsDown"
-                    glyph={negativeGlyph}
-                    glyphAnimated
-                    active={disliked}
-                    label={formatCompactNumber(dislikeCount)}
-                    onPress={() => { if (openTray === "negative") { setOpenTray(null); return; } handleDislike(); }}
-                    onLongPress={HAS_NEGATIVE_TRAY ? () => setOpenTray("negative") : undefined}
-                    accessibilityLabel={
-                      myNegativeReaction
-                        ? `${reactionMeta(myNegativeReaction).label} — hold to change your reaction`
-                        : "Dislike — hold to react"
-                    }
-                  />
-                </View>
-              </View>
-
               {/* Share — carries the repost count, and opens the share sheet. */}
               <ActionButton
                 icon="Share2"
@@ -1654,7 +1619,8 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, isNearby, active
                 accessibilityLabel={t("settings.comments")}
               />
 
-              {/* Reactions — tap to like/unlike, hold to pick a reaction.
+              {/* Reactions — tap to like/unlike, hold for the tray of every
+                  reaction, 👎 last (there is no separate thumbs-down).
                   The outer view is the cell; the inner one is the tray's
                   positioning context and stays button-sized, so the tray anchors
                   to the thumb rather than to the whole cell. The tray keeps
@@ -1664,6 +1630,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, isNearby, active
                   <ReactionPicker
                     open={openTray === "positive"}
                     current={myReaction}
+                    counts={reactionCounts}
                     onSelect={(reaction) => { setOpenTray(null); handleReaction(reaction); }}
                     onClose={() => setOpenTray(null)}
                     align="right"
@@ -1676,15 +1643,15 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, isNearby, active
                   <ActionButton
                     style={styles.actionInline}
                     icon="ThumbsUp"
-                    glyph={leadGlyph}
-                    glyphAnimated={!!leadGlyph && leadGlyph === myPositiveReaction}
-                    active={liked}
+                    glyph={thumbGlyph}
+                    glyphAnimated={!!thumbGlyph && thumbGlyph === myReaction}
+                    active={liked || disliked}
                     label={formatCompactNumber(likeCount)}
                     onPress={() => { if (openTray === "positive") { setOpenTray(null); return; } handleLike(); }}
                     onLongPress={() => setOpenTray("positive")}
                     accessibilityLabel={
-                      myPositiveReaction
-                        ? `${reactionMeta(myPositiveReaction).label} — hold to change your reaction`
+                      myReaction
+                        ? `${reactionMeta(myReaction).label} — hold to change your reaction`
                         : `${reactionMeta(leadReaction ?? "like").label} — hold to react`
                     }
                   />

@@ -35,7 +35,7 @@ const SECTIONS: GlossarySection[] = [
     title: "Post Interactions",
     entries: [
       { icon: "ThumbsUp", title: "Thumbs Up (Like)", description: "Shows you like or agree with a post. Increases the post's engagement score and helps it rank higher in the feed." },
-      { icon: "ThumbsDown", title: "Thumbs Down (Dislike)", description: "Shows you dislike or disagree with a post. This feedback helps improve content recommendations." },
+      { icon: "ThumbsDown", title: "Thumbs Down (Dislike)", description: "Shows you dislike or disagree with a post. Hold the thumbs up and pick 👎, the last reaction in the tray. This feedback helps improve content recommendations." },
       { icon: "MessageSquare", title: "Comment", description: "Opens the comment section where you can reply to a post, join discussions, and interact with other users." },
       { icon: "Share2", title: "Share", description: "Share a post externally via a link, or copy the post URL to your clipboard to send to others." },
       { icon: "Bookmark", title: "Bookmark", description: "Save a post to your bookmarks for later. Access all saved posts from the Bookmarks page in the sidebar." },
