@@ -11,6 +11,7 @@
  * @module components/Music/CinematicMusic
  */
 
+import { isVisibleInMusic } from "./music-curation";
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   ActivityIndicator,
@@ -351,7 +352,7 @@ interface Track {
 
 function toTrack(nft: GetNFTsResult): Track | null {
   const tokenId = nft.tokenId ?? nft.id;
-  if (tokenId == null) return null;
+  if (tokenId == null || !isVisibleInMusic(nft)) return null;
   const any = nft as any;
   const rawThumb = any.thumbnail || nft.thumbnailUrl || nft.imageUrl || "";
   const seconds = any.postType === "feed-audio" ? any.audioDuration || nft.videoDuration : nft.videoDuration;

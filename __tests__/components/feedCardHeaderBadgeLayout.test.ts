@@ -18,8 +18,8 @@ describe("feed card badge layout", () => {
     expect(source).toContain("const HOLDER_BADGE_SIZE = 16");
   });
 
-  it("keeps animal badge spacing separate and half as wide as the New-chip gap", () => {
-    expect(source).toContain("const HOLDER_BADGE_GAP = 2");
+  it("lets optical bounds set the badge gap independently of the New chip", () => {
+    expect(source).toContain("const HOLDER_BADGE_GAP = 0");
     expect(source).toContain("marginLeft: HOLDER_BADGE_GAP");
     expect(source).toMatch(/height: DISPLAY_NAME_LINE_HEIGHT,\s+marginLeft: 4,/);
   });
