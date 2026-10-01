@@ -560,20 +560,20 @@ const BADGE_IMAGES: Record<string, number> = {
   Megalodon: require("../assets/badges/Megalodon.png"),
 };
 
-const BADGE_OPTICS: Record<string, { scale: number; bottomInset: number }> = {
-  Crab: { scale: 1, bottomInset: 8 },
-  "Ghost Lobster": { scale: 1.04, bottomInset: 7 },
-  Piranha: { scale: 1, bottomInset: 8 },
-  "Giant Tortoise": { scale: 1, bottomInset: 11 },
-  "King Cobra": { scale: 1, bottomInset: 6 },
-  Octopus: { scale: 1.02, bottomInset: 7 },
-  Crocodile: { scale: 1, bottomInset: 11 },
-  Dolphin: { scale: 1.03, bottomInset: 7 },
-  "Tiger Shark": { scale: 1.03, bottomInset: 6 },
-  "Killer Whale": { scale: 1.04, bottomInset: 6 },
-  "Great White Shark": { scale: 1.04, bottomInset: 8 },
-  "Blue Whale": { scale: 1.1, bottomInset: 6 },
-  Megalodon: { scale: 1.08, bottomInset: 10 },
+const BADGE_OPTICS: Record<string, { left: number; top: number; right: number; bottom: number }> = {
+  "Crab": { left: 9, top: 16, right: 120, bottom: 118 },
+  "Ghost Lobster": { left: 16, top: 14, right: 112, bottom: 111 },
+  "Piranha": { left: 7, top: 11, right: 120, bottom: 119 },
+  "Giant Tortoise": { left: 8, top: 16, right: 119, bottom: 114 },
+  "King Cobra": { left: 15, top: 8, right: 111, bottom: 119 },
+  "Octopus": { left: 10, top: 14, right: 118, bottom: 120 },
+  "Crocodile": { left: 8, top: 12, right: 121, bottom: 117 },
+  "Dolphin": { left: 15, top: 12, right: 111, bottom: 120 },
+  "Tiger Shark": { left: 8, top: 15, right: 120, bottom: 120 },
+  "Killer Whale": { left: 19, top: 17, right: 109, bottom: 121 },
+  "Great White Shark": { left: 8, top: 13, right: 121, bottom: 120 },
+  "Blue Whale": { left: 7, top: 13, right: 119, bottom: 121 },
+  "Megalodon": { left: 8, top: 15, right: 120, bottom: 117 },
 };
 
 // At compact sizes the source artwork's narrowest transparent edge is less
@@ -591,7 +591,9 @@ export function getBadgeOpticalStyle(
 ) {
   const tier = Object.keys(BADGE_IMAGES).find((name) => BADGE_IMAGES[name] === source || LIGHT_BADGE_IMAGES[name] === source);
   const optics = tier ? BADGE_OPTICS[tier] : undefined;
-  const renderedSize = size * 1.2 * (optics?.scale ?? 1);
+  const bounds = optics ?? { left: 0, top: 0, right: 128, bottom: 128 };
+  // Roboto/SF capital height is approximately 0.72 of the font size.
+  const renderedSize = size * 0.72 * 128 / (bounds.bottom - bounds.top);
   const outerSize = renderedSize + BADGE_ARTWORK_GUTTER * 2;
   // Web sits the visible check on the text baseline. Native centres the
   // font's ascent+descent block inside whatever line box the Text has, so the
@@ -604,14 +606,15 @@ export function getBadgeOpticalStyle(
   const artworkBottomBelowCentre =
     -outerSize / 2 +
     BADGE_ARTWORK_GUTTER +
-    renderedSize * (1 - (optics?.bottomInset ?? 0) / 128);
+    renderedSize * bounds.bottom / 128;
   const translateY = baselineBelowCentre - artworkBottomBelowCentre;
   const verticalMargin = Math.min(0, (textLineHeight - outerSize) / 2);
   return {
     width: outerSize,
     height: outerSize,
     padding: BADGE_ARTWORK_GUTTER,
-    marginLeft: 6,
+    marginLeft: 3 - BADGE_ARTWORK_GUTTER - renderedSize * bounds.left / 128,
+    marginRight: -BADGE_ARTWORK_GUTTER - renderedSize * (128 - bounds.right) / 128,
     marginTop: verticalMargin,
     marginBottom: verticalMargin,
     alignSelf: "center" as const,
