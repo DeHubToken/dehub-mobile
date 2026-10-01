@@ -53,6 +53,10 @@ const KEYS = {
   // Mirrors the post reactions bar so the like sits under a left thumb.
   // Web's key name.
   leftHanded: 'left-handed-mode',
+  // Theme Color per customisable theme, and the Brand palette. Web's keys and
+  // value shapes (see theme/themeColor.ts).
+  themeHues: 'dehub.themeHues',
+  brandColors: 'dehub.brandColors',
 } as const;
 
 export type AppPrefKey = keyof typeof KEYS;
@@ -76,6 +80,8 @@ export interface AppPrefs {
   skipSegments: boolean;
   geoBlockedCountries: string[];
   leftHanded: boolean;
+  themeHues: Record<string, number>;
+  brandColors: string[];
 }
 
 /** Same defaults web falls back to when a key is absent. */
@@ -106,6 +112,8 @@ export const DEFAULT_APP_PREFS: AppPrefs = {
   skipSegments: false,
   geoBlockedCountries: [],
   leftHanded: false,
+  themeHues: {},
+  brandColors: [],
 };
 
 let cache: AppPrefs = { ...DEFAULT_APP_PREFS };
@@ -169,6 +177,25 @@ function init() {
         hideWatched: parseBool(get('hideWatched'), DEFAULT_APP_PREFS.hideWatched),
         skipSegments: parseBool(get('skipSegments'), DEFAULT_APP_PREFS.skipSegments),
         leftHanded: parseBool(get('leftHanded'), DEFAULT_APP_PREFS.leftHanded),
+        themeHues: (() => {
+          try {
+            const parsed = JSON.parse(get('themeHues') || '{}');
+            if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) return {};
+            const out: Record<string, number> = {};
+            for (const [k, v] of Object.entries(parsed)) if (typeof v === 'number' && Number.isFinite(v)) out[k] = v;
+            return out;
+          } catch {
+            return {};
+          }
+        })(),
+        brandColors: (() => {
+          try {
+            const parsed = JSON.parse(get('brandColors') || '[]');
+            return Array.isArray(parsed) ? (parsed as unknown[]).filter((c): c is string => typeof c === 'string').slice(0, 3) : [];
+          } catch {
+            return [];
+          }
+        })(),
         geoBlockedCountries: (() => {
           try {
             const parsed = JSON.parse(get('geoBlockedCountries') || '[]');
@@ -193,7 +220,7 @@ export function setAppPref<K extends AppPrefKey>(key: K, value: AppPrefs[K]) {
   init();
   cache = { ...cache, [key]: value };
   emit();
-  const serialised = Array.isArray(value) ? JSON.stringify(value) : String(value);
+  const serialised = value !== null && typeof value === 'object' ? JSON.stringify(value) : String(value);
   AsyncStorage.setItem(KEYS[key], serialised).catch(() => { /* best effort */ });
 }
 

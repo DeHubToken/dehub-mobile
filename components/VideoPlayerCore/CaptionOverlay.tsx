@@ -62,7 +62,18 @@ interface Props {
   player?: VideoPlayer | null;
   /** Unused since the dub reads play state off the player; kept for callers. */
   isPlaying?: boolean;
+  /** Draw no button of its own: a host menu drives it through onControls. */
+  hideButton?: boolean;
+  /** Hands the host the subtitle switch and the language sheet. */
+  onControls?: (controls: CaptionControls | null) => void;
 }
+
+export type CaptionControls = {
+  enabled: boolean;
+  loading: boolean;
+  toggle: () => void;
+  openLanguages: () => void;
+};
 
 const CaptionOverlay: React.FC<Props> = ({
   tokenId,
@@ -70,6 +81,8 @@ const CaptionOverlay: React.FC<Props> = ({
   controlsVisible = true,
   bottomOffset = 64,
   player = null,
+  hideButton = false,
+  onControls,
 }) => {
   const { t, i18n } = useTranslation();
   // Before the `!ref` early return below, so the hook order never changes.
@@ -226,6 +239,23 @@ const CaptionOverlay: React.FC<Props> = ({
     if (next !== text) setText(next);
   }, [positionMs, lines, enabled, text]);
 
+  // For a host drawing the switch itself. The toggle is read through a ref so
+  // the handed-over function never goes stale.
+  const toggleRef = useRef<() => void>(() => {});
+  useEffect(() => {
+    if (!onControls) return;
+    onControls(ref ? {
+      enabled,
+      loading: inFlight,
+      toggle: () => toggleRef.current(),
+      openLanguages: () => setPickerOpen(true),
+    } : null);
+  }, [onControls, ref, enabled, inFlight]);
+  useEffect(() => {
+    if (!onControls) return;
+    return () => onControls(null);
+  }, [onControls]);
+
   if (!ref) return null;
 
   const onToggle = () => {
@@ -242,6 +272,8 @@ const CaptionOverlay: React.FC<Props> = ({
     setSubtitlesEnabled(next);
   };
 
+  toggleRef.current = onToggle;
+
   const fontSize = SUBTITLE_SIZES[size];
 
   return (
@@ -257,7 +289,7 @@ const CaptionOverlay: React.FC<Props> = ({
         </View>
       )}
 
-      <Pressable
+      {!hideButton && <Pressable
         onPress={onToggle}
         onLongPress={() => setPickerOpen(true)}
         hitSlop={8}
@@ -278,7 +310,7 @@ const CaptionOverlay: React.FC<Props> = ({
             color={enabled ? '#FFFFFF' : 'rgba(255,255,255,0.6)'}
           />
         )}
-      </Pressable>
+      </Pressable>}
 
       <Modal
         visible={pickerOpen}

@@ -816,7 +816,17 @@
     "exportReady": "{{count}} ບັນຊີ, {{saved}} ຂໍ້ຄວາມທີ່ຖືກປະຫຍັດໄດ້ສົ່ງອອກ.",
     "importDone": "ຕິດຕາມ {{followed}}, ຖືກບລັອກ {{blocked}}, {{folders}} ໂຟນເດີທີ່ສ້າງຂື້ນ.",
     "importPartial": "{{count}} ບັນຊີບໍ່ສາມາດຕິດຕາມໄດ້ — ດໍາ ເນີນການ ນໍາ ເຂົ້າອີກຄັ້ງເພື່ອລອງ ໃຫມ່ ອີກຄັ້ງ.",
-    "importProgress": "ການສະໝັກ {{done}} ຂອງ {{total}}..."
+    "importProgress": "ການສະໝັກ {{done}} ຂອງ {{total}}...",
+    "themeColor": "ສີຂອງຮູບແບບ",
+    "themeColorDesc": "ເລືອກສີເອງສຳລັບຮູບແບບນີ້",
+    "themeColorReset": "ຣີເຊັດ",
+    "themeColorWhite": "ຂາວ",
+    "themeColorBlack": "ດຳ",
+    "themeColorRainbow": "ຮຸ້ງ",
+    "themeColorBrand": "ແບຣນ",
+    "themeColorBrandDesc": "ໃຊ້ສີຈາກຮູບໂປຣໄຟລ໌ຂອງເຈົ້າ",
+    "themeColorBrandNoAvatar": "ເພີ່ມຮູບໂປຣໄຟລ໌ເພື່ອໃຊ້ສີແບຣນ",
+    "themeColorBrandFailed": "ອ່ານສີຈາກຮູບໂປຣໄຟລ໌ຂອງເຈົ້າບໍ່ໄດ້"
   },
   "common": {
     "mute": "ປິດສຽງ",
@@ -1005,7 +1015,8 @@
     "boostPostDesc": "ວາງໄວ້ເທິງສຸດຂອງໜ້າຫຼັກ",
     "mintPostDesc": "ເຜີຍແຜ່ໂພສນີ້ເທິງເຄືອຂ່າຍ",
     "giftBoost": "ມອບບູສເປັນຂອງຂວັນ",
-    "giftBoostDesc": "ໃຊ້ໜຶ່ງອັນຂອງທ່ານກັບໂພສນີ້"
+    "giftBoostDesc": "ໃຊ້ໜຶ່ງອັນຂອງທ່ານກັບໂພສນີ້",
+    "askAi": "ຖາມ AI"
   },
   "filters": {
     "sort": "ຈັດລຽງ",
@@ -7194,7 +7205,25 @@
     "presetWhipPanHint": "ວ່ອງໄວ blurred pan ເຂົ້າໃນການເປີດເຜີຍ",
     "presetWhipPanName": "ກະປ໋ອງ Whip",
     "presetYtSplitHint": "Split-screen thumbnail ທີ່ບອກເລື່ອງ",
-    "presetYtSplitName": "ກ່ອນ /ຫຼັງຈາກຮູບນ້ອຍ"
+    "presetYtSplitName": "ກ່ອນ /ຫຼັງຈາກຮູບນ້ອຍ",
+    "navAudio": "ສຽງ",
+    "navAgents": "ເອເຈັນ",
+    "heroTitle": "ມື້ນີ້ທ່ານຈະສ້າງຫຍັງ?",
+    "heroSubtitle": "ຮູບພາບ, ວິດີໂອ, ດົນຕີ ແລະ 3D. ຈ່າຍຕໍ່ການສ້າງເປັນ DHB.",
+    "startCreating": "ເລີ່ມສ້າງ",
+    "startCreatingSub": "ເປີດສະຕູດິໂອ. ທຸກການສ້າງສະແດງລາຄາເປັນ DHB.",
+    "pickMedium": "ເລືອກສື່",
+    "moreTools": "ເຄື່ອງມືເພີ່ມເຕີມ",
+    "yourLibrary": "ຄັງຂອງທ່ານ",
+    "doorImageNote": "ຮູບນິ່ງ, ໂປສເຕີ ແລະ ການແກ້ໄຂ",
+    "doorVideoNote": "ຄລິບຈາກຂໍ້ຄວາມ ຫຼື ຮູບພາບ",
+    "doorAudioNote": "ເຄື່ອງມືສຽງຟຣີ",
+    "door3d": "3D",
+    "door3dNote": "ໂມເດວຈາກຄຳສັ່ງ ຫຼື ຮູບພາບ",
+    "doorAgentsNote": "ແຊັດຟຣີ",
+    "editorNote": "ຕັດເທິງໄທມ໌ລາຍ",
+    "flowNote": "ເຊື່ອມຂັ້ນຕອນເທິງແຄນວາສ",
+    "builderNote": "ສ້າງແອັບຈາກຄຳສັ່ງ"
   },
   "fractions": {
     "title": "ສ່ວນ",

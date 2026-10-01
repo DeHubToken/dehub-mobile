@@ -1,3 +1,4 @@
+import { useSheetClosed } from '../../hooks/useSheetClosed';
 /**
  * The paywall in front of every paid generation.
  * ==============================================
@@ -166,7 +167,7 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
   /* ── Sheet animation ─────────────────────────────────────────────────── */
   const translateY = useSharedValue(sheetHeight);
   const backdropOpacity = useSharedValue(0);
-  const [isFullyClosed, setIsFullyClosed] = useState(!visible);
+  const [isFullyClosed, setIsFullyClosed] = useSheetClosed(visible);
   const yielded = useYieldToWalletUnlock(!isFullyClosed);
 
   useEffect(() => {

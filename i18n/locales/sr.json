@@ -818,7 +818,17 @@
     "exportReady": "{{count}} рачуна, {{saved}} спремљене објаве извезено.",
     "importDone": "Пратите {{followed}}, блокирање {{blocked}}, {{folders}} фолдера креирано.",
     "importPartial": "{{count}} рачуна није могуће пратити — покрените импорт поново да би сте пробали.",
-    "importProgress": "Примјењујем {{done}} од {{total}}…"
+    "importProgress": "Примјењујем {{done}} од {{total}}…",
+    "themeColor": "Боја теме",
+    "themeColorDesc": "Изаберите прилагођену боју за ову тему",
+    "themeColorReset": "Ресетуј",
+    "themeColorWhite": "Бела",
+    "themeColorBlack": "Црна",
+    "themeColorRainbow": "Дуга",
+    "themeColorBrand": "Бренд",
+    "themeColorBrandDesc": "Користи боје твоје профилне слике",
+    "themeColorBrandNoAvatar": "Додајте профилну слику да бисте користили боје бренда",
+    "themeColorBrandFailed": "Није било могуће очитати боје са ваше профилне слике"
   },
   "common": {
     "mute": "Искључи звук",
@@ -1008,7 +1018,8 @@
     "unpinPost": "Откачи са свог профила",
     "postPinned": "Закачено на ваш профил",
     "postUnpinned": "Отквачено са вашег профила",
-    "pinFailed": "Није могуће закачити или откачити овај post"
+    "pinFailed": "Није могуће закачити или откачити овај post",
+    "askAi": "Питај ВИ"
   },
   "filters": {
     "sort": "Сортирај",
@@ -1863,7 +1874,16 @@
     "tryAnotherGenre": "Покушајте други жанр.",
     "pauseStation": "Паузирајте станицу",
     "resumeStation": "Наставите станицу",
-    "stopRadio": "Зауставите радио"
+    "stopRadio": "Зауставите радио",
+    "playsToday": "Данас {{plays}} слушања",
+    "listen": "Слушај",
+    "top50": "Топ 50",
+    "playAll": "Пусти све",
+    "nothingHereYet": "Овде још нема ничега.",
+    "likeStation": "Свиђа ми се станица",
+    "unlikeStation": "Уклони свиђање",
+    "shareStation": "Подели станицу",
+    "listeningTo": "Слушам {{name}} на DeHub-у"
   },
   "notFound": {
     "title": "Страница није пронађена",
@@ -5454,7 +5474,16 @@
     "connecting": "Повезивање…",
     "shopPutOnAir": "Емитуј",
     "detailsStatus": "Статус:",
-    "detailsLivepeerId": "Ливепеер ID:"
+    "detailsLivepeerId": "Ливепеер ID:",
+    "streamCount_one": "{{count}} пренос",
+    "streamCount_other": "Преноса: {{count}}",
+    "noOneStreamingGame": "Тренутно нико не преноси {{game}}.",
+    "seeAllStreams": "Прикажи све преносе",
+    "isLiveNow": "{{name}} је уживо",
+    "justChatting": "Само ћаскање",
+    "noLiveStreams": "Нема преноса уживо",
+    "noOneStreaming": "Тренутно нико не преноси. Свратите касније!",
+    "loadStreamsFailed": "Преноси нису могли да се учитају. Покушајте поново."
   },
   "liveShop": {
     "title": "Куповина из овог преноса",
@@ -7153,7 +7182,25 @@
     "presetWhipPanHint": "Брзи замршен пан у откривање",
     "presetWhipPanName": "Wхип Пан",
     "presetYtSplitHint": "Полускривени миниатурко који прича причу",
-    "presetYtSplitName": "Бефоре / Афтер Тхумбнаил"
+    "presetYtSplitName": "Бефоре / Афтер Тхумбнаил",
+    "navAudio": "Аудио",
+    "navAgents": "Агенти",
+    "heroTitle": "Шта правиш данас?",
+    "heroSubtitle": "Слике, видео, музика и 3D. Плаћај по креацији у DHB.",
+    "startCreating": "Почни да креираш",
+    "startCreatingSub": "Отвори студио. Свака креација приказује цену у DHB.",
+    "pickMedium": "Изабери медиј",
+    "moreTools": "Још алата",
+    "yourLibrary": "Твоја библиотека",
+    "doorImageNote": "Слике, постери и измене",
+    "doorVideoNote": "Клипови од текста или фотографије",
+    "doorAudioNote": "Гласовни алати бесплатни",
+    "door3d": "3D",
+    "door3dNote": "Модели од упита или фотографије",
+    "doorAgentsNote": "Ћаскање бесплатно",
+    "editorNote": "Исеци на временској линији",
+    "flowNote": "Повежи кораке на платну",
+    "builderNote": "Направи апликацију од упита"
   },
   "fractions": {
     "title": "Удели",

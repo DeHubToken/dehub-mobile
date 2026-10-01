@@ -818,7 +818,17 @@
     "exportReady": "{{count}} kaonty, {{saved}} lahatsoratra voatahiry no nalefa.",
     "importDone": "Noharahana {{followed}}, nosakanana {{blocked}}, {{folders}} lahatahiry no noforonina.",
     "importPartial": "Tsy naharahana {{count}} kaonty — avereno ny fanafarana mba hamerenana azy ireo.",
-    "importProgress": "Ampiharina {{done}} amin'ny {{total}}…"
+    "importProgress": "Ampiharina {{done}} amin'ny {{total}}…",
+    "themeColor": "Lokon'ny lohahevitra",
+    "themeColorDesc": "Fidio loko manokana ho an'ity lohahevitra ity",
+    "themeColorReset": "Averina",
+    "themeColorWhite": "Fotsy",
+    "themeColorBlack": "Mainty",
+    "themeColorRainbow": "Avana",
+    "themeColorBrand": "Marika",
+    "themeColorBrandDesc": "Ampiasao ny lokon'ny sarinao",
+    "themeColorBrandNoAvatar": "Ampidiro sary mombamomba mba hampiasana ny lokon'ny Marika",
+    "themeColorBrandFailed": "Tsy afaka namaky loko avy amin'ny sarinao"
   },
   "common": {
     "mute": "Hampangina",
@@ -1008,7 +1018,8 @@
     "boostPostDesc": "Apetraho eo an-tampon'ny fandefasana fandraisana",
     "mintPostDesc": "Avoaka amin'ny rojo ity lahatsoratra ity",
     "giftBoost": "Manolotra boost",
-    "giftBoostDesc": "Lanio ny iray amin'ny anao amin'ity lahatsoratra ity"
+    "giftBoostDesc": "Lanio ny iray amin'ny anao amin'ity lahatsoratra ity",
+    "askAi": "Anontanio ny AI"
   },
   "filters": {
     "sort": "Alamino",
@@ -7316,7 +7327,25 @@
     "presetWhipPanHint": "Mpankato tsara ho an'ny alika mankato",
     "presetWhipPanName": "Whip Pan",
     "presetYtSplitHint": "Mpitsara tsara ho an'ny alika mankato amin'ny alika",
-    "presetYtSplitName": "Before / After Thumbnail"
+    "presetYtSplitName": "Before / After Thumbnail",
+    "navAudio": "Feo",
+    "navAgents": "Mpiasa",
+    "heroTitle": "Inona no hamoronanao anio?",
+    "heroSubtitle": "Sary, horonan-tsary, mozika ary 3D. Mandoava isaky ny famoronana amin'ny DHB.",
+    "startCreating": "Manomboka mamorona",
+    "startCreatingSub": "Sokafy ny studio. Asehon'ny famoronana tsirairay ny vidiny amin'ny DHB.",
+    "pickMedium": "Misafidiana haino aman-jery",
+    "moreTools": "Fitaovana hafa",
+    "yourLibrary": "Ny tranombokinao",
+    "doorImageNote": "Sary, afisy ary fanovana",
+    "doorVideoNote": "Clip avy amin'ny soratra na sary",
+    "doorAudioNote": "Maimaim-poana ny fitaovana feo",
+    "door3d": "3D",
+    "door3dNote": "Modely avy amin'ny baiko na sary",
+    "doorAgentsNote": "Maimaim-poana ny resaka",
+    "editorNote": "Tapaho amin'ny tsipika fotoana",
+    "flowNote": "Ampifandraiso ny dingana eo amin'ny canvas",
+    "builderNote": "Manaova app avy amin'ny baiko"
   },
   "fractions": {
     "title": "Amboaram-peon-kira",

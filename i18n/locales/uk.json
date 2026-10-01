@@ -818,7 +818,17 @@
     "exportReady": "{{count}} облікові записи, {{saved}} збережені публікації експортовані.",
     "importDone": "Підписалися на {{followed}}, заблоковані {{blocked}}, створені {{folders}} папки.",
     "importPartial": "{{count}} облікові записи не можуть бути підписані — виконайте імпорт знову, щоб спробувати знову.",
-    "importProgress": "Застосовується {{done}} із {{total}}…"
+    "importProgress": "Застосовується {{done}} із {{total}}…",
+    "themeColor": "Колір теми",
+    "themeColorDesc": "Виберіть власний колір для цієї теми",
+    "themeColorReset": "Скинути",
+    "themeColorWhite": "Білий",
+    "themeColorBlack": "Чорний",
+    "themeColorRainbow": "Веселка",
+    "themeColorBrand": "Бренд",
+    "themeColorBrandDesc": "Використати кольори вашого аватара",
+    "themeColorBrandNoAvatar": "Додайте фото профілю, щоб використати кольори бренду",
+    "themeColorBrandFailed": "Не вдалося зчитати кольори з вашого аватара"
   },
   "common": {
     "mute": "Вимкнути звук",
@@ -1365,7 +1375,8 @@
     "boostPostDesc": "Поставте його вгорі головної стрічки",
     "mintPostDesc": "Опублікуйте цей допис у ланцюгу",
     "giftBoost": "Подарувати буст",
-    "giftBoostDesc": "Витратьте один зі своїх на цей допис"
+    "giftBoostDesc": "Витратьте один зі своїх на цей допис",
+    "askAi": "Запитати ШІ"
   },
   "filters": {
     "sort": "Сортувати",
@@ -2220,7 +2231,16 @@
     "tryAnotherGenre": "Спробуйте інший жанр.",
     "pauseStation": "Призупинити станцію",
     "resumeStation": "Відновити станцію",
-    "stopRadio": "Зупинити радіо"
+    "stopRadio": "Зупинити радіо",
+    "playsToday": "{{plays}} прослуховувань сьогодні",
+    "listen": "Слухати",
+    "top50": "Топ-50",
+    "playAll": "Відтворити все",
+    "nothingHereYet": "Тут поки нічого немає.",
+    "likeStation": "Подобається станція",
+    "unlikeStation": "Прибрати вподобання",
+    "shareStation": "Поділитися станцією",
+    "listeningTo": "Слухаю {{name}} у DeHub"
   },
   "notFound": {
     "title": "Сторінку не знайдено",
@@ -5874,7 +5894,16 @@
     "reconnecting": "Перепідключення…",
     "connecting": "Підключення…",
     "statusLive": "ПРЯМА ТРАНСЛЯЦІЯ",
-    "shopPutOnAir": "Ввімкнути повітря"
+    "shopPutOnAir": "Ввімкнути повітря",
+    "streamCount_one": "{{count}} трансляція",
+    "streamCount_other": "Трансляцій: {{count}}",
+    "noOneStreamingGame": "Зараз ніхто не транслює {{game}}.",
+    "seeAllStreams": "Усі трансляції",
+    "isLiveNow": "{{name}} в ефірі",
+    "justChatting": "Просто спілкування",
+    "noLiveStreams": "Немає трансляцій",
+    "noOneStreaming": "Зараз ніхто не транслює. Загляньте пізніше!",
+    "loadStreamsFailed": "Не вдалося завантажити трансляції. Спробуйте ще раз."
   },
   "liveShop": {
     "title": "Купуйте в цьому ефірі",
@@ -7731,7 +7760,25 @@
     "presetWhipPanHint": "Швидке розмиття панорами до розкриття",
     "presetWhipPanName": "Випадковий Пан",
     "presetYtSplitHint": "Розбитий екран мініатюри, яка розповідає історію",
-    "presetYtSplitName": "Перед/Після Мініатюра"
+    "presetYtSplitName": "Перед/Після Мініатюра",
+    "navAudio": "Аудіо",
+    "navAgents": "Агенти",
+    "heroTitle": "Що ви створюєте сьогодні?",
+    "heroSubtitle": "Зображення, відео, музика та 3D. Оплата за кожне створення в DHB.",
+    "startCreating": "Почати створювати",
+    "startCreatingSub": "Відкрийте студію. Кожне створення показує ціну в DHB.",
+    "pickMedium": "Виберіть формат",
+    "moreTools": "Більше інструментів",
+    "yourLibrary": "Ваша бібліотека",
+    "doorImageNote": "Зображення, постери та правки",
+    "doorVideoNote": "Кліпи з тексту або фото",
+    "doorAudioNote": "Голосові інструменти безкоштовні",
+    "door3d": "3D",
+    "door3dNote": "Моделі з запиту або фото",
+    "doorAgentsNote": "Чат безкоштовно",
+    "editorNote": "Монтуйте на таймлайні",
+    "flowNote": "Поєднуйте кроки на полотні",
+    "builderNote": "Створіть застосунок із запиту"
   },
   "fractions": {
     "title": "Частки",

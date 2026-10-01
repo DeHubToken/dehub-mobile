@@ -818,7 +818,17 @@
     "importDone": "Followed {{followed}}, blocked {{blocked}}, {{folders}} folders created.",
     "importProgress": "{{done}}-i {{total}}-i",
     "smsNotificationsDescReady": "{{phone}} के लिए भेजा गया — प्रत्येक {{dhb}} टोकन, लगभग {{count}} बचा है",
-    "importPartial": "{{count}} حساب‌ها نمی‌توانستند دنبال شوند — بارگذاری مجدد را برای مجدد تلاش انجام دهید."
+    "importPartial": "{{count}} حساب‌ها نمی‌توانستند دنبال شوند — بارگذاری مجدد را برای مجدد تلاش انجام دهید.",
+    "themeColor": "تھیم کلر",
+    "themeColorDesc": "ای تھیم کے واسطے اپن رنگ چنو",
+    "themeColorReset": "ری سیٹ",
+    "themeColorWhite": "سفید",
+    "themeColorBlack": "کارا",
+    "themeColorRainbow": "قوس قزح",
+    "themeColorBrand": "برانڈ",
+    "themeColorBrandDesc": "تہار پروفائل تصویر کے رنگ استعمال کرو",
+    "themeColorBrandNoAvatar": "برانڈ رنگ استعمال کرے کے واسطے پروفائل تصویر جوڑو",
+    "themeColorBrandFailed": "تہار پروفائل تصویر سے رنگ پڑھل نہیں جا سکل"
   },
   "common": {
     "mute": "आवाज बंद करा",
@@ -1008,7 +1018,8 @@
     "giftBoostDesc": "یەکێک لە هی خۆت لەسەر ئەم پۆستە خەرج بکە",
     "pinPost": "به پروفایل خود پین کنید",
     "unpinPost": "از پروفایل خود جدا کنید",
-    "postUnpinned": "از پروفایل جدا شد"
+    "postUnpinned": "از پروفایل جدا شد",
+    "askAi": "AI ले पूछव"
   },
   "filters": {
     "sort": "ترتیب",
@@ -1862,7 +1873,16 @@
     "tryDifferentSearch": "جرب مصطلح بحث مختلف.",
     "pauseStation": "إيقاف المحطة مؤقتًا",
     "resumeStation": "استئناف المحطة",
-    "stopRadio": "إيقاف الراديو"
+    "stopRadio": "إيقاف الراديو",
+    "playsToday": "आज {{plays}} बार सुना गया",
+    "listen": "सुनें",
+    "top50": "टॉप 50",
+    "playAll": "सब चलाएँ",
+    "nothingHereYet": "यहाँ अभी कुछ नहीं है।",
+    "likeStation": "स्टेशन पसंद करें",
+    "unlikeStation": "स्टेशन नापसंद करें",
+    "shareStation": "स्टेशन शेयर करें",
+    "listeningTo": "DeHub पर {{name}} सुन रहा हूँ"
   },
   "notFound": {
     "title": "صفحہ نہیں ملا",
@@ -5499,7 +5519,16 @@
     "shopAllAttached": "كل ما هو نشط في متجرك موجود بالفعل في هذا البث.",
     "shopNoListings": "ليس لديك أي قوائم بعد. قم بإنشائها على متجر الويب أولاً.",
     "shopPutOnAir": "ہوا پر رکھیں",
-    "shopEmpty": "اپنے اسٹور سے کچھ شامل کریں اور ناظرین اسے اسٹریم چھوڑے بغیر خرید سکتے ہیں۔"
+    "shopEmpty": "اپنے اسٹور سے کچھ شامل کریں اور ناظرین اسے اسٹریم چھوڑے بغیر خرید سکتے ہیں۔",
+    "streamCount_one": "{{count}} स्ट्रीम",
+    "streamCount_other": "{{count}} स्ट्रीम",
+    "noOneStreamingGame": "अभी कोई {{game}} स्ट्रीम नहीं कर रहा है।",
+    "seeAllStreams": "सभी स्ट्रीम देखें",
+    "isLiveNow": "{{name}} लाइव हैं",
+    "justChatting": "बस बातचीत",
+    "noLiveStreams": "कोई लाइव स्ट्रीम नहीं",
+    "noOneStreaming": "अभी कोई स्ट्रीम नहीं कर रहा है। बाद में फिर देखें!",
+    "loadStreamsFailed": "स्ट्रीम लोड नहीं हो सकीं। फिर से कोशिश करें।"
   },
   "liveShop": {
     "title": "এই স্ট্রিম থাকি কিনেন",
@@ -7283,7 +7312,25 @@
     "presetVhsGlitchName": "VHS Glitch",
     "presetWhipPanHint": "Kısa bulanık panoya hızlı bir geçiş ile ortaya çıkarma.",
     "presetWhipPanName": "Whip Pan",
-    "presetYtSplitName": "Before / After Thumbnail"
+    "presetYtSplitName": "Before / After Thumbnail",
+    "navAudio": "آڈیو",
+    "navAgents": "ایجنٹ",
+    "heroTitle": "آج کا بنات ہو؟",
+    "heroSubtitle": "فوٹو، ویڈیو، گانا آؤر 3D۔ ہر بنائل چیز کر دام DHB میں دیو۔",
+    "startCreating": "بنایک شروع کرو",
+    "startCreatingSub": "اسٹوڈیو کھولو۔ ہر بنائی اپن دام DHB میں دیکھاوے ہے۔",
+    "pickMedium": "ایگو میڈیم چونو",
+    "moreTools": "آؤر ٹول",
+    "yourLibrary": "تہار لائبریری",
+    "doorImageNote": "فوٹو، پوسٹر آؤر ایڈٹ",
+    "doorVideoNote": "ٹیکسٹ یا فوٹو سے کلپ",
+    "doorAudioNote": "آواز ٹول مفت",
+    "door3d": "3D",
+    "door3dNote": "پرامپٹ یا فوٹو سے ماڈل",
+    "doorAgentsNote": "چیٹ مفت",
+    "editorNote": "ٹائم لائن میں کاٹو",
+    "flowNote": "کینوس میں اسٹیپ جوڑو",
+    "builderNote": "پرامپٹ سے ایپ بناؤ"
   },
   "fractions": {
     "title": "फ़्रैक्शन",

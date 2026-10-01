@@ -818,7 +818,17 @@
     "importProgress": "Na-eji {{done}} nke {{total}}…",
     "quietHoursPauseDesc": "Kwụsị ịkwanye ọkwa n 'oge awa setịpụrụ",
     "notifInfoNote": "Ịma ọkwa n 'ime ngwa na-apụta n' ime ngwa ahụ. A na-eziga ọkwa ngwa ngwa na ngwaọrụ gị ọbụlagodi mgbe emechiri ngwa ahụ.",
-    "quietHoursSilencedNote": "A ga-agbachi nkịtị n 'oge awa ndị a."
+    "quietHoursSilencedNote": "A ga-agbachi nkịtị n 'oge awa ndị a.",
+    "themeColor": "Agba Theme",
+    "themeColorDesc": "Họrọ agba nke gị maka theme a",
+    "themeColorReset": "Tọghata",
+    "themeColorWhite": "Ọcha",
+    "themeColorBlack": "Oji",
+    "themeColorRainbow": "Egwurugwu",
+    "themeColorBrand": "Brand",
+    "themeColorBrandDesc": "Jiri agba foto profaịlụ gị",
+    "themeColorBrandNoAvatar": "Tinye foto profaịlụ iji jiri agba Brand",
+    "themeColorBrandFailed": "Enweghị ike ịgụta agba site na foto profaịlụ gị"
   },
   "common": {
     "mute": "Mechie ụda",
@@ -1008,7 +1018,8 @@
     "boostPostDesc": "Tinye ya n'elu feed ụlọ",
     "mintPostDesc": "Bipụta post a na chain",
     "giftBoost": "Nye nkwalite dị ka onyinye",
-    "giftBoostDesc": "Mefuo otu nke gị na post a"
+    "giftBoostDesc": "Mefuo otu nke gị na post a",
+    "askAi": "Jụọ AI"
   },
   "filters": {
     "sort": "Hazie",
@@ -7205,7 +7216,25 @@
     "presetWhipPanHint": "Fast blurred pan n 'ime ikpughe",
     "presetWhipPanName": "Whip Pan",
     "presetYtSplitHint": "Split-screen thumbnail nke na-akọ akụkọ",
-    "presetYtSplitName": "Tupu / Mgbe mkpịsị aka"
+    "presetYtSplitName": "Tupu / Mgbe mkpịsị aka",
+    "navAudio": "Ọdịyo",
+    "navAgents": "Ndị nnọchite",
+    "heroTitle": "Gịnị ka ị na-emepụta taa?",
+    "heroSubtitle": "Onyonyo, vidiyo, egwu na 3D. Kwụọ ụgwọ maka ihe ọ bụla i mepụtara na DHB.",
+    "startCreating": "Malite imepụta",
+    "startCreatingSub": "Mepee stụdiyo. Ihe ọ bụla i mepụtara na-egosi ọnụahịa ya na DHB.",
+    "pickMedium": "Họrọ ụdị",
+    "moreTools": "Ngwaọrụ ndị ọzọ",
+    "yourLibrary": "Ọba gị",
+    "doorImageNote": "Onyonyo, akwụkwọ mmado na ndezi",
+    "doorVideoNote": "Klip site na ederede ma ọ bụ foto",
+    "doorAudioNote": "Ngwaọrụ olu n'efu",
+    "door3d": "3D",
+    "door3dNote": "Ụdị site na ntụziaka ma ọ bụ foto",
+    "doorAgentsNote": "Nkata n'efu",
+    "editorNote": "Bee ya n'usoro oge",
+    "flowNote": "Jikọọ nzọụkwụ na kanvas",
+    "builderNote": "Mee ngwa site na ntụziaka"
   },
   "fractions": {
     "title": "Òkè",

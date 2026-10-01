@@ -818,7 +818,17 @@
     "exportReady": "{{count}} accounts, {{saved}} saved posts exported.",
     "importDone": "Followed {{followed}}, blocked {{blocked}}, {{folders}} folders created.",
     "importPartial": "{{count}} accounts could not be followed — run the import again to retry them.",
-    "importProgress": "Applying {{done}} of {{total}}…"
+    "importProgress": "Applying {{done}} of {{total}}…",
+    "themeColor": "Theme Color",
+    "themeColorDesc": "Pick a custom color for this theme",
+    "themeColorReset": "Reset",
+    "themeColorWhite": "White",
+    "themeColorBlack": "Black",
+    "themeColorRainbow": "Rainbow",
+    "themeColorBrand": "Brand",
+    "themeColorBrandDesc": "Use your profile picture colors",
+    "themeColorBrandNoAvatar": "Add a profile picture to use Brand colors",
+    "themeColorBrandFailed": "Couldn't read colors from your profile picture"
   },
   "common": {
     "mute": "Mute",
@@ -1008,7 +1018,8 @@
     "boostPostDesc": "Put it at the top of the home feed",
     "mintPostDesc": "Publish this post on-chain",
     "giftBoost": "Gift a boost",
-    "giftBoostDesc": "Spend one of yours on this post"
+    "giftBoostDesc": "Spend one of yours on this post",
+    "askAi": "Ask AI"
   },
   "filters": {
     "sort": "Sort",
@@ -1863,7 +1874,16 @@
     "tryAnotherGenre": "Try another genre.",
     "pauseStation": "Pause the station",
     "resumeStation": "Resume the station",
-    "stopRadio": "Stop the radio"
+    "stopRadio": "Stop the radio",
+    "playsToday": "{{plays}} plays today",
+    "listen": "Listen",
+    "top50": "Top 50",
+    "playAll": "Play all",
+    "nothingHereYet": "Nothing here yet.",
+    "likeStation": "Like station",
+    "unlikeStation": "Unlike station",
+    "shareStation": "Share station",
+    "listeningTo": "Listening to {{name}} on DeHub"
   },
   "notFound": {
     "title": "Page Not Found",
@@ -5566,7 +5586,16 @@
     "preparingCamera": "Preparing camera…",
     "reconnecting": "Reconnecting…",
     "connecting": "Connecting…",
-    "shopPutOnAir": "Put on air"
+    "shopPutOnAir": "Put on air",
+    "streamCount_one": "{{count}} stream",
+    "streamCount_other": "{{count}} streams",
+    "noOneStreamingGame": "No one is streaming {{game}} right now.",
+    "seeAllStreams": "See all streams",
+    "isLiveNow": "{{name}} is live",
+    "justChatting": "Just Chatting",
+    "noLiveStreams": "No Live Streams",
+    "noOneStreaming": "No one is streaming right now. Check back later!",
+    "loadStreamsFailed": "Unable to load streams. Please try again."
   },
   "liveShop": {
     "title": "Shop this stream",
@@ -7291,7 +7320,25 @@
     "presetWhipPanName": "Whip Pan",
     "presetYtSplitHint": "Split-screen thumbnail that tells a story",
     "presetYtSplitName": "Before / After Thumbnail",
-    "presets": "Presets"
+    "presets": "Presets",
+    "navAudio": "Audio",
+    "navAgents": "Agents",
+    "heroTitle": "What are you making today?",
+    "heroSubtitle": "Images, video, music and 3D. Pay per creation in DHB.",
+    "startCreating": "Start creating",
+    "startCreatingSub": "Open the studio. Every Create shows its price in DHB.",
+    "pickMedium": "Pick a medium",
+    "moreTools": "More tools",
+    "yourLibrary": "Your library",
+    "doorImageNote": "Stills, posters and edits",
+    "doorVideoNote": "Clips from text or a photo",
+    "doorAudioNote": "Voice tools free",
+    "door3d": "3D",
+    "door3dNote": "Models from a prompt or photo",
+    "doorAgentsNote": "Free to chat",
+    "editorNote": "Cut it on a timeline",
+    "flowNote": "Chain steps on a canvas",
+    "builderNote": "Make an app from a prompt"
   },
   "fractions": {
     "title": "Fractions",

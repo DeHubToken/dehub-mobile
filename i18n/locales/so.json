@@ -818,7 +818,17 @@
     "exportReady": "{{count}} koonto(yo)da, {{saved}} qoraal(yo)da la keydiyay waa la dhoofiyay.",
     "importDone": "Waa la raacay {{followed}}, waa la xanibay {{blocked}}, {{folders}} faylal(yo)da waa la sameeyay.",
     "importPartial": "{{count}} koonto(yo)da lama raaci karo — mar kale orodka soo dejinta si aad isugu daydo.",
-    "importProgress": "La dabaqayo {{done}} oo ah {{total}}…"
+    "importProgress": "La dabaqayo {{done}} oo ah {{total}}…",
+    "themeColor": "Midabka mawduuca",
+    "themeColorDesc": "Dooro midab gaar ah mawduucan",
+    "themeColorReset": "Dib u deji",
+    "themeColorWhite": "Caddaan",
+    "themeColorBlack": "Madow",
+    "themeColorRainbow": "Qaanso roobaad",
+    "themeColorBrand": "Astaanta",
+    "themeColorBrandDesc": "Isticmaal midabada sawirka profilkaaga",
+    "themeColorBrandNoAvatar": "Ku dar sawir profile si aad u isticmaasho midabada Astaanta",
+    "themeColorBrandFailed": "Lagama akhrin karin midabada sawirka profilkaaga"
   },
   "common": {
     "mute": "Aamusi",
@@ -1008,7 +1018,8 @@
     "boostPostDesc": "Dhig meesha ugu sarreysa bogga guriga",
     "mintPostDesc": "Ku daabac qoraalkan chain-ka",
     "giftBoost": "Hadiyad u dhiib boost",
-    "giftBoostDesc": "Mid kaaga ah ku bixi qoraalkan"
+    "giftBoostDesc": "Mid kaaga ah ku bixi qoraalkan",
+    "askAi": "Weydii AI"
   },
   "filters": {
     "sort": "Kala sooc",
@@ -7213,7 +7224,25 @@
     "presetWhipPanHint": "Deg Deg Ra 'iisul Wasaare Kheyre oo si deg deg ah ugu biiray Aqalka Sare | Codkagalmudug isha Laga Helo Wararka Xaqiiq",
     "presetWhipPanName": "Wip Pan",
     "presetYtSplitHint": "Split Screen thumbnail oo ka sheekeynaya sheeko",
-    "presetYtSplitName": "Kahor / Ka dib Thumbnail"
+    "presetYtSplitName": "Kahor / Ka dib Thumbnail",
+    "navAudio": "Maqal",
+    "navAgents": "Wakiillo",
+    "heroTitle": "Maxaad maanta samaynaysaa?",
+    "heroSubtitle": "Sawirro, fiidiyow, muusig iyo 3D. Ku bixi abuur kasta DHB.",
+    "startCreating": "Bilow abuurista",
+    "startCreatingSub": "Fur istuudiyaha. Abuur kasta wuxuu muujiyaa qiimihiisa DHB.",
+    "pickMedium": "Dooro nooc",
+    "moreTools": "Qalab kale",
+    "yourLibrary": "Maktabaddaada",
+    "doorImageNote": "Sawirro, boostarro iyo tafatir",
+    "doorVideoNote": "Muuqaallo qoraal ama sawir laga sameeyay",
+    "doorAudioNote": "Qalabka codka waa bilaash",
+    "door3d": "3D",
+    "door3dNote": "Moodello laga sameeyay qoraal ama sawir",
+    "doorAgentsNote": "Wada sheekaysigu waa bilaash",
+    "editorNote": "Ku jar jadwalka waqtiga",
+    "flowNote": "Isku xir tallaabooyin shiraac dusheed",
+    "builderNote": "Ka samee app qoraal"
   },
   "fractions": {
     "title": "Saamiyo",

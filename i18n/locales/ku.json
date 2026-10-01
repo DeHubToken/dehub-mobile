@@ -818,7 +818,17 @@
     "exportReady": "Hesabên {{count}}, nivîsên tomarkirî yên {{saved}} hatin hinardekirin.",
     "importDone": "{{followed}} şopand, {{blocked}} asteng kir, peldankên {{folders}} hatin çêkirin.",
     "importPartial": "Pewandiye {{count}} tokên",
-    "importProgress": "Sepandina {{done}} ji {{total}}…"
+    "importProgress": "Sepandina {{done}} ji {{total}}…",
+    "themeColor": "Rengê Temayê",
+    "themeColorDesc": "Ji bo vê temayê rengekî taybet hilbijêre",
+    "themeColorReset": "Vegerîne",
+    "themeColorWhite": "Spî",
+    "themeColorBlack": "Reş",
+    "themeColorRainbow": "Keskesor",
+    "themeColorBrand": "Marka",
+    "themeColorBrandDesc": "Rengên wêneyê profîla xwe bikar bîne",
+    "themeColorBrandNoAvatar": "Ji bo bikaranîna rengên Marka wêneyekî profîlê zêde bike",
+    "themeColorBrandFailed": "Rengên ji wêneyê profîlê nehatin xwendin"
   },
   "common": {
     "mute": "Bêdeng bike",
@@ -1008,7 +1018,8 @@
     "postPinned": "Li profîla te hatiye girêdan",
     "postUnpinned": "Ji profîla te hat vekirin",
     "pinFailed": "Nikaribû vê postê pin bike an jê bike",
-    "share": "Par"
+    "share": "Par",
+    "askAi": "Ji AI bipirse"
   },
   "filters": {
     "sort": "Rêzkirin",
@@ -7057,7 +7068,25 @@
     "presetUgcTutorialName": "ڕێنمایی بەکارهێنەر",
     "presetUgcUnboxingHint": "دەستکاریکردن لە سندوقەکەوە ڕاستەوخۆ",
     "presetUgcUnboxingName": "کردنەوەی سندوقی بەکارهێنەر",
-    "presetDollyZoomName": "دۆلی زۆم"
+    "presetDollyZoomName": "دۆلی زۆم",
+    "navAudio": "Deng",
+    "navAgents": "Ajan",
+    "heroTitle": "Îro tu çi çêdikî?",
+    "heroSubtitle": "Wêne, vîdyo, muzîk û 3D. Ji bo her afirandinê bi DHB bide.",
+    "startCreating": "Dest bi afirandinê bike",
+    "startCreatingSub": "Stûdyoyê veke. Her afirandin bihayê xwe bi DHB nîşan dide.",
+    "pickMedium": "Medyayekê hilbijêre",
+    "moreTools": "Amûrên din",
+    "yourLibrary": "Pirtûkxaneya te",
+    "doorImageNote": "Wêne, poster û guhertin",
+    "doorVideoNote": "Klîp ji nivîs an wêneyekê",
+    "doorAudioNote": "Amûrên dengî belaş in",
+    "door3d": "3D",
+    "door3dNote": "Model ji fermanek an wêneyekê",
+    "doorAgentsNote": "Sohbet belaş e",
+    "editorNote": "Li ser demrêzê bibire",
+    "flowNote": "Gavan li ser kanvasê girêde",
+    "builderNote": "Ji fermanekê sepanekê çêke"
   },
   "fractions": {
     "title": "Kêmasî",

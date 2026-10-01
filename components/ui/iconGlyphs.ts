@@ -43,6 +43,7 @@ export const iconGlyphs: Partial<Record<string, string>> = {
   CalendarClock: "\ue304",
   CalendarDays: "\ue2b9",
   Camera: "\ue068",
+  Captions: "\ue3a8",
   CaseUpper: "\ue3de",
   ChartBarBig: "\ue4ac",
   ChartColumn: "\ue2a3",

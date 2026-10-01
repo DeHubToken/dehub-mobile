@@ -43,6 +43,7 @@ import CalendarIcon from "lucide-react-native/dist/esm/icons/calendar";
 import CalendarClockIcon from "lucide-react-native/dist/esm/icons/calendar-clock";
 import CalendarDaysIcon from "lucide-react-native/dist/esm/icons/calendar-days";
 import CameraIcon from "lucide-react-native/dist/esm/icons/camera";
+import CaptionsIcon from "lucide-react-native/dist/esm/icons/captions";
 import CaseUpperIcon from "lucide-react-native/dist/esm/icons/case-upper";
 import ChartBarBigIcon from "lucide-react-native/dist/esm/icons/chart-bar-big";
 import ChartColumnIcon from "lucide-react-native/dist/esm/icons/chart-column";
@@ -335,6 +336,7 @@ export const iconRegistry = {
   CalendarClock: CalendarClockIcon,
   CalendarDays: CalendarDaysIcon,
   Camera: CameraIcon,
+  Captions: CaptionsIcon,
   CaseUpper: CaseUpperIcon,
   ChartBarBig: ChartBarBigIcon,
   ChartColumn: ChartColumnIcon,

@@ -816,7 +816,17 @@
     "exportReady": "{{count}} эсептер, {{saved}} билдирүүлөр экспорттолду.",
     "importDone": "Кийинки {{followed}}, бөгөттөлгөн {{blocked}}, {{folders}} папкалар түзүлгөн.",
     "importPartial": "{{count}} каттоо эсебин ээрчүү мүмкүн эмес — аларды кайра текшерүү үчүн импортту кайра иштетиңиз.",
-    "importProgress": "Колдонмо {{done}} of {{total}}…"
+    "importProgress": "Колдонмо {{done}} of {{total}}…",
+    "themeColor": "Тема түсү",
+    "themeColorDesc": "Бул тема үчүн өз түсүңүздү тандаңыз",
+    "themeColorReset": "Баштапкы абалга кайтаруу",
+    "themeColorWhite": "Ак",
+    "themeColorBlack": "Кара",
+    "themeColorRainbow": "Асан-үсөн",
+    "themeColorBrand": "Бренд",
+    "themeColorBrandDesc": "Профиль сүрөтүңүздүн түстөрүн колдонуу",
+    "themeColorBrandNoAvatar": "Бренд түстөрүн колдонуу үчүн профиль сүрөтүн кошуңуз",
+    "themeColorBrandFailed": "Профиль сүрөтүңүздөн түстөрдү окуу мүмкүн болбоду"
   },
   "common": {
     "mute": "Үнүн өчүрүү",
@@ -1006,7 +1016,8 @@
     "boostPostDesc": "Аны башкы лентанын жогорусуна коюңуз",
     "mintPostDesc": "Бул постту чынжырда жарыялаңыз",
     "giftBoost": "Күчөтүү белек кылуу",
-    "giftBoostDesc": "Өзүңүздүкүнүн бирин бул постко сарптаңыз"
+    "giftBoostDesc": "Өзүңүздүкүнүн бирин бул постко сарптаңыз",
+    "askAi": "ЖИден суроо"
   },
   "filters": {
     "sort": "Иреттөө",
@@ -7205,7 +7216,25 @@
     "presetWhipPanHint": "Тез, жигердүү панорамалык ачылыш",
     "presetWhipPanName": "Whip Pan",
     "presetYtSplitHint": "Тармакты бөлүп, окуяны айтып берчү эскиз",
-    "presetYtSplitName": "Before / After Thumbnail"
+    "presetYtSplitName": "Before / After Thumbnail",
+    "navAudio": "Аудио",
+    "navAgents": "Агенттер",
+    "heroTitle": "Бүгүн эмне жаратасыз?",
+    "heroSubtitle": "Сүрөттөр, видео, музыка жана 3D. Ар бир түзүү үчүн DHB менен төлөңүз.",
+    "startCreating": "Түзүүнү баштоо",
+    "startCreatingSub": "Студияны ачыңыз. Ар бир түзүү баасын DHB менен көрсөтөт.",
+    "pickMedium": "Медиа тандаңыз",
+    "moreTools": "Башка куралдар",
+    "yourLibrary": "Китепканаңыз",
+    "doorImageNote": "Сүрөттөр, постерлер жана түзөтүүлөр",
+    "doorVideoNote": "Тексттен же сүрөттөн клиптер",
+    "doorAudioNote": "Үн куралдары акысыз",
+    "door3d": "3D",
+    "door3dNote": "Суроодон же сүрөттөн моделдер",
+    "doorAgentsNote": "Чат акысыз",
+    "editorNote": "Убакыт тилкесинде кесүү",
+    "flowNote": "Кенепте кадамдарды тизмектөө",
+    "builderNote": "Суроодон колдонмо түзүү"
   },
   "fractions": {
     "title": "Бөлүктөр",

@@ -43,6 +43,7 @@ export const iconPaths: Partial<Record<string, readonly [string, number]>> = {
   CalendarClock: ["M16 14v2.2l1.6 1M16 2v4M21 7.5V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h3.5M3 10h5M8 2v4M10 16a6 6 0 1 0 12 0a6 6 0 1 0 -12 0Z", 6],
   CalendarDays: ["M8 2v4M16 2v4M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2ZM3 10h18M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01", 10],
   Camera: ["M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3zM9 13a3 3 0 1 0 6 0a3 3 0 1 0 -6 0Z", 2],
+  Captions: ["M5 5h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2ZM7 15h4M15 15h2M7 11h2M13 11h4", 2],
   CaseUpper: ["M3 15l4 -8 4 8M4 13h6M15 11h4.5a2 2 0 0 1 0 4H15V7h4a2 2 0 0 1 0 4", 3],
   ChartBarBig: ["M3 3v16a2 2 0 0 0 2 2h16M8 13h7a1 1 0 0 1 1 1v2a1 1 0 0 1 -1 1h-7a1 1 0 0 1 -1 -1v-2a1 1 0 0 1 1 -1ZM8 5h10a1 1 0 0 1 1 1v2a1 1 0 0 1 -1 1h-10a1 1 0 0 1 -1 -1v-2a1 1 0 0 1 1 -1Z", 3],
   ChartColumn: ["M3 3v16a2 2 0 0 0 2 2h16M18 17V9M13 17V5M8 17v-3", 4],

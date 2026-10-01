@@ -42,14 +42,17 @@ import type { Comment } from "../../services/nft.service";
 import ReactionPicker from "../Home/ReactionPicker";
 import {
   applyReactionDelta,
-  HAS_NEGATIVE_TRAY,
   isPositiveReaction,
   reactionForTap,
+  reconcileReactionCounts,
   resolveLeadReaction,
-  resolveNegativeLeadReaction,
+  resolveThumbReaction,
   type PostReaction,
   type ReactionCounts,
 } from "../../libs/reactions";
+
+/** The tray for a host that can only send a plain like or dislike. */
+const PLAIN_PAIR: readonly PostReaction[] = ["like", "dislike"];
 import { ReactionEmoji } from "../Home/ReactionEmoji";
 import type { CommentLayout } from "./CommentContextMenu";
 import { WEBSITE_LINK } from "../../config";
@@ -209,20 +212,15 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
     setMyReaction(comment.myReaction ?? (comment.isLiked ? "like" : comment.isDisliked ? "dislike" : null));
     setReactionCounts(comment.reactionCounts ?? {});
   }, [comment.isLiked, comment.isDisliked, comment.likeCount, comment.dislikeCount, comment.myReaction, comment.reactionCounts]);
-  // One tray per thumb, only ever one open — see FeedActionBar for the same pair.
-  const [openTray, setOpenTray] = useState<"positive" | "negative" | null>(null);
+  // One tray, behind the thumbs-up: every reaction, 👎 last — see FeedActionBar.
+  const [trayOpen, setTrayOpen] = useState(false);
   const containerRef = useRef<View>(null);
 
   const likeScale = useSharedValue(1);
-  const dislikeScale = useSharedValue(1);
   const highlightOpacity = useSharedValue(highlighted ? 1 : 0);
 
   const likeAnimStyle = useAnimatedStyle(() => ({
     transform: [{ scale: likeScale.value }],
-  }));
-
-  const dislikeAnimStyle = useAnimatedStyle(() => ({
-    transform: [{ scale: dislikeScale.value }],
   }));
 
   const highlightAnimStyle = useAnimatedStyle(() => ({
@@ -263,18 +261,23 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
       )) ||
     (!!currentUser?.username && currentUser.username === user?.username);
 
-  // The trays need a handler to route to; a host that only knows the plain
-  // pair keeps the plain pair, exactly as before reactions.
+  // The full tray needs the reaction handler; a host that only knows the
+  // plain pair still gets a tray, of just 👍 and 👎.
   const reactionsEnabled = !!onReact;
-  /** The glyph the thumbs-up wears — yours, else the thread's most-used. */
+  const trayEnabled = reactionsEnabled || !!onDislike;
+  /** The crowd's pick, for the label — yours outranks it. */
   const leadReaction = isOwnComment ? null : resolveLeadReaction(reactionCounts, myReaction);
-  const leadGlyph = leadReaction ?? undefined;
+  /**
+   * The glyph the thumbs-up wears — yours (a 👎 too, since there is no
+   * thumbs-down to show it), else the thread's most-used. On your own comment
+   * the crowd's pick is not drawn: that thumb is the door to the likers list.
+   */
+  const thumbGlyph =
+    (isOwnComment
+      ? myReaction && !isPositiveReaction(myReaction) ? myReaction : null
+      : resolveThumbReaction(reactionCounts, myReaction)) ?? undefined;
   /** Your own reaction is the one that moves. */
-  const leadAnimated = !!leadReaction && leadReaction === myReaction;
-  /** …and the thumbs-DOWN would wear it, though 👎 is its own glyph already. */
-  const myNegativeReaction = myReaction && !isPositiveReaction(myReaction) ? myReaction : null;
-  const negativeLeadReaction = resolveNegativeLeadReaction(myReaction);
-  const negativeGlyph = negativeLeadReaction ?? undefined;
+  const thumbAnimated = !!thumbGlyph && thumbGlyph === myReaction;
 
   // Address is the identity; the name is only ever evidence. A commenter with
   // no address makes no claim either way.
@@ -365,7 +368,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
    */
   const handleReact = useCallback(async (reaction: PostReaction) => {
     if (isLiking || isDisliking) return;
-    setOpenTray(null);
+    setTrayOpen(false);
 
     const nextPositive = isPositiveReaction(reaction);
     if (isOwnComment && nextPositive) {
@@ -397,8 +400,8 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
     setDislikeCount(dislikes);
     setReactionCounts((counts) => applyReactionDelta(counts, previous, next));
 
-    const scale = nextPositive ? likeScale : dislikeScale;
-    scale.value = withSequence(
+    // One thumb carries both polarities now, so it is the one that bounces.
+    likeScale.value = withSequence(
       withTiming(1.3, { duration: 100 }),
       withSpring(1, { damping: 12, stiffness: 300 }),
     );
@@ -440,7 +443,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
   }, [
     liked, disliked, likeCount, dislikeCount, myReaction, reactionCounts,
     isLiking, isDisliking, isOwnComment, comment.id, onReact, onLike, onDislike,
-    onShowLikers, likeScale, dislikeScale,
+    onShowLikers, likeScale,
   ]);
 
   /** A plain tap casts whatever the thumb is wearing — see reactionForTap. */
@@ -765,45 +768,51 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
           ) : null}
 
           <View style={{ flexDirection: "row", alignItems: "center", marginTop: 6, gap: 12 }}>
-            {/* Hold this thumb for its tray of positive faces; the next one
-                is a plain downvote with no tray of its own, since 👎 is the
-                only reaction left on that side. The wrapper is the tray's
-                positioning context. No tray on your own comment's thumbs-up,
-                because every reaction it could cast the server would refuse. */}
+            {/* Hold this thumb for the tray of every reaction — the faces,
+                a divider, then 👎; there is no separate thumbs-down. The
+                wrapper is the tray's positioning context. No tray on your own
+                comment, because every face it could cast the server would
+                refuse. */}
             <View style={{ position: "relative" }}>
-              {/* Mounted only while open — it renders nothing closed, but two
-                  per row still ran their hooks on every comment in the list. */}
-              {reactionsEnabled && !isOwnComment && openTray === "positive" && (
+              {/* Mounted only while open — it renders nothing closed, but one
+                  per row still ran its hooks on every comment in the list. */}
+              {trayEnabled && !isOwnComment && trayOpen && (
                 <ReactionPicker
-                  open={openTray === "positive"}
+                  open={trayOpen}
                   current={myReaction}
+                  counts={reconcileReactionCounts(likeCount, dislikeCount, reactionCounts)}
+                  only={reactionsEnabled ? undefined : PLAIN_PAIR}
                   onSelect={handleReact}
-                  onClose={() => setOpenTray(null)}
+                  onClose={() => setTrayOpen(false)}
                   align="left"
                 />
               )}
               <Pressable
                 onPress={handleLikePress}
-                onLongPress={reactionsEnabled && !isOwnComment ? () => setOpenTray("positive") : undefined}
+                onLongPress={trayEnabled && !isOwnComment ? () => setTrayOpen(true) : undefined}
                 delayLongPress={400}
-                disabled={isLiking}
+                disabled={isLiking || isDisliking}
                 hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
                 accessibilityRole="button"
                 accessibilityLabel={
                   isOwnComment
                     ? t("comments.seeWhoLiked")
-                    : t("comments.holdToReact", {
-                        reaction: t(`reactionInfo.labels.${leadReaction ?? "like"}`),
-                      })
+                    : myReaction
+                      ? t("comments.holdToChangeReaction", {
+                          reaction: t(`reactionInfo.labels.${myReaction}`),
+                        })
+                      : t("comments.holdToReact", {
+                          reaction: t(`reactionInfo.labels.${leadReaction ?? "like"}`),
+                        })
                 }
-                accessibilityState={{ selected: liked }}
+                accessibilityState={{ selected: liked || disliked }}
                 style={{ flexDirection: "row", alignItems: "center", gap: 4 }}
               >
                 <Animated.View style={likeAnimStyle}>
-                  {leadGlyph ? (
+                  {thumbGlyph ? (
                     <ReactionEmoji
-                      reaction={leadGlyph}
-                      animate={leadAnimated}
+                      reaction={thumbGlyph}
+                      animate={thumbAnimated}
                       size={16}
                       textStyle={{ fontSize: 13, lineHeight: 17, width: 14, textAlign: "center" }}
                     />
@@ -822,63 +831,6 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
                 )}
               </Pressable>
             </View>
-
-            {/* Gated on the handler like Reply below: a host that passes no
-                onDislike used to get a button whose taps stuck visually and
-                were never sent. */}
-            {(onDislike || onReact) && (
-              <View style={{ position: "relative" }}>
-                {reactionsEnabled && openTray === "negative" && (
-                  <ReactionPicker
-                    open={openTray === "negative"}
-                    polarity="negative"
-                    current={myReaction}
-                    onSelect={handleReact}
-                    onClose={() => setOpenTray(null)}
-                    align="left"
-                  />
-                )}
-                <Pressable
-                  onPress={handleDislikePress}
-                  onLongPress={reactionsEnabled && HAS_NEGATIVE_TRAY ? () => setOpenTray("negative") : undefined}
-                  delayLongPress={400}
-                  disabled={isDisliking}
-                  hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
-                  accessibilityRole="button"
-                  accessibilityLabel={
-                    myNegativeReaction
-                      ? t("comments.holdToChangeReaction", {
-                          reaction: t(`reactionInfo.labels.${myNegativeReaction}`),
-                        })
-                      : t("comments.holdToReact", { reaction: t("reactionInfo.labels.dislike") })
-                  }
-                  accessibilityState={{ selected: disliked }}
-                  style={{ flexDirection: "row", alignItems: "center", gap: 4 }}
-                >
-                  <Animated.View style={dislikeAnimStyle}>
-                    {negativeGlyph ? (
-                      <ReactionEmoji
-                        reaction={negativeGlyph}
-                        animate
-                        size={16}
-                        textStyle={{ fontSize: 13, lineHeight: 17, width: 14, textAlign: "center" }}
-                      />
-                    ) : (
-                      <Icon
-                        name="ThumbsDown"
-                        size={14}
-                        color={disliked ? ICON_ACTIVE : ICON_MUTED}
-                        fill={disliked ? ICON_ACTIVE : undefined}
-                        strokeWidth={1.8}
-                      />
-                    )}
-                  </Animated.View>
-                  {dislikeCount > 0 && (
-                    <Text style={{ fontSize: 12, color: "#8B8D90" }}>{dislikeCount}</Text>
-                  )}
-                </Pressable>
-              </View>
-            )}
 
             {onReply && (
               <Pressable

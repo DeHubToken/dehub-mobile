@@ -818,7 +818,17 @@
     "importDone": "फॉलो किए {{followed}}, ब्लॉक किए {{blocked}}, {{folders}} फोल्डर बनाए गए।",
     "importPartial": "{{count}} अकाउंट्स को फॉलो नहीं किया जा सका — फिर से इम्पोर्ट करें ताकि उन्हें पुनः प्रयास कर सकें।",
     "importProgress": "एप्लाई कर रहे {{done}} में {{total}}…",
-    "channelSpeedCount": "{{count}} चैनल(स) अपना गति से चलावेला."
+    "channelSpeedCount": "{{count}} चैनल(स) अपना गति से चलावेला.",
+    "themeColor": "थीम रंग",
+    "themeColorDesc": "ई थीम खातिर कस्टम रंग चुनीं",
+    "themeColorReset": "रीसेट करीं",
+    "themeColorWhite": "सफेद",
+    "themeColorBlack": "काला",
+    "themeColorRainbow": "इंद्रधनुष",
+    "themeColorBrand": "ब्रांड",
+    "themeColorBrandDesc": "आपन प्रोफाइल फोटो के रंग इस्तेमाल करीं",
+    "themeColorBrandNoAvatar": "ब्रांड रंग इस्तेमाल करे खातिर प्रोफाइल फोटो जोड़ीं",
+    "themeColorBrandFailed": "आपन प्रोफाइल फोटो से रंग ना पढ़ल जा सकल"
   },
   "common": {
     "mute": "आवाज़ बंद करीं",
@@ -1008,7 +1018,8 @@
     "boostPostDesc": "एकरा के होम फीड के सबसे ऊपर राखीं",
     "mintPostDesc": "ई पोस्ट के ऑन-चेन प्रकाशित करीं",
     "giftBoost": "बूस्ट उपहार दीं",
-    "giftBoostDesc": "आपन एगो एह पोस्ट पर खरचीं"
+    "giftBoostDesc": "आपन एगो एह पोस्ट पर खरचीं",
+    "askAi": "AI से पूछीं"
   },
   "filters": {
     "sort": "छाँटीं",
@@ -1863,7 +1874,16 @@
     "tryAnotherGenre": "कोई दूसरा शैली आज़माएँ।",
     "pauseStation": "स्टेशन रोकें",
     "resumeStation": "स्टेशन फिर से शुरू करें",
-    "stopRadio": "रेडियो बंद करें"
+    "stopRadio": "रेडियो बंद करें",
+    "playsToday": "आज {{plays}} बार सुना गया",
+    "listen": "सुनें",
+    "top50": "टॉप 50",
+    "playAll": "सब चलाएँ",
+    "nothingHereYet": "यहाँ अभी कुछ नहीं है।",
+    "likeStation": "स्टेशन पसंद करें",
+    "unlikeStation": "स्टेशन नापसंद करें",
+    "shareStation": "स्टेशन शेयर करें",
+    "listeningTo": "DeHub पर {{name}} सुन रहा हूँ"
   },
   "notFound": {
     "title": "पन्ना नइखे मिलल",
@@ -5481,7 +5501,16 @@
     "reconnecting": "पुनः कनेक्ट हो रहा है…",
     "connecting": "कनेक्ट हो रहा है…",
     "shopPutOnAir": "हवे में मौसम",
-    "tippedAmount": "देखने के बिंदु {{amount}}"
+    "tippedAmount": "देखने के बिंदु {{amount}}",
+    "streamCount_one": "{{count}} स्ट्रीम",
+    "streamCount_other": "{{count}} स्ट्रीम",
+    "noOneStreamingGame": "अभी कोई {{game}} स्ट्रीम नहीं कर रहा है।",
+    "seeAllStreams": "सभी स्ट्रीम देखें",
+    "isLiveNow": "{{name}} लाइव हैं",
+    "justChatting": "बस बातचीत",
+    "noLiveStreams": "कोई लाइव स्ट्रीम नहीं",
+    "noOneStreaming": "अभी कोई स्ट्रीम नहीं कर रहा है। बाद में फिर देखें!",
+    "loadStreamsFailed": "स्ट्रीम लोड नहीं हो सकीं। फिर से कोशिश करें।"
   },
   "liveShop": {
     "title": "ई स्ट्रीम से खरीदीं",
@@ -7204,7 +7233,25 @@
     "presetWhipPanHint": "तेज़ धुंधला पैन से खुलासा तक",
     "presetWhipPanName": "व्हिप पैन",
     "presetYtSplitHint": "स्प्लिट‑स्क्रीन थंबनेल जे कहानी बतावेला",
-    "presetYtSplitName": "बिफोर / आफ्टर थंबनेल"
+    "presetYtSplitName": "बिफोर / आफ्टर थंबनेल",
+    "navAudio": "ऑडियो",
+    "navAgents": "एजेंट",
+    "heroTitle": "आज रउआ का बना रहल बानी?",
+    "heroSubtitle": "इमेज, वीडियो, संगीत आ 3D। हर क्रिएशन खातिर DHB में भुगतान करीं।",
+    "startCreating": "बनावल शुरू करीं",
+    "startCreatingSub": "स्टूडियो खोलीं। हर क्रिएशन आपन दाम DHB में देखावेला।",
+    "pickMedium": "माध्यम चुनीं",
+    "moreTools": "अउरी टूल",
+    "yourLibrary": "रउआ के लाइब्रेरी",
+    "doorImageNote": "फोटो, पोस्टर आ एडिट",
+    "doorVideoNote": "टेक्स्ट भा फोटो से क्लिप",
+    "doorAudioNote": "आवाज़ टूल फ्री",
+    "door3d": "3D",
+    "door3dNote": "प्रॉम्प्ट भा फोटो से मॉडल",
+    "doorAgentsNote": "चैट फ्री बा",
+    "editorNote": "टाइमलाइन पर काटीं",
+    "flowNote": "कैनवास पर स्टेप जोड़ीं",
+    "builderNote": "प्रॉम्प्ट से ऐप बनाईं"
   },
   "fractions": {
     "title": "फ़्रैक्शन",

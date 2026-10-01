@@ -818,7 +818,17 @@
     "exportReady": "{{count}} akkauntlar, {{saved}} saqlangan postlar eksport qilindi.",
     "importDone": "{{followed}} ni kuzatib bordi, {{blocked}} ni blokladi, {{folders}} papkalar yaratildi.",
     "importPartial": "{{count}} hisoblarini kuzatib bo'lmadi — ularni qayta urinish uchun importni qayta ishga tushiring.",
-    "importProgress": "{{total}} dan {{done}} ni qo'llash…"
+    "importProgress": "{{total}} dan {{done}} ni qo'llash…",
+    "themeColor": "Mavzu rangi",
+    "themeColorDesc": "Bu mavzu uchun o'zingiz rang tanlang",
+    "themeColorReset": "Tiklash",
+    "themeColorWhite": "Oq",
+    "themeColorBlack": "Qora",
+    "themeColorRainbow": "Kamalak",
+    "themeColorBrand": "Brend",
+    "themeColorBrandDesc": "Profil rasmingiz ranglaridan foydalanish",
+    "themeColorBrandNoAvatar": "Brend ranglaridan foydalanish uchun profil rasmi qo'shing",
+    "themeColorBrandFailed": "Profil rasmingizdan ranglarni o'qib bo'lmadi"
   },
   "common": {
     "mute": "Ovozni o‘chirish",
@@ -1008,7 +1018,8 @@
     "boostPostDesc": "Uni asosiy lentaning tepasiga qo'ying",
     "mintPostDesc": "Bu postni zanjirda chop eting",
     "giftBoost": "Boost sovg'a qilish",
-    "giftBoostDesc": "O'zingiznikidan birini shu postga sarflang"
+    "giftBoostDesc": "O'zingiznikidan birini shu postga sarflang",
+    "askAi": "Sun'iy intellektdan so'rash"
   },
   "filters": {
     "sort": "Saralash",
@@ -1881,7 +1892,16 @@
     "tryAnotherGenre": "Boshqa janrni sinab ko'ring.",
     "pauseStation": "Stantsiyani pauza qiling",
     "resumeStation": "Stantsiyani davom ettiring",
-    "stopRadio": "Radiostantsiyani to'xtating"
+    "stopRadio": "Radiostantsiyani to'xtating",
+    "playsToday": "Bugun {{plays}} marta tinglandi",
+    "listen": "Tinglash",
+    "top50": "Top 50",
+    "playAll": "Hammasini ijro etish",
+    "nothingHereYet": "Bu yerda hali hech narsa yo‘q.",
+    "likeStation": "Stansiyani yoqtirish",
+    "unlikeStation": "Yoqtirishni bekor qilish",
+    "shareStation": "Stansiyani ulashish",
+    "listeningTo": "DeHub’da {{name}} tinglayapman"
   },
   "notFound": {
     "title": "Sahifa topilmadi",
@@ -5504,7 +5524,16 @@
     "preparingCamera": "Kamerani tayyorlash…",
     "reconnecting": "Qayta ulanish…",
     "connecting": "Ulanish…",
-    "shopPutOnAir": "Efirga qo'ying"
+    "shopPutOnAir": "Efirga qo'ying",
+    "streamCount_one": "{{count}} efir",
+    "streamCount_other": "{{count}} efir",
+    "noOneStreamingGame": "Hozir hech kim {{game}} efirga uzatmayapti.",
+    "seeAllStreams": "Barcha efirlar",
+    "isLiveNow": "{{name}} jonli efirda",
+    "justChatting": "Shunchaki suhbat",
+    "noLiveStreams": "Jonli efirlar yo‘q",
+    "noOneStreaming": "Hozir hech kim efirda emas. Keyinroq qayting!",
+    "loadStreamsFailed": "Efirlarni yuklab bo‘lmadi. Qayta urinib ko‘ring."
   },
   "liveShop": {
     "title": "Ushbu efirdan xarid qiling",
@@ -7272,7 +7301,25 @@
     "presetWhipPanHint": "Tez burilgan panninga kamera ovozli qoʻshiladi",
     "presetWhipPanName": "Whip Pan",
     "presetYtSplitHint": "Ikki qismli thumbnail hikoya qiladi",
-    "presetYtSplitName": "Before / After Thumbnail"
+    "presetYtSplitName": "Before / After Thumbnail",
+    "navAudio": "Audio",
+    "navAgents": "Agentlar",
+    "heroTitle": "Bugun nima yaratyapsiz?",
+    "heroSubtitle": "Rasmlar, video, musiqa va 3D. Har bir ijod uchun DHB’da to‘lang.",
+    "startCreating": "Yaratishni boshlash",
+    "startCreatingSub": "Studiyani oching. Har bir yaratishda narx DHB’da ko‘rsatiladi.",
+    "pickMedium": "Formatni tanlang",
+    "moreTools": "Boshqa vositalar",
+    "yourLibrary": "Kutubxonangiz",
+    "doorImageNote": "Rasmlar, posterlar va tahrirlar",
+    "doorVideoNote": "Matn yoki rasmdan kliplar",
+    "doorAudioNote": "Ovoz vositalari bepul",
+    "door3d": "3D",
+    "door3dNote": "Prompt yoki rasmdan modellar",
+    "doorAgentsNote": "Suhbat bepul",
+    "editorNote": "Vaqt shkalasida kesing",
+    "flowNote": "Kanvasda qadamlarni bog‘lang",
+    "builderNote": "Promptdan ilova yarating"
   },
   "fractions": {
     "title": "Ulushlar",

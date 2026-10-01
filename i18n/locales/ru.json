@@ -818,7 +818,17 @@
     "exportReady": "{{count}} аккаунтов, {{saved}} сохраненных записей экспортировано.",
     "importDone": "Подписаны {{followed}}, заблокированы {{blocked}}, создано {{folders}} папок.",
     "importPartial": "Не удалось подписаться на учетные записи {{count}}. Запустите импорт еще раз, чтобы повторить попытку.",
-    "importProgress": "Применение {{done}} из {{total}}…"
+    "importProgress": "Применение {{done}} из {{total}}…",
+    "themeColor": "Цвет темы",
+    "themeColorDesc": "Выберите свой цвет для этой темы",
+    "themeColorReset": "Сбросить",
+    "themeColorWhite": "Белый",
+    "themeColorBlack": "Чёрный",
+    "themeColorRainbow": "Радуга",
+    "themeColorBrand": "Бренд",
+    "themeColorBrandDesc": "Использовать цвета вашего аватара",
+    "themeColorBrandNoAvatar": "Добавьте фото профиля, чтобы использовать цвета бренда",
+    "themeColorBrandFailed": "Не удалось считать цвета с вашего аватара"
   },
   "common": {
     "mute": "Выключить звук",
@@ -1008,7 +1018,8 @@
     "boostPostDesc": "Поставьте его в начало главной ленты",
     "mintPostDesc": "Опубликуйте этот пост в блокчейне",
     "giftBoost": "Подарить буст",
-    "giftBoostDesc": "Потратьте один из своих на этот пост"
+    "giftBoostDesc": "Потратьте один из своих на этот пост",
+    "askAi": "Спросить ИИ"
   },
   "filters": {
     "sort": "Сортировка",
@@ -1863,7 +1874,16 @@
     "tryAnotherGenre": "Попробуйте другой жанр.",
     "pauseStation": "Приостановить станцию",
     "resumeStation": "Возобновить станцию",
-    "stopRadio": "Остановить радио"
+    "stopRadio": "Остановить радио",
+    "playsToday": "{{plays}} прослушиваний сегодня",
+    "listen": "Слушать",
+    "top50": "Топ-50",
+    "playAll": "Воспроизвести всё",
+    "nothingHereYet": "Здесь пока ничего нет.",
+    "likeStation": "Нравится станция",
+    "unlikeStation": "Убрать из понравившихся",
+    "shareStation": "Поделиться станцией",
+    "listeningTo": "Слушаю {{name}} в DeHub"
   },
   "notFound": {
     "title": "Страница не найдена",
@@ -5570,7 +5590,16 @@
     "reconnecting": "Переподключение…",
     "connecting": "Подключение…",
     "shopPutOnAir": "Включить воздух",
-    "detailsLivepeerId": "Livepeer ID:"
+    "detailsLivepeerId": "Livepeer ID:",
+    "streamCount_one": "{{count}} трансляция",
+    "streamCount_other": "Трансляций: {{count}}",
+    "noOneStreamingGame": "Сейчас никто не транслирует {{game}}.",
+    "seeAllStreams": "Все трансляции",
+    "isLiveNow": "{{name}} в эфире",
+    "justChatting": "Просто общение",
+    "noLiveStreams": "Нет трансляций",
+    "noOneStreaming": "Сейчас никто не ведёт трансляцию. Загляните позже!",
+    "loadStreamsFailed": "Не удалось загрузить трансляции. Попробуйте ещё раз."
   },
   "liveShop": {
     "title": "Покупайте в этом эфире",
@@ -7302,7 +7331,25 @@
     "presetWhipPanHint": "Быстрый размытый пан по откровению",
     "presetWhipPanName": "Хлыстовая сковорода",
     "presetYtSplitHint": "Разделенная на две части миниатюра, рассказывающая историю",
-    "presetYtSplitName": "Миниатюра до / после"
+    "presetYtSplitName": "Миниатюра до / после",
+    "navAudio": "Аудио",
+    "navAgents": "Агенты",
+    "heroTitle": "Что создаёте сегодня?",
+    "heroSubtitle": "Изображения, видео, музыка и 3D. Оплата за каждое создание в DHB.",
+    "startCreating": "Начать создавать",
+    "startCreatingSub": "Откройте студию. У каждого создания указана цена в DHB.",
+    "pickMedium": "Выберите формат",
+    "moreTools": "Другие инструменты",
+    "yourLibrary": "Ваша библиотека",
+    "doorImageNote": "Изображения, постеры и правки",
+    "doorVideoNote": "Клипы из текста или фото",
+    "doorAudioNote": "Голосовые инструменты бесплатно",
+    "door3d": "3D",
+    "door3dNote": "Модели из промпта или фото",
+    "doorAgentsNote": "Чат бесплатно",
+    "editorNote": "Монтаж на таймлайне",
+    "flowNote": "Цепочки шагов на холсте",
+    "builderNote": "Создайте приложение из промпта"
   },
   "fractions": {
     "title": "Доли",

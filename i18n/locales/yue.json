@@ -818,7 +818,17 @@
     "exportReady": "{{count}} 帳戶， {{saved}} 儲存咗嘅帖子已經匯出。",
     "importDone": "追蹤咗 {{followed}} ，封鎖咗 {{blocked}} ， {{folders}} 資料夾建立。",
     "importPartial": "追蹤唔到 {{count}} 帳戶 — 再次執行匯入嚟重試佢哋。",
-    "importProgress": "應用緊 {{done}} 嘅 {{total}} …"
+    "importProgress": "應用緊 {{done}} 嘅 {{total}} …",
+    "themeColor": "主題顏色",
+    "themeColorDesc": "為呢個主題揀個自訂顏色",
+    "themeColorReset": "重設",
+    "themeColorWhite": "白色",
+    "themeColorBlack": "黑色",
+    "themeColorRainbow": "彩虹",
+    "themeColorBrand": "品牌",
+    "themeColorBrandDesc": "用你頭像嘅顏色",
+    "themeColorBrandNoAvatar": "加張頭像先可以用品牌配色",
+    "themeColorBrandFailed": "讀唔到你頭像嘅顏色"
   },
   "common": {
     "mute": "靜音",
@@ -1008,7 +1018,8 @@
     "boostPostDesc": "放去首頁動態嘅最上面",
     "mintPostDesc": "將呢個帖子發佈上鏈",
     "giftBoost": "送一次加成",
-    "giftBoostDesc": "用你其中一次落呢個帖子"
+    "giftBoostDesc": "用你其中一次落呢個帖子",
+    "askAi": "問AI"
   },
   "filters": {
     "sort": "排序",
@@ -1863,7 +1874,16 @@
     "tryAnotherGenre": "嘗試另一種音樂類型。",
     "pauseStation": "暫停電台",
     "resumeStation": "繼續播放電台",
-    "stopRadio": "停止電台"
+    "stopRadio": "停止電台",
+    "playsToday": "今日播放 {{plays}} 次",
+    "listen": "收聽",
+    "top50": "頭 50",
+    "playAll": "全部播放",
+    "nothingHereYet": "呢度仲未有嘢。",
+    "likeStation": "鍾意電台",
+    "unlikeStation": "取消鍾意",
+    "shareStation": "分享電台",
+    "listeningTo": "喺 DeHub 收聽緊 {{name}}"
   },
   "notFound": {
     "title": "搵唔到頁面",
@@ -5479,7 +5499,16 @@
     "reconnecting": "正在重新連線…",
     "connecting": "正在連線…",
     "detailsLivepeerId": "現場同行 ID ：",
-    "shopPutOnAir": "放喺空氣度"
+    "shopPutOnAir": "放喺空氣度",
+    "streamCount_one": "{{count}} 場直播",
+    "streamCount_other": "{{count}} 場直播",
+    "noOneStreamingGame": "而家冇人直播 {{game}}。",
+    "seeAllStreams": "睇晒所有直播",
+    "isLiveNow": "{{name}} 直播緊",
+    "justChatting": "吹水",
+    "noLiveStreams": "冇直播",
+    "noOneStreaming": "而家冇人直播，遲啲再嚟睇下！",
+    "loadStreamsFailed": "載入唔到直播，請再試。"
   },
   "liveShop": {
     "title": "喺呢場直播購物",
@@ -7205,7 +7234,25 @@
     "presetWhipPanHint": "快速模糊嘅鑊入面露出嚟",
     "presetWhipPanName": "鞭鑊",
     "presetYtSplitHint": "講故事嘅分屏縮圖",
-    "presetYtSplitName": "縮圖之前 / 之後"
+    "presetYtSplitName": "縮圖之前 / 之後",
+    "navAudio": "音訊",
+    "navAgents": "智能助手",
+    "heroTitle": "你今日想整咩？",
+    "heroSubtitle": "圖片、影片、音樂同 3D。每次創作用 DHB 俾錢。",
+    "startCreating": "開始創作",
+    "startCreatingSub": "打開工作室。每次創作都會顯示 DHB 價錢。",
+    "pickMedium": "揀一種媒介",
+    "moreTools": "更多工具",
+    "yourLibrary": "你嘅圖庫",
+    "doorImageNote": "圖片、海報同剪輯",
+    "doorVideoNote": "用文字或相片整片段",
+    "doorAudioNote": "語音工具免費",
+    "door3d": "3D",
+    "door3dNote": "用提示或相片整模型",
+    "doorAgentsNote": "傾偈免費",
+    "editorNote": "喺時間軸上剪",
+    "flowNote": "喺畫布上串連步驟",
+    "builderNote": "用提示整個 App"
   },
   "fractions": {
     "title": "碎片",

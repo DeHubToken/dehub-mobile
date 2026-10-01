@@ -815,7 +815,17 @@
     "channelSpeedCount": "{{count}} канали сарфарозгаро дар ҳолати худи худ меоризад.",
     "exportReady": "{{count}} меъёриҳо, {{saved}} мақолаҳои савдодорӣ шудани.",
     "importPartial": "{{count}} меъёриҳои мутобиришавандаи меъёриро мутобири карда намешуд — барҷӯй мутобириҳои навро оғоз кунед.",
-    "importProgress": "Мутобири {{done}} аз {{total}}…"
+    "importProgress": "Мутобири {{done}} аз {{total}}…",
+    "themeColor": "Ранги мавзӯъ",
+    "themeColorDesc": "Барои ин мавзӯъ ранги фармоишӣ интихоб кунед",
+    "themeColorReset": "Барқарор кардан",
+    "themeColorWhite": "Сафед",
+    "themeColorBlack": "Сиёҳ",
+    "themeColorRainbow": "Рангинкамон",
+    "themeColorBrand": "Бренд",
+    "themeColorBrandDesc": "Рангҳои сурати профили худро истифода баред",
+    "themeColorBrandNoAvatar": "Барои истифодаи рангҳои Бренд, сурати профил илова кунед",
+    "themeColorBrandFailed": "Хондани рангҳо аз сурати профили шумо имконнопазир буд"
   },
   "common": {
     "mute": "Хомӯш кардани садо",
@@ -1005,7 +1015,8 @@
     "boostPostDesc": "Онро дар болои лентаи асосӣ гузоред",
     "mintPostDesc": "Ин паёмро дар занҷир нашр кунед",
     "giftBoost": "Бустро тӯҳфа кунед",
-    "giftBoostDesc": "Яке аз они худро барои ин паём сарф кунед"
+    "giftBoostDesc": "Яке аз они худро барои ин паём сарф кунед",
+    "askAi": "Аз ЗС пурсед"
   },
   "filters": {
     "sort": "Мураттаб",
@@ -7186,7 +7197,25 @@
     "presetWhipPanHint": "Панҳои бештари бисёрҷилавӣ ба шарафе меояд",
     "presetWhipPanName": "Whip Pan",
     "presetYtSplitHint": "Суратҷӯи дар ҷои мавҷудият то мавҷудияти дигар",
-    "presetYtSplitName": "Before / After Thumbnail"
+    "presetYtSplitName": "Before / After Thumbnail",
+    "navAudio": "Аудио",
+    "navAgents": "Агентҳо",
+    "heroTitle": "Имрӯз чӣ эҷод мекунед?",
+    "heroSubtitle": "Тасвирҳо, видео, мусиқӣ ва 3D. Барои ҳар эҷод бо DHB пардохт кунед.",
+    "startCreating": "Эҷодро оғоз кунед",
+    "startCreatingSub": "Студияро кушоед. Ҳар эҷод нархашро бо DHB нишон медиҳад.",
+    "pickMedium": "Намуди медиаро интихоб кунед",
+    "moreTools": "Абзорҳои бештар",
+    "yourLibrary": "Китобхонаи шумо",
+    "doorImageNote": "Суратҳо, постерҳо ва таҳрирҳо",
+    "doorVideoNote": "Клипҳо аз матн ё акс",
+    "doorAudioNote": "Абзорҳои овоз ройгон",
+    "door3d": "3D",
+    "door3dNote": "Моделҳо аз дархост ё акс",
+    "doorAgentsNote": "Сӯҳбат ройгон",
+    "editorNote": "Дар хати вақт буред",
+    "flowNote": "Қадамҳоро дар канвас пайваст кунед",
+    "builderNote": "Аз дархост барнома созед"
   },
   "fractions": {
     "title": "Ҳиссаҳо",

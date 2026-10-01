@@ -63,8 +63,22 @@ function paintLabel(child) {
     }
   }
   if (neutral(props.color)) next.color = material.foreground;
-  if (props.children !== undefined) next.children = React.Children.map(props.children, paintLabel);
+  if (props.children !== undefined) {
+    const children = paintChildren(props.children);
+    if (children !== props.children) next.children = children;
+  }
   return Object.keys(next).length ? React.cloneElement(child, next) : child;
+}
+
+/**
+ * One child stays one child. `React.Children.map` always hands back an array,
+ * and anything that takes exactly one child through `React.Children.only`
+ * (GestureDetector, TouchableWithoutFeedback) throws on an array of one. A
+ * gallery's GestureDetector inside a neutral card took the Home feed down
+ * that way on 2026-10-01.
+ */
+function paintChildren(children) {
+  return Array.isArray(children) ? React.Children.map(children, paintLabel) : paintLabel(children);
 }
 
 function controlProps(props) {
@@ -81,7 +95,7 @@ function controlProps(props) {
   const classFill = fill === undefined && typeof props.className === 'string' && NEUTRAL_FILL.test(props.className);
   if (!classFill && !ownMaterial && !neutral(fill)) return props;
   const style = classFill ? [props.style, material.surface] : paintStyle(props.style);
-  return { ...props, style, children: React.Children.map(props.children, paintLabel) };
+  return { ...props, style, children: paintChildren(props.children) };
 }
 
 module.exports = { setControlMaterial, controlProps };

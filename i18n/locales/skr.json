@@ -817,7 +817,17 @@
     "exportReady": "{{count}} اکاؤنٹس، {{saved}} سروسڈ پوسٹس ایکسپورٹ کئے گئے۔",
     "importDone": "فوللوڈ {{followed}}، بلاک {{blocked}}، {{folders}} folder بنائے گئے۔",
     "importPartial": "{{count}} اکاؤنٹس کو نہیں کیا جا سکا — انپورٹ کو دوبارہ چلانے کے لئے کوشش کریں۔",
-    "importProgress": "اپلائیڈنگ {{done}} of {{total}}…"
+    "importProgress": "اپلائیڈنگ {{done}} of {{total}}…",
+    "themeColor": "تھیم رنگ",
+    "themeColorDesc": "ایں تھیم کیتے اپݨا رنگ چݨو",
+    "themeColorReset": "ری سیٹ",
+    "themeColorWhite": "چٹا",
+    "themeColorBlack": "کالا",
+    "themeColorRainbow": "قوس قزح",
+    "themeColorBrand": "برانڈ",
+    "themeColorBrandDesc": "اپݨی پروفائل تصویر دے رنگ ورتو",
+    "themeColorBrandNoAvatar": "برانڈ رنگ ورتݨ کیتے پروفائل تصویر ولاؤ",
+    "themeColorBrandFailed": "اپݨی پروفائل تصویر کنوں رنگ پڑھے کائنی ڳئے"
   },
   "common": {
     "mute": "آواز بند کرو",
@@ -1007,7 +1017,8 @@
     "postPinned": "Profile تے Pinned",
     "postUnpinned": "Profile توں Unpinned",
     "pinFailed": "ایہہ post pin یا unpin نئی کر سکے",
-    "bookmark": "بُک مارک"
+    "bookmark": "بُک مارک",
+    "askAi": "AI کنوں پچھو"
   },
   "filters": {
     "sort": "ترتیب",
@@ -1862,7 +1873,16 @@
     "tryAnotherGenre": "کوئی دوسرا جنر آزمائیں۔",
     "pauseStation": "اسٹیشن کو روکیں",
     "resumeStation": "اسٹیشن دوبارہ شروع کریں",
-    "stopRadio": "ریڈیو بند کریں"
+    "stopRadio": "ریڈیو بند کریں",
+    "playsToday": "آج {{plays}} بار سنا گیا",
+    "listen": "سنیں",
+    "top50": "ٹاپ 50",
+    "playAll": "سب چلائیں",
+    "nothingHereYet": "یہاں ابھی کچھ نہیں ہے۔",
+    "likeStation": "اسٹیشن پسند کریں",
+    "unlikeStation": "پسند ہٹائیں",
+    "shareStation": "اسٹیشن شیئر کریں",
+    "listeningTo": "DeHub پر {{name}} سن رہا ہوں"
   },
   "notFound": {
     "title": "صفحہ کائنی ملیا",
@@ -5477,7 +5497,16 @@
     "peak": "چوٹی {{count}}",
     "detailsPlaybackId": "پلے بیک آئی ڈی:",
     "detailsKey": "چابی:",
-    "detailsLivepeerId": "لائیو پیئر آئی ڈی:"
+    "detailsLivepeerId": "لائیو پیئر آئی ڈی:",
+    "streamCount_one": "{{count}} اسٹریم",
+    "streamCount_other": "{{count}} اسٹریمز",
+    "noOneStreamingGame": "ابھی کوئی {{game}} اسٹریم نہیں کر رہا۔",
+    "seeAllStreams": "تمام اسٹریمز دیکھیں",
+    "isLiveNow": "{{name}} لائیو ہیں",
+    "justChatting": "بس گپ شپ",
+    "noLiveStreams": "کوئی لائیو اسٹریم نہیں",
+    "noOneStreaming": "ابھی کوئی اسٹریم نہیں کر رہا۔ بعد میں دوبارہ دیکھیں!",
+    "loadStreamsFailed": "اسٹریمز لوڈ نہیں ہو سکیں۔ دوبارہ کوشش کریں۔"
   },
   "liveShop": {
     "title": "ایں سٹریم کنوں خریداری کرو",
@@ -7195,7 +7224,25 @@
     "presetWhipPanHint": "تیزی نال ڈھلدا ہوا پین لہرایا",
     "presetWhipPanName": "وھیپ پَن",
     "presetYtSplitHint": "دونگھی کھلارے والا تھمب نیلےٹھمب",
-    "presetYtSplitName": "پہلے / بعد میں تھیم بینل"
+    "presetYtSplitName": "پہلے / بعد میں تھیم بینل",
+    "navAudio": "آڈیو",
+    "navAgents": "ایجنٹ",
+    "heroTitle": "اڄ کیا بݨیندے پئے ہو؟",
+    "heroSubtitle": "تصویراں، ویڈیو، موسیقی تے 3D۔ ہر تخلیق دی ادائیگی DHB اچ کرو۔",
+    "startCreating": "بݨاوݨ شروع کرو",
+    "startCreatingSub": "سٹوڈیو کھولو۔ ہر تخلیق اپݨی قیمت DHB اچ ݙکھیندی ہے۔",
+    "pickMedium": "میڈیم چݨو",
+    "moreTools": "ٻئے ٹول",
+    "yourLibrary": "تہاݙی لائبریری",
+    "doorImageNote": "تصویراں، پوسٹر تے ایڈٹ",
+    "doorVideoNote": "لکھت یا فوٹو توں کلپاں",
+    "doorAudioNote": "آواز دے ٹول مفت",
+    "door3d": "3D",
+    "door3dNote": "پرامپٹ یا فوٹو توں ماڈل",
+    "doorAgentsNote": "چیٹ مفت",
+    "editorNote": "ٹائم لائن تے کپو",
+    "flowNote": "کینوس تے قدم جوڑو",
+    "builderNote": "پرامپٹ توں ایپ بݨاؤ"
   },
   "fractions": {
     "title": "حصے",

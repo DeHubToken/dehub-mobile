@@ -818,7 +818,17 @@
     "exportReady": "{{count}} حساب کاربری، {{saved}} پست‌های ذخیره‌شده صادر شدند.",
     "importDone": "پوشه‌های {{followed}} فالو، {{blocked}} مسدود و {{folders}} ایجاد شدند.",
     "importPartial": "حساب‌های کاربری {{count}} قابل دنبال کردن نبودند — برای امتحان مجدد، دستور import را دوباره اجرا کنید.",
-    "importProgress": "اعمال {{done}} از {{total}}…"
+    "importProgress": "اعمال {{done}} از {{total}}…",
+    "themeColor": "رنگ پوسته",
+    "themeColorDesc": "یک رنگ دلخواه برای این پوسته انتخاب کنید",
+    "themeColorReset": "بازنشانی",
+    "themeColorWhite": "سفید",
+    "themeColorBlack": "سیاه",
+    "themeColorRainbow": "رنگین‌کمان",
+    "themeColorBrand": "برند",
+    "themeColorBrandDesc": "استفاده از رنگ‌های عکس نمایه شما",
+    "themeColorBrandNoAvatar": "برای استفاده از رنگ‌های برند، عکس نمایه اضافه کنید",
+    "themeColorBrandFailed": "نتوانستیم رنگ‌ها را از عکس نمایه شما بخوانیم"
   },
   "common": {
     "mute": "بی‌صدا",
@@ -1008,7 +1018,8 @@
     "boostPostDesc": "آن را بالای فید اصلی قرار دهید",
     "mintPostDesc": "این پست را روی زنجیره منتشر کنید",
     "giftBoost": "هدیه دادن یک بوست",
-    "giftBoostDesc": "یکی از بوست‌های خود را برای این پست خرج کنید"
+    "giftBoostDesc": "یکی از بوست‌های خود را برای این پست خرج کنید",
+    "askAi": "از هوش مصنوعی بپرسید"
   },
   "filters": {
     "sort": "مرتب‌سازی",
@@ -1863,7 +1874,16 @@
     "tryAnotherGenre": "یک ژانر دیگر را امتحان کنید.",
     "pauseStation": "ایستگاه را متوقف کنید",
     "resumeStation": "ایستگاه را از سر بگیرید",
-    "stopRadio": "رادیو را متوقف کنید"
+    "stopRadio": "رادیو را متوقف کنید",
+    "playsToday": "{{plays}} پخش امروز",
+    "listen": "گوش بده",
+    "top50": "۵۰ برتر",
+    "playAll": "پخش همه",
+    "nothingHereYet": "هنوز چیزی اینجا نیست.",
+    "likeStation": "پسندیدن ایستگاه",
+    "unlikeStation": "لغو پسند ایستگاه",
+    "shareStation": "اشتراک‌گذاری ایستگاه",
+    "listeningTo": "در حال گوش دادن به {{name}} در DeHub"
   },
   "notFound": {
     "title": "صفحه یافت نشد",
@@ -5514,7 +5534,16 @@
     "reconnecting": "در حال اتصال مجدد…",
     "connecting": "در حال اتصال…",
     "shopPutOnAir": "روی هوا قرار دهید",
-    "tippedAmount": "نوک {{amount}}"
+    "tippedAmount": "نوک {{amount}}",
+    "streamCount_one": "{{count}} پخش زنده",
+    "streamCount_other": "{{count}} پخش زنده",
+    "noOneStreamingGame": "الان کسی {{game}} را پخش نمی‌کند.",
+    "seeAllStreams": "دیدن همه پخش‌ها",
+    "isLiveNow": "{{name}} در حال پخش زنده است",
+    "justChatting": "فقط گفتگو",
+    "noLiveStreams": "پخش زنده‌ای نیست",
+    "noOneStreaming": "الان کسی پخش زنده ندارد. بعداً سر بزنید!",
+    "loadStreamsFailed": "بارگیری پخش‌ها ممکن نشد. دوباره تلاش کنید."
   },
   "liveShop": {
     "title": "از این پخش خرید کنید",
@@ -7243,7 +7272,25 @@
     "presetWhipPanHint": "پان سریع و مبهم برای آشکار کردن",
     "presetWhipPanName": "ویپ تابه",
     "presetYtSplitHint": "تیزر صفحه تقسیم شده که داستان را روایت می‌کند",
-    "presetYtSplitName": "تصویر بندانگشتی قبل/بعد"
+    "presetYtSplitName": "تصویر بندانگشتی قبل/بعد",
+    "navAudio": "صدا",
+    "navAgents": "عامل‌ها",
+    "heroTitle": "امروز چه می‌سازید؟",
+    "heroSubtitle": "تصویر، ویدیو، موسیقی و 3D. برای هر ساخت با DHB پرداخت کنید.",
+    "startCreating": "شروع ساخت",
+    "startCreatingSub": "استودیو را باز کنید. هر ساخت قیمت خود را به DHB نشان می‌دهد.",
+    "pickMedium": "یک رسانه انتخاب کنید",
+    "moreTools": "ابزارهای بیشتر",
+    "yourLibrary": "کتابخانه شما",
+    "doorImageNote": "تصاویر ثابت، پوسترها و ویرایش‌ها",
+    "doorVideoNote": "کلیپ از متن یا عکس",
+    "doorAudioNote": "ابزارهای صدا رایگان",
+    "door3d": "3D",
+    "door3dNote": "مدل از پرامپت یا عکس",
+    "doorAgentsNote": "گفتگو رایگان",
+    "editorNote": "روی تایم‌لاین برش دهید",
+    "flowNote": "مراحل را روی بوم زنجیر کنید",
+    "builderNote": "ساخت اپ از پرامپت"
   },
   "fractions": {
     "title": "کسری‌ها",

@@ -817,7 +817,17 @@
     "exportReady": "{{count}} тіркелгілері, {{saved}} сақталған хабарламалар экспортталды.",
     "importDone": "Келесі {{followed}}, бұғатталған {{blocked}}, {{folders}} Қапшықтар құрылды.",
     "importPartial": "{{count}} тіркелгілерін қадағалау мүмкін болмады — оларды қайта тексеру үшін импортты қайта іске қосыңыз.",
-    "importProgress": "{{done}}-ды {{total}}-ге қолдану…"
+    "importProgress": "{{done}}-ды {{total}}-ге қолдану…",
+    "themeColor": "Тема түсі",
+    "themeColorDesc": "Осы тема үшін таңдаулы түс таңдаңыз",
+    "themeColorReset": "Бастапқы қалпына келтіру",
+    "themeColorWhite": "Ақ",
+    "themeColorBlack": "Қара",
+    "themeColorRainbow": "Кемпірқосақ",
+    "themeColorBrand": "Бренд",
+    "themeColorBrandDesc": "Профиль суретіңіздің түстерін пайдалану",
+    "themeColorBrandNoAvatar": "Бренд түстерін пайдалану үшін профиль суретін қосыңыз",
+    "themeColorBrandFailed": "Профиль суретіңіздің түстерін оқу мүмкін болмады"
   },
   "common": {
     "mute": "Дыбысты өшіру",
@@ -1007,7 +1017,8 @@
     "boostPostDesc": "Оны басты таспаның жоғарысына қойыңыз",
     "mintPostDesc": "Осы жазбаны тізбекте жариялаңыз",
     "giftBoost": "Күшейту сыйлау",
-    "giftBoostDesc": "Өзіңіздікінен біреуін осы жазбаға жұмсаңыз"
+    "giftBoostDesc": "Өзіңіздікінен біреуін осы жазбаға жұмсаңыз",
+    "askAi": "ЖИ-ден сұрау"
   },
   "filters": {
     "sort": "Сұрыптау",
@@ -1880,7 +1891,16 @@
     "tryAnotherGenre": "Басқа жанрды қолданып көріңіз.",
     "pauseStation": "Станцияны тоқтату",
     "resumeStation": "Станцияны жалғастыру",
-    "stopRadio": "Радионы тоқтату"
+    "stopRadio": "Радионы тоқтату",
+    "playsToday": "Бүгін {{plays}} рет тыңдалды",
+    "listen": "Тыңдау",
+    "top50": "Топ 50",
+    "playAll": "Барлығын ойнату",
+    "nothingHereYet": "Мұнда әлі ештеңе жоқ.",
+    "likeStation": "Станцияны ұнату",
+    "unlikeStation": "Ұнатуды алып тастау",
+    "shareStation": "Станциямен бөлісу",
+    "listeningTo": "DeHub-та {{name}} тыңдап отырмын"
   },
   "notFound": {
     "title": "Бет табылмады",
@@ -5495,7 +5515,16 @@
     "preparingCamera": "Камера дайындалуда…",
     "reconnecting": "Қайта қосылуда…",
     "connecting": "Қосылуда…",
-    "shopPutOnAir": "Ауаға қойыңыз"
+    "shopPutOnAir": "Ауаға қойыңыз",
+    "streamCount_one": "{{count}} трансляция",
+    "streamCount_other": "{{count}} трансляция",
+    "noOneStreamingGame": "Қазір ешкім {{game}} таратып жатқан жоқ.",
+    "seeAllStreams": "Барлық трансляциялар",
+    "isLiveNow": "{{name}} тікелей эфирде",
+    "justChatting": "Жай әңгіме",
+    "noLiveStreams": "Тікелей трансляциялар жоқ",
+    "noOneStreaming": "Қазір ешкім таратып жатқан жоқ. Кейінірек қараңыз!",
+    "loadStreamsFailed": "Трансляцияларды жүктеу мүмкін болмады. Қайталап көріңіз."
   },
   "liveShop": {
     "title": "Осы эфирден сатып алыңыз",
@@ -7258,7 +7287,25 @@
     "presetWhipPanHint": "Жылдам, бұлыңғыр панорамалық қозғалыс",
     "presetWhipPanName": "Қисық панель",
     "presetYtSplitHint": "Сюжет айтып беретін екі экранды миниатюра",
-    "presetYtSplitName": "Нобайға дейін / кейін"
+    "presetYtSplitName": "Нобайға дейін / кейін",
+    "navAudio": "Аудио",
+    "navAgents": "Агенттер",
+    "heroTitle": "Бүгін не жасайсыз?",
+    "heroSubtitle": "Суреттер, видео, музыка және 3D. Әр жасау үшін DHB-мен төлеңіз.",
+    "startCreating": "Жасауды бастау",
+    "startCreatingSub": "Студияны ашыңыз. Әр жасау бағасын DHB-мен көрсетеді.",
+    "pickMedium": "Медиа таңдаңыз",
+    "moreTools": "Басқа құралдар",
+    "yourLibrary": "Кітапханаңыз",
+    "doorImageNote": "Суреттер, постерлер және өңдеулер",
+    "doorVideoNote": "Мәтіннен не фотодан клиптер",
+    "doorAudioNote": "Дауыс құралдары тегін",
+    "door3d": "3D",
+    "door3dNote": "Сұраудан не фотодан модельдер",
+    "doorAgentsNote": "Чат тегін",
+    "editorNote": "Уақыт шкаласында кесу",
+    "flowNote": "Кенепте қадамдарды тізбектеу",
+    "builderNote": "Сұраудан қолданба жасау"
   },
   "fractions": {
     "title": "Бөлшектер",

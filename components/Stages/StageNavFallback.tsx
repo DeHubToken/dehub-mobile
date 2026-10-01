@@ -10,18 +10,24 @@ const tabRoutes = new Set<string>([ScreenNames.Home, ScreenNames.DM, ScreenNames
 // and swallow the tap. The room stays one tab away through the tab-bar chip.
 const composerRoutes = new Set<string>([ScreenNames.Chat, ScreenNames.LiveChat, ScreenNames.FeedDetail]);
 
+interface NavRef {
+  isReady?: () => boolean;
+  getCurrentRoute: () => { name: string } | undefined;
+  addListener: (event: "state", callback: () => void) => () => void;
+}
+
+// This mounts beside the navigator, before it is ready on a cold start, and
+// asking a ref that is not ready logs "The 'navigation' object hasn't been
+// initialized yet" as an error on every launch.
+const currentRoute = (ref: NavRef) => (ref.isReady?.() === false ? undefined : ref.getCurrentRoute()?.name);
+
 /** Screens pushed above the tab navigator still need a way back to the room. */
-export default function StageNavFallback({ navigationRef }: {
-  navigationRef: {
-    getCurrentRoute: () => { name: string } | undefined;
-    addListener: (event: "state", callback: () => void) => () => void;
-  };
-}) {
-  const [route, setRoute] = useState(() => navigationRef.getCurrentRoute()?.name);
+export default function StageNavFallback({ navigationRef }: { navigationRef: NavRef }) {
+  const [route, setRoute] = useState(() => currentRoute(navigationRef));
   const insets = useSafeAreaInsets();
   const { isKidsMode } = useKidsMode();
   useEffect(() => {
-    const update = () => setRoute(navigationRef.getCurrentRoute()?.name);
+    const update = () => setRoute(currentRoute(navigationRef));
     update();
     return navigationRef.addListener("state", update);
   }, [navigationRef]);

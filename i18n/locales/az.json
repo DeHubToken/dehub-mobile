@@ -818,7 +818,17 @@
     "exportReady": "{{count}} hesabı, {{saved}} saxlanılan postlar export edilir.",
     "importDone": "{{followed}} hesabı izlənilir, {{blocked}} hesabı bloklanır, {{folders}} qrupa yaradılır.",
     "importPartial": "{{count}} hesabı izlənilə bilməyib — importu yenidən təkrar edin.",
-    "importProgress": "Tətbiq edirəm: {{done}}-dan {{total}}…"
+    "importProgress": "Tətbiq edirəm: {{done}}-dan {{total}}…",
+    "themeColor": "Mövzu rəngi",
+    "themeColorDesc": "Bu mövzu üçün fərdi rəng seçin",
+    "themeColorReset": "Sıfırla",
+    "themeColorWhite": "Ağ",
+    "themeColorBlack": "Qara",
+    "themeColorRainbow": "Göy qurşağı",
+    "themeColorBrand": "Brend",
+    "themeColorBrandDesc": "Profil şəklinizin rənglərini istifadə edin",
+    "themeColorBrandNoAvatar": "Brend rənglərini istifadə etmək üçün profil şəkli əlavə edin",
+    "themeColorBrandFailed": "Profil şəklinizdən rənglər oxuna bilmədi"
   },
   "common": {
     "mute": "Səssiz et",
@@ -1008,7 +1018,8 @@
     "boostPostDesc": "Onu ana lentin başına qoy",
     "mintPostDesc": "Bu paylaşımı zəncirdə dərc et",
     "giftBoost": "Gücləndirmə hədiyyə et",
-    "giftBoostDesc": "Öz gücləndirmələrindən birini bu paylaşıma xərclə"
+    "giftBoostDesc": "Öz gücləndirmələrindən birini bu paylaşıma xərclə",
+    "askAi": "Süni intellektdən soruş"
   },
   "filters": {
     "sort": "Sırala",
@@ -1863,7 +1874,16 @@
     "tryAnotherGenre": "Başqa janr cəhd edin.",
     "pauseStation": "Stansiyanı dayandır",
     "resumeStation": "Stansiyanı davam etdir",
-    "stopRadio": "Radiostansiyanı dayandır"
+    "stopRadio": "Radiostansiyanı dayandır",
+    "playsToday": "Bu gün {{plays}} dinlənmə",
+    "listen": "Dinlə",
+    "top50": "Top 50",
+    "playAll": "Hamısını oynat",
+    "nothingHereYet": "Burada hələ heç nə yoxdur.",
+    "likeStation": "Stansiyanı bəyən",
+    "unlikeStation": "Stansiyanı bəyənmə",
+    "shareStation": "Stansiyanı paylaş",
+    "listeningTo": "DeHub-da {{name}} dinləyirəm"
   },
   "notFound": {
     "title": "Səhifə Tapılmadı",
@@ -5486,7 +5506,16 @@
     "preparingCamera": "Kamera hazırlanır…",
     "reconnecting": "Yenidən qoşulur…",
     "connecting": "Qoşulur…",
-    "shopPutOnAir": "Havaya qoyun"
+    "shopPutOnAir": "Havaya qoyun",
+    "streamCount_one": "{{count}} yayım",
+    "streamCount_other": "{{count}} yayım",
+    "noOneStreamingGame": "Hazırda heç kim {{game}} yayımlamır.",
+    "seeAllStreams": "Bütün yayımlara bax",
+    "isLiveNow": "{{name}} canlı yayımdadır",
+    "justChatting": "Sadəcə söhbət",
+    "noLiveStreams": "Canlı yayım yoxdur",
+    "noOneStreaming": "Hazırda heç kim yayım etmir. Sonra yenidən baxın!",
+    "loadStreamsFailed": "Yayımlar yüklənmədi. Yenidən cəhd edin."
   },
   "liveShop": {
     "title": "Bu yayımdan alış-veriş edin",
@@ -7216,7 +7245,25 @@
     "presetWhipPanHint": "Sürətli bulanıq pan ilə açıqlamaya keçid",
     "presetWhipPanName": "Whip Pan",
     "presetYtSplitHint": "Hekayə danışan bölünmüş ekran görüntüsü",
-    "presetYtSplitName": "Before / After Thumbnail"
+    "presetYtSplitName": "Before / After Thumbnail",
+    "navAudio": "Audio",
+    "navAgents": "Agentlər",
+    "heroTitle": "Bu gün nə yaradırsınız?",
+    "heroSubtitle": "Şəkillər, video, musiqi və 3D. Hər yaradılış üçün DHB ilə ödəyin.",
+    "startCreating": "Yaratmağa başlayın",
+    "startCreatingSub": "Studiyanı açın. Hər yaradılış qiymətini DHB ilə göstərir.",
+    "pickMedium": "Media seçin",
+    "moreTools": "Daha çox alət",
+    "yourLibrary": "Kitabxananız",
+    "doorImageNote": "Şəkillər, posterlər və redaktələr",
+    "doorVideoNote": "Mətn və ya fotodan kliplər",
+    "doorAudioNote": "Səs alətləri pulsuzdur",
+    "door3d": "3D",
+    "door3dNote": "Prompt və ya fotodan modellər",
+    "doorAgentsNote": "Söhbət pulsuzdur",
+    "editorNote": "Zaman xəttində kəsin",
+    "flowNote": "Kətanda addımları birləşdirin",
+    "builderNote": "Promptdan tətbiq yaradın"
   },
   "fractions": {
     "title": "Fraksiyalar",

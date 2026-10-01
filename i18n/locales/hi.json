@@ -818,7 +818,17 @@
     "exportReady": "{{count}} अकाउंट, {{saved}} सेव की गई पोस्ट एक्सपोर्ट की गईं।",
     "importDone": "{{followed}} को फ़ॉलो किया गया, ब्लॉक किए गए {{blocked}},{{folders}} फ़ोल्डर बनाए गए।",
     "importPartial": "{{count}} खातों का पालन नहीं किया जा सका — उन्हें फिर से आज़माने के लिए इम्पोर्ट फिर से चलाएँ।",
-    "importProgress": "{{total}} में से {{done}} लागू किया जा रहा है..."
+    "importProgress": "{{total}} में से {{done}} लागू किया जा रहा है...",
+    "themeColor": "थीम रंग",
+    "themeColorDesc": "इस थीम के लिए मनचाहा रंग चुनें",
+    "themeColorReset": "रीसेट",
+    "themeColorWhite": "सफ़ेद",
+    "themeColorBlack": "काला",
+    "themeColorRainbow": "इंद्रधनुष",
+    "themeColorBrand": "ब्रांड",
+    "themeColorBrandDesc": "अपनी प्रोफ़ाइल तस्वीर के रंग इस्तेमाल करें",
+    "themeColorBrandNoAvatar": "ब्रांड रंग इस्तेमाल करने के लिए प्रोफ़ाइल तस्वीर जोड़ें",
+    "themeColorBrandFailed": "आपकी प्रोफ़ाइल तस्वीर से रंग नहीं पढ़े जा सके"
   },
   "common": {
     "mute": "म्यूट करें",
@@ -1008,7 +1018,8 @@
     "boostPostDesc": "इसे होम फ़ीड में सबसे ऊपर रखें",
     "mintPostDesc": "इस पोस्ट को ऑन-चेन प्रकाशित करें",
     "giftBoost": "एक बूस्ट उपहार दें",
-    "giftBoostDesc": "अपने एक बूस्ट को इस पोस्ट पर खर्च करें"
+    "giftBoostDesc": "अपने एक बूस्ट को इस पोस्ट पर खर्च करें",
+    "askAi": "AI से पूछें"
   },
   "filters": {
     "sort": "क्रमबद्ध करें",
@@ -1869,7 +1880,16 @@
     "tryAnotherGenre": "एक और शैली आज़माएँ।",
     "pauseStation": "स्टेशन को रोकें",
     "resumeStation": "स्टेशन फिर से शुरू करें",
-    "stopRadio": "रेडियो बंद करें"
+    "stopRadio": "रेडियो बंद करें",
+    "playsToday": "आज {{plays}} बार सुना गया",
+    "listen": "सुनें",
+    "top50": "टॉप 50",
+    "playAll": "सब चलाएँ",
+    "nothingHereYet": "यहाँ अभी कुछ नहीं है।",
+    "likeStation": "स्टेशन पसंद करें",
+    "unlikeStation": "स्टेशन नापसंद करें",
+    "shareStation": "स्टेशन शेयर करें",
+    "listeningTo": "DeHub पर {{name}} सुन रहा हूँ"
   },
   "notFound": {
     "title": "पेज नहीं मिला",
@@ -5572,7 +5592,16 @@
     "preparingCamera": "कैमरा तैयार हो रहा है…",
     "reconnecting": "पुनः कनेक्ट हो रहा है…",
     "connecting": "कनेक्ट हो रहा है…",
-    "shopPutOnAir": "हवा चालू करें"
+    "shopPutOnAir": "हवा चालू करें",
+    "streamCount_one": "{{count}} स्ट्रीम",
+    "streamCount_other": "{{count}} स्ट्रीम",
+    "noOneStreamingGame": "अभी कोई {{game}} स्ट्रीम नहीं कर रहा है।",
+    "seeAllStreams": "सभी स्ट्रीम देखें",
+    "isLiveNow": "{{name}} लाइव हैं",
+    "justChatting": "बस बातचीत",
+    "noLiveStreams": "कोई लाइव स्ट्रीम नहीं",
+    "noOneStreaming": "अभी कोई स्ट्रीम नहीं कर रहा है। बाद में फिर देखें!",
+    "loadStreamsFailed": "स्ट्रीम लोड नहीं हो सकीं। फिर से कोशिश करें।"
   },
   "liveShop": {
     "title": "इस स्ट्रीम से खरीदें",
@@ -7304,7 +7333,25 @@
     "presetWhipPanHint": "प्रकट में तेज़ धुंधला पैन",
     "presetWhipPanName": "व्हिप पैन",
     "presetYtSplitHint": "स्प्लिट - स्क्रीन थंबनेल जो एक कहानी बताता है",
-    "presetYtSplitName": "थंबनेल से पहले / बाद में"
+    "presetYtSplitName": "थंबनेल से पहले / बाद में",
+    "navAudio": "ऑडियो",
+    "navAgents": "एजेंट",
+    "heroTitle": "आज आप क्या बना रहे हैं?",
+    "heroSubtitle": "इमेज, वीडियो, संगीत और 3D। हर क्रिएशन के लिए DHB में भुगतान करें।",
+    "startCreating": "बनाना शुरू करें",
+    "startCreatingSub": "स्टूडियो खोलें। हर क्रिएशन अपनी कीमत DHB में दिखाता है।",
+    "pickMedium": "माध्यम चुनें",
+    "moreTools": "और टूल",
+    "yourLibrary": "आपकी लाइब्रेरी",
+    "doorImageNote": "इमेज, पोस्टर और एडिट",
+    "doorVideoNote": "टेक्स्ट या फ़ोटो से क्लिप",
+    "doorAudioNote": "वॉइस टूल मुफ़्त",
+    "door3d": "3D",
+    "door3dNote": "प्रॉम्प्ट या फ़ोटो से मॉडल",
+    "doorAgentsNote": "चैट मुफ़्त",
+    "editorNote": "टाइमलाइन पर काटें",
+    "flowNote": "कैनवास पर स्टेप जोड़ें",
+    "builderNote": "प्रॉम्प्ट से ऐप बनाएँ"
   },
   "fractions": {
     "title": "फ़्रैक्शन",

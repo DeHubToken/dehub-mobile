@@ -818,7 +818,17 @@
     "exportReady": "{{count}} ھېسابات، {{saved}} ساقلانغان يازمىلار چىقىرىلدى.",
     "importDone": "{{followed}} نى ئەگىپ، {{blocked}} نى توسۇپ، {{folders}} ھۆججەتلەر قۇرۇلدى.",
     "importPartial": "{{count}} ھېساباتلارنى ئەگىشەلمىدى — قايتا كىرگۈزۈشنى قايتا سىناڭ.",
-    "importProgress": "{{done}} نى {{total}} نىڭ ىچىدە قوللىنىش…"
+    "importProgress": "{{done}} نى {{total}} نىڭ ىچىدە قوللىنىش…",
+    "themeColor": "ئۇسلۇب رەڭگى",
+    "themeColorDesc": "بۇ ئۇسلۇب ئۈچۈن ئىختىيارى رەڭ تاللاڭ",
+    "themeColorReset": "ئەسلىگە قايتۇرۇش",
+    "themeColorWhite": "ئاق",
+    "themeColorBlack": "قارا",
+    "themeColorRainbow": "ھەسەن-ھۆسەن",
+    "themeColorBrand": "ماركا",
+    "themeColorBrandDesc": "سەھىپە رەسىمىڭىزنىڭ رەڭلىرىنى ئىشلىتىش",
+    "themeColorBrandNoAvatar": "ماركا رەڭگىنى ئىشلىتىش ئۈچۈن سەھىپە رەسىمى قوشۇڭ",
+    "themeColorBrandFailed": "سەھىپە رەسىمىڭىزدىن رەڭ ئوقۇغىلى بولمىدى"
   },
   "common": {
     "mute": "ئاۋازنى ئېتىش",
@@ -1008,7 +1018,8 @@
     "boostPostDesc": "ئۇنى باش بەت ئېقىمىنىڭ ئۈستىگە قويۇڭ",
     "mintPostDesc": "بۇ يازمىنى زەنجىردە ئېلان قىلىڭ",
     "giftBoost": "بىر كۈچەيتىش سوۋغا قىلىش",
-    "giftBoostDesc": "ئۆزىڭىزنىڭكىدىن بىرنى بۇ يازمىغا سەرپ قىلىڭ"
+    "giftBoostDesc": "ئۆزىڭىزنىڭكىدىن بىرنى بۇ يازمىغا سەرپ قىلىڭ",
+    "askAi": "سۈنئىي ئەقىلدىن سوراڭ"
   },
   "filters": {
     "sort": "تەرتىپلەش",
@@ -7215,7 +7226,25 @@
     "presetWhipPanHint": "ئاشكارىلىغۇچىغا تېز سۈرئەتتە يوشۇرۇنغان قازان",
     "presetWhipPanName": "Whip Pan",
     "presetYtSplitHint": "بىر ھېكايىنى سۆزلەيدىغان بۆلەك ئېكرانلىق كىچىككىنە رەسىم",
-    "presetYtSplitName": "Before / After Thumbnail"
+    "presetYtSplitName": "Before / After Thumbnail",
+    "navAudio": "ئاۋاز",
+    "navAgents": "ۋاكالەتچىلەر",
+    "heroTitle": "بۈگۈن نېمە ياسايسىز؟",
+    "heroSubtitle": "رەسىم، سىن، مۇزىكا ۋە 3D. ھەر بىر ئىجادىيەت ئۈچۈن DHB بىلەن تۆلەڭ.",
+    "startCreating": "ئىجاد قىلىشنى باشلاش",
+    "startCreatingSub": "ستۇدىيەنى ئېچىڭ. ھەر بىر قۇرۇش باھاسىنى DHB دا كۆرسىتىدۇ.",
+    "pickMedium": "ۋاسىتە تاللاڭ",
+    "moreTools": "تېخىمۇ كۆپ قوراللار",
+    "yourLibrary": "كۇتۇپخانىڭىز",
+    "doorImageNote": "رەسىم، ئافىشا ۋە تەھرىرلەر",
+    "doorVideoNote": "تېكىست ياكى رەسىمدىن كلىپ",
+    "doorAudioNote": "ئاۋاز قوراللىرى ھەقسىز",
+    "door3d": "3D",
+    "door3dNote": "كۆرسەتمە ياكى رەسىمدىن مودېل",
+    "doorAgentsNote": "پاراڭلىشىش ھەقسىز",
+    "editorNote": "ۋاقىت ئوقىدا كېسىڭ",
+    "flowNote": "كانۋادا باسقۇچلارنى ئۇلاڭ",
+    "builderNote": "كۆرسەتمىدىن ئەپ ياساڭ"
   },
   "fractions": {
     "title": "ئۈلۈشلەر",

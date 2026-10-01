@@ -818,7 +818,17 @@
     "exportReady": "{{count}} ಖಾತೆಗಳು, {{saved}} ಸಂಗ್ರಹಿಸಿದ ಪೋಸ್ಟ್‌ಗಳು ರವಾನೆಯಾಗಿವೆ.",
     "importDone": "{{followed}} ಖಾತೆಗಳನ್ನು ಅನುಸರಿಸಿದರು, {{blocked}} ನಿಷೇಧಿಸಿದರು, {{folders}} ಫೋಲ್ಡರ್‌ಗಳು ರಚಿಸಲಾಗಿವೆ.",
     "importPartial": "{{count}} ಖಾತೆಗಳನ್ನು ಅನುಸರಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ — ಅವರನ್ನು ಮರುಪ್ರಯತ್ನಿಸಲು ಇಂಪೋರ್ಟ್ ಮಾಡಿ.",
-    "importProgress": "ಅನುಗುಣವಾಗಿ {{done}} ಆಫ್ {{total}}…"
+    "importProgress": "ಅನುಗುಣವಾಗಿ {{done}} ಆಫ್ {{total}}…",
+    "themeColor": "ಥೀಮ್ ಬಣ್ಣ",
+    "themeColorDesc": "ಈ ಥೀಮ್‌ಗಾಗಿ ಕಸ್ಟಮ್ ಬಣ್ಣ ಆಯ್ಕೆಮಾಡಿ",
+    "themeColorReset": "ಮರುಹೊಂದಿಸಿ",
+    "themeColorWhite": "ಬಿಳಿ",
+    "themeColorBlack": "ಕಪ್ಪು",
+    "themeColorRainbow": "ಕಾಮನಬಿಲ್ಲು",
+    "themeColorBrand": "ಬ್ರಾಂಡ್",
+    "themeColorBrandDesc": "ನಿಮ್ಮ ಪ್ರೊಫೈಲ್ ಚಿತ್ರದ ಬಣ್ಣಗಳನ್ನು ಬಳಸಿ",
+    "themeColorBrandNoAvatar": "ಬ್ರಾಂಡ್ ಬಣ್ಣಗಳನ್ನು ಬಳಸಲು ಪ್ರೊಫೈಲ್ ಚಿತ್ರ ಸೇರಿಸಿ",
+    "themeColorBrandFailed": "ನಿಮ್ಮ ಪ್ರೊಫೈಲ್ ಚಿತ್ರದಿಂದ ಬಣ್ಣಗಳನ್ನು ಓದಲಾಗಲಿಲ್ಲ"
   },
   "common": {
     "mute": "ಮ್ಯೂಟ್ ಮಾಡಿ",
@@ -1008,7 +1018,8 @@
     "boostPostDesc": "ಅದನ್ನು ಹೋಮ್ ಫೀಡ್‌ನ ಮೇಲ್ಭಾಗದಲ್ಲಿ ಇರಿಸಿ",
     "mintPostDesc": "ಈ ಪೋಸ್ಟ್ ಅನ್ನು ಆನ್-ಚೈನ್ ಪ್ರಕಟಿಸಿ",
     "giftBoost": "ಬೂಸ್ಟ್ ಉಡುಗೊರೆ ನೀಡಿ",
-    "giftBoostDesc": "ನಿಮ್ಮದರಲ್ಲಿ ಒಂದನ್ನು ಈ ಪೋಸ್ಟ್‌ಗೆ ಬಳಸಿ"
+    "giftBoostDesc": "ನಿಮ್ಮದರಲ್ಲಿ ಒಂದನ್ನು ಈ ಪೋಸ್ಟ್‌ಗೆ ಬಳಸಿ",
+    "askAi": "AI ಅನ್ನು ಕೇಳಿ"
   },
   "filters": {
     "sort": "ವಿಂಗಡಿಸಿ",
@@ -7209,7 +7220,25 @@
     "presetWhipPanHint": "ಫಾಸ್ಟ್ ಮಸುಕಾದ ಪ್ಯಾನ್ ಅನ್ನು ಬಹಿರಂಗಪಡಿಸಿ",
     "presetWhipPanName": "ವಿಪ್ ಪ್ಯಾನ್",
     "presetYtSplitHint": "ಕಥೆಯನ್ನು ಹೇಳುವ ಸ್ಪ್ಲಿಟ್-ಸ್ಕ್ರೀನ್ ಥಂಬ್‌ನೇಲ್",
-    "presetYtSplitName": "ಥಂಬ್‌ನೇಲ್‌ಗೆ ಮೊದಲು / ನಂತರ"
+    "presetYtSplitName": "ಥಂಬ್‌ನೇಲ್‌ಗೆ ಮೊದಲು / ನಂತರ",
+    "navAudio": "ಆಡಿಯೋ",
+    "navAgents": "ಏಜೆಂಟ್‌ಗಳು",
+    "heroTitle": "ಇಂದು ಏನು ರಚಿಸುತ್ತಿದ್ದೀರಿ?",
+    "heroSubtitle": "ಚಿತ್ರಗಳು, ವೀಡಿಯೊ, ಸಂಗೀತ ಮತ್ತು 3D. ಪ್ರತಿ ರಚನೆಗೆ DHB ನಲ್ಲಿ ಪಾವತಿಸಿ.",
+    "startCreating": "ರಚಿಸಲು ಪ್ರಾರಂಭಿಸಿ",
+    "startCreatingSub": "ಸ್ಟುಡಿಯೋ ತೆರೆಯಿರಿ. ಪ್ರತಿ ರಚನೆಯೂ ಅದರ ಬೆಲೆಯನ್ನು DHB ನಲ್ಲಿ ತೋರಿಸುತ್ತದೆ.",
+    "pickMedium": "ಮಾಧ್ಯಮ ಆಯ್ಕೆಮಾಡಿ",
+    "moreTools": "ಇನ್ನಷ್ಟು ಉಪಕರಣಗಳು",
+    "yourLibrary": "ನಿಮ್ಮ ಲೈಬ್ರರಿ",
+    "doorImageNote": "ಚಿತ್ರಗಳು, ಪೋಸ್ಟರ್‌ಗಳು ಮತ್ತು ಎಡಿಟ್‌ಗಳು",
+    "doorVideoNote": "ಪಠ್ಯ ಅಥವಾ ಫೋಟೋದಿಂದ ಕ್ಲಿಪ್‌ಗಳು",
+    "doorAudioNote": "ಧ್ವನಿ ಉಪಕರಣಗಳು ಉಚಿತ",
+    "door3d": "3D",
+    "door3dNote": "ಪ್ರಾಂಪ್ಟ್ ಅಥವಾ ಫೋಟೋದಿಂದ ಮಾಡೆಲ್‌ಗಳು",
+    "doorAgentsNote": "ಚಾಟ್ ಉಚಿತ",
+    "editorNote": "ಟೈಮ್‌ಲೈನ್‌ನಲ್ಲಿ ಕತ್ತರಿಸಿ",
+    "flowNote": "ಕ್ಯಾನ್ವಾಸ್‌ನಲ್ಲಿ ಹಂತಗಳನ್ನು ಜೋಡಿಸಿ",
+    "builderNote": "ಪ್ರಾಂಪ್ಟ್‌ನಿಂದ ಆ್ಯಪ್ ರಚಿಸಿ"
   },
   "fractions": {
     "title": "ಭಿನ್ನರಾಶಿಗಳು",

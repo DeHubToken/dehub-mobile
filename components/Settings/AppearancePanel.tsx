@@ -2,7 +2,7 @@
  * Appearance panel — mirrors web's `AppearanceSettings`
  * (dehubweb src/pages/app/SettingsPage.tsx).
  *
- * Ported: Theme (a sample per theme, as web's picker), Language, Dim Lights (+ strength),
+ * Ported: Theme (a sample per theme, as web's picker), Theme Color, Language, Dim Lights (+ strength),
  * Auto-play, Data Saver. Web's seasonal themes and Light are not: Light was
  * tried and pulled (#673), and the seasonal ones are canvas art.
  * Not ported, deliberately:
@@ -25,6 +25,8 @@ import {
   Divider,
 } from './SettingsPrimitives';
 import ThemePicker from './ThemePicker';
+import ThemeColorPicker from './ThemeColorPicker';
+import { hasThemeColor } from '../../theme/themeColor';
 import { useAppPrefs, setAppPref } from '../../hooks/useAppPrefs';
 import { useDataSaver, setDataSaverPref } from '../../hooks/useDataSaver';
 import { useHighQualityImages, setHighQualityImages } from '../../libs/cdnImage';
@@ -84,6 +86,13 @@ const AppearancePanel: React.FC = () => {
           <ThemePicker />
         </View>
       </SettingsAnchor>
+
+      {/* Web's Theme Color, for the themes whose backdrop takes a colour. */}
+      {hasThemeColor(prefs.theme) ? (
+        <SettingsAnchor id="theme-color">
+          <ThemeColorPicker theme={prefs.theme} />
+        </SettingsAnchor>
+      ) : null}
 
       <SettingsSection label={t('settings.appearance')} icon="Monitor" anchor="dim-lights">
         <SettingsToggleRow

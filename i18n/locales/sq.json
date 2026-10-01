@@ -818,7 +818,17 @@
     "exportReady": "{{count}} llogaritë, {{saved}} postimet e ruajtura u eksportuan.",
     "importDone": "Dosjet e ndjekura {{followed}}, të bllokuara {{blocked}}, {{folders}} u krijuan.",
     "importPartial": "{{count}} llogaritë nuk mund të ndiqeshin — ekzekutoni importin përsëri për t 'i riprovuar ato.",
-    "importProgress": "Duke aplikuar {{done}} të {{total}}…"
+    "importProgress": "Duke aplikuar {{done}} të {{total}}…",
+    "themeColor": "Ngjyra e temës",
+    "themeColorDesc": "Zgjidh një ngjyrë të personalizuar për këtë temë",
+    "themeColorReset": "Rivendos",
+    "themeColorWhite": "E bardhë",
+    "themeColorBlack": "E zezë",
+    "themeColorRainbow": "Ylber",
+    "themeColorBrand": "Marka",
+    "themeColorBrandDesc": "Përdor ngjyrat e fotos sate të profilit",
+    "themeColorBrandNoAvatar": "Shto një foto profili për të përdorur ngjyrat e markës",
+    "themeColorBrandFailed": "Nuk u lexuan dot ngjyrat nga fotoja jote e profilit"
   },
   "common": {
     "mute": "Hiq zërin",
@@ -1008,7 +1018,8 @@
     "boostPostDesc": "Vendose në krye të feed-it kryesor",
     "mintPostDesc": "Publiko këtë postim on-chain",
     "giftBoost": "Dhuro një boost",
-    "giftBoostDesc": "Shpenzo një nga të tutë për këtë postim"
+    "giftBoostDesc": "Shpenzo një nga të tutë për këtë postim",
+    "askAi": "Pyet AI"
   },
   "filters": {
     "sort": "Rendit",
@@ -1863,7 +1874,16 @@
     "tryAnotherGenre": "Provoni një zhanër tjetër.",
     "pauseStation": "Vëre stacionin në pauzë",
     "resumeStation": "Vazhdo stacionin",
-    "stopRadio": "Ndale radion"
+    "stopRadio": "Ndale radion",
+    "playsToday": "{{plays}} dëgjime sot",
+    "listen": "Dëgjo",
+    "top50": "Top 50",
+    "playAll": "Luaj të gjitha",
+    "nothingHereYet": "Ende asgjë këtu.",
+    "likeStation": "Pëlqe stacionin",
+    "unlikeStation": "Hiq pëlqimin",
+    "shareStation": "Ndaj stacionin",
+    "listeningTo": "Po dëgjoj {{name}} në DeHub"
   },
   "notFound": {
     "title": "Faqja Nuk u Gjet",
@@ -5486,7 +5506,16 @@
     "preparingCamera": "Duke përgatitur kamerën…",
     "reconnecting": "Duke u rikonektuar…",
     "connecting": "Duke u lidhur…",
-    "shopPutOnAir": "Vëre në transmetim"
+    "shopPutOnAir": "Vëre në transmetim",
+    "streamCount_one": "{{count}} transmetim",
+    "streamCount_other": "{{count}} transmetime",
+    "noOneStreamingGame": "Askush nuk po transmeton {{game}} tani.",
+    "seeAllStreams": "Shiko të gjitha transmetimet",
+    "isLiveNow": "{{name}} është live",
+    "justChatting": "Thjesht bisedë",
+    "noLiveStreams": "Nuk ka transmetime live",
+    "noOneStreaming": "Askush nuk po transmeton tani. Kthehu më vonë!",
+    "loadStreamsFailed": "Transmetimet nuk u ngarkuan. Provo përsëri."
   },
   "liveShop": {
     "title": "Bli nga ky transmetim",
@@ -7217,7 +7246,25 @@
     "presetWhipPanHint": "Pana shpejtë e bleruar në shfaqjen e një objekti",
     "presetWhipPanName": "Whip Pan",
     "presetYtSplitHint": "Imazh thumbnail i ndarë në dy pjesë që tregon një histori",
-    "presetYtSplitName": "Before / After Thumbnail"
+    "presetYtSplitName": "Before / After Thumbnail",
+    "navAudio": "Audio",
+    "navAgents": "Agjentë",
+    "heroTitle": "Çfarë po krijoni sot?",
+    "heroSubtitle": "Imazhe, video, muzikë dhe 3D. Paguani për çdo krijim në DHB.",
+    "startCreating": "Filloni të krijoni",
+    "startCreatingSub": "Hapni studion. Çdo krijim tregon çmimin e vet në DHB.",
+    "pickMedium": "Zgjidhni një medium",
+    "moreTools": "Më shumë mjete",
+    "yourLibrary": "Biblioteka juaj",
+    "doorImageNote": "Imazhe, postera dhe redaktime",
+    "doorVideoNote": "Klipe nga teksti ose një foto",
+    "doorAudioNote": "Mjetet e zërit falas",
+    "door3d": "3D",
+    "door3dNote": "Modele nga një kërkesë ose foto",
+    "doorAgentsNote": "Bisedë falas",
+    "editorNote": "Priteni në një kronologji",
+    "flowNote": "Lidhni hapa në një kanavacë",
+    "builderNote": "Krijoni një aplikacion nga një kërkesë"
   },
   "fractions": {
     "title": "Pjesë",

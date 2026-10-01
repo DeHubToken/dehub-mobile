@@ -818,7 +818,17 @@
     "exportReady": "{{count}} conturi, {{saved}} postări salvate exportate.",
     "importDone": "Urmăriți {{followed}}, blocat {{blocked}}, {{folders}} foldere create.",
     "importPartial": "{{count}} conturi nu au putut fi urmărite — rulați importul din nou pentru a încerca din nou.",
-    "importProgress": "Se aplică {{done}} din {{total}}…"
+    "importProgress": "Se aplică {{done}} din {{total}}…",
+    "themeColor": "Culoarea temei",
+    "themeColorDesc": "Alege o culoare personalizată pentru această temă",
+    "themeColorReset": "Resetează",
+    "themeColorWhite": "Alb",
+    "themeColorBlack": "Negru",
+    "themeColorRainbow": "Curcubeu",
+    "themeColorBrand": "Brand",
+    "themeColorBrandDesc": "Folosește culorile pozei tale de profil",
+    "themeColorBrandNoAvatar": "Adaugă o poză de profil ca să folosești culorile de brand",
+    "themeColorBrandFailed": "Nu am putut citi culorile din poza ta de profil"
   },
   "common": {
     "mute": "Dezactivează sunetul",
@@ -1008,7 +1018,8 @@
     "boostPostDesc": "Pune-o în capul fluxului principal",
     "mintPostDesc": "Publică această postare on-chain",
     "giftBoost": "Oferă un boost",
-    "giftBoostDesc": "Folosește unul dintre ale tale pe această postare"
+    "giftBoostDesc": "Folosește unul dintre ale tale pe această postare",
+    "askAi": "Întreabă AI"
   },
   "filters": {
     "sort": "Sortează",
@@ -1863,7 +1874,16 @@
     "tryAnotherGenre": "Încearcă un alt gen.",
     "pauseStation": "Pauză postului",
     "resumeStation": "Continuă postul",
-    "stopRadio": "Oprește radioul"
+    "stopRadio": "Oprește radioul",
+    "playsToday": "{{plays}} ascultări azi",
+    "listen": "Ascultă",
+    "top50": "Top 50",
+    "playAll": "Redă tot",
+    "nothingHereYet": "Încă nu e nimic aici.",
+    "likeStation": "Apreciază postul",
+    "unlikeStation": "Nu mai aprecia",
+    "shareStation": "Distribuie postul",
+    "listeningTo": "Ascult {{name}} pe DeHub"
   },
   "notFound": {
     "title": "Pagina nu a fost găsită",
@@ -5486,7 +5506,16 @@
     "shopAllAttached": "Tot ce este activ în magazinul tău este deja pe acest stream.",
     "shopNoListings": "Nu ai încă nicio listare. Creează-le mai întâi pe magazinul web.",
     "shopEmpty": "Adaugă ceva din magazinul tău și spectatorii îl pot cumpăra fără a părăsi stream-ul.",
-    "shopPutOnAir": "Pune pe post"
+    "shopPutOnAir": "Pune pe post",
+    "streamCount_one": "{{count}} transmisiune",
+    "streamCount_other": "{{count}} transmisiuni",
+    "noOneStreamingGame": "Nimeni nu transmite {{game}} acum.",
+    "seeAllStreams": "Vezi toate transmisiunile",
+    "isLiveNow": "{{name}} este live",
+    "justChatting": "Doar discuții",
+    "noLiveStreams": "Nicio transmisiune live",
+    "noOneStreaming": "Nimeni nu transmite acum. Revino mai târziu!",
+    "loadStreamsFailed": "Transmisiunile nu s-au putut încărca. Încearcă din nou."
   },
   "liveShop": {
     "title": "Cumpără din această transmisiune",
@@ -7232,7 +7261,25 @@
     "presetWhipPanHint": "Pan rapid învârtit în revelarea",
     "presetWhipPanName": "Whip Pan",
     "presetYtSplitHint": "Miniatura cu două fațete care spune o poveste",
-    "presetYtSplitName": "Before / After Thumbnail"
+    "presetYtSplitName": "Before / After Thumbnail",
+    "navAudio": "Audio",
+    "navAgents": "Agenți",
+    "heroTitle": "Ce creezi azi?",
+    "heroSubtitle": "Imagini, video, muzică și 3D. Plătești per creație în DHB.",
+    "startCreating": "Începe să creezi",
+    "startCreatingSub": "Deschide studioul. Fiecare creație își afișează prețul în DHB.",
+    "pickMedium": "Alege un mediu",
+    "moreTools": "Mai multe instrumente",
+    "yourLibrary": "Biblioteca ta",
+    "doorImageNote": "Imagini, postere și editări",
+    "doorVideoNote": "Clipuri din text sau dintr-o fotografie",
+    "doorAudioNote": "Instrumente vocale gratuite",
+    "door3d": "3D",
+    "door3dNote": "Modele dintr-un prompt sau o fotografie",
+    "doorAgentsNote": "Chat gratuit",
+    "editorNote": "Editează pe cronologie",
+    "flowNote": "Înlănțuie pași pe o planșă",
+    "builderNote": "Creează o aplicație dintr-un prompt"
   },
   "fractions": {
     "title": "Fracții",

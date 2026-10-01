@@ -818,7 +818,17 @@
     "importDone": "{{followed}} במעקב, {{blocked}} חסום, {{folders}} תיקיות נוצרו.",
     "importPartial": "לא ניתן היה לעקוב אחר {{count}} חשבונות — יש להפעיל את הייבוא שוב כדי לנסות אותם שוב.",
     "importProgress": "הגשת בקשה {{done}} מתוך {{total}}…",
-    "socialLinksDesc": "X, אינסטגרם, טיקטוק, יוטיוב, דיסקורד, טלגרם"
+    "socialLinksDesc": "X, אינסטגרם, טיקטוק, יוטיוב, דיסקורד, טלגרם",
+    "themeColor": "צבע ערכת נושא",
+    "themeColorDesc": "בחרו צבע מותאם לערכת הנושא הזו",
+    "themeColorReset": "איפוס",
+    "themeColorWhite": "לבן",
+    "themeColorBlack": "שחור",
+    "themeColorRainbow": "קשת בענן",
+    "themeColorBrand": "מותג",
+    "themeColorBrandDesc": "שימוש בצבעי תמונת הפרופיל שלך",
+    "themeColorBrandNoAvatar": "הוסיפו תמונת פרופיל כדי להשתמש בצבעי המותג",
+    "themeColorBrandFailed": "לא הצלחנו לקרוא צבעים מתמונת הפרופיל שלך"
   },
   "common": {
     "mute": "השתק",
@@ -1008,7 +1018,8 @@
     "boostPostDesc": "מקמו אותו בראש הפיד הראשי",
     "mintPostDesc": "פרסמו את הפוסט הזה על השרשרת",
     "giftBoost": "העניקו בוסט במתנה",
-    "giftBoostDesc": "השתמשו באחד משלכם על הפוסט הזה"
+    "giftBoostDesc": "השתמשו באחד משלכם על הפוסט הזה",
+    "askAi": "שאל את ה-AI"
   },
   "filters": {
     "sort": "מיון",
@@ -1860,7 +1871,16 @@
     "tryAnotherGenre": "נסה ז'אנר אחר.",
     "pauseStation": "השהה את התחנה",
     "resumeStation": "המשך את התחנה",
-    "stopRadio": "עצור את הרדיו"
+    "stopRadio": "עצור את הרדיו",
+    "playsToday": "{{plays}} השמעות היום",
+    "listen": "האזנה",
+    "top50": "טופ 50",
+    "playAll": "נגן הכול",
+    "nothingHereYet": "אין כאן עדיין כלום.",
+    "likeStation": "אהבתי את התחנה",
+    "unlikeStation": "ביטול אהבתי",
+    "shareStation": "שיתוף התחנה",
+    "listeningTo": "מאזין/ה ל-{{name}} ב-DeHub"
   },
   "notFound": {
     "title": "הדף לא נמצא",
@@ -5481,7 +5501,16 @@
     "preparingCamera": "מכין מצלמה…",
     "reconnecting": "מתחבר מחדש…",
     "connecting": "מתחבר…",
-    "shopPutOnAir": "להעלות את האוויר לאוויר"
+    "shopPutOnAir": "להעלות את האוויר לאוויר",
+    "streamCount_one": "שידור אחד",
+    "streamCount_other": "{{count}} שידורים",
+    "noOneStreamingGame": "אף אחד לא משדר {{game}} כרגע.",
+    "seeAllStreams": "כל השידורים",
+    "isLiveNow": "{{name}} בשידור חי",
+    "justChatting": "סתם צ'אט",
+    "noLiveStreams": "אין שידורים חיים",
+    "noOneStreaming": "אף אחד לא משדר כרגע. כדאי לבדוק שוב אחר כך!",
+    "loadStreamsFailed": "לא ניתן לטעון שידורים. נסו שוב."
   },
   "liveShop": {
     "title": "קנו מהשידור הזה",
@@ -7205,7 +7234,25 @@
     "presetWhipPanHint": "פאנינג מהיר ומתמזג בהדרגה לגילוי",
     "presetWhipPanName": "שוט פאן",
     "presetYtSplitHint": "תמונה מסך מפוצלת המספר סיפור",
-    "presetYtSplitName": "לפני / אחרי תמונה ממוזערת"
+    "presetYtSplitName": "לפני / אחרי תמונה ממוזערת",
+    "navAudio": "אודיו",
+    "navAgents": "סוכנים",
+    "heroTitle": "מה תיצור היום?",
+    "heroSubtitle": "תמונות, וידאו, מוזיקה ו-3D. תשלום לפי יצירה ב-DHB.",
+    "startCreating": "התחל ליצור",
+    "startCreatingSub": "פתח את הסטודיו. כל יצירה מציגה את מחירה ב-DHB.",
+    "pickMedium": "בחר מדיה",
+    "moreTools": "כלים נוספים",
+    "yourLibrary": "הספרייה שלך",
+    "doorImageNote": "תמונות, פוסטרים ועריכות",
+    "doorVideoNote": "קליפים מטקסט או מתמונה",
+    "doorAudioNote": "כלי קול בחינם",
+    "door3d": "3D",
+    "door3dNote": "מודלים מהנחיה או מתמונה",
+    "doorAgentsNote": "צ׳אט בחינם",
+    "editorNote": "ערוך על ציר זמן",
+    "flowNote": "שרשר שלבים על קנבס",
+    "builderNote": "צור אפליקציה מהנחיה"
   },
   "fractions": {
     "title": "חלקים",

@@ -818,7 +818,17 @@
     "exportReady": "{{count}} akaun, {{saved}} hantaran yang disimpan dieksport.",
     "importDone": "Mengikuti {{followed}}, menyekat {{blocked}}, {{folders}} folder yang dicipta.",
     "importPartial": "Akaun {{count}} tidak dapat diikuti — jalankan import sekali lagi untuk mencubanya semula.",
-    "importProgress": "Memohon {{done}} daripada {{total}}…"
+    "importProgress": "Memohon {{done}} daripada {{total}}…",
+    "themeColor": "Warna Tema",
+    "themeColorDesc": "Pilih warna tersuai untuk tema ini",
+    "themeColorReset": "Tetap semula",
+    "themeColorWhite": "Putih",
+    "themeColorBlack": "Hitam",
+    "themeColorRainbow": "Pelangi",
+    "themeColorBrand": "Jenama",
+    "themeColorBrandDesc": "Guna warna gambar profil anda",
+    "themeColorBrandNoAvatar": "Tambah gambar profil untuk menggunakan warna Jenama",
+    "themeColorBrandFailed": "Tidak dapat membaca warna daripada gambar profil anda"
   },
   "common": {
     "mute": "Bisukan",
@@ -1268,7 +1278,8 @@
     "boostPostDesc": "Letakkan di bahagian atas suapan utama",
     "mintPostDesc": "Terbitkan siaran ini di rantaian",
     "giftBoost": "Hadiahkan boost",
-    "giftBoostDesc": "Gunakan satu milik anda pada siaran ini"
+    "giftBoostDesc": "Gunakan satu milik anda pada siaran ini",
+    "askAi": "Tanya AI"
   },
   "filters": {
     "sort": "Isih",
@@ -2123,7 +2134,16 @@
     "tryAnotherGenre": "Cuba genre lain.",
     "pauseStation": "Jeda stesen",
     "resumeStation": "Sambung semula stesen",
-    "stopRadio": "Hentikan radio"
+    "stopRadio": "Hentikan radio",
+    "playsToday": "{{plays}} kali dimainkan hari ini",
+    "listen": "Dengar",
+    "top50": "Top 50",
+    "playAll": "Main semua",
+    "nothingHereYet": "Belum ada apa-apa di sini.",
+    "likeStation": "Suka stesen",
+    "unlikeStation": "Batal suka stesen",
+    "shareStation": "Kongsi stesen",
+    "listeningTo": "Mendengar {{name}} di DeHub"
   },
   "notFound": {
     "title": "Halaman Tidak Ditemui",
@@ -5743,7 +5763,16 @@
     "preparingCamera": "Menyediakan kamera…",
     "reconnecting": "Menyambung semula…",
     "connecting": "Menyambung…",
-    "shopPutOnAir": "Siarkan"
+    "shopPutOnAir": "Siarkan",
+    "streamCount_one": "{{count}} strim",
+    "streamCount_other": "{{count}} strim",
+    "noOneStreamingGame": "Tiada sesiapa menstrim {{game}} sekarang.",
+    "seeAllStreams": "Lihat semua strim",
+    "isLiveNow": "{{name}} sedang live",
+    "justChatting": "Sembang sahaja",
+    "noLiveStreams": "Tiada strim langsung",
+    "noOneStreaming": "Tiada sesiapa menstrim sekarang. Kembali nanti!",
+    "loadStreamsFailed": "Gagal memuatkan strim. Cuba lagi."
   },
   "liveShop": {
     "title": "Beli-belah dari siaran ini",
@@ -7475,7 +7504,25 @@
     "presetWhipPanHint": "Pecut cepat yang kabur ke dalam rahasia",
     "presetWhipPanName": "Whip Pan",
     "presetYtSplitHint": "Thumbnail split-screen yang menceritakan kisah",
-    "presetYtSplitName": "Before / After Thumbnail"
+    "presetYtSplitName": "Before / After Thumbnail",
+    "navAudio": "Audio",
+    "navAgents": "Ejen",
+    "heroTitle": "Apa yang anda cipta hari ini?",
+    "heroSubtitle": "Imej, video, muzik dan 3D. Bayar setiap ciptaan dengan DHB.",
+    "startCreating": "Mula mencipta",
+    "startCreatingSub": "Buka studio. Setiap ciptaan menunjukkan harganya dalam DHB.",
+    "pickMedium": "Pilih medium",
+    "moreTools": "Lagi alat",
+    "yourLibrary": "Pustaka anda",
+    "doorImageNote": "Imej pegun, poster dan suntingan",
+    "doorVideoNote": "Klip daripada teks atau foto",
+    "doorAudioNote": "Alat suara percuma",
+    "door3d": "3D",
+    "door3dNote": "Model daripada gesaan atau foto",
+    "doorAgentsNote": "Sembang percuma",
+    "editorNote": "Potong pada garis masa",
+    "flowNote": "Rangkaikan langkah pada kanvas",
+    "builderNote": "Bina aplikasi daripada gesaan"
   },
   "fractions": {
     "title": "Pecahan",

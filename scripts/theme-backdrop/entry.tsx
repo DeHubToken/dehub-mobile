@@ -10,6 +10,7 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { setBackgroundPaused } from '@/lib/background-gate';
+import { setBackdropColors } from '@/contexts/ThemeContext';
 import { CosmicBackground } from '@/components/app/CosmicBackground';
 import { HazyNightsBackground } from '@/components/app/HazyNightsBackground';
 import { SwarmsBackground } from '@/components/app/SwarmsBackground';
@@ -42,6 +43,9 @@ w.__THEME = theme;
 w.dehubBackdrop = {
   pause(paused: boolean) {
     setBackgroundPaused(!!paused);
+  },
+  setColors(themeHues: Record<string, number>, brandColors: string[]) {
+    setBackdropColors(themeHues, brandColors);
   },
 };
 

@@ -818,7 +818,17 @@
     "exportReady": "{{count}} account, {{saved}} na na-save na mga post na na-export.",
     "importDone": "Sinundan ang {{followed}}, binlock ang {{blocked}}, {{folders}} na mga folder ang nilikha.",
     "importPartial": "Hindi masundan ang {{count}} na mga account — patakbuhin muli ang pag-import upang subukang muli ang mga ito.",
-    "importProgress": "Inilalapat ang {{done}} ng {{total}}…"
+    "importProgress": "Inilalapat ang {{done}} ng {{total}}…",
+    "themeColor": "Kulay ng tema",
+    "themeColorDesc": "Pumili ng sariling kulay para sa temang ito",
+    "themeColorReset": "I-reset",
+    "themeColorWhite": "Puti",
+    "themeColorBlack": "Itim",
+    "themeColorRainbow": "Bahaghari",
+    "themeColorBrand": "Brand",
+    "themeColorBrandDesc": "Gamitin ang mga kulay ng profile picture mo",
+    "themeColorBrandNoAvatar": "Magdagdag ng profile picture para magamit ang mga kulay ng Brand",
+    "themeColorBrandFailed": "Hindi mabasa ang mga kulay mula sa profile picture mo"
   },
   "common": {
     "mute": "I-mute",
@@ -1050,7 +1060,8 @@
     "boostPostDesc": "Ilagay ito sa itaas ng home feed",
     "mintPostDesc": "I-publish ang post na ito on-chain",
     "giftBoost": "Magregalo ng boost",
-    "giftBoostDesc": "Gamitin ang isa sa iyo para sa post na ito"
+    "giftBoostDesc": "Gamitin ang isa sa iyo para sa post na ito",
+    "askAi": "Tanungin ang AI"
   },
   "filters": {
     "sort": "Ayusin",
@@ -1910,7 +1921,16 @@
     "tryAnotherGenre": "Subukan ang ibang genre.",
     "pauseStation": "I - pause ang istasyon",
     "resumeStation": "Ipagpatuloy ang istasyon",
-    "stopRadio": "Itigil ang radyo"
+    "stopRadio": "Itigil ang radyo",
+    "playsToday": "{{plays}} beses pinakinggan ngayon",
+    "listen": "Makinig",
+    "top50": "Top 50",
+    "playAll": "I-play lahat",
+    "nothingHereYet": "Wala pang laman dito.",
+    "likeStation": "I-like ang istasyon",
+    "unlikeStation": "I-unlike ang istasyon",
+    "shareStation": "Ibahagi ang istasyon",
+    "listeningTo": "Nakikinig sa {{name}} sa DeHub"
   },
   "notFound": {
     "title": "Hindi Natagpuan ang Page",
@@ -5532,7 +5552,16 @@
     "preparingCamera": "Inihahanda ang camera…",
     "reconnecting": "Kumokonekta muli…",
     "connecting": "Kumokonekta…",
-    "shopPutOnAir": "Maglagay ng air"
+    "shopPutOnAir": "Maglagay ng air",
+    "streamCount_one": "{{count}} stream",
+    "streamCount_other": "{{count}} na stream",
+    "noOneStreamingGame": "Walang nag-i-stream ng {{game}} ngayon.",
+    "seeAllStreams": "Tingnan lahat ng stream",
+    "isLiveNow": "Live si {{name}}",
+    "justChatting": "Kuwentuhan lang",
+    "noLiveStreams": "Walang live stream",
+    "noOneStreaming": "Walang nag-i-stream ngayon. Bumalik mamaya!",
+    "loadStreamsFailed": "Hindi ma-load ang mga stream. Subukang muli."
   },
   "liveShop": {
     "title": "Mamili mula sa stream na ito",
@@ -7398,7 +7427,25 @@
     "presetWhipPanHint": "Mabilis na pagpapalakbay na nagiging blur sa pagpapakita",
     "presetWhipPanName": "Whip Pan",
     "presetYtSplitHint": "Ang thumbnail na nagpapakita ng isang kuwento sa dalawang bahagi",
-    "presetYtSplitName": "Before / After Thumbnail"
+    "presetYtSplitName": "Before / After Thumbnail",
+    "navAudio": "Audio",
+    "navAgents": "Mga Agent",
+    "heroTitle": "Ano ang gagawin mo ngayon?",
+    "heroSubtitle": "Mga larawan, video, musika at 3D. Magbayad kada likha sa DHB.",
+    "startCreating": "Simulang gumawa",
+    "startCreatingSub": "Buksan ang studio. Ipinapakita ng bawat likha ang presyo nito sa DHB.",
+    "pickMedium": "Pumili ng medium",
+    "moreTools": "Iba pang tool",
+    "yourLibrary": "Iyong library",
+    "doorImageNote": "Mga larawan, poster at edit",
+    "doorVideoNote": "Mga clip mula sa teksto o larawan",
+    "doorAudioNote": "Libre ang voice tools",
+    "door3d": "3D",
+    "door3dNote": "Mga model mula sa prompt o larawan",
+    "doorAgentsNote": "Libre ang chat",
+    "editorNote": "I-cut sa timeline",
+    "flowNote": "Pagdugtungin ang mga hakbang sa canvas",
+    "builderNote": "Gumawa ng app mula sa prompt"
   },
   "fractions": {
     "title": "Mga bahagi",

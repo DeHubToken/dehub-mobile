@@ -818,7 +818,17 @@
     "exportReady": "{{count}} Konten, {{saved}} gespeicherte Beiträge exportiert.",
     "importDone": "{{followed}} gefolgt, {{blocked}} blockiert, {{folders}} Ordner erstellt.",
     "importPartial": "{{count}} -Konten konnten nicht verfolgt werden — führen Sie den Import erneut aus, um es erneut zu versuchen.",
-    "importProgress": "{{done}} von {{total}} wird angewendet..."
+    "importProgress": "{{done}} von {{total}} wird angewendet...",
+    "themeColor": "Themenfarbe",
+    "themeColorDesc": "Wähle eine eigene Farbe für dieses Thema",
+    "themeColorReset": "Zurücksetzen",
+    "themeColorWhite": "Weiß",
+    "themeColorBlack": "Schwarz",
+    "themeColorRainbow": "Regenbogen",
+    "themeColorBrand": "Marke",
+    "themeColorBrandDesc": "Farben deines Profilbilds verwenden",
+    "themeColorBrandNoAvatar": "Füge ein Profilbild hinzu, um Markenfarben zu nutzen",
+    "themeColorBrandFailed": "Farben deines Profilbilds konnten nicht gelesen werden"
   },
   "common": {
     "mute": "Stumm schalten",
@@ -1008,7 +1018,8 @@
     "boostPostDesc": "Setze ihn an die Spitze des Home-Feeds",
     "mintPostDesc": "Diesen Beitrag on-chain veröffentlichen",
     "giftBoost": "Boost verschenken",
-    "giftBoostDesc": "Gib einen deiner Boosts für diesen Beitrag aus"
+    "giftBoostDesc": "Gib einen deiner Boosts für diesen Beitrag aus",
+    "askAi": "KI fragen"
   },
   "filters": {
     "sort": "Sortieren",
@@ -1863,7 +1874,16 @@
     "tryAnotherGenre": "Versuche eine andere Genre.",
     "pauseStation": "Sender pausieren",
     "resumeStation": "Sender fortsetzen",
-    "stopRadio": "Radio stoppen"
+    "stopRadio": "Radio stoppen",
+    "playsToday": "Heute {{plays}}-mal gehört",
+    "listen": "Anhören",
+    "top50": "Top 50",
+    "playAll": "Alle abspielen",
+    "nothingHereYet": "Hier ist noch nichts.",
+    "likeStation": "Sender liken",
+    "unlikeStation": "Sender nicht mehr liken",
+    "shareStation": "Sender teilen",
+    "listeningTo": "Ich höre {{name}} auf DeHub"
   },
   "notFound": {
     "title": "Seite nicht gefunden",
@@ -5566,7 +5586,16 @@
     "preparingCamera": "Kamera wird vorbereitet…",
     "reconnecting": "Wiederverbinden…",
     "connecting": "Verbinden…",
-    "shopPutOnAir": "An die Luft bringen"
+    "shopPutOnAir": "An die Luft bringen",
+    "streamCount_one": "{{count}} Stream",
+    "streamCount_other": "{{count}} Streams",
+    "noOneStreamingGame": "Gerade streamt niemand {{game}}.",
+    "seeAllStreams": "Alle Streams ansehen",
+    "isLiveNow": "{{name}} ist live",
+    "justChatting": "Just Chatting",
+    "noLiveStreams": "Keine Livestreams",
+    "noOneStreaming": "Gerade streamt niemand. Schau später wieder vorbei!",
+    "loadStreamsFailed": "Streams konnten nicht geladen werden. Bitte versuche es erneut."
   },
   "liveShop": {
     "title": "In diesem Stream einkaufen",
@@ -7295,7 +7324,25 @@
     "presetWhipPanHint": "Schnelles verschwommenes Schwenken in die Enthüllung",
     "presetWhipPanName": "Peitschenpfanne",
     "presetYtSplitHint": "Vorschaubild mit geteiltem Bildschirm, das eine Geschichte erzählt",
-    "presetYtSplitName": "Vorher / Nachher Vorschaubild"
+    "presetYtSplitName": "Vorher / Nachher Vorschaubild",
+    "navAudio": "Audio",
+    "navAgents": "Agenten",
+    "heroTitle": "Was erstellst du heute?",
+    "heroSubtitle": "Bilder, Video, Musik und 3D. Zahle pro Erstellung in DHB.",
+    "startCreating": "Jetzt erstellen",
+    "startCreatingSub": "Öffne das Studio. Jede Erstellung zeigt ihren Preis in DHB.",
+    "pickMedium": "Medium wählen",
+    "moreTools": "Weitere Tools",
+    "yourLibrary": "Deine Bibliothek",
+    "doorImageNote": "Bilder, Poster und Bearbeitungen",
+    "doorVideoNote": "Clips aus Text oder einem Foto",
+    "doorAudioNote": "Sprachtools gratis",
+    "door3d": "3D",
+    "door3dNote": "Modelle aus einem Prompt oder Foto",
+    "doorAgentsNote": "Chatten gratis",
+    "editorNote": "Auf einer Zeitleiste schneiden",
+    "flowNote": "Schritte auf einer Arbeitsfläche verketten",
+    "builderNote": "Eine App aus einem Prompt erstellen"
   },
   "fractions": {
     "title": "Anteile",

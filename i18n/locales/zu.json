@@ -818,7 +818,17 @@
     "exportReady": "{{count}} ama-akhawunti, {{saved}} okuthunyelwe okugciniwe kuthunyelwe.",
     "importDone": "Kulandelwe {{followed}}, kuvinjelwe {{blocked}}, kwenziwe amafolda {{folders}}.",
     "importPartial": "Ama-akhawunti {{count}} awazange akwazi ukulandelwa — sebenzisa ukungenisa futhi ukuze uzame futhi.",
-    "importProgress": "Kufakwa {{done}} ye {{total}}…"
+    "importProgress": "Kufakwa {{done}} ye {{total}}…",
+    "themeColor": "Umbala wetimu",
+    "themeColorDesc": "Khetha umbala wakho kule timu",
+    "themeColorReset": "Setha kabusha",
+    "themeColorWhite": "Mhlophe",
+    "themeColorBlack": "Mnyama",
+    "themeColorRainbow": "Uthingo lwenkosikazi",
+    "themeColorBrand": "Umkhiqizo",
+    "themeColorBrandDesc": "Sebenzisa imibala yesithombe sakho sephrofayela",
+    "themeColorBrandNoAvatar": "Engeza isithombe sephrofayela ukuze usebenzise imibala yoMkhiqizo",
+    "themeColorBrandFailed": "Ayikwazanga ukufunda imibala esithombeni sakho sephrofayela"
   },
   "common": {
     "mute": "Thulisa",
@@ -1008,7 +1018,8 @@
     "boostPostDesc": "Ibeke phezulu kufidi lasekhaya",
     "mintPostDesc": "Shicilela lokhu okuthunyelwe ku-chain",
     "giftBoost": "Nikeza i-boost njengesipho",
-    "giftBoostDesc": "Sebenzisa eyodwa yakho kulokhu okuthunyelwe"
+    "giftBoostDesc": "Sebenzisa eyodwa yakho kulokhu okuthunyelwe",
+    "askAi": "Buza i-AI"
   },
   "filters": {
     "sort": "Hlela",
@@ -7247,7 +7258,25 @@
     "presetWhipPanHint": "U-Fast blurred pan into kuqala",
     "presetWhipPanName": "U-Whip Pan",
     "presetYtSplitHint": "Isithonjana sesikrini esihlukanisayo esitshela indaba",
-    "presetYtSplitName": "U-Before / After Thumbnail"
+    "presetYtSplitName": "U-Before / After Thumbnail",
+    "navAudio": "Umsindo",
+    "navAgents": "Ama-ejenti",
+    "heroTitle": "Wenzani namuhla?",
+    "heroSubtitle": "Izithombe, ividiyo, umculo ne-3D. Khokha ngokwakhiwe ngakunye nge-DHB.",
+    "startCreating": "Qala ukudala",
+    "startCreatingSub": "Vula isitudiyo. Konke ukudala kukhombisa intengo yako nge-DHB.",
+    "pickMedium": "Khetha uhlobo",
+    "moreTools": "Amathuluzi amaningi",
+    "yourLibrary": "Umtapo wakho",
+    "doorImageNote": "Izithombe, amaphosta nokuhlelwe",
+    "doorVideoNote": "Iziqeshana ezivela embhalweni noma esithombeni",
+    "doorAudioNote": "Amathuluzi ezwi mahhala",
+    "door3d": "3D",
+    "door3dNote": "Amamodeli avela kumyalo noma esithombeni",
+    "doorAgentsNote": "Ukuxoxa mahhala",
+    "editorNote": "Kusike kumugqa wesikhathi",
+    "flowNote": "Xhuma izinyathelo kukhanvasi",
+    "builderNote": "Yenza uhlelo lokusebenza kumyalo"
   },
   "fractions": {
     "title": "Izabelo",

@@ -818,7 +818,17 @@
     "exportReady": "{{count}} accounts, {{saved}} posts zilizohifadhiwa zimehamishwa.",
     "importDone": "Imefuata {{followed}}, imezuiwa {{blocked}}, {{folders}} folda zimeundwa.",
     "importPartial": "{{count}} akaunti hazikuweza kufuatwa — endesha uingizaji tena ili kuzijaribu tena.",
-    "importProgress": "Inatumika {{done}} ya {{total}}…"
+    "importProgress": "Inatumika {{done}} ya {{total}}…",
+    "themeColor": "Rangi ya Mandhari",
+    "themeColorDesc": "Chagua rangi maalum kwa mandhari haya",
+    "themeColorReset": "Weka upya",
+    "themeColorWhite": "Nyeupe",
+    "themeColorBlack": "Nyeusi",
+    "themeColorRainbow": "Upinde wa mvua",
+    "themeColorBrand": "Chapa",
+    "themeColorBrandDesc": "Tumia rangi za picha yako ya wasifu",
+    "themeColorBrandNoAvatar": "Ongeza picha ya wasifu ili kutumia rangi za Chapa",
+    "themeColorBrandFailed": "Haikuweza kusoma rangi kutoka picha yako ya wasifu"
   },
   "common": {
     "mute": "Nyamazisha",
@@ -1008,7 +1018,8 @@
     "boostPostDesc": "Weka juu ya mlisho wa nyumbani",
     "mintPostDesc": "Chapisha chapisho hili kwenye mnyororo",
     "giftBoost": "Toa kiboreshaji kama zawadi",
-    "giftBoostDesc": "Tumia kimoja chako kwenye chapisho hili"
+    "giftBoostDesc": "Tumia kimoja chako kwenye chapisho hili",
+    "askAi": "Uliza AI"
   },
   "filters": {
     "sort": "Panga",
@@ -1864,7 +1875,16 @@
     "tryAnotherGenre": "Jaribu aina nyingine.",
     "pauseStation": "Sitisha kituo",
     "resumeStation": "Endeleza kituo",
-    "stopRadio": "Zima redio"
+    "stopRadio": "Zima redio",
+    "playsToday": "Imesikilizwa mara {{plays}} leo",
+    "listen": "Sikiliza",
+    "top50": "50 Bora",
+    "playAll": "Cheza zote",
+    "nothingHereYet": "Bado hakuna kitu hapa.",
+    "likeStation": "Penda stesheni",
+    "unlikeStation": "Acha kupenda stesheni",
+    "shareStation": "Shiriki stesheni",
+    "listeningTo": "Ninasikiliza {{name}} kwenye DeHub"
   },
   "notFound": {
     "title": "Ukurasa Haujapatikana",
@@ -5487,7 +5507,16 @@
     "preparingCamera": "Inaandaa kamera…",
     "reconnecting": "Inaunganisha tena…",
     "connecting": "Inaunganisha…",
-    "shopPutOnAir": "Anza kutumia hewa"
+    "shopPutOnAir": "Anza kutumia hewa",
+    "streamCount_one": "Mtiririko {{count}}",
+    "streamCount_other": "Mitiririko {{count}}",
+    "noOneStreamingGame": "Hakuna anayetiririsha {{game}} sasa hivi.",
+    "seeAllStreams": "Tazama mitiririko yote",
+    "isLiveNow": "{{name}} yuko hewani",
+    "justChatting": "Mazungumzo tu",
+    "noLiveStreams": "Hakuna mitiririko ya moja kwa moja",
+    "noOneStreaming": "Hakuna anayetiririsha sasa. Rudi baadaye!",
+    "loadStreamsFailed": "Imeshindwa kupakia mitiririko. Jaribu tena."
   },
   "liveShop": {
     "title": "Nunua kutoka matangazo haya",
@@ -7219,7 +7248,25 @@
     "presetWhipPanHint": "Mviringo wa haraka na uingizwaji wa kufungwa kwenye kipindi cha kuonyesha",
     "presetWhipPanName": "Whip Pan",
     "presetYtSplitHint": "Kisanduku cha kuchora kwenye kipindi cha kihistoria",
-    "presetYtSplitName": "Before / After Thumbnail"
+    "presetYtSplitName": "Before / After Thumbnail",
+    "navAudio": "Sauti",
+    "navAgents": "Mawakala",
+    "heroTitle": "Unaunda nini leo?",
+    "heroSubtitle": "Picha, video, muziki na 3D. Lipa kwa kila ubunifu kwa DHB.",
+    "startCreating": "Anza kuunda",
+    "startCreatingSub": "Fungua studio. Kila uundaji huonyesha bei yake kwa DHB.",
+    "pickMedium": "Chagua aina ya maudhui",
+    "moreTools": "Zana zaidi",
+    "yourLibrary": "Maktaba yako",
+    "doorImageNote": "Picha, mabango na uhariri",
+    "doorVideoNote": "Klipu kutoka maandishi au picha",
+    "doorAudioNote": "Zana za sauti bure",
+    "door3d": "3D",
+    "door3dNote": "Modeli kutoka maelezo au picha",
+    "doorAgentsNote": "Gumzo bure",
+    "editorNote": "Kata kwenye mstari wa muda",
+    "flowNote": "Unganisha hatua kwenye turubai",
+    "builderNote": "Unda programu kutoka maelezo"
   },
   "fractions": {
     "title": "Hisa",

@@ -818,7 +818,17 @@
     "exportReady": "Konta: {{count}}, wyeksportowane posty: {{saved}}.",
     "importDone": "Obserwowane foldery: {{followed}}, zablokowane: {{blocked}}, {{folders}}.",
     "importPartial": "Nie można śledzić kont {{count}} — uruchom import ponownie, aby spróbować ponownie.",
-    "importProgress": "Stosowanie {{done}} z {{total}}…"
+    "importProgress": "Stosowanie {{done}} z {{total}}…",
+    "themeColor": "Kolor motywu",
+    "themeColorDesc": "Wybierz własny kolor dla tego motywu",
+    "themeColorReset": "Resetuj",
+    "themeColorWhite": "Biały",
+    "themeColorBlack": "Czarny",
+    "themeColorRainbow": "Tęcza",
+    "themeColorBrand": "Marka",
+    "themeColorBrandDesc": "Użyj kolorów ze zdjęcia profilowego",
+    "themeColorBrandNoAvatar": "Dodaj zdjęcie profilowe, aby użyć kolorów marki",
+    "themeColorBrandFailed": "Nie udało się odczytać kolorów ze zdjęcia profilowego"
   },
   "common": {
     "mute": "Wycisz",
@@ -1008,7 +1018,8 @@
     "boostPostDesc": "Umieść go na górze strony głównej",
     "mintPostDesc": "Opublikuj ten post on-chain",
     "giftBoost": "Podaruj boost",
-    "giftBoostDesc": "Wydaj jeden ze swoich na ten post"
+    "giftBoostDesc": "Wydaj jeden ze swoich na ten post",
+    "askAi": "Zapytaj AI"
   },
   "filters": {
     "sort": "Sortuj",
@@ -1863,7 +1874,16 @@
     "tryAnotherGenre": "Spróbuj innego gatunku.",
     "pauseStation": "Wstrzymaj stację",
     "resumeStation": "Wznów stację",
-    "stopRadio": "Zatrzymaj radio"
+    "stopRadio": "Zatrzymaj radio",
+    "playsToday": "Dziś {{plays}} odtworzeń",
+    "listen": "Słuchaj",
+    "top50": "Top 50",
+    "playAll": "Odtwórz wszystko",
+    "nothingHereYet": "Nic tu jeszcze nie ma.",
+    "likeStation": "Polub stację",
+    "unlikeStation": "Cofnij polubienie",
+    "shareStation": "Udostępnij stację",
+    "listeningTo": "Słucham {{name}} w DeHub"
   },
   "notFound": {
     "title": "Strona nie znaleziona",
@@ -5517,7 +5537,16 @@
     "preparingCamera": "Przygotowywanie kamery…",
     "reconnecting": "Ponowne łączenie…",
     "connecting": "Łączenie…",
-    "shopPutOnAir": "Włączyć klimatyzację"
+    "shopPutOnAir": "Włączyć klimatyzację",
+    "streamCount_one": "{{count}} transmisja",
+    "streamCount_other": "Transmisje: {{count}}",
+    "noOneStreamingGame": "Nikt teraz nie streamuje {{game}}.",
+    "seeAllStreams": "Zobacz wszystkie transmisje",
+    "isLiveNow": "{{name}} nadaje na żywo",
+    "justChatting": "Tylko rozmowy",
+    "noLiveStreams": "Brak transmisji na żywo",
+    "noOneStreaming": "Nikt teraz nie nadaje. Zajrzyj później!",
+    "loadStreamsFailed": "Nie udało się wczytać transmisji. Spróbuj ponownie."
   },
   "liveShop": {
     "title": "Kupuj w tej transmisji",
@@ -7317,7 +7346,25 @@
     "presetWhipPanHint": "Szybki, rozmyty pociąg do odsłonięcia",
     "presetWhipPanName": "Whip Pan",
     "presetYtSplitHint": "Miniatura podzielona na dwa ekrany, opowiadająca historię",
-    "presetYtSplitName": "Before / After Thumbnail"
+    "presetYtSplitName": "Before / After Thumbnail",
+    "navAudio": "Audio",
+    "navAgents": "Agenci",
+    "heroTitle": "Co dziś tworzysz?",
+    "heroSubtitle": "Obrazy, wideo, muzyka i 3D. Płać za każde dzieło w DHB.",
+    "startCreating": "Zacznij tworzyć",
+    "startCreatingSub": "Otwórz studio. Każde tworzenie pokazuje cenę w DHB.",
+    "pickMedium": "Wybierz medium",
+    "moreTools": "Więcej narzędzi",
+    "yourLibrary": "Twoja biblioteka",
+    "doorImageNote": "Zdjęcia, plakaty i edycje",
+    "doorVideoNote": "Klipy z tekstu lub zdjęcia",
+    "doorAudioNote": "Narzędzia głosowe za darmo",
+    "door3d": "3D",
+    "door3dNote": "Modele z promptu lub zdjęcia",
+    "doorAgentsNote": "Czat za darmo",
+    "editorNote": "Montuj na osi czasu",
+    "flowNote": "Łącz kroki na kanwie",
+    "builderNote": "Stwórz aplikację z promptu"
   },
   "fractions": {
     "title": "Frakcje",

@@ -1,3 +1,4 @@
+import { useSheetClosed } from '../../hooks/useSheetClosed';
 import SheetDismissHandle from "../ui/SheetDismissHandle";
 /**
  * Confirm a song before paying for it.
@@ -118,7 +119,7 @@ const MusicConfirmSheetComponent: React.FC<MusicConfirmSheetProps> = ({
 
   const translateY = useSharedValue(sheetHeight);
   const backdropOpacity = useSharedValue(0);
-  const [isFullyClosed, setIsFullyClosed] = useState(!visible);
+  const [isFullyClosed, setIsFullyClosed] = useSheetClosed(visible);
 
   useEffect(() => {
     if (visible) {

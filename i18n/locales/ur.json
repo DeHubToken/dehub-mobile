@@ -818,7 +818,17 @@
     "exportReady": "{{count}} اکاؤنٹس، {{saved}} محفوظ شدہ پوسٹس برآمد ہوئیں۔",
     "importDone": "{{followed}} کو فالو کیا، {{blocked}} کو بلاک کیا، {{folders}} فولڈرز بنائے گئے۔",
     "importPartial": "{{count}} اکاؤنٹس کو فالو نہیں کیا جا سکا — دوبارہ درآمد چلائیں تاکہ انہیں دوبارہ کوشش کریں۔",
-    "importProgress": "{{done}} کا اطلاق ہو رہا ہے، کل {{total}}…"
+    "importProgress": "{{done}} کا اطلاق ہو رہا ہے، کل {{total}}…",
+    "themeColor": "تھیم کا رنگ",
+    "themeColorDesc": "اس تھیم کے لیے اپنی پسند کا رنگ چنیں",
+    "themeColorReset": "ری سیٹ",
+    "themeColorWhite": "سفید",
+    "themeColorBlack": "سیاہ",
+    "themeColorRainbow": "دھنک",
+    "themeColorBrand": "برانڈ",
+    "themeColorBrandDesc": "اپنی پروفائل تصویر کے رنگ استعمال کریں",
+    "themeColorBrandNoAvatar": "برانڈ رنگ استعمال کرنے کے لیے پروفائل تصویر شامل کریں",
+    "themeColorBrandFailed": "آپ کی پروفائل تصویر سے رنگ نہیں پڑھے جا سکے"
   },
   "common": {
     "mute": "آواز بند کریں",
@@ -1008,7 +1018,8 @@
     "boostPostDesc": "اسے ہوم فیڈ کے سب سے اوپر رکھیں",
     "mintPostDesc": "یہ پوسٹ آن چین شائع کریں",
     "giftBoost": "ایک بوسٹ تحفے میں دیں",
-    "giftBoostDesc": "اپنا ایک اس پوسٹ پر خرچ کریں"
+    "giftBoostDesc": "اپنا ایک اس پوسٹ پر خرچ کریں",
+    "askAi": "AI سے پوچھیں"
   },
   "filters": {
     "sort": "ترتیب",
@@ -1863,7 +1874,16 @@
     "tryAnotherGenre": "کوئی دوسرا جنر آزمائیں۔",
     "pauseStation": "اسٹیشن کو روکیں",
     "resumeStation": "اسٹیشن دوبارہ شروع کریں",
-    "stopRadio": "ریڈیو بند کریں"
+    "stopRadio": "ریڈیو بند کریں",
+    "playsToday": "آج {{plays}} بار سنا گیا",
+    "listen": "سنیں",
+    "top50": "ٹاپ 50",
+    "playAll": "سب چلائیں",
+    "nothingHereYet": "یہاں ابھی کچھ نہیں ہے۔",
+    "likeStation": "اسٹیشن پسند کریں",
+    "unlikeStation": "پسند ہٹائیں",
+    "shareStation": "اسٹیشن شیئر کریں",
+    "listeningTo": "DeHub پر {{name}} سن رہا ہوں"
   },
   "notFound": {
     "title": "صفحہ نہیں ملا",
@@ -5486,7 +5506,16 @@
     "preparingCamera": "کیمرہ تیار ہو رہا ہے…",
     "reconnecting": "دوبارہ منسلک ہو رہا ہے…",
     "connecting": "منسلک ہو رہا ہے…",
-    "shopPutOnAir": "ہوا پر رکھیں"
+    "shopPutOnAir": "ہوا پر رکھیں",
+    "streamCount_one": "{{count}} اسٹریم",
+    "streamCount_other": "{{count}} اسٹریمز",
+    "noOneStreamingGame": "ابھی کوئی {{game}} اسٹریم نہیں کر رہا۔",
+    "seeAllStreams": "تمام اسٹریمز دیکھیں",
+    "isLiveNow": "{{name}} لائیو ہیں",
+    "justChatting": "بس گپ شپ",
+    "noLiveStreams": "کوئی لائیو اسٹریم نہیں",
+    "noOneStreaming": "ابھی کوئی اسٹریم نہیں کر رہا۔ بعد میں دوبارہ دیکھیں!",
+    "loadStreamsFailed": "اسٹریمز لوڈ نہیں ہو سکیں۔ دوبارہ کوشش کریں۔"
   },
   "liveShop": {
     "title": "اس اسٹریم سے خریداری کریں",
@@ -7215,7 +7244,25 @@
     "presetWhipPanHint": "فاسٹ بلورڈ پین میں رہائی کے لیے",
     "presetWhipPanName": "وائپ پین",
     "presetYtSplitHint": "ایک کہانی بتانے والا دو حصوں کا تھمبل",
-    "presetYtSplitName": "بیفور / ایفٹر تھمبل"
+    "presetYtSplitName": "بیفور / ایفٹر تھمبل",
+    "navAudio": "آڈیو",
+    "navAgents": "ایجنٹس",
+    "heroTitle": "آج آپ کیا بنا رہے ہیں؟",
+    "heroSubtitle": "تصاویر، ویڈیو، موسیقی اور 3D۔ ہر تخلیق کی ادائیگی DHB میں کریں۔",
+    "startCreating": "تخلیق شروع کریں",
+    "startCreatingSub": "اسٹوڈیو کھولیں۔ ہر تخلیق اپنی قیمت DHB میں دکھاتی ہے۔",
+    "pickMedium": "میڈیم منتخب کریں",
+    "moreTools": "مزید ٹولز",
+    "yourLibrary": "آپ کی لائبریری",
+    "doorImageNote": "تصاویر، پوسٹرز اور ایڈٹس",
+    "doorVideoNote": "متن یا تصویر سے کلپس",
+    "doorAudioNote": "وائس ٹولز مفت",
+    "door3d": "3D",
+    "door3dNote": "پرامپٹ یا تصویر سے ماڈلز",
+    "doorAgentsNote": "چیٹ مفت",
+    "editorNote": "ٹائم لائن پر کاٹیں",
+    "flowNote": "کینوس پر مراحل جوڑیں",
+    "builderNote": "پرامپٹ سے ایپ بنائیں"
   },
   "fractions": {
     "title": "حصے",

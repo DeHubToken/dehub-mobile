@@ -817,7 +817,17 @@
     "channelSpeedCount": "{{count}} ကစားသည်အလုပ်အကိုကိုယ်စီလုပ်သည်။",
     "exportReady": "{{count}} အကောင့်များ ၊ {{saved}} သိမ်းဆည်းထားသောပို့စ်များကိုတင်ပို့ခဲ့သည် ။",
     "importPartial": "{{count}} ကိုကြိုးကိုက်မထားသောအကြောင်းအရာများ — အလုပ်အကိုကိုယ်စီလုပ်သည်ကိုပြန်လည်ကြိုးကိုက်မည်။",
-    "importProgress": "Applying {{done}} ကို {{total}} ပေါ်တွင်"
+    "importProgress": "Applying {{done}} ကို {{total}} ပေါ်တွင်",
+    "themeColor": "အပြင်အဆင် အရောင်",
+    "themeColorDesc": "ဤအပြင်အဆင်အတွက် စိတ်ကြိုက်အရောင် ရွေးပါ",
+    "themeColorReset": "ပြန်လည်သတ်မှတ်ရန်",
+    "themeColorWhite": "အဖြူရောင်",
+    "themeColorBlack": "အနက်ရောင်",
+    "themeColorRainbow": "သက်တံ",
+    "themeColorBrand": "ကုန်အမှတ်တံဆိပ်",
+    "themeColorBrandDesc": "သင့်ပရိုဖိုင်ပုံ၏ အရောင်များကို သုံးပါ",
+    "themeColorBrandNoAvatar": "Brand အရောင်များ သုံးရန် ပရိုဖိုင်ပုံ ထည့်ပါ",
+    "themeColorBrandFailed": "သင့်ပရိုဖိုင်ပုံမှ အရောင်များ မဖတ်နိုင်ပါ"
   },
   "common": {
     "mute": "အသံပိတ်ရန်",
@@ -1007,7 +1017,8 @@
     "boostPostDesc": "ပင်မ feed ၏ ထိပ်တွင် ထားပါ",
     "mintPostDesc": "ဤပို့စ်ကို ကွင်းဆက်ပေါ်တွင် ထုတ်ဝေပါ",
     "giftBoost": "Boost တစ်ခု လက်ဆောင်ပေးပါ",
-    "giftBoostDesc": "သင့်ဟာထဲမှ တစ်ခုကို ဤပို့စ်အတွက် သုံးပါ"
+    "giftBoostDesc": "သင့်ဟာထဲမှ တစ်ခုကို ဤပို့စ်အတွက် သုံးပါ",
+    "askAi": "AI ကို မေးပါ"
   },
   "filters": {
     "sort": "စီရန်",
@@ -7245,7 +7256,25 @@
     "presetWhipPanHint": "အလွန်နည်းပါးသော ပြောင်းလဲမှုဖြင့် ဖော်ပြခြင်း",
     "presetWhipPanName": "ဝိပ်ပန်",
     "presetYtSplitHint": "ပြောင်းလဲမှုကို ဖော်ပြသော ပြောင်းလဲမှုများ",
-    "presetYtSplitName": "Thumbnail မတိုင်မီ / ပြီးနောက်"
+    "presetYtSplitName": "Thumbnail မတိုင်မီ / ပြီးနောက်",
+    "navAudio": "အသံ",
+    "navAgents": "အေးဂျင့်များ",
+    "heroTitle": "ဒီနေ့ ဘာဖန်တီးမလဲ။",
+    "heroSubtitle": "ပုံများ၊ ဗီဒီယို၊ ဂီတနှင့် 3D။ ဖန်တီးမှုတစ်ခုစီအတွက် DHB ဖြင့် ပေးချေပါ။",
+    "startCreating": "စတင်ဖန်တီးရန်",
+    "startCreatingSub": "စတူဒီယိုကို ဖွင့်ပါ။ ဖန်တီးမှုတိုင်းသည် ၎င်း၏စျေးနှုန်းကို DHB ဖြင့် ပြသသည်။",
+    "pickMedium": "မီဒီယာ ရွေးပါ",
+    "moreTools": "နောက်ထပ် ကိရိယာများ",
+    "yourLibrary": "သင့်စာကြည့်တိုက်",
+    "doorImageNote": "ဓာတ်ပုံများ၊ ပိုစတာများနှင့် တည်းဖြတ်မှုများ",
+    "doorVideoNote": "စာသား သို့မဟုတ် ဓာတ်ပုံမှ ကလစ်များ",
+    "doorAudioNote": "အသံကိရိယာများ အခမဲ့",
+    "door3d": "3D",
+    "door3dNote": "ညွှန်ကြားချက် သို့မဟုတ် ဓာတ်ပုံမှ မော်ဒယ်များ",
+    "doorAgentsNote": "ချတ် အခမဲ့",
+    "editorNote": "အချိန်လိုင်းပေါ်တွင် ဖြတ်ပါ",
+    "flowNote": "ကင်းဗတ်ပေါ်တွင် အဆင့်များ ချိတ်ဆက်ပါ",
+    "builderNote": "ညွှန်ကြားချက်မှ အက်ပ် ပြုလုပ်ပါ"
   },
   "fractions": {
     "title": "အစုရှယ်ယာများ",

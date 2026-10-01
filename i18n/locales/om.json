@@ -818,7 +818,17 @@
     "exportReady": "{{count}} akaawuntota, {{saved}} konkolaattoonni galmeeffamoon bahuun bahuun.",
     "importDone": "{{followed}} hordofame, {{blocked}} dhorkame, {{folders}} maaduroonni uumaman.",
     "importPartial": "{{count}} akaawuntota hordofuu hin dandeenye — isaan deebisuuf galmee deebisuun deebisi.",
-    "importProgress": "{{done}} irraa {{total}}..."
+    "importProgress": "{{done}} irraa {{total}}...",
+    "themeColor": "Halluu mata duree",
+    "themeColorDesc": "Mata duree kanaaf halluu mataa keetii filadhu",
+    "themeColorReset": "Haaromsi",
+    "themeColorWhite": "Adii",
+    "themeColorBlack": "Gurraacha",
+    "themeColorRainbow": "Sabbata Waaqaa",
+    "themeColorBrand": "Maqaa daldalaa",
+    "themeColorBrandDesc": "Halluuwwan suuraa profaayilii keetii fayyadami",
+    "themeColorBrandNoAvatar": "Halluuwwan maqaa daldalaa fayyadamuuf suuraa profaayilii dabali",
+    "themeColorBrandFailed": "Suuraa profaayilii kee irraa halluuwwan dubbisuun hin danda'amne"
   },
   "common": {
     "mute": "Sagalee cufi",
@@ -1008,7 +1018,8 @@
     "boostPostDesc": "Fuula jalqabaa irratti ol kaa'i",
     "mintPostDesc": "Barreeffama kana chain irratti maxxansi",
     "giftBoost": "Guddina kennaa godhi",
-    "giftBoostDesc": "Kan kee keessaa tokko barreeffama kana irratti baasi"
+    "giftBoostDesc": "Kan kee keessaa tokko barreeffama kana irratti baasi",
+    "askAi": "AI gaafadhu"
   },
   "filters": {
     "sort": "Tartiibsi",
@@ -7264,7 +7275,25 @@
     "presetWhipPanHint": "Gudda gurraa keessaatti akka garaa jira, garaa keessaatti akka garaa jira",
     "presetWhipPanName": "Whip Pan",
     "presetYtSplitHint": "Kurraa keessaatti akka garaa jira, garaa keessaatti akka garaa jira",
-    "presetYtSplitName": "Before / After Thumbnail"
+    "presetYtSplitName": "Before / After Thumbnail",
+    "navAudio": "Sagalee",
+    "navAgents": "Ejentoota",
+    "heroTitle": "Har'a maal uumaa jirta?",
+    "heroSubtitle": "Suuraalee, viidiyoo, muuziqaa fi 3D. Uumama tokkoon tokkoon DHB'n kaffali.",
+    "startCreating": "Uumuu jalqabi",
+    "startCreatingSub": "Istuudiyoo bani. Uumamni hundi gatii isaa DHB'n agarsiisa.",
+    "pickMedium": "Miidiyaa filadhu",
+    "moreTools": "Meeshaalee dabalataa",
+    "yourLibrary": "Mana kitaabaa kee",
+    "doorImageNote": "Suuraalee, poosteroota fi gulaalawwan",
+    "doorVideoNote": "Kiliippii barreeffama ykn suuraa irraa",
+    "doorAudioNote": "Meeshaaleen sagalee bilisaan",
+    "door3d": "3D",
+    "door3dNote": "Moodeloota ajaja ykn suuraa irraa",
+    "doorAgentsNote": "Haasa'uun bilisaan",
+    "editorNote": "Sararaa yeroo irratti muri",
+    "flowNote": "Tarkaanfilee kanvaasii irratti walitti hidhi",
+    "builderNote": "Ajaja irraa app hojjedhu"
   },
   "fractions": {
     "title": "Qooda",

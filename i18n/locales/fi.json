@@ -818,7 +818,17 @@
     "exportReady": "{{count}} tilin tiedot, {{saved}} säädettyjä postauksia vientiin.",
     "importDone": "Seurattu {{followed}}, estetty {{blocked}}, {{folders}} hakemistot luotu.",
     "importPartial": "{{count}} tilin seuraamiseen ei onnistunut — suorita importti uudelleen, jotta ne yrittää uudelleen.",
-    "importProgress": "Soveltaminen {{done}}:sta {{total}}…"
+    "importProgress": "Soveltaminen {{done}}:sta {{total}}…",
+    "themeColor": "Teeman väri",
+    "themeColorDesc": "Valitse tälle teemalle oma väri",
+    "themeColorReset": "Palauta",
+    "themeColorWhite": "Valkoinen",
+    "themeColorBlack": "Musta",
+    "themeColorRainbow": "Sateenkaari",
+    "themeColorBrand": "Brändi",
+    "themeColorBrandDesc": "Käytä profiilikuvasi värejä",
+    "themeColorBrandNoAvatar": "Lisää profiilikuva käyttääksesi brändivärejä",
+    "themeColorBrandFailed": "Profiilikuvastasi ei saatu luettua värejä"
   },
   "common": {
     "mute": "Mykistä",
@@ -1008,7 +1018,8 @@
     "boostPostDesc": "Nosta se etusivun syötteen kärkeen",
     "mintPostDesc": "Julkaise tämä julkaisu ketjussa",
     "giftBoost": "Lahjoita tehoste",
-    "giftBoostDesc": "Käytä yksi omistasi tähän julkaisuun"
+    "giftBoostDesc": "Käytä yksi omistasi tähän julkaisuun",
+    "askAi": "Kysy tekoälyltä"
   },
   "filters": {
     "sort": "Lajittele",
@@ -1863,7 +1874,16 @@
     "tryAnotherGenre": "Kokeile toista genreä.",
     "pauseStation": "Keskeytä asema",
     "resumeStation": "Jatka asemaa",
-    "stopRadio": "Pysäytä radio"
+    "stopRadio": "Pysäytä radio",
+    "playsToday": "{{plays}} kuuntelua tänään",
+    "listen": "Kuuntele",
+    "top50": "Top 50",
+    "playAll": "Toista kaikki",
+    "nothingHereYet": "Täällä ei ole vielä mitään.",
+    "likeStation": "Tykkää asemasta",
+    "unlikeStation": "Poista tykkäys",
+    "shareStation": "Jaa asema",
+    "listeningTo": "Kuuntelen {{name}} DeHubissa"
   },
   "notFound": {
     "title": "Sivua ei löytynyt",
@@ -5486,7 +5506,16 @@
     "preparingCamera": "Kameran valmistelu…",
     "reconnecting": "Yhdistetään uudelleen…",
     "connecting": "Yhdistetään…",
-    "shopPutOnAir": "Laita ilmaan"
+    "shopPutOnAir": "Laita ilmaan",
+    "streamCount_one": "{{count}} striimi",
+    "streamCount_other": "{{count}} striimiä",
+    "noOneStreamingGame": "Kukaan ei striimaa peliä {{game}} juuri nyt.",
+    "seeAllStreams": "Näytä kaikki striimit",
+    "isLiveNow": "{{name}} on livenä",
+    "justChatting": "Pelkkää juttelua",
+    "noLiveStreams": "Ei livestriimejä",
+    "noOneStreaming": "Kukaan ei striimaa juuri nyt. Palaa myöhemmin!",
+    "loadStreamsFailed": "Striimejä ei voitu ladata. Yritä uudelleen."
   },
   "liveShop": {
     "title": "Osta tästä lähetyksestä",
@@ -7217,7 +7246,25 @@
     "presetWhipPanHint": "Nopea, hämärä panorointi paljastukseen",
     "presetWhipPanName": "Whip Pan",
     "presetYtSplitHint": "Jaettu näyttökuvake, joka kertoo tarinan",
-    "presetYtSplitName": "Before / After Thumbnail"
+    "presetYtSplitName": "Before / After Thumbnail",
+    "navAudio": "Ääni",
+    "navAgents": "Agentit",
+    "heroTitle": "Mitä teet tänään?",
+    "heroSubtitle": "Kuvia, videota, musiikkia ja 3D:tä. Maksa jokaisesta luonnista DHB:llä.",
+    "startCreating": "Aloita luominen",
+    "startCreatingSub": "Avaa studio. Jokainen luonti näyttää hintansa DHB:nä.",
+    "pickMedium": "Valitse media",
+    "moreTools": "Lisää työkaluja",
+    "yourLibrary": "Kirjastosi",
+    "doorImageNote": "Kuvat, julisteet ja muokkaukset",
+    "doorVideoNote": "Klipit tekstistä tai kuvasta",
+    "doorAudioNote": "Äänityökalut ilmaisia",
+    "door3d": "3D",
+    "door3dNote": "Mallit kehotteesta tai kuvasta",
+    "doorAgentsNote": "Chat ilmaiseksi",
+    "editorNote": "Leikkaa aikajanalla",
+    "flowNote": "Ketjuta vaiheita kankaalla",
+    "builderNote": "Tee sovellus kehotteesta"
   },
   "fractions": {
     "title": "Fraktiot",
