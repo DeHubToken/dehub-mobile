@@ -2040,7 +2040,6 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
                     bare={chipAtBottom}
                   />
                 )}
-                <CinematicIconButton icon="EllipsisVertical" label={t("player.moreOptions")} onPress={handleOpenOptions} bare={chipAtBottom} />
               </View>
             </View>
             {toolsOpen && mediaTools && mediaTools.length > 0 && (
@@ -2128,6 +2127,19 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           </View>
         )}
         <View style={{ paddingHorizontal: CINEMATIC_TEXT_INSET }}>
+          {chipOverMedia ? (
+            // Options sit off the picture, at the top right of the caption,
+            // inset from the edge like the text is on the left.
+            <Pressable
+              onPress={handleOpenOptions}
+              hitSlop={6}
+              accessibilityRole="button"
+              accessibilityLabel={t("player.moreOptions")}
+              style={styles.captionOptions}
+            >
+              <Icon name="EllipsisVertical" size={20} color="#FFFFFF" />
+            </Pressable>
+          ) : null}
           {cinematicMedia ? (
             // The caption sits under the media, then the soundtrack.
             <>
@@ -2136,7 +2148,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
                 onReaction={handleVideoTapReaction}
                 onPress={disablePress ? undefined : handleCardPress}
               >
-                <View style={{ paddingTop: 10 }}>
+                <View style={[{ paddingTop: 10 }, chipOverMedia && styles.captionBesideOptions]}>
                   <FeedCaption
                     resetKey={postKey}
                     title={overlayTitle || undefined}
@@ -2465,6 +2477,21 @@ const styles = StyleSheet.create({
   cinematicBottom: { bottom: CINEMATIC_EDGE, right: 6, alignItems: "flex-end" },
   cinematicBottomLifted: { bottom: CINEMATIC_BOTTOM_LIFT },
   cinematicButtons: { flexDirection: "row", alignItems: "center", gap: 8, marginLeft: 8 },
+  // 32pt tap area around a 20pt glyph: right -6 puts the glyph's edge on the
+  // text inset.
+  captionOptions: {
+    position: "absolute",
+    top: 4,
+    right: CINEMATIC_TEXT_INSET - 6,
+    zIndex: 2,
+    width: 32,
+    height: 32,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  // The caption stops short of the options button, and leaves it room when
+  // there is no caption at all.
+  captionBesideOptions: { paddingRight: 28, minHeight: 36 },
   cinematicBareButtons: { flexDirection: "row", alignItems: "center", gap: 2, marginLeft: 8 },
 });
 
