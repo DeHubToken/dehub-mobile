@@ -1475,9 +1475,13 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const renderLiveThumbnail = () => (
     <Pressable
       onPress={handleCardPress}
-      className="relative w-full h-48 bg-zinc-800 rounded-xl overflow-hidden mt-2"
-      style={cinematicMedia ? { marginTop: 0, borderRadius: 0, height: Math.round((SCREEN_WIDTH * 9) / 16) } : undefined}
+      // Edge to edge the grey backing is a plain view inside: as the
+      // pressable's own fill, the theme pass that styles neutral pressables as
+      // buttons gave the whole screen a rounded frame and a border.
+      className={cinematicMedia ? "relative w-full overflow-hidden" : "relative w-full h-48 bg-zinc-800 rounded-xl overflow-hidden mt-2"}
+      style={cinematicMedia ? { height: Math.round((SCREEN_WIDTH * 9) / 16) } : undefined}
     >
+      {cinematicMedia && <View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: "#27272a" }]} />}
       {isCurrentlyLive && isVisible && (
         <View pointerEvents="none" style={[StyleSheet.absoluteFill, { zIndex: 2 }]}>
           <LiveFeedReactionFlow
@@ -1607,8 +1611,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       case "short":
       case "video":
         return bleed(renderVideoThumbnail());
-      case "audio":
-        return (
+      case "audio": {
+        const audio = (
           <>
             {bleed(renderImageContent())}
             {tokenId != null && (
@@ -1635,10 +1639,15 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
                     <Text className="text-white text-xs font-medium">{formatCompactNumber(bountyAmount)} {bountyTokenSymbol}</Text>
                   </TouchableOpacity>
                 ) : undefined}
+                edgeToEdge={cinematicFeed}
               />
             )}
           </>
         );
+        // The cinematic feed runs the player edge to edge like other media;
+        // the rest of the post keeps its text inset.
+        return cinematicFeed ? <View style={{ marginHorizontal: -CINEMATIC_TEXT_INSET }}>{audio}</View> : audio;
+      }
       case "image":
       default:
         return bleed(renderImageContent());
@@ -2045,7 +2054,10 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
               isHidden={isHidden}
             />
             {matureGate.isGated ? (
-              <MatureContentGate onReveal={matureGate.reveal} />
+              // In place of the media, so edge to edge like the media.
+              <View style={{ marginHorizontal: -CINEMATIC_TEXT_INSET }}>
+                <MatureContentGate onReveal={matureGate.reveal} edgeToEdge />
+              </View>
             ) : (
               <>
                 {renderContent()}

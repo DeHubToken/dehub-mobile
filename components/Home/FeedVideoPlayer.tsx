@@ -1073,12 +1073,15 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     if (icons.length === 0) return null;
 
     return (
-      <Pressable onPress={handleGatedOverlayPress} style={styles.gatedOverlay}>
+      <Pressable onPress={handleGatedOverlayPress} style={[styles.gatedOverlay, bleed && BARE_LAYER]}>
+        {bleed && <MediaShade color={GATED_SHADE} />}
         <View style={icons.length > 1 ? styles.gatedIconRow : undefined}>
           {icons.map((ic, i) => (
             <View key={i} style={icons.length > 1 ? styles.gatedIconBox : styles.gatedIconBoxLarge}>
               <View style={styles.gatedIconOverlay} />
-              <Icon name={ic.name as any} size={icons.length > 1 ? 24 : 28} color="#fff" />
+              <View>
+                <Icon name={ic.name as any} size={icons.length > 1 ? 24 : 28} color="#fff" />
+              </View>
             </View>
           ))}
         </View>
@@ -1222,7 +1225,8 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
       )}
 
       {!hideControls && !isContentGated && !isPlaying && !isProcessing && !isFailed && (
-        <Pressable {...mediaTap} style={styles.playOverlay}>
+        <Pressable {...mediaTap} style={[styles.playOverlay, bleed && BARE_LAYER]}>
+          {bleed && <MediaShade color={PLAY_SHADE} />}
           <View style={styles.glassPlayButton}>
             <View style={styles.glassOverlay} />
             {isStarting ? (
@@ -1461,6 +1465,19 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   );
 };
 
+// Tints for the layers that cover the whole picture.
+const PLAY_SHADE = "rgba(0,0,0,0.2)";
+const GATED_SHADE = "rgba(0,0,0,0.3)";
+
+// Edge to edge (the system theme's home feed), a layer that covers the whole
+// picture draws its tint from a plain view under it, not as the pressable's
+// own fill: the theme pass that styles neutral pressables as buttons would
+// otherwise give it a rounded frame and a border inside the picture.
+const BARE_LAYER = { backgroundColor: "transparent" } as const;
+const MediaShade: React.FC<{ color: string }> = ({ color }) => (
+  <View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: color }]} />
+);
+
 // Player chips sit on top of the video: opaque, or the frame behind them
 // reads through the icons. expo-blur does not blur on Android at all.
 const CONTROL_FILL = "#1D1F21";
@@ -1532,7 +1549,7 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "rgba(0,0,0,0.2)",
+    backgroundColor: PLAY_SHADE,
   },
   centreButton: {
     position: "absolute",
@@ -1685,7 +1702,7 @@ const styles = StyleSheet.create({
   },
   gatedOverlay: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: "rgba(0,0,0,0.3)",
+    backgroundColor: GATED_SHADE,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -1805,7 +1822,8 @@ const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "tokenId" | "thumbnai
           </View>
         )}
         {!hideControls && (
-          <Pressable {...mediaTap} style={styles.playOverlay}>
+          <Pressable {...mediaTap} style={[styles.playOverlay, bleed && BARE_LAYER]}>
+            {bleed && <MediaShade color={PLAY_SHADE} />}
             <View style={styles.glassPlayButton}>
               <View style={styles.glassOverlay} />
               <View style={{ marginLeft: 2 }}>
