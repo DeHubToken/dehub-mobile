@@ -5,11 +5,9 @@ import Icon from "../ui/Icon";
 import { formatCompactNumber } from "../../libs/numbers.util";
 import ReactionPicker from "./ReactionPicker";
 import {
-  HAS_NEGATIVE_TRAY,
-  isPositiveReaction,
   reactionMeta,
   resolveLeadReaction,
-  resolveNegativeLeadReaction,
+  resolveThumbReaction,
   type PostReaction,
   type ReactionCounts,
 } from "../../libs/reactions";
@@ -34,7 +32,6 @@ interface FeedActionBarProps {
   saved: boolean;
   reposted: boolean;
   likeCount: number;
-  dislikeCount: number;
   commentCount: number;
   repostCount: number;
   /**
@@ -44,8 +41,8 @@ interface FeedActionBarProps {
    */
   shareCount?: number;
   tipCount: number;
+  /** Tap on the thumb: casts what it wears, or takes back what you hold (👎 included). */
   onLike: () => void;
-  onDislike: () => void;
   onComment: () => void;
   /** Touch-down on the comment button — a head start on the thread's reads. */
   onCommentPressIn?: () => void;
@@ -60,11 +57,12 @@ interface FeedActionBarProps {
   onInfo: () => void;
   /** Which of the ten reactions the viewer holds. `liked`/`disliked` are its polarity. */
   myReaction?: PostReaction | null;
-  /** Per-reaction totals — the most-used one leads on the card. */
+  /** Per-reaction totals — the most-used one leads on the card, and the tray shows each. */
   reactionCounts?: ReactionCounts | null;
   /**
-   * Cast a specific reaction. Omit to keep the plain like/dislike pair with no
-   * hold-to-react tray (surfaces whose "posts" aren't posts, e.g. governance).
+   * Cast a specific reaction — including 👎, which lives in the tray behind the
+   * thumbs-up now that there is no thumbs-down button. Omit for a plain like
+   * button with no tray.
    */
   onReact?: (reaction: PostReaction) => void;
   /**
@@ -167,8 +165,8 @@ const AnimatedActionButton: React.FC<{
           ? `${accessibilityLabel}, ${count}`
           : accessibilityLabel
       }
-      // `active` means liked / disliked / reposted / saved depending on the
-      // button; all four are on-off states the UI only signals with colour.
+      // `active` means reacted / reposted / saved depending on the
+      // button; all three are on-off states the UI only signals with colour.
       accessibilityState={active === undefined ? undefined : { selected: active }}
       // Vertical slop takes the 18pt icon to a 44pt tap height (HIG minimum)
       // without changing layout. Horizontal stays at 6: the row is
@@ -208,13 +206,11 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
   saved,
   reposted,
   likeCount,
-  dislikeCount,
   commentCount,
   repostCount,
   shareCount,
   tipCount,
   onLike,
-  onDislike,
   onComment,
   onCommentPressIn,
   onShare,
@@ -232,15 +228,12 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
   const { t } = useTranslation();
   // Left-handed mode mirrors the whole row so the thumb lands on the left.
   const { leftHanded } = useAppPrefs();
-  // One tray per thumb: every positive face on the thumbs-up, the downvote on
-  // the thumbs-down — which no longer opens a tray at all, holding one option.
-  // Only ever one open either way: they sit inches apart on the same row, and
-  // two trays stacked over each other is unreadable. Closed again whenever the
-  // bar is handed another post, so a pick can never go to the wrong one.
-  const [openTray, setOpenTray] = useCellState<"positive" | "negative" | null>(null, [tokenId]);
+  // One tray, behind the thumbs-up: every positive face, a divider, then 👎.
+  // Closed again whenever the bar is handed another post, so a pick can never
+  // go to the wrong one.
+  const [trayOpen, setTrayOpen] = useCellState(false, [tokenId]);
 
-  // The tray needs a handler to route to; without one this stays a plain
-  // like/dislike bar (governance and other non-post surfaces).
+  // The tray needs a handler to route to; without one this is a plain like.
   const reactionsEnabled = !!onReact;
 
   const viewerTipped = useViewerTippedPost(tokenId, viewerAddress);
@@ -254,27 +247,23 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
   }, [tokenId, setTipBurst]);
 
   const handleSelect = useCallback((reaction: PostReaction) => {
-    setOpenTray(null);
+    setTrayOpen(false);
     onReact?.(reaction);
-  }, [onReact, setOpenTray]);
+  }, [onReact, setTrayOpen]);
 
   /**
-   * The one glyph the thumb wears — the viewer's own positive reaction, else
-   * the post's most-used, else undefined for the plain thumbs-up icon. It is
-   * also what a tap casts, so the two can never disagree.
+   * The one glyph the thumb wears — the viewer's own reaction (a 👎 too, since
+   * this is the only thumb left to show it), else the post's most-used
+   * positive one, else undefined for the plain thumbs-up icon. It is also what
+   * a tap casts or takes back, so the two can never disagree.
    */
   const leadReaction = resolveLeadReaction(reactionCounts, myReaction);
-  const leadGlyph = leadReaction ?? undefined;
-  /** A downvote belongs to the thumbs-DOWN; this button must not announce it. */
-  const myPositiveReaction = myReaction && isPositiveReaction(myReaction) ? myReaction : null;
-  /** …and that button would wear it, though 👎 is its own glyph already. */
-  const myNegativeReaction = myReaction && !isPositiveReaction(myReaction) ? myReaction : null;
-  const negativeLeadReaction = resolveNegativeLeadReaction(myReaction);
-  const negativeGlyph = negativeLeadReaction ?? undefined;
+  const thumbGlyph = resolveThumbReaction(reactionCounts, myReaction) ?? undefined;
 
   // Single row, every button a direct child spread edge-to-edge (matches the
-  // web ActionBar). Order left → right: tip · dislike · share · comment · like
-  // · bookmark · info.
+  // web ActionBar). Order left → right: tip · share · comment · like ·
+  // bookmark · info. There is no thumbs-down: 👎 is the last pick in the
+  // tray behind the like.
   return (
     <View className={`${leftHanded ? "flex-row-reverse" : "flex-row"} items-center justify-between pt-2`}>
       {onTip ? (
@@ -287,41 +276,6 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
           formatCount
         />
       ) : null}
-      {/* Downvotes — one tap, no tray: 👎 is the only reaction on this side,
-          and a hold-to-open menu of one option would only get in the way of
-          the press that already casts it. The wrapper is still the tray's
-          positioning context, and stays a single flex item so the row's
-          spacing is unchanged whichever way that goes. */}
-      <View style={{ position: "relative" }}>
-        <ReactionPicker
-          open={openTray === "negative" && reactionsEnabled}
-          polarity="negative"
-          current={myReaction}
-          onSelect={handleSelect}
-          onClose={() => setOpenTray(null)}
-          align={leftHanded ? "right" : "left"}
-        />
-        <AnimatedActionButton
-          onPress={() => {
-            if (openTray === "negative") { setOpenTray(null); return; }
-            onDislike();
-          }}
-          onLongPress={reactionsEnabled && HAS_NEGATIVE_TRAY ? () => setOpenTray("negative") : undefined}
-          accessibilityLabel={
-            myNegativeReaction
-              ? `${reactionMeta(myNegativeReaction).label} — hold to change your reaction`
-              : "Dislike — hold to react"
-          }
-          iconName="ThumbsDown"
-          glyph={negativeGlyph}
-          glyphAnimated
-          glyphPlaying={isVisible}
-          active={disliked}
-          activeFill={ICON_ACTIVE}
-          count={dislikeCount}
-          formatCount
-        />
-      </View>
       {/* Share — carries reposts + link copies; bolder + larger once reposted. */}
       <AnimatedActionButton
         onPress={onShare}
@@ -343,20 +297,22 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
         count={commentCount}
         formatCount
       />
-      {/* Reactions — tap to like/unlike, hold to pick a reaction. The
-          wrapper is the tray's positioning context, and stays a single flex
-          item so the row's edge-to-edge spacing is unchanged. */}
+      {/* Reactions — tap to like/unlike, hold for the tray of every reaction
+          (👎 included). The wrapper is the tray's positioning context, and
+          stays a single flex item so the row's edge-to-edge spacing is
+          unchanged. */}
       <View style={{ position: "relative" }}>
         <ReactionPicker
-          open={openTray === "positive" && reactionsEnabled}
+          open={trayOpen && reactionsEnabled}
           current={myReaction}
+          counts={reactionCounts}
           onSelect={handleSelect}
-          onClose={() => setOpenTray(null)}
+          onClose={() => setTrayOpen(false)}
           align={leftHanded ? "left" : "right"}
           onShowInfo={
             onShowReactionInfo
               ? () => {
-                  setOpenTray(null);
+                  setTrayOpen(false);
                   onShowReactionInfo();
                 }
               : undefined
@@ -364,24 +320,24 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
         />
         <AnimatedActionButton
           onPress={() => {
-            if (openTray === "positive") { setOpenTray(null); return; }
+            if (trayOpen) { setTrayOpen(false); return; }
             // A first plain like is when the viewer has found the button but
             // not the tray behind it — point them at it, once.
-            if (!liked && reactionsEnabled) maybeShowReactionTip();
+            if (!liked && !disliked && reactionsEnabled) maybeShowReactionTip();
             onLike();
           }}
-          onLongPress={reactionsEnabled ? () => { markReactionTipSeen(); setOpenTray("positive"); } : undefined}
+          onLongPress={reactionsEnabled ? () => { markReactionTipSeen(); setTrayOpen(true); } : undefined}
           iconName="ThumbsUp"
-          glyph={leadGlyph}
-          glyphAnimated={!!leadGlyph && leadGlyph === myPositiveReaction}
+          glyph={thumbGlyph}
+          glyphAnimated={!!thumbGlyph && thumbGlyph === myReaction}
           glyphPlaying={isVisible}
-          active={liked}
+          active={liked || disliked}
           activeFill={ICON_ACTIVE}
           count={likeCount}
           formatCount
           accessibilityLabel={
-            myPositiveReaction
-              ? `${reactionMeta(myPositiveReaction).label} — hold to change your reaction`
+            myReaction
+              ? `${reactionMeta(myReaction).label} — hold to change your reaction`
               : `${reactionMeta(leadReaction ?? "like").label} — hold to react`
           }
         />

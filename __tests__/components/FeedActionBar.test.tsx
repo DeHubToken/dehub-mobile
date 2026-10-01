@@ -28,8 +28,8 @@ jest.mock('../../components/Home/TipGemIcon', () => ({ TipGemIcon: () => null })
 function props() {
   return {
     liked: false, disliked: false, saved: false, reposted: false,
-    likeCount: 3, dislikeCount: 0, commentCount: 2, repostCount: 0, tipCount: 0,
-    onLike: jest.fn(), onDislike: jest.fn(), onComment: jest.fn(),
+    likeCount: 3, commentCount: 2, repostCount: 0, tipCount: 0,
+    onLike: jest.fn(), onComment: jest.fn(),
     onCommentPressIn: jest.fn(), onShare: jest.fn(), onSave: jest.fn(),
     onInfo: jest.fn(), onReact: jest.fn(),
   };
@@ -60,4 +60,35 @@ it('keeps holding for the reaction tray distinct from casting a reaction', () =>
   fireEvent(tray!, 'select', 'love');
   expect(handlers.onReact).toHaveBeenCalledWith('love');
   expect(handlers.onLike).not.toHaveBeenCalled();
+});
+
+it('has no thumbs-down button — 👎 is the last pick in the like tray', () => {
+  const handlers = props();
+  const view = render(
+    <FeedActionBar {...handlers} reactionCounts={{ like: 2, love: 1, dislike: 4 }} />,
+  );
+  expect(view.queryByLabelText(/Dislike/)).toBeNull();
+  const icons = view.UNSAFE_getAllByType('Icon' as any).map(node => node.props.name);
+  expect(icons).not.toContain('ThumbsDown');
+  const trays = view.UNSAFE_getAllByType('ReactionPicker' as any);
+  expect(trays).toHaveLength(1);
+  fireEvent(view.getByLabelText(/Like.*hold to react, 3/), 'longPress');
+  const tray = view.UNSAFE_getByType('ReactionPicker' as any);
+  expect(tray.props.open).toBe(true);
+  expect(tray.props.counts).toEqual({ like: 2, love: 1, dislike: 4 });
+  fireEvent(tray, 'select', 'dislike');
+  expect(handlers.onReact).toHaveBeenCalledWith('dislike');
+});
+
+it('wears the viewer\'s 👎 on the thumbs-up, and a tap takes it back', () => {
+  const handlers = props();
+  const view = render(
+    <FeedActionBar {...handlers} disliked myReaction="dislike" reactionCounts={{ like: 3, dislike: 1 }} />,
+  );
+  const thumb = view.getByLabelText(/Dislike — hold to change your reaction, 3/);
+  expect(thumb.props.accessibilityState).toEqual({ selected: true });
+  const glyph = view.UNSAFE_getAllByType('ReactionEmoji' as any)[0];
+  expect(glyph.props.reaction).toBe('dislike');
+  fireEvent.press(thumb);
+  expect(handlers.onLike).toHaveBeenCalledTimes(1);
 });
