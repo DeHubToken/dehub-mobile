@@ -156,7 +156,7 @@ export const IslandCapsule = memo(function IslandCapsule({
               accessibilityLabel={unread > 0 ? t("common.notificationsUnread", { unread }) : t("nav.notifications")}
               style={styles.bell}
             >
-              <Icon name="Bell" size={26} color="#FFFFFF" strokeWidth={1.9} />
+              <Icon name="Bell" size={26.9} color="#FFFFFF" strokeWidth={1.9} />
               <UnreadBadge count={unread} />
             </Pressable>
           </View>
@@ -228,7 +228,7 @@ const styles = StyleSheet.create({
     borderRadius: CAPSULE_RADIUS,
     flexDirection: "row",
     alignItems: "center",
-    paddingHorizontal: 10,
+    paddingHorizontal: 14,
     shadowColor: "#000",
     shadowOpacity: 0.35,
     shadowRadius: 10,
@@ -239,7 +239,7 @@ const styles = StyleSheet.create({
   sideInner: { flexDirection: "row", alignItems: "center", gap: 12 },
   avatarButton: { width: AVATAR_SIZE, height: AVATAR_SIZE, alignItems: "center", justifyContent: "center", flexShrink: 0 },
   avatar: { width: AVATAR_SIZE, height: AVATAR_SIZE, borderRadius: AVATAR_RADIUS, overflow: "hidden" },
-  mark: { paddingHorizontal: 20, height: ISLAND_CAPSULE_HEIGHT, flexShrink: 0, justifyContent: "center", alignItems: "center" },
+  mark: { paddingHorizontal: 24, height: ISLAND_CAPSULE_HEIGHT, flexShrink: 0, justifyContent: "center", alignItems: "center" },
   bell: { width: 28, height: 28, alignItems: "center", justifyContent: "center" },
   menuWrap: { alignItems: "center" },
   menu: {
@@ -262,7 +262,7 @@ const styles = StyleSheet.create({
   menuRowOn: { backgroundColor: "rgba(255,255,255,0.10)" },
   menuLabel: { flex: 1, color: "#FFFFFF", fontSize: 14, fontWeight: "500" },
   menuDivider: { height: 1, marginVertical: 6, marginHorizontal: 6, backgroundColor: "rgba(255,255,255,0.12)" },
-  // Off the glyph's top right corner (the glyph is 26pt in a 28pt box).
+  // Off the glyph's top right corner (the glyph is 26.9pt in a 28pt box).
   badge: {
     position: "absolute",
     top: 0,
