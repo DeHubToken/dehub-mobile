@@ -59,7 +59,7 @@ function UnreadBadge({ count }: { count: number }) {
  * dead centre: [avatar, or a burger when signed out] [mark] [bell]. It hugs
  * its contents, with both side columns as wide as the wider one. The mark
  * opens and closes the feed menu under it (IslandFeedMenu); the avatar opens
- * the drawer; signed out, the bell asks you to log in.
+ * the drawer; signed out, the burger and the bell ask you to log in.
  */
 export const IslandCapsule = memo(function IslandCapsule({
   activeIndex,
@@ -80,7 +80,11 @@ export const IslandCapsule = memo(function IslandCapsule({
   const { width: screenWidth } = useWindowDimensions();
   const unread = user?.notificationCount || 0;
   const { requireAuth } = useAuthActions();
-  // Signed out, the bell is still there and asks you to log in first.
+  // Signed out, the burger and the bell both ask you to log in first.
+  const onLeftPress = useCallback(
+    () => (isSignedIn ? onAvatarPress?.() : requireAuth(() => {})),
+    [isSignedIn, onAvatarPress, requireAuth],
+  );
   const onBellPress = useCallback(
     () => requireAuth(() => navigation.navigate(ScreenNames.Notifications)),
     [navigation, requireAuth],
@@ -106,7 +110,7 @@ export const IslandCapsule = memo(function IslandCapsule({
         <View style={[styles.left, { width: side || undefined }]}>
           <View onLayout={onLeft} style={styles.sideInner}>
             <Pressable
-              onPress={onAvatarPress}
+              onPress={onLeftPress}
               hitSlop={HIT}
               accessibilityRole="button"
               accessibilityLabel={t("common.openMenu")}
