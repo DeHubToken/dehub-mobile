@@ -14,7 +14,7 @@ import { FEED_NAV_ITEMS } from "./FeedNavBar";
 // the size drawn and its shape can never be squeezed by padding in the file.
 const MARK = require("../../assets/web-icons/dehub-mark.png");
 const MARK_ASPECT = 143 / 185;
-const MARK_HEIGHT = 26;
+const MARK_HEIGHT = 27.3;
 const HIT = { top: 8, bottom: 8, left: 8, right: 8 };
 // The brand name, spoken for the mark. Not translated.
 const BRAND_NAME = "DeHub";
