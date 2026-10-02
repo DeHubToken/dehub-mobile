@@ -1,3 +1,4 @@
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 /**
  * Shorts Viewer — full-screen vertical carousel.
  *
@@ -1710,6 +1711,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, isNearby, active
 });
 
 const ShortsViewerScreen = () => {
+  const mediaInsets = useSafeAreaInsets();
   const { t } = useCopy();
   const route = useRoute<any>();
   const navigation = useNavigation<any>();
@@ -2200,7 +2202,7 @@ const ShortsViewerScreen = () => {
           pointerEvents="none"
         />
 
-        <View style={styles.topBar} pointerEvents="box-none">
+        <View style={[styles.topBar, { paddingTop: mediaInsets.top + EDGE }]} pointerEvents="box-none">
           <Pressable onPress={handleBack} hitSlop={CHROME_HIT_SLOP} style={styles.topButton} accessibilityLabel={t("profile.back")}>
             <ChromeFill />
             {/* Web's `w-6 h-6` on the back chevron — larger than the three

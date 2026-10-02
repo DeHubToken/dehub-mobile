@@ -35,7 +35,9 @@ const ImageFeedScreen = () => {
         initialItems={initialItems as UnifiedFeedItem[]}
         initialIndex={initialIndex}
         feedParams={feedParams}
-        topInset={insets.top + 8}
+        topInset={0}
+        fullscreen
+        controlsTopInset={insets.top}
         bottomInset={insets.bottom}
         onClose={handleClose}
       />

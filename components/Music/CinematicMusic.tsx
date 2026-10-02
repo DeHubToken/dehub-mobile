@@ -135,12 +135,12 @@ const RadioHero: React.FC<{ station: RadioStation; height: number }> = ({ statio
   const { t } = useTranslation();
   const { station: current, isPlaying, isLoading } = useRadioPlayer();
   const [liked, setLiked] = useState(() => readLikedStations().includes(station.stationuuid));
-  const [logoFailed, setLogoFailed] = useState(false);
+  const [failedLogoUri, setFailedLogoUri] = useState<string | null>(null);
 
   const isCurrent = current?.stationuuid === station.stationuuid;
   const playing = isCurrent && isPlaying;
   const loading = isCurrent && isLoading;
-  const logo = logoFailed || !station.favicon ? undefined : station.favicon;
+  const logo = failedLogoUri === station.favicon || !station.favicon ? undefined : station.favicon;
   const tags = getPrimaryTags(station.tags, 3);
 
   const listen = useCallback(() => toggleRadioStation(station), [station]);
@@ -174,7 +174,7 @@ const RadioHero: React.FC<{ station: RadioStation; height: number }> = ({ statio
           style={[StyleSheet.absoluteFill, styles.heroBackdrop]}
           contentFit="cover"
           blurRadius={40}
-          onError={() => setLogoFailed(true)}
+          onError={() => setFailedLogoUri(station.favicon)}
         />
       ) : null}
       <LinearGradient
@@ -191,7 +191,7 @@ const RadioHero: React.FC<{ station: RadioStation; height: number }> = ({ statio
               style={StyleSheet.absoluteFill}
               contentFit="cover"
               accessibilityLabel={station.name}
-              onError={() => setLogoFailed(true)}
+              onError={() => setFailedLogoUri(station.favicon)}
             />
           ) : (
             <Icon name="Radio" size={48} color={DIM} />
