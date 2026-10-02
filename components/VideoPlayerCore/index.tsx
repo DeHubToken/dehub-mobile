@@ -462,7 +462,7 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
   }, [isLooping, player]);
 
   const toggleSpeed = useCallback(() => {
-    const currentSpeed = player.playbackRate;
+    const currentSpeed = getPlaybackRateFor(creator);
     let nextSpeed = 1.0;
     if (currentSpeed === 1.0) nextSpeed = 1.5;
     else if (currentSpeed === 1.5) nextSpeed = 2.0;
