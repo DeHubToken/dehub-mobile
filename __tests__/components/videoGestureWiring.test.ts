@@ -18,7 +18,7 @@ describe('video gesture wiring', () => {
     const player = readSource('components', 'Home', 'FeedVideoPlayer.tsx');
     const interaction = player.indexOf('{!hideControls && !isContentGated && !isProcessing && !isFailed && (');
     const videoPressClose = player.indexOf('/>', player.indexOf('<Pressable {...mediaTap}', interaction));
-    const controls = player.indexOf('{(bareControls || showControls || !isPlaying) && (', interaction);
+    const controls = player.indexOf('<Animated.View style={[styles.controlsContainer', interaction);
 
     expect(interaction).toBeGreaterThan(-1);
     expect(videoPressClose).toBeGreaterThan(interaction);
