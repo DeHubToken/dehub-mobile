@@ -28,6 +28,8 @@ export type MediaTool = {
  */
 export type FeedBleed = {
   topInset: number;
+  /** Explicit top position for video buttons when the author is below media. */
+  controlsTop?: number;
   bottomInset?: number;
   setTools?: (tools: MediaTool[] | null) => void;
   setBarUp?: (up: boolean) => void;
