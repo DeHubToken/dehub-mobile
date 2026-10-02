@@ -518,9 +518,20 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   // the controls seeds the scrubber from the ref so it starts at the real
   // position rather than at whatever it held when it was last hidden.
   useEffect(() => {
-    showControlsRef.current = bareControls || showControls;
-    if (bareControls || showControls) setCurrentTime(currentTimeRef.current);
-  }, [bareControls, showControls]);
+    showControlsRef.current = showControls;
+    if (showControls) setCurrentTime(currentTimeRef.current);
+  }, [showControls]);
+
+  const controlsOpacity = useRef(new Animated.Value(0)).current;
+  useEffect(() => {
+    const fade = Animated.timing(controlsOpacity, {
+      toValue: showControls ? 1 : 0,
+      duration: 150,
+      useNativeDriver: true,
+    });
+    fade.start();
+    return () => fade.stop();
+  }, [showControls, controlsOpacity]);
 
   const clearHideTimer = useCallback(() => {
     if (hideControlsTimerRef.current) {
@@ -735,7 +746,8 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
       autoStartRef.current = true;
       pendingPlayRef.current = true;
       setHasStartedAutoplay(true);
-      setShowControls(false); // Controls hidden on autoplay
+      setShowControls(true);
+      startHideTimer();
       // Same treatment for autoplay: the card the feed settled on shows it is
       // loading instead of a play button that is about to vanish on its own.
       beginStarting();
@@ -745,7 +757,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
       flushPendingPlay();
     }, autoplaySettled ? 0 : AUTOPLAY_DELAY);
     return () => { if (autoplayTimerRef.current) { clearTimeout(autoplayTimerRef.current); autoplayTimerRef.current = null; } };
-  }, [canPlay, isVisible, isAutoplayActive, hasStartedAutoplay, liteMode, autoplayEnabled, autoplaySettled, flushPendingPlay, clearHideTimer, beginStarting, endStarting]);
+  }, [canPlay, isVisible, isAutoplayActive, hasStartedAutoplay, liteMode, autoplayEnabled, autoplaySettled, flushPendingPlay, clearHideTimer, startHideTimer, beginStarting, endStarting]);
 
   // Autoplay is exclusive: when the scroll hands it to another card, a card
   // that started ITSELF gives up the screen and its native player. One the
@@ -896,9 +908,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     if (!newMuted) requestAudioFocus(stopPlayback);
     else releaseAudioFocus(stopPlayback);
     
-    if (isPlayingRef.current) {
-      startHideTimer(); // Reset hide timer when interacting
-    }
+    startHideTimer(); // Reset the timer on paused clips too.
   }, [isMuted, stopPlayback, startHideTimer]);
 
   // Held-and-dragged on the speaker. The device volume moves everything at
@@ -946,7 +956,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
           onTap: handleToggleMute,
           onEnd: () => {
             setVolumeAdjusting(false);
-            if (isPlayingRef.current) startHideTimer();
+            startHideTimer();
           },
         }),
       ),
@@ -961,7 +971,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     const nextLoop = !isLooping;
     playerRef.current.loop = nextLoop;
     setIsLooping(nextLoop);
-    if (isPlayingRef.current) startHideTimer();
+    startHideTimer();
   }, [isLooping, startHideTimer]);
 
   const handleToggleSpeed = useCallback(() => {
@@ -976,7 +986,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     // Remembered against the creator, so this channel opens at this rate next
     // time while the rest of the feed is unaffected.
     persistPlaybackRate(nextSpeed, creator);
-    if (isPlayingRef.current) startHideTimer();
+    startHideTimer();
   }, [startHideTimer, creator]);
 
   const handleFullscreen = useCallback(() => {
@@ -1000,7 +1010,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   // Tell a card with chrome along the bottom when the player bar is up, so
   // that chrome lifts above it only then.
   const setBarUp = bleed?.setBarUp;
-  const barUp = !hideControls && (bareControls || showControls);
+  const barUp = !hideControls && showControls;
   useEffect(() => {
     setBarUp?.(barUp);
   }, [setBarUp, barUp]);
@@ -1231,8 +1241,8 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
               timeline inside it let a seek bubble into play/pause, and made the
               whole media box too eager to claim vertical feed flicks. */}
           <Pressable {...mediaTap} style={StyleSheet.absoluteFill} />
-          {(bareControls || showControls || !isPlaying) && (
-            <View style={styles.controlsContainer} pointerEvents="box-none">
+          {(
+            <Animated.View style={[styles.controlsContainer, { opacity: controlsOpacity }]} pointerEvents={showControls ? "box-none" : "none"}>
             {/* The pause button is the size of its glyph and lives above the
                 tap surface. It used to be a full-size layer drawn underneath
                 that surface, so it could be seen but never pressed. */}
@@ -1334,7 +1344,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
                   <View style={{ flex: 1 }} />
                 {captionControls && (
                   <Pressable
-                    onPress={captionControls.toggle}
+                    onPress={() => { captionControls.toggle(); startHideTimer(); }}
                     onLongPress={captionControls.openLanguages}
                     hitSlop={4}
                     accessibilityRole="button"
@@ -1430,7 +1440,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
               </View>
             </View>
             )}
-          </View>
+          </Animated.View>
           )}
         </>
       )}
@@ -1441,8 +1451,8 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
         <CaptionOverlay
           tokenId={tokenId}
           positionMs={captionPosMs}
-          controlsVisible={bareControls || showControls || !isPlaying}
-          bottomOffset={((bareControls || showControls) ? 56 : 16) + (bleed?.bottomInset ?? 0)}
+          controlsVisible={showControls}
+          bottomOffset={(showControls ? 56 : 16) + (bleed?.bottomInset ?? 0)}
           player={player}
           isPlaying={isPlaying}
           hideButton={bareControls}
