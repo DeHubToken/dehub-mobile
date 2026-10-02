@@ -1652,6 +1652,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
                     <Text className="text-white text-xs font-medium">{formatCompactNumber(bountyAmount)} {bountyTokenSymbol}</Text>
                   </TouchableOpacity>
                 ) : undefined}
+                firstFeedPost={cinematicFeed && topChromeInset > 0}
                 edgeToEdge={cinematicFeed}
               />
             )}
