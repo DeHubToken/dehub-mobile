@@ -1978,6 +1978,7 @@ const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "tokenId" | "thumbnai
     const isMinimal = minimalTheme || !!bleed;
     const edgeToEdge = isMinimal || postPage;
     const windowSize = useWindowDimensions();
+    const bareControls = Math.min(windowSize.width, windowSize.height) < PHONE_MAX_SIDE;
     const mediaTap = useTapOnlyPress(() => onPress());
     return (
       <View
@@ -2008,13 +2009,25 @@ const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "tokenId" | "thumbnai
         )}
         {!hideControls && (
           <Pressable {...mediaTap} style={[styles.playOverlay, BARE_LAYER]}>
-            <MediaShade color={PLAY_SHADE} />
-            <View style={styles.glassPlayButton}>
-              <View style={styles.glassOverlay} />
-              <View style={{ marginLeft: 2 }}>
-                <Icon name="Play" size={24} color="#fff" />
+            {bareControls ? (
+              <View style={styles.bareBottom} pointerEvents="none">
+                <View style={[styles.bareBottomRow, edgeToEdge && { paddingHorizontal: MINIMAL_EDGE - 8 }]}>
+                  <View style={styles.bareButton}>
+                    <BareIcon name="Play" />
+                  </View>
+                </View>
               </View>
-            </View>
+            ) : (
+              <>
+                <MediaShade color={PLAY_SHADE} />
+                <View style={styles.glassPlayButton}>
+                  <View style={styles.glassOverlay} />
+                  <View style={{ marginLeft: 2 }}>
+                    <Icon name="Play" size={24} color="#fff" />
+                  </View>
+                </View>
+              </>
+            )}
           </Pressable>
         )}
         {postPage && !hideControls && duration ? (
