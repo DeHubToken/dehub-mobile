@@ -177,10 +177,11 @@ export const ScrubSurface: React.FC<{
 interface SeekBarProps {
   position: SharedValue<number>;
   hue: number;
+  edgeLine?: boolean;
 }
 
-export const SeekBar: React.FC<SeekBarProps> = memo(({ position, hue }) => {
-  const accent = hue === 0 ? "rgba(255,255,255,0.9)" : `hsla(${hue}, 85%, 65%, 0.95)`;
+export const SeekBar: React.FC<SeekBarProps> = memo(({ position, hue, edgeLine = false }) => {
+  const accent = edgeLine || hue === 0 ? "rgba(255,255,255,0.9)" : `hsla(${hue}, 85%, 65%, 0.95)`;
 
   const fillStyle = useAnimatedStyle(() => ({
     width: `${position.value * 100}%`,
@@ -192,13 +193,13 @@ export const SeekBar: React.FC<SeekBarProps> = memo(({ position, hue }) => {
 
   return (
     <View
-      style={{ height: 18, justifyContent: "center" }}
+      style={{ height: edgeLine ? 14 : 18, justifyContent: edgeLine ? "flex-end" : "center" }}
       hitSlop={{ top: 6, bottom: 6, left: 0, right: 0 }}
     >
       <View className="h-[3px] bg-white/20 rounded-full overflow-hidden">
         <Animated.View style={[{ height: 3, borderRadius: 2 }, fillStyle]} />
       </View>
-      <Animated.View
+      {!edgeLine && <Animated.View
         pointerEvents="none"
         style={[
           {
@@ -212,7 +213,7 @@ export const SeekBar: React.FC<SeekBarProps> = memo(({ position, hue }) => {
           },
           knobStyle,
         ]}
-      />
+      />}
     </View>
   );
 });
@@ -300,7 +301,7 @@ const HueSlider: React.FC<HueSliderProps> = memo(({ hue, onHueChange }) => {
     : `hsl(${localHue}, 80%, 65%)`;
 
   return (
-    <View style={{ height: 32, width: 104, justifyContent: "center" }}>
+    <View style={{ height: 32, width: 76, justifyContent: "center" }}>
       <LinearGradient
         colors={["#ff0000","#ffff00","#00ff00","#00ffff","#0000ff","#ff00ff","#ff0000"]}
         start={{ x: 0, y: 0 }}
@@ -989,24 +990,80 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
     </ScrubSurface>
   );
 
-  /* Bounty stays at the top left; colour, pop-out and fullscreen sit on the
-     right, matching the web card. Everything here floats over the visualizer,
-     and the wrappers are `box-none` so a touch that misses a control lands on
-     the artwork underneath — a sideways drag scrubs, a flick scrolls the feed.
-     Both the inline card and the fullscreen modal render this from the same
-     code and the same state: the sound never reloads, it is one `playerRef`
-     either way. */
+  /* Colour and bounty stay left of the navigation pill. Transport shares
+     the video's bottom row and edge scrubber in inline and fullscreen modes. */
   const renderTopChrome = () => (
     <View pointerEvents="box-none" style={styles.topChrome}>
-      {topLeftAction}
-      <View pointerEvents="box-none" className="flex-row items-center gap-2 ml-auto">
+      <View pointerEvents="box-none" className="flex-row items-center gap-2">
         <View
-          className="rounded-xl bg-white/10"
-          style={{ height: CONTROL_SIZE, justifyContent: "center", borderWidth: 1, borderColor: "rgba(255,255,255,0.12)" }}
+          style={{ height: CONTROL_SIZE, justifyContent: "center" }}
         >
           <HueSlider hue={hue} onHueChange={handleHueChange} />
         </View>
 
+        {topLeftAction}
+      </View>
+      <View pointerEvents="box-none" className="ml-auto">
+        <View
+          className="flex-row items-center gap-1.5"
+          style={{ height: CONTROL_SIZE }}
+        >
+          <TouchableOpacity
+            onPress={handleToggleMute}
+            activeOpacity={0.7}
+            hitSlop={{ top: 8, bottom: 8, left: 8, right: 4 }}
+            accessibilityRole="button"
+            accessibilityLabel={isEffectivelyMuted ? t("common.unmute") : t("common.mute")}
+          >
+            <Icon name={isEffectivelyMuted ? "VolumeX" : "Volume2"} size={14} color="rgba(255,255,255,0.85)" />
+          </TouchableOpacity>
+          <View style={{ width: 48, height: CONTROL_SIZE, justifyContent: "center" }}>
+            <PagerSafe>
+            <Slider
+              style={{ width: "100%" }}
+              minimumValue={0}
+              maximumValue={1}
+              step={0.01}
+              value={isEffectivelyMuted ? 0 : volume}
+              onValueChange={handleVolumeChange}
+              minimumTrackTintColor="rgba(255,255,255,0.85)"
+              maximumTrackTintColor="rgba(255,255,255,0.25)"
+              thumbTintColor="#ffffff"
+            />
+            </PagerSafe>
+          </View>
+        </View>
+      </View>
+    </View>
+  );
+
+  const renderBottomChrome = () => (
+    <View pointerEvents="box-none" style={styles.bottomChrome}>
+      {/* Plain play/countdown, styles, pop-out and fullscreen above the edge line. */}
+      <View pointerEvents="box-none" className="flex-row items-center gap-1 px-1">
+        <TouchableOpacity
+          onPress={handlePlayPause}
+          activeOpacity={0.7}
+          hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+          className="rounded-xl items-center justify-center"
+          style={styles.squareControl}
+          accessibilityRole="button"
+          accessibilityLabel={shownPlaying ? t("audioPost.pause") : t("audioPost.play")}
+        >
+          {shownLoading ? (
+            <Icon name="Loader" size={16} color="#fff" />
+          ) : (
+            <Icon name={shownPlaying ? "Pause" : "Play"} size={16} color="#fff" />
+          )}
+        </TouchableOpacity>
+
+        <Text style={styles.timeText}>
+          {fmtDuration(Math.max(0, Math.ceil(shownDuration - shownTime)))}
+        </Text>
+
+        <View className="flex-1">
+          <StylePicker style={vizStyle} onStyleChange={handleStyleChange} />
+        </View>
         <TouchableOpacity
           onPress={handlePopOut}
           activeOpacity={0.7}
@@ -1032,82 +1089,9 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
           <Icon name={isFullscreen ? "Minimize2" : "Maximize2"} size={15} color="#fff" />
         </TouchableOpacity>
       </View>
-    </View>
-  );
-
-  const renderBottomChrome = () => (
-    <View pointerEvents="box-none" style={styles.bottomChrome}>
-      {/* Scrubber with elapsed / total, live in every style */}
-      <View pointerEvents="box-none" className="flex-row items-center gap-2">
-        <View style={styles.timePill}>
-          <Text style={styles.timeText}>{fmtDuration(shownTime)}</Text>
-        </View>
-        <View className="flex-1">
-          <ScrubSurface surface={seekBarSurface}>
-            <SeekBar position={position} hue={hue} />
-          </ScrubSurface>
-        </View>
-        <View style={styles.timePill}>
-          <Text style={styles.timeText}>{fmtDuration(shownDuration)}</Text>
-        </View>
-      </View>
-
-      {/* Play sits with volume and the animation picker rather than alone in
-          the middle of the card, so every control for the track is in one
-          place along the bottom — and all three are CONTROL_SIZE tall, which
-          they were not: 36 against 32 against 24 read as three sizes on a
-          baseline. */}
-      <View pointerEvents="box-none" className="flex-row items-center gap-2">
-        <TouchableOpacity
-          onPress={handlePlayPause}
-          activeOpacity={0.7}
-          hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-          className="rounded-xl items-center justify-center"
-          style={styles.squareControl}
-          accessibilityRole="button"
-          accessibilityLabel={shownPlaying ? t("audioPost.pause") : t("audioPost.play")}
-        >
-          {shownLoading ? (
-            <Icon name="Loader" size={16} color="#fff" />
-          ) : (
-            <Icon name={shownPlaying ? "Pause" : "Play"} size={16} color="#fff" />
-          )}
-        </TouchableOpacity>
-
-        <View
-          className="flex-row items-center gap-1.5 rounded-xl bg-white/10 px-2"
-          style={{ height: CONTROL_SIZE, borderWidth: 1, borderColor: "rgba(255,255,255,0.12)" }}
-        >
-          <TouchableOpacity
-            onPress={handleToggleMute}
-            activeOpacity={0.7}
-            hitSlop={{ top: 8, bottom: 8, left: 8, right: 4 }}
-            accessibilityRole="button"
-            accessibilityLabel={isEffectivelyMuted ? t("common.unmute") : t("common.mute")}
-          >
-            <Icon name={isEffectivelyMuted ? "VolumeX" : "Volume2"} size={14} color="rgba(255,255,255,0.85)" />
-          </TouchableOpacity>
-          <View style={{ width: 72, height: CONTROL_SIZE, justifyContent: "center" }}>
-            <PagerSafe>
-            <Slider
-              style={{ width: "100%" }}
-              minimumValue={0}
-              maximumValue={1}
-              step={0.01}
-              value={isEffectivelyMuted ? 0 : volume}
-              onValueChange={handleVolumeChange}
-              minimumTrackTintColor="rgba(255,255,255,0.85)"
-              maximumTrackTintColor="rgba(255,255,255,0.25)"
-              thumbTintColor="#ffffff"
-            />
-            </PagerSafe>
-          </View>
-        </View>
-
-        <View className="flex-1">
-          <StylePicker style={vizStyle} onStyleChange={handleStyleChange} />
-        </View>
-      </View>
+      <ScrubSurface surface={seekBarSurface}>
+        <SeekBar position={position} hue={0} edgeLine />
+      </ScrubSurface>
     </View>
   );
 
@@ -1189,7 +1173,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    paddingHorizontal: 12,
+    paddingLeft: 4,
+    paddingRight: 12,
     paddingTop: 12,
   },
   bottomChrome: {
@@ -1197,27 +1182,17 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    paddingHorizontal: 12,
-    paddingBottom: 10,
-    gap: 6,
+    paddingHorizontal: 0,
+    paddingBottom: 0,
+    gap: 0,
   },
   squareControl: {
     width: CONTROL_SIZE,
     height: CONTROL_SIZE,
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.12)",
-    backgroundColor: "rgba(255,255,255,0.1)",
+    backgroundColor: "transparent",
   },
   squareControlOn: {
-    backgroundColor: "rgba(255,255,255,0.28)",
-    borderColor: "rgba(255,255,255,0.35)",
-  },
-  // Same pill as FeedVideoPlayer, so the times stay readable over a full waveform.
-  timePill: {
-    backgroundColor: "rgba(0,0,0,0.5)",
-    borderRadius: 4,
-    paddingHorizontal: 6,
-    paddingVertical: 2,
+    opacity: 1,
   },
   timeText: {
     color: "#fff",
