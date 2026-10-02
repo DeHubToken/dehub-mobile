@@ -509,7 +509,7 @@ const HomeImageGrid: React.FC<HomeImageGridProps> = ({
           ) : null
         }
       />
-      <DeHubRefreshMark refreshing={refreshing} topInset={headerInset} />
+      <DeHubRefreshMark pill={active} refreshing={refreshing} topInset={headerInset} />
     </View>
   );
 };

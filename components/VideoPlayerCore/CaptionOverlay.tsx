@@ -1,3 +1,4 @@
+import { MediaControlIcon } from "../common/MediaControlGlyph";
 /**
  * Subtitles for the mobile video player.
  *
@@ -304,11 +305,7 @@ const CaptionOverlay: React.FC<Props> = ({
         {inFlight ? (
           <ActivityIndicator size="small" color="#FFFFFF" />
         ) : (
-          <Ionicons
-            name="chatbox-ellipses-outline"
-            size={16}
-            color={enabled ? '#FFFFFF' : 'rgba(255,255,255,0.6)'}
-          />
+<MediaControlIcon name="Captions" />
         )}
       </Pressable>}
 
@@ -452,9 +449,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'rgba(0,0,0,0.6)',
-    borderWidth: StyleSheet.hairlineWidth,
-    borderColor: 'rgba(255,255,255,0.15)',
+    backgroundColor: 'transparent',
     zIndex: 21,
   },
   backdrop: { flex: 1, backgroundColor: 'rgba(0,0,0,0.5)' },
