@@ -507,6 +507,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   // Media that reaches the screen edges keeps its controls off them.
   const edgeToEdge = isMinimal || postPage;
   const windowSize = useWindowDimensions();
+  const bareControls = Math.min(windowSize.width, windowSize.height) < PHONE_MAX_SIDE;
 
   const hideControlsTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -515,9 +516,9 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   // the controls seeds the scrubber from the ref so it starts at the real
   // position rather than at whatever it held when it was last hidden.
   useEffect(() => {
-    showControlsRef.current = showControls;
-    if (showControls) setCurrentTime(currentTimeRef.current);
-  }, [showControls]);
+    showControlsRef.current = bareControls || showControls;
+    if (bareControls || showControls) setCurrentTime(currentTimeRef.current);
+  }, [bareControls, showControls]);
 
   const clearHideTimer = useCallback(() => {
     if (hideControlsTimerRef.current) {
@@ -986,14 +987,13 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   // mute in the top corner, with subtitles, speed, loop and picture in picture
   // beside fullscreen on the bottom play/countdown row.
   // The post page uses the same phone controls; tablets keep the glass row.
-  const bareControls = Math.min(windowSize.width, windowSize.height) < PHONE_MAX_SIDE;
   // Level with the author chip over the picture; on the first post (its chip
   // at the bottom) just under the capsule instead.
   const bareTop = bleed?.controlsTop ?? (bleed ? (bleed.bottomInset ? bleed.topInset : BARE_ROW_TOP_BESIDE_CHIP) : 6);
   // Tell a card with chrome along the bottom when the player bar is up, so
   // that chrome lifts above it only then.
   const setBarUp = bleed?.setBarUp;
-  const barUp = !hideControls && showControls;
+  const barUp = !hideControls && (bareControls || showControls);
   useEffect(() => {
     setBarUp?.(barUp);
   }, [setBarUp, barUp]);
@@ -1224,12 +1224,12 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
               timeline inside it let a seek bubble into play/pause, and made the
               whole media box too eager to claim vertical feed flicks. */}
           <Pressable {...mediaTap} style={StyleSheet.absoluteFill} />
-          {(showControls || !isPlaying) && (
+          {(bareControls || showControls || !isPlaying) && (
             <View style={styles.controlsContainer} pointerEvents="box-none">
             {/* The pause button is the size of its glyph and lives above the
                 tap surface. It used to be a full-size layer drawn underneath
                 that surface, so it could be seen but never pressed. */}
-            {isPlaying && !isContentGated && !isProcessing && !isFailed && (
+            {!bareControls && isPlaying && !isContentGated && !isProcessing && !isFailed && (
               <Pressable
                 onPress={() => {
                   stopPlayback();
@@ -1276,13 +1276,11 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
 
               </View>
             ) : <View style={[styles.topControls, edgeToEdge && { paddingHorizontal: MINIMAL_EDGE }, bleed && { paddingTop: bleed.topInset }]}>
-              <Pressable onPress={handleToggleSpeed} hitSlop={{ top: 6, bottom: 6, left: 2, right: 2 }} accessibilityRole="button" accessibilityLabel={t("player.playbackSpeed")} style={styles.glassButton}>
-                <View style={styles.glassOverlay} />
+              <Pressable onPress={handleToggleSpeed} hitSlop={{ top: 6, bottom: 6, left: 2, right: 2 }} accessibilityRole="button" accessibilityLabel={t("player.playbackSpeed")} style={styles.bareSpeed}>
                 <Text style={{ color: "#fff", fontSize: 11, fontWeight: "bold" }}>{playbackRate}x</Text>
               </Pressable>
               
-              <Pressable onPress={handleToggleLoop} style={styles.glassButton}>
-                <View style={styles.glassOverlay} />
+              <Pressable onPress={handleToggleLoop} style={styles.bareButton}>
                 <Icon name={isLooping ? "Repeat" : "ArrowRight"} size={14} color={isLooping ? "#fff" : "#9CA3AF"} />
               </Pressable>
 
@@ -1306,8 +1304,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
               </View>
               
               <PictureInPictureButton videoRef={videoViewRef} />
-              <Pressable onPress={handleFullscreen} style={styles.glassButton}>
-                <View style={styles.glassOverlay} />
+              <Pressable onPress={handleFullscreen} style={styles.bareButton}>
                 <Icon name="Maximize" size={16} color="#fff" />
               </Pressable>
             </View>}
@@ -1439,8 +1436,8 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
         <CaptionOverlay
           tokenId={tokenId}
           positionMs={captionPosMs}
-          controlsVisible={showControls || !isPlaying}
-          bottomOffset={(showControls ? 56 : 16) + (bleed?.bottomInset ?? 0)}
+          controlsVisible={bareControls || showControls || !isPlaying}
+          bottomOffset={((bareControls || showControls) ? 56 : 16) + (bleed?.bottomInset ?? 0)}
           player={player}
           isPlaying={isPlaying}
           hideButton={bareControls}
