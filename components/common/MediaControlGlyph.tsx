@@ -1,23 +1,28 @@
+import Svg, { Rect, Path } from 'react-native-svg';
 import React from "react";
 import { View, Text, StyleSheet, type StyleProp, type TextStyle } from "react-native";
 import Icon, { type IconName } from "../ui/Icon";
 
 // The same dark outline under every white video control, with no button frame.
 export function MediaControlIcon({ name, size = 18 }: { name: IconName; size?: number }) {
+  const caption = (outline: boolean) => <Svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={outline ? "rgba(0,0,0,0.8)" : "#FFFFFF"} strokeLinecap="round" strokeLinejoin="round">
+    <Rect x={3} y={5} width={18} height={14} rx={2} strokeWidth={outline ? 3 : 1.75} />
+    <Path d="M10 9H8a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h2M17 9h-2a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h2" strokeWidth={outline ? 2.5 : 1.25} />
+  </Svg>;
   return <View style={{ width: size, height: size }}>
-    <View style={StyleSheet.absoluteFill}><Icon name={name} size={size} color="rgba(0,0,0,0.45)" strokeWidth={4} /></View>
-    <Icon name={name} size={size} color="#FFFFFF" />
+    <View style={StyleSheet.absoluteFill}>{name === "Captions" ? caption(true) : <Icon name={name} size={size} color="rgba(0,0,0,0.8)" strokeWidth={3} />}</View>
+    {name === "Captions" ? caption(false) : <Icon name={name} size={size} color="#FFFFFF" strokeWidth={1.75} />}
   </View>;
 }
 
 export function MediaControlText({ children, style }: { children: React.ReactNode; style?: StyleProp<TextStyle> }) {
   return <View style={{ position: "relative", alignItems: "center" }}>
-    {[[ -0.7, 0 ], [ 0.7, 0 ], [ 0, -0.7 ], [ 0, 0.7 ]].map(([x, y], i) =>
+    {[[ -0.5, 0 ], [ 0.5, 0 ], [ 0, -0.5 ], [ 0, 0.5 ]].map(([x, y], i) =>
       <Text key={i} accessible={false} importantForAccessibility="no" style={[style, styles.textOutline, { transform: [{ translateX: x }, { translateY: y }] }]}>{children}</Text>)}
     <Text style={[style, { color: "#FFFFFF" }]}>{children}</Text>
   </View>;
 }
 
 const styles = StyleSheet.create({
-  textOutline: { position: "absolute", top: 0, left: 0, right: 0, color: "rgba(0,0,0,0.45)", textAlign: "center", textShadowColor: "transparent", textShadowRadius: 0 },
+  textOutline: { position: "absolute", top: 0, left: 0, right: 0, color: "rgba(0,0,0,0.8)", textAlign: "center", textShadowColor: "transparent", textShadowRadius: 0 },
 });
