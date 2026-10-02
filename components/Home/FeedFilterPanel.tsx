@@ -20,7 +20,7 @@ import Animated, {
 import { LinearGradient } from "expo-linear-gradient";
 import MaskedView from "@react-native-masked-view/masked-view";
 import Icon from "../ui/Icon";
-import GlassIndicator, { GLASS_SHADOW } from "../ui/GlassIndicator";
+import ChromeSurface from "../ui/ChromeSurface";
 import {
   resolveEdgeFadeMask,
   resolveEdgeFadeSides,
@@ -73,7 +73,7 @@ interface FeedFilterPanelProps {
 
 
 const MAX_HEIGHT = 440;
-const PILL_BORDER_RADIUS = 8;
+const PILL_BORDER_RADIUS = 15;
 
 interface GlassPillProps {
   label: string;
@@ -83,14 +83,16 @@ interface GlassPillProps {
 
 const GlassPill: React.FC<GlassPillProps> = memo(({ label, selected, onPress }) => (
   <TouchableOpacity
+    accessibilityRole="button"
+    accessibilityState={{ selected }}
     onPress={onPress}
     activeOpacity={0.7}
     style={[
       pillStyles.base,
-      selected ? [pillStyles.active, GLASS_SHADOW] : pillStyles.inactive,
+      selected ? pillStyles.active : pillStyles.inactive,
     ]}
   >
-    {selected && <GlassIndicator borderRadius={PILL_BORDER_RADIUS} />}
+    {selected && <ChromeSurface tinted radius={PILL_BORDER_RADIUS} />}
     <Text
       style={[
         pillStyles.text,
@@ -111,7 +113,7 @@ const pillStyles = StyleSheet.create({
     overflow: "hidden",
   },
   // Web paints no background on either state: the active pill's glass comes
-  // entirely from GlassIndicator, and an inactive one is bare text.
+  // entirely from ChromeSurface, and an inactive one is bare text.
   active: {
     backgroundColor: "transparent",
   },
@@ -350,6 +352,7 @@ const FeedFilterPanelComponent: React.FC<FeedFilterPanelProps> = ({
     <Animated.View
       style={[animatedStyle, embedded ? panelStyles.embeddedOuterWrap : panelStyles.outerWrap]}
     >
+      {!embedded && <ChromeSurface radius={15} />}
       <ScrollView
         showsVerticalScrollIndicator={false}
         scrollEnabled={innerScrollEnabled}
@@ -470,10 +473,7 @@ const panelStyles = StyleSheet.create({
   },
   outerWrap: {
     overflow: "hidden",
-    backgroundColor: "#09090b",
-    borderWidth: 1,
-    borderColor: "#27272a",
-    borderRadius: 12,
+    borderRadius: 15,
     marginHorizontal: 8,
   },
   content: {

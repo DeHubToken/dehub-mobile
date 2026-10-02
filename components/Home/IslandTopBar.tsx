@@ -1,8 +1,9 @@
 import React, { memo, useCallback } from "react";
-import { Image, Pressable, StyleSheet, Text, View, useWindowDimensions } from "react-native";
+import { Pressable, StyleSheet, Text, View, useWindowDimensions } from "react-native";
 import Animated, { Easing, ReduceMotion, withTiming } from "react-native-reanimated";
 import { useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
+import ElectricLogo from "../common/ElectricLogo";
 import Avatar from "../common/Avatar";
 import Icon, { type IconName } from "../ui/Icon";
 import ChromeSurface from "../ui/ChromeSurface";
@@ -139,23 +140,10 @@ export const IslandCapsule = memo(function IslandCapsule({
             </Pressable>
           </View>
         </View>
-        <Pressable
-          onPress={onToggleMenu}
-          hitSlop={{ top: 8, bottom: 8, left: 2, right: 2 }}
-          accessibilityRole="button"
-          accessibilityLabel={`${BRAND_NAME}, ${label}`}
-          accessibilityState={{ expanded: menuOpen }}
-          style={styles.mark}
-        >
-          {({ pressed }) => (
-            <Image
-              source={MARK}
-              resizeMode="contain"
-              fadeDuration={0}
-              style={{ width: 31.5, height: MARK_HEIGHT, tintColor: "#FFFFFF", opacity: pressed ? 0.6 : 1 }}
-            />
-          )}
-        </Pressable>
+        <ElectricLogo onPress={onToggleMenu} source={MARK} width={31.5}
+          height={MARK_HEIGHT} tint="#FFFFFF" label={`${BRAND_NAME}, ${label}`}
+          expanded={menuOpen} style={styles.mark}
+          hitSlop={{ top: 8, bottom: 8, left: 2, right: 2 }} />
         <View style={[styles.right, { width: side || undefined }]}>
           <View style={styles.sideInner}>
             <Pressable
