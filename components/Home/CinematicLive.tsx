@@ -254,6 +254,7 @@ export interface CinematicLiveProps {
 }
 
 const CinematicLive: React.FC<CinematicLiveProps> = ({
+  active = true,
   scrollHandler,
   onScrollBegin,
   onScrollEnd,
@@ -269,8 +270,10 @@ const CinematicLive: React.FC<CinematicLiveProps> = ({
   const game = LIVE_GAMES.find((g) => g.id === gameId) || null;
 
   const { data, isLoading, isError, refetch } = useQuery({
-    queryKey: ["dehub-live-streams", LIVE_UNIT],
-    queryFn: () => getLiveVideos({ unit: LIVE_UNIT }),
+    queryKey: ["dehub-live-streams", LIVE_UNIT, "recent"],
+    queryFn: () => getLiveVideos({ unit: LIVE_UNIT, sortMode: "recent" }),
+    enabled: active,
+    refetchInterval: active ? 60_000 : false,
     staleTime: 60_000,
     gcTime: 10 * 60_000,
     retry: 1,
@@ -288,7 +291,10 @@ const CinematicLive: React.FC<CinematicLiveProps> = ({
       : Array.isArray((data as any)?.result)
         ? (data as any).result
         : [];
-    return rows.map((row, i) => toStream(row, i, fallbackGame));
+    return [...rows].sort((a, b) =>
+      (Date.parse(b.startedAt || b.createdAt || "") || 0) -
+      (Date.parse(a.startedAt || a.createdAt || "") || 0)
+    ).map((row, i) => toStream(row, i, fallbackGame));
   }, [data, fallbackGame]);
 
   // One ring per creator who is on air right now.
@@ -388,7 +394,7 @@ const CinematicLive: React.FC<CinematicLiveProps> = ({
       </GuardedRow>
 
       <SectionTitle
-        title={game ? game.name : t("stages.liveNow")}
+        title={game ? game.name : t("settings.notifLiveStreams")}
         meta={game ? t("dpay.showAll") : liveCount > 0 ? t("live.streamCount", { count: liveCount }) : undefined}
         onMeta={game ? () => setGameId(null) : undefined}
       />

@@ -1,3 +1,5 @@
+import { watchedLabel } from "../../i18n/watched-label";
+import { useIsWatchedVideo } from "../../hooks/useWatchedVideos";
 import { isStreamLive } from '../../libs/live-status';
 import { isHoldGated } from "../../libs/content-gate";
 import React, { memo, useCallback, useRef, useState, useMemo, useEffect } from "react";
@@ -12,6 +14,7 @@ import {
   Image,
   type LayoutChangeEvent,
 } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
 import { GRAIN } from "../../theme/skins";
 import { GestureDetector } from "react-native-gesture-handler";
 import { useHorizontalScrollGuard } from "../../context/PagerGestureContext";
@@ -272,7 +275,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   hideDivider = false,
 }) => {
   const navigation = useNavigation<any>();
-  const { t } = useCopy();
+  const { t, i18n } = useCopy();
   const user = useUser();
   const { requireAuth } = useAuthActions();
   const { isSignedIn } = useAuthState();
@@ -299,6 +302,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const stream = (item as any).stream;
   const streamInfo = (item as any).streamInfo || stream?.streamInfo;
   const tokenId = item.tokenId ?? (item as any).id ?? stream?.tokenId;
+  const isWatchedVideo = useIsWatchedVideo(contentType === "video" || contentType === "short" ? tokenId : undefined);
   // Which post this card is showing. Everything the card remembers about a
   // post (open sheets, edits, a deletion) is held against this, so none of it
   // can follow the card onto a different post.
@@ -1221,6 +1225,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   // The first post keeps the top of its picture clear under the capsule: its
   // author and buttons move to the bottom of the media instead, and badges
   // sit just under the capsule.
+  const firstVideoHeaderBelow = chipOverMedia && leadInset > 0 && (contentType === "video" || contentType === "short");
   const chipAtBottom = chipOverMedia && leadInset > 0;
   const mediaBand = chipAtBottom ? leadInset + 8 : CINEMATIC_TOP_BAND;
   // The player's own buttons, folded into one tools menu on the card.
@@ -1234,12 +1239,13 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     () => (cinematicMedia
       ? {
           topInset: chipOverMedia ? mediaBand : 0,
-          bottomInset: chipAtBottom ? bottomBand : 0,
-          setTools: chipOverMedia ? setMediaTools : undefined,
+          controlsTop: firstVideoHeaderBelow ? mediaBand : undefined,
+          bottomInset: chipAtBottom && !firstVideoHeaderBelow ? bottomBand : 0,
+          setTools: chipOverMedia && !firstVideoHeaderBelow ? setMediaTools : undefined,
           setBarUp: chipAtBottom ? setMediaBarUp : undefined,
         }
       : null),
-    [cinematicMedia, chipOverMedia, chipAtBottom, mediaBand, bottomBand, setMediaBarUp],
+    [cinematicMedia, chipOverMedia, chipAtBottom, firstVideoHeaderBelow, mediaBand, bottomBand, setMediaBarUp],
   );
   // Media that already spans the screen: square, no top gap.
   const edgeMedia = immersive || cinematicMedia;
@@ -2008,6 +2014,10 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             <FeedBleedContext.Provider value={feedBleed}>
               {renderContent()}
             </FeedBleedContext.Provider>
+            {!chipAtBottom && (contentType === "video" || contentType === "short") && (
+              <LinearGradient pointerEvents="none" colors={["rgba(0,0,0,0.38)", "transparent"]}
+                style={{ position: "absolute", top: 0, left: 0, right: 0, height: 112 }} />
+            )}
             <View
               pointerEvents="box-none"
               style={[
@@ -2015,6 +2025,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
                 chipAtBottom
                   ? [styles.cinematicBottom, mediaBarUp && styles.cinematicBottomLifted]
                   : styles.cinematicTop,
+                firstVideoHeaderBelow && { position: "relative", left: 0, right: 0, bottom: 0, paddingHorizontal: CINEMATIC_TEXT_INSET, paddingTop: 10 },
               ]}
             >
               <CinematicAuthorChip
@@ -2033,7 +2044,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
                 )}
                 {mediaTools && mediaTools.length > 0 && (
                   <CinematicIconButton
-                    icon="Wrench"
+                    icon="Plus"
                     label={t("settings.title")}
                     active={toolsOpen}
                     onPress={() => setToolsOpen(!toolsOpen)}
@@ -2184,7 +2195,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             <Text style={{ fontSize: 13, lineHeight: 18, color: "#8B8D90" }}>{timeAgo}</Text>
             <Text style={{ color: "#6F7174" }}>·</Text>
             <Icon name="Eye" size={13} color="#6F7174" />
-            <Text style={{ fontSize: 13, lineHeight: 18, color: "#8B8D90" }}>{formatCompactNumber(views)}</Text>
+            <Text style={{ fontSize: 13, lineHeight: 18, color: "#8B8D90" }}>{formatCompactNumber(views)}{isWatchedVideo ? watchedLabel(i18n.resolvedLanguage ?? i18n.language) : ""}</Text>
           </View>
         )}
         <View style={{ paddingHorizontal: CINEMATIC_TEXT_INSET, paddingTop: 4 }}>
@@ -2433,7 +2444,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             labelled; printed here it read as the view count and undercounted
             by an order of magnitude. */}
         <Text style={{ fontSize: 13, lineHeight: 18, color: "#8B8D90", marginLeft: -4 }}>
-          {formatCompactNumber(views)}
+          {formatCompactNumber(views)}{isWatchedVideo ? watchedLabel(i18n.resolvedLanguage ?? i18n.language) : ""}
         </Text>
         {isLive && peakAudience > 0 && (
           <>
