@@ -1240,7 +1240,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     () => (cinematicMedia
       ? {
           topInset: chipOverMedia ? mediaBand : 0,
-          controlsTop: firstVideoHeaderBelow ? mediaBand : undefined,
+          controlsTop: firstVideoHeaderBelow ? 6 : undefined,
           bottomInset: chipAtBottom && !firstVideoHeaderBelow ? bottomBand : 0,
           setTools: chipOverMedia && !firstVideoHeaderBelow ? setMediaTools : undefined,
           setBarUp: chipAtBottom ? setMediaBarUp : undefined,
@@ -2026,7 +2026,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
                 chipAtBottom
                   ? [styles.cinematicBottom, mediaBarUp && styles.cinematicBottomLifted]
                   : styles.cinematicTop,
-                firstVideoHeaderBelow && { position: "relative", left: 0, right: 0, bottom: 0, paddingHorizontal: CINEMATIC_TEXT_INSET, paddingTop: 10 },
+                firstVideoHeaderBelow && { position: "relative", left: 0, right: 0, bottom: 0, alignItems: "center", paddingHorizontal: CINEMATIC_TEXT_INSET, paddingTop: 10 },
               ]}
             >
               <CinematicAuthorChip
@@ -2040,8 +2040,11 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
               />
               <View pointerEvents="box-none" style={chipAtBottom ? styles.cinematicBareButtons : styles.cinematicButtons}>
                 {isHidden && <CinematicIconButton icon="EyeOff" label={t("settings.hiddenOption")} bare={chipAtBottom} />}
-                {isOwnerPost && isSignedIn && tokenId != null && (
+                {isOwnerPost && isSignedIn && tokenId != null && (firstVideoHeaderBelow || (contentType !== "video" && contentType !== "short")) && (
                   <CinematicIconButton icon="Rocket" label={t("feedCard.boostPost")} onPress={handleBoostPress} bare={chipAtBottom} />
+                )}
+                {firstVideoHeaderBelow && (
+                  <CinematicIconButton icon="EllipsisVertical" label={t("player.moreOptions")} onPress={handleOpenOptions} bare />
                 )}
                 {mediaTools && mediaTools.length > 0 && (
                   <CinematicIconButton
@@ -2139,18 +2142,17 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           </View>
         )}
         <View style={{ paddingHorizontal: CINEMATIC_TEXT_INSET }}>
-          {chipOverMedia ? (
+          {chipOverMedia && !firstVideoHeaderBelow ? (
             // Options sit off the picture, at the top right of the caption,
             // inset from the edge like the text is on the left.
-            <Pressable
-              onPress={handleOpenOptions}
-              hitSlop={6}
-              accessibilityRole="button"
-              accessibilityLabel={t("player.moreOptions")}
-              style={styles.captionOptions}
-            >
-              <Icon name="EllipsisVertical" size={20} color="#FFFFFF" />
-            </Pressable>
+            <View style={[styles.captionOptions, { width: undefined, flexDirection: "row", alignItems: "center" }]}>
+              {(contentType === "video" || contentType === "short") && isOwnerPost && isSignedIn && tokenId != null && (
+                <CinematicIconButton icon="Rocket" label={t("feedCard.boostPost")} onPress={handleBoostPress} bare />
+              )}
+              <Pressable onPress={handleOpenOptions} hitSlop={6} accessibilityRole="button" accessibilityLabel={t("player.moreOptions")} style={{ width: 32, height: 32, alignItems: "center", justifyContent: "center" }}>
+                <Icon name="EllipsisVertical" size={20} color="#FFFFFF" />
+              </Pressable>
+            </View>
           ) : null}
           {cinematicMedia ? (
             // The caption sits under the media, then the soundtrack.
@@ -2160,7 +2162,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
                 onReaction={handleVideoTapReaction}
                 onPress={disablePress ? undefined : handleCardPress}
               >
-                <View style={[{ paddingTop: 10 }, chipOverMedia && styles.captionBesideOptions]}>
+                <View style={[{ paddingTop: 10 }, chipOverMedia && !firstVideoHeaderBelow && [styles.captionBesideOptions, (contentType === "video" || contentType === "short") && isOwnerPost && isSignedIn && tokenId != null && { paddingRight: 64 }]]}>
                   <FeedCaption
                     resetKey={postKey}
                     title={overlayTitle || undefined}
@@ -2185,18 +2187,19 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
               listingCount={localShopListingCount ?? (item as any).shopListingCount}
             />
           )}
-          {cinematicMedia && translateButton ? (
-            // Time and views ride on the author chip; what is left of the
-            // meta row is the translate toggle, at the end of the post.
-            <View className="flex-row items-center justify-end pt-2">{translateButton}</View>
-          ) : null}
         </View>
         {(
-          <View style={{ paddingHorizontal: CINEMATIC_TEXT_INSET, paddingTop: 8, flexDirection: "row", alignItems: "center", gap: 6 }}>
+          <View style={{ paddingHorizontal: CINEMATIC_TEXT_INSET, paddingTop: 8, flexDirection: "row", flexWrap: "wrap", alignItems: "center", gap: 6 }}>
             <Text style={{ fontSize: 13, lineHeight: 18, color: "#8B8D90" }}>{timeAgo}</Text>
             <Text style={{ color: "#6F7174" }}>·</Text>
             <Icon name="Eye" size={13} color="#6F7174" />
             <Text style={{ fontSize: 13, lineHeight: 18, color: "#8B8D90" }}>{formatCompactNumber(views)}{isWatchedVideo ? watchedLabel(i18n.resolvedLanguage ?? i18n.language) : ""}</Text>
+            {cinematicMedia && translateButton ? (
+              <>
+                <Text style={{ color: "#6F7174" }}>·</Text>
+                {translateButton}
+              </>
+            ) : null}
           </View>
         )}
         <View style={{ paddingHorizontal: CINEMATIC_TEXT_INSET, paddingTop: 4 }}>

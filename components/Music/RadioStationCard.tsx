@@ -33,7 +33,7 @@ export interface RadioStationCardProps {
 
 const RadioStationCard: React.FC<RadioStationCardProps> = ({ station, variant = "row" }) => {
   const { station: current, isPlaying, isLoading } = useRadioPlayer();
-  const [logoFailed, setLogoFailed] = useState(false);
+  const [failedLogoUri, setFailedLogoUri] = useState<string | null>(null);
 
   const isCurrent = current?.stationuuid === station.stationuuid;
   const isThisPlaying = isCurrent && isPlaying;
@@ -44,7 +44,7 @@ const RadioStationCard: React.FC<RadioStationCardProps> = ({ station, variant = 
   const tags = getPrimaryTags(station.tags);
   const bitrate = formatBitrate(station.bitrate);
   const flag = getCountryFlag(station.countrycode);
-  const showLogo = !!station.favicon && !logoFailed;
+  const showLogo = !!station.favicon && failedLogoUri !== station.favicon;
   const isCard = variant === "card";
 
   return (
@@ -63,7 +63,7 @@ const RadioStationCard: React.FC<RadioStationCardProps> = ({ station, variant = 
             style={StyleSheet.absoluteFill}
             contentFit="cover"
             transition={120}
-            onError={() => setLogoFailed(true)}
+            onError={() => setFailedLogoUri(station.favicon)}
           />
         ) : (
           <Icon name="Radio" size={isCard ? 22 : 20} color="#808089" />

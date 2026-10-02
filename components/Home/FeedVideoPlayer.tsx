@@ -495,12 +495,6 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   );
 
   const [showControls, setShowControls] = useState(false);
-  const [showTools, setShowTools] = useState(false);
-  const showToolsRef = useRef(false);
-  showToolsRef.current = showTools;
-  useEffect(() => {
-    if (!showControls) setShowTools(false);
-  }, [showControls]);
   // Real shape of the clip, so a portrait video is shown portrait instead of
   // being cropped into a fixed 16:9 slot. Measured off the thumbnail, which is
   // extracted from the video itself; 16:9 until that resolves.
@@ -535,7 +529,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   const startHideTimer = useCallback(() => {
     clearHideTimer();
     hideControlsTimerRef.current = setTimeout(() => {
-      if (!showToolsRef.current) setShowControls(false);
+      setShowControls(false);
     }, 2000);
   }, [clearHideTimer]);
 
@@ -989,8 +983,8 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   }, [isMuted, videoUrl, thumbnail, tokenId, isSignedIn, stopPlayback, navigation]);
 
   // Phone feeds: the player's buttons are bare icons with a soft shadow,
-  // subtitles, speed, loop and picture in picture top right with mute in the
-  // corner, and one time counter with fullscreen after it on the scrubber row.
+  // mute in the top corner, with subtitles, speed, loop and picture in picture
+  // beside fullscreen on the bottom play/countdown row.
   // The post page uses the same phone controls; tablets keep the glass row.
   const bareControls = Math.min(windowSize.width, windowSize.height) < PHONE_MAX_SIDE;
   // Level with the author chip over the picture; on the first post (its chip
@@ -1224,32 +1218,13 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
         </TouchableOpacity>
       )}
 
-      {!hideControls && !isContentGated && !isPlaying && !isProcessing && !isFailed && (
-        <Pressable {...mediaTap} style={[styles.playOverlay, BARE_LAYER]}>
-          <MediaShade color={PLAY_SHADE} />
-          <View style={styles.glassPlayButton}>
-            <View style={styles.glassOverlay} />
-            {isStarting ? (
-              // The glyph is replaced in place rather than the button being
-              // swapped out, so the tap target does not move or resize between
-              // press and playback.
-              <Spinner size={24} />
-            ) : (
-              <View style={{ marginLeft: 2 }}>
-                <Icon name="Play" size={24} color="#fff" />
-              </View>
-            )}
-          </View>
-        </Pressable>
-      )}
-
-      {!hideControls && (isPlaying || showControls) && (
+      {!hideControls && !isContentGated && !isProcessing && !isFailed && (
         <>
           {/* The video tap target is a sibling behind the controls. Nesting the
               timeline inside it let a seek bubble into play/pause, and made the
               whole media box too eager to claim vertical feed flicks. */}
           <Pressable {...mediaTap} style={StyleSheet.absoluteFill} />
-          {showControls && (
+          {(showControls || !isPlaying) && (
             <View style={styles.controlsContainer} pointerEvents="box-none">
             {/* The pause button is the size of its glyph and lives above the
                 tap surface. It used to be a full-size layer drawn underneath
@@ -1298,21 +1273,61 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
                     </View>
                   )}
                 </View>
-                <Pressable
-                  onPress={() => {
-                    setShowTools((open) => !open);
-                    startHideTimer();
-                  }}
-                  hitSlop={4}
-                  accessibilityRole="button"
-                  accessibilityLabel={t("player.moreOptions")}
-                  accessibilityState={{ expanded: showTools }}
-                  style={styles.bareButton}
-                >
-                  <BareIcon name="Plus" />
-                </Pressable>
-                {showTools && (
-                  <View style={styles.toolsMenu}>
+
+              </View>
+            ) : <View style={[styles.topControls, edgeToEdge && { paddingHorizontal: MINIMAL_EDGE }, bleed && { paddingTop: bleed.topInset }]}>
+              <Pressable onPress={handleToggleSpeed} style={styles.glassButton}>
+                <View style={styles.glassOverlay} />
+                <Text style={{ color: "#fff", fontSize: 11, fontWeight: "bold" }}>{playbackRate}x</Text>
+              </Pressable>
+              
+              <Pressable onPress={handleToggleLoop} style={styles.glassButton}>
+                <View style={styles.glassOverlay} />
+                <Icon name={isLooping ? "Repeat" : "ArrowRight"} size={14} color={isLooping ? "#fff" : "#9CA3AF"} />
+              </Pressable>
+
+              <View>
+                <View style={styles.bareButton} {...volumePanResponder.panHandlers}>
+                  <Icon name={isMuted ? "VolumeX" : "Volume2"} size={16} color="#fff" />
+                </View>
+                {volumeAdjusting && (
+                  <View style={styles.volumeTrack} pointerEvents="none">
+                    <View style={styles.glassOverlay} />
+                    <View style={styles.volumeTrackInner}>
+                      <View
+                        style={[
+                          styles.volumeFill,
+                          { height: `${Math.round((isMuted ? 0 : volume) * 100)}%` },
+                        ]}
+                      />
+                    </View>
+                  </View>
+                )}
+              </View>
+              
+              <PictureInPictureButton videoRef={videoViewRef} />
+              <Pressable onPress={handleFullscreen} style={styles.glassButton}>
+                <View style={styles.glassOverlay} />
+                <Icon name="Maximize" size={16} color="#fff" />
+              </Pressable>
+            </View>}
+
+            {bareControls ? (
+              // Phone feeds: play/pause, the time and fullscreen as bare
+              // icons, over a thin line along the very bottom of the picture.
+              <View pointerEvents="box-none" style={styles.bareBottom}>
+                <View pointerEvents="box-none" style={[styles.bareBottomRow, edgeToEdge && { paddingHorizontal: MINIMAL_EDGE - 8 }]}>
+                  <Pressable
+                    onPress={() => handleVideoPress()}
+                    hitSlop={4}
+                    accessibilityRole="button"
+                    accessibilityLabel={t(isPlaying ? "audioPost.pause" : "audioPost.play")}
+                    style={styles.bareButton}
+                  >
+                    <BareIcon name={isPlaying ? "Pause" : "Play"} />
+                  </Pressable>
+                  <Text style={[styles.timeText, styles.bareTime]}>{formatTime(Math.max(0, Math.ceil(videoDuration - currentTime)))}</Text>
+                  <View style={{ flex: 1 }} />
                 {captionControls && (
                   <Pressable
                     onPress={captionControls.toggle}
@@ -1362,63 +1377,6 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
                     <BareIcon name="PictureInPicture2" />
                   </Pressable>
                 )}
-                  </View>
-                )}
-              </View>
-            ) : <View style={[styles.topControls, edgeToEdge && { paddingHorizontal: MINIMAL_EDGE }, bleed && { paddingTop: bleed.topInset }]}>
-              <Pressable onPress={handleToggleSpeed} style={styles.glassButton}>
-                <View style={styles.glassOverlay} />
-                <Text style={{ color: "#fff", fontSize: 11, fontWeight: "bold" }}>{playbackRate}x</Text>
-              </Pressable>
-              
-              <Pressable onPress={handleToggleLoop} style={styles.glassButton}>
-                <View style={styles.glassOverlay} />
-                <Icon name={isLooping ? "Repeat" : "ArrowRight"} size={14} color={isLooping ? "#fff" : "#9CA3AF"} />
-              </Pressable>
-
-              <View>
-                <View style={styles.glassButton} {...volumePanResponder.panHandlers}>
-                  <View style={styles.glassOverlay} />
-                  <Icon name={isMuted ? "VolumeX" : "Volume2"} size={16} color="#fff" />
-                </View>
-                {volumeAdjusting && (
-                  <View style={styles.volumeTrack} pointerEvents="none">
-                    <View style={styles.glassOverlay} />
-                    <View style={styles.volumeTrackInner}>
-                      <View
-                        style={[
-                          styles.volumeFill,
-                          { height: `${Math.round((isMuted ? 0 : volume) * 100)}%` },
-                        ]}
-                      />
-                    </View>
-                  </View>
-                )}
-              </View>
-              
-              <PictureInPictureButton videoRef={videoViewRef} />
-              <Pressable onPress={handleFullscreen} style={styles.glassButton}>
-                <View style={styles.glassOverlay} />
-                <Icon name="Maximize" size={16} color="#fff" />
-              </Pressable>
-            </View>}
-
-            {bareControls ? (
-              // Phone feeds: play/pause, the time and fullscreen as bare
-              // icons, over a thin line along the very bottom of the picture.
-              <View pointerEvents="box-none" style={styles.bareBottom}>
-                <View pointerEvents="box-none" style={[styles.bareBottomRow, edgeToEdge && { paddingHorizontal: MINIMAL_EDGE - 8 }]}>
-                  <Pressable
-                    onPress={() => handleVideoPress()}
-                    hitSlop={4}
-                    accessibilityRole="button"
-                    accessibilityLabel={t(isPlaying ? "audioPost.pause" : "audioPost.play")}
-                    style={styles.bareButton}
-                  >
-                    <BareIcon name={isPlaying ? "Pause" : "Play"} />
-                  </Pressable>
-                  <Text style={[styles.timeText, styles.bareTime]}>{formatTime(Math.max(0, Math.ceil(videoDuration - currentTime)))}</Text>
-                  <View style={{ flex: 1 }} />
                   <Pressable
                     onPress={handleFullscreen}
                     hitSlop={4}
@@ -1746,16 +1704,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: 4,
-  },
-  toolsMenu: {
-    position: "absolute",
-    top: 38,
-    right: 0,
-    padding: 6,
-    gap: 4,
-    borderRadius: 12,
-    backgroundColor: "rgba(24,24,27,0.96)",
-    zIndex: 10,
   },
   bareButton: {
     width: 32,

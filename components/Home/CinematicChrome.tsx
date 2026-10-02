@@ -223,7 +223,7 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   chipText: { marginLeft: 7, flexShrink: 1, minWidth: 0 },
-  chipNameRow: { flexDirection: "row", alignItems: "center", minWidth: 0 },
+  chipNameRow: { flexDirection: "row", alignItems: "center", minWidth: 0, height: 17 },
   chipNameWrap: { flexShrink: 1, minWidth: 0 },
   chipName: { flexShrink: 1, color: "#FFFFFF", fontSize: 14, lineHeight: 17, fontWeight: "600", includeFontPadding: false, ...TEXT_SHADOW },
   chipMeta: { color: "rgba(255,255,255,0.85)", fontSize: 11, lineHeight: 14, includeFontPadding: false, ...TEXT_SHADOW },
