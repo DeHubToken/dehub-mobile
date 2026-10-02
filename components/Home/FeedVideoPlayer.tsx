@@ -991,11 +991,11 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   // Phone feeds: the player's buttons are bare icons with a soft shadow,
   // subtitles, speed, loop and picture in picture top right with mute in the
   // corner, and one time counter with fullscreen after it on the scrubber row.
-  // The post page and tablets keep the glass row.
-  const bareControls = !postPage && Math.min(windowSize.width, windowSize.height) < PHONE_MAX_SIDE;
+  // The post page uses the same phone controls; tablets keep the glass row.
+  const bareControls = Math.min(windowSize.width, windowSize.height) < PHONE_MAX_SIDE;
   // Level with the author chip over the picture; on the first post (its chip
   // at the bottom) just under the capsule instead.
-  const bareTop = bleed ? (bleed.bottomInset ? bleed.topInset : BARE_ROW_TOP_BESIDE_CHIP) : 6;
+  const bareTop = bleed?.controlsTop ?? (bleed ? (bleed.bottomInset ? bleed.topInset : BARE_ROW_TOP_BESIDE_CHIP) : 6);
   // Tell a card with chrome along the bottom when the player bar is up, so
   // that chrome lifts above it only then.
   const setBarUp = bleed?.setBarUp;
@@ -1309,7 +1309,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
                   accessibilityState={{ expanded: showTools }}
                   style={styles.bareButton}
                 >
-                  <BareIcon name="Ellipsis" />
+                  <BareIcon name="Plus" />
                 </Pressable>
                 {showTools && (
                   <View style={styles.toolsMenu}>
@@ -1586,7 +1586,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
 
       {/* The length before playback, on the post page only: in the feed the
           scrubber shows it once the video plays. */}
-      {postPage && !hideControls && !isContentGated && duration && !isPlaying && (
+      {postPage && !bareControls && !hideControls && !isContentGated && duration && !isPlaying && (
         <View style={[styles.durationBadge, edgeToEdge && { right: MINIMAL_EDGE }]}>
           <Text style={styles.durationText}>{duration}</Text>
         </View>

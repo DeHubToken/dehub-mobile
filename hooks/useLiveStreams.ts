@@ -48,8 +48,8 @@ const EMPTY: LiveStreamIndex = { byToken: new Map(), complete: false };
 
 export function useLiveStreams(enabled = true): LiveStreamIndex {
   const { data } = useQuery({
-    queryKey: ["dehub-live-streams", UNIT],
-    queryFn: () => getLiveVideos({ unit: UNIT }),
+    queryKey: ["dehub-live-streams", UNIT, "recent"],
+    queryFn: () => getLiveVideos({ unit: UNIT, sortMode: "recent" }),
     enabled,
     // Matches web's /api/live window. A stream going live is worth seeing
     // within a minute; a pull-to-refresh gets it sooner.
