@@ -25,6 +25,8 @@ import FeedCard, { resolveContentType } from "./FeedCard";
 import FeedCardSkeleton from "../Feed/FeedCardSkeleton";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../Feed/DeHubRefreshControl";
 import Icon from "../ui/Icon";
+import ChromeSurface from "../ui/ChromeSurface";
+import { ISLAND_CAPSULE_WIDTH, ISLAND_CAPSULE_GAP } from "./IslandTopBar";
 import { useTranslation } from "react-i18next";
 import useNewPostsSignal, { feedRowId } from "../../hooks/useNewPostsSignal";
 import { useAuthState } from "../../context/AuthContext";
@@ -99,6 +101,8 @@ interface InfiniteVideoFeedProps {
    * floating mid-feed once the header has slid away.
    */
   headerTranslateY?: SharedValue<number> | null;
+  islandChrome?: boolean;
+  hideNewPosts?: boolean;
   onEndReachedAll?: () => void;
   /** Reanimated worklet scroll handler — when provided, scroll events stay on the UI thread. */
   scrollHandler?: any;
@@ -297,6 +301,8 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   headerInset = 0,
   firstRowInset = 0,
   headerTranslateY = null,
+  islandChrome = false,
+  hideNewPosts = false,
   onEndReachedAll,
   scrollHandler,
   onScrollOffset,
@@ -1281,11 +1287,11 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     // Keyed apart from the skeleton and error views, so a list that mounts
     // off screen gets a view of its own and its first layout is reported.
     <View key="feed-list" className="flex-1" onTouchStart={handleTouchStart} onLayout={handleListLayout}>
-      {newPostCount > 0 && (
+      {active && !refreshing && !hideNewPosts && newPostCount > 0 && (
         <Animated.View
           pointerEvents="box-none"
           style={[
-            { position: "absolute", top: chromeInset + 8, left: 0, right: 0, alignItems: "center", zIndex: 20 },
+            { position: "absolute", top: islandChrome ? chromeInset - ISLAND_CAPSULE_GAP - 44 : chromeInset + 8, left: 0, right: 0, alignItems: "center", zIndex: 20 },
             newPostsPillStyle,
           ]}
         >
@@ -1293,10 +1299,12 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
             onPress={showNewPosts}
             accessibilityRole="button"
             accessibilityLabel={`${newPostCount} new posts, tap to refresh`}
-            className="flex-row items-center gap-1.5 rounded-full border border-white/20 dark-surface bg-black/85 px-4 py-2"
+            className={islandChrome ? "flex-row items-center justify-center gap-1.5 px-2 py-2" : "flex-row items-center gap-1.5 rounded-full border border-white/20 dark-surface bg-black/85 px-4 py-2"}
+            style={islandChrome ? { width: ISLAND_CAPSULE_WIDTH, paddingTop: 52, borderRadius: 15, overflow: "hidden" } : undefined}
           >
+            {islandChrome ? <ChromeSurface radius={15} /> : null}
             <Icon name="ArrowUp" size={14} color="#E5E7EB" />
-            <Text className="text-xs font-semibold text-white">
+            <Text className="text-xs font-semibold text-white" style={{ flexShrink: 1 }}>
               {t("feed.newPosts", { count: newPostCount })}
               {newPostsAtCap ? "+" : ""}
             </Text>
