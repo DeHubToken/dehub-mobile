@@ -13,7 +13,7 @@
  * @module components/Music/RadioMiniPlayer
  */
 
-import React from "react";
+import React, { useState } from "react";
 import { ActivityIndicator, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Image } from "expo-image";
 import { useTranslation } from "react-i18next";
@@ -27,6 +27,7 @@ const RadioMiniPlayer: React.FC = () => {
   const { t } = useTranslation();
   const { station, isPlaying, isLoading } = useRadioPlayer();
   const { currentSpace, isConnected } = useStages();
+  const [failedLogoUri, setFailedLogoUri] = useState<string | null>(null);
 
   if (!station) return null;
 
@@ -36,8 +37,8 @@ const RadioMiniPlayer: React.FC = () => {
   return (
     <View style={[styles.container, liveBarShowing && styles.aboveLiveBar]}>
       <View style={styles.logo}>
-        {station.favicon ? (
-          <Image source={{ uri: station.favicon }} style={StyleSheet.absoluteFill} contentFit="cover" />
+        {station.favicon && failedLogoUri !== station.favicon ? (
+          <Image source={{ uri: station.favicon }} style={StyleSheet.absoluteFill} contentFit="cover" onError={() => setFailedLogoUri(station.favicon)} />
         ) : (
           <Icon name="Radio" size={16} color="#808089" />
         )}
