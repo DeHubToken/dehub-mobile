@@ -484,7 +484,7 @@ const CinematicLive: React.FC<CinematicLiveProps> = ({
           />
         }
       />
-      <DeHubRefreshMark refreshing={refreshing} topInset={ISLAND_BAR_HEIGHT} />
+      <DeHubRefreshMark pill={active} refreshing={refreshing} topInset={ISLAND_BAR_HEIGHT} />
     </View>
   );
 };

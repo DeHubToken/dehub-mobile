@@ -1,4 +1,5 @@
-import React, { memo, useCallback } from "react";
+import { useFeedPillRefreshing, setFeedPillMounted } from '../../libs/feed-pill-refresh';
+import React, { memo, useCallback, useEffect, useRef } from "react";
 import { Pressable, StyleSheet, Text, View, useWindowDimensions } from "react-native";
 import Animated, { Easing, ReduceMotion, withTiming } from "react-native-reanimated";
 import { useNavigation } from "@react-navigation/native";
@@ -92,6 +93,9 @@ export const IslandCapsule = memo(function IslandCapsule({
   /** Avatar: opens the drawer. */
   onAvatarPress?: () => void;
 }) {
+  const refreshing = useFeedPillRefreshing();
+  const pillId = useRef(Symbol("feed-pill")).current;
+  useEffect(() => { setFeedPillMounted(pillId, true); return () => setFeedPillMounted(pillId, false); }, [pillId]);
   const { t } = useTranslation();
   const { isSignedIn } = useAuthState();
   const user = useUser();
@@ -140,7 +144,7 @@ export const IslandCapsule = memo(function IslandCapsule({
             </Pressable>
           </View>
         </View>
-        <ElectricLogo onPress={onToggleMenu} source={MARK} width={31.5}
+        <ElectricLogo refreshing={refreshing} onPress={onToggleMenu} source={MARK} width={31.5}
           height={MARK_HEIGHT} tint="#FFFFFF" label={`${BRAND_NAME}, ${label}`}
           expanded={menuOpen} style={styles.mark}
           hitSlop={{ top: 8, bottom: 8, left: 2, right: 2 }} />

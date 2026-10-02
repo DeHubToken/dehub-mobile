@@ -572,7 +572,7 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
         />
       }
       />
-      <DeHubRefreshMark refreshing={refreshing} topInset={headerInset} />
+      <DeHubRefreshMark pill={active} refreshing={refreshing} topInset={headerInset} />
     </View>
   );
 };
