@@ -16,9 +16,9 @@ describe('video gesture wiring', () => {
 
   it('keeps the feed timeline outside the play-pause press target', () => {
     const player = readSource('components', 'Home', 'FeedVideoPlayer.tsx');
-    const interaction = player.indexOf('{!hideControls && (isPlaying || showControls)');
+    const interaction = player.indexOf('{!hideControls && !isContentGated && !isProcessing && !isFailed && (');
     const videoPressClose = player.indexOf('/>', player.indexOf('<Pressable {...mediaTap}', interaction));
-    const controls = player.indexOf('{showControls && (', interaction);
+    const controls = player.indexOf('{(showControls || !isPlaying) && (', interaction);
 
     expect(interaction).toBeGreaterThan(-1);
     expect(videoPressClose).toBeGreaterThan(interaction);
@@ -62,7 +62,7 @@ describe('video gesture wiring', () => {
 
     expect(player).toContain('const mediaTap = useTapOnlyPress(handleMediaSurfacePress);');
     expect(player).toContain('const mediaTap = useTapOnlyPress(() => onPress());');
-    expect(player.match(/<Pressable \{\.\.\.mediaTap\}/g)).toHaveLength(3);
+    expect(player.match(/<Pressable \{\.\.\.mediaTap\}/g)).toHaveLength(2);
   });
 
   it('wires double Like and triple Love through the feed video player', () => {
