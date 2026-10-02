@@ -1,4 +1,5 @@
 import { MediaControlIcon as BareIcon, MediaControlText } from "../common/MediaControlGlyph";
+import { useSilenceOnRelease } from "../../hooks/useSilenceOnRelease";
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
@@ -434,6 +435,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     p.playbackRate = getPlaybackRateFor(creator);
     p.bufferOptions = FEED_BUFFER_OPTIONS;
   });
+  useSilenceOnRelease(player);
 
   useEffect(() => {
     playerRef.current = player;
