@@ -1220,7 +1220,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   // boost labels when there are any, the author otherwise. A video still runs
   // to the top of the screen; only its chip and buttons move.
   const hasLabels = showRepostLabel || !!(item as any).__boosted;
-  const chromeInset = cinematicFeed ? topChromeInset : 0;
+  // Only the landing image gets extra clearance; video stays flush.
+  const chromeInset = cinematicFeed ? topChromeInset + (topChromeInset > 0 && contentType === "image" ? 3 : 0) : 0;
   const leadInset = hasLabels ? 0 : chromeInset;
   // The first post keeps the top of its picture clear under the capsule: its
   // author and buttons move to the bottom of the media instead, and badges
