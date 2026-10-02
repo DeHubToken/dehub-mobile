@@ -1,3 +1,4 @@
+import { useMediaVolume } from '../../libs/video-preferences';
 import { MediaControlIcon as BareIcon, MediaControlText } from "../common/MediaControlGlyph";
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -604,6 +605,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     // card scrolls off-screen. A deferred call (autoplay timer) can land after
     // release and throw "Cannot use shared object that was already released".
     try {
+      playerRef.current.volume = getVolume();
       playerRef.current.play();
     } catch {
       stopPlayback();
@@ -903,14 +905,18 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   // once, which is no use when one video is loud and the rest of the phone is
   // fine; this is the video's own level, and it persists the same way the
   // playback rate does.
-  const [volume, setVolumeState] = useState(() => getVolume());
+  const volume = useMediaVolume();
   const [volumeAdjusting, setVolumeAdjusting] = useState(false);
   const volumeRef = useRef(volume);
+
+  useEffect(() => {
+    volumeRef.current = volume;
+    try { if (playerRef.current) playerRef.current.volume = volume; } catch {}
+  }, [volume, player]);
 
   const applyVolume = useCallback((next: number) => {
     const level = Math.max(0, Math.min(1, next));
     volumeRef.current = level;
-    setVolumeState(level);
     persistVolume(level);
     if (playerRef.current) playerRef.current.volume = level;
 

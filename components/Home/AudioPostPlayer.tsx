@@ -1,3 +1,5 @@
+import { useMediaVolume, setVolume } from '../../libs/video-preferences';
+import { useMediaMuted, setMutedState as setSelfMuted } from '../../libs/videoMutedState';
 import React, { memo, useCallback, useEffect, useRef, useState, useMemo } from "react";
 import {
   View,
@@ -402,8 +404,8 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
   const { theme } = useAppTheme();
   const [pickedStyle, setVizStyle] = useState<VisualizerStyle | null>(null);
   const vizStyle = pickedStyle ?? (defaultStyleForTheme(theme) as VisualizerStyle);
-  const [volume, setVolume] = useState(1);
-  const [selfMuted, setSelfMuted] = useState(false);
+  const volume = useMediaVolume();
+  const selfMuted = useMediaMuted();
   const [isFullscreen, setIsFullscreen] = useState(false);
   // The media window is measured, not fixed: the visualizer needs a height to
   // draw into, and the inline card and the fullscreen modal have different ones.
@@ -424,7 +426,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
   const isDraggingRef = useRef(false);
   // Read at player-creation time, so a level set before the track loaded is not
   // lost the moment it does.
-  const volumeRef = useRef(1);
+  const volumeRef = useRef(volume);
 
   /* ─── The corner player ──────────────────────────────────────
      While this post is popped out, the track lives in libs/audio-post-playback
@@ -913,10 +915,16 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
     if (player) player.volume = clamp01(level);
   }, []);
 
+  useEffect(() => {
+    const level = selfMuted ? 0 : volume;
+    volumeRef.current = level;
+    applyVolume(level);
+  }, [volume, selfMuted, applyVolume]);
+
   const handleVolumeChange = useCallback((level: number) => {
     const next = clamp01(level);
     setVolume(next);
-    if (next > 0) setSelfMuted(false);
+    setSelfMuted(next === 0);
     applyVolume(next);
   }, [applyVolume]);
 
@@ -927,8 +935,8 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
       return;
     }
     setSelfMuted(false);
-    const restored = volume === 0 ? 1 : volume;
-    if (volume === 0) setVolume(1);
+    const restored = volume === 0 ? 0.8 : volume;
+    if (volume === 0) setVolume(0.8);
     applyVolume(restored);
   }, [isEffectivelyMuted, volume, applyVolume]);
 
