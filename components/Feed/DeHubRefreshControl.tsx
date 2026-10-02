@@ -11,14 +11,9 @@
  * collapsing header that reads raw scroll offsets. A custom pan responder
  * would have to win all three back, and the only thing being bought is a logo.
  *
- * How the handover works: while the finger is still dragging, the native
- * indicator is the thing that answers it — that is the affordance that tells
- * you the pull has been registered and how far is far enough. The moment the
- * release fires and the request is actually in flight, the native indicator's
- * colours go transparent and `DeHubRefreshMark` paints the DeHub mark in the
- * space it was occupying. Both colour props apply live on Android
- * (`setColorSchemeColors` / `setProgressBackgroundColorSchemeColor`), so the
- * swap lands on the same frame the spin would have started.
+ * The native indicator stays invisible throughout the gesture and request.
+ * Changing its colours only after release can leave Android's disc behind
+ * the branded mark. Keep the native gesture, but give all drawing to DeHub.
  *
  * Usage is two parts, because `RefreshControl` can only be handed to the list
  * through `refreshControl` and cannot render siblings of its own:
@@ -34,7 +29,6 @@ import { RefreshControl, RefreshControlProps, StyleSheet, View } from "react-nat
 import { DeHubLoader } from "../DeHubLoader";
 
 const HIDDEN = "transparent";
-const DEFAULT_TINT = "#FFFFFF";
 
 /** Mark size. Close to the native circle's 40 dp so nothing shifts. */
 const MARK_SIZE = 38;
@@ -53,19 +47,13 @@ export const DeHubRefreshControl = ({
   progressBackgroundColor,
   ...rest
 }: RefreshControlProps) => {
-  const idle = tintColor ?? DEFAULT_TINT;
   return (
     <RefreshControl
       {...rest}
       refreshing={refreshing}
-      // iOS
-      tintColor={refreshing ? HIDDEN : idle}
-      // Android: the arrow and the disc behind it. Both are left exactly as the
-      // caller had them while the finger is down, so a screen that tuned the
-      // disc to its own surface keeps that look for the part of the gesture
-      // that is still native.
-      colors={refreshing ? [HIDDEN] : (colors ?? [idle])}
-      progressBackgroundColor={refreshing ? HIDDEN : progressBackgroundColor}
+      tintColor={HIDDEN}
+      colors={[HIDDEN]}
+      progressBackgroundColor={HIDDEN}
     />
   );
 };
