@@ -1,5 +1,6 @@
 import React, { memo, useCallback } from "react";
 import { Image, Pressable, StyleSheet, Text, View, useWindowDimensions } from "react-native";
+import Animated, { Easing, ReduceMotion, withTiming } from "react-native-reanimated";
 import { useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import Avatar from "../common/Avatar";
@@ -9,6 +10,24 @@ import { ScreenNames } from "../../navigation/ScreenNames";
 import { useUser, useAuthState, useAuthActions } from "../../context/AuthContext";
 import { getAvatarUrl } from "../../libs/misc";
 import { FEED_NAV_ITEMS } from "./FeedNavBar";
+
+// Match the web drawer's 200ms height reveal from behind the capsule.
+const menuEnter = (values: { targetHeight: number }) => {
+  "worklet";
+  const timing = { duration: 200, easing: Easing.out(Easing.quad), reduceMotion: ReduceMotion.System };
+  return {
+    initialValues: { height: 0, opacity: 0, transform: [{ translateY: -8 }] },
+    animations: { height: withTiming(values.targetHeight, timing), opacity: withTiming(1, timing), transform: [{ translateY: withTiming(0, timing) }] },
+  };
+};
+const menuExit = (values: { currentHeight: number }) => {
+  "worklet";
+  const timing = { duration: 200, easing: Easing.out(Easing.quad), reduceMotion: ReduceMotion.System };
+  return {
+    initialValues: { height: values.currentHeight, opacity: 1, transform: [{ translateY: 0 }] },
+    animations: { height: withTiming(0, timing), opacity: withTiming(0, timing), transform: [{ translateY: withTiming(-8, timing) }] },
+  };
+};
 
 // Use the same padded artwork and image box as the web capsule.
 const MARK = require("../../assets/web-icons/dehub-island-logo.png");
@@ -178,7 +197,7 @@ export const IslandFeedMenu = memo(function IslandFeedMenu({
   const { requireAuth } = useAuthActions();
   const navigation = useNavigation<any>();
   return (
-    <View pointerEvents="box-none" style={styles.menuWrap}>
+    <Animated.View entering={menuEnter} exiting={menuExit} pointerEvents="box-none" style={styles.menuWrap}>
       <View style={styles.menu}>
         <ChromeSurface radius={RADIUS} />
         {FEED_NAV_ITEMS.map((item, index) => {
@@ -212,7 +231,7 @@ export const IslandFeedMenu = memo(function IslandFeedMenu({
           </Pressable>
         </View>
       </View>
-    </View>
+    </Animated.View>
   );
 });
 
@@ -243,7 +262,7 @@ const styles = StyleSheet.create({
   avatar: { width: AVATAR_SIZE, height: AVATAR_SIZE, borderRadius: AVATAR_RADIUS, overflow: "hidden" },
   mark: { paddingHorizontal: 20, height: ISLAND_CAPSULE_HEIGHT, flexShrink: 0, justifyContent: "center", alignItems: "center" },
   bell: { width: 28, height: 28, alignItems: "center", justifyContent: "center" },
-  menuWrap: { position: "absolute", top: ISLAND_CAPSULE_GAP, left: 0, right: 0, alignItems: "center", zIndex: 1 },
+  menuWrap: { position: "absolute", top: ISLAND_CAPSULE_GAP, left: 0, right: 0, alignItems: "center", zIndex: 1, overflow: "hidden" },
   menu: {
     width: ISLAND_CAPSULE_WIDTH,
     padding: 6,
@@ -255,7 +274,7 @@ const styles = StyleSheet.create({
     shadowRadius: 12,
     shadowOffset: { width: 0, height: 6 },
   },
-  footerButton: { flex: 1, height: 44, alignItems: "center", justifyContent: "center" },
+  footerButton: { flex: 1, height: 40, alignItems: "center", justifyContent: "center" },
   menuRow: {
     flexDirection: "row",
     alignItems: "center",
@@ -263,11 +282,11 @@ const styles = StyleSheet.create({
     minHeight: 40,
     paddingVertical: 8,
     paddingHorizontal: 10,
-    borderRadius: AVATAR_RADIUS,
+    borderRadius: 8,
   },
   menuRowOn: { backgroundColor: "rgba(255,255,255,0.15)" },
   menuLabel: { flex: 1, color: "#FFFFFF", fontSize: 14, fontWeight: "600" },
-  menuDivider: { height: 1, marginVertical: 6, marginHorizontal: 6, backgroundColor: "rgba(255,255,255,0.12)" },
+  menuDivider: { height: 1, marginVertical: 4, marginHorizontal: 8, backgroundColor: "rgba(255,255,255,0.15)" },
   // Off the glyph's top right corner (the glyph is 26.9pt in a 28pt box).
   badge: {
     position: "absolute",

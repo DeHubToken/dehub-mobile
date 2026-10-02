@@ -11,16 +11,16 @@
  * delete half the feed for scrolling past it, so the history is asked for
  * `postType=video` and nothing else is ever hidden.
  *
- * Fetched only when the preference is on — otherwise this is three requests on
- * every app open for a feature most readers leave off.
+ * Fetched when a watched marker or the hide-watched preference needs it.
+ * All cards share the same per-account query cache.
  *
  * @module hooks/useWatchedVideos
  */
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { getWatchHistory } from "../services/user.service";
 import { useAppPrefs } from "./useAppPrefs";
-import { useAuthState } from "../context/AuthContext";
+import { useAuthState, useUser } from "../context/AuthContext";
 
 /** 3 × 100 = the last 300 videos played. Deeper than a reader scrolls in a sitting. */
 const HISTORY_PAGES = 3;
@@ -31,50 +31,36 @@ const STALE_MS = 5 * 60 * 1000;
 
 const EMPTY: ReadonlySet<string> = new Set<string>();
 
-export function useWatchedVideoIds(): { watchedIds: ReadonlySet<string>; hideWatched: boolean } {
+/** Shared per-account cache: card markers and the filter reuse one request. */
+export function useWatchedVideoIds(showMarker = false): { watchedIds: ReadonlySet<string>; hideWatched: boolean } {
   const { hideWatched } = useAppPrefs();
   const { isSignedIn } = useAuthState();
-  const [watchedIds, setWatchedIds] = useState<ReadonlySet<string>>(EMPTY);
-  const fetchedAt = useRef(0);
+  const user = useUser();
+  const address = (user?.walletAddress || user?.address)?.toLowerCase() ?? null;
+  const { data } = useQuery({
+    queryKey: ["watched-video-ids", address],
+    enabled: isSignedIn && !!address && (hideWatched || showMarker),
+    queryFn: async () => {
+      const ids = new Set<string>();
+      for (let page = 0; page < HISTORY_PAGES; page++) {
+        const res = await getWatchHistory({ page, unit: HISTORY_PAGE_SIZE, postType: "video" });
+        const items = res?.result ?? [];
+        items.forEach((item: any) => {
+          if (item?.tokenId !== undefined && item?.tokenId !== null) ids.add(String(item.tokenId));
+        });
+        if (items.length < HISTORY_PAGE_SIZE) break;
+      }
+      return ids;
+    },
+    staleTime: STALE_MS,
+    gcTime: 30 * 60 * 1000,
+  });
+  return { watchedIds: isSignedIn ? data ?? EMPTY : EMPTY, hideWatched };
+}
 
-  const load = useCallback(async () => {
-    const ids = new Set<string>();
-    for (let page = 0; page < HISTORY_PAGES; page++) {
-      const res = await getWatchHistory({ page, unit: HISTORY_PAGE_SIZE, postType: "video" });
-      const items = res?.result ?? [];
-      items.forEach((item: any) => {
-        if (item?.tokenId !== undefined && item?.tokenId !== null) ids.add(String(item.tokenId));
-      });
-      if (items.length < HISTORY_PAGE_SIZE) break;
-    }
-    return ids;
-  }, []);
-
-  useEffect(() => {
-    if (!hideWatched || !isSignedIn) {
-      setWatchedIds(EMPTY);
-      return;
-    }
-    if (Date.now() - fetchedAt.current < STALE_MS) return;
-
-    let cancelled = false;
-    fetchedAt.current = Date.now();
-    load()
-      .then((ids) => {
-        if (!cancelled) setWatchedIds(ids);
-      })
-      .catch(() => {
-        // A history that will not load is not a reason to empty the feed —
-        // the filter simply does nothing this session.
-        if (!cancelled) setWatchedIds(EMPTY);
-      });
-
-    return () => {
-      cancelled = true;
-    };
-  }, [hideWatched, isSignedIn, load]);
-
-  return { watchedIds, hideWatched };
+export function useIsWatchedVideo(tokenId?: string | number): boolean {
+  const { watchedIds } = useWatchedVideoIds(tokenId != null);
+  return tokenId != null && watchedIds.has(String(tokenId));
 }
 
 /**
