@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect, useCallback } from "react";
+import { useSilenceOnRelease } from "../../hooks/useSilenceOnRelease";
 import { View, Pressable } from "react-native";
 import { VideoView, useVideoPlayer, VideoPlayer } from "expo-video";
 import { FEED_BUFFER_OPTIONS } from "../../libs/videoBuffering";
@@ -56,6 +57,7 @@ export default function VideoPreview({
       p.bufferOptions = FEED_BUFFER_OPTIONS;
     }
   );
+  useSilenceOnRelease(player);
 
   useEffect(() => {
     playerRef.current = player;
