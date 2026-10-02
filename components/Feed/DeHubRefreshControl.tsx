@@ -1,3 +1,4 @@
+import { setFeedPillRefreshing, useFeedPillMounted } from '../../libs/feed-pill-refresh';
 /**
  * Branded pull-to-refresh
  * =======================
@@ -24,7 +25,7 @@
  *     </View>
  */
 
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { RefreshControl, RefreshControlProps, StyleSheet, View } from "react-native";
 import { DeHubLoader } from "../DeHubLoader";
 
@@ -59,6 +60,8 @@ export const DeHubRefreshControl = ({
 };
 
 interface DeHubRefreshMarkProps {
+  /** Active Home feed: draw the refresh ring in its existing navigation logo. */
+  pill?: boolean;
   refreshing: boolean;
   /**
    * Where the refresh indicator starts — the same value the list passes to
@@ -69,11 +72,18 @@ interface DeHubRefreshMarkProps {
 }
 
 export const DeHubRefreshMark = ({
+  pill = false,
   refreshing,
   topInset = 0,
   size = MARK_SIZE,
 }: DeHubRefreshMarkProps) => {
-  if (!refreshing) return null;
+  const id = useRef(Symbol("feed-refresh")).current;
+  const pillMounted = useFeedPillMounted();
+  useEffect(() => {
+    setFeedPillRefreshing(id, pill && refreshing);
+    return () => setFeedPillRefreshing(id, false);
+  }, [id, pill, refreshing]);
+  if (!refreshing || (pill && pillMounted)) return null;
   return (
     <View
       // Never eats a touch: the list underneath stays scrollable mid-refresh.

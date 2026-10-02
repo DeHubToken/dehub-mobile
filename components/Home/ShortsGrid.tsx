@@ -355,7 +355,7 @@ const ShortsGrid: React.FC<ShortsGridProps> = ({
           ) : null
         }
       />
-      <DeHubRefreshMark refreshing={refreshing} topInset={headerInset} />
+      <DeHubRefreshMark pill={active} refreshing={refreshing} topInset={headerInset} />
     </View>
   );
 };

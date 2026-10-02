@@ -1358,7 +1358,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
         ListFooterComponent={listFooter}
         ListEmptyComponent={unshown ? null : listEmpty}
       />
-      <DeHubRefreshMark refreshing={refreshing} topInset={chromeInset} />
+      <DeHubRefreshMark pill={active} refreshing={refreshing} topInset={chromeInset} />
     </View>
   );
 };

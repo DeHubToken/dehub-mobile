@@ -395,6 +395,7 @@ function useMusicChart(mode: "views" | "createdAt", enabled: boolean, address?: 
 type Row = { kind: "track"; track: Track } | { kind: "station"; station: RadioStation };
 
 export interface CinematicMusicProps {
+  active?: boolean;
   scrollHandler?: any;
   onScrollBegin?: () => void;
   onScrollEnd?: () => void;
@@ -403,6 +404,7 @@ export interface CinematicMusicProps {
 }
 
 const CinematicMusic: React.FC<CinematicMusicProps> = ({
+  active = true,
   scrollHandler,
   onScrollBegin,
   onScrollEnd,
@@ -586,7 +588,7 @@ const CinematicMusic: React.FC<CinematicMusicProps> = ({
           />
         }
       />
-      <DeHubRefreshMark refreshing={refreshing} topInset={ISLAND_BAR_HEIGHT} />
+      <DeHubRefreshMark pill={active} refreshing={refreshing} topInset={ISLAND_BAR_HEIGHT} />
     </View>
   );
 };

@@ -1,3 +1,4 @@
+import { MediaControlIcon as BareIcon, MediaControlText } from "../common/MediaControlGlyph";
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
@@ -34,7 +35,7 @@ import { useFeedBleed } from "./feedBleed";
 import type { CaptionControls } from "../VideoPlayerCore/CaptionOverlay";
 import Spinner from "../common/Spinner";
 import { useNavigation } from "@react-navigation/native";
-import Icon, { type IconName } from "../ui/Icon";
+import Icon from "../ui/Icon";
 import { formatCompactNumber } from "../../libs/numbers.util";
 import {
   requestAudioFocus,
@@ -507,7 +508,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   // Media that reaches the screen edges keeps its controls off them.
   const edgeToEdge = isMinimal || postPage;
   const windowSize = useWindowDimensions();
-  const bareControls = Math.min(windowSize.width, windowSize.height) < PHONE_MAX_SIDE;
+  const bareControls = true;
 
   const hideControlsTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -983,7 +984,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     } as never);
   }, [isMuted, videoUrl, thumbnail, tokenId, isSignedIn, stopPlayback, navigation]);
 
-  // Phone feeds: the player's buttons are bare icons with a soft shadow,
+  // Video posts: the player's buttons are bare icons with a soft shadow,
   // mute in the top corner, with subtitles, speed, loop and picture in picture
   // beside fullscreen on the bottom play/countdown row.
   // The post page uses the same phone controls; tablets keep the glass row.
@@ -1277,16 +1278,16 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
               </View>
             ) : <View style={[styles.topControls, edgeToEdge && { paddingHorizontal: MINIMAL_EDGE }, bleed && { paddingTop: bleed.topInset }]}>
               <Pressable onPress={handleToggleSpeed} hitSlop={{ top: 6, bottom: 6, left: 2, right: 2 }} accessibilityRole="button" accessibilityLabel={t("player.playbackSpeed")} style={styles.bareSpeed}>
-                <Text style={{ color: "#fff", fontSize: 11, fontWeight: "bold" }}>{playbackRate}x</Text>
+                <MediaControlText style={styles.bareSpeedText}>{playbackRate}x</MediaControlText>
               </Pressable>
               
               <Pressable onPress={handleToggleLoop} style={styles.bareButton}>
-                <Icon name={isLooping ? "Repeat" : "ArrowRight"} size={14} color={isLooping ? "#fff" : "#9CA3AF"} />
+                <BareIcon name="Repeat" />
               </Pressable>
 
               <View>
                 <View style={styles.bareButton} {...volumePanResponder.panHandlers}>
-                  <Icon name={isMuted ? "VolumeX" : "Volume2"} size={16} color="#fff" />
+                  <BareIcon name={isMuted ? "VolumeX" : "Volume2"} />
                 </View>
                 {volumeAdjusting && (
                   <View style={styles.volumeTrack} pointerEvents="none">
@@ -1305,12 +1306,12 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
               
               <PictureInPictureButton videoRef={videoViewRef} />
               <Pressable onPress={handleFullscreen} style={styles.bareButton}>
-                <Icon name="Maximize" size={16} color="#fff" />
+                <BareIcon name="Maximize" />
               </Pressable>
             </View>}
 
             {bareControls ? (
-              // Phone feeds: play/pause, the time and fullscreen as bare
+              // Video posts: play/pause, the time and fullscreen as bare
               // icons, over a thin line along the very bottom of the picture.
               <View pointerEvents="box-none" style={styles.bareBottom}>
                 <View pointerEvents="box-none" style={[styles.bareBottomRow, edgeToEdge && { paddingHorizontal: MINIMAL_EDGE - 8 }]}>
@@ -1323,7 +1324,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
                   >
                     <BareIcon name={isPlaying ? "Pause" : "Play"} />
                   </Pressable>
-                  <Text style={[styles.timeText, styles.bareTime]}>{formatTime(Math.max(0, Math.ceil(videoDuration - currentTime)))}</Text>
+                  <MediaControlText style={[styles.timeText, styles.bareTime]}>{formatTime(Math.max(0, Math.ceil(videoDuration - currentTime)))}</MediaControlText>
                   <View style={{ flex: 1 }} />
                 {captionControls && (
                   <Pressable
@@ -1338,7 +1339,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
                     {captionControls.loading ? (
                       <Spinner size={16} />
                     ) : (
-                      <BareIcon name="Captions" dim={!captionControls.enabled} />
+                      <BareIcon name="Captions" />
                     )}
                   </Pressable>
                 )}
@@ -1349,7 +1350,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
                   accessibilityLabel={t("player.playbackSpeed")}
                   style={styles.bareSpeed}
                 >
-                  <Text style={styles.bareSpeedText}>{playbackRate.toFixed(2)}x</Text>
+                  <MediaControlText style={styles.bareSpeedText}>{playbackRate.toFixed(2)}x</MediaControlText>
                 </Pressable>
                 <Pressable
                   onPress={handleToggleLoop}
@@ -1359,7 +1360,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
                   accessibilityState={{ selected: isLooping }}
                   style={styles.bareButton}
                 >
-                  <BareIcon name="Repeat" dim={!isLooping} />
+                  <BareIcon name="Repeat" />
                 </Pressable>
                 {pipSupported() && (
                   <Pressable
@@ -1402,8 +1403,8 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
             ) : (
             <View style={[styles.bottomControls, edgeToEdge && { paddingHorizontal: MINIMAL_EDGE }, bleed && { paddingBottom: 8 }]}>
               <View style={styles.progressRow}>
-                <View style={styles.timePill}>
-                  <Text style={styles.timeText}>{formatTime(currentTime)}</Text>
+                <View>
+                  <MediaControlText style={[styles.timeText, styles.bareTime]}>{formatTime(currentTime)}</MediaControlText>
                 </View>
                 <GestureDetector gesture={seekGesture}>
                   <View
@@ -1419,9 +1420,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
                     </View>
                   </View>
                 </GestureDetector>
-                <View style={styles.timePill}>
-                  <Text style={styles.timeText}>{formatTime(videoDuration)}</Text>
-                </View>
+
               </View>
             </View>
             )}
@@ -1567,11 +1566,9 @@ const GATED_SHADE = "rgba(0,0,0,0.3)";
 const BARE_LAYER = { backgroundColor: "transparent" } as const;
 
 /** Phones, told from tablets by the shorter side (web's 768px breakpoint). */
-const PHONE_MAX_SIDE = 768;
 /** The bare row's top beside the author chip: 32pt buttons centred on the
  *  38pt chip that starts 12pt down. */
 const BARE_ROW_TOP_BESIDE_CHIP = 15;
-const BARE_ICON = 18;
 
 /**
  * A white glyph straight on the picture. The shadow is a dark, heavier copy
@@ -1579,16 +1576,6 @@ const BARE_ICON = 18;
  * (Android draws no shadow for a view without a fill); iOS adds a soft one.
  * Nothing here has a fill, so the theme's control paint leaves it alone.
  */
-const BareIcon: React.FC<{ name: IconName; dim?: boolean }> = ({ name, dim = false }) => (
-  <View style={[styles.bareIcon, dim && styles.bareIconDim]}>
-    <View style={StyleSheet.absoluteFill}>
-      <Icon name={name} size={BARE_ICON} color="rgba(0,0,0,0.45)" strokeWidth={4} />
-    </View>
-    <View>
-      <Icon name={name} size={BARE_ICON} color="#FFFFFF" />
-    </View>
-  </View>
-);
 const MediaShade: React.FC<{ color: string }> = ({ color }) => (
   <View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: color }]} />
 );
@@ -1720,26 +1707,11 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: "600",
     fontVariant: ["tabular-nums"],
-    textShadowColor: "rgba(0,0,0,0.7)",
-    textShadowOffset: { width: 0, height: 1 },
-    textShadowRadius: 3,
   },
-  bareIcon: {
-    width: BARE_ICON,
-    height: BARE_ICON,
-    ...Platform.select({
-      ios: { shadowColor: "#000", shadowOpacity: 0.6, shadowRadius: 3, shadowOffset: { width: 0, height: 1 } },
-      default: {},
-    }),
-  },
-  bareIconDim: { opacity: 0.55 },
   bareTime: {
     minWidth: 36,
     fontSize: 12,
     fontVariant: ["tabular-nums"],
-    textShadowColor: "rgba(0,0,0,0.6)",
-    textShadowOffset: { width: 0, height: 1 },
-    textShadowRadius: 2,
   },
   bareBottom: {
     position: "absolute",
@@ -1759,10 +1731,13 @@ const styles = StyleSheet.create({
   },
   bareScrubLine: {
     height: 3,
+    borderWidth: 0.5,
+    borderColor: "rgba(0,0,0,0.65)",
+    overflow: "hidden",
     backgroundColor: "rgba(255,255,255,0.3)",
   },
   bareScrubPlayed: {
-    height: 3,
+    height: "100%",
     backgroundColor: "#FFFFFF",
   },
   bareVolumeTrack: { left: 0 },
@@ -1815,12 +1790,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: 6,
-  },
-  timePill: {
-    backgroundColor: "rgba(0,0,0,0.5)",
-    borderRadius: 4,
-    paddingHorizontal: 6,
-    paddingVertical: 2,
   },
   timeText: {
     color: "#fff",
@@ -1978,7 +1947,7 @@ const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "tokenId" | "thumbnai
     const isMinimal = minimalTheme || !!bleed;
     const edgeToEdge = isMinimal || postPage;
     const windowSize = useWindowDimensions();
-    const bareControls = Math.min(windowSize.width, windowSize.height) < PHONE_MAX_SIDE;
+    const bareControls = true;
     const mediaTap = useTapOnlyPress(() => onPress());
     return (
       <View
