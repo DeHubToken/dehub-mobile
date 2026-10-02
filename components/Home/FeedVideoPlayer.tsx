@@ -958,7 +958,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
 
   const handleToggleSpeed = useCallback(() => {
     if (!playerRef.current) return;
-    const currentSpeed = playerRef.current.playbackRate;
+    const currentSpeed = getPlaybackRateFor(creator);
     let nextSpeed = 1.0;
     if (currentSpeed === 1.0) nextSpeed = 1.5;
     else if (currentSpeed === 1.5) nextSpeed = 2.0;
@@ -1276,7 +1276,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
 
               </View>
             ) : <View style={[styles.topControls, edgeToEdge && { paddingHorizontal: MINIMAL_EDGE }, bleed && { paddingTop: bleed.topInset }]}>
-              <Pressable onPress={handleToggleSpeed} style={styles.glassButton}>
+              <Pressable onPress={handleToggleSpeed} hitSlop={{ top: 6, bottom: 6, left: 2, right: 2 }} accessibilityRole="button" accessibilityLabel={t("player.playbackSpeed")} style={styles.glassButton}>
                 <View style={styles.glassOverlay} />
                 <Text style={{ color: "#fff", fontSize: 11, fontWeight: "bold" }}>{playbackRate}x</Text>
               </Pressable>
@@ -1347,7 +1347,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
                 )}
                 <Pressable
                   onPress={handleToggleSpeed}
-                  hitSlop={4}
+                  hitSlop={{ top: 6, bottom: 6, left: 0, right: 0 }}
                   accessibilityRole="button"
                   accessibilityLabel={t("player.playbackSpeed")}
                   style={styles.bareSpeed}
@@ -1712,7 +1712,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   bareSpeed: {
-    minWidth: 40,
+    minWidth: 44,
     height: 32,
     paddingHorizontal: 2,
     alignItems: "center",
