@@ -522,7 +522,7 @@ export default function HomeScreen() {
   // with the same scroll signal the old header used.
   const feedInset = island ? ISLAND_BAR_HEIGHT : headerHeight;
   const postFeedInset = island ? 0 : headerHeight;
-  const postFeedFirstRowInset = island ? ISLAND_BAR_HEIGHT : 0;
+  const postFeedFirstRowInset = island ? ISLAND_BAR_HEIGHT + 4 : 0;
   const showNavPill = !island || feedProfileVisible || !!imageFeed;
   // A scroll that hides the capsule puts its menu away too (a touch on the
   // feed already does, through handleScrollBegin).
