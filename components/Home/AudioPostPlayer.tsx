@@ -259,7 +259,8 @@ const StylePicker: React.FC<StylePickerProps> = memo(({ style: activeStyle, onSt
           style={{
             paddingHorizontal: 10,
             paddingVertical: 5,
-            borderRadius: 8,
+            borderRadius: 999,
+            overflow: "hidden",
             // Faint dark backing so labels stay readable over white-heavy themes.
             backgroundColor: isActive ? "rgba(255,255,255,0.18)" : "rgba(0,0,0,0.28)",
             borderWidth: isActive ? 1 : 0,
@@ -350,6 +351,8 @@ export interface AudioPostPlayerProps {
   topLeftAction?: React.ReactNode;
   /** Spans the screen like other media: square, no gap above. */
   edgeToEdge?: boolean;
+  /** Only the first feed post sits beneath the floating navigation capsule. */
+  firstFeedPost?: boolean;
 }
 
 const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
@@ -364,6 +367,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
   artworkUrl,
   topLeftAction,
   edgeToEdge = false,
+  firstFeedPost = false,
 }) => {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
@@ -990,20 +994,16 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
     </ScrubSurface>
   );
 
-  /* Colour and bounty stay left of the navigation pill. Transport shares
+  /* Only the first feed card moves colour left of the navigation pill. Transport shares
      the video's bottom row and edge scrubber in inline and fullscreen modes. */
-  const renderTopChrome = () => (
+  const renderTopChrome = (mode: "inline" | "fullscreen") => (
     <View pointerEvents="box-none" style={styles.topChrome}>
       <View pointerEvents="box-none" className="flex-row items-center gap-2">
-        <View
-          style={{ height: CONTROL_SIZE, justifyContent: "center" }}
-        >
-          <HueSlider hue={hue} onHueChange={handleHueChange} />
-        </View>
-
+        {mode === "inline" && firstFeedPost && <HueSlider hue={hue} onHueChange={handleHueChange} />}
         {topLeftAction}
       </View>
-      <View pointerEvents="box-none" className="ml-auto">
+      <View pointerEvents="box-none" className="flex-row items-center gap-2 ml-auto">
+        {(mode === "fullscreen" || !firstFeedPost) && <HueSlider hue={hue} onHueChange={handleHueChange} />}
         <View
           className="flex-row items-center gap-1.5"
           style={{ height: CONTROL_SIZE }}
@@ -1106,7 +1106,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
         onLayout={mode === "inline" ? onInlineLayout : onFullLayout}
       >
         <View style={StyleSheet.absoluteFill}>{height > 0 && renderVisualizer(height)}</View>
-        {renderTopChrome()}
+        {renderTopChrome(mode)}
         {renderBottomChrome()}
       </View>
     );
