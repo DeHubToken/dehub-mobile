@@ -89,7 +89,7 @@ const TopControls: React.FC<TopControlsProps> = ({
             activeOpacity={0.7}
             accessibilityLabel={t('player.playbackSpeed')}
             accessibilityRole="button"
-            hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+            hitSlop={{ top: 2, bottom: 2, left: 2, right: 2 }}
           >
             <Text className="text-white text-xs font-bold">{playbackRate}x</Text>
           </TouchableOpacity>
