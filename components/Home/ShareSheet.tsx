@@ -102,17 +102,6 @@ const ShareSheetComponent: React.FC<ShareSheetProps> = ({
       </Text>
 
       <View className="pb-6 pt-1">
-        {!!onSendToDm && (
-          <ShareRow
-            icon="Send"
-            label={t("feedCard.sendInMessage")}
-            onPress={() => {
-              onClose();
-              setTimeout(() => onSendToDm(), 300);
-            }}
-          />
-        )}
-
         {isReposted ? (
           <ShareRow
             icon="Repeat2"
@@ -143,6 +132,25 @@ const ShareSheetComponent: React.FC<ShareSheetProps> = ({
           }}
         />
 
+        {!!onShareAsImage && (
+          <ShareRow
+            icon="ImageDown"
+            label={sharingImage ? t("feedCard.capturing") : t("feedCard.shareAsImage")}
+            loading={sharingImage}
+            onPress={handleShareAsImage}
+          />
+        )}
+        {!!onSendToDm && (
+          <ShareRow
+            icon="Send"
+            label={t("feedCard.sendInMessage")}
+            onPress={() => {
+              onClose();
+              setTimeout(() => onSendToDm(), 300);
+            }}
+          />
+        )}
+
         <ShareRow
           icon="Link"
           label={t("postOptions.copyLink")}
@@ -152,14 +160,6 @@ const ShareSheetComponent: React.FC<ShareSheetProps> = ({
           }}
         />
 
-        {!!onShareAsImage && (
-          <ShareRow
-            icon="ImageDown"
-            label={sharingImage ? t("feedCard.capturing") : t("feedCard.shareAsImage")}
-            loading={sharingImage}
-            onPress={handleShareAsImage}
-          />
-        )}
       </View>
     </GlassModal>
   );
