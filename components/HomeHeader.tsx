@@ -1,7 +1,7 @@
 import React, { useCallback, memo } from "react";
 import { View, TouchableOpacity, Text, I18nManager } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import SmartImage from "./common/SmartImage";
+import ElectricLogo from "./common/ElectricLogo";
 import Avatar from "./common/Avatar";
 import Icon from "./ui/Icon";
 import { useNavigation } from "@react-navigation/native";
@@ -89,21 +89,10 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress, onBac
         className="absolute inset-0 items-center justify-center"
         pointerEvents="box-none"
       >
-        <TouchableOpacity
-          onPress={onLogoPress}
-          activeOpacity={0.7}
-          accessibilityRole="button"
-          accessibilityLabel="DeHub"
-          accessibilityHint={logoHint ?? t("common.scrollsFeedToTop")}
-        >
-          <SmartImage
-            source={require("../assets/web-icons/dehub-logo-center.png")}
-            style={{ width: 33, height: 28, tintColor: colors.foreground }}
-            contentFit="contain"
-            cachePolicy="memory-disk"
-            transition={150}
-          />
-        </TouchableOpacity>
+        <ElectricLogo onPress={onLogoPress} label="DeHub"
+          hint={logoHint ?? t("common.scrollsFeedToTop")}
+          source={require("../assets/web-icons/dehub-logo-center.png")}
+          width={33} height={28} tint={colors.foreground} />
       </View>
 
       {/* Notifications — right. Signed-in only; the centred mark does not move
