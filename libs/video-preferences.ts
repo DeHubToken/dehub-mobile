@@ -1,3 +1,4 @@
+import { useSyncExternalStore } from 'react';
 /**
  * Video playback preferences — mobile counterpart of web's
  * `src/lib/video-preferences.ts`, down to the storage key and the shape of the
@@ -41,6 +42,7 @@ const DEFAULTS: VideoPreferences = {
 };
 
 let cached: VideoPreferences = { ...DEFAULTS, ratesByCreator: {} };
+const volumeListeners = new Set<() => void>();
 let warmed = false;
 let warming: Promise<void> | null = null;
 
@@ -73,7 +75,7 @@ export function warmVideoPreferences(): Promise<void> {
   if (warming) return warming;
   warming = AsyncStorage.getItem(STORAGE_KEY)
     .then((raw) => {
-      if (raw) cached = sanitise(JSON.parse(raw));
+      if (raw) { cached = sanitise(JSON.parse(raw)); volumeListeners.forEach(fn => fn()); }
     })
     .catch(() => {
       // A blob that will not parse is not worth a crash on app open; the
@@ -87,7 +89,9 @@ export function warmVideoPreferences(): Promise<void> {
 }
 
 function save(next: VideoPreferences) {
+  const changed = cached.volume !== next.volume;
   cached = next;
+  if (changed) volumeListeners.forEach(fn => fn());
   AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(next)).catch(() => {});
 }
 
@@ -154,3 +158,6 @@ export function setCreatorPlaybackRates(rates: Record<string, number>) {
   }
   save({ ...cached, ratesByCreator: clean });
 }
+
+const subscribeVolume = (fn: () => void) => { volumeListeners.add(fn); return () => volumeListeners.delete(fn); };
+export const useMediaVolume = () => useSyncExternalStore(subscribeVolume, getVolume, () => DEFAULTS.volume);
