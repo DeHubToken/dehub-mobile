@@ -540,6 +540,15 @@ export default function HomeScreen() {
     setFilterPanelVisible(false);
   }, []);
   const closeIslandMenu = useCallback(() => setIslandMenuOpen(false), []);
+
+  useEffect(() => {
+    if (!islandMenuOpen) return;
+    const subscription = BackHandler.addEventListener("hardwareBackPress", () => {
+      closeIslandMenu();
+      return true;
+    });
+    return () => subscription.remove();
+  }, [islandMenuOpen, closeIslandMenu]);
   // A pick switches feeds exactly as the pill's buttons did.
   const handleIslandSelect = useCallback((index: number) => {
     setIslandMenuOpen(false);
@@ -962,6 +971,8 @@ export default function HomeScreen() {
         headerInset={postFeedInset}
         firstRowInset={postFeedFirstRowInset}
         headerTranslateY={headerTranslateY}
+        islandChrome={island}
+        hideNewPosts={islandMenuOpen}
         onRefresh={handleRefresh}
         onScrollBegin={handleScrollBegin}
         scrollHandler={scrollHandler}
@@ -990,7 +1001,7 @@ export default function HomeScreen() {
         />
       ) : null}
       <Animated.View
-        style={[styles.headerClip, glassNav ? styles.headerClear : null, headerAnimatedStyle]}
+        style={[styles.headerClip, glassNav ? styles.headerClear : null, island ? { overflow: "visible" } : null, headerAnimatedStyle]}
         // The island's header is mostly empty space around the capsule; taps
         // there belong to the feed underneath.
         pointerEvents={island ? "box-none" : "auto"}
@@ -1015,6 +1026,8 @@ export default function HomeScreen() {
             activeIndex={activeIndex}
             onSelect={handleIslandSelect}
             onFilters={handleIslandFilters}
+            onClose={closeIslandMenu}
+            onMenu={() => { closeIslandMenu(); openDrawer(); }}
           />
         ) : null}
 

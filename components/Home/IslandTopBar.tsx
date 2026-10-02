@@ -10,11 +10,10 @@ import { useUser, useAuthState, useAuthActions } from "../../context/AuthContext
 import { getAvatarUrl } from "../../libs/misc";
 import { FEED_NAV_ITEMS } from "./FeedNavBar";
 
-// The DeHub mark cropped to its glyph (143x185), so the size given here is
-// the size drawn and its shape can never be squeezed by padding in the file.
-const MARK = require("../../assets/web-icons/dehub-mark.png");
-const MARK_ASPECT = 143 / 185;
+// Use the same padded artwork and image box as the web capsule.
+const MARK = require("../../assets/web-icons/dehub-island-logo.png");
 const MARK_HEIGHT = 27.3;
+export const ISLAND_CAPSULE_WIDTH = 147.5;
 const HIT = { top: 8, bottom: 8, left: 8, right: 8 };
 // The brand name, spoken for the mark. Not translated.
 const BRAND_NAME = "DeHub";
@@ -32,13 +31,13 @@ const TAB_LABEL_KEYS: Record<string, string> = {
 /** Height of the capsule. */
 const ISLAND_CAPSULE_HEIGHT = 44;
 /** Clear space above and below it. */
-const ISLAND_CAPSULE_GAP = 6;
+export const ISLAND_CAPSULE_GAP = 6;
 /** Room the capsule takes at the top of the screen; the first post clears it. */
 export const ISLAND_BAR_HEIGHT = ISLAND_CAPSULE_HEIGHT + ISLAND_CAPSULE_GAP * 2;
 /** The capsule's corner. */
 const CAPSULE_RADIUS = 15;
 /** DeHub's soft corner (the badge plate, the tab pill): not a full circle. */
-const RADIUS = 12;
+const RADIUS = 15;
 /** The avatar, and the rows of the feed menu. */
 const AVATAR_RADIUS = 8;
 const AVATAR_SIZE = 28;
@@ -116,7 +115,7 @@ export const IslandCapsule = memo(function IslandCapsule({
                   />
                 </View>
               ) : (
-                <Icon name="Menu" size={22} color="#FFFFFF" />
+                <Icon name="Menu" size={24} color="#FFFFFF" />
               )}
             </Pressable>
           </View>
@@ -134,7 +133,7 @@ export const IslandCapsule = memo(function IslandCapsule({
               source={MARK}
               resizeMode="contain"
               fadeDuration={0}
-              style={{ width: Math.round(MARK_HEIGHT * MARK_ASPECT), height: MARK_HEIGHT, tintColor: "#FFFFFF", opacity: pressed ? 0.6 : 1 }}
+              style={{ width: 31.5, height: MARK_HEIGHT, tintColor: "#FFFFFF", opacity: pressed ? 0.6 : 1 }}
             />
           )}
         </Pressable>
@@ -147,7 +146,7 @@ export const IslandCapsule = memo(function IslandCapsule({
               accessibilityLabel={unread > 0 ? t("common.notificationsUnread", { unread }) : t("nav.notifications")}
               style={styles.bell}
             >
-              <Icon name="Bell" size={26.9} color="#FFFFFF" strokeWidth={1.9} />
+              <Icon name="Bell" size={21} color="#FFFFFF" strokeWidth={1.9} />
               <UnreadBadge count={unread} />
             </Pressable>
           </View>
@@ -166,12 +165,18 @@ export const IslandFeedMenu = memo(function IslandFeedMenu({
   activeIndex,
   onSelect,
   onFilters,
+  onMenu,
+  onClose,
 }: {
   activeIndex: number;
   onSelect: (index: number) => void;
   onFilters: () => void;
+  onMenu: () => void;
+  onClose: () => void;
 }) {
   const { t } = useTranslation();
+  const { requireAuth } = useAuthActions();
+  const navigation = useNavigation<any>();
   return (
     <View pointerEvents="box-none" style={styles.menuWrap}>
       <View style={styles.menu}>
@@ -186,8 +191,8 @@ export const IslandFeedMenu = memo(function IslandFeedMenu({
               accessibilityState={{ selected: current }}
               style={({ pressed }) => [styles.menuRow, (pressed || current) && styles.menuRowOn]}
             >
-              <Icon name={item.icon as IconName} size={17} color="#FFFFFF" strokeWidth={current ? 2.2 : 1.8} />
-              <Text style={styles.menuLabel} numberOfLines={1}>
+              <Icon name={item.icon as IconName} size={16} color="#FFFFFF" strokeWidth={current ? 2.2 : 1.8} />
+              <Text style={styles.menuLabel}>
                 {t(TAB_LABEL_KEYS[item.postType] ?? "feed.home")}
               </Text>
               {current ? <Icon name="Check" size={16} color="#FFFFFF" strokeWidth={2.2} /> : null}
@@ -195,14 +200,17 @@ export const IslandFeedMenu = memo(function IslandFeedMenu({
           );
         })}
         <View style={styles.menuDivider} />
-        <Pressable
-          onPress={onFilters}
-          accessibilityRole="menuitem"
-          style={({ pressed }) => [styles.menuRow, pressed && styles.menuRowOn]}
-        >
-          <Icon name="SlidersHorizontal" size={17} color="#FFFFFF" strokeWidth={1.8} />
-          <Text style={styles.menuLabel} numberOfLines={1}>{t("filters.filters")}</Text>
-        </Pressable>
+        <View style={{ flexDirection: "row" }}>
+          <Pressable onPress={onFilters} accessibilityRole="menuitem" accessibilityLabel={t("filters.filters")} style={styles.footerButton}>
+            <Icon name="SlidersHorizontal" size={16} color="#FFFFFF" />
+          </Pressable>
+          <Pressable onPress={onMenu} accessibilityRole="menuitem" accessibilityLabel={t("common.openMenu")} style={styles.footerButton}>
+            <Icon name="LayoutGrid" size={16} color="#FFFFFF" />
+          </Pressable>
+          <Pressable onPress={() => { onClose(); requireAuth(() => navigation.navigate(ScreenNames.Upload)); }} accessibilityRole="menuitem" accessibilityLabel={t("sidebar.post")} style={styles.footerButton}>
+            <Icon name="Plus" size={16} color="#FFFFFF" />
+          </Pressable>
+        </View>
       </View>
     </View>
   );
@@ -211,6 +219,7 @@ export const IslandFeedMenu = memo(function IslandFeedMenu({
 const styles = StyleSheet.create({
   wrap: {
     height: ISLAND_BAR_HEIGHT,
+    zIndex: 2,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -219,7 +228,9 @@ const styles = StyleSheet.create({
     borderRadius: CAPSULE_RADIUS,
     flexDirection: "row",
     alignItems: "center",
-    paddingHorizontal: 14,
+    paddingHorizontal: 10,
+    width: ISLAND_CAPSULE_WIDTH,
+    zIndex: 2,
     shadowColor: "#000",
     shadowOpacity: 0.35,
     shadowRadius: 10,
@@ -230,28 +241,32 @@ const styles = StyleSheet.create({
   sideInner: { flexDirection: "row", alignItems: "center", gap: 12 },
   avatarButton: { width: AVATAR_SIZE, height: AVATAR_SIZE, alignItems: "center", justifyContent: "center", flexShrink: 0 },
   avatar: { width: AVATAR_SIZE, height: AVATAR_SIZE, borderRadius: AVATAR_RADIUS, overflow: "hidden" },
-  mark: { paddingHorizontal: 24, height: ISLAND_CAPSULE_HEIGHT, flexShrink: 0, justifyContent: "center", alignItems: "center" },
+  mark: { paddingHorizontal: 20, height: ISLAND_CAPSULE_HEIGHT, flexShrink: 0, justifyContent: "center", alignItems: "center" },
   bell: { width: 28, height: 28, alignItems: "center", justifyContent: "center" },
-  menuWrap: { alignItems: "center" },
+  menuWrap: { position: "absolute", top: ISLAND_CAPSULE_GAP, left: 0, right: 0, alignItems: "center", zIndex: 1 },
   menu: {
-    width: 220,
+    width: ISLAND_CAPSULE_WIDTH,
     padding: 6,
+    paddingTop: ISLAND_CAPSULE_HEIGHT + 6,
     borderRadius: RADIUS,
+    overflow: "hidden",
     shadowColor: "#000",
     shadowOpacity: 0.35,
     shadowRadius: 12,
     shadowOffset: { width: 0, height: 6 },
   },
+  footerButton: { flex: 1, height: 44, alignItems: "center", justifyContent: "center" },
   menuRow: {
     flexDirection: "row",
     alignItems: "center",
-    gap: 12,
-    height: 40,
+    gap: 10,
+    minHeight: 40,
+    paddingVertical: 8,
     paddingHorizontal: 10,
     borderRadius: AVATAR_RADIUS,
   },
-  menuRowOn: { backgroundColor: "rgba(255,255,255,0.10)" },
-  menuLabel: { flex: 1, color: "#FFFFFF", fontSize: 14, fontWeight: "500" },
+  menuRowOn: { backgroundColor: "rgba(255,255,255,0.15)" },
+  menuLabel: { flex: 1, color: "#FFFFFF", fontSize: 14, fontWeight: "600" },
   menuDivider: { height: 1, marginVertical: 6, marginHorizontal: 6, backgroundColor: "rgba(255,255,255,0.12)" },
   // Off the glyph's top right corner (the glyph is 26.9pt in a 28pt box).
   badge: {
