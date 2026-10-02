@@ -908,6 +908,7 @@ export default function HomeScreen() {
       if (cinematicPhone) {
         return (
           <CinematicMusic
+            active={isPlaybackActive}
             feedRef={musicFeedRef}
             scrollHandler={scrollHandler}
             onScrollBegin={handleScrollBegin}
