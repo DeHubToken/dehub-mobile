@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
+import { useSilenceOnRelease } from "../../hooks/useSilenceOnRelease";
 import {
   Linking,
   Pressable,
@@ -29,6 +30,7 @@ function SponsoredAdVideo({ uri }: { uri: string }) {
     instance.muted = true;
     instance.play();
   });
+  useSilenceOnRelease(player);
 
   return (
     <VideoView

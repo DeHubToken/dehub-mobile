@@ -1,4 +1,5 @@
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useSilenceOnRelease } from "../../hooks/useSilenceOnRelease";
 import { View, Text, Pressable, StyleSheet, useWindowDimensions } from "react-native";
 import { Image } from "expo-image";
 import { VideoView, useVideoPlayer } from "expo-video";
@@ -56,6 +57,7 @@ const CellPreview: React.FC<{ previewUrl: string }> = ({ previewUrl }) => {
     p.muted = true;
     p.bufferOptions = GRID_PREVIEW_BUFFER_OPTIONS;
   });
+  useSilenceOnRelease(player);
 
   useEffect(() => {
     // New player instance = new source; the previous first frame no longer counts.
