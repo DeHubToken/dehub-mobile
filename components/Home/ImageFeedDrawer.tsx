@@ -47,13 +47,15 @@ const VisibleImageCard = memo(function VisibleImageCard({
   item,
   rowKey,
   store,
+  fullscreen,
 }: {
   item: UnifiedFeedItem;
   rowKey: string;
   store: FeedVisibilityStore;
+  fullscreen: boolean;
 }) {
   const { isVisible } = useRowVisibility(store, rowKey);
-  return <FeedCard item={item} isVisible={isVisible} enablePreview />;
+  return <FeedCard item={item} isVisible={isVisible} enablePreview immersive={fullscreen} />;
 });
 import { colors } from "../../theme/colors";
 import { getUnifiedFeed } from "../../services/feed.unified.service";
@@ -98,6 +100,8 @@ export interface ImageFeedDrawerProps {
    * is exactly what it reclaims once the chrome collapses.
    */
   topInset?: number;
+  fullscreen?: boolean;
+  controlsTopInset?: number;
   /**
    * The host header's live translateY (0 when shown, -topInset when collapsed).
    * The sheet adds it to its own offset, so a collapsed header means a
@@ -147,6 +151,8 @@ const ImageFeedDrawer = forwardRef<ImageFeedDrawerHandle, ImageFeedDrawerProps>(
   feedParams,
   pageSize = 20,
   topInset = 0,
+  fullscreen = false,
+  controlsTopInset = 0,
   headerTranslateY = null,
   bottomInset = 0,
   scrollHandler,
@@ -393,20 +399,20 @@ const ImageFeedDrawer = forwardRef<ImageFeedDrawerHandle, ImageFeedDrawerProps>(
 
   const renderItem = useCallback(
     ({ item, index }: { item: UnifiedFeedItem; index: number }) => (
-      <VisibleImageCard item={item} rowKey={keyExtractor(item, index)} store={visibilityStore} />
+      <VisibleImageCard item={item} rowKey={keyExtractor(item, index)} store={visibilityStore} fullscreen={fullscreen} />
     ),
-    [keyExtractor, visibilityStore],
+    [keyExtractor, visibilityStore, fullscreen],
   );
 
   const contentContainerStyle = useMemo(
     () => ({
-      paddingTop: GRAB_ROW_HEIGHT + 6,
-      paddingHorizontal: 8,
+      paddingTop: fullscreen ? 0 : GRAB_ROW_HEIGHT + 6,
+      paddingHorizontal: fullscreen ? 0 : 8,
       // topInset is added because the bottom of the sheet hangs that far below
       // the screen until the chrome collapses.
       paddingBottom: bottomInset + topInset + 24,
     }),
-    [bottomInset, topInset],
+    [bottomInset, topInset, fullscreen],
   );
 
   const renderFooter = useCallback(() => {
@@ -421,7 +427,7 @@ const ImageFeedDrawer = forwardRef<ImageFeedDrawerHandle, ImageFeedDrawerProps>(
 
   return (
     <View style={styles.clip} pointerEvents="box-none">
-      <Animated.View style={[styles.sheet, sheetStyle]}>
+      <Animated.View style={[styles.sheet, fullscreen && { borderTopLeftRadius: 0, borderTopRightRadius: 0 }, sheetStyle]}>
         <GestureDetector gesture={contentPan}>
           <View style={styles.fill}>
             {contentReady ? (
@@ -463,7 +469,7 @@ const ImageFeedDrawer = forwardRef<ImageFeedDrawerHandle, ImageFeedDrawerProps>(
 
         <GestureDetector gesture={grabPan}>
           <Animated.View
-            style={[styles.grabRow, grabStyle]}
+            style={[styles.grabRow, fullscreen && { top: controlsTopInset, backgroundColor: "transparent", borderTopLeftRadius: 0, borderTopRightRadius: 0 }, grabStyle]}
             pointerEvents={handleActive ? "auto" : "none"}
           >
             <View style={styles.grabBar} />

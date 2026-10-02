@@ -1,3 +1,4 @@
+import { ScreenNames } from "./navigation/ScreenNames";
 import {
   NavigationContainer,
   DarkTheme as RNDarkTheme,
@@ -321,17 +322,24 @@ const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
   const { isReady, initialState, onStateChange } =
     useNavigationPersistence(isAuthenticated);
 
+  const [edgeToEdgeMedia, setEdgeToEdgeMedia] = useState(false);
+  const syncMediaInsets = useCallback(() => {
+    const name = navigationRef.getCurrentRoute()?.name;
+    setEdgeToEdgeMedia(name === ScreenNames.ShortsViewer || name === ScreenNames.ImageFeed);
+  }, []);
+
   // Handle navigation state change with error protection
   const handleStateChange = useCallback(
     (state: NavigationState | undefined) => {
       try {
         onStateChange(state);
         recordScreenView(navigationRef.getCurrentRoute()?.name);
+        syncMediaInsets();
       } catch (error) {
         logger.error("Navigation state change error", error);
       }
     },
-    [onStateChange]
+    [onStateChange, syncMediaInsets]
   );
 
   // The navigator only mounts once boot is genuinely done — RootNavigator
@@ -417,7 +425,7 @@ const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
   return (
     <>
       {settled ? (
-        <SafeAreaView className="flex-1">
+        <SafeAreaView className="flex-1" edges={edgeToEdgeMedia ? ["left", "right", "bottom"] : ["top", "left", "right", "bottom"]}>
           <StatusBar
             barStyle={isLight ? "dark-content" : "light-content"}
             backgroundColor={colors.background}
@@ -450,6 +458,7 @@ const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
               onReady={() => {
                 logger.info("Navigation container ready");
                 setNavReady(true);
+                syncMediaInsets();
               }}
             >
               <PushNotificationsProvider>
