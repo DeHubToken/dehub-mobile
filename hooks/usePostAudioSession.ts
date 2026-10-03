@@ -1,4 +1,4 @@
-import { useLayoutEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import type { AudioPlayer } from 'expo-audio';
 import { claimPostMedia, ownsPostMedia, postMediaSession } from '../libs/post-media-session';
 
@@ -15,6 +15,6 @@ export function usePostAudioSession(url: string) {
     const release = claimPostMedia(key, session, token);
     return () => { session.listeners.delete(notify); release(); };
   }, [key, session, token]);
-  const ownsPlayer = () => ownsPostMedia(session, token);
+  const ownsPlayer = useCallback(() => ownsPostMedia(session, token), [session, token]);
   return { session, ownsPlayer, active: ownsPlayer() };
 }
