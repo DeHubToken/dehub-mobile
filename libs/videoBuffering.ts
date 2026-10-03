@@ -54,6 +54,34 @@ export const FEED_BUFFER_OPTIONS: BufferOptions = {
 };
 
 /**
+ * The feed card's own player once it is actually playing.
+ *
+ * FEED_BUFFER_OPTIONS was sized when every windowed card held a player. Since
+ * the poster split (#401) the full player is mounted for at most two cards —
+ * the autoplay candidate and one the viewer tapped — so the feed player no
+ * longer needs to be the smallest one in the app. And it was: the same clip
+ * ran on 12 MB here and 32 MB in the fullscreen player. expo-video sets
+ * media3's min and max buffer both to `preferredForwardBufferDuration`, and
+ * the load control stops fetching once the byte target is reached even below
+ * that minimum, so for a high-bitrate upload the byte cap is the real limit:
+ * a 25 Mbit/s phone recording fits under four seconds in 12 MB. Any dip in
+ * throughput longer than that stalls the clip, it restarts after half a
+ * second (minBufferForPlayback also sets the after-rebuffer threshold), and
+ * stalls again — playback that stutters inline and runs clean in fullscreen,
+ * where the same file has more than twice the runway.
+ *
+ * 24 MB keeps nearly eight seconds of that clip and stays under the
+ * fullscreen cap. Two feed players plus the fullscreen one opened from them
+ * come to 80 MB at most, against the ~141 MB a single player could take on
+ * media3's defaults.
+ */
+export const ACTIVE_FEED_BUFFER_OPTIONS: BufferOptions = {
+  ...FEED_BUFFER_OPTIONS,
+  preferredForwardBufferDuration: 15,
+  maxBufferBytes: 24 * 1024 * 1024,
+};
+
+/**
  * The muted, looping preview on a shorts grid tile. It is a glance, not a
  * watch, and a tap opens the full player, so a few seconds is plenty.
  */
