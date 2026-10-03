@@ -19,6 +19,7 @@
 import { useEffect, useMemo } from "react";
 import { createVideoPlayer, type VideoPlayer } from "expo-video";
 import { LIVE_BUFFER_OPTIONS } from "./videoBuffering";
+import { releaseAfterPictureInPicture } from './pictureInPicture';
 
 interface Entry {
   player: VideoPlayer;
@@ -33,12 +34,11 @@ function scheduleRelease(url: string, entry: Entry) {
   clearTimeout(entry.timer);
   entry.timer = setTimeout(() => {
     if (entry.refs > 0 || entries.get(url) !== entry) return;
-    entries.delete(url);
-    try {
-      entry.player.release();
-    } catch {
-      // Already released with its last view.
-    }
+    releaseAfterPictureInPicture(entry.player, () => {
+      if (entry.refs > 0 || entries.get(url) !== entry) return;
+      entries.delete(url);
+      try { entry.player.release(); } catch { /* Already released. */ }
+    });
   }, RELEASE_GRACE_MS);
 }
 
