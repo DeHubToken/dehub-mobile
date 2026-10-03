@@ -1,3 +1,4 @@
+import BadgeArtwork from "../common/BadgeArtwork";
 import React, { useState, useMemo, useCallback, useEffect, useRef } from "react";
 import { View, Text, TouchableOpacity, Pressable, ActivityIndicator, useWindowDimensions } from "react-native";
 import SmartImage from "../common/SmartImage";
@@ -411,7 +412,7 @@ const ProfileHeader = () => {
                 hitSlop={8}
                 onPress={() => openBadgeShowcase(badge, badgeSlotRef.current)}
               >
-                <SmartImage
+                <BadgeArtwork
                   source={badgeImage as any}
                   contentFit="contain"
                   cachePolicy="memory-disk"

@@ -1,5 +1,6 @@
+import BadgeArtwork from "../common/BadgeArtwork";
 import React, { memo, useRef } from "react";
-import { View, Text, Pressable, Image } from "react-native";
+import { View, Text, Pressable } from "react-native";
 import Avatar from "../common/Avatar";
 import NewMemberChip from "../common/NewMemberChip";
 import Icon from "../ui/Icon";
@@ -94,10 +95,8 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
                 justifyContent: "center",
               }}
             >
-              {/* A bundled 128px PNG: RN's Image is one native view sharing one
-                  decoded bitmap across every card, where expo-image is four
-                  views per card. No fade, which OTA assets would otherwise get. */}
-              <Image
+              {/* The still bitmap is shared; motion mounts only while this badge is active. */}
+              <BadgeArtwork
                 source={badgeImage}
                 style={[
                   getBadgeOpticalStyle(badgeImage, HOLDER_BADGE_SIZE, 0, DISPLAY_NAME_LINE_HEIGHT),

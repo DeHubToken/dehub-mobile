@@ -1,3 +1,4 @@
+import BadgeArtwork from "../common/BadgeArtwork";
 import { useSheetClosed } from '../../hooks/useSheetClosed';
 /**
  * Comment Likers Sheet
@@ -71,7 +72,7 @@ const PersonRow: React.FC<{ item: CommentLiker; onPress: (address: string) => vo
               {displayName}
             </Text>
             {badgeImg ? (
-              <SmartImage
+              <BadgeArtwork
                 source={badgeImg}
                 style={getBadgeOpticalStyle(badgeImg, 14, 3, 18)}
                 contentFit="contain"

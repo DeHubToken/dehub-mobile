@@ -1,3 +1,4 @@
+import BadgeArtwork from "../common/BadgeArtwork";
 import React, { FC, useCallback, useState } from "react";
 import { View, Text, TouchableOpacity} from "react-native";
 import SmartImage from "../common/SmartImage";
@@ -108,7 +109,7 @@ const SearchAccountCard: FC<SearchAccountCardProps> = ({ account, onFollowChange
             {displayName}
           </Text>
           {badgeImg ? (
-            <SmartImage
+            <BadgeArtwork
               source={badgeImg}
               style={getBadgeOpticalStyle(badgeImg, 14, 3, 18)}
               contentFit="contain"

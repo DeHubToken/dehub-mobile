@@ -1,3 +1,4 @@
+import BadgeArtwork from "../common/BadgeArtwork";
 import React, { memo, useRef } from "react";
 import { Image, Platform, Pressable, StyleSheet, Text, View } from "react-native";
 import Avatar from "../common/Avatar";
@@ -88,7 +89,7 @@ export const CinematicAuthorChip = memo(function CinematicAuthorChip({
               onPress={() => openBadgeShowcase(tierForBadgeImage(badgeImage), badgeRef.current)}
               style={{ marginLeft: 3, height: 16, justifyContent: "center" }}
             >
-              <Image
+              <BadgeArtwork
                 source={badgeImage}
                 style={[getBadgeOpticalStyle(badgeImage, 13, 0, 16), { marginLeft: 0 }]}
                 resizeMode="contain"

@@ -1,3 +1,4 @@
+import BadgeArtwork from "../common/BadgeArtwork";
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   View,
@@ -175,7 +176,7 @@ const AuthorHeader: React.FC<AuthorDisplay & { time?: string; onPress?: () => vo
           {name}
         </Text>
         {badgeImg ? (
-          <SmartImage
+          <BadgeArtwork
             source={badgeImg}
             style={getBadgeOpticalStyle(badgeImg, 14, 3, 18)}
             contentFit="contain"

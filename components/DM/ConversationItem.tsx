@@ -1,3 +1,4 @@
+import BadgeArtwork from "../common/BadgeArtwork";
 import React, { memo, useCallback, useMemo } from "react";
 import { View, Text, TouchableOpacity} from "react-native";
 import SmartImage from "../common/SmartImage";
@@ -227,7 +228,7 @@ const ConversationItemComponent: React.FC<ConversationItemProps> = ({
               </Text>
               <OnlineDot address={other?.address} />
               {badgeImg && (
-                <SmartImage source={badgeImg} style={{ width: 15, height: 15 }} contentFit="contain" />
+                <BadgeArtwork source={badgeImg} style={{ width: 15, height: 15 }} contentFit="contain" />
               )}
               <NewMemberChip address={other?.address} />
               {username && (

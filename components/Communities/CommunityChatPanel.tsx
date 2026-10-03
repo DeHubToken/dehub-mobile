@@ -1,3 +1,4 @@
+import BadgeArtwork from "../common/BadgeArtwork";
 /**
  * CommunityChatPanel
  * ==================
@@ -184,7 +185,7 @@ const ChatRow: React.FC<{
             {displayName}
           </Text>
           {!!badgeImg && (
-            <SmartImage source={badgeImg} style={[getBadgeOpticalStyle(badgeImg, 13), { marginLeft: 0 }]} contentFit="contain" />
+            <BadgeArtwork source={badgeImg} style={[getBadgeOpticalStyle(badgeImg, 13), { marginLeft: 0 }]} contentFit="contain" />
           )}
           {!!message.pinned_at && <Icon name="Pin" size={10} color="#A1A1AA" />}
           <Text className="text-zinc-400 text-xs ml-auto">

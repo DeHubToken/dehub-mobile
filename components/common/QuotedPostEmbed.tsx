@@ -1,3 +1,4 @@
+import BadgeArtwork from "./BadgeArtwork";
 import React, { memo, useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { t } from "i18next";
@@ -208,7 +209,7 @@ const QuotedPostEmbed: React.FC<QuotedPostEmbedProps> = memo(
               {displayName}
             </Text>
             {!!badgeImage && (
-              <SmartImage
+              <BadgeArtwork
                 source={badgeImage}
                 style={getBadgeOpticalStyle(badgeImage, 13)}
                 contentFit="contain"

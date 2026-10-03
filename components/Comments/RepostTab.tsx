@@ -1,3 +1,4 @@
+import BadgeArtwork from "../common/BadgeArtwork";
 import React, { memo, useCallback, useEffect, useState, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import {
@@ -60,7 +61,7 @@ const RepostUserRow: React.FC<RepostUserRowProps> = memo(({ item, onPress }) => 
             {displayName}
           </Text>
           {!!badgeImage && (
-            <SmartImage
+            <BadgeArtwork
               source={badgeImage}
               style={getBadgeOpticalStyle(badgeImage, 14)}
               contentFit="contain"
