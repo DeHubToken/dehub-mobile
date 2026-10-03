@@ -27,7 +27,8 @@ it('replaces authenticated navigation history with a fresh sign-in screen on log
   expect(after?.routes.map(route => route.name)).toEqual([ScreenNames.Auth]);
   expect(after?.routes[0].state?.routes.map(route => route.name)).toEqual([ScreenNames.SignIn]);
   expect(after?.index).toBe(0);
-  expect(router.getStateForAction(after!, CommonActions.goBack(), options)).toBeNull();
+  const settled = router.getRehydratedState(after!, options);
+  expect(router.getStateForAction(settled, CommonActions.goBack(), options)).toBeNull();
 });
 
 it('keeps initial guest browsing and successful sign-in navigation intact', () => {
