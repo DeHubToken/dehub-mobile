@@ -1,7 +1,7 @@
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react-native';
 import BadgeArtwork from '../../components/common/BadgeArtwork';
-import { openBadgeShowcase } from '../../libs/badgeShowcase';
+import { openBadgeShowcase, tierForBadgeImage } from '../../libs/badgeShowcase';
 import { useReducedMotion } from 'react-native-reanimated';
 
 jest.mock('dehub-jsx/jsx-runtime', () => require('react/jsx-runtime'));
@@ -11,7 +11,7 @@ jest.mock('react-native', () => ({
 }));
 
 jest.mock('../../libs/badgeShowcase', () => ({
-  tierForBadgeImage: () => 'Octopus', openBadgeShowcase: jest.fn(),
+  tierForBadgeImage: jest.fn(() => 'Octopus'), openBadgeShowcase: jest.fn(),
 }));
 jest.mock('../../libs/badgeHoverArt', () => ({
   badgeHoverArt: () => ({ poster: 101, animation: 102 }),
@@ -22,9 +22,24 @@ jest.mock('react-native-reanimated', () => ({ useReducedMotion: jest.fn(() => fa
 beforeEach(() => {
   jest.clearAllMocks();
   (useReducedMotion as jest.Mock).mockReturnValue(false);
+  (tierForBadgeImage as jest.Mock).mockReturnValue('Octopus');
 });
 
 describe('holder badge interaction', () => {
+  it('uses the supplied standard orca image before and after hover and on playback failure', () => {
+    (tierForBadgeImage as jest.Mock).mockReturnValue('Killer Whale');
+    const { getByTestId } = render(<BadgeArtwork source={1} />);
+    const badge = getByTestId('holder-badge');
+    expect(getByTestId('holder-badge-poster').props.source).toBe(1);
+    fireEvent(badge, 'hoverIn');
+    expect(getByTestId('holder-badge-motion').props.source).toBe(102);
+    fireEvent(badge, 'hoverOut');
+    expect(getByTestId('holder-badge-poster').props.source).toBe(1);
+    fireEvent(badge, 'hoverIn');
+    fireEvent(getByTestId('holder-badge-motion'), 'error');
+    expect(getByTestId('holder-badge-poster').props.source).toBe(1);
+  });
+
   it('keeps idle badges still and only mounts playback during hover or touch', () => {
     const { getByTestId, queryByTestId } = render(<BadgeArtwork source={1} style={{ width: 16, height: 16 }} />);
     const badge = getByTestId('holder-badge');

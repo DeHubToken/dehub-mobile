@@ -631,7 +631,8 @@ export function getBadgeHoverOpticalStyle(
   textLineHeight = size * 1.4,
 ) {
   const tier = Object.keys(BADGE_IMAGES).find((name) => BADGE_IMAGES[name] === source || LIGHT_BADGE_IMAGES[name] === source);
-  return getBadgeOpticalStyle(source, size, verticalOffset, textLineHeight, badgeHoverArt(tier)?.bounds);
+  const bounds = tier === "Killer Whale" ? undefined : badgeHoverArt(tier)?.bounds;
+  return getBadgeOpticalStyle(source, size, verticalOffset, textLineHeight, bounds);
 }
 
 // JPEG, not PNG. These are the placeholder cover strips behind a profile: they
