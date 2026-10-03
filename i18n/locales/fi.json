@@ -179,6 +179,7 @@
     "newMembersHint": "Liityit juuri – sano hei",
     "scroll": "Scroll",
     "noFilterMatches": "Mikään sisältö ei vastaa suodattimiasi.",
+    "followingEmpty": "Seuraamiltasi ihmisiltä ei ole vielä julkaisuja",
     "clearFilters": "Tyhjennä suodattimet"
   },
   "explore": {
@@ -4800,11 +4801,11 @@
     "bridgeAction": "Siirrä {{from}} → {{to}}",
     "failed": "Siirto epäonnistui",
     "title": "Siirrä tokeneita",
-    "howItWorksBody": "Lähetä DeHub-tokenit silta-välitysosoitteeseen lähdeketjussa. Välitys toimittaa automaattisesti vastaavan määrän kohdeketjuun muutamassa minuutissa.",
+    "howItWorksBody": "Lähetä DeHub-tokenit silta-välitysosoitteeseen lähdeketjussa. Tiimi lähettää tokenit kohdeketjussa, yleensä 1-5 arkipäivän kuluessa.",
     "relayAddress": "Silta-välitysosoite (lähetä tokenit tänne lähdeketjussa):",
     "insufficient": "Ei tarpeeksi tokeneita {{chain}}.",
     "insufficientOnChain": "Ei tarpeeksi tokeneita {{chain}}. Lohkoketjun saldo voi poiketa näytetystä.",
-    "sentArriveShortly": "{{amount}} tokenia lähetetty {{from}} → {{to}}. Ne saapuvat pian.",
+    "sentArriveShortly": "{{amount}} tokenia lähetetty ketjusta {{from}} ketjuun {{to}}. Tiimi lähettää tokenit kohdeketjussa, yleensä 1-5 arkipäivän kuluessa.",
     "subtitle": "Siirrä DeHub-tokeneita ketjujen välillä",
     "queueTitle": "Sillat",
     "transferCount": "Siirrot: {{count}}",
@@ -8100,11 +8101,11 @@
           "4": "Syötä sillattavien tokenien määrä.",
           "5": "Tarkista siltamaksu ja arvioitu saapumisaika.",
           "6": "Vahvista siltatransaktio.",
-          "7": "Odota, että transaktio valmistuu — siltauksessa voi kestää muutaman minuutin."
+          "7": "Tiimi lähettää tokenit kohdeketjussa, yleensä 1-5 arkipäivän kuluessa."
         },
         "tips": {
           "1": "Siltamaksut vaihtelevat ketjupareittain.",
-          "2": "Siltauksessa kestää tyypillisesti 1–5 minuuttia riippuen mukana olevista ketjuista.",
+          "2": "Sillan maksut tehdään toistaiseksi käsin.",
           "3": "Tarkista aina kohdeketju ennen vahvistamista."
         }
       },

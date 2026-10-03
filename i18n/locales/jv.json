@@ -179,6 +179,7 @@
     "newMembersHint": "Baru gabung — ucapake halo",
     "scroll": "Scroll",
     "noFilterMatches": "Ora ana konten sing cocog karo saringanmu.",
+    "followingEmpty": "Durung ana kiriman saka wong sing kok tindakake",
     "clearFilters": "Busak saringan"
   },
   "explore": {
@@ -4791,11 +4792,11 @@
     "bridgeAction": "Bridge {{from}} → {{to}}",
     "failed": "Bridge gagal",
     "title": "Jembatan Token",
-    "howItWorksBody": "Kirim token DeHub menyang alamat relay jembatan ing rantai sumber. Relay kanthi otomatis ngirim jumlah sing padha ing rantai tujuan sajrone sawetara menit.",
+    "howItWorksBody": "Kirim token DeHub menyang alamat relay jembatan ing rantai sumber. Tim ngirim token ing rantai tujuan, biasane sajrone 1-5 dina kerja.",
     "relayAddress": "Alamat relay jembatan (kirim token ing kene ing rantai sumber):",
     "insufficient": "Ora cukup token ing {{chain}}.",
     "insufficientOnChain": "Ora cukup token ing {{chain}}. Imbangan on-chain bisa beda saka sing ditampilake.",
-    "sentArriveShortly": "{{amount}} token dikirim saka {{from}} → {{to}}. Bakal teka sanalika.",
+    "sentArriveShortly": "{{amount}} token dikirim saka {{from}} menyang {{to}}. Tim ngirim token ing rantai tujuan, biasane sajrone 1-5 dina kerja.",
     "subtitle": "Mindhah token DeHub antarane rantai",
     "queueTitle": "Jembatan",
     "transferCount": "Transfer: {{count}}",
@@ -8078,11 +8079,11 @@
           "4": "Lebokake jumlah token kanggo di-bridge.",
           "5": "Tinjau biaya bridge lan perkiraan wektu kedatangan.",
           "6": "Konfirmasi transaksi bridge.",
-          "7": "Enteni nganti transaksi rampung — bridging bisa njupuk sawetara menit."
+          "7": "Tim ngirim token ing rantai tujuan, biasane sajrone 1-5 dina kerja."
         },
         "tips": {
           "1": "Biaya bridge beda-beda gumantung saka pasangan rantai.",
-          "2": "Bridging biasane njupuk 1-5 menit gumantung saka rantai sing melu.",
+          "2": "Saiki pambayaran bridge isih ditindakake kanthi manual.",
           "3": "Tansah mriksa maneh rantai tujuan sadurunge konfirmasi."
         }
       },

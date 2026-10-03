@@ -1205,16 +1205,17 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     ),
     [refreshing, onRefresh, chromeInset],
   );
+  const followingOnly = !!params?.followingOnly;
   const listEmpty = useMemo(
     () =>
       !initialLoading && !error ? (
         <EmptyFeedState
-          message={t("feed.noFilterMatches")}
+          message={followingOnly ? t("feed.followingEmpty") : t("feed.noFilterMatches")}
           onClear={onClearFilters}
           clearLabel={t("feed.clearFilters")}
         />
       ) : null,
-    [initialLoading, error, onClearFilters, t],
+    [initialLoading, error, onClearFilters, followingOnly, t],
   );
   // A list still waiting for its first layout draws nothing, not a header
   // over an empty state that is not true. An empty feed has no header row, so

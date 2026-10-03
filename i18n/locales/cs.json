@@ -179,6 +179,7 @@
     "newMembersHint": "Právě jste se připojili — pozdravte",
     "scroll": "Scroll",
     "noFilterMatches": "Tvým filtrům neodpovídá žádný obsah.",
+    "followingEmpty": "Lidé, které sledujete, zatím nic nezveřejnili",
     "clearFilters": "Vymazat filtry"
   },
   "explore": {
@@ -4803,11 +4804,11 @@
     "bridgeAction": "Most {{from}} → {{to}}",
     "failed": "Most selhal",
     "title": "Přemostit tokeny",
-    "howItWorksBody": "Pošlete tokeny DeHub na adresu relé mostu na zdrojovém řetězci. Relé automaticky doručí ekvivalentní částku na cílový řetězec během několika minut.",
+    "howItWorksBody": "Pošlete tokeny DeHub na adresu relé mostu na zdrojovém řetězci. Tým odešle tokeny na cílovém řetězci, obvykle do 1-5 pracovních dnů.",
     "relayAddress": "Adresa relé mostu (zde pošlete tokeny na zdrojovém řetězci):",
     "insufficient": "Nedostatek tokenů na {{chain}}.",
     "insufficientOnChain": "Nedostatek tokenů na {{chain}}. Zůstatek na řetězci se může lišit od zobrazeného.",
-    "sentArriveShortly": "{{amount}} tokenů odesláno z {{from}} → {{to}}. Dorazí brzy.",
+    "sentArriveShortly": "{{amount}} tokenů odesláno z {{from}} do {{to}}. Tým odešle tokeny na cílovém řetězci, obvykle do 1-5 pracovních dnů.",
     "subtitle": "Přesun tokenů DeHub mezi řetězci",
     "queueTitle": "Mosty",
     "transferCount": "Převody: {{count}}",
@@ -8101,11 +8102,11 @@
           "4": "Zadejte počet tokenů k přesunu.",
           "5": "Zkontrolujte poplatek za přesun a odhadovaný čas doručení.",
           "6": "Potvrďte transakci přesunu.",
-          "7": "Počkejte na dokončení transakce — přesun může trvat několik minut."
+          "7": "Tým odešle tokeny na cílovém řetězci, obvykle do 1-5 pracovních dnů."
         },
         "tips": {
           "1": "Poplatky za přesun se liší podle páru řetězců.",
-          "2": "Přesun obvykle trvá 1–5 minut v závislosti na zúčastněných řetězcích.",
+          "2": "Výplaty přes most se zatím provádějí ručně.",
           "3": "Před potvrzením si vždy dvakrát zkontrolujte cílový řetězec."
         }
       },

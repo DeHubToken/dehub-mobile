@@ -312,10 +312,12 @@ describe('home feed on FlashList: list props', () => {
   });
 
   it('translates the empty state', () => {
-    expect(feed).toContain('message={t("feed.noFilterMatches")}');
+    expect(feed).toContain('message={followingOnly ? t("feed.followingEmpty") : t("feed.noFilterMatches")}');
     expect(feed).toContain('clearLabel={t("feed.clearFilters")}');
     expect(feed).not.toContain('No content matches your filters');
+    expect(feed).not.toContain('No posts from people you follow yet');
     expect(en.feed.noFilterMatches).toBe('No content matches your filters');
+    expect(en.feed.followingEmpty).toBe('No posts from people you follow yet');
     expect(en.feed.clearFilters).toBe('Clear filters');
   });
 });

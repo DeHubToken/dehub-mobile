@@ -179,6 +179,7 @@
     "newMembersHint": "Práve ste sa pripojili — pozdravte sa",
     "scroll": "Scroll",
     "noFilterMatches": "Tvojim filtrom nezodpovedá žiadny obsah.",
+    "followingEmpty": "Ľudia, ktorých sledujete, zatiaľ nič nezverejnili",
     "clearFilters": "Vymazať filtre"
   },
   "explore": {
@@ -4908,11 +4909,11 @@
     "bridgeAction": "Most {{from}} → {{to}}",
     "failed": "Most zlyhal",
     "title": "Preniesť tokeny cez most",
-    "howItWorksBody": "Pošlite tokeny DeHub na adresu prenosového mosta na zdrojovom reťazci. Prenos automaticky doručí ekvivalentnú sumu na cieľový reťazec do niekoľkých minút.",
+    "howItWorksBody": "Pošlite tokeny DeHub na adresu prenosového mosta na zdrojovom reťazci. Tím odošle tokeny na cieľovom reťazci, zvyčajne do 1-5 pracovných dní.",
     "relayAddress": "Adresa prenosového mosta (pošlite tokeny sem na zdrojovom reťazci):",
     "insufficient": "Nedostatok tokenov na {{chain}}.",
     "insufficientOnChain": "Nedostatok tokenov na {{chain}}. Zostatok na reťazci sa môže líšiť od zobrazeného.",
-    "sentArriveShortly": "{{amount}} tokenov odoslaných z {{from}} → {{to}}. Dorazia čoskoro.",
+    "sentArriveShortly": "{{amount}} tokenov odoslaných z {{from}} do {{to}}. Tím odošle tokeny na cieľovom reťazci, zvyčajne do 1-5 pracovných dní.",
     "subtitle": "Presúvajte tokeny DeHub medzi reťazcami",
     "queueTitle": "Mosty",
     "transferCount": "Prevody: {{count}}",
@@ -8266,11 +8267,11 @@
           "4": "Zadajte počet tokenov na premostenie.",
           "5": "Skontrolujte poplatok za premostenie a odhadovaný čas príchodu.",
           "6": "Potvrďte transakciu premostenia.",
-          "7": "Počkajte na dokončenie transakcie — premostenie môže trvať niekoľko minút."
+          "7": "Tím odošle tokeny na cieľovom reťazci, zvyčajne do 1-5 pracovných dní."
         },
         "tips": {
           "1": "Poplatky za premostenie sa líšia v závislosti od páru reťazcov.",
-          "2": "Premostenie zvyčajne trvá 1-5 minút v závislosti od zapojených reťazcov.",
+          "2": "Výplaty cez most sa zatiaľ robia ručne.",
           "3": "Pred potvrdením si vždy dvakrát skontrolujte cieľový reťazec."
         }
       },

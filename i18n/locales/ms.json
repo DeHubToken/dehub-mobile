@@ -179,6 +179,7 @@
     "newMembersHint": "Baru sahaja menyertai — beri salam",
     "scroll": "Scroll",
     "noFilterMatches": "Tiada kandungan yang sepadan dengan penapis anda.",
+    "followingEmpty": "Belum ada siaran daripada orang yang anda ikuti",
     "clearFilters": "Kosongkan penapis"
   },
   "explore": {
@@ -5059,11 +5060,11 @@
     "bridgeAction": "Jambatan {{from}} → {{to}}",
     "failed": "Jambatan gagal",
     "title": "Jembatani Token",
-    "howItWorksBody": "Kirim token DeHub ke alamat relay jembatan di rantai sumber. Relay secara otomatis mengirimkan jumlah yang setara di rantai tujuan dalam beberapa menit.",
+    "howItWorksBody": "Kirim token DeHub ke alamat relay jembatan di rantai sumber. Pasukan menghantar token di rantaian destinasi, biasanya dalam masa 1-5 hari bekerja.",
     "relayAddress": "Alamat relay jembatan (kirim token ke sini di rantai sumber):",
     "insufficient": "Token tidak cukup di {{chain}}.",
     "insufficientOnChain": "Token tidak cukup di {{chain}}. Saldo on-chain mungkin berbeda dari yang ditampilkan.",
-    "sentArriveShortly": "{{amount}} token dikirim dari {{from}} → {{to}}. Mereka akan tiba segera.",
+    "sentArriveShortly": "{{amount}} token dihantar daripada {{from}} ke {{to}}. Pasukan menghantar token di rantaian destinasi, biasanya dalam masa 1-5 hari bekerja.",
     "subtitle": "Alihkan token DeHub antara rantaian",
     "queueTitle": "Jambatan",
     "transferCount": "Pemindahan: {{count}}",
@@ -8358,11 +8359,11 @@
           "4": "Masukkan jumlah token untuk dijambatan.",
           "5": "Semak yuran jambatan dan anggaran masa ketibaan.",
           "6": "Sahkan transaksi jambatan.",
-          "7": "Tunggu sehingga transaksi selesai — jambatan mungkin mengambil masa beberapa minit."
+          "7": "Pasukan menghantar token di rantaian destinasi, biasanya dalam masa 1-5 hari bekerja."
         },
         "tips": {
           "1": "Yuran jambatan berbeza mengikut pasangan rantai.",
-          "2": "Jambatan biasanya mengambil masa 1-5 minit bergantung pada rantai yang terlibat.",
+          "2": "Buat masa ini, pembayaran bridge dibuat secara manual.",
           "3": "Sentiasa periksa semula rantai tujuan sebelum mengesahkan."
         }
       },

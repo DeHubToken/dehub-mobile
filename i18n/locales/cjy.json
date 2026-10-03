@@ -178,6 +178,7 @@
     "noShortsFound": "未找到短视频",
     "newMembersHint": "刚加入 — 打个招呼",
     "noFilterMatches": "没有符合你筛选条件的内容。",
+    "followingEmpty": "你关注的人还没有发帖",
     "clearFilters": "清咾筛选",
     "scroll": "滚动"
   },
@@ -4786,11 +4787,11 @@
     "bridgeAction": "跨链 {{from}} → {{to}}",
     "failed": "跨链失败",
     "title": "桥接代币",
-    "howItWorksBody": "将 DeHub 代币发送到源链上的桥接中继地址。中继会在几分钟内自动在目标链上交付等量代币。",
+    "howItWorksBody": "将 DeHub 代币发送到源链上的桥接中继地址。团队会在目标链上发出代币，通常在 1-5 个工作日内。",
     "relayAddress": "桥接中继地址（在此源链上发送代币）：",
     "insufficient": "{{chain}} 上代币不足。",
     "insufficientOnChain": "{{chain}} 上代币不足。链上余额可能与显示不符。",
-    "sentArriveShortly": "{{amount}} 代币从 {{from}} 发送到 {{to}}。它们很快就会到达。",
+    "sentArriveShortly": "已从 {{from}} 发送 {{amount}} 个代币到 {{to}}。团队会在目标链上发出代币，通常在 1-5 个工作日内。",
     "subtitle": "在链之间移动 DeHub 代币",
     "queueTitle": "桥梁",
     "transferCount": "转账：{{count}}",
@@ -8124,11 +8125,11 @@
           "4": "输入要桥接的代币数量。",
           "5": "查看桥接费用和预计到达时间。",
           "6": "确认桥接交易。",
-          "7": "等待交易完成 — 桥接可能需要几分钟时间。"
+          "7": "团队会在目标链上发出代币，通常在 1-5 个工作日内。"
         },
         "tips": {
           "1": "桥接费用因链对而异。",
-          "2": "桥接通常需要 1-5 分钟，具体取决于所涉及的链。",
+          "2": "桥接付款目前由人工处理。",
           "3": "在确认之前，请务必仔细检查目标链。"
         }
       },

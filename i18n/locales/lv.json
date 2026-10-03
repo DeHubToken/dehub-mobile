@@ -179,6 +179,7 @@
     "newMembersHint": "Tikko pievienojies — pasaki sveiki",
     "scroll": "Scroll",
     "noFilterMatches": "Nav satura, kas atbilst taviem filtriem.",
+    "followingEmpty": "Cilvēkiem, kuriem sekojat, vēl nav ierakstu",
     "clearFilters": "Notīrīt filtrus"
   },
   "explore": {
@@ -4800,11 +4801,11 @@
     "bridgeAction": "Tilts {{from}} → {{to}}",
     "failed": "Tilts neizdevās",
     "title": "Marķieru tilts",
-    "howItWorksBody": "Nosūtiet DeHub marķierus uz tilta releja adresi avota ķēdē. Relejs automātiski piegādā ekvivalentu summu mērķa ķēdē dažu minūšu laikā.",
+    "howItWorksBody": "Nosūtiet DeHub marķierus uz tilta releja adresi avota ķēdē. Komanda nosūta marķierus mērķa ķēdē, parasti 1-5 darba dienu laikā.",
     "relayAddress": "Tilta releja adrese (sūtiet marķierus šeit avota ķēdē):",
     "insufficient": "Nav pietiekami daudz marķieru uz {{chain}}.",
     "insufficientOnChain": "Nav pietiekami daudz marķieru uz {{chain}}. Atlikums ķēdē var atšķirties no parādītā.",
-    "sentArriveShortly": "{{amount}} marķieri nosūtīti no {{from}} → {{to}}. Tie drīzumā ieradīsies.",
+    "sentArriveShortly": "{{amount}} marķieri nosūtīti no {{from}} uz {{to}}. Komanda nosūta marķierus mērķa ķēdē, parasti 1-5 darba dienu laikā.",
     "subtitle": "Pārvietojiet DeHub žetonus starp ķēdēm",
     "queueTitle": "Tilti",
     "transferCount": "Pārskaitījumi: {{count}}",
@@ -8100,11 +8101,11 @@
           "4": "Ievadiet marķieru skaitu, ko vēlaties pārsūtīt.",
           "5": "Pārskatiet pārsūtīšanas maksu un paredzamo ierašanās laiku.",
           "6": "Apstipriniet pārsūtīšanas darījumu.",
-          "7": "Uzgaidiet, līdz darījums tiek pabeigts — pārsūtīšana var ilgt dažas minūtes."
+          "7": "Komanda nosūta marķierus mērķa ķēdē, parasti 1-5 darba dienu laikā."
         },
         "tips": {
           "1": "Pārsūtīšanas maksas atšķiras atkarībā no ķēžu pāra.",
-          "2": "Pārsūtīšana parasti aizņem 1–5 minūtes atkarībā no iesaistītajām ķēdēm.",
+          "2": "Pagaidām tilta izmaksas tiek veiktas manuāli.",
           "3": "Pirms apstiprināšanas vienmēr vēlreiz pārbaudiet mērķa ķēdi."
         }
       },

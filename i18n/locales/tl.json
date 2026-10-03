@@ -179,6 +179,7 @@
     "newMembersHint": "Kakagaling lang — bumati ka",
     "scroll": "Scroll",
     "noFilterMatches": "Walang nilalamang tumutugma sa mga filter mo.",
+    "followingEmpty": "Wala pang post mula sa mga taong fina-follow mo",
     "clearFilters": "I-clear ang mga filter"
   },
   "explore": {
@@ -4847,11 +4848,11 @@
     "bridgeAction": "I-bridge {{from}} → {{to}}",
     "failed": "Nabigo ang bridge",
     "title": "I-bridge ang mga Token",
-    "howItWorksBody": "Magpadala ng DeHub token sa bridge relay address sa source chain. Awtomatikong ihahatid ng relay ang katumbas na halaga sa destination chain sa loob ng ilang minuto.",
+    "howItWorksBody": "Magpadala ng DeHub token sa bridge relay address sa source chain. Ipinapadala ng team ang mga token sa destination chain, karaniwan sa loob ng 1-5 araw ng trabaho.",
     "relayAddress": "Bridge relay address (magpadala ng mga token dito sa source chain):",
     "insufficient": "Walang sapat na token sa {{chain}}.",
     "insufficientOnChain": "Walang sapat na token sa {{chain}}. Maaaring iba ang balanse sa on-chain sa ipinapakita.",
-    "sentArriveShortly": "{{amount}} token na ipinadala mula sa {{from}} → {{to}}. Darating ang mga ito sa madaling panahon.",
+    "sentArriveShortly": "{{amount}} token ang naipadala mula {{from}} papuntang {{to}}. Ipinapadala ng team ang mga token sa destination chain, karaniwan sa loob ng 1-5 araw ng trabaho.",
     "subtitle": "Ilipat ang DeHub token sa pagitan ng mga chain",
     "queueTitle": "Mga Tulay",
     "transferCount": "Mga paglilipat:{{count}}",
@@ -8281,11 +8282,11 @@
           "4": "Ilagay ang bilang ng mga token na i-bridge.",
           "5": "Suriin ang bridge fee at ang tinatayang oras ng pagdating.",
           "6": "Kumpirmahin ang bridge transaction.",
-          "7": "Maghintay na matapos ang transaction — maaaring tumagal ng ilang minuto ang pag-bridge."
+          "7": "Ipinapadala ng team ang mga token sa destination chain, karaniwan sa loob ng 1-5 araw ng trabaho."
         },
         "tips": {
           "1": "Ang mga bridge fee ay nag-iiba depende sa pares ng chain.",
-          "2": "Karaniwang tumatagal ang pag-bridge ng 1-5 minuto depende sa mga chain na kasangkot.",
+          "2": "Sa ngayon, mano-mano ang mga bayad ng bridge.",
           "3": "Palaging i-double-check ang destination chain bago kumpirmahin."
         }
       },

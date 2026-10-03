@@ -179,6 +179,7 @@
     "newMembersHint": "Just joined — say hello",
     "scroll": "Scroll",
     "noFilterMatches": "No content matches your filters",
+    "followingEmpty": "No posts from people you follow yet",
     "clearFilters": "Clear filters"
   },
   "explore": {
@@ -4839,7 +4840,7 @@
     "to": "To",
     "recent": "Your recent bridges",
     "noneRecent": "No bridge transfers in the last 7 days.",
-    "howItWorksBody": "Send DeHub tokens to the bridge relay address on the source chain. The relay automatically delivers the equivalent amount on the destination chain within minutes.",
+    "howItWorksBody": "Send DeHub tokens to the bridge relay address on the source chain. The team sends the tokens out on the destination chain, usually within 1-5 business days.",
     "relayAddress": "Bridge relay address (send tokens here on source chain):",
     "addressCopied": "Bridge address copied!",
     "swapDirectionA11y": "Swap bridge direction",
@@ -4853,7 +4854,7 @@
     "bridging": "Bridging…",
     "bridgeAction": "Bridge {{from}} → {{to}}",
     "failed": "Bridge failed",
-    "sentArriveShortly": "{{amount}} tokens sent from {{from}} → {{to}}. They arrive shortly.",
+    "sentArriveShortly": "{{amount}} tokens sent from {{from}} to {{to}}. The team sends the tokens out on the destination chain, usually within 1-5 business days.",
     "subtitle": "Move DeHub tokens between chains",
     "queueTitle": "Bridges",
     "transferCount": "Transfers: {{count}}",
@@ -8125,11 +8126,11 @@
           "4": "Enter the number of tokens to bridge.",
           "5": "Review the bridge fee and estimated arrival time.",
           "6": "Confirm the bridge transaction.",
-          "7": "Wait for the transaction to complete — bridging may take a few minutes."
+          "7": "The team sends the tokens out on the destination chain, usually within 1-5 business days."
         },
         "tips": {
           "1": "Bridge fees vary by chain pair.",
-          "2": "Bridging typically takes 1-5 minutes depending on the chains involved.",
+          "2": "Bridge payouts are made by hand for now.",
           "3": "Always double-check the destination chain before confirming."
         }
       },

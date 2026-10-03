@@ -179,6 +179,7 @@
     "newMembersHint": "Nylig blitt med — si hei",
     "scroll": "Scroll",
     "noFilterMatches": "Ikke noe innhold samsvarer med filtrene dine.",
+    "followingEmpty": "Ingen innlegg fra folk du følger ennå",
     "clearFilters": "Tøm filtre"
   },
   "explore": {
@@ -4800,11 +4801,11 @@
     "bridgeAction": "Bro {{from}} → {{to}}",
     "failed": "Broen mislyktes",
     "title": "Bro Tokens",
-    "howItWorksBody": "Send DeHub-tokens til broreléadressen på kildenettverket. Reléet leverer automatisk tilsvarende beløp på destinasjonsnettverket innen minutter.",
+    "howItWorksBody": "Send DeHub-tokens til broreléadressen på kildenettverket. Teamet sender tokenene ut på destinasjonskjeden, vanligvis innen 1-5 virkedager.",
     "relayAddress": "Broreléadresse (send tokens hit på kildenettverket):",
     "insufficient": "Ikke nok tokens på {{chain}}.",
     "insufficientOnChain": "Ikke nok tokens på {{chain}}. Balanse på kjeden kan avvike fra den viste.",
-    "sentArriveShortly": "{{amount}} tokens sendt fra {{from}} → {{to}}. De kommer snart.",
+    "sentArriveShortly": "{{amount}} tokens sendt fra {{from}} til {{to}}. Teamet sender tokenene ut på destinasjonskjeden, vanligvis innen 1-5 virkedager.",
     "subtitle": "Flytt DeHub-tokens mellom kjeder",
     "queueTitle": "Broer",
     "transferCount": "Overføringer: {{count}}",
@@ -8097,11 +8098,11 @@
           "4": "Skriv inn antall tokens som skal brobygges.",
           "5": "Se gjennom broavgiften og estimert ankomsttid.",
           "6": "Bekreft brotransaksjonen.",
-          "7": "Vent til transaksjonen er fullført — brobygging kan ta noen minutter."
+          "7": "Teamet sender tokenene ut på destinasjonskjeden, vanligvis innen 1-5 virkedager."
         },
         "tips": {
           "1": "Broavgifter varierer etter kjedepar.",
-          "2": "Brobygging tar vanligvis 1-5 minutter avhengig av kjedene som er involvert.",
+          "2": "Bro-utbetalinger gjøres foreløpig manuelt.",
           "3": "Dobbeltsjekk alltid destinasjonskjeden før du bekrefter."
         }
       },
