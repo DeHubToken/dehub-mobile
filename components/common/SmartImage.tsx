@@ -1,7 +1,19 @@
-import React, { useCallback, useEffect, useRef } from "react";
+import React, { useCallback, useEffect, useMemo, useRef } from "react";
 import { Image, type ImageProps, type ImageContentFit } from "expo-image";
 import type { ImageStyle, StyleProp } from "react-native";
 import { withStorageImageHeaders } from "../../libs/cdnImage";
+
+const warmed = new Set<string>();
+/** Warm one neighbour into the same native cache the visible image uses. */
+export function warmFeedImage(uri: string): void {
+  if (!uri || warmed.has(uri)) return;
+  warmed.add(uri);
+  if (warmed.size > 64) warmed.delete(warmed.values().next().value!);
+  const source = withStorageImageHeaders({ uri });
+  void Image.prefetch(uri, { cachePolicy: 'memory-disk', headers: (source as { headers?: Record<string, string> }).headers }).then(ok => {
+    if (!ok) warmed.delete(uri);
+  }).catch(() => warmed.delete(uri));
+}
 
 type SmartImageProps = {
   source: ImageProps["source"];
@@ -67,6 +79,7 @@ export const SmartImage: React.FC<SmartImageProps> = ({
   onError,
 }) => {
   const imageRef = useRef<Image>(null);
+  const resolvedSource = useMemo(() => withStorageImageHeaders(source), [source]);
   const animatedRef = useRef(false);
   const syncAnimation = useCallback(() => {
     if (!animatedRef.current || autoplay === undefined) return;
@@ -86,7 +99,7 @@ export const SmartImage: React.FC<SmartImageProps> = ({
       ref={imageRef}
       // A resized Supabase Storage URL only comes back as WebP when the request
       // says it accepts WebP, which the native loaders do not say on their own.
-      source={withStorageImageHeaders(source)}
+      source={resolvedSource}
       contentFit={contentFit}
       cachePolicy={cachePolicy}
       transition={transition}
