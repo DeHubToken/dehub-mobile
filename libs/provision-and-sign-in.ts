@@ -11,6 +11,7 @@ import {
   getStoredSupabaseUserId,
 } from "./auth.utils";
 import { createLogger } from "./logger";
+import { advanceAuthTrace, beginAuthTrace, readAuthTrace } from './auth-trace';
 import {
   resolveEvmWalletForIdentity,
   retryPendingResetCleanup,
@@ -87,11 +88,12 @@ async function ensureSessionMatchesSupabaseIdentity(supabaseUserId: string): Pro
     // additive. Add profile was never affected because it adopts the live
     // account before reaching here; every other route into a sign-in was.
     try {
-      await stageIncomingIdentity();
+      await stageIncomingIdentity(supabaseUserId);
     } catch (e) {
       // Never block a sign-in on the bookkeeping. Worst case is the old
       // behaviour: the outgoing account is not saved.
       log.warn("provision:stageIncomingIdentity:error", e);
+      // Clear DeHub credentials without signing out the incoming identity.
       await clearAuthData();
     }
   }
@@ -153,8 +155,13 @@ export async function provisionAndSignIn(
   supabaseUserId: string,
   deps: ProvisionDeps
 ): Promise<ProvisionOutcome> {
+  if (!readAuthTrace().auth_attempt_id) beginAuthTrace('resume');
+  advanceAuthTrace('identity-established', supabaseUserId);
+  log.trace?.('identity-established');
   try {
-    return await provisionAndSignInInner(supabaseUserId, deps);
+    const outcome = await provisionAndSignInInner(supabaseUserId, deps);
+    log.trace?.(`provision-${outcome.kind}`, outcome.kind === 'error' ? { reason: outcome.message } : {});
+    return outcome;
   } catch (e) {
     log.error("provision:unhandled-error", e);
     // eslint-disable-next-line no-console
@@ -187,6 +194,7 @@ async function provisionAndSignInInner(
     accessToken, preferred ?? TARGET_CHAIN_ID, undefined, supabaseUserId, deps,
     { allowLocked: true },
   );
+  log.trace?.('profile-exchange-result', { outcome });
   if (outcome === "linked") {
     await markSupabaseIdentitySignedIn(supabaseUserId);
     return { kind: "signed-in" };
@@ -198,6 +206,7 @@ async function provisionAndSignInInner(
   // Only a confirmed new identity can enter signup. Existing wallets never
   // turn an account-link failure into a password, biometric, or signature wall.
   const resolution = await resolveEvmWalletForIdentity(supabaseUserId);
+  log.trace?.('wallet-resolution', { wallet_state: resolution.status });
   if (resolution.status !== "needs-create-password") {
     return { kind: "error", message: "Could not find the profile linked to this login. Please try again or contact support." };
   }

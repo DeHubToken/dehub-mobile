@@ -18,6 +18,7 @@ import { Platform } from "react-native";
 import { Passkey } from "react-native-passkey";
 import { supabase } from "../supabase";
 import { createLogger } from "../../libs/logger";
+import { beginAuthTrace } from '../../libs/auth-trace';
 
 const log = createLogger("passkey-auth");
 
@@ -88,6 +89,8 @@ async function adoptSession(session: { access_token?: string; refresh_token?: st
 
 /** Create a brand-new account from a fresh passkey. Resolves the Supabase user id. */
 export async function signUpWithPasskey(): Promise<string> {
+  beginAuthTrace('passkey-signup');
+  log.trace?.('identity-start');
   const deviceLabel = Platform.OS === "ios" ? "iPhone" : "Android device";
   const { options } = await call<{ options: Parameters<typeof Passkey.create>[0] }>({
     action: "register-options",
@@ -116,6 +119,8 @@ export async function signUpWithPasskey(): Promise<string> {
  * the screen turns into an offer to create one.
  */
 export async function signInWithPasskey(): Promise<string> {
+  beginAuthTrace('passkey-signin');
+  log.trace?.('identity-start');
   const { options } = await call<{ options: Parameters<typeof Passkey.get>[0] }>({ action: "login-options" });
   let response;
   try {

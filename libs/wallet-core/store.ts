@@ -8,8 +8,11 @@
 // The seed is encrypted CLIENT-SIDE (see crypto.ts) before it ever leaves the
 // device — this module only ever moves ciphertext.
 import { supabase } from "../../services/supabase";
+import { createLogger } from '../logger';
 import type { EncryptedPayload } from "./crypto";
 import { getPayloadKdf } from "./crypto";
+
+const log = createLogger('WalletStore');
 
 export interface StoredWallet {
   ethAddress: string;
@@ -248,6 +251,7 @@ export async function saveWallet(
   ethAddress: string,
   payload: EncryptedPayload,
 ): Promise<void> {
+  log.trace?.('wallet-save-start');
   const { error } = await db().from("user_wallets").upsert({
     user_id: userId,
     eth_address: ethAddress,
@@ -256,5 +260,9 @@ export async function saveWallet(
     iv: payload.iv,
     kdf_iterations: payload.iterations,
   });
-  if (error) throw new Error(error.message || "Failed to save wallet");
+  if (error) {
+    log.trace?.('wallet-save-error', { reason: error.message, code: error.code });
+    throw new Error(error.message || "Failed to save wallet");
+  }
+  log.trace?.('wallet-saved');
 }
