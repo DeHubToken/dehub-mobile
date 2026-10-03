@@ -179,6 +179,7 @@
     "newMembersHint": "Endi qo'shildi — salomlashib qo'ying",
     "scroll": "Scroll",
     "noFilterMatches": "Filtrlaringizga mos kontent yo‘q.",
+    "followingEmpty": "Siz kuzatadigan odamlardan hali postlar yo'q",
     "clearFilters": "Filtrlarni tozalash"
   },
   "explore": {
@@ -4818,11 +4819,11 @@
     "bridgeAction": "Ko‘prik {{from}} → {{to}}",
     "failed": "Ko‘prik muvaffaqiyatsiz tugadi",
     "title": "Tokenlarni ko'prikdan o'tkazish",
-    "howItWorksBody": "Manba zanjiridagi ko'prikni uzatish manziliga DeHub tokenlarini yuboring. Uzatuvchi bir necha daqiqa ichida maqsad zanjirida ekvivalent miqdorni avtomatik ravishda etkazib beradi.",
+    "howItWorksBody": "Manba zanjiridagi ko'prikni uzatish manziliga DeHub tokenlarini yuboring. Jamoa tokenlarni manzil zanjirida yuboradi, odatda 1-5 ish kuni ichida.",
     "relayAddress": "Ko'prikni uzatish manzili (manba zanjirida tokenlarni shu yerga yuboring):",
     "insufficient": "{{chain}} da yetarli token yo'q.",
     "insufficientOnChain": "{{chain}} da yetarli token yo'q. On-chain balans ko'rsatilganidan farq qilishi mumkin.",
-    "sentArriveShortly": "{{amount}} token {{from}} dan → {{to}} yuborildi. Ular tez orada yetib keladi.",
+    "sentArriveShortly": "{{amount}} token {{from}} dan {{to}} ga yuborildi. Jamoa tokenlarni manzil zanjirida yuboradi, odatda 1-5 ish kuni ichida.",
     "subtitle": "DeHub tokenlarini zanjirlar o'rtasida ko'chiring",
     "queueTitle": "Ko'priklar",
     "transferCount": "O'tkazmalar: {{count}}",
@@ -8155,11 +8156,11 @@
           "4": "Ko'prik qilinadigan tokenlar sonini kiriting.",
           "5": "Ko'prik to'lovini va kutilayotgan kelish vaqtini ko'rib chiqing.",
           "6": "Ko'prik operatsiyasini tasdiqlang.",
-          "7": "Operatsiya tugaguniga qadar kuting — ko'prik qilish bir necha daqiqa vaqt olishi mumkin."
+          "7": "Jamoa tokenlarni manzil zanjirida yuboradi, odatda 1-5 ish kuni ichida."
         },
         "tips": {
           "1": "Ko'prik to'lovlari zanjir juftligiga qarab farq qiladi.",
-          "2": "Ko'prik qilish odatda ishtirok etayotgan zanjirlarga qarab 1-5 daqiqa davom etadi.",
+          "2": "Hozircha ko'prik to'lovlari qo'lda amalga oshiriladi.",
           "3": "Tasdiqlashdan oldin har doim maqsadli zanjirni ikki marta tekshiring."
         }
       },

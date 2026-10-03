@@ -178,6 +178,7 @@
     "newMembersHint": "Kàn dara pọ̀ mọ́ra — sọ kíyèsí",
     "scroll": "Scroll",
     "noFilterMatches": "Kò sí àkóónú tó bá àwọn àlẹ̀mọ́ rẹ mu.",
+    "followingEmpty": "Kò sí ìfìwéránṣẹ́ láti ọ̀dọ̀ àwọn tí o ń tẹ̀lé síbẹ̀",
     "clearFilters": "Pa àwọn àlẹ̀mọ́ rẹ́"
   },
   "explore": {
@@ -4791,11 +4792,11 @@
     "bridgeAction": "Afárá {{from}} → {{to}}",
     "failed": "Afárá kùnà",
     "title": "Awọn Token Afara",
-    "howItWorksBody": "Fi awọn DeHub token ranṣẹ si adiresi afara afara lori ẹwọn orisun. Afara naa n fi iye ti o dọgba ranṣẹ laifọwọyi lori ẹwọn opin laarin iṣẹju diẹ.",
+    "howItWorksBody": "Fi awọn DeHub token ranṣẹ si adiresi afara afara lori ẹwọn orisun. Ẹgbẹ́ náà máa ń fi àwọn token ránṣẹ́ lórí chain tí wọ́n ń lọ, nígbà gbogbo láàrín ọjọ́ iṣẹ́ 1-5.",
     "relayAddress": "Adiresi afara afara (fi awọn token ranṣẹ nibi lori ẹwọn orisun):",
     "insufficient": "Ko to awọn token lori {{chain}}.",
     "insufficientOnChain": "Ko to awọn token lori {{chain}}. Iwọntọnwọnsọ lori pq le yatọ si ti o han.",
-    "sentArriveShortly": "{{amount}} token ti a fi ranṣẹ lati {{from}} → {{to}}. Wọn de laipẹ.",
+    "sentArriveShortly": "A ti fi token {{amount}} ránṣẹ́ láti {{from}} sí {{to}}. Ẹgbẹ́ náà máa ń fi àwọn token ránṣẹ́ lórí chain tí wọ́n ń lọ, nígbà gbogbo láàrín ọjọ́ iṣẹ́ 1-5.",
     "subtitle": "Gbé tóka DeHub láàárín àwọn ilé-iṣẹ́",
     "queueTitle": "Afara",
     "transferCount": "Gbigbe: {{count}}",
@@ -8078,11 +8079,11 @@
           "4": "Tẹ nọmba awọn ami ti o fẹ fi ranṣẹ.",
           "5": "Ṣayẹwo idiyele afara ati akoko ti a nṣe iṣiro de.",
           "6": "Jẹrisi iṣowo afara.",
-          "7": "Duro fun iṣowo lati pari — afara le gba iṣẹju diẹ."
+          "7": "Ẹgbẹ́ náà máa ń fi àwọn token ránṣẹ́ lórí chain tí wọ́n ń lọ, nígbà gbogbo láàrín ọjọ́ iṣẹ́ 1-5."
         },
         "tips": {
           "1": "Awọn idiyele afara yatọ nipasẹ pq.",
-          "2": "Afara maa n gba iṣẹju 1-5 da lori awọn pq ti o wa ninu rẹ.",
+          "2": "Fún báyìí, a ń san owó afárá pẹ̀lú ọwọ́.",
           "3": "Nigbagbogbo ṣayẹwo pq ibi ti o nlo ṣaaju ki o to jẹrisi."
         }
       },

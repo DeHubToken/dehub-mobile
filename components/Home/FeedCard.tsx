@@ -1,4 +1,6 @@
 import { watchedLabel } from "../../i18n/watched-label";
+import { SessionExpiredError } from "../../libs/api.client";
+import { createLogger } from "../../libs/logger";
 import { useIsWatchedVideo } from "../../hooks/useWatchedVideos";
 import { isStreamLive } from '../../libs/live-status';
 import { isHoldGated } from "../../libs/content-gate";
@@ -101,6 +103,7 @@ import { speechAvailable } from "../../hooks/useVoiceDub";
 import { resolveViewCount } from "../../libs/numbers.util";
 import { seedViewerStats } from "../../libs/viewers.util";
 import { ScreenNames } from "../../navigation/ScreenNames";
+import { preparePostMediaNavigation } from "../../libs/post-media-session";
 import { useUser, useAuthActions, useAuthState } from "../../context/AuthContext";
 import { useEngagementWeight } from "../../hooks/useEngagementWeight";
 import { appliedEngagementWeight } from "../../libs/engagement-weight";
@@ -749,9 +752,17 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   // Relative time moves by the minute at most; recomputing it on every render
   // parsed the date each time.
   const timeAgo = useMemo(() => formatShortTimeAgo(createdAt), [createdAt]);
+  const warmPost = useCallback(() => {
+    if (disablePress || isLive || isShort || tokenId == null) return;
+    seedPostDetail(tokenId, item);
+    warmRequest(`nft:${tokenId}`, () => getNFT(tokenId));
+  }, [disablePress, isLive, isShort, tokenId, item]);
 
   const handleCardPress = useCallback(() => {
     if (disablePress) return;
+    preparePostMediaNavigation(getVideoUrl(tokenId));
+    if (item.audioUrl) preparePostMediaNavigation(getAudioUrl(item.audioUrl));
+    if (soundtrack?.url) preparePostMediaNavigation(soundtrack.url);
     onBeforeNavigate?.();
     hideUserProfile();
     if (isLive) {
@@ -778,16 +789,18 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     }
   }, [
     disablePress, isLive, isShort, isOwnerPost, item, tokenId,
-    accessInfo, stream, isCurrentlyLive, navigation, hideUserProfile, onBeforeNavigate,
+    accessInfo, stream, isCurrentlyLive, navigation, hideUserProfile, onBeforeNavigate, soundtrack,
   ]);
 
   const handleImagePress = useCallback((index: number = 0) => {
     if (!hasImages) return;
+    if (soundtrack?.url) preparePostMediaNavigation(soundtrack.url);
     // Dismiss the profile sheet first, otherwise the viewer opens behind it.
     onBeforeNavigate?.();
     hideUserProfile();
     navigation.navigate(ScreenNames.ImageViewer, {
       images: galleryImages,
+      galleryKey: String(tokenId),
       initialIndex: index,
       soundtrack: !isActuallyGated && !matureGate.isGated ? soundtrack : undefined,
     });
@@ -876,7 +889,10 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       // this card and every other mounted card for the same post.
       applyEngagement(engagementKey, countsAt(voteWeight));
 
-      const rollback = () => {
+      const rollback = (error?: unknown) => {
+        // Session invalidation already cleared account-specific overlays.
+        // Restoring the old vote here would paint the signed-out feed with it.
+        if (error instanceof SessionExpiredError) return;
         // Restore only the fields this handler owns, so a concurrent save or
         // repost that succeeded is not undone.
         revertEngagement(engagementKey, {
@@ -887,6 +903,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           dislikeCount: wasDislikeCount,
           reactionCounts: wasCounts,
         });
+        createLogger('PostReaction').error('Failed to update reaction', { tokenId, reaction },
+          error instanceof Error ? error : String((error as any)?.error || 'Unsuccessful response'));
         toastError(t("feedCard.reactionFailed"));
       };
 
@@ -903,7 +921,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         // would record a failed vote as successful and then share it.
         .then((res: any) => {
           if (isFailedResponse(res)) {
-            rollback();
+            rollback(res);
             return;
           }
           // Settle on the weight the server actually applied. Only differs
@@ -1512,6 +1530,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     }
     const gallery = (
       <FeedImageGallery
+        postId={String(tokenId)}
         key={galleryImages.join('|')}
         images={galleryImages}
         width={itemWidth}
@@ -2617,6 +2636,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           and the post did not open. */}
       <PostTapSurface
         resetKey={postKey}
+        onPressIntent={warmPost}
         onReaction={handleVideoTapReaction}
         onPress={disablePress ? undefined : handleCardPress}
       >
@@ -2805,4 +2825,3 @@ const FeedCard = memo(function GuardedFeedCard(props: FeedCardProps) {
 });
 
 export default FeedCard;
-

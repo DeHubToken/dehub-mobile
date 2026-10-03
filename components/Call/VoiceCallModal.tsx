@@ -1,4 +1,5 @@
 import React from "react";
+import { CallDuration } from "./CallDuration";
 import { View, StyleSheet } from "react-native";
 import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -13,7 +14,6 @@ const VoiceCallModal: React.FC = () => {
     isConnecting,
     isMuted,
     isSpeakerOn,
-    callDuration,
     endCall,
     toggleMute,
     toggleSpeaker,
@@ -33,9 +33,7 @@ const VoiceCallModal: React.FC = () => {
 
   const statusText = isConnecting
     ? t("calls.connecting")
-    : callDuration !== "00:00"
-      ? callDuration
-      : t("calls.connected");
+    : <CallDuration fallback={t("calls.connected")} />;
 
   return (
     <CallScreen onRequestClose={() => setMinimized(true)}>

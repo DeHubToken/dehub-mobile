@@ -45,6 +45,8 @@ export function warmRequest<T>(key: string, fetch: () => Promise<T>): void {
   // Nobody may ever take it; a failure here must not surface as unhandled.
   promise.catch(() => {});
   warm.set(key, { at: Date.now(), promise });
+  // Press intent can warm a screen that is never opened. Keep that bounded.
+  while (warm.size > SEED_LIMIT) warm.delete(warm.keys().next().value!);
 }
 
 /**

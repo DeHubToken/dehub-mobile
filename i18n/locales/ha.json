@@ -178,6 +178,7 @@
     "newMembersHint": "Yanzu ka shigo — ka gaisa",
     "scroll": "Scroll",
     "noFilterMatches": "Babu abun ciki da ya dace da matattarar ku.",
+    "followingEmpty": "Babu sakonni daga mutanen da kake bi tukuna",
     "clearFilters": "Share matattara"
   },
   "explore": {
@@ -4790,11 +4791,11 @@
     "bridgeAction": "Gada {{from}} → {{to}}",
     "failed": "Gadar ta gaza",
     "title": "Gada Tokens",
-    "howItWorksBody": "Aika DeHub tokens zuwa adireshin relay na gada a kan hanyar tushe. Relay yana isar da daidai adadin a kan hanyar da za a nufa cikin mintuna.",
+    "howItWorksBody": "Aika DeHub tokens zuwa adireshin relay na gada a kan hanyar tushe. Ƙungiyar tana aika tokens ɗin a kan sarkar da za a kai, yawanci cikin kwanakin aiki 1-5.",
     "relayAddress": "Adireshin relay na gada (aika tokens anan a kan hanyar tushe):",
     "insufficient": "Babu isassun tokens a {{chain}}.",
     "insufficientOnChain": "Babu isassun tokens a {{chain}}. Ma'auni na kan-chain na iya bambanta da abin da aka nuna.",
-    "sentArriveShortly": "An aika {{amount}} tokens daga {{from}} → {{to}}. Zasu iso nan da wani lokaci.",
+    "sentArriveShortly": "An aika tokens {{amount}} daga {{from}} zuwa {{to}}. Ƙungiyar tana aika tokens ɗin a kan sarkar da za a kai, yawanci cikin kwanakin aiki 1-5.",
     "subtitle": "Canja wurin token na DeHub tsakanin sarƙoƙi",
     "queueTitle": "Gadoji",
     "transferCount": "Canja wurin: {{count}}",
@@ -8076,11 +8077,11 @@
           "4": "Shigar da adadin kuɗin da za a yi garkuwa.",
           "5": "Duba kuɗin garkuwa da kuma lokacin da ake sa ran isowa.",
           "6": "Tabbatar da cinikin garkuwa.",
-          "7": "Yi jiran cinikin ya kammala — garkuwa na iya ɗaukar 'yan mintuna kaɗan."
+          "7": "Ƙungiyar tana aika tokens ɗin a kan sarkar da za a kai, yawanci cikin kwanakin aiki 1-5."
         },
         "tips": {
           "1": "Kuɗin garkuwa na bambanta ta hanyar sarkar ma'aurata.",
-          "2": "Garkuwa yawanci yana ɗaukar mintuna 1-5 dangane da sarkar da ke cikin su.",
+          "2": "A yanzu ana biyan kuɗin gada da hannu.",
           "3": "Koyaushe duba sarkar da za a nufa kafin tabbatarwa."
         }
       },

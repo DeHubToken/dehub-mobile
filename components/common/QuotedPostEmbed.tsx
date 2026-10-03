@@ -1,3 +1,4 @@
+import BadgeArtwork from "./BadgeArtwork";
 import React, { memo, useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { t } from "i18next";
@@ -7,7 +8,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
-import { getAvatarUrl, getImageUrl, getImageUrlApiSimple, buildFeedImageUrls, getAudioUrl, getBadgeOpticalStyle, getBadgeUrlFor } from "../../libs/misc";
+import { getAvatarUrl, getImageUrl, getImageUrlApiSimple, buildFeedImageUrls, getAudioUrl, getBadgeHoverOpticalStyle as getBadgeOpticalStyle, getBadgeUrlFor } from "../../libs/misc";
 import { truncate } from "../../libs/strings.util";
 import { getNFT } from "../../services/nft.service";
 import Avatar from "./Avatar";
@@ -208,7 +209,7 @@ const QuotedPostEmbed: React.FC<QuotedPostEmbedProps> = memo(
               {displayName}
             </Text>
             {!!badgeImage && (
-              <SmartImage
+              <BadgeArtwork
                 source={badgeImage}
                 style={getBadgeOpticalStyle(badgeImage, 13)}
                 contentFit="contain"

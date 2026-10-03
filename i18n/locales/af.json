@@ -179,6 +179,7 @@
     "newMembersHint": "Net aangesluit — sê hallo",
     "scroll": "Scroll",
     "noFilterMatches": "Geen inhoud pas by jou filters nie.",
+    "followingEmpty": "Nog geen plasings van mense wat jy volg nie",
     "clearFilters": "Vee filters uit"
   },
   "explore": {
@@ -4833,11 +4834,11 @@
     "bridgeAction": "Oorbrug {{from}} → {{to}}",
     "failed": "Oorbrugging het misluk",
     "title": "Oorbrug Tokens",
-    "howItWorksBody": "Stuur DeHub-tokens na die brug-aflosadres op die bronketting. Die aflosdiens lewer outomaties die ekwivalente bedrag binne minute op die bestemmingsketting af.",
+    "howItWorksBody": "Stuur DeHub-tokens na die brug-aflosadres op die bronketting. Die span stuur die tokens op die bestemmingsketting uit, gewoonlik binne 1-5 werksdae.",
     "relayAddress": "Brug-aflosadres (stuur tokens hier op bronketting):",
     "insufficient": "Nie genoeg tokens op {{chain}} nie.",
     "insufficientOnChain": "Nie genoeg tokens op {{chain}} nie. On-chain balans mag verskil van vertoonde.",
-    "sentArriveShortly": "{{amount}} tokens gestuur vanaf {{from}} → {{to}}. Hulle arriveer binnekort.",
+    "sentArriveShortly": "{{amount}} tokens gestuur van {{from}} na {{to}}. Die span stuur die tokens op die bestemmingsketting uit, gewoonlik binne 1-5 werksdae.",
     "subtitle": "Beweeg DeHub-tokens tussen kettings",
     "queueTitle": "Brûe",
     "transferCount": "Oordragte: {{count}}",
@@ -8226,11 +8227,11 @@
           "4": "Voer die aantal tokens in om te bridge.",
           "5": "Hersien die bridge-fooi en geskatte aankomstyd.",
           "6": "Bevestig die bridge-transaksie.",
-          "7": "Wag vir die transaksie om te voltooi — bridging kan 'n paar minute neem."
+          "7": "Die span stuur die tokens op die bestemmingsketting uit, gewoonlik binne 1-5 werksdae."
         },
         "tips": {
           "1": "Bridge-fooie wissel per kettingpaar.",
-          "2": "Bridging neem tipies 1-5 minute, afhangende van die betrokke kettings.",
+          "2": "Brugbetalings word vir eers met die hand gedoen.",
           "3": "Dubbelkeur altyd die bestemmingsketting voordat jy bevestig."
         }
       },

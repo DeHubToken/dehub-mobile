@@ -1,5 +1,5 @@
 /**
- * Over-the-air updates without waiting for a cold launch.
+ * Download updates in the background; apply on the next cold launch.
  *
  * expo-updates checks on launch and applies on the NEXT launch. A phone that
  * is never swiped away — the app just sits in the background between uses —
@@ -7,10 +7,9 @@
  * bundle two days old across four feed fixes for exactly that reason, and
  * pull-to-refresh does nothing for it.
  *
- * So: every time the app comes to the foreground, check and download in the
- * background (rate-limited). If a download is sitting ready, apply it the next
- * time the app returns from a long enough background — the user has just come
- * back, nothing is mid-flight, and a reload there reads like a fresh open.
+ * Check and download on foreground (rate-limited). Returning from a phone
+ * call must preserve the current navigation and media session. A reload is
+ * allowed only by an explicit update action, never by an AppState event.
  */
 import * as Updates from "expo-updates";
 
@@ -51,9 +50,9 @@ export async function checkForOtaUpdate(now = Date.now()): Promise<void> {
   }
 }
 
-/** Reload onto a downloaded update once the user has been away long enough. */
-export async function applyOtaUpdateIfReady(backgroundMs: number): Promise<boolean> {
-  if (!updateReady || backgroundMs < APPLY_AFTER_BACKGROUND_MS) return false;
+/** Reload only from an explicit update action, never from an AppState return. */
+export async function applyOtaUpdateIfReady(backgroundMs: number, allowReload = false): Promise<boolean> {
+  if (!allowReload || !updateReady || backgroundMs < APPLY_AFTER_BACKGROUND_MS) return false;
   updateReady = false;
   try {
     await Updates.reloadAsync();

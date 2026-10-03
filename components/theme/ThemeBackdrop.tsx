@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { AppState, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { WebView } from "react-native-webview";
 import { Asset } from "expo-asset";
 import * as FileSystem from "expo-file-system/legacy";
@@ -7,6 +7,7 @@ import { useAppTheme } from "../../context/ThemeContext";
 import { isThemeBackdropVisible, subscribeThemeBackdrop } from "../../libs/themeBackdrop";
 import { isFeedScrolling, subscribeFeedScrollStart, subscribeFeedSettled } from "../../libs/scrollActivity";
 import { createLogger } from "../../libs/logger";
+import { visualActivity } from "../../libs/visualActivity";
 
 const log = createLogger("ThemeBackdrop");
 
@@ -99,19 +100,19 @@ const ThemeBackdrop: React.FC = () => {
   // ~9ms a frame against 8.3ms at 120Hz, most of it waiting on the GPU. The
   // scene holds its last frame through the fling and resumes on settle.
   const sync = useCallback(() => {
-    const running = AppState.currentState === "active" && isThemeBackdropVisible() && !isFeedScrolling();
+    const running = visualActivity.isVisualActive() && isThemeBackdropVisible() && !isFeedScrolling();
     webRef.current?.injectJavaScript(
       `window.dehubBackdrop&&window.dehubBackdrop.pause(${running ? "false" : "true"});true;`,
     );
   }, []);
 
   useEffect(() => {
-    const appState = AppState.addEventListener("change", sync);
+    const unsubscribeActivity = visualActivity.subscribe(sync);
     const unsubscribe = subscribeThemeBackdrop(sync);
     const unsubscribeStart = subscribeFeedScrollStart(sync);
     const unsubscribeSettle = subscribeFeedSettled(sync);
     return () => {
-      appState.remove();
+      unsubscribeActivity();
       unsubscribe();
       unsubscribeStart();
       unsubscribeSettle();

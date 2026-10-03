@@ -179,6 +179,7 @@
     "newMembersHint": "Upravo ste se pridružili — pozdravite",
     "scroll": "Scroll",
     "noFilterMatches": "Nema sadržaja koji odgovara tvojim filterima.",
+    "followingEmpty": "Još nema objava ljudi koje pratite",
     "clearFilters": "Očisti filtre"
   },
   "explore": {
@@ -4800,11 +4801,11 @@
     "bridgeAction": "Most {{from}} → {{to}}",
     "failed": "Most nije uspio",
     "title": "Premosti tokene",
-    "howItWorksBody": "Pošaljite DeHub tokene na adresu releja bridgea na izvornom lancu. Relej automatski isporučuje ekvivalentni iznos na odredišnom lancu u roku od nekoliko minuta.",
+    "howItWorksBody": "Pošaljite DeHub tokene na adresu releja bridgea na izvornom lancu. Tim šalje tokene na odredišnom lancu, obično u roku od 1-5 radnih dana.",
     "relayAddress": "Adresa releja bridgea (pošaljite tokene ovdje na izvornom lancu):",
     "insufficient": "Nedovoljno tokena na {{chain}}.",
     "insufficientOnChain": "Nedovoljno tokena na {{chain}}. Stanje na lancu može se razlikovati od prikazanog.",
-    "sentArriveShortly": "{{amount}} tokena poslano s {{from}} → {{to}}. Stižu uskoro.",
+    "sentArriveShortly": "{{amount}} tokena poslano s {{from}} na {{to}}. Tim šalje tokene na odredišnom lancu, obično u roku od 1-5 radnih dana.",
     "subtitle": "Premjestite DeHub tokene između lanaca",
     "queueTitle": "Mostovi",
     "transferCount": "Prijenosi: {{count}}",
@@ -8101,11 +8102,11 @@
           "4": "Unesite broj tokena za premošćivanje.",
           "5": "Pregledajte naknadu za premošćivanje i procijenjeno vrijeme dolaska.",
           "6": "Potvrdite transakciju premošćivanja.",
-          "7": "Pričekajte da se transakcija dovrši — premošćivanje može potrajati nekoliko minuta."
+          "7": "Tim šalje tokene na odredišnom lancu, obično u roku od 1-5 radnih dana."
         },
         "tips": {
           "1": "Naknade za premošćivanje variraju ovisno o paru mreža.",
-          "2": "Premošćivanje obično traje 1-5 minuta, ovisno o uključenim mrežama.",
+          "2": "Isplate preko mosta zasad se rade ručno.",
           "3": "Uvijek dvaput provjerite odredišnu mrežu prije potvrde."
         }
       },

@@ -179,6 +179,7 @@
     "newMembersHint": "Właśnie dołączyłeś — przywitaj się",
     "scroll": "Scroll",
     "noFilterMatches": "Brak treści pasujących do filtrów.",
+    "followingEmpty": "Brak postów od osób, które obserwujesz",
     "clearFilters": "Wyczyść filtry"
   },
   "explore": {
@@ -4800,11 +4801,11 @@
     "bridgeAction": "Most {{from}} → {{to}}",
     "failed": "Most nie powiódł się",
     "title": "Mostkuj tokeny",
-    "howItWorksBody": "Wyślij tokeny DeHub na adres przekaźnika mostu na blockchainie źródłowym. Przekaźnik automatycznie dostarcza równoważną ilość na blockchain docelowy w ciągu kilku minut.",
+    "howItWorksBody": "Wyślij tokeny DeHub na adres przekaźnika mostu na blockchainie źródłowym. Zespół wysyła tokeny w łańcuchu docelowym, zwykle w ciągu 1-5 dni roboczych.",
     "relayAddress": "Adres przekaźnika mostu (wyślij tokeny tutaj na blockchainie źródłowym):",
     "insufficient": "Za mało tokenów na {{chain}}.",
     "insufficientOnChain": "Za mało tokenów na {{chain}}. Saldo on-chain może różnić się od wyświetlanego.",
-    "sentArriveShortly": "{{amount}} tokenów wysłanych z {{from}} → {{to}}. Dotrą wkrótce.",
+    "sentArriveShortly": "Wysłano {{amount}} tokenów z {{from}} do {{to}}. Zespół wysyła tokeny w łańcuchu docelowym, zwykle w ciągu 1-5 dni roboczych.",
     "subtitle": "Przenieś tokeny DeHub między sieciami",
     "queueTitle": "Mosty",
     "transferCount": "Przelewy: {{count}}",
@@ -8200,11 +8201,11 @@
           "4": "Wprowadź liczbę tokenów do przesłania.",
           "5": "Sprawdź opłatę za przesłanie i szacowany czas przybycia.",
           "6": "Potwierdź transakcję przesłania.",
-          "7": "Poczekaj na zakończenie transakcji — przesłanie może potrwać kilka minut."
+          "7": "Zespół wysyła tokeny w łańcuchu docelowym, zwykle w ciągu 1-5 dni roboczych."
         },
         "tips": {
           "1": "Opłaty za przesłanie różnią się w zależności od pary łańcuchów.",
-          "2": "Przesyłanie zazwyczaj trwa 1-5 minut, w zależności od zaangażowanych łańcuchów.",
+          "2": "Na razie wypłaty przez most są realizowane ręcznie.",
           "3": "Zawsze dokładnie sprawdzaj łańcuch docelowy przed potwierdzeniem."
         }
       },

@@ -179,6 +179,7 @@
     "newMembersHint": "Vao tafiditra — miarahaba",
     "scroll": "Scroll",
     "noFilterMatches": "Tsy misy atiny mifanaraka amin'ny sivanao.",
+    "followingEmpty": "Mbola tsy misy lahatsoratra avy amin'ireo olona arahinao",
     "clearFilters": "Hamafa ny sivana"
   },
   "explore": {
@@ -4814,11 +4815,11 @@
     "bridgeAction": "Tetezana {{from}} → {{to}}",
     "failed": "Tsy nahomby ny tetezana",
     "title": "Tetezana Token",
-    "howItWorksBody": "Alefaso ny DeHub token mankany amin'ny adiresin'ny relay tetezana eo amin'ny rojo loharano. Ny relay dia manolotra ny sandany mitovy eo amin'ny rojo haleha ao anatin'ny minitra vitsy.",
+    "howItWorksBody": "Alefaso ny DeHub token mankany amin'ny adiresin'ny relay tetezana eo amin'ny rojo loharano. Ny ekipa no mandefa ny token eo amin'ny rojo tanjona, matetika ao anatin'ny andro fiasana 1-5.",
     "relayAddress": "Adiresin'ny relay tetezana (alefaso eto ny token eo amin'ny rojo loharano):",
     "insufficient": "Tsy ampy ny token ao amin'ny {{chain}}.",
     "insufficientOnChain": "Tsy ampy ny token ao amin'ny {{chain}}. Ny sandan'ny on-chain dia mety tsy mitovy amin'ny aseho.",
-    "sentArriveShortly": "{{amount}} token nalefa avy amin'ny {{from}} → {{to}}. Ho tonga tsy ho ela.",
+    "sentArriveShortly": "Token {{amount}} nalefa avy amin'ny {{from}} ho any amin'ny {{to}}. Ny ekipa no mandefa ny token eo amin'ny rojo tanjona, matetika ao anatin'ny andro fiasana 1-5.",
     "subtitle": "Afindra ny tapaka DeHub eo anelanelan'ny onja",
     "queueTitle": "Bridges",
     "transferCount": "Famindrana: {{count}}",
@@ -8181,11 +8182,11 @@
           "4": "Ampidiro ny isan'ny tokenina hifindrana.",
           "5": "Jereo ny sarany fanaovana bridge sy ny fotoana antenaina hahatongavana.",
           "6": "Hamafiso ny fifindrana bridge.",
-          "7": "Miandry ny famitana ny fifindrana — mety haharitra minitra vitsivitsy ny fanaovana bridge."
+          "7": "Ny ekipa no mandefa ny token eo amin'ny rojo tanjona, matetika ao anatin'ny andro fiasana 1-5."
         },
         "tips": {
           "1": "Misy fiovaova ny sarany fanaovana bridge arakaraka ny mpivady rojo.",
-          "2": "Matetika maharitra 1-5 minitra ny fanaovana bridge arakaraka ny rojo voakasika.",
+          "2": "Amin'izao fotoana izao dia atao amin'ny tanana ny fandoavana amin'ny tetezana.",
           "3": "Hamafiso foana ny rojo kendrena alohan'ny hamafisetana."
         }
       },

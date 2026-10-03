@@ -1,3 +1,4 @@
+import BadgeArtwork from "../common/BadgeArtwork";
 /**
  * SuggestedAccountCard – Compact vertical card for the suggested-accounts carousel.
  *
@@ -190,7 +191,7 @@ const SuggestedAccountCardComponent: FC<SuggestedAccountCardProps> = ({
           {displayName}
         </Text>
         {badgeImage ? (
-          <SmartImage
+          <BadgeArtwork
             source={badgeImage}
             style={{ width: 14, height: 14, marginLeft: 3 }}
             contentFit="contain"

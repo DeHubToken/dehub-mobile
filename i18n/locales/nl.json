@@ -179,6 +179,7 @@
     "newMembersHint": "Net lid geworden — zeg hallo",
     "scroll": "Scroll",
     "noFilterMatches": "Geen inhoud komt overeen met je filters.",
+    "followingEmpty": "Nog geen berichten van mensen die je volgt",
     "clearFilters": "Filters wissen"
   },
   "explore": {
@@ -4990,11 +4991,11 @@
     "bridgeAction": "Brug {{from}} → {{to}}",
     "failed": "Bridge mislukt",
     "title": "Tokens bridgen",
-    "howItWorksBody": "Stuur DeHub-tokens naar het bridge-relaisadres op de bronketen. Het relais levert automatisch het equivalente bedrag op de doelketen binnen enkele minuten.",
+    "howItWorksBody": "Stuur DeHub-tokens naar het bridge-relaisadres op de bronketen. Het team verstuurt de tokens op de bestemmingsketen, meestal binnen 1-5 werkdagen.",
     "relayAddress": "Bridge-relaisadres (stuur hier tokens op de bronketen):",
     "insufficient": "Niet genoeg tokens op {{chain}}.",
     "insufficientOnChain": "Niet genoeg tokens op {{chain}}. On-chain saldo kan afwijken van weergegeven.",
-    "sentArriveShortly": "{{amount}} tokens verzonden van {{from}} → {{to}}. Ze komen spoedig aan.",
+    "sentArriveShortly": "{{amount}} tokens verzonden van {{from}} naar {{to}}. Het team verstuurt de tokens op de bestemmingsketen, meestal binnen 1-5 werkdagen.",
     "subtitle": "Verplaats DeHub-tokens tussen chains",
     "queueTitle": "Bruggen",
     "transferCount": "Overboekingen: {{count}}",
@@ -8386,11 +8387,11 @@
           "4": "Voer het aantal te bridgen tokens in.",
           "5": "Bekijk de bridgekosten en de geschatte aankomsttijd.",
           "6": "Bevestig de bridge-transactie.",
-          "7": "Wacht tot de transactie is voltooid — bridgen kan enkele minuten duren."
+          "7": "Het team verstuurt de tokens op de bestemmingsketen, meestal binnen 1-5 werkdagen."
         },
         "tips": {
           "1": "Bridgekosten variëren per ketenpaar.",
-          "2": "Bridgen duurt doorgaans 1-5 minuten, afhankelijk van de betrokken ketens.",
+          "2": "Bridge-uitbetalingen gebeuren voorlopig handmatig.",
           "3": "Controleer altijd de doelketen voordat u bevestigt."
         }
       },

@@ -179,6 +179,7 @@
     "newMembersHint": "Tenê tevlî bû - silav bike",
     "scroll": "Scroll",
     "noFilterMatches": "Tu naverok bi parzûnên te re li hev nake.",
+    "followingEmpty": "Hîn ti post ji kesên ku tu dişopînî tune ne",
     "clearFilters": "Fîltreyan pak bike"
   },
   "explore": {
@@ -4792,11 +4793,11 @@
     "showMore": "Zêdetir nîşan bide",
     "signInToBridge": "Ji bo dîtina hevsengiyên xwe û veguhestina tokenên DeHub di navbera Base û BNB Chain de têkeve hesabê xwe.",
     "title": "تۆکنەکان پرد بکە",
-    "howItWorksBody": "تۆکنەکانی DeHub بنێرە بۆ ناونیشانی پردی گواستنەوە لەسەر زنجیرەی سەرچاوە. گواستنەوەکە بە شێوەیەکی خۆکار بڕی یەکسان لەسەر زنجیرەی مەبەست لە ماوەی چەند خولەکێکدا دابین دەکات.",
+    "howItWorksBody": "Tokenên DeHub bişîne navnîşana relay ya pirê li ser zincîra çavkaniyê. Tîm tokenan li ser zincîra armancê dişîne, bi gelemperî di nav 1-5 rojên kar de.",
     "relayAddress": "ناونیشانی پردی گواستنەوە (لێرەدا تۆکن بنێرە لەسەر زنجیرەی سەرچاوە):",
     "insufficient": "تۆکنی بەس نین لەسەر {{chain}}.",
     "insufficientOnChain": "تۆکنی بەس نین لەسەر {{chain}}. باڵانسی لەسەر زنجیرەکە لەوانەیە جیاواز بێت لەگەڵ ئەوەی نیشان دەدرێت.",
-    "sentArriveShortly": "تۆکنی {{amount}} لە {{from}} → {{to}} نێردرا. ئەوان لە ماوەیەکی کورتدا دەگەن."
+    "sentArriveShortly": "{{amount}} token ji {{from}} bo {{to}} hatin şandin. Tîm tokenan li ser zincîra armancê dişîne, bi gelemperî di nav 1-5 rojên kar de."
   },
   "teamUp": {
     "title": "Tîmê pêk bîne",
@@ -8013,11 +8014,11 @@
           "4": "ژمارەی توکنەکان بۆ پردکردن داخڵ بکە.",
           "5": "باجی پردەکە و کاتی گەیشتنی پێشبینیکراو بە وردی ببینە.",
           "6": "پەیوەندی پردەکە پشتڕاست بکەرەوە.",
-          "7": "چاوەڕێ بکە تا تەواوبوونی پەیوەندییەکە - پردکردن لەوانەیە چەند خولەکێک بخایەنێت."
+          "7": "Tîm tokenan li ser zincîra armancê dişîne, bi gelemperî di nav 1-5 rojên kar de."
         },
         "tips": {
           "1": "باجەکانی پرد بەپێی جووتە زنجیرەکان جیاوازن.",
-          "2": "پردکردن بە شێوەیەکی گشتی ١-٥ خولەک دەخایەنێت بەپێی زنجیرە بەشداربووەکان.",
+          "2": "Niha dravdanên pirê bi destan têne kirin.",
           "3": "هەمیشە پێش پشتڕاستکردنەوە، زنجیرەی مەبەست بە وردی دوو جار بزانە."
         }
       },

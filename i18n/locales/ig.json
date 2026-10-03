@@ -179,6 +179,7 @@
     "newMembersHint": "Ọhụrụ — kelee",
     "scroll": "Scroll",
     "noFilterMatches": "Ọ dịghị ọdịnaya dabara na nzacha gị.",
+    "followingEmpty": "Enweghị posts sitere n'aka ndị ị na-eso ka ọ dị ugbu a",
     "clearFilters": "Hichapụ ihe nzacha"
   },
   "explore": {
@@ -4789,11 +4790,11 @@
     "bridgeAction": "Àkwà {{from}} → {{to}}",
     "failed": "Àkwà dara",
     "title": "Tokens Bridge",
-    "howItWorksBody": "Zipụ DeHub tokens na adreesị relay bridge na agbụ isi iyi. Relay ahụ na-ebugara ego ahụ kwesịrị ekwesị na agbụ ebe a ga-aga n'ime nkeji ole na ole.",
+    "howItWorksBody": "Zipụ DeHub tokens na adreesị relay bridge na agbụ isi iyi. Ndị otu ahụ na-eziga tokens ahụ na chain ebe a na-aga, ọ na-abụkarị n'ime ụbọchị ọrụ 1-5.",
     "relayAddress": "Adreesị relay bridge (zipụ tokens ebe a na agbụ isi iyi):",
     "insufficient": "Enweghị ezuru tokens na {{chain}}.",
     "insufficientOnChain": "Enweghị ezuru tokens na {{chain}}. Nguzozi dị na agbụ nwere ike ịdị iche na nke egosiri.",
-    "sentArriveShortly": "{{amount}} tokens zipụrụ site na {{from}} → {{to}}. Ha ga-abịa n'oge na-adịghị anya.",
+    "sentArriveShortly": "E zigara tokens {{amount}} site na {{from}} gaa na {{to}}. Ndị otu ahụ na-eziga tokens ahụ na chain ebe a na-aga, ọ na-abụkarị n'ime ụbọchị ọrụ 1-5.",
     "subtitle": "Bufe token DeHub n'etiti agbụ",
     "queueTitle": "Bridges",
     "transferCount": "Nnyefe: {{count}}",
@@ -8070,11 +8071,11 @@
           "4": "Tinye ego ole ka ị ga-ebufe.",
           "5": "Lelee ụgwọ nnyefe na oge a ga-enweta ya.",
           "6": "Kwado azụmahịa nnyefe ahụ.",
-          "7": "Chere ka azụmahịa ahụ mechie — nnyefe nwere ike iwe nkeji ole na ole."
+          "7": "Ndị otu ahụ na-eziga tokens ahụ na chain ebe a na-aga, ọ na-abụkarị n'ime ụbọchị ọrụ 1-5."
         },
         "tips": {
           "1": "Ụgwọ nnyefe na-adịgasị iche dabere na agbụrụ abụọ ahụ.",
-          "2": "Nnyefe na-ewe nkeji 1-5 dabere na agbụrụ ndị metụtara ya.",
+          "2": "Ugbu a, a na-akwụ ụgwọ bridge site n'aka.",
           "3": "Na-enyocha agbụrụ njedebe mgbe niile tupu ị kwado ya."
         }
       },

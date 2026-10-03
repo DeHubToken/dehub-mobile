@@ -179,6 +179,7 @@
     "newMembersHint": "Usanda kujoyina — ngibingelele",
     "scroll": "Scroll",
     "noFilterMatches": "Akukho okuqukethwe okuhambisana nezihlungi zakho.",
+    "followingEmpty": "Akukabikho okuthunyelwe kubantu obalandelayo",
     "clearFilters": "Sula izihlungi"
   },
   "explore": {
@@ -4822,11 +4823,11 @@
     "bridgeAction": "Ibhuloho {{from}} → {{to}}",
     "failed": "Ibhuloho lihlulekile",
     "title": "Amathokheni e-Bridge",
-    "howItWorksBody": "Thumela amathokheni e-DeHub ekhelini le-relay lebhuloho eketangeni lomthombo. I-relay izoletha ngokuzenzakalelayo inani elifanayo eketangeni lapho uya khona ngemizuzu embalwa.",
+    "howItWorksBody": "Thumela amathokheni e-DeHub ekhelini le-relay lebhuloho eketangeni lomthombo. Ithimba lithumela amathokheni ku-chain okuyiwa kuyo, ngokuvamile phakathi kwezinsuku zomsebenzi ezi-1-5.",
     "relayAddress": "Ikheli le-relay lebhuloho (thumela amathokheni lapha eketangeni lomthombo):",
     "insufficient": "Awekho amathokheni anele ku-{{chain}}.",
     "insufficientOnChain": "Awekho amathokheni anele ku-{{chain}}. Isilinganiso se-On-chain singahluka kulesi esibonisiwe.",
-    "sentArriveShortly": "Amathokheni {{amount}} athunyelwe kusuka ku-{{from}} → {{to}}. Azofika kungekudala.",
+    "sentArriveShortly": "Amathokheni angu-{{amount}} athunyelwe kusuka ku-{{from}} kuya ku-{{to}}. Ithimba lithumela amathokheni ku-chain okuyiwa kuyo, ngokuvamile phakathi kwezinsuku zomsebenzi ezi-1-5.",
     "subtitle": "Hambisa amathokheni e-DeHub phakathi kwamaketanga",
     "queueTitle": "Amabhuloho",
     "transferCount": "Ukudluliselwa: {{count}}",
@@ -8112,11 +8113,11 @@
           "4": "Faka inombolo yezimpawu ongazidlulisa.",
           "5": "Buyekeza imali yokudlulisa nesikhathi esilinganiselwe sokufika.",
           "6": "Qinisekisa ukuthengiselana kokudlulisa.",
-          "7": "Lindela ukuthi ukuthengiselana kuqede — ukudlulisa kungathatha imizuzu embalwa."
+          "7": "Ithimba lithumela amathokheni ku-chain okuyiwa kuyo, ngokuvamile phakathi kwezinsuku zomsebenzi ezi-1-5."
         },
         "tips": {
           "1": "Izimali zokudlulisa ziyahlukahluka ngombhangqwana weketango.",
-          "2": "Ukudlulisa kuvame ukuthatha imizuzu engu-1-5 kuye ngamaketango abandakanyekayo.",
+          "2": "Okwamanje, izinkokhelo zebhuloho zenziwa ngesandla.",
           "3": "Hlola njalo uchungechunge lapho uya khona ngaphambi kokuqinisekisa."
         }
       },

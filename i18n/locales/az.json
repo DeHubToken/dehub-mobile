@@ -179,6 +179,7 @@
     "newMembersHint": "Yeni qoşuldunuz — salam deyin",
     "scroll": "Scroll",
     "noFilterMatches": "Filtrlərinə uyğun məzmun yoxdur.",
+    "followingEmpty": "İzlədiyiniz insanlardan hələ heç bir göndəriş yoxdur",
     "clearFilters": "Filtrləri təmizlə"
   },
   "explore": {
@@ -4800,11 +4801,11 @@
     "bridgeAction": "{{from}} → {{to}} körpülə",
     "failed": "Körpü alınmadı",
     "title": "Tokenləri körpüyə köçürün",
-    "howItWorksBody": "Mənşə zəncirindəki körpü ötürücü ünvanına DeHub tokenləri göndərin. Ötürücü bir neçə dəqiqə ərzində təyinat zəncirində ekvivalent məbləği avtomatik olaraq çatdırır.",
+    "howItWorksBody": "Mənşə zəncirindəki körpü ötürücü ünvanına DeHub tokenləri göndərin. Komanda tokenləri təyinat zəncirində göndərir, adətən 1-5 iş günü ərzində.",
     "relayAddress": "Körpü ötürücü ünvanı (mənşə zəncirində bura token göndərin):",
     "insufficient": "{{chain}}-da kifayət qədər token yoxdur.",
     "insufficientOnChain": "{{chain}}-da kifayət qədər token yoxdur. Blokcheyn balansı göstəriləndən fərqli ola bilər.",
-    "sentArriveShortly": "{{amount}} token {{from}}-dan → {{to}}-ə göndərildi. Onlar qısa müddətdə gələcək.",
+    "sentArriveShortly": "{{amount}} token {{from}} şəbəkəsindən {{to}} şəbəkəsinə göndərildi. Komanda tokenləri təyinat zəncirində göndərir, adətən 1-5 iş günü ərzində.",
     "subtitle": "DeHub tokenlərini zəncirlər arasında köçürün",
     "queueTitle": "Körpülər",
     "transferCount": "Köçürmələr: {{count}}",
@@ -8099,11 +8100,11 @@
           "4": "Körpü üçün tokenlərin sayını daxil edin.",
           "5": "Körpü haqqını və təxmin edilən gəliş vaxtını nəzərdən keçirin.",
           "6": "Körpü əməliyyatını təsdiqləyin.",
-          "7": "Əməliyyatın tamamlanmasını gözləyin — körpü bir neçə dəqiqə çəkə bilər."
+          "7": "Komanda tokenləri təyinat zəncirində göndərir, adətən 1-5 iş günü ərzində."
         },
         "tips": {
           "1": "Körpü haqqı zəncir cütlüyünə görə dəyişir.",
-          "2": "Körpü, iştirak edən zəncirlərdən asılı olaraq, adətən 1-5 dəqiqə çəkir.",
+          "2": "Körpü ödənişləri hələlik əl ilə edilir.",
           "3": "Təsdiqləmədən əvvəl həmişə təyinat zəncirini iki dəfə yoxlayın."
         }
       },

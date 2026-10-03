@@ -1,3 +1,4 @@
+import BadgeArtwork from "../common/BadgeArtwork";
 import React, { memo, useCallback, useEffect, useState, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import {
@@ -18,7 +19,7 @@ import {
   getRepostUsers,
   RepostUser,
 } from "../../services/repost.service";
-import { getAvatarUrl, getBadgeOpticalStyle, getBadgeUrl } from "../../libs/misc";
+import { getAvatarUrl, getBadgeHoverOpticalStyle as getBadgeOpticalStyle, getBadgeUrl } from "../../libs/misc";
 import { truncate } from "../../libs/strings.util";
 import { formatCompactNumber } from "../../libs/numbers.util";
 
@@ -60,7 +61,7 @@ const RepostUserRow: React.FC<RepostUserRowProps> = memo(({ item, onPress }) => 
             {displayName}
           </Text>
           {!!badgeImage && (
-            <SmartImage
+            <BadgeArtwork
               source={badgeImage}
               style={getBadgeOpticalStyle(badgeImage, 14)}
               contentFit="contain"
