@@ -13,6 +13,12 @@ jest.mock('../../libs/token-refresh', () => ({
   tokenRefreshManager: {
     ensureFreshToken: jest.fn().mockResolvedValue(undefined),
     attemptRefresh: jest.fn().mockResolvedValue(null),
+    invalidateSession: jest.fn(async (token: string) => {
+      const store = require('expo-secure-store');
+      if (await store.getItemAsync('auth_token') === token) {
+        await store.deleteItemAsync('auth_token');
+      }
+    }),
   },
 }));
 
@@ -188,6 +194,19 @@ describe('libs/api.client', () => {
   });
 
   describe('401 retry', () => {
+    it('invalidates the refreshed session when the retry is also rejected', async () => {
+      const { tokenRefreshManager } = require('../../libs/token-refresh');
+      tokenRefreshManager.attemptRefresh.mockImplementationOnce(async () => {
+        mockStore.__store.auth_token = 'new-token';
+        return 'new-token';
+      });
+      mockStore.__store.auth_token = 'old-token';
+      mockFetch.mockResolvedValue({ ok: false, status: 401,
+        headers: { get: () => 'application/json' }, json: async () => ({ message: 'Unauthorized' }) });
+      await expect(apiClient.post('/request_reaction', { streamTokenId: 1, reaction: 'love' }))
+        .rejects.toMatchObject({ name: 'SessionExpiredError' });
+      expect(tokenRefreshManager.invalidateSession).toHaveBeenCalledWith('new-token');
+    });
     it('retries with new token on 401', async () => {
       const { tokenRefreshManager } = require('../../libs/token-refresh');
       tokenRefreshManager.attemptRefresh.mockResolvedValueOnce('new-token');
