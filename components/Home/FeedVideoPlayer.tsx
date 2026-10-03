@@ -33,6 +33,7 @@ import {
 } from "../../libs/video-preferences";
 import SmartImage from "../common/SmartImage";
 import { useAppTheme } from "../../context/ThemeContext";
+import { patchPostStage } from "../../libs/postStage";
 import { useFeedBleed } from "./feedBleed";
 import type { CaptionControls } from "../VideoPlayerCore/CaptionOverlay";
 import Spinner from "../common/Spinner";
@@ -275,6 +276,10 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   const { t } = useTranslation();
   const navigation = useNavigation<any>();
   const [isPlaying, setIsPlaying] = useState(false);
+  const postPageRef = useRef(postPage);
+  postPageRef.current = postPage;
+  const tokenIdRef = useRef(tokenId);
+  tokenIdRef.current = tokenId;
   const [isMuted, setIsMuted] = useState(() => getCachedMuted());
   const [currentTime, setCurrentTime] = useState(0);
   // `currentTime` only reaches the screen through the scrubber, which exists
@@ -693,6 +698,9 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
           currentTimeRef.current = ct ?? 0;
           if (showControlsRef.current) setCurrentTime(ct ?? 0);
           if (ct != null && getSubtitlesEnabled()) setCaptionPosMs(ct * 1000);
+          if (ct != null && postPageRef.current && player.duration > 0) {
+            patchPostStage(tokenIdRef.current, { progress: Math.min(1, Math.max(0, ct / player.duration)) });
+          }
           if (ct != null) maybeSkipSegment(ct);
           if (ct != null && viewRecorderRef.current) {
             viewRecorderRef.current.onProgress(
@@ -840,6 +848,15 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     setShowControls(true);
     startHideTimer();
   }, [canPlay, onPress, stopPlayback, flushPendingPlay, clearHideTimer, startHideTimer, onUserStarted, beginStarting, videoReady, firstFrameRendered]);
+
+  // The post page's pinned mini player mirrors this player and can toggle it.
+  const videoPressRef = useRef(handleVideoPress);
+  videoPressRef.current = handleVideoPress;
+  const stageToggle = useCallback(() => videoPressRef.current(), []);
+  useEffect(() => {
+    if (!postPage || tokenId == null) return;
+    patchPostStage(tokenId, { playing: isPlaying, toggle: stageToggle });
+  }, [postPage, tokenId, isPlaying, stageToggle]);
 
   const handleMediaSurfacePress = useCallback((event: GestureResponderEvent) => {
     if (!onTapReaction) {
