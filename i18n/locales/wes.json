@@ -175,6 +175,7 @@
     "allCaughtUp": "You don see everything finish",
     "scroll": "Scroll",
     "noFilterMatches": "No content match your filter dem.",
+    "followingEmpty": "No post from people weh you di follow yet",
     "clearFilters": "Clear filter dem"
   },
   "explore": {
@@ -4768,7 +4769,9 @@
     "signInToBridge": "Sign in make you see your balance and move DeHub tokens between Base and BNB Chain.",
     "relayAddress": "Bridj relay adres (send tokon dey here on saus chain):",
     "insufficient": "Tokken no dey enough for {{chain}}.",
-    "insufficientOnChain": "Tokken no dey enough for {{chain}}. On-chain balance go differ from di one wey dey display."
+    "insufficientOnChain": "Tokken no dey enough for {{chain}}. On-chain balance go differ from di one wey dey display.",
+    "howItWorksBody": "Send DeHub tokens go di bridge relay address for di source chain. Di team go send di tokens for di destination chain, plenti time inside 1-5 work day.",
+    "sentArriveShortly": "{{amount}} tokens don go from {{from}} to {{to}}. Di team go send di tokens for di destination chain, plenti time inside 1-5 work day."
   },
   "teamUp": {
     "title": "Join team",
@@ -7953,7 +7956,7 @@
         "title": "Bridge",
         "tips": {
           "1": "Bridge fees vary by chain pair.",
-          "2": "Bridging dey take 1-5 minute, depend on chain wey dey involved.",
+          "2": "For now, na hand dem di use for pay bridge money.",
           "3": "Biko, dey always check chain of destination before confirm."
         },
         "intro": "Yu go move yor DeHub tokens wey dey different blockchain tok use cross-chain bridj.",
@@ -7962,7 +7965,7 @@
           "3": "Chain 1: Cameroon",
           "4": "Na 5 token.",
           "6": "Kam konfirm bridge transaction.",
-          "7": "Wata fi wait tori transaction komplet — bridging go take few minit."
+          "7": "Di team go send di tokens for di destination chain, plenti time inside 1-5 work day."
         }
       },
       "music-tv": {

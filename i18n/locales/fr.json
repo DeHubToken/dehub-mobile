@@ -179,6 +179,7 @@
     "newMembersHint": "vient de rejoindre — dites bonjour",
     "scroll": "Scroll",
     "noFilterMatches": "Aucun contenu ne correspond à vos filtres.",
+    "followingEmpty": "Aucune publication des personnes que vous suivez pour l'instant",
     "clearFilters": "Effacer les filtres"
   },
   "explore": {
@@ -4853,11 +4854,11 @@
     "bridgeAction": "Pont {{from}} → {{to}}",
     "failed": "Échec du pont",
     "title": "Transférer des tokens",
-    "howItWorksBody": "Envoyez des tokens DeHub à l'adresse du relais de pont sur la chaîne source. Le relais livre automatiquement le montant équivalent sur la chaîne de destination en quelques minutes.",
+    "howItWorksBody": "Envoyez des tokens DeHub à l'adresse du relais de pont sur la chaîne source. L'équipe envoie les tokens sur la chaîne de destination, généralement sous 1 à 5 jours ouvrés.",
     "relayAddress": "Adresse du relais de pont (envoyez des tokens ici sur la chaîne source) :",
     "insufficient": "Pas assez de tokens sur {{chain}}.",
     "insufficientOnChain": "Pas assez de tokens sur {{chain}}. Le solde on-chain peut différer de celui affiché.",
-    "sentArriveShortly": "{{amount}} tokens envoyés de {{from}} → {{to}}. Ils arriveront bientôt.",
+    "sentArriveShortly": "{{amount}} tokens envoyés de {{from}} à {{to}}. L'équipe envoie les tokens sur la chaîne de destination, généralement sous 1 à 5 jours ouvrés.",
     "subtitle": "Déplacer des tokens DeHub entre les chaînes",
     "queueTitle": "Ponts",
     "transferCount": "Transferts : {{count}}",
@@ -8134,11 +8135,11 @@
           "4": "Entrez le nombre de jetons à transférer.",
           "5": "Vérifiez les frais de transfert et le temps d'arrivée estimé.",
           "6": "Confirmez la transaction de transfert.",
-          "7": "Attendez que la transaction soit terminée — le transfert peut prendre quelques minutes."
+          "7": "L'équipe envoie les tokens sur la chaîne de destination, généralement sous 1 à 5 jours ouvrés."
         },
         "tips": {
           "1": "Les frais de transfert varient selon la paire de chaînes.",
-          "2": "Le transfert prend généralement 1 à 5 minutes selon les chaînes impliquées.",
+          "2": "Les paiements du pont sont effectués manuellement pour le moment.",
           "3": "Vérifiez toujours la chaîne de destination avant de confirmer."
         }
       },

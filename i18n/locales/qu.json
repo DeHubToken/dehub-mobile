@@ -179,6 +179,7 @@
     "newMembersHint": "Hukllataña haykuy — rimaynapay",
     "scroll": "Scroll",
     "noFilterMatches": "Manam ima contenidopas suysuykunaykiwan tupanchu.",
+    "followingEmpty": "Qatisqayki runakunamanta manaraqmi qillqasqakuna kanchu",
     "clearFilters": "Suysuykunata pichay"
   },
   "explore": {
@@ -4822,11 +4823,11 @@
     "bridgeAction": "Chaka {{from}} → {{to}}",
     "failed": "Chaka mana atipakurqanchu",
     "title": "Bridge Tokenkuna",
-    "howItWorksBody": "Kachay DeHub tokenkunata bridge relay direcciman source chainpi. Relayqa automaticmanta entregayta atiqmi equivalent amount destination chainpi minutospi.",
+    "howItWorksBody": "Kachay DeHub tokenkunata bridge relay direcciman source chainpi. Equipoqa tokenkunata chayana chainpi kachan, sapa kutin 1-5 llamk'ana p'unchawkunapi.",
     "relayAddress": "Bridge relay direcci (kachay tokenkuna kaypi source chainpi):",
     "insufficient": "Mana atiqchu tokenkuna {{chain}}pi.",
     "insufficientOnChain": "Mana atiqchu tokenkuna {{chain}}pi. On-chain balanceqa saykuyta atiq displayed.",
-    "sentArriveShortly": "{{amount}} tokenkuna kachasqa {{from}} → {{to}}manta. Chaykuna chayllaraq jamunqanku.",
+    "sentArriveShortly": "{{amount}} tokenkuna {{from}}manta {{to}}man kachasqa. Equipoqa tokenkunata chayana chainpi kachan, sapa kutin 1-5 llamk'ana p'unchawkunapi.",
     "subtitle": "DeHub tokenskuna maymanpas chainman apay",
     "queueTitle": "Puentekuna",
     "transferCount": "T'inkisqakuna: {{count}}",
@@ -8111,11 +8112,11 @@
           "4": "Tokenkuna apayta munayta yaykuy.",
           "5": "Bridge fee chaymanta p'anqaman chayamuyta yachay.",
           "6": "Bridge transaction-ta k'anchay.",
-          "7": "Transaction tukukuyta suyay — bridgingqa huk minutokuna atikun."
+          "7": "Equipoqa tokenkunata chayana chainpi kachan, sapa kutin 1-5 llamk'ana p'unchawkunapi."
         },
         "tips": {
           "1": "Bridge feesqa alepakunapi kaqta.",
-          "2": "Bridgingqa 1-5 minutokuna atikun alepakunapi kaqta.",
+          "2": "Kunanqa bridge pagokunaqa makiwanmi ruwakun.",
           "3": "Chayman apayta munayta k'anchay ñawpaqta alepata."
         }
       },

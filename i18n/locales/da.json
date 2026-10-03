@@ -179,6 +179,7 @@
     "newMembersHint": "Lige tilmeldt — sig hej",
     "scroll": "Scroll",
     "noFilterMatches": "Intet indhold matcher dine filtre.",
+    "followingEmpty": "Ingen opslag fra folk, du følger, endnu",
     "clearFilters": "Ryd filtre"
   },
   "explore": {
@@ -4804,11 +4805,11 @@
     "bridgeAction": "Bro → {{from}}{{to}}",
     "failed": "Bridge mislykkedes",
     "title": "Bridge Tokens",
-    "howItWorksBody": "Send DeHub-tokens til bridge relay-adressen på kildekæden. Relæet leverer automatisk det tilsvarende beløb på destinationskæden inden for få minutter.",
+    "howItWorksBody": "Send DeHub-tokens til bridge relay-adressen på kildekæden. Teamet sender tokens ud på destinationskæden, normalt inden for 1-5 hverdage.",
     "relayAddress": "Bridge relay-adresse (send tokens hertil på kildekæden):",
     "insufficient": "Ikke nok tokens på {{chain}}.",
     "insufficientOnChain": "Ikke nok tokens på {{chain}}. On-chain balance kan afvige fra den viste.",
-    "sentArriveShortly": "{{amount}} tokens sendt fra {{from}} → {{to}}. De ankommer snart.",
+    "sentArriveShortly": "{{amount}} tokens sendt fra {{from}} til {{to}}. Teamet sender tokens ud på destinationskæden, normalt inden for 1-5 hverdage.",
     "subtitle": "Flyt DeHub-tokens mellem kæder",
     "queueTitle": "Broer",
     "transferCount": "Overførsler:{{count}}",
@@ -8102,11 +8103,11 @@
           "4": "Indtast antallet af tokens, der skal bridges.",
           "5": "Gennemgå bridge-gebyret og den estimerede ankomsttid.",
           "6": "Bekræft bridge-transaktionen.",
-          "7": "Vent på, at transaktionen bliver fuldført — bridging kan tage et par minutter."
+          "7": "Teamet sender tokens ud på destinationskæden, normalt inden for 1-5 hverdage."
         },
         "tips": {
           "1": "Bridge-gebyrer varierer efter kædepar.",
-          "2": "Bridging tager typisk 1-5 minutter afhængigt af de involverede kæder.",
+          "2": "Bro-udbetalinger foretages indtil videre manuelt.",
           "3": "Dobbelttjek altid destinationskæden, før du bekræfter."
         }
       },

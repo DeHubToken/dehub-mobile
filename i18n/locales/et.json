@@ -179,6 +179,7 @@
     "newMembersHint": "Äsja liitus – ütle tere",
     "scroll": "Scroll",
     "noFilterMatches": "Ükski sisu ei vasta sinu filtritele.",
+    "followingEmpty": "Inimestelt, keda jälgite, pole veel postitusi",
     "clearFilters": "Tühjenda filtrid"
   },
   "explore": {
@@ -4800,11 +4801,11 @@
     "bridgeAction": "Sild {{from}} → {{to}}",
     "failed": "Sildamine ebaõnnestus",
     "title": "Märkide sild",
-    "howItWorksBody": "Saatke DeHubi märgid lähteahelas olevale silla edastusaadressile. Edastaja toimetab automaatselt samaväärse summa sihtahelasse mõne minutiga.",
+    "howItWorksBody": "Saatke DeHubi märgid lähteahelas olevale silla edastusaadressile. Meeskond saadab tokenid sihtahelas välja, tavaliselt 1-5 tööpäeva jooksul.",
     "relayAddress": "Silla edastusaadress (saatke märgid siia lähteahelas):",
     "insufficient": "{{chain}}-l pole piisavalt märke.",
     "insufficientOnChain": "{{chain}}-l pole piisavalt märke. Ahelas olev saldo võib kuvatavast erineda.",
-    "sentArriveShortly": "{{amount}} märgiga saadetud {{from}} → {{to}}. Need saabuvad peagi.",
+    "sentArriveShortly": "{{amount}} tokenit saadeti ahelast {{from}} ahelasse {{to}}. Meeskond saadab tokenid sihtahelas välja, tavaliselt 1-5 tööpäeva jooksul.",
     "subtitle": "Liigutage DeHub žetoone ahelate vahel",
     "queueTitle": "Sillad",
     "transferCount": "Ülekanded: {{count}}",
@@ -8100,11 +8101,11 @@
           "4": "Sisesta ülekantavate märkide arv.",
           "5": "Vaata üle silla tasu ja eeldatav saabumisaeg.",
           "6": "Kinnita silla tehing.",
-          "7": "Oota tehingu lõpulejõudmist – ülekandmine võib võtta paar minutit."
+          "7": "Meeskond saadab tokenid sihtahelas välja, tavaliselt 1-5 tööpäeva jooksul."
         },
         "tips": {
           "1": "Silla tasud erinevad kettide paaride lõikes.",
-          "2": "Ülekandmine võtab tavaliselt 1–5 minutit, sõltuvalt kaasatud kettidest.",
+          "2": "Silla väljamakseid tehakse praegu käsitsi.",
           "3": "Kontrolli alati sihtketti enne kinnitamist."
         }
       },

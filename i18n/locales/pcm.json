@@ -173,6 +173,7 @@
     "allCaughtUp": "You don see everything finish",
     "scroll": "Scroll",
     "noFilterMatches": "No content match your filter dem.",
+    "followingEmpty": "Nobody wey you dey follow don post anything yet",
     "clearFilters": "Clear filters"
   },
   "explore": {
@@ -4718,7 +4719,8 @@
     "signInToBridge": "Sign in make you see your balance and move DeHub tokens between Base and BNB Chain.",
     "relayAddress": "Adres wey bridge relay go (send token dey here on source chain):",
     "insufficientOnChain": "No token dey for {{chain}}. On-chain balance go differ from wetin dey display.",
-    "sentArriveShortly": "{{amount}} tokens wey dem send from {{from}} → {{to}}. Dem go arrive shortly."
+    "sentArriveShortly": "{{amount}} tokens don comot from {{from}} go {{to}}. Di team go send di tokens for di destination chain, usually inside 1-5 working days.",
+    "howItWorksBody": "Send DeHub tokens go di bridge relay address for di source chain. Di team go send di tokens for di destination chain, usually inside 1-5 working days."
   },
   "teamUp": {
     "title": "Join team",
@@ -7810,13 +7812,13 @@
         "title": "Bridge",
         "tips": {
           "1": "Bridge fees vary by chain pair.",
-          "2": "Bridging dey take 1-5 minutes depend on di chains wey dey involved.",
+          "2": "For now, na hand dem dey take do bridge payout.",
           "3": "Always check chain before confirm."
         },
         "intro": "Waka your DeHub tokens for different blockchain wey support through cross-chain bridge.",
         "steps": {
           "2": "Wetin you mean by \"source chain\"?",
-          "7": "Wait for transaction complete — bridging go take minutes."
+          "7": "Di team go send di tokens for di destination chain, usually inside 1-5 working days."
         }
       },
       "music-tv": {

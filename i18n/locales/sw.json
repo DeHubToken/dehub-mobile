@@ -179,6 +179,7 @@
     "newMembersHint": "Nimejiunga tu — sema salamu",
     "scroll": "Scroll",
     "noFilterMatches": "Hakuna maudhui yanayolingana na vichujio vyako.",
+    "followingEmpty": "Bado hakuna machapisho kutoka kwa watu unaowafuata",
     "clearFilters": "Futa vichujio"
   },
   "explore": {
@@ -4801,11 +4802,11 @@
     "bridgeAction": "Daraja {{from}} → {{to}}",
     "failed": "Daraja limeshindwa",
     "title": "Tokeni za Daraja",
-    "howItWorksBody": "Tuma tokeni za DeHub kwa anwani ya relay ya daraja kwenye mnyororo wa chanzo. Relay huwasilisha kiotomatiki kiasi sawa kwenye mnyororo wa lengwa ndani ya dakika.",
+    "howItWorksBody": "Tuma tokeni za DeHub kwa anwani ya relay ya daraja kwenye mnyororo wa chanzo. Timu hutuma tokeni kwenye mnyororo lengwa, kwa kawaida ndani ya siku 1-5 za kazi.",
     "relayAddress": "Anwani ya relay ya daraja (tuma tokeni hapa kwenye mnyororo wa chanzo):",
     "insufficient": "Hakuna tokeni za kutosha kwenye {{chain}}.",
     "insufficientOnChain": "Hakuna tokeni za kutosha kwenye {{chain}}. Salio la kwenye mnyororo linaweza kutofautiana na lililoonyeshwa.",
-    "sentArriveShortly": "Tokeni {{amount}} zilitumwa kutoka {{from}} → {{to}}. Zitafika hivi karibuni.",
+    "sentArriveShortly": "Tokeni {{amount}} zimetumwa kutoka {{from}} kwenda {{to}}. Timu hutuma tokeni kwenye mnyororo lengwa, kwa kawaida ndani ya siku 1-5 za kazi.",
     "subtitle": "Sogeza tokeni za DeHub kati ya minyororo",
     "queueTitle": "Madaraja",
     "transferCount": "Uhamisho: {{count}}",
@@ -8102,11 +8103,11 @@
           "4": "Ingiza idadi ya tokeni za kuhamisha.",
           "5": "Kagua ada ya uhamishaji na muda uliokadiriwa wa kuwasili.",
           "6": "Thibitisha muamala wa uhamishaji.",
-          "7": "Subiri muamala ukamilike — uhamishaji unaweza kuchukua dakika chache."
+          "7": "Timu hutuma tokeni kwenye mnyororo lengwa, kwa kawaida ndani ya siku 1-5 za kazi."
         },
         "tips": {
           "1": "Ada za uhamishaji hutofautiana kulingana na jozi za minyororo.",
-          "2": "Uhamishaji kwa kawaida huchukua dakika 1-5 kulingana na minyororo inayohusika.",
+          "2": "Kwa sasa malipo ya daraja hufanywa kwa mkono.",
           "3": "Daima angalia mara mbili mnyororo lengwa kabla ya kuthibitisha."
         }
       },

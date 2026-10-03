@@ -179,6 +179,7 @@
     "newMembersHint": "Sapo u bashkuat — thuaj përshëndetje",
     "scroll": "Scroll",
     "noFilterMatches": "Asnjë përmbajtje nuk përputhet me filtrat e tu.",
+    "followingEmpty": "Ende nuk ka postime nga njerëzit që ndiqni",
     "clearFilters": "Pastro filtrat"
   },
   "explore": {
@@ -4800,11 +4801,11 @@
     "bridgeAction": "Urë {{from}} → {{to}}",
     "failed": "Ura dështoi",
     "title": "Kaloni Tokenet në Ura",
-    "howItWorksBody": "Dërgoni DeHub token në adresën e relës së urës në zinxhirin burim. Relay automatikisht dorëzon shumën ekuivalente në zinxhirin destinacion brenda pak minutash.",
+    "howItWorksBody": "Dërgoni DeHub token në adresën e relës së urës në zinxhirin burim. Ekipi i dërgon tokenët në zinxhirin e destinacionit, zakonisht brenda 1-5 ditëve të punës.",
     "relayAddress": "Adresa e relës së urës (dërgoni token këtu në zinxhirin burim):",
     "insufficient": "Nuk ka mjaft token në {{chain}}.",
     "insufficientOnChain": "Nuk ka mjaft token në {{chain}}. Balanca në zinxhir mund të ndryshojë nga ajo e shfaqur.",
-    "sentArriveShortly": "{{amount}} token të dërguara nga {{from}} → {{to}}. Ato do të mbërrijnë së shpejti.",
+    "sentArriveShortly": "{{amount}} token u dërguan nga {{from}} në {{to}}. Ekipi i dërgon tokenët në zinxhirin e destinacionit, zakonisht brenda 1-5 ditëve të punës.",
     "subtitle": "Lëvizni tokenat DeHub midis zinxhirëve",
     "queueTitle": "Urat",
     "transferCount": "Transferimet: {{count}}",
@@ -8100,11 +8101,11 @@
           "4": "Hyni numrin e token-eve për të kaluar.",
           "5": "Rishikoni tarifën e kalimit dhe kohën e vlerësuar të mbërritjes.",
           "6": "Konfirmoni transaksionin e kalimit.",
-          "7": "Prisni që transaksioni të përfundojë — kalimi mund të marrë disa minuta."
+          "7": "Ekipi i dërgon tokenët në zinxhirin e destinacionit, zakonisht brenda 1-5 ditëve të punës."
         },
         "tips": {
           "1": "Tarifat e kalimit ndryshojnë sipas çiftit të zinxhirëve.",
-          "2": "Kalimi zakonisht zgjat 1-5 minuta në varësi të zinxhirëve të përfshirë.",
+          "2": "Për momentin, pagesat e urës bëhen me dorë.",
           "3": "Gjithmonë kontrolloni dy herë zinxhirin destinues para se të konfirmoni."
         }
       },

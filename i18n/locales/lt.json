@@ -179,6 +179,7 @@
     "newMembersHint": "Ką tik prisijungėte – pasisveikinkite",
     "scroll": "Scroll",
     "noFilterMatches": "Jūsų filtrus atitinkančio turinio nėra.",
+    "followingEmpty": "Žmonės, kuriuos sekate, dar nieko neįkėlė",
     "clearFilters": "Išvalyti filtrus"
   },
   "explore": {
@@ -4800,11 +4801,11 @@
     "bridgeAction": "Tiltas {{from}} → {{to}}",
     "failed": "Tiltas nepavyko",
     "title": "Perkelti žetonus",
-    "howItWorksBody": "Siųskite „DeHub“ žetonus į tilto perdavimo adresą šaltinio grandinėje. Perdavimo sistema automatiškai pristato atitinkamą kiekį paskirties grandinėje per kelias minutes.",
+    "howItWorksBody": "Siųskite „DeHub“ žetonus į tilto perdavimo adresą šaltinio grandinėje. Komanda išsiunčia žetonus paskirties grandinėje, paprastai per 1-5 darbo dienas.",
     "relayAddress": "Tilto perdavimo adresas (siųskite žetonus čia šaltinio grandinėje):",
     "insufficient": "Nepakanka žetonų {{chain}}.",
     "insufficientOnChain": "Nepakanka žetonų {{chain}}. Grandinės likutis gali skirtis nuo rodomo.",
-    "sentArriveShortly": "{{amount}} žetonų išsiųsta iš {{from}} → {{to}}. Jie atvyks netrukus.",
+    "sentArriveShortly": "{{amount}} žetonų išsiųsta iš {{from}} į {{to}}. Komanda išsiunčia žetonus paskirties grandinėje, paprastai per 1-5 darbo dienas.",
     "subtitle": "Perkelkite „DeHub“ žetonus tarp grandinių",
     "queueTitle": "Tiltai",
     "transferCount": "Pervedimai: {{count}}",
@@ -8100,11 +8101,11 @@
           "4": "Įveskite žetonų, kuriuos norite perkelti, skaičių.",
           "5": "Peržiūrėkite tilto mokestį ir numatomą atvykimo laiką.",
           "6": "Patvirtinkite tilto operaciją.",
-          "7": "Palaukite, kol operacija bus baigta – perkėlimas gali užtrukti kelias minutes."
+          "7": "Komanda išsiunčia žetonus paskirties grandinėje, paprastai per 1-5 darbo dienas."
         },
         "tips": {
           "1": "Tilto mokesčiai skiriasi priklausomai nuo grandžių poros.",
-          "2": "Perkėlimas paprastai trunka 1–5 minutes, priklausomai nuo dalyvaujančių grandžių.",
+          "2": "Kol kas tilto išmokos atliekamos rankiniu būdu.",
           "3": "Visada du kartus patikrinkite paskirties grandinę prieš patvirtindami."
         }
       },
