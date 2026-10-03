@@ -133,11 +133,11 @@ const NAV_ITEMS: DrawerItem[] = [
   { icon: "Bot", labelKey: "nav.agents", screen: ScreenNames.Agents },
   { icon: "Megaphone", labelKey: "nav.ads", screen: ScreenNames.Ads, requiresAuth: true, storefrontHidden: true },
   { icon: "Tv", labelKey: "nav.tv", screen: ScreenNames.TV },
+  { icon: "LayoutGrid", labelKey: "miniApps.store.title", screen: ScreenNames.Apps, storefrontHidden: true },
   // Sits between Stores and Glossary, as on the web sidebar. Only the games
   // that work on a touchscreen are listed — see config/arcade-games.
   { icon: "Gamepad2", labelKey: "nav.arcade", screen: ScreenNames.Arcade },
   // The third-party mini app store has its own storefront review pending.
-  { icon: "LayoutGrid", labelKey: "miniApps.store.title", screen: ScreenNames.Apps, storefrontHidden: true },
   { icon: "ArrowDownToLine", labelKey: "nav.converter", screen: ScreenNames.Converter, requiresAuth: true },
   { icon: "FolderInput", labelKey: "nav.migrate", screen: ScreenNames.Migrate },
   { icon: "Scroll", labelKey: "nav.glossary", screen: ScreenNames.Glossary },
