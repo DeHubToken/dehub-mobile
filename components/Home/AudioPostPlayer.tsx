@@ -26,6 +26,8 @@ import Animated, {
   SharedValue,
 } from "react-native-reanimated";
 import { createAudioPlayer, type AudioPlayer, type AudioStatus } from "expo-audio";
+import { usePostAudioSession } from "../../hooks/usePostAudioSession";
+import { postMediaIsTransferring } from "../../libs/post-media-session";
 import type { EventSubscription } from "expo-modules-core";
 import { LinearGradient } from "expo-linear-gradient";
 import { useIsFocused } from "@react-navigation/native";
@@ -395,6 +397,9 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
     [resolvedTitle, resolvedArtist, artworkUrl],
   );
   const [isPlaying, setIsPlaying] = useState(false);
+  const { session: audioSession, ownsPlayer, active: ownsAudio } = usePostAudioSession(audioUrl);
+  const ownsPlayerRef = useRef(ownsPlayer);
+  ownsPlayerRef.current = ownsPlayer;
   const [isLoading, setIsLoading] = useState(false);
   const [progress, setProgress] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
@@ -451,6 +456,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
   progressRef.current = shownProgress;
 
   const focusStopRef = useRef(() => {
+    if (!ownsPlayerRef.current()) return;
     playerRef.current?.pause();
     releaseLockScreen(lockScreenId);
     setIsPlaying(false);
@@ -470,7 +476,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
       if (isSeekingRef.current || Date.now() - lastSeekTimeRef.current < 600) return;
       try {
         const player = playerRef.current;
-        if (!player || !player.isLoaded) return;
+        if (!player || !player.isLoaded || !ownsPlayerRef.current()) return;
         // expo-audio hangs position and duration off the player as plain
         // seconds, so this no longer awaits a status round trip ten times a
         // second.
@@ -482,7 +488,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
           setTotalDuration(dur);
         }
       } catch {}
-    }, 100);
+    }, 250);
   }, [duration]);
 
   const stopPositionTracking = useCallback(() => {
@@ -520,7 +526,9 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
   const attachStatusListener = useCallback((player: AudioPlayer) => {
     statusSubRef.current?.remove();
     statusSubRef.current = player.addListener("playbackStatusUpdate", (status: AudioStatus) => {
+      if (!ownsPlayerRef.current()) return;
       if (!status.isLoaded) return;
+      setIsPlaying(status.playing);
       if (status.duration > 0) {
         setTotalDuration(status.duration);
         void applyPendingSeek(player);
@@ -550,7 +558,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
   }, [isSignedIn, tokenId]);
 
   useEffect(() => {
-    if (!isVisible || !isFocused || preloadedRef.current) return;
+    if (!isVisible || !isFocused || preloadedRef.current || !ownsAudio) return;
     // The corner player has this track; a silent second copy buys nothing.
     if (isPoppedOut) return;
     let cancelled = false;
@@ -561,7 +569,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
     // time now — preloading with shouldPlay: false doesn't need the session.
     const settleTimer = setTimeout(async () => {
       try {
-        const player = createAudioPlayer({ uri: audioUrl }, { updateInterval: 100 });
+        const player = createAudioPlayer({ uri: audioUrl }, { updateInterval: 250 });
         // `cancelled` only covers the card going away — the effect's deps are
         // isVisible/isFocused/audioUrl. A play tap changes none of them, so
         // without the playerRef check below this assignment could land AFTER
@@ -570,11 +578,12 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
         // Pause, seek, volume and the unmount cleanup all go through
         // playerRef, so the track kept playing with nothing able to stop it
         // and a native player leaked for the life of the process.
-        if (cancelled || playerRef.current) {
+        if (cancelled || playerRef.current || !ownsPlayerRef.current()) {
           player.remove();
           return;
         }
         playerRef.current = player;
+        audioSession.value = player;
         player.volume = volumeRef.current;
         preloadedRef.current = true;
 
@@ -586,10 +595,11 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
       }
     }, PRELOAD_SETTLE_MS);
     return () => { cancelled = true; clearTimeout(settleTimer); };
-  }, [isVisible, isFocused, audioUrl, isPoppedOut, attachStatusListener, applyPendingSeek]);
+  }, [isVisible, isFocused, audioUrl, isPoppedOut, attachStatusListener, applyPendingSeek, ownsAudio, audioSession]);
 
   useEffect(() => {
     if (isVisible && isFocused) return;
+    if (!ownsPlayerRef.current() || postMediaIsTransferring(audioSession)) return;
 
     // A hidden card cannot be heard or interacted with, so keeping its native
     // decoder and OkHttp buffers buys nothing. Home deliberately keeps every
@@ -606,12 +616,13 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
       detachStatusListener();
       try { player.pause(); } catch {}
       try { player.remove(); } catch {}
+      if (audioSession.value === player) audioSession.value = null;
       playerRef.current = null;
     }
     preloadedRef.current = false;
     setIsPlaying(false);
     setIsLoading(false);
-  }, [isVisible, isFocused, stopPositionTracking, detachStatusListener, lockScreenId]);
+  }, [isVisible, isFocused, stopPositionTracking, detachStatusListener, lockScreenId, ownsAudio, audioSession]);
 
   useEffect(() => {
     const stopFn = focusStopRef.current;
@@ -626,7 +637,6 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
       const player = playerRef.current;
       if (player) {
         detachStatusListener();
-        player.remove();
         playerRef.current = null;
       }
     };
@@ -655,6 +665,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
       toggleAudioPost();
       return;
     }
+    if (!ownsPlayerRef.current()) return;
     try {
       if (isPlaying && playerRef.current) {
         playerRef.current.pause();
@@ -704,7 +715,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
       }
 
       setIsLoading(true);
-      const player = createAudioPlayer({ uri: audioUrl }, { updateInterval: 100 });
+      const player = createAudioPlayer({ uri: audioUrl }, { updateInterval: 250 });
       // The mirror of the preload guard: if the settle timer's player landed
       // while this one was loading, release it rather than dropping the
       // reference on the floor — an unreferenced player is never freed.
@@ -713,6 +724,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
         playerRef.current.remove();
       }
       playerRef.current = player;
+      audioSession.value = player;
       player.volume = volumeRef.current;
       preloadedRef.current = true;
 
@@ -739,6 +751,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
    */
   const adoptPlayer = useCallback((player: AudioPlayer, playing: boolean) => {
     playerRef.current = player;
+    audioSession.value = player;
     preloadedRef.current = true;
     player.volume = volumeRef.current;
     attachStatusListener(player);
@@ -757,6 +770,17 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
       setIsPlaying(false);
     }
   }, [attachStatusListener, lockScreenId, lockScreenTrack, startPositionTracking]);
+
+  React.useLayoutEffect(() => {
+    if (!ownsAudio) {
+      stopPositionTracking();
+      detachStatusListener();
+      playerRef.current = null;
+      preloadedRef.current = false;
+      return;
+    }
+    if (!isPoppedOut && audioSession.value) adoptPlayer(audioSession.value, audioSession.value.playing);
+  }, [ownsAudio, audioSession, isPoppedOut, adoptPlayer, stopPositionTracking, detachStatusListener]);
 
   /**
    * Pop out — or dock back. Popping out hands this card's player, loaded or
@@ -779,6 +803,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
     detachStatusListener();
     const player = playerRef.current;
     playerRef.current = null;
+    if (audioSession.value === player) audioSession.value = null;
     preloadedRef.current = false;
     // The card's claims go with the player; the engine takes both under its
     // own name, and releasing first stops the focus hand-off from calling

@@ -1,4 +1,7 @@
-import React, { memo, useCallback, useRef, useState } from 'react';
+import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
+import { galleryIndex, rememberGalleryIndex, subscribeGallery } from '../../libs/media-presentation';
+import { warmFeedImage } from '../common/SmartImage';
+import { useDataSaver } from '../../hooks/useDataSaver';
 import { ScrollView, View, type LayoutChangeEvent, type NativeScrollEvent, type NativeSyntheticEvent } from 'react-native';
 import ContainedFeedImage from './ContainedFeedImage';
 import PostTapSurface from './PostTapSurface';
@@ -6,7 +9,8 @@ import PostTapSurface from './PostTapSurface';
 type Frame = { x: number; width: number };
 
 /** Keep slide geometry mounted while drawing only the horizontal viewport. */
-function FeedImageGallery({ images, width, fallbackWidth, active, prioritizeMedia, onLayout, onImagePress, onReaction, postPage = false }: {
+function FeedImageGallery({ images, width, fallbackWidth, active, prioritizeMedia, onLayout, onImagePress, onReaction, postPage = false, postId }: {
+  postId?: string;
   images: string[];
   width: number;
   fallbackWidth: number;
@@ -19,8 +23,30 @@ function FeedImageGallery({ images, width, fallbackWidth, active, prioritizeMedi
   postPage?: boolean;
 }) {
   const frames = useRef(new Map<number, Frame>());
+  const galleryKey = postId ?? images.join('|');
+  const scrollRef = useRef<ScrollView>(null);
+  const selected = useRef(galleryIndex(galleryKey));
   const viewport = useRef({ x: 0, width: fallbackWidth });
   const [visible, setVisible] = useState<number[]>([0, 1]);
+  const { liteMode } = useDataSaver();
+  useEffect(() => {
+    if (active && !liteMode) {
+      const next = images[Math.min(Math.max(...visible) + 1, images.length - 1)];
+      if (next) warmFeedImage(next);
+    }
+  }, [active, liteMode, images, visible]);
+  const restore = useCallback(() => {
+    const index = Math.min(galleryIndex(galleryKey), images.length - 1);
+    const frame = frames.current.get(index);
+    if (!frame) return;
+    selected.current = index;
+    viewport.current.x = frame.x;
+    scrollRef.current?.scrollTo?.({ x: frame.x, animated: false });
+  }, [galleryKey, images.length]);
+  useEffect(() => subscribeGallery(galleryKey, () => {
+    if (galleryIndex(galleryKey) !== selected.current) restore();
+  }), [galleryKey, restore]);
+  useEffect(() => { if (active) restore(); }, [active, restore]);
   const updateVisible = useCallback(() => {
     const { x, width: viewportWidth } = viewport.current;
     const next = [...frames.current].filter(([, frame]) =>
@@ -36,11 +62,19 @@ function FeedImageGallery({ images, width, fallbackWidth, active, prioritizeMedi
   }, [onLayout, updateVisible]);
   const handleScroll = useCallback((event: NativeSyntheticEvent<NativeScrollEvent>) => {
     viewport.current.x = event.nativeEvent.contentOffset.x;
+    const center = viewport.current.x + viewport.current.width / 2;
+    const nearest = [...frames.current].reduce<[number, number]>((best, [index, frame]) => {
+      const distance = Math.abs(frame.x + frame.width / 2 - center);
+      return distance < best[1] ? [index, distance] : best;
+    }, [0, Infinity])[0];
+    selected.current = nearest;
+    rememberGalleryIndex(galleryKey, nearest);
     updateVisible();
-  }, [updateVisible]);
+  }, [updateVisible, galleryKey]);
   return (
     <ScrollView
       testID="feed-image-gallery"
+      ref={scrollRef}
       horizontal
       nestedScrollEnabled
       directionalLockEnabled
@@ -58,6 +92,7 @@ function FeedImageGallery({ images, width, fallbackWidth, active, prioritizeMedi
           onLayout={event => {
             const { x, width } = event.nativeEvent.layout;
             frames.current.set(index, { x, width });
+            if (index === galleryIndex(galleryKey)) restore();
             updateVisible();
           }}
           style={{ marginRight: index === images.length - 1 ? 0 : 8 }}

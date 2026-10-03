@@ -3,9 +3,10 @@ import { Pressable, Text, View, type GestureResponderEvent, type StyleProp, type
 import { TAP_GESTURE_WINDOW_MS, TAP_REACTION_RESOLUTION_MS } from "../../libs/tap-gesture";
 
 /** Keep image navigation pending until a second tap can claim the gesture. */
-function PostTapSurface({ children, onPress, onReaction, style, resetKey }: {
+function PostTapSurface({ children, onPress, onReaction, style, resetKey, onPressIntent }: {
   children: React.ReactNode;
   onPress?: () => void;
+  onPressIntent?: () => void;
   onReaction: (reaction: "like" | "love") => void;
   style?: StyleProp<ViewStyle>;
   /** Which post this is, for a list that reuses one card for another. */
@@ -61,6 +62,7 @@ function PostTapSurface({ children, onPress, onReaction, style, resetKey }: {
         if (timer.current) clearTimeout(timer.current);
         count.current += 1;
         if (count.current === 1) {
+          onPressIntent?.();
           timer.current = setTimeout(() => { reset(); callbacks.current.onPress?.(); }, TAP_GESTURE_WINDOW_MS);
         } else if (count.current === 2) {
           showFeedback("like");

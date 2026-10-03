@@ -25,6 +25,7 @@ import * as MediaLibrary from "expo-media-library";
 import Icon from "../components/ui/Icon";
 import { toastError } from "../libs";
 import { cdnImageSource } from "../libs/cdnImage";
+import { rememberGalleryIndex } from "../libs/media-presentation";
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -284,6 +285,7 @@ const ImageViewerScreen = () => {
     isModal,
     allowDownload,
     soundtrack,
+    galleryKey,
   } = (route?.params as any) || {};
 
   const startIndex = paramInitialIndex ?? paramIndex ?? 0;
@@ -421,6 +423,7 @@ const ImageViewerScreen = () => {
       const clamped = Math.max(0, Math.min(idx, images.length - 1));
       indexRef.current = clamped;
       setCurrentIndex(clamped);
+      if (galleryKey) rememberGalleryIndex(galleryKey, clamped);
       setIsZoomed(false);
     },
     [images.length, SCREEN_W],
