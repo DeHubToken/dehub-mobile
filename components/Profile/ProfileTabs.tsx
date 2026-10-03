@@ -1,5 +1,6 @@
 import React, { useCallback, useMemo, useState } from "react";
 import { View } from "react-native";
+import { useAnimatedScrollHandler } from "react-native-reanimated";
 import { useTranslation } from "react-i18next";
 
 import ProfileHeader from "./ProfileHeader";
@@ -38,7 +39,18 @@ const ProfileTabs: React.FC = () => {
   const counts = useProfileContentCounts(address);
   const [activeKey, setActiveKey] = useState("home");
   // Bottom nav hides on scroll down and returns on scroll up, as on home.
-  const { onScroll } = useTabBarScrollHide();
+  // On the UI thread for every list that is a Reanimated component, as the
+  // other-user profile sheet already does: the plain JS handler crossed to JS
+  // on every scroll event and wrote three shared values back from there, on
+  // the same thread that is busy mounting the cards scrolling into view.
+  // `onScroll` stays for the tabs that can still render a plain ScrollView
+  // or FlatList, which cannot take a worklet handler.
+  const { drive, onScroll } = useTabBarScrollHide();
+  const workletScroll = useAnimatedScrollHandler({
+    onScroll: (event) => {
+      drive(event.contentOffset.y);
+    },
+  });
 
   // Sort, search and filter over this creator's own posts — all server-side,
   // and shared with the other-user profile sheet so the two never drift.
@@ -114,25 +126,25 @@ const ProfileTabs: React.FC = () => {
   const renderScene = (key: string) => {
     switch (key) {
       case "home":
-        return <FeedRoute address={address} listHeader={listHeader} onScroll={onScroll} postType={homePostType} {...contentQuery} />;
+        return <FeedRoute address={address} listHeader={listHeader} onScroll={workletScroll} postType={homePostType} {...contentQuery} />;
       case "posts":
-        return <PostsRoute address={address} listHeader={listHeader} onScroll={onScroll} />;
+        return <PostsRoute address={address} listHeader={listHeader} onScroll={workletScroll} />;
       case "images":
         return <ImagesRoute address={address} listHeader={listHeader} onScroll={onScroll} {...contentQuery} />;
       case "videos":
-        return <VideosRoute address={address} listHeader={listHeader} onScroll={onScroll} {...contentQuery} />;
+        return <VideosRoute address={address} listHeader={listHeader} onScroll={workletScroll} {...contentQuery} />;
       case "subscribers":
         return <SubscribersRoute address={address} isOwnProfile listHeader={listHeader} onScroll={onScroll} />;
       case "songs":
-        return <ProfileFeedTypeRoute address={address} postType="feed-audio" listHeader={listHeader} onScroll={onScroll} />;
+        return <ProfileFeedTypeRoute address={address} postType="feed-audio" listHeader={listHeader} onScroll={workletScroll} />;
       case "live":
-        return <LivestreamsRoute address={address} listHeader={listHeader} onScroll={onScroll} />;
+        return <LivestreamsRoute address={address} listHeader={listHeader} onScroll={workletScroll} />;
       case "fractions":
-        return <FractionsRoute address={address} isOwnProfile listHeader={listHeader} onScroll={onScroll} />;
+        return <FractionsRoute address={address} isOwnProfile listHeader={listHeader} onScroll={workletScroll} />;
       case "pinned":
-        return <PinnedRoute address={address} listHeader={listHeader} onScroll={onScroll} />;
+        return <PinnedRoute address={address} listHeader={listHeader} onScroll={workletScroll} />;
       case "playlists":
-        return <PlaylistsRoute address={address} listHeader={listHeader} onScroll={onScroll} isOwnProfile />;
+        return <PlaylistsRoute address={address} listHeader={listHeader} onScroll={workletScroll} isOwnProfile />;
       default:
         return null;
     }

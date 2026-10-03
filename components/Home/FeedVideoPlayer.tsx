@@ -24,7 +24,7 @@ import { configureForBackgroundPlayback, releaseBackgroundPlayback } from "../..
 import { feedVolumeResponder } from "../../libs/feed-volume-responder";
 import { GestureDetector } from "react-native-gesture-handler";
 import { useScrubGesture } from "../../hooks/useScrubGesture";
-import { FEED_BUFFER_OPTIONS } from "../../libs/videoBuffering";
+import { ACTIVE_FEED_BUFFER_OPTIONS } from "../../libs/videoBuffering";
 import {
   getPlaybackRateFor,
   setPlaybackRate as persistPlaybackRate,
@@ -434,7 +434,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     // A rate pinned to this creator applies from the first frame; everyone
     // else plays at whatever rate was last used generally.
     p.playbackRate = getPlaybackRateFor(creator);
-    p.bufferOptions = FEED_BUFFER_OPTIONS;
+    p.bufferOptions = ACTIVE_FEED_BUFFER_OPTIONS;
   });
   useSilenceOnRelease(player);
 

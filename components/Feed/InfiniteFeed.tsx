@@ -3,14 +3,13 @@ import { useTranslation } from "react-i18next";
 import { useIsFocused, useNavigation, useScrollToTop } from "@react-navigation/native";
 import {
   View,
-  FlatList,
-  ListRenderItem,
   Text,
   Pressable,
   NativeSyntheticEvent,
   NativeScrollEvent,
-  ViewToken,
+  useWindowDimensions,
 } from "react-native";
+import { FlashList, type FlashListRef, type ListRenderItem, type ViewToken } from "@shopify/flash-list";
 import { DeHubLoader } from "../DeHubLoader";
 import { DeHubRefreshControl, DeHubRefreshMark } from "./DeHubRefreshControl";
 import Animated from "react-native-reanimated";
@@ -24,11 +23,12 @@ import {
   forceFlushBatchViews,
   type TokenId,
 } from "../../services/view.service";
-import { useFeedCardVisibility } from "../../hooks/useFeedCardVisibility";
 import { useInfiniteQuery, useQueryClient } from "@tanstack/react-query";
 import { flattenFeedPages } from "../../libs/feed-pages";
 import { mergeLiveCounts } from "../../libs/liveCounts";
-import { isPostDeletedSync, warmDeletedPosts } from "../../libs/deleted-posts-store";
+import { isPostDeletedSync, useDeletedPostsVersion, warmDeletedPosts } from "../../libs/deleted-posts-store";
+import { isLiveItem, isVideoItem } from "../../services/feed.unified.service";
+import { resolveContentType } from "../Home/FeedCard";
 import { useWatchedVideoIds, filterWatched } from "../../hooks/useWatchedVideos";
 import { tabPressIntentOf } from "../../navigation/tabPressIntent";
 import { createFeedVisibilityStore, useRowVisibility, type FeedVisibilityStore } from "../../libs/feedVisibility";
@@ -60,8 +60,11 @@ export interface InfiniteFeedProps {
   emptyComponent?: React.ReactNode;
   /** Optional custom page fetcher override. If provided, it will be used instead of getFeedNFTs. */
   fetchPage?: (page: number, unit: number) => Promise<GetNFTsResponse>;
-  /** Optional external ref for driving scroll (e.g. bottom sheet collapse-to-top). */
-  listRef?: React.RefObject<FlatList<any> | null>;
+  /**
+   * Optional external ref for driving scroll (e.g. bottom sheet collapse-to-top).
+   * It holds a FlashList; callers only use scrollToOffset, which both lists have.
+   */
+  listRef?: React.RefObject<any>;
   /** Controls scroll enablement (e.g. disable when sheet is collapsed). */
   scrollEnabled?: boolean;
   /** Optional scroll handler (supports Reanimated worklet handlers). */
@@ -87,12 +90,52 @@ export interface InfiniteFeedProps {
   trackFeedCardVisibility?: boolean;
 }
 
-// Hoisted: a fresh object literal would re-configure the native scroll view on
-// every render.
-const MAINTAIN_POSITION = { minIndexForVisible: 1 } as const;
+// Hoisted: a fresh object literal would re-configure the list on every render.
+// FlashList anchors on the first visible row, as FlatList's minIndexForVisible: 1
+// did (child 0 there was the header), so a header that grows once its data
+// lands, or a card that measures differently after its media decodes, moves the
+// offset instead of the post being read. The threshold keeps a reader who is
+// at the very top pinned there while the header settles.
+const MAINTAIN_POSITION = { autoscrollToTopThreshold: 100 } as const;
+
+// Same viewability rule the FlatList version used (useFeedCardVisibility):
+// half the row on screen, held for 150ms, so a fling does not tick every frame.
+const VIEWABILITY_CONFIG = { itemVisiblePercentThreshold: 50, minimumViewTime: 150 } as const;
+
+// Cells kept for reuse across all item types (see InfiniteVideoFeed).
+const MAX_POOLED_CELLS = 10;
 
 interface FeedItem extends GetNFTsResult {
   __listKey: string;
+}
+
+// Reanimated's wrapper, created once at module scope so the list type is stable
+// across renders (a wrapper made during render remounts the list every time).
+// It attaches a worklet onScroll through FlashList's scrollable node, so the
+// profile sheet's useAnimatedScrollHandler keeps working.
+const AnimatedFlashList = Animated.createAnimatedComponent(
+  FlashList as unknown as React.ComponentType<any>,
+) as unknown as typeof FlashList;
+
+/**
+ * The row's key: the post id flattenFeedPages de-duplicates on, so it is unique
+ * and survives a page shift (the __listKey folds in page and index). A cell and
+ * its measured height follow the post. Rows with no id keep their __listKey.
+ */
+export function feedPostKey(item: FeedItem): string {
+  const it = item as any;
+  const id = it.tokenId ?? it.id ?? it.stream?.tokenId ?? it.streamKey ?? it.stream?.id;
+  return id != null ? `post-${id}` : item.__listKey;
+}
+
+/** A cell is only reused for a row of the same media shape. */
+export function feedPostType(item: FeedItem): string {
+  const type = resolveContentType(item as any);
+  if (type === "short") return "video";
+  if (type !== "image") return type;
+  const it = item as any;
+  const n = Array.isArray(it.imageUrls) && it.imageUrls.length > 0 ? it.imageUrls.length : it.imageUrl || it.thumbnailUrl ? 1 : 0;
+  return n > 1 ? "gallery" : n === 1 ? "image" : "text";
 }
 
 const VisibleFeedRow = memo(function VisibleFeedRow({ info, rowKey, store, renderItem }: {
@@ -110,7 +153,7 @@ type InfiniteFeedInternalProps = Omit<InfiniteFeedProps, "insideNavigatorScreen"
 const InfiniteFeedBase: React.FC<
   InfiniteFeedInternalProps & {
     isFocused?: boolean;
-    listRef: React.RefObject<FlatList<FeedItem> | null>;
+    listRef: React.RefObject<FlashListRef<FeedItem> | null>;
     navigationForTabPress?: {
       addListener: (event: string, callback: (payload: unknown) => void) => () => void;
       isFocused?: () => boolean;
@@ -143,13 +186,14 @@ const InfiniteFeedBase: React.FC<
   useEffect(() => {
     visibilityStore.setLive(isFocused ?? true);
   }, [visibilityStore, isFocused]);
-  const visibilityKeyExtractor = useCallback((item: unknown, index: number) =>
-    keyExtractor ? keyExtractor(item as FeedItem, index) : (item as FeedItem).__listKey,
-  [keyExtractor]);
-  const {
-    viewabilityConfig: feedCardViewabilityConfig,
-    onViewableItemsChanged: onFeedCardViewableItemsChanged,
-  } = useFeedCardVisibility(visibilityKeyExtractor, visibilityStore);
+  // One key for the list, the row's visibility subscription and the
+  // viewability handler, so all three always agree on which row is which.
+  const rowKeyOf = useCallback(
+    (item: FeedItem, index: number) => (keyExtractor ? keyExtractor(item, index) : feedPostKey(item)),
+    [keyExtractor],
+  );
+  const rowKeyOfRef = useRef(rowKeyOf);
+  rowKeyOfRef.current = rowKeyOf;
   const [refreshing, setRefreshing] = useState(false);
   const [showBackToTop, setShowBackToTop] = useState(false);
   const loadMoreCooldownRef = useRef(0);
@@ -178,34 +222,51 @@ const InfiniteFeedBase: React.FC<
     return tracker;
   }, [isSignedIn]);
 
-  // Viewability config: item is "viewable" when 50% visible
-  const viewabilityConfig = useRef({
-    itemVisiblePercentThreshold: 50,
-    minimumViewTime: 0, // We handle timing ourselves in the tracker
-  }).current;
+  const getViewTrackerRef = useRef(getViewTracker);
+  getViewTrackerRef.current = getViewTracker;
+  const trackVisibilityRef = useRef(trackFeedCardVisibility);
+  trackVisibilityRef.current = trackFeedCardVisibility;
+  // Posts the last tick counted as on screen, for the view tracker's diff.
+  const visibleTokensRef = useRef<Map<string, TokenId>>(new Map());
 
-  // Handle viewable items change for view tracking
-  const onViewableItemsChanged = useRef(
-    ({ changed }: { viewableItems: ViewToken[]; changed: ViewToken[] }) => {
-      // No auth gate: signed-out viewers count too, and the view service routes
-      // their views to the anonymous view backend.
-      for (const entry of changed) {
-        const item = entry.item as FeedItem | undefined;
-        const tokenId = item?.tokenId || (item as any)?.id;
-        if (!tokenId) continue;
-
-        const tracker = getViewTracker(tokenId);
-        tracker.onVisibilityChange(entry.isViewable ? 0.6 : 0);
-      }
-    },
-  ).current;
-
+  // Visibility, autoplay and view tracking, rebuilt from the full visible set
+  // on every tick. FlashList compares viewability by index and never resets it
+  // when the data changes, so patching from `changed` (as the FlatList version
+  // did) would miss a row that replaced another at the same index. The list is
+  // also asked for a fresh tick whenever the rows change (see below).
   const handleViewableItemsChanged = useRef(
-    (payload: { viewableItems: ViewToken[]; changed: ViewToken[] }) => {
-      if (trackFeedCardVisibility) {
-        onFeedCardViewableItemsChanged(payload);
+    ({ viewableItems }: { viewableItems: ViewToken<FeedItem>[]; changed: ViewToken<FeedItem>[] }) => {
+      // A card that renders nothing (a post deleted in place) is a 0px row,
+      // which FlashList counts as fully viewable where FlatList never did. Left
+      // in, it took the autoplay slot from the video under it.
+      const hasHeight = (v: ViewToken<FeedItem>) =>
+        v.index == null || (listRef.current?.getLayout(v.index)?.height ?? 1) > 0;
+      const shown = viewableItems.filter((v) => v.isViewable && !!v.item && hasHeight(v));
+      const keyOf = (v: ViewToken<FeedItem>) => rowKeyOfRef.current(v.item, v.index ?? 0);
+
+      if (trackVisibilityRef.current) {
+        // Autoplay belongs to the topmost row that can hold a player, and a
+        // live row outranks a video row for it (see useFeedCardVisibility).
+        const playable = shown.filter((v) => isVideoItem(v.item as any) || isLiveItem(v.item as any));
+        const byPosition = (a: ViewToken<FeedItem>, b: ViewToken<FeedItem>) => (a.index ?? 0) - (b.index ?? 0);
+        const top =
+          playable.filter((v) => isLiveItem(v.item as any)).sort(byPosition)[0] ??
+          playable.sort(byPosition)[0];
+        visibilityStore.update(new Set(shown.map(keyOf)), top ? keyOf(top) : null);
       }
-      onViewableItemsChanged(payload);
+
+      // No auth gate: signed-out viewers count too, and the view service routes
+      // their views to the anonymous view backend. A post reports 0.6 on the
+      // tick it arrives and 0 on the tick it leaves.
+      const next = new Map<string, TokenId>();
+      for (const v of shown) {
+        const tokenId = v.item.tokenId || (v.item as any).id;
+        if (tokenId) next.set(String(tokenId), tokenId);
+      }
+      const prev = visibleTokensRef.current;
+      prev.forEach((id, k) => { if (!next.has(k)) getViewTrackerRef.current(id).onVisibilityChange(0); });
+      next.forEach((id, k) => { if (!prev.has(k)) getViewTrackerRef.current(id).onVisibilityChange(0.6); });
+      visibleTokensRef.current = next;
     },
   ).current;
 
@@ -214,19 +275,19 @@ const InfiniteFeedBase: React.FC<
       const payload: InfiniteFeedRenderItemInfo = {
         item: info.item,
         index: info.index,
-        separators: info.separators,
+        separators: undefined,
       };
       if (trackFeedCardVisibility) {
         return <VisibleFeedRow
           info={payload}
-          rowKey={keyExtractor ? keyExtractor(info.item, info.index) : info.item.__listKey}
+          rowKey={rowKeyOf(info.item, info.index)}
           store={visibilityStore}
           renderItem={renderItem}
         />;
       }
       return renderItem(payload as any);
     },
-    [renderItem, trackFeedCardVisibility, keyExtractor, visibilityStore],
+    [renderItem, trackFeedCardVisibility, rowKeyOf, visibilityStore],
   );
 
   // fetchPage and params are read through refs rather than closed over by the
@@ -280,9 +341,15 @@ const InfiniteFeedBase: React.FC<
     warmDeletedPosts().then(() => setTombstonesReady(true)).catch(() => {});
   }, []);
 
+  // A post deleted from its card leaves the rows at once. The card only hides
+  // itself, and with recycled cells that lasts until its cell is handed
+  // another post: the deleted post then came back further down the scroll.
+  const deletedVersion = useDeletedPostsVersion();
+
   const rawItems = useMemo<FeedItem[]>(
     () => flattenFeedPages<FeedItem>(data?.pages ?? [], isPostDeletedSync),
-    [data, tombstonesReady],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [data, tombstonesReady, deletedVersion],
   );
 
   // Videos already played, dropped only when the reader asked for that in
@@ -292,6 +359,25 @@ const InfiniteFeedBase: React.FC<
     () => filterWatched(rawItems, watchedIds, hideWatched),
     [rawItems, watchedIds, hideWatched],
   );
+
+  // FlashList only reports rows whose index changed viewability, so a new
+  // page, a refresh or a delete can leave the wrong card marked visible or
+  // playing. Ask for a full tick whenever the rows change. An empty list
+  // reports nothing at all, so the rows that were visible are let go here.
+  useEffect(() => {
+    if (items.length === 0) {
+      handleViewableItemsChanged({ viewableItems: [], changed: [] });
+      return;
+    }
+    try { listRef.current?.recomputeViewableItems(); } catch {}
+  }, [items, handleViewableItemsChanged, listRef]);
+
+  // How far past each edge FlashList renders: 1.5 screens, or 1 for
+  // gallery-heavy feeds, exactly as Home computes it. Cells that leave are
+  // reused, so this runway no longer has to be mounted card by card mid-fling.
+  const { height: screenHeight } = useWindowDimensions();
+  const renderBudget = useMemo(() => feedRenderBudget(items), [items]);
+  const drawDistance = Math.round((screenHeight * (renderBudget.windowSize - 1)) / 4);
 
   const endReached = hasNextPage === false;
   const initialLoading = isLoading;
@@ -358,8 +444,6 @@ const InfiniteFeedBase: React.FC<
     return unsubscribe;
   }, [navigationForTabPress, isFocused, onRefresh, listRef]);
 
-  const _keyExtractor = useCallback((item: FeedItem, index: number) => item.__listKey, []);
-
   const handleScroll = useCallback(
     (e: NativeSyntheticEvent<NativeScrollEvent>) => {
       if (!enableBackToTop) return;
@@ -375,11 +459,14 @@ const InfiniteFeedBase: React.FC<
     listRef.current?.scrollToOffset({ offset: 0, animated: true });
   }, []);
 
-  const isLoadingEmpty = initialLoading && items.length === 0;
-  const isEmpty = !initialLoading && !error && items.length === 0;
+  const hasItems = items.length > 0;
+  const isLoadingEmpty = initialLoading && !hasItems;
+  const isEmpty = !initialLoading && !error && !hasItems;
 
-  // One FlatList for every state so onViewableItemsChanged never flips between
-  // defined/undefined on the same instance (RN invariant violation).
+  // One list for every state so onViewableItemsChanged never flips between
+  // defined/undefined on the same instance. Keyed on whether there are rows,
+  // not on how many: a new page is not a new header, and a header element
+  // that changes re-renders the whole profile header above the list.
   const composedListHeader = useMemo(() => {
     const sections: React.ReactNode[] = [];
     if (headerComponent) {
@@ -393,7 +480,7 @@ const InfiniteFeedBase: React.FC<
           </View>
         ),
       );
-    } else if (error && items.length === 0) {
+    } else if (error && !hasItems) {
       sections.push(
         <View key="feed-error" className="items-center justify-center px-4 py-10">
           <Text className="text-theme-neutrals-200 mb-4">{error}</Text>
@@ -420,41 +507,72 @@ const InfiniteFeedBase: React.FC<
     isLoadingEmpty,
     isEmpty,
     error,
-    items.length,
+    hasItems,
     loadingComponent,
     emptyComponent,
     retry,
     t,
   ]);
 
+  // Callers pass their style as an inline literal. Every new prop on the list
+  // re-renders it, and under FlashList that re-measures every mounted cell, so
+  // the style is held until its contents actually change.
+  const contentStyleKey = JSON.stringify(contentContainerStyle ?? null);
+  const listContentStyle = useMemo(
+    () => contentContainerStyle || { paddingBottom: 80 },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [contentStyleKey],
+  );
+
+  const refreshControl = useMemo(
+    () => (
+      <DeHubRefreshControl
+        refreshing={refreshing}
+        onRefresh={onRefresh}
+        tintColor={theme.colors.accent}
+      />
+    ),
+    [refreshing, onRefresh],
+  );
+
+  // Match Home's fixed footer: removing two skeleton cards when a page
+  // settles shrinks the list and clamps the reader's position.
+  const listFooter = useMemo(
+    () => (
+      <View style={{ height: 84 }} className="items-center justify-center">
+        {loadingMore ? (
+          <DeHubLoader size={32} />
+        ) : endReached && hasItems ? (
+          <Text className="text-theme-neutrals-400 text-xs">{t("feed.noMorePosts")}</Text>
+        ) : null}
+      </View>
+    ),
+    [loadingMore, endReached, hasItems, t],
+  );
+
   return (
     <View className="flex-1">
-      <Animated.FlatList
+      {/* FlashList, as Home has been since #1419: a cell that scrolls off is
+          handed the next post. Under FlatList every row mounted a whole new
+          FeedCard as it entered the window and unmounted one as it left, in
+          the middle of the fling. Only the rows rendered before the first
+          scroll escaped that, so a long profile was smooth for its first
+          screens and not past them. */}
+      <AnimatedFlashList
         ref={listRef}
         showsVerticalScrollIndicator={false}
         data={items}
-        keyExtractor={keyExtractor || _keyExtractor}
+        keyExtractor={rowKeyOf}
+        getItemType={feedPostType}
         renderItem={renderFeedItem}
         ListHeaderComponent={composedListHeader}
-        // See InfiniteVideoFeed: anchors the scroll to the first visible row so
-        // a card that measures differently after its media decodes, or a header
-        // that grows once its data lands, adjusts contentOffset instead of
-        // shoving whatever the user was reading.
         maintainVisibleContentPosition={MAINTAIN_POSITION}
-        initialNumToRender={feedRenderBudget(items).initialRows}
-        maxToRenderPerBatch={1}
-        windowSize={feedRenderBudget(items).windowSize}
-        // No removeClippedSubviews, for the same reason as InfiniteVideoFeed:
-        // clipping detaches off-screen children, and that is the exact array
-        // Android walks to pick the maintainVisibleContentPosition anchor. The
-        // two together make the anchor a different row on every frame of a
-        // fling, which is what threw the viewport when a page landed mid-scroll.
-        // Omitting the prop is NOT off: RN defaults it to true on Android.
-        removeClippedSubviews={false}
-        updateCellsBatchingPeriod={50}
-        contentContainerStyle={
-          contentContainerStyle || { paddingBottom: 80 }
-        }
+        // Replaces initialNumToRender/windowSize/maxToRenderPerBatch. No
+        // removeClippedSubviews either: FlashList turns it off itself, which
+        // its maintainVisibleContentPosition needs.
+        drawDistance={drawDistance}
+        maxItemsInRecyclePool={MAX_POOLED_CELLS}
+        contentContainerStyle={listContentStyle}
         scrollEnabled={scrollEnabled ?? true}
         onScroll={onScroll ?? (enableBackToTop ? handleScroll : undefined)}
         // See InfiniteVideoFeed: 16 is below Android's 17ms throttle floor.
@@ -462,29 +580,13 @@ const InfiniteFeedBase: React.FC<
         nestedScrollEnabled
         onEndReached={endReached ? undefined : loadMore}
         // Keep multiple screens of runway. Fast flings can consume a single
-        // screen before the request and native cell mounting complete, leaving
-        // the gesture pinned at the old content boundary.
+        // screen before the request completes, leaving the gesture pinned at
+        // the old content boundary.
         onEndReachedThreshold={2.5}
-        viewabilityConfig={feedCardViewabilityConfig}
+        viewabilityConfig={VIEWABILITY_CONFIG}
         onViewableItemsChanged={handleViewableItemsChanged}
-        refreshControl={
-          <DeHubRefreshControl
-            refreshing={refreshing}
-            onRefresh={onRefresh}
-            tintColor={theme.colors.accent}
-          />
-        }
-          ListFooterComponent={
-            // Match Home's fixed footer: removing two skeleton cards when a
-            // page settles shrinks the list and clamps the reader's position.
-            <View style={{ height: 84 }} className="items-center justify-center">
-              {loadingMore ? (
-                <DeHubLoader size={32} />
-              ) : endReached && items.length > 0 ? (
-                <Text className="text-theme-neutrals-400 text-xs">{t("feed.noMorePosts")}</Text>
-              ) : null}
-            </View>
-        }
+        refreshControl={refreshControl}
+        ListFooterComponent={listFooter}
       />
       {enableBackToTop && showBackToTop && (
         <Pressable
@@ -506,8 +608,8 @@ const InfiniteFeedBase: React.FC<
 };
 
 const InfiniteFeedScreen: React.FC<InfiniteFeedInternalProps & { isSignedIn?: boolean }> = (props) => {
-  const internalRef = useRef<FlatList<FeedItem>>(null);
-  const listRef = (props.listRef as React.RefObject<FlatList<FeedItem> | null> | undefined) ?? internalRef;
+  const internalRef = useRef<FlashListRef<FeedItem>>(null);
+  const listRef = (props.listRef as React.RefObject<FlashListRef<FeedItem> | null> | undefined) ?? internalRef;
   const navigation = useNavigation<any>();
   const isFocused = useIsFocused();
   useScrollToTop(listRef);
@@ -515,8 +617,8 @@ const InfiniteFeedScreen: React.FC<InfiniteFeedInternalProps & { isSignedIn?: bo
 };
 
 const InfiniteFeedEmbedded: React.FC<InfiniteFeedInternalProps & { isSignedIn?: boolean }> = (props) => {
-  const internalRef = useRef<FlatList<FeedItem>>(null);
-  const listRef = (props.listRef as React.RefObject<FlatList<FeedItem> | null> | undefined) ?? internalRef;
+  const internalRef = useRef<FlashListRef<FeedItem>>(null);
+  const listRef = (props.listRef as React.RefObject<FlashListRef<FeedItem> | null> | undefined) ?? internalRef;
   return <InfiniteFeedBase {...props} listRef={listRef} isSignedIn={props.isSignedIn} />;
 };
 
