@@ -14,7 +14,7 @@ const usd = (value: number) =>
   value.toLocaleString(undefined, { style: "currency", currency: "USD" });
 
 /**
- * Subscription-token balance in dollars, the balance AI generation is paid
+ * Subscription-token balance, the balance AI generation is paid
  * from. A pill in the creator header; tapping it shows how much has been
  * spent and a way to add more. Shown to every signed-in user: an empty
  * balance is exactly when the add button matters. Hidden on the App Store
@@ -49,11 +49,14 @@ const SubscriptionCreditsPill: React.FC = () => {
           onPress={openCard}
           activeOpacity={0.7}
           accessibilityRole="button"
-          accessibilityLabel={`${t("credits.subscriptionTokens")}: ${usd(data.usd)}`}
+          accessibilityLabel={`${t("credits.subscriptionTokens")}: ${data.tokens.toLocaleString()}, ≈ ${usd(data.usd)} USD`}
           className="flex-row items-center rounded-full bg-white/10 border border-white/10 pl-1 pr-2.5 py-1"
         >
           <DhbCoin size={18} />
-          <Text className="text-xs font-semibold text-white ml-1.5">{usd(data.usd)}</Text>
+          <View className="ml-1.5 items-end">
+            <Text className="text-xs font-semibold text-white">{data.tokens.toLocaleString(undefined, { maximumFractionDigits: 2 })}</Text>
+            <Text className="text-[9px] text-zinc-400">≈ {usd(data.usd)} USD</Text>
+          </View>
         </TouchableOpacity>
       </View>
 
@@ -84,7 +87,10 @@ const SubscriptionCreditsPill: React.FC = () => {
                     {t("credits.subscriptionTokens")}
                   </Text>
                 </View>
-                <Text className="text-sm font-semibold text-white">{usd(data.usd)}</Text>
+                <View className="items-end">
+                  <Text className="text-sm font-semibold text-white">{data.tokens.toLocaleString(undefined, { maximumFractionDigits: 2 })}</Text>
+                  <Text className="text-[10px] text-zinc-500">≈ {usd(data.usd)} USD</Text>
+                </View>
               </View>
               <View
                 className="mt-2.5 h-1.5 w-full rounded-full bg-white/10 overflow-hidden"

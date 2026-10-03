@@ -334,7 +334,7 @@ const ProfileAssets = () => {
             <View className="items-end">
               <Text className="text-lg text-gray-300">{formatCompactNumber(subscriptionCredits.tokens)}</Text>
               <Text className="text-[11px] text-white/50">
-                {subscriptionCredits.usd.toLocaleString(undefined, { style: "currency", currency: "USD" })}
+                ≈ {subscriptionCredits.usd.toLocaleString(undefined, { style: "currency", currency: "USD" })} USD
               </Text>
             </View>
           </View>
