@@ -41,7 +41,7 @@ function FeedImageGallery({ images, width, fallbackWidth, active, prioritizeMedi
     if (!frame) return;
     selected.current = index;
     viewport.current.x = frame.x;
-    scrollRef.current?.scrollTo({ x: frame.x, animated: false });
+    scrollRef.current?.scrollTo?.({ x: frame.x, animated: false });
   }, [galleryKey, images.length]);
   useEffect(() => subscribeGallery(galleryKey, () => {
     if (galleryIndex(galleryKey) !== selected.current) restore();
