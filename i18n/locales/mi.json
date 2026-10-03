@@ -179,6 +179,7 @@
     "newMembersHint": "Katahi nei ka uru mai — korerotia",
     "scroll": "Scroll",
     "noFilterMatches": "Kāore he ihirangi e hāngai ana ki ō tātari.",
+    "followingEmpty": "Kāore anō he whakairinga mai i ngā tāngata e whai ana koe",
     "clearFilters": "Whakakore tātari"
   },
   "explore": {
@@ -4790,11 +4791,11 @@
     "bridgeAction": "Piriti {{from}} → {{to}}",
     "failed": "I rahu te piriti",
     "title": "Piriti Tohu",
-    "howItWorksBody": "Tukuna ngā tohu DeHub ki te wāhitau tuku piriti i runga i te mekameka pūtake. Ka tukuna aunoatia e te tuku te nui ōrite i runga i te mekameka ūnga i roto i ngā meneti.",
+    "howItWorksBody": "Tukuna ngā tohu DeHub ki te wāhitau tuku piriti i runga i te mekameka pūtake. Mā te rōpū e tuku ngā tohu ki te mekameka taunga, i te nuinga o te wā i roto i ngā rā mahi 1-5.",
     "relayAddress": "Wāhitau tuku piriti (tukuna ngā tohu ki konei i runga i te mekameka pūtake):",
     "insufficient": "Kāore he tohu nui i runga i te {{chain}}.",
     "insufficientOnChain": "Kāore he tohu nui i runga i te {{chain}}. Ka rereke pea te tauranga i runga i te mekameka i te mea kua whakaatuhia.",
-    "sentArriveShortly": "{{amount}} tohu i tukuna mai i te {{from}} → {{to}}. Ka tae mai i mua i te roa.",
+    "sentArriveShortly": "{{amount}} tohu kua tukuna mai i {{from}} ki {{to}}. Mā te rōpū e tuku ngā tohu ki te mekameka taunga, i te nuinga o te wā i roto i ngā rā mahi 1-5.",
     "subtitle": "Nekehia ngā tohu DeHub i waenga i ngā mekameka",
     "queueTitle": "Ngā kōpae",
     "transferCount": "Whakawhiti: {{count}}",
@@ -8081,11 +8082,11 @@
           "4": "Whakauruhia te maha o ngā tohu hei piriti.",
           "5": "Arotakehia te utu piriti me te wā taenga tatari.",
           "6": "Whakaūngia te tauwhitinga piriti.",
-          "7": "Tāwhai i te tauwhitinga kia oti — ka roa pea ngā meneti ki te piriti."
+          "7": "Mā te rōpū e tuku ngā tohu ki te mekameka taunga, i te nuinga o te wā i roto i ngā rā mahi 1-5."
         },
         "tips": {
           "1": "He rerekē ngā utu piriti mā te takirua mekameka.",
-          "2": "Ko te piriti ka roa te 1-5 meneti i runga i ngā mekameka e whai wāhi ana.",
+          "2": "I tēnei wā, ka utua ā-ringa ngā utu piriti.",
           "3": "Tirohia anō te mekameka ūnga i mua i te whakaūnga."
         }
       },

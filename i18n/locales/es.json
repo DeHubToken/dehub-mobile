@@ -179,6 +179,7 @@
     "newMembersHint": "Acabas de unirte — saluda",
     "scroll": "Scroll",
     "noFilterMatches": "Ningún contenido coincide con tus filtros.",
+    "followingEmpty": "Aún no hay publicaciones de las personas que sigues",
     "clearFilters": "Borrar filtros"
   },
   "explore": {
@@ -4849,11 +4850,11 @@
     "bridgeAction": "Puente {{from}} → {{to}}",
     "failed": "El puente falló",
     "title": "Transferir Tokens",
-    "howItWorksBody": "Envía tokens de DeHub a la dirección del relé del puente en la cadena de origen. El relé entrega automáticamente la cantidad equivalente en la cadena de destino en cuestión de minutos.",
+    "howItWorksBody": "Envía tokens de DeHub a la dirección del relé del puente en la cadena de origen. El equipo envía los tokens en la cadena de destino, normalmente en 1-5 días hábiles.",
     "relayAddress": "Dirección del relé del puente (envía tokens aquí en la cadena de origen):",
     "insufficient": "No hay suficientes tokens en {{chain}}.",
     "insufficientOnChain": "No hay suficientes tokens en {{chain}}. El saldo en cadena puede diferir del mostrado.",
-    "sentArriveShortly": "{{amount}} tokens enviados desde {{from}} → {{to}}. Llegarán en breve.",
+    "sentArriveShortly": "Se enviaron {{amount}} tokens de {{from}} a {{to}}. El equipo envía los tokens en la cadena de destino, normalmente en 1-5 días hábiles.",
     "subtitle": "Mover tokens de DeHub entre cadenas",
     "queueTitle": "Puentes",
     "transferCount": "Transferencias: {{count}}",
@@ -8131,11 +8132,11 @@
           "4": "Introduce el número de tokens a transferir.",
           "5": "Revisa la tarifa de transferencia y el tiempo estimado de llegada.",
           "6": "Confirma la transacción de transferencia.",
-          "7": "Espera a que la transacción se complete; la transferencia puede tardar unos minutos."
+          "7": "El equipo envía los tokens en la cadena de destino, normalmente en 1-5 días hábiles."
         },
         "tips": {
           "1": "Las tarifas de transferencia varían según el par de cadenas.",
-          "2": "La transferencia suele tardar entre 1 y 5 minutos, dependiendo de las cadenas involucradas.",
+          "2": "Por ahora, los pagos del puente se hacen a mano.",
           "3": "Verifica siempre la cadena de destino antes de confirmar."
         }
       },

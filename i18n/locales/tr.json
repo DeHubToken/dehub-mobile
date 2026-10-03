@@ -179,6 +179,7 @@
     "newMembersHint": "Yeni katıldı — merhaba deyin",
     "scroll": "Scroll",
     "noFilterMatches": "Filtrelerinizle eşleşen içerik yok.",
+    "followingEmpty": "Takip ettiğin kişilerden henüz gönderi yok",
     "clearFilters": "Filtreleri temizle"
   },
   "explore": {
@@ -4849,11 +4850,11 @@
     "bridgeAction": "Köprü {{from}} → {{to}}",
     "failed": "Köprü başarısız oldu",
     "title": "Jetonları Köprüle",
-    "howItWorksBody": "DeHub jetonlarını kaynak zincirindeki köprü röle adresine gönderin. Röle, birkaç dakika içinde hedef zincirde eşdeğer miktarı otomatik olarak teslim eder.",
+    "howItWorksBody": "DeHub jetonlarını kaynak zincirindeki köprü röle adresine gönderin. Ekip, jetonları hedef zincirde gönderir; bu genellikle 1-5 iş günü sürer.",
     "relayAddress": "Köprü röle adresi (kaynak zincirinde buraya jeton gönderin):",
     "insufficient": "{{chain}} üzerinde yeterli jeton yok.",
     "insufficientOnChain": "{{chain}} üzerinde yeterli jeton yok. Zincir üstü bakiye gösterilenden farklı olabilir.",
-    "sentArriveShortly": "{{from}} → {{to}} adresinden {{amount}} jetonu gönderildi. Kısa süre sonra ulaşırlar.",
+    "sentArriveShortly": "{{amount}} jeton {{from}} ağından {{to}} ağına gönderildi. Ekip, jetonları hedef zincirde gönderir; bu genellikle 1-5 iş günü sürer.",
     "subtitle": "DeHub jetonlarını zincirler arasında taşıyın",
     "queueTitle": "Köprüler",
     "transferCount": "Transferler: {{count}}",
@@ -8131,11 +8132,11 @@
           "4": "Köprülemek istediğiniz token miktarını girin.",
           "5": "Köprü ücretini ve tahmini varış süresini gözden geçirin.",
           "6": "Köprü işlemini onaylayın.",
-          "7": "İşlemin tamamlanmasını bekleyin — köprüleme birkaç dakika sürebilir."
+          "7": "Ekip, jetonları hedef zincirde gönderir; bu genellikle 1-5 iş günü sürer."
         },
         "tips": {
           "1": "Köprü ücretleri zincir çiftine göre değişiklik gösterir.",
-          "2": "Köprüleme, ilgili zincirlere bağlı olarak genellikle 1-5 dakika sürer.",
+          "2": "Köprü ödemeleri şimdilik elle yapılıyor.",
           "3": "Onaylamadan önce her zaman hedef zincirini iki kez kontrol edin."
         }
       },
