@@ -154,7 +154,7 @@ const BuyAccountSheet: React.FC<Props> = ({ listing, visible, onClose, isAuthed,
   };
 
   const buttonLabel = () => {
-    if (stage === "paying") return t("accounts.confirmInWallet");
+    if (stage === "paying") return t("upload.stageConfirming");
     if (stage === "confirming") return t("accounts.confirmingOnChain");
     if (!isAuthed) return t("accounts.signInToBuy");
     return t("accounts.buyAccount", { handle: listing.username });
