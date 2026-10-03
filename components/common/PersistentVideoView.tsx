@@ -36,7 +36,7 @@ export const PersistentVideoView = forwardRef<VideoView, VideoViewProps>((props,
   useImperativeHandle(ref, () => new Proxy({} as VideoView, {
     get: (_target, key) => {
       if (key === 'startPictureInPicture') return async () => {
-        if (hosted?.token === token && hosted.view) return hosted.view.startPictureInPicture();
+        if (hosted?.props.player === propsRef.current.player && hosted?.view) return hosted.view.startPictureInPicture();
         if (hosted) throw new Error('A picture-in-picture player is already active');
         const current = propsRef.current;
         if (!current.player) return;
@@ -65,7 +65,7 @@ export const PersistentVideoView = forwardRef<VideoView, VideoViewProps>((props,
           throw error;
         }
       };
-      const view = hosted?.token === token ? hosted.view : local.current;
+      const view = hosted?.props.player === propsRef.current.player ? hosted?.view : local.current;
       const value = view && Reflect.get(view, key);
       return typeof value === 'function' ? value.bind(view) : value;
     },
@@ -73,9 +73,9 @@ export const PersistentVideoView = forwardRef<VideoView, VideoViewProps>((props,
   // Automatic PiP uses the inline view. Keep that route mounted until it ends;
   // pushes and tab changes remain available and do not remove its native view.
   useEffect(() => navigation.addListener('beforeRemove', event => {
-    if (hosted?.token !== token && isPictureInPicturePlayer(propsRef.current.player)) event.preventDefault();
+    if (hosted?.props.player !== propsRef.current.player && isPictureInPicturePlayer(propsRef.current.player)) event.preventDefault();
   }), [navigation, token]);
-  if (entry?.token === token) return <View style={props.style} />;
+  if (entry?.props.player === props.player && entry) return <View style={props.style} />;
   return <VideoView {...props} ref={local}
     onPictureInPictureStart={() => {
       if (props.player) {
