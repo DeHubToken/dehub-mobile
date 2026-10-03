@@ -1216,12 +1216,14 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   // Video and live carry the author and buttons over the picture; a photo
   // gets a plain header row above it instead, and nothing over it.
   const chipOverMedia = cinematicMedia && contentType !== "image";
+  // Match the landing video: only the first photo puts its identity below media.
+  const firstImageHeaderBelow = cinematicMedia && contentType === "image" && topChromeInset > 0;
   // Under the capsule the first thing in the post moves down: the repost or
   // boost labels when there are any, the author otherwise. A video still runs
   // to the top of the screen; only its chip and buttons move.
   const hasLabels = showRepostLabel || !!(item as any).__boosted;
-  // Only the landing image gets extra clearance; video stays flush.
-  const chromeInset = cinematicFeed ? topChromeInset + (topChromeInset > 0 && contentType === "image" ? 3 : 0) : 0;
+  // A revealed landing photo and videos stay flush; warnings retain clearance.
+  const chromeInset = cinematicFeed ? topChromeInset + (topChromeInset > 0 && contentType === "image" && !firstImageHeaderBelow ? 3 : 0) : 0;
   const leadInset = hasLabels ? 0 : chromeInset;
   // The first post keeps the top of its picture clear under the capsule: its
   // author and buttons move to the bottom of the media instead, and badges
@@ -1251,7 +1253,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   // Media that already spans the screen: square, no top gap.
   const edgeMedia = immersive || cinematicMedia;
   // Badges a locked picture pins to its top-left corner start under the chip.
-  const lockBadgeTop = chipOverMedia ? { top: mediaBand } : undefined;
+  const lockBadgeTop = chipOverMedia ? { top: mediaBand } : firstImageHeaderBelow ? { top: topChromeInset + 8 } : undefined;
 
   if (isDeleted) return null;
 
@@ -1946,8 +1948,34 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         />
       </View>
     ) : null;
+    const photoHeader = cinematicMedia && !chipOverMedia ? (
+      <View style={{ paddingHorizontal: CINEMATIC_TEXT_INSET, paddingTop: firstImageHeaderBelow ? 10 : leadInset }}>
+              <FeedCardHeader
+                avatarUrl={avatar}
+                displayName={displayName}
+                username={username}
+                address={minterAddress}
+                badgeImage={badgeImg}
+                onUserPress={handleUserPress}
+                onMenuPress={handleOpenOptions}
+                onBoostPress={
+                  isOwnerPost && isSignedIn && tokenId != null
+                    ? handleBoostPress
+                    : undefined
+                }
+                isHidden={isHidden}
+              />
+            </View>
+    ) : null;
+    const photoMedia = cinematicMedia && !chipOverMedia ? (
+      <View style={{ backgroundColor: "#000" }}>
+              <FeedBleedContext.Provider value={feedBleed}>
+                {renderContent()}
+              </FeedBleedContext.Provider>
+            </View>
+    ) : null;
     const labels = hasLabels ? (
-      <View style={{ paddingHorizontal: CINEMATIC_TEXT_INSET, paddingBottom: 8, paddingTop: chromeInset, gap: 6 }}>
+      <View style={{ paddingHorizontal: CINEMATIC_TEXT_INSET, paddingBottom: 8, paddingTop: firstImageHeaderBelow ? 10 : chromeInset, gap: 6 }}>
         {showRepostLabel && (
           <View className="flex-row items-center gap-1.5">
             <Icon name="Repeat2" size={14} color="#9CA3AF" />
@@ -1983,32 +2011,13 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         // capsule; leadInset (or the labels) makes the room instead.
         style={[styles.cinematicPost, { marginHorizontal: -minimalGutter }, chromeInset ? { paddingTop: 0 } : null, hideDivider ? { borderBottomWidth: 0 } : null]}
       >
-        {labels}
+        {!firstImageHeaderBelow && labels}
         {cinematicMedia && !chipOverMedia ? (
-          // A photo: the ordinary header row above it, the picture edge to edge.
+          // Only the landing photo starts with media; later photos keep their header above.
           <>
-            <View style={{ paddingHorizontal: CINEMATIC_TEXT_INSET, paddingTop: leadInset }}>
-              <FeedCardHeader
-                avatarUrl={avatar}
-                displayName={displayName}
-                username={username}
-                address={minterAddress}
-                badgeImage={badgeImg}
-                onUserPress={handleUserPress}
-                onMenuPress={handleOpenOptions}
-                onBoostPress={
-                  isOwnerPost && isSignedIn && tokenId != null
-                    ? handleBoostPress
-                    : undefined
-                }
-                isHidden={isHidden}
-              />
-            </View>
-            <View style={{ backgroundColor: "#000" }}>
-              <FeedBleedContext.Provider value={feedBleed}>
-                {renderContent()}
-              </FeedBleedContext.Provider>
-            </View>
+            {!firstImageHeaderBelow && photoHeader}
+            {photoMedia}
+            {firstImageHeaderBelow && <>{labels}{photoHeader}</>}
           </>
         ) : cinematicMedia ? (
           // Raised while the tools menu is open so it hangs over the caption.
@@ -2537,3 +2546,4 @@ const FeedCard = memo(function GuardedFeedCard(props: FeedCardProps) {
 });
 
 export default FeedCard;
+
