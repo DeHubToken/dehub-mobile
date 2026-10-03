@@ -53,9 +53,9 @@ describe("over-the-air updates on foreground", () => {
 
   it("applies a ready update only after a long enough absence", async () => {
     await checkForOtaUpdate(1_000_000_000);
-    expect(await applyOtaUpdateIfReady(APPLY_AFTER_BACKGROUND_MS - 1)).toBe(false);
+    expect(await applyOtaUpdateIfReady(APPLY_AFTER_BACKGROUND_MS - 1, true)).toBe(false);
     expect(mocked.reloadAsync).not.toHaveBeenCalled();
-    expect(await applyOtaUpdateIfReady(APPLY_AFTER_BACKGROUND_MS)).toBe(true);
+    expect(await applyOtaUpdateIfReady(APPLY_AFTER_BACKGROUND_MS, true)).toBe(true);
     expect(mocked.reloadAsync).toHaveBeenCalledTimes(1);
     expect(isUpdateReady()).toBe(false);
   });
@@ -63,6 +63,13 @@ describe("over-the-air updates on foreground", () => {
   it("never reloads when nothing was downloaded", async () => {
     expect(await applyOtaUpdateIfReady(10 * APPLY_AFTER_BACKGROUND_MS)).toBe(false);
     expect(mocked.reloadAsync).not.toHaveBeenCalled();
+  });
+
+  it("keeps a downloaded update for the next launch when returning from a call", async () => {
+    await checkForOtaUpdate(1_000_000_000);
+    expect(await applyOtaUpdateIfReady(10 * APPLY_AFTER_BACKGROUND_MS)).toBe(false);
+    expect(mocked.reloadAsync).not.toHaveBeenCalled();
+    expect(isUpdateReady()).toBe(true);
   });
 
   it("swallows a failed check so the next foreground retries", async () => {

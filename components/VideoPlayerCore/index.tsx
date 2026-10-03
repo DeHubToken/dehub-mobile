@@ -31,6 +31,7 @@ import {
 import { VideoView, useVideoPlayer, VideoPlayer } from 'expo-video';
 import { FULLSCREEN_BUFFER_OPTIONS, LIVE_BUFFER_OPTIONS } from "../../libs/videoBuffering";
 import { useSharedLivePlayer } from '../../libs/sharedLivePlayer';
+import { useCallInProgress, visualActivity } from '../../libs/visualActivity';
 import { getPlaybackRateFor, setPlaybackRate as persistPlaybackRate } from '../../libs/video-preferences';
 import { useAppPrefs } from '../../hooks/useAppPrefs';
 import { useVideoSegments, segmentAt } from '../../hooks/useVideoSegments';
@@ -244,7 +245,7 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
     p.staysActiveInBackground = true;
     p.showNowPlayingNotification = true;
     p.bufferOptions = liveMode ? LIVE_BUFFER_OPTIONS : FULLSCREEN_BUFFER_OPTIONS;
-    if (!liveMode && autoplay && sourceUrl) {
+    if (!liveMode && autoplay && sourceUrl && !visualActivity.isCallBusy()) {
       p.play();
     }
   });
@@ -269,7 +270,7 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
   // Start live HLS after the player has been configured and attached, as the
   // feed preview does. Live timelines must not enter the file-repeat path.
   useEffect(() => {
-    if (liveMode && autoplay && sourceUrl) {
+    if (liveMode && autoplay && sourceUrl && !visualActivity.isCallBusy()) {
       player.play();
     }
   }, [player, liveMode, autoplay, sourceUrl]);
@@ -282,6 +283,8 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
   }, [player]);
 
   useEffect(() => () => stopPlayback(), [stopPlayback]);
+  const callInProgress = useCallInProgress();
+  useEffect(() => { if (callInProgress) stopPlayback(); }, [callInProgress, stopPlayback]);
 
   useEffect(() => {
     return () => {
@@ -343,6 +346,7 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
     const subscriptions = [
       player.addListener('playingChange', ({ isPlaying: playing }) => {
         if (!isMountedRef.current) return;
+        if (playing && visualActivity.isCallBusy()) { stopPlayback(); return; }
         setIsPlaying(playing);
         onPlayStateChange?.(playing);
         if (playing) {
@@ -443,6 +447,7 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
 
   // Playback controls
   const togglePlay = useCallback(() => {
+    if (visualActivity.isCallBusy()) return;
     if (player.playing) {
       setPlayRequested(false);
       player.pause();

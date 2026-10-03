@@ -6,6 +6,7 @@ import React, {
   useState,
   useMemo,
 } from "react";
+import { useFeedPlaybackAllowed } from "../../libs/visualActivity";
 import { useIsFocused, useNavigation, useScrollToTop } from "@react-navigation/native";
 import {
   View,
@@ -393,6 +394,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
 
   const navigation = useNavigation<any>();
   const isFocused = useIsFocused();
+  const playbackAllowed = useFeedPlaybackAllowed();
   const { t } = useTranslation();
   const { isSignedIn } = useAuthState();
 
@@ -403,8 +405,8 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   // the two or three rows that were actually playing. The store tells just
   // those rows.
   useEffect(() => {
-    visibilityStore.setLive(active && isFocused);
-  }, [visibilityStore, active, isFocused]);
+    visibilityStore.setLive(active && isFocused && playbackAllowed);
+  }, [visibilityStore, active, isFocused, playbackAllowed]);
 
   // View tracking: map of tokenId -> tracker (for feed posts only, not videos)
   const viewTrackersRef = useRef<Map<string, ReturnType<typeof createPostViewTracker>>>(new Map());
