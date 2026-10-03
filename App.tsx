@@ -23,6 +23,7 @@ import "./global.css";
 import SplashScreen from "./screens/SplashScreen";
 import NoInternetScreen from "./screens/NoInternetScreen";
 import { useNetworkStatus } from "./hooks/useNetworkStatus";
+import { PictureInPictureHost } from './components/common/PersistentVideoView';
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import {
   StatusBar,
@@ -464,6 +465,7 @@ const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
                     <MessagingProvider>
                       <CallProvider>
                         <RootNavigator />
+                        <PictureInPictureHost />
                         <NewMemberRegistrar />
                         <OnlinePresenceHost />
                         <CallModalsHost />

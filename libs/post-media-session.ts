@@ -1,3 +1,6 @@
+import { isPictureInPicturePlayer, releaseAfterPictureInPicture } from './pictureInPicture';
+import type { VideoPlayer } from 'expo-video';
+
 /** Keeps a native media session alive while its visible surface changes. */
 export interface PostMediaSession<T> {
   value: T | null;
@@ -14,6 +17,10 @@ const GRACE_MS = 2000;
 
 function disposeSession<T>(key: string, session: PostMediaSession<T>) {
   if (session.claims.length || sessions.get(key) !== session) return;
+  if (isPictureInPicturePlayer(session.value)) {
+    releaseAfterPictureInPicture(session.value as unknown as VideoPlayer, () => disposeSession(key, session));
+    return;
+  }
   clearTimeout(session.timer);
   sessions.delete(key);
   if (session.value) session.dispose(session.value);
@@ -50,7 +57,7 @@ export function claimPostMedia<T>(key: string, session: PostMediaSession<T>, tok
     if (index >= 0) session.claims.splice(index, 1);
     session.listeners.forEach(fn => fn());
     if (session.claims.length) return;
-    if (!postMediaIsTransferring(session)) {
+    if (!postMediaIsTransferring(session) && !isPictureInPicturePlayer(session.value)) {
       try { (session.value as { pause?: () => void } | null)?.pause?.(); } catch {}
     }
     scheduleRelease(key, session);
