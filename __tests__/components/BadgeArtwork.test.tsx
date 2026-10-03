@@ -48,13 +48,17 @@ describe('holder badge interaction', () => {
     expect(openBadgeShowcase).toHaveBeenCalledWith('Octopus', null);
   });
 
-  it('respects reduced motion and recovers from a failed animation', () => {
+  it('respects reduced motion', () => {
     (useReducedMotion as jest.Mock).mockReturnValue(true);
-    const { getByTestId, queryByTestId, rerender } = render(<BadgeArtwork source={1} />);
+    const { getByTestId, queryByTestId } = render(<BadgeArtwork source={1} />);
     fireEvent(getByTestId('holder-badge'), 'hoverIn');
     expect(queryByTestId('holder-badge-motion')).toBeNull();
-    (useReducedMotion as jest.Mock).mockReturnValue(false);
-    rerender(<BadgeArtwork source={1} />);
+    expect(getByTestId('holder-badge-poster')).toBeTruthy();
+  });
+
+  it('recovers from a failed animation', () => {
+    const { getByTestId, queryByTestId } = render(<BadgeArtwork source={1} />);
+    fireEvent(getByTestId('holder-badge'), 'hoverIn');
     fireEvent(getByTestId('holder-badge-motion'), 'error');
     expect(queryByTestId('holder-badge-motion')).toBeNull();
     expect(getByTestId('holder-badge-poster')).toBeTruthy();
