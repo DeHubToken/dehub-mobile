@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import {
   View,
   Text,
@@ -11,7 +11,8 @@ import {
 } from "react-native";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
-import { VideoView, useVideoPlayer } from "expo-video";
+import { VideoView } from "expo-video";
+import { usePostVideoPlayer } from "../hooks/usePostVideoPlayer";
 import PictureInPictureButton from "../components/common/PictureInPictureButton";
 import { FULLSCREEN_BUFFER_OPTIONS } from "../libs/videoBuffering";
 import {
@@ -124,7 +125,7 @@ const FullscreenVideoScreen = () => {
 
   const { width: screenW, height: screenH } = Dimensions.get("window");
 
-  const player = useVideoPlayer(videoUrl || null, (p) => {
+  const { player, session, ownsPlayer, active: ownsVideo } = usePostVideoPlayer(videoUrl || null, (p) => {
     p.loop = true;
     p.muted = getCachedMuted();
     p.timeUpdateEventInterval = 0.5;
@@ -141,46 +142,51 @@ const FullscreenVideoScreen = () => {
     p.bufferOptions = FULLSCREEN_BUFFER_OPTIONS;
   });
 
-  useEffect(() => {
-    return () => {
-      // Stop expo-video's native time-update clock before the instance is
-      // released; on Android release() never zeroes it (see FeedVideoPlayer).
-      try {
-        player.timeUpdateEventInterval = 0;
-      } catch {}
-    };
-  }, [player]);
+  useLayoutEffect(() => {
+    if (!ownsVideo) return;
+    isPlayingRef.current = player.playing;
+    setIsPlaying(player.playing);
+    setIsMuted(player.muted);
+    setCurrentTime(player.currentTime);
+    setVideoDuration(player.duration);
+  }, [ownsVideo, player]);
+
+  const stopPlayback = useCallback(() => {
+    if (ownsPlayer()) { try { player.pause(); } catch {} }
+  }, [player, ownsPlayer]);
 
   useEffect(() => {
-    if (!player) return;
-    requestFeedVideoFocus(() => { try { player.pause(); } catch {} });
-    if (!initialMuted) requestAudioFocus(() => { try { player.pause(); } catch {} });
-    player.play();
+    if (!player || !ownsVideo) return;
+    requestFeedVideoFocus(stopPlayback);
+    if (!player.muted) requestAudioFocus(stopPlayback);
+    if (!session.userPaused) player.play();
 
     return () => {
-      try { player.pause(); } catch {}
-      releaseFeedVideoFocus(() => {});
-      releaseAudioFocus(() => {});
+      releaseFeedVideoFocus(stopPlayback);
+      releaseAudioFocus(stopPlayback);
     };
-  }, [player, initialMuted]);
+  }, [player, ownsVideo, session, stopPlayback]);
 
   useEffect(() => {
     if (!player) return;
     const subs: Array<{ remove: () => void }> = [];
     try {
       subs.push(player.addListener("playingChange", ({ isPlaying: p }) => {
+        if (!ownsPlayer()) return;
         isPlayingRef.current = p;
         setIsPlaying(p);
       }));
     } catch {}
     try {
       subs.push(player.addListener("statusChange", ({ status }) => {
+        if (!ownsPlayer()) return;
         setIsBuffering(status === "loading");
         if (status === "readyToPlay" && player.duration > 0) setVideoDuration(player.duration);
       }));
     } catch {}
     try {
       subs.push(player.addListener("timeUpdate", ({ currentTime: ct }: any) => {
+        if (!ownsPlayer()) return;
         setCurrentTime(ct ?? 0);
         if (ct != null && viewRecorderRef.current) {
           viewRecorderRef.current.onProgress(
@@ -191,7 +197,7 @@ const FullscreenVideoScreen = () => {
       }));
     } catch {}
     return () => { subs.forEach((s) => { try { s.remove(); } catch {} }); };
-  }, [player]);
+  }, [player, ownsPlayer]);
 
   useEffect(() => {
     StatusBar.setHidden(true);
@@ -239,8 +245,10 @@ const FullscreenVideoScreen = () => {
   const handleTogglePlay = useCallback(() => {
     if (!player) return;
     if (isPlayingRef.current) {
+      session.userPaused = true;
       player.pause();
     } else {
+      session.userPaused = false;
       player.play();
     }
     resetControlsTimer();
@@ -252,10 +260,10 @@ const FullscreenVideoScreen = () => {
     player.muted = newMuted;
     setIsMuted(newMuted);
     setMutedState(newMuted);
-    if (!newMuted) requestAudioFocus(() => { try { player.pause(); } catch {} });
-    else releaseAudioFocus(() => { try { player.pause(); } catch {} });
+    if (!newMuted) requestAudioFocus(stopPlayback);
+    else releaseAudioFocus(stopPlayback);
     resetControlsTimer();
-  }, [player, isMuted, resetControlsTimer]);
+  }, [player, isMuted, resetControlsTimer, stopPlayback]);
 
   const handleToggleRotation = useCallback(async () => {
     try {

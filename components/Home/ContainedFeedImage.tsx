@@ -44,6 +44,7 @@ const ContainedFeedImage: React.FC<ContainedFeedImageProps> = ({
 }) => {
   const { height: screenHeight } = useWindowDimensions();
   const animate = useSettledAutoplay(active, uri, 400);
+  const source = useMemo(() => ({ uri }), [uri]);
   const { ratio: aspectRatio, onLoad } = useImageAspect(uri);
   const { isMinimal } = useAppTheme();
   // Minimal and the cinematic system feed both run the image edge to edge.
@@ -103,7 +104,7 @@ const ContainedFeedImage: React.FC<ContainedFeedImageProps> = ({
         }}
       >
         {drawBitmap && <SmartImage
-          source={{ uri }}
+          source={source}
           contentFit={bleed ? "cover" : "contain"}
           cachePolicy="memory-disk"
           style={{ width: "100%", height: "100%" }}

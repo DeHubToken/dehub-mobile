@@ -1,8 +1,10 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { TouchableOpacity, View, Text, StyleSheet, ActivityIndicator, AppState } from "react-native";
 import { useIsFocused } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
-import { useAudioPlayer } from "expo-audio";
+import { createAudioPlayer } from "expo-audio";
+import { usePostAudioSession } from "../../hooks/usePostAudioSession";
+import { postMediaIsTransferring } from "../../libs/post-media-session";
 import { Ionicons } from "@expo/vector-icons";
 import { requestAudioFocus, releaseAudioFocus } from "../../libs/audioFocus";
 import { configureForDuckedPlayback } from "../../libs/audioSession";
@@ -17,7 +19,9 @@ interface Props {
 const SoundtrackBadge: React.FC<Props> = ({ title, creator, url, isVisible = true }) => {
   const { t } = useTranslation();
   const focused = useIsFocused();
-  const player = useAudioPlayer(null);
+  const { session, ownsPlayer, active: ownsAudio } = usePostAudioSession(url);
+  const [, refresh] = useState(0);
+  const player = session.value;
   const [playing, setPlaying] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -35,15 +39,33 @@ const SoundtrackBadge: React.FC<Props> = ({ title, creator, url, isVisible = tru
   }, []);
 
   const pause = useCallback(() => {
+    if (!ownsPlayer() || postMediaIsTransferring(session)) return;
     wanted.current = false;
     confirmed.current = false;
     generation.current++;
     clearLoadingTimeout();
-    try { player.pause(); } catch { /* Player may already be released. */ }
+    try { session.value?.pause(); } catch { /* Player may already be released. */ }
     setPlaying(false);
     setLoading(false);
     releaseAudioFocus(pause);
-  }, [player, clearLoadingTimeout]);
+  }, [session, ownsPlayer, clearLoadingTimeout]);
+
+  useLayoutEffect(() => {
+    if (!ownsAudio) {
+      wanted.current = false;
+      confirmed.current = false;
+      generation.current++;
+      clearLoadingTimeout();
+      return;
+    }
+    if (!player || wanted.current) return;
+    wanted.current = player.playing;
+    confirmed.current = player.playing;
+    loadedUrl.current = url;
+    setPlaying(player.playing);
+    setLoading(false);
+    if (player.playing) requestAudioFocus(pause);
+  }, [ownsAudio, player, url, pause, clearLoadingTimeout]);
 
   const fail = useCallback(() => {
     pause();
@@ -52,8 +74,10 @@ const SoundtrackBadge: React.FC<Props> = ({ title, creator, url, isVisible = tru
   }, [pause]);
 
   useEffect(() => {
+    if (!player || !ownsAudio) return;
     player.loop = true;
     const subscription = player.addListener("playbackStatusUpdate", (status) => {
+      if (!ownsPlayer()) return;
       if (!wanted.current) return;
       if (status.playbackState === "error" || status.playbackState === "failed") { fail(); return; }
       const buffering = !status.isLoaded || status.isBuffering;
@@ -64,14 +88,12 @@ const SoundtrackBadge: React.FC<Props> = ({ title, creator, url, isVisible = tru
       if (status.playing && !buffering) clearLoadingTimeout();
       else if (buffering && !timeout.current) timeout.current = setTimeout(fail, 15000);
     });
-    return () => { subscription.remove(); pause(); };
-  }, [player, pause, fail, clearLoadingTimeout]);
+    return () => { subscription.remove(); clearLoadingTimeout(); releaseAudioFocus(pause); };
+  }, [player, ownsAudio, ownsPlayer, pause, fail, clearLoadingTimeout]);
 
   useEffect(() => {
-    pause();
-    loadedUrl.current = null;
     setError(false);
-  }, [url, pause]);
+  }, [url]);
 
   useEffect(() => { if (!isVisible || !focused) pause(); }, [isVisible, focused, pause]);
   useEffect(() => {
@@ -81,7 +103,7 @@ const SoundtrackBadge: React.FC<Props> = ({ title, creator, url, isVisible = tru
 
   const toggle = useCallback(async () => {
     if (wanted.current) { pause(); return; }
-    if (!active.current || AppState.currentState !== "active") return;
+    if (!ownsPlayer() || !active.current || AppState.currentState !== "active") return;
     const attempt = ++generation.current;
     wanted.current = true;
     setLoading(true);
@@ -91,17 +113,24 @@ const SoundtrackBadge: React.FC<Props> = ({ title, creator, url, isVisible = tru
     timeout.current = setTimeout(fail, 15000);
     try {
       await configureForDuckedPlayback();
-      if (generation.current !== attempt || !wanted.current || !active.current) return;
+      if (!ownsPlayer() || generation.current !== attempt || !wanted.current || !active.current) return;
+      let audio = session.value;
+      if (!audio) {
+        audio = createAudioPlayer({ uri: url });
+        session.value = audio;
+        loadedUrl.current = url;
+        refresh(version => version + 1);
+      }
       if (loadedUrl.current !== url) {
-        player.replace({ uri: url });
-        player.loop = true;
+        audio.replace({ uri: url });
         loadedUrl.current = url;
       }
-      player.play();
+      audio.loop = true;
+      audio.play();
     } catch {
       if (generation.current === attempt) fail();
     }
-  }, [url, player, pause, fail]);
+  }, [url, session, ownsPlayer, pause, fail]);
 
   const action = error ? t("common.retry") : loading ? t("common.cancel") : playing ? t("audioPost.pause") : t("audioPost.play");
   const name = title || t("feed.music");
