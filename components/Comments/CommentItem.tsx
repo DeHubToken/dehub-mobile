@@ -1,3 +1,4 @@
+import BadgeArtwork from "../common/BadgeArtwork";
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { View, Text, Pressable, Share, ActivityIndicator, type AccessibilityActionEvent } from "react-native";
 import SmartImage from "../common/SmartImage";
@@ -16,7 +17,7 @@ import type { TFunction } from "i18next";
 import Avatar from "../common/Avatar";
 import NewMemberChip from "../common/NewMemberChip";
 import VoiceNotePlayer from "./VoiceNotePlayer";
-import { getAvatarUrl, buildCdnPath, getBadgeUrlFor, getBadgeOpticalStyle } from "../../libs/misc";
+import { getAvatarUrl, buildCdnPath, getBadgeUrlFor, getBadgeHoverOpticalStyle as getBadgeOpticalStyle } from "../../libs/misc";
 import { openBadgeShowcase, tierForBadgeImage } from "../../libs/badgeShowcase";
 import { formatCompactNumber } from "../../libs/numbers.util";
 import { isAssistantAddress } from "../../libs/assistant";
@@ -606,7 +607,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
                   style={{ flexShrink: 0, height: 20, marginLeft: 2, justifyContent: "center" }}
                   hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
                 >
-                  <SmartImage
+                  <BadgeArtwork
                     source={badgeImg}
                     style={[getBadgeOpticalStyle(badgeImg, 16, 0, 20), { marginLeft: 0 }]}
                     contentFit="contain"

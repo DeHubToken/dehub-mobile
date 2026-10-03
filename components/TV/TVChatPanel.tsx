@@ -1,3 +1,4 @@
+import BadgeArtwork from "../common/BadgeArtwork";
 /**
  * TVChatPanel
  * ===========
@@ -25,7 +26,7 @@ import {
 import SmartImage from "../common/SmartImage";
 import Icon from "../ui/Icon";
 import Avatar from "../common/Avatar";
-import { getAvatarUrl, getBadgeOpticalStyle, getBadgeUrl, resolveBadgeBalance } from "../../libs/misc";
+import { getAvatarUrl, getBadgeHoverOpticalStyle as getBadgeOpticalStyle, getBadgeUrl, resolveBadgeBalance } from "../../libs/misc";
 import { useUser, useAuthActions } from "../../context/AuthContext";
 import { useTvChat, type TvChatMessage } from "../../hooks/useTvChat";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
@@ -87,7 +88,7 @@ const ChatRow: React.FC<{
             {displayName}
           </Text>
           {!!badgeImg && (
-            <SmartImage source={badgeImg} style={[getBadgeOpticalStyle(badgeImg, 13), { marginLeft: 0 }]} contentFit="contain" />
+            <BadgeArtwork source={badgeImg} style={[getBadgeOpticalStyle(badgeImg, 13), { marginLeft: 0 }]} contentFit="contain" />
           )}
           <Text className="text-white/60 text-xs ml-auto">
             {formatTime(message.created_at)}

@@ -21,6 +21,8 @@ import {
 } from "../libs/engagementCache";
 import { useEngagementWeight } from "./useEngagementWeight";
 import { getNFT, reactToNFT, voteOnNFT } from "../services/nft.service";
+import { SessionExpiredError } from "../libs/api.client";
+import { createLogger } from "../libs/logger";
 
 interface Options {
   tokenId: number | string | null | undefined;
@@ -86,8 +88,11 @@ export function useLivePostReactions({ tokenId, userAddress, requireAuth, onErro
           dislikeCount: nextDislikeCount,
           reactionCounts: applyReactionDelta(reactionCounts, myReaction, next, voteWeight),
         });
-        const rollback = () => {
+        const rollback = (error?: unknown) => {
+          if (error instanceof SessionExpiredError) return;
           revertEngagement(engagementKey, { isLiked, isDisliked, myReaction, likeCount, dislikeCount, reactionCounts });
+          createLogger('PostReaction').error('Failed to update reaction', { tokenId, reaction },
+            error instanceof Error ? error : String((error as any)?.error || 'Unsuccessful response'));
           onError?.();
         };
         const request =
@@ -96,7 +101,7 @@ export function useLivePostReactions({ tokenId, userAddress, requireAuth, onErro
             : reactToNFT({ streamTokenId: tokenId, reaction });
         request
           .then((res: any) => {
-            if (isFailedResponse(res)) rollback();
+            if (isFailedResponse(res)) rollback(res);
           })
           .catch(rollback)
           .finally(() => {

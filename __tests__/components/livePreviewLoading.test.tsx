@@ -1,6 +1,7 @@
 import React from 'react';
 import { act, fireEvent, render } from '@testing-library/react-native';
 import LiveFeedPreview from '../../components/common/LiveFeedPreview';
+import { visualActivity } from '../../libs/visualActivity';
 
 jest.mock('react-native-css-interop/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
 jest.mock('react-native', () => ({
@@ -9,7 +10,14 @@ jest.mock('react-native', () => ({
 }));
 
 let mockStatus = 'loading';
-const mockPlayer = { play: jest.fn(), pause: jest.fn(), release: jest.fn(), status: 'loading' };
+const mockPlayingListeners = new Set<() => void>();
+const mockPlayer = {
+  play: jest.fn(), pause: jest.fn(), release: jest.fn(), status: 'loading',
+  addListener: jest.fn((_event: string, listener: () => void) => {
+    mockPlayingListeners.add(listener);
+    return { remove: () => mockPlayingListeners.delete(listener) };
+  }),
+};
 jest.mock('expo', () => ({ useEvent: () => ({ status: mockStatus }) }));
 jest.mock('expo-video', () => ({
   useVideoPlayer: (_url: string, setup: (p: unknown) => void) => { setup(mockPlayer); return mockPlayer; },
@@ -25,7 +33,10 @@ jest.mock('../../components/ui/Icon', () => () => null);
 
 describe('live preview loading feedback', () => {
   beforeEach(() => { jest.useFakeTimers(); mockStatus = 'loading'; });
-  afterEach(() => jest.useRealTimers());
+  afterEach(() => {
+    act(() => { visualActivity.setCall(false, false); jest.advanceTimersByTime(250); });
+    jest.useRealTimers();
+  });
 
   it('waits for a rendered frame, returns on buffering, and clears on error', () => {
     const view = render(<LiveFeedPreview url="https://example.com/live.m3u8" active />);
@@ -47,6 +58,21 @@ describe('live preview loading feedback', () => {
     const view = render(<LiveFeedPreview url="https://example.com/live.m3u8" active={false} />);
     expect(view.queryByTestId('live-video')).toBeNull();
     expect(view.queryByTestId('live-loader')).toBeNull();
+  });
+
+  it('pauses for a call and rejects a late native playing event until the call ends', () => {
+    const view = render(<LiveFeedPreview url="https://example.com/live.m3u8" active />);
+    act(() => jest.advanceTimersByTime(400));
+    expect(view.getByTestId('live-video')).toBeTruthy();
+    mockPlayer.pause.mockClear();
+    act(() => visualActivity.setCall(true, true));
+    expect(mockPlayer.pause).toHaveBeenCalled();
+    mockPlayer.pause.mockClear();
+    act(() => { mockPlayingListeners.forEach(listener => listener()); });
+    expect(mockPlayer.pause).toHaveBeenCalled();
+    mockPlayer.play.mockClear();
+    act(() => { visualActivity.setCall(false, false); jest.advanceTimersByTime(250); });
+    expect(mockPlayer.play).toHaveBeenCalled();
   });
 
   it('does not allocate for a live row passed during a fling', () => {

@@ -179,6 +179,7 @@
     "newMembersHint": "Tocmai te-ai alăturat — salută",
     "scroll": "Scroll",
     "noFilterMatches": "Niciun conținut nu se potrivește cu filtrele tale.",
+    "followingEmpty": "Încă nu există postări de la persoanele pe care le urmărești",
     "clearFilters": "Șterge filtrele"
   },
   "explore": {
@@ -4800,11 +4801,11 @@
     "bridgeAction": "Punte {{from}} → {{to}}",
     "failed": "Puntea a eșuat",
     "title": "Transferă Tokenuri prin Bridge",
-    "howItWorksBody": "Trimite tokenuri DeHub la adresa de releu a bridge-ului pe lanțul sursă. Releul livrează automat suma echivalentă pe lanțul destinație în câteva minute.",
+    "howItWorksBody": "Trimite tokenuri DeHub la adresa de releu a bridge-ului pe lanțul sursă. Echipa trimite tokenurile pe lanțul de destinație, de obicei în 1-5 zile lucrătoare.",
     "relayAddress": "Adresa releului bridge (trimite tokenuri aici pe lanțul sursă):",
     "insufficient": "Nu sunt suficiente tokenuri pe {{chain}}.",
     "insufficientOnChain": "Nu sunt suficiente tokenuri pe {{chain}}. Soldul on-chain poate diferi de cel afișat.",
-    "sentArriveShortly": "{{amount}} tokenuri trimise de la {{from}} → {{to}}. Vor ajunge în curând.",
+    "sentArriveShortly": "{{amount}} tokenuri trimise de la {{from}} la {{to}}. Echipa trimite tokenurile pe lanțul de destinație, de obicei în 1-5 zile lucrătoare.",
     "subtitle": "Mută tokenuri DeHub între lanțuri",
     "queueTitle": "Poduri",
     "transferCount": "Transferuri: {{count}}",
@@ -8115,11 +8116,11 @@
           "4": "Introduceți numărul de token-uri de transferat.",
           "5": "Revizuiți taxa de transfer și timpul estimat de sosire.",
           "6": "Confirmați tranzacția de transfer.",
-          "7": "Așteptați finalizarea tranzacției — transferul poate dura câteva minute."
+          "7": "Echipa trimite tokenurile pe lanțul de destinație, de obicei în 1-5 zile lucrătoare."
         },
         "tips": {
           "1": "Taxele de transfer variază în funcție de perechea de lanțuri.",
-          "2": "Transferul durează de obicei 1-5 minute, în funcție de lanțurile implicate.",
+          "2": "Deocamdată, plățile prin bridge se fac manual.",
           "3": "Verificați întotdeauna lanțul destinație înainte de a confirma."
         }
       },

@@ -58,6 +58,7 @@ import GettingStartedCard from "../components/Onboarding/GettingStartedCard";
 import { pagerPageIntersectsViewport } from "../libs/pagerVisibility";
 import { useAppTheme } from "../context/ThemeContext";
 import { holdThemeBackdrop } from "../libs/themeBackdrop";
+import { useAuthActions, useAuthState } from "../context/AuthContext";
 
 const FALLBACK_CATEGORIES: string[] = [];
 const SHUFFLE_SEED_EXPIRY_MS = 30 * 60 * 1000;
@@ -172,6 +173,8 @@ export default function HomeScreen() {
   const isFocused = useIsFocused();
   const { skin, theme } = useAppTheme();
   const { t } = useTranslation();
+  const { isSignedIn } = useAuthState();
+  const { requireAuth } = useAuthActions();
   // System floats its glass pill over the feed like the canvas themes do, so
   // it gets the same clear header and the same cut around the pill.
   const glassNav = !!skin || theme === "system";
@@ -305,13 +308,16 @@ export default function HomeScreen() {
   // key), so including it here only rebuilt this object on every tab switch and
   // re-rendered all six lists for nothing.
   const feedParams = useMemo(() => {
+    // "Following" is Latest narrowed to followed creators, as on web.
+    const following = filters.sortBy === "following";
     const params: Record<string, any> = {
       category: selectedCategory,
-      sortBy: filters.sortBy as FeedSortBy,
+      sortBy: (following ? "createdAt" : filters.sortBy) as FeedSortBy,
       sortOrder: "desc" as const,
       status: "all" as const,
     };
 
+    if (following) params.followingOnly = true;
     if (filters.sortBy === "random") params.shuffleSeed = shuffleSeed;
     if (filters.dateRange) params.range = filters.dateRange as FeedRange;
     if (filters.contentAccess.includes("ppv")) params.isPPV = true;
@@ -727,7 +733,7 @@ export default function HomeScreen() {
     );
   }, [filters, selectedCategory]);
 
-  const handleFiltersChange = useCallback((newFilters: FeedFilters) => {
+  const applyFilters = useCallback((newFilters: FeedFilters) => {
     // Only the chips that re-run the query arm the loader. postType is a pager
     // page turn — its destination list carries its own skeleton, and covering
     // the pager mid-slide would hide the very animation that answers the tap.
@@ -739,6 +745,27 @@ export default function HomeScreen() {
     if (changesQuery) beginFilterTransition();
     setFilters(newFilters);
   }, [filters, beginFilterTransition]);
+
+  // The Following feed is personal, so a signed-out tap asks for sign-in
+  // first and lands on the feed once it succeeds.
+  const handleFiltersChange = useCallback((newFilters: FeedFilters) => {
+    if (newFilters.sortBy === "following" && filters.sortBy !== "following" && !isSignedIn) {
+      setFilterPanelVisible(false);
+      requireAuth(() => {
+        beginFilterTransition();
+        setFilters((prev) => ({ ...prev, sortBy: "following" }));
+      });
+      return;
+    }
+    applyFilters(newFilters);
+  }, [filters.sortBy, isSignedIn, requireAuth, applyFilters, beginFilterTransition]);
+
+  // Signing out leaves nobody to follow: fall back to the default sort.
+  useEffect(() => {
+    if (!isSignedIn && filters.sortBy === "following") {
+      setFilters((prev) => ({ ...prev, sortBy: DEFAULT_FILTERS.sortBy }));
+    }
+  }, [isSignedIn, filters.sortBy]);
 
   const handleFilterPress = useCallback(() => {
     setFilterPanelVisible((prev) => !prev);
@@ -1056,6 +1083,7 @@ export default function HomeScreen() {
           selectedCategory={selectedCategory}
           onCategoryPress={handleCategoryPress}
           onResetFilters={handleResetFilters}
+          showFollowingSort
         />
       </Animated.View>
 

@@ -178,6 +178,7 @@
     "noShortsFound": "ບໍ່ພົບ Shorts",
     "newMembersHint": "ເຂົ້າຮ່ວມແລ້ວ — ທັກທາຍ",
     "noFilterMatches": "ບໍ່ມີເນື້ອໃນທີ່ກົງກັບຕົວກອງຂອງທ່ານ.",
+    "followingEmpty": "ຍັງບໍ່ມີໂພສຈາກຄົນທີ່ທ່ານຕິດຕາມ",
     "clearFilters": "ລ້າງຕົວກັ່ນຕອງ",
     "scroll": "ເລື່ອນ"
   },
@@ -4771,11 +4772,11 @@
     "bridging": "ກຳລັງບຣິດ…",
     "bridgeAction": "ບຣິດ {{from}} → {{to}}",
     "failed": "ບຣິດລົ້ມເຫຼວ",
-    "howItWorksBody": "ສົ່ງ DeHub token ໄປຫາທີ່ຢູ່ relay ຂອງ bridge ໃນ chain ຕົ້ນທາງ. Relay ຈະສົ່ງຈໍານວນທີ່ເທົ່າກັນໂດຍອັດຕະໂນມັດໃນ chain ປາຍທາງພາຍໃນນາທີ.",
+    "howItWorksBody": "ສົ່ງ DeHub token ໄປຫາທີ່ຢູ່ relay ຂອງ bridge ໃນ chain ຕົ້ນທາງ. ທີມງານຈະສົ່ງໂທເຄັນອອກໃນ chain ປາຍທາງ, ໂດຍປົກກະຕິພາຍໃນ 1-5 ວັນເຮັດວຽກ.",
     "relayAddress": "ທີ່ຢູ່ relay ຂອງ bridge (ສົ່ງ tokens ທີ່ນີ້ໃນ chain ຕົ້ນທາງ):",
     "insufficient": "ບໍ່ມີ tokens ພຽງພໍໃນ {{chain}}.",
     "insufficientOnChain": "ບໍ່ມີ tokens ພຽງພໍໃນ {{chain}}. ຍອດເງິນໃນ On-chain ອາດແຕກຕ່າງຈາກທີ່ສະແດງ.",
-    "sentArriveShortly": "{{amount}} tokens ຖືກສົ່ງຈາກ {{from}} → {{to}}. ພວກມັນຈະມາຮອດໃນໄວໆນີ້.",
+    "sentArriveShortly": "ສົ່ງ {{amount}} ໂທເຄັນຈາກ {{from}} ໄປ {{to}} ແລ້ວ. ທີມງານຈະສົ່ງໂທເຄັນອອກໃນ chain ປາຍທາງ, ໂດຍປົກກະຕິພາຍໃນ 1-5 ວັນເຮັດວຽກ.",
     "subtitle": "ຍ້າຍ DeHub tokens ລະຫວ່າງ chains",
     "queueTitle": "ຂົວ",
     "transferCount": "ການໂອນເງິນ: {{count}}",
@@ -7978,11 +7979,11 @@
           "4": "ໃສ່ຈໍານວນ tokens ທີ່ຈະ bridge.",
           "5": "ກວດສອບຄ່າທໍານຽມ bridge ແລະເວລາທີ່ຄາດວ່າຈະມາຮອດ.",
           "6": "ຢືນຢັນການເຮັດທຸລະກໍາ bridge.",
-          "7": "ລໍຖ້າການເຮັດທຸລະກໍາໃຫ້ສໍາເລັດ — ການ bridge ອາດໃຊ້ເວລາສອງສາມນາທີ."
+          "7": "ທີມງານຈະສົ່ງໂທເຄັນອອກໃນ chain ປາຍທາງ, ໂດຍປົກກະຕິພາຍໃນ 1-5 ວັນເຮັດວຽກ."
         },
         "tips": {
           "1": "ຄ່າທໍານຽມ bridge ແຕກຕ່າງກັນໄປຕາມຄູ່ chain.",
-          "2": "ການ bridge ໂດຍທົ່ວໄປໃຊ້ເວລາ 1-5 ນາທີຂຶ້ນກັບ chains ທີ່ກ່ຽວຂ້ອງ.",
+          "2": "ດຽວນີ້ການຈ່າຍເງິນຂອງ bridge ແມ່ນເຮັດດ້ວຍມື.",
           "3": "ກວດສອບ chain ປາຍທາງສະເໝີກ່ອນຢືນຢັນ."
         },
         "title": "ຂົວ",

@@ -179,6 +179,7 @@
     "newMembersHint": "Appena entrato — saluta",
     "scroll": "Scroll",
     "noFilterMatches": "Nessun contenuto corrisponde ai tuoi filtri.",
+    "followingEmpty": "Ancora nessun post dalle persone che segui",
     "clearFilters": "Cancella filtri"
   },
   "explore": {
@@ -4849,11 +4850,11 @@
     "bridgeAction": "Ponte {{from}} → {{to}}",
     "failed": "Bridge non riuscito",
     "title": "Bridge Tokens",
-    "howItWorksBody": "Invia token DeHub all'indirizzo del relay del bridge sulla chain di origine. Il relay consegna automaticamente l'importo equivalente sulla chain di destinazione entro pochi minuti.",
+    "howItWorksBody": "Invia token DeHub all'indirizzo del relay del bridge sulla chain di origine. Il team invia i token sulla chain di destinazione, di solito entro 1-5 giorni lavorativi.",
     "relayAddress": "Indirizzo del relay del bridge (invia token qui sulla chain di origine):",
     "insufficient": "Token insufficienti su {{chain}}.",
     "insufficientOnChain": "Token insufficienti su {{chain}}. Il saldo on-chain potrebbe differire da quello visualizzato.",
-    "sentArriveShortly": "{{amount}} token inviati da {{from}} → {{to}}. Arriveranno a breve.",
+    "sentArriveShortly": "{{amount}} token inviati da {{from}} a {{to}}. Il team invia i token sulla chain di destinazione, di solito entro 1-5 giorni lavorativi.",
     "subtitle": "Sposta i token DeHub tra le chain",
     "queueTitle": "Ponti",
     "transferCount": "Trasferimenti: {{count}}",
@@ -8131,11 +8132,11 @@
           "4": "Inserisci il numero di token da trasferire.",
           "5": "Rivedi la commissione di bridge e il tempo di arrivo stimato.",
           "6": "Conferma la transazione di bridge.",
-          "7": "Attendi il completamento della transazione: il bridging potrebbe richiedere alcuni minuti."
+          "7": "Il team invia i token sulla chain di destinazione, di solito entro 1-5 giorni lavorativi."
         },
         "tips": {
           "1": "Le commissioni di bridge variano in base alla coppia di catene.",
-          "2": "Il bridging richiede in genere 1-5 minuti a seconda delle catene coinvolte.",
+          "2": "Per ora i pagamenti del bridge vengono effettuati a mano.",
           "3": "Controlla sempre la catena di destinazione prima di confermare."
         }
       },

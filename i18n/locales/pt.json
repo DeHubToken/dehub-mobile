@@ -179,6 +179,7 @@
     "newMembersHint": "Acabou de entrar — diga olá",
     "scroll": "Scroll",
     "noFilterMatches": "Nenhum conteúdo corresponde aos seus filtros.",
+    "followingEmpty": "Ainda não há publicações de quem você segue",
     "clearFilters": "Limpar filtros"
   },
   "explore": {
@@ -4853,11 +4854,11 @@
     "bridgeAction": "Ponte {{from}} → {{to}}",
     "failed": "A ponte falhou",
     "title": "Ponte de Tokens",
-    "howItWorksBody": "Envie tokens DeHub para o endereço de retransmissão da ponte na cadeia de origem. A retransmissão entrega automaticamente o valor equivalente na cadeia de destino em minutos.",
+    "howItWorksBody": "Envie tokens DeHub para o endereço de retransmissão da ponte na cadeia de origem. A equipe envia os tokens na rede de destino, geralmente em 1-5 dias úteis.",
     "relayAddress": "Endereço de retransmissão da ponte (envie tokens aqui na cadeia de origem):",
     "insufficient": "Tokens insuficientes em {{chain}}.",
     "insufficientOnChain": "Tokens insuficientes em {{chain}}. O saldo na cadeia pode diferir do exibido.",
-    "sentArriveShortly": "{{amount}} tokens enviados de {{from}} → {{to}}. Eles chegarão em breve.",
+    "sentArriveShortly": "{{amount}} tokens enviados de {{from}} para {{to}}. A equipe envia os tokens na rede de destino, geralmente em 1-5 dias úteis.",
     "subtitle": "Mover tokens DeHub entre redes",
     "queueTitle": "Pontes",
     "transferCount": "Transferências: {{count}}",
@@ -8136,11 +8137,11 @@
           "4": "Digite o número de tokens para transferir.",
           "5": "Revise a taxa de transferência e o tempo estimado de chegada.",
           "6": "Confirme a transação de transferência.",
-          "7": "Aguarde a conclusão da transação — a transferência pode levar alguns minutos."
+          "7": "A equipe envia os tokens na rede de destino, geralmente em 1-5 dias úteis."
         },
         "tips": {
           "1": "As taxas de transferência variam por par de cadeias.",
-          "2": "A transferência geralmente leva de 1 a 5 minutos, dependendo das cadeias envolvidas.",
+          "2": "Por enquanto, os pagamentos da ponte são feitos manualmente.",
           "3": "Sempre verifique a cadeia de destino antes de confirmar."
         }
       },

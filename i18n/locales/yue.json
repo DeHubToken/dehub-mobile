@@ -178,6 +178,7 @@
     "noShortsFound": "找不到短片",
     "newMembersHint": "剛加入 — 打個招呼",
     "noFilterMatches": "冇符合你篩選條件嘅內容。",
+    "followingEmpty": "你追蹤嘅人暫時未有貼文",
     "clearFilters": "清除篩選",
     "scroll": "捲動"
   },
@@ -4793,11 +4794,11 @@
     "bridgeAction": "跨鏈 {{from}} → {{to}}",
     "failed": "跨鏈失敗",
     "title": "橋接代幣",
-    "howItWorksBody": "將 DeHub 代幣發送到來源鏈上的橋接中繼地址。中繼會在幾分鐘內自動在目標鏈上交付等值的金額。",
+    "howItWorksBody": "將 DeHub 代幣發送到來源鏈上的橋接中繼地址。團隊會喺目標鏈上發出代幣，通常喺 1-5 個工作天內。",
     "relayAddress": "橋接中繼地址（在來源鏈上將代幣發送到此處）：",
     "insufficient": "{{chain}} 上代幣不足。",
     "insufficientOnChain": "{{chain}} 上代幣不足。鏈上餘額可能與顯示的不同。",
-    "sentArriveShortly": "{{amount}} 代幣從 {{from}} 發送到 {{to}}。它們很快就會到達。",
+    "sentArriveShortly": "已由 {{from}} 發送 {{amount}} 個代幣到 {{to}}。團隊會喺目標鏈上發出代幣，通常喺 1-5 個工作天內。",
     "subtitle": "在鏈之間移動 DeHub 代幣",
     "queueTitle": "橋樑",
     "transferCount": "轉數快： {{count}}",
@@ -8088,11 +8089,11 @@
           "4": "輸入要橋接嘅代幣數量。",
           "5": "查看橋接費用同預計到達時間。",
           "6": "確認橋接交易。",
-          "7": "等待交易完成 — 橋接可能需要幾分鐘時間。"
+          "7": "團隊會喺目標鏈上發出代幣，通常喺 1-5 個工作天內。"
         },
         "tips": {
           "1": "橋接費用因鏈對而異。",
-          "2": "橋接通常需要 1-5 分鐘，具體取決於涉及嘅鏈。",
+          "2": "橋接付款暫時由人手處理。",
           "3": "確認前務必仔細檢查目的地鏈。"
         }
       },

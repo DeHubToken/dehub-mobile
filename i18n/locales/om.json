@@ -179,6 +179,7 @@
     "newMembersHint": "Reefu joined — nagaa jedhaa",
     "scroll": "Scroll",
     "noFilterMatches": "Qabiyyeen calallii kee waliin walsimu hin jiru.",
+    "followingEmpty": "Namoota ati hordoftu irraa ammaaf barruun hin jiru",
     "clearFilters": "Gingilchaawwan haqi"
   },
   "explore": {
@@ -4803,11 +4804,11 @@
     "bridgeAction": "Riqicha {{from}} → {{to}}",
     "failed": "Riqichi hin milkoofne",
     "title": "Mallattoo Riqichaa",
-    "howItWorksBody": "Mallattoolee DeHub gara teessoo riqicha rileey sansalata madda irratti ergi. Riileey ofumaan hanga walqixa ta'e sansalata bakka itti geessu irratti daqiiqaa muraasa keessatti geessisa.",
+    "howItWorksBody": "Mallattoolee DeHub gara teessoo riqicha rileey sansalata madda irratti ergi. Gareen tokens kana sansalata gahumsaa irratti erga, yeroo baay'ee guyyoota hojii 1-5 keessatti.",
     "relayAddress": "Teessoo riqicha rileey (tokens asitti sansalata madda irratti ergi):",
     "insufficient": "{{chain}} irratti mallattoo gahaa miti.",
     "insufficientOnChain": "{{chain}} irratti mallattoo gahaa miti. Madaalliin sansalataa irratti mul'ate irraa adda ta'uu danda'a.",
-    "sentArriveShortly": "{{amount}} mallattoolee {{from}} → {{to}} irraa ergaman. Yeroo gabaabaa keessatti ni dhufu.",
+    "sentArriveShortly": "Tokens {{amount}} {{from}} irraa gara {{to}}tti ergameera. Gareen tokens kana sansalata gahumsaa irratti erga, yeroo baay'ee guyyoota hojii 1-5 keessatti.",
     "subtitle": "Mallattoolee DeHub sansalata gidduutti sochoosi",
     "queueTitle": "Riqichawwan",
     "transferCount": "Jijjiirraa: {{count}}",
@@ -8129,11 +8130,11 @@
           "4": "Lakkoofsa mallattoolee riqicha gochuuf galchi.",
           "5": "Kaffaltii riqichaa fi tilmaama yeroo dhufaatii ilaali.",
           "6": "Daldala riqicha mirkaneessuu.",
-          "7": "Daldalli akka xumuramu eegaa — riqicha gochuun daqiiqaa muraasa fudhachuu danda&#39;a."
+          "7": "Gareen tokens kana sansalata gahumsaa irratti erga, yeroo baay'ee guyyoota hojii 1-5 keessatti."
         },
         "tips": {
           "1": "Kaffaltiin riqicha sansalataa lamaatiin garaagarummaa qaba.",
-          "2": "Riqicha hojjechuun akkaataa idileetti sansalata hirmaatan irratti hundaa’uun daqiiqaa 1-5 fudhata.",
+          "2": "Ammaaf kaffaltiin riqichaa harkaan raawwatama.",
           "3": "Yeroo hunda osoo hin mirkaneessiin dura sansalata bakka itti geessu lama ilaali."
         }
       },

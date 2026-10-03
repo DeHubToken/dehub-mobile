@@ -109,6 +109,7 @@ export type AppStackParamList = {
   /** dehub.io/app/post/:tokenId/info */
   [ScreenNames.PostInfo]: { tokenId: string };
   [ScreenNames.ImageViewer]: {
+    galleryKey?: string;
     imageUrl?: string;
     images?: (string | { uri: string })[];
     initialIndex?: number;

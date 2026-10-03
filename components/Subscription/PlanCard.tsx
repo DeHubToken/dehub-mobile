@@ -131,7 +131,7 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
       // DHB is transferred into treasury custody and is not sold. The server
       // verifies this payment before it activates access and credits the
       // creator the plan's frozen USDT value.
-      setStage(t("subscriptions.confirmInWallet"));
+      setStage(t("upload.stageConfirming"));
       const dhbContract = await buildContract(provider, ERC20_ABI, intent.dhbToken, true);
       const tx = await writeContractAA(
         dhbContract,

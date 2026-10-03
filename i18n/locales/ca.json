@@ -179,6 +179,7 @@
     "newMembersHint": "Acabes d'entrar — saluda",
     "scroll": "Scroll",
     "noFilterMatches": "Cap contingut no coincideix amb els teus filtres.",
+    "followingEmpty": "Encara no hi ha publicacions de la gent que segueixes",
     "clearFilters": "Neteja els filtres"
   },
   "explore": {
@@ -4800,11 +4801,11 @@
     "bridgeAction": "Pont {{from}} → {{to}}",
     "failed": "El pont ha fallat",
     "title": "Pont de Tokens",
-    "howItWorksBody": "Envia tokens DeHub a l'adreça del relleu del pont a la cadena d'origen. El relleu lliura automàticament l'equivalent a la cadena de destinació en pocs minuts.",
+    "howItWorksBody": "Envia tokens DeHub a l'adreça del relleu del pont a la cadena d'origen. L'equip envia els tokens a la cadena de destinació, normalment en 1-5 dies laborables.",
     "relayAddress": "Adreça del relleu del pont (envia tokens aquí a la cadena d'origen):",
     "insufficient": "No hi ha prou tokens a {{chain}}.",
     "insufficientOnChain": "No hi ha prou tokens a {{chain}}. El saldo a la cadena pot diferir del que es mostra.",
-    "sentArriveShortly": "S'han enviat {{amount}} tokens des de {{from}} → {{to}}. Arribaran aviat.",
+    "sentArriveShortly": "S'han enviat {{amount}} tokens de {{from}} a {{to}}. L'equip envia els tokens a la cadena de destinació, normalment en 1-5 dies laborables.",
     "subtitle": "Mou tokens DeHub entre cadenes",
     "queueTitle": "Ponts",
     "transferCount": "Transferències: {{count}}",
@@ -8101,11 +8102,11 @@
           "4": "Introdueix el nombre de tokens a transferir.",
           "5": "Revisa la tarifa de transferència i el temps estimat d'arribada.",
           "6": "Confirma la transacció de transferència.",
-          "7": "Espera que la transacció es completi; la transferència pot trigar uns minuts."
+          "7": "L'equip envia els tokens a la cadena de destinació, normalment en 1-5 dies laborables."
         },
         "tips": {
           "1": "Les tarifes de transferència varien segons el parell de cadenes.",
-          "2": "La transferència sol trigar entre 1 i 5 minuts, depenent de les cadenes implicades.",
+          "2": "De moment, els pagaments del pont es fan a mà.",
           "3": "Comprova sempre la cadena de destinació abans de confirmar."
         }
       },

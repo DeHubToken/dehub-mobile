@@ -55,7 +55,7 @@ export const CallIdentity: React.FC<{
   kindLabel: string;
   kindIcon: IconName;
   name: string;
-  status: string;
+  status: React.ReactNode;
   avatarUri?: string | null;
   avatarSize?: number;
   compact?: boolean;

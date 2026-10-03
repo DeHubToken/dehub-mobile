@@ -179,6 +179,7 @@
     "newMembersHint": "Grad bi üs igstige – säg hallo",
     "scroll": "Scroll",
     "noFilterMatches": "Kei Inhalt passt zu dine Filter.",
+    "followingEmpty": "No kei Posts vo Lüüt, wo du folgsch",
     "clearFilters": "Filter lösche"
   },
   "explore": {
@@ -4829,11 +4830,11 @@
     "bridgeAction": "Bridge {{from}} → {{to}}",
     "failed": "Bridge fehlgschlage",
     "title": "Tokens bridge",
-    "howItWorksBody": "Schick DeHub-Tokens a d'Bridge-Relay-Adress uf de Quell-Chaine. D'Relay liiferet automatisch de glichi Betrag uf de Ziel-Chaine innert Minute.",
+    "howItWorksBody": "Schick DeHub-Tokens a d'Bridge-Relay-Adress uf de Quell-Chaine. S'Team schickt d'Tokens uf de Ziil-Chain uus, meischtens innert 1-5 Wärchtig.",
     "relayAddress": "Bridge-Relay-Adress (Tokens do uf de Quell-Chaine schickä):",
     "insufficient": "Nöd gnueg Tokens uf {{chain}}.",
     "insufficientOnChain": "Nöd gnueg Tokens uf {{chain}}. D'On-Chain-Balanze chan vo de dargstellte abwiiche.",
-    "sentArriveShortly": "{{amount}} Tokens gschickt vo {{from}} → {{to}}. Sie chömed bald.",
+    "sentArriveShortly": "{{amount}} Tokens vo {{from}} uf {{to}} gschickt. S'Team schickt d'Tokens uf de Ziil-Chain uus, meischtens innert 1-5 Wärchtig.",
     "subtitle": "DeHub Token zwüsche Chän verschiebe",
     "queueTitle": "Brügg",
     "transferCount": "Überwise: {{count}}",
@@ -8123,11 +8124,11 @@
           "4": "Gib d Aazal vo de Token ii, wo du wetsch bridge.",
           "5": "Überprüef d Bridge-Gebühr und d gschätzti Aakuunftszit.",
           "6": "Bestätig d Bridge-Transaktion.",
-          "7": "Wart, bis d Transaktion abgschlosse isch — s Bridging chan paar Minute dauere."
+          "7": "S'Team schickt d'Tokens uf de Ziil-Chain uus, meischtens innert 1-5 Wärchtig."
         },
         "tips": {
           "1": "Bridge-Gebühre variiere je nach Chänepaar.",
-          "2": "Bridging dauert normalerwiis 1-5 Minute, je nach beteiligte Chän.",
+          "2": "Bridge-Uuszaalige wärded vorläufig vo Hand gmacht.",
           "3": "Überprüef immer d Zielchän, bevor du bestätigsch."
         }
       },

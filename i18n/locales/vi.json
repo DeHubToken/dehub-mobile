@@ -179,6 +179,7 @@
     "newMembersHint": "Vừa tham gia — hãy chào hỏi",
     "scroll": "Scroll",
     "noFilterMatches": "Không có nội dung nào khớp với bộ lọc của bạn.",
+    "followingEmpty": "Chưa có bài đăng nào từ những người bạn theo dõi",
     "clearFilters": "Xóa bộ lọc"
   },
   "explore": {
@@ -4812,11 +4813,11 @@
     "bridgeAction": "Bắc cầu {{from}} → {{to}}",
     "failed": "Bắc cầu thất bại",
     "title": "Chuyển Token qua Cầu nối",
-    "howItWorksBody": "Gửi token DeHub đến địa chỉ chuyển tiếp cầu nối trên chuỗi nguồn. Bộ chuyển tiếp tự động cung cấp số lượng tương đương trên chuỗi đích trong vòng vài phút.",
+    "howItWorksBody": "Gửi token DeHub đến địa chỉ chuyển tiếp cầu nối trên chuỗi nguồn. Đội ngũ sẽ gửi token trên chuỗi đích, thường trong vòng 1-5 ngày làm việc.",
     "relayAddress": "Địa chỉ chuyển tiếp cầu nối (gửi token tại đây trên chuỗi nguồn):",
     "insufficient": "Không đủ token trên {{chain}}.",
     "insufficientOnChain": "Không đủ token trên {{chain}}. Số dư trên chuỗi có thể khác với số dư hiển thị.",
-    "sentArriveShortly": "{{amount}} token đã được gửi từ {{from}} → {{to}}. Chúng sẽ đến sớm.",
+    "sentArriveShortly": "Đã gửi {{amount}} token từ {{from}} đến {{to}}. Đội ngũ sẽ gửi token trên chuỗi đích, thường trong vòng 1-5 ngày làm việc.",
     "subtitle": "Di chuyển token DeHub giữa các chuỗi",
     "queueTitle": "Cầu",
     "transferCount": "Chuyển khoản: {{count}}",
@@ -8218,11 +8219,11 @@
           "4": "Nhập số lượng token để chuyển.",
           "5": "Xem lại phí chuyển và thời gian đến ước tính.",
           "6": "Xác nhận giao dịch chuyển.",
-          "7": "Chờ giao dịch hoàn tất — việc chuyển có thể mất vài phút."
+          "7": "Đội ngũ sẽ gửi token trên chuỗi đích, thường trong vòng 1-5 ngày làm việc."
         },
         "tips": {
           "1": "Phí chuyển khác nhau tùy thuộc vào cặp chuỗi.",
-          "2": "Việc chuyển thường mất 1-5 phút tùy thuộc vào các chuỗi liên quan.",
+          "2": "Hiện tại, các khoản chi trả qua cầu được thực hiện thủ công.",
           "3": "Luôn kiểm tra kỹ chuỗi đích trước khi xác nhận."
         }
       },

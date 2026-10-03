@@ -1,3 +1,4 @@
+import BadgeArtwork from "../common/BadgeArtwork";
 import React, { FC, useCallback, useState } from "react";
 import { View, Text, TouchableOpacity} from "react-native";
 import SmartImage from "../common/SmartImage";
@@ -5,7 +6,7 @@ import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import { useUser } from "../../context/AuthContext";
 import { getAvatarUrl } from "../../libs/misc";
 import { formatCompactNumber } from "../../libs/numbers.util";
-import { getBadgeUrlFor, getBadgeOpticalStyle } from "../../libs/misc";
+import { getBadgeUrlFor, getBadgeHoverOpticalStyle as getBadgeOpticalStyle } from "../../libs/misc";
 import { followUser, unfollowUser } from "../../services/user.service";
 import Avatar from "../common/Avatar";
 import GlassFollowButton from "../ui/GlassFollowButton";
@@ -108,7 +109,7 @@ const SearchAccountCard: FC<SearchAccountCardProps> = ({ account, onFollowChange
             {displayName}
           </Text>
           {badgeImg ? (
-            <SmartImage
+            <BadgeArtwork
               source={badgeImg}
               style={getBadgeOpticalStyle(badgeImg, 14, 3, 18)}
               contentFit="contain"

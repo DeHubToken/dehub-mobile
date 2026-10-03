@@ -27,7 +27,12 @@ import {
   type EdgeFadeSides,
 } from "../../libs/edgeFadeMask";
 
-export type SortOption = "score" | "random" | "createdAt" | "views" | "likes" | "comments" | "tips";
+/**
+ * "following" is not an API sort: it is Latest narrowed to the people the
+ * viewer follows (sortBy=createdAt + followingOnly=true). Only the home feed
+ * offers it — see `showFollowingSort`.
+ */
+export type SortOption = "score" | "random" | "createdAt" | "views" | "likes" | "comments" | "tips" | "following";
 export type DateRangeOption = "" | "day" | "week" | "month" | "year";
 export type PostTypeOption = "all" | "video" | "feed-images" | "feed-audio" | "feed-simple" | "short" | "live";
 export type ContentAccessOption = "ppv" | "bounty" | "locked";
@@ -57,6 +62,12 @@ interface FeedFilterPanelProps {
    * cannot express. `filters.sortBy` is then never read or written.
    */
   hideSort?: boolean;
+  /**
+   * Offer the "Following" sort chip. Only a surface that maps it onto
+   * `followingOnly` (the home feed) should turn this on; anywhere else the
+   * chip would pass "following" straight through as an API sort.
+   */
+  showFollowingSort?: boolean;
   /** Panel height. The default fits every section; a trimmed panel wants less. */
   maxHeight?: number;
   /**
@@ -255,6 +266,7 @@ const FeedFilterPanelComponent: React.FC<FeedFilterPanelProps> = ({
   hidePostType,
   hideContentAccess,
   hideSort,
+  showFollowingSort = false,
   maxHeight = MAX_HEIGHT,
   innerScrollEnabled = true,
   embedded = false,
@@ -266,12 +278,15 @@ const FeedFilterPanelComponent: React.FC<FeedFilterPanelProps> = ({
     // Keep the default home sort at the leading edge of the filter row.
     { id: "createdAt" as SortOption, label: t("filters.latest") },
     { id: "score" as SortOption, label: t("filters.forYou", "For You") },
+    ...(showFollowingSort
+      ? [{ id: "following" as SortOption, label: t("filters.following") }]
+      : []),
     { id: "likes" as SortOption, label: t("filters.mostLiked") },
     { id: "tips" as SortOption, label: t("filters.mostTips") },
     { id: "views" as SortOption, label: t("filters.mostViewed") },
     { id: "comments" as SortOption, label: t("filters.mostComments") },
     { id: "random" as SortOption, label: t("filters.random") },
-  ], [t]);
+  ], [t, showFollowingSort]);
 
   const DATE_RANGE_OPTIONS = useMemo(() => [
     { id: "" as DateRangeOption, label: t("filters.all") },
