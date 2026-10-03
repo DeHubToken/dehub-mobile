@@ -18,7 +18,7 @@ const GRACE_MS = 2000;
 function disposeSession<T>(key: string, session: PostMediaSession<T>) {
   if (session.claims.length || sessions.get(key) !== session) return;
   if (isPictureInPicturePlayer(session.value)) {
-    releaseAfterPictureInPicture(session.value as VideoPlayer, () => disposeSession(key, session));
+    releaseAfterPictureInPicture(session.value as unknown as VideoPlayer, () => disposeSession(key, session));
     return;
   }
   clearTimeout(session.timer);

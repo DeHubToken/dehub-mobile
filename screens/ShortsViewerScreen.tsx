@@ -1,6 +1,6 @@
 import { usePersistentVideoPlayer } from '../hooks/usePersistentVideoPlayer';
 import { PersistentVideoView } from '../components/common/PersistentVideoView';
-import { isPictureInPicturePlayer, canStartVideo } from '../libs/pictureInPicture';
+import { isPictureInPicturePlayer, canStartVideo, subscribePictureInPicture, getPictureInPicturePlayer } from '../libs/pictureInPicture';
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useFeedPlaybackAllowed } from "../libs/visualActivity";
 /**
@@ -339,7 +339,15 @@ interface ShortItemProps {
 
 const ShortItem = React.memo<ShortItemProps>(({ item, isActive: activeItem, isNearby, activeVideoRef, itemHeight, viewportHeight, isMuted, volume, playbackRate, pagerGesture, onChromeVisibilityChange, onCommentsVisibilityChange }) => {
   const playbackAllowed = useFeedPlaybackAllowed();
-  const isActive = activeItem && playbackAllowed;
+  const pipPlayer = React.useSyncExternalStore(subscribePictureInPicture, getPictureInPicturePlayer, getPictureInPicturePlayer);
+  const player = usePersistentVideoPlayer(null, (p) => {
+    p.staysActiveInBackground = activeItem && playbackAllowed;
+    p.showNowPlayingNotification = activeItem && playbackAllowed;
+    p.loop = true;
+    p.muted = isMuted;
+    p.bufferOptions = FEED_BUFFER_OPTIONS;
+  });
+  const isActive = (activeItem && playbackAllowed) || pipPlayer === player;
   // Live window size, not a module-level snapshot: on iPad the pager cells
   // and tap zones were sized for the launch orientation.
   const { t } = useCopy();
@@ -555,11 +563,6 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive: activeItem, isNe
     };
   }, [resetTapSequence, tapAnimProgress]);
 
-  // The initialiser runs once, so read the current mute through a ref —
-  // otherwise a short opened while muted plays a burst of sound before the
-  // sync effect below lands.
-  const mutedRef = useRef(isMuted);
-  mutedRef.current = isMuted;
   // Native play events can arrive after the pager has moved. Every path that
   // can start playback reads this ref so a recycled/inactive cell cannot bring
   // back audio from the short that just left the screen.
@@ -571,13 +574,6 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive: activeItem, isNe
   const { liteMode } = useDataSaver();
   const playerSource = isActive || (isNearby && !liteMode) ? videoUrl || null : null;
 
-  const player = usePersistentVideoPlayer(null, (p) => {
-    p.staysActiveInBackground = isActive;
-    p.showNowPlayingNotification = isActive;
-    p.loop = true;
-    p.muted = mutedRef.current;
-    p.bufferOptions = FEED_BUFFER_OPTIONS;
-  });
 
 
   const stopPlayback = useCallback(() => {
