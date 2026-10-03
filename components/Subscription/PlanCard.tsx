@@ -66,12 +66,11 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
   const chainEntry = primaryPlanChain(plan);
   const targetChainId = chainEntry?.chainId || plan.chainId || 8453;
   const currency = (chainEntry?.currency || plan.currency || "DHB").toUpperCase();
-  const settlementCurrency = currency === "USD" ? "USDT" : currency;
   const isUsdPriced = ["USD", "USDT", "USDC"].includes(currency);
   const dhbUsd = DHB_PRELISTING_USD;
   const dhbEstimate = isUsdPriced ? dhbForUsd(Number(price || 0), dhbUsd) : Number(price || 0);
   const formattedPrice = isUsdPriced
-    ? `${formatAmount(price, 2)} ${settlementCurrency}`
+    ? `${formatAmount(price, 2)} USD`
     : t("subscriptions.tokenPrice", { amount: formatAmount(price) });
   const published = isPlanPublished(plan);
   // 999 is what lifetime plans were stored as before the contract's 0–12 range
@@ -200,17 +199,13 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
           {/* Price + duration */}
           <View>
             <View style={s.priceRow}>
-              <Text style={s.price}>{formattedPrice}</Text>
+              <DhbCoin size={20} />
+              <Text style={s.price}>{formatDhbPayment(dhbEstimate)}</Text>
               <Text style={s.duration}> / {formatDuration(plan.duration)}</Text>
             </View>
-            {isUsdPriced && (
-              <View style={s.dhbEquivalentRow}>
-                <DhbCoin size={13} />
-                <Text style={s.dhbEquivalentText}>
-                  {t("subscriptions.atPreListingRate", { amount: formatDhbPayment(dhbEstimate) })}
-                </Text>
-              </View>
-            )}
+            <View style={s.dhbEquivalentRow}>
+              <Text style={s.dhbEquivalentText}>≈ {total.toLocaleString(undefined, { style: "currency", currency: "USD" })} USD</Text>
+            </View>
           </View>
 
           {/* Benefits */}
