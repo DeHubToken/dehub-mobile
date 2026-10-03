@@ -474,6 +474,28 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     setAuthMethodState,
     didBootRefetchRef,
   });
+
+  useEffect(() => tokenRefreshManager.onSessionInvalidated(() => {
+    // SecureStore was cleared by refresh, but React still held the old user.
+    // Reset refs immediately so another tap cannot pass the stale auth gate.
+    isSignedInRef.current = false;
+    userRef.current = null;
+    needsUsernameRef.current = false;
+    setIsSignedIn(false);
+    setUser(null);
+    setNeedsUsername(false);
+    setProvisionalUser(null);
+    setProvisionalToken(null);
+    setBalancesLoading(false);
+    setAuthMethodState(null);
+    setPendingAction(null);
+    resetProviderState();
+    clearEoaSigningProvider();
+    clearSigningProvider();
+    clearPersistedNavigationState();
+    setShowSignInModal(true);
+  }), [resetProviderState]);
+
   // Boot hydration
   useAuthBoot<User>({
     getAuthUser,
@@ -620,8 +642,19 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const requireAuth = useCallback((action: () => void) => {
     log.debug("requireAuth:called", { isSignedIn: isSignedInRef.current, needsUsername: needsUsernameRef.current });
-    if (isSignedInRef.current && !needsUsernameRef.current) action();
-    else {
+    if (isSignedInRef.current && !needsUsernameRef.current) {
+      const address = userRef.current?.walletAddress || userRef.current?.address;
+      void (async () => {
+        await tokenRefreshManager.ensureFreshToken();
+        const token = await getAuthToken();
+        if (!token) {
+          await tokenRefreshManager.invalidateSession(null);
+          return;
+        }
+        if (isSignedInRef.current && !needsUsernameRef.current &&
+            address === (userRef.current?.walletAddress || userRef.current?.address)) action();
+      })().catch((error) => log.error('requireAuth:session-check-failed', error));
+    } else {
       setPendingAction(() => action);
       setShowSignInModal(true);
     }

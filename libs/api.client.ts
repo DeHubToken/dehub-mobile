@@ -32,6 +32,14 @@ const API_RELAY_BASE_URL = `${(env.APP_ORIGIN || 'https://dehub.io').replace(/\/
  */
 const DEFAULT_TIMEOUT_MS = 20_000;
 
+/** Credentials were rejected and the auth UI has been reset to sign-in. */
+export class SessionExpiredError extends Error {
+  constructor() {
+    super('Authentication required');
+    this.name = 'SessionExpiredError';
+  }
+}
+
 /** Uploads push real bytes over a slow uplink, so they get their own ceiling. */
 const UPLOAD_TIMEOUT_MS = 120_000;
 
@@ -258,10 +266,15 @@ export const apiClient = {
               }
               return { raw: trimmedRetry } as any;
             }
+            if (retryResponse.status === 401) {
+              await tokenRefreshManager.invalidateSession(newToken);
+            }
             // Retry also failed — fall through to throw
           }
           // Refresh failed or retry failed — throw original 401
-          throw new Error('Authentication required');
+          throw await getAuthToken()
+            ? new Error('Authentication required')
+            : new SessionExpiredError();
         }
 
         // Prefer API provided message
