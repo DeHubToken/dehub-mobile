@@ -96,6 +96,7 @@ import { speechAvailable } from "../../hooks/useVoiceDub";
 import { resolveViewCount } from "../../libs/numbers.util";
 import { seedViewerStats } from "../../libs/viewers.util";
 import { ScreenNames } from "../../navigation/ScreenNames";
+import { preparePostMediaNavigation } from "../../libs/post-media-session";
 import { useUser, useAuthActions, useAuthState } from "../../context/AuthContext";
 import { useEngagementWeight } from "../../hooks/useEngagementWeight";
 import { appliedEngagementWeight } from "../../libs/engagement-weight";
@@ -733,9 +734,16 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   // Relative time moves by the minute at most; recomputing it on every render
   // parsed the date each time.
   const timeAgo = useMemo(() => formatShortTimeAgo(createdAt), [createdAt]);
+  const warmPost = useCallback(() => {
+    if (disablePress || isLive || isShort || tokenId == null) return;
+    seedPostDetail(tokenId, item);
+    warmRequest(`nft:${tokenId}`, () => getNFT(tokenId));
+  }, [disablePress, isLive, isShort, tokenId, item]);
 
   const handleCardPress = useCallback(() => {
     if (disablePress) return;
+    preparePostMediaNavigation(getVideoUrl(tokenId));
+    if (item.audioUrl) preparePostMediaNavigation(getAudioUrl(item.audioUrl));
     onBeforeNavigate?.();
     hideUserProfile();
     if (isLive) {
@@ -772,6 +780,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     hideUserProfile();
     navigation.navigate(ScreenNames.ImageViewer, {
       images: galleryImages,
+      galleryKey: String(tokenId),
       initialIndex: index,
       soundtrack: !isActuallyGated && !matureGate.isGated ? soundtrack : undefined,
     });
@@ -1424,6 +1433,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     }
     const gallery = (
       <FeedImageGallery
+        postId={String(tokenId)}
         key={galleryImages.join('|')}
         images={galleryImages}
         width={itemWidth}
@@ -2359,6 +2369,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           and the post did not open. */}
       <PostTapSurface
         resetKey={postKey}
+        onPressIntent={warmPost}
         onReaction={handleVideoTapReaction}
         onPress={disablePress ? undefined : handleCardPress}
       >
