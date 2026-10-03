@@ -1,4 +1,5 @@
 import { useMediaVolume } from '../../libs/video-preferences';
+import { useFeedPlaybackAllowed, useCallInProgress } from "../../libs/visualActivity";
 import { MediaControlIcon as BareIcon, MediaControlText } from "../common/MediaControlGlyph";
 import { useSilenceOnRelease } from "../../hooks/useSilenceOnRelease";
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
@@ -2039,6 +2040,8 @@ FeedVideoPoster.displayName = "FeedVideoPoster";
  * still get it, since that chrome lives there.
  */
 const FeedVideoPlayer: React.FC<FeedVideoPlayerProps> = (props) => {
+  const playbackAllowed = useFeedPlaybackAllowed();
+  const callInProgress = useCallInProgress();
   const { autoplay: autoplayEnabled } = useAppPrefs();
   const { liteMode } = useDataSaver();
   // Which post this wrapper is showing. A tap and picture-in-picture belong to
@@ -2051,12 +2054,13 @@ const FeedVideoPlayer: React.FC<FeedVideoPlayerProps> = (props) => {
   const { isVisible, isAutoplayActive = true, isContentGated, transcodingStatus, videoUrl, onPress } = props;
   const needsChrome =
     isContentGated || transcodingStatus === "pending" || transcodingStatus === "on" || transcodingStatus === "failed";
-  const autoplayHere = isVisible && isAutoplayActive && autoplayEnabled && !liteMode;
+  const visible = (isVisible && playbackAllowed) || (inPictureInPicture && !callInProgress);
+  const autoplayHere = visible && isAutoplayActive && autoplayEnabled && !liteMode;
   // Waiting inside the active component is too late: useVideoPlayer(null)
   // still allocates an ExoPlayer. Keep passing cards as posters for the whole
   // dwell window; taps and picture-in-picture bypass that wait.
   const autoplaySettled = useSettledAutoplay(autoplayHere, videoUrl, AUTOPLAY_DELAY);
-  const mountPlayer = inPictureInPicture || (isVisible && (wanted || autoplaySettled || needsChrome));
+  const mountPlayer = visible && (inPictureInPicture || wanted || autoplaySettled || needsChrome);
 
   // Off screen, the tap is forgotten: coming back autoplays or shows the
   // poster, the same as any other card.
@@ -2081,7 +2085,7 @@ const FeedVideoPlayer: React.FC<FeedVideoPlayerProps> = (props) => {
     <FeedVideoPlayerActive
       key={postKey}
       {...props}
-      isVisible={isVisible || inPictureInPicture}
+      isVisible={visible}
       isAutoplayActive={isAutoplayActive || inPictureInPicture}
       onPictureInPictureChange={setInPictureInPicture}
       startOnMount={wanted}

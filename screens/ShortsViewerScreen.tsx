@@ -1,4 +1,5 @@
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useFeedPlaybackAllowed } from "../libs/visualActivity";
 /**
  * Shorts Viewer — full-screen vertical carousel.
  *
@@ -333,7 +334,9 @@ interface ShortItemProps {
   onCommentsVisibilityChange: (visible: boolean) => void;
 }
 
-const ShortItem = React.memo<ShortItemProps>(({ item, isActive, isNearby, activeVideoRef, itemHeight, viewportHeight, isMuted, volume, playbackRate, pagerGesture, onChromeVisibilityChange, onCommentsVisibilityChange }) => {
+const ShortItem = React.memo<ShortItemProps>(({ item, isActive: activeItem, isNearby, activeVideoRef, itemHeight, viewportHeight, isMuted, volume, playbackRate, pagerGesture, onChromeVisibilityChange, onCommentsVisibilityChange }) => {
+  const playbackAllowed = useFeedPlaybackAllowed();
+  const isActive = activeItem && playbackAllowed;
   // Live window size, not a module-level snapshot: on iPad the pager cells
   // and tap zones were sized for the launch orientation.
   const { t } = useCopy();

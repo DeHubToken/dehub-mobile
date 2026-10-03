@@ -1,4 +1,5 @@
 import React from "react";
+import { CallDuration } from "./CallDuration";
 import { View, Text, StyleSheet } from "react-native";
 import { TouchableOpacity } from "react-native";
 import Icon from "../ui/Icon";
@@ -7,10 +8,10 @@ import { useCall } from "../../context/CallContext";
 import { useTranslation } from "react-i18next";
 
 const CallMiniPlayer: React.FC = () => {
-  const { isCallActive, isConnecting, callDuration, endCall, setMinimized } = useCall();
+  const { isCallActive, isConnecting, isMinimized, endCall, setMinimized } = useCall();
   const { t } = useTranslation();
 
-  if (!isCallActive && !isConnecting) return null;
+  if (!isMinimized || (!isCallActive && !isConnecting)) return null;
 
   return (
     <View style={styles.container}>
@@ -23,7 +24,7 @@ const CallMiniPlayer: React.FC = () => {
         <View style={styles.iconWrap}>
           <Icon name="Phone" size={14} color="#F4F4F5" />
         </View>
-        <Text style={styles.duration}>{callDuration}</Text>
+        <Text style={styles.duration}><CallDuration fallback={t("calls.connecting")} /></Text>
       </TouchableOpacity>
       <TouchableOpacity
         onPress={endCall}
