@@ -26,7 +26,7 @@ function BadgeArtwork({ source, style }: Props) {
   const [failedAnimation, setFailedAnimation] = useState<number | null>(null);
   const active = hovered || pressed || focused;
   const playing = active && !reducedMotion && !!art && failedAnimation !== art.animation;
-  const poster = art?.poster ?? source;
+  const poster = tier === "Killer Whale" ? source : art?.poster ?? source;
 
   return (
     <Pressable
