@@ -1,3 +1,4 @@
+import BadgeArtwork from "../common/BadgeArtwork";
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   View,
@@ -13,7 +14,7 @@ import Avatar from "../common/Avatar";
 import Icon from "../ui/Icon";
 import VoiceNotePlayer from "../Comments/VoiceNotePlayer";
 import { getAvatarUrl } from "../../libs/misc";
-import { buildCdnPath, getBadgeUrlFor, getBadgeOpticalStyle } from "../../libs/misc";
+import { buildCdnPath, getBadgeUrlFor, getBadgeHoverOpticalStyle as getBadgeOpticalStyle } from "../../libs/misc";
 import { WEBSITE_LINK } from "../../config/links";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import type {
@@ -175,7 +176,7 @@ const AuthorHeader: React.FC<AuthorDisplay & { time?: string; onPress?: () => vo
           {name}
         </Text>
         {badgeImg ? (
-          <SmartImage
+          <BadgeArtwork
             source={badgeImg}
             style={getBadgeOpticalStyle(badgeImg, 14, 3, 18)}
             contentFit="contain"

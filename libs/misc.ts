@@ -1,5 +1,6 @@
 import env from "../config/env";
 import { LIGHT_BADGE_IMAGES } from "./light-badge-artwork";
+import { badgeHoverArt } from "./badgeHoverArt";
 import { Share, Platform } from "react-native";
 import { cdnImage } from "./cdnImage";
 import { overrideTierNameFor } from "./badgeOverrides";
@@ -588,9 +589,10 @@ export function getBadgeOpticalStyle(
   size: number,
   verticalOffset = 0,
   textLineHeight = size * 1.4,
+  artworkBounds?: { left: number; top: number; right: number; bottom: number },
 ) {
   const tier = Object.keys(BADGE_IMAGES).find((name) => BADGE_IMAGES[name] === source || LIGHT_BADGE_IMAGES[name] === source);
-  const optics = tier ? BADGE_OPTICS[tier] : undefined;
+  const optics = artworkBounds ?? (tier ? BADGE_OPTICS[tier] : undefined);
   const bounds = optics ?? { left: 0, top: 0, right: 128, bottom: 128 };
   // Roboto/SF capital height is approximately 0.72 of the font size.
   const renderedSize = size * 0.72 * 128 / (bounds.bottom - bounds.top);
@@ -620,6 +622,16 @@ export function getBadgeOpticalStyle(
     alignSelf: "center" as const,
     transform: [{ translateY: translateY + verticalOffset }],
   };
+}
+
+export function getBadgeHoverOpticalStyle(
+  source: number,
+  size: number,
+  verticalOffset = 0,
+  textLineHeight = size * 1.4,
+) {
+  const tier = Object.keys(BADGE_IMAGES).find((name) => BADGE_IMAGES[name] === source || LIGHT_BADGE_IMAGES[name] === source);
+  return getBadgeOpticalStyle(source, size, verticalOffset, textLineHeight, badgeHoverArt(tier)?.bounds);
 }
 
 // JPEG, not PNG. These are the placeholder cover strips behind a profile: they

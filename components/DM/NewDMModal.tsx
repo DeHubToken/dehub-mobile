@@ -1,3 +1,4 @@
+import BadgeArtwork from "../common/BadgeArtwork";
 import React, {
   useCallback,
   useEffect,
@@ -59,7 +60,7 @@ const ResultRow: React.FC<ResultRowProps> = ({ item, onPress, inContacts }) => {
             {display}
           </Text>
           {badgeImg ? (
-            <SmartImage source={badgeImg} style={{ width: 15, height: 15 }} contentFit="contain" />
+            <BadgeArtwork source={badgeImg} style={{ width: 15, height: 15 }} contentFit="contain" />
           ) : null}
         </View>
         <Text className="text-theme-neutrals-400 text-[12px] mt-0.5" numberOfLines={1}>
@@ -337,7 +338,7 @@ const NewDMModal: React.FC<NewDMModalProps> = ({
                             {display}
                           </Text>
                           {badgeImg ? (
-                            <SmartImage
+                            <BadgeArtwork
                               source={badgeImg}
                               style={{ width: 15, height: 15 }}
                               contentFit="contain"

@@ -1,3 +1,4 @@
+import BadgeArtwork from "../common/BadgeArtwork";
 import React, { memo, useCallback, useEffect, useMemo, useRef } from "react";
 import { View, Text, TouchableOpacity, Pressable } from "react-native";
 import SmartImage from "../common/SmartImage";
@@ -13,7 +14,7 @@ import TranslateButton from "../ui/TranslateButton";
 import { useTranslation } from "../../hooks/useTranslation";
 import { useTranslation as useI18n } from "react-i18next";
 import Avatar from "../common/Avatar";
-import { getAvatarUrl, getBadgeOpticalStyle, getBadgeUrlFor } from "../../libs/misc";
+import { getAvatarUrl, getBadgeHoverOpticalStyle as getBadgeOpticalStyle, getBadgeUrlFor } from "../../libs/misc";
 import { openInApp } from "../../libs/links.utils";
 import { ASSISTANT_USERNAME, isAssistantAddress } from "../../libs/assistant";
 import { resolveChatGif, gifCaption, gifBox } from "../../libs/chat-gif";
@@ -215,7 +216,7 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
             </View>
           )}
           {!!badgeImg && (
-            <SmartImage source={badgeImg} style={[getBadgeOpticalStyle(badgeImg, 14), { marginLeft: 0 }]} contentFit="contain" />
+            <BadgeArtwork source={badgeImg} style={[getBadgeOpticalStyle(badgeImg, 14), { marginLeft: 0 }]} contentFit="contain" />
           )}
           <Text className="text-white/50 text-[11px] ml-auto">
             {formatTime(message.createdAt)}
