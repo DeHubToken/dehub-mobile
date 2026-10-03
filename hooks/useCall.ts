@@ -1,79 +1,40 @@
 import { useState, useRef, useCallback, useEffect, useMemo } from "react";
 import { Platform, PermissionsAndroid, AppState } from "react-native";
 import createAgoraRtcEngine, {
-  RtcSurfaceView,
-  type IRtcEngine,
-  type IRtcEngineEventHandler,
-  type RtcConnection,
-  type VideoCanvas,
-  VideoSourceType,
-  RenderModeType,
-  ChannelProfileType,
-  ClientRoleType,
-  UserOfflineReasonType,
-  type ChannelMediaOptions,
+  type IRtcEngine, type IRtcEngineEventHandler, type VideoCanvas,
+  VideoSourceType, RenderModeType, ChannelProfileType, ClientRoleType,
 } from "react-native-agora";
 import { supabase, fetchAgoraToken } from "../services/supabase";
 import { AGORA_APP_ID } from "../config/agora.config";
 import { useAuth } from "../context/AuthContext";
 import { createLogger } from "../libs/logger";
 import { apiClient } from "../libs/api.client";
+import { formatCallDuration } from "../libs/callDuration";
+import { visualActivity } from "../libs/visualActivity";
+import { revokeAudioFocus } from "../libs/audioFocus";
+import { revokeAllFeedVideo } from "../libs/feedVideoFocus";
 
 const log = createLogger("useCall");
-
 export interface CallSession {
-  id: string;
-  caller_address: string;
-  recipient_address: string;
-  status: "ringing" | "connected" | "ended";
-  call_type: "audio" | "video";
-  signaling_data?: any;
-  created_at: string;
+  id: string; caller_address: string; recipient_address: string;
+  status: "ringing" | "connected" | "ended"; call_type: "audio" | "video";
+  signaling_data?: any; created_at: string;
 }
-
 export interface UseCallReturn {
-  isCallActive: boolean;
-  isIncoming: boolean;
-  currentCall: CallSession | null;
-  isConnecting: boolean;
-  isMuted: boolean;
-  isSpeakerOn: boolean;
-  isCameraOff: boolean;
-  callDuration: string;
-  remoteUid: number | null;
-  peerAddress: string;
-  localCanvas: VideoCanvas;
-  remoteCanvas: VideoCanvas;
+  isCallActive: boolean; isIncoming: boolean; currentCall: CallSession | null;
+  isConnecting: boolean; isMuted: boolean; isSpeakerOn: boolean; isCameraOff: boolean;
+  callStartedAt: number | null; remoteUid: number | null; peerAddress: string;
+  localCanvas: VideoCanvas; remoteCanvas: VideoCanvas;
   startCall: (recipientAddress: string, callType?: "audio" | "video") => Promise<void>;
-  endCall: () => void;
-  acceptCall: () => void;
-  rejectCall: () => void;
-  toggleMute: () => void;
-  toggleSpeaker: () => void;
-  toggleCamera: () => void;
-  switchCamera: () => void;
+  endCall: () => void; acceptCall: () => void; rejectCall: () => void;
+  toggleMute: () => void; toggleSpeaker: () => void; toggleCamera: () => void; switchCamera: () => void;
   setCallMessageHandler: (handler: ((content: string) => void) | null) => void;
-  /** The full-screen call UI is tucked away behind the mini-player. */
-  isMinimized: boolean;
-  setMinimized: (minimized: boolean) => void;
+  isMinimized: boolean; setMinimized: (minimized: boolean) => void;
 }
-
-let engineInstance: IRtcEngine | null = null;
-let engineInitialized = false;
-
-function getEngine(): IRtcEngine {
-  if (!engineInstance) {
-    engineInstance = createAgoraRtcEngine();
-  }
-  return engineInstance;
-}
-
-/** Constant, so it lives outside the component and never changes identity. */
 const LOCAL_CANVAS: VideoCanvas = {
-  uid: 0,
-  sourceType: VideoSourceType.VideoSourceCamera,
-  renderMode: RenderModeType.RenderModeHidden,
+  uid: 0, sourceType: VideoSourceType.VideoSourceCamera, renderMode: RenderModeType.RenderModeHidden,
 };
+type CallMedia = { engine: IRtcEngine; handler: IRtcEngineEventHandler; closed: boolean };
 
 export function useCall(): UseCallReturn {
   const [isCallActive, setIsCallActive] = useState(false);
@@ -83,511 +44,280 @@ export function useCall(): UseCallReturn {
   const [isMuted, setIsMuted] = useState(false);
   const [isSpeakerOn, setIsSpeakerOn] = useState(false);
   const [isCameraOff, setIsCameraOff] = useState(true);
-  const [callDuration, setCallDuration] = useState("00:00");
+  const [callStartedAt, setCallStartedAt] = useState<number | null>(null);
   const [remoteUid, setRemoteUid] = useState<number | null>(null);
-
+  const [isMinimized, setMinimized] = useState(false);
   const { user } = useAuth();
   const userAddress = (user?.walletAddress || user?.address || "").toLowerCase();
-
-  // Stable refs for callbacks
   const currentCallRef = useRef<CallSession | null>(null);
-  useEffect(() => { currentCallRef.current = currentCall; }, [currentCall]);
-
-  // Android back used to end the call. It now tucks the call screen away;
-  // the mini-player brings it back.
-  const [isMinimized, setMinimized] = useState(false);
-
-  const callTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const startedAtRef = useRef<number | null>(null);
+  const generationRef = useRef(0);
+  const joiningRef = useRef(false);
+  const mediaRef = useRef<CallMedia | null>(null);
   const callTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const callMessageHandlerRef = useRef<((content: string) => void) | null>(null);
   const setCallMessageHandler = useCallback((handler: ((content: string) => void) | null) => {
     callMessageHandlerRef.current = handler;
   }, []);
-
-  // Canvas configs for RtcSurfaceView. Both are memoised because they feed the
-  // memoised return object below — a fresh literal here would give that object
-  // a new identity on every render and defeat the whole thing. The local one is
-  // constant, so it is hoisted out of the component entirely.
-  const remoteCanvas: VideoCanvas = useMemo(
-    () => ({
-      uid: remoteUid ?? 0,
-      sourceType: VideoSourceType.VideoSourceRemote,
-      renderMode: RenderModeType.RenderModeHidden,
-    }),
-    [remoteUid],
-  );
-
-  // ── Agora engine ───────────────────────────────────────────────────────────
-
-  const initEngine = useCallback(async (): Promise<IRtcEngine> => {
-    const engine = getEngine();
-    if (!engineInitialized) {
-      if (!AGORA_APP_ID) throw new Error("AGORA_APP_ID is not configured");
-      engine.registerEventHandler(engineEventHandlerRef.current);
-      await engine.initialize({ appId: AGORA_APP_ID });
-      engineInitialized = true;
-      log.info("Agora engine initialized");
-    }
-    return engine;
+  const publishCall = useCallback((call: CallSession | null) => {
+    currentCallRef.current = call;
+    setCurrentCall(call);
   }, []);
-
-  const cleanupEngine = useCallback(async () => {
-    const engine = getEngine();
-    try {
-      await engine.leaveChannel();
-    } catch (e) {
-      log.warn("Engine leave error (non-fatal):", e);
-    }
-    // leaveChannel keeps the local preview and video capture running (the
-    // engine is a process-wide singleton), so every video call left the
-    // camera on until the app died, and the next stage join inherited it.
-    try {
-      engine.stopPreview();
-      engine.muteLocalVideoStream(true);
-      engine.enableLocalVideo(false);
-    } catch (e) {
-      log.warn("Engine video teardown error (non-fatal):", e);
-    }
-    setRemoteUid(null);
-    setIsCallActive(false);
-    setMinimized(false);
-    setIsConnecting(false);
-    setIsCameraOff(true);
-    if (callTimerRef.current) {
-      clearInterval(callTimerRef.current);
-      callTimerRef.current = null;
-    }
-    setCallDuration("00:00");
+  const clearTimeouts = useCallback(() => {
+    if (callTimeoutRef.current) clearTimeout(callTimeoutRef.current);
+    callTimeoutRef.current = null;
   }, []);
+  const markEnded = useCallback(async (call: CallSession | null) => {
+    if (!call || call.id === "pending") return;
+    try { await supabase.from("call_sessions").update({ status: "ended" }).eq("id", call.id); }
+    catch (error) { log.warn("Call status update failed", error); }
+  }, []);
+  const disposeMedia = useCallback((media: CallMedia | null) => {
+    if (!media || media.closed) return;
+    media.closed = true;
+    const engine = media.engine;
+    // Each operation is independent: one native failure must not skip release.
+    const operations = [
+      () => engine.unregisterEventHandler(media.handler),
+      () => engine.stopPreview(),
+      () => engine.muteLocalVideoStream(true),
+      () => engine.enableLocalVideo(false),
+      () => engine.muteLocalAudioStream(true),
+      () => engine.enableLocalAudio(false),
+      () => engine.leaveChannel(),
+      () => engine.release(),
+    ];
+    operations.forEach(operation => { try { operation(); } catch (error) { log.warn("Call teardown error", error); } });
+  }, []);
+  const endCall = useCallback(async () => {
+    const call = currentCallRef.current;
+    const startedAt = startedAtRef.current;
+    generationRef.current += 1;
+    joiningRef.current = false;
+    publishCall(null);
+    clearTimeouts();
+    const media = mediaRef.current;
+    mediaRef.current = null;
+    disposeMedia(media);
+    startedAtRef.current = null;
+    setCallStartedAt(null); setRemoteUid(null); setIsCallActive(false);
+    setIsIncoming(false); setIsConnecting(false); setMinimized(false);
+    setIsMuted(false); setIsSpeakerOn(false); setIsCameraOff(true);
+    visualActivity.setCall(false, false);
+    if (call && startedAt != null) {
+      callMessageHandlerRef.current?.(`📞 ${call.call_type === "video" ? "Video" : "Voice"} call ended · ${formatCallDuration(startedAt)}`);
+    }
+    await markEnded(call);
+  }, [publishCall, clearTimeouts, disposeMedia, markEnded]);
 
-  // ── Event handler (registered once; uses refs/state setters which are stable) ─
-
-  const engineEventHandlerRef = useRef<IRtcEngineEventHandler>({
-    onUserJoined: (_connection: RtcConnection, remoteUid_: number, _elapsed: number) => {
-      log.info("Remote user joined:", remoteUid_);
-      // Clear ring timeout so a connected call is never auto-cancelled
-      if (callTimeoutRef.current) {
-        clearTimeout(callTimeoutRef.current);
-        callTimeoutRef.current = null;
+  const joinChannel = useCallback(async (call: CallSession, generation: number): Promise<boolean> => {
+    const current = () => generationRef.current === generation && currentCallRef.current?.id === call.id;
+    let media: CallMedia | null = null;
+    try {
+      const token = await fetchAgoraToken(`dm-call-${call.id}`);
+      if (!current()) return false;
+      if (!token || !AGORA_APP_ID) throw new Error("Call credentials unavailable");
+      if (Platform.OS === "android") {
+        const permissions = [PermissionsAndroid.PERMISSIONS.RECORD_AUDIO,
+          ...(call.call_type === "video" ? [PermissionsAndroid.PERMISSIONS.CAMERA] : [])];
+        const granted = await PermissionsAndroid.requestMultiple(permissions);
+        if (!current()) return false;
+        if (permissions.some(permission => granted[permission] !== PermissionsAndroid.RESULTS.GRANTED)) {
+          throw new Error("Call media permission denied");
+        }
       }
-      if (currentCallRef.current) {
-        currentCallRef.current = { ...currentCallRef.current, status: "connected" };
-      }
-      setRemoteUid(remoteUid_);
-      setIsCallActive(true);
-      setIsConnecting(false);
-      // start timer via ref
-      const t0 = Date.now();
-      const tick = () => {
-        const secs = Math.floor((Date.now() - t0) / 1000);
-        const m = Math.floor(secs / 60).toString().padStart(2, "0");
-        const s = (secs % 60).toString().padStart(2, "0");
-        setCallDuration(`${m}:${s}`);
+      if (!current()) return false;
+      revokeAllFeedVideo(); revokeAudioFocus();
+      const engine = createAgoraRtcEngine();
+      const handler: IRtcEngineEventHandler = {
+        onUserJoined: (_connection, uid) => {
+          if (!current()) return;
+          clearTimeouts();
+          publishCall({ ...currentCallRef.current!, status: "connected" });
+          setRemoteUid(uid); setIsCallActive(true); setIsConnecting(false);
+          if (startedAtRef.current == null) {
+            startedAtRef.current = Date.now();
+            setCallStartedAt(startedAtRef.current);
+          }
+        },
+        onUserOffline: () => { if (current()) void endCall(); },
       };
-      tick();
-      callTimerRef.current = setInterval(tick, 1000);
-    },
-    onUserOffline: (_connection: RtcConnection, _remoteUid: number, _reason: UserOfflineReasonType) => {
-      log.info("Remote user offline");
-      setRemoteUid(null);
-      setIsCallActive(false);
-      if (callTimerRef.current) {
-        clearInterval(callTimerRef.current);
-        callTimerRef.current = null;
-      }
-      setCallDuration("00:00");
-      const call = currentCallRef.current;
-      if (call) {
-        supabase.from("call_sessions").update({ status: "ended" }).eq("id", call.id);
-      }
-      setCurrentCall(null);
-    },
-  });
-
-  // ── Join channel ───────────────────────────────────────────────────────────
-
-  const joinChannel = useCallback(async (
-    callSession: CallSession,
-    callType: "audio" | "video",
-  ): Promise<boolean> => {
-    const channelName = `dm-call-${callSession.id}`;
-    const tokenData = await fetchAgoraToken(channelName);
-    if (!tokenData) return false;
-
-    try {
-      const engine = await initEngine();
+      media = { engine, handler, closed: false };
+      mediaRef.current = media;
+      const initialized = engine.initialize({ appId: AGORA_APP_ID });
+      if (initialized < 0) throw new Error(`Call initialization failed: ${initialized}`);
+      engine.registerEventHandler(handler);
       engine.setChannelProfile(ChannelProfileType.ChannelProfileCommunication);
       engine.setClientRole(ClientRoleType.ClientRoleBroadcaster);
       engine.enableAudio();
-      // A video call opens on the loudspeaker the way every other phone app
-      // does it; a voice call opens on the earpiece.
-      const speakerDefault = callType === "video";
-      engine.setEnableSpeakerphone(speakerDefault);
-      setIsSpeakerOn(speakerDefault);
-      if (callType === "video") {
-        if (Platform.OS === "android") {
-          const granted = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.CAMERA);
-          if (granted !== PermissionsAndroid.RESULTS.GRANTED) {
-            log.error("Camera permission denied");
-            return false;
-          }
-          // Wait for app to fully regain focus after the permission dialog closes
-          await new Promise(r => setTimeout(r, 400));
-        }
+      engine.enableLocalAudio(true);
+      engine.muteLocalAudioStream(false);
+      const speaker = call.call_type === "video";
+      engine.setDefaultAudioRouteToSpeakerphone(speaker);
+      engine.setEnableSpeakerphone(speaker);
+      setIsSpeakerOn(speaker);
+      if (call.call_type === "video") {
         setIsCameraOff(false);
-        // Wait for React re-render + native surface creation before starting preview
-        await new Promise(r => setTimeout(r, 300));
+        // Let the call modal commit its local surface before preview begins.
+        await new Promise(resolve => setTimeout(resolve, 300));
+        if (!current() || media.closed) { disposeMedia(media); return false; }
         engine.enableVideo();
-        // cleanupEngine turns local capture off after a call; turn it back on.
         engine.enableLocalVideo(true);
         engine.startPreview();
         engine.muteLocalVideoStream(false);
       }
-      const options: ChannelMediaOptions = {
-        publishMicrophoneTrack: true,
-        publishCameraTrack: callType === "video",
-        autoSubscribeAudio: true,
-        autoSubscribeVideo: callType === "video",
-      };
-      engine.joinChannel(tokenData.token, channelName, tokenData.uid ?? 0, options);
+      if (!current() || media.closed) { disposeMedia(media); return false; }
+      const joined = engine.joinChannel(token.token, `dm-call-${call.id}`, token.uid ?? 0, {
+        publishMicrophoneTrack: true, publishCameraTrack: call.call_type === "video",
+        autoSubscribeAudio: true, autoSubscribeVideo: call.call_type === "video",
+      });
+      if (joined < 0) throw new Error(`Call join failed: ${joined}`);
       return true;
-    } catch (err) {
-      log.error("Failed to join Agora channel:", err);
+    } catch (error) {
+      disposeMedia(media);
+      if (current()) log.error("Call connection failed", error);
       return false;
     }
-  }, [initEngine]);
+  }, [clearTimeouts, publishCall, disposeMedia, endCall]);
 
-  // Mirrors of the call-state flags, read by the realtime handlers and the poll
-  // so neither surfaces a second call on top of one already in progress.
-  const isCallActiveRef = useRef(isCallActive);
-  const isIncomingRef = useRef(isIncoming);
-  const isConnectingRef = useRef(isConnecting);
-  useEffect(() => { isCallActiveRef.current = isCallActive; }, [isCallActive]);
-  useEffect(() => { isIncomingRef.current = isIncoming; }, [isIncoming]);
-  useEffect(() => { isConnectingRef.current = isConnecting; }, [isConnecting]);
-
-  // ── Incoming calls ─────────────────────────────────────────────────────────
-
-  /**
-   * Surface the newest ringing call for this wallet unless one is already on
-   * screen. The call ping, the join re-check and the foreground poll all come
-   * through here, so a ring is only ever shown behind one set of guards.
-   */
   const checkForRing = useCallback(async () => {
-    if (!userAddress) return;
-    // A second call must never replace the one already ringing or live.
-    if (currentCallRef.current || isCallActiveRef.current || isIncomingRef.current || isConnectingRef.current) return;
-    const { data } = await supabase
-      .from("call_sessions")
-      .select("*")
-      .eq("recipient_address", userAddress)
-      .eq("status", "ringing")
-      .order("created_at", { ascending: false })
-      .limit(1)
-      .single();
-    if (!data) return;
-    // Another path may have surfaced this call while the request was in flight;
-    // showing it twice would leave a stray dismiss timer that ends it later.
-    if (currentCallRef.current || isCallActiveRef.current || isIncomingRef.current || isConnectingRef.current) return;
+    if (!userAddress || currentCallRef.current) return;
+    const generation = generationRef.current;
+    const { data } = await supabase.from("call_sessions").select("*")
+      .eq("recipient_address", userAddress).eq("status", "ringing")
+      .order("created_at", { ascending: false }).limit(1).single();
+    if (!data || generationRef.current !== generation || currentCallRef.current) return;
     const age = Date.now() - new Date(data.created_at).getTime();
-    if (age > 45_000) return;
-    const call = data as CallSession;
-    setCurrentCall(call);
-    currentCallRef.current = call;
-    setIsIncoming(true);
-    // Auto-dismiss once the ring window is over
-    if (callTimeoutRef.current) clearTimeout(callTimeoutRef.current);
+    if (!Number.isFinite(age) || age > 45_000) return;
+    const ringGeneration = ++generationRef.current;
+    publishCall(data as CallSession);
+    setIsIncoming(true); setMinimized(false);
+    visualActivity.setCall(true, true);
+    revokeAllFeedVideo(); revokeAudioFocus();
     callTimeoutRef.current = setTimeout(() => {
-      setIsIncoming(false);
-      setCurrentCall(null);
-    }, 45_000 - age);
-  }, [userAddress]);
+      if (generationRef.current === ringGeneration && !joiningRef.current) void endCall();
+    }, Math.max(0, 45_000 - age));
+  }, [userAddress, publishCall, endCall]);
 
-  // A trigger on call_sessions pings the private `call:<wallet>` topic with
-  // { id, status, created_at }: the callee on every new call, both sides on
-  // every status change. call_sessions is deliberately not in the realtime
-  // publication — that would make every open app a postgres_changes subscriber
-  // and keep Realtime's change poller querying the database around the clock.
-  // The ping names nobody, so a ring is read back through checkForRing.
-  // Broadcast keeps no backlog; every (re)join checks once as well.
   useEffect(() => {
     if (!userAddress) return;
-    const channel = supabase
-      .channel(`call:${userAddress}`, { config: { private: true } })
-      .on("broadcast", { event: "call" }, (message) => {
+    const channel = supabase.channel(`call:${userAddress}`, { config: { private: true } })
+      .on("broadcast", { event: "call" }, message => {
         const ping = message.payload as Pick<CallSession, "id" | "status"> | undefined;
-        if (!ping?.id) return;
-        if (ping.status === "ringing") {
-          void checkForRing();
-          return;
-        }
-        // Only the call on screen may end it: another caller's unanswered
-        // ring timing out must not tear down the call in progress. Covers both
-        // sides — the callee hanging up or declining ends the caller's too.
-        if (ping.status !== "ended" || ping.id !== currentCallRef.current?.id) return;
-        if (callTimeoutRef.current) {
-          clearTimeout(callTimeoutRef.current);
-          callTimeoutRef.current = null;
-        }
-        setIsIncoming(false);
-        setIsConnecting(false);
-        setCurrentCall(null);
-        currentCallRef.current = null;
-        void cleanupEngine();
-      })
-      .subscribe((status) => {
-        if (status === "SUBSCRIBED") void checkForRing();
-      });
-    return () => {
-      supabase.removeChannel(channel);
-      if (callTimeoutRef.current) clearTimeout(callTimeoutRef.current);
-    };
-  }, [userAddress, checkForRing, cleanupEngine]);
-
-  // ── Polling fallback (every 60s) in case a ping is missed ──────────────────
-
-  useEffect(() => {
-    if (!userAddress) return;
-
-    // CallProvider wraps the whole navigator, so this interval lives for the
-    // entire app session. Without the AppState guard it keeps hitting Supabase
-    // every minute while backgrounded. The call ping plus push are the
-    // backgrounded path; this is only the foreground fallback. Mirrors
-    // hooks/useProviderLifecycle.ts:407.
-    const poll = () => {
-      if (AppState.currentState !== "active") return;
-      void checkForRing();
-    };
-
-    poll();
+        if (ping?.status === "ringing") void checkForRing();
+        else if (ping?.status === "ended" && ping.id === currentCallRef.current?.id) void endCall();
+      }).subscribe(status => { if (status === "SUBSCRIBED") void checkForRing(); });
+    const poll = () => { if (AppState.currentState === "active") void checkForRing(); };
     const interval = setInterval(poll, 60_000);
-    // Poll immediately on foreground so a call that started while the app was
-    // backgrounded is picked up at once rather than up to a minute later.
-    const sub = AppState.addEventListener("change", (s) => {
-      if (s === "active") void checkForRing();
-    });
+    const app = AppState.addEventListener("change", state => { if (state === "active") poll(); });
+    poll();
+    return () => { clearInterval(interval); app.remove(); void supabase.removeChannel(channel); };
+  }, [userAddress, checkForRing, endCall]);
+  useEffect(() => {
+    publishCall(null);
+    joiningRef.current = false;
+    startedAtRef.current = null;
+    setCallStartedAt(null); setRemoteUid(null); setIsCallActive(false);
+    setIsIncoming(false); setIsConnecting(false); setMinimized(false);
+    setIsMuted(false); setIsSpeakerOn(false); setIsCameraOff(true);
     return () => {
-      clearInterval(interval);
-      sub.remove();
+    generationRef.current += 1;
+    clearTimeouts();
+    const call = currentCallRef.current;
+    currentCallRef.current = null;
+    disposeMedia(mediaRef.current);
+    mediaRef.current = null;
+    visualActivity.setCall(false, false);
+    void markEnded(call);
     };
-  }, [userAddress, checkForRing]);
-
-  // ── Actions ────────────────────────────────────────────────────────────────
+  }, [userAddress, clearTimeouts, disposeMedia, markEnded, publishCall]);
 
   const startCall = useCallback(async (recipientAddress: string, callType: "audio" | "video" = "audio") => {
-    if (!userAddress) return;
-    const normalizedRecipient = recipientAddress.toLowerCase();
-
-    // Set optimistic state immediately so the modal opens without waiting for Supabase
-    const optimistic: CallSession = {
-      id: "pending",
-      caller_address: userAddress,
-      recipient_address: normalizedRecipient,
-      status: "ringing",
-      call_type: callType,
-      created_at: new Date().toISOString(),
+    if (!userAddress || currentCallRef.current) return;
+    const generation = ++generationRef.current;
+    const pending: CallSession = {
+      id: "pending", caller_address: userAddress, recipient_address: recipientAddress.toLowerCase(),
+      status: "ringing", call_type: callType, created_at: new Date().toISOString(),
     };
-    setCurrentCall(optimistic);
-    currentCallRef.current = optimistic;
-    setIsConnecting(true);
-
+    publishCall(pending);
+    setIsConnecting(true); setMinimized(false);
+    visualActivity.setCall(true, true);
+    revokeAllFeedVideo(); revokeAudioFocus();
     try {
-      const { data, error } = await supabase
-        .from("call_sessions")
-        .insert({
-          caller_address: userAddress,
-          recipient_address: normalizedRecipient,
-          status: "ringing",
-          call_type: callType,
-        })
-        .select()
-        .single();
-
-      if (error) throw error;
-      const session = data as CallSession;
-      setCurrentCall(session);
-      currentCallRef.current = session;
-
-      // The callee's app only watches call_sessions while it is open; ask the
-      // server to ring a locked or backgrounded phone with a push.
-      apiClient
-        .post("/push/call-ring", { sessionId: session.id }, { isAuthRequired: true })
-        .catch((e: unknown) => log.warn("Call ring push failed (non-fatal):", e));
-
-      // Notify DM chat that a call was initiated
+      const { data, error } = await supabase.from("call_sessions").insert({
+        caller_address: pending.caller_address, recipient_address: pending.recipient_address,
+        status: "ringing", call_type: callType,
+      }).select().single();
+      if (error || !data) throw error ?? new Error("Could not initiate call");
+      const call = data as CallSession;
+      if (generationRef.current !== generation) { await markEnded(call); return; }
+      publishCall(call);
+      void apiClient.post("/push/call-ring", { sessionId: call.id }, { isAuthRequired: true })
+        .catch(error => log.warn("Call ring push failed", error));
       callMessageHandlerRef.current?.(callType === "video" ? "📹 Video call" : "📞 Voice call");
-
-      // Join Agora immediately (like web) — don't wait for recipient to accept.
-      // When recipient accepts they join too and onUserJoined fires.
-      await joinChannel(session, callType);
-
-      // Ring timeout: cancel if not answered in 30s
-      callTimeoutRef.current = setTimeout(async () => {
-        const call = currentCallRef.current;
-        if (call && call.status === "ringing") {
-          supabase.from("call_sessions").update({ status: "ended" }).eq("id", call.id).then(() => {}, () => {});
-          callMessageHandlerRef.current?.(call.call_type === "video" ? "📵 Missed video call" : "📵 Missed voice call");
-          setCurrentCall(null);
-          setIsConnecting(false);
-          await cleanupEngine();
-        }
-      }, 30_000);
-      // The callee declining or hanging up arrives as an `ended` call ping on
-      // this wallet's own topic (see the ping listener above).
-    } catch (err) {
-      log.error("Failed to start call:", err);
-      setIsConnecting(false);
-      setCurrentCall(null);
-      currentCallRef.current = null;
+      const joined = await joinChannel(call, generation);
+      if (generationRef.current !== generation) return;
+      if (!joined) { await endCall(); return; }
+      if (startedAtRef.current == null) {
+        callTimeoutRef.current = setTimeout(() => {
+          if (generationRef.current !== generation || startedAtRef.current != null) return;
+          callMessageHandlerRef.current?.(callType === "video" ? "📵 Missed video call" : "📵 Missed voice call");
+          void endCall();
+        }, 30_000);
+      }
+    } catch (error) {
+      if (generationRef.current === generation) { log.error("Call start failed", error); await endCall(); }
     }
-  }, [userAddress, joinChannel]);
-
-  const endCall = useCallback(async () => {
-    // Clear UI immediately — don't wait for Supabase
-    const call = currentCallRef.current;
-    setCurrentCall(null);
-    currentCallRef.current = null;
-    setIsIncoming(false);
-    setIsConnecting(false);
-    if (callTimeoutRef.current) {
-      clearTimeout(callTimeoutRef.current);
-      callTimeoutRef.current = null;
-    }
-    // Notify DM chat if call was connected (has duration)
-    if (call?.status === "connected") {
-      const typeLabel = call.call_type === "video" ? "Video" : "Voice";
-      const durLabel = callTimerRef.current ? callDuration : null;
-      const msg = durLabel ? `📞 ${typeLabel} call ended · ${durLabel}` : `📞 ${typeLabel} call ended`;
-      callMessageHandlerRef.current?.(msg);
-    }
-    // Supabase update + engine cleanup in background
-    if (call && call.id !== "pending") {
-      supabase.from("call_sessions").update({ status: "ended" }).eq("id", call.id).then(() => {}, () => {});
-    }
-    await cleanupEngine();
-  }, [cleanupEngine, callDuration]);
+  }, [userAddress, publishCall, markEnded, joinChannel, endCall]);
 
   const acceptCall = useCallback(async () => {
     const call = currentCallRef.current;
-    if (!call) return;
-
-    setIsIncoming(false);
-    setIsConnecting(true);
-
-    if (callTimeoutRef.current) clearTimeout(callTimeoutRef.current);
-
-    // Mark connected
-    await supabase.from("call_sessions").update({ status: "connected" }).eq("id", call.id);
-
-    const success = await joinChannel(call, call.call_type);
-    if (!success) {
-      setIsConnecting(false);
-      setCurrentCall(null);
-    }
-  }, [joinChannel]);
-
-  const rejectCall = useCallback(async () => {
-    const call = currentCallRef.current;
-    if (call) {
-      await supabase.from("call_sessions").update({ status: "ended" }).eq("id", call.id);
-    }
-    setIsIncoming(false);
-    setCurrentCall(null);
-    if (callTimeoutRef.current) clearTimeout(callTimeoutRef.current);
-  }, []);
+    if (!call || joiningRef.current || call.status !== "ringing") return;
+    const generation = generationRef.current;
+    joiningRef.current = true;
+    clearTimeouts();
+    setIsIncoming(false); setIsConnecting(true);
+    try {
+      const { error } = await supabase.from("call_sessions").update({ status: "connected" }).eq("id", call.id);
+      if (generationRef.current !== generation) { await markEnded(call); return; }
+      if (error) throw error;
+      publishCall({ ...call, status: "connected" });
+      const joined = await joinChannel(call, generation);
+      if (generationRef.current === generation && !joined) await endCall();
+    } catch (error) {
+      if (generationRef.current === generation) { log.error("Call accept failed", error); await endCall(); }
+    } finally { if (generationRef.current === generation) joiningRef.current = false; }
+  }, [clearTimeouts, publishCall, joinChannel, endCall, markEnded]);
 
   const toggleMute = useCallback(() => {
-    const engine = getEngine();
-    const next = !isMuted;
-    engine.muteLocalAudioStream(next);
-    setIsMuted(next);
-  }, [isMuted]);
-
-  const toggleSpeaker = useCallback(() => {
-    const next = !isSpeakerOn;
-    getEngine().setEnableSpeakerphone(next);
-    setIsSpeakerOn(next);
-  }, [isSpeakerOn]);
-
-  const toggleCamera = useCallback(() => {
-    const engine = getEngine();
-    if (isCameraOff) {
-      engine.enableVideo();
-      engine.enableLocalVideo(true);
-      engine.startPreview();
-      engine.muteLocalVideoStream(false);
-      setIsCameraOff(false);
-    } else {
-      engine.muteLocalVideoStream(true);
-      engine.stopPreview();
-      setIsCameraOff(true);
-    }
-  }, [isCameraOff]);
-
-  const switchCamera = useCallback(() => {
-    getEngine().switchCamera();
+    const engine = mediaRef.current?.engine;
+    if (engine) setIsMuted(previous => { engine.muteLocalAudioStream(!previous); return !previous; });
   }, []);
-
-  // The "other person" in the call — works for both caller and recipient
+  const toggleSpeaker = useCallback(() => {
+    const engine = mediaRef.current?.engine;
+    if (engine) setIsSpeakerOn(previous => { engine.setEnableSpeakerphone(!previous); return !previous; });
+  }, []);
+  const toggleCamera = useCallback(() => {
+    const engine = mediaRef.current?.engine;
+    if (!engine) return;
+    setIsCameraOff(previous => {
+      if (previous) { engine.enableVideo(); engine.enableLocalVideo(true); engine.startPreview(); engine.muteLocalVideoStream(false); }
+      else { engine.muteLocalVideoStream(true); engine.stopPreview(); }
+      return !previous;
+    });
+  }, []);
+  const switchCamera = useCallback(() => { mediaRef.current?.engine.switchCamera(); }, []);
   const peerAddress = currentCall
-    ? currentCall.caller_address === userAddress
-      ? currentCall.recipient_address
-      : currentCall.caller_address
-    : "";
-
-  // Memoised because CallProvider passes this straight through as its context
-  // value, and CallProvider wraps the entire navigator. A fresh object literal
-  // here meant every consumer re-rendered on every render of the provider — and
-  // during a call `callDuration` ticks once a second, so that was every second,
-  // for the life of the call.
-  return useMemo(
-    () => ({
-      isCallActive,
-      isIncoming,
-      currentCall,
-      isConnecting,
-      isMuted,
-      isSpeakerOn,
-      isCameraOff,
-      callDuration,
-      remoteUid,
-      peerAddress,
-      localCanvas: LOCAL_CANVAS,
-      remoteCanvas,
-      startCall,
-      endCall,
-      acceptCall,
-      rejectCall,
-      toggleMute,
-      toggleSpeaker,
-      toggleCamera,
-      switchCamera,
-      setCallMessageHandler,
-      isMinimized,
-      setMinimized,
-    }),
-    [
-      isCallActive,
-      isIncoming,
-      currentCall,
-      isConnecting,
-      isMuted,
-      isSpeakerOn,
-      isCameraOff,
-      callDuration,
-      remoteUid,
-      peerAddress,
-      remoteCanvas,
-      startCall,
-      endCall,
-      acceptCall,
-      rejectCall,
-      toggleMute,
-      toggleSpeaker,
-      toggleCamera,
-      switchCamera,
-      setCallMessageHandler,
-      isMinimized,
-    ],
-  );
+    ? currentCall.caller_address === userAddress ? currentCall.recipient_address : currentCall.caller_address : "";
+  const remoteCanvas = useMemo<VideoCanvas>(() => ({
+    uid: remoteUid ?? 0, sourceType: VideoSourceType.VideoSourceRemote, renderMode: RenderModeType.RenderModeFit,
+  }), [remoteUid]);
+  return useMemo(() => ({
+    isCallActive, isIncoming, currentCall, isConnecting, isMuted, isSpeakerOn, isCameraOff,
+    callStartedAt, remoteUid, peerAddress, localCanvas: LOCAL_CANVAS, remoteCanvas,
+    startCall, endCall, acceptCall, rejectCall: endCall, toggleMute, toggleSpeaker, toggleCamera,
+    switchCamera, setCallMessageHandler, isMinimized, setMinimized,
+  }), [isCallActive, isIncoming, currentCall, isConnecting, isMuted, isSpeakerOn, isCameraOff,
+    callStartedAt, remoteUid, peerAddress, remoteCanvas, startCall, endCall, acceptCall,
+    toggleMute, toggleSpeaker, toggleCamera, switchCamera, setCallMessageHandler, isMinimized]);
 }

@@ -1,4 +1,5 @@
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useFeedPlaybackAllowed } from "../../libs/visualActivity";
 import { useTranslation } from "react-i18next";
 import { useIsFocused, useNavigation, useScrollToTop } from "@react-navigation/native";
 import {
@@ -183,9 +184,10 @@ const InfiniteFeedBase: React.FC<
 }) => {
   const { t } = useTranslation();
   const visibilityStore = useMemo(() => createFeedVisibilityStore(isFocused ?? true), []);
+  const playbackAllowed = useFeedPlaybackAllowed();
   useEffect(() => {
-    visibilityStore.setLive(isFocused ?? true);
-  }, [visibilityStore, isFocused]);
+    visibilityStore.setLive((isFocused ?? true) && playbackAllowed);
+  }, [visibilityStore, isFocused, playbackAllowed]);
   // One key for the list, the row's visibility subscription and the
   // viewability handler, so all three always agree on which row is which.
   const rowKeyOf = useCallback(

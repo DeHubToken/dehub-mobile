@@ -62,7 +62,7 @@ import { ErrorBoundary } from "./components/ErrorBoundary";
 import { I18nextProvider } from "react-i18next";
 import i18n from "./i18n";
 import { useAppLifecycle } from "./hooks/useAppLifecycle";
-import { applyOtaUpdateIfReady, checkForOtaUpdate } from "./libs/otaUpdates";
+import { checkForOtaUpdate } from "./libs/otaUpdates";
 import { createLogger } from "./libs/logger";
 import { forceFlushBatchViews } from "./services/view.service";
 import PermissionModalProvider from "./components/ui/PermissionModal";
@@ -153,12 +153,9 @@ export default function App() {
   useAppLifecycle({
     onForeground: useCallback((backgroundMs: number) => {
       logger.info("App came to foreground", { backgroundMs });
-      // A bundle downloaded on an earlier foreground applies now if the user
-      // has been away long enough to read this as a fresh open; otherwise
-      // look for one so the next return can. See libs/otaUpdates.
-      void applyOtaUpdateIfReady(backgroundMs).then((reloaded) => {
-        if (!reloaded) void checkForOtaUpdate();
-      });
+      // Returning from a phone call must preserve the running session.
+      // Download updates here; expo-updates applies them on the next launch.
+      void checkForOtaUpdate();
     }, []),
     onBackground: useCallback(() => {
       logger.info("App went to background");
