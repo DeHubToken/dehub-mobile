@@ -38,6 +38,7 @@ export interface TranscriptRecord {
   source_kind: TranscriptKind;
   source_ref: string;
   status: Exclude<TranscriptStatus, "absent">;
+  provider: string | null;
   source_lang: string | null;
   duration_seconds: number | null;
   segments: TranscriptSegment[];
@@ -55,7 +56,7 @@ export interface TranscriptRecord {
 }
 
 const COLUMNS =
-  "id, source_kind, source_ref, status, source_lang, duration_seconds, segments, " +
+  "id, source_kind, source_ref, status, provider, source_lang, duration_seconds, segments, " +
   "full_text, vtt, summary, summary_status, chapters, speaker_map, speaker_overrides, " +
   "visibility, attempts, error, updated_at";
 
@@ -153,6 +154,7 @@ export function useTranscript(
   const canRetry = useMemo(() => {
     if (!query.data) return true;
     if (query.data.status === "ready") return false;
+    if (query.data.status === "empty" && query.data.provider === "elevenlabs") return false;
     return query.data.attempts < 5;
   }, [query.data]);
 
