@@ -1,4 +1,6 @@
 import { watchedLabel } from "../../i18n/watched-label";
+import { SessionExpiredError } from "../../libs/api.client";
+import { createLogger } from "../../libs/logger";
 import { useIsWatchedVideo } from "../../hooks/useWatchedVideos";
 import { isStreamLive } from '../../libs/live-status';
 import { isHoldGated } from "../../libs/content-gate";
@@ -871,7 +873,10 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       // this card and every other mounted card for the same post.
       applyEngagement(engagementKey, countsAt(voteWeight));
 
-      const rollback = () => {
+      const rollback = (error?: unknown) => {
+        // Session invalidation already cleared account-specific overlays.
+        // Restoring the old vote here would paint the signed-out feed with it.
+        if (error instanceof SessionExpiredError) return;
         // Restore only the fields this handler owns, so a concurrent save or
         // repost that succeeded is not undone.
         revertEngagement(engagementKey, {
@@ -882,6 +887,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           dislikeCount: wasDislikeCount,
           reactionCounts: wasCounts,
         });
+        createLogger('PostReaction').error('Failed to update reaction', { tokenId, reaction },
+          error instanceof Error ? error : String((error as any)?.error || 'Unsuccessful response'));
         toastError(t("feedCard.reactionFailed"));
       };
 
@@ -898,7 +905,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         // would record a failed vote as successful and then share it.
         .then((res: any) => {
           if (isFailedResponse(res)) {
-            rollback();
+            rollback(res);
             return;
           }
           // Settle on the weight the server actually applied. Only differs
@@ -2559,4 +2566,3 @@ const FeedCard = memo(function GuardedFeedCard(props: FeedCardProps) {
 });
 
 export default FeedCard;
-

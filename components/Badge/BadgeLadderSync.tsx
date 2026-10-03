@@ -1,8 +1,8 @@
 /**
  * BadgeLadderSync — owns the badge ladder's scale.
  *
- * Renders nothing. Mounted once in App.tsx so exactly one query reads the DHB
- * price; every badge on screen resolves against the module-level scale it
+ * Renders nothing. Mounted once in App.tsx to publish the fixed DHB valuation;
+ * every badge on screen resolves against the module-level scale it
  * publishes (see `hooks/useBadgeScale`).
  *
  * Sits outside AuthProvider on purpose: badges draw on feeds, chat rows and

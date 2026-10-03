@@ -1,94 +1,31 @@
 /**
- * The badge ladder's scale
- * ========================
- * Badge tiers are pegged in dollars (see `libs/misc`), so the DHB a tier costs
- * depends on what DHB is worth. This resolves that one number and publishes it.
+ * Badge valuation while DHB liquidity is unavailable.
  *
- * One owner fetches — `<BadgeLadderSync/>`, mounted once in App.tsx — and
- * everything else reads the module-level scale that sync publishes. That is
- * deliberate rather than lazy: `getBadgeUrl` is called from feed cards, chat
- * rows, leaderboard rows and quota maths, most of them nowhere near a hook, so
- * the scale has to be readable without one.
+ * The published calculation price is $0.001. Both the ladder and its dollar
+ * estimates must use it: a persisted market quote must not alter the tier
+ * requirement or the badge info slider. Restore live pricing here when the
+ * fixed-price policy is lifted.
  *
- * It rides the `["token-prices"]` cache the stores screens already fill, so on
- * those there is no extra request at all.
- *
- * The price is a client read, so it is advisory: two people looking at the same
- * profile a minute apart could resolve slightly different rungs while a price
- * is moving. That is invisible while DHB is pinned to the anchor, and the fix
- * when it is not is for the API to send the scale it used.
+ * BadgeLadderSync publishes the same scale for non-hook consumers such as
+ * feed mappers and quota calculations.
  */
-
 import { useEffect } from "react";
-import { useQuery } from "@tanstack/react-query";
-import { getTokenPrices } from "../libs/dhbPrice";
-import {
-  activeBadgeScale,
-  badgeScaleForPrice,
-  setActiveBadgeScale,
-} from "../libs/misc";
+import { badgeScaleForPrice, setActiveBadgeScale } from "../libs/misc";
 
-/** Shared with `useTokenPrices` in hooks/useStores — same endpoint, same entry. */
-export const TOKEN_PRICES_QUERY_KEY = ["token-prices"] as const;
+export const BADGE_PREVIEW_DHB_PRICE_USD = 0.001;
 
-type TokenPrices = Record<string, number>;
-
-const fetchTokenPrices = (): Promise<TokenPrices> => getTokenPrices();
-
-/**
- * Own the ladder scale: fetch the price, publish the scale, hand it back.
- *
- * The price moves the ladder in two-significant-figure steps, so there is
- * nothing to gain from watching it closely — five minutes stale is well inside
- * the resolution of the thing it feeds.
- */
 export function useBadgeLadderScale(): number {
-  const { data } = useQuery<TokenPrices>({
-    queryKey: TOKEN_PRICES_QUERY_KEY,
-    queryFn: fetchTokenPrices,
-    staleTime: 5 * 60_000,
-    gcTime: 60 * 60_000,
-    retry: 1,
-  });
-
-  const scale = badgeScaleForPrice(data?.DHB);
-
+  const scale = badgeScaleForPrice(BADGE_PREVIEW_DHB_PRICE_USD);
   useEffect(() => {
     setActiveBadgeScale(scale);
   }, [scale]);
-
   return scale;
 }
 
-/**
- * Read the scale without owning the fetch.
- *
- * Falls back to whatever the last sync published, so a badge drawn before the
- * first price lands uses the reference ladder rather than nothing.
- */
 export function useBadgeScale(): number {
-  const { data } = useQuery<TokenPrices>({
-    queryKey: TOKEN_PRICES_QUERY_KEY,
-    queryFn: fetchTokenPrices,
-    // The sync owns the fetching; this observer only tracks its answer.
-    enabled: false,
-    staleTime: Infinity,
-  });
-
-  return data?.DHB ? badgeScaleForPrice(data.DHB) : activeBadgeScale();
+  return badgeScaleForPrice(BADGE_PREVIEW_DHB_PRICE_USD);
 }
 
-/** The DHB price the ladder is using, for surfaces that quote it in dollars. */
-export function useBadgeLadderPrice(): number | undefined {
-  const { data } = useQuery<TokenPrices>({
-    queryKey: TOKEN_PRICES_QUERY_KEY,
-    queryFn: fetchTokenPrices,
-    enabled: false,
-    staleTime: Infinity,
-  });
-
-  const price = data?.DHB;
-  return typeof price === "number" && Number.isFinite(price) && price > 0
-    ? price
-    : undefined;
+export function useBadgeLadderPrice(): number {
+  return BADGE_PREVIEW_DHB_PRICE_USD;
 }
