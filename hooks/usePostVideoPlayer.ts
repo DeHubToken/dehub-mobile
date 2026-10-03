@@ -1,4 +1,4 @@
-import { useLayoutEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { createVideoPlayer, type VideoPlayer } from 'expo-video';
 import { claimPostMedia, ownsPostMedia, postMediaSession } from '../libs/post-media-session';
 
@@ -20,6 +20,6 @@ export function usePostVideoPlayer(url: string | null | undefined, setup: (playe
     const release = claimPostMedia(key, session, token);
     return () => { session.listeners.delete(notify); release(); };
   }, [key, session, token]);
-  const ownsPlayer = () => ownsPostMedia(session, token);
+  const ownsPlayer = useCallback(() => ownsPostMedia(session, token), [session, token]);
   return { player: session.value, session, ownsPlayer, active: ownsPlayer() };
 }

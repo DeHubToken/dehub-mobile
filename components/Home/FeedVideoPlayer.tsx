@@ -908,7 +908,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   // now that the player exists to honour it.
   const startOnMountRef = useRef(startOnMount);
   useEffect(() => {
-    if (startOnMountRef.current) handleVideoPress();
+    if (startOnMountRef.current && !player.playing) handleVideoPress();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

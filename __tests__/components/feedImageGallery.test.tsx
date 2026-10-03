@@ -3,6 +3,8 @@ import { render, fireEvent } from '@testing-library/react-native';
 import FeedImageGallery from '../../components/Home/FeedImageGallery';
 
 jest.mock('dehub-jsx/jsx-runtime', () => require('react/jsx-runtime'));
+jest.mock('../../components/common/SmartImage', () => ({ warmFeedImage: jest.fn() }));
+jest.mock('../../hooks/useDataSaver', () => ({ useDataSaver: () => ({ liteMode: false }) }));
 jest.mock('react-native', () => ({
   View: 'View', Text: 'Text', Pressable: 'Pressable', ScrollView: 'ScrollView',
   StyleSheet: { flatten: (style: unknown) => style },

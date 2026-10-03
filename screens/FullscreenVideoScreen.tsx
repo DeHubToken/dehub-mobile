@@ -151,36 +151,42 @@ const FullscreenVideoScreen = () => {
     setVideoDuration(player.duration);
   }, [ownsVideo, player]);
 
+  const stopPlayback = useCallback(() => {
+    if (ownsPlayer()) { try { player.pause(); } catch {} }
+  }, [player, ownsPlayer]);
+
   useEffect(() => {
     if (!player || !ownsVideo) return;
-    const stop = () => { if (ownsPlayer()) { try { player.pause(); } catch {} } };
-    requestFeedVideoFocus(stop);
-    if (!player.muted) requestAudioFocus(stop);
+    requestFeedVideoFocus(stopPlayback);
+    if (!player.muted) requestAudioFocus(stopPlayback);
     if (!session.userPaused) player.play();
 
     return () => {
-      releaseFeedVideoFocus(stop);
-      releaseAudioFocus(stop);
+      releaseFeedVideoFocus(stopPlayback);
+      releaseAudioFocus(stopPlayback);
     };
-  }, [player, ownsVideo, session]);
+  }, [player, ownsVideo, session, stopPlayback]);
 
   useEffect(() => {
     if (!player) return;
     const subs: Array<{ remove: () => void }> = [];
     try {
       subs.push(player.addListener("playingChange", ({ isPlaying: p }) => {
+        if (!ownsPlayer()) return;
         isPlayingRef.current = p;
         setIsPlaying(p);
       }));
     } catch {}
     try {
       subs.push(player.addListener("statusChange", ({ status }) => {
+        if (!ownsPlayer()) return;
         setIsBuffering(status === "loading");
         if (status === "readyToPlay" && player.duration > 0) setVideoDuration(player.duration);
       }));
     } catch {}
     try {
       subs.push(player.addListener("timeUpdate", ({ currentTime: ct }: any) => {
+        if (!ownsPlayer()) return;
         setCurrentTime(ct ?? 0);
         if (ct != null && viewRecorderRef.current) {
           viewRecorderRef.current.onProgress(
@@ -191,7 +197,7 @@ const FullscreenVideoScreen = () => {
       }));
     } catch {}
     return () => { subs.forEach((s) => { try { s.remove(); } catch {} }); };
-  }, [player]);
+  }, [player, ownsPlayer]);
 
   useEffect(() => {
     StatusBar.setHidden(true);
@@ -254,10 +260,10 @@ const FullscreenVideoScreen = () => {
     player.muted = newMuted;
     setIsMuted(newMuted);
     setMutedState(newMuted);
-    if (!newMuted) requestAudioFocus(() => { try { player.pause(); } catch {} });
-    else releaseAudioFocus(() => { try { player.pause(); } catch {} });
+    if (!newMuted) requestAudioFocus(stopPlayback);
+    else releaseAudioFocus(stopPlayback);
     resetControlsTimer();
-  }, [player, isMuted, resetControlsTimer]);
+  }, [player, isMuted, resetControlsTimer, stopPlayback]);
 
   const handleToggleRotation = useCallback(async () => {
     try {
