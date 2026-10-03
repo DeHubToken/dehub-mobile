@@ -179,6 +179,7 @@
     "newMembersHint": "Most csatlakoztál – köszönj el",
     "scroll": "Scroll",
     "noFilterMatches": "Nincs a szűrőidnek megfelelő tartalom.",
+    "followingEmpty": "Még nincsenek bejegyzések azoktól, akiket követsz",
     "clearFilters": "Szűrők törlése"
   },
   "explore": {
@@ -4804,11 +4805,11 @@
     "bridgeAction": "Áthidalás: {{from}} → {{to}}",
     "failed": "Az áthidalás sikertelen",
     "title": "Tokenek átvitele",
-    "howItWorksBody": "Küldd el a DeHub tokeneket a forrás blokkláncon lévő híd relé címére. A relé automatikusan kézbesíti az egyenértékű összeget a cél blokkláncon percen belül.",
+    "howItWorksBody": "Küldd el a DeHub tokeneket a forrás blokkláncon lévő híd relé címére. A csapat a célláncon küldi ki a tokeneket, általában 1-5 munkanapon belül.",
     "relayAddress": "Híd relé címe (küldj tokeneket ide a forrás blokkláncon):",
     "insufficient": "Nincs elég token a {{chain}}-on.",
     "insufficientOnChain": "Nincs elég token a {{chain}}-on. Az on-chain egyenleg eltérhet a kijelzettől.",
-    "sentArriveShortly": "{{amount}} token küldve innen: {{from}} → ide: {{to}}. Hamarosan megérkeznek.",
+    "sentArriveShortly": "{{amount}} token elküldve: {{from}} → {{to}}. A csapat a célláncon küldi ki a tokeneket, általában 1-5 munkanapon belül.",
     "subtitle": "DeHub tokenek mozgatása láncok között",
     "queueTitle": "Hidak",
     "transferCount": "Átutalások: {{count}}",
@@ -8103,11 +8104,11 @@
           "4": "Add meg az áthidalni kívánt tokenek számát.",
           "5": "Tekintsd át az áthidalási díjat és a becsült érkezési időt.",
           "6": "Erősítsd meg az áthidalási tranzakciót.",
-          "7": "Várd meg, amíg a tranzakció befejeződik – az áthidalás néhány percet vehet igénybe."
+          "7": "A csapat a célláncon küldi ki a tokeneket, általában 1-5 munkanapon belül."
         },
         "tips": {
           "1": "Az áthidalási díjak láncpáronként változnak.",
-          "2": "Az áthidalás általában 1-5 percet vesz igénybe, a részt vevő láncoktól függően.",
+          "2": "A híd kifizetései egyelőre kézzel történnek.",
           "3": "Mindig ellenőrizd duplán a cél-láncot az erősítés előtt."
         }
       },

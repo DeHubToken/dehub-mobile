@@ -178,6 +178,7 @@
     "newMembersHint": "O kɔ, a y'a fɔ ko: \"Aw ye foli di ne ma\"",
     "scroll": "Scroll",
     "noFilterMatches": "Fɛn si tɛ bɛn i ka sɛgɛsɛgɛliw ma.",
+    "followingEmpty": "I bɛ mɔgɔ minnu nɔfɛ, olu ma foyi bila fɔlɔ",
     "clearFilters": "Wolomaw jɔsi"
   },
   "explore": {
@@ -4770,11 +4771,11 @@
     "bridgeAction": "Tɛmɛli {{from}} → {{to}}",
     "failed": "Tɛmɛli ma ɲɛ",
     "title": "Awọn Tokens Afara",
-    "howItWorksBody": "Fi awọn DeHub tokens ranṣẹ si adiresi afara afara lori ẹwọn orisun. Afara naa n fi iye ti o dọgba ranṣẹ laifọwọyi lori ẹwọn opin laarin iṣẹju diẹ.",
+    "howItWorksBody": "DeHub tokenw ci pon relay adirɛsi ma sira daminɛ kan. Jɛkulu bɛ tokenw ci sira laban kan, tuma caman na baarakɛlon 1-5 kɔnɔ.",
     "relayAddress": "Adiresi afara afara (fi awọn tokens ranṣẹ nibi lori ẹwọn orisun):",
     "insufficient": "Ko to awọn tokens lori {{chain}}.",
     "insufficientOnChain": "Ko to awọn tokens lori {{chain}}. Iwọntọnwọnsi lori-ẹwọn le yatọ si ti o han.",
-    "sentArriveShortly": "{{amount}} tokens ti a fi ranṣẹ lati {{from}} → {{to}}. Wọn de laipẹ.",
+    "sentArriveShortly": "Token {{amount}} cira ka bɔ {{from}} ka taa {{to}}. Jɛkulu bɛ tokenw ci sira laban kan, tuma caman na baarakɛlon 1-5 kɔnɔ.",
     "subtitle": "O kɔ, a ye dɔ fara a ka jɔrɔkɔw kan.",
     "queueTitle": "O ye kɔlɔnw ye",
     "transferCount": "Ka sɛbɛri kɛ: {{count}}",
@@ -8033,11 +8034,11 @@
           "4": "Ajiye token ni kɛnɛ kɛnɛ.",
           "5": "Ajiye bridge fee ni kɛnɛ kɛnɛ.",
           "6": "Ajiye bridge transaction.",
-          "7": "O la, a ka ɲi ka to ka kɔnɔni kɛ fɔɔ ka taga se a laban ma."
+          "7": "Jɛkulu bɛ tokenw ci sira laban kan, tuma caman na baarakɛlon 1-5 kɔnɔ."
         },
         "tips": {
           "1": "Bridge fees kɛnɛ kɛnɛ.",
-          "2": "Bridging kɛnɛ kɛnɛ.",
+          "2": "Sisan, pon sarali bɛ kɛ ni bolo ye.",
           "3": "Ajiye chain ni destination kɛnɛ kɛnɛ."
         },
         "intro": "I ka DeHub tagamasiɲɛw bila ɲɔgɔn na ni bulokisɛw ye minw be dɛmɛ don ni jɔrɔkɔ ye."

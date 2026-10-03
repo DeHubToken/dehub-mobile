@@ -179,6 +179,7 @@
     "newMembersHint": "Baru bergabung — sapa",
     "scroll": "Scroll",
     "noFilterMatches": "Tidak ada konten yang cocok dengan filter Anda.",
+    "followingEmpty": "Belum ada postingan dari orang yang kamu ikuti",
     "clearFilters": "Bersihkan filter"
   },
   "explore": {
@@ -4849,11 +4850,11 @@
     "bridgeAction": "Jembatan → {{from}}{{to}}",
     "failed": "Bridge gagal",
     "title": "Jembatani Token",
-    "howItWorksBody": "Kirim token DeHub ke alamat relay jembatan di rantai sumber. Relay secara otomatis mengirimkan jumlah yang setara di rantai tujuan dalam beberapa menit.",
+    "howItWorksBody": "Kirim token DeHub ke alamat relay jembatan di rantai sumber. Tim mengirimkan token di rantai tujuan, biasanya dalam 1-5 hari kerja.",
     "relayAddress": "Alamat relay jembatan (kirim token ke sini di rantai sumber):",
     "insufficient": "Token tidak cukup di {{chain}}.",
     "insufficientOnChain": "Token tidak cukup di {{chain}}. Saldo on-chain mungkin berbeda dari yang ditampilkan.",
-    "sentArriveShortly": "{{amount}} token dikirim dari {{from}} → {{to}}. Token akan tiba segera.",
+    "sentArriveShortly": "{{amount}} token dikirim dari {{from}} ke {{to}}. Tim mengirimkan token di rantai tujuan, biasanya dalam 1-5 hari kerja.",
     "subtitle": "Pindahkan token DeHub antar rantai",
     "queueTitle": "Jembatan",
     "transferCount": "Transfer: {{count}}",
@@ -8129,11 +8130,11 @@
           "4": "Masukkan jumlah token yang akan di-bridge.",
           "5": "Tinjau biaya bridge dan perkiraan waktu kedatangan.",
           "6": "Konfirmasikan transaksi bridge.",
-          "7": "Tunggu transaksi selesai — bridging mungkin memakan waktu beberapa menit."
+          "7": "Tim mengirimkan token di rantai tujuan, biasanya dalam 1-5 hari kerja."
         },
         "tips": {
           "1": "Biaya bridge bervariasi berdasarkan pasangan rantai.",
-          "2": "Bridging biasanya memakan waktu 1-5 menit tergantung pada rantai yang terlibat.",
+          "2": "Untuk saat ini, pembayaran bridge dilakukan secara manual.",
           "3": "Selalu periksa kembali rantai tujuan sebelum mengonfirmasi."
         }
       },

@@ -179,6 +179,7 @@
     "newMembersHint": "Gick precis med — säg hej",
     "scroll": "Scroll",
     "noFilterMatches": "Inget innehåll matchar dina filter.",
+    "followingEmpty": "Inga inlägg från personer du följer ännu",
     "clearFilters": "Rensa filter"
   },
   "explore": {
@@ -4804,11 +4805,11 @@
     "bridgeAction": "Brygga {{from}} → {{to}}",
     "failed": "Bryggningen misslyckades",
     "title": "Bryggtokens",
-    "howItWorksBody": "Skicka DeHub-tokens till bryggreläadressen på källkedjan. Reläet levererar automatiskt motsvarande belopp på destinationskedjan inom några minuter.",
+    "howItWorksBody": "Skicka DeHub-tokens till bryggreläadressen på källkedjan. Teamet skickar ut tokens på målkedjan, vanligtvis inom 1-5 arbetsdagar.",
     "relayAddress": "Bryggreläadress (skicka tokens hit på källkedjan):",
     "insufficient": "Inte tillräckligt med tokens på {{chain}}.",
     "insufficientOnChain": "Inte tillräckligt med tokens på {{chain}}. Saldot på kedjan kan skilja sig från det som visas.",
-    "sentArriveShortly": "{{amount}} tokens skickade från {{from}} → {{to}}. De anländer strax.",
+    "sentArriveShortly": "{{amount}} tokens skickade från {{from}} till {{to}}. Teamet skickar ut tokens på målkedjan, vanligtvis inom 1-5 arbetsdagar.",
     "subtitle": "Flytta DeHub-tokens mellan kedjor",
     "queueTitle": "Broar",
     "transferCount": "Överföringar: {{count}}",
@@ -8104,11 +8105,11 @@
           "4": "Ange antalet tokens som ska överbryggas.",
           "5": "Granska bryggavgiften och den beräknade ankomsttiden.",
           "6": "Bekräfta bryggtransaktionen.",
-          "7": "Vänta tills transaktionen är klar — bryggning kan ta några minuter."
+          "7": "Teamet skickar ut tokens på målkedjan, vanligtvis inom 1-5 arbetsdagar."
         },
         "tips": {
           "1": "Bryggavgifter varierar beroende på kedjepar.",
-          "2": "Bryggning tar vanligtvis 1-5 minuter beroende på de inblandade kedjorna.",
+          "2": "Bryggutbetalningar görs tills vidare manuellt.",
           "3": "Dubbelkolla alltid destinationskedjan innan du bekräftar."
         }
       },

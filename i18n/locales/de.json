@@ -179,6 +179,7 @@
     "newMembersHint": "Gerade beigetreten – sag Hallo",
     "scroll": "Scroll",
     "noFilterMatches": "Keine Inhalte passen zu deinen Filtern.",
+    "followingEmpty": "Noch keine Beiträge von Leuten, denen du folgst",
     "clearFilters": "Filter zurücksetzen"
   },
   "explore": {
@@ -4849,11 +4850,11 @@
     "bridgeAction": "Brücke {{from}} → {{to}}",
     "failed": "Bridge fehlgeschlagen",
     "title": "Token überbrücken",
-    "howItWorksBody": "Senden Sie DeHub-Token an die Bridge-Relay-Adresse auf der Quellkette. Das Relay liefert automatisch den entsprechenden Betrag innerhalb von Minuten auf der Zielkette.",
+    "howItWorksBody": "Senden Sie DeHub-Token an die Bridge-Relay-Adresse auf der Quellkette. Das Team sendet die Token auf der Zielchain aus, meist innerhalb von 1-5 Werktagen.",
     "relayAddress": "Bridge-Relay-Adresse (Token hier auf der Quellkette senden):",
     "insufficient": "Nicht genügend Token auf {{chain}}.",
     "insufficientOnChain": "Nicht genügend Token auf {{chain}}. Das On-Chain-Guthaben kann vom angezeigten abweichen.",
-    "sentArriveShortly": "{{amount}} Token gesendet von {{from}} → {{to}}. Sie kommen in Kürze an.",
+    "sentArriveShortly": "{{amount}} Token von {{from}} an {{to}} gesendet. Das Team sendet die Token auf der Zielchain aus, meist innerhalb von 1-5 Werktagen.",
     "subtitle": "DeHub-Token zwischen Ketten verschieben",
     "queueTitle": "Brücken",
     "transferCount": "Überweisungen: {{count}}",
@@ -8129,11 +8130,11 @@
           "4": "Geben Sie die Anzahl der zu überbrückenden Token ein.",
           "5": "Überprüfen Sie die Brücken-Gebühr und die geschätzte Ankunftszeit.",
           "6": "Bestätigen Sie die Brücken-Transaktion.",
-          "7": "Warten Sie, bis die Transaktion abgeschlossen ist – das Bridging kann einige Minuten dauern."
+          "7": "Das Team sendet die Token auf der Zielchain aus, meist innerhalb von 1-5 Werktagen."
         },
         "tips": {
           "1": "Brücken-Gebühren variieren je nach Kettenpaar.",
-          "2": "Das Bridging dauert in der Regel 1-5 Minuten, abhängig von den beteiligten Ketten.",
+          "2": "Bridge-Auszahlungen erfolgen vorerst manuell.",
           "3": "Überprüfen Sie immer die Zielkette, bevor Sie bestätigen."
         }
       },

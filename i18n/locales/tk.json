@@ -179,6 +179,7 @@
     "newMembersHint": "Goşuldyňyz — salam aýdyň",
     "scroll": "Scroll",
     "noFilterMatches": "Süzgüçleriňize laýyk gelýän kontent ýok.",
+    "followingEmpty": "Yzarlaýan adamlaryňyzdan entek post ýok",
     "clearFilters": "Süzgüçleri arassala"
   },
   "explore": {
@@ -4789,11 +4790,11 @@
     "bridgeAction": "Köprü {{from}} → {{to}}",
     "failed": "Köprü şowsuz boldy",
     "title": "Tokenleri köprüläň",
-    "howItWorksBody": "DeHub tokenlerini çeşme zynjyryndaky köprü relýe salgytyna iberiň. Relýe birnäçe minutdan soň barmaly zynjyrynda deň mukdary awtomatiki ýerine ýetirer.",
+    "howItWorksBody": "DeHub tokenlerini çeşme zynjyryndaky köprü relýe salgytyna iberiň. Topar tokenleri maksat zynjyrynda iberýär, adatça 1-5 iş gününiň dowamynda.",
     "relayAddress": "Köprü relýe salgyty (çeşme zynjyrynda şu ýere tokenleri iberiň):",
     "insufficient": "{{chain}} -da ýeterlik token ýok.",
     "insufficientOnChain": "{{chain}} -da ýeterlik token ýok. Zynjyrdaky balans görkezilenden tapawutlanyp biler.",
-    "sentArriveShortly": "{{from}} -dan iberilen {{amount}} token → {{to}}. Olar tizden geler.",
+    "sentArriveShortly": "{{amount}} token {{from}} zynjyryndan {{to}} zynjyryna iberildi. Topar tokenleri maksat zynjyrynda iberýär, adatça 1-5 iş gününiň dowamynda.",
     "subtitle": "DeHub tokenlerini zynjyrlaryň arasyndan geçir",
     "queueTitle": "Köprüler",
     "transferCount": "Öwrenmeler: {{count}}",
@@ -8076,11 +8077,11 @@
           "4": "Köprüje etjek tokenleriň mukdaryny giriziň.",
           "5": "Köprü tölegini we garaşylýan gelme wagtyny gözden geçiriň.",
           "6": "Köprü amala aşyryşyny tassyklaň.",
-          "7": "Amala aşyrylmagyny garaşyň — köprü birnäçe minut dowam edip biler."
+          "7": "Topar tokenleri maksat zynjyrynda iberýär, adatça 1-5 iş gününiň dowamynda."
         },
         "tips": {
           "1": "Köprü tölegleri zynjyrlaryň jübütine görä üýtgeýär.",
-          "2": "Köprü, gatnaşýan zynjyrlara baglylykda, adatça 1-5 minut dowam edýär.",
+          "2": "Häzirlikçe köpri tölegleri el bilen edilýär.",
           "3": "Tassyklamazdan ozal hemişe barmaly zynjyryny iki gezek barlaň."
         }
       },

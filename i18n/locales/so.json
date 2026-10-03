@@ -179,6 +179,7 @@
     "newMembersHint": "Kamaal ku biiray — salaam",
     "scroll": "Scroll",
     "noFilterMatches": "Ma jiro nuxur ku habboon miirayaashaada.",
+    "followingEmpty": "Weli ma jiraan qoraallo ka yimid dadka aad raacdo",
     "clearFilters": "Nadiifi miirayaasha"
   },
   "explore": {
@@ -4791,11 +4792,11 @@
     "bridgeAction": "Buundo {{from}} → {{to}}",
     "failed": "Buundada way fashilantay",
     "title": "Token-ka Gudbi",
-    "howItWorksBody": "U dir DeHub token-kaaga cinwaanka relay-ga ee buundada ee silsilada isha. Relay-ga si otomaatig ah ayuu u keenayaa qadarka u dhigma ee silsilada meesha loo socdo daqiiqado gudahood.",
+    "howItWorksBody": "U dir DeHub token-kaaga cinwaanka relay-ga ee buundada ee silsilada isha. Kooxdu waxay tokens-ka u dirtaa silsilada loo socdo, inta badan 1-5 maalmood oo shaqo gudahood.",
     "relayAddress": "Cinwaanka relay-ga ee buundada (halkan ku dir token-kaaga silsilada isha):",
     "insufficient": "Kama filna token-ka {{chain}}.",
     "insufficientOnChain": "Kama filna token-ka {{chain}}. Dhaqaalaha on-chain wuu ka duwanaan karaa kan la muujiyay.",
-    "sentArriveShortly": "{{amount}} token oo laga soo diray {{from}} → {{to}}. Waxay imanayaan dhawaan.",
+    "sentArriveShortly": "{{amount}} token ayaa laga diray {{from}} loona diray {{to}}. Kooxdu waxay tokens-ka u dirtaa silsilada loo socdo, inta badan 1-5 maalmood oo shaqo gudahood.",
     "subtitle": "U wareeji lacagta DeHub-ka silsiladaha kala duwan",
     "queueTitle": "Buundooyinka",
     "transferCount": "Transfers: {{count}}",
@@ -8077,11 +8078,11 @@
           "4": "Geli tirada calaamadaha la gudbinayo.",
           "5": "Dib u eeg khidmadda gudbinta iyo wakhtiga la filayo ee imaatinka.",
           "6": "Xaqiiji macaamilka gudbinta.",
-          "7": "Sug in macaamilka la dhammaystiro — gudbintu waxay qaadan kartaa dhowr daqiiqo."
+          "7": "Kooxdu waxay tokens-ka u dirtaa silsilada loo socdo, inta badan 1-5 maalmood oo shaqo gudahood."
         },
         "tips": {
           "1": "Khidmadaha gudbinta way kala duwan yihiin iyadoo ku xiran labada silsiladood.",
-          "2": "Gudbintu waxay caadiyan qaadataa 1-5 daqiiqo iyadoo ku xiran silsiladaha ku lug leh.",
+          "2": "Hadda lacag-bixinta buundada gacan ayaa lagu sameeyaa.",
           "3": "Had iyo jeer si fiican u hubi silsiladda meesha aad u socoto ka hor intaadan xaqiijin."
         }
       },
