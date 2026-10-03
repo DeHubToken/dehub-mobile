@@ -109,7 +109,7 @@ import { toastError, toastInfo, toastSuccess, toastWarning } from "../libs/toast
 import { useKeyboardLift } from "../hooks/useKeyboardLayout";
 import { createLogger } from "../libs/logger";
 import { useDmPin } from "../hooks/useDmPin";
-import { useCall } from "../context/CallContext";
+import { useCallActions } from "../context/CallContext";
 
 /** Safely extract a plain string ID from either a raw string or a populated Mongoose document. */
 function resolveConvId(...vals: unknown[]): string {
@@ -196,7 +196,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
     [user],
   );
   const userId = ((user as any)?._id || (user as any)?.id) as string | undefined;
-  const { setCallMessageHandler } = useCall();
+  const { setCallMessageHandler } = useCallActions();
 
   const storeMessages = useDmMessages(convId || "");
   const conversations = useDmContacts();

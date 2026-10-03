@@ -1,6 +1,7 @@
 import React from "react";
+import { CallDuration } from "./CallDuration";
 import { View, Text, StyleSheet, Modal, StatusBar } from "react-native";
-import { RtcSurfaceView, VideoSourceType, RenderModeType } from "react-native-agora";
+import { RtcSurfaceView } from "react-native-agora";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
 import { useTranslation } from "react-i18next";
@@ -19,7 +20,8 @@ const VideoCallModal: React.FC = () => {
     isMuted,
     isSpeakerOn,
     isCameraOff,
-    callDuration,
+    localCanvas,
+    remoteCanvas,
     remoteUid,
     peerAddress,
     isMinimized,
@@ -42,9 +44,7 @@ const VideoCallModal: React.FC = () => {
 
   const statusText = isConnecting
     ? t("calls.connecting")
-    : callDuration !== "00:00"
-      ? callDuration
-      : t("calls.connected");
+    : <CallDuration fallback={t("calls.connected")} />;
 
   return (
     <Modal
@@ -60,11 +60,7 @@ const VideoCallModal: React.FC = () => {
         {remoteUid ? (
           <RtcSurfaceView
             style={StyleSheet.absoluteFill}
-            canvas={{
-              uid: remoteUid,
-              sourceType: VideoSourceType.VideoSourceRemote,
-              renderMode: RenderModeType.RenderModeFit,
-            }}
+            canvas={remoteCanvas}
           />
         ) : (
           // Nobody on the far side yet, so this is the ringing screen: show who
@@ -97,11 +93,7 @@ const VideoCallModal: React.FC = () => {
           <RtcSurfaceView
             style={StyleSheet.absoluteFill}
             zOrderMediaOverlay={true}
-            canvas={{
-              uid: 0,
-              sourceType: VideoSourceType.VideoSourceCamera,
-              renderMode: RenderModeType.RenderModeHidden,
-            }}
+            canvas={localCanvas}
           />
         </View>
 
