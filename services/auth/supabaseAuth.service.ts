@@ -8,6 +8,7 @@ import * as Linking from "expo-linking";
 import { Platform } from "react-native";
 import { supabase } from "../supabase";
 import { createLogger } from "../../libs/logger";
+import { advanceAuthTrace, beginAuthTrace } from '../../libs/auth-trace';
 
 const log = createLogger("supabaseAuth");
 
@@ -24,6 +25,8 @@ function getOAuthRedirectUri(): string {
 }
 
 export async function sendEmailOtp(email: string): Promise<void> {
+  beginAuthTrace('email');
+  log.trace?.('identity-start');
   const { error } = await supabase.auth.signInWithOtp({
     email: email.trim(),
     options: { shouldCreateUser: true },
@@ -32,6 +35,7 @@ export async function sendEmailOtp(email: string): Promise<void> {
     log.warn("sendEmailOtp:error", error.message);
     throw new Error(error.message || "Failed to send code");
   }
+  log.trace?.('otp-sent');
 }
 
 /**
@@ -46,6 +50,8 @@ export async function signInWithEmailPassword(
   email: string,
   password: string,
 ): Promise<string> {
+  beginAuthTrace('email-password');
+  log.trace?.('identity-start');
   const { data, error } = await supabase.auth.signInWithPassword({
     email: email.trim(),
     password,
@@ -61,6 +67,7 @@ export async function signInWithEmailPassword(
 
 /** Verifies the emailed code and returns the Supabase user id. */
 export async function verifyEmailOtp(email: string, token: string): Promise<string> {
+  log.trace?.('otp-verify-start');
   const { data, error } = await supabase.auth.verifyOtp({
     email: email.trim(),
     token: token.trim(),
@@ -95,6 +102,8 @@ export async function verifyEmailOtp(email: string, token: string): Promise<stri
  * enforces the identical regex before we get here.
  */
 export async function sendPhoneOtp(phone: string): Promise<void> {
+  beginAuthTrace('phone');
+  log.trace?.('identity-start');
   // These functions answer 200 with { error } rather than a non-2xx, because
   // functions.invoke() only surfaces a body on 2xx. Same check as
   // fetchAgoraToken: the transport error first, then the payload error.
@@ -121,6 +130,7 @@ export async function sendPhoneOtp(phone: string): Promise<void> {
  * the user signed in across app launches.
  */
 export async function verifyPhoneOtp(phone: string, token: string): Promise<string> {
+  log.trace?.('otp-verify-start');
   const { data, error } = await supabase.functions.invoke("verify-phone-otp", {
     body: { phone: phone.trim(), code: token.trim() },
   });
@@ -156,6 +166,8 @@ async function signInWithOAuthProvider(
   provider: "google" | "apple",
   queryParams?: Record<string, string>
 ): Promise<string> {
+  beginAuthTrace(provider);
+  log.trace?.('identity-start');
   const redirectTo = getOAuthRedirectUri();
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider,
@@ -171,6 +183,7 @@ async function signInWithOAuthProvider(
   }
 
   const result = await WebBrowser.openAuthSessionAsync(data.url, redirectTo);
+  log.trace?.('oauth-result', { result: result.type });
   if (result.type !== "success" || !result.url) {
     throw new Error(`${provider} sign-in was cancelled`);
   }
@@ -192,6 +205,8 @@ async function signInWithOAuthProvider(
     log.warn(`signInWith:${provider}:setSession:error`, sessionError?.message);
     throw new Error(sessionError?.message || "Could not establish session");
   }
+  advanceAuthTrace('identity-established', sessionData.user.id);
+  log.trace?.('identity-established');
   return sessionData.user.id;
 }
 
@@ -204,6 +219,8 @@ export async function signInWithGoogle(): Promise<string> {
 }
 
 export async function signInWithApple(): Promise<string> {
+  beginAuthTrace('apple');
+  log.trace?.('identity-start');
   if (Platform.OS === "ios") {
     const AppleAuthentication: typeof import("expo-apple-authentication") = require("expo-apple-authentication");
     const Crypto: typeof import("expo-crypto") = require("expo-crypto");
@@ -286,6 +303,8 @@ export async function isTelegramLoginAvailable(): Promise<boolean> {
 }
 
 export async function signInWithTelegram(): Promise<string> {
+  beginAuthTrace('telegram');
+  log.trace?.('identity-start');
   const config = await fetchTelegramConfig();
   if (!config.enabled || !config.botId) {
     throw new Error("Telegram login is not available right now.");
