@@ -1,3 +1,4 @@
+import BadgeArtwork from "./BadgeArtwork";
 /**
  * Boost Sheet
  * ===========
@@ -205,7 +206,7 @@ export default function BoostSheet({
 
             <View className="flex-row items-center gap-3 rounded-2xl bg-white/5 p-4">
               {!!badgeUrl && (
-                <Image source={badgeUrl} style={{ width: 36, height: 36 }} resizeMode="contain" />
+                <BadgeArtwork source={badgeUrl} style={{ width: 36, height: 36 }} resizeMode="contain" />
               )}
               <View className="min-w-0 flex-1">
                 <Text className="text-sm font-medium text-white">{status.tier}</Text>

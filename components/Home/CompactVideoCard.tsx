@@ -1,3 +1,4 @@
+import BadgeArtwork from "../common/BadgeArtwork";
 import { isHoldGated, isSubscriberGated } from "../../libs/content-gate";
 import React, { memo, useCallback } from "react";
 import { useTranslation } from "react-i18next";
@@ -16,7 +17,7 @@ import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { useStreamAccessInfo } from "../../libs/validators.util";
 import { resolveViewCount } from "../../libs/numbers.util";
-import { getBadgeOpticalStyle } from "../../libs/misc";
+import { getBadgeHoverOpticalStyle as getBadgeOpticalStyle } from "../../libs/misc";
 import { useAppTheme } from "../../context/ThemeContext";
 import { MINIMAL_INSET, minimalRow } from "../../theme/minimal";
 
@@ -263,7 +264,7 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
                   onPress={handlePressCreator}
                   className="self-baseline"
                 >
-                  <SmartImage source={badgeImage} style={getBadgeOpticalStyle(badgeImage, 14)} contentFit="contain" />
+                  <BadgeArtwork source={badgeImage} style={getBadgeOpticalStyle(badgeImage, 14)} contentFit="contain" />
                 </TouchableOpacity>
               )}
             </View>

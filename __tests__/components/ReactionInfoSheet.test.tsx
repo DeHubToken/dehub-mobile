@@ -30,6 +30,7 @@ jest.mock('../../services/nft.service', () => ({ getPostLikers: async () => ({
 jest.mock('../../components/ui/Icon', () => 'Icon');
 jest.mock('../../components/common/Avatar', () => 'Avatar');
 jest.mock('../../components/common/SmartImage', () => 'Image');
+jest.mock('../../components/common/BadgeArtwork', () => 'Image');
 jest.mock('../../libs/misc', () => ({ getAvatarUrl: () => '', getBadgeUrlFor: () => 1 }));
 jest.mock('../../libs/engagement-weight', () => ({ engagementWeight: () => 3, formatEngagementWeight: () => '×3' }));
 

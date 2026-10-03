@@ -1,3 +1,4 @@
+import BadgeArtwork from "../common/BadgeArtwork";
 import React, { FC, useCallback, useState } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import SmartImage from "../common/SmartImage";
@@ -91,7 +92,7 @@ const SearchAccountChip: FC<SearchAccountChipProps> = ({ account, onFollowChange
           {displayName}
         </Text>
         {badgeImage ? (
-          <SmartImage
+          <BadgeArtwork
             source={badgeImage}
             style={{ width: 14, height: 14, marginLeft: 3 }}
             contentFit="contain"

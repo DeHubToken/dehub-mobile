@@ -1,3 +1,4 @@
+import BadgeArtwork from "../common/BadgeArtwork";
 import React, { memo, useCallback, useMemo, useState } from "react";
 import {
   View,
@@ -100,7 +101,7 @@ const ShareToDmSheetComponent: React.FC<ShareToDmSheetProps> = ({
               {name}
             </Text>
             {badgeImg ? (
-              <SmartImage source={badgeImg} style={{ width: 15, height: 15 }} contentFit="contain" />
+              <BadgeArtwork source={badgeImg} style={{ width: 15, height: 15 }} contentFit="contain" />
             ) : null}
           </View>
           <Ionicons name="send-outline" size={18} color="#D4D4D8" />
