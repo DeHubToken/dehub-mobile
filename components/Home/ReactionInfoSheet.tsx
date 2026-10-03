@@ -97,7 +97,7 @@ const PersonRow: React.FC<{ item: LikerUser; onPress: (address: string) => void 
         </View>
         {weight > 1 && !item.hideBadgeAndBalance && (
           <View style={{ flexDirection: "row", alignItems: "center", gap: 4, marginRight: 8 }}>
-            {badge && <SmartImage source={badge} style={{ width: 18, height: 18 }} />}
+            {badge && <BadgeArtwork source={badge} style={{ width: 18, height: 18 }} />}
             <Text style={{ color: "#8B8D90", fontSize: 12 }}>{formatEngagementWeight(weight)}</Text>
           </View>
         )}
@@ -378,3 +378,4 @@ const glassStyles = StyleSheet.create({
 
 export const ReactionInfoSheet = memo(ReactionInfoSheetComponent);
 export default ReactionInfoSheet;
+import BadgeArtwork from "../common/BadgeArtwork";

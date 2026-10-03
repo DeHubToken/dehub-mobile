@@ -1,3 +1,4 @@
+import BadgeArtwork from "../common/BadgeArtwork";
 import React, { memo, useCallback, useEffect, useMemo, useRef } from "react";
 import { View, Text, TouchableOpacity, Pressable } from "react-native";
 import SmartImage from "../common/SmartImage";
@@ -215,7 +216,7 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
             </View>
           )}
           {!!badgeImg && (
-            <SmartImage source={badgeImg} style={[getBadgeOpticalStyle(badgeImg, 14), { marginLeft: 0 }]} contentFit="contain" />
+            <BadgeArtwork source={badgeImg} style={[getBadgeOpticalStyle(badgeImg, 14), { marginLeft: 0 }]} contentFit="contain" />
           )}
           <Text className="text-white/50 text-[11px] ml-auto">
             {formatTime(message.createdAt)}

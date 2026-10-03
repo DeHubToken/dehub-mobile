@@ -1,3 +1,4 @@
+import BadgeArtwork from "../common/BadgeArtwork";
 import { isHoldGated, isSubscriberGated } from "../../libs/content-gate";
 import React, { memo, useCallback } from "react";
 import { useTranslation } from "react-i18next";
@@ -263,7 +264,7 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
                   onPress={handlePressCreator}
                   className="self-baseline"
                 >
-                  <SmartImage source={badgeImage} style={getBadgeOpticalStyle(badgeImage, 14)} contentFit="contain" />
+                  <BadgeArtwork source={badgeImage} style={getBadgeOpticalStyle(badgeImage, 14)} contentFit="contain" />
                 </TouchableOpacity>
               )}
             </View>

@@ -1,3 +1,4 @@
+import BadgeArtwork from "../common/BadgeArtwork";
 /**
  * TVChatPanel
  * ===========
@@ -87,7 +88,7 @@ const ChatRow: React.FC<{
             {displayName}
           </Text>
           {!!badgeImg && (
-            <SmartImage source={badgeImg} style={[getBadgeOpticalStyle(badgeImg, 13), { marginLeft: 0 }]} contentFit="contain" />
+            <BadgeArtwork source={badgeImg} style={[getBadgeOpticalStyle(badgeImg, 13), { marginLeft: 0 }]} contentFit="contain" />
           )}
           <Text className="text-white/60 text-xs ml-auto">
             {formatTime(message.created_at)}

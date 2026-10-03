@@ -1,3 +1,4 @@
+import BadgeArtwork from "../common/BadgeArtwork";
 import React from "react";
 import { View, Text, TouchableOpacity, ImageSourcePropType } from "react-native";
 import SmartImage from "../common/SmartImage";
@@ -114,7 +115,7 @@ const LeaderboardRowItem: React.FC<Props> = ({ item, sort, period, onPress }) =>
               {item.displayName || item.username || truncate(item.account, 10, "..")}
             </Text>
             {badgeImage ? (
-              <SmartImage source={badgeImage} style={getBadgeOpticalStyle(badgeImage, 14)} contentFit="contain" />
+              <BadgeArtwork source={badgeImage} style={getBadgeOpticalStyle(badgeImage, 14)} contentFit="contain" />
             ) : null}
           </View>
           {item.username ? (
