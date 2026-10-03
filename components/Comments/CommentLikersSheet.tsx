@@ -41,7 +41,7 @@ import Icon from "../ui/Icon";
 import Avatar from "../common/Avatar";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import { getCommentLikers, type CommentLiker } from "../../services/nft.service";
-import { getAvatarUrl, getBadgeUrlFor, getBadgeOpticalStyle } from "../../libs/misc";
+import { getAvatarUrl, getBadgeUrlFor, getBadgeHoverOpticalStyle as getBadgeOpticalStyle } from "../../libs/misc";
 import { truncate } from "../../libs/strings.util";
 import { useTranslation } from "react-i18next";
 

@@ -8,7 +8,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
-import { getAvatarUrl, getImageUrl, getImageUrlApiSimple, buildFeedImageUrls, getAudioUrl, getBadgeOpticalStyle, getBadgeUrlFor } from "../../libs/misc";
+import { getAvatarUrl, getImageUrl, getImageUrlApiSimple, buildFeedImageUrls, getAudioUrl, getBadgeHoverOpticalStyle as getBadgeOpticalStyle, getBadgeUrlFor } from "../../libs/misc";
 import { truncate } from "../../libs/strings.util";
 import { getNFT } from "../../services/nft.service";
 import Avatar from "./Avatar";

@@ -7,7 +7,7 @@ import { storageImage } from "../../libs/cdnImage";
 import { LinearGradient } from "expo-linear-gradient";
 import Avatar from "../common/Avatar";
 import Icon from "../ui/Icon";
-import { copyToClipboard, getBadgeOpticalStyle } from "../../libs";
+import { copyToClipboard, getBadgeHoverOpticalStyle as getBadgeOpticalStyle } from "../../libs";
 import { toastSuccess } from "../../libs/toast";
 import { ensProfileUrl } from "../../libs/ens-handle";
 import { useTranslation } from "../../hooks/useTranslation";

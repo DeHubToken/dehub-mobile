@@ -1,3 +1,4 @@
+import BadgeArtwork from "../common/BadgeArtwork";
 import { useSheetClosed } from '../../hooks/useSheetClosed';
 /**
  * Reaction Info Sheet
@@ -378,4 +379,3 @@ const glassStyles = StyleSheet.create({
 
 export const ReactionInfoSheet = memo(ReactionInfoSheetComponent);
 export default ReactionInfoSheet;
-import BadgeArtwork from "../common/BadgeArtwork";

@@ -1,3 +1,4 @@
+import BadgeArtwork from "./BadgeArtwork";
 /**
  * Boost Sheet
  * ===========
@@ -339,4 +340,3 @@ export default function BoostSheet({
     </>
   );
 }
-import BadgeArtwork from "./BadgeArtwork";

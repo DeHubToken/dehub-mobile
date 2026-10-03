@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 import Avatar from "../common/Avatar";
 import { truncate } from "../../libs/strings.util";
 import { formatCompactNumber } from "../../libs/numbers.util";
-import { getBadgeOpticalStyle, getBadgeUrlFor } from "../../libs/misc";
+import { getBadgeHoverOpticalStyle as getBadgeOpticalStyle, getBadgeUrlFor } from "../../libs/misc";
 import { getEntryValue, isHidden } from "../../libs/leaderboard-rules";
 import type { LeaderboardPeriod } from "../../services/leaderboard.service";
 import type { SortCategory } from "./LeaderboardCategoryPills";

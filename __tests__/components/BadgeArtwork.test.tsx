@@ -4,6 +4,12 @@ import BadgeArtwork from '../../components/common/BadgeArtwork';
 import { openBadgeShowcase } from '../../libs/badgeShowcase';
 import { useReducedMotion } from 'react-native-reanimated';
 
+jest.mock('dehub-jsx/jsx-runtime', () => require('react/jsx-runtime'));
+jest.mock('react-native', () => ({
+  View: 'View', Pressable: 'Pressable', Image: 'Image', Text: 'Text',
+  StyleSheet: { create: (styles: unknown) => styles, flatten: (styles: unknown) => styles, absoluteFillObject: {} },
+}));
+
 jest.mock('../../libs/badgeShowcase', () => ({
   tierForBadgeImage: () => 'Octopus', openBadgeShowcase: jest.fn(),
 }));

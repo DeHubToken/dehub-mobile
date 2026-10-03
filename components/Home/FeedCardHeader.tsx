@@ -4,7 +4,7 @@ import { View, Text, Pressable } from "react-native";
 import Avatar from "../common/Avatar";
 import NewMemberChip from "../common/NewMemberChip";
 import Icon from "../ui/Icon";
-import { getBadgeOpticalStyle } from "../../libs/misc";
+import { getBadgeHoverOpticalStyle as getBadgeOpticalStyle } from "../../libs/misc";
 import { openBadgeShowcase, tierForBadgeImage } from "../../libs/badgeShowcase";
 import { useTranslation } from "react-i18next";
 

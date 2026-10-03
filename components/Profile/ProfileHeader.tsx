@@ -16,7 +16,7 @@ import {
   getAvatarUrl,
   getCoverUrl,
   getBadgeName,
-  getBadgeOpticalStyle,
+  getBadgeHoverOpticalStyle as getBadgeOpticalStyle,
   getBadgeUrl,
   getDefaultBanner,
   resolveBadgeBalance,

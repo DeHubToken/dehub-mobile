@@ -14,7 +14,7 @@ import TranslateButton from "../ui/TranslateButton";
 import { useTranslation } from "../../hooks/useTranslation";
 import { useTranslation as useI18n } from "react-i18next";
 import Avatar from "../common/Avatar";
-import { getAvatarUrl, getBadgeOpticalStyle, getBadgeUrlFor } from "../../libs/misc";
+import { getAvatarUrl, getBadgeHoverOpticalStyle as getBadgeOpticalStyle, getBadgeUrlFor } from "../../libs/misc";
 import { openInApp } from "../../libs/links.utils";
 import { ASSISTANT_USERNAME, isAssistantAddress } from "../../libs/assistant";
 import { resolveChatGif, gifCaption, gifBox } from "../../libs/chat-gif";
