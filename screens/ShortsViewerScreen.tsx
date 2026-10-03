@@ -1,3 +1,6 @@
+import { usePersistentVideoPlayer } from '../hooks/usePersistentVideoPlayer';
+import { PersistentVideoView } from '../components/common/PersistentVideoView';
+import { isPictureInPicturePlayer, canStartVideo } from '../libs/pictureInPicture';
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useFeedPlaybackAllowed } from "../libs/visualActivity";
 /**
@@ -568,7 +571,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive: activeItem, isNe
   const { liteMode } = useDataSaver();
   const playerSource = isActive || (isNearby && !liteMode) ? videoUrl || null : null;
 
-  const player = useVideoPlayer(null, (p) => {
+  const player = usePersistentVideoPlayer(null, (p) => {
     p.staysActiveInBackground = isActive;
     p.showNowPlayingNotification = isActive;
     p.loop = true;
@@ -578,6 +581,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive: activeItem, isNe
 
 
   const stopPlayback = useCallback(() => {
+    if (isPictureInPicturePlayer(player)) return;
     try {
       player.staysActiveInBackground = false;
       player.showNowPlayingNotification = false;
@@ -595,7 +599,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive: activeItem, isNe
   }, [player, photoMedia]);
 
   const playIfActive = useCallback(() => {
-    if (!isActiveRef.current) {
+    if ((!isActiveRef.current && !isPictureInPicturePlayer(player)) || !canStartVideo(player)) {
       stopPlayback();
       return false;
     }
@@ -608,14 +612,14 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive: activeItem, isNe
     }
   }, [player, stopPlayback]);
 
-  useSettledVideoSource(player, playerSource, isActive, () => {
+  useSettledVideoSource(player, isPictureInPicturePlayer(player) ? videoUrl || null : playerSource, isActive, () => {
     if (!pausedByUserRef.current && itemNavigation.isFocused()) playIfActive();
   });
 
   useEffect(() => {
     if (!player) return;
-    player.staysActiveInBackground = isActive;
-    player.showNowPlayingNotification = isActive;
+    player.staysActiveInBackground = isActive || isPictureInPicturePlayer(player);
+    player.showNowPlayingNotification = isActive || isPictureInPicturePlayer(player);
     if (isActive) {
       // The same callback identity must be used for request and release. The
       // old anonymous callbacks could never release either global focus slot.
@@ -718,7 +722,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive: activeItem, isNe
     const sub = player.addListener("playingChange", ({ isPlaying: playing }) => {
       // iOS may finish an earlier native play request after the pager's pause.
       // Immediately reject that stale start instead of trusting event order.
-      if (playing && !isActiveRef.current) {
+      if (playing && ((!isActiveRef.current && !isPictureInPicturePlayer(player)) || !canStartVideo(player))) {
         stopPlayback();
         return;
       }
@@ -735,6 +739,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive: activeItem, isNe
   useEffect(() => {
     if (!player) return;
     const onBlur = () => {
+      if (isPictureInPicturePlayer(player)) return;
       try { player.pause(); } catch {}
     };
     const onFocus = () => {
@@ -1321,7 +1326,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive: activeItem, isNe
         {/* Only the current short owns a native view: preloaded neighbours must
             not overwrite the activity's automatic PiP configuration. */}
         {player && isActive && !photoMedia ? (
-          <VideoView
+          <PersistentVideoView
             ref={activeVideoRef}
             allowsPictureInPicture
             startsPictureInPictureAutomatically={isPlaying}

@@ -1,3 +1,6 @@
+import { usePersistentVideoPlayer } from '../../hooks/usePersistentVideoPlayer';
+import { PersistentVideoView } from '../common/PersistentVideoView';
+import { isPictureInPicturePlayer, canStartVideo } from '../../libs/pictureInPicture';
 import React, {
   useRef,
   useState,
@@ -232,7 +235,7 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
   // instead of reconnecting from a spinner. The own player then idles with no
   // source, which allocates nothing worth mentioning.
   const sharedLivePlayer = useSharedLivePlayer(liveMode ? sourceUrl : null);
-  const ownPlayer: VideoPlayer = useVideoPlayer(sharedLivePlayer ? null : sourceUrl ?? null, (p) => {
+  const ownPlayer: VideoPlayer = usePersistentVideoPlayer(sharedLivePlayer ? null : sourceUrl ?? null, (p) => {
     p.loop = !liveMode && loop;
     p.muted = muted ?? getCachedMuted();
     p.timeUpdateEventInterval = PLAYER_CONSTANTS.TIME_UPDATE_INTERVAL;
@@ -245,7 +248,7 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
     p.staysActiveInBackground = true;
     p.showNowPlayingNotification = true;
     p.bufferOptions = liveMode ? LIVE_BUFFER_OPTIONS : FULLSCREEN_BUFFER_OPTIONS;
-    if (!liveMode && autoplay && sourceUrl && !visualActivity.isCallBusy()) {
+    if (!liveMode && autoplay && sourceUrl && !visualActivity.isCallBusy() && canStartVideo(p)) {
       p.play();
     }
   });
@@ -270,12 +273,13 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
   // Start live HLS after the player has been configured and attached, as the
   // feed preview does. Live timelines must not enter the file-repeat path.
   useEffect(() => {
-    if (liveMode && autoplay && sourceUrl && !visualActivity.isCallBusy()) {
+    if (liveMode && autoplay && sourceUrl && !visualActivity.isCallBusy() && canStartVideo(player)) {
       player.play();
     }
   }, [player, liveMode, autoplay, sourceUrl]);
 
   const stopPlayback = useCallback(() => {
+    if (isPictureInPicturePlayer(player) && !visualActivity.isCallBusy()) return;
     setPlayRequested(false);
     try { player.pause(); } catch {}
     releaseAudioFocus(stopPlayback);
@@ -346,7 +350,7 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
     const subscriptions = [
       player.addListener('playingChange', ({ isPlaying: playing }) => {
         if (!isMountedRef.current) return;
-        if (playing && visualActivity.isCallBusy()) { stopPlayback(); return; }
+        if (playing && (visualActivity.isCallBusy() || !canStartVideo(player))) { stopPlayback(); return; }
         setIsPlaying(playing);
         onPlayStateChange?.(playing);
         if (playing) {
@@ -426,7 +430,7 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
   useEffect(() => {
     const unsubscribe = navigation.addListener('beforeRemove', (e) => {
       if (isInPiPRef.current) {
-        e.preventDefault();
+        // The persistent view protects automatic PiP; manual PiP is hosted at the root.
         return;
       }
       try {
@@ -803,7 +807,7 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
     >
       {/* Video View — always mounted, never moves between trees */}
       {sourceUrl && (
-        <VideoView
+        <PersistentVideoView
           ref={(r) => {
             viewRef.current = r as VideoView | null;
           }}
