@@ -19,7 +19,7 @@ import {
   getRepostUsers,
   RepostUser,
 } from "../../services/repost.service";
-import { getAvatarUrl, getBadgeOpticalStyle, getBadgeUrl } from "../../libs/misc";
+import { getAvatarUrl, getBadgeHoverOpticalStyle as getBadgeOpticalStyle, getBadgeUrl } from "../../libs/misc";
 import { truncate } from "../../libs/strings.util";
 import { formatCompactNumber } from "../../libs/numbers.util";
 

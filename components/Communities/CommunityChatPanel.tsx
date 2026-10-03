@@ -47,7 +47,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Icon from "../ui/Icon";
 import type { IconName } from "../ui/Icon";
 import Avatar from "../common/Avatar";
-import { getAvatarUrl, getBadgeOpticalStyle, getBadgeUrl, resolveBadgeBalance } from "../../libs/misc";
+import { getAvatarUrl, getBadgeHoverOpticalStyle as getBadgeOpticalStyle, getBadgeUrl, resolveBadgeBalance } from "../../libs/misc";
 import { copyToClipboard } from "../../libs/clipboard.utils";
 import { toastSuccess } from "../../libs/toast";
 import { useUser } from "../../context/AuthContext";

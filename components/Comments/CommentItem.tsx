@@ -17,7 +17,7 @@ import type { TFunction } from "i18next";
 import Avatar from "../common/Avatar";
 import NewMemberChip from "../common/NewMemberChip";
 import VoiceNotePlayer from "./VoiceNotePlayer";
-import { getAvatarUrl, buildCdnPath, getBadgeUrlFor, getBadgeOpticalStyle } from "../../libs/misc";
+import { getAvatarUrl, buildCdnPath, getBadgeUrlFor, getBadgeHoverOpticalStyle as getBadgeOpticalStyle } from "../../libs/misc";
 import { openBadgeShowcase, tierForBadgeImage } from "../../libs/badgeShowcase";
 import { formatCompactNumber } from "../../libs/numbers.util";
 import { isAssistantAddress } from "../../libs/assistant";
