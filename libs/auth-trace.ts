@@ -1,5 +1,6 @@
 type AuthTrace = {
   auth_attempt_id: string;
+  auth_flow_id: string;
   auth_method: string;
   auth_started_at: number;
   auth_stage: string;
@@ -11,8 +12,11 @@ let current: AuthTrace | null = null;
 
 /** Correlation only: this id never authorizes a login or contains a credential. */
 export function beginAuthTrace(method: string) {
+  const previous = readAuthTrace();
+  const id = `${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}-${Math.random().toString(36).slice(2)}`;
   current = {
-    auth_attempt_id: `${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}-${Math.random().toString(36).slice(2)}`,
+    auth_attempt_id: id,
+    auth_flow_id: typeof previous.auth_flow_id === 'string' ? previous.auth_flow_id : id,
     auth_method: method,
     auth_started_at: Date.now(),
     auth_stage: 'identity-start',
