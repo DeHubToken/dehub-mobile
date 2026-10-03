@@ -33,7 +33,7 @@ export default function NavPillSurface() {
           skin && skin.barFill,
         ]} />
       )}
-      {skin?.grain ? <Image source={GRAIN} resizeMode="repeat" style={StyleSheet.absoluteFill} pointerEvents="none" /> : null}
+      {skin?.grain ? <Image source={GRAIN} resizeMode="repeat" style={StyleSheet.absoluteFill} /> : null}
       <View pointerEvents="none" style={[
         styles.border,
         isLight && { borderColor: "rgba(0, 0, 0, 0.12)" },
@@ -54,4 +54,3 @@ const styles = StyleSheet.create({
     borderColor: "rgba(255, 255, 255, 0.10)",
   },
 });
-
