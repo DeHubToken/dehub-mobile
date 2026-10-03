@@ -22,6 +22,72 @@ describe('libs/token-refresh', () => {
   });
 
   describe('attemptRefresh', () => {
+    it('notifies the UI after a rejected session has been cleared', async () => {
+      await setAuthToken('old-access');
+      await setRefreshToken('old-refresh');
+      const seenTokens: (string | null)[] = [];
+      const listener = jest.fn(() => { seenTokens.push(mockStore.__store.auth_token ?? null); });
+      const unsubscribe = tokenRefreshManager.onSessionInvalidated(listener);
+      try {
+        mockFetch.mockResolvedValueOnce({ ok: false, status: 401,
+          json: async () => ({ message: 'Invalid refresh token' }) });
+        await tokenRefreshManager.attemptRefresh();
+        expect(listener).toHaveBeenCalledTimes(1);
+        expect(seenTokens).toEqual([null]);
+        expect(await getRefreshToken()).toBeNull();
+      } finally { unsubscribe(); }
+    });
+
+    it('invalidates a cached account with no usable refresh token', async () => {
+      await setAuthToken('expired-access');
+      const listener = jest.fn();
+      const unsubscribe = tokenRefreshManager.onSessionInvalidated(listener);
+      try {
+        await tokenRefreshManager.attemptRefresh();
+        expect(await getAuthToken()).toBeNull();
+        expect(listener).toHaveBeenCalledTimes(1);
+        expect(mockFetch).not.toHaveBeenCalled();
+      } finally { unsubscribe(); }
+    });
+
+    it.each([500, 429, undefined])('preserves the session on a transient failure (%s)', async (status) => {
+      await setAuthToken('old-access');
+      await setRefreshToken('old-refresh');
+      const listener = jest.fn();
+      const unsubscribe = tokenRefreshManager.onSessionInvalidated(listener);
+      try {
+        if (status) mockFetch.mockResolvedValueOnce({ ok: false, status,
+          json: async () => ({ message: 'Try again' }) });
+        else mockFetch.mockRejectedValueOnce(new TypeError('Network request failed'));
+        await tokenRefreshManager.attemptRefresh();
+        expect(await getAuthToken()).toBe('old-access');
+        expect(await getRefreshToken()).toBe('old-refresh');
+        expect(listener).not.toHaveBeenCalled();
+      } finally { unsubscribe(); }
+    });
+
+    it('does not sign out a newer login when an older refresh is rejected', async () => {
+      await setAuthToken('old-access');
+      await setRefreshToken('old-refresh');
+      const listener = jest.fn();
+      const unsubscribe = tokenRefreshManager.onSessionInvalidated(listener);
+      let answer: (value: any) => void = () => {};
+      let issued: () => void = () => {};
+      const requestIssued = new Promise<void>(resolve => { issued = resolve; });
+      mockFetch.mockImplementationOnce(() => new Promise(resolve => { answer = resolve; issued(); }));
+      try {
+        const pending = tokenRefreshManager.attemptRefresh();
+        await requestIssued;
+        await setAuthToken('new-login');
+        await setRefreshToken('new-refresh');
+        answer({ ok: false, status: 401, json: async () => ({ message: 'Revoked' }) });
+        await pending;
+        expect(await getAuthToken()).toBe('new-login');
+        expect(await getRefreshToken()).toBe('new-refresh');
+        expect(listener).not.toHaveBeenCalled();
+      } finally { unsubscribe(); }
+    });
+
     it('returns null when no refresh token stored', async () => {
       const result = await tokenRefreshManager.attemptRefresh();
       expect(result).toBeNull();
