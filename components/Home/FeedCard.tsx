@@ -744,6 +744,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     if (disablePress) return;
     preparePostMediaNavigation(getVideoUrl(tokenId));
     if (item.audioUrl) preparePostMediaNavigation(getAudioUrl(item.audioUrl));
+    if (soundtrack?.url) preparePostMediaNavigation(soundtrack.url);
     onBeforeNavigate?.();
     hideUserProfile();
     if (isLive) {
@@ -770,11 +771,12 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     }
   }, [
     disablePress, isLive, isShort, isOwnerPost, item, tokenId,
-    accessInfo, stream, isCurrentlyLive, navigation, hideUserProfile, onBeforeNavigate,
+    accessInfo, stream, isCurrentlyLive, navigation, hideUserProfile, onBeforeNavigate, soundtrack,
   ]);
 
   const handleImagePress = useCallback((index: number = 0) => {
     if (!hasImages) return;
+    if (soundtrack?.url) preparePostMediaNavigation(soundtrack.url);
     // Dismiss the profile sheet first, otherwise the viewer opens behind it.
     onBeforeNavigate?.();
     hideUserProfile();
