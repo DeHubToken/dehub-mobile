@@ -250,7 +250,7 @@ const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
         // A plan only becomes buyable once it is listed on chain. If this leg
         // fails the plan survives unpublished and can be published later,
         // rather than silently reverting for every buyer.
-        setStage(t("subscriptions.confirmInWallet"));
+        setStage(t("upload.stageConfirming"));
         const tx = await writeContractAA(
           subscriptionContract,
           "createPlan",
