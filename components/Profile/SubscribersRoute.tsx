@@ -68,10 +68,11 @@ const SubscribersRoute: React.FC<SubscribersRouteProps> = ({ address, isOwnProfi
       <PlanCard
         plan={item}
         isOwner={isOwnProfile}
+        onPlanChange={handlePlanSuccess}
         onEdit={isOwnProfile ? () => handleEditPress(item) : undefined}
       />
     ),
-    [isOwnProfile, handleEditPress],
+    [isOwnProfile, handleEditPress, handlePlanSuccess],
   );
 
   if (loading) {
