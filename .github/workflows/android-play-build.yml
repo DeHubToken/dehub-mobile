@@ -27,7 +27,7 @@ jobs:
   build:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    timeout-minutes: 150
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -40,6 +40,11 @@ jobs:
         with:
           eas-version: latest
           token: ${{ secrets.EXPO_TOKEN }}
+      - name: Generate startup profiles for the release
+        if: inputs.existing_build_id == ''
+        uses: ./.github/actions/android-profiles
+        with:
+          environment: production
       - name: Build signed Play bundle on EAS
         if: inputs.existing_build_id == ''
         run: eas build --platform android --profile production --non-interactive --wait --json > android-play-build.json
@@ -64,6 +69,7 @@ jobs:
           curl --fail --location --retry 3 "$(cat aab-url.txt)" --output dehub.aab
           unzip -t dehub.aab
           unzip -l dehub.aab | grep 'base/manifest/AndroidManifest.xml'
+          unzip -l dehub.aab | grep 'BUNDLE-METADATA/com.android.tools.build.profiles/baseline.prof'
           jarsigner -verify dehub.aab
           sha256sum dehub.aab
       - uses: actions/upload-artifact@v4
