@@ -16,7 +16,7 @@ describe('Shorts audio ownership', () => {
 
   it('rejects native playback events after a short becomes inactive', () => {
     expect(source).toContain('if (playing && ((!isActiveRef.current && !isPictureInPicturePlayer(player)) || !canStartVideo(player)))');
-    expect(source).toContain('if (!isActiveRef.current)');
+    expect(source).toContain('if ((!isActiveRef.current && !isPictureInPicturePlayer(player)) || !canStartVideo(player))');
     expect(source).toMatch(/return \(\) => \{\s*stopPlayback\(\);[\s\S]*?releaseFeedVideoFocus/);
   });
 });
