@@ -131,7 +131,7 @@ export default function WorkHistoryScreen() {
         {job.fund_tx_hash ? (
           <TxLink label={t("work.escrowTx")} txHash={job.fund_tx_hash} />
         ) : (
-          <Text style={styles.dimNote}>{t("work.notEscrowedOnChain")}</Text>
+          <Text style={styles.dimNote}>{t("work.integrity.payOnApproval")}</Text>
         )}
       </Pressable>
       </PageSection>
