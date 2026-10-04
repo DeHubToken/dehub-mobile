@@ -26,6 +26,20 @@ beforeEach(() => {
 });
 
 describe('holder badge interaction', () => {
+  it('keeps the poster visible until the animation renders its first frame', () => {
+    const { getByTestId } = render(<BadgeArtwork source={1} />);
+    const badge = getByTestId('holder-badge');
+    fireEvent(badge, 'hoverIn');
+    expect(getByTestId('holder-badge-poster').props.style[1].opacity).toBe(1);
+    expect(getByTestId('holder-badge-motion').props.style[1].opacity).toBe(0);
+    fireEvent(getByTestId('holder-badge-motion'), 'display');
+    expect(getByTestId('holder-badge-poster').props.style[1].opacity).toBe(0);
+    expect(getByTestId('holder-badge-motion').props.style[1].opacity).toBe(1);
+    fireEvent(badge, 'hoverOut');
+    fireEvent(badge, 'hoverIn');
+    expect(getByTestId('holder-badge-poster').props.style[1].opacity).toBe(1);
+    expect(getByTestId('holder-badge-motion').props.style[1].opacity).toBe(0);
+  });
   it('uses the supplied standard orca image before and after hover and on playback failure', () => {
     (tierForBadgeImage as jest.Mock).mockReturnValue('Killer Whale');
     const { getByTestId } = render(<BadgeArtwork source={1} />);
