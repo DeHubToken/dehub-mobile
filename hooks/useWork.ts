@@ -860,6 +860,8 @@ export function useAdminResolveDispute() {
       qc.invalidateQueries({ queryKey: ["work-disputes-admin"] });
       qc.invalidateQueries({ queryKey: ["work-job"] });
       toastSuccess(i18n.t("work.disputeResolved"));
+      qc.invalidateQueries({queryKey:['work-subs']});
+      qc.invalidateQueries({queryKey:['work-jobs-browse']});
     },
     onError: (e: any) => {
       log.error("Resolve dispute failed:", e);
