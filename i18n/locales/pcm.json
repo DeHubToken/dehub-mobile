@@ -1810,7 +1810,8 @@
     "couldNotSendCodeRetry": "We no fit send code. Abeg try again.",
     "exploreWithoutSignIn": "Look around without sign in",
     "exploreWithoutSignInA11y": "Look around DeHub without sign in",
-    "invalidImportSecret": "Dat one no be correct 12/24-word phrase or private key"
+    "invalidImportSecret": "Dat one no be correct 12/24-word phrase or private key",
+    "walletSignupBlocked": "Dis wallet na brand new. New wallet need balance or one transaction wey e don do before to open account. Sign up with one of di options wey dey below, den connect dis wallet from Settings."
   },
   "messages": {
     "smartRepliesOff": "Dem don off the reply wey we suggest",

@@ -1834,7 +1834,8 @@
     "importWalletRecommended": "Es recomana iniciar sessió a les xarxes socials.",
     "importWalletPurpose": "Aquesta eina és per importar comptes existents des de DeHub.io.",
     "importSecretPlaceholder": "12 o 24 paraules, o una clau privada",
-    "invalidImportSecret": "Això no és una frase de 12/24 paraules ni una clau privada vàlida"
+    "invalidImportSecret": "Això no és una frase de 12/24 paraules ni una clau privada vàlida",
+    "walletSignupBlocked": "Aquesta cartera és completament nova. Les carteres noves necessiten saldo o una transacció anterior per obrir un compte. Registra't amb una de les opcions de sota i després connecta aquesta cartera des de Configuració."
   },
   "messages": {
     "smartRepliesOff": "Respostes suggerides desactivades",

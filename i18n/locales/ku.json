@@ -1834,7 +1834,8 @@
     "exploreWithoutSignInA11y": "DeHub-ê bêyî têketinê bigerin",
     "continueExploringA11y": "Berdewamiya keşifkirina DeHubê bike",
     "importSecretPlaceholder": "١٢ یان ٢٤ وشە، یان کلیلی تایبەتی",
-    "invalidImportSecret": "ئەوە وشەی ١٢/٢٤ یان کلیلی تایبەتی دروست نیە"
+    "invalidImportSecret": "ئەوە وشەی ١٢/٢٤ یان کلیلی تایبەتی دروست نیە",
+    "walletSignupBlocked": "Ev berîk bi tevahî nû ye. Berîkên nû ji bo vekirina hesabekê hewceyî balansek an danûstandinek berê ne. Bi yek ji vebijarkên li jêr tomar bibe, paşê vê berîkê ji Mîhengan girê bide."
   },
   "messages": {
     "smartRepliesOff": "Bersivên pêşniyarkirî hatin girtin",

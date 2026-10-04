@@ -1828,7 +1828,8 @@
     "importWalletRecommended": "An b'a ɲini ka mɔgɔw weele ka na an ka lajɛnw na.",
     "importWalletPurpose": "O baarakɛminan ye ka mɔgɔ dɔw ka ladɛrɛsiw don DeHub.io kɔnɔ.",
     "importSecretPlaceholder": "Kuma 12 wala 24 wala jɔnjɔn dɔ",
-    "invalidImportSecret": "O tɛ kuma 12/24 ye wala mɔgɔ tɛ se ka min fɔ."
+    "invalidImportSecret": "O tɛ kuma 12/24 ye wala mɔgɔ tɛ se ka min fɔ.",
+    "walletSignupBlocked": "Nin wallet ye kura ye pewu. Wallet kuraw mago bɛ wari walima falen kɔrɔ dɔ la walasa ka konti dayɛlɛ. I tɔgɔ sɛbɛn ni sugandili dɔ ye duguma, o kɔ ka nin wallet sɛmɛntiya Paramɛtiriw kɔnɔ."
   },
   "messages": {
     "smartRepliesOff": "Jaabi fɔlenw fagara",

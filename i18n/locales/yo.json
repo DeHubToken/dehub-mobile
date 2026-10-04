@@ -1834,7 +1834,8 @@
     "importWalletRecommended": "A ròyìn ìforúkọsílẹ̀ àwùjọ.",
     "importWalletPurpose": "Ọpa yìí jẹ́ fún gbígbé àkáǹtì tí ó wà láti DeHub.io wọlé.",
     "importSecretPlaceholder": "12 tabi 24 ọrọ, tabi bọtini ikọkọ",
-    "invalidImportSecret": "Kò ṣe àfihàn 12/24-ọrọ tó pé tàbí bọtini ikọkọ"
+    "invalidImportSecret": "Kò ṣe àfihàn 12/24-ọrọ tó pé tàbí bọtini ikọkọ",
+    "walletSignupBlocked": "Àpamọ́wọ́ yìí jẹ́ tuntun pátápátá. Àwọn àpamọ́wọ́ tuntun nílò owó tàbí ìdúnàádúrà àtẹ̀yìnwá láti ṣí àkáǹtì. Forúkọsílẹ̀ pẹ̀lú ọ̀kan nínú àwọn àṣàyàn ìsàlẹ̀, lẹ́yìn náà so àpamọ́wọ́ yìí pọ̀ láti Ètò."
   },
   "messages": {
     "smartRepliesOff": "A ti pa àwọn èsì tí a dábàá",

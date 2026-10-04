@@ -12,7 +12,7 @@
 // DeHub auth message.
 import { useState, useCallback, useEffect, useRef } from "react";
 import { toastError } from "../libs";
-import { reportWalletSignupBlocked } from "../libs/walletSignupGate";
+import { isWalletSignupBlocked } from "../libs/walletSignupGate";
 import { useAppKitAccount, useAppKitProvider } from "@reown/appkit-ethers5-react-native";
 import { useAuthActions } from "../context/AuthContext";
 import { ChainId } from "../config/constants";
@@ -41,6 +41,11 @@ export const useWalletAuth = () => {
   // than useAppKitState() so this stays safe on a build where createAppKit
   // never ran (missing REOWN_PROJECT_ID — see reown.config).
   const [isWalletSheetOpen, setIsWalletSheetOpen] = useState(false);
+  // The server refused to open an account for the wallet just signed with:
+  // it has no balance and no past transaction. Shown inline by the sign-in
+  // screens, because the sheet covers the toast host and a toast here was
+  // never seen — the button just looked like it did nothing.
+  const [isSignupBlocked, setIsSignupBlocked] = useState(false);
   // Not useAppKit(): that hook throws when createAppKit never ran (no
   // REOWN_PROJECT_ID), which took the whole sign-in screen and sheet down on
   // such a build even though only the Connect Wallet button is gated. The
@@ -104,7 +109,12 @@ export const useWalletAuth = () => {
         if (isWalletRelayPublishError(error) || /Wallet signature timed out|Request expired/i.test((error as Error)?.message ?? '')) {
           reconnectRequiredRef.current = true;
           toastError(null, 'Wallet connection interrupted. Tap Connect Wallet to reconnect.');
-        } else if (!reportWalletSignupBlocked(error)) {
+        } else if (isWalletSignupBlocked(error)) {
+          // The same wallet will be refused every time, so the next tap opens
+          // the picker for another wallet instead of signing with this one.
+          reconnectRequiredRef.current = true;
+          setIsSignupBlocked(true);
+        } else {
           toastError(error, "Wallet authentication failed. Please try again.");
         }
       } finally {
@@ -118,6 +128,7 @@ export const useWalletAuth = () => {
 
   const handleWalletConnect = useCallback(async () => {
     if (authenticatingRef.current) return;
+    setIsSignupBlocked(false);
     if (reconnectRequiredRef.current) {
       authenticatingRef.current = true;
       setIsWalletLoading(true);
@@ -170,6 +181,7 @@ export const useWalletAuth = () => {
   return {
     isWalletLoading,
     isWalletSheetOpen,
+    isSignupBlocked,
     walletAddress: accountAddress ?? null,
     handleWalletConnect,
   };

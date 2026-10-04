@@ -1834,7 +1834,8 @@
     "importWalletRecommended": "Login sosial direkomendasikan.",
     "importWalletPurpose": "Alat ini untuk mengimpor akun yang sudah ada dari DeHub.io.",
     "importSecretPlaceholder": "12 atau 24 kata, atau kunci privat",
-    "invalidImportSecret": "Itu bukan frasa 12/24 kata atau kunci privat yang valid"
+    "invalidImportSecret": "Itu bukan frasa 12/24 kata atau kunci privat yang valid",
+    "walletSignupBlocked": "Dompet ini benar-benar baru. Dompet baru perlu saldo atau transaksi sebelumnya untuk membuka akun. Daftar dengan salah satu opsi di bawah, lalu hubungkan dompet ini dari Pengaturan."
   },
   "messages": {
     "smartRepliesOff": "Balasan yang disarankan dimatikan",

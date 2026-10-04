@@ -1834,7 +1834,8 @@
     "importWalletRecommended": "Social Logins werded empfähle.",
     "importWalletPurpose": "Das Tool isch zum Importiere vo vorhandene Kontene vo DeHub.io.",
     "importSecretPlaceholder": "12 oder 24 Wörter, oder ein privates Schlüssel",
-    "invalidImportSecret": "Das isch kei gültigi 12/24-Wort-Phrase oder privati Schlüssel."
+    "invalidImportSecret": "Das isch kei gültigi 12/24-Wort-Phrase oder privati Schlüssel.",
+    "walletSignupBlocked": "Die Wallet isch ganz neu. Neui Wallets bruuched es Guethabe oder e früeneri Transaktion, zum es Konto z eröffne. Registrier di mit eire vo de Optione une und verbind die Wallet nachher i de Iistellige."
   },
   "messages": {
     "smartRepliesOff": "Antwortvorschläg abgschaltet",

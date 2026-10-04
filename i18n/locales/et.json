@@ -1834,7 +1834,8 @@
     "importWalletRecommended": "Soovitatav on sisse logida suhtlusvõrgustikku",
     "importWalletPurpose": "See tööriist on olemasolevate kontode importimiseks DeHub.io-st.",
     "importSecretPlaceholder": "12 või 24 sõna, või privaatvõti",
-    "invalidImportSecret": "See ei ole kehtiv 12/24-sõnaline fraas ega privaatvõti"
+    "invalidImportSecret": "See ei ole kehtiv 12/24-sõnaline fraas ega privaatvõti",
+    "walletSignupBlocked": "See rahakott on täiesti uus. Uutel rahakottidel peab konto avamiseks olema saldo või varasem tehing. Registreeru ühega allolevatest valikutest ja ühenda see rahakott seejärel seadetes."
   },
   "messages": {
     "smartRepliesOff": "Soovitatud vastused on välja lülitatud",

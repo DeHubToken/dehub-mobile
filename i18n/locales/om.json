@@ -1847,7 +1847,8 @@
     "importWalletRecommended": "Galmeen hawaasummaa ni gorfama.",
     "importWalletPurpose": "Meeshaan kun herrega jiran DeHub.io irraa galchuuf.",
     "importSecretPlaceholder": "Jechoota 12 ykn 24, ykn furtuu dhuunfaa",
-    "invalidImportSecret": "Sun gaalee jechoota 12/24 ykn furtuu dhuunfaa sirrii miti"
+    "invalidImportSecret": "Sun gaalee jechoota 12/24 ykn furtuu dhuunfaa sirrii miti",
+    "walletSignupBlocked": "Waaleetiin kun guutummaan haaraa dha. Waaleetiiwwan haaraan herrega banuuf haftee ykn daldala duraanii barbaadu. Filannoowwan armaan gadii keessaa tokkoon galmaa'aa, sana booda waaleetii kana Qindaa'ina irraa walqabsiisaa."
   },
   "messages": {
     "smartRepliesOff": "Deebiiwwan yaadaman dhaamamaniiru",

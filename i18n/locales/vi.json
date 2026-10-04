@@ -1846,7 +1846,8 @@
     "importWalletRecommended": "Bạn nên đăng nhập mạng xã hội.",
     "importWalletPurpose": "Công cụ này dùng để nhập các tài khoản hiện có từ DeHub.io.",
     "importSecretPlaceholder": "12 hoặc 24 từ, hoặc khóa riêng",
-    "invalidImportSecret": "Đây không phải cụm 12/24 từ hay khóa riêng hợp lệ"
+    "invalidImportSecret": "Đây không phải cụm 12/24 từ hay khóa riêng hợp lệ",
+    "walletSignupBlocked": "Ví này hoàn toàn mới. Ví mới cần có số dư hoặc một giao dịch trước đó để mở tài khoản. Hãy đăng ký bằng một trong các tùy chọn bên dưới, sau đó kết nối ví này trong Cài đặt."
   },
   "messages": {
     "smartRepliesOff": "Đã tắt câu trả lời gợi ý",

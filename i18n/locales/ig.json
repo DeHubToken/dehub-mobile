@@ -1834,7 +1834,8 @@
     "importWalletRecommended": "Social logins na-atụ aro.",
     "importWalletPurpose": "Ngwaọrụ a bụ maka ibubata akaụntụ dị na DeHub.io.",
     "importSecretPlaceholder": "12 ma ọ bụ 24 okwu, ma ọ bụ a onwe igodo",
-    "invalidImportSecret": "Nke ahụ abụghị a nti 12/24-okwu nkebi ahịrịokwu ma ọ bụ onwe igodo"
+    "invalidImportSecret": "Nke ahụ abụghị a nti 12/24-okwu nkebi ahịrịokwu ma ọ bụ onwe igodo",
+    "walletSignupBlocked": "Obere akpa ego a bụ ọhụrụ kpamkpam. Obere akpa ego ọhụrụ chọrọ ego ma ọ bụ azụmahịa gara aga iji mepee akaụntụ. Debanye aha site na otu n'ime nhọrọ ndị dị n'okpuru, wee jikọọ obere akpa ego a site na Ntọala."
   },
   "messages": {
     "smartRepliesOff": "Agbanyụọla nzaghachi atụrụ aro",

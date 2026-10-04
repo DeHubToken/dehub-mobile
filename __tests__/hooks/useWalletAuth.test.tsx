@@ -12,7 +12,7 @@ const mockKit = {
 jest.mock('dehub-jsx/jsx-runtime', () => require('react/jsx-runtime'));
 jest.mock('../../context/AuthContext', () => ({ useAuthActions: () => ({ signInWithWallet: mockSignIn }) }));
 jest.mock('../../libs', () => ({ toastError: jest.fn() }));
-jest.mock('../../libs/walletSignupGate', () => ({ reportWalletSignupBlocked: () => false }));
+jest.mock('../../libs/walletSignupGate', () => ({ isWalletSignupBlocked: (e: { code?: string }) => e?.code === 'WALLET_SIGNUP_REQUIRES_HISTORY' }));
 jest.mock('../../libs/auth.utils', () => ({ getPreferredChainId: async () => 8453 }));
 jest.mock('../../config/reown.config', () => ({ getAppKitInstance: () => mockKit }));
 jest.mock('../../libs/provider.registry', () => ({ setSigningProvider: jest.fn(), clearSigningProvider: jest.fn() }));
@@ -67,5 +67,24 @@ it('keeps the pairing after a user rejects signing', async () => {
   await act(async () => { await wallet.handleWalletConnect(); });
   expect(mockKit.disconnect).not.toHaveBeenCalled();
   expect(mockSignIn).toHaveBeenCalledTimes(2);
+  await act(async () => { root.unmount(); });
+});
+
+it('shows the brand-new wallet refusal and offers another wallet on the next tap', async () => {
+  mockSignIn.mockRejectedValue(Object.assign(new Error('needs history'), { code: 'WALLET_SIGNUP_REQUIRES_HISTORY' }));
+  let wallet!: ReturnType<typeof useWalletAuth>;
+  function Screen() { wallet = useWalletAuth(); return null; }
+  let root!: ReturnType<typeof create>;
+  await act(async () => { root = create(<Screen />); });
+  await act(async () => { await wallet.handleWalletConnect(); });
+  expect(wallet.isSignupBlocked).toBe(true);
+  await act(async () => { await wallet.handleWalletConnect(); });
+  // The tap drops the refused pairing and opens the picker rather than
+  // signing with the same wallet; this mock hands the same wallet back, which
+  // the server refuses again.
+  expect(mockKit.disconnect).toHaveBeenCalledTimes(1);
+  expect(mockKit.open).toHaveBeenCalledTimes(1);
+  expect(mockSignIn).toHaveBeenCalledTimes(2);
+  expect(wallet.isSignupBlocked).toBe(true);
   await act(async () => { root.unmount(); });
 });

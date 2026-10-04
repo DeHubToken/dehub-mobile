@@ -1834,7 +1834,8 @@
     "importWalletRecommended": "Közösségi bejelentkezések javasoltak.",
     "importWalletPurpose": "Ez az eszköz a DeHub.io meglévő fiókjainak importálására szolgál.",
     "importSecretPlaceholder": "12 vagy 24 szó, vagy egy privát kulcs",
-    "invalidImportSecret": "Ez nem érvényes 12/24 szavas kifejezés vagy privát kulcs"
+    "invalidImportSecret": "Ez nem érvényes 12/24 szavas kifejezés vagy privát kulcs",
+    "walletSignupBlocked": "Ez a tárca vadonatúj. Az új tárcáknak egyenlegre vagy egy korábbi tranzakcióra van szükségük a fiók megnyitásához. Regisztrálj az alábbi lehetőségek egyikével, majd csatlakoztasd ezt a tárcát a Beállításokban."
   },
   "messages": {
     "smartRepliesOff": "A javasolt válaszok ki vannak kapcsolva",

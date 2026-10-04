@@ -1832,7 +1832,8 @@
     "importWalletRecommended": "يوصى بتسجيل الدخول الاجتماعي.",
     "importWalletPurpose": "هذه الأداة مخصصة لاستيراد الحسابات الحالية من DeHub.io.",
     "importSecretPlaceholder": "12 أو 24 كلمة أو مفتاح خاص",
-    "invalidImportSecret": "ما ده كلمه 12/24 أو مفتاح خاص صالح"
+    "invalidImportSecret": "ما ده كلمه 12/24 أو مفتاح خاص صالح",
+    "walletSignupBlocked": "هاد البزطام جديد تماما. البزاطم الجداد خاصهم رصيد ولا معاملة قبل باش يحلّو حساب. تسجّل بواحد من الاختيارات لتحت، ومن بعد ربط هاد البزطام من الإعدادات."
   },
   "messages": {
     "smartRepliesOff": "تطفاو الردود المقترحة",
