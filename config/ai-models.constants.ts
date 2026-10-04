@@ -14,6 +14,8 @@
  * have to be kept in step with web by hand.
  */
 
+import { CREATOR_FAL_IMAGE_MODELS, CREATOR_FAL_VIDEO_MODELS } from './creator-fal-catalog';
+
 /* ── Pricing helpers (display only) ──────────────────────────────────────── */
 
 /**
@@ -79,6 +81,7 @@ export const imageModelSupportsEdit = (model: ImageModel): boolean =>
   model.supportsEdit !== false;
 
 export const IMAGE_MODELS: Record<string, ImageModel> = {
+  ...CREATOR_FAL_IMAGE_MODELS,
   'gemini-2.5-flash': {
     id: 'gemini-2.5-flash',
     name: 'Gemini 2.5 Flash',
@@ -246,6 +249,7 @@ export interface VideoModel {
  * Seedance, both Veos, all three Klings — could not be picked from a phone.
  */
 export const VIDEO_MODELS: Record<string, VideoModel> = {
+  ...CREATOR_FAL_VIDEO_MODELS,
   'seedance-2.5': {
     id: 'seedance-2.5',
     name: 'Seedance 2.5',
