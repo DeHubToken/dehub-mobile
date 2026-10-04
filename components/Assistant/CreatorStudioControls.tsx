@@ -72,7 +72,7 @@ export default function CreatorStudioControls({ settings, onChange, onMode, onPr
       </View>
       <View className="flex-row flex-wrap gap-2">
         {chip(selected?.name ?? settings.model, () => setPicker('model'))}
-        {(settings.mode === 'image' || settings.mode === 'video') && chip(settings.aspect, () => setPicker('aspect'))}
+        {(settings.mode === 'image' || (settings.mode === 'video' && !VIDEO_MODELS[settings.model]?.requiresVideoInput)) && chip(settings.aspect, () => setPicker('aspect'))}
         {settings.mode === 'video' && !VIDEO_MODELS[settings.model]?.requiresVideoInput && (
           <View className="flex-row items-center rounded-xl border border-theme-neutrals-700 bg-theme-neutrals-800 px-2">
             <TextInput

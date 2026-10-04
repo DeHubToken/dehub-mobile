@@ -108,6 +108,7 @@ import { createLogger } from '../libs/logger';
 import SignInGate from '../components/auth/SignInGate';
 import ScreenHeader from '../components/ScreenHeader';
 import CreatorReferenceAssets from '../components/Assistant/CreatorReferenceAssets';
+import { remapAssetMentions } from '../libs/creatorAssetMentions';
 import CreatorStudioControls from '../components/Assistant/CreatorStudioControls';
 import SubscriptionCreditsPill from '../components/SubscriptionCreditsPill';
 import { CREATOR_DEFAULTS, creatorModels, creatorInputIssue, creatorVideoOptions, normalizeCreatorSettings, prepareCreatorPrompt, type CreatorMode, type CreatorStudioSettings, type CreatorReferenceAsset } from '../libs/creatorStudio';
@@ -1735,6 +1736,7 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
           mode={studioSettings.mode} pickerVisible={assetPickerVisible} onClose={() => setAssetPickerVisible(false)} disabled={isLoading}
           onMention={tag => setInput(previous => `${previous}${previous && !/\s$/.test(previous) ? ' ' : ''}${tag} `)}
           onChange={referenceAssets => {
+            setInput(previous => remapAssetMentions(previous, (studioSettings.referenceAssets ?? []).map(asset => ({ key: asset.uri, kind: asset.kind })), referenceAssets.map(asset => ({ key: asset.uri, kind: asset.kind }))));
             const images = referenceAssets.filter(a => a.kind === 'image'); const clip = referenceAssets.find(a => a.kind === 'video');
             setAttachedImage(images[0]?.uri ?? null);
             if (clip && !VIDEO_MODELS[studioSettings.model]?.requiresVideoInput) setTemplateId(clip.seconds! > 15 ? 'reference-copy-motion' : 'reference-character-swap');
