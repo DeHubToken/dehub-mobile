@@ -291,4 +291,3 @@ const styles = StyleSheet.create({
   },
   badgeText: { color: "#fff", fontSize: 9, fontWeight: "700", lineHeight: 11, textAlign: "center" },
 });
-

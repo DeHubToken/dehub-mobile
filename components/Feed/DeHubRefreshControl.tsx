@@ -41,4 +41,3 @@ export const DeHubRefreshMark = ({ pill = true, refreshing }: DeHubRefreshMarkPr
 };
 
 export default DeHubRefreshControl;
-
