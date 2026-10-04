@@ -1481,7 +1481,10 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
                     <BareIcon name="Maximize" />
                   </Pressable>
                 </View>
-                {/* The thin rail has a full 32pt touch target. */}
+                {/* Android's seek target lives outside the fading controls. */}
+                {Platform.OS === "android" ? (
+                  <View pointerEvents="none" style={styles.bareScrubSpacer} />
+                ) : (
                 <GestureDetector gesture={seekGesture}>
                   <View
                     style={styles.bareScrubTouch}
@@ -1495,6 +1498,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
                     </View>
                   </View>
                 </GestureDetector>
+                )}
               </View>
             ) : (
             <View style={[styles.bottomControls, edgeToEdge && { paddingHorizontal: MINIMAL_EDGE }, bleed && { paddingBottom: 8 }]}>
@@ -1521,6 +1525,23 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
             </View>
             )}
           </Animated.View>
+          )}
+          {Platform.OS === "android" && bareControls && (
+            <GestureDetector gesture={seekGesture}>
+              <View
+                style={styles.androidScrubTouch}
+                onLayout={onSeekTrackLayout}
+                {...seekTouchGuard}
+                accessibilityRole="adjustable"
+                accessibilityLabel={t("player.progress")}
+              >
+                <Animated.View pointerEvents="none" style={{ opacity: controlsOpacity }}>
+                  <View style={styles.bareScrubLine}>
+                    <View style={[styles.bareScrubPlayed, { width: `${progressPercent}%` }]} />
+                  </View>
+                </Animated.View>
+              </View>
+            </GestureDetector>
           )}
         </>
       )}
@@ -1825,6 +1846,15 @@ const styles = StyleSheet.create({
     height: 32,
     justifyContent: "flex-end",
   },
+  bareScrubSpacer: { height: 48 },
+  androidScrubTouch: {
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: 48,
+    justifyContent: "flex-end",
+  },
   bareScrubLine: {
     height: 3,
     borderWidth: 0.5,
@@ -1896,7 +1926,7 @@ const styles = StyleSheet.create({
   },
   progressTrack: {
     flex: 1,
-    height: 32,
+    height: Platform.OS === "android" ? 48 : 32,
     justifyContent: "center",
   },
   progressTrackInner: {
