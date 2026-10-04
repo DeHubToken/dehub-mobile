@@ -1,4 +1,6 @@
 /** Provider duration, framing and resolution limits shared with web Creator. */
+import { CREATOR_FAL_VIDEO_MODELS } from './creator-fal-catalog';
+
 export interface CreatorVideoRules {
   minDuration?: number;
   maxDuration?: number;
@@ -9,6 +11,7 @@ export interface CreatorVideoRules {
   supportsResolution: boolean;
 }
 export const CREATOR_VIDEO_RULES: Record<string, CreatorVideoRules> ={
+  ...CREATOR_FAL_VIDEO_MODELS,
   "seedance-2.5":  {
   "minDuration":  4,
   "maxDuration":  30,
