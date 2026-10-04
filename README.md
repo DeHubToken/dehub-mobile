@@ -107,6 +107,14 @@ rotate the key in Supabase instead.
 └── .github/workflows/ # CI pipeline
 ```
 
+## Creator studio
+
+`screens/CreatorScreen.tsx` opens `${APP_ORIGIN}/creator` in the in-app browser.
+The composer is shared with dehubweb's `CreatorStudio.tsx`: its settings and
+34px prompt-expand control align to the bottom of the 64px Create button.
+On narrow screens, prompt expansion and Create wrap onto their own row.
+Composer layout changes reach mobile through the web deployment.
+
 ## Testing
 
 ```bash
