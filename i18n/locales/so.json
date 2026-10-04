@@ -3446,7 +3446,7 @@
     "postJob": "Dhig shaqo",
     "types": {
       "all": "Dhammaan",
-      "shill": "Warbaahinta bulshada",
+      "shill": "Shill",
       "clipping": "Jarid",
       "contract": "Heshiisyo"
     },
@@ -3462,7 +3462,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "Faallooyin / Xayeysiin",
+        "label": "Shill",
         "description": "Bixi faallo kasta oo la xaqiijiyay oo ku taal X, YouTube, IG ama TikTok."
       },
       "clipping": {

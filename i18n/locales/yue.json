@@ -3451,7 +3451,7 @@
     "postJob": "發佈工作",
     "types": {
       "all": "全部",
-      "shill": "社交媒體",
+      "shill": "Shill",
       "clipping": "剪片",
       "contract": "合約"
     },
@@ -3467,7 +3467,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "評論／推廣",
+        "label": "Shill",
         "description": "喺 X、YouTube、IG 或者 TikTok 每個經核實嘅評論俾錢。"
       },
       "clipping": {

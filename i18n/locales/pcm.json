@@ -3392,7 +3392,7 @@
     "postJob": "Post job",
     "types": {
       "all": "All",
-      "shill": "Social media",
+      "shill": "Shill",
       "clipping": "Clipping",
       "contract": "Contracts"
     },
@@ -3408,7 +3408,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "Comments / Shill",
+        "label": "Shill",
         "description": "Pay per confirmed comment for X, YouTube, IG or TikTok."
       },
       "clipping": {

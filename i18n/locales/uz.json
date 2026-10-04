@@ -3473,7 +3473,7 @@
     "postJob": "Ish joylash",
     "types": {
       "all": "Hammasi",
-      "shill": "Ijtimoiy tarmoqlar",
+      "shill": "Shill",
       "clipping": "Klip kesish",
       "contract": "Shartnomalar"
     },
@@ -3489,7 +3489,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "Izohlar / Reklama",
+        "label": "Shill",
         "description": "X, YouTube, IG yoki TikTok'dagi har bir tasdiqlangan izoh uchun to'lang."
       },
       "clipping": {

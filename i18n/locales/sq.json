@@ -3455,7 +3455,7 @@
     "postJob": "Publiko një punë",
     "types": {
       "all": "Të gjitha",
-      "shill": "Media sociale",
+      "shill": "Shill",
       "clipping": "Klipe",
       "contract": "Kontrata"
     },
@@ -3471,7 +3471,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "Komente / Promovim",
+        "label": "Shill",
         "description": "Paguaj për çdo koment të verifikuar në X, YouTube, IG ose TikTok."
       },
       "clipping": {

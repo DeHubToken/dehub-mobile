@@ -3443,7 +3443,7 @@
     "postJob": "ಕೆಲಸ ಪೋಸ್ಟ್ ಮಾಡಿ",
     "types": {
       "all": "ಎಲ್ಲಾ",
-      "shill": "ಸಾಮಾಜಿಕ ಮಾಧ್ಯಮ",
+      "shill": "Shill",
       "clipping": "ಕ್ಲಿಪ್ಪಿಂಗ್",
       "contract": "ಒಪ್ಪಂದಗಳು"
     },
@@ -3459,7 +3459,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "ಕಾಮೆಂಟ್‌ಗಳು / ಪ್ರಚಾರ",
+        "label": "Shill",
         "description": "X, YouTube, IG ಅಥವಾ TikTok ನಲ್ಲಿ ಪರಿಶೀಲಿಸಿದ ಪ್ರತಿ ಕಾಮೆಂಟ್‌ಗೆ ಪಾವತಿಸಿ."
       },
       "clipping": {

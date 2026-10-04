@@ -3454,7 +3454,7 @@
     "postJob": "ఉద్యోగం పోస్ట్ చేయండి",
     "types": {
       "all": "అన్నీ",
-      "shill": "సోషల్ మీడియా",
+      "shill": "Shill",
       "clipping": "క్లిప్పింగ్",
       "contract": "ఒప్పందాలు"
     },
@@ -3470,7 +3470,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "వ్యాఖ్యలు / ప్రచారం",
+        "label": "Shill",
         "description": "X, YouTube, IG లేదా TikTokలో ధృవీకరించిన ప్రతి వ్యాఖ్యకు చెల్లించండి."
       },
       "clipping": {

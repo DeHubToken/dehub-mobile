@@ -3459,7 +3459,7 @@
     "postJob": "Publier une mission",
     "types": {
       "all": "Toutes",
-      "shill": "Réseaux sociaux",
+      "shill": "Shill",
       "clipping": "Clips",
       "contract": "Contrats"
     },
@@ -3475,7 +3475,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "Commentaires / Promotion",
+        "label": "Shill",
         "description": "Payez par commentaire vérifié sur X, YouTube, IG ou TikTok."
       },
       "clipping": {

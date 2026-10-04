@@ -34,7 +34,8 @@ const StandaloneTabBar: React.FC<{ onBeforeNavigate?: () => void }> = ({ onBefor
       if (!navigationRef.isReady()) return;
       onBeforeNavigate?.();
       if (name === ScreenNames.UploadTab) {
-        navigationRef.navigate((isAuthed ? ScreenNames.Upload : ScreenNames.SignIn) as never);
+        const creatingBounty = navigationRef.getCurrentRoute()?.name.startsWith('Work');
+        navigationRef.navigate((creatingBounty ? ScreenNames.WorkPost : isAuthed ? ScreenNames.Upload : ScreenNames.SignIn) as never);
       } else if (TAB_ROUTES.some((r) => r.name === name)) {
         navigationRef.navigate({ name: ScreenNames.Root, params: { screen: name }, pop: true } as never);
       } else {
