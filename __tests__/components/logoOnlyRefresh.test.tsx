@@ -4,6 +4,8 @@ import { DeHubRefreshControl, DeHubRefreshMark } from '../../components/Feed/DeH
 import { useFeedPillRefreshing } from '../../libs/feed-pill-refresh';
 
 jest.mock('react-native-css-interop/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
+jest.mock('dehub-jsx/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
+jest.mock('react-native-css-interop', () => ({ createInteropElement: jest.requireActual('react').createElement }));
 jest.mock('react-native', () => ({ RefreshControl: 'RefreshControl' }));
 
 function LogoState() {

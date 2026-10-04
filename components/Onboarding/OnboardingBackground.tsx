@@ -29,11 +29,11 @@ const OnboardingBackground: React.FC<OnboardingBackgroundProps> = ({
   const { width, height } = useWindowDimensions();
   const size = Math.min(260, width * 0.65, height * 0.3);
   return (
+    <View style={StyleSheet.absoluteFillObject} pointerEvents="none">
     <ImageBackground
       source={require("../../assets/onboarding/background.jpg")}
       style={styles.container}
       resizeMode="cover"
-      pointerEvents="none"
       accessible={false}
     >
       <View style={styles.scrim} />
@@ -48,6 +48,7 @@ const OnboardingBackground: React.FC<OnboardingBackgroundProps> = ({
       ))}
       </View>
     </ImageBackground>
+    </View>
   );
 };
 
