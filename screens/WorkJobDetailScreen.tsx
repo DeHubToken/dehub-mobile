@@ -319,7 +319,7 @@ export default function WorkJobDetailScreen() {
               <Pressable disabled={!config?.escrow_address || fundMutation.isPending} onPress={()=>fundMutation.mutate({job_id:job.id,hash:fundingHash || undefined})} style={[styles.primaryBtn,(!config?.escrow_address || fundMutation.isPending)&&styles.disabled]}>
                 <Text style={styles.primaryBtnText}>{t(job.funding_state==='unfunded'?'work.integrity.fundPublish':'work.integrity.checkFunding')}</Text>
               </Pressable>
-              {job.funding_state==='signing' && <Pressable onPress={()=>Alert.alert(t('work.integrity.releaseSignature'),t('work.integrity.releaseConfirm'),[{text:t('common.cancel')},{text:t('work.integrity.releaseSignature'),onPress:()=>fundMutation.mutate({job_id:job.id,release:true})}])}>
+              {job.funding_state==='signing' && <Pressable disabled={fundMutation.isPending} onPress={()=>Alert.alert(t('work.integrity.releaseSignature'),t('work.integrity.releaseConfirm'),[{text:t('common.cancel')},{text:t('work.integrity.releaseSignature'),onPress:()=>fundMutation.mutate({job_id:job.id,release:true})}])}>
                 <Text style={styles.dim}>{t('work.integrity.releaseSignature')}</Text>
               </Pressable>}
             </View>}
@@ -575,6 +575,10 @@ export default function WorkJobDetailScreen() {
                         <TextInput accessibilityLabel={t('work.integrity.recoverTx')} placeholder={t('work.integrity.hashPlaceholder')} autoCapitalize="none"
                           value={recoveryHashes[s.id] || ''} onChangeText={value => setRecoveryHashes(prev => ({...prev,[s.id]:value.trim()}))} style={styles.input} />
                       )}
+                      {canManage && s.payout_state === 'signing' && <Pressable disabled={approveMutation.isPending || payMutation.isPending || releaseMutation.isPending}
+                        onPress={()=>Alert.alert(t('work.integrity.releaseSignature'),t('work.integrity.releaseConfirm'),[{text:t('common.cancel')},{text:t('work.integrity.releaseSignature'),onPress:()=>releaseMutation.mutate(s.id)}])}>
+                        <Text style={styles.dim}>{t('work.integrity.releaseSignature')}</Text>
+                      </Pressable>}
 
                       {paid && s.payout_amount > 0 && (
                         <Text style={styles.paidText}>
