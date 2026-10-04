@@ -20,6 +20,7 @@ import { getPreferredChainId as getStoredPreferredChainId } from "../libs/auth.u
 import { setSigningProvider, clearSigningProvider } from "../libs/provider.registry";
 import { getAppKitInstance } from "../config/reown.config";
 import { createLogger } from "../libs/logger";
+import { beginAuthTrace } from '../libs/auth-trace';
 import { isWalletRelayPublishError } from '../libs/wallet-relay';
 
 const log = createLogger("useWalletAuth");
@@ -86,6 +87,8 @@ export const useWalletAuth = () => {
         return;
       }
       authenticatingRef.current = true;
+      beginAuthTrace('wallet');
+      log.trace?.('wallet-signin-start');
       awaitingUserInitiatedConnectRef.current = false;
       setIsWalletLoading(true);
       // Register the connected wallet as the signer BEFORE calling
