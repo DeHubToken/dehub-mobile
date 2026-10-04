@@ -1,4 +1,5 @@
 import BadgeArtwork from "../common/BadgeArtwork";
+import { getBadgeHoverOpticalStyle } from "../../libs/misc";
 import React, { memo, useCallback, useMemo, useState } from "react";
 import {
   View,
@@ -101,7 +102,7 @@ const ShareToDmSheetComponent: React.FC<ShareToDmSheetProps> = ({
               {name}
             </Text>
             {badgeImg ? (
-              <BadgeArtwork source={badgeImg} style={{ width: 15, height: 15 }} contentFit="contain" />
+              <BadgeArtwork source={badgeImg} style={getBadgeHoverOpticalStyle(badgeImg, 15, 0, 21)} contentFit="contain" />
             ) : null}
           </View>
           <Ionicons name="send-outline" size={18} color="#D4D4D8" />

@@ -1,4 +1,5 @@
 import BadgeArtwork from "../common/BadgeArtwork";
+import { getBadgeHoverOpticalStyle } from "../../libs/misc";
 import React, { FC, useCallback } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import SmartImage from "../common/SmartImage";
@@ -77,7 +78,7 @@ const SearchAccountChip: FC<SearchAccountChipProps> = ({ account, onFollowChange
         {badgeImage ? (
           <BadgeArtwork
             source={badgeImage}
-            style={{ width: 14, height: 14, marginLeft: 3 }}
+            style={getBadgeHoverOpticalStyle(badgeImage, 14, 0, 20)}
             contentFit="contain"
           />
         ) : null}

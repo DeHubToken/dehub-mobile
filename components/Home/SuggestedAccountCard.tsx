@@ -1,4 +1,5 @@
 import BadgeArtwork from "../common/BadgeArtwork";
+import { getBadgeHoverOpticalStyle } from "../../libs/misc";
 /**
  * SuggestedAccountCard – Compact vertical card for the suggested-accounts carousel.
  *
@@ -193,7 +194,7 @@ const SuggestedAccountCardComponent: FC<SuggestedAccountCardProps> = ({
         {badgeImage ? (
           <BadgeArtwork
             source={badgeImage}
-            style={{ width: 14, height: 14, marginLeft: 3 }}
+            style={getBadgeHoverOpticalStyle(badgeImage, 16, 0, 20)}
             contentFit="contain"
           />
         ) : null}

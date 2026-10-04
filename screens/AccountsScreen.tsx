@@ -1,3 +1,5 @@
+import BadgeArtwork from "../components/common/BadgeArtwork";
+import { getBadgeHoverOpticalStyle } from "../libs/misc";
 /**
  * AccountsScreen
  * ==============
@@ -102,7 +104,7 @@ const AccountCard: React.FC<{
           {/* getBadgeUrl returns a bundled asset id, not a URL — `source` takes
               it directly and `{ uri: … }` is a type error. */}
           {!!badgeImg && (
-            <Image source={badgeImg} style={styles.badge} contentFit="contain" />
+            <BadgeArtwork source={badgeImg} style={getBadgeHoverOpticalStyle(badgeImg, 17)} contentFit="contain" />
           )}
         </View>
 

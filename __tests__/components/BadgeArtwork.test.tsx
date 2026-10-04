@@ -7,14 +7,14 @@ import { useReducedMotion } from 'react-native-reanimated';
 jest.mock('dehub-jsx/jsx-runtime', () => require('react/jsx-runtime'));
 jest.mock('react-native', () => ({
   View: 'View', Pressable: 'Pressable', Image: 'Image', Text: 'Text',
-  StyleSheet: { create: (styles: unknown) => styles, flatten: (styles: unknown) => styles, absoluteFillObject: {} },
+  StyleSheet: { create: (styles: unknown) => styles, flatten: (styles: unknown) => Array.isArray(styles) ? Object.assign({}, ...styles) : styles, absoluteFillObject: {} },
 }));
 
 jest.mock('../../libs/badgeShowcase', () => ({
   tierForBadgeImage: jest.fn(() => 'Octopus'), openBadgeShowcase: jest.fn(),
 }));
 jest.mock('../../libs/badgeHoverArt', () => ({
-  badgeHoverArt: () => ({ poster: 101, animation: 102 }),
+  badgeHoverArt: () => ({ poster: 101, animation: 102, posterBounds: { left: 12, top: 21, right: 119, bottom: 117 }, bounds: { left: 9, top: 10, right: 119, bottom: 119 } }),
 }));
 jest.mock('expo-image', () => ({ Image: require('react-native').Image }));
 jest.mock('react-native-reanimated', () => ({ useReducedMotion: jest.fn(() => false) }));
@@ -26,6 +26,16 @@ beforeEach(() => {
 });
 
 describe('holder badge interaction', () => {
+  it('preserves visible cap height and baseline when motion replaces a padded still', () => {
+    const { getByTestId } = render(<BadgeArtwork source={1} style={[{ width: 18, height: 18, padding: 1 }]} />);
+    const still = getByTestId('holder-badge-poster').props.style;
+    expect(still.width).toBe(16);
+    expect(still.top).toBe(1);
+    fireEvent(getByTestId('holder-badge'), 'hoverIn');
+    const motion = getByTestId('holder-badge-motion').props.style[0];
+    expect(motion.height * 109 / 128).toBeCloseTo(still.height * 96 / 128);
+    expect(motion.top + motion.height * 119 / 128).toBeCloseTo(still.top + still.height * 117 / 128);
+  });
   it('keeps the poster visible until the animation renders its first frame', () => {
     const { getByTestId } = render(<BadgeArtwork source={1} />);
     const badge = getByTestId('holder-badge');

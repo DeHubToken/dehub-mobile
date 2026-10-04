@@ -5,15 +5,17 @@ import { useTranslation } from "react-i18next";
 import { useAppTheme } from "../../context/ThemeContext";
 import { useStreamerProgress } from "../../hooks/useStreamerProgress";
 import { openStreamerShowcase } from "../../libs/badgeShowcase";
-import { streamerBadgeSvg } from "../../libs/streamer-badge-art";
+import { streamerBadgeBounds, streamerBadgeSvg } from "../../libs/streamer-badge-art";
 
 interface Props {
   address?: string | null;
   canSelect?: boolean;
   size?: number;
+  fontSize?: number;
+  lineHeight?: number;
 }
 
-const StreamerBadge: React.FC<Props> = ({ address, canSelect = false, size = 20 }) => {
+const StreamerBadge: React.FC<Props> = ({ address, canSelect = false, size, fontSize = size ?? 20, lineHeight = fontSize * 1.4 }) => {
   const { data } = useStreamerProgress(address);
   const { theme } = useAppTheme();
   const { t } = useTranslation();
@@ -22,6 +24,8 @@ const StreamerBadge: React.FC<Props> = ({ address, canSelect = false, size = 20 
   const equipped = data?.cards.find((card) => card.id === data.selectedBadgeId && card.earnedAt);
 
   if (!address || !data || !(data.totalStreams > 0) || !equipped) return null;
+  const bounds = streamerBadgeBounds(equipped.id, theme);
+  const scale = fontSize * 0.732 / (bounds.bottom - bounds.top);
 
   return (
     <Pressable
@@ -30,10 +34,12 @@ const StreamerBadge: React.FC<Props> = ({ address, canSelect = false, size = 20 
       hitSlop={8}
       accessibilityRole="button"
       accessibilityLabel={t(`live.progress.card.${equipped.id}.name`)}
-      style={{ width: size, height: size, flexShrink: 0 }}
+      style={{ width: (bounds.right - bounds.left) * scale, height: fontSize * 0.732, flexShrink: 0, alignSelf: "flex-end", marginBottom: lineHeight / 2 - fontSize * 0.3375 }}
       onPress={() => openStreamerShowcase(equipped.id, address, canSelect, badgeRef.current)}
     >
-      <SvgXml xml={streamerBadgeSvg(equipped.id, theme, true, instance)} width={size} height={size} />
+      <View style={{ position: "absolute", left: -bounds.left * scale, top: -bounds.top * scale }}>
+        <SvgXml xml={streamerBadgeSvg(equipped.id, theme, true, instance)} width={120 * scale} height={120 * scale} />
+      </View>
     </Pressable>
   );
 };

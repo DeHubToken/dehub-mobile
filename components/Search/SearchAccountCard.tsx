@@ -94,7 +94,7 @@ const SearchAccountCard: FC<SearchAccountCardProps> = ({ account, onFollowChange
           {badgeImg ? (
             <BadgeArtwork
               source={badgeImg}
-              style={getBadgeOpticalStyle(badgeImg, 14, 3, 18)}
+              style={getBadgeOpticalStyle(badgeImg, 14, 0, 20)}
               contentFit="contain"
             />
           ) : null}

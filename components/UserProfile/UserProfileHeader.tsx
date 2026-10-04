@@ -315,11 +315,11 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
           <View className="flex-row items-center gap-1.5">
             <Text className="text-white text-xl font-bold" numberOfLines={2} style={{ flexShrink: 1 }}>{displayName}</Text>
             {badge && badgeImage && (
-              <Pressable ref={badgeRef} hitSlop={8} onPress={() => openBadgeShowcase(badge, badgeRef.current)}>
+              <Pressable ref={badgeRef} style={{ alignSelf: "flex-end", height: 28, justifyContent: "center" }} hitSlop={8} onPress={() => openBadgeShowcase(badge, badgeRef.current)}>
                 <BadgeArtwork source={badgeImage} style={[getBadgeOpticalStyle(badgeImage, 20), { marginLeft: 0 }]} contentFit="contain" />
               </Pressable>
             )}
-            <StreamerBadge address={address} canSelect={isOwnProfile} />
+            <StreamerBadge address={address} canSelect={isOwnProfile} fontSize={20} />
           </View>
 
           {/* Wraps, so a long handle plus the .eth / follows-you / patron

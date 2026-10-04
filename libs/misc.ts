@@ -595,8 +595,8 @@ export function getBadgeOpticalStyle(
   const tier = Object.keys(BADGE_IMAGES).find((name) => BADGE_IMAGES[name] === source || LIGHT_BADGE_IMAGES[name] === source);
   const optics = artworkBounds ?? (tier ? BADGE_OPTICS[tier] : undefined);
   const bounds = optics ?? { left: 0, top: 0, right: 128, bottom: 128 };
-  // Roboto/SF capital height is approximately 0.72 of the font size.
-  const renderedSize = size * 0.72 * 128 / (bounds.bottom - bounds.top);
+  // Exo uses a 732-unit cap height on its 1000-unit em.
+  const renderedSize = size * 0.732 * 128 / (bounds.bottom - bounds.top);
   const outerSize = renderedSize + BADGE_ARTWORK_GUTTER * 2;
   // Web sits the visible check on the text baseline. Native centres the
   // font's ascent+descent block inside whatever line box the Text has, so the
@@ -605,7 +605,7 @@ export function getBadgeOpticalStyle(
   // Centre the image in the row, then move only its pixels so the artwork's
   // measured bottom edge finishes on that baseline. A flex baseline on the
   // oversized image would change the name row's height and push the username.
-  const baselineBelowCentre = size * 0.34;
+  const baselineBelowCentre = size * 0.3375;
   const artworkBottomBelowCentre =
     -outerSize / 2 +
     BADGE_ARTWORK_GUTTER +
@@ -632,7 +632,7 @@ export function getBadgeHoverOpticalStyle(
   textLineHeight = size * 1.4,
 ) {
   const tier = Object.keys(BADGE_IMAGES).find((name) => BADGE_IMAGES[name] === source || LIGHT_BADGE_IMAGES[name] === source);
-  const bounds = tier === "Killer Whale" ? undefined : badgeHoverArt(tier)?.bounds;
+  const bounds = tier === "Killer Whale" ? undefined : badgeHoverArt(tier)?.posterBounds;
   return getBadgeOpticalStyle(source, size, verticalOffset, textLineHeight, bounds);
 }
 

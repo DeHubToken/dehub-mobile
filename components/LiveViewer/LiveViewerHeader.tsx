@@ -1,4 +1,5 @@
 import BadgeArtwork from "../common/BadgeArtwork";
+import { getBadgeHoverOpticalStyle } from "../../libs/misc";
 /**
  * The live viewer's top bar.
  *
@@ -172,7 +173,7 @@ const LiveViewerHeader: React.FC<LiveViewerHeaderProps> = ({
                 {displayName}
               </Text>
               {badgeImage ? (
-                <BadgeArtwork source={badgeImage} style={styles.badge} />
+                <BadgeArtwork source={badgeImage} style={getBadgeHoverOpticalStyle(badgeImage, 13, 0, 18.2)} />
               ) : null}
             </View>
             <View style={styles.metaRow}>
