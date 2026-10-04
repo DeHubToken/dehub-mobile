@@ -18,6 +18,7 @@ import { useTranslation } from "react-i18next";
 import Icon from "../components/ui/Icon";
 import { TrenchstarIcon } from "../components/trenchstar/TrenchstarIcon";
 import ScreenHeader from "../components/ScreenHeader";
+import { PageSection } from "../components/page/PageKit";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { ARCADE_GAMES, type ArcadeGame } from "../config/arcade-games";
 import { WEBSITE_LINK } from "../config/links";
@@ -34,11 +35,12 @@ const GameCard = ({
   onPlayOnline?: () => void;
   playOnlineLabel?: string;
 }) => (
+  <PageSection flush>
   <Pressable
     accessibilityRole="button"
     accessibilityLabel={game.title}
     onPress={() => onPress(game.slug)}
-    style={({ pressed }) => [styles.card, pressed && styles.cardPressed]}
+    style={({ pressed }) => [pressed && styles.cardPressed]}
   >
     <View style={styles.artWrap}>
       <Image
@@ -78,6 +80,7 @@ const GameCard = ({
       ) : null}
     </View>
   </Pressable>
+  </PageSection>
 );
 
 const ArcadeScreen = () => {
@@ -96,23 +99,25 @@ const ArcadeScreen = () => {
 
   return (
     <View style={styles.screen}>
-      <ScreenHeader title={t("nav.arcade")} />
+      <ScreenHeader title={t("nav.arcade")} icon="arcade" />
       <ScrollView
         contentContainerStyle={[styles.content, { paddingBottom: insets.bottom + 24 }]}
         showsVerticalScrollIndicator={false}
       >
         <Text style={styles.intro}>{t("arcade.intro")}</Text>
 
-        <Pressable
-          accessibilityRole="button"
-          accessibilityLabel={t("arcade.submitAccessibility")}
-          onPress={() => Linking.openURL(`${WEBSITE_LINK}/arcade?submit=1`)}
-          style={({ pressed }) => [styles.submitCard, pressed && styles.cardPressed]}
-        >
-          <Text style={styles.submitTitle}>{t("arcade.submitTitle")}</Text>
-          <Text style={styles.submitDescription}>{t("arcade.submitDescription")}</Text>
-          <Text style={styles.submitAction}>{t("arcade.submitAction")}</Text>
-        </Pressable>
+        <PageSection>
+          <Pressable
+            accessibilityRole="button"
+            accessibilityLabel={t("arcade.submitAccessibility")}
+            onPress={() => Linking.openURL(`${WEBSITE_LINK}/arcade?submit=1`)}
+            style={({ pressed }) => [styles.submitCard, pressed && styles.cardPressed]}
+          >
+            <Text style={styles.submitTitle}>{t("arcade.submitTitle")}</Text>
+            <Text style={styles.submitDescription}>{t("arcade.submitDescription")}</Text>
+            <Text style={styles.submitAction}>{t("arcade.submitAction")}</Text>
+          </Pressable>
+        </PageSection>
 
         {ARCADE_GAMES.map((game) => (
           <GameCard
@@ -132,32 +137,18 @@ const ArcadeScreen = () => {
 
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: colors.neutrals[900] },
-  content: { paddingHorizontal: 12, paddingTop: 8, gap: 12 },
+  content: { paddingTop: 4 },
   intro: {
     color: "#A1A1AA",
     fontSize: 12,
     lineHeight: 18,
-    paddingHorizontal: 2,
-    marginBottom: 2,
+    paddingHorizontal: 16,
+    paddingBottom: 12,
   },
-  submitCard: {
-    borderRadius: 16,
-    padding: 16,
-    backgroundColor: "#18181B",
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.15)",
-    gap: 5,
-  },
+  submitCard: { gap: 5 },
   submitTitle: { color: "#FFFFFF", fontSize: 16, fontWeight: "600" },
   submitDescription: { color: "#A1A1AA", fontSize: 12 },
   submitAction: { color: "#FFFFFF", fontSize: 12, fontWeight: "600", marginTop: 5 },
-  card: {
-    borderRadius: 16,
-    overflow: "hidden",
-    backgroundColor: "#18181B",
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.06)",
-  },
   cardPressed: { opacity: 0.85 },
   artWrap: {
     // The captures are 1280x720. Holding 16/9 means the art is never cropped

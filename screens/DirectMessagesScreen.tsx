@@ -12,6 +12,7 @@ import {
 } from "react-native";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { Image } from "expo-image";
+import ScreenHeader from "../components/ScreenHeader";
 import Icon from "../components/ui/Icon";
 import LoadErrorState from "../components/ui/LoadErrorState";
 import GlassIndicator, { GLASS_SHADOW } from "../components/ui/GlassIndicator";
@@ -415,25 +416,22 @@ const DirectMessagesInner: React.FC = () => {
       style={{ flex: 1 }}
     >
       <View className="flex-1 bg-theme-neutrals-900">
-        {/* Header */}
-        <View className="flex-row items-center justify-between px-4 h-16">
-          <View className="flex-row items-center gap-3">
-            <Image
-              source={require("../assets/web-icons/messages-3d-icon.png")}
-              style={{ width: 36, height: 36 }}
-              contentFit="contain"
-            />
-            <Text className="text-theme-neutrals-100 text-2xl font-medium tracking-wide">{t("messages.title")}</Text>
-          </View>
-          <TouchableOpacity
-            onPress={openSettings}
-            className="w-10 h-10 items-center justify-center active:opacity-70"
-            accessibilityRole="button"
-            accessibilityLabel={t("settings.title")}
-          >
-            <Icon name="Settings" size={22} color="#A1A1AA" />
-          </TouchableOpacity>
-        </View>
+        <ScreenHeader
+          icon="messages"
+          title={t("messages.title")}
+          canGoBack={false}
+          rightContent={
+            <TouchableOpacity
+              onPress={openSettings}
+              className="items-center justify-center bg-theme-neutrals-800 active:opacity-70"
+              style={{ width: 36, height: 36, borderRadius: 10 }}
+              accessibilityRole="button"
+              accessibilityLabel={t("settings.title")}
+            >
+              <Icon name="Settings" size={18} color="#E5E7EB" />
+            </TouchableOpacity>
+          }
+        />
 
         {/* Search bar with + button */}
         <View className="px-4 mb-2">

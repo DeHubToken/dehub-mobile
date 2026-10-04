@@ -10,6 +10,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Icon from "../ui/Icon";
 import { DhbCoin } from "../common/DhbCoin";
 import { DeHubLoader } from "../DeHubLoader";
+import { PageEmpty } from "../page/PageKit";
 import { DeHubRefreshControl } from "../Feed/DeHubRefreshControl";
 import FractionTile from "./FractionTile";
 import SellerTrustBadge from "./SellerTrustBadge";
@@ -149,15 +150,15 @@ const BrowseFractionsTab: React.FC<Props> = ({ onOpenListing }) => {
             <DeHubLoader size={56} />
           </View>
         ) : (
-          <View style={styles.center}>
-            <Icon name="Tag" size={40} color="#3F3F46" />
-            <Text style={styles.emptyText}>
-              {isError
+          <PageEmpty
+            icon="fractions"
+            title={
+              isError
                 ? t("fractions.loadFailed")
-                : t(debounced ? "fractions.noSearchMatch" : "fractions.noneForSale")}
-            </Text>
-            {!debounced && !isError && <Text style={styles.emptyHint}>{t("fractions.startTheMarketHint")}</Text>}
-          </View>
+                : t(debounced ? "fractions.noSearchMatch" : "fractions.noneForSale")
+            }
+            body={!debounced && !isError ? t("fractions.startTheMarketHint") : undefined}
+          />
         )
       }
     />

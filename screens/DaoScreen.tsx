@@ -12,13 +12,14 @@ import {
   Text,
   StyleSheet,
   Pressable,
-  FlatList,
+  ScrollView,
   ActivityIndicator,
   TextInput,
   Linking,
   KeyboardAvoidingView,
   Platform,
-} from "react-native";
+} from "react-native";
+
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useQuery } from "@tanstack/react-query";
@@ -27,6 +28,7 @@ import * as Clipboard from "expo-clipboard";
 import Icon from "../components/ui/Icon";
 import GlassModal from "../components/ui/GlassModal";
 import ScreenHeader from "../components/ScreenHeader";
+import { KitButton, PageSection } from "../components/page/PageKit";
 import Avatar from "../components/common/Avatar";
 import { theme } from "../theme";
 import { getAvatarUrl } from "../libs/misc";
@@ -172,86 +174,82 @@ export default function DaoScreen() {
   }, [valid, parsed, pay, t]);
 
   const header = (
-    <View style={styles.headerBlock}>
-      <View style={styles.card}>
-        <View style={styles.balanceRow}>
-          <View style={{ flex: 1 }}>
-            <Text style={styles.label}>{t("dao.treasuryBalance")}</Text>
-            {isLoading ? (
-              <ActivityIndicator color="#71717A" style={{ alignSelf: "flex-start", marginTop: 6 }} />
-            ) : (
-              <Text style={styles.balance}>{formatDhb(data?.totalBalance ?? 0)} <DhbCoin size={24} /></Text>
-            )}
+    <>
+      <PageSection>
+        <View style={styles.cardBody}>
+          <View style={styles.balanceRow}>
+            <View style={{ flex: 1 }}>
+              <Text style={styles.label}>{t("dao.treasuryBalance")}</Text>
+              {isLoading ? (
+                <ActivityIndicator color="#71717A" style={{ alignSelf: "flex-start", marginTop: 6 }} />
+              ) : (
+                <Text style={styles.balance}>{formatDhb(data?.totalBalance ?? 0)} <DhbCoin size={24} /></Text>
+              )}
+            </View>
+            <Pressable onPress={() => refetch()} hitSlop={8} style={styles.iconBtn}>
+              <Icon name="RefreshCw" size={16} color="#A1A1AA" />
+            </Pressable>
           </View>
-          <Pressable onPress={() => refetch()} hitSlop={8} style={styles.iconBtn}>
-            <Icon name="RefreshCw" size={16} color="#A1A1AA" />
-          </Pressable>
-        </View>
 
-        {data && (
-          <View style={styles.chainGrid}>
-            {data.balances.map((b) => (
-              <Pressable
-                key={b.chainId}
-                onPress={() => Linking.openURL(`${b.explorerUrl}/address/${DAO_TREASURY_ADDRESS}`)}
-                style={styles.chainCell}
-              >
-                <Text style={styles.chainName}>{b.name}</Text>
-                <Text style={styles.chainAmount}>{formatDhb(b.amount)}</Text>
-              </Pressable>
-            ))}
+          {data && (
+            <View style={styles.chainGrid}>
+              {data.balances.map((b) => (
+                <Pressable
+                  key={b.chainId}
+                  onPress={() => Linking.openURL(`${b.explorerUrl}/address/${DAO_TREASURY_ADDRESS}`)}
+                  style={styles.chainCell}
+                >
+                  <Text style={styles.chainName}>{b.name}</Text>
+                  <Text style={styles.chainAmount}>{formatDhb(b.amount)}</Text>
+                </Pressable>
+              ))}
+            </View>
+          )}
+
+          <Text style={[styles.label, { marginTop: 14 }]}>{t("dao.treasuryAddress")}</Text>
+          <View style={styles.addressRow}>
+            <Text style={styles.address} selectable>{DAO_TREASURY_ADDRESS}</Text>
+            <Pressable onPress={copyAddress} hitSlop={8} style={styles.copyBtn}>
+              <Icon name="Copy" size={15} color="#FAFAFA" />
+            </Pressable>
           </View>
-        )}
+          <Text style={styles.hint}>{t("dao.sendAnyWallet")}</Text>
+          {isError && !data && <Text style={styles.error}>{t("dao.loadFailed")}</Text>}
 
-        <Text style={[styles.label, { marginTop: 14 }]}>{t("dao.treasuryAddress")}</Text>
-        <View style={styles.addressRow}>
-          <Text style={styles.address} selectable>{DAO_TREASURY_ADDRESS}</Text>
-          <Pressable onPress={copyAddress} hitSlop={8} style={styles.copyBtn}>
-            <Icon name="Copy" size={15} color="#FAFAFA" />
-          </Pressable>
+          <KitButton label={t("dao.contribute")} onPress={openContribute} style={{ marginTop: 12 }} />
         </View>
-        <Text style={styles.hint}>{t("dao.sendAnyWallet")}</Text>
-        {isError && !data && <Text style={styles.error}>{t("dao.loadFailed")}</Text>}
-
-        <Pressable onPress={openContribute} style={styles.primaryBtn}>
-          <Icon name="HeartHandshake" size={16} color="#09090B" />
-          <Text style={styles.primaryBtnText}>{t("dao.contribute")}</Text>
-        </Pressable>
-      </View>
+      </PageSection>
 
       {signedIn && data && (
-        <View style={styles.card}>
-          <Text style={styles.label}>{t("dao.yourPower")}</Text>
-          {ownRow ? (
-            <>
-              <Text style={styles.power}>{formatShare(ownRow.share)}</Text>
-              <Text style={styles.hint}>{t("dao.yourContribution", { amount: formatDhb(ownRow.amount) })}</Text>
-            </>
-          ) : (
-            <Text style={styles.hint}>{t("dao.noContributionYet")}</Text>
-          )}
-        </View>
+        <PageSection>
+          <View style={styles.cardBody}>
+            <Text style={styles.label}>{t("dao.yourPower")}</Text>
+            {ownRow ? (
+              <>
+                <Text style={styles.power}>{formatShare(ownRow.share)}</Text>
+                <Text style={styles.hint}>{t("dao.yourContribution", { amount: formatDhb(ownRow.amount) })}</Text>
+              </>
+            ) : (
+              <Text style={styles.hint}>{t("dao.noContributionYet")}</Text>
+            )}
+          </View>
+        </PageSection>
       )}
 
-      <View style={styles.card}>
-        <Text style={styles.sectionTitle}>{t("dao.howItWorksTitle")}</Text>
+      <PageSection title={t("dao.howItWorksTitle")}>
         <Text style={styles.body}>{t("dao.howItWorksBody")}</Text>
-      </View>
-
-      <View style={styles.sectionRow}>
-        <Text style={styles.sectionTitle}>{t("dao.contributors")}</Text>
-        {data && <Text style={styles.hint}>{t("dao.pooledTotal", { amount: formatDhb(data.totalContributed) })}</Text>}
-      </View>
-    </View>
+      </PageSection>
+    </>
   );
 
+  const contributors = data?.contributors ?? [];
+
   const footer = data && data.recent.length > 0 ? (
-    <View style={styles.footerBlock}>
-      <Text style={styles.sectionTitle}>{t("dao.recent")}</Text>
+    <PageSection title={t("dao.recent")}>
       <View style={{ gap: 6 }}>
         {data.recent.map((item) => <RecentRow key={`${item.chainId}-${item.txHash}`} item={item} />)}
       </View>
-    </View>
+    </PageSection>
   ) : null;
 
   return (
@@ -259,26 +257,33 @@ export default function DaoScreen() {
       <ScreenHeader
         title={t("dao.title")}
         subtitle={t("dao.subtitle")}
-        rightContent={<Icon name="Landmark" size={22} color={theme.colors.accent} />}
+        icon="dao"
       />
 
-      <FlatList
-        data={data?.contributors ?? []}
-        keyExtractor={(c) => c.address}
-        renderItem={({ item, index }) => <ContributorRow row={item} rank={index + 1} isSelf={item.address === self} />}
-        ListHeaderComponent={header}
-        ListFooterComponent={footer}
-        ListEmptyComponent={
-          isLoading ? (
-            <View style={styles.center}><ActivityIndicator color="#FFFFFF" /></View>
-          ) : (
-            <Text style={[styles.hint, { paddingHorizontal: 12 }]}>{t("dao.noContributors")}</Text>
-          )
-        }
-        contentContainerStyle={{ paddingHorizontal: 12, paddingBottom: insets.bottom + 24, gap: 8 }}
+      <ScrollView
+        contentContainerStyle={{ paddingBottom: insets.bottom + 24 }}
         showsVerticalScrollIndicator={false}
         refreshControl={<DeHubRefreshControl refreshing={isRefetching} onRefresh={refetch} tintColor={theme.colors.accent} />}
-      />
+      >
+        {header}
+        <PageSection
+          title={t("dao.contributors")}
+          action={data ? <Text style={styles.hint}>{t("dao.pooledTotal", { amount: formatDhb(data.totalContributed) })}</Text> : undefined}
+        >
+          <View style={{ gap: 8 }}>
+            {contributors.length > 0 ? (
+              contributors.map((item, index) => (
+                <ContributorRow key={item.address} row={item} rank={index + 1} isSelf={item.address === self} />
+              ))
+            ) : isLoading ? (
+              <View style={styles.center}><ActivityIndicator color="#FFFFFF" /></View>
+            ) : (
+              <Text style={styles.hint}>{t("dao.noContributors")}</Text>
+            )}
+          </View>
+        </PageSection>
+        {footer}
+      </ScrollView>
 
       <GlassModal scrollable visible={sheetOpen} onClose={() => setSheetOpen(false)} presentation="bottom" maxHeight="80%">
         <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : undefined}>
@@ -339,16 +344,7 @@ export default function DaoScreen() {
 
 const styles = StyleSheet.create({
   root: { flex: 1, backgroundColor: "#010305" },
-  headerBlock: { gap: 8, paddingBottom: 4 },
-  footerBlock: { gap: 10, paddingTop: 12 },
-  card: {
-    borderRadius: 16,
-    backgroundColor: "rgba(255,255,255,0.04)",
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.07)",
-    padding: 14,
-    gap: 6,
-  },
+  cardBody: { gap: 6 },
   balanceRow: { flexDirection: "row", alignItems: "flex-start" },
   label: { color: "#71717A", fontSize: 11, textTransform: "uppercase", letterSpacing: 0.6 },
   balance: { color: "#FFFFFF", fontSize: 30, fontWeight: "800", marginTop: 2, fontVariant: ["tabular-nums"] },

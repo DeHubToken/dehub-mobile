@@ -27,6 +27,7 @@ import Icon from "../components/ui/Icon";
 import ScreenHeader from "../components/ScreenHeader";
 import WorkUser from "../components/Work/WorkUser";
 import LoadErrorState from "../components/ui/LoadErrorState";
+import { PageEmpty, PageSection } from "../components/page/PageKit";
 import { DeHubLoader } from "../components/DeHubLoader";
 import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
 import { useUser } from "../context/AuthContext";
@@ -71,14 +72,16 @@ export default function WorkDisputesScreen() {
   if (!admin) {
     return (
       <View style={styles.root}>
-        <ScreenHeader title={t("work.disputesTitle")} />
-        <View style={styles.emptyBlock}>
-          <Icon name="Scale" size={40} color="#3F3F46" />
-          <Text style={styles.adminTitle}>{t("work.adminsOnly")}</Text>
-          <Text style={styles.emptyText}>
-            {t("work.adminsOnlyBody")} <Text style={styles.code}>WORK_ADMIN_ARBITERS</Text>
-          </Text>
-        </View>
+        <ScreenHeader title={t("work.disputesTitle")} icon="governance" />
+        <PageEmpty
+          icon="governance"
+          title={t("work.adminsOnly")}
+          action={
+            <Text style={styles.emptyText}>
+              {t("work.adminsOnlyBody")} <Text style={styles.code}>WORK_ADMIN_ARBITERS</Text>
+            </Text>
+          }
+        />
       </View>
     );
   }
@@ -104,7 +107,7 @@ export default function WorkDisputesScreen() {
     const busy = resolve.isPending && resolve.variables?.dispute_id === d.id;
 
     return (
-      <View key={d.id} style={styles.card}>
+      <PageSection key={d.id}>
         <Pressable
           onPress={() =>
             navigation.navigate(ScreenNames.WorkJobDetail, { jobId: j?.id ?? d.job_id, job: j ?? undefined })
@@ -251,16 +254,16 @@ export default function WorkDisputesScreen() {
             )}
           </Pressable>
         </View>
-      </View>
+      </PageSection>
     );
   };
 
   return (
     <View style={styles.root}>
-      <ScreenHeader title={t("work.disputesTitle")} />
+      <ScreenHeader title={t("work.disputesTitle")} icon="governance" />
       <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding" keyboardVerticalOffset={keyboardOffset}>
         <ScrollView
-          contentContainerStyle={{ paddingHorizontal: 12, paddingBottom: insets.bottom + 32 }}
+          contentContainerStyle={{ paddingBottom: insets.bottom + 32 }}
           showsVerticalScrollIndicator={false}
           keyboardShouldPersistTaps="handled"
         >
@@ -274,7 +277,7 @@ export default function WorkDisputesScreen() {
           ) : isError ? (
             <LoadErrorState message={t("work.loadFailed")} onRetry={() => refetch()} />
           ) : disputes.length === 0 ? (
-            <Text style={styles.emptyText}>{t("work.noDisputes")}</Text>
+            <PageEmpty icon="governance" title={t("work.noDisputes")} />
           ) : (
             disputes.map(renderDispute)
           )}
@@ -286,16 +289,7 @@ export default function WorkDisputesScreen() {
 
 const styles = StyleSheet.create({
   root: { flex: 1, backgroundColor: "#010305" },
-  intro: { color: "#A1A1AA", fontSize: 13, lineHeight: 19, marginBottom: 14 },
-
-  card: {
-    borderRadius: 14,
-    backgroundColor: "rgba(255,255,255,0.04)",
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.10)",
-    padding: 14,
-    marginBottom: 12,
-  },
+  intro: { color: "#A1A1AA", fontSize: 13, lineHeight: 19, marginBottom: 14, paddingHorizontal: 16 },
   titleRow: { flexDirection: "row", alignItems: "center", gap: 6 },
   cardTitle: { flexShrink: 1, color: "#FFFFFF", fontSize: 16, fontWeight: "700" },
   openedRow: { flexDirection: "row", flexWrap: "wrap", alignItems: "center", gap: 6, marginTop: 8 },

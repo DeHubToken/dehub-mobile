@@ -28,6 +28,7 @@ import { ActivityIndicator, Alert, Pressable, ScrollView, StyleSheet, Text, View
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTranslation } from 'react-i18next';
 import Icon from '../ui/Icon';
+import { KitButton, PageEmpty, PageSection } from '../page/PageKit';
 import { DhbCoin } from '../common/DhbCoin';
 import { DeHubLoader } from '../DeHubLoader';
 import {
@@ -51,13 +52,11 @@ const UsernameVaultPanel: React.FC<Props> = ({ isAuthed, onSignIn, onSell }) => 
 
   if (!isAuthed) {
     return (
-      <View style={styles.center}>
-        <Icon name="AtSign" size={40} color="#3F3F46" />
-        <Text style={styles.emptyText}>{t('usernames.signInToSeeVault')}</Text>
-        <Pressable onPress={onSignIn} style={styles.primaryBtn}>
-          <Text style={styles.primaryBtnText}>{t('usernames.signIn')}</Text>
-        </Pressable>
-      </View>
+      <PageEmpty
+        icon="usernames"
+        title={t('usernames.signInToSeeVault')}
+        action={<KitButton label={t('usernames.signIn')} onPress={onSignIn} />}
+      />
     );
   }
 
@@ -123,6 +122,7 @@ const VaultRow: React.FC<{ holding: UsernameHolding; onSell: (username: string) 
   };
 
   return (
+    <PageSection>
     <View style={styles.row}>
       <View style={styles.rowTop}>
         <View style={styles.rowNameWrap}>
@@ -190,11 +190,12 @@ const VaultRow: React.FC<{ holding: UsernameHolding; onSell: (username: string) 
         )}
       </View>
     </View>
+    </PageSection>
   );
 };
 
 const styles = StyleSheet.create({
-  scroll: { paddingHorizontal: 16, gap: 12 },
+  scroll: {},
 
   center: { alignItems: 'center', justifyContent: 'center', paddingVertical: 56, gap: 14 },
   emptyText: { color: '#A1A1AA', fontSize: 13, textAlign: 'center', paddingHorizontal: 32 },
@@ -208,16 +209,9 @@ const styles = StyleSheet.create({
   },
   primaryBtnText: { color: '#FFFFFF', fontSize: 13, fontWeight: '600' },
 
-  explainer: { color: '#808089', fontSize: 11, lineHeight: 16, paddingTop: 4 },
+  explainer: { color: '#808089', fontSize: 11, lineHeight: 16, paddingTop: 4, paddingHorizontal: 16, paddingBottom: 10 },
 
-  row: {
-    borderRadius: 14,
-    padding: 14,
-    backgroundColor: 'rgba(255,255,255,0.05)',
-    borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.10)',
-    gap: 10,
-  },
+  row: { gap: 10 },
   rowTop: { flexDirection: 'row', alignItems: 'flex-start', gap: 10 },
   rowNameWrap: { flex: 1, minWidth: 0 },
   handle: { color: '#FFFFFF', fontSize: 19, fontWeight: '700' },

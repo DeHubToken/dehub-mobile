@@ -19,18 +19,10 @@ import { DeHubLoader } from "../components/DeHubLoader";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
-import Icon, { type IconName } from "../components/ui/Icon";
+import Icon from "../components/ui/Icon";
 import ScreenHeader from "../components/ScreenHeader";
 import { theme } from "../theme";
-import { useAppTheme } from "../context/ThemeContext";
-import {
-  MINIMAL_TAB_TEXT,
-  MINIMAL_TAB_TEXT_ACTIVE,
-  minimalRow,
-  minimalTab,
-  minimalTabActive,
-  minimalTabStrip,
-} from "../theme/minimal";
+import { KitButton, PageEmpty, PageSection, PageTabs } from "../components/page/PageKit";
 import { appLocale, parseDateOnly } from "../libs/date.util";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { useUser } from "../context/AuthContext";
@@ -47,11 +39,12 @@ import LoadErrorState from "../components/ui/LoadErrorState";
 
 type SortKey = "newest" | "highest_pay" | "ending_soon";
 
-const TABS: Array<{ id: WorkJobType | "all"; icon: IconName }> = [
-  { id: "all", icon: "Briefcase" },
-  { id: "shill", icon: "MessageSquare" },
-  { id: "clipping", icon: "Scissors" },
-  { id: "contract", icon: "Briefcase" },
+/** Tab artwork: theme icon keys, as on web. */
+const TABS: Array<{ id: WorkJobType | "all"; icon: string }> = [
+  { id: "all", icon: "bounties" },
+  { id: "shill", icon: "messages" },
+  { id: "clipping", icon: "videos" },
+  { id: "contract", icon: "command" },
 ];
 
 const CURRENCIES: Array<WorkCurrency | "all"> = ["all", "DHB", "USDC"];
@@ -63,11 +56,11 @@ const num = (n: number, max = 2) =>
 
 export const JobCard: React.FC<{ job: WorkJob; onPress: () => void }> = ({ job, onPress }) => {
   const { t } = useTranslation();
-  const { isMinimal } = useAppTheme();
   const isBoosted = !!job.boost_expires_at && new Date(job.boost_expires_at) > new Date();
 
   return (
-    <Pressable style={[styles.card, isMinimal && styles.minimalCard]} onPress={onPress}>
+    <PageSection flush>
+    <Pressable style={styles.card} onPress={onPress}>
       <View style={styles.cardTop}>
         <View style={styles.badgeRow}>
           <View style={styles.badge}>
@@ -134,14 +127,12 @@ export const JobCard: React.FC<{ job: WorkJob; onPress: () => void }> = ({ job, 
         )}
       </View>
     </Pressable>
+    </PageSection>
   );
 };
 
 export default function WorkScreen() {
   const { t } = useTranslation();
-  // Minimal: type tabs become file tabs and bounty cards edge-to-edge
-  // hairline rows. Search and the currency/sort chips keep their fill.
-  const { isMinimal } = useAppTheme();
   const insets = useSafeAreaInsets();
   const navigation = useNavigation<any>();
   const user = useUser() as any;
@@ -197,6 +188,7 @@ export default function WorkScreen() {
       <ScreenHeader
         title={t("work.title")}
         subtitle={t("work.subtitle")}
+        icon="bounties"
         rightContent={
           <View style={styles.headerActions}>
             {isArbiter && (
@@ -233,42 +225,17 @@ export default function WorkScreen() {
       />
 
       {/* Type tabs */}
-      <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        style={styles.strip}
-        contentContainerStyle={[styles.chipRow, isMinimal && styles.minimalTabRow]}
-      >
-        {TABS.map((tabItem) => {
-          const active = tab === tabItem.id;
-          return (
-            <Pressable
-              key={tabItem.id}
-              onPress={() => setTab(tabItem.id)}
-              style={[
-                styles.tabChip,
-                active && styles.tabChipActive,
-                isMinimal && (active ? minimalTabActive : minimalTab),
-              ]}
-            >
-              <Icon
-                name={tabItem.icon}
-                size={13}
-                color={active ? MINIMAL_TAB_TEXT_ACTIVE : isMinimal ? MINIMAL_TAB_TEXT : "#A1A1AA"}
-              />
-              <Text
-                style={[
-                  styles.tabText,
-                  active && styles.tabTextActive,
-                  isMinimal && { color: active ? MINIMAL_TAB_TEXT_ACTIVE : MINIMAL_TAB_TEXT },
-                ]}
-              >
-                {t(`work.types.${tabItem.id}`)}
-              </Text>
-            </Pressable>
-          );
-        })}
-      </ScrollView>
+      <View style={styles.strip}>
+        <PageTabs
+          value={tab}
+          onChange={setTab}
+          tabs={TABS.map((tabItem) => ({
+            id: tabItem.id,
+            label: t(`work.types.${tabItem.id}`),
+            icon: tabItem.icon,
+          }))}
+        />
+      </View>
 
       <View style={styles.searchWrap}>
         <Icon name="Search" size={15} color="#808089" />
@@ -335,10 +302,8 @@ export default function WorkScreen() {
           keyExtractor={(j) => j.id}
           renderItem={({ item }) => <JobCard job={item} onPress={() => openJob(item)} />}
           contentContainerStyle={{
-            paddingHorizontal: isMinimal ? 0 : 12,
             paddingBottom: insets.bottom + 24,
             paddingTop: 2,
-            gap: isMinimal ? 0 : 12,
           }}
           showsVerticalScrollIndicator={false}
           refreshControl={
@@ -353,29 +318,22 @@ export default function WorkScreen() {
               <LoadErrorState message={t("work.loadFailed")} onRetry={() => refetch()} />
             ) : (
             <View>
-              <View style={styles.emptyBlock}>
-                <Icon name="Briefcase" size={40} color="#3F3F46" />
-                <Text style={styles.emptyText}>
-                  {hasFilters
-                    ? t("work.noMatchingBounties")
-                    : t("work.noOpenBounties")}
-                </Text>
-                <View style={styles.emptyActions}>
-                  <Pressable onPress={goPost} style={styles.primaryBtn}>
-                    <Icon name="Plus" size={15} color="#000000" />
-                    <Text style={styles.primaryBtnText}>{t("work.postBounty")}</Text>
-                  </Pressable>
-                  {hasFilters && (
-                    <Pressable onPress={clearFilters} style={styles.secondaryBtn}>
-                      <Text style={styles.secondaryBtnText}>{t("work.clearFilters")}</Text>
-                    </Pressable>
-                  )}
-                </View>
-              </View>
+              <PageEmpty
+                icon="bounties"
+                title={hasFilters ? t("work.noMatchingBounties") : t("work.noOpenBounties")}
+                action={
+                  <View style={styles.emptyActions}>
+                    <KitButton label={t("work.postBounty")} onPress={goPost} />
+                    {hasFilters && (
+                      <KitButton variant="quiet" label={t("work.clearFilters")} onPress={clearFilters} />
+                    )}
+                  </View>
+                }
+              />
 
               {showCompletedFallback && completedJobs.length > 0 && (
-                <View style={{ gap: isMinimal ? 0 : 12 }}>
-                  <Text style={[styles.sectionHeading, isMinimal && styles.minimalHeading]}>{t("work.recentlyCompleted")}</Text>
+                <View>
+                  <Text style={styles.sectionHeading}>{t("work.recentlyCompleted")}</Text>
                   {completedJobs.map((j) => (
                     <JobCard key={j.id} job={j} onPress={() => openJob(j)} />
                   ))}
@@ -395,19 +353,17 @@ const styles = StyleSheet.create({
   root: { flex: 1, backgroundColor: "#010305" },
   headerActions: { flexDirection: "row", alignItems: "center", gap: 8 },
   iconBtn: {
-    width: 34,
-    height: 34,
-    borderRadius: 12,
-    backgroundColor: "rgba(255,255,255,0.10)",
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.20)",
+    width: 36,
+    height: 36,
+    borderRadius: 10,
+    backgroundColor: "rgba(255,255,255,0.07)",
     alignItems: "center",
     justifyContent: "center",
   },
   addBtn: {
-    width: 34,
-    height: 34,
-    borderRadius: 12,
+    width: 36,
+    height: 36,
+    borderRadius: 10,
     backgroundColor: "#FFFFFF",
     alignItems: "center",
     justifyContent: "center",
@@ -419,20 +375,6 @@ const styles = StyleSheet.create({
   // too little room.
   strip: { flexGrow: 0, flexShrink: 0 },
   chipRow: { gap: 8, paddingHorizontal: 12, paddingVertical: 8, alignItems: "center" },
-  tabChip: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 6,
-    paddingHorizontal: 14,
-    paddingVertical: 8,
-    borderRadius: 12,
-    backgroundColor: "rgba(255,255,255,0.05)",
-  },
-  tabChipActive: { backgroundColor: "rgba(255,255,255,0.15)" },
-  // flexGrow so the baseline spans the screen even when the tabs don't.
-  minimalTabRow: { ...minimalTabStrip, flexGrow: 1, paddingVertical: 0, gap: 0 },
-  tabText: { color: "#A1A1AA", fontSize: 13, fontWeight: "600" },
-  tabTextActive: { color: "#FFFFFF" },
 
   searchWrap: {
     flexDirection: "row",
@@ -470,14 +412,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 2,
   },
 
-  card: {
-    borderRadius: 12,
-    backgroundColor: "rgba(255,255,255,0.04)",
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.10)",
-    padding: 14,
-  },
-  minimalCard: { ...minimalRow, paddingHorizontal: 16 },
+  card: { padding: 16 },
   cardTop: { flexDirection: "row", justifyContent: "space-between", gap: 10, marginBottom: 10 },
   badgeRow: { flexDirection: "row", flexWrap: "wrap", gap: 5, flex: 1 },
   badge: {
@@ -552,8 +487,7 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
     fontSize: 13.5,
     fontWeight: "700",
-    paddingHorizontal: 2,
-    marginBottom: 2,
+    paddingHorizontal: 16,
+    marginBottom: 8,
   },
-  minimalHeading: { paddingHorizontal: 16, marginBottom: 8 },
 });

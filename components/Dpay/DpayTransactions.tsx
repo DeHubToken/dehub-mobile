@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, Image } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useTranslation } from "react-i18next";
 import Icon from "../ui/Icon";
+import { PageSection } from "../page/PageKit";
 import { miniAddress } from "../../libs/strings.util";
 import { DPAY_TX_LINK, LEGACY_WEBSITE_LINK } from "../../config/links";
 import { openInApp, getTransactionLink } from "../../libs/links.utils";
@@ -142,9 +143,9 @@ const DpayTransactions: React.FC = () => {
   }, [t]);
 
   return (
-    <View className="mt-4">
-      <View className="flex-row items-center justify-between mb-3">
-        <Text className="text-white text-lg font-semibold tracking-wide">{t("dpay.latestTransactions")}</Text>
+    <PageSection
+      title={t("dpay.latestTransactions")}
+      action={
         <TouchableOpacity
           onPress={onShowAll}
           hitSlop={{ top: 10, bottom: 10, left: 8, right: 8 }}
@@ -153,7 +154,8 @@ const DpayTransactions: React.FC = () => {
           <Text className="text-white text-xs mr-1">{t("dpay.showAll")}</Text>
           <Ionicons name="open-outline" size={14} color="#FFFFFF" />
         </TouchableOpacity>
-      </View>
+      }
+    >
       {loading ? (
         <>
           {Array.from({ length: 3 }).map((_, i) => (
@@ -186,7 +188,7 @@ const DpayTransactions: React.FC = () => {
       ) : (
         items.map(renderItem)
       )}
-    </View>
+    </PageSection>
   );
 };
 

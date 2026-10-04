@@ -10,10 +10,10 @@
  * sign from the wallet the app already holds, so they belong here.
  */
 import React, { useState } from "react";
-import { View, Text, StyleSheet, Pressable, Share } from "react-native";
+import { View, StyleSheet, Pressable, Share } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
-import Icon, { type IconName } from "../components/ui/Icon";
+import Icon from "../components/ui/Icon";
 import ScreenHeader from "../components/ScreenHeader";
 import BrowseFractionsTab from "../components/Fractions/BrowseFractionsTab";
 import PortfolioTab from "../components/Fractions/PortfolioTab";
@@ -24,6 +24,7 @@ import MakeOfferSheet, { type OfferTarget } from "../components/Fractions/MakeOf
 import { ScreenNames } from "../navigation/ScreenNames";
 import { ShareLinks } from "../navigation/linking.config";
 import { theme } from "../theme";
+import { PageTabs } from "../components/page/PageKit";
 import {
   DEFAULT_FRACTION_CHAIN,
   useFractionWallet,
@@ -33,10 +34,11 @@ import {
 
 type Tab = "browse" | "portfolio" | "activity";
 
-const TABS: { key: Tab; icon: IconName; labelKey: string }[] = [
-  { key: "browse", icon: "ShoppingBag", labelKey: "fractions.tabBrowse" },
-  { key: "portfolio", icon: "Wallet", labelKey: "fractions.tabPortfolio" },
-  { key: "activity", icon: "Activity", labelKey: "fractions.tabActivity" },
+/** Tab artwork: theme icon keys (theme/icons.ts). */
+const TABS: { key: Tab; icon: string; labelKey: string }[] = [
+  { key: "browse", icon: "search", labelKey: "fractions.tabBrowse" },
+  { key: "portfolio", icon: "fractions", labelKey: "fractions.tabPortfolio" },
+  { key: "activity", icon: "stats", labelKey: "fractions.tabActivity" },
 ];
 
 export default function FractionsScreen() {
@@ -69,36 +71,30 @@ export default function FractionsScreen() {
       <ScreenHeader
         title={t("fractions.title")}
         subtitle={t("fractions.perUpload")}
+        icon="fractions"
         rightContent={
           <Pressable onPress={share} hitSlop={8} accessibilityRole="button" accessibilityLabel={t("fractions.share")}>
-            <Icon name="Share2" size={20} color={theme.colors.accent} />
+            <View style={styles.islandBtn}>
+              <Icon name="Share2" size={18} color={theme.colors.accent} />
+            </View>
           </Pressable>
         }
       />
 
-      <View style={styles.segment}>
-        {TABS.map(({ key, icon, labelKey }) => {
-          const active = tab === key;
-          const label =
-            key === "portfolio" && needsAction > 0
-              ? t("fractions.tabPortfolioCount", { count: needsAction })
-              : t(labelKey);
-          return (
-            <Pressable
-              key={key}
-              onPress={() => setTab(key)}
-              style={[styles.segmentBtn, active && styles.segmentBtnActive]}
-              accessibilityRole="tab"
-              accessibilityState={{ selected: active }}
-              accessibilityLabel={label}
-            >
-              <Icon name={icon} size={14} color={active ? "#FFFFFF" : "#A1A1AA"} />
-              <Text style={[styles.segmentText, active && styles.segmentTextActive]} numberOfLines={1}>
-                {label}
-              </Text>
-            </Pressable>
-          );
-        })}
+      {/* Anything with a clock on it gets a count on the tab. */}
+      <View style={styles.tabsWrap}>
+        <PageTabs
+          value={tab}
+          onChange={setTab}
+          tabs={TABS.map(({ key, icon, labelKey }) => ({
+            id: key,
+            icon,
+            label:
+              key === "portfolio" && needsAction > 0
+                ? t("fractions.tabPortfolioCount", { count: needsAction })
+                : t(labelKey),
+          }))}
+        />
       </View>
 
       <View style={styles.body}>
@@ -149,25 +145,13 @@ export default function FractionsScreen() {
 const styles = StyleSheet.create({
   root: { flex: 1, backgroundColor: "#010305" },
   body: { flex: 1 },
-  segment: {
-    flexDirection: "row",
-    gap: 4,
-    marginHorizontal: 16,
-    marginBottom: 10,
-    backgroundColor: "rgba(255,255,255,0.06)",
-    borderRadius: 12,
-    padding: 3,
-  },
-  segmentBtn: {
-    flex: 1,
-    flexDirection: "row",
+  tabsWrap: { marginBottom: 8, flexGrow: 0 },
+  islandBtn: {
+    width: 36,
+    height: 36,
+    borderRadius: 10,
     alignItems: "center",
     justifyContent: "center",
-    gap: 6,
-    paddingVertical: 8,
-    borderRadius: 9,
+    backgroundColor: "rgba(255,255,255,0.07)",
   },
-  segmentBtnActive: { backgroundColor: "rgba(255,255,255,0.15)" },
-  segmentText: { color: "#A1A1AA", fontSize: 13, fontWeight: "600", flexShrink: 1 },
-  segmentTextActive: { color: "#FFFFFF" },
 });

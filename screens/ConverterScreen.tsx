@@ -32,6 +32,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import ScreenHeader from '../components/ScreenHeader';
+import { PageSection, PageTabs } from '../components/page/PageKit';
 import Icon from '../components/ui/Icon';
 import { SignInPrompt } from '../components/auth/SignInGate';
 import { useAuthState } from '../context/AuthContext';
@@ -368,7 +369,7 @@ export default function ConverterScreen() {
       const source = sourceLabelFor(job);
 
       return (
-        <View className="rounded-2xl overflow-hidden bg-theme-neutrals-900 mb-3">
+        <View className="rounded-2xl overflow-hidden bg-theme-neutrals-900 mb-3 mx-4">
           <View className="relative w-full aspect-video bg-theme-neutrals-800">
             {thumbnail && (
               <SmartImage
@@ -488,32 +489,22 @@ export default function ConverterScreen() {
 
   const header = (
     <View className="gap-4 pb-4">
-      <Text className="text-theme-neutrals-400 text-sm">{t('converter.subtitle')}</Text>
+      <Text className="text-theme-neutrals-400 text-sm px-4">{t('converter.subtitle')}</Text>
 
-      <View className="flex-row items-center gap-1.5">
-        {(['link', 'podcast'] as const).map(key => {
-          const active = intake === key;
-          return (
-            <Pressable
-              key={key}
-              onPress={() => setIntake(key)}
-              accessibilityRole="button"
-              accessibilityState={{ selected: active }}
-              className="rounded-lg px-3 py-1.5"
-              style={{ backgroundColor: active ? '#ffffff' : 'rgba(255,255,255,0.05)' }}
-            >
-              <Text className="text-sm font-medium" style={{ color: active ? '#000000' : '#d4d4d8' }}>
-                {key === 'link' ? t('converter.title') : t('converter.podcast.tab')}
-              </Text>
-            </Pressable>
-          );
-        })}
-      </View>
+      <PageTabs
+        value={intake}
+        onChange={setIntake}
+        tabs={[
+          { id: 'link', label: t('converter.title') },
+          { id: 'podcast', label: t('converter.podcast.tab') },
+        ]}
+        style={{ paddingHorizontal: 16, paddingVertical: 0 }}
+      />
 
       {intake === 'podcast' ? (
         <PodcastImportSection />
       ) : (
-      <View className="rounded-2xl p-4 gap-4" style={{ backgroundColor: 'rgba(255,255,255,0.05)' }}>
+      <PageSection style={{ gap: 16 }}>
         <View className="flex-row items-center rounded-xl bg-theme-neutrals-900 px-3">
           <Icon name="Link2" size={16} color="#71717a" />
           <TextInput
@@ -638,11 +629,11 @@ export default function ConverterScreen() {
             {queued > 0 ? t('converter.addToQueue') : t('converter.import')}
           </Text>
         </Pressable>
-      </View>
+      </PageSection>
       )}
 
       {visible.length > 0 && (
-        <View className="flex-row items-baseline justify-between">
+        <View className="flex-row items-baseline justify-between px-4">
           <Text className="text-theme-neutrals-50 text-sm font-semibold">
             {t('converter.queueHeading')}
           </Text>
@@ -662,6 +653,7 @@ export default function ConverterScreen() {
   if (!(isSignedIn && !needsUsername)) {
     return (
       <View className="flex-1">
+        {/* No artwork here: __tests__/screens/guestMigrateConverter pins this exact header line. */}
         <ScreenHeader title={t('converter.title')} />
         <SignInPrompt />
       </View>
@@ -771,7 +763,7 @@ export default function ConverterScreen() {
         </View>
       </GlassModal>
 
-      <ScreenHeader title={t('converter.title')} />
+      <ScreenHeader title={t('converter.title')} icon="videos" />
       <FlatList
         data={visible}
         keyExtractor={job => String(job.jobId)}
@@ -779,8 +771,7 @@ export default function ConverterScreen() {
         ListHeaderComponent={header}
         keyboardShouldPersistTaps="handled"
         contentContainerStyle={{
-          paddingHorizontal: 16,
-          paddingTop: 12,
+          paddingTop: 4,
           paddingBottom: insets.bottom + 32,
         }}
       />

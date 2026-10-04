@@ -5,7 +5,8 @@ import {
   TextInput,
   TouchableOpacity,
   ActivityIndicator,
-} from "react-native";
+} from "react-native";
+
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import Animated from "react-native-reanimated";
 import { useNavigation } from "@react-navigation/native";
@@ -16,7 +17,7 @@ import { useCollapsibleScreen } from "../hooks/useCollapsibleScreen";
 import CommunityCard from "../components/Communities/CommunityCard";
 import CreateCommunitySheet from "../components/Communities/CreateCommunitySheet";
 import Icon from "../components/ui/Icon";
-import LoadErrorState from "../components/ui/LoadErrorState";
+import { KitButton, PageEmpty, PageTabs } from "../components/page/PageKit";
 import { theme } from "../theme";
 import { useUser, useAuthState, useAuthActions } from "../context/AuthContext";
 import {
@@ -143,10 +144,12 @@ const CommunitiesScreen: React.FC = () => {
   const createButton = isSignedIn ? (
     <TouchableOpacity
       onPress={handleCreate}
-      className="flex-row items-center gap-1 bg-white px-3 py-2 rounded-xl"
+      accessibilityRole="button"
+      accessibilityLabel={t("communities.create")}
+      className="items-center justify-center bg-theme-neutrals-800"
+      style={{ width: 36, height: 36, borderRadius: 10 }}
     >
-      <Icon name="Plus" size={16} color="#000" />
-      <Text className="text-black text-sm font-semibold">{t("communities.create")}</Text>
+      <Icon name="Plus" size={18} color="#FFFFFF" />
     </TouchableOpacity>
   ) : undefined;
 
@@ -163,29 +166,20 @@ const CommunitiesScreen: React.FC = () => {
         />
       </View>
 
-      <View className="flex-row gap-2 mb-4">
-        {(["top", "new", "hot"] as SortMode[]).map((mode) => (
-          <TouchableOpacity
-            key={mode}
-            onPress={() => setSortMode(mode)}
-            hitSlop={{ top: 8, bottom: 8 }}
-            className={`px-3 py-1.5 rounded-lg border ${
-              sortMode === mode ? "bg-white/10 border-white/20" : "border-white/10"
-            }`}
-          >
-            <Text className={`text-xs font-medium ${sortMode === mode ? "text-white" : "text-zinc-400"}`}>
-              {t(`communities.sort.${mode}`)}
-            </Text>
-          </TouchableOpacity>
-        ))}
-      </View>
+      <PageTabs
+        size="sm"
+        value={sortMode}
+        onChange={setSortMode}
+        tabs={(["top", "new", "hot"] as SortMode[]).map((mode) => ({ id: mode, label: t(`communities.sort.${mode}`) }))}
+        style={{ paddingHorizontal: 0, paddingTop: 0, paddingBottom: 10 }}
+      />
     </View>
   );
 
   if (loading) {
     return (
       <View className="flex-1 bg-theme-neutrals-900">
-        <ScreenHeader title={t("communities.title")} />
+        <ScreenHeader icon="communities" title={t("communities.title")} />
         <View className="flex-1 items-center justify-center">
           <ActivityIndicator color={theme.colors.accent} />
         </View>
@@ -220,17 +214,21 @@ const CommunitiesScreen: React.FC = () => {
         }
         ListEmptyComponent={
           loadError ? (
-            <LoadErrorState
-              message={t("communities.loadFailed")}
-              onRetry={() => {
-                setLoading(true);
-                load();
-              }}
+            <PageEmpty
+              title={t("communities.loadFailed")}
+              action={
+                <KitButton
+                  variant="quiet"
+                  label={t("common.tryAgain")}
+                  onPress={() => {
+                    setLoading(true);
+                    load();
+                  }}
+                />
+              }
             />
           ) : (
-            <Text className="text-zinc-400 text-center py-8">
-              {t("communities.noCommunities")}
-            </Text>
+            <PageEmpty icon="communities" title={t("communities.noCommunities")} />
           )
         }
         renderItem={({ item, index }) => {
@@ -255,7 +253,7 @@ const CommunitiesScreen: React.FC = () => {
       {/* After the list, not before it: the header floats over the content and
           Android decides draw order by sibling order. */}
       <CollapsibleHeader {...headerProps}>
-        <ScreenHeader title={t("communities.title")} rightContent={createButton} />
+        <ScreenHeader icon="communities" title={t("communities.title")} rightContent={createButton} />
       </CollapsibleHeader>
       <CreateCommunitySheet
         visible={createOpen}

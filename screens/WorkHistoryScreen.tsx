@@ -15,6 +15,7 @@ import { useTranslation } from "react-i18next";
 import Icon from "../components/ui/Icon";
 import ScreenHeader from "../components/ScreenHeader";
 import LoadErrorState from "../components/ui/LoadErrorState";
+import { KitButton, PageEmpty, PageSection, PageTabs } from "../components/page/PageKit";
 import { DeHubLoader } from "../components/DeHubLoader";
 import { DeHubRefreshControl } from "../components/Feed/DeHubRefreshControl";
 import { useAuthState } from "../context/AuthContext";
@@ -116,6 +117,7 @@ export default function WorkHistoryScreen() {
   const renderPosted = (job: WorkJob) => {
     const st = statusStyle(job.status);
     return (
+      <PageSection flush>
       <Pressable style={styles.card} onPress={() => openJob(job)}>
         <View style={styles.cardTop}>
           <Text style={styles.cardTitle} numberOfLines={1}>
@@ -132,6 +134,7 @@ export default function WorkHistoryScreen() {
           <Text style={styles.dimNote}>{t("work.notEscrowedOnChain")}</Text>
         ) : null}
       </Pressable>
+      </PageSection>
     );
   };
 
@@ -150,6 +153,7 @@ export default function WorkHistoryScreen() {
           : { bg: "rgba(255,255,255,0.10)", fg: "#A1A1AA" };
     const jobSt = job ? statusStyle(job.status) : null;
     return (
+      <PageSection flush>
       <Pressable style={styles.card} onPress={job ? () => openJob(job) : undefined} disabled={!job}>
         <View style={styles.cardTop}>
           <Text style={[styles.cardTitle, !job && { color: "#A1A1AA" }]} numberOfLines={1}>
@@ -182,71 +186,61 @@ export default function WorkHistoryScreen() {
           </Text>
         ) : null}
       </Pressable>
+      </PageSection>
     );
   };
 
   const empty = (
-    <View style={styles.emptyBlock}>
-      <Icon name="Briefcase" size={40} color="#3F3F46" />
-      <Text style={styles.emptyText}>
-        {hasFilters
+    <PageEmpty
+      icon="bounties"
+      title={
+        hasFilters
           ? t("work.emptyFilteredHistory")
           : tab === "posted"
             ? t("work.emptyPosted")
-            : t("work.emptyWorked")}
-      </Text>
-      {hasFilters ? (
-        <Pressable
-          onPress={() => {
-            setStatus("all");
-            setSearch("");
-          }}
-          style={styles.secondaryBtn}
-        >
-          <Text style={styles.secondaryBtnText}>{t("work.clearFilters")}</Text>
-        </Pressable>
-      ) : tab === "posted" ? (
-        <Pressable onPress={() => navigation.navigate(ScreenNames.WorkPost)} style={styles.primaryBtn}>
-          <Icon name="Plus" size={15} color="#000000" />
-          <Text style={styles.primaryBtnText}>{t("work.postBounty")}</Text>
-        </Pressable>
-      ) : (
-        <Pressable onPress={() => navigation.navigate(ScreenNames.Work)} style={styles.primaryBtn}>
-          <Text style={styles.primaryBtnText}>{t("work.browseBounties")}</Text>
-        </Pressable>
-      )}
-    </View>
+            : t("work.emptyWorked")
+      }
+      action={
+        hasFilters ? (
+          <KitButton
+            variant="quiet"
+            label={t("work.clearFilters")}
+            onPress={() => {
+              setStatus("all");
+              setSearch("");
+            }}
+          />
+        ) : tab === "posted" ? (
+          <KitButton label={t("work.postBounty")} onPress={() => navigation.navigate(ScreenNames.WorkPost)} />
+        ) : (
+          <KitButton label={t("work.browseBounties")} onPress={() => navigation.navigate(ScreenNames.Work)} />
+        )
+      }
+    />
   );
 
   return (
     <View style={styles.root}>
-      <ScreenHeader title={t("work.myBounties")} subtitle={t("work.historySubtitle")} />
+      <ScreenHeader title={t("work.myBounties")} subtitle={t("work.historySubtitle")} icon="bounties" />
 
       {!isSignedIn ? (
-        <View style={styles.emptyBlock}>
-          <Icon name="Lock" size={40} color="#3F3F46" />
-          <Text style={styles.connectTitle}>{t("work.connectTitle")}</Text>
-          <Text style={styles.emptyText}>{t("work.connectBody")}</Text>
-          <Pressable onPress={() => navigation.navigate(ScreenNames.SignIn)} style={styles.primaryBtn}>
-            <Text style={styles.primaryBtnText}>{t("work.connectCta")}</Text>
-          </Pressable>
-        </View>
+        <PageEmpty
+          icon="lock"
+          title={t("work.connectTitle")}
+          body={t("work.connectBody")}
+          action={<KitButton label={t("work.connectCta")} onPress={() => navigation.navigate(ScreenNames.SignIn)} />}
+        />
       ) : (
         <>
           <View style={styles.tabRow}>
-            {(["posted", "worked"] as const).map((id) => (
-              <Pressable
-                key={id}
-                onPress={() => switchTab(id)}
-                style={[styles.tabChip, tab === id && styles.tabChipActive]}
-                accessibilityRole="tab"
-                accessibilityState={{ selected: tab === id }}
-              >
-                <Text style={[styles.tabText, tab === id && styles.tabTextActive]}>
-                  {id === "posted" ? t("work.tabPosted") : t("work.tabWorked")}
-                </Text>
-              </Pressable>
-            ))}
+            <PageTabs
+              value={tab}
+              onChange={switchTab}
+              tabs={[
+                { id: "posted", label: t("work.tabPosted") },
+                { id: "worked", label: t("work.tabWorked") },
+              ]}
+            />
           </View>
 
           <View style={styles.searchWrap}>
@@ -306,10 +300,8 @@ export default function WorkHistoryScreen() {
               }
               ListEmptyComponent={empty}
               contentContainerStyle={{
-                paddingHorizontal: 12,
                 paddingTop: 2,
                 paddingBottom: insets.bottom + 24,
-                gap: 10,
               }}
               showsVerticalScrollIndicator={false}
               refreshControl={
@@ -330,18 +322,7 @@ export default function WorkHistoryScreen() {
 const styles = StyleSheet.create({
   root: { flex: 1, backgroundColor: "#010305" },
 
-  tabRow: { flexDirection: "row", gap: 8, paddingHorizontal: 12, paddingTop: 4, paddingBottom: 8 },
-  tabChip: {
-    paddingHorizontal: 14,
-    paddingVertical: 8,
-    borderRadius: 12,
-    backgroundColor: "rgba(255,255,255,0.05)",
-    borderWidth: 1,
-    borderColor: "transparent",
-  },
-  tabChipActive: { backgroundColor: "rgba(255,255,255,0.15)", borderColor: "rgba(255,255,255,0.20)" },
-  tabText: { color: "#A1A1AA", fontSize: 13, fontWeight: "600" },
-  tabTextActive: { color: "#FFFFFF" },
+  tabRow: { flexGrow: 0 },
 
   searchWrap: {
     flexDirection: "row",
@@ -375,13 +356,7 @@ const styles = StyleSheet.create({
   chipText: { color: "#A1A1AA", fontSize: 13, lineHeight: 18, fontWeight: "600" },
   chipTextActive: { color: "#000000" },
 
-  card: {
-    borderRadius: 12,
-    backgroundColor: "rgba(255,255,255,0.04)",
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.10)",
-    padding: 14,
-  },
+  card: { paddingHorizontal: 16, paddingVertical: 14 },
   cardTop: { flexDirection: "row", alignItems: "flex-start", justifyContent: "space-between", gap: 10 },
   cardTitle: { flex: 1, color: "#FFFFFF", fontSize: 14.5, fontWeight: "600" },
   pillRow: { flexDirection: "row", gap: 5, flexShrink: 0 },

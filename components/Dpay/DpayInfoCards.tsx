@@ -27,7 +27,7 @@ const Card: React.FC<{
 const DpayInfoCards: React.FC<Props> = ({ transfersTotal, supplyAmount }) => {
   const { t } = useTranslation();
   return (
-    <View className="flex-row gap-3 my-4">
+    <View className="flex-row gap-3">
       <Card title={t("dpay.transfersSummary")} className="flex-1">
         <View className="flex-row items-center mb-2">
           <View className="flex-row items-center">

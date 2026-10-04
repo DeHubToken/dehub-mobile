@@ -34,6 +34,7 @@ import { DeHubLoader } from "../DeHubLoader";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useTranslation } from "react-i18next";
 import Icon from "../ui/Icon";
+import { KitButton, PageEmpty, PageSection } from "../page/PageKit";
 import {
   useCancelUsernameListing,
   useCreateUsernameListing,
@@ -93,13 +94,11 @@ const SellUsernamePanel: React.FC<Props> = ({
 
   if (!isAuthed) {
     return (
-      <View style={styles.center}>
-        <Icon name="AtSign" size={40} color="#3F3F46" />
-        <Text style={styles.emptyText}>{t("usernames.signInToSell")}</Text>
-        <Pressable onPress={onSignIn} style={styles.primaryBtn}>
-          <Text style={styles.primaryBtnText}>{t("usernames.signIn")}</Text>
-        </Pressable>
-      </View>
+      <PageEmpty
+        icon="usernames"
+        title={t("usernames.signInToSell")}
+        action={<KitButton label={t("usernames.signIn")} onPress={onSignIn} />}
+      />
     );
   }
 
@@ -113,9 +112,7 @@ const SellUsernamePanel: React.FC<Props> = ({
 
   if (!mine?.currentUsername) {
     return (
-      <View style={styles.center}>
-        <Text style={styles.emptyText}>{t("usernames.needUsername")}</Text>
-      </View>
+      <PageEmpty icon="usernames" title={t("usernames.needUsername")} />
     );
   }
 
@@ -152,6 +149,7 @@ const SellUsernamePanel: React.FC<Props> = ({
         keyboardShouldPersistTaps="handled"
         showsVerticalScrollIndicator={false}
       >
+        <PageSection>
         <View style={styles.form}>
           <View>
             <Text style={styles.fieldLabel}>{t("usernames.youAreSelling")}</Text>
@@ -277,6 +275,7 @@ const SellUsernamePanel: React.FC<Props> = ({
             )}
           </View>
         </View>
+        </PageSection>
 
         {!!active && !active.live && (
           <View style={styles.staleNotice}>
@@ -290,8 +289,8 @@ const SellUsernamePanel: React.FC<Props> = ({
         )}
 
         {(mine.sold.length > 0 || mine.bought.length > 0 || history.length > 0) && (
+          <PageSection title={t("usernames.history")}>
           <View style={styles.historyBlock}>
-            <Text style={styles.historyTitle}>{t("usernames.history")}</Text>
             {mine.sold.map((s) => (
               <SaleRow key={s.id} sale={s} label={t("usernames.sold")} />
             ))}
@@ -302,6 +301,7 @@ const SellUsernamePanel: React.FC<Props> = ({
               <HistoryRow key={l.id} listing={l} soldLabel={t("usernames.sold")} />
             ))}
           </View>
+          </PageSection>
         )}
       </ScrollView>
     </KeyboardAvoidingView>
@@ -341,19 +341,12 @@ const HistoryRow: React.FC<{ listing: MyUsernameListing; soldLabel: string }> = 
 
 const styles = StyleSheet.create({
   flex: { flex: 1 },
-  scroll: { paddingHorizontal: 16, gap: 14 },
+  scroll: {},
 
   center: { alignItems: "center", justifyContent: "center", paddingVertical: 56, gap: 14 },
   emptyText: { color: "#A1A1AA", fontSize: 13, textAlign: "center", paddingHorizontal: 32 },
 
-  form: {
-    borderRadius: 14,
-    padding: 14,
-    backgroundColor: "rgba(255,255,255,0.05)",
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.10)",
-    gap: 16,
-  },
+  form: { gap: 16 },
   field: { gap: 6 },
   picker: { flexDirection: "row", flexWrap: "wrap", gap: 8 },
   pickerChip: {
@@ -437,6 +430,7 @@ const styles = StyleSheet.create({
   },
 
   staleNotice: {
+    margin: 12,
     padding: 12,
     borderRadius: 12,
     backgroundColor: "rgba(255,255,255,0.10)",

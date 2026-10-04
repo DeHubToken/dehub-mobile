@@ -2,6 +2,7 @@ import React, { useCallback } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useTranslation } from "react-i18next";
+import { PageSection } from "../page/PageKit";
 
 type DpayAboutProps = {
   defaultOpen?: boolean;
@@ -27,7 +28,7 @@ const DpayAbout: React.FC<DpayAboutProps> = ({ defaultOpen = false }) => {
   const toggle = React.useCallback(() => setOpen((v) => !v), []);
 
   return (
-    <View className="mt-4 rounded-xl border border-theme-neutrals-700/60 bg-theme-neutrals-800">
+    <PageSection flush>
       <TouchableOpacity
         onPress={toggle}
         activeOpacity={0.85}
@@ -55,7 +56,7 @@ const DpayAbout: React.FC<DpayAboutProps> = ({ defaultOpen = false }) => {
           </SectionRow>
         </View>
       )}
-    </View>
+    </PageSection>
   );
 };
 

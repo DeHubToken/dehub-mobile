@@ -38,7 +38,8 @@ import { useStageReminder } from "../../hooks/useStageReminder";
 import type { AudioSpace } from "../../hooks/useStages";
 import { appLocale } from "../../libs/date.util";
 import { useAppTheme } from "../../context/ThemeContext";
-import { MINIMAL_HAIRLINE, MINIMAL_INSET, MINIMAL_WASH, minimalRow } from "../../theme/minimal";
+import { MINIMAL_HAIRLINE, MINIMAL_INSET, MINIMAL_WASH } from "../../theme/minimal";
+import { PageSection } from "../page/PageKit";
 
 /** How long the stage ran, from its own timestamps. Mirrors web's row. */
 export function stageDuration(space: AudioSpace): string | null {
@@ -178,14 +179,11 @@ export const LiveStageCard: React.FC<{
   }, [onEnd, space.title, t]);
 
   return (
+    // The page kit draws the frame: a card on the canvas themes, a full-width
+    // hairline row on System and minimal.
+    <PageSection flush style={isMine ? (isMinimal ? m.cardMine : styles.cardMine) : undefined}>
     <TouchableOpacity
-      style={[
-        styles.card,
-        isMine && styles.cardMine,
-        isMinimal && m.card,
-        isMinimal && isMine && m.cardMine,
-        isBusy && styles.cardBusy,
-      ]}
+      style={isBusy ? styles.cardBusy : undefined}
       onPress={onOpen}
       disabled={isBusy}
       activeOpacity={0.85}
@@ -246,6 +244,7 @@ export const LiveStageCard: React.FC<{
         )}
       </View>
     </TouchableOpacity>
+    </PageSection>
   );
 };
 
@@ -273,7 +272,7 @@ export const ScheduledStageCard: React.FC<{
   }, [onCancel, space.title, t]);
 
   return (
-    <View style={[styles.card, isMinimal && m.card]}>
+    <PageSection flush>
       {!!space.cover_image_url && <StageCoverArt uri={space.cover_image_url} title={space.title} />}
 
       <View style={[styles.body, isMinimal && m.body]}>
@@ -346,7 +345,7 @@ export const ScheduledStageCard: React.FC<{
           </View>
         )}
       </View>
-    </View>
+    </PageSection>
   );
 };
 
@@ -373,7 +372,7 @@ export const RecordedStageCard: React.FC<{
   }, [onDelete, t]);
 
   return (
-    <View style={[styles.card, isMinimal && m.card]}>
+    <PageSection flush>
       {!!space.cover_image_url && <StageCoverArt uri={space.cover_image_url} title={space.title} />}
 
       <View style={[styles.body, isMinimal && m.body]}>
@@ -446,20 +445,12 @@ export const RecordedStageCard: React.FC<{
           )}
         </View>
       </View>
-    </View>
+    </PageSection>
   );
 };
 
 const styles = StyleSheet.create({
-  card: {
-    borderRadius: radius.xl,
-    overflow: "hidden",
-    backgroundColor: "rgba(255,255,255,0.05)",
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.08)",
-  },
   cardMine: {
-    borderColor: "rgba(255,255,255,0.2)",
     backgroundColor: "rgba(255,255,255,0.08)",
   },
   cardBusy: {
@@ -469,7 +460,7 @@ const styles = StyleSheet.create({
     opacity: 0.6,
   },
   body: {
-    padding: 14,
+    padding: 16,
     gap: 10,
   },
   topRow: {
@@ -643,7 +634,6 @@ const styles = StyleSheet.create({
  * primary button keeps its fill: it is the one real call to action.
  */
 const m = StyleSheet.create({
-  card: minimalRow,
   cardMine: { backgroundColor: MINIMAL_WASH },
   body: { paddingHorizontal: MINIMAL_INSET },
   outline: {

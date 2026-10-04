@@ -18,7 +18,8 @@ import {
   FlatList,
   ScrollView,
   TextInput,
-} from "react-native";
+} from "react-native";
+
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { DeHubLoader } from "../components/DeHubLoader";
 import { Image } from "expo-image";
@@ -39,9 +40,8 @@ import { useDebouncedValue } from "../hooks/useDebouncedValue";
 import { useBrowseAccounts, ACCOUNT_SORTS } from "../hooks/useAccountMarket";
 import type { AccountListing, AccountSort } from "../services/account-market.service";
 import { DhbCoin } from "../components/common/DhbCoin";
+import { KitButton, PageEmpty, PageSection, PageTabs } from "../components/page/PageKit";
 
-/** Vertical gap between listing rows. */
-const ROW_GAP = 10;
 const H_PADDING = 16;
 
 /**
@@ -82,6 +82,7 @@ const AccountCard: React.FC<{
   const since = accountSince(seller.accountCreatedAt);
 
   return (
+    <PageSection flush>
     <Pressable style={styles.card} onPress={onPress}>
       <Avatar
         uri={getAvatarUrl(seller.avatarUrl, 44)}
@@ -141,6 +142,7 @@ const AccountCard: React.FC<{
         <Text style={styles.cardPriceUnit}><DhbCoin size={11} /></Text>
       </View>
     </Pressable>
+    </PageSection>
   );
 };
 
@@ -180,21 +182,18 @@ export default function AccountsScreen() {
       <ScreenHeader
         title={t("screens.accounts")}
         subtitle={t("accounts.subtitle")}
-        rightContent={<Icon name="IdCard" size={22} color={theme.colors.accent} />}
+        icon="accounts"
       />
 
-      <View style={styles.segment}>
-        {(["browse", "sell"] as const).map((key) => (
-          <Pressable
-            key={key}
-            onPress={() => setTab(key)}
-            style={[styles.segmentBtn, tab === key && styles.segmentBtnActive]}
-          >
-            <Text style={[styles.segmentText, tab === key && styles.segmentTextActive]}>
-              {key === "browse" ? t("accounts.browse") : t("accounts.sell")}
-            </Text>
-          </Pressable>
-        ))}
+      <View style={styles.tabsWrap}>
+        <PageTabs
+          value={tab}
+          onChange={setTab}
+          tabs={[
+            { id: "browse", label: t("accounts.browse"), icon: "search" },
+            { id: "sell", label: t("accounts.sell"), icon: "accounts" },
+          ]}
+        />
       </View>
 
       {tab === "browse" ? (
@@ -271,12 +270,11 @@ export default function AccountsScreen() {
               <DeHubLoader size={56} />
             </View>
           ) : isError ? (
-            <View style={styles.center}>
-              <Text style={styles.emptyText}>{t("accounts.loadFailed")}</Text>
-              <Pressable onPress={() => refetch()} style={styles.retryBtn}>
-                <Text style={styles.retryText}>{t("common.retry")}</Text>
-              </Pressable>
-            </View>
+            <PageEmpty
+              icon="accounts"
+              title={t("accounts.loadFailed")}
+              action={<KitButton label={t("common.retry")} onPress={() => refetch()} />}
+            />
           ) : (
             <FlatList
               data={listings}
@@ -286,9 +284,7 @@ export default function AccountsScreen() {
                 <AccountCard listing={item} onPress={() => openListing(item)} />
               )}
               contentContainerStyle={{
-                paddingHorizontal: H_PADDING,
                 paddingBottom: insets.bottom + 96,
-                gap: ROW_GAP,
               }}
               showsVerticalScrollIndicator={false}
               refreshControl={
@@ -299,12 +295,10 @@ export default function AccountsScreen() {
                 />
               }
               ListEmptyComponent={
-                <View style={styles.center}>
-                  <Icon name="IdCard" size={44} color="#3F3F46" />
-                  <Text style={styles.emptyText}>
-                    {debouncedSearch ? t("accounts.noSearchResults") : t("accounts.noListings")}
-                  </Text>
-                </View>
+                <PageEmpty
+                  icon="accounts"
+                  title={debouncedSearch ? t("accounts.noSearchResults") : t("accounts.noListings")}
+                />
               }
             />
           )}
@@ -334,19 +328,7 @@ export default function AccountsScreen() {
 const styles = StyleSheet.create({
   root: { flex: 1, backgroundColor: "#010305" },
 
-  segment: {
-    flexDirection: "row",
-    gap: 4,
-    marginHorizontal: H_PADDING,
-    marginBottom: 10,
-    backgroundColor: "rgba(255,255,255,0.06)",
-    borderRadius: 12,
-    padding: 3,
-  },
-  segmentBtn: { flex: 1, paddingVertical: 7, borderRadius: 9, alignItems: "center" },
-  segmentBtnActive: { backgroundColor: "rgba(255,255,255,0.15)" },
-  segmentText: { color: "#A1A1AA", fontSize: 13, fontWeight: "600", flexShrink: 0 },
-  segmentTextActive: { color: "#FFFFFF" },
+  tabsWrap: { marginBottom: 8, flexGrow: 0 },
 
   searchWrap: {
     flexDirection: "row",
@@ -392,12 +374,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: 12,
-    borderRadius: 14,
     paddingHorizontal: 14,
     paddingVertical: 12,
-    backgroundColor: "rgba(255,255,255,0.05)",
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.10)",
   },
   // minWidth: 0 lets this shrink so the price stays on the row. Without it the
   // flex child keeps its intrinsic width and pushes the price off the edge.

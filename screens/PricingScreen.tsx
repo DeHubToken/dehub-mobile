@@ -17,6 +17,7 @@ import { useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import Icon from "../components/ui/Icon";
 import ScreenHeader from "../components/ScreenHeader";
+import { PageSection, PageTabs } from "../components/page/PageKit";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { useWebCheckout } from "../hooks/useWebCheckout";
 
@@ -243,7 +244,7 @@ function PlanCard({
   const busy = opening === priceId;
 
   return (
-    <View style={[styles.card, plan.featured && styles.cardFeatured]}>
+    <PageSection>
       <View style={styles.cardHead}>
         <Text style={styles.planName}>{plan.name.toUpperCase()}</Text>
         {canBuy && (
@@ -315,7 +316,7 @@ function PlanCard({
           </View>
         ))}
       </View>
-    </View>
+    </PageSection>
   );
 }
 
@@ -328,9 +329,9 @@ export default function PricingScreen() {
 
   return (
     <View style={styles.root}>
-      <ScreenHeader title={t("nav.pricing")} />
+      <ScreenHeader title={t("nav.pricing")} icon="buy" />
       <ScrollView
-        contentContainerStyle={{ paddingHorizontal: 12, paddingBottom: insets.bottom + 32, paddingTop: 4 }}
+        contentContainerStyle={{ paddingBottom: insets.bottom + 32, paddingTop: 4 }}
         showsVerticalScrollIndicator={false}
       >
         <View style={styles.hero}>
@@ -339,27 +340,15 @@ export default function PricingScreen() {
 
           {canBuy && (
             <View style={styles.toggle}>
-              {(["monthly", "annual"] as Billing[]).map((value) => {
-                const active = billing === value;
-                return (
-                  <Pressable
-                    key={value}
-                    style={[styles.toggleBtn, active && styles.toggleBtnActive]}
-                    onPress={() => setBilling(value)}
-                    accessibilityRole="button"
-                    accessibilityState={{ selected: active }}
-                  >
-                    <Text style={[styles.toggleText, active && styles.toggleTextActive]}>
-                      {value === "monthly" ? t("pricing.monthly") : t("pricing.annual")}
-                    </Text>
-                    {value === "annual" && (
-                      <Text style={[styles.toggleBadge, active && styles.toggleBadgeActive]}>
-                        {t("pricing.upToDiscount", { pct: 30 })}
-                      </Text>
-                    )}
-                  </Pressable>
-                );
-              })}
+              <PageTabs
+                style={{ flexGrow: 1, justifyContent: "center" }}
+                value={billing}
+                onChange={setBilling}
+                tabs={[
+                  { id: "monthly", label: t("pricing.monthly") },
+                  { id: "annual", label: `${t("pricing.annual")} · ${t("pricing.upToDiscount", { pct: 30 })}` },
+                ]}
+              />
             </View>
           )}
         </View>
@@ -400,35 +389,11 @@ export default function PricingScreen() {
 
 const styles = StyleSheet.create({
   root: { flex: 1, backgroundColor: "#010305" },
-  hero: { alignItems: "center", paddingTop: 12, paddingBottom: 18, paddingHorizontal: 8 },
+  hero: { alignItems: "center", paddingTop: 12, paddingBottom: 14, paddingHorizontal: 16 },
   title: { color: "#FFFFFF", fontSize: 28, fontWeight: "900", textAlign: "center", lineHeight: 32 },
   subtitle: { color: "rgba(255,255,255,0.6)", fontSize: 14, textAlign: "center", marginTop: 8 },
-  toggle: {
-    flexDirection: "row",
-    gap: 4,
-    padding: 4,
-    marginTop: 18,
-    borderRadius: 999,
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.10)",
-    backgroundColor: "rgba(255,255,255,0.05)",
-  },
-  toggleBtn: { flexDirection: "row", alignItems: "center", gap: 6, paddingHorizontal: 16, paddingVertical: 7, borderRadius: 999 },
-  toggleBtnActive: { backgroundColor: "rgba(228,228,231,0.92)" },
-  toggleText: { color: "rgba(255,255,255,0.7)", fontSize: 13, fontWeight: "700" },
-  toggleTextActive: { color: "#000000" },
-  toggleBadge: { color: "rgba(255,255,255,0.5)", fontSize: 10, fontWeight: "700" },
-  toggleBadgeActive: { color: "rgba(0,0,0,0.7)" },
+  toggle: { marginTop: 14, alignSelf: "stretch", alignItems: "center" },
   checking: { paddingVertical: 8, alignItems: "center" },
-  card: {
-    borderRadius: 16,
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.10)",
-    backgroundColor: "rgba(0,0,0,0.4)",
-    padding: 18,
-    marginBottom: 14,
-  },
-  cardFeatured: { borderColor: "rgba(255,255,255,0.20)", backgroundColor: "rgba(255,255,255,0.06)" },
   cardHead: { flexDirection: "row", alignItems: "center", flexWrap: "wrap", gap: 8 },
   planName: { color: "#FFFFFF", fontSize: 22, fontWeight: "900", letterSpacing: -0.3 },
   discount: {
@@ -482,7 +447,7 @@ const styles = StyleSheet.create({
   },
   itemRow: { flexDirection: "row", alignItems: "flex-start", gap: 8 },
   itemText: { flex: 1, color: "rgba(255,255,255,0.75)", fontSize: 12, lineHeight: 17 },
-  notice: { color: "#71717A", fontSize: 12, lineHeight: 17, textAlign: "center", marginVertical: 12, paddingHorizontal: 8 },
-  footerText: { color: "rgba(255,255,255,0.6)", fontSize: 13, textAlign: "center", lineHeight: 19, marginTop: 8, paddingHorizontal: 8 },
+  notice: { color: "#71717A", fontSize: 12, lineHeight: 17, textAlign: "center", marginVertical: 12, paddingHorizontal: 16 },
+  footerText: { color: "rgba(255,255,255,0.6)", fontSize: 13, textAlign: "center", lineHeight: 19, marginTop: 8, paddingHorizontal: 16 },
   link: { color: "#FFFFFF", textDecorationLine: "underline" },
 });

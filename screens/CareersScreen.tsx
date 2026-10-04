@@ -22,6 +22,7 @@ import {
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Icon, { type IconName } from "../components/ui/Icon";
 import ScreenHeader from "../components/ScreenHeader";
+import { KitButton, PageSection } from "../components/page/PageKit";
 import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
 import { supabase } from "../services/supabase";
 import { toastError, toastSuccess } from "../libs";
@@ -181,7 +182,7 @@ export default function CareersScreen() {
 
   return (
     <View style={styles.root}>
-      <ScreenHeader title={t("careers.title")} subtitle={t("careers.subtitle")} />
+      <ScreenHeader title={t("careers.title")} subtitle={t("careers.subtitle")} icon="careers" />
 
       <KeyboardAvoidingView
         style={{ flex: 1 }}
@@ -189,14 +190,14 @@ export default function CareersScreen() {
         keyboardVerticalOffset={keyboardOffset}
       >
       <ScrollView
-        contentContainerStyle={{ paddingHorizontal: 12, paddingBottom: insets.bottom + 32, paddingTop: 4 }}
+        contentContainerStyle={{ paddingBottom: insets.bottom + 32, paddingTop: 4 }}
         showsVerticalScrollIndicator={false}
         keyboardShouldPersistTaps="handled"
       >
         <Text style={styles.intro}>{t("careers.intro")}</Text>
 
         {/* ── BDM Role ── */}
-        <View style={styles.roleCard}>
+        <PageSection>
           <View style={styles.roleHead}>
             <View style={{ flex: 1 }}>
               <Text style={styles.roleTitle}>{t("careers.bdmTitle")}</Text>
@@ -229,10 +230,13 @@ export default function CareersScreen() {
             <Text style={styles.paragraph}>{t("careers.bdmComp")}</Text>
           </SectionBlock>
 
-          <Pressable style={styles.applyBtn} onPress={toggleForm}>
-            <Icon name={formOpen ? "ChevronUp" : "Briefcase"} size={16} color="#FFFFFF" />
-            <Text style={styles.applyText}>{formOpen ? t("careers.closeApplication") : t("careers.applyBDM")}</Text>
-          </Pressable>
+          <KitButton
+            variant="quiet"
+            style={styles.applyBtn}
+            onPress={toggleForm}
+            icon={<Icon name={formOpen ? "ChevronUp" : "Briefcase"} size={16} color="#FFFFFF" />}
+            label={formOpen ? t("careers.closeApplication") : t("careers.applyBDM")}
+          />
 
           {formOpen && (
             <View style={styles.form}>
@@ -258,10 +262,10 @@ export default function CareersScreen() {
               </Pressable>
             </View>
           )}
-        </View>
+        </PageSection>
 
         {/* ── Brand Ambassador Role ── */}
-        <View style={styles.roleCard}>
+        <PageSection>
           <View style={styles.roleHead}>
             <View style={{ flex: 1 }}>
               <Text style={styles.roleTitle}>{t("careers.ambassadorTitle")}</Text>
@@ -294,11 +298,14 @@ export default function CareersScreen() {
             <Text style={styles.paragraph}>{t("careers.ambassadorComp")}</Text>
           </SectionBlock>
 
-          <Pressable style={styles.applyBtn} onPress={() => navigation.navigate(ScreenNames.Creators)}>
-            <Icon name="Users" size={16} color="#FFFFFF" />
-            <Text style={styles.applyText}>{t("careers.applyAmbassador")}</Text>
-          </Pressable>
-        </View>
+          <KitButton
+            variant="quiet"
+            style={styles.applyBtn}
+            onPress={() => navigation.navigate(ScreenNames.Creators)}
+            icon={<Icon name="Users" size={16} color="#FFFFFF" />}
+            label={t("careers.applyAmbassador")}
+          />
+        </PageSection>
 
         {/* Footer */}
         <View style={styles.footer}>
@@ -317,15 +324,7 @@ export default function CareersScreen() {
 
 const styles = StyleSheet.create({
   root: { flex: 1, backgroundColor: "#010305" },
-  intro: { color: "#D4D4D8", fontSize: 13, lineHeight: 20, marginBottom: 16, paddingHorizontal: 2 },
-  roleCard: {
-    borderRadius: 14,
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.08)",
-    backgroundColor: "rgba(255,255,255,0.04)",
-    padding: 14,
-    marginBottom: 16,
-  },
+  intro: { color: "#D4D4D8", fontSize: 13, lineHeight: 20, marginBottom: 12, paddingHorizontal: 16 },
   roleHead: { flexDirection: "row", alignItems: "flex-start", gap: 12, marginBottom: 10 },
   roleTitle: { color: "#FFFFFF", fontSize: 17, fontWeight: "700" },
   roleCategory: { color: "#A1A1AA", fontSize: 12, marginTop: 2 },
@@ -355,19 +354,7 @@ const styles = StyleSheet.create({
   paragraph: { color: "#A1A1AA", fontSize: 13, lineHeight: 20 },
   bulletRow: { flexDirection: "row", alignItems: "flex-start", gap: 10 },
   bulletText: { flex: 1, color: "#A1A1AA", fontSize: 13, lineHeight: 19 },
-  applyBtn: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    gap: 8,
-    height: 44,
-    borderRadius: 12,
-    marginTop: 4,
-    backgroundColor: "rgba(255,255,255,0.08)",
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.16)",
-  },
-  applyText: { color: "#FFFFFF", fontSize: 14, fontWeight: "600" },
+  applyBtn: { marginTop: 4 },
   form: { marginTop: 18, paddingTop: 18, borderTopWidth: 1, borderTopColor: "rgba(255,255,255,0.08)", gap: 14 },
   formTitle: { color: "#FFFFFF", fontSize: 14, fontWeight: "600" },
   fieldLabel: { color: "#D4D4D8", fontSize: 13 },
@@ -393,7 +380,7 @@ const styles = StyleSheet.create({
     marginTop: 4,
   },
   submitText: { color: "#000000", fontSize: 14, fontWeight: "700" },
-  footer: { marginTop: 12, alignItems: "center" },
+  footer: { marginTop: 12, alignItems: "center", paddingHorizontal: 16 },
   footerText: { color: "#A1A1AA", fontSize: 12, textAlign: "center" },
   footerLink: { color: "#D4D4D8", textDecorationLine: "underline" },
 });

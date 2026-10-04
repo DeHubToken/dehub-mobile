@@ -12,6 +12,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Icon from "../ui/Icon";
 import { DhbCoin } from "../common/DhbCoin";
 import { DeHubLoader } from "../DeHubLoader";
+import { KitButton, PageEmpty, PageSection } from "../page/PageKit";
 import { DeHubRefreshControl } from "../Feed/DeHubRefreshControl";
 import { fmt, relativeTime, shortAddress, OK, WARN } from "./fractionFormat";
 import { useTokenPrices } from "../../hooks/useStores";
@@ -45,6 +46,7 @@ const ActivityTab: React.FC<Props> = ({ onOpenPost }) => {
   const renderItem = ({ item }: { item: FractionTrade }) => {
     const status = STATUS[item.status] || STATUS.settled;
     return (
+      <PageSection flush>
       <Pressable
         style={styles.row}
         onPress={() => onOpenPost(item.token_id)}
@@ -76,6 +78,7 @@ const ActivityTab: React.FC<Props> = ({ onOpenPost }) => {
           </View>
         </View>
       </Pressable>
+      </PageSection>
     );
   };
 
@@ -114,37 +117,27 @@ const ActivityTab: React.FC<Props> = ({ onOpenPost }) => {
       // Only shown while the list is empty, so a failed refetch never hides
       // trades that are already cached.
       ListEmptyComponent={
-        <View style={styles.center}>
-          {isLoading ? (
+        isLoading ? (
+          <View style={styles.center}>
             <DeHubLoader size={56} />
-          ) : isError ? (
-            <>
-              <Icon name="Activity" size={40} color="#3F3F46" />
-              <Text style={styles.emptyText}>{t("fractions.loadFailed")}</Text>
-              <Pressable
-                onPress={() => refetch()}
-                disabled={isFetching}
-                style={[styles.retry, isFetching && styles.retryBusy]}
-                accessibilityRole="button"
-              >
-                <Text style={styles.retryText}>{t("common.retry")}</Text>
-              </Pressable>
-            </>
-          ) : (
-            <>
-              <Icon name="Activity" size={40} color="#3F3F46" />
-              <Text style={styles.emptyText}>{t("fractions.nothingTradedYet")}</Text>
-            </>
-          )}
-        </View>
+          </View>
+        ) : isError ? (
+          <PageEmpty
+            icon="stats"
+            title={t("fractions.loadFailed")}
+            action={<KitButton label={t("common.retry")} onPress={() => refetch()} disabled={isFetching} />}
+          />
+        ) : (
+          <PageEmpty icon="stats" title={t("fractions.nothingTradedYet")} />
+        )
       }
     />
   );
 };
 
 const styles = StyleSheet.create({
-  content: { paddingHorizontal: 16, gap: 8 },
-  stats: { flexDirection: "row", gap: 8, marginBottom: 6 },
+  content: {},
+  stats: { flexDirection: "row", gap: 8, marginBottom: 10, paddingHorizontal: 16 },
   stat: {
     flex: 1,
     padding: 12,
@@ -158,12 +151,9 @@ const styles = StyleSheet.create({
   statValue: { color: "#FFFFFF", fontSize: 15, fontWeight: "700", flexShrink: 0 },
   statSub: { color: "#808089", fontSize: 10 },
   row: {
-    padding: 12,
+    paddingHorizontal: 16,
+    paddingVertical: 12,
     gap: 8,
-    borderRadius: 12,
-    backgroundColor: "rgba(255,255,255,0.05)",
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.10)",
   },
   rowHead: { flexDirection: "row", alignItems: "center", gap: 4 },
   post: { flex: 1, color: "#A1A1AA", fontSize: 12 },

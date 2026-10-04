@@ -1,15 +1,10 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useRoute, type RouteProp } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
-import { View, Pressable, Text, StyleSheet, ScrollView, Alert } from "react-native";
-import Animated, {
-  useSharedValue,
-  useAnimatedStyle,
-  withTiming,
-  Easing,
-} from "react-native-reanimated";
-import { LinearGradient } from "expo-linear-gradient";
+import { View, Pressable, StyleSheet, Alert } from "react-native";
 import ScreenHeader from "../components/ScreenHeader";
+import { PageTabs, useFlatPage } from "../components/page/PageKit";
+import { useAppTheme } from "../context/ThemeContext";
 import PostsInfiniteList from "../components/Profile/PostsInfiniteList";
 import { useAuthState } from "../context/AuthContext";
 import { useGateToHome } from "../hooks/useGateToHome";
@@ -35,9 +30,6 @@ const TABS: TabDef[] = [
   { key: "watched", labelKey: "bookmarks.history", icon: "History" },
 ];
 
-const TAB_H = 36;
-const TAB_RADIUS = 12;
-const SLIDE_TIMING = { duration: 150, easing: Easing.out(Easing.cubic) };
 
 const MyLibraryScreen: React.FC = () => {
   const { t } = useTranslation();
@@ -73,32 +65,18 @@ const MyLibraryScreen: React.FC = () => {
     );
   }, [t]);
 
-  const indicatorX = useSharedValue(0);
-  const indicatorW = useSharedValue(0);
-  const tabLayoutsRef = useRef<Record<string, { x: number; w: number }>>({});
+  const handleTabChange = useCallback((key: LibraryTab) => {
+    setActiveTab(key);
+  }, []);
 
-  const handleTabLayout = useCallback(
-    (key: string, x: number, width: number) => {
-      tabLayoutsRef.current[key] = { x, w: width };
-      if (key === activeTab) {
-        indicatorX.value = x;
-        indicatorW.value = width;
-      }
-    },
-    [activeTab, indicatorX, indicatorW],
-  );
-
-  const handleTabChange = useCallback(
-    (key: LibraryTab) => {
-      setActiveTab(key);
-      const layout = tabLayoutsRef.current[key];
-      if (layout) {
-        indicatorX.value = withTiming(layout.x, SLIDE_TIMING);
-        indicatorW.value = withTiming(layout.w, SLIDE_TIMING);
-      }
-    },
-    [indicatorX, indicatorW],
-  );
+  // Ink on the active tab chip, matching the page kit: white on the bright
+  // canvas accents, near-black on white (System) and the rest.
+  const appTheme = useAppTheme() as ReturnType<typeof useAppTheme> & { accent?: unknown };
+  const flatPage = useFlatPage();
+  const activeInk =
+    !flatPage && !!appTheme.accent && ["hazy", "swarms", "lavalamp", "island"].includes(appTheme.theme)
+      ? "#FFFFFF"
+      : "#0B0B0C";
 
   // Arriving again while the screen is still mounted (React Navigation reuses
   // it) moves to the requested tab. Keyed on the params object, as DpayScreen
@@ -108,77 +86,38 @@ const MyLibraryScreen: React.FC = () => {
     if (routeParams?.initialTab) handleTabChange(routeParams.initialTab);
   }, [routeParams, handleTabChange]);
 
-  const indicatorStyle = useAnimatedStyle(() => ({
-    position: "absolute" as const,
-    top: 0,
-    left: indicatorX.value,
-    width: indicatorW.value,
-    height: TAB_H,
-  }));
-
   return (
     <View className="flex-1 bg-theme-neutrals-900">
       <ScreenHeader
+        icon="bookmarks"
         title={t("screens.myLibrary")}
         rightContent={
           activeTab === "watched" ? (
-            <Pressable onPress={handleClearHistory} hitSlop={8} style={{ padding: 4 }}>
-              <Icon name="Trash2" size={20} color="#F4F4F5" />
+            <Pressable
+              onPress={handleClearHistory}
+              hitSlop={8}
+              accessibilityRole="button"
+              accessibilityLabel={t("library.clearHistoryTitle")}
+              className="bg-theme-neutrals-800"
+              style={styles.headerBtn}
+            >
+              <Icon name="Trash2" size={18} color="#F4F4F5" />
             </Pressable>
           ) : undefined
         }
       />
 
-      <View
-        className="px-4"
-        style={{ paddingTop: 6, paddingBottom: 10 }}
-      >
-        <ScrollView
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          bounces={false}
-          style={{ marginHorizontal: -16 }}
-          contentContainerStyle={styles.tabRow}
-        >
-          <Animated.View style={[styles.indicator, indicatorStyle]}>
-            <LinearGradient
-              colors={["rgba(255,255,255,0.20)", "rgba(255,255,255,0.10)", "rgba(255,255,255,0.05)"]}
-              start={{ x: 0, y: 0 }}
-              end={{ x: 1, y: 1 }}
-              style={[StyleSheet.absoluteFill, { borderRadius: TAB_RADIUS }]}
-            />
-            <View style={styles.indicatorHighlight} />
-          </Animated.View>
-
-          {TABS.map((tab) => {
-            const isActive = activeTab === tab.key;
-            return (
-              <Pressable
-                key={tab.key}
-                onPress={() => handleTabChange(tab.key)}
-                onLayout={(e) => {
-                  const { x, width } = e.nativeEvent.layout;
-                  handleTabLayout(tab.key, x, width);
-                }}
-                style={[styles.tabBtn, !isActive && styles.tabBtnInactive]}
-              >
-                <Icon
-                  name={tab.icon}
-                  size={14}
-                  color={isActive ? "#F9FBFF" : "#A1A1AA"}
-                />
-                <Text
-                  style={[
-                    styles.tabLabel,
-                    isActive && styles.tabLabelActive,
-                  ]}
-                >
-                  {t(tab.labelKey)}
-                </Text>
-              </Pressable>
-            );
-          })}
-        </ScrollView>
+      <View>
+        <PageTabs
+          value={activeTab}
+          onChange={handleTabChange}
+          tabs={TABS.map((tab) => ({
+            id: tab.key,
+            label: t(tab.labelKey),
+            icon: <Icon name={tab.icon} size={14} color={activeTab === tab.key ? activeInk : "#A1A1AA"} />,
+          }))}
+          style={{ paddingBottom: 10 }}
+        />
       </View>
 
       <PostsInfiniteList
@@ -191,47 +130,12 @@ const MyLibraryScreen: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
-  tabRow: {
-    flexDirection: "row",
-    gap: 8,
-    paddingHorizontal: 16,
-    position: "relative",
-  },
-  indicator: {
-    overflow: "hidden",
-    borderRadius: TAB_RADIUS,
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.30)",
-  },
-  indicatorHighlight: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    height: 1,
-    backgroundColor: "rgba(255,255,255,0.4)",
-    borderTopLeftRadius: TAB_RADIUS,
-    borderTopRightRadius: TAB_RADIUS,
-  },
-  tabBtn: {
-    flexDirection: "row",
+  headerBtn: {
+    width: 36,
+    height: 36,
+    borderRadius: 10,
     alignItems: "center",
     justifyContent: "center",
-    height: TAB_H,
-    paddingHorizontal: 16,
-    borderRadius: TAB_RADIUS,
-    gap: 6,
-  },
-  tabBtnInactive: {
-    backgroundColor: "#27272a",
-  },
-  tabLabel: {
-    fontSize: 13,
-    fontWeight: "600",
-    color: "#A1A1AA",
-  },
-  tabLabelActive: {
-    color: "#F9FBFF",
   },
 });
 

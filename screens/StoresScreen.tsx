@@ -30,14 +30,8 @@ import MyStoreTab from "../components/Stores/MyStoreTab";
 import { theme } from "../theme";
 import { useAuthState } from "../context/AuthContext";
 import { useAppTheme } from "../context/ThemeContext";
-import {
-  MINIMAL_TAB_TEXT,
-  MINIMAL_TAB_TEXT_ACTIVE,
-  minimalFlat,
-  minimalTab,
-  minimalTabActive,
-  minimalTabStrip,
-} from "../theme/minimal";
+import { minimalFlat } from "../theme/minimal";
+import { KitButton, PageEmpty, PageTabs } from "../components/page/PageKit";
 import { ScreenNames } from "../navigation/ScreenNames";
 import {
   useBrowseListings,
@@ -117,7 +111,6 @@ const ListingCard: React.FC<{ listing: StoreListing; width: number; onPress: () 
 
 export default function StoresScreen() {
   const { t } = useTranslation();
-  const { isMinimal } = useAppTheme();
   const insets = useSafeAreaInsets();
   const navigation = useNavigation<any>();
   const { width: screenW } = useWindowDimensions();
@@ -156,32 +149,18 @@ export default function StoresScreen() {
       <ScreenHeader
         title={t("screens.stores")}
         subtitle={t("stores.subtitle")}
-        rightContent={<Icon name="Store" size={22} color={theme.colors.accent} />}
+        icon="stores"
       />
 
-      {/* Minimal: the segmented pill becomes an edge-to-edge file-tab strip. */}
-      <View style={[styles.segment, isMinimal && styles.minimalSegment]}>
-        {(["browse", "my-store"] as const).map((tabKey) => (
-          <Pressable
-            key={tabKey}
-            onPress={() => setTab(tabKey)}
-            style={[
-              styles.segmentBtn,
-              tab === tabKey && styles.segmentBtnActive,
-              isMinimal && (tab === tabKey ? minimalTabActive : minimalTab),
-            ]}
-          >
-            <Text
-              style={[
-                styles.segmentText,
-                tab === tabKey && styles.segmentTextActive,
-                isMinimal && { color: tab === tabKey ? MINIMAL_TAB_TEXT_ACTIVE : MINIMAL_TAB_TEXT },
-              ]}
-            >
-              {tabKey === "browse" ? t("stores.browse") : t("stores.myStore")}
-            </Text>
-          </Pressable>
-        ))}
+      <View style={styles.tabsWrap}>
+        <PageTabs
+          value={tab}
+          onChange={setTab}
+          tabs={[
+            { id: "browse", label: t("stores.browse"), icon: "stores" },
+            { id: "my-store", label: t("stores.myStore"), icon: "profile" },
+          ]}
+        />
       </View>
 
       {tab === "browse" ? (
@@ -247,12 +226,11 @@ export default function StoresScreen() {
               <DeHubLoader size={56} />
             </View>
           ) : isError ? (
-            <View style={styles.center}>
-              <Text style={styles.emptyText}>{t("stores.loadFailed")}</Text>
-              <Pressable onPress={() => refetch()} style={styles.retryBtn}>
-                <Text style={styles.retryText}>{t("common.retry")}</Text>
-              </Pressable>
-            </View>
+            <PageEmpty
+              icon="stores"
+              title={t("stores.loadFailed")}
+              action={<KitButton label={t("common.retry")} onPress={() => refetch()} />}
+            />
           ) : (
             <FlatList
               data={listings}
@@ -276,12 +254,10 @@ export default function StoresScreen() {
                 />
               }
               ListEmptyComponent={
-                <View style={styles.center}>
-                  <Icon name="Package" size={44} color="#3F3F46" />
-                  <Text style={styles.emptyText}>
-                    {search ? t("stores.noSearchResults") : t("stores.noListings")}
-                  </Text>
-                </View>
+                <PageEmpty
+                  icon="stores"
+                  title={search ? t("stores.noSearchResults") : t("stores.noListings")}
+                />
               }
             />
           )}
@@ -300,20 +276,7 @@ export default function StoresScreen() {
 const styles = StyleSheet.create({
   root: { flex: 1, backgroundColor: "#010305" },
 
-  segment: {
-    flexDirection: "row",
-    gap: 4,
-    marginHorizontal: H_PADDING,
-    marginBottom: 10,
-    backgroundColor: "rgba(255,255,255,0.06)",
-    borderRadius: 12,
-    padding: 3,
-  },
-  minimalSegment: { ...minimalTabStrip, marginHorizontal: 0, padding: 0, gap: 0 },
-  segmentBtn: { flex: 1, paddingVertical: 7, borderRadius: 9, alignItems: "center" },
-  segmentBtnActive: { backgroundColor: "rgba(255,255,255,0.15)" },
-  segmentText: { color: "#A1A1AA", fontSize: 13, fontWeight: "600" },
-  segmentTextActive: { color: "#FFFFFF" },
+  tabsWrap: { marginBottom: 8, flexGrow: 0 },
 
   searchWrap: {
     flexDirection: "row",
@@ -354,7 +317,7 @@ const styles = StyleSheet.create({
   },
 
   card: {
-    borderRadius: 14,
+    borderRadius: 10,
     backgroundColor: "rgba(255,255,255,0.04)",
     borderWidth: 1,
     borderColor: "rgba(255,255,255,0.08)",

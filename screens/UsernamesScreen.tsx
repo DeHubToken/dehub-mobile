@@ -38,15 +38,7 @@ import Avatar from "../components/common/Avatar";
 import { getAvatarUrl, getBadgeUrlFor } from "../libs/misc";
 import { theme } from "../theme";
 import { useAuthState } from "../context/AuthContext";
-import { useAppTheme } from "../context/ThemeContext";
-import {
-  MINIMAL_TAB_TEXT,
-  MINIMAL_TAB_TEXT_ACTIVE,
-  minimalRow,
-  minimalTab,
-  minimalTabActive,
-  minimalTabStrip,
-} from "../theme/minimal";
+import { KitButton, PageEmpty, PageSection, PageTabs } from "../components/page/PageKit";
 import { ScreenNames } from "../navigation/ScreenNames";
 import type { AppStackParamList } from "../navigation/types";
 import { useDebouncedValue } from "../hooks/useDebouncedValue";
@@ -93,7 +85,6 @@ const UsernameCard: React.FC<{
   onPress: () => void;
 }> = ({ listing, onPress }) => {
   const { t } = useTranslation();
-  const { isMinimal } = useAppTheme();
   const seller = listing.seller;
   // `getBadgeUrlFor` rather than getBadgeUrl(resolveBadgeBalance(…)): it reads
   // the balance AND the grandfathered lock together, so a holder does not wear
@@ -101,7 +92,8 @@ const UsernameCard: React.FC<{
   const badgeImg = getBadgeUrlFor(seller as any);
 
   return (
-    <Pressable style={[styles.card, isMinimal && styles.minimalCard]} onPress={onPress}>
+    <PageSection flush>
+    <Pressable style={styles.card} onPress={onPress}>
       {/* Left. `minWidth: 0` is what lets this shrink so the price stays on the
           row — without it the flex child keeps its intrinsic width and pushes
           the price off the right edge. */}
@@ -157,6 +149,7 @@ const UsernameCard: React.FC<{
         <Text style={styles.cardPriceUnit}><DhbCoin size={12} /> {listing.priceDhb.toLocaleString(appLocale(), { maximumFractionDigits: 6 })}</Text>
       </View>
     </Pressable>
+    </PageSection>
   );
 };
 
@@ -176,9 +169,6 @@ function asUsernamesTab(value: unknown): UsernamesTab | null {
 
 export default function UsernamesScreen() {
   const { t } = useTranslation();
-  // Minimal: the tab pill becomes file tabs and listings edge-to-edge hairline
-  // rows. Search, chips and the match banners keep their fill.
-  const { isMinimal } = useAppTheme();
   const insets = useSafeAreaInsets();
   const navigation = useNavigation<any>();
   const route = useRoute<RouteProp<AppStackParamList, ScreenNames.Usernames>>();
@@ -270,40 +260,23 @@ export default function UsernamesScreen() {
       <ScreenHeader
         title={t("screens.usernames")}
         subtitle={t("usernames.subtitle")}
-        rightContent={<Icon name="AtSign" size={22} color={theme.colors.accent} />}
+        icon="usernames"
       />
 
-      <View style={[styles.segment, isMinimal && styles.minimalSegment]}>
-        {/* "Mine" sits next to Browse rather than inside Sell, because owning a
-            handle and selling one stopped being the same thing the moment an
-            account could hold more than one. */}
-        {(["browse", "mine", "sell", "offers"] as const).map((key) => (
-          <Pressable
-            key={key}
-            onPress={() => setTab(key)}
-            style={[
-              styles.segmentBtn,
-              tab === key && styles.segmentBtnActive,
-              isMinimal && (tab === key ? minimalTabActive : minimalTab),
-            ]}
-          >
-            <Text
-              style={[
-                styles.segmentText,
-                tab === key && styles.segmentTextActive,
-                isMinimal && { color: tab === key ? MINIMAL_TAB_TEXT_ACTIVE : MINIMAL_TAB_TEXT },
-              ]}
-            >
-              {key === "browse"
-                ? t("usernames.browse")
-                : key === "mine"
-                  ? t("usernames.tabMine")
-                  : key === "sell"
-                    ? t("usernames.sell")
-                    : t("usernames.tabOffers")}
-            </Text>
-          </Pressable>
-        ))}
+      {/* "Mine" sits next to Browse rather than inside Sell, because owning a
+          handle and selling one stopped being the same thing the moment an
+          account could hold more than one. */}
+      <View style={styles.tabsWrap}>
+        <PageTabs
+          value={tab}
+          onChange={setTab}
+          tabs={[
+            { id: "browse", label: t("usernames.browse"), icon: "search" },
+            { id: "mine", label: t("usernames.tabMine"), icon: "usernames" },
+            { id: "sell", label: t("usernames.sell"), icon: "usernames" },
+            { id: "offers", label: t("usernames.tabOffers"), icon: "stores" },
+          ]}
+        />
       </View>
 
       {tab === "browse" ? (
@@ -380,12 +353,11 @@ export default function UsernamesScreen() {
               <DeHubLoader size={56} />
             </View>
           ) : isError ? (
-            <View style={styles.center}>
-              <Text style={styles.emptyText}>{t("usernames.loadFailed")}</Text>
-              <Pressable onPress={() => refetch()} style={styles.retryBtn}>
-                <Text style={styles.retryText}>{t("common.retry")}</Text>
-              </Pressable>
-            </View>
+            <PageEmpty
+              icon="usernames"
+              title={t("usernames.loadFailed")}
+              action={<KitButton label={t("common.retry")} onPress={() => refetch()} />}
+            />
           ) : (
             <FlatList
               data={listings}
@@ -393,15 +365,10 @@ export default function UsernamesScreen() {
               renderItem={({ item }) => (
                 <UsernameCard listing={item} onPress={() => openListing(item)} />
               )}
-              // Minimal drops the list gutter for edge-to-edge rows; the banner
-              // keeps it.
-              ListHeaderComponent={
-                banner && isMinimal ? <View style={styles.minimalBannerWrap}>{banner}</View> : banner
-              }
+              // Rows run edge to edge (PageSection); the banner keeps the gutter.
+              ListHeaderComponent={banner ? <View style={styles.bannerWrap}>{banner}</View> : null}
               contentContainerStyle={{
-                paddingHorizontal: isMinimal ? 0 : H_PADDING,
                 paddingBottom: insets.bottom + 96,
-                gap: isMinimal ? 0 : ROW_GAP,
               }}
               showsVerticalScrollIndicator={false}
               refreshControl={
@@ -412,12 +379,10 @@ export default function UsernamesScreen() {
                 />
               }
               ListEmptyComponent={
-                <View style={styles.center}>
-                  <Icon name="AtSign" size={44} color="#3F3F46" />
-                  <Text style={styles.emptyText}>
-                    {debouncedSearch ? t("usernames.noSearchResults") : t("usernames.noListings")}
-                  </Text>
-                </View>
+                <PageEmpty
+                  icon="usernames"
+                  title={debouncedSearch ? t("usernames.noSearchResults") : t("usernames.noListings")}
+                />
               }
             />
           )}
@@ -473,21 +438,8 @@ export default function UsernamesScreen() {
 const styles = StyleSheet.create({
   root: { flex: 1, backgroundColor: "#010305" },
 
-  segment: {
-    flexDirection: "row",
-    gap: 4,
-    marginHorizontal: H_PADDING,
-    marginBottom: 10,
-    backgroundColor: "rgba(255,255,255,0.06)",
-    borderRadius: 12,
-    padding: 3,
-  },
-  minimalSegment: { ...minimalTabStrip, marginHorizontal: 0, padding: 0, gap: 0 },
-  segmentBtn: { flex: 1, paddingVertical: 7, borderRadius: 9, alignItems: "center" },
-  segmentBtnActive: { backgroundColor: "rgba(255,255,255,0.15)" },
+  tabsWrap: { marginBottom: 8, flexGrow: 0 },
   bannerAction: { color: "#F4F4F5", fontSize: 12, fontWeight: "700", flexShrink: 0 },
-  segmentText: { color: "#A1A1AA", fontSize: 13, fontWeight: "600", flexShrink: 0 },
-  segmentTextActive: { color: "#FFFFFF" },
 
   searchWrap: {
     flexDirection: "row",
@@ -551,15 +503,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: 12,
-    borderRadius: 14,
-    paddingHorizontal: 14,
+    paddingHorizontal: H_PADDING,
     paddingVertical: 12,
-    backgroundColor: "rgba(255,255,255,0.05)",
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.10)",
   },
-  minimalCard: { ...minimalRow, paddingHorizontal: H_PADDING },
-  minimalBannerWrap: { paddingHorizontal: H_PADDING },
+  bannerWrap: { paddingHorizontal: H_PADDING },
   // minWidth: 0 lets this shrink so the price stays on the row. Without it the
   // flex child keeps its intrinsic width and pushes the price off the edge.
   cardMain: { flex: 1, minWidth: 0, gap: 6 },

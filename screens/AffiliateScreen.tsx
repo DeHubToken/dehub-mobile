@@ -30,6 +30,7 @@ import { useTranslation } from "react-i18next";
 import { useQuery } from "@tanstack/react-query";
 import Icon from "../components/ui/Icon";
 import ScreenHeader from "../components/ScreenHeader";
+import { PageEmpty, PageSection, PageTabs } from "../components/page/PageKit";
 import Avatar from "../components/common/Avatar";
 import { useUser, useAuthState } from "../context/AuthContext";
 import { useUserProfileSheet } from "../context/UserProfileSheetContext";
@@ -58,14 +59,7 @@ import {
   type AffiliateReferralEntry,
 } from "../libs/affiliate";
 import { useAppTheme } from "../context/ThemeContext";
-import {
-  MINIMAL_TAB_TEXT,
-  MINIMAL_TAB_TEXT_ACTIVE,
-  minimalRow,
-  minimalTab,
-  minimalTabActive,
-  minimalTabStrip,
-} from "../theme/minimal";
+import { minimalRow } from "../theme/minimal";
 
 const AFFILIATES_PAGE_SIZE = 12;
 
@@ -181,10 +175,6 @@ export default function AffiliateScreen() {
   // inset sits above it; the header is inside and already in its layout.
   const keyboardOffset = useKeyboardOffset();
   const { t } = useTranslation();
-  const { isMinimal } = useAppTheme();
-  // Minimal: section cards bleed to the screen edge as hairline-divided
-  // groups (their padding keeps text 16pt in); inputs and buttons keep fill.
-  const cardStyle = [styles.card, isMinimal && styles.minimalCard];
   const user = useUser() as any;
   const { isSignedIn, needsUsername } = useAuthState();
   useGateToHome(isSignedIn && !needsUsername);
@@ -315,7 +305,7 @@ export default function AffiliateScreen() {
       />
 
       <ScrollView
-        contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: insets.bottom + 32, paddingTop: 4 }}
+        contentContainerStyle={{ paddingBottom: insets.bottom + 32, paddingTop: 4 }}
         keyboardShouldPersistTaps="handled"
         showsVerticalScrollIndicator={false}
         refreshControl={
@@ -323,6 +313,7 @@ export default function AffiliateScreen() {
         }
       >
         {/* Per-user share image — the exact card people see when the link unfurls */}
+        <PageSection>
         <View style={styles.shareImageWrap}>
           {stats?.code ? (
             <Image
@@ -364,8 +355,10 @@ export default function AffiliateScreen() {
             "Every time someone uses any DeHub revenue-generating feature, you earn residually and perpetually.",
           )}
         </Text>
+        </PageSection>
 
         {/* Stats */}
+        <PageSection>
         <View style={styles.statGrid}>
           <StatCard
             icon="ExternalLink"
@@ -420,10 +413,10 @@ export default function AffiliateScreen() {
           />
         </View>
         <Text style={styles.statNote}>{t("affiliate.selfVisitsExcluded")}</Text>
+        </PageSection>
 
-        <View style={cardStyle}>
-          <Text style={styles.cardTitle}>{t("affiliate.customizeTitle")}</Text>
-          <Text style={styles.cardSub}>{t("affiliate.customizeSub")}</Text>
+        <PageSection title={t("affiliate.customizeTitle")}>
+          <Text style={[styles.cardSub, styles.sectionSub]}>{t("affiliate.customizeSub")}</Text>
 
           <Text style={styles.fieldLabel}>
             {t("affiliate.fieldHeadline", { count: landing.headline.length })}
@@ -546,12 +539,11 @@ export default function AffiliateScreen() {
               ))}
             </View>
           )}
-        </View>
+        </PageSection>
 
         {/* Invite link */}
-        <View style={cardStyle}>
-          <Text style={styles.cardTitle}>{t("affiliate.yourLink", "Your invite link")}</Text>
-          <Text style={styles.cardSub}>
+        <PageSection title={t("affiliate.yourLink", "Your invite link")}>
+          <Text style={[styles.cardSub, styles.sectionSub]}>
             {t("affiliate.yourLinkSub", {
               defaultValue:
                 "Share anywhere. You earn {{l1}}% of every dollar your invites ever spend on DeHub, plus {{l2}}% from everyone they invite.",
@@ -592,68 +584,39 @@ export default function AffiliateScreen() {
               {t("affiliate.noCode", "Could not generate a code. Pull down to refresh.")}
             </Text>
           )}
-        </View>
+        </PageSection>
 
         {/* Your affiliates */}
-        <View style={cardStyle}>
-          <Text style={styles.cardTitle}>{t("affiliate.yourAffiliates", "Your affiliates")}</Text>
-          <Text style={styles.cardSub}>
+        <PageSection title={t("affiliate.yourAffiliates", "Your affiliates")}>
+          <Text style={[styles.cardSub, styles.sectionSub]}>
             {t("affiliate.yourAffiliatesSub", "The accounts you've referred to DeHub.")}
           </Text>
 
           {hasSecondary && (
-            <View style={[styles.tabs, isMinimal && styles.minimalTabs]}>
-              <Pressable
-                onPress={() => setTab("direct")}
-                style={[
-                  styles.tab,
-                  tab === "direct" && styles.tabActive,
-                  isMinimal && (tab === "direct" ? minimalTabActive : minimalTab),
-                ]}
-              >
-                <Text
-                  style={[
-                    styles.tabText,
-                    tab === "direct" && styles.tabTextActive,
-                    isMinimal && { color: tab === "direct" ? MINIMAL_TAB_TEXT_ACTIVE : MINIMAL_TAB_TEXT },
-                  ]}
-                >
-                  {t("affiliate.direct", "Direct")} ({stats?.referrals ?? 0})
-                </Text>
-              </Pressable>
-              <Pressable
-                onPress={() => setTab("secondary")}
-                style={[
-                  styles.tab,
-                  tab === "secondary" && styles.tabActive,
-                  isMinimal && (tab === "secondary" ? minimalTabActive : minimalTab),
-                ]}
-              >
-                <Text
-                  style={[
-                    styles.tabText,
-                    tab === "secondary" && styles.tabTextActive,
-                    isMinimal && { color: tab === "secondary" ? MINIMAL_TAB_TEXT_ACTIVE : MINIMAL_TAB_TEXT },
-                  ]}
-                >
-                  {t("affiliate.secondary", "Secondary")} ({stats?.l2Referrals ?? 0})
-                </Text>
-              </Pressable>
-            </View>
+            <PageTabs
+              size="sm"
+              style={styles.tabs}
+              value={tab}
+              onChange={setTab}
+              tabs={[
+                { id: "direct", label: t("affiliate.direct", "Direct"), count: stats?.referrals ?? 0 },
+                { id: "secondary", label: t("affiliate.secondary", "Secondary"), count: stats?.l2Referrals ?? 0 },
+              ]}
+            />
           )}
 
           {hydrating ? (
             <ActivityIndicator color="#FFFFFF" style={{ marginVertical: 24 }} />
           ) : list.length === 0 ? (
-            <View style={styles.empty}>
-              <Icon name="Users" size={32} color="#3F3F46" />
-              <Text style={styles.emptyTitle}>
-                {tab === "direct"
+            <PageEmpty
+              icon={<View style={{ marginBottom: 10 }}><Icon name="Users" size={32} color="#3F3F46" /></View>}
+              title={
+                tab === "direct"
                   ? t("affiliate.emptyDirect", "No affiliates yet")
-                  : t("affiliate.emptySecondary", "No secondary affiliates yet")}
-              </Text>
-              <Text style={styles.emptyBody}>
-                {tab === "direct"
+                  : t("affiliate.emptySecondary", "No secondary affiliates yet")
+              }
+              body={
+                tab === "direct"
                   ? t(
                       "affiliate.emptyDirectBody",
                       "Share your invite link — everyone who joins through it shows up here.",
@@ -661,9 +624,9 @@ export default function AffiliateScreen() {
                   : t(
                       "affiliate.emptySecondaryBody",
                       "When your affiliates invite their own friends, they'll appear here.",
-                    )}
-              </Text>
-            </View>
+                    )
+              }
+            />
           ) : (
             <>
               {shown.map((entry) => (
@@ -685,11 +648,10 @@ export default function AffiliateScreen() {
               )}
             </>
           )}
-        </View>
+        </PageSection>
 
         {/* How it works */}
-        <View style={cardStyle}>
-          <Text style={styles.cardTitle}>{t("affiliate.howItWorks", "How it works")}</Text>
+        <PageSection title={t("affiliate.howItWorks", "How it works")}>
           <Step
             n={1}
             title={t("affiliate.step1Title", "Share your link")}
@@ -730,7 +692,7 @@ export default function AffiliateScreen() {
               l2: AFFILIATE_L2_COMMISSION_PCT,
             })}
           />
-        </View>
+        </PageSection>
 
         {wallet ? (
           <Text style={styles.footer}>
@@ -766,7 +728,7 @@ const styles = StyleSheet.create({
   shareImageMessage: { textAlign: "center", paddingHorizontal: 16, marginTop: 0 },
 
   headline: { color: "#FFFFFF", fontSize: 20, fontWeight: "700", lineHeight: 27 },
-  intro: { color: "#A1A1AA", fontSize: 13, lineHeight: 19, marginTop: 6, marginBottom: 16 },
+  intro: { color: "#A1A1AA", fontSize: 13, lineHeight: 19, marginTop: 6 },
 
   fieldLabel: { color: "#A1A1AA", fontSize: 12, fontWeight: "600", marginTop: 14, marginBottom: 6 },
   input: { minHeight: 44, borderWidth: 1, borderColor: "rgba(255,255,255,0.15)", borderRadius: 10, backgroundColor: "#18181B", color: "#FFFFFF", paddingHorizontal: 12, paddingVertical: 10, fontSize: 14 },
@@ -778,7 +740,7 @@ const styles = StyleSheet.create({
   previewButton: { backgroundColor: "#FFFFFF", borderRadius: 8, paddingHorizontal: 18, paddingVertical: 10, marginTop: 16 },
   previewButtonText: { color: "#000000", fontSize: 13, fontWeight: "700" },
 
-  statGrid: { flexDirection: "row", flexWrap: "wrap", gap: 8, marginBottom: 16 },
+  statGrid: { flexDirection: "row", flexWrap: "wrap", gap: 8, marginBottom: 12 },
   statCard: {
     flexGrow: 1,
     flexBasis: "47%",
@@ -798,7 +760,7 @@ const styles = StyleSheet.create({
   },
   statValue: { color: "#FFFFFF", fontSize: 22, fontWeight: "700", marginTop: 8 },
   statHint: { color: "#A1A1AA", fontSize: 12, marginTop: 4 },
-  statNote: { color: "#71717A", fontSize: 12, lineHeight: 17, marginTop: -8, marginBottom: 16 },
+  statNote: { color: "#71717A", fontSize: 12, lineHeight: 17 },
   statSkeleton: {
     height: 26,
     width: 80,
@@ -807,19 +769,9 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(255,255,255,0.08)",
   },
 
-  card: {
-    backgroundColor: "rgba(255,255,255,0.03)",
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.10)",
-    borderRadius: 18,
-    padding: 16,
-    marginBottom: 16,
-  },
-  // Out to the screen edge so the hairline runs full width; the card's own
-  // 16pt padding then sits exactly where the scroll gutter was.
-  minimalCard: { ...minimalRow, marginHorizontal: -16, marginBottom: 0 },
-  cardTitle: { color: "#FFFFFF", fontSize: 16, fontWeight: "600" },
   cardSub: { color: "#A1A1AA", fontSize: 12.5, lineHeight: 18, marginTop: 4 },
+  // Directly under the section title, which already carries the gap.
+  sectionSub: { marginTop: -6 },
 
   linkSkeleton: {
     height: 44,
@@ -874,19 +826,7 @@ const styles = StyleSheet.create({
   },
   primaryBtnText: { color: "#000000", fontSize: 13, fontWeight: "700" },
 
-  tabs: {
-    flexDirection: "row",
-    gap: 4,
-    backgroundColor: "rgba(255,255,255,0.06)",
-    borderRadius: 12,
-    padding: 3,
-    marginTop: 14,
-  },
-  tab: { flex: 1, paddingVertical: 7, borderRadius: 9, alignItems: "center" },
-  tabActive: { backgroundColor: "rgba(255,255,255,0.15)" },
-  tabText: { color: "#A1A1AA", fontSize: 12.5, fontWeight: "600" },
-  tabTextActive: { color: "#FFFFFF" },
-  minimalTabs: { ...minimalTabStrip, padding: 0, gap: 0 },
+  tabs: { paddingHorizontal: 0, marginTop: 8 },
 
   row: {
     flexDirection: "row",
@@ -910,16 +850,6 @@ const styles = StyleSheet.create({
   },
   rowSub: { color: "#A1A1AA", fontSize: 12, marginTop: 3 },
 
-  empty: { alignItems: "center", paddingVertical: 28 },
-  emptyTitle: { color: "#D4D4D8", fontSize: 14, fontWeight: "600", marginTop: 10 },
-  emptyBody: {
-    color: "#A1A1AA",
-    fontSize: 12,
-    textAlign: "center",
-    marginTop: 4,
-    paddingHorizontal: 16,
-    lineHeight: 17,
-  },
 
   showMore: { alignItems: "center", paddingVertical: 12, marginTop: 4 },
   showMoreText: { color: "#A1A1AA", fontSize: 13, fontWeight: "600" },
@@ -937,5 +867,5 @@ const styles = StyleSheet.create({
   stepTitle: { color: "#FFFFFF", fontSize: 14, fontWeight: "600" },
   stepBody: { color: "#A1A1AA", fontSize: 12.5, lineHeight: 18, marginTop: 3 },
 
-  footer: { color: "#808089", fontSize: 12, textAlign: "center", marginTop: 4 },
+  footer: { color: "#808089", fontSize: 12, textAlign: "center", marginTop: 8, paddingHorizontal: 16 },
 });

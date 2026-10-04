@@ -12,6 +12,7 @@ import Icon from "../ui/Icon";
 import { useUser } from "../../context/AuthContext";
 import { useAppTheme } from "../../context/ThemeContext";
 import { minimalRow } from "../../theme/minimal";
+import { PageSection } from "../page/PageKit";
 import { getMyPosts } from "../../services/user.service";
 import { getDHBPrice } from "../../services/ai.service";
 
@@ -163,8 +164,7 @@ const EarningsComparisonCard: React.FC = () => {
   }, [estimatorViews, rpms]);
 
   return (
-    <View style={[styles.card, isMinimal && minimalRow]}>
-      <Text style={styles.cardTitle}>{t("earningsVs.title")}</Text>
+    <PageSection title={t("earningsVs.title")}>
       <Text style={styles.cardSubtitle}>{t("earningsVs.subtitle")}</Text>
 
       {loading ? (
@@ -276,21 +276,12 @@ const EarningsComparisonCard: React.FC = () => {
           </View>
         </>
       )}
-    </View>
+    </PageSection>
   );
 };
 
 const styles = StyleSheet.create({
-  card: {
-    backgroundColor: "rgba(255,255,255,0.03)",
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.07)",
-    borderRadius: 12,
-    padding: 16,
-    marginBottom: 12,
-  },
-  cardTitle: { color: "#F9FBFF", fontSize: 15, fontWeight: "700" },
-  cardSubtitle: { color: "#A6A9AC", fontSize: 12, marginTop: 2, marginBottom: 14 },
+  cardSubtitle: { color: "#A6A9AC", fontSize: 12, marginTop: -8, marginBottom: 14 },
   loadingBox: { alignItems: "center", paddingVertical: 24 },
   tilesRow: { flexDirection: "row", gap: 6, marginBottom: 12 },
   tile: {

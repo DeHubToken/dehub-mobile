@@ -46,6 +46,7 @@ import {
   type PickedPackImage,
 } from "../libs/creator-packs/api";
 import { PackCover } from "../components/packs/PackPickerParts";
+import { KitButton, PageEmpty, PageSection } from "../components/page/PageKit";
 import { packErrorMessage, usePackWallet, usePacksNavigation } from "../components/packs/PackGate";
 
 const KIND_LABEL: Record<PackKind, string> = {
@@ -99,12 +100,10 @@ export default function PackScreen() {
     return (
       <View style={styles.root}>
         <ScreenHeader title={t("creatorPacks.title")} />
-        <View style={{ alignItems: "center", paddingTop: 32, gap: 12, paddingHorizontal: 24 }}>
-          <Text style={styles.muted}>{t("creatorPacks.notFound")}</Text>
-          <Pressable onPress={openPacks} accessibilityRole="button">
-            <Text style={styles.link}>{t("creatorPacks.browse")}</Text>
-          </Pressable>
-        </View>
+        <PageEmpty
+          title={t("creatorPacks.notFound")}
+          action={<KitButton variant="quiet" label={t("creatorPacks.browse")} onPress={openPacks} />}
+        />
       </View>
     );
   }
@@ -259,11 +258,12 @@ export default function PackScreen() {
     <KeyboardAvoidingView style={styles.root} behavior="padding" keyboardVerticalOffset={keyboardOffset}>
       <ScreenHeader title={t("creatorPacks.title")} />
       <ScrollView
-        contentContainerStyle={{ paddingHorizontal: 12, paddingTop: 4, paddingBottom: insets.bottom + 24, gap: 14 }}
+        contentContainerStyle={{ paddingTop: 4, paddingBottom: insets.bottom + 24 }}
         keyboardShouldPersistTaps="handled"
         showsVerticalScrollIndicator={false}
       >
-        <View style={[styles.panel, styles.headerCard]}>
+        <PageSection>
+        <View style={styles.headerCard}>
           <View style={styles.cover}>
             <PackCover pack={pack} size={56} />
           </View>
@@ -319,7 +319,7 @@ export default function PackScreen() {
           </View>
         </View>
 
-        <View style={[styles.row, { flexWrap: "wrap" }]}>
+        <View style={[styles.row, { flexWrap: "wrap", marginTop: 14 }]}>
           {!isOwner && (
             <Pressable
               disabled={busy}
@@ -351,13 +351,14 @@ export default function PackScreen() {
             </Pressable>
           )}
         </View>
+        </PageSection>
 
         {isOwner && (
-          <View style={[styles.panel, { padding: 12, gap: 8 }]}>
-            <Text style={styles.sectionTitle}>
-              {t("creatorPacks.addItems")}
-              {cap !== undefined ? <Text style={styles.sectionMuted}> · {list.length}/{cap}</Text> : null}
-            </Text>
+          <PageSection
+            title={t("creatorPacks.addItems")}
+            action={cap !== undefined ? <Text style={styles.sectionMuted}>{list.length}/{cap}</Text> : undefined}
+          >
+          <View style={{ gap: 8 }}>
             {room === 0 ? (
               <Text style={styles.warn}>{t("creatorPacks.errors.itemLimit")}</Text>
             ) : (
@@ -407,7 +408,10 @@ export default function PackScreen() {
               </>
             )}
           </View>
+          </PageSection>
         )}
+
+        <PageSection>
 
         {items.isLoading ? (
           <ActivityIndicator size="small" color="#71717A" />
@@ -446,6 +450,7 @@ export default function PackScreen() {
         ) : (
           <Text style={[styles.muted, { textAlign: "center", paddingVertical: 24 }]}>{t("creatorPacks.packEmpty")}</Text>
         )}
+        </PageSection>
       </ScrollView>
     </KeyboardAvoidingView>
   );
@@ -459,7 +464,7 @@ const styles = StyleSheet.create({
     borderColor: "rgba(255,255,255,0.12)",
     backgroundColor: "rgba(255,255,255,0.03)",
   },
-  headerCard: { flexDirection: "row", alignItems: "center", gap: 12, padding: 14 },
+  headerCard: { flexDirection: "row", alignItems: "center", gap: 12 },
   cover: {
     width: 64,
     height: 64,
@@ -476,7 +481,7 @@ const styles = StyleSheet.create({
   muted: { color: "#A1A1AA", fontSize: 13 },
   link: { color: "#FFFFFF", fontSize: 14, textDecorationLine: "underline" },
   sectionTitle: { color: "#FFFFFF", fontSize: 14, fontWeight: "600" },
-  sectionMuted: { color: "#71717A", fontWeight: "400" },
+  sectionMuted: { color: "#71717A", fontSize: 13 },
   warn: { color: "#FBBF24", fontSize: 12 },
   hint: { color: "#71717A", fontSize: 11, lineHeight: 16 },
   input: {

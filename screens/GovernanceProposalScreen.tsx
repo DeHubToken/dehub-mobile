@@ -28,9 +28,9 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 import type { TFunction } from "i18next";
 import Icon from "../components/ui/Icon";
 import ScreenHeader from "../components/ScreenHeader";
+import { KitButton, PageEmpty, PageSection } from "../components/page/PageKit";
 import Avatar from "../components/common/Avatar";
 import { DeHubLoader } from "../components/DeHubLoader";
-import { theme } from "../theme";
 import { getAvatarUrl } from "../libs/misc";
 import { formatCompactNumber } from "../libs";
 import { useUser, useAuthState } from "../context/AuthContext";
@@ -290,29 +290,27 @@ export default function GovernanceProposalScreen() {
     <View style={styles.root}>
       <ScreenHeader
         title={t("governance.title")}
-        rightContent={<Icon name="ShieldCheck" size={22} color={theme.colors.accent} />}
+        icon="governance"
       />
 
       {isLoading ? (
         <View style={styles.center}><DeHubLoader size={56} /></View>
       ) : isError || !proposal ? (
-        <View style={styles.center}>
-          <Icon name="ShieldCheck" size={44} color="#3F3F46" />
-          <Text style={styles.emptyText}>{t("governance.loadFailed")}</Text>
-          <Pressable onPress={() => refetch()} style={styles.retryBtn}>
-            <Text style={styles.retryText}>{t("common.retry")}</Text>
-          </Pressable>
-        </View>
+        <PageEmpty
+          icon="governance"
+          title={t("governance.loadFailed")}
+          action={<KitButton variant="quiet" label={t("common.retry")} onPress={() => refetch()} />}
+        />
       ) : (
         <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding" keyboardVerticalOffset={keyboardOffset}>
           <ScrollView
             ref={scrollRef}
-            contentContainerStyle={{ paddingHorizontal: 12, paddingBottom: insets.bottom + 24, paddingTop: 4, gap: 12 }}
+            contentContainerStyle={{ paddingBottom: insets.bottom + 24, paddingTop: 4 }}
             showsVerticalScrollIndicator={false}
             keyboardShouldPersistTaps="handled"
           >
             {/* Proposal card, as the board shows it, with the whole description. */}
-            <View style={styles.card}>
+            <PageSection style={styles.card}>
               <View style={styles.authorRow}>
                 <Avatar uri={getAvatarUrl(proposal.author_avatar)} size={28} name={authorName} />
                 <Text style={styles.authorName} numberOfLines={1}>@{authorName}</Text>
@@ -345,11 +343,11 @@ export default function GovernanceProposalScreen() {
                   <Text style={styles.metaText}>{formatCompactNumber(proposal.comment_count || 0)}</Text>
                 </View>
               </View>
-            </View>
+            </PageSection>
 
             {/* Discussion */}
-            <View style={styles.card} onLayout={(e) => { discussionY.current = e.nativeEvent.layout.y; }}>
-              <Text style={styles.sectionTitle}>{t("governance.discussion.title")}</Text>
+            <View onLayout={(e) => { discussionY.current = e.nativeEvent.layout.y; }}>
+            <PageSection title={t("governance.discussion.title")} style={styles.card}>
               <Text style={styles.sectionIntro}>{t("governance.discussion.intro")}</Text>
 
               {threadsLoading ? (
@@ -408,6 +406,7 @@ export default function GovernanceProposalScreen() {
                   <Text style={styles.signInText}>{t("governance.discussion.signInToComment")}</Text>
                 </Pressable>
               )}
+            </PageSection>
             </View>
           </ScrollView>
         </KeyboardAvoidingView>
@@ -419,31 +418,13 @@ export default function GovernanceProposalScreen() {
 const GLASS_BG = "rgba(255,255,255,0.10)";
 const GLASS_BORDER = "rgba(255,255,255,0.30)";
 const THREAD_LINE = "rgba(255,255,255,0.20)";
-/** Avatar centre: 14pt card padding + half the 28pt avatar. */
+/** Avatar centre: the row's 14pt inset + half the 28pt avatar. */
 const THREAD_X = 14 + 14;
 
 const styles = StyleSheet.create({
   root: { flex: 1, backgroundColor: "#010305" },
   center: { flex: 1, alignItems: "center", justifyContent: "center", paddingVertical: 64 },
-  emptyText: { color: "#808089", fontSize: 13, marginTop: 12 },
-  retryBtn: {
-    marginTop: 14,
-    paddingHorizontal: 20,
-    paddingVertical: 8,
-    borderRadius: 12,
-    backgroundColor: "rgba(255,255,255,0.08)",
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.16)",
-  },
-  retryText: { color: "#FAFAFA", fontSize: 13, fontWeight: "600" },
-  card: {
-    borderRadius: 12,
-    backgroundColor: "rgba(255,255,255,0.04)",
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.07)",
-    padding: 14,
-    gap: 8,
-  },
+  card: { gap: 8 },
   authorRow: { flexDirection: "row", alignItems: "center", gap: 8 },
   authorName: { flex: 1, color: "#D4D4D8", fontSize: 13, fontWeight: "600" },
   time: { color: "#A1A1AA", fontSize: 12 },
@@ -466,8 +447,7 @@ const styles = StyleSheet.create({
   metaItem: { flexDirection: "row", alignItems: "center", gap: 5 },
   metaText: { color: "#A1A1AA", fontSize: 12 },
 
-  sectionTitle: { color: "#FFFFFF", fontSize: 14, fontWeight: "700" },
-  sectionIntro: { color: "#808089", fontSize: 12, lineHeight: 17, marginTop: -4 },
+  sectionIntro: { color: "#808089", fontSize: 12, lineHeight: 17, marginTop: -10 },
   noComments: { color: "#808089", fontSize: 12, textAlign: "center", paddingVertical: 8 },
 
   commentRow: { flexDirection: "row", gap: 10, paddingVertical: 6, marginHorizontal: -14, paddingHorizontal: 14, borderRadius: 8 },

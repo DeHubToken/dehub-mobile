@@ -12,6 +12,7 @@ import { useTranslation } from 'react-i18next';
 import { View, Text, TextInput, Pressable, ActivityIndicator, ScrollView } from 'react-native';
 import SmartImage from '../common/SmartImage';
 import Icon from '../ui/Icon';
+import { PageSection } from '../page/PageKit';
 import { toastError, toastInfo } from '../../libs';
 import {
   previewPodcastFeed,
@@ -176,7 +177,7 @@ const PodcastImportSection: React.FC = () => {
   const canImport = !importing && selected.size > 0 && ownershipConfirmed;
 
   return (
-    <View className="rounded-2xl p-4 gap-4" style={{ backgroundColor: 'rgba(255,255,255,0.05)' }}>
+    <PageSection style={{ gap: 16 }}>
       <View className="flex-row items-center rounded-xl bg-theme-neutrals-900 px-3">
         <Icon name="Radio" size={16} color="#71717a" />
         <TextInput
@@ -300,7 +301,7 @@ const PodcastImportSection: React.FC = () => {
           ))}
         </View>
       )}
-    </View>
+    </PageSection>
   );
 };
 

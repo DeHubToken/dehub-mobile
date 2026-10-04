@@ -31,12 +31,11 @@ import { useTranslation } from "react-i18next";
 import type { TFunction } from "i18next";
 import Icon from "../components/ui/Icon";
 import ScreenHeader from "../components/ScreenHeader";
+import { PageSection } from "../components/page/PageKit";
 import ProfileAssets from "../components/Profile/ProfileAssets";
 import { theme } from "../theme";
 import { formatCompactNumber } from "../libs";
 import { useUser, useAuthState } from "../context/AuthContext";
-import { useAppTheme } from "../context/ThemeContext";
-import { minimalRow } from "../theme/minimal";
 import { useGateToHome } from "../hooks/useGateToHome";
 import { getMyAnalytics, type AnalyticsResponse } from "../services/nft.service";
 import { ScreenNames } from "../navigation/ScreenNames";
@@ -70,12 +69,18 @@ function timeAgo(iso: string, t: TFunction): string {
   return t("commandCentre.time.months", { count: Math.floor(d / 30) });
 }
 
-const Card: React.FC<{ children: React.ReactNode; style?: any }> = ({ children, style }) => {
-  // Minimal: each section is an edge-to-edge group under a hairline; the
-  // stat tiles and range chips inside keep their fill.
-  const { isMinimal } = useAppTheme();
-  return <View style={[styles.card, style, isMinimal && styles.minimalCard]}>{children}</View>;
-};
+/** One Overview block: the kit's section (a card on canvas themes, full width
+ *  between hairlines on System and minimal). */
+const Card: React.FC<{ children: React.ReactNode; style?: any; title?: string; action?: React.ReactNode }> = ({
+  children,
+  style,
+  title,
+  action,
+}) => (
+  <PageSection title={title} action={action} style={style}>
+    {children}
+  </PageSection>
+);
 
 const RangeRow: React.FC<{
   items: readonly string[];
@@ -265,7 +270,6 @@ const ActivityRow: React.FC<{ item: ActivityItem }> = ({ item }) => {
 
 export default function CommandCentreScreen() {
   const { t } = useTranslation();
-  const { isMinimal } = useAppTheme();
   const insets = useSafeAreaInsets();
   const navigation = useNavigation<any>();
   const user = useUser() as any;
@@ -354,11 +358,11 @@ export default function CommandCentreScreen() {
         title={t("commandCentre.title")}
         subtitle={t("commandCentre.mobileSubtitle")}
         canGoBack
-        rightContent={<Icon name="LayoutDashboard" size={22} color={theme.colors.accent} />}
+        icon="command"
       />
 
       <ScrollView
-        contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: insets.bottom + 28, gap: isMinimal ? 0 : 12 }}
+        contentContainerStyle={{ paddingTop: 4, paddingBottom: insets.bottom + 28 }}
         showsVerticalScrollIndicator={false}
         refreshControl={
           <DeHubRefreshControl
@@ -369,9 +373,9 @@ export default function CommandCentreScreen() {
         }
       >
         {/* Balance */}
-        <Card>
-          <View style={styles.cardHead}>
-            <Text style={styles.cardTitle}>{t("commandCentre.balance")}</Text>
+        <Card
+          title={t("commandCentre.balance")}
+          action={
             <Pressable
               onPress={() => navigation.navigate(ScreenNames.Dpay, { initialTab: "buy" })}
               style={styles.walletBtn}
@@ -379,7 +383,8 @@ export default function CommandCentreScreen() {
               <Icon name="Wallet" size={15} color="#000000" />
               <Text style={styles.walletBtnText}>{t("commandCentre.fullWallet")}</Text>
             </Pressable>
-          </View>
+          }
+        >
           <Text style={styles.balanceBig}>
             {fmt(user?.badgeBalance ?? user?.balance ?? 0)}
             <Text style={styles.balanceUnit}> <DhbCoin size={26} /></Text>
@@ -388,15 +393,10 @@ export default function CommandCentreScreen() {
         </Card>
 
         {/* Income */}
-        <Card>
-          <View style={styles.cardHead}>
-            <View style={{ flex: 1 }}>
-              <Text style={styles.cardTitle}>{t("commandCentre.income")}</Text>
-              {totalEarned > 0 && !incomeError && (
-                <Text style={styles.incomeTotal}>{totalEarned.toLocaleString()} <DhbCoin /></Text>
-              )}
-            </View>
-          </View>
+        <Card title={t("commandCentre.income")}>
+          {totalEarned > 0 && !incomeError && (
+            <Text style={styles.incomeTotal}>{totalEarned.toLocaleString()} <DhbCoin /></Text>
+          )}
           <RangeRow items={INCOME_RANGES} active={incomeRange} onSelect={setIncomeRange} />
 
           {incomeLoading ? (
@@ -431,10 +431,7 @@ export default function CommandCentreScreen() {
         </Card>
 
         {/* Engagement */}
-        <Card>
-          <View style={styles.cardHead}>
-            <Text style={styles.cardTitle}>{t("commandCentre.engagement")}</Text>
-          </View>
+        <Card title={t("commandCentre.engagement")}>
           <RangeRow items={ENG_RANGES} active={engRange} onSelect={setEngRange} />
           {analytics.isLoading ? (
             <ActivityIndicator color="#FFFFFF" style={{ marginVertical: 32 }} />
@@ -470,10 +467,7 @@ export default function CommandCentreScreen() {
         </Card>
 
         {/* Recent activity */}
-        <Card>
-          <View style={styles.cardHead}>
-            <Text style={styles.cardTitle}>{t("commandCentre.recentActivity")}</Text>
-          </View>
+        <Card title={t("commandCentre.recentActivity")}>
           {activity.isLoading ? (
             <ActivityIndicator color="#FFFFFF" style={{ marginVertical: 24 }} />
           ) : activityError ? (
@@ -488,10 +482,7 @@ export default function CommandCentreScreen() {
         </Card>
 
         {/* Subscriptions */}
-        <Card>
-          <View style={styles.cardHead}>
-            <Text style={styles.cardTitle}>{t("commandCentre.subscriptions")}</Text>
-          </View>
+        <Card title={t("commandCentre.subscriptions")}>
           {subs.isLoading ? (
             <ActivityIndicator color="#FFFFFF" style={{ marginVertical: 24 }} />
           ) : (
@@ -541,18 +532,6 @@ export default function CommandCentreScreen() {
 const styles = StyleSheet.create({
   root: { flex: 1, backgroundColor: "#010305" },
 
-  card: {
-    borderRadius: 12,
-    backgroundColor: "rgba(255,255,255,0.04)",
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.10)",
-    padding: 16,
-  },
-  // -16 cancels the scroll gutter so the hairline spans the screen; the
-  // card's 16pt padding keeps the text where it was.
-  minimalCard: { ...minimalRow, marginHorizontal: -16, paddingHorizontal: 16 },
-  cardHead: { flexDirection: "row", alignItems: "center", marginBottom: 4 },
-  cardTitle: { color: "#FFFFFF", fontSize: 15, fontWeight: "700" },
   dim: { color: "#A1A1AA", fontSize: 12 },
 
   walletBtn: {
@@ -566,12 +545,12 @@ const styles = StyleSheet.create({
   },
   walletBtnText: { color: "#000000", fontSize: 12, fontWeight: "700" },
 
-  balanceBig: { color: "#FFFFFF", fontSize: 32, fontWeight: "800", marginTop: 6 },
+  balanceBig: { color: "#FFFFFF", fontSize: 32, fontWeight: "800" },
   balanceUnit: { color: "#808089", fontSize: 15, fontWeight: "700" },
 
-  incomeTotal: { color: "#F4F4F5", fontSize: 13, fontWeight: "700", marginTop: 2 },
+  incomeTotal: { color: "#F4F4F5", fontSize: 13, fontWeight: "700", marginTop: -6 },
 
-  rangeRow: { flexDirection: "row", gap: 6, marginTop: 10 },
+  rangeRow: { flexDirection: "row", gap: 6, marginTop: 4 },
   rangeChip: {
     paddingHorizontal: 11,
     paddingVertical: 5,

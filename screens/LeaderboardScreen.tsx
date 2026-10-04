@@ -13,6 +13,7 @@ import { DeHubLoader } from "../components/DeHubLoader";
 import Animated from "react-native-reanimated";
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import ScreenHeader from "../components/ScreenHeader";
+import { KitButton, PageEmpty } from "../components/page/PageKit";
 import { CollapsibleHeader } from "../components/common/CollapsibleHeader";
 import { useCollapsibleScreen } from "../hooks/useCollapsibleScreen";
 import LeaderboardCategoryPills, {
@@ -376,13 +377,14 @@ const LeaderboardScreen = () => {
 
   const renderEmpty = useCallback(
     () => (
-      <View className="items-center px-6 py-12">
-        <Text className="text-theme-neutrals-400 text-sm text-center">
-          {data.length === 0 && period !== "all"
+      <PageEmpty
+        icon="trophy"
+        title={
+          data.length === 0 && period !== "all"
             ? t("leaderboard.noDataForPeriod")
-            : t("leaderboard.noUsersFound")}
-        </Text>
-      </View>
+            : t("leaderboard.noUsersFound")
+        }
+      />
     ),
     [data.length, period, t]
   );
@@ -432,18 +434,12 @@ const LeaderboardScreen = () => {
           <DeHubLoader size={56} />
         </View>
       ) : error ? (
-        <View className="flex-1 items-center justify-center px-6" style={{ paddingTop: headerHeight }}>
-          <Text className="text-theme-neutrals-300 text-sm text-center mb-4">
-            {t("leaderboard.failedToLoad")}
-          </Text>
-          <TouchableOpacity
-            onPress={handleRetry}
-            activeOpacity={0.7}
-            className="px-5 py-2.5 rounded-lg bg-white"
-            accessibilityRole="button"
-          >
-            <Text className="text-theme-neutrals-900 text-sm font-semibold">{t("leaderboard.retry")}</Text>
-          </TouchableOpacity>
+        <View className="flex-1 justify-center" style={{ paddingTop: headerHeight }}>
+          <PageEmpty
+            icon="trophy"
+            title={t("leaderboard.failedToLoad")}
+            action={<KitButton label={t("leaderboard.retry")} onPress={handleRetry} />}
+          />
         </View>
       ) : (
         <Animated.FlatList
@@ -474,7 +470,7 @@ const LeaderboardScreen = () => {
           Explore header does — they are chrome, not list content. Rendered
           after the list so it draws over it on Android. */}
       <CollapsibleHeader {...headerProps}>
-        <ScreenHeader title={t("nav.leaderboard")} />
+        <ScreenHeader title={t("nav.leaderboard")} subtitle={t("leaderboard.subtitle")} icon="trophy" />
         <View className="bg-theme-neutrals-900">{renderListHeader()}</View>
       </CollapsibleHeader>
       <DeHubRefreshMark refreshing={refreshing} topInset={refreshOffset} />
