@@ -439,6 +439,7 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
             parse: { id: (id: string) => id },
           },
           [ScreenNames.CreatorFlow]: DeepLinkPaths.CREATOR_FLOW,
+          [ScreenNames.CreatorStudio]: { path: 'creator', parse: { mode: (mode: string) => ['image', 'video', 'audio', '3d'].includes(mode) ? mode : 'image' } },
 
           [ScreenNames.Raffle]: DeepLinkPaths.RAFFLE,
 
