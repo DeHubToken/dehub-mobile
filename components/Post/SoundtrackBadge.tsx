@@ -1,5 +1,7 @@
-import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
-import { TouchableOpacity, View, Text, StyleSheet, ActivityIndicator, AppState } from "react-native";
+import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { TouchableOpacity, View, Text, StyleSheet, ActivityIndicator, AppState, Animated, Easing, Platform } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
+import IosGlassPill from "../ui/IosGlassPill";
 import { useIsFocused } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import { createAudioPlayer } from "expo-audio";
@@ -14,9 +16,13 @@ interface Props {
   creator: string;
   url: string;
   isVisible?: boolean;
+  /** overlay: a glass capsule on the photo that opens into a wave along its
+   *  bottom edge while the song plays. inline: the capsule alone. */
+  variant?: "overlay" | "inline";
+  onPlayingChange?: (playing: boolean) => void;
 }
 
-const SoundtrackBadge: React.FC<Props> = ({ title, creator, url, isVisible = true }) => {
+const SoundtrackBadge: React.FC<Props> = ({ title, creator, url, isVisible = true, variant = "inline", onPlayingChange }) => {
   const { t } = useTranslation();
   const focused = useIsFocused();
   const { session, ownsPlayer, active: ownsAudio } = usePostAudioSession(url);
@@ -101,6 +107,19 @@ const SoundtrackBadge: React.FC<Props> = ({ title, creator, url, isVisible = tru
     return () => subscription.remove();
   }, [pause]);
 
+  const [progress, setProgress] = useState(0);
+  useEffect(() => {
+    if (!playing || variant !== "overlay") return;
+    const read = () => {
+      const audio = session.value;
+      const duration = audio?.duration ?? 0;
+      setProgress(audio && duration > 0 ? audio.currentTime / duration : 0);
+    };
+    read();
+    const id = setInterval(read, 250);
+    return () => clearInterval(id);
+  }, [playing, variant, session]);
+
   const toggle = useCallback(async () => {
     if (wanted.current) { pause(); return; }
     if (!ownsPlayer() || !active.current || AppState.currentState !== "active") return;
@@ -132,35 +151,167 @@ const SoundtrackBadge: React.FC<Props> = ({ title, creator, url, isVisible = tru
     }
   }, [url, session, ownsPlayer, pause, fail]);
 
+  useEffect(() => { onPlayingChange?.(playing); }, [playing, onPlayingChange]);
+  useEffect(() => () => onPlayingChange?.(false), [onPlayingChange]);
+
   const action = error ? t("common.retry") : loading ? t("common.cancel") : playing ? t("audioPost.pause") : t("audioPost.play");
   const name = title || t("feed.music");
+  const label = `${action}: ${name}${creator ? ` — ${creator}` : ""}`;
+  const onPress = (event: { stopPropagation?: () => void }) => { event.stopPropagation?.(); void toggle(); };
+  const open = playing || loading;
+
+  if (variant === "overlay" && open) {
+    return (
+      <View style={styles.edge} pointerEvents="box-none">
+        <LinearGradient
+          colors={["rgba(0,0,0,0)", "rgba(0,0,0,0.15)", "rgba(0,0,0,0.65)"]}
+          locations={[0, 0.35, 1]}
+          style={StyleSheet.absoluteFill}
+          pointerEvents="none"
+        />
+        <View style={styles.edgeRow} pointerEvents="box-none">
+          <View style={styles.edgeMeta} pointerEvents="none">
+            <View style={styles.edgeTitleRow}>
+              <Ionicons name="musical-note" size={13} color="#fff" />
+              <Text style={[styles.edgeTitle, styles.shadow]} numberOfLines={1}>{name}</Text>
+            </View>
+            {!!creator && <Text style={[styles.edgeCreator, styles.shadow]} numberOfLines={1}>{creator}</Text>}
+          </View>
+          <TouchableOpacity onPress={onPress} activeOpacity={0.75} accessibilityRole="button" accessibilityLabel={label} style={styles.edgeButton}>
+            <GlassFill radius={20} />
+            {loading ? <ActivityIndicator size="small" color="#fff" /> : <Ionicons name={playing ? "pause" : "play"} size={17} color="#fff" style={playing ? undefined : { marginLeft: 2 }} />}
+          </TouchableOpacity>
+        </View>
+        <SoundWave seed={`${name}|${creator}`} playing={playing} progress={progress} />
+      </View>
+    );
+  }
+
   return (
     <TouchableOpacity
-      onPress={(event) => { event.stopPropagation(); void toggle(); }}
+      onPress={onPress}
       activeOpacity={0.75}
       accessibilityRole="button"
-      accessibilityLabel={`${action}: ${name}${creator ? ` — ${creator}` : ""}`}
-      style={styles.container}
+      accessibilityLabel={label}
+      style={[styles.capsule, variant === "overlay" && styles.capsuleOverlay]}
     >
-      <Ionicons name="musical-note" size={17} color="rgba(255,255,255,0.75)" />
-      <View style={styles.metadata}>
-        <Text style={styles.title} numberOfLines={1}>{name}</Text>
-        {!!creator && <Text style={styles.creator} numberOfLines={1}>{creator}</Text>}
-      </View>
-      {loading ? <ActivityIndicator size="small" color="#fff" /> : (
-        <Ionicons name={error ? "refresh" : playing ? "pause" : "play"} size={17} color="#fff" />
-      )}
-      <Text style={styles.action}>{loading ? t("common.loading") : action}</Text>
+      <GlassFill radius={18} />
+      {playing ? <SoundEq /> : error ? <Ionicons name="refresh" size={14} color="#fff" />
+        : loading ? <ActivityIndicator size="small" color="#fff" />
+        : <Ionicons name="musical-note" size={14} color="#fff" />}
+      <Text style={styles.capsuleTitle} numberOfLines={1}>{name}</Text>
+      {playing ? <Ionicons name="pause" size={13} color="#fff" /> : !error && !loading ? <Ionicons name="play" size={13} color="#fff" /> : null}
     </TouchableOpacity>
   );
 };
 
+/** Liquid glass on iPhone; Android has no safe backdrop blur, so a dark wash. */
+function GlassFill({ radius }: { radius: number }) {
+  if (Platform.OS === "ios") return <IosGlassPill tint="rgba(0,0,0,0.18)" borderRadius={radius} />;
+  return <View pointerEvents="none" style={[StyleSheet.absoluteFill, { borderRadius: radius, backgroundColor: "rgba(0,0,0,0.5)", borderWidth: 1, borderColor: "rgba(255,255,255,0.22)" }]} />;
+}
+
+const BAR_COUNT = 40;
+const BEAT_MS = 508; // 118 BPM
+
+/** Stable bar heights per song, so the same song always draws the same wave. */
+function waveFor(seed: string): number[] {
+  let h = 2166136261;
+  for (let i = 0; i < seed.length; i++) h = Math.imul(h ^ seed.charCodeAt(i), 16777619);
+  return Array.from({ length: BAR_COUNT }, (_, i) => {
+    h = Math.imul(h ^ (h >>> 15), 2246822507) + i;
+    const noise = ((h >>> 0) % 1000) / 1000;
+    const shape = Math.abs(Math.sin(i * 0.55)) * 0.5 + 0.5;
+    return 0.3 + 0.7 * noise * shape;
+  });
+}
+
+/** One looping beat drives every bar; each bar maps it to its own range and
+ *  half of them run against it, so the wave ripples instead of pumping. */
+function useBeat(playing: boolean, period = BEAT_MS) {
+  const beat = useRef(new Animated.Value(0)).current;
+  useEffect(() => {
+    if (!playing) { beat.stopAnimation(); beat.setValue(0); return; }
+    const loop = Animated.loop(Animated.sequence([
+      Animated.timing(beat, { toValue: 1, duration: period, easing: Easing.inOut(Easing.sin), useNativeDriver: true }),
+      Animated.timing(beat, { toValue: 0, duration: period, easing: Easing.inOut(Easing.sin), useNativeDriver: true }),
+    ]));
+    loop.start();
+    return () => loop.stop();
+  }, [playing, beat, period]);
+  return beat;
+}
+
+function SoundWave({ seed, playing, progress }: { seed: string; playing: boolean; progress: number }) {
+  const bars = useMemo(() => waveFor(seed), [seed]);
+  const beat = useBeat(playing);
+  return (
+    <View style={styles.wave} pointerEvents="none">
+      {bars.map((h, i) => {
+        const low = h * 0.35;
+        const scaleY = playing
+          ? beat.interpolate({ inputRange: [0, 1], outputRange: i % 2 ? [h, low] : [low, h] })
+          : 0.15;
+        return (
+          <Animated.View
+            key={i}
+            style={[styles.bar, i / BAR_COUNT < progress && styles.barPlayed, { transform: [{ scaleY }] }]}
+          />
+        );
+      })}
+    </View>
+  );
+}
+
+function SoundEq() {
+  const beat = useBeat(true, 300);
+  const ranges: [number, number][] = [[0.25, 1], [1, 0.3], [0.4, 0.9], [0.9, 0.2]];
+  return (
+    <View style={styles.eq}>
+      {ranges.map((range, i) => (
+        <Animated.View key={i} style={[styles.eqBar, { transform: [{ scaleY: beat.interpolate({ inputRange: [0, 1], outputRange: range }) }] }]} />
+      ))}
+    </View>
+  );
+}
+
+/** The photo under a playing soundtrack drifts and zooms slowly, like a film shot. */
+export function SoundDrift({ playing, children }: { playing: boolean; children: React.ReactNode }) {
+  const drift = useRef(new Animated.Value(0)).current;
+  useEffect(() => {
+    if (!playing) {
+      Animated.timing(drift, { toValue: 0, duration: 600, easing: Easing.out(Easing.quad), useNativeDriver: true }).start();
+      return;
+    }
+    const loop = Animated.loop(Animated.sequence([
+      Animated.timing(drift, { toValue: 1, duration: 16000, easing: Easing.inOut(Easing.sin), useNativeDriver: true }),
+      Animated.timing(drift, { toValue: 0, duration: 16000, easing: Easing.inOut(Easing.sin), useNativeDriver: true }),
+    ]));
+    loop.start();
+    return () => loop.stop();
+  }, [playing, drift]);
+  const scale = drift.interpolate({ inputRange: [0, 1], outputRange: [1, 1.08] });
+  const translateX = drift.interpolate({ inputRange: [0, 1], outputRange: [0, -6] });
+  return <Animated.View style={{ transform: [{ scale }, { translateX }] }}>{children}</Animated.View>;
+}
+
 const styles = StyleSheet.create({
-  container: { flexDirection: "row", alignItems: "center", gap: 10, paddingHorizontal: 12, paddingVertical: 8, minHeight: 44, borderRadius: 12, backgroundColor: "rgba(0,0,0,0.75)", alignSelf: "flex-start", maxWidth: "100%", borderWidth: 1, borderColor: "rgba(255,255,255,0.15)" },
-  metadata: { flexShrink: 1 },
-  title: { color: "#fff", fontSize: 12, fontWeight: "600" },
-  creator: { color: "rgba(255,255,255,0.75)", fontSize: 11, marginTop: 2 },
-  action: { color: "#fff", fontSize: 11, fontWeight: "500", flexShrink: 0 },
+  capsule: { flexDirection: "row", alignItems: "center", gap: 8, height: 36, paddingHorizontal: 12, borderRadius: 18, alignSelf: "flex-start", maxWidth: 240, overflow: "hidden" },
+  capsuleOverlay: { position: "absolute", left: 10, bottom: 10 },
+  capsuleTitle: { color: "#fff", fontSize: 12, fontWeight: "600", flexShrink: 1 },
+  edge: { position: "absolute", left: 0, right: 0, bottom: 0, paddingTop: 40, paddingBottom: 8 },
+  edgeRow: { flexDirection: "row", alignItems: "flex-end", gap: 12, paddingHorizontal: 12 },
+  edgeMeta: { flex: 1, minWidth: 0 },
+  edgeTitleRow: { flexDirection: "row", alignItems: "center", gap: 6 },
+  edgeTitle: { color: "#fff", fontSize: 14, fontWeight: "700", flexShrink: 1 },
+  edgeCreator: { color: "rgba(255,255,255,0.82)", fontSize: 12, marginTop: 1 },
+  shadow: { textShadowColor: "rgba(0,0,0,0.6)", textShadowOffset: { width: 0, height: 1 }, textShadowRadius: 8 },
+  edgeButton: { width: 40, height: 40, borderRadius: 20, alignItems: "center", justifyContent: "center", overflow: "hidden" },
+  wave: { flexDirection: "row", alignItems: "center", gap: 2, height: 14, marginTop: 8, marginHorizontal: 12 },
+  bar: { flex: 1, height: "100%", borderRadius: 2, backgroundColor: "rgba(255,255,255,0.4)" },
+  barPlayed: { backgroundColor: "rgba(255,255,255,0.95)" },
+  eq: { flexDirection: "row", alignItems: "flex-end", gap: 2, height: 12 },
+  eqBar: { width: 2.5, height: "100%", borderRadius: 2, backgroundColor: "#fff" },
 });
 
 export default React.memo(SoundtrackBadge);
