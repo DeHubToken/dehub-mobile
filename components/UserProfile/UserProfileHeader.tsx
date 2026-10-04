@@ -14,6 +14,7 @@ import { useTranslation } from "../../hooks/useTranslation";
 import { TranslateButton } from "../ui/TranslateButton";
 import MutualFollowers from "./MutualFollowers";
 import StreamerLevelCard from "../Live/StreamerLevelCard";
+import StreamerBadge from "../Live/StreamerBadge";
 import BadgePatronChip from "../common/BadgePatronChip";
 import { useTranslation as useI18n } from "react-i18next";
 import { formatCompactNumber } from "../../libs/numbers.util";
@@ -318,6 +319,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
                 <BadgeArtwork source={badgeImage} style={[getBadgeOpticalStyle(badgeImage, 20), { marginLeft: 0 }]} contentFit="contain" />
               </Pressable>
             )}
+            <StreamerBadge address={address} canSelect={isOwnProfile} />
           </View>
 
           {/* Wraps, so a long handle plus the .eth / follows-you / patron
