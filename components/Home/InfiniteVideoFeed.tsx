@@ -1248,6 +1248,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   const newPostsPillStyle = useAnimatedStyle(() => ({
     transform: [{ translateY: headerTranslateY ? headerTranslateY.value : 0 }],
   }));
+  const [newPostsHovered, setNewPostsHovered] = useState(false);
 
   // Both guards count ORGANIC rows. A live boost is one item in the list, so
   // measuring `feedItems` let a boost mask a completely failed feed — the
@@ -1297,18 +1298,33 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
           ]}
         >
           <Pressable
-            onPress={showNewPosts}
+            onPress={() => {
+              setNewPostsHovered(false);
+              showNewPosts();
+            }}
+            onHoverIn={() => setNewPostsHovered(true)}
+            onHoverOut={() => setNewPostsHovered(false)}
             accessibilityRole="button"
             accessibilityLabel={`${newPostCount} new posts, tap to refresh`}
             className={islandChrome ? "flex-row items-center justify-center gap-1.5 px-2 py-2" : "flex-row items-center gap-1.5 rounded-full border border-white/20 dark-surface bg-black/85 px-4 py-2"}
             style={islandChrome ? { width: ISLAND_CAPSULE_WIDTH, paddingTop: 52, borderRadius: 15, overflow: "hidden" } : undefined}
           >
-            {islandChrome ? <ChromeSurface radius={15} /> : null}
-            <Icon name="ArrowUp" size={14} color="#E5E7EB" />
-            <Text className="text-xs font-semibold text-white" style={{ flexShrink: 1 }}>
-              {t("feed.newPosts", { count: newPostCount })}
-              {newPostsAtCap ? "+" : ""}
-            </Text>
+            {({ pressed }) => (
+              <>
+                {islandChrome ? <ChromeSurface radius={15} /> : null}
+                <Icon name="ArrowUp" size={14} color="#E5E7EB" />
+                <Text
+                  className="text-xs font-semibold text-white"
+                  style={{
+                    flexShrink: 1,
+                    color: !islandChrome || pressed || newPostsHovered ? "#FFFFFF" : "rgba(255,255,255,0.7)",
+                  }}
+                >
+                  {t("feed.newPosts", { count: newPostCount })}
+                  {newPostsAtCap ? "+" : ""}
+                </Text>
+              </>
+            )}
           </Pressable>
         </Animated.View>
       )}
