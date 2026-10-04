@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Modal, Pressable, ScrollView, Text, TextInput, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import Icon from '../ui/Icon';
 import { CREATOR_VIDEO_RULES } from '../../config/creator-video-rules';
 import { MODEL3D_MODELS } from '../../config/model3d-models.constants';
 import {
@@ -13,10 +14,11 @@ interface Props {
   onChange: (settings: CreatorStudioSettings) => void;
   onMode: (mode: CreatorMode) => void;
   onPresets: () => void;
+  onAttach?: () => void;
   disabled: boolean;
 }
 
-export default function CreatorStudioControls({ settings, onChange, onMode, onPresets, disabled }: Props) {
+export default function CreatorStudioControls({ settings, onChange, onMode, onPresets, onAttach, disabled }: Props) {
   const { t } = useTranslation();
   const [picker, setPicker] = useState<'model' | 'aspect' | 'resolution' | 'texture' | null>(null);
   const [durationDraft, setDurationDraft] = useState(String(settings.durationSeconds));
@@ -57,6 +59,13 @@ export default function CreatorStudioControls({ settings, onChange, onMode, onPr
   return (
     <View className="gap-2 px-4 pb-2">
       <View className="flex-row gap-2">
+        {onAttach && (
+          <Pressable onPress={onAttach} disabled={disabled} accessibilityRole="button"
+            accessibilityState={{ disabled }} accessibilityLabel={t('dm.attachImage')}
+            hitSlop={6} className="items-center justify-center rounded-xl border border-theme-neutrals-700 bg-theme-neutrals-800 px-2.5">
+            <Icon name="Paperclip" size={18} color={disabled ? '#3F3F46' : '#A1A1AA'} />
+          </Pressable>
+        )}
         {(Object.keys(CREATOR_MODE_KEYS) as CreatorMode[]).map((mode) => chip(t(CREATOR_MODE_KEYS[mode]), () => onMode(mode), mode === settings.mode))}
       </View>
       <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 8 }}>

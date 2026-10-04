@@ -1706,7 +1706,8 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
 
       <View style={{ marginBottom: kbVisible ? kbLift : studio ? 0 : TAB_BAR_HEIGHT }}>
         {studio && <CreatorStudioControls settings={studioSettings} onChange={setStudioSettings}
-          onMode={changeStudioMode} onPresets={() => setTemplatesVisible(true)} disabled={isLoading} />}
+          onMode={changeStudioMode} onPresets={() => setTemplatesVisible(true)}
+          onAttach={studioSettings.mode === 'audio' ? undefined : handleAttach} disabled={isLoading} />}
         <MentionSuggestions
           visible={mentions.showSuggestions}
           suggestions={mentions.suggestions}
@@ -1736,7 +1737,7 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
           onChangeText={mentions.handleChangeText}
           onSelectionChange={mentions.handleSelectionChange}
           onSend={handleSend}
-          onAttach={studio && studioSettings.mode === 'audio' ? undefined : handleAttach}
+          onAttach={studio ? undefined : handleAttach}
           attachedImage={attachedImage}
           onRemoveImage={() => setAttachedImage(null)}
           loading={isLoading}
