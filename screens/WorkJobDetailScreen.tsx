@@ -152,6 +152,8 @@ export default function WorkJobDetailScreen() {
   const [showDispute, setShowDispute] = useState(false);
   const [rejectTarget, setRejectTarget] = useState<WorkSubmission | null>(null);
   const [rejectReason, setRejectReason] = useState("");
+  const [clipChecks, setClipChecks] = useState<Record<string, { views: string; evidence: string }>>({});
+  const [recoveryHashes, setRecoveryHashes] = useState<Record<string,string>>({});
 
   const requireAuth = useCallback(() => {
     if (!me) {
@@ -240,12 +242,12 @@ export default function WorkJobDetailScreen() {
   const { isPoster, isAwarded, myApp, myReview, canReview } = roles;
   const st = statusStyle(job.status);
 
+  const accepting = ["open","in_progress"].includes(job.status) && (!job.deadline || Date.parse(job.deadline) > Date.now()) && job.units_approved < job.max_units;
   const canApply =
-    job.job_type === "contract" && !isPoster && !myApp && !isAwarded && job.status === "open";
+    job.job_type === "contract" && !isPoster && !myApp && !isAwarded && job.status === "open" && accepting;
   const canSubmitProof =
     ((job.job_type !== "contract" && !isPoster) || isAwarded) &&
-    job.status !== "completed" &&
-    job.status !== "cancelled";
+    accepting;
   const showSubmissions = job.job_type !== "contract" || isAwarded || isPoster;
 
   return (
@@ -463,7 +465,13 @@ export default function WorkJobDetailScreen() {
                   // Approved is not paid. Only a payout_tx_hash proves money
                   // moved — treating the two as one status is what showed a
                   // green "Paid" over work nobody had been sent anything for.
-                  const paid = !!s.payout_tx_hash || s.approval_status === "paid";
+                  const paid = s.payout_state === 'confirmed' && !!s.payout_tx_hash;
+                  const submittedPayment = s.payout_state === 'signing' || s.payout_state === 'broadcast';
+                  const clipping = job.job_type === 'clipping';
+                  const check = clipChecks[s.id] || { views: '', evidence: s.proof_url };
+                  const verifiedViews = Number(check.views);
+                  const clipUnits = Number.isSafeInteger(verifiedViews) && verifiedViews >= 1000 ? Math.floor(verifiedViews / 1000) : 0;
+                  const validViews = !clipping || (clipUnits > 0 && /^https:\/\/\S+$/.test(check.evidence));
                   const awaitingPayment =
                     s.approval_status === "approved" && !s.payout_tx_hash;
                   const rejected = s.approval_status === "rejected";
@@ -483,11 +491,11 @@ export default function WorkJobDetailScreen() {
                     (Number(job.total_budget) || 0) - released,
                   );
                   const askingPrice =
-                    job.job_type === "contract" ? remaining : job.price_per_unit;
-                  const due = Number(s.payout_amount) || Math.min(askingPrice, remaining);
+                    job.job_type === "contract" ? job.total_budget : job.price_per_unit * (clipping ? clipUnits : 1);
+                  const due = Number(s.payout_amount) || askingPrice;
                   // Already-settled rows keep showing the amount they were paid;
                   // only an unpaid row is blocked once the budget is spent.
-                  const budgetSpent = !s.payout_amount && remaining <= 0;
+                  const budgetSpent = due > remaining || (!s.payout_amount && remaining <= 0);
                   return (
                     <View key={s.id} style={rowStyle}>
                       <View style={styles.rowHead}>
@@ -531,6 +539,21 @@ export default function WorkJobDetailScreen() {
                       </Pressable>
 
                       {!!s.proof_text && <Text style={styles.rowBody}>{s.proof_text}</Text>}
+                      {s.view_count_cached > 0 && <Text style={styles.rowBody}>{num(s.view_count_cached,0)} verified views · {s.approved_units} × 1,000 views</Text>}
+                      {isPoster && clipping && s.approval_status === 'pending' && (
+                        <View style={{gap:8, marginTop:10}}>
+                          <Text style={styles.rowBody}>Verify the clip count before approving. Each full 1,000 views earns one unit.</Text>
+                          <TextInput accessibilityLabel="Verified view count" placeholder="Verified view count" keyboardType="number-pad" value={check.views}
+                            onChangeText={views => setClipChecks(prev => ({...prev,[s.id]:{...check,views}}))} style={styles.input} />
+                          <TextInput accessibilityLabel="View count source" placeholder="View count source URL" autoCapitalize="none" value={check.evidence}
+                            onChangeText={evidence => setClipChecks(prev => ({...prev,[s.id]:{...check,evidence}}))} style={styles.input} />
+                        </View>
+                      )}
+                      {submittedPayment && <Text style={styles.awaitingText}>Payment is awaiting confirmation. Check its status before sending another transfer.</Text>}
+                      {isPoster && s.payout_state === 'signing' && (
+                        <TextInput accessibilityLabel="Recover payment transaction" placeholder="0x transaction hash" autoCapitalize="none"
+                          value={recoveryHashes[s.id] || ''} onChangeText={value => setRecoveryHashes(prev => ({...prev,[s.id]:value.trim()}))} style={styles.input} />
+                      )}
 
                       {paid && s.payout_amount > 0 && (
                         <Text style={styles.paidText}>
@@ -563,7 +586,7 @@ export default function WorkJobDetailScreen() {
                             disabled={
                               approveMutation.isPending ||
                               payMutation.isPending ||
-                              budgetSpent
+                              budgetSpent || !validViews
                             }
                             onPress={() =>
                               approveMutation.mutate({
@@ -574,6 +597,8 @@ export default function WorkJobDetailScreen() {
                                 worker_address: s.worker_address,
                                 payout_amount: due,
                                 pay: true,
+                                views: clipping ? verifiedViews : undefined,
+                                evidence_url: clipping ? check.evidence : undefined,
                               })
                             }
                             style={[styles.approveBtn, budgetSpent && styles.disabled]}
@@ -588,7 +613,7 @@ export default function WorkJobDetailScreen() {
                             </Text>
                           </Pressable>
                           <Pressable
-                            disabled={approveMutation.isPending || payMutation.isPending}
+                            disabled={approveMutation.isPending || payMutation.isPending || budgetSpent || !validViews}
                             onPress={() =>
                               approveMutation.mutate({
                                 submission_id: s.id,
@@ -598,6 +623,8 @@ export default function WorkJobDetailScreen() {
                                 worker_address: s.worker_address,
                                 payout_amount: due,
                                 pay: false,
+                                views: clipping ? verifiedViews : undefined,
+                                evidence_url: clipping ? check.evidence : undefined,
                               })
                             }
                             style={styles.approveOnlyBtn}
@@ -627,13 +654,14 @@ export default function WorkJobDetailScreen() {
                                 currency: job.currency,
                                 worker_address: s.worker_address,
                                 payout_amount: due,
+                                recovery_hash: recoveryHashes[s.id] || undefined,
                               })
                             }
                             style={[styles.approveBtn, budgetSpent && styles.disabled]}
                           >
                             <Icon name="Wallet" size={12} color="#D4D4D8" />
                             <Text style={styles.approveText}>
-                              {t("work.detail.payNow", {
+                              {submittedPayment ? 'Check payment' : t("work.detail.payNow", {
                                 amount: due,
                                 currency: job.currency,
                                 defaultValue: "Pay {{amount}} {{currency}}",
