@@ -38,7 +38,7 @@ describe('expanded studio catalog', () => {
 
   it('provides distinct translated names and usable hints for the enlarged picker', () => {
     for (const locale of [en, fr]) {
-      const creator: Record<string, string> = locale.creator;
+      const creator: Record<string, unknown> = locale.creator;
       const names = EXPANDED_STUDIO_PRESETS.map((preset) => creator[preset.nameKey.split('.')[1]]);
       expect(names.every((name) => typeof name === 'string' && name.length > 0)).toBe(true);
       expect(new Set(names).size).toBe(EXPANDED_STUDIO_PRESETS.length);
