@@ -791,7 +791,7 @@ export default function HomeScreen() {
     if (!visibleTabs.has(key)) return null;
     // `active` gates video playback, not visibility, so it rides the deferred
     // index — see deferredIndex above.
-    const isPlaybackActive = index === deferredIndex && !feedProfileVisible;
+    const isPlaybackActive = index === deferredIndex && !profileVisible;
 
     if (key === "feed-images") {
       return (

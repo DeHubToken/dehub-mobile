@@ -87,3 +87,34 @@ it('keeps canGoBack={false} and onBackPress overrides', () => {
   expect(backButtons(tree)).toHaveLength(1);
   act(() => tree.unmount());
 });
+
+it('shows only floating controls in System and keeps the profile menu usable', () => {
+  const onBack = jest.fn();
+  const onMenu = jest.fn();
+  let tree!: ReactTestRenderer;
+  act(() => {
+    tree = create(
+      <ScreenHeader
+        title="Profile"
+        overlay
+        onBackPress={onBack}
+        rightContent={<button onClick={onMenu}>Options</button>}
+      />,
+    );
+  });
+  expect(tree.root.findAllByType('Text' as any)).toHaveLength(0);
+  act(() => backButtons(tree)[0].props.onPress());
+  expect(onBack).toHaveBeenCalledTimes(1);
+  act(() => tree.root.findByType('button').props.onClick());
+  expect(onMenu).toHaveBeenCalledTimes(1);
+  act(() => tree.unmount());
+});
+
+it('never renders the old title bar on ordinary System pages', () => {
+  mockNavigation.canGoBack.mockReturnValue(true);
+  let tree!: ReactTestRenderer;
+  act(() => { tree = create(<ScreenHeader title="Careers" />); });
+  expect(tree.root.findAllByType('Text' as any)).toHaveLength(0);
+  expect(backButtons(tree)).toHaveLength(1);
+  act(() => tree.unmount());
+});

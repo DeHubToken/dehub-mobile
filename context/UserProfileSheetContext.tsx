@@ -1,6 +1,7 @@
 import React, { createContext, useCallback, useContext, useRef, useState, useMemo, useEffect } from 'react';
 import UserProfileBottomSheet from '../components/UserProfile/UserProfileBottomSheet';
 import { setProfileDeepLinkHandler } from '../libs/deeplink.events';
+import { useAppTheme } from './ThemeContext';
 import {
   resolveProfilePresentation,
   type ProfilePresentation,
@@ -22,6 +23,7 @@ const UserProfileSheetContext = createContext<CtxValue | undefined>(undefined);
 const UserProfilePresentationContext = createContext<PresentationCtxValue | undefined>(undefined);
 
 export const UserProfileSheetProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const { theme } = useAppTheme();
   const [visible, setVisible] = useState(false);
   const [identifier, setIdentifier] = useState<string | null>(null);
   const [options, setOptions] = useState<{ initialHeightPct?: number; source?: string } | null>(null);
@@ -38,15 +40,13 @@ export const UserProfileSheetProvider: React.FC<{ children: React.ReactNode }> =
     // Set all state together to prevent flicker
     setIdentifier(id);
     setOptions(opts || null);
-    // A profile opened while Home owns the active surface replaces only the
-    // feed body. The feed header stays mounted above it and changes its leading
-    // settings control into Back, matching the web transition. Deep links do
-    // not have a feed-origin history entry, so they keep the standalone modal.
+    // System opens above the whole feed with its own floating back control.
+    // Other themes retain the embedded presentation when Home is focused.
     setPresentation(
-      resolveProfilePresentation(feedProfileHostActiveRef.current, opts?.source),
+      resolveProfilePresentation(feedProfileHostActiveRef.current, opts?.source, theme),
     );
     setVisible(true);
-  }, []);
+  }, [theme]);
 
   const setFeedProfileHostActive = useCallback((active: boolean) => {
     feedProfileHostActiveRef.current = active;
