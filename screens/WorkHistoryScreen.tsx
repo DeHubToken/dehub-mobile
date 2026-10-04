@@ -52,8 +52,8 @@ const statusStyle = (s: string) => {
 const num = (n: number) =>
   (Number(n) || 0).toLocaleString(appLocale(), { maximumFractionDigits: 4 });
 
-const TxLink: React.FC<{ label: string; txHash: string }> = ({ label, txHash }) => (
-  <Pressable style={styles.txRow} onPress={() => openInApp(workExplorerTxUrl(txHash))} hitSlop={6}>
+const TxLink: React.FC<{ label: string; txHash: string; chain?:number }> = ({ label, txHash,chain=8453 }) => (
+  <Pressable style={styles.txRow} onPress={() => openInApp(workExplorerTxUrl(txHash,chain))} hitSlop={6}>
     <Icon name="ExternalLink" size={11} color="#808089" />
     <Text style={styles.txText}>
       {label}: {txHash.slice(0, 6)}…{txHash.slice(-4)}
@@ -179,7 +179,7 @@ export default function WorkHistoryScreen() {
           {(paid || awaitingPayment) && due > 0 && job ? ` · ${num(due)} ${job.currency}` : ""}
         </Text>
         {s.payout_tx_hash ? (
-          <TxLink label={t("work.payoutTx")} txHash={s.payout_tx_hash} />
+          <TxLink label={t("work.payoutTx")} txHash={s.payout_tx_hash} chain={s.payout_chain_id ?? 8453} />
         ) : awaitingPayment ? (
           <Text style={[styles.dimNote, { color: "rgba(253,230,138,0.7)" }]}>
             {t("work.acceptedNotSent")}

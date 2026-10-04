@@ -133,12 +133,10 @@ const TBL_REVIEWS = "work_reviews";
 const TBL_DISPUTES = "work_disputes";
 
 
-export const DEHUB_WORK_ADDRESS = "0x0000000000000000000000000000000000000000";
-export const isWorkContractDeployed = () =>
-  DEHUB_WORK_ADDRESS.toLowerCase() !== "0x0000000000000000000000000000000000000000";
 
 
-export const workExplorerTxUrl = (txHash: string) => `https://basescan.org/tx/${txHash}`;
+
+export const workExplorerTxUrl = (txHash: string,chain=8453) => `${chain===56?"https://bscscan.com":"https://basescan.org"}/tx/${txHash}`;
 
 
 export const WORK_ADMIN_ARBITERS: string[] = ["0x9324840523a5d17dd12a2f11a9472e5a199c1937"];

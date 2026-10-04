@@ -8,7 +8,7 @@ type Dependencies = {
   receipt:(id:string,hash:string,chain:number)=>Promise<{payload:string;signature:string}|null>;
   hash:(text:string)=>string;
   write:(address:string,name:string,args:unknown[])=>Promise<{hash:string;wait:(confirmations:number)=>Promise<unknown>}>;
-  prepareFunding:(address:string,currency:string,total:string)=>Promise<void>;
+  prepareFunding:(address:string,currency:string,price:string,maxUnits:number)=>Promise<void>;
   units:(amount:string,currency:string)=>unknown;
   storage:{get:(key:string)=>Promise<string|null>;set:(key:string,value:string)=>Promise<void>;remove:(key:string)=>Promise<void>};
 };
@@ -47,7 +47,7 @@ export function createWorkEscrow(deps:Dependencies) {
       if (!hash) {
         if (!claim.created) throw new Error('Funding is already reserved. Recover its transaction hash, or release a rejected signature.');
         try {
-          await deps.prepareFunding(address,job.currency,String(job.price_per_unit*job.max_units));
+          await deps.prepareFunding(address,job.currency,String(job.price_per_unit),job.max_units);
           const sent=await deps.write(address,'createJob',[job.currency==='USDC'?'0x833589fcd6edb6e08f4c7c32d4f71b54bda02913':'0xd20ab1015f6a2de4a6fddebab270113f689c2f7c',
             {shill:0,clipping:1,contract:2}[job.job_type],deps.units(String(job.price_per_unit),job.currency),job.max_units,Math.floor(Date.parse(job.deadline!)/1000)]);
           hash=sent.hash;

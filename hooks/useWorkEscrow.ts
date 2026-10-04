@@ -40,9 +40,9 @@ export function useWorkEscrow(wallet:string|null) {
  };
  return {write,...createWorkEscrow({wallet:wallet || '',job:id=>workRow('work_jobs',id),config:getWorkConfig,
   rpc:(name,args)=>workRpc(wallet!,name,args),receipt:workReceipt,hash:text=>ethers.utils.sha256(ethers.utils.toUtf8Bytes(text)),units,write,
-  prepareFunding:async(address,currency,total)=>{
+  prepareFunding:async(address,currency,price,maxUnits)=>{
    const token=await contract(currencyToken(currency),['function balanceOf(address) view returns(uint256)','function allowance(address,address) view returns(uint256)','function approve(address,uint256) returns(bool)']);
-   const owner=await token.signer.getAddress(); const amount=units(total,currency);
+   const owner=await token.signer.getAddress(); const amount=units(price,currency).mul(maxUnits);
    if((await token.balanceOf(owner)).lt(amount)) throw new Error('Not enough '+currency+' to fund this bounty');
    if((await token.allowance(owner,address)).lt(amount)) {const approval=await writeContractAA(token,'approve',[address,amount],{context:'bounty-approval'}); await approval.wait(2);}
   },
