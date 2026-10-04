@@ -227,6 +227,7 @@ function AIChatScreenInner() {
   const [musicVisible, setMusicVisible] = useState(false);
 
   const [pendingPrompt, setPendingPrompt] = useState('');
+  const [pendingTemplateId, setPendingTemplateId] = useState<string | null>(null);
   const [pendingSourceImage, setPendingSourceImage] = useState<string | undefined>();
   const [pendingLogoImage, setPendingLogoImage] = useState<string | undefined>();
   const [pendingPosterConfig, setPendingPosterConfig] = useState<PosterConfig | null>(null);
@@ -453,6 +454,7 @@ function AIChatScreenInner() {
       history: AIChatMessage[],
       extras?: {
         sourceImage?: string;
+        aspectRatio?: string;
         logoImage?: string;
         headline?: string;
         bannerRenderer?: 'template' | 'scene';
@@ -474,6 +476,7 @@ function AIChatScreenInner() {
             model,
             conversationHistory: history,
             sourceImage: extras?.sourceImage,
+            aspectRatio: extras?.aspectRatio,
             logoImage: extras?.logoImage,
             headline: extras?.headline,
             bannerRenderer: extras?.bannerRenderer,
@@ -639,6 +642,7 @@ function AIChatScreenInner() {
       history: AIChatMessage[],
       sourceImage: string | undefined,
       txHash: string,
+      preset?: CreatorTemplate,
     ) => {
       const videoModel = VIDEO_MODELS[model];
       setIsLoading(true);
@@ -651,7 +655,8 @@ function AIChatScreenInner() {
             model,
             sourceImage,
             duration: `${VIDEO_DURATION_SECONDS}s` as '5s',
-            aspectRatio: '16:9',
+            aspectRatio: preset?.aspect ?? '16:9',
+            negativePrompt: preset?.negative,
             txHash,
           },
           walletAddress,
@@ -981,6 +986,7 @@ function AIChatScreenInner() {
        * model's paywall.
        */
       const tpl = getTemplate(turnTemplateId);
+      setPendingTemplateId(tpl?.id ?? null);
       if (tpl) {
         if (tpl.requiresImage && !sourceImage) {
           toastError(t('creator.presetNeedsImage', { name: t(tpl.nameKey) }));
@@ -1145,7 +1151,7 @@ function AIChatScreenInner() {
     (
       cfg: PosterConfig | null,
       model: string,
-      opts: { logoImage?: string; sourceImage?: string; txHash?: string; useFree?: boolean },
+      opts: { logoImage?: string; sourceImage?: string; txHash?: string; useFree?: boolean; aspectRatio?: string },
     ) => {
       doGenerateImage(
         cfg ? buildDeHubBrandPrompt(cfg.finalPrompt) : pendingPrompt,
@@ -1153,6 +1159,7 @@ function AIChatScreenInner() {
         historyForGeneration(),
         {
           sourceImage: opts.sourceImage,
+          aspectRatio: cfg ? undefined : opts.aspectRatio,
           logoImage: opts.logoImage,
           txHash: opts.txHash,
           useFree: opts.useFree,
@@ -1171,6 +1178,7 @@ function AIChatScreenInner() {
         },
       );
       setPendingPosterConfig(null);
+      setPendingTemplateId(null);
       setPendingLogoImage(undefined);
       setPendingSourceImage(undefined);
     },
@@ -1182,6 +1190,7 @@ function AIChatScreenInner() {
     startImageGeneration(pendingPosterConfig, imageModelOverride || settings.imageModel, {
       logoImage: pendingLogoImage,
       sourceImage: pendingSourceImage,
+      aspectRatio: getTemplate(pendingTemplateId)?.aspect,
       txHash,
     });
   }, [
@@ -1190,6 +1199,7 @@ function AIChatScreenInner() {
     pendingPosterConfig,
     pendingSourceImage,
     pendingLogoImage,
+    pendingTemplateId,
     startImageGeneration,
   ]);
 
@@ -1197,9 +1207,10 @@ function AIChatScreenInner() {
     setImagePaywallVisible(false);
     startImageGeneration(null, imageModelOverride || settings.imageModel, {
       sourceImage: pendingSourceImage,
+      aspectRatio: getTemplate(pendingTemplateId)?.aspect,
       useFree: true,
     });
-  }, [imageModelOverride, settings.imageModel, pendingSourceImage, startImageGeneration]);
+  }, [imageModelOverride, settings.imageModel, pendingSourceImage, pendingTemplateId, startImageGeneration]);
 
   const handleVideoConfirm = useCallback((txHash: string) => {
     setVideoPaywallVisible(false);
@@ -1209,12 +1220,15 @@ function AIChatScreenInner() {
       historyForGeneration(),
       pendingSourceImage,
       txHash,
+      getTemplate(pendingTemplateId),
     );
+    setPendingTemplateId(null);
     setPendingSourceImage(undefined);
   }, [
     pendingPrompt,
     settings.videoModel,
     pendingSourceImage,
+    pendingTemplateId,
     doGenerateVideo,
     historyForGeneration,
   ]);
