@@ -51,7 +51,9 @@ jobs:
         run: node scripts/check-badge-resource-names.mjs
 
       - name: i18n coverage
-        run: npm run i18n:coverage
+        run: |
+          node scripts/build-locale-packs.mjs --metadata-only
+          npm run i18n:coverage
 
       # The check above can only see a key that reaches no locale. It cannot
       # see text that was never keyed at all — that renders English in all 110
