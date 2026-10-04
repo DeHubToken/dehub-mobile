@@ -69,8 +69,8 @@ import { forceFlushBatchViews } from "./services/view.service";
 import PermissionModalProvider from "./components/ui/PermissionModal";
 import UpdateGate from "./components/UpdateGate";
 import DimLightsOverlay from "./components/ui/DimLightsOverlay";
-import { useUploadProcessor } from "./services/upload.processor";
-import UploadProgressPill from "./components/Upload/UploadProgressPill";
+
+import UploadRuntimeHost from "./components/Upload/UploadRuntimeHost";
 import { setUploadCacheKey, hydrateUploadStore, clearUploadStore } from "./store/upload.store";
 import { CallProvider } from "./context/CallContext";
 import CallModalsHost from "./components/Call/CallModalsHost";
@@ -302,7 +302,7 @@ const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
   const user = useUser();
   const isAuthenticated = isSignedIn && !needsUsername;
 
-  useUploadProcessor();
+
 
   useEffect(() => {
     if (isAuthenticated && user?.walletAddress) {
@@ -483,7 +483,7 @@ const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
           </ErrorBoundary>
         </SafeAreaView>
       ) : null}
-      <UploadProgressPill />
+      <UploadRuntimeHost />
       {/* The preloader. Opaque, edge-to-edge, above everything; taps land on
           it until the fade starts, which is the point — there is nothing to
           interact with underneath until the reveal begins. */}
