@@ -36,6 +36,7 @@ export function useWorkEscrow(wallet:string|null) {
  const units=(amount:string,currency:string)=>ethers.utils.parseUnits(amount,currency==='USDC'?6:18);
  const write=async(address:string,name:string,args:unknown[])=>{
   const c=await contract(address);
+  try {await c.callStatic[name](...args);} catch(error:any) {throw Object.assign(new Error(error.reason || error.message || 'The escrow action is not available'),{code:'WORK_NOT_SENT'});}
   const sent=await writeContractAA(c,name,args,{context:'bounty-'+name});
   if(!sent.hash) throw new Error('Signing returned no transaction hash. Recover the transaction before retrying.');
   return {hash:sent.hash,wait:(count:number)=>sent.wait(count)};

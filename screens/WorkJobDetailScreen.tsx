@@ -559,7 +559,7 @@ export default function WorkJobDetailScreen() {
 
                       {!!s.proof_text && <Text style={styles.rowBody}>{s.proof_text}</Text>}
                       {s.view_count_cached > 0 && <Text style={styles.rowBody}>{t('work.integrity.viewsAccepted',{count:s.view_count_cached,units:s.approved_units})}</Text>}
-                      {isPoster && clipping && s.approval_status === 'pending' && (
+                      {canManage && clipping && s.approval_status === 'pending' && (
                         <View style={{gap:8, marginTop:10}}>
                           <Text style={styles.rowBody}>{t('work.integrity.clipVerify')}</Text>
                           <TextInput accessibilityLabel={t('work.integrity.verifiedViews')} placeholder={t('work.integrity.verifiedViews')} keyboardType="number-pad" value={check.views}
@@ -570,6 +570,7 @@ export default function WorkJobDetailScreen() {
                       )}
                       {job.fund_tx_hash && <Text style={styles.dim}>{t('work.integrity.feeNotice',{net:due,currency:job.currency,gross})}</Text>}
                       {submittedPayment && <Text style={styles.awaitingText}>{t('work.integrity.paymentPending')}</Text>}
+                      {canManage && job.status==='disputed' && awaitingPayment && s.payout_state==='unpaid' && <Pressable onPress={()=>promptReject(s)}><Text style={styles.rejectText}>{t('work.detail.reject')}</Text></Pressable>}
                       {canManage && s.payout_state === 'signing' && (
                         <TextInput accessibilityLabel={t('work.integrity.recoverTx')} placeholder={t('work.integrity.hashPlaceholder')} autoCapitalize="none"
                           value={recoveryHashes[s.id] || ''} onChangeText={value => setRecoveryHashes(prev => ({...prev,[s.id]:value.trim()}))} style={styles.input} />
@@ -602,6 +603,7 @@ export default function WorkJobDetailScreen() {
 
                       {canManage && s.approval_status === "pending" && (
                         <View style={styles.subActions}>
+                          {(isPoster || !!job.fund_tx_hash) && (
                           <Pressable
                             disabled={
                               approveMutation.isPending ||
@@ -632,6 +634,7 @@ export default function WorkJobDetailScreen() {
                               })}
                             </Text>
                           </Pressable>
+                          )}
                           <Pressable
                             disabled={approveMutation.isPending || payMutation.isPending || budgetSpent || !validViews}
                             onPress={() =>
@@ -759,11 +762,11 @@ export default function WorkJobDetailScreen() {
           {/* Actions */}
           <View style={styles.actions}>
             {isPoster && ["open","in_progress","expired"].includes(job.status) && (
-              <Pressable onPress={() => completeMutation.mutate(job.id)} style={styles.primaryBtn}>
+              <Pressable disabled={completeMutation.isPending || submissions.some(s=>s.approval_status==="pending" || (s.approval_status==="approved" && s.payout_state!=="confirmed")) || (!!job.fund_tx_hash && !!job.deadline && Date.parse(job.deadline)>Date.now())} onPress={() => completeMutation.mutate(job.id)} style={styles.primaryBtn}>
                 <Text style={styles.primaryBtnText}>{t("work.detail.markComplete")}</Text>
               </Pressable>
             )}
-            {(isPoster || isAwarded) &&
+            {(isPoster || isAwarded || submissions.some(s=>s.worker_address===me)) &&
               job.status !== "completed" &&
               job.status !== "disputed" && (
                 <Pressable onPress={() => setShowDispute((s) => !s)} style={styles.disputeBtn}>

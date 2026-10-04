@@ -12,7 +12,7 @@ export type WorkPaymentDependencies = {
 
 function rejectedBeforeBroadcast(error: unknown) {
   const e = error as { code?: unknown; message?: string };
-  return e?.code === 4001 || e?.code === 'ACTION_REJECTED'
+  return e?.code === 4001 || e?.code === 'ACTION_REJECTED' || e?.code === 'WORK_NOT_SENT'
     || /user (rejected|denied)|wallet is locked|not enough (DHB|USDC)|INSUFFICIENT_GAS_FUNDS/i.test(e?.message || '');
 }
 
