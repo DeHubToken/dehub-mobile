@@ -5,6 +5,14 @@ import { ScreenNames } from '../../navigation/ScreenNames';
 
 const mockNavigate = jest.fn();
 jest.mock('react-native-css-interop/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
+jest.mock('react-native', () => ({
+  View: 'View', Text: 'Text', TouchableOpacity: 'TouchableOpacity', TextInput: 'TextInput', ActivityIndicator: 'ActivityIndicator',
+  StyleSheet: { flatten: (style: unknown) => style },
+  FlatList: ({ data, renderItem }: { data: unknown[]; renderItem: (info: { item: unknown; index: number }) => React.ReactNode }) => {
+    const React = require('react');
+    return React.createElement('View', {}, data.map((item, index) => React.createElement(React.Fragment, { key: index }, renderItem({ item, index }))));
+  },
+}));
 jest.mock('@react-navigation/native', () => ({ useNavigation: () => ({ navigate: mockNavigate }) }));
 jest.mock('react-i18next', () => ({ useTranslation: () => ({ t: (key: string) => key }) }));
 jest.mock('../../components/common/BadgeArtwork', () => 'BadgeArtwork');
