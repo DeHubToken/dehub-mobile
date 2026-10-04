@@ -7603,7 +7603,8 @@
     "doorAgentsNote": "Gratis chatten",
     "editorNote": "Knip het op een tijdlijn",
     "flowNote": "Koppel stappen op een canvas",
-    "builderNote": "Maak een app van een prompt"
+    "builderNote": "Maak een app van een prompt",
+    "exampleOutput": "Voorbeeldoutput"
   },
   "fractions": {
     "title": "Fracties",

@@ -7253,7 +7253,8 @@
     "doorAgentsNote": "Ћаскање бесплатно",
     "editorNote": "Исеци на временској линији",
     "flowNote": "Повежи кораке на платну",
-    "builderNote": "Направи апликацију од упита"
+    "builderNote": "Направи апликацију од упита",
+    "exampleOutput": "Primer izlaza"
   },
   "fractions": {
     "title": "Удели",

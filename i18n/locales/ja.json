@@ -7379,7 +7379,8 @@
     "doorAgentsNote": "チャットは無料",
     "editorNote": "タイムラインでカット",
     "flowNote": "キャンバスでステップをつなぐ",
-    "builderNote": "プロンプトからアプリを作成"
+    "builderNote": "プロンプトからアプリを作成",
+    "exampleOutput": "出力例"
   },
   "fractions": {
     "title": "フラクション",

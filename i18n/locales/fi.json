@@ -7317,7 +7317,8 @@
     "doorAgentsNote": "Chat ilmaiseksi",
     "editorNote": "Leikkaa aikajanalla",
     "flowNote": "Ketjuta vaiheita kankaalla",
-    "builderNote": "Tee sovellus kehotteesta"
+    "builderNote": "Tee sovellus kehotteesta",
+    "exampleOutput": "Esimerkkilähtö"
   },
   "fractions": {
     "title": "Fraktiot",

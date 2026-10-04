@@ -7537,7 +7537,8 @@
     "doorAgentsNote": "চ্যাট ফ্রি",
     "editorNote": "টাইমলাইনো কাটউক্কা",
     "flowNote": "ক্যানভাসো ধাপ জোড়উক্কা",
-    "builderNote": "প্রম্পট থাকি অ্যাপ বানাউক্কা"
+    "builderNote": "প্রম্পট থাকি অ্যাপ বানাউক্কা",
+    "exampleOutput": "উদাহরণ আউটপুট"
   },
   "fractions": {
     "title": "ফ্র্যাকশন",

@@ -7276,7 +7276,8 @@
     "doorAgentsNote": "ແຊັດຟຣີ",
     "editorNote": "ຕັດເທິງໄທມ໌ລາຍ",
     "flowNote": "ເຊື່ອມຂັ້ນຕອນເທິງແຄນວາສ",
-    "builderNote": "ສ້າງແອັບຈາກຄຳສັ່ງ"
+    "builderNote": "ສ້າງແອັບຈາກຄຳສັ່ງ",
+    "exampleOutput": "ຜົນຜະລິດຕົວຢ່າງ"
   },
   "fractions": {
     "title": "ສ່ວນ",

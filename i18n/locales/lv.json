@@ -7317,7 +7317,8 @@
     "doorAgentsNote": "Tērzēšana bez maksas",
     "editorNote": "Grieziet laika joslā",
     "flowNote": "Savienojiet soļus audeklā",
-    "builderNote": "Izveidojiet lietotni no uzvednes"
+    "builderNote": "Izveidojiet lietotni no uzvednes",
+    "exampleOutput": "Izvades piemērs"
   },
   "fractions": {
     "title": "Frakcijas",

@@ -7358,7 +7358,8 @@
     "doorAgentsNote": "Чат тегін",
     "editorNote": "Уақыт шкаласында кесу",
     "flowNote": "Кенепте қадамдарды тізбектеу",
-    "builderNote": "Сұраудан қолданба жасау"
+    "builderNote": "Сұраудан қолданба жасау",
+    "exampleOutput": "Мысал шығысы"
   },
   "fractions": {
     "title": "Бөлшектер",

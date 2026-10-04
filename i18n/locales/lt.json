@@ -7317,7 +7317,8 @@
     "doorAgentsNote": "Pokalbiai nemokami",
     "editorNote": "Karpykite laiko juostoje",
     "flowNote": "Sujunkite žingsnius drobėje",
-    "builderNote": "Sukurkite programėlę iš užklausos"
+    "builderNote": "Sukurkite programėlę iš užklausos",
+    "exampleOutput": "Išvesties pavyzdys"
   },
   "fractions": {
     "title": "Dalys",

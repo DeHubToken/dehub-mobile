@@ -7299,7 +7299,8 @@
     "doorAgentsNote": "Utu kore te kōrero",
     "editorNote": "Tapahia i runga i te rārangi wā",
     "flowNote": "Hononga hīkoi i runga i te kānawehi",
-    "builderNote": "Hangaia he taupānga mai i te tono"
+    "builderNote": "Hangaia he taupānga mai i te tono",
+    "exampleOutput": "Tauira putanga"
   },
   "fractions": {
     "title": "Wāhanga",

@@ -7397,7 +7397,8 @@
     "doorAgentsNote": "Chat gratis",
     "editorNote": "Taglialo su una timeline",
     "flowNote": "Concatena passaggi su una tela",
-    "builderNote": "Crea un’app da un prompt"
+    "builderNote": "Crea un’app da un prompt",
+    "exampleOutput": "Esempio di output"
   },
   "fractions": {
     "title": "Frazioni",

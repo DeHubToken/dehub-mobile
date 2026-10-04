@@ -7305,7 +7305,8 @@
     "doorAgentsNote": "傾偈免費",
     "editorNote": "喺時間軸上剪",
     "flowNote": "喺畫布上串連步驟",
-    "builderNote": "用提示整個 App"
+    "builderNote": "用提示整個 App",
+    "exampleOutput": "輸出例子"
   },
   "fractions": {
     "title": "碎片",

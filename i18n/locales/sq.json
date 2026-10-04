@@ -7317,7 +7317,8 @@
     "doorAgentsNote": "Bisedë falas",
     "editorNote": "Priteni në një kronologji",
     "flowNote": "Lidhni hapa në një kanavacë",
-    "builderNote": "Krijoni një aplikacion nga një kërkesë"
+    "builderNote": "Krijoni një aplikacion nga një kërkesë",
+    "exampleOutput": "Dalja e shembullit"
   },
   "fractions": {
     "title": "Pjesë",

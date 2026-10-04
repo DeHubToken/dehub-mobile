@@ -7498,7 +7498,8 @@
     "doorAgentsNote": "Libre ang chat",
     "editorNote": "I-cut sa timeline",
     "flowNote": "Pagdugtungin ang mga hakbang sa canvas",
-    "builderNote": "Gumawa ng app mula sa prompt"
+    "builderNote": "Gumawa ng app mula sa prompt",
+    "exampleOutput": "Halimbawa ng output"
   },
   "fractions": {
     "title": "Mga bahagi",

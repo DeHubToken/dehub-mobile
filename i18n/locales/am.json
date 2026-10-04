@@ -7313,7 +7313,8 @@
     "doorAgentsNote": "ለመወያየት ነፃ",
     "editorNote": "በጊዜ መስመር ላይ ይቁረጡት",
     "flowNote": "ደረጃዎችን በሸራ ላይ ያገናኙ",
-    "builderNote": "ከጥያቄ መተግበሪያ ይሥሩ"
+    "builderNote": "ከጥያቄ መተግበሪያ ይሥሩ",
+    "exampleOutput": "ምሳሌ ውፅዓት"
   },
   "fractions": {
     "title": "ክፍልፋዮች",

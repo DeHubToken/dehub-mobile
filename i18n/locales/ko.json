@@ -7397,7 +7397,8 @@
     "doorAgentsNote": "채팅 무료",
     "editorNote": "타임라인에서 편집",
     "flowNote": "캔버스에서 단계 연결",
-    "builderNote": "프롬프트로 앱 만들기"
+    "builderNote": "프롬프트로 앱 만들기",
+    "exampleOutput": "예제 출력"
   },
   "fractions": {
     "title": "프랙션",

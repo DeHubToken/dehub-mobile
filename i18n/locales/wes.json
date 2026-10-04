@@ -7239,7 +7239,8 @@
     "doorAgentsNote": "Chat na free",
     "editorNote": "Cut am for timeline",
     "flowNote": "Join steps for canvas",
-    "builderNote": "Mek app from prompt"
+    "builderNote": "Mek app from prompt",
+    "exampleOutput": "Example fo result"
   },
   "fractions": {
     "title": "Fraction dem",

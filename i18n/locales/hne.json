@@ -7342,7 +7342,8 @@
     "doorAgentsNote": "चैट फोकट म",
     "editorNote": "टाइमलाइन म काटव",
     "flowNote": "कैनवास म स्टेप जोड़व",
-    "builderNote": "प्रॉम्प्ट ले ऐप बनाव"
+    "builderNote": "प्रॉम्प्ट ले ऐप बनाव",
+    "exampleOutput": "उदाहरन आउटपुट"
   },
   "fractions": {
     "title": "फ़्रैक्शन",

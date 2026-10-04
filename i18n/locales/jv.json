@@ -7295,7 +7295,8 @@
     "doorAgentsNote": "Gratis kanggo ngobrol",
     "editorNote": "Potong ing timeline",
     "flowNote": "Rangkai langkah ing kanvas",
-    "builderNote": "Gawe aplikasi saka prompt"
+    "builderNote": "Gawe aplikasi saka prompt",
+    "exampleOutput": "Conto output"
   },
   "fractions": {
     "title": "Bagean",

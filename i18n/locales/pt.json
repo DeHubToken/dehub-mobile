@@ -7402,7 +7402,8 @@
     "doorAgentsNote": "Chat grátis",
     "editorNote": "Edite na linha do tempo",
     "flowNote": "Encadeie etapas em um canvas",
-    "builderNote": "Crie um app a partir de um prompt"
+    "builderNote": "Crie um app a partir de um prompt",
+    "exampleOutput": "Exemplo de saída"
   },
   "fractions": {
     "title": "Frações",

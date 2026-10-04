@@ -7308,7 +7308,8 @@
     "doorAgentsNote": "चॅट मोफत",
     "editorNote": "टाइमलाइनवर कट करा",
     "flowNote": "कॅनव्हासवर पायऱ्या जोडा",
-    "builderNote": "प्रॉम्प्टवरून ॲप बनवा"
+    "builderNote": "प्रॉम्प्टवरून ॲप बनवा",
+    "exampleOutput": "उदाहरण आऊटपुट"
   },
   "fractions": {
     "title": "हिस्से",

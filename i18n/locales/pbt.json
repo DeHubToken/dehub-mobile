@@ -7280,7 +7280,8 @@
     "doorAgentsNote": "چټ وړیا",
     "editorNote": "په مهال‌کرښه یې پرې کړئ",
     "flowNote": "په کینوس کې ګامونه سره وتړئ",
-    "builderNote": "له لارښوونې څخه اپ جوړ کړئ"
+    "builderNote": "له لارښوونې څخه اپ جوړ کړئ",
+    "exampleOutput": "د تولید مثالونه"
   },
   "fractions": {
     "title": "ونډې",

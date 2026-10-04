@@ -7280,7 +7280,8 @@
     "doorAgentsNote": "Чат үнэгүй",
     "editorNote": "Цагийн шугам дээр тайрах",
     "flowNote": "Зотон дээр алхмуудыг холбох",
-    "builderNote": "Хүсэлтээс апп бүтээх"
+    "builderNote": "Хүсэлтээс апп бүтээх",
+    "exampleOutput": "Гаралт, жишээ"
   },
   "fractions": {
     "title": "Хувьцаа",
