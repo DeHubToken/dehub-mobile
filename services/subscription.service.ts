@@ -23,6 +23,7 @@ export interface SubscriptionPlanChain {
 }
 
 export interface SubscriptionPlan {
+  isPinned?: boolean;
   _id?: string;
   id?: string;
   address?: string;
@@ -234,7 +235,7 @@ export async function getPlans(creatorAddress?: string): Promise<SubscriptionPla
     ? `?creator=${encodeURIComponent(creatorAddress.toLowerCase())}`
     : "";
   const res = await apiClient.get<Envelope<SubscriptionPlan[]>>(`/plans${queryParams}`);
-  return unwrap<SubscriptionPlan[]>(res, "plans") || [];
+  return (unwrap<SubscriptionPlan[]>(res, "plans") || []).sort((a, b) => Number(b.isPinned === true) - Number(a.isPinned === true));
 }
 
 export async function getMySubscriptions(): Promise<Subscription[]> {
@@ -287,6 +288,7 @@ export async function createPlan(planData: {
 export async function updatePlan(
   planId: string,
   planData: Partial<{
+    isPinned: boolean;
     name: string;
     description: string;
     price: number;
