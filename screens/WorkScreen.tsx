@@ -36,6 +36,7 @@ import {
   type WorkCurrency,
 } from "../hooks/useWork";
 import LoadErrorState from "../components/ui/LoadErrorState";
+import BountyShareButton from "../components/Work/BountyShareButton";
 
 type SortKey = "newest" | "highest_pay" | "ending_soon";
 
@@ -60,7 +61,8 @@ export const JobCard: React.FC<{ job: WorkJob; onPress: () => void }> = ({ job, 
 
   return (
     <PageSection flush>
-    <Pressable style={styles.card} onPress={onPress}>
+    <View style={styles.card}>
+    <Pressable onPress={onPress}>
       <View style={styles.cardTop}>
         <View style={styles.badgeRow}>
           <View style={styles.badge}>
@@ -127,6 +129,10 @@ export const JobCard: React.FC<{ job: WorkJob; onPress: () => void }> = ({ job, 
         )}
       </View>
     </Pressable>
+      <View style={{ alignItems: "flex-end", marginTop: 8 }}>
+        <BountyShareButton job={job} />
+      </View>
+    </View>
     </PageSection>
   );
 };
