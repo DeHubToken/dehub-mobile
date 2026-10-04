@@ -3,6 +3,7 @@ import { act, renderHook, waitFor } from '@testing-library/react-native';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useSearchFollowState } from '../../hooks/useSearchFollowState';
 import { getFollowStatus, followUser, unfollowUser } from '../../services/user.service';
+jest.mock('react-native-css-interop', () => ({ createInteropElement: jest.requireActual('react').createElement }));
 
 let mockViewer = '0xViewerA';
 jest.mock('../../context/AuthContext', () => ({ useUser: () => ({ address: mockViewer }) }));
