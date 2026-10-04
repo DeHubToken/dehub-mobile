@@ -141,4 +141,3 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress, onBac
 };
 
 export default memo(HomeHeader);
-
