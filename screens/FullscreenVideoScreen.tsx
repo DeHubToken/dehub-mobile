@@ -1,3 +1,5 @@
+import { PersistentVideoView } from '../components/common/PersistentVideoView';
+import { isPictureInPicturePlayer, canStartVideo } from '../libs/pictureInPicture';
 import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import {
   View,
@@ -97,17 +99,6 @@ const FullscreenVideoScreen = () => {
   const isInPiPRef = useRef(false);
   const videoViewRef = useRef<VideoView>(null);
 
-  // Prevent screen close during Picture-in-Picture
-  useEffect(() => {
-    const unsubscribe = navigation.addListener("beforeRemove", (e: any) => {
-      if (isInPiPRef.current) {
-        e.preventDefault();
-        return;
-      }
-    });
-    return unsubscribe;
-  }, [navigation]);
-
   // Set up audio mode for background play/PiP.
   // Routed through libs/audioSession so this screen is not a fourth place
   // writing the global category by hand — and so it stops passing
@@ -152,11 +143,11 @@ const FullscreenVideoScreen = () => {
   }, [ownsVideo, player]);
 
   const stopPlayback = useCallback(() => {
-    if (ownsPlayer()) { try { player.pause(); } catch {} }
+    if (ownsPlayer() && !isPictureInPicturePlayer(player)) { try { player.pause(); } catch {} }
   }, [player, ownsPlayer]);
 
   useEffect(() => {
-    if (!player || !ownsVideo) return;
+    if (!player || !ownsVideo || !canStartVideo(player)) return;
     requestFeedVideoFocus(stopPlayback);
     if (!player.muted) requestAudioFocus(stopPlayback);
     if (!session.userPaused) player.play();
@@ -369,7 +360,7 @@ const FullscreenVideoScreen = () => {
         <Animated.View style={[{ flex: 1 }, animContainer]}>
           <Pressable onPress={handleScreenTap} style={styles.videoWrap}>
             {player && (
-              <VideoView
+              <PersistentVideoView
                 ref={videoViewRef}
                 player={player}
                 contentFit="contain"

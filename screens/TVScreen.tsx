@@ -1,3 +1,6 @@
+import { usePersistentVideoPlayer } from '../hooks/usePersistentVideoPlayer';
+import { PersistentVideoView } from '../components/common/PersistentVideoView';
+import { isPictureInPicturePlayer, canStartVideo } from '../libs/pictureInPicture';
 /**
  * TVScreen
  * ========
@@ -69,12 +72,12 @@ const ChannelPlayer: React.FC<{ channel: TVChannel | null; onClose: () => void }
   // LiveChatScreen/CommentSection.
   const { height: kbHeight, isVisible: kbVisible } = useKeyboard();
 
-  const player: VideoPlayer = useVideoPlayer(channel?.streamUrl ?? null, (p) => {
+  const player: VideoPlayer = usePersistentVideoPlayer(channel?.streamUrl ?? null, (p) => {
     p.staysActiveInBackground = true;
     p.showNowPlayingNotification = true;
     p.loop = false;
     p.bufferOptions = FULLSCREEN_BUFFER_OPTIONS;
-    p.play();
+    if (canStartVideo(p)) p.play();
   });
 
   useEffect(() => {
@@ -147,7 +150,7 @@ const ChannelPlayer: React.FC<{ channel: TVChannel | null; onClose: () => void }
               <Text style={styles.dim}>{t("tv.reportedAutomatically")}</Text>
             </View>
           ) : (
-            <VideoView
+            <PersistentVideoView
               ref={videoRef}
               allowsPictureInPicture
               startsPictureInPictureAutomatically={!!channel && isPlaying}

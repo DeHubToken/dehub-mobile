@@ -1,5 +1,7 @@
+import { PersistentVideoView } from '../common/PersistentVideoView';
+import { isPictureInPicturePlayer, canStartVideo } from '../../libs/pictureInPicture';
 import { useMediaVolume } from '../../libs/video-preferences';
-import { useFeedPlaybackAllowed, useCallInProgress } from "../../libs/visualActivity";
+import { useFeedPlaybackAllowed, useCallInProgress, visualActivity } from "../../libs/visualActivity";
 import { MediaControlIcon as BareIcon, MediaControlText } from "../common/MediaControlGlyph";
 import { usePostVideoPlayer } from "../../hooks/usePostVideoPlayer";
 import { hasPostVideoSession, postMediaIsTransferring, preparePostMediaNavigation } from "../../libs/post-media-session";
@@ -597,7 +599,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
 
   const playbackAllowedRef = useRef(false);
   const stopPlayback = useCallback(() => {
-    if (!ownsPlayerRef.current() || postMediaIsTransferring(videoSession)) return;
+    if (!ownsPlayerRef.current() || postMediaIsTransferring(videoSession) || (isPictureInPicturePlayer(playerRef.current) && !visualActivity.isCallBusy())) return;
     playbackAllowedRef.current = false;
     pendingPlayRef.current = false;
     if (autoplayTimerRef.current) { clearTimeout(autoplayTimerRef.current); autoplayTimerRef.current = null; }
@@ -612,7 +614,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
 
   const startPlayback = useCallback(() => {
     if (!ownsPlayerRef.current()) return;
-    if (!playerRef.current || !canPlay) return;
+    if (!playerRef.current || !canPlay || !canStartVideo(playerRef.current)) return;
     try { stopActivePreview(); } catch {}
     requestFeedVideoFocus(stopPlayback);
     if (!shouldStartMuted()) requestAudioFocus(stopPlayback);
@@ -668,7 +670,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
         player.addListener("playingChange", ({ isPlaying: playing }) => {
           if (!ownsPlayerRef.current()) return;
           // Native readiness can arrive after another card claimed playback.
-          if (playing && !playbackAllowedRef.current) {
+          if (playing && !playbackAllowedRef.current && !isPictureInPicturePlayer(player)) {
             try { player.pause(); } catch {}
             return;
           }
@@ -720,7 +722,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
 
   useEffect(() => {
     if (!canPlay || !isVisible) {
-      if (!ownsPlayerRef.current() || postMediaIsTransferring(videoSession)) return;
+      if (!ownsPlayerRef.current() || postMediaIsTransferring(videoSession) || isPictureInPicturePlayer(playerRef.current)) return;
       if (autoplayTimerRef.current) { clearTimeout(autoplayTimerRef.current); autoplayTimerRef.current = null; }
       // Cleared before the source detaches so a readyToPlay event landing in
       // the same frame can't start a card that has already scrolled off.
@@ -781,7 +783,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   // scroll has passed. Resetting hasStartedAutoplay is what lets the card
   // autoplay again when the scroll comes back to it.
   useEffect(() => {
-    if (!ownsPlayerRef.current() || postMediaIsTransferring(videoSession)) return;
+    if (!ownsPlayerRef.current() || postMediaIsTransferring(videoSession) || isPictureInPicturePlayer(playerRef.current)) return;
     if (isAutoplayActive || userStartedRef.current) return;
     pendingPlayRef.current = false;
     if (isPlayingRef.current) stopPlayback();
@@ -1183,7 +1185,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
       )}
 
       {canPlay && isVisible && sourceRequested && ownsVideo && player && (
-        <VideoView
+        <PersistentVideoView
           ref={videoViewRef}
           player={player}
           focusable={false}
