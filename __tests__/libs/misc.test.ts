@@ -414,9 +414,9 @@ describe('libs/misc', () => {
       expect(source).toBeDefined();
       const style = getBadgeOpticalStyle(source!, 16, 0, 20);
       const pixels = style.height - 2 * style.padding;
-      expect(pixels * (Number(bottom) - Number(top)) / 128).toBeCloseTo(16 * 0.72);
+      expect(pixels * (Number(bottom) - Number(top)) / 128).toBeCloseTo(16 * 0.732);
       const artworkBottom = -style.height / 2 + style.padding + pixels * Number(bottom) / 128 + style.transform[0].translateY;
-      expect(artworkBottom).toBeCloseTo(16 * 0.34);
+      expect(artworkBottom).toBeCloseTo(16 * 0.3375);
       expect(style.marginLeft + style.padding + pixels * Number(left) / 128).toBeCloseTo(3);
       expect(style.height + style.marginTop + style.marginBottom).toBeLessThanOrEqual(20);
     });

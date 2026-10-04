@@ -262,7 +262,7 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
                 <TouchableOpacity
                   activeOpacity={0.7}
                   onPress={handlePressCreator}
-                  className="self-baseline"
+                  className="self-center"
                 >
                   <BadgeArtwork source={badgeImage} style={getBadgeOpticalStyle(badgeImage, 14)} contentFit="contain" />
                 </TouchableOpacity>

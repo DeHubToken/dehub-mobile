@@ -1,4 +1,5 @@
 import BadgeArtwork from "../common/BadgeArtwork";
+import { getBadgeHoverOpticalStyle } from "../../libs/misc";
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   View,
@@ -122,7 +123,7 @@ const FloatingLiveChatMessage: React.FC<{ message: LiveChatMessageData }> = ({ m
           </View>
         )}
         {!!badgeImg && (
-          <BadgeArtwork source={badgeImg} style={{ width: 13, height: 13 }} contentFit="contain" />
+          <BadgeArtwork source={badgeImg} style={getBadgeHoverOpticalStyle(badgeImg, 13, 0, 18.2)} contentFit="contain" />
         )}
         <Text className="text-white/50 text-[11px] ml-auto">
           {formatTime(message.createdAt)}

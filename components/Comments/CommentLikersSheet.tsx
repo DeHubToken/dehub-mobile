@@ -74,7 +74,7 @@ const PersonRow: React.FC<{ item: CommentLiker; onPress: (address: string) => vo
             {badgeImg ? (
               <BadgeArtwork
                 source={badgeImg}
-                style={getBadgeOpticalStyle(badgeImg, 14, 3, 18)}
+                style={getBadgeOpticalStyle(badgeImg, 14, 0, 20)}
                 contentFit="contain"
               />
             ) : null}
