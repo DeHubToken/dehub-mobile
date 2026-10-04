@@ -18,10 +18,11 @@ export interface CreatorAssetToSave extends CreatorAsset {
   model: string;
   aspect?: string;
   presetId?: string;
+  resolvedPrompt?: string;
 }
 
-async function libraryCall(body: Record<string, unknown>): Promise<any> {
-  const headers = await dehubAuthHeaders();
+async function libraryCall(body: Record<string, unknown>, walletAddress?: string): Promise<any> {
+  const headers = await dehubAuthHeaders(walletAddress);
   if (!headers['x-dehub-token']) throw new Error('Sign in to save your generations.');
   const response = await fetch(`${env.SUPABASE_EDGE_BASE_URL}/creator-library`, {
     method: 'POST', headers: { 'Content-Type': 'application/json', ...headers }, body: JSON.stringify(body),
@@ -32,9 +33,9 @@ async function libraryCall(body: Record<string, unknown>): Promise<any> {
 }
 
 /** Native streaming upload uses the same private account library as web. */
-export async function saveCreatorAsset(asset: CreatorAssetToSave): Promise<void> {
+export async function saveCreatorAsset(asset: CreatorAssetToSave, walletAddress?: string): Promise<void> {
   const { url, ...metadata } = asset;
-  const prepared = await libraryCall({ action: 'prepare', id: asset.id, metadata });
+  const prepared = await libraryCall({ action: 'prepare', id: asset.id, metadata }, walletAddress);
   if (prepared.saved) return;
   if (!url || !prepared.path || !prepared.token) throw new Error('No generated media to save.');
   let local: string | undefined;
@@ -56,7 +57,7 @@ export async function saveCreatorAsset(asset: CreatorAssetToSave): Promise<void>
           'Content-Type': asset.kind === 'model3d' ? 'model/gltf-binary' : contentTypeForExtension(ext) } },
     );
     if (upload.status < 200 || upload.status >= 300) throw new Error('Could not upload the generated media.');
-    await libraryCall({ action: 'complete', id: asset.id });
+    await libraryCall({ action: 'complete', id: asset.id }, walletAddress);
   } finally {
     if (local && local !== url) await FileSystem.deleteAsync(local, { idempotent: true }).catch(() => {});
   }

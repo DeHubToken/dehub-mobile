@@ -1620,12 +1620,13 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
       librarySaves.current.add(saveKey);
       const creator = request.creatorSettings;
       const asset: CreatorAssetToSave = { id, kind, url, prompt: request.content, model: creator.model,
+        resolvedPrompt: prepareCreatorPrompt(request.content, getTemplate(request.templateId)),
         modelName: creatorModels(creator.mode).find((model) => model.id === creator.model)?.name ?? creator.model,
         aspect: creator.aspect, presetId: request.templateId, createdAt: Date.now() };
       // Stream one file at a time, keeping large clips out of JS memory.
       librarySaveQueue.current = librarySaveQueue.current.then(async () => {
         try {
-          await saveCreatorAsset(asset);
+          await saveCreatorAsset(asset, walletAddress);
           void queryClient.invalidateQueries({ queryKey: ['creator-library', walletAddress] });
         } catch (error) {
           failedLibrarySaves.current.add(saveKey);
