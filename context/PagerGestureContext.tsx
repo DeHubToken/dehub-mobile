@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useMemo } from "react";
 import { Gesture } from "react-native-gesture-handler";
 import type { GestureType } from "react-native-gesture-handler";
+import { HomePullRefreshContext } from "./HomePullRefreshContext";
 
 /**
  * Lets a horizontally-scrolling view deep inside a swipe pager keep its own
@@ -35,9 +36,17 @@ export const PagerGestureProvider: React.FC<{
  */
 export const useHorizontalScrollGuard = () => {
   const pagerRef = useContext(PagerGestureContext);
+  const homePull = useContext(HomePullRefreshContext);
+  const pullRef = homePull?.enabled ? homePull.gestureRef : undefined;
   return useMemo(
-    () => (pagerRef ? Gesture.Native().blocksExternalGesture(pagerRef) : null),
-    [pagerRef],
+    () => {
+      if (!pagerRef) return null;
+      const guard = Gesture.Native().blocksExternalGesture(pagerRef);
+      // The child keeps horizontal drags without cancelling the feed's
+      // direction-checked downward pull at the top of the active page.
+      return pullRef ? guard.simultaneousWithExternalGesture(pullRef) : guard;
+    },
+    [pagerRef, pullRef],
   );
 };
 
