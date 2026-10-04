@@ -115,9 +115,17 @@ const ScreenHeader: React.FC<ScreenHeaderProps> = ({
     };
   }, []);
 
-  if (overlay) {
-    if (!showBack) return null;
+  if (overlay || theme === 'system') {
+    if (!showBack && !rightContent) return null;
     return (
+      <View
+        pointerEvents="box-none"
+        style={[
+          { height: overlay ? 56 : SCREEN_HEADER_HEIGHT, zIndex: 20 },
+          overlay ? { position: 'absolute', top: 0, left: 0, right: 0 } : undefined,
+        ]}
+      >
+      {showBack ? (
       <TouchableOpacity
         onPress={handleBack}
         className="active:opacity-70"
@@ -146,6 +154,16 @@ const ScreenHeader: React.FC<ScreenHeaderProps> = ({
           style={I18nManager.isRTL ? { transform: [{ scaleX: -1 }] } : undefined}
         />
       </TouchableOpacity>
+      ) : null}
+      {rightContent ? (
+        <View
+          pointerEvents="box-none"
+          style={{ position: 'absolute', top: 10, right: 10, flexDirection: 'row', gap: 6 }}
+        >
+          {rightContent}
+        </View>
+      ) : null}
+      </View>
     );
   }
 

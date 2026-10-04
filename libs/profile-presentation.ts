@@ -1,11 +1,12 @@
 export type ProfilePresentation = 'feed' | 'modal';
 
 /**
- * Feed-origin profiles borrow Home's persistent chrome. A direct URL has no
- * feed entry to return to, even when the app happened to be sitting on Home.
+ * System profiles own the full screen so Home's feed chrome cannot crop them.
+ * Other themes can borrow Home's chrome; deep links always stand alone.
  */
 export const resolveProfilePresentation = (
   feedHostActive: boolean,
   source?: string,
+  theme?: string,
 ): ProfilePresentation =>
-  feedHostActive && source !== 'deeplink' ? 'feed' : 'modal';
+  theme !== 'system' && feedHostActive && source !== 'deeplink' ? 'feed' : 'modal';
