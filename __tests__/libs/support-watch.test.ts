@@ -1,6 +1,13 @@
-import { supportedWatchDelta } from '../../libs/support-watch';
+import { shouldSendSupportProgress, supportedWatchDelta } from '../../libs/support-watch';
 
 describe('creator support watch time', () => {
+  it('flushes completion without waiting for the next four-second batch', () => {
+    expect(shouldSendSupportProgress(30, 28, false)).toBe(true);
+    expect(shouldSendSupportProgress(30.25, 30, false)).toBe(true);
+    expect(shouldSendSupportProgress(29.75, 28, false)).toBe(false);
+    expect(shouldSendSupportProgress(30, 30, false)).toBe(false);
+    expect(shouldSendSupportProgress(30, 28, true)).toBe(false);
+  });
   it('counts normal playback and bounds time by wall clock', () => {
     expect(supportedWatchDelta(0.5, 0.5, true, true)).toBe(0.5);
     expect(supportedWatchDelta(0.7, 0.5, true, true)).toBe(0.5);

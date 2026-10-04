@@ -5,7 +5,7 @@ import { supabase } from '../../services/supabase';
 import { dehubAuthHeaders } from '../../services/ai.service';
 import { useSilenceOnRelease } from '../../hooks/useSilenceOnRelease';
 import { useTranslation } from 'react-i18next';
-import { supportedWatchDelta } from '../../libs/support-watch';
+import { shouldSendSupportProgress, supportedWatchDelta } from '../../libs/support-watch';
 
 interface SupportAd { supportSessionId: string; mediaUrl: string; headline: string; advertiser: string; creatorShareUsd: number }
 
@@ -25,7 +25,7 @@ function SupportVideo({ ad, wallet, onMessage }: { ad: SupportAd; wallet: string
   const { height } = useWindowDimensions();
   const progress = useRef({ media: 0, at: Date.now(), played: 0, sent: 0, pending: false });
   const player = useVideoPlayer(ad.mediaUrl, instance => {
-    instance.muted = true; instance.timeUpdateEventInterval = 0.5; instance.play();
+    instance.muted = true; instance.loop = true; instance.timeUpdateEventInterval = 0.5; instance.play();
   });
   useSilenceOnRelease(player);
   useEffect(() => {
@@ -45,7 +45,7 @@ function SupportVideo({ ad, wallet, onMessage }: { ad: SupportAd; wallet: string
           try { player.pause(); } catch {} return;
         }
         p.played = Math.min(60, p.played + supportedWatchDelta(delta, elapsed, player.playing, AppState.currentState === 'active'));
-        if (p.pending || p.played - p.sent < 4) return;
+        if (!shouldSendSupportProgress(p.played, p.sent, p.pending)) return;
         p.pending = true; p.sent = p.played;
         void invoke('ads-creator-support', { sessionId: ad.supportSessionId, playedSeconds: p.played }, wallet)
           .then(data => {
@@ -63,7 +63,7 @@ function SupportVideo({ ad, wallet, onMessage }: { ad: SupportAd; wallet: string
   }, [ad, wallet, player, credited, height, onMessage, t]);
   return <View ref={box} collapsable={false} style={{ gap: 8 }}>
     <Text style={{ color: '#fff', fontSize: 13 }}>{t('creatorSupport.sponsoredBy', { advertiser: ad.advertiser })} · {ad.headline}</Text>
-    <VideoView player={player} nativeControls contentFit="contain" style={{ height: 180, width: '100%', borderRadius: 10 }} />
+    <VideoView player={player} nativeControls allowsFullscreen={false} contentFit="contain" style={{ height: 180, width: '100%', borderRadius: 10 }} />
     <Text style={{ color: '#A6A9AC', fontSize: 12 }}>{t('creatorSupport.progress', { seconds: Math.floor(watched), amount: ad.creatorShareUsd.toFixed(4) })}</Text>
   </View>;
 }
