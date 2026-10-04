@@ -11,6 +11,7 @@ export interface CreatorAsset {
   modelName: string;
   url?: string;
   posterUrl?: string;
+  exportFormat?: string;
   transcript?: string;
   createdAt: number;
 }
@@ -74,4 +75,22 @@ export async function listCreatorAssets(offset = 0): Promise<{ jobs: CreatorAsse
   const data = await response.json();
   if (!response.ok) throw new Error(data.error || 'Could not load your generations.');
   return data;
+}
+
+export async function saveCreatorPreview(id: string, dataUrl: string, walletAddress?: string): Promise<string> {
+  const match = dataUrl.match(/^data:(image\/(?:webp|png|jpeg));base64,(.+)$/);
+  if (!match || dataUrl.length > 800_000 || !FileSystem.cacheDirectory) throw new Error('Invalid generation preview.');
+  const prepared = await libraryCall({ action: 'prepare-preview', id }, walletAddress);
+  const local = `${FileSystem.cacheDirectory}${id}-preview`;
+  try {
+    await FileSystem.writeAsStringAsync(local, match[2], { encoding: FileSystem.EncodingType.Base64 });
+    const upload = await FileSystem.uploadAsync(
+      `${env.SUPABASE_URL}/storage/v1/object/upload/sign/creator-assets/${prepared.path}?token=${encodeURIComponent(prepared.token)}`,
+      local, { httpMethod: 'PUT', uploadType: FileSystem.FileSystemUploadType.BINARY_CONTENT,
+        headers: { apikey: env.SUPABASE_PUBLISHABLE_KEY, 'x-upsert': 'true', 'Content-Type': match[1] } },
+    );
+    if (upload.status < 200 || upload.status >= 300) throw new Error('Could not save the preview.');
+    const completed = await libraryCall({ action: 'complete-preview', id }, walletAddress);
+    return completed.posterUrl;
+  } finally { await FileSystem.deleteAsync(local, { idempotent: true }).catch(() => {}); }
 }
