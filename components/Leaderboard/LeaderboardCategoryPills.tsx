@@ -1,8 +1,11 @@
-import React, { useCallback, useMemo, useRef, useEffect } from "react";
-import { Text, ScrollView, TouchableOpacity } from "react-native";
+import React, { useCallback, useMemo } from "react";
 import { Ionicons } from "@expo/vector-icons";
-import { theme } from "../../theme";
 import { useTranslation } from "react-i18next";
+import { useAppTheme } from "../../context/ThemeContext";
+import { PageTabs, useFlatPage } from "../page/PageKit";
+
+// The canvas themes whose accent chip carries white ink (PageKit's rule).
+const BRIGHT_INK_THEMES = new Set<string>(["hazy", "swarms", "lavalamp", "island"]);
 
 export type SortCategory =
   | "holdings"
@@ -46,7 +49,9 @@ interface Props {
 
 const LeaderboardCategoryPills: React.FC<Props> = ({ active, onSelect }) => {
   const { t } = useTranslation();
-  const scrollRef = useRef<ScrollView>(null);
+  const { theme } = useAppTheme();
+  const flat = useFlatPage();
+  const activeInk = !flat && BRIGHT_INK_THEMES.has(theme) ? "#FFFFFF" : "#0B0B0C";
 
   // Reorder so the active category is always first. "assets" never becomes
   // active (it navigates away), so it stays where it is in the list.
@@ -56,57 +61,28 @@ const LeaderboardCategoryPills: React.FC<Props> = ({ active, onSelect }) => {
     return [CATEGORIES[idx], ...CATEGORIES.filter((_, i) => i !== idx)];
   }, [active]);
 
-  // Scroll to start whenever the active category changes
-  useEffect(() => {
-    scrollRef.current?.scrollTo({ x: 0, animated: false });
-  }, [active]);
-
-  const handlePress = useCallback(
-    (key: PillKey) => () => {
-      onSelect(key);
-    },
-    [onSelect]
-  );
+  const handleChange = useCallback((key: PillKey) => onSelect(key), [onSelect]);
 
   return (
-    <ScrollView
-      ref={scrollRef}
-      horizontal
-      showsHorizontalScrollIndicator={false}
-      contentContainerStyle={{ paddingHorizontal: 16, gap: 8 }}
-      className="mt-3"
-    >
-      {ordered.map((cat) => {
-        const isActive = active === cat.key;
-        return (
-          <TouchableOpacity
-            key={cat.key}
-            onPress={handlePress(cat.key)}
-            activeOpacity={0.7}
-            hitSlop={{ top: 8, bottom: 8 }}
-            className={`flex-row items-center px-4 py-2 rounded-lg border ${
-              isActive
-                ? "bg-white border-white"
-                : "bg-transparent border-theme-neutrals-600"
-            }`}
-          >
-            <Ionicons
-              name={cat.icon}
-              size={14}
-              color={isActive ? theme.colors.neutrals[900] : theme.colors.neutrals[400]}
-              style={{ marginRight: 6 }}
-            />
-            <Text
-              className={`text-xs font-semibold ${
-                isActive ? "text-theme-neutrals-900" : "text-theme-neutrals-400"
-              }`}
-            >
-              {t(cat.label)}
-            </Text>
-          </TouchableOpacity>
-        );
-      })}
-    </ScrollView>
+    <PageTabs<PillKey>
+      // Remounting on a new category puts the strip back at its start, where
+      // the active chip now sits.
+      key={active}
+      value={active}
+      onChange={handleChange}
+      style={{ paddingHorizontal: 16, paddingTop: 10 }}
+      tabs={ordered.map((cat) => ({
+        id: cat.key,
+        label: t(cat.label),
+        icon: (
+          <Ionicons
+            name={cat.icon}
+            size={14}
+            color={active === cat.key ? activeInk : "rgba(255,255,255,0.72)"}
+          />
+        ),
+      }))}
+    />
   );
 };
 

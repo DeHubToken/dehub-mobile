@@ -14,7 +14,7 @@ const LikedVideosScreen: React.FC = () => {
   useGateToHome(allow);
   return (
     <View className="flex-1 bg-theme-neutrals-900">
-      <ScreenHeader title={t("screens.likedPosts")} />
+      <ScreenHeader icon="bookmarks" title={t("screens.likedPosts")} />
       <PostsInfiniteList variant="liked" bottomPadding={80} />
     </View>
   );

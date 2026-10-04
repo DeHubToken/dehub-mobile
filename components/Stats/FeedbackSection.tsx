@@ -28,6 +28,7 @@ import { useUser, useAuthState } from "../../context/AuthContext";
 import { supabase } from "../../services/supabase";
 import { withWalletHeader } from "../../libs/supabase-wallet-client";
 import { toastError, toastSuccess } from "../../libs/toast";
+import { PageSection } from "../page/PageKit";
 
 const MIN_LENGTH = 10;
 const MAX_LENGTH = 1200;
@@ -117,8 +118,7 @@ export default function FeedbackSection() {
 
   return (
     <>
-      <View style={styles.card}>
-        <Text style={styles.cardTitle}>{t("stats.feedback.title", "Feedback")}</Text>
+      <PageSection title={t("stats.feedback.title", "Feedback")} style={styles.card}>
         <Text style={styles.intro}>
           {t(
             "stats.feedback.intro",
@@ -208,14 +208,14 @@ export default function FeedbackSection() {
             </View>
           </>
         )}
-      </View>
+      </PageSection>
 
       {approved.length > 0 ? (
-        <View style={styles.card}>
-          <View style={styles.cardHeader}>
-            <Text style={styles.cardTitle}>{t("stats.feedback.wallTitle", "What people say")}</Text>
-            <Text style={styles.cardHint}>{t("stats.feedback.wallNote", "published with permission")}</Text>
-          </View>
+        <PageSection
+          title={t("stats.feedback.wallTitle", "What people say")}
+          action={<Text style={styles.cardHint}>{t("stats.feedback.wallNote", "published with permission")}</Text>}
+          style={styles.card}
+        >
           {approved.map((item) => (
             <View key={item.id} style={styles.quote}>
               <Text style={styles.quoteBody}>“{item.body}”</Text>
@@ -225,16 +225,14 @@ export default function FeedbackSection() {
               </Text>
             </View>
           ))}
-        </View>
+        </PageSection>
       ) : null}
     </>
   );
 }
 
 const styles = StyleSheet.create({
-  card: { backgroundColor: "#1C1C1C", borderColor: "#333333", borderWidth: 1, borderRadius: 16, padding: 14, gap: 10 },
-  cardHeader: { flexDirection: "row", justifyContent: "space-between", alignItems: "baseline" },
-  cardTitle: { color: "#FFFFFF", fontSize: 14, fontWeight: "700" },
+  card: { gap: 10 },
   cardHint: { color: "#8B8D90", fontSize: 11 },
   intro: { color: "#A6A9AC", fontSize: 12, lineHeight: 18 },
   input: {

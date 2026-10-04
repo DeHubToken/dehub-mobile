@@ -18,6 +18,7 @@ import { DhbCoin } from "../common/DhbCoin";
 import { DeHubLoader } from "../DeHubLoader";
 import { DeHubRefreshControl } from "../Feed/DeHubRefreshControl";
 import SettlementRail from "./SettlementRail";
+import { KitButton, PageEmpty, PageSection } from "../page/PageKit";
 import FractionPositionGrid from "./FractionPositionGrid";
 import { toastError, toastSuccess } from "../../libs/toast";
 import { useFractionPortfolio, type PortfolioPosition } from "../../hooks/useFractionPortfolio";
@@ -94,13 +95,11 @@ const PortfolioTab: React.FC<Props> = ({ onSignIn, onSell, onOpenPost }) => {
 
   if (!wallet) {
     return (
-      <View style={styles.center}>
-        <Icon name="Wallet" size={40} color="#3F3F46" />
-        <Text style={styles.emptyText}>{t("fractions.signInToSee")}</Text>
-        <Pressable onPress={onSignIn} style={styles.signIn} accessibilityRole="button">
-          <Text style={styles.signInText}>{t("screens.signIn")}</Text>
-        </Pressable>
-      </View>
+      <PageEmpty
+        icon="fractions"
+        title={t("fractions.signInToSee")}
+        action={<KitButton label={t("screens.signIn")} onPress={onSignIn} />}
+      />
     );
   }
 
@@ -120,17 +119,20 @@ const PortfolioTab: React.FC<Props> = ({ onSignIn, onSell, onOpenPost }) => {
       showsVerticalScrollIndicator={false}
       refreshControl={<DeHubRefreshControl refreshing={refreshing} onRefresh={refresh} tintColor="#fff" />}
     >
-      <SettlementRail />
+      <View style={styles.rail}>
+        <SettlementRail />
+      </View>
 
-      <View style={styles.section}>
-        <View style={styles.sectionHead}>
-          <Text style={styles.heading}>{t("fractions.yourFractions")}</Text>
-          {totalHeld > 0 && (
+      <PageSection
+        title={t("fractions.yourFractions")}
+        action={
+          totalHeld > 0 ? (
             <Text style={styles.headingAside}>
               {totalHeld.toLocaleString()} {t("fractions.acrossPosts", { count: positions.length })}
             </Text>
-          )}
-        </View>
+          ) : undefined
+        }
+      >
         {portfolio.isLoading ? (
           <View style={styles.loader}>
             <DeHubLoader size={48} />
@@ -159,11 +161,11 @@ const PortfolioTab: React.FC<Props> = ({ onSignIn, onSell, onOpenPost }) => {
         ) : (
           <FractionPositionGrid positions={positions} onOpen={onOpenPost} onSell={onSell} />
         )}
-      </View>
+      </PageSection>
 
       {!!listings.data?.length && (
-        <View style={styles.section}>
-          <Text style={styles.heading}>{t("fractions.listedForSale")}</Text>
+        <PageSection title={t("fractions.listedForSale")}>
+          <View style={styles.section}>
           {listings.data.map((l) => (
             <OrderRow
               key={l.id}
@@ -184,12 +186,13 @@ const PortfolioTab: React.FC<Props> = ({ onSignIn, onSell, onOpenPost }) => {
               ]}
             />
           ))}
-        </View>
+          </View>
+        </PageSection>
       )}
 
       {!!offers.data?.made.length && (
-        <View style={styles.section}>
-          <Text style={styles.heading}>{t("fractions.offersYouMade")}</Text>
+        <PageSection title={t("fractions.offersYouMade")}>
+          <View style={styles.section}>
           {offers.data.made.map((o) => (
             <OrderRow
               key={o.id}
@@ -210,12 +213,13 @@ const PortfolioTab: React.FC<Props> = ({ onSignIn, onSell, onOpenPost }) => {
               ]}
             />
           ))}
-        </View>
+          </View>
+        </PageSection>
       )}
 
       {!!offers.data?.received.length && (
-        <View style={styles.section}>
-          <Text style={styles.heading}>{t("fractions.offersForYourFractions")}</Text>
+        <PageSection title={t("fractions.offersForYourFractions")}>
+          <View style={styles.section}>
           {offers.data.received.map((o) => (
             <OrderRow
               key={o.id}
@@ -239,14 +243,16 @@ const PortfolioTab: React.FC<Props> = ({ onSignIn, onSell, onOpenPost }) => {
               ]}
             />
           ))}
-        </View>
+          </View>
+        </PageSection>
       )}
     </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
-  content: { paddingHorizontal: 16, gap: 22 },
+  content: {},
+  rail: { paddingHorizontal: 16 },
   section: { gap: 8 },
   sectionHead: { flexDirection: "row", alignItems: "baseline", justifyContent: "space-between", gap: 8 },
   heading: { color: "#A1A1AA", fontSize: 13, fontWeight: "600" },
@@ -257,10 +263,6 @@ const styles = StyleSheet.create({
     gap: 6,
     paddingVertical: 28,
     paddingHorizontal: 20,
-    borderRadius: 12,
-    backgroundColor: "rgba(255,255,255,0.05)",
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.10)",
   },
   center: { flex: 1, alignItems: "center", justifyContent: "center", gap: 12, paddingHorizontal: 32, paddingBottom: 80 },
   emptyText: { color: "#A1A1AA", fontSize: 13, textAlign: "center" },

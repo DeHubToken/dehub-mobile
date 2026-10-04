@@ -19,6 +19,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useTranslation } from "react-i18next";
 import Icon from "../components/ui/Icon";
 import ScreenHeader from "../components/ScreenHeader";
+import { KitButton, PageEmpty, PageSection, PageTabs } from "../components/page/PageKit";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { WEBSITE_LINK } from "../config/links";
@@ -165,7 +166,20 @@ export default function AppsScreen() {
 
   return (
     <View style={styles.screen}>
-      <ScreenHeader title={t("miniApps.store.title")} />
+      <ScreenHeader
+        title={t("miniApps.store.title")}
+        rightContent={
+          <Pressable
+            accessibilityRole="button"
+            accessibilityLabel={t("miniApps.store.buildCta")}
+            onPress={build}
+            hitSlop={6}
+            style={({ pressed }) => [styles.headerButton, pressed && styles.pressed]}
+          >
+            <Icon name="Hammer" size={18} color="#FFFFFF" />
+          </Pressable>
+        }
+      />
       <ScrollView
         contentContainerStyle={[styles.content, { paddingBottom: insets.bottom + 24 }]}
         showsVerticalScrollIndicator={false}
@@ -173,7 +187,7 @@ export default function AppsScreen() {
       >
         <Text style={styles.intro}>{t("miniApps.store.intro")}</Text>
 
-        <View style={styles.search}>
+        <View style={[styles.search, styles.gutter]}>
           <Icon name="Search" size={16} color="#71717A" />
           <TextInput
             value={query}
@@ -188,26 +202,20 @@ export default function AppsScreen() {
         </View>
 
         {categories.length > 0 ? (
-          <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.chips}>
-            {["all", ...categories].map((c) => (
-              <Pressable
-                key={c}
-                onPress={() => setCategory(c)}
-                accessibilityRole="button"
-                accessibilityState={{ selected: category === c }}
-                style={[styles.chip, category === c && styles.chipActive]}
-              >
-                <Text style={[styles.chipLabel, category === c && styles.chipLabelActive]}>
-                  {c === "all" ? t("miniApps.store.all") : t(`miniApps.category.${c}`)}
-                </Text>
-              </Pressable>
-            ))}
-          </ScrollView>
+          <PageTabs
+            size="sm"
+            tabs={["all", ...categories].map((c) => ({
+              id: c,
+              label: c === "all" ? t("miniApps.store.all") : t(`miniApps.category.${c}`),
+            }))}
+            value={category}
+            onChange={setCategory}
+          />
         ) : null}
 
         {!query && category === "all" && added.length > 0 ? (
-          <>
-            <Text style={styles.sectionTitle}>{t("miniApps.store.yourApps")}</Text>
+          <PageSection eyebrow={t("miniApps.store.yourApps")}>
+            <View style={styles.list}>
             {added.map((row) =>
               row.miniapp_apps ? (
                 <View key={row.app_id} style={styles.row}>
@@ -239,12 +247,13 @@ export default function AppsScreen() {
                 </View>
               ) : null,
             )}
-          </>
+            </View>
+          </PageSection>
         ) : null}
 
         {!query && category === "all" ? (
-          <>
-            <Text style={styles.sectionTitle}>{t("miniApps.store.fromDehub")}</Text>
+          <PageSection eyebrow={t("miniApps.store.fromDehub")}>
+            <View style={styles.list}>
             {ARCADE_GAMES.map((game) => (
               <Pressable
                 key={game.slug}
@@ -260,52 +269,49 @@ export default function AppsScreen() {
                 </View>
               </Pressable>
             ))}
-          </>
+            </View>
+          </PageSection>
         ) : null}
 
         {!query && category === "all" && rising.length > 0 ? (
-          <>
-            <Text style={styles.sectionTitle}>{t("miniApps.store.rising")}</Text>
-            {rising.map((app) => (
-              <AppRow key={`rising-${app.id}`} app={app} onPress={open} />
-            ))}
-          </>
+          <PageSection eyebrow={t("miniApps.store.rising")}>
+            <View style={styles.list}>
+              {rising.map((app) => (
+                <AppRow key={`rising-${app.id}`} app={app} onPress={open} />
+              ))}
+            </View>
+          </PageSection>
         ) : null}
 
         {apps !== null && apps.length > 0 && visible.length === 0 ? (
-          <Text style={styles.intro}>{t("miniApps.store.noMatch")}</Text>
+          <Text style={[styles.intro, styles.gutter]}>{t("miniApps.store.noMatch")}</Text>
         ) : null}
 
         {apps === null ? (
           <ActivityIndicator color="#71717A" style={{ marginTop: 24 }} />
         ) : apps.length === 0 && failed ? (
-          <View style={styles.empty}>
-            <Text style={styles.emptyTitle}>{t("common.failedToLoad")}</Text>
-            <Pressable
-              accessibilityRole="button"
-              onPress={retry}
-              style={({ pressed }) => [styles.retryButton, pressed && styles.pressed]}
-            >
-              <Text style={styles.retryLabel}>{t("common.retry")}</Text>
-            </Pressable>
-          </View>
+          <PageSection>
+            <PageEmpty
+              title={t("common.failedToLoad")}
+              action={<KitButton label={t("common.retry")} onPress={retry} />}
+            />
+          </PageSection>
         ) : apps.length === 0 ? (
-          <View style={styles.empty}>
-            <Text style={styles.emptyTitle}>{t("miniApps.store.emptyTitle")}</Text>
-            <Text style={styles.emptyBody}>{t("miniApps.store.emptyBody")}</Text>
-          </View>
-        ) : (
-          visible.map((app) => <AppRow key={app.id} app={app} onPress={open} />)
-        )}
-
-        <Pressable
-          accessibilityRole="button"
-          onPress={build}
-          style={({ pressed }) => [styles.buildCard, pressed && styles.pressed]}
-        >
-          <Text style={styles.buildLabel}>{t("miniApps.store.buildCta")}</Text>
-          <Icon name="ArrowUpRight" size={14} color="#FFFFFF" />
-        </Pressable>
+          <PageSection>
+            <PageEmpty
+              icon={<View style={{ marginBottom: 12 }}><Icon name="LayoutGrid" size={36} color="#71717A" /></View>}
+              title={t("miniApps.store.emptyTitle")}
+              body={t("miniApps.store.emptyBody")}
+              action={<KitButton label={t("miniApps.store.buildCta")} onPress={build} />}
+            />
+          </PageSection>
+        ) : visible.length > 0 ? (
+          <PageSection>
+            <View style={styles.list}>
+              {visible.map((app) => <AppRow key={app.id} app={app} onPress={open} />)}
+            </View>
+          </PageSection>
+        ) : null}
       </ScrollView>
       <DeHubRefreshMark refreshing={refreshing} />
     </View>
@@ -314,17 +320,22 @@ export default function AppsScreen() {
 
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: colors.neutrals[900] },
-  content: { paddingHorizontal: 12, paddingTop: 8, gap: 8 },
-  intro: { color: "#A1A1AA", fontSize: 12, lineHeight: 18, paddingHorizontal: 2, marginBottom: 4 },
+  content: { paddingTop: 4, gap: 8 },
+  gutter: { marginHorizontal: 16 },
+  intro: { color: "#A1A1AA", fontSize: 12, lineHeight: 18, paddingHorizontal: 16 },
+  list: { gap: 14 },
   row: {
     flexDirection: "row",
     alignItems: "center",
     gap: 12,
-    padding: 12,
-    borderRadius: 16,
-    backgroundColor: "#18181B",
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.06)",
+  },
+  headerButton: {
+    width: 36,
+    height: 36,
+    borderRadius: 10,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "rgba(255,255,255,0.08)",
   },
   pressed: { opacity: 0.85 },
   icon: { width: 52, height: 52, borderRadius: 12 },
@@ -333,31 +344,6 @@ const styles = StyleSheet.create({
   nameLine: { flexDirection: "row", alignItems: "center", gap: 4 },
   name: { color: "#FFFFFF", fontSize: 14, fontWeight: "600", flexShrink: 1 },
   subtitle: { color: "#A1A1AA", fontSize: 12 },
-  empty: {
-    padding: 20,
-    borderRadius: 16,
-    backgroundColor: "#18181B",
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.06)",
-    alignItems: "center",
-    gap: 4,
-  },
-  emptyTitle: { color: "#FFFFFF", fontSize: 14, fontWeight: "600" },
-  emptyBody: { color: "#A1A1AA", fontSize: 12, textAlign: "center" },
-  retryButton: { marginTop: 8, borderRadius: 999, backgroundColor: "#FFFFFF", paddingHorizontal: 16, paddingVertical: 8 },
-  retryLabel: { color: "#000", fontSize: 12, fontWeight: "600" },
-  buildCard: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    gap: 6,
-    marginTop: 8,
-    paddingVertical: 12,
-    borderRadius: 12,
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.15)",
-  },
-  buildLabel: { color: "#FFFFFF", fontSize: 13, fontWeight: "600" },
   search: {
     flexDirection: "row",
     alignItems: "center",
@@ -372,18 +358,4 @@ const styles = StyleSheet.create({
   removeButton: { borderRadius: 8, backgroundColor: "#27272A", paddingHorizontal: 12, paddingVertical: 6 },
   removeLabel: { color: "#E4E4E7", fontSize: 12, fontWeight: "600" },
   searchInput: { flex: 1, height: 40, color: "#FFFFFF", fontSize: 14 },
-  chips: { gap: 6, paddingVertical: 2 },
-  chip: { borderRadius: 999, paddingHorizontal: 12, paddingVertical: 6, backgroundColor: "#18181B" },
-  chipActive: { backgroundColor: "#FFFFFF" },
-  chipLabel: { color: "#D4D4D8", fontSize: 12, fontWeight: "500" },
-  chipLabelActive: { color: "#000000" },
-  sectionTitle: {
-    color: "#71717A",
-    fontSize: 11,
-    fontWeight: "600",
-    letterSpacing: 1,
-    textTransform: "uppercase",
-    marginTop: 6,
-    paddingHorizontal: 2,
-  },
 });

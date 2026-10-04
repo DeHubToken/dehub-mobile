@@ -10,12 +10,13 @@
  * Store build; balances and history stay readable.
  */
 import React, { useCallback, useState } from "react";
-import { View, Text, ScrollView, Pressable, StyleSheet, KeyboardAvoidingView } from "react-native";
+import { ScrollView, StyleSheet, KeyboardAvoidingView } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
 import { useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import ScreenHeader from "../components/ScreenHeader";
+import { KitButton, PageEmpty, PageSection } from "../components/page/PageKit";
 import BridgeTab from "../components/Wallet/BridgeTab";
 import BridgeQueue from "../components/Wallet/BridgeQueue";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
@@ -47,26 +48,26 @@ export default function BridgeScreen() {
       behavior="padding"
       keyboardVerticalOffset={keyboardOffset}
     >
-      <ScreenHeader title={t("nav.bridge")} subtitle={t("bridge.subtitle")} />
+      <ScreenHeader title={t("nav.bridge")} subtitle={t("bridge.subtitle")} icon="bridge" />
       <ScrollView
-        contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 4, paddingBottom: insets.bottom + 32 }}
+        contentContainerStyle={{ paddingTop: 4, paddingBottom: insets.bottom + 32 }}
         keyboardShouldPersistTaps="handled"
         showsVerticalScrollIndicator={false}
         refreshControl={<DeHubRefreshControl refreshing={refreshing} onRefresh={onRefresh} tintColor="#ffffff" />}
       >
         {isSignedIn ? (
-          <BridgeTab key={tabKey} />
+          <PageSection>
+            <BridgeTab key={tabKey} />
+          </PageSection>
         ) : (
-          <View style={styles.signIn}>
-            <Text style={styles.signInText}>{t("bridge.signInToBridge")}</Text>
-            <Pressable
-              style={styles.signInBtn}
-              onPress={() => navigation.navigate(ScreenNames.SignIn)}
-              accessibilityRole="button"
-            >
-              <Text style={styles.signInBtnText}>{t("common.signIn")}</Text>
-            </Pressable>
-          </View>
+          <PageSection flush>
+            <PageEmpty
+              icon="bridge"
+              title={t("nav.bridge")}
+              body={t("bridge.signInToBridge")}
+              action={<KitButton label={t("common.signIn")} onPress={() => navigation.navigate(ScreenNames.SignIn)} />}
+            />
+          </PageSection>
         )}
         <BridgeQueue />
       </ScrollView>
@@ -77,16 +78,4 @@ export default function BridgeScreen() {
 
 const styles = StyleSheet.create({
   root: { flex: 1, backgroundColor: "#010305" },
-  signIn: {
-    padding: 18,
-    borderRadius: 12,
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.10)",
-    backgroundColor: "rgba(255,255,255,0.05)",
-    alignItems: "flex-start",
-    gap: 14,
-  },
-  signInText: { color: "rgba(255,255,255,0.7)", fontSize: 14, lineHeight: 21 },
-  signInBtn: { paddingHorizontal: 18, paddingVertical: 10, borderRadius: 12, backgroundColor: "#FFFFFF" },
-  signInBtnText: { color: "#000000", fontSize: 14, fontWeight: "700" },
 });

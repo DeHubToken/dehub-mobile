@@ -74,6 +74,17 @@ jest.mock('../../components/Feed/DeHubRefreshControl', () => ({
 }));
 jest.mock('../../components/ui/LoadErrorState', () => () => null);
 jest.mock('../../components/ScreenHeader', () => 'ScreenHeader');
+jest.mock('../../components/page/PageKit', () => ({
+  // Tabs as plain pressable labels, so the test can still tap "Collections".
+  PageTabs: ({ tabs, onChange }: { tabs: { id: string; label: string }[]; onChange: (id: string) => void }) => {
+    const R = require('react');
+    return tabs.map((tab) =>
+      R.createElement('TouchableOpacity', { key: tab.id, onPress: () => onChange(tab.id) }, R.createElement('Text', null, tab.label)),
+    );
+  },
+  PageEmpty: () => null,
+  KitButton: () => null,
+}));
 jest.mock('../../components/Profile/PostsInfiniteList', () => 'PostsInfiniteList');
 jest.mock('../../components/ui/Icon', () => () => null);
 jest.mock('../../components/ui/CustomSwitch', () => () => null);

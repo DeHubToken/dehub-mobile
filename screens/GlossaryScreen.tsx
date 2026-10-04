@@ -11,6 +11,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useTranslation } from "react-i18next";
 import Icon, { type IconName } from "../components/ui/Icon";
 import ScreenHeader from "../components/ScreenHeader";
+import { PageEmpty, PageSection } from "../components/page/PageKit";
 
 /** Plain text, or an i18n key for a line that has already been translated. */
 type Copy = string | { key: string };
@@ -191,7 +192,7 @@ export default function GlossaryScreen() {
 
   return (
     <View style={styles.root}>
-      <ScreenHeader title={t("nav.glossary")} subtitle={t("screens.glossarySubtitle")} />
+      <ScreenHeader title={t("nav.glossary")} subtitle={t("screens.glossarySubtitle")} icon="glossary" />
 
       {/* Search */}
       <View style={styles.searchWrap}>
@@ -207,29 +208,25 @@ export default function GlossaryScreen() {
       </View>
 
       <ScrollView
-        contentContainerStyle={{ paddingHorizontal: 12, paddingBottom: insets.bottom + 24, paddingTop: 8 }}
+        contentContainerStyle={{ paddingBottom: insets.bottom + 24, paddingTop: 8 }}
         showsVerticalScrollIndicator={false}
         keyboardShouldPersistTaps="handled"
       >
         {filtered.length > 0 ? (
           filtered.map((section) => (
-            <View key={section.title} style={{ marginBottom: 20 }}>
-              <View style={styles.sectionHeader}>
-                <View style={styles.sectionBar} />
-                <Text style={styles.sectionTitle}>{section.title}</Text>
-              </View>
-              <View style={{ gap: 8 }}>
+            <PageSection key={section.title} title={section.title}>
+              <View style={{ gap: 14 }}>
                 {section.entries.map((entry) => (
                   <GlossaryCard key={entry.title} {...entry} />
                 ))}
               </View>
-            </View>
+            </PageSection>
           ))
         ) : (
-          <View style={styles.empty}>
-            <Icon name="Search" size={28} color="#52525B" />
-            <Text style={styles.emptyText}>{t("screens.noResultsFor", { query })}</Text>
-          </View>
+          <PageEmpty
+            icon={<View style={{ marginBottom: 12 }}><Icon name="Search" size={28} color="#52525B" /></View>}
+            title={t("screens.noResultsFor", { query })}
+          />
         )}
       </ScrollView>
     </View>
@@ -252,18 +249,10 @@ const styles = StyleSheet.create({
     borderColor: "rgba(255,255,255,0.08)",
   },
   searchInput: { flex: 1, color: "#FFFFFF", fontSize: 14, padding: 0 },
-  sectionHeader: { flexDirection: "row", alignItems: "center", gap: 8, marginBottom: 12 },
-  sectionBar: { width: 4, height: 20, borderRadius: 999, backgroundColor: "#D4D4D8" },
-  sectionTitle: { color: "#FFFFFF", fontSize: 15, fontWeight: "700" },
   card: {
     flexDirection: "row",
     alignItems: "flex-start",
     gap: 12,
-    padding: 12,
-    borderRadius: 12,
-    backgroundColor: "rgba(255,255,255,0.04)",
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.06)",
   },
   cardIcon: {
     width: 36,
@@ -276,6 +265,4 @@ const styles = StyleSheet.create({
   cardBody: { flex: 1 },
   cardTitle: { color: "#FFFFFF", fontSize: 14, fontWeight: "600", marginBottom: 2 },
   cardDesc: { color: "#A1A1AA", fontSize: 14, lineHeight: 20 },
-  empty: { alignItems: "center", justifyContent: "center", paddingVertical: 48 },
-  emptyText: { color: "#808089", fontSize: 13, marginTop: 12 },
 });

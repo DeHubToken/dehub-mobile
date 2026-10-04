@@ -9,6 +9,7 @@ import {
   ViewStyle,
 } from "react-native";
 import Icon from "../ui/Icon";
+import { PageSection } from "../page/PageKit";
 import { copyToClipboard } from "../../libs";
 import { toastError } from "../../libs/toast";
 import {
@@ -79,7 +80,7 @@ const InviteFriendsCard: React.FC<Props> = ({ address, shareName, style }) => {
   if (!addr) return null;
 
   return (
-    <View style={[styles.card, style]}>
+    <PageSection style={[styles.card, style]}>
       <View style={styles.headerRow}>
         <View style={styles.iconWrap}>
           <Icon name="Gift" size={18} color="#D4D4D8" />
@@ -129,20 +130,12 @@ const InviteFriendsCard: React.FC<Props> = ({ address, shareName, style }) => {
           )}
         </TouchableOpacity>
       </View>
-    </View>
+    </PageSection>
   );
 };
 
 const styles = StyleSheet.create({
-  card: {
-    backgroundColor: "rgba(255,255,255,0.06)",
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.22)",
-    borderRadius: 12,
-    padding: 16,
-    marginBottom: 12,
-    gap: 14,
-  },
+  card: { gap: 14 },
   headerRow: { flexDirection: "row", alignItems: "center", gap: 12 },
   iconWrap: {
     width: 36,

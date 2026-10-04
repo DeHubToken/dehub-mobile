@@ -24,6 +24,17 @@ jest.mock('../../hooks/useSuperpowers', () => ({
 }));
 jest.mock('../../components/ui/Icon', () => 'Icon');
 jest.mock('../../components/ScreenHeader', () => 'ScreenHeader');
+jest.mock('../../components/page/PageKit', () => {
+  const h = require('react').createElement;
+  return {
+    PageSection: ({ children }: any) => h('View', null, children),
+    PageEmpty: ({ title, body, action }: any) => h('View', null, h('Text', null, title), body ? h('Text', null, body) : null, action),
+    KitButton: ({ label, onPress, disabled }: any) => h('Pressable', { onPress, disabled, accessibilityRole: 'button' }, h('Text', null, label)),
+    PageTabs: () => null,
+    ThemeIcon: () => null,
+    useFlatPage: () => true,
+  };
+});
 jest.mock('../../components/Badge/BadgeProgress', () => ({ BadgeProgress: () => null }));
 jest.mock('../../components/common/SuperPowerIcon', () => 'SuperPowerIcon');
 jest.mock('../../components/ui/GlassModal', () => ({ __esModule: true, default: () => null }));

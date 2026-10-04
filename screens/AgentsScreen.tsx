@@ -23,8 +23,8 @@ import { useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import Icon, { type IconName } from "../components/ui/Icon";
-import LiquidGlass from "../components/ui/LiquidGlass";
 import ScreenHeader from "../components/ScreenHeader";
+import { KitButton, PageEmpty, PageSection } from "../components/page/PageKit";
 import { useUser } from "../context/AuthContext";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { WEBSITE_LINK } from "../config/links";
@@ -200,18 +200,14 @@ export default function AgentsScreen() {
   if (!walletAddress) {
     return (
       <View style={styles.root}>
-        <ScreenHeader title={t("agents.title")} />
+        <ScreenHeader title={t("agents.title")} icon="assistant" />
         <View style={styles.centered}>
-          <Icon name="Bot" size={56} color={MUTED} />
-          <Text style={styles.emptyTitle}>{t("agents.connectToManage")}</Text>
-          <Text style={styles.emptyText}>{t("agents.signInToCreate")}</Text>
-          <Pressable
-            onPress={() => navigation.navigate(ScreenNames.SignIn)}
-            style={styles.primaryBtn}
-            accessibilityRole="button"
-          >
-            <Text style={styles.primaryBtnText}>{t("screens.signIn")}</Text>
-          </Pressable>
+          <PageEmpty
+            icon="assistant"
+            title={t("agents.connectToManage")}
+            body={t("agents.signInToCreate")}
+            action={<KitButton label={t("screens.signIn")} onPress={() => navigation.navigate(ScreenNames.SignIn)} />}
+          />
         </View>
       </View>
     );
@@ -221,7 +217,7 @@ export default function AgentsScreen() {
     const visible = visibleKeys.has(agent.id);
     const apiKey = agent.api_key ?? createdKeys[agent.id] ?? null;
     return (
-      <LiquidGlass key={agent.id} className="rounded-2xl" style={styles.card}>
+      <PageSection key={agent.id}>
         <View style={styles.cardInner}>
           <View style={styles.agentHead}>
             <View style={styles.avatar}>
@@ -317,13 +313,13 @@ export default function AgentsScreen() {
             </Pressable>
           </View>
         </View>
-      </LiquidGlass>
+      </PageSection>
     );
   };
 
   return (
     <View style={styles.root}>
-      <ScreenHeader title={t("agents.title")} rightContent={<Icon name="Bot" size={22} color="#fff" />} />
+      <ScreenHeader title={t("agents.title")} icon="assistant" />
       <ScrollView contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
         <Text style={styles.intro}>{t("agents.description")}</Text>
         <View style={styles.links}>
@@ -338,7 +334,7 @@ export default function AgentsScreen() {
         </View>
 
         {isCreating ? (
-          <LiquidGlass className="rounded-2xl" style={styles.card}>
+          <PageSection>
             <View style={styles.cardInner}>
               <Text style={styles.formTitle}>{t("agents.newAgent")}</Text>
               <Text style={styles.agentDesc}>{t("agents.createDescription")}</Text>
@@ -377,12 +373,15 @@ export default function AgentsScreen() {
                 </Pressable>
               </View>
             </View>
-          </LiquidGlass>
+          </PageSection>
         ) : (
-          <Pressable onPress={() => setIsCreating(true)} style={styles.createBtn} accessibilityRole="button">
-            <Icon name="Plus" size={16} color="#fff" />
-            <Text style={styles.createBtnText}>{t("agents.createNew")}</Text>
-          </Pressable>
+          <KitButton
+            variant="quiet"
+            onPress={() => setIsCreating(true)}
+            style={styles.createBtn}
+            icon={<Icon name="Plus" size={16} color="#fff" />}
+            label={t("agents.createNew")}
+          />
         )}
 
         {isLoading ? (
@@ -390,18 +389,13 @@ export default function AgentsScreen() {
             <ActivityIndicator color="#fff" />
           </View>
         ) : isError ? (
-          <View style={styles.centeredInline}>
-            <Icon name="Bot" size={48} color={MUTED} />
-            <Text style={styles.emptyText}>{t("agents.loadFailed")}</Text>
-            <Pressable onPress={() => refetch()} style={styles.ghostBtn} accessibilityRole="button">
-              <Text style={styles.ghostBtnText}>{t("common.retry")}</Text>
-            </Pressable>
-          </View>
+          <PageEmpty
+            icon="assistant"
+            title={t("agents.loadFailed")}
+            action={<KitButton variant="quiet" label={t("common.retry")} onPress={() => refetch()} />}
+          />
         ) : !agents?.length ? (
-          <View style={styles.centeredInline}>
-            <Icon name="Bot" size={48} color={MUTED} />
-            <Text style={styles.emptyText}>{t("agents.noAgents")}</Text>
-          </View>
+          <PageEmpty icon="assistant" title={t("agents.noAgents")} />
         ) : (
           agents.map(renderAgent)
         )}
@@ -412,19 +406,15 @@ export default function AgentsScreen() {
 
 const styles = StyleSheet.create({
   root: { flex: 1, backgroundColor: "#010305" },
-  content: { padding: 16, paddingBottom: 48, gap: 16 },
-  intro: { color: MUTED, fontSize: 13, lineHeight: 19 },
-  links: { flexDirection: "row", flexWrap: "wrap", gap: 16 },
+  content: { paddingTop: 4, paddingBottom: 48, gap: 12 },
+  intro: { color: MUTED, fontSize: 13, lineHeight: 19, paddingHorizontal: 16 },
+  links: { flexDirection: "row", flexWrap: "wrap", gap: 16, paddingHorizontal: 16 },
   link: { flexDirection: "row", alignItems: "center", gap: 6 },
   linkText: { color: "#fff", fontSize: 13, textDecorationLine: "underline" },
   loading: { paddingVertical: 32, alignItems: "center" },
-  centered: { flex: 1, alignItems: "center", justifyContent: "center", padding: 24, gap: 10 },
-  centeredInline: { alignItems: "center", paddingVertical: 40, gap: 10 },
-  emptyTitle: { color: "#fff", fontSize: 18, fontWeight: "600", textAlign: "center" },
-  emptyText: { color: MUTED, fontSize: 13, textAlign: "center" },
+  centered: { flex: 1, justifyContent: "center" },
 
-  card: { borderWidth: 1, borderColor: "rgba(255,255,255,0.1)" },
-  cardInner: { padding: 16, gap: 12 },
+  cardInner: { gap: 12 },
   agentHead: { flexDirection: "row", alignItems: "flex-start", gap: 12 },
   avatar: {
     width: 40,
@@ -489,16 +479,5 @@ const styles = StyleSheet.create({
   },
   ghostBtnText: { color: "#fff", fontSize: 14 },
   disabled: { opacity: 0.5 },
-  createBtn: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    gap: 8,
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.1)",
-    backgroundColor: "rgba(255,255,255,0.05)",
-    borderRadius: 12,
-    paddingVertical: 12,
-  },
-  createBtnText: { color: "#fff", fontSize: 14, fontWeight: "500" },
+  createBtn: { marginHorizontal: 16 },
 });

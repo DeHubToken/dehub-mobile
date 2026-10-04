@@ -17,6 +17,7 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 import { ScreenNames } from "../navigation/ScreenNames";
 import Icon from "../components/ui/Icon";
 import ScreenHeader from "../components/ScreenHeader";
+import { KitButton, PageEmpty, PageSection, PageTabs } from "../components/page/PageKit";
 import Avatar from "../components/common/Avatar";
 import { theme } from "../theme";
 import { getAvatarUrl } from "../libs/misc";
@@ -52,7 +53,8 @@ const ProposalCard: React.FC<{ proposal: GovernanceProposal; onPress: () => void
   const username = proposal.author_username || `${proposal.author_wallet_address.slice(0, 6)}…${proposal.author_wallet_address.slice(-4)}`;
 
   return (
-    <Pressable onPress={onPress} style={styles.card} accessibilityRole="button" accessibilityLabel={proposal.title}>
+    <Pressable onPress={onPress} accessibilityRole="button" accessibilityLabel={proposal.title}>
+      <PageSection style={styles.card}>
       <View style={styles.authorRow}>
         <Avatar uri={getAvatarUrl(proposal.author_avatar)} size={28} name={username} />
         <Text style={styles.authorName} numberOfLines={1}>@{username}</Text>
@@ -88,6 +90,7 @@ const ProposalCard: React.FC<{ proposal: GovernanceProposal; onPress: () => void
           <Text style={styles.metaText}>{formatCompactNumber(proposal.comment_count || 0)}</Text>
         </View>
       </View>
+      </PageSection>
     </Pressable>
   );
 };
@@ -141,43 +144,33 @@ export default function GovernanceScreen() {
       <ScreenHeader
         title={t("governance.title")}
         subtitle={t("governance.subtitle")}
-        rightContent={<Icon name="ShieldCheck" size={22} color={theme.colors.accent} />}
+        icon="governance"
       />
 
-      <View style={styles.filterRow}>
-        {TABS.map((tb) => {
-          const active = tab === tb.key;
-          return (
-            <Pressable key={tb.key} onPress={() => setTab(tb.key)} style={[styles.filterChip, active && styles.filterChipActive]}>
-              <Text style={[styles.filterText, active && styles.filterTextActive]}>{t(tb.labelKey)}</Text>
-            </Pressable>
-          );
-        })}
-      </View>
+      <PageTabs
+        value={tab}
+        onChange={setTab}
+        tabs={TABS.map((tb) => ({ id: tb.key, label: t(tb.labelKey) }))}
+        style={{ paddingBottom: 10 }}
+      />
 
       {isLoading ? (
         <View style={styles.center}><DeHubLoader size={56} /></View>
       ) : isError ? (
-        <View style={styles.center}>
-          <Text style={styles.emptyText}>{t("governance.loadFailed")}</Text>
-          <Pressable onPress={() => refetch()} style={styles.retryBtn}>
-            <Text style={styles.retryText}>{t("common.retry")}</Text>
-          </Pressable>
-        </View>
+        <PageEmpty
+          icon="governance"
+          title={t("governance.loadFailed")}
+          action={<KitButton label={t("common.retry")} onPress={() => refetch()} />}
+        />
       ) : (
         <FlatList
           data={proposals}
           keyExtractor={keyExtractor}
           renderItem={renderItem}
-          contentContainerStyle={{ paddingHorizontal: 12, paddingBottom: insets.bottom + 24, paddingTop: 4, gap: 12 }}
+          contentContainerStyle={{ paddingBottom: insets.bottom + 24, paddingTop: 4 }}
           showsVerticalScrollIndicator={false}
           refreshControl={<DeHubRefreshControl refreshing={isRefetching} onRefresh={refetch} tintColor={theme.colors.accent} />}
-          ListEmptyComponent={
-            <View style={styles.center}>
-              <Icon name="ShieldCheck" size={44} color="#3F3F46" />
-              <Text style={styles.emptyText}>{emptyLabel}</Text>
-            </View>
-          }
+          ListEmptyComponent={<PageEmpty icon="governance" title={emptyLabel} />}
         />
       )}
       <DeHubRefreshMark refreshing={isRefetching} />
@@ -187,38 +180,8 @@ export default function GovernanceScreen() {
 
 const styles = StyleSheet.create({
   root: { flex: 1, backgroundColor: "#010305" },
-  filterRow: { flexDirection: "row", gap: 8, paddingHorizontal: 12, paddingBottom: 10 },
-  filterChip: {
-    paddingHorizontal: 16,
-    paddingVertical: 7,
-    borderRadius: 8,
-    backgroundColor: "rgba(255,255,255,0.06)",
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.08)",
-  },
-  filterChipActive: { backgroundColor: "#FFFFFF", borderColor: "#FFFFFF" },
-  filterText: { color: "#A1A1AA", fontSize: 13, fontWeight: "600" },
-  filterTextActive: { color: "#000000" },
   center: { flex: 1, alignItems: "center", justifyContent: "center", paddingVertical: 64 },
-  emptyText: { color: "#808089", fontSize: 13, marginTop: 12 },
-  retryBtn: {
-    marginTop: 14,
-    paddingHorizontal: 20,
-    paddingVertical: 8,
-    borderRadius: 12,
-    backgroundColor: "rgba(255,255,255,0.08)",
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.16)",
-  },
-  retryText: { color: "#FAFAFA", fontSize: 13, fontWeight: "600" },
-  card: {
-    borderRadius: 12,
-    backgroundColor: "rgba(255,255,255,0.04)",
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.07)",
-    padding: 14,
-    gap: 8,
-  },
+  card: { gap: 8 },
   authorRow: { flexDirection: "row", alignItems: "center", gap: 8 },
   authorName: { flex: 1, color: "#D4D4D8", fontSize: 13, fontWeight: "600" },
   time: { color: "#A1A1AA", fontSize: 12 },

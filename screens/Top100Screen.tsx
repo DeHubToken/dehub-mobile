@@ -18,12 +18,14 @@ import {
   FlatList,
   ActivityIndicator,
   TextInput,
-} from "react-native";
+} from "react-native";
+
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { DeHubLoader } from "../components/DeHubLoader";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Icon from "../components/ui/Icon";
 import ScreenHeader from "../components/ScreenHeader";
+import { PageEmpty, PageSection, useFlatPage } from "../components/page/PageKit";
 import CashtagSheet from "../components/Home/CashtagSheet";
 import { theme } from "../theme";
 import { useTranslation } from "react-i18next";
@@ -85,8 +87,14 @@ const AssetRow: React.FC<{ asset: UnifiedAsset; rank: number; onPress: () => voi
   asset,
   rank,
   onPress,
-}) => (
-  <Pressable style={styles.row} onPress={onPress}>
+}) => {
+  // Canvas themes stack the rows as small cards; System and minimal run them
+  // edge to edge between hairlines.
+  const flat = useFlatPage();
+  return (
+  <Pressable onPress={onPress}>
+    <PageSection flush style={flat ? undefined : styles.rowFrame}>
+    <View style={styles.row}>
     <Text style={styles.rank}>{rank}</Text>
     <AssetBadge asset={asset} />
     <View style={{ flex: 1, minWidth: 0 }}>
@@ -101,8 +109,11 @@ const AssetRow: React.FC<{ asset: UnifiedAsset; rank: number; onPress: () => voi
       <Text style={styles.price}>{formatPrice(asset.price)}</Text>
       <ChangeBadge value={asset.change24h} small />
     </View>
+    </View>
+    </PageSection>
   </Pressable>
-);
+  );
+};
 
 export default function Top100Screen() {
   const { t } = useTranslation();
@@ -143,7 +154,7 @@ export default function Top100Screen() {
       <ScreenHeader
         title={t("top100.title")}
         subtitle={t("top100.subtitle")}
-        rightContent={<Icon name="ChartNoAxesColumn" size={22} color={theme.colors.accent} />}
+        icon="stats"
       />
 
       <View style={styles.searchWrap}>
@@ -188,9 +199,7 @@ export default function Top100Screen() {
             />
           )}
           contentContainerStyle={{
-            paddingHorizontal: 12,
             paddingBottom: insets.bottom + 24,
-            gap: 8,
           }}
           showsVerticalScrollIndicator={false}
           refreshControl={
@@ -210,12 +219,7 @@ export default function Top100Screen() {
             ) : null
           }
           ListEmptyComponent={
-            <View style={styles.center}>
-              <Icon name="ChartNoAxesColumn" size={40} color="#3F3F46" />
-              <Text style={styles.dim}>
-                {search ? t("top100.noSearchResults") : t("top100.loadFailed")}
-              </Text>
-            </View>
+            <PageEmpty icon="stats" title={search ? t("top100.noSearchResults") : t("top100.loadFailed")} />
           }
         />
       )}
@@ -249,16 +253,13 @@ const styles = StyleSheet.create({
   },
   searchInput: { flex: 1, color: "#FFFFFF", fontSize: 14, padding: 0 },
 
+  rowFrame: { marginBottom: 6 },
   row: {
     flexDirection: "row",
     alignItems: "center",
     gap: 10,
     paddingVertical: 11,
-    paddingHorizontal: 12,
-    borderRadius: 14,
-    backgroundColor: "rgba(255,255,255,0.04)",
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.08)",
+    paddingHorizontal: 14,
   },
   rank: { color: "#A1A1AA", fontSize: 11.5, fontWeight: "700", width: 24 },
   badge: {

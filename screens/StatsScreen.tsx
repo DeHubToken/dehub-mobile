@@ -15,6 +15,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { useNavigation } from "@react-navigation/native";
 import ScreenHeader from "../components/ScreenHeader";
+import { KitButton, PageEmpty, PageSection, PageTabs } from "../components/page/PageKit";
 import FeedbackSection from "../components/Stats/FeedbackSection";
 import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
 import Icon from "../components/ui/Icon";
@@ -57,7 +58,8 @@ async function fetchStats(): Promise<UserStats> {
 
 function MembersChart({ rows }: { rows: HistoryDay[] }) {
   const { width } = useWindowDimensions();
-  const chartWidth = Math.max(260, width - 56);
+  // Section inset: 8pt margin + 16pt padding a side on the canvas themes.
+  const chartWidth = Math.max(260, width - 48);
   const { t } = useTranslation();
   const chartHeight = 168;
   const sampled = useMemo(() => {
@@ -129,62 +131,66 @@ export default function StatsScreen() {
 
   return (
     <KeyboardAvoidingView style={styles.root} behavior="padding" keyboardVerticalOffset={keyboardOffset}>
-      <ScreenHeader title={t("nav.stats")} subtitle={t("stats.subtitle")} />
+      <ScreenHeader title={t("nav.stats")} subtitle={t("stats.subtitle")} icon="stats" />
       {query.isLoading ? (
         <View style={styles.center}><ActivityIndicator color="#F4F4F5" /></View>
       ) : query.isError || !query.data ? (
-        <View style={styles.center}>
-          <Text style={styles.error}>{t("stats.loadFailed")}</Text>
-          <Pressable style={styles.retry} onPress={() => query.refetch()}><Text style={styles.retryText}>{t("common.tryAgain")}</Text></Pressable>
-        </View>
+        <PageEmpty
+          icon="stats"
+          title={t("stats.loadFailed")}
+          action={<KitButton label={t("common.tryAgain")} onPress={() => query.refetch()} />}
+        />
       ) : (
         <ScrollView
           contentContainerStyle={styles.content}
           keyboardShouldPersistTaps="handled"
           refreshControl={<DeHubRefreshControl refreshing={query.isFetching} onRefresh={() => query.refetch()} tintColor="#F4F4F5" />}
         >
-          <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ marginHorizontal: -12 }} contentContainerStyle={styles.filters}>
-            {RANGE_OPTIONS.map((item) => (
-              <Pressable key={item.key} onPress={() => setRange(item.key)} style={[styles.filter, range === item.key && styles.filterActive]}>
-                <Text style={[styles.filterText, range === item.key && styles.filterTextActive]}>{t(item.labelKey)}</Text>
-              </Pressable>
-            ))}
-          </ScrollView>
+          <PageTabs
+            value={range}
+            onChange={setRange}
+            tabs={RANGE_OPTIONS.map((item) => ({ id: item.key, label: t(item.labelKey) }))}
+            style={{ paddingBottom: 10 }}
+          />
 
-          <Metric label={t("communities.membersLabel")} value={query.data.totals.total} hint={t("stats.livePlatformTotal")} />
-          <Text style={styles.sectionTitle}>{t("stats.activeUsers")}</Text>
-          <View style={styles.grid}>
-            <Metric label={t("explorePage.today")} value={query.data.active.daily} />
-            <Metric label={t("stats.range7d")} value={query.data.active.weekly} />
-            <Metric label={t("stats.range30d")} value={query.data.active.monthly} />
-          </View>
-          {/* The heading opens the New members rail on Explore, which is
-              otherwise only found by scrolling that tab. Explore is a bottom
-              tab, so the route goes through Root; `pop` returns to the Root
-              already under this page instead of stacking a second one. */}
-          <Pressable
-            onPress={() => navigation.navigate(ScreenNames.Root, { screen: ScreenNames.Explore, params: { section: "newMembers" } }, { pop: true })}
-            accessibilityRole="link"
-            accessibilityLabel={t("stats.community.openNewMembers")}
-            hitSlop={8}
-            style={({ pressed }) => [styles.sectionLink, pressed && styles.sectionLinkPressed]}
-          >
-            <Text style={[styles.sectionTitle, styles.sectionLinkTitle]}>{t("stats.newMembers")}</Text>
-            <Icon name="ChevronRight" size={14} color="#A1A1AA" />
-          </Pressable>
-          <View style={styles.grid}>
-            <Metric label={t("explorePage.today")} value={query.data.newUsers.today} />
-            <Metric label={t("explorePage.thisMonth")} value={query.data.newUsers.thisMonth} />
-            <Metric label={t("explorePage.thisYear")} value={query.data.newUsers.thisYear} />
-          </View>
-          <View style={styles.card}>
-            <View style={styles.cardHeader}>
-              <Text style={styles.cardTitle}>{t("stats.membersOverTime")}</Text>
-              <Text style={styles.cardHint}>{option.days == null ? t("leaderboard.allTime") : t("stats.lastDays", { count: rows.length })}</Text>
+          <PageSection>
+            <Metric label={t("communities.membersLabel")} value={query.data.totals.total} hint={t("stats.livePlatformTotal")} />
+          </PageSection>
+          <PageSection title={t("stats.activeUsers")}>
+            <View style={styles.grid}>
+              <Metric label={t("explorePage.today")} value={query.data.active.daily} />
+              <Metric label={t("stats.range7d")} value={query.data.active.weekly} />
+              <Metric label={t("stats.range30d")} value={query.data.active.monthly} />
             </View>
+          </PageSection>
+          <PageSection>
+            {/* The heading opens the New members rail on Explore, which is
+                otherwise only found by scrolling that tab. Explore is a bottom
+                tab, so the route goes through Root; `pop` returns to the Root
+                already under this page instead of stacking a second one. */}
+            <Pressable
+              onPress={() => navigation.navigate(ScreenNames.Root, { screen: ScreenNames.Explore, params: { section: "newMembers" } }, { pop: true })}
+              accessibilityRole="link"
+              accessibilityLabel={t("stats.community.openNewMembers")}
+              hitSlop={8}
+              style={({ pressed }) => [styles.sectionLink, pressed && styles.sectionLinkPressed]}
+            >
+              <Text style={styles.sectionTitle}>{t("stats.newMembers")}</Text>
+              <Icon name="ChevronRight" size={14} color="#A1A1AA" />
+            </Pressable>
+            <View style={styles.grid}>
+              <Metric label={t("explorePage.today")} value={query.data.newUsers.today} />
+              <Metric label={t("explorePage.thisMonth")} value={query.data.newUsers.thisMonth} />
+              <Metric label={t("explorePage.thisYear")} value={query.data.newUsers.thisYear} />
+            </View>
+          </PageSection>
+          <PageSection
+            title={t("stats.membersOverTime")}
+            action={<Text style={styles.cardHint}>{option.days == null ? t("leaderboard.allTime") : t("stats.lastDays", { count: rows.length })}</Text>}
+          >
             <MembersChart rows={rows} />
             <Text style={styles.source}>{t("stats.source")}</Text>
-          </View>
+          </PageSection>
 
           <FeedbackSection />
         </ScrollView>
@@ -197,30 +203,18 @@ export default function StatsScreen() {
 const styles = StyleSheet.create({
   root: { flex: 1, backgroundColor: "#010305" },
   center: { flex: 1, alignItems: "center", justifyContent: "center", gap: 14 },
-  content: { padding: 12, paddingBottom: 40, gap: 12 },
-  filters: { gap: 8, paddingVertical: 2, paddingHorizontal: 12 },
-  filter: { paddingHorizontal: 15, paddingVertical: 9, borderRadius: 999, borderWidth: 1, borderColor: "#383A3D", backgroundColor: "#1C1C1C" },
-  filterActive: { backgroundColor: "#F4F4F5", borderColor: "#F4F4F5" },
-  filterText: { color: "#A6A9AC", fontSize: 13, fontWeight: "600" },
-  filterTextActive: { color: "#09090B" },
-  metric: { flex: 1, minWidth: 96, backgroundColor: "#1C1C1C", borderColor: "#333333", borderWidth: 1, borderRadius: 16, padding: 14 },
+  content: { paddingTop: 4, paddingBottom: 40 },
+  metric: { flex: 1, minWidth: 96, backgroundColor: "rgba(255,255,255,0.04)", borderColor: "rgba(255,255,255,0.08)", borderWidth: 1, borderRadius: 10, padding: 12 },
   metricLabel: { color: "#8B8D90", fontSize: 11, textTransform: "uppercase", letterSpacing: 0.5 },
   metricValue: { color: "#FFFFFF", fontSize: 24, fontWeight: "700", marginTop: 3 },
   metricHint: { color: "#8B8D90", fontSize: 11, marginTop: 3 },
-  sectionTitle: { color: "#F4F4F5", fontSize: 14, fontWeight: "700", marginTop: 4 },
-  sectionLink: { flexDirection: "row", alignItems: "center", alignSelf: "flex-start", gap: 2, marginTop: 4 },
-  sectionLinkTitle: { marginTop: 0 },
+  sectionTitle: { color: "#F4F4F5", fontSize: 15, fontWeight: "600" },
+  sectionLink: { flexDirection: "row", alignItems: "center", alignSelf: "flex-start", gap: 2, marginBottom: 12 },
   sectionLinkPressed: { opacity: 0.6 },
   grid: { flexDirection: "row", gap: 8 },
-  card: { backgroundColor: "#1C1C1C", borderColor: "#333333", borderWidth: 1, borderRadius: 16, padding: 14, overflow: "hidden" },
-  cardHeader: { flexDirection: "row", justifyContent: "space-between", alignItems: "baseline", marginBottom: 8 },
-  cardTitle: { color: "#FFFFFF", fontSize: 14, fontWeight: "700" },
   cardHint: { color: "#8B8D90", fontSize: 11 },
   chartLabels: { flexDirection: "row", justifyContent: "space-between", marginTop: -2 },
   chartLabel: { color: "#6F7174", fontSize: 10 },
   source: { color: "#8B8D90", fontSize: 11, lineHeight: 16, marginTop: 14 },
   empty: { color: "#8B8D90", textAlign: "center", paddingVertical: 60 },
-  error: { color: "#A6A9AC", fontSize: 14 },
-  retry: { backgroundColor: "#F4F4F5", borderRadius: 999, paddingHorizontal: 18, paddingVertical: 10 },
-  retryText: { color: "#09090B", fontWeight: "700" },
 });

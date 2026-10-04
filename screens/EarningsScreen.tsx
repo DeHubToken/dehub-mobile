@@ -4,7 +4,6 @@ import {
   View,
   Text,
   ScrollView,
-  TouchableOpacity,
   StyleSheet,
   KeyboardAvoidingView,
 } from "react-native";
@@ -13,6 +12,7 @@ import { DeHubLoader } from "../components/DeHubLoader";
 import Svg, { Path, G, Circle } from "react-native-svg";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import ScreenHeader from "../components/ScreenHeader";
+import { KitButton, PageEmpty, PageSection, PageTabs } from "../components/page/PageKit";
 import Icon from "../components/ui/Icon";
 import InviteFriendsCard from "../components/common/InviteFriendsCard";
 import EarningsComparisonCard from "../components/Earnings/EarningsComparisonCard";
@@ -254,7 +254,7 @@ const EarningsScreen: React.FC = () => {
       behavior="padding"
       keyboardVerticalOffset={keyboardOffset}
     >
-      <ScreenHeader title={t("settings.categoryEarnings")} canGoBack />
+      <ScreenHeader title={t("settings.categoryEarnings")} canGoBack icon="subscriptions" />
 
       {loading ? (
         <View style={styles.center}>
@@ -262,46 +262,33 @@ const EarningsScreen: React.FC = () => {
         </View>
       ) : (
         <ScrollView
-          contentContainerStyle={{ padding: 16, paddingBottom: insets.bottom + 80 }}
+          contentContainerStyle={{ paddingTop: 4, paddingBottom: insets.bottom + 80 }}
           keyboardShouldPersistTaps="handled"
           refreshControl={<DeHubRefreshControl refreshing={refreshing} onRefresh={onRefresh} tintColor="#fff" />}
         >
+          {/* Time filter */}
+          <PageTabs
+            value={timeFilter}
+            onChange={setTimeFilter}
+            tabs={TIME_FILTERS.map((f) => ({ id: f.key, label: t(f.labelKey) }))}
+            style={{ paddingBottom: 10 }}
+          />
+
           {/* Invite & earn */}
           <InviteFriendsCard address={address} shareName={user?.username} />
 
-          {/* Time filter */}
-          <View style={styles.filterRow}>
-            {TIME_FILTERS.map((f) => (
-              <TouchableOpacity
-                key={f.key}
-                onPress={() => setTimeFilter(f.key)}
-                style={[styles.filterBtn, timeFilter === f.key && styles.filterBtnActive]}
-                activeOpacity={0.8}
-              >
-                <Text style={[styles.filterText, timeFilter === f.key && styles.filterTextActive]}>
-                  {t(f.labelKey)}
-                </Text>
-              </TouchableOpacity>
-            ))}
-          </View>
-
           {showLoadError ? (
-            <View style={[styles.card, styles.errorCard]}>
-              <Text style={styles.errorText}>{t("common.failedToLoad")}</Text>
-              <TouchableOpacity
-                onPress={() => load()}
-                style={styles.retryBtn}
-                activeOpacity={0.8}
-                accessibilityRole="button"
-              >
-                <Text style={styles.retryText}>{t("common.retry")}</Text>
-              </TouchableOpacity>
-            </View>
+            <PageSection flush>
+              <PageEmpty
+                icon="subscriptions"
+                title={t("common.failedToLoad")}
+                action={<KitButton variant="quiet" label={t("common.retry")} onPress={() => load()} />}
+              />
+            </PageSection>
           ) : (
             <>
               {/* Chart + summary */}
-              <View style={styles.card}>
-                <Text style={styles.cardTitle}>{t("earnings.incomeBreakdown")}</Text>
+              <PageSection title={t("earnings.incomeBreakdown")}>
                 <View style={styles.chartRow}>
                   <PieChart tips={tipsTotal} ppv={ppvTotal} />
                   <View style={{ flex: 1, gap: 12 }}>
@@ -325,9 +312,10 @@ const EarningsScreen: React.FC = () => {
                     </View>
                   </View>
                 </View>
-              </View>
+              </PageSection>
 
               {/* Stats row */}
+              <PageSection>
               <View style={styles.statsRow}>
                 <View style={styles.statBox}>
                   <Icon name="Gem" size={18} color="#F4F4F5" />
@@ -340,6 +328,7 @@ const EarningsScreen: React.FC = () => {
                   <Text style={styles.statLabel}>{t("earnings.ppvUnlocks")}</Text>
                 </View>
               </View>
+              </PageSection>
             </>
           )}
 
@@ -348,8 +337,7 @@ const EarningsScreen: React.FC = () => {
 
           {/* Recent transactions */}
           {recentTx.length > 0 && (
-            <View style={styles.card}>
-              <Text style={styles.cardTitle}>{t("earnings.recentTransactions")}</Text>
+            <PageSection title={t("earnings.recentTransactions")}>
               {recentTx.map((tx, i) => (
                 <View key={i} style={[styles.txRow, i > 0 && styles.txBorder]}>
                   <View
@@ -378,17 +366,11 @@ const EarningsScreen: React.FC = () => {
                   </View>
                 </View>
               ))}
-            </View>
+            </PageSection>
           )}
 
           {recentTx.length === 0 && !loading && !showLoadError && (
-            <View style={styles.center}>
-              <Icon name="TrendingUp" size={48} color="#3F3F46" />
-              <Text style={styles.emptyTitle}>{t("earnings.noEarningsYet")}</Text>
-              <Text style={styles.emptySubtitle}>
-                {t("earnings.noEarningsDesc")}
-              </Text>
-            </View>
+            <PageEmpty icon="subscriptions" title={t("earnings.noEarningsYet")} body={t("earnings.noEarningsDesc")} />
           )}
         </ScrollView>
       )}
@@ -399,37 +381,6 @@ const EarningsScreen: React.FC = () => {
 
 const styles = StyleSheet.create({
   center: { flex: 1, alignItems: "center", justifyContent: "center", padding: 32, gap: 12 },
-  filterRow: {
-    flexDirection: "row",
-    backgroundColor: "rgba(255,255,255,0.03)",
-    borderRadius: 12,
-    padding: 3,
-    marginBottom: 16,
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.05)",
-  },
-  filterBtn: { flex: 1, paddingVertical: 8, alignItems: "center", borderRadius: 9 },
-  filterBtnActive: { backgroundColor: "rgba(255,255,255,0.08)" },
-  filterText: { color: "#A6A9AC", fontSize: 13, fontWeight: "600" },
-  filterTextActive: { color: "#F9FBFF" },
-  card: {
-    backgroundColor: "rgba(255,255,255,0.03)",
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.07)",
-    borderRadius: 12,
-    padding: 16,
-    marginBottom: 12,
-  },
-  cardTitle: { color: "#F9FBFF", fontSize: 15, fontWeight: "700", marginBottom: 14 },
-  errorCard: { alignItems: "center", gap: 12, paddingVertical: 24 },
-  errorText: { color: "#A6A9AC", fontSize: 13 },
-  retryBtn: {
-    paddingHorizontal: 16,
-    paddingVertical: 8,
-    borderRadius: 9,
-    backgroundColor: "rgba(255,255,255,0.08)",
-  },
-  retryText: { color: "#F9FBFF", fontSize: 13, fontWeight: "600" },
   chartRow: { flexDirection: "row", alignItems: "center", gap: 16 },
   legend: { flexDirection: "row", alignItems: "center", gap: 10 },
   dot: { width: 10, height: 10, borderRadius: 5 },
@@ -438,7 +389,7 @@ const styles = StyleSheet.create({
   totalBox: { borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: "rgba(255,255,255,0.07)", paddingTop: 8 },
   totalLabel: { color: "#A6A9AC", fontSize: 12 },
   totalValue: { color: "#D4D4D8", fontSize: 16, fontWeight: "700" },
-  statsRow: { flexDirection: "row", gap: 10, marginBottom: 12 },
+  statsRow: { flexDirection: "row", gap: 10 },
   statBox: {
     flex: 1,
     backgroundColor: "rgba(255,255,255,0.03)",
@@ -458,8 +409,6 @@ const styles = StyleSheet.create({
   txFrom: { color: "#A6A9AC", fontSize: 12, fontFamily: "monospace", marginTop: 2 },
   txAmount: { fontSize: 13, fontWeight: "700" },
   txDate: { color: "#A6A9AC", fontSize: 12, marginTop: 2 },
-  emptyTitle: { color: "#F9FBFF", fontSize: 16, fontWeight: "600" },
-  emptySubtitle: { color: "#A6A9AC", fontSize: 13, textAlign: "center" },
 });
 
 export default EarningsScreen;

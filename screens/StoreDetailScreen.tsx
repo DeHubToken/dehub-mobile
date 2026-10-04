@@ -13,7 +13,8 @@ import {
   Pressable,
   FlatList,
   useWindowDimensions,
-} from "react-native";
+} from "react-native";
+
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { DeHubLoader } from "../components/DeHubLoader";
 import { Image } from "expo-image";
@@ -31,6 +32,7 @@ import { theme } from "../theme";
 import { getAvatarUrl } from "../libs/misc";
 import { ScreenNames } from "../navigation/ScreenNames";
 import type { AppStackParamList } from "../navigation/types";
+import { KitButton, PageEmpty, PageSection, useFlatPage } from "../components/page/PageKit";
 import { useStoreById, useStoreListings, type StoreListing } from "../hooks/useStores";
 
 const GRID_GAP = 10;
@@ -48,6 +50,7 @@ export default function StoreDetailScreen() {
   const route = useRoute<RouteProp<AppStackParamList, ScreenNames.StoreDetail>>();
   const { storeId, listing: linkedListingId } = route.params;
   const { width: screenW } = useWindowDimensions();
+  const flat = useFlatPage();
 
   const {
     data: store,
@@ -82,7 +85,9 @@ export default function StoreDetailScreen() {
   const cardWidth = (screenW - H_PADDING * 2 - GRID_GAP) / 2;
 
   const header = (
-    <View style={{ marginBottom: 14 }}>
+    // The page's gutter is cancelled so the section runs as wide as the kit
+    // draws it (full width on System and minimal, an 8pt card elsewhere).
+    <PageSection flush style={[styles.headerSection, { marginHorizontal: flat ? -H_PADDING : 8 - H_PADDING }]}>
       {!!store?.banner_url && (
         <Image source={storageImageSource(store.banner_url, screenW)} style={styles.banner} contentFit="cover" />
       )}
@@ -102,7 +107,8 @@ export default function StoreDetailScreen() {
         </View>
       </View>
       {!!store?.description && <Text style={styles.storeDesc}>{store.description}</Text>}
-    </View>
+      <View style={{ height: 16 }} />
+    </PageSection>
   );
 
   const renderItem = ({ item }: { item: StoreListing }) => {
@@ -150,9 +156,13 @@ export default function StoreDetailScreen() {
     <View style={styles.root}>
       <ScreenHeader
         title={store?.name || t("stores.store")}
+        subtitle={store ? t("stores.listingCount", { count: listings.length }) : undefined}
+        icon="stores"
         rightContent={
           store ? (
-            <ShareLinkButton url={ShareLinks.store(store.id)} title={store.name || undefined} />
+            <View style={styles.islandBtn}>
+              <ShareLinkButton url={ShareLinks.store(store.id)} title={store.name || undefined} size={18} />
+            </View>
           ) : undefined
         }
       />
@@ -162,20 +172,17 @@ export default function StoreDetailScreen() {
           <DeHubLoader size={56} />
         </View>
       ) : storeError && !store ? (
-        <View style={styles.center}>
-          <Text style={styles.emptyText}>{t("common.somethingWentWrong")}</Text>
-          <Pressable onPress={onRefresh} style={styles.retryBtn}>
-            <Text style={styles.retryText}>{t("common.retry")}</Text>
-          </Pressable>
-        </View>
+        <PageEmpty
+          icon="stores"
+          title={t("common.somethingWentWrong")}
+          action={<KitButton label={t("common.retry")} onPress={onRefresh} />}
+        />
       ) : store === null ? (
-        <View style={styles.center}>
-          <Icon name="Package" size={40} color="#3F3F46" />
-          <Text style={styles.emptyText}>{t("stores.storeNotFound")}</Text>
-          <Pressable onPress={leave} style={styles.retryBtn}>
-            <Text style={styles.retryText}>{t("common.goBack")}</Text>
-          </Pressable>
-        </View>
+        <PageEmpty
+          icon="stores"
+          title={t("stores.storeNotFound")}
+          action={<KitButton variant="quiet" label={t("common.goBack")} onPress={leave} />}
+        />
       ) : (
         <FlatList
           data={listings}
@@ -199,17 +206,13 @@ export default function StoreDetailScreen() {
           }
           ListEmptyComponent={
             listingsError ? (
-              <View style={styles.center}>
-                <Text style={styles.emptyText}>{t("stores.loadFailed")}</Text>
-                <Pressable onPress={() => refetch()} style={styles.retryBtn}>
-                  <Text style={styles.retryText}>{t("common.retry")}</Text>
-                </Pressable>
-              </View>
+              <PageEmpty
+                icon="stores"
+                title={t("stores.loadFailed")}
+                action={<KitButton label={t("common.retry")} onPress={() => refetch()} />}
+              />
             ) : (
-              <View style={styles.center}>
-                <Icon name="Package" size={40} color="#3F3F46" />
-                <Text style={styles.emptyText}>{t("stores.noActiveListings")}</Text>
-              </View>
+              <PageEmpty icon="stores" title={t("stores.noActiveListings")} />
             )
           }
         />
@@ -223,19 +226,27 @@ const styles = StyleSheet.create({
   root: { flex: 1, backgroundColor: "#010305" },
   center: { flex: 1, alignItems: "center", justifyContent: "center", paddingVertical: 60 },
 
+  headerSection: { marginBottom: 4 },
+  islandBtn: {
+    width: 36,
+    height: 36,
+    borderRadius: 10,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "rgba(255,255,255,0.07)",
+  },
   banner: {
     width: "100%",
     height: 110,
-    borderRadius: 14,
     backgroundColor: "rgba(255,255,255,0.05)",
   },
-  identity: { flexDirection: "row", alignItems: "center", gap: 12, marginTop: 12 },
+  identity: { flexDirection: "row", alignItems: "center", gap: 12, marginTop: 12, paddingHorizontal: 16 },
   storeName: { color: "#FFFFFF", fontSize: 18, fontWeight: "700" },
   storeMeta: { color: "#A1A1AA", fontSize: 12, marginTop: 2 },
-  storeDesc: { color: "#A1A1AA", fontSize: 13, lineHeight: 19, marginTop: 12 },
+  storeDesc: { color: "#A1A1AA", fontSize: 13, lineHeight: 19, marginTop: 12, paddingHorizontal: 16 },
 
   card: {
-    borderRadius: 14,
+    borderRadius: 10,
     backgroundColor: "rgba(255,255,255,0.04)",
     borderWidth: 1,
     borderColor: "rgba(255,255,255,0.08)",

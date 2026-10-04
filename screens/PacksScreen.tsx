@@ -28,6 +28,7 @@ import {
 } from "../libs/creator-packs/api";
 import { PACK_KINDS, PACK_TIER_ORDER, packLimitsFor } from "../libs/creator-packs/limits";
 import { PackCover } from "../components/packs/PackPickerParts";
+import { KitButton, PageSection, PageTabs } from "../components/page/PageKit";
 import { PackLocked, packErrorMessage, usePackWallet, usePacksNavigation } from "../components/packs/PackGate";
 
 const KIND_TAB: Record<PackKind, string> = {
@@ -63,7 +64,7 @@ function TierTable() {
   const [open, setOpen] = useState(false);
   const cols = ["packs", "emoji", "stickers", "gifs"] as const;
   return (
-    <View style={styles.panel}>
+    <PageSection flush>
       <Pressable
         onPress={() => setOpen((o) => !o)}
         accessibilityRole="button"
@@ -76,7 +77,7 @@ function TierTable() {
         </View>
       </Pressable>
       {open && (
-        <View style={{ paddingHorizontal: 12, paddingBottom: 12 }}>
+        <View style={{ paddingHorizontal: 16, paddingBottom: 12 }}>
           <View style={styles.tierRow}>
             <Text style={[styles.tierHead, styles.tierName]}>{t("creatorPacks.col.tier")}</Text>
             {cols.map((c) => (
@@ -97,7 +98,7 @@ function TierTable() {
           <Text style={styles.hint}>{t("creatorPacks.tierTableHint")}</Text>
         </View>
       )}
-    </View>
+    </PageSection>
   );
 }
 
@@ -145,8 +146,15 @@ export default function PacksScreen() {
   return (
     <KeyboardAvoidingView style={styles.root} behavior="padding" keyboardVerticalOffset={keyboardOffset}>
       <ScreenHeader title={t("creatorPacks.title")} />
+      <View style={styles.tabsWrap}>
+        <PageTabs
+          value={kind}
+          onChange={setKind}
+          tabs={PACK_KINDS.map((k) => ({ id: k, label: t(KIND_TAB[k]) }))}
+        />
+      </View>
       <ScrollView
-        contentContainerStyle={{ paddingHorizontal: 12, paddingTop: 4, paddingBottom: insets.bottom + 24, gap: 14 }}
+        contentContainerStyle={{ paddingTop: 4, paddingBottom: insets.bottom + 24 }}
         keyboardShouldPersistTaps="handled"
         showsVerticalScrollIndicator={false}
       >
@@ -154,9 +162,9 @@ export default function PacksScreen() {
 
         {signedIn && status.data && (
           status.data.limits.packs === 0 ? (
-            <View style={styles.panel}><PackLocked /></View>
+            <PageSection flush><PackLocked /></PageSection>
           ) : (
-            <View style={[styles.panel, { paddingHorizontal: 14, paddingVertical: 12 }]}>
+            <PageSection>
               <Text style={styles.panelText}>
                 {t("creatorPacks.yourTier", {
                   tier: status.data.tier,
@@ -166,87 +174,82 @@ export default function PacksScreen() {
                   gifs: status.data.limits.items.gif,
                 })}
               </Text>
-            </View>
+            </PageSection>
           )
         )}
         <TierTable />
 
-        <View style={styles.segment}>
-          {PACK_KINDS.map((k) => (
-            <Pressable
-              key={k}
-              onPress={() => setKind(k)}
-              accessibilityRole="tab"
-              accessibilityState={{ selected: kind === k }}
-              style={[styles.segmentItem, kind === k && styles.segmentItemOn]}
-            >
-              <Text style={[styles.segmentText, kind === k && styles.segmentTextOn]}>{t(KIND_TAB[k])}</Text>
-            </Pressable>
-          ))}
-        </View>
-
         {!signedIn ? (
-          <Pressable onPress={() => requireAuth(() => {})} accessibilityRole="button" style={styles.primaryBtn}>
-            <Text style={styles.primaryText}>{t("creatorPacks.signInToCreate")}</Text>
-          </Pressable>
+          <PageSection>
+            <KitButton label={t("creatorPacks.signInToCreate")} onPress={() => requireAuth(() => {})} />
+          </PageSection>
         ) : (
-          <View style={{ gap: 8 }}>
-            <Text style={styles.sectionTitle}>
-              {t("creatorPacks.yourPacks")}
-              {limits && limits.packs > 0 ? <Text style={styles.sectionMuted}> · {mine.length}/{limits.packs}</Text> : null}
-            </Text>
-            {owned.isLoading ? (
-              <ActivityIndicator size="small" color="#71717A" style={{ alignSelf: "flex-start" }} />
-            ) : (
-              <>
-                {mine.map((p) => <PackCard key={p.id} pack={p} />)}
-                {canCreate && (
-                  <View style={styles.createRow}>
-                    <TextInput
-                      value={name}
-                      onChangeText={(v) => setName(v.slice(0, 64))}
-                      onSubmitEditing={create}
-                      returnKeyType="done"
-                      placeholder={t("creatorPacks.packNamePlaceholder")}
-                      placeholderTextColor="#71717A"
-                      style={styles.input}
-                    />
-                    <Pressable
-                      disabled={busy || !name.trim()}
-                      onPress={create}
-                      accessibilityRole="button"
-                      style={[styles.createBtn, (busy || !name.trim()) && { opacity: 0.4 }]}
-                    >
-                      {busy ? <ActivityIndicator size="small" color="#000" /> : <Icon name="Plus" size={16} color="#000" />}
-                      <Text style={styles.primaryText}>{t("creatorPacks.createPack")}</Text>
-                    </Pressable>
-                  </View>
+          <>
+            <PageSection
+              title={t("creatorPacks.yourPacks")}
+              action={
+                limits && limits.packs > 0 ? (
+                  <Text style={styles.sectionMuted}>{mine.length}/{limits.packs}</Text>
+                ) : undefined
+              }
+            >
+              <View style={{ gap: 8 }}>
+                {owned.isLoading ? (
+                  <ActivityIndicator size="small" color="#71717A" style={{ alignSelf: "flex-start" }} />
+                ) : (
+                  <>
+                    {mine.map((p) => <PackCard key={p.id} pack={p} />)}
+                    {canCreate && (
+                      <View style={styles.createRow}>
+                        <TextInput
+                          value={name}
+                          onChangeText={(v) => setName(v.slice(0, 64))}
+                          onSubmitEditing={create}
+                          returnKeyType="done"
+                          placeholder={t("creatorPacks.packNamePlaceholder")}
+                          placeholderTextColor="#71717A"
+                          style={styles.input}
+                        />
+                        <Pressable
+                          disabled={busy || !name.trim()}
+                          onPress={create}
+                          accessibilityRole="button"
+                          style={[styles.createBtn, (busy || !name.trim()) && { opacity: 0.4 }]}
+                        >
+                          {busy ? <ActivityIndicator size="small" color="#000" /> : <Icon name="Plus" size={16} color="#000" />}
+                          <Text style={styles.primaryText}>{t("creatorPacks.createPack")}</Text>
+                        </Pressable>
+                      </View>
+                    )}
+                    {!mine.length && !canCreate && limits && limits.packs > 0 && (
+                      <Text style={styles.muted}>{t("creatorPacks.errors.packLimit")}</Text>
+                    )}
+                  </>
                 )}
-                {!mine.length && !canCreate && limits && limits.packs > 0 && (
-                  <Text style={styles.muted}>{t("creatorPacks.errors.packLimit")}</Text>
-                )}
-              </>
-            )}
+              </View>
+            </PageSection>
 
             {added.length > 0 && (
-              <>
-                <Text style={[styles.sectionTitle, { marginTop: 8 }]}>{t("creatorPacks.addedPacks")}</Text>
-                {added.map((p) => <PackCard key={p.id} pack={p} />)}
-              </>
+              <PageSection title={t("creatorPacks.addedPacks")}>
+                <View style={{ gap: 8 }}>
+                  {added.map((p) => <PackCard key={p.id} pack={p} />)}
+                </View>
+              </PageSection>
             )}
-          </View>
+          </>
         )}
 
-        <View style={{ gap: 8 }}>
-          <Text style={styles.sectionTitle}>{t("creatorPacks.popular")}</Text>
-          {popular.isLoading ? (
-            <ActivityIndicator size="small" color="#71717A" style={{ alignSelf: "flex-start" }} />
-          ) : popular.data?.length ? (
-            popular.data.map((p) => <PackCard key={p.id} pack={p} />)
-          ) : (
-            <Text style={styles.muted}>{t("creatorPacks.noneYet")}</Text>
-          )}
-        </View>
+        <PageSection title={t("creatorPacks.popular")}>
+          <View style={{ gap: 8 }}>
+            {popular.isLoading ? (
+              <ActivityIndicator size="small" color="#71717A" style={{ alignSelf: "flex-start" }} />
+            ) : popular.data?.length ? (
+              popular.data.map((p) => <PackCard key={p.id} pack={p} />)
+            ) : (
+              <Text style={styles.muted}>{t("creatorPacks.noneYet")}</Text>
+            )}
+          </View>
+        </PageSection>
       </ScrollView>
     </KeyboardAvoidingView>
   );
@@ -254,7 +257,8 @@ export default function PacksScreen() {
 
 const styles = StyleSheet.create({
   root: { flex: 1, backgroundColor: "#010305" },
-  subtitle: { color: "#A1A1AA", fontSize: 14, lineHeight: 20 },
+  tabsWrap: { flexGrow: 0, marginBottom: 4 },
+  subtitle: { color: "#A1A1AA", fontSize: 14, lineHeight: 20, paddingHorizontal: 16, paddingBottom: 12 },
   panel: {
     borderRadius: 12,
     borderWidth: 1,
@@ -266,8 +270,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    paddingHorizontal: 14,
-    paddingVertical: 12,
+    paddingHorizontal: 16,
+    paddingVertical: 14,
   },
   tierRow: { flexDirection: "row", alignItems: "center", paddingVertical: 5 },
   tierBorder: { borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: "rgba(255,255,255,0.08)" },
@@ -276,23 +280,15 @@ const styles = StyleSheet.create({
   tierName: { flex: 1.8 },
   tierNum: { flex: 1, textAlign: "right" },
   hint: { color: "#71717A", fontSize: 11, lineHeight: 16, marginTop: 8 },
-  segment: { flexDirection: "row", borderRadius: 10, backgroundColor: "rgba(255,255,255,0.05)", padding: 4 },
-  segmentItem: { flex: 1, alignItems: "center", paddingVertical: 7, borderRadius: 8 },
-  segmentItemOn: { backgroundColor: "rgba(255,255,255,0.15)" },
-  segmentText: { color: "#A1A1AA", fontSize: 13 },
-  segmentTextOn: { color: "#FFFFFF", fontWeight: "600" },
   sectionTitle: { color: "#FFFFFF", fontSize: 14, fontWeight: "600" },
-  sectionMuted: { color: "#71717A", fontWeight: "400" },
+  sectionMuted: { color: "#71717A", fontSize: 13 },
   muted: { color: "#71717A", fontSize: 12 },
   card: {
     flexDirection: "row",
     alignItems: "center",
     gap: 12,
-    padding: 12,
-    borderRadius: 12,
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.12)",
-    backgroundColor: "rgba(255,255,255,0.03)",
+    paddingVertical: 4,
+    borderRadius: 10,
   },
   cardPressed: { backgroundColor: "rgba(255,255,255,0.07)" },
   cover: {
