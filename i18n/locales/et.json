@@ -3455,7 +3455,7 @@
     "postJob": "Pane töö üles",
     "types": {
       "all": "Kõik",
-      "shill": "Sotsiaalmeedia",
+      "shill": "Shill",
       "clipping": "Klippimine",
       "contract": "Lepingud"
     },
@@ -3471,7 +3471,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "Kommentaarid / Reklaam",
+        "label": "Shill",
         "description": "Maksa iga kinnitatud kommentaari eest X-is, YouTube'is, IG-s või TikTokis."
       },
       "clipping": {

@@ -3476,7 +3476,7 @@
     "postJob": "ลงประกาศงาน",
     "types": {
       "all": "ทั้งหมด",
-      "shill": "โซเชียลมีเดีย",
+      "shill": "Shill",
       "clipping": "ตัดคลิป",
       "contract": "สัญญาจ้าง"
     },
@@ -3492,7 +3492,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "ความคิดเห็น / โปรโมต",
+        "label": "Shill",
         "description": "จ่ายต่อความคิดเห็นที่ยืนยันแล้วบน X, YouTube, IG หรือ TikTok"
       },
       "clipping": {

@@ -3448,7 +3448,7 @@
     "postJob": "បង្ហោះការងារ",
     "types": {
       "all": "ទាំងអស់",
-      "shill": "បណ្ដាញសង្គម",
+      "shill": "Shill",
       "clipping": "ការកាត់ឈុត",
       "contract": "កិច្ចសន្យា"
     },
@@ -3464,7 +3464,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "មតិយោបល់ / ការផ្សព្វផ្សាយ",
+        "label": "Shill",
         "description": "បង់តាមមតិយោបល់ដែលបានផ្ទៀងផ្ទាត់នីមួយៗនៅលើ X, YouTube, IG ឬ TikTok។"
       },
       "clipping": {

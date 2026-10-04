@@ -3557,7 +3557,7 @@
     "postJob": "কাম দেন",
     "types": {
       "all": "হক্কল",
-      "shill": "সামাজিক মাধ্যম",
+      "shill": "Shill",
       "clipping": "ক্লিপিং",
       "contract": "চুক্তি"
     },
@@ -3573,7 +3573,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "মন্তব্য / প্রচার",
+        "label": "Shill",
         "description": "X, YouTube, IG বা TikTok-অত হর যাচাই গরা মন্তব্যর লাই দেন।"
       },
       "clipping": {

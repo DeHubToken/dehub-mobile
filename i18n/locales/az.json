@@ -3455,7 +3455,7 @@
     "postJob": "İş paylaş",
     "types": {
       "all": "Hamısı",
-      "shill": "Sosial media",
+      "shill": "Shill",
       "clipping": "Klip kəsmə",
       "contract": "Müqavilələr"
     },
@@ -3471,7 +3471,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "Şərhlər / Təbliğ",
+        "label": "Shill",
         "description": "X, YouTube, IG və ya TikTok-da hər təsdiqlənmiş şərhə görə ödə."
       },
       "clipping": {
