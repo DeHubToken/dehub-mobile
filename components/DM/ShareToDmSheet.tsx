@@ -23,17 +23,17 @@ import { WEBSITE_LINK } from "../../config";
 import { useUser } from "../../context/AuthContext";
 import type { DmConversation } from "../../services/dm/dm.types";
 
-interface ShareToDmSheetProps {
+type ShareToDmSheetProps = {
   visible: boolean;
   onClose: () => void;
-  tokenId: number | string;
   postTitle?: string;
-}
+} & ({ tokenId: number | string; url?: never } | { url: string; tokenId?: never });
 
 const ShareToDmSheetComponent: React.FC<ShareToDmSheetProps> = ({
   visible,
   onClose,
   tokenId,
+  url,
   postTitle,
 }) => {
   const navigation = useNavigation<any>();
@@ -59,7 +59,7 @@ const ShareToDmSheetComponent: React.FC<ShareToDmSheetProps> = ({
 
   const handleSelect = useCallback(
     (conv: DmConversation) => {
-      const postUrl = `${WEBSITE_LINK || ""}/app/post/${tokenId}`;
+      const postUrl = url ?? `${WEBSITE_LINK || ""}/app/post/${tokenId}`;
       const prefill = postTitle
         ? `${postTitle}\n${postUrl}`
         : postUrl;
@@ -70,7 +70,7 @@ const ShareToDmSheetComponent: React.FC<ShareToDmSheetProps> = ({
       } as never);
       toastSuccess(t("dm.openingConversation"));
     },
-    [navigation, tokenId, postTitle, onClose, t],
+    [navigation, tokenId, url, postTitle, onClose, t],
   );
 
   const renderItem = useCallback(
