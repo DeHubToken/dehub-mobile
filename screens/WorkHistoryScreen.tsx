@@ -26,7 +26,7 @@ import { ScreenNames } from "../navigation/ScreenNames";
 import {
   useMyPostedJobs,
   useMyWorkSubmissions,
-  isWorkContractDeployed,
+
   workExplorerTxUrl,
   type WorkJob,
   type WorkJobStatus,
@@ -130,9 +130,9 @@ export default function WorkHistoryScreen() {
         </Text>
         {job.fund_tx_hash ? (
           <TxLink label={t("work.escrowTx")} txHash={job.fund_tx_hash} />
-        ) : isWorkContractDeployed() ? (
+        ) : (
           <Text style={styles.dimNote}>{t("work.notEscrowedOnChain")}</Text>
-        ) : null}
+        )}
       </Pressable>
       </PageSection>
     );
@@ -141,7 +141,7 @@ export default function WorkHistoryScreen() {
   const renderSubmission = (s: WorkSubmission & { job: WorkJob | null }) => {
     const job = s.job;
     // Approved is not paid — a payout is real only once it has a tx hash.
-    const paid = !!s.payout_tx_hash || s.approval_status === "paid";
+    const paid = s.payout_state === 'confirmed' && !!s.payout_tx_hash;
     const awaitingPayment = s.approval_status === "approved" && !s.payout_tx_hash;
     const due = Number(s.payout_amount) || 0;
     const subStyle = paid

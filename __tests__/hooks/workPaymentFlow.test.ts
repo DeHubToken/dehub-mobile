@@ -6,7 +6,7 @@ const intent = { id: 'payment', submission_id: 'submission', job_id: 'job', paye
   currency: 'USDC', amount: '0.05', chain_id: 8453, state: 'signing', tx_hash: null, created: true };
 function setup() {
   const stored = new Map<string,string>();
-  const rpc = vi.fn(async (name: string) => name === 'work_claim_payment' ? intent : name === 'work_finalize_payment' ? 'confirmed' : null);
+  const rpc = vi.fn(async (name: string): Promise<any> => name === 'work_claim_payment' ? intent : name === 'work_finalize_payment' ? 'confirmed' : null);
   const deps: WorkPaymentDependencies = {
     rpc, send: vi.fn(async () => ({ hash, wait: vi.fn(async () => ({ status: 1 })) })),
     receipt: vi.fn(async () => ({ payload: 'verified', signature: 'proof' })),
