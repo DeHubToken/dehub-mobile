@@ -3448,7 +3448,7 @@
     "postJob": "仕事を投稿",
     "types": {
       "all": "すべて",
-      "shill": "ソーシャルメディア",
+      "shill": "Shill",
       "clipping": "クリッピング",
       "contract": "契約"
     },
@@ -3464,7 +3464,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "コメント / 宣伝",
+        "label": "Shill",
         "description": "X、YouTube、IG、TikTok での検証済みコメントごとに支払い。"
       },
       "clipping": {
@@ -5735,7 +5735,14 @@
     "imageTranslating": "テキストを抽出して翻訳中…",
     "imageNoText": "画像にテキストは見つかりませんでした",
     "translatedFrom": "{{lang}}から翻訳",
-    "originalText": "元のテキスト"
+    "originalText": "元のテキスト",
+    "repostAndShare": "再投稿＆シェア",
+    "repostHint": "すぐにあなたのフォロワーに",
+    "quoteHint": "ご自身の言葉を入力してください",
+    "shareTo": "共有先",
+    "moreShare": "その他",
+    "viewQuotes": "見積もりを表示",
+    "viewReposts": "再投稿を表示"
   },
   "dm": {
     "online": "オンライン",

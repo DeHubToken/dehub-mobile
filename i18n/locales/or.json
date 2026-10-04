@@ -3442,7 +3442,7 @@
     "postJob": "କାମ ପୋଷ୍ଟ କରନ୍ତୁ",
     "types": {
       "all": "ସବୁ",
-      "shill": "ସୋସିଆଲ ମିଡିଆ",
+      "shill": "Shill",
       "clipping": "କ୍ଲିପିଂ",
       "contract": "ଚୁକ୍ତି"
     },
@@ -3458,7 +3458,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "ମନ୍ତବ୍ୟ / ପ୍ରଚାର",
+        "label": "Shill",
         "description": "X, YouTube, IG କିମ୍ବା TikTok ରେ ପ୍ରତ୍ୟେକ ଯାଞ୍ଚିତ ମନ୍ତବ୍ୟ ପାଇଁ ଦିଅନ୍ତୁ।"
       },
       "clipping": {
@@ -5643,7 +5643,14 @@
     "translatedFrom": "{{lang}} ରୁ ଅନୁବାଦିତ",
     "originalText": "ମୂଳ ପାଠ",
     "imageTranslating": "ପାଠ୍ୟ ନିଷ୍କାସନ ଏବଂ ଅନୁବାଦ କରାଯାଉଛି...",
-    "imageNoText": "ଏହି ଚିତ୍ରରେ କୌଣସି ପାଠ୍ୟ ମିଳିଲାନାହିଁ"
+    "imageNoText": "ଏହି ଚିତ୍ରରେ କୌଣସି ପାଠ୍ୟ ମିଳିଲାନାହିଁ",
+    "repostAndShare": "ପୁନଃପୋଷ୍ଟ କରନ୍ତୁ ଏବଂ ସହଭାଗ କରନ୍ତୁ",
+    "repostHint": "ତତ୍କ୍ଷଣାତ୍, ଆପଣଙ୍କ ଅନୁଗାମୀମାନଙ୍କୁ",
+    "quoteHint": "ଆପଣଙ୍କର ନିଜ ଶବ୍ଦଗୁଡ଼ିକୁ ଯୋଗ କରନ୍ତୁ",
+    "shareTo": "ସହଭାଗ କରନ୍ତୁ",
+    "moreShare": "ଅଧିକ",
+    "viewQuotes": "ଟିପ୍ପଣୀଗୁଡ଼ିକୁ ଦେଖନ୍ତୁ",
+    "viewReposts": "ପୁନରାବୃତ୍ତିଗୁଡ଼ିକୁ ଦେଖନ୍ତୁ"
   },
   "dm": {
     "online": "ଅନଲାଇନ",

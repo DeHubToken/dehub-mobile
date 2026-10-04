@@ -3455,7 +3455,7 @@
     "postJob": "Pasang Pekerjaan",
     "types": {
       "all": "Semua",
-      "shill": "Media sosial",
+      "shill": "Shill",
       "clipping": "Klip",
       "contract": "Kontrak"
     },
@@ -3471,7 +3471,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "Komentar / Promosi",
+        "label": "Shill",
         "description": "Bayar per komentar terverifikasi di X, YouTube, IG, atau TikTok."
       },
       "clipping": {
@@ -5744,7 +5744,14 @@
     "imageTranslating": "Mengekstrak dan menerjemahkan teks...",
     "imageNoText": "Tidak ada teks yang ditemukan di gambar ini",
     "translatedFrom": "Terjemahan dari {{lang}}",
-    "originalText": "Teks Asli"
+    "originalText": "Teks Asli",
+    "repostAndShare": "Posting ulang & bagikan",
+    "repostHint": "Seketika, kepada pengikut Anda",
+    "quoteHint": "Tambahkan kata - kata Anda sendiri",
+    "shareTo": "Bagikan ke",
+    "moreShare": "Lainnya",
+    "viewQuotes": "Lihat penawaran",
+    "viewReposts": "Lihat postingan ulang"
   },
   "dm": {
     "online": "Online",

@@ -3459,7 +3459,7 @@
     "postJob": "انشر وظيفة",
     "types": {
       "all": "الكل",
-      "shill": "وسائل التواصل",
+      "shill": "Shill",
       "clipping": "اقتطاع المقاطع",
       "contract": "عقود"
     },
@@ -3475,7 +3475,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "تعليقات / ترويج",
+        "label": "Shill",
         "description": "ادفع مقابل كل تعليق موثّق على إكس أو يوتيوب أو إنستغرام أو تيك توك."
       },
       "clipping": {
@@ -5749,7 +5749,14 @@
     "imageTranslating": "استخراج النص وترجمته…",
     "imageNoText": "لم يتم العثور على نص في هذه الصورة",
     "translatedFrom": "مترجم من {{lang}}",
-    "originalText": "النص الأصلي"
+    "originalText": "النص الأصلي",
+    "repostAndShare": "إعادة النشر والمشاركة",
+    "repostHint": "على الفور، إلى متابعيك",
+    "quoteHint": "إضافة كلماتك الخاصة",
+    "shareTo": "مشاركة إلى",
+    "moreShare": "المزيد",
+    "viewQuotes": "عرض عروض الأسعار",
+    "viewReposts": "عرض عمليات إعادة النشر"
   },
   "dm": {
     "online": "متصل",

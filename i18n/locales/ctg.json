@@ -3557,7 +3557,7 @@
     "postJob": "কাম দেন",
     "types": {
       "all": "হক্কল",
-      "shill": "সামাজিক মাধ্যম",
+      "shill": "Shill",
       "clipping": "ক্লিপিং",
       "contract": "চুক্তি"
     },
@@ -3573,7 +3573,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "মন্তব্য / প্রচার",
+        "label": "Shill",
         "description": "X, YouTube, IG বা TikTok-অত হর যাচাই গরা মন্তব্যর লাই দেন।"
       },
       "clipping": {
@@ -5765,7 +5765,14 @@
     "imageTranslating": "টেক্সট এক্সট্রাক্ট আর ট্রান্সলেট অইতাছে…",
     "imageNoText": "এই ইমেজে কোনো টেক্সট পাওয়া যায় নাই",
     "translatedFrom": "{{lang}} থেইক্কা ট্রান্সলেট অইছে",
-    "originalText": "আসল লেখা"
+    "originalText": "আসল লেখা",
+    "repostAndShare": "রিপোস্ট অর শেয়ার",
+    "repostHint": "তৎক্ষণে, তুয়ার ফলোয়ারগোরে",
+    "quoteHint": "তুয়ার নিজে শব্দ যোগ কর",
+    "shareTo": "শেয়ার কর",
+    "moreShare": "আরো",
+    "viewQuotes": "কোট দেখ",
+    "viewReposts": "রিপোস্ট দেখ"
   },
   "dm": {
     "online": "অনলাইন",

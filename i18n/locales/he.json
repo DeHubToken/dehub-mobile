@@ -3453,7 +3453,7 @@
     "postJob": "פרסום עבודה",
     "types": {
       "all": "הכול",
-      "shill": "מדיה חברתית",
+      "shill": "Shill",
       "clipping": "עריכת קליפים",
       "contract": "חוזים"
     },
@@ -3469,7 +3469,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "תגובות / קידום",
+        "label": "Shill",
         "description": "שלמו על כל תגובה מאומתת ב-X, ב-YouTube, ב-IG או ב-TikTok."
       },
       "clipping": {
@@ -5660,7 +5660,14 @@
     "imageTranslating": "מחפש ומתרגם טקסט…",
     "imageNoText": "לא נמצא טקסט בתמונה זו",
     "translatedFrom": "מתורגם מ-{{lang}}",
-    "originalText": "טקסט מקורי"
+    "originalText": "טקסט מקורי",
+    "repostAndShare": "פרסם ושתף מחדש",
+    "repostHint": "מיד, לעוקבים שלכם",
+    "quoteHint": "הוספת מילים משלכם",
+    "shareTo": "שתף ב -",
+    "moreShare": "עוד",
+    "viewQuotes": "הצג הצעות מחיר",
+    "viewReposts": "הצג הודעות חוזרות"
   },
   "dm": {
     "online": "אונליין",

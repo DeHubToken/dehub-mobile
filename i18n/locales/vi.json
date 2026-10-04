@@ -3467,7 +3467,7 @@
     "postJob": "Đăng việc",
     "types": {
       "all": "Tất cả",
-      "shill": "Mạng xã hội",
+      "shill": "Shill",
       "clipping": "Cắt clip",
       "contract": "Hợp đồng"
     },
@@ -3483,7 +3483,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "Bình luận / Quảng bá",
+        "label": "Shill",
         "description": "Trả theo mỗi bình luận đã xác minh trên X, YouTube, IG hoặc TikTok."
       },
       "clipping": {
@@ -5708,7 +5708,14 @@
     "imageTranslating": "Trích xuất và dịch văn bản...",
     "imageNoText": "Không tìm thấy văn bản nào trong hình ảnh này",
     "originalText": "Văn bản gốc",
-    "translatedFrom": "Được dịch từ {{lang}}"
+    "translatedFrom": "Được dịch từ {{lang}}",
+    "repostAndShare": "Đăng lại & chia sẻ",
+    "repostHint": "Ngay lập tức, gửi đến những người theo dõi của bạn",
+    "quoteHint": "Thêm từ của riêng bạn",
+    "shareTo": "Chia sẻ lên",
+    "moreShare": "Thêm",
+    "viewQuotes": "Xem báo giá",
+    "viewReposts": "Xem các bài đăng lại"
   },
   "dm": {
     "online": "Trực tuyến",

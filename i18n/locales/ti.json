@@ -3427,7 +3427,7 @@
     "postJob": "ስራሕ ልጥፍ",
     "types": {
       "all": "ኩሉ",
-      "shill": "ማሕበራዊ መራኸቢ",
+      "shill": "Shill",
       "clipping": "ምቁራጽ",
       "contract": "ውዕላት"
     },
@@ -3443,7 +3443,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "ርእይቶታት / መወዓውዒ",
+        "label": "Shill",
         "description": "ኣብ X, YouTube, IG ወይ TikTok ንነፍሲ ወከፍ እተረጋገጸ ርእይቶ ክፈል።"
       },
       "clipping": {
@@ -5625,7 +5625,14 @@
     "originalText": "ኦሪጅናል ጽሑፍ",
     "unlockForAndHold": "ን {{price}} {{symbol}} + {{hold}} {{holdSymbol}} ምሓዝ",
     "unlockFor": "ን {{price}} {{symbol}} ክፈትሕ",
-    "mustHold": "{{amount}} {{symbol}} ክህልወካ ኣለዎ"
+    "mustHold": "{{amount}} {{symbol}} ክህልወካ ኣለዎ",
+    "repostAndShare": "ምዝርጋሕን ምዝርጋሕን",
+    "repostHint": "ሽዑ ንሽዑ ፡ ንሰዓብትኻ",
+    "quoteHint": "ቃላትካ ኣክሎ",
+    "shareTo": "ተኻፈል",
+    "moreShare": "ዝያዳ",
+    "viewQuotes": "ጥቕስታት ርአ",
+    "viewReposts": "ዳግመ-ግምገማታት ርኣዮ"
   },
   "dm": {
     "online": "ኣብ ኢንተርነት",

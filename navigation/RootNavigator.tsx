@@ -5,12 +5,15 @@ import AppNavigator from "./AppNavigator";
 import { ScreenNames } from "./ScreenNames";
 import type { RootStackParamList } from "./types";
 import { createLogger } from "../libs/logger";
+import { useLogoutNavigation } from "../hooks/useLogoutNavigation";
 
 const log = createLogger("RootNavigator");
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function RootNavigator() {
-  const { isFirstTimeUser, needsUsername, isSignedIn } = useAuthState();
+  const authState = useAuthState();
+  const { isFirstTimeUser, needsUsername, isSignedIn } = authState;
+  useLogoutNavigation(authState);
   const hasInitializedRef = useRef(false);
 
   // Determine initial route ONLY on first mount

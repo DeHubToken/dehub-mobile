@@ -1,5 +1,6 @@
 import env from "../config/env";
 import { LIGHT_BADGE_IMAGES } from "./light-badge-artwork";
+import { badgeHoverArt } from "./badgeHoverArt";
 import { Share, Platform } from "react-native";
 import { cdnImage } from "./cdnImage";
 import { overrideTierNameFor } from "./badgeOverrides";
@@ -511,9 +512,9 @@ function earnedTier(amount: number, scale: number): string | undefined {
 /**
  * Get badge name for a given staking/holdings amount.
  *
- * A granted username wins outright — before the balance is even read, and
- * without needing to be a finite number, because a grant is not a balance.
- * Otherwise: the highest badge the holder qualifies for on the live ladder, or
+ * A granted username sets a floor, including when no balance is available.
+ * A higher earned or grandfathered badge still wins. Otherwise: the highest
+ * badge the holder qualifies for on the live ladder, or
  * the tier their lock grandfathers if that is higher. Undefined below the
  * entry rung.
  */
@@ -522,13 +523,12 @@ export function getBadgeName(
   context?: BadgeContext,
 ): string | undefined {
   const granted = overrideTierNameFor(context?.username);
-  if (granted) return granted;
 
   const amt =
     typeof stakingAmount === "string"
       ? parseFloat(stakingAmount)
       : stakingAmount;
-  if (!Number.isFinite(amt)) return undefined;
+  if (!Number.isFinite(amt)) return granted;
 
   const scale = context?.scale ?? activeScale;
   const earned = earnedTier(amt, scale);
@@ -540,7 +540,9 @@ export function getBadgeName(
 
   const earnedIndex = earned ? BADGE_ORDER.indexOf(earned) : -1;
   const lockedIndex = locked ? BADGE_ORDER.indexOf(locked) : -1;
-  return lockedIndex > earnedIndex ? locked : earned;
+  const highestEarned = lockedIndex > earnedIndex ? locked : earned;
+  const grantedIndex = granted ? BADGE_ORDER.indexOf(granted) : -1;
+  return grantedIndex > Math.max(earnedIndex, lockedIndex) ? granted : highestEarned;
 }
 
 // Preload badge images (static requires; dynamic requires not supported by Metro)
@@ -588,9 +590,10 @@ export function getBadgeOpticalStyle(
   size: number,
   verticalOffset = 0,
   textLineHeight = size * 1.4,
+  artworkBounds?: { left: number; top: number; right: number; bottom: number },
 ) {
   const tier = Object.keys(BADGE_IMAGES).find((name) => BADGE_IMAGES[name] === source || LIGHT_BADGE_IMAGES[name] === source);
-  const optics = tier ? BADGE_OPTICS[tier] : undefined;
+  const optics = artworkBounds ?? (tier ? BADGE_OPTICS[tier] : undefined);
   const bounds = optics ?? { left: 0, top: 0, right: 128, bottom: 128 };
   // Roboto/SF capital height is approximately 0.72 of the font size.
   const renderedSize = size * 0.72 * 128 / (bounds.bottom - bounds.top);
@@ -620,6 +623,17 @@ export function getBadgeOpticalStyle(
     alignSelf: "center" as const,
     transform: [{ translateY: translateY + verticalOffset }],
   };
+}
+
+export function getBadgeHoverOpticalStyle(
+  source: number,
+  size: number,
+  verticalOffset = 0,
+  textLineHeight = size * 1.4,
+) {
+  const tier = Object.keys(BADGE_IMAGES).find((name) => BADGE_IMAGES[name] === source || LIGHT_BADGE_IMAGES[name] === source);
+  const bounds = tier === "Killer Whale" ? undefined : badgeHoverArt(tier)?.bounds;
+  return getBadgeOpticalStyle(source, size, verticalOffset, textLineHeight, bounds);
 }
 
 // JPEG, not PNG. These are the placeholder cover strips behind a profile: they

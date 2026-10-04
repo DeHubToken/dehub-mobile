@@ -3422,7 +3422,7 @@
     "postJob": "Кор эълон кардан",
     "types": {
       "all": "Ҳама",
-      "shill": "Шабакаҳои иҷтимоӣ",
+      "shill": "Shill",
       "clipping": "Клипсозӣ",
       "contract": "Шартномаҳо"
     },
@@ -3438,7 +3438,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "Шарҳҳо / Таблиғ",
+        "label": "Shill",
         "description": "Барои ҳар шарҳи тасдиқшуда дар X, YouTube, IG ё TikTok пардохт кунед."
       },
       "clipping": {
@@ -5619,7 +5619,9 @@
     "imageTranslating": "Текст истихроҷ ва тарҷума карда мешавад...",
     "imageNoText": "Дар ин тасвир матне ёфт нашуд",
     "translatedFrom": "Тарҷумашуда аз {{lang}}",
-    "originalText": "Матни аслӣ"
+    "originalText": "Матни аслӣ",
+    "repostHint": "Фавран, ба пайравони худ",
+    "moreShare": "Бештар"
   },
   "dm": {
     "online": "Онлайн",

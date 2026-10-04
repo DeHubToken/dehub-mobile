@@ -3452,7 +3452,7 @@
     "postJob": "काम पोस्ट करूँ",
     "types": {
       "all": "सब",
-      "shill": "सोशल मीडिया",
+      "shill": "Shill",
       "clipping": "क्लिपिंग",
       "contract": "अनुबंध"
     },
@@ -3468,7 +3468,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "टिप्पणी / प्रचार",
+        "label": "Shill",
         "description": "X, YouTube, IG या TikTok पर हर सत्यापित टिप्पणी लेल दीं।"
       },
       "clipping": {
@@ -5661,7 +5661,14 @@
     "translatedFrom": "{{lang}} से अनुवादित",
     "originalText": "मूल पाठ",
     "dehubCreator": "डेकोरेटर, कैलक्यूलेटर",
-    "imageTranslation": "Image caption हल्दी वाला"
+    "imageTranslation": "Image caption हल्दी वाला",
+    "repostAndShare": "पोस्ट करे और शेयर करे",
+    "repostHint": "जल्दी से, अपने के प्रशंसकों के साथ,",
+    "quoteHint": "अपन अपन कथन केँ",
+    "shareTo": "संग्राहलय",
+    "moreShare": "देखीलऽ अधिकई बतिया",
+    "viewQuotes": "उद्धरणों को देखते हई",
+    "viewReposts": "रिज्यूमे देखे_रिज्यूमे देखे"
   },
   "dm": {
     "online": "ऑनलाइन करे",

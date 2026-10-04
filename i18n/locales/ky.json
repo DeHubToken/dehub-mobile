@@ -3439,7 +3439,7 @@
     "postJob": "Иш жарыялоо",
     "types": {
       "all": "Баары",
-      "shill": "Социалдык тармактар",
+      "shill": "Shill",
       "clipping": "Клип кесүү",
       "contract": "Келишимдер"
     },
@@ -3455,7 +3455,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "Комментарийлер / Жарнама",
+        "label": "Shill",
         "description": "X, YouTube, IG же TikTok'тогу ар бир ырасталган комментарий үчүн төлөңүз."
       },
       "clipping": {
@@ -5638,7 +5638,14 @@
     "imageTranslating": "Текстти алуу жана которуу...",
     "imageNoText": "Сүрөттө эч кандай текст табылган жок",
     "translatedFrom": "Которулган {{lang}}",
-    "originalText": "Түпнуска текст"
+    "originalText": "Түпнуска текст",
+    "repostAndShare": "Кайра жөнөтүү & бөлүшүү",
+    "repostHint": "Заматта, жолдоочуларыңызга",
+    "quoteHint": "Өз сөзүңүздү кошуңуз",
+    "shareTo": "Бөлүшүү",
+    "moreShare": "Көбүрөөк",
+    "viewQuotes": "Цитаталарды көрүү",
+    "viewReposts": "Репостторду көрүү"
   },
   "dm": {
     "online": "Онлайн",

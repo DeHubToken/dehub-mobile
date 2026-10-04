@@ -1,3 +1,4 @@
+import BadgeArtwork from "../common/BadgeArtwork";
 import React, { useCallback, useMemo, useRef } from "react";
 import { View, Text, TouchableOpacity, Pressable, ActivityIndicator, StyleSheet, useWindowDimensions } from "react-native";
 import { openBadgeShowcase } from "../../libs/badgeShowcase";
@@ -6,13 +7,14 @@ import { storageImage } from "../../libs/cdnImage";
 import { LinearGradient } from "expo-linear-gradient";
 import Avatar from "../common/Avatar";
 import Icon from "../ui/Icon";
-import { copyToClipboard, getBadgeOpticalStyle } from "../../libs";
+import { copyToClipboard, getBadgeHoverOpticalStyle as getBadgeOpticalStyle } from "../../libs";
 import { toastSuccess } from "../../libs/toast";
 import { ensProfileUrl } from "../../libs/ens-handle";
 import { useTranslation } from "../../hooks/useTranslation";
 import { TranslateButton } from "../ui/TranslateButton";
 import MutualFollowers from "./MutualFollowers";
 import StreamerLevelCard from "../Live/StreamerLevelCard";
+import StreamerBadge from "../Live/StreamerBadge";
 import BadgePatronChip from "../common/BadgePatronChip";
 import { useTranslation as useI18n } from "react-i18next";
 import { formatCompactNumber } from "../../libs/numbers.util";
@@ -314,9 +316,10 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
             <Text className="text-white text-xl font-bold" numberOfLines={2} style={{ flexShrink: 1 }}>{displayName}</Text>
             {badge && badgeImage && (
               <Pressable ref={badgeRef} hitSlop={8} onPress={() => openBadgeShowcase(badge, badgeRef.current)}>
-                <SmartImage source={badgeImage} style={[getBadgeOpticalStyle(badgeImage, 20), { marginLeft: 0 }]} contentFit="contain" />
+                <BadgeArtwork source={badgeImage} style={[getBadgeOpticalStyle(badgeImage, 20), { marginLeft: 0 }]} contentFit="contain" />
               </Pressable>
             )}
+            <StreamerBadge address={address} canSelect={isOwnProfile} />
           </View>
 
           {/* Wraps, so a long handle plus the .eth / follows-you / patron
@@ -435,15 +438,11 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
             so a non-streamer's profile is unchanged. */}
         {isOwnProfile && !isBlocked && <StreamerLevelCard address={address} className="mt-3" />}
 
-        {/* Subscribe CTA — web parity. A creator who has published a plan sells
-            to anyone, so this does not wait on following; it jumps the sheet to
-            the Subs tab, where the plan cards do the selling. Full width rather
-            than beside Follow: two glass pills plus the avatar overflow on a
-            narrow phone. */}
-        {!isOwnProfile && !isBlocked && plansLoading && !hasPlans ? (
+        {/* Followers can subscribe to the creator's pinned plans. */}
+        {!isOwnProfile && !isBlocked && isFollowing && plansLoading && !hasPlans ? (
           <View style={[btn, s.subscribePlaceholder]} />
         ) : (
-          !isOwnProfile && !isBlocked && hasPlans && !!onSubscribe && (
+          !isOwnProfile && !isBlocked && isFollowing && hasPlans && !!onSubscribe && (
             <TouchableOpacity
               onPress={onSubscribe}
               activeOpacity={0.7}

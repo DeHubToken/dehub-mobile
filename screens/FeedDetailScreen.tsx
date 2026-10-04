@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { View, Text, FlatList, Pressable, TextInput, TouchableOpacity, ActivityIndicator, Keyboard, Platform, StyleSheet, Alert, Animated, type LayoutChangeEvent, type NativeScrollEvent, type NativeSyntheticEvent } from "react-native";
+import { View, Text, FlatList, Pressable, TextInput, TouchableOpacity, ActivityIndicator, Keyboard, Platform, StyleSheet, Alert, Animated, useWindowDimensions, type LayoutChangeEvent, type NativeScrollEvent, type NativeSyntheticEvent } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import ScreenHeader from "../components/ScreenHeader";
@@ -13,6 +13,7 @@ import type { CommentLayout } from "../components/Comments/CommentContextMenu";
 import CommentMediaPreview from "../components/Comments/CommentMediaPreview";
 import CommentTabRow, { type CommentSort } from "../components/Comments/CommentTabRow";
 import { COMPOSER, composerStyles } from "../components/Comments/composerLayout";
+import { useGrowingTextInput } from "../hooks/useGrowingTextInput";
 import type { MediaAttachment } from "../components/Comments/CommentMediaPreview";
 import { useVoiceRecorder, VoiceNoteRecordingOverlay } from "../components/Comments/VoiceNoteRecorder";
 import type { VoiceNoteResult } from "../components/Comments/VoiceNoteRecorder";
@@ -49,6 +50,13 @@ import { useAppTheme } from "../context/ThemeContext";
 import { MINIMAL_HAIRLINE, MINIMAL_INSET, MINIMAL_TAB_LINE } from "../theme/minimal";
 import { peekPostDetailSeed, takeWarmRequest } from "../libs/navPrefetch";
 import { useTransitionSettled } from "../hooks/useTransitionSettled";
+import CommentsStageHeader from "../components/Comments/CommentsStageHeader";
+import PostStageMiniPlayer, { MINI_PLAYER_HEIGHT } from "../components/Home/PostStageMiniPlayer";
+import IosGlassPill from "../components/ui/IosGlassPill";
+import { LinearGradient } from "expo-linear-gradient";
+
+/** The post page's phone layout ("Stage") applies below web's sm breakpoint. */
+export const POST_STAGE_MAX_WIDTH = 640;
 
 // Minimal composer field: still reads as an input, but by outline alone.
 const MINIMAL_INPUT_LINE = "rgba(255,255,255,0.10)";
@@ -108,6 +116,8 @@ const threadLineStyles = StyleSheet.create({
 export default function FeedDetailScreen() {
   const { t } = useTranslation();
   const { isMinimal, skin } = useAppTheme();
+  const { width: windowWidth } = useWindowDimensions();
+  const stageLayout = windowWidth < POST_STAGE_MAX_WIDTH;
   const route = useRoute<any>();
   const navigation = useNavigation<any>();
   
@@ -167,6 +177,7 @@ export default function FeedDetailScreen() {
   );
   const [editingComment, setEditingComment] = useState<Comment | null>(null);
   const [inputText, setInputText] = useState(restoredDraft?.text ?? "");
+  const growingInput = useGrowingTextInput(inputText);
   const mentions = useMentions(inputText, setInputText);
   const [posting, setPosting] = useState(false);
   const [highlightedCommentId, setHighlightedCommentId] = useState<number | null>(null);
@@ -353,20 +364,26 @@ export default function FeedDetailScreen() {
   const inputLift = kbLift;
 
   const listBottomPadding = useMemo(() => {
-    const base = 88;
+    // The docked Stage composer floats with a margin under it.
+    const base = stageLayout ? 104 : 88;
     return base + inputLift;
-  }, [inputLift]);
+  }, [inputLift, stageLayout]);
 
   // The composer belongs to the post and its comments. Once the reader is down
   // in "More posts" it slides away, and comes back when they scroll up again.
   // Where that section starts is worked out from the end of the list: it is the
   // last thing in the footer, above only the bottom padding.
   const scrollGeom = useRef({ y: 0, viewport: 0, content: 0, continuation: 0 });
+  const stageLayoutRef = useRef(stageLayout);
+  stageLayoutRef.current = stageLayout;
   // Where the tab row sits in the list, and whether it has scrolled under the
   // top of the screen — then a pinned copy stands in for it, the way web's
   // post page keeps its tab row stuck under the chrome.
   const tabRowY = useRef(0);
   const [pinTabs, setPinTabs] = useState(false);
+  // Stage: where the post's media ends; past it the mini player pins on top.
+  const stageAnchorRef = useRef(0);
+  const [showMini, setShowMini] = useState(false);
   const [composerHeight, setComposerHeight] = useState(0);
   const [pastComments, setPastComments] = useState(false);
   const composerSlide = useRef(new Animated.Value(0)).current;
@@ -382,7 +399,13 @@ export default function FeedDetailScreen() {
   const handleListScroll = useCallback((e: NativeSyntheticEvent<NativeScrollEvent>) => {
     scrollGeom.current.y = e.nativeEvent.contentOffset.y;
     updatePastComments();
-    const pin = tabRowY.current > 0 && e.nativeEvent.contentOffset.y > tabRowY.current;
+    const y = e.nativeEvent.contentOffset.y;
+    if (stageLayoutRef.current) {
+      const mini = stageAnchorRef.current > 0 && y > stageAnchorRef.current - 8;
+      setShowMini((prev) => (prev === mini ? prev : mini));
+      return;
+    }
+    const pin = tabRowY.current > 0 && y > tabRowY.current;
     setPinTabs((prev) => (prev === pin ? prev : pin));
   }, [updatePastComments]);
   const handleListLayout = useCallback((e: LayoutChangeEvent) => {
@@ -1258,6 +1281,29 @@ export default function FeedDetailScreen() {
   const immersive = !!item && IMMERSIVE_TYPES.has(resolveContentType(item)) &&
     (resolveContentType(item) !== "image" || (Array.isArray(item.imageUrls) && item.imageUrls.length > 0) || !!item.imageUrl || !!item.thumbnailUrl);
 
+  // Phones get the "Stage" post page: the post card draws its own back, Ask AI
+  // and ⋯, the comments head straight under its action bar, a mini player pins
+  // on top once the media has gone, and the composer is docked at the bottom.
+  // Loading, private and missing posts keep the plain header.
+  const stage = stageLayout && !!item;
+  const handleStageAnchor = useCallback((y: number) => {
+    stageAnchorRef.current = y;
+  }, []);
+  // The comments tile: down to the comments, and the composer ready to type.
+  const handleStageComment = useCallback(() => {
+    listRef.current?.scrollToOffset({ offset: Math.max(0, tabRowY.current - MINI_PLAYER_HEIGHT - 12), animated: true });
+    focusCommentInput();
+  }, [focusCommentInput]);
+  const scrollToMedia = useCallback(() => {
+    listRef.current?.scrollToOffset({ offset: 0, animated: true });
+  }, []);
+  const toggleCommentSearch = useCallback(() => {
+    setCommentSearchOpen((open) => {
+      if (open) setCommentQuery("");
+      return !open;
+    });
+  }, []);
+
   const handleTabRowLayout = useCallback((e: LayoutChangeEvent) => {
     tabRowY.current = e.nativeEvent.layout.y;
   }, []);
@@ -1295,8 +1341,20 @@ export default function FeedDetailScreen() {
 
   const renderHeader = useCallback(() => (
     <View>
-      {!immersive && <ScreenHeader title={t("screens.post")} />}
-      {item && immersive ? (
+      {!immersive && !stage && <ScreenHeader title={t("screens.post")} />}
+      {item && stage ? (
+        <FeedCard
+          item={item}
+          fullContent
+          disablePress
+          prioritizeMedia
+          immersive={immersive}
+          flat={!immersive}
+          stage
+          onStageAnchor={handleStageAnchor}
+          onCommentPress={handleStageComment}
+        />
+      ) : item && immersive ? (
         <FeedCard
           item={item}
           fullContent
@@ -1377,11 +1435,21 @@ export default function FeedDetailScreen() {
           it scrolls under the top of the screen. */}
       {!postUnavailable && (
         <View onLayout={handleTabRowLayout}>
-          {renderCommentTabs()}
+          {stage ? (
+            <CommentsStageHeader
+              count={item?.commentCount ?? comments.length}
+              sort={commentSort}
+              onSortChange={setCommentSort}
+              searchOpen={commentSearchOpen}
+              query={commentQuery}
+              onQueryChange={setCommentQuery}
+              onToggleSearch={toggleCommentSearch}
+            />
+          ) : renderCommentTabs()}
         </View>
       )}
     </View>
-  ), [item, immersive, loading, privateError, loadError, postUnavailable, fetchData, focusCommentInput, isMinimal, t, renderCommentTabs, handleTabRowLayout]);
+  ), [item, immersive, stage, loading, privateError, loadError, postUnavailable, fetchData, focusCommentInput, isMinimal, t, renderCommentTabs, handleTabRowLayout, handleStageAnchor, handleStageComment, commentSort, commentSearchOpen, commentQuery, toggleCommentSearch, comments.length]);
 
   // The name sits in bold wherever the language puts it. The sentence is
   // translated whole and cut around the name, because a translated "Replying
@@ -1397,6 +1465,13 @@ export default function FeedDetailScreen() {
       useNativeDriver: true,
     }).start();
   }, [hideComposer, composerHeight, composerSlide]);
+
+  // Stage dock colours: the page itself, a surface a step above it, and the
+  // transparent end of the fade band.
+  const stagePage = isMinimal ? "#000000" : skin ? skin.page : "#010305";
+  const stageSurface = isMinimal ? "#000000" : skin ? (String(skin.strip.backgroundColor ?? skin.page)) : "#18181B";
+  const stageDockFade = stagePage + "00";
+  const stageGlassTint = isMinimal ? "rgba(0,0,0,0.55)" : "rgba(12,12,14,0.35)";
 
   const replyToName = replyTo?.user?.displayName || replyTo?.user?.username || t("dm.userFallback");
   const [replyingToBefore, replyingToAfter = ""] = t("governance.discussion.replyingTo", {
@@ -1471,7 +1546,7 @@ export default function FeedDetailScreen() {
       {/* The tab row, pinned to the top once the one in the list scrolls
           under it. Solid in the page colour so comments never read through.
           Drawn before the immersive back button so that stays on top. */}
-      {pinTabs && !postUnavailable && (
+      {pinTabs && !stage && !postUnavailable && (
         <View
           className="bg-theme-neutrals-900"
           style={[
@@ -1485,7 +1560,8 @@ export default function FeedDetailScreen() {
           {renderCommentTabs()}
         </View>
       )}
-      {immersive && <ScreenHeader title={t("screens.post")} overlay />}
+      {immersive && !stage && <ScreenHeader title={t("screens.post")} overlay />}
+      {stage && <PostStageMiniPlayer tokenId={item?.tokenId ?? (item as any)?.id ?? tokenId} visible={showMini} onPress={scrollToMedia} />}
       {/* Nothing to comment on while the post is private, gone or failed to
           load. A saved draft stays in storage and comes back with the post. */}
       {!postUnavailable && (
@@ -1494,18 +1570,51 @@ export default function FeedDetailScreen() {
           style={{ position: "absolute", left: 0, right: 0, bottom: 0, transform: [{ translateY: composerSlide }] }}
           onLayout={(e) => setComposerHeight(e.nativeEvent.layout.height)}
         >
+        {stage && (
+          // Stage: the composer is a card docked over the bottom of the page
+          // (the bottom nav is not on this screen). A fade band above it and,
+          // on Android, the page colour solid under it, so comment text never
+          // reads through; iOS keeps the glass.
+          <View pointerEvents="none" style={StyleSheet.absoluteFill}>
+            <LinearGradient
+              colors={[stageDockFade, stagePage]}
+              style={{ position: "absolute", left: 0, right: 0, top: -28, height: 28 }}
+            />
+            {Platform.OS === "ios" ? (
+              <LinearGradient colors={[stagePage + "CC", stagePage]} style={StyleSheet.absoluteFill} />
+            ) : (
+              <View style={[StyleSheet.absoluteFill, { backgroundColor: stagePage }]} />
+            )}
+          </View>
+        )}
         <View
-          className="border-t border-theme-neutrals-800 bg-theme-neutrals-900"
+          className={stage ? undefined : "border-t border-theme-neutrals-800 bg-theme-neutrals-900"}
+          testID={stage ? "post-stage-composer" : undefined}
           // Always solid. A canvas theme turns page fills into a see-through
           // veil over its backdrop, so the bar sets its page colour itself
           // (opaque) and the comments never show through it.
           // Minimal: a black bar under one full-width hairline.
-          style={isMinimal
+          style={stage
+            ? {
+                marginBottom: inputLift + 8,
+                marginTop: 4,
+                marginHorizontal: 10,
+                borderRadius: skin?.square ? 0 : 12,
+                borderWidth: 1,
+                borderColor: isMinimal ? MINIMAL_HAIRLINE : "rgba(255,255,255,0.12)",
+                overflow: "hidden",
+              }
+            : isMinimal
             ? { marginBottom: inputLift, backgroundColor: "#000", borderTopColor: MINIMAL_HAIRLINE }
             : skin
               ? { marginBottom: inputLift, backgroundColor: skin.page }
               : { marginBottom: inputLift }}
         >
+          {stage && (Platform.OS === "ios" ? (
+            <IosGlassPill tint={stageGlassTint} borderRadius={skin?.square ? 0 : 12} />
+          ) : (
+            <View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: stageSurface }]} />
+          ))}
           {/* Replying / Editing indicator */}
           {(replyTo || editingComment) && !recorder.isRecording && (
             <View
@@ -1608,6 +1717,8 @@ export default function FeedDetailScreen() {
                   value={inputText}
                   onChangeText={mentions.handleChangeText}
                   onSelectionChange={mentions.handleSelectionChange}
+                  onContentSizeChange={growingInput.onContentSizeChange}
+                  scrollEnabled={growingInput.scrollEnabled}
                   placeholder={
                     editingComment
                       ? t("comments.editPlaceholder")
@@ -1622,12 +1733,12 @@ export default function FeedDetailScreen() {
                     // send control is a sibling, not an overlay, so the box is
                     // free to grow into the row.
                     maxHeight: 140,
+                    height: growingInput.height,
                     paddingVertical: 0,
                     // Android multiline inputs top-align regardless of the parent.
-                    textAlignVertical: "center",
+                    textAlignVertical: inputText.length ? "top" : "center",
                   }}
                   multiline
-                  numberOfLines={inputText.length === 0 ? 1 : undefined}
                   // No returnKeyType="send"/onSubmitEditing here on purpose: on a
                   // multiline field that turns the keyboard's return key into a
                   // post button, so a reply cannot be written across two lines.

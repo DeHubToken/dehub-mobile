@@ -7,6 +7,7 @@ import {
   setAuthToken,
   setTokenExpiresAt,
   getTokenExpiresAt,
+  getAuthToken,
   clearAuthData,
 } from './auth.utils';
 import * as SecureStore from 'expo-secure-store';
@@ -78,6 +79,16 @@ let isRefreshing = false;
 let refreshStartedAt = 0;
 let failedQueue: QueueEntry[] = [];
 let onTokenRefreshedListeners: TokenRefreshListener[] = [];
+let onSessionInvalidatedListeners: TokenRefreshListener[] = [];
+
+/** A late response for an old token must never sign out a newer session. */
+async function invalidateSession(rejectedToken: string | null): Promise<void> {
+  if (await getAuthToken() !== rejectedToken) return;
+  await clearAuthData();
+  onSessionInvalidatedListeners.forEach((listener) => {
+    try { listener(); } catch {}
+  });
+}
 
 function processQueue(error: any, token: string | null) {
   failedQueue.forEach(({ resolve, reject }) => {
@@ -200,16 +211,20 @@ export const tokenRefreshManager = {
     // owns the session by then, and every later call would fail with a blended
     // identity. Declared out here so the rejection branch below can see it.
     let ownerAtStart: Awaited<ReturnType<typeof readSessionOwner>> = null;
+    let accessTokenAtStart: string | null = null;
 
     return (async () => {
       try {
+        ownerAtStart = await readSessionOwner();
+        accessTokenAtStart = await getAuthToken();
         const storedRefreshToken = await getRefreshToken();
         if (!storedRefreshToken) {
+          if (sameSessionOwner(ownerAtStart, await readSessionOwner())) {
+            await invalidateSession(accessTokenAtStart);
+          }
           processQueue(new Error('No refresh token'), null);
           return null;
         }
-
-        ownerAtStart = await readSessionOwner();
 
         const data = await callRefreshEndpoint(storedRefreshToken);
 
@@ -244,7 +259,6 @@ export const tokenRefreshManager = {
         return data.accessToken;
       } catch (error) {
         console.error('[tokenRefresh] Refresh failed:', error);
-        processQueue(error, null);
 
         // Only a definitive rejection from the backend (401/403 — this
         // refresh token is invalid, expired, or revoked) means the user is
@@ -263,10 +277,14 @@ export const tokenRefreshManager = {
           const ownerNow = await readSessionOwner();
           if (sameSessionOwner(ownerAtStart, ownerNow)) {
             try {
-              await clearAuthData();
+              await invalidateSession(accessTokenAtStart);
             } catch {}
           }
         }
+
+        // Coalesced requests must see the cleared session before they handle
+        // failure; otherwise they can still roll back into the old account.
+        processQueue(error, null);
 
         return null;
       } finally {
@@ -307,4 +325,14 @@ export const tokenRefreshManager = {
       onTokenRefreshedListeners = onTokenRefreshedListeners.filter((fn) => fn !== listener);
     };
   },
+
+  /** Synchronise the visible account when saved credentials are rejected. */
+  onSessionInvalidated(listener: TokenRefreshListener): () => void {
+    onSessionInvalidatedListeners.push(listener);
+    return () => {
+      onSessionInvalidatedListeners = onSessionInvalidatedListeners.filter((fn) => fn !== listener);
+    };
+  },
+
+  invalidateSession,
 };

@@ -11,6 +11,7 @@
  */
 
 import React, { memo, useContext, useEffect, useMemo, useState } from "react";
+import { useFeedPlaybackAllowed, useCallInProgress, visualActivity } from "../../libs/visualActivity";
 import { View, StyleSheet, Text, Pressable } from "react-native";
 import { useEvent } from "expo";
 import { useTranslation } from "react-i18next";
@@ -67,6 +68,18 @@ function LivePlayer({ url }: { url: string }) {
   // over, so the stream carries on instead of reconnecting from a spinner.
   const player = useSharedLivePlayer(url)!;
   const focused = useScreenFocused();
+  const playbackAllowed = useFeedPlaybackAllowed();
+  const callInProgress = useCallInProgress();
+  useEffect(() => {
+    const sync = () => {
+      if (visualActivity.isCallBusy() || (!visualActivity.isFeedPlaybackAllowed() && sharedLivePlayerHolders(url) <= 1)) {
+        try { player.pause(); } catch {}
+      }
+    };
+    const subscription = player.addListener("playingChange", sync);
+    sync();
+    return () => subscription.remove();
+  }, [player, playbackAllowed, callInProgress, url]);
   const { status } = useEvent(player, 'statusChange', { status: player.status });
   const { isPlaying } = useEvent(player, "playingChange", { isPlaying: player.playing });
   // Cinematic feed: play and sound live in the card's tools menu, not over
@@ -77,7 +90,7 @@ function LivePlayer({ url }: { url: string }) {
       key: "play",
       icon: isPlaying ? "Pause" : "Play",
       label: t(isPlaying ? "audioPost.pause" : "audioPost.play"),
-      onPress: () => { if (player.playing) player.pause(); else player.play(); },
+      onPress: () => { if (player.playing) player.pause(); else if (visualActivity.isFeedPlaybackAllowed()) player.play(); },
     },
     {
       key: "sound",
@@ -95,6 +108,7 @@ function LivePlayer({ url }: { url: string }) {
   }, [controlsVisible, isPlaying, muted]);
 
   useEffect(() => {
+    if (!playbackAllowed) return;
     if (!focused) {
       // Another screen is on top. If it is the live viewer it now owns this
       // player and must be left alone; if nothing else holds it, stop it
@@ -121,7 +135,7 @@ function LivePlayer({ url }: { url: string }) {
     }
     // `muted` is applied by the button itself; re-running on it would replay.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [player, focused, url]);
+  }, [player, focused, url, playbackAllowed]);
 
   return (
     <View style={StyleSheet.absoluteFill}>

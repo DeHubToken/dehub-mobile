@@ -50,6 +50,7 @@ import { useTokenPrices } from "../hooks/useStores";
 import { appLocale } from "../libs/date.util";
 import {
   useAdAccount,
+  useAdRevenue,
   useEnsureAdAccount,
   useAdCampaigns,
   useCreateCampaign,
@@ -146,6 +147,7 @@ const CampaignForm: React.FC<{ visible: boolean; onClose: () => void }> = ({ vis
   const [total, setTotal] = useState("");
   const [ctaUrl, setCtaUrl] = useState("");
   const [tiers, setTiers] = useState<string[]>([]);
+  const [creatorSupport, setCreatorSupport] = useState(false);
 
   const cpm = useMemo(() => blendedCpmUsd(tiers), [tiers]);
   const estImpressions = useMemo(() => {
@@ -163,18 +165,19 @@ const CampaignForm: React.FC<{ visible: boolean; onClose: () => void }> = ({ vis
         objective,
         daily_budget_usd: Number(daily),
         total_budget_usd: Number(total),
-        targeting: tiers.length ? { tiers } : {},
+        targeting: { ...(tiers.length ? { tiers } : {}), creatorSupport },
         cta_url: ctaUrl.trim() || null,
         status: "pending_review",
       },
       {
         onSuccess: () => {
           setName(""); setDaily(""); setTotal(""); setCtaUrl(""); setTiers([]);
+          setCreatorSupport(false);
           onClose();
         },
       },
     );
-  }, [valid, create, name, objective, daily, total, tiers, ctaUrl, onClose]);
+  }, [valid, create, name, objective, daily, total, tiers, ctaUrl, creatorSupport, onClose]);
 
   return (
     <Modal visible={visible} animationType="slide" transparent onRequestClose={onClose}>
@@ -194,6 +197,10 @@ const CampaignForm: React.FC<{ visible: boolean; onClose: () => void }> = ({ vis
             </View>
 
             <ScrollView keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false}>
+              <Pressable accessibilityRole="checkbox" accessibilityState={{ checked: creatorSupport }} onPress={() => setCreatorSupport(value => !value)} style={styles.card}>
+                <Text style={styles.campaignName}>{creatorSupport ? '✓ ' : ''}{t('creatorSupport.campaignLabel')}</Text>
+                <Text style={styles.dim}>{t('creatorSupport.campaignDescription')}</Text>
+              </Pressable>
               <Text style={styles.label}>{t("ads.campaignName")}</Text>
               <TextInput
                 value={name}
@@ -315,6 +322,7 @@ export default function AdsScreen() {
   const [buying, setBuying] = useState(false);
 
   const account = useAdAccount();
+  const revenue = useAdRevenue();
   const ensureAccount = useEnsureAdAccount();
   const campaigns = useAdCampaigns();
   const payments = useAdPayments();
@@ -465,7 +473,11 @@ export default function AdsScreen() {
           />
         }
       >
-        {account.isLoading ? (
+          {revenue.data !== undefined ? <View style={styles.card}>
+            <Text style={styles.campaignName}>{t('creatorSupport.revenue', { amount: revenue.data.toFixed(4) })}</Text>
+            <Text style={styles.dim}>{t('creatorSupport.revenueDescription')}</Text>
+          </View> : null}
+          {account.isLoading ? (
           <DeHubLoader size={56} style={{ marginTop: 40 }} />
         ) : !hasAccount ? (
           <PageSection>

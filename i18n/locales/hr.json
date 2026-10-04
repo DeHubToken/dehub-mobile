@@ -3455,7 +3455,7 @@
     "postJob": "Objavi posao",
     "types": {
       "all": "Sve",
-      "shill": "Društvene mreže",
+      "shill": "Shill",
       "clipping": "Rezanje isječaka",
       "contract": "Ugovori"
     },
@@ -3471,7 +3471,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "Komentari / Promocija",
+        "label": "Shill",
         "description": "Plaćaj po provjerenom komentaru na X-u, YouTubeu, IG-u ili TikToku."
       },
       "clipping": {
@@ -5665,7 +5665,14 @@
     "imageTranslating": "Ekstrahiranje i prevođenje teksta...",
     "imageNoText": "Nije pronađen tekst na ovoj slici",
     "translatedFrom": "Prevedeno s {{lang}}",
-    "originalText": "Izvorni tekst"
+    "originalText": "Izvorni tekst",
+    "repostAndShare": "Ponovno objavi i podijeli",
+    "repostHint": "Odmah, svojim pratiteljima",
+    "quoteHint": "Unesite vlastite riječi",
+    "shareTo": "Podijeli s",
+    "moreShare": "Više",
+    "viewQuotes": "Prikaži ponude",
+    "viewReposts": "Prikaži ponovne objave"
   },
   "dm": {
     "online": "Online",

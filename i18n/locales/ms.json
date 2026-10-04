@@ -3714,7 +3714,7 @@
     "postJob": "Siarkan Kerja",
     "types": {
       "all": "Semua",
-      "shill": "Media sosial",
+      "shill": "Shill",
       "clipping": "Klip",
       "contract": "Kontrak"
     },
@@ -3730,7 +3730,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "Komen / Promosi",
+        "label": "Shill",
         "description": "Bayar setiap komen disahkan di X, YouTube, IG atau TikTok."
       },
       "clipping": {
@@ -5922,7 +5922,14 @@
     "imageTranslating": "Mengekstrak dan menterjemah teks...",
     "imageNoText": "Tiada teks ditemui dalam imej ini",
     "translatedFrom": "Diterjemahkan daripada {{lang}}",
-    "originalText": "Teks Asal"
+    "originalText": "Teks Asal",
+    "repostAndShare": "Siarkan semula & kongsi",
+    "repostHint": "Seketika, kepada pengikut anda",
+    "quoteHint": "Tambah perkataan anda sendiri",
+    "shareTo": "Kongsi kepada",
+    "moreShare": "Lagi",
+    "viewQuotes": "Lihat sebut harga",
+    "viewReposts": "Lihat siaran semula"
   },
   "dm": {
     "online": "Dalam talian",

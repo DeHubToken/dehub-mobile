@@ -3445,7 +3445,7 @@
     "postJob": "රැකියාවක් පළ කරන්න",
     "types": {
       "all": "සියල්ල",
-      "shill": "සමාජ මාධ්‍ය",
+      "shill": "Shill",
       "clipping": "ක්ලිප් කිරීම",
       "contract": "ගිවිසුම්"
     },
@@ -3461,7 +3461,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "අදහස් / ප්‍රවර්ධනය",
+        "label": "Shill",
         "description": "X, YouTube, IG හෝ TikTok හි තහවුරු කළ එක් අදහසකට ගෙවන්න."
       },
       "clipping": {
@@ -5642,7 +5642,14 @@
     "imageTranslating": "පෙළ උපුටා ගැනීම සහ පරිවර්තනය කිරීම…",
     "imageNoText": "මෙම රූපයේ පෙළක් හමු නොවීය",
     "translatedFrom": "{{lang}} සිට පරිවර්තනය කරන ලදී",
-    "originalText": "මුල් පාඨය"
+    "originalText": "මුල් පාඨය",
+    "repostAndShare": "ප්‍රති පළ කරන්න & බෙදා ගන්න",
+    "repostHint": "වහාම, ඔබේ අනුගාමිකයන්ට",
+    "quoteHint": "ඔබේම වචන එක් කරන්න",
+    "shareTo": "වෙත බෙදා ගන්න",
+    "moreShare": "තවත්",
+    "viewQuotes": "උපුටා දැක්වීම් බලන්න",
+    "viewReposts": "නැවත තනතුරු බලන්න"
   },
   "dm": {
     "online": "ඔන්ලයින්",

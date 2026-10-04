@@ -1,6 +1,8 @@
 import { provisionAndSignIn, type ProvisionDeps } from '../../libs/provision-and-sign-in';
 import { resolveEvmWalletForIdentity, releaseWalletKeyForSignIn } from '../../libs/identity-wallet';
 import { fetchWalletReliably } from '../../libs/wallet-core/store';
+import { getAuthToken, getStoredSupabaseUserId } from '../../libs/auth.utils';
+import { stageIncomingIdentity } from '../../libs/profiles';
 
 jest.mock('../../config/constants', () => ({ ChainId: { BASE_MAINNET: 8453 } }));
 jest.mock('../../libs/logger', () => ({ createLogger: () => ({ info: jest.fn(), warn: jest.fn(), error: jest.fn() }) }));
@@ -44,14 +46,41 @@ it.each(['needs-unlock', 'needs-biometric-unlock', 'needs-web-passkey-sync', 're
     expect(deps.completeLocalSignIn).not.toHaveBeenCalled();
   },
 );
-it.each(['not-linked', 'failed'])('does not unlock or sign after a refused exchange (%s)', async (outcome) => {
-  jest.mocked(deps.signInWithSupabaseSession).mockResolvedValue(outcome as 'not-linked' | 'failed');
+it('does not unlock or sign after a failed exchange', async () => {
+  jest.mocked(deps.signInWithSupabaseSession).mockResolvedValue('failed');
   expect((await provisionAndSignIn('uid', deps)).kind).toBe('error');
+  expect(resolveEvmWalletForIdentity).not.toHaveBeenCalled();
   expect(releaseWalletKeyForSignIn).not.toHaveBeenCalled();
   expect(deps.completeLocalSignIn).not.toHaveBeenCalled();
 });
-it('does not read a ready wallet key after an unlinked response', async () => {
+it.each([
+  ['needs-unlock', { mode: 'unlock', supabaseUserId: 'uid', address, payload: { v: 1 } }],
+  ['needs-biometric-unlock', { mode: 'biometric-unlock', supabaseUserId: 'uid', address, payload: { v: 1 } }],
+  ['needs-web-passkey-sync', { mode: 'web-passkey-sync', supabaseUserId: 'uid', address }],
+])('resumes an unfinished sign-up through the wallet unlock (%s)', async (status, request) => {
+  jest.mocked(resolveEvmWalletForIdentity).mockResolvedValue({ status, address, payload: { v: 1 } } as any);
+  jest.mocked(deps.signInWithSupabaseSession).mockResolvedValue('not-linked');
+  await expect(provisionAndSignIn('uid', deps)).resolves.toEqual({ kind: 'wallet-setup', request });
+  expect(releaseWalletKeyForSignIn).not.toHaveBeenCalled();
+  expect(deps.completeLocalSignIn).not.toHaveBeenCalled();
+});
+it('finishes an unfinished sign-up with the wallet already on this device', async () => {
   jest.mocked(resolveEvmWalletForIdentity).mockResolvedValue({ status: 'ready', address });
+  jest.mocked(deps.signInWithSupabaseSession).mockResolvedValue('not-linked');
+  jest.mocked(releaseWalletKeyForSignIn).mockResolvedValue('0xkey');
+  jest.mocked(deps.getSupabaseAuthMeta).mockResolvedValue({ verifier: 'supabase' });
+  await expect(provisionAndSignIn('uid', deps)).resolves.toEqual({ kind: 'signed-in' });
+  expect(deps.completeLocalSignIn).toHaveBeenCalledWith(address, '0xkey', { verifier: 'supabase' });
+});
+it('asks again when the device key is not released', async () => {
+  jest.mocked(resolveEvmWalletForIdentity).mockResolvedValue({ status: 'ready', address });
+  jest.mocked(deps.signInWithSupabaseSession).mockResolvedValue('not-linked');
+  jest.mocked(releaseWalletKeyForSignIn).mockResolvedValue(null);
+  expect((await provisionAndSignIn('uid', deps)).kind).toBe('error');
+  expect(deps.completeLocalSignIn).not.toHaveBeenCalled();
+});
+it('does not sign when the wallet lookup failed', async () => {
+  jest.mocked(resolveEvmWalletForIdentity).mockResolvedValue({ status: 'wallet-lookup-failed' } as any);
   jest.mocked(deps.signInWithSupabaseSession).mockResolvedValue('not-linked');
   expect((await provisionAndSignIn('uid', deps)).kind).toBe('error');
   expect(releaseWalletKeyForSignIn).not.toHaveBeenCalled();
@@ -61,4 +90,12 @@ it('does not authenticate or provision without an identity token', async () => {
   expect((await provisionAndSignIn('uid', deps)).kind).toBe('error');
   expect(deps.signInWithSupabaseSession).not.toHaveBeenCalled();
   expect(resolveEvmWalletForIdentity).not.toHaveBeenCalled();
+});
+
+it('preserves the incoming Supabase session when replacing another cached account', async () => {
+  jest.mocked(getStoredSupabaseUserId).mockResolvedValueOnce('outgoing-uid');
+  jest.mocked(getAuthToken).mockResolvedValueOnce('outgoing-token');
+  await expect(provisionAndSignIn('uid', deps)).resolves.toEqual({ kind: 'signed-in' });
+  expect(stageIncomingIdentity).toHaveBeenCalledWith('uid');
+  expect(deps.signInWithSupabaseSession).toHaveBeenCalled();
 });

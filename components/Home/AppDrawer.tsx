@@ -98,6 +98,8 @@ const NAV_ITEMS: DrawerItem[] = [
   { icon: "MessageSquare", labelKey: "nav.messages", screen: ScreenNames.DM, requiresAuth: true, tab: true },
   { icon: "Users", labelKey: "nav.communities", screen: ScreenNames.Communities },
   { icon: "Sparkles", labelKey: "nav.assistant", screen: ScreenNames.AIChat, tab: true },
+  { icon: "Film", labelKey: "creator.editor", screen: ScreenNames.MediaEditor },
+  { icon: "Wand", labelKey: "commandCentre.creator", screen: ScreenNames.Creator },
   { icon: "Settings", labelKey: "nav.settings", screen: ScreenNames.AccountSettings, requiresAuth: true },
   { icon: "Trophy", labelKey: "nav.leaderboard", screen: ScreenNames.Leaderboard },
   { icon: "ChartNoAxesCombined", labelKey: "nav.stats", screen: ScreenNames.Stats },
@@ -133,11 +135,11 @@ const NAV_ITEMS: DrawerItem[] = [
   { icon: "Bot", labelKey: "nav.agents", screen: ScreenNames.Agents },
   { icon: "Megaphone", labelKey: "nav.ads", screen: ScreenNames.Ads, requiresAuth: true, storefrontHidden: true },
   { icon: "Tv", labelKey: "nav.tv", screen: ScreenNames.TV },
+  { icon: "LayoutGrid", labelKey: "miniApps.store.title", screen: ScreenNames.Apps, storefrontHidden: true },
   // Sits between Stores and Glossary, as on the web sidebar. Only the games
   // that work on a touchscreen are listed — see config/arcade-games.
   { icon: "Gamepad2", labelKey: "nav.arcade", screen: ScreenNames.Arcade },
   // The third-party mini app store has its own storefront review pending.
-  { icon: "LayoutGrid", labelKey: "miniApps.store.title", screen: ScreenNames.Apps, storefrontHidden: true },
   { icon: "ArrowDownToLine", labelKey: "nav.converter", screen: ScreenNames.Converter, requiresAuth: true },
   { icon: "FolderInput", labelKey: "nav.migrate", screen: ScreenNames.Migrate },
   { icon: "Scroll", labelKey: "nav.glossary", screen: ScreenNames.Glossary },
@@ -155,6 +157,7 @@ const NAV_ITEMS: DrawerItem[] = [
 // closest one: a flat glyph beside the glossy set reads as a broken tile, so
 // the glyph is only the fallback for art that fails to download.
 const ICON_KEYS: Record<string, string> = {
+  "creator.editor": "videos", "commandCentre.creator": "wand",
   "nav.home": "home", "nav.profile": "profile", "nav.explore": "search", "nav.prompt": "wand",
   "nav.notifications": "notifications", "nav.messages": "messages", "nav.communities": "communities",
   "nav.assistant": "assistant", "nav.settings": "settings", "nav.leaderboard": "trophy",
@@ -431,8 +434,8 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
   }, [isSigningOut, onClose, signOut, t]);
 
   const handlePost = useCallback(() => {
-    navigate(ScreenNames.Upload);
-  }, [navigate]);
+    navigate(activeRouteName?.startsWith('Work') ? ScreenNames.WorkPost : ScreenNames.Upload);
+  }, [activeRouteName, navigate]);
 
   const handleSignIn = useCallback(() => {
     navigate(ScreenNames.SignIn);

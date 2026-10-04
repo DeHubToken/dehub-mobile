@@ -3447,7 +3447,7 @@
     "postJob": "发活络",
     "types": {
       "all": "全部",
-      "shill": "社交媒体",
+      "shill": "Shill",
       "clipping": "剪片",
       "contract": "合约"
     },
@@ -3463,7 +3463,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "评论／推广",
+        "label": "Shill",
         "description": "勒 X、YouTube、IG 或者 TikTok 每条核实过个评论付钞票。"
       },
       "clipping": {
@@ -5653,7 +5653,14 @@
     "imageTranslating": "提取并翻译文字中…",
     "imageNoText": "图片里没找到文字",
     "translatedFrom": "从 {{lang}} 翻译",
-    "originalText": "原文"
+    "originalText": "原文",
+    "repostAndShare": "转发 & 分享",
+    "repostHint": "立刻，发给侬个关注者",
+    "quoteHint": "加上侬自家话",
+    "shareTo": "分享至",
+    "moreShare": "更多",
+    "viewQuotes": "查看引用",
+    "viewReposts": "查看转发"
   },
   "dm": {
     "online": "在线",

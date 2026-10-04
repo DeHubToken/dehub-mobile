@@ -3456,7 +3456,7 @@
     "postJob": "Публикуване на задача",
     "types": {
       "all": "Всички",
-      "shill": "Социални медии",
+      "shill": "Shill",
       "clipping": "Клипване",
       "contract": "Договори"
     },
@@ -3472,7 +3472,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "Коментари / Промотиране",
+        "label": "Shill",
         "description": "Плащайте за всеки потвърден коментар в X, YouTube, IG или TikTok."
       },
       "clipping": {
@@ -5664,7 +5664,14 @@
     "imageTranslating": "Извличане и превод на текст...",
     "imageNoText": "Не е намерен текст в това изображение",
     "translatedFrom": "Преведено от {{lang}}",
-    "originalText": "Оригинален текст"
+    "originalText": "Оригинален текст",
+    "repostAndShare": "Повторно публикуване и споделяне",
+    "repostHint": "Незабавно, за вашите последователи",
+    "quoteHint": "Добавете свои собствени думи",
+    "shareTo": "Споделяне с",
+    "moreShare": "Още",
+    "viewQuotes": "Преглед на офертите",
+    "viewReposts": "Преглед на повторните публикации"
   },
   "dm": {
     "online": "Онлайн",

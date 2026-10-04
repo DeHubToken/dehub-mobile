@@ -1,7 +1,11 @@
+import { PersistentVideoView } from '../common/PersistentVideoView';
+import { isPictureInPicturePlayer, canStartVideo } from '../../libs/pictureInPicture';
 import { useMediaVolume } from '../../libs/video-preferences';
+import { useFeedPlaybackAllowed, useCallInProgress, visualActivity } from "../../libs/visualActivity";
 import { MediaControlIcon as BareIcon, MediaControlText } from "../common/MediaControlGlyph";
-import { useSilenceOnRelease } from "../../hooks/useSilenceOnRelease";
-import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { usePostVideoPlayer } from "../../hooks/usePostVideoPlayer";
+import { hasPostVideoSession, postMediaIsTransferring, preparePostMediaNavigation } from "../../libs/post-media-session";
+import React, { memo, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
   View,
@@ -18,7 +22,7 @@ import {
   Easing,
   Platform,
 } from "react-native";
-import { VideoView, useVideoPlayer, VideoPlayer, isPictureInPictureSupported } from "expo-video";
+import { VideoView, VideoPlayer, isPictureInPictureSupported } from "expo-video";
 import PictureInPictureButton from "../common/PictureInPictureButton";
 import { configureForBackgroundPlayback, releaseBackgroundPlayback } from "../../libs/audioSession";
 import { feedVolumeResponder } from "../../libs/feed-volume-responder";
@@ -33,6 +37,7 @@ import {
 } from "../../libs/video-preferences";
 import SmartImage from "../common/SmartImage";
 import { useAppTheme } from "../../context/ThemeContext";
+import { patchPostStage } from "../../libs/postStage";
 import { useFeedBleed } from "./feedBleed";
 import type { CaptionControls } from "../VideoPlayerCore/CaptionOverlay";
 import Spinner from "../common/Spinner";
@@ -275,6 +280,10 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   const { t } = useTranslation();
   const navigation = useNavigation<any>();
   const [isPlaying, setIsPlaying] = useState(false);
+  const postPageRef = useRef(postPage);
+  postPageRef.current = postPage;
+  const tokenIdRef = useRef(tokenId);
+  tokenIdRef.current = tokenId;
   const [isMuted, setIsMuted] = useState(() => getCachedMuted());
   const [currentTime, setCurrentTime] = useState(0);
   // `currentTime` only reaches the screen through the scrubber, which exists
@@ -424,7 +433,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   // Off-screen cards keep an empty player, so their ExoPlayer buffers are
   // released — with FlatList's render window this is the difference between 1
   // and 10+ live players and was causing OutOfMemoryError on Android.
-  const player = useVideoPlayer(canPlay && isVisible && sourceRequested ? videoUrl : null, (p) => {
+  const { player, session: videoSession, ownsPlayer, active: ownsVideo } = usePostVideoPlayer(canPlay ? videoUrl : null, (p) => {
     p.staysActiveInBackground = true;
     p.showNowPlayingNotification = true;
     p.loop = true;
@@ -436,7 +445,8 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     p.playbackRate = getPlaybackRateFor(creator);
     p.bufferOptions = ACTIVE_FEED_BUFFER_OPTIONS;
   });
-  useSilenceOnRelease(player);
+  const ownsPlayerRef = useRef(ownsPlayer);
+  ownsPlayerRef.current = ownsPlayer;
 
   useEffect(() => {
     playerRef.current = player;
@@ -447,9 +457,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
       // looper and release() never zeroes it, so every player this card ever
       // created kept a 2 Hz native timer ticking in the background. Stop the
       // clock before the instance is released.
-      try {
-        player.timeUpdateEventInterval = 0;
-      } catch {}
+      // The session, rather than a card, releases the native player.
     };
   }, [player]);
 
@@ -596,6 +604,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
 
   const playbackAllowedRef = useRef(false);
   const stopPlayback = useCallback(() => {
+    if (!ownsPlayerRef.current() || postMediaIsTransferring(videoSession) || (isPictureInPicturePlayer(playerRef.current) && !visualActivity.isCallBusy())) return;
     playbackAllowedRef.current = false;
     pendingPlayRef.current = false;
     if (autoplayTimerRef.current) { clearTimeout(autoplayTimerRef.current); autoplayTimerRef.current = null; }
@@ -606,10 +615,11 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     endStarting();
     releaseFeedVideoFocus(stopPlayback);
     releaseAudioFocus(stopPlayback);
-  }, [endStarting]);
+  }, [endStarting, videoSession]);
 
   const startPlayback = useCallback(() => {
-    if (!playerRef.current || !canPlay) return;
+    if (!ownsPlayerRef.current()) return;
+    if (!playerRef.current || !canPlay || !canStartVideo(playerRef.current)) return;
     try { stopActivePreview(); } catch {}
     requestFeedVideoFocus(stopPlayback);
     if (!shouldStartMuted()) requestAudioFocus(stopPlayback);
@@ -663,8 +673,9 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     try {
       subs.push(
         player.addListener("playingChange", ({ isPlaying: playing }) => {
+          if (!ownsPlayerRef.current()) return;
           // Native readiness can arrive after another card claimed playback.
-          if (playing && !playbackAllowedRef.current) {
+          if (playing && !playbackAllowedRef.current && !isPictureInPicturePlayer(player)) {
             try { player.pause(); } catch {}
             return;
           }
@@ -676,6 +687,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     try {
       subs.push(
         player.addListener("statusChange", ({ status }) => {
+          if (!ownsPlayerRef.current()) return;
           setIsBuffering(status === "loading");
           if (status === "readyToPlay") {
             setVideoReady(true);
@@ -690,9 +702,13 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     try {
       subs.push(
         player.addListener("timeUpdate", ({ currentTime: ct }: any) => {
+          if (!ownsPlayerRef.current()) return;
           currentTimeRef.current = ct ?? 0;
           if (showControlsRef.current) setCurrentTime(ct ?? 0);
           if (ct != null && getSubtitlesEnabled()) setCaptionPosMs(ct * 1000);
+          if (ct != null && postPageRef.current && player.duration > 0) {
+            patchPostStage(tokenIdRef.current, { progress: Math.min(1, Math.max(0, ct / player.duration)) });
+          }
           if (ct != null) maybeSkipSegment(ct);
           if (ct != null && viewRecorderRef.current) {
             viewRecorderRef.current.onProgress(
@@ -714,6 +730,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
 
   useEffect(() => {
     if (!canPlay || !isVisible) {
+      if (!ownsPlayerRef.current() || postMediaIsTransferring(videoSession) || isPictureInPicturePlayer(playerRef.current)) return;
       if (autoplayTimerRef.current) { clearTimeout(autoplayTimerRef.current); autoplayTimerRef.current = null; }
       // Cleared before the source detaches so a readyToPlay event landing in
       // the same frame can't start a card that has already scrolled off.
@@ -730,6 +747,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
       return;
     }
     if (hasStartedAutoplay) return;
+    if (videoSession.userPaused || player.playing) return;
     // Visible, but the scroll position gave autoplay to another card. This one
     // stays mounted and tappable; it just does not start itself.
     if (!isAutoplayActive) return;
@@ -773,6 +791,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   // scroll has passed. Resetting hasStartedAutoplay is what lets the card
   // autoplay again when the scroll comes back to it.
   useEffect(() => {
+    if (!ownsPlayerRef.current() || postMediaIsTransferring(videoSession) || isPictureInPicturePlayer(playerRef.current)) return;
     if (isAutoplayActive || userStartedRef.current) return;
     pendingPlayRef.current = false;
     if (isPlayingRef.current) stopPlayback();
@@ -808,6 +827,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     // underneath the full-size tap surface, so every tap on it just blinked
     // the overlay while the video kept going.
     if (isPlayingRef.current) {
+      videoSession.userPaused = true;
       stopPlayback();
       setShowControls(true);
       startHideTimer();
@@ -833,6 +853,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     // covering the gap. On one already loaded, flushPendingPlay starts it in
     // this same tick.
     autoStartRef.current = false;
+    videoSession.userPaused = false;
     pendingPlayRef.current = true;
     setHasStartedAutoplay(true);
     setSourceRequested(true);
@@ -840,6 +861,15 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     setShowControls(true);
     startHideTimer();
   }, [canPlay, onPress, stopPlayback, flushPendingPlay, clearHideTimer, startHideTimer, onUserStarted, beginStarting, videoReady, firstFrameRendered]);
+
+  // The post page's pinned mini player mirrors this player and can toggle it.
+  const videoPressRef = useRef(handleVideoPress);
+  videoPressRef.current = handleVideoPress;
+  const stageToggle = useCallback(() => videoPressRef.current(), []);
+  useEffect(() => {
+    if (!postPage || tokenId == null) return;
+    patchPostStage(tokenId, { playing: isPlaying, toggle: stageToggle });
+  }, [postPage, tokenId, isPlaying, stageToggle]);
 
   const handleMediaSurfacePress = useCallback((event: GestureResponderEvent) => {
     if (!onTapReaction) {
@@ -897,7 +927,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   // now that the player exists to honour it.
   const startOnMountRef = useRef(startOnMount);
   useEffect(() => {
-    if (startOnMountRef.current) handleVideoPress();
+    if (startOnMountRef.current && !player.playing) handleVideoPress();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -967,6 +997,29 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
 
   const [isLooping, setIsLooping] = useState(true);
   const [playbackRate, setPlaybackRate] = useState(() => getPlaybackRateFor(creator));
+  useLayoutEffect(() => {
+    if (!ownsVideo) return;
+    const playing = player.playing;
+    playerRef.current = player;
+    playbackAllowedRef.current = playing;
+    isPlayingRef.current = playing;
+    setIsPlaying(playing);
+    setIsMuted(player.muted);
+    setPlaybackRate(player.playbackRate);
+    setIsLooping(player.loop);
+    currentTimeRef.current = player.currentTime;
+    setCurrentTime(player.currentTime);
+    setVideoDuration(player.duration);
+    setVideoReady(player.status === 'readyToPlay');
+    if (playing || videoSession.userPaused || player.currentTime > 0) {
+      setSourceRequested(true);
+      setHasStartedAutoplay(true);
+    }
+    if (playing) {
+      requestFeedVideoFocus(stopPlayback);
+      if (!player.muted) requestAudioFocus(stopPlayback);
+    }
+  }, [ownsVideo, player, videoSession, stopPlayback]);
 
   const handleToggleLoop = useCallback(() => {
     if (!playerRef.current) return;
@@ -995,7 +1048,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     // From the ref, not state: state is only live while the controls are up.
     const time = currentTimeRef.current;
     const muted = isMuted;
-    stopPlayback();
+    preparePostMediaNavigation(videoUrl);
     navigation.navigate(ScreenNames.FullscreenVideo as never, {
       videoUrl, startTime: time, isMuted: muted, thumbnail,
       tokenId, isSignedIn,
@@ -1148,8 +1201,8 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
         </View>
       )}
 
-      {canPlay && isVisible && sourceRequested && player && (
-        <VideoView
+      {canPlay && isVisible && sourceRequested && ownsVideo && player && (
+        <PersistentVideoView
           ref={videoViewRef}
           player={player}
           focusable={false}
@@ -1251,6 +1304,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
             {!bareControls && isPlaying && !isContentGated && !isProcessing && !isFailed && (
               <Pressable
                 onPress={() => {
+                  videoSession.userPaused = true;
                   stopPlayback();
                   setShowControls(true);
                   startHideTimer();
@@ -2039,6 +2093,8 @@ FeedVideoPoster.displayName = "FeedVideoPoster";
  * still get it, since that chrome lives there.
  */
 const FeedVideoPlayer: React.FC<FeedVideoPlayerProps> = (props) => {
+  const playbackAllowed = useFeedPlaybackAllowed();
+  const callInProgress = useCallInProgress();
   const { autoplay: autoplayEnabled } = useAppPrefs();
   const { liteMode } = useDataSaver();
   // Which post this wrapper is showing. A tap and picture-in-picture belong to
@@ -2051,12 +2107,14 @@ const FeedVideoPlayer: React.FC<FeedVideoPlayerProps> = (props) => {
   const { isVisible, isAutoplayActive = true, isContentGated, transcodingStatus, videoUrl, onPress } = props;
   const needsChrome =
     isContentGated || transcodingStatus === "pending" || transcodingStatus === "on" || transcodingStatus === "failed";
-  const autoplayHere = isVisible && isAutoplayActive && autoplayEnabled && !liteMode;
+  const visible = (isVisible && playbackAllowed) || (inPictureInPicture && !callInProgress);
+  const autoplayHere = visible && isAutoplayActive && autoplayEnabled && !liteMode;
   // Waiting inside the active component is too late: useVideoPlayer(null)
   // still allocates an ExoPlayer. Keep passing cards as posters for the whole
   // dwell window; taps and picture-in-picture bypass that wait.
   const autoplaySettled = useSettledAutoplay(autoplayHere, videoUrl, AUTOPLAY_DELAY);
-  const mountPlayer = inPictureInPicture || (isVisible && (wanted || autoplaySettled || needsChrome));
+  const retained = isVisible && hasPostVideoSession(videoUrl);
+  const mountPlayer = (visible || retained) && (retained || inPictureInPicture || wanted || autoplaySettled || needsChrome);
 
   // Off screen, the tap is forgotten: coming back autoplays or shows the
   // poster, the same as any other card.
@@ -2081,7 +2139,7 @@ const FeedVideoPlayer: React.FC<FeedVideoPlayerProps> = (props) => {
     <FeedVideoPlayerActive
       key={postKey}
       {...props}
-      isVisible={isVisible || inPictureInPicture}
+      isVisible={visible}
       isAutoplayActive={isAutoplayActive || inPictureInPicture}
       onPictureInPictureChange={setInPictureInPicture}
       startOnMount={wanted}

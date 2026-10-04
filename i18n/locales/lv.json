@@ -3455,7 +3455,7 @@
     "postJob": "Ievietot darbu",
     "types": {
       "all": "Visi",
-      "shill": "Sociālie tīkli",
+      "shill": "Shill",
       "clipping": "Klipu veidošana",
       "contract": "Līgumi"
     },
@@ -3471,7 +3471,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "Komentāri / Reklāma",
+        "label": "Shill",
         "description": "Maksā par katru apstiprinātu komentāru X, YouTube, IG vai TikTok."
       },
       "clipping": {
@@ -5665,7 +5665,14 @@
     "imageTranslating": "Tiek izvilkts un tulkots teksts…",
     "imageNoText": "Attēlā nav atrasts teksts",
     "translatedFrom": "Tulkojums no {{lang}}",
-    "originalText": "Oriģinālais teksts"
+    "originalText": "Oriģinālais teksts",
+    "repostAndShare": "Atkārtota publicēšana un kopīgošana",
+    "repostHint": "Nekavējoties, saviem sekotājiem",
+    "quoteHint": "Pievienojiet savus vārdus",
+    "shareTo": "Kopīgot ar",
+    "moreShare": "Vairāk",
+    "viewQuotes": "Skatīt piedāvājumus",
+    "viewReposts": "Skatīt repozitārijus"
   },
   "dm": {
     "online": "Tiešsaistē",

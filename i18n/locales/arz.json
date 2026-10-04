@@ -3453,7 +3453,7 @@
     "postJob": "انشر شغلانة",
     "types": {
       "all": "الكل",
-      "shill": "سوشيال ميديا",
+      "shill": "Shill",
       "clipping": "قص كليبات",
       "contract": "عقود"
     },
@@ -3469,7 +3469,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "تعليقات / ترويج",
+        "label": "Shill",
         "description": "ادفع على كل تعليق متأكد منه على X أو YouTube أو IG أو TikTok."
       },
       "clipping": {
@@ -5661,7 +5661,14 @@
     "imageTranslating": "استخراج وترجمة النص…",
     "imageNoText": "لم يتم العثور على نص في هذه الصورة",
     "originalText": "النص الأصلي",
-    "translatedFrom": "مترجم من {{lang}}"
+    "translatedFrom": "مترجم من {{lang}}",
+    "repostAndShare": "إعادة النشر والمشاركة",
+    "repostHint": "على الفور، إلى متابعيك",
+    "quoteHint": "إضافة كلماتك الخاصة",
+    "shareTo": "مشاركة إلى",
+    "moreShare": "المزيد",
+    "viewQuotes": "عرض عروض الأسعار",
+    "viewReposts": "عرض عمليات إعادة النشر"
   },
   "dm": {
     "online": "متصل",

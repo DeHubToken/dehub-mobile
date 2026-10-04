@@ -3455,7 +3455,7 @@
     "postJob": "Auftrag einstellen",
     "types": {
       "all": "Alle",
-      "shill": "Soziale Medien",
+      "shill": "Shill",
       "clipping": "Clipping",
       "contract": "Verträge"
     },
@@ -3471,7 +3471,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "Kommentare / Shill",
+        "label": "Shill",
         "description": "Zahle pro verifiziertem Kommentar auf X, YouTube, IG oder TikTok."
       },
       "clipping": {
@@ -5745,7 +5745,14 @@
     "imageTranslating": "Text wird extrahiert und übersetzt...",
     "imageNoText": "Kein Text im Bild gefunden",
     "translatedFrom": "Übersetzt von {{lang}}",
-    "originalText": "Originaltext"
+    "originalText": "Originaltext",
+    "repostAndShare": "Repost & Share",
+    "repostHint": "Sofort an Ihre Follower",
+    "quoteHint": "Fügen Sie Ihre eigenen Worte hinzu",
+    "shareTo": "Weitergabe an",
+    "moreShare": "Mehr",
+    "viewQuotes": "Angebote anzeigen",
+    "viewReposts": "Wiederholungen anzeigen"
   },
   "dm": {
     "online": "Online",
@@ -8894,5 +8901,20 @@
     "recommendedBody": "Eine neuere Version von DeHub mit wichtigen Sicherheitskorrekturen ist verfügbar. Aktualisiere, damit dein Konto geschützt bleibt.",
     "requiredBody": "Diese Version von DeHub wird nicht mehr unterstützt. Aktualisiere, um dein Konto weiter zu nutzen.",
     "update": "Jetzt aktualisieren"
+  },
+  "creatorSupport": {
+      "sponsoredBy":  "Gesponsert von {{advertiser}}",
+      "campaignLabel":  "Anzeigen zur Creator-Unterstützung",
+      "close":  "Anzeige schließen",
+      "progress":  "{{seconds}} / 30 Sekunden bestätigt · Creator-Anteil: ${{amount}}",
+      "revenue":  "Deine Werbeeinnahmen · ${{amount}}",
+      "revenueDescription":  "Einnahmen aus Anzeigen und Creator-Unterstützung, die auf die Auszahlung in DHB warten.",
+      "noAds":  "Derzeit sind keine Sponsorvideos verfügbar. Du kannst weiterhin ein Trinkgeld in DHB senden.",
+      "explanation":  "Sieh dir 30 Sekunden an. Der Sponsor finanziert den Umsatzanteil des Creators; du zahlst nichts.",
+      "receipt":  "${{amount}} zu den Werbeeinnahmen des Creators hinzugefügt. Die Auszahlung in DHB steht aus.",
+      "loadError":  "Die Anzeige konnte nicht geladen werden.",
+      "loading":  "Sponsor wird gesucht…",
+      "campaignDescription":  "Zuschauer können Creator unterstützen, indem sie 30 Sekunden ansehen. Erforderlich ist ein freigegebenes Video von mindestens 30 Sekunden, das im Web-Werbeportal hochgeladen wurde.",
+      "watch":  "Eine Anzeige ansehen, um diesen Creator zu unterstützen"
   }
 }

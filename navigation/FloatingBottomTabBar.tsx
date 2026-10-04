@@ -11,12 +11,9 @@ import {
   Platform,
   InteractionManager,
   useWindowDimensions,
-  Image,
   type ViewStyle,
 } from "react-native";
-import { GRAIN, glassTint } from "../theme/skins";
-import IosGlassPill from "../components/ui/IosGlassPill";
-import HudBrackets from "../components/theme/HudBrackets";
+import NavPillSurface, { NAV_PILL_RADIUS, NAV_PILL_SHADOW } from "../components/ui/NavPillSurface";
 import Reanimated, {
   useSharedValue,
   useAnimatedStyle,
@@ -47,7 +44,6 @@ import { useKidsMode } from "../hooks/useKidsMode";
 import StageMiniPlayer from "../components/Stages/StageMiniPlayer";
 import { useStages } from "../context/StageContext";
 import {
-  MINIMAL_HAIRLINE,
   MINIMAL_TAB_LINE,
   MINIMAL_TAB_TEXT,
   MINIMAL_TAB_TEXT_ACTIVE,
@@ -102,6 +98,8 @@ interface ScrollNavItem {
 // and follows the drawer's order instead, so every destination in the drawer is
 // also reachable from here.
 const SCROLL_NAV_ITEMS: ScrollNavItem[] = [
+  { icon: "Film", labelKey: "creator.editor", screen: ScreenNames.MediaEditor },
+  { icon: "Wand", labelKey: "commandCentre.creator", screen: ScreenNames.Creator },
   { icon: "User", labelKey: "nav.profile", screen: ScreenNames.Profile },
   { icon: "Bell", labelKey: "nav.notifications", screen: ScreenNames.Notifications },
   { icon: "Wand", labelKey: "nav.prompt", screen: ScreenNames.Prompt },
@@ -408,8 +406,6 @@ const ScrollNavButton = memo<{
 const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }) => {
   const { t } = useTranslation();
   const { colors, isLight, isMinimal, skin } = useAppTheme();
-  // Real liquid glass on iOS (dark themes); Android, Light and Minimal stay solid.
-  const iosGlass = Platform.OS === "ios" && !isLight && !isMinimal;
   const insets = useSafeAreaInsets();
   // Live, not a module constant — see tabWidthFor.
   const { width: screenW } = useWindowDimensions();
@@ -631,45 +627,7 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
           skin ? { borderRadius: skin.barBorder.borderRadius } : null,
         ]}
       >
-        {/* The pill is a solid surface, not glass. It used to be a blur under a
-            near-transparent wash, which meant its appearance was a function of
-            whatever happened to be behind it — fine over the dark feed, clear
-            glass with icons floating on video over Shorts — and it needed a
-            96pt gradient scrim under it to hold a luminance floor. One opaque
-            fill does the same job with no scrim, no per-platform blur library
-            and no backdrop sampling on every scrolled frame. Minimal floats
-            the same pill, flat black with its hairline border. */}
-        {/* iOS is the exception: it draws real liquid glass natively, so
-            there the pill is a thin tint of the same colour over a system
-            blur. Android keeps the solid fill (no safe blur there). */}
-        {iosGlass ? (
-          <IosGlassPill
-            tint={glassTint(String((skin?.barFill.backgroundColor) ?? styles.pillFill.backgroundColor), 0.22)}
-            borderRadius={Number(skin?.barBorder.borderRadius ?? styles.pillBorder.borderRadius ?? 0)}
-          />
-        ) : (
-          <View
-            style={[
-              StyleSheet.absoluteFill,
-              styles.pillFill,
-              isLight && { backgroundColor: colors.background },
-              isMinimal && { backgroundColor: "#000" },
-              skin && skin.barFill,
-            ]}
-          />
-        )}
-        {skin?.grain ? (
-          <Image source={GRAIN} resizeMode="repeat" style={StyleSheet.absoluteFill} />
-        ) : null}
-        <View
-          style={[
-            styles.pillBorder,
-            isLight && { borderColor: 'rgba(0, 0, 0, 0.12)' },
-            isMinimal && { borderColor: MINIMAL_HAIRLINE },
-            skin && skin.barBorder,
-          ]}
-        />
-        {skin?.brackets ? <HudBrackets color={skin.brackets} /> : null}
+        <NavPillSurface />
         <ScrollView
           ref={scrollRef}
           horizontal
@@ -743,34 +701,9 @@ const styles = StyleSheet.create({
   navContainer: {
     width: "72%",
     maxWidth: 340,
-    borderRadius: 16, // web's rounded-2xl on the pill (not rounded-xl — that's the center button only)
+    borderRadius: NAV_PILL_RADIUS,
     overflow: "hidden",
-    // Still no Android elevation. The pill is opaque now, so a shadow would
-    // render cleanly, but elevation on Android draws a hard slab edge under a
-    // 16pt radius and the app has no other raised chrome to match it to.
-    // web shadow-xl: 0 20px 25px -5px rgb(0 0 0 / .1), 0 8px 10px -6px rgb(0 0 0 / .1)
-    ...Platform.select({
-      ios: {
-        shadowColor: "#000",
-        shadowOffset: { width: 0, height: 8 },
-        shadowOpacity: 0.1,
-        shadowRadius: 20,
-      },
-      android: {},
-    }),
-  },
-  pillFill: {
-    // zinc-900. The app background is #010305, so a flat near-black would make
-    // the pill disappear into the page; this is the house raised-surface value
-    // (UserProfileHeader's buttons, the context-menu panels) and reads as one
-    // solid object over both the feed and full-bleed Shorts video.
-    backgroundColor: "#18181B",
-  },
-  pillBorder: {
-    ...StyleSheet.absoluteFillObject,
-    borderRadius: 16,
-    borderWidth: 1,
-    borderColor: "rgba(255, 255, 255, 0.10)",
+    ...NAV_PILL_SHADOW,
   },
   navRow: {
     flexDirection: "row",

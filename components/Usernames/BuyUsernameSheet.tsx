@@ -112,7 +112,7 @@ const BuyUsernameSheet: React.FC<Props> = ({ listing, visible, onClose, isAuthed
   };
 
   const buttonLabel = () => {
-    if (stage === "paying") return t("usernames.confirmInWallet");
+    if (stage === "paying") return t("upload.stageConfirming");
     if (stage === "confirming") return t("usernames.confirmingOnChain");
     if (!isAuthed) return t("usernames.signInToBuy");
     return t("usernames.buyHandle", { handle: listing.username });

@@ -66,6 +66,7 @@ import {
 } from "../theme/minimal";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { useCanGoBack } from "../hooks/useCanGoBack";
+import { useGrowingTextInput } from "../hooks/useGrowingTextInput";
 import { useTranslation } from "react-i18next";
 import type { TFunction } from "i18next";
 import {
@@ -237,6 +238,7 @@ const CommentsSection: React.FC<{ featureId: string; isAuthed: boolean }> = ({
   const submitComment = useSubmitComment();
   const deleteComment = useDeleteComment();
   const [draft, setDraft] = useState("");
+  const growingInput = useGrowingTextInput(draft, 32, 100);
 
   const send = useCallback(() => {
     const content = draft.trim();
@@ -315,7 +317,9 @@ const CommentsSection: React.FC<{ featureId: string; isAuthed: boolean }> = ({
             onChangeText={(v) => setDraft(v.slice(0, COMMENT_MAX))}
             placeholder={t("features.addComment")}
             placeholderTextColor="#52525B"
-            style={styles.composerInput}
+            style={[styles.composerInput, { height: growingInput.height, textAlignVertical: 'top' }]}
+            onContentSizeChange={growingInput.onContentSizeChange}
+            scrollEnabled={growingInput.scrollEnabled}
             multiline
           />
           <Pressable
@@ -516,9 +520,13 @@ const FeatureCard: React.FC<{
                   <Pressable
                     key={key}
                     onPress={() => setEditCategory(key)}
+                    accessibilityRole="button"
+                    accessibilityLabel={t(CATEGORY_I18N[key])}
+                    accessibilityState={{ selected: active }}
                     style={[styles.sheetChip, active && styles.sheetChipActive]}
                   >
                     <Text style={[styles.sheetChipText, active && styles.sheetChipTextActive]}>
+                      {active ? "✓ " : ""}
                       {t(CATEGORY_I18N[key])}
                     </Text>
                   </Pressable>
@@ -768,9 +776,13 @@ const SubmitSheet: React.FC<{
                 <Pressable
                   key={key}
                   onPress={() => setCategory(key)}
+                  accessibilityRole="button"
+                  accessibilityLabel={t(CATEGORY_I18N[key])}
+                  accessibilityState={{ selected: active }}
                   style={[styles.sheetChip, active && styles.sheetChipActive]}
                 >
                   <Text style={[styles.sheetChipText, active && styles.sheetChipTextActive]}>
+                    {active ? "✓ " : ""}
                     {t(CATEGORY_I18N[key])}
                   </Text>
                 </Pressable>
@@ -1133,6 +1145,7 @@ export default function FeatureRequestsScreen() {
         <ScrollView
           horizontal
           showsHorizontalScrollIndicator={false}
+          keyboardShouldPersistTaps="handled"
           // flexGrow: 0 — without it the strip expands to fill the column
           // and squashes the list underneath it.
           style={styles.strip}
@@ -1140,6 +1153,8 @@ export default function FeatureRequestsScreen() {
         >
           <Pressable
             onPress={() => setCategory("all")}
+            accessibilityRole="button"
+            accessibilityState={{ selected: category === "all" }}
             style={[styles.chip, category === "all" && styles.chipActive]}
           >
             <Text style={[styles.chipText, category === "all" && styles.chipTextActive]}>
@@ -1150,6 +1165,8 @@ export default function FeatureRequestsScreen() {
             <Pressable
               key={key}
               onPress={() => setCategory(key)}
+              accessibilityRole="button"
+              accessibilityState={{ selected: category === key }}
               style={[styles.chip, category === key && styles.chipActive]}
             >
               <Text style={[styles.chipText, category === key && styles.chipTextActive]}>
@@ -1164,6 +1181,7 @@ export default function FeatureRequestsScreen() {
             <ScrollView
               horizontal
               showsHorizontalScrollIndicator={false}
+              keyboardShouldPersistTaps="handled"
               style={styles.strip}
               contentContainerStyle={styles.sortStripContent}
             >

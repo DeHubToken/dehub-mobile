@@ -3431,7 +3431,7 @@
     "postJob": "कार्यं प्रकाशयतु",
     "types": {
       "all": "सर्वम्",
-      "shill": "सामाजिकमाध्यमम्",
+      "shill": "Shill",
       "clipping": "खण्डनम्",
       "contract": "कराराः"
     },
@@ -3447,7 +3447,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "टिप्पण्यः / प्रचारः",
+        "label": "Shill",
         "description": "X, YouTube, IG वा TikTok इत्यत्र प्रत्येकं सत्यापितटिप्पण्यर्थं ददातु।"
       },
       "clipping": {
@@ -5627,7 +5627,14 @@
     "imageTranslating": "पाठ निकाला और अनुवादित किया जा रहा है...",
     "imageNoText": "छवि में कोई पाठ नहीं मिला",
     "translatedFrom": "{{lang}} मधून भाषांतरित",
-    "originalText": "मूळ मजकूर"
+    "originalText": "मूळ मजकूर",
+    "repostAndShare": "पुनःप्रकाशय च साझ्यताम्",
+    "repostHint": "तत्क्षणात्, तव अनुयायिनः",
+    "quoteHint": "स्वशब्दान् योजय",
+    "shareTo": "साझ्यताम्",
+    "moreShare": "अधिकम्",
+    "viewQuotes": "उद्धरणानि पश्य",
+    "viewReposts": "पुनःप्रकाशनानि पश्य"
   },
   "dm": {
     "online": "अन्लाइन",

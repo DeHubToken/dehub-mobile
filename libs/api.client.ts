@@ -32,6 +32,14 @@ const API_RELAY_BASE_URL = `${(env.APP_ORIGIN || 'https://dehub.io').replace(/\/
  */
 const DEFAULT_TIMEOUT_MS = 20_000;
 
+/** Credentials were rejected and the auth UI has been reset to sign-in. */
+export class SessionExpiredError extends Error {
+  constructor() {
+    super('Authentication required');
+    this.name = 'SessionExpiredError';
+  }
+}
+
 /** Uploads push real bytes over a slow uplink, so they get their own ceiling. */
 const UPLOAD_TIMEOUT_MS = 120_000;
 
@@ -161,6 +169,9 @@ export const apiClient = {
      * of the first one's.
      */
     const withTimeout = async (init: RequestInit, allowFallback = true): Promise<Response> => {
+      const isSessionRequest = retrySession && !isAuthRequired && method === 'POST' &&
+        (endpoint === '/mobile/auth' || endpoint === '/web/auth/supabase');
+      if (isSessionRequest) sessionLog.trace?.('session-request-start', { endpoint, route: url.startsWith(API_RELAY_BASE_URL) ? 'relay' : 'direct' });
       const controller = new AbortController();
       let timedOut = false;
       const timer = setTimeout(() => {
@@ -168,10 +179,11 @@ export const apiClient = {
         controller.abort();
       }, limitMs);
       try {
-        return await fetch(url, { ...init, signal: controller.signal });
+        const response = await fetch(url, { ...init, signal: controller.signal });
+        if (isSessionRequest) sessionLog.trace?.('session-request-result', { endpoint, status: response.status, route: url.startsWith(API_RELAY_BASE_URL) ? 'relay' : 'direct' });
+        return response;
       } catch (err: any) {
-        const isSessionRequest = retrySession && !isAuthRequired && method === 'POST' &&
-          (endpoint === '/mobile/auth' || endpoint === '/web/auth/supabase');
+        if (isSessionRequest) sessionLog.trace?.('session-request-error', { endpoint, timed_out: timedOut, route: url.startsWith(API_RELAY_BASE_URL) ? 'relay' : 'direct' });
         const transportFailed = timedOut || (err instanceof TypeError && /network|fetch|load failed/i.test(err.message));
         if (allowFallback && (method === 'GET' || (isSessionRequest && transportFailed)) && !isFormData && API_DIRECT_BASE_URL === 'https://api.dehub.io/api' && url.startsWith(`${API_DIRECT_BASE_URL}/`)) {
           clearTimeout(timer);
@@ -258,10 +270,15 @@ export const apiClient = {
               }
               return { raw: trimmedRetry } as any;
             }
+            if (retryResponse.status === 401) {
+              await tokenRefreshManager.invalidateSession(newToken);
+            }
             // Retry also failed — fall through to throw
           }
           // Refresh failed or retry failed — throw original 401
-          throw new Error('Authentication required');
+          throw await getAuthToken()
+            ? new Error('Authentication required')
+            : new SessionExpiredError();
         }
 
         // Prefer API provided message

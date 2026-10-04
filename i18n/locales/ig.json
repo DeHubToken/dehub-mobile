@@ -3444,7 +3444,7 @@
     "postJob": "Zipụ ọrụ",
     "types": {
       "all": "Niile",
-      "shill": "Mgbasa ozi ọha",
+      "shill": "Shill",
       "clipping": "Ibipụ",
       "contract": "Nkwekọrịta"
     },
@@ -3460,7 +3460,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "Nkwupụta / Mgbasa ozi",
+        "label": "Shill",
         "description": "Kwụọ ụgwọ kwa nkwupụta akwadoro na X, YouTube, IG ma ọ bụ TikTok."
       },
       "clipping": {
@@ -5645,7 +5645,14 @@
     "imageTranslating": "Na-ewepụta ma na-asụgharị ederede…",
     "imageNoText": "E nweghị ederede achọtara na onyonyo a",
     "translatedFrom": "Enyere ya site na {{lang}}",
-    "originalText": "Ederede mbụ"
+    "originalText": "Ederede mbụ",
+    "repostAndShare": "Repost & òkè",
+    "repostHint": "Ozugbo, na-eso ụzọ gị",
+    "quoteHint": "Tinye gị onwe gị okwu",
+    "shareTo": "Kekọrịta na",
+    "moreShare": "Ọzọ",
+    "viewQuotes": "View ruturu",
+    "viewReposts": "View reposts"
   },
   "dm": {
     "online": "N'ịntanetị",

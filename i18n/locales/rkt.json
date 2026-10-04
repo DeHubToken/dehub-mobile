@@ -3589,7 +3589,7 @@
     "postJob": "কাজ দেন",
     "types": {
       "all": "হারায়",
-      "shill": "সামাজিক মাধ্যম",
+      "shill": "Shill",
       "clipping": "ক্লিপিং",
       "contract": "চুক্তি"
     },
@@ -3605,7 +3605,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "মন্তব্য / প্রচার",
+        "label": "Shill",
         "description": "X, YouTube, IG বা TikTok-ত হারা যাচাই করা মন্তব্যের জইন্যে দেন।"
       },
       "clipping": {
@@ -5782,7 +5782,14 @@
     "imageTranslating": "টেক্সট বের করা এবং অনুবাদ করা হচ্ছে...",
     "imageNoText": "এই ছবিতে কোনো টেক্সট পাওয়া যায়নি",
     "translatedFrom": "{{lang}} থেকে অনুবাদ করা হয়েছে",
-    "originalText": "মূল লেখা"
+    "originalText": "মূল লেখা",
+    "repostAndShare": "পোস্ট দিয়া শেয়ার করো",
+    "repostHint": "তৎক্ষণাৎ, তোমার অনুসারীদের কাছে",
+    "quoteHint": "আপনে নিজে শব্দ যোগ করো",
+    "shareTo": "শেয়ার করো",
+    "moreShare": "আরো",
+    "viewQuotes": "উদ্ধৃতি দেখুন",
+    "viewReposts": "পোস্ট পুনরায় দেখুন"
   },
   "dm": {
     "online": "আনলাইন",

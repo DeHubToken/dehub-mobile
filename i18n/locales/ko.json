@@ -3457,7 +3457,7 @@
     "postJob": "일감 등록",
     "types": {
       "all": "전체",
-      "shill": "소셜 미디어",
+      "shill": "Shill",
       "clipping": "클리핑",
       "contract": "계약"
     },
@@ -3473,7 +3473,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "댓글 / 홍보",
+        "label": "Shill",
         "description": "X, YouTube, IG, TikTok의 검증된 댓글당 지급합니다."
       },
       "clipping": {
@@ -5747,7 +5747,14 @@
     "imageTranslating": "텍스트 추출 및 번역 중…",
     "imageNoText": "이미지에서 텍스트를 찾을 수 없습니다.",
     "translatedFrom": "{{lang}} 에서 번역됨",
-    "originalText": "원문"
+    "originalText": "원문",
+    "repostAndShare": "재게시 및 공유",
+    "repostHint": "팔로워에게 즉시",
+    "quoteHint": "나만의 단어 추가",
+    "shareTo": "공유 대상",
+    "moreShare": "더 보기",
+    "viewQuotes": "견적 보기",
+    "viewReposts": "리포스팅 보기"
   },
   "dm": {
     "online": "온라인",

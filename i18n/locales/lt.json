@@ -3455,7 +3455,7 @@
     "postJob": "Paskelbti darbą",
     "types": {
       "all": "Visi",
-      "shill": "Socialiniai tinklai",
+      "shill": "Shill",
       "clipping": "Klipų karpymas",
       "contract": "Sutartys"
     },
@@ -3471,7 +3471,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "Komentarai / Reklama",
+        "label": "Shill",
         "description": "Mokėkite už kiekvieną patvirtintą komentarą X, YouTube, IG ar TikTok."
       },
       "clipping": {
@@ -5665,7 +5665,14 @@
     "imageTranslating": "Išgaunamas ir verčiamas tekstas...",
     "imageNoText": "Vaizde teksto nerasta",
     "translatedFrom": "Išversta iš {{lang}}",
-    "originalText": "Originalus tekstas"
+    "originalText": "Originalus tekstas",
+    "repostAndShare": "Iš naujo paskelbti ir bendrinti",
+    "repostHint": "Akimirksniu, savo sekėjams",
+    "quoteHint": "Pridėkite savo žodžius",
+    "shareTo": "Bendrinti su",
+    "moreShare": "Daugiau",
+    "viewQuotes": "Peržiūrėti kotiruotes",
+    "viewReposts": "Peržiūrėti pakartotinius įrašus"
   },
   "dm": {
     "online": "Internetu",

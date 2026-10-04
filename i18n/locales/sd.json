@@ -3444,7 +3444,7 @@
     "postJob": "ڪم پوسٽ ڪريو",
     "types": {
       "all": "سڀ",
-      "shill": "سوشل ميڊيا",
+      "shill": "Shill",
       "clipping": "ڪلپنگ",
       "contract": "معاهدا"
     },
@@ -3460,7 +3460,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "تبصرا / تشهير",
+        "label": "Shill",
         "description": "X، YouTube، IG يا TikTok تي هر تصديق ٿيل تبصري لاءِ ادا ڪريو."
       },
       "clipping": {
@@ -5644,7 +5644,14 @@
     "imageTranslating": "متن ڪڍي رهيو آهي ۽ ترجمو ڪري رهيو آهي...",
     "imageNoText": "تصوير ۾ ڪو به متن نه مليو",
     "translatedFrom": "{{lang}} مان ترجمو ڪيو ويو",
-    "originalText": "اصل متن"
+    "originalText": "اصل متن",
+    "repostAndShare": "ٻيهر پوسٽ ڪريو ۽ حصيداري ڪريو",
+    "repostHint": "فوري طور تي، توهان جي پوئلڳن ڏانهن",
+    "quoteHint": "پنهنجا لفظ شامل ڪريو",
+    "shareTo": "ڏانهن حصيداري ڪريو",
+    "moreShare": "وڌيڪ",
+    "viewQuotes": "اقتباس ڏسو",
+    "viewReposts": "ٻيون تحريرون ڏسو"
   },
   "dm": {
     "online": "آن لائن",

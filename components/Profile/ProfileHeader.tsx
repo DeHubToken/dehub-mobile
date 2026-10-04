@@ -1,3 +1,4 @@
+import BadgeArtwork from "../common/BadgeArtwork";
 import React, { useState, useMemo, useCallback, useEffect, useRef } from "react";
 import { View, Text, TouchableOpacity, Pressable, ActivityIndicator, useWindowDimensions } from "react-native";
 import SmartImage from "../common/SmartImage";
@@ -15,7 +16,7 @@ import {
   getAvatarUrl,
   getCoverUrl,
   getBadgeName,
-  getBadgeOpticalStyle,
+  getBadgeHoverOpticalStyle as getBadgeOpticalStyle,
   getBadgeUrl,
   getDefaultBanner,
   resolveBadgeBalance,
@@ -23,6 +24,7 @@ import {
   resolveBadgeUsername,
 } from "../../libs/misc";
 import StreamerLevelCard from "../Live/StreamerLevelCard";
+import StreamerBadge from "../Live/StreamerBadge";
 import { useBadgeCeremony } from "../../hooks/useBadgeCeremony";
 import { ensProfileUrl } from "../../libs/ens-handle";
 import { truncateAddress } from "../../libs/strings.util";
@@ -411,7 +413,7 @@ const ProfileHeader = () => {
                 hitSlop={8}
                 onPress={() => openBadgeShowcase(badge, badgeSlotRef.current)}
               >
-                <SmartImage
+                <BadgeArtwork
                   source={badgeImage as any}
                   contentFit="contain"
                   cachePolicy="memory-disk"
@@ -419,6 +421,7 @@ const ProfileHeader = () => {
                 />
               </Pressable>
             )}
+            <StreamerBadge address={address} canSelect />
           </View>
 
           {/* Username + wallet address */}

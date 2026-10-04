@@ -1,11 +1,12 @@
-import React, { FC, useCallback, useState } from "react";
+import BadgeArtwork from "../common/BadgeArtwork";
+import React, { FC, useCallback } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import SmartImage from "../common/SmartImage";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import { useUser } from "../../context/AuthContext";
 import { getAvatarUrl, getBadgeUrl } from "../../libs/misc";
 import { formatCompactNumber } from "../../libs/numbers.util";
-import { followUser, unfollowUser } from "../../services/user.service";
+import { useSearchFollowState } from "../../hooks/useSearchFollowState";
 import Avatar from "../common/Avatar";
 import GlassFollowButton from "../ui/GlassFollowButton";
 import { reportActionError } from "../../libs/error-feedback";
@@ -28,9 +29,10 @@ const SearchAccountChip: FC<SearchAccountChipProps> = ({ account, onFollowChange
 
   const isOwnAccount = !!(myAddress && account.address && myAddress.toLowerCase() === account.address.toLowerCase());
 
-  const [isFollowing, setIsFollowing] = useState(!!account.isFollowing);
-  const [isPending, setIsPending] = useState(!!account.isFollowRequestPending);
-  const [followLoading, setFollowLoading] = useState(false);
+  const { isFollowing, isPending, isLoading: followLoading, toggle } = useSearchFollowState(account.address, {
+    isFollowing: !!account.isFollowing,
+    isFollowRequestPending: !!account.isFollowRequestPending,
+  });
 
   const username = account.username || account.address?.slice(0, 6) || "unknown";
   const displayName = account.displayName || username;
@@ -46,33 +48,15 @@ const SearchAccountChip: FC<SearchAccountChipProps> = ({ account, onFollowChange
   }, [account.username, account.address, showUserProfile]);
 
   const handleFollowToggle = useCallback(async () => {
-    if (!myAddress || !account.address || isOwnAccount) return;
-    setFollowLoading(true);
+    if (!myAddress || !account.address || isOwnAccount || followLoading) return;
     try {
-      if (isFollowing || isPending) {
-        await unfollowUser(myAddress, account.address);
-        setIsFollowing(false);
-        setIsPending(false);
-        onFollowChange?.(account.address, { isFollowing: false, isFollowRequestPending: false });
-      } else {
-        const res = await followUser(myAddress, account.address);
-        if (res.status === "pending") {
-          setIsPending(true);
-          setIsFollowing(false);
-          onFollowChange?.(account.address, { isFollowing: false, isFollowRequestPending: true });
-        } else {
-          setIsFollowing(true);
-          setIsPending(false);
-          onFollowChange?.(account.address, { isFollowing: true, isFollowRequestPending: false });
-        }
-      }
+      const next = await toggle();
+      if (next) onFollowChange?.(account.address, { isFollowing: next.isFollowing, isFollowRequestPending: !!next.isFollowRequestPending });
     } catch (e) {
       console.error("[SearchAccountChip] follow error", e);
       reportActionError(e, "Couldn't update follow");
-    } finally {
-      setFollowLoading(false);
     }
-  }, [myAddress, account.address, isOwnAccount, isFollowing, isPending, onFollowChange]);
+  }, [myAddress, account.address, isOwnAccount, followLoading, toggle, onFollowChange]);
 
   return (
     <TouchableOpacity
@@ -91,7 +75,7 @@ const SearchAccountChip: FC<SearchAccountChipProps> = ({ account, onFollowChange
           {displayName}
         </Text>
         {badgeImage ? (
-          <SmartImage
+          <BadgeArtwork
             source={badgeImage}
             style={{ width: 14, height: 14, marginLeft: 3 }}
             contentFit="contain"

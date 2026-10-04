@@ -3446,7 +3446,7 @@
     "postJob": "Fi iṣẹ́ ránṣẹ́",
     "types": {
       "all": "Gbogbo",
-      "shill": "Ìkànnì ìbáraẹnisọ̀rọ̀",
+      "shill": "Shill",
       "clipping": "Gígé",
       "contract": "Àwọn àdéhùn"
     },
@@ -3462,7 +3462,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "Àwọn àsọyé / Ìpolówó",
+        "label": "Shill",
         "description": "Sanwó fún gbogbo àsọyé tí a fọwọ́sí lórí X, YouTube, IG tàbí TikTok."
       },
       "clipping": {
@@ -5647,7 +5647,14 @@
     "imageTranslating": "Yọkuro ati ṣiṣe itumọ ọrọ...",
     "imageNoText": "Ko si ọrọ ti a rii ninu aworan yii",
     "translatedFrom": "A túmọ̀ rẹ̀ láti {{lang}}",
-    "originalText": "Text Original"
+    "originalText": "Text Original",
+    "repostAndShare": "Repost & share",
+    "repostHint": "Lẹsẹkẹsẹ, si awọn ọmọlẹyin rẹ",
+    "quoteHint": "Ṣafikun awọn ọrọ tirẹ",
+    "shareTo": "Pin si",
+    "moreShare": "Díẹ̀ síi",
+    "viewQuotes": "Wo àwọn gbólóhùn",
+    "viewReposts": "Wo àwọn àtúnyẹ̀wò"
   },
   "dm": {
     "online": "Ní orí ayélujára",

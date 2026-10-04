@@ -3432,7 +3432,7 @@
     "postJob": "Baara bila",
     "types": {
       "all": "Bɛɛ",
-      "shill": "Jɛɲɔgɔnya kunnafonidilanw",
+      "shill": "Shill",
       "clipping": "Tigɛli",
       "contract": "Bɛnw"
     },
@@ -3448,7 +3448,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "Kumanaw / Jɛnsɛn",
+        "label": "Shill",
         "description": "Sara kumana dafalen kelen-kelen kan X, YouTube, IG walima TikTok kan."
       },
       "clipping": {
@@ -5622,7 +5622,14 @@
     "unlockForAndHold": "A dayɛlɛ {{price}} {{symbol}} la + {{hold}} {{holdSymbol}} mara",
     "unlockFor": "A dayɛlɛ {{price}} {{symbol}} la",
     "mustHold": "I ka kan ka {{amount}} {{symbol}} mara",
-    "translatedFrom": "A bayɛlɛmana ka bɔ {{lang}} la"
+    "translatedFrom": "A bayɛlɛmana ka bɔ {{lang}} la",
+    "repostAndShare": "Ka segi ka na",
+    "repostHint": "O yɔrɔnin bɛɛ, i ka kalandenw",
+    "quoteHint": "I ka kuma fara a kan",
+    "shareTo": "Ka dɔ fara a kan",
+    "moreShare": "Ka tɛmɛ o kan",
+    "viewQuotes": "Ka ɲɛsin o koo ma",
+    "viewReposts": "Ka segi ka taga"
   },
   "dm": {
     "online": "Kalanbagaw, dɛmɛbagaw ani kanpaɲ",

@@ -3445,7 +3445,7 @@
     "postJob": "Wallafa aiki",
     "types": {
       "all": "Duka",
-      "shill": "Kafofin sada zumunta",
+      "shill": "Shill",
       "clipping": "Yankewa",
       "contract": "Kwangiloli"
     },
@@ -3461,7 +3461,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "Sharhi / Talla",
+        "label": "Shill",
         "description": "Biya kowane sharhi da aka tabbatar a X, YouTube, IG ko TikTok."
       },
       "clipping": {
@@ -5646,7 +5646,14 @@
     "imageTranslating": "Ana cirewa da fassara rubutu…",
     "imageNoText": "Babu rubutu da aka samu a wannan hoton",
     "translatedFrom": "An fassara daga {{lang}}",
-    "originalText": "Rubutun Asali"
+    "originalText": "Rubutun Asali",
+    "repostAndShare": "Repost & raba",
+    "repostHint": "Nan da nan, ga mabiyanku",
+    "quoteHint": "Ƙara kalmominku",
+    "shareTo": "Raba zuwa",
+    "moreShare": "Ƙari",
+    "viewQuotes": "Duba quotes",
+    "viewReposts": "Duba reposts"
   },
   "dm": {
     "online": "Layi akan layi",

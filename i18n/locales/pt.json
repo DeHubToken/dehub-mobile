@@ -3459,7 +3459,7 @@
     "postJob": "Publicar trabalho",
     "types": {
       "all": "Todas",
-      "shill": "Redes sociais",
+      "shill": "Shill",
       "clipping": "Clipes",
       "contract": "Contratos"
     },
@@ -3475,7 +3475,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "Comentários / Promoção",
+        "label": "Shill",
         "description": "Pague por comentário verificado no X, YouTube, IG ou TikTok."
       },
       "clipping": {
@@ -5749,7 +5749,14 @@
     "imageTranslating": "Extraindo e traduzindo texto...",
     "imageNoText": "Nenhum texto encontrado nesta imagem",
     "translatedFrom": "Traduzido de {{lang}}",
-    "originalText": "Texto Original"
+    "originalText": "Texto Original",
+    "repostAndShare": "Repostar e partilhar",
+    "repostHint": "Instantaneamente, aos seus seguidores",
+    "quoteHint": "Adicione as suas próprias palavras",
+    "shareTo": "Partilhar em",
+    "moreShare": "Mais",
+    "viewQuotes": "Ver orçamentos",
+    "viewReposts": "Ver reposts"
   },
   "dm": {
     "online": "Online",

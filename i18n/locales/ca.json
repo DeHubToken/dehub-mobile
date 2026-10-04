@@ -3455,7 +3455,7 @@
     "postJob": "Publica una feina",
     "types": {
       "all": "Totes",
-      "shill": "Xarxes socials",
+      "shill": "Shill",
       "clipping": "Retalls",
       "contract": "Contractes"
     },
@@ -3471,7 +3471,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "Comentaris / Promoció",
+        "label": "Shill",
         "description": "Paga per cada comentari verificat a X, YouTube, IG o TikTok."
       },
       "clipping": {
@@ -5665,7 +5665,14 @@
     "imageTranslating": "Extreent i traduint text...",
     "imageNoText": "No s'ha trobat text en aquesta imatge",
     "translatedFrom": "Traduït de {{lang}}",
-    "originalText": "Text original"
+    "originalText": "Text original",
+    "repostAndShare": "Torna a publicar i comparteix",
+    "repostHint": "A l'instant, als teus seguidors",
+    "quoteHint": "Afegeix les teves pròpies para",
+    "shareTo": "Comparteix a",
+    "moreShare": "Més",
+    "viewQuotes": "Mostra els pressupostos",
+    "viewReposts": "Mostra les publicacions"
   },
   "dm": {
     "online": "En línia",

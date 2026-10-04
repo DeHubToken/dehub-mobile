@@ -1,3 +1,6 @@
+import { usePersistentVideoPlayer } from '../../hooks/usePersistentVideoPlayer';
+import { PersistentVideoView } from './PersistentVideoView';
+import { isPictureInPicturePlayer, canStartVideo } from '../../libs/pictureInPicture';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Modal, View, TouchableOpacity, Text } from 'react-native';
 import { useTranslation } from 'react-i18next';
@@ -32,7 +35,7 @@ const FullScreenVideoPlayer: React.FC<FullScreenVideoPlayerProps> = ({ visible, 
   const videoViewRef = useRef<VideoView>(null);
   const seekingRef = useRef<boolean>(false);
   const [sessionKey, setSessionKey] = useState<string | null>(null);
-  const player: VideoPlayer = useVideoPlayer(sourceUrl ?? null, (p) => {
+  const player: VideoPlayer = usePersistentVideoPlayer(sourceUrl ?? null, (p) => {
     p.staysActiveInBackground = true;
     p.showNowPlayingNotification = true;
     p.loop = true;
@@ -64,6 +67,7 @@ const FullScreenVideoPlayer: React.FC<FullScreenVideoPlayerProps> = ({ visible, 
       setDuration(0);
       setIsPlaying(true);
     } else {
+      if (isPictureInPicturePlayer(player)) return;
       try { player.pause(); } catch {}
       setIsPlaying(false);
       setIsLandscape(false);
@@ -82,6 +86,7 @@ const FullScreenVideoPlayer: React.FC<FullScreenVideoPlayerProps> = ({ visible, 
     if (!sourceUrl) return;
     try { player.replace(sourceUrl); } catch {}
     return () => {
+      if (isPictureInPicturePlayer(player)) return;
       try { player.pause(); } catch {}
   try { player.replace(null as any); } catch {}
     };
@@ -96,7 +101,7 @@ const FullScreenVideoPlayer: React.FC<FullScreenVideoPlayerProps> = ({ visible, 
       player.addListener('sourceLoad', ({ duration: durSec }) => {
         const durMs = Math.max(0, Math.floor((durSec ?? 0) * 1000));
         setDuration(durMs);
-        if (visible) {
+        if (visible && canStartVideo(player)) {
           try { player.play(); } catch {}
         }
       }),
@@ -179,7 +184,7 @@ const FullScreenVideoPlayer: React.FC<FullScreenVideoPlayerProps> = ({ visible, 
 
         {/* Video Area */}
         {visible && sourceUrl ? (
-          <VideoView
+          <PersistentVideoView
             ref={videoViewRef}
             allowsPictureInPicture
             startsPictureInPictureAutomatically={visible && isPlaying}

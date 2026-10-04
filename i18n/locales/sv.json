@@ -3459,7 +3459,7 @@
     "postJob": "Lägg upp ett jobb",
     "types": {
       "all": "Alla",
-      "shill": "Sociala medier",
+      "shill": "Shill",
       "clipping": "Klippning",
       "contract": "Kontrakt"
     },
@@ -3475,7 +3475,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "Kommentarer / Shill",
+        "label": "Shill",
         "description": "Betala per verifierad kommentar på X, YouTube, IG eller TikTok."
       },
       "clipping": {
@@ -5669,7 +5669,14 @@
     "imageTranslating": "Extraherar och översätter text...",
     "imageNoText": "Ingen text hittades i den här bilden",
     "translatedFrom": "Översatt från {{lang}}",
-    "originalText": "Ursprunglig text"
+    "originalText": "Ursprunglig text",
+    "repostAndShare": "Publicera och dela igen",
+    "repostHint": "Omedelbart, till dina följare",
+    "quoteHint": "Lägg till dina egna ord",
+    "shareTo": "Dela till",
+    "moreShare": "Mer",
+    "viewQuotes": "Visa offerter",
+    "viewReposts": "Visa återinlägg"
   },
   "dm": {
     "online": "Online",

@@ -6,6 +6,7 @@ import React, {
   useState,
   useMemo,
 } from "react";
+import { useFeedPlaybackAllowed } from "../../libs/visualActivity";
 import { useIsFocused, useNavigation, useScrollToTop } from "@react-navigation/native";
 import {
   View,
@@ -48,7 +49,7 @@ import {
 import { feedEvents } from "../../libs/eventBus";
 import { capFeedByAuthorAllowance } from "../../libs/postQuota";
 import { isPostDeletedSync, useDeletedPostsVersion, warmDeletedPosts } from "../../libs/deleted-posts-store";
-import { flattenFeedPages } from "../../libs/feed-pages";
+import { flattenFeedPages, nextFeedPage } from "../../libs/feed-pages";
 import { setFeedScrolling } from "../../libs/scrollActivity";
 import {
   createFeedVisibilityStore,
@@ -393,6 +394,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
 
   const navigation = useNavigation<any>();
   const isFocused = useIsFocused();
+  const playbackAllowed = useFeedPlaybackAllowed();
   const { t } = useTranslation();
   const { isSignedIn } = useAuthState();
 
@@ -403,8 +405,8 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   // the two or three rows that were actually playing. The store tells just
   // those rows.
   useEffect(() => {
-    visibilityStore.setLive(active && isFocused);
-  }, [visibilityStore, active, isFocused]);
+    visibilityStore.setLive(active && isFocused && playbackAllowed);
+  }, [visibilityStore, active, isFocused, playbackAllowed]);
 
   // View tracking: map of tokenId -> tracker (for feed posts only, not videos)
   const viewTrackersRef = useRef<Map<string, ReturnType<typeof createPostViewTracker>>>(new Map());
@@ -570,9 +572,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     },
     initialPageParam: 1,
     getNextPageParam: (lastPage, _allPages, lastPageParam) => {
-      const results = lastPage.result || [];
-      if (results.length < pageSize || !lastPage.pagination?.hasMore) return undefined;
-      return lastPageParam + 1;
+      return nextFeedPage(lastPage, lastPageParam, pageSize);
     },
   });
 
@@ -670,7 +670,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   // someone is broadcasting right now is time-critical and there are few of
   // them, so hiding it costs a viewer the thing they came for and buys no
   // anti-spam benefit.
-  const capExempt = !!(params?.minter || params?.owner || params?.search) || params?.postType === 'live';
+  const capExempt = !!(params?.followingOnly || params?.minter || params?.owner || params?.search) || params?.postType === 'live';
 
   const cappedItems = useMemo<FeedItem[]>(() => {
     if (capExempt) return items;

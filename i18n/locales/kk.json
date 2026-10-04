@@ -3466,7 +3466,7 @@
     "postJob": "Жұмыс жариялау",
     "types": {
       "all": "Барлығы",
-      "shill": "Әлеуметтік желілер",
+      "shill": "Shill",
       "clipping": "Клип қию",
       "contract": "Келісімшарттар"
     },
@@ -3482,7 +3482,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "Пікірлер / Жарнама",
+        "label": "Shill",
         "description": "X, YouTube, IG немесе TikTok-тағы әр расталған пікір үшін төлеңіз."
       },
       "clipping": {
@@ -5674,7 +5674,14 @@
     "imageTranslating": "Мәтінді шығарып, аудару…",
     "imageNoText": "Суретте мәтін табылмады",
     "translatedFrom": "Аударылды {{lang}}",
-    "originalText": "Түпнұсқа мәтін"
+    "originalText": "Түпнұсқа мәтін",
+    "repostAndShare": "Қайта жіберу және бөлісу",
+    "repostHint": "Сіздің ізбасарларыңызға бірден",
+    "quoteHint": "Өз сөзіңізді қосыңыз",
+    "shareTo": "Бөлісу",
+    "moreShare": "Толығырақ",
+    "viewQuotes": "Дәйексөздерді көру",
+    "viewReposts": "Репосттарды қарау"
   },
   "dm": {
     "online": "Онлайн",

@@ -3468,7 +3468,7 @@
     "postJob": "کام دو",
     "types": {
       "all": "سب",
-      "shill": "سوشل میڈیا",
+      "shill": "Shill",
       "clipping": "کلپنگ",
       "contract": "سمجھوتہ"
     },
@@ -3484,7 +3484,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "تبصرہ / پرچار",
+        "label": "Shill",
         "description": "X، YouTube، IG یا TikTok پر ہر جانچ کئل تبصرہ کے دو۔"
       },
       "clipping": {
@@ -5678,7 +5678,14 @@
     "imageTranslating": "متن استخراج او ژباړه...",
     "imageNoText": "په دې انځور کې متن نه دی موندل شوی",
     "originalText": "اصل متن",
-    "translatedFrom": "{{lang}} سے ترجمہ کیا گیا"
+    "translatedFrom": "{{lang}} سے ترجمہ کیا گیا",
+    "repostAndShare": "रिपोस्ट आ शेयर",
+    "repostHint": "तुरंत, तोर फॉलोअर्स ला",
+    "quoteHint": "अपन शब्द जोड़",
+    "shareTo": "शेयर कर",
+    "moreShare": "अधिक",
+    "viewQuotes": "कोट देख",
+    "viewReposts": "रिपोस्ट देख"
   },
   "dm": {
     "online": "آنلاین",

@@ -3454,7 +3454,7 @@
     "postJob": "ఉద్యోగం పోస్ట్ చేయండి",
     "types": {
       "all": "అన్నీ",
-      "shill": "సోషల్ మీడియా",
+      "shill": "Shill",
       "clipping": "క్లిప్పింగ్",
       "contract": "ఒప్పందాలు"
     },
@@ -3470,7 +3470,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "వ్యాఖ్యలు / ప్రచారం",
+        "label": "Shill",
         "description": "X, YouTube, IG లేదా TikTokలో ధృవీకరించిన ప్రతి వ్యాఖ్యకు చెల్లించండి."
       },
       "clipping": {
@@ -5661,7 +5661,14 @@
     "imageTranslating": "టెక్స్ట్‌ను సంగ్రహించి, అనువదిస్తోంది...",
     "imageNoText": "ఈ చిత్రంలో టెక్స్ట్ కనుగొనబడలేదు",
     "translatedFrom": "{{lang}} నుండి అనువదించబడింది",
-    "originalText": "అసలు వచనం"
+    "originalText": "అసలు వచనం",
+    "repostAndShare": "రీపోస్ట్ & షేర్ చేయండి",
+    "repostHint": "తక్షణమే, మీ అనుచరులకు",
+    "quoteHint": "మీ స్వంత పదాలను జోడించండి",
+    "shareTo": "వీరికి షేర్ చేయండి",
+    "moreShare": "మరిన్ని",
+    "viewQuotes": "కోట్ ‌ లను చూడండి",
+    "viewReposts": "రీపోస్ట్ ‌ లను వీక్షించండి"
   },
   "dm": {
     "online": "ఆన్ ‌ లైన్",

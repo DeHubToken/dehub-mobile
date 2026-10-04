@@ -48,7 +48,8 @@ import {
   type UnifiedFeedResponse,
   type FeedPostType,
 } from "../services/feed.unified.service";
-import { useIsFocused, useNavigation, useRoute } from "@react-navigation/native";
+import { useIsFocused, useNavigation, useRoute, useFocusEffect } from "@react-navigation/native";
+import { useQueryClient } from '@tanstack/react-query';
 import ScreenHeader, { SCREEN_HEADER_HEIGHT } from "../components/ScreenHeader";
 import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
 import { useCollapsibleHeader } from "../hooks/useCollapsibleHeader";
@@ -62,6 +63,7 @@ import FeedCardSkeleton from "../components/Feed/FeedCardSkeleton";
 import NewMembersRail from "../components/common/NewMembersRail";
 import type { FollowState } from "../components/Search/SearchAccountChip";
 import { useUser } from "../context/AuthContext";
+import { useUserProfilePresentation } from '../context/UserProfileSheetContext';
 import { storage } from "../libs/storage";
 import { promptFeedEvents } from "../libs/eventBus";
 import { ScreenNames } from "../navigation/ScreenNames";
@@ -238,6 +240,19 @@ const SearchScreen: React.FC = () => {
   const routeParams = route.params;
   const authUser = useUser() as { address?: string } | null;
   const userAddress = authUser?.address;
+  const queryClient = useQueryClient();
+  const { profileVisible } = useUserProfilePresentation();
+  const wasProfileVisible = useRef(false);
+  // A profile sheet can change a follow while Explore stays mounted.
+  useEffect(() => {
+    if (wasProfileVisible.current && !profileVisible && userAddress) {
+      void queryClient.invalidateQueries({ queryKey: ['user-follow-status', userAddress.toLowerCase()] });
+    }
+    wasProfileVisible.current = profileVisible;
+  }, [profileVisible, queryClient, userAddress]);
+  useFocusEffect(useCallback(() => {
+    if (userAddress) void queryClient.invalidateQueries({ queryKey: ['user-follow-status', userAddress.toLowerCase()] });
+  }, [queryClient, userAddress]));
 
   // Search state
   const [searchQuery, setSearchQuery] = useState("");

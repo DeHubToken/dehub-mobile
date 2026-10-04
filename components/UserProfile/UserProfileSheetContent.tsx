@@ -119,7 +119,7 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
   // Plans drive the header Subscribe CTA. Reading them here (not inside the
   // tabs, which only fetch on the Subs tab being opened) is what lets the
   // button exist before anyone has gone looking for it.
-  const { hasPlans, isLoading: plansLoading } = useCreatorPlans(
+  const { hasPinnedPlans: hasPlans, isLoading: plansLoading } = useCreatorPlans(
     !isOwnProfile && profileData?.address ? profileData.address : undefined,
   );
 

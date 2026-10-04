@@ -3466,7 +3466,7 @@
     "postJob": "काम पोस्ट गर्नुहोस्",
     "types": {
       "all": "सबै",
-      "shill": "सामाजिक सञ्जाल",
+      "shill": "Shill",
       "clipping": "क्लिपिङ",
       "contract": "सम्झौताहरू"
     },
@@ -3482,7 +3482,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "टिप्पणी / प्रचार",
+        "label": "Shill",
         "description": "X, YouTube, IG वा TikTok मा प्रत्येक प्रमाणित टिप्पणीको भुक्तानी गर्नुहोस्।"
       },
       "clipping": {
@@ -5672,7 +5672,14 @@
     "imageTranslating": "पाठ निकाल्दै र अनुवाद गर्दै...",
     "imageNoText": "छविमा कुनै पाठ फेला परेन",
     "translatedFrom": "{{lang}} बाट अनुवाद गरिएको",
-    "originalText": "मूल पाठ"
+    "originalText": "मूल पाठ",
+    "repostAndShare": "पुन: पोष्ट गर्नुहोस् र सेयर गर्नुहोस्",
+    "repostHint": "तुरुन्तै, तपाईंको अनुयायीहरूलाई",
+    "quoteHint": "तपाईंको आफ्नै शब्दहरू थप्नुहोस्",
+    "shareTo": "यसमा साझेदारी गर्नुहोस्",
+    "moreShare": "थप",
+    "viewQuotes": "उद्धरणहरू हेर्नुहोस्",
+    "viewReposts": "रेपोस्टहरू हेर्नुहोस्"
   },
   "dm": {
     "online": "अनलाइन",

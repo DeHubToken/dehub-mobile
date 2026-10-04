@@ -3455,7 +3455,7 @@
     "postJob": "İşi Yayınla",
     "types": {
       "all": "Tümü",
-      "shill": "Sosyal Medya",
+      "shill": "Shill",
       "clipping": "Klip Hazırlama",
       "contract": "Sözleşmeli İşler"
     },
@@ -3471,7 +3471,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "Yorum / Tanıtım",
+        "label": "Shill",
         "description": "X, YouTube, Instagram veya TikTok'taki doğrulanmış yorum başına ödeme yapın."
       },
       "clipping": {
@@ -5745,7 +5745,14 @@
     "imageTranslating": "Metin çıkarılıyor ve çevriliyor…",
     "imageNoText": "Görüntüde metin bulunamadı",
     "translatedFrom": "{{lang}}'dan çevrildi",
-    "originalText": "Orijinal Metin"
+    "originalText": "Orijinal Metin",
+    "repostAndShare": "Yeniden yayınla ve paylaş",
+    "repostHint": "Anında takipçilerinize",
+    "quoteHint": "Kendi kelimelerinizi ekleyin",
+    "shareTo": "Şurada paylaş:",
+    "moreShare": "Daha fazla",
+    "viewQuotes": "Teklifleri görüntüle",
+    "viewReposts": "Yeniden yayınları görüntüle"
   },
   "dm": {
     "online": "Çevrimiçi",

@@ -2,6 +2,7 @@ import { DIGITAL_PURCHASES_ENABLED } from "../../config/storefront";
 import { Trans, useTranslation } from "react-i18next";
 import { DhbCoin } from "../common/DhbCoin";
 import React, { useState } from "react";
+import { useQueryClient } from "@tanstack/react-query";
 import { View, Text, TouchableOpacity, ActivityIndicator, StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import Icon from "../ui/Icon";
@@ -18,6 +19,7 @@ import {
   planPrice,
   primaryPlanChain,
   rememberPendingSubscriptionPayment,
+  updatePlan,
 } from "../../services/subscription.service";
 import { useAuthActions } from "../../context/AuthContext";
 import {
@@ -45,6 +47,7 @@ interface PlanCardProps {
   isOwner?: boolean;
   isSubscribed?: boolean;
   onEdit?: () => void;
+  onPlanChange?: (plan: SubscriptionPlan) => void;
 }
 
 function formatAmount(value: number | undefined, maximumFractionDigits = 4): string {
@@ -52,10 +55,14 @@ function formatAmount(value: number | undefined, maximumFractionDigits = 4): str
   return value.toLocaleString(undefined, { maximumFractionDigits });
 }
 
-const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit }) => {
+const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit, onPlanChange }) => {
   const { t } = useTranslation();
   const [confirmVisible, setConfirmVisible] = useState(false);
   const [subscribing, setSubscribing] = useState(false);
+  const queryClient = useQueryClient();
+  const [pinning, setPinning] = useState(false);
+  const [savedPinned, setSavedPinned] = useState<boolean | undefined>();
+  const pinned = savedPinned ?? plan.isPinned === true;
   const [stage, setStage] = useState<string>("");
   // Another token to pay with; it becomes the plan's DHB on Base first.
   const [payWith, setPayWith] = useState<TipFundingSource | null>(null);
@@ -66,17 +73,33 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
   const chainEntry = primaryPlanChain(plan);
   const targetChainId = chainEntry?.chainId || plan.chainId || 8453;
   const currency = (chainEntry?.currency || plan.currency || "DHB").toUpperCase();
-  const settlementCurrency = currency === "USD" ? "USDT" : currency;
   const isUsdPriced = ["USD", "USDT", "USDC"].includes(currency);
   const dhbUsd = DHB_PRELISTING_USD;
   const dhbEstimate = isUsdPriced ? dhbForUsd(Number(price || 0), dhbUsd) : Number(price || 0);
   const formattedPrice = isUsdPriced
-    ? `${formatAmount(price, 2)} ${settlementCurrency}`
+    ? `${formatAmount(price, 2)} USD`
     : t("subscriptions.tokenPrice", { amount: formatAmount(price) });
   const published = isPlanPublished(plan);
   // 999 is what lifetime plans were stored as before the contract's 0–12 range
   // was respected. Buying one reverts, so it is surfaced rather than hidden.
   const isBuyable = normaliseDuration(plan.duration) !== null;
+
+  const handlePin = async () => {
+    if (pinning || !plan.id) return;
+    setPinning(true);
+    try {
+      const updated = await updatePlan(plan.id, { isPinned: !pinned });
+      if (!updated || updated.isPinned !== !pinned) throw new Error('Plan pin was not saved');
+      setSavedPinned(updated.isPinned);
+      onPlanChange?.(updated);
+      await queryClient.invalidateQueries({ queryKey: ['cc-creator-plans'] });
+      toastSuccess(t(updated.isPinned ? 'postOptions.postPinned' : 'postOptions.postUnpinned'));
+    } catch (error) {
+      toastError(error, t('settings.failedUpdateProfile'));
+    } finally {
+      setPinning(false);
+    }
+  };
 
   const handleSubscribe = () => {
     requireAuth(async () => {
@@ -131,7 +154,7 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
       // DHB is transferred into treasury custody and is not sold. The server
       // verifies this payment before it activates access and credits the
       // creator the plan's frozen USDT value.
-      setStage(t("subscriptions.confirmInWallet"));
+      setStage(t("upload.stageConfirming"));
       const dhbContract = await buildContract(provider, ERC20_ABI, intent.dhbToken, true);
       const tx = await writeContractAA(
         dhbContract,
@@ -200,17 +223,13 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
           {/* Price + duration */}
           <View>
             <View style={s.priceRow}>
-              <Text style={s.price}>{formattedPrice}</Text>
+              <DhbCoin size={20} />
+              <Text style={s.price}>{formatDhbPayment(dhbEstimate)}</Text>
               <Text style={s.duration}> / {formatDuration(plan.duration)}</Text>
             </View>
-            {isUsdPriced && (
-              <View style={s.dhbEquivalentRow}>
-                <DhbCoin size={13} />
-                <Text style={s.dhbEquivalentText}>
-                  {t("subscriptions.atPreListingRate", { amount: formatDhbPayment(dhbEstimate) })}
-                </Text>
-              </View>
-            )}
+            <View style={s.dhbEquivalentRow}>
+              <Text style={s.dhbEquivalentText}>≈ {total.toLocaleString(undefined, { style: "currency", currency: "USD" })} USD</Text>
+            </View>
           </View>
 
           {/* Benefits */}
@@ -236,6 +255,17 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
           )}
 
           {/* Actions */}
+          {isOwner && (
+            <TouchableOpacity
+              onPress={handlePin}
+              disabled={pinning || (!pinned && (!published || !isBuyable))}
+              activeOpacity={0.7}
+              style={[s.editBtn, { marginBottom: 8, opacity: pinning || (!pinned && (!published || !isBuyable)) ? 0.5 : 1 }]}
+            >
+              {pinning ? <ActivityIndicator color="#fff" size="small" /> : <Icon name="Pin" size={16} color="#fff" />}
+              <Text style={s.editBtnText}>{pinned ? t('postOptions.unpinPost') : t('postOptions.pinPost')}</Text>
+            </TouchableOpacity>
+          )}
           {isOwner ? (
             <TouchableOpacity onPress={onEdit} activeOpacity={0.7} style={s.editBtn}>
               <Text style={s.editBtnText}>{t("subscriptions.editPlan")}</Text>

@@ -3456,7 +3456,7 @@
     "postJob": "Chapisha Kazi",
     "types": {
       "all": "Zote",
-      "shill": "Mitandao ya kijamii",
+      "shill": "Shill",
       "clipping": "Kukata klipu",
       "contract": "Mikataba"
     },
@@ -3472,7 +3472,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "Maoni / Utangazaji",
+        "label": "Shill",
         "description": "Lipa kwa kila maoni yaliyothibitishwa kwenye X, YouTube, IG au TikTok."
       },
       "clipping": {
@@ -5666,7 +5666,14 @@
     "imageTranslating": "Inachukua na kutafsiri maandishi...",
     "imageNoText": "Hakuna maandishi yaliyopatikana kwenye picha hii",
     "translatedFrom": "Imetafsiriwa kutoka {{lang}}",
-    "originalText": "Maandishi ya awali"
+    "originalText": "Maandishi ya awali",
+    "repostAndShare": "Chapisha tena na ushiriki",
+    "repostHint": "Papo hapo, kwa wafuasi wako",
+    "quoteHint": "Weka maneno yako mwenyewe",
+    "shareTo": "Shiriki kwa",
+    "moreShare": "Zaidi",
+    "viewQuotes": "Angalia nukuu",
+    "viewReposts": "Angalia machapisho tena"
   },
   "dm": {
     "online": "Mtandaoni",

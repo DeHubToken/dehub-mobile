@@ -3456,7 +3456,7 @@
     "postJob": "ਨੌਕਰੀ ਪੋਸਟ ਕਰੋ",
     "types": {
       "all": "ਸਾਰੇ",
-      "shill": "ਸੋਸ਼ਲ ਮੀਡੀਆ",
+      "shill": "Shill",
       "clipping": "ਕਲਿੱਪਿੰਗ",
       "contract": "ਇਕਰਾਰਨਾਮੇ"
     },
@@ -3472,7 +3472,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "ਟਿੱਪਣੀਆਂ / ਪ੍ਰਚਾਰ",
+        "label": "Shill",
         "description": "X, YouTube, IG ਜਾਂ TikTok 'ਤੇ ਹਰ ਪ੍ਰਮਾਣਿਤ ਟਿੱਪਣੀ ਲਈ ਅਦਾ ਕਰੋ।"
       },
       "clipping": {
@@ -5664,7 +5664,14 @@
     "imageTranslating": "ਚਿੱਤਰ ਵਿੱਚੋਂ ਟੈਕਸਟ ਕੱਢਿਆ ਅਤੇ ਅਨੁਵਾਦ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ...",
     "imageNoText": "ਚਿੱਤਰ ਵਿੱਚ ਕੋਈ ਟੈਕਸਟ ਨਹੀਂ ਮਿਲਿਆ",
     "originalText": "ਮੂਲ ਪਾਠ",
-    "translatedFrom": "{{lang}} ਤੋਂ ਅਨੁਵਾਦ ਕੀਤਾ"
+    "translatedFrom": "{{lang}} ਤੋਂ ਅਨੁਵਾਦ ਕੀਤਾ",
+    "repostAndShare": "ਮੁੜ- ਪੋਸਟ ਕਰੋ ਅਤੇ ਸਾਂਝਾ ਕਰੋ",
+    "repostHint": "ਤੁਰੰਤ, ਤੁਹਾਡੇ ਪੈਰੋਕਾਰਾਂ ਨੂੰ",
+    "quoteHint": "ਆਪਣੇ ਖੁਦ ਦੇ ਸ਼ਬਦ ਜੋੜੋ",
+    "shareTo": "ਇਸ ਨਾਲ ਸਾਂਝਾ ਕਰੋ",
+    "moreShare": "ਹੋਰ",
+    "viewQuotes": "ਹਵਾਲੇ ਵੇਖੋ",
+    "viewReposts": "ਮੁੜ- ਪੋਸਟ ਵੇਖੋ"
   },
   "dm": {
     "online": "ਆਨਲਾਈਨ",

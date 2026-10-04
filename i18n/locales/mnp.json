@@ -3445,7 +3445,7 @@
     "postJob": "发工课",
     "types": {
       "all": "全部",
-      "shill": "社交媒体",
+      "shill": "Shill",
       "clipping": "剪片",
       "contract": "合约"
     },
@@ -3461,7 +3461,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "评论／推广",
+        "label": "Shill",
         "description": "在 X、YouTube、IG 抑是 TikTok 逐条核实过其评论付钱。"
       },
       "clipping": {
@@ -5650,7 +5650,14 @@
     "imageTranslating": "正在提取和翻译文本…",
     "imageNoText": "图片中未找到文本",
     "translatedFrom": "{{lang}} 翻譯",
-    "originalText": "原始文字"
+    "originalText": "原始文字",
+    "repostAndShare": "转发 & 分享",
+    "repostHint": "立即，发送给你的粉丝",
+    "quoteHint": "添加你的文字",
+    "shareTo": "分享至",
+    "moreShare": "更多",
+    "viewQuotes": "查看引用",
+    "viewReposts": "查看转发"
   },
   "dm": {
     "online": "線上",
