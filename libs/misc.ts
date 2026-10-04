@@ -512,9 +512,9 @@ function earnedTier(amount: number, scale: number): string | undefined {
 /**
  * Get badge name for a given staking/holdings amount.
  *
- * A granted username wins outright — before the balance is even read, and
- * without needing to be a finite number, because a grant is not a balance.
- * Otherwise: the highest badge the holder qualifies for on the live ladder, or
+ * A granted username sets a floor, including when no balance is available.
+ * A higher earned or grandfathered badge still wins. Otherwise: the highest
+ * badge the holder qualifies for on the live ladder, or
  * the tier their lock grandfathers if that is higher. Undefined below the
  * entry rung.
  */
@@ -523,13 +523,12 @@ export function getBadgeName(
   context?: BadgeContext,
 ): string | undefined {
   const granted = overrideTierNameFor(context?.username);
-  if (granted) return granted;
 
   const amt =
     typeof stakingAmount === "string"
       ? parseFloat(stakingAmount)
       : stakingAmount;
-  if (!Number.isFinite(amt)) return undefined;
+  if (!Number.isFinite(amt)) return granted;
 
   const scale = context?.scale ?? activeScale;
   const earned = earnedTier(amt, scale);
@@ -541,7 +540,9 @@ export function getBadgeName(
 
   const earnedIndex = earned ? BADGE_ORDER.indexOf(earned) : -1;
   const lockedIndex = locked ? BADGE_ORDER.indexOf(locked) : -1;
-  return lockedIndex > earnedIndex ? locked : earned;
+  const highestEarned = lockedIndex > earnedIndex ? locked : earned;
+  const grantedIndex = granted ? BADGE_ORDER.indexOf(granted) : -1;
+  return grantedIndex > Math.max(earnedIndex, lockedIndex) ? granted : highestEarned;
 }
 
 // Preload badge images (static requires; dynamic requires not supported by Metro)
