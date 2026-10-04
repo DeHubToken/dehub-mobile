@@ -1597,7 +1597,14 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
 
   return (
     <View style={studio ? { flex: 1 } : s.root} className={studio ? 'bg-theme-neutrals-900' : undefined}>
-      {studio ? <ScreenHeader title={t('creator.studioTitle')} icon="creator" rightContent={<SubscriptionCreditsPill />} /> : <AssistantHeader
+      {studio ? <ScreenHeader title={t('creator.studioTitle')} icon="creator" rightContent={
+        <View className="flex-row items-center gap-2">
+          <SubscriptionCreditsPill />
+          <TouchableOpacity onPress={handleHistoryOpen} accessibilityRole="button" accessibilityLabel={t('assistant.chatHistory')} className="p-2">
+            <Icon name="History" size={18} color="#A1A1AA" />
+          </TouchableOpacity>
+        </View>
+      } /> : <AssistantHeader
         onNewChat={handleNewChat}
         onHistoryPress={handleHistoryOpen}
         onSettingsPress={() => setSettingsVisible(true)}
