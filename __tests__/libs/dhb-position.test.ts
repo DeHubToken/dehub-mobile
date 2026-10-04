@@ -60,6 +60,13 @@ describe('dhbPosition', () => {
  * there and read as nothing staked.
  */
 describe('dhbStaked', () => {
+  it('keeps a settled pool withdrawal at zero and retains the legacy contract position', () => {
+    expect(dhbStaked({ balanceData: [{ chainId: 8453, staked: 0 }] })).toBe(0);
+    const user = { balanceData: [{ chainId: 8453, walletBalance: 1000000, staked: 0 }, { chainId: 56, walletBalance: 0, staked: 630000 }] };
+    expect(dhbStaked(user)).toBe(630000);
+    expect(dhbPosition(user)).toBe(1630000);
+  });
+
   it('uses a corrected stake without retaining the earlier inflated amount', () => {
     const before = { ownBadgeBalance: 14108878.119096426, balanceData: [{ chainId: 8453, walletBalance: 42346.016858816605, staked: 14066532.10223761 }] };
     const corrected = { ownBadgeBalance: 7175612.067977621, balanceData: [{ chainId: 8453, walletBalance: 42346.016858816605, staked: 7133266.051118805 }] };

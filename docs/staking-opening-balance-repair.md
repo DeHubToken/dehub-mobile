@@ -19,3 +19,15 @@ Supabase `staking_records` deposits on top of it: that table is incomplete and
 does not include the third deposit. A client cannot compensate for an incorrect
 server ledger by guessing a multiplier. The regression fixture verifies that a
 fresh, lower amount replaces the earlier inflated total.
+
+The full audit checked 40 accounts, 41 chain positions and all 63 pool deposits
+against original chain history. A historical replay during the audit also
+restored monbijou75's already withdrawn 2,000,000 DHB and mrbeast's withdrawn
+500,000 DHB. Both new overlaps were backed up and corrected to zero pooled
+stake. Mrbeast's separate 630,000 DHB legacy contract position remains valid.
+No other position differed from verified deposits minus settled payouts.
+
+DeHubToken/dehub-stream-backend#500 removes synthetic opening creation,
+imports the original receipts and preserves the two verified treasury payouts.
+It guards the migration, deduplicates restart and history replay, retries
+overlapping aggregate writes and reconciles against confirmed pool balances.
