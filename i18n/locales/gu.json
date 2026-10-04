@@ -7300,7 +7300,8 @@
     "doorAgentsNote": "ચેટ મફત",
     "editorNote": "ટાઇમલાઇન પર કાપો",
     "flowNote": "કૅનવાસ પર સ્ટેપ્સ જોડો",
-    "builderNote": "પ્રોમ્પ્ટમાંથી ઍપ બનાવો"
+    "builderNote": "પ્રોમ્પ્ટમાંથી ઍપ બનાવો",
+    "exampleOutput": "ઉદાહરણ આઉટપુટ"
   },
   "fractions": {
     "title": "હિસ્સા",

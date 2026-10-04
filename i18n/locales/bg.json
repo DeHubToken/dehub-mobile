@@ -7312,7 +7312,8 @@
     "doorAgentsNote": "Чат безплатно",
     "editorNote": "Режи го на времева линия",
     "flowNote": "Свързвай стъпки на платно",
-    "builderNote": "Създай приложение от промпт"
+    "builderNote": "Създай приложение от промпт",
+    "exampleOutput": "Примерен изход"
   },
   "fractions": {
     "title": "Дроби",

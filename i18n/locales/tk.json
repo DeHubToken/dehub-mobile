@@ -7293,7 +7293,8 @@
     "doorAgentsNote": "Söhbet mugt",
     "editorNote": "Wagt çyzygynda kesiň",
     "flowNote": "Kanwasda ädimleri birikdiriň",
-    "builderNote": "Soragdan programma dörediň"
+    "builderNote": "Soragdan programma dörediň",
+    "exampleOutput": "Mysal çykdajy"
   },
   "fractions": {
     "title": "Paýlar",

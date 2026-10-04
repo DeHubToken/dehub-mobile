@@ -7314,7 +7314,8 @@
     "doorAgentsNote": "Gratis å chatte",
     "editorNote": "Klipp det på en tidslinje",
     "flowNote": "Koble trinn på et lerret",
-    "builderNote": "Lag en app fra en ledetekst"
+    "builderNote": "Lag en app fra en ledetekst",
+    "exampleOutput": "Eksempel på utdata"
   },
   "fractions": {
     "title": "Andeler",

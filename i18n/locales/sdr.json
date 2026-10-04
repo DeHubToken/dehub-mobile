@@ -7383,7 +7383,8 @@
     "doorAgentsNote": "چیٹ مفت",
     "editorNote": "ٹائم لائن میں کاٹو",
     "flowNote": "کینوس میں اسٹیپ جوڑو",
-    "builderNote": "پرامپٹ سے ایپ بناؤ"
+    "builderNote": "پرامپٹ سے ایپ بناؤ",
+    "exampleOutput": "उदाहरण आउटपुट"
   },
   "fractions": {
     "title": "फ़्रैक्शन",

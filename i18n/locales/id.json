@@ -7395,7 +7395,8 @@
     "doorAgentsNote": "Chat gratis",
     "editorNote": "Potong di timeline",
     "flowNote": "Rangkai langkah di kanvas",
-    "builderNote": "Buat aplikasi dari prompt"
+    "builderNote": "Buat aplikasi dari prompt",
+    "exampleOutput": "Contoh keluaran"
   },
   "fractions": {
     "title": "Fraksi",

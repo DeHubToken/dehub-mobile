@@ -7316,7 +7316,8 @@
     "doorAgentsNote": "Söhbət pulsuzdur",
     "editorNote": "Zaman xəttində kəsin",
     "flowNote": "Kətanda addımları birləşdirin",
-    "builderNote": "Promptdan tətbiq yaradın"
+    "builderNote": "Promptdan tətbiq yaradın",
+    "exampleOutput": "Nümunə çıxış"
   },
   "fractions": {
     "title": "Fraksiyalar",

@@ -7318,7 +7318,8 @@
     "doorAgentsNote": "Xat gratis",
     "editorNote": "Munta-ho en una línia de temps",
     "flowNote": "Encadena passos en un llenç",
-    "builderNote": "Crea una app a partir d'un prompt"
+    "builderNote": "Crea una app a partir d'un prompt",
+    "exampleOutput": "Sortida d'exemple"
   },
   "fractions": {
     "title": "Fraccions",

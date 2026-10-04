@@ -7328,7 +7328,8 @@
     "doorAgentsNote": "Rimanakuy qhispi",
     "editorNote": "Timelinepi kuchuy",
     "flowNote": "Canvaspi ruwaykunata t'inkiy",
-    "builderNote": "Promptmanta app ruway"
+    "builderNote": "Promptmanta app ruway",
+    "exampleOutput": "Ejemplo salida"
   },
   "fractions": {
     "title": "Rakikuna",

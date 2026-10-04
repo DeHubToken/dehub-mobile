@@ -7417,7 +7417,8 @@
     "doorAgentsNote": "Czat za darmo",
     "editorNote": "Montuj na osi czasu",
     "flowNote": "Łącz kroki na kanwie",
-    "builderNote": "Stwórz aplikację z promptu"
+    "builderNote": "Stwórz aplikację z promptu",
+    "exampleOutput": "Przykładowe dane wyjściowe"
   },
   "fractions": {
     "title": "Frakcje",

@@ -10,6 +10,7 @@ export interface CreatorAsset {
   prompt: string;
   modelName: string;
   url?: string;
+  posterUrl?: string;
   transcript?: string;
   createdAt: number;
 }

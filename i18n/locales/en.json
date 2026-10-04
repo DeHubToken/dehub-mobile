@@ -7442,7 +7442,11 @@
     "studioNeedsImage": "Attach a reference image for this model or preset.",
     "studioOpenModel": "Open 3D model",
     "studioPrompt": "Describe what you want to create…",
-    "studioTexture": {"HD":"HD texture","standard":"Standard texture","none":"No texture"},
+    "studioTexture": {
+      "HD": "HD texture",
+      "standard": "Standard texture",
+      "none": "No texture"
+    },
     "studioTitle": "Creator Studio",
     "studioWelcome": "Choose a medium and model, add a prompt or select a preset, then create. Review the price before generating. Your results are saved here.",
     "presetOpenOrchardPortraitName": "Orchard portrait",
@@ -7653,7 +7657,8 @@
     "doorAgentsNote": "Free to chat",
     "editorNote": "Cut it on a timeline",
     "flowNote": "Chain steps on a canvas",
-    "builderNote": "Make an app from a prompt"
+    "builderNote": "Make an app from a prompt",
+    "exampleOutput": "Example output"
   },
   "fractions": {
     "title": "Fractions",
@@ -9206,18 +9211,18 @@
     "update": "Update now"
   },
   "creatorSupport": {
-      "sponsoredBy":  "Sponsored by {{advertiser}}",
-      "campaignLabel":  "Creator support ads",
-      "close":  "Close ad",
-      "progress":  "{{seconds}} / 30 seconds verified · Creator share ${{amount}}",
-      "revenue":  "Your ad revenue · ${{amount}}",
-      "revenueDescription":  "Revenue from ads and creator support, awaiting DHB settlement.",
-      "noAds":  "No sponsor videos are available right now. You can still send a DHB tip.",
-      "explanation":  "Watch 30 seconds. The sponsor funds the creator\u0027s revenue share; you pay nothing.",
-      "receipt":  "${{amount}} added to the creator\u0027s ad revenue. DHB settlement is pending.",
-      "loadError":  "Could not load an ad.",
-      "loading":  "Finding a sponsor…",
-      "campaignDescription":  "Let viewers support creators by watching 30 seconds. Requires an approved video of at least 30 seconds, uploaded in the web advertising portal.",
-      "watch":  "Watch an ad to support this creator"
+    "sponsoredBy": "Sponsored by {{advertiser}}",
+    "campaignLabel": "Creator support ads",
+    "close": "Close ad",
+    "progress": "{{seconds}} / 30 seconds verified · Creator share ${{amount}}",
+    "revenue": "Your ad revenue · ${{amount}}",
+    "revenueDescription": "Revenue from ads and creator support, awaiting DHB settlement.",
+    "noAds": "No sponsor videos are available right now. You can still send a DHB tip.",
+    "explanation": "Watch 30 seconds. The sponsor funds the creator's revenue share; you pay nothing.",
+    "receipt": "${{amount}} added to the creator's ad revenue. DHB settlement is pending.",
+    "loadError": "Could not load an ad.",
+    "loading": "Finding a sponsor…",
+    "campaignDescription": "Let viewers support creators by watching 30 seconds. Requires an approved video of at least 30 seconds, uploaded in the web advertising portal.",
+    "watch": "Watch an ad to support this creator"
   }
 }

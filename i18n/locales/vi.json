@@ -7435,7 +7435,8 @@
     "doorAgentsNote": "Trò chuyện miễn phí",
     "editorNote": "Cắt trên dòng thời gian",
     "flowNote": "Nối các bước trên canvas",
-    "builderNote": "Tạo ứng dụng từ câu lệnh"
+    "builderNote": "Tạo ứng dụng từ câu lệnh",
+    "exampleOutput": "Đầu ra ví dụ"
   },
   "fractions": {
     "title": "Phần sở hữu",

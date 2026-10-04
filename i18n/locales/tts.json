@@ -7311,7 +7311,8 @@
     "doorAgentsNote": "แชทฟรี",
     "editorNote": "ตัดต่อในไทม์ไลน์",
     "flowNote": "เชื่อมขั้นตอนในแคนวาส",
-    "builderNote": "สร้างแอปจากพรอมต์"
+    "builderNote": "สร้างแอปจากพรอมต์",
+    "exampleOutput": "ตัวอย่างผลลัพธ์"
   },
   "fractions": {
     "title": "ส่วนแบ่ง",

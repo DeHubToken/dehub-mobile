@@ -7402,7 +7402,8 @@
     "doorAgentsNote": "الدردشة مجانية",
     "editorNote": "قصّه على خط زمني",
     "flowNote": "اربط الخطوات على لوحة",
-    "builderNote": "أنشئ تطبيقًا من وصف"
+    "builderNote": "أنشئ تطبيقًا من وصف",
+    "exampleOutput": "مثال على المخرجات"
   },
   "fractions": {
     "title": "الأجزاء",
