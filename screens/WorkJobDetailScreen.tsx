@@ -244,7 +244,7 @@ export default function WorkJobDetailScreen() {
   }
 
   const { isPoster, isAwarded, myApp, myReview, canReview } = roles;
-  const canManage=isPoster || (job.status==='disputed' && isWorkAdmin(me));
+  const canManage=(isPoster && job.status!=='disputed') || (job.status==='disputed' && isWorkAdmin(me));
   const st = statusStyle(job.status);
 
   const accepting = ["open","in_progress"].includes(job.status) && (!job.deadline || Date.parse(job.deadline) > Date.now()) && job.units_approved < job.max_units;
@@ -570,7 +570,7 @@ export default function WorkJobDetailScreen() {
                       )}
                       {job.fund_tx_hash && <Text style={styles.dim}>{t('work.integrity.feeNotice',{net:due,currency:job.currency,gross})}</Text>}
                       {submittedPayment && <Text style={styles.awaitingText}>{t('work.integrity.paymentPending')}</Text>}
-                      {isPoster && s.payout_state === 'signing' && (
+                      {canManage && s.payout_state === 'signing' && (
                         <TextInput accessibilityLabel={t('work.integrity.recoverTx')} placeholder={t('work.integrity.hashPlaceholder')} autoCapitalize="none"
                           value={recoveryHashes[s.id] || ''} onChangeText={value => setRecoveryHashes(prev => ({...prev,[s.id]:value.trim()}))} style={styles.input} />
                       )}
@@ -600,7 +600,7 @@ export default function WorkJobDetailScreen() {
                         </Text>
                       )}
 
-                      {isPoster && s.approval_status === "pending" && (
+                      {canManage && s.approval_status === "pending" && (
                         <View style={styles.subActions}>
                           <Pressable
                             disabled={
@@ -663,7 +663,7 @@ export default function WorkJobDetailScreen() {
 
                       {/* Settle something already accepted — the only route by
                           which the existing unpaid backlog can be cleared. */}
-                      {isPoster && awaitingPayment && (
+                      {canManage && (isPoster || !!job.fund_tx_hash) && awaitingPayment && (
                         <View style={styles.subActions}>
                           <Pressable
                             disabled={payMutation.isPending || budgetSpent}
