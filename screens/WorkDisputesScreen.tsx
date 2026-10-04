@@ -39,7 +39,7 @@ import {
   useAdminDisputes,
   useAdminResolveDispute,
   isWorkAdmin,
-  isWorkContractDeployed,
+
   type WorkDispute,
 } from "../hooks/useWork";
 
@@ -67,7 +67,7 @@ export default function WorkDisputesScreen() {
   const resolve = useAdminResolveDispute();
   const [drafts, setDrafts] = useState<Record<string, Draft>>({});
 
-  const escrowed = isWorkContractDeployed();
+  const escrowed = false;
 
   if (!admin) {
     return (
@@ -88,6 +88,7 @@ export default function WorkDisputesScreen() {
 
   const renderDispute = (d: WorkDispute) => {
     const j = d.job;
+    const escrowed=!!j?.fund_tx_hash;
     const v: Draft = drafts[d.id] || {
       worker: "",
       poster: "",
@@ -101,7 +102,7 @@ export default function WorkDisputesScreen() {
     const posterNum = Number(v.poster) || 0;
     const remaining = j ? Number(j.total_budget) - Number(j.released_amount || 0) : 0;
     const total = workerNum + posterNum;
-    const valid = !!j && total <= remaining + 1e-9 && v.workerAddr?.length === 42;
+    const valid = !!j && workerNum>=0 && posterNum>=0 && (escrowed?Math.abs(total-remaining)<1e-9:posterNum===0 && total<=remaining) && (workerNum===0 || /^0x[a-fA-F0-9]{40}$/.test(v.workerAddr));
     const canPay = DIGITAL_PURCHASES_ENABLED && !escrowed;
     const paying = canPay && v.pay && workerNum > 0;
     const busy = resolve.isPending && resolve.variables?.dispute_id === d.id;
@@ -178,7 +179,7 @@ export default function WorkDisputesScreen() {
               />
             </Field>
           </View>
-          <View style={{ flex: 1 }}>
+          {escrowed && <View style={{ flex: 1 }}>
             <Field label={t("work.posterRefund", { currency: j?.currency || "" })}>
               <TextInput
                 value={v.poster}
@@ -189,7 +190,7 @@ export default function WorkDisputesScreen() {
                 style={styles.input}
               />
             </Field>
-          </View>
+          </View>}
         </View>
         <Field label={t("work.detail.notesOptional")}>
           <TextInput
@@ -200,23 +201,7 @@ export default function WorkDisputesScreen() {
           />
         </Field>
 
-        {canPay && workerNum > 0 && (
-          <Pressable
-            style={styles.checkRow}
-            onPress={() => set({ pay: !v.pay })}
-            accessibilityRole="checkbox"
-            accessibilityState={{ checked: v.pay }}
-          >
-            <View style={[styles.checkbox, v.pay && styles.checkboxOn]}>
-              {v.pay && <Icon name="Check" size={12} color="#000000" />}
-            </View>
-            <Text style={styles.checkText}>
-              {t("work.sendToWorker", { amount: fmt(workerNum), currency: j?.currency })}
-              <Text style={styles.dim}>{t("work.fromYourWalletNow")}</Text>
-            </Text>
-          </Pressable>
-        )}
-
+        {!escrowed && <Text style={styles.dim}>{t('work.integrity.decisionOnly')}</Text>}
         <View style={styles.footer}>
           <Text style={[styles.dim, { flex: 1 }]}>
             {t("work.disputeTotal", {
@@ -237,7 +222,7 @@ export default function WorkDisputesScreen() {
                 worker_amount: workerNum,
                 poster_refund: posterNum,
                 resolution_notes: v.notes,
-                pay_worker: paying,
+                pay_worker: false,
               })
             }
             style={[styles.primaryBtn, (!valid || resolve.isPending) && styles.disabled]}
@@ -248,7 +233,7 @@ export default function WorkDisputesScreen() {
               <>
                 {paying && <Icon name="Wallet" size={14} color="#000000" />}
                 <Text style={styles.primaryBtnText}>
-                  {paying ? t("work.resolveAndPay") : t("work.resolve")}
+                  {t("work.resolve")}
                 </Text>
               </>
             )}
