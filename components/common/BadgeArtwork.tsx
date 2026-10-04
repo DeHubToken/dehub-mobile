@@ -47,16 +47,6 @@ function BadgeArtwork({ source, style }: Props) {
         openBadgeShowcase(tier, anchor.current);
       }}
     >
-      {active && (
-        <MotionImage
-          source={poster}
-          contentFit="contain"
-          tintColor="white"
-          blurRadius={2}
-          style={[StyleSheet.absoluteFillObject, { opacity: 0.45 }]}
-          accessible={false}
-        />
-      )}
       {playing && art ? (
         <MotionImage
           key={art.animation}
