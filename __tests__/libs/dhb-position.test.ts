@@ -60,6 +60,15 @@ describe('dhbPosition', () => {
  * there and read as nothing staked.
  */
 describe('dhbStaked', () => {
+  it('uses a corrected stake without retaining the earlier inflated amount', () => {
+    const before = { ownBadgeBalance: 14108878.119096426, balanceData: [{ chainId: 8453, walletBalance: 42346.016858816605, staked: 14066532.10223761 }] };
+    const corrected = { ownBadgeBalance: 7175612.067977621, balanceData: [{ chainId: 8453, walletBalance: 42346.016858816605, staked: 7133266.051118805 }] };
+    expect(dhbStaked(before)).toBeCloseTo(14066532.10223761, 6);
+    expect(dhbStaked(corrected)).toBeCloseTo(7133266.051118805, 6);
+    expect(dhbPosition(corrected)).toBeCloseTo(7175612.067977621, 6);
+    expect(dhbBreakdown(corrected).summed).toBeCloseTo(7175612.067977621, 6);
+  });
+
   it('sums the staked column across the counted chains', () => {
     const user = {
       balanceData: [
