@@ -3485,7 +3485,7 @@
     "postJob": "Uftrag poschte",
     "types": {
       "all": "Alli",
-      "shill": "Soziali Medie",
+      "shill": "Shill",
       "clipping": "Clippe",
       "contract": "Verträg"
     },
@@ -3501,7 +3501,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "Kommentär / Wärbig",
+        "label": "Shill",
         "description": "Zahl pro bstätigte Kommentar uf X, YouTube, IG oder TikTok."
       },
       "clipping": {

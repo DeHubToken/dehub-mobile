@@ -3813,7 +3813,7 @@
     "postJob": "Опублікувати роботу",
     "types": {
       "all": "Усі",
-      "shill": "Соцмережі",
+      "shill": "Shill",
       "clipping": "Нарізка",
       "contract": "Контракти"
     },
@@ -3829,7 +3829,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "Коментарі / Просування",
+        "label": "Shill",
         "description": "Оплата за підтверджений коментар у X, YouTube, IG чи TikTok."
       },
       "clipping": {

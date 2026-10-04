@@ -3503,7 +3503,7 @@
     "postJob": "Mag-post ng Trabaho",
     "types": {
       "all": "Lahat",
-      "shill": "Social media",
+      "shill": "Shill",
       "clipping": "Clipping",
       "contract": "Mga kontrata"
     },
@@ -3519,7 +3519,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "Mga komento / Shill",
+        "label": "Shill",
         "description": "Magbayad kada na-verify na komento sa X, YouTube, IG o TikTok."
       },
       "clipping": {

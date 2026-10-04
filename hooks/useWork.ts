@@ -157,7 +157,7 @@ export function isWorkAdmin(addr?: string | null): boolean {
 }
 
 export const WORK_TYPE_LABEL: Record<WorkJobType, string> = {
-  shill: "Comment / Shill",
+  shill: "Shill",
   clipping: "Clipping",
   contract: "Contract",
 };

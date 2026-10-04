@@ -3460,7 +3460,7 @@
     "postJob": "Munka kiírása",
     "types": {
       "all": "Összes",
-      "shill": "Közösségi média",
+      "shill": "Shill",
       "clipping": "Klipvágás",
       "contract": "Szerződések"
     },
@@ -3476,7 +3476,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "Hozzászólások / Népszerűsítés",
+        "label": "Shill",
         "description": "Fizess minden ellenőrzött hozzászólás után az X-en, YouTube-on, IG-n vagy TikTokon."
       },
       "clipping": {

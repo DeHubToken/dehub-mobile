@@ -3454,7 +3454,7 @@
     "postJob": "انشر شغلة",
     "types": {
       "all": "الكل",
-      "shill": "سوشيال ميديا",
+      "shill": "Shill",
       "clipping": "قص المقاطع",
       "contract": "عقود"
     },
@@ -3470,7 +3470,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "تعليقات / ترويج",
+        "label": "Shill",
         "description": "ادفع على كل تعليق مأكد منه على X أو YouTube أو IG أو TikTok."
       },
       "clipping": {

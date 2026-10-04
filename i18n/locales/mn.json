@@ -3436,7 +3436,7 @@
     "postJob": "Ажил нийтлэх",
     "types": {
       "all": "Бүгд",
-      "shill": "Нийгмийн сүлжээ",
+      "shill": "Shill",
       "clipping": "Клип тайрах",
       "contract": "Гэрээнүүд"
     },
@@ -3452,7 +3452,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "Сэтгэгдэл / Сурталчилгаа",
+        "label": "Shill",
         "description": "X, YouTube, IG эсвэл TikTok дээрх баталгаажсан сэтгэгдэл тутамд төл."
       },
       "clipping": {

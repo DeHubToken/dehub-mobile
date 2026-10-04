@@ -3451,7 +3451,7 @@
     "postJob": "کم ݙیو",
     "types": {
       "all": "سارے",
-      "shill": "سوشل میڈیا",
+      "shill": "Shill",
       "clipping": "کلپنگ",
       "contract": "معاہدے"
     },
@@ -3467,7 +3467,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "تبصرے / تشہیر",
+        "label": "Shill",
         "description": "X، YouTube، IG یا TikTok تے ہر تصدیق تھئے تبصرے دا ݙیو۔"
       },
       "clipping": {

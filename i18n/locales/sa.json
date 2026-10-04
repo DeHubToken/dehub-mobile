@@ -3432,7 +3432,7 @@
     "postJob": "कार्यं प्रकाशयतु",
     "types": {
       "all": "सर्वम्",
-      "shill": "सामाजिकमाध्यमम्",
+      "shill": "Shill",
       "clipping": "खण्डनम्",
       "contract": "कराराः"
     },
@@ -3448,7 +3448,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "टिप्पण्यः / प्रचारः",
+        "label": "Shill",
         "description": "X, YouTube, IG वा TikTok इत्यत्र प्रत्येकं सत्यापितटिप्पण्यर्थं ददातु।"
       },
       "clipping": {

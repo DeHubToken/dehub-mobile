@@ -3433,7 +3433,7 @@
     "postJob": "Baara bila",
     "types": {
       "all": "Bɛɛ",
-      "shill": "Jɛɲɔgɔnya kunnafonidilanw",
+      "shill": "Shill",
       "clipping": "Tigɛli",
       "contract": "Bɛnw"
     },
@@ -3449,7 +3449,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "Kumanaw / Jɛnsɛn",
+        "label": "Shill",
         "description": "Sara kumana dafalen kelen-kelen kan X, YouTube, IG walima TikTok kan."
       },
       "clipping": {

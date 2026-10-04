@@ -26,6 +26,7 @@ import Icon, { type IconName } from "../components/ui/Icon";
 import ScreenHeader from "../components/ScreenHeader";
 import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
 import { useAuthState } from "../context/AuthContext";
+import { useAppTheme } from "../context/ThemeContext";
 import { parseDateOnly } from "../libs/date.util";
 import { ScreenNames } from "../navigation/ScreenNames";
 import {
@@ -70,6 +71,7 @@ function toISODate(d: Date): string {
 
 export default function WorkPostScreen() {
   const { t } = useTranslation();
+  const { colors } = useAppTheme();
   const insets = useSafeAreaInsets();
   // The KeyboardAvoidingView measures itself from its parent, which already
   // includes the ScreenHeader above it; only the status-bar inset is missing.
@@ -162,9 +164,14 @@ export default function WorkPostScreen() {
                 return (
                   <Pressable
                     key={option.id}
+                    accessibilityRole="radio"
+                    accessibilityState={{ checked: active }}
                     onPress={() => setJobType(option.id)}
                     style={[styles.typeCard, active && styles.typeCardActive]}
                   >
+                    {active && (
+                      <View pointerEvents="none" style={[styles.typeSelectionOutline, { borderColor: colors.foreground }]} />
+                    )}
                     <View style={styles.typeIcon}>
                       <Icon name={option.icon} size={20} color="#FFFFFF" />
                     </View>
@@ -173,6 +180,9 @@ export default function WorkPostScreen() {
                       <Text style={styles.typeDesc}>
                         {t(`work.postTypes.${option.id}.description`)}
                       </Text>
+                    </View>
+                    <View style={[styles.typeSelectionMark, { borderColor: colors.foreground }]}>
+                      {active && <Icon name="Check" size={16} color={colors.foreground} />}
                     </View>
                   </Pressable>
                 );
@@ -400,6 +410,23 @@ const styles = StyleSheet.create({
     borderColor: "rgba(255,255,255,0.10)",
   },
   typeCardActive: { backgroundColor: "rgba(255,255,255,0.10)", borderColor: "rgba(255,255,255,0.30)" },
+  typeSelectionOutline: {
+    position: "absolute",
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
+    borderRadius: 14,
+    borderWidth: 2,
+  },
+  typeSelectionMark: {
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+    borderWidth: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
   typeIcon: {
     width: 40,
     height: 40,

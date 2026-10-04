@@ -3456,7 +3456,7 @@
     "postJob": "Ievietot darbu",
     "types": {
       "all": "Visi",
-      "shill": "Sociālie tīkli",
+      "shill": "Shill",
       "clipping": "Klipu veidošana",
       "contract": "Līgumi"
     },
@@ -3472,7 +3472,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "Komentāri / Reklāma",
+        "label": "Shill",
         "description": "Maksā par katru apstiprinātu komentāru X, YouTube, IG vai TikTok."
       },
       "clipping": {

@@ -3456,7 +3456,7 @@
     "postJob": "Lisää työ",
     "types": {
       "all": "Kaikki",
-      "shill": "Sosiaalinen media",
+      "shill": "Shill",
       "clipping": "Klippaus",
       "contract": "Sopimukset"
     },
@@ -3472,7 +3472,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "Kommentit / Promo",
+        "label": "Shill",
         "description": "Maksa jokaisesta vahvistetusta kommentista X:ssä, YouTubessa, IG:ssä tai TikTokissa."
       },
       "clipping": {

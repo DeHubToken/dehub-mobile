@@ -3423,7 +3423,7 @@
     "postJob": "Кор эълон кардан",
     "types": {
       "all": "Ҳама",
-      "shill": "Шабакаҳои иҷтимоӣ",
+      "shill": "Shill",
       "clipping": "Клипсозӣ",
       "contract": "Шартномаҳо"
     },
@@ -3439,7 +3439,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "Шарҳҳо / Таблиғ",
+        "label": "Shill",
         "description": "Барои ҳар шарҳи тасдиқшуда дар X, YouTube, IG ё TikTok пардохт кунед."
       },
       "clipping": {

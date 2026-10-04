@@ -3456,7 +3456,7 @@
     "postJob": "Publica una feina",
     "types": {
       "all": "Totes",
-      "shill": "Xarxes socials",
+      "shill": "Shill",
       "clipping": "Retalls",
       "contract": "Contractes"
     },
@@ -3472,7 +3472,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "Comentaris / Promoció",
+        "label": "Shill",
         "description": "Paga per cada comentari verificat a X, YouTube, IG o TikTok."
       },
       "clipping": {

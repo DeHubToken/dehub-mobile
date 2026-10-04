@@ -3460,7 +3460,7 @@
     "postJob": "Hojii maxxansi",
     "types": {
       "all": "Hunda",
-      "shill": "Miidiyaa hawaasummaa",
+      "shill": "Shill",
       "clipping": "Kutuu",
       "contract": "Waliigaltee"
     },
@@ -3476,7 +3476,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "Yaada / Beeksisa",
+        "label": "Shill",
         "description": "X, YouTube, IG yookaan TikTok irratti yaada mirkanaa'e tokkoon tokkoon isaaniif kaffali."
       },
       "clipping": {

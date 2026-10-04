@@ -3456,7 +3456,7 @@
     "postJob": "Publicar trabajo",
     "types": {
       "all": "Todas",
-      "shill": "Redes sociales",
+      "shill": "Shill",
       "clipping": "Recortes",
       "contract": "Contratos"
     },
@@ -3472,7 +3472,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "Comentarios / Promoción",
+        "label": "Shill",
         "description": "Paga por comentario verificado en X, YouTube, IG o TikTok."
       },
       "clipping": {
@@ -8904,5 +8904,20 @@
     "recommendedBody": "Hay una versión más reciente de DeHub con correcciones de seguridad importantes. Actualiza para mantener tu cuenta protegida.",
     "requiredBody": "Esta versión de DeHub ya no es compatible. Actualiza para seguir usando tu cuenta.",
     "update": "Actualizar ahora"
+  },
+  "creatorSupport": {
+      "sponsoredBy":  "Patrocinado por {{advertiser}}",
+      "campaignLabel":  "Anuncios de apoyo a creadores",
+      "close":  "Cerrar anuncio",
+      "progress":  "{{seconds}} / 30 segundos verificados · Parte del creador: ${{amount}}",
+      "revenue":  "Tus ingresos publicitarios · ${{amount}}",
+      "revenueDescription":  "Ingresos por anuncios y apoyo a creadores, pendientes de pago en DHB.",
+      "noAds":  "No hay vídeos patrocinados disponibles ahora. Puedes seguir enviando una propina en DHB.",
+      "explanation":  "Mira 30 segundos. El patrocinador financia la parte de ingresos del creador; tú no pagas nada.",
+      "receipt":  "${{amount}} añadidos a los ingresos publicitarios del creador. El pago en DHB está pendiente.",
+      "loadError":  "No se pudo cargar el anuncio.",
+      "loading":  "Buscando un patrocinador…",
+      "campaignDescription":  "Permite que los espectadores apoyen a los creadores mirando 30 segundos. Se requiere un vídeo aprobado de al menos 30 segundos, subido al portal publicitario web.",
+      "watch":  "Ver un anuncio para apoyar a este creador"
   }
 }

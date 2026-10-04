@@ -3564,7 +3564,7 @@
     "postJob": "Vypísať zákazku",
     "types": {
       "all": "Všetko",
-      "shill": "Sociálne siete",
+      "shill": "Shill",
       "clipping": "Strih klipov",
       "contract": "Zmluvy"
     },
@@ -3580,7 +3580,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "Komentáre / Propagácia",
+        "label": "Shill",
         "description": "Plať za každý overený komentár na X, YouTube, IG alebo TikToku."
       },
       "clipping": {

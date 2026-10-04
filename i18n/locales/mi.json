@@ -3446,7 +3446,7 @@
     "postJob": "Tukuna he mahi",
     "types": {
       "all": "Katoa",
-      "shill": "Pāpāho pāpori",
+      "shill": "Shill",
       "clipping": "Tapahi",
       "contract": "Ngā kirimana"
     },
@@ -3462,7 +3462,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "Ngā kōrero / Whakatairanga",
+        "label": "Shill",
         "description": "Utua ia kōrero kua whakamanatia i X, YouTube, IG, TikTok rānei."
       },
       "clipping": {

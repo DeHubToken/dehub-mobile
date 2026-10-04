@@ -3456,7 +3456,7 @@
     "postJob": "İşi Yayınla",
     "types": {
       "all": "Tümü",
-      "shill": "Sosyal Medya",
+      "shill": "Shill",
       "clipping": "Klip Hazırlama",
       "contract": "Sözleşmeli İşler"
     },
@@ -3472,7 +3472,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "Yorum / Tanıtım",
+        "label": "Shill",
         "description": "X, YouTube, Instagram veya TikTok'taki doğrulanmış yorum başına ödeme yapın."
       },
       "clipping": {

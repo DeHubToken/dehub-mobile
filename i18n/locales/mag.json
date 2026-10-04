@@ -3453,7 +3453,7 @@
     "postJob": "काम पोस्ट करूँ",
     "types": {
       "all": "सब",
-      "shill": "सोशल मीडिया",
+      "shill": "Shill",
       "clipping": "क्लिपिंग",
       "contract": "अनुबंध"
     },
@@ -3469,7 +3469,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "टिप्पणी / प्रचार",
+        "label": "Shill",
         "description": "X, YouTube, IG या TikTok पर हर सत्यापित टिप्पणी लेल दीं।"
       },
       "clipping": {

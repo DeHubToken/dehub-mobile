@@ -3715,7 +3715,7 @@
     "postJob": "Siarkan Kerja",
     "types": {
       "all": "Semua",
-      "shill": "Media sosial",
+      "shill": "Shill",
       "clipping": "Klip",
       "contract": "Kontrak"
     },
@@ -3731,7 +3731,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "Komen / Promosi",
+        "label": "Shill",
         "description": "Bayar setiap komen disahkan di X, YouTube, IG atau TikTok."
       },
       "clipping": {

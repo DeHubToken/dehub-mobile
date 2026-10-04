@@ -3453,7 +3453,7 @@
     "postJob": "வேலையை இடு",
     "types": {
       "all": "அனைத்தும்",
-      "shill": "சமூக ஊடகம்",
+      "shill": "Shill",
       "clipping": "கிளிப்பிங்",
       "contract": "ஒப்பந்தங்கள்"
     },
@@ -3469,7 +3469,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "கருத்துகள் / விளம்பரம்",
+        "label": "Shill",
         "description": "X, YouTube, IG அல்லது TikTok இல் சரிபார்க்கப்பட்ட ஒவ்வொரு கருத்துக்கும் பணம்."
       },
       "clipping": {

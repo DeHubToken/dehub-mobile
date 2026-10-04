@@ -3458,7 +3458,7 @@
     "postJob": "일감 등록",
     "types": {
       "all": "전체",
-      "shill": "소셜 미디어",
+      "shill": "Shill",
       "clipping": "클리핑",
       "contract": "계약"
     },
@@ -3474,7 +3474,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "댓글 / 홍보",
+        "label": "Shill",
         "description": "X, YouTube, IG, TikTok의 검증된 댓글당 지급합니다."
       },
       "clipping": {

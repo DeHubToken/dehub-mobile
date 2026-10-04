@@ -3446,7 +3446,7 @@
     "postJob": "Wallafa aiki",
     "types": {
       "all": "Duka",
-      "shill": "Kafofin sada zumunta",
+      "shill": "Shill",
       "clipping": "Yankewa",
       "contract": "Kwangiloli"
     },
@@ -3462,7 +3462,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "Sharhi / Talla",
+        "label": "Shill",
         "description": "Biya kowane sharhi da aka tabbatar a X, YouTube, IG ko TikTok."
       },
       "clipping": {

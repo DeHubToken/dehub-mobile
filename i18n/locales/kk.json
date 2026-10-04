@@ -3467,7 +3467,7 @@
     "postJob": "Жұмыс жариялау",
     "types": {
       "all": "Барлығы",
-      "shill": "Әлеуметтік желілер",
+      "shill": "Shill",
       "clipping": "Клип қию",
       "contract": "Келісімшарттар"
     },
@@ -3483,7 +3483,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "Пікірлер / Жарнама",
+        "label": "Shill",
         "description": "X, YouTube, IG немесе TikTok-тағы әр расталған пікір үшін төлеңіз."
       },
       "clipping": {

@@ -3446,7 +3446,7 @@
     "postJob": "රැකියාවක් පළ කරන්න",
     "types": {
       "all": "සියල්ල",
-      "shill": "සමාජ මාධ්‍ය",
+      "shill": "Shill",
       "clipping": "ක්ලිප් කිරීම",
       "contract": "ගිවිසුම්"
     },
@@ -3462,7 +3462,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "අදහස් / ප්‍රවර්ධනය",
+        "label": "Shill",
         "description": "X, YouTube, IG හෝ TikTok හි තහවුරු කළ එක් අදහසකට ගෙවන්න."
       },
       "clipping": {
