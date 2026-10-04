@@ -38,6 +38,7 @@ import { useUserProfileSheet } from "../context/UserProfileSheetContext";
 import { useAppTheme } from "../context/ThemeContext";
 import { minimalFlat, minimalRow } from "../theme/minimal";
 import WorkUser from "../components/Work/WorkUser";
+import BountyShareButton from "../components/Work/BountyShareButton";
 import { ScreenNames } from "../navigation/ScreenNames";
 import type { AppStackParamList } from "../navigation/types";
 import {
@@ -253,7 +254,9 @@ export default function WorkJobDetailScreen() {
       <ScreenHeader
         title={job.title}
         rightContent={
-          isPoster && isJobEditable(job) ? (
+          <View style={{ flexDirection: "row", alignItems: "center", gap: 4 }}>
+          <BountyShareButton job={job} />
+          {isPoster && isJobEditable(job) && (
             <Pressable
               onPress={() => navigation.navigate(ScreenNames.WorkEdit, { jobKey: job.id, job })}
               hitSlop={10}
@@ -264,7 +267,8 @@ export default function WorkJobDetailScreen() {
               <Icon name="Pencil" size={13} color="#FFFFFF" />
               <Text style={styles.editBtnText}>{t("common.edit")}</Text>
             </Pressable>
-          ) : undefined
+          )}
+          </View>
         }
       />
 
