@@ -1,9 +1,11 @@
 import React, { useContext, useEffect, useRef } from "react";
-import { RefreshControl, type RefreshControlProps } from "react-native";
+import { Platform, RefreshControl, type RefreshControlProps } from "react-native";
 import { setFeedPillRefreshing } from "../../libs/feed-pill-refresh";
 import { HomePullRefreshContext } from "../../context/HomePullRefreshContext";
 
 const HIDDEN = "transparent";
+// Android gives the native disc elevation even when its colours are transparent.
+const HIDDEN_ANDROID_INDICATOR_OFFSET = -1000;
 
 /** Keep the native pull gesture; only the navigation logo draws refresh feedback. */
 export const DeHubRefreshControl = ({
@@ -27,6 +29,7 @@ export const DeHubRefreshControl = ({
     tintColor={HIDDEN}
     colors={[HIDDEN]}
     progressBackgroundColor={HIDDEN}
+    progressViewOffset={Platform.OS === 'android' ? HIDDEN_ANDROID_INDICATOR_OFFSET : rest.progressViewOffset}
   />
   );
 };
