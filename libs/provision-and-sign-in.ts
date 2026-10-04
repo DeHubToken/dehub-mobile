@@ -11,6 +11,7 @@ import {
   getStoredSupabaseUserId,
 } from "./auth.utils";
 import { createLogger } from "./logger";
+import { advanceAuthTrace, beginAuthTrace, readAuthTrace } from './auth-trace';
 import {
   resolveEvmWalletForIdentity,
   releaseWalletKeyForSignIn,
@@ -88,11 +89,12 @@ async function ensureSessionMatchesSupabaseIdentity(supabaseUserId: string): Pro
     // additive. Add profile was never affected because it adopts the live
     // account before reaching here; every other route into a sign-in was.
     try {
-      await stageIncomingIdentity();
+      await stageIncomingIdentity(supabaseUserId);
     } catch (e) {
       // Never block a sign-in on the bookkeeping. Worst case is the old
       // behaviour: the outgoing account is not saved.
       log.warn("provision:stageIncomingIdentity:error", e);
+      // Clear DeHub credentials without signing out the incoming identity.
       await clearAuthData();
     }
   }
@@ -154,8 +156,13 @@ export async function provisionAndSignIn(
   supabaseUserId: string,
   deps: ProvisionDeps
 ): Promise<ProvisionOutcome> {
+  if (!readAuthTrace().auth_attempt_id) beginAuthTrace('resume');
+  advanceAuthTrace('identity-established', supabaseUserId);
+  log.trace?.('identity-established');
   try {
-    return await provisionAndSignInInner(supabaseUserId, deps);
+    const outcome = await provisionAndSignInInner(supabaseUserId, deps);
+    log.trace?.(`provision-${outcome.kind}`, outcome.kind === 'error' ? { reason: outcome.message } : {});
+    return outcome;
   } catch (e) {
     log.error("provision:unhandled-error", e);
     // eslint-disable-next-line no-console
@@ -188,6 +195,7 @@ async function provisionAndSignInInner(
     accessToken, preferred ?? TARGET_CHAIN_ID, undefined, supabaseUserId, deps,
     { allowLocked: true },
   );
+  log.trace?.('profile-exchange-result', { outcome });
   if (outcome === "linked") {
     await markSupabaseIdentitySignedIn(supabaseUserId);
     return { kind: "signed-in" };
@@ -205,6 +213,7 @@ async function provisionAndSignInInner(
   // Answering with an error instead sent these people back to the sign-in
   // screen on every attempt.
   const resolution = await resolveEvmWalletForIdentity(supabaseUserId);
+  log.trace?.('wallet-resolution', { wallet_state: resolution.status });
   switch (resolution.status) {
     case "needs-create-password":
       break;

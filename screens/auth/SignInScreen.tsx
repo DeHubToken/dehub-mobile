@@ -31,6 +31,7 @@ import { CommonActions } from "@react-navigation/native";
 import { useKeyboardOffset } from "../../hooks/useKeyboardLayout";
 import { AuthService } from "../../services";
 import { createLogger } from "../../libs/logger";
+import { beginAuthTrace, readAuthTrace } from "../../libs/auth-trace";
 import {
   sendEmailOtp,
   verifyEmailOtp,
@@ -106,6 +107,16 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
   // instead of silently minting a duplicate. See LegacyAccountWarningModal.
   const [legacyAccounts, setLegacyAccounts] = useState<LegacyAccountMatch[] | null>(null);
   const [pendingCreateUserId, setPendingCreateUserId] = useState<string | null>(null);
+  useEffect(() => {
+    if (!readAuthTrace().auth_attempt_id) beginAuthTrace('undecided');
+  }, []);
+  useEffect(() => {
+    log.trace?.('screen-view', {
+      surface: 'signin-screen',
+      screen: walletSetupRequest ? 'wallet-setup' : authStep,
+      method: currentProvider || 'undecided',
+    });
+  }, [authStep, walletSetupRequest, currentProvider]);
 
   const { isFirstTimeUser, provisionalUser, isLoading: authLoading, needsUsername, isSignedIn } = useAuthState();
   const { skipAuth, signInWithWallet, signInWithSupabaseSession } = useAuthActions();

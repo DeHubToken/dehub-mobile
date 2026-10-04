@@ -1,4 +1,5 @@
 import { profileSessionMatchesWallet } from '../libs/profile-session';
+import { clearAuthTrace } from '../libs/auth-trace';
 import { useCallback, useRef } from "react";
 import { maxStacked } from "../libs/validators.util";
 import { setHasSeenAuth, toastError } from "../libs";
@@ -40,6 +41,7 @@ import {
 // balances fetching centralized in useBalances
 
 type Logger = {
+  trace?: (stage: string, metadata?: Record<string, unknown>) => void;
   debug: (...a: any[]) => void;
   info: (...a: any[]) => void;
   warn: (...a: any[]) => void;
@@ -392,6 +394,7 @@ export function useAuthSession({
         }
       }
       if (needsUsername) {
+        log.trace?.('profile-setup-required');
         setNeedsUsername(true);
         setProvisionalUser(walletUser);
         setProvisionalToken(token);
@@ -407,6 +410,8 @@ export function useAuthSession({
         // Prevent the consolidated boot effect from duplicating this enrich
         didBootRefetchRef.current = true;
         await persistLocalAccountIfPossible(enriched);
+        log.trace?.('signed-in');
+        clearAuthTrace();
         try {
           setBalancesLoading(true);
         } catch {}
@@ -617,9 +622,11 @@ export function useAuthSession({
           expectedAddress = lookup?.wallet?.ethAddress;
         }
         let res: Awaited<ReturnType<typeof AuthService.authenticateWithSupabaseSession>>;
+        log.trace?.('profile-exchange-start', { has_wallet_hint: !!expectedAddress });
         try {
           res = await AuthService.authenticateWithSupabaseSession(supabaseAccessToken, expectedAddress);
         } catch (e) {
+          log.trace?.('profile-exchange-refused', { reason: e instanceof Error ? e.message : String(e), error_type: e instanceof Error ? e.name : 'unknown' });
           if (e instanceof WalletLinkAmbiguousError) {
             log.warn("signInWithSupabaseSession:ambiguous-link");
             throw e;
@@ -711,6 +718,8 @@ export function useAuthSession({
 
   const completeUsername = useCallback(
     (finalUser: User) => {
+      log.trace?.('signup-complete');
+      clearAuthTrace();
       setBalancesLoading(true);
       setIsSignedIn(true);
       setIsFirstTimeUser(false);

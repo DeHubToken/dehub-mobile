@@ -1,4 +1,5 @@
 import { DEBUG as ENV_DEBUG } from '@env';
+import { advanceAuthTrace, readAuthTrace } from './auth-trace';
 
 export type LogLevel = "debug" | "info" | "warn" | "error";
 
@@ -35,6 +36,11 @@ export function createLogger(scope?: string) {
       } catch {}
       return;
     }
+    if (level === 'warn' && readAuthTrace().auth_attempt_id && /auth|provision|wallet|session/i.test(scope || '')) {
+      try {
+        require('./errorReporter').reportError(scope, args, { level: 'warn' });
+      } catch {}
+    }
     if (!isDebug) return;
     // eslint-disable-next-line no-console
     const prefix = formatPrefix(scope, level);
@@ -44,6 +50,15 @@ export function createLogger(scope?: string) {
   };
 
   return {
+    trace: (stage: string, metadata?: Record<string, unknown>) => {
+      if (!readAuthTrace().auth_attempt_id) return;
+      advanceAuthTrace(stage);
+      try {
+        require('./errorReporter').reportError('AuthTrace', [stage], {
+          level: 'info', metadata: { source: scope, ...metadata },
+        });
+      } catch {}
+    },
     debug: logAt("debug"),
     info: logAt("info"),
     warn: logAt("warn"),
