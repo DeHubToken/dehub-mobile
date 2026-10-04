@@ -5749,7 +5749,14 @@
     "imageTranslating": "Извлечение и перевод текста...",
     "imageNoText": "Текст на изображении не найден",
     "translatedFrom": "Переведено с {{lang}}",
-    "originalText": "Оригинальный текст"
+    "originalText": "Оригинальный текст",
+    "repostAndShare": "Репост и публикация",
+    "repostHint": "Мгновенно, вашим подписчикам",
+    "quoteHint": "Добавьте свои слова",
+    "shareTo": "Поделиться в",
+    "moreShare": "Еще",
+    "viewQuotes": "Посмотреть расценки",
+    "viewReposts": "Посмотреть репосты"
   },
   "dm": {
     "online": "Онлайн",

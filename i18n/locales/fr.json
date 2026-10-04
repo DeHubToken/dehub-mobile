@@ -5749,7 +5749,14 @@
     "imageTranslating": "Extraction et traduction du texte...",
     "imageNoText": "Aucun texte trouvé dans cette image",
     "translatedFrom": "Traduit de {{lang}}",
-    "originalText": "Texte original"
+    "originalText": "Texte original",
+    "repostAndShare": "Republier et partager",
+    "repostHint": "Immédiatement, à vos abonnés",
+    "quoteHint": "Ajoutez vos propres mots",
+    "shareTo": "Partager sur",
+    "moreShare": "Plus",
+    "viewQuotes": "Afficher les devis",
+    "viewReposts": "Afficher les reposts"
   },
   "dm": {
     "online": "En ligne",

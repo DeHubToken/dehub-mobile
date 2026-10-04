@@ -5656,7 +5656,14 @@
     "imageTranslating": "ટેક્સ્ટ કાઢવામાં અને અનુવાદિત કરવામાં આવી રહ્યું છે...",
     "imageNoText": "આ છબીમાં કોઈ ટેક્સ્ટ મળ્યો નથી",
     "translatedFrom": "{{lang}} માંથી અનુવાદિત",
-    "originalText": "મૂળ લખાણ"
+    "originalText": "મૂળ લખાણ",
+    "repostAndShare": "ફરીથી પોસ્ટ કરો અને શેર કરો",
+    "repostHint": "તુરંત જ, તમારા અનુયાયીઓને",
+    "quoteHint": "તમારા પોતાના શબ્દો ઉમેરો",
+    "shareTo": "આમાં શેર કરો",
+    "moreShare": "વધુ",
+    "viewQuotes": "અવતરણો જુઓ",
+    "viewReposts": "રિપોસ્ટ્સ જુઓ"
   },
   "dm": {
     "online": "ઓનલાઈન",

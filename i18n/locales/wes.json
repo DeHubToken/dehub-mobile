@@ -5613,7 +5613,13 @@
     "matureDescription": "Di creator mark this post sey na adult or graphic.",
     "imageTranslating": "We di komot di text and translate am...",
     "imageNoText": "No text for this image",
-    "translatedFrom": "We translate am from {{lang}}"
+    "translatedFrom": "We translate am from {{lang}}",
+    "repostAndShare": "Repost & share",
+    "repostHint": "Sharp sharp, for your followers",
+    "shareTo": "Share to",
+    "moreShare": "More",
+    "viewQuotes": "View quotes",
+    "viewReposts": "View reposts"
   },
   "dm": {
     "online": "Online",

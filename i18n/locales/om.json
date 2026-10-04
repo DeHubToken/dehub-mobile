@@ -5659,7 +5659,14 @@
     "imageTranslating": "Barreeffama baasuu fi hiikuu...",
     "imageNoText": "Fakkii kana irratti barreeffamni hin argamne",
     "originalText": "Mata duree",
-    "translatedFrom": "{{lang}} irraa kan hiikame"
+    "translatedFrom": "{{lang}} irraa kan hiikame",
+    "repostAndShare": "Repost & share gochuudhaan",
+    "repostHint": "Battalatti, hordoftoota keessaniif",
+    "quoteHint": "Jecha mataa keetii itti dabali",
+    "shareTo": "Share gochuun",
+    "moreShare": "Caalaa",
+    "viewQuotes": "Caqasoota ilaali",
+    "viewReposts": "Irra deebiin maxxansa ilaali"
   },
   "dm": {
     "online": "Toora intarneetiirraan",

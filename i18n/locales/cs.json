@@ -5668,7 +5668,14 @@
     "imageTranslating": "Extrahování a překlad textu...",
     "imageNoText": "V tomto obrázku nebyl nalezen žádný text",
     "translatedFrom": "Přeloženo z {{lang}}",
-    "originalText": "Původní text"
+    "originalText": "Původní text",
+    "repostAndShare": "Znovu zveřejnit a sdílet",
+    "repostHint": "Okamžitě svým následovníkům",
+    "quoteHint": "Přidej vlastní slova",
+    "shareTo": "Sdílet s",
+    "moreShare": "Více",
+    "viewQuotes": "Zobrazit cenové nabídky",
+    "viewReposts": "Zobrazit reposts"
   },
   "dm": {
     "online": "Online",

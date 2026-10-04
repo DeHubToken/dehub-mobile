@@ -5688,7 +5688,14 @@
     "imageTranslating": "استخراج وترجمة النص...",
     "imageNoText": "لم يتم العثور على نص في هذه الصورة",
     "originalText": "النص الأصلي",
-    "translatedFrom": "مترجم من {{lang}}"
+    "translatedFrom": "مترجم من {{lang}}",
+    "repostAndShare": "إعادة النشر والمشاركة",
+    "repostHint": "على الفور، إلى متابعيك",
+    "quoteHint": "إضافة كلماتك الخاصة",
+    "shareTo": "مشاركة إلى",
+    "moreShare": "المزيد",
+    "viewQuotes": "عرض عروض الأسعار",
+    "viewReposts": "عرض عمليات إعادة النشر"
   },
   "dm": {
     "online": "متصل",

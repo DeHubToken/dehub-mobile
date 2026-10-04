@@ -5693,7 +5693,14 @@
     "imageTranslating": "در حال استخراج و ترجمه متن…",
     "imageNoText": "هیچ متنی در این تصویر یافت نشد",
     "translatedFrom": "ترجمه شده از {{lang}}",
-    "originalText": "متن اصلی"
+    "originalText": "متن اصلی",
+    "repostAndShare": "بازنشر و اشتراک‌گذاری",
+    "repostHint": "فوراً، برای دنبال‌کنندگانتان",
+    "quoteHint": "کلمات خودتان را اضافه کنید",
+    "shareTo": "اشتراک گذاری",
+    "moreShare": "بیشتر",
+    "viewQuotes": "مشاهده نقل قول‌ها",
+    "viewReposts": "مشاهده‌ی بازنشر پست‌ها"
   },
   "dm": {
     "online": "آنلاین",

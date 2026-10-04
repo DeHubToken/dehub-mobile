@@ -5658,7 +5658,14 @@
     "imageTranslating": "正在提取和翻譯文字…",
     "imageNoText": "圖片中未找到文字",
     "translatedFrom": "翻譯自 {{lang}}",
-    "originalText": "原文"
+    "originalText": "原文",
+    "repostAndShare": "轉貼同分享",
+    "repostHint": "即刻，向你嘅追隨者",
+    "quoteHint": "加你自己嘅字",
+    "shareTo": "分享到",
+    "moreShare": "多啲",
+    "viewQuotes": "睇報價",
+    "viewReposts": "睇下轉貼"
   },
   "dm": {
     "online": "線上",

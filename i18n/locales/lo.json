@@ -5628,7 +5628,14 @@
     "imageTranslating": "ກຳລັງສະກັດ ແລະ ແປຂໍ້ຄວາມ…",
     "imageNoText": "ບໍ່ພົບຂໍ້ຄວາມໃນຮູບນີ້",
     "translatedFrom": "ແປຈາກ {{lang}}",
-    "originalText": "ຂໍ້ຄວາມຕົ້ນສະບັບ"
+    "originalText": "ຂໍ້ຄວາມຕົ້ນສະບັບ",
+    "repostAndShare": "ສົ່ງຄືນ & ແບ່ງປັນ",
+    "repostHint": "ທັນທີທັນໃດ, ກັບຜູ້ຕິດຕາມຂອງທ່ານ",
+    "quoteHint": "ເພີ່ມ ຄໍາ ເວົ້າຂອງທ່ານເອງ",
+    "shareTo": "ແບ່ງປັນເພື່ອ",
+    "moreShare": "ເພີ່ມເຕີມ",
+    "viewQuotes": "ເບິ່ງ ປະໂຫຍກ",
+    "viewReposts": "ເບິ່ງການໂພສຄືນໃໝ່"
   },
   "dm": {
     "online": "ອອນລາຍ",
