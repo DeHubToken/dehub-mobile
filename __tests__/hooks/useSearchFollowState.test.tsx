@@ -11,7 +11,7 @@ jest.mock('../../services/user.service', () => ({ getFollowStatus: jest.fn(), fo
 const initial = { isFollowing: false, isFollowRequestPending: false };
 function setup() {
   const client = new QueryClient({ defaultOptions: { queries: { retry: false } } });
-  const wrapper = ({ children }: { children: React.ReactNode }) => <QueryClientProvider client={client}>{children}</QueryClientProvider>;
+  const wrapper = ({ children }: { children: React.ReactNode }) => React.createElement(QueryClientProvider, { client, children });
   return { client, wrapper };
 }
 
