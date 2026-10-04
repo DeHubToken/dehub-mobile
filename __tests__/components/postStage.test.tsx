@@ -6,6 +6,8 @@ import PostStageActionBar from '../../components/Home/PostStageActionBar';
 import RepostShareSheet, { shareTargetUrl } from '../../components/Home/RepostShareSheet';
 
 jest.mock('react-native-css-interop/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
+jest.mock('dehub-jsx/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
+jest.mock('react-native-css-interop', () => ({ createInteropElement: jest.requireActual('react').createElement }));
 jest.mock('react-native', () => ({
   View: 'View', Pressable: 'Pressable', Text: 'Text',
   StyleSheet: { create: (s: unknown) => s, flatten: (style: unknown) => style, hairlineWidth: 1 },
