@@ -1,3 +1,4 @@
+import SkeletonBlock from "../Feed/SkeletonBlock";
 import React from "react";
 import { View } from "react-native";
 import { useShortsCardSize, GRID_GAP } from "./ShortsGridCard";
@@ -21,9 +22,9 @@ const ShortsGridSkeleton: React.FC<ShortsGridSkeletonProps> = ({ rows = 3 }) => 
       {Array.from({ length: rows }).map((_, row) => (
         <View key={row} style={{ flexDirection: "row", gap: GRID_GAP }}>
           {Array.from({ length: 2 }).map((__, col) => (
-            <View
+            <SkeletonBlock
               key={col}
-              className="bg-theme-neutrals-800 rounded-xl"
+              className="rounded-xl"
               // Minimal: a faint lift off black rather than a grey block.
               style={isMinimal
                 ? { width: CARD_WIDTH, height: CARD_HEIGHT, backgroundColor: "rgba(255,255,255,0.04)" }
