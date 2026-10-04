@@ -14,6 +14,8 @@ import { Pressable, Text, View, StyleSheet, type ViewStyle } from "react-native"
 import Avatar from "../common/Avatar";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import { useWorkProfile, workProfileAvatar, workProfileName } from "../../hooks/useWorkProfiles";
+import { useUserReviews } from '../../hooks/useWork';
+import { useTranslation } from 'react-i18next';
 
 export const shortAddr = (a: string) => `${a.slice(0, 6)}…${a.slice(-4)}`;
 
@@ -31,6 +33,9 @@ export default function WorkUser({
 }) {
   const { showUserProfile } = useUserProfileSheet();
   const profile = useWorkProfile(address);
+  const {t}=useTranslation();
+  const {data:reviews,isError}=useUserReviews(address);
+  const rating=reviews?.length ? (reviews.reduce((sum,r)=>sum+r.rating,0)/reviews.length).toFixed(1) : '';
   const name = workProfileName(profile, address);
   const uri = workProfileAvatar(profile, size);
 
@@ -50,6 +55,7 @@ export default function WorkUser({
             {shortAddr(address)}
           </Text>
         )}
+        {!isError && reviews && <Text style={styles.reputation}>{t(reviews.length?'work.integrity.ratingSummary':'work.integrity.newReputation',{rating,count:reviews.length})}</Text>}
       </View>
     </Pressable>
   );
@@ -60,4 +66,5 @@ const styles = StyleSheet.create({
   text: { flexShrink: 1, minWidth: 0 },
   name: { color: "#FFFFFF", fontSize: 13, fontWeight: "600" },
   addr: { color: "rgba(255,255,255,0.40)", fontSize: 10, fontVariant: ["tabular-nums"] },
+  reputation: { color: 'rgba(255,255,255,0.60)',fontSize:10 },
 });

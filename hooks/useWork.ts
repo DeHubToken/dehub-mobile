@@ -391,8 +391,6 @@ export function useCreateJob() {
       const addr = wallet.toLowerCase();
       const total = params.price_per_unit * params.max_units;
 
-      // On-chain escrow funding would go here — skipped while the contract is
-      // undeployed, same as web.
       const fundTxHash: string | null = null;
       const onchainJobId: number | null = null;
 
@@ -416,7 +414,7 @@ export function useCreateJob() {
             deadline: params.deadline || new Date(Date.now()+30*86400000).toISOString(),
             onchain_job_id: onchainJobId,
             fund_tx_hash: fundTxHash,
-            status: "draft",
+            status: "open",
           })
           .select()
           .single(),
@@ -428,7 +426,7 @@ export function useCreateJob() {
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["work-jobs-browse"] });
       qc.invalidateQueries({ queryKey: ["work-my-posted"] });
-      toastSuccess(i18n.t("work.integrity.draftSaved"));
+      toastSuccess(i18n.t("work.integrity.posted"));
     },
     onError: (e: any) => {
       log.error("Create job failed:", e);
@@ -731,6 +729,14 @@ export function useJobReviews(jobId: string | undefined) {
   });
 }
 
+export function useUserReviews(address: string | undefined) {
+ return useQuery({queryKey:['work-reviews-user',address?.toLowerCase()],queryFn:async()=>{
+  const {data,error}=await supabase.from(TBL_REVIEWS).select('*').eq('reviewee_address',address!.toLowerCase()).order('created_at',{ascending:false});
+  if(error) throw error;
+  return (data || []) as WorkReview[];
+ },enabled:!!address,staleTime:5*60_000});
+}
+
 export function useLeaveReview() {
   const wallet = useWallet();
   const qc = useQueryClient();
@@ -848,13 +854,14 @@ export function useAdminResolveDispute() {
       const {data:subs,error}=await supabase.from(TBL_SUBS).select('*').eq('job_id',params.job_id).in('approval_status',['pending','approved']).order('created_at');
       if(error) throw error;
       const selected=(subs as any[])?.find(s=>s.worker_address===params.worker_address.toLowerCase());
-      if((subs as any[])?.some(s=>s.id!==selected?.id)) throw new Error('Review and settle other submissions before resolving');
       await escrow.resolve(params,selected?.proof_url);
     },
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["work-disputes-admin"] });
       qc.invalidateQueries({ queryKey: ["work-job"] });
       toastSuccess(i18n.t("work.disputeResolved"));
+      qc.invalidateQueries({queryKey:['work-subs']});
+      qc.invalidateQueries({queryKey:['work-jobs-browse']});
     },
     onError: (e: any) => {
       log.error("Resolve dispute failed:", e);
@@ -888,6 +895,13 @@ export function useMarkComplete() {
 
 export function useWorkConfig() {
  return useQuery({queryKey:['work-config'],queryFn:getWorkConfig,staleTime:60000});
+}
+export function usePublishJob() {
+ const wallet=useWallet(); const qc=useQueryClient();
+ return useMutation({mutationFn:async(jobId:string)=>{
+  if(!wallet) throw new Error('Not authenticated');
+  await workRpc(wallet,'work_publish',{p_job:jobId});
+ },onSuccess:()=>{qc.invalidateQueries({queryKey:['work-job']});qc.invalidateQueries({queryKey:['work-my-posted']});qc.invalidateQueries({queryKey:['work-jobs-browse']});toastSuccess(i18n.t('work.integrity.posted'));},onError:(e:any)=>toastError(e,i18n.t('work.postFailed'))});
 }
 export function useFundJob() {
  const wallet=useWallet(); const escrow=useWorkEscrow(wallet); const qc=useQueryClient();
