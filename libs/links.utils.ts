@@ -1,6 +1,7 @@
 import { Linking } from "react-native";
 import * as WebBrowser from "expo-web-browser";
 import { supportedNetworks } from "../config/web3.constants";
+import { normalizeSocialUrl } from './social-links';
 
 /**
  * Normalize a raw social input (username or partial/full link) into a full https URL for a given host.
@@ -8,6 +9,13 @@ import { supportedNetworks } from "../config/web3.constants";
  * @param host domain host e.g. x.com, instagram.com, t.me
  */
 export const getSocialLink = (rawLink: string, host: string): string => {
+  const keys: Record<string, string> = {
+    'x.com': 'twitterLink', 'twitter.com': 'twitterLink',
+    'instagram.com': 'instagramLink', 'youtube.com': 'youtubeLink',
+    'tiktok.com': 'tiktokLink', 'facebook.com': 'facebookLink',
+    't.me': 'telegramLink', 'discord.com': 'discordLink',
+  };
+  if (keys[host]) return normalizeSocialUrl(keys[host], rawLink);
   if (!rawLink) return '#';
   let trimmed = rawLink.trim();
   // If already a full URL containing host, just normalize scheme and encode spaces
