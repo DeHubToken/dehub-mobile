@@ -13,6 +13,7 @@ import { ScreenNames } from "../../navigation/ScreenNames";
 import { TAB_BAR_CONTENT_INSET } from "../../navigation/tabBarLayout";
 import { TabBarHideProvider } from "../../context/TabBarHideContext";
 import StandaloneTabBar from "../../navigation/StandaloneTabBar";
+import { useAppTheme } from "../../context/ThemeContext";
 
 interface UserProfileBottomSheetProps {
   visible: boolean;
@@ -45,6 +46,7 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
 
   const navigation = useNavigation();
   const insets = useSafeAreaInsets();
+  const { theme } = useAppTheme();
 
   // Shared profile data and actions for both embedded and standalone pages.
   const {
@@ -200,6 +202,7 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
             title={profileData?.displayName || "Profile"}
             subtitle={profileData?.username ? `@${profileData.username}` : undefined}
             canGoBack
+            overlay={theme === "system"}
             onBackPress={onClose}
             rightContent={
               !isOwnProfile && menuTrigger ? (
