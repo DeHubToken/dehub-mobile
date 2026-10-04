@@ -649,7 +649,7 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
                   <Text style={styles.headerTitle}>{t("tip.title", "Send Tip")}</Text>
                 </View>
                 <Text style={styles.recipientText}>{subheader}</Text>
-                {visible && tipContext === 'content' && tokenId > 0 && !commentId && !isLocked && !isSelf && !recipientPrivate && !privacyChecking && user?.walletAddress ? (
+                {visible && tipContext === 'content' && tokenId > 0 && !commentId && !isLocked && !isSelf && !isSolanaTip && !isBusy && !recipientPrivate && !privacyChecking && user?.walletAddress ? (
                   <CreatorSupportAd key={tokenId} postId={tokenId} wallet={user.walletAddress} />
                 ) : null}
 
