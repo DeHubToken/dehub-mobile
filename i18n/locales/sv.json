@@ -1834,7 +1834,8 @@
     "importWalletRecommended": "Sociala inloggningar rekommenderas.",
     "importWalletPurpose": "Det här verktyget är till för att importera befintliga konton från DeHub.io.",
     "importSecretPlaceholder": "12 eller 24 ord, eller en privat nyckel",
-    "invalidImportSecret": "Det är inte en giltig 12/24-ordsfras eller privat nyckel"
+    "invalidImportSecret": "Det är inte en giltig 12/24-ordsfras eller privat nyckel",
+    "walletSignupBlocked": "Den här plånboken är helt ny. Nya plånböcker behöver ett saldo eller en tidigare transaktion för att öppna ett konto. Registrera dig med något av alternativen nedan och anslut sedan den här plånboken under Inställningar."
   },
   "messages": {
     "smartRepliesOff": "Föreslagna svar avstängda",

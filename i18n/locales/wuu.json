@@ -1833,7 +1833,8 @@
     "importWalletRecommended": "社交登录推荐。",
     "importWalletPurpose": "此工具用于从 DeHub.io 导入现有账户。",
     "importSecretPlaceholder": "12個或24個字，或是一個私鑰",
-    "invalidImportSecret": "這不是一個有效的12/24字短語或私鑰"
+    "invalidImportSecret": "這不是一個有效的12/24字短語或私鑰",
+    "walletSignupBlocked": "迭只钱包是全新个。新钱包要有余额或者老早个交易再好开账户。用下头其中一种方式注册，再到设置里向连牢迭只钱包。"
   },
   "messages": {
     "smartRepliesOff": "建议回复关脱哉",

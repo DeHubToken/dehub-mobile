@@ -1833,7 +1833,8 @@
     "importWalletPurpose": "Ovaj alat je za uvoz postojećih naloga sa DeHub.io.",
     "exploreWithoutSignIn": "Istraži bez prijavljivanja",
     "importSecretPlaceholder": "۱۲ یا ۲۴ کلمه، یا کلید خصوصی",
-    "invalidImportSecret": "این یک عبارت ۱۲/۲۴ کلمه یا کلید خصوصی معتبر نیست"
+    "invalidImportSecret": "این یک عبارت ۱۲/۲۴ کلمه یا کلید خصوصی معتبر نیست",
+    "walletSignupBlocked": "ई वॉलेट एकदम नावा हेके। नावा वॉलेट के खाता खोलेक ले बैलेंस या पहिले कर कोनो लेनदेन चाही। नीचे कर कोनो एगो विकल्प से साइन अप करा, फिर सेटिंग्स ले ई वॉलेट जोड़ा।"
   },
   "messages": {
     "smartRepliesOff": "تجویز کیل جواب بند ہو گیل",

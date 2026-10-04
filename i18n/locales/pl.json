@@ -1834,7 +1834,8 @@
     "importWalletRecommended": "Zalecane są loginy społecznościowe.",
     "importWalletPurpose": "To narzędzie służy do importowania istniejących kont z DeHub.io.",
     "importSecretPlaceholder": "12 lub 24 słowa albo klucz prywatny",
-    "invalidImportSecret": "To nie jest prawidłowa fraza 12/24 słów ani klucz prywatny"
+    "invalidImportSecret": "To nie jest prawidłowa fraza 12/24 słów ani klucz prywatny",
+    "walletSignupBlocked": "Ten portfel jest zupełnie nowy. Nowe portfele potrzebują salda lub wcześniejszej transakcji, aby otworzyć konto. Zarejestruj się jedną z poniższych opcji, a potem połącz ten portfel w Ustawieniach."
   },
   "messages": {
     "smartRepliesOff": "Sugerowane odpowiedzi wyłączone",

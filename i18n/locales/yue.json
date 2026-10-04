@@ -1834,7 +1834,8 @@
     "importWalletRecommended": "建議用社交登入。",
     "importWalletPurpose": "呢個工具係用嚟喺 DeHub.io 匯入現有帳戶。",
     "importSecretPlaceholder": "12或者24個字，或者係私鑰",
-    "invalidImportSecret": "呢個唔係有效嘅12/24字詞組或者私鑰"
+    "invalidImportSecret": "呢個唔係有效嘅12/24字詞組或者私鑰",
+    "walletSignupBlocked": "呢個錢包係全新嘅。新錢包要有餘額或者以前嘅交易先可以開戶口。用下面其中一個方法註冊，然後喺設定度連接呢個錢包。"
   },
   "messages": {
     "smartRepliesOff": "已閂咗建議回覆",

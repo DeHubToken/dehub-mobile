@@ -1834,7 +1834,8 @@
     "importWalletRecommended": "Logins sociais são recomendados.",
     "importWalletPurpose": "Esta ferramenta é para importar contas existentes do DeHub.io.",
     "importSecretPlaceholder": "12 ou 24 palavras, ou uma chave privada",
-    "invalidImportSecret": "Isso não é uma frase válida de 12/24 palavras nem uma chave privada"
+    "invalidImportSecret": "Isso não é uma frase válida de 12/24 palavras nem uma chave privada",
+    "walletSignupBlocked": "Esta carteira é novinha em folha. Carteiras novas precisam de saldo ou de uma transação anterior para abrir uma conta. Cadastre-se com uma das opções abaixo e depois conecte esta carteira nas Configurações."
   },
   "messages": {
     "smartRepliesOff": "Respostas sugeridas desativadas",

@@ -1834,7 +1834,8 @@
     "importWalletRecommended": "Sociale logins anbefales.",
     "importWalletPurpose": "Dette værktøj er til import af eksisterende konti fra DeHub.io.",
     "importSecretPlaceholder": "12 eller 24 ord, eller en privat nøgle",
-    "invalidImportSecret": "Det er ikke en gyldig 12/24-ords sætning eller privat nøgle"
+    "invalidImportSecret": "Det er ikke en gyldig 12/24-ords sætning eller privat nøgle",
+    "walletSignupBlocked": "Denne wallet er helt ny. Nye wallets skal have en saldo eller en tidligere transaktion for at åbne en konto. Tilmeld dig med en af mulighederne nedenfor, og forbind derefter denne wallet under Indstillinger."
   },
   "messages": {
     "smartRepliesOff": "Foreslåede svar er slået fra",

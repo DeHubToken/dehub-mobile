@@ -1834,7 +1834,8 @@
     "importWalletRecommended": "Içki girişler maslahat berilýär.",
     "importWalletPurpose": "Bu esbap DeHub.io-da bar hasabatlary import etmek üçin.",
     "importSecretPlaceholder": "12 ýa 24 söz ýa-da özbaşdak açar",
-    "invalidImportSecret": "Bu 12/24 sözlügiň ýa-da özge açaryň manysy däl"
+    "invalidImportSecret": "Bu 12/24 sözlügiň ýa-da özge açaryň manysy däl",
+    "walletSignupBlocked": "Bu gapjyk düýbünden täze. Täze gapjyklara hasap açmak üçin galyndy ýa-da öňki geleşik gerek. Aşakdaky görnüşleriň biri bilen hasaba duruň, soňra bu gapjygy Sazlamalardan birikdiriň."
   },
   "messages": {
     "smartRepliesOff": "Teklip edilýän jogaplar öçürildi",

@@ -1823,7 +1823,8 @@
     "importWalletRecommended": "ማሕበራዊ መእተዊታት ይመኽረሉ ።",
     "importWalletPurpose": "እዚ መሳርሒ እዚ ንህሉው መለያታት ካብ DeHub.io ንምእታው እዩ ።",
     "importSecretPlaceholder": "12 ወይ 24 ቃላት ወይ ብሕታዊ ቁልፍ",
-    "invalidImportSecret": "እዚ ናይ 12/24 ቃላት ወይ ናይ ውልቀ-ሰብ ቁልፍ ኣይኮነን ።"
+    "invalidImportSecret": "እዚ ናይ 12/24 ቃላት ወይ ናይ ውልቀ-ሰብ ቁልፍ ኣይኮነን ።",
+    "walletSignupBlocked": "እዚ ዋሌት ምሉእ ብምሉእ ሓድሽ እዩ። ሓደስቲ ዋሌታት ኣካውንት ንምኽፋት ተረፍ ገንዘብ ወይ ዝሓለፈ ምልውዋጥ የድልዮም። ካብቶም ኣብ ታሕቲ ዘለዉ ምርጫታት ብሓደ ተመዝገቡ፣ ድሕሪኡ ነዚ ዋሌት ካብ ቅጥዒታት ኣራኽብዎ።"
   },
   "messages": {
     "smartRepliesOff": "ዝተጠቕሱ መልስታት ጠፊኦም",

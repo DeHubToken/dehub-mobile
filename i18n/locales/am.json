@@ -1831,7 +1831,8 @@
     "importWalletRecommended": "ማህበራዊ መግቢያዎች ይመከራሉ።",
     "importWalletPurpose": "ይህ መሳሪያ ከDeHub.io ነባር አካውንቶችን ለማስመጣት ነው።",
     "importSecretPlaceholder": "12 ወይም 24 ቃላት, ወይም የግል ቁልፍ",
-    "invalidImportSecret": "ይህ ትክክለኛ የ 12/24-ቃል ሐረግ ወይም የግል ቁልፍ አይደለም"
+    "invalidImportSecret": "ይህ ትክክለኛ የ 12/24-ቃል ሐረግ ወይም የግል ቁልፍ አይደለም",
+    "walletSignupBlocked": "ይህ ዋሌት ሙሉ በሙሉ አዲስ ነው። አዲስ ዋሌቶች መለያ ለመክፈት ቀሪ ሂሳብ ወይም ያለፈ ግብይት ያስፈልጋቸዋል። ከታች ካሉት አማራጮች በአንዱ ይመዝገቡ፣ ከዚያ ይህን ዋሌት ከቅንብሮች ያገናኙ።"
   },
   "messages": {
     "smartRepliesOff": "የተጠቆሙ ምላሾች ጠፍተዋል",

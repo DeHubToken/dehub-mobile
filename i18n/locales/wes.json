@@ -1815,7 +1815,8 @@
     "importWalletPurpose": "Dis tool na for import old accounts from DeHub.io.",
     "exploreWithoutSignIn": "Waka around without sign in",
     "exploreWithoutSignInA11y": "Waka around DeHub without sign in",
-    "invalidImportSecret": "Na dey no be valid phrase wey 12/24 word na or private key wey."
+    "invalidImportSecret": "Na dey no be valid phrase wey 12/24 word na or private key wey.",
+    "walletSignupBlocked": "Dis wallet na brand new. New wallet dem need balance or some transaction weh e don do before for open account. Sign up wit one of de options dem for down, then connect dis wallet for Settings."
   },
   "messages": {
     "smartRepliesOff": "Dem don of di ansa dem weh wi propose",

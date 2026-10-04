@@ -1833,7 +1833,8 @@
     "importWalletRecommended": "Ana bada shawara ga logins na zamantakewa.",
     "importWalletPurpose": "Wannan kayan aiki ne don shigo da data kasance asusun daga DeHub.io.",
     "importSecretPlaceholder": "Kalmomi 12 ko 24, ko maɓallin sirri",
-    "invalidImportSecret": "Wannan ba kalmar 12/24 ba ce da ta dace ko maɓallin sirri"
+    "invalidImportSecret": "Wannan ba kalmar 12/24 ba ce da ta dace ko maɓallin sirri",
+    "walletSignupBlocked": "Wannan walat sabuwa ce fil. Sababbin walat suna buƙatar ma'auni ko wata ma'amala ta baya don buɗe asusu. Yi rajista da ɗaya daga cikin zaɓuɓɓukan da ke ƙasa, sannan ka haɗa wannan walat daga Saituna."
   },
   "messages": {
     "smartRepliesOff": "An kashe amsoshin da aka ba da shawara",

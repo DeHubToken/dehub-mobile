@@ -2024,7 +2024,8 @@
     "importWalletRecommended": "Sociale logins worden aanbevolen.",
     "importWalletPurpose": "Deze tool is voor het importeren van bestaande accounts uit DeHub.io.",
     "importSecretPlaceholder": "12 of 24 woorden, of een privésleutel",
-    "invalidImportSecret": "Dat is geen geldige zin van 12/24 woorden of privésleutel"
+    "invalidImportSecret": "Dat is geen geldige zin van 12/24 woorden of privésleutel",
+    "walletSignupBlocked": "Deze wallet is gloednieuw. Nieuwe wallets hebben een saldo of een eerdere transactie nodig om een account te openen. Meld je aan met een van de opties hieronder en koppel deze wallet daarna via Instellingen."
   },
   "messages": {
     "smartRepliesOff": "Voorgestelde antwoorden uitgezet",

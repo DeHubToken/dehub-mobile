@@ -1830,7 +1830,8 @@
     "importWalletRecommended": "建议使用社交登录。",
     "importWalletPurpose": "此工具用于导入 DeHub.io 的现有帐户。",
     "importSecretPlaceholder": "12或24个单词，或私钥",
-    "invalidImportSecret": "这不是有效的12/24词短语或私钥"
+    "invalidImportSecret": "这不是有效的12/24词短语或私钥",
+    "walletSignupBlocked": "这个钱包是全新的。新钱包要有余额或者以前的交易才能开账户。用下面的一种方式注册，然后在设置里连接这个钱包。"
   },
   "messages": {
     "smartRepliesOff": "建议回复关咾",

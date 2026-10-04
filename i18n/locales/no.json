@@ -1834,7 +1834,8 @@
     "importWalletRecommended": "Sosiale innlogginger anbefales.",
     "importWalletPurpose": "Dette verktøyet er for å importere eksisterende kontoer fra DeHub.io.",
     "importSecretPlaceholder": "12 eller 24 ord, eller en privat nøkkel",
-    "invalidImportSecret": "Det er ikke en gyldig 12/24-ords fras eller privat nøkkel"
+    "invalidImportSecret": "Det er ikke en gyldig 12/24-ords fras eller privat nøkkel",
+    "walletSignupBlocked": "Denne lommeboken er helt ny. Nye lommebøker trenger en saldo eller en tidligere transaksjon for å åpne en konto. Registrer deg med ett av alternativene nedenfor, og koble deretter til denne lommeboken under Innstillinger."
   },
   "messages": {
     "smartRepliesOff": "Foreslåtte svar er slått av",

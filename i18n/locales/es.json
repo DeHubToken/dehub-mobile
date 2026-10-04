@@ -1834,7 +1834,8 @@
     "importWalletRecommended": "Se recomiendan los inicios de sesión en redes sociales.",
     "importWalletPurpose": "Esta herramienta es para importar cuentas existentes desde DeHub.io.",
     "importSecretPlaceholder": "12 o 24 palabras, o una clave privada",
-    "invalidImportSecret": "No es una frase válida de 12/24 palabras ni una clave privada"
+    "invalidImportSecret": "No es una frase válida de 12/24 palabras ni una clave privada",
+    "walletSignupBlocked": "Esta billetera es totalmente nueva. Las billeteras nuevas necesitan saldo o una transacción anterior para abrir una cuenta. Regístrate con una de las opciones de abajo y luego conecta esta billetera desde Ajustes."
   },
   "messages": {
     "smartRepliesOff": "Respuestas sugeridas desactivadas",
