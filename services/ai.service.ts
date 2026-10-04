@@ -302,6 +302,7 @@ export interface AIChatResponse {
 export type AIImageModel = string;
 
 export interface AIImageRequest {
+  referenceImageUrls?: string[];
   prompt: string;
   aspectRatio?: string;
   sourceImage?: string;
@@ -335,6 +336,8 @@ export interface AIImageResponse {
 export type AIVideoModel = string;
 
 export interface AIVideoRequest {
+  referenceImageUrls?: string[];
+  videoUrls?: string[];
   prompt: string;
   model: AIVideoModel;
   sourceImage?: string;

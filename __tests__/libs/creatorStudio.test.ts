@@ -4,6 +4,23 @@ import { CREATOR_DEFAULTS, creatorDurations, creatorInputIssue, creatorVideoOpti
 import { getTemplate } from '../../libs/creatorTemplates';
 
 describe('native Creator jobs', () => {
+  it('preserves a reference clip duration and forwards every named image', () => {
+    const referenceAssets = [{ uri: 'character.png', label: 'Character', kind: 'image' as const }, { uri: 'outfit.png', label: 'Outfit', kind: 'image' as const }, { uri: 'clip.mp4', label: 'Clip', kind: 'video' as const, seconds: 8.25 }];
+    const settings = normalizeCreatorSettings({ ...CREATOR_DEFAULTS.video, model: 'kling-o3-edit', referenceAssets });
+    expect(settings.durationSeconds).toBe(9);
+    expect(creatorVideoOptions(settings)).toMatchObject({ duration: '9s', referenceImageUrls: ['character.png', 'outfit.png'], videoUrls: ['clip.mp4'] });
+    expect(creatorInputIssue(settings, true)).toBeNull();
+    expect(creatorInputIssue({ ...settings, model: 'kling-3-motion' }, true)).toBe('creator.referenceTooMany');
+    expect(creatorInputIssue({ ...settings, referenceAssets: [] }, true)).toBe('creator.referenceNeedsClip');
+    expect(creatorInputIssue({ ...settings, model: 'flux-3-video' }, true)).toBe('creator.referenceVideoModel');
+  });
+
+  it('validates multiple references before preparing an image payment', () => {
+    const referenceAssets = ['character.png', 'setting.png'].map(uri => ({ uri, label: uri, kind: 'image' as const }));
+    expect(creatorInputIssue({ ...CREATOR_DEFAULTS.image, referenceAssets }, true)).toBe('creator.referenceMultiModel');
+    expect(creatorInputIssue({ ...CREATOR_DEFAULTS.image, model: 'flux-3-image', referenceAssets }, true)).toBeNull();
+    expect(getTemplate('reference-character-swap')?.model).toBe('kling-o3-edit');
+  });
   it('prices and submits the same chosen clip length and framing', () => {
     const settings = normalizeCreatorSettings({ ...CREATOR_DEFAULTS.video, durationSeconds: 10, aspect: '9:16' });
     expect(settings.durationSeconds).toBe(10);
