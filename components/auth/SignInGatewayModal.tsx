@@ -9,6 +9,7 @@ import SocialLoginIcons from "./SocialLoginIcons";
 import EmailCodeEntry from "./EmailCodeEntry";
 import ImportWallet from "./ImportWallet";
 import SignInSavedProfiles from "./SignInSavedProfiles";
+import { UsernameRequiredForm } from "./UsernameRequiredModal";
 import WalletSetupScreen, {
   type WalletSetupRequest,
   type CreateProtection,
@@ -67,8 +68,8 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
   onClose,
 }) => {
   const { t } = useTranslation();
-  const { signInWithWallet, signInWithSupabaseSession } = useAuthActions();
-  const { needsUsername, isLoading: authLoading } = useAuthState();
+  const { signInWithWallet, signInWithSupabaseSession, completeUsername, signOut } = useAuthActions();
+  const { needsUsername, provisionalUser, isLoading: authLoading } = useAuthState();
   const { isWalletLoading, isWalletSheetOpen, handleWalletConnect } = useWalletAuth();
   const [isLocalLoading, setIsLocalLoading] = useState(false);
   const [currentProvider, setCurrentProvider] = useState("");
@@ -607,8 +608,18 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
       presentation="bottom"
       blurIntensity={50}
       // Block closing while sign-in is in progress
-      dismissible={!isBusy}
+      dismissible={!isBusy && !needsUsername}
     >
+      {needsUsername && provisionalUser ? (
+        <ScrollView {...scrollViewProps} style={{ flexShrink: 1 }}>
+          <UsernameRequiredForm
+            visible={visible}
+            provisionalUser={provisionalUser}
+            onComplete={completeUsername}
+            onSignOut={() => { void signOut().catch(() => {}); }}
+          />
+        </ScrollView>
+      ) : (
       <View style={{ flexShrink: 1 }}>
         {isBusy && (
           <FullScreenLoader message="Signing you in…" />
@@ -747,6 +758,7 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
           />
         </View>
       </View>
+      )}
     </GlassModal>
   );
 };

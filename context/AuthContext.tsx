@@ -11,7 +11,6 @@ import React, {
 import { AuthAdapter } from "../services/auth/authAdapter";
 import { AppStateStatus } from "react-native";
 import SignInGatewayModal from "../components/auth/SignInGatewayModal";
-import { UsernameRequiredModal } from "../components/auth/UsernameRequiredModal";
 import {
   hasSeenAuth,
   setHasSeenAuth,
@@ -309,20 +308,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   // even though the user is signed in, and closing it restores whoever the
   // attempt displaced.
   const [addProfileIntent, setAddProfileIntent] = useState(false);
-  // A brand-new account flips needsUsername in the same commit that unmounts
-  // the sign-in sheet. Both are native Modals presented from the root
-  // controller, and iOS refuses the second presentation while the first is
-  // dismissing, so the username step never appeared. Mount it only once the
-  // sheet has had time to dismiss.
-  const [usernameStepReady, setUsernameStepReady] = useState(false);
-  useEffect(() => {
-    if (!(showSignInModal && needsUsername && provisionalUser)) {
-      setUsernameStepReady(false);
-      return;
-    }
-    const timer = setTimeout(() => setUsernameStepReady(true), 300);
-    return () => clearTimeout(timer);
-  }, [showSignInModal, needsUsername, provisionalUser]);
   // needsUsername is set from the backend's isNewAccount, and is the only
   // moment this client knows somebody has just signed up. Sign-up and the
   // first look at the home feed are two different app sessions — the profile
@@ -911,7 +896,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
               {isSwitchingChain && (
                 <FullScreenLoader message="Switching network…" />
               )}
-              {(showSignInModal && !needsUsername && (addProfileIntent || (!isSignedIn))) && (
+              {/* Keep one native window through signup. Swapping modals on a
+                  timer can lose the profile step while iOS is dismissing. */}
+              {(showSignInModal && (needsUsername || addProfileIntent || !isSignedIn)) && (
                 <SignInGatewayModal
                   visible={showSignInModal}
                   onClose={() => {
@@ -948,17 +935,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
                         .catch(() => {});
                     }
                   }}
-                />
-              )}
-              {showSignInModal && needsUsername && provisionalUser && usernameStepReady && (
-                <UsernameRequiredModal
-                  visible={true}
-                  provisionalUser={provisionalUser}
-                  onComplete={(finalUser) => {
-                    completeUsername(finalUser);
-                    // Modal will close automatically when needsUsername becomes false
-                  }}
-                  onSignOut={() => { signOut().catch(() => {}); }}
                 />
               )}
             </AuthContext.Provider>

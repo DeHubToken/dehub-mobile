@@ -229,7 +229,14 @@ export async function signInWithApple(): Promise<string> {
     const fullName = [credential.fullName?.givenName, credential.fullName?.familyName]
       .filter(Boolean).join(" ");
     if (fullName) {
-      await supabase.auth.updateUser({ data: { full_name: fullName } });
+      try {
+        const { error: nameError } = await supabase.auth.updateUser({ data: { full_name: fullName } });
+        if (nameError) log.warn("apple:name-update:failed", nameError.message);
+      } catch {
+        // The identity exchange already succeeded. Optional profile metadata
+        // must not send a newly authenticated user back to the login screen.
+        log.warn("apple:name-update:failed");
+      }
     }
     return data.session.user.id;
   }
