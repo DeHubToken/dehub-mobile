@@ -88,7 +88,7 @@ import ShareSheet from "./ShareSheet";
 import CashtagSheet from "./CashtagSheet";
 import Icon from "../ui/Icon";
 import TranslateButton from "../ui/TranslateButton";
-import SoundtrackBadge from "../Post/SoundtrackBadge";
+import SoundtrackBadge, { SoundDrift } from "../Post/SoundtrackBadge";
 import { parseSoundtrack } from "../../libs/parseSoundtrack";
 import { useTranslation } from "../../hooks/useTranslation";
 import { useTranslation as useCopy } from "react-i18next";
@@ -349,6 +349,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const description = item.description || stream?.description || "";
   const soundtrack = useMemo(() => parseSoundtrack(description), [description]);
   const hasSoundtrack = !!soundtrack;
+  // A photo's song lives on the photo itself: a glass capsule on its bottom
+  // edge that opens into a wave across it while playing.
+  const [soundPlaying, setSoundPlaying] = useState(false);
   const isLive = contentType === "live";
   // Keep the API's zero authoritative. Falling through on zero can revive a
   // stale stream count and make the card disagree with the opened thread.
@@ -642,6 +645,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const isActuallyLockedPPV = isServerLockedPPV && !ppvUnlocked;
   const isActuallyComboLocked = isActuallyLockedPPV && isActuallyLockedHoldings;
   const isActuallyGated = isActuallyLockedPPV || isActuallyLockedHoldings || isActuallySubGated;
+  const soundtrackOnMedia = hasSoundtrack && !isActuallyGated && hasImages
+    && contentType !== "live" && contentType !== "short" && contentType !== "video" && contentType !== "audio";
   // The owner's edits from the options menu, laid over the post's own fields
   // so a change shows on this card without waiting for the feed to refetch.
   // Only the fields actually edited are held; everything else keeps reading
@@ -1684,8 +1689,24 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         return cinematicFeed ? <View style={{ marginHorizontal: -CINEMATIC_TEXT_INSET }}>{audio}</View> : audio;
       }
       case "image":
-      default:
-        return bleed(renderImageContent());
+      default: {
+        const media = renderImageContent();
+        if (!soundtrackOnMedia || !media) return bleed(media);
+        return bleed(
+          <View style={[{ overflow: "hidden" }, !edgeMedia && !immersive && { borderRadius: FEED_BENTO_RADIUS }]}>
+            <SoundDrift playing={soundPlaying}>{media}</SoundDrift>
+            <SoundtrackBadge
+              key={postKey}
+              variant="overlay"
+              title={soundtrack!.title}
+              creator={soundtrack!.creator}
+              url={soundtrack!.url}
+              isVisible={isVisible}
+              onPlayingChange={setSoundPlaying}
+            />
+          </View>
+        );
+      }
     }
   };
 
@@ -1956,7 +1977,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         inline
       />
     ) : null;
-    const soundtrackBadge = hasSoundtrack && !isActuallyGated ? (
+    const soundtrackBadge = hasSoundtrack && !isActuallyGated && !soundtrackOnMedia ? (
       <View className="mt-2">
         <SoundtrackBadge
           key={postKey}
@@ -2361,7 +2382,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         <>
       {!immersive && renderContent()}
 
-      {hasSoundtrack && !isActuallyGated && (
+      {hasSoundtrack && !isActuallyGated && !soundtrackOnMedia && (
         <View className="mt-2">
           <SoundtrackBadge
             key={postKey}
