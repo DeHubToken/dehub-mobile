@@ -2206,11 +2206,6 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   }
 
   if (cinematicFeed) {
-    const viewsLabel = t("comments.viewCount", { count: views }).replace(
-      String(views),
-      formatCompactNumber(views),
-    );
-    const chipMeta = [timeAgo, viewsLabel].filter(Boolean).join(" · ");
     const embeds = matureGate.isGated ? null : (
       <>
         {(item as any).isQuotePost && (
@@ -2436,17 +2431,6 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
                 </PostTapSurface>
               </>
             )}
-            <View className="flex-row items-center gap-2 pt-2">
-              <Text style={{ fontSize: 13, lineHeight: 18, color: "#8B8D90" }}>
-                {chipMeta}
-              </Text>
-              {translateButton && (
-                <>
-                  <Text style={{ fontSize: 13, lineHeight: 18, color: "#6F7174" }}>·</Text>
-                  {translateButton}
-                </>
-              )}
-            </View>
           </View>
         )}
         <View style={{ paddingHorizontal: CINEMATIC_TEXT_INSET }}>
@@ -2502,7 +2486,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             <Text style={{ color: "#6F7174" }}>·</Text>
             <Icon name="Eye" size={13} color="#6F7174" />
             <Text style={{ fontSize: 13, lineHeight: 18, color: "#8B8D90" }}>{formatCompactNumber(views)}{isWatchedVideo ? watchedLabel(i18n.resolvedLanguage ?? i18n.language) : ""}</Text>
-            {cinematicMedia && translateButton ? (
+            {translateButton ? (
               <>
                 <Text style={{ color: "#6F7174" }}>·</Text>
                 {translateButton}
