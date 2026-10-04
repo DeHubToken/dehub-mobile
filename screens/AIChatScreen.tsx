@@ -106,6 +106,15 @@ import { toastError, toastSuccess } from '../libs/toast';
 import { ScreenNames } from '../navigation/ScreenNames';
 import { createLogger } from '../libs/logger';
 import SignInGate from '../components/auth/SignInGate';
+import ScreenHeader from '../components/ScreenHeader';
+import CreatorStudioControls from '../components/Assistant/CreatorStudioControls';
+import SubscriptionCreditsPill from '../components/SubscriptionCreditsPill';
+import { CREATOR_DEFAULTS, creatorModels, creatorInputIssue, creatorVideoOptions, normalizeCreatorSettings, prepareCreatorPrompt, type CreatorMode, type CreatorStudioSettings } from '../libs/creatorStudio';
+import { MODEL3D_MODELS } from '../config/model3d-models.constants';
+import { uploadLocalFileToBucket, fileExtension } from '../libs/storage-upload';
+import { runModel3d } from '../services/ai.service';
+import { saveCreatorAsset, type CreatorAssetToSave } from '../services/creator.service';
+import { useQueryClient } from '@tanstack/react-query';
 
 const log = createLogger('AIChatScreen');
 const errorCodeOf = (err: unknown) => (err instanceof AIServiceError ? err.errorCode : undefined);
@@ -142,6 +151,7 @@ interface PendingVideo {
 }
 
 interface PendingTool {
+  kind?: 'model3d';
   requestId: string;
   appId: string;
   toolKey: string;
@@ -155,6 +165,13 @@ interface PendingTool {
 let turnSeq = 0;
 /** Unique enough within a session, and stable once written to a saved thread. */
 const newTurnId = (): string => `t-${Date.now()}-${(turnSeq += 1)}`;
+
+async function hostCreatorImage(uri: string): Promise<string> {
+  if (uri.startsWith('https://')) return uri;
+  const extension = fileExtension({ uri }, 'jpg');
+  return uploadLocalFileToBucket({ bucket: 'ai-media-uploads',
+    path: `creator-sources/${Date.now()}-${Math.random().toString(36).slice(2)}.${extension}`, uri });
+}
 
 const DEFAULT_SETTINGS: AssistantSettings = {
   chatModel: DEFAULT_CHAT_MODEL,
@@ -177,7 +194,7 @@ const DEFAULT_SETTINGS: AssistantSettings = {
 const posterRenderer = (cfg: PosterConfig): 'template' | 'scene' =>
   cfg.style === 'dehub-template' || cfg.style === 'auto' ? 'template' : 'scene';
 
-function AIChatScreenInner() {
+function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
   const navigation = useNavigation<any>();
   const route = useRoute<any>();
   const user = useUser();
@@ -243,6 +260,24 @@ function AIChatScreenInner() {
   const [templateId, setTemplateId] = useState<string | null>(null);
   const [templatesVisible, setTemplatesVisible] = useState(false);
   const activeTemplate = getTemplate(templateId);
+  const initialMode: CreatorMode = route.params?.mode in CREATOR_DEFAULTS ? route.params.mode : 'image';
+  const [studioSettings, setStudioSettings] = useState<CreatorStudioSettings>(CREATOR_DEFAULTS[initialMode]);
+  const [pendingStudio, setPendingStudio] = useState<CreatorStudioSettings | null>(null);
+  const submitLock = useRef(false);
+  const librarySaves = useRef(new Set<string>());
+  const failedLibrarySaves = useRef(new Set<string>());
+  const librarySaveQueue = useRef(Promise.resolve());
+  const queryClient = useQueryClient();
+  const [model3dPaywallVisible, setModel3dPaywallVisible] = useState(false);
+  const studioDrafts = useRef<Partial<Record<CreatorMode, { settings: CreatorStudioSettings; prompt: string; templateId: string | null; image: string | null }>>>({});
+  const changeStudioMode = (mode: CreatorMode) => {
+    studioDrafts.current[studioSettings.mode] = { settings: studioSettings, prompt: input, templateId, image: attachedImage };
+    const draft = studioDrafts.current[mode];
+    setStudioSettings(draft?.settings ?? CREATOR_DEFAULTS[mode]);
+    setInput(draft?.prompt ?? '');
+    setTemplateId(draft?.templateId ?? null);
+    setAttachedImage(draft?.image ?? null);
+  };
 
   /** Timers for in-flight polls, cleared on unmount. */
   const pollTimers = useRef<Record<string, ReturnType<typeof setInterval>>>({});
@@ -643,6 +678,7 @@ function AIChatScreenInner() {
       sourceImage: string | undefined,
       txHash: string,
       preset?: CreatorTemplate,
+      creator?: CreatorStudioSettings | null,
     ) => {
       const videoModel = VIDEO_MODELS[model];
       setIsLoading(true);
@@ -654,8 +690,7 @@ function AIChatScreenInner() {
             prompt,
             model,
             sourceImage,
-            duration: `${VIDEO_DURATION_SECONDS}s` as '5s',
-            aspectRatio: preset?.aspect ?? '16:9',
+            ...(creator ? creatorVideoOptions(creator) : { duration: `${VIDEO_DURATION_SECONDS}s`, aspectRatio: preset?.aspect ?? '16:9' }),
             negativePrompt: preset?.negative,
             txHash,
           },
@@ -754,7 +789,7 @@ function AIChatScreenInner() {
         }
       };
       try {
-        const res = await pollAiTool(
+        const res = pending.kind === 'model3d' ? await runModel3d({ predictionId: pending.requestId, falAppId: pending.appId }, walletAddress) : await pollAiTool(
           {
             requestId: pending.requestId,
             appId: pending.appId,
@@ -766,17 +801,18 @@ function AIChatScreenInner() {
         if (res.status === 'succeeded') {
           stopPoll(pending.requestId);
           AsyncStorage.removeItem(PENDING_TOOL_KEY).catch(() => {});
-          const toolModel = AI_TOOL_MODELS[pending.toolKey];
+          const toolModel = pending.kind === 'model3d' ? MODEL3D_MODELS[pending.toolKey] : AI_TOOL_MODELS[pending.toolKey];
           deliver({
             isToolProcessing: false,
             toolRequestId: undefined,
-            content: res.text
+            content: res.modelUrl ? `[${t('creator.studioOpenModel')}](${res.modelUrl})` : res.text
               ? `📝 **Transcription:**\n\n${res.text}`
               : res.audioUrl || res.imageUrl
                 ? ''
                 : `${toolModel?.name || 'Tool'} completed successfully.`,
             ...(res.audioUrl ? { audioUrl: res.audioUrl } : {}),
             ...(res.imageUrl ? { imageUrl: res.imageUrl } : {}),
+            ...(res.modelUrl ? { modelUrl: res.modelUrl } : {}),
           });
           toastSuccess(t('aiChat.toolCompleted', { name: toolModel?.name || t('aiChat.aiTool') }));
         } else if (res.status === 'failed') {
@@ -914,6 +950,37 @@ function AIChatScreenInner() {
 
   /* ── Resume work that outlived the app ───────────────────────────────── */
 
+  const doGenerateModel3d = useCallback(async (creator: CreatorStudioSettings, txHash: string) => {
+    setModel3dPaywallVisible(false);
+    setIsLoading(true);
+    const history = messagesRef.current;
+    try {
+      const res = await runModel3d({ model: creator.model, prompt: pendingPrompt,
+        sourceImage: pendingSourceImage, textureQuality: creator.textureQuality, txHash }, walletAddress);
+      if (res.error || res.status === 'failed') throw new Error(res.error || t('creator.studioGenerationFailed'));
+      if (res.modelUrl) {
+        await saveMessage([...history, { role: 'assistant', content: `[${t('creator.studioOpenModel')}](${res.modelUrl})`, imageUrl: res.imageUrl, modelUrl: res.modelUrl }]);
+        return;
+      }
+      if (!res.requestId || !res.appId) throw new Error(t('creator.studioMissingJob'));
+      const messageId = newTurnId();
+      const content = t('creator.studioGeneratingModel');
+      await saveMessage([...history, { id: messageId, role: 'assistant', content, isToolProcessing: true,
+        toolRequestId: res.requestId, toolAppId: res.appId, toolType: creator.model }]);
+      const pending: PendingTool = { kind: 'model3d', requestId: res.requestId, appId: res.appId,
+        toolKey: creator.model, messageId, content, conversationId: getConversationId() ?? undefined };
+      await AsyncStorage.setItem(PENDING_TOOL_KEY, JSON.stringify(pending));
+      startToolPoll(pending);
+    } catch (err) {
+      await saveMessage([...history, { role: 'assistant', content: describeError(err), isError: true }]);
+    } finally {
+      setIsLoading(false);
+      setPendingStudio(null);
+      setPendingSourceImage(undefined);
+      scrollToEnd();
+    }
+  }, [pendingPrompt, pendingSourceImage, walletAddress, saveMessage, getConversationId, startToolPoll, describeError, scrollToEnd]);
+
   useEffect(() => {
     // A render or a tool run that outlived the app. It is already paid for, so
     // the placeholder goes back on screen and the poll picks up where it left
@@ -979,6 +1046,7 @@ function AIChatScreenInner() {
       sourceImage: string | undefined,
       hadAttachment: boolean,
       turnTemplateId?: string,
+      creator?: CreatorStudioSettings,
     ) => {
       /*
        * A template decides the flow itself: its scaffold is written for one
@@ -987,6 +1055,30 @@ function AIChatScreenInner() {
        */
       const tpl = getTemplate(turnTemplateId);
       setPendingTemplateId(tpl?.id ?? null);
+      setPendingStudio(creator ?? null);
+      if (creator) {
+        const issue = creatorInputIssue(creator, !!sourceImage, tpl);
+        if (issue) { toastError(t(issue)); return; }
+        setPendingPrompt(prepareCreatorPrompt(text, tpl));
+        setPendingSourceImage(sourceImage);
+        setPendingLogoImage(undefined);
+        setPendingPosterConfig(null);
+        if (creator.mode === 'image') {
+          setImageModelOverride(creator.model);
+          setImagePaywallVisible(true);
+        } else if (creator.mode === 'video') {
+          updateSettings({ videoModel: creator.model as VideoModelKey });
+          setVideoPaywallVisible(true);
+        } else if (creator.mode === 'audio') {
+          setToolCategory(AI_TOOL_MODELS[creator.model].category);
+          setSelectedToolId(creator.model);
+          setPendingToolLyrics(undefined);
+          setToolPaywallVisible(true);
+        } else {
+          setModel3dPaywallVisible(true);
+        }
+        return;
+      }
       if (tpl) {
         if (tpl.requiresImage && !sourceImage) {
           toastError(t('creator.presetNeedsImage', { name: t(tpl.nameKey) }));
@@ -1081,37 +1173,51 @@ function AIChatScreenInner() {
 
   const handleSend = useCallback(async () => {
     const typed = input.trim();
-    if ((!typed && !attachedImage && !activeTemplate) || isLoading) return;
+    if ((!typed && !attachedImage && !activeTemplate) || isLoading || submitLock.current) return;
     // An empty send under a template runs its example subject, like web's tile.
     const text = typed || (activeTemplate && !attachedImage ? activeTemplate.sample : typed);
 
+    const creator = studio ? normalizeCreatorSettings(studioSettings) : undefined;
+    if (creator) {
+      const issue = creatorInputIssue(creator, !!attachedImage, activeTemplate);
+      if (issue) { toastError(t(issue)); return; }
+    }
+    submitLock.current = true;
+    setIsLoading(true);
+    try {
     mentions.reset();
     const userMessage: AIChatMessage = {
+      id: newTurnId(),
       role: 'user',
       content: text,
       ...(attachedImage ? { attachedImage } : {}),
       ...(activeTemplate ? { templateId: activeTemplate.id } : {}),
+      ...(creator ? { creatorSettings: creator } : {}),
     };
     const history = [...messages, userMessage];
-    await saveMessage(history);
-    setInput('');
-
     const hadAttachment = !!attachedImage;
     // The data URL, not the file URI: generate-image hands this straight to the
     // provider as an image reference.
     let sourceImage: string | undefined;
     if (attachedImage) {
       try {
-        sourceImage = await toImageDataUrl(attachedImage);
+        sourceImage = creator?.mode === '3d' ? await hostCreatorImage(attachedImage) : await toImageDataUrl(attachedImage);
       } catch (err) {
         log.error('could not read the attached image:', err);
         toastError(t('aiChat.couldNotReadImage'));
+        return;
       }
     }
+    await saveMessage(history);
+    setInput('');
     setAttachedImage(null);
 
-    await routePrompt(text, history, sourceImage, hadAttachment, activeTemplate?.id);
-  }, [input, attachedImage, isLoading, messages, mentions, saveMessage, routePrompt, activeTemplate]);
+    await routePrompt(text, history, sourceImage, hadAttachment, activeTemplate?.id, creator);
+    } finally {
+      submitLock.current = false;
+      setIsLoading(false);
+    }
+  }, [input, attachedImage, isLoading, messages, mentions, saveMessage, routePrompt, activeTemplate, studio, studioSettings]);
 
   /** Drop the failed turn and re-run the last thing the user asked for. */
   const handleRetry = useCallback(async () => {
@@ -1124,9 +1230,10 @@ function AIChatScreenInner() {
     let sourceImage: string | undefined;
     if (lastUser.attachedImage) {
       try {
-        sourceImage = await toImageDataUrl(lastUser.attachedImage);
+        sourceImage = lastUser.creatorSettings?.mode === '3d' ? await hostCreatorImage(lastUser.attachedImage) : await toImageDataUrl(lastUser.attachedImage);
       } catch {
-        // Retry without it rather than refusing outright.
+        toastError(t('aiChat.couldNotReadImage'));
+        return;
       }
     }
     await routePrompt(
@@ -1135,6 +1242,7 @@ function AIChatScreenInner() {
       sourceImage,
       !!lastUser.attachedImage,
       lastUser.templateId,
+      lastUser.creatorSettings,
     );
   }, [saveMessage, routePrompt]);
 
@@ -1190,7 +1298,7 @@ function AIChatScreenInner() {
     startImageGeneration(pendingPosterConfig, imageModelOverride || settings.imageModel, {
       logoImage: pendingLogoImage,
       sourceImage: pendingSourceImage,
-      aspectRatio: getTemplate(pendingTemplateId)?.aspect,
+      aspectRatio: pendingStudio?.aspect ?? getTemplate(pendingTemplateId)?.aspect,
       txHash,
     });
   }, [
@@ -1200,6 +1308,7 @@ function AIChatScreenInner() {
     pendingSourceImage,
     pendingLogoImage,
     pendingTemplateId,
+    pendingStudio,
     startImageGeneration,
   ]);
 
@@ -1207,10 +1316,10 @@ function AIChatScreenInner() {
     setImagePaywallVisible(false);
     startImageGeneration(null, imageModelOverride || settings.imageModel, {
       sourceImage: pendingSourceImage,
-      aspectRatio: getTemplate(pendingTemplateId)?.aspect,
+      aspectRatio: pendingStudio?.aspect ?? getTemplate(pendingTemplateId)?.aspect,
       useFree: true,
     });
-  }, [imageModelOverride, settings.imageModel, pendingSourceImage, pendingTemplateId, startImageGeneration]);
+  }, [imageModelOverride, settings.imageModel, pendingSourceImage, pendingTemplateId, pendingStudio, startImageGeneration]);
 
   const handleVideoConfirm = useCallback((txHash: string) => {
     setVideoPaywallVisible(false);
@@ -1221,6 +1330,7 @@ function AIChatScreenInner() {
       pendingSourceImage,
       txHash,
       getTemplate(pendingTemplateId),
+      pendingStudio,
     );
     setPendingTemplateId(null);
     setPendingSourceImage(undefined);
@@ -1229,6 +1339,7 @@ function AIChatScreenInner() {
     settings.videoModel,
     pendingSourceImage,
     pendingTemplateId,
+    pendingStudio,
     doGenerateVideo,
     historyForGeneration,
   ]);
@@ -1380,11 +1491,15 @@ function AIChatScreenInner() {
   const handlePickTemplate = useCallback(
     (tpl: CreatorTemplate) => {
       setTemplateId(tpl.id);
+      if (studio) {
+        setStudioSettings(normalizeCreatorSettings({ ...CREATOR_DEFAULTS[tpl.kind], model: tpl.model ?? CREATOR_DEFAULTS[tpl.kind].model,
+          aspect: tpl.aspect ?? CREATOR_DEFAULTS[tpl.kind].aspect }));
+      }
       if (tpl.kind === 'video' && tpl.model && tpl.model in VIDEO_MODELS) {
         updateSettings({ videoModel: tpl.model as VideoModelKey });
       }
     },
-    [updateSettings],
+    [updateSettings, studio],
   );
 
   const handleNewChat = useCallback(() => {
@@ -1404,6 +1519,8 @@ function AIChatScreenInner() {
 
   const handleHistorySelect = useCallback(
     (entry: ConversationEntry) => {
+      for (const key of failedLibrarySaves.current) librarySaves.current.delete(key);
+      failedLibrarySaves.current.clear();
       loadConversation(entry);
       setInput('');
     },
@@ -1440,7 +1557,7 @@ function AIChatScreenInner() {
 
   const imagePaywallModels = useMemo(() => {
     const editing = !!pendingSourceImage;
-    return IMAGE_MODEL_OPTIONS.map((model) => ({
+    return IMAGE_MODEL_OPTIONS.filter((model) => !pendingStudio || model.id === pendingStudio.model).map((model) => ({
       id: model.id,
       name: model.name,
       description: model.description,
@@ -1451,11 +1568,11 @@ function AIChatScreenInner() {
       unavailableReason:
         editing && !imageModelSupportsEdit(model) ? 'Cannot edit an attached image' : undefined,
     }));
-  }, [pendingSourceImage]);
+  }, [pendingSourceImage, pendingStudio]);
 
   const videoPaywallModels = useMemo(
     () =>
-      VIDEO_MODEL_OPTIONS.map((model) => ({
+      VIDEO_MODEL_OPTIONS.filter((model) => !pendingStudio || model.id === pendingStudio.model).map((model) => ({
         id: model.id,
         name: model.name,
         description: model.description,
@@ -1463,7 +1580,7 @@ function AIChatScreenInner() {
         // Per-second models are priced for the 5s clip this screen requests, so
         // the row figure matches what the server then quotes.
         baseCostUsd: model.perSecondCostUsd
-          ? model.perSecondCostUsd * VIDEO_DURATION_SECONDS
+          ? model.perSecondCostUsd * (pendingStudio?.durationSeconds ?? VIDEO_DURATION_SECONDS)
           : model.baseCostUsd,
         unavailableReason: pendingSourceImage
           ? videoSupportsImage(model)
@@ -1473,24 +1590,63 @@ function AIChatScreenInner() {
             ? undefined
             : 'Needs an image to animate',
       })),
-    [pendingSourceImage],
+    [pendingSourceImage, pendingStudio],
   );
 
   const toolPaywallModels = useMemo(
     () =>
-      getToolsByCategory(toolCategory).map((tool) => ({
+      getToolsByCategory(toolCategory).filter((tool) => !pendingStudio || tool.id === pendingStudio.model).map((tool) => ({
         id: tool.id,
         name: tool.name,
         description: tool.description,
         emoji: tool.emoji,
         baseCostUsd: tool.baseCostUsd,
       })),
-    [toolCategory],
+    [toolCategory, pendingStudio],
   );
 
+  useEffect(() => {
+    if (!walletAddress || !isScreenFocused) return;
+    let request: AIChatMessage | undefined;
+    for (const message of messages) {
+      if (message.role === 'user') { request = message; continue; }
+      if (!request?.id || !request.creatorSettings || message.isError || message.isVideoGenerating || message.isToolProcessing) continue;
+      const url = message.modelUrl ?? message.videoUrl ?? message.audioUrl ?? message.imageUrl;
+      if (!url) continue;
+      const kind = message.modelUrl ? 'model3d' : message.videoUrl ? 'video' : message.audioUrl ? 'audio' : 'image';
+      const id = `native-${request.id}-${kind}`;
+      const saveKey = `${walletAddress}:${id}`;
+      if (librarySaves.current.has(saveKey)) continue;
+      librarySaves.current.add(saveKey);
+      const creator = request.creatorSettings;
+      const asset: CreatorAssetToSave = { id, kind, url, prompt: request.content, model: creator.model,
+        resolvedPrompt: prepareCreatorPrompt(request.content, getTemplate(request.templateId)),
+        modelName: creatorModels(creator.mode).find((model) => model.id === creator.model)?.name ?? creator.model,
+        aspect: creator.aspect, presetId: request.templateId, createdAt: Date.now() };
+      // Stream one file at a time, keeping large clips out of JS memory.
+      librarySaveQueue.current = librarySaveQueue.current.then(async () => {
+        try {
+          await saveCreatorAsset(asset, walletAddress);
+          void queryClient.invalidateQueries({ queryKey: ['creator-library', walletAddress] });
+        } catch (error) {
+          failedLibrarySaves.current.add(saveKey);
+          log.error('Creator library save failed:', error);
+          toastError(t('creator.studioCloudSaveFailed'));
+        }
+      });
+    }
+  }, [messages, walletAddress, isScreenFocused, queryClient]);
+
   return (
-    <View style={s.root}>
-      <AssistantHeader
+    <View style={studio ? { flex: 1 } : s.root} className={studio ? 'bg-theme-neutrals-900' : undefined}>
+      {studio ? <ScreenHeader title={t('creator.studioTitle')} icon="creator" rightContent={
+        <View className="flex-row items-center gap-2">
+          <SubscriptionCreditsPill />
+          <TouchableOpacity onPress={handleHistoryOpen} accessibilityRole="button" accessibilityLabel={t('assistant.chatHistory')} className="p-2">
+            <Icon name="History" size={18} color="#A1A1AA" />
+          </TouchableOpacity>
+        </View>
+      } /> : <AssistantHeader
         onNewChat={handleNewChat}
         onHistoryPress={handleHistoryOpen}
         onSettingsPress={() => setSettingsVisible(true)}
@@ -1499,14 +1655,14 @@ function AIChatScreenInner() {
         openTicketCount={supportTickets?.openCount ?? 0}
         styleEmoji={currentStyle.emoji}
         hasMessages={!isEmpty}
-      />
+      />}
 
       {isEmpty ? (
         <View style={s.welcomeWrap}>
           <View style={s.welcomeCenter}>
-            <Text style={s.welcomeText}>{WELCOME_MESSAGE}</Text>
+            <Text style={s.welcomeText}>{studio ? t('creator.studioWelcome') : WELCOME_MESSAGE}</Text>
           </View>
-          <QuickActionChips onAction={handleQuickAction} />
+          {!studio && <QuickActionChips onAction={handleQuickAction} />}
         </View>
       ) : (
         <FlatList
@@ -1537,13 +1693,15 @@ function AIChatScreenInner() {
               </View>
             ) : isLoading ? null : (
               // Web keeps the quick actions visible after every answer.
-              <QuickActionChips onAction={handleQuickAction} />
+              studio ? null : <QuickActionChips onAction={handleQuickAction} />
             )
           }
         />
       )}
 
-      <View style={{ marginBottom: kbVisible ? kbLift : TAB_BAR_HEIGHT }}>
+      <View style={{ marginBottom: kbVisible ? kbLift : studio ? 0 : TAB_BAR_HEIGHT }}>
+        {studio && <CreatorStudioControls settings={studioSettings} onChange={setStudioSettings}
+          onMode={changeStudioMode} onPresets={() => setTemplatesVisible(true)} disabled={isLoading} />}
         <MentionSuggestions
           visible={mentions.showSuggestions}
           suggestions={mentions.suggestions}
@@ -1573,10 +1731,13 @@ function AIChatScreenInner() {
           onChangeText={mentions.handleChangeText}
           onSelectionChange={mentions.handleSelectionChange}
           onSend={handleSend}
-          onAttach={handleAttach}
+          onAttach={studio && studioSettings.mode === 'audio' ? undefined : handleAttach}
           attachedImage={attachedImage}
           onRemoveImage={() => setAttachedImage(null)}
           loading={isLoading}
+          allowEmpty={!!activeTemplate}
+          placeholder={studio ? t('creator.studioPrompt') : undefined}
+          sendLabel={studio ? t('creator.studioCreate') : undefined}
         />
       </View>
 
@@ -1610,6 +1771,7 @@ function AIChatScreenInner() {
         onClose={() => setTemplatesVisible(false)}
         activeId={templateId}
         onSelect={handlePickTemplate}
+        initialKind={studioSettings.mode === 'image' ? 'image' : 'video'}
       />
 
       <AssistantStyleSheet
@@ -1661,10 +1823,10 @@ function AIChatScreenInner() {
         title={t('aiChat.generateVideo')}
         icon="Video"
         models={videoPaywallModels}
-        selectedModelId={settings.videoModel}
+        selectedModelId={pendingStudio?.model ?? settings.videoModel}
         onSelectModel={(id) => updateSettings({ videoModel: id })}
         quoteKind="video"
-        quoteExtras={{ durationSeconds: VIDEO_DURATION_SECONDS }}
+        quoteExtras={{ durationSeconds: pendingStudio?.durationSeconds ?? VIDEO_DURATION_SECONDS }}
         onClose={() => setVideoPaywallVisible(false)}
         onConfirm={handleVideoConfirm}
         footnote="Renders take 1-3 minutes and keep going if you leave this screen."
@@ -1681,6 +1843,18 @@ function AIChatScreenInner() {
         confirmLabel={t('paywall.run')}
         onClose={() => setToolPaywallVisible(false)}
         onConfirm={handleToolConfirm}
+      />
+      <CreditPaywallSheet
+        visible={model3dPaywallVisible}
+        title={t('creator.studioGenerateModel')}
+        icon="Wand"
+        models={pendingStudio ? creatorModels('3d').filter((model) => model.id === pendingStudio.model) : []}
+        selectedModelId={pendingStudio?.model ?? CREATOR_DEFAULTS['3d'].model}
+        onSelectModel={() => {}}
+        quoteKind="model3d"
+        quoteExtras={{ quality: pendingStudio?.textureQuality ?? 'none' }}
+        onClose={() => setModel3dPaywallVisible(false)}
+        onConfirm={(txHash) => { if (pendingStudio) void doGenerateModel3d(pendingStudio, txHash); }}
       />
     </View>
   );
@@ -1765,4 +1939,8 @@ export default function AIChatScreen() {
       <AIChatScreenInner />
     </SignInGate>
   );
+}
+
+export function CreatorStudioScreen() {
+  return <SignInGate><AIChatScreenInner studio /></SignInGate>;
 }

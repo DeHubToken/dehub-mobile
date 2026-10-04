@@ -23,6 +23,9 @@ interface AssistantInputBarProps {
   onRemoveImage?: () => void;
   disabled?: boolean;
   loading?: boolean;
+  placeholder?: string;
+  sendLabel?: string;
+  allowEmpty?: boolean;
 }
 
 const AssistantInputBar: React.FC<AssistantInputBarProps> = ({
@@ -35,6 +38,9 @@ const AssistantInputBar: React.FC<AssistantInputBarProps> = ({
   onRemoveImage,
   disabled,
   loading,
+  placeholder,
+  sendLabel,
+  allowEmpty = false,
 }) => {
   const { t } = useTranslation();
   const maxInputHeight = useWindowDimensions().height * 0.3;
@@ -42,7 +48,7 @@ const AssistantInputBar: React.FC<AssistantInputBarProps> = ({
   // input made every multi-paragraph prompt — which is most image prompts —
   // impossible to read back before sending.
   const [height, setHeight] = useState(20);
-  const canSend = (value.trim().length > 0 || !!attachedImage) && !disabled && !loading;
+  const canSend = (value.trim().length > 0 || !!attachedImage || allowEmpty) && !disabled && !loading;
 
   const handleSubmit = useCallback(() => {
     if (canSend) onSend();
@@ -69,7 +75,7 @@ const AssistantInputBar: React.FC<AssistantInputBarProps> = ({
       <View style={s.inputRow}>
         <TextInput
           style={[s.input, { height: Math.min(Math.max(20, height), maxInputHeight) }]}
-          placeholder={attachedImage ? 'Describe your edits…' : 'Ask me anything...'}
+          placeholder={placeholder ?? (attachedImage ? 'Describe your edits…' : 'Ask me anything...')}
           placeholderTextColor="#8B8D90"
           value={value}
           onChangeText={onChangeText}
@@ -102,7 +108,7 @@ const AssistantInputBar: React.FC<AssistantInputBarProps> = ({
             hitSlop={ACTION_SLOP}
             disabled={!canSend}
             accessibilityRole="button"
-            accessibilityLabel={t('dm.sendMessage')}
+            accessibilityLabel={sendLabel ?? t('dm.sendMessage')}
             accessibilityState={{ disabled: !canSend }}
           >
             {loading ? (

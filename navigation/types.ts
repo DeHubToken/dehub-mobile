@@ -35,6 +35,7 @@ export type AuthStackScreenProps<T extends keyof AuthStackParamList> = Composite
 
 export type AppStackParamList = {
   [ScreenNames.Creator]: undefined;
+  [ScreenNames.CreatorStudio]: { mode?: 'image' | 'video' | 'audio' | '3d' } | undefined;
   [ScreenNames.CreatorFlow]: undefined;
   /** `flow` is set when opened from your own list, so a private flow renders
    *  without the public lookup; a shared link carries only `id`. */

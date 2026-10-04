@@ -4,6 +4,7 @@ import { createLogger } from '../libs/logger';
 import { getAuthToken } from '../libs/auth.utils';
 import { tokenRefreshManager } from '../libs/token-refresh';
 import { requiresImageGeneration, requiresVideoGeneration } from './ai-intent';
+import type { CreatorStudioSettings } from '../libs/creatorStudio';
 
 const log = createLogger('ai.service');
 
@@ -44,6 +45,7 @@ export interface AIChatMessage {
   imageUrl?: string;
   videoUrl?: string;
   audioUrl?: string;
+  modelUrl?: string;
   /** Base64 or file URI of an image the user attached to this turn. */
   attachedImage?: string;
   /** True while a video is still rendering; `videoPredictionId` polls it. */
@@ -64,6 +66,7 @@ export interface AIChatMessage {
    * when the turn is routed, so a retry routes it the same way.
    */
   templateId?: string;
+  creatorSettings?: CreatorStudioSettings;
 }
 
 export interface AIPostContext {
@@ -335,7 +338,7 @@ export interface AIVideoRequest {
   prompt: string;
   model: AIVideoModel;
   sourceImage?: string;
-  duration?: '5s' | '10s';
+  duration?: string;
   aspectRatio?: string;
   negativePrompt?: string;
   resolution?: string;
@@ -593,6 +596,7 @@ export interface AiToolResponse {
   responseUrl?: string;
   imageUrl?: string;
   audioUrl?: string;
+  modelUrl?: string;
   /** Whisper transcript. */
   text?: string;
   error?: string;
@@ -618,6 +622,29 @@ export async function pollAiTool(
     args as unknown as Record<string, unknown>,
     walletAddress,
   );
+}
+
+interface Model3dResponse {
+  status?: AiToolResponse['status'];
+  predictionId?: string;
+  falAppId?: string;
+  statusUrl?: string;
+  responseUrl?: string;
+  modelUrl?: string;
+  previewImageUrl?: string;
+  error?: string;
+}
+
+/** Keep mesh jobs on the same authenticated payment and durable polling path. */
+export async function runModel3d(
+  args: { model?: string; prompt?: string; sourceImage?: string; textureQuality?: CreatorStudioSettings['textureQuality']; txHash?: string; predictionId?: string; falAppId?: string },
+  walletAddress?: string | null,
+): Promise<AiToolResponse> {
+  const result = await paidEdgeFetch<Model3dResponse>('generate-3d', args, walletAddress);
+  return {
+    ...result, requestId: result.predictionId, appId: result.falAppId,
+    imageUrl: result.previewImageUrl,
+  };
 }
 
 /* ── Job pricing ─────────────────────────────────────────────────────────── */
