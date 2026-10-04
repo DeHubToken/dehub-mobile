@@ -53,7 +53,7 @@ import {
   useRejectSubmission,
   useLeaveReview,
   useOpenDispute,
-  useMarkComplete, useWorkConfig, useFundJob, useReleasePayment, isWorkAdmin,
+  useMarkComplete, usePublishJob, useReleasePayment, isWorkAdmin,
   isJobEditable,
   type WorkJobStatus,
   type WorkSubmission,
@@ -142,16 +142,15 @@ export default function WorkJobDetailScreen() {
   const reviewMutation = useLeaveReview();
   const disputeMutation = useOpenDispute();
   const completeMutation = useMarkComplete();
-  const fundMutation=useFundJob();
+  const publishMutation=usePublishJob();
   const releaseMutation=useReleasePayment();
-  const {data:config}=useWorkConfig();
-  const [fundingHash,setFundingHash]=useState('');
 
   const [coverLetter, setCoverLetter] = useState("");
   const [proofUrl, setProofUrl] = useState("");
   const [proofText, setProofText] = useState("");
   const [rating, setRating] = useState(5);
   const [reviewComment, setReviewComment] = useState("");
+  const [reviewTarget,setReviewTarget]=useState('');
   const [disputeReason, setDisputeReason] = useState("");
   const [showDispute, setShowDispute] = useState(false);
   const [rejectTarget, setRejectTarget] = useState<WorkSubmission | null>(null);
@@ -204,20 +203,16 @@ export default function WorkJobDetailScreen() {
     const isAwarded =
       !!me && !!job.awarded_worker_address && me === job.awarded_worker_address.toLowerCase();
     const myApp = applications.find((a) => a.applicant_address.toLowerCase() === me);
-    const myReview = reviews.find((r) => r.reviewer_address.toLowerCase() === me);
     const isCompleted = job.status === "completed";
-    const canReview =
-      isCompleted &&
-      (isPoster ||
-        submissions.some(
-          (s) =>
-            s.worker_address.toLowerCase() === me &&
-            // `paid` counts too — a worker who has actually been paid must not
-            // lose the right to review by virtue of the payment landing.
-            (s.approval_status === "approved" || s.approval_status === "paid"),
-        ));
-    return { isPoster, isAwarded, myApp, myReview, isCompleted, canReview };
-  }, [job, me, applications, reviews, submissions]);
+    const deadlinePassed=!!job.deadline && Date.parse(job.deadline)<=Date.now();
+    const workers=[...new Set(submissions.filter(s=>s.approval_status!=='pending' || isCompleted || deadlinePassed).map(s=>s.worker_address.toLowerCase()))];
+    if(job.awarded_worker_address && (isCompleted || deadlinePassed)) workers.push(job.awarded_worker_address.toLowerCase());
+    const reviewTargets=(isPoster?[...new Set(workers)]:workers.includes(me || '')?[job.poster_address.toLowerCase()]:[])
+      .filter(address=>!reviews.some(r=>r.reviewer_address.toLowerCase()===me && r.reviewee_address.toLowerCase()===address));
+    const reviewee=reviewTargets.includes(reviewTarget)?reviewTarget:reviewTargets[0];
+    const canReview=!!me && job.status!=='draft' && !!reviewee;
+    return { isPoster, isAwarded, myApp, isCompleted, canReview,reviewTargets,reviewee };
+  }, [job, me, applications, reviews, submissions,reviewTarget]);
 
   if (isLoading && !job) {
     return (
@@ -243,7 +238,7 @@ export default function WorkJobDetailScreen() {
     );
   }
 
-  const { isPoster, isAwarded, myApp, myReview, canReview } = roles;
+  const { isPoster, isAwarded, myApp, canReview,reviewTargets,reviewee } = roles;
   const canManage=(isPoster && job.status!=='disputed') || (job.status==='disputed' && isWorkAdmin(me));
   const st = statusStyle(job.status);
 
@@ -311,17 +306,12 @@ export default function WorkJobDetailScreen() {
               </View>
             </View>
 
-            <Text style={styles.dim}>{t(job.fund_tx_hash?'work.integrity.escrowFunded':job.status==='draft'?'work.integrity.draftSaved':'work.integrity.legacyUnfunded')}</Text>
+            <Text style={styles.dim}>{t(job.fund_tx_hash?'work.integrity.escrowFunded':job.status==='draft'?'work.integrity.draftReady':'work.integrity.reputationNotice')}</Text>
             {isPoster && job.status==='draft' && <View style={{gap:10,marginVertical:12}}>
-              <Text style={styles.rowBody}>{t('work.integrity.draftFunding')}</Text>
-              {!config?.escrow_address && <Text style={styles.dim}>{t('work.integrity.setupRequired')}</Text>}
-              {job.funding_state!=='unfunded' && <TextInput accessibilityLabel={t('work.integrity.recoverTx')} placeholder={t('work.integrity.hashPlaceholder')} value={fundingHash} onChangeText={setFundingHash} autoCapitalize="none" style={styles.input} />}
-              <Pressable disabled={!config?.escrow_address || fundMutation.isPending} onPress={()=>fundMutation.mutate({job_id:job.id,hash:fundingHash || undefined})} style={[styles.primaryBtn,(!config?.escrow_address || fundMutation.isPending)&&styles.disabled]}>
-                <Text style={styles.primaryBtnText}>{t(job.funding_state==='unfunded'?'work.integrity.fundPublish':'work.integrity.checkFunding')}</Text>
+              <Text style={styles.rowBody}>{t('work.integrity.reputationNotice')}</Text>
+              <Pressable disabled={publishMutation.isPending} onPress={()=>publishMutation.mutate(job.id)} style={[styles.primaryBtn,publishMutation.isPending&&styles.disabled]}>
+                <Text style={styles.primaryBtnText}>{t('work.integrity.publish')}</Text>
               </Pressable>
-              {job.funding_state==='signing' && <Pressable disabled={fundMutation.isPending} onPress={()=>Alert.alert(t('work.integrity.releaseSignature'),t('work.integrity.releaseConfirm'),[{text:t('common.cancel')},{text:t('work.integrity.releaseSignature'),onPress:()=>fundMutation.mutate({job_id:job.id,release:true})}])}>
-                <Text style={styles.dim}>{t('work.integrity.releaseSignature')}</Text>
-              </Pressable>}
             </View>}
 
             <Text style={styles.jobTitle}>{job.title}</Text>
@@ -706,8 +696,15 @@ export default function WorkJobDetailScreen() {
 
           {/* Reviews */}
           <Section title={t("work.detail.reviews", { count: reviews.length })}>
-            {canReview && !myReview && (
+            {canReview && (
               <View style={{ marginBottom: 14, gap: 10 }}>
+                <Text style={styles.dim}>{t('work.integrity.reviewHelp')}</Text>
+                {isPoster && reviewTargets.length>1 && <View style={{gap:6}}>
+                  <Text style={styles.dim}>{t('work.integrity.reviewWorker')}</Text>
+                  {reviewTargets.map(address=><Pressable key={address} onPress={()=>setReviewTarget(address)} accessibilityRole="radio" accessibilityState={{selected:reviewee===address}} style={[styles.secondaryBtn,reviewee===address&&styles.primaryBtn]}>
+                    <Text style={reviewee===address?styles.primaryBtnText:styles.dim}>{address}</Text>
+                  </Pressable>)}
+                </View>}
                 <Stars value={rating} size={26} onPick={setRating} />
                 <TextInput
                   value={reviewComment}
@@ -719,13 +716,6 @@ export default function WorkJobDetailScreen() {
                 />
                 <Pressable
                   onPress={() => {
-                    const reviewee = isPoster
-                      ? submissions.find(
-                          (s) =>
-                            s.approval_status === "approved" || s.approval_status === "paid",
-                        )?.worker_address ??
-                        job.awarded_worker_address
-                      : job.poster_address;
                     if (!reviewee) {
                       toastError(t("work.detail.noCounterparty"));
                       return;
@@ -741,7 +731,7 @@ export default function WorkJobDetailScreen() {
                       { onSuccess: () => setReviewComment("") },
                     );
                   }}
-                  style={styles.primaryBtn}
+                  disabled={reviewMutation.isPending} style={[styles.primaryBtn,reviewMutation.isPending&&styles.disabled]}
                 >
                   <Text style={styles.primaryBtnText}>{t("work.detail.postReview")}</Text>
                 </Pressable>

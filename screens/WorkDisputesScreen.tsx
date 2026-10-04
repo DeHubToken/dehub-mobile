@@ -253,7 +253,7 @@ export default function WorkDisputesScreen() {
           keyboardShouldPersistTaps="handled"
         >
           <Text style={styles.intro}>
-            {escrowed ? t("work.disputesIntroEscrowed") : t("work.disputesIntroLedger")}
+        {escrowed ? t("work.disputesIntroEscrowed") : t("work.integrity.disputesReputation")}
           </Text>
           {isLoading ? (
             <View style={styles.center}>
