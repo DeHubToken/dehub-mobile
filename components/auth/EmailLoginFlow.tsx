@@ -64,7 +64,7 @@ const EmailLoginFlow: React.FC<EmailLoginFlowProps> = ({
   if (!showInput) {
     return (
       <AuthButton
-        icon="mail"
+        icon="mail-outline"
         label={t("loginModal.continueEmail")}
         onPress={() => setShowInput(true)}
         disabled={disabled}
@@ -77,7 +77,7 @@ const EmailLoginFlow: React.FC<EmailLoginFlowProps> = ({
     <View ref={containerRef} style={{ gap: 12 }}>
       <AuthField
         ref={inputRef}
-        icon="mail"
+        icon="mail-outline"
         onFocus={handleFocus}
         value={email}
         onChangeText={setEmail}
