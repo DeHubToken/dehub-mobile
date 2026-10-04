@@ -1,6 +1,7 @@
-import React, { useEffect, useRef } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import { RefreshControl, type RefreshControlProps } from "react-native";
 import { setFeedPillRefreshing } from "../../libs/feed-pill-refresh";
+import { HomePullRefreshContext } from "../../context/HomePullRefreshContext";
 
 const HIDDEN = "transparent";
 
@@ -10,16 +11,25 @@ export const DeHubRefreshControl = ({
   tintColor,
   colors,
   progressBackgroundColor,
+  onRefresh,
   ...rest
-}: RefreshControlProps) => (
+}: RefreshControlProps) => {
+  const home = useContext(HomePullRefreshContext);
+  useEffect(() => {
+    if (home?.enabled && onRefresh) return home.register(onRefresh);
+  }, [home, onRefresh]);
+  return (
   <RefreshControl
     {...rest}
-    refreshing={refreshing}
+    enabled={home?.enabled ? false : rest.enabled}
+    refreshing={home?.enabled ? false : refreshing}
+    onRefresh={onRefresh}
     tintColor={HIDDEN}
     colors={[HIDDEN]}
     progressBackgroundColor={HIDDEN}
   />
-);
+  );
+};
 
 interface DeHubRefreshMarkProps {
   /** False for an inactive Home pager tab, so background refreshes do not animate the logo. */
