@@ -1159,7 +1159,7 @@ function AIChatScreenInner() {
         historyForGeneration(),
         {
           sourceImage: opts.sourceImage,
-          aspectRatio: opts.aspectRatio,
+          aspectRatio: cfg ? undefined : opts.aspectRatio,
           logoImage: opts.logoImage,
           txHash: opts.txHash,
           useFree: opts.useFree,
@@ -1178,6 +1178,7 @@ function AIChatScreenInner() {
         },
       );
       setPendingPosterConfig(null);
+      setPendingTemplateId(null);
       setPendingLogoImage(undefined);
       setPendingSourceImage(undefined);
     },
@@ -1221,6 +1222,7 @@ function AIChatScreenInner() {
       txHash,
       getTemplate(pendingTemplateId),
     );
+    setPendingTemplateId(null);
     setPendingSourceImage(undefined);
   }, [
     pendingPrompt,
