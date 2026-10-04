@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import { FlatList, Pressable, Text, View, ActivityIndicator, useWindowDimensions } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import SmartImage from '../components/common/SmartImage';
 import CreatorMediaPreview from '../components/Assistant/CreatorMediaPreview';
+import MeshThumbnailQueue from '../components/Assistant/MeshThumbnailQueue';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import { useNavigation } from '@react-navigation/native';
@@ -57,6 +58,10 @@ export default function CreatorScreen() {
   const { width } = useWindowDimensions();
   const half = Math.floor((width - PAD * 2 - GAP) / 2);
   const wallet = user?.walletAddress || user?.address;
+  const [previews, setPreviews] = useState<Record<string, string>>({});
+  const onPreview = useCallback((id: string, posterUrl: string) => {
+    setPreviews((previous) => ({ ...previous, [id]: posterUrl }));
+  }, []);
   const query = useInfiniteQuery({
     queryKey: ['creator-library', wallet],
     initialPageParam: 0,
@@ -142,6 +147,7 @@ export default function CreatorScreen() {
 
   return (
     <View className="flex-1 bg-theme-neutrals-900">
+      <MeshThumbnailQueue jobs={(query.data?.pages.flatMap((page) => page.jobs) ?? []).map((item) => ({ ...item, posterUrl: item.posterUrl ?? previews[item.id] }))} wallet={wallet} onPreview={onPreview} />
       {/* Subscription tokens: the balance AI generation here is paid from. */}
       <ScreenHeader
         title={t('commandCentre.creator')}
@@ -166,7 +172,7 @@ export default function CreatorScreen() {
             className="overflow-hidden rounded-2xl border border-white/10 bg-theme-neutrals-800"
             style={{ width: half }}
           >
-            <CreatorMediaPreview kind={item.kind} url={item.url} posterUrl={item.posterUrl} width={half} height={item.kind === 'audio' ? half * 0.6 : half} />
+            <CreatorMediaPreview kind={item.kind} url={item.url} posterUrl={item.posterUrl ?? previews[item.id]} width={half} height={item.kind === 'audio' ? half * 0.6 : half} />
             <View className="p-3">
               <Text className="text-[13px] text-theme-neutrals-100" numberOfLines={2}>{item.prompt || item.modelName}</Text>
               <Text className="mt-1 text-[11.5px] text-theme-neutrals-400">{item.kind} · {item.modelName}</Text>
