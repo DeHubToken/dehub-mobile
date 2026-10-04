@@ -14,6 +14,18 @@ interface Props {
   cachePolicy?: "memory-disk";
 }
 
+function PlayingBadge({ poster, animation, onError }: { poster: number; animation: number; onError: () => void }) {
+  const [ready, setReady] = useState(false);
+  return <>
+    <Image source={poster} resizeMode="contain" fadeDuration={0}
+      style={[styles.image, { opacity: ready ? 0 : 1 }]} testID="holder-badge-poster" />
+    <MotionImage source={animation} contentFit="contain" autoplay useAppleWebpCodec={false}
+      transition={0} cachePolicy="memory-disk" onDisplay={() => setReady(true)} onError={onError}
+      style={[StyleSheet.absoluteFillObject, { opacity: ready ? 1 : 0 }]}
+      testID="holder-badge-motion" />
+  </>;
+}
+
 /** Idle badges share a still bitmap; only the badge being touched or hovered plays. */
 function BadgeArtwork({ source, style }: Props) {
   const anchor = useRef<View>(null);
@@ -48,17 +60,11 @@ function BadgeArtwork({ source, style }: Props) {
       }}
     >
       {playing && art ? (
-        <MotionImage
+        <PlayingBadge
           key={art.animation}
-          source={art.animation}
-          contentFit="contain"
-          autoplay
-          useAppleWebpCodec={false}
-          transition={0}
-          cachePolicy="memory-disk"
+          poster={poster}
+          animation={art.animation}
           onError={() => setFailedAnimation(art.animation)}
-          style={styles.image}
-          testID="holder-badge-motion"
         />
       ) : (
         <Image source={poster} resizeMode="contain" fadeDuration={0} style={styles.image} testID="holder-badge-poster" />
