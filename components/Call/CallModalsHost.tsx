@@ -1,21 +1,10 @@
 import React from "react";
-import IncomingCallModal from "./IncomingCallModal";
-import VoiceCallModal from "./VoiceCallModal";
-import VideoCallModal from "./VideoCallModal";
-
-/**
- * Renders global call modals inside the CallProvider.
- * Does NOT render a MiniPlayer here — that lives in App.tsx
- * so it can overlay bottom tabs.
- */
-const CallModalsHost: React.FC = () => {
-  return (
-    <>
-      <IncomingCallModal />
-      <VoiceCallModal />
-      <VideoCallModal />
-    </>
-  );
-};
-
-export default CallModalsHost;
+import { useCall } from "../../context/CallContext";
+export default function CallModalsHost() {
+  const { currentCall, isIncoming } = useCall();
+  if (!currentCall) return null;
+  const Incoming = isIncoming ? require('./IncomingCallModal').default : null;
+  const Active = currentCall.call_type === 'video'
+    ? require('./VideoCallModal').default : require('./VoiceCallModal').default;
+  return <>{Incoming && <Incoming />}<Active /></>;
+}

@@ -600,135 +600,13 @@ export default function HomeScreen() {
     useFeedFilterTransition(feedQueriesInFlight > 0);
 
   // ── Warm-up ──────────────────────────────────────────────────────────────
+  const tabNavigation = useNavigation<BottomTabNavigationProp<BottomTabParamList>>();
   const queryClient = useQueryClient();
   const feedParamsRef = useRef(feedParams);
   feedParamsRef.current = feedParams;
 
-  // Mount the remaining pages one at a time once the first interaction has
-  // settled, so the first switch to any tab renders an already-built list.
-  useEffect(() => {
-    let cancelled = false;
-    const timers: ReturnType<typeof setTimeout>[] = [];
-    const task = InteractionManager.runAfterInteractions(() => {
-      if (cancelled) return;
-      TAB_ORDER.forEach((key, i) => {
-        timers.push(
-          setTimeout(() => {
-            if (cancelled) return;
-            setMountedTabs((prev) => (prev.has(key) ? prev : new Set(prev).add(key)));
-          }, i * WARM_STEP_MS),
-        );
-      });
-    });
-    return () => {
-      cancelled = true;
-      task.cancel();
-      timers.forEach(clearTimeout);
-    };
-  }, []);
-
-  // Preload the other bottom tabs — see PRELOAD_TABS. Only while Home is still
-  // the focused tab when each step fires: someone already switching tabs by
-  // hand is loading the one they want, and a route that has been visited and
-  // left is frozen, which preloading would undo until the next visit.
-  const tabNavigation = useNavigation<BottomTabNavigationProp<BottomTabParamList>>();
-  useEffect(() => {
-    let cancelled = false;
-    const timers: ReturnType<typeof setTimeout>[] = [];
-    const task = InteractionManager.runAfterInteractions(() => {
-      if (cancelled) return;
-      PRELOAD_TABS.forEach((name, i) => {
-        timers.push(
-          setTimeout(() => {
-            if (cancelled) return;
-            // None of these tabs exist in Kids Mode (see FloatingBottomTabBar).
-            // Read at fire time, not subscribed: the lock has settled by now,
-            // and a hook here would tie this whole screen to the user context.
-            if (isKidsModeLocked()) return;
-            const state = tabNavigation.getState();
-            if (state.routes[state.index]?.name !== ScreenNames.Home) return;
-            try {
-              tabNavigation.preload(name);
-            } catch {
-              // A navigator that has already unmounted (sign-out mid-boot) has
-              // nothing to preload into.
-            }
-          }, PRELOAD_START_MS + i * PRELOAD_STEP_MS),
-        );
-      });
-    });
-    return () => {
-      cancelled = true;
-      task.cancel();
-      timers.forEach(clearTimeout);
-    };
-  }, [tabNavigation]);
-
-  // Prefetch the other tabs' first pages so the first switch renders from cache
-  // instead of a skeleton. Keys mirror the ones used by InfiniteVideoFeed,
-  // HomeImageGrid and ShortsGrid exactly (including their pageSize props).
-  // Staggered: five concurrent requests fired at once saturated the connection
-  // and landed their parses in the same handful of frames.
-  useEffect(() => {
-    let cancelled = false;
-    const timers: ReturnType<typeof setTimeout>[] = [];
-
-    const task = InteractionManager.runAfterInteractions(() => {
-      if (cancelled) return;
-      const base = feedParamsRef.current;
-
-      const jobs: Array<() => void> = [
-        ...(["video", "live"] as const).map((postType) => () => {
-          const p = { ...base, postType };
-          queryClient.prefetchInfiniteQuery({
-            queryKey: ["home-feed", p, 10],
-            queryFn: ({ pageParam }) =>
-              getUnifiedFeed({ ...p, limit: 10, page: pageParam as number }),
-            initialPageParam: 1,
-          });
-        }),
-        () => {
-          const imageParams = { ...base, postType: "feed-images" as const };
-          queryClient.prefetchInfiniteQuery({
-            queryKey: ["home-images", imageParams, 20],
-            queryFn: ({ pageParam }) =>
-              getUnifiedFeed({ ...imageParams, limit: 20, page: pageParam as number }),
-            initialPageParam: 1,
-          });
-        },
-        () => {
-          const shortsParams = { ...base, postType: "short" as const };
-          queryClient.prefetchInfiniteQuery({
-            queryKey: ["home-shorts", shortsParams, 20],
-            queryFn: ({ pageParam }) => {
-              const p = pageParam as { page: number; shuffleSeed?: string };
-              return getShortsFeed({
-                ...shortsParams,
-                limit: 20,
-                page: p.page,
-                shuffleSeed: p.shuffleSeed,
-              });
-            },
-            initialPageParam: { page: 1 },
-          });
-        },
-      ];
-
-      jobs.forEach((job, i) => {
-        timers.push(
-          setTimeout(() => {
-            if (!cancelled) job();
-          }, i * PREFETCH_STEP_MS),
-        );
-      });
-    });
-
-    return () => {
-      cancelled = true;
-      task.cancel();
-      timers.forEach(clearTimeout);
-    };
-  }, [queryClient]);
+  // Each pager page mounts on its first visit. Gesture handlers select the
+  // intended page before the animation commits; hidden screens do no boot work.
 
   const hasActiveFilters = useMemo(() => {
     return (
