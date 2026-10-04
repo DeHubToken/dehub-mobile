@@ -28,6 +28,7 @@ export function useWorkEscrow(wallet:string|null) {
   if(Number(chainId)!==8453) throw new Error('Switch to Base to use bounty escrow');
   if(!provider) throw new Error('Wallet is not ready');
   const c=await buildContract(provider,abi,address,true);
+  if(!c) throw new Error('Wallet is not ready');
   if((await c.signer.getAddress()).toLowerCase()!==wallet?.toLowerCase()) throw new Error('The signing wallet does not match your bounty account');
   return c;
  }
@@ -36,6 +37,7 @@ export function useWorkEscrow(wallet:string|null) {
  const write=async(address:string,name:string,args:unknown[])=>{
   const c=await contract(address);
   const sent=await writeContractAA(c,name,args,{context:'bounty-'+name});
+  if(!sent.hash) throw new Error('Signing returned no transaction hash. Recover the transaction before retrying.');
   return {hash:sent.hash,wait:(count:number)=>sent.wait(count)};
  };
  return {write,...createWorkEscrow({wallet:wallet || '',job:id=>workRow('work_jobs',id),config:getWorkConfig,

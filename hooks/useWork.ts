@@ -613,6 +613,7 @@ function useSettleWorkPayment() {
       const balance = await contract.balanceOf(signer);
       if (balance.lt(amount)) throw new Error(`Not enough ${intent.currency} to cover this payout`);
       const sent = await writeContractAA(contract, 'transfer', [intent.worker_address, amount], { context: 'bounty-payout' });
+      if(!sent.hash) throw new Error('Signing returned no transaction hash. Recover the transaction before retrying.');
       return { hash: sent.hash, wait: (confirmations: number) => sent.wait(confirmations) };
     },
     receipt: (intent, hash) => workReceipt(intent.id, hash, intent.chain_id),
