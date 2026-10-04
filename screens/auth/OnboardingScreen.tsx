@@ -32,8 +32,8 @@ import {
 const SLIDES: StorySlide[] = [
   {
     id: "1",
-    title: "Censorship resistant media",
-    subtitle: "for the next generation",
+    title: "Censorship resistant media for the",
+    subtitle: "next generation",
     description: "Instantly monetize, never get deplatformed, keep up to 99% of revenue and create free from censorship or platform manipulation.",
   },
   {
