@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef } from 'react';
-import { Gesture } from 'react-native-gesture-handler';
+import { Gesture, type GestureType } from 'react-native-gesture-handler';
 import {
   cancelAnimation, Easing, ReduceMotion, runOnJS, useAnimatedReaction,
   useSharedValue, withRepeat, withTiming, type SharedValue,
@@ -17,6 +17,7 @@ export function useHomePullRefresh(enabled: boolean, scrollOffset: SharedValue<n
   const activeTab = useSharedValue(tab);
   const offsets = useSharedValue([0, 0, 0, 0, 0, 0]);
   const refreshing = useFeedPillRefreshing();
+  const gestureRef = useRef<GestureType | undefined>(undefined);
   const action = useRef<(() => void) | null>(null);
   const register = useCallback((refresh: () => void) => {
     action.current = refresh;
@@ -43,7 +44,7 @@ export function useHomePullRefresh(enabled: boolean, scrollOffset: SharedValue<n
     return () => { cancelAnimation(distance); cancelAnimation(flow); };
   }, [enabled, distance, flow, pulling, returning]);
 
-  const gesture = useMemo(() => Gesture.Pan().enabled(enabled).maxPointers(1).manualActivation(true)
+  const gesture = useMemo(() => Gesture.Pan().withRef(gestureRef).enabled(enabled).maxPointers(1).manualActivation(true)
     .onTouchesDown((event, manager) => {
       if (busy.value || returning.value || scrollOffset.value > 1 || event.numberOfTouches !== 1) { manager.fail(); return; }
       x.value = event.allTouches[0]?.absoluteX ?? 0; y.value = event.allTouches[0]?.absoluteY ?? 0;
@@ -77,5 +78,5 @@ export function useHomePullRefresh(enabled: boolean, scrollOffset: SharedValue<n
       });
     }), [enabled, busy, returning, scrollOffset, x, y, distance, pulling, flow, refresh]);
 
-  return { gesture, motion: { distance, pulling, flow }, provider: useMemo(() => ({ enabled, register }), [enabled, register]) };
+  return { gesture, motion: { distance, pulling, flow }, provider: useMemo(() => ({ enabled, register, gestureRef }), [enabled, register]) };
 }
