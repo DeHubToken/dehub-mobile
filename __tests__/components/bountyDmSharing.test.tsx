@@ -7,10 +7,10 @@ const mockNavigate = jest.fn();
 function mockFlatList({ data, renderItem }: { data: unknown[]; renderItem: (info: { item: unknown; index: number }) => React.ReactNode }) {
   return <>{data.map((item, index) => <React.Fragment key={index}>{renderItem({ item, index })}</React.Fragment>)}</>;
 }
-jest.mock('react-native-css-interop/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
+jest.mock('dehub-jsx/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
 jest.mock('react-native', () => ({
   View: 'View', Text: 'Text', TouchableOpacity: 'TouchableOpacity', TextInput: 'TextInput', ActivityIndicator: 'ActivityIndicator',
-  StyleSheet: { flatten: (style: unknown) => style },
+  StyleSheet: { create: (style: unknown) => style, flatten: (style: unknown) => Array.isArray(style) ? Object.assign({}, ...style) : style, absoluteFillObject: {} },
   FlatList: mockFlatList,
 }));
 jest.mock('@react-navigation/native', () => ({ useNavigation: () => ({ navigate: mockNavigate }) }));
