@@ -32,8 +32,6 @@ import type { EventSubscription } from "expo-modules-core";
 import { LinearGradient } from "expo-linear-gradient";
 import { useIsFocused } from "@react-navigation/native";
 import Icon from "../ui/Icon";
-import { useAppTheme } from "../../context/ThemeContext";
-import { defaultStyleForTheme } from "./visualizer-extra";
 import { requestAudioFocus, releaseAudioFocus } from "../../libs/audioFocus";
 import { configureForBackgroundPlayback } from "../../libs/audioSession";
 import { claimLockScreen, releaseLockScreen } from "../../libs/lockScreen";
@@ -91,8 +89,8 @@ const clamp01 = (n: number) => (Number.isFinite(n) ? Math.max(0, Math.min(1, n))
  * priority over the Home pager's page turn. Outside a pager it renders nothing
  * of its own.
  */
-const PagerSafe: React.FC<{ children: React.ReactElement }> = ({ children }) => {
-  const guard = useHorizontalScrollGuard();
+const PagerSafe: React.FC<{ children: React.ReactElement; claimOnStart?: boolean }> = ({ children, claimOnStart = false }) => {
+  const guard = useHorizontalScrollGuard(claimOnStart);
   return guard ? <GestureDetector gesture={guard}>{children}</GestureDetector> : children;
 };
 
@@ -230,22 +228,16 @@ interface StylePickerProps {
 }
 
 const StylePicker: React.FC<StylePickerProps> = memo(({ style: activeStyle, onStyleChange }) => {
-  // Fifty-odd styles: slide the strip so the active one (often the theme's
-  // own default, far down the list) is in view.
-  const scrollRef = useRef<ScrollView>(null);
-  const chipX = useRef<Record<string, { x: number; w: number }>>({});
-  const stripW = useRef(0);
-  const reveal = useCallback(() => {
-    const c = chipX.current[activeStyle];
-    if (c && stripW.current) scrollRef.current?.scrollTo({ x: Math.max(0, c.x - (stripW.current - c.w) / 2), animated: false });
-  }, [activeStyle]);
-  useEffect(reveal, [reveal]);
+  // Claim Android touches before the feed pager can turn a tab, including
+  // drags starting on a button or at either end of the strip. Keep scrolling
+  // native: selection must not re-centre the strip or change chip widths.
   return (
-  <PagerSafe>
+  <PagerSafe claimOnStart>
   <ScrollView
-    ref={scrollRef}
-    onLayout={(e) => { stripW.current = e.nativeEvent.layout.width; reveal(); }}
     horizontal
+    bounces={false}
+    overScrollMode="never"
+    directionalLockEnabled
     showsHorizontalScrollIndicator={false}
     keyboardShouldPersistTaps="handled"
     contentContainerStyle={{ flexDirection: "row", gap: 4, alignItems: "center" }}
@@ -255,11 +247,9 @@ const StylePicker: React.FC<StylePickerProps> = memo(({ style: activeStyle, onSt
       return (
         <Pressable
           key={s.value}
-          onLayout={(e) => {
-            chipX.current[s.value] = { x: e.nativeEvent.layout.x, w: e.nativeEvent.layout.width };
-            if (isActive) reveal();
-          }}
           onPress={() => onStyleChange(s.value)}
+          accessibilityRole="button"
+          accessibilityState={{ selected: isActive }}
           hitSlop={{ top: 6, bottom: 6, left: 2, right: 2 }}
           style={{
             paddingHorizontal: 10,
@@ -268,15 +258,15 @@ const StylePicker: React.FC<StylePickerProps> = memo(({ style: activeStyle, onSt
             overflow: "hidden",
             // Faint dark backing so labels stay readable over white-heavy themes.
             backgroundColor: isActive ? "rgba(255,255,255,0.18)" : "rgba(0,0,0,0.28)",
-            borderWidth: isActive ? 1 : 0,
-            borderColor: "rgba(255,255,255,0.15)",
+            borderWidth: 1,
+            borderColor: isActive ? "rgba(255,255,255,0.15)" : "transparent",
           }}
         >
           <Text
             style={{
               color: isActive ? "rgba(255,255,255,0.95)" : "rgba(255,255,255,0.7)",
               fontSize: 10,
-              fontWeight: isActive ? "600" : "400",
+              fontWeight: "600",
             }}
           >
             {s.label}
@@ -409,10 +399,8 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
   const [currentTime, setCurrentTime] = useState(0);
   const [totalDuration, setTotalDuration] = useState(duration);
   const [hue, setHue] = useState(() => getCachedHue());
-  // An untouched card plays its theme's own style; a pick sticks for this card.
-  const { theme } = useAppTheme();
-  const [pickedStyle, setVizStyle] = useState<VisualizerStyle | null>(null);
-  const vizStyle = pickedStyle ?? (defaultStyleForTheme(theme) as VisualizerStyle);
+  // Every card starts on Default; a pick sticks for this card.
+  const [vizStyle, setVizStyle] = useState<VisualizerStyle>("static");
   const volume = useMediaVolume();
   const selfMuted = useMediaMuted();
   const [isFullscreen, setIsFullscreen] = useState(false);
