@@ -49,7 +49,7 @@ import MusicConfirmSheet, { type MusicParams } from '../components/Assistant/Mus
 import PosterConfigSheet, { type PosterConfig } from '../components/Assistant/PosterConfigSheet';
 import { ImageGenerationSkeleton } from '../components/Assistant/GenerationSkeleton';
 import MentionSuggestions from '../components/common/MentionSuggestions';
-import { useUser } from '../context/AuthContext';
+import { useAuthState, useUser } from '../context/AuthContext';
 import { getAuthToken } from '../libs/auth.utils';
 import { useAIConversation, type ConversationEntry } from '../hooks/useAIConversation';
 import { useKeyboardLift } from '../hooks/useKeyboardLayout';
@@ -198,6 +198,7 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
   const navigation = useNavigation<any>();
   const route = useRoute<any>();
   const user = useUser();
+  const { isSignedIn, needsUsername } = useAuthState();
   const [supportVisible, setSupportVisible] = useState(false);
   // Read once for the header badge. The sheet runs the same query, so opening
   // it costs no second request.
@@ -1174,6 +1175,10 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
   const handleSend = useCallback(async () => {
     const typed = input.trim();
     if ((!typed && !attachedImage && !activeTemplate) || isLoading || submitLock.current) return;
+    if (studio && (!isSignedIn || needsUsername)) {
+      navigation.navigate(ScreenNames.SignIn);
+      return;
+    }
     // An empty send under a template runs its example subject, like web's tile.
     const text = typed || (activeTemplate && !attachedImage ? activeTemplate.sample : typed);
 
@@ -1217,7 +1222,7 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
       submitLock.current = false;
       setIsLoading(false);
     }
-  }, [input, attachedImage, isLoading, messages, mentions, saveMessage, routePrompt, activeTemplate, studio, studioSettings]);
+  }, [input, attachedImage, isLoading, messages, mentions, saveMessage, routePrompt, activeTemplate, studio, studioSettings, isSignedIn, needsUsername, navigation]);
 
   /** Drop the failed turn and re-run the last thing the user asked for. */
   const handleRetry = useCallback(async () => {
@@ -1701,7 +1706,8 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
 
       <View style={{ marginBottom: kbVisible ? kbLift : studio ? 0 : TAB_BAR_HEIGHT }}>
         {studio && <CreatorStudioControls settings={studioSettings} onChange={setStudioSettings}
-          onMode={changeStudioMode} onPresets={() => setTemplatesVisible(true)} disabled={isLoading} />}
+          onMode={changeStudioMode} onPresets={() => setTemplatesVisible(true)}
+          onAttach={studioSettings.mode === 'audio' ? undefined : handleAttach} disabled={isLoading} />}
         <MentionSuggestions
           visible={mentions.showSuggestions}
           suggestions={mentions.suggestions}
@@ -1731,7 +1737,7 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
           onChangeText={mentions.handleChangeText}
           onSelectionChange={mentions.handleSelectionChange}
           onSend={handleSend}
-          onAttach={studio && studioSettings.mode === 'audio' ? undefined : handleAttach}
+          onAttach={studio ? undefined : handleAttach}
           attachedImage={attachedImage}
           onRemoveImage={() => setAttachedImage(null)}
           loading={isLoading}
@@ -1942,5 +1948,5 @@ export default function AIChatScreen() {
 }
 
 export function CreatorStudioScreen() {
-  return <SignInGate><AIChatScreenInner studio /></SignInGate>;
+  return <AIChatScreenInner studio />;
 }
