@@ -31,13 +31,14 @@ export const PagerGestureProvider: React.FC<{
 
 /**
  * Native gesture to wrap a horizontally-scrolling child in, or null when there
- * is no pager above it.
+ * is no pager above it. Android button strips can activate on touch-down so
+ * the pager cannot take over before their native scroll recognizer starts.
  */
-export const useHorizontalScrollGuard = () => {
+export const useHorizontalScrollGuard = (activateOnStart = false) => {
   const pagerRef = useContext(PagerGestureContext);
   return useMemo(
-    () => (pagerRef ? Gesture.Native().blocksExternalGesture(pagerRef) : null),
-    [pagerRef],
+    () => (pagerRef ? Gesture.Native().shouldActivateOnStart(activateOnStart).blocksExternalGesture(pagerRef) : null),
+    [pagerRef, activateOnStart],
   );
 };
 
