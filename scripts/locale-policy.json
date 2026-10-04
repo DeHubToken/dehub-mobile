@@ -32,14 +32,16 @@
     "tokenPayments",
     "postingAllowance",
     "postComposer",
-    "notifications"
-  ],
-  "wallet": [
+    "notifications",
     "wallet",
-    "buyCoins",
+    "subscriptions",
     "tip",
     "tipFunding",
-    "accounts",
+    "buyCoins",
+    "ppvTopUp",
+    "accounts"
+  ],
+  "wallet": [
     "accountDeletion",
     "migrate",
     "usernames",
@@ -60,12 +62,10 @@
     "ads",
     "live",
     "goLive",
-    "subscriptions",
     "premium",
     "pricing",
     "tokens",
-    "tokenPaywall",
-    "ppvTopUp"
+    "tokenPaywall"
   ],
   "community": [
     "publicChat",
