@@ -1,4 +1,5 @@
 import React, { createRef } from 'react';
+jest.mock('dehub-jsx/jsx-runtime', () => require('react/jsx-runtime'));
 import { act, render } from '@testing-library/react-native';
 import { VideoView } from 'expo-video';
 import { PersistentVideoView, PictureInPictureHost } from '../../components/common/PersistentVideoView';
