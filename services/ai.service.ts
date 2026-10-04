@@ -300,6 +300,7 @@ export type AIImageModel = string;
 
 export interface AIImageRequest {
   prompt: string;
+  aspectRatio?: string;
   sourceImage?: string;
   conversationHistory?: AIChatMessage[];
   model?: AIImageModel;
@@ -335,7 +336,7 @@ export interface AIVideoRequest {
   model: AIVideoModel;
   sourceImage?: string;
   duration?: '5s' | '10s';
-  aspectRatio?: '16:9' | '9:16' | '1:1';
+  aspectRatio?: string;
   negativePrompt?: string;
   resolution?: string;
   seed?: number;

@@ -14,6 +14,7 @@ import {
   ScrollView,
   StyleSheet,
   Text,
+  TextInput,
   TouchableOpacity,
   View,
   useWindowDimensions,
@@ -72,7 +73,14 @@ const TemplatesSheetComponent: React.FC<TemplatesSheetProps> = ({
   const backdropOpacity = useSharedValue(0);
   const [isFullyClosed, setIsFullyClosed] = useSheetClosed(visible);
   const [kind, setKind] = useState<TemplateKind>('video');
-  const templates = useMemo(() => templatesFor(kind), [kind]);
+  const [query, setQuery] = useState('');
+  const templates = useMemo(() => {
+    const search = query.trim().toLocaleLowerCase();
+    return templatesFor(kind).filter((tpl) => !search || [
+      t(tpl.nameKey), t(tpl.hintKey), t(TEMPLATE_GROUP_KEYS[tpl.group] ?? tpl.group),
+      tpl.template, tpl.sample,
+    ].join(' ').toLocaleLowerCase().includes(search));
+  }, [kind, query, t]);
 
   useEffect(() => {
     if (visible) {
@@ -156,7 +164,7 @@ const TemplatesSheetComponent: React.FC<TemplatesSheetProps> = ({
               <TouchableOpacity
                 key={k}
                 style={[s.tab, kind === k && s.tabActive]}
-                onPress={() => setKind(k)}
+                onPress={() => { setKind(k); setQuery(''); }}
                 activeOpacity={0.75}
                 accessibilityRole="tab"
                 accessibilityState={{ selected: kind === k }}
@@ -168,7 +176,18 @@ const TemplatesSheetComponent: React.FC<TemplatesSheetProps> = ({
             ))}
           </View>
 
-          <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={s.scrollContent}>
+          <TextInput
+            value={query}
+            onChangeText={setQuery}
+            placeholder={t('common.search')}
+            accessibilityLabel={t('common.search')}
+            placeholderTextColor="#6F7174"
+            style={s.search}
+            autoCorrect={false}
+            returnKeyType="search"
+          />
+          <ScrollView keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false} contentContainerStyle={s.scrollContent}>
+            {!templates.length && <Text accessibilityRole="text" style={[s.hint, s.empty]}>{t('explorePage.noResults')}</Text>}
             {templates.map((tpl) => {
               const selected = activeId === tpl.id;
               return (
@@ -231,6 +250,8 @@ const s = StyleSheet.create({
   headerLeft: { flexDirection: 'row', alignItems: 'center', gap: 8 },
   title: { color: '#F9FBFF', fontSize: 18, fontWeight: '700' },
   scrollContent: { paddingVertical: 8, paddingBottom: 32 },
+  search: { marginHorizontal: 20, marginTop: 12, paddingHorizontal: 12, paddingVertical: 10, borderRadius: 10, borderWidth: 1, borderColor: 'rgba(255,255,255,0.1)', color: '#F9FBFF', fontSize: 14 },
+  empty: { paddingHorizontal: 20, paddingVertical: 16 },
   row: {
     flexDirection: 'row',
     alignItems: 'center',
