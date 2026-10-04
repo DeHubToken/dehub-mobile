@@ -41,7 +41,8 @@ export function useAuthBoot<User>({
         ]);
         
         if (seenAuth) setIsFirstTimeUser(false);
-        if (userData && token && !isTokenExpired(token) && await canRestoreCachedProfile?.(userData, token)) {
+        const verifiedCache = !!(userData && token && await canRestoreCachedProfile?.(userData, token));
+        if (userData && token && verifiedCache && !isTokenExpired(token)) {
           setUser(userData);
           setIsSignedIn(true);
           setIsBootLoading(false);
@@ -51,8 +52,13 @@ export function useAuthBoot<User>({
           ensureProvider().catch(e => log.warn('boot:ensureProvider:failed', e));
           return;
         }
+        if (userData && verifiedCache) {
+          setUser(userData);
+          setIsBootLoading(false);
+          // Keep protected actions signed out until the expired token refreshes.
+        }
         // Replace a cached owner-wallet profile with the verified social profile.
-        if (userData && token && await reconcileProfile?.()) return;
+        if (userData && token && !verifiedCache && await reconcileProfile?.()) return;
 
         if (userData && token) {
           // Validate token expiration before restoring session
@@ -60,7 +66,7 @@ export function useAuthBoot<User>({
             log.warn?.("boot:token-expired", "Stored token is expired, attempting refresh");
             // Try to refresh the token before giving up
             const newToken = await tokenRefreshManager.attemptRefresh();
-            if (newToken) {
+            if (newToken && await getAuthToken() === newToken) {
               log.info?.("boot:token-refreshed", "Token refreshed successfully");
               setUser(userData);
               setIsSignedIn(true);
