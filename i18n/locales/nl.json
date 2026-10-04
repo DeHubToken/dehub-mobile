@@ -3646,7 +3646,7 @@
     "postJob": "Opdracht plaatsen",
     "types": {
       "all": "Alle",
-      "shill": "Sociale media",
+      "shill": "Shill",
       "clipping": "Knippen",
       "contract": "Contracten"
     },
@@ -3662,7 +3662,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "Reacties / Shill",
+        "label": "Shill",
         "description": "Betaal per geverifieerde reactie op X, YouTube, IG of TikTok."
       },
       "clipping": {

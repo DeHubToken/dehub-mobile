@@ -3469,7 +3469,7 @@
     "postJob": "کام دو",
     "types": {
       "all": "سب",
-      "shill": "سوشل میڈیا",
+      "shill": "Shill",
       "clipping": "کلپنگ",
       "contract": "سمجھوتہ"
     },
@@ -3485,7 +3485,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "تبصرہ / پرچار",
+        "label": "Shill",
         "description": "X، YouTube، IG یا TikTok پر ہر جانچ کئل تبصرہ کے دو۔"
       },
       "clipping": {

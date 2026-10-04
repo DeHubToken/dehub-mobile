@@ -3447,7 +3447,7 @@
     "postJob": "Kirim pakaryan",
     "types": {
       "all": "Kabeh",
-      "shill": "Media sosial",
+      "shill": "Shill",
       "clipping": "Kliping",
       "contract": "Kontrak"
     },
@@ -3463,7 +3463,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "Komentar / Promosi",
+        "label": "Shill",
         "description": "Bayar saben komentar terverifikasi ing X, YouTube, IG utawa TikTok."
       },
       "clipping": {

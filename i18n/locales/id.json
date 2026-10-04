@@ -3456,7 +3456,7 @@
     "postJob": "Pasang Pekerjaan",
     "types": {
       "all": "Semua",
-      "shill": "Media sosial",
+      "shill": "Shill",
       "clipping": "Klip",
       "contract": "Kontrak"
     },
@@ -3472,7 +3472,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "Komentar / Promosi",
+        "label": "Shill",
         "description": "Bayar per komentar terverifikasi di X, YouTube, IG, atau TikTok."
       },
       "clipping": {

@@ -3472,7 +3472,7 @@
     "postJob": "ሥራ ለጥፍ",
     "types": {
       "all": "ሁሉም",
-      "shill": "ማህበራዊ ሚዲያ",
+      "shill": "Shill",
       "clipping": "ክሊፒንግ",
       "contract": "ውሎች"
     },
@@ -3488,7 +3488,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "አስተያየቶች / ማስተዋወቅ",
+        "label": "Shill",
         "description": "በX፣ YouTube፣ IG ወይም TikTok ላይ ለተረጋገጠ እያንዳንዱ አስተያየት ይክፈሉ።"
       },
       "clipping": {

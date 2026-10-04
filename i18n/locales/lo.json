@@ -3432,7 +3432,7 @@
     "postJob": "ໂພສວຽກ",
     "types": {
       "all": "ທັງໝົດ",
-      "shill": "ສື່ສັງຄົມ",
+      "shill": "Shill",
       "clipping": "ການຕັດຄລິບ",
       "contract": "ສັນຍາ"
     },
@@ -3448,7 +3448,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "ຄຳເຫັນ / ການໂຄສະນາ",
+        "label": "Shill",
         "description": "ຈ່າຍຕໍ່ຄຳເຫັນທີ່ຢືນຢັນແລ້ວແຕ່ລະອັນໃນ X, YouTube, IG ຫຼື TikTok."
       },
       "clipping": {

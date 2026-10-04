@@ -3456,7 +3456,7 @@
     "postJob": "အလုပ် တင်ရန်",
     "types": {
       "all": "အားလုံး",
-      "shill": "ဆိုရှယ်မီဒီယာ",
+      "shill": "Shill",
       "clipping": "ကလစ်ဖြတ်ခြင်း",
       "contract": "စာချုပ်များ"
     },
@@ -3472,7 +3472,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "မှတ်ချက် / ကြော်ငြာ",
+        "label": "Shill",
         "description": "X, YouTube, IG သို့မဟုတ် TikTok တွင် အတည်ပြုပြီး မှတ်ချက်တစ်ခုစီအတွက် ပေးချေပါ။"
       },
       "clipping": {

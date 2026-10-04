@@ -3452,7 +3452,7 @@
     "postJob": "发布任务",
     "types": {
       "all": "全部",
-      "shill": "社交媒体",
+      "shill": "Shill",
       "clipping": "剪辑",
       "contract": "合约"
     },
@@ -3468,7 +3468,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "评论／推广",
+        "label": "Shill",
         "description": "按在 X、YouTube、IG 或 TikTok 上的已验证评论付费。"
       },
       "clipping": {

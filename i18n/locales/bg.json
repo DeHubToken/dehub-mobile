@@ -3457,7 +3457,7 @@
     "postJob": "Публикуване на задача",
     "types": {
       "all": "Всички",
-      "shill": "Социални медии",
+      "shill": "Shill",
       "clipping": "Клипване",
       "contract": "Договори"
     },
@@ -3473,7 +3473,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "Коментари / Промотиране",
+        "label": "Shill",
         "description": "Плащайте за всеки потвърден коментар в X, YouTube, IG или TikTok."
       },
       "clipping": {

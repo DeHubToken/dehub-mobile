@@ -3482,7 +3482,7 @@
     "postJob": "نشر خدمة",
     "types": {
       "all": "گاع",
-      "shill": "سوشيال ميديا",
+      "shill": "Shill",
       "clipping": "قص الكليبات",
       "contract": "عقود"
     },
@@ -3498,7 +3498,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "تعليقات / ترويج",
+        "label": "Shill",
         "description": "خلّص على كل تعليق متأكد منو ف X، YouTube، IG ولا TikTok."
       },
       "clipping": {

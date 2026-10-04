@@ -434,8 +434,8 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
   }, [isSigningOut, onClose, signOut, t]);
 
   const handlePost = useCallback(() => {
-    navigate(ScreenNames.Upload);
-  }, [navigate]);
+    navigate(activeRouteName?.startsWith('Work') ? ScreenNames.WorkPost : ScreenNames.Upload);
+  }, [activeRouteName, navigate]);
 
   const handleSignIn = useCallback(() => {
     navigate(ScreenNames.SignIn);

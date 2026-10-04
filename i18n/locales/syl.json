@@ -3624,7 +3624,7 @@
     "postJob": "কাজ দেউক্কা",
     "types": {
       "all": "হকল",
-      "shill": "সামাজিক মাধ্যম",
+      "shill": "Shill",
       "clipping": "ক্লিপিং",
       "contract": "চুক্তি"
     },
@@ -3640,7 +3640,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "মন্তব্য / প্রচার",
+        "label": "Shill",
         "description": "X, YouTube, IG বা TikTok-ও প্রত্যেক যাচাই করা মন্তব্যর লাগি দেউক্কা।"
       },
       "clipping": {

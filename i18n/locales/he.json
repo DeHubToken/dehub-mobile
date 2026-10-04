@@ -3454,7 +3454,7 @@
     "postJob": "פרסום עבודה",
     "types": {
       "all": "הכול",
-      "shill": "מדיה חברתית",
+      "shill": "Shill",
       "clipping": "עריכת קליפים",
       "contract": "חוזים"
     },
@@ -3470,7 +3470,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "תגובות / קידום",
+        "label": "Shill",
         "description": "שלמו על כל תגובה מאומתת ב-X, ב-YouTube, ב-IG או ב-TikTok."
       },
       "clipping": {

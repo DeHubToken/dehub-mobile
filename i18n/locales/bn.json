@@ -3454,7 +3454,7 @@
     "postJob": "কাজ দিন",
     "types": {
       "all": "সব",
-      "shill": "সোশ্যাল মিডিয়া",
+      "shill": "Shill",
       "clipping": "ক্লিপিং",
       "contract": "চুক্তি"
     },
@@ -3470,7 +3470,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "মন্তব্য / প্রচার",
+        "label": "Shill",
         "description": "X, YouTube, IG বা TikTok-এ প্রতি যাচাই করা মন্তব্যে পরিশোধ।"
       },
       "clipping": {

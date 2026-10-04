@@ -3445,7 +3445,7 @@
     "postJob": "Zipụ ọrụ",
     "types": {
       "all": "Niile",
-      "shill": "Mgbasa ozi ọha",
+      "shill": "Shill",
       "clipping": "Ibipụ",
       "contract": "Nkwekọrịta"
     },
@@ -3461,7 +3461,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "Nkwupụta / Mgbasa ozi",
+        "label": "Shill",
         "description": "Kwụọ ụgwọ kwa nkwupụta akwadoro na X, YouTube, IG ma ọ bụ TikTok."
       },
       "clipping": {

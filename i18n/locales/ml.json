@@ -3450,7 +3450,7 @@
     "postJob": "ജോലി പോസ്റ്റ് ചെയ്യുക",
     "types": {
       "all": "എല്ലാം",
-      "shill": "സോഷ്യൽ മീഡിയ",
+      "shill": "Shill",
       "clipping": "ക്ലിപ്പിംഗ്",
       "contract": "കരാറുകൾ"
     },
@@ -3466,7 +3466,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "അഭിപ്രായങ്ങൾ / പ്രചാരണം",
+        "label": "Shill",
         "description": "X, YouTube, IG അല്ലെങ്കിൽ TikTok-ൽ പരിശോധിച്ചുറപ്പിച്ച ഓരോ അഭിപ്രായത്തിനും പണം നൽകുക."
       },
       "clipping": {

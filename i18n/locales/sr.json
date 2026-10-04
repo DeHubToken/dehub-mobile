@@ -3457,7 +3457,7 @@
     "postJob": "Објави посао",
     "types": {
       "all": "Све",
-      "shill": "Друштвене мреже",
+      "shill": "Shill",
       "clipping": "Сечење исечака",
       "contract": "Уговори"
     },
@@ -3473,7 +3473,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "Коментари / Промоција",
+        "label": "Shill",
         "description": "Плаћај по провереном коментару на X-у, YouTube-у, IG-у или TikTok-у."
       },
       "clipping": {

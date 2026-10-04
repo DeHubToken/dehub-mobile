@@ -3468,7 +3468,7 @@
     "postJob": "სამუშაოს გამოქვეყნება",
     "types": {
       "all": "ყველა",
-      "shill": "სოციალური მედია",
+      "shill": "Shill",
       "clipping": "კლიპების მოჭრა",
       "contract": "ხელშეკრულებები"
     },
@@ -3484,7 +3484,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "კომენტარები / რეკლამა",
+        "label": "Shill",
         "description": "გადაიხადეთ X-ზე, YouTube-ზე, IG-ზე ან TikTok-ზე ყოველ დადასტურებულ კომენტარზე."
       },
       "clipping": {

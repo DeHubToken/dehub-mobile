@@ -3446,7 +3446,7 @@
     "postJob": "发工课",
     "types": {
       "all": "全部",
-      "shill": "社交媒体",
+      "shill": "Shill",
       "clipping": "剪片",
       "contract": "合约"
     },
@@ -3462,7 +3462,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "评论／推广",
+        "label": "Shill",
         "description": "在 X、YouTube、IG 抑是 TikTok 逐条核实过其评论付钱。"
       },
       "clipping": {

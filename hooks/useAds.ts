@@ -49,6 +49,7 @@ export interface ServedAd {
 }
 
 export interface AdTargeting {
+  creatorSupport?: boolean;
   tiers?: string[];
   followerMin?: number;
   followerMax?: number;
@@ -170,6 +171,18 @@ function useWallet(): string | null {
   const user = useUser() as any;
   const w = user?.walletAddress || user?.address;
   return w ? String(w).toLowerCase() : null;
+}
+
+export function useAdRevenue() {
+  const wallet = useWallet();
+  return useQuery({
+    queryKey: ['ads', 'revenue', wallet], enabled: !!wallet, staleTime: 30000,
+    queryFn: async () => {
+      const { data, error } = await withWalletHeader(supabase.from('ad_earnings').select('total_earned_usd,total_paid_usd').eq('wallet_address', wallet!).maybeSingle(), wallet);
+      if (error) throw error;
+      return Math.max(0, Number(data?.total_earned_usd ?? 0) - Number(data?.total_paid_usd ?? 0));
+    },
+  });
 }
 
 const keys = {

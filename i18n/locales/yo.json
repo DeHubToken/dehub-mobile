@@ -3447,7 +3447,7 @@
     "postJob": "Fi iṣẹ́ ránṣẹ́",
     "types": {
       "all": "Gbogbo",
-      "shill": "Ìkànnì ìbáraẹnisọ̀rọ̀",
+      "shill": "Shill",
       "clipping": "Gígé",
       "contract": "Àwọn àdéhùn"
     },
@@ -3463,7 +3463,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "Àwọn àsọyé / Ìpolówó",
+        "label": "Shill",
         "description": "Sanwó fún gbogbo àsọyé tí a fọwọ́sí lórí X, YouTube, IG tàbí TikTok."
       },
       "clipping": {

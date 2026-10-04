@@ -3456,7 +3456,7 @@
     "postJob": "Paskelbti darbą",
     "types": {
       "all": "Visi",
-      "shill": "Socialiniai tinklai",
+      "shill": "Shill",
       "clipping": "Klipų karpymas",
       "contract": "Sutartys"
     },
@@ -3472,7 +3472,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "Komentarai / Reklama",
+        "label": "Shill",
         "description": "Mokėkite už kiekvieną patvirtintą komentarą X, YouTube, IG ar TikTok."
       },
       "clipping": {

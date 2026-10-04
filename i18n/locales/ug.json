@@ -3447,7 +3447,7 @@
     "postJob": "خىزمەت يوللاش",
     "types": {
       "all": "ھەممىسى",
-      "shill": "ئىجتىمائىي تاراتقۇ",
+      "shill": "Shill",
       "clipping": "پارچىلاش",
       "contract": "كېلىشىملەر"
     },
@@ -3463,7 +3463,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "باھالار / تەشۋىق",
+        "label": "Shill",
         "description": "X، YouTube، IG ياكى TikTok دىكى ھەر بىر دەلىللەنگەن باھا ئۈچۈن تۆلەڭ."
       },
       "clipping": {

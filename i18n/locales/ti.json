@@ -3428,7 +3428,7 @@
     "postJob": "ስራሕ ልጥፍ",
     "types": {
       "all": "ኩሉ",
-      "shill": "ማሕበራዊ መራኸቢ",
+      "shill": "Shill",
       "clipping": "ምቁራጽ",
       "contract": "ውዕላት"
     },
@@ -3444,7 +3444,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "ርእይቶታት / መወዓውዒ",
+        "label": "Shill",
         "description": "ኣብ X, YouTube, IG ወይ TikTok ንነፍሲ ወከፍ እተረጋገጸ ርእይቶ ክፈል።"
       },
       "clipping": {

@@ -3460,7 +3460,7 @@
     "postJob": "Publicar trabalho",
     "types": {
       "all": "Todas",
-      "shill": "Redes sociais",
+      "shill": "Shill",
       "clipping": "Clipes",
       "contract": "Contratos"
     },
@@ -3476,7 +3476,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "Comentários / Promoção",
+        "label": "Shill",
         "description": "Pague por comentário verificado no X, YouTube, IG ou TikTok."
       },
       "clipping": {

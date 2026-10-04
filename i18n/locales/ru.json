@@ -3460,7 +3460,7 @@
     "postJob": "Опубликовать работу",
     "types": {
       "all": "Все",
-      "shill": "Соцсети",
+      "shill": "Shill",
       "clipping": "Нарезка",
       "contract": "Контракты"
     },
@@ -3476,7 +3476,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "Комментарии / Продвижение",
+        "label": "Shill",
         "description": "Оплата за подтверждённый комментарий в X, YouTube, IG или TikTok."
       },
       "clipping": {

@@ -3478,7 +3478,7 @@
     "postJob": "Llamk'ayta churay",
     "types": {
       "all": "Llapan",
-      "shill": "Ayllu willay",
+      "shill": "Shill",
       "clipping": "K'utuy",
       "contract": "Rimanakuykuna"
     },
@@ -3494,7 +3494,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "Rimaykuna / Willakuy",
+        "label": "Shill",
         "description": "X, YouTube, IG icha TikTok ukhupi sapa takyachisqa rimaymanta quy."
       },
       "clipping": {

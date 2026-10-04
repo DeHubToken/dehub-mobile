@@ -3470,7 +3470,7 @@
     "postJob": "Handefa asa",
     "types": {
       "all": "Rehetra",
-      "shill": "Media sosialy",
+      "shill": "Shill",
       "clipping": "Fanapahana",
       "contract": "Fifanarahana"
     },
@@ -3486,7 +3486,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "Hevitra / Dokambarotra",
+        "label": "Shill",
         "description": "Mandoa isaky ny hevitra voamarina ao amin'ny X, YouTube, IG na TikTok."
       },
       "clipping": {

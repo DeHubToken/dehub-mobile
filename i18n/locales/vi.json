@@ -3468,7 +3468,7 @@
     "postJob": "Đăng việc",
     "types": {
       "all": "Tất cả",
-      "shill": "Mạng xã hội",
+      "shill": "Shill",
       "clipping": "Cắt clip",
       "contract": "Hợp đồng"
     },
@@ -3484,7 +3484,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "Bình luận / Quảng bá",
+        "label": "Shill",
         "description": "Trả theo mỗi bình luận đã xác minh trên X, YouTube, IG hoặc TikTok."
       },
       "clipping": {

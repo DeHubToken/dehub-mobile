@@ -3445,7 +3445,7 @@
     "postJob": "काम पोस्ट करव",
     "types": {
       "all": "जम्मो",
-      "shill": "सोशल मीडिया",
+      "shill": "Shill",
       "clipping": "क्लिपिंग",
       "contract": "अनुबंध"
     },
@@ -3461,7 +3461,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "टिप्पणी / प्रचार",
+        "label": "Shill",
         "description": "X, YouTube, IG या TikTok म हर सत्यापित टिप्पणी बर देवव।"
       },
       "clipping": {
