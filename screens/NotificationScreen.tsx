@@ -109,7 +109,7 @@ const FILTER_TYPE_MAP: Record<NotificationTypeFilter, NotificationType[]> = {
   all: [],
   likes: [NotificationType.LIKE, NotificationType.COMMENT_LIKE],
   follows: [NotificationType.FOLLOWING, NotificationType.FOLLOW_REQUEST, NotificationType.FOLLOW_REQUEST_ACCEPTED],
-  comments: [NotificationType.COMMENT, NotificationType.COMMENT_REPLY, NotificationType.MENTION],
+  comments: [NotificationType.COMMENT, NotificationType.COMMENT_REPLY, NotificationType.MENTION, 'work_application_reply' as NotificationType],
   reposts: [NotificationType.REPOST, NotificationType.QUOTE],
   communities: [
     ...(['community_join', 'community_mention', 'community_here'] as unknown as NotificationType[]),
@@ -143,6 +143,7 @@ const CLIENT_ONLY_TYPES = new Set<string>([
   // an unfiltered page, which is exactly the bug this set exists to prevent.
   'work_application',
   'work_submission',
+  'work_application_reply',
   'community_join',
   'community_mention',
   'community_here',
@@ -272,7 +273,7 @@ const isNotificationClickable = (notification: NotificationItem): boolean => {
   // Bounty rows carry job_number in customReferenceId, which is enough to open
   // the bounty — the uuid the detail screen wants is looked up on tap.
   const typeStr = notification.type as string;
-  if (typeStr === 'work_application' || typeStr === 'work_submission') {
+  if (['work_application', 'work_submission', 'work_application_reply'].includes(typeStr)) {
     return !!(notification as CustomNotificationItem).customReferenceId;
   }
 
@@ -1033,6 +1034,7 @@ const NotificationScreen = () => {
       // rather than duplicated into the notification.
       case 'work_application':
       case 'work_submission':
+      case 'work_application_reply':
         openBountyByNumber((notification as CustomNotificationItem).customReferenceId);
         break;
 

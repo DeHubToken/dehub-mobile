@@ -4,6 +4,7 @@ type NotificationContent = {
   actorAddress?: string;
   actor?: { displayName?: string; username?: string };
   content?: string;
+  customReferenceTitle?: string;
   commentPreview?: string;
   reaction?: string;
   amount?: number;
@@ -61,6 +62,10 @@ export function localizedNotificationContent(
   }
   if (item.type === 'following' && item.content?.toLowerCase().includes('requested')) {
     return t('reactionInfo.followRequest', { name: actor });
+  }
+  if (item.type === 'work_application_reply') {
+    const sentence = t('notifications.repliedComment', { name: actor });
+    return item.customReferenceTitle ? `${sentence} “${item.customReferenceTitle}”` : sentence;
   }
   const keys: Record<string, string> = {
     like: 'reactionInfo.reactedPost',
