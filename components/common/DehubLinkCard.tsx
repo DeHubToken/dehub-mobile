@@ -37,7 +37,7 @@ import { dehubLinkLabel, type DehubLinkMatch } from '../../libs/dehub-links';
 import { useStages } from '../../context/StageContext';
 import { useUserProfileSheet } from '../../context/UserProfileSheetContext';
 import StageRecordingPlayer from '../Stages/StageRecordingPlayer';
-import { useWorkJob, WORK_TYPE_LABEL } from '../../hooks/useWork';
+import { useWorkJob } from '../../hooks/useWork';
 import { appLocale } from "../../libs/date.util";
 import { useAppTheme } from '../../context/ThemeContext';
 import { fetchTitleOffers } from '../../services/justwatch.service';
@@ -54,6 +54,8 @@ interface RowCardProps {
   eyebrow?: string;
   title: string;
   subtitle?: string;
+  description?: string;
+  titleLines?: number;
   meta?: string;
   imageUri?: string | null;
   /** Icon shown when there is no image. */
@@ -74,6 +76,8 @@ const RowCard: React.FC<RowCardProps> = ({
   eyebrow,
   title,
   subtitle,
+  description,
+  titleLines = 1,
   meta,
   imageUri,
   fallbackIcon,
@@ -117,7 +121,7 @@ const RowCard: React.FC<RowCardProps> = ({
         )}
         <View style={styles.body}>
           {!!eyebrow && <Text style={styles.eyebrow}>{eyebrow}</Text>}
-          <Text style={styles.title} numberOfLines={1}>
+          <Text style={styles.title} numberOfLines={titleLines}>
             {title}
           </Text>
           {!!subtitle && (
@@ -126,6 +130,7 @@ const RowCard: React.FC<RowCardProps> = ({
             </Text>
           )}
           {!!meta && <Text style={styles.meta}>{meta}</Text>}
+          {!!description && <Text style={[styles.subtitle, { marginTop: 6 }]} numberOfLines={2}>{description}</Text>}
         </View>
       </View>
       {!!footer && (
@@ -420,16 +425,6 @@ const StageCardEmbed: React.FC<{
   );
 };
 
-const BOUNTY_STATUS_LABEL: Record<string, string> = {
-  draft: 'Draft',
-  open: 'Open',
-  in_progress: 'In progress',
-  completed: 'Completed',
-  disputed: 'Disputed',
-  cancelled: 'Cancelled',
-  expired: 'Expired',
-};
-
 /** A mini app in the store: icon, name, subtitle or domain, opened in the app player. */
 const AppCardEmbed: React.FC<{ slug: string; onOpen: () => void; fallback: React.ReactElement }> = ({
   slug,
@@ -461,6 +456,7 @@ const BountyCardEmbed: React.FC<{ jobKey: string; onOpen: () => void; fallback: 
   onOpen,
   fallback,
 }) => {
+  const { t } = useTranslation();
   const { data: job, isLoading, isError } = useWorkJob(jobKey);
 
   if (isLoading) return <SkeletonCard />;
@@ -472,15 +468,17 @@ const BountyCardEmbed: React.FC<{ jobKey: string; onOpen: () => void; fallback: 
 
   return (
     <RowCard
-      eyebrow={`${BOUNTY_STATUS_LABEL[job.status] ?? job.status} bounty · ${WORK_TYPE_LABEL[job.job_type] ?? job.job_type}`}
+      eyebrow={`${t('work.bounty')} · ${t(`work.status.${job.status}`)} · ${t(`work.types.${job.job_type}`)}`}
       title={job.title}
+      titleLines={2}
+      description={job.description}
       subtitle={`${budget.toLocaleString(undefined, { maximumFractionDigits: 2 })} ${job.currency}`}
       meta={
         deadline
-          ? `Due ${deadline.toLocaleDateString(appLocale(), { month: 'short', day: 'numeric' })}`
+          ? deadline.toLocaleDateString(appLocale(), { month: 'short', day: 'numeric' })
           : undefined
       }
-      imageUri={job.cover_image_url}
+      bannerUri={job.cover_image_url}
       fallbackIcon="Briefcase"
       dimmed={isClosed}
       onPress={onOpen}
