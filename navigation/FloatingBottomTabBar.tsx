@@ -102,6 +102,8 @@ interface ScrollNavItem {
 // and follows the drawer's order instead, so every destination in the drawer is
 // also reachable from here.
 const SCROLL_NAV_ITEMS: ScrollNavItem[] = [
+  { icon: "Film", labelKey: "creator.editor", screen: ScreenNames.MediaEditor },
+  { icon: "Wand", labelKey: "commandCentre.creator", screen: ScreenNames.Creator },
   { icon: "User", labelKey: "nav.profile", screen: ScreenNames.Profile },
   { icon: "Bell", labelKey: "nav.notifications", screen: ScreenNames.Notifications },
   { icon: "Wand", labelKey: "nav.prompt", screen: ScreenNames.Prompt },
