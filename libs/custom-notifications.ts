@@ -232,7 +232,7 @@ const composeContent = (row: CustomNotificationRow, resolvedUsername?: string | 
   if (composed) return composed;
   const predicate = row.content?.trim() || "sent you a notification";
   const sentence = `${actor} ${predicate}`;
-  const isBounty = row.type === "work_application" || row.type === "work_submission";
+  const isBounty = ["work_application", "work_submission", "work_application_reply"].includes(row.type);
   return isBounty && row.reference_title
     ? `${sentence} “${row.reference_title}”`
     : sentence;
