@@ -16,6 +16,14 @@
  */
 export interface FeedPage {
   result?: unknown[] | null;
+  pagination?: { hasMore?: boolean };
+}
+
+/** Honor the server's cursor even when moderation leaves a short page. */
+export function nextFeedPage(page: FeedPage, pageNumber: number, pageSize: number): number | undefined {
+  if (page.pagination?.hasMore === true) return pageNumber + 1;
+  if (page.pagination?.hasMore === false) return undefined;
+  return (page.result?.length ?? 0) >= pageSize ? pageNumber + 1 : undefined;
 }
 
 /**

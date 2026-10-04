@@ -52,10 +52,10 @@ export function normalizeSocialUrl(key: string, raw: string): string {
   const value = raw.trim().replace(/^\/\//, '');
   if (!value) return '#';
   const domains = SOCIAL_DOMAINS[key];
-  const host = value.replace(/^https?:\/\//i, '').split(/[/?#]/)[0].replace(/^www\./i, '').toLowerCase();
+  const inputHost = value.replace(/^https?:\/\//i, '').split(/[/?#]/)[0].replace(/^www\./i, '').toLowerCase();
   // A bare handle belongs to the selected platform, including handles with
   // dots. Treating it as a hostname opens https://r2r_officiel instead.
-  if (domains && !/^https?:\/\//i.test(value) && !domains.includes(host) && !value.includes('/')) {
+  if (domains && !/^https?:\/\//i.test(value) && !domains.includes(inputHost) && !value.includes('/')) {
     const handle = value.replace(/^@+/, '').replace(/\s+/g, '');
     if (!handle) return '#';
     const prefix = key === 'youtubeLink' || key === 'tiktokLink' ? '@' : '';
