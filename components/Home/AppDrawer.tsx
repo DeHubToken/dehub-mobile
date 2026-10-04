@@ -99,7 +99,7 @@ const NAV_ITEMS: DrawerItem[] = [
   { icon: "Users", labelKey: "nav.communities", screen: ScreenNames.Communities },
   { icon: "Sparkles", labelKey: "nav.assistant", screen: ScreenNames.AIChat, tab: true },
   { icon: "Film", labelKey: "creator.editor", screen: ScreenNames.MediaEditor },
-  { icon: "Wand", labelKey: "commandCentre.creator", screen: ScreenNames.Creator },
+  { icon: "Palette", labelKey: "commandCentre.creator", screen: ScreenNames.Creator },
   { icon: "Settings", labelKey: "nav.settings", screen: ScreenNames.AccountSettings, requiresAuth: true },
   { icon: "Trophy", labelKey: "nav.leaderboard", screen: ScreenNames.Leaderboard },
   { icon: "ChartNoAxesCombined", labelKey: "nav.stats", screen: ScreenNames.Stats },
@@ -157,7 +157,7 @@ const NAV_ITEMS: DrawerItem[] = [
 // closest one: a flat glyph beside the glossy set reads as a broken tile, so
 // the glyph is only the fallback for art that fails to download.
 const ICON_KEYS: Record<string, string> = {
-  "creator.editor": "videos", "commandCentre.creator": "wand",
+  "creator.editor": "videos", "commandCentre.creator": "paint",
   "nav.home": "home", "nav.profile": "profile", "nav.explore": "search", "nav.prompt": "wand",
   "nav.notifications": "notifications", "nav.messages": "messages", "nav.communities": "communities",
   "nav.assistant": "assistant", "nav.settings": "settings", "nav.leaderboard": "trophy",
