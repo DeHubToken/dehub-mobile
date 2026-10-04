@@ -1687,7 +1687,7 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
         <View style={s.welcomeWrap}>
           <View style={s.welcomeCenter}>
             <Text style={s.welcomeText}>{studio ? t('creator.studioWelcome') : WELCOME_MESSAGE}</Text>
-            {studio && <View style={{ alignSelf: 'stretch', marginTop: 20, marginHorizontal: 16 }}><GenerationExample kind={studioSettings.mode} /></View>}
+            {studio && <View style={{ alignSelf: 'stretch', marginTop: 20, marginHorizontal: 16 }}><GenerationExample kind={studioSettings.mode} model={studioSettings.model} /></View>}
           </View>
           {!studio && <QuickActionChips onAction={handleQuickAction} />}
         </View>

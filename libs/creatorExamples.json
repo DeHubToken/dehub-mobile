@@ -19,5 +19,17 @@
     "model": "ACE-Step",
     "url": "https://storage.googleapis.com/falserverless/example_outputs/ace-step-text-to-audio.wav",
     "source": "https://fal.ai/models/fal-ai/ace-step"
+  },
+  "models": {
+    "kling-o3-edit": {
+      "model": "Kling O3 Character Swap",
+      "url": "https://storage.googleapis.com/falserverless/example_outputs/kling-o3/pro-v2v-edit/output.mp4",
+      "sourceUrl": "https://fal.ai/models/fal-ai/kling-video/o3/pro/video-to-video/edit"
+    },
+    "kling-3-motion": {
+      "model": "Kling 3 Motion Control",
+      "url": "https://v3b.fal.media/files/b/0a90ffb9/CnmmxIvK05VAq4gG8WiEQ_output.mp4",
+      "sourceUrl": "https://fal.ai/models/fal-ai/kling-video/v3/pro/motion-control"
+    }
   }
 }
