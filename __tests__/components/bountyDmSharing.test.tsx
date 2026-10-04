@@ -4,14 +4,14 @@ import ShareToDmSheet from '../../components/DM/ShareToDmSheet';
 import { ScreenNames } from '../../navigation/ScreenNames';
 
 const mockNavigate = jest.fn();
+function mockFlatList({ data, renderItem }: { data: unknown[]; renderItem: (info: { item: unknown; index: number }) => React.ReactNode }) {
+  return <>{data.map((item, index) => <React.Fragment key={index}>{renderItem({ item, index })}</React.Fragment>)}</>;
+}
 jest.mock('react-native-css-interop/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
 jest.mock('react-native', () => ({
   View: 'View', Text: 'Text', TouchableOpacity: 'TouchableOpacity', TextInput: 'TextInput', ActivityIndicator: 'ActivityIndicator',
   StyleSheet: { flatten: (style: unknown) => style },
-  FlatList: ({ data, renderItem }: { data: unknown[]; renderItem: (info: { item: unknown; index: number }) => React.ReactNode }) => {
-    const { createElement, Fragment } = require('react');
-    return createElement('View', {}, data.map((item, index) => createElement(Fragment, { key: index }, renderItem({ item, index }))));
-  },
+  FlatList: mockFlatList,
 }));
 jest.mock('@react-navigation/native', () => ({ useNavigation: () => ({ navigate: mockNavigate }) }));
 jest.mock('react-i18next', () => ({ useTranslation: () => ({ t: (key: string) => key }) }));
