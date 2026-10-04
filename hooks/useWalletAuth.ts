@@ -10,6 +10,7 @@
 // available". setSigningProvider(walletProvider) below is what was missing:
 // it's what makes the connected wallet the thing that actually signs the
 // DeHub auth message.
+import "@walletconnect/react-native-compat";
 import { useState, useCallback, useEffect, useRef } from "react";
 import { toastError } from "../libs";
 import { isWalletSignupBlocked } from "../libs/walletSignupGate";
@@ -18,7 +19,7 @@ import { useAuthActions } from "../context/AuthContext";
 import { ChainId } from "../config/constants";
 import { getPreferredChainId as getStoredPreferredChainId } from "../libs/auth.utils";
 import { setSigningProvider, clearSigningProvider } from "../libs/provider.registry";
-import { getAppKitInstance } from "../config/reown.config";
+import { ensureAppKit, useAppKitReady, getAppKitInstance } from "../config/reown.config";
 import { createLogger } from "../libs/logger";
 import { beginAuthTrace } from '../libs/auth-trace';
 import { isWalletRelayPublishError } from '../libs/wallet-relay';
@@ -40,6 +41,7 @@ export const useWalletAuth = () => {
   // of the way while the picker is up. Read through the AppKit instance rather
   // than useAppKitState() so this stays safe on a build where createAppKit
   // never ran (missing REOWN_PROJECT_ID — see reown.config).
+  const kitReady = useAppKitReady();
   const [isWalletSheetOpen, setIsWalletSheetOpen] = useState(false);
   // The server refused to open an account for the wallet just signed with:
   // it has no balance and no past transaction. Shown inline by the sign-in
@@ -51,7 +53,8 @@ export const useWalletAuth = () => {
   // such a build even though only the Connect Wallet button is gated. The
   // account and provider hooks below read a store and are safe without it.
   const open = useCallback(async () => {
-    await getAppKitInstance()?.open();
+    const kit = await ensureAppKit();
+    await kit?.open();
   }, []);
   const { address: accountAddress, chainId: currentChainId } = useAppKitAccount();
   const { walletProvider } = useAppKitProvider();
@@ -81,7 +84,7 @@ export const useWalletAuth = () => {
     return instance.subscribeStateKey("open", (value) => {
       setIsWalletSheetOpen(!!value);
     });
-  }, []);
+  }, [kitReady]);
 
   const authenticateWithWallet = useCallback(
     async (address: string, chainId: number) => {
