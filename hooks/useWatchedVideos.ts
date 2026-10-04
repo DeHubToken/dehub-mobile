@@ -31,6 +31,11 @@ const STALE_MS = 5 * 60 * 1000;
 
 const EMPTY: ReadonlySet<string> = new Set<string>();
 
+// Query data is persisted as JSON. Keep arrays in the cache and build the Set
+// only for observers; a persisted Set comes back as {} without .has().
+const selectWatchedIds = (ids: string[]): ReadonlySet<string> =>
+  Array.isArray(ids) ? new Set(ids) : EMPTY;
+
 /** Shared per-account cache: card markers and the filter reuse one request. */
 export function useWatchedVideoIds(showMarker = false): { watchedIds: ReadonlySet<string>; hideWatched: boolean } {
   const { hideWatched } = useAppPrefs();
@@ -38,7 +43,8 @@ export function useWatchedVideoIds(showMarker = false): { watchedIds: ReadonlySe
   const user = useUser();
   const address = (user?.walletAddress || user?.address)?.toLowerCase() ?? null;
   const { data } = useQuery({
-    queryKey: ["watched-video-ids", address],
+    // Version 2 skips the Set-shaped entries already saved by older bundles.
+    queryKey: ["watched-video-ids", address, 2],
     enabled: isSignedIn && !!address && (hideWatched || showMarker),
     queryFn: async () => {
       const ids = new Set<string>();
@@ -50,8 +56,9 @@ export function useWatchedVideoIds(showMarker = false): { watchedIds: ReadonlySe
         });
         if (items.length < HISTORY_PAGE_SIZE) break;
       }
-      return ids;
+      return Array.from(ids);
     },
+    select: selectWatchedIds,
     staleTime: STALE_MS,
     gcTime: 30 * 60 * 1000,
   });
