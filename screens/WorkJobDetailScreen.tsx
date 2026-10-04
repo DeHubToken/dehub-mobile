@@ -53,7 +53,7 @@ import {
   useRejectSubmission,
   useLeaveReview,
   useOpenDispute,
-  useMarkComplete,
+  useMarkComplete, useWorkConfig, useFundJob, useReleasePayment, isWorkAdmin,
   isJobEditable,
   type WorkJobStatus,
   type WorkSubmission,
@@ -142,6 +142,10 @@ export default function WorkJobDetailScreen() {
   const reviewMutation = useLeaveReview();
   const disputeMutation = useOpenDispute();
   const completeMutation = useMarkComplete();
+  const fundMutation=useFundJob();
+  const releaseMutation=useReleasePayment();
+  const {data:config}=useWorkConfig();
+  const [fundingHash,setFundingHash]=useState('');
 
   const [coverLetter, setCoverLetter] = useState("");
   const [proofUrl, setProofUrl] = useState("");
@@ -152,6 +156,8 @@ export default function WorkJobDetailScreen() {
   const [showDispute, setShowDispute] = useState(false);
   const [rejectTarget, setRejectTarget] = useState<WorkSubmission | null>(null);
   const [rejectReason, setRejectReason] = useState("");
+  const [clipChecks, setClipChecks] = useState<Record<string, { views: string; evidence: string }>>({});
+  const [recoveryHashes, setRecoveryHashes] = useState<Record<string,string>>({});
 
   const requireAuth = useCallback(() => {
     if (!me) {
@@ -238,15 +244,16 @@ export default function WorkJobDetailScreen() {
   }
 
   const { isPoster, isAwarded, myApp, myReview, canReview } = roles;
+  const canManage=(isPoster && job.status!=='disputed') || (job.status==='disputed' && isWorkAdmin(me));
   const st = statusStyle(job.status);
 
+  const accepting = ["open","in_progress"].includes(job.status) && (!job.deadline || Date.parse(job.deadline) > Date.now()) && job.units_approved < job.max_units;
   const canApply =
-    job.job_type === "contract" && !isPoster && !myApp && !isAwarded && job.status === "open";
+    job.job_type === "contract" && !isPoster && !myApp && !isAwarded && job.status === "open" && accepting;
   const canSubmitProof =
     ((job.job_type !== "contract" && !isPoster) || isAwarded) &&
-    job.status !== "completed" &&
-    job.status !== "cancelled";
-  const showSubmissions = job.job_type !== "contract" || isAwarded || isPoster;
+    accepting;
+  const showSubmissions = job.job_type !== "contract" || isAwarded || canManage;
 
   return (
     <View style={styles.root}>
@@ -303,6 +310,19 @@ export default function WorkJobDetailScreen() {
                 </Text>
               </View>
             </View>
+
+            <Text style={styles.dim}>{t(job.fund_tx_hash?'work.integrity.escrowFunded':job.status==='draft'?'work.integrity.draftSaved':'work.integrity.legacyUnfunded')}</Text>
+            {isPoster && job.status==='draft' && <View style={{gap:10,marginVertical:12}}>
+              <Text style={styles.rowBody}>{t('work.integrity.draftFunding')}</Text>
+              {!config?.escrow_address && <Text style={styles.dim}>{t('work.integrity.setupRequired')}</Text>}
+              {job.funding_state!=='unfunded' && <TextInput accessibilityLabel={t('work.integrity.recoverTx')} placeholder={t('work.integrity.hashPlaceholder')} value={fundingHash} onChangeText={setFundingHash} autoCapitalize="none" style={styles.input} />}
+              <Pressable disabled={!config?.escrow_address || fundMutation.isPending} onPress={()=>fundMutation.mutate({job_id:job.id,hash:fundingHash || undefined})} style={[styles.primaryBtn,(!config?.escrow_address || fundMutation.isPending)&&styles.disabled]}>
+                <Text style={styles.primaryBtnText}>{t(job.funding_state==='unfunded'?'work.integrity.fundPublish':'work.integrity.checkFunding')}</Text>
+              </Pressable>
+              {job.funding_state==='signing' && <Pressable disabled={fundMutation.isPending} onPress={()=>Alert.alert(t('work.integrity.releaseSignature'),t('work.integrity.releaseConfirm'),[{text:t('common.cancel')},{text:t('work.integrity.releaseSignature'),onPress:()=>fundMutation.mutate({job_id:job.id,release:true})}])}>
+                <Text style={styles.dim}>{t('work.integrity.releaseSignature')}</Text>
+              </Pressable>}
+            </View>}
 
             <Text style={styles.jobTitle}>{job.title}</Text>
             <Text style={styles.jobDesc}>{job.description}</Text>
@@ -463,7 +483,13 @@ export default function WorkJobDetailScreen() {
                   // Approved is not paid. Only a payout_tx_hash proves money
                   // moved — treating the two as one status is what showed a
                   // green "Paid" over work nobody had been sent anything for.
-                  const paid = !!s.payout_tx_hash || s.approval_status === "paid";
+                  const paid = s.payout_state === 'confirmed' && !!s.payout_tx_hash;
+                  const submittedPayment = s.payout_state === 'signing' || s.payout_state === 'broadcast';
+                  const clipping = job.job_type === 'clipping';
+                  const check = clipChecks[s.id] || { views: '', evidence: s.proof_url };
+                  const verifiedViews = Number(check.views);
+                  const clipUnits = Number.isSafeInteger(verifiedViews) && verifiedViews >= 1000 ? Math.floor(verifiedViews / 1000) : 0;
+                  const validViews = !clipping || (clipUnits > 0 && /^https:\/\/\S+$/.test(check.evidence));
                   const awaitingPayment =
                     s.approval_status === "approved" && !s.payout_tx_hash;
                   const rejected = s.approval_status === "rejected";
@@ -483,11 +509,12 @@ export default function WorkJobDetailScreen() {
                     (Number(job.total_budget) || 0) - released,
                   );
                   const askingPrice =
-                    job.job_type === "contract" ? remaining : job.price_per_unit;
-                  const due = Number(s.payout_amount) || Math.min(askingPrice, remaining);
+                    job.job_type === "contract" ? job.total_budget : job.price_per_unit * (clipping ? clipUnits : 1);
+                  const gross=Number(s.gross_amount) || askingPrice;
+                  const due=Number(s.payout_amount) || gross*(job.fund_tx_hash?0.95:1);
                   // Already-settled rows keep showing the amount they were paid;
                   // only an unpaid row is blocked once the budget is spent.
-                  const budgetSpent = !s.payout_amount && remaining <= 0;
+                  const budgetSpent = gross > remaining || (!s.payout_amount && remaining <= 0);
                   return (
                     <View key={s.id} style={rowStyle}>
                       <View style={styles.rowHead}>
@@ -531,6 +558,27 @@ export default function WorkJobDetailScreen() {
                       </Pressable>
 
                       {!!s.proof_text && <Text style={styles.rowBody}>{s.proof_text}</Text>}
+                      {s.view_count_cached > 0 && <Text style={styles.rowBody}>{t('work.integrity.viewsAccepted',{count:s.view_count_cached,units:s.approved_units})}</Text>}
+                      {canManage && clipping && s.approval_status === 'pending' && (
+                        <View style={{gap:8, marginTop:10}}>
+                          <Text style={styles.rowBody}>{t('work.integrity.clipVerify')}</Text>
+                          <TextInput accessibilityLabel={t('work.integrity.verifiedViews')} placeholder={t('work.integrity.verifiedViews')} keyboardType="number-pad" value={check.views}
+                            onChangeText={views => setClipChecks(prev => ({...prev,[s.id]:{...check,views}}))} style={styles.input} />
+                          <TextInput accessibilityLabel={t('work.integrity.viewSource')} placeholder={t('work.integrity.viewSourceUrl')} autoCapitalize="none" value={check.evidence}
+                            onChangeText={evidence => setClipChecks(prev => ({...prev,[s.id]:{...check,evidence}}))} style={styles.input} />
+                        </View>
+                      )}
+                      {job.fund_tx_hash && <Text style={styles.dim}>{t('work.integrity.feeNotice',{net:due,currency:job.currency,gross})}</Text>}
+                      {submittedPayment && <Text style={styles.awaitingText}>{t('work.integrity.paymentPending')}</Text>}
+                      {canManage && job.status==='disputed' && awaitingPayment && s.payout_state==='unpaid' && <Pressable onPress={()=>promptReject(s)}><Text style={styles.rejectText}>{t('work.detail.reject')}</Text></Pressable>}
+                      {canManage && s.payout_state === 'signing' && (
+                        <TextInput accessibilityLabel={t('work.integrity.recoverTx')} placeholder={t('work.integrity.hashPlaceholder')} autoCapitalize="none"
+                          value={recoveryHashes[s.id] || ''} onChangeText={value => setRecoveryHashes(prev => ({...prev,[s.id]:value.trim()}))} style={styles.input} />
+                      )}
+                      {canManage && s.payout_state === 'signing' && <Pressable disabled={approveMutation.isPending || payMutation.isPending || releaseMutation.isPending}
+                        onPress={()=>Alert.alert(t('work.integrity.releaseSignature'),t('work.integrity.releaseConfirm'),[{text:t('common.cancel')},{text:t('work.integrity.releaseSignature'),onPress:()=>releaseMutation.mutate(s.id)}])}>
+                        <Text style={styles.dim}>{t('work.integrity.releaseSignature')}</Text>
+                      </Pressable>}
 
                       {paid && s.payout_amount > 0 && (
                         <Text style={styles.paidText}>
@@ -557,13 +605,14 @@ export default function WorkJobDetailScreen() {
                         </Text>
                       )}
 
-                      {isPoster && s.approval_status === "pending" && (
+                      {canManage && s.approval_status === "pending" && (
                         <View style={styles.subActions}>
+                          {(isPoster || !!job.fund_tx_hash) && (
                           <Pressable
                             disabled={
                               approveMutation.isPending ||
                               payMutation.isPending ||
-                              budgetSpent
+                              budgetSpent || !validViews
                             }
                             onPress={() =>
                               approveMutation.mutate({
@@ -574,6 +623,8 @@ export default function WorkJobDetailScreen() {
                                 worker_address: s.worker_address,
                                 payout_amount: due,
                                 pay: true,
+                                views: clipping ? verifiedViews : undefined,
+                                evidence_url: clipping ? check.evidence : undefined,
                               })
                             }
                             style={[styles.approveBtn, budgetSpent && styles.disabled]}
@@ -587,8 +638,9 @@ export default function WorkJobDetailScreen() {
                               })}
                             </Text>
                           </Pressable>
+                          )}
                           <Pressable
-                            disabled={approveMutation.isPending || payMutation.isPending}
+                            disabled={approveMutation.isPending || payMutation.isPending || budgetSpent || !validViews}
                             onPress={() =>
                               approveMutation.mutate({
                                 submission_id: s.id,
@@ -598,6 +650,8 @@ export default function WorkJobDetailScreen() {
                                 worker_address: s.worker_address,
                                 payout_amount: due,
                                 pay: false,
+                                views: clipping ? verifiedViews : undefined,
+                                evidence_url: clipping ? check.evidence : undefined,
                               })
                             }
                             style={styles.approveOnlyBtn}
@@ -616,7 +670,7 @@ export default function WorkJobDetailScreen() {
 
                       {/* Settle something already accepted — the only route by
                           which the existing unpaid backlog can be cleared. */}
-                      {isPoster && awaitingPayment && (
+                      {canManage && (isPoster || !!job.fund_tx_hash) && awaitingPayment && (
                         <View style={styles.subActions}>
                           <Pressable
                             disabled={payMutation.isPending || budgetSpent}
@@ -627,13 +681,14 @@ export default function WorkJobDetailScreen() {
                                 currency: job.currency,
                                 worker_address: s.worker_address,
                                 payout_amount: due,
+                                recovery_hash: recoveryHashes[s.id] || undefined,
                               })
                             }
                             style={[styles.approveBtn, budgetSpent && styles.disabled]}
                           >
                             <Icon name="Wallet" size={12} color="#D4D4D8" />
                             <Text style={styles.approveText}>
-                              {t("work.detail.payNow", {
+                              {submittedPayment ? t('work.integrity.checkPayment') : t("work.detail.payNow", {
                                 amount: due,
                                 currency: job.currency,
                                 defaultValue: "Pay {{amount}} {{currency}}",
@@ -710,12 +765,12 @@ export default function WorkJobDetailScreen() {
 
           {/* Actions */}
           <View style={styles.actions}>
-            {isPoster && job.status === "in_progress" && (
-              <Pressable onPress={() => completeMutation.mutate(job.id)} style={styles.primaryBtn}>
+            {isPoster && ["open","in_progress","expired"].includes(job.status) && (
+              <Pressable disabled={completeMutation.isPending || submissions.some(s=>s.approval_status==="pending" || (s.approval_status==="approved" && s.payout_state!=="confirmed")) || (!!job.fund_tx_hash && !!job.deadline && Date.parse(job.deadline)>Date.now())} onPress={() => completeMutation.mutate(job.id)} style={styles.primaryBtn}>
                 <Text style={styles.primaryBtnText}>{t("work.detail.markComplete")}</Text>
               </Pressable>
             )}
-            {(isPoster || isAwarded) &&
+            {(isPoster || isAwarded || submissions.some(s=>s.worker_address===me)) &&
               job.status !== "completed" &&
               job.status !== "disputed" && (
                 <Pressable onPress={() => setShowDispute((s) => !s)} style={styles.disputeBtn}>

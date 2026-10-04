@@ -364,7 +364,7 @@ export default function WorkPostScreen() {
                   {t("work.platformFee")}
                 </Text>
                 <Text style={styles.totalWarn}>
-                  {t("work.escrowNotice")}
+                  {t("work.integrity.draftFunding")}
                 </Text>
               </View>
 
@@ -384,7 +384,7 @@ export default function WorkPostScreen() {
                   {createJob.isPending ? (
                     <ActivityIndicator color="#000000" />
                   ) : (
-                    <Text style={styles.primaryBtnText}>{t("work.postJob")}</Text>
+                    <Text style={styles.primaryBtnText}>{t("work.integrity.saveDraft")}</Text>
                   )}
                 </Pressable>
               </View>

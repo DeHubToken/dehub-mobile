@@ -338,12 +338,12 @@ export default function WorkEditScreen() {
 
           <View style={{ height: 14 }} />
           <Field label={t("work.fields.deadlineOptional")}>
-            <Pressable onPress={() => setShowDatePicker(true)} style={styles.input}>
+            <Pressable disabled={!!job.fund_tx_hash || job.funding_state!=="unfunded"} onPress={() => setShowDatePicker(true)} style={styles.input}>
               <Text style={{ color: deadline ? "#FFFFFF" : "#8B8D90", fontSize: 14 }}>
                 {deadline || t("work.fields.pickDate")}
               </Text>
             </Pressable>
-            {deadline.length > 0 && (
+            {deadline.length > 0 && !job.fund_tx_hash && job.funding_state==="unfunded" && (
               <Pressable
                 onPress={() => setDeadline("")}
                 hitSlop={16}
