@@ -3,7 +3,9 @@ import type { NativeSyntheticEvent, TextInputContentSizeChangeEventData } from '
 import { useGrowingTextInput } from '../../hooks/useGrowingTextInput';
 
 it('grows wrapped comments, scrolls at the limit, shrinks on editing and resets after send', () => {
-  const { result, rerender } = renderHook(({ value }) => useGrowingTextInput(value), { initialProps: { value: 'long comment' } });
+  const { result, rerender } = renderHook<ReturnType<typeof useGrowingTextInput>, { value: string }>(
+    ({ value }) => useGrowingTextInput(value), { initialProps: { value: 'long comment' } },
+  );
   const measure = (height: number) => act(() => result.current.onContentSizeChange({ nativeEvent: { contentSize: { width: 200, height } } } as NativeSyntheticEvent<TextInputContentSizeChangeEventData>));
   measure(72);
   expect(result.current.height).toBe(72);
