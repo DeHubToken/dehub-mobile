@@ -13,3 +13,9 @@ Paid and free image requests forward the selected aspect ratio. Video submission
 The [authenticated Marketing Studio catalog](https://open.higgsfield.ai/models/workflows/product-shots/api-reference) is separate from this release. It returns `total`, `cursor` and `items` from `GET https://api.higgsfield.ai/marketing-studio/image/presets?size=50`. All pages must be consumed with server-side API credentials. Enhanced generation uses the current preset ID and a product image; preset UUIDs must not be hardcoded.
 
 The DeHub Creator credential is configured in the backend as `HIGGSFIELD_API_KEY`. The full live catalog and generation through Higgsfield remain unverified. This release uses DeHub’s existing generation providers. The mobile application must receive any live provider catalog through DeHub’s backend; provider credentials must stay on the server.
+
+## Expanded original recipes
+
+The shared image/video catalog adds 100 original DeHub recipes: 60 image looks and 40 video shots. These additions live in expandedStudioPresets.ts in each client and are separate from the 24 published Higgsfield starter recipes. The shared catalog now has 103 image and 79 video presets.
+
+The new image recipes default to Nano Banana 2 and the video shots to Kling 2.5 Turbo, with explicit aspect ratios. Six reference-animation shots require an attached image; the other 94 can start from a text subject or their sample. English and French names and hints match across both clients. Search covers labels, categories, shot directions and samples.
