@@ -17,12 +17,15 @@ export const NAV_PILL_SHADOW = Platform.select({
 export default function NavPillSurface() {
   const { colors, isLight, isMinimal, skin } = useAppTheme();
   const iosGlass = Platform.OS === "ios" && !isLight && !isMinimal;
+  // Every painted layer must share the rim's shape. The capsule leaves its
+  // controls unclipped, so a square fill otherwise shows behind rounded corners.
+  const radius = Number(skin?.barBorder.borderRadius ?? NAV_PILL_RADIUS);
   return (
     <>
       {iosGlass ? (
         <IosGlassPill
           tint={glassTint(String(skin?.barFill.backgroundColor ?? styles.fill.backgroundColor), 0.22)}
-          borderRadius={Number(skin?.barBorder.borderRadius ?? NAV_PILL_RADIUS)}
+          borderRadius={radius}
         />
       ) : (
         <View pointerEvents="none" style={[
@@ -31,9 +34,10 @@ export default function NavPillSurface() {
           isLight && { backgroundColor: colors.background },
           isMinimal && { backgroundColor: "#000" },
           skin && skin.barFill,
+          { borderRadius: radius },
         ]} />
       )}
-      {skin?.grain ? <Image source={GRAIN} resizeMode="repeat" style={StyleSheet.absoluteFill} /> : null}
+      {skin?.grain ? <Image source={GRAIN} resizeMode="repeat" style={[StyleSheet.absoluteFill, { borderRadius: radius }]} /> : null}
       <View pointerEvents="none" style={[
         styles.border,
         isLight && { borderColor: "rgba(0, 0, 0, 0.12)" },
