@@ -166,6 +166,27 @@ const writePackCache = async (key: string, value: string) => { try { await Async
 const loadedPacks = new Set<string>();
 const retryAfter = new Map<string, number>();
 const pendingPacks = new Map<string, Promise<boolean>>();
+const pendingSourceLanguages = new Map<string, Promise<Record<string, unknown>>>();
+async function loadSourceLanguage(lang: string): Promise<Record<string, unknown>> {
+  const key = `${manifest.version}:${lang}:source`;
+  if (pendingSourceLanguages.has(key)) return pendingSourceLanguages.get(key)!;
+  const pending = (async () => {
+    const cached = await readPackCache(key);
+    if (cached) return JSON.parse(cached);
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 8000);
+    try {
+      const response = await fetch(`https://raw.githubusercontent.com/DeHubToken/dehub-mobile/${manifest.sourceRef}/i18n/locales/${lang}.json`, { signal: controller.signal });
+      if (!response.ok) throw new Error('Language source unavailable');
+      const data = await response.json();
+      if (!data || typeof data !== 'object' || Array.isArray(data)) throw new Error('Invalid language source');
+      await writePackCache(key, JSON.stringify(data));
+      return data;
+    } finally { clearTimeout(timeout); }
+  })().finally(() => { pendingSourceLanguages.delete(key); });
+  pendingSourceLanguages.set(key, pending);
+  return pending;
+}
 async function loadPack(lang: string, group: string): Promise<boolean> {
   if (lang === 'en') return true;
   if (!manifest.languages.includes(lang)) return false;
@@ -179,15 +200,21 @@ async function loadPack(lang: string, group: string): Promise<boolean> {
       let data: Record<string, unknown>;
       if (cached) data = JSON.parse(cached);
       else {
-        const controller = new AbortController();
-        const timeout = setTimeout(() => controller.abort(), 8000);
-        try {
-          const response = await fetch(`${packOrigin}/locale-packs/mobile/${manifest.version}/${lang}/${group}.json`, { signal: controller.signal });
-          if (!response.ok) throw new Error('Locale pack unavailable');
-          data = await response.json();
-        } finally { clearTimeout(timeout); }
-        if (!data || typeof data !== 'object' || Array.isArray(data)) return false;
-        await writePackCache(key, JSON.stringify(data));
+        const cachedSource = await readPackCache(`${manifest.version}:${lang}:source`);
+        if (cachedSource) data = JSON.parse(cachedSource);
+        else {
+          const controller = new AbortController();
+          const timeout = setTimeout(() => controller.abort(), 8000);
+          try {
+            const response = await fetch(`${packOrigin}/locale-packs/mobile/${manifest.version}/${lang}/${group}.json`, { signal: controller.signal });
+            if (!response.ok) throw new Error('Locale pack unavailable');
+            data = await response.json();
+          } catch {
+            data = await loadSourceLanguage(lang);
+          } finally { clearTimeout(timeout); }
+          if (!data || typeof data !== 'object' || Array.isArray(data)) return false;
+          await writePackCache(key, JSON.stringify(data));
+        }
       }
       // Mark first: resource events rerender consumers synchronously.
       loadedPacks.add(key);
@@ -209,7 +236,6 @@ i18n.use({
     if (group) {
       requestedGroups.add(group);
       void loadPack(i18n.language || 'en', group);
-
     }
     return value;
   },
