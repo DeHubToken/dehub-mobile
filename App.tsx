@@ -80,8 +80,7 @@ import StagesModalsHost from "./components/Stages/StagesModalsHost";
 import StageRecordingMiniPlayer from "./components/Stages/StageRecordingMiniPlayer";
 import RadioMiniPlayer from "./components/Music/RadioMiniPlayer";
 import AudioPostMiniPlayer from "./components/Home/AudioPostMiniPlayer";
-import { AppKit } from "@reown/appkit-ethers5-react-native";
-import { isWalletConnectAvailable } from "./config/reown.config";
+import WalletRuntimeHost from "./components/auth/WalletRuntimeHost";
 import { markBootRevealed } from "./libs/bootReveal";
 import BadgeLadderSync from "./components/Badge/BadgeLadderSync";
 import { AppThemeProvider, useAppTheme, useThemeRootStyle } from "./context/ThemeContext";
@@ -232,7 +231,7 @@ export default function App() {
                 Rendering AppKit against a configuration that never initialised
                 is what a missing REOWN_PROJECT_ID now degrades to, instead of
                 a module-scope throw that killed boot before React existed. */}
-            {isWalletConnectAvailable && <AppKit />}
+            <WalletRuntimeHost />
             {/* Settings → Appearance → Dim Lights. Above every surface,
                 below nothing — same stacking as web's fixed overlay. */}
             <DimLightsOverlay />

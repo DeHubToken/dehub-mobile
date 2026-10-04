@@ -1,3 +1,4 @@
+import "@web3auth/react-native-sdk/setup";
 // LEGACY Web3Auth — one-time wallet migration only
 // ================================================
 // Native RN port of dehubweb's src/lib/legacy-web3auth.ts: lets a user who has
