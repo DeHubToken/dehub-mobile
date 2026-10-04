@@ -6,6 +6,15 @@ import { dhbPosition, dhbBreakdown, dhbStaked } from '../../libs/dhb-position';
  * what the user has — the Settings row did exactly that.
  */
 describe('dhbPosition', () => {
+  it('keeps DAO badge credit out of wallet holdings and staking totals', () => {
+    const user = {
+      ownBadgeBalance: 1_100_000,
+      balanceData: [{ chainId: 8453, walletBalance: 20_000, staked: 580_000, daoContributed: 500_000 }],
+    };
+    expect(dhbPosition(user)).toBe(600_000);
+    expect(dhbBreakdown(user).summed).toBe(600_000);
+    expect(dhbStaked(user)).toBe(580_000);
+  });
   it('prefers the server sum', () => {
     expect(dhbPosition({ ownBadgeBalance: 11100000.09806 })).toBeCloseTo(11100000.09806, 5);
   });

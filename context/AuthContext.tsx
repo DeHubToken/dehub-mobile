@@ -64,6 +64,8 @@ export interface User {
     chainId: number;
     walletBalance: number;
     staked: number;
+    /** Lifetime DHB contribution credit used by badges. */
+    daoContributed?: number;
   }[];
   depositedBalance?: number;
   displayName?: string;

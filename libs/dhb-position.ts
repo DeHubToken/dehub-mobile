@@ -23,6 +23,7 @@ export interface DhbBalanceRow {
   chainId: number;
   walletBalance?: number | string;
   staked?: number | string;
+  daoContributed?: number | string;
 }
 
 export interface DhbPositionSource {
@@ -70,7 +71,14 @@ export function dhbPosition(
   liquidFallback: number | string = 0,
 ): number {
   const own = user?.ownBadgeBalance;
-  if (typeof own === 'number' && own > 0) return own;
+  if (typeof own === 'number' && own > 0) {
+    // DAO contributions retain badge credit but are no longer tokens owned
+    // by this wallet. Keep wallet totals and staking separate from that credit.
+    const contributed = (user?.balanceData || [])
+      .filter(entry => DHB_POSITION_CHAINS[entry?.chainId] !== undefined)
+      .reduce((sum, entry) => sum + (Number(entry.daoContributed) || 0), 0);
+    return Math.max(0, own - contributed);
+  }
   const { summed } = dhbBreakdown(user);
   if (summed > 0) return summed;
   return Number(liquidFallback) || 0;
