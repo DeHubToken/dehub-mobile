@@ -10,13 +10,16 @@
  * state is fetched when the rail appears so existing follows and private
  * account requests never look actionable again.
  */
-import React, { FC, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import React, { FC, useCallback, useRef } from "react";
+import { useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from "react-i18next";
 import { ActivityIndicator, View, Text, ScrollView, TouchableOpacity } from "react-native";
 import Avatar from "./Avatar";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import { useAuth, useUser } from "../../context/AuthContext";
-import { followUser, isFollowing } from "../../services/user.service";
+import { followUser } from "../../services/user.service";
+import { followStatusOptions, useSearchFollowStates } from '../../hooks/useSearchFollowState';
+import { useKeyedState } from '../../hooks/useItemState';
 import { reportActionError } from "../../libs/error-feedback";
 import {
   joinedAgoLabel,
@@ -25,20 +28,11 @@ import {
 } from "../../hooks/useNewMembers";
 import { useAppTheme } from "../../context/ThemeContext";
 
-/** How much of the roster to hold, so followed members can leave the rail. */
-const ROSTER_SIZE = 40;
+/** How much of the roster to show. Followed members keep their status label. */
+const ROSTER_SIZE = 20;
 
-/** Keep at least this many cards on screen once follows start removing them. */
+/** Maximum number of cards on screen. */
 const VISIBLE_LIMIT = 20;
-
-/** Follow-status lookups in flight at once. */
-const FOLLOW_CHECK_CONCURRENCY = 4;
-
-type FollowState = {
-  isFollowing: boolean;
-  isPending: boolean;
-  isLoading?: boolean;
-};
 
 const NewMembersRail: FC = () => {
   const { t } = useTranslation();
@@ -47,59 +41,15 @@ const NewMembersRail: FC = () => {
   const { requireAuth } = useAuth();
   const authUser = useUser() as { address?: string; walletAddress?: string } | null;
   const viewerAddress = authUser?.address ?? authUser?.walletAddress;
-  // Deep enough that following a run of members never empties the rail: the
-  // ones you follow leave it, and the next names slide in behind them.
+  const queryClient = useQueryClient();
   const { data: members = [] } = useNewMembers(ROSTER_SIZE);
   const viewerAddressRef = useRef(viewerAddress);
-  const [followStates, setFollowStates] = useState<Record<string, FollowState>>({});
+  const followStates = useSearchFollowStates(viewerAddress || '', members.map(member => member.address));
+  const [loadingAddress, setLoadingAddress] = useKeyedState<string | null>(viewerAddress?.toLowerCase() || '', null);
 
   // `requireAuth` can resume the saved press immediately after sign-in, before
   // an effect would have a chance to refresh this value.
   viewerAddressRef.current = viewerAddress;
-
-  useEffect(() => {
-    let cancelled = false;
-    if (!viewerAddress || members.length === 0) {
-      setFollowStates({});
-      return () => {
-        cancelled = true;
-      };
-    }
-
-    // A few at a time, not the whole roster at once: forty simultaneous
-    // is_following calls tripped the API's rate limit, which then refused the
-    // feed's own requests too, and a refused check reads as "not following".
-    const relationships: (readonly [string, Awaited<ReturnType<typeof isFollowing>>])[] = [];
-    let cursor = 0;
-    const worker = async () => {
-      while (!cancelled && cursor < members.length) {
-        const member = members[cursor++];
-        relationships.push([member.address.toLowerCase(), await isFollowing(member.address)] as const);
-      }
-    };
-    void Promise.all(Array.from({ length: FOLLOW_CHECK_CONCURRENCY }, worker)).then(() => {
-      if (cancelled) return;
-      setFollowStates((current) => {
-        const next: Record<string, FollowState> = {};
-        for (const [address, relationship] of relationships) {
-          // A successful tap wins over an in-flight status lookup.
-          if (current[address]?.isFollowing || current[address]?.isPending) {
-            next[address] = current[address];
-          } else {
-            next[address] = {
-              isFollowing: relationship.isFollowing,
-              isPending: !!relationship.isFollowRequestPending,
-            };
-          }
-        }
-        return next;
-      });
-    });
-
-    return () => {
-      cancelled = true;
-    };
-  }, [members, viewerAddress]);
 
   const openProfile = useCallback(
     (member: NewMember) => {
@@ -119,52 +69,34 @@ const NewMembersRail: FC = () => {
     const address = member.address.toLowerCase();
     if (!viewer || !member.address) return;
 
-    setFollowStates((current) => ({
-      ...current,
-      [address]: { ...current[address], isFollowing: false, isPending: false, isLoading: true },
-    }));
+    setLoadingAddress(address);
 
     try {
       const response = await followUser(viewer, member.address);
-      setFollowStates((current) => ({
-        ...current,
-        [address]: {
+      queryClient.setQueryData(followStatusOptions(viewer, member.address).queryKey, {
           isFollowing: response.status === "following",
-          isPending: response.status === "pending",
-        },
-      }));
+          isFollowRequestPending: response.status === "pending",
+      });
     } catch (err) {
-      setFollowStates((current) => ({
-        ...current,
-        [address]: { ...(current[address] ?? { isFollowing: false, isPending: false }), isLoading: false },
-      }));
       reportActionError(err, "Couldn't follow this member");
+    } finally {
+      setLoadingAddress(null);
     }
-  }, []);
+  }, [queryClient, setLoadingAddress]);
 
   const handleFollow = useCallback(
     (member: NewMember) => {
       const address = member.address.toLowerCase();
       const state = followStates[address];
-      if (state?.isFollowing || state?.isPending || state?.isLoading) return;
+      if (state?.isFollowing || state?.isFollowRequestPending || loadingAddress || (viewerAddress && !state)) return;
       requireAuth(() => {
         void followMember(member);
       });
     },
-    [followMember, followStates, requireAuth],
+    [followMember, followStates, requireAuth, loadingAddress, viewerAddress],
   );
 
-  // A member you already follow — or just followed — leaves the rail, the way
-  // the home suggestions row behaves. The roster is fetched deep enough that
-  // the next names take their place instead of the row thinning out.
-  const visibleMembers = useMemo(() => {
-    const shown = members.filter((member) => {
-      const state = followStates[member.address.toLowerCase()];
-      if (!state) return true;
-      return !state.isFollowing && !state.isPending;
-    });
-    return shown.slice(0, VISIBLE_LIMIT);
-  }, [members, followStates]);
+  const visibleMembers = members.slice(0, VISIBLE_LIMIT);
 
   if (visibleMembers.length === 0) return null;
 
@@ -182,8 +114,8 @@ const NewMembersRail: FC = () => {
         {visibleMembers.map((member) => {
           const state = followStates[member.address.toLowerCase()];
           const isFollowed = state?.isFollowing ?? false;
-          const isPending = state?.isPending ?? false;
-          const isLoading = state?.isLoading ?? false;
+          const isPending = state?.isFollowRequestPending ?? false;
+          const isLoading = loadingAddress === member.address.toLowerCase() || (!!viewerAddress && !state);
           return (
             <View
               key={member.address}

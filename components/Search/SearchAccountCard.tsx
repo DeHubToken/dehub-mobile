@@ -1,5 +1,5 @@
 import BadgeArtwork from "../common/BadgeArtwork";
-import React, { FC, useCallback, useState } from "react";
+import React, { FC, useCallback } from "react";
 import { View, Text, TouchableOpacity} from "react-native";
 import SmartImage from "../common/SmartImage";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
@@ -7,7 +7,7 @@ import { useUser } from "../../context/AuthContext";
 import { getAvatarUrl } from "../../libs/misc";
 import { formatCompactNumber } from "../../libs/numbers.util";
 import { getBadgeUrlFor, getBadgeHoverOpticalStyle as getBadgeOpticalStyle } from "../../libs/misc";
-import { followUser, unfollowUser } from "../../services/user.service";
+import { useSearchFollowState } from "../../hooks/useSearchFollowState";
 import Avatar from "../common/Avatar";
 import GlassFollowButton from "../ui/GlassFollowButton";
 import { reportActionError } from "../../libs/error-feedback";
@@ -30,9 +30,10 @@ const SearchAccountCard: FC<SearchAccountCardProps> = ({ account, onFollowChange
     myAddress.toLowerCase() === account.address.toLowerCase()
   );
 
-  const [isFollowing, setIsFollowing] = useState(!!account.isFollowing);
-  const [isPending, setIsPending] = useState(!!account.isFollowRequestPending);
-  const [followLoading, setFollowLoading] = useState(false);
+  const { isFollowing, isPending, isLoading: followLoading, toggle } = useSearchFollowState(account.address, {
+    isFollowing: !!account.isFollowing,
+    isFollowRequestPending: !!account.isFollowRequestPending,
+  });
 
   const handlePress = useCallback(() => {
     const identifier = account.username || account.address;
@@ -41,33 +42,15 @@ const SearchAccountCard: FC<SearchAccountCardProps> = ({ account, onFollowChange
   }, [account.username, account.address, showUserProfile]);
 
   const handleFollowToggle = useCallback(async () => {
-    if (!myAddress || !account.address || isOwnAccount) return;
-    setFollowLoading(true);
+    if (!myAddress || !account.address || isOwnAccount || followLoading) return;
     try {
-      if (isFollowing || isPending) {
-        await unfollowUser(myAddress, account.address);
-        setIsFollowing(false);
-        setIsPending(false);
-        onFollowChange?.(account.address, { isFollowing: false, isFollowRequestPending: false });
-      } else {
-        const res = await followUser(myAddress, account.address);
-        if (res.status === "pending") {
-          setIsPending(true);
-          setIsFollowing(false);
-          onFollowChange?.(account.address, { isFollowing: false, isFollowRequestPending: true });
-        } else {
-          setIsFollowing(true);
-          setIsPending(false);
-          onFollowChange?.(account.address, { isFollowing: true, isFollowRequestPending: false });
-        }
-      }
+      const next = await toggle();
+      if (next) onFollowChange?.(account.address, { isFollowing: next.isFollowing, isFollowRequestPending: !!next.isFollowRequestPending });
     } catch (e) {
       console.error("[SearchAccountCard] follow error", e);
       reportActionError(e, "Couldn't update follow");
-    } finally {
-      setFollowLoading(false);
     }
-  }, [myAddress, account.address, isOwnAccount, isFollowing, isPending, onFollowChange]);
+  }, [myAddress, account.address, isOwnAccount, followLoading, toggle, onFollowChange]);
 
   const username = account.username || account.address?.slice(0, 6) || "unknown";
   const displayName = account.displayName || username;

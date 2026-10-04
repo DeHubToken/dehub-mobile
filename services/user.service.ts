@@ -617,15 +617,20 @@ export interface IsFollowingResult {
  * Also returns isFollowRequestPending for private accounts.
  * Endpoint (GET, AuthGuard): /is_following?target=<targetAddress>
  */
-export async function isFollowing(targetAddress: string): Promise<IsFollowingResult> {
+export async function getFollowStatus(targetAddress: string): Promise<IsFollowingResult> {
   if (!targetAddress) return { isFollowing: false, isFollowRequestPending: false };
   const url = `/is_following?target=${encodeURIComponent(targetAddress)}`;
+  const res = await apiClient.get<any>(url, { isAuthRequired: true });
+  const payload = res?.data?.result ?? res?.result ?? res;
+  return {
+    isFollowing: typeof payload === 'boolean' ? payload : !!payload?.isFollowing,
+    isFollowRequestPending: typeof payload === 'boolean' ? false : !!payload?.isFollowRequestPending,
+  };
+}
+
+export async function isFollowing(targetAddress: string): Promise<IsFollowingResult> {
   try {
-    const res = await apiClient.get<any>(url, { isAuthRequired: true });
-    const payload = res?.result || res;
-    const val = (payload?.isFollowing ?? false) as boolean;
-    const pending = (payload?.isFollowRequestPending ?? false) as boolean;
-    return { isFollowing: !!val, isFollowRequestPending: !!pending };
+    return await getFollowStatus(targetAddress);
   } catch (e) {
     // Treat failures as not-following to keep UI permissive
     return { isFollowing: false, isFollowRequestPending: false };
