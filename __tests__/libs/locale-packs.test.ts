@@ -1,4 +1,5 @@
 jest.mock('expo-localization', () => ({ getLocales: () => [{ languageCode: 'en' }] }));
+jest.mock('expo/virtual/env', () => ({ env: process.env }));
 
 const originalFetch = global.fetch;
 beforeEach(() => { jest.resetModules(); });
