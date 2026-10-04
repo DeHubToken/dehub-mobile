@@ -43,7 +43,7 @@ export default memo(function CreatorReferenceAssets({ assets, mode, onChange, on
       if (result.canceled) return;
       const selected: CreatorReferenceAsset[] = [];
       for (const asset of result.assets) {
-        if ((asset.fileSize ?? 0) > (video ? 100 : 20) * 1024 * 1024) { toastError(t('creator.fileTooLarge', { max: video ? 100 : 20 })); return; }
+        if ((asset.fileSize ?? 0) > (video ? 100 : 20) * 1024 * 1024) { toastError(t('stages.fileTooLarge', { max: video ? 100 : 20 })); return; }
         const seconds = video ? (asset.duration ?? 0) / 1000 : undefined;
         if (video && (!seconds || seconds < 3 || seconds > 30 || !/\.(mp4|mov)(?:\?|$)/i.test(asset.fileName ?? asset.uri))) {
           toastError(t('creator.referenceClipLength')); return;
