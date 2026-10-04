@@ -3436,7 +3436,7 @@
     "postJob": "دنده ولیکئ",
     "types": {
       "all": "ټول",
-      "shill": "ټولنیزې رسنۍ",
+      "shill": "Shill",
       "clipping": "کلپ کول",
       "contract": "تړونونه"
     },
@@ -3452,7 +3452,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "تبصرې / اعلان",
+        "label": "Shill",
         "description": "په X، YouTube، IG یا TikTok کې د هرې تایید شوې تبصرې لپاره ورکړئ."
       },
       "clipping": {

@@ -3431,7 +3431,7 @@
     "postJob": "Post job",
     "types": {
       "all": "Ol",
-      "shill": "Social media",
+      "shill": "Shill",
       "clipping": "Clipping",
       "contract": "Contract dem"
     },
@@ -3447,7 +3447,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "Comment dem / Shill",
+        "label": "Shill",
         "description": "Pay per confam comment fo X, YouTube, IG or TikTok."
       },
       "clipping": {

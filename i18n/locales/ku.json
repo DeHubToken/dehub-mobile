@@ -3446,7 +3446,7 @@
     "postJob": "Karekî biweşîne",
     "types": {
       "all": "Hemû",
-      "shill": "Medyaya civakî",
+      "shill": "Shill",
       "clipping": "Klîpkirin",
       "contract": "Peyman"
     },
@@ -3462,7 +3462,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "Şîrove / Reklam",
+        "label": "Shill",
         "description": "Ji bo her şîroveya pejirandî li X, YouTube, IG an TikTok bide."
       },
       "clipping": {

@@ -3444,7 +3444,7 @@
     "postJob": "ڪم پوسٽ ڪريو",
     "types": {
       "all": "سڀ",
-      "shill": "سوشل ميڊيا",
+      "shill": "Shill",
       "clipping": "ڪلپنگ",
       "contract": "معاهدا"
     },
@@ -3460,7 +3460,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "تبصرا / تشهير",
+        "label": "Shill",
         "description": "X، YouTube، IG يا TikTok تي هر تصديق ٿيل تبصري لاءِ ادا ڪريو."
       },
       "clipping": {

@@ -3444,7 +3444,7 @@
     "postJob": "Iş iber",
     "types": {
       "all": "Hemmesi",
-      "shill": "Sosial media",
+      "shill": "Shill",
       "clipping": "Kliplemek",
       "contract": "Şertnamalar"
     },
@@ -3460,7 +3460,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "Teswirler / Mahabat",
+        "label": "Shill",
         "description": "X, YouTube, IG ýa-da TikTok-da tassyklanan her teswir üçin töläň."
       },
       "clipping": {
