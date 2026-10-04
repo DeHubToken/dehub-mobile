@@ -34,6 +34,7 @@ const COOLDOWN_MS = ANIM_DURATION;
  */
 export const useCollapsibleHeader = ({ collapseHeight }: { collapseHeight?: number } = {}) => {
   const translateY = useSharedValue(0);
+  const scrollOffset = useSharedValue(0);
   const headerHeightSV = useSharedValue(0);
   const visibleSV = useSharedValue(1);
   // Mirrored into a shared value for the worklet path and a ref for the JS one,
@@ -81,6 +82,7 @@ export const useCollapsibleHeader = ({ collapseHeight }: { collapseHeight?: numb
 
   const driveWorklet = (scrollY: number) => {
     'worklet';
+    scrollOffset.value = Math.max(0, scrollY);
     const h = headerHeightSV.value;
     if (h <= 0) return;
 
@@ -136,6 +138,7 @@ export const useCollapsibleHeader = ({ collapseHeight }: { collapseHeight?: numb
 
   const driveJS = useCallback(
     (scrollY: number) => {
+      scrollOffset.value = Math.max(0, scrollY);
       const h = heightRef.current;
       if (h <= 0) return;
 
@@ -174,7 +177,7 @@ export const useCollapsibleHeader = ({ collapseHeight }: { collapseHeight?: numb
         animateTo(0);
       }
     },
-    [translateY],
+    [translateY, scrollOffset],
   );
 
   const handleScrollOffset = useCallback(
@@ -211,6 +214,7 @@ export const useCollapsibleHeader = ({ collapseHeight }: { collapseHeight?: numb
 
   return {
     translateY,
+    scrollOffset,
     headerHeight,
     headerAnimatedStyle,
     scrollHandler,

@@ -2,6 +2,7 @@ import React from 'react';
 import { act, create, type ReactTestRenderer } from 'react-test-renderer';
 import { DeHubRefreshControl, DeHubRefreshMark } from '../../components/Feed/DeHubRefreshControl';
 import { useFeedPillRefreshing } from '../../libs/feed-pill-refresh';
+import { HomePullRefreshContext } from '../../context/HomePullRefreshContext';
 
 jest.mock('react-native-css-interop/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
 jest.mock('dehub-jsx/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
@@ -50,4 +51,17 @@ it('retains the native refresh callback while hiding every native indicator colo
   expect(control.props).toMatchObject({ refreshing: true, tintColor: 'transparent', colors: ['transparent'], progressBackgroundColor: 'transparent', progressViewOffset: 56 });
   act(() => control.props.onRefresh());
   expect(onRefresh).toHaveBeenCalledTimes(1);
+});
+it('hands the active home refresh to the spring gesture without parking the native wrapper', () => {
+  const onRefresh = jest.fn(), unregister = jest.fn();
+  let gestureRefresh: (() => void) | undefined;
+  const register = jest.fn((refresh: () => void) => { gestureRefresh = refresh; return unregister; });
+  act(() => { tree = create(<HomePullRefreshContext.Provider value={{ enabled: true, register }}><DeHubRefreshControl refreshing onRefresh={onRefresh} /></HomePullRefreshContext.Provider>); });
+  const control = tree.root.findByType('RefreshControl' as any);
+  expect(control.props).toMatchObject({ refreshing: false, enabled: false });
+  act(() => gestureRefresh?.());
+  expect(onRefresh).toHaveBeenCalledTimes(1);
+  act(() => tree.update(<HomePullRefreshContext.Provider value={null}><DeHubRefreshControl refreshing onRefresh={onRefresh} /></HomePullRefreshContext.Provider>));
+  expect(unregister).toHaveBeenCalledTimes(1);
+  expect(tree.root.findByType('RefreshControl' as any).props.refreshing).toBe(true);
 });
