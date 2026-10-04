@@ -42,6 +42,7 @@ interface TemplatesSheetProps {
   onClose: () => void;
   activeId: string | null;
   onSelect: (template: CreatorTemplate) => void;
+  initialKind?: TemplateKind;
 }
 
 /** One emoji per group, so the long list scans by shape as well as by text. */
@@ -64,6 +65,7 @@ const TemplatesSheetComponent: React.FC<TemplatesSheetProps> = ({
   onClose,
   activeId,
   onSelect,
+  initialKind = 'video',
 }) => {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
@@ -74,6 +76,7 @@ const TemplatesSheetComponent: React.FC<TemplatesSheetProps> = ({
   const [isFullyClosed, setIsFullyClosed] = useSheetClosed(visible);
   const [kind, setKind] = useState<TemplateKind>('video');
   const [query, setQuery] = useState('');
+  useEffect(() => { if (visible) setKind(initialKind); }, [visible, initialKind]);
   const templates = useMemo(() => {
     const search = query.trim().toLocaleLowerCase();
     return templatesFor(kind).filter((tpl) => !search || [

@@ -11,7 +11,7 @@ import ScreenHeader from '../components/ScreenHeader';
 import SubscriptionCreditsPill from '../components/SubscriptionCreditsPill';
 import { listCreatorAssets } from '../services/creator.service';
 import { openInApp } from '../libs/links.utils';
-import env from '../config/env';
+import type { CreatorMode } from '../libs/creatorStudio';
 import { useUser } from '../context/AuthContext';
 import { useAppTheme } from '../context/ThemeContext';
 import { themeIconUrl } from '../theme/icons';
@@ -43,8 +43,7 @@ const STAGE_ACCENT: Record<string, { colors: [string, string, ...string[]]; ink:
 /**
  * Creator, laid out like the web page ("Token Stage"): a headline and one big
  * Start button, a tile per medium in the theme's own icon art, the in-app
- * tools, then the library. The studio itself is the web page, where the
- * Create button carries the price; the medium tiles open it on that mode.
+ * tools, then the library. Each medium opens the native generation studio.
  */
 export default function CreatorScreen() {
   const { t } = useTranslation();
@@ -65,7 +64,7 @@ export default function CreatorScreen() {
     enabled: !!wallet,
   });
 
-  const openStudio = (mode?: string) => void openInApp(`${env.APP_ORIGIN}/creator${mode ? `?mode=${mode}` : ''}`);
+  const openStudio = (mode: CreatorMode = 'image') => nav.navigate(ScreenNames.CreatorStudio, { mode });
 
   const mediums = [
     { key: 'image', icon: 'images', label: t('creator.navImage'), note: t('creator.doorImageNote'), open: () => openStudio('image') },
