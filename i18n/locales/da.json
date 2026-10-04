@@ -5669,7 +5669,14 @@
     "imageTranslating": "Uddrager og oversætter tekst...",
     "imageNoText": "Ingen tekst fundet i dette billede",
     "translatedFrom": "Oversat fra {{lang}}",
-    "originalText": "Original tekst"
+    "originalText": "Original tekst",
+    "repostAndShare": "Slå op igen, og del",
+    "repostHint": "Med det samme, til dine følgere",
+    "quoteHint": "Tilføj dine egne ord",
+    "shareTo": "Del til",
+    "moreShare": "Mere",
+    "viewQuotes": "Se tilbud",
+    "viewReposts": "Se reposts"
   },
   "dm": {
     "online": "Online",

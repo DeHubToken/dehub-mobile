@@ -5647,7 +5647,14 @@
     "imageTranslating": "Yọkuro ati ṣiṣe itumọ ọrọ...",
     "imageNoText": "Ko si ọrọ ti a rii ninu aworan yii",
     "translatedFrom": "A túmọ̀ rẹ̀ láti {{lang}}",
-    "originalText": "Text Original"
+    "originalText": "Text Original",
+    "repostAndShare": "Repost & share",
+    "repostHint": "Lẹsẹkẹsẹ, si awọn ọmọlẹyin rẹ",
+    "quoteHint": "Ṣafikun awọn ọrọ tirẹ",
+    "shareTo": "Pin si",
+    "moreShare": "Díẹ̀ síi",
+    "viewQuotes": "Wo àwọn gbólóhùn",
+    "viewReposts": "Wo àwọn àtúnyẹ̀wò"
   },
   "dm": {
     "online": "Ní orí ayélujára",

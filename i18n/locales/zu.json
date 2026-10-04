@@ -5678,7 +5678,14 @@
     "imageTranslating": "Ukukhipha nokuhumusha umbhalo…",
     "imageNoText": "Awukho umbhalo otholakale kulesi sithombe",
     "translatedFrom": "Kuhunyushwe kusuka ku- {{lang}}",
-    "originalText": "Umbhalo Wasekuqaleni"
+    "originalText": "Umbhalo Wasekuqaleni",
+    "repostAndShare": "Phinda uthumele futhi wabelane",
+    "repostHint": "Ngokushesha, kubalandeli bakho",
+    "quoteHint": "Faka amagama akho",
+    "shareTo": "Yabelana ku",
+    "moreShare": "Okwengeziwe",
+    "viewQuotes": "Buka izingcaphuno",
+    "viewReposts": "Buka amaphosti futhi"
   },
   "dm": {
     "online": "Ku-inthanethi",

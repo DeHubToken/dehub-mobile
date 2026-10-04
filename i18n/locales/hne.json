@@ -5651,7 +5651,14 @@
     "imageTranslating": "टेक्स्ट निकाला और अनुवाद किया जा रहा है…",
     "imageNoText": "इस छवि में कोई टेक्स्ट नहीं मिला",
     "translatedFrom": "अनुवाद करे {{lang}}",
-    "originalText": "मूल पाठ"
+    "originalText": "मूल पाठ",
+    "repostAndShare": "साझेदारी फिर से भेजव (S)",
+    "repostHint": "तुरते, अपन अनुयायीमन बर",
+    "quoteHint": "अपन सब्द ल जोड़",
+    "shareTo": "से साझेदारी करव",
+    "moreShare": "अधिक",
+    "viewQuotes": "उद्धरण देखाव",
+    "viewReposts": "रिपस्ट देखाव"
   },
   "dm": {
     "online": "आनलाइन",

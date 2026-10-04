@@ -5711,7 +5711,14 @@
     "imageTranslating": "Kinukuha at isinasalin ang teksto...",
     "imageNoText": "Walang tekstong nakita sa imaheng ito",
     "translatedFrom": "Isinalin mula sa {{lang}}",
-    "originalText": "Orihinal na Teksto"
+    "originalText": "Orihinal na Teksto",
+    "repostAndShare": "I - repost at ibahagi",
+    "repostHint": "Agad, sa iyong mga tagasunod",
+    "quoteHint": "Magdagdag ng sarili mong mga salita",
+    "shareTo": "Ibahagi kay",
+    "moreShare": "Higit pa",
+    "viewQuotes": "Tingnan ang mga quote",
+    "viewReposts": "Tingnan ang mga repost"
   },
   "dm": {
     "online": "Online",

@@ -5661,7 +5661,14 @@
     "imageTranslating": "استخلاص وترجمة النص…",
     "imageNoText": "لم يتم العثور على نص في هذه الصورة",
     "translatedFrom": "مترجم من {{lang}}",
-    "originalText": "النص الأصلي"
+    "originalText": "النص الأصلي",
+    "repostAndShare": "إعادة نشر ومشاركة",
+    "repostHint": "فورا، لمتابعينك",
+    "quoteHint": "ضيف كلامك",
+    "shareTo": "شارك إلى",
+    "moreShare": "أكتر",
+    "viewQuotes": "شوف الاقتباسات",
+    "viewReposts": "شوف إعادة النشر"
   },
   "dm": {
     "online": "أونلاين",

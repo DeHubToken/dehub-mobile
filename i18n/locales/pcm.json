@@ -5560,7 +5560,12 @@
     "matureDescription": "The creator mark this post as adult or graphic.",
     "imageTranslating": "We dey comot the text and translate am...",
     "imageNoText": "No text dey this image",
-    "translatedFrom": "We translate am from {{lang}}"
+    "translatedFrom": "We translate am from {{lang}}",
+    "repostAndShare": "Repost & share",
+    "shareTo": "Share to",
+    "moreShare": "More",
+    "viewQuotes": "View quotes",
+    "viewReposts": "View reposts"
   },
   "dm": {
     "online": "Online",

@@ -5646,7 +5646,14 @@
     "imageTranslating": "E tango ana, e whakamaori ana i te tuhinga…",
     "imageNoText": "Kāore he tuhinga i kitea i roto i tēnei whakaahua",
     "translatedFrom": "Kua whakamaoritia mai i te {{lang}}",
-    "originalText": "Kuputuhi Taketake"
+    "originalText": "Kuputuhi Taketake",
+    "repostAndShare": "Tārua & tohatoha",
+    "repostHint": "Ināianei, ki ōu whai",
+    "quoteHint": "Tāpiri ō kupu ake",
+    "shareTo": "Tohatoha ki",
+    "moreShare": "Ētahi atu",
+    "viewQuotes": "Tiro kī",
+    "viewReposts": "Tiro tārua"
   },
   "dm": {
     "online": "Tuihono",

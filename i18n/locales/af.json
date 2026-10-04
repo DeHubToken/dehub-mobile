@@ -5698,7 +5698,14 @@
     "imageTranslating": "Teks word onttrek en vertaal...",
     "imageNoText": "Geen teks in hierdie beeld gevind nie",
     "translatedFrom": "Vertaal vanaf {{lang}}",
-    "originalText": "Oorspronklike teks"
+    "originalText": "Oorspronklike teks",
+    "repostAndShare": "Herpos en deel",
+    "repostHint": "Onmiddellik, aan jou volgelinge",
+    "quoteHint": "Voeg jou eie woorde by",
+    "shareTo": "Deel aan",
+    "moreShare": "Meer",
+    "viewQuotes": "Bekyk aanhalings",
+    "viewReposts": "Bekyk terugplasings"
   },
   "dm": {
     "online": "Aanlyn",

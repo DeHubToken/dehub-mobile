@@ -5667,7 +5667,14 @@
     "imageTranslating": "ጽሑፍን በማውጣት እና በመተርጎም ላይ...",
     "imageNoText": "በዚህ ምስል ላይ ምንም ጽሑፍ አልተገኘም።",
     "translatedFrom": "ከ{{lang}} ተተርጉሟል",
-    "originalText": "ኦሪጅናል ጽሑፍ"
+    "originalText": "ኦሪጅናል ጽሑፍ",
+    "repostAndShare": "ዳግም ለጥቀስ እና አጋራ",
+    "repostHint": "በቅርብ ጊዜ፣ ለተከተሉት",
+    "quoteHint": "የራስዎን ቃላት ያክሉ",
+    "shareTo": "አጋራ",
+    "moreShare": "ተጨማሪ",
+    "viewQuotes": "ጥቆማዎችን ይመልከቱ",
+    "viewReposts": "ዳግም ለጥቀስ ይመልከቱ"
   },
   "dm": {
     "online": "ኦንላይን",
