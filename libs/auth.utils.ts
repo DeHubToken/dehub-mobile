@@ -37,6 +37,7 @@ export async function setAuthToken(token: string): Promise<void> {
  * Removes the authentication token from SecureStore
  */
 export async function removeAuthToken(): Promise<void> {
+  await SecureStore.deleteItemAsync('auth_verified_profile_v1');
   return SecureStore.deleteItemAsync(AUTH_TOKEN_KEY);
 }
 
@@ -376,4 +377,18 @@ export async function clearAuthSignature(): Promise<void> {
       await SecureStore.setItemAsync(AUTH_USER_KEY, JSON.stringify(user));
     }
   } catch {}
+}
+
+const VERIFIED_PROFILE_KEY = 'auth_verified_profile_v1';
+export async function rememberVerifiedProfile(uid: string, address: string, token: string): Promise<void> {
+  await SecureStore.setItemAsync(VERIFIED_PROFILE_KEY, JSON.stringify({ uid, address: address.toLowerCase(), token }));
+}
+export async function isVerifiedCachedProfile(user: any, token: string, uid: string): Promise<boolean> {
+  try {
+    const raw = await SecureStore.getItemAsync(VERIFIED_PROFILE_KEY);
+    if (!raw) return false;
+    const marker = JSON.parse(raw);
+    const address = user?.address || user?.walletAddress;
+    return !!address && marker.uid === uid && marker.token === token && marker.address === address.toLowerCase();
+  } catch { return false; }
 }

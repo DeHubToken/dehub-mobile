@@ -22,7 +22,7 @@
       "fallbackToCacheTimeout": 0,
       "url": "https://u.expo.dev/734211bf-5261-4dce-9e61-2bfc51c339b9"
     },
-    "runtimeVersion": "1.18.0",
+    "runtimeVersion": "1.18.0-speed-preview-20261004",
     "ios": {
       "supportsTablet": false,
       "jsEngine": "hermes",
