@@ -1,0 +1,30 @@
+name: Generate Android startup profiles
+description: Generate and preserve native profiles before uploading the source to EAS.
+inputs:
+  environment:
+    description: EAS environment used for the profile-generation bundle
+    required: true
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-java@v4
+      with:
+        distribution: temurin
+        java-version: '17'
+    - uses: reactivecircus/android-emulator-runner@v2
+      with:
+        api-level: 35
+        target: aosp_atd
+        arch: x86_64
+        disable-animations: true
+        script: eas env:exec ${{ inputs.environment }} "cd android && chmod +x gradlew && ./gradlew :app:generateReleaseBaselineProfile -Pdehub.generateProfiles=true -PreactNativeArchitectures=x86_64 --no-daemon"
+    - name: Require generated profiles
+      shell: bash
+      run: |
+        test -s android/app/src/release/generated/baselineProfiles/baseline-prof.txt
+        test -s android/app/src/release/generated/baselineProfiles/startup-prof.txt
+    - uses: actions/upload-artifact@v4
+      with:
+        name: android-startup-profiles
+        path: android/app/src/release/generated/baselineProfiles/
+        retention-days: 30
