@@ -188,6 +188,7 @@ export const getNotificationIconConfig = (type: NotificationType | string): {
     // a database trigger and have no entry in NotificationType.
     case 'work_application':
     case 'work_submission':
+    case 'work_application_reply':
       return { name: 'Briefcase', color: '#D4D4D8' };
     default:
       return { name: 'Bell', color: '#9ca3af' };
