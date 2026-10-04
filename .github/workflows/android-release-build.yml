@@ -23,7 +23,7 @@ jobs:
   build:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-    timeout-minutes: 150
+    timeout-minutes: 90
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -49,11 +49,6 @@ jobs:
         with:
           eas-version: latest
           token: ${{ secrets.EXPO_TOKEN }}
-      - name: Generate startup profiles for the release
-        if: inputs.existing_build_id == ''
-        uses: ./.github/actions/android-profiles
-        with:
-          environment: production
       - name: Build signed APK on EAS
         if: inputs.existing_build_id == ''
         run: eas build --platform android --profile release-apk --non-interactive --wait --json > android-build.json
@@ -99,7 +94,6 @@ jobs:
           grep '^package:' apk-badging.txt
           grep '^package:' apk-badging.txt | grep -F "name='io.dehub.mobile'" | grep -F "versionName='$VERSION'"
           "$BUILD_TOOLS/apksigner" verify --verbose --print-certs dehub.apk
-          unzip -l dehub.apk | grep 'assets/dexopt/baseline.prof'
           sha256sum dehub.apk
       - uses: actions/upload-artifact@v4
         with:
