@@ -520,9 +520,13 @@ const FeatureCard: React.FC<{
                   <Pressable
                     key={key}
                     onPress={() => setEditCategory(key)}
+                    accessibilityRole="button"
+                    accessibilityLabel={t(CATEGORY_I18N[key])}
+                    accessibilityState={{ selected: active }}
                     style={[styles.sheetChip, active && styles.sheetChipActive]}
                   >
                     <Text style={[styles.sheetChipText, active && styles.sheetChipTextActive]}>
+                      {active ? "✓ " : ""}
                       {t(CATEGORY_I18N[key])}
                     </Text>
                   </Pressable>
@@ -772,9 +776,13 @@ const SubmitSheet: React.FC<{
                 <Pressable
                   key={key}
                   onPress={() => setCategory(key)}
+                  accessibilityRole="button"
+                  accessibilityLabel={t(CATEGORY_I18N[key])}
+                  accessibilityState={{ selected: active }}
                   style={[styles.sheetChip, active && styles.sheetChipActive]}
                 >
                   <Text style={[styles.sheetChipText, active && styles.sheetChipTextActive]}>
+                    {active ? "✓ " : ""}
                     {t(CATEGORY_I18N[key])}
                   </Text>
                 </Pressable>
