@@ -98,8 +98,9 @@ interface ScrollNavItem {
 // and follows the drawer's order instead, so every destination in the drawer is
 // also reachable from here.
 const SCROLL_NAV_ITEMS: ScrollNavItem[] = [
+  { icon: "Settings", labelKey: "nav.settings", screen: ScreenNames.AccountSettings },
   { icon: "Film", labelKey: "creator.editor", screen: ScreenNames.MediaEditor },
-  { icon: "Wand", labelKey: "commandCentre.creator", screen: ScreenNames.Creator },
+  { icon: "Palette", labelKey: "commandCentre.creator", screen: ScreenNames.Creator },
   { icon: "User", labelKey: "nav.profile", screen: ScreenNames.Profile },
   { icon: "Bell", labelKey: "nav.notifications", screen: ScreenNames.Notifications },
   { icon: "Wand", labelKey: "nav.prompt", screen: ScreenNames.Prompt },
@@ -115,7 +116,6 @@ const SCROLL_NAV_ITEMS: ScrollNavItem[] = [
   { icon: "Landmark", labelKey: "nav.dao", screen: ScreenNames.Dao },
   { icon: "Trophy", labelKey: "nav.leaderboard", screen: ScreenNames.Leaderboard },
   { icon: "Bookmark", labelKey: "nav.bookmarks", screen: ScreenNames.MyLibrary, params: { initialTab: "saved" } },
-  { icon: "Settings", labelKey: "nav.settings", screen: ScreenNames.AccountSettings },
   // Native screen, not the website — the drawer has routed here for a while.
   { icon: "Lightbulb", labelKey: "nav.featureRequests", screen: ScreenNames.FeatureRequests },
   { icon: "Map", labelKey: "nav.guide", screen: ScreenNames.Guide },

@@ -107,6 +107,15 @@ rotate the key in Supabase instead.
 └── .github/workflows/ # CI pipeline
 ```
 
+## Creator studio
+
+`screens/CreatorScreen.tsx` opens the native Creator studio for image, video,
+audio, and 3D generation. Its composer is implemented by
+`components/Assistant/CreatorStudioControls.tsx`, with the model catalog and
+generation settings kept in step with dehubweb's `CreatorStudio.tsx`.
+Native composer changes reach installed apps through the production and
+preview update channels. Creator Flow and the media editor remain native too.
+
 ## Testing
 
 ```bash
