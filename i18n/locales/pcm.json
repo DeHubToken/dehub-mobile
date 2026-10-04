@@ -7177,7 +7177,8 @@
     "doorAgentsNote": "Chat na free",
     "editorNote": "Cut am for timeline",
     "flowNote": "Join steps together for canvas",
-    "builderNote": "Make app from prompt"
+    "builderNote": "Make app from prompt",
+    "exampleOutput": "Example of wetin you fit get"
   },
   "fractions": {
     "title": "Fraction dem",

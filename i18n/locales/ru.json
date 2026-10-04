@@ -7402,7 +7402,8 @@
     "doorAgentsNote": "Чат бесплатно",
     "editorNote": "Монтаж на таймлайне",
     "flowNote": "Цепочки шагов на холсте",
-    "builderNote": "Создайте приложение из промпта"
+    "builderNote": "Создайте приложение из промпта",
+    "exampleOutput": "Пример вывода"
   },
   "fractions": {
     "title": "Доли",

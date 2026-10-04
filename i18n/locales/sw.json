@@ -7319,7 +7319,8 @@
     "doorAgentsNote": "Gumzo bure",
     "editorNote": "Kata kwenye mstari wa muda",
     "flowNote": "Unganisha hatua kwenye turubai",
-    "builderNote": "Unda programu kutoka maelezo"
+    "builderNote": "Unda programu kutoka maelezo",
+    "exampleOutput": "Mfano wa matokeo"
   },
   "fractions": {
     "title": "Hisa",

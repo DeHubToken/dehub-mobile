@@ -7303,7 +7303,8 @@
     "doorAgentsNote": "चैट मुफ्त",
     "editorNote": "टाइमलाइन पर काटीं",
     "flowNote": "कैनवास पर स्टेप जोड़ीं",
-    "builderNote": "प्रॉम्प्ट से ऐप बनावऽ"
+    "builderNote": "प्रॉम्प्ट से ऐप बनावऽ",
+    "exampleOutput": "उदाहरण आउटपुट"
   },
   "fractions": {
     "title": "फ़्रैक्शन",

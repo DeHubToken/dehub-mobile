@@ -7340,7 +7340,8 @@
     "doorAgentsNote": "Чат бясплатна",
     "editorNote": "Мантаж на шкале часу",
     "flowNote": "Злучайце крокі на палатне",
-    "builderNote": "Стварыце праграму з запыту"
+    "builderNote": "Стварыце праграму з запыту",
+    "exampleOutput": "Выхад прыкладу"
   },
   "fractions": {
     "title": "Фракцыі",

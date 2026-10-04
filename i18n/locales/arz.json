@@ -7308,7 +7308,8 @@
     "doorAgentsNote": "الدردشة مجانية",
     "editorNote": "قصّه على خط زمني",
     "flowNote": "اربط الخطوات على لوحة",
-    "builderNote": "اعمل تطبيق من وصف"
+    "builderNote": "اعمل تطبيق من وصف",
+    "exampleOutput": "مثال على المخرجات"
   },
   "fractions": {
     "title": "الأجزاء",

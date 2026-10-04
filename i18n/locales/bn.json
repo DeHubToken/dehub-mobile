@@ -7311,7 +7311,8 @@
     "doorAgentsNote": "চ্যাট ফ্রি",
     "editorNote": "টাইমলাইনে কাটুন",
     "flowNote": "ক্যানভাসে ধাপ জুড়ুন",
-    "builderNote": "প্রম্পট থেকে অ্যাপ বানান"
+    "builderNote": "প্রম্পট থেকে অ্যাপ বানান",
+    "exampleOutput": "উদাহরণ আউটপুট"
   },
   "fractions": {
     "title": "ফ্র্যাকশন",

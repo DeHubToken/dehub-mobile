@@ -9,6 +9,7 @@ import {
   useWindowDimensions,
 } from 'react-native';
 import SmartImage from "../common/SmartImage";
+import { Ionicons } from '@expo/vector-icons';
 import Animated, { FadeInDown } from 'react-native-reanimated';
 import { VideoView, useVideoPlayer } from 'expo-video';
 import { FEED_BUFFER_OPTIONS } from "../../libs/videoBuffering";
@@ -16,6 +17,7 @@ import GlassIndicator from '../ui/GlassIndicator';
 import MarkdownText from '../ui/MarkdownText';
 import Icon from '../ui/Icon';
 import GeneratedAudioPlayer from './GeneratedAudioPlayer';
+import { openInApp } from '../../libs/links.utils';
 import { AiToolProcessingSkeleton, VideoGenerationSkeleton } from './GenerationSkeleton';
 import type { AIChatMessage } from '../../services/ai.service';
 import { useTranslation } from 'react-i18next';
@@ -129,11 +131,11 @@ const AssistantBubble: React.FC<AssistantBubbleProps> = ({
   const isUser = message.role === 'user';
 
   const imageUrls = useMemo(() => {
-    if (isUser) return [];
+    if (isUser || message.modelUrl) return [];
     const fromField = message.imageUrl ? [message.imageUrl] : [];
     const fromText = extractImages(message.content);
     return [...new Set([...fromField, ...fromText])];
-  }, [message.content, message.imageUrl, isUser]);
+  }, [message.content, message.imageUrl, message.modelUrl, isUser]);
 
   const displayText = useMemo(() => {
     if (isUser || imageUrls.length === 0) return message.content;
@@ -191,7 +193,7 @@ const AssistantBubble: React.FC<AssistantBubbleProps> = ({
     );
   }
 
-  const hasMedia = imageUrls.length > 0 || !!message.videoUrl || !!message.audioUrl;
+  const hasMedia = imageUrls.length > 0 || !!message.videoUrl || !!message.audioUrl || !!message.modelUrl;
 
   return (
     <Animated.View entering={FadeInDown.duration(200)} style={[s.bubble, s.aiBubble]}>
@@ -214,6 +216,14 @@ const AssistantBubble: React.FC<AssistantBubbleProps> = ({
         {message.audioUrl && (
           <GeneratedAudioPlayer audioUrl={message.audioUrl} onSave={onShareAudio} />
         )}
+
+        {message.modelUrl && <Pressable accessibilityRole="button" accessibilityLabel={t('creator.studioOpenModel')}
+          onPress={() => void openInApp(message.modelUrl!)} style={[s.mediaWrap, { width: mediaWidth }]}>
+          {message.imageUrl
+            ? <SmartImage source={{ uri: message.imageUrl }} recyclingKey={message.imageUrl} style={[s.media, { height: mediaWidth }]} contentFit="contain" />
+            : <View style={{ height: mediaWidth * 0.6, alignItems: 'center', justifyContent: 'center' }}><Ionicons name="cube-outline" size={32} color="#A1A1AA" /></View>}
+          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, padding: 12 }}><Ionicons name="cube-outline" size={16} color="#A1A1AA" /><Text style={{ color: '#F9FBFF', fontSize: 13 }}>{t('creator.studioOpenModel')}</Text></View>
+        </Pressable>}
 
         {imageUrls.map((url) => (
           <View key={url} style={s.mediaWrap}>

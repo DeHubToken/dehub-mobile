@@ -7318,7 +7318,8 @@
     "doorAgentsNote": "Chat besplatno",
     "editorNote": "Izreži na vremenskoj crti",
     "flowNote": "Poveži korake na platnu",
-    "builderNote": "Napravi aplikaciju iz upita"
+    "builderNote": "Napravi aplikaciju iz upita",
+    "exampleOutput": "Primjer izlaza"
   },
   "fractions": {
     "title": "Frakcije",

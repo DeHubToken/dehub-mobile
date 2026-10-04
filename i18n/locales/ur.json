@@ -7315,7 +7315,8 @@
     "doorAgentsNote": "چیٹ مفت",
     "editorNote": "ٹائم لائن پر کاٹیں",
     "flowNote": "کینوس پر مراحل جوڑیں",
-    "builderNote": "پرامپٹ سے ایپ بنائیں"
+    "builderNote": "پرامپٹ سے ایپ بنائیں",
+    "exampleOutput": "مثال کے طور پر آؤٹ پٹ"
   },
   "fractions": {
     "title": "حصے",

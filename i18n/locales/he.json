@@ -7305,7 +7305,8 @@
     "doorAgentsNote": "צ׳אט בחינם",
     "editorNote": "ערוך על ציר זמן",
     "flowNote": "שרשר שלבים על קנבס",
-    "builderNote": "צור אפליקציה מהנחיה"
+    "builderNote": "צור אפליקציה מהנחיה",
+    "exampleOutput": "פלט לדוגמה"
   },
   "fractions": {
     "title": "חלקים",

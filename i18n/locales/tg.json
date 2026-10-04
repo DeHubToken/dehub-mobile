@@ -7263,7 +7263,8 @@
     "doorAgentsNote": "Сӯҳбат ройгон",
     "editorNote": "Дар хати вақт буред",
     "flowNote": "Қадамҳоро дар канвас пайваст кунед",
-    "builderNote": "Аз дархост барнома созед"
+    "builderNote": "Аз дархост барнома созед",
+    "exampleOutput": "Намунаи хурӯҷ"
   },
   "fractions": {
     "title": "Ҳиссаҳо",

@@ -7317,7 +7317,8 @@
     "doorAgentsNote": "Vestlus tasuta",
     "editorNote": "Lõika ajateljel",
     "flowNote": "Seo sammud lõuendil",
-    "builderNote": "Loo rakendus viibast"
+    "builderNote": "Loo rakendus viibast",
+    "exampleOutput": "Näidisväljund"
   },
   "fractions": {
     "title": "Fraktsioonid",

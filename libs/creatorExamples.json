@@ -1,0 +1,23 @@
+{
+  "image": {
+    "model": "FLUX 3 Image",
+    "url": "https://v3b.fal.media/files/b/0aac8b04/xOLhvBRYpqW9HFTcx2FjW_HUapm60K.png",
+    "source": "https://fal.ai/models/blackforestlabs/flux-3/text-to-image"
+  },
+  "video": {
+    "model": "Kling 2.6 Pro",
+    "url": "https://v3b.fal.media/files/b/0a84ab71/8hPbLs7n59WhWY-BN69yX_output.mp4",
+    "source": "https://fal.ai/models/fal-ai/kling-video/v2.6/pro/text-to-video"
+  },
+  "3d": {
+    "model": "Tripo 2.5",
+    "url": "https://v3.fal.media/files/zebra/NA4WkhbpI-XdOIFc4cDIk_tripo_model_812c3a8a-6eb3-4c09-9f40-0563d27ae7ea.glb",
+    "posterUrl": "https://v3.fal.media/files/panda/zDTAHqp8ifMOT3upZ1xJv_legacy.webp",
+    "source": "https://fal.ai/models/tripo3d/tripo/v2.5/text-to-3d"
+  },
+  "audio": {
+    "model": "ACE-Step",
+    "url": "https://storage.googleapis.com/falserverless/example_outputs/ace-step-text-to-audio.wav",
+    "source": "https://fal.ai/models/fal-ai/ace-step"
+  }
+}

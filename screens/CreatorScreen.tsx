@@ -3,6 +3,7 @@ import { FlatList, Pressable, Text, View, ActivityIndicator, useWindowDimensions
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import SmartImage from '../components/common/SmartImage';
+import CreatorMediaPreview from '../components/Assistant/CreatorMediaPreview';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import { useNavigation } from '@react-navigation/native';
@@ -165,13 +166,7 @@ export default function CreatorScreen() {
             className="overflow-hidden rounded-2xl border border-white/10 bg-theme-neutrals-800"
             style={{ width: half }}
           >
-            {item.kind === 'image' && item.url
-              ? <SmartImage source={{ uri: item.url }} recyclingKey={item.url} style={{ width: half, height: half }} contentFit="cover" />
-              : (
-                <View className="items-center justify-center" style={{ width: half, height: half * 0.6 }}>
-                  <Ionicons name={item.kind === 'video' ? 'film-outline' : item.kind === 'audio' ? 'musical-notes-outline' : 'cube-outline'} size={28} color="rgba(255,255,255,0.5)" />
-                </View>
-              )}
+            <CreatorMediaPreview kind={item.kind} url={item.url} posterUrl={item.posterUrl} width={half} height={item.kind === 'audio' ? half * 0.6 : half} />
             <View className="p-3">
               <Text className="text-[13px] text-theme-neutrals-100" numberOfLines={2}>{item.prompt || item.modelName}</Text>
               <Text className="mt-1 text-[11.5px] text-theme-neutrals-400">{item.kind} · {item.modelName}</Text>

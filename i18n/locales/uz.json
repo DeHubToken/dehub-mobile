@@ -7372,7 +7372,8 @@
     "doorAgentsNote": "Suhbat bepul",
     "editorNote": "Vaqt shkalasida kesing",
     "flowNote": "Kanvasda qadamlarni bog‘lang",
-    "builderNote": "Promptdan ilova yarating"
+    "builderNote": "Promptdan ilova yarating",
+    "exampleOutput": "Misol chiqishi"
   },
   "fractions": {
     "title": "Ulushlar",

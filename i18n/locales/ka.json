@@ -7359,7 +7359,8 @@
     "doorAgentsNote": "ჩატი უფასოა",
     "editorNote": "დაჭერით ტაიმლაინზე",
     "flowNote": "დააკავშირეთ ნაბიჯები ტილოზე",
-    "builderNote": "შექმენით აპი მოთხოვნიდან"
+    "builderNote": "შექმენით აპი მოთხოვნიდან",
+    "exampleOutput": "Გამოტანის მაგალითი"
   },
   "fractions": {
     "title": "წილები",

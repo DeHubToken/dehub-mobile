@@ -7285,7 +7285,8 @@
     "doorAgentsNote": "ଚାଟ୍ ମାଗଣା",
     "editorNote": "ଟାଇମଲାଇନରେ କାଟନ୍ତୁ",
     "flowNote": "କ୍ୟାନଭାସରେ ପଦକ୍ଷେପ ଯୋଡନ୍ତୁ",
-    "builderNote": "ପ୍ରମ୍ପ୍ଟରୁ ଏକ ଆପ୍ ତିଆରି କରନ୍ତୁ"
+    "builderNote": "ପ୍ରମ୍ପ୍ଟରୁ ଏକ ଆପ୍ ତିଆରି କରନ୍ତୁ",
+    "exampleOutput": "ଉଦାହରଣ ଆଉଟପୁଟ"
   },
   "fractions": {
     "title": "ଅଂଶ",

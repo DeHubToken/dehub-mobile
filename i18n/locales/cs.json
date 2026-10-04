@@ -7318,7 +7318,8 @@
     "doorAgentsNote": "Chat zdarma",
     "editorNote": "Střih na časové ose",
     "flowNote": "Řetězte kroky na plátně",
-    "builderNote": "Vytvořte aplikaci z promptu"
+    "builderNote": "Vytvořte aplikaci z promptu",
+    "exampleOutput": "Příklad výstupu"
   },
   "fractions": {
     "title": "Frakce",

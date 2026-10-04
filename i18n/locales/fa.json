@@ -7343,7 +7343,8 @@
     "doorAgentsNote": "گفتگو رایگان",
     "editorNote": "روی تایم‌لاین برش دهید",
     "flowNote": "مراحل را روی بوم زنجیر کنید",
-    "builderNote": "ساخت اپ از پرامپت"
+    "builderNote": "ساخت اپ از پرامپت",
+    "exampleOutput": "خروجی مثال"
   },
   "fractions": {
     "title": "کسری‌ها",
