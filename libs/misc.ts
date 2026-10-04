@@ -595,8 +595,8 @@ export function getBadgeOpticalStyle(
   const tier = Object.keys(BADGE_IMAGES).find((name) => BADGE_IMAGES[name] === source || LIGHT_BADGE_IMAGES[name] === source);
   const optics = artworkBounds ?? (tier ? BADGE_OPTICS[tier] : undefined);
   const bounds = optics ?? { left: 0, top: 0, right: 128, bottom: 128 };
-  // Exo uses a 732-unit cap height on its 1000-unit em.
-  const renderedSize = size * 0.732 * 128 / (bounds.bottom - bounds.top);
+  // Exo uses a 732-unit cap height on its 1000-unit em; inline artwork is 10% larger.
+  const renderedSize = size * 0.732 * 1.1 * 128 / (bounds.bottom - bounds.top);
   const outerSize = renderedSize + BADGE_ARTWORK_GUTTER * 2;
   // Web sits the visible check on the text baseline. Native centres the
   // font's ascent+descent block inside whatever line box the Text has, so the
