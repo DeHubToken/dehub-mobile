@@ -66,6 +66,7 @@ import { toastInfo } from "../../libs/toast";
 import { toastError, toastSuccess } from "../../libs/toast";
 import { retryTranscode } from "../../services/nft.service";
 import CaptionOverlay from "../VideoPlayerCore/CaptionOverlay";
+import { PLAYER_CONSTANTS } from "../VideoPlayerCore/utils";
 import { getSubtitlesEnabled } from "../../libs/subtitlePrefs";
 import { movedBeyondMediaTapSlop } from "../../libs/media-gesture";
 import {
@@ -554,7 +555,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     clearHideTimer();
     hideControlsTimerRef.current = setTimeout(() => {
       setShowControls(false);
-    }, 2000);
+    }, PLAYER_CONSTANTS.HIDE_CONTROLS_DELAY);
   }, [clearHideTimer]);
 
   useEffect(() => {
