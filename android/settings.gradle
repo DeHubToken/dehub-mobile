@@ -36,4 +36,5 @@ rootProject.name = 'DeHub'
 expoAutolinking.useExpoVersionCatalog()
 
 include ':app'
+if (providers.gradleProperty('dehub.generateProfiles').orNull == 'true') { include ':baseline-profile' }
 includeBuild(expoAutolinking.reactNativeGradlePlugin)

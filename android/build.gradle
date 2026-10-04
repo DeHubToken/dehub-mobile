@@ -11,6 +11,7 @@ buildscript {
     }
   }
   dependencies {
+    classpath 'androidx.benchmark:benchmark-baseline-profile-gradle-plugin:1.4.1'
     classpath 'com.google.gms:google-services:4.4.1'
     classpath('com.android.tools.build:gradle:8.13.2')
     classpath('com.facebook.react:react-native-gradle-plugin')
