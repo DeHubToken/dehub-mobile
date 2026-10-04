@@ -358,6 +358,7 @@ export function isJobEditable(job: WorkJob): boolean {
 
 
 export function isBudgetEditable(job: WorkJob): boolean {
+  if (job.funding_state && job.funding_state !== 'unfunded') return false;
   return (
     job.status === "draft" ||
     (job.status === "open" &&
