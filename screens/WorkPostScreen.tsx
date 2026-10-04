@@ -355,16 +355,13 @@ export default function WorkPostScreen() {
 
               <View style={styles.totalBox}>
                 <View style={styles.totalRow}>
-                  <Text style={styles.totalLabel}>{t("work.totalEscrow")}</Text>
+                  <Text style={styles.totalLabel}>{t("work.integrity.totalBudget")}</Text>
                   <Text style={styles.totalValue}>
                     {total.toLocaleString(undefined, { maximumFractionDigits: 4 })} {currency}
                   </Text>
                 </View>
-                <Text style={styles.totalHint}>
-                  {t("work.platformFee")}
-                </Text>
                 <Text style={styles.totalWarn}>
-                  {t("work.integrity.draftFunding")}
+                  {t("work.integrity.reputationNotice")}
                 </Text>
               </View>
 
@@ -384,7 +381,7 @@ export default function WorkPostScreen() {
                   {createJob.isPending ? (
                     <ActivityIndicator color="#000000" />
                   ) : (
-                    <Text style={styles.primaryBtnText}>{t("work.integrity.saveDraft")}</Text>
+                    <Text style={styles.primaryBtnText}>{t("work.postBounty")}</Text>
                   )}
                 </Pressable>
               </View>
