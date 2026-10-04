@@ -16,13 +16,14 @@ function ExampleVideo({ url, width }: { url: string; width: number }) {
   return <VideoView player={player} nativeControls allowsFullscreen contentFit="contain" style={{ width, height: width * 9 / 16 }} />;
 }
 
-export default function GenerationExample({ kind }: { kind: CreatorMode }) {
+export default function GenerationExample({ kind, model }: { kind: CreatorMode; model?: string }) {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   const { width } = useWindowDimensions();
   const insets = useSafeAreaInsets();
-  useEffect(() => setOpen(false), [kind]);
-  const example = examples[kind];
+  useEffect(() => setOpen(false), [kind, model]);
+  const modelExamples: Record<string, { model: string; url: string; sourceUrl: string }> = examples.models;
+  const example = (kind === 'video' && model ? modelExamples[model] : undefined) ?? examples[kind];
   const posterUrl = kind === '3d' ? examples['3d'].posterUrl : undefined;
   const label = `${t('creator.exampleOutput')} · ${example.model}`;
   return <>

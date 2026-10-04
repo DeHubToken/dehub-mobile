@@ -107,9 +107,10 @@ import { ScreenNames } from '../navigation/ScreenNames';
 import { createLogger } from '../libs/logger';
 import SignInGate from '../components/auth/SignInGate';
 import ScreenHeader from '../components/ScreenHeader';
+import CreatorReferenceAssets from '../components/Assistant/CreatorReferenceAssets';
 import CreatorStudioControls from '../components/Assistant/CreatorStudioControls';
 import SubscriptionCreditsPill from '../components/SubscriptionCreditsPill';
-import { CREATOR_DEFAULTS, creatorModels, creatorInputIssue, creatorVideoOptions, normalizeCreatorSettings, prepareCreatorPrompt, type CreatorMode, type CreatorStudioSettings } from '../libs/creatorStudio';
+import { CREATOR_DEFAULTS, creatorModels, creatorInputIssue, creatorVideoOptions, normalizeCreatorSettings, prepareCreatorPrompt, type CreatorMode, type CreatorStudioSettings, type CreatorReferenceAsset } from '../libs/creatorStudio';
 import GenerationExample from '../components/Assistant/GenerationExample';
 import { MODEL3D_MODELS } from '../config/model3d-models.constants';
 import { uploadLocalFileToBucket, fileExtension } from '../libs/storage-upload';
@@ -167,9 +168,9 @@ let turnSeq = 0;
 /** Unique enough within a session, and stable once written to a saved thread. */
 const newTurnId = (): string => `t-${Date.now()}-${(turnSeq += 1)}`;
 
-async function hostCreatorImage(uri: string): Promise<string> {
+async function hostCreatorImage(uri: string, asset?: CreatorReferenceAsset): Promise<string> {
   if (uri.startsWith('https://')) return uri;
-  const extension = fileExtension({ uri }, 'jpg');
+  const extension = fileExtension({ uri, fileName: asset?.label }, asset?.kind === 'video' ? 'mp4' : 'jpg');
   return uploadLocalFileToBucket({ bucket: 'ai-media-uploads',
     path: `creator-sources/${Date.now()}-${Math.random().toString(36).slice(2)}.${extension}`, uri });
 }
@@ -260,10 +261,15 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
   const [imageModelOverride, setImageModelOverride] = useState<string | null>(null);
   /** The creator template armed on the composer, if any. */
   const [templateId, setTemplateId] = useState<string | null>(null);
+  const [assetPickerVisible, setAssetPickerVisible] = useState(false);
   const [templatesVisible, setTemplatesVisible] = useState(false);
   const activeTemplate = getTemplate(templateId);
   const initialMode: CreatorMode = route.params?.mode in CREATOR_DEFAULTS ? route.params.mode : 'image';
-  const [studioSettings, setStudioSettings] = useState<CreatorStudioSettings>(CREATOR_DEFAULTS[initialMode]);
+  const [studioSettings, setStudioSettings] = useState<CreatorStudioSettings>(() => normalizeCreatorSettings({ ...CREATOR_DEFAULTS[initialMode],
+    model: route.params?.workflow === 'swap' ? 'kling-o3-edit' : route.params?.workflow === 'motion' ? 'kling-3-motion' : CREATOR_DEFAULTS[initialMode].model }));
+  useEffect(() => {
+    if (studio && route.params?.workflow) setTemplateId(route.params.workflow === 'swap' ? 'reference-character-swap' : 'reference-copy-motion');
+  }, [studio, route.params?.workflow]);
   const [pendingStudio, setPendingStudio] = useState<CreatorStudioSettings | null>(null);
   const submitLock = useRef(false);
   const librarySaves = useRef(new Set<string>());
@@ -491,6 +497,7 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
       history: AIChatMessage[],
       extras?: {
         sourceImage?: string;
+        referenceImageUrls?: string[];
         aspectRatio?: string;
         logoImage?: string;
         headline?: string;
@@ -513,6 +520,7 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
             model,
             conversationHistory: history,
             sourceImage: extras?.sourceImage,
+            referenceImageUrls: extras?.referenceImageUrls,
             aspectRatio: extras?.aspectRatio,
             logoImage: extras?.logoImage,
             headline: extras?.headline,
@@ -1183,7 +1191,7 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
     // An empty send under a template runs its example subject, like web's tile.
     const text = typed || (activeTemplate && !attachedImage ? activeTemplate.sample : typed);
 
-    const creator = studio ? normalizeCreatorSettings(studioSettings) : undefined;
+    let creator = studio ? normalizeCreatorSettings(studioSettings) : undefined;
     if (creator) {
       const issue = creatorInputIssue(creator, !!attachedImage, activeTemplate);
       if (issue) { toastError(t(issue)); return; }
@@ -1192,6 +1200,11 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
     setIsLoading(true);
     try {
     mentions.reset();
+    if (creator?.referenceAssets?.length) {
+      const referenceAssets = await Promise.all(creator.referenceAssets.map(async asset => ({ ...asset, uri: await hostCreatorImage(asset.uri, asset) })));
+      creator = { ...creator, referenceAssets };
+      setStudioSettings(creator);
+    }
     const userMessage: AIChatMessage = {
       id: newTurnId(),
       role: 'user',
@@ -1207,7 +1220,7 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
     let sourceImage: string | undefined;
     if (attachedImage) {
       try {
-        sourceImage = creator?.mode === '3d' ? await hostCreatorImage(attachedImage) : await toImageDataUrl(attachedImage);
+        sourceImage = creator ? creator.referenceAssets?.find(a => a.kind === 'image')?.uri ?? await hostCreatorImage(attachedImage) : await toImageDataUrl(attachedImage);
       } catch (err) {
         log.error('could not read the attached image:', err);
         toastError(t('aiChat.couldNotReadImage'));
@@ -1219,6 +1232,9 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
     setAttachedImage(null);
 
     await routePrompt(text, history, sourceImage, hadAttachment, activeTemplate?.id, creator);
+    } catch (error) {
+      log.error('could not prepare creator references:', error);
+      toastError(t('aiChat.couldNotReadImage'));
     } finally {
       submitLock.current = false;
       setIsLoading(false);
@@ -1236,7 +1252,7 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
     let sourceImage: string | undefined;
     if (lastUser.attachedImage) {
       try {
-        sourceImage = lastUser.creatorSettings?.mode === '3d' ? await hostCreatorImage(lastUser.attachedImage) : await toImageDataUrl(lastUser.attachedImage);
+        sourceImage = lastUser.creatorSettings ? lastUser.creatorSettings.referenceAssets?.find(a => a.kind === 'image')?.uri ?? await hostCreatorImage(lastUser.attachedImage) : await toImageDataUrl(lastUser.attachedImage);
       } catch {
         toastError(t('aiChat.couldNotReadImage'));
         return;
@@ -1265,7 +1281,7 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
     (
       cfg: PosterConfig | null,
       model: string,
-      opts: { logoImage?: string; sourceImage?: string; txHash?: string; useFree?: boolean; aspectRatio?: string },
+      opts: { referenceImageUrls?: string[]; logoImage?: string; sourceImage?: string; txHash?: string; useFree?: boolean; aspectRatio?: string },
     ) => {
       doGenerateImage(
         cfg ? buildDeHubBrandPrompt(cfg.finalPrompt) : pendingPrompt,
@@ -1273,6 +1289,7 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
         historyForGeneration(),
         {
           sourceImage: opts.sourceImage,
+          referenceImageUrls: opts.referenceImageUrls,
           aspectRatio: cfg ? undefined : opts.aspectRatio,
           logoImage: opts.logoImage,
           txHash: opts.txHash,
@@ -1304,6 +1321,7 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
     startImageGeneration(pendingPosterConfig, imageModelOverride || settings.imageModel, {
       logoImage: pendingLogoImage,
       sourceImage: pendingSourceImage,
+      referenceImageUrls: (pendingStudio?.referenceAssets?.filter(a => a.kind === 'image').length ?? 0) > 1 ? pendingStudio?.referenceAssets?.filter(a => a.kind === 'image').map(a => a.uri) : undefined,
       aspectRatio: pendingStudio?.aspect ?? getTemplate(pendingTemplateId)?.aspect,
       txHash,
     });
@@ -1322,6 +1340,7 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
     setImagePaywallVisible(false);
     startImageGeneration(null, imageModelOverride || settings.imageModel, {
       sourceImage: pendingSourceImage,
+      referenceImageUrls: (pendingStudio?.referenceAssets?.filter(a => a.kind === 'image').length ?? 0) > 1 ? pendingStudio?.referenceAssets?.filter(a => a.kind === 'image').map(a => a.uri) : undefined,
       aspectRatio: pendingStudio?.aspect ?? getTemplate(pendingTemplateId)?.aspect,
       useFree: true,
     });
@@ -1498,14 +1517,14 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
     (tpl: CreatorTemplate) => {
       setTemplateId(tpl.id);
       if (studio) {
-        setStudioSettings(normalizeCreatorSettings({ ...CREATOR_DEFAULTS[tpl.kind], model: tpl.model ?? CREATOR_DEFAULTS[tpl.kind].model,
+        setStudioSettings(normalizeCreatorSettings({ ...CREATOR_DEFAULTS[tpl.kind], referenceAssets: studioSettings.mode === tpl.kind ? studioSettings.referenceAssets : undefined, model: tpl.model ?? CREATOR_DEFAULTS[tpl.kind].model,
           aspect: tpl.aspect ?? CREATOR_DEFAULTS[tpl.kind].aspect }));
       }
       if (tpl.kind === 'video' && tpl.model && tpl.model in VIDEO_MODELS) {
         updateSettings({ videoModel: tpl.model as VideoModelKey });
       }
     },
-    [updateSettings, studio],
+    [updateSettings, studio, studioSettings],
   );
 
   const handleNewChat = useCallback(() => {
@@ -1668,7 +1687,7 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
         <View style={s.welcomeWrap}>
           <View style={s.welcomeCenter}>
             <Text style={s.welcomeText}>{studio ? t('creator.studioWelcome') : WELCOME_MESSAGE}</Text>
-            {studio && <View style={{ alignSelf: 'stretch', marginTop: 20, marginHorizontal: 16 }}><GenerationExample kind={studioSettings.mode} /></View>}
+            {studio && <View style={{ alignSelf: 'stretch', marginTop: 20, marginHorizontal: 16 }}><GenerationExample kind={studioSettings.mode} model={studioSettings.model} /></View>}
           </View>
           {!studio && <QuickActionChips onAction={handleQuickAction} />}
         </View>
@@ -1710,7 +1729,19 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
       <View style={{ marginBottom: kbVisible ? kbLift : studio ? 0 : TAB_BAR_HEIGHT }}>
         {studio && <CreatorStudioControls settings={studioSettings} onChange={setStudioSettings}
           onMode={changeStudioMode} onPresets={() => setTemplatesVisible(true)}
-          onAttach={studioSettings.mode === 'audio' ? undefined : handleAttach} disabled={isLoading} />}
+          onAttach={studioSettings.mode === 'audio' ? undefined : () => setAssetPickerVisible(true)} disabled={isLoading}
+          onWorkflow={workflow => { const preset = getTemplate(workflow === 'swap' ? 'reference-character-swap' : 'reference-copy-motion'); if (preset) handlePickTemplate(preset); }} />}
+        {studio && studioSettings.mode !== 'audio' && <CreatorReferenceAssets assets={studioSettings.referenceAssets ?? []}
+          mode={studioSettings.mode} pickerVisible={assetPickerVisible} onClose={() => setAssetPickerVisible(false)} disabled={isLoading}
+          onMention={tag => setInput(previous => `${previous}${previous && !/\s$/.test(previous) ? ' ' : ''}${tag} `)}
+          onChange={referenceAssets => {
+            const images = referenceAssets.filter(a => a.kind === 'image'); const clip = referenceAssets.find(a => a.kind === 'video');
+            setAttachedImage(images[0]?.uri ?? null);
+            if (clip && !VIDEO_MODELS[studioSettings.model]?.requiresVideoInput) setTemplateId(clip.seconds! > 15 ? 'reference-copy-motion' : 'reference-character-swap');
+            setStudioSettings(previous => normalizeCreatorSettings({ ...previous, referenceAssets,
+              model: clip && !VIDEO_MODELS[previous.model]?.requiresVideoInput ? (clip.seconds! > 15 ? 'kling-3-motion' : 'kling-o3-edit')
+                : previous.mode === 'image' && images.length > 1 ? 'flux-3-image' : previous.model }));
+          }} />}
         <MentionSuggestions
           visible={mentions.showSuggestions}
           suggestions={mentions.suggestions}
@@ -1741,7 +1772,7 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
           onSelectionChange={mentions.handleSelectionChange}
           onSend={handleSend}
           onAttach={studio ? undefined : handleAttach}
-          attachedImage={attachedImage}
+          attachedImage={studio ? null : attachedImage}
           onRemoveImage={() => setAttachedImage(null)}
           loading={isLoading}
           allowEmpty={!!activeTemplate}

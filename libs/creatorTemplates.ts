@@ -10,6 +10,7 @@
  * thing on both, and the translations can be copied across as-is.
  */
 
+import { REFERENCE_STUDIO_PRESETS } from './referenceStudioPresets';
 import { OPEN_STUDIO_PRESETS } from './openStudioPresets';
 import { EXPANDED_STUDIO_PRESETS } from './expandedStudioPresets';
 
@@ -31,6 +32,7 @@ export interface CreatorTemplate {
 }
 
 export const CREATOR_TEMPLATES: CreatorTemplate[] = [
+  ...REFERENCE_STUDIO_PRESETS,
   ...OPEN_STUDIO_PRESETS,
   ...EXPANDED_STUDIO_PRESETS,
   {"id": "studio-product", "nameKey": "creator.presetStudioProductName", "kind": "image", "group": "Commercial", "template": "{subject}, professional product photography, seamless studio backdrop, large softbox key light with a subtle rim, shallow depth of field, crisp specular highlights, colour-accurate, shot on a 100mm macro lens", "sample": "a matte black ceramic coffee flask", "hintKey": "creator.presetStudioProductHint", "model": "gemini-3-pro-image", "aspect": "1:1"},

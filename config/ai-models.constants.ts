@@ -239,6 +239,10 @@ export interface VideoModel {
   perSecondCostUsd?: number;
   supports: VideoDirection[];
   hasAudio?: boolean;
+  requiresVideoInput?: boolean;
+  supportsVideoInput?: boolean;
+  maxReferenceImages?: number;
+  referenceMode?: 'edit' | 'motion';
   defaultDuration?: number;
   maxDuration?: number;
 }
