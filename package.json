@@ -10,7 +10,7 @@
     "android": "npx expo run:android",
     "ios": "npx expo run:ios",
     "web": "npx expo start --web",
-    "postinstall": "patch-package || exit 0",
+    "postinstall": "node scripts/build-locale-packs.mjs --metadata-only && (patch-package || exit 0)",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",

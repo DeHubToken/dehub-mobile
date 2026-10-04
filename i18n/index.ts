@@ -1,3 +1,4 @@
+import manifest from './locale-manifest.json';
 /**
  * i18n Configuration — Mobile (Expo/React Native)
  *
@@ -158,145 +159,91 @@ export const SUPPORTED_LANGUAGES = [
 ];
 
 // Lazy-loaders for all non-English locales
-const localeLoaders: Record<string, () => Record<string, unknown>> = {
-  da: () => require('./locales/da.json'),
-  dcc: () => require('./locales/dcc.json'),
-  dyu: () => require('./locales/dyu.json'),
-  om: () => require('./locales/om.json'),
-  af: () => require('./locales/af.json'),
-  az: () => require('./locales/az.json'),
-  am: () => require('./locales/am.json'),
-  ar: () => require('./locales/ar.json'),
-  acm: () => require('./locales/acm.json'),
-  acw: () => require('./locales/acw.json'),
-  aec: () => require('./locales/aec.json'),
-  ajp: () => require('./locales/ajp.json'),
-  ayn: () => require('./locales/ayn.json'),
-  apd: () => require('./locales/apd.json'),
-  bho: () => require('./locales/bho.json'),
-  be: () => require('./locales/be.json'),
-  bn: () => require('./locales/bn.json'),
-  bg: () => require('./locales/bg.json'),
-  my: () => require('./locales/my.json'),
-  cs: () => require('./locales/cs.json'),
-  zh: () => require('./locales/zh.json'),
-  cjy: () => require('./locales/cjy.json'),
-  mnp: () => require('./locales/mnp.json'),
-  ctg: () => require('./locales/ctg.json'),
-  hne: () => require('./locales/hne.json'),
-  nl: () => require('./locales/nl.json'),
-  arz: () => require('./locales/arz.json'),
-  fr: () => require('./locales/fr.json'),
-  de: () => require('./locales/de.json'),
-  el: () => require('./locales/el.json'),
-  gsw: () => require('./locales/gsw.json'),
-  ha: () => require('./locales/ha.json'),
-  he: () => require('./locales/he.json'),
-  ka: () => require('./locales/ka.json'),
-  hi: () => require('./locales/hi.json'),
-  hr: () => require('./locales/hr.json'),
-  hu: () => require('./locales/hu.json'),
-  ig: () => require('./locales/ig.json'),
-  id: () => require('./locales/id.json'),
-  it: () => require('./locales/it.json'),
-  ja: () => require('./locales/ja.json'),
-  jv: () => require('./locales/jv.json'),
-  kk: () => require('./locales/kk.json'),
-  ku: () => require('./locales/ku.json'),
-  kn: () => require('./locales/kn.json'),
-  ko: () => require('./locales/ko.json'),
-  lo: () => require('./locales/lo.json'),
-  mag: () => require('./locales/mag.json'),
-  mr: () => require('./locales/mr.json'),
-  mn: () => require('./locales/mn.json'),
-  mg: () => require('./locales/mg.json'),
-  yue: () => require('./locales/yue.json'),
-  wuu: () => require('./locales/wuu.json'),
-  ms: () => require('./locales/ms.json'),
-  ary: () => require('./locales/ary.json'),
-  km: () => require('./locales/km.json'),
-  ne: () => require('./locales/ne.json'),
-  pcm: () => require('./locales/pcm.json'),
-  fa: () => require('./locales/fa.json'),
-  wes: () => require('./locales/wes.json'),
-  pbt: () => require('./locales/pbt.json'),
-  pa: () => require('./locales/pa.json'),
-  pl: () => require('./locales/pl.json'),
-  pt: () => require('./locales/pt.json'),
-  qu: () => require('./locales/qu.json'),
-  rkt: () => require('./locales/rkt.json'),
-  ro: () => require('./locales/ro.json'),
-  ru: () => require('./locales/ru.json'),
-  sdr: () => require('./locales/sdr.json'),
-  skr: () => require('./locales/skr.json'),
-  es: () => require('./locales/es.json'),
-  sr: () => require('./locales/sr.json'),
-  si: () => require('./locales/si.json'),
-  so: () => require('./locales/so.json'),
-  sk: () => require('./locales/sk.json'),
-  sv: () => require('./locales/sv.json'),
-  sw: () => require('./locales/sw.json'),
-  syl: () => require('./locales/syl.json'),
-  tl: () => require('./locales/tl.json'),
-  ta: () => require('./locales/ta.json'),
-  te: () => require('./locales/te.json'),
-  th: () => require('./locales/th.json'),
-  tts: () => require('./locales/tts.json'),
-  tr: () => require('./locales/tr.json'),
-  uk: () => require('./locales/uk.json'),
-  ur: () => require('./locales/ur.json'),
-  uz: () => require('./locales/uz.json'),
-  vi: () => require('./locales/vi.json'),
-  sa: () => require('./locales/sa.json'),
-  yo: () => require('./locales/yo.json'),
-  no: () => require('./locales/no.json'),
-  fi: () => require('./locales/fi.json'),
-  zu: () => require('./locales/zu.json'),
-  ti: () => require('./locales/ti.json'),
-  ca: () => require('./locales/ca.json'),
-  lt: () => require('./locales/lt.json'),
-  et: () => require('./locales/et.json'),
-  lv: () => require('./locales/lv.json'),
-  mi: () => require('./locales/mi.json'),
-  gu: () => require('./locales/gu.json'),
-  ml: () => require('./locales/ml.json'),
-  or: () => require('./locales/or.json'),
-  sd: () => require('./locales/sd.json'),
-  sq: () => require('./locales/sq.json'),
-  ug: () => require('./locales/ug.json'),
-  tg: () => require('./locales/tg.json'),
-  tk: () => require('./locales/tk.json'),
-  hy: () => require('./locales/hy.json'),
-  ky: () => require('./locales/ky.json')
-};
+const packOrigin = process.env.EXPO_PUBLIC_LOCALE_PACK_ORIGIN || 'https://dehub.io';
+const readPackCache = (key: string) => AsyncStorage.getItem(`locale-pack:${key}`);
+const writePackCache = async (key: string, value: string) => { try { await AsyncStorage.setItem(`locale-pack:${key}`, value); } catch {} };
 
-/**
- * Load a locale's translations. Returns true if loaded (or already loaded).
- */
-export async function loadLanguage(lang: string): Promise<boolean> {
-  if (lang === 'en') return true;
-  if (i18n.hasResourceBundle(lang, 'translation')) return true;
-
-  const loader = localeLoaders[lang];
-  if (!loader) {
-    console.warn(`[i18n] No loader for locale "${lang}"`);
-    return false;
-  }
-
-  try {
-    const module = loader();
-    i18n.addResourceBundle(lang, 'translation', module, true, true);
-    // Every plural category this language actually uses, filled from the
-    // strings the locale already carries. Without it Arabic count=2/3/11,
-    // Polish 2/5/22 and every other >2-form language render English.
-    fillMissingPluralForms(i18n, lang);
-    return true;
-  } catch (err) {
-    console.warn(`[i18n] Failed to load locale "${lang}"`, err);
-    return false;
-  }
+const loadedPacks = new Set<string>();
+const retryAfter = new Map<string, number>();
+const pendingPacks = new Map<string, Promise<boolean>>();
+const pendingSourceLanguages = new Map<string, Promise<Record<string, unknown>>>();
+async function loadSourceLanguage(lang: string): Promise<Record<string, unknown>> {
+  const key = `${manifest.version}:${lang}:source`;
+  if (pendingSourceLanguages.has(key)) return pendingSourceLanguages.get(key)!;
+  const pending = (async () => {
+    const cached = await readPackCache(key);
+    if (cached) return JSON.parse(cached);
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 8000);
+    try {
+      const response = await fetch(`https://raw.githubusercontent.com/DeHubToken/dehub-mobile/${manifest.sourceRef}/i18n/locales/${lang}.json`, { signal: controller.signal });
+      if (!response.ok) throw new Error('Language source unavailable');
+      const data = await response.json();
+      if (!data || typeof data !== 'object' || Array.isArray(data)) throw new Error('Invalid language source');
+      await writePackCache(key, JSON.stringify(data));
+      return data;
+    } finally { clearTimeout(timeout); }
+  })().finally(() => { pendingSourceLanguages.delete(key); });
+  pendingSourceLanguages.set(key, pending);
+  return pending;
 }
-
+async function loadPack(lang: string, group: string): Promise<boolean> {
+  if (lang === 'en') return true;
+  if (!manifest.languages.includes(lang)) return false;
+  const key = `${manifest.version}:${lang}:${group}`;
+  if (loadedPacks.has(key)) return true;
+  if ((retryAfter.get(key) || 0) > Date.now()) return false;
+  if (pendingPacks.has(key)) return pendingPacks.get(key)!;
+  const pending = (async () => {
+    try {
+      const cached = await readPackCache(key);
+      let data: Record<string, unknown>;
+      if (cached) data = JSON.parse(cached);
+      else {
+        const cachedSource = await readPackCache(`${manifest.version}:${lang}:source`);
+        if (cachedSource) data = JSON.parse(cachedSource);
+        else {
+          const controller = new AbortController();
+          const timeout = setTimeout(() => controller.abort(), 8000);
+          try {
+            const response = await fetch(`${packOrigin}/locale-packs/mobile/${manifest.version}/${lang}/${group}.json`, { signal: controller.signal });
+            if (!response.ok) throw new Error('Locale pack unavailable');
+            data = await response.json();
+          } catch {
+            data = await loadSourceLanguage(lang);
+          } finally { clearTimeout(timeout); }
+          if (!data || typeof data !== 'object' || Array.isArray(data)) return false;
+          await writePackCache(key, JSON.stringify(data));
+        }
+      }
+      // Mark first: resource events rerender consumers synchronously.
+      loadedPacks.add(key);
+      i18n.addResourceBundle(lang, 'translation', data, true, true);
+      fillMissingPluralForms(i18n, lang);
+      return true;
+    } catch { retryAfter.set(key, Date.now() + 30_000); return false; }
+    finally { pendingPacks.delete(key); }
+  })();
+  pendingPacks.set(key, pending);
+  return pending;
+}
+const requestedGroups = new Set<string>(['core']);
+const groupForKey = (key: string) => (manifest.groups as Record<string, string>)[key.split('.')[0]];
+i18n.use({
+  type: 'postProcessor', name: 'featurePacks',
+  process(value: string, keys: string[]) {
+    const group = groupForKey(keys[0] || '');
+    if (group) {
+      requestedGroups.add(group);
+      void loadPack(i18n.language || 'en', group);
+    }
+    return value;
+  },
+});
+export async function loadLanguage(lang: string): Promise<boolean> {
+  const results = await Promise.all([...requestedGroups].map(group => loadPack(lang, group)));
+  return results.every(Boolean);
+}
 /**
  * Detect the best language from device locale, falling back to stored preference.
  */
@@ -313,6 +260,8 @@ i18n.use(initReactI18next).init({
   },
   lng: 'en',
   fallbackLng: 'en',
+  postProcess: ['featurePacks'],
+  react: { bindI18nStore: 'added' },
   interpolation: { escapeValue: false },
   compatibilityJSON: 'v4',
 });

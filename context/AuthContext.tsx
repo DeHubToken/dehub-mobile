@@ -10,7 +10,7 @@ import React, {
 } from "react";
 import { AuthAdapter } from "../services/auth/authAdapter";
 import { AppStateStatus } from "react-native";
-import SignInGatewayModal from "../components/auth/SignInGatewayModal";
+import SignInGatewayModal from "../components/auth/SignInGatewayHost";
 import {
   hasSeenAuth,
   setHasSeenAuth,
@@ -493,6 +493,13 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     setIsFirstTimeUser,
     setIsBootLoading,
     ensureProvider,
+    refreshCachedProfile: (cached, token) => enrichAndStoreUser(cached, { refetch: true, expectedToken: token }),
+    canRestoreCachedProfile: async (cached, token) => {
+      const { isVerifiedCachedProfile } = await import('../libs/auth.utils');
+      const { supabase } = await import('../services/supabase');
+      const { data } = await supabase.auth.getSession();
+      return !!data.session && isVerifiedCachedProfile(cached, token, data.session.user.id);
+    },
     reconcileProfile: async () => {
       if ((await getAuthMethod())?.method !== 'local') return false;
       const { supabase } = await import('../services/supabase');
