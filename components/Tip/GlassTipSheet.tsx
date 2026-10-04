@@ -83,6 +83,7 @@ import { fundTip, type TipFundingSource } from "../../libs/tip-funding";
 import { fundingErrorText } from "../../libs/tip-funding-error";
 import { useYieldToWalletUnlock } from "../../hooks/useYieldToWalletUnlock";
 import { emitPostTipped, commentTipKey } from "../../libs/tip-events";
+import CreatorSupportAd from './CreatorSupportAd';
 
 // ── Assets ───────────────────────────────────────────────────────────────────
 const DEHUB_COIN = require("../../assets/web-icons/dehub-coin.png");
@@ -648,6 +649,9 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
                   <Text style={styles.headerTitle}>{t("tip.title", "Send Tip")}</Text>
                 </View>
                 <Text style={styles.recipientText}>{subheader}</Text>
+                {visible && tipContext === 'content' && tokenId > 0 && !commentId && !isLocked && !isSelf && !recipientPrivate && !privacyChecking && user?.walletAddress ? (
+                  <CreatorSupportAd key={tokenId} postId={tokenId} wallet={user.walletAddress} />
+                ) : null}
 
                 {recipientPrivate ? (
                   <View style={styles.privateNotice}>
