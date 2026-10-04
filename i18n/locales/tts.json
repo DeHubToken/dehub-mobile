@@ -3455,7 +3455,7 @@
     "postJob": "โพสต์งาน",
     "types": {
       "all": "ทั้งหมด",
-      "shill": "โซเซียลมีเดีย",
+      "shill": "Shill",
       "clipping": "การตัดคลิป",
       "contract": "สัญญา"
     },
@@ -3471,7 +3471,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "ความเห็น / โปรโมต",
+        "label": "Shill",
         "description": "จ่ายต่อความเห็นที่ยืนยันแล้วแต่ละอันอยู่ X, YouTube, IG หรือ TikTok"
       },
       "clipping": {

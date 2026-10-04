@@ -3454,7 +3454,7 @@
     "postJob": "नोकरी पोस्ट करा",
     "types": {
       "all": "सर्व",
-      "shill": "सोशल मीडिया",
+      "shill": "Shill",
       "clipping": "क्लिपिंग",
       "contract": "करार"
     },
@@ -3470,7 +3470,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "टिप्पण्या / प्रचार",
+        "label": "Shill",
         "description": "X, YouTube, IG किंवा TikTok वरील प्रत्येक सत्यापित टिप्पणीसाठी पैसे द्या."
       },
       "clipping": {

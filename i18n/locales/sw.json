@@ -3456,7 +3456,7 @@
     "postJob": "Chapisha Kazi",
     "types": {
       "all": "Zote",
-      "shill": "Mitandao ya kijamii",
+      "shill": "Shill",
       "clipping": "Kukata klipu",
       "contract": "Mikataba"
     },
@@ -3472,7 +3472,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "Maoni / Utangazaji",
+        "label": "Shill",
         "description": "Lipa kwa kila maoni yaliyothibitishwa kwenye X, YouTube, IG au TikTok."
       },
       "clipping": {

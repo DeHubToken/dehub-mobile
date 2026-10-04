@@ -3455,7 +3455,7 @@
     "postJob": "Auftrag einstellen",
     "types": {
       "all": "Alle",
-      "shill": "Soziale Medien",
+      "shill": "Shill",
       "clipping": "Clipping",
       "contract": "Verträge"
     },
@@ -3471,7 +3471,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "Kommentare / Shill",
+        "label": "Shill",
         "description": "Zahle pro verifiziertem Kommentar auf X, YouTube, IG oder TikTok."
       },
       "clipping": {

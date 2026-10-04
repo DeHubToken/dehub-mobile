@@ -9,6 +9,7 @@ const mockDispatch = jest.fn();
 let mockSignedIn = true;
 let mockBalance = 500;
 let mockDigitalPurchasesEnabled = true;
+let mockActiveScreen = 'DM';
 const mockOpenLink = jest.fn();
 jest.mock('react-native-css-interop/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
 // The system theme, without the native modules the real provider loads.
@@ -29,7 +30,9 @@ jest.mock('@react-navigation/native', () => ({
   CommonActions: { navigate: (payload: unknown) => ({ type: 'NAVIGATE', payload }) },
   useNavigation: () => ({ dispatch: mockDispatch }),
   useNavigationState: (select: (state: unknown) => unknown) => select({ index: 0, routes: [
-    { name: 'App', state: { index: 0, routes: [{ name: 'Root', state: { index: 0, routes: [{ name: 'DM' }] } }] } },
+    { name: 'App', state: { index: 0, routes: [mockActiveScreen === 'DM'
+      ? { name: 'Root', state: { index: 0, routes: [{ name: 'DM' }] } }
+      : { name: mockActiveScreen }] } },
   ] }),
 }));
 jest.mock('react-native-gesture-handler', () => ({
@@ -75,7 +78,7 @@ const destinations = [
   ['nav.connectAi', 'Connect'],
 ] as const;
 
-beforeEach(() => { jest.clearAllMocks(); mockSignedIn = true; mockBalance = 500; mockDigitalPurchasesEnabled = true; });
+beforeEach(() => { jest.clearAllMocks(); mockSignedIn = true; mockBalance = 500; mockDigitalPurchasesEnabled = true; mockActiveScreen = 'DM'; });
 
 it.each([['nav.superpowers', 'SuperPowers'], ['nav.arcade', 'Arcade'], ['nav.governance', 'Governance']])(
   'keeps %s accessible with no token balance and iOS purchases disabled', (label, screen) => {
@@ -113,6 +116,19 @@ it('routes the profile header, balance chip, and Post through App', () => {
   fireEvent.press(view.getByLabelText('sidebar.post'));
   expect(mockDispatch).toHaveBeenLastCalledWith({ type: 'NAVIGATE', payload: { name: 'App', params: { screen: 'Upload', params: undefined } } });
 });
+
+it.each(['Work', 'WorkJobDetail', 'WorkPost', 'WorkEdit', 'WorkHistory', 'WorkDisputes'])(
+  'opens bounty creation from %s and closes the drawer', (screen) => {
+    mockActiveScreen = screen;
+    const close = jest.fn();
+    const view = render(<AppDrawer visible onClose={close} />);
+    fireEvent.press(view.getByLabelText('sidebar.post'));
+    expect(close).toHaveBeenCalledTimes(1);
+    expect(mockDispatch).toHaveBeenCalledWith({ type: 'NAVIGATE', payload: {
+      name: 'App', params: { screen: 'WorkPost', params: undefined },
+    } });
+  },
+);
 
 it('hides the balance chip when the wallet holds no DHB', () => {
   mockBalance = 0;

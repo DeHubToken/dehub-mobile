@@ -3488,7 +3488,7 @@
     "postJob": "Plaas 'n werk",
     "types": {
       "all": "Alles",
-      "shill": "Sosiale media",
+      "shill": "Shill",
       "clipping": "Snitwerk",
       "contract": "Kontrakte"
     },
@@ -3504,7 +3504,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "Kommentaar / Bemarking",
+        "label": "Shill",
         "description": "Betaal per geverifieerde kommentaar op X, YouTube, IG of TikTok."
       },
       "clipping": {

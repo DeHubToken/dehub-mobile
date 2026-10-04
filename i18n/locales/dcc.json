@@ -3453,7 +3453,7 @@
     "postJob": "کام ڈالو",
     "types": {
       "all": "سبھی",
-      "shill": "سوشل میڈیا",
+      "shill": "Shill",
       "clipping": "کلپنگ",
       "contract": "معاہدے"
     },
@@ -3469,7 +3469,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "تبصرے / تشہیر",
+        "label": "Shill",
         "description": "X، YouTube، IG یا TikTok پر ہر تصدیق شدہ تبصرے کا دو۔"
       },
       "clipping": {

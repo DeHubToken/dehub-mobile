@@ -3455,7 +3455,7 @@
     "postJob": "Legg ut en jobb",
     "types": {
       "all": "Alle",
-      "shill": "Sosiale medier",
+      "shill": "Shill",
       "clipping": "Klipping",
       "contract": "Kontrakter"
     },
@@ -3471,7 +3471,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "Kommentarer / Shill",
+        "label": "Shill",
         "description": "Betal per verifisert kommentar på X, YouTube, IG eller TikTok."
       },
       "clipping": {

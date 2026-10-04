@@ -3455,7 +3455,7 @@
     "postJob": "Publică o lucrare",
     "types": {
       "all": "Toate",
-      "shill": "Rețele sociale",
+      "shill": "Shill",
       "clipping": "Decupare clipuri",
       "contract": "Contracte"
     },
@@ -3471,7 +3471,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "Comentarii / Promovare",
+        "label": "Shill",
         "description": "Plătește pe fiecare comentariu verificat pe X, YouTube, IG sau TikTok."
       },
       "clipping": {

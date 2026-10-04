@@ -3478,7 +3478,7 @@
     "postJob": "Δημοσίευση εργασίας",
     "types": {
       "all": "Όλα",
-      "shill": "Μέσα κοινωνικής δικτύωσης",
+      "shill": "Shill",
       "clipping": "Κλιπ",
       "contract": "Συμβόλαια"
     },
@@ -3494,7 +3494,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "Σχόλια / Προώθηση",
+        "label": "Shill",
         "description": "Πληρώστε ανά επαληθευμένο σχόλιο σε X, YouTube, IG ή TikTok."
       },
       "clipping": {

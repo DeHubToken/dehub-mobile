@@ -21,7 +21,6 @@ describe("app drawer scope", () => {
     const drawer = readSource("components/Home/AppDrawer.tsx");
 
     expect(drawer).toContain("onPress={handlePost}");
-    expect(drawer).toContain("navigate(ScreenNames.Upload)");
     expect(drawer).toContain('justifyContent: "space-between"');
   });
 

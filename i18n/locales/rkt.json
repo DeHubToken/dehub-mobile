@@ -3589,7 +3589,7 @@
     "postJob": "কাজ দেন",
     "types": {
       "all": "হারায়",
-      "shill": "সামাজিক মাধ্যম",
+      "shill": "Shill",
       "clipping": "ক্লিপিং",
       "contract": "চুক্তি"
     },
@@ -3605,7 +3605,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "মন্তব্য / প্রচার",
+        "label": "Shill",
         "description": "X, YouTube, IG বা TikTok-ত হারা যাচাই করা মন্তব্যের জইন্যে দেন।"
       },
       "clipping": {

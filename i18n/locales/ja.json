@@ -3448,7 +3448,7 @@
     "postJob": "仕事を投稿",
     "types": {
       "all": "すべて",
-      "shill": "ソーシャルメディア",
+      "shill": "Shill",
       "clipping": "クリッピング",
       "contract": "契約"
     },
@@ -3464,7 +3464,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "コメント / 宣伝",
+        "label": "Shill",
         "description": "X、YouTube、IG、TikTok での検証済みコメントごとに支払い。"
       },
       "clipping": {

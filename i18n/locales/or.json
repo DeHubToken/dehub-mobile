@@ -3442,7 +3442,7 @@
     "postJob": "କାମ ପୋଷ୍ଟ କରନ୍ତୁ",
     "types": {
       "all": "ସବୁ",
-      "shill": "ସୋସିଆଲ ମିଡିଆ",
+      "shill": "Shill",
       "clipping": "କ୍ଲିପିଂ",
       "contract": "ଚୁକ୍ତି"
     },
@@ -3458,7 +3458,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "ମନ୍ତବ୍ୟ / ପ୍ରଚାର",
+        "label": "Shill",
         "description": "X, YouTube, IG କିମ୍ବା TikTok ରେ ପ୍ରତ୍ୟେକ ଯାଞ୍ଚିତ ମନ୍ତବ୍ୟ ପାଇଁ ଦିଅନ୍ତୁ।"
       },
       "clipping": {

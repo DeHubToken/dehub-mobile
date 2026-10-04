@@ -3457,7 +3457,7 @@
     "postJob": "Апублікаваць працу",
     "types": {
       "all": "Усе",
-      "shill": "Сацсеткі",
+      "shill": "Shill",
       "clipping": "Нарэзка",
       "contract": "Кантракты"
     },
@@ -3473,7 +3473,7 @@
     },
     "postTypes": {
       "shill": {
-        "label": "Каментары / Прасоўванне",
+        "label": "Shill",
         "description": "Плаціце за кожны пацверджаны каментар у X, YouTube, IG ці TikTok."
       },
       "clipping": {
