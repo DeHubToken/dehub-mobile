@@ -82,7 +82,9 @@ export const useScrubGesture = ({
         onScrub(ratioAt(e.x));
       })
       .onUpdate((e) => onScrub(ratioAt(e.x)))
-      .onEnd((e) => onCommit(ratioAt(e.x)))
+      .onEnd((e, success) => {
+        if (success) onCommit(ratioAt(e.x));
+      })
       .onFinalize((_e, success) => {
         if (!success) onCancel?.();
       });
@@ -91,7 +93,8 @@ export const useScrubGesture = ({
       .enabled(enabled)
       .maxDistance(ACTIVATE_PX)
       .runOnJS(true)
-      .onEnd((e) => {
+      .onEnd((e, success) => {
+        if (!success) return;
         onScrubStart?.();
         onCommit(ratioAt(e.x));
       });
@@ -114,13 +117,15 @@ export const useScrubGesture = ({
   // the responder on the track itself is what stops that -- the ancestor is
   // only offered the touch if nothing nearer took it. Termination is left
   // negotiable so a vertical flick that starts on the track still hands the
-  // gesture to the list and scrolls the feed.
+  // gesture to the list and scrolls the feed. Return false from the grant to
+  // keep Android native recognizers available while the JS responder guards
+  // against a parent press.
   const touchGuard = useMemo(
     () =>
       enabled
         ? {
             onStartShouldSetResponder: () => true,
-            onResponderGrant: () => {},
+            onResponderGrant: () => false,
             onResponderRelease: () => {},
           }
         : {},
