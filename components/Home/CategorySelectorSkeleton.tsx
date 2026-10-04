@@ -1,3 +1,4 @@
+import SkeletonBlock from "../Feed/SkeletonBlock";
 import React from 'react';
 import { View } from 'react-native';
 
@@ -9,10 +10,10 @@ const CategorySelectorSkeleton: React.FC = () => {
     <View className="h-12 flex-row items-center py-2">
       <View className="flex-row px-0">
         {widths.map((w, i) => (
-          <View
+          <SkeletonBlock
             key={i}
             style={{ width: w }}
-            className="h-8 mr-2 rounded-lg bg-theme-neutrals-800 animate-pulse"
+            className="h-8 mr-2 rounded-lg"
           />
         ))}
       </View>
