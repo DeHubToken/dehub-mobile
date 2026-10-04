@@ -6,8 +6,8 @@ import { AuthButton, AuthErrorNotice, AuthField, authColors, authText } from './
 import { AuthService } from '../../services/auth.service';
 import { useDebounceCallback } from '../../hooks/useDebounceCallback';
 import { toastSuccess } from '../../libs';
-import { setAuthToken, setAuthUser } from '../../libs/auth.utils';
-import { User } from '../../context/AuthContext';
+import { setAuthUser } from '../../libs/auth.utils';
+import type { User } from '../../context/AuthContext';
 import { useTranslation } from 'react-i18next';
 
 const statusRow: ViewStyle = { flexDirection: 'row', alignItems: 'center', gap: 6 };
@@ -21,7 +21,7 @@ interface Props {
   onSignOut: () => void;
 }
 
-export const UsernameRequiredModal: React.FC<Props> = ({ visible, provisionalUser, onComplete, onSignOut }) => {
+export const UsernameRequiredForm: React.FC<Props> = ({ visible, provisionalUser, onComplete, onSignOut }) => {
   const { t } = useTranslation();
   const [username, setUsername] = useState('');
   const [displayName, setDisplayName] = useState('');
@@ -89,14 +89,6 @@ export const UsernameRequiredModal: React.FC<Props> = ({ visible, provisionalUse
   };
 
   return (
-    <GlassModal
-      visible={visible}
-      // Deliberately not wired to sign-out: a stray tap on the backdrop would
-      // throw away a half-finished sign-up. The button below is the exit.
-      onClose={() => {}}
-      presentation="center"
-      blurIntensity={50}
-    >
       <View style={{ padding: 24 }}>
         <Text style={authText.modalTitle}>{t("setProfile.title")}</Text>
         <Text style={[authText.body, { marginTop: 8, marginBottom: 20 }]}>
@@ -180,6 +172,11 @@ export const UsernameRequiredModal: React.FC<Props> = ({ visible, provisionalUse
           style={{ marginTop: 8, alignSelf: "center" }}
         />
       </View>
-    </GlassModal>
   );
 };
+
+export const UsernameRequiredModal: React.FC<Props> = (props) => (
+  <GlassModal visible={props.visible} onClose={() => {}} dismissible={false} presentation="center" blurIntensity={50}>
+    <UsernameRequiredForm {...props} />
+  </GlassModal>
+);
