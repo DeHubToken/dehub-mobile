@@ -129,7 +129,7 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
   const freeAvailable =
     !!onConfirmFree && quantity === 1 && !!model && freeImages.remaining > 0 && freeImages.models.includes(model.id);
 
-  const { priceDhb, isLoading: isQuoting, error: quoteError } = useJobQuote(
+  const { priceDhb, priceUsd, isLoading: isQuoting, error: quoteError } = useJobQuote(
     model
       ? {
           kind: quoteKind,
@@ -156,8 +156,8 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
   const paidByCredits = creditsCoverPrice(creditsUsd, priceDhb);
   const unsupportedChain = paidByCredits ? null : chainProblem;
 
-  const unitCostUsd = model ? withMarkup(model.baseCostUsd) : 0;
-  const costUsd = unitCostUsd * quantity;
+  const costUsd = priceUsd;
+  const unitCostUsd = quantity > 0 ? costUsd / quantity : 0;
 
   // Offering a payment somebody cannot make would only fail at the signature,
   // so a wallet short of the price is sent to buy instead.
