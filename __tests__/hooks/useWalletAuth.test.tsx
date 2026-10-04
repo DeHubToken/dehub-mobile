@@ -10,6 +10,7 @@ const mockKit = {
   subscribeStateKey: () => () => {},
 };
 jest.mock('dehub-jsx/jsx-runtime', () => require('react/jsx-runtime'));
+jest.mock('@walletconnect/react-native-compat', () => ({}));
 jest.mock('../../context/AuthContext', () => ({ useAuthActions: () => ({ signInWithWallet: mockSignIn }) }));
 jest.mock('../../libs', () => ({ toastError: jest.fn() }));
 jest.mock('../../libs/walletSignupGate', () => ({ isWalletSignupBlocked: (e: { code?: string }) => e?.code === 'WALLET_SIGNUP_REQUIRES_HISTORY' }));
