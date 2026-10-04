@@ -4,6 +4,7 @@ import { VideoView, useVideoPlayer } from 'expo-video';
 import { supabase } from '../../services/supabase';
 import { dehubAuthHeaders } from '../../services/ai.service';
 import { useSilenceOnRelease } from '../../hooks/useSilenceOnRelease';
+import { useTranslation } from 'react-i18next';
 import { supportedWatchDelta } from '../../libs/support-watch';
 
 interface SupportAd { supportSessionId: string; mediaUrl: string; headline: string; advertiser: string; creatorShareUsd: number }
@@ -17,6 +18,7 @@ async function invoke(name: string, body: object, wallet: string) {
 }
 
 function SupportVideo({ ad, wallet, onMessage }: { ad: SupportAd; wallet: string; onMessage: (message: string) => void }) {
+  const { t } = useTranslation();
   const [watched, setWatched] = useState(0);
   const [credited, setCredited] = useState(false);
   const box = useRef<View>(null);
@@ -50,7 +52,7 @@ function SupportVideo({ ad, wallet, onMessage }: { ad: SupportAd; wallet: string
             setWatched(Number(data.watchedSeconds || 0));
             if (data.credited) {
               player.pause(); setCredited(true);
-              onMessage(`$${Number(data.creatorShareUsd).toFixed(4)} added to the creator's ad revenue. DHB settlement is pending.`);
+              onMessage(t('creatorSupport.receipt', { amount: Number(data.creatorShareUsd).toFixed(4) }));
             }
           })
           .catch(error => { p.sent = Math.max(0, p.sent - 4); try { player.pause(); } catch {} onMessage(error.message); })
@@ -58,15 +60,16 @@ function SupportVideo({ ad, wallet, onMessage }: { ad: SupportAd; wallet: string
       });
     });
     return () => { background.remove(); listener.remove(); };
-  }, [ad, wallet, player, credited, height, onMessage]);
+  }, [ad, wallet, player, credited, height, onMessage, t]);
   return <View ref={box} collapsable={false} style={{ gap: 8 }}>
-    <Text style={{ color: '#fff', fontSize: 13 }}>Sponsored by {ad.advertiser} · {ad.headline}</Text>
+    <Text style={{ color: '#fff', fontSize: 13 }}>{t('creatorSupport.sponsoredBy', { advertiser: ad.advertiser })} · {ad.headline}</Text>
     <VideoView player={player} nativeControls contentFit="contain" style={{ height: 180, width: '100%', borderRadius: 10 }} />
-    <Text style={{ color: '#A6A9AC', fontSize: 12 }}>{Math.floor(watched)} / 30 seconds verified · Creator share ${ad.creatorShareUsd.toFixed(4)}</Text>
+    <Text style={{ color: '#A6A9AC', fontSize: 12 }}>{t('creatorSupport.progress', { seconds: Math.floor(watched), amount: ad.creatorShareUsd.toFixed(4) })}</Text>
   </View>;
 }
 
 export default function CreatorSupportAd({ postId, wallet }: { postId: number; wallet: string }) {
+  const { t } = useTranslation();
   const [ad, setAd] = useState<SupportAd | null>(null);
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
@@ -76,20 +79,20 @@ export default function CreatorSupportAd({ postId, wallet }: { postId: number; w
       const data = await invoke('ads-serve', { supportPostId: String(postId), count: 1 }, wallet);
       const next = data?.ads?.[0];
       if (!next?.supportSessionId || !next.mediaUrl) {
-        setMessage('No sponsor videos are available right now. You can still send a DHB tip.'); return;
+        setMessage(t('creatorSupport.noAds')); return;
       }
       setAd(next);
-    } catch (error) { setMessage(error instanceof Error ? error.message : 'Could not load an ad.'); }
+    } catch (error) { setMessage(error instanceof Error ? error.message : t('creatorSupport.loadError')); }
     finally { setLoading(false); }
   };
   return <View style={{ gap: 8, padding: 12, borderRadius: 12, borderWidth: 1, borderColor: 'rgba(255,255,255,0.1)', marginBottom: 16 }}>
-    <Pressable accessibilityRole="button" accessibilityLabel="Watch an ad to support this creator" disabled={loading || !!ad} onPress={start} style={{ padding: 12, borderRadius: 10, backgroundColor: 'rgba(255,255,255,0.08)' }}>
-      <Text style={{ color: '#fff', textAlign: 'center', fontWeight: '600' }}>{loading ? 'Finding a sponsor…' : 'Watch an ad to support this creator'}</Text>
+    <Pressable accessibilityRole="button" accessibilityLabel={t('creatorSupport.watch')} disabled={loading || !!ad} onPress={start} style={{ padding: 12, borderRadius: 10, backgroundColor: 'rgba(255,255,255,0.08)' }}>
+      <Text style={{ color: '#fff', textAlign: 'center', fontWeight: '600' }}>{loading ? t('creatorSupport.loading') : t('creatorSupport.watch')}</Text>
     </Pressable>
-    <Text style={{ color: '#A6A9AC', fontSize: 12 }}>Watch 30 seconds. The sponsor funds the creator's revenue share; you pay nothing.</Text>
+    <Text style={{ color: '#A6A9AC', fontSize: 12 }}>{t('creatorSupport.explanation')}</Text>
     {ad ? <>
       <SupportVideo ad={ad} wallet={wallet} onMessage={setMessage} />
-      <Pressable accessibilityRole="button" accessibilityLabel="Close ad" onPress={() => setAd(null)} style={{ padding: 8 }}><Text style={{ color: '#fff', textAlign: 'center' }}>Close ad</Text></Pressable>
+      <Pressable accessibilityRole="button" accessibilityLabel={t('creatorSupport.close')} onPress={() => setAd(null)} style={{ padding: 8 }}><Text style={{ color: '#fff', textAlign: 'center' }}>{t('creatorSupport.close')}</Text></Pressable>
     </> : null}
     {message ? <Text accessibilityRole="alert" style={{ color: '#fff', fontSize: 13 }}>{message}</Text> : null}
   </View>;

@@ -8897,5 +8897,20 @@
     "recommendedBody": "A newer version of DeHub is available with important security fixes. Update to keep your account protected.",
     "requiredBody": "This version of DeHub is no longer supported. Update to keep using your account.",
     "update": "Update now"
+  },
+  "creatorSupport": {
+      "sponsoredBy":  "Sponsored by {{advertiser}}",
+      "campaignLabel":  "Creator support ads",
+      "close":  "Close ad",
+      "progress":  "{{seconds}} / 30 seconds verified · Creator share ${{amount}}",
+      "revenue":  "Your ad revenue · ${{amount}}",
+      "revenueDescription":  "Revenue from ads and creator support, awaiting DHB settlement.",
+      "noAds":  "No sponsor videos are available right now. You can still send a DHB tip.",
+      "explanation":  "Watch 30 seconds. The sponsor funds the creator\u0027s revenue share; you pay nothing.",
+      "receipt":  "${{amount}} added to the creator\u0027s ad revenue. DHB settlement is pending.",
+      "loadError":  "Could not load an ad.",
+      "loading":  "Finding a sponsor…",
+      "campaignDescription":  "Let viewers support creators by watching 30 seconds. Requires an approved video of at least 30 seconds, uploaded in the web advertising portal.",
+      "watch":  "Watch an ad to support this creator"
   }
 }
