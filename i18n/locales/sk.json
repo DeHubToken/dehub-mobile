@@ -1891,7 +1891,8 @@
     "importWalletRecommended": "Odporúčajú sa prihlásenia do sociálnych sietí.",
     "importWalletPurpose": "Tento nástroj slúži na import existujúcich účtov z DeHub.io.",
     "importSecretPlaceholder": "12 alebo 24 slov, alebo súkromný kľúč",
-    "invalidImportSecret": "To nie je platná 12/24-slovná fráza alebo súkromný kľúč"
+    "invalidImportSecret": "To nie je platná 12/24-slovná fráza alebo súkromný kľúč",
+    "walletSignupBlocked": "Táto peňaženka je úplne nová. Nové peňaženky potrebujú zostatok alebo predchádzajúcu transakciu, aby mohli otvoriť účet. Zaregistrujte sa jednou z možností nižšie a potom túto peňaženku pripojte v Nastaveniach."
   },
   "messages": {
     "smartRepliesOff": "Navrhované odpovede sú vypnuté",

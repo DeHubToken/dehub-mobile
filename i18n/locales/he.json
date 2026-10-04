@@ -1831,7 +1831,8 @@
     "importWalletRecommended": "מומלץ להתחבר לרשתות החברתיות.",
     "importWalletPurpose": "כלי זה מיועד לייבוא חשבונות קיימים מ - DeHub.io.",
     "importSecretPlaceholder": "12 או 24 מילים, או מפתח פרטי",
-    "invalidImportSecret": "זהו לא ביטוי של 12/24 מילים או מפתח פרטי תקין"
+    "invalidImportSecret": "זהו לא ביטוי של 12/24 מילים או מפתח פרטי תקין",
+    "walletSignupBlocked": "הארנק הזה חדש לגמרי. ארנקים חדשים צריכים יתרה או עסקה קודמת כדי לפתוח חשבון. הירשמו באחת מהאפשרויות למטה, ואז חברו את הארנק הזה מההגדרות."
   },
   "messages": {
     "smartRepliesOff": "התשובות המוצעות כובו",

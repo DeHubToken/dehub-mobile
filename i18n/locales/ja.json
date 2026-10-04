@@ -1832,7 +1832,8 @@
     "importWalletRecommended": "ソーシャルログインをお勧めします。",
     "importWalletPurpose": "このツールは、DeHub.ioから既存のアカウントをインポートするためのものです。",
     "importSecretPlaceholder": "12語または24語、または秘密鍵",
-    "invalidImportSecret": "有効な12/24語のフレーズまたは秘密鍵ではありません"
+    "invalidImportSecret": "有効な12/24語のフレーズまたは秘密鍵ではありません",
+    "walletSignupBlocked": "このウォレットは新品です。新しいウォレットでアカウントを作るには、残高または過去の取引が必要です。下のいずれかの方法で登録してから、設定でこのウォレットを接続してください。"
   },
   "messages": {
     "smartRepliesOff": "返信の候補をオフにしました",

@@ -1834,7 +1834,8 @@
     "importWalletRecommended": "Preporučuju se prijave na društvene mreže.",
     "importWalletPurpose": "Ovaj alat služi za uvoz postojećih računa s DeHub.io.",
     "importSecretPlaceholder": "12 ili 24 riječi, ili privatni ključ",
-    "invalidImportSecret": "To nije važeća 12/24‑riječna fraza ili privatni ključ"
+    "invalidImportSecret": "To nije važeća 12/24‑riječna fraza ili privatni ključ",
+    "walletSignupBlocked": "Ovaj novčanik je potpuno nov. Novi novčanici trebaju saldo ili prethodnu transakciju da bi otvorili račun. Registriraj se jednom od opcija ispod, a zatim poveži ovaj novčanik u Postavkama."
   },
   "messages": {
     "smartRepliesOff": "Predloženi odgovori isključeni",

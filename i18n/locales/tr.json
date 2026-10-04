@@ -1834,7 +1834,8 @@
     "importWalletRecommended": "Sosyal ağ girişleri önerilir.",
     "importWalletPurpose": "Bu araç, DeHub.io'dan mevcut hesapları içe aktarmak içindir.",
     "importSecretPlaceholder": "12 veya 24 kelime ya da özel anahtar",
-    "invalidImportSecret": "Bu geçerli bir 12/24 kelimelik ifade veya özel anahtar değil"
+    "invalidImportSecret": "Bu geçerli bir 12/24 kelimelik ifade veya özel anahtar değil",
+    "walletSignupBlocked": "Bu cüzdan yepyeni. Yeni cüzdanların hesap açabilmesi için bakiyesi veya geçmiş bir işlemi olmalı. Aşağıdaki seçeneklerden biriyle kaydol, ardından bu cüzdanı Ayarlar'dan bağla."
   },
   "messages": {
     "smartRepliesOff": "Önerilen yanıtlar kapatıldı",

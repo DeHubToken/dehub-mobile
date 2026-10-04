@@ -1834,7 +1834,8 @@
     "importWalletRecommended": "Sosiaaliset kirjautumiset ovat suositeltavia.",
     "importWalletPurpose": "Tämä työkalu on tarkoitettu olemassa olevien tilien tuomiseen DeHub.io: sta.",
     "importSecretPlaceholder": "12 tai 24 sanaa tai yksityinen avain",
-    "invalidImportSecret": "Se ei ole kelvollinen 12/24 sanan ilmaus tai yksityinen avain"
+    "invalidImportSecret": "Se ei ole kelvollinen 12/24 sanan ilmaus tai yksityinen avain",
+    "walletSignupBlocked": "Tämä lompakko on upouusi. Uusilla lompakoilla on oltava saldo tai aiempi tapahtuma tilin avaamiseen. Rekisteröidy jollakin alla olevista tavoista ja yhdistä tämä lompakko sitten Asetuksista."
   },
   "messages": {
     "smartRepliesOff": "Ehdotetut vastaukset poistettiin käytöstä",

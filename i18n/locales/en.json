@@ -1834,7 +1834,8 @@
     "exploreWithoutSignInA11y": "Explore DeHub without signing in",
     "continueExploringA11y": "Continue exploring DeHub",
     "importSecretPlaceholder": "12 or 24 words, or a private key",
-    "invalidImportSecret": "That isn't a valid 12/24-word phrase or private key"
+    "invalidImportSecret": "That isn't a valid 12/24-word phrase or private key",
+    "walletSignupBlocked": "This wallet is brand new. New wallets need a balance or a past transaction to open an account. Sign up with one of the options below, then connect this wallet from Settings."
   },
   "messages": {
     "smartRepliesOff": "Suggested replies turned off",

@@ -1835,7 +1835,8 @@
     "importWalletRecommended": "Kuingia kwenye mitandao ya kijamii kunapendekezwa.",
     "importWalletPurpose": "Nyenzo hii ni ya kuagiza akaunti zilizopo kutoka DeHub.io.",
     "importSecretPlaceholder": "Maneno 12 au 24, au ufunguo wa faragha",
-    "invalidImportSecret": "Huo sio usemi halali wa maneno 12/24 au ufunguo wa faragha"
+    "invalidImportSecret": "Huo sio usemi halali wa maneno 12/24 au ufunguo wa faragha",
+    "walletSignupBlocked": "Pochi hii ni mpya kabisa. Pochi mpya zinahitaji salio au muamala wa awali ili kufungua akaunti. Jisajili kwa mojawapo ya chaguo zilizo hapa chini, kisha unganisha pochi hii kutoka Mipangilio."
   },
   "messages": {
     "smartRepliesOff": "Majibu yanayopendekezwa yamezimwa",

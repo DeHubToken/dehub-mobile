@@ -7,7 +7,7 @@ import React, {
 import { View, Text, Image, ScrollView, type TextStyle } from "react-native";
 import { toastError, toastInfo } from "../../libs";
 import { Trans, useTranslation } from "react-i18next";
-import { AuthButton, authColors, authText } from "../../components/auth/AuthControls";
+import { AuthButton, AuthErrorNotice, authColors, authText } from "../../components/auth/AuthControls";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useAuthState, useAuthActions } from "../../context/AuthContext";
 import { ScreenNames } from "../../navigation/ScreenNames";
@@ -120,7 +120,7 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
 
   const { isFirstTimeUser, provisionalUser, isLoading: authLoading, needsUsername, isSignedIn } = useAuthState();
   const { skipAuth, signInWithWallet, signInWithSupabaseSession } = useAuthActions();
-  const { isWalletLoading, handleWalletConnect } = useWalletAuth();
+  const { isWalletLoading, isSignupBlocked, handleWalletConnect } = useWalletAuth();
 
   // Track if we've already handled navigation for this sign-in attempt
   const hasNavigatedRef = useRef(false);
@@ -797,6 +797,10 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
             />
             <Text style={authText.title}>{t("auth.welcomeToDehub")}</Text>
           </View>
+
+          {authStep === "main" && isSignupBlocked ? (
+            <AuthErrorNotice message={t("auth.walletSignupBlocked")} style={{ marginBottom: 16 }} />
+          ) : null}
 
           {/* Sign-in options: Email, Phone, Google, Apple, and Connect Wallet
               are all live. */}

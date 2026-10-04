@@ -1834,7 +1834,8 @@
     "importWalletRecommended": "Rekomenduojama prisijungti socialiniuose tinkluose.",
     "importWalletPurpose": "Šis įrankis skirtas esamų paskyrų importui iš DeHub.io.",
     "importSecretPlaceholder": "12 arba 24 žodžiai, arba privatus raktas",
-    "invalidImportSecret": "Tai nėra galiojanti 12/24 žodžių frazė ar privatus raktas"
+    "invalidImportSecret": "Tai nėra galiojanti 12/24 žodžių frazė ar privatus raktas",
+    "walletSignupBlocked": "Ši piniginė visiškai nauja. Naujoms piniginėms paskyrai atidaryti reikia likučio arba ankstesnės operacijos. Užsiregistruokite vienu iš toliau pateiktų būdų, tada prijunkite šią piniginę nustatymuose."
   },
   "messages": {
     "smartRepliesOff": "Siūlomi atsakymai išjungti",

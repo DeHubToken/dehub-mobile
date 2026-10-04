@@ -1834,7 +1834,8 @@
     "importWalletRecommended": "Rekomandohen hyrje sociale.",
     "importWalletPurpose": "Ky mjet është për importimin e llogarive ekzistuese nga DeHub.io.",
     "importSecretPlaceholder": "12 ose 24 fjalë, ose një çelës privat",
-    "invalidImportSecret": "Kjo nuk është një frazë e vlefshme 12/24-fjalësh ose çelës privat"
+    "invalidImportSecret": "Kjo nuk është një frazë e vlefshme 12/24-fjalësh ose çelës privat",
+    "walletSignupBlocked": "Ky portofol është krejt i ri. Portofolat e rinj kanë nevojë për bilanc ose një transaksion të mëparshëm për të hapur llogari. Regjistrohu me një nga opsionet më poshtë, pastaj lidhe këtë portofol nga Cilësimet."
   },
   "messages": {
     "smartRepliesOff": "Përgjigjet e sugjeruara u çaktivizuan",

@@ -1834,7 +1834,8 @@
     "importWalletRecommended": "Social Logins werden empfohlen.",
     "importWalletPurpose": "Dieses Tool dient zum Importieren bestehender Konten aus DeHub.io.",
     "importSecretPlaceholder": "12 oder 24 Wörter oder ein privater Schlüssel",
-    "invalidImportSecret": "Das ist weder eine gültige 12/24-Wort-Phrase noch ein privater Schlüssel"
+    "invalidImportSecret": "Das ist weder eine gültige 12/24-Wort-Phrase noch ein privater Schlüssel",
+    "walletSignupBlocked": "Diese Wallet ist brandneu. Neue Wallets brauchen ein Guthaben oder eine frühere Transaktion, um ein Konto zu eröffnen. Registriere dich mit einer der Optionen unten und verbinde diese Wallet danach in den Einstellungen."
   },
   "messages": {
     "smartRepliesOff": "Antwortvorschläge ausgeschaltet",

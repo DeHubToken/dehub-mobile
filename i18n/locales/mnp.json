@@ -1831,7 +1831,8 @@
     "importWalletPurpose": "此工具用于从 DeHub.io 导入现有帐户。",
     "couldNotSendCodeRetry": "无法发送代码。请重试。",
     "importSecretPlaceholder": "12 或 24 个单词，或私钥",
-    "invalidImportSecret": "那不是有效的 12/24 词短语或私钥"
+    "invalidImportSecret": "那不是有效的 12/24 词短语或私钥",
+    "walletSignupBlocked": "者隻錢包是全新个。新錢包着有餘額或者以前个交易正會開賬戶。用下底其中一種方式註冊，再在設置底勢連者隻錢包。"
   },
   "messages": {
     "smartRepliesOff": "建议回复关掉了",
