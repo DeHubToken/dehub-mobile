@@ -123,6 +123,7 @@ export function useAuthSession({
         refetch?: boolean;
         cacheBustImages?: boolean;
         force?: boolean; // bypass throttle
+        expectedToken?: string; // discard cached-boot work after an account switch
       }
     ): Promise<User> => {
       const t0 = Date.now();
@@ -205,6 +206,10 @@ export function useAuthSession({
           if (enriched.coverImageUrl)
             next.coverImageUrl = bust(enriched.coverImageUrl);
           enriched = { ...enriched, ...next } as User;
+        }
+        if (opts?.expectedToken) {
+          const { getAuthToken } = await import('../libs/auth.utils');
+          if (await getAuthToken() !== opts.expectedToken) return base;
         }
         if (isMountedRef.current) {
           setUser(enriched);
@@ -669,6 +674,10 @@ export function useAuthSession({
           return 'failed';
         }
 
+        // Discard an exchange whose Supabase identity changed while the
+        // request was in flight, before touching another account's storage.
+        if (walletUid && await getSupabaseUserId() !== walletUid) return 'failed';
+
         // The verified server identity link selects the profile. Wallet keys
         // are released only by a later wallet action, never by session exchange.
         // Multi-account staging, same as the wallet path: the exchange just
@@ -708,6 +717,10 @@ export function useAuthSession({
         } catch {}
 
         await applyWalletAuthResult(res.user, res.token, !!res.needsUsername, chainId, localProvider);
+        if (walletUid && !res.needsUsername && await getSupabaseUserId() === walletUid) {
+          const { rememberVerifiedProfile, getAuthToken } = await import('../libs/auth.utils');
+          if (await getAuthToken() === res.token) await rememberVerifiedProfile(walletUid, address, res.token);
+        }
         return "linked";
       } finally {
         setIsLoading(false);
