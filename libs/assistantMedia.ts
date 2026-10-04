@@ -56,8 +56,12 @@ export async function materialise(uri: string, kind: 'image' | 'video' | 'audio'
     return target;
   }
 
-  const { uri: fileUri } = await FileSystem.downloadAsync(uri, target);
-  return fileUri;
+  const downloaded = await FileSystem.downloadAsync(uri, target);
+  if (downloaded.status < 200 || downloaded.status >= 300) {
+    await FileSystem.deleteAsync(target, { idempotent: true }).catch(() => {});
+    throw new Error('Could not download the generated media.');
+  }
+  return downloaded.uri;
 }
 
 const MIME_BY_EXT: Record<string, string> = {

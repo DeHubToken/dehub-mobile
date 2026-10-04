@@ -7234,6 +7234,7 @@
     "studioCannotAnimate": "This model cannot animate a reference image. Choose another model.",
     "studioCannotEdit": "This model cannot edit a reference image. Choose another model.",
     "studioCreate": "Create",
+    "studioCloudSaveFailed": "Your result is still in history, but could not be saved to your account library. Reopen this conversation to try saving again.",
     "studioGenerateModel": "Generate 3D model",
     "studioGeneratingModel": "Generating your 3D model…",
     "studioGenerationFailed": "Generation failed.",

@@ -113,6 +113,8 @@ import { CREATOR_DEFAULTS, creatorModels, creatorInputIssue, creatorVideoOptions
 import { MODEL3D_MODELS } from '../config/model3d-models.constants';
 import { uploadLocalFileToBucket, fileExtension } from '../libs/storage-upload';
 import { runModel3d } from '../services/ai.service';
+import { saveCreatorAsset, type CreatorAssetToSave } from '../services/creator.service';
+import { useQueryClient } from '@tanstack/react-query';
 
 const log = createLogger('AIChatScreen');
 const errorCodeOf = (err: unknown) => (err instanceof AIServiceError ? err.errorCode : undefined);
@@ -262,6 +264,10 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
   const [studioSettings, setStudioSettings] = useState<CreatorStudioSettings>(CREATOR_DEFAULTS[initialMode]);
   const [pendingStudio, setPendingStudio] = useState<CreatorStudioSettings | null>(null);
   const submitLock = useRef(false);
+  const librarySaves = useRef(new Set<string>());
+  const failedLibrarySaves = useRef(new Set<string>());
+  const librarySaveQueue = useRef(Promise.resolve());
+  const queryClient = useQueryClient();
   const [model3dPaywallVisible, setModel3dPaywallVisible] = useState(false);
   const studioDrafts = useRef<Partial<Record<CreatorMode, { settings: CreatorStudioSettings; prompt: string; templateId: string | null; image: string | null }>>>({});
   const changeStudioMode = (mode: CreatorMode) => {
@@ -806,6 +812,7 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
                 : `${toolModel?.name || 'Tool'} completed successfully.`,
             ...(res.audioUrl ? { audioUrl: res.audioUrl } : {}),
             ...(res.imageUrl ? { imageUrl: res.imageUrl } : {}),
+            ...(res.modelUrl ? { modelUrl: res.modelUrl } : {}),
           });
           toastSuccess(t('aiChat.toolCompleted', { name: toolModel?.name || t('aiChat.aiTool') }));
         } else if (res.status === 'failed') {
@@ -952,7 +959,7 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
         sourceImage: pendingSourceImage, textureQuality: creator.textureQuality, txHash }, walletAddress);
       if (res.error || res.status === 'failed') throw new Error(res.error || t('creator.studioGenerationFailed'));
       if (res.modelUrl) {
-        await saveMessage([...history, { role: 'assistant', content: `[${t('creator.studioOpenModel')}](${res.modelUrl})`, imageUrl: res.imageUrl }]);
+        await saveMessage([...history, { role: 'assistant', content: `[${t('creator.studioOpenModel')}](${res.modelUrl})`, imageUrl: res.imageUrl, modelUrl: res.modelUrl }]);
         return;
       }
       if (!res.requestId || !res.appId) throw new Error(t('creator.studioMissingJob'));
@@ -1180,6 +1187,7 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
     try {
     mentions.reset();
     const userMessage: AIChatMessage = {
+      id: newTurnId(),
       role: 'user',
       content: text,
       ...(attachedImage ? { attachedImage } : {}),
@@ -1511,6 +1519,8 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
 
   const handleHistorySelect = useCallback(
     (entry: ConversationEntry) => {
+      for (const key of failedLibrarySaves.current) librarySaves.current.delete(key);
+      failedLibrarySaves.current.clear();
       loadConversation(entry);
       setInput('');
     },
@@ -1594,6 +1604,37 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
       })),
     [toolCategory, pendingStudio],
   );
+
+  useEffect(() => {
+    if (!walletAddress || !isScreenFocused) return;
+    let request: AIChatMessage | undefined;
+    for (const message of messages) {
+      if (message.role === 'user') { request = message; continue; }
+      if (!request?.id || !request.creatorSettings || message.isError || message.isVideoGenerating || message.isToolProcessing) continue;
+      const url = message.modelUrl ?? message.videoUrl ?? message.audioUrl ?? message.imageUrl;
+      if (!url) continue;
+      const kind = message.modelUrl ? 'model3d' : message.videoUrl ? 'video' : message.audioUrl ? 'audio' : 'image';
+      const id = `native-${request.id}-${kind}`;
+      const saveKey = `${walletAddress}:${id}`;
+      if (librarySaves.current.has(saveKey)) continue;
+      librarySaves.current.add(saveKey);
+      const creator = request.creatorSettings;
+      const asset: CreatorAssetToSave = { id, kind, url, prompt: request.content, model: creator.model,
+        modelName: creatorModels(creator.mode).find((model) => model.id === creator.model)?.name ?? creator.model,
+        aspect: creator.aspect, presetId: request.templateId, createdAt: Date.now() };
+      // Stream one file at a time, keeping large clips out of JS memory.
+      librarySaveQueue.current = librarySaveQueue.current.then(async () => {
+        try {
+          await saveCreatorAsset(asset);
+          void queryClient.invalidateQueries({ queryKey: ['creator-library', walletAddress] });
+        } catch (error) {
+          failedLibrarySaves.current.add(saveKey);
+          log.error('Creator library save failed:', error);
+          toastError(t('creator.studioCloudSaveFailed'));
+        }
+      });
+    }
+  }, [messages, walletAddress, isScreenFocused, queryClient]);
 
   return (
     <View style={studio ? { flex: 1 } : s.root} className={studio ? 'bg-theme-neutrals-900' : undefined}>

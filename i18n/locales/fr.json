@@ -7245,6 +7245,7 @@
     "studioCannotAnimate": "Ce modèle ne peut pas animer une image de référence. Choisissez un autre modèle.",
     "studioCannotEdit": "Ce modèle ne peut pas modifier une image de référence. Choisissez un autre modèle.",
     "studioCreate": "Créer",
+    "studioCloudSaveFailed": "Votre résultat reste dans l’historique, mais son enregistrement dans la bibliothèque du compte a échoué. Rouvrez cette conversation pour réessayer.",
     "studioGenerateModel": "Générer un modèle 3D",
     "studioGeneratingModel": "Génération de votre modèle 3D…",
     "studioGenerationFailed": "La génération a échoué.",

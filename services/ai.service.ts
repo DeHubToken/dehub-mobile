@@ -45,6 +45,7 @@ export interface AIChatMessage {
   imageUrl?: string;
   videoUrl?: string;
   audioUrl?: string;
+  modelUrl?: string;
   /** Base64 or file URI of an image the user attached to this turn. */
   attachedImage?: string;
   /** True while a video is still rendering; `videoPredictionId` polls it. */
