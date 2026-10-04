@@ -13,6 +13,7 @@ import type { CommentLayout } from "../components/Comments/CommentContextMenu";
 import CommentMediaPreview from "../components/Comments/CommentMediaPreview";
 import CommentTabRow, { type CommentSort } from "../components/Comments/CommentTabRow";
 import { COMPOSER, composerStyles } from "../components/Comments/composerLayout";
+import { useGrowingTextInput } from "../hooks/useGrowingTextInput";
 import type { MediaAttachment } from "../components/Comments/CommentMediaPreview";
 import { useVoiceRecorder, VoiceNoteRecordingOverlay } from "../components/Comments/VoiceNoteRecorder";
 import type { VoiceNoteResult } from "../components/Comments/VoiceNoteRecorder";
@@ -167,6 +168,7 @@ export default function FeedDetailScreen() {
   );
   const [editingComment, setEditingComment] = useState<Comment | null>(null);
   const [inputText, setInputText] = useState(restoredDraft?.text ?? "");
+  const growingInput = useGrowingTextInput(inputText);
   const mentions = useMentions(inputText, setInputText);
   const [posting, setPosting] = useState(false);
   const [highlightedCommentId, setHighlightedCommentId] = useState<number | null>(null);
@@ -1608,6 +1610,8 @@ export default function FeedDetailScreen() {
                   value={inputText}
                   onChangeText={mentions.handleChangeText}
                   onSelectionChange={mentions.handleSelectionChange}
+                  onContentSizeChange={growingInput.onContentSizeChange}
+                  scrollEnabled={growingInput.scrollEnabled}
                   placeholder={
                     editingComment
                       ? t("comments.editPlaceholder")
@@ -1622,12 +1626,12 @@ export default function FeedDetailScreen() {
                     // send control is a sibling, not an overlay, so the box is
                     // free to grow into the row.
                     maxHeight: 140,
+                    height: growingInput.height,
                     paddingVertical: 0,
                     // Android multiline inputs top-align regardless of the parent.
-                    textAlignVertical: "center",
+                    textAlignVertical: inputText.length ? "top" : "center",
                   }}
                   multiline
-                  numberOfLines={inputText.length === 0 ? 1 : undefined}
                   // No returnKeyType="send"/onSubmitEditing here on purpose: on a
                   // multiline field that turns the keyboard's return key into a
                   // post button, so a reply cannot be written across two lines.
