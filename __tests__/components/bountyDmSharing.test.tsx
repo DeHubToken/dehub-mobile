@@ -9,8 +9,8 @@ jest.mock('react-native', () => ({
   View: 'View', Text: 'Text', TouchableOpacity: 'TouchableOpacity', TextInput: 'TextInput', ActivityIndicator: 'ActivityIndicator',
   StyleSheet: { flatten: (style: unknown) => style },
   FlatList: ({ data, renderItem }: { data: unknown[]; renderItem: (info: { item: unknown; index: number }) => React.ReactNode }) => {
-    const React = require('react');
-    return React.createElement('View', {}, data.map((item, index) => React.createElement(React.Fragment, { key: index }, renderItem({ item, index }))));
+    const { createElement, Fragment } = require('react');
+    return createElement('View', {}, data.map((item, index) => createElement(Fragment, { key: index }, renderItem({ item, index }))));
   },
 }));
 jest.mock('@react-navigation/native', () => ({ useNavigation: () => ({ navigate: mockNavigate }) }));
@@ -19,10 +19,7 @@ jest.mock('../../components/common/BadgeArtwork', () => 'BadgeArtwork');
 jest.mock('../../components/common/SmartImage', () => 'SmartImage');
 jest.mock('../../components/common/Avatar', () => 'Avatar');
 jest.mock('@expo/vector-icons', () => ({ Ionicons: 'Ionicons' }));
-jest.mock('../../components/ui/GlassModal', () => {
-  const React = require('react');
-  return ({ children }: { children: React.ReactNode }) => React.createElement(React.Fragment, null, children);
-});
+jest.mock('../../components/ui/GlassModal', () => ({ children }: { children: React.ReactNode }) => children);
 jest.mock('../../libs', () => ({ getAvatarUrl: () => undefined, toastSuccess: jest.fn() }));
 jest.mock('../../libs/misc', () => ({ getBadgeUrlFor: () => undefined }));
 jest.mock('../../config', () => ({ WEBSITE_LINK: 'https://dehub.io' }));
