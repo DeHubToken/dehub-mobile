@@ -12,6 +12,8 @@ import { ScreenNames } from "../../navigation/ScreenNames";
 import { useUser, useAuthState, useAuthActions } from "../../context/AuthContext";
 import { getAvatarUrl } from "../../libs/misc";
 import { FEED_NAV_ITEMS } from "./FeedNavBar";
+import FeedPillPullEffect from './FeedPillPullEffect';
+import type { HomePullMotion } from '../../context/HomePullRefreshContext';
 
 // Match the web drawer's 200ms height reveal from behind the capsule.
 const menuEnter = (values: { targetHeight: number }) => {
@@ -86,12 +88,14 @@ export const IslandCapsule = memo(function IslandCapsule({
   menuOpen,
   onToggleMenu,
   onAvatarPress,
+  pullMotion,
 }: {
   activeIndex: number;
   menuOpen: boolean;
   onToggleMenu: () => void;
   /** Avatar: opens the drawer. */
   onAvatarPress?: () => void;
+  pullMotion?: HomePullMotion;
 }) {
   const refreshing = useFeedPillRefreshing();
   const pillId = useRef(Symbol("feed-pill")).current;
@@ -162,6 +166,7 @@ export const IslandCapsule = memo(function IslandCapsule({
             </Pressable>
           </View>
         </View>
+        {pullMotion && !menuOpen ? <FeedPillPullEffect motion={pullMotion} refreshing={refreshing} width={ISLAND_CAPSULE_WIDTH} /> : null}
       </View>
     </View>
   );

@@ -34,6 +34,8 @@ import { getCategoriesCached } from "../services/nft.service";
 import { storage } from "../libs/storage";
 import { homeTabEvents, promptFeedEvents } from "../libs/eventBus";
 import { useCollapsibleHeader } from "../hooks/useCollapsibleHeader";
+import { useHomePullRefresh } from '../hooks/useHomePullRefresh';
+import { HomePullRefreshContext } from '../context/HomePullRefreshContext';
 import { useIsFetching, useQueryClient } from "@tanstack/react-query";
 import FeedFilterLoader from "../components/Home/FeedFilterLoader";
 import { useFeedFilterTransition } from "../hooks/useFeedFilterTransition";
@@ -265,6 +267,7 @@ export default function HomeScreen() {
 
   const {
     translateY: headerTranslateY,
+    scrollOffset,
     headerHeight,
     headerAnimatedStyle,
     onHeaderLayout,
@@ -272,6 +275,8 @@ export default function HomeScreen() {
     handleScrollEnd,
     showHeader,
   } = useCollapsibleHeader();
+  const homePull = useHomePullRefresh(island && cinematicPhone && isFocused && !islandMenuOpen && !feedProfileVisible && !imageFeed, scrollOffset, activeIndex);
+  const pullDistance = homePull.motion.distance;
 
   // Sync header translateY to the bottom tab bar context
   const tabBarHide = useTabBarHide();
@@ -484,6 +489,7 @@ export default function HomeScreen() {
         }),
     [pageWidth, commitIndex, progress, dragStart, showHeader],
   );
+  const homeGestures = useMemo(() => Gesture.Race(pagerGesture, homePull.gesture), [pagerGesture, homePull.gesture]);
 
   // Canvas themes draw the header translucent over the live backdrop, and
   // Android has no backdrop blur to soften what scrolls under it, so posts
@@ -517,7 +523,7 @@ export default function HomeScreen() {
     transform: [{ translateY: clipOn ? Math.max(0, navPillTop.value + headerTranslateY.value) : 0 }],
   }));
   const feedUnclipStyle = useAnimatedStyle(() => ({
-    transform: [{ translateY: clipOn ? -Math.max(0, navPillTop.value + headerTranslateY.value) : 0 }],
+    transform: [{ translateY: (clipOn ? -Math.max(0, navPillTop.value + headerTranslateY.value) : 0) + pullDistance.value }],
   }));
 
   // Under the island nothing is reserved for the capsule: the home feed
@@ -1041,6 +1047,7 @@ export default function HomeScreen() {
             menuOpen={islandMenuOpen}
             onToggleMenu={toggleIslandMenu}
             onAvatarPress={openDrawer}
+            pullMotion={homePull.motion}
           />
         ) : (
           <HomeHeader
@@ -1087,7 +1094,7 @@ export default function HomeScreen() {
         />
       </Animated.View>
 
-      <GestureDetector gesture={pagerGesture}>
+      <GestureDetector gesture={homeGestures}>
         <Animated.View style={[styles.pagerViewport, viewportShape, feedClipStyle]}>
           <Animated.View style={[styles.feedUnclip, unclipShape, feedUnclipStyle]}>
           <PagerGestureProvider gestureRef={pagerGestureRef}>
@@ -1119,7 +1126,9 @@ export default function HomeScreen() {
                   pointerEvents={index === activeIndex ? "auto" : "none"}
                 >
                   <PagerPage index={index} progress={progress}>
-                    {renderPage(key, index)}
+                    <HomePullRefreshContext.Provider value={index === activeIndex ? homePull.provider : null}>
+                      {renderPage(key, index)}
+                    </HomePullRefreshContext.Provider>
                   </PagerPage>
                 </View>
               ))}
