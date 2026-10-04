@@ -5670,7 +5670,14 @@
     "imageTranslating": "Mamorona sy mandika lahatsoratra…",
     "imageNoText": "Tsy nisy lahatsoratra hita tao amin'ity sary ity",
     "translatedFrom": "Nalaina avy amin'ny {{lang}}",
-    "originalText": "Teny tany am-boalohany"
+    "originalText": "Teny tany am-boalohany",
+    "repostAndShare": "Avereno alefa & zarao",
+    "repostHint": "Avy hatrany, ny mpanara-dia anao",
+    "quoteHint": "Ampio ny teninao manokana",
+    "shareTo": "Anjara amin'ny",
+    "moreShare": "BEBE KOKOA",
+    "viewQuotes": "Hizaha teny nalaina",
+    "viewReposts": "Hizaha ny fizarana"
   },
   "dm": {
     "online": "Fiofanana an-tserasera",

@@ -5647,7 +5647,14 @@
     "imageTranslating": "Ngekstrak lan nerjemahake teks...",
     "imageNoText": "Ora ana teks sing ditemokake ing gambar iki",
     "translatedFrom": "Terjemahan saka {{lang}}",
-    "originalText": "Tèks Asli"
+    "originalText": "Tèks Asli",
+    "repostAndShare": "Repost & share",
+    "repostHint": "Sakcepete, marang para pengikutmu",
+    "quoteHint": "Tambahaké tembungmu dhewe",
+    "shareTo": "Bareng menyang",
+    "moreShare": "Luwih",
+    "viewQuotes": "Deleng kutipan",
+    "viewReposts": "Deleng repost"
   },
   "dm": {
     "online": "Online",

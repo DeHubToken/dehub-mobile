@@ -5661,7 +5661,14 @@
     "imageTranslating": "টেক্সট বের করা এবং অনুবাদ করা হচ্ছে...",
     "imageNoText": "এই ছবিতে কোনো টেক্সট পাওয়া যায়নি",
     "translatedFrom": "{{lang}} থেকে অনুবাদ করা হয়েছে",
-    "originalText": "মূল লেখা"
+    "originalText": "মূল লেখা",
+    "repostAndShare": "পুনরায় পোস্ট করুন এবং শেয়ার করুন",
+    "repostHint": "অবিলম্বে, আপনার অনুসরণকারীদের কাছে",
+    "quoteHint": "আপনার নিজের শব্দ যোগ করুন",
+    "shareTo": "শেয়ার করুন",
+    "moreShare": "আরও",
+    "viewQuotes": "কোটেশন দেখুন",
+    "viewReposts": "রিপোস্টগুলি দেখুন"
   },
   "dm": {
     "online": "অনলাইন",

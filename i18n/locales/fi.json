@@ -5665,7 +5665,14 @@
     "imageTranslating": "Tekstin poiminta ja kääntäminen…",
     "imageNoText": "Kuvasta ei löytynyt tekstiä",
     "translatedFrom": "Käännetty kohteesta {{lang}}",
-    "originalText": "Alkuperäinen teksti"
+    "originalText": "Alkuperäinen teksti",
+    "repostAndShare": "Julkaise uudelleen ja jaa",
+    "repostHint": "Välittömästi seuraajillesi",
+    "quoteHint": "Lisää omat sanasi",
+    "shareTo": "Jaa henkilölle",
+    "moreShare": "Lisää",
+    "viewQuotes": "Näytä tarjoukset",
+    "viewReposts": "Näytä uudelleenjulkaisut"
   },
   "dm": {
     "online": "Online",

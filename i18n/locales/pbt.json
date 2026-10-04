@@ -5635,7 +5635,13 @@
     "imageTranslating": "متن استخراج او ژباړه کیږي...",
     "imageNoText": "په دې انځور کې هیڅ متن نه دی موندل شوی",
     "originalText": "د اصلي متن متن",
-    "translatedFrom": "له {{lang}} څخه ژباړل شوی"
+    "translatedFrom": "له {{lang}} څخه ژباړل شوی",
+    "repostAndShare": "شریک کړئ او شریک کړئ",
+    "repostHint": "ژر تر ژره خپلو پیرودونکو ته زنګ ووهئ",
+    "quoteHint": "خپلې کلمې اضافه کړئ",
+    "shareTo": "د شریکولو لپاره",
+    "moreShare": "نور ډیر څه",
+    "viewReposts": "د بیاکتنې بیاکتنې وګورئ"
   },
   "dm": {
     "online": "په آنلاین توګه",

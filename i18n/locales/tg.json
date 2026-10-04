@@ -5619,7 +5619,9 @@
     "imageTranslating": "Текст истихроҷ ва тарҷума карда мешавад...",
     "imageNoText": "Дар ин тасвир матне ёфт нашуд",
     "translatedFrom": "Тарҷумашуда аз {{lang}}",
-    "originalText": "Матни аслӣ"
+    "originalText": "Матни аслӣ",
+    "repostHint": "Фавран, ба пайравони худ",
+    "moreShare": "Бештар"
   },
   "dm": {
     "online": "Онлайн",

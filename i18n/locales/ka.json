@@ -5675,7 +5675,14 @@
     "imageTranslating": "ტექსტის ამოღება და თარგმნა…",
     "imageNoText": "სურათში ტექსტი არ არის ნაპოვნი",
     "originalText": "ორიგინალი ტექსტი",
-    "translatedFrom": "თარგმნილია {{lang}} ‑ დან"
+    "translatedFrom": "თარგმნილია {{lang}} ‑ დან",
+    "repostAndShare": "რეპოსტი და გაზიარება",
+    "repostHint": "მომენტალურად, თქვენს მიმდევრებს",
+    "quoteHint": "დაამატეთ საკუთარი სიტყვები",
+    "shareTo": "გაუზიარეთ",
+    "moreShare": "მეტი",
+    "viewQuotes": "ბრჭყალების ნახვა",
+    "viewReposts": "რეპოსტების ნახვა"
   },
   "dm": {
     "online": "ონლაინ",

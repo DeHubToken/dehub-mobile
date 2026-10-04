@@ -6,6 +6,7 @@ import { AppState, Platform } from "react-native";
 import env from "../config/env";
 import { restartApp, takeCrashMarker } from "./crashRecovery";
 import { readLogIdentity } from "./logIdentity";
+import { readAuthTrace } from './auth-trace';
 
 /**
  * Ships error logs off the device.
@@ -62,7 +63,7 @@ const PENDING_KEY = "error_reporter_pending_v1";
 const SNAPSHOT_KEY = "error_reporter_queue_v1";
 
 type Row = {
-  level: "error" | "warn";
+  level: "error" | "warn" | "info";
   component?: string;
   message: string;
   stack_trace?: string;
@@ -157,6 +158,7 @@ function buildRow(
     stack_trace: stack,
     metadata: {
       ...deviceContext(),
+      ...readAuthTrace(),
       client_time: new Date().toISOString(),
       ...(detail.length ? { detail: safeDetail(detail) } : {}),
     },
@@ -173,7 +175,11 @@ function safeDetail(detail: unknown[]): string {
   }
 }
 
-export function reportError(component: string | undefined, args: unknown[]): void {
+export function reportError(
+  component: string | undefined,
+  args: unknown[],
+  options?: { level?: Row['level']; metadata?: Record<string, unknown> },
+): void {
   if (rowsThisSession >= SESSION_ROW_BUDGET) return;
   let row: Row | null = null;
   try {
@@ -182,6 +188,8 @@ export function reportError(component: string | undefined, args: unknown[]): voi
     return;
   }
   if (!row) return;
+  if (options?.level) row.level = options.level;
+  if (options?.metadata) row.metadata = { ...row.metadata, ...options.metadata };
 
   rowsThisSession += 1;
   queue.push(row);

@@ -5683,7 +5683,14 @@
     "imageTranslating": "Matnni chiqarish va tarjima qilish...",
     "imageNoText": "Rasmdagi matn topilmadi",
     "translatedFrom": "{{lang}} dan tarjima qilindi",
-    "originalText": "Asl matn"
+    "originalText": "Asl matn",
+    "repostAndShare": "Qayta joylashtiring va ulashing",
+    "repostHint": "Darhol, izdoshlaringizga",
+    "quoteHint": "O'z so'zlaringizni qo'shing",
+    "shareTo": "Ulashish",
+    "moreShare": "Ko'proq",
+    "viewQuotes": "Iqtiboslarni ko'rish",
+    "viewReposts": "Repostlarni ko'rish"
   },
   "dm": {
     "online": "Onlayn",

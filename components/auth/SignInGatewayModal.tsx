@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { View, Text, ScrollView, StyleSheet } from "react-native";
 import GlassModal from "../ui/GlassModal";
 import { AuthButton, AuthErrorNotice, authColors, authText } from "./AuthControls";
@@ -50,6 +50,7 @@ import { setSigningProvider, setEoaSigningProvider, clearSigningProvider } from 
 import { setupAAProvider } from "../../libs/wallet-core/smart-account";
 import { AuthService } from "../../services";
 import { createLogger } from "../../libs/logger";
+import { beginAuthTrace, readAuthTrace } from "../../libs/auth-trace";
 import { useWalletAuth } from "../../hooks/useWalletAuth";
 import { useScrollFieldIntoView } from "../../hooks/useScrollFieldIntoView";
 import { Trans, useTranslation } from "react-i18next";
@@ -100,6 +101,28 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
   const [legacyAccounts, setLegacyAccounts] = useState<LegacyAccountMatch[] | null>(null);
   const [pendingCreateUserId, setPendingCreateUserId] = useState<string | null>(null);
   const isBusy = (authLoading || isLocalLoading || isWalletLoading) && !needsUsername;
+  useEffect(() => {
+    if (!visible) return;
+    if (!readAuthTrace().auth_attempt_id) beginAuthTrace('undecided');
+  }, [visible]);
+  useEffect(() => {
+    if (!visible) return;
+    log.trace?.('screen-view', {
+      surface: 'signin-sheet',
+      screen: walletSetupRequest ? 'wallet-setup' : authStep,
+      method: currentProvider || 'undecided',
+    });
+  }, [visible, authStep, walletSetupRequest, currentProvider]);
+  const dismissFlow = useCallback(() => {
+    log.trace?.('flow-dismissed', { surface: 'signin-sheet', screen: authStep });
+    onClose();
+  }, [onClose, authStep]);
+
+  useEffect(() => {
+    if (visible && (inlineError || passkeyError)) {
+      log.trace?.('error-visible', { surface: 'signin-sheet', screen: authStep });
+    }
+  }, [visible, inlineError, passkeyError, authStep]);
 
   const completeLocalSignIn = useCallback(
     async (evmAddress: string, privateKey: string, web3AuthMeta?: Record<string, any>,
@@ -604,7 +627,7 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
       // useWalletAuth's auto-authenticate effect lives up here and has to
       // survive the round trip out to the wallet app and back.
       visible={visible && !isWalletSheetOpen}
-      onClose={onClose}
+      onClose={dismissFlow}
       presentation="bottom"
       blurIntensity={50}
       // Block closing while sign-in is in progress
@@ -752,7 +775,7 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
           <AuthButton
             variant="secondary"
             label={t("common.cancel")}
-            onPress={onClose}
+            onPress={dismissFlow}
             disabled={isBusy || needsUsername}
             accessibilityLabel={t("auth.closeAuthModal")}
           />

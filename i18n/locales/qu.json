@@ -5678,7 +5678,14 @@
     "imageTranslating": "Qillqata hurquspa tikray...",
     "imageNoText": "Kay siq'ipi mana qillqasqa tarikunchu",
     "translatedFrom": "{{lang}} nisqamanta t'ikrasqa.",
-    "originalText": "Texto Original"
+    "originalText": "Texto Original",
+    "repostAndShare": "Repost & compartir",
+    "repostHint": "Chaylla, qatiqninkunaman",
+    "quoteHint": "Kikin simiykikunata yapay",
+    "shareTo": "Compartir a",
+    "moreShare": "Aswan",
+    "viewQuotes": "Citakunata qhaway",
+    "viewReposts": "Repostkunata qhaway"
   },
   "dm": {
     "online": "Tinkisqa",
