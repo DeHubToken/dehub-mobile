@@ -8,6 +8,7 @@ import {
   reactionMeta,
   resolveLeadReaction,
   resolveThumbReaction,
+  resolveThumbCount,
   type PostReaction,
   type ReactionCounts,
 } from "../../libs/reactions";
@@ -32,6 +33,7 @@ interface FeedActionBarProps {
   saved: boolean;
   reposted: boolean;
   likeCount: number;
+  dislikeCount?: number;
   commentCount: number;
   repostCount: number;
   /**
@@ -206,6 +208,7 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
   saved,
   reposted,
   likeCount,
+  dislikeCount,
   commentCount,
   repostCount,
   shareCount,
@@ -259,6 +262,7 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
    */
   const leadReaction = resolveLeadReaction(reactionCounts, myReaction);
   const thumbGlyph = resolveThumbReaction(reactionCounts, myReaction) ?? undefined;
+  const thumbCount = resolveThumbCount(likeCount, dislikeCount ?? reactionCounts?.dislike ?? 0, thumbGlyph);
 
   // Single row, every button a direct child spread edge-to-edge (matches the
   // web ActionBar). Order left → right: tip · share · comment · like ·
@@ -333,7 +337,7 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
           glyphPlaying={isVisible}
           active={liked || disliked}
           activeFill={ICON_ACTIVE}
-          count={likeCount}
+          count={thumbCount}
           formatCount
           accessibilityLabel={
             myReaction
