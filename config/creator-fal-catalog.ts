@@ -28,7 +28,10 @@ export interface CreatorFalVideoModel {
   supportsReferenceImages?: boolean;
   maxReferenceImages?: number;
   supportsAudioInput?: boolean;
-  family: 'flux3' | 'omni' | 'h3' | 'grok' | 'wan3' | 'horse' | 'klingo3' | 'ray3' | 'pixverse6' | 'ltx23';
+  supportsVideoInput?: boolean;
+  requiresVideoInput?: boolean;
+  referenceMode?: 'edit' | 'motion';
+  family: 'flux3' | 'omni' | 'h3' | 'grok' | 'wan3' | 'horse' | 'klingo3' | 'ray3' | 'pixverse6' | 'ltx23' | 'klingedit' | 'klingmotion';
   falTextModel: string;
   falImageModel: string;
   falEndFrameModel?: string;
@@ -47,6 +50,30 @@ function video(spec: VideoSpec): CreatorFalVideoModel {
 }
 
 export const CREATOR_FAL_VIDEO_MODELS: Record<string, CreatorFalVideoModel> = {
+  'kling-o3-edit': {
+    ...video({
+      id: 'kling-o3-edit', name: 'Kling O3 Character Swap', vendor: 'Kling', emoji: '🎭', tier: 'premium',
+      description: 'Swap characters, products or scenery into your clip using up to four images',
+      family: 'klingedit', falTextModel: 'fal-ai/kling-video/o3/pro/video-to-video/edit',
+      falImageModel: 'fal-ai/kling-video/o3/pro/video-to-video/edit',
+      minDuration: 3, maxDuration: 15, defaultDuration: 5, perSecondCostUsd: 0.168,
+      resolutions: ['1080p'], aspectRatios: ['16:9', '9:16', '1:1'],
+      supportsVideoInput: true, requiresVideoInput: true, referenceMode: 'edit',
+      supportsReferenceImages: true, maxReferenceImages: 4, hasAudio: true,
+    }), supports: ['image-to-video'],
+  },
+  'kling-3-motion': {
+    ...video({
+      id: 'kling-3-motion', name: 'Kling 3 Motion Control', vendor: 'Kling', emoji: '💃', tier: 'premium',
+      description: 'Your character performs the movement and expressions from a reference clip',
+      family: 'klingmotion', falTextModel: 'fal-ai/kling-video/v3/pro/motion-control',
+      falImageModel: 'fal-ai/kling-video/v3/pro/motion-control',
+      minDuration: 3, maxDuration: 30, defaultDuration: 5, perSecondCostUsd: 0.168,
+      resolutions: ['1080p'], aspectRatios: ['16:9', '9:16', '1:1'],
+      supportsVideoInput: true, requiresVideoInput: true, referenceMode: 'motion',
+      maxReferenceImages: 1, hasAudio: true,
+    }), supports: ['image-to-video'],
+  },
   'flux-3-video': video({
     id: 'flux-3-video', name: 'FLUX 3', vendor: 'Black Forest Labs', emoji: '🌲', tier: 'premium',
     description: 'Video and sound from text, images, or start and end frames',

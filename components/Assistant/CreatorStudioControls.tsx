@@ -3,6 +3,7 @@ import { Modal, Pressable, ScrollView, Text, TextInput, View } from 'react-nativ
 import { useTranslation } from 'react-i18next';
 import Icon from '../ui/Icon';
 import { CREATOR_VIDEO_RULES } from '../../config/creator-video-rules';
+import { VIDEO_MODELS } from '../../config/ai-models.constants';
 import { MODEL3D_MODELS } from '../../config/model3d-models.constants';
 import {
   CREATOR_MODE_KEYS, creatorAspects, creatorModels,
@@ -15,10 +16,11 @@ interface Props {
   onMode: (mode: CreatorMode) => void;
   onPresets: () => void;
   onAttach?: () => void;
+  onWorkflow?: (workflow: 'swap' | 'motion') => void;
   disabled: boolean;
 }
 
-export default function CreatorStudioControls({ settings, onChange, onMode, onPresets, onAttach, disabled }: Props) {
+export default function CreatorStudioControls({ settings, onChange, onMode, onPresets, onAttach, onWorkflow, disabled }: Props) {
   const { t } = useTranslation();
   const [picker, setPicker] = useState<'model' | 'aspect' | 'resolution' | 'texture' | null>(null);
   const [durationDraft, setDurationDraft] = useState(String(settings.durationSeconds));
@@ -68,10 +70,10 @@ export default function CreatorStudioControls({ settings, onChange, onMode, onPr
         )}
         {(Object.keys(CREATOR_MODE_KEYS) as CreatorMode[]).map((mode) => chip(t(CREATOR_MODE_KEYS[mode]), () => onMode(mode), mode === settings.mode))}
       </View>
-      <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 8 }}>
+      <View className="flex-row flex-wrap gap-2">
         {chip(selected?.name ?? settings.model, () => setPicker('model'))}
         {(settings.mode === 'image' || settings.mode === 'video') && chip(settings.aspect, () => setPicker('aspect'))}
-        {settings.mode === 'video' && (
+        {settings.mode === 'video' && !VIDEO_MODELS[settings.model]?.requiresVideoInput && (
           <View className="flex-row items-center rounded-xl border border-theme-neutrals-700 bg-theme-neutrals-800 px-2">
             <TextInput
               value={durationDraft}
@@ -95,10 +97,15 @@ export default function CreatorStudioControls({ settings, onChange, onMode, onPr
             <Text className="pr-1 text-xs text-theme-neutrals-400">{t('filters.duration')}</Text>
           </View>
         )}
+        {settings.mode === 'video' && VIDEO_MODELS[settings.model]?.requiresVideoInput && <Text className="self-center text-xs text-theme-neutrals-400">{t('creator.referenceClipSeconds', { seconds: settings.durationSeconds })}</Text>}
         {settings.mode === 'video' && CREATOR_VIDEO_RULES[settings.model]?.supportsResolution && chip(settings.resolution, () => setPicker('resolution'))}
         {settings.mode === '3d' && chip(t(`creator.studioTexture.${settings.textureQuality}`), () => setPicker('texture'))}
         {(settings.mode === 'image' || settings.mode === 'video') && chip(t('creator.presets'), onPresets)}
-      </ScrollView>
+        {settings.mode === 'video' && onWorkflow && <>
+          {chip(t('creator.characterSwap'), () => onWorkflow('swap'), settings.model === 'kling-o3-edit')}
+          {chip(t('creator.copyMotion'), () => onWorkflow('motion'), settings.model === 'kling-3-motion')}
+        </>}
+      </View>
       <Modal visible={picker !== null} transparent animationType="slide" onRequestClose={() => setPicker(null)}>
         <View className="flex-1 justify-end bg-black/70">
           <Pressable className="flex-1" onPress={() => setPicker(null)} accessibilityLabel={t('common.close')} />
