@@ -1,6 +1,6 @@
 Android 1.18.1 adds the swipe-up shorts feed: watching any video fullscreen, swipe up to drop into an endless mix of trending, new and all-time most viewed, liked and commented clips.
 
-Creator now generates images, videos, music, speech and 3D models directly in the app. Choose models, reference images, framing and clip length, use the 24 released Open Higgsfield presets, review the price, and save or share your results. Video, audio and mesh jobs resume when you return to the app.
+Creator now generates images, videos, music, speech and 3D models directly in the app. Choose models, reference images, framing and clip length, explore 182 image and video presets including the 24 released Open Higgsfield recipes, review the price, and save or share your results. Video, audio and mesh jobs resume when you return to the app.
 
 Native creations are saved to the same private account library as web. The payment sheet shows the server quote for the selected duration and texture quality.
 

@@ -1,0 +1,41 @@
+name: Android external links
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'modules/play-external-links/**'
+      - 'android/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/android-external-links.yml'
+
+concurrency:
+  group: android-external-links-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  compile:
+    name: Compile Play external links
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+      - run: npm ci --legacy-peer-deps
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: android-actions/setup-android@v3
+        with:
+          packages: platform-tools
+          log-accepted-android-sdk-licenses: false
+      - name: Compile the release billing bridge
+        working-directory: android
+        run: |
+          chmod +x gradlew
+          ./gradlew :play-external-links:compileReleaseKotlin --no-daemon -PreactNativeArchitectures=arm64-v8a

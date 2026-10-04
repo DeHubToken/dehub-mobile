@@ -73,7 +73,6 @@ class PlayExternalLinksModule : Module() {
             .setLinkUri(link)
             .setLinkType(LaunchExternalLinkParams.LinkType.LINK_TO_DIGITAL_CONTENT_OFFER)
             .setLaunchMode(LaunchExternalLinkParams.LaunchMode.LAUNCH_IN_EXTERNAL_BROWSER_OR_APP)
-            .setExternalTransactionToken(token)
             .build()
           activity.runOnUiThread {
             try {
