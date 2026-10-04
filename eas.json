@@ -41,7 +41,11 @@
       "android": {
         "buildType": "apk",
         "applicationArchivePath": "android/app/build/outputs/apk/release/app-arm64-v8a-release.apk"
-      }
+      },
+      "env": {
+        "EXPO_PUBLIC_LOCALE_PACK_ORIGIN": "https://staging.dehub.io"
+      },
+      "environment": "preview"
     }
   },
   "submit": {
