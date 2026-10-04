@@ -8,7 +8,7 @@ import { ethers } from 'ethers';
 import { ethersService } from '../ethers.service';
 import { isChainAASupported, setupAAProvider } from '../../libs/wallet-core/smart-account';
 import { createLockedEip1193 } from './lockedProviderShim';
-import { getAppKitInstance } from '../../config/reown.config';
+import { ensureAppKit, getAppKitInstance } from '../../config/reown.config';
 import { createLogger } from '../../libs/logger';
 import { selectSessionProvider } from '../../libs/wallet-core/session-provider';
 import { assertWalletAddress } from '../../libs/wallet-core/assert-wallet-address';
@@ -289,7 +289,7 @@ export class LocalProviderAdapter implements AuthAdapter {
    */
   private async adoptConnectedWallet(activeAddr: string): Promise<Eip1193Shim | null> {
     try {
-      const kit = getAppKitInstance();
+      const kit = getAppKitInstance() || await ensureAppKit();
       if (!kit?.getIsConnected?.()) return null;
       const connected = kit.getAddress?.();
       if (!connected || connected.toLowerCase() !== activeAddr.toLowerCase()) return null;

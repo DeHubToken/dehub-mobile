@@ -10,11 +10,12 @@ const mockKit = {
   subscribeStateKey: () => () => {},
 };
 jest.mock('dehub-jsx/jsx-runtime', () => require('react/jsx-runtime'));
+jest.mock('@walletconnect/react-native-compat', () => ({}));
 jest.mock('../../context/AuthContext', () => ({ useAuthActions: () => ({ signInWithWallet: mockSignIn }) }));
 jest.mock('../../libs', () => ({ toastError: jest.fn() }));
 jest.mock('../../libs/walletSignupGate', () => ({ isWalletSignupBlocked: (e: { code?: string }) => e?.code === 'WALLET_SIGNUP_REQUIRES_HISTORY' }));
 jest.mock('../../libs/auth.utils', () => ({ getPreferredChainId: async () => 8453 }));
-jest.mock('../../config/reown.config', () => ({ getAppKitInstance: () => mockKit }));
+jest.mock('../../config/reown.config', () => ({ getAppKitInstance: () => mockKit, ensureAppKit: async () => mockKit, useAppKitReady: () => true }));
 jest.mock('../../libs/provider.registry', () => ({ setSigningProvider: jest.fn(), clearSigningProvider: jest.fn() }));
 jest.mock('@reown/appkit-ethers5-react-native', () => ({
   useAppKitAccount: () => ({ address: '0x1111111111111111111111111111111111111111', chainId: 8453 }),
