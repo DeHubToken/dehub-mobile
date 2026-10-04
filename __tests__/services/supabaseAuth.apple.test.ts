@@ -48,6 +48,17 @@ it('keeps a returning user name when Apple does not supply it again', async () =
   expect(update).not.toHaveBeenCalled();
 });
 
+it('continues a successful sign-in when saving the first Apple name fails', async () => {
+  nativeSignIn.mockResolvedValue({ identityToken: 'apple-token', fullName: { givenName: 'Sam' } });
+  update.mockRejectedValueOnce(new Error('Network request failed'));
+  await expect(signInWithApple()).resolves.toBe('apple-user');
+});
+
+it('rejects an exchange without a session even when no error is supplied', async () => {
+  exchange.mockResolvedValue({ data: { session: null }, error: null });
+  await expect(signInWithApple()).rejects.toThrow('Could not establish Apple sign-in session');
+});
+
 it('does not continue provisioning after cancellation', async () => {
   nativeSignIn.mockRejectedValue(new Error('cancelled'));
   await expect(signInWithApple()).rejects.toThrow('cancelled');
