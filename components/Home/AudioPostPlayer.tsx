@@ -10,6 +10,7 @@ import {
   Modal,
   StyleSheet,
   LayoutChangeEvent,
+  Platform,
 } from "react-native";
 import { GestureDetector } from "react-native-gesture-handler";
 import { useScrubGesture } from "../../hooks/useScrubGesture";
@@ -198,7 +199,7 @@ export const SeekBar: React.FC<SeekBarProps> = memo(({ position, hue, edgeLine =
 
   return (
     <View
-      style={{ height: edgeLine ? 14 : 18, justifyContent: edgeLine ? "flex-end" : "center" }}
+      style={{ height: edgeLine ? (Platform.OS === "android" ? 48 : 14) : 18, justifyContent: edgeLine ? "flex-end" : "center" }}
       hitSlop={{ top: 6, bottom: 6, left: 0, right: 0 }}
     >
       <View className="h-[3px] bg-white/20 rounded-full overflow-hidden">
