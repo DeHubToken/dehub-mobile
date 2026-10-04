@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { memo, useCallback, useMemo, useState } from 'react';
 import { FlatList, Pressable, Text, View, ActivityIndicator, useWindowDimensions } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -11,7 +11,7 @@ import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import ScreenHeader from '../components/ScreenHeader';
 import SubscriptionCreditsPill from '../components/SubscriptionCreditsPill';
-import { listCreatorAssets } from '../services/creator.service';
+import { listCreatorAssets, type CreatorAsset } from '../services/creator.service';
 import { openInApp } from '../libs/links.utils';
 import type { CreatorMode } from '../libs/creatorStudio';
 import { useUser } from '../context/AuthContext';
@@ -70,8 +70,11 @@ export default function CreatorScreen() {
     enabled: !!wallet,
   });
 
-  const openStudio = (mode: CreatorMode = 'image') => nav.navigate(ScreenNames.CreatorStudio, { mode });
+  const jobs = useMemo(() => query.data?.pages.flatMap(page => page.jobs) ?? [], [query.data]);
+  const previewJobs = useMemo(() => jobs.map(item => ({ ...item, posterUrl: item.posterUrl ?? previews[item.id] })), [jobs, previews]);
+  const openStudio = useCallback((mode: CreatorMode = 'image', workflow?: 'swap' | 'motion') => nav.navigate(ScreenNames.CreatorStudio, { mode, workflow }), [nav]);
 
+  const header = useMemo(() => {
   const mediums = [
     { key: 'image', icon: 'images', label: t('creator.navImage'), note: t('creator.doorImageNote'), open: () => openStudio('image') },
     { key: 'video', icon: 'videos', label: t('creator.navVideo'), note: t('creator.doorVideoNote'), open: () => openStudio('video') },
@@ -107,7 +110,7 @@ export default function CreatorScreen() {
     );
   };
 
-  const header = (
+  return (
     <View>
       <View className="items-center px-4 pb-6 pt-8">
         <Text className="text-center text-[32px] font-black leading-[34px] text-theme-neutrals-100">{t('creator.heroTitle')}</Text>
@@ -136,6 +139,9 @@ export default function CreatorScreen() {
       <Text className="px-4 pb-3 text-[22px] font-black text-theme-neutrals-100">{t('creator.pickMedium')}</Text>
       <View className="flex-row flex-wrap px-4" style={{ gap: GAP }}>{mediums.map(tile)}</View>
 
+      <View className="mt-4 flex-row flex-wrap gap-2 px-4">
+        {(['swap', 'motion'] as const).map(workflow => <Pressable key={workflow} onPress={() => openStudio('video', workflow)} accessibilityRole="button" className="rounded-xl border border-white/15 bg-theme-neutrals-800 px-4 py-3"><Text className="font-semibold text-theme-neutrals-100">{t(workflow === 'swap' ? 'creator.characterSwap' : 'creator.copyMotion')}</Text></Pressable>)}
+      </View>
       <Text className="px-4 pb-3 pt-7 text-[22px] font-black text-theme-neutrals-100">{t('creator.moreTools')}</Text>
       <View className="flex-row flex-wrap px-4" style={{ gap: GAP }}>{tools.map(tile)}</View>
 
@@ -145,16 +151,19 @@ export default function CreatorScreen() {
     </View>
   );
 
+  }, [t, themeName, half, nav, openStudio, accentInk, stage, query.isLoading]);
+  const renderAsset = useCallback(({ item }: { item: CreatorAsset }) => <CreatorLibraryCard item={item} posterUrl={item.posterUrl ?? previews[item.id]} width={half} />, [half, previews]);
+
   return (
     <View className="flex-1 bg-theme-neutrals-900">
-      <MeshThumbnailQueue jobs={(query.data?.pages.flatMap((page) => page.jobs) ?? []).map((item) => ({ ...item, posterUrl: item.posterUrl ?? previews[item.id] }))} wallet={wallet} onPreview={onPreview} />
+      <MeshThumbnailQueue jobs={previewJobs} wallet={wallet} onPreview={onPreview} />
       {/* Subscription tokens: the balance AI generation here is paid from. */}
       <ScreenHeader
         title={t('commandCentre.creator')}
         rightContent={DIGITAL_PURCHASES_ENABLED && wallet ? <SubscriptionCreditsPill /> : undefined}
       />
       <FlatList
-        data={query.data?.pages.flatMap((page) => page.jobs) ?? []}
+        data={jobs}
         keyExtractor={(item) => item.id}
         numColumns={2}
         ListHeaderComponent={header}
@@ -164,23 +173,32 @@ export default function CreatorScreen() {
         columnWrapperStyle={{ gap: GAP, paddingHorizontal: PAD }}
         contentContainerStyle={{ paddingBottom: 32, gap: GAP }}
         ListEmptyComponent={<Text className="px-4 text-theme-neutrals-400">{!wallet ? t('creator.signInToSee') : query.error instanceof Error ? query.error.message : query.isLoading ? '' : t('creator.libraryEmpty')}</Text>}
-        renderItem={({ item }) => (
+        renderItem={renderAsset}
+        initialNumToRender={6}
+        maxToRenderPerBatch={6}
+        windowSize={7}
+      />
+    </View>
+  );
+}
+
+const CreatorLibraryCard = memo(function CreatorLibraryCard({ item, posterUrl, width }: { item: CreatorAsset; posterUrl?: string; width: number }) {
+  const { t } = useTranslation();
+  return (
           <Pressable
             accessibilityRole="button"
             accessibilityLabel={t('creator.openGeneration', { prompt: item.prompt || item.modelName })}
             onPress={() => { if (item.url) void openInApp(item.url); }}
             className="overflow-hidden rounded-2xl border border-white/10 bg-theme-neutrals-800"
-            style={{ width: half }}
+            style={{ width: width }}
           >
-            <CreatorMediaPreview kind={item.kind} url={item.url} posterUrl={item.posterUrl ?? previews[item.id]} width={half} height={item.kind === 'audio' ? half * 0.6 : half} />
+            <CreatorMediaPreview kind={item.kind} url={item.url} posterUrl={posterUrl} width={width} height={item.kind === 'audio' ? width * 0.6 : width} />
             <View className="p-3">
               <Text className="text-[13px] text-theme-neutrals-100" numberOfLines={2}>{item.prompt || item.modelName}</Text>
               <Text className="mt-1 text-[11.5px] text-theme-neutrals-400">{item.kind} · {item.modelName}</Text>
               {item.transcript && <Text selectable className="mt-2 text-[12px] text-theme-neutrals-100" numberOfLines={4}>{item.transcript}</Text>}
             </View>
           </Pressable>
-        )}
-      />
-    </View>
+
   );
-}
+});
