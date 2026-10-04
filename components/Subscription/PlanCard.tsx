@@ -95,7 +95,7 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
       await queryClient.invalidateQueries({ queryKey: ['cc-creator-plans'] });
       toastSuccess(t(updated.isPinned ? 'postOptions.postPinned' : 'postOptions.postUnpinned'));
     } catch (error) {
-      toastError(error, t('subscriptions.startFailed'));
+      toastError(error, t('settings.failedUpdateProfile'));
     } finally {
       setPinning(false);
     }
