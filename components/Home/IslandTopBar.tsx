@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 import ElectricLogo from "../common/ElectricLogo";
 import Avatar from "../common/Avatar";
 import Icon, { type IconName } from "../ui/Icon";
-import ChromeSurface from "../ui/ChromeSurface";
+import NavPillSurface, { NAV_PILL_RADIUS, NAV_PILL_SHADOW } from "../ui/NavPillSurface";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { useUser, useAuthState, useAuthActions } from "../../context/AuthContext";
 import { getAvatarUrl } from "../../libs/misc";
@@ -56,7 +56,7 @@ export const ISLAND_CAPSULE_GAP = 6;
 /** Room the capsule takes at the top of the screen; the first post clears it. */
 export const ISLAND_BAR_HEIGHT = ISLAND_CAPSULE_HEIGHT + ISLAND_CAPSULE_GAP * 2;
 /** The capsule's corner. */
-const CAPSULE_RADIUS = 15;
+const CAPSULE_RADIUS = NAV_PILL_RADIUS;
 /** DeHub's soft corner (the badge plate, the tab pill): not a full circle. */
 const RADIUS = 15;
 /** The avatar, and the rows of the feed menu. */
@@ -120,7 +120,7 @@ export const IslandCapsule = memo(function IslandCapsule({
   return (
     <View pointerEvents="box-none" style={styles.wrap}>
       <View style={[styles.capsule, { maxWidth: screenWidth - 32, opacity: side ? 1 : 0 }]}>
-        <ChromeSurface radius={CAPSULE_RADIUS} />
+        <NavPillSurface />
         <View style={[styles.left, { width: side || undefined }]}>
           <View style={styles.sideInner}>
             <Pressable
@@ -191,7 +191,7 @@ export const IslandFeedMenu = memo(function IslandFeedMenu({
   return (
     <Animated.View entering={menuEnter} exiting={menuExit} pointerEvents="box-none" style={styles.menuWrap}>
       <View style={styles.menu}>
-        <ChromeSurface radius={RADIUS} />
+        <NavPillSurface />
         {FEED_NAV_ITEMS.map((item, index) => {
           const current = index === activeIndex;
           return (
@@ -242,10 +242,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     width: ISLAND_CAPSULE_WIDTH,
     zIndex: 2,
-    shadowColor: "#000",
-    shadowOpacity: 0.35,
-    shadowRadius: 10,
-    shadowOffset: { width: 0, height: 4 },
+    ...NAV_PILL_SHADOW,
   },
   left: { minWidth: AVATAR_SIZE, flexDirection: "row", alignItems: "center", justifyContent: "flex-start" },
   right: { minWidth: AVATAR_SIZE, flexDirection: "row", alignItems: "center", justifyContent: "flex-end" },
@@ -259,7 +256,7 @@ const styles = StyleSheet.create({
     width: ISLAND_CAPSULE_WIDTH,
     padding: 6,
     paddingTop: ISLAND_CAPSULE_HEIGHT + 6,
-    borderRadius: RADIUS,
+    borderRadius: CAPSULE_RADIUS,
     overflow: "hidden",
     shadowColor: "#000",
     shadowOpacity: 0.35,
@@ -294,3 +291,4 @@ const styles = StyleSheet.create({
   },
   badgeText: { color: "#fff", fontSize: 9, fontWeight: "700", lineHeight: 11, textAlign: "center" },
 });
+
