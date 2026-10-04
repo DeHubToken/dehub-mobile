@@ -312,12 +312,13 @@ export function useUpdateJob() {
     }) => {
       if (!wallet) throw new Error("Not authenticated");
       const addr = wallet.toLowerCase();
+      const current=await workRow('work_jobs',params.id);
       const patch: Record<string, unknown> = {
         title: params.title,
         description: params.description,
         platform: params.platform || null,
         target_url: params.target_url || null,
-        deadline: params.deadline || new Date(Date.now()+30*86400000).toISOString(),
+        deadline: current.fund_tx_hash || current.funding_state!=='unfunded' ? current.deadline : params.deadline || null,
       };
       if (params.budget) {
         patch.currency = params.budget.currency;

@@ -55,7 +55,7 @@ export function createWorkEscrow(deps:Dependencies) {
           await deps.rpc('work_record_funding',{p_job:id,p_hash:hash});
           try {await sent.wait(2);} catch { /* receipt decides whether funding succeeded */ }
         } catch(error:any) {
-          if (!hash && (error?.code===4001 || error?.code==='ACTION_REJECTED')) await deps.rpc('work_record_funding',{p_job:id,p_cancel:true});
+          if (!hash && (error?.code===4001 || error?.code==='ACTION_REJECTED' || error?.code==='WORK_NOT_SENT')) await deps.rpc('work_record_funding',{p_job:id,p_cancel:true});
           throw error;
         }
       } else await deps.rpc('work_record_funding',{p_job:id,p_hash:hash});
