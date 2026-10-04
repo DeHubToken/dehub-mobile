@@ -5674,7 +5674,14 @@
     "imageTranslating": "Мәтінді шығарып, аудару…",
     "imageNoText": "Суретте мәтін табылмады",
     "translatedFrom": "Аударылды {{lang}}",
-    "originalText": "Түпнұсқа мәтін"
+    "originalText": "Түпнұсқа мәтін",
+    "repostAndShare": "Қайта жіберу және бөлісу",
+    "repostHint": "Сіздің ізбасарларыңызға бірден",
+    "quoteHint": "Өз сөзіңізді қосыңыз",
+    "shareTo": "Бөлісу",
+    "moreShare": "Толығырақ",
+    "viewQuotes": "Дәйексөздерді көру",
+    "viewReposts": "Репосттарды қарау"
   },
   "dm": {
     "online": "Онлайн",

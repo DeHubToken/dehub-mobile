@@ -5669,7 +5669,14 @@
     "imageTranslating": "Szöveg kinyerése és fordítása…",
     "imageNoText": "Nem található szöveg a képen",
     "translatedFrom": "Fordítva {{lang}}",
-    "originalText": "Eredeti szöveg"
+    "originalText": "Eredeti szöveg",
+    "repostAndShare": "Újbóli közzététel és megosztás",
+    "repostHint": "Azonnal, a követőidnek",
+    "quoteHint": "Add hozzá a saját szavaidat",
+    "shareTo": "Megosztás itt:",
+    "moreShare": "Több",
+    "viewQuotes": "Árajánlatok megtekintése",
+    "viewReposts": "Újraküldések megtekintése"
   },
   "dm": {
     "online": "Online",

@@ -5736,7 +5736,14 @@
     "imageTranslating": "正在提取和翻译文本…",
     "imageNoText": "图片中未找到文本",
     "translatedFrom": "已从 {{lang}} 翻译",
-    "originalText": "原文"
+    "originalText": "原文",
+    "repostAndShare": "重新发布和分享",
+    "repostHint": "立即发送给您的粉丝",
+    "quoteHint": "添加您自己的文字",
+    "shareTo": "分享到",
+    "moreShare": "更多",
+    "viewQuotes": "查看报价",
+    "viewReposts": "查看转发"
   },
   "dm": {
     "online": "在线",

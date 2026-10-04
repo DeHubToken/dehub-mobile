@@ -5645,7 +5645,14 @@
     "imageTranslating": "Teksti çykarmak we terjime etmek...",
     "imageNoText": "Suratda tekst tapylmady",
     "translatedFrom": "{{lang}} -dan terjime edildi",
-    "originalText": "Asyl tekst"
+    "originalText": "Asyl tekst",
+    "repostAndShare": "Saýla we paýla",
+    "repostHint": "Seniň yzyňa eýerenlere",
+    "quoteHint": "Öz sözleriňi aýt",
+    "shareTo": "Paýlaşmak",
+    "moreShare": "Mundan artyk",
+    "viewQuotes": "Çykyşlary gör",
+    "viewReposts": "Ýapyşyşmalary gör"
   },
   "dm": {
     "online": "Onlaýn",

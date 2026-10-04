@@ -5633,7 +5633,14 @@
     "imageTranslating": "Derxistin û wergerandina nivîsê...",
     "imageNoText": "Nivîs di vê wêneyê de nehat dîtin",
     "translatedFrom": "Wergerandin ji {{lang}}",
-    "originalText": "Nivîsa Orîjînal"
+    "originalText": "Nivîsa Orîjînal",
+    "repostAndShare": "Ji nû ve bişîne û parve bike",
+    "repostHint": "Di cih de, ji bo şopînerên xwe",
+    "quoteHint": "Peyvên xwe lê zêde bike",
+    "shareTo": "Parve bike bo",
+    "moreShare": "Zêde",
+    "viewQuotes": "Gotinan bibîne",
+    "viewReposts": "Vegerandinan bibîne"
   },
   "dm": {
     "online": "Serhêl",

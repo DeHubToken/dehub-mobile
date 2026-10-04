@@ -5661,7 +5661,14 @@
     "imageTranslating": "मजकूर काढत आहे आणि भाषांतरित करत आहे...",
     "imageNoText": "या इमेजमध्ये कोणताही मजकूर आढळला नाही",
     "translatedFrom": "{{lang}} वरून भाषांतरित",
-    "originalText": "मूळ मजकूर"
+    "originalText": "मूळ मजकूर",
+    "repostAndShare": "पुन्हा पोस्ट करा आणि सामायिक करा",
+    "repostHint": "त्वरित, तुमच्या अनुयायांना",
+    "quoteHint": "तुमचे स्वतःचे शब्द जोडा",
+    "shareTo": "यांना शेअर करा",
+    "moreShare": "अधिक",
+    "viewQuotes": "कोट्स पहा",
+    "viewReposts": "रिपोस्ट पहा"
   },
   "dm": {
     "online": "ऑनलाइन",
