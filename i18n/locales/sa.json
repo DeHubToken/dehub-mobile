@@ -7265,7 +7265,8 @@
     "doorAgentsNote": "संवादः निःशुल्कः",
     "editorNote": "कालरेखायां कर्तयतु",
     "flowNote": "पटले सोपानानि संयोजयतु",
-    "builderNote": "सङ्केतात् अनुप्रयोगं रचयतु"
+    "builderNote": "सङ्केतात् अनुप्रयोगं रचयतु",
+    "exampleOutput": "उदाहरणः उत्पादन"
   },
   "fractions": {
     "title": "अंशाः",

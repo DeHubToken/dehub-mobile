@@ -7341,7 +7341,8 @@
     "doorAgentsNote": "免费聊天",
     "editorNote": "在时间线上剪",
     "flowNote": "在画布上串联步骤",
-    "builderNote": "用提示词做个应用"
+    "builderNote": "用提示词做个应用",
+    "exampleOutput": "示例输出"
   },
   "fractions": {
     "title": "碎片",

@@ -7319,7 +7319,8 @@
     "doorAgentsNote": "Gratis at chatte",
     "editorNote": "Klip det på en tidslinje",
     "flowNote": "Kæd trin sammen på et lærred",
-    "builderNote": "Lav en app fra en prompt"
+    "builderNote": "Lav en app fra en prompt",
+    "exampleOutput": "Eksempel på output"
   },
   "fractions": {
     "title": "Fraktioner",

@@ -7270,7 +7270,8 @@
     "doorAgentsNote": "ዕላል ነጻ",
     "editorNote": "ኣብ መስመር ግዜ ቑረጾ",
     "flowNote": "ስጉምትታት ኣብ ሸራ ኣተኣሳስር",
-    "builderNote": "ካብ መምርሒ ኤፕ ስራሕ"
+    "builderNote": "ካብ መምርሒ ኤፕ ስራሕ",
+    "exampleOutput": "ኣብነት ውፅኢት"
   },
   "fractions": {
     "title": "ክፍልታት",

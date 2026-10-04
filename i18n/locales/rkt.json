@@ -7368,7 +7368,8 @@
     "doorAgentsNote": "চ্যাট ফ্রি",
     "editorNote": "টাইমলাইনোত কাটো",
     "flowNote": "ক্যানভাসোত ধাপ জোড়াও",
-    "builderNote": "প্রম্পট থাকি অ্যাপ বানাও"
+    "builderNote": "প্রম্পট থাকি অ্যাপ বানাও",
+    "exampleOutput": "উদাহরণ আউটপুট"
   },
   "fractions": {
     "title": "ফ্র্যাকশন",

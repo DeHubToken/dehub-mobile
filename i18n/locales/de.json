@@ -7395,7 +7395,8 @@
     "doorAgentsNote": "Chatten gratis",
     "editorNote": "Auf einer Zeitleiste schneiden",
     "flowNote": "Schritte auf einer Arbeitsfläche verketten",
-    "builderNote": "Eine App aus einem Prompt erstellen"
+    "builderNote": "Eine App aus einem Prompt erstellen",
+    "exampleOutput": "Beispielausgabe"
   },
   "fractions": {
     "title": "Anteile",
@@ -8948,18 +8949,18 @@
     "update": "Jetzt aktualisieren"
   },
   "creatorSupport": {
-      "sponsoredBy":  "Gesponsert von {{advertiser}}",
-      "campaignLabel":  "Anzeigen zur Creator-Unterstützung",
-      "close":  "Anzeige schließen",
-      "progress":  "{{seconds}} / 30 Sekunden bestätigt · Creator-Anteil: ${{amount}}",
-      "revenue":  "Deine Werbeeinnahmen · ${{amount}}",
-      "revenueDescription":  "Einnahmen aus Anzeigen und Creator-Unterstützung, die auf die Auszahlung in DHB warten.",
-      "noAds":  "Derzeit sind keine Sponsorvideos verfügbar. Du kannst weiterhin ein Trinkgeld in DHB senden.",
-      "explanation":  "Sieh dir 30 Sekunden an. Der Sponsor finanziert den Umsatzanteil des Creators; du zahlst nichts.",
-      "receipt":  "${{amount}} zu den Werbeeinnahmen des Creators hinzugefügt. Die Auszahlung in DHB steht aus.",
-      "loadError":  "Die Anzeige konnte nicht geladen werden.",
-      "loading":  "Sponsor wird gesucht…",
-      "campaignDescription":  "Zuschauer können Creator unterstützen, indem sie 30 Sekunden ansehen. Erforderlich ist ein freigegebenes Video von mindestens 30 Sekunden, das im Web-Werbeportal hochgeladen wurde.",
-      "watch":  "Eine Anzeige ansehen, um diesen Creator zu unterstützen"
+    "sponsoredBy": "Gesponsert von {{advertiser}}",
+    "campaignLabel": "Anzeigen zur Creator-Unterstützung",
+    "close": "Anzeige schließen",
+    "progress": "{{seconds}} / 30 Sekunden bestätigt · Creator-Anteil: ${{amount}}",
+    "revenue": "Deine Werbeeinnahmen · ${{amount}}",
+    "revenueDescription": "Einnahmen aus Anzeigen und Creator-Unterstützung, die auf die Auszahlung in DHB warten.",
+    "noAds": "Derzeit sind keine Sponsorvideos verfügbar. Du kannst weiterhin ein Trinkgeld in DHB senden.",
+    "explanation": "Sieh dir 30 Sekunden an. Der Sponsor finanziert den Umsatzanteil des Creators; du zahlst nichts.",
+    "receipt": "${{amount}} zu den Werbeeinnahmen des Creators hinzugefügt. Die Auszahlung in DHB steht aus.",
+    "loadError": "Die Anzeige konnte nicht geladen werden.",
+    "loading": "Sponsor wird gesucht…",
+    "campaignDescription": "Zuschauer können Creator unterstützen, indem sie 30 Sekunden ansehen. Erforderlich ist ein freigegebenes Video von mindestens 30 Sekunden, das im Web-Werbeportal hochgeladen wurde.",
+    "watch": "Eine Anzeige ansehen, um diesen Creator zu unterstützen"
   }
 }

@@ -110,6 +110,7 @@ import ScreenHeader from '../components/ScreenHeader';
 import CreatorStudioControls from '../components/Assistant/CreatorStudioControls';
 import SubscriptionCreditsPill from '../components/SubscriptionCreditsPill';
 import { CREATOR_DEFAULTS, creatorModels, creatorInputIssue, creatorVideoOptions, normalizeCreatorSettings, prepareCreatorPrompt, type CreatorMode, type CreatorStudioSettings } from '../libs/creatorStudio';
+import GenerationExample from '../components/Assistant/GenerationExample';
 import { MODEL3D_MODELS } from '../config/model3d-models.constants';
 import { uploadLocalFileToBucket, fileExtension } from '../libs/storage-upload';
 import { runModel3d } from '../services/ai.service';
@@ -1625,6 +1626,7 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
       librarySaves.current.add(saveKey);
       const creator = request.creatorSettings;
       const asset: CreatorAssetToSave = { id, kind, url, prompt: request.content, model: creator.model,
+        posterUrl: message.modelUrl ? message.imageUrl : undefined,
         resolvedPrompt: prepareCreatorPrompt(request.content, getTemplate(request.templateId)),
         modelName: creatorModels(creator.mode).find((model) => model.id === creator.model)?.name ?? creator.model,
         aspect: creator.aspect, presetId: request.templateId, createdAt: Date.now() };
@@ -1666,6 +1668,7 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
         <View style={s.welcomeWrap}>
           <View style={s.welcomeCenter}>
             <Text style={s.welcomeText}>{studio ? t('creator.studioWelcome') : WELCOME_MESSAGE}</Text>
+            {studio && <View style={{ alignSelf: 'stretch', marginTop: 20, marginHorizontal: 16 }}><GenerationExample kind={studioSettings.mode} /></View>}
           </View>
           {!studio && <QuickActionChips onAction={handleQuickAction} />}
         </View>

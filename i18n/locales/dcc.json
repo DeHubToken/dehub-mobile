@@ -7054,7 +7054,8 @@
     "doorAgentsNote": "چیٹ مفت",
     "editorNote": "ٹائم لائن پو کاٹو",
     "flowNote": "کینوس پو اسٹیپس جوڑو",
-    "builderNote": "پرامپٹ سے ایپ بناؤ"
+    "builderNote": "پرامپٹ سے ایپ بناؤ",
+    "exampleOutput": "مثال نتیجہ"
   },
   "fractions": {
     "title": "फ़्रैक्शन",

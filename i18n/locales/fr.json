@@ -7453,7 +7453,11 @@
     "studioNeedsImage": "Ajoutez une image de référence pour ce modèle ou ce préréglage.",
     "studioOpenModel": "Ouvrir le modèle 3D",
     "studioPrompt": "Décrivez ce que vous souhaitez créer…",
-    "studioTexture": {"HD":"Texture HD","standard":"Texture standard","none":"Sans texture"},
+    "studioTexture": {
+      "HD": "Texture HD",
+      "standard": "Texture standard",
+      "none": "Sans texture"
+    },
     "studioTitle": "Studio Creator",
     "studioWelcome": "Choisissez un format et un modèle, ajoutez une description ou un préréglage, puis créez. Vérifiez le prix avant de lancer la génération. Vos résultats sont enregistrés ici.",
     "presetOpenOrchardPortraitName": "Portrait au verger",
@@ -7662,7 +7666,8 @@
     "doorAgentsNote": "Chat gratuit",
     "editorNote": "Montez-le sur une timeline",
     "flowNote": "Enchaînez des étapes sur un canevas",
-    "builderNote": "Créez une app à partir d’un prompt"
+    "builderNote": "Créez une app à partir d’un prompt",
+    "exampleOutput": "Exemple de sortie"
   },
   "fractions": {
     "title": "Fractions",
@@ -9215,18 +9220,18 @@
     "update": "Mettre à jour"
   },
   "creatorSupport": {
-      "sponsoredBy":  "Sponsorisé par {{advertiser}}",
-      "campaignLabel":  "Publicités de soutien aux créateurs",
-      "close":  "Fermer la publicité",
-      "progress":  "{{seconds}} / 30 secondes vérifiées · Part du créateur : {{amount}} $",
-      "revenue":  "Vos revenus publicitaires · {{amount}} $",
-      "revenueDescription":  "Revenus publicitaires et soutien aux créateurs, en attente de règlement en DHB.",
-      "noAds":  "Aucune vidéo sponsorisée disponible pour le moment. Vous pouvez toujours envoyer un pourboire en DHB.",
-      "explanation":  "Regardez 30 secondes. Le sponsor finance la part des revenus du créateur ; vous ne payez rien.",
-      "receipt":  "{{amount}} $ ajoutés aux revenus publicitaires du créateur. Le règlement en DHB est en attente.",
-      "loadError":  "Impossible de charger la publicité.",
-      "loading":  "Recherche d\u0027un sponsor…",
-      "campaignDescription":  "Permettez aux spectateurs de soutenir les créateurs en regardant 30 secondes. Une vidéo approuvée d\u0027au moins 30 secondes, importée sur le portail publicitaire web, est requise.",
-      "watch":  "Regarder une publicité pour soutenir ce créateur"
+    "sponsoredBy": "Sponsorisé par {{advertiser}}",
+    "campaignLabel": "Publicités de soutien aux créateurs",
+    "close": "Fermer la publicité",
+    "progress": "{{seconds}} / 30 secondes vérifiées · Part du créateur : {{amount}} $",
+    "revenue": "Vos revenus publicitaires · {{amount}} $",
+    "revenueDescription": "Revenus publicitaires et soutien aux créateurs, en attente de règlement en DHB.",
+    "noAds": "Aucune vidéo sponsorisée disponible pour le moment. Vous pouvez toujours envoyer un pourboire en DHB.",
+    "explanation": "Regardez 30 secondes. Le sponsor finance la part des revenus du créateur ; vous ne payez rien.",
+    "receipt": "{{amount}} $ ajoutés aux revenus publicitaires du créateur. Le règlement en DHB est en attente.",
+    "loadError": "Impossible de charger la publicité.",
+    "loading": "Recherche d'un sponsor…",
+    "campaignDescription": "Permettez aux spectateurs de soutenir les créateurs en regardant 30 secondes. Une vidéo approuvée d'au moins 30 secondes, importée sur le portail publicitaire web, est requise.",
+    "watch": "Regarder une publicité pour soutenir ce créateur"
   }
 }

@@ -7397,7 +7397,8 @@
     "doorAgentsNote": "Sohbet ücretsiz",
     "editorNote": "Zaman çizelgesinde kesin",
     "flowNote": "Tuvalde adımları zincirleyin",
-    "builderNote": "İstemden uygulama yapın"
+    "builderNote": "İstemden uygulama yapın",
+    "exampleOutput": "Örnek çıktı"
   },
   "fractions": {
     "title": "Paylar",

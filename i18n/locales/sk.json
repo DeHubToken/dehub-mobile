@@ -7483,7 +7483,8 @@
     "doorAgentsNote": "Chat zadarmo",
     "editorNote": "Strihajte na časovej osi",
     "flowNote": "Spájajte kroky na plátne",
-    "builderNote": "Vytvorte aplikáciu z promptu"
+    "builderNote": "Vytvorte aplikáciu z promptu",
+    "exampleOutput": "Príklad výstupu"
   },
   "fractions": {
     "title": "Podiely",

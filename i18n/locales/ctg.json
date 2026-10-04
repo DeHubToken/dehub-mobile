@@ -7447,7 +7447,8 @@
     "doorAgentsNote": "চ্যাট ফ্রি",
     "editorNote": "টাইমলাইনত কাডো",
     "flowNote": "ক্যানভাসত ধাপ জোড়ো",
-    "builderNote": "প্রম্পট তুন অ্যাপ বানাও"
+    "builderNote": "প্রম্পট তুন অ্যাপ বানাও",
+    "exampleOutput": "উদাহরণ আউটপুট"
   },
   "fractions": {
     "title": "ফ্র্যাকশন",

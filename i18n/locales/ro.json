@@ -7332,7 +7332,8 @@
     "doorAgentsNote": "Chat gratuit",
     "editorNote": "Editează pe cronologie",
     "flowNote": "Înlănțuie pași pe o planșă",
-    "builderNote": "Creează o aplicație dintr-un prompt"
+    "builderNote": "Creează o aplicație dintr-un prompt",
+    "exampleOutput": "Exemplu de ieșire"
   },
   "fractions": {
     "title": "Fracții",

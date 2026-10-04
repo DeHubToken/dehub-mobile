@@ -7320,7 +7320,8 @@
     "doorAgentsNote": "Csevegés ingyen",
     "editorNote": "Vágd idővonalon",
     "flowNote": "Fűzz össze lépéseket egy vásznon",
-    "builderNote": "Készíts appot promptból"
+    "builderNote": "Készíts appot promptból",
+    "exampleOutput": "Példa kimenet"
   },
   "fractions": {
     "title": "Frakciók",

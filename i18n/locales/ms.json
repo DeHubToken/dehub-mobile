@@ -7575,7 +7575,8 @@
     "doorAgentsNote": "Sembang percuma",
     "editorNote": "Potong pada garis masa",
     "flowNote": "Rangkaikan langkah pada kanvas",
-    "builderNote": "Bina aplikasi daripada gesaan"
+    "builderNote": "Bina aplikasi daripada gesaan",
+    "exampleOutput": "Contoh output"
   },
   "fractions": {
     "title": "Pecahan",
