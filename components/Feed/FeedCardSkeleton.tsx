@@ -34,7 +34,7 @@ const FeedCardSkeleton: React.FC<FeedCardSkeletonProps> = ({ count = 3, cinemati
           </View>
         );
         const picture = media ? (
-          <SkeletonBlock style={{ aspectRatio: variant === 0 ? 16 / 9 : 4 / 3, marginHorizontal: edge || isMinimal ? -inset : 0, marginBottom: 12, borderRadius: edge || isMinimal ? 0 : shape }} />
+          <SkeletonBlock style={{ aspectRatio: variant === 0 ? firstMedia ? 9 / 16 : 16 / 9 : 4 / 3, marginHorizontal: edge || isMinimal ? -inset : 0, marginBottom: 12, borderRadius: edge || isMinimal ? 0 : shape }} />
         ) : null;
         return (
           <View key={idx} style={edge || isMinimal ? {
