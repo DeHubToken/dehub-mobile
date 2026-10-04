@@ -1,4 +1,10 @@
-import { flattenFeedPages } from "../../libs/feed-pages";
+import { flattenFeedPages, nextFeedPage } from "../../libs/feed-pages";
+
+it('continues beyond short or empty pages when the server has more posts', () => {
+  expect(nextFeedPage({ result: [{ tokenId: 1 }], pagination: { hasMore: true } }, 1, 20)).toBe(2);
+  expect(nextFeedPage({ result: [], pagination: { hasMore: true } }, 2, 20)).toBe(3);
+  expect(nextFeedPage({ result: Array(20).fill({}), pagination: { hasMore: false } }, 3, 20)).toBeUndefined();
+});
 
 const none = () => false;
 

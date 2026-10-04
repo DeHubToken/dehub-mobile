@@ -16,6 +16,7 @@ import { DeHubLoader } from "../DeHubLoader";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../Feed/DeHubRefreshControl";
 import Icon from "../ui/Icon";
 import { COMPOSER, composerStyles } from "./composerLayout";
+import { useGrowingTextInput } from "../../hooks/useGrowingTextInput";
 import CommentItem from "./CommentItem";
 import CommentContextMenu from "./CommentContextMenu";
 import CommentLikersSheet from "./CommentLikersSheet";
@@ -219,6 +220,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
   const [restoredDraft] = useState(() => loadCommentDraft(tokenId));
   const { isMinimal } = useAppTheme();
   const [inputText, setInputText] = useState(restoredDraft?.text ?? "");
+  const growingInput = useGrowingTextInput(inputText);
   const mentions = useMentions(inputText, setInputText);
   const [replyingTo, setReplyingTo] = useState<Comment | null>(() => draftReplyTarget(restoredDraft));
   const [editingComment, setEditingComment] = useState<Comment | null>(null);
@@ -1832,6 +1834,8 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
                 value={inputText}
                 onChangeText={mentions.handleChangeText}
                 onSelectionChange={mentions.handleSelectionChange}
+                onContentSizeChange={growingInput.onContentSizeChange}
+                scrollEnabled={growingInput.scrollEnabled}
                 placeholder={
                   editingComment
                     ? t("comments.editPlaceholder")
@@ -1848,14 +1852,14 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
                   // Post control is a sibling, not an overlay, so the box is
                   // free to grow into the row.
                   maxHeight: 140,
+                  height: growingInput.height,
                   paddingVertical: 0,
                   // Android multiline inputs default to top-aligned text regardless
                   // of the parent's alignment.
-                  textAlignVertical: "center",
+                  textAlignVertical: inputText.length ? "top" : "center",
                 }}
                 maxLength={500}
                 multiline
-                numberOfLines={inputText.length === 0 ? 1 : undefined}
               />
             </View>
 
