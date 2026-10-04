@@ -38,6 +38,9 @@ import { useUserProfileSheet } from "../context/UserProfileSheetContext";
 import { useAppTheme } from "../context/ThemeContext";
 import { minimalFlat, minimalRow } from "../theme/minimal";
 import WorkUser from "../components/Work/WorkUser";
+import BountyShareButton from "../components/Work/BountyShareButton";
+import ApplicationComments from "../components/Work/ApplicationComments";
+import { useJobApplicationComments } from "../hooks/useApplicationComments";
 import { ScreenNames } from "../navigation/ScreenNames";
 import type { AppStackParamList } from "../navigation/types";
 import {
@@ -130,6 +133,7 @@ export default function WorkJobDetailScreen() {
   // tables key on the job's uuid, so they wait for the job when given a number.
   const jobUuid = /^\d+$/.test(jobId) ? job?.id : jobId;
   const { data: applications = [] } = useJobApplications(jobUuid);
+  const applicationComments = useJobApplicationComments(job?.job_type === "contract" ? jobUuid : undefined);
   const { data: submissions = [] } = useJobSubmissions(jobUuid);
   const { data: reviews = [] } = useJobReviews(jobUuid);
 
@@ -255,7 +259,9 @@ export default function WorkJobDetailScreen() {
       <ScreenHeader
         title={job.title}
         rightContent={
-          isPoster && isJobEditable(job) ? (
+          <View style={{ flexDirection: "row", alignItems: "center", gap: 4 }}>
+          <BountyShareButton job={job} />
+          {isPoster && isJobEditable(job) && (
             <Pressable
               onPress={() => navigation.navigate(ScreenNames.WorkEdit, { jobKey: job.id, job })}
               hitSlop={10}
@@ -266,7 +272,8 @@ export default function WorkJobDetailScreen() {
               <Icon name="Pencil" size={13} color="#FFFFFF" />
               <Text style={styles.editBtnText}>{t("common.edit")}</Text>
             </Pressable>
-          ) : undefined
+          )}
+          </View>
         }
       />
 
@@ -345,6 +352,14 @@ export default function WorkJobDetailScreen() {
           {/* Applications — contract jobs only */}
           {job.job_type === "contract" && (
             <Section title={t("work.detail.applicants", { count: applications.length })}>
+              {applicationComments.isError && (
+                <View style={{ marginBottom: 12, gap: 6 }}>
+                  <Text accessibilityRole="alert" style={styles.dim}>{t("comments.loadFailed")}</Text>
+                  <Pressable accessibilityRole="button" onPress={() => applicationComments.refetch()}>
+                    <Text style={styles.dim}>{t("common.tryAgain")}</Text>
+                  </Pressable>
+                </View>
+              )}
               {canApply && (
                 <View style={{ marginBottom: 14, gap: 8 }}>
                   <TextInput
@@ -395,6 +410,11 @@ export default function WorkJobDetailScreen() {
                       </View>
                     </View>
                     <Text style={styles.rowBody}>{a.cover_letter}</Text>
+                    <ApplicationComments
+                      application={a}
+                      comments={(applicationComments.data ?? []).filter(comment => comment.application_id === a.id)}
+                      canReply={isPoster || a.applicant_address.toLowerCase() === me}
+                    />
                     {isPoster && a.status === "pending" && job.status === "open" && (
                       <Pressable
                         onPress={() =>

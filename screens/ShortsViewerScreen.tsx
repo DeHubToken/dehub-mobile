@@ -118,6 +118,7 @@ import {
   reactionMeta,
   resolveLeadReaction,
   resolveThumbReaction,
+  resolveThumbCount,
   type PostReaction,
 } from "../libs/reactions";
 import { ReactionEmoji } from "../components/Home/ReactionEmoji";
@@ -891,6 +892,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive: activeItem, isNe
    */
   const leadReaction = resolveLeadReaction(reactionCounts, myReaction);
   const thumbGlyph = resolveThumbReaction(reactionCounts, myReaction) ?? undefined;
+  const thumbCount = resolveThumbCount(likeCount, dislikeCount, thumbGlyph);
 
   const handleTip = useCallback(() => {
     if (!minterAddress) return;
@@ -1651,7 +1653,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive: activeItem, isNe
                     glyph={thumbGlyph}
                     glyphAnimated={!!thumbGlyph && thumbGlyph === myReaction}
                     active={liked || disliked}
-                    label={formatCompactNumber(likeCount)}
+                    label={formatCompactNumber(thumbCount)}
                     onPress={() => { if (openTray === "positive") { setOpenTray(null); return; } handleLike(); }}
                     onLongPress={() => setOpenTray("positive")}
                     accessibilityLabel={
