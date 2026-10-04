@@ -10,6 +10,7 @@ import {
   reactionMeta,
   resolveLeadReaction,
   resolveThumbReaction,
+  resolveThumbCount,
   type PostReaction,
   type ReactionCounts,
 } from "../../libs/reactions";
@@ -36,6 +37,7 @@ export interface PostStageActionBarProps {
   saved: boolean;
   reposted: boolean;
   likeCount: number;
+  dislikeCount?: number;
   commentCount: number;
   /** Reposts + quotes. */
   repostCount: number;
@@ -104,6 +106,7 @@ function PostStageActionBarComponent({
   saved,
   reposted,
   likeCount,
+  dislikeCount,
   commentCount,
   repostCount,
   onLike,
@@ -142,6 +145,7 @@ function PostStageActionBarComponent({
 
   const leadReaction = resolveLeadReaction(reactionCounts, myReaction);
   const thumbGlyph = resolveThumbReaction(reactionCounts, myReaction) ?? undefined;
+  const thumbCount = resolveThumbCount(likeCount, dislikeCount ?? reactionCounts?.dislike ?? 0, thumbGlyph);
   const likeA11y = myReaction
     ? `${reactionMeta(myReaction).label} — hold to change your reaction`
     : `${reactionMeta(leadReaction ?? "like").label} — hold to react`;
@@ -165,8 +169,8 @@ function PostStageActionBarComponent({
           }
         />
         <Tile
-          label={formatCompactNumber(likeCount)}
-          a11y={`${likeA11y}, ${likeCount}`}
+          label={formatCompactNumber(thumbCount)}
+          a11y={`${likeA11y}, ${thumbCount}`}
           on={liked || disliked}
           radius={radius}
           mono={mono}

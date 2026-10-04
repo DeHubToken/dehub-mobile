@@ -85,10 +85,20 @@ it('wears the viewer\'s 👎 on the thumbs-up, and a tap takes it back', () => {
   const view = render(
     <FeedActionBar {...handlers} disliked myReaction="dislike" reactionCounts={{ like: 3, dislike: 1 }} />,
   );
-  const thumb = view.getByLabelText(/Dislike — hold to change your reaction, 3/);
+  const thumb = view.getByLabelText(/Dislike — hold to change your reaction, 1/);
   expect(thumb.props.accessibilityState).toEqual({ selected: true });
   const glyph = view.UNSAFE_getAllByType('ReactionEmoji' as any)[0];
   expect(glyph.props.reaction).toBe('dislike');
   fireEvent.press(thumb);
   expect(handlers.onLike).toHaveBeenCalledTimes(1);
+});
+
+it('shows the first dislike with no likes, then restores the like total when removed', () => {
+  const handlers = props();
+  const view = render(
+    <FeedActionBar {...handlers} likeCount={0} dislikeCount={1} disliked myReaction="dislike" />,
+  );
+  expect(view.getByLabelText(/Dislike.*hold to change your reaction, 1/)).toBeTruthy();
+  view.rerender(<FeedActionBar {...handlers} likeCount={0} dislikeCount={0} />);
+  expect(view.getByLabelText(/Like.*hold to react, 0/)).toBeTruthy();
 });

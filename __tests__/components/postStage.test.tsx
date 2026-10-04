@@ -58,6 +58,16 @@ describe('post page action bar', () => {
     expect(icons).toEqual(['ThumbsUp', 'MessageSquare', 'Repeat2', 'Bookmark']);
   });
 
+  it('displays the dislike total beside a held dislike on the post page', () => {
+    const view = render(
+      <PostStageActionBar {...barProps()} disliked myReaction="dislike" dislikeCount={1} />,
+    );
+    const thumb = view.getByLabelText(/Dislike.*hold to change your reaction, 1/);
+    expect(thumb.props.accessibilityState).toEqual({ selected: true });
+    expect(view.getByText('1')).toBeTruthy();
+    expect(view.queryByText('56')).toBeNull();
+  });
+
   it('routes comments and repost, and keeps 👎 inside the hold tray', () => {
     const p = barProps();
     const view = render(<PostStageActionBar {...p} reactionCounts={{ like: 3, dislike: 2 }} />);
