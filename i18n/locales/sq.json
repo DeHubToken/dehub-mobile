@@ -5665,7 +5665,14 @@
     "imageTranslating": "Ekstraktimi dhe përkthimi i tekstit...",
     "imageNoText": "Nuk u gjet tekst në këtë imazh",
     "translatedFrom": "Përkthyer nga {{lang}}",
-    "originalText": "Teksti origjinal"
+    "originalText": "Teksti origjinal",
+    "repostAndShare": "Riposto dhe shpërndaj",
+    "repostHint": "Në çast, për ndjekësit e tu",
+    "quoteHint": "Shto fjalët e tua",
+    "shareTo": "Ndaj me",
+    "moreShare": "Më shumë",
+    "viewQuotes": "Shfaq citimet",
+    "viewReposts": "Shfaq ripostimet"
   },
   "dm": {
     "online": "Online",

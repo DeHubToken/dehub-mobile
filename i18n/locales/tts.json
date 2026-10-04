@@ -5665,7 +5665,14 @@
     "imageTranslating": "กำลังแยกและแปลข้อความ...",
     "imageNoText": "ไม่พบข้อความในรูปภาพนี้",
     "translatedFrom": "แปลจาก {{lang}}",
-    "originalText": "ข้อความต้นฉบับ"
+    "originalText": "ข้อความต้นฉบับ",
+    "repostAndShare": "รีโพสต์ & แชร์",
+    "repostHint": "ทันที ไปยังผู้ติดตามของเจ้า",
+    "quoteHint": "ใส่คำของเจ้าของ",
+    "shareTo": "แชร์ไปยัง",
+    "moreShare": "เพิ่มเติม",
+    "viewQuotes": "ดูคำคม",
+    "viewReposts": "ดูรีโพสต์"
   },
   "dm": {
     "online": "ออนไลน์",

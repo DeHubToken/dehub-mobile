@@ -5656,7 +5656,14 @@
     "mustHold": "لازمی طور تے {{amount}} {{symbol}} گھنڑو پوسی۔",
     "matureDescription": "صاحب پوسٹ تے بالغ یا گرافس دے طور تے نشان لائے۔",
     "loadingQuoted": "حوالہ ݙتی پوسٹ لوڈ تھیندی پئی اے…",
-    "imageTranslating": "متن کڈھیندا تے ترجمہ کریندا پئے..."
+    "imageTranslating": "متن کڈھیندا تے ترجمہ کریندا پئے...",
+    "repostAndShare": "ری پوسٹ & شیئر",
+    "repostHint": "فوری طور پر، اپنے فالوورز کو",
+    "quoteHint": "اپنے الفاظ شامل کریں",
+    "shareTo": "شیئر کریں",
+    "moreShare": "مزید",
+    "viewQuotes": "اقتباسات دیکھیں",
+    "viewReposts": "ری پوسٹس دیکھیں"
   },
   "dm": {
     "online": "آنلائن",

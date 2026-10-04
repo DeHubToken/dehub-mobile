@@ -5646,7 +5646,14 @@
     "imageTranslating": "កំពុងទាញយក និងបកប្រែអត្ថបទ...",
     "imageNoText": "មិនមានអត្ថបទរកឃើញក្នុងរូបភាពនេះទេ។",
     "translatedFrom": "បានបកប្រែពី {{lang}}",
-    "originalText": "អត្ថបទដើម"
+    "originalText": "អត្ថបទដើម",
+    "repostAndShare": "បង្ហោះឡើងវិញ & ចែករំលែក",
+    "repostHint": "ភ្លាមៗទៅកាន់អ្នកដើរតាមរបស់អ្នក",
+    "quoteHint": "បន្ថែមពាក្យផ្ទាល់ខ្លួនរបស់អ្នក",
+    "shareTo": "ចែករំលែកទៅ",
+    "moreShare": "ច្រើនទៀត",
+    "viewQuotes": "មើលសម្រង់តម្លៃ",
+    "viewReposts": "មើលការបង្ហោះឡើងវិញ"
   },
   "dm": {
     "online": "អនឡាញ",

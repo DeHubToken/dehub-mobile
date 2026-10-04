@@ -5660,7 +5660,14 @@
     "imageTranslating": "टेक्स्ट निकाला और अनुवाद किया जा रहा है…",
     "imageNoText": "इस छवि में कोई टेक्स्ट नहीं मिला",
     "translatedFrom": "{{lang}} से अनुवादित",
-    "originalText": "मूल पाठ"
+    "originalText": "मूल पाठ",
+    "repostAndShare": "अनुमंडल अउर ब्लॉकसंपादन",
+    "repostHint": "पल भर में तुम्हारे पुराने के खातिर",
+    "quoteHint": "आपन बात कहल जाव",
+    "shareTo": "बांटे जा रहे",
+    "moreShare": "अउरी बात करीं",
+    "viewQuotes": "उच्चारण रेकार्ड करे quotes",
+    "viewReposts": "फिर से देख रहे हो"
   },
   "dm": {
     "online": "ऑफलाइन काम कर रहे",

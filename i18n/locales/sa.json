@@ -5627,7 +5627,14 @@
     "imageTranslating": "पाठ निकाला और अनुवादित किया जा रहा है...",
     "imageNoText": "छवि में कोई पाठ नहीं मिला",
     "translatedFrom": "{{lang}} मधून भाषांतरित",
-    "originalText": "मूळ मजकूर"
+    "originalText": "मूळ मजकूर",
+    "repostAndShare": "पुनःप्रकाशय च साझ्यताम्",
+    "repostHint": "तत्क्षणात्, तव अनुयायिनः",
+    "quoteHint": "स्वशब्दान् योजय",
+    "shareTo": "साझ्यताम्",
+    "moreShare": "अधिकम्",
+    "viewQuotes": "उद्धरणानि पश्य",
+    "viewReposts": "पुनःप्रकाशनानि पश्य"
   },
   "dm": {
     "online": "अन्लाइन",

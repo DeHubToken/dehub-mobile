@@ -5647,7 +5647,14 @@
     "imageTranslating": "Soo saarista iyo tarjumaadda qoraalka…",
     "imageNoText": "Qoraal laguma helin sawirkan",
     "translatedFrom": "Waxaa laga turjumay {{lang}}",
-    "originalText": "Qoraalka Asalka Ah"
+    "originalText": "Qoraalka Asalka Ah",
+    "repostAndShare": "Dib u soo celi & wadaag",
+    "repostHint": "Si dhakhso ah, si aad u raacdo",
+    "quoteHint": "Ku dar erayadaada",
+    "shareTo": "La wadaag",
+    "moreShare": "Dheeraad ah",
+    "viewQuotes": "Eeg xigashooyin",
+    "viewReposts": "Eeg dib u soo celinta"
   },
   "dm": {
     "online": "Online",

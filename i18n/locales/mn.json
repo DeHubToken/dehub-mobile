@@ -5633,7 +5633,14 @@
     "imageTranslating": "Текстийг гаргаж, орчуулж байна...",
     "imageNoText": "Зургийг олдсонгүй",
     "translatedFrom": "Орчуулсан {{lang}}",
-    "originalText": "Анхны текст"
+    "originalText": "Анхны текст",
+    "repostAndShare": "Дахин хуваарилах",
+    "repostHint": "Тун даруй, дагалдагчдадаа",
+    "quoteHint": "Өөрийн үгсийг нэм",
+    "shareTo": "Хуваалцах",
+    "moreShare": "Илүү",
+    "viewQuotes": "Үнийн саналыг харах",
+    "viewReposts": "Харах Дахин Тусгах"
   },
   "dm": {
     "online": "Онлайн",

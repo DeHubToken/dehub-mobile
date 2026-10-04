@@ -5665,7 +5665,14 @@
     "imageTranslating": "Ekstraherer og oversetter tekst...",
     "imageNoText": "Ingen tekst funnet i dette bildet",
     "translatedFrom": "Oversett fra {{lang}}",
-    "originalText": "Original tekst"
+    "originalText": "Original tekst",
+    "repostAndShare": "Repost og del",
+    "repostHint": "Øyeblikkelig, til dine følgere",
+    "quoteHint": "Legg til dine egne ord",
+    "shareTo": "Del til",
+    "moreShare": "Flere",
+    "viewQuotes": "Se sitater",
+    "viewReposts": "Se reposts"
   },
   "dm": {
     "online": "På nett",

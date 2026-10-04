@@ -5886,7 +5886,14 @@
     "imageTranslating": "Tekst extraheren en vertalen...",
     "imageNoText": "Geen tekst gevonden in deze afbeelding",
     "translatedFrom": "Vertaling van {{lang}}",
-    "originalText": "Originele tekst"
+    "originalText": "Originele tekst",
+    "repostAndShare": "Opnieuw posten en delen",
+    "repostHint": "Direct naar je volgers",
+    "quoteHint": "Voeg je eigen woorden toe",
+    "shareTo": "Delen naar",
+    "moreShare": "Meer",
+    "viewQuotes": "Offertes bekijken",
+    "viewReposts": "Reposts bekijken"
   },
   "dm": {
     "online": "Online",
