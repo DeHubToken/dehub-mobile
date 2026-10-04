@@ -13,6 +13,7 @@ import {
 import { createLogger } from "./logger";
 import {
   resolveEvmWalletForIdentity,
+  releaseWalletKeyForSignIn,
   retryPendingResetCleanup,
 } from "./identity-wallet";
 import { stageIncomingIdentity } from "./profiles";
@@ -195,11 +196,53 @@ async function provisionAndSignInInner(
     return { kind: "error", message: "Could not finish signing in to your profile. Please try again." };
   }
 
-  // Only a confirmed new identity can enter signup. Existing wallets never
-  // turn an account-link failure into a password, biometric, or signature wall.
+  // The server has confirmed no profile is linked, and the exchange already sent
+  // this identity's wallet address, so no profile exists at it either. A wallet
+  // here therefore belongs to a sign-up that stopped between saving the wallet
+  // and registering the profile (app closed on the backup screen, or the
+  // register call failed). Its signature is what finishes that sign-up — and
+  // the backend adopts any account the email or phone already owns on the way.
+  // Answering with an error instead sent these people back to the sign-in
+  // screen on every attempt.
   const resolution = await resolveEvmWalletForIdentity(supabaseUserId);
-  if (resolution.status !== "needs-create-password") {
-    return { kind: "error", message: "Could not find the profile linked to this login. Please try again or contact support." };
+  switch (resolution.status) {
+    case "needs-create-password":
+      break;
+    case "needs-unlock":
+      log.warn("provision:resume-unfinished-signup", { mode: "unlock" });
+      return {
+        kind: "wallet-setup",
+        request: { mode: "unlock", supabaseUserId, address: resolution.address, payload: resolution.payload },
+      };
+    case "needs-biometric-unlock":
+      log.warn("provision:resume-unfinished-signup", { mode: "biometric-unlock" });
+      return {
+        kind: "wallet-setup",
+        request: { mode: "biometric-unlock", supabaseUserId, address: resolution.address, payload: resolution.payload },
+      };
+    case "needs-web-passkey-sync":
+      log.warn("provision:resume-unfinished-signup", { mode: "web-passkey-sync" });
+      return {
+        kind: "wallet-setup",
+        request: { mode: "web-passkey-sync", supabaseUserId, address: resolution.address },
+      };
+    case "ready": {
+      log.warn("provision:resume-unfinished-signup", { mode: "ready" });
+      const privateKey = await releaseWalletKeyForSignIn(resolution.address);
+      if (!privateKey) {
+        return { kind: "error", message: "Unlock your wallet to finish signing up." };
+      }
+      try {
+        await deps.provisionSolanaAddressForWallet(resolution.address, privateKey);
+      } catch {
+        // Best-effort, as in the wallet-setup sign-in: never blocks the sign-up.
+      }
+      await deps.completeLocalSignIn(resolution.address, privateKey, await deps.getSupabaseAuthMeta());
+      await markSupabaseIdentitySignedIn(supabaseUserId);
+      return { kind: "signed-in" };
+    }
+    default:
+      return { kind: "error", message: "Could not check your wallet. Please try again." };
   }
   const { wallet, failed } = await fetchWalletReliably(supabaseUserId);
   if (failed || wallet) {
