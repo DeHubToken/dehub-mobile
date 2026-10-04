@@ -24,6 +24,7 @@ import {
   resolveBadgeUsername,
 } from "../../libs/misc";
 import StreamerLevelCard from "../Live/StreamerLevelCard";
+import StreamerBadge from "../Live/StreamerBadge";
 import { useBadgeCeremony } from "../../hooks/useBadgeCeremony";
 import { ensProfileUrl } from "../../libs/ens-handle";
 import { truncateAddress } from "../../libs/strings.util";
@@ -420,6 +421,7 @@ const ProfileHeader = () => {
                 />
               </Pressable>
             )}
+            <StreamerBadge address={address} canSelect />
           </View>
 
           {/* Username + wallet address */}
