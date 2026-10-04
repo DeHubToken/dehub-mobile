@@ -122,3 +122,50 @@ jobs:
           else
             echo "No coverage summary produced." >> $GITHUB_STEP_SUMMARY
           fi
+
+  speed-preview:
+    name: Android speed preview
+    needs: verify
+    if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository && github.head_ref == 'perf/android-startup-profiles-20261004'
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --legacy-peer-deps
+      - run: npx patch-package --error-on-fail
+      - uses: expo/expo-github-action@v8
+        with:
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+      - name: Generate native startup and baseline profiles
+        uses: ./.github/actions/android-profiles
+        with:
+          environment: preview
+      - name: Build signed preview APK containing generated profiles
+        run: eas build --platform android --profile test-apk --non-interactive --wait --json > android-preview.json
+      - name: Record preview artifact
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const result = JSON.parse(fs.readFileSync('android-preview.json', 'utf8'));
+          const build = Array.isArray(result) ? result[0] : result;
+          if (build.status !== 'FINISHED' || !build.artifacts?.buildUrl) throw new Error('No completed preview APK');
+          fs.writeFileSync('preview-apk-url.txt', build.artifacts.buildUrl);
+          fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, `[Install the speed preview APK](${build.artifacts.buildUrl})\n`);
+          NODE
+          curl --fail --location --retry 3 "$(cat preview-apk-url.txt)" --output dehub-speed-preview.apk
+          unzip -l dehub-speed-preview.apk | grep 'assets/dexopt/baseline.prof'
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dehub-speed-preview
+          path: |
+            dehub-speed-preview.apk
+            android-preview.json
+            preview-apk-url.txt
+          retention-days: 30

@@ -1,6 +1,8 @@
 apply plugin: "com.android.application"
 apply plugin: "org.jetbrains.kotlin.android"
 apply plugin: "com.facebook.react"
+apply plugin: "androidx.baselineprofile"
+baselineProfile { automaticGenerationDuringBuild false; saveInSrc true }
 
 def projectRoot = rootDir.getAbsoluteFile().getParentFile().getAbsolutePath()
 
@@ -186,7 +188,7 @@ android {
     }
     splits {
         abi {
-            enable !isBundleBuild
+            enable !isBundleBuild && providers.gradleProperty('dehub.generateProfiles').orNull != 'true'
             reset()
             include "armeabi-v7a", "arm64-v8a"
             universalApk false
@@ -226,6 +228,10 @@ android {
 dependencies {
     // The version of react-native is set by the React Native Gradle Plugin
     implementation("com.facebook.react:react-android")
+    implementation 'androidx.profileinstaller:profileinstaller:1.4.1'
+    if (providers.gradleProperty('dehub.generateProfiles').orNull == 'true') {
+        baselineProfile project(':baseline-profile')
+    }
 
     def isGifEnabled = (findProperty('expo.gif.enabled') ?: "") == "true";
     def isWebpEnabled = (findProperty('expo.webp.enabled') ?: "") == "true";
@@ -265,7 +271,7 @@ gradle.taskGraph.whenReady { graph ->
         return
     }
     def offender = graph.allTasks.find {
-        it.project == project && it.name ==~ /(?i)(assemble|bundle|package).*Release/
+        it.project == project && it.name ==~ /(?i)(assemble|bundle|package)Release/
     }
     if (offender != null) {
         throw new GradleException(
