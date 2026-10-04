@@ -100,7 +100,7 @@ interface ScrollNavItem {
 const SCROLL_NAV_ITEMS: ScrollNavItem[] = [
   { icon: "Settings", labelKey: "nav.settings", screen: ScreenNames.AccountSettings },
   { icon: "Film", labelKey: "creator.editor", screen: ScreenNames.MediaEditor },
-  { icon: "Wand", labelKey: "commandCentre.creator", screen: ScreenNames.Creator },
+  { icon: "Palette", labelKey: "commandCentre.creator", screen: ScreenNames.Creator },
   { icon: "User", labelKey: "nav.profile", screen: ScreenNames.Profile },
   { icon: "Bell", labelKey: "nav.notifications", screen: ScreenNames.Notifications },
   { icon: "Wand", labelKey: "nav.prompt", screen: ScreenNames.Prompt },
