@@ -1,8 +1,7 @@
 /**
  * Creator templates.
  * ==================
- * Mirror of dehubweb's `src/lib/creator/presets.ts` (image and video only; the
- * app has no 3D tool and audio runs through its own sheets). A template is a
+ * Mirror of dehubweb's image and video preset catalog. A template is a
  * proven prompt scaffold plus the model it was tuned for: pick one, type a
  * subject, generate. `{subject}` is replaced with what was typed, or with the
  * template's `sample` when the composer is empty.
@@ -12,6 +11,7 @@
  */
 
 import { OPEN_STUDIO_PRESETS } from './openStudioPresets';
+import { EXPANDED_STUDIO_PRESETS } from './expandedStudioPresets';
 
 export type TemplateKind = 'image' | 'video';
 
@@ -32,6 +32,7 @@ export interface CreatorTemplate {
 
 export const CREATOR_TEMPLATES: CreatorTemplate[] = [
   ...OPEN_STUDIO_PRESETS,
+  ...EXPANDED_STUDIO_PRESETS,
   {"id": "studio-product", "nameKey": "creator.presetStudioProductName", "kind": "image", "group": "Commercial", "template": "{subject}, professional product photography, seamless studio backdrop, large softbox key light with a subtle rim, shallow depth of field, crisp specular highlights, colour-accurate, shot on a 100mm macro lens", "sample": "a matte black ceramic coffee flask", "hintKey": "creator.presetStudioProductHint", "model": "gemini-3-pro-image", "aspect": "1:1"},
   {"id": "cinematic-still", "nameKey": "creator.presetCinematicStillName", "kind": "image", "group": "Film", "template": "{subject}, cinematic film still, anamorphic widescreen framing, motivated practical lighting, deep shadows with lifted blacks, 35mm grain, muted teal and amber grade, shallow focus", "sample": "a lone figure crossing a rain-slick street at night", "hintKey": "creator.presetCinematicStillHint", "model": "gemini-3-pro-image", "aspect": "16:9"},
   {"id": "editorial-portrait", "nameKey": "creator.presetEditorialPortraitName", "kind": "image", "group": "Portrait", "template": "{subject}, editorial fashion portrait, single hard key light at 45 degrees, sculpted shadow falloff, clean neutral backdrop, natural skin texture retained, medium-format detail", "sample": "a model in an oversized wool coat", "hintKey": "creator.presetEditorialPortraitHint", "model": "gemini-3-pro-image", "aspect": "4:5"},
