@@ -36,6 +36,13 @@ export const USERNAME_BADGE_OVERRIDES: ReadonlyMap<string, string> = new Map([
   ["maldoteth", "Megalodon"],
   ["mal", "Megalodon"],
   ["aaron", "Megalodon"],
+  ["ma255", "Ghost Lobster"],
+  ["dehubprime", "King Cobra"],
+  ["algiers", "King Cobra"],
+  ["angelbeattales", "Ghost Lobster"],
+  ["infinitebaffle", "King Cobra"],
+  ["angieluthien", "Octopus"],
+  ["beinsports", "Ghost Lobster"],
 ]);
 
 /** The tier this username is granted, or undefined when it is not listed. */
