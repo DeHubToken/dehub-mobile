@@ -134,10 +134,6 @@ jobs:
         with:
           node-version: '22'
           cache: npm
-      - uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: '17'
       - run: npm ci --legacy-peer-deps
       - run: npx patch-package --error-on-fail
       - uses: expo/expo-github-action@v8
@@ -145,22 +141,9 @@ jobs:
           eas-version: latest
           token: ${{ secrets.EXPO_TOKEN }}
       - name: Generate native startup and baseline profiles
-        uses: reactivecircus/android-emulator-runner@v2
+        uses: ./.github/actions/android-profiles
         with:
-          api-level: 35
-          target: aosp_atd
-          arch: x86_64
-          disable-animations: true
-          script: eas env:exec preview "cd android && chmod +x gradlew && ./gradlew :app:generateReleaseBaselineProfile -Pdehub.generateProfiles=true -PreactNativeArchitectures=x86_64 --no-daemon"
-      - name: Require generated profiles
-        run: |
-          test -s android/app/src/release/generated/baselineProfiles/baseline-prof.txt
-          test -s android/app/src/release/generated/baselineProfiles/startup-prof.txt
-      - uses: actions/upload-artifact@v4
-        with:
-          name: android-startup-profiles
-          path: android/app/src/release/generated/baselineProfiles/
-          retention-days: 30
+          environment: preview
       - name: Build signed preview APK containing generated profiles
         run: eas build --platform android --profile test-apk --non-interactive --wait --json > android-preview.json
       - name: Record preview artifact
