@@ -93,9 +93,9 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
       setSavedPinned(updated.isPinned);
       onPlanChange?.(updated);
       await queryClient.invalidateQueries({ queryKey: ['cc-creator-plans'] });
-      toastSuccess(t(updated.isPinned ? 'subscriptions.pinnedProfile' : 'subscriptions.unpinnedProfile', updated.isPinned ? 'Plan pinned to profile' : 'Plan unpinned from profile'));
+      toastSuccess(t(updated.isPinned ? 'postOptions.postPinned' : 'postOptions.postUnpinned'));
     } catch (error) {
-      toastError(error, t('subscriptions.pinFailed', 'Could not save profile pin'));
+      toastError(error, t('subscriptions.startFailed'));
     } finally {
       setPinning(false);
     }
@@ -263,7 +263,7 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
               style={[s.editBtn, { marginBottom: 8, opacity: pinning || (!pinned && (!published || !isBuyable)) ? 0.5 : 1 }]}
             >
               {pinning ? <ActivityIndicator color="#fff" size="small" /> : <Icon name="Pin" size={16} color="#fff" />}
-              <Text style={s.editBtnText}>{pinned ? t('subscriptions.unpinProfile', 'Unpin from profile') : t('subscriptions.pinProfile', 'Pin to profile')}</Text>
+              <Text style={s.editBtnText}>{pinned ? t('postOptions.unpinPost') : t('postOptions.pinPost')}</Text>
             </TouchableOpacity>
           )}
           {isOwner ? (
