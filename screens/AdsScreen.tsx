@@ -196,8 +196,8 @@ const CampaignForm: React.FC<{ visible: boolean; onClose: () => void }> = ({ vis
 
             <ScrollView keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false}>
               <Pressable accessibilityRole="checkbox" accessibilityState={{ checked: creatorSupport }} onPress={() => setCreatorSupport(value => !value)} style={styles.card}>
-                <Text style={styles.campaignName}>{creatorSupport ? '✓ ' : ''}Creator support ads</Text>
-                <Text style={styles.dim}>Let viewers support creators by watching 30 seconds. Requires an approved video of at least 30 seconds, uploaded in the web advertising portal.</Text>
+                <Text style={styles.campaignName}>{creatorSupport ? '✓ ' : ''}{t('creatorSupport.campaignLabel')}</Text>
+                <Text style={styles.dim}>{t('creatorSupport.campaignDescription')}</Text>
               </Pressable>
               <Text style={styles.label}>{t("ads.campaignName")}</Text>
               <TextInput
@@ -474,8 +474,8 @@ export default function AdsScreen() {
         }
       >
           {revenue.data !== undefined ? <View style={styles.card}>
-            <Text style={styles.campaignName}>Your ad revenue · ${revenue.data.toFixed(4)}</Text>
-            <Text style={styles.dim}>Revenue from ads and creator support, awaiting DHB settlement.</Text>
+            <Text style={styles.campaignName}>{t('creatorSupport.revenue', { amount: revenue.data.toFixed(4) })}</Text>
+            <Text style={styles.dim}>{t('creatorSupport.revenueDescription')}</Text>
           </View> : null}
           {account.isLoading ? (
           <DeHubLoader size={56} style={{ marginTop: 40 }} />
