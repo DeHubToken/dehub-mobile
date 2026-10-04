@@ -1,3 +1,5 @@
+import BadgeArtwork from "../components/common/BadgeArtwork";
+import { getBadgeHoverOpticalStyle } from "../libs/misc";
 import SmartImage from "../components/common/SmartImage";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -80,7 +82,7 @@ const UserRow: React.FC<{
             {displayName}
           </Text>
           {!!badgeImg && (
-            <SmartImage source={badgeImg} style={{ width: 14, height: 14 }} contentFit="contain" />
+            <BadgeArtwork source={badgeImg} style={getBadgeHoverOpticalStyle(badgeImg, 14, 0, 20)} contentFit="contain" />
           )}
           {user.isModerator && (
             <View className="bg-amber-500/20 rounded px-1 py-0.5">

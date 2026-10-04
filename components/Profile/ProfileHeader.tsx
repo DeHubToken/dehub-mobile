@@ -410,6 +410,7 @@ const ProfileHeader = () => {
               <Pressable
                 ref={badgeSlotRef}
                 collapsable={false}
+                style={{ alignSelf: "flex-end", height: 30, justifyContent: "center" }}
                 hitSlop={8}
                 onPress={() => openBadgeShowcase(badge, badgeSlotRef.current)}
               >
@@ -417,11 +418,11 @@ const ProfileHeader = () => {
                   source={badgeImage as any}
                   contentFit="contain"
                   cachePolicy="memory-disk"
-                  style={[getBadgeOpticalStyle(badgeImage as number, 20), { marginLeft: 0 }]}
+                  style={[getBadgeOpticalStyle(badgeImage as number, 24, 0, 30), { marginLeft: 0 }]}
                 />
               </Pressable>
             )}
-            <StreamerBadge address={address} canSelect />
+            <StreamerBadge address={address} canSelect fontSize={24} lineHeight={30} />
           </View>
 
           {/* Username + wallet address */}

@@ -47,7 +47,7 @@ import { localizedNotificationContent } from "../libs/notification-content";
 import { formatNotificationDate } from "../libs/date.util";
 import { useUserProfileSheet } from "../context/UserProfileSheetContext";
 import { seedUserProfileCache } from "../hooks/useUserProfileData";
-import { buildCdnPath, getAvatarUrl, getBadgeUrlFor, getShortsThumbnailUrl } from "../libs";
+import { buildCdnPath, getAvatarUrl, getBadgeUrlFor, getShortsThumbnailUrl, getBadgeOpticalStyle } from "../libs";
 import { cdnImage } from "../libs/cdnImage";
 import { addDismissedIds, getDismissedIds } from "../libs/notifications.dismissed";
 import { openInApp } from "../libs/links.utils";
@@ -642,7 +642,7 @@ const NotificationRow: React.FC<NotificationRowProps> = React.memo(({
             }}
             numberOfLines={3}
           >
-            {showActorBadge ? <>{sentence.slice(0, actorNameAt)}{actorName}<SmartImage source={actorBadge!} style={{ width: 16, height: 16 }} />{sentence.slice(actorNameAt + actorName!.length)}</> : sentence}
+            {showActorBadge ? <>{sentence.slice(0, actorNameAt)}{actorName}<SmartImage source={actorBadge!} style={getBadgeOpticalStyle(actorBadge!, 14, 0, 20)} />{sentence.slice(actorNameAt + actorName!.length)}</> : sentence}
           </Text>
 
           {/* Aggregation indicator */}
