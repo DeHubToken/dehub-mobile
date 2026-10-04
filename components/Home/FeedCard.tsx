@@ -85,6 +85,11 @@ import { DIGITAL_PURCHASES_ENABLED } from "../../config/storefront";
 import { isPostHiddenByStorefront } from "../../libs/storefront-content";
 import { useSuperpowers } from "../../hooks/useSuperpowers";
 import ShareSheet from "./ShareSheet";
+import RepostShareSheet from "./RepostShareSheet";
+import PostStageActionBar from "./PostStageActionBar";
+import { PostStageChrome, PostStageCreator } from "./PostStage";
+import { clearPostStage, patchPostStage } from "../../libs/postStage";
+import { followUser, unfollowUser } from "../../services/user.service";
 import CashtagSheet from "./CashtagSheet";
 import Icon from "../ui/Icon";
 import TranslateButton from "../ui/TranslateButton";
@@ -254,6 +259,15 @@ interface FeedCardProps {
   topChromeInset?: number;
   /** Cinematic only: no hairline under this post (the row after it draws its own). */
   hideDivider?: boolean;
+  /**
+   * Post page on a phone ("Stage"): glass back / Ask AI / ⋯ on the media, the
+   * creator with a Follow button under it, a clamped caption, and one big
+   * five-tile action bar whose repost tile opens the repost + share sheet.
+   * Only with `immersive` or `flat`.
+   */
+  stage?: boolean;
+  /** Stage only: where the post's media (or, without media, its text) ends, in card coordinates. */
+  onStageAnchor?: (y: number) => void;
 }
 
 /** Side inset for the text of an immersive post; the media ignores it. */
@@ -276,6 +290,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   cinematic = false,
   topChromeInset = 0,
   hideDivider = false,
+  stage: stageProp = false,
+  onStageAnchor,
 }) => {
   const navigation = useNavigation<any>();
   const { t, i18n } = useCopy();
@@ -1278,6 +1294,78 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   // Badges a locked picture pins to its top-left corner start under the chip.
   const lockBadgeTop = chipOverMedia ? { top: mediaBand } : firstImageHeaderBelow ? { top: topChromeInset + 8 } : undefined;
 
+  // --- Post page "Stage" (phones) ---
+  const stage = stageProp && (immersive || flat);
+  const [showRepostSheet, setShowRepostSheet] = useKeyedState(postKey, false);
+  // A live post's in-page player, paused from the pinned mini player.
+  const [livePaused, setLivePaused] = useKeyedState(postKey, false);
+  const handleOpenRepostSheet = useCallback(() => {
+    if (tokenId == null) return;
+    setShowRepostSheet(true);
+  }, [tokenId, setShowRepostSheet]);
+  const openRepostQuoteList = useCallback((initialTab: "reposts" | "quotes") => {
+    if (tokenId == null) return;
+    hideUserProfile();
+    navigation.navigate(ScreenNames.RepostQuoteList as never, {
+      tokenId,
+      initialTab,
+      repostCount: (item as any).reposts ?? 0,
+      quoteCount: (item as any).quotes ?? 0,
+    } as never);
+  }, [navigation, tokenId, item, hideUserProfile]);
+  const handleStageFollow = useCallback(() => {
+    requireAuth?.(async () => {
+      const viewer = userAddress.toLowerCase();
+      const target = (minterAddress || "").toLowerCase();
+      if (!viewer || !target) return;
+      const was = { following: isFollowingCreator, pending: isFollowReqPending };
+      try {
+        if (was.following || was.pending) {
+          setFollow({ following: false, pending: false });
+          await unfollowUser(viewer, target);
+          toastSuccess(
+            was.pending
+              ? t("postOptions.followRequestCancelled")
+              : t("postOptions.unfollowedUser", { name: displayName }),
+          );
+        } else {
+          setFollow({ following: true, pending: false });
+          const res = await followUser(viewer, target);
+          if (res.status === "pending") {
+            setFollow({ following: false, pending: true });
+            toastSuccess(t("postOptions.followRequestSent"));
+          } else {
+            toastSuccess(t("postOptions.nowFollowing", { name: displayName }));
+          }
+        }
+      } catch {
+        setFollow(was);
+        toastError(t("postOptions.followUpdateFailed"));
+      }
+    });
+  }, [requireAuth, userAddress, minterAddress, isFollowingCreator, isFollowReqPending, setFollow, displayName, t]);
+  // What the pinned mini player shows for this post, and its like.
+  const stagePlayable = isVideo || isLive || isAudioPost;
+  useEffect(() => {
+    if (!stage || tokenId == null) return;
+    patchPostStage(tokenId, {
+      thumb: (isVideo || isLive ? thumbnail : "") || galleryImages[0] || avatar || undefined,
+      title: (isTranslated ? translatedTexts.title : localTitle) || displayName,
+      subtitle: [displayName, timeAgo].filter(Boolean).join(" · "),
+      playable: stagePlayable,
+      liked: liked || disliked,
+      like: handleLikePress,
+    });
+  }, [stage, tokenId, isVideo, isLive, thumbnail, galleryImages, avatar, isTranslated, translatedTexts.title, localTitle, displayName, timeAgo, stagePlayable, liked, disliked, handleLikePress]);
+  useEffect(() => {
+    if (!stage || !isLive || tokenId == null) return;
+    patchPostStage(tokenId, { playing: !livePaused, toggle: () => setLivePaused((p) => !p) });
+  }, [stage, isLive, tokenId, livePaused, setLivePaused]);
+  useEffect(() => {
+    if (!stage || tokenId == null) return;
+    return () => clearPostStage(tokenId);
+  }, [stage, tokenId]);
+
   if (isDeleted) return null;
 
   // --- Content renderers ---
@@ -1538,7 +1626,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         <LiveFeedPreview
           url={livePlayableUrl}
           thumbnail={hasThumb ? thumbnail : undefined}
-          active={isVisible && isAutoplayActive}
+          active={isVisible && isAutoplayActive && !livePaused}
           label={liveFallbackLabel}
         />
       ) : hasThumb ? (
@@ -1680,6 +1768,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
                 ) : undefined}
                 firstFeedPost={cinematicFeed && topChromeInset > 0}
                 edgeToEdge={cinematicFeed}
+                postPage={stage}
               />
             )}
           </>
@@ -1946,6 +2035,175 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       )}
     </>
   );
+
+  if (stage) {
+    const stageMedia = immersive && !matureGate.isGated;
+    const reportAnchor = (e: LayoutChangeEvent) => {
+      const { y, height } = e.nativeEvent.layout;
+      onStageAnchor?.(y + height);
+    };
+    const stageQuotes = (item as any).quotes ?? 0;
+    return (
+      <View style={styles.stage} testID="post-stage">
+        {stageMedia ? (
+          <View style={{ marginHorizontal: -IMMERSIVE_INSET, marginBottom: 12 }} onLayout={reportAnchor}>
+            {renderContent()}
+            <PostStageChrome overMedia onAi={handleAiPress} onMore={handleOpenOptions} />
+          </View>
+        ) : (
+          <PostStageChrome overMedia={false} onAi={handleAiPress} onMore={handleOpenOptions} />
+        )}
+        <PostStageCreator
+          avatarUrl={avatar}
+          displayName={displayName}
+          username={username}
+          followers={minterUser?.followers ?? item.minterFollowers}
+          badgeImage={badgeImg}
+          onUserPress={handleUserPress}
+          showFollow={!isOwnerPost && !!minterAddress}
+          following={isFollowingCreator}
+          pending={isFollowReqPending}
+          onFollow={handleStageFollow}
+        />
+        {matureGate.isGated ? (
+          <MatureContentGate onReveal={matureGate.reveal} />
+        ) : (
+          <>
+            <View onLayout={stageMedia ? undefined : reportAnchor}>
+              {!immersive && renderContent()}
+            </View>
+            {hasSoundtrack && !isActuallyGated && (
+              <View className="mt-2">
+                <SoundtrackBadge
+                  key={postKey}
+                  title={soundtrack.title}
+                  creator={soundtrack.creator}
+                  url={soundtrack.url}
+                  isVisible={isVisible}
+                />
+              </View>
+            )}
+            {!!localArticleBody && (
+              <View className="mt-3">
+                <ArticleCover
+                  look={articleUi}
+                  label={t("articles.label")}
+                  title={(isTranslated ? translatedTexts.title : localTitle) || undefined}
+                  coverUri={item.articleImageUrl ? buildFeedImageUrls([item.articleImageUrl], IMAGE_WIDTH)[0] : undefined}
+                  meta={[createdAt ? new Date(createdAt).toLocaleDateString(undefined, { month: "short", day: "numeric" }) : null, t("articles.minRead", { count: articleReadingMinutes(localArticleBody) })].filter(Boolean).join(" · ")}
+                  hero
+                />
+              </View>
+            )}
+            <FeedCaption
+              resetKey={postKey}
+              title={localArticleBody ? undefined : (isTranslated ? translatedTexts.title : localTitle) || undefined}
+              description={displayCaption || undefined}
+              categories={localCategories}
+              onCategoryPress={onCategorySelect}
+              onCashtagPress={setActiveCashtag}
+              maxLines={3}
+              showCategories={false}
+              flagged={item.communityAlertStatus === "pending"}
+            />
+            {!!localArticleBody && ((isOwnerPost || (!isLocked && (!streamInfo?.isPayPerView || ppvUnlocked) && !isActuallySubGated)) ? (
+              <View className="mt-4"><ArticleReaderBody body={localArticleBody} look={articleUi} /></View>
+            ) : (
+              <View className="mt-3 flex-row">
+                <View style={{ flexDirection: "row", alignItems: "center", gap: 6, borderWidth: 1, borderColor: articleUi.line, borderRadius: articleUi.radius ? 999 : 0, paddingHorizontal: 12, paddingVertical: 6 }}>
+                  <Icon name="BookOpen" size={15} color={articleUi.ink2} />
+                  <Text style={{ color: articleUi.ink2, fontSize: 13 }}>{t("articles.read")}</Text>
+                </View>
+              </View>
+            ))}
+            {(item as any).isQuotePost && (
+              <QuotedPostEmbed
+                key={postKey}
+                quotedPost={(item as any).quotedPost}
+                quotedTokenId={(item as any).quotedTokenId}
+              />
+            )}
+            <DehubLinkCards links={dehubLinks} />
+            <LinkPreviewCard key={postKey} text={captionText} />
+            <AssetRefCards refs={assetRefs} />
+          </>
+        )}
+        {tokenId != null && !isLive && !(item as any).isQuotePost && (
+          <PollCard key={postKey} tokenId={Number(tokenId)} pollOwnerAddress={minterAddress} />
+        )}
+        {!isLive && (
+          <ShopBoard
+            key={postKey}
+            tokenId={tokenId}
+            links={localShopLinks ?? (item as any).shopLinks}
+            listingCount={localShopListingCount ?? (item as any).shopListingCount}
+          />
+        )}
+        <View className="flex-row items-center gap-2 pt-2" testID="post-stage-meta">
+          <Text style={{ fontSize: 13, lineHeight: 18, color: "#8B8D90" }}>
+            {timeAgo}
+            <Text style={{ color: "#6F7174" }}>{"  ·"}</Text>
+          </Text>
+          <Icon name={isAudioPost ? "Headphones" : isLive ? "Radio" : "Eye"} size={13} color="#6F7174" />
+          <Text style={{ fontSize: 13, lineHeight: 18, color: "#8B8D90", marginLeft: -4 }}>
+            {formatCompactNumber(views)}
+          </Text>
+          {showTranslate && (
+            <>
+              <Text style={{ fontSize: 13, lineHeight: 18, color: "#6F7174" }}>·</Text>
+              <TranslateButton
+                isTranslated={isTranslated}
+                isLoading={translating}
+                detectedLanguage={translationSourceLang}
+                onTranslate={handleTranslate}
+                onShowOriginal={handleShowOriginal}
+                inline
+              />
+            </>
+          )}
+        </View>
+        <PostStageActionBar
+          liked={liked}
+          disliked={disliked}
+          saved={saved}
+          reposted={reposted}
+          likeCount={likeCount}
+          commentCount={commentCount}
+          repostCount={repostCount}
+          onLike={handleLikePress}
+          onReact={handleReaction}
+          myReaction={myReaction}
+          reactionCounts={reactionCounts}
+          onShowReactionInfo={isOwnerPost && tokenId != null ? handleShowReactionInfo : undefined}
+          onComment={handleCommentPress}
+          onRepost={handleOpenRepostSheet}
+          onTip={DIGITAL_PURCHASES_ENABLED && !minterUser?.hideBadgeAndBalance ? handleTipPress : undefined}
+          onSave={handleSavePress}
+          tokenId={tokenId}
+          viewerAddress={userAddress}
+          isVisible={isVisible}
+        />
+        {sheets}
+        {showRepostSheet && tokenId != null && (
+          <RepostShareSheet
+            visible={showRepostSheet}
+            onClose={() => setShowRepostSheet(false)}
+            isReposted={reposted}
+            onRepost={handleConfirmRepost}
+            onUndoRepost={handleUndoRepost}
+            onQuote={handleQuotePress}
+            onCopyLink={handleCopyLink}
+            shareUrl={shareUrl}
+            shareText={localTitle || undefined}
+            quoteCount={stageQuotes}
+            repostCount={Math.max(0, repostCount - stageQuotes)}
+            onViewQuotes={() => openRepostQuoteList("quotes")}
+            onViewReposts={() => openRepostQuoteList("reposts")}
+          />
+        )}
+      </View>
+    );
+  }
 
   if (cinematicFeed) {
     const viewsLabel = t("comments.viewCount", { count: views }).replace(
@@ -2532,6 +2790,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
 };
 
 const styles = StyleSheet.create({
+  stage: { paddingHorizontal: IMMERSIVE_INSET, paddingBottom: 4 },
   cinematicPost: {
     paddingVertical: 20,
     borderBottomWidth: StyleSheet.hairlineWidth,

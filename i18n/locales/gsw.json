@@ -5694,7 +5694,14 @@
     "imageTranslating": "Extrahiere und übersetze Teggst…",
     "imageNoText": "Kei Teggst i däm Bild funde",
     "translatedFrom": "Übersetzet vo {{lang}}",
-    "originalText": "Originaltext"
+    "originalText": "Originaltext",
+    "repostAndShare": "Repost & teile",
+    "repostHint": "Sofort, an dini Follower",
+    "quoteHint": "Füg dini eige Wort dezue",
+    "shareTo": "Teile an",
+    "moreShare": "Meh",
+    "viewQuotes": "Zitaten aaluege",
+    "viewReposts": "Reposts aaluege"
   },
   "dm": {
     "online": "Online",

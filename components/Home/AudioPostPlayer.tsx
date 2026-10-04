@@ -47,6 +47,7 @@ import {
   toggleAudioPost,
   useAudioPostPlayback,
 } from "../../libs/audio-post-playback";
+import { patchPostStage } from "../../libs/postStage";
 import {
   AudioVisualizer,
   StaticWaveform,
@@ -357,6 +358,8 @@ export interface AudioPostPlayerProps {
   edgeToEdge?: boolean;
   /** Only the first feed post sits beneath the floating navigation capsule. */
   firstFeedPost?: boolean;
+  /** On the post page: reports play state to its pinned mini player. */
+  postPage?: boolean;
 }
 
 const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
@@ -372,6 +375,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
   topLeftAction,
   edgeToEdge = false,
   firstFeedPost = false,
+  postPage = false,
 }) => {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
@@ -744,6 +748,15 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
       releaseAudioFocus(focusStopRef.current);
     }
   }, [isPlaying, audioUrl, startPositionTracking, stopPositionTracking, applyPendingSeek, attachStatusListener, detachStatusListener, recordListenOnce, lockScreenId, lockScreenTrack]);
+
+  // The post page's mini player mirrors this one and can toggle it.
+  const playPauseRef = useRef(handlePlayPause);
+  playPauseRef.current = handlePlayPause;
+  const stageToggle = useCallback(() => { void playPauseRef.current(); }, []);
+  useEffect(() => {
+    if (!postPage) return;
+    patchPostStage(tokenId, { playing: shownPlaying, progress: shownProgress, toggle: stageToggle });
+  }, [postPage, tokenId, shownPlaying, shownProgress, stageToggle]);
 
   /**
    * Take a player back from the corner player, still playing if it was. The

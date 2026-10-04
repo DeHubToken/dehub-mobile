@@ -5625,7 +5625,14 @@
     "originalText": "ኦሪጅናል ጽሑፍ",
     "unlockForAndHold": "ን {{price}} {{symbol}} + {{hold}} {{holdSymbol}} ምሓዝ",
     "unlockFor": "ን {{price}} {{symbol}} ክፈትሕ",
-    "mustHold": "{{amount}} {{symbol}} ክህልወካ ኣለዎ"
+    "mustHold": "{{amount}} {{symbol}} ክህልወካ ኣለዎ",
+    "repostAndShare": "ምዝርጋሕን ምዝርጋሕን",
+    "repostHint": "ሽዑ ንሽዑ ፡ ንሰዓብትኻ",
+    "quoteHint": "ቃላትካ ኣክሎ",
+    "shareTo": "ተኻፈል",
+    "moreShare": "ዝያዳ",
+    "viewQuotes": "ጥቕስታት ርአ",
+    "viewReposts": "ዳግመ-ግምገማታት ርኣዮ"
   },
   "dm": {
     "online": "ኣብ ኢንተርነት",

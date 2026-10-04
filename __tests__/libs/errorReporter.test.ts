@@ -48,6 +48,21 @@ describe('error reporter', () => {
     expect(body((global.fetch as jest.Mock).mock.calls[0]).logs).toHaveLength(2);
   });
 
+  it('persists login stages and correlates errors before any profile address exists', async () => {
+    const trace = require('../../libs/auth-trace');
+    trace.beginAuthTrace('google');
+    trace.advanceAuthTrace('profile-exchange-start', 'incoming-user');
+    reporter.reportError('AuthTrace', ['profile-exchange-start'], { level: 'info', metadata: { outcome: 'pending' } });
+    reporter.reportError('Auth', [new Error('profile unavailable')]);
+    await reporter.flushLogs();
+    const rows = body((global.fetch as jest.Mock).mock.calls[0]).logs;
+    expect(rows[0].level).toBe('info');
+    expect(rows[0].metadata.auth_attempt_id).toBeTruthy();
+    expect(rows[1].metadata.auth_attempt_id).toBe(rows[0].metadata.auth_attempt_id);
+    expect(rows[1].metadata.supabase_user_id).toBe('incoming-user');
+    expect(rows[1].metadata.auth_stage).toBe('profile-exchange-start');
+  });
+
   it('takes the message and stack off an Error and the rest as metadata', async () => {
     const err = new Error('boom');
     reporter.reportError('Feed', [err, { tokenId: 42 }]);

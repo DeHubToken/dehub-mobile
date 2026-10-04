@@ -5665,7 +5665,14 @@
     "imageTranslating": "Extragere și traducere text...",
     "imageNoText": "Nu s-a găsit text în această imagine",
     "translatedFrom": "Tradus din {{lang}}",
-    "originalText": "Text original"
+    "originalText": "Text original",
+    "repostAndShare": "Repostare și distribuire",
+    "repostHint": "Instantaneu, către urmăritorii tăi",
+    "quoteHint": "Adaugă propriile cuvinte",
+    "shareTo": "Distribuie către",
+    "moreShare": "Mai multe",
+    "viewQuotes": "Afișează ofertele de preț",
+    "viewReposts": "Afișează repostările"
   },
   "dm": {
     "online": "Online",

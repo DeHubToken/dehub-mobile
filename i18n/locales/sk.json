@@ -5773,7 +5773,14 @@
     "imageTranslating": "Extrahovanie a preklad textu...",
     "imageNoText": "V tomto obrázku nebol nájdený žiadny text",
     "translatedFrom": "Preložené z {{lang}}",
-    "originalText": "Pôvodný text"
+    "originalText": "Pôvodný text",
+    "repostAndShare": "Znovu uverejniť a zdieľať",
+    "repostHint": "Okamžite svojim sledovateľom",
+    "quoteHint": "Pridajte svoje vlastné slová",
+    "shareTo": "Zdieľať s",
+    "moreShare": "Viac",
+    "viewQuotes": "Zobraziť cenové ponuky",
+    "viewReposts": "Zobraziť opätovné príspevky"
   },
   "dm": {
     "online": "Online",

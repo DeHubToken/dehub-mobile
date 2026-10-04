@@ -2,6 +2,7 @@ import React, { useCallback, memo } from "react";
 import { View, TouchableOpacity, Text, I18nManager } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import ElectricLogo from "./common/ElectricLogo";
+import { useFeedPillRefreshing } from "../libs/feed-pill-refresh";
 import Avatar from "./common/Avatar";
 import Icon from "./ui/Icon";
 import { useNavigation } from "@react-navigation/native";
@@ -21,6 +22,7 @@ interface HomeHeaderProps {
 }
 
 const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress, onBackPress, logoHint }) => {
+  const refreshing = useFeedPillRefreshing();
   const navigation = useNavigation<any>();
   const { isSignedIn } = useAuthState();
   const user = useUser();
@@ -89,7 +91,7 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress, onBac
         className="absolute inset-0 items-center justify-center"
         pointerEvents="box-none"
       >
-        <ElectricLogo onPress={onLogoPress} label="DeHub"
+        <ElectricLogo refreshing={refreshing} onPress={onLogoPress} label="DeHub"
           hint={logoHint ?? t("common.scrollsFeedToTop")}
           source={require("../assets/web-icons/dehub-logo-center.png")}
           width={33} height={28} tint={colors.foreground} />

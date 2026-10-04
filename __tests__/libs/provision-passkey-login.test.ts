@@ -1,6 +1,8 @@
 import { provisionAndSignIn, type ProvisionDeps } from '../../libs/provision-and-sign-in';
 import { resolveEvmWalletForIdentity, releaseWalletKeyForSignIn } from '../../libs/identity-wallet';
 import { fetchWalletReliably } from '../../libs/wallet-core/store';
+import { getAuthToken, getStoredSupabaseUserId } from '../../libs/auth.utils';
+import { stageIncomingIdentity } from '../../libs/profiles';
 
 jest.mock('../../config/constants', () => ({ ChainId: { BASE_MAINNET: 8453 } }));
 jest.mock('../../libs/logger', () => ({ createLogger: () => ({ info: jest.fn(), warn: jest.fn(), error: jest.fn() }) }));
@@ -88,4 +90,12 @@ it('does not authenticate or provision without an identity token', async () => {
   expect((await provisionAndSignIn('uid', deps)).kind).toBe('error');
   expect(deps.signInWithSupabaseSession).not.toHaveBeenCalled();
   expect(resolveEvmWalletForIdentity).not.toHaveBeenCalled();
+});
+
+it('preserves the incoming Supabase session when replacing another cached account', async () => {
+  jest.mocked(getStoredSupabaseUserId).mockResolvedValueOnce('outgoing-uid');
+  jest.mocked(getAuthToken).mockResolvedValueOnce('outgoing-token');
+  await expect(provisionAndSignIn('uid', deps)).resolves.toEqual({ kind: 'signed-in' });
+  expect(stageIncomingIdentity).toHaveBeenCalledWith('uid');
+  expect(deps.signInWithSupabaseSession).toHaveBeenCalled();
 });

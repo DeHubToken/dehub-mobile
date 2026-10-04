@@ -5665,7 +5665,14 @@
     "imageTranslating": "Ekstrahiranje i prevođenje teksta...",
     "imageNoText": "Nije pronađen tekst na ovoj slici",
     "translatedFrom": "Prevedeno s {{lang}}",
-    "originalText": "Izvorni tekst"
+    "originalText": "Izvorni tekst",
+    "repostAndShare": "Ponovno objavi i podijeli",
+    "repostHint": "Odmah, svojim pratiteljima",
+    "quoteHint": "Unesite vlastite riječi",
+    "shareTo": "Podijeli s",
+    "moreShare": "Više",
+    "viewQuotes": "Prikaži ponude",
+    "viewReposts": "Prikaži ponovne objave"
   },
   "dm": {
     "online": "Online",
