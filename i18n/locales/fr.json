@@ -8906,5 +8906,20 @@
     "recommendedBody": "Une version plus récente de DeHub est disponible avec d'importants correctifs de sécurité. Mettez à jour pour garder votre compte protégé.",
     "requiredBody": "Cette version de DeHub n'est plus prise en charge. Mettez à jour pour continuer à utiliser votre compte.",
     "update": "Mettre à jour"
+  },
+  "creatorSupport": {
+      "sponsoredBy":  "Sponsorisé par {{advertiser}}",
+      "campaignLabel":  "Publicités de soutien aux créateurs",
+      "close":  "Fermer la publicité",
+      "progress":  "{{seconds}} / 30 secondes vérifiées · Part du créateur : {{amount}} $",
+      "revenue":  "Vos revenus publicitaires · {{amount}} $",
+      "revenueDescription":  "Revenus publicitaires et soutien aux créateurs, en attente de règlement en DHB.",
+      "noAds":  "Aucune vidéo sponsorisée disponible pour le moment. Vous pouvez toujours envoyer un pourboire en DHB.",
+      "explanation":  "Regardez 30 secondes. Le sponsor finance la part des revenus du créateur ; vous ne payez rien.",
+      "receipt":  "{{amount}} $ ajoutés aux revenus publicitaires du créateur. Le règlement en DHB est en attente.",
+      "loadError":  "Impossible de charger la publicité.",
+      "loading":  "Recherche d\u0027un sponsor…",
+      "campaignDescription":  "Permettez aux spectateurs de soutenir les créateurs en regardant 30 secondes. Une vidéo approuvée d\u0027au moins 30 secondes, importée sur le portail publicitaire web, est requise.",
+      "watch":  "Regarder une publicité pour soutenir ce créateur"
   }
 }
