@@ -293,6 +293,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   // for nothing — right through every fling. The ref carries the real value for
   // seek/fullscreen; state is only committed while something is watching it.
   const currentTimeRef = useRef(0);
+  const scrubbingRef = useRef(false);
   const showControlsRef = useRef(false);
   // Caption playhead. Same rule as `currentTime`: only committed while
   // subtitles are switched on, so a card with CC off never re-renders on tick.
@@ -704,8 +705,10 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
       subs.push(
         player.addListener("timeUpdate", ({ currentTime: ct }: any) => {
           if (!ownsPlayerRef.current()) return;
-          currentTimeRef.current = ct ?? 0;
-          if (showControlsRef.current) setCurrentTime(ct ?? 0);
+          if (!scrubbingRef.current) {
+            currentTimeRef.current = ct ?? 0;
+            if (showControlsRef.current) setCurrentTime(ct ?? 0);
+          }
           if (ct != null && getSubtitlesEnabled()) setCaptionPosMs(ct * 1000);
           if (ct != null && postPageRef.current && player.duration > 0) {
             patchPostStage(tokenIdRef.current, { progress: Math.min(1, Math.max(0, ct / player.duration)) });
@@ -1093,19 +1096,39 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   const handleSeekCommit = useCallback(
     (ratio: number) => {
       handleSeek(ratio);
+      scrubbingRef.current = false;
       startHideTimer();
     },
     [handleSeek, startHideTimer],
   );
 
+  const handleScrubStart = useCallback(() => {
+    scrubbingRef.current = true;
+    clearHideTimer();
+  }, [clearHideTimer]);
+
+  const handleScrub = useCallback((ratio: number) => {
+    // Preview locally; seeking the decoder on every move makes buffered
+    // position updates fight the finger and repeatedly restarts loading.
+    setCurrentTime(ratio * videoDuration);
+  }, [videoDuration]);
+
+  const handleScrubCancel = useCallback(() => {
+    scrubbingRef.current = false;
+    setCurrentTime(currentTimeRef.current);
+    startHideTimer();
+  }, [startHideTimer]);
+
   // An RNGH gesture, not a PanResponder: the Home pager's page turn is an RNGH
   // pan and only ever yields to another RNGH handler, so a PanResponder scrub
   // dragged the page sideways instead of seeking. See useScrubGesture.
   const { onLayout: onSeekTrackLayout, gesture: seekGesture, touchGuard: seekTouchGuard } = useScrubGesture({
-    onScrubStart: clearHideTimer,
-    onScrub: handleSeek,
+    onScrubStart: handleScrubStart,
+    onScrub: handleScrub,
     onCommit: handleSeekCommit,
-    onCancel: startHideTimer,
+    onCancel: handleScrubCancel,
+    enabled: videoDuration > 0,
+    immediate: true,
   });
 
   const handleGatedOverlayPress = useCallback(() => {
@@ -1458,7 +1481,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
                     <BareIcon name="Maximize" />
                   </Pressable>
                 </View>
-                {/* 3pt to see, 14pt to drag. */}
+                {/* The thin rail has a full 32pt touch target. */}
                 <GestureDetector gesture={seekGesture}>
                   <View
                     style={styles.bareScrubTouch}
@@ -1799,7 +1822,7 @@ const styles = StyleSheet.create({
     marginBottom: 0,
   },
   bareScrubTouch: {
-    height: 14,
+    height: 32,
     justifyContent: "flex-end",
   },
   bareScrubLine: {
